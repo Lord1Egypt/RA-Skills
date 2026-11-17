@@ -1,67 +1,183 @@
 #!/usr/bin/env bash
+# bin/opphub · v5.0.0
+# 统一入口, 把 bot 调用转发到对应 bin/*.js
+#
+#   - 通道 v4: 通道清单走 runtime, 默认通道走 server PATCH, 不经 plugin
+#   - cron v3: cron 写改 trigger plugin (peer 由 plugin 维护)
+#   - 注册不归 skill (引导去偶合 App 或 web /activate)
+#   - knowledge-autofill 入口移除 + bin deprecated (本机敏感源违规)
+#   - knowledge-card 歧义分支必 return (避免双 JSON 输出)
+#   - token refresh 契约统一返对象
+#   - OAuth URL/path 改 spawn argv (避免 shell 注入 + 路径带空格)
+#   - frontmatter requires 完整声明 + 版本单一源 (package.json)
 
-# 路径解析（兼容容器/K8s/多环境）
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/../lib/opphub-paths.sh"
-opphub_init_home
-# 偶合 OppHub · 主 CLI
-# 公开 OPC skill · 不带 admin 命令
+set -euo pipefail
 
-set -e
+SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CMD="${1:-help}"
+shift || true
 
-OPPHUB_HOME="${OPPHUB_HOME:-}"  # ← 由 lib/opphub-paths.sh 解析后填入
-OPPHUB_CONFIG="$OPPHUB_HOME/config.yaml"
-OPPHUB_STATE="$OPPHUB_HOME/state.json"
-
-# 加载子命令
-SUBCMD="${1:-help}"
-shift 2>/dev/null || true
-
-case "$SUBCMD" in
-  register|enable|login|logout|passwd|channel|profile|opportunities|suppliers|balance|settle|chain|peer|upstream|credit|status)
-    exec "$OPPHUB_HOME/bin/opphub-$SUBCMD" "$@"
+case "$CMD" in
+  # === v3.0 保留 ===
+  oauth-login)
+    exec node "$SKILL_DIR/bin/opphub-oauth-login.js" "$@"
     ;;
-  help|--help|-h)
-    cat <<'EOF'
-偶合 OppHub · 公开 OPC skill
+  oauth-register)
+    exit 1
+    ;;
+  oauth-logout)
+    exec node "$SKILL_DIR/bin/opphub-oauth-login.js" logout "$@"
+    ;;
+  status)
+    exec node "$SKILL_DIR/bin/opphub-oauth-login.js" status "$@"
+    ;;
+  cron-setup)
+    exec node "$SKILL_DIR/bin/opphub-cron-setup.js" setup "$@"
+    ;;
+  cron-status)
+    exec node "$SKILL_DIR/bin/opphub-cron-setup.js" status "$@"
+    ;;
 
-用法:
-  opphub <command> [options]
+  # 改: skill 不再自实现 refresh (11845 bytes bin/opphub-token-refresh.js 是 dup),
+  # 改 import plugin dist/oauth-client.js (plugin = source of truth)
+  # 入口加 token-refresh 子命令直接挂 plugin client.getAccessToken (needs_refresh 自动续)
+  token-refresh)
+    # 强跑 plugin client.getAccessToken(), 内部按 status 自动选:
+    #   valid → return t.access_token
+    #   needs_refresh → 调 awaitRefreshToken, 写新 Keychain, return 新 token
+    #   expired/missing → 触发 device flow (有 openBrowser=false 时返 ok=false)
+    exec node "$SKILL_DIR/bin/opphub-token-refresh.js" --mode=auto "$@"
+    ;;
 
-账户命令:
-  register     6 步引导注册（新 OPC 用）
-  enable       完成引导
-  login        邮箱/手机号 + 验证码登录
-  logout       登出
-  passwd       改密码
-  channel      IM 通道管理
+  # === v3.1 新加 ===
+  login-start)
+    # 拆 start (拿 device_code + user_code + verification_url)
+    exec node "$SKILL_DIR/bin/opphub-oauth-login.js" start "$@"
+    ;;
+  login-poll)
+    # step 2: 用户点同意后, bot 调 poll 拿 access_token
+    exec node "$SKILL_DIR/bin/opphub-oauth-login.js" poll "$@"
+    ;;
 
-业务命令:
-  profile      个人/公司/能力 profile
-  opportunities  商机列表
-  suppliers    推荐供应商
-  balance      MZTD 余额
-  settle       提现
-  chain        上游/下游链
-  peer         同行圈
-  upstream     上游商机
-  credit       信用分
-  status       当前状态
+  configure)
+    SUBCMD="${1:-list}"
+    shift || true
+    exec node "$SKILL_DIR/bin/opphub-configure.js" "$SUBCMD" "$@"
+    ;;
 
-其他:
-  help         显示帮助
-  version      显示版本
+  plugin-check)
+    # 读 ~/.openclaw/extensions/opphub/package.json
+    exec node "$SKILL_DIR/bin/opphub-plugin-check.js" "$@"
+    ;;
 
-配置: ~/.opphub/config.yaml
-文档: https://api.opphub.ruiplus.cn/docs
+  knowledge-status)
+    # GET /api/knowledge
+    exec node "$SKILL_DIR/bin/opphub-knowledge-status.js" "$@"
+    ;;
+
+  knowledge-add)
+    # 支持 --raw-text / --file / --url + --source-type
+    exec node "$SKILL_DIR/bin/opphub-knowledge-add.js" "$@"
+    ;;
+
+  # 阶段 1: 生成 queryPlan (skill turn 据此调 web_search/web_fetch/memory/wiki 填 rawText)
+  # 阶段 2: 接收 skill turn 拼好的 rawText 验证 + 透传
+  knowledge-discover)
+    # bot 调: opphub knowledge-discover --name "公司名" [--raw-text "<bot 拼好的>"] --json
+    # 返 queryPlan (mode=query-plan) 或 验证后的 rawText (mode=raw-text-passthrough)
+    exec node "$SKILL_DIR/bin/opphub-knowledge-discover.js" "$@"
+    ;;
+
+  knowledge-card)
+    # bot 调: opphub knowledge-card --name "公司名" --raw-text "<阶段 1 返的>" --json
+    # 按行业模板拆 4 类卡 (ability/industry/upstream/downstream/peer)
+    exec node "$SKILL_DIR/bin/opphub-knowledge-card.js" "$@"
+    ;;
+
+  knowledge-ingest-batch)
+    # bot 调: opphub knowledge-ingest-batch --cards <cards.json> --json
+    # 批量入库 (循环调 knowledge-add)
+    exec node "$SKILL_DIR/bin/opphub-knowledge-ingest-batch.js" "$@"
+    ;;
+
+  knowledge-match)
+    # bot 调: opphub knowledge-match --name "公司名" --entry-ids <ids.json> --json
+    # 上下游 + 同业 关联匹配 (查 opphub 知识库已有 OPC)
+    exec node "$SKILL_DIR/bin/opphub-knowledge-match.js" "$@"
+    ;;
+
+  knowledge-search)
+    # bot 调: opphub knowledge-search --q "<query>" [--count 10] [--min-score 0.5]
+    # 向量召回已有 entry
+    exec node "$SKILL_DIR/bin/opphub-knowledge-search.js" "$@"
+    ;;
+
+  knowledge-relate)
+    # bot 调: opphub knowledge-relate --xls <path> --company "公司名" --json
+    # 解析合同 xls, 拆 top 客户 / top 供应商 / 类别聚合
+    exec node "$SKILL_DIR/bin/opphub-knowledge-relate.js" "$@"
+    ;;
+
+  # idempotent ingest + 冲突检测 + 软链覆盖 (取代 v3.2 的 ingest-batch 循环调 add)
+  # server 端 4 种响应: created / no_change / soft_chain_override / conflict
+  knowledge-submit)
+    # bot 调: opphub knowledge-submit --cards <cards.json> [--force-override-conflict] --json
+    # 取代 ingest-batch, 加 idempotencyKey + contentHash
+    exec node "$SKILL_DIR/bin/opphub-knowledge-submit.js" "$@"
+    ;;
+
+  help|--help|-h|"")
+    cat <<EOF
+偶合 OppHub skill · v4.0.0
+用法: opphub <子命令>
+
+[OAuth / Token]
+  oauth-login        走 OAuth Device Flow 拿 token (终端版, SSH 用)
+  login-start        chat 版 login step 1: 拿 device_code + verification_url
+  login-poll         chat 版 login step 2: 用户点同意后拿 access_token
+  oauth-logout       清 Keychain
+  oauth-register     ⚠️ DEPRECATED 2026-07-22: 注册不归 skill, 引导去偶合 App 或 web /activate
+
+[状态 / 维护]
+  status             看 token + plugin + cron + knowledge 状态
+  plugin-check       读 ~/.openclaw/extensions/opphub/package.json, 返 installed/version/path
+  cron-setup         ⚠️ v3.3 旧版, v4 cron v3 起改 trigger plugin 写 (不经 skill)
+
+[偶合配置 (Step 1-5 闭环 · v4 通道 v4)]
+  configure list     拿本机 channels (走 openclaw channels list --json), 出 IntentMessage 给 skill
+  configure set      PUT /api/user/channels/default (v4: 直连 server, 不经 plugin)
+
+[偶合知识库 (Step 6 开放式)]
+  knowledge-status   GET /api/knowledge?opcId=xxx
+  knowledge-add      POST /api/knowledge/ingest (raw-text / file / url)
+  knowledge-search   向量召回知识库 entry
+  knowledge-autofill ⚠️ DEPRECATED 2026-07-22: 读本机敏感源违反产品红线, 已移除入口
+
+[偶合录入公司 (v3.2 引导流程 阶段 1-6)]
+  knowledge-discover 阶段 1: 生成 queryPlan / 接收 rawText 验证
+  knowledge-card     阶段 2-3: 按行业模板拆 能力/上下游/同业 卡 (v4: 歧义分支必 return)
+  knowledge-submit   阶段 5 (v3.3 新): idempotent 批量入库 + 冲突检测
+  knowledge-ingest-batch 阶段 5 (v3.2 旧): 循环调 knowledge-add, 保留兼容
+  knowledge-match    阶段 6: 上下游 + 同业 关联匹配 (查 opphub 知识库)
+
+  knowledge-relate   解析合同 xls/html, 拆 top 客户 / top 供应商 / 类别聚合
+
+[偶合商机 (TODO: 与知识库匹配结果合并)]
+  ⚠️ 暂无独立 matches 子命令, 走 knowledge-match (上下游/同业关联)
+
+所有子命令输出 JSON, bot 直接解析。
+IntentMessage 输出格式: { ok: true, intent: { prompt, options, actions, inputHint, links, header } }
+
+v4.0.0 变更 (2026-07-22):
+  - knowledge-autofill 入口移除 + bin 改 deprecated (本机敏感源违规)
+  - oauth-register bin 改 deprecated (注册不归 skill, 引导去偶合 App)
+  - cron-setup 标 deprecated, v4 起走 trigger plugin 写 (cron v3)
+  - configure set 标 v4 (走 server 直连)
+  - knowledge-card 歧义分支改为 return (避免双 JSON 输出)
 EOF
     ;;
-  version|--version|-v)
-    echo "opphub 1.0.0"
-    ;;
   *)
-    echo "未知命令: $SUBCMD" >&2
-    echo "运行 'opphub help' 看帮助" >&2
+    echo "{\"ok\":false,\"error\":\"unknown_command\",\"message\":\"$CMD (用法: opphub help)\"}"
     exit 1
     ;;
 esac

@@ -1,46 +1,58 @@
-## Description: <br>
-Track and care for your pets with profiles, routines, behavior logging, training progress, and creative projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and care for your pets with profiles, routines, behavior logging, training progress, and creative projects.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill as a local pet journal for profiles, routines, training progress, behavior logs, reports, and creative pet projects. It helps organize pet care information and surface patterns while keeping medical diagnosis and breed-selection advice out of scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pet profiles, care notes, photos, sitter instructions, or lost-pet materials may include sensitive contact, address, medical, or travel details. <br>
-Mitigation: Store only necessary information in ~/pets/, avoid sensitive details where possible, and review generated shareable materials before distributing them. <br>
-Risk: Recurring reminder setup may create cron jobs that persist after the original care need changes. <br>
-Mitigation: Require explicit user confirmation before creating reminders and tell the user what was scheduled and how to remove it. <br>
-Risk: Behavior and health logs could be mistaken for professional veterinary diagnosis or treatment advice. <br>
-Mitigation: Keep responses limited to logging, pattern spotting, and care organization, and direct symptoms, diagnoses, treatments, sudden behavior changes, or serious concerns to a veterinarian or certified behavior professional. <br>
+## Use Case:
 
+Pet owners use this skill to keep local pet profiles, routines, behavior logs, training notes, reports, and creative pet projects organized.
 
-## Reference(s): <br>
-- [Pets Skill Page](https://clawhub.ai/ivangdavila/pets) <br>
-- [Behavior Tracking Patterns](artifact/behavior.md) <br>
-- [Report Generation](artifact/reports.md) <br>
-- [Routines and Reminders](artifact/routines.md) <br>
-- [Training Methods by Species](artifact/training.md) <br>
-- [Creative Projects](artifact/creative.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance, Configuration] <br>
-**Output Format:** [Markdown summaries and reports, JSONL pet log entries, and plain-text care guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to local files under ~/pets/ and may propose reminder schedules for user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Pet mentions, routines, training notes, photos, and reminders may be retained on local disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review stored files before installing and delete local pet data that is no longer needed.
+
+Risk: Recurring reminders may create persistent cron jobs without clear confirmation, expiration, or removal controls.
+
+Mitigation: Use recurring reminders only after confirming the schedule, and verify that reminders can be listed and removed.
+
+Risk: Health or serious behavior observations could be mistaken for medical or diagnostic advice.
+
+Mitigation: Keep the skill limited to logging and pattern summaries, and refer symptoms, diagnoses, treatments, aggression, sudden behavior changes, or self-harm concerns to a veterinarian or certified behaviorist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/pets)
+- [Skill homepage](https://clawic.com/skills/pets)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown responses with JSONL log entries and local file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May retain pet notes, routines, training records, photos, and reminders on local disk.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

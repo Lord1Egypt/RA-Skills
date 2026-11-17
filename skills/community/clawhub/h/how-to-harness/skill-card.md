@@ -1,44 +1,61 @@
-## Description: <br>
-How to Harness is a facilitation skill for designing Harness-style closed-loop, self-optimizing AI systems where humans steer through gates and agents execute. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+How to Harness guides agents through structured design sessions for Harness-style closed-loop, self-optimizing AI systems where humans steer through evaluation, gates, versioning, rollback, and time-budget decisions.
 
-## Publisher: <br>
-[dimayip](https://clawhub.ai/user/dimayip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dimayip](https://clawhub.ai/user/dimayip)
 
-## Use Case: <br>
-Developers, product owners, and AI system designers use this skill to structure conversations that turn a proposed AI loop, evaluation harness, or governance workflow into reviewed design decisions and deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated kickoff commands or automation plans could be inappropriate for a real project if executed without review. <br>
-Mitigation: Review proposed commands and automation steps with the project owner before running or implementing them. <br>
-Risk: Design guidance for closed-loop AI systems can lead to misleading or incomplete plans if required evaluation, gating, rollback, or human-time decisions are skipped. <br>
-Mitigation: Use the skill's Layer 0 checks, staged approvals, and consistency reviews before treating any generated plan as implementation-ready. <br>
+## Use Case:
 
+Developers, product leads, and AI system designers use this skill to turn ideas for closed-loop or self-optimizing agent systems into reviewed PRDs, design docs, RFCs, ADRs, kickoff checklists, one-pagers, or milestone plans. The skill is intended for systems that need evaluation-driven improvement, tiered automation, human approval gates, resumable execution, and explicit escalation paths.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dimayip/how-to-harness) <br>
-- [Harness Engineering](https://openai.com/index/harness-engineering/) <br>
-- [Decision Checklists](references/decision-checklists.md) <br>
-- [Deliverables](references/deliverables.md) <br>
-- [Ralph Case Study](references/ralph-case-study.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance with structured options, checks, and deliverable sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces A/B/C/D decision options, consistency checks, lock-in summaries, and staged design deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill applies strong process constraints that can slow or redirect ordinary design work if invoked outside closed-loop or self-optimizing AI system design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the trigger criteria before use and route ordinary product, CRUD, one-shot Q&A, or already-settled workflow requests to a more appropriate skill or direct documentation path.
+
+Risk: Global installation makes the facilitation behavior available across future projects where its strict sequencing may not be desired.
+
+Mitigation: Prefer project-local or manually inspected installation when the behavior should remain scoped to one workspace.
+
+Risk: Unpinned npx installation commands can resolve different installer code over time.
+
+Mitigation: Avoid running unpinned installers with elevated privileges and inspect the installation source or use a pinned, project-local installation path when possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dimayip/skills/how-to-harness)
+- [OpenAI Harness Engineering](https://openai.com/index/harness-engineering/)
+- [Decision Checklists](references/decision-checklists.md)
+- [Deliverables Templates and Guide](references/deliverables.md)
+- [Ralph Case Study](references/ralph-case-study.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands]
+
+**Output Format:** [Conversational guidance and structured Markdown deliverables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are produced section by section after user decisions are locked and approved.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

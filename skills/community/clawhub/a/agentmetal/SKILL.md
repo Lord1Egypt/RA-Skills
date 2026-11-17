@@ -1,7 +1,7 @@
 ---
 name: agentmetal
 description: Spin up a real Linux server (VPS / cloud instance) in under 60 seconds, then SSH in and run commands on it — paid with USDC over x402 or card, no signup, no dashboard. Use when you want to rent a box, deploy something, run a command on a real machine, or host a service.
-version: 0.3.2
+version: 0.3.4
 homepage: https://agentmetal.dev
 tags: vps, server, hosting, deploy, infrastructure, x402, usdc, ssh, exec
 metadata:

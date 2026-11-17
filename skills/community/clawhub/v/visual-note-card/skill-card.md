@@ -1,41 +1,56 @@
-## Description: <br>
-Generates Chinese visual note cards and infographics as single-page HTML with PNG export for summaries, concepts, and article-based knowledge cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional Chinese visual note cards and poster-style infographics as self-contained HTML files with optional automatic PNG export.
 
-## Publisher: <br>
-[tom859174-sketch](https://clawhub.ai/user/tom859174-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tom859174-sketch](https://clawhub.ai/user/tom859174-sketch)
 
-## Use Case: <br>
-External users and developers use this skill to turn topics, source text, articles, or concepts into polished Chinese poster-style knowledge cards for sharing, printing, or further browser-based editing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may contact third-party services for Google Fonts and browser-based export scripts. <br>
-Mitigation: Avoid confidential source material unless remote dependencies are removed or vendored, and review generated HTML before publishing or sharing. <br>
+## Use Case:
 
+Developers and content creators use this skill to convert topics, articles, or concepts into structured Chinese visual note cards for social sharing, presentations, or printing. The skill guides the agent to produce a complete HTML infographic and, by default, export it as a PNG image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tom859174-sketch/visual-note-card) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
-- [OpenClaw](https://openclaw.ai/) <br>
-- [html2canvas 1.4.1 CDN script](https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration] <br>
-**Output Format:** [Self-contained HTML plus PNG image output, with Markdown-style guidance and shell command examples when rendering is required.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output includes both HTML and PNG; HTML-only and 1x, 1.5x, or 2x export modes are supported when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated cards may load Google Fonts and CDN JavaScript.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML and vendor or pin external assets before routine use.
+
+Risk: The PNG exporter opens active HTML in Chromium with no-sandbox flags.
+
+Mitigation: Run exports in a restricted environment without sensitive files or credentials, and remove no-sandbox flags where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tom859174-sketch/skills/visual-note-card)
+- [README](artifact/README.md)
+- [Reference HTML template](artifact/assets/template.html)
+- [PNG export script](artifact/scripts/html2png.py)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Guidance]
+
+**Output Format:** [Self-contained HTML, PNG image, and concise Markdown delivery notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML may load Google Fonts and html2canvas from third-party CDNs; PNG export uses a Playwright-based Chromium screenshot workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

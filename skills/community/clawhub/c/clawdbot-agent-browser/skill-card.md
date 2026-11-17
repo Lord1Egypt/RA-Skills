@@ -1,43 +1,55 @@
-## Description: <br>
-Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection.
 
-## Publisher: <br>
-[Viv888-AI](https://clawhub.ai/user/Viv888-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viv888-ai](https://clawhub.ai/user/viv888-ai)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser workflows with the agent-browser CLI, including navigation, ref-based element selection, interaction, state persistence, and page data extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved sessions, cookies, localStorage values, screenshots, PDFs, and extracted page content can contain sensitive account or user data. <br>
-Mitigation: Keep these artifacts out of source control and logs, and handle auth state files as sensitive credentials. <br>
-Risk: Browser automation can perform high-impact actions such as purchases, posts, deletions, account changes, or other state-changing operations. <br>
-Mitigation: Require explicit user approval before executing high-impact actions. <br>
-Risk: The skill depends on the external agent-browser npm package. <br>
-Mitigation: Install and use it only when the package source is trusted and browser automation is needed. <br>
+## Use Case:
 
+Developers and agent operators use this skill to drive browser workflows through the agent-browser CLI, using accessibility snapshots and ref-based element selection for repeatable navigation, interaction, extraction, session isolation, and state persistence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Viv888-AI/clawdbot-agent-browser) <br>
-- [agent-browser homepage](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON output conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or manipulate browser session state, screenshots, PDFs, cookies, localStorage values, and extracted page content through the external agent-browser CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and _meta.json) <br>
+Risk: Global or elevated installation of the browser automation CLI can affect the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted source, prefer a pinned or project-local agent-browser version, and avoid system dependency installation with elevated privileges unless needed.
+
+Risk: Saved auth state, cookies, and local storage may contain credentials.
+
+Mitigation: Keep auth files out of repositories and shared workspaces, restrict access, redact them from logs, and delete them when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viv888-ai/skills/clawdbot-agent-browser)
+- [agent-browser project homepage](https://github.com/vercel-labs/agent-browser)
+- [Publisher profile](https://clawhub.ai/user/viv888-ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides use of the external agent-browser command and recommends JSON snapshot output for parsing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

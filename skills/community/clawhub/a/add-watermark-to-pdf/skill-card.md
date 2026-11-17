@@ -1,44 +1,58 @@
-## Description: <br>
-Add a text watermark to one or multiple PDFs by uploading them to the Solutions API, polling until completion, then returning download URL(s) for the watermarked PDF(s) or a ZIP if multiple. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add a text watermark to one or multiple PDFs by uploading them to the Solutions API, polling until completion, then returning download URL(s) for the watermarked PDF(s) or a ZIP if multiple files are processed.
 
-## Publisher: <br>
-[CrossServiceSolutions](https://clawhub.ai/user/CrossServiceSolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[crossservicesolutions](https://clawhub.ai/user/crossservicesolutions)
 
-## Use Case: <br>
-External users and developers use this skill to add visible text watermarks to one or more PDF files through the Cross-Service-Solutions API and retrieve downloadable outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected PDFs, filenames, watermark text, and API-authenticated requests are sent to a third-party API. <br>
-Mitigation: Use only with documents approved for Cross-Service-Solutions processing; avoid confidential or regulated PDFs unless that service is approved for the user's use. <br>
-Risk: The skill requires a bearer API key and permits an override of the API base URL. <br>
-Mitigation: Keep the API key secret and revocable, and only override the base URL when the destination is intentionally trusted. <br>
-Risk: The artifact script can include watermark text in the JSON result. <br>
-Mitigation: Do not return watermark text downstream when the user considers it sensitive. <br>
+## Use Case:
 
+External users and developers use this skill to watermark one or more PDF files through the Solutions API and receive structured download links for the processed PDFs or ZIP output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CrossServiceSolutions/add-watermark-to-pdf) <br>
-- [Cross-Service-Solutions API registration](https://login.cross-service-solutions.com/register) <br>
-- [Solutions API base URL](https://api.xss-cross-service-solutions.com/solutions/solutions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, guidance] <br>
-**Output Format:** [JSON with job status, output file metadata, and download URL fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes job ID, status, output file names, download URL(s), input filenames, and watermark text only when safe to return.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: PDFs, watermark text, and the API key are sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the provider's retention, access, and deletion practices are acceptable for the selected documents; avoid confidential, regulated, or customer documents unless approved.
+
+Risk: A base URL override could disclose PDFs and credentials to the wrong endpoint.
+
+Mitigation: Keep --base-url and SOLUTIONS_BASE_URL locked to a trusted HTTPS Solutions API endpoint.
+
+Risk: Bearer API keys can grant access to the external service if exposed.
+
+Mitigation: Provide API keys through secrets or environment variables and do not echo or log them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crossservicesolutions/skills/add-watermark-to-pdf)
+- [Solutions API watermark endpoint](https://api.xss-cross-service-solutions.com/solutions/solutions/api/61)
+
+## Skill Output:
+
+**Output Type(s):** [text, files]
+
+**Output Format:** [JSON object with job status, output file metadata, and download URL(s)]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return one or more PDF download URLs or a ZIP download URL for batch output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

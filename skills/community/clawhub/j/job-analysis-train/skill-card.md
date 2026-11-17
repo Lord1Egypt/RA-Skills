@@ -1,44 +1,59 @@
-## Description: <br>
-在对话中辅助学习工作分析第 8 章 Staffing and Training，帮助用户理解 staffing、recruitment、selection、validation、training cycle 和 selection versus training 等课程概念。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study assistant for Job and Work Analysis Chapter 8 that helps learners review staffing, recruitment, selection validation, and training concepts through concise explanations, comparisons, and practice prompts.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students and learners use this skill as a bilingual study assistant for Job and Work Analysis chapter 8, especially to connect job analysis evidence with recruitment, selection validation, and training design. It supports concept explanations, comparison tables, examples, and practice questions grounded in the bundled chapter summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learners may mistake course-summary assistance for legal, hiring, or compliance advice. <br>
-Mitigation: Use the skill for study support and verify important academic details against the original course material; consult current legal or professional guidance for real staffing decisions. <br>
+## Use Case:
 
+Students and other learners use this skill to study how job analysis supports staffing and training decisions, including job specifications, KSAO reasoning, selection validation, training-cycle design, and evaluation. It is intended for chapter-focused learning, review, practice questions, and case discussion rather than professional legal or compliance advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/junwugit/job-analysis-train) <br>
-- [Chapter overview](artifact/references/overview.md) <br>
-- [Staffing, recruitment, and job specification](artifact/references/staffing-recruitment.md) <br>
-- [Selection and test validation](artifact/references/selection-validation.md) <br>
-- [Training cycle and job analysis](artifact/references/training-cycle.md) <br>
-- [Selection versus training](artifact/references/selection-vs-training.md) <br>
-- [Examples, practice, and dialogue templates](artifact/references/examples-practice.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or conversational text with bilingual terminology and comparison tables when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses progressive disclosure and reads bundled references only as needed for the learner's question.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill discusses selection tests, adverse impact, and business necessity in a textbook-learning context, which could be mistaken for current employment-law or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For real employment-law or compliance questions, verify current legal and professional standards separately.
+
+Risk: The skill defaults to Chinese explanations, which may not match every user's expected language.
+
+Mitigation: Ask explicitly for another language when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/job-analysis-train)
+- [Chapter Overview](references/overview.md)
+- [Staffing, Recruitment, and Job Specification](references/staffing-recruitment.md)
+- [Selection and Test Validation](references/selection-validation.md)
+- [Training Cycle and Job Analysis](references/training-cycle.md)
+- [Selection Versus Training](references/selection-vs-training.md)
+- [Examples, Practice, and Dialogue Templates](references/examples-practice.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Markdown with short explanations, comparison tables, examples, and practice prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese-language explanations with English terminology for key job-analysis concepts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-Converts text into speech using the Volcengine Doubao speech synthesis API, with streaming synthesis, voice selection, speech controls, Markdown filtering, and LaTeX reading support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Byted Text To Speech converts text into audio with the Volcengine Doubao speech synthesis API, including voice selection, speech controls, Markdown filtering, and LaTeX reading options.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and external users use this skill to synthesize playable speech audio from text for narration, read-aloud workflows, voiceovers, announcements, or document listening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends synthesis text to Volcengine/ByteDance for text-to-speech processing. <br>
-Mitigation: Use it only for text that is appropriate to send to that provider, and avoid submitting sensitive or regulated content unless the deployment has approved that data flow. <br>
-Risk: The skill can use ARK_SKILL_API_KEY and ARK_SKILL_API_BASE to list or create speech API keys and may save a retrieved key locally. <br>
-Mitigation: Prefer manually setting MODEL_SPEECH_API_KEY, do not expose broader ARK credentials unless key management is intended, and inspect scripts/.env or rotate keys if one appears unexpectedly. <br>
+## Use Case:
 
+Developers and content creators use this skill to synthesize speech for narration, voiceover, read-aloud audio, and multilingual text playback. It is useful when an agent needs to generate a playable local audio file from supplied text.
 
-## Reference(s): <br>
-- [Byted Text To Speech on ClawHub](https://clawhub.ai/volcengine-skills/byted-text-to-speech) <br>
-- [Volcengine Doubao Speech Product Overview](https://www.volcengine.com/docs/6561/1257543) <br>
-- [HTTP Chunked/SSE Unidirectional Streaming V3](https://www.volcengine.com/docs/6561/1598757) <br>
-- [Voice List](https://www.volcengine.com/docs/6561/1257544) <br>
-- [API Key Management](https://console.volcengine.com/speech/new/setting/apikeys) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [Documentation Index](references/docs-index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [JSON status output with a local audio file path, plus Markdown guidance and shell commands when setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local audio files in mp3, pcm, or ogg_opus format; requires MODEL_SPEECH_API_KEY or intentionally provided ARK_SKILL_API_KEY and ARK_SKILL_API_BASE credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Submitted text and API credentials are sent to a configured third-party TTS provider endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with text appropriate for the configured provider, keep the default provider endpoint unless a trusted alternative is required, and avoid submitting sensitive content.
+
+Risk: Live API keys may be written to a workspace .env file and later committed or shared.
+
+Mitigation: Store credentials in a secrets manager or protected environment variables, keep .env files out of version control, and rotate any key that may have been exposed.
+
+Risk: The credential fallback can list or create API keys when alternate ARK credentials are present.
+
+Mitigation: Remove or gate the fallback behind explicit user consent before broad deployment, and review generated keys after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-text-to-speech)
+- [Volcengine Doubao Speech product documentation](https://www.volcengine.com/docs/6561/1257543)
+- [HTTP Chunked/SSE unidirectional streaming V3 API](https://www.volcengine.com/docs/6561/1598757)
+- [Voice list](https://www.volcengine.com/docs/6561/1257544)
+- [API key usage guide](https://www.volcengine.com/docs/6561/1816214)
+- [Setup guide](references/setup-guide.md)
+- [Documentation index](references/docs-index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [JSON status output and local audio files, with Markdown guidance for setup and troubleshooting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audio output can be MP3, PCM, or Ogg Opus and includes a local_path value when synthesis succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

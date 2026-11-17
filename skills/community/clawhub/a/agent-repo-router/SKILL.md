@@ -1,6 +1,6 @@
 ---
 name: agent-repo-router
-description: "Repo-aware router skill for AI coding CLIs: map tasks to the right repository, project skill or agent, and native CLI backend across OpenClaw, Claude Code, OpenCode, Codex, Cursor, and Hermes. This ClawHub package is an install notice; use the native curl installer for the runtime skill."
+description: "Repo-aware router skill for AI coding CLIs: map tasks to the right repository, project skill or agent, and native CLI backend across OpenClaw, Claude Code, OpenCode, Codex, Cursor, and Hermes. This ClawHub package is an install notice; follow the official repository documentation for the runtime skill."
 ---
 
 # AgentRepoRouter
@@ -17,14 +17,10 @@ AgentRepoRouter is useful when you want an agent host to:
 
 ## Install
 
-If you installed AgentRepoRouter through ClawHub, this package is only a ClawHub page and install notice. It is not the AgentRepoRouter runtime skill body.
+This ClawHub package is an install notice, not the AgentRepoRouter runtime skill body. AgentRepoRouter is configured at installation time, so use the official repository's installation documentation and review the current source before making any local agent-host changes.
 
-Use the native installer from the README:
+Official repository: https://github.com/wufei-png/AgentRepoRouter
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/wufei-png/AgentRepoRouter/main/scripts/install.sh | bash
-```
+The native setup selects an English or Chinese runtime skill, creates the local repository mapping file, records selected agent hosts and execution CLIs, and links the router skill into the selected agent host directories.
 
-The native installer is required because AgentRepoRouter is configured at install time. It installs the selected English or Chinese runtime skill, creates the local repository mapping file, records selected agent hosts and execution CLIs, and links the router skill into the selected agent host directories.
-
-Do not use this ClawHub package as the active AgentRepoRouter skill. After running the curl installer, use the installed router skill and edit the generated repository mapping file printed by the installer.
+After installation, use the installed router skill and edit the generated repository mapping file printed by the installer.

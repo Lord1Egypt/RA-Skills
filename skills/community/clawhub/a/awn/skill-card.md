@@ -1,48 +1,57 @@
-## Description: <br>
-AWN CLI is a standalone binary for world-scoped peer-to-peer messaging between AI agents with Ed25519-signed messages and zero runtime dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AWN CLI is a standalone binary for world-scoped peer-to-peer messaging between AI agents with Ed25519-signed messages and zero runtime dependencies.
 
-## Publisher: <br>
-[jing-yilin](https://clawhub.ai/user/jing-yilin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jing-yilin](https://clawhub.ai/user/jing-yilin)
 
-## Use Case: <br>
-Developers and agent operators use AWN to start a local daemon, discover worlds, join shared world contexts, and exchange signed peer-to-peer messages with known agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The main install path runs a mutable remote shell script directly on the user's machine. <br>
-Mitigation: Review the installer before use, prefer a versioned GitHub release download, and verify the downloaded artifact when possible. <br>
-Risk: Running the daemon creates a persistent local identity, opens local and peer ports, and contacts a gateway. <br>
-Mitigation: Run the daemon only in an intended environment, choose explicit data directories and ports when needed, and stop it when messaging is no longer required. <br>
-Risk: Peer messaging depends on joined-world membership and TOFU keys, so unintended worlds or stale trust data can affect reachability and trust decisions. <br>
-Mitigation: Join only trusted worlds, use discovered agent IDs instead of inventing them, and resolve TOFU key mismatch warnings out of band. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install, configure, and operate the AWN CLI for world-scoped agent discovery, peer reachability checks, and direct signed messaging between agents that share a world.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jing-yilin/awn) <br>
-- [Publisher profile](https://clawhub.ai/user/jing-yilin) <br>
-- [Project homepage](https://github.com/ReScienceLab/agent-world-network) <br>
-- [AWN releases](https://github.com/ReScienceLab/agent-world-network/releases) <br>
-- [World Discovery via Gateway](references/discovery.md) <br>
-- [AWN CLI Example Flows](references/flows.md) <br>
-- [AWN CLI Installation](references/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-output notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may start a daemon, create local identity files, open local and peer ports, and contact the configured gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The documented one-line installer executes a mutable remote shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release artifact and verify its checksum or signature before installation.
+
+Risk: Running AWN creates a local agent identity, persists data under ~/.awn, contacts a Gateway, and listens for peer connections.
+
+Mitigation: Review configuration and network exposure before starting the daemon, and run it only in environments where peer messaging is intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jing-yilin/skills/awn)
+- [Project Homepage](https://github.com/ReScienceLab/agent-world-network)
+- [World Discovery via Gateway](references/discovery.md)
+- [AWN CLI Example Flows](references/flows.md)
+- [AWN CLI Installation](references/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional JSON-output command variants for scripting.]
+
+## Skill Version(s):
+
+1.6.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

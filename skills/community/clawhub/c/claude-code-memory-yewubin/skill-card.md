@@ -1,43 +1,65 @@
-## Description: <br>
-Claude级 · AI第二大脑 gives OpenClaw agents a local second-brain workflow for layered memory, workspace file organization, AutoDream cleanup, backup prompts, and memory migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An OpenClaw memory-management skill that guides agents to build a local three-layer memory system, organize notes and files, run AutoDream consolidation, and propose backups with user confirmation.
 
-## Publisher: <br>
-[yewubin-jpg](https://clawhub.ai/user/yewubin-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yewubin-jpg](https://clawhub.ai/user/yewubin-jpg)
 
-## Use Case: <br>
-External OpenClaw users use this skill to organize local agent memory, notes, and workspace files across conversations. It supports user-confirmed onboarding, memory cleanup, backups, and migration of remembered context from other AI assistants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill maintains durable local memory that may include personal, work, or business context. <br>
-Mitigation: Avoid storing sensitive personal, credential, legal, financial, or confidential business information unless you have a clear deletion and backup policy. <br>
-Risk: The skill can set up recurring memory cleanup and workspace backup behavior. <br>
-Mitigation: Decline or disable AutoDream and automatic backup during onboarding unless recurring background processing is desired. <br>
-Risk: The skill can create, back up, or reorganize workspace content. <br>
-Mitigation: Review the onboarding report and proposed file changes before approving setup or cleanup actions. <br>
+## Use Case:
 
+External OpenClaw users use this skill to give an agent a persistent local memory workflow for user preferences, project context, notes, files, error lessons, and periodic memory consolidation. It is intended for users who want agent-assisted organization of a local workspace while retaining explicit confirmation before broad writes, scheduled automation, backup, or external sync.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yewubin-jpg/claude-code-memory-yewubin) <br>
-- [Publisher profile](https://clawhub.ai/user/yewubin-jpg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or reorganize local workspace memory, notes, files, backups, and scheduled OpenClaw jobs after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: The skill asks for persistent automation and broad local workspace access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require separate user opt-in before enabling memory writes, profile storage, AutoDream scheduling, MCP sync, or workspace backup.
+
+Risk: Workspace backups and imported assistant histories may capture sensitive local data.
+
+Mitigation: Review what will be saved before backup or import, avoid sensitive workspaces by default, and confirm retention, restore, and deletion procedures.
+
+Risk: Scheduled jobs may continue changing or scanning the workspace after initial setup.
+
+Mitigation: Confirm how to list, inspect, modify, and remove cron jobs before enabling AutoDream or backup automation.
+
+Risk: Memory contents may become outdated or conflict with current files and user intent.
+
+Mitigation: Treat memory as hints, verify important actions against current files and user confirmation, and update contradictory memory entries explicitly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yewubin-jpg/skills/claude-code-memory-yewubin)
+- [Artifact README](artifact/README.md)
+- [Installation guide](artifact/INSTALLATION_GUIDE.md)
+- [Onboarding guide](artifact/templates/ONBOARDING_GUIDE.md)
+- [AutoDream protocol](artifact/templates/DREAM_PROTOCOL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file templates and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local workspace organization guidance, memory templates, onboarding prompts, and proposed automation steps for review before execution.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

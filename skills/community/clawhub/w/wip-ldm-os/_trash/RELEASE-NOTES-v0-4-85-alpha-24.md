@@ -1,0 +1,1 @@
+Tightens the LDM OS install memory policy after dogfood showed Codex still searched `MEMORY.md` in a parallel exploration batch. The install skill now uses absolute no-memory wording, the paste prompt carries the same constraint in the user-message frame, and policy tests reject the older temporal "first action" phrasing.

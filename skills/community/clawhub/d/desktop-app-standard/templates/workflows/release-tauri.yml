@@ -1,0 +1,192 @@
+name: release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag: { description: 'Existing tag to rebuild. Dispatch on that tag ref, e.g. v1.2.3', required: true }
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+env:
+  TAG: ${{ inputs.tag || github.ref_name }}
+
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      commit: ${{ steps.version.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: 'refs/tags/${{ env.TAG }}' }
+      - id: version
+        name: Tag is the single version source
+        shell: bash
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::$TAG is not vX.Y.Z"; exit 1; }
+          v="${TAG#v}"
+          pkg=$(node -p "require('./package.json').version")
+          conf=$(node -p "require('./src-tauri/tauri.conf.json').version ?? ''")
+          [ "$pkg" = "$v" ] || { echo "::error::version mismatch: package.json $pkg != tag $v"; exit 1; }
+          [ "$conf" = "../package.json" ] || [ "$conf" = "$v" ] || { echo "::error::version mismatch: tauri.conf.json $conf"; exit 1; }
+          commit=$(git rev-parse HEAD)
+          event_commit=$(git rev-parse --verify "$GITHUB_SHA^{commit}") || { echo "::error::Dispatch this workflow on the target tag ref"; exit 1; }
+          [[ "$commit" == "$event_commit" ]] || { echo "::error::Tag and workflow event point to different commits"; exit 1; }
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@v7
+        with: { node-version: 26, cache: npm }
+      - name: Refuse to overwrite an already published release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --paginate --slurp "repos/${{ github.repository }}/releases?per_page=100" > "$RUNNER_TEMP/releases.json"
+          node <<'NODE'
+          const releases = require(process.env.RUNNER_TEMP + '/releases.json').flat();
+          if (releases.some(r => r.tag_name === process.env.TAG && !r.draft)) {
+            throw new Error('Release already public; publish corrections under a new version');
+          }
+          NODE
+      - run: npm ci                     # Yarn 1: yarn install --frozen-lockfile · Yarn 4: corepack enable + yarn install --immutable
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev patchelf xdg-utils
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with: { workspaces: './src-tauri -> target' }
+      - name: Verify installed Tauri release majors
+        run: |
+          npm ls --depth=0 --json > "$RUNNER_TEMP/npm-tree.json"
+          cargo metadata --locked --manifest-path src-tauri/Cargo.toml --format-version 1 > "$RUNNER_TEMP/cargo-tree.json"
+          node <<'NODE'
+          const { dependencies } = require(process.env.RUNNER_TEMP + '/npm-tree.json');
+          const metadata = require(process.env.RUNNER_TEMP + '/cargo-tree.json');
+          const targets = require('./.github/desktop-version-targets.json');
+          function verify(name, version, major) {
+            if (!/^\d+\.\d+\.\d+$/.test(version) || Number(version.split('.')[0]) !== major) {
+              throw new Error(name + ': expected stable ' + major + '.x, installed ' + version);
+            }
+            console.log(name, version);
+          }
+          verify('@tauri-apps/cli', dependencies?.['@tauri-apps/cli']?.version, targets.npm['@tauri-apps/cli']);
+          const api = dependencies?.['@tauri-apps/api'];
+          if (api) verify('@tauri-apps/api', api.version, targets.npm['@tauri-apps/api']);
+          const members = new Set(metadata.workspace_members);
+          const direct = new Set(metadata.resolve.nodes.filter(n => members.has(n.id)).flatMap(n => n.deps.map(d => d.pkg)));
+          const crates = metadata.packages.filter(p => direct.has(p.id) && ['tauri', 'tauri-build'].includes(p.name));
+          if (!crates.some(p => p.name === 'tauri')) throw new Error('No direct Tauri core dependency in the app workspace');
+          for (const p of crates) {
+            verify(p.name, p.version, targets.cargo[p.name]);
+            if (p.name === 'tauri' && api && p.version.split('.')[1] !== api.version.split('.')[1]) {
+              throw new Error('Tauri core and JS API must use the same minor');
+            }
+          }
+          NODE
+      - run: npm run lint && npm run typecheck && npm test
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+
+  build:
+    needs: validate
+    if: github.ref_type == 'tag'
+    permissions:
+      contents: write                    # tauri-action creates/uploads to the draft
+    strategy:
+      fail-fast: false
+      max-parallel: 1    # The official Action merges the shared latest.json; serialize its writers.
+      matrix:
+        include:
+          - { os: windows-latest,   target: x86_64-pc-windows-msvc,    args: '--target x86_64-pc-windows-msvc' }
+          - { os: windows-latest,   target: aarch64-pc-windows-msvc,   args: '--target aarch64-pc-windows-msvc --bundles nsis' }  # cross-compiled ARM64; VERIFY on first run
+          - { os: macos-latest,     target: aarch64-apple-darwin,      args: '--target aarch64-apple-darwin' }
+          - { os: macos-latest,     target: x86_64-apple-darwin,       args: '--target x86_64-apple-darwin' }
+          - { os: ubuntu-22.04,     target: x86_64-unknown-linux-gnu,  args: '--bundles deb,appimage,rpm' }   # 22.04 = older glibc → wider AppImage/deb reach
+          - { os: ubuntu-22.04-arm, target: aarch64-unknown-linux-gnu, args: '--bundles deb,appimage,rpm' }   # free for public repos; private repos: VERIFY runner availability
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: '${{ needs.validate.outputs.commit }}' }
+      - if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev patchelf xdg-utils
+      - uses: actions/setup-node@v7
+        with: { node-version: 26, cache: npm }
+      - uses: dtolnay/rust-toolchain@stable
+        with: { targets: '${{ matrix.target }}' }
+      - uses: Swatinem/rust-cache@v2
+        with: { workspaces: './src-tauri -> target', key: '${{ matrix.target }}' }
+      - run: npm ci
+      - uses: tauri-apps/tauri-action@v1
+        id: tauri
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+          APPLE_CERTIFICATE: ${{ runner.os == 'macOS' && secrets.APPLE_CERTIFICATE || '' }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ runner.os == 'macOS' && secrets.APPLE_CERTIFICATE_PASSWORD || '' }}
+          APPLE_SIGNING_IDENTITY: ${{ runner.os == 'macOS' && secrets.APPLE_SIGNING_IDENTITY || '' }}
+          APPLE_ID: ${{ runner.os == 'macOS' && secrets.APPLE_ID || '' }}
+          APPLE_PASSWORD: ${{ runner.os == 'macOS' && secrets.APPLE_PASSWORD || '' }}
+          APPLE_TEAM_ID: ${{ runner.os == 'macOS' && secrets.APPLE_TEAM_ID || '' }}
+          AZURE_TENANT_ID: ${{ runner.os == 'Windows' && secrets.AZURE_TENANT_ID || '' }}
+          AZURE_CLIENT_ID: ${{ runner.os == 'Windows' && secrets.AZURE_CLIENT_ID || '' }}
+          AZURE_CLIENT_SECRET: ${{ runner.os == 'Windows' && secrets.AZURE_CLIENT_SECRET || '' }}
+        with:
+          tagName: ${{ env.TAG }}
+          releaseName: ${{ env.TAG }}
+          releaseDraft: true
+          prerelease: ${{ contains(env.TAG, '-') }}
+          generateReleaseNotes: true
+          releaseBody: |
+            Choose the installer for your OS and architecture. Windows uses NSIS.
+            macOS .app.tar.gz and signatures are updater files; use the .dmg to install.
+            Portable packages use manual updates. SHA256SUMS is attached after all builds finish.
+            Code-signing status is recorded in each platform build log.
+          updaterJsonPreferNsis: true      # latest.json → NSIS (default would prefer MSI)
+          args: ${{ matrix.args }} -- --locked
+
+
+  verify:
+    needs: [validate, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      APP_VERSION: ${{ needs.validate.outputs.version }}
+      REPO: ${{ github.repository }}
+      PLATFORMS: windows-x86_64 windows-aarch64 darwin-x86_64 darwin-aarch64 linux-x86_64 linux-aarch64
+    steps:
+      - uses: actions/checkout@v7
+        with: { ref: '${{ needs.validate.outputs.commit }}' }
+      - name: Verify the unpublished release and attach checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release download "$TAG" --dir dist
+          gh api "repos/$GH_REPO/releases/tags/$TAG" > "$RUNNER_TEMP/release.json"
+          node .github/scripts/release-assets.mjs verify-draft
+          (cd dist && sha256sum --strict -c SHA256SUMS)
+          cd dist
+          gh release upload "$TAG" SHA256SUMS --clobber
+      - name: Publish only after all platform assets pass verification
+        shell: bash
+        env:
+          SOURCE_COMMIT: ${{ needs.validate.outputs.commit }}
+        run: |
+          set -euo pipefail
+          current=$(gh api "repos/$GH_REPO/commits/$TAG" --jq .sha)
+          [[ "$current" == "$SOURCE_COMMIT" ]] || { echo "::error::Tag moved after validation"; exit 1; }
+          if [[ "$TAG" == *-* ]]; then
+            gh release edit "$TAG" --draft=false --latest=false
+          else
+            gh release edit "$TAG" --draft=false --latest
+            latest=$(gh api "repos/$GH_REPO/releases/latest" --jq .tag_name)
+            [[ "$latest" == "$TAG" ]] || { echo "::error::Latest release did not advance"; exit 1; }
+          fi

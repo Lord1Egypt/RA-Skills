@@ -1,40 +1,55 @@
-## Description: <br>
-AI self-evolution engine based on the SEA (Sense-Evolve-Act) loop for self-assessment, learning, evolution workflows, collaborative learning, and safety controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI self-evolution helper based on a Sense-Evolve-Act loop for self-assessment, learning guidance, evolution planning, collaborative learning, and safety safeguards.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers and agent operators use this skill to assess an agent's capabilities, select learning paths, and plan supervised self-improvement workflows. It is intended for agents that run Node.js scripts and need guidance for learning, assessment, and evolution routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage changes to persistent memory, instruction, or knowledge files. <br>
-Mitigation: Require review of exact diffs before allowing changes to MEMORY.md, AGENTS.md, SOUL.md, knowledge files, or learning logs. <br>
-Risk: The skill may encourage installing additional skills without concrete limits. <br>
-Mitigation: Approve each new skill installation only after reviewing its source, provenance, and security scan result. <br>
+## Use Case:
 
+Developers and agent operators use this skill to assess an AI agent's capabilities, identify learning topics, and print guided self-improvement workflows before making changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dagangtj/ai-evolution-engine-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; script output is diagnostic guidance and should be reviewed before applying persistent agent changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Future self-improvement workflows could update agent memory, knowledge, policy files, or installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before those changes, review exact paths and sources, and keep rollback information.
+
+Risk: The skill is written primarily in Chinese, which may reduce reviewability for teams that do not read Chinese.
+
+Mitigation: Have a qualified reviewer confirm behavior and user-facing guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dagangtj/skills/ai-evolution-engine-v2)
+- [Publisher Profile](https://clawhub.ai/user/dagangtj)
+- [Source-Declared Homepage](https://github.com/openclaw/ai-evolution-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Console text and Markdown instructions with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; scripts print guidance and status text.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

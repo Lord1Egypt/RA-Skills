@@ -1,44 +1,63 @@
-## Description: <br>
-Monitors ValueScan stream events for market analysis and token signals, then persists received data to local files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors ValueScan market-analysis and token-signal streams and persists incoming events to local files.
 
-## Publisher: <br>
-[valuescan-io](https://clawhub.ai/user/valuescan-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[valuescan-io](https://clawhub.ai/user/valuescan-io)
 
-## Use Case: <br>
-Developers and crypto operations users use this skill to configure and run background monitoring for ValueScan market analysis and token signal streams, writing the resulting events into local files for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores ValueScan API credentials in plaintext under ~/.vs-monitor/config.json. <br>
-Mitigation: Use a dedicated low-privilege account or container, create a dedicated ValueScan API key, and restrict filesystem permissions on ~/.vs-monitor and config.json. <br>
-Risk: Persistent monitor processes are managed through PID files and may terminate existing processes. <br>
-Mitigation: Review process management before use and verify PIDs before stopping processes. <br>
-Risk: Output file paths can be built from streamed token data. <br>
-Mitigation: Choose a non-sensitive output directory and require maintainer-side sanitization and output-path containment. <br>
+## Use Case:
 
+Developers and ValueScan users use this skill to configure and run background monitors for market analysis and token signals, including selected token symbols, and to save streamed updates to local files.
 
-## Reference(s): <br>
-- [ValueScan homepage](https://www.valuescan.ai) <br>
-- [ValueScan stream API reference](references/stream-api.json) <br>
-- [ClawHub skill page](https://clawhub.ai/valuescan-io/valuescan-monitor-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; runtime monitoring appends plain text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ValueScan API credentials, starts persistent monitor processes, and writes market analysis and token signal events under a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: ValueScan API credentials are stored in plaintext in ~/.vs-monitor/config.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on ~/.vs-monitor, use a dedicated account or container, and avoid sharing the configuration file.
+
+Risk: The skill runs long-lived background monitor processes and manages them through PID files.
+
+Mitigation: Review monitor status before start and stop actions, and run the skill in an isolated account when possible.
+
+Risk: Streamed data is continuously written to a user-selected output directory, with signal filenames derived from incoming stream content.
+
+Mitigation: Use a dedicated output directory and review or patch filename validation before using untrusted streams.
+
+Risk: All-token monitoring may collect more stream data than needed.
+
+Mitigation: Prefer token-scoped monitoring unless broad monitoring is required.
+
+## Reference(s):
+
+- [ValueScan homepage](https://www.valuescan.ai)
+- [ValueScan Monitor Skill on ClawHub](https://clawhub.ai/valuescan-io/skills/valuescan-monitor-skill)
+- [ValueScan Stream API reference](artifact/references/stream-api.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration, PID/log files, and streamed text files under the user-configured output directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

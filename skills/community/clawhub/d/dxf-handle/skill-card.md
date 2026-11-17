@@ -1,43 +1,54 @@
-## Description: <br>
-Processes DWG/DXF CAD drawings with ezdxf to inspect configured layers and calculate area or perimeter values for room measurement workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dxf Handle helps agents process DWG/DXF CAD drawings with ezdxf to traverse configured layers and calculate room areas or perimeters.
 
-## Publisher: <br>
-[mapleslove](https://clawhub.ai/user/mapleslove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapleslove](https://clawhub.ai/user/mapleslove)
 
-## Use Case: <br>
-Designers, CAD users, and automation agents use this skill to measure configured room layers in local DWG/DXF files and report area or perimeter totals. It can query one room or all configured layers and optionally export results to CSV. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted or malformed CAD files may produce unreliable parsing results or expose the local parser to unsafe inputs. <br>
-Mitigation: Run the tool only on CAD files from trusted sources, preferably in a constrained local environment. <br>
-Risk: CSV export can overwrite an existing file at the selected output path. <br>
-Mitigation: Choose the output path deliberately and check for existing files before using the --output option. <br>
-Risk: The tool depends on the external Python package ezdxf. <br>
-Mitigation: Install ezdxf from a trusted Python package source and keep dependency management under the user's normal review process. <br>
+## Use Case:
 
+Developers, designers, and CAD workflow maintainers use this skill to run local DWG/DXF measurement commands against configured room layers, then report area or perimeter results and optionally export CSV data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mapleslove/dxf-handle) <br>
-- [Layer configuration reference](references/layers.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Console text with optional CSV file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local DWG/DXF input file and layer configuration; CSV export writes to the user-selected output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads local CAD files and can write CSV output to a user-specified path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a virtual environment, review the input and output paths before execution, and avoid writing CSV files over important local files.
+
+Risk: The skill depends on ezdxf for CAD parsing.
+
+Mitigation: Install ezdxf in an isolated environment and consider pinning it to a reviewed version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mapleslove/skills/dxf-handle)
+- [Layer configuration example](artifact/references/layers.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Text, CSV]
+
+**Output Format:** [Markdown guidance with command examples, terminal output, and optional CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local DWG/DXF files and a JSON layer configuration; optional CSV export writes to the user-specified output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

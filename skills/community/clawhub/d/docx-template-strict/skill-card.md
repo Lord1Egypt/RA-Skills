@@ -1,40 +1,53 @@
-## Description: <br>
-Strictly fills DOCX templates by replacing placeholder tokens while preserving covers, headers, sections, styles, layout, and optional figures or references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strictly fills DOCX templates by replacing placeholder tokens while preserving cover pages, headers and footers, sections, styles, fonts, and layout.
 
-## Publisher: <br>
-[lpq6](https://clawhub.ai/user/lpq6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lpq6](https://clawhub.ai/user/lpq6)
 
-## Use Case: <br>
-Developers, students, and report authors use this skill when they need an agent to fill a Word DOCX template without changing the original template layout. It is suited for papers, coursework, reports, and other documents that rely on explicit placeholder tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Template filling depends on exact placeholder tokens, so missing or split tokens can cause generation to fail or leave placeholders unreplaced. <br>
-Mitigation: Use templates with continuous tokens such as {{TITLE_CN}} and review the generated DOCX before relying on it. <br>
-Risk: The helper script reads local DOCX, JSON, and optional image paths supplied for the task. <br>
-Mitigation: Run it only on trusted local files for the intended document and review command arguments before execution. <br>
+## Use Case:
 
+Developers, students, and document authors use this skill to fill Word report, paper, or assignment templates with text, figures, captions, and references while preserving the original DOCX layout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lpq6/docx-template-strict) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown instructions with bash command examples; generated DOCX files when the helper script is run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON data and DOCX templates with explicit placeholder tokens; PDF export is outside the skill scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trusted-template assumptions: generated files preserve hidden DOCX package content from the source template.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use templates from trusted sources, review generated documents before sharing them, and do not use this skill as a sanitizer for unknown Word files.
+
+Risk: Template placeholder mismatch can leave required content unfilled or cause generation to fail.
+
+Mitigation: Use continuous placeholder tokens, provide data for every required token, and review the script's unreplaced-token QA output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lpq6/skills/docx-template-strict)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with bash and JSON examples; script execution produces a DOCX file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit placeholder tokens and fails if unreplaced tokens remain or DOCX section counts change.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

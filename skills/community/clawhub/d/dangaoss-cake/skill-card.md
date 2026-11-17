@@ -1,44 +1,58 @@
-## Description: <br>
-Helps users order cakes, desserts, snacks, and flowers from dangaoss.com by managing delivery addresses, searching products, generating order links, and checking order status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+蛋糕叔叔商城点单助手 helps users order cakes, desserts, snacks, and flowers from dangaoss.com by managing delivery addresses, searching products, generating payment links, and checking order status.
 
-## Publisher: <br>
-[zhang1058](https://clawhub.ai/user/zhang1058) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhang1058](https://clawhub.ai/user/zhang1058)
 
-## Use Case: <br>
-External users can use this skill to place dangaoss.com orders for cakes, desserts, snacks, or flowers through an agent-assisted flow. It supports address selection, product search, order-link generation, and order-status lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles dangaoss.com account tokens and delivery details. <br>
-Mitigation: Use only with explicit user-provided tokens, treat dgss_token.md as sensitive, and clear stored token or address data when finished. <br>
-Risk: The skill can run local commands and perform account-changing ordering actions. <br>
-Mitigation: Require approval before command execution or actions that add addresses, generate order links, or otherwise affect the user's account. <br>
-Risk: Plaintext local storage can leak tokens or delivery details if committed or synced. <br>
-Mitigation: Keep dgss_token.md out of version control and avoid syncing it to shared storage. <br>
+## Use Case:
 
+External shoppers use this skill to complete an agent-guided dangaoss.com ordering flow, including token-based account access, delivery address selection or creation, product search, payment-link generation, and order status lookup.
 
-## Reference(s): <br>
-- [蛋叔商城 API 接口文档](references/api_docs.md) <br>
-- [ClawHub release page](https://clawhub.ai/zhang1058/dangaoss-cake) <br>
-- [Publisher profile](https://clawhub.ai/user/zhang1058) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown responses with product tables, order links, command invocations, and JSON-derived status summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local plaintext token and delivery-address state during the ordering workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can store account tokens, delivery addresses, phone numbers, and order identifiers in local plaintext memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a trusted machine, keep token files out of version control, restrict local file access, and rotate the token if it may have been exposed.
+
+Risk: The skill uses broad local command execution to make account-linked shopping API calls.
+
+Mitigation: Review commands before execution and use the skill only when you trust the publisher and the dangaoss.com service.
+
+Risk: Generated order links can initiate a real purchase flow tied to the user's account and selected delivery address.
+
+Mitigation: Confirm the product, specification, quantity, and delivery address before opening or paying through the generated order link.
+
+## Reference(s):
+
+- [API docs](artifact/references/api_docs.md)
+- [ClawHub skill listing](https://clawhub.ai/zhang1058/skills/dangaoss-cake)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with tables, inline links, and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce account-linked order URLs and update local plaintext token, address, and order memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

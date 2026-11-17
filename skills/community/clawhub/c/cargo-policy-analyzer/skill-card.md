@@ -1,40 +1,53 @@
-## Description: <br>
-搜索并分析中国各省航空货运落地最新优惠政策，进行多维度对比，生成综合性分析报告。当用户需要了解航空货运政策、对比不同省份政策优势、获取投资选址参考时触发此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+搜索并分析中国各省航空货运落地最新优惠政策，进行多维度对比并生成综合性分析报告。
 
-## Publisher: <br>
-[kvy](https://clawhub.ai/user/kvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kvy](https://clawhub.ai/user/kvy)
 
-## Use Case: <br>
-External users and business analysts use this skill to find current Chinese provincial aviation cargo support policies, compare subsidy strength and application conditions, and prepare investment or site-selection reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated policy conclusions may be stale or inaccurate because aviation cargo subsidy policies change over time. <br>
-Mitigation: Verify conclusions against current official government documents before making business decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [航空货运政策分析维度详解](references/analysis-dimensions.md) <br>
-- [航空货运政策分析报告模板](references/report-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kvy/cargo-policy-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/kvy) <br>
+## Use Case:
 
+External business, logistics, and investment-planning users can use this skill to compare China provincial aviation cargo support policies, subsidy terms, application conditions, policy stability, and location-fit recommendations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, rankings, conclusions, recommendations, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Policy findings should include publication or update dates and mark unclear information as pending verification.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+China
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Policy analysis may become outdated because the skill prioritizes recent 2024-2026 aviation cargo policies.
+
+Mitigation: Verify policy names, dates, document numbers, eligibility rules, and subsidy terms against current official government sources before using the report for decisions.
+
+Risk: The skill produces Chinese-language instructions and reports by default, which may not match every user's preferred working language.
+
+Mitigation: Ask for a different output language or a narrower province and time scope when needed.
+
+## Reference(s):
+
+- [航空货运政策分析维度详解](references/analysis-dimensions.md)
+- [航空货运政策分析报告模板](references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis report with policy comparison tables and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output by default; policy recency and ambiguous policy details should be marked for verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

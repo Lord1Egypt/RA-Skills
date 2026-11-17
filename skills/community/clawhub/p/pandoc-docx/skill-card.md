@@ -1,43 +1,57 @@
-## Description: <br>
-Converts documents between Word (.docx), Markdown, and related formats using pandoc. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional conversion between Word (.docx), Markdown, and related document formats using pandoc.
 
-## Publisher: <br>
-[mo-yuhua](https://clawhub.ai/user/mo-yuhua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mo-yuhua](https://clawhub.ai/user/mo-yuhua)
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to read, create, edit, and convert Word, Markdown, and related local documents with pandoc. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document conversion or edit operations can overwrite important local files if output paths are chosen carelessly. <br>
-Mitigation: Keep backups before edit or replace operations and review input and output paths before running the scripts. <br>
-Risk: The skill depends on local document tooling such as pandoc and optional converters. <br>
-Mitigation: Install required tools from trusted package managers and run the skill only on files the user intends to process. <br>
+## Use Case:
 
+Developers and document-focused agents use this skill to read, write, edit, and convert Word, Markdown, PDF, text, HTML, and EPUB documents through pandoc-based shell workflows.
 
-## Reference(s): <br>
-- [Supported formats](references/supported-formats.md) <br>
-- [Pandoc official documentation](https://pandoc.org/) <br>
-- [Pandoc user guide](https://pandoc.org/MANUAL.html) <br>
-- [ClawHub skill page](https://clawhub.ai/mo-yuhua/pandoc-docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, create, convert, or edit local document files specified by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, package.json) <br>
+Risk: The server security summary says some scripts can be tricked into running unintended commands or modifying files more broadly than users may expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the shell scripts before installation, use document copies, and avoid untrusted replacement text or conversion option values.
+
+Risk: Document conversions may lose complex styling, headers and footers, page breaks, comments, revisions, macros, or complex table structure.
+
+Mitigation: Keep original files, inspect converted outputs before relying on them, and use reference documents or media extraction options when format preservation matters.
+
+## Reference(s):
+
+- [Supported Formats](references/supported-formats.md)
+- [Pandoc Documentation](https://pandoc.org/)
+- [Pandoc User Guide](https://pandoc.org/MANUAL.html)
+- [LibreOffice Documentation](https://www.libreoffice.org/)
+- [ClawHub Skill Page](https://clawhub.ai/mo-yuhua/skills/pandoc-docx)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown, plain text, document files, and concise shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converted output depends on installed document tools such as pandoc, LibreOffice, poppler-utils, and TeX.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

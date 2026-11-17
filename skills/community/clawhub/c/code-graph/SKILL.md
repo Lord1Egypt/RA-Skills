@@ -49,6 +49,8 @@ node --version
 
 ### 第 3 步：安装 GitNexus
 
+注意，gitNexus安装时指定1.6.5版本
+
 **先检测，再决定是否安装：**
 
 ```bash
@@ -62,13 +64,13 @@ gitnexus --version 2>&1
 **安装命令（Windows，推荐全局安装）：**
 
 ```bash
-set GITNEXUS_SKIP_OPTIONAL_GRAMMARS=1 && npm install -g gitnexus
+set GITNEXUS_SKIP_OPTIONAL_GRAMMARS=1 && npm install -g gitnexus@1.6.5
 ```
 
 **安装命令（macOS / Linux）：**
 
 ```bash
-GITNEXUS_SKIP_OPTIONAL_GRAMMARS=1 npm install -g gitnexus
+GITNEXUS_SKIP_OPTIONAL_GRAMMARS=1 npm install -g gitnexus@1.6.5
 ```
 
 > `GITNEXUS_SKIP_OPTIONAL_GRAMMARS=1` 跳过 Dart/Proto 原生语法解析器的编译，安装只需几秒，无需 C++ 工具链。

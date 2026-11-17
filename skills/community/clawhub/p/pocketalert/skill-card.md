@@ -1,41 +1,58 @@
-## Description: <br>
-The Pocket Alert skill enables OpenClaw agents and workflows to send push notifications to iOS and Android devices through the PocketAlert service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The Pocket Alert (pocketalert.app) skill for OpenClaw enables OpenClaw agents and workflows to send push notifications to iOS and Android devices.
 
-## Publisher: <br>
-[Akellacom](https://clawhub.ai/user/Akellacom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[akellacom](https://clawhub.ai/user/akellacom)
 
-## Use Case: <br>
-Developers and operators use this skill to help agents send mobile push notifications for automated tasks, CI/CD events, monitoring checks, workflow updates, and background process alerts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Notifications may include sensitive operational details or secrets if an agent is allowed to send arbitrary message content. <br>
-Mitigation: Avoid sending secrets or sensitive operational data in notification titles or messages, and review notification content before use in production workflows. <br>
-Risk: The skill covers account-management and configuration commands, including delete operations, API key configuration, and custom base URL configuration. <br>
-Mitigation: Use a least-privilege API key where possible, verify the CLI download source, and require explicit approval before delete, API-key, or base-url configuration commands are run. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PocketAlert](https://pocketalert.app) <br>
-- [PocketAlert CLI](https://info.pocketalert.app/cli.html) <br>
-- [ClawHub skill page](https://clawhub.ai/Akellacom/pocketalert) <br>
+## Use Case:
 
+Developers and operators use this skill to send Pocket Alert push notifications from OpenClaw agents, automated workflows, CI/CD jobs, and background monitoring tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed and authenticated pocketalert CLI; generated commands may send notifications or manage PocketAlert resources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill depends on a Pocket Alert CLI binary whose installation source should be trusted before use.
+
+Mitigation: Install the CLI only from a trusted Pocket Alert source and verify the binary before allowing an agent to run it.
+
+Risk: Pocket Alert API keys can grant notification and administrative access if exposed or over-scoped.
+
+Mitigation: Use least-privilege API keys and avoid pasting secrets into prompts, logs, or shared command output.
+
+Risk: Administrative commands can delete resources or change webhooks, API keys, and the configured base URL.
+
+Mitigation: Require human approval before delete operations, API-key changes, webhook changes, or base_url changes, and restrict agents to send/list operations unless administration is explicitly needed.
+
+## Reference(s):
+
+- [Pocket Alert](https://pocketalert.app)
+- [Pocket Alert CLI](https://info.pocketalert.app/cli.html)
+- [ClawHub skill page](https://clawhub.ai/akellacom/skills/pocketalert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Pocket Alert CLI commands and operational guidance for sending, listing, and managing notifications, applications, devices, webhooks, and configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

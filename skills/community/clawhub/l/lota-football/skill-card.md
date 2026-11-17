@@ -1,45 +1,53 @@
-## Description: <br>
-查询足球比赛列表和单场特征报告。使用两个独立脚本：lota_football_matches.sh 处理列表查询，lota_compact_fet.sh 获取特征文本, lota_fetch_future_24h自动化获取未来24小时内数据. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lota Football helps agents query football match lists and compact single-match feature reports, including free historical World Cup reports and structured prompts for football match analysis.
 
-## Publisher: <br>
-[kingvergil](https://clawhub.ai/user/kingvergil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingvergil](https://clawhub.ai/user/kingvergil)
 
-## Use Case: <br>
-Developers and external users use this skill to query Lota football match lists, identify specific matches by date or ID, and retrieve compact single-match feature reports through local cache files or bash API clients. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys can be exposed through shell history, crontab entries, logs, or process environments. <br>
-Mitigation: Store LOTA_API_KEY outside command history and crontab lines where possible, limit log exposure, and remove scheduled jobs when continuous updates are no longer needed. <br>
-Risk: The bundled scripts default to an unencrypted HTTP API base URL. <br>
-Mitigation: Set LOTA_API_BASE_URL to an HTTPS endpoint if the service supports it before running live API calls. <br>
-Risk: Cached match data and logs are written under lota_data and may include operational details. <br>
-Mitigation: Restrict filesystem permissions on lota_data and generated logs, and review retention needs for cached data. <br>
-Risk: Scheduled fetching can consume API quota or continue after it is no longer needed. <br>
-Mitigation: Monitor quota usage, keep the cache-first workflow enabled, and remove cron entries when automated updates are not required. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve Lota football match data, compact feature reports, and local cached match files for agent-assisted football analysis. It can also guide agents in formatting match analysis outputs from the returned feature text.
 
-## Reference(s): <br>
-- [Lota Football ClawHub release](https://clawhub.ai/kingvergil/lota-football) <br>
-- [Publisher profile: kingvergil](https://clawhub.ai/user/kingvergil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON or plain-text football data outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOTA_API_KEY for live API calls; prefers local lota_data cache files before making requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: API keys and match queries may be sent to the Lota service, and the default API base URL in the artifact uses HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and set LOTA_API_BASE_URL to an HTTPS endpoint before using a real API key.
+
+Risk: The artifact suggests placing LOTA_API_KEY directly in a persistent cron command for scheduled cache refresh.
+
+Mitigation: Avoid putting the key directly in crontab; use a safer secret-loading mechanism and remove scheduled jobs when automatic refresh is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingvergil/skills/lota-football)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON or plain-text API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local cache files under lota_data when scheduled refresh is configured.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata, artifact _meta.json, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

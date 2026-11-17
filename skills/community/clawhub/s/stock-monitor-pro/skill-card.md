@@ -1,45 +1,65 @@
-## Description: <br>
-Stock Monitor Pro helps agents set up and operate a local stock-monitoring system for A-shares and ETFs with price, cost, volume, moving-average, RSI, gap, trailing-stop, daily-report, and error alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Monitor Pro is a Chinese-market stock monitoring and alerting skill for A-shares and ETFs, with daily close reports, price and cost-basis alerts, technical indicators, volume anomaly monitoring, redundant data sources, and error notifications.
 
-## Publisher: <br>
-[EaveLuo](https://clawhub.ai/user/EaveLuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eaveluo](https://clawhub.ai/user/eaveluo)
 
-## Use Case: <br>
-Investors and agent operators use this skill to configure watchlists, cost bases, thresholds, and daemon controls for local market monitoring. The skill supports alert review and reporting workflows, but users remain responsible for validating market data and investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a persistent local stock-monitoring daemon that continues polling until stopped. <br>
-Mitigation: Start it only when continuous monitoring is intended, check its status and logs, and stop it with ./control.sh stop when monitoring is no longer needed. <br>
-Risk: Configured stock symbols, watchlists, costs, and thresholds may be sent to external finance data providers during polling. <br>
-Mitigation: Review and edit the watchlist before running the daemon, avoid adding sensitive holdings unless acceptable, and confirm use of each data source fits the provider's terms. <br>
-Risk: Market alerts and technical indicators can be stale, incomplete, or misleading. <br>
-Mitigation: Treat alerts as informational signals, validate against trusted market data, and do not use the output as the sole basis for investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to monitor configured Chinese-market holdings, receive price and indicator alerts, and generate end-of-day portfolio summaries. It is intended for informational monitoring workflows, not as a sole basis for trading decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/EaveLuo/stock-monitor-pro) <br>
-- [Sina Finance Quote Endpoint](https://hq.sinajs.cn/) <br>
-- [Eastmoney Historical Quote Endpoint](https://push2his.eastmoney.com/api/qt/stock/kline/get) <br>
-- [Tencent Quote Endpoint](https://qt.gtimg.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text, markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and Python configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local setup and operation guidance for scripts that poll public market-data sources and write daemon logs under the user's home directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill runs as a background process and repeatedly queries third-party market-data providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an environment where persistent monitoring and outbound finance-data requests are acceptable, and review the polling frequency before deployment.
+
+Risk: Market data may come from third-party providers or plaintext fallback sources.
+
+Mitigation: Verify alerts against trusted data sources before acting on them, especially when a fallback source or data-source error notification is reported.
+
+Risk: Generated alerts and suggestions can resemble investment advice.
+
+Mitigation: Treat outputs as informational signals only and require independent financial review before making trading decisions.
+
+Risk: Proxy, scraping, and anti-bot behavior may be unsuitable for some deployments.
+
+Mitigation: Review or remove scraping, browser-header simulation, random-delay, and proxy-related behavior before commercial or managed use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/eaveluo/skills/stock-monitor-pro)
+- [Publisher profile](https://clawhub.ai/user/eaveluo)
+- [Sina Finance market data endpoint](https://hq.sinajs.cn/list=)
+- [Eastmoney quote and kline data endpoint](https://push2his.eastmoney.com/api/qt/stock/kline/get)
+- [Tencent Finance market data endpoint](https://qt.gtimg.cn/q=)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown and terminal text with Python configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces stock alerts, data-source diagnostics, and daily close summaries for configured watchlists.]
+
+## Skill Version(s):
+
+2.1.0 (source: SKILL.md frontmatter, ClawHub release metadata, artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

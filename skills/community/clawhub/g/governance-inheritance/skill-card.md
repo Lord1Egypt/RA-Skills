@@ -1,41 +1,54 @@
-## Description: <br>
-Governance Inheritance helps OpenClaw agents define, initialize, and validate hierarchical policies across organization, team, project, and session levels with inheritance, overrides, and conflict resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hierarchical policy inheritance system for OpenClaw agents that enables policies to be defined at organization, team, project, and session levels with automatic inheritance, override rules, and conflict resolution.
 
-## Publisher: <br>
-[aakash2289](https://clawhub.ai/user/aakash2289) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aakash2289](https://clawhub.ai/user/aakash2289)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up hierarchical governance policies for OpenClaw agents, initialize policy levels, validate policy chains, and reason about inherited allow, deny, and approval rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent governance policies and is intended to influence policy enforcement decisions. <br>
-Mitigation: Review the generated policies before using them as an enforcement dependency and back up any existing GOVERNANCE_ROOT directory before running the initializer. <br>
-Risk: The authoritative security summary notes internally inconsistent deny/allow inheritance rules. <br>
-Mitigation: Test policy resolution on sample parent-deny and child-allow cases, and do not treat the skill as a reliable security boundary until precedence rules are clarified and covered by tests. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up cascading governance policies for OpenClaw agents, define policy hierarchies, and validate policy conflicts across organization, team, project, and session scopes.
 
-## Reference(s): <br>
-- [Policy Schema Reference](references/policy-schema.md) <br>
-- [Inheritance Algorithm Reference](references/inheritance-algorithm.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline YAML, TypeScript, JSON, and bash examples, plus Python scripts that create or validate policy files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include persistent governance policy files under GOVERNANCE_ROOT when the initializer script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates persistent governance files that can affect later agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted workspace with an explicit, controlled GOVERNANCE_ROOT and review generated policies.yaml files before relying on them.
+
+Risk: Weak path containment and incomplete validation may affect security-sensitive policy data.
+
+Mitigation: Avoid untrusted organization, team, project, and session names; fix path containment and schema validation before using this skill for security enforcement.
+
+## Reference(s):
+
+- [Policy Schema Reference](references/policy-schema.md)
+- [Inheritance Algorithm Reference](references/inheritance-algorithm.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files, JSON, Markdown]
+
+**Output Format:** [Markdown guidance with shell commands, YAML policy examples, and JSON validation output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create persistent policies.yaml governance files under GOVERNANCE_ROOT and report validation errors or warnings for policy chains.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

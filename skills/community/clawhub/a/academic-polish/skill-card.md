@@ -1,39 +1,49 @@
-## Description: <br>
-Polishes English and Chinese academic manuscripts for high-impact journal submission by improving clarity, logic, tone, structure, and formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Polish academic papers in English or Chinese to meet top-tier journal standards, improving clarity, logic, tone, and formatting for high-impact submissions.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Researchers, authors, and academic editors use this skill to polish manuscript drafts, abstracts, cover letters, and response-to-reviewer text before journal or conference submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manuscript drafts, reviewer responses, and unpublished research may contain sensitive or confidential information. <br>
-Mitigation: Only provide content that is appropriate to share with the agent environment, and remove confidential details when needed. <br>
-Risk: Polished academic language can unintentionally overstate findings or change scientific meaning. <br>
-Mitigation: Review all suggested wording against the underlying results, target journal requirements, and citation record before submission. <br>
+## Use Case:
 
+Researchers and academic authors use this skill to polish English or Chinese manuscripts, abstracts, cover letters, and reviewer responses for high-impact journal or conference submission.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured revision guidance and rewritten academic text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce polished English or Chinese manuscript passages, title and abstract revisions, and section-level writing recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may provide confidential drafts, unpublished results, reviewer identities, or sensitive research data to their agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact sensitive material and confirm sharing policies before using the skill with confidential manuscripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/371166758-qq/skills/academic-polish)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text manuscript edits and editorial guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces polish suggestions, rewritten passages, and structured manuscript-editing guidance; no code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

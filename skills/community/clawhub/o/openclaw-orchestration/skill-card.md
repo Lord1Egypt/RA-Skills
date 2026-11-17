@@ -1,45 +1,63 @@
-## Description: <br>
-Framework for coordinating multi-agent tasks with atomic claims, dependencies, retries, and Markdown task visibility using a shared SQLite queue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Framework for coordinating multi-agent tasks with atomic claims, dependencies, retries, and markdown task visibility using a shared SQLite queue.
 
-## Publisher: <br>
-[frank-bot07](https://clawhub.ai/user/frank-bot07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[frank-bot07](https://clawhub.ai/user/frank-bot07)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multi-agent work through a local task queue with agent registration, task claiming, dependency tracking, retries, backups, and Markdown status output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Shared local task state can be read or changed by agents and related workspace code that can access the SQLite database or generated Markdown files. <br>
-Mitigation: Install and run the skill only in workspaces where participating agents and sibling interchange code are trusted. <br>
-Risk: Task descriptions, result summaries, and failure reasons may be stored in SQLite and regenerated into Markdown status files. <br>
-Mitigation: Do not place secrets, credentials, or sensitive data in task text, result summaries, or failure reasons. <br>
-Risk: Restore replaces the local orchestration database. <br>
-Mitigation: Keep separate backups before restore operations and close active database users before replacing the database. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multi-agent work through a shared task queue with agent registration, dependency tracking, retries, and markdown status visibility.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/frank-bot07/openclaw-orchestration) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Package metadata](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands and generated Markdown interchange files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local SQLite database as the source of truth and can generate Markdown projections for queue, agent, schema, and task state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Risk: Users and agents with access to the SQLite database can mutate queue state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where database users and agents are trusted to create, claim, update, and restore queue data.
+
+Risk: Restore operations overwrite database state.
+
+Mitigation: Back up current state and restrict restore access before running restore in shared or production environments.
+
+Risk: Refresh output depends on the sibling @openclaw/interchange implementation.
+
+Mitigation: Verify and pin the interchange implementation before relying on generated markdown output.
+
+Risk: Generated task markdown may contain untrusted task data.
+
+Mitigation: Downstream agents should validate or review generated task markdown before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frank-bot07/skills/openclaw-orchestration)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown task/status files and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite queue and markdown interchange projections; downstream agents should treat generated task markdown as untrusted task data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

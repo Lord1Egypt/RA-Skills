@@ -1,39 +1,54 @@
-## Description: <br>
-Chat with a simulated Jean-Paul Sartre persona focused on existentialist themes including freedom, bad faith, responsibility, and commitment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with a Jean-Paul Sartre persona focused on existential freedom, bad faith, commitment, and his major philosophical works.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users and developers use this skill for philosophical roleplay and conversation in the voice of a simulated Jean-Paul Sartre persona. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the simulated Sartre persona for the real historical person or a guaranteed factual authority. <br>
-Mitigation: Treat responses as creative or philosophical roleplay and verify factual or scholarly claims against reliable sources before relying on them. <br>
+## Use Case:
 
+External users use this skill to converse with a Sartre-style roleplay persona for philosophical discussion, literary context, and existentialist reflection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-sartre) <br>
-- [Publisher profile](https://clawhub.ai/user/juchonghao) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Roleplay responses are constrained to a simulated Sartre persona and should not be treated as guaranteed factual authority.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Responses may be mistaken for authoritative history or philosophy scholarship.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as stylized roleplay and review important historical or philosophical claims against reliable sources.
+
+Risk: Non-slash triggers may activate the persona during ordinary Sartre-related conversation.
+
+Mitigation: Use the explicit /sartre trigger when intentional activation matters, and disable or narrow natural-language triggers if accidental activation is disruptive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-sartre)
+- [Publisher profile](https://clawhub.ai/user/bhackerj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [In-character persona responses in the user's language; no tool-generated artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-AI-native web scraping, crawling, domain mapping, and structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-native web scraping, crawling, domain mapping, and structured extraction. Use for converting websites into LLM-ready Markdown, scraping pages with dynamic JS/actions, crawling full domains, or extracting schema-based structured JSON.
 
-## Publisher: <br>
-[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonpierreboucher02](https://clawhub.ai/user/simonpierreboucher02)
 
-## Use Case: <br>
-Developers, AI engineers, agent builders, data engineers, and web scraping engineers use this skill to guide Firecrawl-based scraping, crawling, URL mapping, and structured extraction workflows for LLM-ready web content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firecrawl requests may share target URLs, prompts, extraction schemas, and scraped page content with Firecrawl unless the service is self-hosted. <br>
-Mitigation: Do not submit secrets, authenticated pages, or internal-only URLs without authorization; use approved public sources or a protected self-hosted deployment for sensitive work. <br>
-Risk: The self-hosting example can expose the API broadly and disable authentication if copied without changes. <br>
-Mitigation: Bind self-hosted services to localhost or a private network, enable authentication, and place the API behind a protected reverse proxy before use. <br>
+## Use Case:
 
+Developers, AI engineers, data engineers, and agent builders use this skill to guide Firecrawl scraping, crawling, URL mapping, and schema-based extraction workflows for authorized websites.
 
-## Reference(s): <br>
-- [Firecrawl skill page](https://clawhub.ai/simonpierreboucher02/firecrawl-ws) <br>
-- [API Reference & SDK Guides](references/api_reference.md) <br>
-- [Self-Hosting Reference Guide](references/self_hosting.md) <br>
-- [Firecrawl GitHub Repository](https://github.com/firecrawl/firecrawl) <br>
-- [Firecrawl Advanced Scraping Guide](https://docs.firecrawl.dev/advanced-scraping-guide) <br>
-- [Firecrawl Agent Endpoint](https://docs.firecrawl.dev/features/agent) <br>
-- [Firecrawl Rate Limits](https://docs.firecrawl.dev/rate-limits) <br>
-- [Firecrawl Self-Hosting Guide](https://raw.githubusercontent.com/firecrawl/firecrawl/main/SELF_HOST.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline code blocks, API request examples, configuration snippets, and JSON/schema examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a Firecrawl API key or a protected self-hosted Firecrawl endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can guide broad scraping, crawling, and browser actions against websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for sites the operator is authorized to scrape, set explicit crawl limits, and avoid logged-in, internal, personal, or sensitive pages without approval.
+
+Risk: Target URLs and retrieved page content may be sent to Firecrawl.
+
+Mitigation: Review data sensitivity before use and avoid sending confidential or regulated content to external services unless approved.
+
+Risk: The self-hosting example can expose an unauthenticated API if deployed publicly as written.
+
+Mitigation: Enable authentication, bind privately or place the API behind an authenticated proxy, pin container images or digests, and set conservative CPU, memory, and crawl limits.
+
+## Reference(s):
+
+- [Firecrawl API Reference & SDK Guides](references/api_reference.md)
+- [Firecrawl Self-Hosting Reference Guide](references/self_hosting.md)
+- [Firecrawl GitHub Repository](https://github.com/firecrawl/firecrawl)
+- [Firecrawl Advanced Scraping Guide](https://docs.firecrawl.dev/advanced-scraping-guide)
+- [Firecrawl Agent Endpoint](https://docs.firecrawl.dev/features/agent)
+- [Firecrawl Rate Limits](https://docs.firecrawl.dev/rate-limits)
+- [Firecrawl Self-Hosting Guide](https://raw.githubusercontent.com/firecrawl/firecrawl/main/SELF_HOST.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with API examples, SDK snippets, Docker Compose configuration, and JSON schema examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include guidance for Firecrawl API calls that return Markdown, HTML, screenshots, links, images, or structured JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

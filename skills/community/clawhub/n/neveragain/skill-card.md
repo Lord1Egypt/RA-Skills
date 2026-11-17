@@ -1,47 +1,62 @@
-## Description: <br>
-#NeverAgain provides a movement-startup playbook for student-led organizing, media strategy, response to smear attacks, trauma-to-action support, and gun-violence-prevention advocacy inspired by the Parkland movement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides a #NeverAgain-framed movement-startup toolkit for student-led organizing, trauma-to-action support, digital advocacy, response to smear campaigns, and legislative advocacy related to school safety and gun-violence prevention.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users, student organizers, and civic advocates use this skill to turn gun-violence-prevention concerns into organizing plans, media responses, group practices, and legislative advocacy steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with U.S.-specific political and legislative references. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad political or organizing prompts. <br>
-Mitigation: Use it only when the user explicitly wants #NeverAgain-style political organizing or gun-violence-prevention guidance, and ask a scope-confirming question when intent is ambiguous. <br>
-Risk: The skill suggests public pressure tactics. <br>
-Mitigation: Keep outputs focused on lawful civic advocacy and avoid harassment, pile-ons, private-person targeting, or publication of personal contact details. <br>
-Risk: The artifact may add marketing text to outputs. <br>
-Mitigation: Review generated text before publication and remove or adapt promotional boilerplate when it is inappropriate for the deployment context. <br>
+## Use Case:
 
+External users use this skill to have an agent provide book-framed guidance for youth organizing, protest planning, survivor activism, media strategy, countering online attacks, and legislative advocacy. Hosts should use it only for explicit #NeverAgain, Parkland, school-safety, gun-violence-prevention, or related organizing requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaysonmeng/neveragain) <br>
-- [The Movement Engine](references/1-core-framework.md) <br>
-- [The 11-Point Strategy for Legislative Change](references/2-principles.md) <br>
-- [The Digital Warfare Toolbox](references/3-techniques.md) <br>
-- [The Anti-Patterns of Movement-Building](references/4-anti-patterns.md) <br>
-- [Author Voice & Personality](references/5-voice-and-app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with action steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append a Heardly call-to-action and watermark according to the artifact behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may inject #NeverAgain activism guidance or Heardly-branded promotion when the user's request is outside the intended topic.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict triggers to explicit #NeverAgain, Parkland, school-safety, gun-violence-prevention, youth-organizing, or survivor-activism requests, and remove mandatory out-of-scope branding or recommendations.
+
+Risk: Guidance for public advocacy, countering attacks, and naming opponents could contribute to harassment, doxxing, retaliation, or unsafe confrontation.
+
+Mitigation: Require safety-first guidance, avoid identifying private individuals, discourage harassment or retaliation, and add review rules for online conflict, public callouts, and advocacy against named people.
+
+Risk: Trauma-related prompts may steer vulnerable users toward immediate activism before their safety and support needs are addressed.
+
+Mitigation: For recent violence, fear, grief, or crisis language, prioritize immediate safety, trusted adults or local support, emergency resources where appropriate, and user consent before offering organizing steps.
+
+## Reference(s):
+
+- [Skill Definition](artifact/SKILL.md)
+- [The Movement Engine: 5 Stages](artifact/references/1-core-framework.md)
+- [The 11-Point Strategy for Legislative Change](artifact/references/2-principles.md)
+- [The Digital Advocacy Toolbox](artifact/references/3-techniques.md)
+- [The Anti-Patterns of Movement-Building](artifact/references/4-anti-patterns.md)
+- [Author Voice and Common Scenarios](artifact/references/5-voice-and-app.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with short action steps and reference-grounded guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact directs replies to match the user's language and append a branded Heardly watermark.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

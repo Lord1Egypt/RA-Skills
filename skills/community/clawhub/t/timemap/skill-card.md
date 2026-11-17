@@ -1,42 +1,62 @@
-## Description: <br>
-Timemap helps agents search historical entertainment, nightlife, and culture venues in Tel Aviv and Haifa using public data from timemap.co.il. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search historical entertainment, nightlife, and culture venues in Tel Aviv and Haifa from timemap.co.il.
 
-## Publisher: <br>
-[alexpolonsky](https://clawhub.ai/user/alexpolonsky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alexpolonsky](https://clawhub.ai/user/alexpolonsky)
 
-## Use Case: <br>
-External users and developers use this skill to explore historical venue records, answer questions about addresses or neighborhoods, and retrieve venue details, timelines, statistics, memories, or nearby results from Timemap data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Python script that makes network requests to timemap.co.il and stores a temporary cache of public venue data. <br>
-Mitigation: Review the script before deployment, allow outbound access only where appropriate, and clear the temporary cache if local retention is not desired. <br>
-Risk: The underlying community-curated venue data may be incomplete or inaccurate. <br>
-Mitigation: Treat responses as historical reference material and verify important conclusions against authoritative sources before relying on them. <br>
+## Use Case:
 
+External users, developers, and researchers use this skill to search community-curated venue history for Tel Aviv-Yafo and Haifa by name, address, year, category, city, coordinates, or venue ID.
 
-## Reference(s): <br>
-- [ClawHub Timemap skill page](https://clawhub.ai/alexpolonsky/timemap) <br>
-- [Timemap public website](https://timemap.co.il) <br>
-- [Timemap public venue API](https://timemap.co.il/api/venue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; command output may be terminal text or JSON when --json is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; queries timemap.co.il and may use a temporary local cache of public venue data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installation guidance includes an unpinned npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a reviewed commit or manual copy when possible, matching the server security guidance.
+
+Risk: The skill fetches public Timemap data and writes a 24-hour cache in a shared temporary directory.
+
+Mitigation: Use only where fetching public Timemap data is acceptable; on shared multi-user systems, move or isolate the cache before use.
+
+Risk: Community-curated venue history may contain gaps, inaccuracies, or estimated years.
+
+Mitigation: Treat historical results as research aids and verify important claims against cited venue references or primary sources.
+
+## Reference(s):
+
+- [Timemap skill on ClawHub](https://clawhub.ai/alexpolonsky/skills/timemap)
+- [Timemap](https://timemap.co.il)
+- [Timemap public venue API](https://timemap.co.il/api/venue)
+- [Source homepage](https://github.com/alexpolonsky/agent-skill-timemap)
+- [Author profile](https://github.com/alexpolonsky)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Terminal text or JSON from Python CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Hebrew and English search terms; JSON mode is available with --json; results may include community-submitted venue memories, photos, coordinates, and historical year estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

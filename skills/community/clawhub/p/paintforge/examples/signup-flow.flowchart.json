@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "diagram_type": "flowchart",
+  "meta": {
+    "title": "Payment Processing",
+    "output": "examples/flowchart-payment-rendered.html",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "happy-path", "label": "Happy path", "focus": ["start", "authorize", "approved", "capture", "end"], "note": "The successful payment path." },
+      { "id": "decline", "label": "Decline", "focus": ["authorize", "approved", "declined", "end"], "note": "The declined path." }
+    ]
+  },
+  "nodes": [
+    { "id": "start", "label": "Start", "shape": "start" },
+    { "id": "authorize", "label": "Authorize card", "shape": "process" },
+    { "id": "approved", "label": "Approved?", "shape": "decision" },
+    { "id": "capture", "label": "Capture funds", "shape": "process" },
+    { "id": "declined", "label": "Notify decline", "shape": "process" },
+    { "id": "end", "label": "Done", "shape": "end" }
+  ],
+  "edges": [
+    { "id": "e1", "from": "start", "to": "authorize", "variant": "emphasis" },
+    { "id": "e2", "from": "authorize", "to": "approved" },
+    { "id": "e3", "from": "approved", "to": "capture", "label": "yes", "variant": "emphasis" },
+    { "id": "e4", "from": "approved", "to": "declined", "label": "no", "variant": "security" },
+    { "id": "e5", "from": "capture", "to": "end" },
+    { "id": "e6", "from": "declined", "to": "end" }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Happy path",
+      "items": [
+        "Start, authorize, approve, capture, done",
+        "The yes branch from the decision is emphasized",
+        "Process boxes carry the main actions"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Decline path",
+      "items": [
+        "A declined card routes to notify-decline then done",
+        "The no branch is a security-styled edge",
+        "The decision diamond splits into two clear branches"
+      ]
+    }
+  ]
+}

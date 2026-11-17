@@ -1,42 +1,63 @@
-## Description: <br>
-把 Gmail 招聘邮件转成中文 Apple Reminders。用户提到“检查邮件里的面试/笔试/测评/授权”“把招聘邮件转成提醒事项”“别漏掉面试时间”“同步到 iPhone 提醒”等需求时触发。优先识别 ATS 邮件和面试信息更新，忽略投递成功回执。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Offer Radar helps macOS users turn Gmail recruiting messages about interviews, written exams, assessments, authorizations, and deadlines into Chinese Apple Reminders.
 
-## Publisher: <br>
-[nissoncx](https://clawhub.ai/user/nissoncx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nissoncx](https://clawhub.ai/user/nissoncx)
 
-## Use Case: <br>
-Chinese-speaking macOS and Gmail users use this skill to identify recruiting emails about interviews, written exams, assessments, authorization, or deadlines and convert high-confidence events into Chinese Apple Reminders that can sync to iPhone or iPad. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to the intended Gmail account, Apple Mail, and Apple Reminders. <br>
-Mitigation: Grant access only for the intended account, verify Apple Mail and Reminders permissions, and run an initial scan-only command before enabling reminder writes. <br>
-Risk: Reminder synchronization can modify or remove reminders, and the security summary flags under-disclosed deletion and bulk-clear commands. <br>
-Mitigation: Keep writes scoped to a dedicated OpenClaw reminders list, review scan output first, avoid clear-list or sync-plan --clear unless intentionally emptying that list, and enable recurring automation only after checking the generated reminders. <br>
+## Use Case:
 
+External users and developers in a macOS, Gmail, Apple Mail, and Apple Reminders workflow use this skill to identify high-confidence recruiting events, generate Chinese reminder titles and notes, and optionally sync those events to a dedicated Apple Reminders list.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nissoncx/openclaw-offer-radar) <br>
-- [Artifact README](artifact/README.md) <br>
-- [OpenClaw Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON status summaries from the scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, or delete Apple Reminders when synchronization is enabled; scan-only mode reports detected recruiting events without writing reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can read Gmail-derived recruiting metadata and Apple Mail message bodies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and treat the local state file as sensitive because it may contain recruiting email metadata and private links.
+
+Risk: Reminder synchronization can create, update, or delete Apple Reminders.
+
+Mitigation: Run the scan first without --sync-reminders, verify the output, and use only a dedicated Apple Reminders list.
+
+Risk: The reminder bridge includes clear-list and sync-plan --clear operations that can remove reminders from a list.
+
+Mitigation: Avoid clear-list and sync-plan --clear unless the target list and planned changes have been manually reviewed.
+
+Risk: Heartbeat automation could repeatedly modify reminders from newly parsed mail.
+
+Mitigation: Do not add heartbeat automation until scan and sync behavior have been verified in manual runs.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/nissoncx/skills/openclaw-offer-radar)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with bash commands plus JSON scan, review, sync, and state summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a local JSON state file and, when explicitly synced, create, update, or delete Apple Reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

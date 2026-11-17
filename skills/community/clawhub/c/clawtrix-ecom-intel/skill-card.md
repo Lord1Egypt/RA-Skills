@@ -1,42 +1,58 @@
-## Description: <br>
-Surfaces up to three ClawHub skill recommendations for e-commerce agents across platforms, order management, inventory, payments, support, and peak-season workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Surfaces up to three ClawHub skill recommendations for e-commerce agents based on platform, workflows, scale, integrations, installed skills, and risk posture.
 
-## Publisher: <br>
-[nicope](https://clawhub.ai/user/nicope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicope](https://clawhub.ai/user/nicope)
 
-## Use Case: <br>
-External developers and operators use this skill to audit an e-commerce agent's mission, search ClawHub for relevant skills, score candidates, and produce a short recommendation report before onboarding, weekly reviews, or peak-season preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads SOUL.md and writes a local recommendation report, which could expose sensitive agent context if secrets or customer details are present. <br>
-Mitigation: Keep API keys, customer PII, payment details, and sensitive operational data out of SOUL.md and generated reports. <br>
-Risk: E-commerce agents may handle payments, customer PII, and inventory write access, so weak skill recommendations can have higher operational impact. <br>
-Mitigation: Run a security audit before installing recommended skills and verify platform compatibility, order-volume constraints, security status, and existing installations. <br>
-Risk: Recommendations are based on public ClawHub searches and may miss newly released, private, or renamed skills. <br>
-Mitigation: Review the final top 3 manually against current operational needs before installation. <br>
+## Use Case:
 
+Developers and e-commerce operations teams use this skill to audit an agent's context and choose ClawHub skills for store onboarding, fulfillment, inventory, support, returns, payments, and peak-season readiness.
 
-## Reference(s): <br>
-- [Clawtrix Ecom Intel on ClawHub](https://clawhub.ai/nicope/clawtrix-ecom-intel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown recommendation report with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits recommendations to the top 3 and may persist the report under memory/reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and artifact version history) <br>
+Risk: The workflow reads local agent context and writes a recommendation report that could capture sensitive operational details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that reading SOUL.md and saving the report is acceptable, and avoid including raw credentials, customer data, or unnecessary operational details in the generated report.
+
+Risk: E-commerce agents may operate near payment systems, customer PII, and inventory write access.
+
+Mitigation: Run a security audit before installing recommended skills and review each candidate for platform fit, volume constraints, and data access before deployment.
+
+Risk: Search-based recommendations can be mismatched to the store platform, existing installed skills, or current operational needs.
+
+Mitigation: Manually review the top recommendations against the agent mission, installed skills, store platform, and order volume before installing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicope/skills/clawtrix-ecom-intel)
+- [Publisher profile](https://clawhub.ai/user/nicope)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown recommendation report with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits recommendations to the top three candidates.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata, created 2026-04-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

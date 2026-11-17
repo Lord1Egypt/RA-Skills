@@ -1,42 +1,56 @@
-## Description: <br>
-Finance Skill helps an agent parse bank statements, store local transaction records, and answer natural-language spending questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse bank statements, store transactions locally, and answer personal spending questions from a JSON transaction history.
 
-## Publisher: <br>
-[safaiyeh](https://clawhub.ai/user/safaiyeh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[safaiyeh](https://clawhub.ai/user/safaiyeh)
 
-## Use Case: <br>
-Individuals and agents use this skill to maintain a local personal finance memory layer from bank statements, then query spending by category, merchant, date range, or summary. It is intended for local workflows where the user reviews parsed transaction data before relying on financial summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive bank statements and transaction history on local disk. <br>
-Mitigation: Protect the local workspace with normal machine safeguards, review retained data periodically, delete records or statements no longer needed, and use disk encryption where appropriate. <br>
-Risk: Parsed financial transactions or summaries may be incomplete or inaccurate if statement extraction misses pages or totals do not match. <br>
-Mitigation: Extract full PDFs before parsing, compare imported transaction totals with the statement total, and review parsed transactions before relying on summaries. <br>
+## Use Case:
 
+Developers and personal finance users use this skill with an OpenClaw agent to extract transactions from uploaded statements, maintain a local transaction store, and query spending by category, merchant, or date range.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/safaiyeh/finance-skill) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with JSON transaction records and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores transaction data and raw statements under ~/.openclaw/workspace/finance when used as documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Sensitive bank statements and transaction history are stored locally in the OpenClaw workspace without strong local protection described in the release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines, restrict permissions on ~/.openclaw/workspace/finance, and avoid retaining raw statements unless needed.
+
+Risk: Parsed or manual transaction imports can update financial records without clear confirmation controls.
+
+Mitigation: Review extracted transaction counts, categories, and totals against the statement before importing transactions or accepting manual entries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/safaiyeh/skills/finance-skill)
+- [Publisher profile](https://clawhub.ai/user/safaiyeh)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text responses with JSON transaction objects and bash commands when importing or querying data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include spending summaries, filtered transaction lists, and commands that read or update the local finance workspace.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

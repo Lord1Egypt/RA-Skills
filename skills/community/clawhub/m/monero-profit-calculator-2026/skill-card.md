@@ -1,41 +1,54 @@
-## Description: <br>
-Calculates Monero mining profitability with inputs for hashrate, power, electricity cost, and current market parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates Monero mining profitability from hashrate, power use, electricity cost, and market inputs.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-External users and developers use this skill to estimate Monero mining earnings, electricity costs, break-even points, and ROI from hardware and market inputs. It is calculation guidance only and does not package mining software. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may assume the referenced monero-profitability command is supplied by this release. <br>
-Mitigation: Only run a command with that name after verifying where it came from and trusting its source. <br>
-Risk: Profitability estimates depend on volatile market and network parameters. <br>
-Mitigation: Refresh XMR price, network difficulty, block reward, electricity rate, and pool fee inputs before making mining or hardware decisions. <br>
+## Use Case:
 
+Developers and cryptocurrency hobbyists use this skill to estimate Monero mining profitability from hashrate, power draw, electricity price, and market variables before experimenting with mining hardware.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liumaimiao/monero-profit-calculator-2026) <br>
-- [CoinGecko Monero API endpoint](https://api.coingecko.com/api/v3/coins/monero) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with tables, example shell commands, and an illustrative Python snippet.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no executable mining code is packaged.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact package.json) <br>
+Risk: Profitability estimates may be inaccurate because the sample calculator uses a simplified fixed mining estimate rather than live network difficulty and block reward.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the formula and compare results with current Monero network difficulty, block reward, pool fees, and local electricity rates before making mining decisions.
+
+Risk: Running or adapting the sample Python may contact CoinGecko for current Monero price data.
+
+Mitigation: Review outbound network behavior and handle API availability, errors, and returned market data explicitly before relying on automated results.
+
+## Reference(s):
+
+- [CoinGecko Monero API](https://api.coingecko.com/api/v3/coins/monero)
+- [ClawHub Skill Page](https://clawhub.ai/liumaimiao/skills/monero-profit-calculator-2026)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell command examples and Python sample code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes simplified profitability estimates; current-price examples may depend on an external CoinGecko API call if the sample Python is run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version, artifact package.json, artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

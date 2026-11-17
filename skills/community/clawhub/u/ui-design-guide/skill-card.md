@@ -1,45 +1,49 @@
-## Description: <br>
-Use when users need visual direction, interface hierarchy, layout decisions, design specifications, or prototypes before implementing a Web or mini program UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when users need visual direction, interface hierarchy, layout decisions, design specifications, or prototypes before implementing a Web or mini program UI.
 
-## Publisher: <br>
-[binggg](https://clawhub.ai/user/binggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binggg](https://clawhub.ai/user/binggg)
 
-## Use Case: <br>
-Developers and designers use this skill to define visual direction, interface hierarchy, layout strategy, typography, color, and prototype requirements before implementing web or mini program interfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies strong visual constraints that may conflict with an existing brand or design system. <br>
-Mitigation: Review the generated design specification against project brand requirements and use the artifact's documented override path for real brand constraints. <br>
-Risk: The skill may ask the agent to consult related CloudBase implementation guidance or use external visual assets. <br>
-Mitigation: Confirm referenced guidance and selected assets are appropriate for the project before implementation. <br>
+## Use Case:
 
+Help designers and frontend developers plan visual direction, hierarchy, and layout, then produce a design specification or UI prototype for a Web or mini program project.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/binggg/skills/ui-design-guide) <br>
-- [Current UI Design Skill Source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/ui-design/SKILL.md) <br>
-- [CloudBase Main Skill Source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md) <br>
-- [CloudBase Web Development Skill Source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/web-development/SKILL.md) <br>
-- [CloudBase Mini Program Development Skill Source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/miniprogram-development/SKILL.md) <br>
-- [UI Design Activation Checklist](artifact/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown design specifications with code snippets and shell audit commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to consult related web or mini program implementation guidance before writing UI code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.18.7 (source: ClawHub release metadata; artifact frontmatter reports 2.23.6) <br>
+Risk: Remote asset download guidance replaces a filtered downloader with shell commands that lack equivalent destination, redirect, and file-content safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before enabling asset downloads, use a downloader that checks destinations, redirects, and file contents; keep downloads inside the intended project asset directory and review blocked requests instead of automatically switching tools.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/binggg/skills/ui-design-guide)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Design specifications and UI implementation guidance in Markdown, with frontend prototype code when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific design and implementation recommendations.]
+
+## Skill Version(s):
+
+1.18.82 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

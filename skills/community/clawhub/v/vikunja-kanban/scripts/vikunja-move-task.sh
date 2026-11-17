@@ -3,9 +3,14 @@
 # Usage: vikunja-move-task.sh TASK_ID BUCKET_ID
 
 VIKUNJA_URL="https://kanban.pigpen.haus"
-TOKEN="${VIKUNJA_TOKEN:?Set VIKUNJA_TOKEN env var}"
+TOKEN="${VIKUNJA_TOKEN}"
 PROJECT_ID=1
 VIEW_ID=4
+
+if [ -z "$TOKEN" ]; then
+  echo "ERROR: VIKUNJA_TOKEN environment variable not set"
+  exit 1
+fi
 
 TASK_ID="$1"
 BUCKET_ID="$2"

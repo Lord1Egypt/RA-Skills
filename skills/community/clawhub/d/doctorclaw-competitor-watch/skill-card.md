@@ -1,38 +1,55 @@
-## Description: <br>
-Competitor watch - monitor competitor websites and social profiles for changes, new offers, and strategic moves on a weekly cron or on demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitor watch monitors competitor websites and social channels for changes, new offers, and market moves on a weekly schedule or on demand.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-Business operators, founders, and strategy teams use this skill to monitor competitor websites, social profiles, job postings, and product announcements, then receive periodic or on-demand competitive intelligence reports and alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor-monitoring reports may be written to files or sent to configured external alert channels such as Telegram or Discord. <br>
-Mitigation: Review delivery settings before enabling alerts, use explicit prompts, and avoid including confidential internal strategy in reports sent to external channels. <br>
+## Use Case:
 
+Business users, marketing teams, and strategy teams use this skill to monitor public competitor websites, social profiles, job postings, and announcements, then receive competitive intelligence reports and action items.
 
-## Reference(s): <br>
-- [DoctorClaw website](https://www.doctorclaw.ceo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown report with optional alert messages and archived snapshot files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include comparison tables, action items, and dated watch-history snapshots.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may access competitor websites and social pages during monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a vetted list of public competitor domains and avoid internal or sensitive URLs.
+
+Risk: Reports and snapshots may contain competitive intelligence that should not be broadly shared.
+
+Mitigation: Set clear delivery channels and snapshot retention expectations before scheduled or on-demand runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-competitor-watch)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+- [Publisher profile](https://clawhub.ai/user/ceobotson-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown report with competitive summaries, comparison tables, alerts, and action items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May archive historical snapshots and deliver reports to configured channels when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -9,18 +9,18 @@
 
 ```bash
 # 必须（BM25 检索核心）
-pip install bm25s
+pip install bm25s==0.3.8
 
 # 文件格式支持（按需安装）
-pip install pdfminer.six    # PDF 文字提取
-pip install python-pptx     # PPTX 提取
-pip install pandas          # Excel 读取
-pip install Pillow          # 图片处理
+pip install pdfminer.six==20260107    # PDF 文字提取
+pip install python-pptx==1.0.2         # PPTX 提取
+pip install pandas==2.2.3              # Excel 读取
+pip install Pillow==11.1.0             # 图片处理
 
 # 可选
-pip install easyocr         # OCR（中文）
-pip install paddleocr       # 百度 OCR（中文效果最好）
-pip install python-docx     # DOCX 提取
+pip install easyocr==1.7.2             # OCR（中文）
+pip install paddleocr==3.0.3           # 百度 OCR（中文效果最好）
+pip install python-docx==1.1.2         # DOCX 提取
 ```
 
 ---
@@ -45,7 +45,7 @@ pip install python-docx     # DOCX 提取
 
 - [ ] `pip list` 中是否有 `bm25s`（或 `import bm25s` 是否成功）？
 - [ ] `.agents/skills/knowledge-retrieval/scripts/build_kb_index.py`、`.agents/skills/knowledge-retrieval/scripts/search_kb.py` 是否存在？
-- [ ] 如果以上任一缺失 → 先补齐再开始搜索流程
+- [ ] 如果以上任一缺失 → 说明受影响功能并取得用户明确同意后才安装
 - [ ] 无 BM25 环境或缺失脚本 → 自动降级为纯 AI 搜索模式（不报错，能力受限）
 
 ---

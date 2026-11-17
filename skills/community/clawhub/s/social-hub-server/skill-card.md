@@ -1,41 +1,61 @@
-## Description: <br>
-Social Hub Server is a centralized OpenClaw matching engine that receives user profile summaries from personal agents, maintains a shared registry, evaluates relationship matches, coordinates mutual confirmations, and collects feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Hub Server is a centralized OpenClaw relationship-matching engine that coordinates profile updates, vector and LLM-based scoring, match notifications, confirmation workflows, and feedback among users' personal agents.
 
-## Publisher: <br>
-[FreeAI-io](https://clawhub.ai/user/FreeAI-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[freeai-io](https://clawhub.ai/user/freeai-io)
 
-## Use Case: <br>
-Developers and operators running a Social Hub deployment use this skill to operate a central relationship-matching service across multiple users' personal agents. It processes profile updates, performs scheduled and event-driven match scoring, sends filtered match notifications, and records match decisions and feedback. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill centralizes sensitive multi-user profile, relationship, disclosure, match-history, and feedback data. <br>
-Mitigation: Define explicit user consent, review, deletion, retention, and data-access controls before deployment. <br>
-Risk: The skill depends on recurring automation and agent-to-agent group messages for profile updates, match decisions, and notifications. <br>
-Mitigation: Restrict group membership, authenticate agent messages, and monitor automated match actions before sending user-facing introductions. <br>
-Risk: Operational logs may expose sensitive matching activity or profile-derived information. <br>
-Mitigation: Limit log access, avoid recording private profile fields, and set a retention period appropriate for the deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FreeAI-io/social-hub-server) <br>
+## Use Case:
 
+External agents and operators use this skill to run a central matching service for a small social graph, coordinating profile ingestion, match evaluation, disclosure-filtered introductions, and feedback loops between personal agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown/text guidance with JSON message, registry, and match-history examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational group messages, match notifications, confirmation updates, feedback records, and scheduled task guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill centralizes sensitive user profiles and relationship metadata.
+
+Mitigation: Use only where all participants have agreed to centralized profile storage, and define retention and deletion controls before deployment.
+
+Risk: Profile data may be sent to external AI processing for embeddings or matching evaluation.
+
+Mitigation: Define approved AI providers and exclude or separately consent private fields before they are processed.
+
+Risk: Shared-group logs may expose identifiable matching activity or operational details.
+
+Mitigation: Restrict detailed logs to authorized staff and keep private profile fields out of observable messages.
+
+Risk: Local profile, match-history, and vector data are retained under the match-engine data directory.
+
+Mitigation: Protect the ~/.matchbot-engine directory with appropriate access controls and operational safeguards.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeai-io/skills/social-hub-server)
+- [ClawHub publisher profile](https://clawhub.ai/user/freeai-io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON message examples and scheduling configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes protocol-oriented status messages, match notifications, disclosure-filtered introduction content, and cron timing guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

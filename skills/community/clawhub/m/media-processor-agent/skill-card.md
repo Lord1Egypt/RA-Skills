@@ -1,43 +1,57 @@
-## Description: <br>
-Media Processor helps agents download, compress, watermark, and convert local or remote images and videos, including MP4 and m3u8 streams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Media Processor automates image and video processing for local files and remote URLs, including download, compression, watermarking, and format conversion.
 
-## Publisher: <br>
-[mobai-6543](https://clawhub.ai/user/mobai-6543) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobai-6543](https://clawhub.ai/user/mobai-6543)
 
-## Use Case: <br>
-Developers and agent operators use this skill to prepare media for publishing or downstream workflows by compressing assets, adding text watermarks, and converting video to H.264-compatible output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote media handling can fetch untrusted or private/internal URLs when the agent is given a URL. <br>
-Mitigation: Install and run it only where downloading and processing remote media is acceptable, and avoid private/internal or untrusted URLs. <br>
-Risk: Media processing depends on FFmpeg and Python packages that require routine security maintenance. <br>
-Mitigation: Use a virtual environment or container and keep FFmpeg and Python dependencies updated. <br>
-Risk: Processed files are written to user-provided or default output paths. <br>
-Mitigation: Choose output paths deliberately and review generated files before relying on them to avoid overwriting important files. <br>
+## Use Case:
 
+Developers and agent builders use this skill to process media assets before publishing or storage, such as compressing videos, transcoding video to H.264, converting images to JPEG, or adding text watermarks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mobai-6543/media-processor-agent) <br>
-- [Skill README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text] <br>
-**Output Format:** [Processed image or video files with status text and output paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes processed media to the requested output path, or to a default local media path when no output is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Unrestricted remote URLs can allow requests to internal networks or unexpectedly large downloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with restricted network egress and prefer URL allowlisting, private-network blocking, and download size and time limits before accepting untrusted URLs.
+
+Risk: Caller-provided output paths can overwrite writable files.
+
+Mitigation: Use a dedicated output directory and validate output paths before execution.
+
+Risk: Media processing through FFmpeg and unpinned dependencies increases execution and supply-chain exposure.
+
+Mitigation: Use an isolated environment, keep FFmpeg handling constrained, and pin dependencies for deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mobai-6543/skills/media-processor-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [Processed media files plus plain-text status messages and output paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processed images or videos are written to a requested or derived output path.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter says 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

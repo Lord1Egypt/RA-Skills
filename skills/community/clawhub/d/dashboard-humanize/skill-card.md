@@ -1,41 +1,60 @@
-## Description: <br>
-检测并优化AI生成的小红书文案，去除机械感和模板化表达，增加真人口语化和情感化表达，让内容更自然、更有温度。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文案去AI味服务，当用户要求"去AI化/人性化/降低AI味/改得像人写的"并希望通过小念AI后端实现而不是手动重写提示词时使用。
 
-## Publisher: <br>
-[yc556600](https://clawhub.ai/user/yc556600) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yc556600](https://clawhub.ai/user/yc556600)
 
-## Use Case: <br>
-Content creators and agents working on Chinese social copy use this skill to turn existing AI-generated drafts into more natural, conversational writing with warmer emotional expression. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Rewritten copy may change emphasis, tone, or factual nuance in user-provided prose. <br>
-Mitigation: Review the generated text before publishing or sending it to customers. <br>
-Risk: Edit-mode workflows may modify writing files selected by the user. <br>
-Mitigation: Use file-editing workflows only on drafts you are comfortable changing, preferably under version control. <br>
+## Use Case:
 
+External users and content operators use this skill to humanize existing AI-generated Simplified Chinese copy, especially Xiaohongshu-style writing, by sending content to the Dashboard Console humanization API and receiving more natural text.
 
-## Reference(s): <br>
-- [Dashboard Console API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yc556600/dashboard-humanize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text by default; JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts optional title, prompt, length, tone, purpose, and language settings for the rewrite request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill includes a reusable bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate the embedded token, then require users to provide credentials through environment variables or a managed secret store.
+
+Risk: The skill can send user text and authentication data to a configurable remote endpoint.
+
+Mitigation: Use only trusted HTTPS service hosts, document the data handling expectations, and avoid submitting confidential, regulated, or secret-containing text unless the service is approved for that data.
+
+Risk: Humanized output may change meaning, tone, claims, or compliance posture of the source copy.
+
+Mitigation: Review generated copy before publication, especially for marketing, regulated, brand-sensitive, or user-facing content.
+
+## Reference(s):
+
+- [Dashboard Console API Reference](artifact/references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/yc556600/skills/dashboard-humanize)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/yc556600)
+- [Dashboard Service](https://xiaonian.cc)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text by default, with optional JSON response containing the humanized title, content, AI score, and detailed result fields when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts content from stdin, a file, or command-line input; supports title, custom prompt, length, tone, purpose, language, base URL, and authentication options.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

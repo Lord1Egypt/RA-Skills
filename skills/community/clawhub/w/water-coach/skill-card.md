@@ -1,47 +1,60 @@
-## Description: <br>
-Hydration tracking and coaching skill for logging water intake, managing reminders, recording body metrics, and generating hydration analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hydration tracking and coaching skill. Use when user wants to track water intake, get reminders to drink water, log body metrics, or get analytics on hydration habits.
 
-## Publisher: <br>
-[oristides](https://clawhub.ai/user/oristides) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oristides](https://clawhub.ai/user/oristides)
 
-## Use Case: <br>
-External users and agents use Water Coach to set up hydration goals, log water intake and body metrics, schedule reminders, and review daily, weekly, or monthly hydration progress. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The package includes an unrelated bundled skills/mcporter directory with MCP-control functionality. <br>
-Mitigation: Review the bundled mcporter skill before installation and remove it from the package if it is not required for the Water Coach release. <br>
-Risk: Water Coach can read local OpenClaw session transcripts for audit message IDs and, when audit_auto_capture is enabled, can show transcript context in audits. <br>
-Mitigation: Keep audit_auto_capture disabled unless transcript context is needed, and review the privacy impact before enabling audit context. <br>
-Risk: Included tests can write test entries and counters if they run against real tracking data. <br>
-Mitigation: Run tests only in an isolated workspace or against disposable data, not against a user's active hydration logs. <br>
-Risk: Reminder and dynamic scheduling behavior can create repeated notifications if configured too aggressively. <br>
-Mitigation: Configure reminder times and dynamic scheduling limits deliberately during setup and adjust them if notifications become excessive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/oristides/water-coach) <br>
-- [Setup guide](artifact/references/setup.md) <br>
-- [Log format reference](artifact/references/log_format.md) <br>
-- [Dynamic scheduling reference](artifact/references/dynamic.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+## Use Case:
 
+External users and their agents use this skill to set up hydration goals, log water intake and body metrics, schedule reminders, and generate hydration status or analytics reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local CSV and JSON hydration and body-metrics files in the agent workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.7.0 (source: server release metadata and artifact/_meta.json; changelog released 2026-02-22) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Water logging can inspect assistant session transcript files to capture message identifiers.
+
+Mitigation: Review transcript access before installation and remove or isolate audit transcript access when message-level proof is not required.
+
+Risk: The package bundles an unrelated MCP utility with network, local process, authentication, configuration, and daemon capabilities.
+
+Mitigation: Install only after reviewing that bundled utility, or remove or isolate the mcporter skill before use.
+
+Risk: The skill stores health-tracking data locally in the agent workspace.
+
+Mitigation: Use it only in workspaces where local hydration and body-metric files are acceptable, and apply normal workspace privacy and backup controls.
+
+## Reference(s):
+
+- [Water Coach ClawHub Skill Page](https://clawhub.ai/oristides/skills/water-coach)
+- [Water Coach Setup](references/setup.md)
+- [Water Coach Log Formats](references/log_format.md)
+- [Dynamic Scheduling](references/dynamic.md)
+- [Water Coach Agent Evaluation](evaluation/AGENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON or CSV-backed status and analytics output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores hydration logs, body metrics, reminder configuration, and message audit identifiers in local workspace data files.]
+
+## Skill Version(s):
+
+1.7.0 (source: server release metadata and changelog, released 2026-02-22)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

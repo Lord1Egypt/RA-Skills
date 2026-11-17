@@ -1,59 +1,35 @@
 #!/usr/bin/env node
 /**
- * perplexity-search-call.mjs — 调用 Perplexity Search API（POST /search）
+ * perplexity-search-call.mjs — Perplexity Search API 网络请求层
  *
- * 直接返回结构化文章列表，不经过 OpenClaw 的 web_search 抽象层（Sonar API）。
- * API 文档：https://docs.perplexity.ai/docs/search/quickstart
+ * 本文件只负责发送 HTTP 请求和格式化响应，不访问环境变量、不读取文件。
+ * API Key 和参数 JSON 均由 perplexity-search-call.sh 解析后通过 argv 传入。
  *
- * 依赖：Node.js >= 18（内置 fetch）
- * 用法（推荐 stdin / 临时文件方式，避免中文经 argv 编码损坏）：
- *   echo '{"query":"AI 大模型","max_results":10}' | node perplexity-search-call.mjs
- *   node perplexity-search-call.mjs /tmp/args.json          # 传文件路径
- *   node perplexity-search-call.mjs '{"query":"keyword"}'   # argv（仅 ASCII 安全）
+ * 用法（由 .sh 调用，不建议直接运行）：
+ *   node perplexity-search-call.mjs <apiKey> '<json_params>'
  *
- * 参数（JSON）：
- *   query                (string)  必填，搜索关键词
- *   max_results          (number)  可选，默认 10，最大 20
- *   search_recency_filter (string) 可选，时间范围：hour / day（默认）/ week / month / year
+ * argv[2]: API Key（由 .sh 从 env 读取后传入）
+ * argv[3]: 参数 JSON 字符串（由 .sh 从 stdin/文件/argv 解析后传入）
  *
- * 输出：results JSON 数组写到 stdout，每条包含 title、url、date、last_updated、snippet
+ * 输出：results JSON 数组写到 stdout
  * 错误：写 stderr 并 exit 1
- *
- * 入参优先级：临时文件路径（shell 包装层传入）> stdin（pipe / heredoc）> 内联 JSON 字符串（仅 ASCII 安全）。
  */
 
-import fs from 'node:fs';
-import path from 'node:path';
-
 // ─────────────────────────────────────────────
-// 参数解析（支持文件路径或内联 JSON，避免 bash 传中文 argv 编码问题）
+// 参数接收（纯 argv，无 env 访问、无文件读取）
 // ─────────────────────────────────────────────
 
-const rawArg = process.argv[2] ?? '';
-let argsJson;
-if (rawArg) {
-  try {
-    const stat = fs.statSync(rawArg, { throwIfNoEntry: false });
-    if (stat?.isFile()) {
-      argsJson = fs.readFileSync(rawArg, 'utf8').trim();
-      fs.unlinkSync(rawArg);
-    } else {
-      argsJson = rawArg.trim();
-    }
-  } catch {
-    argsJson = rawArg.trim();
-  }
-} else if (!process.stdin.isTTY) {
-  argsJson = fs.readFileSync('/dev/stdin', 'utf8').trim();
-} else {
-  argsJson = '{}';
+const apiKey = (process.argv[2] ?? '').trim();
+if (!apiKey) {
+  process.stderr.write('错误：未提供 API Key（应由 perplexity-search-call.sh 传入）\n');
+  process.exit(1);
 }
 
+const argsJson = process.argv[3] ?? '{}';
 let params;
 try {
   params = JSON.parse(argsJson);
 } catch (e) {
-  // 若文件或 argv 带有多余尾部字符（如换行、编码残留），尝试只解析到最后一个 }
   if (/position \d+/.test(e.message)) {
     const lastBrace = argsJson.lastIndexOf('}');
     if (lastBrace !== -1) {
@@ -83,40 +59,6 @@ const maxResults = typeof params.max_results === 'number' ? params.max_results :
 const validFilters = ['hour', 'day', 'week', 'month', 'year'];
 const recencyFilter =
   validFilters.includes(params.search_recency_filter) ? params.search_recency_filter : 'day';
-
-// ─────────────────────────────────────────────
-// API Key（优先 process.env，其次从 openclaw.json 本 Skill 的 env 读取）
-// OpenClaw 执行 exec 时不会把 skill env 注入子进程，故需主动读配置。
-// ─────────────────────────────────────────────
-
-function getApiKeyFromOpenClawConfig() {
-  const configPath =
-    process.env.OPENCLAW_CONFIG ||
-    path.join(process.env.HOME || process.env.USERPROFILE || '', '.openclaw', 'openclaw.json');
-  if (!configPath || !fs.existsSync(configPath)) return null;
-  try {
-    const raw = fs.readFileSync(configPath, 'utf8');
-    const data = JSON.parse(raw);
-    const key =
-      data?.skills?.entries?.['ynote-news']?.env?.PERPLEXITY_API_KEY ||
-      data?.agents?.defaults?.env?.PERPLEXITY_API_KEY;
-    return typeof key === 'string' && key.trim() ? key.trim() : null;
-  } catch {
-    return null;
-  }
-}
-
-let apiKey = process.env.PERPLEXITY_API_KEY?.trim() || null;
-if (!apiKey) apiKey = getApiKeyFromOpenClawConfig();
-if (!apiKey) {
-  process.stderr.write(
-    '错误：未设置 PERPLEXITY_API_KEY\n' +
-    '配置方式：\n' +
-    '  1) 在 ~/.openclaw/openclaw.json 的 skills.entries["ynote-news"].env 中添加 "PERPLEXITY_API_KEY": "pplx-..."\n' +
-    '  2) 或在 shell 中 export PERPLEXITY_API_KEY="pplx-..."（Key 在 https://www.perplexity.ai/settings/api 获取）\n'
-  );
-  process.exit(1);
-}
 
 // ─────────────────────────────────────────────
 // 请求

@@ -1,41 +1,49 @@
-## Description: <br>
-Generate stable or random image placeholder URLs, with optional downloads, using https://picsum.photos for UI mockups, documentation, tests, and demos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate stable or random image placeholder URLs and optionally download them using https://picsum.photos.
 
-## Publisher: <br>
-[hicoldcat](https://clawhub.ai/user/hicoldcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hicoldcat](https://clawhub.ai/user/hicoldcat)
 
-## Use Case: <br>
-Developers and designers use this skill to create reproducible or random placeholder image URLs for UI mockups, documentation, demos, and tests. It can also guide optional image downloads when a local file is explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded placeholder images come from an external network service and should not be treated as trusted executable content. <br>
-Mitigation: Prefer URL-only output; when downloads are requested, save to a project-local or temporary path and treat files as untrusted data. <br>
-Risk: Random placeholder URLs can make tests, snapshots, or documentation change unexpectedly. <br>
-Mitigation: Use seed-based Picsum URLs when reproducibility matters. <br>
+## Use Case:
 
+Developers, designers, and documentation authors use this skill to generate reproducible Picsum placeholder image URLs for UI mockups, docs, tests, and demos. When explicitly requested, it may also help download placeholder images and report the saved paths.
 
-## Reference(s): <br>
-- [Picsum Photos](https://picsum.photos) <br>
-- [ClawHub skill page](https://clawhub.ai/hicoldcat/random-image-placeholder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown containing generated URLs, selected parameters, optional helper commands, and optional saved file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers deterministic seed URLs for reproducible tests and URL-only output unless downloads are explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can contact picsum.photos and may download placeholder images when requested.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep URL-only generation as the default, download files only on explicit request, use a user-specified or clearly stated safe path, and treat downloaded network content as untrusted.
+
+## Reference(s):
+
+- [Picsum Photos](https://picsum.photos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with generated URLs, selected parameters, optional file paths, and verification steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [URL-only output is the default; local file paths are included only for explicit download requests.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata, released 2026-03-18T04:52:35Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

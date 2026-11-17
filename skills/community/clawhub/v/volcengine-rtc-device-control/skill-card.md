@@ -1,41 +1,55 @@
-## Description: <br>
-Controls currently bound Volcengine RTC audio/video devices by converting user requests into JSON commands for movement, volume, brightness, shutdown, emoji display, and vibration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Volcengine RTC-bound device-control JSON commands for actions such as pan, volume, brightness, power-off, emoji display, and device vibration.
 
-## Publisher: <br>
-[huang-zhibin](https://clawhub.ai/user/huang-zhibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huang-zhibin](https://clawhub.ai/user/huang-zhibin)
 
-## Use Case: <br>
-Developers and device operators use this skill in agents that need to translate natural-language requests into Volcengine RTC device-control JSON for a currently bound hardware device. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Natural-language requests may be translated into real hardware actions such as immediate shutdown, vibration, movement, or multi-command execution without built-in confirmation. <br>
-Mitigation: Require explicit operator or runtime confirmation before power-off, vibration, movement, or multi-command actions. <br>
-Risk: Unsupported custom commands could be interpreted as new hardware behavior. <br>
-Mitigation: Reject unsupported commands and ask the user to choose a supported command or change topic. <br>
+## Use Case:
 
+Developers and external agents use this skill to translate natural-language device-control requests into structured Volcengine RTC `send_command` JSON for currently bound hardware devices.
 
-## Reference(s): <br>
-- [Protocol Specification](references/protocol.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huang-zhibin/volcengine-rtc-device-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance] <br>
-**Output Format:** [JSON command objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return multiple send_command objects for combined device actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact metadata.json) <br>
+Risk: Natural-language intent can become an immediate hardware shutdown command, including `power_off` with zero delay.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before shutdown or similarly disruptive device-control commands, especially for important or shared devices.
+
+Risk: Device-control commands affect bound hardware through the RTC signaling path.
+
+Mitigation: Use only authenticated sessions for the current logged-in user, keep audit logs enabled, and restrict command transport to the documented Volcengine RTC endpoint.
+
+## Reference(s):
+
+- [Protocol Specification](references/protocol.md)
+- [Volcengine RTC signaling endpoint](https://rtc.volcengine.com)
+- [ClawHub skill page](https://clawhub.ai/huang-zhibin/skills/volcengine-rtc-device-control)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Configuration, Guidance]
+
+**Output Format:** [JSON command objects with brief guidance when a requested control is unsupported]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands use the `send_command` name and a `parameters` object containing `command_name` plus optional action parameters such as angle, speed, level, step, or delay.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

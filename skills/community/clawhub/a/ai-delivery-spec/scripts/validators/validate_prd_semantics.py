@@ -1,0 +1,943 @@
+#!/usr/bin/env python3
+"""PRD 语义一致性静态检查（5.4.x）：悬空引用、ID 前缀碰撞、状态机态数不符、
+守卫状态集合互斥（D4 弱信号 WARN）、枚举基数/取值覆盖（D5 弱信号 WARN）、
+正文决策冲突（D6）和跨权威表稳定 ID 重复定义（D7）。
+
+纯静态、零 LLM。接线方式：``gate --profile prd`` 由 quality_gate.Gate._check_semantics
+调用 ``run_semantic_checks``；也可独立执行：
+
+    python scripts/validators/validate_prd_semantics.py <prd.md>
+
+独立执行退出码：存在 BLOCK 级发现为 1，否则为 0。
+
+D2 误报控制约定（宁严勿宽）：
+- 定义位：YAML frontmatter 登记、Markdown 标题、表格首列、列表项开头 ID、
+  ``id:`` 机器行、``ID（…）`` 注解定义、``「标签」（ID…）`` 控件定义、
+  ``动作：/事件：`` 枚举定义、含“事件”列的状态机表事件列。
+- 示例行（格式/示例/例如/如 …）只贡献定义、不贡献引用；仅在示例行出现的 ID
+  （如 COR-ENTERPRISE_DATA-001 格式举例）整体豁免。
+- 通配家族（ACT-DIFF-*）、模板占位（COR-{大项 code…}）不参与判定；
+  行内代码（反引号）字面量视为跨文件外部引用（如 intake/stage0 的 SRC-*），豁免。
+- 斜杠合并引用（RULE-SUBMIT-001/002、REG-DIFF-HEADER/TOOLBAR）按前缀展开。
+- 悬空引用中只有导航式引用（见/详见/参见/遵循 X）是 BLOCK；其余降级 WARN；
+  孤儿定义一律 WARN，不影响 PASS。
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+
+ID_FAMILIES = (
+    "FLOW", "STEP", "EDGE", "DFD", "RULE", "ACT", "STM", "STATE", "REQ", "MOD",
+    "AC", "TEST", "UNK", "ASM", "DEC", "FLD", "METRIC", "EVT", "API", "INT",
+    "ROLE", "VIEW", "DRAWER", "MODAL", "POPOVER", "REG", "SRC", "EVD", "ARUN", "CHG", "REV", "REL", "ENT", "COR",
+)
+_FAMILY = "|".join(ID_FAMILIES)
+ID_RE = re.compile(rf"(?<![A-Za-z0-9-])(?:{_FAMILY})-[A-Z0-9](?:[A-Z0-9_-]*[A-Z0-9])?")
+STM_RE = re.compile(r"(?<![A-Za-z0-9-])STM-[A-Z0-9](?:[A-Z0-9_-]*[A-Z0-9])?")
+FRONTMATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*(?:\n|\Z)", re.S)
+TABLE_SEPARATOR_RE = re.compile(r"^\s*\|?(?:\s*:?-{3,}:?\s*\|)+\s*$")
+
+# 示例行只贡献定义、不贡献引用；仅出现于示例行的 ID 整体豁免（格式举例）。
+EXAMPLE_MARKERS = ("格式", "示例", "例如", "如：", "如 ", "举例", "e.g.")
+# 导航式引用：读者被显式指向定义，未定义即断链 → BLOCK。
+NAV_RE = re.compile(r"(?:详见|参见|参阅|遵循|(?<![意可听看闻遇])见)\s*(?:[A-Z0-9][A-Z0-9-]*\s*[/、]?\s*)*$")
+NEGATION_MARKERS = ("禁止", "不得", "不允许", "不准", "避免", "勿", "防止", "会碰撞", "防碰撞")
+DEF_ENUM_MARKERS = ("动作：", "动作:", "事件：", "事件:", "区域明细：", "区域：")
+CN_NUM = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
+
+TRUNC_TEMPLATE_RE = re.compile(
+    r"([A-Z]{2,8})-\{[^{}]{0,80}?(?:前\s*([0-9]+|[一二三四五六七八九十])\s*(?:位|个字符|个字)|截取|截断)[^{}]{0,60}?\}"
+)
+ENUM_RE = re.compile(r"枚举[值]?[：:]\s*([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*){2,})")
+STATE_CLAIM_RE = re.compile(r"([0-9]+|[一二三四五六七八九十])\s*(态|个状态|种状态)")
+STATE_TOKEN_RE = re.compile(r"[a-z][a-z0-9_]*")
+SNAKE_TOKEN_RE = re.compile(r"(?<![A-Za-z0-9_])[a-z][a-z0-9]*_[a-z0-9_]*")
+
+# D4：同一动作的“仅 X/Y 可 Z”许可集与“Z ∉ {…} / X/Y 不可 Z”拒绝集。
+_GUARD_ALLOW_RE = re.compile(
+    r"仅\s*([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*)+)"
+    r"\s*[一-龥]{0,12}?可\s*([一-龥]{2,4})"
+)
+_GUARD_DENY_SET_RE = re.compile(
+    r"state\s*∉\s*[\{（(]?\s*([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*)+)"
+)
+_GUARD_DENY_CN_RE = re.compile(
+    r"([a-z][a-z0-9_]*(?:\s*[/、,，]\s*[a-z][a-z0-9_]*)+)\s*不可\s*([一-龥]{2,4})"
+)
+_GUARD_ID_RE = re.compile(r"(?<![A-Za-z0-9-])(?:RULE|ACT)-[A-Z0-9](?:[A-Z0-9_-]*[A-Z0-9])?")
+
+# D5 变体一：基数表述（N 组/类/大项/宫格）。排除章节号/版本号（5.2 大项、v1.1 类）。
+CARDINALITY_CLAIM_RE = re.compile(r"(?<![0-9.])([0-9]+|[一二三四五六七八九十])\s*(组|类|大项|宫格)")
+_BULLET_RE = re.compile(r"^\s*(?:[-*+]|[0-9]{1,2}[.、)])\s+\S")
+# D5 变体二：枚举定义位（“枚举：”标记行 + FLD 字典行的纯中文斜杠链单元格）。
+ENUM_SITE_RE = re.compile(r"枚举[值]?[：:]\s*([A-Za-z0-9_一-龥]+(?:\s*[/、,，]\s*[A-Za-z0-9_一-龥]+)+)")
+CJK_TOKEN_RE = re.compile(r"^[一-龥]{1,8}$")
+FLD_ROW_RE = re.compile(r"^\s*\|\s*FLD-[A-Z0-9-]+")
+FLD_ENUM_ROW_HINT_RE = re.compile(r"周期|状态|cycle|state", re.I)
+CJK_CHAIN_RE = re.compile(r"^[一-龥]{1,8}(?:\s*/\s*[一-龥]{1,8})+$")
+
+
+@dataclass(frozen=True)
+class SemFinding:
+    severity: str  # BLOCK / WARN / INFO
+    code: str
+    message: str
+    ref: str = ""
+
+
+def _frontmatter_end(raw: str) -> int:
+    match = FRONTMATTER_RE.match(raw)
+    return match.end() if match else 0
+
+
+def _headings(lines: list[str]) -> list[tuple[int, str, int]]:
+    """Real Markdown headings outside fences: (level, title, line_index)."""
+    headings: list[tuple[int, str, int]] = []
+    in_fence = False
+    for index, line in enumerate(lines):
+        stripped = line.lstrip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+        elif not in_fence:
+            match = re.match(r"^(#{1,6})[ \t]+(.+?)\s*$", line)
+            if match:
+                title = re.sub(r"\s+#+\s*$", "", match.group(2)).strip()
+                headings.append((len(match.group(1)), title, index))
+    return headings
+
+
+def _expand_slash(token: str, line: str, end: int) -> list[tuple[str, int, int]]:
+    """Expand ``RULE-SUBMIT-001/002`` numeric chains into extra reference occurrences.
+
+    仅展开纯数字段（001/002 风格）；字母段（HEADER/TOOLBAR）歧义太大，不展开。
+    """
+    head = token.rsplit("-", 1)[0]
+    extras: list[tuple[str, int, int]] = []
+    cursor = end
+    while True:
+        match = re.match(r"\s*/\s*([0-9]+)", line[cursor:])
+        if not match:
+            break
+        segment = match.group(1)
+        seg_start = cursor + match.start(1)
+        cursor += match.end()
+        extras.append((f"{head}-{segment}", seg_start, cursor))
+    return extras
+
+
+def _collect_ids(raw: str) -> tuple[dict[str, tuple[int, str]], dict[str, list[tuple[int, bool]]]]:
+    """Split stable-ID occurrences into definition sites and reference sites.
+
+    Returns (defined: id -> (first line, site kind), referenced: id -> [(line, is_navigation)]).
+    site kind 为 "registry"（frontmatter/表格首列/事件列/区域列/枚举定义）或 "prose"；
+    孤儿定义只对 prose 定义位报告，登记册式定义不报告。
+    """
+    lines = raw.splitlines()
+    fm_end = _frontmatter_end(raw)
+    heading_lines = {index for _level, _title, index in _headings(lines)}
+    defined: dict[str, tuple[int, str]] = {}
+    referenced: dict[str, list[tuple[int, bool]]] = {}
+    occurrence_lines: dict[str, list[int]] = {}
+
+    def define(token: str, line_no: int, kind: str) -> None:
+        if token not in defined:
+            defined[token] = (line_no, kind)
+
+    in_fence = False
+    fence_kind = ''
+    ref_indent: int | None = None
+    offset = 0
+    table_header: list[str] = []  # 当前表格表头单元格
+    for index, line in enumerate(lines):
+        line_no = index + 1
+        stripped = line.strip()
+        line_start = offset
+        offset += len(line) + 1
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            fence_kind = stripped.lstrip('`~').strip().lower() if in_fence else ''
+            ref_indent = None
+            continue
+        in_frontmatter = line_start < fm_end
+        is_table = stripped.startswith("|") and not in_fence
+
+        # 维护表头上下文：事件列/区域（REG）列中的 ID 视为登记式定义。
+        if is_table and index + 1 < len(lines) and re.match(r"^\s*\|[\s:|-]+\|\s*$", lines[index + 1]):
+            table_header = [cell.strip() for cell in stripped.strip("|").split("|")]
+        elif not is_table:
+            table_header = []
+
+        occurrences: list[tuple[str, int, int]] = []
+        for match in ID_RE.finditer(line):
+            token = match.group(0)
+            tail = line[match.end():match.end() + 2]
+            if tail.startswith("-*") or (tail.startswith("*") and not line[:match.start()].endswith('*')):
+                continue  # 通配家族引用（ACT-DIFF-*），不参与判定
+            occurrences.append((token, match.start(), match.end()))
+            occurrences.extend(_expand_slash(token, line, match.end()))
+        if not occurrences and not (in_fence and fence_kind in {'yaml', 'yml', 'json'}):
+            continue
+        for token, _s, _e in occurrences:
+            occurrence_lines.setdefault(token, []).append(line_no)
+
+        if in_frontmatter:
+            for token, _s, _e in occurrences:
+                define(token, line_no, "registry")
+            continue
+        if in_fence:
+            # Structured appendices carry real links; arbitrary example code does not.
+            # Only explicit reference keys (including multiline YAML lists) count.
+            if fence_kind in {'yaml', 'yml', 'json'}:
+                machine = re.search(rf'''(?:^\s*-?\s*|[{{,]\s*)["']?id["']?\s*:\s*['"]?((?:{_FAMILY})-[A-Z0-9][A-Z0-9_-]*)''', line)
+                if machine:
+                    define(machine[1].rstrip('-'), line_no, 'registry')
+                ref_key = re.search(r'''["']?(?:[a-z_]*_refs?|refs?|requirement_ids)["']?\s*:\s*''', line)
+                indent = len(line) - len(line.lstrip())
+                continuation = ref_indent is not None and indent > ref_indent
+                if ref_key:
+                    ref_indent = indent
+                elif stripped and not continuation:
+                    ref_indent = None
+                if ref_key or continuation:
+                    for token, start, _end in occurrences:
+                        if not ref_key or start >= ref_key.end():
+                            referenced.setdefault(token, []).append((line_no, False))
+            continue
+
+        # 定义位判定（按出现位置）；表格列规则与注解规则相互独立。
+        def_spans: set[int] = set()
+        cells = [cell.strip() for cell in stripped.strip("|").split("|")] if is_table else []
+        first_cell = cells[0].strip("`* ") if cells else ""
+        list_lead = re.match(rf"^\s*[-*+]\s+(?:\*\*|__|`)?\s*((?:{_FAMILY})-[A-Z0-9][A-Z0-9_-]*)", line)
+        bare_def = re.match(rf"^\s*(?:\*\*|__|`)?((?:{_FAMILY})-[A-Z0-9][A-Z0-9_-]*)(?:\*\*|__|`)?\s*[：:]\s*\S", line)
+        machine_def = re.match(rf"^\s*-?\s*id:\s*['\"]?((?:{_FAMILY})-[A-Z0-9][A-Z0-9_-]*)", line)
+        # The current PRD template gives a scenario its ID on a labelled line.
+        # Anchor the label and capture only its value: "参见 AC-*" and IDs later
+        # in the same sentence must remain references, never definitions.
+        scenario_def = re.match(
+            r"^\s*(?:[-*+]\s+)?(?:\*\*|__)?场景编号(?:\*\*|__)?\s*[：:]\s*"
+            r"(?:\*\*|__|`)?(AC-[A-Z0-9][A-Z0-9_-]*[A-Z0-9]|AC-[A-Z0-9])(?=$|[^A-Z0-9_-])",
+            line,
+        )
+        enum_ranges = [
+            (line.index(marker) + len(marker), len(line))
+            for marker in DEF_ENUM_MARKERS if marker in line
+        ]
+        # 动作：/事件：枚举内的字母斜杠链（ACT-REG-DATA-VIEW/EDIT/SAVE）逐段展开为定义。
+        for lo, hi in enum_ranges:
+            for chain in re.finditer(
+                rf"((?:{_FAMILY})-[A-Z0-9][A-Z0-9_-]*(?:\s*/\s*[A-Z0-9][A-Z0-9_-]*)*)", line[lo:hi]
+            ):
+                parts = [part.strip() for part in chain.group(1).split("/")]
+                head = parts[0].rsplit("-", 1)[0]
+                for part in parts[1:]:
+                    if not re.match(rf"(?:{_FAMILY})-", part):
+                        define(f"{head}-{part.rstrip('-')}", line_no, "registry")
+        backtick_spans = [(m.start(), m.end()) for m in re.finditer(r"`[^`]*`", line)]
+        for token, start, end in occurrences:
+            is_def = False
+            kind = "prose"
+            if index in heading_lines:
+                is_def = True
+            if is_table and first_cell and token in first_cell:
+                is_def, kind = True, "registry"
+            if is_table and table_header:
+                column = line[:start].count("|") - 1
+                header_cell = table_header[column] if 0 <= column < len(table_header) else ""
+                if "事件" in header_cell:
+                    is_def, kind = True, "registry"
+                elif token.startswith("REG-") and (header_cell == "REG" or "区域" in header_cell):
+                    is_def, kind = True, "registry"
+                elif token.startswith("VIEW-") and ("落点" in header_cell or "目标" in header_cell):
+                    is_def, kind = True, "registry"
+            if list_lead and list_lead.group(1).rstrip("-") == token and list_lead.start(1) == start:
+                is_def = True
+            if bare_def and bare_def.start(1) == start and bare_def.group(1).rstrip("-") == token:
+                is_def = True
+            if machine_def and machine_def.group(1).rstrip("-") == token:
+                is_def = True
+            if scenario_def and scenario_def.start(1) == start and scenario_def.group(1) == token:
+                is_def, kind = True, "registry"
+            if end < len(line) and line[end] in "（(":
+                is_def = True  # ID（…）注解定义
+            if re.search(rf"」\s*[（(][^（）()]{{0,60}}{re.escape(token)}\b", line):
+                is_def = True  # 「控件标签」（ID…）定义
+            if any(lo <= start < hi for lo, hi in enum_ranges):
+                is_def, kind = True, "registry"  # 动作：/事件：枚举定义
+            if is_def:
+                def_spans.add(start)
+                define(token, line_no, kind)
+
+        for token, start, end in occurrences:
+            if start in def_spans:
+                continue
+            prefix = line[max(0, start - 30):start].rstrip('`* ')
+            is_nav = bool(NAV_RE.search(prefix))
+            if any(lo <= start < hi for lo, hi in backtick_spans) and not is_nav:
+                continue  # 行内代码字面量：跨文件外部引用（intake/stage0 登记册等），豁免
+            referenced.setdefault(token, []).append((line_no, is_nav))
+
+    # 仅在示例行出现且未定义的 ID 整体豁免（格式举例，如 COR-ENTERPRISE_DATA-001）。
+    for token, lines_seen in occurrence_lines.items():
+        if token in defined:
+            continue
+        if all(
+            any(marker in raw_line for marker in EXAMPLE_MARKERS)
+            for raw_line in (lines[ln - 1] for ln in set(lines_seen))
+        ):
+            referenced.pop(token, None)
+    return defined, referenced
+
+
+def collect_defined_ids(raw: str) -> set[str]:
+    """Return authoritative PRD definition IDs using the shared semantic parser."""
+    defined, _referenced = _collect_ids(raw)
+    return set(defined)
+
+
+def check_dangling_refs(raw: str) -> list[SemFinding]:
+    """D2: 引用集 − 定义集 = 悬空引用；定义集 − 引用集 = 孤儿定义。"""
+    defined, referenced = _collect_ids(raw)
+    findings: list[SemFinding] = []
+    for token in sorted(set(referenced) - set(defined)):
+        sites = referenced[token]
+        nav_lines = [line_no for line_no, is_nav in sites if is_nav]
+        if nav_lines:
+            findings.append(SemFinding(
+                "BLOCK", "PRD-DANGLING-REF",
+                f"正文以“见/详见”导航式引用 {token}，但全文没有该 ID 的定义位，读者与下游工件将断链",
+                f"{token}@line {nav_lines[0]}",
+            ))
+        else:
+            first = sites[0][0]
+            findings.append(SemFinding(
+                "INFO", "PRD-DANGLING-REF",
+                f"本文件未定义非导航式引用 {token}；可沿已有权威来源定位，无需为检查重复建立定义表",
+                f"{token}@line {first}",
+            ))
+    for token in sorted(set(defined) - set(referenced)):
+        first_line, kind = defined[token]
+        if kind != "prose":
+            continue  # 登记册式定义（frontmatter/字典表/事件列/枚举）天然无前向引用，不报告
+        findings.append(SemFinding(
+            "INFO", "PRD-ORPHAN-DEF",
+            f"{token} 在本文件只有定义、无引用；单文件检查不能判断跨产物使用或持续跟踪价值，不要求补引用或删编号",
+            f"{token}@line {first_line}",
+        ))
+    return findings
+
+
+def check_prefix_collision(raw: str) -> list[SemFinding]:
+    """D1: 截断式 ID 生成规则作用到同文档枚举后多对一 → 碰撞。"""
+    lines = raw.splitlines()
+    fm_end = _frontmatter_end(raw)
+    in_fence = False
+    offset = 0
+    rules: list[tuple[str, int | None, int, str]] = []  # (family, width, line_no, sentence)
+    enums: list[list[str]] = []
+    for index, line in enumerate(lines):
+        line_no = index + 1
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            offset += len(line) + 1
+            continue
+        line_start = offset
+        offset += len(line) + 1
+        if in_fence or line_start < fm_end:
+            continue
+        for match in TRUNC_TEMPLATE_RE.finditer(line):
+            sentence = next(
+                (seg for seg in re.split(r"[。；;]", line) if match.group(0) in seg),
+                line,
+            )
+            if any(marker in sentence for marker in NEGATION_MARKERS):
+                continue  # 禁止性说明（“禁止使用前三位截断”）不是生成规则
+            width = None
+            if match.group(2):
+                width = int(match.group(2)) if match.group(2).isdigit() else CN_NUM.get(match.group(2))
+            rules.append((match.group(1), width, line_no, sentence.strip()))
+        for enum_match in ENUM_RE.finditer(line):
+            tokens = [item.strip() for item in re.split(r"[/、,，]", enum_match.group(1)) if item.strip()]
+            if len(tokens) >= 2:
+                enums.append(tokens)
+    findings: list[SemFinding] = []
+    for family, width, line_no, sentence in rules:
+        if width is None:
+            findings.append(SemFinding(
+                "INFO", "PRD-ID-PREFIX-COLLISION",
+                f"发现截断式 ID 生成规则（{family}-…），但未给出截断宽度，无法静态判定碰撞",
+                f"line {line_no}",
+            ))
+            continue
+        if not enums:
+            findings.append(SemFinding(
+                "INFO", "PRD-ID-PREFIX-COLLISION",
+                f"发现截断式 ID 生成规则（{family}-…，前 {width} 位），但文档内未定位 code 枚举，无法静态判定碰撞",
+                f"line {line_no}",
+            ))
+            continue
+        groups: dict[str, list[str]] = {}
+        for tokens in enums:
+            for token in tokens:
+                groups.setdefault(token.upper()[:width], []).append(token)
+        collisions = {prefix: sorted(set(members)) for prefix, members in groups.items() if len(set(members)) > 1}
+        if collisions:
+            rendered = "；".join(f"{prefix}←{'、'.join(members)}" for prefix, members in sorted(collisions.items()))
+            findings.append(SemFinding(
+                "BLOCK", "PRD-ID-PREFIX-COLLISION",
+                f"{family} 关联号按前 {width} 位截断生成会发生多对一碰撞：{rendered}。改用完整 code 或保证截断后唯一",
+                f"line {line_no}",
+            ))
+    return findings
+
+
+def _stm_block(lines: list[str], stm_id: str) -> list[str] | None:
+    headings = _headings(lines)
+    for index, (level, title, line_index) in enumerate(headings):
+        if stm_id not in title:
+            continue
+        end = len(lines)
+        for next_level, _next_title, next_index in headings[index + 1:]:
+            if next_level <= level:
+                end = next_index
+                break
+        return lines[line_index:end]
+    return None
+
+
+def _stm_state_count(block: list[str]) -> set[str]:
+    """统计状态机表覆盖的状态：状态列首词 + 全表 snake_case 状态词。"""
+    states: set[str] = set()
+    table = [line for line in block if line.strip().startswith("|")]
+    if len(table) < 3:
+        return states
+    header_cells = [cell.strip() for cell in table[0].strip().strip("|").split("|")]
+    state_columns = [
+        col for col, cell in enumerate(header_cells)
+        if "状态" in cell
+        and not any(marker in cell for marker in ("动作", "触发", "事件", "状态机", "变化", "副作用"))
+    ]
+    for row in table[2:]:
+        cells = [cell.strip().strip("`") for cell in row.strip().strip("|").split("|")]
+        for col in state_columns:
+            if col < len(cells):
+                states.update(STATE_TOKEN_RE.findall(cells[col]))
+        for cell in cells:
+            states.update(SNAKE_TOKEN_RE.findall(cell))
+    return states
+
+
+def check_state_count(raw: str) -> list[SemFinding]:
+    """D3: 文中“N 态”措辞与对应 STM-* 状态机表的状态数必须一致。"""
+    lines = raw.splitlines()
+    fm_end = _frontmatter_end(raw)
+    in_fence = False
+    offset = 0
+    findings: list[SemFinding] = []
+    for index, line in enumerate(lines):
+        line_no = index + 1
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            offset += len(line) + 1
+            continue
+        line_start = offset
+        offset += len(line) + 1
+        if in_fence or line_start < fm_end:
+            continue
+        claims = list(STATE_CLAIM_RE.finditer(line))
+        if not claims:
+            continue
+        stm_ids = STM_RE.findall(line)
+        if not stm_ids:
+            continue  # 未绑定具体 STM 的措辞不判定
+        stm_id = stm_ids[0]
+        block = _stm_block(lines, stm_id)
+        if block is None:
+            continue  # 找不到对应状态机章节 → 不报
+        states = _stm_state_count(block)
+        if not states:
+            continue  # 章节内没有可统计的状态机表 → 不报
+        for claim in claims:
+            claimed = int(claim.group(1)) if claim.group(1).isdigit() else CN_NUM[claim.group(1)]
+            if claimed != len(states):
+                findings.append(SemFinding(
+                    "BLOCK", "PRD-STATE-COUNT-MISMATCH",
+                    f"文中称{claim.group(1)}{claim.group(2)}，但 {stm_id} 状态机表覆盖 {len(states)} 个状态"
+                    f"（{'、'.join(sorted(states))}）。同步措辞或状态机表",
+                    f"{stm_id}@line {line_no}",
+                ))
+    return findings
+
+
+def _prose_lines(raw: str) -> list[tuple[int, str]]:
+    """(line_no, line) pairs outside fenced code and YAML frontmatter."""
+    lines = raw.splitlines()
+    fm_end = _frontmatter_end(raw)
+    result: list[tuple[int, str]] = []
+    in_fence = False
+    offset = 0
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            offset += len(line) + 1
+            continue
+        line_start = offset
+        offset += len(line) + 1
+        if in_fence or line_start < fm_end:
+            continue
+        result.append((index + 1, line))
+    return result
+
+
+def _is_example_line(line: str) -> bool:
+    return any(marker in line for marker in EXAMPLE_MARKERS)
+
+
+def _table_cells(line: str) -> list[str]:
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def _markdown_tables(raw: str) -> list[tuple[str, list[str], list[tuple[int, list[str]]]]]:
+    """Return bounded Markdown tables outside frontmatter/fences.
+
+    Each item is ``(nearest_heading, header_cells, [(line_no, cells), ...])``.
+    The parser intentionally ignores free prose and only reads explicit tables.
+    """
+    lines = raw.splitlines()
+    visible = {line_no for line_no, _line in _prose_lines(raw)}
+    headings = _headings(lines)
+    tables: list[tuple[str, list[str], list[tuple[int, list[str]]]]] = []
+    index = 0
+    while index + 1 < len(lines):
+        line_no = index + 1
+        if (
+            line_no not in visible
+            or not lines[index].lstrip().startswith("|")
+            or not TABLE_SEPARATOR_RE.match(lines[index + 1])
+        ):
+            index += 1
+            continue
+        header = _table_cells(lines[index])
+        nearest_heading = ""
+        for _level, title, heading_index in headings:
+            if heading_index >= index:
+                break
+            nearest_heading = title
+        rows: list[tuple[int, list[str]]] = []
+        cursor = index + 2
+        while cursor < len(lines) and cursor + 1 in visible and lines[cursor].lstrip().startswith("|"):
+            if not TABLE_SEPARATOR_RE.match(lines[cursor]):
+                rows.append((cursor + 1, _table_cells(lines[cursor])))
+            cursor += 1
+        tables.append((nearest_heading, header, rows))
+        index = cursor
+    return tables
+
+
+def _normalized_topic(value: str) -> str:
+    return re.sub(r"[\s`*_：:；;，,。.!！?？/\\（）()\[\]{}]+", "", value).casefold()
+
+
+def _confirmed_status(value: str) -> bool:
+    if re.search(r"未确认|待确认|未关闭|未决定|\b(?:unconfirmed|unresolved|notconfirmed|notclosed|pending|proposed|unapproved)\b", value, re.I):
+        return False
+    return bool(re.search(r"已确认|已关闭|已决定|已决策|\b(?:confirmed|closed|resolved|decided)\b", value, re.I))
+
+
+def check_body_decision_conflicts(raw: str) -> list[SemFinding]:
+    """D6: exact-topic conflicts across canonical human decision tables.
+
+    This is deliberately table-bounded rather than broad prose matching, so a
+    product manager's authoritative decision/unknown tables are checked without
+    pretending to understand unrelated natural-language paragraphs. Decisions
+    and unknowns may be split across sections, so collection is document-wide.
+    """
+    findings: list[SemFinding] = []
+    decided: dict[str, tuple[str, int]] = {}
+    opened: dict[str, tuple[str, int]] = {}
+    for _heading, header, rows in _markdown_tables(raw):
+        lowered = [cell.casefold() for cell in header]
+        id_col = next((i for i, cell in enumerate(lowered) if re.search(r"\b(?:unk|dec)(?:\s*/\s*(?:unk|rev|dec))*\s*id\b", re.sub(r"[`*_]", "", cell), re.I)), None)
+        topic_col = next((i for i, cell in enumerate(lowered) if any(term in cell for term in ("问题", "冲突", "topic", "question"))), None)
+        status_col = next((i for i, cell in enumerate(lowered) if any(term in cell for term in ("结论", "状态", "status", "decision"))), None)
+        if id_col is None or topic_col is None or status_col is None:
+            continue
+        for line_no, cells in rows:
+            if max(id_col, topic_col, status_col) >= len(cells):
+                continue
+            item_id = cells[id_col].strip("`* ").upper()
+            topic = _normalized_topic(cells[topic_col])
+            status = _normalized_topic(cells[status_col])
+            if not topic:
+                continue
+            if item_id.startswith("DEC-") and _confirmed_status(status):
+                decided[topic] = (item_id, line_no)
+            elif item_id.startswith("UNK-") and any(term in status for term in ("未关闭", "开放", "阻断", "待确认", "open", "blocked", "unresolved", "pending")):
+                opened[topic] = (item_id, line_no)
+    for topic in sorted(set(decided) & set(opened)):
+        decision_id, decision_line = decided[topic]
+        unknown_id, unknown_line = opened[topic]
+        findings.append(SemFinding(
+            "BLOCK", "PRD-CONFIRMED-OPEN-UNKNOWN-CONFLICT",
+            f"正文决策表的同一问题同时登记为已确认决策 {decision_id} 和未关闭未知项 {unknown_id}；关闭其中一个并同步 frontmatter/附录",
+            f"{decision_id}@line {decision_line} vs {unknown_id}@line {unknown_line}",
+        ))
+    return findings
+
+
+def check_duplicate_stable_id_definitions(raw: str) -> list[SemFinding]:
+    """D7: duplicate authoritative definitions, not legitimate references.
+
+    Only definition-oriented Markdown tables are considered. Trace/mapping/index
+    tables are excluded, and repeated IDs in prose remain ordinary references.
+    """
+    findings: list[SemFinding] = []
+    id_header = re.compile(r"^(?:(?:UNK|REV|DEC)(?:\s*/\s*(?:UNK|REV|DEC))*|(?:REQ|VIEW|AC|ACT|RULE|FLD|STATE|STM|ROLE|FLOW|MOD|REG|EVT|API|INT))\s*ID$", re.I)
+    definitions: dict[str, list[int]] = {}
+    for heading, header, rows in _markdown_tables(raw):
+        if not header or not id_header.match(re.sub(r"[`*_]", "", header[0]).strip()):
+            continue
+        context = (heading + " " + " ".join(header)).casefold()
+        if any(term in context for term in ("追溯", "映射", "索引", "trace", "mapping", "index")):
+            continue
+        for line_no, cells in rows:
+            if not cells:
+                continue
+            match = ID_RE.search(cells[0].upper())
+            if match:
+                definitions.setdefault(match.group(0), []).append(line_no)
+    for item_id, lines in sorted(definitions.items()):
+        unique_lines = sorted(set(lines))
+        if len(unique_lines) < 2:
+            continue
+        findings.append(SemFinding(
+            "BLOCK", "PRD-DUPLICATE-STABLE-ID-DEFINITION",
+            f"稳定 ID {item_id} 在权威定义表中重复定义；保留一个定义，其余位置改为引用或使用新的稳定 ID",
+            f"{item_id}@lines {','.join(str(item) for item in unique_lines)}",
+        ))
+    return findings
+
+
+def check_confirmed_decision_authority(raw: str) -> list[SemFinding]:
+    """D8: a confirmed DEC must cite a human/authoritative decision source."""
+    findings: list[SemFinding] = []
+    for _heading, header, rows in _markdown_tables(raw):
+        lowered = [re.sub(r"[`*_]", "", cell).casefold() for cell in header]
+        id_col = next((i for i, cell in enumerate(lowered) if "id" in cell and "dec" in cell), None)
+        evidence_col = next((i for i, cell in enumerate(lowered) if any(term in cell for term in ("证据", "来源", "回答", "evidence", "source"))), None)
+        status_col = next((i for i, cell in enumerate(lowered) if any(term in cell for term in ("结论", "状态", "status", "decision"))), None)
+        if id_col is None or evidence_col is None or status_col is None:
+            continue
+        for line_no, cells in rows:
+            if max(id_col, evidence_col, status_col) >= len(cells):
+                continue
+            item_id = cells[id_col].strip("`* ").upper()
+            if not item_id.startswith("DEC-"):
+                continue
+            status = _normalized_topic(cells[status_col])
+            if not _confirmed_status(status):
+                continue
+            evidence = cells[evidence_col].strip()
+            inferred_only = bool(re.search(r"模型(?:推断|建议)|AI\s*(?:inference|suggestion)|竞品做法|原型观察|assumption", evidence, re.I))
+            authority = bool(re.search(
+                r"\b(?:SRC|EVD)-[A-Z0-9-]+\b|用户|客户|负责人|产品经理|业务方|会议|邮件|工单|合同|法规|制度|签署|批准|确认人|approved\s+by|customer|owner",
+                evidence,
+                re.I,
+            ))
+            adopted = bool(re.search(r"(?:用户|客户|负责人|业务方).*(?:批准|确认|决定|签署)|approved\s+by|(?:customer|owner|user).*(?:approved|confirmed|decided)", evidence, re.I))
+            if re.search(r"未批准|未确认|未经.{0,12}(?:批准|确认)|尚未.{0,8}(?:批准|确认)|not\s+(?:approved|confirmed)", evidence, re.I):
+                adopted = False
+                authority = False
+            if not evidence or (inferred_only and not adopted) or not authority:
+                findings.append(SemFinding(
+                    "BLOCK", "PRD-CONFIRMED-DECISION-NO-AUTHORITY",
+                    f"已确认决策 {item_id} 没有可复核的人类决定或权威来源；模型推断、竞品做法和原型观察只能保持待确认",
+                    f"{item_id}@line {line_no}",
+                ))
+    return findings
+
+
+def check_acceptance_falsifiability(raw: str) -> list[SemFinding]:
+    """D9: canonical AC rows must expose dual results, a counterexample and evidence."""
+    findings: list[SemFinding] = []
+    weak = re.compile(r"^(?:正常|功能正常|处理成功|显示正确|符合预期|可正常使用|pass|passed|ok|无|暂无|n/?a)$", re.I)
+    for _heading, header, rows in _markdown_tables(raw):
+        normalized = [re.sub(r"[`*_\s]", "", cell).casefold() for cell in header]
+        id_col = next((i for i, cell in enumerate(normalized) if cell in {"acid", "验收id"}), None)
+        if id_col is None:
+            continue
+        aliases = {
+            "steps": ("步骤/输入", "步骤", "输入", "steps/input", "steps"),
+            "visible": ("预期可见结果", "可见结果", "expectedvisible"),
+            "domain": ("预期领域结果", "领域结果", "expecteddomain"),
+            "negative": ("反例", "负向", "negativecase", "negative"),
+            "evidence": ("证据", "evidence"),
+        }
+        columns: dict[str, int] = {}
+        for key, names in aliases.items():
+            index = next((i for i, cell in enumerate(normalized) if cell in {re.sub(r"\s", "", name).casefold() for name in names}), None)
+            if index is not None:
+                columns[key] = index
+        if set(columns) != set(aliases):
+            continue
+        for line_no, cells in rows:
+            if id_col >= len(cells):
+                continue
+            item_id = cells[id_col].strip("`* ").upper()
+            if not item_id.startswith("AC-"):
+                continue
+            failures: list[str] = []
+            for key, index in columns.items():
+                value = cells[index].strip() if index < len(cells) else ""
+                if not value or weak.fullmatch(re.sub(r"[`*_。.!！]", "", value).strip()):
+                    failures.append(key)
+            if failures:
+                findings.append(SemFinding(
+                    "BLOCK", "PRD-AC-NOT-FALSIFIABLE",
+                    f"验收标准 {item_id} 缺少可执行、可证伪的双结果/反例/证据：{', '.join(failures)}",
+                    f"{item_id}@line {line_no}",
+                ))
+    return findings
+
+
+def check_representation_gap(raw: str) -> list[SemFinding]:
+    """D10: error/debug values in a field dictionary must state their carrier."""
+    findings: list[SemFinding] = []
+    risky_value = re.compile(r"错误原因|失败原因|请求编号|请求ID|requestId|同步游标|lastCursor|失败明细", re.I)
+    carrier = re.compile(r"业务持久|持久字段|非持久|瞬时|接口响应|响应字段|审计|日志|计算投影|derived|transient|audit|log", re.I)
+    for heading, header, rows in _markdown_tables(raw):
+        normalized_header = " ".join(re.sub(r"[`*_]", "", cell) for cell in header)
+        if not re.search(r"FLD\s*ID|字段", normalized_header, re.I):
+            continue
+        if not re.search(r"字段字典|field dictionary", heading + " " + normalized_header, re.I):
+            continue
+        for line_no, cells in rows:
+            row = " | ".join(cells)
+            item = ID_RE.search(row.upper())
+            if item and item.group(0).startswith("FLD-") and risky_value.search(row) and not carrier.search(row):
+                findings.append(SemFinding(
+                    "BLOCK", "PRD-REPRESENTATION-GAP",
+                    f"{item.group(0)} 展示错误/追踪值但未说明它是业务持久字段、瞬时响应、审计日志还是计算投影",
+                    f"{item.group(0)}@line {line_no}",
+                ))
+    return findings
+
+
+def check_guard_contradiction(raw: str) -> list[SemFinding]:
+    """D4（弱信号，WARN）：同一动作的“仅 X/Y 可 Z”许可集与“∉/不可”拒绝集显式互斥。
+
+    配对条件（宁严勿宽）：两侧集合均 ≥2 个状态词，且绑定同一 RULE/ACT ID，
+    或许可侧动词出现在拒绝侧同一行。两侧集合求交为空说明守卫的显式拒绝域
+    完全没有覆盖规则声明的“仅”许可域（真实案例：RULE-SELECT-001 仅 due/ready
+    可勾选 vs ACT-UNIT-SELECT 守卫 state ∉ succeeded/not_due/running）。
+    信号不明确（无动词、无 ID、单侧缺失）一律不报。
+    """
+    allows: list[tuple[frozenset[str], str, str, int]] = []  # (states, verb, bound_id, line_no)
+    denies: list[tuple[frozenset[str], str, str, int, str]] = []  # (states, verb, bound_id, line_no, line)
+    for line_no, line in _prose_lines(raw):
+        if _is_example_line(line):
+            continue
+        bound = _GUARD_ID_RE.search(line)
+        bound_id = bound.group(0) if bound else ""
+        for match in _GUARD_ALLOW_RE.finditer(line):
+            states = frozenset(STATE_TOKEN_RE.findall(match.group(1)))
+            if len(states) >= 2:
+                allows.append((states, match.group(2), bound_id, line_no))
+        for match in _GUARD_DENY_SET_RE.finditer(line):
+            states = frozenset(STATE_TOKEN_RE.findall(match.group(1)))
+            if len(states) >= 2:
+                denies.append((states, "", bound_id, line_no, line))
+        for match in _GUARD_DENY_CN_RE.finditer(line):
+            states = frozenset(STATE_TOKEN_RE.findall(match.group(1)))
+            if len(states) >= 2:
+                denies.append((states, match.group(2), bound_id, line_no, line))
+    findings: list[SemFinding] = []
+    seen: set[tuple[frozenset[str], frozenset[str]]] = set()
+    for allow_states, allow_verb, allow_id, allow_line in allows:
+        for deny_states, deny_verb, deny_id, deny_line, deny_text in denies:
+            if deny_line == allow_line:
+                continue
+            paired = bool(allow_id and deny_id and allow_id == deny_id)
+            paired = paired or bool(allow_verb and allow_verb in deny_text)
+            paired = paired or bool(deny_verb and deny_verb and allow_verb == deny_verb)
+            if not paired or allow_states & deny_states:
+                continue
+            key = (allow_states, deny_states)
+            if key in seen:
+                continue
+            seen.add(key)
+            findings.append(SemFinding(
+                "WARN", "PRD-GUARD-CONTRADICTION",
+                f"“仅 {'/'.join(sorted(allow_states))} 可{allow_verb}”（line {allow_line}）与"
+                f"“∉/不可 {'/'.join(sorted(deny_states))}”（line {deny_line}）的显式状态集合互斥："
+                f"守卫拒绝域未覆盖规则许可域，其余状态两处结论可能相反。对齐两处状态集合",
+                f"line {allow_line} vs line {deny_line}",
+            ))
+    return findings
+
+
+def _introduced_enum_count(lines: list[str], line_no: int) -> int | None:
+    """claim 直接引出的结构化枚举项数：其后 4 行内开始的连续列表段或表格数据行数。
+
+    中间跨标题、列表/表格不以 claim 开头引出（如 claim 自身在列表/表格中）时返回 None。
+    """
+    for lookahead in range(line_no, min(line_no + 4, len(lines))):
+        candidate = lines[lookahead]
+        if re.match(r"^#{1,6}\s", candidate):
+            return None
+        if _BULLET_RE.match(candidate):
+            cursor = lookahead
+            while cursor < len(lines) and _BULLET_RE.match(lines[cursor]):
+                cursor += 1
+            return cursor - lookahead
+        if (
+            candidate.lstrip().startswith("|")
+            and lookahead + 1 < len(lines)
+            and re.match(r"^\s*\|[\s:|-]+\|\s*$", lines[lookahead + 1])
+        ):
+            cursor = lookahead + 2
+            while cursor < len(lines) and lines[cursor].lstrip().startswith("|"):
+                cursor += 1
+            return cursor - lookahead - 2
+        if candidate.strip():
+            return None  # 非空散文行隔断：枚举不是由该 claim 引出
+    return None
+
+
+def check_enum_cardinality(raw: str) -> list[SemFinding]:
+    """D5 变体一（WARN）：“N 组/类/大项/宫格”基数表述与其直接引出的结构化枚举数不符。
+
+    宁严勿宽：一行多个基数表述、claim 在表格行/列表项内、枚举不是由 claim 直接引出
+    （其后 4 行内无列表段或表格）时一律不报。
+    """
+    lines = raw.splitlines()
+    findings: list[SemFinding] = []
+    for line_no, line in _prose_lines(raw):
+        if line.lstrip().startswith("|") or _BULLET_RE.match(line) or _is_example_line(line):
+            continue
+        claims = list(CARDINALITY_CLAIM_RE.finditer(line))
+        if len(claims) != 1:
+            continue
+        claim = claims[0]
+        if re.match(r"^\s*#{1,6}\s*(?:附录|章节|Appendix)\s*$", line[:claim.start()], re.I):
+            continue  # “附录 3 类目覆盖度” uses a section number, not a count.
+        claimed = int(claim.group(1)) if claim.group(1).isdigit() else CN_NUM[claim.group(1)]
+        if not 2 <= claimed <= 12:
+            continue
+        count = _introduced_enum_count(lines, line_no)
+        if count is None or count < 2 or claimed == count:
+            continue
+        findings.append(SemFinding(
+            "WARN", "PRD-ENUM-NOT-DEFINED",
+            f"文中称“{claim.group(1)}{claim.group(2)}”，但其引出的枚举清单只有 {count} 项；"
+            f"若基数已修订请同步枚举清单，若枚举清单才是最新则修订措辞",
+            f"line {line_no}",
+        ))
+    return findings
+
+
+def check_enum_value_coverage(raw: str) -> list[SemFinding]:
+    """D5 变体二（WARN）：枚举字段的中文取值在枚举定义位之外再未出现。
+
+    枚举定义位：`枚举：` 标记行，以及行内含“周期/状态/cycle/state”语义的 FLD 字典行
+    中的纯中文斜杠链单元格（其余 FLD 链如来源/结果类型不判定）。
+    ascii code 枚举（如 enterprise_data/person）按机器标识豁免——它们通常只在
+    字典中定义一次。仅当同枚举存在“至少一个取值被引用、其余取值零引用”时报告
+    （真实案例：周期枚举含“实时”，但状态机与规则从未定义其实时流转）。
+    """
+    prose = _prose_lines(raw)
+    sites: list[tuple[int, list[str]]] = []  # (line_no, cjk tokens)
+    site_lines: set[int] = set()
+    for line_no, line in prose:
+        tokens: list[str] = []
+        marked = ENUM_SITE_RE.search(line)
+        if marked:
+            site_lines.add(line_no)
+            tokens = [t for t in re.split(r"[/、,，]\s*", marked.group(1)) if CJK_TOKEN_RE.match(t.strip())]
+        elif FLD_ROW_RE.match(line) and FLD_ENUM_ROW_HINT_RE.search(line):
+            for cell in (cell.strip().strip("`") for cell in line.strip().strip("|").split("|")):
+                if CJK_CHAIN_RE.match(cell):
+                    site_lines.add(line_no)
+                    tokens.extend(part.strip() for part in cell.split("/"))
+        tokens = sorted(set(tokens))
+        if len(tokens) >= 2:
+            sites.append((line_no, tokens))
+    if not sites:
+        return []
+    coverage_text = "\n".join(line for line_no, line in prose if line_no not in site_lines)
+    findings: list[SemFinding] = []
+    for line_no, tokens in sites:
+        missing = [token for token in tokens if token not in coverage_text]
+        if missing and len(missing) < len(tokens):
+            findings.append(SemFinding(
+                "WARN", "PRD-ENUM-NOT-DEFINED",
+                f"枚举取值 {'、'.join(missing)} 在枚举定义位之外（含状态机与规则）再未出现，"
+                f"其流转/处理语义未定义；同枚举其余取值（{'、'.join(t for t in tokens if t not in missing)}）均有引用",
+                f"line {line_no}",
+            ))
+    return findings
+
+
+def check_pending_execution(raw: str) -> list[SemFinding]:
+    """Narrow conflict probe; not a general detector of unauthorized defaults."""
+    findings = []
+    for n, line in _prose_lines(raw):
+        zh = re.search(r'(?:待确认|待复核|确认后才)[^。\n]{0,220}(?:在此之前|未确认前|确认之前)[，, ]*(?:实现|系统)?(?:须|必须|先|应)[^。\n]{0,60}(?:默认|执行)', line)
+        en = re.search(r'(?:pending (?:confirmation|approval)|awaiting approval)[^\n]{0,180}(?:in the meantime|before approval)[, ]*(?:implementation |the system )?(?:must|shall|will)[^.\n]{0,80}(?:default|execute|apply)', line, re.I)
+        # Quoted counterexamples, negation, and concept-only assumptions are not execution policy.
+        negated = re.search(r'(?:不得|不能|禁止|错误示例|反例|示例：|仅用于概念验证|已授权的临时方案|do not|must not|bad example|concept.only|authorized interim)', line, re.I)
+        if (zh or en) and not negated:
+            findings.append(SemFinding('BLOCK','PRD-PENDING-EXECUTION',
+                '同一处把业务选择标为待确认，又要求确认前按默认执行。删除相互冲突的实施承诺；已有授权则引用授权并同步状态，未决只限制依赖分支。',f'line {n}'))
+    return findings
+
+
+def run_semantic_checks(raw: str) -> list[SemFinding]:
+    """Run bounded semantic invariants wired into ``gate --profile prd``."""
+    return [
+        *check_pending_execution(raw),
+        *check_dangling_refs(raw),
+        *check_prefix_collision(raw),
+        *check_state_count(raw),
+        *check_guard_contradiction(raw),
+        *check_enum_cardinality(raw),
+        *check_enum_value_coverage(raw),
+        *check_body_decision_conflicts(raw),
+        *check_duplicate_stable_id_definitions(raw),
+        *check_confirmed_decision_authority(raw),
+        *check_acceptance_falsifiability(raw),
+        *check_representation_gap(raw),
+    ]
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="PRD 语义一致性静态检查（悬空引用/前缀碰撞/态数不符）")
+    parser.add_argument("document", type=Path)
+    args = parser.parse_args()
+    if not args.document.is_file():
+        print(f"BLOCK: GATE-NOT-FILE: 输入 PRD 不存在: {args.document}")
+        return 1
+    findings = run_semantic_checks(args.document.read_text(encoding="utf-8"))
+    for item in findings:
+        ref = f" [{item.ref}]" if item.ref else ""
+        print(f"{item.severity}: {item.code}: {item.message}{ref}")
+    if any(item.severity == "BLOCK" for item in findings):
+        return 1
+    if not findings:
+        print("PASS: 本次静态检查未发现已覆盖类型的问题；业务正确性与实际执行仍需核对")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

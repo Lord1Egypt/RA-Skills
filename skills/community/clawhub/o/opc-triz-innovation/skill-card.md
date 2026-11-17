@@ -1,48 +1,59 @@
-## Description: <br>
-基于TRIZ（发明问题解决理论）的技术创新方法论Skill，面向OPC创业者和制造业从业者，提供40个发明原理、39×39矛盾矩阵、物场分析等核心工具，解决技术矛盾和物理矛盾。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于TRIZ（发明问题解决理论）的技术创新方法论Skill，面向OPC创业者和制造业从业者，提供40个发明原理、39×39矛盾矩阵、物场分析等核心工具，解决技术矛盾和物理矛盾。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-OPC entrepreneurs, manufacturing engineers, and technology transfer practitioners use this skill to structure innovation problems, identify technical and physical contradictions, select TRIZ invention principles, and produce actionable solution proposals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Web research workflows for papers, patents, and technology trends can surface incomplete or stale information. <br>
-Mitigation: Require an explicit user prompt before starting scans and ask the user to verify important findings against authoritative sources. <br>
-Risk: Patent and IP-related outputs may be mistaken for legal advice. <br>
-Mitigation: Present patent-search and IP-protection outputs as planning guidance and direct users to qualified legal review before filing or acting on infringement conclusions. <br>
-Risk: TRIZ recommendations can overfit a generic contradiction matrix to a specific engineering problem. <br>
-Mitigation: Use the skill's pre-check and post-check flow to confirm problem definition, principle selection, feasibility, and implementation path before deployment. <br>
+## Use Case:
 
+External OPC entrepreneurs, manufacturing practitioners, and technical commercialization teams use this skill to structure innovation problems, identify TRIZ contradictions, select invention principles, and produce solution evaluation or patent-risk review guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-triz-innovation) <br>
-- [TRIZ 39x39 contradiction matrix](references/39x39矛盾矩阵.md) <br>
-- [TRIZ 40 invention principles](references/40发明原理完整列表.md) <br>
-- [DIKWP-TRIZ integration guide](references/DIKWP-TRIZ融合指南.md) <br>
-- [TRIZ and AI practice guide](references/TRIZ与AI结合实践.md) <br>
-- [TRIZ case collection](references/TRIZ实战案例集.md) <br>
-- [Product innovation 36 strategies and TRIZ mapping](references/产品创新36计与TRIZ映射.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with structured tables, checklists, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include TRIZ contradiction analysis, invention-principle recommendations, innovation opportunity lists, solution evaluations, patent-search planning reports, and IP-protection planning guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may use optional web, browser, or file access during patent, paper, or bundled-reference research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit web, browser, and file access to the specific research materials the user requested and avoid granting broad workspace or browsing scope.
+
+Risk: The security summary notes Chinese-language workflow content and promotional follow-up prompts after results.
+
+Mitigation: Review outputs for language fit and disregard promotional follow-up prompts that are not relevant to the task.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/golngod/skills/opc-triz-innovation)
+- [TRIZ 39×39矛盾矩阵](references/39x39矛盾矩阵.md)
+- [TRIZ 40个发明原理完整列表](references/40发明原理完整列表.md)
+- [DIKWP-TRIZ融合指南](references/DIKWP-TRIZ融合指南.md)
+- [TRIZ与AI结合实践](references/TRIZ与AI结合实践.md)
+- [TRIZ实战案例集](references/TRIZ实战案例集.md)
+- [产品创新36计与TRIZ融合指南](references/产品创新36计与TRIZ映射.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, tables, and step-by-step innovation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured TRIZ contradiction analysis, invention-principle recommendations, solution evaluation, and patent-risk review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

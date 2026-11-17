@@ -1,40 +1,49 @@
-## Description: <br>
-Guides agents through RDK X5 TogetheROS.Bot Humble workflows for launching preinstalled ROS2 packages, managing topics, nodes, and services, building camera, AI, web, voice, or HDMI pipelines, and creating custom ROS2 workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide developers using TogetheROS.Bot on RDK X5 to launch ROS2 packages, manage topics, nodes, and services, build camera plus AI plus output pipelines, and create custom ROS2 workspaces.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
 
-## Use Case: <br>
-Developers and robotics engineers use this skill to operate ROS2/TogetheROS.Bot packages on RDK X5, compose camera-plus-AI pipelines, inspect ROS2 runtime state, and create custom colcon workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ROS2 launch commands may activate sensors, AI processing, HDMI or audio output, or a web display. <br>
-Mitigation: Run generated commands deliberately on the intended RDK X5/TROS system and keep live camera or robot outputs on a trusted network. <br>
-Risk: Guidance assumes an RDK X5 TogetheROS.Bot Humble environment with ros2 and colcon available. <br>
-Mitigation: Confirm the target environment matches the declared platform and required binaries before following commands. <br>
+## Use Case:
 
+Developers and robotics engineers use this skill to work with ROS2 and TogetheROS.Bot on RDK X5 hardware, including launching preinstalled perception, sensor, output, and application packages. It is also used to troubleshoot ROS2 topics, nodes, services, shared memory issues, and custom workspace setup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/katherineedwards2475/rdk-x5-tros) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with ROS2 and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ROS2 launch, topic, node, service, parameter, and colcon workspace commands for RDK X5/TROS environments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ROS2 launch guidance can activate cameras, audio, display, or local web output on RDK X5 systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each launch command before running it and use the skill only in an intended RDK X5/TROS environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/skills/rdk-x5-tros)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an RDK X5 environment with ros2 and colcon available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

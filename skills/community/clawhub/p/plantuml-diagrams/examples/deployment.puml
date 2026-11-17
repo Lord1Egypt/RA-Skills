@@ -1,0 +1,14 @@
+@startuml
+title 电商系统 · 部署图
+node "Web 服务器" {
+  [Nginx]
+  [Web 应用]
+}
+node "应用服务器" {
+  [API 服务]
+}
+database "MySQL 主库" as db
+[Nginx] --> [Web 应用] : 反向代理
+[Web 应用] --> [API 服务] : HTTPS
+[API 服务] --> db : JDBC
+@enduml

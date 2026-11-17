@@ -1,0 +1,124 @@
+{
+  "schema": "easyeda-agent/260919-usb-route-live/v1",
+  "status": "live-verified",
+  "capturedAtLocal": "2026-09-22T00:50:00+08:00",
+  "project": "ceshi",
+  "documentUuid": "2e719e9419653c72",
+  "host": {
+    "easyedaVersion": "4.1.60",
+    "connectorVersion": "1.5.3-dev.3"
+  },
+  "contract": {
+    "layer": 1,
+    "widthMil": 8,
+    "maxVias": 0,
+    "pads": {
+      "USB_D+": ["USB1.A6", "USB1.B6", "U4.1"],
+      "USB_D-": ["USB1.A7", "USB1.B7", "U4.2"]
+    },
+    "lengthPolicy": "保持成对走向；题目没有增加蛇形或等长要求"
+  },
+  "planning": {
+    "padGeometrySource": "pcb list --include-bbox --include-pads 的真实 shape/rotation/specialPad",
+    "acceptedCandidate": {
+      "plannedSegments": {
+        "USB_D+": 4,
+        "USB_D-": 8
+      },
+      "actualTrackPrimitives": {
+        "USB_D+": 5,
+        "USB_D-": 9
+      },
+      "splitReason": "平台在 USB-C 重复数据脚的 T 接点处把横向线段拆成了两个实际 track primitive",
+      "angleGrid": "0/45/90/135 degrees"
+    },
+    "rejectedIntermediates": [
+      {
+        "status": "candidate-rejected",
+        "symptom": "USB_D- 第一版离线几何检查通过，但官方 DRC 报两处 Slot Region to Track，实测距离 0mil，要求至少 11.8mil",
+        "cause": "USB1 封装内嵌 Slot Region 不在当前 components/tracks/vias/pours/fills/regions 快照中，离线检查器无法看见该障碍"
+      },
+      {
+        "status": "candidate-rejected",
+        "symptom": "USB_D- 第二版向外移后，官方 DRC 仍报 Slot Region to Track：10.6mil，小于 11.8mil",
+        "recovery": "只 rip-up USB_D-，把路径在 USB1 外侧更早下沉到 y=220mil，再返回 U4.2；USB_D+ 保持不动"
+      }
+    ],
+    "validatorBoundary": "可见焊盘、器件、铜、独立 pours/fills/regions 的离线零 finding 不覆盖 footprint 内嵌 Slot Region；每批仍必须运行官方 pcb drc"
+  },
+  "freshReadbackAfterSaveReload": {
+    "boardTrackCount": 77,
+    "viaCount": 0,
+    "actualTracks": {
+      "USB_D+": 5,
+      "USB_D-": 9
+    },
+    "paths": [
+      {
+        "from": "USB1.A6",
+        "to": "U4.1",
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      },
+      {
+        "from": "USB1.B6",
+        "to": "U4.1",
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      },
+      {
+        "from": "USB1.A7",
+        "to": "U4.2",
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      },
+      {
+        "from": "USB1.B7",
+        "to": "U4.2",
+        "connected": true,
+        "layers": [1],
+        "widthsMil": [8],
+        "viaCount": 0
+      }
+    ],
+    "pcbCheck": {
+      "errors": 0,
+      "danglingEnds": 0,
+      "acuteAngles": 0,
+      "nonOrthogonal": 0,
+      "trackOverPad": 0,
+      "clearance": 0,
+      "duplicateSegments": 0,
+      "usbFindings": 0
+    },
+    "officialDrc": {
+      "connectionErrors": 196,
+      "otherViolationTypes": 0,
+      "deltaFromCanMilestone": -6
+    }
+  },
+  "persistence": {
+    "sequence": ["typed track write", "four pcb net-path proofs", "pcb check", "pcb drc", "pcb save", "doc reload", "fresh track/net-path/check/drc", "pcb track-lock", "pcb save", "doc reload", "fresh lock readback"],
+    "lockedTracks": 14,
+    "lockPersisted": true
+  },
+  "evidenceHashes": {
+    "candidateSha256": "7d09837cbc0bbfb2bb2e9d308f6274bbe3b15e288b21b5ea94fa1abf2c2921cc",
+    "freshBoardTracksSha256": "fe8c2267a44ebb4614418121f54151fc3d2d1bd77d05895c68d14a67ba64a4a2",
+    "freshCheckSha256": "c7fc34498a17524069604d76b166bb14fbf45cb894f4ede371cdc21fd1e13e36",
+    "freshDrcSha256": "574f12e8c94618a9810ffe8a32bac57bb36154c450702f92ef5bafef826d9368",
+    "lockedPlusSha256": "88c55d48e8d145df72dfe7e0b0cdeed2c9561eeacf65be75d3dd26d7e05b882d",
+    "lockedMinusSha256": "1469ffa1cb37951f9cd18684f7841e238e29b8725f44d350e79fa3254b147200"
+  },
+  "limitations": [
+    "整板仍有 196 个 Connection Error；本样例只证明 USB 数据铜",
+    "USB1 封装内嵌 Slot Region 不能由当前 typed 快照独立列出，正式候选必须保留官方 DRC 兜底",
+    "绝对坐标只属于本次现场；迁移时须重新读取焊盘、既有铜和官方 DRC 规则"
+  ]
+}

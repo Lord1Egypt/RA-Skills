@@ -1,0 +1,37 @@
+# ai-governance-audit-chain
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+Give your AI an identity, an evidence trail, and a gate. Every task gets a registry entry (who, what, on what authority), every step leaves a verifiable record (what changed, where the proof is, how to recompute it), and every high-risk action must pass a gate first. Use for AI overreach, runaway agents, unsourced AI conclusions, automation needing human approval, audit trails, accountability chains, and prompt-injection defense.
+
+Give your AI an identity, an evidence trail, and a gate. Every task gets a registry entry (who, what, on what authority), every step leaves a verifiable record (what changed, where the proof is, how to recompute it), and every high-risk action must pass a gate first. Use for AI overreach, runaway agents, unsourced AI conclusions, automation needing human approval, audit trails, accountability chains, and prompt-injection defense. 「AI 改了我的文件，怎么查是谁改的？」「AI 自动帮我发邮件、发帖，怎么拦住？」「让 AI 干活，怎么留痕？」 装上它，AI 会先给自己立三条规矩：每个任务建籍（谁在干、干什么、依据什么）、每步操作留证（改了什么、证据在哪、怎么复算）、 关键动作设门禁（对外发送、删除覆盖、付款下单之前先过闸）。适用于 AI 越权操作、智能体乱来、AI 结论没标来源、 自动化流程要人工审批、合规审计要留痕、事后追责要证据链、提示词注入防范、AI 可靠性提升。
+
+## When to use / 什么时候用
+
+- AI 把我文件改了，怎么查是谁动的
+- AI 自动发邮件之前能不能先拦一下
+- 智能体自己下单了，这责任算谁的
+- 审计要 AI 操作记录，我们一条都没有
+- AI 给的结论没写来源，这能用吗
+- 自动化流程想加一道人工确认
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

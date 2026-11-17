@@ -1,49 +1,71 @@
-## Description: <br>
-Manage Zilliz Cloud vector databases through zilliz-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Zilliz Cloud vector databases through zilliz-cli, including setup, clusters, collections, indexes, partitions, databases, vectors, RBAC, backups, imports, billing, monitoring, projects, and regions.
 
-## Publisher: <br>
-[zhanshuyou](https://clawhub.ai/user/zhanshuyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanshuyou](https://clawhub.ai/user/zhanshuyou)
 
-## Use Case: <br>
-Developers and operators use this skill to administer Zilliz Cloud vector databases, including setup, cluster and collection management, vector operations, RBAC, backups, imports, monitoring, and billing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose powerful Zilliz Cloud administration commands, including delete, drop, restore, RBAC, billing, and vector deletion operations. <br>
-Mitigation: Review commands before approval, require confirmation for destructive actions, and verify the active cluster, database, collection, and role targets before execution. <br>
-Risk: Authentication credentials, passwords, and payment card details may be needed for some workflows. <br>
-Mitigation: Keep secrets and card details in the user's own terminal, use interactive Zilliz login or configuration flows, and avoid sharing credentials in chat or command output. <br>
+## Use Case:
 
+External developers and engineers use this skill to operate Zilliz Cloud vector database resources through zilliz-cli. It helps agents propose setup, status, data-plane, control-plane, RBAC, backup, import, billing, monitoring, project, and region commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhanshuyou/zilliz-skill) <br>
-- [Zilliz](https://zilliz.com/) <br>
-- [Zilliz Cloud](https://cloud.zilliz.com/) <br>
-- [README](README.md) <br>
-- [Setup and authentication reference](references/setup.md) <br>
-- [Cluster reference](references/cluster.md) <br>
-- [Collection reference](references/collection.md) <br>
-- [Vector operations reference](references/vector.md) <br>
-- [Backup reference](references/backup.md) <br>
-- [Monitoring reference](references/monitoring.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with zilliz-cli shell commands and command-output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request user confirmation before destructive operations and directs sensitive authentication or billing inputs to the user's own terminal.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill can affect real Zilliz Cloud resources, including deleting or dropping clusters, collections, databases, backups, users, roles, partitions, indexes, volumes, and billing-related state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege Zilliz credentials and require explicit user confirmation before every delete, drop, RBAC, billing, restore, suspend, or otherwise irreversible action.
+
+Risk: Credential and payment-card command examples could expose API keys, passwords, or card details if entered in chat or run inside an agent-controlled shell.
+
+Mitigation: Keep authentication, configuration, password updates, and card binding in the user's own terminal; never request secrets in chat or echo them into logs.
+
+Risk: Installing or upgrading zilliz-cli without version pinning can change CLI behavior or dependencies between runs.
+
+Mitigation: Prefer a pinned or isolated zilliz-cli installation for production use and verify the CLI version before running operational commands.
+
+## Reference(s):
+
+- [Setup and authentication](references/setup.md)
+- [Clusters](references/cluster.md)
+- [Collections](references/collection.md)
+- [Vector operations](references/vector.md)
+- [Indexes](references/index.md)
+- [Databases](references/database.md)
+- [Partitions](references/partition.md)
+- [Users and roles](references/user-role.md)
+- [Backups](references/backup.md)
+- [Import](references/import.md)
+- [Billing](references/billing.md)
+- [Monitoring](references/monitoring.md)
+- [Projects and regions](references/project-region.md)
+- [Zilliz](https://zilliz.com/)
+- [Zilliz Cloud](https://cloud.zilliz.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend JSON output for programmatic CLI parsing; destructive and sensitive operations require explicit confirmation or user-side terminal entry.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

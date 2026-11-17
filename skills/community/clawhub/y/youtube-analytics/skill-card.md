@@ -1,43 +1,58 @@
-## Description: <br>
-YouTube Analytics helps agents use the YouTube Data API v3 to analyze channels, videos, searches, subscriber counts, engagement metrics, uploads, and competitors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube Data API v3 analytics toolkit for analyzing YouTube channels, videos, and search results.
 
-## Publisher: <br>
-[adamkristopher](https://clawhub.ai/user/adamkristopher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adamkristopher](https://clawhub.ai/user/adamkristopher)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch public YouTube channel, video, and search data, save JSON results, and prepare markdown summaries with tables, comparisons, and performance insights. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a YouTube Data API key from the local environment. <br>
-Mitigation: Use a restricted API key, avoid printing key values returned by helper functions, and rotate the key if it is exposed. <br>
-Risk: The skill saves analysis results to local JSON files under results/. <br>
-Mitigation: Install and run it only in workspaces where local result files are acceptable, and delete results/ when saved analyses are no longer needed. <br>
-Risk: Dependency installation may change if package ranges resolve differently. <br>
-Mitigation: Prefer lockfile-based installs such as npm ci when possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [API Reference](references/api-reference.md) <br>
-- [Google Cloud Console Credentials](https://console.cloud.google.com/apis/credentials) <br>
-- [ClawHub Release Page](https://clawhub.ai/adamkristopher/youtube-analytics) <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve YouTube Data API v3 channel, video, search, and comparison data, then save structured results and create human-readable summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Analysis, JSON, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [JSON result files and markdown summaries, with TypeScript function calls and shell commands in setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a YouTube Data API v3 key and writes saved analyses under results/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Exported storage helpers can access local JSON files outside the intended results folder.
+
+Mitigation: Avoid exposing storage helpers to untrusted prompts or callers until path containment and opt-in persistence are improved.
+
+Risk: The skill stores YouTube queries and analytics results locally.
+
+Mitigation: Use it only where local storage of YouTube analytics data is acceptable and review saved results before sharing.
+
+Risk: The skill requires a YouTube Data API key.
+
+Mitigation: Keep the API key limited to YouTube Data API use and do not expose it in prompts, logs, or shared result files.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+- [Google Cloud Console API credentials](https://console.cloud.google.com/apis/credentials)
+- [YouTube Analytics ClawHub page](https://clawhub.ai/adamkristopher/skills/youtube-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and saved JSON analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a YouTube Data API v3 key and writes analysis outputs under a local results directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and scripts/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

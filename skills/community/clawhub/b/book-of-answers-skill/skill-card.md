@@ -1,40 +1,52 @@
-## Description: <br>
-Routes natural-language questions into a three-book answer experience and returns one random cited answer with SQLite-backed minimal per-user memory, duplicate-question protection, contextual book switching, and daily fortune. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes natural-language questions into a three-book answer experience and returns one random cited answer with minimal SQLite-backed per-user memory, duplicate-question protection, contextual book switching, and daily fortune support.
 
-## Publisher: <br>
-[shaozrrr](https://clawhub.ai/user/shaozrrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaozrrr](https://clawhub.ai/user/shaozrrr)
 
-## Use Case: <br>
-External users and developers use this skill to ask conversational questions and receive a short cited answer drawn from built-in movie, literature, or music quote collections. Developers can also run, extend, and debug the pure text skill locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores the latest user question and answer in a local SQLite database for duplicate detection and contextual book switching. <br>
-Mitigation: Avoid highly sensitive questions, relocate the database with ANSWER_LIBRARY_DB when needed, or delete the local database after use. <br>
-Risk: Answers are randomly selected from quote libraries and should not be treated as factual, professional, legal, medical, or financial advice. <br>
-Mitigation: Use responses as reflective prompts only and rely on appropriate qualified sources for consequential decisions. <br>
+## Use Case:
 
+External users and developers use this Chinese-language text skill to ask open-ended questions and receive concise, cited responses drawn from movie, literature, or music answer-book corpora. Developers can also run, extend, or debug the local Python implementation and its SQLite-backed state flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shaozrrr/book-of-answers-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text conversational response with cited source line] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are selected from a built-in three-book quote corpus and may use local SQLite state for duplicate detection and contextual book switching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Risk: The skill stores the most recent question, answer, selected book, and timestamp in a local SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or highly sensitive personal details, and review, relocate, or delete the SQLite database when retained local state is not desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shaozrrr/skills/book-of-answers-skill)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [skill.json](artifact/skill.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown-style conversational response with quoted answer text and citation source lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are selected from local movie, literature, and music answer corpora and may update minimal per-user SQLite state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

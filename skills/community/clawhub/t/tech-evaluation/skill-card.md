@@ -1,40 +1,52 @@
-## Description: <br>
-Tech Evaluation helps developers and teams turn informal technology or product selection questions into a structured comparison, weighted scoring, recommendation, and action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill that structures technology and product selection requests into requirement extraction, product analysis, competitive comparison, weighted scoring, final recommendation, and action planning.
 
-## Publisher: <br>
-[ambition0802](https://clawhub.ai/user/ambition0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ambition0802](https://clawhub.ai/user/ambition0802)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, architects, product teams, and other external users can use this skill to compare technologies or products and produce a concise selection recommendation with supporting analysis and next steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad trigger coverage may cause the skill to activate for generic comparison or recommendation requests.
+
+Mitigation: Confirm the user wants a structured technology or product selection workflow before relying on the skill's full recommendation process.
+
+Risk: Recommendations may depend on current product, pricing, license, security, or maintenance information.
+
+Mitigation: Verify important claims against current vendor documentation, repositories, or trusted sources before purchasing, deploying, or standardizing on a choice.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, architects, and product decision makers use this skill to compare candidate technologies or products, evaluate tradeoffs, and choose a practical next step from incomplete natural-language requirements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use web or GitHub research to support technology and product comparisons, which can expose private repositories, API tokens, or sensitive internal product details if the user provides them. <br>
-Mitigation: Avoid granting private repository access or sharing secrets and sensitive internal details unless those sources are intentionally in scope for the evaluation. <br>
-Risk: Technology and product recommendations can become inaccurate as product features, maintenance activity, pricing, licenses, or security posture change. <br>
-Mitigation: Verify important claims against current primary sources and run a small proof of concept before making a production decision. <br>
+**Output Format:** [Markdown with structured sections, compact comparisons, weighted scoring, and ordered action steps]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ambition0802/tech-evaluation) <br>
+**Other Properties Related to Output:** [Chinese-language output; may include assumptions, uncertainty notes, and suggested follow-up validation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Structured Markdown with a conclusion, extracted requirements, product analysis, competitor comparison, weighted scoring, recommendation, action plan, and open questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include web or GitHub research findings and clearly labeled assumptions when supporting tools are available.] <br>
+1.0.0 (source: server release metadata and user changelog; artifact frontmatter version 1.0)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

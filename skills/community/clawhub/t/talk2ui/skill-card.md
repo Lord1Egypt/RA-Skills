@@ -1,41 +1,58 @@
-## Description: <br>
-Talk2UI converts natural spoken Chinese UI requests into SwiftUI code that follows physical-metaphor design rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SwiftUI oral programming skill that turns Chinese natural-language UI requests into SwiftUI code aligned with physical metaphors and Apple design guidance.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and designers building SwiftUI interfaces use this skill to turn casual Chinese UI descriptions into SwiftUI components, templates, and preview guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved design preferences or custom phrase mappings may persist beyond the current session. <br>
-Mitigation: Review local preference memory and custom cheat-sheet entries periodically, and confirm updates before treating them as defaults. <br>
-Risk: Generated SwiftUI edits, helper scripts, Xcode automation, or profiling commands may affect a local project. <br>
-Mitigation: Review proposed code and approve file edits, preview scripts, automation, or profiling commands only when they were specifically requested. <br>
+## Use Case:
 
+Developers and designers use this skill to convert spoken Chinese UI intent into SwiftUI components, layout patterns, animation parameters, and preview guidance. It is especially suited for SwiftUI design iteration where natural phrasing needs to become implementation-ready code.
 
-## Reference(s): <br>
-- [Talk2UI on ClawHub](https://clawhub.ai/soponcd/talk2ui) <br>
-- [Talk2UI homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/talk2UI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Swift code blocks and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local preference updates, SwiftUI file edits, Xcode preview commands, and profiling commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may persist UI preferences or newly learned phrases across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before any memory or cheat-sheet update, and review the proposed content before it is written.
+
+Risk: The skill may write Swift files or update skill-related files as part of UI generation workflows.
+
+Mitigation: Run it only in a trusted workspace and require approval before file creation or modification.
+
+Risk: The skill may automate Xcode Canvas preview through local tooling or AppleScript.
+
+Mitigation: Use preview automation only when local Xcode automation is acceptable, and keep the preview step optional.
+
+## Reference(s):
+
+- [Talk2UI ClawHub Skill Page](https://clawhub.ai/soponcd/skills/talk2ui)
+- [Talk2UI Declared Homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/talk2UI)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Swift code blocks, shell command examples, and concise implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local file writes, persistent preference updates, and Xcode preview automation when the user accepts those actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

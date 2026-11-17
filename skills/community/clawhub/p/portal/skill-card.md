@@ -1,43 +1,62 @@
-## Description: <br>
-Portal helps agents create shareable live browser sessions for website demos, product tours, interactive sandboxes, and guided or guarded browser experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portal helps agents create shareable live browser sessions for guided demos, product tours, interactive sandboxes, and URL-based experiences using Watch and Play modes.
 
-## Publisher: <br>
-[Zach213](https://clawhub.ai/user/Zach213) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zach213](https://clawhub.ai/user/zach213)
 
-## Use Case: <br>
-Developers, product teams, and support teams use Portal to turn public, authenticated, or local web experiences into shareable Watch demos or guarded Play sessions for external viewers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portal can save authenticated browser sessions for demos. <br>
-Mitigation: Use disposable or least-privilege demo accounts and avoid production admin sessions. <br>
-Risk: Portal can upload local project files to a cloud service. <br>
-Mitigation: Remove secrets such as .env files and credentials before uploading local projects. <br>
-Risk: The release depends on a separate Portal plugin for cloud browser actions. <br>
-Mitigation: Verify the Portal plugin before trusting it with private sites or source code. <br>
+## Use Case:
 
+Developers and agents use Portal to create guided or explorable hosted browser demos for public sites, authenticated web apps, local files, localhost builds, and Chrome extensions. It supports Watch mode for narrated demos and Play mode for guarded exploration.
 
-## Reference(s): <br>
-- [Portal Skill on ClawHub](https://clawhub.ai/Zach213/portal) <br>
-- [Portal Website](https://makeportals.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with inline JSON, shell commands, URLs, and PTL configuration objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Portal URLs, hosted browser URLs, checkout URLs, session replay links, and draft demo scripts that require user review before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Local project uploads may include credentials, private data, databases, or other sensitive files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sanitized demo directory and review uploads for .env files, keys, credentials, private data, databases, and other sensitive files before packaging or upload.
+
+Risk: Authenticated browser state can expose sensitive accounts or production session data.
+
+Mitigation: Use demo or least-privilege accounts for authenticated sites and avoid production sessions.
+
+Risk: Hosted browser demos can expose unwanted areas if Play-mode guardrails or Watch-mode scripts are incomplete.
+
+Mitigation: Review draft scenes, narration, allowed URLs, disabled selectors, greeting, and knowledge with the user before deployment.
+
+Risk: The security summary reports insufficient scoping or privacy disclosure around project uploads and authenticated browser capture.
+
+Mitigation: Confirm the user understands what will be uploaded or captured, and avoid creating portals from sensitive projects or accounts.
+
+## Reference(s):
+
+- [Portal ClawHub Skill Page](https://clawhub.ai/zach213/skills/portal)
+- [Portal Service](https://makeportals.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces portal URLs, hosted browser URLs, PTL configuration objects, and review summaries.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

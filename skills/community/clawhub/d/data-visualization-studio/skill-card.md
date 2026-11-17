@@ -1,40 +1,52 @@
-## Description: <br>
-Create interactive and static data visualizations from datasets. Supports charts, graphs, dashboards, and statistical plots with multiple output formats (PNG, SVG, HTML, PDF). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create interactive and static data visualizations from datasets. Supports charts, graphs, dashboards, and statistical plots with multiple output formats (PNG, SVG, HTML, PDF).
 
-## Publisher: <br>
-[zhuyu28](https://clawhub.ai/user/zhuyu28) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhuyu28](https://clawhub.ai/user/zhuyu28)
 
-## Use Case: <br>
-Developers, analysts, and data-focused teams use this skill to create static charts, interactive dashboards, statistical plots, and publication-ready visualizations from CSV, JSON, Excel, or structured data inputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated charts, images, or HTML dashboards may expose sensitive values from the source dataset. <br>
-Mitigation: Use only datasets intended for visualization and review generated outputs before sharing them. <br>
-Risk: Writing visualization files to a chosen output path could overwrite an important existing file. <br>
-Mitigation: Write outputs to a dedicated working directory and confirm filenames before generating or exporting charts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Data Visualization Types and Best Practices](references/visualization_types.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhuyu28/data-visualization-studio) <br>
+## Use Case:
 
+Developers, analysts, and data practitioners use this skill to create charting guidance, visualization code, and export workflows for static figures, interactive dashboards, statistical plots, and reports.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with Python code and generated visualization files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include PNG, SVG, HTML, PDF, JSON, or other chart artifacts written to user-selected paths.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: User-supplied data paths may trigger undisclosed network retrieval or access unexpected locations.
+
+Mitigation: Use only trusted local data sources, reject remote URLs, and constrain input and output paths before broader use.
+
+Risk: Generated visualizations can reflect inaccurate, malformed, or sensitive source data.
+
+Mitigation: Validate data accuracy and sensitivity before visualization, and review generated artifacts before sharing.
+
+## Reference(s):
+
+- [Data Visualization Types and Best Practices](references/visualization_types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python code examples and file-output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce visualization artifacts such as PNG, SVG, HTML, PDF, and JSON when used with trusted local data and controlled output paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

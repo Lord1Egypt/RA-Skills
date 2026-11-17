@@ -1,0 +1,440 @@
+{
+  "objective": "Evaluate whether to adopt the Third-Party AI Audit Evaluation Institution Test Specification v1.0 as the third-party AI audit evaluation standard for the NOHN AI ecosystem.",
+  "decision_owner": {
+    "owner": "NOHN AI Technical Committee",
+    "role": "final decision authority",
+    "source": "2026 NOHN ecosystem governance charter",
+    "authorization_ref": "NOHN-GOV-2026-01"
+  },
+  "time_horizon": "12 months",
+  "evaluation_as_of": "2026-10-07T00:00:00Z",
+  "evaluation_mode": "weighted",
+  "criteria": [
+    {
+      "id": "K1",
+      "name": "Dimension coverage completeness",
+      "metric": "dimension_coverage",
+      "weight": "0.25",
+      "scoring_rule": "higher_is_better",
+      "min_value": "0",
+      "max_value": "1",
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "weight owner",
+        "source": "evaluation brief",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "K2",
+      "name": "Determinism and reproducibility",
+      "metric": "determinism_score",
+      "weight": "0.25",
+      "scoring_rule": "higher_is_better",
+      "min_value": "0",
+      "max_value": "1",
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "weight owner",
+        "source": "evaluation brief",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "K3",
+      "name": "Third-party verifiability",
+      "metric": "third_party_verifiability",
+      "weight": "0.20",
+      "scoring_rule": "higher_is_better",
+      "min_value": "0",
+      "max_value": "1",
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "weight owner",
+        "source": "evaluation brief",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "K4",
+      "name": "Non-speculation compliance",
+      "metric": "non_speculation",
+      "weight": "0.15",
+      "scoring_rule": "higher_is_better",
+      "min_value": "0",
+      "max_value": "1",
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "weight owner",
+        "source": "evaluation brief",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "K5",
+      "name": "Implementation cost (lower is better)",
+      "metric": "implementation_cost",
+      "weight": "0.15",
+      "scoring_rule": "lower_is_better",
+      "min_value": "0",
+      "max_value": "1",
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "weight owner",
+        "source": "evaluation brief",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1",
+      "name": "All four iron laws satisfied",
+      "kind": "hard",
+      "metric": "four_laws_satisfied",
+      "operator": "eq",
+      "expected": true,
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "constraint owner",
+        "source": "spec section 1.3",
+        "authorization_ref": "SPEC-1.3"
+      }
+    },
+    {
+      "id": "C2",
+      "name": "Hash chain and independent verifier included",
+      "kind": "hard",
+      "metric": "has_chain_and_verifier",
+      "operator": "eq",
+      "expected": true,
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "constraint owner",
+        "source": "spec section 4.1 and 6.3",
+        "authorization_ref": "SPEC-4.1"
+      }
+    },
+    {
+      "id": "C3",
+      "name": "Clock injection supported for full reproducibility",
+      "kind": "hard",
+      "metric": "clock_injection_supported",
+      "operator": "eq",
+      "expected": true,
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "constraint owner",
+        "source": "spec section 4.1 DeterministicClock",
+        "authorization_ref": "SPEC-4.1"
+      }
+    },
+    {
+      "id": "C4",
+      "name": "Per-item output required",
+      "kind": "hard",
+      "metric": "per_item_output",
+      "operator": "eq",
+      "expected": true,
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "constraint owner",
+        "source": "spec section 5.3",
+        "authorization_ref": "SPEC-5.3"
+      }
+    },
+    {
+      "id": "C5",
+      "name": "Test set size at least 500 per category",
+      "kind": "soft",
+      "metric": "testset_size_500",
+      "operator": "eq",
+      "expected": true,
+      "penalty": "0.10",
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "preference owner",
+        "source": "spec section 3.2",
+        "authorization_ref": "SPEC-3.2"
+      }
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "A1",
+      "statement": "The 10 first-level dimensions defined in the spec cover all necessary dimensions for third-party AI audit evaluation.",
+      "source": "explicit",
+      "falsification_condition": "A critical uncovered dimension is identified (e.g., quantifiable model interpretability standard not present).",
+      "critical": true,
+      "dependencies": [],
+      "evidence_ids": ["E1"],
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "assumption acceptance owner",
+        "source": "spec section 2.1",
+        "authorization_ref": "SPEC-2.1"
+      }
+    },
+    {
+      "id": "A2",
+      "statement": "Dedicated scoring functions can cover all secondary categories (the spec provides examples for jailbreak and hallucination but not for all categories).",
+      "source": "explicit",
+      "falsification_condition": "A secondary category such as machine ethics or fairness has no implementable dedicated scoring function.",
+      "critical": true,
+      "dependencies": [],
+      "evidence_ids": ["E4"],
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "assumption acceptance owner",
+        "source": "spec section 4.2",
+        "authorization_ref": "SPEC-4.2"
+      }
+    },
+    {
+      "id": "A3",
+      "statement": "Clock injection can achieve byte-level consistency of audit artifacts (the model API response may introduce non-determinism).",
+      "source": "explicit",
+      "falsification_condition": "Model API returns non-deterministic content causing audit content inconsistency even with fixed clock.",
+      "critical": true,
+      "dependencies": [],
+      "evidence_ids": ["E2"],
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "assumption acceptance owner",
+        "source": "spec section 1.3 iron law 2",
+        "authorization_ref": "SPEC-1.3"
+      }
+    },
+    {
+      "id": "A4",
+      "statement": "LLM-as-Judge (extract_structure_via_llm) reliability is acceptable for structural hallucination detection.",
+      "source": "explicit",
+      "falsification_condition": "LLM annotation consistency with human annotation falls below acceptable threshold.",
+      "critical": false,
+      "dependencies": [],
+      "evidence_ids": ["E4"],
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "assumption acceptance owner",
+        "source": "spec section 4.2 score_hallucination",
+        "authorization_ref": "SPEC-4.2"
+      }
+    },
+    {
+      "id": "A5",
+      "statement": "The requirement of at least 500 test samples per category is achievable (the spec only provides 5 examples and no complete test set).",
+      "source": "explicit",
+      "falsification_condition": "Certain attack strategies cannot produce 500 valid test samples.",
+      "critical": false,
+      "dependencies": [],
+      "evidence_ids": ["E5"],
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "assumption acceptance owner",
+        "source": "spec section 3.2",
+        "authorization_ref": "SPEC-3.2"
+      }
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "S1",
+      "name": "Full adoption of v1.0 as NOHN third-party audit standard",
+      "description": "Adopt all 10 dimensions, all four iron laws, hash chain, clock injection, per-item output, and reproduction package structure.",
+      "metrics": {
+        "dimension_coverage": 1.0,
+        "determinism_score": 1.0,
+        "third_party_verifiability": 1.0,
+        "non_speculation": 1.0,
+        "implementation_cost": 0.85,
+        "four_laws_satisfied": true,
+        "has_chain_and_verifier": true,
+        "clock_injection_supported": true,
+        "per_item_output": true,
+        "testset_size_500": false
+      },
+      "required_assumptions": ["A1", "A2", "A3", "A4", "A5"],
+      "evidence_ids": ["E1", "E2", "E3", "E4", "E5"]
+    },
+    {
+      "id": "S2",
+      "name": "Partial adoption - core 6 dimensions only",
+      "description": "Adopt only core dimensions (security, privacy, quality, compliance, billing, methodology); defer new dimensions (lifecycle, social impact).",
+      "metrics": {
+        "dimension_coverage": 0.6,
+        "determinism_score": 1.0,
+        "third_party_verifiability": 1.0,
+        "non_speculation": 1.0,
+        "implementation_cost": 0.5,
+        "four_laws_satisfied": true,
+        "has_chain_and_verifier": true,
+        "clock_injection_supported": true,
+        "per_item_output": true,
+        "testset_size_500": false
+      },
+      "required_assumptions": ["A2", "A3", "A4"],
+      "evidence_ids": ["E2", "E3", "E4"]
+    },
+    {
+      "id": "S3",
+      "name": "No adoption - retain existing IMDA 95 framework",
+      "description": "Continue using the existing IMDA AI Verify 95/100 assessment framework; do not adopt the new specification.",
+      "metrics": {
+        "dimension_coverage": 0.3,
+        "determinism_score": 0.8,
+        "third_party_verifiability": 0.5,
+        "non_speculation": 0.9,
+        "implementation_cost": 0.1,
+        "four_laws_satisfied": false,
+        "has_chain_and_verifier": false,
+        "clock_injection_supported": false,
+        "per_item_output": false,
+        "testset_size_500": false
+      },
+      "required_assumptions": [],
+      "evidence_ids": ["E3"]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "statement": "The spec explicitly lists 10 first-level dimensions with secondary categories, benchmarked against LMSYS, HELM, MLCommons, TrustLLM, and Anthropic.",
+      "source": "Spec section 2.1 and appendix 8.2",
+      "status": "supplied",
+      "observed_at": "2026-10-07T00:00:00Z",
+      "valid_until": "2027-10-07T00:00:00Z",
+      "quality": {
+        "reliability": "0.90",
+        "relevance": "0.95",
+        "independence": "0.80",
+        "freshness": "1.00",
+        "assessed_by": {
+          "owner": "NOHN AI Technical Committee",
+          "role": "evidence quality assessor",
+          "source": "document review",
+          "authorization_ref": "EVAL-2026-AUDIT"
+        },
+        "method": "document section review and benchmark cross-check"
+      },
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "evidence custodian",
+        "source": "document review",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "E2",
+      "statement": "Spec section 4 provides a complete test script template including DeterministicClock, AuditChain (SHA-256 hash chain), and section 6.3 provides verify_chain.py independent verification script.",
+      "source": "Spec section 4.1 and 6.3",
+      "status": "supplied",
+      "observed_at": "2026-10-07T00:00:00Z",
+      "valid_until": "2027-10-07T00:00:00Z",
+      "quality": {
+        "reliability": "0.95",
+        "relevance": "1.00",
+        "independence": "0.90",
+        "freshness": "1.00",
+        "assessed_by": {
+          "owner": "NOHN AI Technical Committee",
+          "role": "evidence quality assessor",
+          "source": "code review",
+          "authorization_ref": "EVAL-2026-AUDIT"
+        },
+        "method": "code template review and hash chain verification logic check"
+      },
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "evidence custodian",
+        "source": "code review",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "E3",
+      "statement": "Spec section 1.3 defines four iron laws (audit-decision separation, deterministic reproducibility, third-party verifiability, non-speculation); section 5 provides a complete report template with per-item output and reproduction package structure.",
+      "source": "Spec section 1.3 and 5",
+      "status": "supplied",
+      "observed_at": "2026-10-07T00:00:00Z",
+      "valid_until": "2027-10-07T00:00:00Z",
+      "quality": {
+        "reliability": "0.95",
+        "relevance": "1.00",
+        "independence": "0.90",
+        "freshness": "1.00",
+        "assessed_by": {
+          "owner": "NOHN AI Technical Committee",
+          "role": "evidence quality assessor",
+          "source": "document review",
+          "authorization_ref": "EVAL-2026-AUDIT"
+        },
+        "method": "document section review and structure verification"
+      },
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "evidence custodian",
+        "source": "document review",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "E4",
+      "statement": "Spec section 4.2 provides dedicated scoring function examples for jailbreak (score_jailbreak) and hallucination (score_hallucination using LLM-as-Judge extract_structure_via_llm), but does not provide dedicated functions for all categories (e.g., machine ethics, fairness).",
+      "source": "Spec section 4.2",
+      "status": "supplied",
+      "observed_at": "2026-10-07T00:00:00Z",
+      "valid_until": "2027-10-07T00:00:00Z",
+      "quality": {
+        "reliability": "0.70",
+        "relevance": "0.85",
+        "independence": "0.80",
+        "freshness": "1.00",
+        "assessed_by": {
+          "owner": "NOHN AI Technical Committee",
+          "role": "evidence quality assessor",
+          "source": "code review",
+          "authorization_ref": "EVAL-2026-AUDIT"
+        },
+        "method": "scoring function coverage audit"
+      },
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "evidence custodian",
+        "source": "code review",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    },
+    {
+      "id": "E5",
+      "statement": "Spec section 3.2 requires at least 500 test samples per category covering 5+ attack strategies, but the spec only provides 5 example samples and no complete test set file.",
+      "source": "Spec section 3.2",
+      "status": "supplied",
+      "observed_at": "2026-10-07T00:00:00Z",
+      "valid_until": "2027-10-07T00:00:00Z",
+      "quality": {
+        "reliability": "0.50",
+        "relevance": "0.70",
+        "independence": "0.90",
+        "freshness": "1.00",
+        "assessed_by": {
+          "owner": "NOHN AI Technical Committee",
+          "role": "evidence quality assessor",
+          "source": "sample inventory check",
+          "authorization_ref": "EVAL-2026-AUDIT"
+        },
+        "method": "test set file existence and sample count verification"
+      },
+      "responsibility": {
+        "owner": "NOHN AI Technical Committee",
+        "role": "evidence custodian",
+        "source": "sample inventory check",
+        "authorization_ref": "EVAL-2026-AUDIT"
+      }
+    }
+  ],
+  "metadata": {
+    "language": "en",
+    "test_input": "第三方 AI 审计评测机构测试规范 v1.0 (2026-10-07)",
+    "example": false
+  }
+}

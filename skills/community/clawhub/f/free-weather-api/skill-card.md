@@ -1,39 +1,52 @@
-## Description: <br>
-Queries weather forecast information for a specified city or region, including temperature, conditions, precipitation probability, wind, real-time weather, and multi-day forecasts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询指定城市或地区的天气预报信息，包括温度、天气状况、降水概率、风力风向等。支持实时天气和未来多日预报查询。
 
-## Publisher: <br>
-[congwupiece](https://clawhub.ai/user/congwupiece) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[congwupiece](https://clawhub.ai/user/congwupiece)
 
-## Use Case: <br>
-External users use this skill to query current and upcoming weather for a city or region, then receive summarized conditions, forecast highlights, alerts, and practical travel or activity guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may provide more location or scheduling detail than needed for a weather lookup. <br>
-Mitigation: Ask only for the city or region and forecast range required to answer the request, and avoid collecting unrelated personal information. <br>
-Risk: Weather summaries and travel suggestions may be incomplete or stale if the underlying weather data is delayed or missing. <br>
-Mitigation: Present severe weather alerts prominently when available and encourage checking authoritative local weather services for safety-critical decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/congwupiece/free-weather-api) <br>
+## Use Case:
 
+External users and agents use this skill to query current weather, multi-day forecasts, severe-weather alerts, and practical travel suggestions for a specified city or region.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Structured JSON weather report and Markdown-style narrative summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current conditions, multi-day forecast summaries, weather alerts, highlights, and travel or activity suggestions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may naturally answer in Chinese and use Celsius-style weather reporting.
+
+Mitigation: Ask the agent to adapt the response language and units when a different locale or unit system is needed.
+
+Risk: Weather forecasts and alerts can affect travel and safety decisions.
+
+Mitigation: For severe weather or high-impact plans, confirm critical details against an authoritative local weather source before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/congwupiece/skills/free-weather-api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured JSON plus a concise natural-language weather report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses location, days, and details inputs; normally reports Celsius-style weather data and may answer in Chinese unless the agent adapts language or units.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

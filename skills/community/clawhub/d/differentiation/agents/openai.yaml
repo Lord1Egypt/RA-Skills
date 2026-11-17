@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 产品差异化机会"
+  short_description: "从主品与竞品证据提炼可验证差异化方向"
+  default_prompt: "使用 $amazon-product-differentiation 根据主 ASIN 与竞品证据提炼可验证的产品差异化方向。"

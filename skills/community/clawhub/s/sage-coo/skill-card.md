@@ -1,48 +1,65 @@
-## Description: <br>
-Sage Coo is an AI COO partner for 1-30 person startup teams that helps founders turn team operations, delivery, hiring, performance, and business reviews into clear operating rhythms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sage COO helps founders of 1-30 person teams turn company context, team operations, delivery workflows, decisions, and reviews into a practical operating cadence backed by local Sage company memory.
 
-## Publisher: <br>
-[billzhuang6569](https://clawhub.ai/user/billzhuang6569) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billzhuang6569](https://clawhub.ai/user/billzhuang6569)
 
-## Use Case: <br>
-Founders, operators, and agents working with small startup teams use this skill to bootstrap and maintain a COO-style operating workspace, capture durable company facts, and turn organizational questions into judgments, risks, next steps, and selected memory updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initialize ~/.sage, store company facts for future sessions, and alter workspace instruction files such as AGENTS.md, CLAUDE.md, SOUL.md, and related files. <br>
-Mitigation: Review the scripts and planned file changes before installation or execution; run setup scripts manually when working in confidential business workspaces. <br>
-Risk: The security scan reports that the skill asks agents to maintain shared long-term company memory without enough explicit user control. <br>
-Mitigation: Require user confirmation before promoting uncertain, private, financial, credential, customer, or personal information into durable company memory. <br>
+## Use Case:
 
+Founders and small startup teams use this skill as an AI COO pair-working partner for company operating rhythm, team structure, workflows, delivery follow-up, decision records, and review cadence. It is intended for OpenClaw, Codex, and Claude Code workspaces that want persistent local company context.
 
-## Reference(s): <br>
-- [Sage Coo ClawHub release page](https://clawhub.ai/billzhuang6569/sage-coo) <br>
-- [COO identity](references/coo-identity.md) <br>
-- [COO operating system](references/coo-operating-system.md) <br>
-- [COO scenarios](references/coo-scenarios.md) <br>
-- [Onboarding](references/onboarding.md) <br>
-- [OpenClaw workspace bootstrap](references/openclaw-workspace-bootstrap.md) <br>
-- [Sage DNA protocol](references/sage-dna-protocol.md) <br>
-- [Write routing](references/write-routing.md) <br>
-- [Review cadence](references/review-cadence.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file/configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May initialize or update workspace instruction files and the user's ~/.sage company memory when run by an agent with filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release metadata) <br>
+Risk: The skill can persistently modify workspace agent-instruction files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where Sage COO behavior is desired, and review managed identity blocks after initialization.
+
+Risk: The skill stores company memory in local files under ~/.sage.
+
+Mitigation: Avoid storing secrets or highly sensitive business data, and review privacy-sensitive entries before saving them.
+
+Risk: The mirror feature can copy local Sage memory into a workspace folder.
+
+Mitigation: Use the mirror only for browsing, and avoid creating it inside repositories or synced folders unless the copied content is intended to be shared.
+
+## Reference(s):
+
+- [Sage COO ClawHub release page](https://clawhub.ai/billzhuang6569/skills/sage-coo)
+- [COO Identity](references/coo-identity.md)
+- [COO Operating System](references/coo-operating-system.md)
+- [COO Scenarios](references/coo-scenarios.md)
+- [Sage DNA Protocol](references/sage-dna-protocol.md)
+- [Write Routing](references/write-routing.md)
+- [OpenClaw Workspace Bootstrap](references/openclaw-workspace-bootstrap.md)
+- [Onboarding](references/onboarding.md)
+- [Review Cadence](references/review-cadence.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update workspace identity files, initialize local Sage company memory under ~/.sage, and create a sage-mirror workspace copy for browsing.]
+
+## Skill Version(s):
+
+3.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

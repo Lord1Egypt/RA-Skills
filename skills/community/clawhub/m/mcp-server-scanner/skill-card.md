@@ -1,40 +1,53 @@
-## Description: <br>
-Scans and assesses MCP servers for vulnerabilities, insecure configurations, data exposure, and compliance with SOC 2, GDPR, and ISO 27001 standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans and assesses MCP servers for vulnerabilities, insecure configurations, data exposure, and compliance with SOC 2, GDPR, and ISO 27001 standards.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Security teams, developers, and platform engineers use this skill to inventory authorized MCP servers, assess security posture, identify data exposure, and produce remediation and compliance guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthorized scanning could inspect MCP environments outside the user's authority. <br>
-Mitigation: Install or invoke the skill only for MCP environments the user owns or is authorized to assess, and define the in-scope paths, accounts, and servers before use. <br>
-Risk: Generated inventories and findings can expose sensitive server URLs, credential locations, or PII/SPII exposure details. <br>
-Mitigation: Treat generated scan reports as sensitive security artifacts and restrict storage, sharing, and retention accordingly. <br>
+## Use Case:
 
+Developers, security engineers, and compliance teams use this skill to discover MCP servers in agent environments, assess security and configuration risks, and produce remediation and compliance reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/mcp-server-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance, Configuration] <br>
-**Output Format:** [Markdown reports with inventories, severity-scored findings, remediation steps, and compliance status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sensitive server inventory, credential-location, URL, and PII/SPII exposure details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, artifact/package.json, artifact/SKILL.md) <br>
+Risk: Broad inspection of MCP-related configurations can expose secrets, credentials, or PII in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only against an explicit scope, keep reports local, redact sensitive values before sharing, and rotate any credentials that appear in output.
+
+Risk: The skill requests broad environment and configuration discovery without detailed output-handling safeguards.
+
+Mitigation: Define target agents, configuration paths, and MCP servers before execution, then review findings before acting on remediation guidance.
+
+## Reference(s):
+
+- [Mcp Server Scanner on ClawHub](https://clawhub.ai/engsathiago/skills/mcp-server-scanner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown report with inventory, severity-scored findings, remediation steps, and compliance status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive security findings, secrets, and PII locations; keep reports local and redact before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, package.json, and artifact/SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

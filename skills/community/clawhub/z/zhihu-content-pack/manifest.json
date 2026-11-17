@@ -1,0 +1,36 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "未命名包",
+  "version": "0.0.0",
+  "author": "SynomosAI",
+  "year": "2026",
+  "timestamp_utc": "2026-10-11T02:55:19.891296+00:00",
+  "timestamp_local": "2026-10-11T10:55:19.891335",
+  "package_fingerprint_sha256": "d00b94a0f60bc0e776f5840bfac8c775a8f233aae25acfd465f8f033116582b1",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "sha256": "8bd30c5f2122e73c9c46c2478063edf31b81a752b3510ccae28b703a7894b4d8"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "51e12d5e9e2605aba233dfddb8e16ebf409c3a80b923ef18353743d115e26882"
+    },
+    {
+      "path": "skill-card.md",
+      "sha256": "922d5534e12a3cb3635ae4106d766a75d78b6acfd823df972a24dbef3013e90a"
+    },
+    {
+      "path": "tools/anchor_verify.py",
+      "sha256": "70150fe935e569692c29f12336ccb7d27a5a4991c381666ee406d762a3074613"
+    },
+    {
+      "path": "tools/delivery_guard.py",
+      "sha256": "31beccda7f9250a005b576b9fa9466f6afde03c529f58fc24aaeab1600622174"
+    },
+    {
+      "path": "安全审计报告.md",
+      "sha256": "357f1c5358b1ad9c2ccae95e3f2e46bc1eb50f2d4b1e8765be67b4c42fedce5b"
+    }
+  ]
+}

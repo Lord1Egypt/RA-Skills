@@ -1,40 +1,54 @@
-## Description: <br>
-Step-by-step SEO blog writing workflow for teams who want full control over every phase, covering keyword strategy, competitive research, content structure, internal linking, AI writing pattern avoidance, link verification, and QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Step-by-step SEO blog writing workflow for teams who want full control over keyword strategy, competitive research, content structure, internal linking, AI writing pattern avoidance, link verification, and QA.
 
-## Publisher: <br>
-[justinbao19](https://clawhub.ai/user/justinbao19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justinbao19](https://clawhub.ai/user/justinbao19)
 
-## Use Case: <br>
-Content teams, marketers, and developers use this skill to plan, write, verify, and review long-form SEO blog articles for a website or blog. It guides the agent through research briefs, outlines, draft sections, link checks, automated QA, and review handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for full shell execution and full-security subagents, bypassing normal approval gates. <br>
-Mitigation: Use only in a trusted workspace and review the referenced seo-geo-qa scripts before granting full shell or full-security subagent access. <br>
-Risk: Generated SEO content can include incorrect claims, weak sources, or misleading citations if verification is skipped. <br>
-Mitigation: Require the link verification, QA runner, and human review phases before publishing any article. <br>
+## Use Case:
 
+Marketing teams, content teams, and SEO practitioners use this skill to plan, draft, optimize, verify, and hand off long-form blog articles for any website or blog.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justinbao19/blog-writing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with file paths, article drafts, research briefs, shell commands, and QA handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or update draft files, research briefs, and QA report links in the user's workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks agents to run with full execution privileges and bypass normal approval gates for link verification and QA.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a constrained workspace, confirm which files it may read and write, and grant full execution privileges only when the referenced QA scripts and network requests are trusted.
+
+Risk: The workflow depends on external link checks and QA scripts that may make network requests.
+
+Mitigation: Review requested network activity and script behavior before execution, then verify the generated article and QA report before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justinbao19/skills/blog-writing)
+- [Publisher profile](https://clawhub.ai/user/justinbao19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured review handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces research briefs, article drafts, link-verification notes, QA report references, and review handoff guidance.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

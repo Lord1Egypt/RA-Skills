@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-security-review",
-  "version": "2.6.0",
-  "description": "Use when reviewing frontend security risks such as XSS, CSRF, sensitive data exposure, unsafe DOM APIs, untrusted user input, authentication/token handling, payment flows, file upload, CSP, dependency risk, or third-party scripts; Chinese triggers include 安全审查, 安全检查.",
+  "version": "2.9.0",
+  "description": "Use when reviewing frontend security risks such as XSS, CSRF, sensitive data exposure, unsafe DOM APIs, untrusted user input, authentication/token handling, payment flows, file upload, CSP, dependency risk, or third-party scripts; Chinese triggers include security review, security check.",
   "type": "module",
   "license": "MIT",
   "author": {

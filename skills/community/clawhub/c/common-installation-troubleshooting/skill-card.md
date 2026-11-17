@@ -1,41 +1,55 @@
-## Description: <br>
-Helps OpenClaw users troubleshoot common plugin installation failures, including npm package-name errors, permission problems, and post-install verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+解决 OpenClaw 插件安装中常见 npm 包名错误、权限问题和安装验证的排查方法及最佳实践。
 
-## Publisher: <br>
-[dawai2005](https://clawhub.ai/user/dawai2005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dawai2005](https://clawhub.ai/user/dawai2005)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to diagnose failed plugin installs, confirm correct npm package names, resolve common Windows/global npm permission issues, and verify installed tooling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Package names or installation sources may be wrong or outdated, leading users to install the wrong npm package. <br>
-Mitigation: Confirm package names and sources from official documentation before installing. <br>
-Risk: Global npm installs or --force can overwrite or alter system-wide package state. <br>
-Mitigation: Prefer normal npm install and permission-fix steps first; use global installs or --force only when the impact is understood. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub documentation](https://docs.openclaw.ai/tools/clawhub) <br>
-- [npm Registry](https://www.npmjs.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/dawai2005/common-installation-troubleshooting) <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to troubleshoot failed plugin or CLI installations, verify npm package names, and choose safer next steps for installation validation.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Troubleshooting advice is informational and should be checked against official package documentation before installation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Forced global npm installation can overwrite global files or hide the actual lock, permission, or package-name issue.
+
+Mitigation: Verify the exact package name, publisher, and source documentation first; use `--force` only after diagnosing the issue and confirming a rollback path.
+
+Risk: Incorrect package names can lead users to install the wrong package or trust unsupported installation paths.
+
+Mitigation: Check the registry entry and official documentation before running install commands, then validate the installed CLI or plugin version after installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dawai2005/skills/common-installation-troubleshooting)
+- [ClawHub Documentation](https://docs.openclaw.ai/tools/clawhub)
+- [npm Registry](https://www.npmjs.com/)
+- [ClawHub Website](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Troubleshooting guidance may include npm package names and global install commands that require user verification before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

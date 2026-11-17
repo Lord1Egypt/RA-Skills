@@ -1,46 +1,61 @@
-## Description: <br>
-Create persistent characters, run practice scenarios, and track progress across roleplay sessions with activation control and structured feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create persistent characters, run practice scenarios, and track progress across roleplay sessions with activation control and structured feedback.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to create and manage persistent roleplay characters, run practice scenarios, receive coaching, and review structured session feedback across conversations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Roleplay state and session details may be saved locally under ~/roleplay/. <br>
-Mitigation: Avoid entering highly sensitive details unless local retention is acceptable, and periodically review or delete ~/roleplay/. <br>
-Risk: An active persona may persist across sessions through the saved active character marker. <br>
-Mitigation: Deactivate personas when finished so the agent returns to normal behavior. <br>
-Risk: Simulated therapy, medical, crisis, or professional scenarios may be mistaken for real support. <br>
-Mitigation: Use these simulations for practice only and rely on qualified human or emergency services for real clinical, medical, crisis, legal, or professional needs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Roleplay Skill Page](https://clawhub.ai/ivangdavila/roleplay) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Character Management](artifact/characters.md) <br>
-- [Scenario Types & Templates](artifact/scenarios.md) <br>
-- [Practice Mode & Feedback](artifact/practice.md) <br>
-- [Persona Safety Rules](artifact/safeguards.md) <br>
+## Use Case:
 
+External users and developers use this skill to create persistent roleplay characters, practice professional or creative scenarios, receive coaching, and review session feedback over time.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown and conversational text with optional local markdown session files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save character profiles, active character markers, session logs, and feedback under ~/roleplay/ when used by an agent with filesystem access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist sensitive roleplay profiles, session summaries, feedback, and inferred behavior patterns in local plaintext files.
+
+Mitigation: Use it only with data the user is comfortable storing locally, and regularly review, delete, or archive files under ~/roleplay.
+
+Risk: Medical, therapy, crisis, abuse, and other high-sensitivity scenarios may be simulated in ways users could mistake for professional support.
+
+Mitigation: Keep these sessions framed as practice or creative simulation and redirect real crisis, medical, therapy, abuse, or highly personal needs to appropriate professional or emergency support.
+
+Risk: Persona roleplay can create impersonation, defamation, false endorsement, or harassment risk when requests involve real people.
+
+Mitigation: Follow the bundled persona safeguards: do not roleplay as living people, use archetypes or inspired-by composites, and avoid defamatory, deceptive, or harassment-oriented scenarios.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/roleplay)
+- [Character Management](artifact/characters.md)
+- [Scenario Types & Templates](artifact/scenarios.md)
+- [Practice Mode & Feedback](artifact/practice.md)
+- [Persona Safety Rules](artifact/safeguards.md)
+- [Feedback & Self-Improvement](artifact/feedback.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Conversational text and Markdown files for character profiles, session summaries, feedback, and practice templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist active personas, character memories, session summaries, and feedback in local plaintext files under ~/roleplay.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

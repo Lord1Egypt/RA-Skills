@@ -1,45 +1,64 @@
-## Description: <br>
-Headless browser automation server enabling AI agents to create tabs, navigate, interact with pages, manage sessions, import cookies, capture snapshots, screenshots, images, downloads, and YouTube transcripts through a local or cloud-hosted Camoufox service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless browser server enabling AI agents to create tabs, navigate, interact, and capture snapshots with element references locally or in the cloud.
 
-## Publisher: <br>
-[sheffk78](https://clawhub.ai/user/sheffk78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sheffk78](https://clawhub.ai/user/sheffk78)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give AI agents controlled browser automation for web navigation, page interaction, accessibility snapshots, screenshots, downloads, image extraction, cookie-backed sessions, proxy-aware browsing, and transcript retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can auto-start a powerful local browser automation server with broad page interaction controls. <br>
-Mitigation: Disable auto-start unless needed, and bind or firewall the server so only trusted local clients can reach it. <br>
-Risk: Cookie import can give an automated browser access to authenticated user sessions. <br>
-Mitigation: Set CAMOFOX_API_KEY before using cookies, import only cookies intended for automation, and require explicit confirmation before actions on logged-in accounts. <br>
-Risk: Raw page scripting, account actions, purchases, posting, settings changes, and session deletion can have high impact. <br>
-Mitigation: Require user confirmation before high-impact browser actions and before deleting sessions or user data. <br>
+## Use Case:
 
+Developers and agent builders use this skill to give AI agents a local or cloud-hosted anti-detection browser API for web navigation, page snapshots, element interaction, screenshots, downloads, cookie import, proxies, and YouTube transcript extraction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sheffk78/camofox-browser) <br>
-- [Camoufox](https://camoufox.com) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Images, Files, API responses, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON API examples, accessibility snapshots, base64 screenshots or downloads when requested, and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can return browser element references, tab and session identifiers, image metadata, transcript text, and captured download data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Agent-controlled anti-detection browsing can be misused or can access sensitive web sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intentional browser automation use cases and avoid importing cookies for sensitive accounts.
+
+Risk: Exposing the browser server publicly can expand access to powerful browser, session, cookie, and JavaScript controls.
+
+Mitigation: Keep the server bound to localhost or a private trusted network, do not expose port 9377 publicly, and set strong CAMOFOX_API_KEY and CAMOFOX_ADMIN_KEY values.
+
+Risk: Page JavaScript evaluation can run code in the browser page context.
+
+Mitigation: Restrict use of camofox_evaluate and review tasks that request arbitrary JavaScript execution.
+
+Risk: Outdated dependencies or browser artifacts can increase operational and security exposure.
+
+Mitigation: Update or pin dependencies and browser artifacts before production deployment.
+
+## Reference(s):
+
+- [Camofox Browser on ClawHub](https://clawhub.ai/sheffk78/skills/camofox-browser)
+- [Camoufox](https://camoufox.com)
+- [OpenClaw](https://openclaw.ai)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON API responses, shell commands, screenshots, and text snapshots]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include accessibility snapshots with element refs, base64 screenshots or downloads, imported cookie status, and transcript text depending on the invoked tool.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

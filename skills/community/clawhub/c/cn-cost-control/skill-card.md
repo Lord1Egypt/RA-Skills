@@ -1,40 +1,56 @@
-## Description: <br>
-Cn Cost Control provides Chinese construction project cost-control guidance across investment decision, design, tendering, construction, and completion settlement stages, including estimates, budget reviews, earned value monitoring, change orders, settlement checks, and GB/T 50500-2024-based price adjustment formulas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese construction cost-control guidance based on GB/T 50500-2024 across investment decision, design, bidding, construction, and completion phases.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Construction cost engineers, project managers, and owners can use this skill to structure whole-life cost management for Chinese construction projects, including estimate preparation, design estimate review, construction budget review, dynamic cost monitoring, change order review, and final settlement checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides professional construction cost-control reference material that may not match a project's legal, contractual, or engineering requirements. <br>
-Mitigation: Verify GB/T 50500-2024 references, formulas, price assumptions, and contract-specific requirements with qualified professionals before using the output on real projects. <br>
-Risk: Project inputs may include confidential commercial, contract, or cost data. <br>
-Mitigation: Avoid sharing confidential project data unless the surrounding agent environment is trusted and approved for that information. <br>
+## Use Case:
 
+Cost engineers, project managers, and owner-side teams use this skill to draft and review estimates, budgets, dynamic cost monitoring, variation handling, and final settlement checks for Chinese construction projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/cn-cost-control) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with tables, formulas, checklists, and report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces professional reference material; it does not install or run code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and manifest state 2.0.0) <br>
+Risk: Guidance is based on Chinese construction standards and may not apply to other jurisdictions or languages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify jurisdictional applicability and project-specific requirements before use.
+
+Risk: Cost-control templates and formulas can be misleading if applied without project-specific professional judgment.
+
+Mitigation: Have qualified cost professionals review outputs against current contracts, pricing data, and applicable standards before reliance.
+
+## Reference(s):
+
+- [Cn Cost Control ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/cn-cost-control)
+- [ruiyongwang ClawHub publisher profile](https://clawhub.ai/user/ruiyongwang)
+- [Artifact SKILL.md](artifact/SKILL.md)
+- [Artifact manifest.json](artifact/manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, formulas, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Chinese-language reference content; no code execution, persistence, credential handling, or hidden data flows were found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and manifest declare 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

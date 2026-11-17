@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "account": {
+    "_comment": "邮箱服务器配置。两种写法二选一：① 写 provider（'qq'/'163'/'126'/'yeah' 或域名后缀 163.com/126.com），自动填入 host/port；② 直接写 imap_host/smtp_host/port 覆盖预设。授权码不在这里，在 secrets_file 指向的文件里。",
+    "provider": "qq",
+    "imap_host": "imap.qq.com",
+    "imap_port": 993,
+    "smtp_host": "smtp.qq.com",
+    "smtp_port": 465,
+    "secrets_file": "~/.workbuddy/secrets/invoice-forward.env"
+  },
+  "scan": {
+    "_comment": "扫描规则：最近 days 天、主题含任一关键词的邮件。链接型发票（邮件只有下载链接无发票附件）由 fetch_links 控制；附件与链接均支持 PDF/OFD/XML 三种格式。",
+    "days": 7,
+    "subject_keywords": ["发票"],
+    "folder": "INBOX",
+    "fetch_links": true,
+    "_comment_fetch_links": "true=扫描正文链接尝试下载发票文件（PDF/OFD/XML，链接型发票如腾讯云电子发票）；false=仅处理邮件附件",
+    "link_domains": [],
+    "_comment_link_domains": "非空时仅下载这些域名后缀的链接（如 [\"myqcloud.com\",\"tencent.com\"]）；空数组=全部（靠 PDF 闸门兜底）",
+    "link_timeout": 30,
+    "_comment_link_timeout": "单链接下载超时（秒）",
+    "link_max_bytes": 26214400,
+    "_comment_link_max_bytes": "单链接最大下载字节（25MB，防超限）",
+    "link_user_agent": "Mozilla/5.0 (compatible; invoice-forward/1.0)"
+  },
+  "rule": {
+    "_comment": "抬头白名单：空数组 = 全部转发；填写后仅转发购买方抬头包含任一指定名称的发票",
+    "buyer_whitelist": []
+  },
+  "forward": {
+    "_comment": "转发设置。模板占位符：{item} 物品 {amount} 价税合计 {date} 开票日期 {invoice_no} 发票号码 {seller} 销售方 {buyer} 购买方。163/126 建议加 {invoice_no} 提升单封区分度。",
+    "to": ["finance@example.com"],
+    "cc": [],
+    "_comment_cc": "抄送地址数组，默认空数组=关闭抄送。填写后每封转发同时抄送给这些地址，如 [\"boss@example.com\",\"archive@example.com\"]",
+    "subject_tpl": "{item} {amount} {date}",
+    "body_tpl": "发票号码：{invoice_no}\n开票日期：{date}\n购买方（抬头）：{buyer}\n销售方：{seller}\n物品：{item}\n价税合计：{amount}"
+  },
+  "send": {
+    "_comment": "发送节奏（防反垃圾风控）。interval=每封最小间隔秒；jitter=额外随机秒上限；batch_limit=单批最多发送封数(0=不限)。QQ 可保持 0；163/126 等严格风控邮箱建议 interval>=3、batch_limit<=20。",
+    "interval": 0,
+    "jitter": 0,
+    "batch_limit": 0
+  },
+  "state_file": "~/.workbuddy/invoice-forward/processed.json"
+}

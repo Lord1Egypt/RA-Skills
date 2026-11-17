@@ -1,42 +1,57 @@
-## Description: <br>
-Control Starlink dish via local gRPC API, including status checks, WiFi client listing, speed tests, stow and unstow actions, reboot, and GPS location retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a Starlink dish through its local gRPC API for status checks, WiFi client listings, speed tests, stow or unstow actions, reboots, and GPS location lookup.
 
-## Publisher: <br>
-[danfedick](https://clawhub.ai/user/danfedick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danfedick](https://clawhub.ai/user/danfedick)
 
-## Use Case: <br>
-Starlink owners, operators, and network administrators use this skill to inspect local dish and router status, review connected clients, run connectivity checks, and perform service-impacting device actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commands can expose sensitive device, connected-client, and location data. <br>
-Mitigation: Require user confirmation before showing client lists, GPS coordinates, or other local network details. <br>
-Risk: Reboot, stow, and unstow commands can interrupt internet service or change hardware state. <br>
-Mitigation: Ask for explicit approval before running service-impacting commands and confirm the user owns or administers the Starlink hardware. <br>
-Risk: The release security verdict is suspicious because the skill exposes sensitive controls without enough explicit consent or warning. <br>
-Mitigation: Verify the source repository, prefer a pinned install revision, and review the skill before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Starlink Skill](https://clawhub.ai/danfedick/starlink) <br>
-- [starlink-cli install source](https://github.com/danfedick/starlink-cli) <br>
+## Use Case:
 
+External users and developers use this skill to operate and troubleshoot a Starlink dish from an agent session while connected to the Starlink local network. It helps produce CLI-focused guidance for checking connectivity, viewing connected devices, running speed tests, stowing or unstowing the dish, rebooting it, and retrieving location data when local access is enabled.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May expose device, client, and location data when commands are run against a local Starlink network.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install path uses mutable remote code from the starlink-cli repository.
+
+Mitigation: Review and pin a specific starlink-cli revision before installation, and avoid elevated privileges during install or execution.
+
+Risk: Stow, unstow, and reboot commands can disrupt Starlink service or physically move the dish.
+
+Mitigation: Require explicit user confirmation before proposing or running stow, unstow, or reboot commands.
+
+Risk: Client listing and GPS location commands can expose connected-device details or precise location data.
+
+Mitigation: Use these commands only for explicit user requests, and minimize or redact sensitive identifiers and coordinates when sharing results.
+
+## Reference(s):
+
+- [starlink-cli GitHub repository](https://github.com/danfedick/starlink-cli)
+- [Starlink skill on ClawHub](https://clawhub.ai/danfedick/skills/starlink)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying CLI can produce human-readable output or JSON when commands are run with --json.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

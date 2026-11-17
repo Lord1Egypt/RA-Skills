@@ -1,6 +1,6 @@
 ---
 name: cellcog
-description: "Any-to-any AI sub-agent — research, images, video, audio, music, podcasts, avatars, voice cloning, documents, spreadsheets, dashboards, 3D models, diagrams, and code in one request. Agent-to-agent protocol with multi-step iteration for high accuracy. #1 on DeepResearch Bench (Apr 2026) — deep reasoning meets all modalities, so all your work gets done, not just code."
+description: "Any-to-any AI sub-agent — research, images, video, audio, music, podcasts, avatars, voice cloning, documents, spreadsheets, dashboards, 3D models, diagrams, and code in one request. Agent-to-agent protocol with multi-step iteration for high accuracy. #1 on DeepResearch Bench (October 2026) — deep reasoning meets all modalities, so all your work gets done, not just code."
 author: CellCog
 homepage: https://cellcog.ai
 metadata:
@@ -14,11 +14,16 @@ metadata:
 ---
 # CellCog - Any-to-Any for Agents
 
+## SDK or MCP? Pick your way in first
+
+- **You run on a persistent machine** (you can `pip install` and keep files and environment variables between turns: Claude Code, Cursor, Codex, OpenClaw, a server): use the **Python SDK** below. It gives the better agent experience: send and move on, files saved straight to disk, state that survives restarts.
+- **No persistent machine** (Claude.ai, Claude Desktop, Cowork, other hosted chat apps), or the `cellcog_*` tools are already connected: use the **CellCog MCP connector** at `https://cellcog.ai/mcp`. Sign in with your CellCog account when asked; no SDK and no API key. Start with `cellcog_chat_create`, then poll `cellcog_get_result`. Chat tools are named cellcog_chat_..., AI employee tools cellcog_employee_.... Everything below about prompts, files and modes still applies.
+
 ## The Power of Any-to-Any
 
 CellCog is the only AI that truly handles **any input → any output** in a single request. No tool chaining. No orchestration complexity. One call, multiple deliverables.
 
-CellCog pairs all modalities with frontier-level deep reasoning — as of April 2026, CellCog is **#1 on the DeepResearch Bench**: https://huggingface.co/spaces/muset-ai/DeepResearch-Bench-Leaderboard
+CellCog pairs all modalities with frontier-level deep reasoning: CellCog is **#1 on DeepResearch Bench (October 2026)**. Rankings change often; see the live leaderboard: https://huggingface.co/spaces/muset-ai/DeepResearch-Bench-Leaderboard
 
 ### Work With Multiple Files, Any Format
 
@@ -177,7 +182,7 @@ result = client.create_chat(
     timeout=1800,                           # 30 min (default). Use 3600 for complex jobs.
 )
 print(result["message"])
-print(result["status"])                     # "completed" | "timeout"
+print(result["status"])                     # "completed" | "operating" (+ timed_out=True if the wait gave up)
 ```
 
 ### When to Use Which
@@ -188,9 +193,11 @@ print(result["status"])                     # "completed" | "timeout"
 | OpenClaw + chaining steps (research → summarize → PDF) | **Wait** | Each step feeds the next — simpler sequential workflows |
 | OpenClaw + quick task | **Either** | Both return fast for simple tasks |
 | Non-OpenClaw agent | **Wait** | Notify mode is OpenClaw-only |
+| Orchestrating SEVERAL chats in parallel | **Send-only** | Fire all chats at once, then poll — the blocking default would hang on each chat's whole run |
 
 **Notify mode** is more productive (agent never blocks).
 **Wait mode** is simpler to reason about, but blocks your agent for the duration.
+**Send-only** (`delivery="send_only"`, works on `create_chat` AND `send_message`) returns the moment the chat/message is accepted — poll with `get_status()` (its `latest_update` field carries the agent's most recent progress line) and fetch results with `wait_for_completion()` or `get_history()`.
 
 ### Continuing a Conversation
 
@@ -224,13 +231,46 @@ completion = client.wait_for_completion(chat_id="abc123", timeout=1800)
 result = client.create_chat(
     prompt="...",
     task_label="...",
-    chat_mode="agent",                      # See Chat Modes below
-    project_id="...",                       # install project-cog for details
-    agent_role_id="...",                    # install project-cog for details
-    enable_cowork=True,                     # install cowork-cog for details
-    cowork_working_directory="/Users/...",  # install cowork-cog for details
+    chat_mode="agent",                      # See Chat Modes & Tiers below
+    chat_tier="max",                        # "flash" | "core" | "max" — omit for the default, "core"
+    delivery="send_only",                   # fire-and-forget (see below); default blocks until done
+    project_id="...",                       # install project-management-cellcog for details
+    agent_role_id="...",                    # install project-management-cellcog for details
+    enable_cowork=True,                     # install pair-programming-cellcog for details
+    cowork_working_directory="/Users/...",  # install pair-programming-cellcog for details
+    enable_browse=True,                     # drive the user's REAL Chrome (Desktop + extension required)
+    browser_profile_id="Default",           # from client.get_browser_status()
+    enable_tools=True,                      # the user's connected SaaS tools (Gmail, Notion, ...)
+    tools_selection=["gmail", "notion"],    # toolkit slugs (omit for ALL); from client.list_toolkits()
 )
 ```
+
+### Enabling Browse & Tools
+
+Discover what's available on the user's account, then enable at chat creation:
+
+```python
+# Browse — discover Chrome profiles, enable with one
+status = client.get_browser_status()
+# status["available_profiles"]: [{"profileDir", "profileName", "hasExtension", "connected"}, ...]
+result = client.create_chat(
+    prompt="Open the analytics dashboard and screenshot this week's numbers",
+    enable_browse=True,
+    browser_profile_id=status["active_profile"]["profileDir"],
+)
+
+# Tools — discover connected toolkits, enable a selection (omit tools_selection for ALL)
+toolkits = client.list_toolkits(connected_only=True)   # [{"slug": "gmail", ...}, ...]
+result = client.create_chat(
+    prompt="Summarize this week's unread emails",
+    enable_tools=True,
+    tools_selection=["gmail"],   # TOOLKIT slugs; list_toolkit_tools("gmail") shows what it unlocks
+)
+```
+
+Browse requires CellCog Desktop + the Chrome extension and auto-enables co-work
+server-side. If Browse isn't available, `create_chat` fails fast with a clear error
+before any credits are spent.
 
 ---
 
@@ -242,7 +282,9 @@ Every SDK method returns the same shape:
 {
     "chat_id": str,        # CellCog chat ID
     "is_operating": bool,  # True = still working, False = done
-    "status": str,         # "completed" | "tracking" | "timeout" | "operating"
+    "status": str,         # "completed" | "tracking" | "accepted" | "operating"
+                           # (a wait that gave up returns status="operating" + timed_out=True —
+                           #  the chat is STILL running server-side; resume with wait_for_completion)
     "message": str,        # THE printable message — always print this in full
 }
 ```
@@ -264,21 +306,41 @@ status = client.get_status(chat_id="abc123")
 print(status["is_operating"])  # True/False
 ```
 
+**`get_result(chat_id=...)`** (SDK 2.5.0+): One-shot read that never waits: progress notes since your last read while the chat works, the final message and files once (delivered once; `again=True` re-reads). The same read the CellCog MCP connector's `cellcog_get_result` gives.
+
 ---
 
-## Chat Modes
+## Chat or AI Employee?
 
-| Mode | Best For | Speed | Min Credits |
+CellCog has two ways to hand off work:
+
+- **A chat is a subagent for one task.** It only knows what you pass in and works out the rest from scratch. Use it for a one-off or throwaway job (one image, a set of videos, a deck, a research report) where all the context fits in your brief. It is the cheapest way to get one job done.
+- **An AI employee is a long-running teammate.** It keeps memory and skills you teach it, runs routines, has its own inbox, and its context is managed for you across days or months. Use it for a project you will prompt again (a web series, a content calendar, a client account). It costs more per task and pays back in consistency.
+
+Most of the work inside CellCog itself runs through AI employees. Your agent can hire one (`hire_employee(brief)`, SDK 2.6.0+; over MCP `cellcog_employee_hire`) and then instruct it (`list_employees`, `message_employee`, `get_result(employee_id=...)`, shifts). Anything else about the employee (its routines, schedule, email, tools) you change by asking it in a message; pausing and deleting stay on the web. Read the **ai-employees-cellcog** skill.
+
+---
+
+## Chat Modes & Tiers
+
+Every CellCog chat runs at a (mode, tier) operating point: `chat_mode` picks the agent, `chat_tier` picks the depth/spend.
+
+| Mode | Best For | Tiers | Min Credits |
 |------|----------|-------|-------------|
-| `"agent"` | Most tasks — images, audio, dashboards, spreadsheets, presentations | Fast (seconds to minutes) | 100 |
-| `"agent core"` | Coding, co-work, terminal operations | Fast | 50 |
-| `"agent team"` | Deep research & multi-angled reasoning across every modality | Slower (5-60 min) | 500 |
-| `"agent team max"` | High-stakes work where extra reasoning depth justifies the cost | Slowest | 2,000 |
+| `"agent"` | Most tasks — assets, documents, coding, full production pipelines | `"flash"` / `"core"` / `"max"` | 60 |
+| `"creative"` | Design-taste work — dashboards, UI, brand identity, writing, slides | `"flash"` / `"core"` / `"max"` | 60 |
+| `"team"` | Deep research ONLY — multi-source synthesis, cross-validation, citations | `"flash"` / `"core"` / `"max"` | 1,000 (max tier: 2,000) |
 
-- **`"agent"` (default)** — Most versatile. Handles most tasks excellently, including deep research when guided.
-- **`"agent core"`** — Lightweight context for code, terminal, and file operations. Multimedia tools load on demand. Requires Co-work (CellCog Desktop). See `code-cog`.
-- **`"agent team"`** — A team of agents that debates, cross-validates, and delivers comprehensive results. The only platform with deep reasoning across every modality.
-- **`"agent team max"`** — Same Agent Team with all settings maxed. Quality gain is incremental (5-10%) but meaningful for costly decisions.
+**Picking a tier in agent mode:**
+- **Omit `chat_tier`** → the default, `"core"`, in every mode (co-work included): balanced speed and depth, right for most work.
+- **Coding / co-work → `"max"`.** Pass it explicitly.
+- **Quick, simple assets** → `"flash"` (fastest, most economical).
+- **Heavy multi-step production** (video generation, data analysis, financial models, legal drafting) → `"max"`.
+- Quality disappointing? Re-run the same prompt with `chat_tier="max"`.
+
+**Use `"team"` only for deep research.** Agent max is now strong enough for almost every other use case — including video generation, which historically needed team mode and no longer does.
+
+Legacy mode names — `"agent core"`, `"agent team"`, `"agent team max"` — keep working forever (the server maps them to their historical operating points).
 
 ---
 
@@ -342,15 +404,15 @@ Install capability skills for detailed guidance:
 
 | Category | Skills |
 |----------|--------|
-| **Research & Analysis** | `research-cog` `fin-cog` `crypto-cog` `data-cog` `news-cog` |
-| **Video & Cinema** | `video-cog` `cine-cog` `insta-cog` `tube-cog` `seedance-cog` |
-| **Images & Design** | `image-cog` `brand-cog` `meme-cog` `banana-cog` `3d-cog` `gif-cog` `sticker-cog` |
-| **Audio & Music** | `audio-cog` `music-cog` `pod-cog` |
-| **Avatars & Personas** | `avatar-cog` |
-| **Documents & Slides** | `docs-cog` `slides-cog` `spreadsheets-cog` `resume-cog` `legal-cog` |
-| **Apps & Prototypes** | `dash-cog` `game-cog` `proto-cog` `diagram-cog` |
-| **Creative** | `comi-cog` `story-cog` `learn-cog` `travel-cog` |
-| **Development** | `code-cog` `cowork-cog` `project-cog` `think-cog` |
+| **Research & Analysis** | `deep-research-cellcog` `stock-analysis-cellcog` `crypto-research-cellcog` `data-analysis-cellcog` `news-briefing-cellcog` |
+| **Video & Cinema** | `video-generation-cellcog` `cinematic-video-cellcog` `instagram-reels-tiktok-cellcog` `youtube-video-cellcog` `seedance-video-generation-cellcog` |
+| **Images & Design** | `image-generation-cellcog` `logo-brand-identity-cellcog` `meme-generator-cellcog` `nano-banana-image-cellcog` `3d-model-generation-cellcog` `gif-generator-cellcog` `sticker-generator-cellcog` |
+| **Audio & Music** | `audio-generation-cellcog` `music-generation-cellcog` `podcast-generation-cellcog` |
+| **Avatars & Personas** | `avatar-creation-cellcog` |
+| **Documents & Slides** | `pdf-document-generation-cellcog` `presentation-slides-cellcog` `excel-spreadsheet-cellcog` `resume-cover-letter-cellcog` `legal-documents-cellcog` |
+| **Apps & Prototypes** | `dashboard-web-app-cellcog` `game-asset-generation-cellcog` `ui-prototype-wireframe-cellcog` `diagram-flowchart-cellcog` |
+| **Creative** | `comic-manga-generator-cellcog` `creative-writing-cellcog` `tutoring-education-cellcog` `travel-planning-cellcog` |
+| **Development** | `coding-agent-cellcog` `pair-programming-cellcog` `project-management-cellcog` `brainstorming-strategy-cellcog` |
 
 **This skill shows you HOW to use CellCog. Capability skills show you WHAT's possible.**
 
@@ -389,8 +451,18 @@ In wait mode, your agent is blocked and cannot send messages until the current c
 
 ## Support & Troubleshooting
 
-For error handling, recovery patterns, ticket submission, and daemon troubleshooting:
+For error handling, recovery patterns, and daemon troubleshooting:
 
 ```python
 docs = client.get_support_docs()
 ```
+
+### When CellCog fails you or a feature is missing
+
+Ask the chat to file a support report with the details (what you tried, the exact error, what you expected). CellCog's agents file it with the team; there is no separate support call.
+
+```python
+client.send_message(chat_id="abc123", message="Please file a support report: ...")
+```
+
+Over MCP, ask a chat (`cellcog_chat_create` or `cellcog_chat_send`) the same way. Working with an AI employee? Message it instead (`client.message_employee` or `cellcog_employee_message`).

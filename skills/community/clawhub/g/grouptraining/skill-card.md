@@ -1,45 +1,64 @@
-## Description: <br>
-Complete training plan solution for My Likes platform that fetches historical data, analyzes training patterns, generates personalized plans, converts them to Likes format, and pushes them to the calendar for running, cycling, swimming, and strength training. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Likes Training Planner helps agents fetch My Likes training data, analyze training patterns, generate personalized training plans, convert them to Likes format, and push them to a calendar for running, cycling, swimming, and strength training.
 
-## Publisher: <br>
-[chenwynn](https://clawhub.ai/user/chenwynn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenwynn](https://clawhub.ai/user/chenwynn)
 
-## Use Case: <br>
-Athletes, coaches, and OpenClaw users use this skill to retrieve My Likes training data, analyze recent activity, generate structured training plans, preview plan JSON, and push plans to individual or group calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write or overwrite training plans for one or more My Likes accounts. <br>
-Mitigation: Review generated plan JSON before pushing, use preview or dry-run flows where available, and avoid bulk or overwrite operations unless authorized and backed up. <br>
-Risk: The installer documentation includes curl-to-bash installation and the security evidence flags this as risky. <br>
-Mitigation: Prefer manual installation from the released artifact and inspect scripts before execution. <br>
-Risk: The skill stores and uses a My Likes API key and can export activity or GPS data. <br>
-Mitigation: Use the least-privileged API key available and treat exported data plus local API-key files as sensitive. <br>
+## Use Case:
 
+External athletes, coaches, and developers use this skill to retrieve My Likes activity, feedback, ability, camp, and plan data, analyze training history, generate plan JSON, preview it, and push training plans or coach comments through the Likes API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenwynn/grouptraining) <br>
-- [Likes Open API Documentation](artifact/references/api-docs.md) <br>
-- [Likes Training Code Format Reference](artifact/references/code-format.md) <br>
-- [Sport-Specific Training Examples](artifact/references/sport-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON plan examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a LIKES_API_KEY and may read or write My Likes activity, feedback, and calendar plan data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installer and setup paths can download executable release artifacts from external URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid curl-to-shell installation; download artifacts separately and verify them before installing.
+
+Risk: The skill uses a Likes API key for data access and write operations.
+
+Mitigation: Protect the LIKES_API_KEY value, prefer managed configuration or environment variables, and rotate the key if it is exposed.
+
+Risk: A custom Base URL can redirect API-key-bearing requests away from the default My Likes service.
+
+Mitigation: Use the default https://my.likes.com.cn endpoint unless the user fully controls and trusts the custom endpoint.
+
+Risk: Plan pushes and coach comments can modify calendar or trainee feedback data, especially from coach accounts.
+
+Mitigation: Use preview_plan.cjs or --dry-run and review plan contents, camp IDs, user IDs, and comment text before pushing changes.
+
+## Reference(s):
+
+- [Likes Open API Documentation](artifact/references/api-docs.md)
+- [Likes Training Code Format Reference](artifact/references/code-format.md)
+- [Sport-Specific Training Examples](artifact/references/sport-examples.md)
+- [My Likes Open API](https://my.likes.com.cn/api/open)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON plan examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce or inspect local JSON plan files and issue Likes API calls when configured with a valid LIKES_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

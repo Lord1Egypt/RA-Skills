@@ -1,47 +1,64 @@
-## Description: <br>
-Comprehensive medication safety review system providing real-time analysis of drug-drug interactions, contraindications, allergy risks, and dosing optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive medication safety review system for analyzing drug-drug interactions, contraindications, allergy risks, renal dosing considerations, and alternative therapy suggestions.
 
-## Publisher: <br>
-[Andyxcg](https://clawhub.ai/user/Andyxcg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyxcg](https://clawhub.ai/user/andyxcg)
 
-## Use Case: <br>
-Healthcare providers, pharmacists, patients, and developers use this skill to review medication lists for drug interactions, contraindications, allergy risks, renal dosing concerns, and alternative therapy suggestions. It is a clinical decision-support aid and its results should be verified with authoritative clinical sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medication safety results may be incomplete or unsuitable as a comprehensive medical safety system. <br>
-Mitigation: Treat outputs as clinical decision support only and verify medication recommendations with authoritative clinical references and qualified healthcare professionals. <br>
-Risk: User identifiers and trial-use records are written locally, and real patient identifiers could create avoidable privacy exposure. <br>
-Mitigation: Use pseudonymous user_id values and avoid entering real patient identifiers when running reviews or testing trial behavior. <br>
-Risk: Paid use depends on SkillPay billing configuration and a remote billing endpoint. <br>
-Mitigation: Review the billing endpoint, credential environment variable names, and payment behavior before enabling paid operation. <br>
-Risk: The artifact includes a background self-evolution daemon that repeatedly runs local evolution code. <br>
-Mitigation: Do not run auto-evolve-daemon.sh unless the behavior has been reviewed and explicitly accepted for the target environment. <br>
+## Use Case:
 
+Healthcare providers, pharmacists, patients, and healthcare application developers use this skill to produce medication safety review output for drug interactions, contraindications, allergies, renal dosing, and monitoring considerations. It is clinical decision support and should not replace professional pharmacist or physician judgment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Andyxcg/drug-safety-review) <br>
-- [Drug database reference](references/drug-database.md) <br>
-- [Drug interaction criteria](references/interaction-criteria.md) <br>
-- [Security policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; runtime review results are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes bilingual Chinese and English messages, local trial tracking, optional output-file writing, and SkillPay billing responses after trial use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: Simulated medication-safety output may be returned as a successful review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit production configuration that disables demo mode, and label or block simulated output before any clinical workflow consumes it.
+
+Risk: Medication-safety recommendations could be incomplete or clinically unsuitable if the drug database coverage or patient data is incomplete.
+
+Mitigation: Validate the database coverage against authoritative clinical sources and require qualified healthcare review before acting on recommendations.
+
+Risk: Local trial and output files may expose user IDs or other health-usage metadata.
+
+Mitigation: Use non-identifying user IDs, restrict filesystem permissions, and protect or delete local trial and output files according to the deployment privacy policy.
+
+Risk: Self-evolution artifacts can change behavior outside the normal review process.
+
+Mitigation: Disable the auto-evolution daemon in production and require code review, security review, and testing for any generated changes before deployment.
+
+## Reference(s):
+
+- [Drug database reference](references/drug-database.md)
+- [Drug interaction criteria](references/interaction-criteria.md)
+- [ClawHub skill page](https://clawhub.ai/andyxcg/skills/drug-safety-review)
+- [Publisher profile](https://clawhub.ai/user/andyxcg)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON medication safety results plus Markdown guidance with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English output; demo mode may return simulated review data.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

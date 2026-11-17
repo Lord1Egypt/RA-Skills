@@ -1,0 +1,22 @@
+# YouTube Video Script Writer - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+video:
+  channel: <channel name>
+  topic: <one topic>
+  audience: <who it is for>
+  target_minutes: <number>
+  primary_action: <watch to the end | subscribe | visit url>
+  hook_deadline_seconds: <number>
+  beats:
+    - timecode: <00:00>
+      line: <what is said>
+      b_roll: <what the viewer sees>
+      source: <any claim that needs a source>
+  links:
+    - <url and what it is>
+  disclosure: <sponsor or affiliate line, or none>
+  rights_notes:
+    - <music, footage and licences>
+  title_options:
+    - <under 100 characters>
+  thumbnail_text: <a few words>

@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "product-requirements",
+  "version": "1.5.3",
+  "workflow": "product",
+  "focus": "requirements",
+  "outputTemplate": "ops_product",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 3
+}

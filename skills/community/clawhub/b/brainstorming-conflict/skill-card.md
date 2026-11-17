@@ -1,40 +1,48 @@
-## Description: <br>
-You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through collaborative brainstorming before creative or design work by clarifying intent, comparing approaches, and turning validated ideas into design plans.
 
-## Publisher: <br>
-[tang2606](https://clawhub.ai/user/tang2606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tang2606](https://clawhub.ai/user/tang2606)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and agents use this skill to shape creative or product ideas into validated design plans before implementation. It supports project-context review, one-question-at-a-time clarification, alternative comparison, and incremental design review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill has an overly broad activation rule and may encourage project review, design document creation, or git commits beyond the user's immediate request.
+
+Mitigation: Keep file creation, git operations, and implementation setup under explicit user control, and treat the skill as planning guidance rather than authorization to make changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to turn creative feature or behavior-change ideas into validated designs before implementation. It guides repository-context review, one-question-at-a-time clarification, alternative exploration, incremental design review, and design-document preparation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect repository context and create or commit a local design document. <br>
-Mitigation: Review generated files and commits before pushing or sharing the repository. <br>
-Risk: Brainstormed designs or implementation proposals may be incomplete or inappropriate for the project constraints. <br>
-Mitigation: Validate each design section with the user and review the final plan before implementation. <br>
+**Output Format:** [Conversational guidance and Markdown design documentation with occasional shell or git commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tang2606/brainstorming-conflict) <br>
+**Other Properties Related to Output:** [May produce design-plan files and commit suggestions when the user explicitly continues into documentation or implementation preparation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a design document under docs/plans and may propose or run git commands when the user approves continuing toward implementation.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

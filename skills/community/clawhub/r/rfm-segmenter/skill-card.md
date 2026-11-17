@@ -1,44 +1,61 @@
-## Description: <br>
-Segment your customer base using Recency, Frequency, and Monetary value scoring to identify Champions, Loyal Customers, At-Risk buyers, and Churned segments - then generate targeted retention and reactivation campaigns for each group. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Segment your customer base using Recency, Frequency, and Monetary value scoring to identify Champions, Loyal Customers, At-Risk buyers, and Churned segments — then generate targeted retention and reactivation campaigns for each group.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing and ecommerce teams use this skill to turn customer order data into RFM segments, identify retention and reactivation opportunities, and plan segment-specific campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign recommendations may include SMS, phone, email, or advertising outreach that is subject to consent, opt-out, do-not-call, and privacy rules. <br>
-Mitigation: Use only approved customer data, confirm required consent before outreach, honor opt-outs and unsubscribe requests, screen do-not-call restrictions, and verify applicable GDPR, CCPA, TCPA, and CAN-SPAM obligations before launching campaigns. <br>
-Risk: Incorrect or stale order data can produce misleading segment assignments and poor campaign targeting. <br>
-Mitigation: Validate the data source, subtract refunds, remove test and internal orders, merge duplicate customer records, exclude cancelled orders, and review segment sizes before sending campaigns. <br>
+## Use Case:
 
+External ecommerce and retention marketing teams use this skill to score customers by recency, frequency, and monetary value, assign named segments, and plan segment-specific retention, win-back, and suppression campaigns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leooooooow/rfm-segmenter) <br>
-- [Output Template](artifact/output-template.md) <br>
-- [Segment Action Playbook](artifact/segment-action-playbook.md) <br>
-- [Scoring Methodology Guide](artifact/scoring-methodology.md) <br>
-- [Quality Checklist](artifact/checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report guidance with RFM scoring tables, segment summaries, campaign matrices, and checklists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses customer-level order data, including customer identifier, order date, and net order value, to guide segmentation and campaign planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: RFM analysis can expose sensitive customer order history and contact data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the smallest necessary export, prefer customer IDs over emails, store outputs securely, and delete temporary datasets when analysis is complete.
+
+Risk: Segment-driven outreach can violate consent, opt-out, suppression, SMS, phone, advertising, or privacy requirements if activated without review.
+
+Mitigation: Verify consent status, opt-outs, suppression lists, and applicable marketing and privacy laws before launching email, SMS, phone, or ad-audience campaigns.
+
+Risk: Poor data quality can produce misleading segments and inappropriate campaign actions.
+
+Mitigation: Apply the provided checklist before campaign deployment, including net revenue validation, removal of test or wholesale orders, duplicate customer handling, and segment sanity checks.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/leooooooow/skills/rfm-segmenter)
+- [Output Template](artifact/output-template.md)
+- [Segment Action Playbook](artifact/segment-action-playbook.md)
+- [Scoring Methodology Guide](artifact/scoring-methodology.md)
+- [Quality Checklist](artifact/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, guidance]
+
+**Output Format:** [Markdown reports, scoring guidance, campaign matrices, checklists, and optional Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces customer segment classifications, campaign recommendations, validation checks, and review cadence guidance; it does not execute hidden tools or call external services.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

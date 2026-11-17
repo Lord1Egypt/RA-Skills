@@ -1,44 +1,57 @@
-## Description: <br>
-x-cmd helps agents load the x-cmd shell environment, discover x-cmd skills, and install portable CLI tools through x env or pixi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Load x-cmd in a POSIX shell so an agent can discover x-cmd skills and install or use portable development tools through x-cmd and pixi commands.
 
-## Publisher: <br>
-[edwinjhlee](https://clawhub.ai/user/edwinjhlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edwinjhlee](https://clawhub.ai/user/edwinjhlee)
 
-## Use Case: <br>
-Developers, engineers, and agent operators use this skill to prepare x-cmd in a shell session, browse x-cmd capabilities, and install portable development tools without system-wide package changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill loads x-cmd paths into the active shell, which can change which executables are resolved first. <br>
-Mitigation: Load x-cmd only in sessions where the user approves the PATH change, and verify commands with shell path inspection when working in sensitive environments. <br>
-Risk: Installer and package workflows download code from remote sources. <br>
-Mitigation: Prefer Homebrew or a reviewed installer, avoid curl-to-shell in sensitive environments, and approve package installs deliberately. <br>
+## Use Case:
 
+Developers and agents use this skill to load x-cmd, browse available x-cmd skills, and run commands that install or expose portable software such as jq, Node.js, Python, and other development tools.
 
-## Reference(s): <br>
-- [ClawHub x-cmd listing](https://clawhub.ai/edwinjhlee/x-cmd) <br>
-- [x-cmd repository](https://github.com/x-cmd-skill/x-cmd) <br>
-- [x-cmd website](https://www.x-cmd.com) <br>
-- [x-cmd LLM reference](https://www.x-cmd.com/llms.txt) <br>
-- [Installation guide](data/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend local PATH loading and user-local package installation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill includes an agent-usable remote installer path that can execute mutable downloaded shell code before independent verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer Homebrew installation or a manual download-and-review flow; avoid the auto-install path on machines with secrets.
+
+Risk: An agent could install x-cmd or packages without the user's explicit intent.
+
+Mitigation: Do not let an agent install x-cmd or packages unless the user explicitly requested that action and trusts the package sources.
+
+## Reference(s):
+
+- [x-cmd ClawHub Skill Page](https://clawhub.ai/edwinjhlee/skills/x-cmd)
+- [x-cmd Website](https://www.x-cmd.com)
+- [x-cmd LLMs Reference](https://www.x-cmd.com/llms.txt)
+- [x-cmd Repository](https://github.com/x-cmd-skill/x-cmd)
+- [Installation Guide](data/install.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may download and install user-local tools after explicit user consent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

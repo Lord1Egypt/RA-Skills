@@ -1,43 +1,53 @@
-## Description: <br>
-Conducts a structured manuscript diagnostic interview that checks whether a manuscript's intended reader outcome is supported by concrete structural mechanisms and produces a Signal Report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts a structured manuscript diagnostic interview and produces a Signal Report about whether the stated reader outcome aligns with concrete structural elements in the manuscript.
 
-## Publisher: <br>
-[jadenzbeall](https://clawhub.ai/user/jadenzbeall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jadenzbeall](https://clawhub.ai/user/jadenzbeall)
 
-## Use Case: <br>
-Writers, editors, and publishing teams use this skill to run a six-prompt manuscript intake that checks whether an intended reader outcome is grounded in concrete manuscript mechanisms and returns a concise Signal Report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Manuscript excerpts may contain confidential or unpublished material that is sent to the configured language model provider. <br>
-Mitigation: Use only material you are comfortable sharing with that provider, and apply any organizational confidentiality policies before invoking the skill. <br>
-Risk: The external continuation link is a separate service with its own privacy and trust considerations. <br>
-Mitigation: Review the linked service's terms and privacy posture before submitting manuscript information outside the agent environment. <br>
-Risk: The scan identifies surface-level signal inconsistency and may be mistaken for a full editorial or structural evaluation. <br>
-Mitigation: Treat the Signal Report as a narrow diagnostic aid and use human editorial review for deeper manuscript decisions. <br>
+## Use Case:
 
+Writers, editors, and publishing teams use this skill to run a constrained manuscript intake and identify surface-level alignment problems between intended reader outcomes and named structural mechanisms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jadenzbeall/nim-signal-scan) <br>
-- [NIM Signal continuation](https://nimlab.netlify.app/signal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown diagnostic interview and Signal Report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive six-prompt intake; no files or executable code are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: release evidence and artifact metadata) <br>
+Risk: The final report includes publisher branding and an external continuation link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before sharing them and treat the external link as optional, especially when manuscript text or author identity could be exposed.
+
+Risk: The skill intentionally limits explanation and uses a tightly constrained diagnostic voice.
+
+Mitigation: Use it as an intake signal rather than a complete editorial assessment, and have a human editor review conclusions before making publication or revision decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jadenzbeall/skills/nim-signal-scan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown Signal Report produced after a six-prompt diagnostic interview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's interview responses as evidence and reports a primary pattern, signal stability band, structural integrity note, reader risk zones, and diagnostic boundary.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

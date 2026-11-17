@@ -5,7 +5,7 @@
     "partnerId": "YOUR_PARTNER_ID",
     "clientId": "YOUR_CLIENT_ID",
     "credentials": {
-      "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nYOUR_PRIVATE_KEY_HERE\n-----END RSA PRIVATE KEY-----",
+      "privateKey": "REDACTED-SECRET",
       "alipayPlusPublicKey": "-----BEGIN PUBLIC KEY-----\nALIPAY_PLUS_PUBLIC_KEY_HERE\n-----END PUBLIC KEY-----"
     },
     "endpoints": {

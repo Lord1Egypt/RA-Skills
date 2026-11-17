@@ -66,8 +66,8 @@ enum Commands {
 
 Once flag count crosses ~10 or commands start sharing complex validation, split parsing into two stages:
 
-1. **Low stage** — `LowArgs` mirrors the raw CLI surface 1:1. Clap populates it. No cross-field validation, no domain types.
-2. **High stage** — `HiArgs` (or `Config`) is what the rest of the program consumes. Constructing `HiArgs::from(low)` runs *all* semantic validation: mutual exclusions, path existence, glob compilation, range constraints, regex validity. Fails with one clear error message.
+1. **Low stage**: `LowArgs` mirrors the raw CLI surface 1:1. Clap populates it. No cross-field validation, no domain types.
+2. **High stage**: `HiArgs` (or `Config`) is what the rest of the program consumes. Constructing `HiArgs::from(low)` runs *all* semantic validation: mutual exclusions, path existence, glob compilation, range constraints, regex validity. Fails with one clear error message.
 
 ```rust
 let low = Cli::parse();
@@ -77,16 +77,18 @@ run(hi).await
 
 Downstream code accepts `&HiArgs` (or specific typed fields from it) and never re-checks. This keeps validation in one place and makes it impossible for a handler to receive an invalid combination. Pattern comes from ripgrep; worth it as soon as flag interactions become non-trivial.
 
-For simple CLIs (one subcommand, a handful of flags), skip this — one clap-derive struct is enough.
+For simple CLIs (one subcommand, a handful of flags), skip this; one clap-derive struct is enough.
 
 ## Config Layering
 
-Priority (lowest to highest): built-in defaults → `~/.config/myapp/config.toml` → project `.myapp/config.toml` → env vars (`MYAPP_*`) → CLI flags.
+For non-secret settings, use this priority (lowest to highest): built-in defaults → `~/.config/myapp/config.toml` → project `.myapp/config.toml` → env vars (`MYAPP_*`) → CLI flags.
+
+Accept credentials from environment variables, a config file with restrictive permissions, or source-selecting flags such as `--token-file` and `--token-stdin`. Keep literal credentials out of CLI arguments: process listings, `/proc/<pid>/cmdline`, and shell history can expose them. In `doctor`, logs, and JSON errors, report only the credential source (`env`, `config`, `file`, `stdin`, or `missing`). Omit secret-bearing structs from derived `Debug` output or implement explicit redaction.
 
 Use `figment` or hand-roll with `serde` + `toml`:
 
 ```rust
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize)]
 pub struct Config {
     #[serde(default = "default_limit")]
     pub limit: usize,
@@ -95,10 +97,16 @@ pub struct Config {
 
 impl Config {
     pub fn load(project_root: &Path) -> Result<Self> {
-        let mut cfg: Config = toml::from_str(
-            &std::fs::read_to_string(project_root.join(".myapp/config.toml"))
-                .unwrap_or_default(),
-        )?;
+        let path = project_root.join(".myapp/config.toml");
+        let text = match std::fs::read_to_string(&path) {
+            Ok(text) => text,
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => String::new(),
+            Err(e) => {
+                return Err(e).with_context(|| format!("reading {}", path.display()));
+            }
+        };
+        let mut cfg: Config = toml::from_str(&text)
+            .with_context(|| format!("parsing {}", path.display()))?;
         if let Ok(key) = std::env::var("MYAPP_API_KEY") {
             cfg.api_key = Some(key);
         }
@@ -108,7 +116,9 @@ impl Config {
 }
 ```
 
-Validation runs in `load()` — never defer it to the first call site.
+Validation runs in `load()`; never defer it to the first call site.
+
+Only `NotFound` collapses to defaults. `read_to_string(p).unwrap_or_default()` also swallows permission-denied, invalid UTF-8, and transient I/O, so a config that exists but cannot be read becomes an empty one, and the next write replaces the comments and unrelated entries the read never surfaced.
 
 ## Logging
 
@@ -129,7 +139,7 @@ fn init_logging(verbose: u8) {
 ```
 
 - Logs go to **stderr**. Only command results go to stdout. This keeps pipes clean.
-- Respect `RUST_LOG` / `MYAPP_LOG` env var if set — it overrides `-v`.
+- Respect `RUST_LOG` / `MYAPP_LOG` env var if set; it overrides `-v`.
 - Never log at `info!` inside hot loops; budget is roughly one log line per user-visible action.
 
 ## Output
@@ -138,14 +148,32 @@ Every query command supports two modes:
 
 ```rust
 if args.json {
-    println!("{}", serde_json::to_string(&results)?);
+    let document = serde_json::to_string(&results)?;
+    write_stdout(|out| writeln!(out, "{document}"))?;
 } else {
-    render_human(&results);
+    write_stdout(|out| render_human(out, &results))?;
 }
 ```
 
-- JSON output must be a single line or a valid JSON document — no mixed human + JSON in the same stream.
+- JSON output must be a single line or a valid JSON document; no mixed human + JSON in the same stream.
 - Exit with non-zero on failure even when `--json` is set; don't emit `{"error": "..."}` with exit 0.
+- Make human renderers accept `&mut dyn Write` and return `io::Result<()>`. Propagate writes and the final flush; `BufWriter` drop cannot report flush failures.
+
+Handle an early pipe close only at the stdout boundary. A `BrokenPipe` from a network request or another operation must still propagate:
+
+```rust
+use std::io::{self, Write};
+
+fn write_stdout(
+    render: impl FnOnce(&mut dyn Write) -> io::Result<()>,
+) -> io::Result<()> {
+    let mut out = io::BufWriter::new(io::stdout().lock());
+    match render(&mut out).and_then(|()| out.flush()) {
+        Err(error) if error.kind() == io::ErrorKind::BrokenPipe => Ok(()),
+        result => result,
+    }
+}
+```
 
 ## Progress
 
@@ -164,30 +192,31 @@ Commands::Completions { shell } => {
 }
 ```
 
-Ship completions via the `completions` subcommand rather than pre-generated files — keeps them in sync with the actual flag set.
+Ship completions via the `completions` subcommand rather than pre-generated files; this keeps them in sync with the actual flag set.
 
 ## Testing CLIs
 
 ```rust
 use assert_cmd::Command;
-use predicates::prelude::*;
 
 #[test]
 fn search_returns_json() {
-    Command::cargo_bin("myapp").unwrap()
+    let assertion = Command::cargo_bin("myapp").unwrap()
         .args(["search", "foo", "--json"])
         .assert()
-        .success()
-        .stdout(predicate::str::starts_with("["));
+        .success();
+    let document: serde_json::Value = serde_json::from_slice(&assertion.get_output().stdout)
+        .expect("stdout must contain one complete JSON document");
+    assert!(document.is_array(), "search results must be a JSON array");
 }
 ```
 
 - `tempfile::TempDir` for isolated project roots.
 - Snapshot stdout with `insta::assert_snapshot!` for human-readable output that changes rarely.
-- Test exit codes explicitly — they're part of the CLI contract for scripts.
+- Test exit codes explicitly; they're part of the CLI contract for scripts.
 
 ## Common Traps
 
 - Don't print to stdout from library crates. Return structured data, let the binary format it.
-- Don't swallow `SIGPIPE`. On Unix, when the reader closes a pipe early, the default is to die — let it. If you install a `tokio::signal` handler, re-raise or exit cleanly on pipe errors.
+- Rust executables normally ignore Unix `SIGPIPE`. Use fallible stdout writes and handle `BrokenPipe` explicitly as above; do not assume OS-default signal termination. Verify a normal output run, an early-closing reader such as `head`, and a different output failure that must remain nonzero.
 - Don't ship a CLI that panics on bad input. Map every user-facing error to a clean `anyhow` chain with `.context()`.

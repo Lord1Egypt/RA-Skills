@@ -1,45 +1,60 @@
-## Description: <br>
-Expert guidance for systematic backtesting of trading strategies, including parameter robustness testing, slippage modeling, bias prevention, and interpretation of backtest results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides expert guidance for systematic backtesting and validation of quantitative trading strategies, including robustness testing, slippage modeling, bias prevention, and interpretation of results.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-Developers, quantitative researchers, and trading-system builders use this skill to structure backtest validation, identify fragile strategy results, and decide whether a strategy needs refinement before any live-trading consideration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backtest scores or Deploy/Refine/Abandon verdicts may create false confidence in a strategy. <br>
-Mitigation: Treat outputs as educational research guidance and require independent review, out-of-sample testing, execution-cost modeling, and risk approval before any live trading. <br>
-Risk: The optional Python script writes local report files and may be run on user-supplied metrics. <br>
-Mitigation: Review the script before execution and run it in a controlled workspace with an explicit output directory. <br>
-Risk: The skill evaluates trading-strategy validation quality but does not prove profitability or safety. <br>
-Mitigation: Use it as a structured screening framework, not as financial advice, a trading signal, or broker-execution automation. <br>
+## Use Case:
 
+Developers, quantitative researchers, and strategy reviewers use this skill to evaluate whether trading strategies are robust enough to consider for live deployment. It helps structure hypothesis definition, parameter robustness testing, out-of-sample validation, Monte Carlo stress testing, execution-cost modeling, and walk-forward analysis.
 
-## Reference(s): <br>
-- [Backtesting Methodology Reference](references/methodology.md) <br>
-- [Learning from Failed Backtests](references/failed_tests.md) <br>
-- [ClawHub release page](https://clawhub.ai/clawdiri-ai/einstein-research-backtest-dv) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/clawdiri-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Natural-language guidance with optional Markdown examples, Python code, and local evaluation report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional Python evaluation script can write local JSON and Markdown reports under a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Trading methodology content may be mistaken for financial advice or profitable trade signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a validation framework only; require independent financial, risk, and compliance review before using any strategy in live trading.
+
+Risk: Backtest results can be misleading if they ignore slippage, commissions, survivorship bias, look-ahead bias, or overfitting.
+
+Mitigation: Use the skill's staged validation process, including out-of-sample tests, Monte Carlo stress testing, realistic execution friction, and walk-forward analysis.
+
+Risk: The optional evaluator writes report files to disk.
+
+Mitigation: Choose the output directory intentionally and review generated JSON and Markdown reports before sharing or retaining them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/skills/einstein-research-backtest-dv)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/clawdiri-ai)
+- [Backtesting Methodology Reference](references/methodology.md)
+- [Learning from Failed Backtests](references/failed_tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands]
+
+**Output Format:** [Natural-language guidance with optional JSON and Markdown evaluator reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The optional evaluator script writes timestamped JSON and Markdown reports to the selected output directory; no API keys, broker access, network access, or credential use is indicated.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

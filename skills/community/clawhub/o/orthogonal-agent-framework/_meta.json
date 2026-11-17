@@ -1,6 +1,10 @@
 {
-  "ownerId": "kn7f9mzhtvdmap3maxzvjf9h1981qnzn",
+  "ownerId": "local",
   "slug": "orthogonal-agent-framework",
   "version": "1.0.0",
-  "publishedAt": 1772642229354
+  "publishedAt": 1772737200000,
+  "keywords": ["agent", "framework", "orthogonal", "modular", "planning", "memory", "evaluation", "Manus"],
+  "homepage": "",
+  "repository": "",
+  "license": "MIT"
 }

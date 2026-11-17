@@ -1,45 +1,59 @@
-## Description: <br>
-Make YouTube Shorts with Pexo by relaying a user's topic or media to the hosted Pexo video agent, which writes the script, generates shots, chooses models, and assembles a finished vertical video with music and captions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make vertical YouTube Shorts with Pexo by submitting a topic or brief, then letting the hosted Pexo agent script, generate shots, add music and captions, and return the finished video.
 
-## Publisher: <br>
-[pexo](https://clawhub.ai/user/pexo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pexo](https://clawhub.ai/user/pexo)
 
-## Use Case: <br>
-External users and agents use this skill to create short-form YouTube videos through Pexo, including project creation, optional media upload, polling, revision handling, and delivery of the generated video URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User prompts, uploaded media, generated projects, and output assets are sent to the hosted Pexo service. <br>
-Mitigation: Review before using sensitive prompts or private media, and only upload content appropriate for processing by Pexo. <br>
-Risk: The skill requires a Pexo API key stored in a persistent local config file. <br>
-Mitigation: Protect ~/.pexo/config with restrictive permissions, avoid pointing PEXO_CONFIG at untrusted files, and rotate the API key if the config may have been exposed. <br>
-Risk: Video creation can consume Pexo credits or require paid top-ups. <br>
-Mitigation: Check credit status before production use and confirm spending-sensitive actions with the account owner. <br>
+## Use Case:
 
+External users and creators use this skill to request a short-form YouTube video from the hosted Pexo video agent, optionally including uploaded media. The agent handles project creation, file upload, status polling, user choice relay, and final asset delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pexo/youtube-short-maker) <br>
-- [Pexo homepage](https://pexo.ai) <br>
-- [Setup Checklist](references/SETUP-CHECKLIST.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON responses, status text, and plain-text asset URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PEXO_API_KEY and PEXO_BASE_URL; generated projects, uploaded files, and prompts are sent to Pexo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill sends prompts, uploaded media, project metadata, and generated assets to Pexo's hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if you trust Pexo and have approval to share that content with the hosted service.
+
+Risk: The skill relies on PEXO_API_KEY in ~/.pexo/config and supports PEXO_CONFIG and PEXO_BASE_URL overrides, which can expose credentials or redirect requests if misconfigured.
+
+Mitigation: Protect ~/.pexo/config as a secret with restrictive permissions, avoid untrusted PEXO_CONFIG or PEXO_BASE_URL values, and run setup diagnostics before use.
+
+Risk: Server security evidence flags avoidable account-security risk in credential handling and installation.
+
+Mitigation: Review and pin the installer or source before use; deploy only after accepting the remaining risk.
+
+## Reference(s):
+
+- [Pexo](https://pexo.ai)
+- [Setup Checklist](references/SETUP-CHECKLIST.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, project links, JSON status handling, and plain-text final asset URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PEXO_API_KEY and PEXO_BASE_URL; generated videos are produced by Pexo's hosted service and may require credits.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

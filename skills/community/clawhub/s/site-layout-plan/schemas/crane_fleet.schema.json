@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/site-layout-plan/crane_fleet.schema.json",
+  "title": "crane_fleet.json（塔吊设备清单 + 性能表）",
+  "type": "object",
+  "required": ["project", "cranes"],
+  "properties": {
+    "project": {"type": "string", "minLength": 1},
+    "baseline_version": {
+      "type": "string",
+      "description": "设备清单版本；必须与 baseline.fleet_version 一致，否则 CLI exit 5"
+    },
+    "coord_unit": {
+      "type": "string",
+      "enum": ["m", "meter", "meters", "metre", "metres", "米"],
+      "description": "坐标单位声明；只接受米。缺省视为 m。cm/mm/ft 会被 CLI 以 exit 4 拒绝。"
+    },
+    "cranes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "model", "jib_m", "capacity_source", "zones"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "model": {"type": "string"},
+          "jib_m": {"type": "number", "exclusiveMinimum": 0},
+          "x_m": {"type": ["number", "null"], "description": "塔吊中心 X（m）；缺失则该校核判 blind，不猜位置"},
+          "y_m": {"type": ["number", "null"], "description": "塔吊中心 Y（m）"},
+          "center_m": {
+            "type": "array",
+            "items": {"type": "number"},
+            "minItems": 2,
+            "maxItems": 2,
+            "description": "x_m/y_m 的替代写法 [x, y]（m）"
+          },
+          "capacity_source": {
+            "type": "string",
+            "enum": ["manufacturer", "estimated", "missing"],
+            "description": "manufacturer=厂家性能表；estimated=估算表；missing=无表，结论只能是 unknown_no_table"
+          },
+          "capacity_table": {
+            "type": "array",
+            "description": "按幅度递增的额定起重量表；至少 2 点才适合插值，1 点只能命中该幅度",
+            "items": {
+              "type": "object",
+              "required": ["radius_m", "capacity_t"],
+              "properties": {
+                "radius_m": {"type": "number", "minimum": 0},
+                "capacity_t": {"type": "number", "exclusiveMinimum": 0}
+              },
+              "additionalProperties": true
+            }
+          },
+          "hook_weight_t": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "description": "吊具重量（t）；缺省用 CLI --hook-weight，默认 0.3"
+          },
+          "zones": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1},
+            "description": "该塔吊负责的分区；柱只能由同分区塔吊服务，不跨区"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

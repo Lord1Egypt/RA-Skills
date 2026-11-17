@@ -1,6 +1,6 @@
-# 基础 Worker 与生命周期
+#Basic Worker and life cycle
 
-## Worker 文件
+## Worker file
 
 ```ts
 // workers/heavy-compute.worker.ts
@@ -10,7 +10,7 @@ self.onmessage = (event: MessageEvent<{ numbers: number[] }>) => {
 };
 ```
 
-## Vite 导入
+## Vite import
 
 ```ts
 import HeavyComputeWorker from "./workers/heavy-compute.worker?worker";
@@ -25,7 +25,7 @@ worker.onerror = (error) => {
 };
 ```
 
-## React 生命周期封装
+## React life cycle encapsulation
 
 ```tsx
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -60,8 +60,8 @@ export function useWorker<TRequest, TResult>(factory: () => Worker) {
 }
 ```
 
-## 验证
+## Verify
 
-- Performance 面板中长任务减少。
-- 用户输入延迟下降。
-- 组件卸载后没有继续收到 worker message。
+- Long tasks in the Performance panel have been reduced.
+- User input latency reduced.
+- Worker messages are not received after the component is uninstalled.

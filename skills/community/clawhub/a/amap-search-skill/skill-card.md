@@ -1,39 +1,58 @@
-## Description: <br>
-Gaode/Amap all-in-one map skill for POI search, route planning, weather, bus or transit lookups, real-time traffic, geocoding, reverse geocoding, IP location, and input tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amap Search Skill helps agents use the Gaode/AMap Web Service APIs for POI search, geocoding, reverse geocoding, route planning, weather, traffic, IP location, and input tips.
 
-## Publisher: <br>
-[mahongting](https://clawhub.ai/user/mahongting) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mahongting](https://clawhub.ai/user/mahongting)
 
-## Use Case: <br>
-External users and developers use this skill to query Amap Web Service APIs for map search, routing, weather, traffic, geocoding, reverse geocoding, and related location lookup tasks from an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the Amap API key and location-related inputs such as addresses, coordinates, route endpoints, city names, and IP-location lookups to Amap services. <br>
-Mitigation: Use a revocable Amap API key, prefer environment-variable configuration, and avoid submitting sensitive exact home, work, or travel details unless needed. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to query Chinese map and location data, plan routes, check weather and traffic, and format Gaode/AMap results for downstream workflows.
 
-## Reference(s): <br>
-- [Amap Open Platform](https://lbs.amap.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/mahongting/amap-search-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text or JSON command output with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided AMAP_API_KEY and sends map queries to Amap services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Map queries, addresses, coordinates, route endpoints, and IP-derived location data are sent to Gaode/AMap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with location data appropriate for that service and avoid sensitive locations unless the user's privacy requirements allow it.
+
+Risk: Supplying API keys on the command line can expose them through shell history, process listings, or logs.
+
+Mitigation: Prefer AMAP_API_KEY from a secure environment or secret store, restrict the key in the Gaode console where possible, and rotate it if exposed.
+
+Risk: Route, weather, POI, and traffic results depend on a third-party API and may be unavailable, rate-limited, stale, or inaccurate.
+
+Mitigation: Handle API errors and confirm critical travel, routing, or location decisions with authoritative sources before acting.
+
+## Reference(s):
+
+- [Gaode Open Platform](https://lbs.amap.com/)
+- [ClawHub skill page](https://clawhub.ai/mahongting/skills/amap-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON command output, with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Gaode/AMap Web Service API key via AMAP_API_KEY or --key.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

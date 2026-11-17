@@ -1,43 +1,57 @@
-## Description: <br>
-Grow firmware on any hardware through HTTP: upload C, compile on device, and apply with watchdog rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grow firmware on any hardware through HTTP: upload C, compile on device, and apply with watchdog rollback.
 
-## Publisher: <br>
-[Awis13](https://clawhub.ai/user/Awis13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[awis13](https://clawhub.ai/user/awis13)
 
-## Use Case: <br>
-Developers and device administrators use this skill to connect an agent to an authorized seed node, inspect hardware capabilities, write C firmware, compile it on the device, and apply updates with rollback checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent remote firmware-control authority over a live device. <br>
-Mitigation: Install only on devices you own or are authorized to administer, review generated firmware before applying it, and test on non-critical hardware first. <br>
-Risk: Bearer-token exposure could allow unauthorized access to firmware-control endpoints. <br>
-Mitigation: Keep the node on a trusted network, protect the token, rotate it when needed, and avoid sharing it in logs or untrusted channels. <br>
-Risk: Downloaded source or firmware changes may not match the user's safety expectations. <br>
-Mitigation: Verify the downloaded source and inspect generated C code before compiling or applying it. <br>
+## Use Case:
 
+Developers and engineers use this skill to connect an agent to a seed node, inspect hardware capabilities, upload C firmware, compile it on the device, and apply updates with rollback.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Awis13/seed) <br>
-- [Seed project homepage](https://github.com/Awis13/seed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with C snippets, JSON examples, and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for authorized seed nodes and may include firmware source changes, HTTP API calls, and deployment checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Agent-managed firmware upload, build, and apply actions can change code running on a remote device.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before firmware upload, build, or apply actions, and review proposed source changes before execution.
+
+Risk: Connection details include an admin bearer token and examples use plaintext HTTP.
+
+Mitigation: Treat the token as an admin credential, avoid exposing the service over plaintext HTTP, and run the node only on an isolated host or private network.
+
+Risk: Compiling source fetched during setup can introduce remote-code risk.
+
+Mitigation: Review and pin the seed source before compiling, and run the service as an unprivileged user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awis13/skills/seed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, HTTP API examples, and C code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent-facing instructions for node setup, authenticated HTTP requests, firmware editing, build checks, and apply workflows.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

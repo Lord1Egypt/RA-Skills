@@ -1,44 +1,53 @@
-## Description: <br>
-Academic literature search skill that supports multi-platform literature search, content extraction, and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through academic literature search, retrieval, analysis, and report generation across sources such as arXiv, Google Scholar, PubMed, IEEE Xplore, and ACM Digital Library.
 
-## Publisher: <br>
-[jonjiang96](https://clawhub.ai/user/jonjiang96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonjiang96](https://clawhub.ai/user/jonjiang96)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to search academic sources, fetch paper content, summarize findings, compare methods, and generate structured literature review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and fetched paper URLs may be sent through external web tools. <br>
-Mitigation: Use the skill only with research topics and links that are appropriate to share with those external services. <br>
-Risk: Generated literature summaries or comparisons may omit context or misstate paper findings. <br>
-Mitigation: Review outputs against the original papers and keep correct citations before using the report. <br>
-Risk: Some academic platforms may impose access limits, copyright restrictions, or unavailable full text. <br>
-Mitigation: Respect publisher access terms and verify whether fetched content may be used for the intended research workflow. <br>
+## Use Case:
 
+Developers, researchers, and agents use this skill to plan academic searches, fetch relevant papers, summarize findings, compare methods, and produce structured literature review reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonjiang96/literature-search-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/jonjiang96) <br>
-- [arXiv example paper URL](https://arxiv.org/abs/important-paper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with search commands, summaries, and structured reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include literature summaries, categorized findings, method comparisons, trend analysis, and research-gap identification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Academic content fetched from external sites may be subject to copyright, citation, or platform-access limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use retrieved content only within permitted access terms, preserve source attribution, and verify citations before publishing reports.
+
+Risk: Search results and summaries may omit relevant papers or misstate technical claims.
+
+Mitigation: Cross-check important findings against source papers and use multiple search queries or platforms for high-stakes literature reviews.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonjiang96/skills/literature-search-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, text]
+
+**Output Format:** [Markdown guidance with inline command examples and structured report outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Python, curl, and web access to academic sites.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

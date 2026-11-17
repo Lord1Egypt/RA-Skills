@@ -1,43 +1,59 @@
-## Description: <br>
-Queries IPv4 geolocation details including country, province, city, and ISP through the Juhe IP lookup API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries IPv4 geolocation details including country, province, city, and ISP through the Juhe IP lookup API.
 
-## Publisher: <br>
-[juhemcp](https://clawhub.ai/user/juhemcp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[juhemcp](https://clawhub.ai/user/juhemcp)
 
-## Use Case: <br>
-Developers and agent users use this skill to look up the geographic and ISP attribution for one or more public IPv4 addresses. It can return natural-language summaries, table output, and JSON results for IP investigation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the script sends the API key and queried public IPs over unencrypted HTTP. <br>
-Mitigation: Change the Juhe API endpoint to HTTPS before use if Juhe supports it, and only query IP addresses that are acceptable to send to Juhe. <br>
-Risk: The skill requires a Juhe API key. <br>
-Mitigation: Treat JUHE_IP_KEY like a password, prefer environment variable or local .env configuration, and avoid passing the key on the command line. <br>
+## Use Case:
 
+Developers and agents use this skill to answer user questions about public IPv4 address location and ISP ownership. It supports single-IP and batch lookup workflows and returns private, reserved, unsupported, or failed query states when lookup is not appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juhemcp/juhe-ip) <br>
-- [Juhe IP lookup API documentation](https://www.juhe.cn/docs/api/id/1) <br>
-- [Juhe data services](https://www.juhe.cn) <br>
-- [Juhe IP API endpoint](http://apis.juhe.cn/ip/ipNewV3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, API Calls, Guidance] <br>
-**Output Format:** [Natural language, terminal table output, and JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JUHE_IP_KEY for API-backed lookups; supports single and batch IPv4 queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Juhe API key and queried public IP addresses may be sent over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and change the script endpoint to HTTPS before using a real API key.
+
+Risk: Passing an API key on the command line can expose it through shell history or process inspection.
+
+Mitigation: Prefer the JUHE_IP_KEY environment variable or a protected local configuration file for key storage.
+
+Risk: Public IP addresses queried through this skill are sent to the Juhe service.
+
+Mitigation: Use the skill only when sending the target IP addresses to Juhe is acceptable for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/juhemcp/skills/juhe-ip)
+- [Juhe IP API documentation](https://www.juhe.cn/docs/api/id/1)
+- [Juhe platform](https://www.juhe.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain text summaries, tables, and JSON results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JUHE_IP_KEY. Single-IP output includes a text summary and JSON; batch output includes a table and JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

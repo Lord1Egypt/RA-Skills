@@ -1,45 +1,59 @@
-## Description: <br>
-Use this skill whenever the user asks to analyze, verify, debug, reverse-engineer, or automate Kuaishou Genius「预算/预测/实际」页面 data flow (especially management-yearly/actual). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents analyze and reproduce Kuaishou Genius management-yearly actuals API flows, including endpoint mapping, session-aware probing, payload reconstruction, and concise reporting.
 
-## Publisher: <br>
-[zhangpei03](https://clawhub.ai/user/zhangpei03) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangpei03](https://clawhub.ai/user/zhangpei03)
 
-## Use Case: <br>
-Developers and engineers use this skill to map, validate, and troubleshoot the Kuaishou Genius management-yearly actual data flow. It helps reconstruct endpoint order, required request parameters, and script-based checks for authorized debugging of the internal Genius system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to reuse live corporate session cookies. <br>
-Mitigation: Use only authorized Kuaishou sessions, avoid sharing cookies, and treat command output as confidential. <br>
-Risk: The scripts probe internal financial or business APIs. <br>
-Mitigation: Run probes only for approved debugging work on the intended corporate domain and review captured payloads or responses before sharing. <br>
-Risk: The Python client supports disabling TLS verification with --insecure. <br>
-Mitigation: Avoid --insecure except in explicitly approved diagnostic environments, and keep TLS verification enabled for normal use. <br>
+## Use Case:
 
+Authorized developers and engineers use this skill to map Kuaishou Genius Actual budget portal endpoints, replay approved read-only checks with valid sessions, reconstruct required request payloads, and report blockers or limitations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhangpei03/kuaishou-genius-actual) <br>
-- [Publisher Profile](https://clawhub.ai/user/zhangpei03) <br>
-- [Genius Actual Page](https://genius.corp.kuaishou.com/management-yearly/actual) <br>
-- [Genius Base Domain](https://genius.corp.kuaishou.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, endpoint maps, JSON payload guidance, and concise diagnostic reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API call order, required payload fields, blockers, and next actions for authorized debugging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow reuses live corporate login cookies for an internal financial portal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit authorization, protect session material, and never paste live SSO cookies into shared terminals, CI logs, tickets, screenshots, or shell history.
+
+Risk: Probing the wrong host or using weak transport settings could expose sensitive session or budget data.
+
+Mitigation: Restrict use to the approved HTTPS host and avoid disabling TLS verification.
+
+Risk: Placeholder POST payloads may not match the current business schema or permission scope.
+
+Mitigation: Treat generated calls as read-only analysis aids and validate payload fields against a fresh browser network capture before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangpei03/skills/kuaishou-genius-actual)
+- [Kuaishou Genius base URL](https://genius.corp.kuaishou.com)
+- [Kuaishou Genius Actual page](https://genius.corp.kuaishou.com/management-yearly/actual)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, Python command examples, endpoint tables, and JSON payload guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local helper scripts and sample JSON payloads; requires an authorized live session cookie for probing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

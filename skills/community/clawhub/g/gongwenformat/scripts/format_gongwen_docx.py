@@ -44,36 +44,40 @@ def format_title(paragraph) -> None:
 
 
 def format_heading1(paragraph) -> None:
-    """一级层次：黑体"""
+    """一级层次：黑体，首行左空二字"""
     clear_paragraph_format(paragraph)
     paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.paragraph_format.first_line_indent = Pt(32)
     for run in paragraph.runs:
         if run.text.strip():
             set_run_font(run, "黑体", 16)
 
 
 def format_heading2(paragraph) -> None:
-    """二级层次：楷体"""
+    """二级层次：楷体，首行左空二字"""
     clear_paragraph_format(paragraph)
     paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.paragraph_format.first_line_indent = Pt(32)
     for run in paragraph.runs:
         if run.text.strip():
             set_run_font(run, "楷体", 16)
 
 
 def format_heading3(paragraph) -> None:
-    """三级层次：仿宋"""
+    """三级层次：仿宋，首行左空二字"""
     clear_paragraph_format(paragraph)
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    paragraph.paragraph_format.first_line_indent = Pt(32)
     for run in paragraph.runs:
         if run.text.strip():
             set_run_font(run, "仿宋_GB2312", 16)
 
 
 def format_heading4(paragraph) -> None:
-    """四级层次：仿宋"""
+    """四级层次：仿宋，首行左空二字"""
     clear_paragraph_format(paragraph)
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    paragraph.paragraph_format.first_line_indent = Pt(32)
     for run in paragraph.runs:
         if run.text.strip():
             set_run_font(run, "仿宋_GB2312", 16)
@@ -95,15 +99,6 @@ def format_recipient(paragraph) -> None:
     for run in paragraph.runs:
         if run.text.strip():
             set_run_font(run, "仿宋_GB2312", 16)
-
-
-def add_red_separator_line(paragraph) -> None:
-    """添加红色分割线"""
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = paragraph.add_run()
-    # 添加红色下划线模拟分割线
-    run.font.color.rgb = None  # 将在docx中手动设置为红色
-    # 这里我们添加一个特殊标记，让后续处理知道这是红色分割线
 
 
 def add_page_number(section) -> None:
@@ -306,11 +301,13 @@ def main() -> None:
         non_empty_index += 1
 
     doc.save(str(dst))
-    
+
     # 输出处理信息
     print(f"文档已保存至: {dst}")
     print(f"主送机关: {'有' if recipient_exists else '无'}")
-    print("注意：如有主送机关，请在标题后手动添加红色分割线；如无，标题后应空两行")
+    print("提示：本脚本只处理正文的页面、字体、层次与页码。")
+    print("版头要素（发文机关标志、发文字号、发文字号下4mm的红色分隔线）和版记需在 Word/WPS 中手动完成；")
+    print("标题与主送机关/正文之间不设红色分隔线（GB/T 9704-2012 只在版头设一条红线）。")
 
 
 if __name__ == "__main__":

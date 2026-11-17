@@ -83,6 +83,8 @@ If YumFu helped you or made you smile, you can support future development here:
 | 🐉 **Game of Thrones** | Dark fantasy politics | English | ✅ Playable |
 | 🧙 **Lord of the Rings** | Epic fantasy quest | English | ✅ Playable |
 | 🐒 **西游记** (Journey to the West) | Mythological RPG | 中文/EN | ✅ Playable |
+| 🏹 **罗摩衍那** (Ramayana) | Indian epic adventure | 中文/EN | ✅ Playable |
+| 🧭 **大唐西域记** (Xuanzang) | Silk Road historical travel | 中文/EN | ✅ Playable |
 | 🩲 **内裤超人** (Captain Underpants) | Comedy chaos RPG | 中/EN | ✅ Playable |
 | 🏹 **射雕英雄传** (Legend of Condor Heroes) | Jin Yong wuxia | 中文 | 🚧 Coming |
 
@@ -222,16 +224,21 @@ YumFu stores all game data **locally** on your machine:
 
 YumFu offers multiple fantasy universes to explore. Each world has unique gameplay mechanics, art styles, and storylines.
 
-### 🇨🇳 Chinese Wuxia & Historical (中文武侠/历史)
+### 🇨🇳 Chinese Wuxia, Historical & Mythic (中文武侠/历史/神话)
 - ⚔️ **Swordsman Tales** (笑傲江湖) - Martial arts sects, honor duels, legendary techniques
-- 🦞 **Lobster Three Kingdoms** (龙虾三国) - Three Kingdoms era strategy, 5 roles, weapons/mounts/ultimate skills ✅ **NEW**
-- 🗡️ **Dragon & Sword Epic** (倚天屠龙记) - Ancient artifacts, mystical powers *(coming soon)*
+- 🦞 **Lobster Three Kingdoms** (龙虾三国) - Three Kingdoms era strategy, 5 roles, weapons/mounts/ultimate skills
+- 🐒 **Journey to the West** (西游记) - Mythic pilgrimage, celestial court, and demon kingdoms ✅
+- 🏹 **Ramayana** (罗摩衍那) - Indian epic adventure from Ayodhya to Lanka ✅
+- 🗡️ **Dragon & Sword Epic** (倚天屠龙记) - Ancient artifacts and mystical powers
 
 ### 🇬🇧 Western Fantasy
 - ⚡ **Wizard School** - Magic academy, four houses, spell duels
 - 🐱 **Warrior Clans** - Feline tribes, forest territories, clan politics
 - 🗡️ **Middle-earth Quest** - Epic journey, fellowship, ancient evil ✅
 - 🐉 **Medieval Kingdoms** - Political intrigue, noble houses, throne wars ✅
+- 🐒 **Journey to the West** - Chinese mythic adventure ✅
+- 🏹 **Ramayana** - Vālmīki-inspired Indian epic adventure ✅
+- 🧭 **Great Tang Records on the Western Regions** - Silk Road travel adventure ✅
 - 🐺 **Monster Hunter** - Witcher-inspired adventures *(coming soon)*
 
 ### 🪖 Modern Military (现代军事)

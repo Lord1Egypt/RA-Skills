@@ -1,5 +1,4 @@
 # summarize skill — multi-platform one-line installer (Windows PowerShell)
-# iwr https://raw.githubusercontent.com/gtbwpkwjnb-alt/summarize-skill/master/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 
@@ -8,25 +7,25 @@ $RepoHTTPS = "https://github.com/gtbwpkwjnb-alt/summarize-skill.git"
 
 # --- Platform auto-detect ---
 function Get-InstallDir {
-    # ZCode
-    if (Test-Path "$env:USERPROFILE\.zcode\skills") {
-        return "$env:USERPROFILE\.zcode\skills\summarize"
+    # ZCode (默认 ~/.agents/skills/)
+    if (Test-Path "$env:USERPROFILE\.agents\skills") {
+        return "$env:USERPROFILE\.agents\skills\summarize"
+    }
+    # CodeBuddy
+    if (Test-Path "$env:USERPROFILE\.codebuddy\skills") {
+        return "$env:USERPROFILE\.codebuddy\skills\summarize"
     }
     # Claude Code
     if (Test-Path "$env:USERPROFILE\.claude\skills") {
         return "$env:USERPROFILE\.claude\skills\summarize"
     }
-    # Cursor
-    if (Test-Path "$env:USERPROFILE\.cursor\extensions") {
-        return "$env:USERPROFILE\.cursor\agent-skills\summarize"
-    }
     # Codex
     if (Test-Path "$env:USERPROFILE\.codex\skills") {
         return "$env:USERPROFILE\.codex\skills\summarize"
     }
-    # Windsurf
-    if (Test-Path "$env:USERPROFILE\.windsurf\skills") {
-        return "$env:USERPROFILE\.windsurf\skills\summarize"
+    # Reasonix
+    if (Test-Path "$env:USERPROFILE\.reasonix\skills") {
+        return "$env:USERPROFILE\.reasonix\skills\summarize"
     }
     # Fallback
     return "$env:USERPROFILE\.agent-skills\summarize"
@@ -42,17 +41,23 @@ if (Test-Path $InstallDir) {
     Write-Host "🔄 Updating to latest version..."
     Push-Location $InstallDir
     try {
-        git pull --rebase 2>$null
-    } catch {
+        git pull --ff-only
+        if ($LASTEXITCODE -ne 0) {
+            throw "git pull --ff-only failed; existing installation was preserved"
+        }
+    } finally {
         Pop-Location
-        Remove-Item -Recurse -Force $InstallDir -ErrorAction SilentlyContinue
-        try { git clone $RepoSSH $InstallDir } catch { git clone $RepoHTTPS $InstallDir }
     }
-    Pop-Location
 } else {
     Write-Host "   Cloning into $InstallDir ..."
     New-Item -ItemType Directory -Force -Path (Split-Path $InstallDir) | Out-Null
-    try { git clone $RepoSSH $InstallDir } catch { git clone $RepoHTTPS $InstallDir }
+    git clone $RepoSSH $InstallDir
+    if ($LASTEXITCODE -ne 0) {
+        git clone $RepoHTTPS $InstallDir
+        if ($LASTEXITCODE -ne 0) {
+            throw "git clone failed"
+        }
+    }
 }
 
 $ver = Get-Content "$InstallDir\VERSION" -Raw

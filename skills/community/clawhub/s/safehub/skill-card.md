@@ -1,46 +1,60 @@
-## Description: <br>
-Scan OpenClaw skills for malware and security issues before installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan OpenClaw skills for malware and security issues before installation.
 
-## Publisher: <br>
-[sumeetghimire](https://clawhub.ai/user/sumeetghimire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sumeetghimire](https://clawhub.ai/user/sumeetghimire)
 
-## Use Case: <br>
-Developers and engineers use SafeHub to scan OpenClaw skills from local paths or trusted repository URLs before installation, review static and sandbox findings, and decide whether to install with caution or reject a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted GitHub scan targets can reach a shell command. <br>
-Mitigation: Use local paths or only trusted repository URLs until cloning is changed to a non-shell API. <br>
-Risk: Sandbox results may overstate what behavior monitoring actually observes. <br>
-Mitigation: Treat sandbox output as advisory and review static findings and source behavior before relying on the recommendation. <br>
-Risk: Rule updates can overwrite local rules from the configured rules repository. <br>
-Mitigation: Run updates only with a trusted SAFEHUB_RULES_REPO and branch. <br>
+## Use Case:
 
+Developers and security reviewers use SafeHub to scan OpenClaw skills by name, local path, or GitHub URL before installation. It reports static analysis findings, optional sandbox behavior, a trust score, and an install recommendation.
 
-## Reference(s): <br>
-- [SafeHub ClawHub listing](https://clawhub.ai/sumeetghimire/safehub) <br>
-- [Publisher profile](https://clawhub.ai/user/sumeetghimire) <br>
-- [SafeHub homepage](https://github.com/sumeetghimire/safehub) <br>
-- [SafeHub support](https://github.com/sumeetghimire/safehub/issues) <br>
-- [Semgrep](https://semgrep.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, analysis] <br>
-**Output Format:** [Terminal text with scan findings, trust score, recommendation, and cached JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, Semgrep, and git; Docker is optional for sandbox execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter, package.json, skill.json, clawhub.json, server release metadata) <br>
+Risk: Scanning untrusted GitHub URLs could run attacker-controlled commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer vetted local paths and avoid untrusted GitHub URL scans until command construction is fixed.
+
+Risk: Sandbox results may be incomplete and could give a misleading sense of safety.
+
+Mitigation: Treat sandbox output as one signal, review static findings manually, and do not use a clean scan as proof that a skill is safe.
+
+Risk: Rule updates can overwrite local scanner rules from the configured source.
+
+Mitigation: Run updates only from trusted, pinned rule sources.
+
+## Reference(s):
+
+- [SafeHub ClawHub page](https://clawhub.ai/sumeetghimire/skills/safehub)
+- [SafeHub homepage](https://github.com/sumeetghimire/safehub)
+- [SafeHub support](https://github.com/sumeetghimire/safehub/issues)
+- [Semgrep documentation](https://semgrep.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Terminal text and Markdown-style security reports with findings, scores, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may be cached locally for later review.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter, package.json, clawhub.json, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

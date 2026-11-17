@@ -1,42 +1,54 @@
-## Description: <br>
-Review an API change for compatibility, validation, auth, error shape, idempotency, and observability, and classify it as additive, behavior-changing, or breaking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review an API change for compatibility, validation, auth, error shape, idempotency, and observability, and classify it as additive, behavior-changing, or breaking.
 
-## Publisher: <br>
-[ritual](https://clawhub.ai/user/ritual) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ritual](https://clawhub.ai/user/ritual)
 
-## Use Case: <br>
-Developers and engineers use this skill to review API contract changes, classify compatibility impact, and produce a verdict with required fixes, tests, migration notes, and rollout checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional knowledge-capture workflow can write a reusable note into the repository. <br>
-Mitigation: Only write the note after explicit user approval and keep it small with cited evidence. <br>
-Risk: The optional Ritual Cloud path requires installing and initializing an external CLI. <br>
-Mitigation: Review what the external CLI does before enabling it and use the skill locally when cloud context is unnecessary. <br>
+## Use Case:
 
+Developers and engineers use this skill to review API diffs or proposals, classify compatibility impact, identify risks around contracts, auth, errors, idempotency, and observability, and produce a minimal test and rollout plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ritual/api-change-review) <br>
-- [Ritual homepage](https://ritual.work) <br>
-- [Open Knowledge Format overview](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown or plain text review notes with optional shell commands and OKF markdown when approved] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-first checklist output; optional knowledge-note file writes require user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional Ritual Cloud upgrade can involve installing a third-party CLI and connecting workspace context to an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill locally by default; only install or initialize the Ritual Cloud CLI intentionally after reviewing the package, version, permissions, and any workspace data or credentials it may access.
+
+Risk: API change review output can be incomplete or misleading if the provided diff lacks affected callers, compatibility expectations, or rollout constraints.
+
+Mitigation: Confirm contract surface, caller impact, compatibility assumptions, tests, and rollout notes against project evidence before applying recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ritual/skills/api-change-review)
+- [Ritual homepage](https://ritual.work)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance, Code]
+
+**Output Format:** [Markdown with structured review findings, compatibility verdicts, test plans, rollout notes, and optional code or shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local-first output based on provided code or content; optional Ritual Cloud setup guidance may be included when deeper workspace context is needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

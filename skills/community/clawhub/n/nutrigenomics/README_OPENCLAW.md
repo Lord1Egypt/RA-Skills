@@ -2,7 +2,7 @@
 
 **Transform your genetic data into actionable nutrition insights.**
 
-Generate personalised nutrition recommendations based on your DNA in minutes. Nutrigenomics analyzes 40+ genes affecting how your body metabolises nutrients, absorbs vitamins, and responds to dietary compounds.
+Generate personalised nutrition recommendations based on your DNA in minutes. Nutrigenomics analyses 24 genes (28 SNPs) affecting how your body metabolises nutrients, absorbs vitamins, and responds to dietary compounds.
 
 ## 🚀 Quick Start
 
@@ -26,7 +26,7 @@ Then upload your `.txt`, `.csv`, or `.vcf` file.
 
 Within seconds, you'll receive:
 - ✅ **Personalised nutrition recommendations**
-- ✅ **Risk scores for 8 nutrient categories**
+- ✅ **Risk scores for 12 nutrient domains**
 - ✅ **Visual breakdown** (radar chart of your nutrient profile)
 - ✅ **Gene-nutrient interaction map** (heatmap)
 - ✅ **Actionable guidance** (what to eat, what to supplement)
@@ -62,7 +62,7 @@ Nutrigenomics examines genes in these key areas:
 ### Antioxidant & Detox
 - **SOD2**, **GPX1**, **COMT**, and more
 
-Plus **40+ total SNPs** from peer-reviewed nutrigenomics literature.
+A curated **28-SNP panel** (24 genes, 12 nutrient domains) from peer-reviewed nutrigenomics literature.
 
 ---
 
@@ -111,11 +111,11 @@ Recommendations:
 - ✅ All analysis runs **locally** on your device — no data is sent to external servers
 - ✅ No account creation required
 - ✅ Input file is never copied into the output directory
-- ✅ Reports include per-SNP genotype calls for the 58 analysed SNPs only — your full raw genome data is not reproduced
+- ✅ Reports include per-SNP genotype calls for the 28 analysed SNPs only — your full raw genome data is not reproduced
 - ✅ Output files persist in a local timestamped folder until you delete them
 - ✅ Designed with privacy-first principles
 
-You can share your final report with a healthcare provider. Be aware it will include genotype calls for the 58 nutrition-related SNPs analysed (e.g. `CT` for MTHFR rs1801133), which is the information that makes the report actionable.
+You can share your final report with a healthcare provider. Be aware it will include genotype calls for the 28 nutrition-related SNPs analysed (e.g. `CT` for MTHFR rs1801133), which is the information that makes the report actionable.
 
 ---
 
@@ -180,7 +180,7 @@ After analysis, you'll receive:
    - Supplement interaction guidance
 
 2. **nutrigenomics_radar.png** — Nutrient risk profile radar chart
-   - Visual overview of your 8 nutrient categories
+   - Visual overview of your 12 nutrient domains
    - Easy to share with healthcare providers
 
 3. **nutrigenomics_heatmap.png** — Gene-nutrient interaction matrix
@@ -246,7 +246,7 @@ The SNP panel and risk scoring algorithm are informed by peer-reviewed nutrigeno
 Users should consult these authoritative sources and healthcare providers for specific scientific claims and medical decisions.
 
 **SNP Panel Design:**
-- 58 SNPs across 40+ genes
+- 28 SNPs across 24 genes (12 nutrient domains)
 - Evidence sourced from: GWAS Catalog, ClinVar, PubMed MEDLINE
 - Minor allele frequency > 1% in major populations
 - Effect sizes from peer-reviewed publications

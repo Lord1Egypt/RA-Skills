@@ -1,41 +1,57 @@
-## Description: <br>
-Simple technical analysis for stocks using Yahoo Finance data, including SMA20, SMA50, 14-day RSI, 20-day range position, and buy, hold, or sell signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple technical analysis for stocks that fetches Yahoo Finance data and calculates SMA20, SMA50, 14-day RSI, 20-day price-range position, and buy, hold, or sell-style signals.
 
-## Publisher: <br>
-[loda13](https://clawhub.ai/user/loda13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loda13](https://clawhub.ai/user/loda13)
 
-## Use Case: <br>
-Developers and external users can use this skill to fetch public stock price data and generate concise technical indicator summaries for Yahoo Finance tickers. The output is educational technical analysis and is not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Yahoo Finance to fetch public stock data. <br>
-Mitigation: Install and run it only in environments where outbound requests to Yahoo Finance are acceptable. <br>
-Risk: Technical indicators and buy, hold, or sell signals can be inaccurate or misleading if treated as investment advice. <br>
-Mitigation: Use the output for educational analysis only and review market decisions independently. <br>
+## Use Case:
 
+External users and developers can use this skill to run a lightweight stock technical analysis script for supported or Yahoo Finance-compatible tickers. The output helps review technical indicators, but it is educational analysis and not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loda13/stock-tech-analysis) <br>
-- [Yahoo Finance chart data endpoint](https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=3mo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, analysis, guidance] <br>
-**Output Format:** [Console text with ticker-level technical summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public Yahoo Finance price data and prints moving-average, RSI, range-position, and summary-signal analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The script contacts Yahoo Finance at runtime to fetch stock chart data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound access to Yahoo Finance is acceptable.
+
+Risk: The output includes buy, hold, or sell-style technical signals that could be mistaken for investment advice.
+
+Mitigation: Treat the results as educational technical analysis and apply independent financial review before making decisions.
+
+Risk: The documentation describes custom ticker arguments, but the inspected script uses a fixed stock list.
+
+Mitigation: Review or update the script before relying on custom ticker command-line input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loda13/skills/stock-tech-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text output with stock prices, technical indicators, and summary signals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches public Yahoo Finance chart data at runtime and prints analysis in Chinese.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

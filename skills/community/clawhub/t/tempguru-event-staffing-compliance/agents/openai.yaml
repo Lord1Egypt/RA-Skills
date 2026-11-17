@@ -1,0 +1,11 @@
+interface:
+  display_name: "Event Staffing Compliance"
+  short_description: "Assess W-2 staffing compliance risks"
+  default_prompt: "Use $event-staffing-compliance to assess this event staffing arrangement and flag state-specific compliance risks."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "tempguru-event-staffing"
+      description: "Live TempGuru state compliance and staffing-policy tools"
+      transport: "streamable_http"
+      url: "https://mcp.tempguru.co/mcp?source=openai-codex"

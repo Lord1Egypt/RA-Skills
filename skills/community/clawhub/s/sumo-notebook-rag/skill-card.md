@@ -1,41 +1,48 @@
-## Description: <br>
-Searches the SumoNoteBook knowledge base and returns previews of the top three relevant text entries for agent context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the SumoNoteBook knowledge base and returns the three most relevant text previews as context for the agent.
 
-## Publisher: <br>
-[sumo0221](https://clawhub.ai/user/sumo0221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sumo0221](https://clawhub.ai/user/sumo0221)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Users and agents use this skill to query a local SumoNoteBook Markdown knowledge base and include relevant notebook snippets as context when answering questions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Retrieved snippets may surface private notebook content in agent context.
+
+Mitigation: Avoid indexing confidential notes unless you are comfortable having them surfaced, and treat returned snippets as potentially private.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to query a local SumoNoteBook markdown knowledge base and add relevant notebook excerpts to the current task context. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Local notebook indexing may make sensitive notes available in future agent context. <br>
-Mitigation: Avoid indexing secrets or regulated data, and review indexed content before using the skill with sensitive notes. <br>
-Risk: The skill depends on local query and ingestion scripts plus local Ollama and LanceDB services. <br>
-Mitigation: Inspect the referenced local scripts and confirm the local Ollama and LanceDB setup is trusted before use. <br>
+**Output Format:** [Markdown-style text with retrieved snippet previews and optional shell commands for maintenance checks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Sumo Notebook RAG on ClawHub](https://clawhub.ai/sumo0221/sumo-notebook-rag) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Returns up to three matching notebook snippets with relevance scores and preview text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-like text with query echo, ranked results, filenames, relevance scores, and content previews.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns the top three results with approximately 300-character previews; depends on local Ollama and LanceDB setup.] <br>
+1.0.0 (source: release evidence and artifact/SKILL.md)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

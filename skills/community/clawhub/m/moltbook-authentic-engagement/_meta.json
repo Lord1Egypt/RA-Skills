@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn73k1mccznjr170mkak1e2nm9808h7y",
-  "slug": "moltbook-authentic-engagement",
+  "name": "moltbook-authentic-engagement",
   "version": "1.0.0",
-  "publishedAt": 1770668276022
+  "description": "Authentic engagement protocols for Moltbook — quality over quantity, genuine voice, spam filtering, and meaningful community building for AI agents",
+  "author": "bobrenze-bot",
+  "license": "MIT",
+  "repository": "https://github.com/bobrenze-bot/skill-moltbook-authentic-engagement",
+  "keywords": ["moltbook", "engagement", "social", "authentic", "community", "agent"],
+  "entry": "bin/moltbook-engage",
+  "install": {
+    "type": "git",
+    "url": "https://github.com/bobrenze-bot/skill-moltbook-authentic-engagement.git"
+  },
+  "requires": ["curl", "jq"],
+  "env": {
+    "MOLTBOOK_API_KEY": "Your Moltbook API key from https://www.moltbook.com/api",
+    "MOLTBOOK_LIVE": "Set to 'true' for live posting, omit for dry-run mode"
+  }
 }

@@ -1,44 +1,60 @@
-## Description: <br>
-Kalshi prediction market agent - analyzes markets and executes trades via the Kalshi v2 API <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kalshi Agent helps agents analyze Kalshi prediction markets and execute trades through the Kalshi v2 API.
 
-## Publisher: <br>
-[JThomasDevs](https://clawhub.ai/user/JThomasDevs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jthomasdevs](https://clawhub.ai/user/jthomasdevs)
 
-## Use Case: <br>
-Developers and agent operators use this skill to browse Kalshi markets, inspect market details and order books, review portfolio state, and prepare or execute trades through the Kalshi CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use stored credentials to place real-money trades on a funded Kalshi account. <br>
-Mitigation: Require explicit human approval before any buy, sell, or cancel command is executed, and review the market, side, quantity, price, and account impact before approval. <br>
-Risk: The `--force` option can bypass trade confirmation prompts. <br>
-Mitigation: Disallow `--force` unless a human explicitly approves bypassing the confirmation step for the specific trade. <br>
-Risk: Kalshi credentials and RSA private keys are stored in local files or shell configuration. <br>
-Mitigation: Restrict permissions on `~/.kalshi` and `~/.kalshi/private_key.pem`, verify the upstream `kalshi-cli` package before installation, and avoid exporting credentials through shell configuration unless reviewed. <br>
+## Use Case:
 
+External developers and agent operators use this skill to browse Kalshi markets, inspect account and portfolio state, and prepare or execute Kalshi trades through the kalshi CLI.
 
-## Reference(s): <br>
-- [Kalshi API Reference](https://docs.kalshi.com/api-reference/) <br>
-- [kalshi-cli](https://github.com/JThomasDevs/kalshi-cli) <br>
-- [Kalshi API Credentials](https://kalshi.com/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market analysis, portfolio status summaries, and trade commands that can affect a funded Kalshi account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.0 (source: server release metadata) <br>
+Risk: The skill can read Kalshi account data and place or cancel real orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when live Kalshi access is intended, require explicit human approval for every trade, and do not use --force in agent workflows.
+
+Risk: The installer uses an unpinned global kalshi-cli installation.
+
+Mitigation: Pin and inspect the kalshi-cli version before installation and avoid running the installer with elevated privileges.
+
+Risk: Kalshi API credentials and the private key are stored on the local filesystem.
+
+Mitigation: Lock down ~/.kalshi and private key files to owner-only permissions.
+
+## Reference(s):
+
+- [Kalshi API Reference](https://docs.kalshi.com/api-reference/)
+- [Kalshi API Credentials](https://kalshi.com/api)
+- [kalshi-cli](https://github.com/JThomasDevs/kalshi-cli)
+- [ClawHub Skill Page](https://clawhub.ai/jthomasdevs/skills/kalshi-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Kalshi API credentials and a local RSA private key before live account access or trading.]
+
+## Skill Version(s):
+
+0.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

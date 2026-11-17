@@ -1,39 +1,54 @@
-## Description: <br>
-Creates a single PowerPoint .pptx pitch deck for investor, product launch, sales, fundraising, startup pitch, or business proposal scenarios using OfficeCLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents build fundraising and investor pitch decks as single PowerPoint files using OfficeCLI, with stage-specific guidance for seed, Series A, Series B, Series C, SAFE, convertible-note, and strategic raise scenarios.
 
-## Publisher: <br>
-[iceyliu](https://clawhub.ai/user/iceyliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iceyliu](https://clawhub.ai/user/iceyliu)
 
-## Use Case: <br>
-External users and business teams use this skill to plan and generate professional pitch decks as PowerPoint files. It supports deck structures, slide patterns, charts, styled tables, stat callouts, transitions, validation, and speaker notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tells the agent to download and run an unpinned OfficeCLI installer or updater before creating slides. <br>
-Mitigation: Install and review a pinned OfficeCLI version separately, then remove or ignore the automatic curl/bash installer and updater block. <br>
+## Use Case:
 
+External users and developers use this skill when an agent needs to create a fundraising-focused investor deck rather than a generic business presentation. It guides stage diagnosis, narrative structure, slide recipes, OfficeCLI commands, and delivery checks for pitch decks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iceyliu/officecli-pitch-deck) <br>
-- [Creating a Pitch Deck](creating.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [PowerPoint .pptx file plus Markdown with inline OfficeCLI shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The expected deliverable is one .pptx file with speaker notes on content slides and validation performed with officecli validate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and changelog) <br>
+Risk: Setup instructions include remote installer commands that execute downloaded scripts directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned OfficeCLI release from the official release page and verify checksums or signatures before installation.
+
+Risk: Investor decks can contain misleading or unsupported fundraising claims if generated content is not reviewed.
+
+Mitigation: Review financial figures, source footnotes, chart axes, use-of-funds details, and stage-specific assertions before sharing a deck.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iceyliu/skills/officecli-pitch-deck)
+- [OfficeCLI releases](https://github.com/iOfficeAI/OfficeCLI/releases)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with OfficeCLI command examples; the intended final artifact is a local .pptx file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes pitch-deck delivery checks for stage fit, sourcing, financial figures, chart axes, use of funds, and visual review.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

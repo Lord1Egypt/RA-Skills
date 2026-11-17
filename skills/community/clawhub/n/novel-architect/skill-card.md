@@ -1,44 +1,60 @@
-## Description: <br>
-A Chinese-language novel-writing workflow that guides premise refinement, outline planning, chapter drafting, quality checks, and final delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language novel-writing workflow skill that guides an agent from story direction through outline planning, chapter drafting, quality checks, and final delivery using FBS workflow scripts.
 
-## Publisher: <br>
-[z625662197](https://clawhub.ai/user/z625662197) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z625662197](https://clawhub.ai/user/z625662197)
 
-## Use Case: <br>
-Writers and agent operators use this skill to manage Chinese web-novel projects from initial direction through outline, chapter drafting, revision gates, and final manuscript delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes local automation, host-inspection, publishing, cleanup, and self-evolution tools that exceed the core novel-writing workflow. <br>
-Mitigation: Review the scripts before use, run the skill in an isolated project, and disable or remove those paths unless they are intentionally needed. <br>
-Risk: Helper commands may act on local project files if run without a clear target. <br>
-Mitigation: Pass an explicit bookRoot for workflow commands and avoid running npm scripts blindly. <br>
-Risk: The package is tagged as requiring OAuth tokens or other sensitive credentials. <br>
-Mitigation: Provide only the minimum credentials required for the intended workflow and keep them out of generated manuscript or state files. <br>
+## Use Case:
 
+External writers, developers, and agent operators use this skill to plan and produce long-form Chinese web-novel manuscripts with structured stages, persistent book memory, chapter tracking, quality gates, and delivery checks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/z625662197/novel-architect) <br>
-- [Skill definition](SKILL.md) <br>
-- [Script index](scripts/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with optional shell commands, manuscript files, and JSON status outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an explicit bookRoot and may create FBS state, memory, output, and deliverable files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact frontmatter reports 1.0.0 and package.json reports 2.1.2) <br>
+Risk: The skill may read project files and possibly WorkBuddy profile or memory data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where that access is acceptable; disable or review host-profile import before using confidential manuscripts.
+
+Risk: External search can expose manuscript context or research queries outside the local workspace.
+
+Mitigation: Disable or explicitly review network search for confidential projects and keep search use auditable.
+
+Risk: Bundled maintenance, publishing, and self-evolution scripts can change project state or release artifacts.
+
+Mitigation: Require explicit manual review and command approval before running those scripts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/z625662197/skills/novel-architect)
+- [FBS-BookWriter Homepage](https://fbs-bookwriter.u3w.com/)
+- [Artifact Skill Definition](artifact/SKILL.md)
+- [Artifact Script Index](artifact/scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write manuscript state, memory files, chapter drafts, deliverables, and audit reports under a configured book root.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0 and package.json reports 2.1.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

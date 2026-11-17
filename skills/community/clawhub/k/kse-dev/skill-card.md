@@ -1,38 +1,48 @@
-## Description: <br>
-Guides developers through spec-driven CLI workflows with kiro-spec-engine, including project initialization, spec creation, document enhancement, environment checks, and project adoption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于 kiro-spec-engine (kse) 的 CLI 开发工作流，帮助代理使用 kse 命令创建规格文档、管理项目结构、增强文档质量、检查环境并推进 spec-driven 开发。
 
-## Publisher: <br>
-[sougannkyou](https://clawhub.ai/user/sougannkyou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sougannkyou](https://clawhub.ai/user/sougannkyou)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering agents use this skill to run a CLI-centered KSE workflow: initialize a project, create specs, write requirements/design/tasks documents, enhance documentation, check the local environment, and validate implementation against acceptance criteria.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow recommends installing kiro-spec-engine as an unpinned global npm CLI, which can expose users to unexpected package changes or broad local command execution.
+
+Mitigation: Review the package source, pin a trusted version before installation, and avoid elevated privileges when installing or running the CLI.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers use this skill to run a KSE CLI workflow for spec-driven development: initializing projects, creating specs, improving requirements and design documents, checking the environment, and validating implementation against acceptance criteria. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to install an npm CLI globally and run commands that can create or change project files. <br>
-Mitigation: Confirm that `kiro-spec-engine` is the intended package, prefer a pinned or project-local install when appropriate, run `kse` only in the intended project, and review files it creates or modifies. <br>
+**Output Format:** [Markdown guidance with inline shell commands and project-file conventions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sougannkyou/kse-dev) <br>
+**Other Properties Related to Output:** [Produces procedural CLI workflow guidance; no structured machine-readable output is specified.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and file-path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose npm and kse CLI commands that modify project files.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

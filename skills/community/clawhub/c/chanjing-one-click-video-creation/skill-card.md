@@ -1,50 +1,61 @@
-## Description: <br>
-Creates a complete short video from a topic or prepared workflow by orchestrating Chanjing TTS, digital-human video composition, AI text-to-video scenes, and local ffmpeg packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates complete short-form videos from a topic or workflow by generating script, storyboard, digital-human narration, AI video scenes, and a local MP4 through Chanjing Open API and local media tooling.
 
-## Publisher: <br>
-[binkes](https://clawhub.ai/user/binkes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binkes](https://clawhub.ai/user/binkes)
 
-## Use Case: <br>
-External creators, media operators, and developers use this skill to turn a topic, script, or workflow JSON into a publishable short video with narration, digital-human segments, AI-generated B-roll, and local MP4 assembly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends scripts, prompts, audio, and generated media through Chanjing API and CDN services. <br>
-Mitigation: Use the skill only when the user trusts Chanjing's API/CDN and is comfortable sending that content through the service. <br>
-Risk: The credential file can contain app_id, secret_key, access_token, and expiry data persisted on disk. <br>
-Mitigation: Keep credentials.json out of source control, use restrictive file permissions, and place it in an explicit credentials directory. <br>
-Risk: Rendering invokes ffmpeg and ffprobe and writes final media plus intermediate files to local storage. <br>
-Mitigation: Install trusted ffmpeg/ffprobe binaries, choose an explicit output directory, and review or delete generated work files after each run. <br>
-Risk: Prompt defaults include Chinese and East Asian visual assumptions that may be unsuitable for locale-neutral output. <br>
-Mitigation: Review and adjust the prompt templates or workflow fields when locale-neutral or different regional outputs are required. <br>
+## Use Case:
 
+External users and developers use this skill to turn a topic, script, or prepared workflow into a publishable short-form video with narration, storyboarded scenes, generated video clips, and local packaging.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/binkes/chanjing-one-click-video-creation) <br>
-- [Publisher profile](https://clawhub.ai/user/binkes) <br>
-- [Chanjing documentation](https://doc.chanjing.cc) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Runtime manifest](artifact/manifest.yaml) <br>
-- [Render rules](artifact/templates/render_rules.md) <br>
-- [Storyboard prompt rules](artifact/templates/storyboard_prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance, JSON workflow and result files, shell commands, configuration values, and local media files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, the renderer writes final_one_click.mp4, workflow_result.json, and work/ intermediate files under the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: The skill uses Chanjing API credentials and persists credential state on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials.json out of version control, restrict file permissions, and use a dedicated credentials directory.
+
+Risk: Credentialed network handling is broader than the declared trust boundary and downloads media from API response URLs.
+
+Mitigation: Use the official Chanjing API host, avoid untrusted shared or CI environments, and review downloaded media destinations before execution.
+
+Risk: Rendering invokes local media tooling and writes intermediate files and final video outputs.
+
+Mitigation: Run in a controlled workspace with an explicit output directory and review retained work files after completion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binkes/skills/chanjing-one-click-video-creation)
+- [Chanjing documentation](https://doc.chanjing.cc)
+- [README](artifact/README.md)
+- [Render rules](artifact/templates/render_rules.md)
+- [Storyboard prompt rules](artifact/templates/storyboard_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with JSON workflow structures, shell commands, and generated local media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow_result.json, intermediate work files, and final_one_click.mp4 when rendering succeeds.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

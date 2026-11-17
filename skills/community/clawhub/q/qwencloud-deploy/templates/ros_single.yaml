@@ -1,0 +1,183 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Description: 'qwencloud single-host deployment: 1 ECS + EIP + VPC + SecurityGroup. Static hosting + app service co-located on one VM.'
+
+Parameters:
+  AppName:
+    Type: String
+    Description: App name (used for resource naming), lowercase alphanumeric and hyphens only
+    Default: app
+    AllowedPattern: '^[a-z][a-z0-9-]{0,30}$'
+  InstanceType:
+    Type: String
+    Description: ECS instance type
+  ImageId:
+    Type: String
+    Default: aliyun_3_x64_20G_alibase_20240528.vhd
+    Description: OS image. Default is Alibaba Cloud Linux 3 x86_64.
+  Password:
+    Type: String
+    NoEcho: true
+    Description: ECS login password (8-30 characters, must include uppercase + lowercase + digits)
+    MinLength: 8
+    MaxLength: 30
+  SystemDiskSize:
+    Type: Number
+    Default: 40
+    MinValue: 20
+    MaxValue: 500
+  ZoneId:
+    Type: String
+    Description: Availability zone ID (the in-stock zone selected in step 6)
+  AppPort:
+    Type: Number
+    Default: 8080
+    Description: App service listening port (reverse-proxied by Nginx to /api/)
+  UserDataScript:
+    Type: String
+    Description: Bootstrap script (plaintext, ROS will auto base64-encode it)
+    Default: |
+      #!/bin/bash
+      echo "no userdata provided" > /var/log/qwencloud-bootstrap.log
+
+Resources:
+  Vpc:
+    Type: ALIYUN::ECS::VPC
+    Properties:
+      VpcName:
+        Fn::Sub: qwencloud-${AppName}-vpc
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: from
+          Value: qwencloud
+        - Key: qwencloud-appName
+          Value:
+            Ref: AppName
+
+  VSwitch:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ZoneId:
+        Ref: ZoneId
+      CidrBlock: 10.0.1.0/24
+      VSwitchName:
+        Fn::Sub: qwencloud-${AppName}-vsw
+      Tags:
+        - Key: from
+          Value: qwencloud
+
+  SecurityGroup:
+    Type: ALIYUN::ECS::SecurityGroup
+    Properties:
+      SecurityGroupName:
+        Fn::Sub: qwencloud-${AppName}-sg
+      VpcId:
+        Ref: Vpc
+      SecurityGroupIngress:
+        - PortRange: 80/80
+          Priority: 1
+          IpProtocol: tcp
+          SourceCidrIp: 0.0.0.0/0
+          NicType: intranet
+        - PortRange: 443/443
+          Priority: 1
+          IpProtocol: tcp
+          SourceCidrIp: 0.0.0.0/0
+          NicType: intranet
+      Tags:
+        - Key: from
+          Value: qwencloud
+
+  EcsInstance:
+    Type: ALIYUN::ECS::InstanceGroup
+    Properties:
+      ImageId:
+        Ref: ImageId
+      InstanceType:
+        Ref: InstanceType
+      InstanceChargeType: PostPaid
+      Password:
+        Ref: Password
+      SecurityGroupId:
+        Ref: SecurityGroup
+      VSwitchId:
+        Ref: VSwitch
+      VpcId:
+        Ref: Vpc
+      InstanceName:
+        Fn::Sub: qwencloud-${AppName}-ecs-[1,2]
+      HostName:
+        Fn::Sub: qwencloud-${AppName}-ecs-[1,2]
+      MaxAmount: 1
+      MinAmount: 1
+      SystemDiskCategory: cloud_essd
+      SystemDiskSize:
+        Ref: SystemDiskSize
+      AllocatePublicIP: false
+      UserData:
+        Ref: UserDataScript
+      Tags:
+        - Key: from
+          Value: qwencloud
+        - Key: qwencloud-appName
+          Value:
+            Ref: AppName
+
+  Eip:
+    Type: ALIYUN::VPC::EIP
+    Properties:
+      Name:
+        Fn::Sub: qwencloud-${AppName}-eip
+      InternetChargeType: PayByTraffic
+      Bandwidth: 5
+      Tags:
+        - Key: from
+          Value: qwencloud
+
+  EipAssoc:
+    Type: ALIYUN::VPC::EIPAssociation
+    Properties:
+      AllocationId:
+        Ref: Eip
+      InstanceId:
+        Fn::Select:
+          - 0
+          - Fn::GetAtt:
+              - EcsInstance
+              - InstanceIds
+
+Outputs:
+  PublicIp:
+    Description: Public access IP (static http://<IP>/, app http://<IP>/api/)
+    Value:
+      Fn::GetAtt:
+        - Eip
+        - EipAddress
+  EcsInstanceIds:
+    Description: ECS instance ID list
+    Value:
+      Fn::GetAtt:
+        - EcsInstance
+        - InstanceIds
+  EcsPrivateIps:
+    Description: ECS private IP list
+    Value:
+      Fn::GetAtt:
+        - EcsInstance
+        - PrivateIps
+  SecurityGroupId:
+    Description: ECS security group ID (ingress rule check / authorize)
+    Value:
+      Fn::GetAtt:
+        - SecurityGroup
+        - SecurityGroupId
+  EipAllocationId:
+    Description: EIP allocation ID (EIP status query / re-bind)
+    Value:
+      Fn::GetAtt:
+        - Eip
+        - AllocationId
+  StackName:
+    Value:
+      Ref: ALIYUN::StackName

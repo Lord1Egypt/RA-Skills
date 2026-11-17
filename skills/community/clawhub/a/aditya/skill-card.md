@@ -1,41 +1,60 @@
-## Description: <br>
-Captures learnings, errors, and corrections to enable continuous improvement for coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests so coding agents can preserve reusable lessons and improve future workflows.
 
-## Publisher: <br>
-[Adityasagar2](https://clawhub.ai/user/Adityasagar2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adityasagar2](https://clawhub.ai/user/adityasagar2)
 
-## Use Case: <br>
-Developers and agent users use this skill to capture corrections, command failures, feature requests, and recurring workflow discoveries so they can be reviewed and promoted into durable agent guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning capture can carry sensitive prompts, credentials, personal data, or confidential error output into future agent memory. <br>
-Mitigation: Do not log raw secrets, tokens, personal data, full prompts, or confidential output; require human review before promoting entries into durable instruction files. <br>
-Risk: Broad automatic hooks can add persistent agent-learning behavior across more sessions or projects than intended. <br>
-Mitigation: Prefer project-local setup, avoid empty or global hook matchers, and scope hook activation to the workflows where learning capture is wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Learning Examples](references/examples.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to record corrections, failed commands, requested capabilities, and recurring practices into learning files. They can then review and promote vetted learnings into persistent agent instructions or new reusable skills.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces learning-entry templates, hook setup guidance, and reminder text for agent sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Learning notes may preserve sensitive conversation details or project context longer than intended.
+
+Mitigation: Keep logs local where possible and redact secrets, credentials, private data, and unnecessary user context before saving entries.
+
+Risk: Promoting learnings into persistent agent memory or instruction files can spread incorrect or overly broad guidance.
+
+Mitigation: Require explicit human review before promotion and keep promoted guidance concise, scoped, and reversible.
+
+Risk: Global hooks or cross-session sharing can increase exposure of captured context.
+
+Mitigation: Enable hooks and cross-session sharing only where needed, prefer project-scoped configuration, and review hook output before broad use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adityasagar2/skills/aditya)
+- [OpenClaw integration](references/openclaw-integration.md)
+- [Hook setup guide](references/hooks-setup.md)
+- [Examples](references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and learning-entry templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local learning files and propose promotions to agent instruction files when the user enables those workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

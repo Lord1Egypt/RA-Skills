@@ -1,48 +1,63 @@
-## Description: <br>
-Design, implement, and operate a self-improving AI Operating System for business with 9 components: Strategic Layer, Prioritization Engine, Knowledge Management, Central Ops, Department Agents (ACRA), Projects, Auto-Capture, Communication Layer, and Metrics & Monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design, implement, and operate a self-improving AI operating system for business with strategic planning, prioritization, knowledge management, operations, department agents, projects, auto-capture, communications, and metrics loops.
 
-## Publisher: <br>
-[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miknasbh-stack](https://clawhub.ai/user/miknasbh-stack)
 
-## Use Case: <br>
-Business operators, founders, and automation builders use this skill to design a self-improving operating system for strategy, prioritization, knowledge management, department agents, projects, learning loops, communication, and metrics. It provides structured guidance and templates for coordinating AI-powered business workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to retain broad business data, which can expose secrets, personal data, or sensitive records if stored in shared memory. <br>
-Mitigation: Use least-privilege access, redact secrets and personal data before storage, define retention and deletion rules, and keep finance, HR, legal, and customer records out of shared agent memory unless explicitly approved. <br>
-Risk: Autonomous high-impact business actions could affect payments, invoices, tax filings, payroll, public posts, outreach, customer accounts, or production systems. <br>
-Mitigation: Require human approval for those actions and review proposed changes before execution. <br>
-Risk: Connecting the operating system to real business systems without controls can amplify incorrect or unsafe agent behavior. <br>
-Mitigation: Add operational controls before connecting it to production systems and limit each department agent to the access needed for its role. <br>
+## Use Case:
 
+Business operators, founders, and agent builders use this skill to design a self-improving business operating system with strategy, department agents, memory, metrics, and learning loops. It provides implementation guidance, templates, and operating cadences for agentic business workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/miknasbh-stack/miknas-compoundos) <br>
-- [Department Agents - ACRA Framework](references/department-agents.md) <br>
-- [Knowledge Management Setup](references/knowledge-setup.md) <br>
-- [Learning Loop - Auto-Capture & Intelligence](references/learning-loop.md) <br>
-- [Metrics & Monitoring - Operating Rhythm](references/metrics-cadence.md) <br>
-- [Strategic Layer Template](assets/strategy-template.md) <br>
-- [Department Agent Prompt Templates](assets/department-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only outputs for business operating workflows, department agent prompts, strategic templates, and metrics cadence setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill encourages broad business, customer, HR, and finance memory capture, which can expose sensitive information if storage and retrieval are not controlled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Partition memory by department and data sensitivity, redact secrets and personal data before storage, and define retention and deletion rules before use.
+
+Risk: Department agents may be used for public, outreach, deployment, invoice, or payment workflows without sufficiently explicit approval controls.
+
+Mitigation: Run agents in draft-only mode by default, require human approval for public posts, outreach batches, deployments, invoices, and payments, and restrict connected accounts by department.
+
+Risk: Auto-captured content can change long-term memory, SOPs, templates, or strategy based on incorrect or incomplete outputs.
+
+Mitigation: Require review before captured content updates persistent memory, operating procedures, templates, or strategic documents.
+
+## Reference(s):
+
+- [CompoundOS ClawHub Skill Page](https://clawhub.ai/miknasbh-stack/skills/miknas-compoundos)
+- [Strategic Layer Template](assets/strategy-template.md)
+- [Department Agent Prompt Templates](assets/department-prompts.md)
+- [Department Agents - ACRA Framework](references/department-agents.md)
+- [Knowledge Management Setup](references/knowledge-setup.md)
+- [Learning Loop & Auto-Capture](references/learning-loop.md)
+- [Metrics & Monitoring - Operating Rhythm](references/metrics-cadence.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance, templates, and structured operating procedures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces business operating model plans, department agent prompts, metrics cadences, capture formats, and implementation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Filters and transforms Pilot Protocol event streams before delivery using pattern matching and jq transforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Filter and transform events before delivery using pattern matching and jq transforms.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators working with Pilot Protocol event streams use this skill to filter, transform, and conditionally forward events so agents receive only relevant payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: jq filters or publish destinations can forward event contents to unintended agents. <br>
-Mitigation: Review jq filters, subscribed topics, and publish destinations before running examples. <br>
-Risk: Commands depend on the local Pilot Protocol daemon, pilotctl, and jq environment. <br>
-Mitigation: Install only in trusted Pilot Protocol environments with required binaries available and the daemon running. <br>
+## Use Case:
 
+Developers and operators use this skill to filter Pilot Protocol event streams by content, transform payloads with jq, and conditionally republish events to reduce noise or route critical alerts.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub skill page](https://clawhub.ai/teoslayer/pilot-event-filter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and jq expressions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, jq, the pilot-protocol skill, and a running Pilot Protocol daemon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Forwarded Pilot Protocol events may contain operational or sensitive payload data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review event sources, filters, transforms, and publish destinations before running examples.
+
+Risk: The skill guides agents to run pilotctl and jq commands against live event streams.
+
+Mitigation: Install only in environments where Pilot Protocol event streams are expected and command execution is authorized.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-event-filter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pilotctl, jq, and a running Pilot Protocol daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; SKILL.md metadata lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

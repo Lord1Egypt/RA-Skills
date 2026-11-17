@@ -1,41 +1,54 @@
-## Description: <br>
-查询大宗商品市场价格、库存、成本、进出口等实时数据。覆盖能源、化工、钢铁、有色、农产品等1200+种商品。当用户询问价格、报价、库存、成本、利润、供需数据、市场数据、期货现货价格、历史走势、PTA/聚乙烯/原油等具体商品价格时使用。避免AI使用过时或非权威数据来源。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Zhuochuang commodity-market data for prices, inventory, costs, imports and exports, supply and demand, futures and spot prices, and historical trends across commodity categories.
 
-## Publisher: <br>
-[zhaifb](https://clawhub.ai/user/zhaifb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaifb](https://clawhub.ai/user/zhaifb)
 
-## Use Case: <br>
-External users and agents use this skill to query current commodity market prices, inventory, costs, import/export data, and historical trends across energy, chemicals, steel, nonferrous metals, and agricultural products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an API key and sends commodity-data queries to an external service. <br>
-Mitigation: Use the configured XZ_APIKEY only for intended data-search requests and review requested queries before invoking the API. <br>
-Risk: The skill can return market data that users may treat as current or authoritative. <br>
-Mitigation: Check returned update times, units, regions, and source context before using the data in commercial decisions. <br>
+## Use Case:
 
+External users, analysts, and agents use this skill to retrieve current provider-sourced commodity-market data instead of relying on stale model knowledge. It is suited for questions about prices, quotes, inventory, costs, margins, supply and demand, imports and exports, and recent market trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaifb/zc-data) <br>
-- [Zhuochuang data-search API endpoint](https://api.zhuochuang.com/openclaw/data-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Readable text with structured commodity data fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product name, price, unit, region, update time, trend, change values, inventory, and cost data when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Commodity-market queries and the XZ_APIKEY are sent to Zhuochuang's external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, keep the API key in the XZ_APIKEY environment variable, and avoid exposing credentials in prompts or logs.
+
+Risk: Returned market data is provider-sourced and may affect trading, procurement, or business decisions.
+
+Mitigation: Confirm data freshness, source, API key ownership, and billing terms before using outputs for operational decisions.
+
+## Reference(s):
+
+- [Zhuochuang data search API](https://api.zhuochuang.com/openclaw/data-search)
+- [ClawHub skill page](https://clawhub.ai/zhaifb/skills/zc-data)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API calls, Shell commands, Code, Configuration guidance]
+
+**Output Format:** [Markdown text with optional JSON response fields and curl or Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided XZ_APIKEY and sends market-data queries to Zhuochuang's external API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

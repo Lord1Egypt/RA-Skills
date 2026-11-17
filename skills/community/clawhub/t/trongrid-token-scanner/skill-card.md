@@ -1,41 +1,59 @@
-## Description: <br>
-Deep analysis of any specific TRC-20 or TRC-10 token on TRON including supply, price, holder distribution, contract details, activity metrics, and safety assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep analysis of any specific TRC-20 or TRC-10 token on TRON including supply, price, holder distribution, contract details, activity metrics, and safety assessment.
 
-## Publisher: <br>
-[greason](https://clawhub.ai/user/greason) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greason](https://clawhub.ai/user/greason)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to investigate specific TRC-20 or TRC-10 tokens on TRON, including holder concentration, contract details, market context, activity patterns, and token safety indicators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token safety scores or market observations may be mistaken for financial advice. <br>
-Mitigation: Treat the report as research support only and independently verify important claims before interacting with a token. <br>
-Risk: Results depend on trust in the TronGrid MCP server and any web sources consulted for market data. <br>
-Mitigation: Confirm the MCP server and external sources are trusted before installation or use. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to investigate specific TRON TRC-20 or TRC-10 tokens, including token metadata, holder concentration, market context, contract details, activity patterns, and safety indicators.
 
-## Reference(s): <br>
-- [TronGrid MCP Guide](https://developers.tron.network/reference/mcp-api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/greason/trongrid-token-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown token analysis report with safety scoring and supporting observations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current market data from web search and on-chain data from TronGrid MCP calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Public web results and community scam reports can be incomplete, stale, or unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat off-chain findings as supplemental signals and base final conclusions on clearly labeled on-chain data, market evidence, and uncertainty notes.
+
+Risk: A token safety score may be mistaken for financial advice or definitive proof of legitimacy.
+
+Mitigation: Present safety assessments as due-diligence guidance, include red flags and missing-data caveats, and avoid directing users to buy, sell, or approve token interactions.
+
+Risk: Users may share private wallet credentials or seed phrases while asking for token safety help.
+
+Mitigation: Do not request private keys, seed phrases, or wallet credentials; only token identifiers, public addresses, and public blockchain data are needed.
+
+## Reference(s):
+
+- [TronGrid MCP Guide](https://developers.tron.network/reference/mcp-api)
+- [ClawHub skill page](https://clawhub.ai/greason/skills/trongrid-token-scanner)
+- [Publisher profile](https://clawhub.ai/user/greason)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown token analysis report with structured sections and safety assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include supplemental public web findings for market context and community reports.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence; artifact frontmatter metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

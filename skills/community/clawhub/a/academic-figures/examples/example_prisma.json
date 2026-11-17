@@ -1,0 +1,13 @@
+{
+  "records_identified": 128,
+  "duplicates_removed": 23,
+  "records_excluded": 61,
+  "reports_not_retrieved": 3,
+  "exclusion_reasons": {
+    "Wrong population": 5,
+    "Wrong intervention": 7,
+    "No usable data": 4
+  },
+  "studies_included": 25,
+  "lang": "en"
+}

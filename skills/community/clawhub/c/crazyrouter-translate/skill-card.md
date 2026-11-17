@@ -1,42 +1,55 @@
-## Description: <br>
-AI-powered translation via Crazyrouter for translating text or files between languages using selectable AI models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered translation via Crazyrouter. Translate text between any languages using GPT-5, Claude, DeepSeek, or Qwen. Supports file translation and multi-model comparison. Use when user asks to translate text, documents, or compare translations. Requires environment variable CRAZYROUTER_API_KEY (get at https://crazyrouter.com).
 
-## Publisher: <br>
-[xujfcn](https://clawhub.ai/user/xujfcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xujfcn](https://clawhub.ai/user/xujfcn)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to translate text or document files, preserve Markdown formatting when requested, choose source and target languages, and compare output from different supported models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text or files submitted for translation may be sent to Crazyrouter or another endpoint configured with CRAZYROUTER_BASE_URL. <br>
-Mitigation: Use the skill only for content approved for that service, and confirm CRAZYROUTER_BASE_URL is unset or points to a trusted endpoint before execution. <br>
-Risk: The configured endpoint receives the CRAZYROUTER_API_KEY in the Authorization header. <br>
-Mitigation: Use a scoped API key and avoid running the skill with secrets or confidential documents unless that sharing has been approved. <br>
+## Use Case:
 
+External users and developers use this skill to translate text or files between languages through Crazyrouter-backed AI models, optionally preserving Markdown formatting and selecting a model.
 
-## Reference(s): <br>
-- [Crazyrouter](https://crazyrouter.com) <br>
-- [Crazyrouter API endpoint](https://crazyrouter.com/v1) <br>
-- [ClawHub release page](https://clawhub.ai/xujfcn/crazyrouter-translate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration] <br>
-**Output Format:** [Translated text on stdout or translated file content written to a requested output path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CRAZYROUTER_API_KEY; may use CRAZYROUTER_BASE_URL when configured; default model is gpt-4o-mini.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: A custom CRAZYROUTER_BASE_URL value can send the API key and translated content to an arbitrary endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with CRAZYROUTER_BASE_URL unset or set to an explicitly trusted endpoint, and review the environment before execution.
+
+Risk: Text and files submitted for translation are sent to an external model service.
+
+Mitigation: Do not translate secrets, private documents, regulated data, or proprietary material unless use of the configured external service is approved.
+
+## Reference(s):
+
+- [Crazyrouter](https://crazyrouter.com)
+- [Crazyrouter API endpoint](https://crazyrouter.com/v1)
+- [ClawHub skill page](https://clawhub.ai/xujfcn/skills/crazyrouter-translate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Translated text to stdout or a user-selected output file; Markdown can be preserved when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CRAZYROUTER_API_KEY. The CRAZYROUTER_BASE_URL environment variable changes the service endpoint if set.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

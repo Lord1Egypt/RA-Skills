@@ -1,44 +1,59 @@
-## Description: <br>
-Agent Office creates and manages local AI employees as independent HTTP workers for multi-agent office automation, supporting OpenClaw, Hermes, DeerFlow, CLI, external, and stub engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Office creates and manages local AI office workers as independent HTTP workers, supporting openclaw, hermes, deerflow, cli, external, and stub engines for office automation and multi-agent team workflows.
 
-## Publisher: <br>
-[jast-hub](https://clawhub.ai/user/jast-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jast-hub](https://clawhub.ai/user/jast-hub)
 
-## Use Case: <br>
-Developers and automation users use this skill to create, configure, run, inspect, and remove local AI worker teams for office automation, software delivery, publishing workflows, and delegated task execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local workers can run commands and write files on the host. <br>
-Mitigation: Install only when a local multi-agent worker system is intended; keep workers bound to localhost and avoid broad workspace paths or untrusted custom CLI commands. <br>
-Risk: DeerFlow mode can install or update remote runtime code and execute tasks with host file access. <br>
-Mitigation: Use trusted DeerFlow repositories only, avoid untrusted extra mounts, and treat DeerFlow workers as capable of host command execution and file writes. <br>
-Risk: Memory and external upstream integrations can persist or forward task content and summaries. <br>
-Mitigation: Configure MEMORY_CLI or external upstream URLs only when the operator accepts that task data may be stored or sent to those services. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, manage, health-check, task, and remove local AI worker teams. It is suited for local office automation workflows that need individual worker identities, ports, state, logs, presets, and optional integration with local agent CLIs or an existing HTTP worker.
 
-## Reference(s): <br>
-- [Agent Office on ClawHub](https://clawhub.ai/jast-hub/agent-office) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
-- [DeerFlow runtime repository](https://github.com/bytedance/deer-flow.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands, JSON configuration examples, and local worker management guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local worker directories, state files, logs, runtime files, and worker configuration when the documented commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: frontmatter and server release evidence) <br>
+Risk: Persistent local HTTP workers can expose powerful local agent actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run workers only in trusted local environments and stop or remove workers when they are no longer needed.
+
+Risk: Local CLI, workspace, and DeerFlow task execution can access or modify sensitive files.
+
+Mitigation: Use a dedicated low-sensitivity workspace and review worker roles, CLI commands, and DeerFlow runtime source before running tasks.
+
+Risk: External upstream workers and optional shared memory can carry untrusted context into task execution.
+
+Mitigation: Use external upstream URLs only when fully trusted and keep MEMORY_CLI disabled for sensitive work.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jast-hub/skills/agent-office)
+- [Publisher Profile](https://clawhub.ai/user/jast-hub)
+- [ClawHub Homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and generated local worker files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May start persistent local HTTP worker processes and write worker state, logs, prompts, and runtime configuration under the user's local office directories.]
+
+## Skill Version(s):
+
+1.5.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

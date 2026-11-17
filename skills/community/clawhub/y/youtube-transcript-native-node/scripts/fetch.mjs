@@ -5,20 +5,27 @@
 // Requires Node 18+ and the yt-dlp binary on PATH.
 
 // Audit note: this intentionally invokes the trusted yt-dlp binary from PATH
-// with an argv array and no shell, after allowlisting YouTube URL hosts.
+// with an argv array and no shell, after allowlisting YouTube URL hosts and
+// disabling yt-dlp config/cache/plugin discovery for this invocation.
 import { spawn } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const TEST_HOOKS = process.env.YOUTUBE_TRANSCRIPT_SELFTEST === "1";
-const YTDLP_TIMEOUT_MS = TEST_HOOKS && process.env.YOUTUBE_TRANSCRIPT_TEST_TIMEOUT_MS
+const SELFTEST_MODE = process.env.YOUTUBE_TRANSCRIPT_SELFTEST === "1";
+const YTDLP_TIMEOUT_MS = SELFTEST_MODE && process.env.YOUTUBE_TRANSCRIPT_TEST_TIMEOUT_MS
   ? Number(process.env.YOUTUBE_TRANSCRIPT_TEST_TIMEOUT_MS)
   : 120_000;
-const MAX_TRANSCRIPT_CHARS = TEST_HOOKS && process.env.YOUTUBE_TRANSCRIPT_TEST_MAX_CHARS
+const MAX_TRANSCRIPT_CHARS = SELFTEST_MODE && process.env.YOUTUBE_TRANSCRIPT_TEST_MAX_CHARS
   ? Number(process.env.YOUTUBE_TRANSCRIPT_TEST_MAX_CHARS)
   : 2_000_000;
+const MAX_YTDLP_STDOUT_CHARS = SELFTEST_MODE && process.env.YOUTUBE_TRANSCRIPT_TEST_MAX_STDOUT_CHARS
+  ? Number(process.env.YOUTUBE_TRANSCRIPT_TEST_MAX_STDOUT_CHARS)
+  : MAX_TRANSCRIPT_CHARS + 250_000;
+const MAX_YTDLP_STDERR_CHARS = SELFTEST_MODE && process.env.YOUTUBE_TRANSCRIPT_TEST_MAX_STDERR_CHARS
+  ? Number(process.env.YOUTUBE_TRANSCRIPT_TEST_MAX_STDERR_CHARS)
+  : 200_000;
 
 function enforceTranscriptSize(text) {
   if (text.length > MAX_TRANSCRIPT_CHARS) {
@@ -46,6 +53,7 @@ function scrubLocalPaths(text, tempDir = "") {
   for (const [needle, replacement] of replacements) {
     if (!needle) continue;
     const trimmed = needle.replace(/[\\/]+$/, "");
+    if (!trimmed || /^[\\/]+$/.test(trimmed)) continue;
     const slashFlexible = escapeRegExp(trimmed).replace(/(?:\\\\|\/)+/g, "[\\\\/]");
     out = out.replace(new RegExp(`(?:file:\\/\\/\\/?)?${slashFlexible}(?:[\\\\/][^\\s\"'<>]+)*`, "g"), replacement);
     out = out.split(needle).join(replacement);
@@ -78,14 +86,24 @@ function printHelp() {
     "  --no-dedup        disable rolling-window dedup for auto-captions\n" +
     "  -h, --help        show this help\n" +
     "\n" +
-    "Requires yt-dlp on PATH. Install/verify using the official yt-dlp project instructions.\n" +
-    "Common package-manager examples:\n" +
+    "Requires yt-dlp on PATH. Verify using the official yt-dlp project instructions.\n" +
+    "Do not install or update yt-dlp as part of this skill without explicit approval.\n" +
+    "Package-manager examples for an approved install path:\n" +
     "  Windows:        winget install yt-dlp\n" +
     "  macOS:          brew install yt-dlp\n"
   );
 }
 
 // -------- arg parser --------
+
+function isSingleVideoYouTubeUrl(parsed) {
+  const host = parsed.hostname.toLowerCase();
+  const path = parsed.pathname || "/";
+  if (host === "youtu.be") return /^\/[A-Za-z0-9_-]{6,}$/.test(path);
+  if (!["youtube.com", "www.youtube.com", "m.youtube.com"].includes(host)) return false;
+  if (path === "/watch") return Boolean(parsed.searchParams.get("v"));
+  return /^\/(?:shorts|live|embed)\/[A-Za-z0-9_-]{6,}$/.test(path);
+}
 
 export function isAllowedYouTubeUrl(rawUrl) {
   let parsed;
@@ -94,9 +112,80 @@ export function isAllowedYouTubeUrl(rawUrl) {
   } catch {
     return false;
   }
-  if (!/^https?:$/i.test(parsed.protocol)) return false;
-  const host = parsed.hostname.toLowerCase();
-  return ["youtube.com", "www.youtube.com", "m.youtube.com", "youtu.be"].includes(host);
+  if (parsed.protocol.toLowerCase() !== "https:") return false;
+  if (parsed.username || parsed.password) return false;
+  return isSingleVideoYouTubeUrl(parsed);
+}
+
+function truncateForError(value, max = 240) {
+  const out = String(value || "");
+  return out.length > max ? `${out.slice(0, max - 3)}...` : out;
+}
+
+function redactUrlTailForError(value) {
+  const raw = String(value || "");
+  const queryIndex = raw.indexOf("?");
+  const fragmentIndex = raw.indexOf("#");
+  const tailIndexes = [queryIndex, fragmentIndex].filter(i => i >= 0);
+  if (!tailIndexes.length) return truncateForError(raw);
+
+  const firstTailIndex = Math.min(...tailIndexes);
+  const base = truncateForError(raw.slice(0, firstTailIndex), 180);
+  const hasQuery = queryIndex >= 0;
+  const hasFragment = fragmentIndex >= 0;
+  return `${base}${hasQuery ? "?<redacted-query>" : ""}${hasFragment ? "#<redacted-fragment>" : ""}`;
+}
+
+function redactAuthorityCredentials(prefix, authority, suffix) {
+  const lastAt = authority.lastIndexOf("@");
+  if (lastAt <= 0) return null;
+  return prefix + "<redacted-credentials>@" + authority.slice(lastAt + 1) + suffix;
+}
+
+function redactLeadingCredentialLikeUrl(value) {
+  const raw = String(value || "");
+  const schemeAuthority = raw.match(/^([A-Za-z][A-Za-z0-9+.-]*:\/\/)/);
+  if (schemeAuthority) {
+    const prefix = schemeAuthority[1];
+    const authorityStart = prefix.length;
+    const authorityEnd = [raw.indexOf("/", authorityStart), raw.indexOf("?", authorityStart), raw.indexOf("#", authorityStart)]
+      .filter(i => i >= 0)
+      .reduce((min, i) => Math.min(min, i), raw.length);
+    const redacted = redactAuthorityCredentials(prefix, raw.slice(authorityStart, authorityEnd), raw.slice(authorityEnd));
+    if (redacted) return redacted;
+    return raw;
+  }
+
+  if (raw.startsWith("//")) {
+    const authorityStart = 2;
+    const authorityEnd = [raw.indexOf("/", authorityStart), raw.indexOf("?", authorityStart), raw.indexOf("#", authorityStart)]
+      .filter(i => i >= 0)
+      .reduce((min, i) => Math.min(min, i), raw.length);
+    const redacted = redactAuthorityCredentials("//", raw.slice(authorityStart, authorityEnd), raw.slice(authorityEnd));
+    if (redacted) return redacted;
+    return raw;
+  }
+
+  const firstBoundary = [raw.indexOf("/"), raw.indexOf("?"), raw.indexOf("#")].filter(i => i >= 0).reduce((min, i) => Math.min(min, i), raw.length);
+  const redacted = redactAuthorityCredentials("", raw.slice(0, firstBoundary), raw.slice(firstBoundary));
+  return redacted || raw;
+}
+
+function urlForError(rawUrl) {
+  const raw = String(rawUrl || "");
+  const redactedRaw = redactLeadingCredentialLikeUrl(raw);
+  try {
+    const parsed = new URL(raw);
+    if (parsed.protocol.toLowerCase() !== "https:") return redactUrlTailForError(redactedRaw);
+    const credentialPrefix = parsed.username || parsed.password ? "<redacted-credentials>@" : "";
+    const base = parsed.protocol + "//" + credentialPrefix + parsed.hostname + (parsed.pathname || "");
+    return redactUrlTailForError(base + (parsed.search ? "?<redacted-query>" : "") + (parsed.hash ? "#<redacted-fragment>" : ""));
+  } catch {
+    // Parse failures can still contain credential-like userinfo before `@` and
+    // secret-looking query/fragment material. Redact those bounded shapes
+    // without trying to repair or normalize the URL.
+  }
+  return redactUrlTailForError(redactedRaw);
 }
 
 export function parseArgs(argv) {
@@ -126,15 +215,54 @@ export function parseArgs(argv) {
     die(`unknown arg: ${a}. Try --help.`);
   }
   if (!out.url) die("--url is required. Try --help.");
-  if (!isAllowedYouTubeUrl(out.url)) die(`--url must be a YouTube URL on youtube.com or youtu.be, got: ${out.url}`);
+  if (!isAllowedYouTubeUrl(out.url)) die(`--url must be an HTTPS single-video YouTube URL on youtube.com/watch, /shorts/, /live/, /embed/, or youtu.be with no URL credentials, got: ${urlForError(out.url)}`);
   if (!out.lang) die("--lang must not be empty");
-  if (!/^[A-Za-z0-9._-]{1,32}$/.test(out.lang)) die("--lang must be a simple subtitle language code, e.g. en or en-US");
+  if (!/^[A-Za-z]{2,3}(?:-[A-Za-z0-9]{2,8}){0,3}$/.test(out.lang) || out.lang.toLowerCase() === "all") die("--lang must be a BCP-47-style subtitle language tag such as en, es, or en-US; all/compound wildcard values are not supported");
   return out;
 }
 
 // -------- yt-dlp invocation --------
 
 let activeYtDlpProc = null;
+let selfTestYtDlpScript = "";
+
+function takeSelfTestFixtureArg(argv) {
+  if (!SELFTEST_MODE) return "";
+  const idx = argv.indexOf("--self-test-fixture");
+  if (idx < 0) return "";
+  const script = argv[idx + 1];
+  if (!script) die("--self-test-fixture needs a value");
+  argv.splice(idx, 2);
+  return script;
+}
+
+function safeChildEnv() {
+  // Do not pass ambient secrets/config variables through to yt-dlp. Keep only
+  // the small OS/runtime allowlist needed for binary resolution and temp IO.
+  const env = {};
+  const pathValue = process.env.PATH ?? process.env.Path;
+  if (pathValue !== undefined) env[process.platform === "win32" ? "Path" : "PATH"] = pathValue;
+  const keep = new Set([
+    "PATHEXT",
+    "SystemRoot", "WINDIR", "windir",
+    "TEMP", "TMP", "TMPDIR",
+    "LANG", "LC_ALL",
+  ]);
+  for (const key of keep) {
+    if (process.env[key] !== undefined) env[key] = process.env[key];
+  }
+  for (const key of ["HOME", "USERPROFILE", "APPDATA", "LOCALAPPDATA", "XDG_CONFIG_HOME", "XDG_CACHE_HOME"]) {
+    env[key] = "";
+  }
+  if (SELFTEST_MODE) {
+    for (const [key, value] of Object.entries(process.env)) {
+      if (key.startsWith("FAKE_YTDLP_")) {
+        env[key] = value;
+      }
+    }
+  }
+  return env;
+}
 
 function runYtDlp(args, opts = {}) {
   return new Promise((resolve) => {
@@ -142,18 +270,26 @@ function runYtDlp(args, opts = {}) {
     let timer;
     let settled = false;
     let timedOut = false;
+    let capKillTimer;
     const finish = (result) => {
       if (settled) return;
       settled = true;
       if (timer) clearTimeout(timer);
+      if (capKillTimer) clearTimeout(capKillTimer);
       if (activeYtDlpProc === proc) activeYtDlpProc = null;
       resolve(result);
     };
+    const killForCaptureCap = () => {
+      try { proc.kill("SIGTERM"); } catch { /* best effort */ }
+      if (!capKillTimer) {
+        capKillTimer = setTimeout(() => { try { if (!settled) proc.kill("SIGKILL"); } catch { /* best effort */ } }, 1500);
+        capKillTimer.unref?.();
+      }
+    };
     try {
-      const testScript = TEST_HOOKS ? (process.env.YOUTUBE_TRANSCRIPT_TEST_YTDLP_SCRIPT || "") : "";
-      const command = testScript ? process.execPath : "yt-dlp";
-      const spawnArgs = testScript ? [testScript, ...args] : args;
-      proc = spawn(command, spawnArgs, { stdio: ["ignore", "pipe", "pipe"] });
+      const command = selfTestYtDlpScript ? process.execPath : "yt-dlp";
+      const spawnArgs = selfTestYtDlpScript ? [selfTestYtDlpScript, ...args] : args;
+      proc = spawn(command, spawnArgs, { stdio: ["ignore", "pipe", "pipe"], env: safeChildEnv() });
       activeYtDlpProc = proc;
     } catch (e) {
       finish({ code: -1, stdout: "", stderr: String(e && e.message || e), spawnError: true, timedOut: false });
@@ -167,13 +303,28 @@ function runYtDlp(args, opts = {}) {
     timer.unref?.();
     let stdout = "";
     let stderr = "";
-    proc.stdout.on("data", (b) => { stdout += b.toString("utf8"); });
-    proc.stderr.on("data", (b) => { stderr += b.toString("utf8"); });
+    let stdoutTooLarge = false;
+    let stderrTooLarge = false;
+    const appendBounded = (current, chunk, limit, markTooLarge) => {
+      const next = current + chunk.toString("utf8");
+      if (next.length <= limit) return next;
+      markTooLarge();
+      killForCaptureCap();
+      return next.slice(0, limit);
+    };
+    proc.stdout.on("data", (b) => {
+      if (stdoutTooLarge) return;
+      stdout = appendBounded(stdout, b, MAX_YTDLP_STDOUT_CHARS, () => { stdoutTooLarge = true; });
+    });
+    proc.stderr.on("data", (b) => {
+      if (stderrTooLarge) return;
+      stderr = appendBounded(stderr, b, MAX_YTDLP_STDERR_CHARS, () => { stderrTooLarge = true; });
+    });
     proc.on("error", (e) => {
-      finish({ code: -1, stdout, stderr: stderr + String(e && e.message || e), spawnError: true, timedOut });
+      finish({ code: -1, stdout, stderr: stderr + String(e && e.message || e), spawnError: true, timedOut, stdoutTooLarge, stderrTooLarge });
     });
     proc.on("close", (code) => {
-      finish({ code: code == null ? -1 : code, stdout, stderr, spawnError: false, timedOut });
+      finish({ code: code == null ? -1 : code, stdout, stderr, spawnError: false, timedOut, stdoutTooLarge, stderrTooLarge });
     });
   });
 }
@@ -342,10 +493,12 @@ export function dedupRollingCues(cues) {
 // -------- main --------
 
 async function main() {
-  if (TEST_HOOKS && process.env.YOUTUBE_TRANSCRIPT_TEST_THROW_PATH) {
+  if (SELFTEST_MODE && process.env.YOUTUBE_TRANSCRIPT_TEST_THROW_PATH) {
     throw new Error(`synthetic path failure at ${process.env.YOUTUBE_TRANSCRIPT_TEST_THROW_PATH}`);
   }
-  const args = parseArgs(process.argv.slice(2));
+  const argv = process.argv.slice(2);
+  selfTestYtDlpScript = takeSelfTestFixtureArg(argv);
+  const args = parseArgs(argv);
 
   // Make a fresh temp dir; ensure cleanup on any exit path.
   const tempDir = mkdtempSync(join(tmpdir(), "yt-transcript-"));
@@ -370,6 +523,8 @@ async function main() {
     "--no-playlist",
     "--no-warnings",
     "--ignore-config",
+    "--no-cache-dir",
+    "--no-plugin-dirs",
     "--print-json",
     "-o", outTemplate,
     "--",
@@ -379,17 +534,23 @@ async function main() {
   const result = await runYtDlp(ytArgs);
 
   if (result.spawnError && /ENOENT/i.test(result.stderr)) {
-    die("yt-dlp not found on PATH. Install/verify using the official yt-dlp project instructions, then reopen your shell.");
+    die("yt-dlp not found on PATH. Verify PATH/version first; install or update yt-dlp only through an explicitly approved path, then reopen your shell.");
   }
   if (result.timedOut) {
     die(`yt-dlp timed out after ${Math.round(YTDLP_TIMEOUT_MS / 1000)} seconds. Retry later or use a shorter/public video.`);
+  }
+  if (result.stdoutTooLarge) {
+    die(`yt-dlp stdout exceeded max capture size (${MAX_YTDLP_STDOUT_CHARS} chars). Retry with a shorter/public video or a narrower extraction workflow.`);
+  }
+  if (result.stderrTooLarge) {
+    die(`yt-dlp stderr exceeded max diagnostic size (${MAX_YTDLP_STDERR_CHARS} chars). Retry later or use a shorter/public video.`);
   }
   // Find any .vtt file in the temp dir. Some yt-dlp versions have returned a
   // nonzero exit after still writing usable subtitles; prefer parseable captions
   // over failing hard when the requested caption artifact exists.
   let vttFiles;
   try {
-    if (TEST_HOOKS && process.env.YOUTUBE_TRANSCRIPT_TEST_REMOVE_TEMP_BEFORE_READDIR) rmSync(tempDir, { recursive: true, force: true });
+    if (SELFTEST_MODE && process.env.YOUTUBE_TRANSCRIPT_TEST_REMOVE_TEMP_BEFORE_READDIR) rmSync(tempDir, { recursive: true, force: true });
     vttFiles = readdirSync(tempDir).filter(n => n.toLowerCase().endsWith(".vtt"));
   } catch (e) {
     die(`could not read temp dir: ${scrubLocalPaths(e.message || e, tempDir)}`);
@@ -442,7 +603,7 @@ async function main() {
 
   let vttText;
   try {
-    if (TEST_HOOKS && process.env.YOUTUBE_TRANSCRIPT_TEST_REMOVE_VTT_BEFORE_READ) rmSync(join(tempDir, preferred), { force: true });
+    if (SELFTEST_MODE && process.env.YOUTUBE_TRANSCRIPT_TEST_REMOVE_VTT_BEFORE_READ) rmSync(join(tempDir, preferred), { force: true });
     vttText = readFileSync(join(tempDir, preferred), "utf8");
   } catch (e) {
     die(`could not read .vtt file: ${scrubLocalPaths(e.message || e, tempDir)}`);

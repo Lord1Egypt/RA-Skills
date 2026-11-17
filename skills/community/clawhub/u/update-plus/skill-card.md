@@ -1,48 +1,61 @@
-## Description: <br>
-Full backup, update, and restore for OpenClaw config, workspace, and skills with auto-rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Update Plus provides full backup, update, and restore for OpenClaw config, workspace, and skills with auto-rollback.
 
-## Publisher: <br>
-[hopyky](https://clawhub.ai/user/hopyky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hopyky](https://clawhub.ai/user/hopyky)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to manage backups, check for updates, update installed skills, restore local environments, and configure optional unattended maintenance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change installed agent code and may run unattended updates. <br>
-Mitigation: Use check or dry-run before updates, review changes before applying them, and enable cron only when unattended updates are acceptable. <br>
-Risk: Restore operations can overwrite or delete local files. <br>
-Mitigation: Review restore targets carefully and keep known-good backups before restoring config, workspace, or skills. <br>
-Risk: Backups and cloud sync can expose sensitive local environment data. <br>
-Mitigation: Encrypt backups before enabling cloud sync and verify the configured remote storage destination. <br>
-Risk: Untrusted configuration can direct backups, restores, or updates to unsafe paths. <br>
-Mitigation: Use only trusted update-plus.json files and review configured backup paths, skill directories, excludes, and notification targets. <br>
-Risk: The packaged artifact may be missing the advertised executable entrypoint. <br>
-Mitigation: Verify the installed package contains the expected update-plus command before relying on automated backup or update workflows. <br>
+## Use Case:
 
+OpenClaw users and administrators use this skill to back up configured directories, check and apply updates, restore selected backup contents, and optionally schedule recurring updates.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/hopyky/update-plus) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires git, jq, and rsync; optional features may require gpg, rclone, cron, or notification tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.3 (source: frontmatter and server release metadata) <br>
+Risk: The skill can automatically update OpenClaw and installed skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted configured repositories and review update plans before enabling automatic updates.
+
+Risk: Restore operations can overwrite configured directories.
+
+Mitigation: Verify the backup contents and keep a separate known-good backup before running restore or update --force.
+
+Risk: Backups may contain sensitive configuration or workspace data.
+
+Mitigation: Keep remote storage and notifications disabled unless needed, and enable encryption before cloud sync.
+
+Risk: Cron auto-updates can apply changes without interactive review.
+
+Mitigation: Avoid scheduled updates unless the environment and all configured update sources are trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hopyky/skills/update-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may also guide file backup, restore, update, notification, and cron configuration workflows.]
+
+## Skill Version(s):
+
+4.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

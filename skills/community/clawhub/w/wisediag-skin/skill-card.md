@@ -1,46 +1,63 @@
-## Description: <br>
-Skin Disease Analysis - Analyze skin photos through local file binary upload and identify possible conditions via WiseDiag AI when the user provides a local image file path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WiseDiag-Skin uploads a local skin photo to WiseDiag AI and returns reference-only analysis of possible skin conditions and recommendations.
 
-## Publisher: <br>
-[wisediag](https://clawhub.ai/user/wisediag) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wisediag](https://clawhub.ai/user/wisediag)
 
-## Use Case: <br>
-External users and agent operators use this skill to analyze local skin image files with WiseDiag AI and receive possible condition analysis and recommendations. It is intended for reference support only, not medical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skin photos may contain sensitive health or identifying information and are sent to WiseDiag's cloud service for processing. <br>
-Mitigation: Upload only images the user is comfortable transmitting, avoid identifiable or intimate images unless consent is clear, and confirm trust in WiseDiag's data handling before use. <br>
-Risk: The WISEDIAG_API_KEY is a sensitive credential required by the skill. <br>
-Mitigation: Store the API key in the environment, avoid printing or committing it, and rotate it if it may have been exposed. <br>
-Risk: Generated analysis reports are saved locally and may contain sensitive health information. <br>
-Mitigation: Protect or delete reports from ~/.openclaw/workspace/WiseDiag-Skin when they are no longer needed. <br>
-Risk: The analysis can be mistaken for medical diagnosis or treatment advice. <br>
-Mitigation: Treat outputs as reference information only and consult a qualified healthcare professional for health concerns. <br>
+## Use Case:
 
+External users and developers use this skill to submit a local skin image and optional question to WiseDiag AI for reference-only condition analysis and recommendations.
 
-## Reference(s): <br>
-- [WiseDiag-Skin on ClawHub](https://clawhub.ai/wisediag/wisediag-skin) <br>
-- [WiseDiag API key console](https://console.wisediag.com/apiKeyManage) <br>
-- [WiseDiag OpenAPI service](https://openapi.wisediag.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Streaming terminal text plus a saved Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WISEDIAG_API_KEY and a local image file path; saves reports to ~/.openclaw/workspace/WiseDiag-Skin by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Skin photos and related questions are sent to WiseDiag's cloud service for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only when remote processing is acceptable, verify WiseDiag's privacy policy independently, and avoid uploading private or unnecessary identifying content.
+
+Risk: The skill requires a WiseDiag API key.
+
+Mitigation: Use a temporary environment variable where practical and avoid storing the key in shared shell profiles, logs, or project files.
+
+Risk: Custom output names or directories can write reports outside the default workspace.
+
+Mitigation: Avoid untrusted --name or --output values and constrain output paths before broader deployment.
+
+Risk: The returned analysis concerns health symptoms and may be incomplete or incorrect.
+
+Mitigation: Treat results as reference-only guidance and consult a qualified healthcare professional for medical concerns.
+
+## Reference(s):
+
+- [WiseDiag-Skin ClawHub listing](https://clawhub.ai/wisediag/skills/wisediag-skin)
+- [WiseDiag API key management](https://console.wisediag.com/apiKeyManage)
+- [WiseDiag API service host](https://openapi.wisediag.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Streaming terminal text and a saved Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WISEDIAG_API_KEY; uploads one local image file and writes a Markdown result file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

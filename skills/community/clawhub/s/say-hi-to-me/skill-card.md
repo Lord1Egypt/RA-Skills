@@ -1,49 +1,67 @@
-## Description: <br>
-请先说你好.skill provides companion-style greetings, persona management, and optional host-triggered proactive check-ins through /hi commands and natural conversation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+请先说你好.skill provides companion-style greetings, persona management, and opt-in proactive check-in policy for /hi commands and natural conversation.
 
-## Publisher: <br>
-[justzerox](https://clawhub.ai/user/justzerox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justzerox](https://clawhub.ai/user/justzerox)
 
-## Use Case: <br>
-External users use this skill to start lightweight companion chats, manage digital personas, and configure opt-in proactive check-ins through a host Heartbeat or Cron setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores local companion state and may write HEARTBEAT.md when proactive behavior is configured. <br>
-Mitigation: Review the workspace location before enabling proactive settings and keep local state files within the intended project or OpenClaw workspace. <br>
-Risk: Host-triggered proactive greetings can create unexpected outreach if Heartbeat or Cron is scoped too broadly. <br>
-Mitigation: Keep proactive delivery disabled until explicitly needed, then scope the host schedule, active hours, and delivery target before enabling it. <br>
+## Use Case:
 
+External users and developers use this skill to add a bilingual companion interaction layer for greetings, emotional check-ins, digital persona creation, and controlled proactive outreach. Host applications can pair it with OpenClaw Heartbeat or Cron when users explicitly enable scheduled check-ins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justzerox/say-hi-to-me) <br>
-- [Runtime Core](references/runtime-core.md) <br>
-- [Command Spec](references/command-spec.md) <br>
-- [Rolecard Structure](references/rolecard-structure.md) <br>
-- [Proactive Scheduling](references/proactive-scheduling.md) <br>
-- [OpenClaw Heartbeat Integration](references/openclaw-heartbeat-integration.md) <br>
-- [Safety Policy](references/safety-policy.md) <br>
-- [OpenClaw Heartbeat documentation](https://docs.openclaw.ai/heartbeat) <br>
-- [OpenClaw Cron documentation](https://docs.openclaw.ai/cron/) <br>
-- [OpenClaw message documentation](https://docs.openclaw.ai/message/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with commands, JSON examples, and generated local configuration or role files when the user confirms changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies are concise by default and proactive greetings remain gated by user opt-in and host scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Proactive check-ins can persist future outreach behavior or surprise users if enabled without clear consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep proactive mode off by default, require explicit opt-in, respect quiet hours, pause windows, and cooldowns, and review the generated Heartbeat or Cron configuration before use.
+
+Risk: Heartbeat integration can overwrite a workspace HEARTBEAT.md file.
+
+Mitigation: Back up any existing HEARTBEAT.md, verify the target workspace path and environment variables, and review the generated file before deployment.
+
+Risk: Companion personas can overstep emotional or romantic boundaries.
+
+Mitigation: Require explicit activation confirmation for persona changes, especially romantic labels, and enforce the safety policy against dependency-inducing or non-consensual intimacy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justzerox/skills/say-hi-to-me)
+- [Runtime Core](references/runtime-core.md)
+- [Command Spec](references/command-spec.md)
+- [Safety Policy](references/safety-policy.md)
+- [Proactive Scheduling](references/proactive-scheduling.md)
+- [OpenClaw Heartbeat Integration](references/openclaw-heartbeat-integration.md)
+- [Rolecard Structure](references/rolecard-structure.md)
+- [Luoshui v1 Persona Template](references/presets/luoshui-v1.yaml)
+- [OpenClaw Heartbeat documentation](https://docs.openclaw.ai/heartbeat)
+- [OpenClaw Cron documentation](https://docs.openclaw.ai/cron/)
+- [OpenClaw message documentation](https://docs.openclaw.ai/message/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Concise natural-language replies, Markdown previews, JSON or script outputs, YAML rolecards, and shell commands for helper workflows.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-first bilingual companion responses; proactive delivery requires host Heartbeat or Cron invocation.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

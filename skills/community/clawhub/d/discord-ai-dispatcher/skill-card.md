@@ -1,40 +1,59 @@
-## Description: <br>
-Routes Discord notifications with deterministic rules and local AI formatting while supporting message updates, deduplication, and recovery workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Discord notifications with deterministic rules and local AI formatting, supports message updates to reduce channel clutter, and provides guidance for resilient webhook-based dispatch pipelines.
 
-## Publisher: <br>
-[bhupendrafire-ai](https://clawhub.ai/user/bhupendrafire-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhupendrafire-ai](https://clawhub.ai/user/bhupendrafire-ai)
 
-## Use Case: <br>
-Developers and operators use this skill to design Discord webhook dispatchers for monitoring, alerting, dashboard-style message updates, and recovery of missed notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recovery workflows can reset local state and force-send or update external Discord notifications. <br>
-Mitigation: Use manual approval and dry-run previews before Heal Mode or backlog replays, back up state files, and cap resend volume. <br>
-Risk: Webhook secrets and local configuration files may be exposed or misused if stored with broad permissions. <br>
-Mitigation: Use dedicated low-privilege webhooks, protect local configuration files, and make scheduled tasks easy to audit and disable. <br>
+## Use Case:
 
+Developers and operators use this skill to design Discord webhook notification dispatchers that route alerts by deterministic identifiers, deduplicate sequential updates, format messages with local AI, and keep dashboard-style channels current.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bhupendrafire-ai/discord-ai-dispatcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with configuration and scripting patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational steps for webhook routing, state tracking, scheduling, and recovery workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.8 (source: server release metadata) <br>
+Risk: Persistent background notification tasks can continue running after reboot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run under a low-privilege account and document how to disable and remove any scheduled task or cron entry.
+
+Risk: Webhook URLs and configuration secrets are stored locally.
+
+Mitigation: Restrict local file permissions and keep webhook secrets out of source control and logs.
+
+Risk: Automatic state reset or replay can resend recent notifications during recovery.
+
+Mitigation: Require manual approval for state resets or replay and review delivery logs before recovery actions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bhupendrafire-ai/skills/discord-ai-dispatcher)
+- [Artifact README](artifact/readme.md)
+- [Artifact Skill Guide](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with implementation patterns, configuration examples, and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational recommendations for schedulers, state files, webhook configuration, deduplication logic, and recovery workflows.]
+
+## Skill Version(s):
+
+1.7.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

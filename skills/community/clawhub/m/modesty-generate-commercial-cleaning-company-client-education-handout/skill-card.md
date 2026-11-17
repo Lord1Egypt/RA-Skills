@@ -1,41 +1,50 @@
-## Description: <br>
-Create a polished explainer handout with visuals, FAQs, and clear next steps for a commercial cleaning company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a polished explainer handout with visuals, FAQs, and clear next steps for a commercial cleaning company.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Commercial cleaning owners and operations managers use this skill to draft client education handouts that explain services, answer common questions, add visuals, and provide clear next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handout text or visuals may be inaccurate, misleading, or inconsistent with the commercial cleaning company's actual services. <br>
-Mitigation: Review generated text and images before sending them to clients or publishing them externally. <br>
-Risk: Prompts may include confidential customer, site, contract, or pricing details processed by chat or image-generation APIs. <br>
-Mitigation: Avoid sharing sensitive client or contract information unless the platform and organization policies allow that data to be processed. <br>
+## Use Case:
 
+Commercial cleaning company owners and operations managers use this skill to draft client education handouts that explain services, answer FAQs, and give clear next steps.
 
-## Reference(s): <br>
-- [SkillBoss skill page](https://www.skillboss.co/skills/generate-commercial-cleaning-company-client-education-handout) <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-generate-commercial-cleaning-company-client-education-handout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown handout draft with FAQ content, visual suggestions, and next-step copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include image-generation prompts or generated visual assets when the host agent supports them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Client-facing handout drafts may contain inaccurate claims or wording that does not fit the company's actual services, compliance needs, or brand voice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated handouts for factual accuracy, service fit, compliance, and brand alignment before sharing externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-generate-commercial-cleaning-company-client-education-handout)
+- [SkillBoss skill homepage](https://www.skillboss.co/skills/generate-commercial-cleaning-company-client-education-handout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown handout draft with optional visual and FAQ content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include client-facing explanatory copy, FAQs, visuals, and next steps; review before external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

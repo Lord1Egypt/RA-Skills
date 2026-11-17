@@ -1,40 +1,52 @@
-## Description: <br>
-Tracks daily KPI history for revenue, gross adds, subscribers, product splits, week-over-week changes, and trend warnings in a Markdown memory file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks daily key metrics in a historical table, including revenue, gross adds, EOP, paid subscribers, platform splits, week-over-week calculations, and trend analysis.
 
-## Publisher: <br>
-[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mirowangl-ops](https://clawhub.ai/user/mirowangl-ops)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business analysts, operators, and agent users use this skill to append daily business metrics to a historical tracker, compare results week over week, and flag declining trends.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Daily revenue and subscriber metrics may be stored in the named persistent memory file.
+
+Mitigation: Use the skill only if that storage location is acceptable, or keep the metrics in a project-local or access-controlled document.
+
+Risk: Incomplete daily data or baseline values could lead to misleading week-over-week or trend conclusions.
+
+Mitigation: Confirm data completeness before marking final values and preserve baseline notes when applicable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Analysts and operators use this skill to append daily business KPI rows, maintain historical tracking, calculate week-over-week movement, and identify sustained performance declines. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Daily revenue and subscriber metrics may be stored in the agent's memory file. <br>
-Mitigation: Use the skill only where storing those metrics in memory/powerbi-daily-track.md is acceptable. <br>
-Risk: The skill records and analyzes provided values but does not verify the source data. <br>
-Mitigation: Validate source metrics separately before relying on the resulting trends or warnings. <br>
+**Output Format:** [Markdown table rows and concise analysis guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mirowangl-ops/xiaozhua-daily-data-tracker) <br>
+**Other Properties Related to Output:** [Writes or proposes updates for a persistent daily metrics file when the agent has access to the named memory path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown table rows with concise trend-analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Updates memory/powerbi-daily-track.md with daily KPI history when used.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

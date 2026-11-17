@@ -1,44 +1,56 @@
-## Description: <br>
-Searches for images through CPBox's paid x402 image-search API and returns image results with titles, source URLs, thumbnails, and SafeSearch controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for images and returns result titles, source URLs, thumbnails, SafeSearch filtering, and up to 200 results per request.
 
-## Publisher: <br>
-[sprintmint](https://clawhub.ai/user/sprintmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sprintmint](https://clawhub.ai/user/sprintmint)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve image-search results for visual content discovery, content enrichment, safe image retrieval, and batch image sourcing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a paid external x402 service and its payment helper can make payment automatic. <br>
-Mitigation: Configure strict wallet spending limits and require explicit approval before each paid search. <br>
-Risk: Image queries may reveal sensitive topics or intent to external services. <br>
-Mitigation: Avoid sensitive image queries and route only approved search terms through the service. <br>
-Risk: The external payment helper package is part of the execution path for paid requests. <br>
-Mitigation: Verify the helper package and service URLs before enabling the skill in wallet-enabled environments. <br>
+## Use Case:
 
+External developers and agents use this skill to query paid CPBox image search through x402 and retrieve image metadata for galleries, mood boards, visual research, or content enrichment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sprintmint/cpbox-images-search) <br>
-- [CPBox API provider](https://www.cpbox.io) <br>
-- [CPPay x402 facilitator](https://www.cppay.finance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with HTTP, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Image result JSON may include titles, page URLs, source domains, thumbnails, original image URLs, dimensions, confidence, and offensive-content signals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Automatic x402 payment signing can spend funds or expose payment credentials beyond the operator's intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with limited payment credentials and spending caps, and require confirmation before automatic signing.
+
+Risk: The documented npx command runs the x402 payment helper without a pinned package version.
+
+Mitigation: Use a pinned, reviewed version of @springmint/x402-payment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sprintmint/skills/cpbox-images-search)
+- [CPBox API provider](https://www.cpbox.io)
+- [CPBox images search endpoint](https://www.cpbox.io/api/x402/images-search)
+- [CPPay facilitator](https://www.cppay.finance)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, shell commands, guidance]
+
+**Output Format:** [Markdown instructions with HTTP and bash examples; API responses are JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Image results can include titles, page URLs, source domains, thumbnails, original image URLs, dimensions, relevance confidence, and SafeSearch or offensive-content indicators.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

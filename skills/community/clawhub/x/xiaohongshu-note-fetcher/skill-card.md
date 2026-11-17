@@ -1,44 +1,59 @@
-## Description: <br>
-抓取并整理小红书笔记公开页面信息（标题、正文摘要、作者、发布时间、互动数据、标签、封面图等）为结构化 JSON 或 Markdown。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches and organizes Xiaohongshu note page and search-result information into structured JSON, Markdown, CSV, and topic-planning materials.
 
-## Publisher: <br>
-[2813223285](https://clawhub.ai/user/2813223285) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2813223285](https://clawhub.ai/user/2813223285)
 
-## Use Case: <br>
-External users, content operators, and developers use this skill to fetch Xiaohongshu notes from URLs or keyword searches, then turn note metadata and engagement signals into structured JSON, Markdown, CSV, or topic-planning materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can require Xiaohongshu cookies or API tokens for authenticated fetching. <br>
-Mitigation: Use short-lived, low-privilege credentials, avoid full personal browser cookies when possible, and remove secrets from command history and output files. <br>
-Risk: The generic API mode can send requests and credentials to user-provided endpoints. <br>
-Mitigation: Use only trusted API base URLs and avoid generic API mode with untrusted or unfamiliar services. <br>
-Risk: Fetched outputs may contain account-accessible or third-party content. <br>
-Mitigation: Keep generated JSON, Markdown, CSV, screenshots, and HTML private unless sharing is authorized and compliant with applicable platform terms and privacy requirements. <br>
+## Use Case:
 
+External users, content operators, and developers use this skill to collect public or authorized Xiaohongshu note metadata, search results, engagement signals, and planning exports from note URLs, keyword searches, TikHub API responses, or browser-assisted scraping.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2813223285/xiaohongshu-note-fetcher) <br>
-- [Publisher profile](https://clawhub.ai/user/2813223285) <br>
-- [Output Schema](references/output-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON, Markdown, CSV, text files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include fetched note fields, article lists, publish templates, screenshots, rendered HTML, and mind-map URLs depending on the selected script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill asks for cookies or API tokens and can send them to Xiaohongshu, TikHub, or a user-configured generic API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only tokens and cookies suitable for the exact destination being called, avoid raw cookie files where possible, and do not point the generic API adapter at untrusted endpoints.
+
+Risk: Scraping and broad network requests may collect or expose content outside the user's intended authorization boundary.
+
+Mitigation: Use the skill only for Xiaohongshu URLs and data the user is authorized to access, respect platform terms and privacy requirements, and avoid bypassing platform safety mechanisms.
+
+Risk: Generated CSV, Markdown, JSON, and templates can contain untrusted third-party-derived content.
+
+Mitigation: Review generated files before opening them in spreadsheet software, publishing them, or reusing them in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2813223285/skills/xiaohongshu-note-fetcher)
+- [Output Schema](references/output-schema.md)
+- [TikHub Xiaohongshu search API endpoint](https://api.tikhub.io/api/v1/xiaohongshu/web/search_notes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with shell commands, plus generated JSON, Markdown, CSV, and text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured note records include URL, note ID, title, description, author, publication time, images, tags, interaction counts, fetch timestamp, and source status when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact publishing notes and package metadata list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

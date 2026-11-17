@@ -1,43 +1,58 @@
-## Description: <br>
-Audits medical device technical files against EU MDR 2017/745 regulations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit medical device technical files against EU MDR 2017/745 regulations.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Regulatory, quality, and engineering users can use this skill to check medical device technical-file folders or batch configurations for expected EU MDR documents and receive a structured compliance report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local technical-file folders and can write reports that may include confidential paths or filenames. <br>
-Mitigation: Run it only on the intended technical-file folder, write output to a controlled path, and review reports before sharing. <br>
-Risk: Dependencies are listed without pinned versions. <br>
-Mitigation: Review and pin dependencies before installing in managed or production environments. <br>
-Risk: Audit results are a helper output and may not cover every regulatory or device-specific obligation. <br>
-Mitigation: Use reports as review support and validate final MDR conclusions with qualified regulatory reviewers. <br>
+## Use Case:
 
+External users and developers use this skill to run a local preliminary checklist against medical device technical-file folders for EU MDR 2017/745 document presence and basic completeness. Results should support review preparation, not replace qualified regulatory judgment.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/medical-device-mdr-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON compliance reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include audit date, device class, input path, compliance status, findings, summary counts, and exit status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata) <br>
+Risk: MDR audit results can be misleading because the skill mostly checks filenames and may be used outside its stated medical-device purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a preliminary local checklist, keep tasks within the documented medical-device workflow, and have a qualified MDR reviewer verify the underlying documents manually.
+
+Risk: The skill reads local technical-file folders and can write report files to a requested output path.
+
+Mitigation: Run it on copies of selected folders and choose an output path that will not overwrite important files.
+
+Risk: Unnecessary or unpinned dependencies can increase installation and maintenance risk.
+
+Mitigation: Remove or pin unnecessary dependencies before installing the skill in a controlled environment.
+
+## Reference(s):
+
+- [Audit Reference](references/audit-reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/medical-device-mdr-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON compliance reports with console text summaries and Markdown-style agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read local technical-file directories and write report files when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

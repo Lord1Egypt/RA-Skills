@@ -1,47 +1,58 @@
-## Description: <br>
-Helps an agent recognize and counter anchoring effects in negotiations, valuations, forecasts, and other number-driven decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents recognize anchoring and structure independent estimates for negotiations, valuations, and forecasts.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, external users, developers, and agents use this skill to structure coaching and analysis when a first number may bias a negotiation, valuation, forecast, salary discussion, settlement, or deal term. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence salary, valuation, legal, business, or other high-stakes numerical decisions. <br>
-Mitigation: Review its coaching critically for the user's specific context and treat outputs as decision support rather than professional financial, legal, or business advice. <br>
-Risk: A proposed anchor or counter-anchor can be misleading if the initial number is actually a verifiable data point. <br>
-Mitigation: Follow the skill's fit check by classifying genuine comparables, audited figures, and other verified data as evidence rather than discounting them as pure anchors. <br>
+## Use Case:
 
+External users and their agents use this skill to assess whether a number is informative or acting as an anchor, then plan a negotiation, valuation, or forecast with an independent estimate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/anchoring) <br>
-- [Sources - anchoring](references/sources.md) <br>
-- [Method in Action: Tversky & Kahneman's Wheel of Fortune, 1974](examples/tversky-kahneman-wheel-of-fortune-1974.md) <br>
-- [Tversky & Kahneman (1974), Judgment under Uncertainty](https://doi.org/10.1126/science.185.4157.1124) <br>
-- [Northcraft & Neale (1987), Anchoring and Real Estate Pricing](https://doi.org/10.1016/0749-5978(87)90046-X) <br>
-- [Englich, Mussweiler & Strack (2006), Anchoring in Judicial Decisions](https://doi.org/10.1177/0146167205282152) <br>
-- [Galinsky & Mussweiler (2001), First Offers as Anchors](https://doi.org/10.1037/0022-3514.81.4.657) <br>
-- [Mussweiler, Strack & Pfeiffer (2000), Considering the Opposite](https://doi.org/10.1177/01461672002611010) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a structured anchoring analysis template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces coaching questions, anchor classification, counterfactual reasoning, and a recommended negotiation or forecasting move.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Negotiation or estimation guidance may rely on incorrect numbers or assumptions in consequential decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a thinking aid and verify consequential numbers against reliable evidence.
+
+Risk: Saved real-use examples could expose confidential negotiation or financial details.
+
+Mitigation: Omit confidential details from saved examples.
+
+## Reference(s):
+
+- [Anchoring skill overview](https://www.deciqai.com/c/anchoring)
+- [Tversky and Kahneman (1974), Judgment under Uncertainty: Heuristics and Biases](https://doi.org/10.1126/science.185.4157.1124)
+- [Northcraft and Neale (1987), Experts, Amateurs, and Real Estate](https://doi.org/10.1016/0749-5978(87)90046-X)
+- [Englich, Mussweiler, and Strack (2006), Playing Dice with Criminal Sentences](https://doi.org/10.1177/0146167205282152)
+- [Galinsky and Mussweiler (2001), First Offers as Anchors](https://doi.org/10.1037/0022-3514.81.4.657)
+- [Mussweiler, Strack, and Pfeiffer (2000), Overcoming the Inevitable Anchoring Effect](https://doi.org/10.1177/01461672002611010)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown with a structured Anchoring Analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts to coaching or concrete-case analysis and may pause for user input between steps.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

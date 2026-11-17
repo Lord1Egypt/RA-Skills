@@ -42,7 +42,7 @@ powershell -ExecutionPolicy Bypass -File scripts/kiri-engine.ps1 balance
 | 输入方式 | 约束 |
 |---------|------|
 | **视频上传** | 分辨率 ≤ 1920×1080，时长 ≤ 3 分钟 |
-| **图片集上传** | 20~300 张（最少 20 张保证质量） |
+| **图片集上传** | 20~300 张（最少 20 张保证质量）；**只接受 jpg / jpeg / png / tif / tiff** |
 
 ### C. 各算法专属参数
 
@@ -178,3 +178,8 @@ powershell -ExecutionPolicy Bypass -File scripts/kiri-engine.ps1 balance
 - Base URL: `https://api.kiriengine.app/api/`
 - 官方文档: https://gentlebandit.feishu.cn/wiki/PsHawWV0gi2jePkmRoycwMwXnIc
 - API Key 管理: https://www.kiriengine.com/api-settings
+/api.kiriengine.app` 做重建。**只传用户明确指定的素材**，不要把整个项目目录交给 `-images`。
+- `-images` 无论是文件夹、通配符（`C:\images\*.jpg`）还是逗号分隔的多个路径，脚本都**只上传 jpg / jpeg / png / tif / tiff**。其他扩展名会被逐条打印并跳过，不会进入请求体。
+- 视频只接受单个明确的文件路径，不做通配展开。
+- API Key 存在本机 `%USERPROFILE%\.kiri-engine-config.json`（明文）。不要把这个文件提交进仓库、不要发到聊天里；怀疑泄露就在 KIRI 控制台轮换。
+- 下载的 ZIP 来自第三方，解压前先看文件名；脚本用 `-Force` 覆盖同名输出。

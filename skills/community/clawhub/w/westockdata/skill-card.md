@@ -1,43 +1,64 @@
-## Description: <br>
-Queries Tencent WeStock public market data for A-share, Hong Kong, and U.S. stocks, indexes, sectors, ETFs, financial reports, fund flows, technical indicators, shareholder data, dividends, calendars, IPOs, and related market views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured financial market data through the WeStock CLI for stocks, ETFs, indexes, sectors, futures, forex, convertible bonds, company filings, research reports, risk events, fund flows, ETF holdings, investment calendars, and macroeconomic indicators.
 
-## Publisher: <br>
-[westock-skills](https://clawhub.ai/user/westock-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[westock-skills](https://clawhub.ai/user/westock-skills)
 
-## Use Case: <br>
-Financial-data researchers, quant developers, investor education teams, and market analysts use this skill to fetch and compare structured public market data across A-share, Hong Kong, and U.S. markets. It supports data retrieval and presentation workflows, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a pinned third-party npm CLI at use time to fetch public market data. <br>
-Mitigation: Install only when this execution model is acceptable; in sensitive or production environments, review or sandbox westock-data-clawhub@1.0.4 and verify package integrity before use. <br>
-Risk: Market data may be delayed or incomplete for decision-making contexts. <br>
-Mitigation: Treat outputs as objective data retrieval, label currencies and units clearly, and verify critical values against official exchange or issuer sources before relying on them. <br>
+## Use Case:
 
+External users, analysts, and agent developers use this skill to answer financial-data questions by selecting the correct westock command and interpreting returned market, fundamentals, event, and macroeconomic data. It is for informational analysis and not investment advice.
 
-## Reference(s): <br>
-- [WeStock Data usage guide](references/ai_usage_guide.md) <br>
-- [WeStock Data scenario guide](references/scenarios-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/westock-skills/westockdata) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/westock-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and concise text, with shell command examples; command failures may return JSON error objects.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a pinned npm CLI package at execution time and supports batch queries for most data commands except documented single-query commands such as search and minute.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The setup scripts install a remote westock executable from the Tencent/stockbuddy.qq.com release source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and release source are trusted; review the setup script first and use dry-run or a custom install directory where practical.
+
+Risk: The bash and PowerShell installers can persist PATH changes in the user environment.
+
+Mitigation: Review the intended install location before execution and confirm PATH changes match local policy.
+
+Risk: The skill returns financial market data that may be delayed or incomplete for investment decisions.
+
+Mitigation: Present results as informational data, preserve disclosed data dates, and avoid treating the output as investment advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/westock-skills/skills/westock-data)
+- [Publisher Profile](https://clawhub.ai/user/westock-skills)
+- [WeStock CLI Release Source](https://stockbuddy.qq.com/release/clawhub/cli)
+- [routing-guide.md](references/routing-guide.md)
+- [commands.md](references/commands.md)
+- [scenarios-guide.md](references/scenarios-guide.md)
+- [ai_usage_guide.md](references/ai_usage_guide.md)
+- [macro-fields.md](references/macro-fields.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown tables and explanatory text with westock CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and a locally installed westock executable; market data may be delayed and should be treated as informational.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

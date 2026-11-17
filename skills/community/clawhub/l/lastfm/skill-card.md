@@ -1,40 +1,54 @@
-## Description: <br>
-Access Last.fm listening history, music stats, and discovery. Query recent tracks, top artists/albums/tracks, loved tracks, similar artists, and global charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Last.fm listening history, music stats, and discovery. Query recent tracks, top artists/albums/tracks, loved tracks, similar artists, and global charts.
 
-## Publisher: <br>
-[gumadeiras](https://clawhub.ai/user/gumadeiras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gumadeiras](https://clawhub.ai/user/gumadeiras)
 
-## Use Case: <br>
-Developers and agents use this skill to configure read-only Last.fm API lookups and retrieve listening history, music statistics, recommendations, search results, and chart data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented examples use plain HTTP Last.fm API URLs. <br>
-Mitigation: Prefer HTTPS API URLs where supported before running requests. <br>
-Risk: Expanded shell commands or logs may expose the Last.fm API key. <br>
-Mitigation: Avoid sharing commands or logs containing the API key, and rotate the key if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Last.fm API account creation](https://www.last.fm/api/account/create) <br>
-- [Last.fm API documentation](https://lastfm-docs.github.io/api-docs/) <br>
+## Use Case:
 
+External users and developers use this skill to query Last.fm listening history, profile statistics, music discovery endpoints, and global charts through documented API calls.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and API response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The referenced Last.fm endpoints return JSON responses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill documents sending the user's Last.fm API key and listening data over unencrypted HTTP.
+
+Mitigation: Use HTTPS for Last.fm API calls where supported, avoid logging expanded URLs, and use a dedicated Last.fm API key.
+
+Risk: Queries can expose a user's listening history, loved tracks, profile stats, and music preferences.
+
+Mitigation: Configure only a Last.fm account whose listening history and profile statistics are acceptable to query through this skill.
+
+## Reference(s):
+
+- [Last.fm API Account Creation](https://www.last.fm/api/account/create)
+- [Last.fm API Documentation](https://lastfm-docs.github.io/api-docs/)
+- [Last.fm Skill Page](https://clawhub.ai/gumadeiras/skills/lastfm)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON-oriented jq examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LASTFM_API_KEY and LASTFM_USER environment variables; generated commands query Last.fm read-only endpoints.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

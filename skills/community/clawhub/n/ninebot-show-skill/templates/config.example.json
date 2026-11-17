@@ -1,0 +1,12 @@
+{
+  "ninebot": {
+    "sn": "REPLACE_WITH_WNUMBER",
+    "full_range": 80,
+    "vehicle_name": "九号电动车",
+    "vehicle_model": ""
+  },
+  "location": "上海",
+  "timezone": "Asia/Shanghai",
+  "privacy_mode": "district",
+  "weather_enabled": true
+}

@@ -1,46 +1,56 @@
-## Description: <br>
-Mails helps agents validate email addresses and manage Mails batch validation jobs through an OOMOL-connected Mails account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mails (mails.so). Use this skill for ANY Mails request — reading, creating, and updating data. Whenever a task involves Mails, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to validate single email addresses, create batch validation jobs, and retrieve batch validation results from Mails via their connected OOMOL account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive account access through the connected OOMOL Mails account. <br>
-Mitigation: Install it only when the agent should use that account for email validation tasks, and rely on OOMOL server-side credential handling rather than exposing raw tokens. <br>
-Risk: Batch validation creation is a write action that can affect the connected Mails account or consume account resources. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: CLI installation and account connection steps change local or account setup. <br>
-Mitigation: Run setup only after an authentication or connection failure and only when OOMOL and the connector are trusted. <br>
+## Use Case:
 
+Agents use this skill to validate a single email address or create and retrieve a batch email validation job through a connected Mails account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-mails-so) <br>
-- [Mails homepage](https://mails.so) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [OOMOL Mails connection](https://console.oomol.com/app-connections?provider=mails_so) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful connector runs return JSON with data and meta.executionId.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: evidence release and frontmatter metadata) <br>
+Risk: The required oo CLI can change other agent skills, a behavior not clearly disclosed by this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI yourself; set OO_SKILLS_SYNC_DISABLED=1 for CLI invocations to prevent skill changes.
+
+Risk: Email addresses and connected credentials may be exposed to OOMOL, while remote installers and the hosted backend are outside the inspected bundle; batch payloads may also incur costs.
+
+Mitigation: Consider OOMOL's access to submitted addresses and connected credentials, and review batch payloads and costs before approval.
+
+## Reference(s):
+
+- [Mails homepage](https://mails.so)
+- [Mails API authentication documentation](https://docs.mails.so/authentication/)
+- [oo CLI controls documentation](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-mails-so)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions require a connected Mails account; batch validation creates a job.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

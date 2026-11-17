@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【课题名称】 — 交互课件</title>
+<style>
+  /* ==========================================================
+     专业交互课件引擎模板 · 深空科技主题
+     外壳：左导航栏 / 顶栏(模式Tab) / 右知识大纲树 / 底部控制条
+     ⚠️ 每个 <svg> 必须自带 <defs>，渐变/滤镜 ID 加唯一后缀！
+        （跨 SVG 引用 display:none 内的 id 会渲染失败——实测踩坑）
+     品质基准示例：D:\vibe coding\课件-血液循环示例\课件.html
+     ========================================================== */
+  :root {
+    --bg-deep: #070D1A;
+    --bg-panel: #0D1626;
+    --bg-panel-2: #111D33;
+    --bg-card: #142238;
+    --line: #1E3050;
+    --line-bright: #2E4A78;
+    --text: #E8EEF9;
+    --text-sub: #8FA3C2;
+    --text-dim: #5A6E8F;
+    --accent: #38BDF8;
+    --accent-warm: #F59E0B;
+    --radius: 14px;
+    --rail-w: 76px;
+    --outline-w: 316px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; overflow:hidden; }
+  body {
+    font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+    background:
+      radial-gradient(1200px 700px at 75% -10%, rgba(56,189,248,.08), transparent 60%),
+      radial-gradient(900px 600px at -10% 110%, rgba(168,85,247,.07), transparent 60%),
+      var(--bg-deep);
+    color:var(--text);
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr var(--outline-w);
+    grid-template-rows:56px 1fr 64px;
+    grid-template-areas:
+      "rail top    top"
+      "rail stage  outline"
+      "rail control outline";
+  }
+
+  /* ============ 左侧导航栏 ============ */
+  .rail {
+    grid-area:rail;
+    background:linear-gradient(180deg,var(--bg-panel),#0A1220);
+    border-right:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center;
+    padding:14px 0; gap:6px;
+  }
+  .rail-logo {
+    width:44px; height:44px; border-radius:12px;
+    background:linear-gradient(135deg,#0EA5E9,#6366F1);
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; margin-bottom:14px;
+    box-shadow:0 0 18px rgba(14,165,233,.45);
+  }
+  .rail-btn {
+    width:56px; height:56px; border:none; border-radius:12px;
+    background:transparent; color:var(--text-dim);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+    cursor:pointer; transition:all .18s; font-family:inherit;
+  }
+  .rail-btn .ico { font-size:20px; line-height:1; }
+  .rail-btn .lbl { font-size:10px; transform:scale(.9); }
+  .rail-btn:hover { color:var(--text); background:var(--bg-panel-2); }
+  .rail-btn.active {
+    color:#fff; background:linear-gradient(160deg,rgba(56,189,248,.22),rgba(99,102,241,.16));
+    box-shadow:inset 0 0 0 1px var(--line-bright), 0 0 14px rgba(56,189,248,.18);
+  }
+  .rail-spacer { flex:1; }
+  .rail-foot { display:flex; flex-direction:column; gap:6px; }
+
+  /* ============ 顶栏 ============ */
+  .topbar {
+    grid-area:top;
+    display:flex; align-items:center; gap:18px;
+    padding:0 22px;
+    background:rgba(13,22,38,.82); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .course { display:flex; flex-direction:column; line-height:1.25; }
+  .topbar .course b { font-size:17px; letter-spacing:.5px; }
+  .topbar .course span { font-size:11.5px; color:var(--text-dim); }
+  .mode-tabs {
+    display:flex; gap:4px; margin-left:auto;
+    background:var(--bg-panel-2); border:1px solid var(--line);
+    padding:4px; border-radius:12px;
+  }
+  .mode-tab {
+    padding:7px 18px; border:none; border-radius:9px;
+    background:transparent; color:var(--text-sub);
+    font-size:13.5px; cursor:pointer; transition:all .18s; font-family:inherit;
+  }
+  .mode-tab.active {
+    background:linear-gradient(160deg,#0EA5E9,#3B82F6);
+    color:#fff; box-shadow:0 0 14px rgba(14,165,233,.4);
+  }
+  .legend { display:flex; gap:14px; margin-left:16px; font-size:12.5px; color:var(--text-sub); }
+  .legend i { display:inline-block; width:22px; height:4px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+
+  /* ============ 舞台 ============ */
+  .stage { grid-area:stage; position:relative; overflow:hidden; }
+  .scene { position:absolute; inset:0; display:none; }
+  .scene.active { display:block; animation:sceneIn .45s ease; }
+  @keyframes sceneIn { from { opacity:0; transform:scale(.985); } to { opacity:1; transform:none; } }
+  .scene svg.main { width:100%; height:100%; display:block; }
+
+  /* 幕内叠加字幕（电影感） */
+  .scene-caption {
+    position:absolute; left:26px; top:18px; z-index:5;
+    display:flex; align-items:baseline; gap:12px;
+    text-shadow:0 2px 14px rgba(0,0,0,.65);
+  }
+  .scene-caption .no { font-size:15px; color:var(--accent); font-weight:700; letter-spacing:1px; }
+  .scene-caption h2 { font-size:22px; font-weight:700; }
+  .scene-caption .sub { font-size:12.5px; color:var(--text-sub); }
+
+  /* 浮动信息卡 */
+  .float-card {
+    position:absolute; z-index:6;
+    background:rgba(13,22,38,.88); backdrop-filter:blur(8px);
+    border:1px solid var(--line-bright); border-left:3px solid var(--accent);
+    border-radius:10px; padding:10px 14px;
+    font-size:13px; line-height:1.65; max-width:290px;
+    box-shadow:0 8px 30px rgba(0,0,0,.45);
+  }
+  .float-card b { color:var(--accent); }
+
+  /* ============ 右侧知识大纲树 ============ */
+  .outline {
+    grid-area:outline;
+    background:var(--bg-panel);
+    border-left:1px solid var(--line);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  .outline-head {
+    padding:14px 18px 10px; font-size:12px; letter-spacing:2px;
+    color:var(--text-dim); border-bottom:1px solid var(--line);
+  }
+  .outline-tree { flex:1; overflow-y:auto; padding:10px 12px; }
+  .ot-item {
+    border-radius:10px; padding:9px 12px; margin-bottom:4px;
+    cursor:pointer; transition:all .16s; border:1px solid transparent;
+  }
+  .ot-item:hover { background:var(--bg-panel-2); }
+  .ot-item.current {
+    background:linear-gradient(160deg,rgba(56,189,248,.14),rgba(99,102,241,.10));
+    border-color:var(--line-bright);
+  }
+  .ot-item .t { font-size:13.5px; display:flex; gap:8px; align-items:center; }
+  .ot-item .t .n {
+    width:20px; height:20px; border-radius:6px; flex:none;
+    background:var(--bg-panel-2); color:var(--text-sub);
+    font-size:11px; display:flex; align-items:center; justify-content:center;
+  }
+  .ot-item.current .t .n { background:var(--accent); color:#04121F; font-weight:700; }
+  .ot-kids { margin:6px 0 2px 10px; padding-left:10px; border-left:1px solid var(--line); display:none; }
+  .ot-item.current .ot-kids { display:block; }
+  .ot-kids li {
+    list-style:none; font-size:12.5px; color:var(--text-sub);
+    padding:4px 6px; border-radius:6px; line-height:1.5; transition:all .15s;
+  }
+  .ot-kids li:hover { color:var(--text); background:var(--bg-panel-2); }
+  .ot-kids li.hl { color:var(--accent); background:rgba(56,189,248,.10); }
+
+  .outline-tip {
+    margin:0 12px 12px; padding:12px;
+    background:linear-gradient(160deg,rgba(245,158,11,.10),rgba(245,158,11,.04));
+    border:1px solid rgba(245,158,11,.35); border-radius:12px;
+    font-size:12.5px; line-height:1.7; color:#FCD34D;
+    display:none;
+  }
+  body.teacher-mode .outline-tip { display:block; }
+
+  /* ============ 底部控制条 ============ */
+  .controlbar {
+    grid-area:control;
+    display:flex; align-items:center; gap:14px;
+    padding:0 22px;
+    background:rgba(13,22,38,.82); backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+  }
+  .ctl-btn {
+    min-width:44px; height:44px; border:none; border-radius:12px;
+    background:var(--bg-panel-2); color:var(--text);
+    font-size:17px; cursor:pointer; transition:all .16s; font-family:inherit;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ctl-btn:hover { background:var(--bg-card); box-shadow:inset 0 0 0 1px var(--line-bright); }
+  .ctl-btn.primary {
+    width:52px; height:52px; font-size:20px;
+    background:linear-gradient(160deg,#0EA5E9,#3B82F6); color:#fff;
+    box-shadow:0 0 18px rgba(14,165,233,.45);
+  }
+  .ctl-btn:disabled { opacity:.3; cursor:not-allowed; }
+  .progress { flex:1; display:flex; align-items:center; gap:8px; }
+  .progress .bar {
+    flex:1; height:5px; border-radius:3px; background:var(--bg-panel-2);
+    position:relative; cursor:pointer;
+  }
+  .progress .bar .fill {
+    position:absolute; left:0; top:0; bottom:0; border-radius:3px;
+    background:linear-gradient(90deg,#0EA5E9,#6366F1);
+    box-shadow:0 0 10px rgba(14,165,233,.5);
+    transition:width .35s ease;
+  }
+  .scene-indicator { font-size:13px; color:var(--text-sub); min-width:150px; text-align:center; }
+  .scene-indicator b { color:var(--text); }
+
+  /* ============ 步骤序列器（过程类知识最后一位） ============ */
+  .step-flow {
+    position:absolute; right:18px; top:64px; bottom:18px; width:240px; z-index:6;
+    display:flex; flex-direction:column; gap:8px; overflow:hidden auto;
+    scrollbar-width:none;
+  }
+  .step-flow::-webkit-scrollbar { display:none; }
+  .step-chip {
+    display:flex; gap:10px; align-items:flex-start;
+    background:rgba(13,22,38,.86); backdrop-filter:blur(8px);
+    border:1px solid var(--line); border-radius:12px;
+    padding:10px 12px; transition:all .3s; cursor:pointer;
+  }
+  .step-chip .no {
+    width:24px; height:24px; border-radius:50%; flex:none;
+    background:var(--bg-panel-2); color:var(--text-dim);
+    border:1px solid var(--line-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; transition:all .3s;
+  }
+  .step-chip .tx { font-size:12.5px; line-height:1.55; color:var(--text-sub); }
+  .step-chip .tx b { display:block; font-size:13.5px; color:var(--text); margin-bottom:1px; }
+  .step-chip.active {
+    border-color:var(--accent);
+    box-shadow:0 0 16px rgba(56,189,248,.25), inset 0 0 24px rgba(56,189,248,.05);
+    transform:translateX(-6px);
+  }
+  .step-chip.active .no {
+    background:var(--accent); color:#04121F; border-color:var(--accent);
+    box-shadow:0 0 10px rgba(56,189,248,.6);
+  }
+  .step-chip.done .no { background:rgba(56,189,248,.18); color:var(--accent); }
+
+  /* ============ SVG 通用质感类 ============ */
+  .flow { fill:none; stroke-linecap:round; }
+  .paused .flow { animation-play-state:paused !important; }
+  .dash { stroke-dasharray:10 7; animation:dashMove 1.05s linear infinite; }
+  @keyframes dashMove { to { stroke-dashoffset:-17; } }
+  .beat { animation:beat 1.05s ease-in-out infinite; transform-origin:center; transform-box:fill-box; }
+  .paused .beat { animation-play-state:paused; }
+  @keyframes beat {
+    0%,100% { transform:scale(1); } 12% { transform:scale(1.055); }
+    24% { transform:scale(1); } 36% { transform:scale(1.035); } 50% { transform:scale(1); }
+  }
+  .region { cursor:pointer; transition:all .25s; }
+  .region:hover { filter:brightness(1.3); }
+  svg text { font-family:"Microsoft YaHei","PingFang SC",sans-serif; }
+  .lbl { font-size:13px; fill:var(--text-sub); }
+  .lbl-strong { font-size:14.5px; fill:var(--text); font-weight:700; }
+
+  body.fs { --rail-w:0px; --outline-w:0px; }
+  body.fs .rail, body.fs .outline { display:none; }
+</style>
+</head>
+<body>
+
+<!-- ============ 左侧导航 ============ -->
+<nav class="rail">
+  <div class="rail-logo">【主题emoji】</div>
+  <!-- 每幕一个按钮：data-scene 序号 -->
+  <button class="rail-btn active" data-scene="0"><span class="ico">【图标】</span><span class="lbl">【幕名】</span></button>
+  <button class="rail-btn" data-scene="1"><span class="ico">【图标】</span><span class="lbl">【幕名】</span></button>
+  <button class="rail-btn" data-scene="2"><span class="ico">【图标】</span><span class="lbl">【幕名】</span></button>
+  <button class="rail-btn" data-scene="3"><span class="ico">【图标】</span><span class="lbl">【幕名】</span></button>
+  <div class="rail-spacer"></div>
+  <div class="rail-foot">
+    <button class="rail-btn" id="btnTeacher" title="教师模式"><span class="ico">🎓</span><span class="lbl">教师</span></button>
+    <button class="rail-btn" id="btnFull" title="全屏"><span class="ico">⛶</span><span class="lbl">全屏</span></button>
+  </div>
+</nav>
+
+<!-- ============ 顶栏 ============ -->
+<header class="topbar">
+  <div class="course">
+    <b>【课题名称】</b>
+    <span>【教材版本 · 年级】</span>
+  </div>
+  <!-- 可选：图层/模式切换 Tab 组（如"全貌/分支A/分支B"） -->
+  <div class="mode-tabs" id="modeTabs">
+    <button class="mode-tab active" data-mode="all">【全貌】</button>
+    <button class="mode-tab" data-mode="a">【分支A】</button>
+    <button class="mode-tab" data-mode="b">【分支B】</button>
+  </div>
+  <div class="legend">
+    <span><i style="background:【色1】"></i>【图例1】</span>
+    <span><i style="background:【色2】"></i>【图例2】</span>
+  </div>
+</header>
+
+<!-- ============ 舞台 ============ -->
+<main class="stage" id="stage">
+
+  <!-- 幕 N 模板：字幕标题 + SVG 主视觉 + 浮动卡 -->
+  <section class="scene active" data-scene="0">
+    <div class="scene-caption">
+      <span class="no">01</span><h2>【幕标题】</h2>
+      <span class="sub">【一句话副标】</span>
+    </div>
+    <div class="float-card" style="left:26px; bottom:24px;">
+      <b>观察任务</b><br>【引导学生看什么】
+    </div>
+    <svg class="main" id="svg0" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <!-- ⚠️ 本 SVG 专用 defs：ID 必须加幕号后缀（-0/-1/-2）保证全文档唯一。
+             跨 SVG 引用 display:none 内的 id 会导致渲染失败（实测坑）。
+             通用模板（复制后改后缀）：
+        <linearGradient id="gA-0" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="【亮色】"/><stop offset="1" stop-color="【深色】"/>
+        </linearGradient>
+        <filter id="fGlow-0" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="2.6" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="fSoft-0" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity=".45"/>
+        </filter>
+        -->
+      </defs>
+      <!-- TODO: 主视觉。有机形体用多段 C 曲线拼真实轮廓 + 半透明高光弧线； -->
+      <!-- 流程管线：class="flow dash" stroke-width 6-10 + 渐变描边 + 辉光滤镜 -->
+      <!-- 可切换图层：mode Tab 联动的 <g> 加 id="layer-xxx" -->
+      <!-- 可点选部件：class="region" data-region="键名"（联动大纲 data-k） -->
+      <!-- 步骤联动路径：data-s="步序号"（序列器聚光用） -->
+    </svg>
+  </section>
+
+  <!-- 复制更多幕…… 过程类知识最后一幕加右侧 .step-flow 步骤序列器：
+
+  <div class="step-flow" id="stepFlow">
+    <div class="step-chip" data-step="0"><span class="no">1</span><span class="tx"><b>【站名】</b>【一句描述】</span></div>
+  </div>
+  -->
+
+</main>
+
+<!-- ============ 右侧知识大纲树 ============ -->
+<aside class="outline">
+  <div class="outline-head">本 节 大 纲</div>
+  <div class="outline-tree" id="outlineTree">
+    <div class="ot-item" data-scene="0">
+      <div class="t"><span class="n">01</span>【幕名】</div>
+      <ul class="ot-kids">
+        <li>【子知识点（可加 data-k 与 SVG 部件联动高亮）】</li>
+        <li>【子知识点】</li>
+      </ul>
+    </div>
+  </div>
+  <div class="outline-tip">
+    🎯 <b>教学提示</b><br>
+    【幕1 导入提问】<br>
+    【幕2 易错点】<br>
+    【幕3 互动建议】<br>
+    【幕4 总结追问】
+  </div>
+</aside>
+
+<!-- ============ 底部控制条 ============ -->
+<footer class="controlbar">
+  <button class="ctl-btn" id="btnPrev" title="上一幕">⏮</button>
+  <button class="ctl-btn primary" id="btnPlay" title="播放/暂停">⏸</button>
+  <button class="ctl-btn" id="btnNext" title="下一幕">⏭</button>
+  <div class="progress">
+    <div class="bar" id="bar"><div class="fill" id="fill"></div></div>
+    <div class="scene-indicator"><b id="indNo">01</b> / <span id="indTotal">04</span> · <span id="indName">【幕名】</span></div>
+  </div>
+  <button class="ctl-btn" id="btnSpeed" title="播放速度">1×</button>
+</footer>
+
+<script>
+/* ================= 幕切换引擎 ================= */
+const scenes   = [...document.querySelectorAll('.scene')];
+const railBtns = [...document.querySelectorAll('.rail-btn[data-scene]')];
+const otItems  = [...document.querySelectorAll('.ot-item')];
+const NAMES    = ['【幕名1】','【幕名2】','【幕名3】','【幕名4】'];
+let cur = 0, playing = true, speed = 1;
+
+function go(i) {
+  cur = Math.max(0, Math.min(scenes.length - 1, i));
+  scenes.forEach((s, k) => s.classList.toggle('active', k === cur));
+  railBtns.forEach((b, k) => b.classList.toggle('active', k === cur));
+  otItems.forEach((o, k) => o.classList.toggle('current', k === cur));
+  document.getElementById('indNo').textContent = String(cur + 1).padStart(2, '0');
+  document.getElementById('indName').textContent = NAMES[cur];
+  document.getElementById('fill').style.width = ((cur + 1) / scenes.length * 100) + '%';
+  document.getElementById('btnPrev').disabled = cur === 0;
+  document.getElementById('btnNext').disabled = cur === scenes.length - 1;
+  if (typeof stepCtrl !== 'undefined') { cur === scenes.length - 1 ? stepCtrl.start() : stepCtrl.stop(); }
+  if (typeof onSceneChange !== 'undefined') onSceneChange(cur);
+}
+railBtns.forEach(b => b.onclick = () => go(+b.dataset.scene));
+otItems.forEach(o => o.querySelector('.t').onclick = () => go(+o.dataset.scene));
+document.getElementById('btnPrev').onclick = () => go(cur - 1);
+document.getElementById('btnNext').onclick = () => go(cur + 1);
+document.getElementById('bar').onclick = e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  go(Math.round((e.clientX - r.left) / r.width * (scenes.length - 1)));
+};
+
+/* ================= 播放/暂停 & 速度 ================= */
+const btnPlay = document.getElementById('btnPlay');
+btnPlay.onclick = () => {
+  playing = !playing;
+  btnPlay.textContent = playing ? '⏸' : '▶';
+  document.getElementById('stage').classList.toggle('paused', !playing);
+  if (typeof stepCtrl !== 'undefined') stepCtrl[playing ? 'resume' : 'pause']();
+};
+document.getElementById('btnSpeed').onclick = function () {
+  speed = speed === 1 ? 2 : speed === 2 ? 0.5 : 1;
+  this.textContent = (speed === 0.5 ? '0.5' : speed) + '×';
+};
+
+/* ================= 教师模式 & 全屏 ================= */
+document.getElementById('btnTeacher').onclick = function () {
+  document.body.classList.toggle('teacher-mode');
+  this.classList.toggle('active');
+};
+document.getElementById('btnFull').onclick = () => {
+  document.body.classList.toggle('fs');
+  document.body.classList.contains('fs') ? document.documentElement.requestFullscreen?.() : document.exitFullscreen?.();
+};
+
+/* ================= 模式切换（图层显隐） =================
+   SVG 内可切换图层是 <g id="layer-xxx">，
+   MODE_MAP 指定每种模式显示哪些图层，其余降为 .12 透明。 */
+const MODE_MAP = {
+  all: { show: ['#layer-all'] },
+  a:   { show: ['#layer-a'] },
+  b:   { show: ['#layer-b'] },
+};
+const layerIndex = {};
+/* TODO: 填充 layerIndex，如：
+   ['#layer-all','#layer-a','#layer-b'].forEach(sel => layerIndex[sel] = document.querySelector(sel)); */
+function applyMode(m) {
+  const cfg = MODE_MAP[m]; if (!cfg) return;
+  Object.keys(layerIndex).forEach(sel => {
+    const el = layerIndex[sel];
+    if (!el) return;
+    el.style.transition = 'opacity .5s';
+    el.style.opacity = cfg.show.includes(sel) ? '' : '.12';
+  });
+}
+document.querySelectorAll('.mode-tab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.mode-tab').forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  applyMode(t.dataset.mode);
+});
+
+/* ================= 区域点选 → 大纲联动 ================= */
+document.querySelectorAll('.region').forEach(r => r.addEventListener('click', () => {
+  const k = r.dataset.region;
+  document.querySelectorAll('#outlineTree [data-k]').forEach(li =>
+    li.classList.toggle('hl', li.dataset.k === k));
+  r.classList.add('hot');
+  setTimeout(() => r.classList.remove('hot'), 1200);
+}));
+
+/* ================= 镜头运镜（viewBox 补间） ================= */
+function flyCamera(svg, from, to, dur = 1100) {
+  const t0 = performance.now();
+  const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+  (function frame(now) {
+    const p = ease(Math.min(1, (now - t0) / dur));
+    svg.setAttribute('viewBox', from.map((f, i) => f + (to[i] - f) * p).join(' '));
+    if (p < 1) requestAnimationFrame(frame);
+  })(t0);
+}
+/* 用法示例：进某幕时推近镜头
+function onSceneChange(i) {
+  if (i === 1) flyCamera(document.getElementById('svg1'), [0,0,1200,760], [140,40,920,640], 1400);
+} */
+
+/* ================= 步骤序列器（过程类最后一幕，取消注释并填充） =================
+const stepCtrl = (() => {
+  const chips  = [...document.querySelectorAll('#stepFlow .step-chip')];
+  const paths  = [...document.querySelectorAll('#svgN [data-s]')];
+  const zones  = ['#zone-a','#zone-b','#zone-c'].map(s => document.querySelector(s));
+  const FOCUS  = [0]; // 每步聚焦的 zone 序号
+  let idx = -1, timer = null;
+  function show(i) {
+    idx = i;
+    chips.forEach((c, k) => { c.classList.toggle('active', k === i); c.classList.toggle('done', k < i); });
+    paths.forEach(p => {
+      const on = +p.dataset.s === i;
+      p.style.opacity = on ? '1' : '.16';
+      p.style.strokeWidth = on ? '10' : '6';
+    });
+    zones.forEach((z, k) => { if (z) { z.style.opacity = k === FOCUS[i] ? '1' : '.30'; z.style.transition = 'opacity .4s'; } });
+    chips[i] && chips[i].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+  const next = () => show((idx + 1) % chips.length);
+  const ctrl = {
+    start() { show(0); ctrl.resume(); },
+    resume() { clearInterval(timer); if (playing) timer = setInterval(next, 2600 / speed); },
+    pause() { clearInterval(timer); },
+    stop() { ctrl.pause();
+             chips.forEach(c => c.classList.remove('active','done'));
+             paths.forEach(p => { p.style.opacity = ''; p.style.strokeWidth = ''; });
+             zones.forEach(z => { if (z) z.style.opacity = ''; }); },
+  };
+  chips.forEach((c, i) => c.onclick = () => { show(i); ctrl.resume(); });
+  return ctrl;
+})();
+*/
+
+/* ================= 键盘 / 翻页笔 ================= */
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') go(cur + 1);
+  if (e.key === 'ArrowLeft'  || e.key === 'PageUp') go(cur - 1);
+  if (e.key === ' ') { btnPlay.click(); e.preventDefault(); }
+});
+
+document.getElementById('indTotal').textContent = String(scenes.length).padStart(2, '0');
+go(0);
+</script>
+</body>
+</html>

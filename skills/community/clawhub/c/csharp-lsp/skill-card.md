@@ -1,45 +1,68 @@
-## Description: <br>
-C# language server providing code intelligence, diagnostics, and navigation for .cs and .csx files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+C# language server providing code intelligence, diagnostics, and navigation for .cs and .csx files. Uses csharp-ls (lightweight Roslyn-based). Requires .sln or .csproj.
 
-## Publisher: <br>
-[leafbird](https://clawhub.ai/user/leafbird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leafbird](https://clawhub.ai/user/leafbird)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to inspect C# projects with language-server features such as hover, go-to-definition, references, symbols, and diagnostics. It is intended for projects with a .sln or .csproj workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installer and helper scripts can use sudo and modify persistent shell or system paths. <br>
-Mitigation: Review setup before installing, run it manually, avoid setting SUDO_PASS, and prefer a user-writable link such as ~/.local/bin/lsp-query. <br>
-Risk: Language-server queries and debug logs can expose local project metadata. <br>
-Mitigation: Keep LSP_WORKSPACE limited to the intended project and remove or restrict /tmp/lsp-query-debug.log if it is created. <br>
+## Use Case:
 
+Developers and engineers use this skill to give agents command-line C# code intelligence for projects with .sln or .csproj files, including hover, definition, references, diagnostics, and symbol search.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leafbird/csharp-lsp) <br>
-- [csharp-ls language server](https://github.com/razzmatazz/csharp-language-server) <br>
-- [.NET SDK downloads](https://dot.net/download) <br>
-- [Language Server Protocol specification](https://microsoft.github.io/language-server-protocol/) <br>
-- [Architecture](docs/architecture.md) <br>
-- [Troubleshooting](docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text command output with setup and usage snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires .NET SDK, Python 3, and a C# workspace with a .sln or .csproj for full results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter, release metadata, CHANGELOG) <br>
+Risk: The setup script may install a global .NET tool, edit shell startup files, and create or replace /usr/local/bin/lsp-query.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup script before running it, avoid privileged or shared machines, and prefer a user-local bin path when possible.
+
+Risk: SUDO_PASS can provide the installer with unattended sudo authority for creating the lsp-query symlink.
+
+Mitigation: Do not set SUDO_PASS; create any privileged symlink manually after inspecting the target path.
+
+Risk: LSP_SERVER and LSP_LANG can alter which local language-server subprocess handles queried files.
+
+Mitigation: Keep these variables unset unless intentionally testing, and restrict them to trusted language-server commands.
+
+Risk: Queried source files are opened and sent to local language-server subprocesses.
+
+Mitigation: Use the skill only with trusted local language servers and workspaces whose contents may be processed by those subprocesses.
+
+## Reference(s):
+
+- [C# LSP ClawHub Page](https://clawhub.ai/leafbird/skills/csharp-lsp)
+- [Publisher Profile](https://clawhub.ai/user/leafbird)
+- [csharp-ls](https://github.com/razzmatazz/csharp-language-server)
+- [.NET SDK Downloads](https://dot.net/download)
+- [Language Server Protocol Specification](https://microsoft.github.io/language-server-protocol/)
+- [Architecture](docs/architecture.md)
+- [Deployment](docs/deployment.md)
+- [Troubleshooting](docs/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and command-line text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on local language-server results, workspace configuration, and queried source files.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and changelog, released 2026-03-05)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

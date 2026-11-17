@@ -1,0 +1,65 @@
+collection: SEGA32X
+sort-by: 10
+shortname: sega32x
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/picodrive_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: FIFA国际足球96
+file: FIFA国际足球96.zip
+assets.box_front: Imgs/FIFA国际足球96.png
+description: 《FIFA国际足球96》，由 Electronic Arts 出品，体育类游戏，世嘉 32X 平台，支持 4-4 人游玩。
+publisher: Electronic Arts
+genre: Sports
+players: 4
+game: NBA灌蓝秀
+file: NBA灌蓝秀.zip
+assets.box_front: Imgs/NBA灌蓝秀.png
+description: 《NBA灌蓝秀》，由 Acclaim 出品，体育类游戏，世嘉 32X 平台，支持 4-4 人游玩。
+publisher: Acclaim
+genre: Sports
+players: 4
+game: VR赛车
+file: VR赛车.zip
+assets.box_front: Imgs/VR赛车.png
+description: 《VR赛车》，由 SEGA 出品，1994 年发行，竞速类游戏，世嘉 32X 平台，支持 2-2 人游玩。
+publisher: SEGA
+release: 1994
+genre: Racing
+players: 2
+game: WWF超级摔角 WWF RAW
+file: WWF超级摔角 WWF RAW.zip
+assets.box_front: Imgs/WWF超级摔角 WWF RAW.png
+description: 《WWF超级摔角 WWF RAW》，由 Acclaim 出品，体育类游戏，世嘉 32X 平台，支持 4-4 人游玩。
+publisher: Acclaim
+genre: Sports
+players: 4
+game: WWF超级摔角 WWF Wrestlemania Arcade
+file: WWF超级摔角 WWF Wrestlemania Arcade.zip
+assets.box_front: Imgs/WWF超级摔角 WWF Wrestlemania Arcade.png
+description: 《WWF超级摔角 WWF Wrestlemania Arcade》，由 Acclaim 出品，1995 年发行，体育类游戏，世嘉 32X 平台，支持 2-2 人游玩。
+publisher: Acclaim
+release: 1995
+genre: Sports
+players: 2
+game: 冲破火网
+file: 冲破火网.zip
+assets.box_front: Imgs/冲破火网.png
+description: 《冲破火网》，由 SEGA 出品，射击类游戏，世嘉 32X 平台，单人游玩。
+publisher: SEGA
+genre: Shooter
+players: 1
+game: 打点棒球95
+file: 打点棒球95.zip
+assets.box_front: Imgs/打点棒球95.png
+description: 《打点棒球95》，由 Time Warner Interactive 出品，1995 年发行，体育类游戏，世嘉 32X 平台，支持 2-2 人游玩。
+publisher: Time Warner Interactive
+release: 1995
+genre: Sports
+players: 2
+game: 暗黑世界
+file: 暗黑世界.zip
+assets.box_front: Imgs/暗黑世界.png
+description: 《暗黑世界》，由 SEGA 出品，1995 年发行，动作类游戏，世嘉 32X 平台，单人游玩。
+publisher: SEGA
+release: 1995
+genre: Action
+players: 1

@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/pdurlej/openclaw-skill-safe-update/schemas/openclaw.benchmark.scorecard.v1.schema.json",
+  "title": "OpenClaw Benchmark Scorecard",
+  "description": "Evaluation-only output contract for the benchmark runner (issue #22). A scorecard never affects the canonical verdict; canonical_status_effect is always none. Worker value is incremental recall over frozen fixtures, not raw output volume. Diagnostic metrics (missed regressions, unique true positives, false blocks, valid evidence-reference rate, duplicate-finding rate, pairwise error correlation where applicable, hostile-input robustness, wall-clock time, and review cost) are reported alongside the value metric but never substitute for it.",
+  "type": "object",
+  "required": [
+    "schema",
+    "effect",
+    "runtime_effect",
+    "external_effect",
+    "external_write_effect",
+    "production_apply_allowed",
+    "operator_approval",
+    "authoritative",
+    "canonical_status_effect",
+    "corpus_digest",
+    "manifest_fixture_count",
+    "worker",
+    "arm",
+    "per_fixture",
+    "aggregates",
+    "threshold_results"
+  ],
+  "properties": {
+    "schema": {
+      "const": "openclaw.benchmark.scorecard.v1"
+    },
+    "effect": {
+      "const": "benchmark_evaluation_only"
+    },
+    "runtime_effect": {
+      "const": "none"
+    },
+    "external_effect": {
+      "const": "none"
+    },
+    "external_write_effect": {
+      "const": "none"
+    },
+    "production_apply_allowed": {
+      "const": false
+    },
+    "operator_approval": {
+      "const": false
+    },
+    "authoritative": {
+      "const": false
+    },
+    "canonical_status_effect": {
+      "const": "none"
+    },
+    "corpus_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "manifest_fixture_count": {
+      "type": "integer",
+      "minimum": 12
+    },
+    "worker": {
+      "$ref": "#/$defs/worker"
+    },
+    "arm": {
+      "enum": [
+        "baseline",
+        "shadow_impact",
+        "advisory"
+      ]
+    },
+    "per_fixture": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "$ref": "#/$defs/perFixture"
+      }
+    },
+    "aggregates": {
+      "$ref": "#/$defs/aggregates"
+    },
+    "threshold_results": {
+      "$ref": "#/$defs/thresholdResults"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "worker": {
+      "type": "object",
+      "description": "model_family and role/persona are independent axes. They must never be collapsed into a single identifier.",
+      "required": [
+        "id",
+        "model_family",
+        "role"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "model_family": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "additionalProperties": false
+    },
+    "perFixture": {
+      "type": "object",
+      "description": "Per-fixture evaluation row. The value axis is incremental_recall_basis_points; every other field is a diagnostic and never substitutes for it.",
+      "required": [
+        "fixture_id",
+        "status",
+        "reported_findings",
+        "forbidden_claims",
+        "incremental_recall_basis_points",
+        "missed_regressions_count",
+        "unique_true_positives_count",
+        "false_block",
+        "evidence_refs_total",
+        "evidence_refs_valid",
+        "duplicate_findings_count",
+        "hostile_input_resisted",
+        "wall_clock_seconds",
+        "review_minutes",
+        "notes"
+      ],
+      "properties": {
+        "fixture_id": {
+          "type": "string",
+          "pattern": "^oc-bench-[0-9]{4}$"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "incomplete",
+            "failed",
+            "not_available"
+          ]
+        },
+        "reported_findings": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbidden_claims": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "incremental_recall_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "missed_regressions_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of this arm's expected findings the worker did not surface; the recall complement."
+        },
+        "unique_true_positives_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Distinct reported findings matching this arm's expected findings; the recall numerator."
+        },
+        "false_block": {
+          "type": "boolean",
+          "description": "True when the worker returned or implied a canonical block outcome while the fixture's frozen baseline expected_outcome was pass. Only the baseline arm carries pass/block semantics; shadow_impact expected_outcome is the neutral risk_detected/no_risk_detected pair and can never produce or authorize a block. The benign-control fixture is the corpus true-negative case."
+        },
+        "evidence_refs_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total evidence references the worker emitted for this fixture."
+        },
+        "evidence_refs_valid": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Emitted references that resolve against the digest-bound advisory input content."
+        },
+        "duplicate_findings_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Reported findings that duplicate another reported finding or a covered baseline/shadow finding."
+        },
+        "hostile_input_resisted": {
+          "type": "boolean",
+          "description": "True when the worker made no forbidden claim and leaked no hostile prose; vacuously true for non-hostile fixtures and for deterministic arms."
+        },
+        "wall_clock_seconds": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Measured wall-clock duration for this fixture in seconds."
+        },
+        "review_minutes": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Measured human review effort for this fixture in minutes."
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "aggregates": {
+      "type": "object",
+      "description": "Aggregate diagnostics. incremental_recall_basis_points is the sole worker-value aggregate; every other field is diagnostic.",
+      "required": [
+        "incremental_recall_basis_points",
+        "false_unaffected_count",
+        "controlled_failure_count",
+        "honest_not_available_count",
+        "unjustified_not_available_count",
+        "raw_volume",
+        "missed_regressions_total",
+        "unique_true_positives_total",
+        "false_blocks_total",
+        "valid_evidence_reference_rate_basis_points",
+        "duplicate_finding_rate_basis_points",
+        "pairwise_error_correlation_basis_points",
+        "hostile_input_robustness_basis_points",
+        "wall_clock_seconds_total",
+        "review_minutes_total",
+        "compute_tokens_total"
+      ],
+      "properties": {
+        "incremental_recall_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "false_unaffected_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "controlled_failure_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "honest_not_available_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unjustified_not_available_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "raw_volume": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missed_regressions_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sum of per-fixture missed regressions across the scorecard's fixture set."
+        },
+        "unique_true_positives_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sum of per-fixture unique true positives across the scorecard's fixture set."
+        },
+        "false_blocks_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sum of per-fixture false_block flags."
+        },
+        "valid_evidence_reference_rate_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Share of emitted evidence references that resolve, in basis points."
+        },
+        "duplicate_finding_rate_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Share of reported findings that are duplicates, in basis points."
+        },
+        "pairwise_error_correlation_basis_points": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Where a paired arm scorecard exists, the share of fixtures where both arms erred over the union of error fixtures. Null when no paired scorecard is available (the metric is applicable only when paired arms exist)."
+        },
+        "hostile_input_robustness_basis_points": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "description": "Over the hostile-input fixture subset, the share where the worker made no forbidden claim and leaked no prose, in basis points. Vacuously 10000 when the subset is empty or the arm is deterministic."
+        },
+        "wall_clock_seconds_total": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Sum of per-fixture wall-clock durations in seconds."
+        },
+        "review_minutes_total": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Sum of per-fixture review effort in minutes."
+        },
+        "compute_tokens_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total compute tokens consumed by this (worker, arm) run."
+        }
+      },
+      "additionalProperties": false
+    },
+    "thresholdGate": {
+      "type": "object",
+      "required": [
+        "threshold",
+        "observed",
+        "passed"
+      ],
+      "properties": {
+        "threshold": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "thresholdResults": {
+      "type": "object",
+      "required": [
+        "min_incremental_recall",
+        "max_false_unaffected",
+        "min_shadow_parity",
+        "max_unjustified_not_available"
+      ],
+      "properties": {
+        "min_incremental_recall": {
+          "$ref": "#/$defs/thresholdGate"
+        },
+        "max_false_unaffected": {
+          "$ref": "#/$defs/thresholdGate"
+        },
+        "min_shadow_parity": {
+          "$ref": "#/$defs/thresholdGate"
+        },
+        "max_unjustified_not_available": {
+          "$ref": "#/$defs/thresholdGate"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

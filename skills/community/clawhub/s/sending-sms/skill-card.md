@@ -1,45 +1,61 @@
-## Description: <br>
-Sends SMS messages via the Sendly API with the Node.js SDK or REST API. Handles single messages, batch sends, scheduling, conversations, and sandbox testing. Applies when sending text messages, notifications, alerts, or reminders via SMS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends SMS messages via the Sendly API with the Node.js SDK or REST API. Handles single messages, batch sends, scheduling, conversations, and sandbox testing.
 
-## Publisher: <br>
-[sendly-live](https://clawhub.ai/user/sendly-live) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sendly-live](https://clawhub.ai/user/sendly-live)
 
-## Use Case: <br>
-Developers and external teams use this skill to send transactional or marketing SMS messages, schedule reminders, perform batch sends, and test Sendly integrations in sandbox mode before live delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Sendly API keys can send real SMS messages and incur charges. <br>
-Mitigation: Use sandbox keys first, and confirm recipient numbers, message content, message type, and expected charges before any live send. <br>
-Risk: Marketing or batch messages can create consent, compliance, and quiet-hours risk. <br>
-Mitigation: Confirm consent and compliance status before sending, especially for marketing, scheduled, or batch messages. <br>
-Risk: Sendly API keys could be exposed through prompts, logs, or shared files. <br>
-Mitigation: Keep the API key in environment variables and out of prompts, logs, and shared files. <br>
+## Use Case:
 
+Developers and operators use this skill to send transactional or marketing SMS through Sendly, including single messages, scheduled messages, batch sends, message lookup, and two-way conversation workflows.
 
-## Reference(s): <br>
-- [Sendly SMS API Docs](https://sendly.live/docs/sms) <br>
-- [Sendly SDK Docs](https://sendly.live/docs/sdks) <br>
-- [Sendly OpenAPI Spec](https://sendly.live/openapi.yaml) <br>
-- [Sendly Sandbox Docs](https://sendly.live/docs/sandbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, bash, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include live API calls that send SMS messages, consume credits, or schedule future delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live Sendly API keys can send real SMS messages and incur charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sk_test_* keys for testing, confirm recipients and message type before live sends, and reserve sk_live_* keys for intentional production use.
+
+Risk: Batch sends can contact many recipients at once.
+
+Mitigation: Review recipient lists and message content before execution, especially for large batches.
+
+Risk: Marketing messages have compliance constraints and misclassifying them as transactional can create legal risk.
+
+Mitigation: Classify messageType correctly and follow quiet-hour and recipient-consent requirements before sending marketing SMS.
+
+## Reference(s):
+
+- [Sending SMS skill page](https://clawhub.ai/sendly-live/skills/sending-sms)
+- [Sendly SMS API docs](https://sendly.live/docs/sms)
+- [Sendly SDK docs](https://sendly.live/docs/sdks)
+- [Sendly OpenAPI spec](https://sendly.live/openapi.yaml)
+- [Sendly sandbox docs](https://sendly.live/docs/sandbox)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript, Bash, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes API key configuration, REST requests, Node.js SDK examples, response shapes, sandbox test numbers, and SMS compliance notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

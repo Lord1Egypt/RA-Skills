@@ -1,40 +1,48 @@
-## Description: <br>
-Provides a concise introduction to WeChat's history, major features, version changes, ecosystem, business model, and operating tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WeChat Intro provides a Chinese-language overview of WeChat's history, feature modules, ecosystem, commercialization, version changes, and operation tips.
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and operators use this skill to understand WeChat's development history, functional modules, ecosystem relationships, business models, and practical operating considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: WeChat features, platform rules, privacy controls, and payment safeguards may change after release. <br>
-Mitigation: Verify current functionality and operating requirements against official WeChat or Tencent sources before relying on the guidance for operational or business decisions. <br>
-Risk: The skill provides general public-information guidance and may omit context needed for regulated, financial, or sensitive privacy decisions. <br>
-Mitigation: Use the skill as orientation material and apply organization-specific review for compliance, privacy, and payment-security use cases. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LeoCryptoFlow/wechat-intro) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/LeoCryptoFlow) <br>
+## Use Case:
 
+External users and operators use this skill to ask for Chinese-language background on WeChat's development, functions, ecosystem, business model, and operating tips.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language informational content with concise lists, tables, and operating notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: WeChat product details may become outdated or may not reflect official current behavior.
+
+Mitigation: Treat the skill as a static public-information reference and check official WeChat update logs for the latest product changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/wechat-intro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static public-information reference; users should check official WeChat update logs for current product changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

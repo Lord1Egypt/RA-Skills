@@ -1,0 +1,6 @@
+interface:
+  display_name: "AgentMailer SDK"
+  short_description: "Build typed agent identity and email integrations"
+  default_prompt: "Use $agentmailer to implement this AgentMailer integration with the appropriate typed SDK and safe delivery boundaries."
+policy:
+  allow_implicit_invocation: true

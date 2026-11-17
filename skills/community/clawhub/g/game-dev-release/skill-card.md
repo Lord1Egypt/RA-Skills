@@ -1,41 +1,54 @@
-## Description: <br>
-Release management for game development, covering release checklists, patch notes, hotfix process, day-1 patch strategy, launch checklist, platform store submission, and post-launch support workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Release management for game development, covering release checklists, patch notes, hotfix process, day-1 patch strategy, launch checklist, platform store submission, and post-launch support workflow.
 
-## Publisher: <br>
-[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[toilanguyen2910](https://clawhub.ai/user/toilanguyen2910)
 
-## Use Case: <br>
-Game developers and release teams use this skill to plan, verify, document, and communicate game releases across QA, build, store submission, launch, hotfix, and post-launch workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release, build, store-upload, or announcement guidance could be acted on before it is reviewed. <br>
-Mitigation: Review generated release plans, build steps, store submission steps, and public communications before executing them or publishing them. <br>
-Risk: Store submission steps cannot be fully automated and may require platform-specific manual approval. <br>
-Mitigation: Use the skill output as a checklist and confirm required actions in each store portal before launch. <br>
+## Use Case:
 
+Game developers and release teams use this skill to plan and execute game launches, patches, hotfixes, store preparation, launch communication, and post-launch monitoring.
 
-## Reference(s): <br>
-- [Semantic Versioning](https://semver.org/) <br>
-- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-release) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, configuration, guidance] <br>
-**Output Format:** [Markdown checklists, plans, templates, and release guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include release plans, launch checklists, patch notes, hotfix procedures, store checklists, schedules, and risk registers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad release and deploy triggers may invoke this skill when a user intended a different release workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the workflow is for game release planning before applying generated checklists or launch steps.
+
+Risk: Store upload, public announcement, and launch guidance can affect a live release if followed without review.
+
+Mitigation: Review generated checklists and keep store portal submissions, public posts, and final launch actions manual.
+
+## Reference(s):
+
+- [Semantic Versioning](https://semver.org/)
+- [ClawHub skill page](https://clawhub.ai/toilanguyen2910/skills/game-dev-release)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, templates, schedules, and inline command or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning documents and operational checklists; store submissions remain manual.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

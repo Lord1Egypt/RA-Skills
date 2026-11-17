@@ -1,41 +1,53 @@
-## Description: <br>
-Generates whiteboard-style hand-drawing animation videos from image files, converting color images into line-drawing and coloring phases with optional hand overlay and H.264 MP4 output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates whiteboard-style hand-drawing animation videos from images, converting color images into two-stage line-drawing and coloring animations with an optional hand overlay and H.264 MP4 output.
 
-## Publisher: <br>
-[yangagent](https://clawhub.ai/user/yangagent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangagent](https://clawhub.ai/user/yangagent)
 
-## Use Case: <br>
-External users and developers use this skill to turn one or more local image files into whiteboard animation videos, choosing duration, output directory, and whether to include the hand overlay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local setup can create a .venv and download Python packages from PyPI. <br>
-Mitigation: Run the setup only in environments where local virtualenv creation and PyPI downloads are acceptable; pin or pre-review dependencies in stricter environments. <br>
-Risk: Default hand-overlay generation may fail because drawing-hand.png is not included in the artifact. <br>
-Mitigation: Supply the missing hand asset before using the overlay, or run generation with --no-hand. <br>
+## Use Case:
 
+Developers and creators use this skill to turn one or more local image files into whiteboard-style MP4 animation videos and receive generated file paths or batch status summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangagent/whiteboard-animation) <br>
-- [YangAgent publisher profile](https://clawhub.ai/user/yangagent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated MP4 file paths or batch summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local H.264 MP4 videos in the selected output directory; batch mode reports success and failure counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The setup workflow creates a local .venv and installs unpinned Python media packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment and review or pin opencv-python, numpy, and av before installation when supply-chain control matters.
+
+Risk: Batch generation acts on user-provided image paths and output locations.
+
+Mitigation: Confirm image paths, durations, and output directories before execution, especially for batch jobs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangagent/skills/whiteboard-animation)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Markdown-style instructions with shell command examples; generated artifacts are H.264 MP4 files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-image mode returns a final video path; batch mode returns success and failure counts, output directory, and failed image paths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,54 @@
-## Description: <br>
-Adversarial Verification helps agents challenge code and system changes with real command execution, targeted checks, and explicit PASS or FAIL reporting. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Adversarial Verification helps agents challenge assumptions, run real verification commands, and return clear PASS or FAIL outcomes for software changes.
 
-## Publisher: <br>
-[minijoy-b](https://clawhub.ai/user/minijoy-b) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minijoy-b](https://clawhub.ai/user/minijoy-b)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to verify frontend, backend, CLI, configuration, package, and bug-fix changes by running concrete checks and reporting an explicit PASS or FAIL result. It is most useful before commits, deployments, major changes, or third-party code review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute shell, npm, build, and target JavaScript commands against a selected project path. <br>
-Mitigation: Use it only on trusted repositories or inside a disposable sandbox, and review the target path and commands before execution. <br>
-Risk: Automation guidance includes Git hook, CI, and deployment check integrations that could run verification commands automatically. <br>
-Mitigation: Avoid wiring the skill into hooks, CI, or deployment workflows until the command behavior and project impact are accepted. <br>
-Risk: The artifact recommends destructive or adversarial testing as part of validation. <br>
-Mitigation: Run destructive checks in isolated test environments with backups and avoid direct production execution. <br>
+## Use Case:
 
+Developers and coding agents use this skill to plan and execute adversarial verification of frontend, backend, CLI, infrastructure, package, and bug-fix changes before commits, deployments, or reviews.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minijoy-b/adversarial-verification) <br>
-- [Publisher profile](https://clawhub.ai/user/minijoy-b) <br>
-- [Quick start guide](examples/quick-start.md) <br>
-- [Package metadata](package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or terminal text with command lists, execution results, and PASS or FAIL verdicts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include stdout, stderr, exit status summaries, reproduction steps, and suggested fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and package.json) <br>
+Risk: The verifier can run target-controlled commands on the host without enforcing the sandboxing described by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a disposable, credential-free sandbox; avoid production paths and untrusted repositories until command execution is isolated.
+
+Risk: CLI filename handling may allow unsafe behavior when validating arbitrary targets.
+
+Mitigation: Use controlled target paths and review command invocations before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/minijoy-b/skills/adversarial-verification)
+- [Quick Start](examples/quick-start.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style verification report with command lists, result summaries, failure details, and PASS or FAIL verdicts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include executed commands, stdout or stderr summaries, reproduction steps, and suggested fixes.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

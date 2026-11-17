@@ -1,43 +1,61 @@
-## Description: <br>
-Fishing Trip Planner helps an agent plan fishing trips by using map, weather, and tide APIs to generate route guidance, condition scoring, safety suggestions, and an HTML trip report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI fishing trip planning assistant that uses Gaode Map and QWeather APIs to generate route, weather, tide, scoring, and safety guidance in an HTML trip report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Anglers and trip-planning agents use this skill to gather route, weather, tide, and fishing-condition information for a planned fishing outing and produce a local HTML report with recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Amap and QWeather API keys and trip history locally. <br>
-Mitigation: Use dedicated low-privilege API keys, avoid running the planner with elevated privileges, and remove ~/.fishing-planner/ when stored keys or history are no longer needed. <br>
-Risk: Trip locations and dates are shared with map and weather providers during planning. <br>
-Mitigation: Use the skill only for trips where sharing those details with Amap and QWeather is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to plan fishing trips by collecting origin, destination, date, and travel mode, then generating route, weather, tide, scoring, and suggestion outputs. It is especially relevant for trips where local weather, coastal tide data, and travel logistics should be reviewed together before departure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/fishing-trip-planner) <br>
-- [Server-resolved GitHub provenance](https://github.com/bettermen/fishing-trip-planner) <br>
-- [Amap developer site](https://lbs.amap.com/) <br>
-- [QWeather developer site](https://dev.qweather.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, HTML] <br>
-**Output Format:** [Markdown-style agent guidance with shell commands and generated local HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Amap and QWeather API keys; stores configuration and trip history under ~/.fishing-planner/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill stores API keys, trip history, and reports locally, which can expose sensitive credentials or location data if files are shared or permissions are weak.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive API keys, keep generated configuration and history private, and review local file permissions before sharing the workspace or reports.
+
+Risk: Generated HTML reports may include API or location data that has not been fully contained or escaped.
+
+Mitigation: Review generated HTML before opening or sharing it, especially when inputs or API responses could be manipulated.
+
+Risk: The `--output` option can write reports to caller-selected paths.
+
+Mitigation: Avoid existing, shared, or sensitive output paths and keep report generation in a dedicated directory.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/bettermen/fishing-trip-planner)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/fishing-trip-planner)
+- [API configuration guide](references/api_guide.md)
+- [Gaode Map API](https://lbs.amap.com/)
+- [QWeather API](https://dev.qweather.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with shell commands that run a Python script and generate local HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided API keys and may save local configuration, trip history, and HTML reports.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

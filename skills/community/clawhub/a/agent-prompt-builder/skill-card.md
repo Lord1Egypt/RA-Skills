@@ -1,44 +1,59 @@
-## Description: <br>
-Generates structured system prompts from Live Neon agent beliefs and responsibilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop writing system prompts by hand -- let structured identity generate them automatically from beliefs and responsibilities.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register Live Neon identities, manage beliefs and responsibilities, review generated identity changes, and build markdown system prompts for use with LLM agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects agents to a remote, persistent prompt-identity system that can store conversation-derived observations. <br>
-Mitigation: Use it only when users and administrators have opted in, avoid sending sensitive conversation details or private source content, and review observations before processing them into identity changes. <br>
-Risk: Bulk approvals, consensus changes, or scheduled heartbeats can alter agent or organization prompt identity through remote state changes. <br>
-Mitigation: Require human review before bulk approvals, group or organization consensus changes, and automated heartbeat workflows. <br>
-Risk: The Live Neon token grants access to organization-scoped identity and prompt-management APIs. <br>
-Mitigation: Protect LIVE_NEON_TOKEN as a secret, scope access to trusted agents, and rotate or re-register tokens if exposure is suspected. <br>
+## Use Case:
 
+Developers and agent builders use this skill to connect an agent to the Live Neon platform, manage structured beliefs and responsibilities, and fetch a generated system prompt for use with an LLM. It also provides workflows for syncing content, discovering identity signals, reviewing proposed beliefs, and tracking prompt changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liveneon/agent-prompt-builder) <br>
-- [Live Neon Agent platform](https://persona.liveneon.ai) <br>
-- [Live Neon homepage](https://liveneon.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces plain markdown system prompts and Live Neon API workflow guidance; requires Live Neon API access and LIVE_NEON_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Live Neon may receive and process agent identity data, imported content-source material, and conversation-derived observations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with appropriate user and organization consent, review and redact payloads before upload, and avoid sending sensitive data that is not needed for prompt generation.
+
+Risk: Generated prompt text and approved beliefs can change agent behavior after remote processing.
+
+Mitigation: Review pending beliefs, responsibilities, and generated prompts before deployment; keep a rollback path and token-revocation plan.
+
+Risk: Proactive observation, approve-all, consensus promotion, and scheduled heartbeat workflows can amplify unreviewed identity changes.
+
+Mitigation: Keep those workflows disabled unless users opt in and payloads are reviewed; prefer manual approval for production agents.
+
+## Reference(s):
+
+- [Agent Prompt Builder on ClawHub](https://clawhub.ai/liveneon/skills/agent-prompt-builder)
+- [Live Neon Persona Platform](https://persona.liveneon.ai)
+- [Live Neon](https://liveneon.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash, JSON, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require LIVE_NEON_TOKEN, LIVE_NEON_BASE, and an active Live Neon account to execute workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

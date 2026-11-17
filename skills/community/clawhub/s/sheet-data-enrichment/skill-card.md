@@ -1,43 +1,58 @@
-## Description: <br>
-Enrich spreadsheet rows by fetching linked URLs or APIs to fill missing values, then aggregate the completed data into summary sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enrich spreadsheet rows by fetching linked sources or APIs to fill missing fields, then aggregate the enriched data into summary sheets.
 
-## Publisher: <br>
-[kylinr](https://clawhub.ai/user/kylinr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylinr](https://clawhub.ai/user/kylinr)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to enrich spreadsheet rows from external sources, verify extracted values, write them back safely, and create grouped summary sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet-linked URLs or row context may be sent to external sites or APIs during enrichment. <br>
-Mitigation: Confirm domains and target rows before fetching, and avoid sensitive spreadsheets unless the user has approved the external lookups. <br>
-Risk: Incorrect row alignment during write-back can place extracted values in the wrong cells. <br>
-Mitigation: Read the target row before writing, use explicit single-cell ranges, and review proposed write-backs before applying them. <br>
-Risk: Ambiguous or incomplete web extraction can produce incorrect enriched data. <br>
-Mitigation: Flag ambiguous results for manual review, verify samples before batch application, and avoid guessing when source data is unclear. <br>
+## Use Case:
 
+Developers, analysts, and spreadsheet operators use this skill to fill missing spreadsheet columns from URLs or APIs and produce grouped summary sheets after enrichment.
 
-## Reference(s): <br>
-- [Extraction Patterns](references/extraction-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kylinr/sheet-data-enrichment) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with spreadsheet write plans, extracted values, verification notes, and summary sheet specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include row-by-row enrichment results, manual-review flags, grouping dimensions, subtotals, and grand totals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may read spreadsheet contents, visit URLs from the sheet, use browser automation, and write results back.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intended enrichment workflows and review the source columns, target columns, and proposed batch updates before approving writes.
+
+Risk: Spreadsheet write-back can affect the wrong row or cell if row alignment drifts during batch processing.
+
+Mitigation: Verify adjacent row data before each write, use explicit single-cell ranges, and re-read sheets before aggregation.
+
+Risk: Fetched pages may have ambiguous, missing, blocked, or paywalled data.
+
+Mitigation: Flag ambiguous or unavailable values for manual review instead of guessing, and verify samples before applying reusable extraction patterns.
+
+## Reference(s):
+
+- [Extraction Patterns](artifact/references/extraction-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/kylinr/skills/sheet-data-enrichment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with spreadsheet update plans, extraction notes, and summary table specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or perform spreadsheet reads, URL fetching, browser-assisted extraction, single-cell write-backs, and summary sheet generation when the user approves the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

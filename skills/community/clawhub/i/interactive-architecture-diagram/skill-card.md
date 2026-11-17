@@ -1,47 +1,59 @@
-## Description: <br>
-Creates interactive architecture diagrams and other structured visualizations from architecture descriptions, business logic, knowledge-base content, workflows, mind maps, and long-form text using ContextWeave. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive Architecture Diagram helps agents turn architecture, code, process, knowledge-base, and long-form text requests into structured ContextWeave diagram workflows.
 
-## Publisher: <br>
-[qhyw99](https://clawhub.ai/user/qhyw99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qhyw99](https://clawhub.ai/user/qhyw99)
 
-## Use Case: <br>
-Developers, architects, and technical teams use this skill to turn system descriptions, code architecture, process flows, and dense text into visual diagrams. It can generate new ContextWeave diagrams, edit existing diagram sessions, import or export CW code, and attach file links through a controlled two-step workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Diagram prompts, architecture descriptions, and CW or request file content may be sent to the ContextWeave backend. <br>
-Mitigation: Avoid submitting confidential system details unless the backend is trusted for that data. <br>
-Risk: The skill can use a bundled anonymous API key when CONTEXTWEAVE_MCP_API_KEY is not set. <br>
-Mitigation: Set a user-controlled CONTEXTWEAVE_MCP_API_KEY before use when account separation or credential control is required. <br>
-Risk: Session IDs and saved .cw files may contain sensitive diagram context. <br>
-Mitigation: Store generated session IDs and .cw files only in appropriate locations and avoid sharing them when they include sensitive content. <br>
-Risk: The E2E test script performs live remote workflow checks. <br>
-Mitigation: Review the test script before running it and execute it only in an environment approved for remote requests. <br>
+## Use Case:
 
+Developers, engineers, and knowledge workers use this skill to convert complex technical, business, and knowledge content into explicit diagram-generation requests. It is suited for architecture diagrams, dependency maps, business process diagrams, mind maps, and structured information graphics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qhyw99/interactive-architecture-diagram) <br>
-- [Publisher Profile](https://clawhub.ai/user/qhyw99) <br>
-- [ContextWeave API Endpoint Example](https://api.contextweave.site) <br>
-- [ContextWeave Default Runtime Endpoint](https://pptx.chenxitech.site) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [JSON status objects with generated diagram session identifiers, asset URLs, and optional saved CW code files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and may use CONTEXTWEAVE_MCP_API_KEY for authenticated ContextWeave requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.18 (source: ClawHub release evidence) <br>
+Risk: Diagram requests may include proprietary systems, code structure, customer workflows, or secrets and are uploaded to a fixed remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where remote processing is approved, and avoid including secrets or sensitive proprietary details in diagram requests.
+
+Risk: The skill may use a bundled shared API key when CONTEXTWEAVE_MCP_API_KEY is not configured.
+
+Mitigation: Configure a user- or organization-owned API key and manage it through the environment.
+
+Risk: Security guidance flags unsafe local file-writing plus path and command-injection issues around returned filenames and the included E2E test.
+
+Mitigation: Avoid running the E2E test or trusting backend-returned filenames until those issues are fixed; review paths before executing generated commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qhyw99/skills/interactive-architecture-diagram)
+- [Skill source](artifact/SKILL.md)
+- [ContextWeave example configuration](artifact/cwmcp_config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [JSON responses with diagram session identifiers, generated asset URLs, and locally written ContextWeave code files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and uses CONTEXTWEAVE_MCP_API_KEY when configured.]
+
+## Skill Version(s):
+
+0.1.18 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

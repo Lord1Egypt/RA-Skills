@@ -1,0 +1,23 @@
+{
+  "id": "hui-yi-native-memory",
+  "name": "Hui-Yi Native Memory Guard",
+  "description": "Reads trusted primary-memory trigger cache through the public SDK for private webchat turns; stops after runtime changes.",
+  "activation": { "onStartup": true },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["runtimeEntry"],
+    "properties": {
+      "runtimeEntry": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Absolute audited OpenClaw dist/extensions/active-memory/index.js path, checked for integrity only and never imported."
+      },
+      "agents": { "type": "array", "minItems": 1, "maxItems": 16, "items": { "type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$" }, "default": ["main"] },
+      "maxEntries": { "type": "integer", "minimum": 1, "maximum": 3, "default": 3 },
+      "maxChars": { "type": "integer", "minimum": 256, "maximum": 1800, "default": 1800 },
+      "promptAppend": { "type": "string", "maxLength": 4000, "default": "" },
+      "diagnostics": { "type": "boolean", "default": false, "description": "Opt-in selected/model-input marker and citation counts only; never logs text, query, source paths, run IDs or session IDs." }
+    }
+  }
+}

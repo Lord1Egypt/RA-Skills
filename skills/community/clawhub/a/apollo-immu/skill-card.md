@@ -1,42 +1,51 @@
-## Description: <br>
-Intercepts risky agent operations before execution and uses a local trust database to reduce repeated confirmations for trusted recipient-operation pairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apollo Immu helps an agent intercept risky actions before execution and uses trust accumulation to reduce repeated confirmation prompts.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Developers and agent users use this skill to add a confirmation gate before sensitive actions such as file deletion, external messages, command execution, and permission changes. It is intended to make routine trusted actions less noisy while still pausing for higher-risk operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic trust learning may reduce confirmations for sensitive actions based on weak conversation cues. <br>
-Mitigation: Keep explicit confirmation enabled for sends, command execution, permission changes, and non-temporary deletes, or disable conversational auto-learning before deployment. <br>
-Risk: The skill stores confirmation counts in a persistent local trust database. <br>
-Mitigation: Review the trust database before reuse across users or environments and reset entries that should not carry forward. <br>
+## Use Case:
 
+Developers and agent users can use this skill to gate sensitive actions such as file deletion, outbound messaging, command execution, and permission changes before an agent proceeds. It is intended to reduce repeated confirmations for familiar recipient-operation pairs while keeping higher-risk actions confirmation-gated.
 
-## Reference(s): <br>
-- [Apollo Immu ClawHub page](https://clawhub.ai/nic-yuan/apollo-immu) <br>
-- [Risk levels reference](references/risk_levels.md) <br>
-- [Auto-learn reference](references/auto_learn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON interceptor decisions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local trust database for recipient-operation confirmation counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: The trust-learning logic can reduce confirmations for sensitive actions based on casual conversation cues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and keep sensitive sends, permission changes, command execution, and deletion operations confirmation-gated until trust updates require explicit approval.
+
+## Reference(s):
+
+- [Apollo Immu ClawHub Skill Page](https://clawhub.ai/nic-yuan/skills/apollo-immu)
+- [Automatic Trust Learning Guide](references/auto_learn.md)
+- [Risk Level Reference](references/risk_levels.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance, configuration]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local trust state in assets/trust_db.json]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

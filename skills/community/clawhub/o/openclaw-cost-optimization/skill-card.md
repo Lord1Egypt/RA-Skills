@@ -1,40 +1,54 @@
-## Description: <br>
-OpenClaw cost optimization guidance for lowering AI API spending for cost-sensitive users and enterprise deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw cost optimization guidance for reducing AI API spending, aimed at cost-sensitive users and enterprise deployments.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers, teams, and OpenClaw users use this skill to select lower-cost models, configure caching and context limits, set budgets, and monitor API usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence flags the release as suspicious because a bundled autoreview helper may launch nested Codex with full filesystem and network authority. <br>
-Mitigation: Review the skill before installing, avoid full-access sandbox bypass for routine review tasks, and use the autoreview helper with `--no-yolo` unless elevated authority is intentionally required. <br>
-Risk: The moderation-related security guidance assumes use from an authenticated staff environment with explicit targets and reasons. <br>
-Mitigation: Limit moderation workflows to authorized staff contexts and require explicit target and reason details before use. <br>
+## Use Case:
 
+Developers, OpenClaw users, and teams use this skill to choose lower-cost AI models, configure caching and budget limits, and monitor model spending. The guidance is especially relevant for cost-sensitive personal use and enterprise deployments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-cost-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter remains 1.0.1) <br>
+Risk: Applying the configuration snippets can intentionally change which model OpenClaw uses and affect billing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each setting before use, apply changes deliberately, and confirm current provider pricing and budget limits.
+
+Risk: The guidance is written in Chinese, which can increase misunderstanding for readers who do not read Chinese fluently.
+
+Mitigation: Have a qualified reader or reviewer confirm the commands and configuration intent before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-cost-optimization)
+- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guide with bash and YAML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; no automatic execution]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

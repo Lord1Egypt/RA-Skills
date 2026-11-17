@@ -1,44 +1,55 @@
-## Description: <br>
-Generates professional product requirements documents with UML use-case modeling, detailed use-case specifications, data dictionaries, interaction design, UI specifications, and non-functional requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional product requirements documents with UML use-case modeling, detailed use-case specifications, data dictionaries, interaction design, UI specifications, and non-functional requirements.
 
-## Publisher: <br>
-[mpf0418](https://clawhub.ai/user/mpf0418) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mpf0418](https://clawhub.ai/user/mpf0418)
 
-## Use Case: <br>
-Product managers, founders, designers, and development teams use this skill to turn early product ideas or feature requests into structured PRDs for planning and collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PRD drafting can expose sensitive product plans, customer details, roadmap information, or proprietary implementation details. <br>
-Mitigation: Avoid providing confidential or regulated information unless the workspace policy permits it, and review generated PRDs before sharing. <br>
-Risk: The skill may activate during broad product brainstorming when a full PRD is not intended. <br>
-Mitigation: Ask the agent to stay in discussion mode or explicitly request PRD output only when a structured document is needed. <br>
+## Use Case:
 
+Product managers, founders, designers, and developers use this skill to turn new product ideas or feature requirements into structured PRD drafts for team planning and review. It is best suited for new requirements, product planning, and use-case analysis rather than polishing an existing complete requirements document.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mpf0418/prd-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/mpf0418) <br>
-- [PRD examples](references/examples.md) <br>
-- [PRD output patterns](references/output-patterns.md) <br>
-- [PRD writing workflows](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown PRD documents with structured tables, ASCII diagrams, templates, and specifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include use-case models, data dictionaries, interaction flows, UI specifications, and non-functional requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated PRDs may encode unstated assumptions or incomplete requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs with product, design, engineering, and security stakeholders before using them as authoritative requirements.
+
+Risk: The skill is oriented toward Chinese-language PRD output by default.
+
+Mitigation: Ask the agent for the preferred language up front when English or multilingual output is required.
+
+## Reference(s):
+
+- [PRD examples](artifact/references/examples.md)
+- [PRD output patterns](artifact/references/output-patterns.md)
+- [PRD writing workflows](artifact/references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown PRD with ASCII diagrams, structured tables, and section templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output by default; users can ask for another language.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

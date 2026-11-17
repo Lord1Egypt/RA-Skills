@@ -1,43 +1,57 @@
-## Description: <br>
-Create, manage, and track QR codes using the QRdex.io REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and track QR codes using the QRdex.io REST API.
 
-## Publisher: <br>
-[sebastienb](https://clawhub.ai/user/sebastienb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sebastienb](https://clawhub.ai/user/sebastienb)
 
-## Use Case: <br>
-Developers and agents use QRdex to create, list, inspect, update, delete, and download QR codes through the QRdex.io API, including URL, email, telephone, SMS, WhatsApp, and WiFi QR code workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can act on a QRdex.io account using QRDEX_API_KEY, including creating, updating, deleting, and downloading QR code assets. <br>
-Mitigation: Use a revocable API key with the least account access available, keep it in the environment rather than prompts or files, and rotate it if exposed. <br>
-Risk: Update and delete actions operate on QR code IDs and can affect existing team QR codes. <br>
-Mitigation: Confirm the target QR code ID and intended operation before running update or delete commands. <br>
-Risk: QR payloads and scan tracking can expose sensitive data such as WiFi passwords, phone numbers, messages, destinations, or scan activity. <br>
-Mitigation: Avoid storing sensitive QR payloads or enabling tracking unless that storage and exposure are acceptable for the account and use case. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [QRdex API Reference](references/API_REFERENCE.md) <br>
-- [QRdex API Base URL](https://qrdex.io/api/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sebastienb/qrdex) <br>
+## Use Case:
 
+Developers and external users use this skill to create, list, update, delete, download, and track QR codes through the QRdex.io REST API, including URL, email, telephone, SMS, WhatsApp, and WiFi QR code types.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, Python CLI usage, JSON API examples, and SVG file download instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses QRDEX_API_KEY for authenticated QRdex.io requests and may produce QR metadata, command output, JSON responses, or downloaded SVG files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: QR payloads and the QRDEX_API_KEY are sent to QRdex.io when API operations are performed.
+
+Mitigation: Use the skill only when QRdex.io is trusted with the submitted QR data and keep the API key scoped and protected.
+
+Risk: The skill can update or soft-delete QR codes when those actions are requested.
+
+Mitigation: Confirm target QR code identifiers and intended changes before allowing update or delete operations.
+
+Risk: Scan analytics may be enabled through track_scans.
+
+Mitigation: Set track_scans deliberately when scan tracking is not desired.
+
+## Reference(s):
+
+- [QRdex API Reference](references/API_REFERENCE.md)
+- [QRdex ClawHub Skill Page](https://clawhub.ai/sebastienb/skills/qrdex)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python CLI usage, and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke QRdex.io API operations that create, update, soft-delete, list, or download QR code resources when the user supplies credentials and requests those actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

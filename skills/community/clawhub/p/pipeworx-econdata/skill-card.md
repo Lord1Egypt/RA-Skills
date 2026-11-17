@@ -1,41 +1,60 @@
-## Description: <br>
-US economic indicators from the Bureau of Labor Statistics, including unemployment, CPI, and employment by industry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+US economic indicators from the Bureau of Labor Statistics — unemployment, CPI, and employment by industry
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to query public BLS economic series, unemployment, CPI, and employment data for dashboards, trend analysis, and economic research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup uses mcp-remote@latest, which can change behavior when the package updates. <br>
-Mitigation: Pin mcp-remote to a reviewed trusted version before production deployment. <br>
-Risk: Queries are routed through a third-party Pipeworx gateway. <br>
-Mitigation: Use the skill for public economic data lookups and avoid sending confidential business context through the gateway. <br>
+## Use Case:
 
+External developers and analysts use this skill to query official US economic indicators, including unemployment, CPI, employment by industry, and arbitrary BLS time series, through Pipeworx MCP tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/b-gutman/pipeworx-econdata) <br>
-- [Pipeworx econdata homepage](https://pipeworx.io/packs/econdata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples; MCP tool calls return structured economic data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for direct example calls and uses the Pipeworx remote MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup launches an unpinned npm MCP bridge with mcp-remote@latest.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin mcp-remote to a reviewed exact version, preinstall it through a controlled process, and run it under a least-privilege account.
+
+Risk: Economic query arguments are sent to the Pipeworx gateway.
+
+Mitigation: Avoid sending sensitive or confidential query context and review whether outbound requests to the Pipeworx gateway are acceptable for the deployment environment.
+
+Risk: Security evidence marks the release verdict as suspicious.
+
+Mitigation: Install only after reviewing the Pipeworx service, the MCP bridge dependency, and local execution permissions.
+
+## Reference(s):
+
+- [Pipeworx econdata homepage](https://pipeworx.io/packs/econdata)
+- [Pipeworx econdata MCP gateway](https://gateway.pipeworx.io/econdata/mcp)
+- [ClawHub skill page](https://clawhub.ai/b-gutman/skills/pipeworx-econdata)
+- [Publisher profile](https://clawhub.ai/user/b-gutman)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with JSON configuration and inline bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for direct examples and an MCP client configuration that launches mcp-remote for agent tool access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

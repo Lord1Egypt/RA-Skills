@@ -1,37 +1,53 @@
-## Description: <br>
-Identify repeated workflows, recurring user asks, common failures, and reusable procedures that should become new skills or improvements to existing skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify repeated workflows, recurring user asks, common failures, and reusable procedures that should become new skills or improvements to existing skills.
 
-## Publisher: <br>
-[noahfleming](https://clawhub.ai/user/noahfleming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noahfleming](https://clawhub.ai/user/noahfleming)
 
-## Use Case: <br>
-Developers and agent operators use this skill to identify repeated workflows, recurring corrections, and reusable procedures, then decide whether to create a new skill, improve an existing skill, add support files, or record a smaller local rule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed skill changes may add unnecessary persistent instructions or encode patterns that are not actually repeated or reusable. <br>
-Mitigation: Review each proposed new skill, skill edit, script, reference file, or local rule for a real repeated pattern before accepting it. <br>
+## Use Case:
 
+Developers and agent operators use this skill to recognize repeated workflows, recurring corrections, and common failures, then decide whether to create or improve skill knowledge, add supporting references or scripts, or keep the guidance as a smaller local rule.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with structured recommendation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations for pattern observed, why it should become skill knowledge, recommended action, and minimal skill shape.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The agent may recommend a new skill or local rule that captures a repeated pattern incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed skill, script, reference, or rule changes before creation or modification.
+
+Risk: Overly broad recommendations could add unnecessary skill documentation or duplicate existing skills.
+
+Mitigation: Confirm that the pattern is real and reusable, and prefer improving an existing skill or using a local rule when that is sufficient.
+
+## Reference(s):
+
+- [Skill Learner on ClawHub](https://clawhub.ai/noahfleming/skills/skill-learner)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; produces recommendations for reusable skill knowledge, references, scripts, or local rules.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

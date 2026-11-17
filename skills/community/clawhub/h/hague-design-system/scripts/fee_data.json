@@ -1,0 +1,238 @@
+{
+  "meta": {
+    "currency": "CHF",
+    "schedule_version": "as in force on July 1, 2026",
+    "schedule_effective_date": "2026-07-01",
+    "schedule_source": "https://www.wipo.int/en/web/hague-system/fees/sched",
+    "schedule_local_copy": "references/03-hague-common-regulations-2026-07-01-zh.md（文末《费用表》，2026年7月1日生效）",
+    "individual_version": "Last update: April 2026",
+    "individual_source": "https://www.wipo.int/en/web/hague-system/fees/individ-fee",
+    "calculator": "https://hague.wipo.int/#/fee-calculator?type=DTR",
+    "verified_on": "2026-09-24",
+    "verified_by": "WorkBuddy 技能维护（对照 references/03 费用表与 WIPO 官网页面逐项比对）",
+    "stale_after_days": 180,
+    "scope": "仅 WIPO 国际局收取的 CHF 国际规费；不含 CNIPA 侧费用（限特定国内后续程序，如复审费、恢复权利请求费等），不含代理费。",
+    "notice": "本快照为离线辅助数据。任何对外输出的费用数额，须先用 WIPO 费用计算器／费用表／单独指定费明细页实时核对；快照过期或缔约方数据缺失时，本数据不得作为答复依据（回「无」）。"
+  },
+
+  "schedule": {
+    "application": {
+      "basic": { "first_design": 397, "additional_design": 50 },
+      "publication": { "per_reproduction": 17, "paper_extra_page_after_first": 150 },
+      "description_surcharge": { "free_words": 100, "per_word_beyond": 2 },
+      "standard_designation": {
+        "std1": { "first_design": 42, "additional_design": 2 },
+        "std2": { "first_design": 60, "additional_design": 20 },
+        "std3": { "first_design": 90, "additional_design": 50 }
+      }
+    },
+    "renewal": {
+      "basic": { "first_design": 200, "additional_design": 17 },
+      "standard_designation": { "first_design": 21, "additional_design": 1 },
+      "grace_additional": { "basis": "renewal.basic.first_design", "percent": 50 }
+    },
+    "misc": {
+      "change_ownership": 144,
+      "change_name_address": { "first_registration": 144, "additional_registration": 72 },
+      "creator_indication": { "first_registration": 144, "additional_registration": 72 },
+      "renunciation": 144,
+      "limitation": 144
+    },
+    "ldc_reduction": {
+      "factor_percent": 10,
+      "note": "仅适用于「唯一资格联系为最不发达国家或多数成员国为最不发达国家的政府间组织」的申请人；单独指定费由各缔约方自行决定是否减缴（WIPO 仅为鼓励性建议），故此处不作自动减缴。",
+      "application": {
+        "basic_first_design": 40,
+        "basic_additional_design": 5,
+        "publication_per_reproduction": 2,
+        "paper_extra_page_after_first": 15,
+        "description_per_5_words_beyond_100": 1,
+        "standard_designation": {
+          "std1": { "first_design": 4, "additional_design": 1 },
+          "std2": { "first_design": 6, "additional_design": 2 },
+          "std3": { "first_design": 9, "additional_design": 5 }
+        }
+      }
+    }
+  },
+
+  "individual_source_note": "以下 individual 条目均于 2026-09-24 依据 https://www.wipo.int/en/web/hague-system/fees/individ-fee（页面标注 Last update: April 2026）逐行核对；页面只给缔约方名称、不给代码，代码按 WIPO ST.3 对应。计费单位以页面「for each design / for each application / for the first design + for each additional design / for a single|multiple deposit」栏为准；未标注者置 unit_verified=false，计算时须提示复核。",
+
+  "individual": {
+    "OA": {
+      "name_zh": "非洲知识产权组织（OAPI）",
+      "unit": "deposit",
+      "unit_verified": true,
+      "application": { "single_deposit": 73, "multiple_deposit": 110 },
+      "application_ldc": { "single_deposit": 8, "multiple_deposit": 12 },
+      "renewal_unit": "design",
+      "renewals": [168],
+      "verified_on": "2026-09-24",
+      "note": "按交存计收：单一交存 73、多项交存 110；LDC 申请人减至 8／12（页面脚注 1）。续展按每项设计 168。"
+    },
+    "CA": {
+      "name_zh": "加拿大",
+      "unit": "design",
+      "unit_verified": true,
+      "application": 350,
+      "renewals": [306, 0],
+      "renewal_overflow": 0,
+      "renewal_unit_verified": true,
+      "verified_on": "2026-09-24",
+      "note": "首续每项设计 306；第 2 次及以后各次续展免收（页面标注 Subsequent renewals = 0）。"
+    },
+    "CN": {
+      "name_zh": "中国",
+      "unit": "application",
+      "unit_verified": true,
+      "application": 497,
+      "renewals": [922, 1820],
+      "renewal_unit_verified": false,
+      "verified_on": "2026-09-24",
+      "note": "申请阶段页面明确按「每件申请」计收（非按每项设计）；续展阶段金额页面未标注计费单位，按每件申请计（须复核）。续展数额仅适用 1999 年文本下的国际注册。"
+    },
+    "EM": {
+      "name_zh": "欧盟",
+      "unit": "design",
+      "unit_verified": true,
+      "application": 59,
+      "renewals": [59],
+      "renewal_unit_verified": true,
+      "verified_on": "2026-09-24",
+      "note": "申请与续展均为每项设计 59。"
+    },
+    "IL": {
+      "name_zh": "以色列",
+      "unit": "design",
+      "unit_verified": true,
+      "application": 117,
+      "application_reduced": 70,
+      "renewals": [146, 175, 204, 233],
+      "renewal_unit_verified": true,
+      "verified_on": "2026-09-24",
+      "note": "申请阶段默认 117、减免档 70（页面未说明减免触发条件）；续展按每项设计 146／175／204／233（第 1–4 次）。"
+    },
+    "JP": {
+      "name_zh": "日本",
+      "unit": "design",
+      "unit_verified": true,
+      "application": 373,
+      "renewals": [423],
+      "renewal_unit_verified": true,
+      "verified_on": "2026-09-24",
+      "note": "申请 373／每项设计；首续 423／每项设计。"
+    },
+    "KG": {
+      "name_zh": "吉尔吉斯斯坦",
+      "unit": "first_additional",
+      "unit_verified": true,
+      "application": 129,
+      "application_additional": 64,
+      "renewal_unit": "first_additional",
+      "renewals": [64],
+      "renewal_additional": 6,
+      "renewal_unit_verified": true,
+      "verified_on": "2026-09-24",
+      "note": "申请：第一项设计 129、每增加一项 64；续展：第一项 64、每增加一项 6。"
+    },
+    "KR": {
+      "name_zh": "韩国",
+      "unit": "design",
+      "unit_verified": true,
+      "application": 143,
+      "renewals": [230, 544, 628],
+      "renewal_unit_verified": true,
+      "standard_fee_classes": [1, 2, 3, 5, 9, 11, 19],
+      "standard_fee_classes_renewal": {
+        "before_2020_12_01": [2, 5, 19],
+        "from_2020_12_01": [1, 2, 3, 5, 9, 11, 19]
+      },
+      "verified_on": "2026-09-24",
+      "note": "申请：每项设计 143；但洛迦诺分类第 1、2、3、5、9、11、19 类的设计指定韩国时适用标准指定费第 3 级（页面脚注 2）。续展：230／544／628（第 1–3 次）；按国际注册日区分是否适用标准指定费——注册日早于 2020-12-01 的为第 2、5、19 类，之后（含）为第 1、2、3、5、9、11、19 类（页面脚注 3）。"
+    },
+    "MD": {
+      "name_zh": "摩尔多瓦共和国",
+      "unit": "first_additional",
+      "unit_verified": true,
+      "application": 65,
+      "application_additional": 7,
+      "renewal_unit": "first_additional",
+      "renewals": [93],
+      "renewal_additional": 9,
+      "renewal_unit_verified": true,
+      "verified_on": "2026-09-24",
+      "note": "申请：第一项 65、每增加一项 7；首续：第一项 93、每增加一项 9。"
+    },
+    "MX": {
+      "name_zh": "墨西哥",
+      "unit": "design",
+      "unit_verified": true,
+      "application": 98,
+      "application_additional": 3,
+      "application_reduced": 49,
+      "application_additional_reduced": 1,
+      "application_part2": 283,
+      "application_part2_reduced": 141,
+      "renewals": [290],
+      "renewals_reduced": [145],
+      "renewal_unit_verified": true,
+      "verified_on": "2026-09-24",
+      "note": "申请阶段分两部分缴纳：第 1 部分默认 98／项（每增加一项 3）、减免 49／项（每增加一项 1）；第 2 部分默认 283、减免 141。续展每项设计默认 290、减免 145。减免条件页面未说明。"
+    },
+    "RU": {
+      "name_zh": "俄罗斯联邦",
+      "unit": "first_additional",
+      "unit_verified": true,
+      "application": 107,
+      "application_additional": 22,
+      "renewal_unit": "first_additional",
+      "renewals": [170, 417, 620, 1079],
+      "renewal_unit_verified": false,
+      "verified_on": "2026-09-24",
+      "note": "申请：第一项 107、每增加一项 22；续展 170／417／620／1079（第 1–4 次），续展行未标注计费单位，暂按「第一项＋每增加一项」同结构处理（须复核）。"
+    },
+    "TM": {
+      "name_zh": "土库曼斯坦",
+      "unit": "first_additional",
+      "unit_verified": true,
+      "application": 518,
+      "application_additional": 32,
+      "renewal_unit": "first_additional",
+      "renewals": [897, 1395],
+      "renewal_unit_verified": false,
+      "standard_fee_before_registration_date": "2020-12-11",
+      "verified_on": "2026-09-24",
+      "note": "申请：一项设计 518、每增加一项 32；续展 897／1 395（第 1–2 次）。国际注册日早于 2020-12-11 的适用标准指定费，之后（含）适用单独指定费（页面脚注 4）。续展行未标注计费单位，暂按同结构处理（须复核）。"
+    },
+    "US": {
+      "name_zh": "美国",
+      "unit": "design",
+      "unit_verified": false,
+      "application": 1150,
+      "application_small": 460,
+      "application_micro": 230,
+      "application_part2": 1150,
+      "application_part2_small": 460,
+      "application_part2_micro": 230,
+      "application_part2_brackets": [
+        { "from": "2023-05-01", "to": "2025-01-18", "default": 683, "small": 273, "micro": 137 },
+        { "from": "2020-10-02", "to": "2023-04-30", "default": 718, "small": 359, "micro": 179 }
+      ],
+      "renewal_status": "unlisted",
+      "verified_on": "2026-09-24",
+      "note": "分两部分缴纳：第 1 部分默认 1 150、小实体 460、微实体 230；第 2 部分现档同额，另有按国际注册日的过渡档（2023-05-01 至 2025-01-18：683／273／137；2020-10-02 至 2023-04-30：718／359／179）。页面未标注计费单位，暂按每项设计处理（须复核）；第 2 部分缴纳时点页面未说明；续展阶段未列单独指定费，续展须另行核对。"
+    },
+    "UZ": {
+      "name_zh": "乌兹别克斯坦",
+      "unit": "first_additional",
+      "unit_verified": true,
+      "application": 262,
+      "application_additional": 43,
+      "renewal_status": "unlisted",
+      "verified_on": "2026-09-24",
+      "note": "申请：第一项 262、每增加一项 43；页面续展阶段未列该缔约方，续展须另行核对。"
+    }
+  },
+
+  "individual_placeholder_help": "新增缔约方：先运行 scripts/fetch_individual_fees.py --summary 获取页面候选行，人工逐行复核后再按上面条目格式补入（须含 name_zh、unit 与 unit_verified、application（或 first_additional / deposit）、renewals、verified_on 及 note）。未补入者在计算时须以命令行 --designate CC:ind:金额[:app|design] 传入实时核对值，否则脚本回「无」并退出。"
+}

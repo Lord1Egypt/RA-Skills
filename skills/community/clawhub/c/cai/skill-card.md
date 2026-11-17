@@ -1,48 +1,64 @@
-## Description: <br>
-CAI.com v1.0.17 for agents - Check CAI First before any payment; identity, custodial wallet, platform connectors, payments, hosted actions, OAuth/API-key auth with gap_id honesty. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CAI helps agents check identity and wallet state before payments, receive card or crypto payments, and use CAI wallet, connector, hosted action, OAuth, and API-key workflows.
 
-## Publisher: <br>
-[bernardtai](https://clawhub.ai/user/bernardtai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bernardtai](https://clawhub.ai/user/bernardtai)
 
-## Use Case: <br>
-Developers and agent operators use CAI to connect agents with CAI identity, custodial wallet, platform connector, payment, hosted action, and OAuth/API-key workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet, payment, transfer, trading, vault, and platform actions may involve real funds or persistent account changes. <br>
-Mitigation: Use the narrowest CAI scope needed, store keys only in OpenClaw secrets, and require clear user confirmation before transfers, trades, vault writes, or actions involving real funds. <br>
-Risk: Long-lived credentials could be exposed if pasted into chat logs or configuration text. <br>
-Mitigation: Keep CAI_API_KEY and OAuth tokens in trusted local secret storage and avoid placing credentials in agent-visible conversation history. <br>
-Risk: Some CAI capabilities are disclosed as partial_live with gap_id honesty boundaries. <br>
-Mitigation: Do not claim behavior beyond the canonical CAI contract and check the current manifest or skill references before relying on endpoint behavior. <br>
+## Use Case:
 
+External developers and agents use this skill to route CAI identity, custodial wallet, payment acceptance, x402, mandate, platform connector, and hosted action workflows while keeping user confirmation boundaries visible.
 
-## Reference(s): <br>
-- [ClawHub CAI skill page](https://clawhub.ai/bernardtai/skills/cai) <br>
-- [CAI canonical skill contract](https://cai.com/skill.md) <br>
-- [CAI skill references](https://cai.com/skill-references/) <br>
-- [CAI agent payment workflow](https://cai.com/skill-references/agent-payment-workflow.md) <br>
-- [CAI tools manifest](https://cai.com/specs/cai-tools.manifest.json) <br>
-- [CAI developers hub](https://cai.com/developers.html) <br>
-- [CAI agent card](https://cai.com/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference CAI API/OAuth scopes, hosted action links, MCP setup, payment confirmation steps, and canonical CAI tool contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: server evidence and frontmatter metadata) <br>
+Risk: The skill steers payment and wallet activity through CAI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation of provider, recipient, amount, asset, network, fees, and destination before any transfer or trade.
+
+Risk: The skill references mutable remote CAI instructions and manifests.
+
+Mitigation: Review the remote CAI skill and manifest before installation and treat them as mutable references rather than reviewed local instructions.
+
+Risk: Broad CAI scopes can grant more access than a task requires.
+
+Mitigation: Use least-privilege CAI scopes and avoid the full scope unless it is necessary.
+
+## Reference(s):
+
+- [CAI Skill Page](https://clawhub.ai/bernardtai/skills/cai)
+- [CAI canonical skill contract](https://cai.com/skill.md)
+- [CAI skill references](https://cai.com/skill-references/)
+- [Agent payment workflow](https://cai.com/skill-references/agent-payment-workflow.md)
+- [x402 payment workflow](https://cai.com/skill-references/x402-payment-workflow.md)
+- [CAI tool manifest](https://cai.com/specs/cai-tools.manifest.json)
+- [CAI developer hub](https://cai.com/developers.html)
+- [CAI agent card](https://cai.com/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown guidance with inline shell commands, endpoint names, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference mutable remote CAI skill and manifest links; payment and wallet actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.20 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

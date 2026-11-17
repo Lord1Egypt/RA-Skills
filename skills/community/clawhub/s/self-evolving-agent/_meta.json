@@ -1,6 +1,190 @@
 {
-  "ownerId": "kn7b12qn5e7rvrdfxbc3b66hy180n6y3",
-  "slug": "self-evolving-agent",
+  "name": "self-evolving-agent",
+  "displayName": "Self-Evolving Agent 🧠",
   "version": "5.0.0",
-  "publishedAt": 1771391196282
+  "tagline": "A 6-stage multi-agent pipeline with semantic embeddings, real-time streaming monitor, and fleet analysis. Analyzes your AI's logs, measures what actually improved, and proposes evidence-based AGENTS.md changes. You approve everything.",
+  "description": "v5.0 adds three new pillars on top of the v4.3 pipeline: (1) Semantic Embeddings — uses Ollama nomic-embed-text locally to perform true semantic similarity matching, reducing false positives from ~15% to ~8%. (2) Streaming Monitor — real-time log watching with threshold-based instant alerts (<30s latency), replacing weekly-only detection. (3) Fleet Analysis — cross-instance pattern comparison across multiple agent instances (opus/sonnet/haiku). All three pillars degrade gracefully: Ollama offline → v4 heuristic fallback, no sessions → skip with report. AGENTS.md is never modified without explicit human approval. v4 orchestrator still works unchanged.",
+  "author": "ramsbaby",
+  "license": "MIT",
+  "category": "AI Agents / Meta",
+  "tags": [
+    "self-improvement",
+    "automation",
+    "agents",
+    "meta",
+    "AGENTS.md",
+    "weekly-review",
+    "behavior-analysis",
+    "rule-proposal",
+    "cron",
+    "discord",
+    "exec-safety",
+    "error-detection",
+    "multi-agent",
+    "semantic-analysis",
+    "effect-measurement",
+    "pipeline",
+    "embeddings",
+    "ollama",
+    "local-llm",
+    "zero-cost",
+    "streaming",
+    "fleet-analysis",
+    "real-time"
+  ],
+  "keywords": [
+    "self-evolving",
+    "self-improving",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "behavior analysis",
+    "complaint detection",
+    "rule proposal",
+    "automated review",
+    "weekly cron",
+    "exec retry detection",
+    "AI agent improvement",
+    "human in the loop",
+    "multi-agent pipeline",
+    "effect measurement",
+    "structured heuristics",
+    "false positive reduction",
+    "semantic embeddings",
+    "cosine similarity",
+    "nomic-embed-text",
+    "streaming monitor",
+    "fleet analysis",
+    "real-time alerts",
+    "trend analysis"
+  ],
+  "platform": "openclaw",
+  "minOpenClawVersion": "1.0.0",
+  "compatibleModels": [
+    "anthropic/claude-sonnet-4-5",
+    "anthropic/claude-opus-4-6"
+  ],
+  "recommendedModel": "anthropic/claude-sonnet-4-5",
+  "estimatedCostPerRun": "$0.00/week (Ollama embeddings + synthesis)",
+  "runFrequency": "Weekly batch (Sunday 22:00) + Real-time streaming monitor",
+  "estimatedRuntime": "<5 minutes total (with embeddings); <3 minutes (heuristic fallback)",
+  "deliveryChannel": "Discord (configurable: Slack / Telegram / Webhook)",
+  "honestLimitations": [
+    "Semantic embeddings require Ollama (auto-fallback to v4 heuristics if offline)",
+    "False positives reduced from ~15% to estimated ~8% with embeddings — still imperfect",
+    "Streaming monitor adds <30s real-time detection but requires persistent process",
+    "Fleet analysis requires multiple agent instances in ~/.openclaw/agents/",
+    "Trend analysis needs 4+ weeks of history for meaningful results",
+    "Embedding cache uses ~2.3MB/year disk (negligible)",
+    "Cold start — first 2-4 weeks have little trend data",
+    "Effect measurement is frequency-based correlation, not causation"
+  ],
+  "synergies": [
+    "self-improving-agent"
+  ],
+  "safetyFeatures": [
+    "AGENTS.md never modified without explicit user approval",
+    "All proposals cite measured evidence (real counts from real logs)",
+    "Embedding cache stores vectors only — no raw message text",
+    "Rejection reasons logged and respected in future cycles",
+    "Diff format only — no vague suggestions",
+    "Local-first: all stages run on your machine; only synthesis draft optionally hits the API",
+    "~500 lines of readable shell scripts — audit before running",
+    "Effect measurement — tracks whether previous proposals actually helped",
+    "Graceful degradation — Ollama offline = heuristic fallback, not crash"
+  ],
+  "screenshots": [
+    {
+      "label": "Weekly pipeline report in Discord (v5.0 with embedding + fleet section)",
+      "path": "docs/screenshots/discord-report-v5.png",
+      "status": "planned"
+    },
+    {
+      "label": "Real-time streaming alert in Discord",
+      "path": "docs/screenshots/stream-alert-v5.png",
+      "status": "planned"
+    },
+    {
+      "label": "Fleet analysis cross-instance comparison",
+      "path": "docs/screenshots/fleet-v5.png",
+      "status": "planned"
+    },
+    {
+      "label": "Before/After AGENTS.md diff with semantic confidence score",
+      "path": "docs/screenshots/agents-diff-v5.png",
+      "status": "planned"
+    }
+  ],
+  "repository": "https://github.com/ramsbaby/openclaw-skills",
+  "homepage": "https://github.com/ramsbaby/openclaw-skills/tree/main/skills/self-evolving-agent",
+  "changelog": [
+    {
+      "version": "5.0.0",
+      "date": "2026-02-18",
+      "notes": "Three new pillars: Semantic Embeddings (Ollama nomic-embed-text, ~8% FP), Streaming Monitor (real-time <30s alerts, --poll mode for CI), Fleet Analysis (cross-instance pattern comparison). New: scripts/v5/ directory, trend-analyzer.sh, embedding cache. New CLI: sea monitor/alerts/trends/patterns/fleet. Graceful fallback: Ollama offline → v4 heuristics. v4 orchestrator unchanged."
+    },
+    {
+      "version": "4.3.0",
+      "date": "2026-02-18",
+      "notes": "Interactive approval (sea watch), multi-format report export (html/json/pdf), GitHub Issues integration. New: interactive-approve.sh, export-report.sh, github-issue.sh. CLI v1.1.0: watch/export/github commands."
+    },
+    {
+      "version": "4.2.0",
+      "date": "2026-02-18",
+      "notes": "Ollama/local LLM support. llm-call.sh: anthropic/openai/ollama/none unified interface. Zero-cost mode: provider: ollama → $0.00/week."
+    },
+    {
+      "version": "4.1.0",
+      "date": "2026-02-18",
+      "notes": "Multi-platform delivery (Slack/Telegram/Webhook), ko/en complaint pattern separation, auto language detection."
+    },
+    {
+      "version": "4.0.0",
+      "date": "2026-02-17",
+      "notes": "4-stage multi-agent pipeline (collect → analyze → benchmark → synthesize). Structured heuristic analysis with role filtering, context windows, per-session deduplication. Closed feedback loop: effect measurement benchmarks previous proposals. False positive rate reduced from ~40% to estimated ~15%. Performance targets: <3 min, <$0.05/run."
+    },
+    {
+      "version": "3.0.0",
+      "date": "2026-02-17",
+      "notes": "exec retry loop detection, per-file error signature grouping fix, build_report heredoc backtick interpolation fix, config.yaml false-positive patterns cleanup."
+    },
+    {
+      "version": "2.0.0",
+      "date": "2026-02-17",
+      "notes": "config.yaml support, self-improving-agent .learnings/ integration, config-loader.sh added."
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-02-17",
+      "notes": "Initial release. Chat analysis, cron error detection, rule violation tracking, diff-format proposals, rejection learning."
+    }
+  ],
+  "roadmap": [
+    {
+      "version": "5.1",
+      "feature": "Multi-language embedding anchors (JP, ES, ZH) — pre-built pattern libraries",
+      "eta": "Q2 2026"
+    },
+    {
+      "version": "5.2",
+      "feature": "Causal inference for effect measurement (interrupted time series)",
+      "eta": "Q3 2026"
+    },
+    {
+      "version": "5.3",
+      "feature": "Web dashboard v2 — embedding cluster visualization, fleet heatmap",
+      "eta": "Q3 2026"
+    },
+    {
+      "version": "6.0",
+      "feature": "Active learning — flag low-confidence predictions for user feedback",
+      "eta": "Q4 2026"
+    }
+  ],
+  "installSteps": [
+    "git clone https://github.com/ramsbaby/openclaw-skills.git /tmp/sea-install",
+    "cp -r /tmp/sea-install/skills/self-evolving-agent ~/openclaw/skills/",
+    "rm -rf /tmp/sea-install",
+    "brew install ollama && ollama pull nomic-embed-text && ollama serve &",
+    "bash ~/openclaw/skills/self-evolving-agent/scripts/register-cron.sh"
+  ]
 }

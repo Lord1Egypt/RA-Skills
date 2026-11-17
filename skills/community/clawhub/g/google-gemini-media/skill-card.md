@@ -1,43 +1,54 @@
-## Description: <br>
-Use the Gemini API (Nano Banana image generation, Veo video, Gemini TTS speech and audio understanding) to deliver end-to-end multimodal media workflows and code templates for "generation + understanding". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the Gemini API (Nano Banana image generation, Veo video, Gemini TTS speech and audio understanding) to deliver end-to-end multimodal media workflows and code templates for "generation + understanding".
 
-## Publisher: <br>
-[Xsir0](https://clawhub.ai/user/Xsir0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[xsir0](https://clawhub.ai/user/xsir0)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose Gemini media capabilities and implement image, video, speech, and audio workflows with Node.js or REST examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and media files may be sent to Google for processing. <br>
-Mitigation: Use only media that the user is authorized to upload and avoid confidential, regulated, or third-party content unless appropriate approvals are in place. <br>
-Risk: The Gemini API key may consume quota or incur billing. <br>
-Mitigation: Store the API key outside source code, scope access appropriately, and monitor usage before running large media workflows. <br>
-Risk: Example output filenames or directories may overwrite existing local files. <br>
-Mitigation: Change output paths or add existence checks when preserving prior files matters. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement Gemini API workflows for generating and understanding images, video, speech, and audio with Node.js or REST templates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Xsir0/google-gemini-media) <br>
-- [Gemini generateContent API endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript, REST, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API request templates and local media input/output handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts and selected media are sent to Google APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user intends to use Google Gemini services and avoid uploading sensitive, unauthorized, or rights-restricted media.
+
+Risk: Model names, limits, quotas, costs, and retention behavior may change.
+
+Mitigation: Check current Google documentation before production use and implement timeout, retry, download, and review steps for generated media workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xsir0/skills/google-gemini-media)
+- [Google Gemini generateContent endpoint](https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request templates, model-selection guidance, media I/O handling steps, and operational cautions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

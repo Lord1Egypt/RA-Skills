@@ -1,42 +1,56 @@
-## Description: <br>
-Generates and updates Ontario Grades 9–12 OSSD course plans aligned to graduation requirements, school constraints, university prerequisites, and Top 6 (12U/M) admissions strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and iteratively updates Ontario Grade 9-12 OSSD course plans aligned with graduation requirements, school rules, summer school constraints, and university prerequisite and Top 6 strategy.
 
-## Publisher: <br>
-[icej](https://clawhub.ai/user/icej) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[icej](https://clawhub.ai/user/icej)
 
-## Use Case: <br>
-External users such as Ontario students, families, and academic planners use this skill to draft, compare, and revise high school course plans against OSSD, school, summer school, and admissions constraints. <br>
-
-### Deployment Geography for Use: <br>
-Ontario, Canada <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Academic planning guidance may be incomplete, outdated, or specific to a school board, course catalog, or admissions cycle. <br>
-Mitigation: Verify graduation requirements, school course availability, summer school offerings, and university prerequisites with official school or admissions sources before relying on a plan. <br>
-Risk: User-provided rule or catalog updates could change prerequisite chains, credit counts, or Top 6 strategy. <br>
-Mitigation: Review impacted courses and cumulative credit totals after each update, and persist reference changes only after confirming they match the latest official information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Course Catalog](references/course-catalog.md) <br>
-- [Graduation and Planning Rules](references/graduation-and-planning-rules.md) <br>
-- [Required Bands by Grade](references/required-bands-by-grade.md) <br>
-- [Summer School Catalog](references/summer-school-catalog.md) <br>
+## Use Case:
 
+Students, families, and advisors use this skill to draft and revise Ontario high school course plans that account for OSSD requirements, school catalog constraints, summer school options, and target university admissions planning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown course plan with assumptions, prerequisite summaries, yearly course lists, rationale, and validation checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include labeled assumptions, TO VERIFY items, before/after diffs, and recommended reference updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Canada (Ontario)
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Course-planning advice may become outdated or differ by school board, school, year, or university program.
+
+Mitigation: Verify current graduation rules, school catalog details, summer school availability, and admissions prerequisites against official sources before relying on a plan.
+
+Risk: Reference updates or catalog labels may change plan validity.
+
+Mitigation: Review any user-provided reference updates before applying them and recalculate cumulative credits, prerequisites, and Top 6 options after changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/icej/skills/ontario-course-planning)
+- [Graduation and planning rules](references/graduation-and-planning-rules.md)
+- [Summer school rules and course list](references/summer-school-catalog.md)
+- [Typical compulsory bands by grade](references/required-bands-by-grade.md)
+- [High school course catalog](references/course-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown with structured planning sections, tables or lists, assumptions, before/after diffs, and validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should label uncertain admissions or school-rule items as TO VERIFY and use course codes from the provided catalog unless the user supplies updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

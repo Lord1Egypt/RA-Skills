@@ -1,45 +1,63 @@
-## Description: <br>
-Start an ad-hoc HTTP static file server in the current directory using one-line commands across 25+ languages and tools. Auto-detects available runtimes and recommends the best option. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Start an ad-hoc HTTP static file server in the current directory using one-line commands across 25+ languages and tools. Auto-detects available runtimes and recommends the best option.
 
-## Publisher: <br>
-[FlowerWrong](https://clawhub.ai/user/FlowerWrong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flowerwrong](https://clawhub.ai/user/flowerwrong)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly serve a local directory over HTTP for static-site previews, LAN file sharing, frontend asset testing, or lightweight development workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Serving the current directory can expose unintended local files, especially when bound to a LAN address. <br>
-Mitigation: Serve a dedicated non-sensitive directory, prefer localhost or 127.0.0.1, and use 0.0.0.0 only when LAN access is intentional. <br>
-Risk: Suggested options such as uploads, directory browsing, CORS, or Docker port publishing can broaden exposure. <br>
-Mitigation: Review each command before use and enable those options only for a specific, understood need. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly preview static sites, share files over a local network, or test frontend assets by selecting an available local runtime and producing the corresponding one-line server command.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FlowerWrong/http-static-server) <br>
-- [Big list of HTTP static server one-liners](https://gist.github.com/willurd/5720255) <br>
-- [README](README.md) <br>
-- [Python HTTP Static Server](references/python.md) <br>
-- [Node.js HTTP Static Server](references/nodejs.md) <br>
-- [Docker HTTP Static Server](references/docker.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and short decision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed before execution and adjusted for the target port, directory, bind address, and installed runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2026.3.10 (source: server release metadata and skill frontmatter) <br>
+Risk: Static server commands can expose files from the served directory, especially when bound to all interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run from a dedicated non-sensitive directory and prefer localhost bindings such as 127.0.0.1 unless LAN access is explicitly needed.
+
+Risk: Some examples can run mutable third-party code or inline server snippets.
+
+Mitigation: Review commands before execution, avoid inline Node.js and Java examples when possible, and pin or preinstall third-party tools before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flowerwrong/skills/http-static-server)
+- [Big list of HTTP static server one-liners](https://gist.github.com/willurd/5720255)
+- [Python HTTP Static Server](references/python.md)
+- [Node.js HTTP Static Server](references/nodejs.md)
+- [Deno HTTP Static Server](references/deno.md)
+- [PHP HTTP Static Server](references/php.md)
+- [Ruby HTTP Static Server](references/ruby.md)
+- [Go HTTP Static Server](references/go.md)
+- [Rust HTTP Static Server](references/rust.md)
+- [Java HTTP Static Server](references/java.md)
+- [Docker HTTP Static Server](references/docker.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands depend on the installed local runtimes, selected port, bind address, and directory.]
+
+## Skill Version(s):
+
+2026.3.10 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

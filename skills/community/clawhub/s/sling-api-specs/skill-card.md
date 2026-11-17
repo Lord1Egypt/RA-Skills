@@ -1,42 +1,65 @@
-## Description: <br>
-Build REST API specifications for Sling data extraction, including authentication, pagination, response processing, rate limiting, endpoint chaining, and incremental sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build REST API specifications for Sling data extraction, including authentication, pagination, response processing, rate limiting, endpoint chaining, and incremental sync.
 
-## Publisher: <br>
-[flarco](https://clawhub.ai/user/flarco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flarco](https://clawhub.ai/user/flarco)
 
-## Use Case: <br>
-Developers and data engineers use this skill to create and validate Sling YAML specs for extracting data from REST APIs. It is most useful when configuring authentication, endpoint requests, pagination, response transformations, endpoint queues, and incremental sync behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated or adapted API specs can request broad credentials or scopes. <br>
-Mitigation: Review API scopes and credentials before running any generated Sling spec. <br>
-Risk: Setup or teardown sequences can use POST or DELETE operations that create, modify, or remove remote resources. <br>
-Mitigation: Inspect setup and teardown steps before execution, especially non-GET requests. <br>
-Risk: Queue or sync values can temporarily hold sensitive data if specs store more than identifiers or cursors. <br>
-Mitigation: Keep queue and sync values limited to IDs, cursors, timestamps, or other low-sensitivity values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sling API Specs Documentation](https://docs.slingdata.io/concepts/api-specs.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/flarco/sling-api-specs) <br>
+## Use Case:
 
+Developers and data engineers use this skill to author and review Sling REST API extraction specifications. It is intended for configuring GET-based extraction workflows with authentication, pagination, response parsing, queues, dynamic endpoints, and incremental sync state.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with YAML and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for authoring Sling REST API specification files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated API specs may include network-capable configuration, credentials, or response-derived download URLs.
+
+Mitigation: Use least-privilege credentials, prefer read-only scopes, verify base URLs and response-derived URLs, and confirm OAuth token and sync-state storage before production use.
+
+Risk: Incorrect extraction specs can produce incomplete, excessive, or unintended API requests.
+
+Mitigation: Review generated specs, keep rate limits and concurrency conservative, and test endpoints with small limits before wider runs.
+
+## Reference(s):
+
+- [Sling API Specs Documentation](https://docs.slingdata.io/concepts/api-specs.md)
+- [ClawHub Skill Page](https://clawhub.ai/flarco/skills/sling-api-specs)
+- [AUTHENTICATION.md](AUTHENTICATION.md)
+- [ENDPOINTS.md](ENDPOINTS.md)
+- [REQUEST.md](REQUEST.md)
+- [PAGINATION.md](PAGINATION.md)
+- [RESPONSE.md](RESPONSE.md)
+- [PROCESSORS.md](PROCESSORS.md)
+- [VARIABLES.md](VARIABLES.md)
+- [QUEUES.md](QUEUES.md)
+- [INCREMENTAL.md](INCREMENTAL.md)
+- [DYNAMIC.md](DYNAMIC.md)
+- [FUNCTIONS.md](FUNCTIONS.md)
+- [RULES.md](RULES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with YAML and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for authoring network-capable Sling API extraction specs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

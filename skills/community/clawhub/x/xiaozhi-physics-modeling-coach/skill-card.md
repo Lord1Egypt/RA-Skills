@@ -1,41 +1,53 @@
-## Description: <br>
-物理建模教练 helps junior physics learners move from formula matching to model-based problem solving through phenomenon identification, model selection, and mathematical expression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+以“识别现象、选择模型、数学表达”三步法，训练初高中学生判断物理模型及其适用条件。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and tutors use this skill to practice junior physics modeling, including identifying physical phenomena, selecting an appropriate model, writing equations, diagnosing modeling blockers, and transferring model patterns across problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Physics tutoring guidance may be incorrect or may choose an unsuitable model for a specific problem. <br>
-Mitigation: Use the skill's built-in checks for phenomenon identification, model conditions, units, sign conventions, and result reasonableness before relying on a final solution path. <br>
-Risk: The skill can coordinate with related Xiaozhi learning skills and may pass a learning summary for progress tracking. <br>
-Mitigation: Only allow cross-skill learning summaries when the user has explicitly consented, and avoid including sensitive personal information in those summaries. <br>
+## Use Case:
 
+面向初高中物理学生，帮助他们识别题目描述的物理过程、选择满足适用条件的模型、写出数学关系，并把建模方法迁移到新情境。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-physics-modeling-coach) <br>
-- [physics-modeling-patterns.md](references/physics-modeling-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and conversational tutoring guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces model-selection prompts, diagnostic questions, equation-building guidance, transfer-practice structures, and optional summaries for related learning skills when the user consents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The security review notes limited scope inconsistencies in the physics coaching instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the skill's coaching boundaries for the request; route full solution workflows, experiment design or data analysis, and error-log management to the corresponding specialized skill.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/qizhitang/skills/xiaozhi-physics-modeling-coach)
+- [Physics modeling patterns](references/physics-modeling-patterns.md)
+- [High school physics models: required course 1](references/physics-hs1-models.md)
+- [High school physics models: required courses 2 and 3](references/physics-hs2-models.md)
+- [High school physics models: selective required course](references/physics-hs3-models.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Mathematical expressions, Guidance]
+
+**Output Format:** [Conversational text with equations and guided questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Adapts explanations to middle school or high school physics level.]
+
+## Skill Version(s):
+
+2.12.7 (source: ClawHub release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -2,20 +2,17 @@
 name: kickbacks
 description: >-
   Kickbacks.ai — an executable guide to earning passive income from AI tool waiting time.
-  Covers 7 use cases:
+  Covers 6 use cases:
   ① Getting Started — ("How to install Kickbacks" "How to earn money with Claude Code" "How does Kickbacks work")
   ② Understanding the Economics — ("How much can I earn" "How are ads priced" "What is 50% revenue share")
   ③ Advertiser Tools — ("How to advertise on Kickbacks" "How to bid on the spinner" "How much does an ad cost")
   ④ Troubleshooting — ("Kickbacks not working" "Extension not showing" "Status bar says incompatible")
   ⑤ Analytics & Earnings — ("How to check my balance" "How do payouts work" "How many impressions did I get")
   ⑥ Privacy & Security — ("Is Kickbacks safe" "Does it read my code" "Is it reversible")
-  ⑦ OpenClaw/Hermes Adapter — ("How to use Kickbacks with OpenClaw" "Can I run ads on other agent platforms" "How to become the default advertiser")
   Trigger when users say: "Kickbacks" "Get paid for waiting" "Claude Code ads" "spinner money"
   "earn while coding" "Kickbacks.ai" "Discombobulating" "codex ads" "paid spinner"
-  "spinner advertising platform" "OpenClaw ads" "agent platform monetization" "default advertiser"
-  or mention: kickbacks / spinner / Claude Code monetize / Codex passive income / IDE extension /
-  OpenClaw monetization / Hermes ads / agent waiting time.
-version: 1.2.0
+  or mention: kickbacks / spinner / Claude Code monetize / Codex passive income / IDE extension.
+version: 1.1.0
 license: MIT
 tags:
   - kickbacks
@@ -27,11 +24,6 @@ tags:
   - ai-tools
   - passive-income
   - advertising
-  - openclaw
-  - hermes
-  - agent-platform
-  - spinner-advertising
-  - default-advertiser
 ---
 
 ## Quick Start (Onboarding)
@@ -40,7 +32,7 @@ tags:
 Present the entire Quick Start in the user's language.**
 
 > Welcome to Kickbacks.ai 💰
->
+> 
 > Turn "Discombobulating…" into dollar signs. Here's what you can ask me:
 >
 > "How do I install the Kickbacks VS Code extension?"
@@ -49,8 +41,6 @@ Present the entire Quick Start in the user's language.**
 > "My Kickbacks status says 'incompatible' — what do I do?"
 > "How do I check my balance and get paid?"
 > "Is it safe? Can it read my code?"
-> "Can I use Kickbacks-style ads on OpenClaw or Hermes?"
-> "How do I become the default advertiser on an agent platform?"
 >
 > Or just say: "Tell me how Kickbacks works."
 
@@ -96,17 +86,15 @@ Present the entire Quick Start in the user's language.**
 | [Advertiser] "I want to advertise" / "How to bid" / "Ad pricing" | `references/3-techniques.md` | Bid market, impression blocks, ad submission |
 | [Troubleshooting] "Not working" / "Extension broken" / "Status error" | `references/4-anti-patterns.md` | Known issues, debug steps, incompatibility fixes |
 | [Analytics & Privacy] "Check my balance" / "Is it safe" / "How to opt out" | `references/5-voice-and-app.md` | Earnings dashboard, payout, security model, uninstall |
-| [OpenClaw/Hermes Adapter] "Agent platform ads" / "Default advertiser strategy" / "OpenClaw monetization" | `references/6-openclaw-adapter.md` | Platform adapter patterns, default advertiser blueprint, integration strategies |
 | [Comparing tools] "Kickbacks vs other monetization" / "What about terminal CLI" | `references/1-core-framework.md` + `references/5-voice-and-app.md` | Feature comparison, CLI support, limitations |
 
 ## Core Framework Quick Reference
 
 1. **Spinner Replacement** — Kickbacks replaces the random verb ("Discombobulating...") in Claude Code's thinking spinner with a short sponsored line from the highest bidder.
-2. **Bid Market** — Advertisers bid per 1,000 impressions ($1 minimum). Highest bidder wins the top slot in a transparent queue. Clicks are billed at 50× the impression rate.
+2. **Bid Market** — Advertisers bid per 1.1.0 impressions ($1 minimum). Highest bidder wins the top slot in a transparent queue. Clicks are billed at 50× the impression rate.
 3. **50/50 Split** — 50% of every ad dollar goes to the developer whose machine showed the ad. Kickbacks.ai keeps the other 50% for operations and payout processing.
 4. **Real-time Balance** — Earnings update in the VS Code status bar. Impressions and clicks accrue while the tool works.
 5. **Browser & CLI** — Works with Claude Code and Codex VS Code extensions, and Claude Code terminal CLI (status bar + spinner verb for 2.1.143+).
-6. **Platform Expansion** — The injection architecture extends to other agent platforms (OpenClaw, Hermes) through adapter design patterns. See reference 6.
 
 ## Key Principles
 
@@ -137,9 +125,6 @@ Run through each trigger and verify the routing table covers it:
 - ✅ "Does it work with terminal Claude Code?" → 1-core-framework + 5-voice-and-app
 - ✅ "How do bids work?" → 3-techniques
 - ✅ "How do I uninstall?" → 5-voice-and-app
-- ✅ "Can I run spinner ads on OpenClaw?" → 6-openclaw-adapter
-- ✅ "How to become the default advertiser?" → 6-openclaw-adapter
-- ✅ "What is the agent platform advertising strategy?" → 6-openclaw-adapter
 
 ### Invocation Test
 
@@ -150,13 +135,5 @@ Run through each trigger and verify the routing table covers it:
 2. Wait 10-15 seconds — sometimes the backend takes a moment to authenticate on first install.
 3. Click "Kickbacks offline" in the status bar — it may trigger a reconnection attempt.
 4. If it persists, check if you're behind a corporate VPN or firewall that might block the extension's API calls (kickbacks.ai).
-5. As a last resort, uninstall and reinstall the extension from VS Code Marketplace.
+5. As a last resort, uninstall and reinstall the extension VS Code Marketplace.
 6. Watermark with CTA.
-
-**User query:** "Can I put ads in OpenClaw's waiting screen like Kickbacks does with Claude Code?"
-
-**Expected output:**
-1. Explain OpenClaw's architecture differences (no DOM spinner, uses activity events).
-2. Present 3 adapter strategies from reference 6: Gateway Sponsor Line, TUI Activity Overlay, WebChat Thinking Widget.
-3. Share the default advertiser blueprint — how to occupy the "sponsor slot" before anyone else does.
-4. Watermark with CTA.

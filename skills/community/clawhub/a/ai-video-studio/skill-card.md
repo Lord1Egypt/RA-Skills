@@ -1,52 +1,72 @@
-## Description: <br>
-FableForge AI Video Studio is a command-level executable SOP for producing management allegory and promotional videos from concept generation through scripting, TTS narration, media preparation, HyperFrames rendering, and publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FableForge AI Video Studio is a command-level SOP for producing short-form management allegory videos from concept generation through scripting, TTS voice synthesis, asset creation, HyperFrames rendering, and publishing.
 
-## Publisher: <br>
-[lucas-kay8](https://clawhub.ai/user/lucas-kay8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucas-kay8](https://clawhub.ai/user/lucas-kay8)
 
-## Use Case: <br>
-Developers, creators, and content operations teams use this skill to guide an agent through a structured AI video production workflow, including storyboard creation, voice narration, visual asset generation, timeline assembly, rendering, and publication preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can use cloned-voice narration. <br>
-Mitigation: Require explicit approval before voice-clone use and keep voice samples out of published repositories. <br>
-Risk: The setup and media workflow can download dependencies and external files. <br>
-Mitigation: Review dependency and media sources, inspect downloaded files, and prefer pinned or verified sources before execution. <br>
-Risk: The publishing workflow can alter a git repository or publish changes. <br>
-Mitigation: Inspect git diffs before commits and do not run git push unless publishing to the remote branch is intentional. <br>
+## Use Case:
 
+Creators, marketers, and agent operators use this skill to plan and assemble short-form management allegory, business analysis, and product promotion videos. It guides the agent through staged content review, storyboard creation, voice generation, visual asset preparation, timeline construction, render checks, and release packaging.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lucas-kay8/ai-video-studio) <br>
-- [FableForge AI Agent SOP](artifact/SKILL.en.md) <br>
-- [Environment setup stage](artifact/resources/stages/stage_0_env.md) <br>
-- [Creative production stage](artifact/resources/stages/stage_1_creatives.md) <br>
-- [Timeline mapping stage](artifact/resources/stages/stage_2_timeline.md) <br>
-- [Static layout stage](artifact/resources/stages/stage_3_static.md) <br>
-- [Animation and render stage](artifact/resources/stages/stage_4_animation.md) <br>
-- [Publishing stage](artifact/resources/stages/stage_5_publish.md) <br>
-- [Visual style bible](artifact/resources/style_bible.md) <br>
-- [Voice sample guide](artifact/resources/voice-model/README.md) <br>
-- [Troubleshooting manual](artifact/resources/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with checklists, shell commands, and HTML/CSS/JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces staged operating instructions and project file guidance for an agent-driven video workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Sensitive voice samples and cloned-voice outputs may expose personal biometric information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit consent before any cloned-voice use, store voice samples only in an ignored project directory, and review the project .gitignore before committing.
+
+Risk: Tool and binary downloads may introduce unverified code into the video project.
+
+Mitigation: Use a disposable or dedicated project environment, pin and verify dependencies and downloaded binaries, and remove unsafe download flags such as curl -k.
+
+Risk: Automatic publishing or git commands may push unintended files or changes.
+
+Mitigation: Disable automatic git push and require manual approval of the exact diff, remote, and branch before publishing.
+
+Risk: Generated scripts, subtitles, or visuals may be misleading, low quality, or unsuitable for publication.
+
+Mitigation: Apply the documented content, rhythm, image, timeline, and render preflight checks before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucas-kay8/skills/ai-video-studio)
+- [FableForge AI Agent SOP (English)](artifact/SKILL.en.md)
+- [FableForge Video Production SOP](artifact/SKILL.md)
+- [Stage 0: Environment Scaffolding](artifact/resources/stages/stage_0_env.md)
+- [Stage 1: Concept, Script, and Assets](artifact/resources/stages/stage_1_creatives.md)
+- [Stage 2: Audio Timeline](artifact/resources/stages/stage_2_timeline.md)
+- [Stage 3: Static Layout](artifact/resources/stages/stage_3_static.md)
+- [Stage 4: Animation and Render Preflight](artifact/resources/stages/stage_4_animation.md)
+- [Stage 5: Publishing and Archive](artifact/resources/stages/stage_5_publish.md)
+- [Visual Style Bible](artifact/resources/style_bible.md)
+- [Troubleshooting Manual](artifact/resources/troubleshooting.md)
+- [Voice Sample Recording Guide](artifact/resources/voice-model/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, HTML/CSS/JavaScript snippets, storyboard templates, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged operating procedures and generated project files for video production; final media assets depend on external tools and user-provided inputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

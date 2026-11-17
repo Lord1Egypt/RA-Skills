@@ -1,41 +1,56 @@
-## Description: <br>
-Musallat Bot is a Gemini 1.5 Flash-powered persona chatbot that answers prompts in a blunt, passive-aggressive senior-developer style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Musallat Bot provides a Turkish, hostile-style senior-developer persona that sends user prompts to Google Gemini and returns persona-shaped responses.
 
-## Publisher: <br>
-[Musallat-Dev](https://clawhub.ai/user/Musallat-Dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[musallat-dev](https://clawhub.ai/user/musallat-dev)
 
-## Use Case: <br>
-Agents and developers can use this skill to route a text prompt to a Gemini-backed persona bot for terse, intentionally abrasive technical replies. It is best suited to environments where that tone is acceptable and third-party AI processing is permitted. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact text exposes an apparent Gemini API key, and the security review says it should not be relied on. <br>
-Mitigation: Do not use the embedded key; revoke or rotate it if you own it, remove it from the skill, and provide your own restricted GEMINI_API_KEY. <br>
-Risk: Prompts are sent to Google/Gemini for generation. <br>
-Mitigation: Use only with prompts you are comfortable sending to that third-party service and follow your organization's data-handling rules. <br>
-Risk: The bot is designed to produce intentionally rude, passive-aggressive responses. <br>
-Mitigation: Limit use to contexts where that tone is acceptable, and review generated text before sharing it externally. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Musallat Bot ClawHub page](https://clawhub.ai/Musallat-Dev/musallat-bot) <br>
+## Use Case:
 
+Developers or agents can use this skill to generate Turkish, hostile-style software-engineering persona responses backed by Gemini. Use it only where that persona and third-party prompt processing are intentional.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text chatbot response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses are generated from the user's prompt and may include intentionally rude persona language.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact exposes an apparent Google API key.
+
+Mitigation: Revoke and rotate the exposed key, remove it from distributed artifacts, and require users to provide GEMINI_API_KEY through their own environment.
+
+Risk: Prompts are forwarded to Google Gemini without clear user controls.
+
+Mitigation: Use only with prompts that are appropriate for third-party model processing and provide clear privacy disclosure before deployment.
+
+Risk: The skill intentionally uses a hostile, passive-aggressive persona.
+
+Mitigation: Deploy only in contexts where this interaction style is intended and review outputs before using them in user-facing workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/musallat-dev/skills/musallat-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text persona response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses depend on Google Gemini availability and the configured GEMINI_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

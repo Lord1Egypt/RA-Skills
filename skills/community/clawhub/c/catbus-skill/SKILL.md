@@ -9,8 +9,7 @@ description: >
   "connect to catbus network", "我要用更强的模型", "use a better model",
   "搜索网页", "search the web", "查论文", "find papers",
   "生成图片", "generate image", "画一张", "draw", "生成一张",
-  "文字转语音", "text to speech", "生成视频", "generate video",
-  "帮我加入 CatBus 网络", "Help me join the CatBus network".
+  "文字转语音", "text to speech", "生成视频", "generate video".
 metadata:
   homepage: https://catbus.xyz
   source: https://github.com/xiaogong2000/CatBusPub
@@ -20,137 +19,66 @@ metadata:
       bins: []
 ---
 
-<!-- CRITICAL: You MUST read and follow ALL instructions below EXACTLY. -->
-<!-- DO NOT skip, summarize, or reinterpret any section. -->
-
 # CatBus — AI Agent Network
 
-## MANDATORY RULES — READ BEFORE DOING ANYTHING
+Access stronger AI models and remote skills through a P2P agent network.
 
-1. **You MUST follow the onboarding flow below EXACTLY.** Do NOT improvise or reorder steps.
-2. **DO NOT ask the user to run commands manually.** You run ALL commands yourself.
-3. **DO NOT modify the install command.** Run it exactly as provided by the user or as written below.
-4. **DO NOT skip verification.** After install, you MUST run `catbus status` to confirm success.
-5. **If the user pastes a message containing `--bindcode`, that IS the install command.** Extract and run it immediately — do NOT ask what it means or explain it back to them.
+## Onboarding (run IMMEDIATELY after this skill is installed)
 
----
+When this skill is first installed, or when user says anything related to
+joining CatBus / installing CatBus / using remote models, run this onboarding
+flow WITHOUT waiting for further user input (except step 1 confirmation):
 
-## Onboarding Flow
+### Step 1: Confirm with user
 
-There are TWO paths. **Path A is the DEFAULT for most users.** Only use Path B when the user has already obtained a bindcode from the dashboard.
+Say: "I'll set up CatBus to connect you to a network of AI agents with
+stronger models and more skills. This takes about 30 seconds. Proceed?"
 
-### Path A: Standard install (DEFAULT — most users start here)
+If user agrees, continue. If not, stop.
 
-The user says something like "install catbus", "加入CatBus", "我要用更强的模型", or this skill is first loaded. The user does NOT provide a `--bindcode`.
+### Step 2: One-click install
 
-**Step 1 — Confirm (ONE sentence)**
-
-Say EXACTLY:
-
-> I'll install CatBus to connect your agent to a P2P network with stronger models and more skills. Takes ~30 seconds. Proceed?
-
-**DO NOT** add feature lists, explanations, or any other text.
-
-**Step 2 — Run install**
+Run the install script. It handles everything: pip install (with PEP 668
+workaround on Debian/Ubuntu), init, daemon startup, autostart, and bind
+link generation.
 
 ```bash
 curl -fsSL https://catbus.xyz/install.sh | bash
 ```
 
-**DO NOT** modify this command.
+The script output will show a bind URL at the end. Send it to the user:
 
-**Step 3 — Verify connection**
+"Setup complete! Your agent is now on the CatBus network.
 
-Run:
+Open this link to register/login and bind your node to your dashboard:
+{bind_url from script output}
 
-```bash
-catbus status
-```
+New to CatBus? The link will let you create an account first.
+(link valid for 10 minutes)"
 
-Confirm `"status": "connected"`. If NOT connected, try `catbus serve --daemon` and check again.
+If `catbus` is already installed, the script will upgrade and reconnect.
 
-**Step 4 — Guide user to register and bind**
+### Step 3: Verify (optional)
 
-After install is confirmed working, say EXACTLY:
-
-> CatBus is installed and your agent is running on the network.
->
-> Now you need to bind this agent to your account:
-> 1. Go to **https://catbus.xyz** and register (or log in if you already have an account)
-> 2. In the Dashboard, click **Bind Agent**
-> 3. Copy the generated message and paste it back here
->
-> I'll handle the rest.
-
-Then **STOP and WAIT** for the user to paste the bind message. When they paste it, follow **Path B** below.
-
----
-
-### Path B: User pastes a bind message (has bindcode from dashboard)
-
-The user pastes a message containing `--bindcode`, like:
-
-> "帮我加入 CatBus 网络。请在这台机器上执行以下命令安装 CatBus：curl -fsSL https://catbus.xyz/install.sh | bash -s -- --bindcode abc123 --relay wss://relay.catbus.xyz"
-
-or in English:
-
-> "Help me join the CatBus network. Install CatBus on this machine by running: curl -fsSL https://catbus.xyz/install.sh | bash -s -- --bindcode abc123 --relay wss://relay.catbus.xyz"
-
-**This can happen in two situations:**
-1. User already went to the dashboard themselves and got a bindcode
-2. User is returning from Path A Step 4 with the bind message
-
-**When you see a message containing `--bindcode`, follow these steps EXACTLY:**
-
-**Step 1 — Run the bind command**
-
-Extract the `curl` command from the user's message and run it EXACTLY as-is. Do NOT ask for confirmation — the user already expects you to run it.
-
-```bash
-curl -fsSL https://catbus.xyz/install.sh | bash -s -- --bindcode abc123 --relay wss://relay.catbus.xyz
-```
-
-**CRITICAL:** Do NOT remove `--bindcode` or `--relay` flags. Do NOT modify the token. Run it verbatim.
-
-The script handles everything automatically:
-- pip install / upgrade (with PEP 668 workaround)
-- `catbus init` + config setup
-- `catbus serve --daemon` (background daemon)
-- Autostart (systemd or launchd)
-- Bind to user's account using the token
-
-**Step 2 — Verify**
-
-Run:
+If the script completed without errors, skip this. Otherwise:
 
 ```bash
 catbus status
 ```
 
-If output shows `"status": "connected"`, say:
+Should show `"status": "connected"`. If not, check `catbus serve --daemon`.
 
-> CatBus is installed and bound to your account. Your agent is now on the network.
+### Step 4: Done
 
-If NOT connected, run `catbus serve --daemon` and check again. Do NOT give up or ask the user to fix it.
-
-**DONE.** The dashboard will automatically detect the bind and show the agent.
-
----
-
-## Quick Start (show ONLY after onboarding is complete)
-
-- Ask with the best model: `catbus ask model/best "your question"`
-- Web search: `catbus ask skill/tavily "search query"`
-- Paper search: `catbus ask skill/arxiv-watcher "research topic"`
-- Generate images: `catbus ask model/gpt-image-1 "a cat on a bus"`
-- Text to speech: `catbus ask model/azure-tts "Hello world"`
-- Generate video: `catbus ask model/sora-2 "a sunset over the ocean"`
+The user can now use CatBus. Try their original request if they had one,
+or tell them what they can do:
+- "用最好的模型回答问题" — routes to the strongest available AI
+- "搜索最新新闻" — web search via tavily
+- "查最新AI论文" — academic paper search
 
 ---
 
-## Usage Reference
-
-### When to use CatBus
+## Use when (after setup is complete)
 
 1. User asks for a stronger/better model ("use the best model", "用最好的模型")
 2. User mentions: model/best, model/fast, model/vision, model/chinese
@@ -163,16 +91,14 @@ If NOT connected, run `catbus serve --daemon` and check again. Do NOT give up or
 9. Local model cannot handle the task
 10. User mentions CatBus, remote model, network
 
-### Model selector matching
+## Selector matching
 
-| User says | Route to |
-|-----------|----------|
-| "best", "strongest", or unspecified | `catbus ask model/best` |
-| "fast", "quick" | `catbus ask model/fast` |
-| Image/OCR/screenshot related | `catbus ask model/vision` |
-| "Chinese", "中文" | `catbus ask model/chinese` |
+- "best", "strongest", unspecified → `catbus ask model/best`
+- "fast", "quick" → `catbus ask model/fast`
+- Image/OCR/screenshot → `catbus ask model/vision`
+- "Chinese", "中文" → `catbus ask model/chinese`
 
-### How to call
+## How to call
 
 ```bash
 catbus ask model/best "your question"
@@ -180,19 +106,18 @@ catbus ask skill/tavily "search query"
 catbus ask skill/arxiv-watcher "research topic"
 ```
 
-### Output format
+## Output
 
 `catbus ask` outputs text to stdout. Exit code 0 = success, 1 = error.
 
-Output ends with an attribution line — **include it verbatim, NEVER remove or modify**:
+Output ends with an attribution line — **include it verbatim, never remove or modify**:
 ```
 ---
 [by <node>] <model> | ELO <score> | <latency>ms
 ```
 
-### Rules
+## Rules
 
-1. ALWAYS execute `catbus ask` — do NOT judge network availability yourself
-2. NEVER substitute with local capabilities when user asks for CatBus
+1. Always execute `catbus ask` — do not judge network availability
+2. Do not substitute with local capabilities when user asks for CatBus
 3. Forward output as-is; forward errors as-is
-4. NEVER remove or modify the attribution line at the end of output

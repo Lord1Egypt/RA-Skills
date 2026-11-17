@@ -5,28 +5,54 @@
     "circuit side. This file is the SINGLE SOURCE OF TRUTH — never hand-edit the",
     "12 numbers in frozenTable; they are DERIVED from rotationCycle + bodyAnchor.",
     "Both consumers derive the same table:",
-    "  - skills/easyeda-agent/scripts/orient.py  (the linter's check)",
+    "  - .agents/skills/easyeda-agent/scripts/orient.py  (the linter's check)",
     "  - extension/src/actions.ts deriveBodyRotation()  (what connect_pin writes)",
-    "tests/run.py asserts derive(cycle, anchors) == frozenTable, so the two",
+    "scripts/skill-lint-tests/run.py (repo) asserts derive(cycle, anchors) == frozenTable, so the two",
     "language copies can never drift. calibrate.js re-validates the 3 anchors +",
     "cycle against live getPrimitivesBBox ground truth (run after importing a new",
     ".eext). See docs/schematic-layout-conventions.md §3.5.",
     "",
-    "2026-06-29 VERTICAL FIX: on the y-DOWN 2026-06 build (EasyEDA 3.2.149,",
-    "connector 0.5.21) a flag body renders with up/down FLIPPED vs the prior y-UP",
-    "cycle — confirmed by getPrimitivesBBox on REAL, settled, wired flags (a",
+    "2026-06-29 VERTICAL ORIENTATION CALIBRATION (EasyEDA 3.2.149, connector",
+    "0.5.21): a flag body's visual up/down mapping differed from the prior cycle",
+    "— confirmed by getPrimitivesBBox on REAL, settled, wired flags (a",
     "connect_pin --direction down ground rendered its bars TOWARD the pin; power",
     "--direction up the same). Horizontal (left/right) was unaffected. The old",
-    "table slipped through because calibrate.js read body direction in y-UP and so",
-    "could not see the vertical flip (fixed there too). Cycle reversed to",
+    "table slipped through because calibrate.js decoded vertical body direction",
+    "incorrectly (fixed there too). The confirmed visual cycle is",
     "up->right->down->left with power/ground anchors swapped so ONLY the up/down",
-    "numbers move; every left/right number is byte-identical to before."
+    "numbers move; every left/right number is byte-identical to before. This",
+    "stored-rotation truth is independent of endpoint coordinate signs.",
+    "2026-08-12 VERTICAL RE-CALIBRATION (live ceshi board, connector 0.24.3): five rendered ground truths (power up stored=0 [C6 3V3], power right=270 [R2], power left=90 [U2], ground down=0 [C6], ground left=270 [LED1]) contradict the 2026-06-29 table's vertical values (it said power up=180/ground down=180) while matching its horizontal ones. Root cause: the 06-29 fix reversed the CYCLE and compensated with swapped anchors — horizontal happened to line up, vertical stayed inverted, and the linter has been blessing reversed vertical flags ever since (an autoconnect-placed 3V3 stored 180 rendered upside-down and scored clean). The counter-clockwise cycle up->left->down->right with NATURAL anchors (power:up, ground:down, port:right) reproduces ALL five measurements; only up/down numbers move vs 06-29, every left/right number is byte-identical."
   ],
-  "rotationCycle": ["up", "right", "down", "left"],
-  "bodyAnchorAtRot0": { "power": "down", "ground": "up", "port": "right" },
+  "rotationCycle": [
+    "up",
+    "left",
+    "down",
+    "right"
+  ],
+  "bodyAnchorAtRot0": {
+    "power": "up",
+    "ground": "down",
+    "port": "right"
+  },
   "frozenTable": {
-    "power":  { "up": 180, "left": 90,  "down": 0,   "right": 270 },
-    "ground": { "down": 180, "right": 90, "up": 0,    "left": 270 },
-    "port":   { "right": 0, "up": 270,   "left": 180, "down": 90  }
+    "power": {
+      "up": 0,
+      "left": 90,
+      "down": 180,
+      "right": 270
+    },
+    "ground": {
+      "up": 180,
+      "left": 270,
+      "down": 0,
+      "right": 90
+    },
+    "port": {
+      "up": 90,
+      "left": 180,
+      "down": 270,
+      "right": 0
+    }
   }
 }

@@ -1,45 +1,60 @@
-## Description: <br>
-Send and receive Feishu (Lark) voice messages using ElevenLabs text-to-speech and speech-to-text, with guidance for smart voice and text replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends Feishu (Lark) voice messages using ElevenLabs text-to-speech and transcribes Feishu audio messages using ElevenLabs speech-to-text.
 
-## Publisher: <br>
-[DongDongBear](https://clawhub.ai/user/DongDongBear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dongdongbear](https://clawhub.ai/user/dongdongbear)
 
-## Use Case: <br>
-Developers and agent users use this skill to transcribe Feishu voice messages and send generated ElevenLabs audio replies through a Feishu bot. It supports direct voice sending, speech-to-text for received audio, and smart reply workflows that choose voice or text responses based on the incoming message. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send Feishu bot replies on the user's behalf without clear approval, chat limits, or opt-in boundaries. <br>
-Mitigation: Require human approval or tightly scoped chats before enabling smart reply behavior, and confirm the target receive_id before sending audio. <br>
-Risk: The skill uses Feishu app secrets and an ElevenLabs API key to upload audio, send messages, and transcribe received files. <br>
-Mitigation: Store credentials securely, grant only the required Feishu permissions, and avoid exposing secrets in shell history, logs, or shared configuration. <br>
-Risk: Voice content and audio files are sent to external services for text-to-speech or speech-to-text processing. <br>
-Mitigation: Use the skill only in Feishu spaces where sending bot replies and sending audio to ElevenLabs are acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Feishu Voice skill page](https://clawhub.ai/DongDongBear/feishu-voice-elevenlabs) <br>
-- [ElevenLabs voice library](https://elevenlabs.io/voice-library) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [ElevenLabs speech-to-text API](https://api.elevenlabs.io/v1/speech-to-text) <br>
+## Use Case:
 
+Developers and Feishu workspace operators use this skill to send voice replies, transcribe received Feishu audio attachments, and support conversational reply workflows through Feishu and ElevenLabs integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON configuration, plain text transcripts, and Feishu API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ElevenLabs and Feishu credentials, ffmpeg/ffprobe, and the sag CLI for text-to-speech.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Feishu bot-send permissions can allow the skill to send messages into a workspace.
+
+Mitigation: Use least-privileged Feishu app credentials, review the target recipient or chat before sending, and require explicit confirmation before enabling smart or automatic reply flows.
+
+Risk: Voice and text content may be sent to ElevenLabs for speech generation or transcription.
+
+Mitigation: Avoid routing sensitive content unless the user has approved the data flow and the deployment accepts ElevenLabs handling for that content.
+
+Risk: Credentials and message text can be exposed on shared hosts or through unreviewed dependencies.
+
+Mitigation: Run on trusted hosts, protect environment variables, avoid shared process visibility for sensitive invocations, and pin and verify the sag dependency.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/dongdongbear/skills/feishu-voice-elevenlabs)
+- [ElevenLabs Voice Library](https://elevenlabs.io/voice-library)
+- [ElevenLabs speech-to-text API endpoint](https://api.elevenlabs.io/v1/speech-to-text)
+- [Feishu tenant access token API endpoint](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+- [Feishu file upload API endpoint](https://open.feishu.cn/open-apis/im/v1/files)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, plain-text transcription output, and Feishu API result text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can initiate Feishu bot messages and route configured audio or text through ElevenLabs services.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

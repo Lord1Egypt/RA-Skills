@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn7dxr58ktjh28y80xrgmypzg582wtg5",
-  "slug": "ai-video-gen-pro",
+  "name": "ai-video-generation",
+  "displayName": "AI 视频生成工具",
   "version": "1.0.0",
-  "publishedAt": 1775185849551
+  "slug": "ai-video-gen-pro",
+  "description": "AI 视频生成工具，支持 Google Veo、Seedance、Wan 等 40+ 模型，文生视频、图生视频",
+  "author": "@bingze00000",
+  "license": "MIT",
+  "tags": ["ai", "video", "veo", "seedance", "wan", "text-to-video", "generation"],
+  "pricing": {
+    "type": "paid",
+    "amount": 35,
+    "currency": "CNY"
+  },
+  "requirements": ["requests"],
+  "category": "media"
 }

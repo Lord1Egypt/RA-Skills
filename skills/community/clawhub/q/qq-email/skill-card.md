@@ -1,44 +1,55 @@
-## Description: <br>
-Send and receive emails via QQ Mail SMTP/IMAP for inbox checks, message reading, email sending, HTML email, and attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive emails via QQ Mail SMTP/IMAP for inbox checks, message reading, document sharing, and notifications after configuring a QQ Mail authorization code.
 
-## Publisher: <br>
-[Chao-NJ-CN](https://clawhub.ai/user/Chao-NJ-CN) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chao-nj-cn](https://clawhub.ai/user/chao-nj-cn)
 
-## Use Case: <br>
-Agents use this skill to help a configured QQ Mail user send email, list inbox messages, read specific messages, mark messages as read, and handle attachments. It is intended for workflows where email delivery or mailbox review is requested directly by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles QQ Mail credentials and mailbox contents. <br>
-Mitigation: Use environment variables or a secret manager instead of storing authorization codes in TOOLS.md, and avoid committing credentials to source control. <br>
-Risk: Email sending can disclose content or attachments to unintended recipients. <br>
-Mitigation: Confirm recipients, subjects, message content, and attachment paths before running send commands. <br>
-Risk: Saved email attachments may be untrusted files. <br>
-Mitigation: Avoid saving attachments unless needed, sanitize filenames and output paths, and treat downloaded attachments as untrusted. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent send QQ Mail messages, list inbox items, read specific emails, save attachments, and mark messages as read. It is intended for configured QQ Mail accounts where the user has explicitly provided authorization credentials.
 
-## Reference(s): <br>
-- [QQ Mail](https://mail.qq.com) <br>
-- [ClawHub skill page](https://clawhub.ai/Chao-NJ-CN/qq-email) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Chao-NJ-CN) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, json] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and QQ Mail credentials configured through environment variables or TOOLS.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill requires QQ Mail credentials that allow sending and reading mailbox content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for accounts where this access is acceptable, prefer environment or scoped secret storage over TOOLS.md, and revoke the QQ authorization code if exposure is suspected.
+
+Risk: The --save path can write attachments from email messages to disk.
+
+Mitigation: Avoid saving attachments from untrusted emails until filenames are sanitized and overwrite protection is added; use a controlled output directory when saving is necessary.
+
+## Reference(s):
+
+- [QQ Mail](https://mail.qq.com)
+- [ClawHub skill page](https://clawhub.ai/chao-nj-cn/skills/qq-email)
+- [Publisher profile](https://clawhub.ai/user/chao-nj-cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI responses are text by default and JSON when --json is used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can send email, read mailbox content, mark messages as read, and save attachments when invoked with configured QQ Mail credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

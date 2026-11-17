@@ -1,42 +1,55 @@
-## Description: <br>
-Searches the public web through the AISA web search endpoint and returns structured titles, links, and snippets for online lookup tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the public web through the AISA web search endpoint and return structured titles, links, and snippets.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve recent public web results, source links, snippets, and related search output through AISA endpoints when a task requires online lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and requested URLs are sent to AISA external endpoints. <br>
-Mitigation: Avoid private, internal, credential-bearing, or confidential prompts and URLs unless AISA's handling of that data is trusted. <br>
-Risk: The bundled client includes extraction, deep-research/model query, and AI synthesis features beyond basic web search. <br>
-Mitigation: Review the selected subcommand and data being sent before use, and limit execution to the intended lookup workflow. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent look up public web information, gather recent sources, and return structured search results. It is suited for general online lookup tasks that can be sent to the AISA API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/web-search-aisa) <br>
-- [AISA service](https://aisa.one) <br>
-- [AISA API base endpoint](https://api.aisa.one/apis/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and CLI text output with titles, links, snippets, answers, citations, and usage metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; sends search queries and requested URLs to AISA endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Search terms, requested URLs, and related results are sent to AISA's API using the configured AISA_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with secrets, private URLs, regulated data, credentials, or credential-related requests.
+
+Risk: The packaged client includes research and extraction modes beyond simple title, link, and snippet search.
+
+Mitigation: Review enabled modes and restrict automatic invocation to the modes appropriate for the deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aisadocs/skills/web-search-aisa)
+- [AISA Service](https://aisa.one)
+- [AISA API Base](https://api.aisa.one/apis/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and terminal text with structured titles, links, snippets, answers, citations, and usage details when returned by the API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and AISA_API_KEY; sends web search, extraction, and research requests to AISA API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

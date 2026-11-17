@@ -1,42 +1,53 @@
-## Description: <br>
-FMT肠菌移植科普视频制作工具（视频合成+字幕+SRT+配音TTS+片头片尾）。将静态图片/动态视频素材合成为完整科普视频，支持中文字幕、旁白配音、片头片尾合成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助代理将静态图片和动态视频素材合成为FMT肠菌移植科普视频，并生成中文字幕、SRT字幕、TTS旁白、片头片尾和批量工作流输出。
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-Content creators, medical communicators, and agents assisting FMT education workflows use this skill to assemble static images, generated clips, SRT subtitles, TTS narration, and ffmpeg commands into Chinese FMT explainer videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Package-manager commands may change the user's system environment when ffmpeg is unavailable. <br>
-Mitigation: Require explicit user approval before running apt-get or other package-manager commands. <br>
-Risk: Video and subtitle composition can overwrite or process unintended files if paths are wrong. <br>
-Mitigation: Review all file paths before running ffmpeg, Python, or media-generation commands. <br>
-Risk: Narration text sent to TTS or video-generation tools may contain sensitive information. <br>
-Mitigation: Avoid submitting sensitive narration text or private media content to generation tools. <br>
+## Use Case:
 
+External creators, medical-education teams, and agent operators use this skill to assemble FMT educational videos from prepared visual assets, narration text, and subtitles. It supports single-page and batch workflows for generating video files, audio narration, SRT subtitles, and delivery links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/fmt-video-production) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline JavaScript, Python, bash, and SRT examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces video-production instructions and file-path conventions for MP4, MP3, SRT, and related media outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated medical-education media may be sent to configured TTS, CDN, or Feishu destinations without sufficient destination review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where those external services are approved, and require manual confirmation before any upload or send action.
+
+Risk: The fallback workflow may attempt to install system packages such as ffmpeg.
+
+Mitigation: Do not allow package installation unless an administrator has approved the exact package source and command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/skills/fmt-video-production)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, Python snippets, bash commands, file paths, and generated media artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MP4 video files, MP3 narration, SRT subtitle files, intro videos, combined videos, CDN links, and summary reports when the required tools and destinations are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

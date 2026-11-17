@@ -1,47 +1,61 @@
-## Description: <br>
-Create and iterate enterprise application software solution PPTs as full-page PNG slides and optional PPTX decks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and iterates enterprise software solution presentations as full-page PNG slides, with optional PPTX decks, outline materials, contact sheets, and too-large request handoff guidance.
 
-## Publisher: <br>
-[javastarboy](https://clawhub.ai/user/javastarboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javastarboy](https://clawhub.ai/user/javastarboy)
 
-## Use Case: <br>
-Employees, consultants, and developers use this skill to plan, generate, review, repair, and package enterprise solution presentation slides as PNG pages and optional PPTX decks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may read local OpenAI-compatible API settings and use sensitive credentials. <br>
-Mitigation: Review commands that read shell configuration, keep credentials out of prompts and files, and install only when the configured model provider is acceptable for the intended slide content. <br>
-Risk: Slide prompts, screenshots, or images may be sent to an external model provider during generation or repair. <br>
-Mitigation: Use only approved source materials, avoid confidential business data unless the provider is authorized, and follow the skill's guidance to stop oversized retries instead of resending large artifacts. <br>
-Risk: Generated presentation content may contain incorrect text, visual artifacts, or misleading business claims. <br>
-Mitigation: Review contact sheets and final PNG pages before PPTX assembly, verify dimensions and transparency with the bundled checker, and keep business claims aligned with reviewed source material. <br>
+## Use Case:
 
+Developers, consultants, and enterprise presentation producers use this skill to plan, generate, review, repair, and package business solution decks built from full-page PNG slides. It is suited for customer-facing enterprise software solution narratives that need consistent title treatment, staged review, and optional PPTX assembly.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/javastarboy/ppt-produce-bycodex) <br>
-- [PPT production guide](references/ppt-production-guide.md) <br>
-- [Enterprise solution title-bar template](references/titlebar-template.md) <br>
-- [Too-large handoff template](references/too-large-handoff-template.md) <br>
-- [Author blog](https://www.yuque.com/lhyyh) <br>
-- [LLM tutorial](https://www.yuque.com/lhyyh/ai/llm-wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file paths, prompts, shell commands, generated slide assets, and optional PPTX packaging instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce full-page PNG slide files, contact sheets, outline or scheme Markdown, scratch scripts, and optional PPTX decks under the user-provided project workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The workflow may read shell profile configuration and send an API key to a configurable model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid automatically sourcing shell profiles; validate any custom OPENAI_BASE_URL, require HTTPS, and send API keys only to explicitly trusted providers.
+
+Risk: The workflow can generate and modify many presentation assets under a workspace.
+
+Mitigation: Keep outputs under the project workspace, stage generated files before approval, and review PNG/PPTX contents before replacing final deliverables.
+
+Risk: Image model output may contain incorrect text, artifacts, or overbroad business claims.
+
+Mitigation: Use the documented page-level quality checks, verify visible text and business boundaries, and require human review before customer-facing use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/javastarboy/skills/ppt-produce-bycodex)
+- [PPT production guide](artifact/references/ppt-production-guide.md)
+- [Enterprise Solution Title-Bar Template](artifact/references/titlebar-template.md)
+- [Too-Large Handoff Template](artifact/references/too-large-handoff-template.md)
+- [Author tutorial](https://www.yuque.com/lhyyh/ai/llm-wiki)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, generated PNG slide files, optional PPTX files, contact sheets, and supporting project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires workspace-scoped file staging and review before overwriting approved slide assets.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

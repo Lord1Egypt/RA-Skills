@@ -1,43 +1,56 @@
-## Description: <br>
-Converts structured `[role]text` story or script input into a multi-role narrated audio work by analyzing characters, matching them to voices, synthesizing segments with SenseAudio TTS, and returning a media reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts role-tagged story or script text into a multi-role audiobook by analyzing characters, matching voices from an editable library, synthesizing each segment with SenseAudio TTS, and returning a media reference.
 
-## Publisher: <br>
-[XinHao-96](https://clawhub.ai/user/XinHao-96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xinhao-96](https://clawhub.ai/user/xinhao-96)
 
-## Use Case: <br>
-External users and developers use this skill to turn tagged novels, stories, or scripts into multi-character audio for Feishu/OpenClaw delivery. It is intended for stories where narration and dialogue roles are clearly marked or can default to narration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically installs an unpinned Python dependency at runtime. <br>
-Mitigation: Review before installation; run in a virtual environment and preinstall a pinned requests dependency, or ask the maintainer to remove runtime pip installation. <br>
-Risk: Story text is sent to SenseAudio for synthesis and saved in local output files. <br>
-Mitigation: Use a scoped SenseAudio API key and synthesize only content that is acceptable to send to SenseAudio and store locally. <br>
+## Use Case:
 
+External ClawHub users and content creators use this skill to turn `[role]text` story, novel, or dialogue passages into multi-character narrated audio for OpenClaw or Feishu consumption.
 
-## Reference(s): <br>
-- [Role Analysis Prompt](references/role_analysis_prompt.md) <br>
-- [Voice Library](references/voice_library.json) <br>
-- [SenseAudio API Base](https://api.senseaudio.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/XinHao-96/story-audio-adapter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Files, Media reference] <br>
-**Output Format:** [Markdown response with JSON analysis, local file paths, WAV audio artifacts, and a MEDIA:./... reference] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY; saves segment audio, metadata, and a combined WAV output under the workspace outputs directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Story text and the SenseAudio API key may be sent to the configured TTS endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a trusted SenseAudio API base, avoid untrusted SENSEAUDIO_API_BASE or --api-base values, and do not process sensitive story text unless that transfer is approved.
+
+Risk: The skill can automatically install Python packages during invocation.
+
+Mitigation: Preinstall and review dependencies in a controlled environment before running the skill so runtime package installation is unnecessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xinhao-96/skills/story-audio-adapter)
+- [Role analysis prompt](artifact/references/role_analysis_prompt.md)
+- [Voice library](artifact/references/voice_library.json)
+- [SenseAudio API base](https://api.senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, files, media reference]
+
+**Output Format:** [Markdown or plain text with JSON payloads, local WAV or MP3 audio files, and a `MEDIA:./...` reference]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SENSEAUDIO_API_KEY; writes role analysis, voice mapping, segment manifest, synthesized audio segments, and final audio output.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

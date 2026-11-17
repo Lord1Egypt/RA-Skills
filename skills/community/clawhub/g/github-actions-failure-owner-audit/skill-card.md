@@ -1,39 +1,48 @@
-## Description: <br>
-Audit failing GitHub Actions runs by actor ownership to expose who/workflow combinations generate the most CI noise and wasted minutes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit failing GitHub Actions runs by actor ownership to expose who/workflow combinations generate the most CI noise and wasted minutes.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to analyze GitHub Actions run exports and identify which actors, owners, repositories, or workflows contribute the most failed runs and wasted CI minutes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: GitHub Actions exports and audit output can contain private repository names, branch names, actor identities, workflow details, or run URLs. <br>
-Mitigation: Analyze only exports you are comfortable processing locally, scope RUN_GLOB and GitHub CLI exports narrowly, and avoid sharing raw output from private repositories. <br>
-Risk: Using filters that are expected in version 1.2.0 against an older package can produce incomplete targeted triage. <br>
-Mitigation: Verify the installed package version before relying on version-specific event, run-id, or run-url filters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-failure-owner-audit) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to triage GitHub Actions failures by repository, actor, owner, workflow, branch, conclusion, and failed runtime so CI stabilization work can be routed by impact.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Text or JSON audit reports, with shell-command examples and environment-variable configuration.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local bash and python3. Reporting mode exits 0 by default; optional critical-threshold mode exits 1 when configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Text reports generated from untrusted GitHub export files can be visually spoofed by crafted workflow, actor, repository, or owner strings.
+
+Mitigation: Prefer JSON output for automation and review text reports with care when source GitHub export files are untrusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-failure-owner-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reports or JSON summaries emitted by a shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON output includes summary, top groups, all groups, and critical groups; reporting mode exits 0 by default, with optional failure on critical groups.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

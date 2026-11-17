@@ -1,43 +1,57 @@
-## Description: <br>
-Track bankroll across sportsbooks and prediction markets. Log bets, record results, calculate ROI, generate P&L reports, and enforce risk limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track bankroll across sportsbooks and prediction markets by logging bets, recording results, calculating ROI, generating P&L reports, and enforcing risk limits.
 
-## Publisher: <br>
-[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rsquaredsolutions2026](https://clawhub.ai/user/rsquaredsolutions2026)
 
-## Use Case: <br>
-External users use this skill to maintain a local betting or prediction-market bankroll ledger, log bets and results, review P&L and ROI, and check stake sizes against risk limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write bankroll and betting records to a local SQLite database. <br>
-Mitigation: Review sqlite3 write commands before execution and keep local bankroll data at ~/.openclaw/data/bankroll.db protected according to the user's privacy needs. <br>
-Risk: Free-text notes and unusual characters may affect the intended sqlite3 command. <br>
-Mitigation: Inspect user-provided note fields, especially quotes or unusual characters, before running generated sqlite3 writes. <br>
+## Use Case:
 
+External users and agents use this skill to track betting bankroll activity, answer P&L and ROI questions, record bet outcomes, and check stake sizes against risk limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rsquaredsolutions2026/bankroll-manager) <br>
-- [AgentBets bankroll manager guide](https://agentbets.ai/guides/openclaw-bankroll-manager-skill/) <br>
-- [OpenClaw Skills series](https://agentbets.ai/guides/#openclaw-skills) <br>
-- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with SQLite command examples and concise bankroll summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write user-requested bet records to a local SQLite database at ~/.openclaw/data/bankroll.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Stored bankroll records may contain sensitive betting or financial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for bankroll tracking, avoid private details in notes, and document how users can delete or export stored records.
+
+Risk: The shown sqlite3 command can be unsafe if populated with untrusted or unsanitized text.
+
+Mitigation: Review commands before execution and prefer parameterized database writes for user-provided values.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rsquaredsolutions2026/skills/bankroll-manager)
+- [AgentBets](https://agentbets.ai)
+- [OpenClaw Bankroll Manager Skill guide](https://agentbets.ai/guides/openclaw-bankroll-manager-skill/)
+- [OpenClaw Skills series](https://agentbets.ai/guides/#openclaw-skills)
+- [Agent Betting Stack](https://agentbets.ai/guides/agent-betting-stack/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local SQLite commands and bankroll records stored at ~/.openclaw/data/bankroll.db when commands are executed.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

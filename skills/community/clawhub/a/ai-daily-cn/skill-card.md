@@ -1,45 +1,65 @@
-## Description: <br>
-AI 日报 - 自动抓取 LLM/Agent 领域热点信息，生成结构化中文简报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 日报 - 自动抓取 LLM/Agent 领域热点信息，生成结构化中文简报。
 
-## Publisher: <br>
-[yanhe](https://clawhub.ai/user/yanhe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yanhe](https://clawhub.ai/user/yanhe)
 
-## Use Case: <br>
-Developers, operators, and AI practitioners use this skill to generate a daily Chinese Markdown briefing about LLM, agent, AI industry, KOL, and arXiv updates from configured online sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Network fetching weakens HTTPS certificate verification. <br>
-Mitigation: Restore normal HTTPS certificate verification before production use and review outbound data-source URLs. <br>
-Risk: The artifact includes automation paths for cron, systemd, and OpenClaw scheduled jobs. <br>
-Mitigation: Review scheduled commands, working directories, logs, and service files before enabling recurring execution. <br>
-Risk: The DingTalk push script can send report content to a fixed external group. <br>
-Mitigation: Delete the script or replace the destination with an approved channel before using external sharing. <br>
-Risk: Optional API keys are read from environment variables, including Tavily, Alibaba Cloud, and GitHub tokens. <br>
-Mitigation: Use scoped credentials, avoid unnecessary tokens, and store secrets in a managed secret store or another controlled runtime location. <br>
+## Use Case:
 
+Developers, AI practitioners, and operations teams use this skill to generate Chinese daily briefings on LLM, agent, AI-industry, KOL, and arXiv developments from configured external sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanhe/ai-daily-cn) <br>
-- [Tavily configuration portal](https://app.tavily.com) <br>
-- [Alibaba Cloud DashScope console](https://dashscope.console.aliyun.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown report files with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are saved as output/AI-Daily-{date}.md and are controlled by JSON source configuration plus optional API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0 and changelog lists 1.1.0) <br>
+Risk: External feed and API requests include unsafe networking behavior, including disabled TLS verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restore certificate and hostname verification before using authenticated APIs or running on untrusted networks.
+
+Risk: The DingTalk push helper can send report content to a hard-coded group destination.
+
+Mitigation: Do not use the push helper until the destination is configurable and explicitly verified.
+
+Risk: Installation guidance includes root-level systemd setup for scheduled execution.
+
+Mitigation: Prefer manual execution, user-level cron, or other least-privilege scheduling.
+
+Risk: Setup guidance stores API keys in shell startup files and suggests a curl-to-bash pyenv install path.
+
+Mitigation: Use a scoped secret store or runtime environment variables, and install Python through a trusted package manager or reviewed script.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yanhe/skills/ai-daily-cn)
+- [Publisher Profile](https://clawhub.ai/user/yanhe)
+- [OpenClaw Project Homepage](https://github.com/openclaw/openclaw)
+- [Tavily API Console](https://app.tavily.com)
+- [Alibaba Cloud DashScope Console](https://dashscope.console.aliyun.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report files with terminal preview output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates dated reports under output/AI-Daily-YYYY-MM-DD.md; content depends on external sources and optional API keys.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter and changelog list earlier versions)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

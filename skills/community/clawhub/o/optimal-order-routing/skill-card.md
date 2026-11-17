@@ -1,44 +1,52 @@
-## Description: <br>
-Recommends the best exchange and order type for minimum-cost crypto execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a paid x402 endpoint that recommends an exchange and order type for lower-cost execution.
 
-## Publisher: <br>
-[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kynto2001-ctrl](https://clawhub.ai/user/kynto2001-ctrl)
 
-## Use Case: <br>
-Developers and trading agents use this skill to request paid, real-time routing recommendations for choosing an exchange and order type before crypto orders where execution cost matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic wallet-based x402 requests can spend funds without strong in-skill consent or spend-limit guidance. <br>
-Mitigation: Use a dedicated low-balance wallet, confirm the expected per-call cost before use, and avoid exposing a primary trading wallet private key. <br>
-Risk: The skill depends on EVM_PRIVATE_KEY for payment authorization. <br>
-Mitigation: Store the key only in the agent runtime's secret environment and rotate it if it may have been exposed. <br>
+## Use Case:
 
+External developers and trading agents use the endpoint to compare supported exchanges and order types when considering execution cost. The skill provides a JSON recommendation and an example x402 client request.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kynto2001-ctrl/skills/optimal-order-routing) <br>
-- [APEX Runner Optimal Order Routing Signal](https://apexrunner.ai/signals/optimal-order-routing) <br>
-- [APEX Runner Slippage Forecast Signal](https://apexrunner.ai/signals/slippage-forecast) <br>
-- [APEX Runner Execution Window Optimizer Signal](https://apexrunner.ai/signals/execution-window-optimizer) <br>
-- [APEX Runner Arbitrage Spread Signal](https://apexrunner.ai/signals/arb-spread) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown usage guidance with an x402-authenticated GET request and JSON response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EVM_PRIVATE_KEY for wallet-based x402 payment authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Each x402 request spends USDC on Base, and the client signs requests using EVM_PRIVATE_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated wallet funded for intended calls, protect its private key, and set a per-call amount cap at the expected price as shown in the example.
+
+## Reference(s):
+
+- [Optimal Order Routing endpoint](https://apexrunner.ai/signals/optimal-order-routing)
+- [Slippage Forecast](https://apexrunner.ai/signals/slippage-forecast)
+- [Execution Window Optimizer](https://apexrunner.ai/signals/execution-window-optimizer)
+- [Arb Spread](https://apexrunner.ai/signals/arb-spread)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Code, Configuration instructions]
+
+**Output Format:** [JSON recommendation with a Python x402 request example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid per call in USDC on Base; wallet signing uses EVM_PRIVATE_KEY.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

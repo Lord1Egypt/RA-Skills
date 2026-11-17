@@ -1,48 +1,59 @@
-## Description: <br>
-Use when building, configuring, running, debugging, or extending a Discord voice agent integrated with OpenClaw, including first-time setup, voice capture, transcription, TTS, slash commands, reply routing, health/status, and release work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps build, configure, run, debug, and extend a Discord voice agent integrated with OpenClaw for setup, voice capture, transcription, TTS, slash commands, reply routing, and health checks.
 
-## Publisher: <br>
-[itsvips](https://clawhub.ai/user/itsvips) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itsvips](https://clawhub.ai/user/itsvips)
 
-## Use Case: <br>
-Developers and operators use this skill to set up, test, troubleshoot, and extend an OpenClaw-backed Discord voice bot that joins voice channels, captures speech, routes replies, and speaks back concise responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Discord tokens and OpenClaw gateway tokens can be exposed through chats, logs, screenshots, or committed files. <br>
-Mitigation: Store tokens in environment variables or a secret manager, avoid sharing them in plaintext, and rotate credentials if exposure is suspected. <br>
-Risk: Voice capture, transcription, OpenClaw routing, and local history may contain participant speech or sensitive conversation content. <br>
-Mitigation: Run the bot only in channels where participants understand how voice is captured and routed, and define retention and deletion practices for `.kittu-voice-history/` and `.kittu-voice-captures/`. <br>
+## Use Case:
 
+Developers and Discord server operators use this skill to set up and operate an OpenClaw-powered voice bot that joins a voice channel, captures speech, routes replies through OpenClaw, and speaks back with short responses.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/itsvips/discord-voice-agent) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [First-run Wizard Flow](references/wizard.md) <br>
-- [Discord Voice Agent Commands and Knobs](references/commands.md) <br>
-- [Model Routing](references/model-routing.md) <br>
-- [Model Settings](references/model-settings.md) <br>
-- [One-command Test Mode](references/test-mode.md) <br>
-- [Discord Voice Agent Troubleshooting](references/troubleshooting.md) <br>
-- [Discord Voice Agent Upgrade Roadmap](references/upgrades.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline commands, configuration names, and implementation suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Discord and OpenClaw environment variables, smoke tests, status checks, and local voice capture or history paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Discord and OpenClaw tokens could be exposed if pasted into shared chats or committed to source control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store tokens only in a secure environment or secret store, and avoid including them in chat transcripts, logs, or commits.
+
+Risk: Voice turns, transcripts, and conversation history can contain sensitive participant data.
+
+Mitigation: Make participants aware that the bot can capture, transcribe, and locally save voice turns and conversation history, and review retention practices before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itsvips/skills/discord-voice-agent)
+- [Quickstart](references/quickstart.md)
+- [Discord Voice Agent commands and knobs](references/commands.md)
+- [Model routing](references/model-routing.md)
+- [Model settings](references/model-settings.md)
+- [One-command test mode](references/test-mode.md)
+- [Discord Voice Agent troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local voice captures, JSONL history, and status output when troubleshooting.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

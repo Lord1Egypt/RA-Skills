@@ -1,44 +1,57 @@
-## Description: <br>
-Loneliness First Aid provides a practical protocol for rebuilding human connection during isolation, with exercises and scripts for reaching out and maintaining relationships. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Practical protocol for rebuilding human connection during isolation with exercises, scripts, and step-by-step guidance for reaching out.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users can use this skill when someone reports loneliness, isolation, a recent move, remote-work disconnection, or relationship loss and needs concrete outreach steps, conversation prompts, and recurring social touchpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides mental-health-adjacent support and may be inappropriate as a substitute for professional care. <br>
-Mitigation: Review the guidance before use and escalate to qualified support or crisis resources when loneliness is persistent, acute, or accompanied by hopelessness. <br>
-Risk: The declared filesystem permission appears unnecessary for the visible instructions. <br>
-Mitigation: Deny or avoid granting filesystem access when the client allows permission control. <br>
+## Use Case:
 
+External users and agents use this skill to support people who feel lonely, isolated, newly relocated, remote from social contact, or affected by a breakup, divorce, or friendship ending. It helps classify the type of loneliness and provides small outreach actions, recurring social touchpoints, conversation prompts, and escalation resources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/loneliness-first-aid) <br>
-- [US Surgeon General loneliness and isolation advisory](https://www.hhs.gov/surgeongeneral/priorities/connection) <br>
-- [The Surprise of Reaching Out](https://doi.org/10.1037/pspi0000402) <br>
-- [988 Suicide & Crisis Lifeline](https://988lifeline.org/) <br>
-- [GriefShare](https://www.griefshare.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with step-by-step exercises, outreach scripts, and resource reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code or shell commands; may suggest calendar-based recurring social touchpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests calendar and filesystem access beyond the behavior documented in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, prefer a version without those tool requirements, and verify or pin the installation source.
+
+Risk: The skill may be used in conversations involving hopelessness or suicidal thoughts.
+
+Mitigation: Follow the artifact's escalation guidance by immediately providing crisis resources such as calling or texting 988.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/loneliness-first-aid)
+- [U.S. Surgeon General: Our Epidemic of Loneliness and Isolation](https://www.hhs.gov/surgeongeneral/priorities/connection)
+- [Liu et al., The Surprise of Reaching Out](https://doi.org/10.1037/pspi0000402)
+- [988 Suicide & Crisis Lifeline](https://988lifeline.org/)
+- [GriefShare](https://www.griefshare.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style guidance with exercises, message templates, scripts, and resource links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include crisis-resource guidance when a user mentions suicidal thoughts or hopelessness.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Skills Firewall scans skill directories for risky code patterns, applies allow, warn, block, or quarantine decisions, and generates security reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skills Firewall is an advisory skill scanner that checks agent skill files for suspicious patterns, produces allow, warn, block, or quarantine guidance, and can generate security reports.
 
-## Publisher: <br>
-[huzibbs](https://clawhub.ai/user/huzibbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huzibbs](https://clawhub.ai/user/huzibbs)
 
-## Use Case: <br>
-Developers and engineers use this skill to review skill folders before installation or execution, inspect pattern-based findings, and produce text, JSON, or HTML security reports for manual review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The artifact describes itself as a firewall, but server security evidence says it should be treated as a lightweight local pattern scanner rather than an enforcement boundary. <br>
-Mitigation: Use scan and firewall decisions as advisory signals only; review findings manually before installing or running a skill. <br>
-Risk: Server security evidence notes that generated HTML reports can render unescaped scanned names or fields. <br>
-Mitigation: Be careful opening HTML reports generated from untrusted skill directories; prefer text or JSON output when reviewing untrusted inputs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Malicious Patterns Reference](references/malicious_patterns.md) <br>
-- [Security Rules Reference](references/security_rules.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huzibbs/skills-firewall) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to screen agent skills before installation or execution, configure allow and block decisions, and produce review reports. Its results should be treated as advisory input rather than as a standalone enforcement boundary.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands, plus text, JSON, or HTML security reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include threat levels, matched rules, warnings, recommendations, and risk summaries for manual review.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat allow, warn, block, or quarantine output as an enforcement security boundary.
+
+Mitigation: Use the output as review-required advisory guidance and require human approval before installing or executing a scanned skill.
+
+Risk: Firewall decisions may not be reliable until fail-open handling and package identity binding are addressed.
+
+Mitigation: Bind decisions to verified package identity and use a separate enforcement control for production gating.
+
+Risk: Skill content or report data may be rendered into HTML reports.
+
+Mitigation: Escape untrusted report content before rendering or sharing generated HTML.
+
+Risk: Filesystem traversal through symlinks could affect what content is scanned or reported.
+
+Mitigation: Constrain scans to the intended skill directory and verify symlink containment before trusting results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huzibbs/skills/skills-firewall)
+- [Malicious Patterns Reference](references/malicious_patterns.md)
+- [Security Rules Reference](references/security_rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python snippets, YAML configuration examples, and optional text, JSON, or HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports and firewall decisions are advisory and require review before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

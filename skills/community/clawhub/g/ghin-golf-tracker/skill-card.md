@@ -1,41 +1,57 @@
-## Description: <br>
-Analyzes local GHIN golf JSON data to report handicap trends, scoring patterns, course statistics, and yearly performance without external connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes local GHIN golf JSON data to report handicap trends, scoring patterns, course stats, and yearly performance without external connections.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Golfers and developers use this skill to analyze an already-collected GHIN data JSON file and produce handicap, scoring, course, and yearly performance summaries for review or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The input GHIN export may contain personal golf history or account-adjacent data. <br>
-Mitigation: Use a manually exported local JSON file when possible and review any separate collection tool independently before giving it credentials or account access. <br>
-Risk: The analyzer depends on the structure and completeness of the supplied JSON file. <br>
-Mitigation: Check that the file includes expected GHIN fields such as scores or handicap_index before relying on trend and scoring summaries. <br>
+## Use Case:
 
+Golfers and agents use this skill to analyze an already-collected GHIN JSON file and produce handicap, scoring, course, and yearly performance summaries. It is suited for local, credential-free review of personal golf statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pfrederiksen/ghin-golf-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/pfrederiksen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Analysis, Guidance] <br>
-**Output Format:** [Plain text report or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a user-provided GHIN JSON file locally and does not write files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: GHIN data can include personal golf activity and performance history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the local GHIN JSON file intended for analysis and avoid sharing generated reports beyond the intended audience.
+
+Risk: Credential-based GHIN data collection is outside this skill and may require separate browser automation.
+
+Mitigation: Review any data collection workflow independently; this skill should only analyze pre-collected JSON data.
+
+Risk: Malformed or incomplete input data can produce incomplete or misleading statistics.
+
+Mitigation: Use JSON files with the expected GHIN fields and review the generated report before relying on trends or summaries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pfrederiksen/skills/ghin-golf-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Human-readable text report or JSON printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads one local GHIN JSON input file and does not write files.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

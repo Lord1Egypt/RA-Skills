@@ -1,43 +1,56 @@
-## Description: <br>
-Build a systematic process for collecting, vetting, and using customer testimonials across product pages, ads, and creator briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a systematic process for collecting, vetting, and using customer testimonials across product pages, ads, and creator briefs.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-E-commerce brands, product marketers, and conversion-rate specialists use this skill to plan testimonial collection, score testimonial quality, adapt testimonials for sales channels, and track social proof performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer names, locations, photos, videos, or support-derived stories could be reused without adequate permission. <br>
-Mitigation: Use only testimonials with documented permission for the intended marketing channels, disclose incentives, minimize personal details, and route sensitive or support-derived content through legal or compliance review before publication. <br>
-Risk: Unverified or over-edited testimonials could mislead customers or create unsupported marketing claims. <br>
-Mitigation: Verify purchase history and source authenticity, preserve the customer's meaning when editing, reject unsupported claims, and keep scorecards and approval records with each deployed testimonial. <br>
+## Use Case:
 
+E-commerce brands, product marketers, and CRO specialists use this skill to build a testimonial collection, scoring, formatting, placement, and monitoring workflow for product pages, ads, creator briefs, email, and marketplace listings.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [Testimonial Scoring Guide](references/testimonial-scoring-guide.md) <br>
-- [Platform Placement Guide](references/platform-placement-guide.md) <br>
-- [Testimonial Quality Checklist](assets/testimonial-quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance, checklists, scoring matrices, and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning and review artifacts for testimonial collection, scoring, placement, and performance monitoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Testimonials may expose customer identifiers or personal details without adequate permission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain explicit consent and written usage rights before publication, and minimize personal details where possible.
+
+Risk: Incentivized or edited testimonials may mislead audiences if incentives or claims are not disclosed.
+
+Mitigation: Disclose incentives, avoid unsupported claims, and complete legal or compliance review before using testimonials in ads, product pages, or creator briefs.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [Testimonial Scoring & Vetting Guide](references/testimonial-scoring-guide.md)
+- [Platform Placement Guide](references/platform-placement-guide.md)
+- [Testimonial Quality Checklist](assets/testimonial-quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance, scoring tables, checklists, templates, and channel-specific placement plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces marketing workflow guidance; review consent, incentive disclosure, usage rights, and compliance before publishing testimonials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

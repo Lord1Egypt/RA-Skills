@@ -1,42 +1,50 @@
-## Description: <br>
-Provides funeral directors, mortuary owners, and deathcare professionals with guidance on funeral home operations, FTC compliance, state licensing, preneed trust management, cremation rules, pricing strategy, and operational KPIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides funeral directors and deathcare professionals with guidance on funeral home operations, FTC Funeral Rule compliance, state licensing, preneed trust management, cremation and green burial rules, pricing strategy, OSHA topics, and operational KPIs.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Funeral directors, mortuary owners, and deathcare professionals use this skill to answer operational and compliance questions about FTC Funeral Rule obligations, state licensing, preneed arrangements, cremation and green burial practices, OSHA topics, pricing benchmarks, and KPIs. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Regulatory guidance can vary by jurisdiction or change after release. <br>
-Mitigation: Verify funeral, preneed, cremation, OSHA, and pricing information against current official sources before operational use. <br>
-Risk: Pricing benchmarks and operating KPIs may not match a specific market or business model. <br>
-Mitigation: Compare generated recommendations with local market data, current industry benchmarks, and the funeral home's own financial records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-funeral-home) <br>
-- [AI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Funeral directors, mortuary owners, and deathcare professionals use this skill to obtain concise operational and compliance guidance for funeral home workflows. It supports regulatory lookups, compliance planning, pricing and KPI review, preneed trust considerations, cremation and green burial questions, and OSHA-related preparation room topics.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include regulatory citations, compliance steps, pricing benchmarks, KPIs, and reminders to verify jurisdiction-specific requirements.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Regulatory, state-specific, penalty, or pricing guidance may be outdated or incomplete.
+
+Mitigation: Independently confirm current federal, state, and local requirements, penalties, and cited pricing benchmarks before making legal, licensing, compliance, or financial decisions.
+
+## Reference(s):
+
+- [AI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with citations, checklists, benchmarks, and action steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational support only; users should confirm current regulations, state-specific rules, penalties, and pricing benchmarks before acting.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

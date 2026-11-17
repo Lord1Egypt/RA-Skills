@@ -1,6 +1,6 @@
 ---
 name: ai-domain-generator
-description: AI-powered domain naming consultation — helps users go from a vague idea to a registrable domain name. Trigger when the user says things like "help me find a domain", "I need a domain for my project", "domain name ideas", "what should I name my startup", "I'm building an X and need a domain", "brand name suggestions", "naming ideas", or any variation where the user describes a project but doesn't have a specific keyword yet. Also trigger when the user says "I'm starting a coffee shop", "I'm building an AI writing tool" — any project description that implies they need a name. Do NOT trigger when the user already has a specific keyword and wants variations (use domain_generator), or when a target domain is taken and they want alternatives (use plan_b). This skill's entire point is to talk first, generate later.
+description: AI-powered domain naming consultation — helps users go from a vague idea to a registrable domain name. Trigger when the user says things like "help me find a domain", "I need a domain for my project", "domain name ideas", "what should I name my startup", "I'm building an X and need a domain", "brand name suggestions", "naming ideas", or any variation where the user describes a project but doesn't have a specific keyword yet. Also trigger when the user says "I'm starting a coffee shop", "I'm building an AI writing tool" — any project description that implies they need a name. Do NOT trigger when the user already has a specific keyword and wants variations (use the domain-generator skill), or when a target domain is taken and they want alternatives (use the domain-name-advisor skill). This skill's entire point is to talk first, generate later.
 homepage: https://domainkits.com/mcp
 metadata: {"openclaw":{"emoji":"🎯","primaryEnv":"DOMAINKITS_API_KEY"}}
 
@@ -18,7 +18,7 @@ So the first priority is not generating domains. It's **understanding the user**
 
 This skill requires the **DomainKits MCP** connection.
 
-- **DomainKits MCP**: Provides `bulk_available`, `deleted`, `expired`, `aged`, `tld_check`, `brand_match`, and other domain intelligence tools
+- **DomainKits MCP**: Provides `bulk_available`, `deleted`, `expired`, `aged`, `tld_check`, `typosquat`, and other domain intelligence tools
 
 No additional API keys or environment variables are needed beyond the DomainKits connection.
 
@@ -66,8 +66,8 @@ This skill orchestrates the following tools:
 - `tld_check` — Explore keyword availability across all TLDs (DomainKits MCP)
 
 Optional follow-up tools (user-driven):
-- `brand_match` — Brand conflict and trademark risk detection
-- `analyze` — Comprehensive domain analysis
+- `typosquat` — Check which lookalike variants of a name are already registered
+- `whois` / `dns` — Registration and hosting facts for a specific domain
 - `monitor` — Set up expiry monitoring for a target domain
 - `keyword_data` — Check keyword commercial value (Google Ads data)
 
@@ -236,7 +236,7 @@ Then ask: "Any of these grab you? Or should we try a different direction?"
 **Iron rule: every domain marked 🟢 must be verified via `bulk_available`. No exceptions.**
 **Cap: max 10 domains per round. Less is more.**
 
-Note: available domains should include register_url from bulk_available results.
+Note: available domains include price from bulk_available results; show it next to each name.
 
 #### Exit Condition
 
@@ -251,9 +251,9 @@ User provides feedback on the results → enter Step 4.
 |-----------|-----------|
 | "Like this direction, show me more" | Back to Step 3 with fresh thinking — don't clone previous naming patterns |
 | "None of these work" | Back to Step 2 with new metaphor directions |
-| "This one's good — any brand risk?" | Run `brand_match` |
+| "This one's good — any brand risk?" | Run `typosquat` to see what lookalikes are already taken |
 | "Anything cheaper?" | Increase `deleted` / `expired` search coverage in Step 3 |
-| "This is the one" | Congratulate, provide registration link, suggest `brand_match` as final check |
+| "This is the one" | Congratulate, provide registration link, suggest a `typosquat` scan as final check |
 | "I want to try a completely different angle" | Back to Step 1 |
 
 **When the current best is already strong**, say so: "This is a solid name — I'd go with it." Don't force-generate weak options to show effort. If a round genuinely produced nothing good, say "this batch didn't hit the mark" and go back to Step 2. Honesty beats output volume.
@@ -264,10 +264,10 @@ This skill is the **entry point** of the domain naming pipeline. Hand off natura
 
 | User State | Next Step |
 |-----------|-----------|
-| Has a keyword, wants variations | → `domain_generator` |
-| Favorite domain is taken | → `plan_b` |
-| Wants to check brand risk | → `brand_match` |
-| Wants full domain analysis | → `analyze` |
+| Has a keyword, wants variations | → the `domain-generator` skill |
+| Favorite domain is taken | → the `domain-name-advisor` skill |
+| Wants to check brand risk | → the `brand-protection` skill |
+| Wants full domain analysis | → the `domain-analyze` skill |
 | Wants to watch a domain until it expires | → `monitor` |
 | Wants to know if a keyword has commercial value | → `keyword_data` |
 
@@ -298,9 +298,9 @@ Don't sell these — just mention them when they're useful:
 - Rely on industry jargon that outsiders won't get
 - Chase a trend that won't last
 
-## Access Tiers
+## Access
 
-Guest users can use this skill with limited daily search quota. Register a free account at https://domainkits.com to unlock higher search limits and access to all tools.
+Works without an API key on a guest quota. A free account raises it; paid tiers raise it further. Current per-tier limits are listed at [domainkits.com/pricing](https://domainkits.com/pricing); the `usage` tool reports the live quota for the current account.
 
 ## Privacy
 

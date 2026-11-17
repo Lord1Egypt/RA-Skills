@@ -1,44 +1,58 @@
-## Description: <br>
-LinkSwarm API helps agents manage LinkSwarm backlink exchanges by registering domains, requesting backlinks, contributing link slots, checking credits and status, and configuring placement notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LinkSwarm API helps agents manage backlink exchanges for AI-created sites by registering domains, requesting backlinks, contributing link slots, tracking credits, and receiving placement notifications.
 
-## Publisher: <br>
-[Heyw00d](https://clawhub.ai/user/Heyw00d) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[heyw00d](https://clawhub.ai/user/heyw00d)
 
-## Use Case: <br>
-Developers and site operators can use this skill to let an agent interact with the LinkSwarm API for approved domains: registering sites, managing backlink credits, requesting or contributing placements, and monitoring results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent spend LinkSwarm credits and request public backlinks. <br>
-Mitigation: Require explicit approval before backlink requests and limit use to owned domains and approved pages. <br>
-Risk: Site registration and link-slot contributions can affect SEO and reputation for public pages. <br>
-Mitigation: Approve domains, pages, categories, and link-slot contributions before the agent submits them. <br>
-Risk: Webhook setup and API key use introduce credential and endpoint security concerns. <br>
-Mitigation: Store the API key in a trusted credential store and approve webhook destinations before configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Heyw00d/linkswarm-api) <br>
-- [LinkSwarm Documentation](https://linkswarm.ai/docs/) <br>
-- [LinkSwarm Registration](https://linkswarm.ai/register/) <br>
-- [LinkSwarm API Status](https://api.linkswarm.ai/health) <br>
+## Use Case:
 
+Developers and agents use this skill to connect AI-created sites to LinkSwarm's backlink exchange workflow, including site registration, domain verification, credit-aware backlink requests, contributed link slots, status checks, and optional placement webhooks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown instructions with curl and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a LinkSwarm API key and approval before making site, backlink, credit, or webhook changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may share site and backlink details with LinkSwarm.
+
+Mitigation: Review the domains, pages, categories, anchor text, and webhook destinations before allowing an agent to call the API.
+
+Risk: Requesting backlinks or contributing link slots can spend or earn LinkSwarm credits and affect public SEO posture.
+
+Mitigation: Require explicit approval before backlink requests, link-slot contributions, or other public placement actions.
+
+Risk: The LinkSwarm API key grants access to account actions.
+
+Mitigation: Store the key only in approved secret storage, keep it out of logs and source files, and rotate it if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/heyw00d/skills/linkswarm-api)
+- [LinkSwarm API Documentation](https://linkswarm.ai/docs/)
+- [LinkSwarm API Status](https://api.linkswarm.ai/health)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, bash, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a LinkSwarm API key and explicit approval for credit-spending or public SEO actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

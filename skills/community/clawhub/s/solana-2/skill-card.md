@@ -1,45 +1,56 @@
-## Description: <br>
-Query Solana blockchain data with USD pricing for wallet balances, token portfolios, transaction details, NFTs, whale detection, network stats, and price lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Solana blockchain data with USD pricing, including wallet balances, token portfolios, transaction details, NFTs, whale detection, network stats, and token prices.
 
-## Publisher: <br>
-[AgungPrabowo123](https://clawhub.ai/user/AgungPrabowo123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agungprabowo123](https://clawhub.ai/user/agungprabowo123)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect Solana wallets, tokens, transactions, NFTs, large transfers, network status, and token prices from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queried public wallet addresses, token mints, and transaction signatures are sent to Solana RPC providers and sometimes CoinGecko. <br>
-Mitigation: Use a trusted RPC endpoint for sensitive analysis and pass --no-prices when CoinGecko price lookups are not needed. <br>
-Risk: An untrusted SOLANA_RPC_URL could expose queries to an unexpected RPC provider. <br>
-Mitigation: Set SOLANA_RPC_URL only to RPC endpoints you trust. <br>
-Risk: Public RPC and CoinGecko free APIs may rate-limit requests or return incomplete price coverage. <br>
-Mitigation: Use --no-prices for faster RPC-only runs or configure a private RPC endpoint for production use. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect Solana wallet, token, transaction, NFT, whale-transfer, network, and price data through read-only RPC and CoinGecko lookups.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AgungPrabowo123/solana-2) <br>
-- [Publisher Profile](https://clawhub.ai/user/AgungPrabowo123) <br>
-- [Solana Public RPC Endpoint](https://api.mainnet-beta.solana.com) <br>
-- [CoinGecko Solana Token Price API](https://api.coingecko.com/api/v3/simple/token_price/solana) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live Solana RPC and CoinGecko results; price lookups can be disabled with --no-prices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Wallet addresses, transaction signatures, and token mints are sent to Solana RPC providers and CoinGecko for lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default endpoint or a trusted HTTPS RPC endpoint, and avoid sending sensitive lookup patterns to RPC providers you do not trust.
+
+Risk: An untrusted SOLANA_RPC_URL endpoint can return inaccurate blockchain data or expose query activity.
+
+Mitigation: Set SOLANA_RPC_URL only to a trusted provider and review results before relying on them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agungprabowo123/skills/solana-2)
+- [Publisher profile](https://clawhub.ai/user/agungprabowo123)
+- [Default Solana RPC endpoint](https://api.mainnet-beta.solana.com)
+- [CoinGecko Solana price API endpoint](https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; helper script returns JSON-formatted blockchain and price lookup results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only network lookups; output may vary with RPC availability, CoinGecko rate limits, and current chain state.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

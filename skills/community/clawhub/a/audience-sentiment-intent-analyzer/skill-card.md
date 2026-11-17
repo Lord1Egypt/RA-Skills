@@ -1,42 +1,55 @@
-## Description: <br>
-Analyze comments, DMs, and replies across YouTube, TikTok, Instagram, and email to extract buying intent, pain points, churn signals, audience sentiment trends, and content gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze comments, DMs, and replies across YouTube, TikTok, Instagram, and email to extract buying intent, pain points, and churn signals.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-External users such as content creators, agencies, product teams, and marketing teams use this skill to analyze audience engagement across social and email channels and turn sentiment, intent, and churn signals into action plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process comments, DMs, replies, or email content from connected accounts. <br>
-Mitigation: Use it only with proper authorization, consent, and retention controls for the accounts and messages being analyzed. <br>
-Risk: The skill requires API credentials for social platforms and model access. <br>
-Mitigation: Use least-privilege credentials and keep secrets out of prompts, logs, repositories, and shared reports. <br>
-Risk: Slack alerts or shared reports could expose sensitive audience or customer signals. <br>
-Mitigation: Restrict alert destinations and report access to approved recipients. <br>
+## Use Case:
 
+External creators, agencies, product teams, and marketing leaders use this skill to turn social, email, and manual audience feedback into sentiment trends, intent classifications, content gaps, churn signals, and response recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/audience-sentiment-intent-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, configuration, guidance] <br>
-**Output Format:** [Structured JSON reports with optional Markdown summaries and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sentiment scores, intent categories, content gaps, persona shifts, churn indicators, recommendations, and alert guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Private DMs, email, and customer messages may be analyzed or forwarded to an external AI provider without adequate consent or redaction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in for private message and email analysis, redact personal or confidential data before model calls, and limit API credentials to read-only, source-specific scopes.
+
+Risk: Reports, raw samples, or Slack alerts may expose sensitive audience content to additional systems or viewers.
+
+Mitigation: Disable raw samples and Slack payloads for private content unless approved, and restrict report access to reviewers with a business need.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/audience-sentiment-intent-analyzer)
+- [Publisher profile](https://clawhub.ai/user/ncreighton)
+- [Skill homepage from artifact frontmatter](https://github.com/ncreighton/empire-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON reports and Markdown guidance, with configuration examples and optional shell commands for setup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include sentiment scores, intent classifications, persona updates, content-gap recommendations, raw text samples, and optional Slack alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

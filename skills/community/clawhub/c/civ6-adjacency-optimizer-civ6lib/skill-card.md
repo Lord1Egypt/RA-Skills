@@ -1,42 +1,51 @@
-## Description: <br>
-Civilization 6 district mechanics library. Use when working with district placement validation, adjacency bonus calculations, or understanding Civ6 game rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Civilization 6 district mechanics library. Use when working with district placement validation, adjacency bonus calculations, or understanding Civ6 game rules.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and strategy-tool builders use this skill to validate Civilization 6 district placements and calculate adjacency bonuses for Gathering Storm map layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides developer-facing Python rule logic and examples that may be integrated into other tools. <br>
-Mitigation: Review and test the artifact before deployment, especially when using it in repository automation or maintainer workflows. <br>
-Risk: Civilization 6 rule guidance can become inaccurate if game rules, expansions, or scenario assumptions differ from Gathering Storm behavior. <br>
-Mitigation: Check outputs against the intended game version and the referenced district and adjacency rule documentation. <br>
+## Use Case:
 
+Developers and agent users use this skill to reason about Civilization 6 district placement, validate district constraints, and calculate adjacency bonuses for planning or rules-reference workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wu-uk/civ6-adjacency-optimizer-civ6lib) <br>
-- [Civilization Wiki: District (Civ6)](https://civilization.fandom.com/wiki/District_(Civ6)) <br>
-- [Civilization Wiki: Adjacency bonus (Civ6)](https://civilization.fandom.com/wiki/Adjacency_bonus_(Civ6)) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external services or credentials are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Canal placement validation has a documented accuracy bug and should not be treated as authoritative.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review canal placement outputs against Civilization 6 rules and rely on them only after the flat-land check is fixed and tested.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wu-uk/skills/civ6-adjacency-optimizer-civ6lib)
+- [Civilization Wiki: Adjacency Bonus (Civ6)](https://civilization.fandom.com/wiki/Adjacency_bonus_(Civ6))
+- [Civilization Wiki: District (Civ6)](https://civilization.fandom.com/wiki/District_(Civ6))
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown prose with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local Python modules for Civ6 district placement validation and adjacency calculations.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

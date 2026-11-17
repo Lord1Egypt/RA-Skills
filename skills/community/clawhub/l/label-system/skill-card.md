@@ -1,40 +1,53 @@
-## Description: <br>
-构建领域业务标签体系，按业务阶段与场景对拆分知识问答进行分类、打标，并指出知识拆分问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+构建领域业务标签体系，按业务阶段与场景对拆分知识问答进行分类、打标，并指出知识拆分问题。
 
-## Publisher: <br>
-[dluolan](https://clawhub.ai/user/dluolan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dluolan](https://clawhub.ai/user/dluolan)
 
-## Use Case: <br>
-Developers, knowledge-base operators, and domain analysts use this skill to build business label systems from user-provided Excel knowledge exports, apply labels to split question-answer records, and flag split-knowledge quality issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided Excel files may contain sensitive business or personal information. <br>
-Mitigation: Review the Excel files before use and remove fields that are not needed for building and applying labels. <br>
-Risk: Generated labels or split-knowledge corrections may be inaccurate if domain context is incomplete. <br>
-Mitigation: Confirm the domain name, core business areas, and any existing label system before applying labels. <br>
+## Use Case:
 
+Knowledge operations teams and developers use this skill to build a domain business label taxonomy, label split question-answer knowledge in Excel files, and identify knowledge splits that need correction before retrieval use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dluolan/label-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown label-system documentation and Excel tagging results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May add a business-label column to the user's source Excel file and include split-knowledge review notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: User-provided spreadsheets may contain sensitive or regulated source knowledge.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact source files before sharing them with an agent or before publishing generated labeled outputs.
+
+Risk: Incorrect labels or split-quality judgments could reduce retrieval precision or place knowledge in the wrong business category.
+
+Mitigation: Have a domain reviewer validate the proposed taxonomy, sample labels, and split-correction notes before using them in production retrieval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dluolan/skills/label-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, spreadsheet, guidance]
+
+**Output Format:** [Markdown guidance and labeled spreadsheet output when spreadsheet tooling is available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May add a business label column to user-provided Excel knowledge exports and provide split-quality review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

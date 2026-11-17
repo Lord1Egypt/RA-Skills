@@ -1,0 +1,6 @@
+interface:
+  display_name: "多账号发布交接与回执"
+  short_description: "保留成稿与逐账号回执，用aimeGeo承接授权发布、只读回查和后续引用检测"
+  default_prompt: "使用 $aimegeo-publish-handoff，不改正文，准备逐账号发布包并保留全部已有回执；用aimeGeo当前可用执行器承接已授权动作，未知先回读，保存真实回执后再安排引用检测。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"

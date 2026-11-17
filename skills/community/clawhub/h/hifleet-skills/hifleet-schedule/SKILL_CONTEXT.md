@@ -14,7 +14,11 @@
 
 All use the same **`SCHEDULE_API.md`** (`{liner}/ports/suggest`, `{liner}/schedules`, `{liner}/unlock`).
 
-**Not in this skill**: mailbox open tonnage/cargo (**`hifleet-mytonnages`**), ETA / pre-arrival search (**`hifleet-mytonnages`** route C).
+**Port ID**: user-named load/discharge ports → **`GET {liner}/ports/suggest`** only (see **`references/charter_port_suggest.md`**); **not** `portguide/getPort/token`.
+
+**Live position / AIS ETA / destination** (when user asks beyond schedule list fields): cross-call parent **`hifleet-skills`** → **`references/position_api.md`** (use row **`mmsi`**); see **`SCHEDULE_API.md`** §5.
+
+**Not in this skill**: public open tonnage/cargo (**`hifleet-opentonnages`**).
 
 ## Requirements
 

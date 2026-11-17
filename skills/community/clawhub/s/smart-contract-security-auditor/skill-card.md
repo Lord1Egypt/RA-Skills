@@ -1,43 +1,55 @@
-## Description: <br>
-Smart Contract Security Auditor: Analyzes Solidity and Go smart contracts for security vulnerabilities, provides gas optimization suggestions, and generates corresponding test cases (Foundry or Go tests). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Contract Security Auditor: Analyzes Solidity and Go smart contracts for security vulnerabilities, provides gas optimization suggestions, and generates corresponding test cases (Foundry or Go tests).
 
-## Publisher: <br>
-[shangter666](https://clawhub.ai/user/shangter666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shangter666](https://clawhub.ai/user/shangter666)
 
-## Use Case: <br>
-Developers and smart contract engineers use this skill to review Solidity and Go contract code for common vulnerabilities, identify gas or state-access optimizations, and generate Foundry or Go test cases. It is intended as a review aid whose findings and generated tests should be manually verified before production use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audit findings, optimization suggestions, or generated tests may be incomplete or incorrect for a specific contract, framework, or deployment context. <br>
-Mitigation: Manually verify all findings, optimizations, and tests before applying changes to production or deployed contracts. <br>
-Risk: Generated Foundry or Go tests may not cover project-specific invariants, authorization models, or chain-specific behavior. <br>
-Mitigation: Run the project's existing test suite and have qualified smart contract reviewers extend generated tests for critical logic before merge or deployment. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit Solidity and Go smart contracts, identify common vulnerabilities, suggest gas or performance improvements, and draft Foundry or Go tests for review.
 
-## Reference(s): <br>
-- [Common Smart Contract Vulnerabilities](references/vulnerabilities.md) <br>
-- [Gas and Performance Optimization](references/gas_optimization.md) <br>
-- [Testing Strategies](references/testing.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shangter666/smart-contract-security-auditor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with audit findings, optimization recommendations, and Solidity or Go test code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Foundry test snippets, Go testing package examples, and manual review guidance for production or deployed contracts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated audit findings or tests may be incomplete or incorrect for contracts that control funds or production chain state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review findings and generated test changes before applying them, and run project-specific security checks and test suites.
+
+Risk: Optimization suggestions may change contract behavior, gas use, or state access patterns if applied without validation.
+
+Mitigation: Apply suggested changes in a controlled branch and validate behavior with Foundry, Go tests, and manual review before deployment.
+
+## Reference(s):
+
+- [Common Smart Contract Vulnerabilities](references/vulnerabilities.md)
+- [Gas and Performance Optimization](references/gas_optimization.md)
+- [Testing Strategies](references/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown responses with audit findings, optimization suggestions, and Solidity or Go test code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Foundry or Go test files for user review; no hidden execution or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Access Listonic shopping lists: list lists/items, add/check/delete items, and manage lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Listonic shopping lists: list lists/items, add/check/delete items, and manage lists.
 
-## Publisher: <br>
-[JeremyMahieu](https://clawhub.ai/user/JeremyMahieu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeremymahieu](https://clawhub.ai/user/jeremymahieu)
 
-## Use Case: <br>
-External users and agents use this skill to inspect and manage Listonic shopping lists from a command-line workflow, including adding, checking, unchecking, deleting, creating, and renaming list content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Listonic credentials and refreshed tokens in a local config file. <br>
-Mitigation: Keep ~/.openclaw/credentials/listonic/config.json private with restrictive permissions, prefer token mode over password mode, and rotate or revoke credentials if the file is exposed. <br>
-Risk: The skill uses unofficial reverse-engineered Listonic API endpoints that may change without notice. <br>
-Mitigation: Confirm API behavior before relying on the skill for important workflows and expect commands to fail if Listonic changes its web API. <br>
-Risk: Delete and rename commands can permanently change shopping lists or list items. <br>
-Mitigation: Confirm destructive operations with the user before running delete-item, delete-list, or rename-list commands. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and update Listonic shopping lists from a command-line workflow. It supports listing lists and items, adding items, toggling item completion, and creating, renaming, or deleting lists.
 
-## Reference(s): <br>
-- [ClawHub Listonic skill page](https://clawhub.ai/JeremyMahieu/listonic) <br>
-- [Listonic API endpoint used by the skill](https://api.listonic.com) <br>
-- [Listonic OIDC token endpoint used by the skill](https://api2022auth.ts.listonic.com/identity/connect/token) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON from CLI commands, plus Markdown setup and command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a local Listonic credential file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Credentials and refreshed tokens are stored in plaintext under ~/.openclaw/credentials/listonic without automatic permission hardening.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer token mode, restrict the credential directory and config file permissions manually, and rotate or revoke Listonic tokens if they may have been exposed.
+
+Risk: Delete commands can remove Listonic lists or items without built-in safeguards.
+
+Mitigation: Require explicit user confirmation with the resolved list or item before running delete-list or delete-item commands.
+
+Risk: The skill uses unofficial Listonic API endpoints that may change without notice.
+
+Mitigation: Review behavior before deployment and re-test core list and item workflows after Listonic service changes.
+
+## Reference(s):
+
+- [ClawHub Listonic skill page](https://clawhub.ai/jeremymahieu/skills/listonic)
+- [Publisher profile](https://clawhub.ai/user/jeremymahieu)
+- [Listonic API endpoint used by the skill](https://api.listonic.com)
+- [Listonic token endpoint used by the skill](https://api2022auth.ts.listonic.com/identity/connect/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Plain text CLI output with optional JSON responses and Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a local Listonic credential configuration file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

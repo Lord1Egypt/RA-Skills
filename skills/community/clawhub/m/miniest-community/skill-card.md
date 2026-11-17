@@ -1,38 +1,49 @@
-## Description: <br>
-Find Community helps users identify and evaluate communities they can serve when exploring minimalist business ideas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users identify and evaluate communities around which they could build a minimalist business, based on Sahil Lavingia's The Minimalist Entrepreneur methodology.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-Entrepreneurs and founders use this guidance skill to reflect on communities they already belong to, evaluate whether those communities have painful solvable problems, and narrow the list to one to three communities they can serve. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive personal details while discussing communities, identities, or business ideas. <br>
-Mitigation: Avoid entering sensitive personal information and keep the discussion focused on high-level community patterns and business needs. <br>
+## Use Case:
 
+External users and founders use this skill for Chinese-language coaching when they are looking for a business direction, trying to identify a target community, or deciding where to begin as an entrepreneur.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethan-china/miniest-community) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with reflective questions and a table template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance-only; does not execute code or access external data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+Risk: The skill may provide broad startup-direction guidance that does not reflect a user's actual market, community access, or ability to execute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat recommendations as planning prompts; validate demand, willingness to pay, and community access before making business commitments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethan-china/skills/miniest-community)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance, questions, and tabular summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language entrepreneurship coaching that narrows options to 1-3 serviceable communities and their concrete problems.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

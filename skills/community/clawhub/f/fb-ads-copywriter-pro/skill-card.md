@@ -1,46 +1,62 @@
-## Description: <br>
-Generates Cantonese Facebook ad copy variants with A/B testing suggestions, audience analysis, and campaign guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Facebook ad copywriting assistant that generates six high-conversion ad variants with A/B testing recommendations and audience analysis.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-Marketing teams, agencies, and operators use this skill to turn product details or client questionnaire inputs into Facebook ad copy, A/B test plans, audience segments, and campaign recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; examples and defaults are oriented toward Hong Kong Cantonese marketing copy. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports an embedded fallback GLM API key. <br>
-Mitigation: Use a user-provided GLM_API_KEY, remove reliance on any bundled fallback key, and rotate any exposed credential before production use. <br>
-Risk: Business, questionnaire, or customer content may be sent to external GLM, email, or Telegram services. <br>
-Mitigation: Avoid confidential client data unless approved for those providers, and document consent and data-flow expectations before use. <br>
-Risk: Optional Resend and Telegram delivery can send generated material to unintended recipients. <br>
-Mitigation: Enable delivery integrations only after confirming recipient addresses, chat IDs, and client consent. <br>
-Risk: The security guidance recommends clearer dependency and privacy controls. <br>
-Mitigation: Prefer a release with pinned dependencies and explicit privacy notices, or review and pin dependencies before installation. <br>
+## Use Case:
 
+External marketers, agencies, and small businesses use this skill to generate Cantonese Facebook ad copy variants, A/B testing ideas, audience segments, and launch guidance for campaign planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chungvic/fb-ads-copywriter-pro) <br>
-- [API documentation](references/api-docs.md) <br>
-- [Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON delivery package with ad copy, test recommendations, audience analysis, and campaign guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate six ad variants, A/B test combinations, audience segments, budget guidance, and optional email or Telegram delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: An embedded API credential and external-service calls may expose client, budget, or campaign data to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate the embedded GLM key, require explicit user-provided credentials, and avoid confidential data unless third-party processing is acceptable.
+
+Risk: Email and Telegram delivery can transmit generated content or questionnaire data outside the local environment.
+
+Mitigation: Use those channels only when intentionally configured, add a pre-send privacy confirmation, and mask troubleshooting output.
+
+Risk: Questionnaire file handling has weak scoping.
+
+Mitigation: Restrict questionnaire inputs to a safe directory before processing client data.
+
+Risk: Unpinned dependencies can change behavior across installs.
+
+Mitigation: Pin dependency versions and review updates before release.
+
+## Reference(s):
+
+- [API Documentation](artifact/references/api-docs.md)
+- [Example Copy Library](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown delivery package with optional JSON-style generated content and notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces six ad variants, A/B test guidance, audience analysis, campaign recommendations, and optional delivery notifications.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release, frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

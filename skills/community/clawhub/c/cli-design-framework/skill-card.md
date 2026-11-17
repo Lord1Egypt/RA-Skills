@@ -1,44 +1,59 @@
-## Description: <br>
-Use when designing a new CLI, reviewing an existing CLI, or resolving uncertainty about a CLI's role, user type, interaction form, statefulness, risk profile, or human-vs-machine surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when designing a new CLI, reviewing an existing CLI, or resolving uncertainty about a CLI's role, user type, interaction form, statefulness, risk profile, or human-vs-machine surfaces.
 
-## Publisher: <br>
-[Wangnov](https://clawhub.ai/user/Wangnov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangnov](https://clawhub.ai/user/wangnov)
 
-## Use Case: <br>
-Developers and CLI maintainers use this skill to classify, design, or review command-line interfaces before deciding command shape, output contracts, state model, and safety guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides design guidance, and its example runtime blueprint discusses approvals, local state, transcript retention, and secret handling that may be implemented incorrectly if copied as production architecture. <br>
-Mitigation: Use the examples as starting points only; add project-specific safeguards for approvals, storage, transcript retention, and secret handling before implementing those ideas. <br>
-Risk: Incorrect CLI classification can lead to mismatched human, automation, state, or safety surfaces. <br>
-Mitigation: Review the classification and derived design consequences against the actual CLI audience, side effects, and state model before adopting the recommendations. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to design or review command-line interfaces by classifying the CLI's role, user type, interaction form, statefulness, risk profile, and primary versus secondary surfaces. It helps produce concise design blueprints, structured reviews, and implementation direction for human-facing, machine-facing, and hybrid CLIs.
 
-## Reference(s): <br>
-- [CLI Design Framework Skill](SKILL.md) <br>
-- [Taxonomy](references/taxonomy.md) <br>
-- [Output Templates](references/output-templates.md) <br>
-- [Classification Examples](references/classification-examples.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Wangnov/cli-design-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with structured classification, design blueprint, or review sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include concrete command-shape guidance, output-contract recommendations, risk ladders, and unresolved classification questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and manifest.yaml) <br>
+Risk: During a CLI review, an agent may inspect project files or CLI behavior and could be asked to run target commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal approval and sandbox policies in place before running any target CLI commands, especially for deployment or agent-runtime tools.
+
+Risk: The skill can produce design or review guidance that may be incomplete or misclassified if the target CLI evidence is sparse.
+
+Mitigation: Review generated classifications, risk ladders, and machine-surface recommendations against the actual CLI help, docs, code, tests, and runtime behavior before implementation.
+
+## Reference(s):
+
+- [CLI Design Framework skill page](https://clawhub.ai/wangnov/skills/cli-design-framework)
+- [Taxonomy](references/taxonomy.md)
+- [Output Templates](references/output-templates.md)
+- [Classification Examples](references/classification-examples.md)
+- [Design Blueprint Example](examples/design-blueprint-example.md)
+- [Review Example](examples/review-example.md)
+- [Anti-Patterns](examples/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with structured sections and occasional inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are concise, classification-first design blueprints or reviews; longer templates are used when ambiguity, risk, or an explicit user request justifies them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

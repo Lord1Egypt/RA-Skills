@@ -1,40 +1,53 @@
-## Description: <br>
-Clinical quality management, patient safety, and continuous improvement for UAE clinics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clinical quality management, patient safety, and continuous improvement guidance for UAE clinics.
 
-## Publisher: <br>
-[dralmazrouei](https://clawhub.ai/user/dralmazrouei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dralmazrouei](https://clawhub.ai/user/dralmazrouei)
 
-## Use Case: <br>
-Clinic leaders, quality coordinators, and clinical teams use this skill to structure audits, incident analysis, quality indicators, safety culture work, and improvement templates for UAE private clinics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Arab Emirates <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can provide clinic quality and regulatory guidance that may become outdated or may not fit a specific facility's licensing context. <br>
-Mitigation: Verify current DOH and DHA requirements and local clinic policies before relying on regulatory details or implementing changes. <br>
-Risk: Quality reviews and incident analyses may involve sensitive or identifiable patient information. <br>
-Mitigation: Avoid providing identifiable patient information unless the user's environment and policies allow it. <br>
+## Use Case:
 
+External healthcare operators and clinic quality teams use this skill to structure UAE-focused clinical audit, patient-safety, KPI, root-cause-analysis, and quality-improvement guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dralmazrouei/uae-clinic-quality) <br>
+### Deployment Geography for Use:
 
+United Arab Emirates
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis, Configuration] <br>
-**Output Format:** [Markdown guidance with templates, checklists, tables, and action plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, credential handling, persistence, or installation behavior found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may activate on broad healthcare quality, audit, patient-safety, or UAE clinical governance phrases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it for users who regularly need clinic quality, audit, patient safety, or UAE clinical governance guidance.
+
+Risk: Healthcare quality and regulatory guidance can be incomplete or outdated for a specific clinic.
+
+Mitigation: Review outputs against current DOH/DHA requirements and local clinical governance before operational use.
+
+## Reference(s):
+
+- [UAE clinic-quality ClawHub release](https://clawhub.ai/dralmazrouei/skills/uae-clinic-quality)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and structured templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, install actions, persistence, or patient-record access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

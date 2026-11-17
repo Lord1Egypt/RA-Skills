@@ -1,44 +1,64 @@
-## Description: <br>
-AI Content Generator Pro helps OpenClaw users generate, optimize, schedule, analyze, and export marketing content for blogs, social media, email, product descriptions, ads, and video scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Content Generator Pro is an OpenClaw content creation skill for generating, optimizing, scheduling, analyzing, and exporting blog, social, email, product, ad, and script content.
 
-## Publisher: <br>
-[JacealLLC](https://clawhub.ai/user/JacealLLC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacealllc](https://clawhub.ai/user/jacealllc)
 
-## Use Case: <br>
-Content creators, marketers, business owners, agencies, and technical writers use this skill to draft, optimize, plan, analyze, and export marketing content from OpenClaw commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is marketed as a finished paid content tool while the security evidence characterizes it as a prototype. <br>
-Mitigation: Review behavior against the advertised capabilities before purchasing or deploying, and treat simulated or incomplete functionality as non-production until verified. <br>
-Risk: The release requests broad exec and web permissions. <br>
-Mitigation: Grant only the permissions needed for the intended workflow, and require the publisher to justify or narrow broad permissions before use in sensitive environments. <br>
-Risk: Configuration output may expose stored API keys. <br>
-Mitigation: Do not store real API keys until configuration display masks secrets, and review command output before sharing logs or screenshots. <br>
+## Use Case:
 
+Content creators, marketers, business owners, agencies, and developers use this skill to draft marketing and editorial content, plan content calendars, optimize readability and SEO, and export files for downstream publishing.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/JacealLLC/ai-content-generator-pro) <br>
-- [API Documentation](references/api-docs.md) <br>
-- [Market Research](references/market-research.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text responses, with generated files written in Markdown, HTML, PDF, or DOCX-like formats depending on command.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content is saved under a content directory, and configuration commands can persist user settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: API keys can be stored in local configuration files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Move real credentials to a secret manager or environment-backed configuration and keep release config files redacted.
+
+Risk: Content optimization, analysis, and export commands can read from and write to caller-supplied local paths.
+
+Mitigation: Run the skill in a constrained workspace, review file paths before execution, and grant only the read and write permissions needed for the task.
+
+Risk: HTML export can include generated or user-provided content without escaping or sanitization.
+
+Mitigation: Treat exported HTML as unsafe until content is escaped or sanitized before opening, publishing, or sharing.
+
+Risk: Requested exec and web permissions increase installation risk when they are not needed for a specific workflow.
+
+Mitigation: Disable unused permissions and review setup, test, and runtime commands before granting execution or network access.
+
+## Reference(s):
+
+- [AI Content Generator Pro on ClawHub](https://clawhub.ai/jacealllc/skills/ai-content-generator-pro)
+- [JacealLLC Publisher Profile](https://clawhub.ai/user/jacealllc)
+- [API Documentation](references/api-docs.md)
+- [Market Research](references/market-research.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses, with generated files in Markdown, HTML, PDF, or DOCX-like formats.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated and optimized content is written to local files; configuration controls model provider, tone, SEO settings, and brand voice options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, target metadata, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

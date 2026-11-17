@@ -1,42 +1,52 @@
-## Description: <br>
-Deterministic setup and remediation helper for installed OpenClaw skills that resolves a target skill, applies sandbox-local remediation when safe, and produces a structured setup report before fuzzing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic setup and remediation helper for installed OpenClaw skills. Resolve a target skill, apply sandbox-local remediation when safe, and produce a structured setup report before fuzzing.
 
-## Publisher: <br>
-[agentsey](https://clawhub.ai/user/agentsey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsey](https://clawhub.ai/user/agentsey)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare installed OpenClaw skills for behavioral fuzzing by resolving a target, applying bounded sandbox-local remediation, and returning a setup report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and write local workspace files and run simple local commands during setup. <br>
-Mitigation: Run it only inside the intended OpenClaw sandbox with writable workspace access, and review the JSON setup report before acting on changes. <br>
-Risk: A target skill may require dependency installation, network downloads, service startup, credentials, or host-level configuration outside the safe setup scope. <br>
-Mitigation: Stop at those blockers and handle them manually; the skill should not ask for real secrets, install dependencies, use the network, or modify host-level OpenClaw configuration. <br>
+## Use Case:
 
+Developers and skill evaluators use SAFE-Bootstrapper to prepare installed OpenClaw skills for behavioral fuzzing by resolving a target skill, applying safe sandbox-local setup fixes, and reporting remaining blockers. It is intended for deterministic setup work such as git initialization, environment-file creation, local state directory creation, runtime checks, and reruns.
 
-## Reference(s): <br>
-- [Setup Report Schema](references/setup-report-schema.md) <br>
-- [SAFE README](https://github.com/RiemaLabs/safe/blob/main/README.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentsey/safe-bootstrapper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The JSON setup report starts with a human-readable summary, readiness status, run status, applied fixes, remaining blockers, rerun command, tool-call evidence, confidence, and duration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create or modify local setup files and rerun local commands inside the active sandbox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a sandboxed fuzzer workspace, review the target skill and workspace before use, and rely on its documented refusal of host-level, network, credential, and persistent behavior.
+
+## Reference(s):
+
+- [Setup Report Schema](references/setup-report-schema.md)
+- [SAFE: Skilled Agent Fuzzing Engine](https://github.com/RiemaLabs/safe)
+- [SAFE README](https://github.com/RiemaLabs/safe/blob/main/README.md)
+- [ClawHub skill page](https://clawhub.ai/agentsey/skills/safe-bootstrapper)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Single JSON object with setup status, applied fixes, blockers, commands, and evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The summary field is first, ready is second, and the report contains no surrounding Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

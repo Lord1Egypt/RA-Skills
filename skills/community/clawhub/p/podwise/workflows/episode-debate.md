@@ -4,7 +4,7 @@ Use this skill to turn passive listening into active thinking. It extracts the s
 
 ## Goals
 
-1. Verify that `podwise` is installed and configured.
+1. Verify the Podwise MCP connection.
 2. Identify and load the target episode's content.
 3. Extract the episode's core claims and arguments.
 4. Open a Socratic dialogue: present claims, challenge them, invite the user to respond.
@@ -13,12 +13,7 @@ Use this skill to turn passive listening into active thinking. It extracts the s
 
 ## Step 1: Check the Environment
 
-```bash
-podwise --help
-podwise config show
-```
-
-If `podwise` is not installed or the API key is missing, stop and follow [references/installation.md](references/installation.md) before continuing.
+Call `get_me`. If the Podwise tools are unavailable or return an authentication error, stop and follow [../references/installation.md](../references/installation.md) before continuing.
 
 ## Step 2: Load the Listener Taste
 
@@ -31,13 +26,12 @@ Look for `taste.md` in the current working directory.
 
 The user may provide the episode as:
 
-- A Podwise episode URL: `https://podwise.ai/dashboard/episodes/{id}`
-- A YouTube or Xiaoyuzhou URL
+- A Podwise episode URL: `https://app.podwise.ai/dashboard/episodes/{seq}` — extract the trailing integer as `seq`.
+- A YouTube or Xiaoyuzhou URL (process first; see Step 4).
+- A local audio or video file path (process first; see Step 4).
 - An episode title or keyword — search first:
 
-```bash
-podwise search episode "{title or keyword}" --limit 5 --json
-```
+  - `search_episodes` with `query: "{title or keyword}"`.
 
 Present the results and ask the user to confirm which episode before continuing.
 
@@ -45,32 +39,25 @@ Present the results and ask the user to confirm which episode before continuing.
 
 Fetch the episode's AI artifacts to build a full picture of its arguments:
 
-```bash
-podwise get summary {episode-url}
-podwise get highlights {episode-url}
-podwise get qa {episode-url}
-podwise get chapters {episode-url}
-```
+- `get_episode_summary` with the episode `seq` — returns summary, takeaways, highlights, Q&A, chapters, keywords, and mind map in one call.
 
-If any command fails because the episode is not yet processed, ask the user for confirmation before processing:
+If it fails because the episode is not yet processed, ask the user for confirmation before processing:
 
 > "This episode hasn't been processed yet. Processing will use one credit from your Podwise quota. Proceed?"
 
-Only run `process` after explicit confirmation:
+Only after explicit confirmation:
 
-```bash
-podwise process {episode-url}
-```
+- YouTube / Xiaoyuzhou: `import_episode` to get a `seq`, then `process_episode`.
+- Podwise episode: `process_episode` with the `seq`.
+- Local file: `start_audio_upload` → upload bytes to the returned `uploadUrl` (or hand the `browserUploadUrl` to the user) → `complete_audio_upload` (supported types: `.mp3 .wav .m4a .mp4 .m4v .mov .webm`).
 
-Once processed, re-run the `get` commands.
+Then poll `get_episode` until done and re-run `get_episode_summary`.
 
-Do not begin the debate until at least `get summary` and `get highlights` succeed — these are the minimum needed to identify the episode's claims.
+Do not begin the debate until `get_episode_summary` succeeds — it is the minimum needed to identify the episode's claims.
 
 Optionally, if the episode's speaker attribution in highlights is ambiguous, fetch the transcript to confirm who made which claim:
 
-```bash
-podwise get transcript {episode-url}
-```
+- `get_episode_transcript` with the episode `seq` (paginate with `limit` / `offset`).
 
 Use the transcript only to disambiguate speaker attribution — do not read it in full for claim extraction. Skip this step if attribution is already clear from the other artifacts.
 
@@ -78,7 +65,7 @@ Use the transcript only to disambiguate speaker attribution — do not read it i
 
 Read the summary, highlights, Q&A, and chapters. Before extracting claims, assess whether the material is actually suitable for debate:
 
-- If the summary and highlights contain no assertion that meets the criteria below, stop and tell the user: *"This episode appears to be primarily factual or instructional rather than argumentative — there may not be enough debatable claims for a rich debate. Would you like to try a different episode?"*
+- If the material contains no assertion that meets the criteria below, stop and tell the user: *"This episode appears to be primarily factual or instructional rather than argumentative — there may not be enough debatable claims for a rich debate. Would you like to try a different episode?"*
 - If the material looks viable, proceed to extract 3–5 claims.
 
 A good claim for debate has these properties:

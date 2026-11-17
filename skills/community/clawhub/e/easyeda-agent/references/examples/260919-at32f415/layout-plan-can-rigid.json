@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "minGapMil": 6,
+  "apply": {
+    "project": "ceshi",
+    "doc": "2e719e9419653c72"
+  },
+  "modules": [
+    {
+      "id": "can-terminal-protection",
+      "strategy": "rigid",
+      "anchorRef": "R12",
+      "members": [
+        {
+          "ref": "R12",
+          "allowedRotationsDeg": [
+            0
+          ],
+          "side": "top"
+        },
+        {
+          "ref": "D1",
+          "allowedRotationsDeg": [
+            270
+          ],
+          "side": "top"
+        }
+      ],
+      "search": {
+        "offsetsMil": [
+          {
+            "xMil": 0,
+            "yMil": 0,
+            "label": "keep-current-pad-order"
+          },
+          {
+            "xMil": -50,
+            "yMil": 0,
+            "label": "shift-toward-transceiver-50mil"
+          },
+          {
+            "xMil": 50,
+            "yMil": 0,
+            "label": "shift-toward-terminal-right-50mil"
+          },
+          {
+            "xMil": 0,
+            "yMil": -40,
+            "label": "shift-inboard-40mil"
+          }
+        ],
+        "rotationDeltasDeg": [
+          0
+        ]
+      },
+      "relations": [
+        {
+          "kind": "near",
+          "from": "D1",
+          "to": "CN1",
+          "source": "考试说明.pdf 第4页：CAN ESD靠近接线端子"
+        },
+        {
+          "kind": "near",
+          "from": "R12",
+          "to": "CN1",
+          "source": "考试说明.pdf 第5页：CANH/CANL分别触达R12对应焊盘后到端子"
+        },
+        {
+          "kind": "near",
+          "from": "R12",
+          "to": "U5",
+          "source": "考试说明.pdf 第5页：R12位于U5与CN1主通道"
+        }
+      ],
+      "copperPolicy": "ignore"
+    }
+  ]
+}

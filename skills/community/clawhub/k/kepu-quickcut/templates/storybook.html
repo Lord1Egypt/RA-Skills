@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html data-page-node-id="mGemgIuQ2EZUTP9SGFyCKB" lang="zh-CN">
+<head data-page-node-id="CSZxzZ18Nq51j0trUp2Gzx">
+<script data-page-node-id="VtWOF3dRa71cDznEL7DmEB" src="/page/page_comm/inject.js"></script>
+<meta data-page-node-id="7rQgfCmRRuU8NSkalE0J2d" charset="UTF-8">
+<title data-page-node-id="7srasPoGiciz5KsWgD9oXW" data-pnid-children="nmUQynokHYjQpwQUNAFZbu">月亮的脸 · 绘本科普</title>
+<style data-page-node-id="RZHw5yBkctRLrOiNuyx7G6" data-pnid-children="RnfZtYZXUO5bSFl3EoE2Wp">
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1920px; overflow:hidden; background:#f7f1e3; }
+  canvas { position:absolute; inset:0; }
+  .txt { position:absolute; font-family:"HanziPen SC","Hannotate SC","Kaiti SC","STKaiti",serif; color:#2a2a26; opacity:0; }
+  #title { left:0; right:0; top:130px; text-align:center; font-size:88px; letter-spacing:10px; color:#f2e6c8; }
+  #sub { left:0; right:0; top:248px; text-align:center; font-size:38px; letter-spacing:8px; color:#c9b98a; }
+  #phase { left:0; right:0; top:1020px; text-align:center; font-size:64px; letter-spacing:8px; color:#f2e6c8; }
+  #date { left:0; right:0; top:1112px; text-align:center; font-size:40px; letter-spacing:6px; color:#c9b98a; }
+  #punch { left:0; right:0; top:1560px; text-align:center; font-size:68px; letter-spacing:3px; white-space:nowrap; }
+  #days { left:0; right:0; top:1690px; text-align:center; font-size:42px; letter-spacing:6px; color:#8a7a52; }
+</style>
+</head>
+<body data-page-node-id="MELBq7wCxb0AKQBESrzkeZ">
+<canvas data-page-node-id="AKEA7fIQFeiyTFl4C8ia1V" height="1920" id="cv" width="1080"></canvas>
+<div data-page-node-id="0UXYgPsn1R1zkW8qd3eP4i" class="txt" id="title"><!--pnid:n5KuyVuf6Jj6RH2z8Q2arh-->月亮的脸</div>
+<div data-page-node-id="LNajL6AuLN9rhJPh25syUA" class="txt" id="sub"><!--pnid:SEwDGWdY7AX4kycM9Cp9fe-->农历是怎么来的</div>
+<div data-page-node-id="mpBMiZTk6lT5rLN2urAD5G" class="txt" id="phase"></div>
+<div data-page-node-id="8se506E21kA7HrRW1S2igO" class="txt" id="date"></div>
+<div data-page-node-id="CPvhmX09xuyNyEZEqc7rmh" class="txt" id="punch"><!--pnid:RZW7inc8ytMZShl56pHzri-->农历的日期，就是月亮的日历</div>
+<div data-page-node-id="6GVPcS2Hjat7X0yUymjesd" class="txt" id="days"><!--pnid:SpzPwbbzybRUIVERgV5xf7-->从新月到满月 = 14 天 · 一轮 = 29.5 天</div>
+
+<script data-page-node-id="ogObgaaDor0rHJH3w9AGuw" data-pnid-children="Z6ED1kWknKJ4BJ38WucdSq">
+  const cv = document.getElementById('cv'), ctx = cv.getContext('2d');
+  const PAPER = '#f7f1e3', SKY = '#31517a', SKY2 = '#26405f', HILL = '#1e3248',
+        MOON = '#e3a83c', MOON2 = '#d19030', STAR = '#e8c95f';
+
+  // ── 确定性伪随机 ──
+  function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+  // ── 月牙/月相多边形：大圆挖掉偏移圆 ──
+  function lunePoly(cx, cy, r, dx, rd, n){
+    const outer = [], inner = [], D = [cx + dx, cy];
+    for (let i = 0; i <= n; i++) {
+      const a = i / n * 2 * Math.PI;
+      const p = [cx + Math.cos(a) * r, cy + Math.sin(a) * r];
+      if (Math.hypot(p[0] - D[0], p[1] - D[1]) >= rd) outer.push(p);
+    }
+    for (let i = 0; i <= n; i++) {
+      const a = i / n * 2 * Math.PI;
+      const p = [D[0] + Math.cos(a) * rd, D[1] + Math.sin(a) * rd];
+      if (Math.hypot(p[0] - cx, p[1] - cy) <= r) inner.push(p);
+    }
+    return outer.concat(inner.reverse());
+  }
+
+  // ── 坑洼化：边中点法向随机偏移，递归两轮 ──
+  function jagged(pts, r, seed, jag){
+    let cur = pts;
+    for (let d = 0; d < 2; d++) {
+      const rand = mulberry32(seed + d * 977);
+      const out = [];
+      const amp = r * jag * (d === 0 ? 1 : 0.45);
+      for (let i = 0; i < cur.length; i++) {
+        const p = cur[i], q = cur[(i + 1) % cur.length];
+        out.push(p);
+        let nx = q[1] - p[1], ny = -(q[0] - p[0]);
+        const L = Math.hypot(nx, ny) || 1;
+        const off = (rand() - 0.5) * 2 * amp;
+        out.push([(p[0]+q[0])/2 + nx/L*off, (p[1]+q[1])/2 + ny/L*off]);
+      }
+      cur = out;
+    }
+    return cur;
+  }
+
+  // ── 水彩形状：40 层 × 4.5% 不透明度，fade 为整体淡入淡出系数 ──
+  let fadeA = 1;
+  function watercolor(pts, r, color, seed, layers, alpha){
+    ctx.fillStyle = color;
+    for (let i = 0; i < layers; i++) {
+      const rand = mulberry32(seed + i * 131);
+      const s = 1 + (rand() - 0.5) * 0.14;
+      const tx = (rand() - 0.5) * r * 0.1, ty = (rand() - 0.5) * r * 0.1;
+      ctx.globalAlpha = alpha * fadeA;
+      ctx.beginPath();
+      pts.forEach((p, j) => {
+        const x = 540 + (p[0] - 540) * s + tx, y = cy0 + (p[1] - cy0) * s + ty;
+        j === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      });
+      ctx.closePath(); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
+  let cy0 = 0;   // 水彩缩放中心（当前月亮圆心）
+
+  function disc(cx, cy, r, color, seed){ cy0 = cy; watercolor(circlePts(cx, cy, r, 48), r, color, seed, 40, 0.045); }
+  function circlePts(cx, cy, r, n){ const p=[]; for(let i=0;i<n;i++){ const a=i/n*2*Math.PI; p.push([cx+Math.cos(a)*r, cy+Math.sin(a)*r]); } return p; }
+
+  // ── 四个月相 ──
+  const PHASES = [
+    { name:'蛾眉月', date:'农历初二 · 初三', dx:-0.74, rd:0.90, r: 95,  x:430, y:660 },
+    { name:'上弦月', date:'农历初七 · 初八', dx:-1.00, rd:1.00, r: 115, x:520, y:660 },
+    { name:'凸月',   date:'农历十一 · 十二', dx:-1.45, rd:1.12, r: 135, x:600, y:680 },
+    { name:'满月',   date:'农历十五',        dx:-3.00, rd:1.10, r: 165, x:540, y:700 }
+  ];
+
+  // 预生成每个月相的水彩层（离屏缓存为路径参数，逐帧重画）
+  // 星星
+  const stars = [];
+  { const rand = mulberry32(2026);
+    for (let i = 0; i < 26; i++) stars.push([80 + rand()*920, 330 + rand()*620, 2 + rand()*3, rand()*6.28]); }
+
+  // ── seek(t) ──
+  function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+  function seg(t,a,b){ return clamp((t-a)/(b-a), 0, 1); }
+  function ease(x){ return x<0.5 ? 2*x*x : 1 - Math.pow(-2*x+2, 2)/2; }
+
+  const T0 = [1.7, 3.3, 4.9, 6.5];   // 各相位的登场时刻
+  let prevPhase = -1;
+
+  window.seek = function(t){
+    ctx.clearRect(0, 0, 1080, 1920);
+    ctx.fillStyle = PAPER; ctx.fillRect(0, 0, 1080, 1920);
+
+    // ── 分层错拍开场 ──
+    const skyA = ease(seg(t, 0.25, 1.0));
+    if (skyA > 0) {
+      ctx.globalAlpha = skyA * 0.92;
+      cy0 = 640;
+      const sky = jagged(circlePts(540, 640, 560, 40), 560, 51, 0.05);
+      watercolor(sky, 560, SKY, 5, 40, 0.045);
+      watercolor(jagged(circlePts(470, 700, 430, 36), 430, 52, 0.05), 430, SKY2, 6, 26, 0.04);
+      ctx.globalAlpha = 1;
+    }
+    // 山影两层
+    const hillA = ease(seg(t, 0.75, 1.35));
+    if (hillA > 0) {
+      ctx.globalAlpha = hillA;
+      ctx.fillStyle = HILL;
+      ctx.beginPath(); ctx.moveTo(-40, 1450);
+      ctx.quadraticCurveTo(240, 1130, 540, 1330);
+      ctx.quadraticCurveTo(820, 1500, 1120, 1260);
+      ctx.lineTo(1120, 1500); ctx.lineTo(-40, 1500); ctx.closePath(); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    // 星星
+    const starA = ease(seg(t, 1.05, 1.7));
+    if (starA > 0) {
+      for (const s of stars) {
+        const tw = 0.4 + 0.35 * Math.sin(t * 2.1 + s[3]);
+        ctx.globalAlpha = starA * tw;
+        ctx.fillStyle = STAR;
+        ctx.beginPath(); ctx.arc(s[0], s[1], s[2], 0, 6.283); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // ── 月相：当前 + 尚未完全淡出的上一个 ──
+    let cur = -1;
+    for (let i = 0; i < 4; i++) if (t >= T0[i]) cur = i;
+    for (let i = 0; i <= cur && i < 4; i++) {
+      const P = PHASES[i];
+      const grow = ease(seg(t, T0[i], T0[i] + 0.9));
+      const out = (i < cur) ? ease(seg(t, T0[i+1] - 0.35, T0[i+1] + 0.15)) : 0;
+      const a = grow * (1 - out);
+      if (a < 0.01) continue;
+      const r = P.r * (0.82 + 0.18 * grow);
+      cy0 = P.y;
+      const base = lunePoly(P.x, P.y, r, P.dx * r, P.rd * r, 160);
+      const skin = jagged(base, r, 100 + i * 17, 0.028);   // 两色共用同一轮廓，避免边缘错位露底
+      fadeA = a;
+      watercolor(skin, r, MOON, 200 + i * 13, 40, 0.045);
+      watercolor(skin, r, MOON2, 400 + i * 13, 30, 0.045);
+      fadeA = 1;
+    }
+
+    // ── 文字 ──
+    const ttl = ease(seg(t, 0.45, 1.1));
+    title.style.opacity = ttl.toFixed(3); title.style.transform = 'translateY(' + ((1-ttl)*26).toFixed(1) + 'px)';
+    const sb = ease(seg(t, 0.75, 1.35));
+    sub.style.opacity = sb.toFixed(3);
+    for (let i = 0; i < 4; i++) {
+      const on = t >= T0[i] && (i === 3 || t < T0[i+1]);
+      const a = Math.min(seg(t, T0[i]+0.15, T0[i]+0.55), i===3 ? 1 : (1 - seg(t, T0[i+1]-0.3, T0[i+1]+0.1)));
+      if (on && a > 0) {
+        phase.textContent = PHASES[i].name; date.textContent = PHASES[i].date;
+        phase.style.opacity = a.toFixed(3); date.style.opacity = a.toFixed(3);
+        phase.style.transform = 'translateY(' + ((1-a)*20).toFixed(1) + 'px)';
+      } else if (!on && a <= 0 && phase.textContent === PHASES[i].name) {
+        phase.style.opacity = 0; date.style.opacity = 0;
+      }
+    }
+    const pp = ease(seg(t, 8.3, 9.0));
+    punch.style.opacity = pp.toFixed(3); punch.style.transform = 'translateY(' + ((1-pp)*30).toFixed(1) + 'px)';
+    const dd = ease(seg(t, 8.7, 9.3));
+    days.style.opacity = dd.toFixed(3);
+  };
+
+  const title = document.getElementById('title'), sub = document.getElementById('sub'),
+        phase = document.getElementById('phase'), date = document.getElementById('date'),
+        punch = document.getElementById('punch'), days = document.getElementById('days');
+  window.seek(0);
+</script>
+</body>
+</html>

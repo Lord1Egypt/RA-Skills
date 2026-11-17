@@ -1,0 +1,28 @@
+{
+"roles": {
+    "admin":{
+        "name":"超级管理员",
+        "rights":{
+            "sku":"*",
+            "factory":"*",
+            "supplier":"*",
+            "contact":"*",
+            "grn":"*",
+            "gdn":"*",
+            "resource":"*",
+            "purchase":"*"
+        }
+    },
+    "normal":{
+        "name":"普通管理员",
+        "rights":{
+            "supplier":"*",
+            "contact":"*",
+            "grn":"*",
+            "gdn":"*",
+            "resource":"*",
+            "purchase":"*"
+        }
+    }
+}
+}

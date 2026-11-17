@@ -1,5 +1,6 @@
 #!/bin/bash
 # Engineering Error Detector Hook (Optional)
+# Inspects CLAUDE_TOOL_OUTPUT in-process only. Never writes tool output, secrets, or transcripts to disk.
 # Conservative detector for clear engineering failures only.
 # Reads CLAUDE_TOOL_OUTPUT and emits a short reminder; no file writes, no network calls.
 

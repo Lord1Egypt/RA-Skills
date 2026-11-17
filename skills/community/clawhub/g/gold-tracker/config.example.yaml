@@ -1,0 +1,140 @@
+# =========================================================
+# gold-tracker 配置模板（公开免费数据源 + 写文件通知器）
+# 用法：cp config.example.yaml config.yaml，按需调整后运行 verify.py check。
+# =========================================================
+
+# 基础设置（时区、语言、预计多久跑一次等）
+general:
+  timezone: "Asia/Shanghai"
+  language: "zh-CN"
+  expected_run_interval_minutes: 30
+  scheduler_grace_multiplier: 3
+
+# 数据来源（价格从那抓；公开免费接口，格式可能变更，解析失败请自行更换）
+data_sources:
+  gold:
+    url: "https://goldpricez.com"
+    parser: "regex"
+    pattern: '\$([0-9,]{4,}\.[0-9]{2})'
+    json_path: ""
+    timeout: 15
+    min: 1000.0
+    max: 10000.0
+    field: "price_usd"
+  fx:
+    url: "https://open.er-api.com/v6/latest/USD"
+    parser: "json_path"
+    pattern: ""
+    json_path: "rates.CNY"
+    timeout: 10
+    min: 6.0
+    max: 8.0
+    field: "usd_cny"
+
+# 新闻来源（RSS，免费中立、可访问，覆盖 >=2 独立网站以满足信息来源多样）
+news_sources:
+  - name: "mining.com"
+    url: "https://www.mining.com/feed/"
+    type: "rss"
+    max_items: 10
+    timeout: 15
+    enabled: true
+  - name: "oilprice"
+    url: "https://oilprice.com/rss/main"
+    type: "rss"
+    max_items: 10
+    timeout: 15
+    enabled: true
+  - name: "fxstreet"
+    url: "https://www.fxstreet.com/rss/news"
+    type: "rss"
+    max_items: 10
+    timeout: 15
+    enabled: true
+
+# 缓存（临时保存抓取结果，避免每次都请求）
+cache:
+  ttl_seconds: 300
+  dir: "cache"
+  price_series_max_points: 2000
+
+# 提醒规则（金价波动超过「正常波动范围」就发提醒）
+alerts:
+  # 基准波动参考：默认 ±1%，在 0.5%~3% 之间按近期波动自动调整
+  threshold_pct: 1.0
+  min_threshold_pct: 0.5
+  max_threshold_pct: 3.0
+  volatility_multiplier: 1.5
+  lookback_days: 7
+  # 拿当前价和谁比：昨日收盘 / 上次抓取 / 均线(可选) / 连续同向趋势
+  benchmarks:
+    prev_close: true
+    last_fetch: true
+    ema: false
+    ema_window: 20
+    trend: true
+    trend_consecutive_n: 3
+  # 防刷屏：多少分钟内不重复提醒、每天最多提醒几条
+  cooldown_minutes: 30
+  max_alerts_per_day: 10
+  max_alerts_per_direction_per_day: 1
+  auto_resolve_minutes: 1440
+  retention_days: 30
+
+# 分析与输出约束（影响 agent 写分析日志的硬性要求）
+output:
+  max_push_bytes: 2000
+  min_factors_per_analysis: 2
+  max_factors_per_analysis: 6
+  constraints:
+    allowed_impacts: [利多, 利空, 偏多, 偏空, 中性, 多空交织]
+    required_factor_fields: [factor, impact, reasoning, sources]
+    sources:
+      must_be_http_url: true
+      must_be_in_fetch_log: true
+      min_count_per_factor: 1
+      min_unique_domains: 2
+    forbidden_phrases: ["根据经验", "众所周知", "一般来说", "通常情况下", "据了解", "据业内人士", "显而易见"]
+    no_data_marker: "no_data"
+
+# 价格合理性校验（防止抓取到明显离谱的数字）
+validation:
+  gold_price_min: 1000.0
+  gold_price_max: 10000.0
+
+# 归档（历史日志保留多久）
+archive:
+  retention_days: 365
+  index_enabled: true
+  auto_archive_hour: 23
+
+# 通知设置（是否启用、去重、超时、重试）
+notification:
+  enabled: true
+  dedup_max_fingerprints: 100
+  default_timeout_seconds: 90
+  default_retry_count: 2
+  retry_backoff_seconds: 10
+  send_summary: true
+
+# 通知渠道示例：只启用写文件通知器（安全可测，无真实渠道）
+notifiers:
+  - name: "file"
+    command: "notifiers/file.sh"
+    args: []
+    stdin: true
+    env:
+      OUTPUT_FILE: "notifications/latest.txt"
+    success_marker: "SENT"
+    timeout_seconds: 90
+    retry_count: 2
+    enabled: true
+
+# 目录位置（一般不用改）
+paths:
+  logs: "logs"
+  archive: "archive"
+  alerts: "alerts"
+  cache: "cache"
+  state: "state.json"
+  notifications: "notifications"

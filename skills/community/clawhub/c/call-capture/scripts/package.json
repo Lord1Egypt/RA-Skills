@@ -1,0 +1,6 @@
+{
+  "//": "Belt and braces. The loader imports only the resources folder cargo.json names (infra/ in a scaffolded project), so nothing here is ever imported as a resource. In a project whose cargo.json names the repo root instead, the loader imports every .ts EXCEPT directories carrying a package.json - without this file, `cargo-ai project plan` would import collect/calls.ts and run it against the live API on every plan.",
+  "name": "call-capture-scripts",
+  "private": true,
+  "type": "module"
+}

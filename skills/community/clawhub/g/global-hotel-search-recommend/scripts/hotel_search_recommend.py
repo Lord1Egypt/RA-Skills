@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 """全球酒店搜索与推荐 - 场景识别+搜索+推荐+退改解读"""
+import os
 import argparse, json, re, urllib.request, urllib.error, concurrent.futures
 from datetime import datetime, timedelta
 
 # ===== 代理配置 =====
 PROXY_URL = "https://1439498936-460a7b6oqn.ap-guangzhou.tencentscf.com"
-PROXY_TOKEN = "tp_8k2mX9vQ4z"
-
-# ===== 搜索配置 =====
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 SEARCH_SIZE = 20
 PER_TIER = 4
 
@@ -921,36 +920,36 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="全球酒店搜索与推荐")
     parser.add_argument("--destination", required=True, help="目的地")
     parser.add_argument("--scene", default="通用", help="场景：商务/亲子/度假/背包/通用")
-    parser.add_argument("--check-in", default=None, help="入住日期 YYYY-MM-DD")
-    parser.add_argument("--check-out", default=None, help="退房日期 YYYY-MM-DD")
+    parser.add_argument("--checkIn", default=None, help="入住日期 YYYY-MM-DD")
+    parser.add_argument("--checkOut", default=None, help="退房日期 YYYY-MM-DD")
     parser.add_argument("--guests", type=int, default=1, help="入住人数")
     parser.add_argument("--query", default=None, help="用户原始查询")
-    parser.add_argument("--max-price", type=int, default=None, help="每晚价格上限")
-    parser.add_argument("--star-rating", default=None, help="星级筛选")
-    parser.add_argument("--preferred-brand", default=None, help="偏好品牌")
-    parser.add_argument("--required-tag", default=None, help="必须标签")
-    parser.add_argument("--preferred-tag", default=None, help="偏好标签")
-    parser.add_argument("--excluded-tag", default=None, help="排除标签")
-    parser.add_argument("--min-room-size", type=int, default=None, help="最小房间面积")
-    parser.add_argument("--max-distance", type=int, default=None, help="距离上限(米)")
-    parser.add_argument("--country-code", default=None, help="国家代码")
-    parser.add_argument("--stay-nights", type=int, default=None, help="入住晚数")
-    parser.add_argument("--adult-count", type=int, default=None, help="成人数量")
-    parser.add_argument("--child-count", type=int, default=None, help="儿童数量")
-    parser.add_argument("--child-ages", default=None, help="儿童年龄")
-    parser.add_argument("--room-count", type=int, default=None, help="房间数")
+    parser.add_argument("--maxPrice", type=int, default=None, help="每晚价格上限")
+    parser.add_argument("--starRating", default=None, help="星级筛选")
+    parser.add_argument("--preferredBrand", default=None, help="偏好品牌")
+    parser.add_argument("--requiredTag", default=None, help="必须标签")
+    parser.add_argument("--preferredTag", default=None, help="偏好标签")
+    parser.add_argument("--excludedTag", default=None, help="排除标签")
+    parser.add_argument("--minRoomSize", type=int, default=None, help="最小房间面积")
+    parser.add_argument("--maxDistance", type=int, default=None, help="距离上限(米)")
+    parser.add_argument("--countryCode", default=None, help="国家代码")
+    parser.add_argument("--stayNights", type=int, default=None, help="入住晚数")
+    parser.add_argument("--adultCount", type=int, default=None, help="成人数量")
+    parser.add_argument("--childCount", type=int, default=None, help="儿童数量")
+    parser.add_argument("--childAges", default=None, help="儿童年龄")
+    parser.add_argument("--roomCount", type=int, default=None, help="房间数")
 
     args = parser.parse_args()
     result = hotel_search_and_recommend(
         destination=args.destination, scene=args.scene,
-        check_in=args.check_in, check_out=args.check_out,
+        check_in=args.checkIn, check_out=args.checkOut,
         guests=args.guests, query=args.query,
-        star_rating=args.star_rating, max_price=args.max_price,
-        max_distance=args.max_distance, preferred_brand=args.preferred_brand,
-        required_tag=args.required_tag, preferred_tag=args.preferred_tag,
-        excluded_tag=args.excluded_tag, min_room_size=args.min_room_size,
-        stay_nights=args.stay_nights, adult_count=args.adult_count,
-        child_count=args.child_count, child_ages=args.child_ages,
-        room_count=args.room_count, country_code=args.country_code,
+        star_rating=args.starRating, max_price=args.maxPrice,
+        max_distance=args.maxDistance, preferred_brand=args.preferredBrand,
+        required_tag=args.requiredTag, preferred_tag=args.preferredTag,
+        excluded_tag=args.excludedTag, min_room_size=args.minRoomSize,
+        stay_nights=args.stayNights, adult_count=args.adultCount,
+        child_count=args.childCount, child_ages=args.childAges,
+        room_count=args.roomCount, country_code=args.countryCode,
     )
     print(result)

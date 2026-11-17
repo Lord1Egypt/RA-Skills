@@ -1,39 +1,56 @@
-## Description: <br>
-B2B outreach email generation skill with three email templates, A/B subject line testing, and multilingual support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade Closer drafts B2B foreign-trade outreach emails with three templates, subject-line A/B variants, multilingual support, and a 7-day follow-up plan.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Sales, marketing, and business development users use this skill to draft B2B foreign-trade outreach emails, compare subject-line variants, and plan a seven-day follow-up sequence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated outreach may include claims, numbers, or offer language that the sender has not verified. <br>
-Mitigation: Review generated claims, performance numbers, pricing, and offer details before using the draft. <br>
-Risk: B2B outreach can create consent, anti-spam, or marketing-compliance obligations. <br>
-Mitigation: Confirm intended recipients, consent basis, opt-out handling, and applicable marketing rules before manually sending messages. <br>
+## Use Case:
 
+External sales and marketing users can use this skill to draft personalized B2B foreign-trade outreach emails, compare subject-line variants, and plan a manual follow-up sequence for qualified prospects.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text email drafts with subject-line variants and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include template choice, language selection, subject-line variants, and a seven-day outreach plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Generated outreach may contain inaccurate claims or compliance issues if sent without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated email for accuracy, consent, and applicable marketing compliance before sending it manually.
+
+Risk: Response-rate or ROI-style claims may overstate likely results for a specific prospect.
+
+Mitigation: Treat performance estimates as drafting aids and verify any quantitative claim against approved business data before use.
+
+## Reference(s):
+
+- [ClawHub Trade Closer release page](https://clawhub.ai/wangm-a3/skills/trade-closer)
+- [Related skill: trade-hunter](https://github.com/cloud-travel-skills/trade-hunter)
+- [Related skill: trade-qualifier](https://github.com/cloud-travel-skills/trade-qualifier)
+- [Related skill: trade-dashboard](https://github.com/cloud-travel-skills/trade-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [HTML email copy, plain-text email copy, subject-line variants, and a 7-day follow-up plan]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outreach should be reviewed manually before use; the skill does not provide automatic sending behavior in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

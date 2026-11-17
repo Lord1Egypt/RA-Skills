@@ -1,38 +1,51 @@
-## Description: <br>
-Generates production-oriented n8n workflow JSON from natural-language automation requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates production-oriented n8n workflow JSON from a user's automation requirements.
 
-## Publisher: <br>
-[yesong-hue](https://clawhub.ai/user/yesong-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yesong-hue](https://clawhub.ai/user/yesong-hue)
 
-## Use Case: <br>
-Developers and automation builders use this skill to turn clear workflow requirements into n8n workflow JSON for review and import into n8n. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated n8n workflow JSON can automate credentialed APIs, triggers, deletion, posting, or business-system actions if imported without review. <br>
-Mitigation: Review the generated workflow JSON before import and test sensitive actions in a controlled n8n environment. <br>
+## Use Case:
 
+Developers and automation builders use this skill to turn clear n8n automation requirements into workflow JSON that can be reviewed, configured, and imported into n8n.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yesong-hue/qnit-n8n-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [n8n workflow JSON with supporting text when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review generated workflow JSON before importing or running it in n8n.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.md frontmatter) <br>
+Risk: Generated n8n workflows may call APIs, use credentials, or change external systems depending on the user's prompt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated workflow before importing or running it in n8n, especially credential use, external calls, and write operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yesong-hue/skills/qnit-n8n-workflow)
+- [Skill source](artifact/skill.md)
+- [README](artifact/readme.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration]
+
+**Output Format:** [Markdown or text containing n8n workflow JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workflows should be reviewed before import or execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,56 @@
-## Description: <br>
-Search for physical products, hardware, AI tools, and APIs via the Orion Ad Protocol. Returns structured data (JSON) optimized for agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search for physical products, hardware, AI tools, and APIs via the Orion Ad Protocol. Returns structured data (JSON) optimized for agents.
 
-## Publisher: <br>
-[celsojr2013](https://clawhub.ai/user/celsojr2013) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[celsojr2013](https://clawhub.ai/user/celsojr2013)
 
-## Use Case: <br>
-External users and developers use this skill to search OrionAds for structured product, hardware, API, SaaS, and tool results, and to prepare account, balance, or ad-posting API calls when authorized. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide account registration, balance checks, and ad posting against OrionAds, including actions that may use ORION_API_KEY or set a bid. <br>
-Mitigation: Provide ORION_API_KEY only when account features are intended, and require explicit user review before registering an account, posting an ad, or setting any bid. <br>
-Risk: Shell commands built from user search terms or ad payloads can be unsafe if raw input is interpolated. <br>
-Mitigation: Use encoded query parameters for searches and safely escape or file-load JSON payloads before running curl commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Orion Ads on ClawHub](https://clawhub.ai/celsojr2013/orionads) <br>
-- [OrionAds Search API](https://orionads.net/api/v1/search) <br>
+## Use Case:
 
+Agents and developers use Orion Ads to search for structured product offers, APIs, SDKs, and tools, and to optionally register, post ads, or check account balance when explicitly directed.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search responses are expected to be structured JSON from OrionAds; ORION_API_KEY is optional and only needed for account features.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shell command examples can create command-injection risk if user-controlled queries or JSON payloads are interpolated into shell strings.
+
+Mitigation: Pass curl arguments without shell interpretation, use --data-urlencode for query values, escape JSON safely or write payloads to a temporary file, and only use ORION_API_KEY for posting ads or balance checks when explicitly directed.
+
+Risk: Searches and optional account or ad actions send queries, account data, or ad data to OrionAds.
+
+Mitigation: Install and invoke the skill only when this data sharing is acceptable for the user and task.
+
+## Reference(s):
+
+- [Orion Ads ClawHub Skill](https://clawhub.ai/celsojr2013/skills/orionads)
+- [celsojr2013 ClawHub Publisher Profile](https://clawhub.ai/user/celsojr2013)
+- [OrionAds Search API](https://orionads.net/api/v1/search)
+- [OrionAds Register API](https://orionads.net/api/v1/register)
+- [OrionAds Ads API](https://orionads.net/api/v1/ads)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON response schemas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search responses are described as structured JSON optimized for agents. ORION_API_KEY is optional and only needed for posting ads or checking account balance.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

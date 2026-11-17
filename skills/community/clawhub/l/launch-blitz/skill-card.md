@@ -1,43 +1,49 @@
-## Description: <br>
-Automatically formats, submits, and tracks product launches across 21 major startup directories with tailored listings and status monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically formats, submits, and tracks product launches across 21 startup directories with platform-specific listings and status monitoring.
 
-## Publisher: <br>
-[casperzinou](https://clawhub.ai/user/casperzinou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[casperzinou](https://clawhub.ai/user/casperzinou)
 
-## Use Case: <br>
-Founders, marketers, and developers use this skill to prepare platform-specific launch copy, submission links, launch-day checklists, and status trackers for a product launch across startup directories. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated submission copy or launch guidance could be posted externally without adequate review. <br>
-Mitigation: Review every platform submission before posting and verify titles, descriptions, tags, URLs, timing, and claims. <br>
-Risk: Launch materials may include confidential product details before the team is ready to disclose them. <br>
-Mitigation: Avoid sharing confidential launch details until disclosure is approved and keep post-launch monitoring opt-in. <br>
-Risk: Post-launch monitoring may touch accounts or analytics beyond the user's intended scope. <br>
-Mitigation: Define clear limits for which accounts, submissions, analytics, and time windows the agent may monitor. <br>
+## Use Case:
 
+Founders, marketers, and launch teams use this skill to prepare platform-specific product launch copy, submission links, launch checklists, and post-launch tracking materials for many startup directories.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/casperzinou/launch-blitz) <br>
-- [Publisher Profile](https://clawhub.ai/user/casperzinou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with platform-specific launch copy, checklists, tracker tables, and submission URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes per-platform titles, descriptions, tags, status fields, timing notes, and follow-up recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package.json) <br>
+Risk: The skill may lead an agent toward public launch submissions across many third-party platforms without clear final approval controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it to prepare drafts unless the user explicitly approves live submissions, confirms target platforms, reviews generated content, and gives final confirmation before anything is posted.
+
+## Reference(s):
+
+- [Launch Blitz skill page](https://clawhub.ai/casperzinou/skills/launch-blitz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown checklists, tracker tables, platform-specific listing copy, and submission URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied product details and explicit review before any public submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

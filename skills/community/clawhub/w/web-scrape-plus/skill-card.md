@@ -1,40 +1,57 @@
-## Description: <br>
-Enhanced web scraping with anti-detection, proxy support, rate limiting, data validation, and multiple extraction methods. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced web scraping with anti-detection, proxy support, rate limiting, data validation, and multiple extraction methods for static pages, dynamic content, login-gated sites, and pagination.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and data practitioners use this skill to plan and implement authorized web extraction workflows across static pages, dynamic pages, APIs, login-gated sites, and paginated sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used for scraping flows that involve anti-detection, proxy, stealth, CAPTCHA, and login-cookie handling. <br>
-Mitigation: Use it only for authorized, compliant collection and do not use it to bypass access controls, terms of service, anti-bot protections, or permission boundaries. <br>
-Risk: Cookies, account sessions, logs, caches, and scraped data may contain sensitive information. <br>
-Mitigation: Treat those artifacts as sensitive, minimize retention, protect access, and prefer official APIs or transparent rate-limited collection where available. <br>
+## Use Case:
 
+Developers and agents use this skill to plan authorized web data extraction workflows and generate scraping guidance, examples, and configuration patterns for static pages, dynamic content, API endpoints, login-gated sites, and paginated sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/web-scrape-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code examples and JSON or CSV data formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce scraping workflow guidance, validation patterns, retry logic, proxy configuration examples, and structured output examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release metadata) <br>
+Risk: Authenticated scraping and session-cookie handling can expose accounts or sensitive session material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts where possible, avoid sharing or storing raw session cookies, and limit access to credentials and session artifacts.
+
+Risk: Proxy rotation, anti-detection techniques, or scraping at scale can violate site policies or legal expectations.
+
+Mitigation: Use the skill only for sites where scraping is authorized, check applicable policies before use, and avoid stealth or proxy behavior unless explicitly permitted.
+
+Risk: Poorly bounded scraping can overload target services or collect data beyond the intended scope.
+
+Mitigation: Apply rate limits, respect robots.txt and server limits, cache responses where appropriate, and validate that collected data matches the intended schema.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/web-scrape-plus)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with Python, JSON, and CSV examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scraping workflows, implementation snippets, and output format examples; it does not execute scraping by itself.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Records local plain-text cron-related notes, observations, alerts, checks, and exports for later review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage cron jobs with execution logging and failure alert tracking.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and system administrators can use this skill to record cron-related observations, failures, checks, and operational notes in local logs for later review and export. Treat it as a local logbook, not as a real cron scheduler, backup, restore, or remediation system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may believe the skill performs real cron scheduling, backup, restore, or remediation. <br>
-Mitigation: Use it only as a local cron-related notes/logbook tool and verify operational actions independently. <br>
-Risk: Cron-related notes, exports, and logs can contain sensitive operational details and are stored locally as plain text. <br>
-Mitigation: Do not enter passwords, API keys, tokens, sensitive host details, or private incident notes unless local plain-text retention is acceptable. <br>
+## Use Case:
 
+Developers and system operators use this skill to record local notes about cron-related scans, monitoring observations, alerts, fixes, backups, and exports. It should be treated as a note logger, not as a tool that inspects or changes real cron jobs.
 
-## Reference(s): <br>
-- [Cronjob on ClawHub](https://clawhub.ai/xueyetianya/cronjob) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and plain-text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local plain-text logs and can export JSON, CSV, or TXT files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: The skill is presented as cron management and monitoring but the security summary says it behaves as a local note logger.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on it to inspect, add, monitor, fix, back up, or restore actual cron jobs; verify real cron state with trusted system tools.
+
+Risk: The skill stores recorded entries locally in plaintext and can export them to CSV, JSON, or TXT.
+
+Mitigation: Avoid recording secrets, credentials, sensitive paths, incident details, or other information that should not be stored or exported in plaintext.
+
+## Reference(s):
+
+- [Cronjob on ClawHub](https://clawhub.ai/xueyetianya/skills/cronjob)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local plaintext logs and JSON, CSV, or TXT exports under the configured cronjob data directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

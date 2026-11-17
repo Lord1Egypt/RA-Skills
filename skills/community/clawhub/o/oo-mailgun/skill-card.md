@@ -1,45 +1,56 @@
-## Description: <br>
-Mailgun (mailgun.com). Use this skill for Mailgun requests that read, create, update, or delete data through the OOMOL Mailgun connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Mailgun to inspect domains, events, templates, and suppressions, and to send email or update account settings through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and support teams use this skill to manage Mailgun domains, templates, suppressions, tracking settings, and message sending through an OOMOL-connected account. It supports both read-only inspection and user-confirmed write or destructive Mailgun operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Mailgun account and may use sensitive credentials through the OOMOL connector. <br>
-Mitigation: Use the OOMOL-connected account flow and avoid exposing raw Mailgun API tokens in prompts, files, or command arguments. <br>
-Risk: Write actions can change Mailgun state, including sending email, changing tracking settings, creating templates, or adding suppression records. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running any action marked write. <br>
-Risk: The delete_suppression action removes suppression or allowlist records. <br>
-Mitigation: Get explicit approval for the target record before running destructive actions. <br>
+## Use Case:
 
+Developers and teams use this skill to manage Mailgun email operations through a connected account, including reviewing account data, managing templates and suppressions, and sending email. State-changing actions require review of the intended effect.
 
-## Reference(s): <br>
-- [Mailgun homepage](https://www.mailgun.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-mailgun) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute Mailgun connector actions that return JSON data and an execution identifier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The CLI installer and hosted runtime were not fully verified, so setup may rely on software or services whose release and behavior have not been confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI installation separately and use a verified release; review the connected runtime before relying on it.
+
+Risk: Domain verification, email sending, and other write actions can change account state or send external communications.
+
+Mitigation: Require confirmation of the exact action and its effect before domain verification or any other write, including sending email.
+
+## Reference(s):
+
+- [Mailgun API documentation](https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun)
+- [Mailgun](https://www.mailgun.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Mailgun connector requests and responses, with shell commands and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions may read account data or change Mailgun state, depending on the action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

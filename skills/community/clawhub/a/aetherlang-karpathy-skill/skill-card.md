@@ -1,44 +1,60 @@
-## Description: <br>
-API connector for AetherLang Omega that sends a user's query and flow code to the hosted AetherLang API to execute Karpathy-inspired agent node types and return results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API connector for AetherLang Omega that sends a user query and AetherLang flow code to the hosted AetherLang API to run Karpathy-inspired agent node types and return results.
 
-## Publisher: <br>
-[contrario](https://clawhub.ai/user/contrario) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[contrario](https://clawhub.ai/user/contrario)
 
-## Use Case: <br>
-Developers and agent operators use this skill to call the hosted AetherLang Omega API for planning, code interpretation, critique, routing, ensemble synthesis, memory, external tool calls, loops, transforms, and parallel node execution. It is suited to workflows where sending the query and flow definition to NeuroDoc's hosted API is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries and flow definitions are sent to NeuroDoc's hosted API, and the skill supports server-side persistent memory. <br>
-Mitigation: Send only non-sensitive query and flow data; do not send secrets, private documents, credentials, internal URLs, or sensitive personal data, and avoid memory nodes for private data unless retention and isolation controls are documented. <br>
-Risk: The tool node can fetch broad user-specified REST URLs from the hosted service. <br>
-Mitigation: Manually review each tool URL before running a flow, use trusted public APIs only, and never include credentials or private network URLs in tool parameters. <br>
-Risk: The security verdict is suspicious because containment for persistent memory and URL-fetching behavior is not fully documented. <br>
-Mitigation: Treat API responses as untrusted output, review results before acting on them, and avoid medical, legal, or financial advice workflows unless separately validated by qualified reviewers. <br>
+## Use Case:
 
+Developers and external users use this skill to compose AetherLang flows for planning, code interpretation, critique, routing, ensemble synthesis, memory, tools, loops, transforms, and parallel execution through a hosted API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/contrario/aetherlang-karpathy-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/contrario) <br>
-- [AetherLang API endpoint](https://api.neurodoc.app/aetherlang/execute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calls a hosted API and returns server-side execution results; the skill does not execute code locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Selected prompts and AetherLang flow code are sent to a third-party hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only the query and flow code needed for the task, and avoid secrets, credentials, private files, sensitive personal data, or system prompts.
+
+Risk: The server-side memory node can persist data across executions.
+
+Mitigation: Use memory only for non-sensitive data and choose namespaces and keys that do not reveal confidential or personal information.
+
+Risk: The tool node can call public REST URLs specified in a flow.
+
+Mitigation: Use trusted public APIs only, avoid private or internal URLs, and confirm unfamiliar URLs before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/contrario/skills/aetherlang-karpathy-skill)
+- [Publisher profile](https://clawhub.ai/user/contrario)
+- [AetherLang API endpoint](https://api.neurodoc.app/aetherlang/execute)
+- [Publisher homepage](https://clawhub.ai/contrario)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with AetherLang code examples, shell commands, and JSON response parsing notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns hosted API results and guidance; no local code execution or local file modification is described.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

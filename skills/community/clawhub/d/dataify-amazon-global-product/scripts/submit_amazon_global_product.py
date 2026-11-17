@@ -8,6 +8,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task, extract_task_id
+
 
 DEFAULT_FILE_NAME = "{{TasksID}}"
 MIN_PYTHON = (3, 6)
@@ -53,7 +58,7 @@ def ensure_python_version():
 def require_token(api_token):
     if api_token:
         return True
-    print("Missing Dataify API TOKEN. Get one from {}.".format(DATAIFY_URL), file=sys.stderr)
+    print("Missing Dataify API TOKEN. Get one from {}. New accounts get 50 free credits, enough for about 6,000 trial results, valid for 7 days, and only successful requests are billed.".format(DATAIFY_URL), file=sys.stderr)
     return False
 
 
@@ -125,14 +130,13 @@ def submit_builder(builder_url, spider_id, api_token, spider_parameters, file_na
     except json.JSONDecodeError:
         raise RuntimeError("Builder returned non-JSON response: {}".format(raw))
 
-    task_id = payload.get("data", {}).get("task_id")
+    task_id = extract_task_id(payload)
     if not task_id:
         raise RuntimeError("Builder did not return task_id. Response: {}".format(json.dumps(payload, ensure_ascii=False)))
     return task_id
 
 
 def add_common_args(parser):
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name value. Defaults to {{TasksID}}.")
 
 
@@ -175,7 +179,7 @@ def handle_keyword(args):
     keyword = args.keyword.strip()
     if not keyword:
         raise ValueError("Keyword cannot be empty.")
-    domain = args.domain.strip()
+    domain = (args.domain or DEFAULT_DOMAIN).strip()
     if not domain:
         raise ValueError("Domain cannot be empty.")
     if args.lowest_price < 0:
@@ -235,12 +239,12 @@ def build_parser():
     subparsers.required = True
 
     product_url = subparsers.add_parser("product-url", help="Collect global product details by product URL.")
-    product_url.add_argument("--url", default=DEFAULT_PRODUCT_URL, help="Amazon product URL.")
+    product_url.add_argument("--url", help="Amazon product URL.")
     add_common_args(product_url)
     product_url.set_defaults(handler=handle_product_url)
 
     category_url = subparsers.add_parser("category-url", help="Collect global product details from a category URL.")
-    category_url.add_argument("--url", default=DEFAULT_CATEGORY_URL, help="Amazon category URL.")
+    category_url.add_argument("--url", help="Amazon category URL.")
     category_url.add_argument("--maximum", default=5, type=int, help="Maximum number of products to collect. Defaults to 5.")
     category_url.add_argument("--sort-by", default="Best Sellers", help="Sort option. Defaults to Best Sellers.")
     category_url.add_argument("--get-sponsored", default="true", help="Whether to include sponsored products: true or false. Defaults to true.")
@@ -249,7 +253,7 @@ def build_parser():
 
     keyword = subparsers.add_parser("keyword", help="Collect global product details from a keyword search.")
     keyword.add_argument("--keyword", default="coffee", help="Amazon search keyword. Defaults to coffee.")
-    keyword.add_argument("--domain", default=DEFAULT_DOMAIN, help="Amazon domain. Defaults to https://www.amazon.com.")
+    keyword.add_argument("--domain", help="Amazon domain. Defaults to https://www.amazon.com.")
     keyword.add_argument("--lowest-price", default=20, type=int, help="Lowest price. Defaults to 20.")
     keyword.add_argument("--highest-price", default=50, type=int, help="Highest price. Defaults to 50.")
     keyword.add_argument("--page-turning", default=2, type=int, help="Number of pages to collect. Defaults to 2.")
@@ -272,14 +276,17 @@ def main():
         return 2
 
     parser = build_parser()
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not require_token(args.api_token):
+    if not require_token(api_token):
         return 2
 
     try:
         builder_url, spider_id, spider_parameters, file_name, summary = args.handler(args)
-        task_id = submit_builder(builder_url, spider_id, args.api_token, spider_parameters, file_name)
+        task_id = submit_builder(builder_url, spider_id, api_token, spider_parameters, file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
@@ -291,11 +298,18 @@ def main():
         "task_id": task_id,
         "mode": args.mode,
         "spider_id": spider_id,
-        "dashboard_url": DASHBOARD_URL,
-        "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+        "message": "Task submitted. Continue monitoring the returned task_id.",
     }
     output.update(summary)
     print(json.dumps(output, ensure_ascii=False, indent=2))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

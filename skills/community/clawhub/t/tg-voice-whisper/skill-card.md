@@ -1,42 +1,51 @@
-## Description: <br>
-Auto-transcribes Telegram voice messages in .ogg Opus format to text using a local OpenAI Whisper tiny model, replies with the transcription, and removes local audio files for privacy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-transcribes Telegram voice messages in .ogg Opus format to text using a local OpenAI Whisper tiny model, replies with the transcription, and deletes processed files for privacy.
 
-## Publisher: <br>
-[drones277](https://clawhub.ai/user/drones277) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[drones277](https://clawhub.ai/user/drones277)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to automatically transcribe inbound Telegram voice messages locally and send the resulting text as a reply without relying on external transcription APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Automatic replies may send an incorrect or incomplete transcription. <br>
-Mitigation: Review the workflow before enabling unattended use and use a larger Whisper model when higher transcription accuracy is needed. <br>
-Risk: Cleanup commands may remove source audio or temporary transcript files before the reply has been sent successfully. <br>
-Mitigation: Confirm the watched path and adjust cleanup so files are removed only after successful transcription and message delivery. <br>
-Risk: A cron or sub-agent loop can keep processing messages until explicitly disabled. <br>
-Mitigation: Keep a clear disable path for the background job and confirm the polling target before enabling it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drones277/tg-voice-whisper) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers and operators use this skill to configure an agent that locally transcribes inbound Telegram voice files and replies with text while avoiding external transcription APIs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can run an always-on watcher over private voice files.
+
+Mitigation: Enable it only when continuous monitoring is intended, prefer one-shot or explicitly time-limited workers, and run it under a least-privileged account.
+
+Risk: Shell and wildcard file handling can process or delete unintended files.
+
+Mitigation: Use pinned dependencies in an isolated environment and replace wildcard shell commands with validated per-file processing before deployment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces transcription workflow guidance for local Whisper execution, Telegram reply actions, cleanup, and optional background automation.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Whisper transcription guidance and command snippets; configured workflows may remove processed local audio and temporary transcript files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

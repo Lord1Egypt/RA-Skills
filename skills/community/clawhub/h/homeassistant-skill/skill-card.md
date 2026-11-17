@@ -1,41 +1,61 @@
-## Description: <br>
-Control Home Assistant devices and automations via REST API, including lights, climate, locks, presence, weather, calendars, notifications, scripts, and other smart-home entities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents inspect, troubleshoot, and operate an existing Home Assistant installation through REST and supported WebSocket workflows.
 
-## Publisher: <br>
-[anotb](https://clawhub.ai/user/anotb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anotb](https://clawhub.ai/user/anotb)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to let an agent inspect and control a Home Assistant instance through REST API calls. It supports device discovery, state reads, service calls, automations, scripts, notifications, calendars, history, and safety-confirmed actions for sensitive devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent read from and control a Home Assistant setup, including sensitive home devices. <br>
-Mitigation: Install only when agent access to Home Assistant is intended, use a least-privileged Home Assistant token, protect HA_TOKEN like a password, and revoke it when no longer needed. <br>
-Risk: Commands may affect locks, alarms, garage doors, gates, security automations, presence or location data, calendars, history, logbook data, scripts, scenes, or broad service calls. <br>
-Mitigation: Require explicit user confirmation before executing actions involving sensitive devices, private data, or broad Home Assistant service calls. <br>
+## Use Case:
 
+People and developers with an existing Home Assistant installation use this skill to discover devices and capabilities, diagnose issues, and perform specifically authorized home actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anotb/homeassistant-skill) <br>
-- [Skill homepage](https://github.com/anotb/homeassistant-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with bash, curl, jq, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HA_URL, HA_TOKEN, curl, jq, and network access to the user's Home Assistant instance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence and SKILL.md metadata) <br>
+Risk: A Home Assistant token can expose household information and authorize device actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege account where possible, keep the token in a private environment or secret store, and prefer verified HTTPS.
+
+Risk: Device actions, scenes, scripts, and automations can cause physical or security-sensitive changes.
+
+Mitigation: Inspect targets and indirect effects, and get explicit confirmation before locks, alarms, garage doors, security automations, and broad batches.
+
+Risk: Presence, location, calendar, and history results can reveal household routines; notifications and speech can disclose information to others.
+
+Mitigation: Read only the needed data, keep results private, and confirm recipients, devices, and message content before notification or speech actions.
+
+## Reference(s):
+
+- [Project homepage (listed in skill metadata)](https://github.com/anotb/homeassistant-skill)
+- [Modern Home Assistant workflows](references/modern-workflows.md)
+- [REST examples](references/rest-examples.md)
+- [Home Assistant REST API documentation](https://developers.home-assistant.io/docs/api/rest/)
+- [Home Assistant WebSocket API documentation](https://developers.home-assistant.io/docs/api/websocket/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only queries can return Home Assistant data; device actions require user authorization.]
+
+## Skill Version(s):
+
+2.2.0 (source: skill metadata, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

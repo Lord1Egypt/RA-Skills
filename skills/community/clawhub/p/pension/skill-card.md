@@ -1,38 +1,55 @@
-## Description: <br>
-A focused personal finance tool built for Pension. Log entries, review trends, and export reports — all locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A focused personal finance tool built for Pension. Log entries, review trends, and export reports - all locally.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-External users use Pension as a local command-line personal finance logger for recording finance notes, reviewing activity and trends, and exporting reports without sending data off the machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial notes entered into Pension are stored and exported as plaintext files on the user's machine. <br>
-Mitigation: Avoid entering account numbers, credentials, or highly sensitive tax details, and delete old logs or export files when they are no longer needed. <br>
+## Use Case:
 
+External users and agents use Pension to log personal finance notes, review balances and trends, search recent activity, and export local reports from a command-line workflow.
 
-## Reference(s): <br>
-- [Pension ClawHub Release](https://clawhub.ai/bytesagain1/pension) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Plain text command output with local JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores logs and exported reports as plaintext files under ~/.local/share/pension.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Finance notes are stored locally in plaintext under ~/.local/share/pension.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines and restrict permissions on the local data directory, especially on shared or backed-up systems.
+
+Risk: Exported CSV, JSON, or text reports may contain sensitive personal finance details.
+
+Mitigation: Review exported files before sharing them and handle CSV files carefully when opening them in spreadsheet software.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/skills/pension)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain1)
+- [BytesAgain Feedback](https://bytesagain.com/feedback/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text output with optional JSON, CSV, or plain text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and reads local finance logs under ~/.local/share/pension.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

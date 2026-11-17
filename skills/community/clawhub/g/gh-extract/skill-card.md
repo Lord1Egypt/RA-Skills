@@ -1,37 +1,49 @@
-## Description: <br>
-Extract content from a GitHub URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract content from a GitHub url.
 
-## Publisher: <br>
-[guoqiao](https://clawhub.ai/user/guoqiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guoqiao](https://clawhub.ai/user/guoqiao)
 
-## Use Case: <br>
-Developers and engineers use this skill to fetch text from public GitHub repository, tree, or blob URLs, or to save fetched content to a temporary file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch arbitrary non-GitHub URLs and save remote content locally despite being presented as GitHub-only. <br>
-Mitigation: Use only trusted public GitHub URLs; avoid private or internal URLs; review the skill before installation; prefer a version that rejects non-GitHub hosts and adds timeouts and size limits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guoqiao/gh-extract) <br>
+## Use Case:
 
+Developers and agents use this skill to fetch content from public GitHub repository, tree, or blob URLs, printing text to stdout or saving a fetched file when requested.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files] <br>
-**Output Format:** [Plain text content printed to stdout, or a temporary file path when saving content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and wget; intended for public GitHub URLs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security summary reports that the skill can fetch and save content from arbitrary URLs, which is broader than users would expect for a GitHub extraction tool.
+
+Mitigation: Review before installing, use only trusted public GitHub URLs, and avoid arbitrary URLs or --save until the skill enforces a GitHub-only allowlist, validates redirects, adds timeouts and size limits, and removes the original-URL fallback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guoqiao/skills/gh-extract)
+- [ClawHub Homepage](https://clawhub.ai/guoqiao/gh-extract)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, guidance]
+
+**Output Format:** [Plain text content, temporary file paths, and Markdown usage guidance with bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv and wget; supports public GitHub repository, tree, and blob URLs.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

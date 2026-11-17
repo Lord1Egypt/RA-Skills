@@ -1,41 +1,53 @@
-## Description: <br>
-Generate and read QR codes from text, URLs, image files, and screenshots, with PNG/JPG support and QR generation options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and read QR codes from text, URLs, screenshots, and image files, with PNG/JPG support and configurable generation options.
 
-## Publisher: <br>
-[Omar-Khaleel](https://clawhub.ai/user/Omar-Khaleel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[omar-khaleel](https://clawhub.ai/user/omar-khaleel)
 
-## Use Case: <br>
-Developers and external users use this skill to create QR codes from text or URLs and decode QR-code contents from local images or screenshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Decoded QR content can contain malicious or misleading links or text. <br>
-Mitigation: Inspect decoded content before opening links, running commands, or acting on the decoded value. <br>
-Risk: QR reading requires third-party image and barcode dependencies plus a platform zbar runtime. <br>
-Mitigation: Install dependencies from trusted package sources and only deploy where those local dependencies are acceptable. <br>
+## Use Case:
 
+Developers and automation users use this skill to create QR codes from provided content and decode QR codes from local images or screenshots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Omar-Khaleel/qr-code-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/Omar-Khaleel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Code, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python examples; scripts produce PNG files or decoded text/JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generation depends on qrcode and Pillow; reading depends on Pillow, pyzbar, and the platform zbar runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Unpinned Python dependencies or missing native QR decoding libraries can change behavior or fail at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a controlled Python environment with pinned dependency versions and the required platform zbar components.
+
+Risk: Decoded QR payloads may contain misleading links, commands, or other untrusted text.
+
+Mitigation: Inspect decoded output before acting on it, prefer JSON output for unfamiliar QR codes, and do not open links or run commands solely because a QR payload suggests them.
+
+## Reference(s):
+
+- [Advanced QR Intelligence on ClawHub](https://clawhub.ai/omar-khaleel/skills/qr-code-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, PNG file outputs, and optional JSON decode results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated QR codes are written as image files; decoded QR payloads should be treated as untrusted text.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

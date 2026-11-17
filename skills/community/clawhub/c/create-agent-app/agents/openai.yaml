@@ -1,0 +1,7 @@
+interface:
+  display_name: "Create Agent App"
+  short_description: "Design and generate production-grade TypeScript agent app bases."
+  default_prompt: "Use $create-agent-app to design and generate a TypeScript agent application with a confirmed architecture, provider wiring, safety gates, and validation."
+policy:
+  allow_implicit_invocation: true
+

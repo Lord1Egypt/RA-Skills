@@ -1,40 +1,50 @@
-## Description: <br>
-Reviews 3DGS implementation code for correctness, performance bugs, and best practices across CUDA kernels, rendering pipelines, training loops, loss functions, and known bug patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review 3DGS implementation code for correctness, performance bugs, and best practices. Covers CUDA kernels, rendering pipeline, training loop, loss functions. Detects 63+ known bug patterns.
 
-## Publisher: <br>
-[jaccen](https://clawhub.ai/user/jaccen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaccen](https://clawhub.ai/user/jaccen)
 
-## Use Case: <br>
-Developers and engineers use this skill to review 3D Gaussian Splatting implementation code for rendering correctness, CUDA performance, training pipeline behavior, and known bug patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code-review findings may be incorrect or incomplete for a specific 3DGS implementation. <br>
-Mitigation: Treat recommendations as advisory and verify them against the reviewed code, tests, and project-specific rendering and training requirements before applying changes. <br>
-Risk: Users may submit source code that is broader or more sensitive than needed for review. <br>
-Mitigation: Provide only the files needed for the review and remove secrets or unrelated proprietary material before sharing code with the agent. <br>
+## Use Case:
 
+Developers and engineers use this skill to review 3D Gaussian Splatting implementations for correctness, performance, and project-specific risks across CUDA kernels, rendering pipelines, training loops, and loss functions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaccen/3dgs-code-reviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown code review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes line-specific issues, verified-correct notes, and correctness, performance, and code-quality ratings when source code is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.7 (source: frontmatter and server release evidence) <br>
+Risk: The checklist includes specialized and future-looking 3DGS guidance that may not fit every implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against the target project, framework versions, and the reviewed code before applying changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaccen/skills/3dgs-code-reviewer)
+- [Awesome Gaussian Skills](https://github.com/jaccen/Awesome-Gaussian-Skills)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown code review with issue lists, line references, recommendations, and ratings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides review guidance only and has no executable behavior.]
+
+## Skill Version(s):
+
+1.1.7 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

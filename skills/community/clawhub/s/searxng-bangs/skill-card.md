@@ -1,43 +1,57 @@
-## Description: <br>
-Privacy-respecting web search via SearXNG with DuckDuckGo-style bangs, multi-category search, and JSON search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-respecting web search via SearXNG with DuckDuckGo-style bangs support.
 
-## Publisher: <br>
-[rpeters511](https://clawhub.ai/user/rpeters511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC0 <br>
+## Publisher:
 
+[rpeters511](https://clawhub.ai/user/rpeters511)
 
-## Use Case: <br>
-Developers and agents use this skill to run privacy-focused web, news, image, video, and science searches through a configured SearXNG instance. It is useful when search queries should avoid direct tracking by commercial search engines or when DuckDuckGo-style bangs are needed for engine-specific searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to the configured SearXNG endpoint, so unknown public instances can observe queries. <br>
-Mitigation: Use a self-hosted or reputable HTTPS SearXNG instance for privacy-sensitive searches, and avoid sensitive queries through untrusted public instances. <br>
-Risk: Container installs that use a floating Docker tag may change over time. <br>
-Mitigation: Pin the SearXNG Docker image version or digest when reproducible deployments are required. <br>
+## Use Case:
 
+Developers, engineers, and agent users use this skill to run web, news, image, video, and science searches through a SearXNG instance, including direct engine searches with DuckDuckGo-style bangs. It is most useful when a self-hosted or trusted SearXNG endpoint is available and the agent needs JSON search results without API keys.
 
-## Reference(s): <br>
-- [SearXNG API Reference](references/api.md) <br>
-- [SearXNG public instances](https://searx.space) <br>
-- [SearXNG installation documentation](https://docs.searxng.org/admin/installation.html) <br>
-- [ClawHub package page](https://clawhub.ai/rpeters511/searxng-bangs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON search results with titles, URLs, and snippets; Markdown guidance and shell commands for setup and usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the SEARXNG_URL environment variable to select a self-hosted or public SearXNG instance; default timeout is 15 seconds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive queries can be sent to public SearXNG instances or to plaintext endpoints if configured that way.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a self-hosted SearXNG instance, require HTTPS for non-local endpoints, and avoid public instances for confidential searches.
+
+Risk: Privacy claims depend on the SearXNG endpoint and deployment configuration rather than the skill alone.
+
+Mitigation: Review endpoint ownership and configuration before use, and pin the SearXNG container image to a reviewed digest or version.
+
+## Reference(s):
+
+- [SearXNG API Reference](references/api.md)
+- [SearXNG installation documentation](https://docs.searxng.org/admin/installation.html)
+- [SearXNG public instance directory](https://searx.space)
+- [DuckDuckGo bang shortcuts](https://duckduckgo.com/bang)
+- [ClawHub skill page](https://clawhub.ai/rpeters511/skills/searxng-bangs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON search results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include query, number_of_results, and result objects with title, url, and content fields; errors are returned as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

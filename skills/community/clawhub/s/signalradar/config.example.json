@@ -14,7 +14,7 @@
   "delivery": {
     "primary": {
       "channel": "webhook",
-      "target": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+      "target": "REDACTED-SECRET"
     }
   },
   "digest": {

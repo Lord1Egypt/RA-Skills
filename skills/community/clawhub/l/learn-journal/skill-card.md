@@ -1,40 +1,50 @@
-## Description: <br>
-学习日志系统 helps agents record, classify, and retain task learnings, errors, tool discoveries, and decisions in local workspace journal files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A learning journal skill that helps an agent record task retrospectives, errors, tool discoveries, methods, and important decisions into persistent workspace notes.
 
-## Publisher: <br>
-[lijianqiang666](https://clawhub.ai/user/lijianqiang666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lijianqiang666](https://clawhub.ai/user/lijianqiang666)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep persistent learning notes after important work, failures, tool discoveries, workflow improvements, and configuration decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create local plaintext learning notes that may include sensitive information if users or agents record it. <br>
-Mitigation: Use it only where persistent local notes are intended, avoid secrets and private data in entries, and set the workspace explicitly when using the helper script. <br>
+## Use Case:
 
+Developers and agent operators use this skill to keep durable learning notes across sessions, especially after completed tasks, failures, new tool discoveries, workflow improvements, and configuration decisions.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/lijianqiang666/learn-journal) <br>
-- [Publisher profile](https://clawhub.ai/user/lijianqiang666) <br>
-- [Learning journal writing patterns](artifact/references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional Python helper usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local plaintext journal entries when the helper script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill keeps durable learning notes in workspace files, which can unintentionally preserve secrets, credentials, private customer data, or sensitive incident details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review journal content before and after use, and avoid recording secrets, credentials, private customer data, or sensitive incident details in MEMORY.md or .learnings files.
+
+## Reference(s):
+
+- [学习日志参考：写作模式与示例](artifact/references/patterns.md)
+- [ClawHub skill page](https://clawhub.ai/lijianqiang666/skills/learn-journal)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown journal entries and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append persistent notes to workspace learning files such as MEMORY.md, memory/YYYY-MM-DD.md, or .learnings/LEARNINGS.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

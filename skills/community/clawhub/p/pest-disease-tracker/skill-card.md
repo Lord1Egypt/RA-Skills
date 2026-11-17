@@ -1,41 +1,55 @@
-## Description: <br>
-Tracks garden pests and diseases, logs treatments, monitors effectiveness, and provides treatment recommendations for home gardeners and small farmers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track garden pests and diseases with treatments, treatment history, effectiveness monitoring, and control recommendations for home gardeners and small farmers.
 
-## Publisher: <br>
-[johstracke](https://clawhub.ai/user/johstracke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johstracke](https://clawhub.ai/user/johstracke)
 
-## Use Case: <br>
-External users such as home gardeners and small farmers use this skill to record pest and disease observations, track treatment history, monitor treatment effectiveness, and get garden problem recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Treatment recommendations may be incomplete, outdated, or unsuitable for a specific crop, product, region, or edible-crop restriction. <br>
-Mitigation: Verify the current product label, crop and pest compatibility, local rules, required protective equipment, child and pet precautions, and pre-harvest restrictions before acting. <br>
-Risk: The skill stores garden problem notes, affected plants, severity, treatments, and effectiveness history locally. <br>
-Mitigation: Use it only for information you are comfortable keeping in ~/.openclaw/workspace/pest_tracker_db.json and handle exported Markdown files accordingly. <br>
-Risk: Exported reports can persist in safe local directories and may contain treatment history or garden notes. <br>
-Mitigation: Export only to intended locations and review exported Markdown before sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johstracke/pest-disease-tracker) <br>
+## Use Case:
+
+External home gardeners and small farmers use this skill to log pest or disease issues, record treatments, search records, export Markdown summaries, and request treatment recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Markdown export can overwrite files in broad home or temporary paths.
+
+Mitigation: Use a dedicated export folder and avoid exporting over existing files.
+
+Risk: Pesticide and fungicide recommendations may not reflect product labels, local rules, protective equipment needs, or edible-crop suitability.
+
+Mitigation: Treat recommendations as general pointers; read product labels, follow local rules, use appropriate protective equipment, and confirm crop suitability.
+
+Risk: Garden records are stored locally under ~/.openclaw/workspace.
+
+Mitigation: Avoid recording sensitive personal information and manage local backups or deletion according to user needs.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [CLI text output, Markdown exports, and local JSON data files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores pest, disease, treatment, and effectiveness records locally under ~/.openclaw/workspace/pest_tracker_db.json.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text CLI responses and Markdown exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local garden records under ~/.openclaw/workspace and can export Markdown to user-selected paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

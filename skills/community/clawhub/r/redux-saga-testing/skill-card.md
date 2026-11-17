@@ -1,44 +1,61 @@
-## Description: <br>
-Write tests for Redux Sagas using redux-saga-test-plan, runSaga, and manual generator testing, covering expectSaga, testSaga, providers, partial matchers, reducer integration, error simulation, and cancellation testing with Jest and Vitest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents write robust Redux Saga tests using redux-saga-test-plan, runSaga, and manual generator testing patterns for Jest or Vitest.
 
-## Publisher: <br>
-[anivar](https://clawhub.ai/user/anivar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anivar](https://clawhub.ai/user/anivar)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to write maintainable Redux Saga tests, choose between expectSaga, testSaga, runSaga, and manual generator testing, and avoid brittle or incomplete saga test patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested dependency or skill installation commands may change a development environment. <br>
-Mitigation: Review install commands and dependency changes before running them, as recommended by the security guidance. <br>
-Risk: Saga tests can become brittle or misleading when they assert implementation order, omit providers, or skip async/error/cancellation paths. <br>
-Mitigation: Prefer expectSaga for behavior-focused tests, provide mocks for external calls, await saga execution, and cover error and cancellation paths using the documented reference patterns. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create behavior-focused Redux Saga tests, including integration tests, provider-based mocks, reducer integration, error-path coverage, and cancellation checks.
 
-## Reference(s): <br>
-- [Redux Saga Testing API Reference](references/api-reference.md) <br>
-- [Redux Saga Testing Anti-Patterns](references/anti-patterns.md) <br>
-- [ClawHub Redux Saga Testing Skill Page](https://clawhub.ai/anivar/redux-saga-testing) <br>
-- [Redux Saga Testing Source URL](https://github.com/anivar/redux-saga-testing) <br>
-- [Publisher Website](https://anivar.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides testing patterns and examples for Redux Saga projects using redux-saga-test-plan, Jest, or Vitest.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Unpinned global install commands can make it harder to reproduce or review the exact skill version being used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the skills installer and GitHub source to a reviewed release or commit, and prefer a project-local install when global availability is not required.
+
+Risk: Using incompatible Redux Saga testing dependencies can produce misleading or failing examples.
+
+Mitigation: Pin redux-saga-test-plan to the documented compatible major version and keep redux-saga aligned with the documented baseline.
+
+Risk: Generated saga tests may be brittle or incomplete if applied without project-specific review.
+
+Mitigation: Review generated tests, mock external effects with providers, cover error and cancellation paths, and run the project's Jest or Vitest suite.
+
+## Reference(s):
+
+- [Redux Saga Testing on ClawHub](https://clawhub.ai/anivar/skills/redux-saga-testing)
+- [Source repository](https://github.com/anivar/redux-saga-testing)
+- [Author profile](https://anivar.net)
+- [API Reference](references/api-reference.md)
+- [Anti-Patterns](references/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript or TypeScript code examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

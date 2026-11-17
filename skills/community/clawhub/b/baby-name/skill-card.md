@@ -1,43 +1,65 @@
-## Description: <br>
-宝宝取名专家，根据宝宝的生辰八字、父母姓氏等信息，生成寓意美好的名字，并通过配置的付费流程处理订单。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+宝宝取名 generates Chinese baby-name suggestions from family or birth-detail requests after a configured paid order flow.
 
-## Publisher: <br>
-[liulian822](https://clawhub.ai/user/liulian822) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liulian822](https://clawhub.ai/user/liulian822)
 
-## Use Case: <br>
-External users use this skill to request Chinese baby name suggestions after creating and paying for a local order. The skill creates order metadata, invokes a payment flow, verifies a stored payment credential, and returns a short list of recommended names. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence flags review concerns around the payment flow, local order storage, and payment/order data handling. <br>
-Mitigation: Review the configured payee, amount, and local order storage before installation, and require explicit user confirmation before creating an order or invoking payment. <br>
-Risk: The release evidence notes that the skill asks the agent to reveal internal reasoning. <br>
-Mitigation: Do not reveal hidden reasoning or internal chain-of-thought; provide concise user-facing summaries instead. <br>
-Risk: The release evidence notes that the implemented name generation may not provide true birth-date or surname-based personalization. <br>
-Mitigation: Describe generated names as simple suggestions and avoid representing them as verified birth-date, surname, or fortune-based analysis. <br>
+## Use Case:
 
+External users use this skill to create a paid order, confirm payment, and receive a short set of Chinese baby-name recommendations based on their stated naming needs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liulian822/baby-name) <br>
-- [Publisher profile](https://clawhub.ai/user/liulian822) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and text status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns order identifiers, payment status, error information, and generated Chinese name recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release evidence) <br>
+Risk: Payment, credential, and local-file behavior is mismatched or under-disclosed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before real payment use and require one documented authoritative payment configuration.
+
+Risk: Bundled recipient and secret values may route funds or validate payment credentials unexpectedly.
+
+Mitigation: Remove bundled production recipient and secret values and require operators to supply deployment-specific values.
+
+Risk: Local symmetric payment checks may not provide the assurance expected from a payment provider.
+
+Mitigation: Replace local symmetric payment checks with provider-issued signed credentials and verify the payment dependency.
+
+Risk: Local order-file handling can expose or misuse order data if paths are not constrained.
+
+Mitigation: Validate order paths and limit reads and writes to the expected order directory.
+
+Risk: The skill text asks for hidden reasoning to be shown to the user.
+
+Mitigation: Remove instructions asking for hidden reasoning and provide concise user-facing explanations instead.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liulian822/skills/baby-name)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and plain-text script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces order identifiers, payment status messages, error messages, and recommended Chinese names.]
+
+## Skill Version(s):
+
+1.2.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

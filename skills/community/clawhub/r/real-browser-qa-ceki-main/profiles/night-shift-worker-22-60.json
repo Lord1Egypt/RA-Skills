@@ -1,0 +1,41 @@
+{
+  "id": "night-shift-worker-22-60",
+  "label": "Night Shift Worker 22-60",
+  "emoji": "🌙",
+  "demographics": {
+    "gender": "any",
+    "age_range": [22, 60],
+    "tier": "mixed"
+  },
+  "active_hours": {
+    "description": "Inverted — active all night, sleeps during day",
+    "peak": [20, 0, 3, 6],
+    "off_peak_min": 4
+  },
+  "typing": {
+    "description": "Slower at night, more typos, higher backspace",
+    "wpm": { "min": 50, "max": 85 },
+    "profile": "careful",
+    "think_prob": 0.02,
+    "think_ms": [500, 2000],
+    "backspace_freq": 0.05
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Slower pace — fewer distractions, reads more thoroughly",
+    "speed_px_per_ms": { "min": 15, "max": 40 },
+    "pause_between_passes_ms": { "min": 500, "max": 2000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.6 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1500, "max": 5000 },
+    "pre_click_pause_ms": { "min": 300, "max": 1000 },
+    "inter_action_pause_ms": { "min": 500, "max": 2000 }
+  },
+  "mouse": {
+    "speed": 0.65,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Slower — fatigue effect"
+  }
+}

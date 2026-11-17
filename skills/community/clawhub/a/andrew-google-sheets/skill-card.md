@@ -1,43 +1,58 @@
-## Description: <br>
-Helps an agent set up OAuth 2.0 access and use the Google Sheets API to read, write, append, clear, create, and list spreadsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Andrew Google Sheets helps an agent set up OAuth 2.0 access and use the Google Sheets API to list, read, write, append, clear, create, and inspect spreadsheets.
 
-## Publisher: <br>
-[ibluewind](https://clawhub.ai/user/ibluewind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ibluewind](https://clawhub.ai/user/ibluewind)
 
-## Use Case: <br>
-Developers and external users can use this skill to connect an agent to Google Sheets for spreadsheet lookup, data entry, updates, creation, and range management through Google APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access that can read, write, create, and list spreadsheet data in the user's Google account. <br>
-Mitigation: Install only when that Google Sheets access is acceptable, review requested sheet operations before execution, and revoke the Google authorization when the skill is no longer needed. <br>
-Risk: The skill stores local OAuth credentials and token files. <br>
-Mitigation: Keep ~/.google-credentials.json and ~/.google-sheets-token.pickle private, exclude them from source control, and remove the token file to force reauthorization after credential changes. <br>
-Risk: Spreadsheet search and setup can expose spreadsheet names, IDs, and metadata to the local agent session. <br>
-Mitigation: Avoid using accounts containing unrelated sensitive spreadsheets, and verify spreadsheet IDs and ranges before read, write, clear, or append operations. <br>
+## Use Case:
 
+Developers and external users use this skill to connect an agent to Google Sheets through OAuth, then read, update, append, clear, create, and list spreadsheets from scripted workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ibluewind/andrew-google-sheets) <br>
-- [Google Sheets OAuth scope](https://www.googleapis.com/auth/spreadsheets) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, read, update, append, clear, list, and format Google Sheets data when invoked with authorized OAuth credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local OAuth token storage uses pickle loading, which can execute code if the token file is tampered with.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace pickle token storage with Google's JSON credential serialization before use and protect local credential files.
+
+Risk: The skill requests broad Google Sheets access and can write, append, clear, or overwrite spreadsheet ranges.
+
+Mitigation: Use a dedicated Google account or least-privilege workspace, review target spreadsheet IDs and ranges, and require explicit confirmation before destructive writes or clears.
+
+Risk: Runtime dependencies are installed from package indexes and are not pinned by the artifact.
+
+Mitigation: Pin and review dependencies in a dedicated virtual environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ibluewind/skills/andrew-google-sheets)
+- [Google Sheets OAuth scope](https://www.googleapis.com/auth/spreadsheets)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local Google OAuth credentials and stores a local Sheets token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

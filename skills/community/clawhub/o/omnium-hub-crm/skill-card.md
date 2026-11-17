@@ -1,42 +1,57 @@
-## Description: <br>
-Manage Omnium Hub CRM (contacts, opportunities, appointments). Use for all CRM-related tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Omnium Hub CRM (contacts, opportunities, appointments). Use for all CRM-related tasks.
 
-## Publisher: <br>
-[omniumhub](https://clawhub.ai/user/omniumhub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[omniumhub](https://clawhub.ai/user/omniumhub)
 
-## Use Case: <br>
-External users and CRM operators use this skill to look up, create, and update Omnium Hub contacts and to list or create opportunities through a LeadConnector-compatible API. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify Omnium Hub CRM records when supplied with a compatible API key. <br>
-Mitigation: Use a limited, revocable API key where possible and review create or update operations before running them. <br>
-Risk: Supplying API keys directly in prompts or shell commands can expose credentials in logs or command history. <br>
-Mitigation: Avoid placing the key in persistent chat or shell history, and rotate the key if exposure is suspected. <br>
-Risk: The CRM client targets services.leadconnectorhq.com, which may not be the intended backend for every account. <br>
-Mitigation: Verify that services.leadconnectorhq.com is the correct backend for the user's Omnium Hub account before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Omnium Hub CRM on ClawHub](https://clawhub.ai/omniumhub/omnium-hub-crm) <br>
-- [LeadConnector-compatible API endpoint](https://services.leadconnectorhq.com) <br>
+## Use Case:
 
+CRM operators and agents use this skill to look up, create, and update contacts and to list or create CRM opportunities through Omnium Hub workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON responses from the CRM client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-provided Omnium Hub API key and prints API responses as formatted JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a live Omnium Hub API key and may expose it through command-line usage.
+
+Mitigation: Use a narrowly scoped, revocable API key and prefer protected storage or environment variables for secret handling.
+
+Risk: The skill can send or change CRM contact and opportunity data through LeadConnectorHQ services.
+
+Mitigation: Install only after confirming LeadConnectorHQ is the intended Omnium Hub API provider and reviewing the supported actions and external host.
+
+Risk: CRM contact and opportunity data may be printed in command output or logs.
+
+Mitigation: Avoid running the skill where command output is broadly logged, and review output handling before processing sensitive CRM records.
+
+## Reference(s):
+
+- [Omnium Hub CRM skill page](https://clawhub.ai/omniumhub/skills/omnium-hub-crm)
+- [LeadConnectorHQ services endpoint](https://services.leadconnectorhq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON responses from the CRM client]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an Omnium Hub API key and command parameters for the selected contacts or opportunities action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

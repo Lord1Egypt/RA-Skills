@@ -1,47 +1,64 @@
-## Description: <br>
-Integrated OpenClaw skill evaluation toolkit that combines static analysis, a 25-criterion rubric, and agent-orchestrated benchmark workflows to evaluate, compare, audit, and improve skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Skill-Eval helps agents evaluate, audit, benchmark, compare, and improve OpenClaw skills through static analysis, rubric scoring, and autonomous benchmark workflows.
 
-## Publisher: <br>
-[wangzairong](https://clawhub.ai/user/wangzairong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzairong](https://clawhub.ai/user/wangzairong)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to assess OpenClaw skills before publishing or revising them. It supports quick static checks, detailed rubric scoring, benchmark comparison, and evaluation report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluator scripts run against local skill directories and may inspect or process sensitive skill contents. <br>
-Mitigation: Run the toolkit only on skill directories you trust or inside a sandbox, and avoid supplying unnecessary credentials or private data. <br>
-Risk: Benchmark workflows can involve broad agent execution against target skills. <br>
-Mitigation: Use benchmark mode only with trusted or sandboxed target skills and review generated outputs before reuse. <br>
-Risk: Generated leaderboard HTML may be unsafe when built from untrusted skill cards. <br>
-Mitigation: Avoid opening generated leaderboard HTML from untrusted inputs until the HTML escaping issue identified by security evidence is fixed. <br>
-Risk: Generated skill rewrites or improvement suggestions may introduce inaccurate or risky guidance. <br>
-Mitigation: Review and scan any generated rewrite before making it active. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to assess OpenClaw skills before release or revision. It supports quick static checks, detailed rubric scoring, benchmark comparison, and report generation.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/wangzairong/multi-skill-eval) <br>
-- [Evaluation rubric](references/rubric.md) <br>
-- [Evaluation template](assets/EVAL-TEMPLATE.md) <br>
-- [SkillLens security scanner](https://www.npmjs.com/package/skilllens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, JSON grading data, leaderboard HTML, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Benchmark mode depends on trusted or sandboxed target skills and agent execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The audit workflow is under-scoped and may produce incomplete or misleading evaluation conclusions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated findings before acting on them, and treat benchmark or rubric output as decision support rather than an automatic release gate.
+
+Risk: Skills submitted for evaluation may be exposed to the selected model or provider during benchmark workflows.
+
+Mitigation: Run the skill only on artifacts that are acceptable to share with the selected model/provider, and avoid submitting sensitive or private skill content unless the provider arrangement permits it.
+
+Risk: Generated leaderboard HTML can include unsafe unescaped content from untrusted cards.
+
+Mitigation: Do not open or publish generated leaderboards from untrusted card inputs until HTML escaping is fixed or the output has been reviewed in an isolated environment.
+
+Risk: Third-party scanner execution can introduce supply-chain and execution-environment risk.
+
+Mitigation: Run scanners in an isolated environment with pinned versions and review the scanner command before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangzairong/skills/multi-skill-eval)
+- [Evaluation rubric](references/rubric.md)
+- [Evaluation template](assets/EVAL-TEMPLATE.md)
+- [SkillLens package](https://www.npmjs.com/package/skilllens)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON grading summaries, Markdown skill cards, and HTML leaderboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create report files such as EVAL.md, grading.json, benchmark summaries, skill cards, and leaderboard HTML when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

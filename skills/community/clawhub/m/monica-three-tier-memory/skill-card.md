@@ -1,40 +1,53 @@
-## Description: <br>
-Three Tier Memory manages an AI agent's short-term sliding-window memory, medium-term summaries, and long-term retrieval for conversation continuity and persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Three Tier Memory helps agents manage short-term, summary-based medium-term, and vector-retrieved long-term memory for conversation history, context compression, personal knowledge bases, and persistent recall.
 
-## Publisher: <br>
-[forvendettaw](https://clawhub.ai/user/forvendettaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[forvendettaw](https://clawhub.ai/user/forvendettaw)
 
-## Use Case: <br>
-Developers and agent operators use this skill to keep local conversation memory across sessions, summarize recent context, and retrieve longer-term memories before or during future conversations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally stores conversation memories locally, which may include sensitive personal or business data. <br>
-Mitigation: Set WORKSPACE_DIR deliberately, avoid storing secrets or sensitive data, and periodically review or delete the memory directory. <br>
-Risk: Long-term memory depends on ChromaDB when that feature is used. <br>
-Mitigation: Install ChromaDB only from trusted, pinned versions and keep the vector-store directory within the intended workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Memory Manager Command Reference](references/references.md) <br>
-- [ClawHub skill page](https://clawhub.ai/forvendettaw/monica-three-tier-memory) <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local memory workflows to agents: sliding-window context for active conversations, summaries for compressed history, and ChromaDB-backed retrieval for longer-term recall.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON/YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local memory files under WORKSPACE_DIR/memory and can use ChromaDB for long-term retrieval when installed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist arbitrary conversation and preference data in plaintext local files.
+
+Mitigation: Use it only with informed consent and add retention, deletion, encryption, and file-permission controls before storing sensitive data.
+
+Risk: Secrets, credentials, regulated personal data, or confidential business information may be captured in memory content.
+
+Mitigation: Avoid storing sensitive content unless appropriate consent, access control, retention, and deletion safeguards are implemented.
+
+## Reference(s):
+
+- [Memory Manager command reference](references/references.md)
+- [ClawHub skill page](https://clawhub.ai/forvendettaw/skills/monica-three-tier-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash and Python examples; CLI text output and JSON memory files when scripts are run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local memory files under a workspace memory directory and uses ChromaDB for long-term retrieval when installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

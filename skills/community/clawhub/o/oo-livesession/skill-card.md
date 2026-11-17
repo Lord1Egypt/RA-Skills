@@ -1,42 +1,52 @@
-## Description: <br>
-LiveSession (livesession.io) supports searching and reading LiveSession session replay data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List LiveSession session replays through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to list LiveSession session replays with pagination and common filters through the OOMOL `oo` CLI. It is intended for read-only LiveSession requests where the agent should inspect the live connector schema before running an action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Session listings may expose customer or visitor activity data from LiveSession. <br>
-Mitigation: Install and use the skill only in workspaces where agent access to LiveSession replay metadata is appropriate. <br>
-Risk: Expired credentials, missing scopes, or billing limits can prevent connector execution. <br>
-Mitigation: Use the documented OOMOL setup and troubleshooting steps only after an action fails for the matching reason. <br>
+## Use Case:
 
+Developers and analysts can list LiveSession session replays with pagination and common filters, then use the returned data to find relevant sessions.
 
-## Reference(s): <br>
-- [LiveSession homepage](https://livesession.io) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only connector responses are returned as JSON from the `oo` CLI, including data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Initial setup can automatically execute unverified remote code without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI and installer, check installation effects including bundled-skill synchronization, and confirm OOMOL access to LiveSession data before setup.
+
+## Reference(s):
+
+- [LiveSession](https://livesession.io)
+- [LiveSession API authentication documentation](https://livesession.dev/docs/api/authentication)
+- [oo CLI source repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Text or Markdown summaries with inline shell commands and JSON input examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Session data depends on the connected LiveSession account; the listed action supports pagination and common filters.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

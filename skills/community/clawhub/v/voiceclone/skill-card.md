@@ -1,41 +1,64 @@
-## Description: <br>
-Voice cloning and TTS using MiniMax API. User must provide a voice name when cloning; after success, voice_name->voice_id is written back to this skill doc for reuse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides MiniMax API voice cloning and text-to-speech workflows, including optional write-back of cloned voice mappings for reuse.
 
-## Publisher: <br>
-[SocketNet](https://clawhub.ai/user/SocketNet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[socketnet](https://clawhub.ai/user/socketnet)
 
-## Use Case: <br>
-Developers and agent users use this skill to clone a user-provided voice with MiniMax, synthesize text with a cloned or existing voice, and reuse saved display-name to voice-id mappings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads voice samples to MiniMax for cloning and stores reusable voice mappings, which can involve sensitive voice data and consent obligations. <br>
-Mitigation: Use only voice data the user has rights and consent to clone, keep MiniMax API keys in environment variables, and review saved voice mappings before reuse. <br>
+## Use Case:
 
+External users and developers use this skill to clone user-provided voice audio with MiniMax and synthesize speech from cloned or existing voices. It also helps retain display-name to voice-id mappings for later TTS reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SocketNet/voiceclone) <br>
-- [MiniMax upload clone audio endpoint](https://api.minimax.io/v1/files/upload) <br>
-- [MiniMax voice clone endpoint](https://api.minimax.io/v1/voice_clone) <br>
-- [MiniMax text-to-speech endpoint](https://api.minimax.io/v1/t2a_v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, audio files] <br>
-**Output Format:** [Markdown instructions with Python CLI commands; the script can produce audio files and update SKILL.md voice mappings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key and user-provided audio that meets the documented format, duration, and size limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The write-back feature can persist unsanitized display names or voice identifiers into the skill instruction file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted voice names and display names, review mapping changes before reuse, and prefer a version that validates or escapes mapping fields.
+
+Risk: The registry path option can point outside the documented skill file scope.
+
+Mitigation: Use trusted registry paths only, avoid overriding the default skill file path, and prefer a version that removes or restricts the registry path option.
+
+Risk: The skill sends user audio and text to MiniMax using a MiniMax API key.
+
+Mitigation: Run only with authorized audio and text, protect API keys in environment variables, and confirm third-party API use is acceptable for the data involved.
+
+Risk: Dependencies are not pinned to exact versions.
+
+Mitigation: Install in an isolated environment and prefer a release that pins dependencies for repeatable review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/socketnet/skills/voiceclone)
+- [MiniMax Upload Clone Audio API](https://api.minimax.io/v1/files/upload)
+- [MiniMax Voice Clone API](https://api.minimax.io/v1/voice_clone)
+- [MiniMax Text-to-Audio API](https://api.minimax.io/v1/t2a_v2)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, API calls, Files]
+
+**Output Format:** [Markdown instructions with shell command examples; runtime output is synthesized audio files and cloned voice mapping entries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MiniMax API key; clone audio is uploaded to MiniMax and synthesized audio is written to the requested output path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

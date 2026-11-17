@@ -1,0 +1,302 @@
+{
+  "emoji": "⚾",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk"
+    ]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Simmer SDK API key. Required for paper and live market access."
+    },
+    {
+      "name": "SIMMER_MLB_STATE_PATH",
+      "required": false,
+      "description": "Optional absolute path for a shared live risk ledger and lock."
+    }
+  ],
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "mlb_live_trader.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_POSITION_SIZING",
+      "type": "string",
+      "default": "fractional_kelly",
+      "label": "Position sizing method"
+    },
+    {
+      "env": "SIMMER_KELLY_MULTIPLIER",
+      "type": "number",
+      "default": 0.2,
+      "range": [0.05, 1.0],
+      "step": 0.05,
+      "label": "Kelly multiplier"
+    },
+    {
+      "env": "SIMMER_MIN_EV",
+      "type": "number",
+      "default": 0.0,
+      "range": [0.0, 0.2],
+      "step": 0.005,
+      "label": "Additional SDK minimum EV"
+    },
+    {
+      "env": "SIMMER_MLB_PAPER_MIN_EDGE",
+      "type": "number",
+      "default": 0.02,
+      "range": [0.0, 0.2],
+      "step": 0.005,
+      "label": "Paper minimum edge"
+    },
+    {
+      "env": "SIMMER_MLB_LIVE_MIN_EDGE",
+      "type": "number",
+      "default": 0.03,
+      "range": [0.0, 0.2],
+      "step": 0.005,
+      "label": "Live minimum edge"
+    },
+    {
+      "env": "SIMMER_MLB_EARLY_PENALTY",
+      "type": "number",
+      "default": 0.02,
+      "range": [0.0, 0.1],
+      "step": 0.005,
+      "label": "Early-inning penalty"
+    },
+    {
+      "env": "SIMMER_MLB_MIDDLE_PENALTY",
+      "type": "number",
+      "default": 0.01,
+      "range": [0.0, 0.1],
+      "step": 0.005,
+      "label": "Middle-inning penalty"
+    },
+    {
+      "env": "SIMMER_MLB_SUMMARY_PENALTY",
+      "type": "number",
+      "default": 0.0125,
+      "range": [0.0, 0.1],
+      "step": 0.0025,
+      "label": "Summary-source penalty"
+    },
+    {
+      "env": "SIMMER_MLB_SCORE_PENALTY",
+      "type": "number",
+      "default": 0.04,
+      "range": [0.0, 0.15],
+      "step": 0.005,
+      "label": "Score-fallback penalty"
+    },
+    {
+      "env": "SIMMER_MLB_STALE_AFTER",
+      "type": "number",
+      "default": 30.0,
+      "range": [5.0, 180.0],
+      "step": 5.0,
+      "label": "Signal age grace period"
+    },
+    {
+      "env": "SIMMER_MLB_STALE_PENALTY",
+      "type": "number",
+      "default": 0.005,
+      "range": [0.0, 0.03],
+      "step": 0.001,
+      "label": "Stale penalty per minute"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_STALE_PENALTY",
+      "type": "number",
+      "default": 0.02,
+      "range": [0.0, 0.1],
+      "step": 0.005,
+      "label": "Maximum stale penalty"
+    },
+    {
+      "env": "SIMMER_MLB_WIDE_SPREAD_AFTER",
+      "type": "number",
+      "default": 0.04,
+      "range": [0.0, 0.2],
+      "step": 0.005,
+      "label": "Wide-spread threshold"
+    },
+    {
+      "env": "SIMMER_MLB_SPREAD_PENALTY",
+      "type": "number",
+      "default": 0.5,
+      "range": [0.0, 2.0],
+      "step": 0.05,
+      "label": "Spread penalty multiplier"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_SPREAD_PENALTY",
+      "type": "number",
+      "default": 0.03,
+      "range": [0.0, 0.1],
+      "step": 0.005,
+      "label": "Maximum spread penalty"
+    },
+    {
+      "env": "SIMMER_MLB_FALLBACK_FEE_BPS",
+      "type": "number",
+      "default": 0.0,
+      "range": [0.0, 1000.0],
+      "step": 5.0,
+      "label": "Fallback fee in basis points"
+    },
+    {
+      "env": "SIMMER_MLB_EXECUTION_BUFFER",
+      "type": "number",
+      "default": 0.0,
+      "range": [0.0, 0.05],
+      "step": 0.001,
+      "label": "Execution buffer"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_QUOTE_AGE",
+      "type": "number",
+      "default": 60.0,
+      "range": [5.0, 300.0],
+      "step": 5.0,
+      "label": "Maximum quote age in seconds"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_SIGNAL_AGE",
+      "type": "number",
+      "default": 90.0,
+      "range": [5.0, 300.0],
+      "step": 5.0,
+      "label": "Maximum live ESPN signal age in seconds"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_SIGNAL_FUTURE_SKEW",
+      "type": "number",
+      "default": 5.0,
+      "range": [0.0, 30.0],
+      "step": 1.0,
+      "label": "Maximum ESPN future timestamp skew in seconds"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_SPREAD_PAPER",
+      "type": "number",
+      "default": 0.14,
+      "range": [0.01, 0.5],
+      "step": 0.01,
+      "label": "Paper hard spread limit"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_SPREAD_LIVE",
+      "type": "number",
+      "default": 0.1,
+      "range": [0.01, 0.5],
+      "step": 0.01,
+      "label": "Live hard spread limit"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_POSITION",
+      "type": "number",
+      "default": 5.0,
+      "range": [1.0, 1000.0],
+      "step": 1.0,
+      "label": "Maximum position in USD"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_BANKROLL_FRACTION",
+      "type": "number",
+      "default": 0.05,
+      "range": [0.001, 0.5],
+      "step": 0.005,
+      "label": "Bankroll fraction cap"
+    },
+    {
+      "env": "SIMMER_MLB_MIN_TRADE",
+      "type": "number",
+      "default": 1.0,
+      "range": [1.0, 100.0],
+      "step": 1.0,
+      "label": "Minimum trade in USD"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_TRADES_RUN",
+      "type": "number",
+      "default": 4,
+      "range": [1, 20],
+      "step": 1,
+      "label": "Maximum trades per run"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_TRADES_DAY",
+      "type": "number",
+      "default": 12,
+      "range": [1, 100],
+      "step": 1,
+      "label": "Maximum live trades per day"
+    },
+    {
+      "env": "SIMMER_MLB_DAILY_BUDGET",
+      "type": "number",
+      "default": 25.0,
+      "range": [1.0, 10000.0],
+      "step": 1.0,
+      "label": "Live daily budget in USD"
+    },
+    {
+      "env": "SIMMER_MLB_PAPER_BANKROLL",
+      "type": "number",
+      "default": 100.0,
+      "range": [10.0, 100000.0],
+      "step": 10.0,
+      "label": "Paper bankroll"
+    },
+    {
+      "env": "SIMMER_MLB_SCORE_FALLBACK_PAPER",
+      "type": "boolean",
+      "default": true,
+      "label": "Allow score fallback in paper"
+    },
+    {
+      "env": "SIMMER_MLB_SCORE_FALLBACK_LIVE",
+      "type": "boolean",
+      "default": false,
+      "label": "Allow score fallback in live"
+    },
+    {
+      "env": "SIMMER_MLB_MAX_SLIPPAGE",
+      "type": "number",
+      "default": 0.12,
+      "range": [0.0, 0.5],
+      "step": 0.01,
+      "label": "Maximum context slippage"
+    },
+    {
+      "env": "SIMMER_MLB_SYNTHETIC_SPREAD",
+      "type": "number",
+      "default": 0.01,
+      "range": [0.0, 0.1],
+      "step": 0.005,
+      "label": "Synthetic spread fallback"
+    },
+    {
+      "env": "SIMMER_MLB_MARKET_QUERY",
+      "type": "string",
+      "default": "MLB",
+      "label": "Market search query"
+    },
+    {
+      "env": "SIMMER_MLB_ORDER_TYPE",
+      "type": "string",
+      "default": "FAK",
+      "label": "Polymarket order type"
+    }
+  ]
+}

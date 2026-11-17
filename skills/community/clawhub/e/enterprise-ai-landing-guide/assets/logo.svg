@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">企业AI落地导航</title>
+  <desc id="desc">蓝紫色导航路径与企业节点</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#246BFD"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#F5F7FF"/>
+  <path d="M128 346c0-87 46-180 142-180h44" fill="none" stroke="url(#g)" stroke-width="34" stroke-linecap="round"/>
+  <path d="m290 119 67 47-67 47" fill="none" stroke="url(#g)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="128" cy="346" r="45" fill="url(#g)"/>
+  <rect x="277" y="276" width="111" height="111" rx="24" fill="url(#g)"/>
+  <path d="M310 348v-38h19c16 0 25 7 25 19s-9 19-25 19h-19Zm17-13h4c5 0 8-2 8-6s-3-6-8-6h-4v12Z" fill="#fff"/>
+</svg>

@@ -1,0 +1,9 @@
+{
+  "categories": ["tutorial", "reference", "guide", "faq"],
+  "tags": ["api", "setup", "configuration", "troubleshooting", "workflow"],
+  "related": {
+    "api": ["getting-started", "authentication"],
+    "setup": ["configuration"],
+    "troubleshooting": ["faq"]
+  }
+}

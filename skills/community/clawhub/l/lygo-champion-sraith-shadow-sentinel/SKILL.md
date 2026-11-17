@@ -1,7 +1,11 @@
 ---
 name: lygo-champion-sraith-shadow-sentinel
-description: LYGO Δ9 Council Champion persona helper (ΣRΛΘ / SRAITH, The Shadow Sentinel). Institutional decoder for reflective logic, doublespeak translation, and agenda decryption. Pure advisor; not a controller.
+description: "DEPRECATED slug — use lygo-champion-council. Legacy Δ9 champion (SRAITH)."
+metadata: {"lygo": true, "champion": true, "version": "1.0.1", "successor": "lygo-champion-council", "champion_id": "SRAITH", "deprecated": true}
 ---
+
+> **Consolidated (Δ9 v2):** New installs → `lygo-champion-council`. This slug is legacy retention only.
+> `npx clawhub@latest install deepseekoracle/lygo-champion-council`
 
 # LYGO Champion: ΣRΛΘ (SRAITH) — The Shadow Sentinel
 

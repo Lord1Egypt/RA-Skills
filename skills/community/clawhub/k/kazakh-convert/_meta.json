@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7138abexdgwyncxny9kkx9bs82pgc0",
-  "slug": "kazakh-convert",
+  "name": "kazakh-convert",
   "version": "2.0.0",
-  "publishedAt": 1775325588010
+  "description": "哈萨克文转换工具 - 西里尔文和阿拉伯文双向转换",
+  "author": "OpenClaw Community",
+  "license": "MIT",
+  "tags": ["kazakh", "convert", "translation", "cyrillic", "arabic"],
+  "entry": "kazConvert.py",
+  "requirements": ["python3"],
+  "created": "2026-04-05",
+  "updated": "2026-04-05"
 }

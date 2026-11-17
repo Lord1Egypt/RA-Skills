@@ -1,39 +1,62 @@
-## Description: <br>
-Helps configure a four-agent healthcare triage workflow for patient intake, symptom analysis, appointment scheduling, and encounter records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy a healthcare triage system with four agents for patient intake, symptom analysis, appointment scheduling, and HIPAA-compliant records.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and healthcare operations teams use this skill to set up coordinated Pilot agents for intake, triage routing, scheduling, and record handling in a healthcare workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive patient data while the release evidence says it overstates HIPAA readiness and omits basic privacy and deployment safeguards. <br>
-Mitigation: Use only synthetic data until encryption, access controls, audit retention, credential handling, EHR/calendar agreements, and legal/compliance approval have been verified; do not treat HIPAA wording as proof of compliance. <br>
+## Use Case:
 
+Developers and operators use this skill to configure a four-agent healthcare triage setup that routes patient intake data through symptom analysis, appointment scheduling, and records management workflows.
 
-## Reference(s): <br>
-- [Pilot Protocol Homepage](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-healthcare-triage-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown instructions with bash commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, clawhub, the pilot-protocol skill, and a running daemon; generated configuration uses role and hostname placeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow handles patient medical data with under-documented safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use real patient data until approved PHI controls cover transport, storage, audit logs, retention, access control, and command-history or process-argument exposure.
+
+Risk: The setup installs mutable dependencies.
+
+Mitigation: Pin and review all required skills and binaries before deployment.
+
+Risk: Incorrect peer identity or hostname configuration could route sensitive data to the wrong agent.
+
+Mitigation: Verify peer identities and validate hostnames before handshakes, subscriptions, or publishing patient-related events.
+
+Risk: Illustrative medical payloads could be mistaken for approved production test data.
+
+Mitigation: Use synthetic test data and replace examples before any deployment review.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-healthcare-triage-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup guidance, hostnames, handshakes, subscriptions, and manifest content for a Pilot healthcare triage deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

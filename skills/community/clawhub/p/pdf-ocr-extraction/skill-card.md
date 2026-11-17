@@ -1,40 +1,58 @@
-## Description: <br>
-Extract text from image-based or scanned PDFs using Tesseract OCR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from image-based or scanned PDFs using Tesseract OCR.
 
-## Publisher: <br>
-[bilicen700](https://clawhub.ai/user/bilicen700) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bilicen700](https://clawhub.ai/user/bilicen700)
 
-## Use Case: <br>
-Developers and document-processing users use this skill to extract OCR text from scanned or image-based PDFs locally, without sending documents to third-party APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive PDF contents may be rendered into temporary page images during OCR. <br>
-Mitigation: Run the skill in a trusted environment, use secure per-run temporary files, store temporary images only under /tmp, and delete them immediately after extraction. <br>
-Risk: OCR behavior depends on local Tesseract, language packs, and Python packages being present and trustworthy. <br>
-Mitigation: Install Tesseract, language data packs, pypdfium2, pytesseract, and Pillow from trusted package sources before use; do not download or install dependencies dynamically at runtime. <br>
+## Use Case:
 
+Developers and agents use this skill to extract text from scanned or image-only PDF documents in local environments where Tesseract and the required Python packages are installed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bilicen700/pdf-ocr-extraction) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Tesseract, language data packs, Python 3, pypdfium2, pytesseract, and Pillow; temporary page images should be cleaned up after OCR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Temporary OCR images may expose document content if written to predictable shared paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use in-memory OCR or a private randomized temporary directory, and remove temporary images immediately after processing.
+
+Risk: OCR quality or coverage may be poor when the required Tesseract language packs are missing or the wrong language option is used.
+
+Mitigation: Install the needed language packs before use and set the Tesseract language option to match the document.
+
+Risk: Runtime dependency installation can introduce operational and security uncertainty.
+
+Mitigation: Pre-install Tesseract, language packs, pypdfium2, pytesseract, and Pillow in a least-privileged environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bilicen700/skills/pdf-ocr-extraction)
+- [Publisher profile](https://clawhub.ai/user/bilicen700)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR output depends on installed Tesseract language packs and document image quality.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

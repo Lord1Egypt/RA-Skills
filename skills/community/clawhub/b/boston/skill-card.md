@@ -1,41 +1,53 @@
-## Description: <br>
-Navigate Boston as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Boston as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users ask about visiting, moving to, studying in, working in, or starting a business in Boston. The skill helps an agent provide practical city guidance across neighborhoods, transportation, cost of living, food, healthcare, education, safety, and local services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local guidance involving medical, legal, immigration, alcohol, housing, transit, price, or safety details may be outdated or incomplete. <br>
-Mitigation: Use the skill as a static local guide and independently verify consequential details with current official sources or qualified professionals before acting. <br>
-Risk: Users may over-rely on concise city guidance for high-impact relocation, business, healthcare, or safety decisions. <br>
-Mitigation: Frame answers as practical guidance, preserve uncertainty, and direct users to authoritative local sources for decisions with financial, legal, medical, or personal-safety consequences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/boston) <br>
-- [Skill homepage](https://clawic.com/skills/boston) <br>
-- [Boston skill guide](artifact/SKILL.md) <br>
+## Use Case:
 
+External users use this skill to answer Boston travel, relocation, student, career, startup, and local-life questions with practical neighborhood, transport, cost, safety, healthcare, education, and food guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text city guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only local guide; no executable tools, API calls, credential requirements, or hidden agent behavior were identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Some city-guide details can become stale, especially medical, legal, immigration, tax, alcohol, transit, and pricing information.
+
+Mitigation: Treat those sections as starting points and verify important decisions with official sources or qualified professionals.
+
+Risk: Users may over-rely on static guidance for consequential Boston relocation, healthcare, immigration, safety, or business decisions.
+
+Mitigation: Use the skill for orientation and require current authoritative confirmation before acting on high-stakes advice.
+
+## Reference(s):
+
+- [Boston skill page](https://clawhub.ai/ivangdavila/skills/boston)
+- [Boston skill homepage](https://clawic.com/skills/boston)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static Boston reference guidance; current or high-stakes details need verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

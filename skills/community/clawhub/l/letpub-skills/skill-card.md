@@ -1,42 +1,56 @@
-## Description: <br>
-LetPub Skills helps agents retrieve LetPub journal details, collect submission comments, and recommend journals for manuscript targeting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LetPub Skills helps agents query LetPub journal details, collect and analyze submission comments, and recommend journals for manuscript submission.
 
-## Publisher: <br>
-[yon8](https://clawhub.ai/user/yon8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yon8](https://clawhub.ai/user/yon8)
 
-## Use Case: <br>
-Developers, researchers, and agent builders use this skill to query LetPub journal metadata, gather logged-in user comments, analyze journal fit, and produce candidate journal recommendations from manuscript context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores LetPub passwords and session cookies in plaintext and reuses them automatically. <br>
-Mitigation: Use a dedicated low-risk LetPub account, avoid reusing important passwords, keep credentials.json and cookies.json out of source control and shared folders, and delete them after use. <br>
+## Use Case:
 
+Researchers, publication advisors, and writing-support agents use this skill to look up journal metadata, assess LetPub submission comments, and produce journal recommendations from a manuscript abstract and target constraints.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yon8/letpub-skills) <br>
-- [Get journal detail reference](references/get_journal_detail.md) <br>
-- [Get journal comments reference](references/get_journal_comments.md) <br>
-- [Search journal reference](references/search_journal.md) <br>
-- [LetPub](https://www.letpub.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples and parsed journal data summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a LetPub account, local credentials.json, and cookies.json for comment retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security evidence reports a suspicious verdict because the skill handles LetPub login credentials and session cookies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that handling is acceptable; keep credentials and cookies out of version control, logs, and backups, restrict access to the files, and rotate or revoke them if exposed.
+
+Risk: Artifact behavior includes storing LetPub credentials in assets/credentials.json and cookies in assets/cookies.json, and login helper output can include sensitive response or cookie data.
+
+Mitigation: Use a dedicated account where possible, avoid running login flows in shared terminals or CI logs, and scrub terminal output before sharing diagnostics.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/yon8/skills/letpub-skills)
+- [Search journal reference](artifact/references/search_journal.md)
+- [Journal detail reference](artifact/references/get_journal_detail.md)
+- [Journal comments reference](artifact/references/get_journal_comments.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include parsed journal data, comment analysis summaries, recommendation rationale, and credential or cookie setup guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

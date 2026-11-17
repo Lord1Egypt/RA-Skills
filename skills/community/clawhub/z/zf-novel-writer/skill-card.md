@@ -1,44 +1,61 @@
-## Description: <br>
-ZF-novel-writer helps OpenClaw agents plan, draft, quality-check, and archive long-form novel chapters with continuity tracking and outline-driven workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZF-novel-writer coordinates Orchestrator, Writer, and Quality agents to plan, draft, check, and archive long-form novel chapters using local project files and the host agent model.
 
-## Publisher: <br>
-[huangfeixia0101](https://clawhub.ai/user/huangfeixia0101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangfeixia0101](https://clawhub.ai/user/huangfeixia0101)
 
-## Use Case: <br>
-External authors and creative-writing agents use this skill to manage a multi-agent novel-writing workflow: outline-driven chapter planning, chapter drafting, quality checks, and continuity updates across a long-form project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run broad automated agent and file-writing workflows with weak scoping and unclear user control. <br>
-Mitigation: Use it only in a dedicated project directory, invoke it explicitly, and review generated file paths and planned actions before allowing helper scripts or agents to modify files. <br>
-Risk: Novel drafts, outlines, and continuity files may persist locally and could contain sensitive manuscript content. <br>
-Mitigation: Avoid using the workflow on sensitive manuscripts unless local prompt and file retention is acceptable, and review generated continuity files before sharing or publishing. <br>
+## Use Case:
 
+External authors and creative-writing developers use this skill to run a structured novel-writing workflow that plans chapters from outlines, generates draft text, checks quality, and updates continuity files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huangfeixia0101/zf-novel-writer) <br>
-- [README](artifact/README.md) <br>
-- [Tools guide](artifact/tools/README.md) <br>
-- [Architect agent design](artifact/docs/ARCHITECT_AGENT_DESIGN.md) <br>
-- [Orchestrator archive guide](artifact/ORCHESTRATOR_ARCHIVE_GUIDE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples; generated novel chapters as text files and continuity data as JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update project files such as chapter drafts, summaries, plans, and continuity records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0) <br>
+Risk: The security summary reports maintenance scripts that can silently rewrite hard-coded OpenClaw story files outside the active book context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit book paths, add backups and dry-run confirmation for archive and canon updates, and review file changes before accepting them.
+
+Risk: The skill can spawn sub-agents that modify local novel project files.
+
+Mitigation: Install only where sub-agent execution and local file modification are acceptable, and run it in a project workspace with version control.
+
+Risk: The artifact advertises a publishing feature that is not separately documented or permissioned in the provided evidence.
+
+Mitigation: Avoid relying on publishing behavior until it is documented, permissioned, and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangfeixia0101/skills/zf-novel-writer)
+- [README](artifact/README.md)
+- [Tools guide](artifact/tools/README.md)
+- [Architect Agent Design](artifact/docs/ARCHITECT_AGENT_DESIGN.md)
+- [Orchestrator Archive Guide](artifact/ORCHESTRATOR_ARCHIVE_GUIDE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text files, with JSON continuity files and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces chapter plans, chapter drafts, quality findings, archived chapter files, and continuity updates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

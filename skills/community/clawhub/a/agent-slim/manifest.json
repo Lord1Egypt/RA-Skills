@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "1.0",
+  "name": "agent-slim",
+  "slug": "agent-slim",
+  "displayName": "Agent 整体瘦身师",
+  "version": "0.3.0",
+  "status": "released",
+  "phase": "s9-generic-host",
+  "author": "lis",
+  "license": "MIT",
+  "description": "Agent 瘦身：盘点、注入测量、发布闸门、回滚；不删原件。",
+  "entrypoints": {
+    "acceptance": "docs/acceptance.md",
+    "adapterContract": "references/adapter-contract.md",
+    "architecture": "docs/architecture.md",
+    "auditContract": "docs/audit-json-contract.md",
+    "caseStudy": "references/case-workbuddy.md",
+    "executionContract": "docs/execution-contract.md",
+    "genericPlaybook": "references/generic-playbook.md",
+    "injectionBaseline": "references/baseline-20261109.json",
+    "injectionBudgets": "references/budgets.md",
+    "injectionDocs": "docs/injection-measurement.md",
+    "integrationRouting": "references/integration-routing.md",
+    "interface": "agents/openai.yaml",
+    "layoutSchema": "schemas/layout.schema.json",
+    "mcpMeasure": "references/mcp-measure.md",
+    "measurement": "references/measurement.md",
+    "planSchema": "schemas/plan.schema.json",
+    "readme": "README.md",
+    "readmeEn": "README.en.md",
+    "routingIndex": "references/routing-index.md",
+    "safety": "docs/safety.md",
+    "skill": "SKILL.md",
+    "transactionManifestSchema": "schemas/transaction-manifest.schema.json",
+    "usage": "docs/usage.md",
+    "verificationSchema": "schemas/verification.schema.json"
+  },
+  "hosts": {
+    "codex": {
+      "role": "builtin-layout",
+      "implementation": "audit-plan-apply-verify-restore",
+      "verified": true,
+      "verifiedScope": "s4-synthetic-aging-e2e-host-adapter; real-host-test-prompts-pending"
+    },
+    "workbuddy": {
+      "role": "builtin-layout",
+      "implementation": "audit-plan-apply-verify-restore",
+      "verified": true,
+      "verifiedScope": "2026-11-17: host detection, cjk-slug fix, layout inventory, apply-verify-restore hash loop",
+      "guide": "references/case-workbuddy.md"
+    },
+    "described": {
+      "role": "generic-layout-file",
+      "implementation": "audit-plan-apply-verify-restore",
+      "verified": true,
+      "verifiedScope": "layout-driven audit verified on a second host; any agent can be described without code changes",
+      "guide": "docs/usage.md"
+    }
+  },
+  "defaultMode": "dry-run",
+  "allowlist": [
+    "quarantine-redundant-backup",
+    "archive-verified-old-session",
+    "quarantine-low-frequency-file"
+  ],
+  "deniedByDefault": [
+    "delete-original",
+    "secret-or-credential-change",
+    "provider-or-auth-change",
+    "database-vacuum",
+    "system-level-config-change",
+    "company-data-upload",
+    "claim-token-savings-from-cold-storage"
+  ],
+  "delegatedResponsibilities": {
+    "existence-review": "ponytail",
+    "single-skill-extraction-and-routing": "skill-architect",
+    "memory-thresholds-recovery-and-handoff": "memory-orchestrator",
+    "token-usage-facts": "host-meter-or-existing-usage-tool",
+    "release-and-review": "skill-publisher"
+  },
+  "validation": {
+    "command": "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+    "fixture": "tests/fixtures/build_aging_agent_s4.py",
+    "jsonContract": "docs/audit-json-contract.md",
+    "verificationLog": "outputs/s5-release-ready.md",
+    "commands": [
+      "python3 -m py_compile scripts/*.py tests/*.py tests/fixtures/*.py",
+      "python3 -m unittest discover -s tests -p 'test_*.py' -v",
+      "python3 tests/validate_s1.py",
+      "for f in schemas/*.json; do python3 -m json.tool \"$f\" >/dev/null || exit 1; done",
+      "python3 scripts/build_release.py --json",
+      "python3 scripts/self_test.py"
+    ],
+    "schemas": [
+      "schemas/layout.schema.json",
+      "schemas/plan.schema.json",
+      "schemas/transaction-manifest.schema.json",
+      "schemas/verification.schema.json"
+    ]
+  },
+  "release": {
+    "version": "0.3.0",
+    "packages": {
+      "github": {
+        "prefix": "agent-slim-0.3.0/",
+        "include": [
+          "SKILL.md",
+          "README.md",
+          "README.en.md",
+          "CHANGELOG.md",
+          "LICENSE",
+          "NOTICE.md",
+          "manifest.json",
+          "agents",
+          "icons",
+          "docs",
+          "references",
+          "schemas",
+          "scripts",
+          "tests"
+        ],
+        "exclude": [
+          "**/__pycache__/**",
+          "**/*.pyc",
+          "**/.DS_Store",
+          "tests/validate_s1.py"
+        ]
+      },
+      "skillhub": {
+        "prefix": "agent-slim/",
+        "include": [
+          "SKILL.md",
+          "README.md",
+          "CHANGELOG.md",
+          "LICENSE",
+          "NOTICE.md",
+          "manifest.json",
+          "docs",
+          "references",
+          "schemas",
+          "scripts"
+        ],
+        "exclude": [
+          "**/__pycache__/**",
+          "**/*.pyc",
+          "**/.DS_Store"
+        ],
+        "renames": {
+          "LICENSE": "LICENSE.md"
+        },
+        "platformNotes": "SkillHub 不接收 png 等二进制文件：不打包 icons/ 与 agents/openai.yaml；LICENSE 重命名为 LICENSE.md。图标由平台侧上传维护。"
+      },
+      "clawhub": {
+        "prefix": "",
+        "include": [
+          "SKILL.md",
+          "README.md",
+          "README.en.md",
+          "CHANGELOG.md",
+          "LICENSE",
+          "NOTICE.md",
+          "manifest.json",
+          "agents",
+          "icons",
+          "docs",
+          "references",
+          "schemas",
+          "scripts",
+          "tests"
+        ],
+        "exclude": [
+          "**/__pycache__/**",
+          "**/*.pyc",
+          "**/.DS_Store",
+          "tests/validate_s1.py"
+        ]
+      }
+    }
+  },
+  "publishableFiles": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE.md",
+    "README.en.md",
+    "README.md",
+    "SKILL.md",
+    "agents/openai.yaml",
+    "docs/acceptance.md",
+    "docs/architecture.md",
+    "docs/audit-json-contract.md",
+    "docs/execution-contract.md",
+    "docs/injection-measurement.md",
+    "docs/safety.md",
+    "docs/usage.md",
+    "icons/icon_large.png",
+    "icons/icon_small.png",
+    "manifest.json",
+    "references/README.md",
+    "references/adapter-contract.md",
+    "references/baseline-20261109.json",
+    "references/budgets.md",
+    "references/case-workbuddy.md",
+    "references/context-model.md",
+    "references/generic-playbook.md",
+    "references/integration-routing.md",
+    "references/mcp-measure.md",
+    "references/measurement.md",
+    "references/routing-index.md",
+    "schemas/layout.schema.json",
+    "schemas/plan.schema.json",
+    "schemas/transaction-manifest.schema.json",
+    "schemas/verification.schema.json",
+    "scripts/README.md",
+    "scripts/agent_slim.py",
+    "scripts/agent_slim_adapter.py",
+    "scripts/agent_slim_workflow.py",
+    "scripts/budget_dashboard.py",
+    "scripts/build_release.py",
+    "scripts/injection_state.py",
+    "scripts/make_icons.py",
+    "scripts/mcp_probe.py",
+    "scripts/measure_prompt.py",
+    "scripts/scan_layers.py",
+    "scripts/self_test.py",
+    "scripts/token_experiment.py",
+    "tests/fixtures/aging-agent/AGENTS.md",
+    "tests/fixtures/aging-agent/archived_sessions/old-archive.jsonl.zst",
+    "tests/fixtures/aging-agent/backups/snapshot.zip",
+    "tests/fixtures/aging-agent/config.toml",
+    "tests/fixtures/aging-agent/log/codex.log",
+    "tests/fixtures/aging-agent/memories/memory_summary.md",
+    "tests/fixtures/aging-agent/plugins/cache/test-market/plug-a/1.0.0/.app.json",
+    "tests/fixtures/aging-agent/plugins/cache/test-market/plug-a/1.0.0/.mcp.json",
+    "tests/fixtures/aging-agent/plugins/cache/test-market/plug-a/1.0.0/skills/plugin-skill/SKILL.md",
+    "tests/fixtures/aging-agent/rules/conditional.md",
+    "tests/fixtures/aging-agent/rules/duplicate-a.md",
+    "tests/fixtures/aging-agent/rules/duplicate-b.md",
+    "tests/fixtures/aging-agent/rules/index.md",
+    "tests/fixtures/aging-agent/rules/resident.md",
+    "tests/fixtures/aging-agent/sessions/2024/01/rollout-old.jsonl",
+    "tests/fixtures/aging-agent/sessions/2026/01/rollout-recent.jsonl",
+    "tests/fixtures/aging-agent/skills/.usage.json",
+    "tests/fixtures/aging-agent/skills/alpha/SKILL.md",
+    "tests/fixtures/aging-agent/skills/alpha/references/guide.md",
+    "tests/fixtures/aging-agent/skills/alpha/templates/template.md",
+    "tests/fixtures/aging-agent/skills/beta/SKILL.md",
+    "tests/fixtures/aging-agent/skills/beta/packs/nested/pack.md",
+    "tests/fixtures/aging-agent/skills/beta/references/huge.md",
+    "tests/fixtures/aging-agent/skills/gamma/SKILL.md",
+    "tests/fixtures/aging-agent/skills/gamma/references/unreferenced.md",
+    "tests/fixtures/aging-agent/state.db",
+    "tests/fixtures/build_aging_agent_s4.py",
+    "tests/fixtures/sample-inventory.json",
+    "tests/test_adapter.py",
+    "tests/test_audit.py",
+    "tests/test_injection_gate.py",
+    "tests/test_layout.py",
+    "tests/test_release.py",
+    "tests/test_s4_e2e.py",
+    "tests/test_workflow.py"
+  ],
+  "deferredManualReview": [
+    "compress-validated-description",
+    "route-large-skill-body",
+    "disable-explicitly-unused-optional-plugin"
+  ],
+  "injectionGate": {
+    "enabled": true,
+    "appliesTo": "any new or changed skill before publish",
+    "descriptionMaxChars": 45,
+    "skillMaxBytes": 8192,
+    "textGateBytes": 57344,
+    "commands": [
+      "python3 scripts/injection_state.py --record",
+      "python3 scripts/injection_state.py --check",
+      "python3 scripts/measure_prompt.py --gate 57344",
+      "python3 scripts/self_test.py"
+    ],
+    "unknownPolicy": "UNMEASURED and UNKNOWN must not be reported as PASS"
+  }
+}

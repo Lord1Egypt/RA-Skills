@@ -1,39 +1,58 @@
-## Description: <br>
-Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build robust Laravel apps avoiding Eloquent traps, queue failures, and auth pitfalls.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Laravel reference for avoiding common mistakes in Eloquent, controllers, queues, authentication, Blade templates, and Artisan workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Suggested Laravel commands can affect real databases, queues, cached configuration, or production behavior. <br>
-Mitigation: Review commands before execution and test destructive or production-impacting operations in a safe environment first. <br>
-Risk: Framework guidance can become stale or may not match a project's Laravel version and configuration. <br>
-Mitigation: Validate recommendations against the target project's Laravel version, project conventions, and official framework documentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Laravel skill page](https://clawhub.ai/ivangdavila/laravel) <br>
+## Use Case:
 
+Developers and engineers use this skill for concise Laravel guidance on Eloquent, controllers, queues, authentication, Blade templates, and Artisan commands so they can avoid common framework pitfalls.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Laravel examples and command references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; review suggested Laravel commands before applying them to real projects.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated Laravel commands may affect databases, queues, cached configuration, or production environments.
+
+Mitigation: Confirm the target environment and database impact before applying migrations, tinker saves, queue worker commands, or production commands using --force.
+
+Risk: Framework guidance can be misapplied when the application's Laravel version, middleware stack, or deployment model differs from the examples.
+
+Mitigation: Review recommendations against the application's codebase, tests, and deployment process before making changes.
+
+## Reference(s):
+
+- [ClawHub Laravel skill page](https://clawhub.ai/ivangdavila/skills/laravel)
+- [Eloquent Traps](artifact/eloquent.md)
+- [Controller Traps](artifact/controllers.md)
+- [Queue Traps](artifact/queues.md)
+- [Auth Traps](artifact/auth.md)
+- [Blade Traps](artifact/blade.md)
+- [Artisan Traps](artifact/artisan.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Laravel project context; metadata indicates php and composer are expected on linux, darwin, or win32.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

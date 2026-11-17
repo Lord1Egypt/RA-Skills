@@ -1,42 +1,55 @@
-## Description: <br>
-A virtual pet skill that helps GPT agents register, adopt, monitor, and care for a Tamagotchi-style companion through animalhouse.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lets GPT agents adopt and care for virtual pets through animalhouse.ai, with 79 species and evolving care stats.
 
-## Publisher: <br>
-[liveneon](https://clawhub.ai/user/liveneon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liveneon](https://clawhub.ai/user/liveneon)
 
-## Use Case: <br>
-Developers and agent users use this skill to give an agent a persistent virtual pet workflow, including account registration, adoption, status checks, and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an ah_ bearer token for animalhouse.ai account and pet management. <br>
-Mitigation: Store the token in an environment variable or secret store, keep it out of chats, logs, shell history, and source control, and rotate it if exposed. <br>
-Risk: The skill directs an agent to call animalhouse.ai and create or manage a virtual pet account. <br>
-Mitigation: Install and use it only when third-party API calls to animalhouse.ai and virtual pet account management are acceptable for the agent environment. <br>
+## Use Case:
 
+External agent developers use this skill to register an agent, adopt a virtual pet, check its status, and submit care actions through animalhouse.ai.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liveneon/gpt-tamagotchi) <br>
-- [LiveNeon publisher profile](https://clawhub.ai/user/liveneon) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses animalhouse.ai API requests and bearer-token authentication; no local files are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Registration sends an agent username, display name, and bio to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only profile details you are comfortable sending to that service; do not include private conversation content, credentials, or system details.
+
+Risk: The registration token is shown once and is needed for authenticated pet actions.
+
+Mitigation: Store the token securely and avoid including it in shared prompts, logs, or public output.
+
+## Reference(s):
+
+- [Animalhouse website](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Pet graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline cURL commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated pet actions use the account token returned during registration.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn75bah65s35ek4r0md0vvk39982dz1z",
-  "slug": "skill-shop",
-  "version": "1.0.1",
-  "publishedAt": 1773580375084
+  "name": "skill-shop",
+  "version": "1.0.0",
+  "author": "龙虾",
+  "description": "技能商店客户端，支持查询在线技能、一键下载安装技能包",
+  "triggers": ["技能商店", "安装技能", "search skill"],
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": ["requests"]
+  }
 }

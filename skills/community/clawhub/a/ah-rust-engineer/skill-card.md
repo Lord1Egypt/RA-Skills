@@ -1,38 +1,50 @@
-## Description: <br>
-Expert Rust developer for systems programming, memory safety, zero-cost abstractions, ownership patterns, async programming, and performance optimization for mission-critical applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert Rust developer specializing in systems programming, memory safety, and zero-cost abstractions. Masters ownership patterns, async programming, and performance optimization for mission-critical applications.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess and implement Rust code with attention to ownership, async design, unsafe code review, performance, testing, and tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated coding guidance or proposed edits could be incorrect or unsuitable for important Rust repositories. <br>
-Mitigation: Review proposed edits and commands before applying them, especially changes involving unsafe Rust, FFI, build scripts, dependency updates, or release configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Rust-focused coding guidance, implementation support, project assessment, and safety or performance review for Rust workspaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-rust-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with code, command, and configuration suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository edits, cargo commands, tests, benchmarks, and review findings for Rust projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to read, edit, and run Cargo tooling in Rust projects when the user asks it to work on code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code changes and commands before execution, especially in production repositories or projects with unsafe Rust, FFI, build scripts, or release automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-rust-engineer)
+- [Publisher profile](https://clawhub.ai/user/mtsatryan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or modify Rust project files and Cargo configuration when used by an agent with workspace access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

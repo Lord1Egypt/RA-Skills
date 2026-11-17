@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Supplier market share</title>
+    <style>
+      html, body {
+        box-sizing: border-box;
+        display: flow-root;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.9.2.min.js"></script>
+<script>
+Bokeh.set_log_level("info");
+</script>
+  </head>
+  <body>
+    <div id="b5dc5393-e8af-43d3-b2dc-7d0d38d84c98" data-root-id="p1009" style="display: contents;"></div>
+  
+    <script type="application/json" id="c2a1fa97-11e8-4467-8219-9fe34ae2814e">
+      {"c9f5919a-9726-4210-9c9f-847570ad7a29":{"version":"3.9.2","title":"Bokeh Application","config":{"type":"object","name":"DocumentConfig","id":"p1058","attributes":{"notifications":{"type":"object","name":"Notifications","id":"p1059"}}},"roots":[{"type":"object","name":"Figure","id":"p1009","attributes":{"width":760,"height":420,"x_range":{"type":"object","name":"Range1d","id":"p1019","attributes":{"end":40}},"y_range":{"type":"object","name":"FactorRange","id":"p1020","attributes":{"factors":["Supplier C","Supplier D","Supplier B","Supplier A"]}},"x_scale":{"type":"object","name":"LinearScale","id":"p1021"},"y_scale":{"type":"object","name":"CategoricalScale","id":"p1022"},"title":{"type":"object","name":"Title","id":"p1012","attributes":{"text":"Supplier A leads, but only narrowly","text_color":"#222222","text_font_size":"16px"}},"outline_line_color":null,"renderers":[{"type":"object","name":"GlyphRenderer","id":"p1048","attributes":{"data_source":{"type":"object","name":"ColumnDataSource","id":"p1006","attributes":{"selected":{"type":"object","name":"Selection","id":"p1007","attributes":{"indices":[],"line_indices":[]}},"selection_policy":{"type":"object","name":"UnionRenderers","id":"p1008"},"data":{"type":"map","entries":[["index",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/2NgYGBgBGImIGYGYgCpr44nEAAAAA=="},"shape":[4],"dtype":"int32","order":"little"}],["supplier",{"type":"ndarray","array":["Supplier A","Supplier B","Supplier D","Supplier C"],"shape":[4],"dtype":"object","order":"little"}],["share",{"type":"ndarray","array":{"type":"bytes","data":"H4sIAAEAAAAA/1NiYGCQB2IpIOYEYgCvBduSEAAAAA=="},"shape":[4],"dtype":"int32","order":"little"}],["label",{"type":"ndarray","array":["34%","31%","26%","9%"],"shape":[4],"dtype":"object","order":"little"}],["color",{"type":"ndarray","array":["#0072B2","#B8BEC6","#B8BEC6","#B8BEC6"],"shape":[4],"dtype":"object","order":"little"}]]}}},"view":{"type":"object","name":"CDSView","id":"p1049","attributes":{"filter":{"type":"object","name":"AllIndices","id":"p1050"}}},"glyph":{"type":"object","name":"HBar","id":"p1045","attributes":{"y":{"type":"field","field":"supplier"},"height":{"type":"value","value":0.62},"right":{"type":"field","field":"share"},"line_color":{"type":"field","field":"color"},"fill_color":{"type":"field","field":"color"},"hatch_color":{"type":"field","field":"color"}}},"nonselection_glyph":{"type":"object","name":"HBar","id":"p1046","attributes":{"y":{"type":"field","field":"supplier"},"height":{"type":"value","value":0.62},"right":{"type":"field","field":"share"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.1},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.1},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.1}}},"muted_glyph":{"type":"object","name":"HBar","id":"p1047","attributes":{"y":{"type":"field","field":"supplier"},"height":{"type":"value","value":0.62},"right":{"type":"field","field":"share"},"line_color":{"type":"field","field":"color"},"line_alpha":{"type":"value","value":0.2},"fill_color":{"type":"field","field":"color"},"fill_alpha":{"type":"value","value":0.2},"hatch_color":{"type":"field","field":"color"},"hatch_alpha":{"type":"value","value":0.2}}}}}],"toolbar":{"type":"object","name":"Toolbar","id":"p1018","attributes":{"tools":[{"type":"object","name":"PanTool","id":"p1033"},{"type":"object","name":"WheelZoomTool","id":"p1034","attributes":{"renderers":"auto"}},{"type":"object","name":"BoxZoomTool","id":"p1035","attributes":{"dimensions":"both","overlay":{"type":"object","name":"BoxAnnotation","id":"p1036","attributes":{"syncable":false,"line_color":"black","line_alpha":1.0,"line_width":2,"line_dash":[4,4],"fill_color":"lightgrey","fill_alpha":0.5,"level":"overlay","visible":false,"left":{"type":"number","value":"nan"},"right":{"type":"number","value":"nan"},"top":{"type":"number","value":"nan"},"bottom":{"type":"number","value":"nan"},"left_units":"canvas","right_units":"canvas","top_units":"canvas","bottom_units":"canvas","handles":{"type":"object","name":"BoxInteractionHandles","id":"p1042","attributes":{"all":{"type":"object","name":"AreaVisuals","id":"p1041","attributes":{"fill_color":"white","hover_fill_color":"lightgray"}}}}}}}},{"type":"object","name":"ResetTool","id":"p1043"},{"type":"object","name":"SaveTool","id":"p1044"},{"type":"object","name":"HoverTool","id":"p1051","attributes":{"renderers":"auto","tooltips":[["Supplier","@supplier"],["Share","@share{0}%"]],"sort_by":null}}]}},"toolbar_location":"above","left":[{"type":"object","name":"CategoricalAxis","id":"p1028","attributes":{"ticker":{"type":"object","name":"CategoricalTicker","id":"p1029"},"formatter":{"type":"object","name":"CategoricalTickFormatter","id":"p1030"},"major_label_policy":{"type":"object","name":"AllLabels","id":"p1031"}}}],"below":[{"type":"object","name":"LinearAxis","id":"p1023","attributes":{"ticker":{"type":"object","name":"BasicTicker","id":"p1024","attributes":{"mantissas":[1,2,5]}},"formatter":{"type":"object","name":"BasicTickFormatter","id":"p1025"},"axis_label":"Market share (%)","major_label_policy":{"type":"object","name":"AllLabels","id":"p1026"}}}],"center":[{"type":"object","name":"Grid","id":"p1027","attributes":{"axis":{"id":"p1023"},"grid_line_color":"#E3E6EA"}},{"type":"object","name":"Grid","id":"p1032","attributes":{"dimension":1,"axis":{"id":"p1028"},"grid_line_color":null}},{"type":"object","name":"LabelSet","id":"p1052","attributes":{"source":{"id":"p1006"},"x":{"type":"field","field":"share"},"y":{"type":"field","field":"supplier"},"text":{"type":"field","field":"label"},"x_offset":{"type":"value","value":7},"text_color":{"type":"value","value":"#222222"},"text_baseline":{"type":"value","value":"middle"}}}]}}]}}
+    </script>
+    <script>
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('c2a1fa97-11e8-4467-8219-9fe34ae2814e').textContent;
+              const render_items = [{"docid":"c9f5919a-9726-4210-9c9f-847570ad7a29","roots":{"p1009":"b5dc5393-e8af-43d3-b2dc-7d0d38d84c98"},"root_ids":["p1009"]}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+        else document.addEventListener("DOMContentLoaded", fn);
+      })();
+    </script>
+  </body>
+</html>

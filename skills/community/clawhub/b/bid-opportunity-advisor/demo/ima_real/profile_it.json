@@ -1,0 +1,19 @@
+{
+  "company": "深智科技集成有限公司",
+  "province": "广东",
+  "qualifications": [
+    "ISO9001",
+    "ISO27001",
+    "电子与智能化一级",
+    "CMMI3"
+  ],
+  "products": [
+    "RPA",
+    "软件",
+    "平台",
+    "信息化",
+    "服务器",
+    "智慧"
+  ],
+  "capacity_tier": "medium"
+}

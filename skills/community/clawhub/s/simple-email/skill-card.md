@@ -1,41 +1,63 @@
-## Description: <br>
-Simple Email helps an agent receive, search, manage, and send email through standard IMAP and SMTP services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simple Email lets an agent receive, search, read, mark, and download mail over IMAP and send plain text, HTML, and attachment email over SMTP.
 
-## Publisher: <br>
-[shiming-git](https://clawhub.ai/user/shiming-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shiming-git](https://clawhub.ai/user/shiming-git)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent check inboxes, search and fetch messages, mark messages read or unread, download attachments, and send text, HTML, or attachment-bearing email through a configured mailbox. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access a configured mailbox, including reading mail, changing read state, sending messages, and handling attachments. <br>
-Mitigation: Use app-specific passwords or authorization codes, keep mailbox credentials out of version control, and review outgoing messages, attachment downloads, and read/unread changes before allowing execution. <br>
-Risk: Attachment reads and downloads can expose local files or write mailbox content to disk if broad directories are allowed. <br>
-Mitigation: Set narrow ALLOWED_READ_DIRS and ALLOWED_WRITE_DIRS values that cover only the directories needed for the task. <br>
+## Use Case:
 
+Developers and external users can configure an email account so an agent can inspect mailbox contents, search or update message state, download attachments, and send outbound email through standard IMAP and SMTP providers.
 
-## Reference(s): <br>
-- [Simple Email on ClawHub](https://clawhub.ai/shiming-git/simple-email) <br>
-- [Publisher profile: shiming-git](https://clawhub.ai/user/shiming-git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and environment configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, IMAP credentials, SMTP credentials, and configured read/write directory allowlists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact package.json declares 1.0.0) <br>
+Risk: The configured account gives the skill authority to read mailbox contents and send email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an app password or authorization code for an account intended for agent use, and install only where that mailbox access is acceptable.
+
+Risk: Downloaded attachments can overwrite files in the allowed download folder.
+
+Mitigation: Use a narrow, dedicated ALLOWED_WRITE_DIRS location and review attachment names before downloading.
+
+Risk: Broad read and write allowlists can expose workspace files to outgoing attachments or incoming downloads.
+
+Mitigation: Set ALLOWED_READ_DIRS and ALLOWED_WRITE_DIRS to dedicated folders instead of the OpenClaw workspace.
+
+Risk: Disabling certificate verification can weaken protection for mail server connections.
+
+Mitigation: Keep certificate verification enabled unless you control the mail server and understand the trust boundary.
+
+## Reference(s):
+
+- [Simple Email on ClawHub](https://clawhub.ai/shiming-git/skills/simple-email)
+- [OpenClaw skills homepage](https://github.com/openclaw/skills)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell command examples; CLI tools return JSON and may create downloaded attachment files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, IMAP and SMTP credentials, and configured read/write directory allowlists.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

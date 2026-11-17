@@ -1,0 +1,14 @@
+#coding:gbk
+import time
+
+def init(C):
+  
+    # 查询负债持仓
+    cpts = get_unclosed_compacts('620061164073','CREDIT')
+    cpt_type={32:'不限制',48:'融资',49:'融券'}
+    for cpt in cpts:
+        print(f"合约代码:{cpt.m_strInstrumentID} 市场代码：{cpt.m_strExchangeID} 负债类型:{cpt_type[cpt.m_eCompactType]}")
+        # 更多属性见：
+        '''
+        http://dict.thinktrader.net/innerApi/trading_function.html?id=I3DJ97#get-unclosed-compacts-%E8%8E%B7%E5%8F%96%E6%9C%AA%E4%BA%86%E7%BB%93%E8%B4%9F%E5%80%BA%E5%90%88%E7%BA%A6%E6%98%8E%E7%BB%86
+        '''

@@ -1,0 +1,16 @@
+{
+  "schema_version": "mystilink.birth/0.1",
+  "name": "Demo",
+  "gender": "female",
+  "birth": {
+    "datetime": "1990-05-15T14:30:00+08:00",
+    "timezone": "Asia/Shanghai",
+    "longitude": 121.47,
+    "true_solar_time": false
+  },
+  "place": {
+    "label": "Shanghai",
+    "lat": 31.23,
+    "lon": 121.47
+  }
+}

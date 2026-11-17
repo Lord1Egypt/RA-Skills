@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "initialCashUsd": 1000,
+  "feeBps": 10,
+  "slippageBps": 20,
+  "strategy": {
+    "type": "buy-and-hold"
+  }
+}

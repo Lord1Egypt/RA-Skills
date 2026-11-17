@@ -1,0 +1,12 @@
+[
+  {"id":"JY-T1","kind":"technique","name":"gray-line foreshadowing","when":{"phase":["outline","settlement"],"scene_types":["long_arc"],"requires":["hook"]},"hardness":"recommended","prompt":"让伏笔以不显眼但可回溯的细节进入叙事，并记录兑现路径。"},
+  {"id":"JY-T2","kind":"technique","name":"interrupted tension","when":{"phase":["scene","draft"],"scene_types":["conflict","revelation"],"requires":["unresolved_question"]},"hardness":"optional","prompt":"在读者即将获得答案时切换动作、视角或问题，保留因果连续性。"},
+  {"id":"JY-T3","kind":"technique","name":"busy-to-idle pacing","when":{"phase":["scene","review"],"scene_types":["transition","relationship"],"requires":["pacing_change"]},"hardness":"optional","prompt":"在紧张行动后安排有功能的闲笔，让人物关系和信息获得沉淀。"},
+  {"id":"JY-T4","kind":"technique","name":"double resonance","when":{"phase":["scene","draft"],"scene_types":["choice","conflict"],"requires":["dual_consequence"]},"hardness":"recommended","prompt":"让一个动作同时推进眼前冲突和更深层人物或主题变化。"},
+  {"id":"JY-T5","kind":"technique","name":"reverse planning from ending","when":{"phase":["master-outline","arc-outline"],"requires":["planned_ending"]},"hardness":"recommended","prompt":"先确定阶段性终点，再逆向补出必需的选择、线索和代价。"},
+  {"id":"JY-T6","kind":"technique","name":"contrastive background","when":{"phase":["scene","draft"],"scene_types":["loss","relationship","choice"],"requires":["emotional_change"]},"hardness":"optional","prompt":"用环境的平静、日常或反差托住人物情绪，不把环境当成装饰。"},
+  {"id":"JY-T7","kind":"technique","name":"chapter hook","when":{"phase":["outline","draft","review"],"requires":["chapter_boundary"]},"hardness":"required","prompt":"章末留下新的行动、问题、关系变化或认知差异，使下一章有明确牵引。"},
+  {"id":"JY-T8","kind":"technique","name":"ability as philosophy","when":{"phase":["world","scene","review"],"scene_types":["ability_system"],"requires":["ability_system","value_conflict"]},"hardness":"optional","prompt":"让能力或规则体现人物价值观与选择代价，不强行套用到非能力题材。"},
+  {"id":"JY-T9","kind":"technique","name":"dialogue signature","when":{"phase":["character","draft","review"],"requires":["character"]},"hardness":"recommended","prompt":"让角色通过词汇、节奏、回避和回应方式保持可辨识的说话逻辑。"},
+  {"id":"JY-T10","kind":"technique","name":"emotional staging","when":{"phase":["scene","draft"],"requires":["location"]},"hardness":"recommended","prompt":"让场景空间和景物参与情绪转折，承担限制、诱因或反衬功能。"}
+]

@@ -1,0 +1,186 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-tingshen-court-gov-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:04:24.487Z",
+  "entry": {
+    "url": "http://tingshen.court.gov.cn",
+    "final_url": "http://tingshen.court.gov.cn/",
+    "title": "中国庭审公开网",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:04:24.487Z",
+    "identity": {
+      "declared_name": "中国庭审公开网",
+      "hostname": "tingshen.court.gov.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "北京市高级人民法院",
+        "href": "http://tingshen.court.gov.cn/court/1",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入案件名或案号或法官名",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入案件名或案号或法官名",
+      "name": "keywords",
+      "id": "keywords",
+      "css": "#keywords",
+      "role": null,
+      "form_action": "http://tingshen.court.gov.cn/search/common",
+      "locator": {
+        "css": "#keywords"
+      },
+      "observed_url": "http://tingshen.court.gov.cn/",
+      "observed_at": "2026-10-09T09:04:23.770Z"
+    },
+    {
+      "tag": "input",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入案件名或案号或法官名",
+      "name": null,
+      "id": "search",
+      "css": "#search",
+      "role": null,
+      "form_action": "http://tingshen.court.gov.cn/search/common",
+      "locator": {
+        "css": "#search"
+      },
+      "observed_url": "http://tingshen.court.gov.cn/",
+      "observed_at": "2026-10-09T09:04:23.770Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-tingshen-court-gov-cn:course-video",
+      "source_id": "quiz-tingshen-court-gov-cn",
+      "task_kind": "course-video",
+      "status": "entry_observed",
+      "parameters": [
+        "title",
+        "institution",
+        "instructor_or_speaker",
+        "chapter_or_timestamp",
+        "target_field"
+      ],
+      "instructions": [
+        "根据本题课程或视频名称、机构和讲者匹配记录；打开目标章节或时间点读取课程字段或播放信息。"
+      ],
+      "transitions": {},
+      "entry_url": "http://tingshen.court.gov.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入案件名或案号或法官名",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入案件名或案号或法官名",
+          "name": "keywords",
+          "id": "keywords",
+          "css": "#keywords",
+          "role": null,
+          "form_action": "http://tingshen.court.gov.cn/search/common",
+          "locator": {
+            "css": "#keywords"
+          },
+          "observed_url": "http://tingshen.court.gov.cn/",
+          "observed_at": "2026-10-09T09:04:23.770Z"
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入案件名或案号或法官名",
+          "name": null,
+          "id": "search",
+          "css": "#search",
+          "role": null,
+          "form_action": "http://tingshen.court.gov.cn/search/common",
+          "locator": {
+            "css": "#search"
+          },
+          "observed_url": "http://tingshen.court.gov.cn/",
+          "observed_at": "2026-10-09T09:04:23.770Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-036"
+    ],
+    "example_ids": [
+      "PT1-Q48"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:04:24.487Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-tingshen-court-gov-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-tingshen-court-gov-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

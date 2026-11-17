@@ -1,0 +1,18 @@
+EXAMPLE DATA: made-up view counts for the example, not real posts or real results.
+Output of: ledger.py --earnings --campaign-file campaign.json, on 19 Nov (us_share typed in from the 72-hour screenshots)
+
+Training for Crew Dragon (EXAMPLE campaign, made up) (example-orbit-crew-dragon)
+  TikTok @example.clipper: 7,420 views, est. $6.68 after 10% fee, 30 day(s) left, submitted
+  Reels @example.clipper.reels (Instagram Reels): 2,380 views, est. $0.00 after 10% fee (under the $5.00 minimum payout), its 30-day window starts when it reaches 6,250 views, submitted
+    engagement 2.0% is under the campaign's 3%; the clip can be rejected
+    audience: 22% in the US (from your screenshot); the campaign needs 30%, so expect this clip to be rejected
+    Instagram views are times shown (repeats included); the campaign may count differently
+  Shorts @exampleclipper (YouTube Shorts): 1,120 views, est. $0.00 after 10% fee (under the $5.00 minimum payout), its 30-day window starts when it reaches 10,000 views, submitted
+    engagement 2.9% is under the campaign's 3%; the clip can be rejected
+  submitted total: 10,920 views, est. $6.68
+  the campaign's total budget is $3,000.00; when it runs out, views stop paying
+  audience rule: at least 30% of viewers in the US. WoopSocial doesn't report countries: read them in the app and keep the screenshots
+
+Low engagement is fixed with better hooks and replies to comments, never with bought or arranged engagement: that is a permanent ban.
+
+Estimates only. The campaign's own view count decides what is paid, and most clips earn little.

@@ -1,0 +1,13 @@
+# Development-only dependencies. The runtime scripts need nothing but the
+# standard library.
+#
+#   pip install -r requirements-dev.txt
+#   pre-commit install
+#
+# Pinned with >= only: this repository has no lockfile to maintain and CI runs
+# against current releases on purpose, so breakage surfaces early.
+
+pytest>=8.0
+PyYAML>=6.0
+pre-commit>=3.5
+ruff>=0.5

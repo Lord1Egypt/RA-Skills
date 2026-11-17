@@ -1,44 +1,60 @@
-## Description: <br>
-Fitbit fitness data integration for querying activity, heart rate, sleep, workout, and trend data and turning those metrics into conversational insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fitbit fitness data integration for workout summaries, step counts, heart rate data, sleep analysis, and conversational fitness insights.
 
-## Publisher: <br>
-[poisondminds](https://clawhub.ai/user/poisondminds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[poisondminds](https://clawhub.ai/user/poisondminds)
 
-## Use Case: <br>
-External users with Fitbit accounts use this skill to ask natural language questions about activity, sleep, heart rate, workouts, and fitness trends. The agent fetches relevant Fitbit data and summarizes patterns, goals, and recent metrics in conversational form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests persistent access to sensitive Fitbit activity, sleep, heart-rate, workout, and profile data. <br>
-Mitigation: Use read-only Fitbit scopes, install only when that access is acceptable, and revoke the Fitbit app tokens when the skill is no longer needed. <br>
-Risk: OAuth tokens and client secrets are stored in a local configuration file. <br>
-Mitigation: Protect the config file with restrictive permissions and avoid pasting tokens or secrets into chats, logs, or shared files. <br>
-Risk: The release evidence flags incomplete credential/privacy safeguards and missing helper scripts that should be verified. <br>
-Mitigation: Review the installed helper scripts from a trusted source before use and confirm the skill only performs the expected read-only Fitbit API calls. <br>
+## Use Case:
 
+External users and developers use this skill to connect a Fitbit account, retrieve read-only fitness metrics, and receive conversational analysis of activity, heart rate, sleep, workouts, goals, and trends.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/poisondminds/fitbit-insights) <br>
-- [Fitbit developer apps](https://dev.fitbit.com/apps) <br>
-- [Fitbit Web API reference](https://dev.fitbit.com/build/reference/web-api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Fitbit OAuth credentials and read-only Fitbit API scopes; results depend on available Fitbit account data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and CLAWHUB-SUBMISSION.md) <br>
+Risk: OAuth tokens may be exposed if stored as plaintext or in a broadly readable local configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store Fitbit credentials in a protected secret store or a mode-600 file, and revoke tokens immediately if they are exposed.
+
+Risk: Security-critical implementation files referenced by the documentation were not present in the reviewed artifact.
+
+Mitigation: Install only from a trusted, complete package that includes the audited implementation before using the skill with Fitbit credentials.
+
+Risk: The skill can access sensitive Fitbit health and activity data.
+
+Mitigation: Require clear user intent before accessing Fitbit data and retrieve only the data needed for the requested insight.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/poisondminds/skills/fitbit-insights)
+- [Fitbit Web API Reference](https://dev.fitbit.com/build/reference/web-api/)
+- [Fitbit Developer Apps](https://dev.fitbit.com/apps)
+- [Clawdbot Documentation](https://docs.clawd.bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational Markdown with inline shell commands and fitness metric summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches Fitbit data on demand using OAuth credentials; responses should avoid storing health data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, OVERVIEW.md, CLAWHUB-SUBMISSION.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/analysis-depth-2.0.json",
+  "title": "Omni E-commerce Individual Analysis Depth Declaration",
+  "description": "单个分析专家 handoff 中必须携带的分析深度声明。L0 清单 / L1 描述 / L2 拆解 / L3 归因 / L4 决策。禁止在未完成 L2 时输出 L3/L4 结论。",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "baseline_ack", "depth_ladder", "self_check"],
+  "properties": {
+    "schema_version": { "const": "2.0" },
+    "artifact_type": { "const": "analysis_depth_declaration" },
+    "contract_name": { "const": "omni-ecom.analysis-depth" },
+    "contract_version": { "const": "2.0" },
+    "created_by_team_version": { "type": "string", "minLength": 1 },
+    "legacy_compatibility": { "const": {"read_only_import": ["omni-ecom.analysis-depth@1.0"], "current_analysis_authority": false} },
+    "baseline_ack": {
+      "type": "object",
+      "required": ["baseline_sha256", "accepted", "deviations"],
+      "properties": {
+        "baseline_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "accepted": { "type": "boolean" },
+        "deviations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["item", "reason"],
+            "properties": {
+              "item": { "type": "string", "minLength": 1 },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "depth_ladder": {
+      "type": "object",
+      "required": ["reached_level", "level_evidence"],
+      "properties": {
+        "reached_level": { "enum": ["L0", "L1", "L2", "L3", "L4"] },
+        "min_required_level": { "enum": ["L0", "L1", "L2", "L3", "L4"] },
+        "level_evidence": {
+          "type": "object",
+          "required": ["L1", "L2", "L3", "L4"],
+          "properties": {
+            "L1": { "type": "string", "description": "描述层：本期与对比期的数值及变化，对应哪些证据 ID。" },
+            "L2": { "type": "string", "description": "拆解层：按哪些维度拆开，各维度贡献占比，缺失维度及原因。" },
+            "L3": { "type": "string", "description": "归因层：为什么，证据、替代解释、置信度与反证条件。" },
+            "L4": { "type": "string", "description": "决策层：做什么、验收指标、停止条件、敏感性。" }
+          }
+        },
+        "blocked_below": {
+          "type": "string",
+          "description": "未达到最低要求层级时的阻断原因，通常是数据不足或闸门 BLOCKED。"
+        }
+      }
+    },
+    "decomposition": {
+      "type": "array",
+      "minItems": 1,
+      "description": "L2 拆解证据：至少两个维度的拆解，每项必须能回指证据 ID。",
+      "items": {
+        "type": "object",
+        "required": ["dimension", "segments", "evidence_ids"],
+        "properties": {
+          "dimension": { "type": "string", "minLength": 1 },
+          "segments": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["name", "value"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "value": {},
+                "share": { "type": "string" }
+              }
+            }
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^E[0-9A-Za-z._-]+$" },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        }
+      }
+    },
+    "minimum_analysis_set": {
+      "type": "array",
+      "description": "岗位专属最小分析集：每题给出 answer 或 unanswerable 及原因，禁止静默跳过。",
+      "items": {
+        "type": "object",
+        "required": ["question", "status"],
+        "properties": {
+          "question": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["answered", "unanswerable", "not_applicable"] },
+          "answer": { "type": "string" },
+          "blocker": { "type": "string" },
+          "evidence_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "self_check": {
+      "type": "object",
+      "required": [
+        "caliber_consistent",
+        "denominator_comparable",
+        "counterexample_considered",
+        "sample_sufficient",
+        "recomputable",
+        "outlier_screened",
+        "layered_fact_judgment_hypothesis"
+      ],
+      "properties": {
+        "caliber_consistent": { "type": "boolean", "description": "口径是否与 baseline-pack 一致。" },
+        "denominator_comparable": { "type": "boolean", "description": "对比的分母是否同源同口径可比。" },
+        "counterexample_considered": { "type": "boolean", "description": "是否主动找过反例并给出反证条件。" },
+        "sample_sufficient": { "type": "boolean", "description": "样本量是否支撑该结论，小样本是否已降级表述。" },
+        "recomputable": { "type": "boolean", "description": "结论是否可由他人按给定公式与来源复算。" },
+        "outlier_screened": { "type": "boolean", "description": "是否做过异常订单/极值筛查，结论是否会被少数样本翻转。" },
+        "layered_fact_judgment_hypothesis": { "type": "boolean", "description": "是否严格区分事实、判断、假设与建议。" },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

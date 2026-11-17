@@ -1,11 +1,11 @@
 ---
 name: oo-onesignal-rest-api
-description: "OneSignal (onesignal.com). Use this skill for ANY OneSignal request — reading, creating, and updating data. Whenever a task involves OneSignal, use this skill instead of calling the API directly."
+description: "OneSignal (onesignal.com). Use this skill for ANY OneSignal request — reading, creating, updating, and deleting data. Whenever a task involves OneSignal, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "OneSignal"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["onesignal_rest_api"]
   icon: "https://static.oomol.com/logo/third-party/onesignal_rest_api.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `cancel_message` — Cancel one scheduled OneSignal message by id. [write]
+- `cancel_message` — Cancel one scheduled OneSignal message by id. [destructive]
 - `create_push_notification` — Create a push notification for the connected OneSignal app using one official targeting method. [write]
 - `get_message` — Retrieve one OneSignal message by id from the connected app.
 - `list_messages` — List messages from the connected OneSignal app.
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — OneSignal is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=onesignal_rest_api
+  https://console.oomol.com/connections/onesignal_rest_api
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - OneSignal homepage: https://onesignal.com
+- API documentation: https://documentation.onesignal.com/reference

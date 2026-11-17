@@ -1,41 +1,60 @@
-## Description: <br>
-Checks whether an agent skill is suitable to install on the current machine by reviewing binaries, environment variables, configuration, OS, and sandbox conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks skill directories before installation by reviewing declared binaries, environment variables, configuration, operating system, and sandbox requirements, then explains compatibility gaps.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill before installation to audit a skill directory and target environment, identify missing dependencies or configuration gaps, and produce reviewable installation and rollback guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Python helper reads user-provided skill directories or input files and may write a report to a requested path. <br>
-Mitigation: Run it only on intended skill materials, avoid broad sensitive folders, and review the generated report before making environment changes. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to review whether an OpenClaw skill directory appears ready to install on a target machine, with attention to missing dependencies, OS and sandbox concerns, configuration gaps, installation advice, and rollback advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/skill-install-checker) <br>
-- [README](artifact/README.md) <br>
-- [Skill Specification](artifact/resources/spec.json) <br>
-- [Output Template](artifact/resources/template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON report with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a local report when an output path is provided; otherwise can return reviewable guidance directly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can explain installation readiness, but evidence says it does not fully verify OS state, environment variables, sandbox conditions, or installed binaries beyond its python3 requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as a review aid and confirm machine-specific dependencies and sandbox constraints separately before installation.
+
+Risk: Input may contain sensitive machine, project, or skill details.
+
+Mitigation: Use local, sanitized inputs where practical and review generated Markdown before sharing it.
+
+Risk: The local helper can write a report file when an output path is supplied.
+
+Mitigation: Omit --output or use --dry-run when a read-only review is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/skill-install-checker)
+- [README](artifact/README.md)
+- [Specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration guidance, shell commands]
+
+**Output Format:** [Markdown report, with optional JSON wrapping when the local script is run with --format json]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report is generated from local input and may include environment overview, missing dependencies, OS and sandbox risks, configuration gaps, installation advice, rollback advice, pending questions, and next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Documents Followin OpenAPI endpoints for agent integration. Use when calling feed APIs, channel feeds, trending, category feeds, or integrating with Followin OpenAPI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Documents Followin OpenAPI endpoints for agent integration. Use when calling feed APIs, channel feeds, trending, category feeds, or integrating with Followin OpenAPI.
 
-## Publisher: <br>
-[rayniubi](https://clawhub.ai/user/rayniubi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rayniubi](https://clawhub.ai/user/rayniubi)
 
-## Use Case: <br>
-Developers and agents use this skill to call Followin OpenAPI feed endpoints, including trending feeds, category feeds, single-channel feeds, and mixed feed_card channel feeds. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example requests may expose real API keys when credentials are placed in query strings, shell history, or shared transcripts. <br>
-Mitigation: Prefer the Authorization header, review generated curl commands before running them, and avoid sharing logs or transcripts containing credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Followin OpenAPI base URL](https://api.followin.io) <br>
-- [ClawHub skill page](https://clawhub.ai/rayniubi/followin-openapi) <br>
+## Use Case:
 
+Developers and agents use this skill to understand how to call Followin feed APIs for trending feeds, category feeds, single-channel feeds, and mixed channel feed cards. It provides endpoint parameters, pagination behavior, response examples, authentication options, and curl examples.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with endpoint tables, JSON response examples, and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples and a Followin API key for authenticated requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys can be exposed when placed in URLs, shell history, logs, or shared snippets.
+
+Mitigation: Prefer the Authorization header or protected environment variables, avoid real keys in URLs and shared examples, and rotate any key that has already been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rayniubi/skills/followin-openapi)
+- [Followin OpenAPI base URL](https://api.followin.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with JSON examples and inline curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for the provided command examples and a Followin API key for authenticated requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

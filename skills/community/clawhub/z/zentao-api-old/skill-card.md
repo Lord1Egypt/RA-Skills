@@ -1,45 +1,62 @@
-## Description: <br>
-Integrate with ZenTao Legacy API 1.0 to manage projects, tasks, bugs, products, and workflows with session persistence and role-specific operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates an agent with ZenTao Legacy API 1.0 to manage projects, products, tasks, bugs, requirements, tests, versions, releases, and related workflow records.
 
-## Publisher: <br>
-[hellotombruce](https://clawhub.ai/user/hellotombruce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hellotombruce](https://clawhub.ai/user/hellotombruce)
 
-## Use Case: <br>
-Developers, project managers, testers, and product teams use this skill to automate ZenTao Legacy API workflows such as creating requirements, managing tasks, tracking bugs, recording work, and querying project data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plaintext ZenTao credentials and reusable local sessions can expose the connected account. <br>
-Mitigation: Use a least-privilege ZenTao account, keep TOOLS.md out of source control, avoid printing credentials, and remove or protect .zentao/sessions/ when the skill is no longer needed. <br>
-Risk: The skill can change or delete project data through delete, close, unlink, and bulk-create operations. <br>
-Mitigation: Require explicit user confirmation before destructive or high-volume operations and verify the target project, task, bug, or product identifiers before execution. <br>
+## Use Case:
 
+Developers, project managers, product managers, and QA teams use this skill to let an agent query and update ZenTao work items, including projects, tasks, bugs, requirements, test cases, plans, and releases. It is intended for ZenTao instances that still use Legacy API 1.0 workflows.
 
-## Reference(s): <br>
-- [ZenTao API Client README](README.md) <br>
-- [ZenTao Skill Guide](SKILL.md) <br>
-- [ZenTao API Documentation Index](docs/index.md) <br>
-- [ZenTao Official Site](https://www.zentao.net/) <br>
-- [ZenTao API Help](https://www.zentao.net/book/zentaopmshelp/562.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/hellotombruce/zentao-api-old) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with Python and shell snippets, plus ZenTao API call results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, edit, delete, close, unlink, or bulk-create ZenTao project data when connected to a configured ZenTao account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill reads ZenTao endpoint, username, and password values and persists session material locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege ZenTao account, require HTTPS, avoid printing credentials, restrict file permissions, and keep TOOLS.md and .zentao/ out of source control.
+
+Risk: The skill can perform live write actions such as creating, assigning, closing, canceling, and deleting project-management records.
+
+Mitigation: Test against a non-production ZenTao instance first and require manual confirmation before delete, close, cancel, restore, admin, or bulk operations.
+
+Risk: The security verdict is suspicious due to credential/session handling and live system mutation capabilities.
+
+Mitigation: Review the package and security guidance before installation, and deploy only where the connected ZenTao permissions match the intended workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hellotombruce/skills/zentao-api-old)
+- [ZenTao official website](https://www.zentao.net/)
+- [ZenTao API documentation](https://www.zentao.net/book/zentaopmshelp/562.html)
+- [ZenTao API v1 documentation](https://zentao.net/book/apidoc-v1/apidoc-v1.html)
+- [Artifact README](README.md)
+- [Artifact API index](docs/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, API Calls, Markdown]
+
+**Output Format:** [Markdown guidance with Python examples, shell commands, and ZenTao API call patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify records in a live ZenTao system when used with valid credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

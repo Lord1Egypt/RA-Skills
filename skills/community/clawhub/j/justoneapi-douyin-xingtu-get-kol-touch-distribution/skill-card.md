@@ -1,42 +1,57 @@
-## Description: <br>
-Call GET /api/douyin-xingtu/get-kol-touch-distribution/v1 for Douyin Creator Marketplace (Xingtu) Audience Touchpoint Distribution through JustOneAPI with kolId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin-xingtu/get-kol-touch-distribution/v1 for Douyin Creator Marketplace (Xingtu) Audience Touchpoint Distribution through JustOneAPI with kolId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI for Douyin Creator Marketplace audience touchpoint distribution data for a specified KOL ID, then summarize the segment breakdowns, audience composition, and distribution signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is sent to the API as a URL query parameter, which can expose it through chat transcripts, logs, or copied request URLs. <br>
-Mitigation: Use the JUST_ONE_API_TOKEN environment variable, avoid pasting token values into chat or logs, and prefer scoped or short-lived tokens when available. <br>
-Risk: The skill sends the requested KOL ID and API token to JustOneAPI and returns backend payloads, including error payloads. <br>
-Mitigation: Use the skill only when you trust JustOneAPI for the data being requested and review backend responses before sharing or relying on them. <br>
+## Use Case:
 
+Developers and analysts use this skill to call a single JustOneAPI endpoint for Douyin/Xingtu KOL audience touchpoint distribution data by kolId, summarize the segment breakdowns, and return the raw JSON for follow-up analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-xingtu-get-kol-touch-distribution) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_touch_distribution&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with raw JSON response data when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a JUST_ONE_API_TOKEN; accepts kolId and optional acceptCache query parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The skill requires a JustOneAPI token, and the security evidence notes that the token is passed as a process argument and URL query parameter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token, avoid sharing command output or logs, and rotate the token if exposure is suspected.
+
+Risk: Results depend on the external JustOneAPI service and the supplied KOL ID.
+
+Mitigation: Confirm the KOL ID before execution and review the returned JSON before using it in traffic or audience analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-xingtu-get-kol-touch-distribution)
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_touch_distribution&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_xingtu_get_kol_touch_distribution&utm_content=project_link)
+- [Generated OpenAPI operations](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, JSON, API calls, guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON from the API when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and JUST_ONE_API_TOKEN; endpoint input is kolId with optional acceptCache.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

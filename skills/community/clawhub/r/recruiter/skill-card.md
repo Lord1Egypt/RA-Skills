@@ -1,40 +1,51 @@
-## Description: <br>
-Source candidates, screen resumes, and manage hiring pipelines with effective recruiting practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Source candidates, screen resumes, and manage hiring pipelines with effective recruiting practices.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Recruiting teams and hiring stakeholders use this skill for practical guidance on candidate sourcing, resume screening, interview structure, candidate experience, compensation discussions, pipeline management, and recruiting-related legal considerations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recruiting workflows can involve sensitive candidate data and legally significant hiring decisions. <br>
-Mitigation: Keep applicant communications, screening decisions, background checks, compensation decisions, and final hiring decisions under appropriate human review. <br>
-Risk: Recruiting and employment law obligations vary by jurisdiction. <br>
-Mitigation: Use the skill as general guidance and have jurisdiction-specific hiring practices, offer terms, background checks, and applicant notices reviewed by qualified personnel. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/recruiter) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
+
+Recruiters, hiring managers, and talent teams use this skill for practical guidance on sourcing, screening, interviewing, compensation discussions, candidate experience, pipeline management, and recruiting risk awareness.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recruiting workflows may involve personal candidate data.
+
+Mitigation: Avoid sharing unnecessary sensitive candidate information when using the skill.
+
+Risk: Recruiting and hiring processes may be subject to jurisdiction-specific employment law obligations.
+
+Mitigation: Verify legal and process guidance with qualified reviewers for the relevant jurisdiction before relying on it.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance and concise text recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or data access instructions are present in the artifact.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, commands, persistence, or hidden data handling are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Create and query TeamBition tasks with support for multiple app configurations and automatic token management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and query tasks in TeamBition with support for multiple app configurations and automatic token management.
 
-## Publisher: <br>
-[wengjianmin19850412](https://clawhub.ai/user/wengjianmin19850412) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wengjianmin19850412](https://clawhub.ai/user/wengjianmin19850412)
 
-## Use Case: <br>
-Developers and agent builders use this skill to let an agent create TeamBition tasks or retrieve task details through configured TeamBition application credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create TeamBition tasks when supplied with write-capable credentials. <br>
-Mitigation: Use least-privilege credentials, configure a narrow default project, and require user confirmation before task creation. <br>
-Risk: TeamBition application secrets and access tokens could be exposed if placed in prompts or logs. <br>
-Mitigation: Store credentials in the platform's secret storage and avoid echoing credential values in agent-visible messages. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to let agents create TeamBition project tasks and retrieve task details through a configured TeamBition application.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wengjianmin19850412/teambitionweng) <br>
-- [Publisher profile](https://clawhub.ai/user/wengjianmin19850412) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [JSON-compatible TeamBition API response objects and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns raw TeamBition API responses for task creation and task lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill sends TeamBition credentials and task data to TeamBition APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege TeamBition credentials and avoid placing secrets or sensitive business content in task titles or descriptions.
+
+Risk: The create_task action can create remote tasks in a TeamBition workspace.
+
+Mitigation: Review create_task calls before allowing an agent to automate task creation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wengjianmin19850412/skills/teambitionweng)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON]
+
+**Output Format:** [JSON TeamBition API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates remote TeamBition tasks for create_task and returns task details for get_task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,48 @@
-## Description: <br>
-Helps track how AI skill verification results decay over time as dependencies, attack vectors, and ecosystem context change. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps track how AI skill verification results decay over time as dependencies, attack vectors, and ecosystem context change.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers, marketplace maintainers, and security reviewers use this skill to estimate whether prior skill verification results have become stale and to prioritize re-verification across single skills or portfolios. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Trust freshness scores are heuristic triage signals and may be mistaken for proof that a skill is safe or unsafe. <br>
-Mitigation: Use the report to prioritize re-verification, then confirm findings with a current security review before relying on a verification decision. <br>
-Risk: Marketplace, dependency, or internal portfolio data supplied for analysis may contain sensitive information. <br>
-Mitigation: Avoid submitting private marketplace or internal dependency data unless the user intends the agent to analyze that information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/trust-decay-monitor) <br>
+## Use Case:
 
+Developers, security reviewers, and marketplace operators use this skill to assess whether older verification results still justify trust and to prioritize re-verification across individual skills or portfolios.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown trust freshness report with scores, decay factors, urgency, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores are heuristic triage signals and should not be treated as proof that a skill is safe or unsafe.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Future implementations that perform marketplace, CVE, dependency, or endpoint lookups could introduce network-call and private portfolio-data risks.
+
+Mitigation: Review and scan any implementation before deployment, with particular attention to network destinations, data handling, and dependency or CVE lookup behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/trust-decay-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown trust freshness report with scores, decay factors, urgency, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize individual skills or a portfolio-level batch.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

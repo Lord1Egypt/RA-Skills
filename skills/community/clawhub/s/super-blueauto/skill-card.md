@@ -1,41 +1,50 @@
-## Description: <br>
-Super Blueauto helps agents locally scan, connect to, inspect, and manage Bluetooth and BLE devices across major operating systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Blueauto helps agents scan, connect, monitor, and manage local Bluetooth and BLE devices across major operating systems without cloud uploads or data collection.
 
-## Publisher: <br>
-[josephsuo](https://clawhub.ai/user/josephsuo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[josephsuo](https://clawhub.ai/user/josephsuo)
 
-## Use Case: <br>
-Developers, operators, and end users use this skill to control local Bluetooth and BLE devices through natural language. It is suited for scanning nearby devices, managing connections, reading device information, and issuing supported local commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local Bluetooth control can connect, disconnect, write characteristics, power devices, or perform batch actions against nearby or connected devices. <br>
-Mitigation: Use only with Bluetooth devices the user owns and require explicit confirmation before connect, disconnect, write, power, or batch actions. <br>
-Risk: Commands sent to locks, health devices, or other safety-sensitive hardware may have physical or recovery impacts. <br>
-Mitigation: Avoid safety-sensitive hardware unless the exact command behavior and recovery path are known. <br>
+## Use Case:
 
+Developers and operators use this skill to discover, connect to, inspect, and manage local Bluetooth or BLE devices through natural language workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/josephsuo/super-blueauto) <br>
-- [Publisher profile](https://clawhub.ai/user/josephsuo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with natural-language instructions and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe Bluetooth scan, connection, read, write, and batch-management actions for local execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can change or disconnect local Bluetooth devices, including locks, health peripherals, shared devices, or production equipment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing in sensitive environments, use explicit device names, and require confirmation before writes, on/off commands, or batch disconnects.
+
+## Reference(s):
+
+- [Super Blueauto on ClawHub](https://clawhub.ai/josephsuo/skills/super-blueauto)
+- [josephsuo publisher profile](https://clawhub.ai/user/josephsuo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with device-control steps and command proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local Bluetooth scan, connection, read, write, and batch-management instructions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog; artifact Version section says v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

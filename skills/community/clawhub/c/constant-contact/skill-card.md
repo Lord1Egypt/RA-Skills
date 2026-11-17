@@ -1,51 +1,63 @@
-## Description: <br>
-Constant Contact API integration with managed OAuth for reading, creating, updating, deleting, and bulk-modifying Constant Contact contacts, campaigns, lists, tags, custom fields, segments, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent manage Constant Contact contacts, campaigns, lists, and marketing data through a connected Maton account, with approval before changes or sends.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-External users and marketing operators use this skill to let an agent administer Constant Contact data through Maton-managed OAuth, including contact management, campaign workflows, segmentation, and analytics. It is appropriate when the user can supply a Maton API key and approve write or high-impact actions explicitly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive MATON_API_KEY credential. <br>
-Mitigation: Keep MATON_API_KEY secret, provide it only through the runtime environment, and rotate it if it is exposed. <br>
-Risk: Requests may affect the wrong Constant Contact account when multiple OAuth connections exist. <br>
-Mitigation: Use the Maton-Connection header for account selection and confirm the intended connection before write operations. <br>
-Risk: Write, bulk, delete, sender-email, OAuth connection deletion, and campaign-send operations can change marketing data or affect external recipients. <br>
-Mitigation: Retrieve and show the exact target resources, summarize the effect, and wait for explicit user approval before executing high-impact actions. <br>
-Risk: Campaign sends and schedules can deliver email to external recipients. <br>
-Mitigation: Preview campaign content and confirm recipients, sender, subject, and schedule before sending or scheduling. <br>
+## Use Case:
 
+Marketing teams and developers use this skill to inspect and manage Constant Contact contacts, lists, campaigns, and analytics. With user approval, they can also configure related automations and perform account changes.
 
-## Reference(s): <br>
-- [ClawHub Constant Contact listing](https://clawhub.ai/byungkyu/constant-contact) <br>
-- [Publisher profile](https://clawhub.ai/user/byungkyu) <br>
-- [Constant Contact V3 API Overview](https://developer.constantcontact.com/api_guide/getting_started.html) <br>
-- [Constant Contact API Reference](https://developer.constantcontact.com/api_reference/index.html) <br>
-- [Constant Contact Technical Overview](https://developer.constantcontact.com/api_guide/v3_technical_overview.html) <br>
-- [Constant Contact Contacts Overview](https://developer.constantcontact.com/api_guide/contacts_overview.html) <br>
-- [Constant Contact Email Campaigns Guide](https://developer.constantcontact.com/api_guide/email_campaigns_get_started.html) <br>
-- [Constant Contact Contact Lists Overview](https://v3.developer.constantcontact.com/api_guide/lists_overview.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python, shell, and HTTP examples for Constant Contact API calls.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and MATON_API_KEY; write, bulk, delete, sender-email, OAuth connection deletion, and campaign-send operations require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter reports 1.0) <br>
+Risk: Writes, bulk changes, deletions, and campaign sends can change or permanently remove marketing data or contact customers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Begin with read-only checks, then obtain explicit user approval for each action with exact resource IDs, audience, and expected impact.
+
+Risk: Deployed functions, triggers, and destinations may continue acting on new events without a person present.
+
+Mitigation: Review each deployment and destination's data flow, confirm intended unattended behavior, and disable unused automation.
+
+Risk: Connections and responses can expose account access and personal contact information.
+
+Mitigation: Approve new connections explicitly, limit scopes and returned fields, avoid logging sensitive responses or credentials, and revoke access when no longer needed.
+
+## Reference(s):
+
+- [Constant Contact V3 API overview](https://developer.constantcontact.com/api_guide/getting_started.html)
+- [Constant Contact API reference](https://developer.constantcontact.com/api_reference/index.html)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Maton homepage](https://maton.ai)
+- [ClawHub skill release](https://clawhub.ai/byungkyu/skills/constant-contact)
+- [Time trigger reference](artifact/references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with command and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Actions require a connected account; obtain explicit approval for writes, sends, and automation.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

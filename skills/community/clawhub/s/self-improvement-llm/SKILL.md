@@ -18,7 +18,7 @@ These are **required behaviors**, not suggestions. Execute them during conversat
 1. **Detect learning opportunities in real-time.** After every user message or tool result, mentally check:
    - Did the user correct me? → run `python3 scripts/reflect.py --detect "USER_MESSAGE"`
    - Did a tool fail? → log to `.learning-trail.json` immediately
-   - Did I learn something new? → append to `memory/YYYY-MM-DD.md`
+   - Did I learn something new? → log to `.learning-trail.json` immediately
 
 2. **Log corrections immediately.** When the user says "不对", "错了", "no", "actually", etc.:
    ```bash
@@ -39,9 +39,7 @@ These are **required behaviors**, not suggestions. Execute them during conversat
 ### At Session Start
 
 5. **Check `.hook-context.txt`** (written by plugin hook at gateway startup):
-   ```bash
-   cat memory/.hook-context.txt 2>/dev/null
-   ```
+   Use `read(path="memory/.hook-context.txt")` to check it.
    If it shows pending verifications or patterns ready for promotion, act on them.
 
 6. **Run a quick status check:**
@@ -117,52 +115,26 @@ Session / Task
 
 The skill also manages the agent's memory system — daily logs, user preferences, and knowledge retention.
 
-### Memory Architecture (借鉴 Hermes Agent 三层设计)
+### Memory Architecture (三层)
 
-```
-┌─────────────────────────────────────────────────────────┐
-│              THREE-LAYER MEMORY ARCHITECTURE             │
-├──────────────┬──────────────────┬───────────────────────┤
-│  L1: Session │  L2: Persistent  │  L3: User Model       │
-│  Context     │  Store           │  Preferences          │
-│──────────────┼──────────────────┼───────────────────────┤
-│  memory/     │  MEMORY.md       │  memory/              │
-│  sessions/   │  memory/*.md     │  preferences.json     │
-│  (session    │  memory/skills/  │  USER.md              │
-│   summaries) │  (generated      │                       │
-│              │   skills)        │                       │
-└──────────────┴──────────────────┴───────────────────────┘
+| Layer | Store | Content |
+|-------|-------|--------|
+| **L1** Session Context | `memory/sessions/*.md` | 会话摘要 |
+| **L2** Persistent Store | `MEMORY.md`, `memory/*.md`, `memory/skills/` | 蒸馏知识、经验教训 |
+| **L3** User Model | `memory/preferences.json`, `USER.md` | 用户偏好、沟通风格 |
 
-L1 — 会话上下文
-  存储: memory/sessions/YYYY-MM-DD-NNN.md
-  内容: 每次会话的摘要（做了什么、学到了什么、用户说了什么）
-  生命周期: 自动归档到 memory/YYYY-MM-DD.md，长期保留
-
-L2 — 持久存储
-  存储: MEMORY.md（蒸馏知识）+ memory/*.md（原始日志）+ memory/skills/（自动生成技能）
-  内容: 完成的任务结果、经验教训、可复用技能文件
-  生命周期: 永久保留，MEMORY.md 定期蒸馏
-
-L3 — 用户模型
-  存储: memory/preferences.json + USER.md
-  内容: 用户偏好、沟通风格、技术背景、兴趣、已知痛点
-  生命周期: 持续更新，漂移调整
-```
-
-**Inspiration:** Nous Research [Hermes Agent](https://github.com/NousResearch/hermes-agent) 三层记忆架构。SQLite + FTS5 被我们替换为文件存储（更轻量，适合 OpenClaw）。
+Inspired by Nous Research [Hermes Agent](https://github.com/NousResearch/hermes-agent).
 
 ### Auto-Daily-Log
 
-At the end of each significant task or session, automatically append to `memory/YYYY-MM-DD.md`:
+At the end of each session or significant task, write a summary to `memory/YYYY-MM-DD.md`. Do NOT log individual micro-events (corrections, errors, tool failures) here — those go to `.learning-trail.json` only.
 
 ```markdown
-### ✅ 10:30 - Task description
-### ❌ 10:35 - Error: brief description
-### 💡 10:40 - Insight: what was learned
-### 📌 10:45 - User preference: user said X
+### 📝 Session summary
+Completed tasks, user requests, decisions, key outcomes.
 ```
 
-Keep entries short (1-2 lines). Don't log every tool call — only significant events.
+Keep entries concise (3-5 lines per session).
 
 ### Memory Types
 
@@ -192,25 +164,25 @@ When user asks "之前说过什么" or "帮我回忆一下":
 
 1. First check `MEMORY.md` (distilled knowledge)
 2. Then check `USER.md` (preferences)
-3. Then `grep` recent `memory/*.md` files
-4. Then check `.learning-trail.json` for structured entries
+3. Then check `.learning-trail.json` for structured entries
+4. Then `grep` recent `memory/*.md` files
 
 ### Memory Flow
 
 ```
 会话中
   → 检测到用户偏好 / 知识 / 错误
-  → 同时写入 memory/YYYY-MM-DD.md（原始）和 .learning-trail.json（结构化）
+  → 仅写入 .learning-trail.json（结构化）
 
 会话结束（每次对话结束）
   → 自动生成 L1 会话摘要到 memory/sessions/YYYY-MM-DD-NNN.md
   → 摘要包含：做了什么任务、学到了什么、用户反馈、生成了哪些技能
-  → 同时追加到 memory/YYYY-MM-DD.md
+  → 追加概要到 memory/YYYY-MM-DD.md
   
 心跳/空闲
   → 读取 .learning-trail.json 的 patterns
   → 达到阈值的晋升为 MEMORY.md 原则或 memory/preferences.json 偏好
-  → 检查是否有值得生成技能的任务（5+ 工具调用）
+  → 检查是否有值得生成技能的任务（8+ 工具调用且含写操作/脚本执行）
   
 新会话开始
   → MEMORY.md 自动注入上下文
@@ -223,30 +195,30 @@ When user asks "之前说过什么" or "帮我回忆一下":
 
 Automatically log when you notice:
 
-**Corrections** → log to LEARNINGS.md (category: correction)
+**Corrections** → log to `.learning-trail.json` (category: correction)
 - "No, that's not right..."
 - "Actually, it should be..."
 - "You're wrong about..."
 - "That's outdated..."
 - User explicitly correcting your output
 
-**Feature Requests** → log to FEATURE_REQUESTS.md
+**Feature Requests** → log to `.learning-trail.json`
 - "Can you also..."
 - "I wish you could..."
 - "Is there a way to..."
 - "Why can't you..."
 
-**Knowledge Gaps** → log to LEARNINGS.md (category: knowledge_gap)
+**Knowledge Gaps** → log to `.learning-trail.json` (category: knowledge_gap)
 - User provides info you didn't know
 - Documentation you referenced is outdated
 - API behavior differs from your understanding
 
-**Errors** → log to ERRORS.md
+**Errors** → log to `.learning-trail.json`
 - Command returns non-zero exit code
 - Exception or stack trace
 - Timeout or connection failure
 
-**Successes** → log to LEARNINGS.md (category: best_practice)
+**Successes** → log to `.learning-trail.json` (category: best_practice)
 - Found a better approach
 - Quicker way to do something
 - Cleaner pattern emerged
@@ -256,7 +228,7 @@ Automatically log when you notice:
 | Trigger | When | Action |
 |---------|------|--------|
 | **Session end** | After completion | Auto-log summary to memory/YYYY-MM-DD.md + memory/sessions/ L1 summary |
-| **Skill gen check** | After complex task | Auto-generate skill if 5+ tool calls or user says "记住" |
+| **Skill gen check** | After complex task | Auto-generate skill if 8+ tool calls (with write/exec/workflow) or user says "记住" |
 | **Heartbeat** | Idle time | Run learn.py --cycle: check verifications, promote patterns |
 | **Improve yourself** | On demand | Full cycle + report |
 | **Hook** | Session start | If hook installed, review pending learnings |
@@ -291,111 +263,19 @@ Automatically log when you notice:
 当完成一个复杂度达标的任务后，自动生成标准化技能文件。
 
 **生成条件（满足任意一个）：**
-- 任务涉及 5+ 工具调用
+- 任务涉及 **8+ 工具调用且包含写操作/脚本执行/链式工作流**（纯查询类跳过）
 - 用户明确要求"记住这个"或"记下来"
 - 重复做过类似任务 ≥ 2 次
 - 发现了新的工作流或最佳实践
 
 **自动检测机制：**
-1. 任务完成后，回看本次会话的工具调用次数
-2. 如果 ≥ 5 次，且该任务不是日常操作（如简单查天气），则生成技能文件
-3. 技能文件名用短横线命名：`memory/skills/<task-slug>.md`
-4. 检查是否已存在类似技能（grep memory/skills/ 目录），有则更新而非新建
+1. 任务完成后，检查是否满足以上条件
+2. 满足则生成技能文件，以短横线命名：`memory/skills/<task-slug>.md`
+3. 先检查是否已存在类似技能（grep memory/skills/ 目录），有则更新而非新建
 
 ## Structured Log Format
 
-Every entry uses this format (inspired by pskoett standard):
-
-### Learning Entry (LEARNINGS.md / auto-log)
-
-```
-## [LRN-YYYYMMDD-XXX] category:brief_title
-
-**Logged**: ISO-8601 timestamp
-**Priority**: low | medium | high | critical
-**Status**: pending | in_progress | resolved | wont_fix | promoted
-**Area**: frontend | backend | infra | tests | docs | config | behavior | tooling
-
-### Summary
-One-line description
-
-### Details
-What happened, what was wrong, what's correct
-
-### Suggested Action
-Specific fix or improvement
-
-### Metadata
-- Source: conversation | error | user_feedback | self_discovery
-- Related Files: path/to/file
-- Tags: tag1, tag2
-- Pattern-Key: unique_key_for_dedup (optional, for recurring patterns)
-- Recurrence-Count: 1
-- First-Seen: YYYY-MM-DD
-- Last-Seen: YYYY-MM-DD
-```
-
-### Error Entry (ERRORS.md)
-
-```
-## [ERR-YYYYMMDD-XXX] tool_or_command_name
-
-**Logged**: ISO-8601 timestamp
-**Priority**: high
-**Status**: pending
-**Area**: infra | tooling | config
-
-### Summary
-Brief description of what failed
-
-### Error
-Actual error message or output
-
-### Context
-- Command/operation attempted
-- Input or parameters used
-
-### Suggested Fix
-What might resolve this
-
-### Metadata
-- Reproducible: yes | no | unknown
-- Related Files: path/to/file
-- See Also: ERR-YYYYMMDD-XXX (if recurring)
-```
-
-### Feature Request Entry (FEATURE_REQUESTS.md)
-
-```
-## [FEAT-YYYYMMDD-XXX] capability_name
-
-**Logged**: ISO-8601 timestamp
-**Priority**: medium
-**Status**: pending
-**Area**: as appropriate
-
-### Summary
-What the user wanted to do
-
-### User Context
-Why they needed it
-
-### Complexity Estimate
-simple | medium | complex
-
-### Metadata
-- Frequency: first_time | recurring
-- Related Features: existing_feature_name
-```
-
-### ID Generation
-
-Format: `TYPE-YYYYMMDD-XXX`
-- TYPE: LRN (learning), ERR (error), FEAT (feature)
-- YYYYMMDD: Current date
-- XXX: Sequential number or random 3 chars (e.g., 001, A7B)
-
-**Where to log:** The agent logs structured entries to `memory/.learning-trail.json` (structured, queryable). The helper scripts also write human-readable copies to `.learnings/` files if they exist.
+All entries use `TYPE-YYYYMMDD-XXX` IDs (LRN/ERR/FEAT) and go into `memory/.learning-trail.json`. Full entry formats: [references/cli_ref.md](references/cli_ref.md).
 
 ## Recurring Pattern Detection
 
@@ -423,92 +303,27 @@ Promote a pattern to workspace core files when **all** are true:
 | Universal principle | MEMORY.md | "Simple before powerful" |
 | Reusable procedure | memory/skills/*.md | "SearXNG 部署流程" |
 
-### Auto-Generated Skill Format (借鉴 Hermes Agent)
-
-```markdown
----
-name: skill-slug-name
-description: 一句话描述这个技能做什么
-created: 2026-05-27
-updated: 2026-05-27
-source: auto
-triggers: ["触发关键词或场景"]
-tools: [web_fetch, exec, read]
----
-
-## Procedure
-
-1. 步骤一：做了什么
-2. 步骤二：怎么做的
-3. 步骤三：验证结果
-
-## Pitfalls
-
-- 已知问题或陷阱
-- 容易出错的地方
-- 环境依赖
-
-## Verification
-
-- 如何验证结果正确
-- 预期输出是什么
-```
-
 **技能复用流程：**
 1. 新任务到来 → 搜索 `memory/skills/` 目录匹配关键词
 2. 找到匹配 → 读取技能文件，从 Procedure 开始执行
 3. 未找到 → 从头推理，完成后生成新技能文件
 
+Auto-generated skill template: [references/cli_ref.md](references/cli_ref.md).
+
 ## Verification Loop
 
-When a change is promoted or applied, record a verification entry:
+`learn.py --cycle` checks after 7 days if the change helped. Verification API and outcomes: [references/cli_ref.md](references/cli_ref.md).
 
-```json
-{
-  "id": "change-20260505-001",
-  "source": "LRN-20260505-003",
-  "target": "TOOLS.md",
-  "change": "Added 'prefer read over exec for files'",
-  "hypothesis": "This will reduce file-viewing errors",
-  "verified": false,
-  "next_check": "2026-05-12",
-  "evidence": []
-}
-```
-
-After 7 days, `learn.py --cycle` checks:
-- Did the error rate drop for the addressed issue?
-- Was the change relevant to the root cause?
-- Did the change cause any regressions?
-
-**Verification outcomes:**
-
-| Result | Action |
-|--------|--------|
-| ✅ Confirmed effective | Mark verified, reduce monitoring to monthly |
-| ❌ Ineffective | Revert change, log why it failed |
-| ❌ Made worse | Revert immediately, escalate |
-| ❓ Inconclusive | Extend monitoring, add more data points |
-
-## Verification Script
+## CLI Commands
 
 ```bash
 python3 scripts/learn.py --cycle     # Full cycle: check verifications + promote patterns
 python3 scripts/learn.py --verify    # Only check pending verifications
 python3 scripts/learn.py --status    # Show learning stats
-
-# Logging with source
-python3 scripts/learn.py --log learning "user corrected me on X" --area behavior --source user_feedback --priority high
+python3 scripts/learn.py --log learning "message" --area behavior --priority high
 ```
 
-**CLI `--log` parameters:**
-
-| Param | Values | Default |
-|-------|--------|--------|
-| `--source` | `conversation`, `error`, `user_feedback`, `self_discovery` | `self_discovery` |
-| `--priority` | `critical`, `high`, `medium`, `low` | `medium` |
-| `--area` | any string | `tooling` |
-| `--pattern-key` | any string | none |
+CLI params reference: [references/cli_ref.md](references/cli_ref.md).
 
 ## Hook Integration (Session Start)
 
@@ -537,12 +352,12 @@ The hook checks `.learning-trail.json` on session start for:
 
 | Situation | Action |
 |-----------|--------|
-| Command/operation fails | Log to ERRORS.md + auto-log |
-| User corrects you | Log to LEARNINGS.md (correction) |
-| User wants missing feature | Log to FEATURE_REQUESTS.md |
-| API/external tool fails | Log to ERRORS.md |
-| Knowledge was outdated | Log to LEARNINGS.md (knowledge_gap) |
-| Found better approach | Log to LEARNINGS.md (best_practice) |
+| Command/operation fails | Log to `.learning-trail.json` |
+| User corrects you | Log to `.learning-trail.json` (correction) |
+| User wants missing feature | Log to `.learning-trail.json` |
+| API/external tool fails | Log to `.learning-trail.json` |
+| Knowledge was outdated | Log to `.learning-trail.json` (knowledge_gap) |
+| Found better approach | Log to `.learning-trail.json` (best_practice) |
 | Same error 3x across sessions | Promote to core file |
 | Change applied 7+ days ago | Run verification check |
 
@@ -557,47 +372,13 @@ The hook checks `.learning-trail.json` on session start for:
 
 ## Conflict Resolution
 
-When two principles contradict, the system uses **priority scoring** to decide which wins:
+Priority scoring when principles contradict: [references/cli_ref.md](references/cli_ref.md).
 
-```
-Score = BasePriority(100/60/30/10) + RecurrenceBonus(×10 each) + RecencyBonus(up to 30) + AreaWeight(up to 50)
+## Forgetting & Auto-Revert
 
-Highest score wins.
-```
-
-Example conflict:
-- "Use headless browser for automation" (tooling, score: 85)
-- "Show browser window for demos" (behavior, score: 40)
-- **Winner:** headless automation (85 > 40)
-
-When a tie is detected, the system logs it for human review.
-
-## Forgetting Mechanism
-
-Old learnings that aren't reinforced automatically fade:
-
-| Time without reinforcement | Action |
-|---------------------------|--------|
-| 30 days | Priority demoted one level (high→medium, etc.) |
-| 60 days | Priority → low, flagged as stale |
-| 90 days | Auto-resolved as `wont_fix` |
-
-Reinforcement happens when:
-- The same error pattern reoccurs → Recurrence-Count increases → freshness reset
-- The agent actively references the principle → logged in evidence
-- User confirms the learning is still relevant
-
-## Auto-Revert
-
-When a verification is overdue by 7+ days without evidence:
-
-| Overdue | Action |
-|---------|--------|
-| 7 days | Grace period — reminder only |
-| 14 days | First extension + evidence request |
-| 21+ days | Auto-revert: change undone, logged as `auto_reverted` |
-
-The revert is safe because all changes are file-based (TOOLS.md, USER.md, etc.) and the old state is tracked in the learning trail.
+- 30d without reinforcement → priority demoted; 60d → stale; 90d → `wont_fix`
+- Verification overdue 21+ days → auto-revert
+- Details: [references/cli_ref.md](references/cli_ref.md).
 
 ## Proposal Workflow
 
@@ -666,127 +447,20 @@ python3 scripts/learn.py --trends 7            # Show 7-day trend
 
 ### Trend Tracking
 
-Scores are stored in `.learning-trail.json` and displayed as trends:
-
-```
-📈 Score Trends (last 7 days, 12 scores):
-
-  Date         Avg  Acc  Use  Eff  Ton  Pro
-  ──────────────────────────────────────────
-  2026-05-01   7.2    8    8    7    7    6
-  2026-05-02   7.8    8    9    7    8    7
-  2026-05-03   8.0    8    9    8    8    7
-
-  Trend: ↑ (7.2 → 8.0)
-```
-
-**No scores yet** = no way to measure improvement. Start scoring after each meaningful interaction.
+Example in [references/cli_ref.md](references/cli_ref.md).
 
 ## Dynamic Memory Injection
 
-Instead of injecting ALL of MEMORY.md into every session, the system builds a **topic-indexed memory index** and injects only relevant memories.
-
-### How It Works
-
-1. **Build index** — Scan `memory/*.md` files, detect topics, create `.memory-index.json`
-2. **Detect topic** — When a conversation starts, detect the topic from the user's message
-3. **Inject relevant memory** — Only memories matching the topic are injected
-
-### Topics
-
-| Topic | Keywords |
-|-------|----------|
-| weather | 天气, 温度, wind, rain, 预报 |
-| code | 代码, script, python, bug, fix |
-| finance | 金融, 股票, stock, 交易 |
-| skill | skill, clawhub, 技能 |
-| learning | improve, learn, reflect, 学习 |
-| memory | memory, remember, recall, 记忆 |
-| browser | browser, playwright, 自动化 |
-| config | config, 配置, setup, API, key |
-
-### Usage
-
+Build topic index → detect conversation topic → inject relevant memories.
 ```bash
-python3 scripts/learn.py --build-index    # Build topic index
-python3 scripts/learn.py --query-memory weather    # Query weather memories
+python3 scripts/learn.py --build-index
+python3 scripts/learn.py --query-memory weather
 ```
-
-The index is automatically rebuilt during `--cycle`. When a new session starts, the agent detects the topic and queries relevant memories instead of loading everything.
+Topics list: [references/cli_ref.md](references/cli_ref.md). Index rebuilt during `--cycle`.
 
 ## Knowledge Graph
 
-Connect memories into a network: **事件 → 教训 → 原则**。
-
-### Node Types
-
-| Type | Icon | Description |
-|------|------|-------------|
-| **event** | 📌 | 具体事件（"用了 exec 读文件"） |
-| **lesson** | 💡 | 从事件中学到的教训 |
-| **principle** | 📜 | 通用原则（"Simple before powerful"） |
-| **knowledge** | 📖 | 事实知识（"QWeather 需要自定义 Host"） |
-| **pattern** | 🔍 | 重复出现的模式 |
-
-### Edge Types
-
-| Type | Direction | Meaning |
-|------|-----------|---------|
-| **caused_by** | A → B | A 是由 B 引起的 |
-| **led_to** | A → B | A 导致了 B |
-| **supports** | A → B | A 支持 B |
-| **contradicts** | A → B | A 与 B 矛盾 |
-| **related_to** | A → B | A 与 B 相关 |
-| **derived_from** | A → B | A 是从 B 推导出来的 |
-
-### Usage
-
-```bash
-# Create nodes
-python3 scripts/learn.py --graph-node event "用了 exec 读文件" manual
-python3 scripts/learn.py --graph-node lesson "应该用 read 工具" manual
-python3 scripts/learn.py --graph-node principle "Simple before powerful" manual
-
-# Create edges
-python3 scripts/learn.py --graph-edge eve-XXXX-001 les-XXXX-001 caused_by
-python3 scripts/learn.py --graph-edge les-XXXX-001 pri-XXXX-001 led_to
-
-# Auto-link (based on content similarity)
-python3 scripts/learn.py --graph-auto-link eve-XXXX-001 "用了 exec 读文件"
-
-# Query graph
-python3 scripts/learn.py --graph-query              # Show full graph
-python3 scripts/learn.py --graph-query type:lesson  # Query by type
-python3 scripts/learn.py --graph-query eve-XXXX-001 # Query by node ID
-```
-
-### Auto-Link
-
-When creating a node, the system automatically links it to existing nodes based on content similarity:
-
-- **Keyword overlap ≥ 2** → `related_to`
-- **Error words** (error, fail, wrong) → `caused_by`
-- **Support words** (should, prefer, use) → `supports`
-- **Contradiction words** (not, instead, rather) → `contradicts`
-
-### Example Graph
-
-```
-🕸️  Knowledge Graph (4 nodes, 3 edges):
-
-  📌 EVENTs (1):
-    [eve-20260505-001] Used exec for file read instead of read tool
-  💡 LESSONs (1):
-    [les-20260505-002] Always use read tool for file viewing, not exec
-  📜 PRINCIPLEs (1):
-    [pri-20260505-003] Simple before powerful
-  📖 KNOWLEDGEs (1):
-    [kno-20260505-004] QWeather needs custom API host
-
-  🔗 Edges:
-    Always use read tool... ──caused_by──► Used exec for file...
-    Always use read tool... ──led_to──► Simple before powerful...
-```
+Connects 事件 → 教训 → 原则. Node types, edge types, and CLI usage: [references/cli_ref.md](references/cli_ref.md).
 
 ## Key Principles
 
@@ -804,7 +478,7 @@ When creating a node, the system automatically links it to existing nodes based 
 - [reflection_frameworks.md](references/reflection_frameworks.md) — Detailed frameworks and patterns
 - [scripts/learn.py](scripts/learn.py) — Learning cycle engine
 - [scripts/reflect.py](scripts/reflect.py) — Session data collector + auto-log
-- [hsoks/](hooks/) — OpenClaw session-start hook template
+- [hooks/](hooks/) — OpenClaw session-start hook template
 
 ## 更新与迁移
 
@@ -823,6 +497,18 @@ When creating a node, the system automatically links it to existing nodes based 
 1. 恢复备份的 `memory/` 目录
 2. 恢复备份的 `.learning-trail.json`
 3. 降级到之前的版本
+
+### ⚠️ Windows 已知问题
+
+在 Windows 上，`openclaw skills update` 可能失败，报 `EPERM: operation not permitted`。
+
+**原因：** OpenClaw Gateway（Node.js）运行时持有技能目录的文件句柄，导致 update 流程中的 rename 操作被操作系统拒绝。
+
+**解决方法：**
+1. 手动删除旧目录：`cmd /c rmdir /s /q "<skills路径>\self-improvement-llm"`
+2. 重新安装：`openclaw skills install self-improvement-llm`
+
+**Linux/macOS 不受影响**，目录在被读取时仍可 rename。
 
 ## 备份与同步
 

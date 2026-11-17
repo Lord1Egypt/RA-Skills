@@ -1,39 +1,48 @@
-## Description: <br>
-Finds logical errors, silent edge cases, performance cliffs, implicit assumptions, and other defects that can be missed in human code review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds what human code reviewers miss: logical errors, silent edge cases, performance cliffs, implicit assumptions, and bugs that hide in code that looks correct.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineers use Review Lens to examine code for correctness risks, edge cases, failure paths, state transition problems, performance cliffs, security surfaces, and assumptions that may not be obvious during ordinary review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Code review prompts may process sensitive source code or secrets supplied by the user. <br>
-Mitigation: Avoid pasting secrets, private keys, regulated data, or proprietary code unless the agent environment is approved for that data. <br>
-Risk: Review findings may be incomplete, incorrect, or misleading if applied without engineering judgment. <br>
-Mitigation: Treat findings as review guidance and have a developer validate proposed changes before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jcools1977/review-lens) <br>
+## Use Case:
 
+Developers and engineers use this skill to review code and diffs for correctness issues that ordinary style-focused review can miss, including boundary cases, failure paths, invalid state transitions, performance cliffs, and security surfaces.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown code review findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only review guidance; no executable code or external API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Review guidance could be incorrect or misleading when applied to sensitive code involving money, authentication, authorization, or user data.
+
+Mitigation: Treat findings as review assistance and have qualified maintainers verify proposed fixes before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcools1977/skills/review-lens)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown review findings with severity labels, affected locations, rationale, and suggested fixes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior, network access, persistence, or external API requirement was found in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

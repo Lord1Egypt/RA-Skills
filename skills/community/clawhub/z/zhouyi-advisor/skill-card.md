@@ -1,45 +1,60 @@
-## Description: <br>
-Provides I Ching-style divination, hexagram lookup, Zhouyi philosophical interpretation, decision-reflection guidance, and interactive HTML report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+《周易》智慧顾问可在用户提出周易、易经、起卦、占卜、卦象、八卦、六十四卦、变卦、互卦、爻辞、彖传、象传等相关请求时，提供铜钱、数字、时间三种起卦方式、六十四卦查询、多维度卦象解读、易经哲学分析、决策参考和交互式 HTML 可视化报告。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and developers use this skill to generate I Ching-style reflections, query hexagrams, explore Zhouyi philosophy, and produce local HTML reports for cultural or philosophical decision support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat divination-style output as definitive advice for major decisions. <br>
-Mitigation: Present reports as cultural or philosophical reflection only, avoid medical, legal, financial, or life-determining advice, and encourage critical thinking. <br>
-Risk: Generated reports can include user-provided question text and local output filenames. <br>
-Mitigation: Use non-sensitive output filenames and avoid opening reports generated from untrusted question text. <br>
-Risk: Repeated readings or fear-based interpretations could increase anxiety or dependency. <br>
-Mitigation: Avoid deterministic predictions and fear-mongering, frame guidance as optional reflection, and discourage repeated readings of the same issue without a meaningful change in context. <br>
+## Use Case:
 
+External users and agents use this skill to answer Zhouyi or I Ching questions, perform coin, number, or time-based divination workflows, query hexagrams, discuss Yijing philosophy, and generate HTML reports for reflective decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/zhouyi-advisor) <br>
-- [起卦方法详解](references/divination-methods.md) <br>
-- [周易智慧顾问 · 伦理边界](references/ethics.md) <br>
-- [易经哲学核心概念](references/yijing-philosophy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and single-file HTML reports, with optional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local HTML report to the requested output path; no external services are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated HTML reports may include unescaped user-supplied question text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before opening or sharing them, especially when the question text came from an untrusted source.
+
+Risk: The report generator can write to custom output paths and may overwrite important files.
+
+Mitigation: Use a dedicated report directory and avoid custom --output paths unless the destination has been reviewed.
+
+Risk: Zhouyi interpretations may be mistaken for deterministic predictions or professional advice.
+
+Mitigation: Use the skill only for explicit Zhouyi or I Ching requests and preserve its boundaries against medical, legal, financial, or final decision-making advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/zhouyi-advisor)
+- [Divination Methods](references/divination-methods.md)
+- [Ethics](references/ethics.md)
+- [Yijing Philosophy](references/yijing-philosophy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Chinese-language conversational guidance, markdown summaries, shell command examples, and generated single-file HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected output is Chinese-language Zhouyi interpretation with optional local HTML report generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,66 @@
-## Description: <br>
-Generates in-depth weekly AI and computer-vision reports by aggregating data from multiple sources with a plugin-based pipeline and multi-channel delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates weekly AI and computer-vision briefing reports by gathering source material, helping the host agent structure the brief, and rendering the result into report files.
 
-## Publisher: <br>
-[llx9826](https://clawhub.ai/user/llx9826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llx9826](https://clawhub.ai/user/llx9826)
 
-## Use Case: <br>
-Host AI agents and developers use this skill to plan AI and computer-vision briefings, fetch and deduplicate source material, and render completed reports. It can also run as a standalone report-generation pipeline when configured with an LLM provider. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The external-skill proxy can execute configured Python modules and functions under the agent's privileges. <br>
-Mitigation: Enable only trusted sources, avoid untrusted skill_proxy module or function names, and run the skill with least-privilege filesystem and credential access. <br>
-Risk: Standalone mode may send prompts, profile preferences, and fetched report material to the configured LLM provider. <br>
-Mitigation: Review the configured LLM provider and avoid using sensitive prompts, user profiles, or source material unless that data handling is acceptable. <br>
-Risk: Rendered reports are saved locally. <br>
-Mitigation: Use a controlled output directory and review local file permissions and retention for generated HTML, PDF, PNG, Markdown, and JSON reports. <br>
+## Use Case:
 
+Developers and host-agent users use this skill to plan AI or computer-vision briefings, fetch and deduplicate relevant source material, and render completed briefs. It supports host AI mode without an extra LLM API key, while the standalone engine can run its own configured LLM pipeline.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/llx9826/ai-cv-weekly) <br>
-- [README](artifact/README.md) <br>
-- [Host AI skill guide](artifact/clawcat_skill/SKILL.md) <br>
-- [Adapter registry](artifact/clawcat/adapters/registry.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration instructions, JSON, Markdown, Files, Text] <br>
-**Output Format:** [JSON dictionaries plus rendered report files in HTML, PDF, PNG, Markdown, and JSON formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [PDF and PNG export depend on Playwright and a local Chromium or Chrome runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.0.1 (source: server release metadata) <br>
+Risk: The skill can make outbound web requests to configured news, search, finance, RSS, GitHub, and research-paper sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it with restricted network egress and approve only the data sources needed for the briefing task.
+
+Risk: The skill_proxy adapter can bridge to local third-party skill modules.
+
+Mitigation: Keep skill_proxy disabled unless the target module is explicitly trusted and installed from a known source.
+
+Risk: Untrusted RSS feed URLs or task_config values can influence what the tool fetches and renders.
+
+Mitigation: Do not allow untrusted users to provide raw RSS URLs or task_config payloads without review.
+
+Risk: Standalone mode can call a configured LLM provider and render reports through a browser.
+
+Mitigation: Use pinned dependencies, isolate runtime credentials, and review rendered output before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/llx9826/skills/ai-cv-weekly)
+- [Publisher profile](https://clawhub.ai/user/llx9826)
+- [Host AI skill instructions](artifact/clawcat_skill/SKILL.md)
+- [Project README](artifact/README.md)
+- [Adapter registry](artifact/clawcat/adapters/registry.json)
+- [Configuration example](artifact/config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, JSON, Markdown, Files]
+
+**Output Format:** [Structured dictionaries and rendered HTML, PDF, PNG, Markdown, and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Host AI mode returns planning data, fetched items, and output file paths; standalone mode may call a configured LLM provider.]
+
+## Skill Version(s):
+
+7.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

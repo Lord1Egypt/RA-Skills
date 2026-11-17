@@ -1,45 +1,59 @@
-## Description: <br>
-GhostShield helps users analyze and obfuscate repository style signals, sensitive data, and optional watermarks to reduce AI style distillation risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GhostShield helps agents analyze repositories for personal or sensitive traces, apply multi-level code and document obfuscation, and evaluate the resulting style and privacy changes.
 
-## Publisher: <br>
-[13770626440](https://clawhub.ai/user/13770626440) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 <br>
+## Publisher:
 
+[13770626440](https://clawhub.ai/user/13770626440)
 
-## Use Case: <br>
-Developers, open source contributors, compliance teams, and employees use GhostShield to scan code or document repositories for style and privacy exposure, then generate protected copies with configurable obfuscation levels. It supports analysis, PII redaction, style-signal reduction, optional watermarking, and post-processing evaluation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository rewriting can alter code behavior or produce output that is not safe to publish without review. <br>
-Mitigation: Run GhostShield on a disposable clone or separate output directory, review diffs, and run tests before publishing or relying on transformed code. <br>
-Risk: Level 3 processing and watermarking can add invisible markers or adversarial style noise to files. <br>
-Mitigation: Use Level 3 and watermarking only when those markers are intentionally needed, and inspect generated files before sharing. <br>
-Risk: Automated PII and sensitive-data detection may miss some repository-specific secrets or identifiers. <br>
-Mitigation: Treat automated redaction as a first pass and perform manual review for sensitive repositories before distribution. <br>
+## Use Case:
 
+Developers and engineers use this skill to prepare code or documentation for sharing by detecting PII, reducing identifiable style signals, optionally adding anti-distillation markers, and reviewing the effect on output quality.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/13770626440/ghostshield) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Python downloads](https://www.python.org/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI examples, analysis reports, and rewritten repository files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally against user-selected files or repositories and can write transformed copies to a separate output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: Secrets or sensitive strings may remain in generated output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not treat GhostShield as a complete sanitizer; inspect processed files and run an independent secret scan before publishing or executing the output.
+
+Risk: Processing repositories with symlinks may copy files outside the selected repository.
+
+Mitigation: Run the tool only on disposable repository copies after reviewing symlinks and excluding untrusted paths.
+
+Risk: Level 3 watermarking can persist hidden markers in generated code.
+
+Mitigation: Avoid custom watermark IDs unless needed, disclose watermark use where appropriate, and inspect output before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/13770626440/skills/ghostshield)
+- [Publisher Profile](https://clawhub.ai/user/13770626440)
+- [Microsoft Presidio](https://github.com/microsoft/presidio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python snippets; when the tool is run, it can produce processed files and evaluation reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill describes three processing levels and optional watermark behavior; generated repository output should be inspected before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

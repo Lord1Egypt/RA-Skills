@@ -1,42 +1,56 @@
-## Description: <br>
-Make HTTP requests from the command line with support for auth (Bearer, Basic, API key), custom headers, JSON/form body, response formatting, timing, and history logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make HTTP requests from the command line with support for auth (Bearer, Basic, API key), custom headers, JSON/form body, response formatting, timing, and history logging.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to make command-line HTTP requests for API testing, auth flow checks, webhook debugging, health monitoring, and CI automation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Credential options and custom headers can expose secrets through shell history, process listings, verbose output, or logs.
+
+Mitigation: Review before using real credentials; avoid passing production tokens directly on the command line and avoid verbose output with secrets.
+
+Risk: Skipping TLS verification can make HTTPS requests vulnerable to interception.
+
+Mitigation: Use --no-verify only in controlled local testing and keep certificate verification enabled for normal use.
+
+Risk: Redirects and saved response files can expose authenticated requests or sensitive response content.
+
+Mitigation: Review redirect behavior and output paths before execution, and treat saved response files as sensitive data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to make HTTP requests for API testing, health checks, authentication testing, webhook debugging, and CI automation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Credentials supplied through Bearer, Basic, or API key options can be exposed to unintended endpoints when redirects are followed. <br>
-Mitigation: Avoid real tokens or passwords with URLs that may redirect, and inspect redirect behavior before using authenticated requests. <br>
-Risk: The --no-verify option disables TLS certificate verification and can make HTTPS requests vulnerable to interception. <br>
-Mitigation: Use --no-verify only in controlled testing environments and keep certificate verification enabled for normal use. <br>
-Risk: Mutating HTTP methods can perform remote actions with the full privileges of the supplied credentials. <br>
-Mitigation: Review target URLs, methods, headers, and request bodies before running POST, PUT, PATCH, or DELETE requests. <br>
+**Output Format:** [Terminal text, optional JSON response objects, and optional saved response files]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Johnnywang2001/jrv-http-client) <br>
+**Other Properties Related to Output:** [Exit codes distinguish successful HTTP responses, HTTP errors, and network or usage errors.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API responses, Text, JSON, Files] <br>
-**Output Format:** [Command-line text, optional JSON response envelopes, HTTP status codes, and optional response body files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish successful HTTP responses, HTTP errors, and network or usage errors.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

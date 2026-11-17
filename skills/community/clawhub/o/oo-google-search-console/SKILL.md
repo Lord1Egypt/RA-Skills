@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Google Search Console"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.5"
   services: ["google_search_console"]
   icon: "https://static.oomol.com/logo/third-party/google_search_console.svg"
 ---
@@ -77,11 +77,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Google Search Console is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=google_search_console
+  https://console.oomol.com/connections/google_search_console
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Google Search Console homepage: https://search.google.com/search-console
+- API documentation: https://developers.google.com/webmaster-tools/v1/api_reference_index

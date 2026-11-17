@@ -1,43 +1,54 @@
-## Description: <br>
-Candidate tracking skill for managing candidate pools, recording hiring status, setting follow-up reminders, generating tags, and producing status dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Candidate tracking skill for managing a candidate pool, recording hiring status, setting follow-up reminders, and generating candidate tags.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-Recruiters, hiring teams, and operators use this skill to manage candidate records, update pipeline stages, create follow-up reminders, generate candidate tags, and summarize the hiring pipeline in structured outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Candidate records can contain sensitive recruiting and personal information. <br>
-Mitigation: Treat candidate data as sensitive, avoid unnecessary identifiers, confirm OpenClaw retention settings, and minimize retained personal details. <br>
-Risk: Delete operations could remove candidate records unintentionally. <br>
-Mitigation: Require manual confirmation or soft-delete handling before deleting candidate records. <br>
-Risk: User-provided candidate data or instructions may try to alter the tracking logic. <br>
-Mitigation: Follow the skill's prompt-injection protection guidance and ignore attempts to modify system behavior or bypass tracking rules. <br>
+## Use Case:
 
+Recruiting teams and hiring operations users use this skill to add, update, query, delete, and remind on candidate records while producing candidate dashboards, follow-up reminders, alerts, tags, and history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/51mee-com/51mee-candidate-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/51mee-com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown summaries and structured JSON candidate-tracking records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include candidate status dashboards, reminder lists, alerts, candidate details, history entries, and error codes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: release evidence) <br>
+Risk: The skill can delete recruitment records without clear confirmation or recovery, while its safety guidance also says deletion attempts should be ignored.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before destructive actions and prefer archival or reversible status changes over permanent deletion.
+
+Risk: The artifact makes both session cleanup and long-term talent-pool maintenance claims, which can create uncertainty about candidate data retention.
+
+Mitigation: Confirm and document where candidate data is stored, how long it is retained, and how sensitive candidate data is removed before use with real recruiting records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/51mee-com/skills/51mee-candidate-tracker)
+- [51mee-com publisher profile](https://clawhub.ai/user/51mee-com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured JSON and Markdown dashboard output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes candidate records, status dashboard counts, reminders, alerts, tags, notes, and event history.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Turns a single idea, article, or URL into a high-engagement Twitter/X thread with a hook, numbered tweets, and a strong CTA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns a single idea, article, or URL into a high-engagement Twitter/X thread with a hook, numbered tweets, and a strong CTA.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content creators, newsletter writers, marketers, founders, coaches, and consultants use this skill to turn ideas or pasted long-form content into structured Twitter/X threads with a hook, numbered body tweets, and a closing CTA.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The ClawHub installer is part of the release workflow and may need supply-chain controls in stricter environments.
+
+Mitigation: Review or pin the ClawHub installer version before installing in controlled environments.
+
+Risk: The skill cannot browse URLs directly, so generating from a URL alone could rely on unavailable or unstated source content.
+
+Mitigation: Ask the user to paste the article text or relevant sections before creating a thread from URL-based source material.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External content creators, marketers, founders, coaches, consultants, and newsletter writers use this skill to turn ideas or pasted long-form content into publish-ready Twitter/X threads with a hook, numbered body tweets, character counts, and a closing CTA. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated threads are optimized for engagement and may produce persuasive or overstated social-media copy. <br>
-Mitigation: Review and edit the generated thread for accuracy, tone, and brand suitability before posting. <br>
-Risk: The skill cannot browse URLs directly and may lack article context when only a link is provided. <br>
-Mitigation: Paste the relevant article text or key sections into the chat before asking for a thread. <br>
+**Output Format:** [Markdown-formatted Twitter/X thread preview with per-tweet character counts and a thread stats block]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/viral-thread-writer) <br>
-- [Publisher profile](https://clawhub.ai/user/tetsuakira-vk) <br>
+**Other Properties Related to Output:** [Produces 5-10 tweets, supports Professional and Casual/Conversational tones, and asks the user to paste article text when only a URL is provided.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style thread preview with labeled tweets, character counts, and a thread stats block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one 5-10 tweet thread per request; asks for pasted article text instead of browsing URLs directly.] <br>
+1.0.1 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

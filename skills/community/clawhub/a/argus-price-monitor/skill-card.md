@@ -1,42 +1,58 @@
-## Description: <br>
-Monitors product prices across e-commerce sites daily, detects price drops, and emails a formatted Excel report automatically every morning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors product prices across e-commerce sites daily, detects price drops, and emails a formatted Excel report automatically every morning.
 
-## Publisher: <br>
-[neo1307](https://clawhub.ai/user/neo1307) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neo1307](https://clawhub.ai/user/neo1307)
 
-## Use Case: <br>
-Operations, ecommerce, and pricing teams use this skill to monitor configured product URLs, compare current prices with prior runs, and receive daily Excel reports by email. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled scraping and automatic email delivery can affect external sites or send reports before configuration is reviewed. <br>
-Mitigation: Install only for intended monitoring, verify monitored URLs and recipients, and require confirmation before the first email send. <br>
-Risk: SMTP credentials and report recipients could expose business data if over-privileged or misconfigured. <br>
-Mitigation: Use a dedicated SMTP account or app password, allowlist recipients, and keep secrets in the platform secret store. <br>
-Risk: Local raw data and generated reports may accumulate pricing history beyond the intended retention period. <br>
-Mitigation: Set retention limits for raw scrape data and report files. <br>
+## Use Case:
 
+Employees, external business users, and developers use this skill to monitor configured e-commerce product URLs, compare daily prices, and receive an Excel report by email.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neo1307/argus-price-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, text, configuration] <br>
-**Output Format:** [Excel workbook, email with attachment, CSV raw data, and console summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured product URLs, SMTP settings, and a Chromium-capable Selenium runtime.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill browses configured websites with weak browser isolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a restricted container or dedicated account, remove --no-sandbox where possible, and restrict outbound network access to approved domains.
+
+Risk: The skill builds and emails Excel reports from untrusted web data.
+
+Mitigation: Harden the Excel export against formula injection before emailing reports and review SMTP recipients before deployment.
+
+Risk: Untrusted or overly broad product URL lists can expand browsing and scraping exposure.
+
+Mitigation: Use only trusted product URLs and maintain an allowlist for monitored domains.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neo1307/skills/argus-price-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/neo1307)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [Excel workbook, email message, and console summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates dated raw CSV and Excel report files, then emails the Excel report when SMTP settings are configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-OpenClaw Ticket Assistant analyzes customer-support screenshots, identifies customer and issue details, and helps create tickets in an internal ticketing system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Ticket Assistant analyzes customer support screenshots, identifies the customer, reporter, platform, and issue, and guides an agent through creating a ticket.
 
-## Publisher: <br>
-[mskmz](https://clawhub.ai/user/mskmz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mskmz](https://clawhub.ai/user/mskmz)
 
-## Use Case: <br>
-Support engineers use this skill to convert customer conversation screenshots into confirmed ticket fields, guide login when needed, and submit tickets through the internal ticket system after user review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in browser session to create tickets in an internal system. <br>
-Mitigation: Install it only for that workflow and review the filled ticket form before confirming submission. <br>
-Risk: Customer screenshots may contain sensitive or unrelated information. <br>
-Mitigation: Provide only relevant screenshots and verify the extracted customer, UID, handler, platform, and problem details before confirming submission. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mskmz/openclaw-ticket-assistant) <br>
-- [Domain Account Login Guide](references/login-guide.md) <br>
+## Use Case:
 
+Support employees use this skill to convert customer conversation screenshots into confirmed ticket fields and submit tickets in the OpenClaw workflow. The skill is intended for environments where the agent has authorized browser access to the ticketing system.
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text confirmation prompts and ticket summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes extracted customer, feedback contact, platform, problem description, and ticket number when creation succeeds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill bundles customer names, accounts, and UID identifiers used to populate ticket fields.
+
+Mitigation: Review the bundled customer directory before installation, minimize retained customer data, and prefer an authenticated lookup when available.
+
+Risk: The skill automates internal login and browser actions for ticket creation.
+
+Mitigation: Run it only with least-privilege ticket-system access and require user review of extracted fields before submission.
+
+Risk: Support screenshots may contain unnecessary sensitive data.
+
+Mitigation: Ask users to provide only the screenshot content needed for customer, reporter, platform, and issue identification.
+
+## Reference(s):
+
+- [OpenClaw Ticket Assistant ClawHub Listing](https://clawhub.ai/mskmz/skills/openclaw-ticket-assistant)
+- [Domain Account Login Guide](references/login-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration]
+
+**Output Format:** [Concise text or Markdown confirmations, ticket summaries, and user prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before ticket submission and depends on browser access to the ticketing system.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

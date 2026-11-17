@@ -1,39 +1,52 @@
-## Description: <br>
-Create and manage Obsidian Clip notes from web pages, producing readable summaries and saving them into an Obsidian vault under Clip/YYYY-MM/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Obsidian Clip notes from web, article, or page URLs, with readable summaries saved under Clip/YYYY-MM in an Obsidian vault.
 
-## Publisher: <br>
-[abstract-sum](https://clawhub.ai/user/abstract-sum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abstract-sum](https://clawhub.ai/user/abstract-sum)
 
-## Use Case: <br>
-Developers, researchers, and note-taking users use this skill to turn a URL into a concise Chinese or English Obsidian Clip note with takeaways, action items, caveats, tags, and a source link. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and summarize logged-in or paywalled pages at the user's request, which may include private content. <br>
-Mitigation: Use it only with pages the user is comfortable letting the agent read and summarize. <br>
-Risk: Clips are persistent local notes in the configured Obsidian vault. <br>
-Mitigation: Set OBSIDIAN_VAULT to the intended vault and review saved notes for sensitive content before sharing or syncing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abstract-sum/obsidian-clip) <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to turn URLs into concise bilingual Obsidian clip notes with a theme, takeaways, usage actions, and optional limits. It is suited for personal knowledge management workflows that save Markdown notes into a configured Obsidian vault.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown Obsidian notes with shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent local notes under the configured Obsidian vault in Clip/YYYY-MM/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled save script can be steered to write Markdown files outside the configured Obsidian vault.
+
+Mitigation: Before using it with untrusted pages or copied metadata, restrict dates to YYYY-MM-DD, reject keywords with path separators or '..', and verify the final destination remains under the vault's Clip directory.
+
+Risk: The skill writes local files into an Obsidian vault.
+
+Mitigation: Install and run it only in environments where local Markdown writes to the configured vault are expected and acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abstract-sum/skills/obsidian-clip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown notes with shell command usage for saving clips]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Chinese and English note headings; writes or appends Markdown files in an Obsidian vault.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,15 @@
+{
+  "generated_at": "2026-07-01T08:19:11.933306+00:00",
+  "root": "/Users/shiyan/Desktop/AI博主/97-Codex使用经验复盘/open-source-skills/local-material-batch-skill/assets",
+  "items": [
+    {
+      "item_id": "note-e9750bce",
+      "source_path": "Inbox/example-note/note.txt",
+      "source_type": "text",
+      "status": "ok",
+      "backend": "local-text",
+      "text": "这是一个示例文本笔记。\n\n先把已下载的素材放进 Inbox，再运行工作流。\n\n",
+      "error": ""
+    }
+  ]
+}

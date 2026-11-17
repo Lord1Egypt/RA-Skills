@@ -1,46 +1,56 @@
-## Description: <br>
-Perform web scraping, crawling, and Google search with multi-engine support and structured data extraction via SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides web scraping, website crawling, Google search, and search-plus-scrape helpers through the SkillBoss API Hub.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and agents use this skill to scrape URLs, search Google, start and monitor site crawls, and retrieve structured web content through SkillBoss API Hub. It is useful for web research and content extraction workflows where sending queries and crawled content to external providers is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, URLs, crawl targets, and retrieved page content may be sent to external API providers. <br>
-Mitigation: Do not use the skill with secrets, private internal URLs, regulated data, or confidential documents unless third-party sharing has been approved. <br>
-Risk: The skill requires a SkillBoss API key for external service access. <br>
-Mitigation: Store SKILLBOSS_API_KEY in an approved secret store or environment configuration and rotate it if exposure is suspected. <br>
-Risk: Scraped web content and search results can be incomplete, outdated, or misleading. <br>
-Mitigation: Review and validate retrieved content before relying on it for downstream decisions or publication. <br>
+## Use Case:
 
+Developers and agent builders use this skill to retrieve web page content, run Google searches, crawl sites asynchronously, and extract structured data for downstream agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/toby-anycrawl) <br>
-- [Publisher profile](https://clawhub.ai/user/tobeyrebecca) <br>
-- [SkillBoss](https://skillboss.co) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, HTML, Images] <br>
-**Output Format:** [Structured API results containing search results, crawl job status, and scraped content in requested formats such as markdown, HTML, text, JSON, or screenshots.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends requests to SkillBoss API Hub.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: URLs, search queries, extraction prompts or schemas, crawl targets, and optional proxy settings are sent to SkillBoss and may involve downstream scraping providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, internal-only URLs, regulated data, or credential-bearing proxy URLs unless approved for the deployment environment.
+
+Risk: Persisting SKILLBOSS_API_KEY in shell profile files can leave credentials broadly available on the local system.
+
+Mitigation: Use OpenClaw configuration or a secret manager when API keys should not be stored in shell startup files.
+
+## Reference(s):
+
+- [SkillBoss API Docs](https://skillboss.co/docs)
+- [SkillBoss Website](https://skillboss.co)
+- [ClawHub Skill Page](https://clawhub.ai/tobeyrebecca/skills/toby-anycrawl)
+- [Publisher Profile](https://clawhub.ai/user/tobeyrebecca)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, html, screenshots, search results, crawl job data]
+
+**Output Format:** [Structured JavaScript objects returned from SkillBoss API responses, including scraped content, search result arrays, crawl job metadata, or paginated crawl results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and sends requested URLs, search queries, extraction options, crawl settings, and optional proxy settings to SkillBoss.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

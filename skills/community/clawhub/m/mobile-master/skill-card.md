@@ -1,43 +1,62 @@
-## Description: <br>
-Mobile Master assists with authorized Android mobile security analysis and reverse engineering workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mobile Master assists with Android mobile security reverse engineering workflows, including Frida-based app attach and spawn, DEX dumping, APK extraction, manifest extraction, and related analysis commands.
 
-## Publisher: <br>
-[nop3z](https://clawhub.ai/user/nop3z) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nop3z](https://clawhub.ai/user/nop3z)
 
-## Use Case: <br>
-Developers and security testers use this skill for authorized Android app analysis tasks such as starting Frida, spawning or attaching to apps, extracting APKs and AndroidManifest.xml, dumping DEX files, and reviewing mobile app behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains powerful Android device-control and reverse-engineering scripts. <br>
-Mitigation: Install and use it only for authorized Android security testing on a dedicated test device. <br>
-Risk: Shell helpers have unsafe argument handling and weak safeguards, including broad app-name matching. <br>
-Mitigation: Patch helpers to use quoted arguments or arrays, validate package and script names, and avoid broad app-name matching before use. <br>
-Risk: Frida server and ADB port forwarding can remain active after testing. <br>
-Mitigation: Stop frida-server and remove ADB port forwarding when testing is complete. <br>
+## Use Case:
 
+Developers and mobile security engineers use this skill in authorized Android security labs to inspect APKs, start Frida workflows, dump DEX files, and extract AndroidManifest.xml for permission review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nop3z/mobile-master) <br>
-- [Publisher profile](https://clawhub.ai/user/nop3z) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JavaScript Frida scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Android analysis artifacts such as pulled APK files, extracted AndroidManifest.xml files, and dumped DEX files when commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The bundled scripts can run Frida, ADB, and root-level device actions against connected Android devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in an authorized Android security lab with a known test device, known target package, and explicit permission for the assessment.
+
+Risk: Weak script argument handling can allow unintended package selection, script loading, or command behavior.
+
+Mitigation: Restrict inputs to trusted package names and trusted bundled scripts, quote or validate arguments before execution, and review commands before running them.
+
+Risk: Frida server startup and port forwarding can leave an active instrumentation channel after testing.
+
+Mitigation: Stop frida-server and remove ADB port forwarding when the session is complete.
+
+Risk: APK and DEX extraction can create local copies of application code and manifests.
+
+Mitigation: Store extracted files only in approved workspaces and handle them according to the target application's data-handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nop3z/skills/mobile-master)
+- [ClawHub publisher profile](https://clawhub.ai/user/nop3z)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and script references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local APK, DEX dump, and AndroidManifest.xml files when the referenced scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

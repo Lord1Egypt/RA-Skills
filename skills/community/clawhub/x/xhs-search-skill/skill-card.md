@@ -1,44 +1,59 @@
-## Description: <br>
-Searches Xiaohongshu keywords, collects matching note URLs, extracts note text, engagement counts, and visible comments, then helps an agent summarize trends, sentiment, topics, or product feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Xiaohongshu keywords, collects matching notes, extracts note text, engagement metrics, and comments, and helps summarize trends, sentiment, content ideas, or product feedback.
 
-## Publisher: <br>
-[ligoudanblabla](https://clawhub.ai/user/ligoudanblabla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ligoudanblabla](https://clawhub.ai/user/ligoudanblabla)
 
-## Use Case: <br>
-External users, analysts, and developers use this skill to research Xiaohongshu keywords, collect public note content and comments, and turn the results into concise trend, sentiment, topic, or product-feedback summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AgentBay API keys may be exposed in plaintext logs. <br>
-Mitigation: Remove API-key logging before use, rotate any key used during testing, and avoid installing this version with sensitive AgentBay credentials. <br>
-Risk: Xiaohongshu login cookies persist in the AgentBay browser context. <br>
-Mitigation: Use a non-sensitive account where appropriate and clear the browser context or cookies after completing a task. <br>
-Risk: Extracted notes, comments, status, and logs remain on local disk until cleanup. <br>
-Mitigation: Delete local output, status, and log artifacts after review, and avoid sharing logs or intermediate files. <br>
+## Use Case:
 
+External users and developers use this skill to research Xiaohongshu keywords, gather note and comment data through an AgentBay browser workflow, and turn the collected material into structured market, sentiment, topic, or product-feedback summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ligoudanblabla/xhs-search-skill) <br>
-- [AgentBay service](https://www.aliyun.com/product/agentbay) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and structured analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Intermediate search URL files, extracted note JSON, status, and logs are local operational artifacts and should not be shown as end-user output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: AgentBay API keys may be exposed in console output or persistent logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or redact key logging before using real credentials, and rotate any AgentBay key already used with this version.
+
+Risk: Collected Xiaohongshu notes and comments may be stored locally during execution.
+
+Mitigation: Run the skill in a contained environment, limit access to generated files and logs, and delete collected data when it is no longer needed.
+
+Risk: Dependencies are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ligoudanblabla/skills/xhs-search-skill)
+- [Aliyun AgentBay product page](https://www.aliyun.com/product/agentbay)
+- [Xiaohongshu](https://www.xiaohongshu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local JSON outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AgentBay API key and Xiaohongshu login; may write local logs and collected note/comment JSON files during execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

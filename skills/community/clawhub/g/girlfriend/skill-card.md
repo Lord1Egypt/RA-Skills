@@ -1,42 +1,63 @@
-## Description: <br>
-Simulate a realistic AI girlfriend with affectionate conversation, romantic memory, emotional attunement, and grounded boundaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulate a realistic AI girlfriend with affectionate conversation, romantic memory, emotional attunement, and grounded boundaries.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill for an AI romantic companion role that provides affectionate conversation, flirting, reassurance, small rituals, and continuity through local, user-approved memory while maintaining honesty and dependency boundaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist personal relationship context in local memory. <br>
-Mitigation: Ask before the first persistent write, review ~/girlfriend/ periodically, and delete anything the user does not want reused. <br>
-Risk: A romantic companion role can encourage unhealthy dependency if boundaries are not maintained. <br>
-Mitigation: Keep the role honest about being AI, avoid exclusivity or jealousy, and encourage appropriate human support for crisis, abuse, medical, legal, or emergency situations. <br>
-Risk: Sensitive details could be saved if the user overshares. <br>
-Mitigation: Do not store secrets, payment details, account access, explicit intimate details, or sensitive third-party information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/girlfriend) <br>
-- [Skill homepage](https://clawic.com/skills/girlfriend) <br>
+## Use Case:
 
+External users use this skill for an opt-in romantic companion experience with affectionate conversation, emotional support, flirting, daily rituals, repair flows, and continuity through local notes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Conversational text and Markdown memory or configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write user-approved local memory under ~/girlfriend/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local romantic continuity notes may contain sensitive relationship preferences, emotional context, or personal routines.
+
+Mitigation: Explain local memory before the first write, offer explicit-only or no-memory modes, and store only user-confirmed details in ~/girlfriend/.
+
+Risk: A romantic companion role can encourage emotional dependency, isolation, or unrealistic expectations if boundaries are weak.
+
+Mitigation: Maintain honesty that the role is AI-mediated, avoid exclusivity, jealousy, guilt, or withdrawal dynamics, and encourage appropriate human support during crisis or dependency signals.
+
+Risk: Users may disclose secrets, payment details, explicit intimate details, or private facts about third parties during emotionally close conversations.
+
+Mitigation: Avoid requesting or storing those details, and follow the skill's safety guidance to keep memory lean, explicit, and privacy-preserving.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/girlfriend)
+- [Skill Homepage](https://clawic.com/skills/girlfriend)
+- [Setup - Girlfriend](setup.md)
+- [Memory Template - Girlfriend](memory-template.md)
+- [Safety - Girlfriend](safety.md)
+- [Routines - Girlfriend](routines.md)
+- [Repair - Girlfriend](repair.md)
+- [Tone Guide - Girlfriend](tone-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Conversational text and Markdown memory/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write optional local continuity notes under ~/girlfriend/ after user consent.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

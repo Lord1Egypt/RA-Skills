@@ -1,50 +1,64 @@
-## Description: <br>
-Generates images through the ModelScope API by listing supported models, helping the agent prepare an optimized prompt, and calling the selected text-to-image model. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Generates images through the ModelScope API by helping an agent list supported models, shape a prompt, select a text-to-image model, and run the bundled generation script.
 
-## Publisher: <br>
-[baiyz0825](https://clawhub.ai/user/baiyz0825) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baiyz0825](https://clawhub.ai/user/baiyz0825)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to choose a ModelScope text-to-image model, create a prompt from a user request, and generate local image outputs. The bundled ModelScope API reference describes API Inference as suitable for functional testing and early validation rather than commercial API use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generation settings are sent to ModelScope using the user's API key. <br>
-Mitigation: Avoid including secrets, regulated personal data, or confidential content in prompts; only use the skill when sending this data to ModelScope is acceptable. <br>
-Risk: Passing the API key with --api-key may expose it in shell history or process listings. <br>
-Mitigation: Set MODELSCOPE_API_KEY in the environment and avoid placing the key directly on the command line. <br>
-Risk: ModelScope API Inference is documented by the skill as non-commercial and intended for functional testing and early validation. <br>
-Mitigation: Confirm ModelScope service terms and choose an appropriate paid or approved service path before commercial use. <br>
-Risk: Generated images and prompt mappings are written to a local output directory. <br>
-Mitigation: Choose an appropriate output directory and review generated PNG, prompts.json, and index.html files before sharing or publishing them. <br>
+## Use Case:
 
+Developers and external users use this skill to generate image assets from Chinese or English text prompts through ModelScope-hosted text-to-image models. It is useful when an agent needs guidance for model selection, prompt drafting, API invocation, and collecting generated image outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baiyz0825/modelscope-image) <br>
-- [ModelScope API Inference introduction](https://modelscope.cn/docs/model-service/API-Inference/intro) <br>
-- [ModelScope API Inference limits](https://modelscope.cn/docs/model-service/API-Inference/limits) <br>
-- [ModelScope model library](https://modelscope.cn/models) <br>
-- [API reference](references/api_reference.md) <br>
-- [Model list](references/models.md) <br>
-- [Prompt guide](references/prompt_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, CLI commands, PNG image files, prompts.json, and index.html] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and MODELSCOPE_API_KEY; sends prompts and generation settings to ModelScope and saves generated files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API keys may be exposed when passed as command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use MODELSCOPE_API_KEY through an environment variable or secret manager and avoid the --api-key option.
+
+Risk: Prompts are sent to an external ModelScope service and may include sensitive user content.
+
+Mitigation: Do not submit confidential prompts, private data, or regulated content unless the deployment has appropriate approval.
+
+Risk: The script downloads provider-supplied image URLs and writes generated files locally.
+
+Mitigation: Run in a constrained environment, review output paths, and limit outbound network access and generated output size.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baiyz0825/skills/modelscope-image)
+- [ModelScope API reference](references/api_reference.md)
+- [ModelScope model list](references/models.md)
+- [AI art prompt guide](references/prompt_guide.md)
+- [ModelScope API inference documentation](https://modelscope.cn/docs/model-service/API-Inference/intro)
+- [ModelScope API inference limits](https://modelscope.cn/docs/model-service/API-Inference/limits)
+- [ModelScope model catalog](https://modelscope.cn/models)
+- [ModelScope AIGC models](https://modelscope.cn/aigc/models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated runs produce PNG files, prompts.json, and an index.html gallery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and MODELSCOPE_API_KEY; accepts model, prompt, count, size, output directory, and API key parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Manage YouTube channel members by guiding an agent to list channel member information with the yutu CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube channel members by guiding agents to list member information with the yutu CLI.
 
-## Publisher: <br>
-[OpenWaygate](https://clawhub.ai/user/OpenWaygate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openwaygate](https://clawhub.ai/user/openwaygate)
 
-## Use Case: <br>
-Developers, creators, and channel operators use this skill to prepare yutu commands for listing YouTube channel members after configuring Google OAuth credentials and a cached token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on yutu access to YouTube account data through Google OAuth credentials and a cached token. <br>
-Mitigation: Install only when that access is acceptable, grant the minimum needed account access, and revoke or rotate the OAuth token if access is no longer needed or files are exposed. <br>
-Risk: OAuth credential files such as client_secret.json and youtube.token.json can expose account access if committed or shared. <br>
-Mitigation: Keep credential and token files private, outside source control and shared folders, and follow the setup guide for local configuration. <br>
+## Use Case:
 
+External users and developers use this skill to list YouTube channel members through yutu after configuring Google Cloud OAuth credentials and a cached YouTube API token.
 
-## Reference(s): <br>
-- [YouTube Member skill page](https://clawhub.ai/OpenWaygate/youtube-member) <br>
-- [Yutu project homepage](https://github.com/eat-pray-ai/yutu) <br>
-- [Yutu README](https://github.com/eat-pray-ai/yutu#readme) <br>
-- [Yutu releases](https://github.com/eat-pray-ai/yutu/releases/latest) <br>
-- [Yutu Setup Guide](references/setup.md) <br>
-- [Member List](references/member-list.md) <br>
-- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration guidance, Markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI flag references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces yutu member-listing commands and setup guidance; command output may be table, JSON, or YAML depending on yutu flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.10.7-dev (source: server release evidence) <br>
+Risk: The skill depends on a third-party yutu CLI package and installation path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the yutu package publisher before installing and avoid running installation with unnecessary administrator privileges.
+
+Risk: The skill uses Google OAuth client secrets and cached YouTube API tokens.
+
+Mitigation: Keep client_secret.json and youtube.token.json out of source control and shared folders, and revoke or rotate tokens if either file is exposed.
+
+## Reference(s):
+
+- [Yutu Setup Guide](references/setup.md)
+- [Member List](references/member-list.md)
+- [Yutu Homepage](https://github.com/eat-pray-ai/yutu)
+- [Yutu README](https://github.com/eat-pray-ai/yutu#readme)
+- [Yutu Releases](https://github.com/eat-pray-ai/yutu/releases/latest)
+- [YouTube Data API v3](https://console.cloud.google.com/apis/api/youtube.googleapis.com/overview)
+- [ClawHub Skill Page](https://clawhub.ai/openwaygate/skills/youtube-member)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires yutu, Google Cloud OAuth credentials, and a cached YouTube API token.]
+
+## Skill Version(s):
+
+0.10.7-dev (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

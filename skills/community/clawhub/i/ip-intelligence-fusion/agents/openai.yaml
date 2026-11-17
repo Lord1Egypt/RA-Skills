@@ -1,0 +1,4 @@
+interface:
+  display_name: "IP Intelligence Fusion"
+  short_description: "Visual multi-source IP risk intelligence"
+  default_prompt: "Use $ip-intelligence-fusion to investigate <PUBLIC_IP> and return auditable JSON, a self-contained HTML report, and a concise evidence brief."

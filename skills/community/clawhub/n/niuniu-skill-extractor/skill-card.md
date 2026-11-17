@@ -1,41 +1,53 @@
-## Description: <br>
-Extracts reusable skill documents from completed complex tasks, stores them locally, and helps agents search or suggest them for similar future work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Extractor helps an agent identify reusable procedures from completed multi-step conversations, draft SKILL.md files, save them locally, and search or suggest related skills later.
 
-## Publisher: <br>
-[livangy](https://clawhub.ai/user/livangy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[livangy](https://clawhub.ai/user/livangy)
 
-## Use Case: <br>
-Developers and agent users use this skill after multi-step tasks to identify repeatable workflows, generate standardized skill Markdown, and search locally saved skills when similar tasks recur. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skills may preserve private task details, credentials, or misleading workflow guidance if saved without review. <br>
-Mitigation: Review every generated skill before saving, remove secrets or private data, and scan saved skill files before reuse. <br>
-Risk: The skill creates local files and a local SQLite search index under the user's OpenClaw workspace. <br>
-Mitigation: Install only when local searchable workflow memory is desired and manage the workspace with normal file-permission and retention controls. <br>
+## Use Case:
 
+Developers and agent operators use this skill after completing complex tasks to turn useful workflows into reusable skill documents and retrieve related local skills for future tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/livangy/niuniu-skill-extractor) <br>
-- [Publisher Profile](https://clawhub.ai/user/livangy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, and command-line text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated skill files and search indexes are stored in the user's local OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Conversation-derived instructions may be persisted into reusable skills without enough sanitization or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skills before saving or reusing them, avoid conversations containing secrets or private data, and delete old generated skills and indexes when no longer needed.
+
+Risk: Generated skills may contain incorrect, misleading, or unsafe procedures if treated as approved guidance immediately.
+
+Mitigation: Treat extracted skills as drafts until they are manually reviewed, sanitized, and approved for reuse.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/livangy/skills/niuniu-skill-extractor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown skill drafts, JSON analysis/search results, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated skill drafts and a local search index when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

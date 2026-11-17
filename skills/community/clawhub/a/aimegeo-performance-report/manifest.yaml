@@ -1,0 +1,15 @@
+name: aimegeo-performance-report
+slug: aimegeo-performance-report
+display_name: "周期数据核对"
+description: "校验文章、发布、AI回答和经营导出，按配置周期汇总明确状态和可比性，并输出数据明细。"
+version: "1.0.2"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-performance-report"
+tags:
+  - "data-validation"
+  - "period-summary"
+  - "evidence-ledger"
+trigger_words:
+  - "周期数据核对"
+self_test: python3 -B scripts/self_test.py

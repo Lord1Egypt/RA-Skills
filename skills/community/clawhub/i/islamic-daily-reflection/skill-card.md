@@ -1,39 +1,56 @@
-## Description: <br>
-Provides daily Islamic reflections with Hijri calendar awareness, Quran and Hadith references, and practical daily challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily Islamic reflections with Hijri calendar awareness, Quran/Hadith references, and practical daily challenges.
 
-## Publisher: <br>
-[clinicode](https://clawhub.ai/user/clinicode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clinicode](https://clawhub.ai/user/clinicode)
 
-## Use Case: <br>
-Users ask an agent for an Islamic daily reflection or reminder. The skill runs a local Python script that selects a calendar-aware reflection and returns formatted spiritual guidance with a practical action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts api.aladhan.com to look up the Hijri date, which depends on that service and may reveal basic request metadata. <br>
-Mitigation: Use the skill only where that external date lookup is acceptable, and avoid sensitive prompts when external request metadata should not be exposed. <br>
-Risk: Broad prompts such as "inspire me" may trigger Islamic religious reflection when the user intended non-religious inspiration. <br>
-Mitigation: Invoke the skill for explicitly Islamic reminders or reflections, and choose a different skill for general motivational content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clinicode/islamic-daily-reflection) <br>
+## Use Case:
 
+External users ask for a daily Islamic reflection or reminder, and the skill returns a formatted reflection selected by Gregorian and Hijri calendar context.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Formatted plain text produced by a Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output includes date context, a reflection, an action item, and a Quran or Hadith reference.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The reflection script contacts api.aladhan.com to convert the current date to a Hijri date.
+
+Mitigation: Disclose the third-party API request before installation or execution, and use the skill only where that outbound request is acceptable.
+
+Risk: The skill can run for broad trigger phrases such as requests to be inspired or motivated.
+
+Mitigation: Narrow invocation to explicit Islamic reflection requests before deployment in contexts where broad religious-content triggers are not desired.
+
+Risk: The script depends on network access for the Hijri date and may fall back to an unknown date if the request fails.
+
+Mitigation: Add or verify an offline Hijri-date fallback when date accuracy is important.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clinicode/skills/islamic-daily-reflection)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Formatted plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output includes a date line, reflection title, reflection text, daily action, and Quran or Hadith reference.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

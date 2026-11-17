@@ -1,41 +1,63 @@
-## Description: <br>
-Checks GEO mass-publish task status, downloads ready fanwen and fangxie ZIP exports, reports local paths, and tells the user when imports are ready for Rongmeibao. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO 待群发 - 拉取范文/仿写状态，待导出时下载 ZIP 到本机并上报，可群发时提示用户。QClaw 定时只装本 skill 即可。
 
-## Publisher: <br>
-[chameleon-nexus](https://clawhub.ai/user/chameleon-nexus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chameleon-nexus](https://clawhub.ai/user/chameleon-nexus)
 
-## Use Case: <br>
-GEO SaaS operators use this skill to check pending mass-publish exports, download ready ZIP packages to local storage, and receive status and path guidance for manual import into Rongmeibao. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles a reusable GEO API key and contacts ai.gaobobo.cn. <br>
-Mitigation: Use it only if the GEO SaaS endpoint and publisher are trusted, and store the API key in the documented local key file instead of pasting it into chat. <br>
-Risk: The skill can automatically write downloaded ZIP exports to the user's machine and report local path hints back to the service. <br>
-Mitigation: Run it only in an environment where writing to ~/.qclaw/geo-exports and sharing those local path hints with the service is acceptable. <br>
+## Use Case:
 
+Operators and developers managing GEO mass-publish workflows use this skill to check pending export status, download fanwen and fangxie ZIP exports when ready, and report local paths for batch import.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chameleon-nexus/geo-mass-publish-check) <br>
-- [GEO SaaS endpoint](https://ai.gaobobo.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown status summaries with local path hints and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download ZIP exports under ~/.qclaw/geo-exports and report local path hints back to the GEO service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill automatically uses a local GEO API key during scheduled or manual runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the GEO service and API key are trusted, and review scheduled-run behavior before enabling it.
+
+Risk: ZIP export paths are built from remote task metadata.
+
+Mitigation: Sanitize brand, product, and cycle path components and verify the final path remains under ~/.qclaw/geo-exports before writing files.
+
+Risk: Downloaded ZIP files may overwrite existing local exports unexpectedly.
+
+Mitigation: Check for existing ZIP files before download and require an explicit overwrite or versioned output path.
+
+Risk: Manual JSON construction for export callbacks can break or misrepresent path data.
+
+Mitigation: Build callback payloads with a JSON serializer rather than interpolated strings.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chameleon-nexus/skills/geo-mass-publish-check)
+- [Publisher Profile](https://clawhub.ai/user/chameleon-nexus)
+- [GEO API Service](https://ai.gaobobo.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown status summary with inline shell commands and local ZIP file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download fanwen.zip and fangxie.zip exports under ~/.qclaw/geo-exports when task metadata indicates an export is needed.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

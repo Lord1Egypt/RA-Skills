@@ -1,43 +1,57 @@
-## Description: <br>
-Runs a lightweight operational and security health check for an OpenClaw deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a lightweight operational and security posture check for an OpenClaw deployment.
 
-## Publisher: <br>
-[X-RayLuan](https://clawhub.ai/user/X-RayLuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect OpenClaw runtime health, gateway reachability, listener exposure, configuration hygiene, browser attach surfaces, and recent runtime errors before wider rollout. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The healthcheck output may expose local paths, listener details, status output, or recent log snippets. <br>
-Mitigation: Review and redact the generated JSON before sharing it outside the intended operator group. <br>
-Risk: A PASS verdict is only a lightweight operational signal and does not prove the deployment is secure. <br>
-Mitigation: Use the result as a triage input and perform separate host, network, firewall, secret, backup, and threat-model reviews for internet-exposed systems. <br>
-Risk: The script reads local OpenClaw configuration and logs from the machine where it runs. <br>
-Mitigation: Install and run it only on the OpenClaw machine or workspace that the operator intends to inspect. <br>
+## Use Case:
 
+Developers and operators use this skill to run a quick OpenClaw deployment health check, review runtime and exposure findings, and decide what to fix before production or wider rollout.
 
-## Reference(s): <br>
-- [OpenClaw Healthcheck Checklist](references/checklist.md) <br>
-- [ClawHub skill page](https://clawhub.ai/X-RayLuan/openclaw-healthcheck) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON healthcheck report with findings, recommendations, evidence, score, and verdict.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local paths, listener details, status output, and recent log snippets that should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata, package.json) <br>
+Risk: Healthcheck output may include local status, listener, and recent log evidence from the audited machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the JSON output before sharing it outside the machine or team responsible for the audit.
+
+Risk: A passing lightweight check does not prove an OpenClaw deployment is secure.
+
+Mitigation: Use the result as an operator triage signal and perform separate host, network, and exposure review for internet-facing systems.
+
+Risk: The skill runs local diagnostic commands and reads OpenClaw config and log locations.
+
+Mitigation: Run it only on the intended host or workspace with operator approval.
+
+## Reference(s):
+
+- [OpenClaw Healthcheck Checklist](artifact/references/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSON healthcheck report with score, verdict, findings, recommendations, and evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output may include local status, listener, and recent log snippets; review before sharing outside the audited machine.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,64 @@
-## Description: <br>
-Crawls Chinese social media by keyword, summarizes collected posts, writes a Markdown report, and can generate a short voice summary with SenseAudio TTS. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Crawls Chinese social media platforms by keyword, summarizes the collected content, writes a Markdown report, and can generate a short voice summary through TTS.
 
-## Publisher: <br>
-[q1lin570](https://clawhub.ai/user/q1lin570) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[q1lin570](https://clawhub.ai/user/q1lin570)
 
-## Use Case: <br>
-Developers and analysts use this skill to collect keyword-based results from supported Chinese social platforms, summarize themes and representative posts, and optionally produce a spoken summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download and run an unpinned third-party crawler and install dependencies. <br>
-Mitigation: Review or pin the MediaCrawler commit before setup, and run the workflow in an isolated, low-privilege environment. <br>
-Risk: The crawler may use logged-in social-media sessions and store crawl results locally. <br>
-Mitigation: Use a separate low-privilege social-media account where possible, follow platform terms, protect local data, and clear cached sessions after use. <br>
-Risk: Voice generation can send summary text to an external TTS service. <br>
-Mitigation: Enable TTS only for summaries suitable for sharing with SenseAudio and keep API keys in environment variables. <br>
+## Use Case:
 
+Developers and analysts use this skill to run keyword-based crawls across supported Chinese social platforms and convert the collected posts into a concise report and optional voice summary.
 
-## Reference(s): <br>
-- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) <br>
-- [SenseAudio API Documentation](https://senseaudio.cn/docs/) <br>
-- [SenseAudio Text-to-Speech API](https://senseaudio.cn/docs/text_to_speech_api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Text, Audio] <br>
-**Output Format:** [Markdown report, plain-text voice script, optional MP3 audio, and inline shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local MediaCrawler data files and report/audio files; optional TTS requires SENSEAUDIO_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill automatically downloads and runs unpinned third-party crawler code and dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated environment or container, and pin MediaCrawler plus dependency versions to reviewed revisions before setup.
+
+Risk: QR login can create authenticated platform session state during crawling.
+
+Mitigation: Use dedicated test accounts where appropriate and review local session artifacts before reuse or sharing.
+
+Risk: Crawler output may contain personal or copyrighted social-media content.
+
+Mitigation: Review collected data before sharing reports and follow applicable platform terms, privacy requirements, and content-use policies.
+
+Risk: Enabling voice summary sends generated summary text to SenseAudio.
+
+Mitigation: Disable TTS for sensitive crawls and provide the SenseAudio key through an environment variable rather than command-line arguments.
+
+## Reference(s):
+
+- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)
+- [SenseAudio API documentation](https://senseaudio.cn/docs/)
+- [SenseAudio text-to-speech API](https://senseaudio.cn/docs/text_to_speech_api)
+- [ClawHub skill page](https://clawhub.ai/q1lin570/skills/media-cluster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report, short voice-summary text, optional MP3 file, and setup or crawl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local crawler output; optional TTS uses SENSEAUDIO_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

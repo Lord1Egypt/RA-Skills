@@ -1,6 +1,5 @@
 ---
 parent_skill: pensive:math-review
-load_priority: high
 estimated_tokens: 350
 ---
 
@@ -18,7 +17,8 @@ estimated_tokens: 350
 ```python
 # Example: Verify gradient computation
 import sympy as sp
-x, y = sp.symbols('x y')
+
+x, y = sp.symbols("x y")
 f = x**2 + y**2
 grad_f = [sp.diff(f, var) for var in [x, y]]
 # Compare with implementation

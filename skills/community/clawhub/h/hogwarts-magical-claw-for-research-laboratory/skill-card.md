@@ -1,44 +1,54 @@
-## Description: <br>
-A research team collaboration agent that manages team knowledge, tracks project progress, assists with meeting notes, literature reviews, experiment records, code, and data analysis, and follows daily and weekly coordination protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps research teams manage knowledge, track project progress, prepare meeting notes and literature reviews, record experiments, assist with code and data analysis, and run daily or weekly collaboration routines.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Research teams use this skill to coordinate meetings, summarize decisions, track milestones and blockers, maintain team knowledge, and support documentation, code, and data-analysis tasks. It is intended for team workspaces where members can explicitly opt in to automated reminders and status tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring monitoring and chat reminders can expose member availability, workload, blockers, or unpublished research details. <br>
-Mitigation: Enable the skill only in opt-in team workspaces, restrict approved channels and mention targets, and define what member records and project details may be read, retained, or posted. <br>
-Risk: The skill can generate public or semi-public notifications about blockers, security issues, protected data, or sensitive research. <br>
-Mitigation: Require human approval before posting sensitive blockers, security issues, protected data, unpublished findings, or escalation messages outside approved private channels. <br>
-Risk: Workspace file updates for logs, plans, summaries, and knowledge-base records may alter shared team documentation. <br>
-Mitigation: Limit write permissions to approved paths, require review for shared team files, and keep Git commits auditable so changes can be inspected and reverted. <br>
+## Use Case:
 
+Research teams and their AI assistants use this skill to coordinate meetings, maintain team knowledge, track project status, prepare scientific documentation, and support code or data-analysis tasks. It is intended for collaborative repositories or communication channels where team members explicitly want AI-assisted project tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/biociao/hogwarts-magical-claw-for-research-laboratory) <br>
-- [OpenClaw research team collaboration protocol](artifact/references/protocol.md) <br>
-- [Team Git repository referenced by artifact](https://gitea.biochao.cc/BioChaoGroup/ClawNotes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with tables, task lists, summaries, code blocks, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace files for meeting notes, progress logs, knowledge-base summaries, task plans, human-in-the-loop requests, and Git commit guidance when explicitly authorized by the workspace protocol.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Recurring member monitoring and scheduled checks can process team activity without sufficient consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for teams that explicitly agree to AI-assisted project tracking, keep heartbeat monitoring and scheduled execution off by default, and document opt-out or disable paths.
+
+Risk: Repository writes, commits, or pushes could change team records without adequate approval.
+
+Mitigation: Require human review before any Git commit or push and limit the files the agent can read or modify.
+
+## Reference(s):
+
+- [OpenClaw Research Team Collaboration Protocol](references/protocol.md)
+- [Team Git repository referenced by the protocol](https://gitea.biochao.cc/BioChaoGroup/ClawNotes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, inline code, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repository file updates, reminders, meeting summaries, task tables, and human-review checkpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

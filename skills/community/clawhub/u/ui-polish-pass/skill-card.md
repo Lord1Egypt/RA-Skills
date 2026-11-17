@@ -1,41 +1,53 @@
-## Description: <br>
-A final visual polish pass for spacing, hierarchy, alignment, and cleanup before presenting frontend work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core pack final visual polish pass for spacing, hierarchy, alignment, and cleanup before presenting visual work.
 
-## Publisher: <br>
-[aa-on-ai](https://clawhub.ai/user/aa-on-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aa-on-ai](https://clawhub.ai/user/aa-on-ai)
 
-## Use Case: <br>
-Developers and designers use this skill as a final UI review pass to refine spacing, typography, alignment, color, interaction states, and small visual details before presenting visual work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language may influence styling decisions beyond the user's intended scope. <br>
-Mitigation: Apply it as a final polish checklist and defer to explicit user, product, and design-system requirements. <br>
-Risk: Visual polish suggestions could introduce incorrect or misleading UI changes if accepted without review. <br>
-Mitigation: Review proposed UI changes, compare against the existing design system, and test important responsive and interaction states before deployment. <br>
+## Use Case:
 
+Developers and designers use this skill as a final quality pass on visual UI work, applying checks for spacing, hierarchy, alignment, contrast, interaction states, and finishing details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aa-on-ai/ui-polish-pass) <br>
-- [Publisher profile](https://clawhub.ai/user/aa-on-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with optional code or CSS changes when applied to frontend work] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; does not run commands, access accounts, or persist data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill has broad activation language and may spend time polishing UI when speed or non-visual implementation work is the priority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower activation rules or invoke it only for final visual-review passes.
+
+Risk: A polish pass can introduce subjective or incorrect visual changes if applied before the core structure is approved.
+
+Mitigation: Apply after design review and inspect the resulting UI before release.
+
+## Reference(s):
+
+- [UI Polish Pass ClawHub Listing](https://clawhub.ai/aa-on-ai/skills/ui-polish-pass)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with checklist items and implementation suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce visual design recommendations and code-level UI polish changes when applied by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

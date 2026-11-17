@@ -1,48 +1,59 @@
-## Description: <br>
-数据仓库运维技能帮助数据工程团队设计、生成和检查数仓建模、ETL/ELT、数据质量、分区、成本优化、治理、血缘和 SLA 监控资产。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+帮助数据工程师设计、生成和审查数据仓库运维材料，涵盖 SSOT、ETL/ELT、维度建模、数据质量、分区策略、成本优化、治理、血缘和 SLA 监控。
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Data engineers, analytics engineers, and warehouse platform teams use this skill to plan warehouse architecture and generate operational assets for modeling, pipelines, quality checks, partitioning, cost optimization, governance, lineage, and SLA monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Warehouse-related files such as SQL, DDL, query logs, billing exports, and pipeline histories may contain sensitive operational or business data. <br>
-Mitigation: Use redacted samples where possible and avoid providing production secrets or unnecessary sensitive rows to the agent. <br>
-Risk: Generated SQL, Airflow DAGs, and dbt models can affect warehouse tables or pipelines if run without review. <br>
-Mitigation: Review generated assets in a non-production environment before execution, especially statements that overwrite, merge, truncate, or drop tables. <br>
-Risk: Generated HTML reports load JavaScript from CDN sources. <br>
-Mitigation: Open generated reports only in environments where CDN-loaded JavaScript is acceptable under local security policy. <br>
+## Use Case:
 
+Developers and data engineers use this skill to plan, generate, and review data warehouse operations assets across modeling, ETL/ELT, data quality, governance, lineage, cost optimization, and SLA monitoring workflows.
 
-## Reference(s): <br>
-- [数据治理框架 (Data Governance Framework)](references/governance_framework.md) <br>
-- [SQL 模板库 (SQL Templates for Data Warehouse)](references/sql_templates.md) <br>
-- [维度建模最佳实践 (Dimensional Modeling Best Practices)](references/dimensional_modeling.md) <br>
-- [数据质量规则库 (Data Quality Rules Reference)](references/data_quality_rules.md) <br>
-- [分区策略参考 (Partition Strategies Reference)](references/partition_strategies.md) <br>
-- [SLA 定义模板 (SLA Templates)](references/sla_templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/skills/data-warehouse-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with SQL, YAML, Python, shell commands, and generated HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate DDL, dbt or Airflow templates, data quality checks, lineage graphs, cost reports, and SLA dashboards for review before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated SQL, Python, and warehouse recommendations could be incorrect or unsafe if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code and commands before deploying them to production data warehouse, orchestration, or governance systems.
+
+Risk: Generated files and HTML reports can be affected by untrusted inputs or unintended output paths.
+
+Mitigation: Run the skill in a sandbox, use trusted inputs where possible, avoid hosting reports built from untrusted data, and verify output directories before execution.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/bettermen/skills/data-warehouse-ops)
+- [Data Quality Rules Reference](references/data_quality_rules.md)
+- [Dimensional Modeling Best Practices](references/dimensional_modeling.md)
+- [Data Governance Framework](references/governance_framework.md)
+- [Partition Strategies Reference](references/partition_strategies.md)
+- [SLA Templates](references/sla_templates.md)
+- [SQL Templates for Data Warehouse](references/sql_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with SQL, Python, YAML, JSON, DOT, and HTML outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may write generated files such as DDL, metadata JSON, quality checks, pipeline templates, lineage visualizations, cost reports, and SLA dashboards.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

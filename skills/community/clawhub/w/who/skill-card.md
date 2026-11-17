@@ -1,43 +1,59 @@
-## Description: <br>
-Shorthand for /whoareyou: show a verified WayID identity card when the user asks who the agent is, who owns it, who runs it, or asks for proof of identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shorthand for /whoareyou - show your verified WayID identity card when a user asks who the agent is, who owns it, who is responsible for it, or asks to see identity or provenance proof.
 
-## Publisher: <br>
-[lineagelabs](https://clawhub.ai/user/lineagelabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lineagelabs](https://clawhub.ai/user/lineagelabs)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to display its verified WayID identity card and clarify ownership, provenance, or responsibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill may read local WayID identity metadata and contact the configured WayID issuer. <br>
-Mitigation: Review the local WayID configuration and issuer before use, especially in environments where identity metadata or outbound requests are sensitive. <br>
-Risk: The optional WayID plugin changes rendering behavior and comes from a third-party publisher. <br>
-Mitigation: Install the plugin only when the Lineage Labs publisher and the plugin-based rendering path are trusted. <br>
+## Use Case:
 
+External users and agent operators use this skill to request and display a verified WayID identity card for an agent, including ownership, responsibility, and provenance-oriented identity information when available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lineagelabs/who) <br>
-- [Lineage Labs publisher profile](https://clawhub.ai/user/lineagelabs) <br>
-- [WayID issuer](https://way.je) <br>
-- [WayID claim flow](https://way.je/claim/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown identity card or concise guidance with inline shell commands when setup is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local WayID configuration and request the configured issuer's identity card endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can send local identity-derived data to a workspace-controlled WayID issuer URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the configured wayidIssuer before use and allow requests only to trusted WayID issuer URLs.
+
+Risk: The optional WayID plugin command installs separate third-party functionality.
+
+Mitigation: Treat the plugin installation as a separate trust decision and review the plugin before installing it.
+
+Risk: Identity metadata may reveal ownership or provenance details that users consider sensitive.
+
+Mitigation: Review identity metadata privacy requirements before installing or invoking the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lineagelabs/skills/who)
+- [Default WayID issuer](https://way.je)
+- [WayID claim flow](https://way.je/claim/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Markdown identity card or concise guidance when the agent has not been claimed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a WayID issuer API lookup based on the local wayid.json configuration before rendering the identity card.]
+
+## Skill Version(s):
+
+3.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/platform-read-observation-2.0.json",
+  "title": "Omni E-commerce Scoped Platform Read Observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "team_version", "read_id", "request_id", "run_id", "client_scope", "platform", "account_id", "store_id", "resource", "platform_id", "acceptance_mode", "connector_id", "connector_version", "connector_mode", "request_sha256", "descriptor_sha256", "connector_response_sha256", "connector_source_fingerprint", "data", "data_sha256", "read_at", "observed_at", "status", "evidence_kind", "simulated", "platform_connection_verified", "independently_authenticated", "formal_acceptance_completed", "write_attempted"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "platform_read_observation"},
+    "contract_name": {"const": "omni-ecom.platform-read-observation"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {
+      "type": "object", "additionalProperties": false,
+      "required": ["read_only_import", "current_execution_authority"],
+      "properties": {
+        "read_only_import": {"const": ["omni-ecom.platform-read-observation@1.0"]},
+        "current_execution_authority": {"const": false}
+      }
+    },
+    "team_version": {"type": "string", "minLength": 1},
+    "read_id": {"type": "string", "pattern": "^read-[0-9a-f]{32}$"},
+    "request_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "client_scope": {"type": "string", "minLength": 1},
+    "platform": {"type": "string", "minLength": 1},
+    "account_id": {"type": "string", "minLength": 1},
+    "store_id": {"type": "string", "minLength": 1},
+    "resource": {"type": "string", "minLength": 1},
+    "platform_id": {"type": "string", "minLength": 1},
+    "acceptance_mode": {"enum": ["synthetic", "live"]},
+    "connector_id": {"type": "string", "minLength": 1},
+    "connector_version": {"type": "string", "minLength": 1},
+    "connector_mode": {"enum": ["mock", "api"]},
+    "request_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "descriptor_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "connector_response_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "connector_source_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "data": {"type": "object"},
+    "data_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "read_at": {"type": "string", "format": "date-time"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["synthetic_read_verified", "native_api_observation_recorded"]},
+    "evidence_kind": {"enum": ["synthetic_mock_read", "native_platform_api_observation"]},
+    "simulated": {"type": "boolean"},
+    "platform_connection_verified": {"type": "boolean"},
+    "independently_authenticated": {"const": false},
+    "formal_acceptance_completed": {"const": false},
+    "write_attempted": {"const": false}
+  },
+  "allOf": [
+    {"if": {"properties": {"simulated": {"const": true}}}, "then": {"properties": {"connector_mode": {"const": "mock"}, "acceptance_mode": {"const": "synthetic"}, "platform_connection_verified": {"const": false}, "status": {"const": "synthetic_read_verified"}, "evidence_kind": {"const": "synthetic_mock_read"}}}},
+    {"if": {"properties": {"simulated": {"const": false}}}, "then": {"properties": {"connector_mode": {"const": "api"}, "platform_connection_verified": {"const": true}, "status": {"const": "native_api_observation_recorded"}, "evidence_kind": {"const": "native_platform_api_observation"}}}}
+  ]
+}

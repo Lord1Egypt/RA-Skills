@@ -1,9 +1,9 @@
 ---
-name: succinylcholine-high-risk-reaction-and-contraindication-management
+name: succinylcholine-high-riREDACTED-SECRET
 description: 识别使用琥珀胆碱的高危患者（如烧伤、神经肌肉疾病、青光眼或恶性高热风险者），评估禁忌证，并在发生恶性高热时启动多模式抢救流程。当患者存在烧伤、恶性肿瘤、青光眼、神经肌肉病变或恶性高热家族史时，应禁用或极度谨慎使用琥珀胆碱。
 ---
 
-# succinylcholine-high-risk-reaction-and-contraindication-management
+# succinylcholine-high-riREDACTED-SECRET
 
 ## 何时使用本技能
 - 患者拟接受琥珀胆碱麻醉前需评估禁忌证

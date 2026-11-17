@@ -1,40 +1,58 @@
-## Description: <br>
-Optimize GitHub access speed on Windows by finding faster IP addresses and updating the hosts file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize GitHub access speed on Windows by finding low-latency IP addresses for GitHub domains and preparing hosts-file updates.
 
-## Publisher: <br>
-[vay-qz](https://clawhub.ai/user/vay-qz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vay-qz](https://clawhub.ai/user/vay-qz)
 
-## Use Case: <br>
-Developers and Windows users use this skill when GitHub access is slow and they want an agent to propose or run a hosts-file based routing update for GitHub domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent system-wide hosts-file changes can route GitHub domains through incorrect or stale IP addresses. <br>
-Mitigation: Require the agent to show proposed entries, validate each GitHub domain separately, and back up the existing hosts file before any administrator-level change. <br>
-Risk: A general GitHub slowness request could lead to unnecessary administrator privileges and difficult rollback. <br>
-Mitigation: Confirm that the user intentionally chose the hosts-file fix and provide exact rollback steps before requesting elevation. <br>
+## Use Case:
 
+Windows users and support engineers use this skill when GitHub access is slow and they want agent-generated PowerShell guidance to resolve candidate GitHub IPs, update hosts entries, and flush DNS.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vay-qz/github-hosts-windows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with PowerShell and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Windows hosts-file entries and DNS cache commands that require administrator review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may propose persistent administrator-level changes to the Windows hosts file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for an explicit GitHub hosts-file repair request, inspect the exact entries, and back up the hosts file before applying changes.
+
+Risk: Incorrect or stale GitHub IP mappings can break GitHub access or cause certificate warnings.
+
+Mitigation: Be prepared to remove the added entries or restore the hosts-file backup if GitHub access breaks or certificate warnings appear.
+
+Risk: The PowerShell workflow has weak safeguards around privileged writes.
+
+Mitigation: Review the generated commands before any administrator run and prefer manual entry when direct edits fail.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vay-qz/skills/github-hosts-windows)
+- [Publisher profile](https://clawhub.ai/user/vay-qz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-only; may include administrator-level hosts-file edits and DNS cache flush commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

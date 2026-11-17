@@ -1,41 +1,53 @@
-## Description: <br>
-Provides a minimal HTTP demo service that returns sample Musk briefing JSON and a sample payment-link response, without external crawling or model inference. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides a minimal HTTP skill service that returns demonstration Elon Musk briefing JSON and a sample payment-link response.
 
-## Publisher: <br>
-[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xqw1377-prog](https://clawhub.ai/user/xqw1377-prog)
 
-## Use Case: <br>
-External users and developers can use this skill to run a small HTTP demo that returns a static Musk news preview and a sample payment URL. It should be treated as demonstration content, not verified real-time intelligence. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the static demo response for verified real-time AI intelligence. <br>
-Mitigation: Present the output as demonstration content and independently verify any Musk-related claims before relying on them. <br>
-Risk: The invoke response includes a payment URL for a sample purchase flow. <br>
-Mitigation: Do not pay through the returned link unless the publisher and purchase terms have been independently trusted and understood. <br>
-Risk: The service listens on broad host and port settings when run directly. <br>
-Mitigation: Bind the service to localhost or a single intended port unless public exposure is explicitly required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/musk-insider-bare) <br>
+## Use Case:
 
+External users or developers can use this skill as a minimal HTTP demo service for sample Elon Musk briefing responses and a payment-link flow. It should be treated as demonstration data rather than verified intelligence.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON HTTP responses with short text fields and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns static demo briefing data and a sample payment URL; no external crawler or model inference is evidenced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact files state 1.0.1) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The service exposes unauthenticated HTTP endpoints on all interfaces and may try multiple ports.
+
+Mitigation: Bind to localhost or a controlled interface unless external access is required, restrict allowed ports to the declared service port, and place it behind normal access controls before deployment.
+
+Risk: The payment-link response is a monetization demo, not evidence of verified intelligence functionality.
+
+Mitigation: Label responses as sample output, review payment-link behavior before use, and do not present returned briefing data as verified real-time intelligence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xqw1377-prog/skills/musk-insider-bare)
+- [Publisher profile](https://clawhub.ai/user/xqw1377-prog)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON HTTP responses with text or Markdown setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [HTTP endpoints return sample data; no external crawling or model inference is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact files declare 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

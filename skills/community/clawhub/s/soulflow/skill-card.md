@@ -1,43 +1,63 @@
-## Description: <br>
-SoulFlow is a general-purpose OpenClaw workflow framework for building custom multi-step workflows across development, operations, research, content, and automation tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SoulFlow is a general-purpose AI workflow framework for OpenClaw that lets agents run custom multi-step workflows for development, operations, research, content, and automation tasks.
 
-## Publisher: <br>
-[0xtommythomas-dev](https://clawhub.ai/user/0xtommythomas-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[0xtommythomas-dev](https://clawhub.ai/user/0xtommythomas-dev)
 
-## Use Case: <br>
-Developers and engineers use SoulFlow to define and run multi-step OpenClaw workflows for development, operations, research, content, and automation tasks. It can invoke isolated worker sessions that read files, edit code, run shell commands, and report step outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The persistent soulflow-worker can run commands, edit files, change OpenClaw configuration, and reuse existing credentials. <br>
-Mitigation: Install only when broad local automation is intended, review workflows before execution, avoid production credentials unless necessary, and run sensitive work in a sandbox. <br>
-Risk: Workflow execution can modify source files, configuration, worker-agent files, and run-state logs. <br>
-Mitigation: Back up OpenClaw configuration and important files before running workflows, then remove the worker agent or .soulflow logs when they are no longer needed. <br>
+## Use Case:
 
+Developers and engineers use SoulFlow to define and run isolated multi-step OpenClaw workflows for code audits, bug fixes, feature work, deployments, content pipelines, research, and other automation tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xtommythomas-dev/soulflow) <br>
-- [SoulFlow README](README.md) <br>
-- [SoulFlow Skill Definition](SKILL.md) <br>
-- [Project Homepage](https://github.com/0xtommythomas-dev/soulflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and text guidance with inline shell commands, generated workflow JSON, and workflow execution summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Workflow runs may create or modify files, OpenClaw configuration, worker-agent files, and JSON run-state logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release evidence; artifact package.json and CHANGELOG show 1.1.0) <br>
+Risk: The skill creates a persistent worker agent with broad read, write, edit, exec, and browser access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in sandboxed or non-production OpenClaw environments and review the worker permissions before running workflows.
+
+Risk: The worker can inherit existing GitHub, cloud, or other service credentials from configured agents.
+
+Mitigation: Limit inherited credentials to services the workflow is intended to use, or run with isolated credentials.
+
+Risk: Workflow JSON can cause file edits, command execution, deployments, and external service actions.
+
+Mitigation: Review every workflow before execution, avoid untrusted workflow JSON, and back up important files before running modifying workflows.
+
+Risk: Workflow prompts and results are retained locally as run state.
+
+Mitigation: Avoid unnecessary sensitive inputs and monitor or remove local run records according to the deployment policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xtommythomas-dev/skills/soulflow)
+- [ClawHub publisher profile](https://clawhub.ai/user/0xtommythomas-dev)
+- [Artifact homepage](https://github.com/0xtommythomas-dev/soulflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown/text instructions, shell commands, JSON workflow files, and code or configuration changes produced by worker agent sessions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Workflow outputs can include run state JSON and files modified by the worker according to selected workflow steps.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence; artifact package.json and changelog show 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

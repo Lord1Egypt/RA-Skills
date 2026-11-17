@@ -1,47 +1,62 @@
-## Description: <br>
-智能创作、提取微信公众号文章、生成封面并发布到微信公众号草稿箱，适用于按标题写稿、参考文章改写、提取 mp.weixin 链接、创建草稿并发布的工作流。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能创作、提取微信公众号文章、生成封面并发布到微信公众号草稿箱。
 
-## Publisher: <br>
-[majiabin2020](https://clawhub.ai/user/majiabin2020) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[majiabin2020](https://clawhub.ai/user/majiabin2020)
 
-## Use Case: <br>
-Content operators, developers, and WeChat Official Account maintainers use this skill to create or rewrite Chinese public-account articles, generate cover images, preview output, create WeChat drafts, and optionally submit drafts for publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles real WeChat Official Account credentials and image-generation API credentials. <br>
-Mitigation: Store credentials only in controlled configuration, limit access to the runtime environment, and rotate exposed credentials. <br>
-Risk: The skill makes external network calls to WeChat, article URLs, and image-generation providers. <br>
-Mitigation: Use dry-run and preview modes before creating drafts or publishing, and avoid feeding untrusted or internal URLs. <br>
-Risk: Publishing workflows can move generated content into a live WeChat account when explicitly requested. <br>
-Mitigation: Review generated article text, preview HTML, cover output, and draft metadata before running publish actions. <br>
-Risk: Python dependencies and network integrations may change behavior outside the skill package. <br>
-Mitigation: Install and run the skill in a locked dependency environment. <br>
+## Use Case:
 
+External content creators, operators, and developers use this skill to draft or rewrite Chinese WeChat Official Account articles, generate cover images, preview formatted output, and create drafts or publish when explicitly requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/majiabin2020/wechat-official-account-article-auto-publisher) <br>
-- [Creation guide](CREATION_GUIDE.md) <br>
-- [Publishing checklist](templates/conversation/publish_checklist.md) <br>
-- [Configuration file](config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown articles, JSON command output, generated files, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates article assets, preview HTML, cover image paths, WeChat draft media IDs, publish IDs, and status results when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Draft or publish commands can send account content before adequate human review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode for article generation and preview, review the Markdown and HTML output, and reserve publishing commands for explicit approved requests.
+
+Risk: Configured WeChat and image-provider credentials enable network actions and account usage.
+
+Mitigation: Store credentials with least privilege, apply spending or account controls where available, and run the skill in a controlled environment with restricted outbound network access where practical.
+
+Risk: Material upload commands can transmit local files to WeChat.
+
+Mitigation: Limit accessible working directories and review file paths before running material, draft, or workflow commands that upload files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/majiabin2020/skills/wechat-official-account-article-auto-publisher)
+- [CREATION_GUIDE.md](artifact/CREATION_GUIDE.md)
+- [SKILL.md](artifact/SKILL.md)
+- [title_to_article.md](artifact/templates/prompts/title_to_article.md)
+- [rewrite.md](artifact/templates/prompts/rewrite.md)
+- [publish_checklist.md](artifact/templates/conversation/publish_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown articles, JSON command output, HTML previews, cover image files, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local output files and call WeChat or image-generation APIs when credentials are configured; dry-run mode keeps work local for review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

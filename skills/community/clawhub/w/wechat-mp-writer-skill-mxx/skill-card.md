@@ -1,39 +1,48 @@
-## Description: <br>
-Assists WeChat Official Account creators with topic selection, article drafting, human-style polishing, image suggestions, and optional draft publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Chinese WeChat public-account creators plan topics, draft and polish articles, suggest images, format Markdown, and optionally prepare content for a WeChat draft box.
 
-## Publisher: <br>
-[hahacatlsq](https://clawhub.ai/user/hahacatlsq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hahacatlsq](https://clawhub.ai/user/hahacatlsq)
 
-## Use Case: <br>
-Content creators, technical bloggers, self-media authors, and company account operators use this skill to plan, write, polish, format, and optionally prepare WeChat Official Account articles for draft publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated articles may contain inaccurate, unlicensed, confidential, or undisclosed AI-assisted content. <br>
-Mitigation: Review every article for accuracy, rights, confidentiality, and disclosure requirements before using it in WeChat. <br>
-Risk: The optional draft-publishing flow depends on a separate publisher skill. <br>
-Mitigation: Confirm that the publisher skill is installed and trusted before sending content to it; otherwise use the manual publishing guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hahacatlsq/wechat-mp-writer-skill-mxx) <br>
+## Use Case:
 
+Content creators, technical bloggers, media operators, and company WeChat account teams use this skill to create Chinese WeChat public-account articles from topic selection through drafting, editing, image planning, Markdown formatting, and optional draft-box publishing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown article drafts with prose guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include image recommendations, style revisions, and manual publishing guidance when a trusted publisher skill is unavailable.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated content may be sent to a WeChat draft box when the optional publishing path is used.
+
+Mitigation: Confirm the target WeChat account before publishing and avoid sending confidential, personal, or unpublished business content unless the user accepts that placement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hahacatlsq/skills/wechat-mp-writer-skill-mxx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown articles with prose guidance, image suggestions, and publishing instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally pass generated Markdown to a separate WeChat publishing skill when that skill is installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "version": "1.0",
+    "created": "2026-06-16",
+    "last_updated": "2026-06-16",
+    "park_name": "{TODO: 请填写园区名称}",
+    "description": "客户档案 - 由招商助手自动维护"
+  },
+  "customers": [],
+  "notes": "AI会自动从对话中提取客户信息并写入此文件。你也可以手动编辑。"
+}

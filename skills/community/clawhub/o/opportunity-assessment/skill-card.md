@@ -1,42 +1,54 @@
-## Description: <br>
-商机判断与风险评估技能。接收新项目信息，主动询问关键问题（客户背景、时间要求、第三方集成等），输出风险分级评估、待确认事项清单、商机建议。适用于销售前期、项目立项、商机评审场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Opportunity Assessment helps users evaluate new project opportunities by asking key client, schedule, integration, business, and technical questions, then producing risk levels, confirmation items, and a go/no-go recommendation.
 
-## Publisher: <br>
-[yakov0922](https://clawhub.ai/user/yakov0922) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yakov0922](https://clawhub.ai/user/yakov0922)
 
-## Use Case: <br>
-Sales, pre-sales, and project review teams use this skill to assess new project opportunities, ask clarifying questions, rank delivery, business, technical, and customer risks, and produce a recommendation on whether to proceed. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process client, budget, contract, and project-risk information during opportunity assessment. <br>
-Mitigation: Provide only business details that the user is authorized to share with the agent. <br>
-Risk: Opportunity recommendations can be incomplete or misleading if the project background, budget, timeline, technical dependencies, or decision chain is unclear. <br>
-Mitigation: Use the skill's required follow-up questions and pending-confirmation list before relying on the proceed, caution, or decline recommendation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [风险评估标准](references/风险评估标准.md) <br>
-- [常见问题清单](references/常见问题清单.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yakov0922/opportunity-assessment) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/yakov0922) <br>
+## Use Case:
 
+Sales, account, and project review teams use this skill during presales, project intake, and opportunity review to identify delivery, commercial, technical, and customer risks before deciding whether to pursue a project.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Text] <br>
-**Output Format:** [Plain text structured for Feishu messages, with prioritized lists and no Markdown tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes project overview, high/medium/low risk findings, pending confirmation items, and a proceed/caution/decline recommendation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Non-Chinese-speaking teams may misunderstand or underuse the skill because its prompts and output structure are designed in Chinese.
+
+Mitigation: Translate or localize the prompt content and review the localized version before use.
+
+Risk: Opportunity assessments can be incomplete when client background, delivery timelines, third-party integrations, payment terms, or acceptance criteria are missing.
+
+Mitigation: Use the skill's required follow-up questions and confirmation checklist before making a pursuit decision.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yakov0922/skills/opportunity-assessment)
+- [风险评估标准](references/风险评估标准.md)
+- [常见问题清单](references/常见问题清单.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text with structured lists; designed to avoid Markdown tables for Feishu compatibility.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language opportunity assessment prompts and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

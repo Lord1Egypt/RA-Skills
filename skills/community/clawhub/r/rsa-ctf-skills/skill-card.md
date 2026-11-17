@@ -1,40 +1,58 @@
-## Description: <br>
-Provides an RSA CTF-solving tool with 11 RSA attack workflows, including online FactorDB factorization, for decrypting RSA ciphertexts, factoring moduli, analyzing CTF cryptography challenges, and applying specific RSA attack scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+rsa-ctf-skills helps agents solve RSA cryptography CTF challenges using 11 common attack techniques, including optional FactorDB-assisted factorization.
 
-## Publisher: <br>
-[Moxin1044](https://clawhub.ai/user/Moxin1044) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moxin1044](https://clawhub.ai/user/moxin1044)
 
-## Use Case: <br>
-Developers, CTF players, and security learners use this skill to choose and run RSA attack techniques for authorized CTF, lab, or educational cryptography challenges. It helps map known RSA parameters to supported attacks and interpret plaintext, factorization, and key-recovery outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: FactorDB mode sends the RSA modulus to factordb.com and should be treated as public-data-only. <br>
-Mitigation: Use FactorDB only for authorized CTF, lab, or educational challenges, and avoid it for private keys, internal test keys, confidential challenge infrastructure, or real-world investigation targets unless public disclosure of the modulus is acceptable. <br>
+## Use Case:
 
+Developers, security learners, and CTF participants use this skill to choose and run RSA attack workflows for intentionally shared challenge data, then interpret recovered factors, private exponents, plaintext, or candidate messages.
 
-## Reference(s): <br>
-- [RSA Attack Algorithm Guide](references/attack-guides.md) <br>
-- [FactorDB API](https://factordb.com/api?query=) <br>
-- [ClawHub skill page](https://clawhub.ai/Moxin1044/rsa-ctf-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and command-line text or JSON-like results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke an online FactorDB lookup when the factor attack mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: FactorDB mode sends the supplied RSA modulus to factordb.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use FactorDB only for CTF or intentionally shared RSA challenge data; avoid private keys, embargoed challenge material, investigation targets, or production RSA moduli unless external disclosure is acceptable.
+
+Risk: The skill automates RSA attack techniques intended for challenge solving.
+
+Mitigation: Use it only for CTFs, training, or other authorized cryptography exercises where the target data is intentionally provided for analysis.
+
+Risk: Help text and CLI output may be in Chinese.
+
+Mitigation: Have outputs reviewed by a Chinese reader or translate them before relying on the results.
+
+## Reference(s):
+
+- [RSA Attack Algorithm Guide](references/attack-guides.md)
+- [FactorDB API](https://factordb.com/api?query=)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with command examples and JSON or plaintext CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include recovered RSA factors, private exponents, plaintext, candidate messages, warnings, and error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-DevTool Answer Monitor helps agents monitor how LLMs describe a developer tool, API, SDK, or open-source project, then plan query pools, scoring, repair, activation analysis, and T+7 or T+14 regression validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to monitor how ChatGPT, Claude, Gemini, and other LLMs describe a developer tool, API, SDK, or open-source project.
 
-## Publisher: <br>
-[veeicwgy](https://clawhub.ai/user/veeicwgy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[veeicwgy](https://clawhub.ai/user/veeicwgy)
 
-## Use Case: <br>
-Developers, maintainers, and developer relations teams use this skill to understand how models mention, recommend, or misunderstand a developer product. It guides query design, monitoring, content placement, negative-answer repair, and follow-up validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys may be exposed if users paste secrets into chat or reports. <br>
-Mitigation: Keep API keys in local environment variables and use quickstart replay or manual paste mode when live collection is not needed. <br>
-Risk: Live API collection can send query text, product context, and model prompts to the configured provider or gateway. <br>
-Mitigation: Review OPENAI_BASE_URL and provider settings before API collection, and avoid networked model calls when the monitoring data should stay local. <br>
-Risk: Local installation and dependency versions may vary across environments. <br>
-Mitigation: Use a local Python virtual environment and pin dependencies when reproducible installs are required. <br>
+## Use Case:
 
+Developers, open-source maintainers, API teams, SDK teams, and DevRel teams use this skill to design query pools, monitor model answers, score visibility metrics, diagnose inaccurate or negative claims, and plan T+7 or T+14 repair validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/veeicwgy/devtool-answer-monitor) <br>
-- [Project homepage from ClawHub metadata](https://github.com/veeicwgy/devtool-answer-monitor) <br>
-- [Zero-install demo viewer](https://cdn.jsdelivr.net/gh/veeicwgy/devtool-answer-monitor@main/docs/index.html) <br>
-- [MinerU public benchmark](benchmark/mineru-public-benchmark.md) <br>
-- [Sciverse API public benchmark](benchmark/sciverse-api-public-benchmark.md) <br>
-- [Metric definition](docs/metric-definition.md) <br>
-- [Activation metrics](docs/activation-metrics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON/query-pool structures and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route to bundled sub-skills; live API collection requires locally configured provider credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and artifact changelog) <br>
+Risk: API collection mode can expose provider keys, endpoint choices, or sensitive query text if configured carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer quickstart replay or manual paste mode for local-only evaluation; for API collection, keep keys in environment variables, verify OPENAI_BASE_URL, and avoid confidential query text.
+
+Risk: Local installation and runner scripts can introduce ordinary dependency and execution risk.
+
+Mitigation: Review install.sh, quickstart.sh, and selected runner scripts before execution, and consider pinning dependencies or using an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/veeicwgy/skills/devtool-answer-monitor)
+- [DevTool Answer Monitor repository](https://github.com/veeicwgy/devtool-answer-monitor)
+- [Zero-install demo viewer](https://cdn.jsdelivr.net/gh/veeicwgy/devtool-answer-monitor@main/docs/index.html)
+- [MinerU public benchmark](https://github.com/veeicwgy/devtool-answer-monitor/blob/main/benchmark/mineru-public-benchmark.md)
+- [Sciverse API public benchmark](https://github.com/veeicwgy/devtool-answer-monitor/blob/main/benchmark/sciverse-api-public-benchmark.md)
+- [Metric definition](docs/metric-definition.md)
+- [Getting started](docs/getting-started.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON artifacts, shell commands, report outlines, score drafts, and repair plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include query pools, monitoring summaries, score tables, action backlogs, weekly reports, and T+7 or T+14 regression validation plans.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

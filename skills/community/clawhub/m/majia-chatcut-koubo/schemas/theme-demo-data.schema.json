@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/theme-demo-data.schema.json",
+  "title": "Portrait theme demo copy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eyebrow",
+    "title",
+    "lead",
+    "emphasis",
+    "cta",
+    "subtitle",
+    "footer",
+    "meta",
+    "recommendedTheme",
+    "recommendedLayout"
+  ],
+  "properties": {
+    "eyebrow": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "lead": {"type": "string", "minLength": 1},
+    "emphasis": {"type": "string", "minLength": 1},
+    "cta": {"type": "string", "minLength": 1},
+    "subtitle": {"type": "string", "minLength": 1},
+    "footer": {"type": "string", "minLength": 1},
+    "meta": {"type": "string", "minLength": 1},
+    "recommendedTheme": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "recommendedLayout": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"}
+  }
+}

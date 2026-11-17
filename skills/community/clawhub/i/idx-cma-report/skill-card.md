@@ -1,44 +1,59 @@
-## Description: <br>
-Generate comparative market analysis (CMA) and home valuation reports from IDX listing data and selected comparable properties. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comparative market analysis (CMA) and home valuation reports from IDX listing data and selected comparable properties.
 
-## Publisher: <br>
-[danielfoch](https://clawhub.ai/user/danielfoch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[danielfoch](https://clawhub.ai/user/danielfoch)
 
-## Use Case: <br>
-Real estate agents, brokers, and their support teams use this skill to turn subject-property data and selected IDX comparables into CMA reports, valuation ranges, and interactive presentation assets for client review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generated interactive HTML can run unsafe listing content when opened or shared. <br>
-Mitigation: Review or patch the generated HTML before opening it locally, hosting it, or sending it to clients. <br>
-Risk: IDX data and generated CMA files may contain property, location, and valuation details. <br>
-Mitigation: Confirm that sharing cma_data.json or hosted reports with Google AI Studio, Gemini Canvas, clients, or other third parties is appropriate for the data involved. <br>
-Risk: The CMA output is an estimate for broker or agent support, not a licensed appraisal. <br>
-Mitigation: Keep the appraisal boundary visible, disclose assumptions, and review local market nuance, condition differences, concessions, stale comps, and data gaps before using the report for pricing decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CMA Input Schema](references/cma-input-schema.md) <br>
-- [Valuation Guidelines](references/valuation-guidelines.md) <br>
-- [Gemini Canvas / AI Studio Publish Checklist](references/gemini-canvas-publish.md) <br>
-- [Google AI Studio](https://aistudio.google.com/) <br>
+## Use Case:
 
+External real estate agents, brokers, and support staff use this skill to build CMA packages from subject-property details and selected IDX comparables, including valuation calculations, a client-facing report, and an interactive handoff prompt.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON data, local HTML, and prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cma_report.md, cma_data.json, interactive_local.html, and gemini_canvas_prompt.md from subject and comparable listing JSON inputs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated interactive reports can run code hidden in listing data if opened or shared.
+
+Mitigation: Review or patch the generated HTML handling before using untrusted IDX or comparable data, especially before publishing the interactive report.
+
+Risk: CMA outputs may contain private property or client information.
+
+Mitigation: Treat generated CMA files as private and only upload cma_data.json or reports to Google tools when the user expects that sharing.
+
+Risk: Missing, stale, or low-quality comparable data can weaken the valuation estimate.
+
+Mitigation: Surface data gaps, outliers, and assumptions before presenting the estimate, and keep the output framed as CMA support rather than a licensed appraisal.
+
+## Reference(s):
+
+- [CMA Input Schema](references/cma-input-schema.md)
+- [Valuation Guidelines](references/valuation-guidelines.md)
+- [Gemini Canvas / AI Studio Publish Checklist](references/gemini-canvas-publish.md)
+- [Google AI Studio](https://aistudio.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, guidance]
+
+**Output Format:** [Markdown report, JSON calculation payload, single-file HTML, and Markdown prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated CMA outputs may include property and client information and should be reviewed before sharing.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

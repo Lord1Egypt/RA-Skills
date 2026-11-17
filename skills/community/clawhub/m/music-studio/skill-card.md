@@ -1,41 +1,63 @@
-## Description: <br>
-Music Studio is a lightweight MiniMax music creation workspace for LLM agents that guides users through generating music, writing lyrics, creating covers, and managing local outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music Studio is a lightweight MiniMax-based music creation workspace that guides an agent through lyrics generation, text-to-music generation, cover-song preprocessing, local output management, and music library actions.
 
-## Publisher: <br>
-[mrgyan](https://clawhub.ai/user/mrgyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrgyan](https://clawhub.ai/user/mrgyan)
 
-## Use Case: <br>
-External users and developers use this skill to operate a conversational MiniMax music studio, including lyric generation, text-to-music generation, cover creation, library management, and local configuration of MiniMax credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MiniMax API keys can be saved in local configuration and may also persist in chat setup session history. <br>
-Mitigation: Use a dedicated MiniMax API key, prefer the explicit set-key flow, protect ~/.config/music-studio/config.json and output/sessions, and delete setup session files if a key was entered through chat. <br>
-Risk: Prompts, lyrics, reference audio URLs, generated audio URLs, and related metadata may be sent to MiniMax and stored locally. <br>
-Mitigation: Avoid submitting sensitive or unlicensed material, review MiniMax data handling terms before use, and clean or purge local library and session outputs when they are no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to create lyrics, generate music from text prompts, produce cover-song outputs through MiniMax, and manage generated files through a local music library.
 
-## Reference(s): <br>
-- [MiniMax Music API Reference](references/api.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mrgyan/music-studio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Conversational text with CLI commands and locally written audio, lyric, URL, metadata, library, configuration, and session files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a MiniMax bearer token stored in local configuration; generated prompts, lyrics, reference URLs, audio links, and session history may be stored locally and sent to MiniMax during generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: frontmatter and release evidence) <br>
+Risk: The skill can retain a MiniMax API key in local configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated MiniMax key, store it only on trusted machines, clear or rotate the key after testing, and avoid committing local config files.
+
+Risk: Prompts, lyrics, and cover-audio URLs are sent to MiniMax for generation.
+
+Mitigation: Avoid submitting confidential lyrics, unpublished audio, personal data, or third-party content that the user is not authorized to process.
+
+Risk: Clean, reset, and purge actions can delete local generated outputs in the configured output directory.
+
+Mitigation: Use a dedicated output directory, review the configured path before cleanup, and keep backups of outputs that must be retained.
+
+Risk: Downloaded audio is fetched from service-provided URLs and written locally.
+
+Mitigation: Download only expected generation outputs, keep the output directory isolated, and review files before reusing or distributing them.
+
+## Reference(s):
+
+- [ClawHub Music Studio skill page](https://clawhub.ai/mrgyan/skills/music-studio)
+- [MiniMax music API reference](artifact/references/api.md)
+- [MiniMax API base URL](https://api.minimaxi.com/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with CLI commands plus generated text, URLs, metadata, and optional audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a MiniMax API key and may write config, session, lyrics, URL, metadata, hex, and MP3 files under the configured local output directory.]
+
+## Skill Version(s):
+
+1.0.10 (source: frontmatter, artifact/music_studio/version.py, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

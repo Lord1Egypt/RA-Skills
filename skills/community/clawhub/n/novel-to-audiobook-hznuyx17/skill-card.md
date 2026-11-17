@@ -1,43 +1,57 @@
-## Description: <br>
-Converts novel chapters into MP3 audiobooks by analyzing narration and dialogue, assigning character voices, optionally generating background music, and assembling the final audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts novel chapters into MP3 audiobooks by analyzing chapter structure, identifying narration and dialogue roles, assigning voices, optionally generating mood-matched background music, and assembling the final audio.
 
-## Publisher: <br>
-[lws-lzh](https://clawhub.ai/user/lws-lzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lws-lzh](https://clawhub.ai/user/lws-lzh)
 
-## Use Case: <br>
-Writers, audiobook producers, and developers can use this skill to turn chapter text or chapter files into narrated MP3 audiobook output with per-character voice assignment and optional mood-matched background music. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chapter text is sent to DeepSeek and MiniMax during analysis, text-to-speech, and music generation. <br>
-Mitigation: Use the skill only with manuscript content that is permitted under the providers' terms and retention practices; avoid confidential, unpublished, or contract-restricted text unless those terms are acceptable. <br>
-Risk: The skill requires DeepSeek and MiniMax API keys stored in configuration. <br>
-Mitigation: Store API keys securely, avoid committing populated configuration files, and rotate keys if they are exposed. <br>
-Risk: Generated audio and temporary files are written to configured output paths. <br>
-Mitigation: Review output paths before running the scripts so generated MP3 and temporary files are written only to intended locations. <br>
+## Use Case:
 
+External users and developers use this skill to turn provided novel chapter text or chapter files into narrated audiobook output with character-specific voices and optional background music.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lws-lzh/novel-to-audiobook-hznuyx17) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lws-lzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Audio files, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON intermediate results, and MP3 audiobook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DeepSeek and MiniMax API keys; generated outputs can include temporary analysis JSON, temporary MP3 segments, optional background music, and a final MP3 audiobook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Chapter text and generated audio workflow data are sent to external AI services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for manuscripts that may be shared with DeepSeek and MiniMax under their applicable terms.
+
+Risk: API keys are expected in local configuration.
+
+Mitigation: Use throwaway or restricted API keys and keep config.json out of source control and backups.
+
+Risk: Intermediate files may remain on disk after audiobook generation.
+
+Mitigation: Manually clean temp_analysis.json, temp_audio, and temp_bgm after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lws-lzh/skills/novel-to-audiobook-hznuyx17)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON-producing script steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent through local script execution that produces intermediate JSON, generated audio segments, optional background music, and a final MP3 audiobook file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

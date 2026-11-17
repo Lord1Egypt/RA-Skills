@@ -20,6 +20,15 @@ This skill is for routing Kling 2.5 Turbo Pro questions to the right APIDot docs
 
 This release contains `SKILL.md` plus non-executable notes in `references/api.md`. It includes no executable files, install-time automation, review automation helpers, shell automation, bundled API clients, automatic network calls, or stored credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Open the Kling 2.5 Turbo Pro model page: https://apidot.ai/models/kling-2-5-turbo-pro
+- Read Kling 2.5 Turbo Pro API docs: https://apidot.ai/docs/kling-2-5-turbo-pro
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use general APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## Search Terms
 
 Use this skill for searches and requests phrased as Kling 2.5 Turbo Pro API, Kling 2 5 Turbo Pro, kling-2-5-turbo-pro, kling-2.5-turbo-pro, Kling Pro video API, start frame video, start and end frame video, image-to-video API, or APIDot Kling API.

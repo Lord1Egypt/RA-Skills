@@ -1,46 +1,60 @@
-## Description: <br>
-SparkyFitness CLI for food diary, exercise tracking, biometric check-ins, and health summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SparkyFitness CLI for food diary, exercise tracking, biometric check-ins, and health summaries.
 
-## Publisher: <br>
-[aronjanosch](https://clawhub.ai/user/aronjanosch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aronjanosch](https://clawhub.ai/user/aronjanosch)
 
-## Use Case: <br>
-External users and agents use this skill to operate the sparky CLI against a configured self-hosted SparkyFitness server for food, exercise, biometric, mood, summary, and trend workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill helps log privacy-sensitive food, exercise, weight, steps, and mood data to a configured SparkyFitness server. <br>
-Mitigation: Use only a trusted server, protect the configured API key, and avoid entering health data that should not be stored on that server. <br>
-Risk: Food and exercise search commands may fall back to external lookup providers. <br>
-Mitigation: Prefer barcode, local IDs, or local library entries when privacy matters, and avoid sensitive search terms if external lookup fallback is a concern. <br>
-Risk: Ambiguous search results can cause an agent to log the wrong food or exercise. <br>
-Mitigation: Use barcode or UUID-based logging where possible, verify brand and macro details, and avoid relying on the first JSON result for ambiguous searches. <br>
+## Use Case:
 
+External users and agents use this skill to operate a separately installed sparky CLI against a self-hosted SparkyFitness server for food, exercise, biometric, mood, summary, and trend workflows.
 
-## Reference(s): <br>
-- [SparkyFitness](https://github.com/CodeWithCJ/SparkyFitness) <br>
-- [sparky-cli](https://github.com/aronjanosch/sparky-cli) <br>
-- [sparky-cli releases](https://github.com/aronjanosch/sparky-cli/releases) <br>
-- [ClawHub skill page](https://clawhub.ai/aronjanosch/sparky) <br>
-- [Publisher profile](https://clawhub.ai/user/aronjanosch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and CLI usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include JSON-mode CLI examples for safer agentic use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: release evidence) <br>
+Risk: The skill depends on an unverified third-party CLI executable and a separate SparkyFitness server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted, pinned, and verified releases, and prefer a user-owned bin directory.
+
+Risk: The workflow handles sensitive health data and API keys with limited privacy guidance in the artifact.
+
+Mitigation: Use HTTPS, understand where the API key is stored, and avoid entering sensitive health data unless the server and CLI source are trusted.
+
+Risk: Food and exercise searches can use external lookup providers and may return ambiguous results.
+
+Mitigation: Prefer barcode or UUID-based logging, inspect brand and macro data before logging, and use explicit IDs in scripts.
+
+## Reference(s):
+
+- [SparkyFitness](https://github.com/CodeWithCJ/SparkyFitness)
+- [sparky-cli](https://github.com/aronjanosch/sparky-cli)
+- [sparky-cli releases](https://github.com/aronjanosch/sparky-cli/releases)
+- [ClawHub skill page](https://clawhub.ai/aronjanosch/skills/sparky)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with CLI command examples and JSON-mode workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands require a separately installed sparky executable and a reachable SparkyFitness server.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

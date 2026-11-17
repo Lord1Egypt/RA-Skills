@@ -1,0 +1,40 @@
+{
+  "description": "Comfort-first output quality checks for generated route HTML.",
+  "criteria": [
+    {
+      "id": "one-main-objective",
+      "description": "Every day states one main objective or strategy.",
+      "required": true
+    },
+    {
+      "id": "cut-rules",
+      "description": "Every day includes clear rules for what to remove first.",
+      "required": true
+    },
+    {
+      "id": "meal-rest",
+      "description": "Every day includes meals or rest logistics.",
+      "required": true
+    },
+    {
+      "id": "avoid-night-driving",
+      "description": "The plan avoids or warns about night driving.",
+      "required": true
+    },
+    {
+      "id": "low-stamina",
+      "description": "The plan reflects low-stamina/pregnancy-friendly routing.",
+      "required": true
+    },
+    {
+      "id": "camera-spot-honesty",
+      "description": "Internet-famous or difficult shots are captioned as optional when they risk comfort.",
+      "required": true
+    },
+    {
+      "id": "source-provenance",
+      "description": "Volatile facts include checked source records.",
+      "required": true
+    }
+  ]
+}

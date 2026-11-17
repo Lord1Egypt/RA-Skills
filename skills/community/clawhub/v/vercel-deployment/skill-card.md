@@ -1,39 +1,47 @@
-## Description: <br>
-Deploy and manage Vercel projects, including linking repositories, environment variables, and domains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and manage Vercel projects, including linking repositories, env vars, and domains.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and operators use this skill to guide Vercel project setup and deployment management, including linking repositories, adding production environment variables, connecting GitHub auto-deploys, and checking domains. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Vercel CLI commands can affect real projects, accounts, teams, repositories, production environment variables, and domains. <br>
-Mitigation: Confirm the target directory, Vercel account or team, GitHub repository, production environment, and environment variable values before running commands. <br>
-Risk: Using an untrusted or unexpected Vercel CLI package can create risk for sensitive projects. <br>
-Mitigation: Use a trusted or pinned Vercel CLI for sensitive projects. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BrennerSpear/vercel-deployment) <br>
+## Use Case:
+
+Developers and engineers use this skill to deploy and manage Vercel projects, link Git repositories for auto-deploys, add production environment variables, and check configured domains.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unpinned Vercel CLI execution, incorrect project or repository linkage, or overly broad production credentials could affect deployment integrity.
+
+Mitigation: Use a pinned or project-local Vercel CLI, verify the target Vercel project and Git repository before connecting auto-deploys, and use least-privilege Vercel credentials for production environment variables.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can affect real Vercel projects, accounts, teams, repositories, production environment variables, and domains.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

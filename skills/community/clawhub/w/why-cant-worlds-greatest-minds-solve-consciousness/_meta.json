@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7b1bjk878xpagxd2x6yandwn889wb8",
-  "slug": "why-cant-worlds-greatest-minds-solve-consciousness",
+  "name": "why-cant-worlds-greatest-minds-solve-consciousness",
+  "title": "(Article) Why can't the world's greatest minds solve the mystery of consciousness?",
+  "author": "",
   "version": "1.0.0",
-  "publishedAt": 1780958679723
+  "license": "MIT",
+  "tags": ["philosophy", "neuroscience", "consciousness", "science", "AI"],
+  "description": "A Blinkist article summary exploring the \"hard problem of consciousness,\" the explanatory gap, major theories (IIT, GWS, HOT, panpsychism), and why neuroscience alone hasn't cracked the mystery. Trigger when users say: \"consciousness\" \"hard problem\" \"qualia\" \"David Chalmers\" \"philosophy of mind.\"",
+  "homepage": "https://github.com/jaysonmeng/book-skills",
+  "clawhub": {"slug": "why-cant-worlds-greatest-minds-solve-consciousness", "owner": "jaysonmeng"}
 }

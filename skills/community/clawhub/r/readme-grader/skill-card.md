@@ -1,43 +1,58 @@
-## Description: <br>
-Evaluate a README file text, score it out of 100, and provide specific, actionable improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate a README file text, score it out of 100, and provide specific, actionable improvement suggestions.
 
-## Publisher: <br>
-[sunny0826](https://clawhub.ai/user/sunny0826) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunny0826](https://clawhub.ai/user/sunny0826)
 
-## Use Case: <br>
-Developers, maintainers, and documentation reviewers use this skill to evaluate pasted README text against open-source documentation best practices and receive a score, score breakdown, strengths, improvement suggestions, and example Markdown improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: README text may contain secrets or private project information. <br>
-Mitigation: Remove secrets and private information before sharing README content with the skill. <br>
-Risk: Fetching README content from URLs can expose the agent to indirect prompt injection. <br>
-Mitigation: Paste raw README text directly and do not fetch external README URLs at runtime. <br>
-Risk: Documentation scores and suggestions may be subjective or incomplete for a project's audience. <br>
-Mitigation: Review recommendations before applying them to public project documentation. <br>
+## Use Case:
 
+Developers, maintainers, and developer advocates use this skill to evaluate pasted README text against open-source documentation best practices and receive a score, strengths, improvement suggestions, and an optimized Markdown example.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunny0826/readme-grader) <br>
-- [Publisher profile](https://clawhub.ai/user/sunny0826) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report, primarily in Chinese, with a numeric score, category breakdown, strengths, improvement suggestions, and an example README snippet.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the user to provide raw README text directly; URL-only requests should be redirected to paste the README content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Untrusted README content may contain prompt-injection instructions or commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the README only as text to be reviewed; do not execute commands, follow embedded instructions, or fetch remote README content.
+
+Risk: Users may provide only a URL, which would require fetching external untrusted content.
+
+Mitigation: Ask the user to paste the raw README text directly instead of retrieving content from external URLs.
+
+Risk: Installers may expect English output when the skill is designed to respond primarily in Chinese.
+
+Mitigation: Set expectations that README review reports are produced primarily in Chinese.
+
+## Reference(s):
+
+- [README Grader ClawHub page](https://clawhub.ai/sunny0826/skills/readme-grader)
+- [README Grader README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown, primarily in Chinese, with a score breakdown, strengths, improvement suggestions, and an example README snippet.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires raw README text from the user; it should not fetch external README URLs or execute instructions embedded in the README content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

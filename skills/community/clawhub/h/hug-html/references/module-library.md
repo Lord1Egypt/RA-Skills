@@ -19,7 +19,7 @@
 
 **核心变化**（v2 → v3）：
 - 旧：14 个预置复合模块，每个固定 HTML 结构 → 硬编码，难以定制
-- 新：8 个原子组件 + 声明式组合 → 自由搭配，无限可能
+- 新：8 个原子组件 + 声明式组合 → 自由搭配，覆盖广泛场景
 
 ---
 
@@ -47,11 +47,11 @@
 | 字段 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | `type` | string | ✅ | `"image"` |
-| `src` | string | ✅ | 图片URL |
+| `src` | string | ✅ | 图片 URL |
 | `alt` | string | ❌ | 替代文字 |
 | `constraint` | string | ❌ | `fit`(默认) / `cover` / `fill` |
 | `aspect` | string | ❌ | 宽高比，如 `"1/1"`、`"16/9"` |
-| `style` | object | ❌ | 额外CSS |
+| `style` | object | ❌ | 额外 CSS |
 
 ### icon — 图标
 
@@ -79,7 +79,7 @@
 | `type` | string | ✅ | `"table"` |
 | `headers` | string[] | ✅ | 表头数组 |
 | `rows` | string[][] | ✅ | 数据行二维数组 |
-| `style` | object | ❌ | 额外CSS |
+| `style` | object | ❌ | 额外 CSS |
 
 ### divider — 分割线
 
@@ -106,9 +106,9 @@
 | `direction` | string | ❌ | `"row"`(默认) / `"column"` |
 | `align` | string | ❌ | 主轴对齐：`left` / `center` / `right` / `top` / `bottom` |
 | `cross_align` | string | ❌ | 交叉轴对齐：`stretch`(默认) / `center` / `flex-start` / `flex-end` |
-| `ratios` | number[] | ❌ | 子组件flex比例，如 `[1, 2]` 表示1/3和2/3 |
+| `ratios` | number[] | ❌ | 子组件 flex 比例，如 `[1, 2]` 表示1/3和2/3 |
 | `children` | array | ✅ | 子组件列表 |
-| `style` | object | ❌ | 容器额外CSS |
+| `style` | object | ❌ | 容器额外 CSS |
 
 ---
 
@@ -125,7 +125,7 @@
 约束在 Spec 中的配置位置：
 
 ```json
-// 骨架对模块的约束（cell级别）
+// 骨架对模块的约束（cell 级别）
 {"row": 0, "constraint": "fit", ...}
 
 // 组件级别的约束
@@ -191,10 +191,10 @@
 # 列出所有组件类型
 python scripts/module_assembler.py --list-components
 
-# 导出接口定义JSON
+# 导出接口定义 JSON
 python scripts/module_assembler.py --export-interfaces interfaces.json
 
-# 生成组件系统演示HTML
+# 生成组件系统演示 HTML
 python scripts/module_assembler.py --demo
 
 # 旧模块系统（向后兼容）

@@ -1,41 +1,56 @@
-## Description: <br>
-Brother.skill builds local personality profiles from the user's own memories and descriptions so an agent can respond in a described bro's style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Distill your bros -- from YOUR memories and descriptions. Captures how they talk, what makes them funny, their catchphrases, their energy. Feed it your own stories and observations. Self-learning -- gets more accurate with every description you share.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-External users use Brother.skill to turn their own memories and observations into local bro profiles and generate style-matched text or simulated group-chat responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local profiles and logs may contain privacy-sensitive notes about real people. <br>
-Mitigation: Keep only appropriate user-provided details, avoid private or sensitive information, and delete profiles that are no longer needed. <br>
-Risk: Generated responses could be mistaken for statements from the real person. <br>
-Mitigation: Do not present generated responses as coming from the real person, and use the skill for appreciation rather than impersonation. <br>
+## Use Case:
 
+External users use this skill to build local, user-described profiles of friends, relatives, creators, or group-chat members and ask an agent to respond in the style captured from those memories. It supports profile-building, single-person style responses, and multi-profile group-chat simulations while keeping data local.
 
-## Reference(s): <br>
-- [Brother.skill on ClawHub](https://clawhub.ai/realteamprinz/brother) <br>
-- [Hermes Agent](https://github.com/NousResearch/hermes-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown profiles, JSONL observation logs, and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local plain-text storage under ~/.brother-skill/bros/ when the agent follows the skill instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Plain-text local profiles may contain descriptions of real people.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Create and use profiles only on explicit user request, avoid sensitive private details, and delete a person's folder when the data is no longer needed.
+
+Risk: Generated style responses could be confused with the real person being described.
+
+Mitigation: Keep outputs clearly framed as simulations based on user-provided descriptions and do not use them to deceive others.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realteamprinz/skills/brother)
+- [Publisher profile](https://clawhub.ai/user/realteamprinz)
+- [README](artifact/README.md)
+- [Bro profile template](artifact/BRO-PROFILE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, configuration, guidance]
+
+**Output Format:** [Markdown profile content, JSONL observation logs, and conversational text replies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Profiles are stored as plain-text local files under ~/.brother-skill/bros/ when the agent follows the skill behavior.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

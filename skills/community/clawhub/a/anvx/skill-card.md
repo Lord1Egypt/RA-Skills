@@ -1,45 +1,58 @@
-## Description: <br>
-Track and optimize AI API spending across 19 providers with live pricing and 6 optimization modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track and optimize AI API spending across 19 providers with live pricing and 6 optimization modules.
 
-## Publisher: <br>
-[tje8x](https://clawhub.ai/user/tje8x) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tje8x](https://clawhub.ai/user/tje8x)
 
-## Use Case: <br>
-Developers, operators, and finance teams use this skill to analyze AI, cloud, payments, communications, monitoring, data-tool, and crypto-related spending, then generate cost optimization recommendations from connected read-only accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests access to sensitive financial, operational, exchange, and possible bank-CSV data. <br>
-Mitigation: Use only restricted read-only credentials, connect only the providers needed, avoid wallet seed phrases or write-enabled exchange keys, and review organizational approval before processing financial records. <br>
-Risk: Financial record details may be sent to Anthropic for categorization and natural-language analysis. <br>
-Mitigation: Use data approved for Anthropic processing, redact records that should not leave the local environment, and confirm the required ANTHROPIC_API_KEY is managed under the intended account. <br>
-Risk: The skill persists cache, model, and event data under ~/.token-economy-intel. <br>
-Mitigation: Review local file permissions and retention expectations, and clear the local cache or event log when the data is no longer needed. <br>
-Risk: Telemetry is disabled by default but can send events when ANALYTICS_ENABLED=true and ANALYTICS_ENDPOINT is configured. <br>
-Mitigation: Leave analytics disabled unless the endpoint is approved, and verify event payloads exclude financial amounts, credentials, wallet addresses, and personal data before enabling. <br>
+## Use Case:
 
+External users and developers use this skill to inspect AI, cloud, payments, communications, monitoring, search, and crypto spending, then receive read-only optimization recommendations. It is intended for financial visibility and cost analysis, not account modification or financial transactions.
 
-## Reference(s): <br>
-- [ANVX homepage](https://anvx.io) <br>
-- [ClawHub skill page](https://clawhub.ai/tje8x/anvx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and natural-language text with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial summaries, anomaly alerts, provider status, and optimization recommendations may include dollar amounts, percentages, and service names.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.6 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill requests many sensitive provider credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privilege read-only credentials for every provider and avoid production administrator or write-capable keys.
+
+Risk: Local financial history and query history are persisted on the user's machine.
+
+Mitigation: Review local storage before installation and run the skill only on systems where local financial data can be protected.
+
+Risk: The security review flags packaging and credential-scope issues.
+
+Mitigation: Confirm the package includes a real lockfile and supports restricted Stripe credentials before treating the release as low risk.
+
+## Reference(s):
+
+- [ANVX homepage](https://anvx.io)
+- [ClawHub skill page](https://clawhub.ai/tje8x/skills/anvx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with inline shell commands, financial summaries, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dollar amounts, percentages, provider names, and crypto informational disclaimers.]
+
+## Skill Version(s):
+
+1.4.6 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

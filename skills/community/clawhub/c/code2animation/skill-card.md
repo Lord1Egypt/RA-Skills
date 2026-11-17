@@ -1,46 +1,59 @@
-## Description: <br>
-code2animation helps agents build code-driven animated videos with TTS narration, browser preview, transitions, and MP4 rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to create, preview, narrate, and render code-driven animated videos with synchronized TTS audio and transitions.
 
-## Publisher: <br>
-[etrobot](https://clawhub.ai/user/etrobot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[etrobot](https://clawhub.ai/user/etrobot)
 
-## Use Case: <br>
-Developers and agent builders use this skill to script HTML/CSS media scenes, generate narration, preview timing, and render portrait or landscape videos. It is suited for code-based promotional videos, product explainers, and other deterministic animated clips. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports an unauthenticated audio-generation endpoint that can run shell commands from request input. <br>
-Mitigation: Run the skill only in an isolated local workspace, keep the Vite server off exposed networks, and review or disable the endpoint before installation. <br>
-Risk: TTS generation sends submitted script text to an external Microsoft Edge TTS service. <br>
-Mitigation: Do not submit sensitive scripts or private data unless that external processing is acceptable. <br>
-Risk: The package defines a GEMINI_API_KEY environment binding even though basic TTS use does not require secrets. <br>
-Mitigation: Avoid providing secrets such as GEMINI_API_KEY unless a reviewed workflow explicitly requires them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/etrobot/code2animation) <br>
-- [Publisher profile](https://clawhub.ai/user/etrobot) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill documentation](artifact/skill.md) <br>
-- [Rendering scripts documentation](artifact/scripts/README.md) <br>
-- [FFmpeg download reference](https://ffmpeg.org/download.html) <br>
+## Use Case:
 
+Developers and agents use this skill to assemble video projects from HTML/CSS footage, generate narration, preview timing, and render portrait or landscape MP4 outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code blocks, JSON project configuration examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead to generated project files, audio timing metadata, and MP4 video artifacts when the documented commands are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Unsanitized project IDs can expose command execution and file-access paths.
+
+Mitigation: Use only trusted project IDs and confine project directories until projectId validation, shell execution handling, and path confinement are fixed.
+
+Risk: The local dev server and rendering workflow are unsafe to expose to untrusted users or networks in their current state.
+
+Mitigation: Run on a trusted machine and network only; do not expose the dev server before iframe isolation and remote script loading issues are resolved.
+
+Risk: Project text and narration content may be sent to the Microsoft Edge TTS service during audio generation.
+
+Mitigation: Avoid sensitive project text, secrets, or API keys in projects processed by the TTS workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/etrobot/skills/code2animation)
+- [Artifact skill documentation](artifact/skill.md)
+- [Artifact README](artifact/README.md)
+- [Artifact rendering scripts README](artifact/scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript/JavaScript, HTML/CSS, JSON configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project files, audio timing JSON, MP4 render artifacts, and local preview commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

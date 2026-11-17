@@ -1,41 +1,54 @@
-## Description: <br>
-Identify large Google Drive files consuming storage quota. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify large Google Drive files consuming storage quota.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Google Workspace users and administrators use this recipe to list the largest Google Drive files and decide which files to archive or move to reduce storage usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Google Drive listing may reveal private file names, file sizes, MIME types, and owner information. <br>
-Mitigation: Run it only in the intended authenticated Google Drive account and avoid sharing command output outside approved audiences. <br>
-Risk: The recipe depends on the external gws CLI and gws-drive skill being trusted and authenticated correctly. <br>
-Mitigation: Confirm the installed gws binary and gws-drive skill are trusted before using the recipe. <br>
+## Use Case:
 
+Users with Google Workspace Drive access use this recipe to list the largest files in Drive and decide which files to archive or move to reduce storage usage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/recipe-find-large-files) <br>
-- [Publisher profile](https://clawhub.ai/user/googleworkspace-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Lists Google Drive files sorted by storage quota use; the command is read-only but may expose private file names and owner information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The command output may reveal sensitive Google Drive file names, ownership details, and storage usage metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the recipe only in accounts where Drive metadata listing is acceptable, and avoid sharing the resulting table outside the intended review context.
+
+Risk: The recipe depends on Google Workspace CLI access and the gws-drive skill being available and authorized.
+
+Mitigation: Confirm gws and gws-drive are installed and authenticated before running the listed command.
+
+## Reference(s):
+
+- [Recipe Find Large Files on ClawHub](https://clawhub.ai/googleworkspace-bot/skills/recipe-find-large-files)
+- [googleworkspace-bot publisher profile](https://clawhub.ai/user/googleworkspace-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires gws and the gws-drive skill; command output may include Google Drive file names, file sizes, MIME types, and owners.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata; artifact metadata version 0.22.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,63 @@
-## Description: <br>
-Control NGBS iCON Smart Home thermostats. Use when the user asks about home temperature, heating, thermostat control, or wants to adjust room temperatures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control NGBS iCON Smart Home thermostats through the enzoldhazam.hu service.
 
-## Publisher: <br>
-[daniel-laszlo](https://clawhub.ai/user/daniel-laszlo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[daniel-laszlo](https://clawhub.ai/user/daniel-laszlo)
 
-## Use Case: <br>
-External users and agents use this skill to check room temperatures, inspect thermostat status, and adjust NGBS iCON Smart Home thermostat targets through the enzoldhazam CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses sensitive enzoldhazam.hu account credentials and can change thermostat targets. <br>
-Mitigation: Prefer Keychain login over long-lived environment variables, avoid sharing credentials in chats or logs, and confirm the exact room and target temperature before running set commands. <br>
+## Use Case:
 
+External users and home automation operators use this skill to check thermostat status, inspect room and device readings, and prepare commands that adjust target temperatures for NGBS iCON Smart Home devices.
 
-## Reference(s): <br>
-- [enzoldhazam.hu](https://www.enzoldhazam.hu) <br>
-- [ClawHub skill page](https://clawhub.ai/daniel-laszlo/enzoldhazam) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional CLI JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May authenticate with macOS Keychain or ENZOLDHAZAM_USER and ENZOLDHAZAM_PASS environment variables; temperature-changing commands should be confirmed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The reviewed artifact does not include the full installable CLI while setup instructions build mutable external code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed release and verify its checksum or signature before installation.
+
+Risk: System-wide installation can require elevated privileges and expands local impact if the built binary is untrusted.
+
+Mitigation: Install into a user-owned bin directory instead of using sudo or writing to /usr/local/bin.
+
+Risk: Long-lived shell environment variables can expose thermostat account credentials.
+
+Mitigation: Prefer macOS Keychain login and avoid storing credentials in shell startup files.
+
+Risk: Thermostat set commands can change a home's physical environment.
+
+Mitigation: Require explicit user confirmation before every temperature change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniel-laszlo/skills/enzoldhazam)
+- [enzoldhazam.hu service](https://www.enzoldhazam.hu)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an enzoldhazam.hu account with registered NGBS iCON devices; temperature changes require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

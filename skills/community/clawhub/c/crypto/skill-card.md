@@ -1,44 +1,63 @@
-## Description: <br>
-Crypto Market helps agents fetch cryptocurrency market data and monitor price or volatility alerts across CCXT-supported exchanges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cryptocurrency market data and price alert monitoring tool based on CCXT. Supports multiple exchanges, real-time price tracking, and configurable price/volatility alerts. Use when the user needs to monitor crypto prices or set up trading alerts. Default exchange is Binance.
 
-## Publisher: <br>
-[manifoldor](https://clawhub.ai/user/manifoldor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manifoldor](https://clawhub.ai/user/manifoldor)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to check ticker, OHLCV, and order book data, compare exchanges, and manage local price alerts for crypto pairs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented default exchange differs from the script default, which can send market-data requests to an unintended exchange. <br>
-Mitigation: Specify --exchange when exchange choice matters and verify the selected venue before relying on the data. <br>
-Risk: Advanced CCXT examples mention API keys, which could expose credentials if adapted carelessly. <br>
-Mitigation: Do not add exchange API keys for simple price monitoring; keep any credentials outside the skill files and never commit them. <br>
-Risk: Local alert rules persist in ~/.config/crypto/alerts.json after use. <br>
-Mitigation: Review or delete the alerts file when monitoring is no longer wanted. <br>
+## Use Case:
 
+Developers, operators, and external users use this skill to fetch cryptocurrency ticker, OHLCV, and order book data, monitor live prices, and manage local price or volatility alerts through a CCXT-based CLI.
 
-## Reference(s): <br>
-- [CCXT Documentation](https://docs.ccxt.com/) <br>
-- [CCXT GitHub](https://github.com/ccxt/ccxt) <br>
-- [Supported Exchanges List](references/exchanges.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CCXT exchange requests and stores alert rules in ~/.config/crypto/alerts.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: ClawHub release evidence) <br>
+Risk: The local CLI contacts cryptocurrency exchanges for public market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if outbound requests to exchange APIs are acceptable for the target environment, and use explicit exchange selection where needed.
+
+Risk: Alert settings are stored locally under ~/.config/crypto/alerts.json.
+
+Mitigation: Review the local alert file before and after use, and avoid storing sensitive information in it.
+
+Risk: Dependency installation guidance and the documented default exchange may not match runtime behavior.
+
+Mitigation: Use a virtual environment with a pinned CCXT version, and pass --exchange explicitly until the default mismatch is fixed.
+
+Risk: Advanced examples mention API key fields.
+
+Mitigation: Do not put real API keys into example code, committed files, or this public market-data workflow.
+
+## Reference(s):
+
+- [CCXT Documentation](https://docs.ccxt.com/)
+- [Supported Exchanges List](references/exchanges.md)
+- [CCXT GitHub](https://github.com/ccxt/ccxt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local alert settings at ~/.config/crypto/alerts.json when alert commands are run.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

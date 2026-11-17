@@ -1,39 +1,53 @@
-## Description: <br>
-A Chinese-language guide that helps engineers, product managers, and operations leads design AI agents with tool calling, memory management, multi-step reasoning, and integrations with major LLM APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Agent Builder Zh provides Chinese guidance for designing AI agents with tool calling, memory management, multi-step reasoning, and integrations with common LLM APIs and workplace platforms.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Developers, product managers, and operations leads use this skill to plan AI-agent architectures, tool-calling flows, memory strategies, and enterprise automation deployments for assistants such as customer support, reporting, and sales workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may lead agents to call APIs, store memory, or update business systems such as CRM records, tickets, messages, or shared documents. <br>
-Mitigation: Use least-privilege API keys, avoid unnecessary personal or business data retention, and require human approval before agents write to business systems, send messages, create tickets, or update shared documents. <br>
+## Use Case:
 
+Developers, engineers, product managers, and operations leads use this skill to plan enterprise AI agents such as customer support bots, reporting agents, data analysis assistants, and content generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/ai-agent-builder-zh) <br>
-- [Publisher profile](https://clawhub.ai/user/olina1ye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with architecture notes, tables, workflow steps, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; examples may reference external APIs, workflow tools, vector databases, and enterprise messaging platforms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Enterprise agent designs based on the examples may store customer preferences or write to CRM and Feishu-style systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent, data minimization, retention limits, and confirmation before storing preferences or writing to business systems.
+
+Risk: Generated architecture guidance or code snippets may be incomplete for a production deployment.
+
+Mitigation: Review proposed tools, data flows, permissions, and integration code before implementation.
+
+## Reference(s):
+
+- [Ai Agent Builder Zh on ClawHub](https://clawhub.ai/olina1ye/skills/ai-agent-builder-zh)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown with tables, architecture diagrams, and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces advisory design content only; no executable files are bundled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

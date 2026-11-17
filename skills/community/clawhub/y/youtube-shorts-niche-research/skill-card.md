@@ -1,40 +1,57 @@
-## Description: <br>
-Finds recently launched viral YouTube Shorts channels using criteria for channel age, total views, and average views, then returns qualifying channel links and stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find viral YouTube Shorts channels that started recently and meet strict view and average-view thresholds, then return qualifying channel links and stats.
 
-## Publisher: <br>
-[abdullahsarumi16-stack](https://clawhub.ai/user/abdullahsarumi16-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullahsarumi16-stack](https://clawhub.ai/user/abdullahsarumi16-stack)
 
-## Use Case: <br>
-Creators, researchers, and channel operators use this skill to identify new YouTube Shorts channels that meet viral-growth criteria and receive concise channel summaries for niche research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes automatic weekly Telegram delivery to a named recipient and heartbeat tracking without adequate user control. <br>
-Mitigation: Remove or disable the weekly schedule, Telegram delivery, and heartbeat update unless the user explicitly approves that automation and recipient. <br>
-Risk: The skill can repeatedly run local YouTube research until enough qualifying channels are found. <br>
-Mitigation: Require explicit user approval before running the local script, and let the user set result limits before execution. <br>
+## Use Case:
 
+External creators and channel researchers use this skill to find new YouTube Shorts channels with high total views, high average views per video, and recent channel age. It is intended to produce a concise ranked summary of qualifying channels for niche research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullahsarumi16-stack/youtube-shorts-niche-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary with YouTube links, channel handles, and performance stats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on a local research script and dated JSON result files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill directs the agent to run unaudited local code from an absolute path outside the reviewed skill package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the external youtube-research.js file before use and require explicit approval before every run.
+
+Risk: The workflow can retry repeatedly when fewer than the requested channels are found.
+
+Mitigation: Add clear retry and timeout limits before deployment.
+
+Risk: The artifact includes weekly unprompted Telegram delivery with persistent state.
+
+Mitigation: Remove or disable the scheduled Telegram and HEARTBEAT behavior unless it is explicitly required and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullahsarumi16-stack/skills/youtube-shorts-niche-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown summary with channel links and statistics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns requested channel count when available; source results are saved to a dated JSON file by the referenced local script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

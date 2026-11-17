@@ -1,0 +1,84 @@
+# 独孤九剑 Skill 配置文件
+# 所有阈值和参数均可调整
+
+data:
+  source: "akshare"             # 数据源: akshare
+  default_period: "daily"       # 默认周期: daily/60min/15min/5min
+  lookback_days: 120            # 历史数据回溯天数
+  realtime: false               # 是否启用实时数据（需要 easyquotation）
+
+moving_averages:
+  short: [5, 8, 13]            # 短期均线组（斐波那契）
+  medium: [21, 34]              # 中期均线组
+  long: [55, 89]                # 长期均线组
+
+fibonacci:
+  time_cycles: [3, 5, 8, 13, 21, 34]  # 时间周期窗口（天）
+  retracement_levels: [0.236, 0.382, 0.5, 0.618, 0.786]  # 回调分割位
+
+volume:
+  surge_multiplier: 1.5         # 量能放大倍数阈值（破剑式）
+  shrink_ratio: 0.5             # 缩量比例阈值（破刀式/破索式）
+  ground_volume_percentile: 20  # 地量分位数（成交量在N日内的分位低于此值）
+
+bollinger:
+  period: 20                    # 布林带周期
+  stddev: 2                     # 标准差倍数
+
+rsi:
+  period: 14
+  oversold: 30                  # 超卖阈值
+  overbought: 70                # 超买阈值
+
+# 九式规则阈值
+swords:
+  po_jian:                      # 破剑式 - 起爆点
+    amplitude_shrink_days: 3    # 前三日振幅需收窄的天数
+    volume_surge: 1.5           # 放量倍数
+    price_break_days: 20        # 突破N日最高价
+
+  po_dao:                       # 破刀式 - 空中加油
+    trend_ma: 21                # 趋势确认均线
+    pullback_ma: [5, 8]         # 回踩均线组
+    volume_shrink: 0.5          # 回调缩量比例
+    resume_volume: 1.2          # 再度放量倍数
+
+  po_qiang:                     # 破枪式 - 主力跟踪
+    inflow_days: 3              # 连续净流入天数
+    big_order_ratio: 0.30       # 大单占比阈值
+
+  po_bian:                      # 破鞭式 - 上下画线
+    range_min_days: 10          # 箱体最少天数
+    range_max_pct: 15           # 箱体最大振幅百分比
+    rsi_low: 30
+    rsi_high: 70
+
+  po_suo:                       # 破索式 - 底部吃货
+    decline_pct: -30            # 累计跌幅
+    base_days: 8                # 底部横盘天数
+    ma_flat_angle: 5            # 均线走平角度容忍度
+
+  po_zhang:                     # 破掌式 - 短线打墙
+    range_clear_days: 15        # 震荡区间需清晰的观察天数
+    turnover_min: 3             # 最低换手率
+    turnover_max: 15            # 最高换手率
+
+  po_jian_2:                    # 破箭式 - 缺口策略
+    gap_days: 3                 # 缺口出现后未回补天数
+    gap_min_pct: 1.0            # 最小缺口幅度
+
+  po_qi:                        # 破气式 - 消息判别
+    pre_reaction_days: 3        # 消息公布前价格已反应的天数
+
+# 综合研判
+general:
+  min_signals_for_confirm: 2    # 多招式互证所需的最少信号数
+  confidence_weights:           # 各招式的置信度权重
+    po_jian: 1.0
+    po_dao: 0.9
+    po_qiang: 0.8
+    po_bian: 0.6
+    po_suo: 0.7
+    po_zhang: 0.5
+    po_jian_2: 0.75
+    po_qi: 0.85

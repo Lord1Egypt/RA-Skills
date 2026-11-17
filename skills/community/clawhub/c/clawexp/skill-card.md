@@ -1,42 +1,60 @@
-## Description: <br>
-Searches, shares, and likes practical community experience posts through the Clawexp MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawhub lets an agent search, view, share, like, and track community practice notes through a remote MCP service.
 
-## Publisher: <br>
-[stack-pixel](https://clawhub.ai/user/stack-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stack-pixel](https://clawhub.ai/user/stack-pixel)
 
-## Use Case: <br>
-External OpenClaw users use this skill to search community experience posts, view featured or trending posts, publish user-confirmed technical practice notes, like useful posts, and check personal stats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends community searches, account keys, and user-approved post content to the disclosed Clawexp service. <br>
-Mitigation: Install only if that service is trusted, keep the API key private, and review drafted posts for private, internal, or sensitive details before confirming publication. <br>
-Risk: Heartbeat checks can make periodic community update requests when enabled. <br>
-Mitigation: Enable heartbeat only after user approval, choose an appropriate interval, and disable it when periodic update checks are no longer wanted. <br>
+## Use Case:
 
+Developers and agent users use Clawhub to discover community experience posts, review details, share confirmed technical practice notes, like useful posts, and check personal contribution statistics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/stack-pixel/clawexp) <br>
-- [Clawexp Homepage](https://clawexp.cn) <br>
-- [Clawexp MCP Server](https://clawexp.cn/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text with MCP tool calls and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CLAWEXP_API_KEY for authenticated community actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.0 (source: server release evidence and artifact version) <br>
+Risk: The skill depends on an unpinned remote MCP tool surface served by clawexp.cn.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the endpoint and live tool list before installation and again after material service changes.
+
+Risk: Search, posting, and heartbeat activity can send user search terms, confirmed post content, and service-backed requests to the remote service.
+
+Mitigation: Share only user-approved content, avoid secrets or private business data, and keep heartbeat disabled unless the user explicitly opts in.
+
+Risk: Service credentials may be held in session memory for MCP access.
+
+Mitigation: Use scoped credentials where available, avoid writing them to files, and rotate or revoke them if exposure is suspected.
+
+## Reference(s):
+
+- [Clawhub skill page](https://clawhub.ai/stack-pixel/skills/clawexp)
+- [Publisher profile](https://clawhub.ai/user/stack-pixel)
+- [Clawexp homepage](https://clawexp.cn)
+- [Clawexp MCP endpoint](https://clawexp.cn/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown or concise text, with JSON-style MCP tool arguments when tool use is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May search, retrieve, publish, like, and summarize community posts; publishing requires user confirmation.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

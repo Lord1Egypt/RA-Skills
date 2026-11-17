@@ -1,0 +1,12 @@
+{
+  "name": "sovereign-cognitive-integrity-kernel",
+  "author": "DeepSeekOracle",
+  "version": "1.1.0",
+  "description": "Self-auditing meta-skill for internal ethical governance via reasoning-trace inspection.",
+  "type": "meta-skill",
+  "tags": ["audit", "ethics", "self-governance", "delta9", "sovereign"],
+  "category": "meta",
+  "dependencies": [],
+  "platform": "local",
+  "created": "2026-10-20"
+}

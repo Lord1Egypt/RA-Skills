@@ -1,40 +1,55 @@
-## Description: <br>
-Reads QR codes and common barcodes from local image files and prints or saves the decoded contents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads QR codes and common barcode formats from user-provided image files.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local image files for QR code or barcode data, including URLs, text, and contact-style payloads. It is useful for quick command-line decoding and optional result export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Decoded QR and barcode contents may contain links, sensitive text, or misleading payloads. <br>
-Mitigation: Treat decoded content cautiously, especially before opening links or sharing saved output. <br>
-Risk: The tool depends on local image-decoding libraries and barcode dependencies from the runtime environment. <br>
-Mitigation: Install Pillow, pyzbar, and zbar only from trusted package sources and run the tool only on image files you intend to inspect. <br>
+## Use Case:
 
+Developers and operators use this skill to decode QR codes and barcodes from local image files, including batches matched by glob patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-qrcode-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decoded QR or barcode contents may be printed to stdout or saved to a text file when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release evidence) <br>
+Risk: Decoded QR or barcode data may contain untrusted text, URLs, or commands that are printed directly to the terminal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat decoded content as untrusted and review it before opening links, copying commands, or sharing output.
+
+Risk: Dependency versions and native barcode libraries can affect reproducibility and runtime behavior.
+
+Mitigation: Install the skill in a normal user environment or virtual environment and review dependency versions when reproducibility matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-qrcode-reader)
+- [AISoBrand](https://aisobrand.com)
+- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Terminal text output with optional saved text file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Decoded text is printed directly to the terminal; verbose mode includes barcode type.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,83 @@
+[
+  {
+    "query": "帮我启动一本仙侠小说的第一卷大纲，设定主角从外门弟子开始的成长线",
+    "should_trigger": true
+  },
+  {
+    "query": "写下一章：上一章断在主角被围困在破庙，这一章要有一次关于信任的选择和代价",
+    "should_trigger": true
+  },
+  {
+    "query": "我上一章写完了，现在需要结算事实状态，并更新 story-wiki 的关系图",
+    "should_trigger": true
+  },
+  {
+    "query": "参考我在 sources/ 目录下放的几篇鲁迅小说和谈话，提炼一个现实主义讽刺叙事引擎",
+    "should_trigger": true
+  },
+  {
+    "query": "第 3 章写到一半卡住了，我想暂停一下流水线，稍后继续",
+    "should_trigger": true
+  },
+  {
+    "query": "检查一下 v01-c05 这章的伏笔回收和质量检查，看看有没有机械降神",
+    "should_trigger": true
+  },
+  {
+    "query": "把当前小说的叙事引擎切换成新装的 wuxia-craft 引擎",
+    "should_trigger": true
+  },
+  {
+    "query": "我想要为第 2 章设计一个蓝图，定义具体的场景、因果冲突和下一问",
+    "should_trigger": true
+  },
+  {
+    "query": "流水线刚才停下了，请帮我检查当前章节的状态和接下来的输入输出契约",
+    "should_trigger": true
+  },
+  {
+    "query": "根据上一章留下的钩子，继续推进第 4 章的流水线创作",
+    "should_trigger": true
+  },
+  {
+    "query": "写一个 Python 脚本，批量读取当前目录下的所有 .txt 文件并统计字数",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我写一篇关于《红楼梦》人物性格分析的大学期末学术论文",
+    "should_trigger": false
+  },
+  {
+    "query": "请为我的技术博客写一篇介绍 LLM Agent 架构与状态机的文章",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我用 JavaScript 写一个小说阅读器的网页前端组件",
+    "should_trigger": false
+  },
+  {
+    "query": "把这篇新闻通稿翻译成英文并保持新闻报道的客观中立语调",
+    "should_trigger": false
+  },
+  {
+    "query": "我想为我的公司设计一份新员工入职培训手册的目录大纲",
+    "should_trigger": false
+  },
+  {
+    "query": "分析一下昨天 A 股市场的白酒板块资金流向与技术走势",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我画一个描述微服务架构调用关系的 Mermaid 序列图",
+    "should_trigger": false
+  },
+  {
+    "query": "写一个用于自动清理系统临时目录的 shell 脚本",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我润色一下这份外企求职的软件工程师简历",
+    "should_trigger": false
+  }
+]
+

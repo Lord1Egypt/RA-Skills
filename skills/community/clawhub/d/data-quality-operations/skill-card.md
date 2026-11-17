@@ -1,43 +1,52 @@
-## Description: <br>
-Data quality validation patterns for daily checks and anomaly follow-up. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data quality validation patterns for daily checks and anomaly follow-up.
 
-## Publisher: <br>
-[JiaranI](https://clawhub.ai/user/JiaranI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiarani](https://clawhub.ai/user/jiarani)
 
-## Use Case: <br>
-Developers, data engineers, and operations teams use this skill to run consistent dataset freshness and completeness checks, open anomaly follow-up, and produce audit or handoff notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local dq and workflow commands may affect the user's data-quality environment. <br>
-Mitigation: Verify those commands are trusted and scoped to the intended environment before running them. <br>
-Risk: The anomaly-opening workflow can create tickets or records. <br>
-Mitigation: Review anomaly-opening actions before execution and confirm ownership, impact, and urgency. <br>
-Risk: Generated audit or handoff reports may include sensitive business details. <br>
-Mitigation: Avoid including secrets or unnecessary sensitive details in generated reports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Data Quality Operations ClawHub page](https://clawhub.ai/JiaranI/data-quality-operations) <br>
-- [Operations Checklist template](templates/checklist.md) <br>
-- [Data Quality Run Report template](templates/report.md) <br>
+## Use Case:
 
+Developers, data engineers, and operations teams use this skill to run consistent dataset freshness, completeness, validation, anomaly follow-up, checklist, and report workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklist/report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce audit and handoff notes from templates; ticket-opening actions should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The referenced `dq` and `workflow` commands may resolve to unexpected local tools.
+
+Mitigation: Confirm those commands in the target environment before installing or using the skill.
+
+Risk: Saved audit and handoff artifacts may contain dataset or incident details.
+
+Mitigation: Confirm that storing those artifacts is acceptable for the datasets and operational process involved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiarani/skills/data-quality-operations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and reusable checklist/report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes checklist and report templates for audit and handoff notes.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

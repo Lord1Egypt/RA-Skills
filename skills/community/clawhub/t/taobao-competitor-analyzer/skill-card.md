@@ -1,44 +1,59 @@
-## Description: <br>
-Taobao price and competitor comparison assistant that uses browser-visible evidence to compare JD, PDD, and Vipshop, normalize prices, score same-item confidence, and recommend where to buy without login, ordering, or payment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taobao price and competitor comparison assistant. Input a Taobao title/link or product need; compare JD, PDD, and Vipshop using browser-visible evidence, normalize prices, score same-item confidence, and output where to buy. Safe boundary: no login, no order submission, no payment.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External shoppers and shopping agents use this skill to compare a Taobao product against visible JD, Pinduoduo, and Vipshop offers, normalize price conditions, assess same-item confidence, and decide whether to buy, wait, avoid, or stay with Taobao. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace prices, coupons, shipping, stock, warranty, and return terms can change or depend on account, address, region, or promotion eligibility. <br>
-Mitigation: Use browser-visible evidence, label conditional prices, downgrade uncertain results, and tell the user to recheck final payable price and terms before purchase. <br>
-Risk: A lower-priced listing may be a near match, different specification, unclear seller channel, or weaker authenticity or after-sales option. <br>
-Mitigation: Normalize specifications and unit basis, score same-item confidence, apply category playbook gates, and avoid strong recommendations without title, price, spec or version, URL, and sufficient seller evidence. <br>
-Risk: Shopping workflows can expose sensitive account, identity, address, or payment information if an agent goes beyond comparison. <br>
-Mitigation: Stay within browser-visible or user-provided information, do not enter credentials or payment details, and do not submit orders or initiate checkout. <br>
+## Use Case:
 
+External shoppers and shopping assistants use this skill to compare a Taobao product against JD, Pinduoduo, and Vipshop visible listings, normalize prices and promo conditions, and decide whether to buy, wait, avoid, or stay with Taobao.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/taobao-competitor-analyzer) <br>
-- [Category Playbooks](references/category-playbooks.md) <br>
-- [Site Notes](references/site-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown verdict block, comparison table, and concise notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses browser-visible marketplace evidence only; avoids login, order submission, payment, hidden APIs, and scraping shortcuts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release evidence) <br>
+Risk: Visible marketplace prices, coupons, stock, shipping, warranty, and return terms can change or depend on account or address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's output as a comparison aid and recheck final payable price, coupon eligibility, stock, delivery, warranty, and returns before buying.
+
+Risk: A lower listing price may reflect a different specification, package count, seller channel, promo condition, or near-match rather than the same item.
+
+Mitigation: Require visible title, price, spec or version, and URL, normalize by unit and promo conditions, and downgrade recommendations when match or channel evidence is incomplete.
+
+Risk: Marketplace pages may show login walls, CAPTCHA, app-only flows, or other access limits.
+
+Mitigation: Do not log in, solve CAPTCHA, enter personal details, submit orders, or pay; report access limits and use only visible public evidence.
+
+## Reference(s):
+
+- [Category Playbooks](references/category-playbooks.md)
+- [Site Notes](references/site-notes.md)
+- [Taobao Price Compare on ClawHub](https://clawhub.ai/harrylabsj/skills/taobao-competitor-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown verdict block, comparison table, and concise risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser-visible or user-provided marketplace evidence and may include Chinese field labels.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-音乐文件批量标签工具，支持读取/编辑音乐元数据（歌名、艺术家、专辑、流派等），批量编辑标签，按标签整理音乐文件，预览模式和撤销功能！ <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Music Tagger provides a Python CLI framework for previewing and organizing local music files and simulating read, edit, and batch metadata operations.
 
-## Publisher: <br>
-[utopiabenben](https://clawhub.ai/user/utopiabenben) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[utopiabenben](https://clawhub.ai/user/utopiabenben)
 
-## Use Case: <br>
-Developers and end users can use this skill as a local command-line workflow for inspecting, previewing, batch tagging, organizing, and undoing music file organization tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT License
 
-## Known Risks and Mitigations: <br>
-Risk: The tool presents tag editing and tag-based organization as usable, while the current implementation simulates tag reads and writes. <br>
-Mitigation: Verify behavior on expendable test files before relying on edits or organization results. <br>
-Risk: Batch organize and undo workflows can copy or remove local files based on generated mappings. <br>
-Mitigation: Use preview mode first and keep separate backups before running batch or organize commands. <br>
+## Use Case:
 
+Developers and music-library users can use this skill to run or adapt a local command-line workflow for inspecting, previewing, batch tagging, and organizing music files by artist, album, genre, or year. Current artifact behavior is best treated as a prototype because tag read/write operations are simulated.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/utopiabenben/music-tagger) <br>
-- [Publisher Profile](https://clawhub.ai/user/utopiabenben) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output with shell command examples and file organization guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file operations may copy or remove files during organize and undo commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and changelog, released 2026-03-06) <br>
+Risk: The artifact may overstate music tag editing capabilities because current tag read/write behavior is simulated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as a prototype and verify behavior on test copies before using it with a real music library.
+
+Risk: Undo and backup handling can copy or delete unintended local files if backup data is tampered with.
+
+Mitigation: Use preview mode first, avoid shared or untrusted output directories, and rely on undo only when the backup file is trusted.
+
+Risk: Optional dependencies can affect local file handling behavior.
+
+Mitigation: Pin and review dependencies before installation.
+
+## Reference(s):
+
+- [Music Tagger README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/utopiabenben/skills/music-tagger)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or copy local music files when organize or undo actions are executed outside preview mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

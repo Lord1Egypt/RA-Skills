@@ -1,43 +1,55 @@
-## Description: <br>
-Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run web, multi-source, or last-30-days research through AIsa for search, synthesis, competitor scans, trend discovery, and structured retrieval.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and research users use this skill to run AIsa-backed web searches, recent-news searches, URL extraction, competitor scans, and trend discovery, then turn retrieved results into concise research briefs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and submitted URLs are sent to AIsa. <br>
-Mitigation: Avoid confidential or regulated data in searches and URL extraction requests unless AIsa use is approved for that data. <br>
-Risk: The skill requires an AIsa API key. <br>
-Mitigation: Use a dedicated, revocable API key and rotate it if exposure is suspected. <br>
-Risk: Search or extraction results can be incomplete, unavailable, or provider-dependent. <br>
-Mitigation: Report timeouts or missing provider results honestly and verify important findings against the returned sources. <br>
+## Use Case:
 
+Developers and agents use this skill to run current web research, extract supplied URLs, compare tools or companies, and turn retrieved sources into concise research briefs.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/bibaofeng/aisa-tavily-search) <br>
-- [AIsa Homepage](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown research answers, source lists, and extracted URL content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and AISA_API_KEY; search result count is capped by the bundled script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and skill frontmatter) <br>
+Risk: Search queries and supplied URLs are sent to AIsa/Tavily using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private internal documents, regulated personal data, or queries that must remain local.
+
+Risk: Web search and extraction results can be incomplete, stale, or affected by provider timeouts.
+
+Mitigation: Report missing or failed providers clearly and verify important claims against the returned sources before relying on them.
+
+## Reference(s):
+
+- [AIsa homepage](https://aisa.one)
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/aisa-tavily-search)
+- [Publisher profile](https://clawhub.ai/user/bibaofeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style research summaries, source lists, and extracted page text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and Node.js; search result counts are capped by the bundled script.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Use when evaluating, testing, and optimizing an agent architecture or multi-agent system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when evaluating, testing, and optimizing an agent architecture or multi-agent system.
 
-## Publisher: <br>
-[ada01325150-alt](https://clawhub.ai/user/ada01325150-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ada01325150-alt](https://clawhub.ai/user/ada01325150-alt)
 
-## Use Case: <br>
-Developers and engineers use this skill to review agent and multi-agent system architecture, map failure modes, define system-level tests, and prioritize optimization work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture descriptions may include secrets or unnecessary private system details. <br>
-Mitigation: Remove credentials, sensitive implementation details, and unrelated private data before sharing architecture inputs with the skill. <br>
-Risk: The optional local renderer writes Markdown to a user-selected output path. <br>
-Mitigation: Run the renderer only on JSON inputs and output paths that were intentionally selected. <br>
+## Use Case:
 
+Developers and engineers use this skill to review agent or multi-agent system architecture, map system-level failure modes, define architecture tests, and prioritize reliability, cost, latency, observability, and coordination improvements.
 
-## Reference(s): <br>
-- [Architecture Review Framework v1.0.0](references/architecture-review-framework-v1.0.0.md) <br>
-- [Optimization Patterns v1.0.0](references/optimization-patterns-v1.0.0.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ada01325150-alt/agent-architecture-evaluator) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/ada01325150-alt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown architecture review with optional JSON-to-Markdown rendering] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces named review sections: architecture inventory, failure mode map, architecture test plan, optimization roadmap, measurement plan, and architecture recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The optional formatter script reads a JSON file and can write Markdown to a caller-selected path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended input files and choose output paths deliberately.
+
+Risk: Architecture recommendations can affect reliability, cost, latency, and approval placement in agent systems.
+
+Mitigation: Review recommendations with system owners and validate proposed changes with architecture-level tests before deployment.
+
+## Reference(s):
+
+- [Architecture Review Framework v1.0.0](references/architecture-review-framework-v1.0.0.md)
+- [Optimization Patterns v1.0.0](references/optimization-patterns-v1.0.0.md)
+- [Architecture Review Template](assets/architecture-review-template.md)
+- [Example Architecture Review](assets/example-architecture-review.md)
+- [Structured Input Example](assets/architecture-input-example.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, code, shell commands]
+
+**Output Format:** [Markdown guidance with named review sections and optional JSON-to-Markdown formatting script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces architecture inventory, failure mode map, architecture test plan, optimization roadmap, measurement plan, and architecture recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

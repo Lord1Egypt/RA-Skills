@@ -1,44 +1,58 @@
-## Description: <br>
-Devbox helps agents generate Docker Compose development environments by detecting project type, matching runtime versions, assigning ports, and optionally adding database services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Devbox creates one-command Docker development environments by detecting project types and local runtime versions, generating Docker Compose configuration, managing ports, attaching optional database services, and isolating dependencies and build caches in named volumes.
 
-## Publisher: <br>
-[nciae-zyh](https://clawhub.ai/user/nciae-zyh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nciae-zyh](https://clawhub.ai/user/nciae-zyh)
 
-## Use Case: <br>
-Developers and engineering agents use Devbox to create isolated Docker-based development environments for existing projects, generate a compose file, resolve port conflicts, and attach local database services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Docker Compose files can expose application and database services with default credentials and mounted environment files. <br>
-Mitigation: Review docker-compose.dev.yml before running it, change database and MinIO credentials before shared or network-accessible use, and check exposed ports and env_file entries. <br>
-Risk: Bun mode uses a remote installer trust boundary. <br>
-Mitigation: Avoid Bun mode unless you accept that trust boundary, or inspect and pin the installer path before use. <br>
-Risk: Containers and named Docker volumes can retain dependencies, caches, build artifacts, and service data after use. <br>
-Mitigation: Stop and remove containers when finished, and remove the generated Docker volumes when cached or service data should not persist. <br>
+## Use Case:
 
+Developers and engineers use Devbox to generate isolated Docker Compose development environments for local projects, including framework-specific runtime images, port mapping, named volumes for dependencies and caches, and optional database services.
 
-## Reference(s): <br>
-- [Devbox README](README.md) <br>
-- [Docker Compose Templates](references/docker-templates.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/nciae-zyh/docker-devbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated Docker Compose YAML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker and Docker Compose; generated environments may expose local ports and create named Docker volumes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: Generated Docker Compose files can expose development services and databases on host ports with default credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review docker-compose.dev.yml before running it, bind services to localhost or avoid publishing database ports, and replace default database and MinIO credentials.
+
+Risk: The Bun package-manager path installs Bun through an unpinned remote shell installer.
+
+Mitigation: Avoid the Bun path unless the installer is pinned, replaced with a trusted package source, or reviewed in the target environment.
+
+Risk: The target project source tree and optional env_file are mounted into containers, which can expose local secrets to container processes.
+
+Mitigation: Inspect mounted paths and environment files before use, and avoid running Devbox against projects containing sensitive secrets.
+
+## Reference(s):
+
+- [Docker Compose Templates](references/docker-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/nciae-zyh/skills/docker-devbox)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, code, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated Docker Compose YAML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a docker-compose.dev.yml file in the target project and may update .gitignore entries.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

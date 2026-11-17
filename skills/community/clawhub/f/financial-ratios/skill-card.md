@@ -1,42 +1,53 @@
-## Description: <br>
-Computes 25+ profitability, liquidity, leverage, efficiency, and growth ratios from QBO data and produces a 9-tab Excel workbook with scoring, DuPont decomposition, Altman Z-Score, trend charts, trend-reversal detection, CDC logging, and Month-End Close integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compute and report 25+ financial ratios from QBO data, producing a 9-tab Excel workbook with traffic-light scoring, DuPont decomposition, Altman Z-Score, 6-month trend charts, trend-reversal detection, CDC logging, and Month-End Close pipeline integration.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Accounting and finance teams use this skill to generate financial ratio analysis for a QBO-connected client, including profitability, liquidity, leverage, efficiency, growth, DuPont, Altman Z-Score, benchmarking, and trend-reversal analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workbooks and cache files can contain sensitive client accounting data. <br>
-Mitigation: Install only in an approved environment and store or delete generated files according to organizational data-handling rules. <br>
-Risk: Running against the wrong QBO client slug or account can produce misleading reports or expose client data. <br>
-Mitigation: Confirm the QBO client slug/account before running the skill. <br>
-Risk: The skill invokes a local Python pipeline script to process financial data. <br>
-Mitigation: Verify that the referenced local Python script is trusted before execution. <br>
+## Use Case:
 
+Accounting and finance agents use this skill to run financial ratio analysis for QBO-connected clients, including profitability, liquidity, leverage, efficiency, growth, benchmark, trend, DuPont, and Altman Z-Score reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/financial-ratios) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash invocation examples and generated Excel workbook and JSON cache files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces FinancialRatios_{slug}_{YYYY_MM}.xlsx and .cache/financial-ratios/{slug}.json; outputs can contain sensitive client accounting data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated Excel workbooks may contain sensitive client financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Write reports only to protected output directories and avoid synced or shared Desktop locations unless sharing is intended.
+
+Risk: The .cache/financial-ratios CDC cache may retain client ratio history and prior-run financial values.
+
+Mitigation: Secure or clear the cache according to the organization's financial-record retention policy.
+
+## Reference(s):
+
+- [Financial Ratio Analysis Skill Page](https://clawhub.ai/samledger67-dotcom/skills/financial-ratios)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated Excel workbook output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces FinancialRatios_{slug}_{YYYY_MM}.xlsx and maintains a .cache/financial-ratios/{slug}.json CDC cache.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

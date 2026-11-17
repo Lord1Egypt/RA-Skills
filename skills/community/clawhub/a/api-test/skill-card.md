@@ -1,40 +1,53 @@
-## Description: <br>
-API documentation helper that also includes a Python utility for user-supplied GET and POST API requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps draft REST API documentation and includes a generic API request tool for GET and POST calls to user-supplied URLs.
 
-## Publisher: <br>
-[2367961075](https://clawhub.ai/user/2367961075) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2367961075](https://clawhub.ai/user/2367961075)
 
-## Use Case: <br>
-Developers and technical writers can use this skill to draft REST API documentation and interface specifications. The included Python utility can also fetch external API data through GET or POST requests when the operator intentionally supplies a target URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is described as an API documentation helper, but its code can make arbitrary external GET and POST requests with user-supplied data. <br>
-Mitigation: Review the skill purpose before installation and use it only when a generic API-calling tool is intended. <br>
-Risk: User-supplied headers, request bodies, and URLs could expose secrets or send data to unintended destinations. <br>
-Mitigation: Do not provide authorization headers, secrets, internal URLs, or sensitive request bodies unless destination limits and explicit operator confirmation are in place. <br>
+## Use Case:
 
+Developers and API maintainers can use this skill to draft REST API documentation and, when intentionally configured, make GET or POST API calls during documentation or integration work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2367961075/api-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, JSON] <br>
-**Output Format:** [Markdown documentation guidance and JSON API response objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [API calls return status, URL, method, and response data; text responses are truncated to 1000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The package can send GET or POST requests to arbitrary user-supplied URLs with custom headers, query parameters, and JSON bodies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a generic HTTP request tool is intended, and constrain network access, allowed destinations, and runtime permissions externally.
+
+Risk: The package presents itself as an API documentation helper while executable behavior performs external API requests.
+
+Mitigation: Review behavior before installation and ensure users understand both the documentation-writing and HTTP request capabilities.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2367961075/skills/api-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, API response data, guidance]
+
+**Output Format:** [Markdown documentation guidance and JSON-like API call results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [HTTP call results can include status code, URL, method, parsed response data, or up to 1000 characters of non-JSON response text.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

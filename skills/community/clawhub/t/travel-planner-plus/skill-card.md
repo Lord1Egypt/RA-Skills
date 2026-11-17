@@ -1,43 +1,57 @@
-## Description: <br>
-Generates personalized travel itineraries by collecting trip requirements, searching attractions, hotels, and food, using Baidu Maps for routing, and producing a Word document for delivery to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized travel itineraries with attraction, hotel, dining, and route planning, then produces a Word travel guide for delivery to the user.
 
-## Publisher: <br>
-[ggyybb](https://clawhub.ai/user/ggyybb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggyybb](https://clawhub.ai/user/ggyybb)
 
-## Use Case: <br>
-Travelers and assistants use this skill to turn trip goals, destination, duration, audience, and constraints into a structured travel plan with attractions, meals, lodging suggestions, route timing, and a deliverable Word document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip details and itinerary preferences may be sent to web search providers, Baidu Maps APIs, and Feishu file delivery. <br>
-Mitigation: Avoid including sensitive personal details, review the recipient before sending, and confirm the generated document before sharing. <br>
-Risk: The skill requires a Baidu Maps API key for geocoding and routing. <br>
-Mitigation: Use a dedicated Baidu Maps API key with limited quota and avoid storing or sharing broader credentials. <br>
-Risk: Travel, restaurant, hotel, and routing details may become outdated or incomplete. <br>
-Mitigation: Review the generated itinerary and verify important bookings, opening hours, reservations, and transport details before travel. <br>
+## Use Case:
 
+Travelers and travel-planning agents use this skill to turn trip requirements such as destination, duration, traveler type, and preferences into a structured itinerary. It supports attraction, hotel, dining, and transportation planning and can generate a Word document for delivery to the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ggyybb/travel-planner-plus) <br>
-- [Travel guide output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with API calls and a generated Word document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces itinerary tables, transportation summaries, lodging and food recommendations, practical tips, and a disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Trip locations and route details may be sent to Baidu Maps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user is comfortable sharing itinerary locations and route details with Baidu Maps.
+
+Risk: Generated travel files may be sent through Feishu.
+
+Mitigation: Confirm that the generated document does not contain sensitive personal details before sending it through Feishu.
+
+Risk: API keys can be exposed if the skill searches broad memory files or logs key prefixes.
+
+Mitigation: Provide a scoped Baidu Maps key through a dedicated secret mechanism and avoid searching general memory files for credentials.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python-generated DOCX travel guide files and inline shell/API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires trip details and a scoped Baidu Maps API key; may send generated Word files through Feishu.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

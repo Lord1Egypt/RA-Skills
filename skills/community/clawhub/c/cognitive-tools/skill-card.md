@@ -1,38 +1,54 @@
-## Description: <br>
-A Chinese-language toolbox of 11 cognitive prompt tools for logic analysis, root-cause questioning, abstraction, multi-angle thinking, concept definition, analogy, prompt review, knowledge exploration, and formal document drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides 11 Chinese-language cognitive and writing prompt tools for logic analysis, root-cause questioning, abstraction, multi-angle thinking, prompt scoring, knowledge exploration, and official-document drafting.
 
-## Publisher: <br>
-[18678837882](https://clawhub.ai/user/18678837882) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18678837882](https://clawhub.ai/user/18678837882)
 
-## Use Case: <br>
-External users and developers use this skill to invoke Chinese-language cognitive tools for structured analysis, concept clarification, writing, prompt improvement, and knowledge exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad keyword activation may trigger the skill unintentionally when users mention common terms such as definitions, analogies, or formal documents. <br>
-Mitigation: Prefer explicit tool names or disable broad auto-activation where the host platform supports it. <br>
+## Use Case:
 
+Chinese-speaking users can invoke keyword-triggered prompt tools to analyze arguments, diagnose questions, define concepts, compare perspectives, build analogies, score prompts, explore knowledge points, and draft formal documents. The skill is useful for structured thinking, writing support, and prompt-improvement workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18678837882/cognitive-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style structured text, primarily in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keyword-triggered prompt tools; no external API required per artifact evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: Broad keyword triggers may activate the skill unintentionally during unrelated conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or narrow trigger terms before deployment in environments where accidental activation would disrupt workflows.
+
+Risk: The official-document drafting prompt includes vague political and sensitive-word constraints that may shape output style.
+
+Mitigation: Review generated formal documents for policy fit, factual accuracy, and audience requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18678837882/skills/cognitive-tools)
+- [ClawHub publisher profile](https://clawhub.ai/user/18678837882)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured Chinese-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses keyword-triggered prompt templates; no external API or code execution is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

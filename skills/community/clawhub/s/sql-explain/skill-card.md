@@ -1,40 +1,57 @@
-## Description: <br>
-Analyzes and explains SQL query execution plans with optimization suggestions for PostgreSQL, MySQL, and SQLite databases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and explain SQL execution plans, format SQL, check syntax, summarize SQL structure, and generate simple SQL from natural-language requests for PostgreSQL, MySQL, and SQLite workflows.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
 
-## Use Case: <br>
-Developers and database engineers use this skill to format SQL, check syntax, analyze query structure and execution plans, and draft SQL from natural language before reviewing it manually. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated UPDATE or DELETE SQL may be incorrect or unsafe if run without review. <br>
-Mitigation: Review WHERE clauses carefully and use a transaction, backup, or non-production database before execution. <br>
-Risk: Optimization guidance and execution-plan explanations may be incomplete for complex database-specific behavior. <br>
-Mitigation: Validate recommendations against the target database's native EXPLAIN output and performance testing. <br>
+## Use Case:
 
+Developers and data engineers use this skill to inspect SQL plans, identify common query-performance issues, format or check SQL, and draft simple SQL statements from business-language prompts.
 
-## Reference(s): <br>
-- [ClawHub sql-explain listing](https://clawhub.ai/shenghoo123-png/sql-explain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with SQL snippets, JSON-like diagnostics, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No database execution or network access is described by the server security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The README includes unsafe installation guidance that can lead users to download and run unverified code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use bundled local files or a verified release, and avoid curl-based installation unless the source is pinned and checksum-verified.
+
+Risk: The README suggests optional system-wide command installation with sudo.
+
+Mitigation: Avoid sudo unless a system-wide command is intentionally required; prefer a user-local path or direct script execution.
+
+Risk: Generated UPDATE or DELETE SQL may modify data if executed without review.
+
+Mitigation: Treat generated SQL as a draft and review it carefully before running it against a real database.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/skills/sql-explain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, SQL snippets, JSON-style analysis results, plain text, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are local and rule-based; generated SQL should be reviewed before use against production data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

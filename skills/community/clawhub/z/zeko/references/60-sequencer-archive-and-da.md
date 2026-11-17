@@ -5,7 +5,7 @@ Use this file when the user asks how Zeko works or which endpoint role matters f
 ## Official docs
 
 - Core concepts: `https://docs.zeko.io/architecture/zeko-core-concepts`
-- Sequencer guide: `https://docs.zeko.io/operators/guides/sequencer`
+- Sequencer guide: `https://docs.zeko.io/operators/getting-started`
 - DA layer guide: `https://docs.zeko.io/operators/guides/da-layer`
 
 ## Sequencer
@@ -25,14 +25,15 @@ Use this file when the user asks how Zeko works or which endpoint role matters f
 
 ## DA layer
 
-- The DA layer is the availability path for rollup data.
+- The DA layer is the availability path for rollup data. Ethereum blob DA is the intended production direction; complete blob/data-root binding is not yet implemented. Do not describe the legacy Mina DA committee as the final Ethereum design.
 - Use the DA layer docs when the user asks how Zeko makes rollup data available or what validators are checking.
 
 ## Practical split
 
 - Live Zeko node: current config, sequencer info, live bridge request status.
-- Mina gateway: current Mina reads on testnet.
-- Mina archive gateway: historical Mina actions and archive state.
+- Ethereum gateway: deposit, proof-request, settlement, and withdrawal information for the selected deployment.
+- Legacy Mina gateway: Mina reads for explicit legacy network requests.
+- Legacy Mina archive gateway: historical Mina actions and archive state.
 - Zeko archive: historical Zeko events.
 - Actions/indexer surfaces: bridge action visibility and finality metadata; diagnose pending inclusion separately from canonical finality.
 - When the question is conceptual, explain the sequencer, archive node, and DA layer here first.

@@ -1,43 +1,58 @@
-## Description: <br>
-A paid A-share stock screening skill that returns VCP volume-breakout candidates with prices, sectors, strength ratings, stop-loss levels, targets, and buy reasons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Stock Vcp helps agents request A-share VCP breakout stock-screening results and present short-list trading references.
 
-## Publisher: <br>
-[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinboh68-prog](https://clawhub.ai/user/jinboh68-prog)
 
-## Use Case: <br>
-External users such as short-term traders, technical-analysis users, and investors use this skill to request A-share VCP screening results as paid reference information, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a paid stock-picking workflow and may charge 0.01 USDC per call. <br>
-Mitigation: Confirm the fee, recipient, and chain before use, and only invoke it when the payment is acceptable. <br>
-Risk: Security evidence says the included API code appears to use simulated hard-coded stock signals while the description presents backend market-data screening. <br>
-Mitigation: Treat outputs as unverified reference information and validate any result against independent market data before relying on it. <br>
-Risk: Stock screening output could be mistaken for investment advice. <br>
-Mitigation: Use the output only as informational screening support and apply independent financial judgment and risk controls. <br>
+## Use Case:
 
+External users, short-term traders, technical-analysis users, and agents can use this skill to request A-share VCP breakout candidates and summarize the returned stock signal details. The output is for reference only and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jinboh68-prog/a-stock-vcp) <br>
-- [Declared backend endpoint](https://a-stock-signals.vercel.app/v) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API Calls, Guidance] <br>
-**Output Format:** [Markdown or structured text with stock codes, prices, sectors, strength ratings, stop-loss levels, targets, and rationale.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger a paid x402 API call at 0.01 USDC per use; security evidence says the included implementation appears to return simulated stock signals rather than verified live market screening.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence; artifact frontmatter lists 1.0.8) <br>
+Risk: The skill advertises paid, current A-share trading signals while the included API evidence returns fixed simulated recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether the deployed endpoint returns live market data before relying on results, and label any simulated output clearly.
+
+Risk: The release claims x402 payment behavior, but the included API evidence does not enforce payment.
+
+Mitigation: Verify payment enforcement on the deployed endpoint before commercial use.
+
+Risk: Returned stock recommendations could be mistaken for current financial advice.
+
+Mitigation: Use the output only as a reference signal and require independent validation and risk controls before trading decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinboh68-prog/skills/a-stock-vcp)
+- [Configured API endpoint](https://a-stock-signals.vercel.app/v)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or text summaries of stock screening results returned by an API]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stock code, name, sector, price, percentage change, relative volume, strength rating, stop-loss level, target level, rationale, timestamp, and payment details.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

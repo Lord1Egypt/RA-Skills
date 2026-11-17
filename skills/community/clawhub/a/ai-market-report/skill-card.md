@@ -1,47 +1,61 @@
-## Description: <br>
-Generates AI companion software market research reports by collecting App Store and web-research data, then producing Markdown, HTML, and PDF report files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates daily market research reports for AI companion software by collecting App Store and web research data, then producing Markdown, HTML, and PDF reports.
 
-## Publisher: <br>
-[vae2024](https://clawhub.ai/user/vae2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vae2024](https://clawhub.ai/user/vae2024)
 
-## Use Case: <br>
-Analysts, product teams, and agents use this skill to assemble recurring AI companion app market reports covering App Store signals, public web research, market sizing, product positioning, and strategy recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-research prompts are sent to Apple/Tavily and may expose sensitive strategy terms or private company names. <br>
-Mitigation: Avoid confidential product strategy, private company names, or unreleased plans unless that data sharing is approved. <br>
-Risk: Generated market data and citations come from public web-derived sources and may be outdated, incomplete, or inaccurate. <br>
-Mitigation: Review generated sources before relying on the report, and keep unavailable metrics marked as not public rather than filling gaps with guesses. <br>
-Risk: Generated HTML and PDF files may contain untrusted web-derived content. <br>
-Mitigation: Treat generated report files as untrusted output and inspect them before redistribution or operational use. <br>
-Risk: The skill writes report files under the OpenClaw workspace. <br>
-Mitigation: Run it in an appropriate workspace and review created files before sharing or archiving them. <br>
+## Use Case:
 
+External users and analysts use this skill to collect current AI companion app market data and generate structured Chinese-language market reports. It is intended for recurring competitor research that combines App Store metrics, web research, and report rendering.
 
-## Reference(s): <br>
-- [Data collection reference](references/data_collection.md) <br>
-- [Report template](assets/report_template.html) <br>
-- [Apple iTunes Search API sample query](https://itunes.apple.com/search?term=Character+AI&media=software&limit=1&country=US) <br>
-- [ClawHub release page](https://clawhub.ai/vae2024/ai-market-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with rendered HTML and PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped report files under the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: External research workflows send market queries and retrieved URLs to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved services and credentials only, and review data-sharing requirements before running the skill in regulated or confidential contexts.
+
+Risk: Report data gathered from web sources can be incorrect, stale, or unavailable.
+
+Mitigation: Verify cited sources before business use and preserve the skill's rule to mark unavailable metrics as unpublished instead of inventing values.
+
+Risk: Web-derived report content is rendered into HTML and PDF.
+
+Mitigation: Escape or sanitize all report fields and restrict WeasyPrint resource fetching before using the renderer with untrusted content.
+
+Risk: Generated Markdown, HTML, and PDF reports are written to fixed workspace paths.
+
+Mitigation: Run in an isolated workspace or configure controlled output paths, then review and clean generated artifacts after use.
+
+## Reference(s):
+
+- [AI companion data collection guide](references/data_collection.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown report plus rendered HTML and PDF files, with shell commands for data collection and report generation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes timestamped report artifacts to fixed OpenClaw workspace paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

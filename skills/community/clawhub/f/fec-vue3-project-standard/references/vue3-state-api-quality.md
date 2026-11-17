@@ -1,18 +1,18 @@
 # Vue 3 state, API, and quality patterns
 
-## 状态管理（Pinia）
+## Status Management (Pinia)
 
-| 状态类型           | 推荐方案                      |
+| Status type | Recommended solution |
 | ------------------ | ----------------------------- |
-| 组件内临时 UI 状态 | `ref` / `reactive`            |
-| 跨组件共享业务状态 | Pinia store                   |
-| 服务端数据缓存     | VueQuery / 自定义 composable  |
-| URL 驱动状态       | 路由参数 / `useRoute().query` |
-| 表单状态           | VeeValidate / FormKit         |
+| Temporary UI state within the component | `ref` / `reactive` |
+| Sharing business status across components | Pinia store |
+| Server-side data cache | VueQuery / Custom composable |
+| URL driver status | Route parameters / `useRoute().query` |
+| Form Status | VeeValidate / FormKit |
 
-### Pinia Store 规范
+### Pinia Store Specifications
 
-使用 Composition API 风格（`setup store`）：
+Using Composition API style (`setup store`):
 
 ```typescript
 // stores/authStore.ts
@@ -39,16 +39,16 @@ export const useAuthStore = defineStore("auth", () => {
 });
 ```
 
-### Store 原则
+### Store Principles
 
-- 每个 store 职责单一，按领域拆分
-- 对外暴露 `readonly` 的状态，通过 action 修改
-- 不要在 store 中存放 UI 临时状态（modal 开关、表单输入等）
-- 服务端数据优先用请求库管理，而非手动存入 store
+- Each store has a single responsibility and is split by area.
+- Expose the status of `readonly` to the outside world and modify it through action
+- Do not store UI temporary states (modal switches, form inputs, etc.) in the store
+- Server-side data is first managed by the request library rather than manually stored in the store
 
-## API 层规范
+## API layer specification
 
-### 请求实例
+### Request instance
 
 ```typescript
 // services/request.ts
@@ -78,7 +78,7 @@ request.interceptors.response.use(
 );
 ```
 
-### API 函数
+### API functions
 
 ```typescript
 // features/user/api.ts
@@ -93,13 +93,13 @@ export function updateUser(id: string, data: UpdateUserDTO): Promise<User> {
 }
 ```
 
-- API 函数按 feature 组织，而非全部堆在一个文件
-- 请求参数和响应都有类型约束
-- 拦截器统一处理认证、错误格式化
+- API functions are organized by feature instead of all being piled in one file
+- Request parameters and responses have type constraints
+- The interceptor handles authentication and error formatting uniformly
 
-## 错误处理
+## Error handling
 
-### 全局错误捕获
+### Global error capture
 
 ```typescript
 // main.ts
@@ -108,13 +108,13 @@ app.config.errorHandler = (err, instance, info) => {
 };
 ```
 
-### 组件级错误
+### Component level errors
 
-- 使用 `onErrorCaptured` 在父组件中捕获子组件错误
-- 数据请求失败需有用户可见的提示和重试机制
-- 不要吞掉错误（空 catch 块）
+- Use `onErrorCaptured` to capture child component errors in the parent component
+- Failed data requests must have user-visible prompts and retry mechanisms
+- Don't swallow errors (empty catch block)
 
-## 自定义指令
+## Custom directive
 
 ```typescript
 // directives/vPermission.ts
@@ -128,30 +128,30 @@ export const vPermission: Directive<HTMLElement, string> = {
 };
 ```
 
-- 指令只处理 DOM 层面的操作
-- 业务逻辑不要放在指令中
-- 需要响应式更新时实现 `updated` 钩子
+- The directive only handles operations at the DOM level
+- Do not put business logic in instructions
+- Implement the `updated` hook when responsive updates are required
 
-## 样式规范
+## Style specification
 
-- 使用 `<style scoped>` 隔离样式
-- 深度选择器使用 `:deep()` 而非已废弃的 `::v-deep`
-- 与项目现有样式体系保持一致
-- 动态样式优先使用 `:class` / `:style` 绑定
-- 复杂主题切换使用 CSS 变量
-- 主题/全局变量通过 CSS 变量或 Token 管理
+- Use `<style scoped>` to isolate styles
+- Depth selector uses `:deep()` instead of the deprecated `::v-deep`
+- Be consistent with the existing style system of the project
+- Dynamic styles preferentially use `:class` / `:style` binding
+- Complex theme switching using CSS variables
+- Theme/global variables are managed through CSS variables or Token
 
-## 测试规范
+## Test specifications
 
-### 必须测试
+### Must be tested
 
-- 核心交互行为（点击、输入、提交）
-- 条件渲染（loading / error / empty / data）
-- Emits 的触发和 payload
-- 关键 composables 的返回值
-- Pinia store 的 action 和 getter
+- Core interaction behaviors (click, input, submit)
+- Conditional rendering (loading/error/empty/data)
+- Emits trigger and payload
+- Return value of key composables
+- Pinia store actions and getters
 
-### 测试风格
+### Test style
 
 ```typescript
 describe("UserForm", () => {
@@ -167,12 +167,12 @@ describe("UserForm", () => {
   it("should show validation error on empty submit", async () => {
     const wrapper = mount(UserForm);
     await wrapper.find("form").trigger("submit");
-    expect(wrapper.text()).toContain("用户名不能为空");
+    expect(wrapper.text()).toContain("Username cannot be empty");
   });
 });
 ```
 
-### Store 测试
+### Store Test
 
 ```typescript
 describe("authStore", () => {
@@ -187,30 +187,30 @@ describe("authStore", () => {
 ```
 
 
-## 反模式
+## Anti-pattern
 
-- 在模板驱动组件中内联大段业务逻辑
-- 本该用 computed 却使用大范围 watcher
-- 事件 payload 不明确
-- 在纯展示组件中直接混入原始 API 调用
-- ref 和 props 没有类型约束
-- 用 `watch` + 手动赋值模拟 computed
-- 在一个组件中混入无关职责
-- 用大范围全局样式覆盖去解决局部 UI 问题
-- 将所有状态推入 Pinia store，而非就近管理
-- 在 `components/` 中放业务耦合组件
-- 直接从 feature 内部深层路径导入，绕过 `index.ts`
+- Inline large sections of business logic in template-driven components
+- Used wide range watcher instead of computed
+- The event payload is unclear
+- Mix raw API calls directly into pure presentation components
+- ref and props have no type constraints
+- Use `watch` + manual assignment to simulate computed
+- Mixing unrelated responsibilities into a component
+- Use large-scale global style coverage to solve local UI problems
+- Push all status to Pinia store instead of managing it nearby
+- Put business coupling components in `components/`
+- Import directly from the deep path inside the feature, bypassing `index.ts`
 
-## 输出检查清单
+## Output checklist
 
-- [ ] 文件结构与项目约定一致（pages / features / components 分离）
-- [ ] 使用 `<script setup lang="ts">`
-- [ ] Props / Emits 类型完整
-- [ ] 解释性注释是否优先使用中文且点到要害
-- [ ] 可复用逻辑已提取到 composable
-- [ ] Loading / Error / Empty 状态均已处理
-- [ ] 路由组件使用动态 import 加载
-- [ ] 状态管理方案合理（就近原则）
-- [ ] API 调用有类型约束和统一错误处理
-- [ ] 样式使用 scoped 隔离
-- [ ] 关键行为有测试覆盖
+- [ ] The file structure is consistent with the project convention (pages/features/components are separated)
+- [ ] Use `<script setup lang="ts">`
+- [ ] Props / Emits type complete
+- [ ] Whether explanatory comments should be given priority in Chinese and to the point
+- [ ] Reusable logic has been extracted to composable
+- [ ] Loading / Error / Empty status have been processed
+- [ ] Routing components are loaded using dynamic import
+- [ ] Reasonable status management plan (proximity principle)
+- [ ] API calls have type constraints and unified error handling
+- [ ] styles use scoped isolation
+- [ ] Key behaviors are covered by tests

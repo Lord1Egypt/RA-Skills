@@ -1,42 +1,53 @@
-## Description: <br>
-Validates executed improvement candidates with a six-layer quality gate and routes outcomes to keep, reject, revert, or pending human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates executed improvement candidates through a six-layer quality gate and returns keep, reject, revert, or pending review decisions with audit receipts.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and automation agents use this skill inside an improvement pipeline to validate completed changes, create auditable gate receipts, and route higher-risk candidates for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify local files during rollback when gate.py processes execution artifacts. <br>
-Mitigation: Run it only in a trusted improvement pipeline, use trusted ranking and execution artifacts, and verify rollback pointers before execution. <br>
-Risk: Broad triggers could activate the skill outside the intended quality-gate workflow. <br>
-Mitigation: Narrow triggers before broad publishing or installation, and invoke the skill only for completed improvement candidates that require gate validation. <br>
-Risk: State and review records may affect project workflow decisions if shared across unrelated projects. <br>
-Mitigation: Keep the state root project-scoped and review pending approvals before promotion. <br>
+## Use Case:
 
+Developers and maintainers use this skill after an improvement executor produces ranking and execution artifacts to decide whether a candidate should be kept, reverted or rejected, or sent for human review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/improvement-gate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON receipt outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces gate decisions, per-layer results, rollback status, and pending-review records when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata; artifact frontmatter says 0.1.0) <br>
+Risk: The skill's scripts can restore or write files using paths from input artifacts, even though the documentation frames the gate primarily as verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a tightly scoped workspace with trusted ranking and execution artifacts, and confirm rollback path containment before installation or use.
+
+Risk: Human review state is managed through local review IDs and state files.
+
+Mitigation: Use a controlled state root and validate review IDs before completing approvals or rejections.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/skills/improvement-gate)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown guidance with bash commands and JSON receipt descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces gate decisions and audit receipts, and may create pending human review records.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

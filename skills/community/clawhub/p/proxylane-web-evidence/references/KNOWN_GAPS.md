@@ -1,0 +1,15 @@
+# Known verification gaps
+
+This first release is a bounded evidence collector, not proof of universal site access, proxy reliability, representative customer demand or a complete production integration.
+
+- The attempted three-provider cross-modal review did not produce a complete authoritative three-provider PASS receipt. A single-provider critique is insufficient to claim the skill's declared quality contract was independently proven. The release owner explicitly waived that informational gate for this first release while preserving these gaps. No fabricated review scores or cross-modal PASS are published.
+- Unit tests exercise source identity and failure branches. Local integration tests use a real loopback HTTP/SSE MCP server and a local HTTP proxy rejection, plus real subprocess deadlines/cleanup. Those endpoints are synthetic test services, not public-site integrations.
+- Fixture demonstrations use synthetic source content and fixed timestamps. They prove local processing and artifact output, not live availability, browser DOM compatibility or target egress. Live attempts and their outcomes are summarized separately in the runtime receipt; raw live captures and credentials stay outside the package.
+- Google AI Mode and AI Overview require separately reviewed, dated DOM contracts from a current rendered page. No universal Google selectors are provided. Visible external links alone do not establish AI citation semantics. All captured regional context remains `unverified`; IP, gl/hl and footer text do not prove regional causality.
+- Xiaohongshu requires an existing authenticated MCP server configured with its own proxy. No real authenticated XHS collection has been proven for this release. Its JSON/SSE/data mapping was exercised against a local test server. Server egress and image text are unverified.
+- Price collection is restricted to matching supported Amazon desktop fields or one strict SKU-matching JSON-LD Offer. Currency symbols are not inferred, variants need semantic checks, and checkout/delivery/shipping/tax context is unverified. One page does not prove broad Amazon/multistore compatibility.
+- Instagram/TikTok managed comments APIs are documented alternatives, not implemented direct-proxy coverage. The collector makes no paid API calls and performs no implicit managed fallback.
+- The isolated development venv inherits installed Python dependencies; its smoke is not a clean-install reproducibility proof. Optional yt-dlp was installed only inside that venv from official PyPI. Site protocols and JS runtime requirements can change.
+- Routing cases test the proposed documented phrase rules and one trigger-to-fixture side effect. They do not constitute a model routing evaluation or prove registration in a global resolver. Deployment/global GBrain registries were deliberately not changed.
+
+Before claiming broader coverage, resolve each relevant gap with a narrowly scoped live run, current source-semantic checks, controlled regional/product context and a dated receipt. A block is evidence of a boundary, not successful content extraction.

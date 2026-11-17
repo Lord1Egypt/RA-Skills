@@ -1,43 +1,54 @@
-## Description: <br>
-Run a Mopidy music system in party mode for shared or group chats, where everyone can contribute songs but only the host can control playback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a Mopidy music system in party mode for group chats, letting guests search and add music while host-only approval protects playback controls.
 
-## Publisher: <br>
-[grantmacnamara](https://clawhub.ai/user/grantmacnamara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grantmacnamara](https://clawhub.ai/user/grantmacnamara)
 
-## Use Case: <br>
-External users and hosts use this skill to let party guests search music, inspect playback state, and add tracks, albums, playlists, or locally matched ranked requests to a Mopidy queue while reserving playback controls for the host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guests may request playback-changing actions such as play, pause, skip, clear, or play-track. <br>
-Mitigation: Require explicit host approval before running host-only playback controls. <br>
-Risk: Open group chats may make it difficult to distinguish host requests from guest requests. <br>
-Mitigation: Install only where host identity is reliable, or separate host controls from guest-safe queue actions. <br>
-Risk: Backend-specific Mopidy library behavior and URI schemes may vary by installation. <br>
-Mitigation: Confirm supported Mopidy methods and URI schemes against the target server before relying on backend-specific behavior. <br>
+## Use Case:
 
+External users, party hosts, and agent developers use this skill to manage shared Mopidy music sessions where guests can contribute tracks, albums, playlists, and ranked requests without taking over playback.
 
-## Reference(s): <br>
-- [Mopidy API Notes](references/api-notes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/grantmacnamara/mopidy-party-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise user-facing text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Mopidy JSON-RPC through a configured MOPIDY_URL endpoint and requires curl, jq, and python3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Host-level playback controls and play-now behavior can disrupt the shared queue, including clearing queued music.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require host approval before playback control, queue clearing, play-now actions, or permission changes; route non-host users to guest-safe queue actions.
+
+Risk: Several helper operations use curl -k, which weakens TLS certificate validation for the configured Mopidy endpoint.
+
+Mitigation: Use only a trusted Mopidy endpoint and prefer a helper version that removes curl -k or otherwise enforces trusted certificate validation.
+
+## Reference(s):
+
+- [Mopidy Party Mode ClawHub release](https://clawhub.ai/grantmacnamara/skills/mopidy-party-mode)
+- [Mopidy-Iris / Mopidy API Notes](references/api-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command invocations and JSON helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, python3, and MOPIDY_URL for helper-script operation.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

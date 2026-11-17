@@ -1,47 +1,57 @@
-## Description: <br>
-Create dynamic web experiences with physical-text layouts using Pretext for precise text measurement and Three.js for interactive 3D rendering and animation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create dynamic web experiences with physical text layouts using Pretext for precise text measurement and Three.js for interactive 3D rendering and animation.
 
-## Publisher: <br>
-[tachikomared](https://clawhub.ai/user/tachikomared) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tachikomared](https://clawhub.ai/user/tachikomared)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to build shareable frontend prototypes where text behaves as a physical, interactive material. It guides typographic hero scenes, text destruction effects, editorial layouts, and hybrid DOM, Canvas, and Three.js experiences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the user's trust in the declared mcp-openclaw-extensions dependency and may be used against broad directories or unrelated private files. <br>
-Mitigation: Install it only when that dependency is trusted, and run it against specific configuration files intended for audit. <br>
-Risk: Frontend generation guidance can still produce incorrect or misleading implementation choices if adopted without review. <br>
-Mitigation: Review and scan generated skill outputs before deployment, and verify performance, accessibility, and mobile behavior in the target project. <br>
+## Use Case:
 
+Developers and code agents use this skill to build shareable frontend prototypes with readable typographic systems, reactive motion, and focused Pretext, Canvas 2D, Three.js, or React Three Fiber implementation patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tachikomared/pretext-agents-skill) <br>
-- [Pretext repository](https://github.com/chenglou/pretext) <br>
-- [Pretext demo gallery](https://chenglou.me/pretext/) <br>
-- [Three.js documentation](https://threejs.org/docs/) <br>
-- [React Three Fiber documentation](https://r3f.docs.pmnd.rs/getting-started/introduction) <br>
-- [Yoga layout engine](https://github.com/facebook/yoga) <br>
-- [Textura repository](https://github.com/razroo/textura) <br>
-- [Dokobot Pretext demo repository](https://github.com/dokobot/pretext-demo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with code snippets and implementation patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces frontend architecture guidance and prototype implementation patterns; no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Agents may add third-party dependencies or external reference repositories while building a frontend prototype, and those additions are outside the static skill package scan.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency manifests, lockfiles, and any external code an agent adds before installing or running the generated project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tachikomared/skills/pretext-agents-skill)
+- [Pretext repository](https://github.com/chenglou/pretext)
+- [Pretext demo gallery](https://chenglou.me/pretext/)
+- [Three.js documentation](https://threejs.org/docs/)
+- [Three.js WebGLRenderer documentation](https://threejs.org/docs/pages/WebGLRenderer.html)
+- [React Three Fiber documentation](https://r3f.docs.pmnd.rs/getting-started/introduction)
+- [Yoga layout engine](https://github.com/facebook/yoga)
+- [Textura repository](https://github.com/razroo/textura)
+- [Variable Typographic ASCII demo](https://chenglou.me/pretext/variable-typographic-ascii/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with code snippets and implementation plans; generated projects may include HTML, CSS, JavaScript, TypeScript, React, Three.js, or Canvas files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No backend is assumed; outputs are oriented toward frontend prototypes with readable calm states, bounded interaction effects, and mobile-aware performance choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

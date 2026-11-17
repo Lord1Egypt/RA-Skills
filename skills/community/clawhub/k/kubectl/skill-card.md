@@ -1,44 +1,61 @@
-## Description: <br>
-Execute and manage Kubernetes clusters via kubectl commands, including querying resources, deploying applications, debugging containers, managing configurations, and monitoring cluster health. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute and manage Kubernetes clusters via kubectl commands. Query resources, deploy applications, debug containers, manage configurations, and monitor cluster health. Use when working with Kubernetes clusters, containers, deployments, or pod diagnostics.
 
-## Publisher: <br>
-[ddevaal](https://clawhub.ai/user/ddevaal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ddevaal](https://clawhub.ai/user/ddevaal)
 
-## Use Case: <br>
-Developers, platform engineers, and cluster operators use this skill to ask an agent for kubectl command guidance, troubleshooting steps, and helper-script workflows for Kubernetes administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: kubectl commands can modify or disrupt any Kubernetes cluster reachable through the active kubeconfig. <br>
-Mitigation: Verify the active context and namespace, use least-privilege kubeconfig credentials, and require explicit approval before production changes. <br>
-Risk: Destructive or sensitive operations such as delete, drain, exec, cp, rollout, and config-view can expose data or affect workloads. <br>
-Mitigation: Prefer dry-run modes where supported and review high-impact commands before execution. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to plan and run kubectl workflows for inspecting Kubernetes resources, deploying updates, debugging pods, managing configuration, and monitoring cluster health.
 
-## Reference(s): <br>
-- [kubectl Command Reference](references/REFERENCE.md) <br>
-- [Official kubectl Docs](https://kubernetes.io/docs/reference/kubectl/) <br>
-- [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) <br>
-- [Kubernetes API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/) <br>
-- [Agent Skills Specification](https://agentskills.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include kubectl commands, dry-run variants, troubleshooting sequences, and references to bundled helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill frontmatter, and README) <br>
+Risk: kubectl commands can modify live Kubernetes clusters, including deployment updates, scaling, deletion, draining, and container execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege kubeconfig, verify the active context and namespace before execution, and require approval for apply, delete, scale, drain, exec, and port-forward actions.
+
+Risk: Cluster configuration, tokens, secrets, and diagnostic logs may contain sensitive data.
+
+Mitigation: Do not paste raw kubeconfig, secrets, tokens, or sensitive logs into chat or tickets; redact sensitive values before sharing output.
+
+Risk: Port-forwarding can expose cluster workloads outside their intended access path.
+
+Mitigation: Prefer localhost-bound port-forwarding and confirm the target pod, service, namespace, and duration before opening access.
+
+## Reference(s):
+
+- [kubectl Command Reference](references/REFERENCE.md)
+- [Official kubectl Docs](https://kubernetes.io/docs/reference/kubectl/)
+- [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+- [Kubernetes API Reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/)
+- [Agent Skills Specification](https://agentskills.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires kubectl v1.20+ and an active kubeconfig connection; command effects depend on the user's Kubernetes permissions and selected context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

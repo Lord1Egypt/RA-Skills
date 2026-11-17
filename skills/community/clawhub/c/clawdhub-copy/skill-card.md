@@ -1,40 +1,53 @@
-## Description: <br>
-Use the ClawdHub CLI to search, install, update, list, and publish agent skills from clawdhub.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawdHub CLI to search, install, update, and publish agent skills from clawdhub.com.
 
-## Publisher: <br>
-[jk50505k](https://clawhub.ai/user/jk50505k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk50505k](https://clawhub.ai/user/jk50505k)
 
-## Use Case: <br>
-Developers and agent operators use this skill to work with ClawdHub skills through CLI commands for search, install, update, list, authentication, and publishing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to install, force-update, bulk-update, or publish skills through the ClawdHub CLI. <br>
-Mitigation: Require explicit approval before install, update, update --all, --force, --no-input, login, or publish commands. <br>
-Risk: Unpinned or bulk updates can change installed skill behavior unexpectedly. <br>
-Mitigation: Prefer pinned versions from trusted publishers and review the target directory before changes are applied. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawdhub Copy release page](https://clawhub.ai/jk50505k/clawdhub-copy) <br>
-- [ClawdHub registry](https://clawdhub.com) <br>
+## Use Case:
 
+Developers and agent operators use this skill to run ClawdHub CLI commands for searching, installing, updating, listing, authenticating, and publishing ClawHub skills.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ClawdHub CLI commands for install, update, list, login, and publish operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An unpinned global npm install can install a CLI version that differs from the reviewed release.
+
+Mitigation: Prefer installing a specific reviewed `clawdhub` version and avoid elevated or global installs when possible.
+
+Risk: Broad noninteractive update commands can change every installed skill without prompts.
+
+Mitigation: Use `update --all --no-input --force` only in controlled settings where changing all installed skills is intentional.
+
+## Reference(s):
+
+- [Clawdhub Copy skill page](https://clawhub.ai/jk50505k/skills/clawdhub-copy)
+- [ClawdHub registry](https://clawdhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may use the npm-installed clawdhub CLI, optional authentication, registry overrides, and working-directory or install-directory flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

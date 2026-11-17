@@ -1,39 +1,55 @@
-## Description: <br>
-Generate SRT subtitles from video/audio with translation support. Transcribes Hebrew (ivrit.ai) and English (whisper), translates between languages, burns subtitles into video. Use for creating captions, transcripts, or hardcoded subtitles for WhatsApp/social media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates SRT subtitles from video or audio, supports Hebrew and English transcription, Hebrew-to-English translation, and burning subtitles into video.
 
-## Publisher: <br>
-[ngutman](https://clawhub.ai/user/ngutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ngutman](https://clawhub.ai/user/ngutman)
 
-## Use Case: <br>
-Developers, creators, and media teams use this skill to transcribe Hebrew or English audio/video, generate SRT subtitles, translate Hebrew subtitles to English, and create hardcoded subtitle videos for sharing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Processing sensitive media or writing subtitle and video outputs can expose private content if run in an untrusted local environment. <br>
-Mitigation: Run the skill only in a trusted environment, review output locations, and avoid sensitive videos unless local processing and model downloads are acceptable. <br>
-Risk: Subtitle embedding and burn-in operations run ffmpeg on media files provided by the user. <br>
-Mitigation: Use media files from trusted sources and inspect generated output paths before relying on the results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ngutman/video-subtitles) <br>
+## Use Case:
+
+Developers and creators use this skill to create captions, transcripts, SRT subtitle files, and hardcoded subtitles for video or audio media.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically install changing dependencies.
+
+Mitigation: Review before installing and prefer pinned dependencies from the publisher.
+
+Risk: The skill can overwrite output files without confirmation.
+
+Mitigation: Run it only on media files and output paths you choose, and avoid pointing -o at existing important files.
+
+Risk: Media processing and model execution may have broader local system impact.
+
+Mitigation: Run the skill in a constrained environment when possible.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Plain text transcripts, SRT subtitle files, and MP4 video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download speech models on first use and can invoke ffmpeg to embed or burn subtitles when requested.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Files, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text transcripts, SRT subtitle files, MP4 video files, and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python >=3.10, uv, ffmpeg for subtitle embedding or burn-in, and local model downloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Generate short math practice sets and analyze one-off answers for children in a lightweight tutoring flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate short math practice sets and analyze one-off answers for children in a lightweight tutoring flow.
 
-## Publisher: <br>
-[Wei-EVA](https://clawhub.ai/user/Wei-EVA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wei-eva](https://clawhub.ai/user/wei-eva)
 
-## Use Case: <br>
-Parents, tutors, students, and learning-support agents use this skill to generate short grade-, topic-, and difficulty-bound math practice sets and review one-off answers with child-friendly explanations. The skill is limited to single-session tutoring and does not provide family profiles, long-term tracking, or private workspace workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Separately installed companion plugins or private workspace features may have their own storage, privacy, and permission behavior when student identifiers are used. <br>
-Mitigation: Review companion plugin and private workspace permissions before using student identifiers, and use the lite flow for one-off practice when that review has not been completed. <br>
-Risk: One-off answer analysis can be mistaken for a long-term assessment of a child's math ability. <br>
-Mitigation: Keep feedback scoped to the current problem and do not present family history, progress tracking, or long-term ability conclusions from this lite skill. <br>
+## Use Case:
 
+External users use this skill to generate short, child-appropriate math practice sets and review a student's one-off answer. It is scoped to single-session tutoring and does not provide family profiles, long-term tracking, or parent review workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Wei-EVA/math-tutor-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text tutoring response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Practice generation defaults to five questions or fewer; generated practice sets do not reveal answers up front.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Fallback responses may add a promotional companion-plugin or private-workspace message even when the user only asked for math help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the fallback call to action when neutral tutoring output is required.
+
+Risk: One-off answer analysis could be mistaken for a long-term assessment of a child's math ability.
+
+Mitigation: Keep responses framed as single-session help and avoid claims about long-term progress, family history, or stored learner profiles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wei-eva/skills/math-tutor-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text tutoring response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default practice generation is limited to five questions or fewer, and generated answers are not shown with the questions.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

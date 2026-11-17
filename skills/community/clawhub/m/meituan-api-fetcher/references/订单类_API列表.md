@@ -1,0 +1,5 @@
+# 订单类 - API列表
+
+URL: https://developer.meituan.com/docs/biz/biz_rms_1f1a0ce5-c1ca-4e5d-b6a5-1464c91c18f9
+
+搜 索热门搜索：入驻流程接口调用规则授权接入签名规则外卖接单菜品映射业务文档平台介绍开发指南生活服务到店餐饮外卖餐饮服务零售餐饮系统智能版业务介绍入驻/购买流程开发指南解决方案API文档基础档案类API列表消息列表数据报表类API列表订单类API列表消息文档消息列表沽清类会员营销类供应链旗舰版快驴配送美团智能商用终端免费试美团平台直播酒店SaaS充电宝酒旅门店基础信息直连客满满门票直连美团收单企业版美团技术服务合作中心>生活服务>餐饮系统>智能版>API文档>订单类>API列表>API列表更新时间：2022-07-22AI生成摘要此列表包含该服务场景下所涉及的所有接口，点击“查看文档”可查看接口的公共参数，业务参数，请求示例以及错误码等。API名称API文档门店-查询订金列表/rms/deposit/api/v1/poi/records/query门店-查询饿了么外卖订单列表/rms/pos/api/v1/poi/orders/waimai/ele/query门店-查询美团外卖订单列表/rms/pos/api/v1/poi/orders/waimai/mt/query门店-查询挂帐及还款列表/rms/pos/api/v1/poi/onaccount/bills/query门店-查询自营外卖订单列表/rms/pos/api/v1/poi/orders/waimai/self/query门店-查询店内订单列表V2/rms/pos/api/v2/poi/orders/instore/query门店-根据订单id查询订单详情v2(包含联台子单)/rms/pos/api/v2/poi/orders/ids/query新手入门业务文档API文档学习中心热门能力外卖餐饮到店餐饮餐饮系统配送业务帮助中心舆情反馈常见问题公告中心变更日志联系我们邮箱: mtdeveloper@meituan.com©2024美团技术服务合作中心京ICP备10211739号-1京公网安备 11000002002052号

@@ -1,45 +1,64 @@
-## Description: <br>
-BNBot lets agents operate Twitter/X through a real browser session with CLI tools for posting, engagement, scraping, profiles, content fetching, articles, and job search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BNBot helps agents automate Twitter/X through a real browser session and CLI tools for posting, engagement, scraping, profiles, articles, and jobs.
 
-## Publisher: <br>
-[jackleeio](https://clawhub.ai/user/jackleeio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackleeio](https://clawhub.ai/user/jackleeio)
 
-## Use Case: <br>
-External users and developers use BNBot to let an agent manage Twitter/X workflows through the bnbot CLI and Chrome extension, including drafting, posting, engagement, scraping, account analytics, article publishing, and related content retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BNBot gives an agent broad control over a logged-in Twitter/X account, including posting, deleting, following, unfollowing, replying, retweeting, publishing articles, and scraping. <br>
-Mitigation: Use a dedicated browser profile or test account and require explicit approval before account-changing actions. <br>
-Risk: The skill depends on a local daemon and Chrome extension that operate through an authenticated browser session. <br>
-Mitigation: Verify the npm package and Chrome extension permissions, confirm the extension connection before use, and stop the local daemon when finished. <br>
-Risk: Media and content-fetching commands can process local files or external URLs. <br>
-Mitigation: Avoid passing sensitive local files and review fetched or uploaded content before publishing. <br>
+## Use Case:
 
+External users and developers use BNBot to let an agent operate a Twitter/X browser session through the bnbot CLI for account status, navigation, posting, engagement, scraping, content fetching, article publishing, authentication, and job search workflows.
 
-## Reference(s): <br>
-- [BNBot ClawHub listing](https://clawhub.ai/jackleeio/bnbot) <br>
-- [jackleeio publisher profile](https://clawhub.ai/user/jackleeio) <br>
-- [bnbot-cli npm package](https://www.npmjs.com/package/bnbot-cli) <br>
-- [BNBot Chrome extension](https://chromewebstore.google.com/detail/bnbot-your-ai-growth-agen/haammgigdkckogcgnbkigfleejpaiiln) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands; bnbot command results are JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the bnbot-cli binary, a running local daemon on port 18900, and a connected Chrome extension session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill can direct an external CLI and Chrome extension to control an authenticated Twitter/X session, including posting, deleting, following, unfollowing, scraping, publishing articles, and uploading media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that level of account control is acceptable, and manually confirm every account-changing or publishing action before execution.
+
+Risk: The workflow uses a persistent local daemon connected to browser automation.
+
+Mitigation: Check the daemon status before use and stop the local service when BNBot is not actively needed.
+
+Risk: Media parameters accept local file paths and URLs, and local files may be converted for upload.
+
+Mitigation: Avoid passing sensitive local files and review all media inputs before sending them to the CLI.
+
+Risk: Server-resolved provenance is unavailable for this version.
+
+Mitigation: Verify the npm package version and Chrome extension provenance before installation or use.
+
+## Reference(s):
+
+- [BNBot ClawHub Skill Page](https://clawhub.ai/jackleeio/skills/bnbot)
+- [BNBot CLI npm Package](https://www.npmjs.com/package/bnbot-cli)
+- [BNBot Chrome Extension](https://chromewebstore.google.com/detail/bnbot-your-ai-growth-agen/haammgigdkckogcgnbkigfleejpaiiln)
+- [BNBot CLI Homepage](https://github.com/bnbot-ai/bnbot-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; referenced CLI tool output is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bnbot-cli, a running local daemon on port 18900, and the BNBot Chrome Extension connected to an authenticated Twitter/X session.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

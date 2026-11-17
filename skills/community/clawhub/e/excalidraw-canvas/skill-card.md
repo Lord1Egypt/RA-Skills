@@ -1,38 +1,53 @@
-## Description: <br>
-Create Excalidraw diagrams and render them as PNG images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Excalidraw diagrams and render them as PNG images.
 
-## Publisher: <br>
-[0xArtex](https://clawhub.ai/user/0xArtex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xartex](https://clawhub.ai/user/0xartex)
 
-## Use Case: <br>
-Developers, designers, and agents use this skill to create workflow diagrams, UI wireframes, and explanatory Excalidraw-style drawings, then render them as PNG images with editable links. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Diagram contents and edit links are sent to and handled by a hosted rendering service. <br>
-Mitigation: Avoid secrets, customer data, unreleased architecture, regulated information, or confidential workflows unless the user trusts the service and understands its retention and edit-link access behavior. <br>
-Risk: Generated diagrams can contain incorrect coordinates, arrow placement, or visual relationships. <br>
-Mitigation: Inspect the rendered PNG and edit link before sharing or relying on the diagram. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, engineers, designers, and technical writers use this skill to create editable Excalidraw diagrams for workflows, UI wireframes, system designs, and other visual explanations.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, API calls, Guidance] <br>
-**Output Format:** [PNG image files with an edit URL, plus Markdown or text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a PNG and an editable Excalidraw link for each rendered diagram.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Diagram text, labels, structure, and element data are sent to a hosted rendering service.
+
+Mitigation: Use the skill only for content approved for that external service, and avoid confidential architecture, credentials, incident details, or private business workflows.
+
+Risk: The returned edit URL can provide access to modify the rendered diagram.
+
+Mitigation: Treat edit URLs as shareable access links and share them only with intended recipients.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xartex/skills/excalidraw-canvas)
+- [Hosted Excalidraw Render API](https://excalidraw-mcp.up.railway.app/api/render)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PNG image data and an editable Excalidraw link through a hosted renderer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

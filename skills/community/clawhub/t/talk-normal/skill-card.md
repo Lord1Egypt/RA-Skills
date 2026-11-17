@@ -1,38 +1,52 @@
-## Description: <br>
-talk-normal installs an always-on AGENTS.md prompt that makes agent replies more concise and direct in English and Chinese while preserving useful information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+talk-normal installs a bilingual style prompt into AGENTS.md to reduce verbose, corporate-sounding agent responses while preserving useful information.
 
-## Publisher: <br>
-[hexiecs](https://clawhub.ai/user/hexiecs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hexiecs](https://clawhub.ai/user/hexiecs)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install a writing-style prompt into AGENTS.md so future agent responses are shorter, more direct, and less padded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer changes AGENTS.md with an always-on writing-style prompt, which can affect later agent responses in the workspace. <br>
-Mitigation: Inspect the resolved AGENTS.md target before installing, and run bash install.sh --uninstall from the skill directory to remove the marked block. <br>
+## Use Case:
 
+External developers and agent users use talk-normal to install an always-on style prompt that makes OpenClaw or compatible agents answer more directly in English and Chinese.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/hexiecs/talk-normal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs or removes a marked prompt block in AGENTS.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The installer can persistently change agent instructions beyond the intended workspace if it resolves a broader AGENTS.md path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompt.md and the reported AGENTS.md path before installing; run from the intended workspace and uninstall with bash install.sh --uninstall when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexiecs/skills/talk-normal)
+- [Publisher profile](https://clawhub.ai/user/hexiecs)
+- [Project homepage](https://github.com/hexiecs/talk-normal)
+- [Issue tracker](https://github.com/hexiecs/talk-normal/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and an AGENTS.md prompt block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installer writes a marked block to AGENTS.md and can remove it with --uninstall.]
+
+## Skill Version(s):
+
+0.6.2 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

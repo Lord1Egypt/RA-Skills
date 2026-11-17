@@ -1,0 +1,20 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "code": "TIME_RAW_CHANGED",
+      "path": "event.time.raw",
+      "message": "须保留用户时间原话"
+    },
+    {
+      "code": "SHOOT_CONFLICT",
+      "path": "shots.S02",
+      "message": "与 S01 同时占用 B"
+    },
+    {
+      "code": "DRAFT_FACT_GATE",
+      "path": "drafts.01",
+      "message": "缺少必要事实，不能标为可审阅使用"
+    }
+  ]
+}

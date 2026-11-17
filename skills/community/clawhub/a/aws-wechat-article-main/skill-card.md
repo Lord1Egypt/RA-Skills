@@ -1,46 +1,60 @@
-## Description: <br>
-Orchestrates an AI-assisted WeChat Official Account content pipeline that routes topic planning, drafting, review, formatting, image generation, and publishing through the companion WeChat article skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates a WeChat Official Account content workflow from topic selection through drafting, review, formatting, images, and draft or publication handoff.
 
-## Publisher: <br>
-[aiworkskills](https://clawhub.ai/user/aiworkskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiworkskills](https://clawhub.ai/user/aiworkskills)
 
-## Use Case: <br>
-External creators, editors, and brand content teams use this skill to run a WeChat Official Account article from topic selection through draft, review, layout, images, and draft or publication handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires WeChat and model-provider credentials. <br>
-Mitigation: Keep aws.env out of version control, restrict repository access, and use least-privilege credentials where possible. <br>
-Risk: Publishing behavior can send content to WeChat when the companion publishing subskill is configured. <br>
-Mitigation: Review the publishing subskill before enabling posting, and keep publish_method set to draft unless external publication is explicitly intended. <br>
+## Use Case:
 
+Content editors, self-media operators, and brand teams use this skill as the entry point for a multi-skill WeChat article pipeline. It coordinates environment checks, article setup, drafting, review, formatting, image handling, and publishing posture.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiworkskills/aws-wechat-article-main) <br>
-- [AIWorkSkills homepage](https://aiworkskills.cn) <br>
-- [First-time setup](references/first-time-setup.md) <br>
-- [Configuration example](references/config.example.yaml) <br>
-- [Environment variable example](references/env.example.yaml) <br>
-- [Article screening schema](references/articlescreening-schema.md) <br>
-- [Writing specification example](references/writing-spec.example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Full workflow use requires configured aws.env and .aws-article/config.yaml files plus companion WeChat article subskills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.25 (source: server release evidence) <br>
+Risk: The default WeChat API base can send credential-backed publishing traffic through a third-party proxy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set wechat_api_base to the official WeChat endpoint, or use a proxy only after explicitly trusting its operator and accepting that credentials, tokens, unpublished article content, and publishing requests may pass through it.
+
+Risk: The workflow depends on secrets for writing, image generation, and WeChat publishing.
+
+Mitigation: Store secrets only in aws.env, do not paste them into chat, and use publish_method: none when only local drafting is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiworkskills/skills/aws-wechat-article-main)
+- [Publisher profile](https://clawhub.ai/user/aiworkskills)
+- [Project homepage](https://aiworkskills.cn)
+- [First-time setup](references/first-time-setup.md)
+- [Configuration field schema](references/articlescreening-schema.md)
+- [Configuration example](references/config.example.yaml)
+- [Environment example](references/env.example.yaml)
+- [Writing specification example](references/writing-spec.example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates local draft files, article metadata, generated HTML, image assets, and publishing state through companion skills when installed.]
+
+## Skill Version(s):
+
+1.0.27 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

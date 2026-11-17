@@ -1,0 +1,40 @@
+{
+  "_comment": "device-operations 扩展参考数据",
+  "input_formats": {
+    "wechat_send": {"app": "wechat", "action": "send_message", "params": {"contact": "联系人姓名", "message": "消息内容"}},
+    "wechat_redpacket": {"app": "wechat", "action": "receive_redpacket", "params": {"timeout": 30}},
+    "xianyu_publish": {"app": "xianyu", "action": "list_product", "params": {"title": "商品标题", "price": 9.9, "description": "描述"}},
+    "douyin_publish": {"app": "douyin", "action": "post_video", "params": {"title": "视频标题", "tags": ["标签"], "video_path": "D:\\videos\\demo.mp4"}},
+    "batch_publish": {"platforms": ["douyin", "kuaishou", "xiaohongshu"], "video_path": "D:\\videos\\demo.mp4", "title": "通用标题", "agent_id": "libu_01", "account": "default", "content": "正文内容", "images": ["D:\\img\\1.jpg"]},
+    "smart_execute": {"app": "wechat", "action": "send_message", "params": {"contact": "张三", "message": "你好"}, "force_mode": "hybrid"},
+    "device_send_message": {"device_udid": "设备ID", "contact": "联系人", "message": "消息内容"},
+    "device_screenshot": {"device_udid": "设备ID", "save_path": "可选保存路径"},
+    "device_tap": {"device_udid": "设备ID", "x": 100, "y": 200},
+    "device_swipe": {"device_udid": "设备ID", "start_x": 100, "start_y": 500, "end_x": 100, "end_y": 100, "duration": 300},
+    "device_install_app": {"device_udid": "设备ID", "apk_path": "APK路径或包名"},
+    "device_publish_moment": {"device_udid": "设备ID", "content": "文字内容", "images": ["图片路径"]},
+    "autoglm_analyze": {"screenshot_path": "截图路径", "app_name": "APP名称", "analysis_type": "general|interaction|social"},
+    "autoglm_explore": {"app_name": "APP名称", "max_screenshots": 10},
+    "autoglm_understand": {"screenshot_path": "截图路径", "scenario_type": "moments_interaction|comment_reply|social_feed", "context": "额外上下文"},
+    "autoglm_generate_rule": {"app_name": "APP名", "action_name": "操作名", "operations": [], "success": true},
+    "self_learning_record": {"app_name": "", "action_name": "", "execution_mode": "rule_based|autoglm|hybrid", "result": {}},
+    "self_learning_analyze": {"time_range_hours": 24, "min_evidence_count": 3},
+    "multi_device_submit": {"app_name": "", "action_name": "", "params": {}, "priority": "critical|high|normal|low|background", "preferred_device": "可选"}
+  },
+  "output_formats": {
+    "device_op": {"success": true, "data": {"device_udid": "", "device_name": "", "status": "connected", "current_app": ""}},
+    "content_publish": {"success": true, "platform": "douyin", "persona_check": {"valid": true, "score": 95, "issues": [], "employee_name": "", "tone": ""}, "kpi_data": {"publish_time": "", "platform": "", "success": true, "agent_id": ""}},
+    "batch_publish": {"success": true, "total": 3, "success_count": 2, "failed_count": 1, "results": [{"success": true, "platform": "douyin"}, {"success": false, "platform": "xiaohongshu", "error_code": "MISSING_IMAGES"}], "agent_id": ""},
+    "self_learning_report": {"success": true, "data": {"period_hours": 24, "total_executions": 150, "success_rate": 0.87, "mode_distribution": {"rule_based": 80, "autoglm": 40, "hybrid": 30}, "optimization_suggestions": [], "new_rules_generated": 2}}
+  },
+  "title_length_limits": {
+    "douyin": "≤100字", "kuaishou": "≤200字", "xiaohongshu": "≤20字",
+    "bilibili": "≤80字", "shipinhao": "≤1000字", "tiktok": "≤150字", "baijiahao": "≤30字"
+  },
+  "supported_platforms": ["douyin", "kuaishou", "xiaohongshu", "bilibili", "shipinhao", "tiktok", "baijiahao", "douyin_tuwen"],
+  "examples": [
+    {"title": "微信通知卖家(人工接管)", "input": {"app": "wechat", "action": "send_message", "params": {"contact": "卖家A", "message": "买家张三咨询退款问题"}}, "output": {"success": true, "data": {"contact": "卖家A", "sent_time": ""}}},
+    {"title": "批量内容发布到3个平台", "input": {"platforms": ["douyin","kuaishou","shipinhao"], "video_path": "D:\\videos\\ai_tutorial.mp4", "title": "AI副业实操教程"}, "output": {"success": true, "total": 3, "success_count": 3}},
+    {"title": "AutoGLM分析未知APP界面", "input": {"screenshot_path": "D:\\screenshots\\unknown_app.png", "app_name": "电商App", "analysis_type": "interaction"}, "output": {"success": true, "data": {"ui_elements": [{"type": "button", "text": "立即购买"}], "confidence": 0.92}}}
+  ]
+}

@@ -1,43 +1,53 @@
-## Description: <br>
-Amazon Monitor helps sellers collect and analyze Amazon product and competitor data, including prices, ratings, reviews, trend charts, and operational recommendations. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Amazon product monitoring skill for tracking owned products and competitors with price tracking, review analysis, competitor comparison, trend visualization, and operational recommendations.
 
-## Publisher: <br>
-[backtoyoung](https://clawhub.ai/user/backtoyoung) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[backtoyoung](https://clawhub.ai/user/backtoyoung)
 
-## Use Case: <br>
-External Amazon sellers and ecommerce operators use this skill to scrape Amazon product data, schedule monitoring tasks, compare competitors, and generate trend charts and comparison reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scrapes Amazon pages and may trigger rate limits, CAPTCHA, or Terms of Service concerns. <br>
-Mitigation: Use valid ASINs, keep polling frequencies reasonable, and confirm the intended use complies with Amazon's terms before running monitors. <br>
-Risk: Generated history, chart, report, and task files are saved in the working directory. <br>
-Mitigation: Review generated JSON, PNG, and TXT files after use, remove data that should not persist, and back up important monitoring history deliberately. <br>
-Risk: The skill depends on Playwright and Chromium browser automation. <br>
-Mitigation: Install and run the browser dependency only in a trusted environment where automated Amazon page access is acceptable. <br>
+## Use Case:
 
+Amazon sellers and operations teams use this skill to collect product and competitor metrics, schedule monitoring tasks, generate trend charts, and produce comparison reports for pricing and marketplace decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/backtoyoung/amazon-monitor) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown-style command guidance plus local JSON, PNG, and TXT files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save product history JSON, trend chart PNG, competitor analysis TXT, and monitoring task configuration in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Security evidence rates the release suspicious because file-writing behavior is under-scoped and ASIN input can influence output paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a limited workspace or virtual environment, use only valid 10-character ASINs from trusted sources, and prefer a patched version that validates ASINs and writes only to a dedicated data directory.
+
+Risk: The skill performs Amazon scraping and creates local files during monitoring and reporting.
+
+Mitigation: Install only when that behavior is acceptable for the deployment environment, and review generated files before relying on the results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/backtoyoung/skills/amazon-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated local JSON, PNG, and text report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local product history, task configuration, trend chart, and competitor analysis files when its scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

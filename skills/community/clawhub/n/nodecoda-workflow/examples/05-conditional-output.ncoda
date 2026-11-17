@@ -1,0 +1,26 @@
+@language nodecoda/1
+@mode workflow
+
+// 条件分支 + 命名多输出:按分数分级,输出 grade 与评语
+// 展示 if / else if / else 链、比较运算、output("key", value) 多输出
+
+const MODEL = "openai_api_compatible/gpt-5.4";
+
+function main(int score, string essay) -> string {
+    if (score >= 90) {
+        output("grade", "A");
+        let comment = llm(MODEL, {
+            "messages": [{
+                "role": "user",
+                "content": `作文「${essay}」评为 A,请写一句鼓励评语。`
+            }]
+        });
+        return comment.text;
+    } else if (score >= 75) {
+        output("grade", "B");
+        return "良好,注意细节可以更上一层。";
+    } else {
+        output("grade", "C");
+        return "建议重读范文后,再写一稿。";
+    }
+}

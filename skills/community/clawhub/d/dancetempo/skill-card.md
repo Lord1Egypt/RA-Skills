@@ -1,50 +1,68 @@
-## Description: <br>
-DanceTempo gives agents concise project context for DanceTempo and DanceTech Protocol work, including llm-full bundle usage, CLAWHUB debugging notes, MPP/x402 routes, OpenAPI discovery, and optional OpenClaw bootstrap reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DanceTempo gives agents concise context for the DanceTech Protocol repository, including llm-full.txt, CLAWHUB debugging notes, Tempo MPP/x402 patterns, EVVM links, and OpenAPI discovery.
 
-## Publisher: <br>
-[arunnadarasa](https://clawhub.ai/user/arunnadarasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arunnadarasa](https://clawhub.ai/user/arunnadarasa)
 
-## Use Case: <br>
-Developers and engineers use this skill to orient coding agents in the DanceTempo repository, especially for MPP/x402 payment flows, Tempo network work, OpenAPI discovery, server routing, documentation bundle regeneration, and optional OpenClaw hook setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional OpenClaw hook changes future agent bootstrap context by adding a DanceTempo reminder. <br>
-Mitigation: Enable the hook only for workspaces where that reminder is desired, and disable it when the project context is no longer relevant. <br>
-Risk: Project memory notes can accidentally expose credentials or private debugging details if copied into agent context. <br>
-Mitigation: Keep CLAWHUB.md and related context notes free of secrets and use environment variable names rather than values. <br>
-Risk: Agents may act on stale generated documentation after source documentation changes. <br>
-Mitigation: Regenerate public/llm-full.txt with npm run build:llm after editing files that feed the bundle. <br>
+## Use Case:
 
+Developers and agent operators use this skill to onboard agents to DanceTempo repo context, locate debugging history, regenerate the LLM context bundle, and verify Tempo MPP/x402 and OpenAPI routes before making changes.
 
-## Reference(s): <br>
-- [DanceTempo ClawHub Listing](https://clawhub.ai/arunnadarasa/dancetempo) <br>
-- [Publisher Profile](https://clawhub.ai/user/arunnadarasa) <br>
-- [Copilot and Generic Agent Guidance](references/copilot-and-agents.md) <br>
-- [DanceTempo Examples](references/examples.md) <br>
-- [OpenClaw and DanceTempo](references/openclaw-dancetempo.md) <br>
-- [DanceTempo Troubleshooting](references/troubleshooting.md) <br>
-- [LLM Bundle Sources](assets/LLM-BUNDLE-SOURCES.md) <br>
-- [EVVM Protocol Context](https://www.evvm.info/llms-full.txt) <br>
-- [MPPScan Discovery](https://www.mppscan.com/discovery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces repository orientation, debugging workflow guidance, and optional hook setup instructions for an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Risk: The optional OpenClaw hook adds a virtual reminder file to each new main agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the hook only when that persistent context reminder is desired, and disable it with the documented OpenClaw command when it is not.
+
+Risk: The skill suggests npm, curl, copy, and hook-enable commands that affect the local repo or agent environment.
+
+Mitigation: Treat commands as manual actions, review them before execution, and run server checks against the intended local port.
+
+Risk: Prompts or debugging notes could accidentally include real environment secret values.
+
+Mitigation: Use environment variable names from .env.example only and avoid putting real .env values into agent prompts.
+
+Risk: The generated llm-full.txt context can drift from edited source documentation.
+
+Mitigation: Regenerate the bundle with npm run build:llm after editing listed source files and verify relevant API routes before relying on the bundle.
+
+## Reference(s):
+
+- [DanceTempo ClawHub Skill](https://clawhub.ai/arunnadarasa/skills/dancetempo)
+- [OpenClaw + DanceTempo](references/openclaw-dancetempo.md)
+- [DanceTempo Examples](references/examples.md)
+- [DanceTempo Troubleshooting](references/troubleshooting.md)
+- [Copilot & Generic Agents](references/copilot-and-agents.md)
+- [LLM Bundle Sources](assets/LLM-BUNDLE-SOURCES.md)
+- [MPPScan Discovery](https://www.mppscan.com/discovery)
+- [EVVM LLM Context](https://www.evvm.info/llms-full.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, URLs, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally add an OpenClaw virtual bootstrap reminder file when the hook is enabled.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

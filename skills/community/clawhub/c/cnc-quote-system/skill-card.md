@@ -1,44 +1,57 @@
-## Description: <br>
-CNC Quote System supports RAG-assisted CNC part quoting with material retrieval, cost estimation, case matching, and risk warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CNC Quote System helps agents estimate CNC part prices, retrieve manufacturing material and case information, and flag quoting risks.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-Manufacturing estimators, engineers, and agent workflows use this skill to estimate CNC part pricing, retrieve material or historical case knowledge, and flag quote risks for human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CNC quotes may be incomplete or inaccurate for real procurement decisions. <br>
-Mitigation: Treat quotes as estimates and require human review before relying on pricing, lead time, or risk recommendations. <br>
-Risk: Python dependency ranges can drift over time and change local behavior. <br>
-Mitigation: Install in a virtual environment and pin or lock dependencies before operational use. <br>
-Risk: Local case data may contain sensitive customer or project information. <br>
-Mitigation: Only populate cases.json with data approved for local storage and sharing in the target environment. <br>
+## Use Case:
 
+Developers, manufacturing engineers, and quoting teams use this skill to draft CNC part quotations from material, dimension, surface-treatment, and quantity inputs. Outputs should support review workflows rather than replace validated production pricing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/timo2026/cnc-quote-system) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Skill Bill of Materials](artifact/SKILL_BOM.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Structured text with quote estimates, retrieval results, and risk notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Quote values are estimates and should be reviewed by a human before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and config.json) <br>
+Risk: The release overstates its RAG, accuracy, material coverage, and risk-control capabilities relative to the included prototype files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat quotes and risk labels as decision support only; validate material data, pricing formulas, case coverage, and advertised performance before using it for real orders.
+
+Risk: Dependency ranges are not pinned, which can make installed behavior vary across environments.
+
+Mitigation: Install in an isolated environment with pinned dependency versions and test the exact dependency set before deployment.
+
+Risk: Malformed or out-of-scope material, dimension, surface, and quantity inputs can produce misleading estimates.
+
+Mitigation: Add input validation and clear documentation of supported materials, surfaces, units, and quantity ranges before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timo2026/skills/cnc-quote-system)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python examples and structured quoting results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated prices, lead times, retrieval matches, and risk warnings; results require human validation before operational use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

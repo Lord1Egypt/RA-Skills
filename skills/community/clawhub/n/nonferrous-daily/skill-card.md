@@ -1,45 +1,59 @@
-## Description: <br>
-Daily non-ferrous metals briefing for AI agents that collects public market prices, news, inventory signals, futures structure, and sentiment for Cu, Zn, Ni, Co, Mg, and Bi, then produces a concise trading-style report that can be delivered through Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily non-ferrous metals briefing for AI agents that collects public Cu/Zn/Ni/Co/Mg/Bi market data, news, inventory signals, futures structure, and sentiment to produce a professional daily metals research report for Telegram delivery.
 
-## Publisher: <br>
-[ramboxie](https://clawhub.ai/user/ramboxie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ramboxie](https://clawhub.ai/user/ramboxie)
 
-## Use Case: <br>
-External users and market-monitoring agents use this skill to collect public non-ferrous metals data and generate a daily report with prices, trend signals, risk triggers, and execution-oriented commentary. It is intended as a research briefing workflow and not as a substitute for independent financial judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot credentials are required for live delivery and could expose the configured channel if mishandled. <br>
-Mitigation: Use a dedicated bot and channel, keep tokens out of commits and logs, and test delivery with DRY_RUN before live sends. <br>
-Risk: Market data and generated trend signals may be delayed, missing, revised, or unsuitable for financial decisions. <br>
-Mitigation: Independently verify market data and treat reports as research briefings rather than investment advice. <br>
-Risk: Running an unpinned clone could execute code that differs from the reviewed release. <br>
-Mitigation: Pin the reviewed package, release, or commit before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to automate daily non-ferrous metals monitoring and produce concise market briefings with price, inventory, news, sentiment, trend, and risk context. It is intended for research-style market reporting and does not replace independent trading, compliance, or risk review.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Analysis Daily Template](references/ANALYSIS_DAILY_TEMPLATE.md) <br>
-- [Analysis Playbook](references/ANALYSIS_PLAYBOOK.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ramboxie/nonferrous-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Markdown report, with JSON data collection output and shell commands for setup or scheduled execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send generated report contents to a configured Telegram chat when credentials are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.7 (source: package.json, server release evidence, README changelog) <br>
+Risk: Reports may be delivered to the wrong audience if Telegram bot credentials or chat IDs are misconfigured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use DRY_RUN first, verify the target chat, and keep unrelated secrets out of the project .env file.
+
+Risk: Public third-party market data may be delayed, unavailable, revised, or inconsistent across sources.
+
+Mitigation: Independently verify important price, inventory, and signal outputs before relying on them for decisions.
+
+Risk: A plaintext HTTP fallback source can expose requests to transport-layer tampering or observation.
+
+Mitigation: Treat data from fallback sources as lower-confidence and cross-check it against HTTPS sources before use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/ramboxie/skills/nonferrous-daily)
+- [Analysis Daily Template](references/ANALYSIS_DAILY_TEMPLATE.md)
+- [Metal Daily Analysis Playbook](references/ANALYSIS_PLAYBOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown market briefing with optional JSON data collection output and Telegram delivery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-configured Telegram bot token and chat ID for delivery; data comes from third-party public sources and may require independent verification.]
+
+## Skill Version(s):
+
+1.3.7 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

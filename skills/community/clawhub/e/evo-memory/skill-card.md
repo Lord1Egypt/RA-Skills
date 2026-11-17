@@ -1,43 +1,56 @@
-## Description: <br>
-Evo Memory provides a self-evolving agent memory system with permanent principles, reusable experience patterns, signal capture, and scheduled reflection for continuous learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evo Memory provides a two-layer self-evolution memory system with persistent principles, topic-specific patterns, signal capture, and scheduled reflection for continuous agent improvement.
 
-## Publisher: <br>
-[weiran71](https://clawhub.ai/user/weiran71) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weiran71](https://clawhub.ai/user/weiran71)
 
-## Use Case: <br>
-Developers and agent users use Evo Memory to preserve durable principles, reusable lessons, and reflection notes across agent sessions. It is suited for workflows where the agent should learn from corrections, failures, preferences, and explicit review requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs always-on local hooks that can persist conversation and command-failure signals. <br>
-Mitigation: Review the hook scripts before enabling them, decide what may be stored, and avoid using the skill around secrets or sensitive projects. <br>
-Risk: Stored memory files may accumulate incorrect, outdated, or sensitive entries over time. <br>
-Mitigation: Regularly inspect and prune pending.jsonl, principles.md, patterns/, citation logs, and the self-evolution bootstrap hook. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give an OpenClaw agent durable local memory across sessions, including principles, topic-specific patterns, user corrections, command-failure signals, and periodic reflection workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/weiran71/evo-memory) <br>
-- [Setup guide](artifact/setup.md) <br>
-- [Permanent principles](artifact/principles.md) <br>
-- [Experience pattern index](artifact/patterns/index.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSONL memory entries, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local memory, citation logs, and pending signal records under the configured self-evolution workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Persistent memory and bootstrap hooks can influence later agent sessions beyond the current task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when always-on memory is desired, and periodically review or disable the self-evolution hook and workspace files.
+
+Risk: User-derived prompts and tool-output signals may be stored locally with weak consent and review controls.
+
+Mitigation: Review pending memory records before promotion, avoid storing sensitive content, and remove local memory files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weiran71/skills/evo-memory)
+- [Skill instructions](artifact/SKILL.md)
+- [Setup guide](artifact/setup.md)
+- [Configuration](artifact/config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSONL memory records, configuration files, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local memory and signal records under the configured OpenClaw workspace path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

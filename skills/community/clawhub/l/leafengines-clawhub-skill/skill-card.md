@@ -1,44 +1,58 @@
-## Description: <br>
-LeafEngines provides an MCP-based agricultural intelligence API for Claude and OpenClaw, including soil analysis, weather forecasting, crop recommendations, environmental compliance, planting optimization, carbon credit calculation, and TurboQuant capability checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LeafEngines provides a remote MCP/API integration for agricultural intelligence, including soil analysis, weather forecasts, crop recommendations, environmental scoring, farm planning, and TurboQuant capability checks.
 
-## Publisher: <br>
-[qwarranto](https://clawhub.ai/user/qwarranto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qwarranto](https://clawhub.ai/user/qwarranto)
 
-## Use Case: <br>
-Farmers, agricultural advisors, researchers, students, developers, and AI agents use this skill to connect to LeafEngines for agricultural planning, soil and weather analysis, crop selection, irrigation support, yield estimation, market data, sustainability scoring, and TurboQuant capability checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends API-key authenticated agricultural, location, and possibly image or farm planning data to a remote LeafEngines service. <br>
-Mitigation: Install only if you trust the LeafEngines provider, use a dedicated revocable API key, and avoid sending unnecessary precision, sensitive photos, or confidential farm data. <br>
-Risk: LeafEngines is a commercial API service with pricing, quotas, and subscription-tier rate limits. <br>
-Mitigation: Review current pricing and quota terms before use, monitor API usage, and choose the lowest required subscription tier. <br>
-Risk: Leaving the MCP server configured after use can continue exposing agents to the remote service and stored API key. <br>
-Mitigation: Remove the MCP configuration entry and revoke or rotate the API key when the service is no longer needed. <br>
+## Use Case:
 
+External users, developers, and AI agents use this skill to connect Claude or OpenClaw to LeafEngines for agricultural planning, environmental analysis, and farm operations guidance. Typical tasks include soil analysis, weather-aware irrigation planning, crop recommendations, pest detection, yield prediction, market price lookup, sustainability scoring, and farm planning.
 
-## Reference(s): <br>
-- [LeafEngines API Reference](references/API_REFERENCE.md) <br>
-- [LeafEngines ClawHub Listing](https://clawhub.ai/qwarranto/leafengines-clawhub-skill) <br>
-- [LeafEngines GitHub Project](https://github.com/QWarranto/leafengines-claude-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance, YAML configuration snippets, shell commands, and API-backed MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote MCP/API service with an x-api-key header and subscription-tier rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and frontmatter) <br>
+Risk: Farm coordinates, site details, photos, and operational data may be sent to a remote commercial API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only data intended to be shared with LeafEngines, and review the provider's privacy, retention, and pricing terms before use.
+
+Risk: Agricultural, weather, pest, yield, and market outputs may be incomplete, stale, or unsuitable for a specific site.
+
+Mitigation: Treat outputs as decision support and validate important operational decisions against local expertise, field measurements, and current market or weather sources.
+
+Risk: API keys are required for authenticated use and may be exposed if placed in shared configuration files or logs.
+
+Mitigation: Store API keys in private local configuration or a secret manager, rotate compromised keys, and avoid committing credentials.
+
+## Reference(s):
+
+- [LeafEngines API Reference](references/API_REFERENCE.md)
+- [LeafEngines ClawHub Skill Page](https://clawhub.ai/qwarranto/skills/leafengines-clawhub-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, YAML configuration snippets, shell commands, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an x-api-key for authenticated LeafEngines API use; access and rate limits depend on the user's subscription tier.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

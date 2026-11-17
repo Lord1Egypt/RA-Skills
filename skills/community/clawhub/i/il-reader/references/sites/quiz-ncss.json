@@ -1,0 +1,236 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-ncss",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:04:55.177Z",
+  "entry": {
+    "url": "https://www.ncss.cn",
+    "final_url": "https://www.ncss.cn/",
+    "title": "国家大学生就业服务平台",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:04:55.177Z",
+    "identity": {
+      "declared_name": "国家大学生就业服务平台",
+      "hostname": "www.ncss.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "毕业生择业择城，将专业技能嵌入城市产业分工网络",
+        "href": "https://www.ncss.cn/ncss/zt/byszyzc.shtml",
+        "target": "_blank"
+      }
+    ],
+    "frames": [
+      {
+        "src": "https://t2.chei.com.cn/axv/2355286649.html",
+        "id": "chsi_slot_iframe_2355286649",
+        "name": "",
+        "title": ""
+      },
+      {
+        "src": "https://t4.chei.com.cn/axv/2355286115.html",
+        "id": "chsi_slot_iframe_2355286115",
+        "name": "",
+        "title": ""
+      }
+    ]
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "",
+      "name": "query",
+      "id": "top-nav-search-input",
+      "css": null,
+      "role": null,
+      "form_action": "https://cn.bing.com/search",
+      "locator": null,
+      "observed_url": "https://www.ncss.cn/",
+      "observed_at": "2026-10-09T09:04:53.385Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://cn.bing.com/search",
+      "locator": null,
+      "observed_url": "https://www.ncss.cn/",
+      "observed_at": "2026-10-09T09:04:53.385Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "职位名称",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "职位名称",
+      "name": "jobName",
+      "id": "",
+      "css": "input[name=\"jobName\"]",
+      "role": null,
+      "form_action": "https://www.ncss.cn/student/jobs/index.html",
+      "locator": {
+        "css": "input[name=\"jobName\"]"
+      },
+      "observed_url": "https://www.ncss.cn/",
+      "observed_at": "2026-10-09T09:04:53.385Z"
+    },
+    {
+      "tag": "button",
+      "type": "submit",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": "https://www.ncss.cn/student/jobs/index.html",
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://www.ncss.cn/",
+      "observed_at": "2026-10-09T09:04:53.385Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-ncss:record-lookup",
+      "source_id": "quiz-ncss",
+      "task_kind": "record-lookup",
+      "status": "entry_observed",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.ncss.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "职位名称",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "职位名称",
+          "name": "jobName",
+          "id": "",
+          "css": "input[name=\"jobName\"]",
+          "role": null,
+          "form_action": "https://www.ncss.cn/student/jobs/index.html",
+          "locator": {
+            "css": "input[name=\"jobName\"]"
+          },
+          "observed_url": "https://www.ncss.cn/",
+          "observed_at": "2026-10-09T09:04:53.385Z"
+        },
+        {
+          "tag": "button",
+          "type": "submit",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": "https://www.ncss.cn/student/jobs/index.html",
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://www.ncss.cn/",
+          "observed_at": "2026-10-09T09:04:53.385Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-056"
+    ],
+    "example_ids": [
+      "PT1-Q50"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:04:55.177Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-ncss-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-ncss-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,41 +1,53 @@
-## Description: <br>
-Master reference for 88 psychological heuristics for sales, copywriting, offer design, cold outreach, objection handling, and persuasion tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master reference for 88 psychological heuristics for sales, copywriting, outreach, offer design, objection handling, and persuasive content.
 
-## Publisher: <br>
-[huguesgtch](https://clawhub.ai/user/huguesgtch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huguesgtch](https://clawhub.ai/user/huguesgtch)
 
-## Use Case: <br>
-External users and agents use this skill to select, apply, and optionally annotate persuasion heuristics for sales copy, outreach, offers, pitches, objection handling, and follow-up sequences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can encourage pressure-oriented persuasion tactics for sales or outreach. <br>
-Mitigation: Use it only with clear boundaries: truthful claims, factual urgency and scarcity, respectful follow-up limits, clear opt-outs, and no coercion, harassment, deception, emotional exploitation, or targeting of vulnerable people. <br>
-Risk: Agent outputs may become overly aggressive or manipulative if the heuristics are applied without review. <br>
-Mitigation: Review generated copy for accuracy, tone, consent, and audience suitability before using it with people. <br>
+## Use Case:
 
+External users and developers use this skill to select and apply psychological heuristics when drafting persuasive marketing, sales, outreach, landing page, proposal, follow-up, or objection-handling content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huguesgtch/heuristics) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/huguesgtch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with optional heuristic labels and persuasive copy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not execute code or call external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may encourage aggressive persuasion tactics too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for truthful, consent-respecting marketing or sales writing with clear human review.
+
+Risk: The skill can support manipulative influence patterns when applied to sensitive contexts or vulnerable audiences.
+
+Mitigation: Avoid deceptive, coercive, regulated, political, interpersonal, or vulnerable-audience scenarios.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huguesgtch/skills/heuristics)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown prose with heuristic labels and optional annotations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include persuasive copy, heuristic selections, objection-handling guidance, and annotated rationale.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

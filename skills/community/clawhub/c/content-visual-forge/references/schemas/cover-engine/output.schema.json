@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WechatCoverGeneratorOutput",
+  "type": "object",
+  "properties": {
+    "execution_mode": {
+      "type": "string"
+    },
+    "selected_path": {
+      "type": "string"
+    },
+    "content_analysis": {
+      "type": "object"
+    },
+    "style_plan": {
+      "type": "object"
+    },
+    "style_atlas": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "atlas_snapshot": {
+          "type": "string"
+        },
+        "atlas_family": {
+          "type": "string"
+        },
+        "atlas_reference": {
+          "type": "string"
+        },
+        "style_factors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prompt_style_phrase": {
+          "type": "string"
+        },
+        "artist_name_policy": {
+          "type": "string",
+          "enum": [
+            "none",
+            "public_domain_allowed",
+            "avoid_artist_name"
+          ]
+        },
+        "blocked_mimicry": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cover_titles": {
+      "type": "object",
+      "properties": {
+        "loyal_version": {
+          "type": "string"
+        },
+        "marketing_version": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "square_short_title": {
+          "type": "string",
+          "description": "1:1 方封面专用短标题，4-10 个中文字符"
+        }
+      }
+    },
+    "cover_pair": {
+      "type": "object",
+      "description": "公众号封面对（21:9 主封面 + 1:1 方封面）",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "main_cover": {
+          "type": "object",
+          "properties": {
+            "dimensions": {
+              "type": "string",
+              "enum": ["2100x900", "1200x675"]
+            },
+            "aspect_ratio": {
+              "type": "string",
+              "enum": ["21:9", "16:9"]
+            },
+            "title": {
+              "type": "string"
+            }
+          }
+        },
+        "square_cover": {
+          "type": "object",
+          "properties": {
+            "dimensions": {
+              "type": "string",
+              "enum": ["1080x1080", "900x900"]
+            },
+            "aspect_ratio": {
+              "type": "string",
+              "enum": ["1:1"]
+            },
+            "title": {
+              "type": "string"
+            },
+            "composition_note": {
+              "type": "string",
+              "description": "方封面独立构图说明，不是从主封面硬裁"
+            }
+          }
+        },
+        "pair_preview": {
+          "type": "object",
+          "properties": {
+            "output_path": {
+              "type": "string"
+            },
+            "layout": {
+              "type": "string",
+              "enum": ["side-by-side", "stacked", "grid"]
+            }
+          }
+        }
+      }
+    },
+    "background_image_prompt": {
+      "type": "string"
+    },
+    "background_asset": {
+      "type": "object",
+      "description": "工程化渲染使用的背景素材，必须绑定 asset_source_record",
+      "properties": {
+        "asset_id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "object_position": {
+          "type": "string"
+        },
+        "caption": {
+          "type": "string"
+        }
+      }
+    },
+    "asset_source_record": {
+      "type": "array",
+      "description": "外部或本地素材来源记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "asset_id": { "type": "string" },
+          "role": { "type": "string" },
+          "source_type": { "type": "string" },
+          "source_url": { "type": "string" },
+          "provider": { "type": "string" },
+          "creator_or_owner": { "type": "string" },
+          "license": { "type": "string" },
+          "attribution_required": { "type": "boolean" },
+          "attribution_text": { "type": "string" },
+          "commercial_use_allowed": {
+            "oneOf": [
+              { "type": "boolean" },
+              { "type": "string", "enum": ["unknown"] }
+            ]
+          },
+          "transformation": { "type": "string" },
+          "checked_at": { "type": "string" },
+          "decision": {
+            "type": "string",
+            "enum": ["use", "replace", "request_confirmation", "reject"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "direct_image_preview_prompt": {
+      "type": "string"
+    },
+    "negative_prompt": {
+      "type": "string"
+    },
+    "typography_overlay_spec": {
+      "type": "object"
+    },
+    "quality_gate": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "minor_revision",
+            "regenerate_required"
+          ]
+        },
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommended_action": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

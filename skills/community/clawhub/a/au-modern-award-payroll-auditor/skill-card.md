@@ -1,44 +1,61 @@
-## Description: <br>
-Audits Australian payroll for Modern Award compliance by helping identify the correct award and classification, verify base rates, penalty rates, overtime, allowances, casual loading, annualised salary BOOT testing, and superannuation against Fair Work Act minimums. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Australian payroll for Modern Award compliance by identifying the correct award and classification and checking pay rates, penalty rates, overtime, allowances, annualised salary BOOT, casual loading, and superannuation against Fair Work minimums.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-Australian businesses, payroll teams, advisors, and agents use this skill to check or troubleshoot Modern Award payroll compliance, including award coverage, classification, minimum pay, penalties, allowances, annualised salary comparisons, and superannuation treatment. It provides general compliance guidance and directs users to verify rates and classifications against official Fair Work resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Australia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payroll rates, award classifications, and compliance rules can change or depend on facts not captured in the conversation. <br>
-Mitigation: Verify dollar amounts, classifications, and award rules against official Fair Work resources before setting wages, processing payroll, or making underpayment decisions. <br>
-Risk: Users may mistake the skill's guidance for legal or payroll advice. <br>
-Mitigation: Treat outputs as general payroll compliance guidance and seek qualified legal, payroll, or Fair Work advice for complex or consequential matters. <br>
+## Use Case:
 
+Australian employers, payroll teams, and advisors use this skill to audit Modern Award payroll scenarios, gather the needed employee and roster facts, and produce preliminary compliance guidance for review against official Fair Work sources.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/au-modern-award-payroll-auditor) <br>
-- [Fair Work Commission awards search](https://www.fwc.gov.au/agreements-awards/awards/find-award) <br>
-- [Fair Work Ombudsman Pay and Conditions Tool](https://calculate.fairwork.gov.au) <br>
-- [Fair Work Ombudsman](https://www.fairwork.gov.au) <br>
-- [Fair Work Commission enterprise agreement search](https://agreements.fwc.gov.au) <br>
+### Deployment Geography for Use:
 
+Australia
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown narrative with intake questions, decision trees, tables, and calculation explanations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls; users should verify current rates, classifications, and award rules against official Fair Work resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Payroll and legal guidance may be incomplete or outdated for a specific award, classification, roster, or pay period.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify rates and legal conclusions against the Fair Work Ombudsman, Fair Work Commission, or a qualified professional before making payroll or disclosure decisions.
+
+Risk: Payroll audits can involve personal or sensitive employment details.
+
+Mitigation: Collect only the facts needed for the audit and avoid sharing unnecessary employee-identifying information.
+
+Risk: Users may mistake preliminary compliance analysis for legal advice.
+
+Mitigation: Use the skill to structure review and escalate complex disputes, potential wage theft, or high-value back-pay decisions to qualified advisors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/au-modern-award-payroll-auditor)
+- [Fair Work Commission awards](https://www.fwc.gov.au/agreements-awards/awards/find-award)
+- [Fair Work Ombudsman compliance](https://www.fairwork.gov.au)
+- [Pay and Conditions Tool](https://calculate.fairwork.gov.au)
+- [Enterprise Agreement search](https://agreements.fwc.gov.au)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown or plain text guidance with calculation steps, intake questions, and official-source verification prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preliminary payroll compliance guidance that should be checked against current official Fair Work sources before payroll, disclosure, or employee-communication decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

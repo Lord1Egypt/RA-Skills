@@ -76,31 +76,6 @@ def hybrid_similarity(text_a: str, text_b: str) -> float:
     )
 
 
-def _tokenize(normalized: str) -> frozenset[str]:
-    return frozenset(
-        tok for tok in normalized.split()
-        if len(tok) > 1 and tok not in STOPWORDS
-    )
-
-
-class _PreparedText:
-    """Pre-computed text representations for fast repeated similarity checks."""
-
-    __slots__ = ("ngrams", "tokens")
-
-    def __init__(self, raw: str) -> None:
-        norm = normalize_text(raw)
-        self.ngrams = get_ngrams(norm) if norm else set()
-        self.tokens = _tokenize(norm)
-
-
-def prepared_similarity(a: _PreparedText, b: _PreparedText) -> float:
-    return max(
-        jaccard_similarity(a.ngrams, b.ngrams),
-        jaccard_similarity(a.tokens, b.tokens),
-    )
-
-
 def item_text(item: schema.SourceItem) -> str:
     parts = [item.title, item.body, item.author or "", item.container or ""]
     return " ".join(part for part in parts if part).strip()
@@ -109,19 +84,16 @@ def item_text(item: schema.SourceItem) -> str:
 def dedupe_items(items: list[schema.SourceItem], threshold: float = 0.7) -> list[schema.SourceItem]:
     """Remove near-duplicates while keeping earlier, better-scored items."""
     kept: list[schema.SourceItem] = []
-    kept_prepared: list[_PreparedText] = []
     for item in items:
         text = item_text(item)
         if not text:
             kept.append(item)
             continue
-        prep = _PreparedText(text)
         is_duplicate = False
-        for existing_prep in kept_prepared:
-            if prepared_similarity(prep, existing_prep) >= threshold:
+        for existing in kept:
+            if hybrid_similarity(text, item_text(existing)) >= threshold:
                 is_duplicate = True
                 break
         if not is_duplicate:
             kept.append(item)
-            kept_prepared.append(prep)
     return kept

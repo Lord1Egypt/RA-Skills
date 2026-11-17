@@ -1,44 +1,61 @@
-## Description: <br>
-真正的盲盒旅行规划器！用户只需提供当前位置、出发日期、天数和预算，自动推荐未去过的目的地并生成轻松行程。使用 flyai skill 查询实时信息，支持历史记录管理避免重复。主打新奇体验和随意放松。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A blind-box travel planning agent that uses a user's current city, departure date, trip length, and budget to recommend an unvisited destination and generate a relaxed itinerary.
 
-## Publisher: <br>
-[haoxuanljj](https://clawhub.ai/user/haoxuanljj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoxuanljj](https://clawhub.ai/user/haoxuanljj)
 
-## Use Case: <br>
-External users use this skill to generate surprise travel plans from their current city, departure date, trip length, and budget. It helps an agent propose unfamiliar destinations, relaxed itineraries, budget splits, booking links, and updated Markdown trip documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated itineraries and booking summaries may include sensitive travel dates, hotel addresses, phone numbers, and confirmation numbers. <br>
-Mitigation: Avoid entering full confirmation numbers unless needed, redact sensitive details before sharing, and review generated documents before sending them to others. <br>
-Risk: The skill can store visited-city history in a local file, which may reveal travel patterns. <br>
-Mitigation: Periodically review or delete the local history file and avoid sharing it with generated itinerary documents. <br>
+## Use Case:
 
+External users use this agent to create surprise leisure travel plans, including destination selection, budget allocation, relaxed daily activities, and booking-oriented itinerary summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haoxuanljj/travel-blind-box) <br>
-- [README.md](README.md) <br>
-- [QUICKSTART.md](QUICKSTART.md) <br>
-- [TESTING.md](TESTING.md) <br>
-- [example_outputs/itinerary_example.md](example_outputs/itinerary_example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown itinerary documents, plain-text travel guidance, and optional JSON from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include travel dates, hotel addresses, booking links, booking confirmation numbers, and locally stored travel-history summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact package.json reports 3.0.0) <br>
+Risk: The skill can store travel history and produce itineraries containing booking details, confirmation numbers, hotel addresses, and transport plans.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated itineraries private, avoid entering real confirmation numbers unless necessary, and review or delete local travel history when it is no longer needed.
+
+Risk: Trip details may be sent to flyai or third-party booking services while searching for travel, lodging, attraction, weather, and transportation information.
+
+Mitigation: Use the skill only when sharing those trip details with external services is acceptable, and review third-party links before booking.
+
+Risk: Generated output may include local file paths for saved itinerary documents.
+
+Mitigation: Verify output paths before writing files and store itinerary files only in locations appropriate for sensitive travel information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haoxuanljj/skills/travel-blind-box)
+- [README](README.md)
+- [Quickstart](QUICKSTART.md)
+- [Examples](examples.md)
+- [Testing guide](TESTING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown itineraries, plain text summaries, JSON budget allocations, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include third-party booking links, local output file paths, and locally stored travel history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

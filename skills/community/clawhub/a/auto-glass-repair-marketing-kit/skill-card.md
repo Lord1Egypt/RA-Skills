@@ -1,46 +1,55 @@
-## Description: <br>
-Generates marketing campaigns, advertising assets, website copy, schema markup, review sequences, referral programs, and fleet outreach materials for auto glass shops with built-in AGSC, ADAS, Nevada insurance, OEM glass, and FTC endorsement checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate compliance-oriented marketing content for auto glass shops, including acquisition campaigns, digital ads, website copy, JSON-LD schema, review responses, referral programs, and fleet outreach.
 
-## Publisher: <br>
-[gitflopez](https://clawhub.ai/user/gitflopez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitflopez](https://clawhub.ai/user/gitflopez)
 
-## Use Case: <br>
-Auto glass shop owners, fleet glass providers, dealer service teams, and marketing agencies use this skill to draft marketing materials that avoid common insurance, safety, endorsement, and glass-claim pitfalls. The generated materials are especially oriented toward Nevada auto glass marketing and should be reviewed before publication in other jurisdictions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States, with Nevada-specific defaults that must be localized before use elsewhere <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ads or website copy may retain Nevada-specific legal references when used in another state or locality. <br>
-Mitigation: Replace Nevada and Las Vegas defaults with the target jurisdiction's licensing, insurance, advertising, and consumer protection requirements before publication. <br>
-Risk: Generated insurance, deductible, OEM glass, ADAS recalibration, or safety statements may not match a specific shop's actual capabilities or a customer's policy. <br>
-Mitigation: Confirm licensing, AGSC certification, recalibration capability, glass sourcing, deductible language, and coverage statements against shop records, customer policy details, and qualified legal guidance. <br>
+## Use Case:
 
+Auto glass shop owners, fleet glass providers, dealerships, and marketing agencies use this skill to draft marketing assets that account for AGSC certification, ADAS recalibration disclosure, Nevada insurance rules, OEM glass claim accuracy, and review compliance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gitflopez/auto-glass-repair-marketing-kit) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
-- [Customer acquisition campaigns prompt](prompts/01-customer-acquisition-campaigns.md) <br>
-- [Digital advertising suite prompt](prompts/02-digital-advertising-suite.md) <br>
-- [Website content and schema prompt](prompts/03-website-content-schema.md) <br>
-- [Reputation and referral program prompt](prompts/04-reputation-referral-program.md) <br>
+### Deployment Geography for Use:
 
+Global, with Nevada-focused legal guidance that should be reviewed for the intended market.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured campaign copy, email and SMS drafts, ad assets, web copy, FAQ content, and JSON-LD code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated copy requires user-provided shop details, certification status, insurance billing details, glass sourcing, service area, and local legal review before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; package.json reports 1.0.0) <br>
+Risk: Generated marketing may contain legal, licensing, certification, insurance, ADAS, or glass-sourcing claims that are incorrect for a specific shop or market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before publishing, verify the shop license, AGSC status, ADAS capability, glass sourcing, insurance statements, and whether Nevada-specific rules apply to the intended market.
+
+Risk: Users may treat the Nevada-focused marketing guidance as legal advice.
+
+Mitigation: Use the skill as a marketing prompt kit and obtain attorney or compliance review for legal claims and jurisdiction-specific requirements.
+
+## Reference(s):
+
+- [Auto Glass Repair Marketing Kit on ClawHub](https://clawhub.ai/gitflopez/skills/auto-glass-repair-marketing-kit)
+- [README](artifact/README.md)
+- [Skill Source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown prompts and generated marketing assets, including ad copy, email and SMS sequences, web copy, JSON-LD schema, response templates, and outreach letters.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only release with no executable behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,63 @@
-## Description: <br>
-Multi Group Chat Manager helps an OpenClaw agent manage multiple group chats by collecting messages, maintaining local user profiles and affection scores, applying rule-based scoring, and tracking online/offline chat sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Group Chat Manager helps an OpenClaw agent manage multiple chat groups by maintaining local user profiles, affection scores, session state, and rule-based OneBot message scanning.
 
-## Publisher: <br>
-[pppig1357](https://clawhub.ai/user/pppig1357) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pppig1357](https://clawhub.ai/user/pppig1357)
 
-## Use Case: <br>
-Group administrators and agent developers use this skill to configure an OpenClaw assistant that records group-chat activity, builds local user profiles, applies group-specific affection rules, and summarizes state for follow-up interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect group-chat history and build lasting local user profiles and scores. <br>
-Mitigation: Use it only for groups you administer, give members clear notice, and configure only the intended groups. <br>
-Risk: Generated profile, affection, session, rule, and log files may contain sensitive behavioral data. <br>
-Mitigation: Restrict filesystem access to generated data and define retention, deletion, and authorization controls before operational use. <br>
-Risk: An exposed OneBot endpoint could allow unintended message access or control. <br>
-Mitigation: Keep the OneBot endpoint bound to localhost or otherwise protect it with network and access controls. <br>
+## Use Case:
 
+Community administrators and agent builders use this skill to give an OpenClaw assistant persistent local context about group members, scan session windows, and apply configurable group-rule scoring across QQ/OneBot and other supported chat channels.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pppig1357/multi-group-chat-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/pppig1357) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JSON-backed profile, affection, session, rule, and log files when its scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release metadata) <br>
+Risk: The skill handles raw group chat messages, persistent user profiles, and reputation-style affection scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in groups where members have been clearly told that messages may be collected, analyzed, and stored for these purposes.
+
+Risk: Weak consent and access-control boundaries could expose profile or score data to unintended users.
+
+Mitigation: Limit operation to trusted administrators, keep profile and affection queries private, and validate user and group IDs before use.
+
+Risk: The OneBot collector can ingest group history through an HTTP endpoint.
+
+Mitigation: Restrict OneBot to a local trusted endpoint and avoid exposing the configured API to untrusted networks.
+
+Risk: Persistent profiles and scores can accumulate sensitive or stale records.
+
+Mitigation: Add retention and deletion controls before broad deployment, and review scan results before using scores for moderation decisions.
+
+## Reference(s):
+
+- [Skill documentation](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [ClawHub skill page](https://clawhub.ai/pppig1357/skills/multi-group-chat-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local JSON profile, memory, affection-score, rule, and session-state files when the documented scripts are run.]
+
+## Skill Version(s):
+
+1.1.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

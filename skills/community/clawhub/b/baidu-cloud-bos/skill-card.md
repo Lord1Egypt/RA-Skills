@@ -1,45 +1,56 @@
-## Description: <br>
-Baidu Cloud BOS helps an agent manage Baidu Object Storage resources, including file upload, download, deletion, copying, listing, signed URLs, image processing, recursive directory transfer, and synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Cloud BOS helps agents manage Baidu Intelligent Cloud Object Storage buckets, including file upload, download, delete, copy, listing, signed URLs, image processing, recursive transfers, and sync workflows through Node.js SDK scripts or bcecmd.
 
-## Publisher: <br>
-[yangdong2398](https://clawhub.ai/user/yangdong2398) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangdong2398](https://clawhub.ai/user/yangdong2398)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent configure Baidu Cloud BOS access and perform storage operations such as object transfer, listing, signed URL generation, image processing, bucket inspection, and directory synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores Baidu Cloud access keys locally for reuse across sessions. <br>
-Mitigation: Use dedicated least-privilege or temporary credentials, keep the generated credentials file permission-restricted, and rotate or remove credentials when the skill is no longer needed. <br>
-Risk: Delete and synchronization commands can remove objects or mirror unintended changes in BOS buckets. <br>
-Mitigation: Verify bucket names, object keys, prefixes, and sync direction before execution, and require explicit confirmation for destructive or --delete operations. <br>
-Risk: Broad account keys pasted into shell commands can expose more cloud access than the task requires. <br>
-Mitigation: Avoid broad account credentials, prefer scoped credentials or STS tokens, and avoid echoing secrets in command history or logs. <br>
+## Use Case:
 
+Developers and operators use this skill to configure Baidu Cloud BOS access and perform object storage operations from an agent workflow. It is suited for managing buckets, files, signed access links, image processing, and directory sync tasks where BOS credentials and storage scope have been reviewed.
 
-## Reference(s): <br>
-- [Baidu Cloud BOS Skill API Reference](references/api_reference.md) <br>
-- [Baidu Cloud BOS Node.js SDK Documentation](https://cloud.baidu.com/doc/BOS/s/Djwvyrhiw) <br>
-- [Baidu Cloud bcecmd Documentation](https://cloud.baidu.com/doc/BOS/s/kmcn3zrup) <br>
-- [ClawHub Release Page](https://clawhub.ai/yangdong2398/baidu-cloud-bos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; the Node.js helper returns JSON for BOS operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operations can affect cloud storage state, including deletion and synchronization with --delete behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: release evidence and package.json) <br>
+Risk: BOS credentials can grant read, write, and delete access to storage data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, bucket- and prefix-scoped STS credentials where possible, avoid placing real secrets directly in shell commands, and review the credential scope before use.
+
+Risk: Recursive delete, bucket delete, and sync operations with delete flags can remove storage data.
+
+Mitigation: Manually review destructive commands before execution, confirm target bucket and prefix, and prefer backups or non-destructive listing checks before running delete workflows.
+
+## Reference(s):
+
+- [Baidu Cloud BOS API Reference](references/api_reference.md)
+- [Baidu Cloud BOS Node.js SDK Documentation](https://cloud.baidu.com/doc/BOS/s/Djwvyrhiw)
+- [Baidu Cloud bcecmd Documentation](https://cloud.baidu.com/doc/BOS/s/kmcn3zrup)
+- [ClawHub Skill Page](https://clawhub.ai/yangdong2398/skills/baidu-cloud-bos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local BOS credential configuration and may invoke Baidu Cloud storage APIs when credentials are provided.]
+
+## Skill Version(s):
+
+1.1.2 (source: package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

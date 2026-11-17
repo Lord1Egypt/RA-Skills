@@ -1,41 +1,54 @@
-## Description: <br>
-Identifies common OpenClaw AgentSkill installation, configuration, dependency, and script execution issues and guides agents through debugging and validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies and helps resolve common OpenClaw AgentSkill issues, including ClawHub installation failures, hardcoded paths, missing or poorly documented dependencies, helper script problems, and script or API integration errors.
 
-## Publisher: <br>
-[alessandropcostabr](https://clawhub.ai/user/alessandropcostabr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alessandropcostabr](https://clawhub.ai/user/alessandropcostabr)
 
-## Use Case: <br>
-Developers and operators use this skill to debug OpenClaw AgentSkills that fail to install, run scripts, document dependencies, or behave consistently across environments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Diagnostic scripts can expose file paths or dependency names from the target skill in the agent session. <br>
-Mitigation: Run the scripts only against skill directories you intend to inspect and avoid sharing diagnostic output that contains sensitive paths or environment details. <br>
-Risk: Debugging untrusted or newly installed skills may involve inspecting third-party content. <br>
-Mitigation: Use an isolated environment when diagnosing untrusted skills before promoting them to a production workspace. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alessandropcostabr/openclaw-skill-debugger) <br>
-- [Common OpenClaw skill issues](references/common-skill-issues.md) <br>
-- [OpenClaw skill debugging workflow](references/debug-workflow.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to debug, audit, and validate OpenClaw AgentSkills that fail to install, run, resolve dependencies, use portable paths, or integrate cleanly with OpenClaw APIs and telemetry.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and diagnostic findings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts may print matched file paths and dependency names from the target skill directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled hardcoded-path audit script can mishandle an untrusted target path and allow that target to influence local command execution.
+
+Mitigation: Review the skill before installation, run it only in an isolated workspace when inspecting untrusted directories, and fix scripts/check-hardcoded-paths.sh to canonicalize the target path and pass rg options before a -- terminator.
+
+Risk: Portuguese-only documentation may reduce usability for non-Portuguese users.
+
+Mitigation: Provide English documentation or confirm that intended users can work effectively with the Portuguese workflow and references.
+
+## Reference(s):
+
+- [Common OpenClaw AgentSkill Issues](references/common-skill-issues.md)
+- [OpenClaw AgentSkill Debugging Workflow](references/debug-workflow.md)
+- [OpenClaw Skill Debugger on ClawHub](https://clawhub.ai/alessandropcostabr/skills/openclaw-skill-debugger)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with diagnostic steps, shell commands, and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce audit findings and proposed fixes for a target skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

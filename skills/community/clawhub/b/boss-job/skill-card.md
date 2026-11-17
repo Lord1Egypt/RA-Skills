@@ -1,40 +1,49 @@
-## Description: <br>
-boss-job helps agents use OpenCLI to search BOSS Zhipin jobs, view job details, greet recruiters, inspect chats, and send messages through a Chrome session where the user is already logged in. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+boss-job helps job seekers use OpenCLI to search or recommend BOSS直聘 jobs, view job details, greet HR contacts, inspect chat lists and history, and send messages through a logged-in Chrome session.
 
-## Publisher: <br>
-[spyqwer1](https://clawhub.ai/user/spyqwer1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spyqwer1](https://clawhub.ai/user/spyqwer1)
 
-## Use Case: <br>
-Job seekers use this skill to search and review BOSS Zhipin roles, start recruiter conversations, review chat history, and send replies from their own logged-in account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use a logged-in Chrome session to read private BOSS Zhipin chats and send real messages from the user's account through external tooling not included in the reviewed artifact. <br>
-Mitigation: Install only if the referenced OpenCLI package, Chrome extension, and GitHub plugin are trusted; use a separate Chrome profile where practical. <br>
-Risk: Automated recruiter greetings or replies may contact the wrong person or send unintended message text. <br>
-Mitigation: Manually verify the job, recruiter or chat ID, and exact message text before allowing greet or send commands to run. <br>
+## Use Case:
 
+External job seekers use this skill to operate the BOSS直聘 OpenCLI plugin for job discovery and recruiter messaging from an authenticated Chrome browser session.
 
-## Reference(s): <br>
-- [OpenCLI](https://github.com/jackwener/opencli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenCLI, its Chrome extension, and an active Chrome login to zhipin.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill asks users to install mutable external components that operate through a logged-in Chrome session and can read or send recruiter messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the OpenCLI package, GitHub plugin repository, and Chrome extension source are trusted; verify recipients and message text before using greet or send, and avoid automatic or bulk messaging.
+
+## Reference(s):
+
+- [OpenCLI](https://github.com/jackwener/opencli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenCLI commands that act through a logged-in Chrome session.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

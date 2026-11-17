@@ -1,42 +1,60 @@
-## Description: <br>
-导购专家，回答用户购物相关问题，并给购买链接；当用户咨询购物问题、价格或优惠活动时，支持通过关键词或京东、淘宝、天猫商品链接搜索价格、优惠券和购买链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A shopping assistant that answers product, price, coupon, and deal questions and returns purchase links for JD, Taobao, and Tmall using keyword or product-link queries.
 
-## Publisher: <br>
-[zachariah-77](https://clawhub.ai/user/zachariah-77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zachariah-77](https://clawhub.ai/user/zachariah-77)
 
-## Use Case: <br>
-External shopping users and agents use this skill to search Mainland China e-commerce listings, compare prices, find coupons, and return purchase links for product keywords or submitted item URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Mainland China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping keywords, product URLs, and the optional LINKBOT_API_KEY are sent to linkbot-api.linkstars.com. <br>
-Mitigation: Install only when sending that shopping data to the external service is acceptable, and use a dedicated LINKBOT_API_KEY for commission attribution. <br>
-Risk: Without a valid LINKBOT_API_KEY, the service may use a default configuration rather than attributing commissions to the user. <br>
-Mitigation: Configure LINKBOT_API_KEY from the provider before use when commission attribution matters. <br>
+## Use Case:
 
+External users in Mainland China use this skill to search products, compare prices, find coupons or subsidies, and convert product links into purchase links. It is intended for shopping recommendations and deal lookup across supported Chinese e-commerce platforms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zachariah-77/linkbot) <br>
-- [Haohuo Service Homepage](https://www.haohuo.com) <br>
-- [Linkbot API Endpoint](https://linkbot-api.linkstars.com) <br>
+### Deployment Geography for Use:
 
+Mainland China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with product summaries, prices, coupon details, and purchase links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are formatted from an external API response; each platform parser returns up to five items.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Shopping queries, product links, and the configured API key are sent to linkbot-api.linkstars.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user is comfortable sending shopping data to the provider, and avoid submitting sensitive product links or private account information.
+
+Risk: The skill returns affiliate purchase links that may influence buying decisions and commission attribution.
+
+Mitigation: Disclose the affiliate-link behavior when relevant and encourage users to verify final price, coupon, and seller details before purchase.
+
+Risk: The skill depends on the Python requests package installed through pip3.
+
+Mitigation: Install in an isolated Python environment and review or pin the dependency before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zachariah-77/skills/linkbot)
+- [Publisher profile](https://clawhub.ai/user/zachariah-77)
+- [Service homepage](https://www.haohuo.com)
+- [Linkbot API provider](https://linkbot-api.linkstars.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with product details, prices, coupon information, and purchase links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, network access, the requests package, and optionally LINKBOT_API_KEY for user-attributed affiliate links.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

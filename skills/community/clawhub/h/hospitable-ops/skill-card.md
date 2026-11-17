@@ -1,45 +1,54 @@
-## Description: <br>
-Operate, debug, and automate Hospitable via its Public API with a read-first workflow for properties, reservations, calendars, and non-price calendar controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate, debug, and automate Hospitable through its Public API using a read-first workflow, safe write verification, and non-price calendar controls.
 
-## Publisher: <br>
-[jiangwill2023](https://clawhub.ai/user/jiangwill2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangwill2023](https://clawhub.ai/user/jiangwill2023)
 
-## Use Case: <br>
-External operators, developers, and automation builders use this skill to inspect Hospitable properties, reservations, and calendars, then plan or apply controlled non-price calendar changes with delayed verification. It is intended for Hospitable account workflows where authenticated API access and human approval for writes are available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The write helper can make broad authenticated Hospitable API requests beyond the documented calendar-only workflow. <br>
-Mitigation: Require human approval for every non-GET request, keep writes limited to documented non-price calendar actions, and verify the exact endpoint, method, and body before execution. <br>
-Risk: The skill relies on a Hospitable token and may export reservation or calendar data. <br>
-Mitigation: Use the least-privileged token available, never expose the token in chat or logs, and protect exported JSON files that contain account, reservation, or calendar details. <br>
-Risk: Calendar writes may be asynchronous, so immediate readback can misrepresent whether a change succeeded. <br>
-Mitigation: Wait after accepted writes, re-read the same date window, and compare operational fields before relying on the result. <br>
-Risk: Changing HOSPITABLE_BASE_URL could direct authenticated requests away from Hospitable's official API. <br>
-Mitigation: Keep HOSPITABLE_BASE_URL pinned to Hospitable's official API base URL unless a trusted operator explicitly approves a different endpoint. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Hospitable properties, reservations, and calendars, verify API behavior, and apply controlled non-price calendar operations such as blocks or check-in/check-out restrictions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangwill2023/hospitable-ops) <br>
-- [Hospitable Public API v2 base URL](https://public.api.hospitable.com/v2/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON request or response excerpts, and operational status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read helpers return a statusCode/body JSON envelope; write workflows should report the tested object and date, acceptance or rejection, delayed readback, conclusion, and remaining gap.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: A Hospitable token could be sent to an unintended host if the base URL is overridden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly scoped Hospitable token and set HOSPITABLE_BASE_URL only when the destination is fully trusted.
+
+Risk: The write probe can perform broader raw API writes than the documented calendar-only safety posture.
+
+Mitigation: Review write requests before execution, limit direct use to confirmed non-price calendar operations, and verify effects with delayed readback.
+
+## Reference(s):
+
+- [Hospitable Public API v2 endpoint](https://public.api.hospitable.com/v2/)
+- [Hospitable Ops ClawHub page](https://clawhub.ai/jiangwill2023/skills/hospitable-ops)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports current status, tested object and date, accepted or rejected request, delayed readback, operational conclusion, and the largest remaining gap.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

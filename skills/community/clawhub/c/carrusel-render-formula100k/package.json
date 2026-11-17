@@ -1,0 +1,13 @@
+{
+  "name": "carrusel-render-formula100k",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Render carousel scripts to PNG slides using the creator's FORMULA 100K brandkit",
+  "main": "export.js",
+  "scripts": {
+    "export": "node export.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.42.0"
+  }
+}

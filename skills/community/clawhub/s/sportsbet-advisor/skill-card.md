@@ -1,42 +1,52 @@
-## Description: <br>
-Provide informed opinions and educated guesses on sports bets from Sportsbet, using current and historical data, with a confidence level that does not exceed 95% and a betting-risk disclaimer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides informed Sportsbet wagering opinions by researching current and historical sports data, predicting a potential outcome, and including a capped confidence level and betting-risk disclaimer.
 
-## Publisher: <br>
-[TVDOfficial](https://clawhub.ai/user/TVDOfficial) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tvdofficial](https://clawhub.ai/user/tvdofficial)
 
-## Use Case: <br>
-External users use this skill to research a sports bet, compare current and historical evidence, and receive an educated guess with a bounded confidence level. The skill is intended for casual betting research, not reliable gambling advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce confidence-scored betting picks from shallow web-search heuristics. <br>
-Mitigation: Treat outputs as casual research only and verify odds, facts, team news, and injury reports from authoritative sources before acting. <br>
-Risk: Users may over-rely on the skill's educated guesses for gambling decisions. <br>
-Mitigation: Keep the required disclaimer visible, cap confidence levels at 95%, and avoid presenting predictions as reliable or guaranteed outcomes. <br>
-Risk: The helper script may save generated betting suggestions locally. <br>
-Mitigation: Review locally saved suggestion files before sharing or reusing them, and remove stale recommendations after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TVDOfficial/sportsbet-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/TVDOfficial) <br>
+## Use Case:
 
+External users can use this skill to request research-backed opinions on specific Sportsbet wagers, including current form, historical trends, confidence levels, and responsible-betting disclaimers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown analysis with a confidence level and disclaimer; optional JSON bet suggestions from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Confidence levels are capped at 95%; recommendations should direct users to verify odds and facts from authoritative sources.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Web-search-based betting advice can be inaccurate, incomplete, or financially misleading.
+
+Mitigation: Require the responsible-betting disclaimer, cap confidence below absolute certainty, and have users verify facts and odds before acting.
+
+Risk: The bundled script saves recommendations for later reuse and hints at automation outside a direct user request.
+
+Mitigation: Review the skill before installation or execution, keep saved recommendations under user control, and do not connect outputs to betting automation unless intentionally configured with full awareness of financial risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tvdofficial/skills/sportsbet-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown narrative advice; optional JSON records from the bundled upcoming-bets script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Confidence levels must not exceed 95%; responses must include a betting-risk disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

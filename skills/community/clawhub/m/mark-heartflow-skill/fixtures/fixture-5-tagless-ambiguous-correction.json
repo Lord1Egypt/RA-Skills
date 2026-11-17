@@ -1,0 +1,25 @@
+{
+  "description": "Fixture 5-tagless: Ambiguous correction WITHOUT metadata.type/tags — a correction that could target one of two records. Tests whether the system flags ambiguity or silently picks one.",
+  "method_note": "No metadata.type or tags passed. Natural-language only.",
+  "entries": [
+    {
+      "id": "mem-t5-001",
+      "content": "Remember that John's favorite color is blue.",
+      "timestamp": "2026-06-01T10:00:00Z"
+    },
+    {
+      "id": "mem-t5-002",
+      "content": "Remember that John's favorite color is red.",
+      "timestamp": "2026-06-02T10:00:00Z"
+    }
+  ],
+  "expected": {
+    "question": "Does mem-t5-002 supersede mem-t5-001, and is the ambiguity handled?",
+    "design_answer": "AMBIGUOUS — a bare correction with no target identity cannot be safely applied. Should require review or keep both with a conflict flag.",
+    "expected_active_ids": [
+      "mem-t5-001",
+      "mem-t5-002"
+    ],
+    "note": "If the system silently replaces blue with red, it loses the earlier record without evidence the correction was intended for it. Both records preserved + conflict flag = honest handling."
+  }
+}

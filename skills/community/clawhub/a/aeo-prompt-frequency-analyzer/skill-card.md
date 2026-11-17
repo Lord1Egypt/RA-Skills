@@ -1,40 +1,57 @@
-## Description: <br>
-Analyzes what search queries Gemini uses when answering a prompt by running it multiple times with Google Search grounding and reporting frequency distributions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes what search queries Gemini uses when answering a prompt by running it multiple times with Google Search grounding and reporting query frequency distribution.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-Developers, marketers, and search/AEO analysts use this skill to study which web search queries Gemini tends to issue for a given prompt and compare query frequency across repeated runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the user-provided prompt to Gemini with Google Search grounding, so prompts may leave the local environment. <br>
-Mitigation: Avoid prompts containing secrets, credentials, confidential data, or regulated personal information. <br>
-Risk: The example command retrieves a Gemini API key from a macOS Keychain item named nano-banana-pro. <br>
-Mitigation: Verify that the Keychain item contains the intended Gemini API key and prefer a dedicated or restricted key for this workflow. <br>
-Risk: Repeated concurrent API calls can consume Gemini quota or create unexpected billing. <br>
-Mitigation: Keep run counts and concurrency modest, and monitor quota and billing during analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, AEO analysts, and search strategy teams use this skill to study the web search queries Gemini generates for a prompt and compare how often each query appears across repeated runs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON analysis output, with shell command guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GEMINI_API_KEY and network access to the Gemini API; supports configurable run count, model, concurrency, and output format.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts are sent to Google's Gemini API for analysis.
+
+Mitigation: Use this skill only with prompts that are appropriate to send to Google-hosted services.
+
+Risk: The analyzer requires a Gemini API key and the example retrieves it from a named macOS Keychain service.
+
+Mitigation: Use a dedicated, revocable API key and verify the Keychain service name before running the command.
+
+Risk: Repeated concurrent runs can consume quota or hit rate limits.
+
+Mitigation: Keep concurrency at or below the documented default guidance and choose a run count appropriate for the account quota.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psyduckler/skills/aeo-prompt-frequency-analyzer)
+- [Gemini GenerateContent API endpoint used by the analyzer](https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text report or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports unique search queries with frequency percentages, raw counts, and top referenced sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,1 +1,2 @@
-- Clarify pre-seeded default measurement types in README and SKILL.md
+- Merge pull request #2 from patello/migrate-weight-to-measure
+- Migrate body weight to measurement system, single source of truth

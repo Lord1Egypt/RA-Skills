@@ -1,45 +1,64 @@
-## Description: <br>
-Design, build, and deploy AI agents with architecture patterns, framework selection, memory systems, and production safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agents helps developers design, debug, evaluate, and harden framework-agnostic AI agents, including loops, tools, memory, context budgets, cost controls, escalation, security, and production rollout.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, builders, and operators use this skill to design agent systems, choose frameworks, implement memory and tool patterns, define behavior for teams, and review agent security before deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an unsafe debugging suggestion to expose chain-of-thought for visibility. <br>
-Mitigation: Use structured traces, tool logs, rubric scores, and short summaries instead. <br>
-Risk: Agent implementations based on these examples may perform external messages, payments, deletes, deployments, or broad file and account access without sufficient oversight. <br>
-Mitigation: Require human approval for external messages, payments, deletes, deployments, and broad file or account access. <br>
+## Use Case:
 
+Developers and engineers use this skill to design, debug, evaluate, secure, and operate AI agents. It provides guidance for agent loop design, tool schemas, memory strategy, cost and latency controls, evals, human approval, and production readiness.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/agents) <br>
-- [Architecture patterns and memory](artifact/architecture.md) <br>
-- [Framework comparison](artifact/frameworks.md) <br>
-- [Use cases by role](artifact/use-cases.md) <br>
-- [Implementation patterns and code](artifact/implementation.md) <br>
-- [Security boundaries and risks](artifact/security.md) <br>
-- [Evaluation and debugging](artifact/evaluation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; does not declare tools, MCP servers, credentials, or executable workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can maintain persistent local records and migrate legacy agent folders automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where persistent local memory is acceptable, and require explicit approval before writes, deletions, or migrations.
+
+Risk: The skill may read shared project, server, finance, contact, and profile notes under configured Clawic data paths.
+
+Mitigation: Use it only in environments where those local records are appropriate context, and review access expectations before installation.
+
+Risk: Credential-related material could be encountered while designing agents or processing pasted configuration.
+
+Mitigation: Store credential pointers only, never secret values, and strip secrets from prompts, environment files, traces, and tool configuration before saving.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/agents)
+- [Clawic Agents skill page](https://clawic.com/skills/agents)
+- [Architecture guidance](artifact/architecture.md)
+- [Tool design guidance](artifact/tools.md)
+- [Memory design guidance](artifact/memory-design.md)
+- [Evaluation guidance](artifact/evaluation.md)
+- [Security guidance](artifact/security.md)
+- [Production guidance](artifact/production.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with optional code blocks, shell commands, tables, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain local agent notes under configured Clawic data paths when used as an installed skill.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

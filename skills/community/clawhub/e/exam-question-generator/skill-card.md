@@ -1,44 +1,59 @@
-## Description: <br>
-Reads a knowledge map, generates three differentiated practice exam sets, writes structured questions, and renders a standalone HTML review file with answers and explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates three differentiated sets of Chinese exam practice questions from a knowledge_map.json file, writes structured questions, renders a tabbed HTML exam page, and guides the learner to the next study step.
 
-## Publisher: <br>
-[zhoucha833-lang](https://clawhub.ai/user/zhoucha833-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhoucha833-lang](https://clawhub.ai/user/zhoucha833-lang)
 
-## Use Case: <br>
-Students and exam-preparation users use this skill to turn a prior knowledge map into three practice exams: basic reinforcement, integrated ability, and final simulation. The generated HTML output supports self-review with answers, explanations, scoring, and next-step study guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated practice questions may include incorrect or misleading content from broad prompts or weak source material. <br>
-Mitigation: Review the generated questions, answers, and explanations before using them for study or sharing them with others. <br>
-Risk: Sensitive study notes can appear in generated question files and HTML output. <br>
-Mitigation: Avoid using sensitive source notes unless they are appropriate to include in local generated outputs. <br>
-Risk: Regenerating questions can replace earlier generated question files. <br>
-Mitigation: Keep a separate copy of any generated exam output that must be preserved before asking the skill to regenerate questions. <br>
+## Use Case:
 
+Learners, tutors, and education-focused agents use this skill to turn an existing exam knowledge map into staged practice exams covering basic review, applied understanding, and final simulation. It is intended for workspace use where generated question JSON and HTML files can be reviewed before sharing.
 
-## Reference(s): <br>
-- [Difficulty Rules](artifact/references/difficulty-rules.md) <br>
-- [Question Formats](artifact/references/question-formats.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhoucha833-lang/exam-question-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [JSON and standalone HTML with a short plain-text follow-up prompt] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes .exam-session/questions.json and an exam-questions-YYYYMMDD.html file; reruns can replace earlier generated question outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.json release.version) <br>
+Risk: Generated HTML can include unescaped content from notes, knowledge-map values, or generated question text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with trusted or reviewed study materials until inserted HTML content is escaped or sanitized.
+
+Risk: The rendered exam page loads third-party KaTeX scripts from a CDN.
+
+Mitigation: Bundle trusted local assets or use integrity-protected CDN resources before sharing generated HTML in sensitive environments.
+
+Risk: Reruns may overwrite prior generated exam outputs.
+
+Mitigation: Use explicit invocation phrases and confirm the desired output before rerunning the question generation workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhoucha833-lang/skills/exam-question-generator)
+- [Difficulty Rules](artifact/references/difficulty-rules.md)
+- [Question Format Rules](artifact/references/question-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML, guidance]
+
+**Output Format:** [Structured questions.json plus a rendered HTML exam page and a concise follow-up message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates three 100-point practice exam sets with answers, explanations, scoring metadata, and tabs for basic, intermediate, and advanced practice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

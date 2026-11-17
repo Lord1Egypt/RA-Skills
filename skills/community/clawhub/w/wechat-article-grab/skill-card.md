@@ -1,46 +1,62 @@
-## Description: <br>
-抓取微信文章正文、搜索公众号、查文章列表、爆款查询. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抓取微信公众号文章、搜索公众号、文章列表、爆款查询与分析。触发场景：mp.weixin.qq.com 链接、微信公众号文章、公众号文章分析。
 
-## Publisher: <br>
-[one2agi](https://clawhub.ai/user/one2agi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[one2agi](https://clawhub.ai/user/one2agi)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve WeChat public-account article text, search accounts, list recent articles, compare accounts or URLs, and inspect trending article metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle WeChat public-platform session cookies and tokens. <br>
-Mitigation: Use a dedicated low-privilege account, avoid full personal browser cookies, rotate or revoke cookies after use, and treat scripts/skill.env as sensitive. <br>
-Risk: Article URLs, queries, and account data may be sent to third-party services. <br>
-Mitigation: Install only if that data sharing is acceptable for the intended use case and avoid submitting sensitive article or account data. <br>
-Risk: The security evidence flags an intentionally insecure no-SNI TLS bypass client. <br>
-Mitigation: Remove or replace the bypass with normally verified HTTPS before trusting results or credentials around this skill. <br>
+## Use Case:
 
+External users and developers can use this skill to fetch WeChat Official Account article text, search accounts and article lists, compare accounts or URLs, and inspect trending article metrics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/one2agi/skills/wechat-article-grab) <br>
-- [Environment Configuration Guide](env-guide.md) <br>
-- [Priority and Fallback Reference](references/priority.md) <br>
-- [mptext API Dashboard](https://down.mptext.top/dashboard/api) <br>
-- [WeChat Public Platform](https://mp.weixin.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text and Markdown-style summaries, with optional saved article content or configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include article titles, extracted body text, account search results, article lists, comparison summaries, trend metrics, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may require sensitive WeChat session cookies for fallback paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the mptext API path with a fresh, low-privilege, short-lived API key; avoid pasting full browser cookie exports into an agent or storing them in the skill directory unless the session exposure is acceptable.
+
+Risk: A packaged API key is present in the artifact configuration file.
+
+Mitigation: Remove the packaged key before use and replace it with a user-controlled short-lived key.
+
+Risk: Unsafe network handling could expose credentials or reach unintended hosts.
+
+Mitigation: Restrict fetches to trusted WeChat-related hosts and avoid the trends path until TLS verification is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/one2agi/skills/wechat-article-grab)
+- [Environment guide](env-guide.md)
+- [Priority and fallback reference](references/priority.md)
+- [mptext API dashboard](https://wechat.faiz-world.com/dashboard/api)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com/)
+- [Sogou WeChat search](https://weixin.sogou.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or Markdown command output, with article content, account metadata, article lists, comparisons, and trend summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use API keys or WeChat cookies and may return partial article text when upstream anti-crawling or validation limits extraction.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,234 @@
+1.0.39
+
+Release/version change metadata for this skill set lives here, not in individual skill files.
+
+- PlanetScale CLI v0.350.0
+  - Reviewed all three published release items and the full `v0.349.0...v0.350.0` source comparison on 2026-11-06; upstream tag commit `38ad9f38efba35085dd84b6fa29a2b2c5e5a6964`.
+  - Documented `show` as an alias for role, Neki data-topology, and MySQL routing-rules `get`; canonical examples retain `get`. Replaced all three affected complete help fences and retained superseded capture provenance.
+  - Documented parent-specific help recovery for unknown non-runnable subcommands, including JSON `UNKNOWN_COMMAND` next steps, without automatically executing suggestions or changing the existing runnable-group warning.
+  - Documented system-CA role connection URLs (`sslmode=verify-full&sslrootcert=system`), libpq 16+ support and unsupported-consumer explicit-CA compatibility, including non-libpq drivers, preserving hostname verification and secret-handling gates. Included standalone references and Neki role guidance. Linked exact CLI minima from version-neutral workflows, retained local TLS fallbacks for selective installs, and scoped earlier capture/unchanged-output claims to exclude the three recaptured `get` fences.
+  - Reviewed pinned upstream build/release tools and Go 1.26.10 changes; these do not change this repository's runtime scripts, authentication, workflows, scheduler, or tests.
+  - Verified official macOS arm64 archive SHA-256 `aa17d5be045b30665d8ffaaf42159254fe3259186763c47304260af4f6aa56df` against the published checksum and GitHub asset digest; extracted binary equality verified. Captured 15 complete affected parent/child/alias help/version surfaces in an empty credential-free HOME/config/cwd with network denied and the upstream update notifier disabled. Only terminal padding/trailing whitespace normalized; exact source, capture, and verification evidence is outside the clone.
+  - Proposed package 1.0.39, unpublished. No live PlanetScale API calls, credential use, merge, package release/publication, or installation by this refresh.
+
+- PlanetScale CLI v0.349.0
+  - Reviewed all 14 published release items and the full `v0.348.0...v0.349.0` source comparison on 2026-11-04; upstream tag commit `05bded8a8fdbcda5b4ee47dd015460a20bb8a238`.
+  - Added Postgres weekly maintenance window and event inspection, approved window changes/rescheduling, UTC/API JSON contracts, pagination, deadlines, and read-back gates; immediate Postgres/Neki maintenance remains separately approved.
+  - Added hidden, feature-gated, irreversible dedicated-read-replica detach guidance with dependency, copied-role, recovery, force-approval, and asynchronous readiness checks. No automatic PgBouncer/replica cleanup or promotion.
+  - Added emergency backup source pairing and eligibility checks, promote/demote sizing and omission semantics, engine limits, permission/cost/availability review, and pending-state verification.
+  - Added Neki live query/transaction/connection actions with fresh matching action IDs and approval; documented top permission lookup limits, selected-row/blocker ID controls, read-only replay, and incomplete-result warnings.
+  - Recorded visible vtctl advanced children, Neki branch/profile/router/admin change-request endpoint migration (CLI command names unchanged), and nullable service-token last-used IP/ASN organization metadata. Compatibility minima are in installed references; original unchanged help attribution remains intact.
+  - Reviewed upstream CI security and three dependency bumps; no skill command changes arise from those four items. No workflow, scheduler, refresh-engine, runtime script, or test changes.
+  - Verified the official macOS arm64 archive SHA-256 `1bdad82d821ab4eb65207672b38dfa063006460226715cb0937588ec671179a6` and extracted binary equality. Complete affected help/parent/child/alias captures use an empty credential-free HOME/XDG/config/cwd, `NO_COLOR=1`, and `TERM=dumb`; only terminal padding and trailing whitespace normalized. Replay/source manifest, per-item dispositions, and validation evidence are outside the repository.
+  - Proposed package 1.0.38, unpublished. No live PlanetScale API calls, credential use, package release/publication, or installation by this refresh.
+
+- Security audit remediation (#48), pending package 1.0.37
+  - Replaced deletion-refusal, branch-name collision, and database-quota troubleshooting shortcuts with scoped read-only inspection. Demotion is supported by the reviewed CLI source, but is a separately approved lifecycle action, not a deletion/protection bypass.
+  - Added standalone destructive-operation gates for exact-target approval, dependencies, availability, verified recovery, and read-back; aligned destructive examples with explicit organization scope and documented pending database-deletion requests.
+  - Corrected umbrella coverage and credential-persistence overclaims. Authentication guidance, all upstream help/provenance files, runtime scripts, and selective-install layout are unchanged.
+  - Added portable offline documentation-argv, authentication-safety, standalone gate-mirror, and release-export regressions. Help/auth byte preservation is checked against the issue baseline for this patch rather than frozen for future CLI refreshes. See docs/security-audit-48.md for report completeness, finding dispositions, source evidence, and validation limits.
+  - Initial local preparation was delivered as source in PR #49; package 1.0.37 remains the proposed candidate. No package tag, release, registry publication, installation, or remote rescan was performed by this remediation. Hosted scan clearance awaits a future approved publication.
+
+- PlanetScale CLI v0.348.0
+  - Reviewed the official release and full compare `v0.347.0...v0.348.0` on 2026-10-22; upstream tag commit `68b31936882cf9636ac2c43942cb5173afd530b6`.
+  - Added read-only Neki router-session coverage for `branch connections show/top`, incompatible engine-flag rejection, router/backend JSON metadata, incomplete-result warnings, and missing-target versus disabled-live-connections troubleshooting. Neki kill actions remain unsupported.
+  - Migrated preferred sidecar parameter workflows from deprecated `branch sidecar` to the owning configuration profile's `--parameters sidecar.<name>=<value>`, retaining exact-target approval, catalog, update-requirement, and asynchronous verification gates. Legacy help remains available; sidecar requests remain in branch-wide inventories.
+  - Documented human INTERNAL columns and JSON `internal` for Postgres/Neki parameter inventories, including embedded router catalogs and PgBouncer JSON model metadata; false alone is not proof of mutability or approval.
+  - Corrected readiness-wait timeout classification to `schema_refreshing`; both that and API `schema_snapshot_not_ready` are retryable action-required states. Preserve bounded read-only readiness recovery and never automatically repeat the refresh write.
+  - Verified the official macOS arm64 archive against published SHA-256 `528bb8951d4d93f7ca869850787163f5d49ba405acc58d4146b9b3427e83b7e7`. Replaced complete branch-parent, connections-parent, and connections-top help fences from the binary; only trailing whitespace normalized. Other checked fences retain original unchanged provenance.
+  - Pending package 1.0.36. No live PlanetScale operation, release, or registry publication by this refresh.
+
+- PlanetScale CLI v0.347.0
+  - Reviewed the official release and full compare `v0.346.0...v0.347.0` on 2026-10-20; upstream tag commit `56d0f2d307395009f395e447d23c6c653bdb3005`.
+  - Added Neki configuration-profile `--read-only-replicas` create/update guidance, per-shard 0–8 semantics, omission versus explicit-zero removal, independent voting replicas, capacity approval, asynchronous verification, and profile/change output contracts.
+  - Documented missing default-role credentials as an action-required JSON response and nonzero exit, preserving explicit approval before credential creation/reset and rejecting automatic execution of suggested force commands.
+  - Verified the official macOS arm64 archive against published SHA-256 `7f4dc8dbda90b5a7591c9ec07c0914e7eac378b0f352d7c661c71b2154edec5d`. Captured 20 credential-free help/version invocations and compared 17 complete stored fences, including the params alias. Replaced both affected complete create/update help blocks, normalizing only trailing whitespace; remaining checked fences are unchanged.
+  - Review remediation: distinguish typed profile-change replica deltas from branch-wide raw JSON; require non-zero pre-write and successful-change corroboration before claiming zero-count removal, and distinguish completion from success. Cover human and JSON default-role proposals, stdout parsing with action-required exit 1 distinct from generic fatal exit 2, and explicit-org approval gates. Align Neki replica routing in focused skills, umbrella guidance, and README.
+  - Re-verification: compared 21 complete stored help fences against the same checksum-verified v0.347.0 binary, plus the parameters/params alias; explicit per-file provenance retains original unchanged captures and distinguishes branch-wide from profile changes. All 22 skill frontmatters, 9 shell syntax checks, mirrored scripts, and whitespace checks passed.
+  - Pending package 1.0.35. No live PlanetScale operation, release, or registry publication by this refresh.
+
+- PlanetScale CLI v0.346.0
+  - Reviewed the official release and full compare `v0.345.0...v0.346.0` on 2026-10-14; upstream tag commit `41b7bcf2b34f853154388a49aaab96653aa1eb11`.
+  - Documented the REQUIRES UPDATE column for Postgres branch and Neki configuration-profile, sidecar, and admin parameter inventories, including the Neki admin and sidecar `show` views that embed those catalogs.
+  - Preserved the JSON contract: `requires_update` is a nullable string, not the table's boolean; distinguish update requirements from `restart` and `required`, preserve unknown values, and gate parameter writes on a fresh supported catalog instead of treating a missing field or column position as authorization.
+  - Re-executed 21 credential-free help/version commands and compared 17 complete stored fences line-for-line after normalizing only trailing whitespace, plus three `params` aliases. All help surfaces were unchanged; no hand-edited capture excerpts or invented production output.
+  - Verified the official macOS arm64 archive against its published SHA-256 `6e8a3f064f45ad29f187ba3dda24ad3a45328bd11a200b89c200d06bdc5c3a6b`. Pending package 1.0.34; no release or registry publication by this refresh.
+- PlanetScale CLI v0.345.0
+  - Reviewed the official release and full compare `v0.344.0...v0.345.0` on 2026-10-13; upstream tag commit `2e74e6ee283dc5c709a274c178fabef0beddf467`.
+  - Added guarded per-deploy-request aggressive cutover for create/update (edit alias), create omission versus explicit update payloads, API-side state restrictions, partial multi-setting failure handling, and command-specific read-back paths.
+  - Added MySQL/Vitess schema-refresh readiness guidance: immediate lookup, 2-second polling, a 2-minute readiness bound, actionable snapshot timeout JSON, and preserved polling failures.
+  - Captured complete affected help plus related parents, aliases, deployment inspection, database policy, and schema-snapshot context from the official macOS arm64 binary in a credential-free environment; verified published archive SHA-256 `d774eb31cd764dee4c01a1671f3ea17e1d3cb9b8aefe829e82cce2c3358fe028` and binary/archive equality. Unchanged fences retain their earlier provenance.
+  - Review remediation: require a known boolean enabled state for every Postgres extension catalog entry before toggling, and accurately describe omission of unknown non-target state. The CLI's schema-readiness wait timeout means the refresh was accepted; an API-supplied code alone does not. Recovery uses at most 30 read-only checks, 4-second spacing, and a 2-minute overall bound. Operational examples use canonical update, quick-reference retry/aggressive-cutover writes carry diagnosis/approval gates, and branch-parent capture provenance is explicit. Exact help and compatibility-alias audit coverage remain unchanged.
+  - Package version remains 1.0.33 pending and unpublished; the v0.344.0 refresh below is preserved.
+- PlanetScale CLI v0.344.0
+  - Reviewed the official release and cumulative compare `v0.343.0...v0.344.0` on 2026-10-10; upstream tag commit `102ccd0c1b9dae901acc03c5e5218c4eb6d79b36`.
+  - Added guarded Postgres branch extension toggles and Vitess VTGate parameter rollouts, with asynchronous verification, pagination, concurrent-write warnings, and draft cleanup boundaries.
+  - Added approved failed-operation retry guidance distinct from unblocking a deploy queue; updated Postgres parameter filters, keyspace size-unit and staff-managed-limit handling, and device-login/keyring diagnostics.
+  - Re-captured complete affected help surfaces and re-ran related parents, subcommands, and aliases from the official macOS arm64 archive; verified published SHA-256 `1b59b271590d9b49dd52aafbb0e5c0cd788b44c00a5627d6487cd0d18815cf53`.
+- PlanetScale CLI v0.342.0 and v0.343.0
+  - Reviewed both upstream releases and the cumulative compare `v0.341.0...v0.343.0` on 2026-10-03.
+  - Added guarded VTTablet/MySQL keyspace-parameter inventory, set/reset, rollout inspection, and pending-change cancellation guidance.
+  - Switched dedicated PostgreSQL read-replica workflows and role targeting to the canonical `dedicated-read-replica` / `--dedicated-read-replica` names while documenting the hidden deprecated compatibility command.
+  - Updated unknown-command behavior and routing-rule warning guidance.
+  - Re-captured every affected help surface from the checksum-verified v0.343.0 macOS arm64 release binary; archive SHA-256 verified as `98672666af6ca95e58a60f51fccebbb75294e428fc37d96ee372cac1b322acfe`.
+- PlanetScale CLI v0.341.0
+  - Reviewed the upstream release and compare `v0.340.0...v0.341.0` on 2026-09-30.
+  - Added guarded MoveTables guidance for `--ignore-source-keyspace`, recorded removal of the top-level `data-imports` family, and updated the MySQL/Vitess `subscriptions` skip-hint guidance.
+  - Re-captured every affected help surface from the checksum-verified v0.341.0 macOS arm64 release binary; archive SHA-256 verified as `422dbd3568e62c2167c0aa629658ce31cedd5a3595d8c801eff88f7653bc4323`.
+- PlanetScale CLI v0.340.0
+  - Reviewed the upstream release and compare `v0.339.0...v0.340.0` on 2026-09-30.
+  - Restored guarded keyspace disk-storage management for `grow`, `disable`, and `shrink`, including raw-byte limits, 1 GiB-aligned shrink targets, API-side strategy validation, and read-back verification.
+  - Updated guidance for the deprecated top-level `workflow` and `data-imports` families, visible `branch vtctl` discovery, and hidden advanced vtctl children.
+- PlanetScale CLI v0.339.0
+  - Reviewed the upstream release and compare `v0.338.0...v0.339.0` on 2026-09-28.
+  - Adopted canonical `pscale branch vtctl` commands while retaining the documented `vtctld` compatibility alias; added MoveTables `start`/`stop`, all-keyspace listing semantics, and distinct `--keep-data` cleanup guidance.
+  - Updated routing-rule replacement gates and JSON retry guidance, plus D1 import metadata exclusion, verified TLS, explicit-`--sqlite` verification, and case-insensitive UUID verification behavior.
+  - Re-captured or line-for-line re-verified every affected help surface from the checksum-verified v0.339.0 macOS arm64 release binary; archive SHA-256 verified as `1e396701709cd49d1d1cccca252e2bd81f224b2830ca189a84a16983bde182e8`.
+- PlanetScale CLI v0.338.0
+  - Reviewed the upstream release and compare `v0.337.0...v0.338.0` on 2026-09-21.
+  - Updated Neki configuration-profile guidance for one-extension enable/disable operations: the CLI now validates `can_enable`, preserves the other enabled extensions, and applies the resulting complete set through the profile update API.
+  - Re-verified the configuration-profile parent plus extensions parent/enable/disable help surfaces as line-for-line unchanged after normalizing only trailing whitespace, using the checksum-verified v0.338.0 macOS arm64 release binary; archive SHA-256 verified as `0dcfa711053118d5996e136c6efad0b78f88144c532930ced014df74d8830ead`.
+- PlanetScale CLI v0.337.0
+  - Reviewed the upstream security release and compare `v0.336.0...v0.337.0` on 2026-09-19.
+  - Updated D1 import guidance to require a current CLI for untrusted exports after the upstream CHECK-expression parser fix; command help was unchanged.
+- PlanetScale CLI v0.336.0
+  - Reviewed the upstream release and compare `v0.335.0...v0.336.0` on 2026-09-19.
+  - Added guarded external-MySQL keyspace creation with compatibility dry runs, secret-safe credential handling, TLS verification, lint-error gates, external size discovery, and post-create readiness verification.
+  - Added keyspace `max_rollout` inspection and guarded `--max-rollout` updates, Neki configuration-profile extension-set replacement, and guidance to prefer `branch vtctld move-tables` over the legacy `workflow` family.
+  - Re-captured every affected help surface from the checksum-verified v0.337.0 macOS arm64 release binary; archive SHA-256 verified as `4660b4606d0232076b7e54166d15e68e3030d59c2ae22b8b1c47677e506521d7`.
+- PlanetScale CLI v0.335.0
+  - Reviewed the upstream release and compare `v0.334.0...v0.335.0` on 2026-09-17.
+  - Added Neki-aware `pscale inspect` targeting with `--shard`, `--router`, and combinable replica routing, including one-target-at-a-time guidance and exclusion of Neki internal schemas from customer-facing results.
+  - Added Neki inherited-role pairings plus role connection lookup through router, shard, and replica combinations, while preserving the Postgres-only restrictions for named read-only replicas and PgBouncers.
+  - Re-captured the changed `pscale role create` and `pscale role get` help surfaces and re-verified their parent plus representative inspect help from the checksum-verified v0.335.0 macOS arm64 release binary; archive SHA-256 verified as `706ecf9f4084d4d5af257e92f0fe3395ed0ddd69b543604881a27d6dd5daf612`.
+- PlanetScale CLI v0.334.0
+  - Reviewed the upstream release and compare `v0.333.0...v0.334.0` on 2026-09-16.
+  - Added branch-wide Neki change-request inventory, filtering, detail, and guarded cancellation guidance alongside the existing per-resource queues.
+  - Added MoveTables workflow discovery plus JSON `next_steps` lifecycle guidance, including API-shape preservation and VDiff/traffic-transition safety gates.
+  - Expanded metrics reports to cover Neki shard/router workload, latency, resources, storage, WAL, locks, health, capacity, and backup sections.
+  - Captured every new or changed help surface from the checksum-verified v0.334.0 macOS arm64 release binary; archive SHA-256 verified as `16b156fa969edb36ec6ebde28b40165cbeb928ae07ba97110d3359fb588245bd`.
+- PlanetScale CLI v0.333.0
+  - Reviewed the upstream release and compare `v0.332.0...v0.333.0` on 2026-09-15.
+  - Added guarded Vitess keyspace throttler guidance for reading `enabled`/`threshold`, explicitly enabling or disabling throttling, changing the non-negative replication-lag threshold, and verifying the persisted settings.
+  - Corrected stale disk-autoscaling guidance: the `--disk-scaling-strategy` and `--max-storage` flags present in v0.331.0 are absent from the v0.332.0 and v0.333.0 release sources and from the v0.333.0 binary, so the skill no longer recommends those unsupported writes.
+  - Re-captured `keyspace update-settings` and re-verified the unchanged `keyspace` and `keyspace settings` help surfaces from the checksum-verified v0.333.0 macOS arm64 release binary; archive SHA-256 verified as `6544cc6fa5d82dc78744579cc3a54204c1cfde352bf13ceae340bd7df5799771`.
+- PlanetScale CLI v0.332.0
+  - Reviewed the upstream release and compare `v0.331.0...v0.332.0` on 2026-09-11.
+  - Added standalone Neki operational guidance for database creation, logs, data topology, shards, configuration profiles, routers, sidecars, admin config, maintenance, backup restore sizing, shell, SQL, and roles.
+  - Updated cross-engine database creation, branch maintenance, backup restore, shell/SQL, and role guidance where existing skills would otherwise omit Neki behavior.
+  - Re-captured complete affected help surfaces from the checksum-verified v0.332.0 macOS arm64 release binary; archive SHA-256 verified as `61eadf71c9d5e6423587fbf01fd698800d8a944775a06519a1c2ac38fcb89287`.
+- PlanetScale CLI v0.331.0
+  - Reviewed the upstream release and compare `v0.330.0...v0.331.0` on 2026-09-10.
+  - Added guarded Vitess keyspace disk-autoscaling guidance for `grow`, `disable`, and `shrink`, raw-byte storage limits, explicit non-interactive updates, and read-back verification.
+  - Added the complete `keyspace settings` and `keyspace update-settings` help surfaces and re-verified the unchanged `keyspace` parent from the checksum-verified v0.331.0 macOS arm64 release binary; archive SHA-256 verified as `bb554ba88b2dd05bff9b181e9ce64c0ebe8de96076187049d09e2cc36cce0b02`.
+- PlanetScale CLI v0.330.0
+  - Reviewed the upstream release and compare `v0.329.0...v0.330.0` on 2026-09-08.
+  - Updated Cloudflare D1 import guidance for SQLite-only function/operator rewrites in `CHECK` and generated expressions, plus `SQLITE_FUNCTION` lint failures for unsupported forms.
+  - Re-verified the complete `import`, `import d1`, and all seven D1 subcommand help surfaces as line-for-line unchanged from the stored v0.324.0 captures after normalizing only trailing whitespace, using the v0.330.0 macOS arm64 release binary; archive SHA-256 verified as `33acbc6e88d214f4e19b1df78c69e698357df081e868047267564b45470c6ced`.
+- PlanetScale CLI v0.329.0
+  - Reviewed the upstream release and compare `v0.328.0...v0.329.0` on 2026-09-05.
+  - Added standalone PostgreSQL read-only replica lifecycle guidance for list/show/create/update/delete, including sizing, regions, parameter floors, asynchronous readiness, and destructive-delete gates.
+  - Added webhook authorization-header configuration and complete webhook lifecycle guidance with secret-safe invocation, explicit clearing, test-event impact, and read-back verification.
+  - Added PostgreSQL logical-database targeting for `pscale shell` and replica-count selection for PostgreSQL backup restores.
+  - Re-captured every affected parent/subcommand help surface from the checksum-verified v0.329.0 macOS arm64 release binary; archive SHA-256 verified as `2cc70050c1f7397ed1a5c272a5d1bbe1217803966717991466057ffc806c2f7b`.
+- PlanetScale CLI v0.328.0
+  - Reviewed the upstream release and compare `v0.327.0...v0.328.0` on 2026-08-29.
+  - Added organization SSO status, enable/configure/disable, directory-sync, and email-domain verification workflows, including JSON `next_steps`, portal handling, wait behavior, destructive gates, and mutually exclusive IdP role controls.
+  - Corrected Postgres role connection targeting to use a read-only replica name rather than a region slug.
+  - Added guarded Lookup Vindex lifecycle guidance and documented the corrected owner/lookup keyspace meanings plus the new default that keeps owned-vindex backfill running after copy.
+  - Re-captured every affected parent/subcommand help surface from the checksum-verified v0.328.0 macOS arm64 release binary; archive SHA-256 verified as `12bba36e569c2b91bba43d3dafa5d273c2f6dc95725d7dad0cbb3f2726c01b3f`.
+- PlanetScale CLI v0.327.0
+  - Reviewed the upstream release and compare `v0.325.0...v0.327.0` on 2026-08-26.
+  - Added standalone billing guidance for payment-method and invoice commands, with sensitive-data handling, pagination, and destructive payment-method deletion gates.
+  - Added guidance for Insights query detail/summary/traffic-budgets and recommendation show, specialized metrics query/table/tablet/tag commands, backup protected-status updates, database region discovery, organization update/team management, service-token show, switchover history, and SQL table/vertical output.
+  - Re-captured affected help surfaces from the checksum-verified v0.327.0 macOS arm64 release binary; archive SHA-256 verified as `955886f8e533cfe9b57979d5b9463b49620c41001c2654c2dc56da6495dd341d`.
+- PlanetScale CLI v0.326.0
+  - Reviewed the upstream release and compare as part of `v0.325.0...v0.327.0` on 2026-08-26.
+  - Updated PostgreSQL PITR branch-creation guidance for restore-point backup resolution and the optional `--from` behavior when `--restore` is combined with `--restore-point`.
+  - Added the billing payment-method command family coverage that first appeared in v0.326.0.
+- PlanetScale CLI v0.325.0
+  - Reviewed the upstream release and compare `v0.324.0...v0.325.0` on 2026-08-25.
+  - Added guarded PostgreSQL point-in-time recovery guidance for `pscale branch create --restore-point`, including source-branch inspection, RFC 3339 timestamps, explicit approval, readiness waiting, and post-create verification.
+  - Added the complete `pscale branch create` help surface and re-verified the unchanged parent help from the checksum-verified v0.325.0 macOS arm64 release binary.
+- PlanetScale CLI v0.324.0
+  - Reviewed the upstream release and compare `v0.323.0...v0.324.0` on 2026-08-22.
+  - Added binary-native agent bootstrap guidance for `pscale --skill` and `pscale agent-guide --skill`, including JSON-mode output behavior.
+  - Added Postgres role connection-target guidance for branch replicas, regional read-only replicas, and PgBouncers, including mutually exclusive flags and PgBouncer port 6432.
+  - Documented role `status` and `expires_at` output and the target-specific credential handling and not-found behavior.
+  - Verified that the release artifact still prints root help and exits zero for a bare unknown root token, so automation guidance now requires expected-output validation instead of trusting the exit code alone.
+  - Re-captured 145 complete command help surfaces from the checksum-verified v0.324.0 macOS arm64 release binary, including the new `role get` surface and previously combined PgBouncer references.
+- PlanetScale CLI v0.323.0
+  - Reviewed the upstream release and compare `v0.322.0...v0.323.0` on 2026-08-21.
+  - Added Postgres branch maintenance run and extension-catalog guidance.
+  - Added query-pattern report list/show/delete workflows alongside download.
+  - Added organization member list/show/update/remove workflows and Vitess password show/update metadata management.
+  - Updated deploy-request update/edit alias guidance, Postgres role default lookup, SQL destructive guards, and D1 import hardening notes.
+  - Re-captured every affected parent/subcommand help surface from the checksum-verified v0.323.0 macOS arm64 release binary.
+- PlanetScale CLI v0.322.0
+  - Reviewed the upstream release and compare `v0.321.0...v0.322.0` on 2026-08-20.
+  - Added branch rename/deletion-protection updates and guarded Postgres primary switchovers.
+  - Added Vitess database aggressive-cutover status/enable/disable and deploy-queue unblocking after failed deploys or reverts.
+  - Added Insights error-fingerprint and anomaly detail workflows, including full-fingerprint lookup and correlated-query interpretation.
+  - Added standalone PostgreSQL Traffic Control inventory and guarded budget/rule management, including the new budget list and fingerprint filter.
+  - Re-captured every affected parent/subcommand help surface from the checksum-verified v0.322.0 macOS arm64 release binary.
+- PlanetScale CLI v0.321.0
+  - Reviewed the upstream release and compare `v0.320.0...v0.321.0` on 2026-08-19.
+  - Added standalone `pscale-metrics` guidance for historical series, current values, and engine-aware grouped performance reports across JSON, CSV, and human output.
+  - Documented time-range exclusivity, positive-step validation, metric/dimension filtering, output interpretation, and correlation with Insights and live inspection.
+  - Re-captured the complete metrics parent/subcommand help surface from the checksum-verified v0.321.0 macOS arm64 release binary.
+- PlanetScale CLI v0.320.0
+  - Reviewed upstream releases v0.319.0 and v0.320.0 plus compare `v0.317.0...v0.320.0` on 2026-08-18; no v0.318.0 release exists.
+  - Added standalone read-only maintenance schedule/list/show/window guidance for Vitess Enterprise databases, including IDs, pending-version/deadline interpretation, week-of-month output, and JSON-first review.
+  - Added database-level Vitess migration throttler show/update guidance, distinguishing future deploy defaults from per-deploy and vtctld throttlers and requiring explicit approval plus post-write verification.
+  - Documented non-zero propagation for dump cursor/worker failures and re-captured all affected maintenance/database-throttler help from the checksum-verified v0.320.0 macOS arm64 release binary.
+- PlanetScale CLI v0.317.0
+  - Reviewed upstream releases v0.316.0 and v0.317.0 plus compares `v0.315.0...v0.316.0` and `v0.316.0...v0.317.0` on 2026-08-14.
+  - Added deploy-request queue, deployment, operation, review, storage-readiness, force-cutover, and per-deploy throttler workflows.
+  - Added keyspace deletion and live keyspace-routing-rule inspection/replacement guidance with destructive-write approval and post-write verification requirements.
+  - Re-captured the complete affected keyspace, vtctld, and deploy-request help surfaces from the checksum-verified v0.317.0 macOS arm64 release binary.
+- PlanetScale CLI v0.315.0
+  - Reviewed the upstream release and compare `v0.314.0...v0.315.0` on 2026-08-13.
+  - Added query execution-sample and query-tag list/show/summary workflows, including required fingerprint/keyspace drill-down, friendly tag-name disambiguation, privacy cautions, and attribution guidance.
+  - Added guarded schema-recommendation dismissal guidance with explicit approval, reason, force, and post-write verification requirements.
+  - Updated Cloudflare D1 migration guidance for deferred/replay-safe foreign-key application, cyclic/case-mismatched/schema-qualified references, parent-primary-key defaults, and positional composite-key typing.
+  - Re-captured the complete affected Insights help surface from the checksum-verified v0.315.0 macOS arm64 release binary.
+- PlanetScale CLI v0.314.0
+  - Reviewed the upstream release and compare `v0.313.0...v0.314.0` on 2026-08-12.
+  - Added standalone dedicated PostgreSQL PgBouncer list/show/create/resize/status/cancel/delete guidance, including target, size, replicas-per-cell, parameter, asynchronous-state, no-op, and destructive-delete safety.
+  - Documented the now-visible `pscale deploy-request deploy --strategy serial|parallel` flag and the need to confirm database eligibility before selecting parallel deployment.
+  - Re-captured affected help from the checksum-verified v0.314.0 macOS arm64 release binary.
+- PlanetScale CLI v0.313.0
+  - Reviewed the upstream release and compare `v0.312.0...v0.313.0` on 2026-08-11.
+  - Added database settings show/update and PostgreSQL IP-restriction CRUD guidance, with engine-specific flags, explicit boolean values, pre-write inspection, and destructive-delete checks.
+  - Added scheduled backup policy CRUD, Vitess read-only-region add/update/remove, and authentication-attempt audit export workflows.
+  - Re-captured affected help from the checksum-verified v0.313.0 macOS arm64 release binary; dependency/security updates and the hidden Cloudflare billing transport change required no public skill command additions.
+- PlanetScale CLI v0.312.0
+  - Reviewed releases v0.310.0, v0.311.0, and v0.312.0 plus upstream compare `v0.309.0...v0.312.0` on 2026-08-06.
+  - Added Vitess production-branch VTGate show, resize, status, cancel, fixed-count, and autoscaling guidance.
+  - Added Vitess read-only-region discovery, region-scoped dump, and region-scoped password workflows, including reader defaults and mutually exclusive routing flags.
+  - Re-captured the affected help from the checksum-verified v0.312.0 macOS arm64 release binary; v0.311.0 only disabled AUR packaging and required no skill workflow change.
+- PlanetScale CLI v0.308.0
+  - Reviewed the upstream release and compare `v0.307.0...v0.308.0` on 2026-08-04.
+  - Documented tablet throttler app throttle/unthrottle rules, expiry/ratio controls, checked-metric assignment, and the new omit-to-preserve behavior for `--enabled`.
+  - Documented preservation of raw API error codes in JSON output, including the `schema_mutation_blocked` retry guidance.
+  - Re-captured the affected throttler help from the checksum-verified release binary; reviewed the hidden Cloudflare billing flags and clearer connection not-found errors as changes requiring no public skill workflow additions.
+- PlanetScale CLI v0.307.0
+  - Reviewed the upstream release and compare `v0.306.0...v0.307.0` on 2026-07-25.
+  - Added standalone `pscale-insights` guidance for production query statistics, errors, anomalies, and schema recommendations.
+  - Added standalone `pscale-inspect` guidance for bounded, read-only MySQL/Vitess and PostgreSQL diagnostics, exact shard/database targeting, and combined JSON reports.
+  - Documented output-format limits, engine-specific skipped checks, `pg_stat_statements` requirements, and safe handling of recommendation DDL.
+- PlanetScale CLI v0.306.0
+  - Reviewed the upstream release and compare `v0.305.0...v0.306.0` on 2026-07-24.
+  - Added guidance for the hardened destructive-SQL gate, including MySQL executable comments.
+  - Documented project `.pscale.yml` key allowlisting and safer OAuth help/override handling.
+  - Updated D1 conversion guidance for validated defaults, foreign-key action tails, and malformed trailing SQL.
+- PlanetScale CLI v0.305.0
+  - Reviewed upstream release and compare `v0.304.0...v0.305.0` on 2026-07-23.
+  - Updated D1 migration guidance for inferred boolean `CHECK` literal conversion and supported `strftime()` current-time/default mappings.
+  - Documented that unsupported `strftime()` formats/modifiers on inferred non-text columns are omitted rather than guessed and therefore require schema review.
+  - Fixed Agent Skills collection discovery by moving the orchestrator under `planetscale-cli-skills/`, linking all standalone skills, and bundling referenced helper scripts with selective installs.
+- PlanetScale CLI v0.304.0
+  - Reviewed upstream compare `v0.303.0...v0.304.0` on 2026-07-21.
+  - Added Postgres branch parameter discovery plus combined size, replica, and parameter change requests.
+  - Added asynchronous resize status/wait/cancel lifecycle guidance and restart/cost safety checks.
+  - Recorded the corrected root `--api-url` behavior for `pscale auth check`; no existing auth workflow required content changes.

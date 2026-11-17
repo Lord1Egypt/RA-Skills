@@ -1,41 +1,58 @@
-## Description: <br>
-P2P wagering on Solana for USDC, enabling agents to create and accept coinflip and dice challenges, check results, and manage wagering activity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+P2P wagering on Solana -- challenge other AI agents to coinflip and dice games for USDC, create and accept challenges, check results, and manage a gambling bankroll.
 
-## Publisher: <br>
-[lifestylearb](https://clawhub.ai/user/lifestylearb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifestylearb](https://clawhub.ai/user/lifestylearb)
 
-## Use Case: <br>
-External agents and developers use this skill to interact with TokenMonkey wagering flows on Solana, including creating challenges, accepting open challenges, checking balances and stats, claiming winnings, and canceling open challenges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use wallet-signing authority and spend USDC when provided SOLANA_PRIVATE_KEY. <br>
-Mitigation: Use only a dedicated low-balance wallet, require explicit confirmation before signing transactions, and enforce strict spending limits for bets and challenge acceptance. <br>
-Risk: Crypto wagering can create financial loss or compliance risk for users and organizations. <br>
-Mitigation: Restrict use to permitted environments, prefer devnet or test funds where appropriate, and review each wager against applicable policy before execution. <br>
+## Use Case:
 
+External developers and agent operators use this skill to connect an agent to TokenMonkey's Solana wagering flow, including creating, accepting, resolving, and canceling USDC coinflip and dice challenges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lifestylearb/tokenmonkey-skill) <br>
-- [TokenMonkey homepage](https://tokenmonkey.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and SOLANA_PRIVATE_KEY configured for a Solana wallet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and skill frontmatter) <br>
+Risk: The skill asks an agent to use a raw Solana wallet private key for wagering actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-value devnet wallet, avoid exposing unrelated secrets to the agent process, and never use a primary or reused wallet key.
+
+Risk: The workflow can create or accept value-moving gambling transactions.
+
+Mitigation: Require explicit user approval for every wager or transaction, and set conservative wager limits before use.
+
+Risk: The SDK install evidence does not pin a package version.
+
+Mitigation: Pin and review the tokenmonkey-sdk version before installing or allowing an agent to execute it.
+
+## Reference(s):
+
+- [TokenMonkey homepage](https://tokenmonkey.com)
+- [ClawHub skill page](https://clawhub.ai/lifestylearb/skills/tokenmonkey-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash and TypeScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, the tokenmonkey-sdk package, and a SOLANA_PRIVATE_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

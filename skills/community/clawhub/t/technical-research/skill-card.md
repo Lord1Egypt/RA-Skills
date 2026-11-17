@@ -1,40 +1,53 @@
-## Description: <br>
-Provides systematic technical-domain research that produces Markdown reports covering concept analysis, industry intelligence, solution comparison, essence integration, and final report consolidation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs systematic technical-domain research and produces structured Markdown reports covering concept analysis, industry intelligence, solution comparison, essence integration, and final consolidation.
 
-## Publisher: <br>
-[linshengli](https://clawhub.ai/user/linshengli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linshengli](https://clawhub.ai/user/linshengli)
 
-## Use Case: <br>
-Developers, engineers, and technical teams use this skill to research a technology domain before selecting tools, learning a new area, comparing competing approaches, or preparing internal technical sharing material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses live web sources, so generated research may include outdated, low-quality, or misleading source material. <br>
-Mitigation: Review cited sources and dates before using the report for technical or business decisions. <br>
-Risk: The workflow writes multiple Markdown files into a topic-specific local directory. <br>
-Mitigation: Run it in an appropriate workspace and avoid sensitive topic names when local paths or filenames matter. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to research a technical field for technology selection, domain onboarding, competitive analysis, or internal knowledge sharing. It guides the agent to gather current web evidence and organize findings into reusable Markdown reports.
 
-## Reference(s): <br>
-- [ClawHub technical-research release page](https://clawhub.ai/linshengli/technical-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, diagrams, formulas, pseudocode, references, and a final consolidated report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes multiple topic-specific Markdown files under research/{topic}/ and expects live web sources for current industry intelligence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill performs live web research, so results may include stale, incomplete, or low-quality external sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited sources, dates, and selection rationale before relying on the generated research for decisions.
+
+Risk: The skill creates multiple Markdown files in a research/{topic}/ directory, which may collide with existing topic files.
+
+Mitigation: Run it in a workspace where generated research files are acceptable and check for existing files with the same topic name before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linshengli/skills/technical-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown reports with tables, code blocks, diagrams, citations, and summary sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes multiple topic-scoped Markdown files under research/{topic}/ and expects live web research for current project, paper, and blog data.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Boot Resume detects interrupted OpenClaw sessions after gateway restart or system wake and schedules automatic continuation events without checkpoint logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Boot Resume detects interrupted OpenClaw sessions after gateway restart or system wake and schedules a continuation event so the agent can resume from session history.
 
-## Publisher: <br>
-[Belugary](https://clawhub.ai/user/Belugary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[belugary](https://clawhub.ai/user/belugary)
 
-## Use Case: <br>
-Developers and operators use this skill to resume OpenClaw agent sessions that were interrupted by gateway restarts, crashes, or system wake events. It is intended for environments where automatic continuation after interruption is desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs persistent automation that can automatically resume agent work without fresh user approval. <br>
-Mitigation: Use it only when automatic resume is explicitly desired, and narrow the agent or session scope or add confirmation for agents that can perform high-risk actions. <br>
-Risk: The release evidence advises review before installing and notes missing systemd template files. <br>
-Mitigation: Inspect or supply the expected systemd template files before enabling the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to recover OpenClaw agent sessions that were interrupted by gateway restarts, crashes, OOM kills, SIGKILL, or system wake events. It is intended for environments where automatic continuation of in-progress agent work is acceptable.
 
-## Reference(s): <br>
-- [Boot Resume ClawHub Listing](https://clawhub.ai/Belugary/boot-resume) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report which sessions were resumed or that no interrupted sessions were found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata; artifact frontmatter says 1.1.0) <br>
+Risk: Persistent hooks can automatically resume agent sessions after restarts or wake events without fresh user confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the systemd integration only in environments where automatic continuation is intended; otherwise use manual invocation and inspect the installed service and drop-in files before enabling them.
+
+Risk: The recovery script reads recent OpenClaw session history to decide whether work was interrupted.
+
+Mitigation: Limit installation to trusted user environments and review local session retention and access controls before deployment.
+
+Risk: Incomplete uninstall or failed install could leave copied scripts, service files, or drop-ins active.
+
+Mitigation: After uninstall, verify the user service, gateway drop-in, copied script, skill directory, and any partial files have been removed.
+
+## Reference(s):
+
+- [Boot Resume ClawHub Skill Page](https://clawhub.ai/belugary/skills/boot-resume)
+- [Belugary ClawHub Publisher Profile](https://clawhub.ai/user/belugary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May install user-level systemd hooks and write operational logs under /tmp/openclaw.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,5 +1,43 @@
 # Changelog
 
+## [0.31.0](https://github.com/getlarge/themoltnet/compare/openclaw-skill-v0.30.1...openclaw-skill-v0.31.0) (2026-09-11)
+
+
+### Features
+
+* **auth:** split task write and management authority ([a8e63ca](https://github.com/getlarge/themoltnet/commit/a8e63ca6335cad94ebe6a008971bb7bb6110b860))
+* **tasks:** authorize executor task creation ([e98a45f](https://github.com/getlarge/themoltnet/commit/e98a45f0b1520da159fafbe30856d8e97044aa5c))
+
+## [0.30.1](https://github.com/getlarge/themoltnet/compare/openclaw-skill-v0.30.0...openclaw-skill-v0.30.1) (2026-09-11)
+
+
+### Bug Fixes
+
+* **cli:** make OAuth2 the default authentication path ([086f990](https://github.com/getlarge/themoltnet/commit/086f990e74170966c1097fdb3438117005dd52df))
+* **cli:** prefer OAuth2 over agent keys ([e5aa870](https://github.com/getlarge/themoltnet/commit/e5aa870460a331da860cde22316c7a6743fd2bef))
+
+## [0.30.0](https://github.com/getlarge/themoltnet/compare/openclaw-skill-v0.29.0...openclaw-skill-v0.30.0) (2026-08-14)
+
+
+### Features
+
+* **auth:** replace vouchers with signed registration ([2d39a41](https://github.com/getlarge/themoltnet/commit/2d39a418bb3558cd93eac0d3f05c53e9df5de34d))
+* **clients:** migrate signed registration consumers ([2d5f660](https://github.com/getlarge/themoltnet/commit/2d5f660c0bb3e98552d2953ae17cfde5439a7a98))
+
+## [0.29.0](https://github.com/getlarge/themoltnet/compare/openclaw-skill-v0.28.0...openclaw-skill-v0.29.0) (2026-08-01)
+
+
+### Features
+
+* **auth:** make credential scopes enforceable ([14a2772](https://github.com/getlarge/themoltnet/commit/14a2772661586ef8d4f1c8956ecac9a1c766c96f))
+* **auth:** make credential scopes real per endpoint ([4da7e14](https://github.com/getlarge/themoltnet/commit/4da7e1420d708be7772279de111ccf4f1b68a63b))
+* **auth:** request explicit OAuth scopes ([5356801](https://github.com/getlarge/themoltnet/commit/535680175a784b6d4c45e33c654a6b576bb8cabb))
+
+
+### Bug Fixes
+
+* **auth:** restore human profile for MCP ([1811fc5](https://github.com/getlarge/themoltnet/commit/1811fc52c09e11a9069c526be3a84ed9c9cc3822))
+
 ## [0.28.0](https://github.com/getlarge/themoltnet/compare/openclaw-skill-v0.27.1...openclaw-skill-v0.28.0) (2026-04-21)
 
 

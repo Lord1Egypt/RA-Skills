@@ -151,7 +151,7 @@ python3 scripts/mps_cos_download.py \
 
 ```json
 {
-  "TaskId": "2600007696-WorkflowTask-b8dac8f326214464acef88afef9002d4",
+  "TaskId": "2600007696-WorkflowTaREDACTED-SECRET",
   "Status": "FINISH",
   "CreateTime": "2025-05-21T01:02:51Z",
   "FinishTime": "2025-05-21T01:02:52Z",

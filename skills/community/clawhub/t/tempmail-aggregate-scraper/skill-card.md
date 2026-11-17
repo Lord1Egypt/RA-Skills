@@ -1,43 +1,56 @@
-## Description: <br>
-Helps agents create temporary email addresses and retrieve mailbox message lists and individual message details through MaxHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+临时邮箱服务助手。支持生成临时邮箱、获取邮件列表和邮件详情。
 
-## Publisher: <br>
-[new-ironman](https://clawhub.ai/user/new-ironman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[new-ironman](https://clawhub.ai/user/new-ironman)
 
-## Use Case: <br>
-Developers, testers, and users can use this skill to create disposable email addresses, check incoming messages, and read message details for privacy-preserving signups or email-verification testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner marked this release suspicious because under-scoped instructions and unrelated fallback guidance could make an agent act outside a clear temporary-email workflow. <br>
-Mitigation: Review before installing, prefer explicit temporary-mail prompts, and verify routing behavior before relying on the skill. <br>
-Risk: The skill requires a sensitive MaxHub API key and may process temporary-mail contents through the upstream service. <br>
-Mitigation: Use it only if you trust MaxHub with the configured API key and mailbox contents, keep credentials out of outputs, and rotate or revoke the key if exposure is suspected. <br>
+## Use Case:
 
+External users, developers, and test teams use this skill to create disposable email addresses and retrieve mailbox messages for privacy-preserving registration flows or email-verification testing.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/new-ironman/tempmail-aggregate-scraper) <br>
-- [MaxHub website](https://www.aconfig.cn) <br>
-- [Email Operations API](references/api-email.md) <br>
-- [Parameter Mapping Reference](references/param-mappings.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with optional shell commands and API result summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MAXHUB_API_KEY and curl; credential values should not be included in responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.6.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can retrieve mailbox contents, which may expose verification codes or other email data to the agent and MaxHub service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with disposable mailboxes created for the current task, and fetch message contents only when disclosure is intended.
+
+Risk: The security evidence flags unrelated Douyin/Xiaohongshu routing and inaccurate read-only claims in the artifact instructions.
+
+Mitigation: Review, remove, or explain the unrelated routing before installation, and verify temp-mail API paths against the bundled references before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/new-ironman/skills/tempmail-aggregate-scraper)
+- [MaxHub API Website](https://www.aconfig.cn)
+- [Email Operations API](artifact/references/api-email.md)
+- [Parameter Mapping Reference](artifact/references/param-mappings.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and curl command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize API response data; API key values should not be revealed.]
+
+## Skill Version(s):
+
+3.6.1 (source: server evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,72 @@
-## Description: <br>
-AdsPower profile operation via adspower-browser CLI. open/launch/start browser or profile, environment, config profile, AdsPower; create/update/delete/list profiles; groups, tags, proxies; kernel download/list; client patch; API check-status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for using the adspower-browser CLI to operate AdsPower browser profiles, groups, tags, proxies, browser kernels, client patches, and API status checks.
 
-## Publisher: <br>
-[adspower](https://clawhub.ai/user/adspower) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adspower](https://clawhub.ai/user/adspower)
 
-## Use Case: <br>
-Developers and operators use this skill to manage AdsPower browser profiles through the adspower-browser CLI, including opening, creating, updating, deleting, listing, sharing, and closing profiles. It also helps build commands for groups, tags, proxies, browser kernels, client patches, fingerprint settings, cookies, user agents, and API status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through sensitive or destructive AdsPower profile operations, including deleting profiles, wiping cache, closing all profiles, sharing profiles, changing proxies, exporting cookies, and changing fingerprints. <br>
-Mitigation: Require explicit user confirmation before those operations and review generated commands before execution. <br>
-Risk: AdsPower API keys, passwords, cookies, 2FA keys, and proxy credentials may be exposed if pasted into shared logs, prompts, or transcripts. <br>
-Mitigation: Use environment variables such as ADS_API_KEY where possible, redact secrets from transcripts and logs, and avoid sharing credential values with the agent unless required for the immediate task. <br>
+## Use Case:
 
+Developers and operators use this skill to turn AdsPower profile-management requests into adspower-browser CLI commands for opening profiles, managing groups, tags, proxies, cookies, fingerprints, kernels, patches, and API availability.
 
-## Reference(s): <br>
-- [AdsPower Official Website](https://www.adspower.com/) <br>
-- [Browser Profile Management](references/browser-profile-management.md) <br>
-- [Tool Intent Map](references/tool-intent-map.md) <br>
-- [Fingerprint Config](references/fingerprint-config.md) <br>
-- [Proxy Management](references/proxy-management.md) <br>
-- [User Proxy Config](references/user-proxy-config.md) <br>
-- [Browser Tag Management](references/browser-tag-management.md) <br>
-- [Group Management](references/group-management.md) <br>
-- [Browser Kernel Management](references/browser-kernel-management.md) <br>
-- [Application Management](references/application-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CLI commands and JSON parameter snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AdsPower profile, proxy, fingerprint, cookie, API key, and runtime command details supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: The skill can operate on real AdsPower profiles, cookies, proxies, account credentials, and profile-sharing targets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the adspower-browser package and publisher are trusted, and require explicit confirmation before cookie export, profile sharing, profile deletion, cache clearing, close-all, or other account-impacting operations.
+
+Risk: API keys and credentials may be exposed when passed directly in command-line arguments or JSON payloads.
+
+Mitigation: Prefer environment variables or other secret-handling mechanisms, avoid putting API keys in shell history, and redact sensitive values from logs or shared transcripts.
+
+Risk: Profile update, delete, cache-clear, proxy, and fingerprint commands can make persistent changes to browser environments.
+
+Mitigation: Review target profile IDs, group IDs, proxy IDs, and command JSON before execution, and use list or status commands first when identifiers are uncertain.
+
+## Reference(s):
+
+- [AdsPower Official Website](https://www.adspower.com/)
+- [Tool Intent Map](references/tool-intent-map.md)
+- [Browser Profile Management](references/browser-profile-management.md)
+- [Group Management](references/group-management.md)
+- [Application Management](references/application-management.md)
+- [Proxy Management](references/proxy-management.md)
+- [Browser Tag Management](references/browser-tag-management.md)
+- [Browser Kernel Management](references/browser-kernel-management.md)
+- [Client Patch Management](references/client-patch-management.md)
+- [User Proxy Config](references/user-proxy-config.md)
+- [Fingerprint Config](references/fingerprint-config.md)
+- [Browser Kernel Config](references/browser-kernel-config.md)
+- [Browser Kernel Download Management](references/browser-kernel-download-management.md)
+- [UA System Version](references/ua-system-version.md)
+- [Chrome TLS Cipher Suites](references/chrome-tls-cipher.md)
+- [Country Code](references/country-code.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI aliases, command parameters, profile identifiers, proxy settings, fingerprint settings, API-key handling guidance, and confirmation prompts for risky operations.]
+
+## Skill Version(s):
+
+1.0.11 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

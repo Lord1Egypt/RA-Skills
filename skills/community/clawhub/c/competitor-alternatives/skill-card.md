@@ -1,42 +1,59 @@
-## Description: <br>
-Helps create competitor comparison and alternative pages for SEO and sales enablement across alternative, alternatives, versus, and competitor-versus-competitor formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates competitor comparison and alternatives content for SEO and sales enablement across singular alternative, alternatives list, product-versus-competitor, and competitor-versus-competitor page formats.
 
-## Publisher: <br>
-[Mrhuang09](https://clawhub.ai/user/Mrhuang09) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrhuang09](https://clawhub.ai/user/mrhuang09)
 
-## Use Case: <br>
-External marketing, SEO, product marketing, and sales enablement teams use this skill to plan and draft honest competitor comparison pages, alternative pages, comparison tables, migration sections, and supporting competitor data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated competitor positioning can include inaccurate, outdated, or legally sensitive claims. <br>
-Mitigation: Review feature, pricing, migration, and customer-quote claims against current sources and legal or compliance requirements before publishing. <br>
-Risk: The broad activation phrase may invoke the skill for many competitor-related marketing requests. <br>
-Mitigation: Use the skill only when competitive positioning is intended and confirm product, competitor, pricing, and audience context before drafting public content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Content Architecture for Competitor Pages](references/content-architecture.md) <br>
-- [Section Templates for Competitor Pages](references/templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Mrhuang09/competitor-alternatives) <br>
-- [Mrhuang09 publisher profile](https://clawhub.ai/user/Mrhuang09) <br>
+## Use Case:
 
+Marketing, growth, and sales enablement teams use this skill to plan and draft competitor comparison pages, alternative pages, comparison tables, migration sections, and competitor data files. It is intended for competitive positioning content that needs honest product comparisons and search-oriented structure.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown page copy, comparison tables, YAML competitor profiles, and prioritized page plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs emphasize honest positioning, competitor research, pricing comparisons, migration guidance, SEO targeting, and reusable competitor data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated competitor-facing claims may be inaccurate, outdated, or misleading.
+
+Mitigation: Review all feature, pricing, positioning, and migration claims against current primary sources before publishing.
+
+Risk: Competitive positioning content may create legal, brand, or customer-trust concerns if it overstates advantages or misrepresents competitors.
+
+Mitigation: Require marketing, legal, or brand review for public pages and sales collateral before release.
+
+Risk: The skill may use local product-marketing context that contains sensitive internal positioning or customer information.
+
+Mitigation: Check generated outputs for confidential details and remove unsupported customer quotes or internal-only strategy before external use.
+
+## Reference(s):
+
+- [Content Architecture for Competitor Pages](artifact/references/content-architecture.md)
+- [Section Templates for Competitor Pages](artifact/references/templates.md)
+- [ClawHub skill page](https://clawhub.ai/mrhuang09/skills/competitor-alternatives)
+- [Third-party publisher profile](https://clawhub.ai/user/mrhuang09)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown and YAML-oriented content plans, page copy, comparison tables, and competitor data structures]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on supplied product, competitor, pricing, review, and marketing context.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

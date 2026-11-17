@@ -1,0 +1,15 @@
+{
+  "topic": "SGLT2 抑制剂 vs 安慰剂对 2 型糖尿病患者 MACE（心血管死亡/非致死性心梗/非致死性卒中复合终点）影响的 Meta 分析（真实文献，3 篇 CVOT）",
+  "effect_measure": "OR",
+  "note": "真实文献四格表，经 Web 检索从 NEJM/监管文件原文抓取。EMPA-REG OUTCOME、DECLARE-TIMI 58、VERTIS-CV 三篇均有干净事件数/总数；CANVAS Program 因 NEJM 付费墙未取得事件数，本次未纳入。",
+  "studies": [
+    {"study": "EMPA-REG OUTCOME", "drug": "恩格列净", "event_exp": 490, "n_exp": 4687, "event_ctrl": 282, "n_ctrl": 2333},
+    {"study": "DECLARE-TIMI 58", "drug": "达格列净", "event_exp": 756, "n_exp": 8582, "event_ctrl": 803, "n_ctrl": 8578},
+    {"study": "VERTIS-CV", "drug": "埃格列净", "event_exp": 653, "n_exp": 5499, "event_ctrl": 327, "n_ctrl": 2747}
+  ],
+  "sources": {
+    "EMPA-REG OUTCOME": "Zinman et al. NEJM 2015;373:2117-2128 (PMC6182918 表4): 3P-MACE 490/4687 vs 282/2333, HR 0.86 (0.74-0.99)",
+    "DECLARE-TIMI 58": "Wiviott et al. NEJM 2019;380:347-357 (Diabetes Therapy Table 3): 3P-MACE 756/8582 vs 803/8578, HR 0.93 (0.84-1.03)",
+    "VERTIS-CV": "Cannon et al. NEJM 2020;383:1425-1435 (FDA DailyMed Table 9): 3P-MACE 653/5499 vs 327/2747, HR 0.97 (0.85-1.11)"
+  }
+}

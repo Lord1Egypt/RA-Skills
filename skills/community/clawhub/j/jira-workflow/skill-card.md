@@ -1,43 +1,58 @@
-## Description: <br>
-Integrates Jira Cloud project management so agents can search, create, update, transition, comment on, and inspect Jira issues, projects, and boards through the MorphixAI proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates Jira Cloud project management workflows so an agent can search, create, update, transition, and comment on issues, plus inspect projects and boards through MorphixAI-mediated Jira access.
 
-## Publisher: <br>
-[paul-leo](https://clawhub.ai/user/paul-leo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paul-leo](https://clawhub.ai/user/paul-leo)
 
-## Use Case: <br>
-Developers and project teams use this skill to manage Jira Cloud work items from an agent session, including listing projects, searching scoped JQL, creating issues, updating fields, transitioning statuses, and adding comments. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a MorphixAI API key and a linked Jira account to access Jira Cloud through a proxy. <br>
-Mitigation: Store MORPHIXAI_API_KEY securely, avoid exposing it in prompts or logs, and link only the Jira account needed for the intended workspace. <br>
-Risk: Jira actions can create issues, update fields, add comments, and transition workflow status. <br>
-Mitigation: Review target project keys, issue keys, JQL filters, field updates, comments, and status transitions before execution, especially in production Jira projects. <br>
-Risk: The security scan reported no artifact-backed concern but advised normal caution for network access, credential handling, file writes, or background behavior. <br>
-Mitigation: Review the SKILL.md before deployment and monitor actual tool behavior during first use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paul-leo/jira-workflow) <br>
-- [MorphixAI API keys](https://morphix.app/api-keys) <br>
-- [MorphixAI connections](https://morphix.app/connections) <br>
+## Use Case:
 
+Developers, project managers, and support teams use this skill to manage Jira Cloud issues and common Jira workflows from an agent session. It is useful for issue lookup, triage, creation, status transitions, comments, and daily work planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with inline tool-call examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked Jira account.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires an unpinned third-party MorphixAI plugin and proxy access that may read or change live Jira data without clear scope controls.
+
+Mitigation: Review before installing, verify or pin the MorphixAI plugin version where possible, and use a dedicated Jira account limited to the needed projects.
+
+Risk: Jira create, update, comment, and transition actions can modify production project records.
+
+Mitigation: Confirm every create, update, comment, and transition action before running it.
+
+Risk: Compromise or overuse of the MorphixAI API key or Jira connection could expose Jira access.
+
+Mitigation: Know how to rotate or revoke the MorphixAI API key and Jira connection, and revoke them when access is no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/paul-leo/skills/jira-workflow)
+- [MorphixAI API Keys](https://morphix.app/api-keys)
+- [MorphixAI Connections](https://morphix.app/connections)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and YAML-style Jira tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MORPHIXAI_API_KEY and a linked Jira account before Jira actions can run.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

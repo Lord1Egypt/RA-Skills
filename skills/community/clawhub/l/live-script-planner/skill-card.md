@@ -1,37 +1,53 @@
-## Description: <br>
-Generates professional livestream talking points, interaction plans, and closing scripts from user-provided product, goal, and livestream-type inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional livestream sales scripts, interaction plans, special-situation talking points, and pre-live checklists from product, promotion, audience, and stream-style inputs.
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-External creators, livestream operators, and commerce teams use this skill to draft ready-to-read livestream scripts for product sales, product recommendation, and brand-presentation sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious and the scan summary reports a bundled review helper that defaults to bypassing sandbox and approval protections. <br>
-Mitigation: Review before installing if the publisher or workspace is not fully trusted; use `--no-yolo` or `AUTOREVIEW_YOLO=0` for the autoreview helper, and confirm the exact target and impact before running moderation, publish, deploy, or role-change commands. <br>
+## Use Case:
 
+External creators, ecommerce teams, and marketing operators use this skill to draft structured livestream scripts for product sales, product recommendations, and brand presentations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown structured as a livestream framework, detailed script, interaction plans, special-scenario language, and pre-live checklist.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from user-supplied product details, selling points, promotional details, audience, duration, style, closing intensity, endorsements, and Q&A scenarios.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated livestream scripts may include inaccurate product claims, discount terms, or endorsements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review product facts, promotional details, and endorsement language against approved source material before using the script.
+
+Risk: Sales-oriented closing language may conflict with platform rules or advertising compliance expectations.
+
+Mitigation: Check high-pressure closing language and promotional calls to action against applicable platform policies and advertising rules before publishing.
+
+## Reference(s):
+
+- [Prompt template](artifact/prompt_template.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style structured script with sections for framework, detailed script, interaction plans, special scenarios, and pre-live checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content should be reviewed for factual claims, discounts, endorsements, platform rules, and advertising compliance before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

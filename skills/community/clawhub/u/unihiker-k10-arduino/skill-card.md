@@ -1,45 +1,62 @@
-## Description: <br>
-Use when programming Unihiker K10 board with Arduino/C++, uploading code, flashing firmware, or accessing K10 Arduino APIs for screen, sensors, RGB, audio, AI, TTS, and ASR. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when programming Unihiker K10 board with Arduino/C++, uploading code, flashing firmware, or accessing K10 Arduino APIs for screen, sensors, RGB, audio, AI, TTS, and ASR.
 
-## Publisher: <br>
-[rockets-cn](https://clawhub.ai/user/rockets-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rockets-cn](https://clawhub.ai/user/rockets-cn)
 
-## Use Case: <br>
-Developers and educators use this skill to set up an Arduino CLI workflow for Unihiker K10 boards, compile and upload Arduino/C++ sketches, troubleshoot ports, and reference K10 screen, sensor, audio, AI, TTS, and ASR APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup workflow can modify the local Arduino environment and may run an upstream Arduino CLI installer without pinning or verification. <br>
-Mitigation: Review setup.sh before use, install Arduino CLI from a pinned release or package manager when possible, and run setup steps only in an environment where Arduino configuration changes are acceptable. <br>
-Risk: Camera, speech, and face-recognition examples may process sensitive image, biometric, or audio data when adapted for real projects. <br>
-Mitigation: Add explicit consent, privacy notices, retention limits, and local data-handling safeguards before reusing those examples beyond local experimentation. <br>
+## Use Case:
 
+Developers and hardware engineers use this skill to configure Arduino tooling, compile and upload sketches, troubleshoot board connectivity, and look up Unihiker K10 Arduino APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rockets-cn/unihiker-k10-arduino) <br>
-- [Arduino API reference](references/arduino-api.md) <br>
-- [Arduino examples](references/arduino-examples.md) <br>
-- [Arduino CLI releases](https://github.com/arduino/arduino-cli/releases) <br>
-- [DFRobot Unihiker board package index](https://downloadcd.dfrobot.com.cn/UNIHIKER/package_unihiker_index.json) <br>
-- [Espressif ESP32 Arduino package index](https://dl.espressif.com/dl/package_esp32_index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Arduino/C++ code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes setup, upload, troubleshooting, offline bundle, and API reference guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Setup and flashing scripts may use unsafe installation or device-targeting shortcuts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution, avoid elevated privileges, install arduino-cli from a pinned release or trusted package manager, and explicitly specify serial ports and OTA IP addresses.
+
+Risk: Offline bundles can introduce untrusted board packages or tooling.
+
+Mitigation: Use only offline bundles from a trusted source and verify their contents before installing them.
+
+Risk: Audio, camera, and face-recognition examples can process privacy-sensitive data.
+
+Mitigation: Confirm user consent and local privacy requirements before running examples that capture audio, images, or face data.
+
+## Reference(s):
+
+- [Arduino API Reference](references/arduino-api.md)
+- [Arduino Examples](references/arduino-examples.md)
+- [Arduino CLI Releases](https://github.com/arduino/arduino-cli/releases)
+- [UNIHIKER K10 Arduino PIO Example](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_Example)
+- [UNIHIKER K10 Arduino PIO API List](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_API_List)
+- [DFRobot Gravity I2C ADS1115 ADC Module](https://www.dfrobot.com.cn/goods-1734.html)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Arduino/C++ code blocks, shell commands, PowerShell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include device-specific serial port, OTA IP address, firmware, and board package guidance.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

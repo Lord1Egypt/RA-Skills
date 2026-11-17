@@ -1,40 +1,53 @@
-## Description: <br>
-Can search and get YouTuber information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches CreatorDB for YouTube creators and retrieves channel profile, performance, content, sponsorship, and audience information.
 
-## Publisher: <br>
-[poi5305](https://clawhub.ai/user/poi5305) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[poi5305](https://clawhub.ai/user/poi5305)
 
-## Use Case: <br>
-External marketers, creator economy analysts, and developers use this skill to search CreatorDB for YouTube creators and retrieve profile, performance, sponsorship, content, and audience data through CreatorDB API calls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends YouTube lookup terms and channel IDs to CreatorDB with a user-provided API key. <br>
-Mitigation: Use a dedicated CreatorDB API key when possible, avoid sharing it in prompts or logs, and monitor quota or billing tied to the key. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/poi5305/creatordb-youtube-v3) <br>
-- [CreatorDB](https://www.creatordb.app) <br>
-- [CreatorDB YouTube search endpoint](https://apiv3.creatordb.app/youtube/search) <br>
-- [CreatorDB YouTube profile endpoint](https://apiv3.creatordb.app/youtube/profile?channelId=UCBR8-60-B28hp2BmDPdntcQ) <br>
+## Use Case:
 
+Developers, analysts, and creator-marketing teams use this skill to query CreatorDB for YouTube creator discovery and channel analytics when they have a CreatorDB API key.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline curl examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and CREATORDB_API_KEY; sends YouTube lookup terms and channel IDs to CreatorDB.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Creator searches and channel IDs are sent to CreatorDB using the user's CreatorDB API key.
+
+Mitigation: Use the skill only for workflows where sending those queries to CreatorDB is expected and approved.
+
+Risk: Audience and sponsorship analytics are third-party data and may not be appropriate for sensitive or confidential targets.
+
+Mitigation: Review returned analytics before relying on them and avoid querying sensitive targets unless that fits the workflow.
+
+## Reference(s):
+
+- [CreatorDB](https://www.creatordb.app)
+- [ClawHub skill page](https://clawhub.ai/poi5305/skills/creatordb-youtube-v3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl command examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and CREATORDB_API_KEY; API responses are third-party CreatorDB data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

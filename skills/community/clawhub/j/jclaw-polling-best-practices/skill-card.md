@@ -1,42 +1,58 @@
-## Description: <br>
-Guides agents in setting up user-confirmed, cron-style polling for long-running asynchronous CLI or API tasks with clear machine-parseable completion conditions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through cron-style polling for long-running asynchronous CLI commands or API jobs with machine-checkable completion conditions.
 
-## Publisher: <br>
-[skywalker-lili](https://clawhub.ai/user/skywalker-lili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skywalker-lili](https://clawhub.ai/user/skywalker-lili)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need an agent to monitor a background job, record progress, notify the user on completion, failure, or timeout, and optionally hand off a successful result to another workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Background pollers can persist after the agent session and continue running local commands. <br>
-Mitigation: Require explicit user confirmation, use bounded polling intervals and max poll counts, record the task directory and PID, and make the stop procedure clear before launch. <br>
-Risk: Generated polling scripts may execute unsafe commands or carry untrusted command and message inputs. <br>
-Mitigation: Inspect the generated poll.sh and task.json before launch, avoid untrusted inputs, quote variables, and keep the polling command narrowly scoped. <br>
-Risk: Discord notifications and optional agent chaining can disclose task status or trigger additional work. <br>
-Mitigation: Use direct notification for failures and timeouts, keep agent chaining disabled unless explicitly needed, and limit messages to the minimum information required. <br>
+## Use Case:
 
+Developers and agents use this skill to decide when polling fits a long-running task, confirm parameters, create task and progress files, adapt a polling shell script, and notify or trigger follow-up work after completion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/skywalker-lili/jclaw-polling-best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples and bash script templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task metadata, progress files, logs, notification commands, and a generated polling shell script for the agent to review and adapt.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Broad background shell execution can run unintended or stale commands if task scope is not explicitly confirmed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted, user-confirmed polling tasks and require clear parameters, owner, timeout, log location, and cancellation path before launch.
+
+Risk: The executable template uses eval-style command and parser hooks that can be unsafe with untrusted inputs.
+
+Mitigation: Replace eval-based template logic with fixed commands or allowlisted parsers before using the script.
+
+Risk: Background polling jobs can outlive the initiating agent session and continue consuming resources.
+
+Mitigation: Avoid upstream auto-starts and ensure each job records progress, errors, timeout behavior, notification target, and cleanup expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/skywalker-lili/skills/jclaw-polling-best-practices)
+- [Publisher profile](https://clawhub.ai/user/skywalker-lili)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled shell template is generic and must be adapted with user-confirmed commands, completion conditions, timeouts, notification targets, and post-poll actions before execution.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

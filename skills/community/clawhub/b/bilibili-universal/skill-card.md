@@ -1,46 +1,66 @@
-## Description: <br>
-Collects public Bilibili search results, creator-space video lists, video details, comments, and danmaku using agent-browser and public Bilibili APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches public Bilibili content, including search results, creator video lists, video details, comments, and danmaku, using agent-browser and public APIs without requiring login for most data.
 
-## Publisher: <br>
-[excalibursssooo](https://clawhub.ai/user/excalibursssooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[excalibursssooo](https://clawhub.ai/user/excalibursssooo)
 
-## Use Case: <br>
-Developers and agents use this skill to collect public Bilibili video, creator, comment, and danmaku data for analysis. It can emit focused JSON fetch results or larger harvest folders with Markdown reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use Bilibili browser or cookie session context, including sensitive login cookies such as SESSDATA or bili_jct. <br>
-Mitigation: Install only if comfortable with that scraper behavior, avoid adding login cookies unless needed, treat cookie values like passwords, and consider a separate browser profile. <br>
-Risk: Harvested comments, danmaku, user metadata, video metadata, and reports can remain on disk in the skill data directory. <br>
-Mitigation: Configure the data directory deliberately, keep it out of shared workspaces and version control, and delete harvested data when it is no longer needed. <br>
-Risk: The authoritative security verdict is suspicious because warnings around sensitive login cookies are weak. <br>
-Mitigation: Review the security summary and guidance before deployment and scan the release in the target environment. <br>
+## Use Case:
 
+Developers and agents use this skill to collect Bilibili public video, creator, comment, and danmaku data and generate local JSON exports and Markdown harvest reports for analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/excalibursssooo/skills/bilibili-universal) <br>
-- [README](README.md) <br>
-- [Skill instructions](SKILL.md) <br>
-- [Pitfalls and debugging notes](docs/pitfalls.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text plus JSON data files and Markdown harvest reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save harvested comments, danmaku, user metadata, video metadata, and reports under the configured data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: ClawHub release evidence) <br>
+Risk: Authenticated browser state or cookie files may expose account-linked Bilibili data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use unauthenticated mode for public data when possible, keep any cookie file private, apply restrictive file permissions, and do not commit cookies to version control.
+
+Risk: Harvested public and user-linked data is written locally, and shared temporary locations can expose data to other local users or jobs.
+
+Mitigation: Set BI_DATA_DIR to a user-private directory before running harvest workflows and avoid relying on shared /tmp storage.
+
+Risk: The skill may close all agent-browser sessions during SPA recovery, which can disrupt unrelated browser automation.
+
+Mitigation: Run the skill in an isolated browser/session context and avoid concurrent agent-browser tasks during large harvests.
+
+Risk: Optional danmaku features depend on unpinned Python packages.
+
+Mitigation: Review and pin dependency versions in a controlled environment before enabling danmaku workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/excalibursssooo/skills/bilibili-universal)
+- [Project homepage](https://github.com/excalibursssooo/bilibili-search)
+- [README](README.md)
+- [Skill instructions](SKILL.md)
+- [Anti-scraping pitfalls and debugging notes](docs/pitfalls.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON files]
+
+**Output Format:** [Markdown guidance with shell commands plus generated JSON data files and Markdown reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write harvested Bilibili data under the configured BI_DATA_DIR and can optionally use a private cookie file through BI_COOKIE_FILE.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

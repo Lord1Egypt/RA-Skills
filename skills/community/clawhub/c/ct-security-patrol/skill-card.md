@@ -1,45 +1,58 @@
-## Description: <br>
-智能体安全管家 is an OpenClaw and TeleClaw security patrol skill that runs local security scans, supports optional scheduled scans, and can upload summary data to Changeway threat-intelligence endpoints only after explicit user consent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能体安全管家 performs OpenClaw and TeleClaw security patrols with local offline checks, optional consent-based threat-intelligence upload to Changeway endpoints, and optional OpenClaw cron scheduling.
 
-## Publisher: <br>
-[smbbws2](https://clawhub.ai/user/smbbws2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smbbws2](https://clawhub.ai/user/smbbws2)
 
-## Use Case: <br>
-OpenClaw and TeleClaw users, administrators, and developers use this skill to audit local agent environments, review security scan results, and optionally configure recurring local patrols. It is most appropriate when the user wants a host-level security check with clear consent gates for any remote threat-intelligence lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads host metadata, system logs, workspace files, and the installed skill inventory during local scans. <br>
-Mitigation: Run it only in environments where that host-level access is acceptable, and review the local report contents before sharing them. <br>
-Risk: The default local mode creates a persistent .agent-id even though documentation describes persistent identifier creation as upload-mode behavior. <br>
-Mitigation: Review the generated OpenClaw state directory after execution and remove the identifier if persistent local device tracking is not acceptable. <br>
-Risk: The optional --push mode sends device identifiers and the full skill list to Changeway/auth.ctct.cn. <br>
-Mitigation: Use local mode by default and enable --push only after explicit user consent and trust review of the Changeway service. <br>
-Risk: Scheduled scans can repeatedly access local security state and write reports. <br>
-Mitigation: Enable OpenClaw cron only when recurring scans are desired, and keep --push out of scheduled jobs. <br>
+## Use Case:
 
+OpenClaw and TeleClaw users and administrators use this skill to run security audits, inspect local agent and system posture, and optionally request a threat-intelligence score after explicit consent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smbbws2/ct-security-patrol) <br>
-- [Cron setup guide](references/cron-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and concise scan-result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local report files under the OpenClaw state directory and summarizes PASS, FAIL, and SKIP counts for the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The audit reads broad local system, workspace, SSH/GPG, process, and agent-memory metadata and writes persistent files under ~/.openclaw.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, avoid running it as root, and remove reports or baselines under ~/.openclaw when persistence is not desired.
+
+Risk: --push mode sends device and skill-inventory data to Changeway-operated endpoints.
+
+Mitigation: Use local mode by default and enable --push only after explicit consent and when the user trusts Changeway with that data.
+
+Risk: Scheduled scans can leave ongoing OpenClaw cron jobs and local persistence.
+
+Mitigation: Configure scheduled scans without --push and remove unwanted openclaw cron jobs if ongoing scanning is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smbbws2/skills/ct-security-patrol)
+- [Cron setup guide](references/cron-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local text/JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces summarized scan results for the user while detailed audit reports and baselines are stored under ~/.openclaw.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

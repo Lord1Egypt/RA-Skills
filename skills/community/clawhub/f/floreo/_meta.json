@@ -2,5 +2,20 @@
   "ownerId": "kn7d1sjxde0c927qnk26b3nqv182v6xk",
   "slug": "floreo",
   "version": "0.2.1",
-  "publishedAt": 1776275367526
+  "publishedAt": 1776105543740,
+  "status": "stable",
+  "description": "Autonomous compounding journal with local-first storage and open service connections. Auto-detects activities, tracks compound metrics (streaks, trends, velocity), syncs with Notion/GitHub/Calendar. Privacy-first with granular controls.",
+  "tags": ["productivity", "tracking", "privacy", "journal", "life-logging", "native"],
+  "homepage": "https://github.com/openclaw/floreo",
+  "repository": "https://github.com/openclaw/floreo",
+  "license": "MIT",
+  "author": "OpenClaw",
+  "icon": "🌸",
+  "requirements": {
+    "os": ["darwin", "linux"],
+    "openclaw": ">=0.5.0"
+  },
+  "files": [
+    "SKILL.md"
+  ]
 }

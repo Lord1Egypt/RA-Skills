@@ -1,139 +1,139 @@
 # Regions — Spain
 
-## Las 17 Comunidades (Lo que importa)
+## The 17 Communities (What Matters)
 
-### Andalucía
-**Capital:** Sevilla | **Carácter:** Calor, flamenco, tapas gratis
+### Andalusia
+**Capital:** Seville | **Character:** Heat, flamenco, free tapas
 
-- **Tapas gratis con bebida** en Granada, Jaén, Almería. En Sevilla/Málaga ya no tanto.
-- **Calor extremo** julio-agosto (40-45°C en interior). Evitar si no toleras calor.
-- **Semana Santa** Sevilla y Málaga: impresionante pero abarrotado.
-- **Playas:** Costa del Sol (Málaga) masificada. Cádiz/Huelva más auténticas.
-- **Para comer:** Atún de almadraba (Cádiz, mayo-junio), gazpacho, salmorejo, pescaíto frito.
+- **Free tapas with a drink** in Granada, Jaén, Almería, León (the last is in Castile, not Andalusia). In Seville/Málaga, not so much anymore.
+- **Extreme heat** July-August (40-45°C inland). Avoid if you can't handle heat.
+- **Semana Santa (Holy Week)** in Seville and Málaga: impressive but packed.
+- **Beaches:** Costa del Sol (Málaga) crowded. Cádiz/Huelva more authentic.
+- **To eat:** Almadraba tuna (Cádiz, May-June), gazpacho, salmorejo, fried fish.
 
-### Cataluña
-**Capital:** Barcelona | **Carácter:** Industria, diseño, identidad propia
+### Catalonia
+**Capital:** Barcelona | **Character:** Industry, design, own identity
 
-- **Catalán** es co-oficial. Señalización bilingüe. Responden en castellano si lo hablas.
-- **Tema político sensible.** No opines sobre independencia si no te preguntan.
-- **Barcelona ciudad** = turismo masivo. Costa Brava y Pirineos más tranquilos.
-- **Para comer:** Pa amb tomàquet, escalivada, calçots (enero-marzo), cava.
-- **Tip:** Sagrada Família desde fuera gratis. Park Güell parte alta gratis. Casa Amatller gratis.
+- **Catalan** is co-official. Bilingual signage. They reply in Castilian if you speak it.
+- **Politically sensitive topic.** Don't opine on independence unless asked.
+- **Barcelona city** = mass tourism. Costa Brava and the Pyrenees are quieter.
+- **To eat:** Pa amb tomàquet, escalivada, calçots (January-March), cava.
+- **Tip:** Sagrada Família from outside is free. Park Güell upper part free. Casa Amatller free.
 
-### País Vasco
-**Capital:** Vitoria-Gasteiz | **Carácter:** Gastronomía, industria, identidad fuerte
+### Basque Country
+**Capital:** Vitoria-Gasteiz | **Character:** Gastronomy, industry, strong identity
 
-- **Euskera** es otro idioma completamente diferente (no romance).
-- **Pintxos, no tapas.** Pagas por palillos al final. Parte Vieja de San Sebastián es el epicentro.
-- **Más caro** que resto de España. Salarios más altos, precios más altos.
-- **Sistema fiscal propio.** Si trabajas aquí, impuestos diferentes.
-- **Para comer:** Bacalao al pil-pil, kokotxas, txuleta, sidra natural.
-- **Lluvioso** todo el año. Trae chubasquero siempre.
+- **Basque (Euskera)** is a completely different language (not Romance).
+- **Pintxos, not tapas.** You pay by toothpicks at the end. San Sebastián's Old Town is the epicenter.
+- **More expensive** than the rest of Spain. Higher salaries, higher prices.
+- **Own tax system.** If you work here, different taxes.
+- **To eat:** Bacalao al pil-pil, kokotxas, txuleta, natural cider.
+- **Rainy** all year. Always bring a rain jacket.
 
-### Madrid (Comunidad)
-**Capital:** Madrid | **Carácter:** Capital, centralismo, vida nocturna
+### Madrid (Community)
+**Capital:** Madrid | **Character:** Capital, centralism, nightlife
 
-- **Agosto** la ciudad se vacía. Muchos cierres, 40°C.
-- **Vida nocturna** empieza a las 23h, discotecas hasta las 6h.
-- **Terrazas de azotea** son lo mejor: Círculo Bellas Artes, Picalagartos.
-- **Para comer:** Bocadillo de calamares, cocido madrileño, oreja, callos.
-- **Mercados gastro:** Antón Martín, San Fernando (evitar San Miguel = turístico).
+- **August** the city empties out. Many closures, 40°C.
+- **Nightlife** starts at 11pm, clubs until 6am.
+- **Rooftop terraces** are the best: Círculo Bellas Artes, Picalagartos.
+- **To eat:** Bocadillo de calamares, cocido madrileño, pig's ear, tripe.
+- **Gastro markets:** Antón Martín, San Fernando (avoid San Miguel = touristy).
 
-### Valencia (Comunidad)
-**Capital:** Valencia | **Carácter:** Mediterráneo, paella, Fallas
+### Valencia (Community)
+**Capital:** Valencia | **Character:** Mediterranean, paella, Fallas
 
-- **Paella se come A MEDIODÍA.** Nunca cena. Es arroz, no paella si lleva chorizo.
-- **Horchata** solo aquí es auténtica. Horchatería Daniel en Alboraia.
-- **Fallas (marzo)** son caos total: petardos 24/7, queman todo el 19. Increíble pero agotador.
-- **Valenciano** es co-oficial (similar al catalán).
-- **Ciudad de las Artes** espectacular pero muy turístico. Barrio del Carmen para vida local.
+- **Paella is eaten AT MIDDAY.** Never for dinner. It's rice, not paella, if it has chorizo.
+- **Horchata** is only authentic here. Horchatería Daniel in Alboraia.
+- **Fallas (March)** are total chaos: firecrackers 24/7, everything burned on the 19th. Incredible but exhausting.
+- **Valencian** is co-official (similar to Catalan).
+- **Ciudad de las Artes** spectacular but very touristy. Barrio del Carmen for local life.
 
 ### Galicia
-**Capital:** Santiago de Compostela | **Carácter:** Verde, marisco, melancolía
+**Capital:** Santiago de Compostela | **Character:** Green, seafood, melancholy
 
-- **Llueve mucho.** No es broma. Trae ropa de agua.
-- **Marisco top de España.** Pulpo á feira, percebes, navajas, zamburiñas.
-- **Albariño** (vino blanco) es obligatorio con marisco.
-- **Rías Baixas** son la joya: Islas Cíes, O Grove, Cambados.
-- **Camino de Santiago** termina aquí. Catedral impresionante.
-- **Gallego** co-oficial, similar al portugués.
+- **It rains a lot.** No joke. Bring rain gear.
+- **Best seafood in Spain.** Pulpo á feira, percebes, razor clams, queen scallops.
+- **Albariño** (white wine) is a must with seafood.
+- **Rías Baixas** are the jewel: Cíes Islands, O Grove, Cambados.
+- **Camino de Santiago** ends here. Impressive cathedral.
+- **Galician** co-official, similar to Portuguese.
 
-### Islas Baleares
-**Capital:** Palma de Mallorca | **Carácter:** Turismo, playas, alemanes
+### Balearic Islands
+**Capital:** Palma de Mallorca | **Character:** Tourism, beaches, Germans
 
-- **Mallorca** es grande y diversa. Interior montañoso, no solo playas.
-- **Ibiza** = fiesta (caro) y también calas tranquilas en el norte.
-- **Menorca** la más tranquila y familiar. Calas brutales.
-- **Formentera** pequeña, hippy, cara.
-- **Para comer:** Ensaïmada (El Fornet de la Soca en Palma), sobrasada, tumbet.
-- **Carísimo** en agosto. Julio o septiembre mejor.
+- **Mallorca** is large and diverse. Mountainous interior, not just beaches.
+- **Ibiza** = partying (expensive) and also quiet coves in the north.
+- **Menorca** the quietest and most family-friendly. Amazing coves.
+- **Formentera** small, hippie, expensive.
+- **To eat:** Ensaïmada (El Fornet de la Soca in Palma), sobrasada, tumbet.
+- **Very expensive** in August. July or September better.
 
-### Islas Canarias
-**Capital:** Las Palmas / Santa Cruz | **Carácter:** Volcanes, buen clima todo el año
+### Canary Islands
+**Capital:** Las Palmas / Santa Cruz | **Character:** Volcanoes, great weather year-round
 
-- **Clima eterno primavera.** Destino de invierno perfecto.
-- **IVA diferente (IGIC)** = precios ligeramente más bajos.
-- **Cada isla es diferente:**
-  - Tenerife: más turístico, Teide
-  - Gran Canaria: dunas, vida gay-friendly
-  - Lanzarote: volcánico, César Manrique
-  - Fuerteventura: playas infinitas, viento, kite
-  - La Palma: naturaleza, cielos para astronomía
-  - La Gomera, El Hierro: pequeñas, auténticas
-- **Para comer:** Papas arrugadas con mojo, gofio, queso majorero.
+- **Eternal-spring climate.** Perfect winter destination.
+- **Different VAT (IGIC)** = slightly lower prices.
+- **Each island is different:**
+  - Tenerife: more touristy, Teide
+  - Gran Canaria: dunes, gay-friendly life
+  - Lanzarote: volcanic, César Manrique
+  - Fuerteventura: endless beaches, wind, kite
+  - La Palma: nature, astronomy skies
+  - La Gomera, El Hierro: small, authentic
+- **To eat:** Papas arrugadas with mojo, gofio, majorero cheese.
 
 ### Asturias
-**Capital:** Oviedo | **Carácter:** Verde, sidra, montaña
+**Capital:** Oviedo | **Character:** Green, cider, mountains
 
-- **Sidra** es religión. Escanciado (verter desde arriba) es arte.
-- **Espichas** = fiestas de sidra en sidrerías. Búscalas.
-- **Picos de Europa** para montaña espectacular.
-- **Para comer:** Fabada asturiana, cachopo (escalope gigante), arroz con leche.
-- **Llueve.** Siempre. Es verde por algo.
+- **Cider** is a religion. Pouring from height (escanciado) is an art.
+- **Espichas** = cider parties in cider houses. Seek them out.
+- **Picos de Europa** for spectacular mountains.
+- **To eat:** Fabada asturiana, cachopo (giant schnitzel), rice pudding.
+- **It rains.** Always. It's green for a reason.
 
-### Castilla y León
-**Capital:** Valladolid | **Carácter:** Meseta, patrimonio, asados
+### Castile and León
+**Capital:** Valladolid | **Character:** Meseta, heritage, roasts
 
-- **Salamanca, Segovia, Ávila, Burgos:** ciudades patrimonio impresionantes.
-- **Asados** de lechazo (cordero) y cochinillo. Sitios clásicos con horno de leña.
-- **Ribera del Duero** para vino tinto serio.
-- **Frío** en invierno (bajo cero común), calor seco en verano.
-- **Menos turístico** que costa. Más auténtico, más barato.
+- **Salamanca, Segovia, Ávila, Burgos:** impressive heritage cities.
+- **Roasts** of milk-fed lamb and suckling pig. Classic places with wood-fired ovens.
+- **Ribera del Duero** for serious red wine.
+- **Cold** in winter (below zero common), dry heat in summer.
+- **Less touristy** than the coast. More authentic, cheaper.
 
-### Navarra
-**Capital:** Pamplona | **Carácter:** San Fermín, vino, Pirineos
+### Navarre
+**Capital:** Pamplona | **Character:** San Fermín, wine, Pyrenees
 
-- **San Fermín (6-14 julio)** = encierros + fiesta total. Reservar hotel 6+ meses.
-- **Sistema fiscal propio** como País Vasco.
-- **Bardenas Reales:** semi-desierto surreal al sur.
-- **Euskera** co-oficial en zona norte.
-- **Para comer:** Pimientos del piquillo, chistorra, cordero al chilindrón.
+- **San Fermín (6-14 July)** = bull runs + full-on fiesta. Book a hotel 6+ months ahead.
+- **Own tax system** like the Basque Country.
+- **Bardenas Reales:** surreal semi-desert to the south.
+- **Basque** co-official in the northern area.
+- **To eat:** Piquillo peppers, chistorra, lamb chilindrón.
 
-## Diferencias Prácticas por Región
+## Practical Differences by Region
 
-### Idiomas
+### Languages
 
-| Región | Idioma co-oficial | Uso real |
+| Region | Co-official language | Real usage |
 |--------|-------------------|----------|
-| Cataluña, Baleares, Valencia | Catalán/Valenciano | Alto, especialmente Cataluña |
-| País Vasco, Navarra (norte) | Euskera | Medio-alto según zona |
-| Galicia | Gallego | Alto en rural, medio en ciudades |
-| Resto | Solo castellano | — |
+| Catalonia, Balearics, Valencia | Catalan/Valencian | High, especially Catalonia |
+| Basque Country, Navarre (north) | Basque | Medium-high by area |
+| Galicia | Galician | High in rural, medium in cities |
+| Rest | Castilian only | — |
 
-### Impuestos
+### Taxes
 
-| Región | Sistema |
+| Region | System |
 |--------|---------|
-| País Vasco | Propio (foral). Más favorable en algunos casos |
-| Navarra | Propio (foral) |
-| Resto | Nacional |
-| Canarias | IGIC en vez de IVA (7% general vs 21%) |
+| Basque Country | Own (foral). More favorable in some cases |
+| Navarre | Own (foral) |
+| Rest | National |
+| Canaries | IGIC instead of VAT (7% general vs 21%) |
 
-### Coste de Vida (Madrid = 100)
+### Cost of Living (Madrid = 100)
 
-| Más caro | Más barato |
+| More expensive | Cheaper |
 |----------|------------|
-| País Vasco ~110 | Extremadura ~70 |
-| Baleares agosto ~130 | Castilla-La Mancha ~75 |
+| Basque Country ~110 | Extremadura ~70 |
+| Balearics August ~130 | Castilla-La Mancha ~75 |
 | Barcelona ~100 | Murcia ~80 |
-| Madrid ~100 | Andalucía interior ~80 |
+| Madrid ~100 | Inland Andalusia ~80 |

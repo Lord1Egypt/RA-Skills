@@ -1,6 +1,50 @@
 {
-  "ownerId": "kn78gtvscyas8xfjhqjf6sj8x1831j1y",
-  "slug": "video-transcribe-pro",
   "version": "1.0.0",
-  "publishedAt": 1773741347849
+  "openclaw": {
+    "emoji": "🎬",
+    "triggers": [
+      "视频转文字",
+      "音频转文字",
+      "语音转文字",
+      "字幕提取",
+      "提取字幕",
+      "视频转字幕",
+      "免费转文字",
+      "video to text",
+      "audio to text", 
+      "speech to text"
+    ],
+    "requires": {
+      "bins": ["node"],
+      "pip": []
+    },
+    "install": []
+  },
+  "tools": [
+    {
+      "name": "video_to_text",
+      "description": "将视频或音频文件转换为文字（字幕/transcripts）。使用免费 Whisper API，无需 API Key。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "视频/音频文件的 URL 地址，支持 mp4, wav, mp3, m4a, webm, ogg 等格式"
+          },
+          "language": {
+            "type": "string",
+            "description": "语言代码，如 'zh' (中文)、'en' (英语)、'ja' (日语)，默认自动检测",
+            "default": "zh"
+          },
+          "output_format": {
+            "type": "string",
+            "description": "输出格式：'text' (纯文字) 或 'srt' (字幕格式)",
+            "default": "text",
+            "enum": ["text", "srt"]
+          }
+        },
+        "required": ["url"]
+      }
+    }
+  ]
 }

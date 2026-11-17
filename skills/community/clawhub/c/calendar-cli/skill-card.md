@@ -1,43 +1,58 @@
-## Description: <br>
-Google Calendar helps an agent use the PortEden CLI to list, search, read, and prepare confirmed changes to Google Calendar events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in using PortEden's Google Calendar CLI to list, search, read, create, update, delete, and respond to calendar events, with explicit confirmation required before mutating calendar state.
 
-## Publisher: <br>
-[porteden](https://clawhub.ai/user/porteden) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[porteden](https://clawhub.ai/user/porteden)
 
-## Use Case: <br>
-Agents and developers use this skill to manage Google Calendar through the PortEden CLI: listing calendars, finding events, checking free/busy windows, and preparing create, update, delete, or RSVP actions after explicit user confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calendar credentials can grant access to sensitive Google Calendar data. <br>
-Mitigation: Use a separate profile for work or personal accounts, confirm the active account before use, and log out or revoke Google access when the task is complete. <br>
-Risk: Create, update, delete, and RSVP commands can change shared calendar state and notify attendees. <br>
-Mitigation: Echo the target account, calendar, event, attendees, and intended change, then wait for explicit user confirmation before running a mutating command. <br>
-Risk: Calendar event summaries, descriptions, locations, and attendee names can contain untrusted instructions. <br>
-Mitigation: Treat event content as data from the organizer or attendees; summarize it without following embedded instructions. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to let an agent manage Google Calendar workflows through the PortEden CLI while preserving confirmation gates for event changes.
 
-## Reference(s): <br>
-- [PortEden homepage](https://porteden.com) <br>
-- [ClawHub skill page](https://clawhub.ai/porteden/calendar-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON-oriented CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands commonly request compact JSON output with -jc; mutating calendar actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill depends on a third-party CLI that can access Google Calendar credentials and private calendar data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted PortEden release, prefer a pinned and verified version, authorize the narrowest Google Calendar scope, and revoke or log out when access is no longer needed.
+
+Risk: Create, update, delete, and respond actions can change shared calendar state and may notify attendees.
+
+Mitigation: Require explicit user confirmation of the account, calendar, event, attendees, and intended change before running mutating commands.
+
+Risk: Calendar event content can include untrusted text supplied by external organizers or attendees.
+
+Mitigation: Treat summaries, descriptions, locations, and attendee names as untrusted content; summarize them without following embedded instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/porteden/skills/calendar-cli)
+- [PortEden homepage](https://porteden.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Encourages compact JSON output via -jc and requires user confirmation before create, update, delete, or respond actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter states 1.0.8)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

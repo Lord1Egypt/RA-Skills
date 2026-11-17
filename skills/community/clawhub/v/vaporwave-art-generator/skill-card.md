@@ -1,41 +1,55 @@
-## Description: <br>
-AI vaporwave art generator that creates synthwave, retrowave, and vaporwave images with neon grids, 80s retro colors, palm trees, and lo-fi aesthetics through the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI vaporwave art generator - create synthwave, retrowave, and aesthetic vaporwave images with neon grids, 80s retro colors, palm trees, and lo-fi vibes using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate vaporwave, synthwave, and retrowave image URLs from text prompts for wallpapers, album art, social media visuals, and related aesthetic content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image IDs, and the Neta token are sent to a third-party image-generation API. <br>
-Mitigation: Use only non-sensitive prompts and reference IDs, and avoid exposing raw tokens in shell history or shared logs. <br>
-Risk: Generated image URLs depend on the external service's availability, moderation, and content policies. <br>
-Mitigation: Review generated outputs before use and handle API errors, moderation states, and timeouts before relying on the URL. <br>
+## Use Case:
 
+External users and creators use this skill to generate vaporwave, synthwave, and retrowave image URLs from text prompts, with optional output sizing and reference-image style inheritance.
 
-## Reference(s): <br>
-- [Neta Open API Access](https://www.neta.art/open/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/vaporwave-art-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text image URL printed to stdout, with progress and errors on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; accepts optional size and reference image UUID parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts, optional reference UUIDs, and the Neta API token are sent to the Neta/TalesOfAI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and references that are appropriate for that external service, and use a limited or revocable token.
+
+Risk: Passing long-lived tokens directly on the command line can expose them through shell history or process inspection.
+
+Mitigation: Prefer short-lived or revocable tokens and avoid storing sensitive tokens in shell history.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/skills/vaporwave-art-generator)
+- [Publisher Profile](https://clawhub.ai/user/omactiengartelle)
+- [Neta API Token Setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL printed to stdout, with status messages on stderr]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports landscape, portrait, square, and tall image dimensions; optional reference image UUID for style inheritance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

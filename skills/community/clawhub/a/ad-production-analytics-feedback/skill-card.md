@@ -1,42 +1,56 @@
-## Description: <br>
-数据分析与反馈技能 - 投放效果数据采集、分析与模型迭代建议 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据分析与反馈 collects advertising performance data, analyzes campaign and material metrics, and returns reports and optimization feedback.
 
-## Publisher: <br>
-[JEyeshield](https://clawhub.ai/user/JEyeshield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jeyeshield](https://clawhub.ai/user/jeyeshield)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing operators and developers use this skill to ingest advertising performance data, generate campaign and material reports, review insights, and receive optimization suggestions for future model or creative iterations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: CSV exports may be unsafe when material IDs can come from untrusted sources.
+
+Mitigation: Treat exported CSV files as untrusted, avoid opening them directly in spreadsheet software, and add CSV escaping or formula neutralization before operational use.
+
+Risk: Operators may not be prepared for Chinese-language commands and output.
+
+Mitigation: Install only where Chinese-language operator workflows are acceptable, or localize command descriptions and returned messages before deployment.
+
+Risk: Building from source with unpinned development dependencies can reduce reproducibility in controlled environments.
+
+Mitigation: Pin development dependencies and build from a reviewed lockfile when using this package in controlled release pipelines.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketing operators and developers use this skill to collect ad performance data, calculate campaign and material metrics, generate reports, and receive optimization feedback for model or creative iteration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, JSON, CSV, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign performance data may appear in reports, events, and logs. <br>
-Mitigation: Use only analytics data that is appropriate for the OpenClaw runtime and verify who can access logs, emitted events, and generated reports. <br>
-Risk: Unnecessary personal or sensitive data could be included in analytics inputs or exported reports. <br>
-Mitigation: Limit inputs to the minimum campaign and material metrics needed for the analysis, and avoid adding personal data unless explicitly required and approved. <br>
-Risk: CSV exports may be unsafe to open in spreadsheets when material IDs are not formula-neutralized. <br>
-Mitigation: Review or sanitize CSV exports before opening them in spreadsheet tools, especially when material IDs can be user-controlled. <br>
+**Output Format:** [Command responses containing structured JSON objects, Chinese-language status text, analytics reports, feedback suggestions, and CSV export text.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JEyeshield/ad-production-analytics-feedback) <br>
+**Other Properties Related to Output:** [Outputs are generated from in-memory campaign, material, performance, report, and alert data handled by the skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, CSV, Guidance] <br>
-**Output Format:** [JSON command responses, text feedback, and CSV report strings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes aggregated ad performance metrics, report IDs, feedback suggestions, alerts, and CSV exports.] <br>
+1.0.0 (source: server release, SKILL.md frontmatter, package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

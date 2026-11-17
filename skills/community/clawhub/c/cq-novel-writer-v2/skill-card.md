@@ -1,39 +1,54 @@
-## Description: <br>
-Novel Writer helps an agent continue a rebirth/transmigration web novel by reading story outlines, prior chapters, style samples, and memory files before drafting new chapters and updating continuity notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Novel Writer helps agents sustain long-form Chinese rebirth/transmigration novel writing by reading story outlines, prior chapters, style samples, and memory files to keep new chapters continuous and stylistically consistent.
 
-## Publisher: <br>
-[yisihenji1972](https://clawhub.ai/user/yisihenji1972) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yisihenji1972](https://clawhub.ai/user/yisihenji1972)
 
-## Use Case: <br>
-External writers and agents can use this skill to draft long-form Chinese web novel chapters, preserve continuity across characters and plot lines, and keep local memory files current during ongoing story development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for recurring hourly writing, memory updates, and Desktop copies without clear opt-in or stop controls. <br>
-Mitigation: Require explicit user opt-in before scheduled execution, constrain file access to the intended novel workspace, and provide a clear way to pause or stop recurring runs. <br>
-Risk: Chapter generation and memory maintenance can overwrite or drift local story state. <br>
-Mitigation: Review diffs before accepting file changes and keep backups of outlines, character notes, plot lines, settings, and generated chapters. <br>
+## Use Case:
 
+External creators and writing agents use this skill to draft 4,000-5,000 character chapters for a specific Chinese rebirth/transmigration web novel while maintaining outline, character, plotline, setting, and error-record memory files.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and plain text with chapter drafts, outlines, continuity notes, and file-update guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local novel memory files and copy generated chapters to the Desktop when the agent is allowed to write files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill asks for recurring automatic file changes and Desktop copying without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the allowed read and write locations before use, disable or explicitly approve any hourly automation, and allow Desktop copying only when requested.
+
+Risk: The skill manages a specific local Chinese novel project and may modify continuity files during chapter generation.
+
+Mitigation: Use it only for the intended novel workspace and review proposed updates to outline, character, plotline, setting, and error files before accepting them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yisihenji1972/skills/cq-novel-writer-v2)
+- [Publisher Profile](https://clawhub.ai/user/yisihenji1972)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown chapter template plus prose and local memory-file update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected chapters are 4,000-5,000 Chinese characters, with memory updates for outline, characters, plotlines, settings, and errors.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

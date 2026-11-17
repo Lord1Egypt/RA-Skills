@@ -1,50 +1,56 @@
-## Description: <br>
-Provides a Chinese-language Zeng Guofan-inspired coaching and persona reference corpus for reflective dialogue about self-discipline, talent judgment, team-building, and pragmatic execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language coaching persona skill that uses Zeng Guofan-inspired methods for entrepreneurship, self-management, team building, and decision-making guidance.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External users and agents use this skill as an opinionated Chinese-language coaching and persona corpus for discussing Zeng Guofan-style approaches to self-cultivation, execution, hiring, resilience, and personal entrepreneurship. It is best treated as reflective guidance rather than authoritative history or business advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an opinionated coaching and persona corpus, so responses may present interpretive guidance as more authoritative than warranted. <br>
-Mitigation: Review important outputs before relying on them, and treat the material as reflective coaching rather than authoritative historical, legal, financial, or business advice. <br>
-Risk: The source material and assumptions are primarily Chinese-language, which can be misunderstood by non-Chinese users or through translation. <br>
-Mitigation: Have bilingual reviewers or trusted translations check meaning, tone, and assumptions before use in sensitive contexts. <br>
+## Use Case:
 
+External users and individual entrepreneurs use this Chinese-language skill to receive Zeng Guofan-style coaching on self-management, team building, practical decision-making, and recovery from business setbacks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/hutian-opc-zengguofan-mind) <br>
-- [Publisher profile: golngod](https://clawhub.ai/user/golngod) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Core Argument Library](artifact/references/01-核心论点库.md) <br>
-- [Improvisational Response Library](artifact/references/02-即兴反应库.md) <br>
-- [Sentence Fingerprint Library](artifact/references/03-句式指纹库.md) <br>
-- [External Observation Pattern Library](artifact/references/04-外部观察模式库.md) <br>
-- [Logical Weight Matrix](artifact/references/05-逻辑权重矩阵.md) <br>
-- [Thought Evolution Timeline](artifact/references/06-思想演化时间线.md) <br>
-- [Triple Validation Report](artifact/references/07-三重验证报告.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language coaching and persona-style responses grounded in the bundled reference corpus.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and skill frontmatter) <br>
+Risk: Historical claims and business recommendations may be incomplete, unverified, or unsuitable for a user's specific context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review advice critically before acting on it, especially for historical interpretation, entrepreneurship decisions, hiring, finance, or management recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/hutian-opc-zengguofan-mind)
+- [曾国藩 - 核心论点库](references/01-核心论点库.md)
+- [曾国藩 - 即兴反应库与边界感地图](references/02-即兴反应库.md)
+- [曾国藩 - 句式指纹库与表达风格DNA](references/03-句式指纹库.md)
+- [曾国藩 - 外部观察模式库与盲点清单](references/04-外部观察模式库.md)
+- [曾国藩 - 逻辑权重矩阵](references/05-逻辑权重矩阵.md)
+- [曾国藩 - 思想演化时间线](references/06-思想演化时间线.md)
+- [曾国藩 - 三重验证报告](references/07-三重验证报告.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language plain text or Markdown coaching responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code was found; advice should be reviewed for historical accuracy and business suitability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

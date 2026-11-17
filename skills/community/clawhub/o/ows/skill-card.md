@@ -1,45 +1,60 @@
-## Description: <br>
-Enables agents to use a pre-installed OWS CLI for local multi-chain wallet management, balance checks, transaction signing, x402 payments, funding, and policy-aware wallet operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using a pre-installed OWS CLI for local-first multi-chain wallet management, balance checks, transaction and message signing, x402 payments, and wallet information queries.
 
-## Publisher: <br>
-[rhlsthrm](https://clawhub.ai/user/rhlsthrm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rhlsthrm](https://clawhub.ai/user/rhlsthrm)
 
-## Use Case: <br>
-Developers and agents use this skill to operate a local OWS wallet for balance checks, signing, x402 API payments, and wallet policy control. It is intended for environments where the user has already installed and independently verified the OWS CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables spend-capable signing and payment commands without explicit per-transaction confirmation safeguards. <br>
-Mitigation: Require manual review of wallet, chain, destination, amount, URL, and decoded transaction or message details before any signing or payment command. <br>
-Risk: Using the skill with a production or high-balance wallet can expose funds to mistaken or unauthorized actions. <br>
-Mitigation: Use a dedicated low-balance wallet, configure spending limits and chain allowlists, and keep high-value wallets outside agent workflows. <br>
-Risk: The skill depends on a local OWS CLI that the skill does not install or verify. <br>
-Mitigation: Install and verify the OWS CLI separately, and do not allow the agent to install or update OWS packages. <br>
+## Use Case:
 
+Developers and agent operators use this skill to guide agents through local wallet balance checks, wallet information queries, transaction or message signing, and x402 payments with a user-installed OWS CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rhlsthrm/ows) <br>
-- [Open Wallet Standard documentation](https://openwallet.sh) <br>
-- [Open Wallet Standard core repository](https://github.com/open-wallet-standard/core) <br>
-- [OWS npm package](https://www.npmjs.com/package/@open-wallet-standard/core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-preinstalled OWS CLI; signing and payment commands should be manually reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: Wallet signing or x402 payment actions can transfer value or authorize messages if approved without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before signing or payment, require the agent to show the wallet name, chain, destination or URL, amount, fees, and exact transaction or message for explicit user approval.
+
+Risk: Raw private keys could expose wallet funds if requested, copied, or stored outside the wallet tool.
+
+Mitigation: Do not provide raw private keys; use OWS internal signing only.
+
+Risk: Installing or updating wallet packages during task execution can change the trusted wallet environment.
+
+Mitigation: Use only a user-installed OWS CLI and do not install or update OWS packages during the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rhlsthrm/skills/ows)
+- [Open Wallet Standard website](https://openwallet.sh)
+- [Open Wallet Standard core repository](https://github.com/open-wallet-standard/core)
+- [@open-wallet-standard/core npm package](https://www.npmjs.com/package/@open-wallet-standard/core)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and TypeScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a pre-installed local OWS CLI; wallet actions require user review and approval.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,90 @@
+part: nRF9160
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: nRF91 (LTE-M / NB-IoT SiP)
+main_page: https://www.nordicsemi.com/Products/nRF9160
+datasheet_path_expected: ../../embedded_dev/nordic/datasheet/nRF9160_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  cores:
+  - Arm Cortex-M33 application processor @ 64 MHz
+  - Integrated LTE modem (separate subsystem)
+  - Integrated GNSS receiver
+  coremark: 243
+  flash: 1 MB (NVM)
+  ram: 256 kB
+  rx_sensitivity_dbm: -108
+  cellular:
+    mode: Multimode LTE-M / NB-IoT
+    bands_certified: B1, B2, B3, B4, B5, B8, B12, B13, B14, B17, B18, B19, B20, B25, B26, B28, B66
+    band_range_mhz: 700-2200
+    global_operation: true
+    power_saving_modes:
+    - eDRX
+    - PSM (Power Saving Mode)
+    network_protocols:
+    - IPv4 / IPv6 (transport + security)
+    - TCP / TLS
+    modem_firmware_upgrade: FOTA (encrypted Firmware Over The Air)
+  positioning:
+    gnss: Integrated (multi-mode GNSS receiver)
+    cellular_based_location: true
+    location_services_via_nrf_cloud: true
+  sim:
+    options:
+    - Physical SIM
+    - eSIM
+    - Integrated nuSIM (iSIM)
+    - SoftSIM
+  security:
+  - Arm TrustZone (normal + secure world isolation for firmware, memory, peripherals)
+  - Arm CryptoCell (high-performance crypto, energy-efficient)
+  - Secure Boot
+  - Secure Firmware Update
+  - Root of Trust
+  - PSA Certified Level 2
+  package_type: SiP (System-in-Package) 10x16 mm
+  supply_voltage_v_min: 3.0
+  supply_voltage_v_max: 5.5
+  peripherals:
+  - 12-bit ADC
+  - RTC
+  - SPI
+  - "I\xB2C"
+  - "I\xB2S"
+  - UARTE
+  - PDM
+  - PWM
+  development_kits:
+  - nRF9160 DK (pre-certified LTE-M/NB-IoT/GNSS/BLE)
+  - Nordic Thingy:91 (cellular IoT prototyping)
+  ecosystem:
+    nrf_cloud_services:
+    - FOTA
+    - Location services
+    - Device management
+unverified:
+- exact peak TX power per LTE band
+- exact sleep current with PSM enabled
+- exact supported GNSS constellations (GPS / GLONASS / Galileo / BeiDou)
+- maximum throughput per LTE category
+notes:
+- Promoted from placeholder to verified on 2026-06-28 (datasheet). Enriched on 2026-06-30 with marketing-level cellular bands,
+  GNSS, SIM options, security certification, and cloud-service bindings from nordicsemi.com product page via Firecrawl.
+- nRF9160 is a System-in-Package with Cortex-M33 + LTE-M/NB-IoT modem + GNSS.
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify (LARGE PDF 6.8MB, scanned first 100 pages): 30/42 spec
+  fields matched (71%). Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-28T09:21:40+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

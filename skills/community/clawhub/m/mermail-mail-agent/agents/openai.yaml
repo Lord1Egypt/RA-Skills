@@ -1,0 +1,11 @@
+interface:
+  display_name: "Use Mermail Mail Agent"
+  short_description: "Create or continue mailbox Assistant conversations"
+  default_prompt: "Use $mermail-mail-agent only when the user explicitly wants a Mermail mailbox Assistant conversation, delegation, or conversation history."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

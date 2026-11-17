@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn77zwtv797nj9c22mts1tg9x581mrc2",
-  "slug": "hz-context-optimizer",
-  "version": "1.0.0",
-  "publishedAt": 1771755074358
+  "name": "hz-context-optimizer",
+  "displayName": "Huizai Context Optimizer",
+  "description": "OpenClaw上下文优化技能 - 智能压缩、记忆分层、token节省",
+  "author": {
+    "name": "lidekahdjdhdhsjjs-lang",
+    "url": "https://github.com/lidekahdjdhdhsjjs-lang"
+  },
+  "repository": "https://github.com/lidekahdjdhdhsjjs-lang/Huizai-openclaw",
+  "tags": ["context", "token", "optimization", "openclaw", "huizai"],
+  "homepage": "https://github.com/lidekahdjdhdhsjjs-lang/Huizai-openclaw"
 }

@@ -1,50 +1,62 @@
-## Description: <br>
-Amazon Category Research helps Amazon sellers automate ASIN analysis, competitor research, and market intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Category Research helps sellers automate ASIN analysis, competitor research, and market intelligence for Amazon categories.
 
-## Publisher: <br>
-[yuancheng888](https://clawhub.ai/user/yuancheng888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yuancheng888](https://clawhub.ai/user/yuancheng888)
 
-## Use Case: <br>
-External Amazon sellers and operators use this skill to collect public or user-authorized Amazon, SellerSprite, and SIF data for category research, ASIN comparison, competitor analysis, and market assessment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill forces Feishu cloud document creation and local Markdown report storage, even when a user may not want cloud export or workspace backups. <br>
-Mitigation: Install only when those outputs are acceptable, or modify the skill to require explicit confirmation and support chat-only or no-export workflows before use. <br>
-Risk: The skill uses an OpenClaw browser profile and reads data visible through SellerSprite and SIF plugins. <br>
-Mitigation: Use a dedicated browser profile, confirm plugin login state, and run the skill only for intended Amazon research tasks. <br>
-Risk: The skill requests Feishu authorization and creates documents under the user's identity. <br>
-Mitigation: Review requested authorization before granting access and revoke or narrow access if Feishu document creation is no longer needed. <br>
+## Use Case:
 
+External sellers and operators use this skill to collect Amazon category, ASIN, competitor, SellerSprite, and SIF signals and turn them into a structured Feishu research report.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [English README](README.en.md) <br>
-- [Output Report Template](references/output-template.md) <br>
-- [Negative Extraction Rules](references/negative-rules.md) <br>
-- [DOM Selector Mapping](references/selectors.md) <br>
-- [BSR Node ID Mapping](references/bsr-node-mapping.md) <br>
-- [Input and Output Examples](references/examples.md) <br>
-- [SellerSprite](https://www.sellersprite.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuancheng888/skills/amz-cat-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, configuration, guidance] <br>
-**Output Format:** [Markdown reports, Feishu cloud documents, local Markdown backups, and short chat summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenClaw browser profile, Amazon page access, SellerSprite and SIF plugin visibility for full data, and Feishu authorization for cloud document output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill requires Feishu authorization and uploads full research reports to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when Feishu retention, sharing, and account authorization are acceptable for the research being handled.
+
+Risk: The skill stores complete Markdown research reports locally before upload.
+
+Mitigation: Run it in a workspace with appropriate access controls and avoid confidential product strategy unless local retention is approved.
+
+Risk: The selector self-healing workflow can persist selector changes.
+
+Mitigation: Disable or restrict selector self-healing in production agent environments unless changes are reviewed by a maintainer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yuancheng888/skills/amz-cat-research)
+- [Output Template](references/output-template.md)
+- [Negative Rules](references/negative-rules.md)
+- [Selectors](references/selectors.md)
+- [BSR Node Mapping](references/bsr-node-mapping.md)
+- [SellerSprite](https://www.sellersprite.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Configuration]
+
+**Output Format:** [Markdown report saved locally and published as a Feishu cloud document, with a short link summary returned to the user.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires browser access, Feishu authorization, and SellerSprite/SIF browser plugins for complete data collection.]
+
+## Skill Version(s):
+
+5.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

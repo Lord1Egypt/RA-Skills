@@ -1,43 +1,56 @@
-## Description: <br>
-Security hardening patterns for production AI agents, covering prompt injection defense, data boundary enforcement, read-only integration defaults, write-ahead logging, health checks, integrity gates, rule escalation, and session memory security. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security hardening patterns for production AI agents. Covers prompt injection defense (7 rules), data boundary enforcement, read-only defaults for external integrations, WAL protocol for data integrity, health check scripts, integrity gates, rule escalation ladder, and session memory security. Use when hardening agent deployments against adversarial inputs, data leaks, or operational failures. NOT for network security, infrastructure hardening, or penetration testing.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to harden production agent deployments against prompt injection, data leakage, unsafe write operations, memory poisoning, and operational failures. It provides policy patterns, checklists, and script templates for agent-level security controls rather than network, infrastructure, or penetration-testing work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The runnable health-check template can mislead users about agent safety because evidence.security reports a fail-open grading bug.
+
+Mitigation: Do not operationalize the template as written; fix and test the grade-escalation logic before relying on the result.
+
+Risk: The health-check template probes the Anthropic API with a live API key from the local environment.
+
+Mitigation: Remove the probe or gate it behind explicit operator approval, approved credential handling, and environment-specific logging policy.
+
+Risk: Host checks, .env permission checks, cron scheduling, and persistent health files may not match the adopter's operational policy.
+
+Mitigation: Review and adapt those checks before deployment, then validate them in a controlled environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to harden production AI agent deployments against adversarial inputs, data leaks, and operational failures. It provides policy templates, checklists, and example scripts for agent-level security controls rather than network or infrastructure hardening. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Shell snippets, health-check scripts, cron setup, and monitoring examples may be inappropriate if copied directly into production. <br>
-Mitigation: Review and adapt each operational example before use, and make any cron or monitoring setup an explicit operator action. <br>
-Risk: The health-check example includes an Anthropic API connectivity check and references an API key. <br>
-Mitigation: Decide whether the API call is necessary for the deployment and protect API keys according to local secret-management policy. <br>
-Risk: Risky-looking command and exfiltration strings appear in the skill as examples of attacks to block. <br>
-Mitigation: Treat attack examples as untrusted illustrative text and avoid executing or copying them as operational commands. <br>
+**Output Format:** [Markdown guidance with inline code blocks, shell script templates, checklists, and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/agent-security-hardening) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+**Other Properties Related to Output:** [Includes defensive operating procedures and templates that require environment-specific review before operational use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with policy templates, checklists, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only security hardening guidance; examples should be reviewed and adapted before production use.] <br>
+98.0.1 (source: evidence.release.version)
 
-## Skill Version(s): <br>
-98.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

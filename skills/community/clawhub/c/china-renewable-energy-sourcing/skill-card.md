@@ -1,38 +1,49 @@
-## Description: <br>
-Comprehensive renewable energy industry sourcing guide for international buyers - provides detailed information about China's solar PV, wind power, energy storage, and hydrogen manufacturing clusters, supply chain structure, regional specializations, and industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive renewable energy industry sourcing guide for international buyers - provides detailed information about China's solar PV, wind power, energy storage, and hydrogen manufacturing clusters, supply chain structure, regional specializations, and industry trends (2026 updated).
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-External buyers, sourcing teams, and developers use this skill to explore China's renewable energy manufacturing clusters, supply chain structure, subsector details, and supplier evaluation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market, supplier, certification, pricing, export-control, and regulatory information may be incomplete or stale. <br>
-Mitigation: Treat the skill as reference material and independently verify supplier claims, certifications, pricing, export controls, and current regulations before procurement decisions. <br>
+## Use Case:
 
+External buyers, sourcing teams, and developers use this skill to understand China's renewable energy manufacturing clusters, supply chain structure, subsector trends, and supplier evaluation considerations for solar PV, wind power, energy storage, hydrogen, and smart grid sourcing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/china-renewable-energy-sourcing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, JSON] <br>
-**Output Format:** [Markdown prose and structured JSON-like data from local lookups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, network calls, persistence, or hidden data access are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Industry figures, 2026 projections, purchasing, compliance, and supplier claims may be outdated or incomplete if used directly for business decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important sourcing, compliance, and supplier claims against current primary sources before making procurement or compliance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1970168137/skills/china-renewable-energy-sourcing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and Python dictionary responses from local JSON-backed lookup functions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reference guidance only; no individual factory contacts are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

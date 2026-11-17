@@ -1,0 +1,35 @@
+{
+  "name": "ptbrowser-mcp",
+  "version": "0.2.0",
+  "description": "PTBrowser 浏览器环境管理 AI Skill。通过已登录 Windows 客户端的本机 MCP 管理独立 Chromium profiles、环境、分组、代理、扩展和回收区。Use for PTBrowser profile and browser environment management; not third-party webpage automation.",
+  "author": {
+    "name": "企雀AI助手"
+  },
+  "homepage": "https://ptbrowser.qique.cn/",
+  "repository": "https://github.com/Edmon/ptbrowser-mcp",
+  "keywords": [
+    "ptbrowser",
+    "指纹浏览器",
+    "浏览器环境管理",
+    "chromium",
+    "browser profiles",
+    "proxy",
+    "extensions",
+    "mcp",
+    "agent skills"
+  ],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "PTBROWSER_RUNTIME_DIR": {
+        "type": "string",
+        "title": "PTBrowser 环境管理 official runtime directory",
+        "description": "Absolute local path to the separately installed official package root. No credentials."
+      }
+    },
+    "required": [
+      "PTBROWSER_RUNTIME_DIR"
+    ]
+  },
+  "license": "MIT-0"
+}

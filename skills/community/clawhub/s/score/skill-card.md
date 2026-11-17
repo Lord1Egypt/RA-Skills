@@ -1,40 +1,58 @@
-## Description: <br>
-Track game scores, brackets, and player statistics. Use when recording results, scoring rounds, ranking leaderboards, reviewing game history, computing stats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score helps agents record game scores, rankings, leaderboards, history, and related activity in local plaintext logs.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Players, game hosts, and tournament organizers use this skill to record scores, rankings, challenge results, leaderboard updates, rewards, and game history from a command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Player names, scores, notes, and exported records are stored as plain text under ~/.local/share/score/ and may appear in later searches or exports. <br>
-Mitigation: Avoid entering secrets or sensitive personal data, and manually delete the stored files when clearing game history is required. <br>
+## Use Case:
 
+External users and developers use Score to record game or competition activity from the command line, review recent entries, search local logs, and export saved records.
 
-## Reference(s): <br>
-- [Score on ClawHub](https://clawhub.ai/bytesagain3/score) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain3) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, configuration] <br>
-**Output Format:** [Plain text CLI output with optional JSON, CSV, or text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local plain-text log and export files under ~/.local/share/score/ by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server-resolved release metadata) <br>
+Risk: Plaintext local logs can contain sensitive personal details if users enter them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Record only non-sensitive game and activity data; do not store secrets or sensitive personal information.
+
+Risk: Exports can gather all saved entries into a single file.
+
+Mitigation: Review exported json, csv, or txt files before sharing and remove exports when they are no longer needed.
+
+Risk: Analytics are limited to recording, searching, and counting text entries.
+
+Mitigation: Review results before using them as authoritative brackets, rankings, or player statistics.
+
+## Reference(s):
+
+- [Score ClawHub page](https://clawhub.ai/bytesagain3/skills/score)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Plain text CLI output with local log and export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes plaintext logs and json, csv, or txt exports under ~/.local/share/score/.]
+
+## Skill Version(s):
+
+2.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

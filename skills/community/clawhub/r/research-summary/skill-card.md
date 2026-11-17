@@ -1,42 +1,56 @@
-## Description: <br>
-Converts English or Chinese sell-side research reports and industry reports into structured Chinese investment-research briefs for technology, internet, and semiconductor coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms English or Chinese analyst and industry reports into structured Chinese investment-research briefings for technology, internet, and semiconductor topics.
 
-## Publisher: <br>
-[ambition0802](https://clawhub.ai/user/ambition0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ambition0802](https://clawhub.ai/user/ambition0802)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and investment-research practitioners use this skill to condense analyst reports, industry reports, PDFs, web links, or screenshots into concise Chinese market briefings focused on expectation gaps, catalysts, risks, and key numbers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generic finance and research-report triggers may activate the skill in nearby investment conversations.
+
+Mitigation: Confirm that the user wants a Chinese investment-style report summary before applying the skill to ambiguous finance requests.
+
+Risk: The skill may answer in Chinese unless directed otherwise.
+
+Mitigation: Ask for or honor an explicit output-language preference when the user does not want Chinese.
+
+Risk: Investment-style summaries can overemphasize market interpretation if source reports are weak or incomplete.
+
+Mitigation: Ground conclusions in the provided report facts and preserve key risks, numbers, dates, and uncertainty from the source material.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and investment-research practitioners use this skill to turn research-report content, PDFs, links, or screenshots into concise Chinese briefs focused on incremental information, expectation gaps, catalysts, risks, and market implications. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, analysis, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential reports or private links may be exposed if users provide sensitive material to the agent. <br>
-Mitigation: Use only approved report content and links, and follow the user's data-handling policy before submitting private or confidential materials. <br>
-Risk: Broad activation keywords may trigger the skill when the user did not intend investment-report summarization. <br>
-Mitigation: Confirm the intended summarization task when activation is ambiguous or the prompt only loosely matches the trigger terms. <br>
-Risk: Extracted figures, report facts, and investment judgments may be incomplete or misleading. <br>
-Mitigation: Verify important numbers, dates, sources, and conclusions against the original report before relying on or distributing the brief. <br>
+**Output Format:** [Structured Chinese Markdown briefing]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ambition0802/research-summary) <br>
+**Other Properties Related to Output:** [Outputs are intended for scan-friendly investment-research sharing and may preserve report metadata when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Chinese Markdown-style investment brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; output emphasizes concise bullet points, report metadata when available, key figures, risks, and investment implications.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-Orchestrate coding agents to implement coding tasks through a structured workflow covering requirement analysis, specification, task planning, agent dispatch, monitoring, verification, and delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate coding agents to implement coding tasks through a structured workflow with requirement analysis, specification, task planning, agent dispatch, verification, and delivery.
 
-## Publisher: <br>
-[lgYanami](https://clawhub.ai/user/lgYanami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgyanami](https://clawhub.ai/user/lgyanami)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate coding agents on feature work, bug fixes, GitHub issues, and other multi-step implementation tasks. It is intended for tasks that need structured requirements, task decomposition, agent execution, verification, and delivery notes rather than simple one-line edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can launch coding agents with broad local authority and may change project files automatically. <br>
-Mitigation: Use it only in intended project worktrees, prefer a less privileged command configuration where practical, and inspect the final diff before merging or committing. <br>
-Risk: Project documentation or agent configuration files such as llmdoc/ and CLAUDE.md may be created or modified during the workflow. <br>
-Mitigation: Review documentation and configuration changes explicitly before relying on them or including them in a commit. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn coding requirements, feature requests, bug reports, or GitHub issues into a gated implementation workflow across coding agents. It helps structure specs, task cards, dispatch prompts, verification, and delivery summaries.
 
-## Reference(s): <br>
-- [cc-plugin](https://github.com/TokenRollAI/cc-plugin) <br>
-- [Requirement Template](references/requirement-template.md) <br>
-- [Verification Template](references/verification-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with task cards, verification checklists, shell commands, and delivery summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured workflow instructions and review checkpoints for agent-assisted code changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: External coding agents may receive project context during orchestration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the workflow only for projects where sharing context with the selected agent is acceptable, and prefer a sandboxed checkout.
+
+Risk: The workflow references broad bypassed permissions for Claude Code.
+
+Mitigation: Remove or avoid bypassPermissions unless the task truly requires it, and review agent actions before keeping changes.
+
+Risk: The workflow can modify project agent configuration and llmdoc files.
+
+Mitigation: Review CLAUDE.md and llmdoc changes before accepting them into the project.
+
+Risk: The workflow depends on cc-plugin behavior.
+
+Mitigation: Pin and review the required cc-plugin before using the workflow.
+
+## Reference(s):
+
+- [cc-plugin](https://github.com/TokenRollAI/cc-plugin)
+- [Requirement Template](references/requirement-template.md)
+- [Verification Template](references/verification-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with task cards, shell command blocks, prompts, checklists, and delivery summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation gates before specification approval and agent dispatch.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

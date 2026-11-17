@@ -1,45 +1,64 @@
-## Description: <br>
-Manage Alibaba Cloud Elastic Compute Service (ECS) via OpenAPI/SDK for listing or creating instances, starting, stopping, and rebooting instances, managing disks, snapshots, images, security groups, key pairs, and network interfaces, querying status, and troubleshooting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud Elastic Compute Service (ECS) via OpenAPI/SDK for instance inventory, lifecycle operations, storage, networking, monitoring, and troubleshooting workflows.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to administer Alibaba Cloud ECS resources through OpenAPI, SDK examples, and inventory or troubleshooting scripts. It helps agents plan and execute ECS workflows while preserving region, resource identifier, and output evidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide actions against live Alibaba Cloud ECS infrastructure. <br>
-Mitigation: Use least-privilege RAM credentials and confirm the region, resource IDs, and intended effect before mutating resources. <br>
-Risk: Remote commands, deletion, disk reset or replacement, snapshot or image deletion, and security group changes can disrupt workloads or expose systems. <br>
-Mitigation: Require explicit approval for these operations and review generated commands before execution. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to inventory and administer Alibaba Cloud ECS resources, including instances, disks, snapshots, images, security groups, key pairs, network interfaces, monitoring data, and Cloud Assistant remote commands.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/alicloud-compute-ecs) <br>
-- [ECS API overview](https://www.alibabacloud.com/help/en/ecs/developer-reference/api-ecs-2014-05-26-overview) <br>
-- [DescribeInstances API](https://www.alibabacloud.com/help/en/ecs/developer-reference/describeinstances) <br>
-- [RunCommand API](https://www.alibabacloud.com/help/en/ecs/developer-reference/runcommand) <br>
-- [ECS endpoints](https://www.alibabacloud.com/help/en/ecs/developer-reference/endpoints) <br>
-- [Skill source references](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples, plus JSON or TSV files from bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts write operational evidence under output/alicloud-compute-ecs/ when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can guide powerful ECS administration actions, including lifecycle changes, security group edits, disk and image operations, and Cloud Assistant remote commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before making changes, and use short-lived RAM credentials with least-privilege permissions.
+
+Risk: Saved inventory and command-output JSON may expose account structure, instance identifiers, or command stdout.
+
+Mitigation: Treat generated output files as sensitive and store or share them according to the user's cloud security policy.
+
+Risk: Unreviewed SDK dependencies can affect the safety of cloud administration workflows.
+
+Mitigation: Install dependencies in an isolated environment and prefer pinned, reviewed Alibaba Cloud SDK versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/alicloud-compute-ecs)
+- [ECS OpenAPI overview](https://www.alibabacloud.com/help/en/ecs/developer-reference/api-ecs-2014-05-26-overview)
+- [ECS API metadata](https://api.aliyun.com/meta/v1/products/Ecs/versions/2014-05-26/api-docs.json)
+- [ECS endpoints](https://www.alibabacloud.com/help/en/ecs/developer-reference/endpoints)
+- [DescribeInstances API](https://www.alibabacloud.com/help/en/ecs/developer-reference/describeinstances)
+- [RunCommand API](https://www.alibabacloud.com/help/en/ecs/developer-reference/runcommand)
+- [Local API overview reference](references/api_overview.md)
+- [Local source links reference](references/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python SDK examples, and JSON evidence files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Inventory and command outputs are saved under output/alicloud-compute-ecs/ when generated.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

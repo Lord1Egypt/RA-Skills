@@ -1,48 +1,63 @@
-## Description: <br>
-Continuous Dev Loop provides a governed development loop with roadmap, budget, ledger, and understanding-debt controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Governed loop with roadmap, budget, ledger, and understanding debt.
 
-## Publisher: <br>
-[modeyapu](https://clawhub.ai/user/modeyapu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modeyapu](https://clawhub.ai/user/modeyapu)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run restartable repository development rounds, each limited to one verified slice with durable state and an explicit continue, stop, or block decision. It is intended for established development directions, not initial product strategy or open-ended brainstorming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to maintain loop state files and run normal project verification commands in a repository. <br>
-Mitigation: Confirm the intended continuity files and allowed verification commands before use; reuse repo-native state where it exists. <br>
-Risk: Repo-local policy may enable commits, pushes, hooks, or multi-agent writes with broader impact. <br>
-Mitigation: Keep those actions explicitly authorized, scoped, and reviewed before execution. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to run bounded repository development rounds that leave durable state, verification results, and a single continuation decision.
 
-## Reference(s): <br>
-- [Footer Contract](references/footer-contract.md) <br>
-- [Multi-Agent Governance](references/multi-agent-governance.md) <br>
-- [Precision Overview](references/precision-overview.md) <br>
-- [Precision Profiles](references/precision-profiles.md) <br>
-- [Precision Review Pipeline](references/precision-review-pipeline.md) <br>
-- [Precision Runtime Compatibility](references/precision-runtime-compatibility.md) <br>
-- [Repo Policy Profiles](references/repo-policy-profiles.md) <br>
-- [Runtime Compatibility](references/runtime-compatibility.md) <br>
-- [Stop Governance](references/stop-governance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown summaries with a machine-readable footer and optional JSON or Markdown state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One bounded development slice per round; continuation state is persisted in repo-native or supervisor-owned files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.2.0 (source: server release evidence) <br>
+Risk: Commit-required, push-required, hook, or multi-agent split-write modes can expand the authority or write scope of a development round.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository policy before enabling those modes and require explicit human review when authority boundaries are unclear.
+
+Risk: Continuity files written outside the intended repository can make later rounds follow stale or irrelevant state.
+
+Mitigation: Keep continuity files inside the intended repository or a supervisor-owned state surface and reuse existing repo-native state when available.
+
+Risk: Continuing after failed verification or unclear review gates can preserve an unsafe continuation decision.
+
+Mitigation: Stop for human review when verification fails, review gates are due, or continuation evidence conflicts.
+
+## Reference(s):
+
+- [Continuous Dev Loop on ClawHub](https://clawhub.ai/modeyapu/skills/continuous-dev-loop)
+- [Footer Contract](references/footer-contract.md)
+- [Runtime Compatibility](references/runtime-compatibility.md)
+- [Multi-Agent Governance](references/multi-agent-governance.md)
+- [Stop Governance](references/stop-governance.md)
+- [Precision Overview](references/precision-overview.md)
+- [Repo Policy Profiles](references/repo-policy-profiles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown summaries, machine-readable footer text, and JSON or Markdown continuity files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write bounded repository state and review metadata such as loop state, ledgers, profile settings, metrics, and review reports.]
+
+## Skill Version(s):
+
+6.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

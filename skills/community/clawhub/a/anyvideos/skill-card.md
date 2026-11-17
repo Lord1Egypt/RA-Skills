@@ -1,44 +1,63 @@
-## Description: <br>
-Download videos, images, and audio from YouTube, Twitter, Instagram, Facebook, Vimeo, Tumblr, TikTok, Bilibili, and 1000+ more websites. Just paste a URL and get direct download links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download videos, images, and audio from YouTube, Twitter, Instagram, Facebook, Vimeo, Tumblr, TikTok, Bilibili, and 1000+ more websites.
 
-## Publisher: <br>
-[mstscmsn](https://clawhub.ai/user/mstscmsn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mstscmsn](https://clawhub.ai/user/mstscmsn)
 
-## Use Case: <br>
-External users and agents use this skill to request media download options from the AnyVideos API, choose a quality, and save or deliver the resulting video, image, or audio file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Media URLs submitted to the AnyVideos service may reveal private, signed, internal, or account-specific content, and API usage may consume credits or quota. <br>
-Mitigation: Avoid submitting sensitive URLs and confirm the API key, remaining balance, and intended request before extracting media. <br>
-Risk: Local install and download commands such as ffmpeg, curl, or wget can affect the local environment or overwrite files. <br>
-Mitigation: Review commands before running them, choose output paths deliberately, and check whether a target file already exists before writing. <br>
-Risk: Some sources may be unsupported, temporarily unavailable, or too large to send directly in chat. <br>
-Mitigation: Validate the URL, present available quality and size information, warn before large downloads, and provide a saved path or direct link fallback when delivery is not practical. <br>
+## Use Case:
 
+External users use this skill to extract downloadable media options from supported video and social platforms, select a quality, and receive either a direct link or a locally saved media file. It also guides initial API key setup for the AnyVideos service.
 
-## Reference(s): <br>
-- [AnyVideos](https://anyvideos.yx.lu) <br>
-- [AnyVideos Extract API](https://anyvideos.yx.lu/api/extract) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mstscmsn/anyvideos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown responses with quality tables, API request details, shell commands, direct download links, and saved file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANYVIDEOS_API_KEY and may use ffmpeg, curl, or wget to download and merge media files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Submitted media URLs are sent to the AnyVideos service with the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for links that are appropriate to share with the service and keep the API key in the required environment variable.
+
+Risk: The workflow may install ffmpeg and download media files to the local machine.
+
+Mitigation: Require explicit user approval for package installation and file destinations before running shell commands or writing media files.
+
+Risk: Downloaded media can consume significant local storage or exceed chat delivery limits.
+
+Mitigation: Check file size before delivery, use user-approved paths, and prefer private temporary directories with non-overwriting filenames.
+
+Risk: The onboarding text promotes an external signup flow.
+
+Mitigation: Present credential setup neutrally and make clear that use of the external service is required before downloads can proceed.
+
+## Reference(s):
+
+- [AnyVideos homepage](https://anyvideos.yx.lu)
+- [ClawHub skill page](https://clawhub.ai/mstscmsn/skills/anyvideos)
+- [Publisher profile](https://clawhub.ai/user/mstscmsn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown with tables, inline commands, HTTP examples, and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local media files after user selection and download.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

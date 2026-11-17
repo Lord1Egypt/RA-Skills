@@ -4,6 +4,8 @@
 
 **域间逻辑流**：MF1 → MF2 → MF3 → MF4 → MF5
 
+> **前置校验（贯穿全程）**：使用前先按 SKILL.md「信息新鲜度」与 fmc-requirements「前置要求」联网核对，模型 ID / 免费状态 / 参数以当次核对结果为准；MF4-03 负责周期性巡检与基线回写。
+
 ---
 
 ### MF1 需求分析域
@@ -34,7 +36,7 @@
 | MF3-01 | API Key 生成 | 从平台后台网址生成 API Key | MF2-03 | A |
 | MF3-02 | 接口配置 | 配置接口地址和参数 | MF3-01 | A |
 | MF3-03 | 模型配置 | 生成完整的模型配置 | MF3-02 | A |
-| MF3-04 | WorkBuddy 模板 | 生成 WorkBuddy 配置模板 | MF3-03 | A |
+| MF3-04 | 通用配置模板 | 生成通用配置模板（env + JSON）并写入目标配置文件 | MF3-03 | A |
 | MF3-05 | API 配置规范 | 配置 API 规范参数 | MF3-03 | A |
 
 ---
@@ -69,6 +71,8 @@
 | MF6-04 | 音频生成 | 生成简单音频（无AI模型） | 无 | A |
 | MF6-05 | TTS配音 | 使用TTS生成语音配音 | MF6-04 | A |
 | MF6-06 | 音视频合并 | 将音频和视频合并 | MF6-02, MF6-05 | A |
+
+> 基线：图像 `agnes-image-2.5-flash`，视频 `agnes-video-2.5` / `agnes-video-2.5-flash`。视频时长用 `seconds`（4–12）、画质用 `size` 档位（720P/1080P/1K/2K），`width`/`height`/`fps`/`num_frames` 已废弃；结果轮询用 `video_id` + `model_name`。
 
 ---
 

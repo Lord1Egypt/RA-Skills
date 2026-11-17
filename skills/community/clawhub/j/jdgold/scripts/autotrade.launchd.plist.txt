@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  京东黄金 · 模拟交易全权托管 launchd 定时任务模板
+  ============================================================
+  ⚠️ 本文件是模板，不要手动改名/复制/编辑。
+     部署与停止一律用 sim_autotrade.py，脚本会自动读取本模板、
+     替换占位符、生成真正的 plist 并加载，无需任何手动操作：
+
+     部署（可选 --daily-cap 设单日上限）：
+       python3 scripts/sim_autotrade.py --claw <客户端> --install-launchd
+     停止：
+       python3 scripts/sim_autotrade.py --claw <客户端> --uninstall-launchd
+
+  占位符说明（由 --install-launchd 自动替换，无需手填）：
+   - __CLAW__        客户端类型（codex / openclaw / joycode …），取自 --claw
+   - __PROJECT_DIR__ 项目根目录绝对路径（脚本自动推导）
+   - __PYTHON__      python3 绝对路径（脚本自动取 sys.executable）
+   - StartInterval 单位为秒，1800 = 30 分钟轮询一次（通用默认）。
+
+  ⚠️ 外部条件（会导致托管悄悄停止）：
+   - 登录授权过期：脚本自动停并通知，需重新登录（人工开浏览器授权）。
+   - 关机 / 电池睡眠：launchd 暂停，插电+不关机才稳。
+   - 退出 AI 软件：不影响本任务（launchd 是独立系统服务）。
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.jdgold.autotrade</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>__PYTHON__</string>
+        <string>__PROJECT_DIR__/scripts/sim_autotrade.py</string>
+        <string>--claw</string>
+        <string>__CLAW__</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>1800</integer>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>__PROJECT_DIR__/.joycode/autotrade/launchd.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>__PROJECT_DIR__/.joycode/autotrade/launchd.err.log</string>
+</dict>
+</plist>

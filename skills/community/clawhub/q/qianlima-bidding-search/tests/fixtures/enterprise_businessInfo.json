@@ -1,0 +1,22 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "name": "深圳市城市服务有限公司",
+    "regStatus": "存续",
+    "companyOrgType": "有限责任公司",
+    "legalPersonName": "王某某",
+    "regCapital": "5000万元",
+    "estiblishTime": "2016-06-18",
+    "regNumber": "440300000000001",
+    "orgNumber": "MA5DUMMY0",
+    "creditCode": "91440300MA5DUMMY01",
+    "industry": "公共设施管理业",
+    "businessTerm": "2016-06-18 至长期",
+    "approvedTime": "2025-12-01",
+    "regInstitute": "深圳市市场监督管理局",
+    "regLocation": "深圳市福田区深南大道1000号",
+    "businessScope": "城市公共服务、物业管理、园林绿化和市政设施维护。"
+  },
+  "success": true
+}

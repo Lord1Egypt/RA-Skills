@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/template-pack.schema.json",
+  "title": "MeowClaw PPTSmith Production Template Pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "pack_id",
+    "display_name",
+    "description",
+    "style_contract",
+    "compatible_expression_modes",
+    "archetypes",
+    "editable_core_policy",
+    "forbidden_patterns",
+    "truthful_constraints"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "pack_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "style_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["style_id", "schema_version", "ref"],
+      "properties": {
+        "style_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "schema_version": {"const": "2.0"},
+        "ref": {"type": "string", "pattern": "^\\.\\./\\.\\./(?:styles|tests/fixtures/styles)/[a-z0-9-]+\\.json$"}
+      }
+    },
+    "compatible_expression_modes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/expressionMode"}
+    },
+    "archetypes": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/archetype"},
+      "allOf": [
+        {"contains": {"type": "object", "required": ["role"], "properties": {"role": {"const": "cover"}}}, "minContains": 1},
+        {"contains": {"type": "object", "required": ["role"], "properties": {"role": {"const": "judgment"}}}, "minContains": 1},
+        {"contains": {"type": "object", "required": ["role"], "properties": {"role": {"const": "evidence_data"}}}, "minContains": 1},
+        {"contains": {"type": "object", "required": ["role"], "properties": {"role": {"const": "process_relationship"}}}, "minContains": 1},
+        {"contains": {"type": "object", "required": ["role"], "properties": {"role": {"const": "comparison_implementation"}}}, "minContains": 1},
+        {"contains": {"type": "object", "required": ["role"], "properties": {"role": {"const": "closing"}}}, "minContains": 1}
+      ]
+    },
+    "editable_core_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_native_objects",
+        "required_editable_elements",
+        "bounded_visual_requires_native_overlay",
+        "whole_slide_raster_forbidden"
+      ],
+      "properties": {
+        "required_native_objects": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "required_editable_elements": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "bounded_visual_requires_native_overlay": {"const": true},
+        "whole_slide_raster_forbidden": {"const": true}
+      }
+    },
+    "forbidden_patterns": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "truthful_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "renderer_evidence_required_for_final",
+        "disclose_route_deviations",
+        "disclose_raster_or_generated_components",
+        "notes"
+      ],
+      "properties": {
+        "renderer_evidence_required_for_final": {"const": true},
+        "disclose_route_deviations": {"const": true},
+        "disclose_raster_or_generated_components": {"const": true},
+        "notes": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  },
+  "$defs": {
+    "expressionMode": {
+      "enum": ["textual_argument", "structured_cards", "table_matrix", "data_visual", "relationship_visual", "conceptual_scene"]
+    },
+    "deliveryRoute": {
+      "enum": ["native_ppt", "native_chart", "native_table", "native_diagram", "svg_component", "raster_component", "generated_image", "background_image", "hybrid_overlay", "unsupported"]
+    },
+    "archetype": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "page_archetype", "intent", "allowed_expression_modes", "component_routes", "editable_core"],
+      "properties": {
+        "role": {"enum": ["cover", "judgment", "evidence_data", "process_relationship", "comparison_implementation", "closing"]},
+        "page_archetype": {
+          "enum": [
+            "executive-cover", "section-opener", "claim-evidence", "metric-proof", "framework-map",
+            "process-lane", "system-architecture", "ecosystem-map", "decision-matrix", "risk-register",
+            "observability-dashboard", "implementation-roadmap", "comparison-contrast", "editorial-scene", "closing-standard"
+          ]
+        },
+        "intent": {"type": "string", "minLength": 1},
+        "allowed_expression_modes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/expressionMode"}},
+        "component_routes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/componentRoute"}},
+        "editable_core": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "componentRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component_type", "expression_mode", "preferred_route", "allowed_routes", "editability"],
+      "properties": {
+        "component_type": {"type": "string", "pattern": "^[a-z0-9_:-]+$"},
+        "expression_mode": {"$ref": "#/$defs/expressionMode"},
+        "preferred_route": {"$ref": "#/$defs/deliveryRoute"},
+        "allowed_routes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/deliveryRoute"}},
+        "editability": {"enum": ["native_required", "native_preferred", "raster_allowed", "raster_only"]}
+      }
+    }
+  }
+}

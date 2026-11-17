@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7e4xdsnt66p6zxxrvewvmvf1841pwv",
-  "slug": "scl-90",
-  "version": "1.0.0",
-  "publishedAt": 1775055824813
+	"author": "silifelab",
+	"description": "SCL-90症状自评量表 - 专业心理测评工具（含中国常模）",
+	"homepage": "",
+	"name": "scl-90",
+	"source": "",
+	"version": "1.0.0"
 }

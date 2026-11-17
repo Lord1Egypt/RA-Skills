@@ -1,0 +1,24 @@
+{
+ "content": [
+  {
+   "text": "Why does a school radio call with the ISS last only about 10 minutes? The station crosses from horizon to horizon at 17,500 mph. NASA astronaut Nichole Ayers explains. #ISS #hamradio #space",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId of captioned/speed/speed.linkedin.en.mp4>"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-24T13:30:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "LINKEDIN_PAGES",
+   "socialAccountId": "<connect this account>"
+  }
+ ],
+ "autoDeleteMediaAfterPublish": false
+}

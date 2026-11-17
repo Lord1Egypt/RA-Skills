@@ -1,39 +1,56 @@
-## Description: <br>
-Analyze images and multi-frame sequences using OpenAI GPT series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze images and multi-frame sequences using OpenAI GPT series.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lnj22](https://clawhub.ai/user/lnj22)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to guide agents through OpenAI vision analysis for images, OCR-style text extraction, visual comparison, and multi-frame temporal review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Submitted images, image URLs, prompts, and extracted text may be sent to the OpenAI API.
+
+Mitigation: Avoid confidential screenshots, personal documents, regulated data, and secrets unless approved for that API use.
+
+Risk: API credentials could be exposed if copied into code, prompts, or logs.
+
+Mitigation: Keep OPENAI_API_KEY in secure environment configuration and out of source files and logs.
+
+Risk: Vision outputs can be unreliable for medical diagnosis, exact object counts, small or rotated text, precise spatial reasoning, and distorted images.
+
+Mitigation: Use the skill for assistive analysis, keep human review for high-impact decisions, and verify results against source images.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze images, compare multiple images or video frames, extract visible text, and return structured vision-analysis results with OpenAI vision-capable GPT models. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, screenshots, frames, prompts, and visible text may be sent to OpenAI during use. <br>
-Mitigation: Avoid secrets, regulated records, private documents, and sensitive screenshots unless approved; use a dedicated API key with usage limits. <br>
+**Output Format:** [Markdown guidance with Python code examples and JSON output schemas]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/pedestrian-traffic-counting-gpt-multimodal) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lnj22) <br>
+**Other Properties Related to Output:** [The guided API output is typically structured JSON containing analysis text, metadata, extracted data, and warnings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and JSON result schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenAI API key; outputs may include structured JSON with analysis metadata, extracted data, and warnings.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

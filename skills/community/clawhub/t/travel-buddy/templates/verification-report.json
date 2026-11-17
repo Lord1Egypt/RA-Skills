@@ -1,0 +1,132 @@
+{
+  "checked_at": "2026-08-04",
+  "plan": "plans/2027-09-08-your-trip.json",
+  "method": "seven-agent fan-out: five truth domains plus the consistency and completeness auditors; note here how it was run so a reader can judge the coverage",
+
+  "_contract": [
+    "All five domains must appear and no others. Copy every block below even when a domain",
+    "found nothing -- an absent domain is a gap nobody can see, which is exactly what a skipped",
+    "pass looks like.",
+    "claims_checked is the list of plan pointers that block actually opened, and must be",
+    "non-empty. Every pointer must resolve against the plan -- days[0].dining[1].venue_hours,",
+    "budget.breakdown[2].per_person_high -- and be unique within its block. It was a COUNT",
+    "until a run showed why that cannot work: an integer is a promise the same run writes",
+    "about itself, so a block whose verifier died writes 1 and the gate goes green with",
+    "'verified' on a page someone books a train from. A list that has to resolve costs more",
+    "to fabricate than to earn. Pointing at a field whose value is null is fine -- examining",
+    "an empty field is real work. One coverage rule is enforced: sights_and_hours must cite",
+    "every days[].dining[] card whose hours_status claims researched or verified, because",
+    "that is exactly where the measured defect lived -- a restaurant self-declared",
+    "'researched' while its hours were wrong at both ends and it was scheduled on the",
+    "venue's rest day.",
+    "plan binds the report to one itinerary; the checker compares it to the file it is given, so",
+    "one clean report cannot certify every trip.",
+    "verdict: confirmed | wrong | misleading | unverifiable. Only report the last three --",
+    "confirmed claims are noise. severity: critical | major | minor.",
+    "resolved is required on wrong and misleading, and resolution names the change that fixed it.",
+    "No code can prove a resolution actually happened, so write it for a human to check by eye.",
+
+    "audits is a required sibling of domains, and carries exactly two entries: consistency and",
+    "completeness. Their findings use the same shape, the same verdict and severity enums, and the",
+    "same rule -- resolved is required on wrong and misleading. They differ from a domain only in",
+    "needing no network: consistency re-decides what check_plan_consistency.py decides plus what a",
+    "script cannot express, such as whether a day's pacing is physically possible; completeness asks",
+    "what is missing -- which stated preference is served only by a token anchor, which hard",
+    "constraint is asserted but never measured, which collected field never reaches the page.",
+    "They are here because references/verification.md has always told the operator to run seven",
+    "agents while this schema accepted five, so a report that followed the reference failed the gate",
+    "and the cheapest way out was to delete the two auditors. In the measured run those two produced",
+    "27 of 55 findings and 5 of the 6 criticals -- the deletion the schema was rewarding would have",
+    "thrown away most of the verification.",
+
+    "rechecks is OPTIONAL and empty on a first verification. After a verified save, the plan",
+    "carries a receipt fingerprinting each day, booking option and block; a later save against",
+    "this report must recheck exactly the sections that changed, one entry each: {section,",
+    "section_digest, checked_at, reason, claims_checked, findings}. claims_checked must resolve and",
+    "stay inside the section; findings follow the rules above. section_digest binds the entry to",
+    "the version of the part it checked -- edit the part again and it needs a new entry.",
+    "`python scripts/new_verification_report.py --recheck --from-plan <plan.json> --report",
+    "<report.json>` writes them, digest included, for you to fill.",
+
+    "Delete this _contract key before saving the real report."
+  ],
+
+  "domains": [
+    {
+      "domain": "entry",
+      "claims_checked": [
+        "trip.origin",
+        "trip.destination",
+        "entry_context.status",
+        "entry_context.traveler_basis"
+      ],
+      "findings": [
+        {
+          "claim": "the plan's own words, quoted, so a reader can find what was wrong",
+          "verdict": "misleading",
+          "correction": "what is actually true, stated concretely",
+          "severity": "critical",
+          "evidence_url": "https://official-source.example/page",
+          "resolved": true,
+          "resolution": "which field of the plan changed, and how"
+        }
+      ]
+    },
+    {
+      "domain": "transport",
+      "claims_checked": [
+        "days[0].route.segments[0].fare_basis",
+        "days[0].route.duration_minutes",
+        "transport_overview.overall_route_map_url"
+      ],
+      "findings": []
+    },
+    {
+      "domain": "sights_and_hours",
+      "claims_checked": [
+        "days[0].dining[0].venue_hours",
+        "days[0].dining[0].hours_status",
+        "days[0].activities[0].time"
+      ],
+      "findings": []
+    },
+    {
+      "domain": "booking_and_lodging",
+      "claims_checked": [
+        "booking_options.accommodations[0].check_out",
+        "booking_options.accommodations[0].nightly_cost_high",
+        "budget.breakdown[0].per_person_high"
+      ],
+      "findings": []
+    },
+    {
+      "domain": "seasonality",
+      "claims_checked": [
+        "trip.start_date",
+        "days[0].contingency"
+      ],
+      "findings": []
+    }
+  ],
+
+  "rechecks": [],
+
+  "audits": [
+    {
+      "audit": "consistency",
+      "claims_checked": [
+        "days[0].route.walking_burden",
+        "days[0].route.duration_minutes"
+      ],
+      "findings": []
+    },
+    {
+      "audit": "completeness",
+      "claims_checked": [
+        "budget.cap_per_person",
+        "plan.assumptions"
+      ],
+      "findings": []
+    }
+  ]
+}

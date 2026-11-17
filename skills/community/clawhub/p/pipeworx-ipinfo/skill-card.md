@@ -1,42 +1,59 @@
-## Description: <br>
-IPInfo MCP wraps ipinfo.io for basic IP lookup without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IPInfo MCP wraps ipinfo.io for basic IP lookups without an API key.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agent users use this skill to add basic IP address lookup and current public IP lookup through the Pipeworx ipinfo MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IP lookup requests may disclose submitted IP addresses or the user's public IP to Pipeworx and ipinfo.io. <br>
-Mitigation: Avoid submitting sensitive internal, customer, investigative, or regulated IP data unless that disclosure is acceptable. <br>
-Risk: The connection example uses mcp-remote@latest, which can change behavior when new package versions are released. <br>
-Mitigation: Pin mcp-remote to a reviewed version when deploying in controlled or production environments. <br>
+## Use Case:
 
+Developers and external users can connect an MCP server that provides IP address lookup and current-client-IP lookup tools backed by ipinfo.io.
 
-## Reference(s): <br>
-- [Pipeworx ipinfo](https://pipeworx.io/packs/ipinfo) <br>
-- [Pipeworx](https://pipeworx.io) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-ipinfo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger external IP lookup requests through Pipeworx and ipinfo.io when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Setup uses a mutable npm package with automatic confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, audited mcp-remote version or a lockfile-based setup before installation.
+
+Risk: IP lookups are sent through a third-party gateway.
+
+Mitigation: Only submit IP addresses that are acceptable to share with the external service.
+
+Risk: Lookup results are external data.
+
+Mitigation: Treat returned data as untrusted context and review it before using it in decisions or instructions.
+
+## Reference(s):
+
+- [Pipeworx ipinfo pack](https://pipeworx.io/packs/ipinfo)
+- [Pipeworx](https://pipeworx.io)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-ipinfo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces IP lookup results through an external MCP gateway; results should be treated as external data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

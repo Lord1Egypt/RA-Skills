@@ -1,49 +1,62 @@
-## Description: <br>
-Gate multi-collateral loan management skill for borrowing crypto against collateral and managing existing loans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate multi-collateral loan management skill for borrowing crypto against collateral and managing existing collateral-loan positions through Gate MCP tools.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External Gate users and agent operators use this skill to review multi-collateral loan rates, LTV, quotas, orders, repayments, and collateral adjustments, and to prepare confirmed loan-management actions through Gate MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare and execute actions that change real Gate multi-collateral loan positions. <br>
-Mitigation: Manually verify every order ID, asset, amount, rate, LTV value, and collateral change before approving any write action. <br>
-Risk: Gate credentials with multi-collateral loan permissions can authorize sensitive account operations. <br>
-Mitigation: Use the least-privileged Gate credentials available and keep API keys out of prompts, logs, and skill files. <br>
-Risk: Using an unintended Gate MCP source could route loan-management requests to the wrong integration. <br>
-Mitigation: Confirm the installed Gate MCP server and source before enabling the skill for account operations. <br>
-Risk: Loan rates, LTV, quotas, and fixed-rate availability can change before a user approves an action. <br>
-Mitigation: Re-check current rate, fixed-rate, quota, LTV, and order state immediately before any confirmed mutation. <br>
+## Use Case:
 
+External users and agents use this skill to inspect Gate multi-collateral loan rates, quotas, orders, and to prepare confirmed create, repay, add-collateral, or redeem-collateral actions through Gate MCP tools.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gate-exchange/gate-exchange-collateralloan) <br>
-- [Gate MCP project](https://github.com/gate/gate-mcp) <br>
-- [Gate multi-collateral loan API reference](https://www.gate.com/docs/developers/apiv4/zh_CN/#multi-collateral-loan) <br>
-- [MCP execution specification](references/mcp.md) <br>
-- [MCL MCP tool reference](references/mcl-mcp-tools.md) <br>
-- [Collateral loan scenarios](references/scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown action drafts, confirmation prompts, query summaries, and MCP-backed operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include order IDs, asset amounts, rates, LTV values, collateral changes, repayment status, and setup guidance; write actions require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 2026.3.23-1) <br>
+Risk: The skill can create loans, repay loans, and change collateral through write-capable Gate MCP tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant Mcl:Write only when those workflows are intended, review each action draft, and require explicit confirmation before any write call.
+
+Risk: The security summary says the skill asks agents to trust mutable remote instructions before using write-capable financial tools.
+
+Mitigation: Install only if the Gate publisher is trusted and the external runtime-rules document can be verified before deployment.
+
+Risk: Loan actions expose users to collateral, LTV, and liquidation risk.
+
+Mitigation: Surface rates and LTV as reference information, avoid investment advice, and leave the borrow or repayment decision to the user.
+
+## Reference(s):
+
+- [MCP execution specification](artifact/references/mcp.md)
+- [MCP tools reference](artifact/references/mcl-mcp-tools.md)
+- [Scenarios and prompt examples](artifact/references/scenarios.md)
+- [Gate MCP repository](https://github.com/gate/gate-mcp)
+- [Gate API v4 multi-collateral loan documentation](https://www.gate.com/docs/developers/apiv4/zh_CN/#multi-collateral-loan)
+- [Gate API key management](https://www.gate.io/myaccount/profile/api-key/manage)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with action drafts, MCP tool-call guidance, and JSON payload descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations require an explicit user confirmation draft before the agent calls MCP tools.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

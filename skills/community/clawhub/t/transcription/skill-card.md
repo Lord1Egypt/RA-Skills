@@ -1,41 +1,58 @@
-## Description: <br>
-Transcribe audio and video files using a Whisper-compatible API endpoint, including automatic audio extraction from video files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio and video files using OpenAI Whisper API. Use when user wants to transcribe audio/video files, extract speech from media, or get text from recordings. Automatically handles audio extraction from video files.
 
-## Publisher: <br>
-[djismgaming](https://clawhub.ai/user/djismgaming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djismgaming](https://clawhub.ai/user/djismgaming)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to turn audio or video recordings into transcripts, captions, subtitles, or structured transcription output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Audio and video recordings may contain sensitive speech and are uploaded to a hardcoded plain-HTTP local-network endpoint. <br>
-Mitigation: Use only with a trusted endpoint you control, avoid sensitive recordings, and prefer a secured configurable HTTPS endpoint with known retention and logging behavior. <br>
-Risk: The endpoint address is fixed to `192.168.0.11:8080`, which may fail or route media to an unintended local service in other environments. <br>
-Mitigation: Confirm the endpoint before use and update the implementation to require explicit endpoint configuration before uploading media. <br>
+## Use Case:
 
+Developers and external users can use this skill to turn audio or video recordings into transcripts, captions, timestamped text, or structured transcription results.
 
-## Reference(s): <br>
-- [Transcription Guide](references/transcription_guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/djismgaming/transcription) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text transcripts, JSON transcription responses, SRT subtitles, VTT captions, or Markdown guidance with shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May extract audio from video files with ffmpeg before sending media to the configured Whisper-compatible endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Potentially sensitive recordings are uploaded to a hardcoded private-network HTTP service without encryption or clear consent controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the endpoint, network path, retention policy, and transport security are acceptable; avoid sensitive recordings unless those conditions are verified.
+
+Risk: The transcription endpoint is hardcoded to 192.168.0.11:8080, which may be unavailable or inappropriate in another environment.
+
+Mitigation: Prefer a version that allows the endpoint to be configured and supports HTTPS or a loopback endpoint.
+
+Risk: Video transcription creates temporary extracted audio files.
+
+Mitigation: Use secure temporary-file handling and review local storage behavior before processing sensitive media.
+
+## Reference(s):
+
+- [Transcription Guide](artifact/references/transcription_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/djismgaming/skills/transcription)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text transcripts, JSON transcription results, SRT subtitles, VTT captions, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May upload source media to a configured Whisper-compatible endpoint and may extract audio from video with ffmpeg before transcription.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

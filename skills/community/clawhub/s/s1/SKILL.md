@@ -1,43 +1,71 @@
 ---
 name: search1api
 description: >
-  Powerful web search, content crawling, news, sitemap, trending topics, and deep reasoning via the search1api CLI (s1). This is far more capable than basic fetch or search tools — it supports 13+ search engines (Google, Bing, DuckDuckGo, Reddit, GitHub, YouTube, arXiv, Baidu, X, etc.), adapts to many websites for clean content extraction, and provides news aggregation across multiple sources. Use this skill whenever the user wants to search the web, look something up, research a topic, read or summarize a URL, check news, explore a site's links, see trending topics, do deep reasoning, or check API balance. Trigger on phrases like "search for", "look up", "find out about", "what's happening with", "any news on", "what does this link say", "read this page", "summarize this URL", "trending on GitHub", or when the user shares a bare URL. Even if the user doesn't say "search" explicitly, use this skill when they clearly need web information.
-metadata: {"openclaw": {"requires": {"env": ["SEARCH1API_KEY"], "bins": ["s1"]}, "primaryEnv": "SEARCH1API_KEY"}}
+  Live web search, page retrieval, news, sitemap discovery, and trending topics through Search1API. Use this skill whenever the user wants to search the web, look something up, research a topic, read or summarize a URL, check current news, explore a site's links, see trending topics, or check API balance. Trigger on phrases like "search for", "look up", "find out about", "what's happening with", "any news on", "what does this link say", "read this page", "summarize this URL", "trending on GitHub", or when the user shares a bare URL. Prefer the bundled Search1API MCP tools when available and fall back to the search1api CLI (`s1`).
+metadata: {"openclaw": {"requires": {"bins": ["s1"]}}}
 ---
 
-# Search1API CLI
+# Search1API
 
-Web search and content retrieval via the `s1` command-line tool (`search1api-cli`).
+Live web research through the bundled Search1API MCP server or the `s1`
+command-line tool.
 
-## Prerequisites
+## Choose the available transport
 
-Before using any command, check if `s1` is available. If not, guide the user to install it:
+1. Prefer the connected Search1API MCP tools. They may be namespaced by the
+   host, but their final tool names are `search`, `fetch`, `news`, `crawl`,
+   `sitemap`, and `trending`.
+2. If the MCP tools are unavailable, check whether `s1` is installed and use
+   the matching CLI command.
+3. If neither transport is available, ask the user to connect the bundled MCP
+   server or install the CLI:
+
+```bash
+curl -fsSL https://cli.search1api.com/install.sh | bash
+```
+
+Or via npm:
 
 ```bash
 npm install -g search1api-cli
 ```
 
-An API key is also required. Get one at https://search1api.com, then configure:
+Do not install software or switch transports when a working Search1API tool is
+already available. To update an existing CLI install, the user can run
+`s1 update`. Only suggest this when a command fails in a version-related way.
+
+The remote MCP server handles authentication through the host's connection
+flow. If the host reports that authentication is required, ask the user to
+connect or re-authenticate Search1API.
+
+For CLI authentication, prefer browser login:
+
+```bash
+s1 login
+```
+
+Manual fallback:
 
 ```bash
 s1 config set-key <your-api-key>
 ```
 
-Or set the environment variable `SEARCH1API_KEY`.
+You can also set the environment variable `SEARCH1API_KEY`.
 
-If a command fails with "command not found" or an auth error, remind the user to complete these setup steps before retrying.
+If a CLI command fails with "command not found" or an auth error, remind the
+user to install `s1` and run `s1 login` before retrying.
 
 ## When to use
 
-| User intent | Command |
-|---|---|
-| Shares a URL / link → read and summarize | `s1 crawl <url>` |
-| Wants to search the web | `s1 search "<query>"` |
-| Wants news | `s1 news "<query>"` |
-| Wants to explore a site's links | `s1 sitemap <url>` |
-| Wants trending topics | `s1 trending <service>` |
-| Wants deep thinking on a problem | `s1 reasoning "<content>"` |
-| Wants to check remaining credits | `s1 balance` |
+| User intent | MCP tool | CLI fallback |
+|---|---|---|
+| Shares a URL / link → read and summarize | `crawl` | `s1 crawl <url>` |
+| Wants to search the web | `search` | `s1 search "<query>"` |
+| Wants the full page behind a search result | `fetch` with its result `id` | `s1 crawl <url>` |
+| Wants news | `news` | `s1 news "<query>"` |
+| Wants to explore a site's links | `sitemap` | `s1 sitemap <url>` |
+| Wants trending topics | `trending` | `s1 trending <service>` |
+| Wants to check remaining credits | Not exposed | `s1 balance` |
 
 ## Dynamic tuning
 
@@ -49,7 +77,11 @@ Adapt parameters to user intent — don't just use defaults:
 - **Recency signals** ("latest", "recent", "this week") → `-t day` or `-t month`
 - **Domain-specific** ("search on Reddit", "find GitHub repos") → `-s reddit`, `-s github`, etc.
 - **Site-scoped** ("only from arxiv.org") → `--include arxiv.org`
-- **Chinese queries** → consider `-s baidu` for better results
+- **Chinese queries** → use `google`, `bing`, `wechat`, or `bilibili` according to intent
+
+For MCP calls, map the CLI flags above to their schema equivalents:
+`max_results`, `search_service`, `crawl_results`, `include_sites`,
+`exclude_sites`, and `time_range`.
 
 ## Commands
 
@@ -97,16 +129,6 @@ s1 sitemap <url>
 
 Returns all discovered links on a URL/domain.
 
-### reasoning
-
-```bash
-s1 reasoning "<content>"
-# or
-s1 reason "<content>"
-```
-
-Deep thinking powered by DeepSeek R1. Use for complex analytical questions.
-
 ### trending
 
 ```bash
@@ -127,8 +149,8 @@ Shows remaining API credits.
 
 ### Deep research
 
-1. `s1 search "<topic>" -n 15` → get broad results
-2. `s1 crawl <url>` → crawl the top 3–5 most relevant URLs from results
+1. Use `search` (or `s1 search "<topic>" -n 15`) to get broad results
+2. Use `fetch` with result IDs (or `s1 crawl <url>`) for the top 3–5 relevant pages
 3. Synthesize all gathered content into a coherent answer with source citations
 
 ### URL summarization
@@ -144,9 +166,12 @@ Shows remaining API credits.
 
 ## Output handling
 
-- By default, commands produce human-readable formatted output
-- Add `--json` to any command for raw JSON (useful for programmatic processing)
-- After retrieving results, always **summarize and synthesize** the information for the user — don't just dump raw output
+- CLI commands produce human-readable output by default; add `--json` for
+  programmatic processing.
+- After retrieving results, summarize and synthesize the information instead
+  of dumping raw output.
+- Preserve source URLs and cite the relevant pages in the final answer.
+- Distinguish facts found in sources from your own inference.
 
 ## References
 

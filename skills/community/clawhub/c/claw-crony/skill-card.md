@@ -1,43 +1,64 @@
-## Description: <br>
-Installs and configures the Claw Crony A2A Gateway plugin for cross-server OpenClaw agent communication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Crony installs and configures the Claw Crony A2A Gateway plugin for cross-server OpenClaw agent communication.
 
-## Publisher: <br>
-[ccccl8](https://clawhub.ai/user/ccccl8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccccl8](https://clawhub.ai/user/ccccl8)
 
-## Use Case: <br>
-Developers and operators setting up two or more OpenClaw servers use this skill to install the gateway plugin, configure peer discovery, bearer authentication, routing, and verification for A2A messaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exposing an A2A gateway can allow trusted peers to initiate persistent remote-agent requests. <br>
-Mitigation: Review and pin the external plugin code, prefer Tailscale or a private LAN, firewall port 18800 to known peer IPs, and avoid public HTTP exposure. <br>
-Risk: Bearer tokens used for peer access can be copied or exposed if placed in agent-facing setup material. <br>
-Mitigation: Do not put raw bearer tokens in TOOLS.md, share tokens only with trusted peers, and rotate any token that may have been exposed. <br>
-Risk: Forwarding prompts to another agent can disclose user content or trigger unintended remote work. <br>
-Mitigation: Require clear user intent before forwarding messages to another agent and verify the selected peer before sending. <br>
+## Use Case:
 
+Developers and operators use this skill to install Claw Crony, configure Agent Cards, bearer tokens, peers, networking, TOOLS.md guidance, and verify A2A messaging between OpenClaw servers.
 
-## Reference(s): <br>
-- [Claw Crony on ClawHub](https://clawhub.ai/ccccl8/claw-crony) <br>
-- [TOOLS.md A2A Section Template](references/tools-md-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes placeholders for local paths, peer URLs, bearer tokens, and agent identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Installation steps can fetch and install plugin code and dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the plugin source and dependencies before installation, and prefer a package-manager flow over curl-to-shell setup.
+
+Risk: Gateway configuration can expose an A2A endpoint and bearer-token access to peers.
+
+Mitigation: Bind the gateway to a trusted interface or encrypted overlay, restrict peer access, and verify connectivity before use.
+
+Risk: Peer tokens may be placed in agent-visible TOOLS.md content.
+
+Mitigation: Move peer tokens to a secret store and reference them at runtime instead of storing credentials in agent instructions.
+
+Risk: Outbound A2A messages may send user content to another server or agent.
+
+Mitigation: Require explicit user confirmation before sending content to a peer and avoid constructing shell commands from raw message text.
+
+## Reference(s):
+
+- [Claw Crony ClawHub release page](https://clawhub.ai/ccccl8/skills/claw-crony)
+- [ccccl8 publisher profile](https://clawhub.ai/user/ccccl8)
+- [TOOLS.md A2A Section Template](references/tools-md-template.md)
+- [Claw Crony plugin repository mentioned in setup instructions](https://github.com/ccccl8/claw-crony.git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and table snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include plugin installation commands, OpenClaw configuration commands, TOOLS.md content, and connectivity tests.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

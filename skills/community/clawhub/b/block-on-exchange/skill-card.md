@@ -1,41 +1,59 @@
-## Description: <br>
-Sync any ICS/iCal calendar to Microsoft Exchange as blocked time slots, with recurring event support, change detection, and privacy-preserving sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync any ICS/iCal calendar to Microsoft Exchange as blocked time slots, with recurring event support, change detection, and privacy-preserving sync.
 
-## Publisher: <br>
-[Blucaru](https://clawhub.ai/user/Blucaru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blucaru](https://clawhub.ai/user/blucaru)
 
-## Use Case: <br>
-Employees, developers, and individual users use this skill to mirror busy time from a personal or external ICS calendar into Microsoft Exchange without copying event titles, descriptions, attendees, or locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Microsoft calendar read/write access and stores an ICS secret URL plus OAuth tokens locally. <br>
-Mitigation: Install only if that access is acceptable, keep the generated local files restricted, and protect the configured ICS URL and OAuth token files. <br>
-Risk: Syncing to the wrong Exchange calendar or enabling background sync too early could create or remove blocked events unexpectedly. <br>
-Mitigation: Run a manual sync first, verify the target calendar and created blocked events, set CALINT_MS_CALENDAR_ID when needed, and load the launchd job only when continuous background syncing is intended. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to mirror personal calendar busy time into a Microsoft Exchange calendar while exposing only blocked time slots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Blucaru/block-on-exchange) <br>
-- [Project homepage](https://github.com/Blucaru/CalIn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, update, or delete Microsoft Exchange calendar events named Blocked through Microsoft Graph when the user runs sync commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: Microsoft Calendars.ReadWrite permission can add, update, or delete events in the connected Exchange calendar.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only for the intended account and calendar, and review the configured Microsoft application before syncing.
+
+Risk: The ICS feed URL and Microsoft token cache are sensitive local secrets.
+
+Mitigation: Keep ~/.calintegration private, preserve restricted file permissions, and avoid sharing environment files, token files, or logs.
+
+Risk: Optional launchd syncing runs automatically every five minutes on macOS.
+
+Mitigation: Load the LaunchAgent only when background sync is desired, and unload it before changing credentials or calendar scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blucaru/skills/block-on-exchange)
+- [Blucaru publisher profile](https://clawhub.ai/user/blucaru)
+- [Project homepage](https://github.com/Blucaru/CalIn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

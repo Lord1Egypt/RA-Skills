@@ -1,45 +1,63 @@
-## Description: <br>
-Facebook Page Manager helps an agent manage Facebook Page content through the Graph API, including text, photo, carousel, video, Reels, Story, scheduled post, and comment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and auto-post Facebook Page content through Meta Graph API, including text, photos, carousel posts, videos, Reels, Stories, scheduled posts, and comment management.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-External users, developers, and content operators use this skill to prepare and run Facebook Page publishing and moderation commands with a Page access token. It is intended for agents that need to post media, schedule content, review scheduled posts, and manage page comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Facebook Page access tokens can authorize public content and engagement actions if exposed or over-scoped. <br>
-Mitigation: Use least-privilege Page permissions, store tokens in environment variables or a secret manager, keep fb_config.json out of version control, and rotate or revoke any exposed token. <br>
-Risk: The skill can publish, schedule, reschedule, delete, comment, or reply on behalf of a Facebook Page. <br>
-Mitigation: Manually confirm post IDs, target media, schedules, delete actions, and reschedules before allowing the agent to run commands. <br>
-Risk: Facebook Graph API limits and media rules can cause failed or delayed publishing workflows. <br>
-Mitigation: Check the bundled API reference before posting media, especially carousel size, video processing time, Reels duration, Story limitations, and scheduled publishing windows. <br>
+## Use Case:
 
+Developers and social media operators use this skill to generate setup guidance, configuration, and Python CLI commands for publishing and managing Facebook Page content through Graph API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mcbaivn/mcbaivn-facebook-page-manager) <br>
-- [Access token guide](references/get-token.md) <br>
-- [API reference](references/api-reference.md) <br>
-- [Meta Graph API changelog](https://developers.facebook.com/docs/graph-api/changelog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute Facebook Graph API actions through the bundled Python CLI when the agent is given valid Page credentials and explicit task details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact clawhub.json lists 1.0.0) <br>
+Risk: The skill can publish, reschedule, delete, comment on, and reply to Facebook Page content using a powerful Page access token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually confirm the target Page, post, comment, schedule, and command intent before running generated commands.
+
+Risk: Page access tokens may grant long-lived publishing and management permissions.
+
+Mitigation: Prefer environment variables or a secret manager, avoid never-expiring production tokens where possible, and rotate or revoke tokens if exposed.
+
+Risk: A local fb_config.json file can expose Page tokens if it is committed or shared.
+
+Mitigation: Keep fb_config.json out of source control and use least-privilege Page permissions for the required task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mcbaivn/skills/mcbaivn-facebook-page-manager)
+- [Access token setup guide](artifact/references/get-token.md)
+- [Facebook Page Manager API reference](artifact/references/api-reference.md)
+- [Meta for Developers](https://developers.facebook.com/)
+- [Graph API Explorer](https://developers.facebook.com/tools/explorer/)
+- [Access Token Debugger](https://developers.facebook.com/tools/debug/accesstoken/)
+- [Graph API changelog](https://developers.facebook.com/docs/graph-api/changelog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, JSON, and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that publish, schedule, reschedule, delete, comment on, or reply to Facebook Page content.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact clawhub.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Convert any webpage to a clean, high-quality PDF file and send it directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert any webpage to a clean, high-quality PDF file and send it directly. Use when the user asks to view a website, screenshot a webpage, or see a page's content. Exports the webpage using browser PDF functionality for crystal-clear results.
 
-## Publisher: <br>
-[huchiyv](https://clawhub.ai/user/huchiyv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huchiyv](https://clawhub.ai/user/huchiyv)
 
-## Use Case: <br>
-External users and agent operators use this skill when they need a webpage exported as a readable PDF file for viewing, saving, or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may lead an agent to export authenticated or sensitive webpages. <br>
-Mitigation: Use the skill only when the user clearly requests a PDF export, and avoid authenticated or sensitive pages unless the request explicitly authorizes export. <br>
-Risk: Cleanup instructions use direct shell deletion of a generated PDF path. <br>
-Mitigation: Review the cleanup path before running deletion and remove only the exported PDF after it has been sent. <br>
+## Use Case:
 
+External users and agents use this skill to turn requested webpages into readable PDF files for viewing, saving, printing, or sharing. It is suited to explicit webpage export or webpage screenshot requests where a PDF is an acceptable output format.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huchiyv/web-to-pdf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown instructions with inline tool commands and a generated PDF file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow creates a local webpage PDF, sends it to the user, and then removes the local copy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Cleanup commands may remove the wrong file if the PDF path is substituted incorrectly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove only the exact PDF path returned by the browser export after the file has been sent.
+
+Risk: The workflow browses requested URLs and creates shareable PDF files from webpage content.
+
+Mitigation: Use the skill for explicit export requests and confirm the requested URL and generated PDF before sending it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huchiyv/skills/web-to-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline tool commands and PDF file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local PDF files that should be sent to the user and then cleaned up carefully.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

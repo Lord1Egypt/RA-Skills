@@ -1,42 +1,54 @@
-## Description: <br>
-How has a wallet's portfolio changed over time? Historical balances, current snapshot, and per-token PnL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+How has a wallet's portfolio changed over time? Historical balances, current snapshot, and per-token PnL.
 
-## Publisher: <br>
-[nansen-devops](https://clawhub.ai/user/nansen-devops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nansen-devops](https://clawhub.ai/user/nansen-devops)
 
-## Use Case: <br>
-Developers, analysts, and other external users use this skill to inspect how a blockchain wallet's portfolio changed over time, compare historical and current balances, and review per-token profit and loss through the Nansen CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on the nansen-cli package and a Nansen API key. <br>
-Mitigation: Install nansen-cli only from a trusted source and provide the API key through the NANSEN_API_KEY environment variable. <br>
-Risk: Wallet address lookups can reveal sensitive research interests or link searched addresses to the user's account. <br>
-Mitigation: Avoid querying addresses when the lookup itself, or its association with the account, would be sensitive. <br>
-Risk: CLI output may be incomplete or misunderstood when used to compare historical balances, current holdings, and per-token PnL. <br>
-Mitigation: Review the returned fields and compare historical-balances, balance, and pnl outputs before making decisions from the results. <br>
+## Use Case:
 
+Developers and wallet analysts use this skill to review a wallet's historical balances, current holdings, and per-token profit and loss across a selected chain.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nansen-devops/nansen-portfolio-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and CLI result-field descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the NANSEN_API_KEY environment variable and the nansen CLI from the nansen-cli Node package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Research calls can incur x402 payments from the configured wallet, and repeated calls in loops can add charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review payment authorization and spending limits before running calls; bound loops to the intended number of requests.
+
+Risk: The selected API key or browser session provides account API access for research requests.
+
+Mitigation: Use an explicitly selected credential and stop if authentication or session renewal fails; follow the CLI's troubleshooting guidance.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/nansen-devops/skills/nansen-portfolio-tracker)
+- [Nansen CLI browser login platform scope](https://github.com/nansen-ai/nansen-cli/blob/main/docs/browser-login.md#preview-platform-scope)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured CLI results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Wallet and chain specific; can include current balances, historical balances, and realized PnL.]
+
+## Skill Version(s):
+
+0.1.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

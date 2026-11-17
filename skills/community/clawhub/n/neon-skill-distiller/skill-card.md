@@ -1,45 +1,60 @@
-## Description: <br>
-Fit more skills in your context window by compressing skill text without losing what matters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fit more skills in your context window - compress without losing what matters.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and engineers use Skill Distiller to compress Agent Skills markdown into smaller variants while preserving triggers, core instructions, constraints, and visible trade-offs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calibration logging can preserve details from analyzed skill work in .learnings/skill-distiller/calibration.jsonl. <br>
-Mitigation: Review or disable logging before using the skill on proprietary or sensitive skill content. <br>
-Risk: Provider auto-detection may use an API-backed LLM provider when GEMINI_API_KEY or OPENAI_API_KEY is present. <br>
-Mitigation: Confirm the intended model backend and environment variables before running the skill on sensitive material. <br>
-Risk: Compression decisions and functionality percentages are LLM-estimated and may remove context that matters for a specific deployment. <br>
-Mitigation: Review the compressed output, compare removed sections against deployment needs, and test critical workflows before release. <br>
+## Use Case:
 
+Developers and agent-skill authors use this skill to compress verbose skill Markdown into shorter variants while preserving triggers, core instructions, constraints, and visible trade-offs.
 
-## Reference(s): <br>
-- [ClawHub Release](https://clawhub.ai/leegitw/neon-skill-distiller) <br>
-- [Publisher Profile](https://clawhub.ai/user/leegitw) <br>
-- [Source Homepage](https://github.com/live-neon/skills/tree/main/skill-distiller) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown skill content with metrics, summaries, and optional inline commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include functionality estimates, token reduction estimates, removed-section summaries, and local calibration metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Compressed output can weaken a skill if safety-relevant examples or edge cases are removed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the compressed output and diff before replacing an installed skill, especially for sensitive or high-impact workflows.
+
+Risk: Local compression history may be retained in .learnings/skill-distiller/calibration.jsonl.
+
+Mitigation: Review or delete the calibration file when local compression history should not persist.
+
+Risk: Optional cloud LLM provider use may route skill text through the configured provider.
+
+Mitigation: Use local inference for sensitive content or confirm the selected provider and API-key use are approved.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leegitw/skills/neon-skill-distiller)
+- [Skill Homepage](https://github.com/live-neon/skills/tree/main/skill-distiller)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [Full Reference Variant](reference/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with compression metrics, removed-content summary, and optional TRIGGER/ACTION/RESULT text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append local calibration history to .learnings/skill-distiller/calibration.jsonl; token counts use a 4 chars/token estimate and functionality scores are LLM-estimated.]
+
+## Skill Version(s):
+
+0.2.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

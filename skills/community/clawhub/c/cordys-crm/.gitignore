@@ -1,0 +1,6 @@
+# 运行时生成的文件 - 不提交
+.env
+user-role.md
+refs/
+__pycache__/
+*.pyc

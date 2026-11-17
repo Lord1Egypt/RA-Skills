@@ -1,0 +1,14 @@
+# Remote Team Handbook - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+section_title: ""
+scope: "who this section covers"
+policy_text: ""
+exceptions: ""
+owner_role: ""
+effective_date: "YYYY-MM-DD"
+review_cycle: ""
+state_note: ""
+federal_checks:
+  - ""
+open_items:
+  - ""

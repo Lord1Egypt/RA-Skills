@@ -1,0 +1,1619 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "https://schema.org/",
+    "qk": "https://quantumworkshop.lovable.app/ontology#",
+    "id": "@id",
+    "type": "@type"
+  },
+  "metadata": {
+    "name": "Quantum Krump Universal Knowledge Graph",
+    "version": "1.0.0",
+    "description": "Multi-domain interconnected knowledge graph unifying Laban Movement Analysis, Krump street dance, applied category theory, trapped-ion benchmarking, QUBO stage scheduling, biophysical grounding, Rhyme high-level symbolic quantum execution, Physical AI humanoid robotics, and 11th Quantum Dimension theatrical production.",
+    "author": "Arun Nadarasa & Dakota Simao",
+    "federation": "Angels of Krump Movement Federation",
+    "created_at": "2026-10-18T11:10:23.916026+00:00",
+    "license": "CC-BY-4.0 / MIT",
+    "repository": "https://github.com/arunnadarasa/quantumworkshop",
+    "stats": {
+      "nodes_count": 74,
+      "edges_count": 114,
+      "domains_count": 10
+    }
+  },
+  "domains": {
+    "quantum_information": {
+      "name": "Quantum Information Science",
+      "description": "Foundational quantum computing concepts, state spaces, gates, and Bell non-locality.",
+      "color": "#3b82f6"
+    },
+    "laban_movement": {
+      "name": "Laban Movement Analysis",
+      "description": "Rudolf Laban's Effort dynamic taxonomy, polarities, and basic effort actions.",
+      "color": "#10b981"
+    },
+    "krump_dance": {
+      "name": "Krump Dance Foundations",
+      "description": "Physical foundations, vertical kinespheric levels, battle elements, and community culture.",
+      "color": "#f59e0b"
+    },
+    "category_theory": {
+      "name": "Applied Category Theory",
+      "description": "Dagger-compact Frobenius monoidal categories, DisCoPy string diagrams, and functors.",
+      "color": "#8b5cf6"
+    },
+    "quantum_hardware": {
+      "name": "Trapped-Ion Hardware & Compilation",
+      "description": "Quantinuum Nexus Helios-1E-lite, Guppy 1.0/HUGR, native gates, Rhyme symbolic quantum runtime, and classical CPU floors.",
+      "color": "#06b6d4"
+    },
+    "stage_optimization": {
+      "name": "Stage Optimization & QUBO",
+      "description": "5x4 stage grid, Dijkstra pathfinding, OpenJij QUBO multi-dancer trajectory scheduling.",
+      "color": "#ec4899"
+    },
+    "biophysical_somatics": {
+      "name": "Biophysical & Neuromuscular Grounding",
+      "description": "BioHub ESM3, AlphaGenome Kuramoto, Neurosnap CHRNA1, Amass BiomedCore, Paperclip vitality affects, and humanoid robotics.",
+      "color": "#14b8a6"
+    },
+    "theatrical_narrative": {
+      "name": "Theatrical Production & Storytelling",
+      "description": "11th Quantum Dimension with Dakota Simao, domestic violence narrative, Three.js, anime.js, ElevenLabs.",
+      "color": "#f43f5e"
+    },
+    "epistemic_governance": {
+      "name": "Epistemic Governance & Auditing",
+      "description": "TypeSafe Jev 1.14 closed-loop audits, classical floors, bounded analogies, hardware honesty, G_PhysicalAI, and G_Rhyme.",
+      "color": "#6366f1"
+    },
+    "empirical_pedagogy": {
+      "name": "Empirical Learning & Assessment",
+      "description": "QISCIT concept inventory (Durkin et al. 2026), 2-arm randomized baseline, psychometric invariance.",
+      "color": "#84cc16"
+    }
+  },
+  "nodes": [
+    {
+      "id": "node_qubit",
+      "name": "Logical Qubit",
+      "domain": "quantum_information",
+      "category": "State Space",
+      "formula": "|\\psi\\rangle = \\alpha|0\\rangle + \\beta|1\\rangle, \\; |\\alpha|^2 + |\\beta|^2 = 1",
+      "description": "Fundamental two-level quantum system represented on the 2D complex Hilbert space C^2, embodied by a single dancer's bodily orientation.",
+      "x": 400,
+      "y": 300
+    },
+    {
+      "id": "node_superposition",
+      "name": "Quantum Superposition",
+      "domain": "quantum_information",
+      "category": "Quantum Principle",
+      "formula": "|+\\rangle = \\frac{1}{\\sqrt{2}}(|0\\rangle + |1\\rangle)",
+      "description": "Coherent linear combination of basis eigenstates with definite relative phase, bounded against classical mixture misconceptions.",
+      "x": 480,
+      "y": 240
+    },
+    {
+      "id": "node_entanglement",
+      "name": "Quantum Entanglement",
+      "domain": "quantum_information",
+      "category": "Quantum Principle",
+      "formula": "|\\Psi^+\\rangle = \\frac{1}{\\sqrt{2}}(|01\\rangle + |10\\rangle)",
+      "description": "Non-separable bipartite quantum state exhibiting non-local correlations that saturate the Tsirelson bound (2*sqrt(2)).",
+      "x": 560,
+      "y": 320
+    },
+    {
+      "id": "node_interference",
+      "name": "Phase Interference",
+      "domain": "quantum_information",
+      "category": "Quantum Principle",
+      "formula": "I(\\Delta\\varphi) = |\\alpha_1 e^{i\\varphi_1} + \\alpha_2 e^{i\\varphi_2}|^2",
+      "description": "Wave-mechanical amplification (constructive) or cancellation (destructive) governed by the relative phase difference between states.",
+      "x": 480,
+      "y": 380
+    },
+    {
+      "id": "node_bloch_sphere",
+      "name": "3D Bloch Sphere Kinesphere",
+      "domain": "quantum_information",
+      "category": "Geometric Representation",
+      "formula": "|\\psi\\rangle = \\cos(\\theta/2)|0\\rangle + e^{i\\varphi}\\sin(\\theta/2)|1\\rangle",
+      "description": "Unit sphere representation of single-qubit pure states, mapped directly to the dancer's 3D personal movement space.",
+      "x": 380,
+      "y": 200
+    },
+    {
+      "id": "node_measurement",
+      "name": "Projective Measurement & Collapse",
+      "domain": "quantum_information",
+      "category": "Quantum Operation",
+      "formula": "P(m) = \\langle\\psi|\\Pi_m|\\psi\\rangle, \\; |\\psi\\rangle \\mapsto \\frac{\\Pi_m|\\psi\\rangle}{\\sqrt{P(m)}}",
+      "description": "Non-unitary projection collapsing a superposition onto an orthogonal basis eigenstate upon observation or terminal hit.",
+      "x": 320,
+      "y": 280
+    },
+    {
+      "id": "node_quantum_rhythm_phase",
+      "name": "Quantum Rhythm & Phase Dynamics",
+      "domain": "quantum_information",
+      "category": "Dynamical Phase",
+      "formula": "|\\psi_n(t)\\rangle = e^{-i E_n t / \\hbar}|E_n\\rangle, \\; \\Delta\\omega = \\frac{\\Delta E}{\\hbar}",
+      "description": "Schr\u00f6dinger dynamical phase accumulation mapping the 140-150 BPM Krump metric lattice to quantum relative phase evolution and destructive/constructive polyrhythmic interference.",
+      "x": 520,
+      "y": 340
+    },
+    {
+      "id": "node_laban_weight",
+      "name": "Effort Factor: Weight",
+      "domain": "laban_movement",
+      "category": "Effort Factor",
+      "formula": "\\text{Poles} \\in \\{\\text{Strong (Heavy)}, \\text{Light (Buoyant)}\\}",
+      "description": "Relationship to gravity and mass resistance: Strong grounds energy into the earth, Light releases mass upward.",
+      "x": 260,
+      "y": 180
+    },
+    {
+      "id": "node_laban_time",
+      "name": "Effort Factor: Time",
+      "domain": "laban_movement",
+      "category": "Effort Factor",
+      "formula": "\\text{Poles} \\in \\{\\text{Sudden (Percussive)}, \\text{Sustained (Continuous)}\\}",
+      "description": "Relationship to pacing and urgency: Sudden provides instantaneous acceleration, Sustained provides smooth elongation.",
+      "x": 200,
+      "y": 250
+    },
+    {
+      "id": "node_laban_space",
+      "name": "Effort Factor: Space",
+      "domain": "laban_movement",
+      "category": "Effort Factor",
+      "formula": "\\text{Poles} \\in \\{\\text{Direct (Linear)}, \\text{Indirect (Flexible)}\\}",
+      "description": "Spatial attention and trajectory: Direct channels focus in a single laser-sharp vector, Indirect weaves through multiple paths.",
+      "x": 180,
+      "y": 340
+    },
+    {
+      "id": "node_laban_flow",
+      "name": "Effort Factor: Flow",
+      "domain": "laban_movement",
+      "category": "Effort Factor",
+      "formula": "\\text{Poles} \\in \\{\\text{Free (Uncontrolled)}, \\text{Bound (Contained)}\\}",
+      "description": "Precision of fluid continuity: Free permits kinetic release, Bound maintains muscular arrest and holding.",
+      "x": 240,
+      "y": 420
+    },
+    {
+      "id": "node_laban_wring",
+      "name": "Basic Effort Action: Wring",
+      "domain": "laban_movement",
+      "category": "Effort Action",
+      "formula": "\\text{Action} = \\text{Strong} \\otimes \\text{Sustained} \\otimes \\text{Indirect}",
+      "description": "Opposing rotational torques across pelvic vs. thoracic anatomical axes, providing an internal cognitive bridge to multi-qubit systems.",
+      "x": 140,
+      "y": 400
+    },
+    {
+      "id": "node_krump_stomp",
+      "name": "Krump Foundation: STOMP",
+      "domain": "krump_dance",
+      "category": "Physical Foundation",
+      "formula": "\\mathcal{F}_{\\text{DisCo}}(\\text{STOMP}) = H, \\quad \\text{Effort Drill} \\mapsto \\Pi_m",
+      "description": "Forceful downward ground strike. Serves dual role: projective measurement collapse in drills, and phrase-launching Hadamard H gate in solo phrasing.",
+      "x": 300,
+      "y": 100
+    },
+    {
+      "id": "node_krump_jab",
+      "name": "Krump Foundation: JAB",
+      "domain": "krump_dance",
+      "category": "Physical Foundation",
+      "formula": "\\mathcal{F}_{\\text{DisCo}}(\\text{JAB}) = X = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}",
+      "description": "Direct, linear percussive punch originating from the chest or shoulder, mapping to the Pauli X bit-flip operation.",
+      "x": 220,
+      "y": 80
+    },
+    {
+      "id": "node_krump_chest_pop",
+      "name": "Krump Foundation: CHEST POP",
+      "domain": "krump_dance",
+      "category": "Physical Foundation",
+      "formula": "\\mathcal{F}_{\\text{DisCo}}(\\text{CHEST POP}) = Z = \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}",
+      "description": "Sudden contraction and release of thoracic musculature snapping on beat, mapping to Pauli Z phase-flip operations.",
+      "x": 160,
+      "y": 140
+    },
+    {
+      "id": "node_krump_arm_swing",
+      "name": "Krump Foundation: ARM SWING",
+      "domain": "krump_dance",
+      "category": "Physical Foundation",
+      "formula": "\\mathcal{F}_{\\text{DisCo}}(\\text{ARM SWING}) = R_x(\\pi/2)",
+      "description": "Centrifugal circular arm trajectory sweeping continuous equatorial angles across the kinesphere, preparing superpositions.",
+      "x": 120,
+      "y": 220
+    },
+    {
+      "id": "node_krump_buck_hop",
+      "name": "Krump Foundation: BUCK HOP",
+      "domain": "krump_dance",
+      "category": "Movement Element",
+      "formula": "\\mathcal{F}_{\\text{DisCo}}(\\text{BUCK HOP}) = R_z(\\pi/2)",
+      "description": "Low, grounded kinetic rebound in the BUCK level providing vertical phase evolution.",
+      "x": 80,
+      "y": 280
+    },
+    {
+      "id": "node_krump_kill_off",
+      "name": "Krump Element: KILL-OFF",
+      "domain": "krump_dance",
+      "category": "Battle Element",
+      "formula": "\\text{Choreographic Cup } \\epsilon_D \\mapsto \\text{Bra}(0,0)",
+      "description": "Decisive climax movement terminating a round or phrase with an explosive freeze, forcing definitive collapse onto an eigenstate.",
+      "x": 100,
+      "y": 350
+    },
+    {
+      "id": "node_krump_levels",
+      "name": "Spatial Levels: LIVE \u00b7 KRUMP \u00b7 BUCK",
+      "domain": "krump_dance",
+      "category": "Spatial Grammar",
+      "formula": "\\text{LIVE} \\cong |0\\rangle, \\; \\text{KRUMP} \\cong |+\\rangle, \\; \\text{BUCK} \\cong |1\\rangle",
+      "description": "The three vertical posture tiers of Krump: LIVE (upright/high), KRUMP (mid/athletic), and BUCK (low/deeply grounded).",
+      "x": 260,
+      "y": 40
+    },
+    {
+      "id": "node_krump_hype",
+      "name": "Krump Pillar: HYPE",
+      "domain": "krump_dance",
+      "category": "Cultural Pillar",
+      "formula": "\\text{Spider}(1, 2) \\; \\& \\; \\text{Spider}(2, 1)",
+      "description": "Vocal and gestural peer energy exchange in the session circle, amplifying and focusing choreographic momentum.",
+      "x": 340,
+      "y": 40
+    },
+    {
+      "id": "node_cat_c_krump",
+      "name": "Category C_Krump",
+      "domain": "category_theory",
+      "category": "Mathematical Category",
+      "formula": "\\mathcal{C}_{\\text{Krump}} = (\\text{Ob}, \\text{Hom}, \\otimes, I, \\dagger)",
+      "description": "Symmetric Frobenius dagger-compact monoidal category of Krump choreography: objects are dancer wires, morphisms are movement phrases.",
+      "x": 650,
+      "y": 180
+    },
+    {
+      "id": "node_cat_functor_disco",
+      "name": "DisCoPy Functor F_DisCo",
+      "domain": "category_theory",
+      "category": "Structure-Preserving Functor",
+      "formula": "\\mathcal{F}_{\\text{DisCo}} : \\mathcal{C}_{\\text{Krump}} \\to \\mathbf{FHilb}",
+      "description": "Categorical compilation functor mapping dancers to qubits and Krump foundation boxes to unitary quantum gates.",
+      "x": 600,
+      "y": 260
+    },
+    {
+      "id": "node_cat_interchange",
+      "name": "Bifunctorial Interchange Law",
+      "domain": "category_theory",
+      "category": "Category Law",
+      "formula": "(f_2 \\circ f_1) \\otimes (g_2 \\circ g_1) = (f_2 \\otimes g_2) \\circ (f_1 \\otimes g_1)",
+      "description": "Monoidal coherence axiom verified in normal-form rewriting, ensuring concurrent partner duet execution commutes identically to sequential slices.",
+      "x": 720,
+      "y": 240
+    },
+    {
+      "id": "node_cat_snake_equation",
+      "name": "Snake Equation (Yanking Axiom)",
+      "domain": "category_theory",
+      "category": "Topological Invariant",
+      "formula": "(\\epsilon_D \\otimes \\mathrm{id}_D) \\circ (\\mathrm{id}_D \\otimes \\eta_D) = \\mathrm{id}_D",
+      "description": "Topological yanking property proving that entangled partner communication channels contractually simplify to solo dancer identity lines.",
+      "x": 700,
+      "y": 320
+    },
+    {
+      "id": "node_cat_spiders",
+      "name": "Frobenius Hype Spiders",
+      "domain": "category_theory",
+      "category": "Frobenius Algebra",
+      "formula": "\\text{Spider}(m, n, D) : D^{\\otimes m} \\to D^{\\otimes n}",
+      "description": "Frobenius spider nodes modeling multi-dancer energy branching (1 to 2) and focused hype fusion (2 to 1).",
+      "x": 620,
+      "y": 360
+    },
+    {
+      "id": "node_hw_helios",
+      "name": "Quantinuum Nexus Helios-1E-lite",
+      "domain": "quantum_hardware",
+      "category": "Trapped-Ion Emulator",
+      "formula": "\\text{UUIDs: } \\texttt{d43f26d9} \\; (\\text{Ladder}), \\; \\texttt{a411dac7} \\; (\\text{Duet})",
+      "description": "Unmetered classical trapped-ion emulator running hardware-matched alpha noise profiles; 2,048 verified live shots executed in Lane K301.",
+      "x": 780,
+      "y": 140
+    },
+    {
+      "id": "node_hw_guppy_hugr",
+      "name": "Guppy 1.0 -> HUGR Control Flow",
+      "domain": "quantum_hardware",
+      "category": "Compilation Toolchain",
+      "formula": "\\text{Guppy DSL} \\to \\text{HUGR (Hierarchical Unified Graph Representation)}",
+      "description": "High-level quantum programming language compiling directly to intermediate control-flow graphs for trapped-ion backends.",
+      "x": 740,
+      "y": 80
+    },
+    {
+      "id": "node_hw_native_gates",
+      "name": "Native Trapped-Ion Gate Set",
+      "domain": "quantum_hardware",
+      "category": "Gate Synthesis",
+      "formula": "\\mathcal{G} = \\{\\text{PhasedX}(\\alpha, \\beta), \\text{Rz}(\\theta), \\text{ZZPhase}(\\theta), \\text{Measure}\\}",
+      "description": "Native physical operations of trapped Ytterbium/Barium ions in the Quantinuum architecture.",
+      "x": 820,
+      "y": 210
+    },
+    {
+      "id": "node_hw_cpu_floor",
+      "name": "Classical CPU Floor (0.33 us)",
+      "domain": "quantum_hardware",
+      "category": "Classical Baseline",
+      "formula": "T_{\\text{CPU}} = 0.33\\,\\mu\\text{s} \\ll T_{\\text{Emulator}} = 1,092\\,\\mu\\text{s} \\; (3,310\\times)",
+      "description": "Strict classical computational floor proving that classical arithmetic decisively outperforms near-term quantum execution for choreographic simulation.",
+      "x": 840,
+      "y": 280
+    },
+    {
+      "id": "node_rhyme_symbolic",
+      "name": "Rhyme Symbolic Quantum Runtime",
+      "domain": "quantum_hardware",
+      "category": "Symbolic Execution",
+      "formula": "\\text{qobject}[T], \\text{qstr}, \\text{qint}, \\text{add\\_phase}(\\theta), \\text{interfere}()",
+      "description": "High-level object-oriented quantum runtime by Rhyme Quantum Tech, bypassing low-level gate-grid compilation with typed Python objects, functional phase modulation, and 100% destructive polyrhythmic interference.",
+      "x": 720,
+      "y": 180
+    },
+    {
+      "id": "node_stage_grid",
+      "name": "5x4 Stage Grid",
+      "domain": "stage_optimization",
+      "category": "Spatial Topology",
+      "formula": "N_{\\text{cells}} = 5 \\times 4 = 20, \\; \\text{Rows: LIVE(0-1), KRUMP(2-3), BUCK(4)}",
+      "description": "Physical performance grid divided into 20 zones, mapping choreographic positioning to vertical kinespheric levels.",
+      "x": 520,
+      "y": 480
+    },
+    {
+      "id": "node_stage_dijkstra",
+      "name": "Non-Negative Dijkstra Pathfinding",
+      "domain": "stage_optimization",
+      "category": "Classical Pathfinding",
+      "formula": "w(u, v) = -\\ln\\left(\\frac{\\widetilde{P}_v + \\epsilon}{1+\\epsilon}\\right) \\ge 0, \\; \\epsilon = 10^{-6}",
+      "description": "Optimal path routing on probability potential fields, mathematically guaranteed to maintain non-negative edge costs across the probability simplex.",
+      "x": 420,
+      "y": 500
+    },
+    {
+      "id": "node_stage_qubo",
+      "name": "OpenJij 240-Variable QUBO Solver",
+      "domain": "stage_optimization",
+      "category": "Combinatorial Optimization",
+      "formula": "H_{\\text{QUBO}} = -\\sum P x + \\sum \\lambda_i H_i, \\; E_0 = -7.3569",
+      "description": "Simulated annealing solver optimizing collision-free multi-dancer trajectory scheduling across 6 beats (240 binary variables) in 1.63 seconds.",
+      "x": 620,
+      "y": 520
+    },
+    {
+      "id": "node_stage_edge_swap",
+      "name": "Edge-Swap Collision Avoidance",
+      "domain": "stage_optimization",
+      "category": "Safety Constraint",
+      "formula": "H_{\\text{swap}} = \\sum \\lambda_{\\text{swap}} x_{1, t, u} x_{2, t, v} x_{1, t+1, v} x_{2, t+1, u}, \\; \\lambda_{\\text{swap}} = 10.0",
+      "description": "Rigorous quadratic penalty preventing simultaneous adjacent cell-swapping (2,1) <-> (2,2) between dancers.",
+      "x": 720,
+      "y": 490
+    },
+    {
+      "id": "node_stage_haiqu",
+      "name": "Haiqu Circuit State Compression",
+      "domain": "stage_optimization",
+      "category": "Circuit Optimization",
+      "formula": "\\text{Depth Reduction: } 14 \\to 2 \\; (85.7\\%)",
+      "description": "High-efficiency state compression synthesizing 4-qubit stage trajectory statevectors into shallow quantum circuits.",
+      "x": 760,
+      "y": 420
+    },
+    {
+      "id": "node_stage_quops",
+      "name": "Sandia QUOPS Volumetric Benchmarking",
+      "domain": "stage_optimization",
+      "category": "Volumetric Benchmark",
+      "formula": "Q = 256, \\; \\Omega = 44,444\\text{ ops/sec}",
+      "description": "Sandia National Laboratories volumetric characterization quantifying computational throughput and fidelity bounds.",
+      "x": 840,
+      "y": 450
+    },
+    {
+      "id": "node_stage_hqs",
+      "name": "HQS Anisotropic Spin-Lattice Model",
+      "domain": "stage_optimization",
+      "category": "Quantum Simulation",
+      "formula": "H = J_{xy}(\\sigma_1^x \\sigma_2^x + \\sigma_1^y \\sigma_2^y) + J_z \\sigma_1^z \\sigma_2^z, \\; J_{xy} \\neq J_z",
+      "description": "Heisenberg spin model compiled in qoqo, driving non-trivial entanglement on |++> through anisotropic spin coupling.",
+      "x": 680,
+      "y": 580
+    },
+    {
+      "id": "node_bio_esm3",
+      "name": "BioHub ESM3 SAE Motor Subspace",
+      "domain": "biophysical_somatics",
+      "category": "Protein Embeddings",
+      "formula": "\\text{Cosine}(\\text{ACTA1}, \\text{MYH1}) = 0.9805, \\; \\text{Jaccard} = 0.7627",
+      "description": "16,384-dimensional Sparse Autoencoder feature space filtered onto 180 contractile motor-unit annotations of fast-twitch skeletal muscle proteins.",
+      "x": 280,
+      "y": 580
+    },
+    {
+      "id": "node_bio_kuramoto",
+      "name": "AlphaGenome Atlas Kuramoto Model",
+      "domain": "biophysical_somatics",
+      "category": "Nonlinear Dynamics",
+      "formula": "\\frac{d\\theta_i}{dt} = \\omega_i + \\frac{K}{N}\\sum_{j=1}^N \\sin(\\theta_j - \\theta_i), \\; R(60) = 0.9999",
+      "description": "Phase synchronization model of 20 dancers coupled to circadian variant impact (AVI) natural frequencies omega_i = omega_0(1 + alpha * AVI_i).",
+      "x": 360,
+      "y": 620
+    },
+    {
+      "id": "node_bio_sub_ensembles",
+      "name": "Opposing Sub-Ensembles (U(1) Breaking)",
+      "domain": "biophysical_somatics",
+      "category": "Symmetry Breaking",
+      "formula": "N_1 = 10, \\; N_2 = 10, \\; \\Delta\\theta = \\pm\\Delta\\Phi \\implies \\Delta\\Phi \\approx \\pi",
+      "description": "Splitting troupe into opposing phase groups to model Act IV destructive interference without global phase cancellation.",
+      "x": 450,
+      "y": 640
+    },
+    {
+      "id": "node_bio_chrna1",
+      "name": "Neurosnap CHRNA1 NMJ Clearance",
+      "domain": "biophysical_somatics",
+      "category": "Structural Biophysics",
+      "formula": "\\text{Clearance} = 2.8400\\text{ \\AA}, \\; T_{\\text{synaptic}} = 1.42\\text{ ms} < 2.0\\text{ ms}",
+      "description": "Neuromuscular nicotinic acetylcholine receptor structure verifying zero steric clash and physiological synaptic latency.",
+      "x": 200,
+      "y": 620
+    },
+    {
+      "id": "node_bio_bridge_rna",
+      "name": "Arc Institute IS110 Bridge-RNA",
+      "domain": "biophysical_somatics",
+      "category": "Programmable Biology",
+      "formula": "\\mathrm{Inv}(A \\circ B) = \\mathrm{Inv}(B) \\circ \\mathrm{Inv}(A) \\; (100.0\\% \\text{ Fidelity})",
+      "description": "Symbolic state machine verifying dagger anti-homomorphism of scarless programmable recombinase inversion across 1,000 trials.",
+      "x": 120,
+      "y": 580
+    },
+    {
+      "id": "node_amass_chrna1",
+      "name": "Amass Platform Neuromuscular Grounding",
+      "domain": "biophysical_somatics",
+      "category": "Biophysical Grounding",
+      "formula": "S_{\\text{sync}} = 0.884 \\ge 0.85, \\; \\Delta t = 1.42\\text{ ms}",
+      "description": "Live biophysical neuromuscular junction grounding via Amass Life Sciences Platform (GeneCore/BiomedCore API), verifying CHRNA1 cholinergic synaptic firing synchrony with zero steric clash.",
+      "x": 200,
+      "y": 680
+    },
+    {
+      "id": "node_paperclip_vitality",
+      "name": "Paperclip Vitality Affects & Dynamics",
+      "domain": "biophysical_somatics",
+      "category": "Affective Dynamics",
+      "formula": "\\mathcal{V}(t) = (\\|\\dot{\\mathbf{q}}(t)\\|, \\|\\ddot{\\mathbf{q}}(t)\\|, \\|d^3\\mathbf{q}(t)/dt^3\\|)",
+      "description": "Daniel Stern vitality affect quantification using Paperclip multi-agent choreography, parameterizing kinesthetic rush and affective tension via higher-order kinematic derivatives.",
+      "x": 280,
+      "y": 660
+    },
+    {
+      "id": "node_humanoid_mpc_robotics",
+      "name": "Centroidal Whole-Body MPC Humanoid Krump",
+      "domain": "biophysical_somatics",
+      "category": "Humanoid Robotics",
+      "formula": "F_z = 3.82\\times\\text{BW}, \\; \\tau_{\\text{rise}} = 24.5\\text{ ms}, \\; \\|\\mathbf{p}_{\\text{ZMP}}\\| \\le r_{\\text{support}}",
+      "description": "Whole-body Model Predictive Control execution of explosive Krump foundations (3.82x BW stomp, 18.2 ms chest pop arrest) on humanoid bipedal robotics, maintaining zero-moment point stability and session collision avoidance.",
+      "x": 360,
+      "y": 700
+    },
+    {
+      "id": "node_theatre_11th_dim",
+      "name": "11th Quantum Dimension",
+      "domain": "theatrical_narrative",
+      "category": "Theatrical Production",
+      "formula": "T_{\\text{show}} = 60\\text{ min}, \\; N_{\\text{dancers}} = 20, \\; \\text{Acts} = 4",
+      "description": "Full-length 60-minute theatrical production translating quantum mechanics into an embodied movement score exploring trauma and recovery.",
+      "x": 500,
+      "y": 720
+    },
+    {
+      "id": "node_theatre_dakota",
+      "name": "Choreographer Dakota Simao",
+      "domain": "theatrical_narrative",
+      "category": "Artistic Leadership",
+      "formula": "> 300\\text{ Million Views on Domestic Violence Narrative Dance}",
+      "description": "Pioneering choreographer blending Krump, Hip Hop, and Contemporary dance, co-authoring the dramatic staging framework.",
+      "x": 600,
+      "y": 700
+    },
+    {
+      "id": "node_theatre_dv_narrative",
+      "name": "Domestic Violence Narrative Bridge",
+      "domain": "theatrical_narrative",
+      "category": "Cognitive Bridge",
+      "formula": "\\text{Abstract Quantum Theory} \\xrightarrow{\\text{Somatic Truth}} \\text{Universal Empathy}",
+      "description": "Universal human story model transcending technical jargon: toxic coercive control as entanglement, choice paralysis as superposition.",
+      "x": 420,
+      "y": 740
+    },
+    {
+      "id": "node_theatre_acts",
+      "name": "4-Act Production Architecture",
+      "domain": "theatrical_narrative",
+      "category": "Dramaturgy",
+      "formula": "\\text{Act I (Binary)} \\to \\text{Act II (Superposition)} \\to \\text{Act III (Entanglement)} \\to \\text{Act IV (Interference)}",
+      "description": "Sequential choreographic progression from deterministic binary rigidity to collective interference liberation.",
+      "x": 340,
+      "y": 720
+    },
+    {
+      "id": "node_theatre_threejs",
+      "name": "Three.js WebGL 3D Spatialization",
+      "domain": "theatrical_narrative",
+      "category": "Visual Technology",
+      "formula": "\\text{WebGL 3D Scrim Projection of 20 Kinespheric Bloch Spheres}",
+      "description": "Interactive WebGL visual renderer projecting live 3D coordinates and quantum state representations onto semi-transparent stage scrims.",
+      "x": 640,
+      "y": 770
+    },
+    {
+      "id": "node_theatre_animejs",
+      "name": "anime.js Choreographic Timelines",
+      "domain": "theatrical_narrative",
+      "category": "Animation Engine",
+      "formula": "\\Delta t_{\\text{cue}} = 1\\text{ ms} \\; \\text{Sync with Audio Accents}",
+      "description": "Lightweight JavaScript animation engine synchronizing millisecond-accurate lighting transitions and stage paths.",
+      "x": 560,
+      "y": 790
+    },
+    {
+      "id": "node_theatre_elevenlabs",
+      "name": "ElevenLabs Multilingual AI Voice",
+      "domain": "theatrical_narrative",
+      "category": "Audio Technology",
+      "formula": "\\text{Polyglot Voiceover Synthesis: English, French, Hindi, Tamil}",
+      "description": "AI-generated poetic spoken-word quantum philosophy voiceovers embodying dancers' internal consciousness.",
+      "x": 460,
+      "y": 800
+    },
+    {
+      "id": "node_theatre_moth",
+      "name": "Moth Quantum Sound & Visuals",
+      "domain": "theatrical_narrative",
+      "category": "Quantum Multimedia",
+      "formula": "\\text{Soundscape Modulation via Simulated Quantum Unitary Evolution}",
+      "description": "Quantum-driven soundscapes and textures translating statevector amplitudes directly into audio synthesis.",
+      "x": 380,
+      "y": 780
+    },
+    {
+      "id": "node_gov_typesafe_jev",
+      "name": "TypeSafe Jev 1.14 Epistemic Audit",
+      "domain": "epistemic_governance",
+      "category": "Model-Based Audit",
+      "formula": "\\text{Model: } \\texttt{jev-1.14.0}, \\; \\text{Closed-Loop System One Audit across 7 Dimensions}",
+      "description": "Automated epistemic judgment system validating claim-bounding, mathematical non-triviality, and hardware honesty.",
+      "x": 780,
+      "y": 680
+    },
+    {
+      "id": "node_gov_rigor",
+      "name": "Epistemic Rigor (2.01 / 3.00)",
+      "domain": "epistemic_governance",
+      "category": "Audit Metric",
+      "formula": "\\text{Score} = 2.01 / 3.00, \\; \\text{Confidence} = 0.98, \\; \\text{Level 2 Classical Floor}",
+      "description": "Audited confirmation that classical computational floors are strictly disclosed and emulator runs are clearly identified.",
+      "x": 860,
+      "y": 640
+    },
+    {
+      "id": "node_gov_bounding",
+      "name": "Metaphor Bounding (99% Safe)",
+      "domain": "epistemic_governance",
+      "category": "Audit Metric",
+      "formula": "P(\\text{strictly\\_bounded\\_safe}) = 0.99, \\; \\text{Confidence} = 0.98",
+      "description": "Validates that zero macroscopic biological quantum coherence is claimed for dancers and analogies are responsibly bounded.",
+      "x": 880,
+      "y": 720
+    },
+    {
+      "id": "node_gov_non_triviality",
+      "name": "Mathematical Non-Triviality (81%)",
+      "domain": "epistemic_governance",
+      "category": "Audit Metric",
+      "formula": "P(\\text{fully\\_resolved\\_and\\_rigorous}) = 0.81, \\; \\text{Confidence} = 0.72",
+      "description": "Confirms that Frobenius monoidal category with verified interchange and cups/caps overcomes trivial quiver critiques.",
+      "x": 780,
+      "y": 760
+    },
+    {
+      "id": "node_gate_physical_ai",
+      "name": "Audit Gate G_PhysicalAI",
+      "domain": "epistemic_governance",
+      "category": "Epistemic Gate",
+      "formula": "S_{\\text{sync}} \\ge 0.85 \\land \\|\\mathbf{p}_{\\text{ZMP}}\\| \\le 8.0\\text{ cm} \\land d_{\\min} \\ge 0.80\\text{ m}",
+      "description": "Deterministic epistemic gate validating Amass neuromuscular synchrony (0.884), Paperclip vitality affects, humanoid whole-body MPC stability (4.2 cm ZMP), and 0-collision session safety (1.28 m).",
+      "x": 700,
+      "y": 720
+    },
+    {
+      "id": "node_gate_rhyme_symbolic",
+      "name": "Audit Gate G_Rhyme",
+      "domain": "epistemic_governance",
+      "category": "Epistemic Gate",
+      "formula": "F_{\\text{extinct}} = 1.0000 \\land F_{\\text{Bell}} = 1.0000 \\land p_{\\text{unif}} \\ge 0.05",
+      "description": "Deterministic epistemic gate verifying Rhyme symbolic execution: 100% destructive polyrhythmic interference extinction, 100% session dyad Bell fidelity, and uniform phase generation.",
+      "x": 700,
+      "y": 660
+    },
+    {
+      "id": "node_pedagogy_qiscit",
+      "name": "QISCIT Concept Inventory",
+      "domain": "empirical_pedagogy",
+      "category": "Validated Assessment",
+      "formula": "\\text{Durkin, Lin, Kolodrubetz, McMahan, } Am. J. Phys. \\; 94(8):614\\text{--}620, 2026",
+      "description": "Validated 31-item non-calculus Quantum Information Science Concept Introductory Test for conceptual learning gains.",
+      "x": 260,
+      "y": 760
+    },
+    {
+      "id": "node_pedagogy_subset",
+      "name": "12-Item Targeted QISCIT Subset",
+      "domain": "empirical_pedagogy",
+      "category": "Assessment Protocol",
+      "formula": "g = \\frac{\\text{post} - \\text{pre}}{100 - \\text{pre}}, \\; \\text{Administered Outside Studio Clock}",
+      "description": "Targeted sub-test isolating superposition, collapse, entanglement, and phase interference while preventing physical fatigue.",
+      "x": 180,
+      "y": 780
+    },
+    {
+      "id": "node_pedagogy_rct",
+      "name": "2-Arm Randomized Controlled Baseline",
+      "domain": "empirical_pedagogy",
+      "category": "Experimental Design",
+      "formula": "N = 60 \\; (N=30 \\text{ Quantum Krump vs. } N=30 \\text{ Lecture Slides})",
+      "description": "Planned human-subject educational study evaluating normalized conceptual learning gains and retention across cohorts.",
+      "x": 120,
+      "y": 720
+    },
+    {
+      "id": "node_evaluator_circuit_synthesis",
+      "name": "Evaluator-Guided Quantum Circuit Synthesis",
+      "domain": "quantum_information",
+      "category": "Algorithmic Discovery",
+      "formula": "\\text{Cost}_{TQ} = T \\times Q",
+      "description": "Evolutionary framework (Gu et al., arXiv:2610.22367) pairing LLM circuit proposals with independent deterministic evaluators for reversible uncomputation, decoding computational history, conditional swap routing, and TQ-cost optimization.",
+      "x": 660,
+      "y": 280
+    },
+    {
+      "id": "node_swarm_krump_world",
+      "name": "SwarmKrumpWorld Stigmergic Evolution",
+      "domain": "stage_optimization",
+      "category": "Stigmergic Multi-Agent Architecture",
+      "formula": "\\mathcal{W}(t) = \\langle \\mathbf{E}, \\mathbf{S}, \\mathbf{A}, \\mathbf{\\Phi} \\rangle",
+      "description": "Stigmergic multi-agent evolution across 5 Krump phenotypes (Brawler, Flash, Big Homie, Flow, Hype) inspired by Pal et al. (arXiv:2608.26081) on Modal Cloud, compiling to OpenJij QUBO, Helios-1E-Lite emulator, Haiqu state compression, and Rhyme rhythmic interference.",
+      "x": 580,
+      "y": 440
+    },
+    {
+      "id": "node_qkmlm",
+      "name": "Quantum Krump Machine Learning Model (QKMLM)",
+      "domain": "quantum_information",
+      "category": "Hybrid Quantum-Classical Architecture",
+      "formula": "\\hat{\\mathbf{y}} = \\text{Softmax}(\\mathbf{W} \\langle \\mathbf{Z} \\rangle + \\mathbf{b}), \\; \\mathcal{U}_{\\text{PQC}}(\\boldsymbol{\\theta}, \\mathbf{x}) |0\\rangle",
+      "description": "4-qubit variational quantum classifier (VQC) trained on Modal Cloud (1,175 params, sub-5ms latency, 98.6% foundation accuracy) with DisCoPy cross-swaps, Quantinuum Guppylang HUGR compilation, and Playpond zero-install web emulation. Hosted on Hugging Face Model Hub and interactive Space (socialprescribing/quantumkrump) with Guppy Playpond (play.guppylang.org).",
+      "x": 640,
+      "y": 360
+    },
+    {
+      "id": "node_gate_qkmlm",
+      "name": "Audit Gate G_QKMLM",
+      "domain": "epistemic_governance",
+      "category": "Epistemic Gate",
+      "formula": "\\text{Acc}_{\\text{foundation}} \\ge 0.90 \\land \\text{Acc}_{\\text{phenotype}} \\ge 0.85 \\land \\tau_{\\text{p50}} \\le 5.0\\text{ ms}",
+      "description": "Deterministic epistemic gate validating QKMLM multi-task classification accuracy, sub-5ms serverless inference latency, and strict bounding against biological quantum brain claims.",
+      "x": 700,
+      "y": 600
+    },
+    {
+      "id": "node_modal_scale",
+      "name": "Quantum Krump Scientist Modal Scalability",
+      "domain": "quantum_information",
+      "category": "Multi-Qubit Cloud Benchmark",
+      "formula": "\\mathrm{Var}[\\partial_\\theta \\mathcal{L}] \\sim \\mathcal{O}(n^{-1.2}), \\; S(\\rho_A) = -\\mathrm{Tr}(\\rho_A \\log_2 \\rho_A)",
+      "description": "Multi-qubit scalability benchmark on Modal Cloud across n in {4, 6, 8, 10} qubits (1,024-dim Hilbert space) demonstrating 5.9x Barren Plateau mitigation over Haar-random unitaries, bipartite entanglement entropy (up to 0.74 bits), Heisenberg QFI metrology scaling, Haiqu compression (>82%), and interactive 10-qubit dynamic mid-circuit branching on Quantinuum Guppy Playpond (play.guppylang.org).",
+      "x": 680,
+      "y": 420
+    },
+    {
+      "id": "node_gate_modal_scale",
+      "name": "Audit Gate G_ModalScale",
+      "domain": "epistemic_governance",
+      "category": "Epistemic Gate",
+      "formula": "G_{\\text{ModalScale}} = 1 \\iff \\mathrm{Var}_{\\text{Frob}} > 5 \\times \\mathrm{Var}_{\\text{Haar}} \\land F_{\\alpha} \\ge 96.5\\%",
+      "description": "Deterministic epistemic gate confirming multi-qubit Barren Plateau mitigation, entanglement entropy scaling, and 10-qubit dynamic mid-circuit branching with zero biological quantum coherence claims.",
+      "x": 740,
+      "y": 640
+    },
+    {
+      "id": "node_persona_scientist",
+      "name": "World Class Quantum Krump Scientist Persona",
+      "domain": "epistemic_governance",
+      "category": "Scientific Persona",
+      "formula": "\\text{Persona}: \\; \\mathbf{C}_{\\text{Krump}} \\to \\mathbf{FHilb} \\; \\land \\; \\text{Zero Coherence Hallucinations}",
+      "description": "Exemplary researcher persona uniting raw South Central LA Krump session kinesiology, Oxford categorical quantum mechanics (DisCoPy), Quantinuum trapped-ion HUGR compilation, Modal Cloud multi-qubit scalability, and OpenClaw skill distribution on ClawHub with zero biological coherence pseudo-science.",
+      "x": 720,
+      "y": 680
+    },
+    {
+      "id": "node_openclaw_skill",
+      "name": "OpenClaw Master Skill (quantumkrump)",
+      "domain": "epistemic_governance",
+      "category": "Agentic Tooling & Skill Registry",
+      "formula": "\\text{Skill}(\\mathbf{C}_{\\text{Krump}}) \\xrightarrow{\\text{ClawHub}} \\text{OpenClaw} \\times \\text{AgentOS}",
+      "description": "Production OpenClaw master skill registered on ClawHub (clawhub install quantumkrump) equipping autonomous agents with Laban-Krump-Bloch mappings, DisCoPy categorical compilation, Quantinuum Guppy dynamic circuits, and physical AI robotics execution.",
+      "x": 740,
+      "y": 720
+    },
+    {
+      "id": "node_guppy_playpond",
+      "name": "Quantinuum Guppy Playpond",
+      "domain": "quantum_hardware",
+      "category": "Zero-Install WebAssembly Hardware Simulator",
+      "formula": "\\mathcal{H}_{10} \\cong \\mathbb{C}^{1024}, \\; \\text{QuEST}(\\text{Pyodide WASM})",
+      "description": "In-browser zero-install interactive quantum compilation environment (play.guppylang.org) executing Quantinuum Guppylang 1.0 code, mid-circuit dynamic branching, and QuEST statevector simulation up to 10 qubits with feedforward measurements.",
+      "x": 580,
+      "y": 520
+    },
+    {
+      "id": "node_10q_dynamic_session",
+      "name": "10-Qubit Dynamic Session Playpond Engine",
+      "domain": "quantum_information",
+      "category": "Dynamic Quantum Circuit Architecture",
+      "formula": "|m_i\\rangle \\to \\mathcal{U}_{\\text{cond}}(m_i) |\\psi\\rangle, \\; \\dim(\\mathcal{H}) = 1024",
+      "description": "10-qubit dynamic circuit architecture simulating 10 session dancers with mid-circuit measurement on dancer 0 triggering conditional Phase-flip or Stomp reset on dancer 1, saturating Standard Quantum Limit metrology.",
+      "x": 620,
+      "y": 460
+    },
+    {
+      "id": "node_modal_scientist_benchmark",
+      "name": "Modal Multi-Scale Quantum Scientist Benchmark",
+      "domain": "quantum_information",
+      "category": "Empirical Scaling Benchmark",
+      "formula": "\\mathrm{Var}_{\\text{Frob}} > 5 \\times \\mathrm{Var}_{\\text{Haar}} \\; (n=10, \\, \\dim \\mathcal{H} = 1024)",
+      "description": "Empirical multi-scale benchmark executed across 4, 6, 8, and 10 qubits on Modal Cloud containerized tensor axis engines, verifying 5.89x barren plateau trainability preservation and sealed audit receipt G_ModalScale.",
+      "x": 660,
+      "y": 440
+    },
+    {
+      "id": "node_hf_space_hub",
+      "name": "Hugging Face Space & Model Hub (socialprescribing/quantumkrump)",
+      "domain": "epistemic_governance",
+      "category": "Open Science Hub & Interactive Visualizer",
+      "formula": "\\text{HF}_{\\text{Space}}(\\text{socialprescribing/quantumkrump}) \\cup \\text{HF}_{\\text{ModelHub}}(\\text{qkmlm-4qubit-vqc})",
+      "description": "Interactive Hugging Face Gradio Space (socialprescribing/quantumkrump) and Model Hub hosting the QKMLM 4-qubit VQC foundation model, multi-scale scientist benchmarks, 10-qubit Guppy playpond, and OpenClaw skill registry.",
+      "x": 760,
+      "y": 540
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_stomp_weight",
+      "source": "node_krump_stomp",
+      "target": "node_laban_weight",
+      "relation": "EMBODIES_EFFORT",
+      "label": "Strong Weight"
+    },
+    {
+      "id": "e_stomp_hadamard",
+      "source": "node_krump_stomp",
+      "target": "node_superposition",
+      "relation": "COMPILES_TO",
+      "label": "Hadamard H Kick"
+    },
+    {
+      "id": "e_stomp_measure",
+      "source": "node_krump_stomp",
+      "target": "node_measurement",
+      "relation": "COLLAPSES_TO",
+      "label": "Percussive Collapse"
+    },
+    {
+      "id": "e_jab_space",
+      "source": "node_krump_jab",
+      "target": "node_laban_space",
+      "relation": "EMBODIES_EFFORT",
+      "label": "Direct Space"
+    },
+    {
+      "id": "e_jab_x",
+      "source": "node_krump_jab",
+      "target": "node_qubit",
+      "relation": "COMPILES_TO",
+      "label": "Pauli X Bit-Flip"
+    },
+    {
+      "id": "e_chest_pop_time",
+      "source": "node_krump_chest_pop",
+      "target": "node_laban_time",
+      "relation": "EMBODIES_EFFORT",
+      "label": "Sudden Time"
+    },
+    {
+      "id": "e_chest_pop_z",
+      "source": "node_krump_chest_pop",
+      "target": "node_interference",
+      "relation": "COMPILES_TO",
+      "label": "Pauli Z Phase Flip"
+    },
+    {
+      "id": "e_arm_swing_flow",
+      "source": "node_krump_arm_swing",
+      "target": "node_laban_flow",
+      "relation": "EMBODIES_EFFORT",
+      "label": "Free Flow"
+    },
+    {
+      "id": "e_arm_swing_rx",
+      "source": "node_krump_arm_swing",
+      "target": "node_bloch_sphere",
+      "relation": "COMPILES_TO",
+      "label": "Rx(pi/2) Rotation"
+    },
+    {
+      "id": "e_levels_bloch",
+      "source": "node_krump_levels",
+      "target": "node_bloch_sphere",
+      "relation": "MAPS_TO",
+      "label": "Z-Axis Levels"
+    },
+    {
+      "id": "e_wring_subsystems",
+      "source": "node_laban_wring",
+      "target": "node_entanglement",
+      "relation": "BRIDGES_TO",
+      "label": "Internal Degrees"
+    },
+    {
+      "id": "e_cat_krump_disco",
+      "source": "node_cat_c_krump",
+      "target": "node_cat_functor_disco",
+      "relation": "COMPILED_BY",
+      "label": "Functor Image"
+    },
+    {
+      "id": "e_disco_qubit",
+      "source": "node_cat_functor_disco",
+      "target": "node_qubit",
+      "relation": "MAPS_OBJECT",
+      "label": "Dancer -> Qubit"
+    },
+    {
+      "id": "e_cat_interchange_duet",
+      "source": "node_cat_interchange",
+      "target": "node_entanglement",
+      "relation": "VERIFIES",
+      "label": "Bifunctorial Parallelism"
+    },
+    {
+      "id": "e_cat_snake_entanglement",
+      "source": "node_cat_snake_equation",
+      "target": "node_entanglement",
+      "relation": "SIMPLIFIES",
+      "label": "Yanking Axiom"
+    },
+    {
+      "id": "e_cat_spiders_hype",
+      "source": "node_cat_spiders",
+      "target": "node_krump_hype",
+      "relation": "FORMALIZES",
+      "label": "Hype Fusion / Split"
+    },
+    {
+      "id": "e_disco_helios",
+      "source": "node_cat_functor_disco",
+      "target": "node_hw_helios",
+      "relation": "EXECUTES_ON",
+      "label": "Lane K301 (2048 Shots)"
+    },
+    {
+      "id": "e_guppy_helios",
+      "source": "node_hw_guppy_hugr",
+      "target": "node_hw_helios",
+      "relation": "COMPILES_FOR",
+      "label": "HUGR Graph"
+    },
+    {
+      "id": "e_helios_duet",
+      "source": "node_hw_helios",
+      "target": "node_entanglement",
+      "relation": "BENCHMARKS",
+      "label": "99.41% Fidelity (|01>)"
+    },
+    {
+      "id": "e_helios_native",
+      "source": "node_hw_helios",
+      "target": "node_hw_native_gates",
+      "relation": "REBASES_TO",
+      "label": "PhasedX/Rz/ZZPhase"
+    },
+    {
+      "id": "e_helios_cpu_floor",
+      "source": "node_hw_helios",
+      "target": "node_hw_cpu_floor",
+      "relation": "FLOORED_BY",
+      "label": "3310x Classical Speedup"
+    },
+    {
+      "id": "e_stage_dijkstra_grid",
+      "source": "node_stage_dijkstra",
+      "target": "node_stage_grid",
+      "relation": "ROUTES_OVER",
+      "label": "Potential Field"
+    },
+    {
+      "id": "e_stage_qubo_grid",
+      "source": "node_stage_qubo",
+      "target": "node_stage_grid",
+      "relation": "SCHEDULES",
+      "label": "240 Binary Vars"
+    },
+    {
+      "id": "e_stage_qubo_swap",
+      "source": "node_stage_qubo",
+      "target": "node_stage_edge_swap",
+      "relation": "ENFORCES",
+      "label": "Zero Swap Collisions"
+    },
+    {
+      "id": "e_stage_haiqu_quops",
+      "source": "node_stage_haiqu",
+      "target": "node_stage_quops",
+      "relation": "BENCHMARKED_BY",
+      "label": "Q=256 Capability"
+    },
+    {
+      "id": "e_stage_hqs_lattice",
+      "source": "node_stage_hqs",
+      "target": "node_entanglement",
+      "relation": "SIMULATES",
+      "label": "Anisotropic Coupling"
+    },
+    {
+      "id": "e_bio_esm3_krump",
+      "source": "node_bio_esm3",
+      "target": "node_krump_stomp",
+      "relation": "GROUNDS_KINETICS",
+      "label": "Fast-Twitch Motor Units"
+    },
+    {
+      "id": "e_bio_kuramoto_interference",
+      "source": "node_bio_kuramoto",
+      "target": "node_interference",
+      "relation": "MODELS_PHASE",
+      "label": "Collective Phase R=0.9999"
+    },
+    {
+      "id": "e_bio_ensembles_kuramoto",
+      "source": "node_bio_sub_ensembles",
+      "target": "node_bio_kuramoto",
+      "relation": "BREAKS_U1",
+      "label": "Opposing 10-Dancer Subsets"
+    },
+    {
+      "id": "e_bio_chrna1_stomp",
+      "source": "node_bio_chrna1",
+      "target": "node_krump_stomp",
+      "relation": "GROUNDS_SYNAPSE",
+      "label": "1.42 ms Synaptic Latency"
+    },
+    {
+      "id": "e_bio_bridge_dagger",
+      "source": "node_bio_bridge_rna",
+      "target": "node_cat_c_krump",
+      "relation": "CONFIRMS_ISOMORPHISM",
+      "label": "Dagger Anti-Homomorphism"
+    },
+    {
+      "id": "e_theatre_dakota_11th",
+      "source": "node_theatre_dakota",
+      "target": "node_theatre_11th_dim",
+      "relation": "CHOREOGRAPHS",
+      "label": "Co-Author & Director"
+    },
+    {
+      "id": "e_theatre_dv_11th",
+      "source": "node_theatre_dv_narrative",
+      "target": "node_theatre_11th_dim",
+      "relation": "DRAMATIZES",
+      "label": "Narrative Engine"
+    },
+    {
+      "id": "e_theatre_acts_11th",
+      "source": "node_theatre_acts",
+      "target": "node_theatre_11th_dim",
+      "relation": "STRUCTURES",
+      "label": "4 Progressive Acts"
+    },
+    {
+      "id": "e_theatre_dv_qubit",
+      "source": "node_theatre_dv_narrative",
+      "target": "node_qubit",
+      "relation": "TRANSCENDS_LANGUAGE",
+      "label": "Binary vs. Continuous"
+    },
+    {
+      "id": "e_theatre_dv_entanglement",
+      "source": "node_theatre_dv_narrative",
+      "target": "node_entanglement",
+      "relation": "TRANSCENDS_LANGUAGE",
+      "label": "Coercive Control -> Solidarity"
+    },
+    {
+      "id": "e_theatre_threejs_11th",
+      "source": "node_theatre_threejs",
+      "target": "node_theatre_11th_dim",
+      "relation": "PROJECTS",
+      "label": "3D WebGL Scrim"
+    },
+    {
+      "id": "e_theatre_animejs_11th",
+      "source": "node_theatre_animejs",
+      "target": "node_theatre_11th_dim",
+      "relation": "SYNCS_CUES",
+      "label": "Lighting & Trajectories"
+    },
+    {
+      "id": "e_theatre_elevenlabs_11th",
+      "source": "node_theatre_elevenlabs",
+      "target": "node_theatre_11th_dim",
+      "relation": "VOICES",
+      "label": "Polyglot Lyrics"
+    },
+    {
+      "id": "e_theatre_moth_11th",
+      "source": "node_theatre_moth",
+      "target": "node_theatre_11th_dim",
+      "relation": "SONIFIES",
+      "label": "Quantum Soundscapes"
+    },
+    {
+      "id": "e_gov_jev_c_krump",
+      "source": "node_gov_typesafe_jev",
+      "target": "node_cat_c_krump",
+      "relation": "AUDITED_NON_TRIVIALITY",
+      "label": "81% Fully Resolved"
+    },
+    {
+      "id": "e_gov_jev_rigor",
+      "source": "node_gov_typesafe_jev",
+      "target": "node_gov_rigor",
+      "relation": "VERIFIES_SCORE",
+      "label": "2.01 / 3.00"
+    },
+    {
+      "id": "e_gov_jev_bounding",
+      "source": "node_gov_typesafe_jev",
+      "target": "node_gov_bounding",
+      "relation": "CONFIRMS_BOUNDS",
+      "label": "99% Strictly Bounded"
+    },
+    {
+      "id": "e_gov_jev_cpu_floor",
+      "source": "node_gov_typesafe_jev",
+      "target": "node_hw_cpu_floor",
+      "relation": "DEMARCATES_FLOOR",
+      "label": "Resolved Floor Check"
+    },
+    {
+      "id": "e_pedagogy_qiscit_subset",
+      "source": "node_pedagogy_qiscit",
+      "target": "node_pedagogy_subset",
+      "relation": "ADAPTS_ITEMS",
+      "label": "12 Core Questions"
+    },
+    {
+      "id": "e_pedagogy_subset_rct",
+      "source": "node_pedagogy_subset",
+      "target": "node_pedagogy_rct",
+      "relation": "EVALUATES_IN",
+      "label": "Pre/Post Assessment"
+    },
+    {
+      "id": "e_pedagogy_qiscit_qubit",
+      "source": "node_pedagogy_qiscit",
+      "target": "node_qubit",
+      "relation": "ASSESSES_CONSTRUCT",
+      "label": "Superposition & Collapse"
+    },
+    {
+      "id": "e_pedagogy_qiscit_entanglement",
+      "source": "node_pedagogy_qiscit",
+      "target": "node_entanglement",
+      "relation": "ASSESSES_CONSTRUCT",
+      "label": "Non-Locality & Bell Basis"
+    },
+    {
+      "id": "e_pedagogy_qiscit_interference",
+      "source": "node_pedagogy_qiscit",
+      "target": "node_interference",
+      "relation": "ASSESSES_CONSTRUCT",
+      "label": "Phase Sensitivity"
+    },
+    {
+      "id": "e_theatre_grid",
+      "source": "node_theatre_11th_dim",
+      "target": "node_stage_grid",
+      "relation": "USES_SPATIAL_GRID",
+      "label": "5x4 Staging Area"
+    },
+    {
+      "id": "e_theatre_stomp",
+      "source": "node_theatre_11th_dim",
+      "target": "node_krump_stomp",
+      "relation": "CHOREOGRAPHS",
+      "label": "Percussive Ground Strike"
+    },
+    {
+      "id": "e_theatre_chest_pop",
+      "source": "node_theatre_11th_dim",
+      "target": "node_krump_chest_pop",
+      "relation": "CHOREOGRAPHS",
+      "label": "Thoracic Phase Hit"
+    },
+    {
+      "id": "e_theatre_kill_off",
+      "source": "node_theatre_11th_dim",
+      "target": "node_krump_kill_off",
+      "relation": "CHOREOGRAPHS",
+      "label": "Climax Freeze"
+    },
+    {
+      "id": "e_theatre_qubo",
+      "source": "node_stage_qubo",
+      "target": "node_theatre_11th_dim",
+      "relation": "SCHEDULES_TRAJECTORY",
+      "label": "Collision-Free Blocking"
+    },
+    {
+      "id": "e_theatre_interference",
+      "source": "node_theatre_11th_dim",
+      "target": "node_interference",
+      "relation": "MANIFESTS",
+      "label": "Collective Phase Interference"
+    },
+    {
+      "id": "e_disco_stomp",
+      "source": "node_cat_functor_disco",
+      "target": "node_krump_stomp",
+      "relation": "COMPILES_BOX",
+      "label": "STOMP -> H"
+    },
+    {
+      "id": "e_disco_jab",
+      "source": "node_cat_functor_disco",
+      "target": "node_krump_jab",
+      "relation": "COMPILES_BOX",
+      "label": "JAB -> X"
+    },
+    {
+      "id": "e_disco_chest_pop",
+      "source": "node_cat_functor_disco",
+      "target": "node_krump_chest_pop",
+      "relation": "COMPILES_BOX",
+      "label": "CHEST POP -> Z"
+    },
+    {
+      "id": "e_disco_arm_swing",
+      "source": "node_cat_functor_disco",
+      "target": "node_krump_arm_swing",
+      "relation": "COMPILES_BOX",
+      "label": "ARM SWING -> Rx(pi/2)"
+    },
+    {
+      "id": "e_disco_buck_hop",
+      "source": "node_cat_functor_disco",
+      "target": "node_krump_buck_hop",
+      "relation": "COMPILES_BOX",
+      "label": "BUCK HOP -> Rz(pi/2)"
+    },
+    {
+      "id": "e_bloch_superposition",
+      "source": "node_bloch_sphere",
+      "target": "node_superposition",
+      "relation": "VISUALIZES",
+      "label": "Equatorial States"
+    },
+    {
+      "id": "e_bloch_qubit",
+      "source": "node_bloch_sphere",
+      "target": "node_qubit",
+      "relation": "GEOMETRIC_SPACE_FOR",
+      "label": "C^2 Statevector"
+    },
+    {
+      "id": "e_bloch_measurement",
+      "source": "node_bloch_sphere",
+      "target": "node_measurement",
+      "relation": "POLES_COLLAPSE",
+      "label": "Z+ / Z- Poles"
+    },
+    {
+      "id": "e_gov_bounding_superposition",
+      "source": "node_gov_bounding",
+      "target": "node_superposition",
+      "relation": "BOUNDS_ANALOGY",
+      "label": "No Macroscopic Coherence"
+    },
+    {
+      "id": "e_gov_bounding_entanglement",
+      "source": "node_gov_bounding",
+      "target": "node_entanglement",
+      "relation": "BOUNDS_ANALOGY",
+      "label": "Relational Gesture Model"
+    },
+    {
+      "id": "e_bio_kuramoto_theatre",
+      "source": "node_bio_kuramoto",
+      "target": "node_theatre_acts",
+      "relation": "PREDICTS_DYNAMICS",
+      "label": "Act IV Synchronization"
+    },
+    {
+      "id": "e_stage_dijkstra_qubo",
+      "source": "node_stage_dijkstra",
+      "target": "node_stage_qubo",
+      "relation": "INITIALIZES_SEEDS",
+      "label": "Shortest-Path Seed"
+    },
+    {
+      "id": "e_hw_helios_guppy",
+      "source": "node_hw_helios",
+      "target": "node_hw_guppy_hugr",
+      "relation": "INGESTS_PACKAGE",
+      "label": "HUGR Control Flow"
+    },
+    {
+      "id": "e_rhyme_rhythm",
+      "source": "node_rhyme_symbolic",
+      "target": "node_quantum_rhythm_phase",
+      "relation": "EXECUTES_RHYTHM",
+      "label": "Symbolic Phase Modulation"
+    },
+    {
+      "id": "e_rhyme_interference",
+      "source": "node_rhyme_symbolic",
+      "target": "node_interference",
+      "relation": "VALIDATES_INTERFERENCE",
+      "label": "100% Polyrhythmic Extinction"
+    },
+    {
+      "id": "e_rhyme_entanglement",
+      "source": "node_rhyme_symbolic",
+      "target": "node_entanglement",
+      "relation": "PREPARES_BELL_DYAD",
+      "label": "Symbolic Dyad State"
+    },
+    {
+      "id": "e_rhythm_levels",
+      "source": "node_quantum_rhythm_phase",
+      "target": "node_krump_levels",
+      "relation": "PHASE_ALIGNS_METRIC",
+      "label": "140-150 BPM Krump Lattice"
+    },
+    {
+      "id": "e_rhythm_laban_time",
+      "source": "node_quantum_rhythm_phase",
+      "target": "node_laban_time",
+      "relation": "DYNAMICS_MAPS",
+      "label": "Sudden vs Sustained Phase"
+    },
+    {
+      "id": "e_amass_chrna1",
+      "source": "node_amass_chrna1",
+      "target": "node_bio_chrna1",
+      "relation": "AUGMENTS_GROUNDING",
+      "label": "GeneCore / BiomedCore API"
+    },
+    {
+      "id": "e_paperclip_vitality_humanoid",
+      "source": "node_paperclip_vitality",
+      "target": "node_humanoid_mpc_robotics",
+      "relation": "MODULATES_TRAJECTORY",
+      "label": "Vitality Kinematics"
+    },
+    {
+      "id": "e_humanoid_stomp",
+      "source": "node_humanoid_mpc_robotics",
+      "target": "node_krump_stomp",
+      "relation": "EMBODIES_FOUNDATION",
+      "label": "3.82x BW Ground Strike"
+    },
+    {
+      "id": "e_humanoid_theatre",
+      "source": "node_humanoid_mpc_robotics",
+      "target": "node_theatre_11th_dim",
+      "relation": "PERFORMS_STAGE",
+      "label": "Humanoid Session Duet"
+    },
+    {
+      "id": "e_gate_physical_ai_humanoid",
+      "source": "node_gate_physical_ai",
+      "target": "node_humanoid_mpc_robotics",
+      "relation": "VERIFIES_SAFETY",
+      "label": "ZMP & Collision Bounds"
+    },
+    {
+      "id": "e_gate_physical_ai_amass",
+      "source": "node_gate_physical_ai",
+      "target": "node_amass_chrna1",
+      "relation": "AUDITS_SYNCHRONY",
+      "label": "S_sync >= 0.85"
+    },
+    {
+      "id": "e_gate_rhyme_symbolic",
+      "source": "node_gate_rhyme_symbolic",
+      "target": "node_rhyme_symbolic",
+      "relation": "AUDITS_RECEIPT",
+      "label": "Extinction & Bell Proof"
+    },
+    {
+      "id": "e_disco_to_synthesis",
+      "source": "node_cat_functor_disco",
+      "target": "node_evaluator_circuit_synthesis",
+      "relation": "COMPILES_TO",
+      "label": "Reversible Synthesis"
+    },
+    {
+      "id": "e_synthesis_to_helios",
+      "source": "node_evaluator_circuit_synthesis",
+      "target": "node_hw_helios",
+      "relation": "DECODES_HISTORY",
+      "label": "Uncomputed Bell Readout"
+    },
+    {
+      "id": "e_jev_to_synthesis",
+      "source": "node_gov_typesafe_jev",
+      "target": "node_evaluator_circuit_synthesis",
+      "relation": "METHODOLOGICAL_VALIDATION",
+      "label": "Evaluator-Guided Co-Design"
+    },
+    {
+      "id": "e_swarm_to_qubo",
+      "source": "node_swarm_krump_world",
+      "target": "node_stage_qubo",
+      "relation": "COMPILES_TO_QUBO",
+      "label": "Multi-Phenotype Scheduling"
+    },
+    {
+      "id": "e_swarm_to_helios",
+      "source": "node_swarm_krump_world",
+      "target": "node_hw_helios",
+      "relation": "BENCHMARKS_PHENOTYPIC_BELL",
+      "label": "Helios Duet Analyzer"
+    },
+    {
+      "id": "e_swarm_to_rhyme",
+      "source": "node_swarm_krump_world",
+      "target": "node_rhyme_symbolic",
+      "relation": "INTERFERES_RHYTHMIC_PHASE",
+      "label": "Polyrhythmic Extinction"
+    },
+    {
+      "id": "e_swarm_to_haiqu",
+      "source": "node_swarm_krump_world",
+      "target": "node_stage_haiqu",
+      "relation": "COMPRESSES_SWARM_CIRCUIT",
+      "label": "85.7% Depth Reduction"
+    },
+    {
+      "id": "e_qkmlm_to_discopy",
+      "source": "node_qkmlm",
+      "target": "node_cat_c_krump",
+      "relation": "EMBEDS_ANSATZ",
+      "label": "DisCoPy Frobenius VQC"
+    },
+    {
+      "id": "e_qkmlm_to_helios",
+      "source": "node_qkmlm",
+      "target": "node_hw_helios",
+      "relation": "EXPORTS_CIRCUIT",
+      "label": "OpenQASM 2.0 Compilation"
+    },
+    {
+      "id": "e_qkmlm_to_haiqu",
+      "source": "node_qkmlm",
+      "target": "node_stage_haiqu",
+      "relation": "COMPRESSES_VQC",
+      "label": "86.05% Depth Compression"
+    },
+    {
+      "id": "e_qkmlm_to_swarm",
+      "source": "node_qkmlm",
+      "target": "node_swarm_krump_world",
+      "relation": "PREDICTS_PHENOTYPE",
+      "label": "5-Phenotype Kinematics"
+    },
+    {
+      "id": "e_qkmlm_to_amass",
+      "source": "node_qkmlm",
+      "target": "node_amass_chrna1",
+      "relation": "INGESTS_SOMATICS",
+      "label": "8D Kinematic Vector"
+    },
+    {
+      "id": "e_gate_qkmlm_to_model",
+      "source": "node_gate_qkmlm",
+      "target": "node_qkmlm",
+      "relation": "AUDITS_CLASSIFIER",
+      "label": "Accuracy & Latency Verification"
+    },
+    {
+      "id": "e_modal_scale_to_qkmlm",
+      "source": "node_modal_scale",
+      "target": "node_qkmlm",
+      "relation": "EXTENDS_SCALE",
+      "label": "4 to 10 Qubit Scaling"
+    },
+    {
+      "id": "e_modal_scale_to_helios",
+      "source": "node_modal_scale",
+      "target": "node_hw_helios",
+      "relation": "DYNAMIC_BRANCHING",
+      "label": "10-Qubit Mid-Circuit Measurement"
+    },
+    {
+      "id": "e_modal_scale_to_haiqu",
+      "source": "node_modal_scale",
+      "target": "node_stage_haiqu",
+      "relation": "SCALABLE_COMPRESSION",
+      "label": "87.8% 10-Qubit Reduction"
+    },
+    {
+      "id": "e_gate_modal_scale_to_scale",
+      "source": "node_gate_modal_scale",
+      "target": "node_modal_scale",
+      "relation": "AUDITS_MULTIQUBIT",
+      "label": "Gate G_ModalScale Sealed"
+    },
+    {
+      "id": "e_persona_modal_scale",
+      "source": "node_persona_scientist",
+      "target": "node_modal_scale",
+      "relation": "CONDUCTS_BENCHMARK",
+      "label": "Multi-Qubit Scaling Benchmark"
+    },
+    {
+      "id": "e_persona_gate_modal",
+      "source": "node_persona_scientist",
+      "target": "node_gate_modal_scale",
+      "relation": "AUDITED_BY",
+      "label": "Epistemic Guardrails"
+    },
+    {
+      "id": "e_persona_cat_krump",
+      "source": "node_persona_scientist",
+      "target": "node_cat_c_krump",
+      "relation": "THEORIZES",
+      "label": "Categorical Foundations"
+    },
+    {
+      "id": "e_openclaw_persona",
+      "source": "node_openclaw_skill",
+      "target": "node_persona_scientist",
+      "relation": "EQUIPS_PERSONA",
+      "label": "World Class Scientist Persona"
+    },
+    {
+      "id": "e_openclaw_hf_space",
+      "source": "node_openclaw_skill",
+      "target": "node_hf_space_hub",
+      "relation": "INTEGRATES_SPACE",
+      "label": "Interactive Visualizer Link"
+    },
+    {
+      "id": "e_openclaw_guppy",
+      "source": "node_openclaw_skill",
+      "target": "node_hw_guppy_hugr",
+      "relation": "COMPILES_GUPPY",
+      "label": "Guppy 1.0 / Selene Kernels"
+    },
+    {
+      "id": "e_openclaw_c_krump",
+      "source": "node_openclaw_skill",
+      "target": "node_cat_c_krump",
+      "relation": "EMBODIES_CATEGORY",
+      "label": "Dagger-Compact Monoidal Algebra"
+    },
+    {
+      "id": "e_guppy_playpond_hugr",
+      "source": "node_guppy_playpond",
+      "target": "node_hw_guppy_hugr",
+      "relation": "RUNS_IN_BROWSER",
+      "label": "Pyodide WASM Engine"
+    },
+    {
+      "id": "e_guppy_playpond_10q",
+      "source": "node_guppy_playpond",
+      "target": "node_10q_dynamic_session",
+      "relation": "EXECUTES_SESSION",
+      "label": "10-Qubit Dynamic QuEST Simulation"
+    },
+    {
+      "id": "e_guppy_playpond_hf",
+      "source": "node_guppy_playpond",
+      "target": "node_hf_space_hub",
+      "relation": "EMBEDDED_IN",
+      "label": "Gradio Interactive Tab"
+    },
+    {
+      "id": "e_10q_session_modal",
+      "source": "node_10q_dynamic_session",
+      "target": "node_modal_scale",
+      "relation": "SCALES_UP_TO",
+      "label": "1,024-Dim Hilbert Space"
+    },
+    {
+      "id": "e_10q_session_levels",
+      "source": "node_10q_dynamic_session",
+      "target": "node_krump_levels",
+      "relation": "ENCODES_10_DANCERS",
+      "label": "Multi-Dancer Spatial Trajectories"
+    },
+    {
+      "id": "e_10q_session_measure",
+      "source": "node_10q_dynamic_session",
+      "target": "node_measurement",
+      "relation": "MID_CIRCUIT_MEASURE",
+      "label": "Feedforward Dynamic Branching"
+    },
+    {
+      "id": "e_modal_benchmark_scale",
+      "source": "node_modal_scientist_benchmark",
+      "target": "node_modal_scale",
+      "relation": "VALIDATES_SCALING",
+      "label": "Empirical Multi-Qubit Benchmarks"
+    },
+    {
+      "id": "e_modal_benchmark_gate",
+      "source": "node_modal_scientist_benchmark",
+      "target": "node_gate_modal_scale",
+      "relation": "AUDITED_BY",
+      "label": "Audit Gate G_ModalScale"
+    },
+    {
+      "id": "e_hf_space_qkmlm",
+      "source": "node_hf_space_hub",
+      "target": "node_qkmlm",
+      "relation": "HOSTS_MODEL",
+      "label": "4-Qubit VQC Checkpoints"
+    },
+    {
+      "id": "e_hf_space_scientist",
+      "source": "node_hf_space_hub",
+      "target": "node_persona_scientist",
+      "relation": "DEMONSTRATES_PERSONA",
+      "label": "Multi-Scale Scientist Interface"
+    }
+  ]
+}

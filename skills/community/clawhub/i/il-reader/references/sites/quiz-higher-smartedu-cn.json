@@ -1,0 +1,271 @@
+{
+  "version": "2.4.0",
+  "source_id": "quiz-higher-smartedu-cn",
+  "status": "entry_observed",
+  "checked_at": "2026-10-09T09:05:01.498Z",
+  "entry": {
+    "url": "https://higher.smartedu.cn",
+    "final_url": "https://higher.smartedu.cn/",
+    "title": "国家高等教育智慧教育平台",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:05:01.498Z",
+    "identity": {
+      "declared_name": "智慧高教平台",
+      "hostname": "higher.smartedu.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "课程",
+        "href": "https://higher.smartedu.cn/courses",
+        "target": ""
+      },
+      {
+        "text": "热门课程",
+        "href": "https://higher.smartedu.cn/courses/hot",
+        "target": ""
+      },
+      {
+        "text": "深度学习及其应用\n一流课程\n\n复旦大学\n赵卫东\n\n爱课程（中国大学MOOC）\n\n累计选课 10万+人次",
+        "href": "https://higher.smartedu.cn/course/678d8901225d72705e7da8e4",
+        "target": "_blank"
+      },
+      {
+        "text": "大国航母与舰载机\n一流课程\n\n岳奎志\n\n学堂在线\n\n累计选课 70万+人次",
+        "href": "https://higher.smartedu.cn/course/6786ef28225d72705e5dcc8f",
+        "target": "_blank"
+      },
+      {
+        "text": "走近中华优秀传统文化\n一流课程\n\n南京大学\n张亮\n\n爱课程（中国大学MOOC）\n\n累计选课 10万+人次",
+        "href": "https://higher.smartedu.cn/course/6865acb916c43a09c067e73a",
+        "target": "_blank"
+      },
+      {
+        "text": "舌尖上的历史与文化\n一流课程\n\n中国农业大学\n胡小松\n\n智慧树\n\n累计选课 10万+人次",
+        "href": "https://higher.smartedu.cn/course/671acbd016d8a05eedca20ce",
+        "target": "_blank"
+      },
+      {
+        "text": "一流课程",
+        "href": "https://higher.smartedu.cn/courses/national",
+        "target": ""
+      },
+      {
+        "text": "工程制图\n一流课程\n\n清华大学\n田凌\n\n学堂在线\n\n累计选课 10万+人次",
+        "href": "https://higher.smartedu.cn/course/6786ef1e225d72705e5dcc76",
+        "target": "_blank"
+      },
+      {
+        "text": "信息素养：效率提升与终身学习的新引擎\n一流课程\n\n四川师范大学\n周建芳\n\n爱课程（中国大学MOOC）\n\n累计选课 10万+人次",
+        "href": "https://higher.smartedu.cn/course/67afc812225d72705e22c489",
+        "target": "_blank"
+      },
+      {
+        "text": "人类与生态文明\n一流课程\n\n云南大学\n苏文华\n\n智慧树\n\n累计选课 20万+人次",
+        "href": "https://higher.smartedu.cn/course/671acb4c16d8a05eedca1fe8",
+        "target": "_blank"
+      },
+      {
+        "text": "生物化学与分子生物学\n一流课程\n\n上海交通大学\n梅文瀚\n\n人卫慕课\n\n累计选课 4万+人次",
+        "href": "https://higher.smartedu.cn/course/67859b20b60b1822c5122aca",
+        "target": "_blank"
+      },
+      {
+        "text": "新开课程",
+        "href": "https://higher.smartedu.cn/courses/latest",
+        "target": ""
+      },
+      {
+        "text": "走进创业\n一流课程\n\n南京大学\n王自强/陶向南\n\n爱课程（中国大学MOOC）\n\n累计选课 10万+人次",
+        "href": "https://higher.smartedu.cn/course/68605822f66f34e20f38a0f7",
+        "target": "_blank"
+      },
+      {
+        "text": "统计学\n一流课程\n\n上海立信会计金融学院\n单薇\n\n学银在线\n\n累计选课 10万+人次",
+        "href": "https://higher.smartedu.cn/course/67ae7544225d72705e1c65ff",
+        "target": "_blank"
+      },
+      {
+        "text": "操作系统原理\n一流课程\n\n北京大学\n陈向群\n\n华文慕课\n\n累计选课 3万+人次",
+        "href": "https://higher.smartedu.cn/course/660c89fbbb5c5a80250e0dbd",
+        "target": "_blank"
+      },
+      {
+        "text": "大众传媒与媒介素养\n一流课程\n\n北京外国语大学\n翟峥\n\n中国高校外语慕课平台\n\n累计选课 1万+人次",
+        "href": "https://higher.smartedu.cn/course/686302b216c43a09c05ab8d8",
+        "target": "_blank"
+      },
+      {
+        "text": "课程平台",
+        "href": "https://higher.smartedu.cn/platforms",
+        "target": ""
+      },
+      {
+        "text": "帮助中心",
+        "href": "https://higher.smartedu.cn/info/contact",
+        "target": ""
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "一站搜索全网好课",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "一站搜索全网好课",
+      "name": "name",
+      "id": "",
+      "css": "input[name=\"name\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[name=\"name\"]"
+      },
+      "observed_url": "https://higher.smartedu.cn/",
+      "observed_at": "2026-10-09T09:04:59.824Z"
+    },
+    {
+      "tag": "button",
+      "type": null,
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "搜索",
+      "id": "",
+      "css": "button[name=\"搜索\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "button[name=\"搜索\"]"
+      },
+      "observed_url": "https://higher.smartedu.cn/",
+      "observed_at": "2026-10-09T09:04:59.824Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "quiz-higher-smartedu-cn:course-video",
+      "source_id": "quiz-higher-smartedu-cn",
+      "task_kind": "course-video",
+      "status": "entry_observed",
+      "parameters": [
+        "title",
+        "institution",
+        "instructor_or_speaker",
+        "chapter_or_timestamp",
+        "target_field"
+      ],
+      "instructions": [
+        "根据本题课程或视频名称、机构和讲者匹配记录；打开目标章节或时间点读取课程字段或播放信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://higher.smartedu.cn/",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "一站搜索全网好课",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "一站搜索全网好课",
+          "name": "name",
+          "id": "",
+          "css": "input[name=\"name\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[name=\"name\"]"
+          },
+          "observed_url": "https://higher.smartedu.cn/",
+          "observed_at": "2026-10-09T09:04:59.824Z"
+        },
+        {
+          "tag": "button",
+          "type": null,
+          "text": "",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "搜索",
+          "id": "",
+          "css": "button[name=\"搜索\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "button[name=\"搜索\"]"
+          },
+          "observed_url": "https://higher.smartedu.cn/",
+          "observed_at": "2026-10-09T09:04:59.824Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": null,
+    "quiz_entries": [
+      "quiz-entry-065"
+    ],
+    "example_ids": [
+      "KH-Q050"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:05:01.498Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/quiz-higher-smartedu-cn-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/quiz-higher-smartedu-cn-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "secret_id": "在此填写腾讯云 SecretId，或改用环境变量 TENCENT_SECRET_ID",
+  "secret_key": "在此填写腾讯云 SecretKey，或改用环境变量 TENCENT_SECRET_KEY",
+  "bucket": "COS 存储桶名，如 your-bucket-appid，或改用环境变量 TENCENT_COS_BUCKET",
+  "region": "ap-shanghai"
+}

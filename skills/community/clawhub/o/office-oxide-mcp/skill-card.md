@@ -1,43 +1,54 @@
-## Description: <br>
-Rust-native MCP server for fast, local processing of Excel, Word, PowerPoint, and PDF files with reading, writing, form filling, and skill execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rust-native MCP server for fast, local processing of Excel, Word, PowerPoint, and PDF files with reading, writing, form filling, and skill execution.
 
-## Publisher: <br>
-[xdnaimino](https://clawhub.ai/user/xdnaimino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xdnaimino](https://clawhub.ai/user/xdnaimino)
 
-## Use Case: <br>
-Developers and agent builders use this skill to connect MCP clients to local Office and PDF document processing. It supports reading documents into structured outputs and creating or modifying Excel, Word, PowerPoint, and PDF files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT OR Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may install or run a package source they did not intend to trust. <br>
-Mitigation: Verify the Cargo package and source identity before installation. <br>
-Risk: The MCP server can read or modify Office and PDF documents, including potentially sensitive files. <br>
-Mitigation: Use it only with documents the user is comfortable allowing an MCP server to process, and review requested file paths before execution. <br>
-Risk: Form filling, overlays, and propagated edits can create incorrect or unintended document changes. <br>
-Mitigation: Prefer writing output copies and review generated documents before sharing or relying on them. <br>
+## Use Case:
 
+Developers and agents use this MCP server to read, transform, and generate Excel, Word, PowerPoint, and PDF documents locally, including document extraction, Office file creation, PDF form filling, and consistency checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xdnaimino/office-oxide-mcp) <br>
-- [Artifact README](artifact/references/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files, configuration] <br>
-**Output Format:** [Markdown or JSON responses, configuration snippets, and generated or modified Office/PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs against local documents; users should verify package source and review document reads or writes before deployment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Install instructions fetch and run a local executable with access to document folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and distribution channel, prefer a pinned and reviewed version, use locked installs where available, and verify release artifacts when checksums are provided.
+
+Risk: Office and PDF workflows may expose or alter personal or business information in local documents.
+
+Mitigation: Run the server only on document folders intended for agent access and review generated or modified Office/PDF files before sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xdnaimino/skills/office-oxide-mcp)
+- [Packaged README](artifact/references/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance, JSON configuration snippets, shell commands, and Office/PDF files produced through MCP tools]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or modify local document files when invoked against accessible paths.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

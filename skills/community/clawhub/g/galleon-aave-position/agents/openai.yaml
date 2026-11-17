@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aave V3 position risk"
+  short_description: "Aave V3 position risk workflow and evidence"
+  default_prompt: "Use $galleon-aave-position to perform the requested protocol workflow and return its decision record."

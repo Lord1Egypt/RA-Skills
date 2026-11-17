@@ -1,39 +1,48 @@
-## Description: <br>
-Light kaomoji selector based on context tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Light kaomoji selector based on context tags.
 
-## Publisher: <br>
-[WxuanYuan](https://clawhub.ai/user/WxuanYuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wxuanyuan](https://clawhub.ai/user/wxuanyuan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to pick a context-appropriate kaomoji, list the bundled kaomoji set, or add tagged kaomojis for later use in conversational output.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The save command can update the bundled kaomoji list, so shared or agent-writable installations may accumulate unreviewed text that later appears in conversations.
+
+Mitigation: Review added entries when multiple users or agents can modify the skill folder, and install only where local JSON updates are acceptable.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and developers use this skill to pick a kaomoji that matches context tags, list available kaomojis, or add tagged kaomoji entries for later reuse. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Saving a kaomoji modifies the skill's local kaomojis.json database, which changes future pick and list results. <br>
-Mitigation: Review saved entries before relying on future selections, and keep a clean copy of the database when reproducible behavior is required. <br>
+**Output Format:** [Plain text, JSON, and command-line usage guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WxuanYuan/kaomoji) <br>
-- [Publisher profile](https://clawhub.ai/user/WxuanYuan) <br>
+**Other Properties Related to Output:** [Uses local tag matching against the bundled kaomojis.json data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text, JSON, and Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The save command updates the local kaomojis.json database used by future list and pick commands.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

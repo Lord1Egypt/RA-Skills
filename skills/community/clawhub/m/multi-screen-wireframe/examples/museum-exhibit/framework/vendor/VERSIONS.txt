@@ -1,0 +1,18 @@
+vue@3.5.32                  vue.global.js
+react@18.3.1                react.production.min.js
+react-dom@18.3.1            react-dom.production.min.js
+html2canvas@1.4.1           html2canvas.min.js
+jszip@3.10.1                jszip.min.js
+file-saver@2.0.5            FileSaver.min.js
+
+All files are unmodified third-party distributions reused from the v1 vendor
+directory. No v1 runtime or business implementation is included.
+
+Vue is the development Global Build so runtime template diagnostics remain readable.
+
+Upstream:
+https://github.com/vuejs/core
+https://github.com/facebook/react
+https://github.com/niklasvh/html2canvas
+https://github.com/Stuk/jszip
+https://github.com/eligrey/FileSaver.js

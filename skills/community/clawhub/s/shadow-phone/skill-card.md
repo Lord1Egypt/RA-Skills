@@ -1,42 +1,56 @@
-## Description: <br>
-Get a disposable temp phone number and receive OTP codes to sign up on websites without using your real number. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a disposable temp phone number and receive OTP codes to sign up on websites without using your real number. Handles x402 crypto payment automatically.
 
-## Publisher: <br>
-[0xShadowETH](https://clawhub.ai/user/0xShadowETH) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0xshadoweth](https://clawhub.ai/user/0xshadoweth)
 
-## Use Case: <br>
-External users and agents use this skill to obtain a disposable phone number, pay the provider through x402, receive an SMS/OTP code, and complete an authorized phone verification workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger automatic crypto payments for each disposable phone number purchase. <br>
-Mitigation: Use a dedicated wallet with minimal funds and require manual approval before each payment. <br>
-Risk: Disposable phone verification can be misused for account creation or verification flows without permission. <br>
-Mitigation: Use only for workflows the user owns or has explicit permission to test, and require confirmation before entering an OTP. <br>
-Risk: The agent may handle both wallet credentials and temporary SMS verification codes. <br>
-Mitigation: Limit SHADOW_WALLET_KEY scope, avoid using sensitive accounts, and do not persist OTP values after the verification step. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/0xShadowETH/shadow-phone) <br>
-- [Shadow API Endpoint](https://extraordinary-charisma-production.up.railway.app) <br>
+## Use Case:
 
+External users and agents use this skill to obtain single-use temporary phone numbers, trigger SMS verification on supported websites, and retrieve OTP codes without using a personal phone number.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and JSON response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHADOW_WALLET_KEY and may trigger per-number x402 payments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent authority to make paid x402 crypto purchases for temporary phone numbers.
+
+Mitigation: Use a dedicated, minimally funded wallet and require explicit approval before each paid number purchase.
+
+Risk: Disposable phone verification can violate third-party service terms or support deceptive account creation.
+
+Mitigation: Use only where disposable verification is permitted, and do not use it for financial or identity-linked access.
+
+Risk: OTP handling may complete account access or registration on a third-party site.
+
+Mitigation: Require explicit approval before entering any OTP into a third-party website.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/0xshadoweth/skills/shadow-phone)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with HTTP request examples and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SHADOW_WALLET_KEY and may spend approximately $0.10 USDC on Base per number purchase.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

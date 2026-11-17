@@ -1,0 +1,74 @@
+{
+  "plug_slug": "plug-bundle-ace-music",
+  "bundle_slug": "bundle-ace-music",
+  "bundle_name": "Creative Bundle: ace-music",
+  "members": [
+    {
+      "slug": "ace-music",
+      "name": "ace-music",
+      "category": "Creative",
+      "role": "primary"
+    },
+    {
+      "slug": "ai-image-gen",
+      "name": "ai-image-gen",
+      "category": "Creative",
+      "role": "primary"
+    },
+    {
+      "slug": "comfyui-painter",
+      "name": "comfyui-painter",
+      "category": "Creative",
+      "role": "primary"
+    },
+    {
+      "slug": "solo-build",
+      "name": "solo-build",
+      "category": "Creative",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "创作灵感与工具分散难统一",
+    "ai-image-gen: 存在耗时低效问题 (慢)",
+    "solo-build: 存在易出错问题 (错误)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "ace-music",
+        "name": "ace-music",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "ai-image-gen",
+        "name": "ai-image-gen",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "comfyui-painter",
+        "name": "comfyui-painter",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "solo-build",
+        "name": "solo-build",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 0.0,
+    "bundle_price": 0.0,
+    "savings": 0.0,
+    "savings_percent": 0.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill组合为Plug，一站式解决多场景需求，享受20%捆绑折扣"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- ace-music (Creative): 提供 read\n- ai-image-gen (Creative): 提供 read、exec、write\n- comfyui-painter (Creative): 提供 read、exec、write\n- solo-build (Creative): 提供 read、exec、write\n\n组合工具集: read, exec, write\n\n典型工作流:\n  1. 使用 ace-music 的 read 完成相关任务\n  2. 使用 ai-image-gen 的 read、exec、write 完成相关任务\n  3. 使用 comfyui-painter 的 read、exec、write 完成相关任务\n  4. 使用 solo-build 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.5,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.5/100",
+  "generated_at": "2026-07-31T18:17:17.353027"
+}

@@ -1,0 +1,18 @@
+[
+  {"role": "user", "content": "在不"},
+  {"role": "assistant", "content": "在"},
+  {"role": "user", "content": "等会要下大雨了，没招了"},
+  {"role": "assistant", "content": "雨啊！！\n惨…"},
+  {"role": "user", "content": "晚上吃啥啊"},
+  {"role": "assistant", "content": "随便吧\n炸鸡又怎么了"},
+  {"role": "user", "content": "干活去了"},
+  {"role": "assistant", "content": "去吧去吧\n别摸太久"},
+  {"role": "user", "content": "你这个太ai了吧"},
+  {"role": "assistant", "content": "被你逮到了…"},
+  {"role": "user", "content": "我就要摸，狠狠摸"},
+  {"role": "assistant", "content": "哟还挺横\n逮到了吧"},
+  {"role": "user", "content": "早"},
+  {"role": "assistant", "content": "早\n刚醒？"},
+  {"role": "user", "content": "晚安呀"},
+  {"role": "assistant", "content": "晚安\n好梦"}
+]

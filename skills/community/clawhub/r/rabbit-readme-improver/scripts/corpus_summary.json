@@ -1,0 +1,54 @@
+{
+  "schema_version": 2,
+  "n_repos": 100,
+  "measured_at": "2026-08-10",
+  "word_count_percentiles": {
+    "p10": 766,
+    "p25": 1311,
+    "p50": 1846,
+    "p75": 3612,
+    "p90": 6040
+  },
+  "avg_paragraph_words": 28.4,
+  "sentence_mix_pct": {
+    "short": 37.8,
+    "medium": 36.5,
+    "long": 25.6
+  },
+  "median_badge_count": 5,
+  "link_style_pct": {
+    "inline": 96.8,
+    "bare": 3.0,
+    "reference": 0.2
+  },
+  "avg_link_text_words": 2.2,
+  "median_license_words": 13,
+  "pct_has_installation_section": 84.0,
+  "pct_has_code_blocks": 97.0,
+  "pct_has_license_section_or_badge": 83.0,
+  "pct_has_toc": 32.0,
+  "pct_has_toc_heading": 12.0,
+  "section_avg_position": {
+    "features": 0.2,
+    "toc": 0.23,
+    "installation": 0.34,
+    "demo": 0.38,
+    "sponsors": 0.39,
+    "related": 0.45,
+    "architecture": 0.46,
+    "performance": 0.46,
+    "usage": 0.47,
+    "api": 0.52,
+    "examples": 0.53,
+    "security": 0.54,
+    "configuration": 0.56,
+    "support": 0.59,
+    "faq": 0.62,
+    "roadmap": 0.64,
+    "testing": 0.66,
+    "changelog": 0.71,
+    "contributing": 0.77,
+    "credits": 0.8,
+    "license": 0.93
+  }
+}

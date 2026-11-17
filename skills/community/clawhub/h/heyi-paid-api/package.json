@@ -1,0 +1,44 @@
+{
+  "name": "heyihub-skill",
+  "version": "1.2.0",
+  "description": "Cursor Agent Skill installer for the Heyi paid API platform (Xiaohongshu, Douyin, Bilibili, Kuaishou). One-line install via npx; ships with `check` for runtime catalog drift detection against the live public endpoint catalog.",
+  "keywords": [
+    "cursor",
+    "cursor-skill",
+    "cursor-agent",
+    "skill",
+    "heyi",
+    "heyi-paid-api",
+    "paid-api",
+    "xhs",
+    "xiaohongshu",
+    "douyin",
+    "bilibili",
+    "mcp"
+  ],
+  "author": "heyi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyi-byte/heyihub-skill.git"
+  },
+  "homepage": "https://github.com/heyi-byte/heyihub-skill",
+  "bugs": {
+    "url": "https://github.com/heyi-byte/heyihub-skill/issues"
+  },
+  "bin": {
+    "install-heyi-paid-api-skill": "bin/install.js",
+    "heyi-paid-api": "bin/install.js",
+    "heyihub-skill": "bin/install.js"
+  },
+  "files": [
+    "bin/install.js",
+    "SKILL.md",
+    "snapshots/catalog.json",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "preferGlobal": false
+}

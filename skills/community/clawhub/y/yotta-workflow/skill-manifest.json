@@ -1,0 +1,44 @@
+{
+  "manifestVersion": 1,
+  "slug": "yotta-workflow",
+  "name": "元序",
+  "package": "@yottameta/yotta-workflow",
+  "version": "0.4.5",
+  "trust": "yottameta",
+  "install": {
+    "idempotent": true
+  },
+  "permissions": {
+    "filesystem": "project-dir",
+    "network": "none",
+    "process": "none",
+    "note": "只读写项目根目录 .workflow 状态文件，不联网、不启动子进程。"
+  },
+  "auto_apply": {
+    "mode": "hook",
+    "note": "开工读取状态，里程碑完成时落盘状态与流水。"
+  },
+  "hooks": [
+    {
+      "event": "before_start",
+      "require_action": "read_state",
+      "condition": "项目型会话开始或首个用户输入时",
+      "on_fail": "block",
+      "fallback": "explicit-unverified",
+      "evidence": [
+        "file_path"
+      ]
+    },
+    {
+      "event": "after_milestone",
+      "require_action": "write_state",
+      "condition": "里程碑完成、进入下一步之前",
+      "on_fail": "block",
+      "fallback": "explicit-unverified",
+      "evidence": [
+        "file_path",
+        "audit_log"
+      ]
+    }
+  ]
+}

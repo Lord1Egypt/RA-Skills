@@ -1,48 +1,71 @@
-## Description: <br>
-Amazon Store Pricing helps agents use LinkFox to retrieve Amazon SP-API Product Pricing data for ASIN/SKU pricing, listing and item offers, batch pricing, featured offer expected price, and competitive summary workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Amazon seller Product Pricing data through LinkFox, including ASIN/SKU prices, competitive pricing, listing and item offers, Featured Offer Expected Price, and competitive summaries.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-Developers and ecommerce operators use this skill to query Amazon store pricing, offer, and competitive summary data through LinkFox-authenticated SP-API pricing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive LinkFox credentials, seller identifiers, request bodies, and Amazon access tokens. <br>
-Mitigation: Treat LINKFOXAGENT_API_KEY, seller identifiers, request bodies, and Amazon access tokens as secrets, following the release security guidance. <br>
-Risk: Overriding the gateway base URL can send store pricing requests and credentials to a different endpoint. <br>
-Mitigation: Only override STORE_API_BASE_URL or SPAPI_BASE_URL when the replacement endpoint is intentionally controlled and trusted. <br>
+## Use Case:
 
+External developers and Amazon sellers use this skill to query Amazon Product Pricing information for individual or batched ASIN and seller SKU workflows. It helps compare offers, inspect Buy Box and Featured Offer signals, and estimate competitive pricing while using LinkFox account and authorization flows.
 
-## Reference(s): <br>
-- [Amazon Store Product Pricing API Reference](references/api.md) <br>
-- [getPricing](https://developer-docs.amazon.com/sp-api/reference/getpricing) <br>
-- [getCompetitivePricing](https://developer-docs.amazon.com/sp-api/reference/getcompetitivepricing) <br>
-- [getListingOffers](https://developer-docs.amazon.com/sp-api/reference/getlistingoffers) <br>
-- [getItemOffers](https://developer-docs.amazon.com/sp-api/reference/getitemoffers) <br>
-- [getItemOffersBatch](https://developer-docs.amazon.com/sp-api/reference/getitemoffersbatch) <br>
-- [getListingOffersBatch](https://developer-docs.amazon.com/sp-api/reference/getlistingoffersbatch) <br>
-- [getFeaturedOfferExpectedPriceBatch](https://developer-docs.amazon.com/sp-api/reference/getfeaturedofferexpectedpricebatch) <br>
-- [getCompetitiveSummary](https://developer-docs.amazon.com/sp-api/reference/getcompetitivesummary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses LINKFOXAGENT_API_KEY and Amazon seller request parameters; responses follow LinkFox gateway and Amazon SP-API schemas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: release evidence and frontmatter) <br>
+Risk: The skill can access Amazon seller pricing data and saves pricing responses to local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where saved pricing output is acceptable, review the output directory, and treat generated files as sensitive business data.
+
+Risk: Authentication and onboarding flows may involve LinkFox API keys, SMS codes, account login, billing orders, or payment QR files.
+
+Mitigation: Avoid passing secrets in logged command lines, verify account and billing actions before execution, and keep generated payment artifacts private.
+
+Risk: Endpoint override environment variables can redirect requests away from the expected LinkFox service.
+
+Mitigation: Use default endpoints unless the override target is fully trusted and intentionally configured.
+
+Risk: Repeated invalid or high-rate Amazon SP-API calls can trigger temporary store-level protection or throttling.
+
+Mitigation: Follow the documented cooldown and retry guidance, correct bad parameters or authorization issues before retrying, and avoid automatic repeated calls.
+
+## Reference(s):
+
+- [Amazon Store Product Pricing API Reference](artifact/references/api.md)
+- [Authentication and Billing Onboarding](artifact/references/onboarding.md)
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-amazon-store-pricing)
+- [Amazon getPricing](https://developer-docs.amazon.com/sp-api/reference/getpricing)
+- [Amazon getCompetitivePricing](https://developer-docs.amazon.com/sp-api/reference/getcompetitivepricing)
+- [Amazon getListingOffers](https://developer-docs.amazon.com/sp-api/reference/getlistingoffers)
+- [Amazon getItemOffers](https://developer-docs.amazon.com/sp-api/reference/getitemoffers)
+- [Amazon getItemOffersBatch](https://developer-docs.amazon.com/sp-api/reference/getitemoffersbatch)
+- [Amazon getListingOffersBatch](https://developer-docs.amazon.com/sp-api/reference/getlistingoffersbatch)
+- [Amazon getFeaturedOfferExpectedPriceBatch](https://developer-docs.amazon.com/sp-api/reference/getfeaturedofferexpectedpricebatch)
+- [Amazon getCompetitiveSummary](https://developer-docs.amazon.com/sp-api/reference/getcompetitivesummary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON response files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts save full JSON responses under the working directory and may print either full JSON or a summary depending on response size.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,58 @@
+{
+  "_note": "脱敏示例：4 家供应商（A/B/C/D）× 4 个维度 × 5 位评委。可直接 runner 起来看效果，改字段名与数值即可套用到真实项目。",
+  "score_label": "评委最终打分",
+  "vendors": [
+    { "name": "供应商A", "code": "a", "short": "A" },
+    { "name": "供应商B", "code": "b", "short": "B" },
+    { "name": "供应商C", "code": "c", "short": "C" },
+    { "name": "供应商D", "code": "d", "short": "D" }
+  ],
+  "dims": [
+    { "key": "履约能力", "code": "lvyue", "max": 6, "weight": 6 },
+    { "key": "售后服务", "code": "shouhou", "max": 5, "weight": 5 },
+    { "key": "产品品质", "code": "pinzhi", "max": 5, "weight": 5 },
+    { "key": "垫资能力", "code": "dianzi", "max": 4, "weight": 4 }
+  ],
+  "roles": ["采购", "设计", "零售", "零售", "销售"],
+  "max_judges": 5,
+  "scored_at": "",
+  "judges": [
+    {
+      "role": "销售", "name": "评委甲",
+      "a_lvyue": 5, "a_shouhou": 4, "a_pinzhi": 4, "a_dianzi": 4,
+      "b_lvyue": 6, "b_shouhou": 5, "b_pinzhi": 5, "b_dianzi": 4,
+      "c_lvyue": 6, "c_shouhou": 5, "c_pinzhi": 5, "c_dianzi": 3,
+      "d_lvyue": 5, "d_shouhou": 5, "d_pinzhi": 3, "d_dianzi": 4
+    },
+    {
+      "role": "零售", "name": "评委乙",
+      "a_lvyue": 5, "a_shouhou": 5, "a_pinzhi": 5, "a_dianzi": 4,
+      "b_lvyue": 5, "b_shouhou": 5, "b_pinzhi": 5, "b_dianzi": 4,
+      "c_lvyue": 6, "c_shouhou": 5, "c_pinzhi": 4, "c_dianzi": 2,
+      "d_lvyue": 6, "d_shouhou": 5, "d_pinzhi": 4, "d_dianzi": 3
+    },
+    {
+      "role": "零售", "name": "评委丙",
+      "a_lvyue": 5, "a_shouhou": 4, "a_pinzhi": 4, "a_dianzi": 4,
+      "b_lvyue": 4, "b_shouhou": 4, "b_pinzhi": 4, "b_dianzi": 4,
+      "c_lvyue": 5, "c_shouhou": 4, "c_pinzhi": 4, "c_dianzi": 3,
+      "d_lvyue": 6, "d_shouhou": 5, "d_pinzhi": 4, "d_dianzi": 2
+    },
+    {
+      "role": "设计", "name": "评委丁",
+      "a_lvyue": 5, "a_shouhou": 5, "a_pinzhi": 4, "a_dianzi": 4,
+      "b_lvyue": 4, "b_shouhou": 3, "b_pinzhi": 3, "b_dianzi": 3,
+      "c_lvyue": 4, "c_shouhou": 3, "c_pinzhi": 3, "c_dianzi": 2,
+      "d_lvyue": 5, "d_shouhou": 4, "d_pinzhi": 5, "d_dianzi": 3
+    },
+    {
+      "role": "采购", "name": "评委戊",
+      "a_lvyue": 5, "a_shouhou": 4, "a_pinzhi": 5, "a_dianzi": 4,
+      "b_lvyue": 5, "b_shouhou": 4, "b_pinzhi": 4, "b_dianzi": 4,
+      "c_lvyue": 5, "c_shouhou": 4, "c_pinzhi": 4, "c_dianzi": 4,
+      "d_lvyue": 6, "d_shouhou": 5, "d_pinzhi": 5, "d_dianzi": 4
+    }
+  ],
+  "price_score": { "供应商A": 60.0, "供应商B": 59.0, "供应商C": 51.78, "供应商D": 47.88 },
+  "other_fixed": { "供应商A": 17.5, "供应商B": 16.5, "供应商C": 15.5, "供应商D": 9.0 }
+}

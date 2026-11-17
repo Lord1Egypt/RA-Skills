@@ -1,42 +1,56 @@
-## Description: <br>
-End-to-end workflow for SEO/GEO content updates in Webflow: prioritize via GSC, draft/refresh content, create patch JSONs, update Webflow CMS via API, set images/alt/SEO, publish, and handle technical SEO fixes (canonical domain, redirects). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end workflow for SEO/GEO content updates in Webflow: prioritize via GSC, draft/refresh content, create patch JSONs, update Webflow CMS via API, set images/alt/SEO, publish, and handle technical SEO fixes (canonical domain, redirects).
 
-## Publisher: <br>
-[jchopard69](https://clawhub.ai/user/jchopard69) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jchopard69](https://clawhub.ai/user/jchopard69)
 
-## Use Case: <br>
-External site operators, SEO practitioners, and developers use this skill to plan, draft, patch, and publish Webflow CMS content for blog, service, and local landing page SEO updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to change and publish live Webflow content with an API token. <br>
-Mitigation: Use a least-privilege Webflow token, test against staging first, and require the agent to show the exact JSON diff and obtain explicit approval before any POST, PATCH, or publish action on a live site. <br>
+## Use Case:
 
+Developers, marketers, and site operators use this skill to plan SEO and location-page updates, draft Webflow CMS payloads, and coordinate API-based content publishing.
 
-## Reference(s): <br>
-- [Webflow API v2 quick reference](references/webflow_api.md) <br>
-- [SEO/GEO copy patterns](references/seo_copy_patterns.md) <br>
-- [Patch templates](references/patch_templates.md) <br>
-- [Webflow API v2](https://api.webflow.com/v2) <br>
-- [ClawHub skill page](https://clawhub.ai/jchopard69/webflow-seo-geo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload examples and API command patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Webflow CMS patch payloads and publishing instructions that require human review before live API changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill directs agents to prepare and publish Webflow CMS changes through an API, which can alter public site content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review before any publish call, prefer a staging or draft workflow first, and use a least-privilege Webflow token.
+
+Risk: Generated patch files may contain incorrect content, metadata, image fields, or item identifiers.
+
+Mitigation: Keep generated /out/ patch files under review and validate JSON payloads before POST or PATCH requests.
+
+## Reference(s):
+
+- [Webflow API v2 quick reference](references/webflow_api.md)
+- [SEO/GEO copy patterns](references/seo_copy_patterns.md)
+- [Patch templates](references/patch_templates.md)
+- [Webflow API v2](https://api.webflow.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON payload examples and inline API command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local patch JSON files for review before Webflow CMS updates or publish calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

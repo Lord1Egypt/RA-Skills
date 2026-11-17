@@ -1,0 +1,27 @@
+# 源文件与中间产物：体积大且与 skill 无关
+**/*.mp4
+**/*.mp3
+**/*.srt
+input.*
+output.*
+output_dual.*
+
+# 二进制：单个 ffmpeg.exe 就有 200MB 以上，远超 50MB 包体上限
+ffmpeg.exe
+ffprobe.exe
+*.exe
+*.dll
+
+# 临时合成片段
+temp_audio/
+**/temp_audio/
+
+# 缓存与环境
+__pycache__/
+*.pyc
+.venv/
+venv/
+.cache/
+.idea/
+.vscode/
+.DS_Store

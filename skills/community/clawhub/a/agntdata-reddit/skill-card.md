@@ -1,42 +1,52 @@
-## Description: <br>
-Use one API key to pull Reddit data, including subreddits, posts, threads, user activity, search, and community data, as structured JSON for agents, automations, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reddit posts, comments, users, and subreddits for agents — no Reddit app or API approval needed.
 
-## Publisher: <br>
-[jaencarrodine](https://clawhub.ai/user/jaencarrodine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superagnt](https://clawhub.ai/user/superagnt)
 
-## Use Case: <br>
-External developers, automation builders, analysts, and data teams use this skill to call the agntdata Reddit API for social listening, content research, creator intelligence, alerts, digests, dashboards, and downstream AI workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an agntdata API key and sends Reddit query details to the agntdata service. <br>
-Mitigation: Treat AGNTDATA_API_KEY like a password, scope access according to internal policy, and avoid submitting sensitive investigation targets or personal data unless approved. <br>
-Risk: The skill recommends a separate OpenClaw Reddit plugin for native tools. <br>
-Mitigation: Review the separate @agntdata/openclaw-reddit plugin independently before installing it. <br>
+## Use Case:
 
+Developers, researchers, and marketing teams can use the skill to retrieve Reddit posts, comments, user activity, and subreddit information for monitoring, research, and analytics workflows.
 
-## Reference(s): <br>
-- [agntdata Reddit API Reference](https://agnt.mintlify.app/apis/social/reddit) <br>
-- [agntdata Documentation](https://agnt.mintlify.app) <br>
-- [ClawHub Skill](https://clawhub.ai/jaencarrodine/agntdata-reddit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands, endpoint descriptions, and JSON tool schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGNTDATA_API_KEY and curl for authenticated API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: frontmatter and server-resolved release evidence) <br>
+Risk: The security summary notes a credits lookup alongside the skill’s stated Reddit purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the documented credits check, external service, and API key requirements before use; confirm the credits lookup is expected for your workflow.
+
+## Reference(s):
+
+- [Reddit Data documentation](https://superagnt.com/r/ch-reddit-data-docs)
+- [Reddit Data MCP server](https://mcp.superagnt.com/mcp/reddit)
+- [API key setup](https://superagnt.com/r/ch-reddit-data-key)
+- [Reddit Data listing](https://clawhub.ai/superagnt/skills/reddit-data)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, Guidance]
+
+**Output Format:** [Structured Reddit data in JSON, with summaries or analysis as requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requests require a SUPERAGNT_API_KEY and endpoint-specific query parameters.]
+
+## Skill Version(s):
+
+2.0.14 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

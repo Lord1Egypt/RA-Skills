@@ -1,6 +1,26 @@
 {
-  "ownerId": "kn75q5p7wpr68hmqar9ywtejsx84cw1x",
+  "name": "🇨🇳 中国市场政策查询Skill",
   "slug": "policy-china",
+  "description": "提供基于惠迈智能体架构的中国市场政策、法规、投资环境的智能查询和分析。支持中文、英文等多种语言。",
   "version": "1.1.0",
-  "publishedAt": 1777617284577
+  "author": "Huimai AI",
+  "email": "yezhaowang888@icloud.com",
+  "license": "MIT",
+  "tags": [
+    "trade",
+    "policy",
+    "china",
+    "huimai",
+    "calibration"
+  ],
+  "lastUpdated": "2026-05-01",
+  "calibration": {
+    "levels": [
+      "quick",
+      "standard"
+    ],
+    "interval": 1800000,
+    "trustedMode": true
+  },
+  "warmMode": "default"
 }

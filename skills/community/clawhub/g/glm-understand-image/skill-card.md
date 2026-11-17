@@ -1,42 +1,57 @@
-## Description: <br>
-Uses a GLM vision MCP server to help an agent analyze images, screenshots, diagrams, charts, UI differences, and videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the GLM Vision MCP server to help an agent understand and analyze images, screenshots, technical diagrams, data visualizations, and videos.
 
-## Publisher: <br>
-[Thincher](https://clawhub.ai/user/Thincher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thincher](https://clawhub.ai/user/thincher)
 
-## Use Case: <br>
-Developers and other agent users use this skill to configure the GLM vision MCP server and request visual understanding tasks such as OCR, screenshot diagnosis, diagram interpretation, chart analysis, UI comparison, and general image analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill routes selected images, screenshots, URLs, or videos to an external GLM provider for processing. <br>
-Mitigation: Use it only for content approved for external processing, and avoid confidential, regulated, or personal images unless that use has been reviewed. <br>
-Risk: The artifact describes saving the GLM API key in a plaintext configuration file. <br>
-Mitigation: Prefer a secret manager or locked-down environment variable, restrict file permissions, and avoid printing API keys in terminals or logs. <br>
-Risk: The workflow installs or invokes MCP packages through npx without a pinned package version. <br>
-Mitigation: Pin package versions where possible and install only in environments where the GLM MCP package and its dependencies are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Thincher/glm-understand-image) <br>
-- [GLM vision MCP server documentation](https://docs.bigmodel.cn/cn/coding-plan/mcp/vision-mcp-server) <br>
+## Use Case:
 
+Developers and end users use this skill to configure a GLM Vision MCP server and ask an agent to analyze local or URL-based images, extract screenshot text, diagnose error screenshots, interpret diagrams, compare UI screenshots, and summarize video content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and MCP call patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on external GLM provider processing of selected images, screenshots, URLs, or videos.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill runs mutable npm-hosted MCP tooling locally.
+
+Mitigation: Install only in environments where unpinned third-party npm packages are acceptable, and prefer a version-pinned revision before broad deployment.
+
+Risk: Image or video content may be sent to the GLM/Zhipu service.
+
+Mitigation: Avoid sending sensitive screenshots, images, or videos unless they are redacted and approved for external processing.
+
+Risk: API key handling may expose credentials through local files, logs, or transcripts.
+
+Mitigation: Use a low-privilege API key, restrict permissions on ~/.openclaw/config/glm.json, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [GLM Vision MCP Server documentation](https://docs.bigmodel.cn/cn/coding-plan/mcp/vision-mcp-server)
+- [ClawHub skill page](https://clawhub.ai/thincher/skills/glm-understand-image)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and MCP tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Zhipu/GLM API key and can process image paths, image URLs, screenshots, diagrams, visualizations, UI comparisons, and supported video files.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

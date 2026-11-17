@@ -1,44 +1,59 @@
-## Description: <br>
-Automatically detects and blocks prompt injection attempts across multiple platforms to protect against unauthorized commands and data leaks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Eli Prompt Guard scans outbound automated submissions for prompt injection attempts and sensitive data before allowing them to proceed.
 
-## Publisher: <br>
-[danlct27](https://clawhub.ai/user/danlct27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danlct27](https://clawhub.ai/user/danlct27)
 
-## Use Case: <br>
-Developers and operators use this skill to check outbound automated posts, form submissions, API calls, and shared file writes before content leaves the agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound automated submissions may still contain prompt-injection, credential, or PII content that detection patterns miss. <br>
-Mitigation: Use the guard as a pre-submit check, keep detection patterns current, redact sensitive data in alerts, and require owner review for high-severity findings. <br>
-Risk: The skill can pause or reject legitimate submissions when content matches detection patterns. <br>
-Mitigation: Scope enabled platforms to active workflows and let the owner approve, reject, or review flagged content before submission. <br>
-Risk: Review and logging workflows may expose submitted content if configured too broadly. <br>
-Mitigation: Confirm full-content review is acceptable for the data being handled, log only the necessary submissions, and sanitize notification previews. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to guard automated posting, form submission, external API submission, and shared file-write workflows against prompt injection and sensitive-data leakage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danlct27/eli-prompt-guard) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes owner review prompts, severity labels, sanitized previews, and approve/reject/review decision paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and openclaw.plugin.json) <br>
+Risk: Automated outbound submissions may be paused or rejected when prompt-injection or sensitive-data patterns match benign content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the owner approve, reject, and review flow, tune platform severity settings, and keep the timeout configuration appropriate for the workflow.
+
+Risk: Alert and logging workflows can expose sensitive submitted content if previews or logs are not handled carefully.
+
+Mitigation: Redact sensitive data in notifications and prefer logging only suspicious submissions unless broader audit logging is explicitly required.
+
+Risk: Disabling the guard or enabling optional file-write checks without review can reduce protection or expand the scope of blocked actions.
+
+Mitigation: Restrict the /guardian disable path to owner or admin control and review configuration before enabling optional file-write checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danlct27/skills/eli-prompt-guard)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, configuration JSON examples, and owner alert text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pre-submit checks can proceed, notify the owner, request approval, reject, or show sanitized content for review.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and openclaw.plugin.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

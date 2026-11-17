@@ -1,0 +1,4 @@
+interface:
+  display_name: "Card Credits"
+  short_description: "Statement credits for one US credit card"
+  default_prompt: "Use $card-credits to list the credits on American Express Gold Card."

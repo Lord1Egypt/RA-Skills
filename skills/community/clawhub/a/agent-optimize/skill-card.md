@@ -1,45 +1,60 @@
-## Description: <br>
-Agent Optimize analyzes OpenClaw context, skill, memory, configuration, and system state to identify performance bottlenecks and generate optimization reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Optimize diagnoses OpenClaw context bloat, skill noise, memory redundancy, and configuration conflicts, then produces optimization reports and suggested cleanup actions.
 
-## Publisher: <br>
-[chungvic](https://clawhub.ai/user/chungvic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chungvic](https://clawhub.ai/user/chungvic)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to diagnose context bloat, skill noise, memory redundancy, configuration conflicts, and local resource issues, then produce optimization recommendations and reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads sensitive local OpenClaw state such as sessions, memory files, paths, and configuration details. <br>
-Mitigation: Run it manually in report-only mode first and review the generated report before acting on recommendations. <br>
-Risk: Auto-fix and scheduled cron examples may modify local agent state if enabled without inspection. <br>
-Mitigation: Inspect the exact commands and keep OPTIMIZE_AUTO_FIX disabled until the intended changes and backups are confirmed. <br>
-Risk: Generated reports and temporary backups may expose session, memory, path, or configuration details. <br>
-Mitigation: Avoid sharing reports or /tmp backups externally and remove sensitive artifacts after review. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit OpenClaw workspaces for slowdowns caused by large session history, noisy or duplicate skills, memory growth, and conflicting configuration. It returns health metrics and suggested cleanup actions for review before execution.
 
-## Reference(s): <br>
-- [Agent Optimize on ClawHub](https://clawhub.ai/chungvic/agent-optimize) <br>
-- [OpenClaw Performance Optimization Guide](https://docs.openclaw.ai/performance) <br>
-- [OpenClaw Context Management Best Practices](https://docs.openclaw.ai/context-management) <br>
-- [OpenClaw Skill Optimization Guide](https://docs.openclaw.ai/skill-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown or JSON diagnostic report with recommendations; optional Feishu card output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report-only by default; auto-fix behavior is opt-in through OPTIMIZE_AUTO_FIX and may suggest or execute local cleanup commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: The skill reads local OpenClaw session files, memory metadata, skill folders, configuration files, and workspace environment files, so generated reports may contain sensitive local information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review reports before sharing, store backups and reports in protected locations, and treat diagnostic output as potentially sensitive.
+
+Risk: Documentation describes cleanup, backup, cron, and auto-fix workflows that can affect local sessions, memory, skills, or configuration.
+
+Mitigation: Keep auto-fix disabled by default, review proposed commands before execution, and maintain a restorable backup before cleanup or scheduled automation.
+
+Risk: Security evidence flags the release as suspicious because its behavior extends beyond a simple read-only diagnostic posture.
+
+Mitigation: Install only after reviewing the requested permissions and prefer a revised release that clearly separates read-only diagnostics from write-capable cleanup.
+
+## Reference(s):
+
+- [Agent Optimize ClawHub release page](https://clawhub.ai/chungvic/skills/agent-optimize)
+- [OpenClaw Performance Optimization Guide](https://docs.openclaw.ai/performance)
+- [OpenClaw Context Management Best Practices](https://docs.openclaw.ai/context-management)
+- [OpenClaw Skill Optimization Guide](https://docs.openclaw.ai/skill-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown, JSON, or Feishu card diagnostic reports with optimization recommendations and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include local file paths, workspace metrics, and cleanup recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, README.md, SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

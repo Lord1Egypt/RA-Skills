@@ -1,46 +1,60 @@
-## Description: <br>
-Create and publish social media launches via the Dropspace API, including launch creation, persona management, post analytics, scheduling, and AI-assisted content for multiple social platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and publish social media launches via the Dropspace API, including launch creation, scheduling, persona-based content generation, and post analytics across major social platforms.
 
-## Publisher: <br>
-[jclvsh](https://clawhub.ai/user/jclvsh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jclvsh](https://clawhub.ai/user/jclvsh)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through Dropspace workflows for drafting, scheduling, publishing, and measuring social media launches. It is suited for users who intend to connect an agent to a Dropspace account with an appropriately scoped API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward publishing or scheduling content on connected social accounts. <br>
-Mitigation: Use a least-privilege Dropspace API key and add the publish scope only when autonomous publishing is explicitly intended. <br>
-Risk: The skill documents destructive and administrative operations, including deleting posts, managing API keys, and creating or rotating webhooks. <br>
-Mitigation: Review commands before execution and grant delete or admin scopes only for workflows that require those actions. <br>
-Risk: The skill includes guidance for querying attribution data and using payment headers. <br>
-Mitigation: Confirm that the agent is allowed to access attribution data or payment flows before permitting related commands. <br>
+## Use Case:
 
+Developers, operators, and social media teams use this skill to create, review, schedule, publish, monitor, and manage Dropspace launches through API-oriented guidance and shell command examples.
 
-## Reference(s): <br>
-- [Dropspace skill page](https://clawhub.ai/jclvsh/dropspace) <br>
-- [Publisher profile](https://clawhub.ai/user/jclvsh) <br>
-- [Dropspace documentation](https://www.dropspace.dev/docs) <br>
-- [Dropspace machine-readable docs](https://www.dropspace.dev/llms.txt) <br>
-- [Dropspace OpenAPI specification](https://www.dropspace.dev/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline curl commands, API request examples, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Dropspace API calls that publish, delete, manage webhooks or API keys, query analytics, or inspect attribution data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: release evidence) <br>
+Risk: The skill can guide agents to publish, schedule, retry, or delete real social posts through the Dropspace API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm every live publish, scheduled publish, retry, and post deletion before execution, and keep publish or delete scopes off the API key unless explicitly needed.
+
+Risk: The skill points to an unpinned Dropspace MCP package.
+
+Mitigation: Prefer direct API use or a pinned, reviewed MCP package version, and run any MCP server with minimal filesystem and environment access.
+
+Risk: Broad API keys can expose account management, webhook, publish, and deletion capabilities.
+
+Mitigation: Create a separate least-privilege Dropspace API key, typically limited to read, write, and generate scopes for draft-and-review workflows.
+
+## Reference(s):
+
+- [Dropspace documentation](https://www.dropspace.dev/docs)
+- [Dropspace llms.txt](https://www.dropspace.dev/llms.txt)
+- [Dropspace OpenAPI specification](https://www.dropspace.dev/openapi.json)
+- [ClawHub Dropspace skill page](https://clawhub.ai/jclvsh/skills/dropspace)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and SQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DROPSPACE_API_KEY environment variable for live API operations.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

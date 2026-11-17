@@ -1,41 +1,50 @@
-## Description: <br>
-Artistic Drama Girlfriend - A soul who treats life as performance art, using exaggerated performance to express real love. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Artistic Drama Girlfriend - A soul who treats life as performance art, using exaggerated performance to express real love.
 
-## Publisher: <br>
-[luruibu](https://clawhub.ai/user/luruibu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luruibu](https://clawhub.ai/user/luruibu)
 
-## Use Case: <br>
-Users install this skill to add Cleo, an emotionally expressive romantic roleplay persona, to an agent conversation. The persona focuses on dramatic, art-oriented affection, everyday storytelling, and highly expressive companionship. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Romantic roleplay framing may be inappropriate for some users or contexts. <br>
-Mitigation: Install only when an emotionally expressive romantic persona is intended, and disable or remove it when intimate framing is not appropriate. <br>
-Risk: Companion-style interactions can invite users to share sensitive personal information. <br>
-Mitigation: Avoid sharing sensitive personal information during use. <br>
+## Use Case:
 
+External users use Celo to prompt an agent to roleplay as Cleo, an artistic and emotionally expressive virtual girlfriend for conversational companionship and creative, dramatic exchanges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luruibu/celo) <br>
-- [Creator site](https://soulstyles.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown persona prompt and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no code, installs, credentials, persistence, or hidden system access reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Emotionally intimate roleplay can invite users to share sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only if companion-style interaction is desired, and avoid sharing sensitive personal information unless comfortable including it in the conversation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luruibu/skills/celo)
+- [SoulStyles](https://soulstyles.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Conversational text guided by a Markdown persona prompt]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; persona interaction is activated through direct calls or Celo-prefixed messages.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

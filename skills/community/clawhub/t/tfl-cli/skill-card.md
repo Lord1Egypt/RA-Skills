@@ -1,42 +1,56 @@
-## Description: <br>
-London transport CLI for checking TfL line status, journey planning, live arrivals, disruptions, bike docks, stop search, and agent-friendly output projection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+tfl-cli helps agents use the tfl command for London transport status, journey planning, live arrivals, disruptions, bike docks, stop search, and targeted output projection.
 
-## Publisher: <br>
-[shan8851](https://clawhub.ai/user/shan8851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shan8851](https://clawhub.ai/user/shan8851)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to run or compose `tfl` commands for London transport status, routes, arrivals, disruptions, bike availability, and stop lookup. It is also useful when an agent needs a single value or subtree from route, arrivals, or bike results instead of a full response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an installed `tfl` binary and may call external TfL services for live transport data. <br>
-Mitigation: Install from the declared npm package, review commands before running them, and use the optional `TFL_APP_KEY` only in an appropriate local environment. <br>
-Risk: Live journey, arrival, disruption, and bike data can be unavailable, ambiguous, or rate limited. <br>
-Mitigation: Check structured error envelopes and documented exit codes before relying on results in automated workflows. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to query London transport information through the tfl CLI and extract specific route, arrival, or bike availability values for downstream tasks.
 
-## Reference(s): <br>
-- [tfl-cli homepage](https://tfl-cli.xyz) <br>
-- [ClawHub skill page](https://clawhub.ai/shan8851/tfl-cli) <br>
-- [npm package @shan8851/tfl-cli](https://www.npmjs.com/package/@shan8851/tfl-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON envelope descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can return text or JSON; `--output <path>` projects selected route, arrivals, and bike fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata) <br>
+Risk: The skill installs and relies on an external npm CLI package that is not vendored or integrity-pinned in the artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the npm package version before installation, especially in managed or production environments.
+
+Risk: Providing TFL_APP_KEY can expose an API credential if it is handled like ordinary command text.
+
+Mitigation: Set TFL_APP_KEY only when higher rate limits are needed and store it through the agent environment's secret-management path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shan8851/skills/tfl-cli)
+- [Publisher profile](https://clawhub.ai/user/shan8851)
+- [tfl-cli homepage](https://tfl-cli.xyz)
+- [npm package @shan8851/tfl-cli](https://www.npmjs.com/package/@shan8851/tfl-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands; tfl command output may be text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports targeted dot-path projection for route, arrivals, and bikes commands.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

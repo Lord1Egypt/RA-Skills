@@ -1,0 +1,92 @@
+collection: MD
+sort-by: 10
+shortname: md
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/picodrive_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 光明力量
+file: 光明力量.md
+assets.box_front: Imgs/光明力量.png
+description: 《光明力量》，世嘉 MD 平台。
+game: 光明力量2
+file: 光明力量2.md
+assets.box_front: Imgs/光明力量2.png
+description: 《光明力量2》，世嘉 MD 平台。
+game: 刺猬索尼克3
+file: 刺猬索尼克3.md
+assets.box_front: Imgs/刺猬索尼克3.png
+description: 《刺猬索尼克3》，由 Sega 出品，1994 年发行，动作类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+release: 1994
+genre: Action
+players: 2
+game: 幽游白书：魔强统一战
+file: 幽游白书：魔强统一战.md
+assets.box_front: Imgs/幽游白书：魔强统一战.png
+description: 《幽游白书：魔强统一战》，1994 年发行，世嘉 MD 平台。
+release: 1994
+game: 忍者神龟：超石大盗
+file: 忍者神龟：超石大盗.md
+assets.box_front: Imgs/忍者神龟：超石大盗.png
+description: 《忍者神龟：超石大盗》，世嘉 MD 平台。
+game: 怒之铁拳
+file: 怒之铁拳.md
+assets.box_front: Imgs/怒之铁拳.png
+description: 《怒之铁拳》，由 Sega 出品，清版动作类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+genre: Beat'em Up
+players: 2
+game: 怒之铁拳2
+file: 怒之铁拳2.md
+assets.box_front: Imgs/怒之铁拳2.png
+description: 《怒之铁拳2》，由 Sega 出品，1992 年发行，清版动作类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+release: 1992
+genre: Beat'em Up
+players: 2
+game: 怒之铁拳3
+file: 怒之铁拳3.md
+assets.box_front: Imgs/怒之铁拳3.png
+description: 《怒之铁拳3》，由 Sega 出品，1994 年发行，清版动作类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+release: 1994
+genre: Beat'em Up
+players: 2
+game: 战斧
+file: 战斧.md
+assets.box_front: Imgs/战斧.png
+description: 《战斧》，由 Sega 出品，1989 年发行，动作类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+release: 1989
+genre: Action
+players: 2
+game: 战斧2
+file: 战斧2.md
+assets.box_front: Imgs/战斧2.png
+description: 《战斧2》，由 Sega 出品，动作类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+genre: Action
+players: 2
+game: 战斧3
+file: 战斧3.md
+assets.box_front: Imgs/战斧3.png
+description: 《战斧3》，由 Sega 出品，1993 年发行，动作类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+release: 1993
+genre: Action
+players: 2
+game: 街头霸王II：冠军特别版
+file: 街头霸王II：冠军特别版.md
+assets.box_front: Imgs/街头霸王II：冠军特别版.png
+description: 《街头霸王II：冠军特别版》，由 Sega 出品，1993 年发行，格斗类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Sega
+release: 1993
+genre: Fighting
+players: 2
+game: 魂斗罗：铁血兵团
+file: 魂斗罗：铁血兵团.md
+assets.box_front: Imgs/魂斗罗：铁血兵团.png
+description: 《魂斗罗：铁血兵团》，由 Konami 出品，1994 年发行，Shoot'em Up类游戏，世嘉 MD 平台，支持 2-2 人游玩。
+publisher: Konami
+release: 1994
+genre: Shoot'em Up
+players: 2

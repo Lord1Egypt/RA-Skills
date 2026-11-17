@@ -1,44 +1,63 @@
-## Description: <br>
-Site Feeds helps agents fetch recent content and updates from websites and platforms such as YouTube, GitHub, Instagram, Reddit, news sites, and blogs without a browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents fetch recent content and updates from websites and platforms such as YouTube, GitHub, Instagram, Reddit, news sites, and blogs without using a browser.
 
-## Publisher: <br>
-[heqi201255](https://clawhub.ai/user/heqi201255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[heqi201255](https://clawhub.ai/user/heqi201255)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to discover available website feeds, fetch current content through airsstool, and manage persistent feed subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: RSSHub setup may deploy a local Docker service and change environment configuration. <br>
-Mitigation: Ask for explicit approval before Docker deployment or .env edits, and review the RSSHub deployment steps before running them. <br>
-Risk: airsstool initialization and subscriptions create persistent local data that can reveal feed interests or subscription names. <br>
-Mitigation: Use a custom database path for sensitive feed sets and confirm where the SQLite database will be stored before initialization. <br>
-Risk: Subscription deletion commands can remove a group or path from persistent subscriptions. <br>
-Mitigation: Confirm the exact user, subscription name, and path before running unsubscribe or remove-subscription commands. <br>
+## Use Case:
 
+Developers and external users use this skill to discover available RSSHub routes, fetch feed content, and manage persistent feed subscriptions through the airsstool CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/heqi201255/site-feeds) <br>
-- [airsstool repository](https://github.com/heqi201255/airsstool) <br>
-- [RSSHub deployment documentation](https://docs.rsshub.app/deploy/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell command examples and feed output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The guided CLI can return Markdown by default, with RSS, Atom, JSON, RSS3, brief text, limits, offsets, and persistent SQLite-backed subscriptions when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill directs agents to install mutable third-party tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned releases and install in a dedicated, nonprivileged environment before use.
+
+Risk: The skill can require running a local RSSHub Docker service.
+
+Mitigation: Ask for explicit confirmation before deployment and review Docker configuration before starting services.
+
+Risk: Some feeds may require API keys, cookies, or tokens in environment configuration.
+
+Mitigation: Handle secrets securely, avoid casually placing credentials in .env files, and use scoped or disposable credentials where possible.
+
+Risk: Persistent subscriptions can be changed or deleted through CLI commands.
+
+Mitigation: Confirm destructive subscription actions and inspect existing paths before removing feeds or groups.
+
+## Reference(s):
+
+- [airsstool](https://github.com/heqi201255/airsstool)
+- [RSSHub deployment documentation](https://docs.rsshub.app/deploy/)
+- [ClawHub skill page](https://clawhub.ai/heqi201255/skills/site-feeds)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide airsstool requests that return Markdown, RSS, Atom, JSON, RSS3, or brief text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

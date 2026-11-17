@@ -1,42 +1,54 @@
-## Description: <br>
-Automates Audtools ecommerce category collection from CSV category links, including login, task submission, tab management, and optional bulk export actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Audtools e-commerce category collection by reading CSV collection links, logging in, submitting collection jobs, and optionally selecting and exporting collected items.
 
-## Publisher: <br>
-[QirongZhang](https://clawhub.ai/user/QirongZhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qirongzhang](https://clawhub.ai/user/qirongzhang)
 
-## Use Case: <br>
-Operators and developers managing Audtools collection workflows use this skill to validate CSV category-link inputs, submit ecommerce collection tasks, and optionally trigger export of collected product records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release embeds shared Audtools login credentials. <br>
-Mitigation: Remove the embedded credentials, rotate any exposed account secrets, and require user-provided credentials through a secure local mechanism before installation. <br>
-Risk: The skill can perform bulk export actions without clear user-controlled scoping. <br>
-Mitigation: Before running exports, confirm the account in use, the exact records selected, and the destination or handling of exported files. <br>
+## Use Case:
 
+Operators or developers with authorized Audtools access use this skill to validate CSV files of e-commerce collection URLs, submit category collection tasks, and optionally export collected products in bulk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QirongZhang/ecommerce-category-collector) <br>
-- [Publisher profile](https://clawhub.ai/user/QirongZhang) <br>
-- [CSV format reference](references/csv-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration notes, and status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Consumes CSV files with a required complete-link column and can run against a single CSV file or a directory of CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill exposes hard-coded Audtools login credentials that should be treated as compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed credential and require credentials from environment variables, a secret manager, or an interactive prompt before use.
+
+Risk: The skill performs bulk export actions by default.
+
+Mitigation: Require explicit confirmation before export, prefer test mode or --no-export first, and run only with an authorized least-privileged Audtools account.
+
+## Reference(s):
+
+- [CSV Format Reference](references/csv-format.md)
+- [ClawHub Skill Page](https://clawhub.ai/qirongzhang/skills/ecommerce-category-collector)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, CSV examples, and operational logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts CSV file or directory paths and command options for item count, interval, close delay, test mode, and export suppression.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact package.json and README.md show 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

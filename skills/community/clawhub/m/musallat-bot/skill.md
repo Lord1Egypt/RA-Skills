@@ -12,5 +12,5 @@
 
 ## Teknik Bağlantı
 - **Model:** Gemini 1.5 Flash (Ücretsiz ve hızlı)
-- **API_KEY:** [AIzaSyBxfb-8s5TsOVvr55_E5lDbilpVLoSwIj8]
+- **API_KEY:** [REDACTED-SECRET]
 Source:skills/musallat_core.py

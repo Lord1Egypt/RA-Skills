@@ -1,0 +1,4 @@
+interface:
+  display_name: "OData v4 Service"
+  short_description: "Use the complete OData v4 protocol safely"
+  default_prompt: "Use $odata-service to inspect this OData v4 service and perform the requested protocol operation safely."

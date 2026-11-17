@@ -1,41 +1,56 @@
-## Description: <br>
-Diagnose and fix model routing conflicts. Ensure primary model uses correct provider endpoint without duplicate overrides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix model routing conflicts. Ensure primary model uses correct provider endpoint without duplicate overrides.
 
-## Publisher: <br>
-[Dalomeve](https://clawhub.ai/user/Dalomeve) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dalomeve](https://clawhub.ai/user/dalomeve)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to audit Bailian model routing, align provider endpoint configuration, remove conflicting agent overrides, and verify model calls after gateway restarts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The repair workflow can permanently modify OpenClaw routing configuration and delete an agent models.json override. <br>
-Mitigation: Back up both OpenClaw configuration files before applying fixes and manually confirm whether deleting the agent override would remove intentional routing. <br>
-Risk: Using the wrong provider endpoint can keep model calls routed to an incorrect or unsupported service. <br>
-Mitigation: Confirm that coding.dashscope.aliyuncs.com is the correct endpoint for the account and region before writing it to configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Model Route Guard on ClawHub](https://clawhub.ai/Dalomeve/model-route-guard) <br>
-- [Privacy Checklist](references/privacy-checklist.md) <br>
-- [DashScope Coding Endpoint](https://coding.dashscope.aliyuncs.com/v1) <br>
+## Use Case:
 
+Developers and engineers use this skill to audit OpenClaw model routing, correct Bailian provider endpoint mismatches, remove conflicting agent overrides, and verify model calls after a gateway restart.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes audit, repair, verification, and privacy checklist guidance for local OpenClaw configuration files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Repair steps can overwrite global OpenClaw routing configuration.
+
+Mitigation: Review the exact target files and back up openclaw.json before applying fixes.
+
+Risk: The workflow can delete an agent-specific models.json override and restart the gateway.
+
+Mitigation: Confirm the override is unwanted, preserve a copy when needed, and run restart steps only after configuration review.
+
+Risk: Secret scans may surface plaintext credentials if run in directories containing sensitive files.
+
+Mitigation: Run scans only where appropriate and redact credential values in any shared output.
+
+## Reference(s):
+
+- [Privacy Checklist](references/privacy-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes audit, repair, restart, verification, and privacy checklist steps for OpenClaw routing configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

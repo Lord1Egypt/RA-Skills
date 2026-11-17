@@ -1,43 +1,56 @@
-## Description: <br>
-专为房地产项目创作高端品牌故事线及全套营销内容的专业工具，支持中文、英文及中英双语对照输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates real-estate brand storylines and related marketing content in Chinese, English, or bilingual formats, with optional strategy, media topic, visual prompt, concept visual, and video script outputs.
 
-## Publisher: <br>
-[luojiangyong](https://clawhub.ai/user/luojiangyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luojiangyong](https://clawhub.ai/user/luojiangyong)
 
-## Use Case: <br>
-Real-estate brand, marketing, and content teams use this skill to draft project brand storylines, positioning narratives, media topic strategies, visual prompt briefs, and video scripts from project materials and market context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded project plans, contracts, financial materials, or personal data could be reflected in generated marketing content. <br>
-Mitigation: Avoid uploading confidential or personal data unless it is approved for use in generated materials. <br>
-Risk: The skill may use web or image search for current references, which can introduce stale, inaccurate, or unsuitable market context. <br>
-Mitigation: Review time-sensitive facts, quotes, planning claims, and visual references before publishing. <br>
-Risk: Generated real-estate marketing claims may overstate project value or compliance-sensitive positioning. <br>
-Mitigation: Have qualified marketing, legal, or compliance reviewers verify public-facing claims before release. <br>
+## Use Case:
 
+External real-estate marketers, agencies, and project teams use this skill to turn project facts, positioning, and supporting materials into brand storylines, launch messaging, campaign strategy, media topics, visual prompts, concept visuals, and video scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luojiangyong/real-estate-storyline) <br>
-- [Publisher profile](https://clawhub.ai/user/luojiangyong) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose, structured strategy sections, prompts, and scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Chinese, English, and bilingual outputs depending on user request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Uploaded real-estate planning, pricing, or client materials may contain confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading confidential material unless it is approved for processing; redact sensitive client, pricing, and planning details before use.
+
+Risk: Automatic web or image search may bring public third-party information into marketing outputs.
+
+Mitigation: Review claims, references, and visual directions for accuracy, permissions, and client suitability before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/luojiangyong/skills/real-estate-storyline)
+- [Skill instructions](artifact/SKILL.md)
+- [Real-estate story knowledge base](artifact/knowledge_base/README.md)
+- [Storyline methodology index](artifact/knowledge_base/故事线方法论/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Structured Markdown prose, strategy sections, prompt text, and script outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use uploaded project materials and web or image search evidence when composing outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

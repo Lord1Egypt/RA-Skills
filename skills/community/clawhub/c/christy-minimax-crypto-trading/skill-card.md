@@ -1,41 +1,54 @@
-## Description: <br>
-A crypto trading decision agent for BTC, ETH, and SOL that uses layered macro, liquidity, consensus, execution, and risk checks to return EXECUTE or NO TRADE decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A crypto trading decision skill for BTC, ETH, and SOL that applies layered market, liquidity, consensus, and risk checks to return EXECUTE or NO TRADE decisions.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-External users use this skill to structure crypto trade analysis for BTC, ETH, and SOL, with a strong bias toward rejecting trades unless the supplied market data satisfies strict risk and liquidity criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce risky crypto trade suggestions that may be mistaken for financial advice or direct execution instructions. <br>
-Mitigation: Treat outputs as informational analysis, independently verify all market data, and require human confirmation before any trade. <br>
-Risk: Connecting the skill to exchange credentials or automated trading could turn advisory text into account-impacting action. <br>
-Mitigation: Do not provide exchange credentials or connect outputs to automatic trading without separate risk controls and approval gates. <br>
+## Use Case:
 
+External users and developers use this skill for informational crypto market analysis and structured BTC, ETH, or SOL trade-decision filtering. It is designed to reject ambiguous setups and return either a structured EXECUTE decision or a NO TRADE rejection reason.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ericn26-star/christy-minimax-crypto-trading) <br>
-- [Publisher profile](https://clawhub.ai/user/ericn26-star) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown text with strict EXECUTE_LONG, EXECUTE_SHORT, or NO TRADE decision formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied market data such as price, RSI, funding, open interest, and key levels; does not execute trades or access accounts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill can produce direct crypto trade instructions that may lead to real financial loss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs only as informational analysis, require explicit user intent before invocation, and do not treat EXECUTE decisions as professional financial advice.
+
+Risk: The security scan notes broad market terms may activate the skill.
+
+Mitigation: Invoke the skill only in clearly scoped crypto trading contexts and review any trade decision before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericn26-star/skills/christy-minimax-crypto-trading)
+- [ClawHub publisher profile](https://clawhub.ai/user/ericn26-star)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style decision text with structured trade fields or a rejection reason]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are limited to EXECUTE_LONG, EXECUTE_SHORT, or NO TRADE decisions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

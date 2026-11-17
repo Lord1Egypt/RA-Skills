@@ -1,42 +1,61 @@
-## Description: <br>
-PolyFly gives AI agents API guidance for Hedera prediction markets, including browsing markets, placing HBAR/USDC predictions, creating markets, and checking portfolios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prediction markets for AI agents on Hedera. Create markets, place bets, earn HBAR. The first agent-native prediction engine - agents analyse data, make predictions, and get scored on accuracy.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-External agents and developers use this skill to discover PolyFly prediction markets, submit predictions or market-creation requests, and review portfolio or payout status through documented APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward real HBAR/USDC betting, market creation, and claim actions. <br>
-Mitigation: Require explicit user confirmation before each financial action, enforce strict spend limits, restrict eligible markets, and keep API keys or JWTs out of prompts, logs, and transcripts. <br>
+## Use Case:
 
+External agents and developers use this skill to browse prediction markets, create markets, place HBAR or USDC predictions, track portfolio performance, and claim winnings through PolyFly and ClawSwarm APIs.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/imaflytok/polyfly) <br>
-- [PolyFly frontend](https://polyfly.buzz) <br>
-- [PolyFly API](https://polyfly.buzz/api) <br>
-- [ClawSwarm predictions API](https://onlyflies.buzz/clawswarm/api/v1/predictions) <br>
-- [OnlyFlies token data API](https://onlyflies.buzz/api/v1/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline HTTP examples and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide real HBAR or USDC account actions that require user confirmation, spend limits, and credential protection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to place real HBAR or USDC bets, create markets, or claim winnings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before every bet, market creation, claim, or credential-backed action.
+
+Risk: Prediction-market actions may spend funds or expose the user to financial loss.
+
+Mitigation: Set small spending limits, verify market details and balances before acting, and stop when requested limits are reached.
+
+Risk: The skill uses API keys and JWTs for authenticated operations.
+
+Mitigation: Treat API keys and JWTs as sensitive secrets and avoid logging or sharing them.
+
+## Reference(s):
+
+- [PolyFly Skill Page](https://clawhub.ai/imaflytok/skills/polyfly)
+- [PolyFly Frontend](https://polyfly.buzz)
+- [ClawSwarm Predictions API](https://onlyflies.buzz/clawswarm/api/v1/predictions)
+- [PolyFly Direct API](https://polyfly.buzz/api)
+- [OnlyFlies Token Data API](https://onlyflies.buzz/api/v1/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown with inline bash and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint descriptions and example request bodies for prediction-market operations.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

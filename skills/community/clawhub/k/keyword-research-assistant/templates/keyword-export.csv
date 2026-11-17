@@ -1,0 +1,11 @@
+# Keyword Research Assistant - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+keyword,volume,difficulty,intent,business_fit,current_url
+<primary keyword>,<monthly searches>,<0-100 score>,<informational>,<1-5 score>,<url or none>
+<secondary keyword>,<monthly searches>,<0-100 score>,<commercial>,<1-5 score>,<url or none>
+<long tail keyword>,<monthly searches>,<0-100 score>,<transactional>,<1-5 score>,<none>
+<service keyword>,<monthly searches>,<0-100 score>,<commercial>,<1-5 score>,<url or none>
+<comparison keyword>,<monthly searches>,<0-100 score>,<commercial>,<1-5 score>,<none>
+<brand term>,<monthly searches>,<0-100 score>,<navigational>,<1-5 score>,<url or none>
+<problem keyword>,<monthly searches>,<0-100 score>,<informational>,<1-5 score>,<none>
+<local keyword>,<monthly searches>,<0-100 score>,<commercial>,<1-5 score>,<none>

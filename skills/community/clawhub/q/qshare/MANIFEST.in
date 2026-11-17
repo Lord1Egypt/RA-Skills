@@ -1,0 +1,4 @@
+include README.en.md
+include SKILL.md
+include AGENTS.md
+include scripts/build_platform_wheels.py

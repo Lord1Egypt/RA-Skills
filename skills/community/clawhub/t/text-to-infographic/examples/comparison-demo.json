@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "meta": { "title": "免费堆量 vs 按量付费", "subtitle": "两种 AI 生意模式对比" },
+  "layout": "comparison",
+  "blocks": [
+    { "id": "a1", "title": "卖调用", "text": "调用是商品，只能比价", "group": "免费堆量" },
+    { "id": "a2", "title": "卷到0", "text": "隔壁免费用户就跑", "group": "免费堆量" },
+    { "id": "b1", "title": "卖结果", "text": "结果按省时间定价", "group": "按量付费" },
+    { "id": "b2", "title": "护城河", "text": "结果可沉淀信任可复利", "group": "按量付费" }
+  ]
+}

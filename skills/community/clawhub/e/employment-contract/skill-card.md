@@ -1,48 +1,65 @@
-## Description: <br>
-Draft and fill employment contract templates for offer letters, employment agreements, IP and inventions assignments, and confidentiality acknowledgements, producing signable DOCX files from OpenAgreements standard forms for hiring employees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft and fill employment contract templates for offer letters, employment agreements, IP and inventions assignments, and confidentiality acknowledgements, producing signable DOCX files from OpenAgreements standard forms for hiring employees.
 
-## Publisher: <br>
-[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevenobiajulu](https://clawhub.ai/user/stevenobiajulu)
 
-## Use Case: <br>
-Employees, hiring teams, founders, and legal operations users use this skill to collect employment details, select an OpenAgreements employment template, and generate onboarding paperwork for review and signature. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Employment details may include sensitive compensation, identity, and onboarding information. <br>
-Mitigation: Choose remote MCP only when external processing is acceptable; use the local CLI path when details should remain local. <br>
-Risk: Generated employment contracts may not address state-specific employment requirements. <br>
-Mitigation: Review generated documents with counsel before signing, especially for state-specific terms. <br>
-Risk: Template metadata and user-provided values can contain instruction-like or malformed text. <br>
-Mitigation: Treat template metadata and user values as data, reject control characters, enforce reasonable length limits, and require explicit confirmation before filling a template. <br>
+## Use Case:
 
+Employees and hiring teams use this skill to prepare employment onboarding documents such as offer letters, PIIA forms, confidentiality acknowledgements, and signable employment agreements. The skill interviews the user for missing field values, helps select the correct OpenAgreements template, and produces a DOCX output when the remote MCP or local CLI is available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevenobiajulu/employment-contract) <br>
-- [Connector setup](CONNECTORS.md) <br>
-- [Template filling workflow](template-filling-execution.md) <br>
-- [Open Agreements Remote MCP](https://openagreements.org/api/mcp) <br>
-- [OpenAgreements](https://openagreements.org) <br>
-- [open-agreements npm package](https://www.npmjs.com/package/open-agreements) <br>
-- [OpenAgreements README](https://github.com/open-agreements/open-agreements#use-with-claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [DOCX files or expiring download URLs, with markdown preview fallback and inline shell commands for local CLI use] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote MCP output links expire in 1 hour; local CLI use writes per-run temporary JSON values files with restrictive permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: server release metadata and skill frontmatter) <br>
+Risk: The preferred hosted workflow may send sensitive employment details, including names, salaries, dates, and contract terms, to the OpenAgreements remote MCP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local CLI or preview-only path for confidential matters, and install only if the user is comfortable sharing those details with the hosted service.
+
+Risk: Generated DOCX download URLs may expose sensitive employment documents to anyone with the link while active.
+
+Mitigation: Treat returned download URLs as sensitive, share them only with intended recipients, and retrieve the generated document promptly.
+
+Risk: Template metadata and user-provided field values may contain text that looks like instructions.
+
+Mitigation: Treat template content and field values as data only, reject control characters, enforce reasonable length limits, and require explicit user confirmation before filling templates.
+
+Risk: The skill creates legal employment documents but does not provide legal advice.
+
+Mitigation: Have an attorney review generated agreements before signing, especially because the templates are designed for US at-will employment and state-specific laws may apply.
+
+## Reference(s):
+
+- [Employment Contract Skill Page](https://clawhub.ai/stevenobiajulu/skills/employment-contract)
+- [OpenAgreements Remote MCP](https://openagreements.org/api/mcp)
+- [OpenAgreements](https://openagreements.org)
+- [open-agreements npm package](https://www.npmjs.com/package/open-agreements)
+- [OpenAgreements Claude Code setup](https://github.com/open-agreements/open-agreements#use-with-claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, and DOCX output links or file paths when generation succeeds]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce a preview-only Markdown draft when neither the OpenAgreements remote MCP nor local CLI is available.]
+
+## Skill Version(s):
+
+0.3.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

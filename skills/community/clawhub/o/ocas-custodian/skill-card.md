@@ -1,45 +1,62 @@
-## Description: <br>
-Custodian monitors OpenClaw gateway logs, cron jobs, skill journals, and OCAS data directories, applies safe non-destructive fixes during quiet hours, initializes skills, registers missing background tasks, and escalates unresolved issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Custodian monitors OpenClaw gateway logs, cron jobs, skill journals, and OCAS data directories, then classifies failures, applies bounded non-destructive repairs, initializes missing skill state, and escalates unresolved issues.
 
-## Publisher: <br>
-[indigokarasu](https://clawhub.ai/user/indigokarasu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indigokarasu](https://clawhub.ai/user/indigokarasu)
 
-## Use Case: <br>
-OpenClaw users and operators use Custodian to check system health, investigate log and cron failures, initialize skills, register missing background tasks, and run overnight maintenance. It is intended for operational maintenance workflows where unresolved issues should be surfaced with diagnostics or repair plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent system changes, including creating files, registering scheduled jobs, and updating itself from GitHub. <br>
-Mitigation: Review the source before installation, disable automatic updates or cron registration until trusted, and confirm rollback steps for any enabled maintenance action. <br>
-Risk: Autonomous repair actions can change operational state even when they are intended to be non-destructive. <br>
-Mitigation: Use the documented safety envelope, review issue and fix records after scans, and require manual approval for Tier 2 through Tier 4 repairs. <br>
-Risk: Server-resolved import provenance is unavailable for this release. <br>
-Mitigation: Verify the publisher handle, package hashes, and install source before deploying the skill in a sensitive environment. <br>
+## Use Case:
 
+OpenClaw users and maintainers use Custodian to run automated health checks, review log and cron failures, initialize missing skill state, and handle bounded repair or escalation during quiet hours.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/indigokarasu/ocas-custodian) <br>
-- [Publisher profile](https://clawhub.ai/user/indigokarasu) <br>
-- [Known issue registry](references/known_issues.json) <br>
-- [Custodian repair plan](references/plans/custodian-repair.plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command names, configuration details, issue summaries, status output, and repair-plan descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce maintenance actions and follow-up verification guidance for OpenClaw health, cron, journal, and data-directory issues.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill requests persistent background maintenance authority and can modify scheduler state, initialize skill storage, and apply repair commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in for background tasks, review cron and heartbeat registrations, and scope write access to intended OpenClaw paths.
+
+Risk: Automatic self-update behavior can change the skill after installation.
+
+Mitigation: Disable self-updates or require approval for each update, and review the release before enabling the updated skill.
+
+Risk: Cross-skill reads and web-search queries may expose operational context.
+
+Mitigation: Restrict cross-skill access to required files and sanitize or approve external search queries before execution.
+
+Risk: Repair commands that include placeholders or paths could affect unintended files if parameters are unchecked.
+
+Mitigation: Validate placeholders and resolved paths before execution, and permit only non-destructive, reversible actions from the known-issues registry.
+
+## Reference(s):
+
+- [Known Issues Registry](references/known_issues.json)
+- [Custodian Escalated Issue Repair Plan](references/plans/custodian-repair.plan.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-style status or record descriptions with inline shell commands and file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scan reports, SkillStatus JSON, issues and fixes JSONL records, repair plans, and proposed shell or configuration changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json, README changelog, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

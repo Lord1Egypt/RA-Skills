@@ -1,42 +1,58 @@
-## Description: <br>
-Search for people using natural language queries with the Nyne Search API, including custom filters, AI relevance scoring, contact enrichment, pagination, and light, medium, or premium search tiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for professional profiles through the Nyne Search API using natural-language queries, optional filters, contact enrichment, pagination, and AI relevance features.
 
-## Publisher: <br>
-[MichaelFanous2](https://clawhub.ai/user/MichaelFanous2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[michaelfanous2](https://clawhub.ai/user/michaelfanous2)
 
-## Use Case: <br>
-External users and agents use this skill to submit and poll Nyne people-search requests, filter professional profiles, paginate results, and present returned profile and contact data for legitimate, authorized use cases. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can retrieve and display enriched personal contact and demographic data. <br>
-Mitigation: Use it only for legitimate, authorized people-search workflows, show and retain only the data needed, and delete local result files containing enriched profiles. <br>
-Risk: API credentials and callback URLs can expose sensitive access or result data if mishandled. <br>
-Mitigation: Keep Nyne API secrets out of terminal output and logs, and use callback URLs only when they are trusted and appropriate for receiving search results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Nyne API](https://api.nyne.ai) <br>
-- [Nyne Person Search endpoint](https://api.nyne.ai/person/search) <br>
-- [ClawHub listing](https://clawhub.ai/MichaelFanous2/nyne-search) <br>
-- [Publisher profile](https://clawhub.ai/user/MichaelFanous2) <br>
+## Use Case:
 
+External users and developers use this skill to search for professionals by role, company, location, industry, or other criteria, then review returned profile, contact, work-history, education, scoring, insight, and pagination data.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce API request commands, polling instructions, jq filters, and summaries of returned people-search results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose personal profile, email, and phone data.
+
+Mitigation: Use it only for authorized people-search workflows, request or display contact details only when clearly needed, and prefer redacted or minimal summaries.
+
+Risk: Returned demographic fields such as gender and estimated age could be misused in sensitive decisions.
+
+Mitigation: Do not rely on gender or estimated age for sensitive, regulated, or eligibility-related decisions.
+
+Risk: Examples write enriched search results to fixed temporary paths and show partial credential values.
+
+Mitigation: Use private mktemp files, delete result files after use, and verify credentials without printing any portion of a secret.
+
+## Reference(s):
+
+- [Nyne API](https://api.nyne.ai)
+- [Nyne Person Search API](https://api.nyne.ai/person/search)
+- [ClawHub Skill Page](https://clawhub.ai/michaelfanous2/skills/nyne-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and jq examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide API calls that return JSON profile, contact, work-history, education, scoring, insight, and pagination data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

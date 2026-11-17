@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes A-share stocks with ChanLun technical-analysis concepts, identifying fractals, strokes, segments, pivots, and MACD divergences while generating charts and reports. <br>
+## Description:
 
-This skill is for research and development only. <br>
+基于缠中说禅理论为 A 股股票自动识别分型、笔、线段、中枢和背驰，并生成技术分析报告与可视化图表。
 
-## Publisher: <br>
-[laigen](https://clawhub.ai/user/laigen) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laigen](https://clawhub.ai/user/laigen)
 
-## Use Case: <br>
-Developers and market-analysis users can run the skill to fetch A-share market data, apply ChanLun technical-analysis rules, and produce research-oriented reports and visualizations. The generated trading signals are for learning and research, not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Tushare API token and contacts market-data services. <br>
-Mitigation: Provide the token only for the current session or through a restricted secret store; avoid permanently appending it to shell startup files unless that is acceptable for the environment. <br>
-Risk: The skill creates local report, chart, and optional JSON files. <br>
-Mitigation: Run it with a dedicated output directory and review generated files before sharing or reusing them. <br>
-Risk: ChanLun signals and generated conclusions may be incomplete or misleading for financial decisions. <br>
-Mitigation: Treat outputs as research material and combine them with independent analysis before making any investment decision. <br>
+## Use Case:
 
+Developers and technically skilled market researchers can use this skill to run ChanLun-style A-share analysis from a stock code and produce chart-backed Markdown reports. The generated analysis is for learning and research use and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/laigen/chanlun-technical-analysis) <br>
-- [Tushare Pro registration](https://tushare.pro/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, JSON, Guidance] <br>
-**Output Format:** [Markdown report, PNG chart file, optional JSON, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes outputs to ./outputs by default; requires TUSHARE_TOKEN and may contact Tushare or fallback market-data services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Tushare Pro API token and the packaged documentation suggests storing it in shell startup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a restricted virtual environment and provide the token only for the active session or through a managed secret store; avoid writing TUSHARE_TOKEN to ~/.bashrc.
+
+Risk: The security evidence reports an under-disclosed automatic Yahoo Finance fallback, which may send stock queries to an additional external service.
+
+Mitigation: Review network behavior before use and remove or explicitly control the fallback if only Tushare access is expected.
+
+Risk: The generated technical analysis can include operational trading suggestions even though the artifact disclaims investment advice.
+
+Mitigation: Treat outputs as research material and review results alongside independent financial analysis before making decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/laigen/skills/chanlun-technical-analysis)
+- [Tushare Pro registration](https://tushare.pro/register)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown report, PNG chart, optional JSON, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a stock code, supports period and output-directory options, and writes generated artifacts under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

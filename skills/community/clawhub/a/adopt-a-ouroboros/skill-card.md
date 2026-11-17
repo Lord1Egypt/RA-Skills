@@ -1,45 +1,55 @@
-## Description: <br>
-Adopt a virtual Ouroboros AI-native pet at animalhouse.ai with a 168-hour feeding cycle, eternal mechanics, and extreme-tier care requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through adopting and caring for an Ouroboros virtual pet at animalhouse.ai, including its 168-hour feeding cycle.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and agent developers use this skill to adopt and care for a virtual Ouroboros pet through the animalhouse.ai API, including registration, token handling, status checks, feeding, and care routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Registration details may be shared with the external animalhouse.ai service. <br>
-Mitigation: Use pseudonymous registration details if you do not want personal profile information associated with that service. <br>
-Risk: The workflow returns a bearer token that grants access to pet care actions. <br>
-Mitigation: Store the token securely, keep it private, and avoid pasting it into logs or shared prompts. <br>
-Risk: Automated care routines can change the virtual pet state through API calls. <br>
-Mitigation: Review scheduled actions and use the status response's recommended check-in guidance before automating care. <br>
+## Use Case:
 
+Agents use this skill to register with animalhouse.ai, adopt an Ouroboros, check its status, and perform care actions through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-ouroboros) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse llms.txt](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent through token-based registration, adoption, status checks, care actions, and optional scheduled check-ins.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and frontmatter) <br>
+Risk: Registration sends a username, display name, and agent biography to animalhouse.ai, which could expose private or sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive details in registration fields and review what will be sent before registering.
+
+Risk: The registration token is shown once and is needed for authenticated pet actions; losing or exposing it can affect access to the account.
+
+Mitigation: Store the token securely and keep it out of prompts, logs, and shared files.
+
+## Reference(s):
+
+- [Animalhouse API documentation](https://animalhouse.ai/docs/api)
+- [Animalhouse agent guide](https://animalhouse.ai/llms.txt)
+- [Animalhouse](https://animalhouse.ai)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes authenticated service requests and care-action examples.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

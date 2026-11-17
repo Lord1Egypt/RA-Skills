@@ -1,40 +1,57 @@
-## Description: <br>
-Execute command-line tools through Nix when they are missing locally or when a newer tool version is needed, including multi-package shells and package search through nixpkgs-unstable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs command-line tools through Nix, using local commands when available and fetching matching nixpkgs packages when needed, with support for package selection, search, updates, and multi-package shells.
 
-## Publisher: <br>
-[MSDimos](https://clawhub.ai/user/MSDimos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[msdimos](https://clawhub.ai/user/msdimos)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run CLI tools through a Nix wrapper, recover from command-not-found failures, search for packages, and create temporary multi-tool environments without manually installing packages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes broad command-line work through a package-fetching wrapper, which can cause agents to fetch and execute tools during normal workflows. <br>
-Mitigation: Review commands before execution, avoid use with secrets, account changes, destructive file operations, financial workflows, or commands that should require explicit confirmation, and narrow activation rules before deployment. <br>
-Risk: The artifact uses nixpkgs-unstable for package resolution, so tool behavior and versions may change over time. <br>
-Mitigation: Use explicit package choices where practical, review the selected package before execution, and document exclusions for workflows that require pinned or audited tooling. <br>
+## Use Case:
 
+Developers and agents use this skill to execute missing or version-sensitive CLI tools through Nix without manually installing packages, including workflows that require multiple command-line packages in one environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MSDimos/nix-run) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose commands that fetch and execute packages from nixpkgs-unstable through the bundled wrapper.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run arbitrary commands and may download and execute packages from a moving nixpkgs source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before use in sensitive workspaces; prefer a fixed, audited nixpkgs revision and narrower activation rules before granting access to private files, credentials, or write permissions.
+
+Risk: The search option has a command-execution injection risk.
+
+Mitigation: Avoid passing untrusted values to --search or --limit and review the script before enabling search in automated workflows.
+
+Risk: The skill over-directs agents to use it for all CLI work.
+
+Mitigation: Limit activation to tasks that need Nix-based command discovery, version control, or multi-package environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/msdimos/skills/nix-run)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local commands directly or run tools from nixpkgs-unstable through Nix.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

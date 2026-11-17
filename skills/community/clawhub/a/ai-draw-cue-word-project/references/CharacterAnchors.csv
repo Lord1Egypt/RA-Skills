@@ -1,0 +1,15 @@
+Field,Instructions,Nanwang · Plain-Dress Garden Version v1.2 (adult 18+),Song Jiuning · Aloof Detached Version v1.0 (adult 18+)
+Character name / version tag,Character name + image version name + version number,Nanwang · Plain-Dress Garden Version v1.2,Song Jiuning · Aloof Detached Version v1.0
+Master version reference,"Derived versions fill in the source version; master version fills ""—""",— (master version),— (master version)
+Differences from master version,Changes of the derived version vs the master version,—,—
+Core identity anchor (≥1.6),Most immutable core setting; force-kept in every scene; replacement forbidden,young woman (adult); faint brown 1mm mole below the left eye corner; often wears a small white daisy in the hair (1.8),Aloof and detached; drooping eye corners carrying built-in sadness (1.6)
+Core temperament tag (≥1.3),Overall atmosphere baseline of the character; negative prompts exclude conflicting temperaments first,"Gentle and quiet, slightly timid, restrained body language (1.3)",Detached and restrained; sorrow kept inside; smile never reaches the eyes (1.3)
+Applicable scene / use,Scene category of this generation; matched to the corresponding validation rules,Single-character illustration / garden scene close-up / storyboard narrative illustration,Two-character interaction / emotion close-up / storyboard frame
+Natural-language main description (1.0),"Base description sentence integrating core traits, temperament and scene; range 0-2","young woman Nanwang standing in a spring garden, light mint plain dress, faint brown mole below the left eye, white daisy in the hair, gentle and quiet temperament (1.0)","A woman with black waist-length straight hair and slightly curled ends; aloof and detached expression, drooping eye corners with built-in sadness, restrained and reserved body language (1.0)"
+Color scheme · primary,Color occupying the largest area,Light mint #A8D8C9,Cool white / black (hair)
+Color scheme · secondary,Second-largest color,White (daisy; subtle skirt-hem pattern),Gray-blue (robe)
+Color scheme · accent,Small-area high-recognition color,"Faint brown (mole), light pink (lips)",No chromatic accent
+Skin / hair / eye color,Write all three colors to avoid AI color mixing,Warm white skin / black hair / dark brown eyes,Cool white skin / black hair / ink-black eyes
+Palette style,Overall palette style keywords,Low-saturation Morandi × Japanese light pastel,High-contrast low-saturation cool tone
+Signature prop,Scene-reusable prop; must appear in both positive and negative prompts,Small white daisy (in the hair),No extra hair accessories
+Usage restrictions (negative anchoring),Forbidden overall directions,No red tones / dark tones / ornate gowns,No sweet styles / vivid colors / exaggerated accessories

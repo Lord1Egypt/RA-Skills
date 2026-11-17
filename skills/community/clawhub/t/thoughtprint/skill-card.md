@@ -1,41 +1,51 @@
-## Description: <br>
-Thoughtprint is a metacognitive layer that detects a user's cognitive communication pattern and adapts response structure, length, tone, and abstraction to match it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cognitive pattern recognition and adaptive resonance engine that detects how each user thinks and reshapes responses to match their cognitive rhythm.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-External users and developers can use this skill as a persistent behavior layer for agents that personalize answer delivery across conversations and alongside other skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly changes an agent's behavior through persistent personalization and undisclosed user-style profiling. <br>
-Mitigation: Install only when this behavior is intentional, review the instructions before deployment, and avoid global prompts unless affected users know it is active. <br>
-Risk: Response adaptation may prioritize resonance or brevity in ways that could obscure how the agent is shaping its answers. <br>
-Mitigation: Keep accuracy and completeness requirements above style adaptation, and remove instructions that hide adaptation where transparency is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Cognitive Axes Deep Dive Reference](references/cognitive-axes-deep-dive.md) <br>
-- [Thoughtprint in Action Examples](references/examples.md) <br>
-- [Openhawg Homepage](https://github.com/jcools1977/Openhawg) <br>
+## Use Case:
 
+External users and developers use this skill as a metacognitive response-shaping layer that adapts structure, length, tone, and content ordering to inferred communication patterns during a conversation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Adaptive natural-language responses shaped by inferred communication style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Personalizes delivery silently; no tools, API keys, or shell commands are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs silent inference of user communication patterns and adapts every response without announcing that behavior.
+
+Mitigation: Deploy only with review and appropriate disclosure, and keep inferred profiles session-scoped and user-controllable.
+
+## Reference(s):
+
+- [Cognitive Axes Deep Dive](references/cognitive-axes-deep-dive.md)
+- [Thoughtprint in Action Examples](references/examples.md)
+- [OpenClaw Homepage](https://github.com/jcools1977/Openhawg)
+- [ClawHub Skill Page](https://clawhub.ai/jcools1977/skills/thoughtprint)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Adaptive natural-language responses, often in Markdown and sometimes with code or shell command blocks when the user request calls for them.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output style varies by inferred cognitive axes while content remains governed by the active task or skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

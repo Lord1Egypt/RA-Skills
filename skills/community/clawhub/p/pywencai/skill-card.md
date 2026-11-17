@@ -1,43 +1,59 @@
-## Description: <br>
-同花顺问财自然语言数据查询工具 - 使用中文自然语言查询A股、指数、基金、港美股、可转债等市场数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PyWenCai helps agents query iWenCai market data with Chinese natural-language prompts for A-shares, indices, funds, Hong Kong and U.S. stocks, convertible bonds, and related markets.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers, analysts, and AI agents use this skill to query Wencai market data with Chinese natural-language prompts and return stock, index, fund, Hong Kong or U.S. equity, futures, insurance, wealth-product, and convertible-bond results for analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Wencai cookie, which should be treated like a password. <br>
-Mitigation: Keep the cookie private, avoid hardcoding it in shared notebooks or repositories, avoid printing it in logs, and rotate the Wencai session if it may have been exposed. <br>
-Risk: Unpinned or changing Python dependencies can affect install safety and reproducibility. <br>
-Mitigation: Install the skill in an isolated Python environment and pin reviewed dependency versions where possible. <br>
+## Use Case:
 
+External users and developers use this skill to configure PyWenCai and ask Chinese natural-language questions against iWenCai market datasets. It is intended for data retrieval and screening workflows across stocks, indices, funds, convertible bonds, and related financial instruments.
 
-## Reference(s): <br>
-- [pywencai on ClawHub](https://clawhub.ai/coderwpf/pywencai) <br>
-- [PyWenCai GitHub](https://github.com/zsrl/pywencai) <br>
-- [Wencai](https://www.iwencai.com/) <br>
-- [BossQuant Bilibili](https://space.bilibili.com/48693330) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated usage guidance may describe pandas DataFrame or dictionary results returned by the pywencai package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill requires an authenticated iWenCai session cookie, which can expose account access if copied into prompts, files, logs, screenshots, or shared folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat WENCAI_COOKIE like a password, keep it out of shared material, store it in a local environment variable or secret store, and rotate it if exposed.
+
+Risk: The install guidance relies on mutable third-party package resolution, including upgrade-style installation.
+
+Mitigation: Use pinned, reviewed dependency versions or a lockfile and run the skill in a least-privilege environment with only the network and files it needs.
+
+Risk: Queries depend on the external iWenCai service and may return empty data or fail when cookies expire, rate limits apply, or the service changes.
+
+Mitigation: Validate returned data before use, handle None or exceptions, reduce request frequency, and refresh the cookie only through the official iWenCai login flow.
+
+## Reference(s):
+
+- [ClawHub pywencai skill page](https://clawhub.ai/coderwpf/skills/pywencai)
+- [iWenCai](https://www.iwencai.com/)
+- [PyWenCai GitHub project](https://github.com/zsrl/pywencai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include dependency installation, cookie configuration, query examples, result validation, and error handling advice.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

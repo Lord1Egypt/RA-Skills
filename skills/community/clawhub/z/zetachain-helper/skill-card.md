@@ -1,42 +1,56 @@
-## Description: <br>
-A ZetaChain helper that lets agents query omnichain balances, track CCTX status, and provide zEVM deployment and documentation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ZetaChain omnichain helper for asset balance lookup, CCTX cross-chain tracking, zEVM deployment guidance, and technical documentation indexing.
 
-## Publisher: <br>
-[mango-ice-cat](https://clawhub.ai/user/mango-ice-cat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mango-ice-cat](https://clawhub.ai/user/mango-ice-cat)
 
-## Use Case: <br>
-Developers and external users working with ZetaChain use this skill to inspect wallet balances across ZetaChain, Ethereum, BSC, and Bitcoin, track cross-chain transaction status, and obtain practical zEVM development guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses and transaction hashes may be sent to public third-party RPC or blockchain API providers during lookup operations. <br>
-Mitigation: Use only wallet addresses and transaction hashes that are acceptable to query through those providers. <br>
-Risk: The skill may surface TSS or deposit addresses and suggested financial actions based on public chain data. <br>
-Mitigation: Independently verify any TSS or deposit address and any financial action before moving funds. <br>
-Risk: The helper depends on locally installed Python packages for execution. <br>
-Mitigation: Install Python dependencies only from trusted package sources and review the script before running it. <br>
+## Use Case:
 
+Developers and ZetaChain users use this skill to query omnichain balances, track CCTX transaction status, and obtain practical guidance for ZetaChain workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mango-ice-cat/zetachain-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON CLI output with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May query public third-party RPC and blockchain API providers for balances, gas prices, and CCTX status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Wallet addresses, optional BTC addresses, and CCTX hashes may be sent to public blockchain RPC, LCD, and API providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only addresses and transaction hashes appropriate for public lookup, and disclose the providers before running network-backed commands.
+
+Risk: Advertised guidance and implemented lookup behavior may not fully match.
+
+Mitigation: Treat generated workflow guidance as advisory and verify implementation-sensitive steps against current ZetaChain documentation before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mango-ice-cat/skills/zetachain-helper)
+- [thirdweb ZetaChain RPC endpoint](https://zetachain.rpc.thirdweb.com)
+- [BlockPI ZetaChain LCD endpoint](https://zetachain.blockpi.network/lcd/v1/public)
+- [Blockstream Bitcoin API endpoint](https://blockstream.info/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code examples, and JSON lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May query public blockchain RPC, LCD, and API providers for wallet addresses, optional BTC addresses, and CCTX hashes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

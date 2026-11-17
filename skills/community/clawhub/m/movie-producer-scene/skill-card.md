@@ -1,38 +1,49 @@
-## Description: <br>
-Create high-end cinematic scene prompts and production-ready scene briefs in a Hollywood producer voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates high-end cinematic scene prompts and production-ready scene briefs in a Hollywood producer voice for movie scene generation, shot design, tone direction, camera and lens planning, lighting, sound, and output specs.
 
-## Publisher: <br>
-[cryptobro-man](https://clawhub.ai/user/cryptobro-man) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cryptobro-man](https://clawhub.ai/user/cryptobro-man)
 
-## Use Case: <br>
-External creators, marketers, and production teams use this skill to turn scene ideas into cinematic prompts, shot plans, director notes, and output specs for film-style creative workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can influence the agent's writing style and output structure for movie scene prompts. <br>
-Mitigation: Review generated scene briefs before reuse and adjust tone, assumptions, and cinematic references to match the intended project. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Movie Producer Scene on ClawHub](https://clawhub.ai/cryptobro-man/movie-producer-scene) <br>
-- [Examples](references/examples.md) <br>
+## Use Case:
 
+External users and creative teams use this skill to turn scene ideas into structured cinematic prompt packages, including a logline, prompt paragraph, shot plan, director notes, and output spec.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured scene sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce prompt-only, production, or storyboard variants depending on the user's requested mode.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated creative references may raise copyright, brand, or style-similarity concerns in commercial use.
+
+Mitigation: Review generated scene prompts and replace or generalize sensitive references before commercial publication or production.
+
+## Reference(s):
+
+- [Examples](references/examples.md)
+- [ClawHub skill page](https://clawhub.ai/cryptobro-man/skills/movie-producer-scene)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumed defaults when user inputs omit genre, tone, camera, lighting, environment, sound, or output spec.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

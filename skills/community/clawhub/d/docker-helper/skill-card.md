@@ -1,44 +1,59 @@
-## Description: <br>
-Docker Helper provides Dockerfile templates, Docker Compose examples, command references, debugging guidance, image optimization tips, and registry configuration support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docker Helper helps developers generate Dockerfiles and Docker Compose files, look up Docker commands, troubleshoot containers, optimize images, and configure registries.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill to create starter Dockerfiles and docker-compose configurations, consult Docker command references, debug containers, optimize images, and configure container registries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Dockerfiles and compose files may include development defaults such as default passwords, exposed ports, or disabled service security. <br>
-Mitigation: Replace default credentials, enable service security, restrict exposed ports, and review each generated configuration before running it. <br>
-Risk: Cleanup and Docker management commands can remove local containers, images, volumes, or other development resources. <br>
-Mitigation: Review cleanup commands in context and run them only against intended local resources. <br>
-Risk: The generic helper script records command activity in a local history log, which may capture sensitive arguments. <br>
-Mitigation: Avoid passing secrets or sensitive values as command arguments. <br>
+## Use Case:
 
+Developers and engineers use Docker Helper to create container configuration templates, review Docker command guidance, troubleshoot common container issues, and improve image build practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/docker-helper) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Docker Helper tips](artifact/tips.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with Dockerfile, docker-compose, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are development starting points and command references; generated container configurations require review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence and artifact frontmatter) <br>
+Risk: Generated Docker Compose output can include unsafe defaults such as published service ports, default database passwords, or disabled Elasticsearch security.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Compose files before use, replace all default passwords, restrict exposed services to trusted interfaces, and keep Elasticsearch security enabled.
+
+Risk: Cleanup guidance and Docker prune commands can remove local containers, images, volumes, or other build artifacts.
+
+Mitigation: Treat cleanup commands as destructive and confirm the affected resources before running them in shared or production environments.
+
+Risk: The bundled generic workflow script logs command usage under a local docker-helper data directory outside the advertised Docker helper scope.
+
+Mitigation: Review local history logging behavior and the configured data directory before running that script, especially on shared systems.
+
+## Reference(s):
+
+- [Docker Helper on ClawHub](https://clawhub.ai/ckchzh/skills/docker-helper)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and shell-oriented text with Dockerfile, Docker Compose, command, troubleshooting, optimization, and registry snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are templates and guidance that should be reviewed before use.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

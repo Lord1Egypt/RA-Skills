@@ -1,47 +1,62 @@
-## Description: <br>
-Migrates RDMA Verbs (libibverbs) code to the URMA API with API mapping, data structure conversion, and URMA-specific optimization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrates RDMA Verbs (libibverbs) applications to the URMA API, including API mapping, data structure conversion, build updates, and verification guidance.
 
-## Publisher: <br>
-[derricjs](https://clawhub.ai/user/derricjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[derricjs](https://clawhub.ai/user/derricjs)
 
-## Use Case: <br>
-Developers and engineers use this skill to migrate RDMA, InfiniBand, RoCE, or libibverbs projects to URMA while preserving original files and producing converted code under urma_output/. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation can apply the migration workflow to RDMA or verbs-related requests where code conversion was not intended. <br>
-Mitigation: Install and invoke the skill only for intentional verbs/libibverbs-to-URMA migration work. <br>
-Risk: Generated networking and remote-memory code can introduce unsafe peer exchange, fixed or plaintext tokens, or unvalidated peer identity. <br>
-Mitigation: Require authenticated encrypted peer exchange, avoid fixed or plaintext tokens, validate peer identity, and review generated code before production use. <br>
-Risk: Automated migration can leave semantic issues that compilation does not catch, including resource leaks, incomplete cleanup, or verbs residue. <br>
-Mitigation: Review all output under urma_output/, verify lifecycle and cleanup paths, scan for verbs residue, and build and test before running the converted project. <br>
+## Use Case:
 
+Developers and engineers use this skill to convert RDMA, InfiniBand, RoCE, or libibverbs codebases to URMA while preserving original files and producing migrated output, build changes, and verification notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/derricjs/skills/verbs-to-urma-converter) <br>
-- [URMA/UMDK source repository](https://atomgit.com/openeuler/umdk) <br>
-- [URMA API Mapping Reference](references/mapping.md) <br>
-- [URMA Code Patterns and Best Practices](references/patterns.md) <br>
-- [Common Pitfalls and Solutions](references/pitfalls.md) <br>
-- [URMA Complete Working Example](references/urma_sample.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code edits, shell commands, verification summaries, and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces converted files under urma_output/ while preserving the original source tree.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated URMA examples or migrations may use unsafe remote-memory token handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated token handling before installation or deployment, replace fixed tokens, and ensure exported memory and access flags are limited to the intended use.
+
+Risk: Generated client/server examples may expose unauthenticated network control channels.
+
+Mitigation: Add authenticated encrypted control channels and bind listeners only to trusted interfaces before using generated code in production.
+
+Risk: Incorrect URMA migration guidance can create runtime security, resource lifecycle, or memory-access issues.
+
+Mitigation: Have developers who understand the URMA security model audit generated code and follow the skill's phase-based verification checklist before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/derricjs/skills/verbs-to-urma-converter)
+- [URMA API Mapping Reference](artifact/references/mapping.md)
+- [URMA Code Patterns and Best Practices](artifact/references/patterns.md)
+- [Common Pitfalls and Solutions](artifact/references/pitfalls.md)
+- [URMA Complete Working Example](artifact/references/urma_sample.md)
+- [openEuler UMDK source repository](https://atomgit.com/openeuler/umdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code changes, shell commands, build configuration updates, and verification checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces migrated files under an urma_output/ directory and preserves original source files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

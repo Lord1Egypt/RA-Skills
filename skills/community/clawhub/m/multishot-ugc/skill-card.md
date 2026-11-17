@@ -1,42 +1,57 @@
-## Description: <br>
-Generate 10 perspective/angle variations from a single image for multi-shot UGC videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate 10 perspective and angle variations from a single image for multi-shot UGC videos.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Creators and developers preparing UGC-style promotional videos use this skill to turn one hero image into multiple angle variations for scene selection and downstream lip-sync or video workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uploads input images to ComfyDeploy for cloud processing, which can expose sensitive personal or proprietary content to a third-party service. <br>
-Mitigation: Use only images approved for ComfyDeploy processing and avoid sensitive personal or proprietary content unless that processing is acceptable. <br>
-Risk: Security evidence says downloaded filenames are not safely contained. <br>
-Mitigation: Run the skill in a low-impact workspace and review or sanitize downloaded filenames before trusting generated files. <br>
-Risk: The skill requires a ComfyDeploy API key and makes authenticated cloud API calls. <br>
-Mitigation: Use a limited ComfyDeploy API key and avoid sharing credentials in prompts, logs, or committed files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PauldeLavallaz/multishot-ugc) <br>
-- [ComfyDeploy API endpoint](https://api.comfydeploy.com/api/run/deployment/queue) <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to turn a hero image of a person with a product into 10 alternate camera-angle images for UGC-style video workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [PNG image files with terminal status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 10 perspective variations from one input image; default output is 2K, 9:16 PNG files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The downloader trusts remote filenames and could write files outside the selected output directory.
+
+Mitigation: Sanitize remote filenames, resolve output paths, and enforce that every write remains inside the requested output directory.
+
+Risk: Generated images and prompts are sent to ComfyDeploy using a local API key.
+
+Mitigation: Use this skill only with images and prompts approved for that service, and protect the COMFY_DEPLOY_API_KEY environment variable.
+
+Risk: Existing files in the output directory may be overwritten if the remote service returns duplicate filenames.
+
+Mitigation: Avoid overwriting by default, generate unique local filenames, or require explicit confirmation before replacing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pauldelavallaz/skills/multishot-ugc)
+- [ComfyDeploy API endpoint](https://api.comfydeploy.com/api/run/deployment/queue)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration, guidance]
+
+**Output Format:** [PNG image files with command-line status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces up to 10 image variations, typically named 1_00001_.png through 10_00001_.png.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

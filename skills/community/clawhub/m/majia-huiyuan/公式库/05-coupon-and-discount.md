@@ -1,0 +1,181 @@
+# 05 · 券与折扣
+
+> 营销活动归因专区。**核心模式**：用 `券号 / 活动编号 / 券类型编号` 三个字段做归因，配合"首张券 / 注册第一张券 / 30 天优惠订单比例"做精细化分析。
+
+## 核销率 ⚪
+
+```guandata
+COUNT([核券日期]) * 1.0 / NULLIF(COUNT([发券日期]), 0)
+```
+
+**前提**：已经筛定同一发券批次与观察截止日，每个券实例只有一行，且核券日期只保留截止日前的有效核销。仅在这些条件下使用上面的简式；事件流水一券多行时先汇总去重，不能直接 COUNT。
+
+**口径**：分子 = 该发券批次中截至观察日有效核销的券实例数；分母 = 该批次实际发出的券实例数。没有发券时标记“不可计算”，不填 0。
+
+**变体（卡片字段）**：
+
+```guandata
+-- 仅数已核销的券数
+COUNT(DISTINCT IF([券状态] = '已使用', [券号], NULL))
+```
+
+**坑**：分子/分母**不要用同一个字段双重 IF**，否则核销率永远是 1。
+
+## 折扣率（聚合级 vs 单笔级）⚪
+
+### 聚合级折扣率（卡片 KPI）
+
+```guandata
+-- 简版
+SUM([Discount]) / SUM([ALA_Sales])
+
+-- 完整业务版
+SUM([原价金额 ALA_Sales] - [含税营业额 GS]) / SUM([原价金额 ALA_Sales])
+```
+
+详见 [03 章 · 折扣率](03-revenue-kpi.md#折扣率)。
+
+### 单笔级折扣率（订单字段）
+
+通常预先算好 `Disct%` 字段（在 ETL 阶段），值域 0~1：
+
+```guandata
+[Disct%] = 1 - [含税营业额 GS] / [原价金额 ALA_Sales]
+-- 0 = 没折扣，1 = 全免，0.3 = 打 7 折
+```
+
+## 折扣类型（分桶）🅰️ {#折扣类型}
+
+```guandata
+CASE
+  WHEN [Disct%] <= 0   THEN '无优惠'
+  WHEN [Disct%] <= 0.1 THEN '(0%,10%]'
+  WHEN [Disct%] <= 0.2 THEN '(10%,20%]'
+  WHEN [Disct%] <= 0.3 THEN '(20%,30%]'
+  WHEN [Disct%] <= 0.5 THEN '(30%,50%]'
+  WHEN [Disct%] <  1   THEN '(50%,100%)'
+  ELSE                      '免费'
+END
+```
+
+**口径**：把单笔订单按折扣率分到 7 个桶。
+- `'无优惠'`：原价订单（也包括录入异常的负折扣）
+- `'(0%, 10%]`、`(10%, 20%]`...：常规折扣力度
+- `'(50%, 100%)'`：5 折以下到接近免费
+- `'免费'`：100% 减免（券赠送、纠错退款）
+
+**用途**：折扣力度分布饼图、不同折扣区间的订单/营收占比对比。
+
+## 券类型分流（活动归因大 case）🅰️
+
+```guandata
+CASE
+  WHEN [活动编号] = 'XX20220026' THEN '0次客35天未消费V6'
+  WHEN [券名] LIKE '%品牌好礼%' THEN '面对面发券'
+  WHEN [券类型编号] = '1290700000000084' OR [券类型编号] = '1290700000000199' THEN '面对面发券'
+  WHEN [FirstCoupon_typeName] LIKE '%店|饮品买一赠一券%'
+    OR [FirstCoupon_typeName] LIKE '%店+1元购暖食%' THEN '新店bogo'
+  WHEN [是否会员] = '是会员' AND [添加距离注册] < 0 THEN '老会员'
+  ELSE NULL
+END
+```
+
+**口径**：把上百个活动编号 / 券类型 / 券名归一成几个业务大类（"0 次客唤回"、"面对面发券"、"新店 bogo"、"老会员"）。**绝对值码（如活动编号、券类型编号）和模糊匹配（LIKE 券名）混用**，这是餐饮营销 BI 的常态：活动编号是新系统的，模糊匹配兼容老系统手填数据。
+
+**复用方法**：把上面"活动编号 / 券类型 / 券名"换成你方对应字段，把分类标签按你方营销规则重新设计。
+
+## 注册第一张券 🅰️
+
+```guandata
+CASE
+  WHEN [FirstCoupon_DisDate] = [注册日期]
+    THEN [FirstCoupon_typeName]
+  ELSE NULL
+END
+```
+
+**口径**：只有当"首张券的发券日期 = 注册日期"时，才认为这是"注册当天系统自动发的注册礼券"。否则留 NULL（说明首张券是后续运营触发的，不算注册礼券）。
+
+**业务用途**：判断"注册礼券"是否覆盖到所有新会员（注册当天有礼券 → 1，反之 → 0）。
+
+## 会员的第一张券 🅰️
+
+```guandata
+ROW_NUMBER() OVER (PARTITION BY [dis_cardno] ORDER BY [dis_disDate])
+```
+
+**口径**：按会员卡号分组、按发券日期升序排，结果 = 1 的就是"该会员收到的第一张券"。配合 `WHERE rn = 1` 取出首张券明细。
+
+**变体**：
+- `ORDER BY [dis_disDate] DESC` 取最新券
+- `ORDER BY [dis_disDate], [券面值] DESC` 同日多券取面值最高的
+
+## 过去 30 日优惠订单比例 🅰️
+
+```sql
+WITH params AS (SELECT DATE '${as_of_date}' AS as_of_date)
+SELECT
+  user_id AS id,
+  MAX(distinct_id) AS distinct_id,
+  CASE
+    WHEN SUM(IF(is_coupon = 1, 1, 0)) / COUNT(is_coupon) = 0    THEN '无使用率'
+    WHEN SUM(IF(is_coupon = 1, 1, 0)) / COUNT(is_coupon) <= 0.4 THEN '低使用率'
+    WHEN SUM(IF(is_coupon = 1, 1, 0)) / COUNT(is_coupon) <= 0.6 THEN '中使用率'
+    ELSE                                                              '高使用率'
+  END AS value
+FROM events
+WHERE event = 'pay_order'
+  AND time BETWEEN DATE_FORMAT(DATE_SUB((SELECT params.as_of_date FROM params), 30), 'yyyy-MM-dd')
+              AND DATE_FORMAT(DATE_SUB((SELECT params.as_of_date FROM params), 1),  'yyyy-MM-dd')
+GROUP BY user_id;
+```
+
+**口径**：分子 = 用券订单数 / 分母 = 全部订单数。
+
+**业务用途**：精细化运营人群分桶，"低使用率人群"是营销重点（券对其敏感）；"高使用率人群"反而要警惕（券依赖症，撤券就流失）。
+
+**坑**：判 NULL 之外，注意 `is_coupon` 字段在不同业务里可能是布尔/0-1/'Y'-'N' 三种类型，按实际转换。
+
+## 券核销卡片表达式 🅱️
+
+简单卡片字段（不用 ETL）：
+
+```guandata
+-- 已使用券数
+COUNT(DISTINCT IF([券状态] = '已使用', [券号], NULL))
+
+-- 已发券数
+COUNT(DISTINCT [券号])
+
+-- 核销率
+COUNT(DISTINCT IF([券状态] = '已使用', [券号], NULL))
+  * 1.0
+  / NULLIF(COUNT(DISTINCT [券号]), 0)
+```
+
+## 发券时间近 3 个月 ⚪
+
+```sql
+WITH params AS (SELECT DATE '${as_of_date}' AS as_of_date)
+SELECT * FROM input1
+WHERE input1.`发券日期` >= add_months(concat(substr((SELECT params.as_of_date FROM params), 1, 7), '-01'), -3);
+```
+
+**用途**：分析"近 3 月发券效果"，配合后续按月分桶计算"发券月 → 核销月"的核销时滞。
+
+
+## 门店核销下降：先对齐券批次和观察期
+
+这份排查由门店运营资料脱敏整理，属于方法建议，不提供无出处的合格线。
+
+先明确算的是“实际发出券的核销率”还是“顾客主动领取后的使用率”。系统已生成但未发给顾客的券不能计作实际发出；以领取为分母时应改名并说明领取事件定义。一个人领多张券，按券数和按人数计算是不同指标。
+
+固定发券批次、门店范围、券类型和观察截止。不同批次比较相同券龄，或在各自到期并完成数据回收后比较；当日新发的券不能与上月已到期券直接比核销率。发券月与核销月的分别统计可用于看流量，但不能拼接成同一批券的转化率。
+
+取消、撤回和核销撤销分别记录。是否从分母排除取消券要按事先约定执行，并同时报告数量，避免活动结束后挑掉未使用券抬高核销率。因退款而恢复的券按截止日有效状态处理；分子不超过对应分母。
+
+例如（模拟）：甲批 50 张已发券在完整观察期内有 6 张有效核销，核销率为 12%；乙批 30 张当日新发，只有 1 张核销，只能报告当前进度，不能据此判定乙活动更差。某会员同时核销两张券时，核销券数是 2，核销人数仍是 1。
+
+口径对齐后，依次检查顾客是否收到、是否知道权益、门槛与适用范围是否合适、现场能否完成核销。消息未读、领券失败、券不适用、终端报错分别记录；不能只凭核销率认定员工不积极。
+
+具体报障与分工见 [私域门店执行参考](https://github.com/maojiebc/majia-siyu-team/blob/main/knowledge/02-industry/catering/门店会员执行参考.md)。

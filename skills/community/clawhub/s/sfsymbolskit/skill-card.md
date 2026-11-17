@@ -1,46 +1,56 @@
-## Description: <br>
-Helps agents generate, validate, and fix Apple SFSymbol names in Swift, SwiftUI, UIKit, and AppKit by grounding output against the bundled SFSymbolsKit 7.2 catalog of 7,007 symbols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when generating, validating, or fixing Apple SFSymbol names in Swift, SwiftUI, UIKit, or AppKit. Grounds symbol usage against the real catalog (SFSymbolsKit, SFSymbols 7.2, 7,007 symbols) so you emit typed, compile-checked accessors instead of hallucinated stringly-typed `systemName:` values.
 
-## Publisher: <br>
-[wikipediabrown](https://clawhub.ai/user/wikipediabrown) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wikipediabrown](https://clawhub.ai/user/wikipediabrown)
 
-## Use Case: <br>
-Developers and coding agents use this skill to choose real SFSymbol names and typed SFSymbolsKit accessors for Apple platform code, reducing blank-icon bugs caused by guessed systemName strings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent may suggest adding the SFSymbolsKit SwiftPM dependency to a project. <br>
-Mitigation: Review the package URL and version before accepting dependency changes. <br>
-Risk: Marketplace capability tags list crypto, wallet, and sensitive-credential requirements even though the security summary describes a static lookup helper. <br>
-Mitigation: Do not grant wallet, credential, or crypto-related access based only on those tags; rely on the security evidence and local review. <br>
-Risk: Symbol guidance can be incorrect if the manifest is skipped or if the target project uses a different SFSymbols version. <br>
-Mitigation: Resolve names against symbols.json and check target platform compatibility before shipping UI changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to resolve, validate, and emit real Apple SF Symbol identifiers as typed SFSymbolsKit accessors for SwiftUI, UIKit, and AppKit code. It helps agents avoid guessed string-based symbol names that compile but render blank icons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wikipediabrown/sfsymbolskit) <br>
-- [Publisher profile](https://clawhub.ai/user/wikipediabrown) <br>
-- [SFSymbolsKit documentation](https://sfsymbolskit.com) <br>
-- [SFSymbolsKit symbol manifest](https://sfsymbolskit.com/symbols.json) <br>
-- [SFSymbolsKit Swift package](https://github.com/WikipediaBrown/SFSymbolsKit.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Swift code snippets and SwiftPM dependency instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Grounded against the bundled symbols.json manifest when followed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may add a third-party SFSymbolsKit Swift package dependency to a project.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before allowing project changes, confirm the dependency is wanted, review the repository, and pin a reviewed exact version or commit for production or CI use.
+
+Risk: Incorrect SF Symbol names can compile while rendering blank icons.
+
+Mitigation: Validate symbol names against the bundled SFSymbols 7.2 catalog or an available SFSymbolsKit MCP server before emitting accessors.
+
+## Reference(s):
+
+- [SFSymbolsKit documentation](https://sfsymbolskit.com)
+- [SFSymbolsKit symbol catalog](https://sfsymbolskit.com/symbols.json)
+- [SFSymbolsKit package repository](https://github.com/WikipediaBrown/SFSymbolsKit)
+- [ClawHub skill page](https://clawhub.ai/wikipediabrown/skills/sfsymbolskit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with Swift code and package configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be grounded against the bundled symbols.json manifest or an available SFSymbolsKit MCP server.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

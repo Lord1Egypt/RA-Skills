@@ -1,41 +1,58 @@
-## Description: <br>
-微信公众号文章订阅 — 每天 9 点，盯梢竞对、同类、关注账号，一份你订阅的公众号文章推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks WeChat Official Account posts and prepares daily reports, with an Alipay recharge flow available when API credits run low.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-External users and developers use this skill to track subscribed WeChat public accounts, fetch article metadata, and generate terminal or HTML daily reports for competitor monitoring, industry tracking, and content follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key, and persistent configuration or scheduler files may expose that key if file permissions are weak. <br>
-Mitigation: Prefer REDFOX_API_KEY from the environment or a securely permissioned config file, and rotate the API key if the config or scheduler file may have been exposed. <br>
-Risk: The optional daily scheduler changes local OS scheduling and can continue running after setup. <br>
-Mitigation: Enable --subscribe only when daily automation is intended, use --unsubscribe to remove it, and inspect LaunchAgent or crontab entries during review. <br>
+## Use Case:
 
+External users can follow selected WeChat Official Accounts, review recent posts and engagement metrics, and receive a daily HTML digest. They can group subscriptions for competitor monitoring, industry discovery, or general reading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/gzh-subscribe) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, HTML, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples, terminal tables, JSON configuration files, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RedFox API key via REDFOX_API_KEY, --api-key, or ~/.qoder/apis/redfox.json; can create a daily 09:00 scheduler when --subscribe is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Untrusted article content can run scripts in generated reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a corrected version before enabling HTML reports or daily scheduling.
+
+Risk: Scheduling and payment setup have concrete safety gaps.
+
+Mitigation: Require separate approval for payment-tool installation and recharge, and verify the recipient and amount in Alipay.
+
+Risk: The API key may be stored in plaintext when using macOS scheduling.
+
+Mitigation: Account for plaintext API-key storage before enabling macOS scheduling.
+
+## Reference(s):
+
+- [RedFox API key setup](https://redfox.hk/settings/api-keys?source=clawhub)
+- [Alipay recharge workflow](references/alipay-recharge.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, HTML files]
+
+**Output Format:** [Terminal tables and HTML daily reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include post dates, authors, titles, summaries, engagement metrics, and source links.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

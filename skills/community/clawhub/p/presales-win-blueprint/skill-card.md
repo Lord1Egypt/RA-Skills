@@ -1,39 +1,54 @@
-## Description: <br>
-Generates presales win blueprints from the customer industry, sales stage, competitor profile, budget posture, decision role, and risk signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language presales playbook that generates industry-specific win strategies from customer industry, sales stage, competitor profile, budget status, and risk signals.
 
-## Publisher: <br>
-[william202404](https://clawhub.ai/user/william202404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[william202404](https://clawhub.ai/user/william202404)
 
-## Use Case: <br>
-Sales, product, and technical presales teams use this skill to prepare customer conversations, POC boundaries, bid responses, negotiation next steps, and internal deal reviews for enterprise B2B opportunities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive customer, project, or deal details while preparing presales plans. <br>
-Mitigation: Use customer or project aliases, omit confidential deal details unless necessary, and review local handling practices before use. <br>
-Risk: Generated presales recommendations may be generic or misaligned with a specific customer situation. <br>
-Mitigation: Review and adapt the guidance before using it in client-facing materials or internal approval decisions. <br>
+## Use Case:
 
+External presales, sales engineering, product, and technical teams use this skill to structure enterprise deal strategy, customer discovery, POC planning, competitive positioning, risk review, and next-step planning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [CLI text report with numbered planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes stage strategy, industry playbook, competitor tactics, risk score, self-checklist, and next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Users may enter confidential customer, project, budget, or competitive information while preparing presales strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow internal data-handling policy and avoid entering confidential or traceable real-world details unless that use is explicitly permitted.
+
+Risk: The playbook is Chinese-localized and may not match every sales region, industry norm, or account governance process.
+
+Mitigation: Review generated recommendations against local sales policy, legal requirements, and account-specific approval processes before using them with customers.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/william202404/tob-skills/tree/main/presales-win-blueprint)
+- [ClawHub skill page](https://clawhub.ai/william202404/skills/presales-win-blueprint)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown strategy brief with staged recommendations, competitive positioning, risk warnings, self-check items, and next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-localized presales guidance; no code execution, persistence, credential use, or hidden execution behavior is indicated by the security evidence.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

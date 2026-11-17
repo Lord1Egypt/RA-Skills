@@ -1,45 +1,68 @@
-## Description: <br>
-Menstrual Health Tracker helps agents guide users through privacy-aware menstrual and reproductive health logging, cycle and symptom analysis, predictions, visual dashboards, and informational health suggestions across life stages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks menstrual and reproductive health data, analyzes cycles and symptoms across life stages, and produces bilingual guidance plus optional HTML dashboards.
 
-## Publisher: <br>
-[web-seeker](https://clawhub.ai/user/web-seeker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[web-seeker](https://clawhub.ai/user/web-seeker)
 
-## Use Case: <br>
-External users and their agents use this skill to record menstrual and reproductive health information, analyze cycle and symptom patterns, generate local reports or dashboards, and receive informational wellness guidance. It is designed for personal tracking across menstruation, fertility planning, pregnancy, postpartum, perimenopause, and postmenopause contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive menstrual and reproductive health information that may be stored in local JSON files or generated HTML dashboards. <br>
-Mitigation: Use it only when local storage is acceptable, keep generated files out of shared folders, and avoid sending dashboards or data files to others unless intentionally sharing private health information. <br>
-Risk: Health guidance from the skill is informational and may not address a user's clinical situation. <br>
-Mitigation: Treat outputs as personal tracking support, not diagnosis or treatment, and seek professional medical care for abnormal symptoms or urgent concerns. <br>
+## Use Case:
 
+External users and agents use this skill to record menstrual and reproductive-health information, analyze cycle regularity, symptoms, mood, predictions, and life-stage-specific patterns, and generate empathetic health guidance or local dashboard files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/web-seeker/menstrual-health-tracker) <br>
-- [Analysis engine reference](references-en/analysis_engine.md) <br>
-- [Medical standards reference](references-en/medical_standards.md) <br>
-- [Life stages reference](references-en/life_stages.md) <br>
-- [User profile reference](references-en/user_profile.md) <br>
-- [Empathy guide reference](references-en/empathy_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text with optional JSON records, shell commands, Python analysis output, and HTML dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or read a local menstrual_health.json file and generate local HTML dashboards when the user requests analysis or visualization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill handles sensitive menstrual and reproductive-health records stored in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a private device, keep generated files access-restricted, and delete local records when they are no longer needed.
+
+Risk: Generated dashboard HTML files can contain personal health data and should not be treated as share-safe exports.
+
+Mitigation: Avoid sharing dashboard HTML files and prefer a version that minimizes exported data and writes files with restrictive permissions.
+
+Risk: Dashboard data embedding and imported notes or records may be unsafe until escaping and embedding protections are strengthened.
+
+Mitigation: Avoid importing untrusted records or notes and prefer a version that safely embeds JSON and vendors Chart.js locally.
+
+Risk: Health guidance could be mistaken for diagnosis or clinical advice.
+
+Mitigation: Treat outputs as wellness references and consult a clinician for abnormal symptoms, pregnancy or postpartum concerns, or other medical questions.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [User Profile System](artifact/references-en/user_profile.md)
+- [Multi-Life-Stage Adaptation Logic](artifact/references-en/life_stages.md)
+- [Data Analysis Dimensions and Algorithm Reference](artifact/references-en/analysis_engine.md)
+- [Empathetic Interaction Guide](artifact/references-en/empathy_guide.md)
+- [Menstrual Health Medical Reference Standards](artifact/references-en/medical_standards.md)
+- [User Profile System (Chinese)](artifact/references/user_profile.md)
+- [Medical Reference Standards (Chinese)](artifact/references/medical_standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Plain text or Markdown guidance, local JSON records, and generated HTML dashboard files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local menstrual-health JSON records and export dashboards containing sensitive personal health data.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

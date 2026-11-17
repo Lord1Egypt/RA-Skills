@@ -1,0 +1,230 @@
+{
+ "_example": "Example data: made-up posts, links and times for the example. Nothing here was posted.",
+ "posts": {
+  "example-post-0001|example-tiktok-1": {
+   "postId": "example-post-0001",
+   "job_post": "groundhog-tiktok",
+   "campaign": "example-orbit-crew-dragon",
+   "account": "TikTok",
+   "handle": "@example.clipper",
+   "platform": "TIKTOK",
+   "socialAccountId": "example-tiktok-1",
+   "file": "clips/clip-01.mp4",
+   "sha256": "f19b071b1256a34dadf0d8a26fbe00a1ca54982413aef05cd472ab8f2df97a35",
+   "source_file": "behnken.mp4",
+   "source_sha256": "b5a519d494aaa8c80914fe5489ac82d55a0c14522494acb90dd71035ffbca502",
+   "ranges": [
+    [
+     488.6,
+     489.09
+    ],
+    [
+     489.39,
+     494.12
+    ],
+    [
+     494.12,
+     498.59
+    ],
+    [
+     498.81,
+     500.25
+    ],
+    [
+     500.99,
+     504.57
+    ],
+    [
+     504.57,
+     508.33
+    ],
+    [
+     508.33,
+     511.87
+    ],
+    [
+     511.87,
+     515.54
+    ],
+    [
+     515.85,
+     517.83
+    ],
+    [
+     518.11,
+     519.9
+    ]
+   ],
+   "hook": "Astronauts live Groundhog Day on purpose",
+   "caption": "#ad Astronaut Bob Behnken trains until launch day holds no surprises, like Groundhog Day. Clip from @example.orbit, more at example.com/orbit #exampleorbit #nasa #spacex",
+   "submit_within": 30,
+   "recorded": "2026-11-16T14:01:00Z",
+   "url": "https://www.tiktok.com/@example.clipper/video/example-0001",
+   "published_at": "2026-11-16T14:01:40Z",
+   "timezone": "America/New_York",
+   "request": "example-orbit-crew-dragon.json",
+   "status": "PUBLISHED"
+  },
+  "example-post-0001|example-instagram-1": {
+   "postId": "example-post-0001",
+   "job_post": "safe-path-reels",
+   "campaign": "example-orbit-crew-dragon",
+   "account": "Reels",
+   "handle": "@example.clipper.reels",
+   "platform": "INSTAGRAM",
+   "socialAccountId": "example-instagram-1",
+   "file": "clips/clip-02.mp4",
+   "sha256": "61414fcfd31c2fea0bb1b1e43abcf675e80e2de337f09afa4363f4f480ef38c8",
+   "source_file": "behnken.mp4",
+   "source_sha256": "b5a519d494aaa8c80914fe5489ac82d55a0c14522494acb90dd71035ffbca502",
+   "ranges": [
+    [
+     213.0,
+     215.44
+    ],
+    [
+     215.7,
+     220.44
+    ],
+    [
+     220.82,
+     226.56
+    ],
+    [
+     226.94,
+     230.74
+    ],
+    [
+     230.74,
+     234.71
+    ]
+   ],
+   "hook": "Save the crew, not the mission",
+   "caption": "#ad \"Save the crew, not the mission.\" How NASA thought about a spacecraft that mostly flies itself. Clip from @example.orbit, more at example.com/orbit #exampleorbit #nasa #crewdragon",
+   "submit_within": 30,
+   "recorded": "2026-11-16T14:01:00Z",
+   "url": "https://www.instagram.com/reel/example-0001/",
+   "published_at": "2026-11-16T14:02:15Z",
+   "timezone": "America/New_York",
+   "request": "example-orbit-crew-dragon.json",
+   "status": "PUBLISHED"
+  },
+  "hand:curse-names-shorts|Shorts": {
+   "postId": "by hand",
+   "job_post": "curse-names-shorts",
+   "campaign": "example-orbit-crew-dragon",
+   "account": "Shorts",
+   "handle": "@exampleclipper",
+   "platform": "YOUTUBE",
+   "socialAccountId": null,
+   "file": "clips/clip-03.mp4",
+   "sha256": "c0c21071bc41534de9f7c19c280784ecf32aef3e4d6ab878d5e76d80c4649383",
+   "source_file": "behnken.mp4",
+   "source_sha256": "b5a519d494aaa8c80914fe5489ac82d55a0c14522494acb90dd71035ffbca502",
+   "ranges": [
+    [
+     70.9,
+     77.49
+    ],
+    [
+     79.3,
+     80.79
+    ],
+    [
+     81.08,
+     82.26
+    ],
+    [
+     82.62,
+     88.25
+    ],
+    [
+     88.25,
+     90.92
+    ],
+    [
+     90.92,
+     93.9
+    ],
+    [
+     93.9,
+     97.94
+    ],
+    [
+     98.18,
+     100.17
+    ]
+   ],
+   "hook": "His goal: future crews forget his name",
+   "caption": "#ad Good design means the next crew never has to think about you. Bob Behnken on building Crew Dragon. Clip from @example.orbit, more at example.com/orbit #exampleorbit #nasa",
+   "submit_within": 30,
+   "recorded": "2026-11-16T14:06:00Z",
+   "url": "https://www.youtube.com/shorts/example-0001",
+   "published_at": "2026-11-16T14:05:30Z",
+   "timezone": "America/New_York",
+   "byHand": true
+  }
+ },
+ "submissions": [
+  {
+   "url": "https://www.tiktok.com/@example.clipper/video/example-0001",
+   "campaign": "example-orbit-crew-dragon",
+   "submitted_at": "2026-11-16T14:12:00Z",
+   "post": "groundhog-tiktok",
+   "account": "TikTok",
+   "platform": "TIKTOK",
+   "submission_id": "example-sub-101"
+  },
+  {
+   "url": "https://www.instagram.com/reel/example-0001/?igsh=example",
+   "campaign": "example-orbit-crew-dragon",
+   "submitted_at": "2026-11-16T14:12:30Z",
+   "post": "safe-path-reels",
+   "account": "Reels",
+   "platform": "INSTAGRAM",
+   "submission_id": "example-sub-102"
+  },
+  {
+   "url": "https://www.youtube.com/shorts/example-0001",
+   "campaign": "example-orbit-crew-dragon",
+   "submitted_at": "2026-11-16T14:14:00Z",
+   "post": "curse-names-shorts",
+   "account": "Shorts",
+   "platform": "YOUTUBE",
+   "submission_id": "example-sub-103"
+  }
+ ],
+ "campaigns": {
+  "example-orbit-crew-dragon": {
+   "id": "example-orbit-crew-dragon",
+   "name": "Training for Crew Dragon (EXAMPLE campaign, made up)",
+   "brand": "Example Orbit",
+   "marketplace": "the example marketplace (made up)",
+   "currency": "USD",
+   "platforms": {
+    "TIKTOK": {
+     "rate_per_1k": 1.0
+    },
+    "INSTAGRAM": {
+     "rate_per_1k": 0.8
+    },
+    "YOUTUBE": {
+     "rate_per_1k": 0.5
+    }
+   },
+   "min_payout": 5,
+   "cap_per_clip": 150,
+   "budget_total": 3000,
+   "fee_pct": 10,
+   "window_days": 30,
+   "window_from": "threshold",
+   "days_live": 30,
+   "submit_within_minutes": 30,
+   "engagement_min": 0.03,
+   "audience": {
+    "geo": "US",
+    "min_share": 0.3
+   }
+  }
+ }
+}

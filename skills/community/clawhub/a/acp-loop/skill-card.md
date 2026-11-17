@@ -1,41 +1,55 @@
-## Description: <br>
-Schedule recurring AI agent prompts using fixed intervals or cron expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule recurring AI agent prompts using intervals or cron expressions.
 
-## Publisher: <br>
-[femto](https://clawhub.ai/user/femto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[femto](https://clawhub.ai/user/femto)
 
-## Use Case: <br>
-Developers and engineers use this skill to schedule recurring agent prompts for periodic checks, reports, monitoring, and other repeated workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled prompts can continue running if users do not set limits. <br>
-Mitigation: Use --max, --timeout, or --until for nontrivial jobs, and stop the loop manually when it is no longer needed. <br>
-Risk: Unattended recurring prompts may repeat actions that delete data, deploy changes, spend money, or post publicly. <br>
-Mitigation: Only schedule prompts that are safe to run repeatedly and require human review for consequential actions. <br>
+## Use Case:
 
+Developers and operators use Acp Loop to schedule recurring agent prompts for monitoring, reporting, cleanup, and other periodic workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/femto/acp-loop) <br>
-- [npm package](https://www.npmjs.com/package/acp-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill directs users to install a mutable global npm CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package and version before installation and avoid elevated privileges.
+
+Risk: Recurring agent prompts can continue indefinitely and repeat actions without strong boundaries.
+
+Mitigation: Use bounded schedules such as `--max` or `--timeout`, and prefer read-only or dry-run prompts for sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/femto/skills/acp-loop)
+- [GitHub repository](https://github.com/femto/acp-loop)
+- [npm package](https://www.npmjs.com/package/acp-loop)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

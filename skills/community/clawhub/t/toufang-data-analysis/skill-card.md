@@ -1,42 +1,59 @@
-## Description: <br>
-Analyzes Super Live, Taobao Live, and financial report files to calculate ROI, conversion, cost, revenue, and margin metrics and generate advertising performance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Super Live, Taobao Live, and financial data files to calculate ROI, conversion, cost, revenue, and margin metrics and generate advertising performance reports.
 
-## Publisher: <br>
-[18262202398-star](https://clawhub.ai/user/18262202398-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18262202398-star](https://clawhub.ai/user/18262202398-star)
 
-## Use Case: <br>
-Marketing analysts and ecommerce operators use this skill to process local advertising and finance exports, compare performance across Super Live, Taobao Live, and financial data, and produce HTML or CSV reports for campaign review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read advertising and financial files from the configured input folder. <br>
-Mitigation: Use a narrow input folder that contains only the intended CSV/XLSX files for the analysis period. <br>
-Risk: Generated HTML reports may persist raw business data samples. <br>
-Mitigation: Write reports to an explicit private output folder and review reports before sharing them. <br>
-Risk: Untrusted CSV/XLSX files may be processed by the local Python runtime. <br>
-Mitigation: Avoid running the skill on untrusted files and inspect source files before execution. <br>
+## Use Case:
 
+Operators, analysts, and commerce teams use this skill to process local advertising, livestream commerce, and financial spreadsheets for campaign ROI analysis, data quality checks, and optimization recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18262202398-star/toufang-data-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [HTML reports, CSV summaries, terminal status text, and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local CSV/XLSX advertising and financial files from a configured folder and writes reports to a configured output folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated HTML reports may include raw business data from local spreadsheets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted input files, avoid opening generated HTML from untrusted spreadsheets until values are escaped, and review reports before sharing them.
+
+Risk: The skill recursively loads CSV/XLSX files from the configured input directory without effective input-size limits.
+
+Mitigation: Run it against a narrow, dedicated data directory and avoid folders containing unrelated, untrusted, or sensitive files.
+
+Risk: Dependencies are specified as minimum versions rather than pinned versions.
+
+Mitigation: Prefer a lockfile or pinned dependency set before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18262202398-star/skills/toufang-data-analysis)
+- [Artifact README](artifact/README.md)
+- [Artifact skill description](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, plus generated local HTML and CSV report files when the skill is executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local CSV/XLSX input files from a configured data directory and writes timestamped report files to a configured output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

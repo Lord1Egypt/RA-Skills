@@ -1,46 +1,61 @@
-## Description: <br>
-Generate ecommerce product video scripts from one or more product images and optional selling points, with video handoff notes that forbid subtitles, captions, text overlays, titles, and price stickers by default. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates ecommerce product video scripts from product images and optional selling points, with video handoff notes that forbid subtitles, captions, text overlays, title cards, and price stickers by default.
 
-## Publisher: <br>
-[npai10](https://clawhub.ai/user/npai10) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[npai10](https://clawhub.ai/user/npai10)
 
-## Use Case: <br>
-External ecommerce sellers, marketers, and content teams use this skill to turn product images and optional selling points into short-form product video scripts and handoff notes for AI video generation with a default no-subtitles and no-text-overlay constraint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product images and handoff prompts may be sent to an external video generation service after the user asks to generate video. <br>
-Mitigation: Review the final handoff prompt and confirm that product images can be shared with the selected external service before submission. <br>
-Risk: Generated video tools may still add subtitles, captions, UI text, or promotional text despite the script policy. <br>
-Mitigation: Keep the explicit no-on-screen-text constraint in every handoff prompt and inspect generated videos before publishing. <br>
-Risk: Research-enhanced scripts can overstate rankings, engagement, creator names, or current platform trends if sources are unavailable or incomplete. <br>
-Mitigation: Use only cited research when available, label fallback outputs as unconnected to live research, and avoid exact metrics that were not verified. <br>
+## Use Case:
 
+External ecommerce sellers, marketers, and content creators use this skill to turn product images and optional selling points into short-form product video scripts, direction options, research summaries when available, and approval-gated video handoff notes.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/npai10/product-video-script-skill) <br>
-- [Direction Playbook](references/direction-playbook.md) <br>
-- [Output Template](references/output-template.md) <br>
-- [Research Guide](references/research-guide.md) <br>
-- [Video Handoff](references/video-handoff.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scripts, direction options, research summaries, next actions, and video handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs default to 15-second 9:16 product-video scripts and preserve a no-subtitles, no-captions, and no-text-overlay policy unless the user explicitly changes requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata) <br>
+Risk: Product images and script details may be handed to a video-generation tool after the user approves generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before video handoff and include only the product references and confirmed script details needed for that task.
+
+Risk: Research-based or competitor-based script requests can lead to unsupported claims about rankings, likes, creators, or performance.
+
+Mitigation: Cite sources when research is used, avoid inventing exact metrics, and label fallback outputs when browsing is unavailable.
+
+Risk: The skill includes Chinese ecommerce terminology and platform directions that may not fit every market.
+
+Mitigation: Localize language, platform framing, campaign references, and calls to action before use outside the intended market.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/npai10/skills/product-video-script-skill)
+- [Direction Playbook](references/direction-playbook.md)
+- [Output Template](references/output-template.md)
+- [Research Guide](references/research-guide.md)
+- [Video Handoff](references/video-handoff.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured product diagnosis, direction options, script sections, optional research summary, next actions, and video handoff notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default script target is a concise 15-second 9:16 product video unless the user specifies otherwise; video generation is gated on explicit user approval.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

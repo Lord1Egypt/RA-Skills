@@ -1,38 +1,53 @@
-## Description: <br>
-Optimize Inception Labs token usage for model selection, prompt crafting, token consumption analysis, caching, context pruning, prompt compression, and budget management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Inception Labs token usage to minimize costs by guiding model selection, prompt compression, token consumption analysis, caching, context pruning, and free-tier budget management.
 
-## Publisher: <br>
-[nelmaz](https://clawhub.ai/user/nelmaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nelmaz](https://clawhub.ai/user/nelmaz)
 
-## Use Case: <br>
-Developers and engineers use this skill to reduce Inception Labs API token consumption before making calls, monitor free-tier limits, and integrate caching or rate limiting into automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt-response cache entries may retain confidential prompt or response content in process memory until evicted or cleared. <br>
-Mitigation: Avoid caching sensitive content, keep cache size and lifetime bounded, and clear the cache when a session or workload ends. <br>
+## Use Case:
 
+Developers and engineers use this skill when building or operating Inception Labs workflows that need lower token costs, explicit output budgets, caching, context pruning, and rate-limit-aware API calls.
 
-## Reference(s): <br>
-- [Context Pruning Strategies](references/pruning-strategies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local in-process cache and token bucket helper scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The token bucket helper can block while waiting for capacity and lacks production-oriented validation or timeout handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the helper before production use, validate token counts, and add timeout or cancellation behavior appropriate for the calling application.
+
+Risk: Caching prompts and responses can retain sensitive user or business content.
+
+Mitigation: Avoid caching sensitive prompts unless privacy requirements allow it, or add redaction, encryption, and short retention controls.
+
+## Reference(s):
+
+- [Context Pruning Strategies](references/pruning-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Python snippets and helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes prompt compression guidance, context pruning patterns, LRU caching support, and a token bucket rate limiter for per-minute request and token caps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,55 @@
-## Description: <br>
-周报生成器将用户提供的一周工作内容整理为结构清晰、重点突出的中文周报，支持简洁版、详细版、OKR版和项目制版模板。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates concise Chinese weekly work reports from user-provided weekly activity details, with templates for brief updates, detailed reports, OKR progress, and project-based summaries.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Employees, managers, and team contributors use this skill to convert weekly work notes, task lists, or conversation summaries into concise Chinese weekly reports with quantified outcomes, blockers, and next-week plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Weekly Report 详细参考](references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-weekly-report) <br>
+Employees, managers, and knowledge workers use this skill to turn weekly task notes into structured Chinese weekly reports for team updates, leadership emails, OKR reviews, or multi-project status reporting.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown weekly report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports concise, detailed, OKR, and project-based templates with industry-specific wording.] <br>
+Global
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Users who need a language other than Chinese may receive Chinese weekly-report output by default.
+
+Mitigation: Ask the agent explicitly for the desired output language when invoking the skill.
+
+Risk: Weekly reports may overstate progress if source notes are incomplete or ambiguous.
+
+Mitigation: Review generated reports for factual accuracy and provide concrete completion status, dates, metrics, and blockers.
+
+## Reference(s):
+
+- [Weekly Report detailed reference](references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-weekly-report)
+- [Publisher profile](https://clawhub.ai/user/qqyougitcom)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown weekly report templates and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese output and emphasizes truthful, quantified, concise reporting.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

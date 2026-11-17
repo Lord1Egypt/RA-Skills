@@ -1,40 +1,56 @@
-## Description: <br>
-Cut, trim, concatenate, and split video files - basic video editing operations <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cut, trim, concatenate, and split video files - basic video editing operations
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[lnj22](https://clawhub.ai/user/lnj22)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, editors, and technical operators use this skill to get FFmpeg command guidance for cutting, trimming, concatenating, splitting, and extracting video segments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated FFmpeg commands may overwrite or create files in the workspace or chosen output path.
+
+Mitigation: Review output paths before running commands and use explicit filenames or a scratch directory for edited media.
+
+Risk: Concatenation examples rely on media files and list files supplied by the user.
+
+Mitigation: Use only trusted media and list files, and inspect concat lists before passing them to FFmpeg.
+
+Risk: Fast copy-based cuts and concatenation can be less precise or require matching codecs and formats.
+
+Mitigation: Use the re-encoding examples when precision or codec compatibility matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and video editors use this skill to ask an agent for FFmpeg commands that cut, trim, concatenate, split, or extract segments from local video files. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated FFmpeg commands can overwrite or damage valuable video files if paths, timestamps, or output names are wrong. <br>
-Mitigation: Review commands before running them, confirm input and output paths, and keep backups of original videos. <br>
-Risk: Trim and concatenation commands can produce imprecise cuts or incompatible outputs when stream copying across keyframes or mismatched codecs. <br>
-Mitigation: Use re-encoding when precision or codec compatibility matters, and validate the output before replacing source media. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lnj22/multilingual-video-dubbing-ffmpeg-video-editing) <br>
+**Other Properties Related to Output:** [Produces local FFmpeg command examples that should be reviewed before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands require review before execution and local paths should be confirmed.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

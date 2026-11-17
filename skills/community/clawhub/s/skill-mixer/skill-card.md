@@ -1,38 +1,53 @@
-## Description: <br>
-Processes and auto-categorizes skills into composite master skill categories for ClawHub-oriented workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claims to process and auto-categorize up to 150 ClawHub skills into 12 composite master skill categories.
 
-## Publisher: <br>
-[grxkun](https://clawhub.ai/user/grxkun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[grxkun](https://clawhub.ai/user/grxkun)
 
-## Use Case: <br>
-Developers and skill maintainers use Skill Mixer to cluster large sets of skills into higher-level categories and generate composite master-skill guidance for ClawHub publishing or integration workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The uploaded package includes only SKILL.md while the artifact text claims additional source, tests, documentation, and configuration files. <br>
-Mitigation: Verify the actual package contents and review any referenced build, publishing, or deployment commands before running them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Mixer on ClawHub](https://clawhub.ai/grxkun/skill-mixer) <br>
-- [Publisher profile](https://clawhub.ai/user/grxkun) <br>
+## Use Case:
 
+Developers and ClawHub publishers can evaluate this release as a proposed workflow for clustering many skills into composite master skill categories. Because the visible artifact is a status document rather than the claimed implementation, users should obtain the missing source, manifest, configuration, and controls before installation or deployment.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security evidence says the uploaded artifact is documentation-only and includes no hidden execution, credential harvesting, exfiltration, destructive action, or automatic persistence. Review referenced build, publishing, and deployment commands before running them because the package includes only SKILL.md while claiming additional source and documentation files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users cannot verify the claimed implementation because the visible artifact is only a status document.
+
+Mitigation: Require the publisher to provide the missing source, manifest, configuration, and supporting documentation before installation or deployment.
+
+Risk: The artifact describes credential use and long-running deployment without visible controls.
+
+Mitigation: Review credential scope, runtime permissions, and ClawHub change controls before running the skill in any environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/grxkun/skills/skill-mixer)
+- [Publisher Profile](https://clawhub.ai/user/grxkun)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The submitted artifact does not include the claimed runnable implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

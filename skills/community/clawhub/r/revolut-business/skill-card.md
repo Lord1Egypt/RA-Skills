@@ -1,42 +1,59 @@
-## Description: <br>
-Revolut Business API CLI for accounts, balances, transactions, counterparties, payments, FX exchange, CSV export, and OAuth token refresh for business accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Revolut Business API CLI for accounts, balances, transactions, counterparties, payments, FX exchange, CSV export, and OAuth token refresh for business accounts.
 
-## Publisher: <br>
-[christianhaberl](https://clawhub.ai/user/christianhaberl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[christianhaberl](https://clawhub.ai/user/christianhaberl)
 
-## Use Case: <br>
-Developers and business operators use this skill to configure and run a Revolut Business CLI for account review, transaction export, counterparty lookup, payments, FX exchange, and internal transfers. It is intended for Revolut Business accounts, not Revolut Personal accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent high-impact banking authority for payments, FX exchange, transfers, and transaction export. <br>
-Mitigation: Install only when agent-accessible Revolut Business operations are deliberate, avoid autonomous use for payments, FX, or transfers, and review destination, amount, currency, and export path before running commands. <br>
-Risk: Refreshable Revolut credentials and private key material are stored locally under ~/.clawdbot/revolut/. <br>
-Mitigation: Protect the credential directory, restrict Revolut API permissions and IP allowlists, and never share private keys, tokens, or client assertion JWTs. <br>
-Risk: Some money-moving actions can execute without an additional confirmation step. <br>
-Mitigation: Prefer draft payments where possible and require human review before direct payment, FX, or transfer execution. <br>
+## Use Case:
 
+Developers, operators, and finance users with a Revolut Business account use this skill to inspect account data, export transactions, manage counterparties, initiate payments, exchange currency, and move funds between business accounts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/christianhaberl/revolut-business) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON, CSV] <br>
-**Output Format:** [Markdown guidance with shell commands, plus CLI text, JSON, or CSV output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and local Revolut Business OAuth credentials under ~/.clawdbot/revolut/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can access Revolut Business financial data and perform money-moving operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tightly scoped Revolut permissions and payment limits, review commands before execution, and avoid bypassing confirmations with --yes.
+
+Risk: Local private keys and OAuth tokens are sensitive and are stored under the user's Revolut state directory.
+
+Mitigation: Store credentials with strict owner-only permissions or in a secure secret store, and never share private keys, tokens, or client assertion JWTs.
+
+Risk: The authoritative security guidance calls out a setup command-injection issue and weak guardrails.
+
+Mitigation: Fix or mitigate the setup command-injection issue before use, require confirmation for FX and transfers, and pin dependencies.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/christianhaberl/skills/revolut-business)
+- [Publisher Profile](https://clawhub.ai/user/christianhaberl)
+- [Revolut Business API Endpoint](https://b2b.revolut.com/api/1.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV]
+
+**Output Format:** [CLI text output, JSON responses, CSV exports, and Markdown setup guidance with shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write OAuth tokens, private keys, certificates, configuration, and optional CSV exports to local files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

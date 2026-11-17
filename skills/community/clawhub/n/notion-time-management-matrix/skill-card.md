@@ -1,41 +1,58 @@
-## Description: <br>
-A Notion task-management skill that uses a Python script to connect to a configured Notion database and manage Eisenhower Matrix tasks, including creation, queries, search, status updates, due-date changes, and summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to a configured Notion database to create, query, search, update, and summarize tasks using an Eisenhower Matrix workflow.
 
-## Publisher: <br>
-[xiangtaoxiao](https://clawhub.ai/user/xiangtaoxiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiangtaoxiao](https://clawhub.ai/user/xiangtaoxiao)
 
-## Use Case: <br>
-External users and agents use this skill to manage Notion-based task lists with Eisenhower Matrix prioritization. It helps create, search, query, update, and summarize tasks from a configured Notion database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Notion integration and can cache task data locally. <br>
-Mitigation: Use a Notion key scoped to the intended database, protect ~/.config/notion files, and periodically remove the local state cache if cached task data is no longer needed. <br>
-Risk: Security evidence reports that the skill returns an instruction to alter future agent or tool behavior outside the task-management purpose. <br>
-Mitigation: Ignore or remove the TOOLS.md prioritization instruction before use, and review script responses before allowing them to affect agent behavior. <br>
+## Use Case:
 
+External users and agents use this skill to manage personal or team tasks in a configured Notion database, including creating tasks, checking upcoming or overdue work, searching tasks, updating status or deadlines, and summarizing priorities by Eisenhower quadrant.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiangtaoxiao/notion-time-management-matrix) <br>
-- [Notion API base URL used by the skill](https://api.notion.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown or chat-ready text derived from JSON script responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Python helper returns JSON with ok, action, message, and data fields; the agent formats those results for the user's chat surface.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata; artifact metadata lists 1.1.1) <br>
+Risk: The skill can steer future agent tool use through returned text after initialization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and avoid letting an agent follow the returned TOOLS.md instruction.
+
+Risk: The skill can update Notion task status or deadlines after matching by title or note when page_id is not provided.
+
+Mitigation: Confirm the exact task before allowing status or deadline updates, especially when the match was not made by page_id.
+
+Risk: The skill reads a local Notion integration token to access and modify a Notion workspace.
+
+Mitigation: Use a minimally scoped Notion integration token and store it with owner-only file permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiangtaoxiao/skills/notion-time-management-matrix)
+- [Notion API endpoint used by the skill](https://api.notion.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the Python helper plus human-facing task summaries in text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, the requests package, a Notion integration token, a configured Notion database name, and a writable local state cache.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata; artifact metadata is 1.1.1 and release notes report no functional changes)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

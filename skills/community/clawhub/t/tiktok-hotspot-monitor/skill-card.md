@@ -1,44 +1,60 @@
-## Description: <br>
-TikTok US women's fashion hotspot monitor that crawls video metadata via Apify or Playwright, analyzes trends with heat and coverage scoring, and generates static HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crawls TikTok video metadata via Apify or Playwright, analyzes hotspot signals with heat and coverage scoring, and generates static HTML trend reports.
 
-## Publisher: <br>
-[tandongtaotao](https://clawhub.ai/user/tandongtaotao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tandongtaotao](https://clawhub.ai/user/tandongtaotao)
 
-## Use Case: <br>
-Developers and analysts use this skill to monitor TikTok keyword, hashtag, creator, and music sources for trend signals, then generate offline analysis and static HTML reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TikTok crawling may run through Apify or a logged-in Playwright browser. <br>
-Mitigation: Install only if this crawling posture is acceptable; prefer Apify mode or a dedicated low-privilege TikTok account. <br>
-Risk: Reusable TikTok login session data can be stored at data/tiktok_session.json. <br>
-Mitigation: Keep the session file out of version control and delete it when it is no longer needed. <br>
-Risk: The package includes video download capability that may exceed the core analytics workflow. <br>
-Mitigation: Review scripts/download_tiktok_videos.py before allowing agents to run arbitrary scripts or download videos from this package. <br>
+## Use Case:
 
+Developers and analysts use this skill to collect TikTok public metadata for configurable keywords, hashtags, creators, or music sources, then analyze emerging trend signals and produce local reports. It is oriented toward fashion hotspot monitoring by default, but the sources can be adapted to other domains.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tandongtaotao/tiktok-hotspot-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/tandongtaotao) <br>
-- [Repository declared by artifact metadata](https://github.com/TanDongTaotao/tiktok-hotspot-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON files, HTML reports] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON/JSONL data files, and self-contained HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Apify mode requires APIFY_TOKEN; Playwright fallback uses a locally saved TikTok session; configured guardrails limit source count, per-source limits, and planned crawl runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence release, artifact metadata, and skill frontmatter) <br>
+Risk: The skill handles Apify access and TikTok session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege TikTok account and Apify token, keep tokens in the environment, and protect or delete data/tiktok_session.json after use.
+
+Risk: Broad crawling or scheduled runs can create unexpected Apify billing or platform-use exposure.
+
+Mitigation: Review source limits and provider configuration before running, set external billing limits, and avoid --schedule unless continuous monitoring is intended.
+
+Risk: The artifact includes a video downloader that can save local media from TikTok URLs.
+
+Mitigation: Do not run the downloader unless input URLs have been validated and local media downloads are explicitly desired.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tandongtaotao/skills/tiktok-hotspot-monitor)
+- [English README](artifact/readme-en.md)
+- [Skill Instructions](artifact/skill.md)
+- [Sample HTML Report](artifact/examples/report.html)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated artifacts are JSONL snapshots, JSON analysis, and static HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require an Apify token or saved TikTok session; optional media downloads should be run only after URL and retention review.]
+
+## Skill Version(s):
+
+2.0.0 (source: server evidence, artifact metadata, and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

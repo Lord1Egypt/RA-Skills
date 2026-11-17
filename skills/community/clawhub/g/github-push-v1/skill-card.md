@@ -1,44 +1,61 @@
-## Description: <br>
-Secure GitHub push automation with auto SSH and remote config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure GitHub push automation with auto SSH and remote config for git push, automated push, and conflict handling workflows.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and automation agents use this skill to prepare and push local file changes to GitHub repositories, including SSH setup, remote configuration, commits, dry runs, and conflict retry flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can erase local Git history or overwrite remote history during reinitialization and force-push flows. <br>
-Mitigation: Use it on backed-up working directories, review dry-run output first, and avoid force-push on shared branches. <br>
-Risk: The skill can auto-use local SSH credentials and stage more files than intended. <br>
-Mitigation: Prefer a dedicated low-privilege SSH key and manually inspect staged files before allowing a real push. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to automate pushing local files to GitHub with SSH setup, remote configuration, dry-run checks, and conflict handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/onlyloveher/github-push-v1) <br>
-- [API reference](references/api.md) <br>
-- [Configuration guide](references/configuration.md) <br>
-- [Examples](references/examples.md) <br>
-- [Anti-patterns guide](references/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and console-oriented guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can perform dry-run previews and Git push operations through the bundled Python script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yaml) <br>
+Risk: The tool may erase local Git history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated copy with a separate backup, and avoid running it directly on an existing repository.
+
+Risk: The tool may upload sensitive files despite claimed safeguards.
+
+Mitigation: Do not run it in a directory containing secrets, and manually inspect git status and diff before any push.
+
+Risk: Dry-run, safe mode, and documented rate limits may be mistaken for security controls.
+
+Mitigation: Treat those features as convenience checks and rely on repository isolation and manual review for risk reduction.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/skills/github-push-v1)
+- [GitHub Push API Reference](artifact/references/api.md)
+- [GitHub Push Configuration Guide](artifact/references/configuration.md)
+- [GitHub Push Examples](artifact/references/examples.md)
+- [GitHub Push Anti-Patterns Guide](artifact/references/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, YAML snippets, and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose Git operations that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

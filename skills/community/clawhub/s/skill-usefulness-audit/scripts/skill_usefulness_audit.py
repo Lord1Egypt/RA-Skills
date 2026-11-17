@@ -16,8 +16,12 @@ import skill_usefulness_audit_lib.risk_quality as _risk_quality
 
 
 def scan_skill(skill_md: Path) -> dict[str, object]:
+    original_read_text = _risk_quality.read_text
     _risk_quality.read_text = read_text
-    return _risk_quality.scan_skill(skill_md)
+    try:
+        return _risk_quality.scan_skill(skill_md)
+    finally:
+        _risk_quality.read_text = original_read_text
 
 
 if __name__ == "__main__":

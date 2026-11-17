@@ -1,0 +1,17 @@
+# paper-polisher-pro 依赖声明（v5.0.0 起随包）
+#
+# 核心功能（AI率检测/门禁/改写建议/术语/翻译腔/质量报告/合规标识/包内自测）：
+#   零第三方依赖——纯 Python 标准库，Python 3.9+ 直接可用（pp_doctor 同门槛），无需 pip install。
+#
+# 下面两条是可选增强（监督层路径专用，不装核心功能照常可用）：
+#   onnxruntime  本地监督层推理（配合作者签发的 Qwen3-0.6B int8 ONNX 模型，
+#                一键安装用 scripts/pp_setup.py，md5 指纹校验+推理金丝雀）
+#   regex        监督层文本预处理增强分词（pp_doctor 探针项）
+#   numpy        监督层输入张量构建
+#
+# 需要监督层时安装（不需要则跳过本文件）：
+#   pip install -r requirements.txt        # 等价于 pip install onnxruntime regex numpy
+# 环境自检：python3 scripts/pp_doctor.py
+onnxruntime>=1.16
+regex>=2023.0
+numpy>=1.24

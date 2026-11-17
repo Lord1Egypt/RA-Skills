@@ -1,41 +1,48 @@
-## Description: <br>
-Helps users configure their own Xianyu and Sam's Club account details and follow a self-service ordering workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through configuring personal Xianyu and Sam's Club account details for self-service ordering help.
 
-## Publisher: <br>
-[SxLiuYu](https://clawhub.ai/user/SxLiuYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[sxliuyu](https://clawhub.ai/user/sxliuyu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can use this skill to configure their own Xianyu/Taobao and Sam's Club account details, check local environment setup, and follow a manual self-ordering flow.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Sensitive marketplace cookies or phone numbers may be placed in a shared workspace environment file without a demonstrated need.
+
+Mitigation: Prefer the manual ordering flow and avoid storing real Taobao/Xianyu session cookies for this version; provide account details only when an implemented action requires them and use secure secret storage with revocation guidance.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to check account configuration and receive guidance for Sam's Club purchases coordinated through Xianyu. The recommended flow keeps ordering and payment in the user's own Sam's Club app or mini program. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global, subject to local availability of Xianyu and Sam's Club services. <br>
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Session cookies or account details stored in the workspace can grant access to a user's Xianyu or Sam's Club account if exposed. <br>
-Mitigation: Keep the .env file private, avoid sharing the workspace with untrusted skills, and remove or rotate cookies when they are no longer needed. <br>
-Risk: Automated ordering with account credentials can create unwanted account or purchase activity. <br>
-Mitigation: Prefer the manual ordering flow and confirm purchases directly in the user's own Sam's Club app or mini program. <br>
+**Output Format:** [Markdown with inline bash code blocks and command-line text output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SxLiuYu/xianyu-sam-order) <br>
-- [Publisher profile](https://clawhub.ai/user/SxLiuYu) <br>
+**Other Properties Related to Output:** [May reference environment variable names for account configuration; no structured API output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference XIANYU_COOKIE and SAM_PHONE environment variables; manual ordering is recommended.] <br>
+1.0.1 (source: SKILL.md frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

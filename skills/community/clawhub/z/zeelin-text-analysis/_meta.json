@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn72r7h7299j497zc04rxrvc2x827nhs",
-  "slug": "zeelin-text-analysis",
+  "slug": "text-analysis-skill",
   "version": "1.0.0",
-  "publishedAt": 1776146067558
+  "name": "文本分析技能",
+  "description": "文本内容分析，支持本地文件直接上传，自动提取实体、生成关系图谱、角色档案",
+  "author": "Your Name",
+  "license": "MIT"
 }

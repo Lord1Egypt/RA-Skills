@@ -28,6 +28,35 @@ description: >
 
 ---
 
+## 📚 书库归档（Library · 每期必做）
+
+本 skill 产出的**所有东西（讲稿 / 配图 / 语音 / 朗读稿）都要按章节顺序归档到自己的书目录**，将来可以按顺序导出成一本书（Markdown / HTML，后续可转 PDF、PPT），用户不用 AI、也不用在聊天记录里翻。
+
+- 书目录：`/workspace/library/tongjian/`（本书专属，别的 skill 不往这里写）
+- 每期一个文件夹：`/workspace/library/tongjian/volVVV/epNNN/`（VVV = 卷号三位，NNN = 全书讲号三位，如 `vol001/ep001/`）
+  - `lecture.md` 讲稿（图片/音频用**相对路径**引用，文件夹自包含）
+  - `image.png` 配图
+  - `voice.mp3` 语音
+  - `read.txt` 朗读稿
+- `book.json`：按期号排序的清单（导出脚本读它）；`index.md`：目录（期号、卷、标题、日期、相对链接）。两者都由归档脚本自动维护，**不要手改**。
+- 归档脚本：`/workspace/library/library.py`（导出：`/workspace/library/export_book.py tongjian`）。脚本源文件在本仓库 `daily-library/`；安装时复制或软链接到 `/workspace/library/`，上面的命令默认走这个运行时路径。
+
+归档命令（文件可以先生成在任意临时位置，脚本会复制进书目录、把讲稿里的图片/音频改成相对链接、更新 `book.json` 和 `index.md`）：
+
+```bash
+python3 /workspace/library/library.py add --book tongjian --episode <N> --chapter <卷号> --title "本期标题" \
+  --date <YYYY-MM-DD，太平洋时间当天> --range "<时代/年号>" \
+  --lecture <讲稿.md> --image <配图文件> --audio <语音.mp3> --read <朗读稿.txt>
+```
+
+- **分件归档、可重复执行**：文字写好就先 `add --lecture`（保底）；配图、语音做好后再用**同一个 `--episode` 和 `--chapter`** 各补一次 `add --image …` / `add --audio … --read …`。重复 add 同一期只会补齐/覆盖对应文件，不会重复建期。
+- 查缺补漏：`python3 /workspace/library/library.py status --book tongjian` 列出每期缺哪件（`missing`），以及 `next_episode`。
+- 期号 `<N>` 以本 skill 进度为准（全书累计讲号 = `progress.py status` 的 `history` 条数 + 1；卷号用 `currentVolume`），与讲稿标题里的"第 N 讲"一致。
+- 归档失败**不阻塞**给用户的交付（吞错继续），但要尽量完成；不要把归档路径、脚本输出念给用户或写进讲稿正文。
+- 用户说"导出 通鉴"时：`python3 /workspace/library/export_book.py tongjian` → 生成 `/workspace/library/tongjian/export/tongjian.md` 和 `tongjian.html`（按期序、带图和音频播放器）；加 `--embed-images` 可把图片内嵌进单个 HTML，`--from/--to` 选期号范围。
+
+---
+
 ## 首次使用 / First Run
 
 第一次触发时，询问用户语言偏好：
@@ -66,6 +95,8 @@ python3 SKILL_DIR/scripts/progress.py status
 读取 `SKILL_DIR/references/style-guide.md`，了解讲稿格式和风格要求。
 
 ### Step 4: 生成讲稿内容
+
+> 讲稿写好后先存成 md 文件并**立即归档**：`library.py add --book tongjian --episode N --chapter <卷号> --title "本讲标题" --lecture <讲稿.md>`（→ `/workspace/library/tongjian/volVVV/epNNN/lecture.md`），再继续配图、语音。
 
 根据进度和语言偏好，生成一篇讲稿。**内容由AI根据对《资治通鉴》的知识生成**，不依赖预存文本。
 
@@ -146,6 +177,7 @@ python3 SKILL_DIR/scripts/progress.py status
 - 优先画：朝堂对峙、军阵、夜行、密谋、城门、流亡、使者入营、雨夜灯火、边塞军报等。
 - 风格建议：水墨风、工笔历史画、或电影分镜感。
 - 避免把历史人物画成高度可识别的固定脸谱；重点是氛围、动作、空间关系。
+- 生成后归档：`library.py add --book tongjian --episode N --chapter <卷号> --image <图>`（→ `/workspace/library/tongjian/volVVV/epNNN/image.png`）。
 
 ### Step 6: 生成语音（默认执行）
 
@@ -161,6 +193,8 @@ python3 SKILL_DIR/scripts/progress.py status
   - 下期预告
 - 中文讲稿建议使用浑厚稳重、讲史感较强的声音。
 - 若有条件，可把原文中的一小段单独读得更庄重，增强仪式感。
+- 合成：`uvx edge-tts --voice zh-CN-YunjianNeural --rate=-5% --file <read.txt> --write-media <voice.mp3>`（或沿用当前环境的语音设置）。
+- 生成后归档：`library.py add --book tongjian --episode N --chapter <卷号> --audio <voice.mp3> --read <朗读稿.txt>`（→ `epNNN/voice.mp3`、`read.txt`）。
 
 ### Step 7: 完成后再更新进度
 
@@ -175,6 +209,16 @@ python3 SKILL_DIR/scripts/progress.py status
 ```bash
 python3 SKILL_DIR/scripts/progress.py advance --title "本讲标题" --next "下讲预告标题"
 ```
+
+### Step 6.5: 确认书库归档（重要）
+
+讲稿、配图、语音都要按「书库归档」一节存进 `/workspace/library/tongjian/volVVV/epNNN/`。推进进度前跑：
+
+```bash
+python3 /workspace/library/library.py status --book tongjian
+```
+
+确认本讲 `missing` 为空（或只缺确实失败、用户已接受的那件）。这一步失败**不阻塞**已完成的交付（吞错继续），但要尽量完成。
 
 如果图或语音因技术原因失败：
 - 仍可先交付已经完成的内容

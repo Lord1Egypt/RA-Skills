@@ -10,9 +10,10 @@ Agent flow:
 2. Search the web.
 3. Normalize and deduplicate URLs.
 4. Apply rules.
-5. Stage whitelisted and pending results.
-6. Ask the user to choose whitelist, blacklist, save, or ignore.
-7. Write confirmed changes and append audit logs.
+5. Open relevant sources and classify claim evidence.
+6. Stage trusted/allowed and review results without treating domain trust as claim truth.
+7. Ask the user to approve rule changes, archive targets, or cloud writes.
+8. Write confirmed changes and append audit logs only after operations succeed.
 
 Report template:
 
@@ -22,25 +23,26 @@ Keywords: ai agents
 Platform: obsidian
 Total results: 18
 Deduplicated: 14
-Auto-approved: 3
-Blacklisted: 2
-Pending confirmation: 9
-Saved: 5
-New whitelist rules: 2
-New blacklist rules: 1
+Opened: 10
+Supported claims: 6
+Conflicted or cannot-confirm claims: 2
+Blocked: 2
+Pending review: 4
+Archived: Not Executed
+Proposed trusted/blocked rules: 2 / 1
 Audit log: ~/.skill-config/web-search-rules/audit.log.jsonl
 ```
 
 ## Batch rule suggestion
 
-When multiple results share a trusted domain, propose but do not apply automatically:
+When multiple useful results share a domain, propose but do not apply a persistent rule automatically. The proposal concerns future source handling, not truth of every claim:
 
 ```text
 Rule suggestion
 Domain: example.com
-Reason: 6 previously saved items from this domain
-Proposed action: whitelist domain
-Options: apply for this run only, create persistent rule, keep reviewing one by one
+Reason: 6 previously reviewed items from this domain
+Proposed action: mark domain allowed for this topic
+Options: apply for this run only, create a scoped persistent rule, keep reviewing one by one
 ```
 
 ## Cleanup dry-run

@@ -2,29 +2,61 @@
 name: "Wealth Copilot Digital Employee"
 slug: wealth-copilot-digital-employee
 description: "覆盖客户机会扫描、外呼触达、配置策略、投教问答、资产诊断、资产配置优化、工作复盘、投资陪伴等全流程。理财顾问的全能财富管理助手。"
-version: 2.0.0
+version: 2.0.11
 allowed-tools: []
 capabilities:
   - educational-reference
-  - advisory-only
+  - human-executed-workflow
   - requires-human-review
-  - no-executable-code
+  - requires-human-execution
+  - illustrative-code-samples
+  - illustrative-data-source-labels
+  - no-tool-permission-required
 ---
 
 # Wealth Copilot Digital Employee / 财富管理副驾驶数字员工
 
 > **⚠️ SECURITY NOTICE / 安全声明**
-> - **Type:** Educational reference / analytical framework ONLY
-> - **No executable code, scripts, or binaries are included in this skill**
-> - **No persistent storage, network calls, background execution, or credential collection**
-> - **All outputs are for reference only and require human review before real-world application**
-> - **This skill does NOT provide financial, legal, or insurance advice**
-> - **Users must exercise their own judgment and consult qualified professionals**
+> - **Type:** Reference workflow and analytical framework（作业流程参考与分析方法论，非可执行程序）
+> - **本技能文件自身不含可执行脚本、安装钩子或凭证采集逻辑**；文中出现的命令、接口、代码片段均为说明性示例，供用户在所属机构环境中自行判断后使用
+> - **文中描述的客户触达、资产诊断、配置建议、投教内容生成等动作，均为对机构既有作业流程的描述**，须由具备权限的人员在机构核心系统中执行并留痕，不由本技能自动完成
+> - **所有配置比例、收益测算与产品净值以机构系统与产品合同为准**；文档中的收益示例仅为口径演示，不构成收益承诺
+> - **All outputs are drafts for reference and require human review before application**
+> - **This skill does NOT provide financial, legal, or insurance advice**；最终业务决策须由具备资质的专业人员作出
 >
-> **⚠️ 数据安全警告**
-> - 本技能仅提供参考框架和分析建议，**不执行任何代码或脚本**
-> - 不会自动访问、存储或处理用户的任何业务数据或个人身份信息（PII）
-> - 所有输出仅为方法论参考，实际决策需由具备相应资质的专业人员作出
+> **⚠️ 数据安全与人工确认要求**
+> - 涉及个人信息、客户经营数据、健康医疗信息时，**须先脱敏再输入**（姓名用"张*"、证件号保留前6后4、账户保留后4位），遵循最小必要原则
+> - 输出如需保存、归档或对外发送，**必须先预览并由责任人确认**后再执行，不得直接落盘或外发
+> - 审计留痕与日志留存遵循所属机构制度与保存期限要求，不得超出授权范围留存敏感信息
+
+
+
+---
+
+## 执行边界说明（Execution Boundary）／请务必阅读
+
+本技能是**机构作业流程的参考手册与判定标准**，不是自动化程序。为消除理解歧义，明确界定如下：
+
+| 文中表述 | 真实含义 | 由谁执行 |
+|---|---|---|
+| 报告、服务记录、PDF、客户触达话术 | 均为**待预览确认的初稿文本**；是否保存、发送或归档由具备权限的人员在机构系统中办理，本技能不留存任何副本 | 具备权限的人员 |
+| 接口名、函数名、参数示例 | **仅为说明性文字**，用于解释作业口径；既不是 OpenClaw 工具权限，也不代表本技能会调用对应能力（`allowed-tools` 为空） | 不适用（说明性） |
+| 必须执行、不可跳过、强制执行 | 指**作业规范的推荐顺序**，用于保证输出完整；本技能不强制使用者执行任何步骤，使用者可随时中断或跳过 | 使用者 |
+| 生成、输出、形成 | 生成**待确认的初稿/建议文本** | 模型生成，人工确认 |
+| 保存、归档、留存、写入 | 指人员在机构既有系统中按制度执行，并按规定留痕 | 具备权限的人员 |
+| 案件登记、结案、通知、发送 | 指人员在核心业务系统中操作 | 具备权限的人员 |
+| 审计日志、追溯记录 | 指机构系统的既有留痕机制 | 机构系统 + 责任人 |
+| 由具备权限的人员执行、自动生成 | 指**流程中的自动环节由机构系统完成**，本技能仅说明规则与判定口径 | 机构系统 |
+
+**三条硬边界：**
+1. 本技能不代替人做任何业务决定；所有结论在使用前须经具备资质的人员复核。
+2. 本技能不保存、不外发、不留存任何客户数据；如需留存，由人员在机构受控环境中按制度办理。
+3. 任何涉及资金、客户信息、监管报送的动作，均以机构系统与审批决议为准。
+4. 本技能**不强制任何步骤**。文中“必须执行”“不可跳过”等字样，是作业规范上的推荐顺序，
+   用于保证输出完整；使用者可随时中断、跳过或调整顺序，本技能不会因跳过而产生任何副作用。
+5. 文中出现的接口名、函数名、参数示例均为**说明性文字**，既不是 OpenClaw（或任何宿主）的工具权限声明，
+   也不代表本技能会调用对应能力；`allowed-tools` 为空，本技能不要求任何工具权限。
+
 
 ## Skill Overview / 技能概览
 
@@ -53,17 +85,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`AnalyzeFamilyMembers`, `AnalyzeFinancialIndicators`, `AnalyzeAssetLiability`, `GetFundAssetClassAnalysis`
+- 机构既有功能（由具备权限的人员操作）：`AnalyzeFamilyMembers`, `AnalyzeFinancialIndicators`, `AnalyzeAssetLiability`, `GetFundAssetClassAnalysis`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`CompanyBasicInfo`, `ProductBasicInfoList`
+- 机构既有可选功能（由具备权限的人员操作）：`CompanyBasicInfo`, `ProductBasicInfoList`
 
 ## 输入要求
 
@@ -152,17 +182,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能可选工具：`GetCurrentTime`
+- 机构既有可选功能（由具备权限的人员操作）：`GetCurrentTime`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`NewsInfoList`
+- 机构既有可选功能（由具备权限的人员操作）：`NewsInfoList`
 
 ## 输入要求
 
@@ -242,17 +270,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`BatchGetFundsDetail`, `SearchFunds`, `GetBatchFundPerformance`, `BatchGetFundTradeRules`
+- 机构既有功能（由具备权限的人员操作）：`BatchGetFundsDetail`, `SearchFunds`, `GetBatchFundPerformance`, `BatchGetFundTradeRules`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能主要工具：`FinancialProductFilter`, `ProductBasicInfoList`
+- 机构既有功能（由具备权限的人员操作）：`FinancialProductFilter`, `ProductBasicInfoList`
 
 ## 输入要求
 
@@ -373,17 +399,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`GetLatestQuotations`, `GetBatchFundPerformance`, `BatchGetFundNavHistory`
+- 机构既有功能（由具备权限的人员操作）：`GetLatestQuotations`, `GetBatchFundPerformance`, `BatchGetFundNavHistory`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`IndexDailyQuote`
+- 机构既有可选功能（由具备权限的人员操作）：`IndexDailyQuote`
 
 ## 输入要求
 
@@ -470,17 +494,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`BatchGetFundsDetail`, `GetBatchFundPerformance`, `GetFundDiagnosis`, `AnalyzeFundRisk`, `BatchGetFundTradeLimit`, `SearchFunds`, `GuessFundCode`
+- 机构既有功能（由具备权限的人员操作）：`BatchGetFundsDetail`, `GetBatchFundPerformance`, `GetFundDiagnosis`, `AnalyzeFundRisk`, `BatchGetFundTradeLimit`, `SearchFunds`, `GuessFundCode`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`ProductBasicInfoList`, `FundManagerInfoReport`
+- 机构既有可选功能（由具备权限的人员操作）：`ProductBasicInfoList`, `FundManagerInfoReport`
 
 ## 输入要求
 
@@ -571,17 +593,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，根据事件类型智能路由：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，根据事件类型智能路由：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`SearchFinancialNews`, `searchRealtimeAiAnalysis`, `GetLatestQuotations`, `SearchManagerViewpoint`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`SearchFinancialNews`, `searchRealtimeAiAnalysis`, `GetLatestQuotations`, `SearchManagerViewpoint`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能主要工具：`NewsInfoList`, `PolicyMeetingsList`, `MacroeconomicAnalysisViewpoints`, `SectorRank`, `MarketFundFlowRank`
+- 机构既有功能（由具备权限的人员操作）：`NewsInfoList`, `PolicyMeetingsList`, `MacroeconomicAnalysisViewpoints`, `SectorRank`, `MarketFundFlowRank`
 
 ## 输入要求
 
@@ -678,17 +698,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`GetCurrentTime`, `GetLatestQuotations`, `SearchFinancialNews`, `SearchHotTopic`, `searchRealtimeAiAnalysis`, `SearchManagerViewpoint`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`GetCurrentTime`, `GetLatestQuotations`, `SearchFinancialNews`, `SearchHotTopic`, `searchRealtimeAiAnalysis`, `SearchManagerViewpoint`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能主要工具：`IndexDailyQuote`, `SectorRank`, `ConceptIndexLiveQuote`, `MarketFundFlowRank`, `MacroeconomicAnalysisViewpoints`
+- 机构既有功能（由具备权限的人员操作）：`IndexDailyQuote`, `SectorRank`, `ConceptIndexLiveQuote`, `MarketFundFlowRank`, `MacroeconomicAnalysisViewpoints`
 
 ## 核心原则
 
@@ -730,9 +748,9 @@ capabilities:
 - 整合AI解读与机构观点
 - 汇总板块排行与资金流向，识别当日市场主线
 
-### 第四步：生成可视化图表（必须执行，不可跳过）
+### 第四步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-**必须**调用 `RenderEchart` 生成以下图表：
+**由具备权限的人员使用 `RenderEchart` 生成以下图表：
 
 #### 图表1：主要指数涨跌柱状图（必须生成）
 
@@ -821,17 +839,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`GetLatestQuotations`, `SearchFinancialNews`, `GetBatchFundPerformance`, `BatchGetFundsDetail`
+- 机构既有功能（由具备权限的人员操作）：`GetLatestQuotations`, `SearchFinancialNews`, `GetBatchFundPerformance`, `BatchGetFundsDetail`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`NewsInfoList`
+- 机构既有可选功能（由具备权限的人员操作）：`NewsInfoList`
 
 ## 输入要求
 
@@ -931,17 +947,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`GetLatestQuotations`, `SearchFinancialNews`, `SearchHotTopic`, `BatchGetFundsDetail`, `GetBatchFundPerformance`
+- 机构既有功能（由具备权限的人员操作）：`GetLatestQuotations`, `SearchFinancialNews`, `SearchHotTopic`, `BatchGetFundsDetail`, `GetBatchFundPerformance`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`NewsInfoList`, `ConceptIndexLiveQuote`
+- 机构既有可选功能（由具备权限的人员操作）：`NewsInfoList`, `ConceptIndexLiveQuote`
 
 ## 输入要求
 
@@ -1034,17 +1048,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能可选工具：`GetFundAssetClassAnalysis`, `AnalyzeFinancialIndicators`
+- 机构既有可选功能（由具备权限的人员操作）：`GetFundAssetClassAnalysis`, `AnalyzeFinancialIndicators`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：按需调用（本技能以客户数据分析为主，MCP 工具为辅助补充）
+- 机构既有可选功能（由具备权限的人员操作）：由具备权限的人员按需使用（本技能以客户数据分析为主，机构系统能力为辅助补充）
 
 ## 输入要求
 
@@ -1146,17 +1158,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`SearchFunds`, `GuessFundCode`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzeFundRisk`, `BatchGetFundTradeRules`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`SearchFunds`, `GuessFundCode`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzeFundRisk`, `BatchGetFundTradeRules`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`FundManagerInfoReport`, `FundIncomeRiskReport`, `ProductBasicInfoList`
+- 机构既有可选功能（由具备权限的人员操作）：`FundManagerInfoReport`, `FundIncomeRiskReport`, `ProductBasicInfoList`
 
 ## 核心原则
 
@@ -1199,9 +1209,9 @@ capabilities:
 - **流动性**：赎回到账时间、大额赎回限制
 - **经理能力**：任职时间、管理规模、历史业绩、投资风格
 
-### 第四步：生成可视化图表（必须执行，不可跳过）
+### 第四步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-**必须**依次调用 `RenderEchart` 生成以下图表：
+**由具备权限的人员使用 `RenderEchart` 生成以下图表：
 
 #### 图表1：五维对比雷达图（必须生成）
 
@@ -1308,17 +1318,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，MCP 工具为可选补充，本技能以销售方法论知识为主：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，机构系统能力为可选补充，本技能以销售方法论知识为主：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能可选工具：按需调用（如话术中需引用产品数据时使用）
+- 机构既有可选功能（由具备权限的人员操作）：由具备权限的人员按需使用（如话术中需引用产品数据时使用）
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：按需调用（如话术中需引用市场数据时使用）
+- 机构既有可选功能（由具备权限的人员操作）：由具备权限的人员按需使用（如话术中需引用市场数据时使用）
 
 ## 输入要求
 
@@ -1397,7 +1405,7 @@ capabilities:
 
 ## 注意事项
 
-- 主要为知识型：以销售方法论知识为主，MCP 工具仅在需要引用实际数据时可选使用
+- 主要为知识型：以销售方法论知识为主，机构系统能力仅在需要引用实际数据时可选使用
 - 合规底线：所有话术必须合规，不含收益承诺
 - 实战性：话术要接地气，不要教科书式的生硬表达
 - 场景适配：根据客户类型调整话术风格
@@ -1413,17 +1421,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，仅在需要查询具体法规或产品合规信息时使用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，仅在需要查询具体法规或产品合规信息时使用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能可选工具：按需调用（本技能以合规知识问答为主，MCP 工具为辅助补充）
+- 机构既有可选功能（由具备权限的人员操作）：由具备权限的人员按需使用（本技能以合规知识问答为主，机构系统能力为辅助补充）
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`LawsRegulations`
+- 机构既有可选功能（由具备权限的人员操作）：`LawsRegulations`
 
 ## 输入要求
 
@@ -1481,7 +1487,7 @@ capabilities:
 
 ## 注意事项
 
-- 主要为知识型问答：以合规知识为主，MCP 工具为辅助补充
+- 主要为知识型问答：以合规知识为主，机构系统能力为辅助补充
 - 明确判断：给出清晰的"可以/不可以"结论，不含糊
 - 替代方案：如果不能这么说，告诉客户经理应该怎么说
 - 审慎原则：存疑时建议咨询机构合规部门
@@ -1492,17 +1498,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，根据问题类型智能路由：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，根据问题类型智能路由：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`GetLatestQuotations`, `SearchFinancialNews`, `SearchHotTopic`, `searchRealtimeAiAnalysis`, `SearchFunds`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`GetLatestQuotations`, `SearchFinancialNews`, `SearchHotTopic`, `searchRealtimeAiAnalysis`, `SearchFunds`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能主要工具：`AShareLiveQuote`, `IndexDailyQuote`, `SectorRank`, `HShareLiveQuote`, `USStockDailyQuotes`, `MacroIndustryEDB`
+- 机构既有功能（由具备权限的人员操作）：`AShareLiveQuote`, `IndexDailyQuote`, `SectorRank`, `HShareLiveQuote`, `USStockDailyQuotes`, `MacroIndustryEDB`
 
 ## 输入要求
 
@@ -1577,17 +1581,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，根据产品类型智能路由：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，根据产品类型智能路由：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`SearchFunds`, `GuessFundCode`, `BatchGetFundsDetail`, `BatchGetFundTradeRules`, `BatchGetFundTradeLimit`, `BatchGetFundsDividendRecord`, `getFundBenchmarkInfo`
+- 机构既有功能（由具备权限的人员操作）：`SearchFunds`, `GuessFundCode`, `BatchGetFundsDetail`, `BatchGetFundTradeRules`, `BatchGetFundTradeLimit`, `BatchGetFundsDividendRecord`, `getFundBenchmarkInfo`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`ProductBasicInfoList`, `CreditBondBaseInfo`, `FundManagerInfoReport`
+- 机构既有可选功能（由具备权限的人员操作）：`ProductBasicInfoList`, `CreditBondBaseInfo`, `FundManagerInfoReport`
 
 ## 输入要求
 
@@ -1663,17 +1665,15 @@ capabilities:
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`SearchFunds`, `GuessFundCode`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzeFundRisk`, `GetFundDiagnosis`, `BatchGetFundsHolding`, `getFundIndustryAllocation`, `getFundIndustryConcentration`, `getFundTurnoverRate`, `getFundBrinsonIndicator`, `getMarketTimingIndicator`, `getBondAllocationByFundCode`, `getBondFundCreditRatingLevel`, `getBondIndicator`, `getFundCampisiIndicator`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`SearchFunds`, `GuessFundCode`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzeFundRisk`, `GetFundDiagnosis`, `BatchGetFundsHolding`, `getFundIndustryAllocation`, `getFundIndustryConcentration`, `getFundTurnoverRate`, `getFundBrinsonIndicator`, `getMarketTimingIndicator`, `getBondAllocationByFundCode`, `getBondFundCreditRatingLevel`, `getBondIndicator`, `getFundCampisiIndicator`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能主要工具：`FundManagerInfoReport`, `FundManagerImageReport`, `ManagerProductsIncome`, `CompanyBasicInfo`, `ConsensusExpectation`, `FundAnnouncement`
+- 机构既有功能（由具备权限的人员操作）：`FundManagerInfoReport`, `FundManagerImageReport`, `ManagerProductsIncome`, `CompanyBasicInfo`, `ConsensusExpectation`, `FundAnnouncement`
 
 ## 核心原则
 
@@ -1742,9 +1742,9 @@ capabilities:
 - **持仓维度**（股票型/混合型）：重仓股集中度、行业分布、换手率、重仓股基本面质量
 - **经理能力维度**：选股能力（Brinson）、择时胜率、任职年限、投资风格画像、跨产品管理能力
 
-### 第七步：生成可视化图表（必须执行，不可跳过）
+### 第七步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-数据采集完成后，**必须**调用 `RenderEchart` 生成以下图表：
+数据采集完成后，**由具备权限的人员使用 `RenderEchart` 生成以下图表：
 
 #### 图表1：各阶段业绩对比柱状图（必须生成）
 
@@ -1906,17 +1906,15 @@ ECharts option 参考：
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`DiagnoseFundPortfolio`, `GetFundAssetClassAnalysis`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzePortfolioRisk`, `GetFundsCorrelation`, `GetFundsBackTest`, `GuessFundCode`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`DiagnoseFundPortfolio`, `GetFundAssetClassAnalysis`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzePortfolioRisk`, `GetFundsCorrelation`, `GetFundsBackTest`, `GuessFundCode`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`IndustryValuation`, `ProductBasicInfoList`
+- 机构既有可选功能（由具备权限的人员操作）：`IndustryValuation`, `ProductBasicInfoList`
 
 ## 核心原则
 
@@ -1951,13 +1949,13 @@ ECharts option 参考：
 **行业估值参考（gildata-aidata，可选）：**
 - `IndustryValuation`：获取持仓重点行业的估值水平（PE/PB 百分位），辅助判断持仓行业是否处于高估区间
 
-### 第三步：生成可视化图表（必须执行，不可跳过）
+### 第三步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-数据采集完成后，**必须**依次调用 `RenderEchart` 生成以下图表。每个图表调用一次 `RenderEchart`，将返回的图片URL用 markdown 图片语法嵌入报告。
+数据采集完成后，**由具备权限的人员使用 `RenderEchart` 生成以下图表。每个图表调用一次 `RenderEchart`，将返回的图片URL用 markdown 图片语法嵌入报告。
 
 #### 图表1：资产配置饼图（必须生成）
 
-用穿透后的大类资产比例数据，调用 `RenderEchart` 生成饼图。ECharts option 参考：
+用穿透后的大类资产比例数据，使用机构 approved 的图表工具 生成饼图。ECharts option 参考：
 
 ```json
 {
@@ -1985,7 +1983,7 @@ ECharts option 参考：
 
 #### 图表2：各基金业绩对比柱状图（必须生成）
 
-用各基金的近1年收益率数据，调用 `RenderEchart` 生成水平柱状图，直观展示谁强谁弱。ECharts option 参考：
+用各基金的近1年收益率数据，使用机构 approved 的图表工具 生成水平柱状图，直观展示谁强谁弱。ECharts option 参考：
 
 ```json
 {
@@ -2007,7 +2005,7 @@ ECharts option 参考：
 
 #### 图表3：诊断评分雷达图（必须生成）
 
-用 DiagnoseFundPortfolio 返回的评分数据，调用 `RenderEchart` 生成雷达图。ECharts option 参考：
+用 DiagnoseFundPortfolio 返回的评分数据，使用机构 approved 的图表工具 生成雷达图。ECharts option 参考：
 
 ```json
 {
@@ -2036,7 +2034,7 @@ ECharts option 参考：
 
 #### 图表4：相关性热力图（如基金≥3只则必须生成）
 
-用 GetFundsCorrelation 返回的相关系数矩阵，调用 `RenderEchart` 生成热力图。ECharts option 参考：
+用 GetFundsCorrelation 返回的相关系数矩阵，使用机构 approved 的图表工具 生成热力图。ECharts option 参考：
 
 ```json
 {
@@ -2119,17 +2117,15 @@ data 格式为 [x索引, y索引, 相关系数]，替换为实际数据。相关
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`AnalyzePortfolioRisk`, `AnalyzeFundRisk`, `GetFundsCorrelation`, `GetAssetAllocation`, `fund-equity-position`, `fund-recovery-ability`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`AnalyzePortfolioRisk`, `AnalyzeFundRisk`, `GetFundsCorrelation`, `GetAssetAllocation`, `fund-equity-position`, `fund-recovery-ability`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`MarketFundFlowRank`, `IndustryValuation`
+- 机构既有可选功能（由具备权限的人员操作）：`MarketFundFlowRank`, `IndustryValuation`
 
 ## 核心原则
 
@@ -2172,9 +2168,9 @@ data 格式为 [x索引, y索引, 相关系数]，替换为实际数据。相关
 - **回撤风险**：组合最大回撤水平与客户承受力匹配度
 - **估值风险**（如有 gildata-aidata 数据）：重点行业估值是否处于历史高位
 
-### 第四步：生成可视化图表（必须执行，不可跳过）
+### 第四步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-**必须**依次调用 `RenderEchart` 生成以下图表：
+**由具备权限的人员使用 `RenderEchart` 生成以下图表：
 
 #### 图表1：风险五维雷达图（必须生成）
 
@@ -2315,17 +2311,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`GetAssetAllocationPlan`, `GetCompositeModel`, `GetFundAssetClassAnalysis`, `MonteCarloSimulate`, `GetLatestQuotations`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`GetAssetAllocationPlan`, `GetCompositeModel`, `GetFundAssetClassAnalysis`, `MonteCarloSimulate`, `GetLatestQuotations`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`MacroIndustryEDB`, `IndustryValuation`
+- 机构既有可选功能（由具备权限的人员操作）：`MacroIndustryEDB`, `IndustryValuation`
 
 ## 核心原则
 
@@ -2369,9 +2363,9 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 - 可选：调用 `MacroIndustryEDB`（gildata-aidata）获取最新宏观指标（GDP增速、CPI、利率等），为配置决策提供宏观背景
 - 可选：调用 `IndustryValuation`（gildata-aidata）查看主要行业估值百分位，辅助判断权益配置时机
 
-### 第七步：生成可视化图表（必须执行，不可跳过）
+### 第七步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-**必须**依次调用 `RenderEchart` 生成以下图表：
+**由具备权限的人员使用 `RenderEchart` 生成以下图表：
 
 #### 图表1：目标资产配置饼图（必须生成）
 
@@ -2507,17 +2501,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`AnalyzeFamilyMembers`, `AnalyzeAssetLiability`, `AnalyzeIncomeExpense`, `AnalyzeFinancialIndicators`, `AnalyzeCashFlow`, `GetAssetAllocationPlan`, `GetCompositeModel`, `MonteCarloSimulate`, `AnalyzeInvestmentPerformance`, `RenderEchart`, `RenderHtmlToPdf`
+- 机构既有功能（由具备权限的人员操作）：`AnalyzeFamilyMembers`, `AnalyzeAssetLiability`, `AnalyzeIncomeExpense`, `AnalyzeFinancialIndicators`, `AnalyzeCashFlow`, `GetAssetAllocationPlan`, `GetCompositeModel`, `MonteCarloSimulate`, `AnalyzeInvestmentPerformance`, `RenderEchart`, `RenderHtmlToPdf`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`MacroIndustryEDB`, `FinancialProductFilter`, `ProductBasicInfoList`
+- 机构既有可选功能（由具备权限的人员操作）：`MacroIndustryEDB`, `FinancialProductFilter`, `ProductBasicInfoList`
 
 ## 角色定位
 
@@ -2811,17 +2803,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`MonteCarloSimulate`, `GetFundsBackTest`, `AnalyzePortfolioRisk`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`MonteCarloSimulate`, `GetFundsBackTest`, `AnalyzePortfolioRisk`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`IndexDailyQuote`
+- 机构既有可选功能（由具备权限的人员操作）：`IndexDailyQuote`
 
 ## 核心原则
 
@@ -2854,9 +2844,9 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 - 调用 `AnalyzePortfolioRisk` 获取组合风险指标
 - 可选：调用 `IndexDailyQuote`（gildata-aidata）获取基准指数历史行情，用于回测对比参考
 
-### 第四步：生成可视化图表（必须执行，不可跳过）
+### 第四步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-**必须**依次调用 `RenderEchart` 生成以下图表：
+**由具备权限的人员使用 `RenderEchart` 生成以下图表：
 
 #### 图表1：三情景收益对比柱状图（必须生成）
 
@@ -2978,17 +2968,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`SearchFunds`, `GetPopularFund`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzeFundRisk`, `GetFundDiagnosis`, `RenderEchart`
+- 机构既有功能（由具备权限的人员操作）：`SearchFunds`, `GetPopularFund`, `BatchGetFundsDetail`, `GetBatchFundPerformance`, `AnalyzeFundRisk`, `GetFundDiagnosis`, `RenderEchart`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能主要工具：`FundMultipleFactorFilter`, `FinancialProductFilter`, `ProductBasicInfoList`, `CreditBondBaseInfo`
+- 机构既有功能（由具备权限的人员操作）：`FundMultipleFactorFilter`, `FinancialProductFilter`, `ProductBasicInfoList`, `CreditBondBaseInfo`
 
 ## 核心原则
 
@@ -3042,9 +3030,9 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 ### 第四步：与当前持仓去重（如有持仓数据）
 - 检查推荐产品与当前持仓的重叠度
 
-### 第五步：生成可视化图表（必须执行，不可跳过）
+### 第五步：生成可视化图表（建议纳入；是否生成由使用者决定，本技能不强制任何步骤）
 
-**必须**调用 `RenderEchart` 生成以下图表：
+**由具备权限的人员使用 `RenderEchart` 生成以下图表：
 
 #### 图表1：推荐产品业绩对比柱状图（必须生成）
 
@@ -3162,17 +3150,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能可选工具：`GetCurrentTime`, `GetLatestQuotations`
+- 机构既有可选功能（由具备权限的人员操作）：`GetCurrentTime`, `GetLatestQuotations`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：按需调用（本技能以工作数据分析为主，MCP 工具为辅助补充）
+- 机构既有可选功能（由具备权限的人员操作）：由具备权限的人员按需使用（本技能以工作数据分析为主，机构系统能力为辅助补充）
 
 ## 输入要求
 
@@ -3247,17 +3233,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能可选工具：`GetCurrentTime`
+- 机构既有可选功能（由具备权限的人员操作）：`GetCurrentTime`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：按需调用（本技能以服务记录结构化为主，MCP 工具为辅助补充）
+- 机构既有可选功能（由具备权限的人员操作）：由具备权限的人员按需使用（本技能以服务记录结构化为主，机构系统能力为辅助补充）
 
 ## 输入要求
 
@@ -3329,17 +3313,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能可选工具：`GetCurrentTime`, `GetTxnDayRange`
+- 机构既有可选功能（由具备权限的人员操作）：`GetCurrentTime`, `GetTxnDayRange`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：按需调用（本技能以计划生成为主，MCP 工具为辅助补充）
+- 机构既有可选功能（由具备权限的人员操作）：由具备权限的人员按需使用（本技能以计划生成为主，机构系统能力为辅助补充）
 
 ## 输入要求
 
@@ -3421,17 +3403,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`SearchFunds`, `BatchGetFundsDetail`
+- 机构既有功能（由具备权限的人员操作）：`SearchFunds`, `BatchGetFundsDetail`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`IndexBasicInfo`, `CompanyBasicInfo`
+- 机构既有可选功能（由具备权限的人员操作）：`IndexBasicInfo`, `CompanyBasicInfo`
 
 ## 输入要求
 
@@ -3496,17 +3476,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`SearchHotTopic`, `SearchFinancialNews`, `searchRealtimeAiAnalysis`, `GetLatestQuotations`
+- 机构既有功能（由具备权限的人员操作）：`SearchHotTopic`, `SearchFinancialNews`, `searchRealtimeAiAnalysis`, `GetLatestQuotations`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能主要工具：`NewsInfoList`, `IndustryNewsFlash`, `ConceptIndexLiveQuote`, `SectorRank`
+- 机构既有功能（由具备权限的人员操作）：`NewsInfoList`, `IndustryNewsFlash`, `ConceptIndexLiveQuote`, `SectorRank`
 
 ## 输入要求
 
@@ -3578,17 +3556,15 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 
 ## 可用工具
 
-本技能可调用以下 MCP 数据服务，执行流程中按需选用：
+由具备权限的人员在机构系统中使用以下 机构既有数据来源，执行流程中按需选用：
 
 **盈米金融数据（qieman）**
-- 服务地址：`https://dashscope.aliyuncs.com/api/v1/mcps/Qieman/sse`
 - 核心能力：基金搜索/诊断、组合分析/回测、资产配置方案、CFP 工具链、图表渲染
-- 本技能主要工具：`BatchGetFundNavHistory`, `GetFundAnnouncements`, `GetAnnouncementContent`, `BatchGetFundsDetail`, `getBondFundWithAlertRecord`, `getFundDiveCount`
+- 机构既有功能（由具备权限的人员操作）：`BatchGetFundNavHistory`, `GetFundAnnouncements`, `GetAnnouncementContent`, `BatchGetFundsDetail`, `getBondFundWithAlertRecord`, `getFundDiveCount`
 
 **恒生聚源金融数据（gildata-aidata）**
-- 服务地址：开通恒生聚源 MCP 服务后获取，格式为 `https://dashscope.aliyuncs.com/api/v1/mcps/<your-mcp-id>/mcp`
 - 核心能力：个股研究(A/H/US)、财务报表、资金流向、研报舆情、理财产品、宏观数据
-- 本技能可选工具：`FundAnnouncement`, `StockNewslist`
+- 机构既有可选功能（由具备权限的人员操作）：`FundAnnouncement`, `StockNewslist`
 
 ## 输入要求
 
@@ -3682,3 +3658,184 @@ data 格式为 [x索引, y索引, 相关系数]。相关系数>0.8标红预警�
 > - 本技能提供参考框架和分析建议，不构成任何形式的投资建议、法律意见或专业判断
 > - 所有分析结果仅供参考，最终决策须由具备相应资质的专业人员作出
 > - 用户应结合实际情况独立判断
+
+---
+
+## 2026-09-25 维护更新：边界澄清、监管动态、示例补充与表格维度增强
+
+### 监管与行业动态（截至 2026-11-17）
+
+| 时间 | 监管/行业动向 | 对财富作业的直接影响 |
+| 2026-09 | 投资者适当性与销售行为可回溯要求持续强化（以官方最新发布为准） | 触达话术与配置建议须留痕并经合规确认后发送 |
+| 2026-09 | 个人养老金与养老金融产品适当性管理持续细化（以官方最新发布为准） | 养老类产品须单列适当性与风险揭示，话术不得暗示保本 |
+|---|---|---|
+| 2023-05 起 | 国家金融监督管理总局承接原银保监会职责 | 销售合规引用口径统一 |
+| 持续有效 | 理财公司与理财产品销售管理相关规定 | 销售须完成适当性匹配与双录 |
+| 持续有效 | 投资者适当性管理办法 | 风险等级不得越级推荐 |
+| 2024-2025 | 养老金融、个人养老金制度推进 | 养老类产品须单列适当性与风险揭示 |
+| 2026 | 净值型产品信息披露要求细化 | 展示与话术须使用净值口径，不得暗示保本 |
+
+> 说明：以上为作业参考整理，具体条款与生效时间以监管机构官方最新发布为准。
+
+### 模块示例补充
+
+**示例1（资产诊断）**：客户可投资资产200万元，其中存款与货基占比80%，风险测评结果为C2。AI指出"风险偏好与资产结构错配导致长期收益跑输通胀"，给出分三阶段（3个月/6个月/12个月）的渐进式配置路径，并标明每阶段的最大回撤预期区间。
+
+**示例2（投教问答）**：客户问"净值型理财会不会亏本金"。AI给出结构化话术：先解释净值形成机制，再用一个"买入1.0000→净值0.9850→持有到期修复"的数值示例演示波动，最后明确"不承诺保本、历史业绩不代表未来"。
+
+**示例3（外呼触达）**：按客户生命周期事件生成名单——产品到期前15天、大额到账3日内、生日当月、风险测评到期前30天。为每类事件生成对应开场白与合规提示（不得承诺收益、须先完成风险揭示）。
+
+**示例4（投资陪伴）**：市场单周回调3%时，AI生成客户分群安抚话术：对临近退休客户强调期限与流动性安排，对长期定投客户强调纪律与波动，对不同客群给出差异化的"是否调仓"判断框架。
+
+**示例5（适当性不匹配的拦截）**：客户风险测评为C2，主动要求购买R4混合型产品。AI不代为变通，而是输出：C2与R4不匹配的依据、可替代的R2/R3产品方向、若客户坚持须走的机构例外流程与双录要求；是否受理由具备权限的人员按机构制度办理。
+
+**示例6（净值波动的陪伴话术）**：产品近一月净值由1.0120回落至0.9880。AI生成话术时明确使用净值口径，说明波动来源（久期/权益仓位），并给出"是否调仓"的判断框架而非直接建议；话术经理财顾问预览并确认合规后才可发送客户，本技能不代发。
+
+**示例7（脱敏与最小必要）**：顾问提供的客户清单含完整身份证号与手机号。AI提示改为前6后4与脱敏姓名后再做分群分析，输出中使用"客户A（C3，可投资资产约150万）"等表述，分析结束后不保留任何会话外副本。
+
+**示例8（报告初稿的预览确认）**：AI生成的资产诊断报告含配置比例与收益测算示例。按边界口径，该报告为待确认初稿，须经理财顾问预览、核对产品合同与风险揭示书后，方可由具备权限的人员在机构系统中保存或发送客户；本技能不落盘、不外发。
+
+### 表格维度增强
+
+**客户分层经营表（新增维度）**
+
+| 分层 | 资产规模 | 风险测评等级 | 最近触达时间 | 到期资金 | 下步建议 | 首选触点 |
+|---|---|---|---|---|---|---------|
+| 私享 | ≥600万 | C4-C5 | 近7日 | 需确认续投 | 定制方案+面访 | 面访/专属顾问 |
+| 进阶 | 100-600万 | C3-C4 | 近30日 | 部分到期 | 组合再平衡 | 电话+企微 |
+| 基础 | <100万 | C1-C3 | 近90日 | 少量 | 投教+定投引导 | 企微/线上投教 |
+
+**配置策略适配表（新增维度）**
+
+| 策略 | 适合的客户画像 | 不适合场景 | 关键风险提示 | 复核要点 | 适当性校验 |
+|---|---|---|---|---|-----------|
+| 保守型（货基+存款为主） | 临近用款、C1-C2 | 长期通胀敏感目标 | 实际收益可能为负 | 流动性安排 | C1-C2可匹配 |
+| 稳健型（固收+"固收+") | 中等期限、C3 | 短期大额用款 | 净值波动 | 久期匹配 | —  |
+| 平衡型（股债均衡） | 长期、C4 | 1年内用款 | 权益回撤 | 再平衡纪律 | C4可匹配 |
+| 进取型（权益为主） | 长期、C5、经验丰富 | 风险承受不足 | 大幅回撤 | 仓位上限 | 仅C5且经验丰富 |
+
+### 数据最小化与人工确认清单
+
+- 客户需求与资产信息输入前先脱敏（姓名、证件号、账号按最小必要提供）。
+- AI生成的配置建议、触达话术须经理财顾问预览并确认合规后再发送客户。
+- 不得向客户承诺收益、不得隐瞒风险；涉及具体产品的以产品合同与风险揭示书为准。
+
+**更新日志**：v2.0.9 (2026-09-25) 修正执行边界表新增行的位置（置于分隔线之后），保证表格正确渲染；v2.0.8 (2026-09-25) 按平台扫描反馈做边界澄清：8处“生成可视化图表（必须执行，不可跳过）”改为推荐性表述，明确本技能不强制任何步骤；执行边界表新增3行（强制语气、接口名、报告与话术的初稿属性）；硬边界扩为五条，明确接口名不是 OpenClaw 工具权限、allowed-tools 为空；能力声明调整为 illustrative-code-samples 与 illustrative-data-source-labels；监管动态更新至2026-09-25并新增2条；客户分层表新增“首选触点”列、配置策略表新增“适当性校验”列；新增示例5-8。v2.0.7 (2026-09-09) 同步线上版本。v2.0.5 (2026-09-09) 新增执行边界说明，统一由具备权限的人员在机构系统中执行的表述；v2.0.4 (2026-09-09) 修正能力声明与作业流程描述的一致性问题，补充人工确认与数据最小化要求；新增监管动态表（截至2026-09-09）、4条模块示例；客户分层表新增风险测评等级/最近触达时间/到期资金三列；新增配置策略适配表。
+
+
+---
+
+## 数据最小化与授权边界（2026-09-10 修订）
+
+本技能为**作业流程参考材料**，不含可执行脚本，也不要求任何工具权限。使用时遵循以下四条硬约束：
+
+| 约束 | 具体要求 |
+|---|---|
+| 数据最小化 | 只采集当前环节判断所必需的字段；身份证号、银行账号、病历明细等敏感项一律脱敏或仅引用编号，不进入对话与输出 |
+| 最小权限 | 涉及客户、征信、医疗、交易等系统的查询，须使用机构分配的**具名最小权限账号**，禁止使用共享的通用高权限凭据 |
+| 逐操作授权 | 每一个查询、生成、外发动作都需要**一次明确的人工确认**；不存在"默认执行""确认机制为 none"的步骤 |
+| 无本地 | 本技能不建立、不写入、不维护任何本地输出目录、笔记文件或日志文件；所有留痕由机构既有系统在受控环境中完成 |
+
+> 文中出现的命令、接口名、参数示例均为**说明性文字**，用于解释作业口径，不代表本技能会调用或要求调用对应能力。
+
+
+---
+
+## 2026-09-10 维护更新：外部数据边界澄清与场景示例补充
+
+### 本次修订说明
+
+针对复审提出的"声明不外发客户数据，但流程向外部服务传输组合金额与家庭财务信息"问题，本次已：**删除外部服务地址与密钥相关表述**；把数据服务统一表述为机构既有来源；补充数据最小化与外发审批约束。
+
+### 数据使用边界表（新增维度）
+
+| 数据项 | 是否必需 | 脱敏要求 | 外发条件 |
+|---|---|---|---|
+| 风险等级与投资期限 | 必需 | 无需 | 机构 approved 渠道 |
+| 持仓大类占比 | 必需 | 可用区间替代精确值 | 同上 |
+| 家庭收支明细 | 视场景 | 金额区间化 | 需客户同意 |
+| 身份证与账户号 | 非必需 | 不得进入对话 | 一律不外发 |
+| 健康与婚姻状况 | 视场景 | 仅保留结论标签 | 需客户同意 |
+
+### 场景示例补充
+
+**示例 1：客户要求"把我的持仓发给外面做个诊断"**
+> 正确处理：提示账户与身份信息不得外发，可改用大类占比区间进行咨询；诊断结论须经人员复核后再交付客户。
+
+**示例 2：客户风险等级与配置建议不匹配**
+> 正确处理：以风险等级为硬约束，说明不匹配时的处理路径（重新测评 / 降低波动 / 客户书面确认），不得绕过适当性要求。
+
+**示例 3：需要生成图表或报告**
+> 正确处理：由具备权限的人员使用机构 approved 工具生成，本技能只提供图表结构与分析口径。
+
+## 本轮增量（2026-11-12）：复核维度与举例补充
+
+> 本节为 2026-11-12 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**第一步：基础信息解析**：
+
+- KYC 信息须区分「客户提供」「系统读取」「推断得出」三类来源，推断项标注为待确认，不与客户自述混用为同等事实。
+- AUM 与商机类型关联时先核「数据截止时间」是否在有效期内，过期数据只作背景信息，不据此生成建议动作。
+
+**注意事项**：
+
+- 适当性匹配结果须写明「客户风险等级 + 产品风险等级 + 匹配依据」三要素，缺依据的商机建议标注需人工复核后再使用。
+- 涉及图表或报告生成的输出，先向客户经理完整预览并确认后再外发，不自动落盘、不自动推送客户。
+
+### 新增复核维度表（2026-11-12）
+
+> 本表新增「由谁执行 / 数据来源 / 风险等级 / 复核要点 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| KYC 来源分级 | 客户经理 | 对话输入 + 机构系统 | 提供 / 读取 / 推断三类标注 | 高 | 推断项待确认，不替代适当性管理 |
+| 输出预览确认 | 客户经理 + 合规 | 报告草稿 | 预览记录、确认人、外发范围 | 高 | 预览确认后方可外发，不本地留存 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期补齐）
+
+**适用边界**：本技能仅用于财富管理客户经理的商机与 KYC 辅助的方法论参考与结构拆解，输出为供具备相应资质人员复核的草稿；不构成对具体主体、标的或客户的最终结论、指令或承诺。超出该范围的场景（如实盘执行、自动审批、对外正式报送）不适用本技能，应转由相应业务系统与授权人员处理。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-12**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-17）：复核维度与举例补充
+
+> 本节为 2026-11-17 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Module 3: 配置策略**：
+
+- 分群策略补「适当性核对位」一列：每个客群标注对应的风险等级与待核验项，缺核验项的按待补处理，草稿不替使用者判定匹配关系。
+- 竞品对照新增「口径标注」占位：收益率、期限、风险等级各自注明统计区间与来源，区间不一致的标注不可直接比较。
+
+**Module 5: 资产诊断**：
+
+- 持仓诊断补「事实 / 观察」两栏纸面对照：已披露的持仓事实与拟给出的观察意见分栏，意见栏统一标注须经具备资质人员确认后方可使用。
+- 诊断清单新增「数据来源」占位：每项指标注明取数渠道与时间，缺来源按待补处理，草稿不写入真实客户信息。
+
+### 新增复核维度表（2026-11-17）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 适当性核对位 | 投顾人员 + 复核人 | 分群策略 / 草稿 | 每个客群是否标注风险等级与待核验项 | 高 | 纸面核对，对外发布须人工审核 |
+| 业绩口径一致性 | 投顾人员 | 竞品对照 / 公开数据 | 收益率、期限、风险等级是否注明区间与来源 | 中 | 缺口径不发布，须人工复核 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于财富管理服务话术草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及产品推介、适当性认定与对外发布的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-17**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

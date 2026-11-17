@@ -1,42 +1,54 @@
-## Description: <br>
-Queries Payful account information including balances, transactions, and account details using PAYFUL_TOKEN and PAYFUL_USER_ID environment variables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Payful account information including balance, transactions, and account details using Payful session credentials supplied through environment variables.
 
-## Publisher: <br>
-[hugogu](https://clawhub.ai/user/hugogu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hugogu](https://clawhub.ai/user/hugogu)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve Payful account status and balance information for an authenticated Payful account. It is intended for trusted local environments where full Payful session-cookie credentials can be handled safely. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses full Payful browser-session cookies that can grant account access if exposed. <br>
-Mitigation: Run only in trusted local environments, keep PAYFUL_TOKEN and PAYFUL_USER_ID secret, and rotate or invalidate them if exposed. <br>
-Risk: The custom --api-url option can send Payful credentials to a user-supplied endpoint. <br>
-Mitigation: Use the default Payful endpoint unless the alternate HTTPS endpoint has been verified as official. <br>
+## Use Case:
 
+External users or agents use this skill to check Payful account balance and account details after supplying required Payful browser-session credentials in a trusted environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hugogu/query-payful-account) <br>
-- [Payful account balance endpoint](https://global.payful.com/api/user/account/queryUserAccBalByHomePage) <br>
-- [Payful global site](https://global.payful.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Plain text balance summary, normalized JSON account list, or raw API JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PAYFUL_TOKEN and PAYFUL_USER_ID; supports an optional custom API base URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill uses sensitive Payful browser-session credentials that can grant account access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a trusted environment, do not share PAYFUL_TOKEN or PAYFUL_USER_ID, and prefer scoped read-only credentials where available.
+
+Risk: The custom API URL option can send Payful session cookies to an unverified host.
+
+Mitigation: Do not invoke --api-url with unverified hosts; prefer a version that removes custom endpoints or restricts them to an allowlist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hugogu/skills/query-payful-account)
+- [Payful account balance endpoint](https://global.payful.com/api/user/account/queryUserAccBalByHomePage)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text balance summary or JSON account data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PAYFUL_TOKEN and PAYFUL_USER_ID credential environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

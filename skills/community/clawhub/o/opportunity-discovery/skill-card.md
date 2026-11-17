@@ -1,37 +1,49 @@
-## Description: <br>
-Systematically analyzes markets, trends, and business ideas to identify and rank monetizable opportunities with high upside and limited downside risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systematically analyzes markets, trends, and business ideas to identify and rank monetizable opportunities with asymmetric upside.
 
-## Publisher: <br>
-[dtjohnson83](https://clawhub.ai/user/dtjohnson83) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dtjohnson83](https://clawhub.ai/user/dtjohnson83)
 
-## Use Case: <br>
-Entrepreneurs, operators, analysts, and builders use this skill to evaluate industries, business ideas, and trends through a structured opportunity discovery framework. It helps compare monetization paths, competitive pressure, execution difficulty, capital needs, and time horizon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market, investment, and monetization outputs may be incomplete, speculative, or misleading if treated as financial advice. <br>
-Mitigation: Treat outputs as brainstorming and independently verify opportunities before spending money or making business decisions. <br>
+## Use Case:
 
+External users, founders, analysts, and builders use this skill to evaluate industries, trends, and business ideas through a structured opportunity-discovery framework.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured opportunity analysis sections and ratings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces brainstorming-oriented market and monetization assessments that should be independently verified before business or investment decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Opportunity analyses may be incomplete, speculative, or factually outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify market facts, financial assumptions, legal constraints, and execution risks independently before spending money or acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dtjohnson83/skills/opportunity-discovery)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured opportunity analysis including inefficiency, asymmetry, trend signal, monetization, competition, rating, and creative angle.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

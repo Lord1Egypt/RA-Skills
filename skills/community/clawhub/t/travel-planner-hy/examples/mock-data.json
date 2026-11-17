@@ -1,0 +1,448 @@
+{
+  "title": "重庆3日游旅行方案",
+  "subtitle": "3天 · 2人 · 预算¥5000",
+  "destination": "重庆",
+  "days": 3,
+  "travelers": 2,
+  "budget": 5000,
+  "language": "zh-CN",
+  "mock": true,
+  "platformUrls": [
+    "https://www.tuniu.com/"
+  ],
+  "preferences": [
+    "美食",
+    "自然",
+    "网红打卡",
+    "人文"
+  ],
+  "attractions": [
+    {
+      "name": "洪崖洞",
+      "type": [
+        "人文",
+        "网红打卡"
+      ],
+      "ticketPrice": 0,
+      "rating": 4.6,
+      "openingHours": "11:00-23:00",
+      "estimatedDuration": "1.5-2小时",
+      "description": "重庆地标建筑，以夜景闻名，吊脚楼风格的民俗风貌区",
+      "highlight": "夜景灯光秀、巴渝民俗表演",
+      "reservationRequired": false,
+      "address": "渝中区嘉陵江滨江路88号",
+      "_matchScore": 0.3333333333333333,
+      "_budgetFit": 1,
+      "_withinBudget": true,
+      "_reason": "免费开放，性价比高；评分4.6，口碑优秀；与您偏好的人文,网红打卡风格相符"
+    },
+    {
+      "name": "磁器口古镇",
+      "type": [
+        "人文",
+        "美食"
+      ],
+      "ticketPrice": 0,
+      "rating": 4.3,
+      "openingHours": "全天",
+      "estimatedDuration": "2-3小时",
+      "description": "千年古镇，保存完好的明清建筑群，美食汇聚",
+      "highlight": "陈麻花、毛血旺、古镇夜景",
+      "reservationRequired": false,
+      "address": "沙坪坝区磁器口镇",
+      "_matchScore": 0.3333333333333333,
+      "_budgetFit": 1,
+      "_withinBudget": true,
+      "_reason": "免费开放，性价比高；与您偏好的人文,美食风格相符"
+    },
+    {
+      "name": "李子坝轻轨站",
+      "type": [
+        "网红打卡"
+      ],
+      "ticketPrice": 0,
+      "rating": 4.2,
+      "openingHours": "06:30-23:00",
+      "estimatedDuration": "0.5小时",
+      "description": "轻轨穿楼而过的奇特景观，网红打卡地",
+      "highlight": "轻轨穿楼、最佳拍照点在楼下广场",
+      "reservationRequired": false,
+      "address": "渝中区李子坝正街",
+      "_matchScore": 0.3333333333333333,
+      "_budgetFit": 1,
+      "_withinBudget": true,
+      "_reason": "免费开放，性价比高；与您偏好的网红打卡风格相符"
+    },
+    {
+      "name": "解放碑",
+      "type": [
+        "人文",
+        "购物"
+      ],
+      "ticketPrice": 0,
+      "rating": 4.5,
+      "openingHours": "全天",
+      "estimatedDuration": "1小时",
+      "description": "重庆标志性商业中心，步行街集购物美食于一体",
+      "highlight": "抗战胜利纪功碑、八一好吃街",
+      "reservationRequired": false,
+      "address": "渝中区解放碑商圈",
+      "_matchScore": 0,
+      "_budgetFit": 1,
+      "_withinBudget": true,
+      "_reason": "免费开放，性价比高；评分4.5，口碑优秀；与您偏好的人文,购物风格相符"
+    },
+    {
+      "name": "三峡博物馆",
+      "type": [
+        "人文"
+      ],
+      "ticketPrice": 0,
+      "rating": 4.5,
+      "openingHours": "09:00-17:00（周一闭馆）",
+      "estimatedDuration": "2-3小时",
+      "description": "展示三峡文化和重庆历史的大型博物馆",
+      "highlight": "三峡文物、巴蜀青铜器、重庆城市发展史",
+      "reservationRequired": true,
+      "address": "渝中区人民路236号",
+      "_matchScore": 0,
+      "_budgetFit": 1,
+      "_withinBudget": true,
+      "_reason": "免费开放，性价比高；评分4.5，口碑优秀；与您偏好的人文风格相符"
+    },
+    {
+      "name": "长江索道",
+      "type": [
+        "网红打卡",
+        "自然"
+      ],
+      "ticketPrice": 30,
+      "rating": 4.4,
+      "openingHours": "07:30-22:00",
+      "estimatedDuration": "0.5小时",
+      "description": "横跨长江的空中索道，俯瞰两岸风光",
+      "highlight": "空中看重庆、山城夜景",
+      "reservationRequired": false,
+      "address": "渝中区新华路151号",
+      "_matchScore": 0.6666666666666666,
+      "_budgetFit": 0.8,
+      "_withinBudget": true,
+      "_reason": "与您偏好的网红打卡,自然风格相符"
+    },
+    {
+      "name": "南山一棵树观景台",
+      "type": [
+        "自然",
+        "网红打卡"
+      ],
+      "ticketPrice": 30,
+      "rating": 4.5,
+      "openingHours": "09:00-22:30",
+      "estimatedDuration": "1-2小时",
+      "description": "俯瞰重庆全景的最佳观景点，夜景尤为震撼",
+      "highlight": "360度全景、夜景最佳拍摄点",
+      "reservationRequired": false,
+      "address": "南岸区南山公园路",
+      "_matchScore": 0.6666666666666666,
+      "_budgetFit": 0.8,
+      "_withinBudget": true,
+      "_reason": "评分4.5，口碑优秀；与您偏好的自然,网红打卡风格相符"
+    },
+    {
+      "name": "重庆动物园",
+      "type": [
+        "亲子"
+      ],
+      "ticketPrice": 25,
+      "rating": 4.3,
+      "openingHours": "08:00-18:00",
+      "estimatedDuration": "2-3小时",
+      "description": "大型城市动物园，国宝大熊猫众多",
+      "highlight": "熊猫馆、两栖爬行馆、儿童动物园",
+      "reservationRequired": false,
+      "address": "九龙坡区西郊一村",
+      "_matchScore": 0,
+      "_budgetFit": 0.8,
+      "_withinBudget": true,
+      "_reason": "与您偏好的亲子风格相符"
+    },
+    {
+      "name": "湖广会馆",
+      "type": [
+        "人文"
+      ],
+      "ticketPrice": 30,
+      "rating": 4.2,
+      "openingHours": "09:00-17:00",
+      "estimatedDuration": "1-1.5小时",
+      "description": "清代建筑群，见证重庆移民历史的会馆建筑",
+      "highlight": "古戏台、移民博物馆、古建筑群",
+      "reservationRequired": false,
+      "address": "渝中区长滨路",
+      "_matchScore": 0,
+      "_budgetFit": 0.8,
+      "_withinBudget": true,
+      "_reason": "与您偏好的人文风格相符"
+    },
+    {
+      "name": "武隆天生三桥",
+      "type": [
+        "自然"
+      ],
+      "ticketPrice": 125,
+      "rating": 4.6,
+      "openingHours": "08:00-18:00",
+      "estimatedDuration": "3-4小时",
+      "description": "世界自然遗产，巨型天坑与天然石桥群，壮观震撼",
+      "highlight": "三桥夹两坑、变形金刚取景地",
+      "reservationRequired": false,
+      "address": "武隆区仙女山镇",
+      "_matchScore": 0.3333333333333333,
+      "_budgetFit": 0,
+      "_withinBudget": false,
+      "_reason": "评分4.6，口碑优秀；与您偏好的自然风格相符"
+    }
+  ],
+  "itinerary": [
+    {
+      "date": "第1天（到达日）",
+      "items": [
+        {
+          "time": "08:00-09:00",
+          "icon": "🍳",
+          "title": "早餐",
+          "detail": "酒店/当地特色早餐",
+          "cost": "人均15-20元"
+        },
+        {
+          "time": "09:00-10:30",
+          "icon": "🚄",
+          "title": "抵达重庆",
+          "detail": "高铁/飞机到达，前往酒店办理入住",
+          "cost": ""
+        },
+        {
+          "time": "10:30-12:00",
+          "icon": "🎯",
+          "title": "解放碑",
+          "detail": "重庆标志性商圈，观抗战胜利纪功碑",
+          "cost": "免费"
+        },
+        {
+          "time": "12:00-13:30",
+          "icon": "🍜",
+          "title": "午餐",
+          "detail": "八一好吃街品尝重庆小吃",
+          "cost": "人均30-50元"
+        },
+        {
+          "time": "13:30-17:30",
+          "icon": "🎯",
+          "title": "磁器口古镇",
+          "detail": "千年古镇，品陈麻花、逛古街",
+          "cost": "免费"
+        },
+        {
+          "time": "17:30-18:30",
+          "icon": "🛌",
+          "title": "回酒店休息",
+          "detail": ""
+        },
+        {
+          "time": "18:30-20:00",
+          "icon": "🍽️",
+          "title": "晚餐",
+          "detail": "枇杷园火锅（老字号，推荐毛肚火锅）",
+          "cost": "人均80-120元"
+        },
+        {
+          "time": "20:00-22:00",
+          "icon": "🌙",
+          "title": "洪崖洞夜景",
+          "detail": "观赏重庆最美夜景，吊脚楼灯光秀",
+          "cost": "免费"
+        }
+      ],
+      "notes": "重庆夏季炎热，建议随身带水；洪崖洞亮灯时间为19:30-23:00"
+    },
+    {
+      "date": "第2天（全日游）",
+      "items": [
+        {
+          "time": "08:00-09:00",
+          "icon": "🍳",
+          "title": "早餐",
+          "detail": "酒店早餐"
+        },
+        {
+          "time": "09:00-10:00",
+          "icon": "🚇",
+          "title": "李子坝轻轨站",
+          "detail": "网红轻轨穿楼打卡",
+          "cost": "免费"
+        },
+        {
+          "time": "10:00-12:00",
+          "icon": "🎯",
+          "title": "三峡博物馆",
+          "detail": "了解三峡文化与重庆历史（周一闭馆）",
+          "cost": "免费，需预约"
+        },
+        {
+          "time": "12:00-13:30",
+          "icon": "🍜",
+          "title": "午餐",
+          "detail": "中山四路附近餐馆",
+          "cost": "人均30-50元"
+        },
+        {
+          "time": "13:30-14:00",
+          "icon": "☕",
+          "title": "午休",
+          "detail": ""
+        },
+        {
+          "time": "14:00-17:00",
+          "icon": "🎯",
+          "title": "长江索道",
+          "detail": "空中俯瞰长江两岸风光",
+          "cost": "¥30/人往返"
+        },
+        {
+          "time": "17:00-18:30",
+          "icon": "🎯",
+          "title": "南山一棵树观景台",
+          "detail": "360度俯瞰重庆全景",
+          "cost": "¥30/人"
+        },
+        {
+          "time": "18:30-20:30",
+          "icon": "🍽️",
+          "title": "晚餐",
+          "detail": "南山泉水鸡一条街",
+          "cost": "人均60-100元"
+        }
+      ],
+      "notes": "三峡博物馆周一闭馆，请避开；南山观景台建议18:00前到达占位看日落"
+    },
+    {
+      "date": "第3天（返程日）",
+      "items": [
+        {
+          "time": "07:00-08:00",
+          "icon": "🍳",
+          "title": "早餐 + 退房",
+          "detail": "酒店早餐，办理退房寄存行李"
+        },
+        {
+          "time": "08:00-10:00",
+          "icon": "🎯",
+          "title": "湖广会馆",
+          "detail": "清代移民会馆建筑群",
+          "cost": "¥30/人"
+        },
+        {
+          "time": "10:00-12:00",
+          "icon": "🛍️",
+          "title": "解放碑商圈购物",
+          "detail": "购买特产伴手礼",
+          "cost": "视个人情况"
+        },
+        {
+          "time": "12:00-13:00",
+          "icon": "🍜",
+          "title": "午餐",
+          "detail": "重庆小面/豆花饭",
+          "cost": "人均15-25元"
+        },
+        {
+          "time": "13:00-14:00",
+          "icon": "🎒",
+          "title": "取行李前往车站",
+          "detail": ""
+        },
+        {
+          "time": "14:00",
+          "icon": "🚄",
+          "title": "返程出发",
+          "detail": "前往重庆北站/机场"
+        }
+      ],
+      "notes": "最后一班高铁约21:00，飞机请预留2小时到机场"
+    }
+  ],
+  "hotels": [
+    {
+      "name": "重庆解放碑威斯汀酒店",
+      "area": "解放碑",
+      "price": 899,
+      "rating": 4.7,
+      "features": "江景房、行政酒廊、屋顶泳池",
+      "distance": "步行5分钟到解放碑"
+    },
+    {
+      "name": "全季酒店（解放碑店）",
+      "area": "解放碑",
+      "price": 380,
+      "rating": 4.5,
+      "features": "含早、地铁口、免费洗衣",
+      "distance": "步行10分钟到洪崖洞"
+    },
+    {
+      "name": "亚朵酒店（观音桥店）",
+      "area": "观音桥",
+      "price": 420,
+      "rating": 4.6,
+      "features": "含早、健身房、24h书吧",
+      "distance": "近地铁3号线"
+    }
+  ],
+  "transport": {
+    "airport": "重庆江北国际机场",
+    "trainStation": "重庆北站 / 重庆西站 / 沙坪坝站",
+    "metroNote": "轨道交通覆盖主要景点，下载\"渝畅行\"APP扫码乘车",
+    "tips": "重庆道路复杂，虽然有地图导航但仍易走错，建议多利用地铁出行"
+  },
+  "costs": {
+    "items": [
+      {
+        "name": "🚄 交通（高铁往返）",
+        "amount": 300,
+        "pct": "6%"
+      },
+      {
+        "name": "🏨 住宿（2晚）",
+        "amount": 1600,
+        "pct": "32%"
+      },
+      {
+        "name": "🎫 门票",
+        "amount": 180,
+        "pct": "4%"
+      },
+      {
+        "name": "🍜 餐饮",
+        "amount": 1200,
+        "pct": "24%"
+      },
+      {
+        "name": "🚕 当地交通",
+        "amount": 300,
+        "pct": "6%"
+      },
+      {
+        "name": "📦 其他",
+        "amount": 420,
+        "pct": "8%"
+      }
+    ],
+    "total": 4000
+  },
+  "tips": [
+    "重庆7月平均气温28-35°C，建议携带防晒霜、遮阳帽、便携风扇",
+    "重庆饮食以麻辣为主，肠胃敏感建议备好肠胃药",
+    "景点间推荐地铁出行（下载\"渝畅行\"APP扫码乘车）",
+    "洪崖洞、长江索道等热门景点建议非高峰时段前往",
+    "建议购买旅游意外险，出行前告知家人行程安排"
+  ]
+}

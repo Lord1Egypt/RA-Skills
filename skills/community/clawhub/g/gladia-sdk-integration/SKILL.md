@@ -31,6 +31,7 @@ Official SDKs for integrating Gladia's speech-to-text API. Both SDKs share the s
 | Language without an SDK (Go, Java, etc.) | Raw REST/WebSocket (SDK unavailable)                                                                          |
 | User explicitly requests raw calls       | Raw REST/WebSocket                                                                                            |
 | CI script or one-off curl test           | Raw REST is acceptable                                                                                        |
+| Terminal one-off with gladia-cli on PATH | **CLI** — see [gladia-using-cli](../gladia-using-cli/SKILL.md)                                                |
 
 When in doubt, use the SDK.
 
@@ -42,6 +43,7 @@ Consult these resources as needed:
 - ./references/client-config.md -- Full client configuration reference (all options, defaults, timeouts)
 - ./references/javascript.md -- JS/TS-specific patterns (browser, proxy, File/Blob, Node requirements)
 - ./references/python.md -- Python-specific patterns (sync/async, typed requests, httpx/websockets)
+- ../gladia-using-cli/SKILL.md -- Terminal transcription with gladia-cli; CLI vs SDK routing
 - ../gladia-pre-recorded-transcription/SKILL.md -- Pre-recorded transcription options, response structure, and audio intelligence config
 - ../gladia-live-transcription/SKILL.md -- Live session config, audio streaming, and WebSocket event handling
 - ../gladia-troubleshooting/SKILL.md -- Common errors, gotchas, and verification checklist

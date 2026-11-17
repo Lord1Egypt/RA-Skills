@@ -1,43 +1,57 @@
-## Description: <br>
-Expert academic-paper reading skill that extracts text from uploaded PDF, Word, Excel, PowerPoint, or text files and produces structured six-dimension analysis reports in Markdown and Word format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes uploaded academic papers in PDF, Word, Excel, PPT, TXT, Markdown, or CSV formats and produces structured academic reading reports with source quotations, critical analysis, and a generated Word document.
 
-## Publisher: <br>
-[xuruitian](https://clawhub.ai/user/xuruitian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuruitian](https://clawhub.ai/user/xuruitian)
 
-## Use Case: <br>
-Employees, external users, and researchers use this skill to deeply read academic papers, extract source text from common document formats, and turn the paper into a structured critical analysis report with practical learning suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private, unpublished, medical, financial, or proprietary papers may be processed and retained in generated local files. <br>
-Mitigation: Confirm output paths before running the skill and delete retained extracted text, latest_analysis.json, and Word reports when the analysis is complete. <br>
-Risk: The skill includes supplemental web-search guidance even though its README claims no network use. <br>
-Mitigation: Disable or forbid web search for sensitive papers unless the user explicitly approves external research. <br>
-Risk: Generated academic analysis may be incomplete or misleading if extraction misses content or if the source paper is ambiguous. <br>
-Mitigation: Review quoted passages and key findings against the original paper before relying on the report. <br>
+## Use Case:
 
+External users, students, researchers, and knowledge workers use this skill to deeply read uploaded academic papers, extract their main claims and evidence, and receive a six-dimension Markdown analysis plus a local DOCX report.
 
-## Reference(s): <br>
-- [Academic Prompt Template](references/academic_prompt.md) <br>
-- [ClawHub release page](https://clawhub.ai/xuruitian/paper-reader-xuruitian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis report plus generated .docx report; JSON may be used as an intermediate report-generation input.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads uploaded paper files locally and may write extracted text, latest_analysis.json, and a Word report to disk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads uploaded academic documents and may process sensitive or unpublished paper content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a constrained workspace and avoid submitting sensitive unpublished documents unless local handling is acceptable.
+
+Risk: The skill creates intermediate analysis data and writes DOCX reports locally, including to the user's desktop.
+
+Mitigation: Review output filenames and paths before generation, and clean up intermediate files after use.
+
+Risk: The analysis workflow can optionally use external search for paper context.
+
+Mitigation: Do not enable external web search unless sending paper context to search tools is acceptable.
+
+## Reference(s):
+
+- [Academic Prompt Template](references/academic_prompt.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown analysis with optional JSON input data and DOCX report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may write intermediate analysis JSON under the skill directory and a DOCX report to the user's desktop.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

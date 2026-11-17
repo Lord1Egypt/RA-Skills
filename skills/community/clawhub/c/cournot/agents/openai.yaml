@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cournot"
+  short_description: "Cournot probabilities, divergence rankings, and prepaid calls"
+  default_prompt: "Use $cournot to query the requested event probability or divergence ranking."

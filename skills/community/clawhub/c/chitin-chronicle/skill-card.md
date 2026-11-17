@@ -1,46 +1,54 @@
-## Description: <br>
-Coordinates multi-agent content publishing with a shared content registry, claim system, publication ledger, and timeline tracker to prevent duplicate publishing across agents and channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates multi-agent content publishing with a shared content registry, cross-agent claim system, publication ledger, timeline tracking, and boot-time editorial state checks.
 
-## Publisher: <br>
-[adroidian](https://clawhub.ai/user/adroidian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adroidian](https://clawhub.ai/user/adroidian)
 
-## Use Case: <br>
-Developers and agent teams use this skill to coordinate content publishing across multiple agents and channels. It helps agents check for conflicts, claim work, record publications, and inspect timeline state before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted content IDs, channels, actions, or agent names could cause unintended shell command execution through git command handling. <br>
-Mitigation: Review carefully before installing and use only trusted values until the CLI avoids shell-string git commands and validates safe characters. <br>
-Risk: Claim filenames are derived from command inputs, which can create unsafe paths if untrusted identifiers are accepted. <br>
-Mitigation: Constrain content IDs and agent names to a known safe character set before using the claim and release commands in shared workspaces. <br>
-Risk: Git commit failures are ignored, which can leave registry, ledger, or claim changes without the expected audit trail. <br>
-Mitigation: Verify git configuration before use and periodically check the ledger, registry, claims, and commit history after publishing operations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate publishing across multiple agents and channels, avoid duplicate work, reserve content tasks with short-lived claims, and record publication history in local JSON files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adroidian/chitin-chronicle) <br>
-- [Publisher Profile](https://clawhub.ai/user/adroidian) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Test Results](artifact/TEST_RESULTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-backed workflow instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local Node.js and Bash workflow; zero external package dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The local helper script can run unintended shell commands or write outside its state folder when given crafted identifiers, channels, titles, URLs, or OPENCLAW_AGENT values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and do not use claim, release, or publish commands with untrusted or free-form values until identifiers are validated, shell command construction is removed, paths are constrained, and only intended files are staged.
+
+Risk: The boot hook or shell alias can expose the workspace to unsafe behavior if added in a sensitive environment before the helper is fixed.
+
+Mitigation: Avoid adding the boot hook or shell alias in sensitive workspaces until the security guidance is addressed and local behavior is reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adroidian/skills/chitin-chronicle)
+- [Publisher profile](https://clawhub.ai/user/adroidian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include CLI status messages, conflict checks, claim and release actions, publication ledger entries, registry updates, and boot-time summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

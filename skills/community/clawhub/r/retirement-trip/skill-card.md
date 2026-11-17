@@ -1,44 +1,61 @@
-## Description: <br>
-Book flights for retirement celebration trips, with support for related travel planning tasks powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights for retirement celebration trips. Also supports flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more, powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers or agents use this skill to collect route and date details, run the flyai CLI, and present retirement-trip flight options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install and execute a global third-party flyai CLI and send travel details to that service. <br>
-Mitigation: Pre-install a reviewed, pinned CLI version when possible and require explicit approval before any global npm install or live travel search. <br>
-Risk: The skill may activate for broad trip-planning requests and return live booking options. <br>
-Mitigation: Confirm route, dates, and traveler intent before execution, and verify every recommendation includes a Book link from detailUrl. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to collect route and date preferences, run FlyAI flight searches for retirement trips, compare options, and return booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/retirement-trip) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, comparison tables, and booking links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output; flight options should include Book links from detailUrl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill may globally install and execute a third-party npm CLI, modifying the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a version-pinned, approved FlyAI CLI in an isolated environment and verify the package before execution.
+
+Risk: Travel search details are sent to FlyAI/Fliggy and booking URLs are returned to the user.
+
+Mitigation: Limit sensitive travel details and validate booking-link domains before presenting returned links.
+
+Risk: Shell commands are assembled from user-provided travel input.
+
+Mitigation: Validate origin, destination, date, and supported flags before running commands.
+
+## Reference(s):
+
+- [ClawHub retirement-trip skill page](https://clawhub.ai/xiejinsong/skills/retirement-trip)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands when setup or execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLI-derived flight data; booking links must use detailUrl; raw JSON is not shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

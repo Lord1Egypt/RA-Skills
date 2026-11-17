@@ -1,43 +1,62 @@
-## Description: <br>
-Generate htpasswd entries for Apache/Nginx basic auth password management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate htpasswd entries for Apache/Nginx basic auth password management. Use when creating credentials, managing password files, or verifying users.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and system administrators use this skill to create, update, inspect, and verify Apache/Nginx htpasswd files for HTTP basic authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify real htpasswd access-control files. <br>
-Mitigation: Test against non-production files first and keep backups before applying changes to live authentication files. <br>
-Risk: Passwords supplied in prompts or shell commands may be logged by shells, terminals, or agent transcripts. <br>
-Mitigation: Avoid long-lived real passwords in prompts and command histories; prefer temporary credentials or a secure local input flow when possible. <br>
-Risk: Unexpected username characters can affect file matching or authentication behavior. <br>
-Mitigation: Use simple usernames and review generated entries before deploying them. <br>
+## Use Case:
 
+Developers and administrators use this skill to create and manage Apache/Nginx basic-auth htpasswd files, including adding, deleting, listing, and verifying users.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/htpasswd) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce htpasswd file-management commands and verification guidance for local execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can modify real htpasswd authentication files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on files explicitly named by the user, keep backups, and require confirmation before create, add, or delete operations on production authentication files.
+
+Risk: Passwords are accepted as command-line arguments and may be exposed through shell history or process listings.
+
+Mitigation: Prefer a safer password input path before production use and rotate any passwords already entered through command examples or shell history.
+
+Risk: The default apr1 hash algorithm prioritizes compatibility over stronger hashing.
+
+Mitigation: Set HTPASSWD_ALGO=sha512 where compatible with the target Apache or Nginx deployment.
+
+Risk: Username handling requires review before use with production authentication files.
+
+Mitigation: Use simple literal usernames only and avoid production files until username matching has been reviewed for literal handling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/skills/htpasswd)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create or update htpasswd files through shell commands when the agent is allowed to run the bundled script.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

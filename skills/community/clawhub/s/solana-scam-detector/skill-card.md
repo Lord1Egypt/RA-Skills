@@ -1,48 +1,57 @@
-## Description: <br>
-Detect scam tokens on Solana before you trade. Checks ticker patterns, token age, and known scam mints. Read-only - no wallet signing required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects potentially scam Solana tokens before trading by checking ticker patterns, token age signals, and known scam mints while remaining read-only.
 
-## Publisher: <br>
-[ammkode](https://clawhub.ai/user/ammkode) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ammkode](https://clawhub.ai/user/ammkode)
 
-## Use Case: <br>
-External users and developers use this skill to perform read-only heuristic checks on Solana token mints before trading or integrating a token workflow. It can validate mint addresses, flag suspicious ticker patterns, check configurable blacklists, and estimate token age through Solana RPC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic checks can miss scam tokens or incorrectly flag legitimate tokens. <br>
-Mitigation: Use results as one signal only and review independent token, liquidity, contract, and issuer information before trading. <br>
-Risk: The skill exposes a liquidity configuration value but evidence says it does not verify liquidity. <br>
-Mitigation: Do not treat the returned safety result as a liquidity assessment; verify liquidity with a separate trusted source. <br>
-Risk: Public Solana RPC use may reveal IP addresses and query patterns. <br>
-Mitigation: Use a trusted private RPC endpoint through RPC_URL when query privacy matters. <br>
-Risk: User-added blacklist entries can affect later checks in the same running process. <br>
-Mitigation: Review custom blacklist additions and reset process state when switching users or workflows. <br>
-Risk: Wallet keys are not required for this read-only skill. <br>
-Mitigation: Do not provide wallet keys, seed phrases, Telegram IDs, or trade history when using the skill. <br>
+## Use Case:
 
+Developers and agents use this skill to perform a read-only pre-trade review of Solana token mints and symbols, returning safety issues that can inform further due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ammkode/solana-scam-detector) <br>
-- [Publisher profile](https://clawhub.ai/user/ammkode) <br>
-- [Solana public RPC endpoint](https://api.mainnet-beta.solana.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and structured token-safety result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces read-only heuristic safety results such as safe status, issue list, and applied configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: A safe result can be misleading because the token-age check may not prove token age and can fail open.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not rely on this skill as proof that a token is old or low-risk; independently verify creation age, liquidity, and market context before trading.
+
+Risk: Public Solana RPC endpoints may expose IP addresses and query patterns.
+
+Mitigation: Use a trusted private RPC endpoint when privacy or operational sensitivity matters.
+
+Risk: The skill depends on Node.js and @solana/web3.js.
+
+Mitigation: Use a pinned dependency install and review dependency updates before deploying the skill in a production agent.
+
+## Reference(s):
+
+- [Solana Scam Detector on ClawHub](https://clawhub.ai/ammkode/skills/solana-scam-detector)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript usage snippets and JSON-like safety results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Solana RPC checks; no wallet key, signing, Telegram ID, or trade history required.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

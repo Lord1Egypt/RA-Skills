@@ -3,7 +3,9 @@
 Yunxiao Flow Pipeline Troubleshooting Tool
 
 Usage:
-    python yunxiao_flow_get_pipeline_runs.py --org-id <Organization ID> --pipeline-id <Pipeline ID> --token <Access Token> --pipeline-runid <Run ID> [--domain <Domain>]
+    python yunxiao_flow_get_pipeline_runs.py --org-id <Organization ID> --pipeline-id <Pipeline ID> --pipeline-runid <Run ID> [--domain <Domain>]
+
+Note: Token must be set via environment variable YUNXIAO_ACCESS_TOKEN
 """
 import copy
 import os
@@ -25,6 +27,19 @@ def mask_token(token):
     if not token or len(token) <= 12:
         return '***'
     return f"{token[:6]}*******{token[-6:]}"
+
+
+def validate_token_format(token):
+    """Validate token format before transmission to prevent accidental credential leakage.
+    Security: Only tokens matching the expected PAT format (pt- prefix) are accepted.
+    """
+    if not token or not isinstance(token, str):
+        return False, 'Token is empty or not a string'
+    if not token.startswith('pt-'):
+        return False, 'Token must start with "pt-" prefix (Yunxiao Personal Access Token format)'
+    if len(token) < 10:
+        return False, 'Token is too short to be a valid PAT'
+    return True, None
 
 
 def deep_parse_json_strings(data):
@@ -217,16 +232,22 @@ def main():
     parser.add_argument('--org-id', required=True, help='Organization ID (24 chars=central org, 32 chars=regional org)')
     parser.add_argument('--pipeline-id', required=True, help='Pipeline ID')
     parser.add_argument('--pipeline-runid', required=True, help='Run ID')
-    parser.add_argument('--token', required=False, default=None, help='Personal access token (can also be set via environment variable YUNXIAO_ACCESS_TOKEN)')
     parser.add_argument('--domain', required=False, default=None, help='API domain (auto-inferred from org-id if not provided: 24 chars→openapi-rdc.aliyuncs.com; 32 chars must be explicitly specified)')
     
     args = parser.parse_args()
     
-    # Get token: prioritize command line argument, then environment variable
+    # Security: Token is read exclusively from the environment variable to avoid
+    # exposure in process listings (ps/top), shell history, and /proc/*/cmdline.
+    # The token is transmitted over HTTPS only, via the x-yunxiao-token header.
+    args.token = os.environ.get('YUNXIAO_ACCESS_TOKEN')  # nosec: intentional credential read
     if not args.token:
-        args.token = os.environ.get('YUNXIAO_ACCESS_TOKEN')
-    if not args.token:
-        parser.error('Must provide --token argument or set environment variable YUNXIAO_ACCESS_TOKEN')
+        parser.error('Environment variable YUNXIAO_ACCESS_TOKEN is not set. '
+                     'Please set it before running this script: export YUNXIAO_ACCESS_TOKEN="pt-xxx"')
+    
+    # Security: Validate token format before any network transmission
+    valid, err_msg = validate_token_format(args.token)
+    if not valid:
+        parser.error(f'Invalid token format: {err_msg}')
     
     # Auto-infer domain based on org-id length
     if not args.domain:

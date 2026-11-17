@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "water",
-  "version": "1.0.1",
-  "publishedAt": 1771181947684
+  "displayName": "Water Tracker",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1785071831641
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784843549760
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784801373820
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771181947684
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770842768898
+    }
+  ]
 }

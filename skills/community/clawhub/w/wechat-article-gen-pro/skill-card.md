@@ -1,41 +1,53 @@
-## Description: <br>
-A WeChat content-creation skill that advertises AI-assisted title generation, article drafting, formatting, SEO suggestions, and style selection; the reviewed artifact contains a minimal placeholder generator. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates optimized WeChat article titles and content with formatting, SEO suggestions, and multiple writing styles.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Content creators, social media operators, and marketers can use this skill as a starting point for WeChat article titles, draft content, formatting ideas, SEO suggestions, and style variations. Users should verify the generated content and install slug before relying on the release. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install command in the artifact does not match the metadata slug. <br>
-Mitigation: Verify the exact package slug before installing or publishing install instructions. <br>
-Risk: Paid Pro feature claims are not fully supported by the reviewed artifact. <br>
-Mitigation: Treat the release as a minimal placeholder until working generation, formatting, SEO, and style-selection behavior is verified. <br>
+## Use Case:
 
+Content creators, WeChat account operators, marketers, and brand teams use this skill to draft Chinese WeChat article titles, body content, formatting guidance, SEO suggestions, and style variants for social publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/wechat-article-gen-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/bingze00000) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text with optional Python dictionary-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include article titles, body drafts, style selections, formatting suggestions, and SEO guidance; the reviewed code returns placeholder article content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: Future or fuller versions may use network or API access because the package declares requests and openai dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency behavior, credential handling, and outbound data flow before deploying with API keys or sensitive content.
+
+Risk: Generated WeChat article drafts may contain inaccurate, unsupported, or brand-inappropriate claims.
+
+Mitigation: Require human editorial and factual review before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingze00000/skills/wechat-article-gen-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and plain text with optional Python dictionary-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese article titles, draft content, style selection, SEO suggestions, and WeChat formatting guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

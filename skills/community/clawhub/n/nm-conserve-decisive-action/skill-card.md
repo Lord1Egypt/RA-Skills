@@ -1,38 +1,50 @@
-## Description: <br>
-Guides agents on when to ask clarifying questions versus proceed autonomously, reducing unnecessary questions when intent is clear. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides when to ask clarifying questions versus proceed autonomously. Use to reduce unnecessary clarifying questions when intent is clear
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent operators use this skill to decide when clarification is necessary and when to proceed with clear, reversible work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages more autonomous action for clear, reversible tasks, which could lead to proceeding when a task is actually destructive, production-sensitive, security-critical, or ambiguous. <br>
-Mitigation: Require explicit confirmation for destructive, production, security-critical, or ambiguous work, and prefer previews or dry runs before taking action. <br>
+## Use Case:
 
+Agents and developers use this guidance to decide when ambiguity warrants a clarifying question and when they can proceed autonomously, reducing unnecessary interruptions while accounting for high impact and irreversible actions.
 
-## Reference(s): <br>
-- [Conserve Plugin Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with decision matrices, checklists, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external service calls; effectiveness depends on the agent applying the guidance to the current task context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: release metadata) <br>
+Risk: Autonomous-action guidance may lead an agent to proceed when ambiguity or impact makes confirmation important.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the skill's high impact ambiguity and irreversible-operation checks; ask before destructive actions and review proposed actions before execution.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-decisive-action)
+- [Plugin homepage listed in skill metadata](https://github.com/athola/claude-night-market/tree/master/plugins/conserve)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Natural-language decision guidance and clarifying questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

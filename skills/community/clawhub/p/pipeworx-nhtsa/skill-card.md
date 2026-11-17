@@ -1,41 +1,60 @@
-## Description: <br>
-Decode VINs and look up vehicle makes/models via the NHTSA Vehicle Product Information Catalog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decode VINs and look up vehicle makes/models via the NHTSA Vehicle Product Information Catalog.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-External users, developers, and automotive workflows use this skill to decode VINs, browse registered vehicle makes, and look up models by make and year for insurance, parts, registration, and vehicle verification tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted VINs and make/model queries are sent to Pipeworx's disclosed NHTSA gateway. <br>
-Mitigation: Avoid submitting sensitive or unnecessary vehicle identifiers, and review data handling expectations before using the skill in regulated or customer-facing workflows. <br>
-Risk: The MCP configuration uses mcp-remote@latest, which may change between installs. <br>
-Mitigation: Pin the mcp-remote package version when reproducible installs are required. <br>
+## Use Case:
 
+External users, developers, and automotive workflows use this skill to decode VINs, browse registered vehicle makes, look up models by make and year, and verify vehicle details from records such as bills of sale or registration documents.
 
-## Reference(s): <br>
-- [Pipeworx NHTSA pack homepage](https://pipeworx.io/packs/nhtsa) <br>
-- [ClawHub release page](https://clawhub.ai/brucegutman/pipeworx-nhtsa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces vehicle lookup guidance, MCP configuration, and examples for JSON-RPC tool calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and frontmatter) <br>
+Risk: The documented setup runs a mutable npm package with local user permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned mcp-remote version, review the local MCP bridge before installation, and run it in a restricted environment.
+
+Risk: VIN or vehicle lookup inputs are sent to Pipeworx for processing.
+
+Mitigation: Avoid submitting sensitive or unnecessary vehicle information unless the user accepts that data flow.
+
+Risk: The local process could access unrelated project files, credentials, or environment variables if launched broadly.
+
+Mitigation: Run the MCP bridge from a minimal workspace with only required environment variables exposed.
+
+## Reference(s):
+
+- [Pipeworx NHTSA Pack](https://pipeworx.io/packs/nhtsa)
+- [Pipeworx NHTSA MCP Endpoint](https://gateway.pipeworx.io/nhtsa/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/brucegutman/skills/pipeworx-nhtsa)
+- [Publisher Profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Text]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides agent use of remote vehicle lookup tools that return structured vehicle attributes.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

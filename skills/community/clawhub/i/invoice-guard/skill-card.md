@@ -1,47 +1,62 @@
-## Description: <br>
-Invoice Guard helps agents extract invoice fields, check for duplicate or suspicious invoices, verify invoice status, and generate invoice compliance reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invoice Guard helps agents extract invoice fields, detect duplicate or suspicious reimbursement records, and generate Markdown or Feishu-ready compliance reports for invoice review.
 
-## Publisher: <br>
-[qiji0802](https://clawhub.ai/user/qiji0802) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiji0802](https://clawhub.ai/user/qiji0802)
 
-## Use Case: <br>
-Finance, operations, and audit teams use this skill through an agent to review uploaded Chinese invoices for duplicate reimbursement, suspicious status, and report-ready compliance summaries before reimbursement or audit workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China-specific invoice and tax-verification workflows. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive invoice and company tax data, and its workflow can involve OCR uploads, tax-platform checks, Feishu document creation, and Bitable exports. <br>
-Mitigation: Require explicit user approval before any upload, verification call, document creation, or export; use least-privilege Feishu credentials; and confirm document sharing settings before publishing or sharing results. <br>
-Risk: Security review flagged that capability claims around image similarity and official verification may be more confident than the tested implementation supports. <br>
-Mitigation: Treat duplicate and verification results as decision support, require human review against source invoices and official records, and avoid relying on image-similarity or official-verification claims until they are corrected and tested. <br>
-Risk: Generated compliance reports may be used in reimbursement or audit decisions even when source invoices are incomplete, unclear, or externally unverified. <br>
-Mitigation: Keep reports as internal review artifacts, preserve traceability to source invoices, and require finance or tax reviewers to confirm exceptions before reimbursement or filing decisions. <br>
+## Use Case:
 
+Finance and operations users can use this skill to review uploaded invoices for duplicate reimbursement risk, summarize invoice status, and produce compliance-oriented reports. Official tax verification should only be treated as authoritative when a real tax-platform integration is configured and unchecked records are clearly labeled.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qiji0802/invoice-guard) <br>
-- [README](README.md) <br>
-- [Invoice Types Reference](references/invoice-types.md) <br>
-- [Tax Verification Reference](references/tax-api.md) <br>
-- [Compliance Report Template](references/compliance-report.md) <br>
-- [Changelog](references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured invoice records, Python snippets, shell commands, and Feishu-ready document or table payload guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare Feishu document Markdown and Bitable records; tax verification and cloud exports require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated compliance reports may make unchecked invoices appear normal if no real tax-platform verification is connected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a configured tax-platform integration before treating results as official verification, and clearly label records that remain unchecked.
+
+Risk: Invoice data and generated reports can contain sensitive business and financial information.
+
+Mitigation: Use explicit consent before sending invoice data to Feishu or tax services, minimize shared data, and handle generated reports as sensitive business records.
+
+Risk: The server security verdict flags this release for review before installation.
+
+Mitigation: Review and scan the skill before deployment, with special attention to compliance-report wording and external data-sharing behavior.
+
+## Reference(s):
+
+- [Invoice Guard ClawHub listing](https://clawhub.ai/qiji0802/skills/invoice-guard)
+- [Invoice type and field reference](references/invoice-types.md)
+- [Tax verification platform access notes](references/tax-api.md)
+- [Compliance report template](references/compliance-report.md)
+- [InvoiceGuard changelog](references/changelog.md)
+- [State Taxation Administration invoice verification platform](https://inv-veri.chinatax.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, structured text summaries, Python data structures, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepare Feishu/Lark-flavored Markdown and bitable records; official tax checks require configured external services.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

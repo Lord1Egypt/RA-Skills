@@ -1,42 +1,60 @@
-## Description: <br>
-Guides agents to use Bright Data MCP for web search, webpage scraping, browser automation, and structured extraction across supported platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bright Data MCP guides an agent to use Bright Data MCP tools for web search, webpage retrieval, structured platform data extraction, and browser automation.
 
-## Publisher: <br>
-[meirk-brd](https://clawhub.ai/user/meirk-brd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[meirk-brd](https://clawhub.ai/user/meirk-brd)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure and select Bright Data MCP tools for web search, page scraping, platform-specific data extraction, and browser automation tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill tells the agent to edit local MCP settings and expand available Bright Data tools when a needed tool is missing. <br>
-Mitigation: Require explicit user approval before changing MCP configuration or enabling Pro, social, browser, or other expanded tool groups. <br>
-Risk: Bright Data workflows can involve broad web scraping, tokenized MCP URLs, and local settings that may expose sensitive credentials or data-handling obligations. <br>
-Mitigation: Keep API tokens secret, avoid sharing tokenized URLs or settings files, and review scraping tasks for authorization, privacy, and compliance requirements. <br>
+## Use Case:
 
+Developers and agent users use this skill to route web data tasks through Bright Data MCP, including search, page scraping, structured data collection, and browser automation. It is useful when an agent needs guidance for selecting Bright Data MCP tools and configuring available tool groups.
 
-## Reference(s): <br>
-- [Bright Data Documentation](https://docs.brightdata.com) <br>
-- [Bright Data MCP Server Setup](references/mcp-setup.md) <br>
-- [Bright Data MCP Tools Reference](references/mcp-tools.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and MCP tool calls that return Markdown or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require a Bright Data API token and MCP tool-group configuration for Pro, social, browser, or platform-specific tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review says the skill reroutes all web activity through Bright Data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use it only when sending web queries and URLs to Bright Data is acceptable.
+
+Risk: The security review says the skill asks the agent to modify MCP settings to unlock more tools without prior approval.
+
+Mitigation: Require explicit user approval before editing MCP settings or enabling Pro tool groups.
+
+Risk: MCP configuration can expose or misuse service tokens.
+
+Mitigation: Use manual, scoped setup with protected tokens and pinned local package versions.
+
+## Reference(s):
+
+- [Bright Data documentation](https://docs.brightdata.com)
+- [MCP setup](references/mcp-setup.md)
+- [MCP tools reference](references/mcp-tools.md)
+- [ClawHub skill page](https://clawhub.ai/meirk-brd/skills/brightdata-bright-data-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to invoke external MCP tools that return Markdown or JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Code handles only the happy path — external calls, I/O, and parsing have no failure handling and crash on anything unexpected. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code handles only the happy path: external calls, I/O, and parsing have no failure handling and crash on unexpected input.
 
-## Publisher: <br>
-[mvogt99](https://clawhub.ai/user/mvogt99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mvogt99](https://clawhub.ai/user/mvogt99)
 
-## Use Case: <br>
-Developers and engineers use this skill as a review checklist for identifying missing error handling around external calls, I/O, parsing, subprocesses, and user-facing versus internal errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the checklist as an automatic code audit. <br>
-Mitigation: Apply it during development and review, and manually inspect relevant external call sites because the skill does not inspect or modify code. <br>
-Risk: Error-handling guidance can be applied too broadly and hide unexpected defects. <br>
-Mitigation: Catch specific recoverable exceptions, log context for swallowed errors, and allow unknown failures to propagate with useful context. <br>
+## Use Case:
 
+Developers and engineers use this skill to identify missing error handling around network, disk, subprocess, parsing, and third-party API interactions and to guide targeted fixes for safer failure behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mvogt99/missing-error-handling) <br>
-- [Publisher profile](https://clawhub.ai/user/mvogt99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown checklist and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution, file changes, or automatic inspection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Applying the skill may cause an agent to modify application error-handling paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review resulting diffs, run relevant tests, and confirm changed failure behavior before merging or deploying.
+
+Risk: Error logging guidance could expose sensitive arguments or internal failure details if applied without redaction.
+
+Mitigation: Redact secrets and personal data in logs, and keep internal diagnostic detail separate from user-facing error messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mvogt99/skills/missing-error-handling)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with code-review recommendations and potential code edits when applied by an agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets macOS, Linux, and Windows according to ClawHub metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

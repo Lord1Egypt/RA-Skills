@@ -9,22 +9,15 @@ Covers:
 """
 import json
 import sys
-from io import BytesIO
 from pathlib import Path
-from unittest.mock import MagicMock, patch, call
+from unittest.mock import MagicMock, patch
 from urllib.error import URLError
 
-import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-for mod in ("google", "google.oauth2", "google.oauth2.credentials",
-            "google.auth", "google.auth.transport", "google.auth.transport.requests",
-            "googleapiclient", "googleapiclient.discovery"):
-    sys.modules.setdefault(mod, MagicMock())
 
-with patch("core.keychain_secrets.load_google_secrets", return_value=None), \
-     patch("core.config_loader._load_config") as _mc:
+with patch("core.config_loader._load_config") as _mc:
     from conftest import MINIMAL_CONFIG
     from core.config_loader import Config
     _mc.return_value = Config(MINIMAL_CONFIG)
@@ -45,6 +38,9 @@ GOOD_RESPONSE = {
         "temperature_2m_max": [76.0],
         "temperature_2m_min": [58.0],
         "precipitation_probability_max": [10]
+    },
+    "hourly": {
+        "precipitation_probability": [0]*24
     }
 }
 
@@ -182,7 +178,7 @@ class TestGetWeatherBriefing:
         weather_data = {
             "temp_current": 65, "temp_feels_like": 63, "temp_high": 70,
             "temp_low": 50, "condition": "Cloudy", "wind_speed": 12,
-            "humidity": 80, "rain_chance": 40
+            "humidity": 80, "rain_chance": 40, "rain_windows": ""
         }
         with patch.object(weather_module, "fetch_weather", return_value=weather_data), \
              patch.object(weather_module, "generate_weather_suggestion",
@@ -195,7 +191,7 @@ class TestGetWeatherBriefing:
         weather_data = {
             "temp_current": 75, "temp_feels_like": 73, "temp_high": 80,
             "temp_low": 60, "condition": "Clear sky", "wind_speed": 5,
-            "humidity": 40, "rain_chance": 39
+            "humidity": 40, "rain_chance": 39, "rain_windows": ""
         }
         with patch.object(weather_module, "fetch_weather", return_value=weather_data), \
              patch.object(weather_module, "generate_weather_suggestion",
@@ -207,7 +203,7 @@ class TestGetWeatherBriefing:
         weather_data = {
             "temp_current": 72, "temp_feels_like": 70, "temp_high": 78,
             "temp_low": 58, "condition": "Clear sky", "wind_speed": 8,
-            "humidity": 55, "rain_chance": 5
+            "humidity": 55, "rain_chance": 5, "rain_windows": ""
         }
         with patch.object(weather_module, "fetch_weather", return_value=weather_data), \
              patch.object(weather_module, "generate_weather_suggestion",
@@ -216,3 +212,174 @@ class TestGetWeatherBriefing:
         assert result is not None
         assert "Weather" in result
         assert "Warm and sunny" in result
+
+    def test_includes_rain_timing_when_available(self):
+        weather_data = {
+            "temp_current": 65, "temp_feels_like": 63, "temp_high": 70,
+            "temp_low": 50, "condition": "Cloudy", "wind_speed": 12,
+            "humidity": 80, "rain_chance": 60, "rain_windows": "2\u2009\u2013\u20095 PM"
+        }
+        with patch.object(weather_module, "fetch_weather", return_value=weather_data), \
+             patch.object(weather_module, "generate_weather_suggestion",
+                          return_value="Cloudy and cool."):
+            result = weather_module.get_weather_briefing()
+        assert "expected" in result
+        assert "2" in result and "5 PM" in result
+
+    def test_rain_warning_without_timing_fallback(self):
+        weather_data = {
+            "temp_current": 65, "temp_feels_like": 63, "temp_high": 70,
+            "temp_low": 50, "condition": "Cloudy", "wind_speed": 12,
+            "humidity": 80, "rain_chance": 50, "rain_windows": ""
+        }
+        with patch.object(weather_module, "fetch_weather", return_value=weather_data), \
+             patch.object(weather_module, "generate_weather_suggestion",
+                          return_value="Cloudy."):
+            result = weather_module.get_weather_briefing()
+        assert "umbrella" in result.lower()
+        assert "expected" not in result
+
+
+# ─── _extract_rain_windows ──────────────────────────────────────────────────
+
+class TestExtractRainWindows:
+    def test_no_rain(self):
+        probs = [0] * 24
+        assert weather_module._extract_rain_windows(probs) == []
+
+    def test_single_window(self):
+        probs = [0]*14 + [50, 60, 70, 40] + [0]*6
+        assert weather_module._extract_rain_windows(probs) == [(14, 17)]
+
+    def test_multiple_windows(self):
+        probs = [0]*8 + [40, 50] + [0]*4 + [60, 70, 50] + [0]*7
+        assert weather_module._extract_rain_windows(probs) == [(8, 9), (14, 16)]
+
+    def test_all_day_rain(self):
+        probs = [80] * 24
+        assert weather_module._extract_rain_windows(probs) == [(0, 23)]
+
+    def test_single_hour(self):
+        probs = [0]*15 + [50] + [0]*8
+        assert weather_module._extract_rain_windows(probs) == [(15, 15)]
+
+    def test_rain_at_end_of_day(self):
+        probs = [0]*22 + [40, 50]
+        assert weather_module._extract_rain_windows(probs) == [(22, 23)]
+
+    def test_custom_threshold(self):
+        probs = [0]*10 + [25, 30, 35] + [0]*11
+        assert weather_module._extract_rain_windows(probs, threshold=25) == [(10, 12)]
+        assert weather_module._extract_rain_windows(probs, threshold=30) == [(11, 12)]
+
+
+# ─── _format_rain_timing ────────────────────────────────────────────────────
+
+class TestFormatRainTiming:
+    def test_empty_windows(self):
+        assert weather_module._format_rain_timing([]) == ""
+
+    def test_single_hour_window(self):
+        result = weather_module._format_rain_timing([(15, 15)])
+        assert "around 3 PM" in result
+
+    def test_afternoon_window(self):
+        result = weather_module._format_rain_timing([(14, 17)])
+        assert "2" in result and "5 PM" in result
+
+    def test_morning_window(self):
+        result = weather_module._format_rain_timing([(8, 10)])
+        assert "8" in result and "10 AM" in result
+
+    def test_cross_noon_window(self):
+        result = weather_module._format_rain_timing([(10, 14)])
+        assert "AM" in result and "PM" in result
+
+    def test_multiple_windows(self):
+        result = weather_module._format_rain_timing([(8, 10), (15, 18)])
+        assert "," in result
+
+    def test_midnight_hour(self):
+        assert "12 AM" in weather_module._format_rain_timing([(0, 0)])
+
+
+class TestGeocodeCaching:
+    """Regression: @lru_cache memoized the None that geocode_location returns
+    on failure, so one transient blip pinned home coordinates for the rest of
+    the process and the briefing reported home weather during a trip."""
+
+    def test_a_transient_failure_is_not_memoized(self):
+        weather_module.geocode_location.cache_clear()
+        with patch("urllib.request.urlopen", side_effect=URLError("boom")):
+            assert weather_module.geocode_location("Seattle, WA") is None
+
+        resp = MagicMock()
+        resp.__enter__.return_value.read.return_value = json.dumps(
+            {"results": [{"latitude": 47.6, "longitude": -122.3}]}).encode()
+        with patch("urllib.request.urlopen", return_value=resp):
+            assert weather_module.geocode_location("Seattle, WA") == (47.6, -122.3), \
+                "the failure was memoized; the whole trip gets home weather"
+
+    def test_a_success_is_memoized(self):
+        weather_module.geocode_location.cache_clear()
+        resp = MagicMock()
+        resp.__enter__.return_value.read.return_value = json.dumps(
+            {"results": [{"latitude": 1.0, "longitude": 2.0}]}).encode()
+        with patch("urllib.request.urlopen", return_value=resp) as m:
+            weather_module.geocode_location("Tokyo")
+            weather_module.geocode_location("Tokyo")
+        assert m.call_count == 1
+
+
+class TestWeatherContextUsesOneDateBasis:
+    """Regression: with timezone=auto the series is indexed in the
+    DESTINATION's local dates, but the daily block was indexed positionally
+    from the MACHINE's date. The returned dict then carried one day's hours
+    and another day's UV/sunrise/sunset, with nothing marking the seam."""
+
+    def _payload(self, days, hours_day, offset_seconds=32400):
+        times, temps = [], []
+        for h in range(24):
+            times.append(f"{hours_day}T{h:02d}:00")
+            temps.append(70)
+        return {
+            "utc_offset_seconds": offset_seconds,
+            "hourly": {
+                "time": times, "temperature_2m": temps,
+                "apparent_temperature": temps,
+                "precipitation_probability": [0] * 24, "wind_speed_10m": [5] * 24,
+            },
+            "daily": {
+                "time": days,
+                "uv_index_max": [float(i) for i in range(len(days))],
+                "sunrise": [f"{d}T06:00" for d in days],
+                "sunset": [f"{d}T19:00" for d in days],
+            },
+        }
+
+    def test_daily_values_come_from_the_same_day_as_the_hours(self):
+        # Dates are relative to today, deliberately. This test pinned
+        # 2026-09-02/03 and started failing on 2026-09-04 — not because the
+        # behaviour broke, but because fetch_weather_context returns None for
+        # any date in the past (documented, and correct). A fixture with an
+        # absolute date in it is a test with an expiry date on it, and this one
+        # sat red for three days looking like a real weather regression.
+        #
+        # The series starts a day AHEAD of the machine, as an eastern
+        # destination does, so the target sits at index 1 and must not be read
+        # from row 0.
+        from datetime import date as _date, timedelta as _td
+        first = _date.today() + _td(days=1)
+        target = first + _td(days=1)
+        data = self._payload([first.isoformat(), target.isoformat()],
+                             target.isoformat())
+        resp = MagicMock()
+        resp.__enter__.return_value.read.return_value = json.dumps(data).encode()
+        with patch("urllib.request.urlopen", return_value=resp):
+            ctx = weather_module.fetch_weather_context(
+                start_hour=6, end_hour=20, location="Tokyo",
+                date=target.isoformat())
+        assert ctx is not None, "the hourly filter matched nothing"
+        assert ctx["uv"]["index_max"] == 1.0, "UV came from the wrong day"
+        assert ctx["sun"]["sunrise"] == "06:00"
+        assert all(h["t"] for h in ctx["hours"])

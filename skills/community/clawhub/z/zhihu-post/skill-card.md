@@ -1,45 +1,56 @@
-## Description: <br>
-Posts Zhihu column articles and short thoughts by using Chrome Browser Relay to control a user's logged-in Chrome tab. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在知乎发布内容（专栏文章、想法/动态），使用 Chrome Browser Relay 控制用户的 Chrome 浏览器完成发布。
 
-## Publisher: <br>
-[InuyashaYang](https://clawhub.ai/user/InuyashaYang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[inuyashayang](https://clawhub.ai/user/inuyashayang)
 
-## Use Case: <br>
-External users and content operators use this skill to prepare and publish Zhihu column articles or short thoughts through a browser session they have already logged into and attached with Chrome Browser Relay. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a logged-in Zhihu browser tab and may publish public content with under-scoped confirmation controls. <br>
-Mitigation: Require the agent to show the exact title, body, and media to the user and obtain explicit approval before clicking publish. <br>
-Risk: The skill depends on browser relay access to an authenticated session. <br>
-Mitigation: Use a dedicated browser profile or account where possible and attach only the intended Zhihu tab. <br>
-Risk: Zhihu DOM selectors and editor behavior may change. <br>
-Mitigation: Take an interactive snapshot before acting and verify that the selected controls still match the article or thought editor. <br>
+## Use Case:
 
+External users and creators use this skill to prepare and publish Zhihu column articles or short posts from an attached, logged-in Chrome browser session.
 
-## Reference(s): <br>
-- [Zhihu DOM selector reference](references/dom-selectors.md) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Zhihu column editor](https://zhuanlan.zhihu.com/write) <br>
-- [Zhihu home](https://www.zhihu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with browser actions, JavaScript snippets, shell commands, and optional JSON helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare Zhihu-friendly HTML and character counts for article or thought content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish content through a logged-in Zhihu browser session without a strong final confirmation gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the target tab visible, review the exact title and body, and require explicit final confirmation before any publish button is clicked.
+
+Risk: Generated HTML from the helper script may include unsafe or unintended markup.
+
+Mitigation: Treat generated HTML as untrusted unless it has been reviewed and sanitized before posting.
+
+## Reference(s):
+
+- [知乎 DOM 选择器速查](references/dom-selectors.md)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Zhihu column editor](https://zhuanlan.zhihu.com/write)
+- [Zhihu](https://www.zhihu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown guidance with inline browser commands, JavaScript snippets, and JSON helper-script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script validates title and content length and can convert simple Markdown to Zhihu-friendly HTML.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

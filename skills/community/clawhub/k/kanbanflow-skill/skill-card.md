@@ -1,39 +1,48 @@
-## Description: <br>
-Manage and organize KanbanFlow board tasks by adding, moving, coloring, and deleting tasks across columns to track work progress. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and organize KanbanFlow board tasks by adding, moving, coloring, and deleting tasks across columns to track work progress.
 
-## Publisher: <br>
-[abakermi](https://clawhub.ai/user/abakermi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abakermi](https://clawhub.ai/user/abakermi)
 
-## Use Case: <br>
-Developers and operators can use this skill to ask an agent for KanbanFlow command guidance that lists boards, columns, and tasks and changes task state when requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward KanbanFlow task changes, including deletion. <br>
-Mitigation: Require confirmation before delete or other task-changing commands are executed. <br>
-Risk: Commands depend on the local kanbanflow command or integration being trusted and connected to the intended board. <br>
-Mitigation: Verify the local command or integration before using the skill to operate on KanbanFlow tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kanbanflow Skill on ClawHub](https://clawhub.ai/abakermi/kanbanflow-skill) <br>
+## Use Case:
 
+Developers and workflow operators use this skill to inspect KanbanFlow boards and organize tasks across columns with simple agent-mediated commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Text or Markdown with KanbanFlow command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task-changing commands that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Task deletion can remove KanbanFlow tasks from a board where recovery may matter.
+
+Mitigation: Use the skill only on boards the agent is authorized to modify, and require explicit confirmation before delete commands.
+
+## Reference(s):
+
+- [Kanbanflow Skill on ClawHub](https://clawhub.ai/abakermi/skills/kanbanflow-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with KanbanFlow command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces board, column, task, color, movement, and deletion commands for KanbanFlow workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,53 @@
-## Description: <br>
-Create and manage XRPL tokens (issued currencies) and NFTs, including minting, issuer setup, NFT creation, and trust-line management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage XRPL issued tokens and NFTs, including minting, trust lines, issuing payments, and setting NFT offers with customizable fees and flags.
 
-## Publisher: <br>
-[HarleysCodes](https://clawhub.ai/user/HarleysCodes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harleyscodes](https://clawhub.ai/user/harleyscodes)
 
-## Use Case: <br>
-Developers and blockchain operators use this skill to draft XRPL issued-currency and NFT transaction templates, including trust lines, token payments, NFT minting, and NFT offer flows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: XRPL transaction templates can affect live assets if copied into a wallet or signing flow without review. <br>
-Mitigation: Verify the network, account addresses, issuer, amounts, NFT IDs, flags, fees, and offer IDs, and prefer testnet or dry-run review before mainnet use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and blockchain builders use this skill to draft XRPL issued-currency and NFT transaction templates for minting, trust lines, payments, and NFT offers.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bash setup commands and TypeScript-like XRPL transaction templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are examples and guidance for human review before wallet signing or network submission.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Live XRPL transaction templates can affect assets irreversibly if used on mainnet without review.
+
+Mitigation: Use testnet or devnet until the network, wallet, account ownership, issuer and destination addresses, amounts, fees, flags, and consequences of each transaction are explicitly confirmed.
+
+Risk: Dependency behavior may change if the xrpl package version is left floating.
+
+Mitigation: Pin and review the xrpl package version before adapting the templates in real projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harleyscodes/skills/xrpl-token-mint)
+- [Publisher profile](https://clawhub.ai/user/harleyscodes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and TypeScript-like XRPL transaction snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides transaction templates and implementation guidance; it does not execute XRPL transactions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

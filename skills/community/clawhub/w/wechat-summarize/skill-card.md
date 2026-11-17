@@ -1,40 +1,53 @@
-## Description: <br>
-抓取微信公众号文章并转换为 Markdown，提取正文内容后总结核心观点或直接输出完整文章。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抓取微信公众号文章并转换为 Markdown，提取正文内容后总结核心观点或输出完整文章。
 
-## Publisher: <br>
-[kongym1234](https://clawhub.ai/user/kongym1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongym1234](https://clawhub.ai/user/kongym1234)
 
-## Use Case: <br>
-Readers and agents use this skill to fetch a user-provided WeChat Official Account article, convert its body to Markdown, and summarize the article's key points or return the full extracted content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted or inaccessible WeChat article links may fail to fetch, require human verification, or yield content that needs review before relying on a summary. <br>
-Mitigation: Use trusted WeChat article links and review or retain the generated Markdown when an audit copy is needed. <br>
-Risk: Fallback dependency installation pulls current Python package versions. <br>
-Mitigation: Preinstall or pin the required Python dependencies in controlled environments. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve a trusted WeChat Official Account article URL, convert the article body to Markdown, and summarize the core points or return the full article text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongym1234/wechat-summarize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown article files, Markdown summaries, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated Markdown files are normally deleted after summarization unless the user asks to keep them; optional image download writes local image files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The fetcher can make under-scoped network requests to arbitrary URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted WeChat article URLs and review before installing in environments that can reach private networks or sensitive internal services.
+
+Risk: The --save-images option can download unbounded remote image content.
+
+Mitigation: Avoid --save-images unless local image copies are needed, and review retained Markdown and image files before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongym1234/skills/wechat-summarize)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown summaries or full Markdown article text, with optional local Markdown and image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Markdown files are deleted after summarization unless the user explicitly asks to keep them; --save-images can create local image files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

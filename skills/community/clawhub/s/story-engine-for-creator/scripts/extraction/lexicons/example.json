@@ -1,0 +1,30 @@
+{
+  "_comment": "词表骨架。复制本文件为客户档案后替换内容；load_lexicon('your_profile') 按文件名载入。characters 的 key 是规范名，value 是别称列表（可空）。",
+  "_fields": {
+    "characters": "必填。{规范名: [别称...]}；为空时 build_name_regex 会直接报错，不静默降级。",
+    "places": "选填。地点标记词，用于就近归属。",
+    "time_markers": "选填。时间标记词；前置数字会被 guard 屏蔽（「十一月」不误配「一月」）。",
+    "death_markers": "选填。死亡标记词，配合角色提及窗口判定。",
+    "legal_context_markers": "选填。法度/公门语境标记，用于区分官断与私斗。"
+  },
+  "characters": {
+    "示例角色甲": ["甲", "阿甲"],
+    "示例角色乙": []
+  },
+  "places": [
+    "京城",
+    "城东"
+  ],
+  "time_markers": [
+    "次日",
+    "當日"
+  ],
+  "death_markers": [
+    "死了",
+    "去世"
+  ],
+  "legal_context_markers": [
+    "衙門",
+    "官府"
+  ]
+}

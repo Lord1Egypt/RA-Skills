@@ -1,41 +1,50 @@
-## Description: <br>
-Socialdatax Kuaishou helps agents research Kuaishou/Kwai hot lists, videos, comments, replies, creator profiles, and creator posts through SocialDataX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用于快手数据助手、快手内容研究、作品研究、作品详情、评论分析、评论回复分析、达人数据和达人作品。覆盖 Kuaishou / Kwai short-video research，来自 SocialDataX 社媒数据助手。
 
-## Publisher: <br>
-[devinchen2014](https://clawhub.ai/user/devinchen2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devinchen2014](https://clawhub.ai/user/devinchen2014)
 
-## Use Case: <br>
-Developers and research agents use this skill to retrieve Kuaishou/Kwai hot-search, content, comment, reply, creator profile, and creator post data through the SocialDataX CLI or matching MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party SocialDataX npm package and API service that receives requests made with SOCIALDATAX_API_KEY. <br>
-Mitigation: Install and run it only in trusted environments, and provide SOCIALDATAX_API_KEY only when Kuaishou/Kwai research access is required. <br>
-Risk: The artifact invokes read-only data-retrieval commands for external Kuaishou/Kwai content, so results may reflect the external service's available data. <br>
-Mitigation: Treat retrieved social data as research input and review outputs before using them in decisions or reports. <br>
+## Use Case:
 
+External users and developers use this skill to research Kuaishou/Kwai short-video content and creators, retrieve work details, and analyze comments and replies through SocialDataX.
 
-## Reference(s): <br>
-- [SocialDataX API access](https://socialdatax.52choujiang.com/?from=clawhub) <br>
-- [ClawHub skill page](https://clawhub.ai/devinchen2014/socialdatax-kuaishou) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and tool names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node, npm, and SOCIALDATAX_API_KEY; direct CLI examples use the socialdatax-skills npm package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: ClawScan marked the release suspicious with medium confidence: repeated unpinned automatic CLI installs could run changed package code with the caller's permissions. The scan was partial because three local references could not be resolved.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package release and pin a reviewed version before running it; use a runtime with only the credentials and account access needed for the requested lookup.
+
+## Reference(s):
+
+- [SocialDataX API access](https://socialdatax.com/ai?from=clawhub)
+- [ClawHub skill release](https://clawhub.ai/devinchen2014/skills/socialdatax-kuaishou)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [Structured Kuaishou data, typically JSON, with concise text summaries when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the requested lookup, SocialDataX service availability, and usable API credentials.]
+
+## Skill Version(s):
+
+0.1.24 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

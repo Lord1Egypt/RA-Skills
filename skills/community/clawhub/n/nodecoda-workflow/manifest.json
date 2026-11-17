@@ -1,0 +1,58 @@
+{
+  "name": "nodecoda-workflow",
+  "version": "0.2.35",
+  "description": "Author, validate, and build Dify workflows via NodeCoda MCP. Use when the user wants to author .ncoda source, call build_dify_workflow, interpret diagnostics, or iterate on Dify workflow generation. Live: codex + public deployment wired.",
+  "platforms": [
+    "claude-code",
+    "codex",
+    "gemini-cli",
+    "cursor"
+  ],
+  "min_nodecoda": "1.0.0",
+  "target_profile": "dify-1.16-graphon-0.6",
+  "language_identity": "nodecoda/1",
+  "mcp_tools": [
+    "build_dify_workflow",
+    "get_workflow_build",
+    "cancel_workflow_build"
+  ],
+  "entry": "SKILL.md",
+  "language_pack": "language-pack",
+  "references": [
+    "references/README.md",
+    "references/grammar-reference.md",
+    "references/language-reference.md",
+    "references/target-capabilities.md",
+    "references/mcp-contract.md",
+    "references/public-service.md",
+    "references/project-workflow.md",
+    "references/iteration-loop.md",
+    "references/source-generation.md",
+    "references/diagnostics.md",
+    "references/diagnostics-map.md",
+    "references/failure-modes.md",
+    "references/gotchas.md"
+  ],
+  "examples": [
+    "examples/01-hello-workflow.ncoda",
+    "examples/02-with-llm.ncoda",
+    "examples/03-parallel-branches.ncoda",
+    "examples/04-code-node.ncoda",
+    "examples/05-conditional-output.ncoda",
+    "examples/06-error-handling.ncoda",
+    "examples/07-structured-extract.ncoda",
+    "examples/08-tool-and-http.ncoda",
+    "examples/09-knowledge-rag.ncoda",
+    "examples/10-advanced-chat.ncoda",
+    "examples/11-loop-transform.ncoda",
+    "examples/12-parallel-for.ncoda",
+    "examples/13-fetch-summarize.ncoda",
+    "examples/14-ffi-single-output.ncoda"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/nodecoda/nodecoda-skill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodecoda/nodecoda-skill.git"
+  }
+}

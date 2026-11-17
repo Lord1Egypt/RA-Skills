@@ -1,39 +1,56 @@
-## Description: <br>
-Bank Recon Skill reconciles bank statement PDF or Excel files against general ledger workbooks and generates an Excel workbook with matched, unreconciled, and summary tabs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform bank reconciliation between bank statements and general ledger files, including bank statement PDF ingestion, structured Excel extraction, amount-threshold matching, ID/key matching, semantic description matching, and reconciliation workbook generation.
 
-## Publisher: <br>
-[ChipmunkRPA](https://clawhub.ai/user/ChipmunkRPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chipmunkrpa](https://clawhub.ai/user/chipmunkrpa)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Accountants, finance teams, and agents supporting reconciliation workflows use this skill to compare bank statement rows with general ledger transactions, identify matched and unmatched items, and produce a reviewable Excel reconciliation workbook.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill reads bank statement and general ledger files that may contain sensitive financial data and writes reconciliation workbooks containing that data.
+
+Mitigation: Use trusted input files, choose a private output folder, and review access controls before sharing generated workbooks.
+
+Risk: PDF input creates a companion extracted workbook beside the source PDF, which may duplicate sensitive transaction data.
+
+Mitigation: Store PDF inputs in a private working directory and remove the extracted workbook when it is no longer needed.
+
+Risk: Unsupported or unusually formatted PDFs, especially scanned-image statements, may produce incomplete extraction results.
+
+Mitigation: Use digital text-based PDFs or validated Excel inputs, and have a finance reviewer inspect the Summary, Recon Results, Unreconciled Bank, and Unreconciled GL tabs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Accountants, finance teams, and agents supporting them use this skill to compare bank activity with GL transactions, identify matched and unmatched records, and prepare reviewable reconciliation workbooks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Markdown, Shell commands, Analysis]
 
-## Known Risks and Mitigations: <br>
-Risk: Bank and ledger inputs and generated reconciliation workbooks can contain sensitive financial information. <br>
-Mitigation: Process only files suitable for local handling, choose output paths deliberately, avoid shared or synced folders when inappropriate, and delete generated workbooks when they are no longer needed. <br>
-Risk: PDF inputs create an additional extracted workbook beside the original statement. <br>
-Mitigation: Account for the companion '_extracted.xlsx' file when selecting directories and cleaning up generated financial data. <br>
+**Output Format:** [Excel workbook plus a concise text or Markdown reconciliation summary]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May create an additional extracted Excel workbook beside a PDF bank statement input.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, files, guidance] <br>
-**Output Format:** [Markdown guidance, shell command invocation, terminal summary text, and generated .xlsx workbook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a reconciliation workbook and, for PDF bank statements, a companion extracted workbook next to the PDF input.] <br>
+1.0.2 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

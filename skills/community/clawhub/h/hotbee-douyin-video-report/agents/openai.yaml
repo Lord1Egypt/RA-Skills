@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee 抖音视频报告"
+  short_description: "输入抖音视频链接，生成 HTML 报告、图片、评论和文案"
+  default_prompt: "使用 $hotbee-douyin-video-report 解析这个抖音视频链接，并生成 HTML 报告、图片、评论和文案。"

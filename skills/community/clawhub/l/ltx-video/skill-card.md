@@ -1,42 +1,59 @@
-## Description: <br>
-Generate videos through the LTX-2.3 API for text-to-video, image-to-video, audio-to-video lip-sync, video extension, and retake workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos via LTX-2.3 API for text-to-video, image-to-video, audio-to-video lip-sync, video extension, and retake workflows.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Developers and creative operators use this skill to generate or modify MP4 videos with LTX-2.3 from prompts, images, audio, and existing video clips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact contains a live-looking API key. <br>
-Mitigation: Do not use the embedded key; rotate it if owned by the publisher and provide user-specific credentials through an environment variable or secret manager. <br>
-Risk: The skill recommends uploading audio, image, or video files to a public file host. <br>
-Mitigation: Avoid sending sensitive portraits, voice recordings, or private videos to public hosts unless retention and access policies are acceptable; prefer controlled HTTPS storage. <br>
+## Use Case:
 
+Developers and creators use this skill to call LTX-2.3 video endpoints and write prompts for generating, animating, lip-syncing, extending, or retaking videos from text, images, and audio.
 
-## Reference(s): <br>
-- [LTX Video API base URL](https://api.ltx.video/v1) <br>
-- [ComfyUI LTX node](https://github.com/PauldeLavallaz/comfyui-ltx-node) <br>
-- [ClawHub release page](https://clawhub.ai/PauldeLavallaz/ltx-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl examples, Python snippets, endpoint notes, and prompting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an LTX API key and HTTPS media URLs; API responses are MP4 binary downloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact exposes a specific LTX API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke the exposed key, remove it from published copies, and require users to supply their own key through a protected secret mechanism.
+
+Risk: The artifact recommends third-party media upload instructions for files used by video-generation requests.
+
+Mitigation: Use a user-controlled or official private upload path and confirm HTTPS access, MIME type handling, and retention behavior before sending media URLs to the API.
+
+Risk: The ComfyUI custom node install command clones an unpinned repository.
+
+Mitigation: Pin the ComfyUI node to a reviewed commit or release before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pauldelavallaz/skills/ltx-video)
+- [LTX Video API base URL](https://api.ltx.video/v1)
+- [ComfyUI LTX node](https://github.com/PauldeLavallaz/comfyui-ltx-node)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce MP4 files when the generated API calls are executed by the user]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

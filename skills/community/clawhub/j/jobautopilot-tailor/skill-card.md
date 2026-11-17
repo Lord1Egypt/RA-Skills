@@ -1,43 +1,59 @@
-## Description: <br>
-Tailors resumes and cover letters to specific job descriptions, using the user's source resume materials to produce job-specific markdown and .docx files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tailors a user's resume and cover letter to a specific job description, using the user's source resume materials and job tracker to produce Markdown drafts and polished DOCX files.
 
-## Publisher: <br>
-[jerronl](https://clawhub.ai/user/jerronl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerronl](https://clawhub.ai/user/jerronl)
 
-## Use Case: <br>
-Job seekers and career-support agents use this skill to tailor truthful resumes and concise cover letters for shortlisted job postings, then prepare files for a downstream application-submission workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads resume files, job tracker content, and personal contact details, so misconfigured paths can expose more personal information than intended. <br>
-Mitigation: Keep RESUME_DIR limited to career documents intended for processing and review the configured tracker and contact environment variables before running the skill. <br>
-Risk: Generated resumes or cover letters may be malformed, incomplete, or unsuitable to send if the markdown structure or document conversion fails. <br>
-Mitigation: Review generated markdown and .docx files, verify there are no leftover placeholders, and confirm the files open correctly before submitting them. <br>
-Risk: The resume template is referenced by URL and may not be the expected file if the configured template source changes. <br>
-Mitigation: Verify the resume template URL and use a trusted local template path before generating documents. <br>
+## Use Case:
 
+External users and agents use this skill to tailor truthful resume and cover-letter materials for shortlisted jobs, convert them to DOCX, and update the job-search tracker for handoff to a submitter workflow.
 
-## Reference(s): <br>
-- [Jobautopilot Tailor on ClawHub](https://clawhub.ai/jerronl/jobautopilot-tailor) <br>
-- [Sample resume template](https://github.com/jerronl/jobautopilot/raw/main/jobautopilot-tailor/scripts/sample_placeholders.docx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown drafts, .docx files, tracker status updates, and concise progress reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses configured resume, output, template, tracker, and contact-detail environment variables; generated documents should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill reads resume materials, contact details, and job tracker entries that may contain sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated resume folder and tracker with only the files needed for the workflow, and run the skill in a restricted environment when possible.
+
+Risk: The skill generates application documents and updates tracker status, so incorrect tailoring or formatting could affect an application.
+
+Mitigation: Review generated Markdown and DOCX files before sending them, and confirm tracker updates after each job.
+
+Risk: The workflow depends on Python packages and local conversion scripts.
+
+Mitigation: Pin dependencies and review the configured conversion script path before running the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jerronl/skills/jobautopilot-tailor)
+- [Jobautopilot Repository](https://github.com/jerronl/jobautopilot)
+- [Sample DOCX Template](https://github.com/jerronl/jobautopilot/raw/main/jobautopilot-tailor/scripts/sample_placeholders.docx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, DOCX files, tracker updates, shell commands, and concise status reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local resume, tracker, template, and contact-info environment variables; generated documents should be reviewed before use.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

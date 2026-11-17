@@ -1,41 +1,54 @@
-## Description: <br>
-智能音频降噪服务，基于阿里巴巴通义实验室 AI 算法，一键消除背景噪音，还原纯净人声。支持 wav、mp3、aac 等主流格式，适用于录音降噪、语音识别预处理、播客后期制作、会议录音优化等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audio denoising skill for removing background noise from user-provided recordings with Alibaba Cloud DashScope/FunAudioDenoise, supporting common formats such as wav, mp3, aac, opus, amr, and pcm.
 
-## Publisher: <br>
-[songguocola](https://clawhub.ai/user/songguocola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songguocola](https://clawhub.ai/user/songguocola)
 
-## Use Case: <br>
-Developers and audio workflow users use this skill to denoise recorded speech, prepare audio for ASR, and improve podcasts, meetings, interviews, online education recordings, and audiobook production through Alibaba DashScope audio processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected recordings are processed through Alibaba DashScope and may contain sensitive, regulated, or confidential speech. <br>
-Mitigation: Use only approved recordings, review the provider privacy and retention terms before use, and avoid sensitive content unless authorized. <br>
-Risk: The skill requires a DashScope API key for authentication. <br>
-Mitigation: Store the API key in a protected environment variable and run the skill only in a trusted Python environment. <br>
+## Use Case:
 
+Developers and audio workflow operators use this skill to denoise recordings, prepare audio for speech recognition, and improve meeting, podcast, interview, education, and audiobook audio quality. It can be used through a command-line interface or imported Python API.
 
-## Reference(s): <br>
-- [fun-denoise ClawHub page](https://clawhub.ai/songguocola/fun-denoise) <br>
-- [Denoise.py source reference](audio_process/Denoise.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks; runtime output is denoised audio files plus JSON-like processing metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a DashScope API key and sends selected audio to Alibaba DashScope for cloud processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User audio is uploaded to Alibaba Cloud/DashScope for processing and may contain sensitive personal, business, or biometric information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only process audio the user is authorized to upload, and handle recordings according to the user's privacy, consent, and data-retention requirements.
+
+Risk: Runtime behavior depends on external Python packages and a DashScope API key.
+
+Mitigation: Install the skill in a virtual environment, pin dependency versions where practical, and keep API keys in environment variables or a managed secret store.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songguocola/skills/fun-denoise)
+- [Denoise.py source reference](audio_process/Denoise.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces denoised audio files and processing metadata when run by the user with a valid DashScope API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

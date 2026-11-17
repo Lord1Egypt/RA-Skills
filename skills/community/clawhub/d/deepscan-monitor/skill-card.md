@@ -1,43 +1,52 @@
-## Description: <br>
-Run and monitor PapersFlow DeepScan jobs for long-running research progress, intermediate findings, final reports, and plotting from completed runs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run and monitor PapersFlow DeepScan jobs. Use when the user wants long-running research progress, intermediate findings, final reports, or plotting from a completed run.
 
-## Publisher: <br>
-[papersareflowing](https://clawhub.ai/user/papersareflowing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[papersareflowing](https://clawhub.ai/user/papersareflowing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, researchers, and external users use this skill to run and monitor longer-running PapersFlow DeepScan research jobs, inspect live progress and intermediate findings, retrieve final reports, summarize stored evidence, and plot stable completed-report data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Research queries, live snapshots, reports, and stored DeepScan history may be accessed through the configured PapersFlow DeepScan integration.
+
+Mitigation: Confirm trust in the configured PapersFlow DeepScan tools before installation and avoid submitting sensitive research content unless that integration is approved for the use case.
+
+Risk: Plots or conclusions from sparse or unstable report data may be misleading.
+
+Mitigation: Generate plots only after final report data is stable and meaningful, and clearly state when data is sparse or low quality.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to manage asynchronous PapersFlow DeepScan research jobs, monitor live progress, summarize intermediate and final findings, and create plots only after report data is stable. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: DeepScan jobs and stored reports may send research prompts or report data to the configured PapersFlow service. <br>
-Mitigation: Avoid sensitive material unless that sharing is intended, and confirm the data-sharing posture before starting a run. <br>
-Risk: Long-running DeepScan jobs are asynchronous and may not provide automatic completion notifications. <br>
-Mitigation: Poll deliberately with live snapshots or lightweight status checks and keep the next action clear when the report is not ready. <br>
-Risk: Plots generated from sparse or unstable report data may be misleading. <br>
-Mitigation: Generate plots only after final or stable report data is available and the dataset is meaningful for visualization. <br>
+**Output Format:** [Markdown progress updates, summaries, final-report guidance, and optional plotting instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/papersareflowing/deepscan-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/papersareflowing) <br>
+**Other Properties Related to Output:** [Uses asynchronous job progress, live snapshots, final reports, stored DeepScan history, and stable report data when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown status updates, summaries, and plotting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live progress, top papers, key findings, final report summaries, and plot recommendations when completed report data supports them.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

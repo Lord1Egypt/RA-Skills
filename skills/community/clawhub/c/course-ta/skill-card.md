@@ -1,46 +1,59 @@
-## Description: <br>
-Course TA is a virtual course teaching assistant for Discord that answers course-scoped student questions from course materials and supports instructor setup, Canvas sync, admin edits, rate limiting, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual course teaching assistant for Discord that answers course-related questions using RAG over course materials and supports professor-administered Canvas LMS sync, dashboard, and update workflows.
 
-## Publisher: <br>
-[zeron-g](https://clawhub.ai/user/zeron-g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeron-g](https://clawhub.ai/user/zeron-g)
 
-## Use Case: <br>
-Educators and course staff use this skill to operate a Discord-based teaching assistant that answers student questions from official course materials, routes work by course section, and supports Canvas-backed course administration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can connect an agent to Canvas and Discord for real courses and may access student LMS records. <br>
-Mitigation: Install only when the operator is authorized for the affected courses and use a least-privilege Canvas token. <br>
-Risk: Course records, credentials, logs, and synchronized content may be stored in local skill data directories. <br>
-Mitigation: Protect credential and data directories and disable enrollment, submission, or grade sync unless the course workflow requires it. <br>
-Risk: Canvas write actions and broadcast-style communication can affect students if misconfigured or executed without review. <br>
-Mitigation: Restrict broadcast permissions and require explicit instructor confirmation before announcements or other Canvas write operations. <br>
-Risk: Student identity and request content may be logged, reposted to staff channels, or forwarded during support workflows. <br>
-Mitigation: Give students clear notice before logging, staff-channel reposting, or forwarding their identity and request content. <br>
+## Use Case:
 
+Course instructors and teaching staff use this skill to run a Discord-based virtual teaching assistant that answers student course questions from indexed official materials. Professors can also use it to sync Canvas content, route multiple course sections, review dashboards, and manage approved course information updates.
 
-## Reference(s): <br>
-- [Course TA on ClawHub](https://clawhub.ai/zeron-g/course-ta) <br>
-- [Setup Guide](references/setup-guide.md) <br>
-- [OpenClaw](https://github.com/nichochar/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Discord replies, Markdown guidance, and inline shell commands or configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update course memory files, configuration, audit logs, and Canvas content when authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill combines student-facing Q&A with broad Canvas admin capabilities, sensitive student-data access, persistent indexing, and audit logging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy it as an instructor/admin tool with a least-privilege Canvas token, staff-only log channels, explicit student notice for logging or forwarding, and only the Canvas sync scopes needed for the course.
+
+Risk: Canvas content sync and file handling can expose unsafe filename containment or Canvas URL origin validation issues when processing untrusted course content.
+
+Mitigation: Fix filename containment and validate Canvas URL origins before syncing untrusted Canvas content; keep enrollment and discussion-reply sync disabled unless there is a concrete instructional need.
+
+Risk: Canvas write operations, such as announcements or grade-related updates, can affect live courses if triggered incorrectly.
+
+Mitigation: Restrict write commands to configured administrator users, show the exact target and content before execution, require explicit confirmation, and log all Canvas writes.
+
+## Reference(s):
+
+- [Course TA on ClawHub](https://clawhub.ai/zeron-g/skills/course-ta)
+- [Course TA Setup Guide](references/setup-guide.md)
+- [OpenClaw](https://github.com/nichochar/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text responses with optional shell commands and configuration updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces student-facing answers, professor/admin confirmations, Canvas dashboard summaries, audit log entries, and markdown memory files for retrieval.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

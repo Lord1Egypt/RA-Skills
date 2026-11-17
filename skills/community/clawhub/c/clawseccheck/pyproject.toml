@@ -8,26 +8,62 @@ dynamic = ["version"]
 description = "Local, read-only OpenClaw security self-audit (zero dependencies)."
 readme = "README.md"
 license = { text = "MIT" }
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "gl0di" }]
 keywords = ["openclaw", "security", "audit", "ai-agent", "prompt-injection", "clawhub"]
 classifiers = [
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Topic :: Security",
+    "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Security",
 ]
 dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/gl0di/clawseccheck"
+Documentation = "https://github.com/gl0di/clawseccheck/blob/main/docs/README.md"
+Changelog = "https://github.com/gl0di/clawseccheck/blob/main/CHANGELOG.md"
+Security = "https://github.com/gl0di/clawseccheck/blob/main/SECURITY.md"
+Releases = "https://github.com/gl0di/clawseccheck/releases"
+ClawHub = "https://clawhub.ai/gl0di/skills/clawseccheck"
 Issues = "https://github.com/gl0di/clawseccheck/issues"
 
 [project.scripts]
 clawseccheck = "clawseccheck.cli:main"
 
 [tool.setuptools]
-packages = ["clawseccheck"]
+packages = ["clawseccheck", "clawseccheck.checks", "clawseccheck.monitordims", "clawseccheck.adjudication"]
 
 [tool.setuptools.dynamic]
 version = { attr = "clawseccheck.__version__" }
+
+[tool.pytest.ini_options]
+markers = [
+    "mechanical: fast, dependency-free structural/documentation guards (module layout, public-boundary drift, schema grounding, unread-config fail-open, doc-facts) -- no fixtures, no subprocess, no npm/host state. Safe and useful to run before anything else; see docs/CHECKS.md / CLAUDE.md Testing protocol for the full gate list.",
+    "real_machine: test intentionally reads this machine's real home/fleet state",
+]
+
+[tool.ruff]
+# F-159/B347: this fixture's .py is INTENTIONALLY syntactically invalid - it is the
+# UNKNOWN-path test input for "skill source unreadable / AST cannot parse" (see
+# tests/test_b347_deaddrop_resolver.py). Every other fixture .py in the repo is valid
+# Python (even the malicious-looking ones), so this is the first and only exclude here;
+# keep it scoped to this one path rather than excluding fixtures/ wholesale.
+exclude = ["fixtures/unknown_b347_deaddrop_unparseable/**"]
+
+[tool.ruff.lint.per-file-ignores]
+# The checks/ aggregator re-exports every topic module's symbols (incl. privates) so
+# they stay importable as `from clawseccheck.checks import X`. It deliberately has no
+# __all__ (see clawseccheck/checks/__init__.py), so those re-export imports read as
+# "unused" to pyflakes.
+# F811: the aggregator also keeps in-function lazy re-imports (to avoid load cycles)
+# that shadow a top-level import once the top-level user moves to a topic module.
+"clawseccheck/checks/__init__.py" = ["F401", "F811"]

@@ -1,39 +1,55 @@
-## Description: <br>
-Install or customize this OpenClaw cyberpunk chat and dream theme. Use when the user wants this exact theme, wants to import it into another workspace, or wants to swap the bundled avatars and background images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs, repairs, and customizes a cyberpunk theme for OpenClaw's chat and dream interfaces.
 
-## Publisher: <br>
-[kasanuowa](https://clawhub.ai/user/kasanuowa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kasanuowa](https://clawhub.ai/user/kasanuowa)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install a cyberpunk visual theme, re-apply it after OpenClaw UI updates, or replace the seven documented avatar and background slots with their own assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer modifies the local OpenClaw Control UI and may apply changes immediately. <br>
-Mitigation: Install only when this visual change is intended, keep the generated backups until the theme is confirmed, and use --skip-apply to stage files before modifying the live UI. <br>
+## Use Case:
 
+OpenClaw users and workspace maintainers use this skill to install or restore a cyberpunk chat and dream theme and replace five avatar and background images.
 
-## Reference(s): <br>
-- [Theme slots](references/theme-slots.md) <br>
-- [Theme config example](references/theme-config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May install theme files into an OpenClaw workspace and optionally apply them to the live Control UI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.21 (source: server evidence and SKILL.md changelog) <br>
+Risk: Installation changes the target workspace and live OpenClaw Control UI by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --skip-apply to stage changes first, and review backups before relying on rollback.
+
+Risk: A fresh install without local default images may download assets from ClawHub.
+
+Mitigation: Provide all five image overrides or use existing local assets if network retrieval is undesirable.
+
+## Reference(s):
+
+- [ClawHub cyberpunk-theme release](https://clawhub.ai/kasanuowa/skills/cyberpunk-theme)
+- [Theme slots and image guidance](references/theme-slots.md)
+- [Theme configuration example](references/theme-config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance for installation, repair, and replacement of theme images.]
+
+## Skill Version(s):
+
+1.0.28 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,27 @@
+{
+  "source": "sample",
+  "source_label": "示例数据",
+  "note": "网络或第三方数据源不可用时使用的内置示例快照，非实时榜单，仅用于保证命令可运行、输出可读。",
+  "items": [
+    { "title": "全国多地开启冰雪旅游季", "hot_value": 1081263, "url": "https://s.weibo.com/weibo?q=%E5%86%B0%E9%9B%AA%E6%97%85%E6%B8%B8" },
+    { "title": "国产大模型开源新版本发布", "hot_value": 976412, "url": "https://s.weibo.com/weibo?q=%E5%BC%80%E6%BA%90%E5%A4%A7%E6%A8%A1%E5%9E%8B" },
+    { "title": "新一轮寒潮将影响北方地区", "hot_value": 842105, "url": "https://s.weibo.com/weibo?q=%E5%AF%92%E6%BD%AE" },
+    { "title": "高铁新线路今日正式开通运营", "hot_value": 731980, "url": "https://s.weibo.com/weibo?q=%E9%AB%98%E9%93%81%E6%96%B0%E7%BA%BF" },
+    { "title": "年度经济数据发布引发关注", "hot_value": 695320, "url": "https://s.weibo.com/weibo?q=%E7%BB%8F%E6%B5%8E%E6%95%B0%E6%8D%AE" },
+    { "title": "多地上调最低工资标准", "hot_value": 612045, "url": "https://s.weibo.com/weibo?q=%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84" },
+    { "title": "新款国产手机正式开售", "hot_value": 588771, "url": "https://s.weibo.com/weibo?q=%E5%9B%BD%E4%BA%A7%E6%89%8B%E6%9C%BA" },
+    { "title": "博物馆文创产品走红网络", "hot_value": 523410, "url": "https://s.weibo.com/weibo?q=%E5%8D%9A%E7%89%A9%E9%A6%86%E6%96%87%E5%88%9B" },
+    { "title": "城市公园改造后重新开放", "hot_value": 468902, "url": "https://s.weibo.com/weibo?q=%E5%9F%8E%E5%B8%82%E5%85%AC%E5%9B%AD" },
+    { "title": "秋季招聘季岗位需求回升", "hot_value": 401256, "url": "https://s.weibo.com/weibo?q=%E7%A7%8B%E5%AD%A3%E6%8B%9B%E8%81%98" },
+    { "title": "新能源汽车销量创新高", "hot_value": 388114, "url": "https://s.weibo.com/weibo?q=%E6%96%B0%E8%83%BD%E6%BA%90%E6%B1%BD%E8%BD%A6" },
+    { "title": "热门影片票房突破十亿", "hot_value": 356720, "url": "https://s.weibo.com/weibo?q=%E7%94%B5%E5%BD%B1%E7%A5%A8%E6%88%BF" },
+    { "title": "全民健身活动周启动", "hot_value": 312884, "url": "https://s.weibo.com/weibo?q=%E5%85%A8%E6%B0%91%E5%81%A5%E8%BA%AB" },
+    { "title": "高校科研成果转化加速", "hot_value": 289430, "url": "https://s.weibo.com/weibo?q=%E7%A7%91%E7%A0%94%E6%88%90%E6%9E%9C" },
+    { "title": "文旅消费券集中发放", "hot_value": 264118, "url": "https://s.weibo.com/weibo?q=%E6%96%87%E6%97%85%E6%B6%88%E8%B4%B9%E5%88%B8" },
+    { "title": "基层医疗服务能力提升", "hot_value": 238776, "url": "https://s.weibo.com/weibo?q=%E5%9F%BA%E5%B1%82%E5%8C%BB%E7%96%97" },
+    { "title": "粮食丰收保障市场供应", "hot_value": 215340, "url": "https://s.weibo.com/weibo?q=%E7%B2%AE%E9%A3%9F%E4%B8%B0%E6%94%B6" },
+    { "title": "数字人民币试点范围扩大", "hot_value": 198205, "url": "https://s.weibo.com/weibo?q=%E6%95%B0%E5%AD%97%E4%BA%BA%E6%B0%91%E5%B8%81" },
+    { "title": "老旧小区加装电梯提速", "hot_value": 176430, "url": "https://s.weibo.com/weibo?q=%E5%8A%A0%E8%A3%85%E7%94%B5%E6%A2%AF" },
+    { "title": "跨境电商出口保持增长", "hot_value": 154892, "url": "https://s.weibo.com/weibo?q=%E8%B7%A8%E5%A2%83%E7%94%B5%E5%95%86" }
+  ]
+}

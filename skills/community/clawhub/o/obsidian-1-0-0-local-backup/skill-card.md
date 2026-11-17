@@ -1,44 +1,55 @@
-## Description: <br>
-Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.
 
-## Publisher: <br>
-[12357851](https://clawhub.ai/user/12357851) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[12357851](https://clawhub.ai/user/12357851)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to help an agent locate active vaults, search notes, create notes, move or rename notes, and delete notes through obsidian-cli. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to read, change, move, or delete local Obsidian notes. <br>
-Mitigation: Confirm the active vault and exact note path before mutation commands, and prefer backups or version control for important vaults. <br>
-Risk: Search commands may expose sensitive note contents when a task does not require them. <br>
-Mitigation: Limit searches to task-relevant vaults, paths, and queries. <br>
-Risk: The skill depends on an external Homebrew formula for obsidian-cli. <br>
-Mitigation: Install only when the obsidian-cli Homebrew source is trusted. <br>
+## Use Case:
 
+Developers and Obsidian users use this skill to locate active vaults and operate on Markdown notes with obsidian-cli. It supports searching, creating, moving, renaming, deleting, and directly editing notes while respecting Obsidian vault conventions.
 
-## Reference(s): <br>
-- [Obsidian Help](https://help.obsidian.md) <br>
-- [ClawHub release page](https://clawhub.ai/12357851/obsidian-1-0-0-local-backup) <br>
-- [Publisher profile](https://clawhub.ai/user/12357851) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include note paths, vault names, and obsidian-cli command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can read, create, move, and delete notes in local Obsidian vaults through obsidian-cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the active vault and exact note path before create, move, or delete operations, and back up important vaults before deletes or bulk edits.
+
+Risk: Using obsidian-cli grants access to Obsidian vault contents.
+
+Mitigation: Install only when granting obsidian-cli access to local vaults is acceptable.
+
+## Reference(s):
+
+- [Obsidian Help](https://help.obsidian.md)
+- [ClawHub skill page](https://clawhub.ai/12357851/skills/obsidian-1-0-0-local-backup)
+- [Publisher profile](https://clawhub.ai/user/12357851)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires obsidian-cli and access to local Obsidian vault configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

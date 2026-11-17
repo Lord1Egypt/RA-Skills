@@ -1,46 +1,58 @@
-## Description: <br>
-Persona-weighted merge governance for AI-assisted engineering. Evaluates PR risk (tests, security markers, reliability signals), returns MERGE/BLOCK/REVISE decisions, and records board-native audit artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persona-weighted merge governance for AI-assisted engineering. Evaluates PR risk (tests, security markers, reliability signals), returns MERGE/BLOCK/REVISE decisions, and records board-native audit artifacts.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and engineering teams use this skill after CI checks and before merge automation to make policy-backed MERGE, BLOCK, or REVISE decisions for pull requests and release branches. It supports persona-weighted voting or externally supplied votes and records auditable decision artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local decision state can affect merge governance if the configured consensus state path is shared or writable by untrusted users. <br>
-Mitigation: Use project-scoped consensus state paths and restrict write access to trusted automation or maintainers. <br>
-Risk: External votes can influence MERGE, BLOCK, or REVISE outcomes when external_agent mode is used. <br>
-Mitigation: Restrict who can supply external votes and validate vote inputs before invoking the guard. <br>
-Risk: Dependency changes could alter guard behavior over time. <br>
-Mitigation: Honor the package lockfile and run the normal dependency-audit process in CI. <br>
+## Use Case:
 
+Developers and engineering teams use this skill before merge automation to evaluate pull request and release-branch risk, including test status, security signals, rollback readiness, and reviewer or policy gates. It returns a policy-backed decision and records an auditable decision artifact.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-code-merge-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/kaicianflone) <br>
-- [consensus-guard-core package](https://www.npmjs.com/package/consensus-guard-core) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Files, Guidance] <br>
-**Output Format:** [JSON decision response with decision status, vote aggregation, required actions, and board artifact references.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local decision audit artifacts under the configured consensus state path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.15 (source: server release evidence and package.json; SKILL.md frontmatter lists 1.1.14) <br>
+Risk: The skill can approve and persist merge decisions without the existing persona governance that its documentation says is required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the decision as advisory until missing persona sets fail closed before automated merges.
+
+Risk: External votes and constraints can affect merge decisions if they are not strictly validated.
+
+Mitigation: Validate external votes and constraints at the integration boundary and keep independent CI and security gates in place.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaicianflone/skills/consensus-code-merge-guard)
+- [consensus-guard-core npm package](https://www.npmjs.com/package/consensus-guard-core)
+- [consensus-guard-core repository](https://github.com/kaicianflone/consensus-guard-core)
+- [consensus-tools repository](https://github.com/kaicianflone/consensus-tools)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw repository](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Guidance]
+
+**Output Format:** [JSON decision response with an auditable decision artifact]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Records merge decisions under the configured consensus state path; no outbound network calls are described for the shipped guard decision path.]
+
+## Skill Version(s):
+
+1.1.15 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

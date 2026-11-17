@@ -1,39 +1,53 @@
-## Description: <br>
-Controls Clash for Windows proxy behavior, including starting or stopping proxy routing, checking status, and switching nodes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls Clash for Windows proxy status, routing mode, and node selection through a local Clash controller.
 
-## Publisher: <br>
-[IceNoodle](https://clawhub.ai/user/IceNoodle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[icenoodle](https://clawhub.ai/user/icenoodle)
 
-## Use Case: <br>
-Developers and users running Clash for Windows use this skill to control local proxy routing from an agent conversation, including status checks, enabling or disabling proxy routing, and selecting an automatic proxy node. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local proxy routing through broad trigger phrases. <br>
-Mitigation: Use explicit Clash-specific commands and confirm before enabling, disabling, or switching proxy modes. <br>
-Risk: The artifact includes a hardcoded Clash controller secret. <br>
-Mitigation: Replace the secret with a private local configuration and avoid exposing the Clash controller on the LAN unless required. <br>
+## Use Case:
 
+Developers and power users operating a Windows host with Clash for Windows use this skill to check proxy status, enable or disable proxy routing, and switch nodes from an agent conversation.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration guidance, API calls] <br>
-**Output Format:** [Plain text status and confirmation messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Controls a local Clash REST API on 127.0.0.1 when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill embeds a Clash controller secret and may authenticate to a local controller configured with that shared secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate or replace the bundled secret, configure Clash with a private secret, and use it only with a local Clash controller you control.
+
+Risk: Broad natural-language trigger phrases can change proxy routing without a clear confirmation step.
+
+Mitigation: Require explicit Clash-specific commands or confirmation before allowing enable, disable, or node-switch operations.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/icenoodle/skills/openclaw-clash-controller)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text status, confirmation, and error messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May report local Clash proxy status and selected node when the controller is reachable.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

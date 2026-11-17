@@ -1,50 +1,62 @@
-## Description: <br>
-Alibaba Cloud SLS (Simple Log Service) index configuration manager skill that helps users inspect, create, update, delete, generate, and optimize Logstore index configurations through the aliyun CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users inspect, create, update, delete, generate, and optimize Alibaba Cloud Simple Log Service Logstore index configurations using the Aliyun CLI.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and cloud operations engineers use this skill to manage Alibaba Cloud SLS Logstore index configurations with the aliyun CLI. It supports inspection, complete configuration generation, optimization for query and SQL workloads, and controlled create, update, or delete operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Update and delete commands can affect production log search behavior. <br>
-Mitigation: Use a least-privilege RAM role, start with read-only GetIndex when possible, and require explicit confirmation before delete-index. <br>
-Risk: Submitting an incomplete update can replace or remove existing index configuration. <br>
-Mitigation: Review the complete JSON body and keep a backup of the current index before any update. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to manage SLS Logstore indexes, generate configurations from structured log samples, and tune indexes for queries, write throughput, and storage cost.
 
-## Reference(s): <br>
-- [Manage Index Configuration](references/manage-index-config.md) <br>
-- [Generate Index Configuration from Log Samples](references/generate-index-from-logs.md) <br>
-- [Optimize Index Configuration](references/optimize-index-config.md) <br>
-- [RAM Policies - SLS Index Configuration Manager](references/ram-policies.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [Related APIs - SLS Index Configuration Manager](references/related-apis.md) <br>
-- [Acceptance Criteria: sls-index-config-manager](references/acceptance-criteria.md) <br>
-- [Alibaba Cloud SLS GetIndex API](https://help.aliyun.com/zh/sls/developer-reference/api-sls-2020-12-30-getindex) <br>
-- [Alibaba Cloud SLS CreateIndex API](https://help.aliyun.com/zh/sls/developer-reference/api-sls-2020-12-30-createindex) <br>
-- [Alibaba Cloud SLS UpdateIndex API](https://help.aliyun.com/zh/sls/developer-reference/api-sls-2020-12-30-updateindex) <br>
-- [Alibaba Cloud SLS DeleteIndex API](https://help.aliyun.com/zh/sls/developer-reference/api-sls-2020-12-30-deleteindex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown with fenced JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs complete index configuration JSON before human-readable summaries; write operations require review of full JSON and explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release evidence) <br>
+Risk: Updating an index replaces its entire configuration, and deletion can interrupt indexed search and SQL analytics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up and review the complete proposed configuration, preserve discovered fields, and confirm changes before applying or deleting.
+
+Risk: Overbroad cloud permissions or exposed access keys could allow unintended index changes.
+
+Mitigation: Use a RAM profile scoped to the intended project and Logstore; configure credentials outside the chat and never paste access keys.
+
+Risk: Installing an unverified vendor CLI download with elevated privileges could compromise the host.
+
+Mitigation: Verify vendor CLI downloads before running installation commands with sudo.
+
+## Reference(s):
+
+- [Manage index configuration](references/manage-index-config.md)
+- [Generate index configuration from logs](references/generate-index-from-logs.md)
+- [Optimize index configuration](references/optimize-index-config.md)
+- [RAM policies](references/ram-policies.md)
+- [Alibaba Cloud SLS index APIs](references/related-apis.md)
+- [Alibaba Cloud UpdateIndex API](https://help.aliyun.com/zh/sls/developer-reference/api-sls-2020-12-30-updateindex)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with JSON configuration and CLI command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline generation from supplied samples is possible; applying changes requires an authorized Alibaba Cloud profile.]
+
+## Skill Version(s):
+
+0.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

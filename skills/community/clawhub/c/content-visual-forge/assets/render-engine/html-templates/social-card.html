@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Social Card Set</title>
+  <link rel="stylesheet" href="../css/social-card.css" />
+</head>
+<body>
+  <!-- Frame 1: Cover -->
+  <div
+    id="social-01-cover"
+    class="frame social-card cover-frame"
+    data-background-asset="{{background_asset.asset_id}}"
+    style="--frame-bg-image: url('{{background_asset.url}}'); --frame-bg-position: {{background_asset.object_position}}; --frame-bg-opacity: {{background_asset.opacity}};"
+  >
+    <div class="safe-zone">
+      <div class="hook">{{pages.0.hook}}</div>
+      <h1 class="main-title">{{pages.0.point}}</h1>
+      <div class="visual-area" data-asset-source="{{pages.0.image_asset.asset_id}}" style="background-image:url('{{pages.0.image_asset.source}}')"></div>
+      <div class="bottom-points">{{pages.0.bottom_points}}</div>
+    </div>
+  </div>
+
+  <!-- Frame 2: Point 1 -->
+  <div id="social-02-point" class="frame social-card" data-background-asset="{{background_asset.asset_id}}" style="--frame-bg-image: url('{{background_asset.url}}'); --frame-bg-position: {{background_asset.object_position}}; --frame-bg-opacity: {{background_asset.opacity}};">
+    <div class="safe-zone">
+      <div class="page-label">{{pages.1.page_number}}</div>
+      <h2 class="page-title">{{pages.1.point}}</h2>
+      <p class="page-copy">{{pages.1.copy}}</p>
+      <div class="visual-area {{pages.1.image_asset.object_fit}}" data-asset-source="{{pages.1.image_asset.asset_id}}" style="background-image:url('{{pages.1.image_asset.source}}'); object-position: {{pages.1.image_asset.object_position}}"></div>
+    </div>
+  </div>
+
+  <!-- Frame 3: Point 2 -->
+  <div id="social-03-point" class="frame social-card" data-background-asset="{{background_asset.asset_id}}" style="--frame-bg-image: url('{{background_asset.url}}'); --frame-bg-position: {{background_asset.object_position}}; --frame-bg-opacity: {{background_asset.opacity}};">
+    <div class="safe-zone">
+      <div class="page-label">{{pages.2.page_number}}</div>
+      <h2 class="page-title">{{pages.2.point}}</h2>
+      <p class="page-copy">{{pages.2.copy}}</p>
+      <div class="visual-area {{pages.2.image_asset.object_fit}}" data-asset-source="{{pages.2.image_asset.asset_id}}" style="background-image:url('{{pages.2.image_asset.source}}'); object-position: {{pages.2.image_asset.object_position}}"></div>
+    </div>
+  </div>
+
+  <!-- Frame 4: Point 3 -->
+  <div id="social-04-point" class="frame social-card" data-background-asset="{{background_asset.asset_id}}" style="--frame-bg-image: url('{{background_asset.url}}'); --frame-bg-position: {{background_asset.object_position}}; --frame-bg-opacity: {{background_asset.opacity}};">
+    <div class="safe-zone">
+      <div class="page-label">{{pages.3.page_number}}</div>
+      <h2 class="page-title">{{pages.3.point}}</h2>
+      <p class="page-copy">{{pages.3.copy}}</p>
+      <div class="visual-area {{pages.3.image_asset.object_fit}}" data-asset-source="{{pages.3.image_asset.asset_id}}" style="background-image:url('{{pages.3.image_asset.source}}'); object-position: {{pages.3.image_asset.object_position}}"></div>
+    </div>
+  </div>
+
+  <!-- Frame 5: Evidence/Screenshot -->
+  <div id="social-05-evidence" class="frame social-card evidence-frame" data-background-asset="{{background_asset.asset_id}}" style="--frame-bg-image: url('{{background_asset.url}}'); --frame-bg-position: {{background_asset.object_position}}; --frame-bg-opacity: {{background_asset.opacity}};">
+    <div class="safe-zone">
+      <div class="page-label">{{pages.4.page_number}}</div>
+      <h2 class="page-title">{{pages.4.point}}</h2>
+      <div class="screenshot-container">
+        <img src="{{pages.4.image_asset.source}}" alt="Evidence" class="screenshot" data-asset-source="{{pages.4.image_asset.asset_id}}" />
+      </div>
+      <p class="caption">{{pages.4.copy}}</p>
+    </div>
+  </div>
+
+  <!-- Frame 6: Summary -->
+  <div id="social-06-summary" class="frame social-card summary-frame" data-background-asset="{{background_asset.asset_id}}" style="--frame-bg-image: url('{{background_asset.url}}'); --frame-bg-position: {{background_asset.object_position}}; --frame-bg-opacity: {{background_asset.opacity}};">
+    <div class="safe-zone">
+      <div class="page-label">{{pages.5.page_number}}</div>
+      <h2 class="page-title">{{pages.5.point}}</h2>
+      <ul class="summary-list">
+        {{pages.5.bottom_points}}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- ══════════════════════════════════════════════════════════════
+  片段:转化漏斗(4 层 trapezoid rotate(180) 窄边朝下 + 层内叠字 + 左右侧注)—— 原型 25
+  参数(每层四个):
+    {{L1_BG}}..{{L4_BG}}       层底色(同色系由深到浅;末层可用主色表转化终点)
+    {{L1_TEXT}}..              层内文字(≤8 字,白)
+    {{L1_STAGE}}..             左侧阶段名(右对齐,灰)
+    {{L1_VALUE}}..             右侧数值/转化率(主色,num)
+  坐标定死:w 1200/950/700/450,h120,gap16,顶 360(x=360/485/610/735;侧注 y=404/540/676/812)
+  变体:3 层 → w 1200/850/500,h140,y=360/516/672
+  纪律: transform-origin 保持默认居中(契约);递减语义才画漏斗;2 级别用(改原型 12)
+  ══════════════════════════════════════════════════════════════ -->
+<div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:360px;top:360px;width:1200px;height:120px;background:{{L1_BG}};transform:rotate(180deg);"></div>
+<div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:485px;top:496px;width:950px;height:120px;background:{{L2_BG}};transform:rotate(180deg);"></div>
+<div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:610px;top:632px;width:700px;height:120px;background:{{L3_BG}};transform:rotate(180deg);"></div>
+<div data-object="true" data-object-type="shape" data-shape="trapezoid" style="position:absolute;left:735px;top:768px;width:450px;height:120px;background:{{L4_BG}};transform:rotate(180deg);"></div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:360px;top:360px;width:1200px;height:120px;text-align:center;">
+  <div style="font-size:24px;font-weight:700;color:var(--white);line-height:120px;">{{L1_TEXT}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:485px;top:496px;width:950px;height:120px;text-align:center;">
+  <div style="font-size:24px;font-weight:700;color:var(--white);line-height:120px;">{{L2_TEXT}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:610px;top:632px;width:700px;height:120px;text-align:center;">
+  <div style="font-size:24px;font-weight:700;color:var(--white);line-height:120px;">{{L3_TEXT}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:735px;top:768px;width:450px;height:120px;text-align:center;">
+  <div style="font-size:24px;font-weight:700;color:var(--white);line-height:120px;">{{L4_TEXT}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:404px;width:220px;text-align:right;">
+  <div style="font-size:26px;font-weight:600;color:var(--text-secondary);line-height:44px;">{{L1_STAGE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:540px;width:220px;text-align:right;">
+  <div style="font-size:26px;font-weight:600;color:var(--text-secondary);line-height:44px;">{{L2_STAGE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:676px;width:220px;text-align:right;">
+  <div style="font-size:26px;font-weight:600;color:var(--text-secondary);line-height:44px;">{{L3_STAGE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:812px;width:220px;text-align:right;">
+  <div style="font-size:26px;font-weight:600;color:var(--text-secondary);line-height:44px;">{{L4_STAGE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1600px;top:404px;width:220px;">
+  <div class="num" style="font-size:28px;font-weight:800;color:var(--lenovo-red);line-height:44px;">{{L1_VALUE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1600px;top:540px;width:220px;">
+  <div class="num" style="font-size:28px;font-weight:800;color:var(--lenovo-red);line-height:44px;">{{L2_VALUE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1600px;top:676px;width:220px;">
+  <div class="num" style="font-size:28px;font-weight:800;color:var(--lenovo-red);line-height:44px;">{{L3_VALUE}}</div>
+</div>
+<div data-object="true" data-object-type="textbox" style="position:absolute;left:1600px;top:812px;width:220px;">
+  <div class="num" style="font-size:28px;font-weight:800;color:var(--lenovo-red);line-height:44px;">{{L4_VALUE}}</div>
+</div>

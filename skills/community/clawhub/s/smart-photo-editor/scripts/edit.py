@@ -1,4 +1,4 @@
-#!/home/guoxh/.openclaw/venv-clawd/bin/python
+#!/usr/bin/env python3
 """
 Smart Photo Editor - Unified Entry Point
 
@@ -71,12 +71,12 @@ class SmartPhotoEditor:
             # Fallback: try known venv locations
             import glob
             venv_root = os.path.expanduser("~/.openclaw")
-            candidates = glob.glob(f"{venv_root}/venv-clawd*/bin/python")
+            candidates = glob.glob(f"{venv_root}/venv*/bin/python")
             if candidates:
                 self.venv_python = candidates[0]
             else:
-                # Last resort: hardcoded path (Laoguo's setup)
-                self.venv_python = "/home/guoxh/.openclaw/venv-clawd/bin/python"
+                # Last resort: use the Python running this script
+                self.venv_python = sys.executable
         self.results: List[Dict] = []
 
     def _log(self, message: str, level: str = "info"):
@@ -214,6 +214,60 @@ class SmartPhotoEditor:
             except OSError:
                 pass
 
+    # R2 / Cloudflare uploader
+    _R2_SIZE_THRESHOLD = 1_500_000  # bytes
+
+    def _r2_upload(self, file_path: str):
+        """Upload a file to R2 via a Cloudflare Worker.
+
+        Returns (url, None) on success, (None, error_message) on failure.
+        The caller MUST fall back to base64 data URI on failure.
+
+        Requires BOTH env vars to be set (no built-in defaults):
+          SEEDREAM_UPLOAD_TOKEN       - Bearer token for the worker
+          SEEDREAM_UPLOAD_WORKER_URL  - Worker base URL
+        """
+        import mimetypes, urllib.request, urllib.error, json as _json
+
+        worker_url = os.environ.get("SEEDREAM_UPLOAD_WORKER_URL", "")
+        upload_token = os.environ.get("SEEDREAM_UPLOAD_TOKEN", "")
+        if not upload_token:
+            return None, "SEEDREAM_UPLOAD_TOKEN not set"
+        if not worker_url:
+            return None, "SEEDREAM_UPLOAD_WORKER_URL not set"
+
+        filename = os.path.basename(file_path)
+        mime, _ = mimetypes.guess_type(file_path)
+        mime = mime or "image/jpeg"
+
+        try:
+            with open(file_path, "rb") as fh:
+                data = fh.read()
+        except OSError as e:
+            return None, "Could not read " + file_path + ": " + str(e)
+
+        req = urllib.request.Request(
+            worker_url.rstrip("/") + "/" + filename,
+            data=data, method="PUT",
+        )
+        req.add_header("Authorization", "Bearer " + upload_token)
+        req.add_header("Content-Type", mime)
+        req.add_header("User-Agent", "Mozilla/5.0")
+
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                body = resp.read().decode()
+                result = _json.loads(body)
+                url = result.get("url", "")
+                if url:
+                    return url, None
+                return None, "Worker returned empty URL"
+        except urllib.error.HTTPError as e:
+            eb = e.read().decode()
+            return None, "R2 upload HTTP " + str(e.code) + ": " + eb[:200]
+        except Exception as e:
+            return None, "R2 upload failed: " + str(e)
+
     # ─────────────────────────────────────────────────────────────
     # Tool: Seedream (AI via image_generate tool)
     # ─────────────────────────────────────────────────────────────
@@ -223,9 +277,11 @@ class SmartPhotoEditor:
         seedream_skill = os.path.expanduser("~/.openclaw/skills/byted-ark-seedream-skill/SKILL.md")
         return os.path.exists(seedream_skill)
 
-    def _call_seedream(self, image_path: str, prompt: str,
+    def _call_seedream(self, image_path: str = None, prompt: str = "",
                        reference_strength: float = 0.85,
-                       output_path: str = None) -> tuple:
+                       output_path: str = None,
+                       reference_images: list = None,
+                       watermark: bool = False) -> tuple:
         """
         Call Seedream via its installed Node CLI (scripts/generate.js).
 
@@ -234,14 +290,31 @@ class SmartPhotoEditor:
         We parse that envelope, locate the first successful local file, and
         copy it to output_path so the caller sees a normal output file.
 
-        Seedream's --reference_images validator only accepts HTTP URLs or
-        base64 data URIs (no local paths), so we encode the local image as a
-        single-element JSON array of a data URI.
+        Args:
+            image_path:       Single reference image (legacy single-image path).
+                               Kept for backward compatibility with op_remove_object
+                               and op_restore. If `reference_images` is also given,
+                               `reference_images` wins.
+            prompt:           Generation prompt.
+            reference_strength: 0..1, how strongly Seedream must preserve the
+                               reference image(s).
+            output_path:      Where to stage the final image.
+            reference_images: Optional list of file paths. When given, this is
+                               passed to Seedream's --reference_images as a
+                               JSON-array of data URIs (Seedream's validator
+                               only accepts HTTP URLs or base64 data URIs).
+            watermark:        If True, pass --watermark true to Seedream.
+                               Default False (most product / academic uses
+                               should not be watermarked).
 
         Returns (success, output_path, error).
         """
         if not self._seedream_available():
-            return False, None, "Seedream skill not found"
+            return False, None, (
+                "Seedream skill not found. Install it from ClawHub:\n"
+                "  openclaw skills install byted-ark-seedream-skill\n"
+                "Or set up a Volcengine Ark account and configure ARK_API_KEY."
+            ), None
 
         import base64
         import mimetypes
@@ -251,24 +324,59 @@ class SmartPhotoEditor:
         skill_dir = os.path.expanduser("~/.openclaw/skills/byted-ark-seedream-skill")
         generate_js = os.path.join(skill_dir, "scripts", "generate.js")
         if not os.path.exists(generate_js):
-            return False, None, f"Seedream entry-point not found: {generate_js}"
+            return False, None, f"Seedream entry-point not found: {generate_js}", None
 
-        if not os.path.exists(image_path):
-            return False, None, f"Reference image not found: {image_path}"
+        # Resolve the final list of reference images.
+        # Priority: explicit reference_images > single image_path > empty.
+        if reference_images:
+            ref_paths = list(reference_images)
+        elif image_path:
+            ref_paths = [image_path]
+        else:
+            return False, None, "No reference image provided", None
 
-        output_path = output_path or (image_path.rsplit('.', 1)[0] + "_seedream.jpg")
+        for p in ref_paths:
+            if not os.path.exists(p):
+                return False, None, f"Reference image not found: {p}", None
 
-        # Build a data: URI for the source image.
-        mime, _ = mimetypes.guess_type(image_path)
-        mime = mime or "image/jpeg"
-        try:
-            with open(image_path, "rb") as fh:
-                b64 = base64.b64encode(fh.read()).decode("ascii")
-        except OSError as e:
-            return False, None, f"Could not read reference image: {e}"
-        data_uri = f"data:{mime};base64,{b64}"
-        # Seedream wants a JSON array string for --reference_images.
-        ref_arg = json.dumps([data_uri])
+        # Default output_path: derive from the first reference image if not given.
+        if output_path is None:
+            first = ref_paths[0]
+            output_path = first.rsplit('.', 1)[0] + "_seedream.jpg"
+        # Build reference image list for Seedream.
+        # Strategy:
+        #   small file (<1.5 MB) -> base64 data URI  (no extra round-trip)
+        #   large file           -> upload to R2       (avoids CLI ARG_MAX limit)
+        ref_arg_items = []
+        for p in ref_paths:
+            size = os.path.getsize(p)
+            if size < self._R2_SIZE_THRESHOLD:
+                mime, _ = mimetypes.guess_type(p)
+                mime = mime or "image/jpeg"
+                try:
+                    with open(p, "rb") as fh:
+                        b64 = base64.b64encode(fh.read()).decode("ascii")
+                    ref_arg_items.append("data:" + mime + ";base64," + b64)
+                except OSError as e:
+                    return False, None, "Could not read reference image " + p + ": " + str(e), None
+            else:
+                url, err = self._r2_upload(p)
+                if url:
+                    ref_arg_items.append(url)
+                else:
+                    # R2 unavailable or failed — fall back to base64 data URI.
+                    # This may exceed CLI arg limits for very large files, but
+                    # it is better than hard-failing for users without R2.
+                    import sys as _sys
+                    print("Warning: R2 upload unavailable (" + str(err) + "), "
+                          "falling back to data URI for " + p, file=_sys.stderr)
+                    try:
+                        with open(p, "rb") as fh:
+                            b64 = base64.b64encode(fh.read()).decode("ascii")
+                        ref_arg_items.append("data:" + mime + ";base64," + b64)
+                    except OSError as e2:
+                        return False, None, "Could not read " + p + ": " + str(e2), None
+        ref_arg = json.dumps(ref_arg_items)
 
         cmd = [
             "node", generate_js,
@@ -277,6 +385,7 @@ class SmartPhotoEditor:
             "--reference_images", ref_arg,
             "--reference_strength", str(reference_strength),
             "--optimize", "false",  # we already wrote a precise prompt
+            "--watermark", "true" if watermark else "false",
         ]
 
         try:
@@ -288,16 +397,17 @@ class SmartPhotoEditor:
                 cwd=skill_dir,
             )
         except subprocess.TimeoutExpired:
-            return False, None, "Seedream timeout (180s)"
+            return False, None, "Seedream timeout (180s)", None
         except FileNotFoundError:
-            return False, None, "`node` runtime not on PATH (Seedream needs Node 18+)"
+            return False, None, "`node` runtime not on PATH (Seedream needs Node 18+)", None
         except Exception as e:
-            return False, None, f"Seedream invocation failed: {e}"
+            return False, None, f"Seedream invocation failed: {e}", None
 
         # Try to parse the JSON envelope first — Seedream emits it on stdout for
         # both success and failure paths. If parsing fails, fall back to the
         # last stderr line so the caller still sees a readable error.
         payload = None
+        generation_time = None
         if result.stdout:
             try:
                 payload = json.loads(result.stdout.strip())
@@ -309,28 +419,40 @@ class SmartPhotoEditor:
             if not err_msg:
                 tail = (result.stderr or "").strip().splitlines()
                 err_msg = tail[-1].strip() if tail else "Seedream returned non-zero exit"
-            return False, None, err_msg
+            return False, None, err_msg, None
 
         if not payload:
-            return False, None, "Could not parse Seedream output (empty stdout)"
+            return False, None, "Could not parse Seedream output (empty stdout)", None
         if not payload.get("success"):
-            return False, None, payload.get("error") or "Seedream reported failure"
+            return False, None, payload.get("error") or "Seedream reported failure", None
+
+        # Capture generation_time from metadata (for quota tracking).
+        meta = payload.get("metadata") or {}
+        if "generation_time" in meta:
+            try:
+                generation_time = float(meta["generation_time"])
+            except (TypeError, ValueError):
+                generation_time = None
 
         # Find the first successfully-downloaded local image.
         images = payload.get("images") or []
         local = next((img.get("local_path") for img in images
                       if img.get("download_success") and img.get("local_path")), None)
         if not local or not os.path.exists(local):
-            return False, None, "Seedream produced no local image file"
+            return False, None, "Seedream produced no local image file", None
+
+        # Guard against copying a file onto itself (would truncate to zero)
+        if os.path.abspath(local) == os.path.abspath(output_path):
+            return True, output_path, None, {"generation_time": generation_time}
 
         # Copy into the caller's requested output_path.
         try:
             os.makedirs(os.path.dirname(os.path.abspath(output_path)) or ".", exist_ok=True)
             shutil.copyfile(local, output_path)
         except OSError as e:
-            return False, None, f"Failed to stage Seedream output: {e}"
+            return False, None, f"Failed to stage Seedream output: {e}", None
 
-        return True, output_path, None
+        return True, output_path, None, {"generation_time": generation_time}
 
     # ─────────────────────────────────────────────────────────────
     # Operations
@@ -378,7 +500,7 @@ class SmartPhotoEditor:
             # Resize if needed
             working_img, was_resized = self._resize_for_api(image)
 
-            success, result_path, error = self._call_seedream(
+            success, result_path, error, _meta = self._call_seedream(
                 working_img, prompt, reference_strength=0.85, output_path=output
             )
 
@@ -416,7 +538,10 @@ class SmartPhotoEditor:
             return self._result(False, "restore", error=f"Input not found: {image}")
 
         if not self._seedream_available():
-            return self._result(False, "restore", error="Seedream skill not found")
+            return self._result(False, "restore", error=(
+                "Seedream skill not found. Install from ClawHub:\n"
+                "  openclaw skills install byted-ark-seedream-skill"
+            ))
 
         default_prompt = (
             "Restore this old photo. Remove all scratches, dust spots, and damage. "
@@ -428,7 +553,7 @@ class SmartPhotoEditor:
         # Resize if needed
         working_img, was_resized = self._resize_for_api(image)
 
-        success, result_path, error = self._call_seedream(
+        success, result_path, error, _meta = self._call_seedream(
             working_img, prompt, reference_strength=0.7, output_path=output
         )
 
@@ -437,6 +562,273 @@ class SmartPhotoEditor:
         elapsed = int((time.time() - start) * 1000)
         return self._result(success, "restore", output=output,
                           elapsed_ms=elapsed, tool="seedream", error=error)
+
+    # ─────────────────────────────────────────────────────────────
+    # 11. Scene Replacement (Seedream multi-reference fusion)
+    # ─────────────────────────────────────────────────────────────
+
+    def op_replace_scene(self, subject: str, output: str,
+                         scene: str = None, scene_prompt: str = None,
+                         subject_type: str = "auto",
+                         prompt: str = None,
+                         reference_strength: float = None,
+                         position: str = "center", scale: str = "medium",
+                         watermark: bool = False,
+                         output_format: str = None) -> bool:
+        """
+        Place a subject (portrait / pet / product) into a new scene using
+        Seedream's multi-reference image fusion.
+
+        Subject + (scene image OR scene text description) → composed output.
+
+        Requires the byted-ark-seedream-skill. No deterministic fallback —
+        scene replacement is fundamentally an AI task.
+
+        Args:
+            subject:           Path to the subject image.
+            scene:             Path to the target scene image (mutually
+                               exclusive with scene_prompt).
+            scene_prompt:      Text description of the target scene
+                               (mutually exclusive with scene).
+            subject_type:      'auto' | 'portrait' | 'pet' | 'product'.
+                               Selects the prompt template + reference_strength.
+            prompt:            Override the default prompt built from the
+                               template. If given, the template is ignored.
+            reference_strength: 0..1, how strongly Seedream must preserve
+                               the subject. Default depends on subject_type.
+            position:          'left' | 'center' | 'right' (placement hint).
+            scale:             'close' | 'medium' | 'full' (subject size).
+            watermark:         Add Seedream watermark. Default False.
+            output_format:     'jpeg' | 'png' | 'webp'. Default: follow
+                               subject's file extension.
+        """
+        start = time.time()
+
+        # ── Validate inputs ──────────────────────────────────────────
+        if not subject or not os.path.exists(subject):
+            return self._result(False, "replace-scene",
+                                error=f"Subject not found: {subject}")
+
+        if not self._seedream_available():
+            return self._result(False, "replace-scene", error=(
+                "replace-scene requires the byted-ark-seedream-skill.\n"
+                "Install from ClawHub: openclaw skills install byted-ark-seedream-skill"
+                "Install it first (see SKILL.md in that skill)."
+            ))
+
+        if scene and scene_prompt:
+            return self._result(False, "replace-scene", error=(
+                "Use only one of --scene <image> or --scene-prompt <description>, "
+                "not both."
+            ))
+        if not scene and not scene_prompt:
+            return self._result(False, "replace-scene", error=(
+                "Provide either --scene <image> or --scene-prompt <description>."
+            ))
+        if scene_prompt and len(scene_prompt.strip()) < 3:
+            return self._result(False, "replace-scene", error=(
+                "--scene-prompt must be at least 3 characters."
+            ))
+        if scene and not os.path.exists(scene):
+            return self._result(False, "replace-scene",
+                                error=f"Scene image not found: {scene}")
+
+        # ── Auto-detect subject_type if needed ──────────────────────
+        if subject_type == "auto":
+            subject_type = self._detect_subject_type(subject)
+        if subject_type not in ("portrait", "pet", "product"):
+            subject_type = "portrait"  # safe default
+
+        # ── Resolve reference_strength if not given ────────────────
+        if reference_strength is None:
+            reference_strength = 0.90 if subject_type == "product" else 0.85
+        reference_strength = max(0.0, min(1.0, reference_strength))
+
+        # ── Build prompt from template (or use override) ──────────
+        if not prompt:
+            prompt = self._build_replace_scene_prompt(
+                subject_type=subject_type,
+                scene=scene,
+                scene_prompt=scene_prompt,
+                position=position,
+                scale=scale,
+            )
+
+        # ── Build reference_images list (in order: subject, then scene) ──
+        ref_paths = [subject]
+        ref_working_paths = []  # for cleanup
+        try:
+            # Resize subject if needed (Seedream API limit ~2048px)
+            subj_working, subj_resized = self._resize_for_api(subject)
+            ref_paths[0] = subj_working
+            if subj_resized:
+                ref_working_paths.append(subj_working)
+
+            if scene:
+                scene_working, scene_resized = self._resize_for_api(scene)
+                ref_paths.append(scene_working)
+                if scene_resized:
+                    ref_working_paths.append(scene_working)
+
+            # ── Call Seedream ─────────────────────────────────────
+            success, result_path, error, meta = self._call_seedream(
+                prompt=prompt,
+                reference_strength=reference_strength,
+                output_path=output,
+                reference_images=ref_paths,
+                watermark=watermark,
+            )
+        finally:
+            for p in ref_working_paths:
+                self._cleanup_temp(p, was_temp=True)
+
+        elapsed = int((time.time() - start) * 1000)
+
+        info = {
+            "subject_type": subject_type,
+            "reference_strength": reference_strength,
+            "position": position,
+            "scale": scale,
+            "watermark": watermark,
+        }
+        if meta and meta.get("generation_time") is not None:
+            info["generation_time_s"] = meta["generation_time"]
+
+        # ── Enforce output_format if specified ───────────────────────
+        # Seedream always outputs a file (its default format). If the user
+        # passed --output-format, convert the file to match.
+        if success and output_format is not None and output:
+            ext_map = {"jpeg": ".jpg", "png": ".png", "webp": ".webp"}
+            expected_ext = ext_map.get(output_format.lower().replace("-", ""))
+            if expected_ext and not output.lower().endswith(expected_ext):
+                # Target extension differs → re-save with PIL in the right format
+                if PIL_AVAILABLE:
+                    try:
+                        final_path = output.rsplit(".", 1)[0] + expected_ext
+                        with Image.open(output) as img:
+                            # PNG supports alpha; JPEG does not
+                            if output_format.lower() in ("jpeg", "jpg"):
+                                img = img.convert("RGB")
+                            img.save(final_path)
+                        # Remove the Seedream intermediate now that conversion succeeded
+                        if os.path.exists(final_path):
+                            os.remove(output)
+                            output = final_path
+                            info["output_format_applied"] = output_format
+                    except Exception:
+                        pass  # Non-fatal: return the original Seedream file
+
+        return self._result(success, "replace-scene", output=output,
+                            elapsed_ms=elapsed, tool="seedream",
+                            error=error, **info)
+
+    def _detect_subject_type(self, image_path: str) -> str:
+        """
+        Heuristic subject-type detection when user passes --subject-type auto.
+
+        Strategy (in priority order):
+        1. Filename keyword (pet/cat/dog/animal/portrait/selfie/headshot
+           → pet or portrait; product/item/obj/thing → product)
+        2. Background solidity check (PIL corner sampling) — flat
+           single-color backgrounds typically indicate product photos
+        3. Fall back to "portrait" (most common case)
+
+        Heuristic, not a guarantee. Users can always pass --subject-type
+        explicitly for certainty.
+        """
+        import re
+
+        name = os.path.basename(image_path).lower()
+        if re.search(r"(pet|cat|dog|kitten|puppy|animal|horse|rabbit|bird)", name):
+            return "pet"
+        if re.search(r"(portrait|selfie|headshot|face|person|people|human|avatar)", name):
+            return "portrait"
+        if re.search(r"(product|item|obj|object|merch|goods|sku|package|bottle|box)", name):
+            return "product"
+
+        # Try corner solidity check (PIL).
+        if PIL_AVAILABLE:
+            try:
+                with Image.open(image_path) as img:
+                    w, h = img.size
+                    if w < 20 or h < 20:
+                        return "portrait"
+                    # Convert to RGB first so getpixel always returns (R,G,B)
+                    # rather than a palette index for P-mode (palette) images.
+                    img = img.convert("RGB")
+                    corners = [
+                        img.getpixel((5, 5)),
+                        img.getpixel((w - 5, 5)),
+                        img.getpixel((5, h - 5)),
+                        img.getpixel((w - 5, h - 5)),
+                    ]
+                    # If all 4 corners are very similar (max color distance < 15),
+                    # it's likely a product shot on a flat-color backdrop.
+                    max_dist = 0
+                    for i in range(len(corners)):
+                        for j in range(i + 1, len(corners)):
+                            c1 = corners[i][:3]
+                            c2 = corners[j][:3]
+                            d = max(abs(a - b) for a, b in zip(c1, c2))
+                            max_dist = max(max_dist, d)
+                    if max_dist < 15:
+                        return "product"
+            except Exception:
+                pass
+
+        return "portrait"  # safe default
+
+    def _build_replace_scene_prompt(self, subject_type: str, scene: str,
+                                    scene_prompt: str, position: str,
+                                    scale: str) -> str:
+        """Build the default prompt for a given subject type + scene input."""
+
+        if scene:
+            scene_ref = "Image 2"
+        else:
+            scene_ref = f'the following scene: "{scene_prompt}"'
+
+        position_map = {
+            "left": "slightly left of center",
+            "center": "at center",
+            "right": "slightly right of center",
+        }
+        scale_map = {
+            "close": "in close-up",
+            "medium": "as a medium shot",
+            "full": "as a full-body figure",
+        }
+        pos_hint = position_map.get(position, position_map["center"])
+        scale_hint = scale_map.get(scale, scale_map["medium"])
+
+        if subject_type == "product":
+            return (
+                f"Place the product from Image 1 into the usage scene from "
+                f"{scene_ref}. Preserve the product's exact appearance, "
+                f"branding, label text, and surface details. Adapt the "
+                f"lighting to match the scene naturally — the product "
+                f"should appear as if physically present, with realistic "
+                f"shadows, reflections, and contact. Do not distort the "
+                f"product, warp its shape, or change its branding. "
+                f"Position the product {pos_hint} at {scale_hint}."
+            )
+
+        # portrait and pet share a template
+        subject_noun = {
+            "portrait": "person",
+            "pet": "animal",
+        }.get(subject_type, "subject")
+
+        return (
+            f"Place the {subject_noun} from Image 1 naturally into the "
+            f"scene from {scene_ref}. Preserve the subject's exact "
+            f"appearance, features, and identity. Match the scene's "
+            f"lighting direction, color temperature, and perspective. "
+            f"Keep the subject sharp with subtle edge blending. Do not "
+            f"alter the subject's pose or expression. "
+            f"Position the subject {pos_hint}. Frame the subject at "
+            f"{scale_hint} in the final composition."
+        )
 
     def op_remove_background(self, image: str, output: str,
                              tool: str = "auto") -> bool:
@@ -489,33 +881,31 @@ class SmartPhotoEditor:
         if im_cmd and tool in ("auto", "imagemagick"):
             try:
                 self._log("Using ImageMagick for background removal...")
-                # Use auto-detect background color mode
-                # First, get dominant color at corners (likely background)
+                # Auto-detect background color from corners and make it transparent
                 if PIL_AVAILABLE:
                     with Image.open(image) as img:
                         w, h = img.size
-                        # Sample corners
                         corners = [
                             img.getpixel((5, 5)),
                             img.getpixel((w-5, 5)),
                             img.getpixel((5, h-5)),
                             img.getpixel((w-5, h-5)),
                         ]
-                        # Find most common corner color
                         from collections import Counter
                         bg_color = Counter(corners).most_common(1)[0][0]
                         if len(bg_color) == 4:
                             bg_color = bg_color[:3]
+                        bg_hex = '#%02x%02x%02x' % bg_color
 
-                # Simple transparency using ImageMagick
-                result = subprocess.run(
-                    [im_cmd, image, "-trim", "+repage", output],
-                    capture_output=True, text=True, timeout=30
-                )
-                if result.returncode == 0:
-                    elapsed = int((time.time() - start) * 1000)
-                    return self._result(True, "remove-background", output=output,
-                                      elapsed_ms=elapsed, tool="imagemagick-trim")
+                    # Make detected background color transparent
+                    result = subprocess.run(
+                        [im_cmd, image, "-fuzz", "20%", "-transparent", bg_hex, output],
+                        capture_output=True, text=True, timeout=30
+                    )
+                    if result.returncode == 0:
+                        elapsed = int((time.time() - start) * 1000)
+                        return self._result(True, "remove-background", output=output,
+                                          elapsed_ms=elapsed, tool="imagemagick-transparent")
             except Exception as e:
                 self._warn(f"ImageMagick error: {e}")
 
@@ -553,24 +943,24 @@ class SmartPhotoEditor:
 
                 if max_dim:
                     if maintain_aspect:
-                        args.append(f"-resize {max_dim}x{max_dim}>")
+                        args.extend(["-resize", f"{max_dim}x{max_dim}>"])
                     else:
-                        args.append(f"-resize {max_dim}x{max_dim}!")
+                        args.extend(["-resize", f"{max_dim}x{max_dim}!"])
                 else:
                     if maintain_aspect:
                         if width and height:
-                            args.append(f"-resize {width}x{height}>")
+                            args.extend(["-resize", f"{width}x{height}>"])
                         elif width:
-                            args.append(f"-resize {width}")
+                            args.extend(["-resize", str(width)])
                         else:
-                            args.append(f"-resize x{height}")
+                            args.extend(["-resize", f"x{height}"])
                     else:
                         if width and height:
-                            args.append(f"-resize {width}x{height}!")
+                            args.extend(["-resize", f"{width}x{height}!"])
                         elif width:
-                            args.append(f"-resize {width}x{width}!")
+                            args.extend(["-resize", f"{width}x{width}!"])
                         else:
-                            args.append(f"-resize x{height}x{height}!")
+                            args.extend(["-resize", f"x{height}x{height}!"])
 
                 args.append(output)
 
@@ -645,7 +1035,8 @@ class SmartPhotoEditor:
         if im_cmd:
             try:
                 result = subprocess.run(
-                    [im_cmd, image, "-crop", f"{width}x{height}+{x}+{y}", "+repage", output],
+                    [im_cmd, image, "-crop", f"{width}x{height}+{x}+{y}",
+                     "+repage", output],
                     capture_output=True, text=True, timeout=30
                 )
                 if result.returncode == 0:
@@ -703,7 +1094,7 @@ class SmartPhotoEditor:
             args = [im_cmd, image]
 
             if grayscale:
-                args.append("-colorspace Gray")
+                args.extend(["-colorspace", "Gray"])
 
             if saturation is not None:
                 # Modulate: brightness,saturation,hue
@@ -1110,31 +1501,24 @@ class SmartPhotoEditor:
         # Detail layer = original - base
         detail = img_norm - base
 
-        # Compress base layer: remap [0, 1] → [0, 1] with curve
-        # Use a gentle S-curve compression
-        # base_compressed = 1 / (1 + exp(-k*(x-0.5))) normalized
+        # Compress base layer with S-curve
         k = 6.0 * strength  # stronger = more compression
         base_compressed = 1.0 / (1.0 + np.exp(-k * (base - 0.5)))
-        # Blend between original and compressed based on strength
         blend = min(strength, 1.0)
         base_compressed = base * (1 - blend) + base_compressed * blend
 
-        # Recombine
         result = base_compressed + detail * strength
 
-        # Adaptive saturation: slightly boost saturation in compressed regions
-        # Convert to HSV-like for saturation boost
-        result_hsv = np.zeros_like(result)
-        maxc = result.max(axis=2)
-        minc = result.min(axis=2)
-        sat = np.where(maxc > 0, (maxc - minc) / (maxc + 1e-10), 0)
-        # Slightly increase saturation where base was compressed
-        sat_boost = 1.0 + 0.15 * (1.0 - sat)
-        result_hsv[:, :, 0] = result[:, :, 0]
-        result_hsv[:, :, 1] = np.clip(result[:, :, 1] * sat_boost, 0, 1)
-        result_hsv[:, :, 2] = result[:, :, 2]
+        # Adaptive saturation boost via proper BGR→HSV conversion
+        result_uint8 = np.clip(result * 255.0, 0, 255).astype(np.uint8)
+        hsv = cv2.cvtColor(result_uint8, cv2.COLOR_BGR2HSV)
+        h, s, v = cv2.split(hsv)
+        # Boost saturation slightly (10–15%)
+        s = np.clip(s.astype(np.float32) * 1.12, 0, 255).astype(np.uint8)
+        hsv = cv2.merge([h, s, v])
+        result = cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR).astype(np.float32) / 255.0
 
-        return result_hsv * 255.0
+        return result * 255.0
 
     def _tonemap_log(self, img: np.ndarray, gamma: float, strength: float) -> np.ndarray:
         """Log-domain tone mapping: compress dynamic range in log space."""
@@ -1182,13 +1566,20 @@ class SmartPhotoEditor:
                            fmt: str, quality: int) -> bool:
         """Save image with format-specific quality settings."""
         try:
-            if fmt == "jpeg":
+            # Derive actual format from file extension to avoid codec/params
+            # mismatch (e.g. user gives --output foo.webp but --format png).
+            ext = os.path.splitext(path)[1].lower().lstrip(".")
+            ext_to_fmt = {"jpg": "jpeg", "jpeg": "jpeg",
+                          "png": "png", "webp": "webp"}
+            actual_fmt = ext_to_fmt.get(ext, fmt)
+
+            if actual_fmt == "jpeg":
                 params = [cv2.IMWRITE_JPEG_QUALITY, quality]
-            elif fmt == "png":
+            elif actual_fmt == "png":
                 # PNG compression level: 0=none … 9=maximum
                 png_quality = max(0, min(9, 9 - int(quality / 12)))
                 params = [cv2.IMWRITE_PNG_COMPRESSION, png_quality]
-            elif fmt == "webp":
+            elif actual_fmt == "webp":
                 params = [cv2.IMWRITE_WEBP_QUALITY, quality]
             else:
                 params = []
@@ -1202,9 +1593,51 @@ class SmartPhotoEditor:
     # Dispatch
     # ─────────────────────────────────────────────────────────────
 
-    def process(self, task: str, image: str, output: str = None,
-                prompt: str = None, tool: str = "auto", **kwargs) -> bool:
-        """Process a single editing task."""
+    def process(self, task: str, image: str = None, output: str = None,
+                prompt: str = None, tool: str = "auto",
+                subject: str = None, scene: str = None, scene_prompt: str = None,
+                subject_type: str = "auto",
+                reference_strength: float = None,
+                position: str = "center", scale: str = "medium",
+                watermark: bool = False, output_format: str = None,
+                **kwargs) -> bool:
+        """Process a single editing task.
+
+        Most tasks use `image=` as the primary input. The `replace-scene`
+        task uses `subject=` (and accepts `image=` as a synonym for
+        backward compat with batch input).
+        """
+        # replace-scene: 'subject' is the primary input; fall back to 'image'
+        if task == "replace-scene":
+            primary = subject or image
+            if not primary:
+                return self._result(False, task, error=(
+                    "replace-scene requires --subject <image>."
+                ))
+            return self.op_replace_scene(
+                subject=primary, output=output, scene=scene,
+                scene_prompt=scene_prompt, subject_type=subject_type,
+                prompt=prompt, reference_strength=reference_strength,
+                position=position, scale=scale,
+                watermark=watermark, output_format=output_format,
+            )
+
+        # All other tasks: `image` is required (existing path).
+        if not image:
+            return self._result(False, task, error=(
+                f"--image is required for task '{task}'."
+            ))
+
+        # JSON batch goes through process_batch, which normalizes dashed
+        # keys (--scene-prompt → scene_prompt). The no-maintain-aspect
+        # flag has inverted semantics (presence=True means maintain=False);
+        # CLI's main() does this translation explicitly. Mirror it here so
+        # JSON batch behaves identically. We also pop the original key from
+        # kwargs so it doesn't leak into op_resize as an unexpected kwarg.
+        if kwargs.get("no_maintain_aspect"):
+            kwargs["maintain_aspect"] = False
+            kwargs.pop("no_maintain_aspect", None)
+
         # Validate input path
         valid, resolved, err = self._validate_path(image, must_exist=True)
         if not valid:
@@ -1252,7 +1685,14 @@ class SmartPhotoEditor:
 
         for op in operations:
             op_name = op.get("task", "unknown")
-            success = self.process(**op)
+            # Normalize dashed keys: CLI uses --scene-prompt / --target-kb /
+            # --no-maintain-aspect / --subject-type (with dashes), but the
+            # function signatures accept Python identifiers (underscores).
+            # Without this normalization, **op would silently drop dashed
+            # keys into the trailing **kwargs and the real parameter would
+            # receive its default value — a very confusing failure mode.
+            normalized = {k.replace('-', '_'): v for k, v in op.items()}
+            success = self.process(**normalized)
             if success:
                 success_count += 1
             else:
@@ -1305,9 +1745,35 @@ Examples:
     parser.add_argument("--task", choices=[
         "remove-object", "remove-background", "restore",
         "resize", "crop", "color-adjust",
-        "perspective-correct", "smart-compress", "hdr-tonemap"
+        "perspective-correct", "smart-compress", "hdr-tonemap",
+        "replace-scene"
     ], help="Editing task type")
-    parser.add_argument("--image", "-i", help="Input image path")
+    parser.add_argument("--image", "-i", help="Input image path (or subject image for replace-scene)")
+    parser.add_argument("--subject", "-S",
+                       help="Subject image path (replace-scene only). Overrides --image for this task.")
+    parser.add_argument("--scene",
+                       help="Target scene image path (replace-scene only). Mutually exclusive with --scene-prompt.")
+    parser.add_argument("--scene-prompt",
+                       help="Target scene text description (replace-scene only). Mutually exclusive with --scene.")
+    parser.add_argument("--subject-type",
+                       choices=["auto", "portrait", "pet", "product"],
+                       default="auto",
+                       help="Subject type (replace-scene only). Selects prompt template + reference_strength.")
+    parser.add_argument("--reference-strength", type=float,
+                       help="Subject preservation strength 0.0-1.0 (replace-scene; default depends on --subject-type)")
+    parser.add_argument("--position",
+                       choices=["left", "center", "right"],
+                       default="center",
+                       help="Subject placement hint (replace-scene only)")
+    parser.add_argument("--scale",
+                       choices=["close", "medium", "full"],
+                       default="medium",
+                       help="Subject size hint (replace-scene only)")
+    parser.add_argument("--watermark", action="store_true",
+                       help="Add Seedream watermark (replace-scene only, default OFF)")
+    parser.add_argument("--output-format",
+                       choices=["jpeg", "png", "webp"],
+                       help="Output format (replace-scene only, default: follow subject extension)")
     parser.add_argument("--output", "-o", help="Output image path")
     parser.add_argument("--prompt", "-p", help="Description/prompt for AI operations")
     parser.add_argument("--tool", "-t", default="auto",
@@ -1318,6 +1784,9 @@ Examples:
     parser.add_argument("--width", "-w", type=int, help="Target width")
     parser.add_argument("--height", "-H", type=int, help="Target height")
     parser.add_argument("--max-dim", type=int, help="Max dimension (maintains aspect)")
+    parser.add_argument("--no-maintain-aspect", action="store_true",
+                       help="Allow stretching/distortion during resize "
+                            "(resize only, default: preserve aspect ratio)")
     parser.add_argument("--x", type=int, help="X offset for crop")
     parser.add_argument("--y", type=int, help="Y offset for crop")
 
@@ -1381,13 +1850,40 @@ Examples:
         sys.exit(0)
 
     # Single operation mode
-    if not args.task or not args.image:
+    # For replace-scene: --subject is the primary input, --image is optional
+    # (used as fallback). For all other tasks: --image is required.
+    if not args.task:
+        parser.print_help()
+        sys.exit(1)
+    if args.task == "replace-scene":
+        if not args.subject and not args.image:
+            print("Error: --subject (or --image as fallback) is required for replace-scene.", file=sys.stderr)
+            sys.exit(1)
+    elif not args.image:
         parser.print_help()
         sys.exit(1)
 
     editor = SmartPhotoEditor(json_output=args.json)
 
     kwargs = {}
+    if args.subject is not None:
+        kwargs["subject"] = args.subject
+    if args.scene is not None:
+        kwargs["scene"] = args.scene
+    if args.scene_prompt is not None:
+        kwargs["scene_prompt"] = args.scene_prompt
+    if args.subject_type is not None:
+        kwargs["subject_type"] = args.subject_type
+    if args.reference_strength is not None:
+        kwargs["reference_strength"] = args.reference_strength
+    if args.position is not None:
+        kwargs["position"] = args.position
+    if args.scale is not None:
+        kwargs["scale"] = args.scale
+    if args.watermark:
+        kwargs["watermark"] = True
+    if args.output_format is not None:
+        kwargs["output_format"] = args.output_format
     if args.width is not None:
         kwargs["width"] = args.width
     if args.height is not None:
@@ -1423,6 +1919,10 @@ Examples:
         kwargs["strength"] = args.strength
     if args.gamma is not None:
         kwargs["gamma"] = args.gamma
+
+    # Non-proportional resize override
+    if args.no_maintain_aspect:
+        kwargs["maintain_aspect"] = False
 
     success = editor.process(
         task=args.task,

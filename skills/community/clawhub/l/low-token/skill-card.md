@@ -1,39 +1,55 @@
-## Description: <br>
-Adaptive token-conservation skill that guides an agent to produce shorter replies across low, medium, and extreme verbosity modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adaptive token-conservation system that helps an agent reduce narration, formatting, and process detail across low, medium, and extreme token-saving modes.
 
-## Publisher: <br>
-[tooled-app](https://clawhub.ai/user/tooled-app) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tooled-app](https://clawhub.ai/user/tooled-app)
 
-## Use Case: <br>
-Developers and agent operators use this skill to reduce response verbosity and conserve inference quota while preserving accuracy and safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shortened responses can reduce transparency for sensitive or state-changing work. <br>
-Mitigation: Keep the mode low or explicitly ask the agent to provide confirmations and summaries for sensitive tasks. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make agent responses and workflows more concise when token budgets, quotas, or rate limits require conservation. It is intended to preserve accuracy and safety checks while reducing nonessential narration and formatting.
 
-## Reference(s): <br>
-- [Low Token Usage on ClawHub](https://clawhub.ai/tooled-app/low-token) <br>
-- [tooled-app publisher profile](https://clawhub.ai/user/tooled-app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, shell commands, configuration] <br>
-**Output Format:** [Concise plain text or markdown, with commands or configuration only when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adaptive verbosity modes: low, medium, and extreme] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can reduce confirmations and visibility before actions are taken.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and rely on separate safety rules for risky, destructive, or externally visible actions.
+
+Risk: Higher conservation modes may omit detailed summaries that some workflows depend on.
+
+Mitigation: Use LOW mode for normal operation and reserve MEDIUM or EXTREME mode for constrained token budgets, quota pressure, or explicit user requests.
+
+## Reference(s):
+
+- [Low Token Usage Skill Page](https://clawhub.ai/tooled-app/skills/low-token)
+- [Demystify](https://demystify.website)
+- [IKKF](https://ikkf.info)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Concise natural-language guidance, compact summaries, and minimal command-oriented responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Three conservation levels: LOW, MEDIUM, and EXTREME. Output may omit confirmations, detailed summaries, and markdown decoration in higher conservation modes.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and SKILL.md title)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

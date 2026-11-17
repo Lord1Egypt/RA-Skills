@@ -1,45 +1,60 @@
-## Description: <br>
-使用阿里云百炼 HappyHorse 模型生成视频，支持图生视频（首帧/尾帧控制）和文生视频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用阿里云百炼 HappyHorse 模型生成视频，支持图生视频（首帧/尾帧控制）和文生视频。
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-External creators and agents use this skill to generate short videos through Alibaba Cloud Bailian DashScope HappyHorse from text prompts, first-frame images, or first-and-last-frame image controls. It helps collect video requirements, confirm prompts and duration, call the video generation API, poll task status, and return the generated video file path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release embeds and automatically uses a shared DashScope API key, creating account, billing, and abuse risks. <br>
-Mitigation: Install only a version that removes the embedded key and requires each user to provide their own DashScope API key through a secure configuration path. <br>
-Risk: Prompts and media URLs are sent to Alibaba DashScope for video generation. <br>
-Mitigation: Do not submit confidential prompts, private media URLs, or proprietary assets unless external processing by DashScope is acceptable. <br>
-Risk: Generated videos are downloaded to the local OpenClaw workspace and may contain sensitive or proprietary content. <br>
-Mitigation: Review output paths and retention practices, restrict workspace access, and remove sensitive generated files when they are no longer needed. <br>
+## Use Case:
 
+External creators and developers use this skill to plan and generate short videos through Alibaba Cloud Bailian DashScope HappyHorse, using either text prompts or first-frame and last-frame image URLs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/cindypapa/happyhorse-video-creator) <br>
-- [Project homepage](https://github.com/Cindypapa/happyhorse-video-creator) <br>
-- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com/) <br>
-- [DashScope video synthesis API endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, API call parameters, status messages, and generated video file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated videos are downloaded as MP4 files when DashScope tasks succeed; prompts and media URLs are sent to Alibaba DashScope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release evidence reports an exposed DashScope API key that the skill can automatically use for external paid requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate the exposed key before installation, and require users to provide their own API key through a secure mechanism.
+
+Risk: The skill can submit video-generation jobs to Alibaba DashScope and share prompts or image URLs with that external service.
+
+Mitigation: Require explicit user confirmation before job submission and avoid sending private prompts, image URLs, or sensitive media.
+
+Risk: The skill can download generated videos and write files to local paths.
+
+Mitigation: Restrict downloads to trusted video URLs and safe output paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cindypapa/skills/happyhorse-video-creator)
+- [Declared project homepage](https://github.com/Cindypapa/happyhorse-video-creator)
+- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com/)
+- [DashScope video synthesis endpoint](https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, API Calls, Files]
+
+**Output Format:** [Markdown guidance with Python code examples and generated video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can submit asynchronous DashScope video-generation jobs, poll task status, and download generated MP4 files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

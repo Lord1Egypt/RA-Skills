@@ -1,0 +1,9 @@
+GITEA_URL=http://127.0.0.1:3000
+GITEA_BOT_TOKEN=
+GITEA_BOT_USERNAME=research-kb-bot
+GITEA_ORG=
+TEAM_KB_REPO=team-kb
+OPENCLAW_SHARED_DIR=/srv/research-kb/shared
+TENCENT_MEETING_TOKEN=
+# Optional when tencent-meeting-skill is not installed as a sibling skill directory:
+TENCENT_MEETING_SKILL_COMMAND=python3 /path/to/tencent-meeting-skill/scripts/tencent_meeting.py

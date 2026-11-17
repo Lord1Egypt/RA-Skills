@@ -1,46 +1,57 @@
-## Description: <br>
-Read-only CoinFound RWA data skill backed by a bundled endpoint catalog and schema snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read CoinFound RWA data from the bundled catalog and schema snapshots.
 
-## Publisher: <br>
-[darrenluo](https://clawhub.ai/user/darrenluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darrenluo](https://clawhub.ai/user/darrenluo)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch CoinFound real-world-asset data through supported read-only GET endpoints, using the bundled endpoint catalog and schema snapshots to choose routes and interpret responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal use makes live GET requests to CoinFound's API. <br>
-Mitigation: Run it only where outbound CoinFound API access is expected, and avoid placing sensitive values in query parameters. <br>
-Risk: The optional schema probe can write refreshed schema snapshots and retain small excerpts of live API responses. <br>
-Mitigation: Use snapshot writing only when intentionally refreshing local schema evidence, and review retained response excerpts before redistribution. <br>
-Risk: Bundled schema snapshots may differ from live CoinFound responses. <br>
-Mitigation: Prefer bundled snapshots for planning, trust live responses when a conflict is observed, and schedule a schema refresh for unresolved structures. <br>
+## Use Case:
 
+Developers and analysts use this skill to retrieve CoinFound real-world asset data through read-only GET endpoints, using bundled endpoint catalog entries and schema snapshots to shape requests and responses.
 
-## Reference(s): <br>
-- [RWA Read Workflow](references/rwa-read-workflow.md) <br>
-- [RWA Read Capabilities](references/rwa-read-capabilities.md) <br>
-- [RWA Read Integration Notes](references/rwa-read-integration-notes.md) <br>
-- [CoinFound API Base](https://api.coinfound.org/api/kakyoin) <br>
-- [ClawHub Release Page](https://clawhub.ai/darrenluo/coinfound-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON payloads and Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns request context, response envelope, normalized data, display data, shape family, and schema source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill makes user-directed requests to CoinFound's API during normal operation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested endpoint, path parameters, and query parameters before execution, and avoid sending sensitive values.
+
+Risk: The bundle includes opt-in schema snapshot writing helpers outside the normal read workflow.
+
+Mitigation: Do not run probe_schema.py with --write-snapshot or call write helper functions in environments that require strict no-write behavior.
+
+## Reference(s):
+
+- [CoinFound-Skill release page](https://clawhub.ai/darrenluo/skills/coinfound-skill)
+- [darrenluo publisher profile](https://clawhub.ai/user/darrenluo)
+- [RWA Read Workflow](references/rwa-read-workflow.md)
+- [RWA Read Capabilities](references/rwa-read-capabilities.md)
+- [RWA Read Integration Notes](references/rwa-read-integration-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON response examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default fetch output includes request, response_envelope, normalized_data, display_data, shape_family, and schema_source.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

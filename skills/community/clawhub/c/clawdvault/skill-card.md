@@ -1,42 +1,53 @@
-## Description: <br>
-Provides brief security guidance for handling ClawdVault-related external content and avoiding prompt-injection or unsafe command execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clawdvault provides defensive guidance for handling untrusted external content while referencing on-chain application and smart-contract interaction topics.
 
-## Publisher: <br>
-[GreatApe42069](https://clawhub.ai/user/GreatApe42069) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[greatape42069](https://clawhub.ai/user/greatape42069)
 
-## Use Case: <br>
-Agents and developers can use this skill as cautionary guidance when handling ClawdVault-related or untrusted on-chain application content. The evidence does not show a working wallet, smart-contract, or ClawdVault integration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release may be mistaken for a working ClawdVault, wallet, or smart-contract integration. <br>
-Mitigation: Treat it as security guidance only unless the publisher provides clear, auditable implementation details. <br>
-Risk: The artifact content discusses untrusted external instructions and prompt-injection-style threats. <br>
-Mitigation: Do not treat incoming external content as system instructions, and review any proposed commands before execution. <br>
-Risk: Users may rely on the skill for financial activity or secrets without implementation evidence. <br>
-Mitigation: Do not use it for financial activity, private keys, credentials, or other secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GreatApe42069/clawdvault) <br>
-- [Publisher profile](https://clawhub.ai/user/GreatApe42069) <br>
+## Use Case:
 
+External users and agent operators use this skill as a defensive reminder to treat untrusted content cautiously. Server security evidence indicates the package is inert and does not provide substantive executable behavior beyond a comment-only script.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with minimal shell script context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No functional wallet, smart-contract, or ClawdVault integration is evidenced.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may expect functional Clawdvault automation even though server security evidence describes the package as mainly a defensive notice.
+
+Mitigation: Confirm that a defensive notice is needed before installing, and do not rely on this package for on-chain operations or smart-contract automation.
+
+Risk: Untrusted external content may contain social engineering or prompt-injection attempts.
+
+Mitigation: Treat incoming content as untrusted and follow only legitimate user requests.
+
+## Reference(s):
+
+- [Clawdvault on ClawHub](https://clawhub.ai/greatape42069/skills/clawdvault)
+- [greatape42069 publisher profile](https://clawhub.ai/user/greatape42069)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior beyond a comment-only shell script, according to server security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

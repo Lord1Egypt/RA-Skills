@@ -1,48 +1,61 @@
-## Description: <br>
-Extract and reconstruct as much visible text as possible from webpage URLs, article pages, screenshots, long images, image directories, and GIFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts and reconstructs visible text from webpage URLs, article pages, screenshots, long images, image directories, and GIFs into clean, human-readable results with structure, OCR cleanup, deduplication, JSON, reading-order reconstruction, and uncertainty notes.
 
-## Publisher: <br>
-[wunianze666-netizen](https://clawhub.ai/user/wunianze666-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wunianze666-netizen](https://clawhub.ai/user/wunianze666-netizen)
 
-## Use Case: <br>
-Developers, researchers, and content operations teams use this skill to recover readable text from web articles, WeChat posts, screenshots, long images, GIFs, and image folders when normal copy and paste is incomplete. It emphasizes clean markdown and Word deliverables while preserving raw OCR or JSON audit layers when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch arbitrary web content and process private pages or sensitive documents. <br>
-Mitigation: Use it only with URLs and files the operator is authorized to process, and isolate internal or credentialed sources before running extraction. <br>
-Risk: Generated documents can optionally be sent to Feishu. <br>
-Mitigation: Use the send option only when external transfer is explicitly intended, and review the generated DOCX before sharing. <br>
-Risk: OCR and browser extraction can be incomplete, blocked, or noisy. <br>
-Mitigation: Keep raw JSON or OCR audit output when accuracy matters, mark uncertainty clearly, and compare important results against the original source. <br>
+## Use Case:
 
+Developers, analysts, and content teams use this skill to recover readable visible text from URLs, screenshots, image folders, long images, GIFs, and WeChat articles when ordinary extraction or copy/paste is incomplete. It helps produce clean markdown, structured JSON, and Word deliverables while preserving uncertainty and audit data.
 
-## Reference(s): <br>
-- [Visible Text Extractor on ClawHub](https://clawhub.ai/wunianze666-netizen/visible-text-extractor) <br>
-- [Publisher profile](https://clawhub.ai/user/wunianze666-netizen) <br>
-- [Usage guide](USAGE.md) <br>
-- [Output schema](references/output-schema.md) <br>
-- [Deliverable workflow](references/deliverable-workflow.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Universal article extractor spec](references/universal-article-extractor-spec.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, DOCX, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, DOCX files, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can preserve raw OCR candidates and uncertainty notes alongside cleaned reader-facing output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Fetching and rendering arbitrary pages can expose the execution environment to untrusted web content or unwanted network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with approved public or user-provided sources, and sandbox network and browser execution for sensitive environments.
+
+Risk: OCR, browser, ffmpeg, and external script subprocesses can process untrusted files or mutable remote resources.
+
+Mitigation: Run in a constrained workspace, review scripts before execution, and pin or audit mutable dependencies where possible.
+
+Risk: Generated documents may contain sensitive extracted content, and the optional Feishu send path can disclose it to an external destination.
+
+Mitigation: Review outputs before sharing and use Feishu sending only when the destination, identity, and content are explicitly approved.
+
+## Reference(s):
+
+- [Usage Guide](USAGE.md)
+- [Output Schema](references/output-schema.md)
+- [Deliverable Workflow](references/deliverable-workflow.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Universal Article Extractor Spec](references/universal-article-extractor-spec.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, Word documents, shell commands, guidance]
+
+**Output Format:** [Markdown, JSON, DOCX files, and command-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Clean reading outputs are preferred; raw JSON and uncertainty notes are retained for audit or degraded-source cases.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

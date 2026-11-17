@@ -1,46 +1,67 @@
-## Description: <br>
-DeepEvidence循证医学AI助手 uses the DeepEvidence OpenAI-compatible API to generate traceable evidence summaries for clinical questions, drug safety review, guideline interpretation, and trial evidence synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use DeepEvidence for evidence-based clinical questions, including guideline interpretation, drug safety and interactions, dose adjustment, clinical-trial evidence, medical literature, and supported medical-image analysis.
 
-## Publisher: <br>
-[cindy8753](https://clawhub.ai/user/cindy8753) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindy8753](https://clawhub.ai/user/cindy8753)
 
-## Use Case: <br>
-Clinicians, medical researchers, and developers use this skill to ask evidence-based medicine questions and receive structured, citation-preserving reference summaries. It is suited for clinical evidence review, medication safety checks, guideline interpretation, and app integrations that call DeepEvidence through an OpenAI-compatible interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Clinical questions and related context are sent to the DeepEvidence service. <br>
-Mitigation: Avoid patient-identifying details unless privacy obligations allow it; use opaque user identifiers and minimize logging of prompts, responses, and request bodies. <br>
-Risk: Medical evidence summaries may be incomplete, stale, or unsuitable for a specific patient. <br>
-Mitigation: Treat outputs as reference material, preserve returned citations, and require verification by a qualified clinician before clinical use. <br>
-Risk: The required DeepEvidence API key could be exposed through source control, logs, shell history, or error output. <br>
-Mitigation: Read DEEPEVIDENCE_API_KEY only from environment configuration, do not commit keys, and avoid printing secrets or full sensitive payloads. <br>
-Risk: The skill is not appropriate for emergency triage or urgent first-aid decisions. <br>
-Mitigation: For urgent symptoms, direct users to local emergency services or immediate medical care instead of relying on generated guidance. <br>
+## Use Case:
 
+Clinicians, clinical informatics teams, and developers use this skill to query DeepEvidence for literature-backed clinical reference on guidelines, medication safety, dose adjustment, clinical studies, and authorized medical-image analysis.
 
-## Reference(s): <br>
-- [DeepEvidence homepage](https://deepevid.medsci.cn/) <br>
-- [DeepEvidence API Reference](references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cindy8753/deepevidence) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Structured Markdown reports with preserved citation markers; may also include Python/OpenAI SDK snippets, shell commands, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include DeepEvidence attribution, returned conversation IDs, token usage metadata, references, uncertainty notes, and clinical-use disclaimers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata; artifact frontmatter says 1.5.0) <br>
+Risk: Clinical questions and image URLs are sent to an external DeepEvidence service and may contain sensitive patient information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized clinical content, avoid PHI/PII unless consent, contracts, and compliance controls are in place, and keep DEEPEVIDENCE_API_KEY in the environment.
+
+Risk: Users may treat DeepEvidence output as diagnosis, treatment instruction, or emergency triage.
+
+Mitigation: Present results as clinical reference only, advise immediate local emergency care for urgent symptoms, and require clinician verification against original literature and current guidelines.
+
+Risk: Failed, empty, or timed-out retrieval can be mistaken for absence of medical risk or evidence.
+
+Mitigation: Use the documented failure message and do not interpret retrieval failures as no risk or no evidence.
+
+Risk: Authenticated requests may be exposed through cross-origin redirects in the helper's HTTP path.
+
+Mitigation: Harden or wrap the helper to reject cross-origin redirects for authenticated requests.
+
+## Reference(s):
+
+- [DeepEvidence ClawHub Skill Page](https://clawhub.ai/cindy8753/skills/deepevidence)
+- [DeepEvidence Public API Documentation](https://deepevid.medsci.cn/platform/docs)
+- [DeepEvidence API Keys](https://deepevid.medsci.cn/platform/api-keys)
+- [DeepEvidence Public API Reference](references/api.md)
+- [DeepEvidence Safety Reference](references/safety.md)
+- [DeepEvidence Error Handling](references/errors.md)
+- [DeepEvidence Integration Examples](references/integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code and shell examples; successful API helper calls return clinical answer text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserve DeepEvidence citation markers and present responses as clinical reference, not diagnosis or treatment instruction.]
+
+## Skill Version(s):
+
+1.0.15 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

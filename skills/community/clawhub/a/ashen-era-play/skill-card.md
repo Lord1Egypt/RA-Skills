@@ -1,41 +1,56 @@
-## Description: <br>
-Launches the bundled Ashen Era CLI build, plays one real run through the live prompts, and writes a first-person gameplay report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ashen Era Playtest launches the appropriate bundled Ashen Era CLI build, plays one real run, and produces a first-person post-run report.
 
-## Publisher: <br>
-[ssochi](https://clawhub.ai/user/ssochi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ssochi](https://clawhub.ai/user/ssochi)
 
-## Use Case: <br>
-Players and evaluators use this skill when they want an agent to run Ashen Era through the real CLI flow, capture what happened, and return a concrete first-person play report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local native game executable from bundled release archives. <br>
-Mitigation: Install only from a trusted publisher and run it in an environment where local game execution is acceptable. <br>
-Risk: The reviewed artifact set did not include the referenced release archives, so the actual game binary payload was not validated in this evidence package. <br>
-Mitigation: Review or scan the release archives before use when binary provenance matters for your environment. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent launch Ashen Era, complete a genuine CLI play session, and write a concrete first-person report of the run.
 
-## Reference(s): <br>
-- [CLI Surface](references/cli-surface.md) <br>
-- [Report Contract](references/report-contract.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown narrative report with launch details and gameplay recap] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes the selected executable target, launch command, class, seed, locale, final result, major decisions, combat actions, and retrospective for the completed run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill launches a local game CLI through a shell script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when comfortable executing the packaged CLI and review the package before running it.
+
+Risk: The inspected package is missing the referenced release archives and may fail to run unless those assets are supplied separately.
+
+Mitigation: Confirm the release archives are present and trusted before execution.
+
+## Reference(s):
+
+- [Ashen Era Playtest on ClawHub](https://clawhub.ai/ssochi/skills/ashen-era-play)
+- [Publisher profile: ssochi](https://clawhub.ai/user/ssochi)
+- [CLI Surface](references/cli-surface.md)
+- [Report Contract](references/report-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown narrative report with launch command details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes executable target, command, class, seed, locale, final result, important actions, key choices, turning points, and retrospective.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

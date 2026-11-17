@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn78906rd3gn1m7a3t5s7ck1w980q9q4",
-  "slug": "skill-explorer",
+  "name": "skill-explorer",
+  "description": "Systematic 8-phase framework for discovering, evaluating, and comparing OpenClaw skills with security review",
   "version": "1.0.0",
-  "publishedAt": 1772375593861
+  "tags": ["clawhub", "skill-discovery", "evaluation", "comparison", "security-review", "market-research"],
+  "author": "riverfor",
+  "license": "MIT",
+  "keywords": [
+    "skill",
+    "exploration",
+    "discovery",
+    "evaluation",
+    "comparison",
+    "clawhub",
+    "market-research",
+    "security-review",
+    "competitor-analysis"
+  ],
+  "documentation": "SKILL.md"
 }

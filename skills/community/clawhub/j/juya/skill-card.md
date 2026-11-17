@@ -1,41 +1,50 @@
-## Description: <br>
-Fetches Juya AI Daily newsletter entries from the public RSS feed and formats selected AI news items as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Juya AI Daily newsletter content for AI daily news or morning briefing requests, with optional date-specific retrieval.
 
-## Publisher: <br>
-[Cheerwhy](https://clawhub.ai/user/Cheerwhy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cheerwhy](https://clawhub.ai/user/cheerwhy)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for the latest or date-specific Juya AI Daily briefing and receive categorized newsletter content with titles and links in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fetched newsletter text and linked pages are external content and may be inaccurate or instruction-like. <br>
-Mitigation: Treat fetched content as untrusted reference material and verify important AI news from primary sources before acting on it. <br>
-Risk: The public RSS feed may not contain the requested date or may have changed since a prior run. <br>
-Mitigation: Match entries by the feed title date and report when no matching item is available instead of fabricating content. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for Juya AI Daily AI news briefings, either latest or date-specific, and receive categorized newsletter content.
 
-## Reference(s): <br>
-- [Juya AI Daily RSS feed](https://imjuya.github.io/juya-ai-daily/rss.xml) <br>
-- [ClawHub skill page](https://clawhub.ai/Cheerwhy/juya) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown list grouped by category with titles and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to the latest feed item when no date is specified; supports date-specific lookup by YYYY-MM-DD title.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill fetches live public newsletter content from imjuya.github.io and may optionally open linked newsletter pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when external fetching is acceptable; treat fetched content as untrusted source material and summarize it without granting local data or account access.
+
+## Reference(s):
+
+- [Juya AI Daily RSS feed](https://imjuya.github.io/juya-ai-daily/rss.xml)
+- [ClawHub skill page](https://clawhub.ai/cheerwhy/skills/juya)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Categorized newsletter items with titles and links; full content may require opening linked detail pages.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

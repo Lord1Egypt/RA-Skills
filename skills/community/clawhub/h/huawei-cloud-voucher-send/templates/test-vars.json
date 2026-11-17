@@ -1,0 +1,32 @@
+{
+  "skill_name": "huawei-cloud-voucher-send",
+  "region": "cn-north-1",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CreatePartnerCoupons operation syntax (write op -> --help only)",
+      "command": "hcloud BSS CreatePartnerCoupons --cli-region={region} --help",
+      "expected": "KooCLI usage text for the issue-coupon operation (no coupon issued)",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "ListIssuedPartnerCoupons pre-check (read-only, limit 1)",
+      "command": "hcloud BSS ListIssuedPartnerCoupons --cli-region={region} --limit=1",
+      "expected": "JSON list of already-issued partner coupons (or empty)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "ListQuotaCoupons operation syntax (read-only pre-query)",
+      "command": "hcloud BSS ListQuotaCoupons --cli-region={region} --help",
+      "expected": "KooCLI usage text for the coupon-quota query",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ],
+  "env_vars_required": ["HW_ACCESS_KEY", "HW_SECRET_KEY"],
+  "notes": "变更类写操作（向子客户发放代金券）——冒烟只做 --help 语法检查与只读预查询，绝不真实发放；发放行为的真实验证需用户显式确认（--confirm）后带外执行。CLI 路径使用 hcloud BSS；SDK 回退使用 huaweicloudsdkbss v2。BSS 为全局服务（cn-north-1）。"
+}

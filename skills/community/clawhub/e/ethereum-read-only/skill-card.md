@@ -1,44 +1,58 @@
-## Description: <br>
-Guides agents in using Foundry cast for wallet-free, read-only Ethereum state inspection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using Foundry cast to read Ethereum on-chain state without wallet management.
 
-## Publisher: <br>
-[Byron-McKeeby](https://clawhub.ai/user/Byron-McKeeby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[byron-mckeeby](https://clawhub.ai/user/byron-mckeeby)
 
-## Use Case: <br>
-Developers and Web3 analysts use this skill to prepare read-only Foundry cast commands for inspecting Ethereum blocks, contract state, event logs, ENS records, ABI data, and DeFi wallet balances without wallet signing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: External RPC and API providers may observe queried wallet addresses, ENS names, contracts, and transaction lookups. <br>
-Mitigation: Use a dedicated low-privilege RPC key and a trusted or self-hosted node for sensitive investigations. <br>
-Risk: The guide includes shell commands for installing Foundry and running networked command examples. <br>
-Mitigation: Review the official installer and each command before execution, and do not enter private keys or seed phrases while using this read-only skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Byron-McKeeby/ethereum-read-only) <br>
-- [Foundry installer](https://foundry.paradigm.xyz) <br>
-- [Ankr Ethereum RPC endpoint](https://rpc.ankr.com/eth) <br>
-- [Ankr Polygon RPC endpoint](https://rpc.ankr.com/polygon) <br>
-- [4byte function signature API](https://www.4byte.directory/api/v1/signatures/?hex_signature=0x$selector) <br>
-- [4byte event signature API](https://www.4byte.directory/api/v1/event-signatures/?hex_signature=0x$event_sig) <br>
+## Use Case:
 
+Developers and blockchain operators use this skill to inspect Ethereum blocks, contract state, event logs, ENS records, and ABI data through read-only command-line workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Ethereum RPC workflows; examples depend on Foundry cast, jq, curl, and configured RPC endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The guide asks users to run a remote Foundry installer.
+
+Mitigation: Review and trust the upstream source before installation, and prefer a pinned and verified installation method.
+
+Risk: One shell example builds a command string and executes it with eval, which can execute injected shell content.
+
+Mitigation: Avoid copying the eval-based function as written; pass arguments directly or validate and quote all user-controlled inputs.
+
+Risk: ABI lookup and ENS examples can disclose queried selectors, events, names, addresses, or profile fields to RPC providers and 4byte.directory.
+
+Mitigation: Use trusted providers, avoid querying sensitive targets when privacy matters, and document which external services receive lookup data.
+
+## Reference(s):
+
+- [Foundry](https://foundry.paradigm.xyz)
+- [4byte Directory signatures API](https://www.4byte.directory/api/v1/signatures/?hex_signature=0x$selector)
+- [4byte Directory event signatures API](https://www.4byte.directory/api/v1/event-signatures/?hex_signature=0x$event_sig)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes read-only Ethereum RPC examples that may require external RPC provider configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

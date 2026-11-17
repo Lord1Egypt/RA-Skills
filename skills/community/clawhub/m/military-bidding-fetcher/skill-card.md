@@ -1,42 +1,61 @@
-## Description: <br>
-Fetches public procurement notices from the all-army weapon equipment procurement site, the military procurement site, and the National University of Defense Technology procurement site, then filters results and generates Excel reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches Chinese military procurement notices from three named procurement sites, filters them by bidding keywords and exclusions, and generates an Excel opportunity report.
 
-## Publisher: <br>
-[zhangpengle](https://clawhub.ai/user/zhangpengle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangpengle](https://clawhub.ai/user/zhangpengle)
 
-## Use Case: <br>
-External users and agents use this skill to collect recent military procurement opportunities, filter them by keywords, regions, and exclusion terms, and produce an Excel workbook for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts external procurement sites and writes local Excel reports. <br>
-Mitigation: Run it only when public procurement scraping is intended, use the explicit /milb-fetcher command, and set the output path deliberately. <br>
-Risk: Local .env configuration can change keywords, proxy settings, regions, and output location. <br>
-Mitigation: Run the skill from a trusted directory and review .env settings before collection. <br>
-Risk: Broad trigger wording may start collection when a user gives a general scraping or procurement request. <br>
-Mitigation: Confirm the target date, sites, filters, and report path before running broad collection requests. <br>
+## Use Case:
 
+Business development, capture, and procurement-monitoring users use this skill to collect recent military procurement notices, filter them by keywords, exclusions, and region, and produce a ranked Excel report for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangpengle/military-bidding-fetcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Console status text and Excel workbook files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes .xlsx reports to a configured output path and supports keyword, exclusion keyword, high-value keyword, region, date, and proxy configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.6 (source: server release evidence) <br>
+Risk: Generated spreadsheets include untrusted text from remote procurement websites and the security evidence notes that this text is not formula-sanitized.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated workbooks as untrusted input, review them before sharing, and open them with spreadsheet protections appropriate for external data.
+
+Risk: Local .env settings can change proxy behavior and output paths.
+
+Mitigation: Run the skill from a controlled directory and review local configuration before execution, especially FETCHER_USE_PROXY, FETCHER_PROXY, and output settings.
+
+Risk: The skill contacts named procurement websites and writes an Excel report locally.
+
+Mitigation: Use it only where network access to those sites and local report generation are permitted by the user's organization.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangpengle/skills/military-bidding-fetcher)
+- [Publisher profile](https://clawhub.ai/user/zhangpengle)
+- [All-army weapon equipment procurement information network](https://www.weain.mil.cn/)
+- [Military procurement network](https://www.plap.mil.cn/)
+- [National University of Defense Technology procurement information](https://www.nudt.edu.cn/cgxx/index.htm)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Console text plus an Excel workbook (.xlsx)]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workbook contains separate sheets for the configured procurement sources and includes keyword-based recommendation fields.]
+
+## Skill Version(s):
+
+0.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

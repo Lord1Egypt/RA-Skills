@@ -1,44 +1,64 @@
-## Description: <br>
-Synthesizes user-provided text into iFlytek Hyper TTS speech audio with selectable voices, speed, pitch, volume, sample rate, and MP3 output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided text into iFlytek Hyper TTS speech with selectable voices, speech rate, volume, pitch, sample rate, and MP3 output.
 
-## Publisher: <br>
-[iflytek.skills](https://clawhub.ai/user/iflytek.skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iflytek.skills](https://clawhub.ai/user/iflytek.skills)
 
-## Use Case: <br>
-External users and developers use this skill to convert text or text files into speech through iFlytek's cloud text-to-speech service, then save the generated audio locally. It is intended for voice synthesis workflows where callers choose a supported voice and basic prosody parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text is sent to iFlytek's cloud TTS service and may include sensitive or regulated content if callers provide it. <br>
-Mitigation: Use only approved text for external cloud processing, and avoid secrets, private customer data, regulated content, and confidential drafts unless that use is authorized. <br>
-Risk: Generated audio is written to a caller-selected local path. <br>
-Mitigation: Choose output paths deliberately and protect generated audio files according to the sensitivity of the source text. <br>
-Risk: The skill requires iFlytek API credentials. <br>
-Mitigation: Store XFEI credentials in environment variables or a secret manager and do not place them in prompts, source files, or generated audio metadata. <br>
+## Use Case:
 
+External users and developers use this skill to synthesize spoken audio from text through iFlytek's Hyper TTS service, including selecting supported voices and basic prosody settings.
 
-## Reference(s): <br>
-- [iFlytek Hyper TTS API documentation](https://www.xfyun.cn/doc/spark/super%20smart-tts.html) <br>
-- [iFlytek Hyper TTS voice list](https://www.xfyun.cn/doc/spark/super%20smart-tts.html#%E5%8F%91%E9%9F%B3%E4%BA%BA%E5%88%97%E8%A1%A8) <br>
-- [ClawHub skill page](https://clawhub.ai/iflytek.skills/iflytek-hyper-tts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Files, JSON] <br>
-**Output Format:** [JSON status output plus a generated local MP3 audio file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, websocket-client, XFEI_APP_ID, XFEI_API_KEY, and XFEI_API_SECRET; text input is limited to 64KB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Text submitted for synthesis is sent to iFlytek's remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, regulated data, or private content unless that use is approved.
+
+Risk: The skill requires iFlytek API credentials in environment variables.
+
+Mitigation: Store credentials in a secret manager or protected environment, keep them out of source files and prompts, and rotate them if exposed.
+
+Risk: The documented dependency installation may pull the latest websocket-client package implicitly.
+
+Mitigation: Install in a virtual environment and pin or lock websocket-client for reproducible deployments.
+
+Risk: Generated audio is written to a local output path.
+
+Mitigation: Choose intended workspace paths and review generated files before sharing or publishing them.
+
+## Reference(s):
+
+- [iFlytek Hyper TTS API documentation](https://www.xfyun.cn/doc/spark/super%20smart-tts.html)
+- [iFlytek Hyper TTS voice list](https://www.xfyun.cn/doc/spark/super%20smart-tts.html#%E5%8F%91%E9%9F%B3%E4%BA%BA%E5%88%97%E8%A1%A8)
+- [ClawHub skill page](https://clawhub.ai/iflytek.skills/skills/iflytek-hyper-tts)
+- [ClawHub publisher profile](https://clawhub.ai/user/iflytek.skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [JSON status output and local MP3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XFEI_APP_ID, XFEI_API_KEY, and XFEI_API_SECRET environment variables; input text is limited to 64KB.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

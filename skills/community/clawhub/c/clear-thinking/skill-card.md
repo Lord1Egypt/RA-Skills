@@ -1,41 +1,58 @@
-## Description: <br>
-Critical thinking skills and decision-making frameworks for evaluating conflicting information, making difficult decisions, spotting manipulation or misinformation, and thinking more clearly about problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Critical thinking skills and decision-making frameworks for evaluating conflicting information, making difficult decisions, spotting manipulation or misinformation, and thinking more clearly about problems.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate claims, identify common reasoning errors, detect manipulative framing, and choose decision frameworks for real-life personal, professional, financial, health, media, and relationship questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may over-apply educational examples about health, finance, relationships, or careers as professional advice. <br>
-Mitigation: Present the skill as decision-support education and advise users to consult qualified professionals for consequential health, financial, legal, or similar decisions. <br>
-Risk: The artifact declares a filesystem requirement even though the visible instructions do not use filesystem behavior. <br>
-Mitigation: Install and run with least-privilege permissions, and review requested tool access before deployment. <br>
+## Use Case:
 
+External users and agents use this skill to evaluate claims, recognize manipulation, compare incomplete information, and make clearer personal or professional decisions.
 
-## Reference(s): <br>
-- [Clear Thinking release page](https://clawhub.ai/howtousehumans/clear-thinking) <br>
-- [First Draft / Credibility Coalition](https://firstdraftnews.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, decision frameworks, and structured coaching prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational decision-support content; not professional health, financial, legal, or relationship advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests filesystem access for a primarily reasoning-oriented workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and grant filesystem access only in environments where the skill has a clear need for it.
+
+Risk: The install command uses an unpinned npx package invocation.
+
+Mitigation: Prefer a pinned, trusted installer version and verify the package source before installation.
+
+Risk: Decision-making and misinformation guidance can be misapplied when context is incomplete or culturally specific.
+
+Mitigation: Treat the output as critical-thinking support, seek primary sources where possible, and adapt examples to the user's local media and decision context.
+
+## Reference(s):
+
+- [Clear Thinking ClawHub page](https://clawhub.ai/howtousehumans/skills/clear-thinking)
+- [First Draft / Credibility Coalition](https://firstdraftnews.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists, decision frameworks, and structured prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May adapt examples to the user's media landscape, culture, and decision context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

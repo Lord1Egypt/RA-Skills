@@ -10,7 +10,7 @@ const path = require('path');
 const CampaignDocumentGenerator = require('./campaign-document-generator');
 const ContextDocumentGenerator = require('./context-document-generator');
 const CompletenessAnalyzer = require('./completeness-analyzer');
-const TaskDecompositionGenerator = require('./task-decomposition-generator');
+const TaskDecompositionGenerator = require('./taREDACTED-SECRET');
 const ProcessFileManager = require('./process-file-manager');
 
 // 命令行参数处理

@@ -1,41 +1,53 @@
-## Description: <br>
-Analyze contracts and legal documents to extract key terms, identify risks, flag red flags, and provide a clear summary with recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze contracts and legal documents to extract key terms, identify risks, flag red flags, and provide a clear summary with recommendations.
 
-## Publisher: <br>
-[eternal0404](https://clawhub.ai/user/eternal0404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eternal0404](https://clawhub.ai/user/eternal0404)
 
-## Use Case: <br>
-Developers, operators, and document reviewers use this skill to screen contracts, NDAs, leases, employment agreements, terms of service, and similar legal documents for plain-English summaries, extracted terms, red flags, risk scoring, and negotiation recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contract analysis output could be mistaken for legal advice or a binding legal conclusion. <br>
-Mitigation: Treat results as screening guidance only and have qualified counsel review important or binding legal decisions. <br>
-Risk: Contract files may contain confidential business, personal, or legal information. <br>
-Mitigation: Run the tool only in an approved local environment and avoid processing sensitive agreements where access, retention, or disclosure rules are unclear. <br>
-Risk: Heuristic extraction may miss clauses or flag terms incorrectly. <br>
-Mitigation: Review the source document directly, especially for high-risk clauses, unusual wording, scanned documents, or documents with extraction errors. <br>
+## Use Case:
 
+External users and agents use this skill to analyze contracts, NDAs, leases, employment agreements, terms of service, and other legal documents for plain-English summaries, key clauses, risk scores, red flags, and version differences.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style text reports or JSON analysis with summaries, risk levels, red flags, key terms, parties, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local analysis and comparison of TXT, PDF, DOCX, and image-based contract files when the corresponding local extraction dependencies are installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Contract text, party names, payment terms, and sensitive clauses may be displayed in terminal output or JSON logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on documents suitable for local terminal display and avoid storing or sharing generated logs that contain confidential contract details.
+
+Risk: The analysis is automated and may miss legal context or overstate the significance of matched clauses.
+
+Mitigation: Use the output as triage guidance and have a qualified attorney review important contracts before making binding legal decisions.
+
+## Reference(s):
+
+- [Eternal Contract Analyzer on ClawHub](https://clawhub.ai/eternal0404/skills/eternal-contract-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance, shell commands]
+
+**Output Format:** [Plain-text terminal report or JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analyzes one contract or compares two versions; supported inputs include PDF, DOCX, text, and image files when the required local extractors are installed.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

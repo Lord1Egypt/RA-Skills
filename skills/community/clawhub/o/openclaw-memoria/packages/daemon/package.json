@@ -1,0 +1,28 @@
+{
+  "name": "@memoria/daemon",
+  "version": "0.1.0",
+  "description": "Daemon local unique Memoria — gardien des DB. HTTP 127.0.0.1 + token, singleton + lock-file. MCP/CLI/UI sont ses clients.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "memoria-daemon": "./dist/bin.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@memoria/core": "*"
+  }
+}

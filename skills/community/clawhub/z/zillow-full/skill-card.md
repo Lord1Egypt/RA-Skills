@@ -1,44 +1,57 @@
-## Description: <br>
-Complete Zillow property data toolkit via Zillapi.com for address, URL, and zpid lookup, Zestimate data, listing search, photos, schools, price history, and agent contact retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+zillow-full helps agents retrieve US property records, valuations, listing searches, photos, schools, price history, and listing-agent details through the Zillapi API for user-directed Zillow or real estate requests.
 
-## Publisher: <br>
-[nikhonit](https://clawhub.ai/user/nikhonit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zillapi](https://clawhub.ai/user/zillapi)
 
-## Use Case: <br>
-External users, developers, and real-estate workflows use this skill to retrieve user-requested U.S. property, valuation, listing, school, photo, price-history, and listing-agent data through Zillapi. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Zillapi API key and uses it to send property lookup requests to Zillapi. <br>
-Mitigation: Use a dedicated API key, monitor credit usage, and avoid submitting addresses or listing searches that should not be sent to Zillapi. <br>
-Risk: Each intended lookup can consume Zillapi credits and may return large property records. <br>
-Mitigation: Call the tools only for explicit user requests about property data and confirm ambiguous intent before making a request. <br>
+## Use Case:
 
+External users and agents use this skill to answer intentional US property, valuation, rental, listing, comps, and Zillow URL questions when a Zillapi API key is available.
 
-## Reference(s): <br>
-- [Zillapi homepage](https://zillapi.com) <br>
-- [Zillapi OpenAPI spec](https://zillapi.com/openapi.json) <br>
-- [Zillapi property API documentation](https://zillapi.com/api/properties/) <br>
-- [Hosted Zillapi MCP server](https://api.zillapi.com/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/nikhonit/zillow-full) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON data, Guidance] <br>
-**Output Format:** [Python dictionaries containing Zillapi JSON responses or structured error objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZILLAPI_KEY and sends user-requested property queries to Zillapi.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Property addresses, Zillow URLs, zpids, and listing filters are sent to Zillapi with the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intentional property or listing requests, and avoid sending incidental addresses or unrelated real estate text.
+
+Risk: Successful Zillapi calls may consume account credits, especially listing searches that return multiple records.
+
+Mitigation: Prefer narrow tools for specific answers and keep listing search result limits tight.
+
+## Reference(s):
+
+- [zillow-full tool reference](artifact/reference.md)
+- [Zillapi homepage](https://zillapi.com)
+- [Zillapi OpenAPI spec](https://zillapi.com/openapi.json)
+- [Zillapi REST property docs](https://zillapi.com/api/properties/)
+- [Zillapi hosted MCP server](https://api.zillapi.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text, Guidance]
+
+**Output Format:** [JSON-like Python dictionaries and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZILLAPI_KEY; successful Zillapi calls may consume credits.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

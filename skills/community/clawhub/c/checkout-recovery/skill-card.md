@@ -1,46 +1,56 @@
-## Description: <br>
-Reduce payment failures and cart abandonment from checkout friction by auditing payment method coverage, error messaging, and retry flow design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduce payment failures and cart abandonment from checkout friction by auditing payment method coverage, error messaging, and retry flow design.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce operators, consultants, and growth teams use this skill to audit checkout payment coverage, error messaging, UX friction, and abandoned-checkout recovery flows, then produce a prioritized recovery roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checkout audits may involve sensitive customer, payment, or funnel data. <br>
-Mitigation: Use aggregated or redacted checkout metrics where possible and avoid sharing raw customer PII or payment details. <br>
-Risk: Recommended PSP, checkout, SMS, email, or discount changes can affect revenue, compliance, and customer experience. <br>
-Mitigation: Require human approval before applying recommended payment provider, checkout flow, messaging, or discount changes. <br>
-Risk: Payment method coverage and market-share references can become outdated or vary by merchant segment. <br>
-Mitigation: Verify current market data with the merchant's PSP or local payment provider before making integration decisions. <br>
+## Use Case:
 
+Ecommerce operators, marketplace sellers, and growth teams use this skill to audit checkout payment coverage, friction points, error copy, and abandoned checkout recovery sequences. The skill produces a structured remediation plan for improving checkout completion across target markets.
 
-## Reference(s): <br>
-- [Checkout Recovery skill page](https://clawhub.ai/leooooooow/checkout-recovery) <br>
-- [Output Template - Checkout Recovery Audit](references/output-template.md) <br>
-- [Payment Methods by Market - Ecommerce Reference](references/payment-methods-by-market.md) <br>
-- [Error Message Copy Guide - Checkout Recovery](references/error-message-copy-guide.md) <br>
-- [Checkout Recovery - Audit Quality Checklist](assets/recovery-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown audit report with tables, severity ratings, prioritized recommendations, and recovery copy templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a three-section Payment Coverage Gap Report, Friction Audit, and Recovery Roadmap; may include checkout error copy and abandoned-checkout message templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Risk: Payment-method market data and integration options can become stale or vary by seller geography.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current payment-method coverage and integration options with the seller's payment provider before changing checkout configuration.
+
+Risk: Recovery email, SMS, or push recommendations can create consent, unsubscribe, or privacy issues if applied without controls.
+
+Mitigation: Use only necessary checkout data and confirm opt-in, unsubscribe, and retention requirements before launching recovery sequences.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [Payment Methods by Market](artifact/references/payment-methods-by-market.md)
+- [Error Message Copy Guide](artifact/references/error-message-copy-guide.md)
+- [Recovery Checklist](artifact/assets/recovery-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables, prioritized recommendations, copy templates, and checklist-style guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations depend on seller-provided checkout metrics, market, platform, payment methods, and recovery-channel details.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

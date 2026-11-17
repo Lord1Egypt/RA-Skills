@@ -1,47 +1,60 @@
-## Description: <br>
-A Proxmox-native orchestration skill that turns any home lab into a Self-Healing AI Swarm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Proxmox-native orchestration skill that turns any home lab into a Self-Healing AI Swarm.
 
-## Publisher: <br>
-[spamtylor](https://clawhub.ai/user/spamtylor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[spamtylor](https://clawhub.ai/user/spamtylor)
 
-## Use Case: <br>
-Developers, engineers, and home-lab operators use Hydra Evolver to scan known mesh nodes, provision OpenClaw-related host dependencies, and generate JSON resume plans from project and memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install system software and change host networking state. <br>
-Mitigation: Review scripts before execution and do not allow mesh_provision to run automatically. <br>
-Risk: The skill can scan local machines on a predefined private subnet. <br>
-Mitigation: Restrict scanning to hosts and networks you own or administer. <br>
-Risk: Proxmox access may expose infrastructure control if credentials are overprivileged. <br>
-Mitigation: Use least-privilege Proxmox tokens and protect PVE_TOKEN_ID and PVE_TOKEN_SECRET. <br>
-Risk: The hardening claim is not verified by the available evidence. <br>
-Mitigation: Treat hardening claims as unverified until the scripts and runtime behavior are reviewed. <br>
+## Use Case:
 
+Developers and home-lab operators use this skill to discover mesh nodes, provision new hardware with OpenClaw dependencies, and generate resume plans for paused work from local project files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spamtylor/hydra-evolver) <br>
-- [Docker install script](https://get.docker.com) <br>
-- [Volta installer](https://get.volta.sh) <br>
-- [Tailscale install script](https://tailscale.com/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, command output, and JSON plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce an evolution_plan.json-style action plan and local mesh scan results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The provisioning workflow can make broad system and network changes, including Docker installation, Docker group access, Node.js installation, Tailscale installation, and a global OpenClaw install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run provisioning only on machines you control after reviewing remote installers, pinning package versions where possible, and deciding whether Docker group access and Tailscale are acceptable.
+
+Risk: The mesh scan probes LAN hosts and can be interpreted as network scanning.
+
+Mitigation: Run scans only on approved networks and restrict configured target IP ranges to authorized hosts.
+
+Risk: The evolution workflow generates resume actions from local project and memory files that may be incomplete or misleading.
+
+Mitigation: Review generated plans before applying them or using them to change code, infrastructure, or project state.
+
+## Reference(s):
+
+- [Hydra Evolver on ClawHub](https://clawhub.ai/spamtylor/skills/hydra-evolver)
+- [Docker installer endpoint used by provision.sh](https://get.docker.com)
+- [Volta installer endpoint used by provision.sh](https://get.volta.sh)
+- [Tailscale installer endpoint used by provision.sh](https://tailscale.com/install.sh)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON plans and scan results, plus shell command output from provisioning workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect local PROJECTS.md and MEMORY.md files and probe configured LAN IP addresses when invoked.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

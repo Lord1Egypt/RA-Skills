@@ -18,8 +18,7 @@ import { randomUUID } from "crypto";
 import { db } from "./db.js";
 import { buildFtsTokens, buildSearchQuery } from "./tokenizer.js";
 import { auditLog } from "./security.js";
-import { getCount } from "./utils.js";
-import type { MemoryRow } from "./types.js";
+import type { MemoryRow, CountRow } from "./types.js";
 import { getErrorMessage } from "./types.js";
 import { logError, logger } from "./logger.js";
 
@@ -29,6 +28,19 @@ const MAX_TITLE_LENGTH = 500;
 const MAX_RECALL_RESULTS = 20;
 const MAX_LIST_RESULTS = 50;
 
+// ─── P1-1: 向后兼容 tags 解析 ────────────────────────────
+// v2.4.6+ 存空格拼接字符串（"v2.2.0 source:hermes"），旧数据仍为 JSON 数组
+
+export function parseTags(tagsStr: string | null): string[] {
+  if (!tagsStr) return [];
+  // 检测是否为旧 JSON 数组格式
+  if (tagsStr.startsWith("[") && tagsStr.endsWith("]")) {
+    try { return JSON.parse(tagsStr) as string[]; } catch { /* fall through */ }
+  }
+  // 新格式：空格分隔
+  return tagsStr.split(" ").filter(Boolean);
+}
+
 // ─── 类型定义 ────────────────────────────────────────────
 export interface MemoryEntry {
   id: string;
@@ -36,7 +48,7 @@ export interface MemoryEntry {
   title: string | null;
   content: string;
   scope: "private" | "group" | "collective";
-  tags: string | null;  // JSON array
+  tags: string | null;  // space-separated (v2.4.6+), legacy JSON array
   source_agent_id: string | null;  // Phase 2 Day 4: 溯源
   source_task_id: string | null;   // Phase 2 Day 4: 溯源
   created_at: number;
@@ -96,7 +108,9 @@ export function storeMemory(
   }
 
   const tags = options?.tags ?? null;
-  const tagsJson = tags ? JSON.stringify(tags) : null;
+  // P1-1: 空格拼接替代 JSON，避免 FTS5 tokenizer 拆分版本号/hash
+  // 旧格式: ["v2.2.0","source:hermes"] → 新格式: "v2.2.0 source:hermes"
+  const tagsStr = tags ? tags.join(" ") : null;
   const sourceAgentId = options?.source_agent_id ?? null;
   const sourceTaskId = options?.source_task_id ?? null;
 
@@ -109,12 +123,12 @@ export function storeMemory(
     db.prepare(
       `INSERT INTO memories (id, agent_id, title, content, fts_tokens, scope, tags, source_agent_id, source_task_id, created_at, updated_at)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    ).run(id, agentId, title, content, ftsTokens, scope, tagsJson, sourceAgentId, sourceTaskId, now, now);
+    ).run(id, agentId, title, content, ftsTokens, scope, tagsStr, sourceAgentId, sourceTaskId, now, now);
 
-    // 同步写入 FTS5 索引
+    // 同步写入 FTS5 索引（P1-4/P1-5 修复：携带 memory_id 作精确关联键）
     db.prepare(
-      `INSERT INTO memories_fts (title, content, tags, fts_tokens) VALUES (?, ?, ?, ?)`
-    ).run(title, content, tagsJson, ftsTokens);
+      `INSERT INTO memories_fts (title, content, tags, fts_tokens, memory_id) VALUES (?, ?, ?, ?, ?)`
+    ).run(title, content, tagsStr, ftsTokens, id);
 
     const memory: MemoryEntry = {
       id,
@@ -122,7 +136,7 @@ export function storeMemory(
       title,
       content,
       scope,
-      tags: tagsJson,
+      tags: tagsStr,
       source_agent_id: sourceAgentId,
       source_task_id: sourceTaskId,
       created_at: now,
@@ -182,7 +196,7 @@ export function recallMemory(
       sql = `
         SELECT m.*, COALESCE(a.trust_score, 50) AS source_trust_score
         FROM memories m
-        JOIN memories_fts fts ON (m.title = fts.title OR (m.title IS NULL AND fts.title IS NULL)) AND m.content = fts.content
+        JOIN memories_fts fts ON fts.memory_id = m.id
         LEFT JOIN agents a ON m.agent_id = a.agent_id
         WHERE memories_fts MATCH ?
         AND (m.agent_id = ? OR m.scope IN ('group', 'collective'))
@@ -194,7 +208,7 @@ export function recallMemory(
       sql = `
         SELECT m.*, COALESCE(a.trust_score, 50) AS source_trust_score
         FROM memories m
-        JOIN memories_fts fts ON (m.title = fts.title OR (m.title IS NULL AND fts.title IS NULL)) AND m.content = fts.content
+        JOIN memories_fts fts ON fts.memory_id = m.id
         LEFT JOIN agents a ON m.agent_id = a.agent_id
         WHERE memories_fts MATCH ?
         AND m.agent_id = ? AND m.scope = 'private'
@@ -206,7 +220,7 @@ export function recallMemory(
       sql = `
         SELECT m.*, COALESCE(a.trust_score, 50) AS source_trust_score
         FROM memories m
-        JOIN memories_fts fts ON (m.title = fts.title OR (m.title IS NULL AND fts.title IS NULL)) AND m.content = fts.content
+        JOIN memories_fts fts ON fts.memory_id = m.id
         LEFT JOIN agents a ON m.agent_id = a.agent_id
         WHERE memories_fts MATCH ?
         AND (m.agent_id = ? OR m.scope IN ('group', 'collective'))
@@ -220,7 +234,7 @@ export function recallMemory(
       sql = `
         SELECT m.*, COALESCE(a.trust_score, 50) AS source_trust_score
         FROM memories m
-        JOIN memories_fts fts ON (m.title = fts.title OR (m.title IS NULL AND fts.title IS NULL)) AND m.content = fts.content
+        JOIN memories_fts fts ON fts.memory_id = m.id
         LEFT JOIN agents a ON m.agent_id = a.agent_id
         WHERE memories_fts MATCH ?
         AND m.scope = 'collective'
@@ -321,11 +335,12 @@ export function deleteMemory(
       return { ok: false, error: "Permission denied: can only delete own memories" };
     }
 
-    // 删除 FTS 索引（通过 title + content 匹配，处理 NULL title）
+    // 删除 FTS 索引（P1-4 修复：按 memory_id 精确命中，不再按 title+content 值相等
+    // 误删内容相同的其他记忆）
     try {
       db.prepare(
-        `DELETE FROM memories_fts WHERE (title = ? OR (title IS NULL AND ? IS NULL)) AND content = ?`
-      ).run(memory.title, memory.title, memory.content);
+        `DELETE FROM memories_fts WHERE memory_id = ?`
+      ).run(memoryId);
 
       // Phase 5a Day 2: 审计 FTS 索引删除
       auditLog("delete_memory_fts", agentId, memoryId, `title=${memory.title?.slice(0, 50) ?? "null"}`);
@@ -348,13 +363,15 @@ export function deleteMemory(
 
 /**
  * 获取记忆统计信息
+ * @param caller 调用者上下文（可选）。若传入且非 admin，则裁剪 by_agent 防止泄露他人记忆分布（T5 守卫）。
+ *               当前该函数未被任何 MCP 工具暴露（死代码），加守卫以防未来误暴露。
  */
-export function getMemoryStats(): MemoryStats {
+export function getMemoryStats(caller?: { role: string }): MemoryStats {
   try {
-    const totalRow = db.prepare(`SELECT COUNT(*) as cnt FROM memories`).get() as { cnt: number } | undefined;
+    const totalRow = db.prepare(`SELECT COUNT(*) as cnt FROM memories`).get() as CountRow;
     let ftsEntries = 0;
     try {
-      const ftsRow = db.prepare(`SELECT COUNT(*) as cnt FROM memories_fts`).get() as { cnt: number } | undefined;
+      const ftsRow = db.prepare(`SELECT COUNT(*) as cnt FROM memories_fts`).get() as CountRow;
       ftsEntries = ftsRow?.cnt ?? 0;
     } catch {
       // FTS 表可能不存在
@@ -368,10 +385,13 @@ export function getMemoryStats(): MemoryStats {
       `SELECT scope, COUNT(*) as cnt FROM memories GROUP BY scope`
     ).all() as { scope: string; cnt: number }[];
 
-    const byAgent: Record<string, number> = {};
+    const rawByAgent: Record<string, number> = {};
     for (const row of byAgentRows) {
-      byAgent[row.agent_id] = row.cnt;
+      rawByAgent[row.agent_id] = row.cnt;
     }
+
+    // T5 守卫：非 admin 调用者不暴露他人记忆分布
+    const byAgent = caller && caller.role !== "admin" ? {} : rawByAgent;
 
     const byScope: Record<string, number> = {};
     for (const row of byScopeRows) {
@@ -398,33 +418,28 @@ export function getMemoryStats(): MemoryStats {
  */
 export function rebuildFtsIndex(): void {
   try {
-    const memCount = (db.prepare(`SELECT COUNT(*) as cnt FROM memories`).get() as { cnt: number } | undefined)?.cnt ?? 0;
-    let ftsCount = 0;
-    try {
-      ftsCount = (db.prepare(`SELECT COUNT(*) as cnt FROM memories_fts`).get() as { cnt: number } | undefined)?.cnt ?? 0;
-    } catch {
-      // FTS 表不存在，跳过
-      return;
+    const memCount = (db.prepare(`SELECT COUNT(*) as cnt FROM memories`).get() as CountRow)?.cnt ?? 0;
+    if (memCount === 0) {
+      return; // 无数据无需重建
     }
-
-    if (memCount === 0 || ftsCount >= memCount) {
-      return; // 不需要重建
-    }
-
-    logger.info("memory_fts_rebuild_start", { module: "memory", mem_count: memCount, fts_count: ftsCount });
+    // 全量重建：先清空 fts5，再按 memories 重新填充，保证两者完全一致。
+    // 原逻辑不清空就全量重插，在「fts 部分恢复」场景下会重复插入导致
+    // 索引膨胀 / constraint failed（memories 与 memories_fts 行数漂移）。
+    // DELETE 后重插是幂等的，每次启动都能自愈对齐。
+    db.prepare(`DELETE FROM memories_fts`).run();
 
     const memories = db.prepare(
       `SELECT id, title, content, tags, source_agent_id, source_task_id FROM memories`
     ).all() as Pick<MemoryRow, "id" | "title" | "content" | "tags" | "source_agent_id" | "source_task_id">[];
 
     const insertFts = db.prepare(
-      `INSERT INTO memories_fts (title, content, tags, fts_tokens) VALUES (?, ?, ?, ?)`
+      `INSERT INTO memories_fts (title, content, tags, fts_tokens, memory_id) VALUES (?, ?, ?, ?, ?)`
     );
 
     const rebuildBatch = db.transaction((mems: Pick<MemoryRow, "id" | "title" | "content" | "tags" | "source_agent_id" | "source_task_id">[]) => {
       for (const m of mems) {
         const tokens = buildFtsTokens(m.title ?? null, m.content);
-        insertFts.run(m.title, m.content, m.tags ?? null, tokens);
+        insertFts.run(m.title, m.content, m.tags ?? null, tokens, m.id);
       }
     });
 

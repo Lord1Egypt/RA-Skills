@@ -1,41 +1,55 @@
-## Description: <br>
-Complete Claude Code productivity system for project setup, prompting patterns, sub-agent orchestration, context management, debugging, refactoring, TDD, and shipping faster without scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete Claude Code productivity system: project setup, prompting patterns, sub-agent orchestration, context management, debugging, refactoring, TDD, and shipping faster without scripts.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and engineering teams use this skill as a Claude Code workflow guide for project setup, prompting, context management, debugging, refactoring, testing, code review, and production shipping checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Workflow guidance can cause an agent to make repository-changing actions such as commits, database changes, or deployments. <br>
-Mitigation: Require explicit approval before allowing the agent to commit, change databases, deploy, or perform other repository-changing actions. <br>
-Risk: Generated project instructions or handoff files may contain incorrect guidance or expose sensitive context if copied without review. <br>
-Mitigation: Review project instructions and handoff files before use, and keep secrets out of persistent context. <br>
+## Use Case:
 
+Developers and engineering teams use this skill as a Claude Code workflow guide for project setup, prompting, context management, debugging, refactoring, test-driven development, git workflows, reviews, and production readiness checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-claude-code-production) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only workflow guidance; no executable payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad natural-language workflow guidance may lead an agent to propose project setup, git, or refactoring actions that are not appropriate for a specific codebase.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill deliberately and review generated CLAUDE.md, .claueignore, git, and refactoring actions before applying them to a real project.
+
+Risk: The skill provides process guidance rather than executable safeguards, so generated code or commands still require project-specific validation.
+
+Mitigation: Use the included review, testing, linting, type-checking, and production checklist practices before accepting or deploying generated changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-claude-code-production)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks, checklists, workflow templates, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable code is shipped in the release artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

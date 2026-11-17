@@ -1,41 +1,51 @@
-## Description: <br>
-Secret Encrypt provides plain-text reference documentation for devtools topics including quickstarts, patterns, debugging, performance, security, migration, and cheat sheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secret Encrypt provides plain-text reference guidance for devtools topics such as intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheets.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for Secret Encrypt concepts, operational patterns, troubleshooting, performance guidance, security considerations, migration steps, and command cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic reference guidance that may not be authoritative for a specific Secret Encrypt implementation. <br>
-Mitigation: Treat the output as quick-reference material and verify security, migration, and operational decisions against authoritative product documentation before applying them. <br>
-Risk: The artifact metadata and release evidence list version 2.0.1, while the bundled script reports 2.0.0. <br>
-Mitigation: Confirm the installed script version during release review and update the script constant or metadata if a single displayed version is required. <br>
+## Use Case:
 
+Developers and engineers use this skill for quick Secret Encrypt reference material while working in devtools contexts. It is best suited for lightweight orientation, reminders, and checklist-style guidance rather than authoritative product documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain1/secret-encrypt) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, file changes, or persistence are indicated by the artifact and security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: frontmatter and server release evidence; script reports 2.0.0) <br>
+Risk: The security summary notes that the Secret Encrypt guidance is vague and not very substantive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a lightweight reference and check primary Secret Encrypt documentation before relying on it for operational or security-sensitive decisions.
+
+## Reference(s):
+
+- [Secret Encrypt on ClawHub](https://clawhub.ai/bytesagain1/skills/secret-encrypt)
+- [bytesagain1 ClawHub profile](https://clawhub.ai/user/bytesagain1)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference sections with Markdown headings, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static shell-script output; evidence reports no API keys, credentials, or network access.]
+
+## Skill Version(s):
+
+2.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+{
+  "name": "deception-radar public fallback samples",
+  "version": "1.0.0",
+  "notes": "Used only if ops-detector suite is not installed nearby.",
+  "samples": [
+    {"id": "pub_dec_01", "text": "It's on you to prove it. Tons of evidence out there. Do your own research.", "label": 1},
+    {"id": "pub_dec_02", "text": "Trust me, as an expert — everyone knows the data shows this.", "label": 1},
+    {"id": "pub_dec_03", "text": "That never happened. You're misremembering.", "label": 1},
+    {"id": "pub_ben_01", "text": "The weather today is sunny and warm.", "label": 0},
+    {"id": "pub_ben_02", "text": "Please review the attached report when you have time.", "label": 0},
+    {"id": "pub_ben_03", "text": "The Earth orbits the Sun.", "label": 0}
+  ]
+}

@@ -1,41 +1,57 @@
-## Description: <br>
-Runs a non-interactive OpenClaw security audit and produces a structured BLUF report with posture rating, ranked findings, and copy-paste fix commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a non-interactive OpenClaw security audit that produces a structured BLUF report with posture rating, ranked findings, and one-line fix commands.
 
-## Publisher: <br>
-[infectit007](https://clawhub.ai/user/infectit007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infectit007](https://clawhub.ai/user/infectit007)
 
-## Use Case: <br>
-Developers, operators, and automation agents use this skill to run OpenClaw security audits, summarize posture quickly, and turn findings into prioritized remediation steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security-audit findings may expose weaknesses if reports are stored locally or sent through Telegram. <br>
-Mitigation: Use stdout-only unless persistent storage or Telegram delivery is intentional, and confirm the report contents before sharing. <br>
-Risk: The security summary reports a mismatch between read-only/no-network safety claims and behavior that can store reports or send them through Telegram. <br>
-Mitigation: Review delivery targets, bot token usage, chat destination, and cron schedule before installing or running scheduled audits. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to run OpenClaw security audits and convert the audit output into a concise BLUF report for scheduled checks, configuration changes, or briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infectit007/eva-security-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/infectit007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown BLUF report with ranked findings and copy-paste fix commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print to stdout, append to local memory, or send through Telegram when intentionally configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The artifact's safety claims conflict with delivery paths that can persist reports or send audit contents externally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use stdout-only unless persistent records or Telegram delivery are explicitly required, and confirm destination, retention, and redaction before use.
+
+Risk: Telegram delivery can read environment credentials and transmit security report content outside the local machine.
+
+Mitigation: Enable Telegram only after approving external delivery and verifying the intended bot token, chat ID, and data handling process.
+
+Risk: The cron example can create recurring audits that repeatedly route security report data.
+
+Mitigation: Confirm the schedule, destination, retention, redaction, and removal process before enabling the scheduled job.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infectit007/skills/eva-security-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown BLUF report with severity sections, posture rating, next steps, and command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-interactive; can produce stdout output and may describe optional memory, Telegram, or scheduled delivery paths.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

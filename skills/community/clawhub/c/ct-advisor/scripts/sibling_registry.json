@@ -1,0 +1,701 @@
+{
+  "version": "2026-09-29",
+  "generated_at": "2026-11-10T07:19:13.568989",
+  "source_dir": "C:\\Users\\Wintone\\.workbuddy\\skills",
+  "skills": {
+    "ct-adam": {
+      "name": "ct-adam",
+      "display_name": "Clinical Trial ADaM Builder / 临床试验Adam专家",
+      "version": "0.9.7",
+      "summary": "将合规 SDTM 推导为分析就绪的 ADaM 数据集（ADSL/BDS/OCCDS/ADTTE），含基线、变化、分析标志等推导变量，全链路可追溯；本地执行，保密数据不出域。",
+      "triggers": [
+        "ADaM 构建",
+        "CDISC ADaM",
+        "分析数据集",
+        "SDTM to ADaM",
+        "ADSL 构建",
+        "ADTTE",
+        "临床试验 分析数据集",
+        "clinical trial ADaM",
+        "analysis dataset"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-adam",
+      "capabilities": [
+        "adam_derivation",
+        "sdtm_mapping"
+      ]
+    },
+    "ct-analysis": {
+      "name": "ct-analysis",
+      "display_name": "Clinical Trial Statistical Analysis / 临床试验统计分析专家",
+      "version": "0.6.0",
+      "summary": "基于 ADaM 做试验内统计（描述、组间比较、生存、贝叶斯、适应性、安全性统计），产出含 ARD 的结构化结果，供 TLF / CSR；可选 R 模板经 scripts/r_libs.py:run_r（含 scan_forbidden_ops 闸门）调用，绝不经由 statsoft-cli；全程本地、数据不出域。",
+      "triggers": [
+        "临床试验 统计分析",
+        "试验内分析",
+        "ADaM 分析",
+        "临床统计",
+        "主要终点 分析",
+        "生存分析",
+        "MMRM",
+        "ARD 分析结果",
+        "clinical trial analysis",
+        "within-trial statistical analysis",
+        "descriptive statistics",
+        "group comparison t-test / chi-square",
+        "Kaplan-Meier survival",
+        "analysis ready data",
+        "Cox 比例风险模型",
+        "logistic 回归",
+        "ARS 标准 / cards ARD",
+        "Cox proportional hazards",
+        "logistic regression",
+        "CDISC ARS analysis results standard"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-analysis",
+      "capabilities": [
+        "adam_derivation",
+        "csr_report",
+        "safety_signal",
+        "statistical_analysis"
+      ]
+    },
+    "ct-congress": {
+      "name": "ct-congress",
+      "display_name": "Clinical Trial Congress Efficacy Extractor / 会议摘要疗效表抽取",
+      "version": "0.2.1",
+      "summary": "从 ASCO/ESMO 等会议摘要文本或 PDF 公告中，抽取结构化疗效/安全表（主角药物 × 终点 × 数值 × 对照臂），输出可比对表格，反哺 ct-pipeline 竞品格局分析。",
+      "triggers": [
+        "会议摘要疗效表抽取",
+        "从 ASCO/ESMO 摘要抽取 ORR/mPFS/mOS",
+        "congress abstract efficacy extraction",
+        "extract ORR DCR mPFS from abstract",
+        "ct-congress",
+        "竞品疗效数据对比",
+        "parse clinical trial press release efficacy"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-congress",
+      "capabilities": [
+        "pipeline_intel",
+        "registry_search",
+        "safety_signal",
+        "tlg_generation"
+      ]
+    },
+    "ct-csr": {
+      "name": "ct-csr",
+      "display_name": "Clinical Trial CSR Authoring / 临床试验 CSR 专家",
+      "version": "0.5.1",
+      "summary": "基于 TLF / 分析产物 + 方案，按 ICH E3 结构（含统计/安全/疗效章节、受试者叙述、图表嵌入）本地撰写 CSR；双模板（ICH E3 国际 / NMPA 国内）可切换，全程本地、数据不出域。",
+      "triggers": [
+        "CSR 撰写",
+        "临床试验 研究报告",
+        "临床研究报告",
+        "ICH E3",
+        "CSR 模板",
+        "NMPA CSR",
+        "clinical study report",
+        "CSR 生成"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-csr",
+      "capabilities": [
+        "csr_report",
+        "eligibility",
+        "protocol_review",
+        "safety_signal"
+      ]
+    },
+    "ct-datacheck": {
+      "name": "ct-datacheck",
+      "display_name": "Clinical Trial Data QC / 临床试验数据质控专家",
+      "version": "0.6.1",
+      "summary": "在本地读取申办方保密数据集（SDTM/ADaM/raw），执行编辑检查、一致性/合理性核查与 CDISC 合规校验，产出带规则编号的 issue 清单与 QC 报告；另设 CRA 面向监查支持模式（SDV 清单/SDR 九环节/SAE 24h 时效/LPLV）与 CDE 44 号（2026）E4/E8 合规核查清单（设备来源域元数据存在性/审计追踪周期评审）。数据零出域。",
+      "triggers": [
+        "数据质控",
+        "数据核查",
+        "临床试验 质控",
+        "edit check",
+        "SDTM 校验",
+        "ADaM 校验",
+        "CDISC 合规校验",
+        "QC 报告",
+        "clinical trial data check"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-datacheck",
+      "capabilities": [
+        "adam_derivation",
+        "data_quality",
+        "literature_search",
+        "sdtm_mapping"
+      ]
+    },
+    "ct-ecrf": {
+      "name": "ct-ecrf",
+      "display_name": "Clinical Trial eCRF Generator / 临床试验eCRF专家",
+      "version": "0.2.2",
+      "summary": "临床试验 eCRF（电子病例报告表）设计规范生成器：EDC 无关、本地、不涉密，将方案要点或已有 CRF 文档转换为 ODM/REDCap/aCRF/JSON 多格式设计规范，内置 CDASH 模板库与 SDTM 映射规范。集成 PyCap REDCap API 数据接入。",
+      "triggers": [
+        "eCRF 设计",
+        "CRF 设计规范",
+        "病例报告表 生成",
+        "electronic case report form",
+        "CRF generator",
+        "SDTM 映射规范",
+        "注释 CRF",
+        "annotated CRF",
+        "ODM 生成",
+        "REDCap 数据字典"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-ecrf",
+      "capabilities": [
+        "data_quality",
+        "protocol_review",
+        "sdtm_mapping"
+      ]
+    },
+    "ct-eligibility": {
+      "name": "ct-eligibility",
+      "display_name": "Clinical Trial Eligibility Screening / 临床试验入组筛选专家",
+      "version": "0.6.0",
+      "summary": "将方案入组/排除标准与受试者数据做本地规则匹配，零出域；可选外部对接须 opt-in + IRB/治理审批 + 数据流向披露。产出筛选漏斗与不合格原因，全程可审计。v0.6.0 新增语义缺陷检测：筛选前对配置做确定性机检（纳入/排除互斥、排除失效、不可判定规则、时间窗矛盾），error 级缺陷即报「筛选结果不可信」。",
+      "triggers": [
+        "入组筛选",
+        "受试者 筛选",
+        "临床试验 入排",
+        "eligibility 筛查",
+        "入排标准 匹配",
+        "筛选漏斗",
+        "临床试验 受试者",
+        "clinical eligibility"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-eligibility",
+      "capabilities": [
+        "adam_derivation",
+        "eligibility",
+        "protocol_review",
+        "registry_search",
+        "safety_signal",
+        "sdtm_mapping",
+        "tlg_generation"
+      ]
+    },
+    "ct-literature": {
+      "name": "ct-literature",
+      "display_name": "Clinical Trial Literature Search / 临床试验文献检索专家",
+      "version": "1.7.6",
+      "summary": "全数据源覆盖检索医学领域学术文献（OpenAlex + Europe PMC/MeSH + NCBI PubMed/MEDLINE + bioRxiv/medRxiv 预印本 + arXiv 方法学广度），归一化合并去重，可产出 CSM 安全性定性子集，协助提供OA文献PDF下载。集成 Docling PDF 结构化解析。默认全流程免 key，无任何用户侧配置亦可使用。",
+      "triggers": [
+        "systematic literature search",
+        "系统文献检索",
+        "文献证据基础",
+        "已发表安全性文献 / CSM",
+        "cross-database literature search",
+        "跨数据库 文献检索",
+        "Embase Cochrane Web of Science",
+        "多数据库 系统综述",
+        "ct-literature",
+        "追溯某篇论文的引用 / 被引",
+        "X 的前后向文献 / 引文网络扩展",
+        "citation expand / snowball from <DOI/PMID/题名>",
+        "引导式检索剧本 / 读→扩→链"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-literature",
+      "capabilities": [
+        "literature_search",
+        "pipeline_intel",
+        "registry_search",
+        "safety_signal"
+      ]
+    },
+    "ct-pipeline": {
+      "name": "ct-pipeline",
+      "display_name": "Clinical Trial Pipeline / 临床试验竞品监测专家",
+      "version": "0.4.15",
+      "summary": "ct- 库的公开情报 / 竞品监测层：调度 B 档公开检索原子技能（ct-registry / ct-safety / ct-literature / ct-congress）获取公开数据，消费其结构化 JSON，做竞品发现 / 格局 / 证据景观 / 0-10 评分 / 四类风险 / 证据底座，输出单一战略 brief；并含两大企业情报维度——专家/利益攸关方（experts 工作流：OpenAlex+CT.gov 公开检索 KOL，输出区域专家清单/特点/学术最大化最佳人选/画像/拜访话术）与竞争对手/企业情报（competitors 工作流：WorkBuddy 代理检索，覆盖市场策略/专家团队/学术资源/生产成本/研发方向/公司战略/人事调整/家族矛盾八维度，凡网上公开过即抓取汇总）。仅调度 B 类公开检索，不接触保密输入。（已吸收 ct-landscape 全部能力：六维证据景观 + enrich_target 靶点富集 + 回归测试，landscape 技能已退役合并）",
+      "triggers": [
+        "clinical trial pipeline",
+        "临床试验流水线",
+        "试验格局+安全性 战略 brief",
+        "registry + safety workflow",
+        "ct-pipeline",
+        "药物竞争地图",
+        "证据景观",
+        "竞品格局分析",
+        "靶点竞争格局",
+        "适应症在研管线",
+        "专家地图",
+        "KOL 检索",
+        "上市专家分析",
+        "专家画像",
+        "拜访话术",
+        "竞争对手分析",
+        "竞品情报",
+        "公司战略趋势",
+        "家族矛盾",
+        "企业情报"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-pipeline",
+      "capabilities": [
+        "literature_search",
+        "pipeline_intel",
+        "registry_search",
+        "safety_signal"
+      ]
+    },
+    "ct-protocol": {
+      "name": "ct-protocol",
+      "display_name": "Clinical Trial Protocol Designer / 临床试验方案设计专家",
+      "version": "0.15.2",
+      "summary": "临床试验方案起草、评审与修订风险评分的本地离线专家，覆盖 ICH-GCP 与中国 GCP 语境，下游对接样本量/CRF/统计/CSR。集成 Docling 增强 PDF 结构化解析。",
+      "triggers": [
+        "clinical trial protocol",
+        "临床试验方案",
+        "protocol synopsis",
+        "方案设计",
+        "protocol review",
+        "方案评审",
+        "protocol optimization",
+        "方案优化",
+        "trial feasibility",
+        "enrollment projection",
+        "endpoint selection",
+        "Go/No-Go",
+        "方案可行性",
+        "入组预测",
+        "终点选择",
+        "amendment risk",
+        "修订风险",
+        "IIT",
+        "研究者发起的试验",
+        "investigator-initiated",
+        "IIT 选题",
+        "estimand",
+        "估计量",
+        "ICF readability",
+        "知情同意书 可读性"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-protocol",
+      "capabilities": [
+        "csr_report",
+        "eligibility",
+        "protocol_review",
+        "sample_size"
+      ]
+    },
+    "ct-registry": {
+      "name": "ct-registry",
+      "display_name": "Clinical Trial Registry Search / 临床试验注册检索专家",
+      "version": "0.14.5",
+      "summary": "跨源检索全球临床试验注册库（ClinicalTrials.gov、CDE/ChiCTR/ISRCTN/DRKS/WHO ICTRP、PubChem），归一化聚合分期/状态/申办方/时间线/竞品格局，产出 JSON / Markdown，用于立项查重、对照设计与竞品格局分析。可选集成 pytrials 批量拉取 CT.gov 字段。零用户侧配置：检索端点凭证随包分发，开箱即用。",
+      "triggers": [
+        "clinical trial registry search",
+        "临床试验注册库检索",
+        "查同类试验",
+        "竞品临床试验格局",
+        "ct-registry"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-registry",
+      "capabilities": [
+        "pipeline_intel",
+        "registry_search"
+      ]
+    },
+    "ct-regress": {
+      "name": "ct-regress",
+      "display_name": "ct- R Engine Regression Harness / ct- R 引擎回归校验器",
+      "version": "0.1.0",
+      "summary": "ct- 系列 R 引擎的端到端回归校验器——真跑引擎、校验复现脚本、与真值比对，作为部署前/后回归闸门。",
+      "triggers": [
+        "ct regression",
+        "ct- 回归",
+        "R 引擎回归",
+        "repro 脚本校验",
+        "ct-regress"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-regress",
+      "capabilities": []
+    },
+    "ct-safety": {
+      "name": "ct-safety",
+      "display_name": "Clinical Trial Safety Signal / 临床试验安全信号专家",
+      "version": "0.10.7",
+      "summary": "基于 FDA FAERS 筛查药物-事件安全信号，计算 disproportionality（PRR / ROR / IC / EBGM，含 95% CI）与安全信号评分（0–100，T1–T4）。数据源：FDA FAERS（openFDA drug/event.json）、FDA 标签（drug/label.json）、中国 NMPA 药物警戒通报（cdr-adr.org.cn）、DailyMed 说明书、RxClass MED-RT、openFDA 召回执法、香港 ADR 警报。仅公开数据，零保密输入。",
+      "triggers": [
+        "FAERS safety signal",
+        "安全性信号分析",
+        "药物不良反应信号",
+        "disproportionality analysis",
+        "ct-safety",
+        "compare drug X vs Y adverse events",
+        "FAERS safety comparison",
+        "active-comparator disproportionality",
+        "多药安全性对比",
+        "药物类别头对头安全性比较"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-safety",
+      "capabilities": [
+        "safety_signal"
+      ]
+    },
+    "ct-samplesize": {
+      "name": "ct-samplesize",
+      "display_name": "Clinical Trial Sample Size / 临床试验样本量专家",
+      "version": "5.14.7",
+      "summary": "为临床试验从业者提供的样本量与检验效能计算工具。本地无需安装 R，直接提供云端 R 计算服务（覆盖 67 种检验，并提供 SVG 出版级别图形）。自然语言驱动，默认回传完整 R 代码；默认按操作系统语言设定输出中文或英文（提示词可强制切换）。",
+      "triggers": [
+        "clinical trial sample size",
+        "样本量计算",
+        "clinical trial power",
+        "检验效能计算",
+        "临床试验 设计",
+        "non-inferiority sample size",
+        "equivalence sample size",
+        "survival analysis sample size",
+        "adaptive design",
+        "group sequential design",
+        "Bayesian clinical trial",
+        "Wilcoxon rank-sum sample size",
+        "非参数检验 样本量",
+        "wilcoxon signed-rank",
+        "秩和检验 样本量"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-samplesize",
+      "capabilities": [
+        "sample_size",
+        "tlg_generation"
+      ]
+    },
+    "ct-sdtm": {
+      "name": "ct-sdtm",
+      "display_name": "Clinical Trial SDTM Standardization / 临床试验 SDTM 标准化专家",
+      "version": "2.8.1",
+      "summary": "将申办方 raw 数据按 CDISC SDTMIG v3.4 映射为合规 SDTM 数据集（SDTMIG v3.4 全部 63 域，含 RELREC/RELSPEC/RELSUB/SUPPQUAL；9 个专用 mapper + 54 个域参考文件驱动模板），应用受控术语校验（CG 规则编号）并产出 issue 清单；模型级通用规则（CG.MODEL.*）+ CORE 规则集（40 条，覆盖 v3.4 新增域）+ 双语标签机器初始化；支持反向 CRF 字段匹配（crf_match.py）与中英文双语输出；新增 agent 可读域知识页（ae/dm/lb/vs.md）+ 验证范围三层显式化（validation-scope.md）；P21 五轨规则校验体系（p21_check 566 条 + define_self_check 96 检查器 + 858 条五轨注册表）与映射规格 spec-as-code 门控（MS008-011 双模双形态）；SDRG/ADRG 审阅指南草稿生成（PhUSE cSDRG v1.3 / ADRG v1.2 章节骨架 + [TBC] 硬纪律 + 统计编程审核清单，U9）；默认本地执行；计算可经私有部署 Coze 引擎，调用日志与上传文件归档写入私人部署飞书多维表格，数据不出项目可控边界。",
+      "triggers": [
+        "SDTM 标准化",
+        "SDTM standardization",
+        "CDISC SDTM",
+        "临床试验 数据标准化",
+        "临床试验 SDTM",
+        "SDTM 映射",
+        "SDTM mapping",
+        "raw to SDTM",
+        "SDTM 转换",
+        "SDTM conversion",
+        "受控术语 应用",
+        "controlled terminology",
+        "clinical trial SDTM",
+        "SDTM domains",
+        "SDTM 域",
+        "SDTM workbench",
+        "SDTM 工作台",
+        "SDRG",
+        "ADRG",
+        "审阅指南",
+        "reviewer's guide",
+        "Study Data Reviewer's Guide",
+        "Analysis Data Reviewer's Guide"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-sdtm",
+      "capabilities": [
+        "protocol_review",
+        "registry_search",
+        "sdtm_mapping",
+        "statistical_analysis",
+        "tlg_generation"
+      ]
+    },
+    "ct-statrev": {
+      "name": "ct-statrev",
+      "display_name": "Clinical Trial Statistical Reviewer / 临床试验统计审阅专家",
+      "version": "0.7.3",
+      "summary": "作为独立统计审阅员，对临床试验申报/分析包做跨层一致性审计（人群分母·终点复现·数据真实性扫描），本地处理、数据不出域。",
+      "triggers": [
+        "统计审阅 / statistical review",
+        "跨层一致性审计 / cross-layer consistency audit",
+        "人群分母一致性检查",
+        "终点复现核查 / endpoint reproducibility",
+        "数据真实性扫描 / data integrity scan",
+        "独立统计审阅员",
+        "independent statistical reviewer",
+        "TLF 与 ADaM 对账"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-statrev",
+      "capabilities": [
+        "adam_derivation",
+        "csr_report",
+        "eligibility",
+        "protocol_review",
+        "safety_signal",
+        "statistical_analysis",
+        "submission"
+      ]
+    },
+    "ct-submission": {
+      "name": "ct-submission",
+      "display_name": "Clinical Trial eCTD Assembly / 临床试验 eCTD 汇编专家",
+      "version": "0.4.1",
+      "summary": "将 CSR / TLF / 数据集 / Define-XML 汇编为 CTD/eCTD 申报卷宗（module 1–5），本地生成可递交包；含 XPT 导出、Define-XML 生成与 Dataset-JSON v1.1 前瞻路径，全程本地、数据不出域。",
+      "triggers": [
+        "eCTD 申报",
+        "CTD 汇编",
+        "临床试验 申报",
+        "申报资料 组装",
+        "Define-XML 生成",
+        "XPT 导出",
+        "Dataset-JSON",
+        "clinical submission",
+        "eCTD 打包"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-submission",
+      "capabilities": [
+        "csr_report",
+        "submission"
+      ]
+    },
+    "ct-synthdata": {
+      "name": "ct-synthdata",
+      "display_name": "Clinical Trial Synthetic CDISC Data Generator / 临床试验合成CDISC测试数据生成器",
+      "version": "0.1.0",
+      "summary": "生成确定性的合成 SDTM/ADaM 测试数据集，供 ct 库 C/D 档技能回归测试使用。",
+      "triggers": [
+        "生成合成临床试验数据",
+        "测试数据 / test fixture / synthetic CDISC",
+        "造一份 ADSL / ADLB / ADAE 样例",
+        "synthetic clinical trial data generator"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-synthdata",
+      "capabilities": [
+        "adam_derivation",
+        "data_quality",
+        "eligibility",
+        "sdtm_mapping",
+        "synthetic_data"
+      ]
+    },
+    "ct-tlf": {
+      "name": "ct-tlf",
+      "display_name": "Clinical Trial TLF / 临床试验 TLF 专家",
+      "version": "0.10.2",
+      "summary": "基于 ADaM / 分析产物，按 mock shell 生成 Tables / Listings / Figures（人口学、AE 汇总、KM 图、森林图等），供 CSR / 申报；本地输出，数据不出域。",
+      "triggers": [
+        "三线表",
+        "TLF",
+        "临床试验 图表",
+        "Tables Listings Figures",
+        "KM 图",
+        "森林图",
+        "AE 汇总表",
+        "临床 统计图表",
+        "基线特征表",
+        "不良事件清单",
+        "clinical trial TLF",
+        "Table 1 demographics",
+        "AE listing",
+        "Kaplan-Meier plot data",
+        "forest plot data"
+      ],
+      "tier": "B",
+      "published": false,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\ct-tlf",
+      "capabilities": [
+        "adam_derivation",
+        "csr_report",
+        "safety_signal",
+        "submission",
+        "tlg_generation"
+      ]
+    },
+    "meta-analysis": {
+      "name": "meta-analysis",
+      "display_name": "Meta Analysis / 医学Meta分析",
+      "version": "2.25.0",
+      "summary": "基于 R 的全方位 Meta 分析技能，覆盖 RevMan + Stata 等价 + esc + RVE + 贝叶斯 NMA + 生存 Meta + TSA + 单组率 Meta + 诊断 Meta + 系统评价流程；输出森林图、漏斗图、异质性(I²)、发表偏倚、亚组分析、元回归、网络 Meta等共 23 种分析图形。所有分析提供可复现 R 代码。还可提供Meta选题方向判断 + 文献检索整理 + 筛选 + 数据提取功能。云端 R 引擎凭证随包分发，零用户侧配置。",
+      "triggers": [
+        "meta分析",
+        "meta-analysis",
+        "系统评价",
+        "森林图",
+        "漏斗图",
+        "异质性",
+        "发表偏倚",
+        "元回归",
+        "network meta",
+        "贝叶斯meta",
+        "效应量转换",
+        "TSA",
+        "诊断meta",
+        "full meta pipeline"
+      ],
+      "tier": "A",
+      "published": true,
+      "installed": true,
+      "install_path": "C:\\Users\\Wintone\\.workbuddy\\skills\\meta-analysis",
+      "capabilities": [
+        "literature_search",
+        "pipeline_intel",
+        "registry_search",
+        "tlg_generation"
+      ]
+    }
+  },
+  "capability_index": {
+    "adam_derivation": [
+      "ct-adam",
+      "ct-analysis",
+      "ct-datacheck",
+      "ct-eligibility",
+      "ct-statrev",
+      "ct-synthdata",
+      "ct-tlf"
+    ],
+    "sdtm_mapping": [
+      "ct-adam",
+      "ct-datacheck",
+      "ct-ecrf",
+      "ct-eligibility",
+      "ct-sdtm",
+      "ct-synthdata"
+    ],
+    "csr_report": [
+      "ct-analysis",
+      "ct-csr",
+      "ct-protocol",
+      "ct-statrev",
+      "ct-submission",
+      "ct-tlf"
+    ],
+    "safety_signal": [
+      "ct-analysis",
+      "ct-congress",
+      "ct-csr",
+      "ct-eligibility",
+      "ct-literature",
+      "ct-pipeline",
+      "ct-safety",
+      "ct-statrev",
+      "ct-tlf"
+    ],
+    "statistical_analysis": [
+      "ct-analysis",
+      "ct-sdtm",
+      "ct-statrev"
+    ],
+    "pipeline_intel": [
+      "ct-congress",
+      "ct-literature",
+      "ct-pipeline",
+      "ct-registry",
+      "meta-analysis"
+    ],
+    "registry_search": [
+      "ct-congress",
+      "ct-eligibility",
+      "ct-literature",
+      "ct-pipeline",
+      "ct-registry",
+      "ct-sdtm",
+      "meta-analysis"
+    ],
+    "tlg_generation": [
+      "ct-congress",
+      "ct-eligibility",
+      "ct-samplesize",
+      "ct-sdtm",
+      "ct-tlf",
+      "meta-analysis"
+    ],
+    "eligibility": [
+      "ct-csr",
+      "ct-eligibility",
+      "ct-protocol",
+      "ct-statrev",
+      "ct-synthdata"
+    ],
+    "protocol_review": [
+      "ct-csr",
+      "ct-ecrf",
+      "ct-eligibility",
+      "ct-protocol",
+      "ct-sdtm",
+      "ct-statrev"
+    ],
+    "data_quality": [
+      "ct-datacheck",
+      "ct-ecrf",
+      "ct-synthdata"
+    ],
+    "literature_search": [
+      "ct-datacheck",
+      "ct-literature",
+      "ct-pipeline",
+      "meta-analysis"
+    ],
+    "sample_size": [
+      "ct-protocol",
+      "ct-samplesize"
+    ],
+    "submission": [
+      "ct-statrev",
+      "ct-submission",
+      "ct-tlf"
+    ],
+    "synthetic_data": [
+      "ct-synthdata"
+    ]
+  }
+}

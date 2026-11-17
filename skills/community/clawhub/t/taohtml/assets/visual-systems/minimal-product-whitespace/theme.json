@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "id": "minimal-product-whitespace",
+  "display_name": "极简产品留白",
+  "description": "极简大留白、产品界面与逻辑拆解，适合产品发布、软件方案和清晰型汇报",
+  "preview": "preview.svg",
+  "files": {"tokens": "theme.css", "templates": "templates.html"},
+  "identity": {
+    "composition": "16:9 白色画布；宽阔留白、强烈左对齐和一处产品界面或证据焦点。",
+    "hierarchy": "一句结论先行，留出理解空间，再用界面、模块或原则解释产品价值。",
+    "image_treatment": "界面截图保留真实边界，置于清晰的设备或画布框中，不使用装饰性背景图。",
+    "module_language": "细线、轻边框、少量硬色、设备框和逻辑清单。",
+    "chart_evidence": "图表保持单一关系和大字号标注，避免在留白版面里塞入高密度仪表盘。",
+    "motion": "使用克制的渐进显示与焦点转移，保持页面空间感和稳定阅读顺序。"
+  },
+  "tokens": {
+    "colors": {"canvas": "#ffffff", "ink": "#17191d", "signal": "#2658f4", "risk": "#ff5c54", "paper": "#f4f6fa", "muted": "#667080"},
+    "font_stacks": {"display": "Arial Black, PingFang SC, sans-serif", "body": "Arial, PingFang SC, sans-serif", "mono": "SFMono-Regular, Consolas, monospace"},
+    "type_scale": {"display": "clamp(58px, 6.2vw, 104px)", "heading": "clamp(40px, 4.2vw, 72px)", "body": "20px", "caption": "13px"},
+    "spacing": {"canvas_x": "68px", "canvas_y": "54px", "module": "24px", "gap": "18px"},
+    "borders": {"hairline": "1px solid #d7dce5", "module": "1px solid #dce2eb", "radius": "8px", "shadow": "0 16px 35px rgba(27,38,60,.08)"}
+  },
+  "canvas": {"aspect_ratio": "16:9", "safe_area": "68px 68px 58px", "grid": "strong left alignment with generous open region", "density": "low, one statement plus 1-3 product modules"},
+  "layout_variants": [
+    {"id": "product-clarity", "use": "cover or chapter thesis"},
+    {"id": "value-tiles", "use": "value proposition and benefits"},
+    {"id": "interface-proof", "use": "product interface and evidence"},
+    {"id": "design-principles", "use": "principles, constraints and comparison"},
+    {"id": "clear-next-step", "use": "closing claim and action"}
+  ],
+  "components": {
+    "chart": "Use a single trend, comparison or value with generous whitespace and direct labels.",
+    "table": "Prefer structured rows or tiles; never shrink text to make a dense table fit.",
+    "evidence_card": "Treat product UI, workflow and user result as distinct evidence blocks.",
+    "image": "Use real interface imagery in a simple frame; preserve its text and information hierarchy."
+  },
+  "motion": {"enter": "translate 8-14px with opacity over 300-420ms", "stagger": "one product block per data-step", "disabled": ["bounce", "continuous glow", "parallax", "cross-page morph"]},
+  "forbidden": ["busy hero collage", "dark dashboard", "rounded card wall", "decorative stock photo", "tiny body copy", "color-only theme differentiation"],
+  "template_contract": {"placeholder_format": "{{UPPER_SNAKE_CASE}}", "minimum_slides": 5, "required_markers": ["data-layout", "fragment", "data-step"]}
+}

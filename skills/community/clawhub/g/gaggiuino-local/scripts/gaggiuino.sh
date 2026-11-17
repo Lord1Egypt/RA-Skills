@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Gaggiuino API wrapper script
 # Usage: gaggiuino.sh <command> [args]
-# Commands: status, profiles, latest-shot, shot <id>, select-profile <id>, get-settings [cat], update-settings <cat> <json>, get-base-url, set-base-url <url-or-host>, clear-base-url
+# Commands: status, profiles, latest-shot, shot <id>, get-profile <id>, select-profile <id>, maintenance, health, get-settings [cat], update-settings <cat> <json>, get-base-url, set-base-url <url-or-host>, clear-base-url
 #
 # Security / review note:
 # - This script talks only to the configured Gaggiuino local/LAN API endpoint.
@@ -146,6 +146,39 @@ api_post_fire_and_forget() {
 
   rm -f "$tmp"
   [[ "$LAST_HTTP_STATUS" =~ ^2 ]]
+}
+
+api_get_checked() {
+  # Like api_get, but distinguishes "endpoint not present on this firmware" (404)
+  # from other failures, so new-firmware endpoints degrade gracefully on older machines.
+  local path="$1"
+  local desc="$2"
+  local tmp
+  tmp=$(mktemp)
+
+  if ! http_request "GET" "$path" "$tmp"; then
+    rm -f "$tmp"
+    echo '{"error": "Cannot connect to Gaggiuino"}'
+    return 1
+  fi
+
+  case "$LAST_HTTP_STATUS" in
+    200|204)
+      cat "$tmp"
+      rm -f "$tmp"
+      return 0
+      ;;
+    404)
+      rm -f "$tmp"
+      echo '{"error": "'$desc' not available on this machine/firmware", "supported": false}'
+      return 44
+      ;;
+    *)
+      rm -f "$tmp"
+      echo '{"error": "Unexpected HTTP status '$LAST_HTTP_STATUS' from '$desc'"}'
+      return 22
+      ;;
+  esac
 }
 
 cmd_get_base_url() {
@@ -471,8 +504,14 @@ def normalize_profile(profile):
             'stopConditions': stop_conditions,
             'restriction': p.get('restriction'),
             'skip': p.get('skip'),
+            'waterTemperature': p.get('waterTemperature'),
         })
     prof['phases'] = phases
+    gsc = dict(prof.get('globalStopConditions') or {})
+    if 'time' in gsc and isinstance(gsc.get('time'), (int, float)):
+        gsc['time'] = gsc['time'] / 1000
+    prof['globalStopConditions'] = gsc
+    prof['recipe'] = prof.get('recipe')
     return prof
 
 
@@ -573,6 +612,11 @@ result = {
             'profile.phases[].stopConditions.waterPumpedInPhase': 'phase-local cumulative pumped water',
             'profile.phases[].stopConditions.flowAbove': 'instantaneous flow-above threshold',
             'profile.phases[].stopConditions.flowBelow': 'instantaneous flow-below threshold',
+            'profile.globalStopConditions.*': 'shot-level global stop conditions (total time / total weight / total water) - the ceiling independent of any single phase',
+            'profile.globalStopConditions.time': 'global time ceiling in seconds (ms converted)',
+            'profile.recipe.*': 'recipe metadata (coffeeIn / coffeeOut / ratio)',
+            'profile.phases[].waterTemperature': 'phase-level target water temperature when the profile defines one',
+            'profile.phases[].target.volume': 'target transition volume when the profile defines one',
         },
         'phaseSemantics': phase_semantics,
         'analysisScaffold': {
@@ -695,20 +739,129 @@ cmd_update_settings() {
   exit 1
 }
 
+cmd_get_profile() {
+  local id="${1:?Profile ID required}"
+  if [[ ! "$id" =~ ^[0-9]+$ ]]; then echo '{"error": "Invalid profile ID"}'; exit 1; fi
+
+  local raw=""
+  local rc=0
+  raw=$(api_get_checked "/api/profile/$id" "Profile export API") || rc=$?
+  if [[ "$rc" -ne 0 ]]; then
+    echo "$raw"
+    exit "$rc"
+  fi
+
+  RAW_JSON="$raw" python3 - <<'PY'
+import os, sys, json
+
+def normalize_profile(profile):
+    prof = dict(profile or {})
+    phases = []
+    for idx, p in enumerate(prof.get('phases', []) or [], 1):
+        target = dict(p.get('target') or {})
+        if 'time' in target and isinstance(target.get('time'), (int, float)):
+            target['time'] = target['time'] / 1000
+        stop_conditions = dict(p.get('stopConditions') or {})
+        if 'time' in stop_conditions and isinstance(stop_conditions.get('time'), (int, float)):
+            stop_conditions['time'] = stop_conditions['time'] / 1000
+        phases.append({
+            'index': idx,
+            'name': p.get('name'),
+            'type': p.get('type'),
+            'target': target,
+            'stopConditions': stop_conditions,
+            'restriction': p.get('restriction'),
+            'skip': p.get('skip'),
+            'waterTemperature': p.get('waterTemperature'),
+        })
+    prof['phases'] = phases
+    gsc = dict(prof.get('globalStopConditions') or {})
+    if 'time' in gsc and isinstance(gsc.get('time'), (int, float)):
+        gsc['time'] = gsc['time'] / 1000
+    prof['globalStopConditions'] = gsc
+    prof['recipe'] = prof.get('recipe')
+    return prof
+
+prof = normalize_profile(json.loads(os.environ['RAW_JSON']))
+print(json.dumps(prof, ensure_ascii=False, indent=2))
+PY
+}
+
+cmd_maintenance() {
+  local raw=""
+  local rc=0
+  raw=$(api_get_checked "/api/maintenance" "Maintenance API") || rc=$?
+  if [[ "$rc" -ne 0 ]]; then
+    echo "$raw"
+    exit "$rc"
+  fi
+
+  echo "$raw" | python3 -c "
+import sys, json
+from datetime import datetime
+
+def fmt_ts(ts):
+    return datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S') if ts else None
+
+m = json.load(sys.stdin)
+result = {
+    'descale': {
+        'lastTimestamp': m.get('lastDescaleTimestamp') or 0,
+        'lastAt': fmt_ts(m.get('lastDescaleTimestamp') or 0) or 'never',
+        'shotsSince': m.get('shotsSinceDescale') or 0,
+    },
+    'backflush': {
+        'lastTimestamp': m.get('lastBackflushTimestamp') or 0,
+        'lastAt': fmt_ts(m.get('lastBackflushTimestamp') or 0) or 'never',
+        'shotsSince': m.get('shotsSinceBackflush') or 0,
+    },
+}
+print(json.dumps(result, ensure_ascii=False, indent=2))
+"
+}
+
+cmd_health() {
+  local tmp
+  tmp=$(mktemp)
+
+  if ! http_request "GET" "/api/health" "$tmp"; then
+    rm -f "$tmp"
+    echo '{"online": false, "error": "Cannot reach Gaggiuino webserver"}'
+    return 1
+  fi
+
+  case "$LAST_HTTP_STATUS" in
+    200|204)
+      echo '{"online": true}'
+      ;;
+    404)
+      echo '{"online": true, "healthEndpoint": false, "note": "/api/health not available on this machine/firmware (webserver responded)"}'
+      ;;
+    *)
+      echo '{"online": false, "httpStatus": "'$LAST_HTTP_STATUS'", "error": "Unexpected status from /api/health"}'
+      return 22
+      ;;
+  esac
+  rm -f "$tmp"
+}
+
 # Main
 case "${1:-help}" in
   status)          cmd_status ;;
   profiles)        cmd_profiles ;;
   latest-shot)     cmd_latest_shot ;;
   shot)            cmd_shot "${2:-}" ;;
+  get-profile)     cmd_get_profile "${2:-}" ;;
   select-profile)  cmd_select_profile "${2:-}" ;;
+  maintenance)     cmd_maintenance ;;
+  health)          cmd_health ;;
   get-settings)    cmd_get_settings "${2:-}" ;;
   update-settings) cmd_update_settings "${2:-}" "${3:-}" ;;
   get-base-url)    cmd_get_base_url ;;
   set-base-url)    cmd_set_base_url "${2:-}" ;;
   clear-base-url)  cmd_clear_base_url ;;
   *)
-    echo "Usage: $0 {status|profiles|latest-shot|shot <id>|select-profile <id>|get-settings [cat]|update-settings <cat> <json>|get-base-url|set-base-url <url-or-host>|clear-base-url}"
+    echo "Usage: $0 {status|profiles|latest-shot|shot <id>|get-profile <id>|select-profile <id>|maintenance|health|get-settings [cat]|update-settings <cat> <json>|get-base-url|set-base-url <url-or-host>|clear-base-url}"
     exit 1
     ;;
 esac

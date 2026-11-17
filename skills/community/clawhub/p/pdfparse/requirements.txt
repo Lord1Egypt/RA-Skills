@@ -1,0 +1,3 @@
+# PyMuPDF is AGPL-3.0 licensed. `import pymupdf` exists from 1.24; older
+# releases expose the same API as `fitz` and are supported via a fallback.
+pymupdf>=1.23

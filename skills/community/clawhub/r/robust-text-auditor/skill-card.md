@@ -1,43 +1,64 @@
-## Description: <br>
-A text-auditing skill that combines local rule scanning, Baidu content review APIs, and AI analysis to prepare compliance-review prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Chinese short-form video and livestream text by combining local rule scanning, Baidu content-review API results, and an LLM prompt for compliance reporting.
 
-## Publisher: <br>
-[ahsbnb](https://clawhub.ai/user/ahsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ahsbnb](https://clawhub.ai/user/ahsbnb)
 
-## Use Case: <br>
-Content reviewers and agents use this skill to audit Chinese text for marketing and platform-compliance risks, then generate a prompt for a detailed audit report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewed text or images may be sent to Baidu cloud services. <br>
-Mitigation: Use the skill only with content you are permitted to send to Baidu, and avoid confidential, regulated, or personal content unless the data handling is approved. <br>
-Risk: The skill stores and uses Baidu API credentials from local configuration. <br>
-Mitigation: Protect the local configuration file, use appropriately scoped credentials, and rotate keys if they may have been exposed. <br>
-Risk: Compliance rewrites and safe verdicts can still be incomplete or wrong. <br>
-Mitigation: Treat generated safe versions as lower-risk drafts and require human review before publishing. <br>
+## Use Case:
 
+Developers and content operations teams use this skill to review text for potential platform-compliance issues before publication. It produces a prompt that an agent can submit to an LLM to generate a risk report and revised text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ahsbnb/robust-text-auditor) <br>
-- [WeChat Channels content guidance referenced by the audit prompt](https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video_guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Generated prompt text with local scan and Baidu API results for downstream report generation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires one input text string or text file; Baidu API credentials must be configured locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: Audited content may be sent to Baidu and then to an LLM.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that is approved for remote processing, and obtain explicit user consent before sending sensitive text or files.
+
+Risk: The skill stores Baidu credentials in the OpenClaw configuration.
+
+Mitigation: Use scoped credentials, protect the configuration file, and rotate keys if the environment is shared or compromised.
+
+Risk: The generated report is best-effort advice and may overstate certainty.
+
+Mitigation: Treat results as review support, not a guarantee, and require human review before publishing or enforcing decisions.
+
+Risk: An undocumented image command can upload local image files to Baidu.
+
+Mitigation: Avoid using image review with sensitive files unless image upload is explicitly required and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ahsbnb/skills/robust-text-auditor)
+- [WeChat Channels content guide](https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_agreement&s=video_guide)
+- [Baidu text censor API endpoint](https://aip.baidubce.com/rest/2.0/solution/v1/text_censor/v2/user_defined)
+- [Baidu image censor API endpoint](https://aip.baidubce.com/rest/2.0/solution/v1/img_censor/v2/user_defined)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Text prompt for LLM-based compliance report generation, with JSON snippets from local and remote review steps.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Baidu Cloud API credentials in the OpenClaw configuration and may create a final_prompt.txt file during use.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

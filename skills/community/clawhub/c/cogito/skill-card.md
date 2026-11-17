@@ -1,42 +1,59 @@
-## Description: <br>
-Cogito guides users through Socratic self-reflection by asking probing questions, reflecting their own words, and helping them examine assumptions without giving advice or conclusions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cogito activates a Socratic self-reflection mode that helps users examine assumptions, contradictions, and values in their own words, with optional user-confirmed personalization.
 
-## Publisher: <br>
-[neuhanli](https://clawhub.ai/user/neuhanli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuhanli](https://clawhub.ai/user/neuhanli)
 
-## Use Case: <br>
-External users activate Cogito when they want a structured reflection session that helps them clarify assumptions, contradictions, and values without receiving prescriptive advice. The skill can also maintain user-confirmed personalization notes for future reflection sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Self-reflection sessions may surface intimate or highly sensitive personal details, and confirmed personalization can store those details in the user profile. <br>
-Mitigation: Avoid storing sensitive details in the profile, review each evolution proposal before approving it, and use the reset trigger when personalization should be cleared. <br>
-Risk: Users may mistake the reflection dialogue for crisis support or professional mental-health guidance. <br>
-Mitigation: Use the skill only as a reflection aid and do not rely on it for crisis support or professional mental-health guidance. <br>
+## Use Case:
 
+People using an agent use Cogito when they want guided self-reflection rather than advice. The skill prompts users through reflection, contradiction-finding, and thought experiments, and can store user-approved personalization in a local profile.
 
-## Reference(s): <br>
-- [Cogito Patterns](references/cogito-patterns.md) <br>
-- [Evolution Guide](references/evolution-guide.md) <br>
-- [User Profile](references/user-profile.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Conversational text and Markdown summaries; confirmed evolution may update a Markdown profile file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, external APIs, or credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The probing reflection style may be inappropriate for therapy, crisis, or high-stakes mental health situations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for self-reflection only, avoid crisis or therapy use, and route urgent safety concerns to appropriate support.
+
+Risk: Evolution can retain conversation-derived personal details in the local user profile.
+
+Mitigation: Approve only profile entries the user is comfortable retaining, avoid sensitive personal details, and use reset behavior when personalization should be cleared.
+
+Risk: Personalization proposals could make the skill less effective or drift away from its core boundaries.
+
+Mitigation: Review proposed profile changes before applying them and reject changes that conflict with the core reflection rules.
+
+## Reference(s):
+
+- [Cogito Patterns](references/cogito-patterns.md)
+- [Evolution Guide](references/evolution-guide.md)
+- [User Profile](references/user-profile.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown conversation text and profile update proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update a local user-profile Markdown file only after user confirmation]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

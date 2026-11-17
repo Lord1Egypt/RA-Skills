@@ -1,38 +1,52 @@
-## Description: <br>
-Turns collaborative human-agent workflows, decisions, and methods into reusable Skills that can be distributed and iterated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns human-agent collaborative workflows, decisions, and methods into reusable, distributable skills.
 
-## Publisher: <br>
-[BeAChanger](https://clawhub.ai/user/BeAChanger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[beachanger](https://clawhub.ai/user/beachanger)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and agent builders use this skill to extract durable methods from human-agent collaboration and package them as focused, reusable skill artifacts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The workflow may persist design rationale or promote short-term notes into long-term memory without clear user approval or scope limits.
+
+Mitigation: Require explicit user approval before any memory write or promotion, keep entries project-scoped, and make them reviewable and reversible.
+
+Risk: A collaborative method may be packaged as a reusable skill before its boundaries and repeatability are validated.
+
+Mitigation: Confirm the extracted capability, decision rationale, boundaries, and validation plan before publishing or reusing the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, skill authors, and agent operators use this skill to extract stable, reusable workflows from high-quality human-agent collaboration. It helps identify decisions, boundaries, value, and validation steps before packaging a collaboration pattern as a Skill. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Saving design rationale to memory may capture confidential project details, private chat excerpts, credentials, or unstable ideas. <br>
-Mitigation: Review any proposed memory summary before saving and remove confidential, private, credential-bearing, or premature details. <br>
+**Output Format:** [Markdown skill files and supporting guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BeAChanger/collab-to-skill) <br>
+**Other Properties Related to Output:** [May include SKILL.md plus optional references/ and templates/ files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a SKILL.md draft, optional references/templates guidance, and memory-summary guidance.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

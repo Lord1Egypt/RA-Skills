@@ -1,44 +1,60 @@
-## Description: <br>
-Professional Figma design analysis and asset export for extracting design data, exporting assets, auditing accessibility compliance, analyzing design systems, and generating design documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Figma design analysis and asset export for extracting design data, exporting assets, auditing accessibility, analyzing design systems, and generating design documentation.
 
-## Publisher: <br>
-[yylgit](https://clawhub.ai/user/yylgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yylgit](https://clawhub.ai/user/yylgit)
 
-## Use Case: <br>
-Developers, designers, and design-system maintainers use this skill to inspect Figma files, export assets and design tokens, audit accessibility and style consistency, and generate handoff reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Figma token can expose any files reachable by that token. <br>
-Mitigation: Use a limited or temporary token, prefer environment variables over command-line arguments, and keep .env files out of version control. <br>
-Risk: Generated assets and reports can contain private design content. <br>
-Mitigation: Export into a dedicated folder and review generated files before sharing or publishing them. <br>
+## Use Case:
 
+Developers, designers, and design system teams use this skill to inspect Figma files, export assets and design tokens, and generate accessibility or style audit reports for handoff and review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yylgit/yyl-test-skill) <br>
-- [Figma API reference](artifact/references/figma-api-reference.md) <br>
-- [Accessibility guidelines](artifact/references/accessibility-guidelines.md) <br>
-- [Design patterns](artifact/references/design-patterns.md) <br>
-- [Export formats](artifact/references/export-formats.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON responses, HTML reports, image assets, and generated design-token files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local export folders, manifests, accessibility reports, audit reports, and design-token files from Figma data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can write exported assets, manifests, design tokens, and reports to local paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run exports in a dedicated working directory and review output paths before keeping or sharing generated files.
+
+Risk: Generated HTML reports may include content controlled by a Figma file.
+
+Mitigation: Avoid opening HTML reports from untrusted Figma files until path containment and HTML escaping have been reviewed and fixed.
+
+Risk: The skill requires a Figma access token and its setup guidance mentions storing the token in a .env file.
+
+Mitigation: Use a minimally scoped token and only store it in a gitignored, permission-restricted .env file when environment variables are not sufficient.
+
+## Reference(s):
+
+- [Figma API Reference](references/figma-api-reference.md)
+- [Design Patterns and Component Best Practices](references/design-patterns.md)
+- [Accessibility Guidelines for Figma Design](references/accessibility-guidelines.md)
+- [Export Formats and Specifications](references/export-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, JSON results, HTML reports, and exported asset files such as PNG, SVG, PDF, and WEBP.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Figma access token and can write generated reports, manifests, design tokens, and exported assets to local paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

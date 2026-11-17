@@ -1,44 +1,61 @@
-## Description: <br>
-Captures learnings, errors, corrections, and feature requests so coding agents can improve future workflows and promote durable knowledge to workspace memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures learnings, errors, corrections, and feature requests so coding agents can preserve useful lessons and promote broadly applicable guidance into project memory or reusable skills.
 
-## Publisher: <br>
-[bingze00000](https://clawhub.ai/user/bingze00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bingze00000](https://clawhub.ai/user/bingze00000)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record command failures, user corrections, missing capabilities, and reusable lessons, then promote proven patterns into workspace memory or new skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent learning logs and promoted prompt files may capture sensitive workspace, user, or command context. <br>
-Mitigation: Set explicit log locations, review entries before saving or promotion, and redact secrets, personal data, customer data, raw prompts, command arguments, and environment details. <br>
-Risk: Broad hooks or cross-session sharing may spread unreviewed guidance across agent sessions. <br>
-Mitigation: Avoid global empty-match hooks, enable hooks only in intended workspaces, and require human review before shared or promoted learnings become durable instructions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture non-obvious failures, corrections, missing capabilities, and reusable best practices during coding sessions. It supports optional hooks, learning templates, and promotion workflows for agent memory files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bingze00000/self-improving-agent-jarvis) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Self-Improvement Examples](references/examples.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace learning logs and skill scaffolds when an agent follows the guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.11 (source: server release metadata) <br>
+Risk: Persistent learning and memory workflows can preserve incorrect, sensitive, or unwanted content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each entry before it is written or promoted, redact secrets and personal data, and require explicit approval before changing agent prompt or memory files.
+
+Risk: Broad or global hooks can inject reminders into sessions where the workflow is not appropriate.
+
+Mitigation: Keep hooks project-scoped, enable them only where this learning workflow is desired, and disable them for unrelated or sensitive workspaces.
+
+Risk: Cross-session transcript tools can expose information outside the intended confidentiality boundary.
+
+Mitigation: Use cross-session transcript access only when the session owner and sharing boundary are clear.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/bingze00000/skills/self-improving-agent-jarvis)
+- [OpenClaw Integration](artifact/references/openclaw-integration.md)
+- [Hook Setup Guide](artifact/references/hooks-setup.md)
+- [Entry Examples](artifact/references/examples.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and reusable templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or recommend .learnings/ entries, memory-file updates, hook configuration, and skill scaffolds.]
+
+## Skill Version(s):
+
+3.0.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

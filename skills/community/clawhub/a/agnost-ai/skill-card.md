@@ -1,45 +1,58 @@
-## Description: <br>
-USE when implementing data ingestion for Agnost AI analytics. Contains API reference, SDK guides for Python and TypeScript, and code examples for tracking AI conversations, MCP server events, and user interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when implementing data ingestion for Agnost AI analytics, including API reference, Python and TypeScript SDK guidance, and examples for tracking AI conversations, MCP server events, and user interactions.
 
-## Publisher: <br>
-[AjmeraParth132](https://clawhub.ai/user/AjmeraParth132) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ajmeraparth132](https://clawhub.ai/user/ajmeraparth132)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate Agnost AI analytics into AI applications, chatbots, agents, and MCP servers. It provides SDK, API, and implementation guidance for capturing sessions, events, user interactions, latency, and metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics examples can capture prompts, outputs, MCP tool inputs or results, user traits, IP addresses, and other metadata. <br>
-Mitigation: Decide what data is allowed to leave the system before implementation, avoid secrets or regulated data, and minimize or pseudonymize user traits such as names and emails. <br>
-Risk: MCP input and output capture can expose sensitive tool data. <br>
-Mitigation: Disable or redact MCP input and output capture for sensitive tools. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate Agnost analytics ingestion into AI applications and MCP servers through SDKs or direct HTTP API calls.
 
-## Reference(s): <br>
-- [Agnost Official Docs](https://docs.agnost.ai) <br>
-- [Agnost API Endpoint](https://api.agnost.ai) <br>
-- [Agnost Dashboard](https://app.agnost.ai) <br>
-- [Agnost API Reference](references/api-reference.md) <br>
-- [Python SDK Reference](references/python-sdk.md) <br>
-- [TypeScript SDK Reference](references/typescript-sdk.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python, TypeScript, Go, HTTP, JSON, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may send analytics data to Agnost endpoints when users implement them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter metadata is 1.0.0) <br>
+Risk: Analytics examples may send raw prompts, responses, tool inputs, tool outputs, and user identifiers to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable raw input and output capture by default where possible, and redact prompts, responses, tool arguments, tool results, exceptions, emails, IPs, and identifiers before ingestion.
+
+Risk: Analytics collection may require user or organizational consent and reviewed dependency versions.
+
+Mitigation: Confirm applicable consent requirements before deployment and pin reviewed Agnost SDK versions.
+
+## Reference(s):
+
+- [Agnost API Reference](references/api-reference.md)
+- [Python SDK Reference](references/python-sdk.md)
+- [TypeScript SDK Reference](references/typescript-sdk.md)
+- [Agnost Documentation](https://docs.agnost.ai)
+- [Agnost Dashboard](https://app.agnost.ai)
+- [ClawHub Skill Page](https://clawhub.ai/ajmeraparth132/skills/agnost-ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline Python, TypeScript, Go, HTTP, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SDK setup steps, API request examples, and privacy safeguards for analytics payloads.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

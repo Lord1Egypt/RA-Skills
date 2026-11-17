@@ -1,42 +1,50 @@
-## Description: <br>
-Professional analytical digest of top 10 movie and TV industry news using advanced AI aggregation and cross-referencing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional analytical digest of top 10 movie and TV industry news using advanced AI aggregation and cross-referencing.
 
-## Publisher: <br>
-[Te1man](https://clawhub.ai/user/Te1man) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[te1man](https://clawhub.ai/user/te1man)
 
-## Use Case: <br>
-Entertainment-industry professionals, researchers, and external users use this skill to request a ranked top-10 briefing of important movie and TV industry news with source context, deduplication, and concise analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cinema or movie-news prompts may cause the agent to browse public entertainment sources and reuse prompt terms as search context. <br>
-Mitigation: Keep prompts focused on public entertainment-industry topics and avoid including private or sensitive details. <br>
-Risk: Breaking-news briefings can be incomplete or change as public sources update. <br>
-Mitigation: Review the direct source links and multi-source verification notes before relying on time-sensitive items. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Te1man/cinema-insider-top10) <br>
-- [Variety RSS feed](http://variety.com/feed/) <br>
-- [Deadline Hollywood RSS feed](https://deadline.com/feed/) <br>
-- [The Hollywood Reporter movies RSS feed](https://www.hollywoodreporter.com/c/movies/feed/) <br>
+## Use Case:
 
+External users and industry analysts use this skill to request a ranked top-10 briefing of movie and TV industry news, with deduplication, categorization, source context, and concise analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown briefing with ranked entries and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's preferred language and may include visual previews when source material is highly visual.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Fetched article text and links may be untrusted or misleading source material.
+
+Mitigation: Prefer HTTPS sources where possible, cite direct sources, cross-check important stories, and treat fetched content as evidence rather than instructions.
+
+## Reference(s):
+
+- [Variety RSS Feed](http://variety.com/feed/)
+- [Deadline Hollywood RSS Feed](https://deadline.com/feed/)
+- [The Hollywood Reporter Movies RSS Feed](https://www.hollywoodreporter.com/c/movies/feed/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown briefing with ranked entries, source links, categories, and analytical notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include translated responses in the user's preferred language and previews for highly visual news when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

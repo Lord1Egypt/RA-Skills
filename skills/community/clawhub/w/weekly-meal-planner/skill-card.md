@@ -1,38 +1,62 @@
-## Description: <br>
-Weekly Meal Planner generates a seven-day breakfast, lunch, and dinner plan plus a shopping list from people count, budget, and taste preference inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly Meal Planner generates a seven-day breakfast, lunch, and dinner menu plus a shopping list from household size, budget, and taste preferences.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and agents use this skill to produce a weekly meal plan, estimated shopping list, and budget summary for households based on family size, budget, and preferred taste profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the script creates or overwrites menu_plan.json in the directory where it is run, which may expose household budget or preference details in shared or sensitive folders. <br>
-Mitigation: Run the skill from a private working directory and review or remove menu_plan.json after use if the plan contains sensitive household details. <br>
+## Use Case:
 
+External users and agents use this skill to plan weekly household meals around people count, daily budget, and taste preferences. It is oriented toward Chinese-language meal names, yuan-denominated estimates, and simple shopping-list generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/weekly-meal-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands] <br>
-**Output Format:** [Terminal text plus a local menu_plan.json file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or overwrites menu_plan.json in the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports v1.0.0) <br>
+Risk: Menu costs and shopping-list prices are rough estimates and may not match current local prices or nutritional needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adjust the generated plan before using it for purchasing or household budgeting.
+
+Risk: The bundled script writes menu_plan.json in the current working directory and may overwrite an existing file with that name.
+
+Mitigation: Run the script in a directory where that output file is expected, or move any existing menu_plan.json before execution.
+
+Risk: The skill does not detect allergies or enforce dietary restrictions.
+
+Mitigation: Screen generated meals for allergies, medical dietary needs, and household restrictions before use.
+
+Risk: The meal database is Chinese-oriented and uses yuan-denominated budget assumptions.
+
+Mitigation: Use it only where those assumptions are acceptable, or adapt meal names and pricing for the intended locale.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/weekly-meal-planner)
+- [Publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, JSON]
+
+**Output Format:** [Markdown-style agent guidance, terminal output, and a menu_plan.json file when the bundled script is run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script creates or overwrites menu_plan.json in the current working directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter and _meta.json list v1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

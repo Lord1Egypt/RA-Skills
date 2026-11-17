@@ -1,38 +1,57 @@
-## Description: <br>
-Provides Shopify Admin REST API guidance and request examples for managing orders, products, variants, customers, inventory, fulfillments, refunds, returns, transactions, collections, abandoned checkouts, and webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Shopify store data including orders, products, variants, customers, inventory, fulfillments, refunds, returns, transactions, collections, abandoned checkouts, and webhooks via the Shopify Admin REST API.
 
-## Publisher: <br>
-[zachgodsell93](https://clawhub.ai/user/zachgodsell93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zachgodsell93](https://clawhub.ai/user/zachgodsell93)
 
-## Use Case: <br>
-Developers and store operators use this skill to guide Shopify Admin REST API setup and generate request patterns for live store administration. It is suited for workflows that need help reading or changing orders, products, customers, inventory, fulfillments, refunds, returns, transactions, collections, checkouts, or webhooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad live-store read and write access can affect orders, products, customers, inventory, fulfillments, refunds, returns, transactions, and webhooks. <br>
-Mitigation: Use a dedicated Shopify custom app token with the minimum required scopes and require manual approval before destructive or money-moving actions. <br>
-Risk: The read_all_orders scope can expose older order history and should not be granted by default. <br>
-Mitigation: Avoid read_all_orders unless the workflow explicitly requires access to orders older than 60 days and the store owner has approved that access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and store operators use this skill to have an agent draft Shopify Admin REST API requests for store management workflows, including catalog changes, customer records, fulfillment, refunds, returns, payments, inventory, and webhook operations.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Shopify store domain and Admin API access token environment variables supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives agents broad Shopify Admin API authority, including store-changing and money-moving examples.
+
+Mitigation: Use the narrowest Shopify scopes possible and require explicit human approval before deletes, cancellations, inventory replacement, refunds, transaction captures, webhook changes, or customer notifications.
+
+Risk: Token-bearing requests could be sent to an unintended or untrusted store domain.
+
+Mitigation: Validate the Shopify store domain before any request that includes the Admin API access token.
+
+Risk: The Admin API access token can authorize sensitive store operations if exposed.
+
+Mitigation: Keep the access token in a secrets manager and avoid exposing it in logs, prompts, or generated artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zachgodsell93/skills/shopify-admin-api)
+- [Skill source artifact](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl command examples, JSON request bodies, setup notes, and API reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Shopify store domain and Admin API access token; generated requests may read or modify store data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact frontmatter, artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

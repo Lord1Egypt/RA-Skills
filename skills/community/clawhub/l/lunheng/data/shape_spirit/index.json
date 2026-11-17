@@ -1,0 +1,23 @@
+{
+  "title": "双百优秀裁判文书的形与神：裁判思路与说理技巧",
+  "publisher": "最高人民法院审判管理办公室",
+  "year": 2022,
+  "volumes": {
+    "civil": {
+      "toc_cases": 44,
+      "extracted_with_content": 42
+    },
+    "criminal": {
+      "toc_cases": 35,
+      "extracted_with_content": 25
+    },
+    "commercial": {
+      "toc_cases": 50,
+      "extracted_with_content": 49
+    },
+    "administrative": {
+      "toc_cases": 36,
+      "extracted_with_content": 30
+    }
+  }
+}

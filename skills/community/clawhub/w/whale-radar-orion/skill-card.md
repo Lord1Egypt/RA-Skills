@@ -1,41 +1,53 @@
-## Description: <br>
-Detects large cbBTC whale movements on Base within 4 hours, indicating accumulation, distribution, or neutral Bitcoin market signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects large cbBTC whale movements on Base within a four-hour window and summarizes whether activity suggests accumulation, distribution, or neutral market signals.
 
-## Publisher: <br>
-[kokoju007](https://clawhub.ai/user/kokoju007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kokoju007](https://clawhub.ai/user/kokoju007)
 
-## Use Case: <br>
-External users and crypto analysts use this skill to ask an agent for recent cbBTC whale activity on Base, direction hints, and a short informational market-signal summary. Paid Orion ACP calls may provide full transaction data and structured JSON. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides informational crypto market signals that users could over-weight for trading decisions. <br>
-Mitigation: Treat whale classifications as one input only and do not rely on them alone for trading decisions. <br>
-Risk: The skill routes users toward paid Orion ACP offerings. <br>
-Mitigation: Confirm the ACP offering name, price, expected output, and user intent before any paid call. <br>
+## Use Case:
 
+External crypto-market users and agent operators use this skill to request high-level cbBTC whale activity summaries on Base and route to Orion ACP for paid detailed transaction data when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kokoju007/whale-radar-orion) <br>
-- [Orion ACP listing](https://app.virtuals.io/virtuals/1809) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown text with optional structured JSON from paid ACP offerings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Free output summarizes whale activity, direction classification, and a short market-signal note; paid offerings may include transaction amounts, wallet addresses, token flows, and structured JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Free whale-event classifications may be unreliable as financial signals unless current on-chain data is verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify live Base cbBTC activity with a trusted on-chain data source before acting on the signal.
+
+Risk: The skill routes users toward paid ACP offerings for external transaction data.
+
+Mitigation: Review the ACP purchase details and expected data before paying for enhanced signals.
+
+## Reference(s):
+
+- [Orion ACP listing](https://app.virtuals.io/virtuals/1809)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include whale-event status, direction hint, one-line summary, example output, and paid ACP offering names.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

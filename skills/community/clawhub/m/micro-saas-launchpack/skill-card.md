@@ -1,42 +1,54 @@
-## Description: <br>
-Turns a rough product idea into a practical launch pack covering validation, MVP scope, pricing, landing-page copy, distribution, and a 7-day plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a rough product idea into a practical money-making launch pack for validating an idea, finding a niche, designing an MVP, setting pricing, writing landing-page copy, choosing distribution channels, or building a 7-30 day launch plan for a solo product or AI side project.
 
-## Publisher: <br>
-[orime](https://clawhub.ai/user/orime) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orime](https://clawhub.ai/user/orime)
 
-## Use Case: <br>
-Solo founders, indie builders, and small teams use this skill to turn early micro-SaaS or AI side-project ideas into a practical plan for validation, MVP scope, offer design, launch copy, distribution, and first-week execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business recommendations can be wrong or overconfident for a specific market. <br>
-Mitigation: Treat the launch pack as planning guidance and validate assumptions with real prospects before making major build, pricing, or spending decisions. <br>
-Risk: Prompts may include confidential customer data, proprietary strategy, or sensitive financial details. <br>
-Mitigation: Avoid sharing sensitive information unless it is acceptable to process it in the active agent environment. <br>
-Risk: The skill can be invoked too broadly for general business ideation. <br>
-Mitigation: Use it for micro-SaaS and side-project launch planning, and narrow vague inputs to a specific buyer, pain, and distribution path before relying on the output. <br>
+## Use Case:
 
+External users and solo builders use this skill to turn product ideas or messy startup brainstorms into a launch pack with a business framing, scorecard, MVP scope, pricing, landing-page copy, distribution plan, and 7-day launch plan.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orime/micro-saas-launchpack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured business-planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls or setup required; output includes scorecards, MVP definitions, pricing options, landing-page copy, distribution actions, launch plans, and direct business guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill has broad activation wording and may respond to generic product or startup questions where a more specialized skill would be better.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for micro-SaaS validation and launch planning, and prefer a narrower specialist skill for unrelated product, legal, finance, or market-research decisions.
+
+Risk: Business-planning advice can be incorrect, overconfident, or mismatched to the user's market.
+
+Mitigation: Treat outputs as planning drafts and validate pricing, customer pain, distribution channels, and launch assumptions with real buyer feedback before committing resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/orime/skills/micro-saas-launchpack)
+- [Publisher profile](https://clawhub.ai/user/orime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown with structured business-planning sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a one-line business statement, scorecard, MVP definition, pricing and offer options, landing-page copy, distribution plan, 7-day plan, and direct risk note.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

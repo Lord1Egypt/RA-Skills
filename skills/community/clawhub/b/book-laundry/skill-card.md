@@ -1,38 +1,53 @@
-## Description: <br>
-Book Laundry helps agents find and book laundry services through the Lokuli MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Laundry helps an agent find laundry services, check availability, and create bookings through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill through an agent to search for laundry providers, check availability, and create bookings with Lokuli. It is intended for laundry service requests such as finding nearby options or booking a selected time slot. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Laundry booking can send personal contact details and create a real service booking. <br>
-Mitigation: Before creating a booking, confirm the provider, date, time, price, and the exact customer name, email, and phone number to be sent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Laundry on ClawHub](https://clawhub.ai/edwardrodriguez703-design/book-laundry) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can ask an agent to search for nearby laundry providers, check availability, and create a booking through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown with JSON-RPC examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP tools for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send customer contact details to Lokuli.
+
+Mitigation: Use it only when the user agrees to share booking contact details with Lokuli.
+
+Risk: The skill can create laundry bookings without explicit confirmation guidance in the artifact.
+
+Mitigation: Confirm the provider, time slot, and personal information with the user before creating a booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-laundry)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls]
+
+**Output Format:** [Text with JSON-RPC tool call payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include search results, availability checks, and booking requests that contain customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

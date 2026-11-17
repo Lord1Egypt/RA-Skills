@@ -1,0 +1,29 @@
+# Article-to-Video Skill - Python Dependencies
+# Install: pip install -r requirements.txt
+
+# Document Parsing
+python-docx>=1.1.0          # .docx file parsing
+pdfplumber>=0.11.0          # .pdf file parsing (text + tables + images)
+markdown>=3.5               # .md file parsing
+beautifulsoup4>=4.12.0      # HTML to text conversion for markdown
+html2text>=2024.2.26        # HTML to clean text
+
+# TTS (Text-to-Speech)
+edge-tts>=6.1.0             # Primary TTS engine (free, high quality)
+gtts>=1.2.3                 # Fallback TTS engine (Google Translate)
+pyttsx3>=2.90               # Offline fallback TTS engine
+
+# Image Generation & Rendering
+Pillow>=10.0.0              # Image processing (text cards, thumbnails)
+pygments>=2.16.0            # Code syntax highlighting for slides
+
+# Video Processing
+# imageio-ffmpeg bundles a full FFmpeg binary (with all codecs), avoiding
+# the need for a separate system FFmpeg installation
+imageio-ffmpeg>=0.6.0        # Bundled FFmpeg binary (PNG decode, H.264 encode, audio codecs)
+moviepy>=2.0.0              # High-level video editing API (optional, for complex edits)
+
+# Utilities
+click>=8.1.0                # CLI argument parsing
+rich>=13.0.0                # Terminal progress bars and colored output
+requests>=2.31.0            # HTTP client for TTS API calls

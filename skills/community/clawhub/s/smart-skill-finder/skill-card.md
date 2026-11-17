@@ -1,44 +1,58 @@
-## Description: <br>
-Finds and recommends relevant AI agent skills across multiple ecosystems (Skills CLI, Clawhub, GitHub) using intelligent semantic understanding to match user needs with available capabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds and recommends relevant AI agent skills across multiple ecosystems (Skills CLI, Clawhub, GitHub) using intelligent semantic understanding to match user needs with available capabilities.
 
-## Publisher: <br>
-[edkuo7](https://clawhub.ai/user/edkuo7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edkuo7](https://clawhub.ai/user/edkuo7)
 
-## Use Case: <br>
-Developers and agent users use this skill to find relevant installable agent skills from Skills CLI, ClawHub, and GitHub based on a natural language request. It returns ranked recommendations, source context, security status when available, and installation guidance for review before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal search text can be passed into a local shell command when the skill searches Skills CLI. <br>
-Mitigation: Review or patch the Skills CLI subprocess call to use an argument list instead of shell=True before enabling the skill in a normal agent environment. <br>
-Risk: Security labels and trust claims may be overbroad or stale. <br>
-Mitigation: Check the original registry or repository before installing or relying on a recommended skill. <br>
-Risk: The server security verdict is suspicious. <br>
-Mitigation: Install only after review or patching, and use the skill only for explicit skill-search requests. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover relevant agent skills across Skills CLI, ClawHub, and GitHub from natural language requests and receive ranked recommendations with installation guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/edkuo7/smart-skill-finder) <br>
-- [README](artifact/README.md) <br>
-- [Usage examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendation list with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Limits recommendations to the most relevant results and includes security status when the source ecosystem provides it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, CHANGELOG released 2026-03-19) <br>
+Risk: Unsafe local command execution is reported for the npx-based Skills CLI search path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the command invocation before installation or use, and avoid running the skill in sensitive workspaces until corrected.
+
+Risk: The skill may overstate security verification for recommended third-party skills.
+
+Mitigation: Treat all recommendations as unverified leads and manually review each suggested skill, source, and scan status before installing.
+
+Risk: Search queries may reveal sensitive project names or confidential task descriptions to external services.
+
+Mitigation: Use non-confidential queries unless the external data flows and CLI behavior are disclosed, reviewed, and controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edkuo7/skills/smart-skill-finder)
+- [Publisher profile](https://clawhub.ai/user/edkuo7)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown response with ranked recommendations and inline installation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Limits recommendations to the most relevant results and includes security status when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, CHANGELOG, and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,60 @@
-## Description: <br>
-Bidirectional sync between Obsidian PKM notes and a structured ontology graph, with extraction, analysis, and feedback for improving note structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bidirectional sync between Obsidian PKM notes and a structured ontology graph, with entity and relationship extraction, graph maintenance, and feedback to improve note structure.
 
-## Publisher: <br>
-[parthpandya1729](https://clawhub.ai/user/parthpandya1729) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[parthpandya1729](https://clawhub.ai/user/parthpandya1729)
 
-## Use Case: <br>
-Developers and knowledge-management users can use this skill to scan selected Obsidian vault folders, extract entities and relationships into ontology storage, analyze graph quality, and generate feedback for improving notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan Obsidian notes and persist sensitive personal or business content into ontology data. <br>
-Mitigation: Configure narrow vault and output paths, exclude private folders where possible, and review generated graph and feedback files before relying on them. <br>
-Risk: Scheduled syncing can repeatedly extract new note content after initial setup. <br>
-Mitigation: Avoid enabling cron until the scanned paths and disable process are understood and verified. <br>
+## Use Case:
 
+Developers, knowledge workers, and teams use this skill to turn Obsidian Markdown vault content into a searchable ontology graph for contact, project, client, and team-status analysis. It also generates feedback reports that identify missing information, relationship insights, and template improvements.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parthpandya1729/obsidian-ontology-sync) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSONL ontology or Markdown feedback files when run] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Obsidian vault and ontology paths selected by the user or default configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Private Obsidian notes may be copied into persistent searchable ontology and feedback files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrow sync configuration, run dry-run first, and protect the output directory with restrictive permissions.
+
+Risk: Contact, team-status, and behavioral-pattern data may be unsuitable to sync without authorization.
+
+Mitigation: Avoid syncing sensitive or employee-monitoring notes unless the organization has approved that use.
+
+Risk: Generated graph.jsonl and feedback reports may retain sensitive information longer than intended.
+
+Mitigation: Review, purge, or rotate generated ontology and feedback files regularly.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/parthpandya1729/skills/obsidian-ontology-sync)
+- [Publisher Profile](https://clawhub.ai/user/parthpandya1729)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, YAML configuration examples, JSONL ontology records, and generated Markdown feedback reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated graph data is stored as persistent JSONL, and feedback is written as Markdown reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

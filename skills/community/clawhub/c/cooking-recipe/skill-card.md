@@ -1,42 +1,58 @@
-## Description: <br>
-Manages cooking-recipe recipes and grocery lists through authenticated commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make a recipe by giving some ingredients.
 
-## Publisher: <br>
-[demonkit](https://clawhub.ai/user/demonkit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[demonkit](https://clawhub.ai/user/demonkit)
 
-## Use Case: <br>
-External users and developers use this skill to authenticate with cooking-recipe, add, list, search, show, and delete stored recipes, and create or update grocery lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends authentication and recipe or grocery-list API traffic to a configured backend, with a shared backend available only when explicitly enabled. <br>
-Mitigation: Use a trusted or self-hosted backend when possible, disclose shared backend usage when enabled, and avoid describing the skill as local-only. <br>
-Risk: OAuth credentials and account login are required for normal use. <br>
-Mitigation: Provide exact setup steps for required OAuth configuration and never reveal secrets or tokens in agent output. <br>
-Risk: Commands can create and delete stored recipe and grocery-list data. <br>
-Mitigation: State the affected recipe or list clearly when performing persistent changes, especially deletion. <br>
+## Use Case:
 
+External users and agents use this skill to authenticate with cooking-recipe, manage stored recipes, and create or update grocery lists tied to those recipes.
 
-## Reference(s): <br>
-- [Cooking Recipe ClawHub page](https://clawhub.ai/demonkit/cooking-recipe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with command examples and recipe or grocery-list responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authentication and configuration next steps; must not expose secrets or tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Using the shared backend can route authentication, recipe, and grocery-list traffic to a default external API target.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a self-hosted CONVEX_URL and enable the shared backend only intentionally with ALLOW_DEFAULT_BACKEND=true.
+
+Risk: OAuth credentials or tokens could be exposed if pasted into chat or logs.
+
+Mitigation: Keep OAuth secrets out of chat and logs, and provide only configuration next steps when authentication or setup fails.
+
+Risk: Installing from an unexpected package source may weaken release provenance confidence.
+
+Mitigation: Install only from the expected ClawHub package source and verify the publisher profile before use.
+
+## Reference(s):
+
+- [Cooking Recipe ClawHub page](https://clawhub.ai/demonkit/skills/cooking-recipe)
+- [demonkit publisher profile](https://clawhub.ai/user/demonkit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe authentication or backend configuration next steps without exposing secrets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

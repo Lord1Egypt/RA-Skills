@@ -1,41 +1,57 @@
-## Description: <br>
-Long-running agent workflow automation that initializes project scaffolding, manages feature lists, tracks progress across sessions, and orchestrates coding agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-running agent workflow automation. Initialize project scaffolding, manage feature lists, track progress across sessions, and orchestrate coding agents.
 
-## Publisher: <br>
-[wenkangwei](https://clawhub.ai/user/wenkangwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wenkangwei](https://clawhub.ai/user/wenkangwei)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure long-running coding work into initialized project state, feature tracking, per-session progress logs, and handoffs for coding agents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The harness can modify a project directory, create tracking files, run local scripts, install dependencies, and affect git history. <br>
-Mitigation: Use it in a clean clone or branch, inspect generated scripts before running them, and review git status and diffs before committing changes. <br>
-Risk: Reset or recovery guidance can discard tracked local changes when used intentionally. <br>
-Mitigation: Confirm that work is backed up or committed before using reset-style commands such as git checkout . or harness reset. <br>
+## Use Case:
 
+Developers and coding agents use this skill to initialize shared project state, break work into testable features, run one-feature coding sessions, and preserve handoff notes across long-running agent projects.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/wenkangwei/long-running-agent-harness) <br>
-- [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown prompts, JSON configuration, shell scripts, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates project-local tracking files and may guide git commits during harness workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and SKILL.md frontmatter) <br>
+Risk: Broad local execution and git mutation workflows may change project files or commits in ways the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a disposable or trusted workspace, inspect git status and staged diffs before committing, and avoid git add -A when secrets or unrelated files may be present.
+
+Risk: Project startup scripts can run local commands defined in the workspace.
+
+Mitigation: Review init.sh before every run and avoid running the harness from untrusted repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenkangwei/skills/long-running-agent-harness)
+- [Anthropic engineering blog: Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+- [Architecture overview](docs/architecture.md)
+- [Session sequence diagram](docs/sequence.md)
+- [File and component relationships](docs/file-flow.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, and project tracking files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces prompts and local project files for feature tracking, progress logs, initialization scripts, and harness configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

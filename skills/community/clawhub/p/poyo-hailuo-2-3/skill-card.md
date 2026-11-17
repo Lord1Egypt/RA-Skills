@@ -1,44 +1,60 @@
-## Description: <br>
-Helps agents prepare, submit, and follow up on PoYo Hailuo 2.3 video generation requests, including text-to-video and first-frame guided workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hailuo 2.3 video generation on PoYo via the PoYo async generation API, including prompt-only and optional first-frame guided workflows.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agents use this skill to generate Hailuo 2.3 request payloads, submit trusted PoYo API jobs, and explain polling or webhook follow-up. It is suited for short video generation workflows that need duration, resolution, optional first-frame image guidance, and prompt optimization choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys, private prompts, source image URLs, or callback URLs could be exposed if included in logs, browser code, screenshots, repositories, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in a trusted server-side secret store and redact keys, private prompts, image URLs, and callback URLs from shared output. <br>
-Risk: Submitting live video generation jobs can send user content to PoYo and may incur cost or disclose sensitive creative material. <br>
-Mitigation: Only make live API calls after explicit user confirmation in a trusted environment, and avoid confidential prompts or source images unless the user accepts the PoYo workflow. <br>
-Risk: Generated request parameters or model options may become stale as PoYo updates Hailuo 2.3 support. <br>
-Mitigation: Check the current PoYo documentation before relying on duration, resolution, first-frame, or prompt optimization options for production use. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare, submit, and follow up on PoYo Hailuo 2.3 text-to-video or first-frame guided video generation jobs.
 
-## Reference(s): <br>
-- [PoYo Hailuo 2.3 API documentation](https://docs.poyo.ai/api-manual/video-series/hailuo-2-3) <br>
-- [PoYo Hailuo 2.3 model page](https://poyo.ai/models/hailuo-2-3) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/poyo-hailuo-2-3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payloads and curl or shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model id, request mode, duration, resolution, prompt optimizer setting, task_id, and polling or webhook next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompts, source image URLs, callback URLs, and generated task metadata may be sent to PoYo during use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user accepts PoYo processing, and avoid submitting confidential prompts, private source images, or sensitive callback URLs unless the receiving systems are trusted.
+
+Risk: The required POYO_API_KEY could be exposed if placed in client-side code, logs, screenshots, public repositories, or chat output.
+
+Mitigation: Keep POYO_API_KEY in a server-side environment variable or secret manager and avoid echoing or logging it.
+
+Risk: The submit helper sends the contents of a local payload file to the PoYo generation endpoint.
+
+Mitigation: Run the script only with payload files that were intentionally prepared and reviewed for submission.
+
+## Reference(s):
+
+- [PoYo Hailuo 2.3 model page](https://poyo.ai/models/hailuo-2-3)
+- [PoYo Hailuo 2.3 API documentation](https://docs.poyo.ai/api-manual/video-series/hailuo-2-3)
+- [PoYo API key dashboard](https://poyo.ai/dashboard/api-key)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-hailuo-2-3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads and curl commands when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model id, payload summary, duration, resolution, prompt optimizer setting, task_id, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Checks whether an AI agent skill is safe before installing or using it by querying the PYX Scanner API for trust status, risk score, and safety recommendation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether an AI agent skill is safe before installation or use by querying the PYX Scanner API for trust status, risk score, and safety recommendation.
 
-## Publisher: <br>
-[fysoul17](https://clawhub.ai/user/fysoul17) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fysoul17](https://clawhub.ai/user/fysoul17)
 
-## Use Case: <br>
-Developers and agent users use this skill to check a skill identifier before installing or using it, then review a concise safety verdict and scanner summary. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The curl fallback can place user-controlled skill identifiers into a shell command without strict validation. <br>
-Mitigation: Use ordinary owner/name identifiers only, validate or URL-encode each identifier part before network calls, and prefer WebFetch when available. <br>
-Risk: Scanner errors, rate limits, or missing records can leave the target skill unverified. <br>
-Mitigation: Treat ERROR and UNSCANNED results as unverified and manually review the target skill before installing or using it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fysoul17/pyx-scan) <br>
-- [PYX Scanner](https://scanner.pyxmate.com) <br>
+## Use Case:
 
+Developers and agent users use Pyx Scan to check an owner/name agent skill before installing or using it and to receive a concise safety report.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Structured markdown safety report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Verdict labels include SAFE, OUTDATED, CAUTION, FAILED, UNSCANNED, and ERROR; empty source-data sections are omitted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad auto-triggering and the curl fallback can make unintended network or shell calls more likely.
+
+Mitigation: Limit use to explicit PYX scan requests, restrict owner/name to safe characters, and prefer a structured HTTP call over the Bash fallback.
+
+Risk: Network, rate-limit, or unavailable scanner responses can leave a skill unverified.
+
+Mitigation: Treat ERROR or UNSCANNED results as unverified and require manual source review before installing or using the target skill.
+
+## Reference(s):
+
+- [PYX Scanner](https://scanner.pyxmate.com)
+- [ClawHub skill page](https://clawhub.ai/fysoul17/skills/pyx-scan)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, guidance]
+
+**Output Format:** [Structured Markdown safety report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Omits null or empty scan data and asks for confirmation before proceeding on caution verdicts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

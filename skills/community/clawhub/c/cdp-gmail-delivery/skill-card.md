@@ -1,45 +1,64 @@
-## Description: <br>
-Sends Gmail messages with optional attachments from an operator-controlled Chrome debug session using Gmail CDP automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends Gmail messages from an operator-controlled Chrome debug session using Chrome DevTools Protocol automation, with support for plain-text bodies and attachments.
 
-## Publisher: <br>
-[joustonhuang](https://clawhub.ai/user/joustonhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joustonhuang](https://clawhub.ai/user/joustonhuang)
 
-## Use Case: <br>
-Developers and operators use this skill to send Gmail messages from the local machine through a visible, logged-in Chrome session, including optional file attachments when Gmail permits them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can send email and attachments from a logged-in Gmail session without a separate built-in approval gate. <br>
-Mitigation: Before each run, independently verify the recipient, subject, body, and attachments in the visible compose draft, then verify the sent message by unique subject. <br>
-Risk: Sensitive files could be attached to email or exposed through a Drive-link fallback. <br>
-Mitigation: Avoid sensitive files unless necessary, and treat Drive fallback sharing as a separate approval decision with restricted recipient access. <br>
-Risk: Existing drafts or blocked Gmail attachment classes can cause incorrect or failed delivery. <br>
-Mitigation: Close or save existing drafts before sending, preflight attachment size and file type constraints, and stop rather than retrying when Gmail blocks an attachment. <br>
+## Use Case:
 
+Agents and operators use this skill to send Gmail messages from a local, visible Chrome debug session when a recipient, optional body text, and optional attachments are provided. It is intended for controlled email delivery workflows that require manual session visibility and Sent-folder verification.
 
-## Reference(s): <br>
-- [CDP Gmail Delivery](https://clawhub.ai/joustonhuang/cdp-gmail-delivery) <br>
-- [Google Drive Fallback Delivery](references/drive-fallback.md) <br>
-- [Receipts (Agent-Browser + Chrome Debug + CDP Gmail)](references/receipts.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit send status markers such as EMAIL_SENT_OK or limitation markers for blocked Gmail attachment cases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release metadata) <br>
+Risk: Gmail automation could delete or alter an unrelated existing draft in the debug browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Chrome debug profile for this skill and confirm there are no unrelated Gmail drafts open before running the send flow.
+
+Risk: Attachments or messages could be sent to the wrong recipient if compose-field validation fails or the wrong draft is active.
+
+Mitigation: Manually confirm the recipient, unique subject, and all requested attachment filenames in the visible compose draft before sending, then verify the Sent folder by unique subject.
+
+Risk: Sensitive or blocked attachments may be mishandled by repeated upload attempts or provider security filters.
+
+Mitigation: Avoid sensitive files unless necessary, preflight Gmail attachment limits and blocked file classes, and use the documented Drive fallback only after verifying sharing permissions.
+
+Risk: Runtime dependency installation can introduce supply-chain exposure.
+
+Mitigation: Review dependency installation before use and prefer a pinned, local runtime install for puppeteer-core.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joustonhuang/skills/cdp-gmail-delivery)
+- [Google Drive Fallback Delivery](references/drive-fallback.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Receipts](references/receipts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports plain-text email bodies plus optional attachments; success should be reported only after command output and Sent-folder verification by unique subject.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

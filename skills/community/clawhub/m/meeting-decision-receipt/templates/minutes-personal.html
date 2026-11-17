@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}｜自用执行纪要</title>
+  <style>
+{{ css }}
+  </style>
+</head>
+<body class="{{ body_class }}">
+  <main class="minutes-sheet" aria-labelledby="minutes-title">
+    <nav class="bundle-nav" aria-label="输出版本">{{ bundle_nav }}</nav>
+    <header class="minutes-header">
+      <div class="document-label">WORKING MINUTES · 给自己</div>
+      <h1 id="minutes-title">自用执行纪要</h1>
+      <p class="meeting-title">{{ title }}</p>
+      <p class="meeting-date">{{ date }}</p>
+      <p class="summary-line">{{ status_line }}</p>
+    </header>
+
+    <section class="minutes-section section-primary">
+      <h2><span>01</span> 当前结论</h2>
+      {{ current_decisions }}
+    </section>
+
+    <section class="minutes-section">
+      <h2><span>02</span> 执行清单</h2>
+      {{ commitments }}
+    </section>
+
+    <section class="minutes-section section-warning">
+      <h2><span>03</span> 待确认事项</h2>
+      {{ open_loops }}
+    </section>
+
+    <section class="minutes-section section-muted">
+      <h2><span>04</span> 讨论留档</h2>
+      {{ archive }}
+    </section>
+
+    <section class="confirmation-compact" aria-label="会后确认消息">
+      <div class="document-label">COPY TO GROUP · 发送前核对</div>
+      <h2>会后确认消息</h2>
+      {{ confirmation_message }}
+    </section>
+
+    <details class="evidence">
+      <summary>查看判断依据</summary>
+      <div class="evidence-body">{{ evidence }}</div>
+    </details>
+
+    <footer>{{ footer }}</footer>
+  </main>
+</body>
+</html>

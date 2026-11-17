@@ -1,43 +1,61 @@
-## Description: <br>
-Fetch official Chinese 70-city residential property price index data from the National Bureau of Statistics for housing-price trend questions across supported cities and metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches official Chinese 70-city residential property price index data from the National Bureau of Statistics for recent and historical city-level housing trend analysis.
 
-## Publisher: <br>
-[Fangtianwd](https://clawhub.ai/user/Fangtianwd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangtianwd](https://clawhub.ai/user/fangtianwd)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to fetch and summarize official Chinese 70-city residential property price index data for latest-period checks, recent history, and selected city metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public data from stats.gov.cn, so use depends on network access and the availability of that public source. <br>
-Mitigation: Install and run it only when external access to stats.gov.cn is acceptable for the workspace. <br>
-Risk: Chart or validation report generation can create directories and overwrite files at a chosen output path. <br>
-Mitigation: Use a deliberate output path in the workspace and review generated files before relying on them. <br>
+## Use Case:
 
+External agents and users use this skill to fetch official National Bureau of Statistics housing price index records for one of China's 70 major cities. It supports latest-period lookups, recent history, month-over-month, year-over-year, and fixed-base indicators for concise summaries, tables, or charts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fangtianwd/housing-price-data) <br>
-- [REFERENCE.md](references/REFERENCE.md) <br>
-- [National Bureau of Statistics RSS](https://www.stats.gov.cn/sj/zxfb/rss.xml) <br>
-- [Latest validation source sample](https://www.stats.gov.cn/sj/zxfb/202603/t20260316_1962774.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON data summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate chart or validation report files when the user requests an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill makes outbound web requests to fetch official housing price data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an environment where network access is restricted to the official stats.gov.cn endpoints needed for the task.
+
+Risk: Runtime dependencies are declared with minimum versions rather than pinned versions.
+
+Mitigation: Pin and review dependency versions before deploying the skill in a shared or production agent environment.
+
+Risk: Optional chart and validation features can write files to user-specified paths.
+
+Mitigation: Choose output locations deliberately and review generated files before sharing or retaining them.
+
+## Reference(s):
+
+- [China Housing Price Data on ClawHub](https://clawhub.ai/fangtianwd/skills/housing-price-data)
+- [National Bureau of Statistics RSS](https://www.stats.gov.cn/sj/zxfb/rss.xml)
+- [REFERENCE.md](references/REFERENCE.md)
+- [Validation Report](artifacts/validation-report.json)
+- [Accuracy Boundary Report](artifacts/accuracy-boundary-report.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON data for agent reasoning, with optional Markdown summaries, tables, and chart files when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches live data from stats.gov.cn and may write optional chart or validation outputs to user-specified paths.]
+
+## Skill Version(s):
+
+2.2.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

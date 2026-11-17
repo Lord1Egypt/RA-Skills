@@ -1,46 +1,63 @@
-## Description: <br>
-Render BestYou health data as visual Dark Glass dashboards via OpenClaw canvas for daily briefings, action plans, progress snapshots, weekly summaries, meal analysis, and workout plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Render BestYou health data as visual Dark Glass dashboards via OpenClaw canvas, including daily briefings, action plans, progress snapshots, weekly summaries, meal analysis, and workout plans.
 
-## Publisher: <br>
-[kentsteffen](https://clawhub.ai/user/kentsteffen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kentsteffen](https://clawhub.ai/user/kentsteffen)
 
-## Use Case: <br>
-External BestYou and OpenClaw users use this skill to fetch BestYou MCP responses and render health coaching data as visual dashboards with brief actionable summaries. It supports daily planning, progress review, meal analysis, workout generation, and setup troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive health insights and a persistent BestYou API key. <br>
-Mitigation: Treat the API key like a password: keep configuration private, avoid committing or syncing it, restrict file access where possible, and rotate the key if exposed. <br>
-Risk: Write-capable nutrition or workout actions could affect a user's BestYou account. <br>
-Mitigation: Ask for confirmation before using write-capable nutrition or workout actions. <br>
-Risk: Installation depends on trusting both BestYou and mcporter. <br>
-Mitigation: Install only when the user trusts BestYou and mcporter, and verify the configured MCP endpoint before use. <br>
+## Use Case:
 
+External BestYou users and OpenClaw agents use this skill to fetch BestYou MCP health summaries and turn them into visual coaching dashboards with short actionable text.
 
-## Reference(s): <br>
-- [BestYou OpenClaw Setup](https://bestyou.ai/openclaw-setup) <br>
-- [BestYou MCP Endpoint](https://mcp.bestyou.ai/mcp) <br>
-- [BestYou MCP Setup Reference](references/setup.md) <br>
-- [Security & Privacy](references/security.md) <br>
-- [ClawHub Skill Listing](https://clawhub.ai/kentsteffen/bestyou-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, HTML] <br>
-**Output Format:** [Self-contained HTML dashboard widgets with concise text summaries, plus markdown setup guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live BestYou MCP responses and static HTML/CSS templates; no local health-data persistence is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The setup flow asks users to install mcporter globally without pinning a version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use a pinned, verified mcporter version where possible.
+
+Risk: A live BestYou health-data API key may be stored in plaintext configuration or exposed through chat.
+
+Mitigation: Avoid pasting the live key into chat, store configuration with restrictive permissions, and revoke and rotate the key if it is exposed.
+
+Risk: Rendered widgets may contact Google Fonts and the BestYou CDN.
+
+Mitigation: Review network access expectations before deployment and account for those external asset requests.
+
+Risk: Workout and nutrition outputs may be mistaken for professional health advice.
+
+Mitigation: Treat coaching guidance as informational unless reviewed by an appropriate professional.
+
+## Reference(s):
+
+- [BestYou OpenClaw setup](https://bestyou.ai/openclaw-setup)
+- [Setup reference](references/setup.md)
+- [Security and privacy reference](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML canvas widgets with brief Markdown text and inline shell commands during setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses BestYou MCP API responses and local HTML/CSS templates; rendered widgets may load Google Fonts and BestYou CDN images.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

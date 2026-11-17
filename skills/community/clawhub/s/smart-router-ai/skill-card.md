@@ -1,41 +1,58 @@
-## Description: <br>
-Smart Model Router auto-detects a prompt's intent (fix, plan, or flow) and routes it to an appropriate AI model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intent-based model router that detects fix, plan, and flow requests and routes them to the configured AI model.
 
-## Publisher: <br>
-[wizelements](https://clawhub.ai/user/wizelements) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wizelements](https://clawhub.ai/user/wizelements)
 
-## Use Case: <br>
-Developers, teams, and OpenClaw users use this skill to route natural-language prompts to fix, plan, or flow model paths, with shell aliases and override flags for manual control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be automatically sent to different cloud model backends. <br>
-Mitigation: Confirm which providers receive prompts and avoid routing private code, credentials, customer data, or regulated information unless those providers are approved. <br>
-Risk: The artifact does not clearly explain consent, routing history storage, export behavior, or uninstall controls. <br>
-Mitigation: Review configuration and shell startup changes before installation, confirm how to disable automatic routing, and document how to remove any added shell sourcing. <br>
+## Use Case:
 
+Developers, OpenClaw users, and teams use this skill to standardize model selection by routing debugging, planning, and general prompts to configured agents or cloud models.
 
-## Reference(s): <br>
-- [Smart Model Router on ClawHub](https://clawhub.ai/wizelements/smart-router-ai) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes prompts by detected intent and supports manual override flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Prompts may be routed automatically to cloud model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm which providers may receive prompts and avoid sending secrets or sensitive customer data unless the selected provider is trusted.
+
+Risk: Setup scripts and shell aliases are referenced but not included in the provided artifact files.
+
+Mitigation: Verify any setup script or shell profile changes from a trusted source before running or sourcing them.
+
+Risk: Broad trigger words may route a prompt to an unintended model.
+
+Mitigation: Review routing behavior for sensitive workflows and use the documented override flags when a specific model is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wizelements/skills/smart-router-ai)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit intent labels, confidence scores, model routing choices, shell aliases, dashboard commands, and configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, skill frontmatter, and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

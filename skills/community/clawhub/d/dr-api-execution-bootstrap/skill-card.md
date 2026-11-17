@@ -1,46 +1,57 @@
-## Description: <br>
-Bootstrap and enforce fast direct API execution in a workspace for repeated CRUD, integration, service-compliance, and other multi-call API operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a bounded multi-call API task directly when safe; map dependencies, validate outcomes, and preserve platform policy.
 
-## Publisher: <br>
-[daniel-refahi-ikara](https://clawhub.ai/user/daniel-refahi-ikara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daniel-refahi-ikara](https://clawhub.ai/user/daniel-refahi-ikara)
 
-## Use Case: <br>
-Developers and agent operators use this skill to persist direct API execution defaults, run one upfront preflight, execute approved API chains continuously, and validate workspace behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persistently changes workspace agent behavior toward direct API execution. <br>
-Mitigation: Review the exact AGENTS.md, MEMORY.md, or equivalent startup-file diff before accepting the change. <br>
-Risk: The skill can run live API validation and side-effecting API workflows when credentials are available. <br>
-Mitigation: Confirm the environment is dev or test, require approval for write operations, and approve any live validation before execution. <br>
-Risk: The security review marked the release suspicious and advises review before installation. <br>
-Mitigation: Install only when this direct-execution behavior is intentional and the required credentials, endpoints, and approval boundaries are understood. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and carry out one bounded task that requires several API calls. It guides dependency mapping, safe execution, result validation, and a compact completion receipt.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniel-refahi-ikara/dr-api-execution-bootstrap) <br>
-- [Apply checklist](references/APPLY.md) <br>
-- [Execution playbook](references/EXECUTION-PLAYBOOK.md) <br>
-- [Ikara API patterns](references/IKARA-PATTERNS.md) <br>
-- [Installation and activation](references/INSTALL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify workspace startup files and report validation status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release metadata) <br>
+Risk: An API write or production change could exceed the user's authorized scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the task's read/write boundaries and obtain required approval before external writes or production mutations.
+
+Risk: Credentials or sensitive payloads could be exposed during execution or progress tracking.
+
+Mitigation: Do not print credentials or store credentials, raw sensitive payloads, or conversational content in task-local records.
+
+Risk: A request being accepted could be mistaken for a completed and validated result.
+
+Mitigation: Validate each meaningful write with a safe follow-up read or durable identifier, and report incomplete stages or precise blockers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniel-refahi-ikara/skills/dr-api-execution-bootstrap)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance, Text]
+
+**Output Format:** [API task execution with a concise text receipt; task-local progress records for long-running analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Progress records track planned entities, batch status, retries, and evidence references without credentials or raw sensitive payloads.]
+
+## Skill Version(s):
+
+1.1.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

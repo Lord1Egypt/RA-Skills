@@ -1,0 +1,32 @@
+{
+  "skill_name": "huawei-cloud-voucher-claim",
+  "region": "cn-north-1",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "credential profile readiness (read-only pre-check)",
+      "command": "hcloud configure list",
+      "expected": "active KooCLI profile / region (no secret echoed)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "claim dry-run preview (plan only, offline-safe)",
+      "command": "python3 $PWD/scripts/claim_voucher.py --customer-id CUST001 --coupon-id CP001 --amount 100.00 --dry-run",
+      "expected": "request preview with the derived trans_id; nothing claimed",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "own-script help: claim_voucher.py",
+      "command": "python3 $PWD/scripts/claim_voucher.py --help",
+      "expected": "usage text listing the claim parameters and safety flags",
+      "type": "syntax",
+      "executor": "sdk"
+    }
+  ],
+  "env_vars_required": ["HUAWEI_ACCESS_KEY", "HUAWEI_SECRET_KEY"],
+  "notes": "变更类写操作（企业主账号向子账号划拨/子账号领取代金券）——冒烟只做凭据就绪检查与离线 dry-run 预览，绝不真实领取；领取行为的真实验证需用户显式确认（--confirm）后带外执行。BSS 为全局服务（cn-north-1）。执行路径：当本机 KooCLI 暴露 BSS 服务时优先走 KooCLI（operation ClaimEnterpriseMultiAccountCoupon），否则回退到官方 huaweicloudsdkbss v2（GlobalCredentials + 全局 endpoint）；当前 KooCLI 报告 Unsupported service: BSS，故 SDK 兜底生效。"
+}

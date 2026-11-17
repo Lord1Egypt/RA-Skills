@@ -1,43 +1,64 @@
-## Description: <br>
-Read-only Calibre catalog lookup and one-book analysis-comments workflow over a running Calibre Content server, including ID-based viewing requests while excluding title, author, tag, series, and other metadata edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and views a Calibre catalog or prepares and validates one-book analysis without changing library metadata.
 
-## Publisher: <br>
-[nextaltair](https://clawhub.ai/user/nextaltair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nextaltair](https://clawhub.ai/user/nextaltair)
 
-## Use Case: <br>
-Developers and Calibre library operators use this skill to let an agent inspect a Calibre library, answer list/search/ID lookup questions, and run one-book text analysis that can write analysis HTML back to Calibre comments when explicitly invoked. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled extracted book-text cache files may expose copyrighted or private library content. <br>
-Mitigation: Remove bundled state/cache files before installation or use, and clear cached text or database artifacts when analysis data is no longer needed. <br>
-Risk: The workflow requires Calibre Content Server credentials and can write analysis HTML to the comments metadata field. <br>
-Mitigation: Use a least-privilege Calibre account, restrict .env file permissions, avoid plaintext password arguments where possible, and review comments-write behavior before enabling the analysis apply workflow. <br>
+## Use Case:
 
+Calibre users and developers use this skill to look up book metadata and prepare a single book for offline analysis. It returns summaries and a local proposal for separately reviewed metadata changes, without editing the library itself.
 
-## Reference(s): <br>
-- [Calibre Catalog Read on ClawHub](https://clawhub.ai/nextaltair/calibre-catalog-read) <br>
-- [Subagent analysis prompt](references/subagent-analysis.prompt.md) <br>
-- [Subagent input schema](references/subagent-input.schema.json) <br>
-- [Subagent analysis output schema](references/subagent-analysis.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON catalog or analysis outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One-book analysis runs produce schema-conformant JSON and may update Calibre comments metadata after completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+Risk: Exported books and extracted text remain in local cache and state directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep these directories private and review retained files before sharing or deleting them.
+
+Risk: An unintended library or server could expose the wrong books during analysis.
+
+Mitigation: Specify the intended Calibre endpoint and library, and use a dedicated password environment variable when authentication is needed.
+
+Risk: Short, image-heavy, or incompletely read books can produce unreliable summaries.
+
+Mitigation: Stop on skipped or low-text results unless the user explicitly accepts incomplete extraction; disclose partial coverage.
+
+Risk: A generated metadata proposal may contain inaccurate descriptions or tags.
+
+Mitigation: Review proposals and route any actual update through a separate metadata apply workflow.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/nextaltair/skills/calibre-catalog-read)
+- [One-book analysis prompt](references/subagent-analysis.prompt.md)
+- [Analysis input schema](references/subagent-input.schema.json)
+- [Analysis output schema](references/subagent-analysis.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON]
+
+**Output Format:** [Catalog metadata and analysis summaries in text; local JSONL metadata proposals]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports full or partial text coverage; proposals require a separate review and apply workflow.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

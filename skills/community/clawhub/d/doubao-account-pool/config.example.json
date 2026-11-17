@@ -1,0 +1,14 @@
+{
+  "_comment": "豆包多实例工作台配置 — 复制为 doubao_config.json 后按需修改",
+  "doubao_home": "~/.doubao_studio",
+  "chrome_path": "",
+  "ffmpeg_path": "",
+  "out_dir": "",
+  "port_base": 9230,
+  "max_slot": 20,
+  "window_width": 1320,
+  "window_height": 900,
+  "site_url": "https://www.doubao.com/chat/",
+  "chrome_args_extra": [],
+  "_env_override": "以下环境变量可覆盖上述字段: DOUBAO_HOME, DOUBAO_CHROME, DOUBAO_FFMPEG, DOUBAO_OUTDIR, DOUBAO_PORT_BASE, DOUBAO_MAX_SLOT"
+}

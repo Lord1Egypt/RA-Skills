@@ -1,47 +1,67 @@
-## Description: <br>
-A multi-agent workflow for MBA and academic thesis writing that coordinates outline planning, node-by-node drafting, review loops, research search, and Word export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write, review, and export MBA and academic theses end-to-end as Word/DOCX, covering outline planning, node-by-node writing, chapter review, academic deep review, and formatted Word export.
 
-## Publisher: <br>
-[hehe973781230](https://clawhub.ai/user/hehe973781230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hehe973781230](https://clawhub.ai/user/hehe973781230)
 
-## Use Case: <br>
-External users and developers use this skill to manage the full lifecycle of MBA or academic thesis drafting, review, revision, and Word export. It is especially suited to long-form academic writing workflows that need outline anchoring, human checkpoints, citation checks, and final formatting validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Thesis documents, company names, and research topics may be shared with search providers, LLM providers, or optional parsing services. <br>
-Mitigation: Use a separate workspace for confidential work, remove sensitive identifiers when possible, and disable optional network or parsing components that are not required. <br>
-Risk: The workflow may access local OpenClaw credentials and install dependencies during setup or preflight. <br>
-Mitigation: Review installation steps before running them, use an isolated environment, and confirm that credential and package-installation access is acceptable. <br>
-Risk: Generated academic content and citations may be incomplete, misleading, or unsuitable for submission without review. <br>
-Mitigation: Keep the human-in-the-loop checkpoints enabled and independently verify sources, citations, formatting, and institutional requirements before final delivery. <br>
+## Use Case:
 
+External users, students, and developers use this skill to coordinate long-form MBA or academic thesis drafting, review, revision, and DOCX export through an OpenClaw-oriented multi-agent workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hehe973781230/skills/thesis-workflow-v2) <br>
-- [README_EN.md](README_EN.md) <br>
-- [Academic Standards Checklist](references/checklist.md) <br>
-- [Loop Design](references/loop-design.md) <br>
-- [Chapter Summary Design](references/chapter-summary-design.md) <br>
-- [Git Workflow](references/git-workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown thesis drafts, review reports, structured workflow status, shell command guidance, and DOCX files produced by the workflow scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include intermediate state files, outline data, review findings, and final Word documents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The security evidence reports overly broad local credential handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch credential handling before installation and run the skill in an isolated Python/OpenClaw environment.
+
+Risk: The security evidence reports silent dependency installation.
+
+Mitigation: Review dependency installation behavior before use and pin or preinstall approved dependencies in the target environment.
+
+Risk: The security evidence reports unsafe state-file paths based on paper names.
+
+Mitigation: Restrict paper names to safe identifiers and avoid path-like or shell-special characters.
+
+Risk: The workflow may send thesis drafts, company details, prompts, or searches to external providers.
+
+Mitigation: Avoid confidential thesis drafts or sensitive company information unless the user accepts the external-provider exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hehe973781230/skills/thesis-workflow-v2)
+- [ClawHub publisher profile](https://clawhub.ai/user/hehe973781230)
+- [Loop design](references/loop-design.md)
+- [Content hint fallback design](references/content-hint-fallback.md)
+- [Chapter summary design](references/chapter-summary-design.md)
+- [Thesis DOCX export sub-skill](thesis-docx-export/SKILL.md)
+- [DOCX export checklist](thesis-docx-export/references/checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, CLI commands, workflow state files, review reports, and DOCX export artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces thesis workflow outputs with required human review checkpoints and guardrail checks before final Word export.]
+
+## Skill Version(s):
+
+2.1.2-beta.1 (source: server release metadata, SKILL.md metadata.clawdbot.version, README_EN.md, CHANGELOG-v2.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

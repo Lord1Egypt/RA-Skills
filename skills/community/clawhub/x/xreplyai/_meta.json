@@ -1,6 +1,242 @@
 {
-  "ownerId": "kn7ej019scw9dx3ca1p3z2vknx82p684",
-  "slug": "xreplyai",
-  "version": "0.3.20",
-  "publishedAt": 1781401028061
+  "owner": "jmoon90",
+  "slug": "xreply",
+  "displayName": "XreplyAI - AI Post Generator",
+  "latest": {
+    "version": "0.25.0",
+    "publishedAt": "2026-09-22T00:00:00Z",
+    "commit": "PENDING"
+  },
+  "history": [
+    {
+      "version": "0.25.0",
+      "publishedAt": "2026-09-22T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.24.0",
+      "publishedAt": "2026-09-21T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.23.0",
+      "publishedAt": "2026-09-21T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.22.0",
+      "publishedAt": "2026-09-19T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.21.0",
+      "publishedAt": "2026-09-07T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.20.0",
+      "publishedAt": "2026-09-06T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.19.0",
+      "publishedAt": "2026-08-26T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.18.0",
+      "publishedAt": "2026-08-24T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.17.1",
+      "publishedAt": "2026-08-11T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.17.0",
+      "publishedAt": "2026-08-10T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.16.1",
+      "publishedAt": "2026-08-04T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.16.0",
+      "publishedAt": "2026-08-01T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.15.0",
+      "publishedAt": "2026-07-28T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.13.1",
+      "publishedAt": "2026-07-22T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.12.1",
+      "publishedAt": "2026-07-21T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.11.1",
+      "publishedAt": "2026-07-21T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.11.0",
+      "publishedAt": "2026-07-17T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.10.2",
+      "publishedAt": "2026-07-17T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.10.1",
+      "publishedAt": "2026-07-14T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.10.0",
+      "publishedAt": "2026-07-09T00:00:00Z",
+      "commit": "PENDING"
+    },
+    {
+      "version": "0.9.0",
+      "publishedAt": "2026-07-09T00:00:00Z",
+      "commit": "56ec7c59d"
+    },
+    {
+      "version": "0.8.0",
+      "publishedAt": "2026-06-28T00:00:00Z",
+      "commit": "a9ae323b7"
+    },
+    {
+      "version": "0.7.3",
+      "publishedAt": "2026-06-23T00:00:00Z",
+      "commit": "pending"
+    },
+    {
+      "version": "0.7.2",
+      "publishedAt": "2026-06-23T00:00:00Z",
+      "commit": "pending"
+    },
+    {
+      "version": "0.7.1",
+      "publishedAt": "2026-06-23T00:00:00Z",
+      "commit": "pending"
+    },
+    {
+      "version": "0.7.0",
+      "publishedAt": "2026-06-23T00:00:00Z",
+      "commit": "pending"
+    },
+    {
+      "version": "0.6.1",
+      "publishedAt": "2026-06-23T00:00:00Z",
+      "commit": "ec2f7a09"
+    },
+    {
+      "version": "0.6.0",
+      "publishedAt": "2026-06-16T00:00:00Z",
+      "commit": "95c5abe5"
+    },
+    {
+      "version": "0.5.0",
+      "publishedAt": "2026-06-14T00:00:00Z",
+      "commit": "7bec4351"
+    },
+    {
+      "version": "0.4.0",
+      "publishedAt": "2026-06-13T00:00:00Z",
+      "commit": "1ef7e2b1"
+    },
+    {
+      "version": "0.3.21",
+      "publishedAt": "2026-06-12T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.20",
+      "publishedAt": "2026-06-12T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.19",
+      "publishedAt": "2026-05-11T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.18",
+      "publishedAt": "2026-04-22T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.17",
+      "publishedAt": "2026-04-21T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.16",
+      "publishedAt": "2026-04-14T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.15",
+      "publishedAt": "2026-04-14T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.14",
+      "publishedAt": "2026-03-22T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.13",
+      "publishedAt": "2026-03-21T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.12",
+      "publishedAt": "2026-03-19T00:00:00Z",
+      "commit": "TBD"
+    },
+    {
+      "version": "0.3.11",
+      "publishedAt": "2026-03-18T00:00:00Z",
+      "commit": "722b33a"
+    },
+    {
+      "version": "0.3.10",
+      "publishedAt": "2026-03-16T00:00:00Z",
+      "commit": "bb2bc98"
+    },
+    {
+      "version": "0.3.9",
+      "publishedAt": "2026-03-16T00:00:00Z",
+      "commit": "9f332d1"
+    },
+    {
+      "version": "0.3.8",
+      "publishedAt": "2026-03-15T00:00:00Z",
+      "commit": "59056ad"
+    },
+    {
+      "version": "0.3.7",
+      "publishedAt": "2026-03-14T00:00:00Z",
+      "commit": "9f7e284"
+    },
+    {
+      "version": "0.3.5",
+      "publishedAt": "2026-03-13T00:00:00Z",
+      "commit": "948c0db"
+    }
+  ]
 }

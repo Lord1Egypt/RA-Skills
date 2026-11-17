@@ -1,41 +1,52 @@
-## Description: <br>
-Organize and maintain a clean workspace file structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize and maintain a clean workspace file structure. Use when deciding where to save new files, which folder something belongs in, how to structure workspace folders for file placement, whether something is temporary or durable, how to separate project materials from user-files, reports, external sources, entertainment media, reference materials, tools, scripts, installed applications, and structured data, or how to resolve ambiguous file-placement cases.
 
-## Publisher: <br>
-[synbraino](https://clawhub.ai/user/synbraino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[synbraino](https://clawhub.ai/user/synbraino)
 
-## Use Case: <br>
-Agent operators and workspace users use this skill to decide where new, moved, temporary, durable, project, source, report, user-file, data, script, and tool artifacts should live in a workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to place, create, or move workspace files in locations that do not match the user's long-term organization expectations. <br>
-Mitigation: Review early placement recommendations on important workspaces and keep backups or version control for files that matter. <br>
+## Use Case:
 
+Workspace users can use this skill to choose clear, durable locations for files and folders, distinguish temporary work from persistent materials, and resolve ambiguous placement decisions.
 
-## Reference(s): <br>
-- [Workspace Structure release page](https://clawhub.ai/synbraino/workspace-structure) <br>
-- [Folder taxonomy](references/folder-taxonomy.md) <br>
-- [Edge cases](references/edge-cases.md) <br>
-- [Naming and structure](references/naming-and-structure.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown or plain text recommendations with a suggested workspace path and short rationale] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls, network access, credential handling, or generated executable code are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: A suggested move could conflict with an application's established storage needs or put persistent data at risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the application's storage conventions and preserve persistent data before moving files.
+
+## Reference(s):
+
+- [Folder taxonomy](references/folder-taxonomy.md)
+- [Placement edge cases](references/edge-cases.md)
+- [Naming and structure](references/naming-and-structure.md)
+- [Workspace Structure on ClawHub](https://clawhub.ai/synbraino/skills/workspace-structure)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise natural-language recommendations, usually with a suggested workspace path]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

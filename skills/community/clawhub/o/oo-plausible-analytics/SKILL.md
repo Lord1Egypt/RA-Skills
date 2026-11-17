@@ -1,11 +1,11 @@
 ---
 name: oo-plausible-analytics
-description: "Plausible Analytics (plausible.io). Use this skill for ANY Plausible Analytics request — searching and reading data. Whenever a task involves Plausible Analytics, use this skill instead of calling the API directly."
+description: "Plausible Analytics (plausible.io). Use this skill for ANY Plausible Analytics request — reading, creating, and updating data. Whenever a task involves Plausible Analytics, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Plausible Analytics"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["plausible_analytics"]
   icon: "https://static.oomol.com/logo/third-party/Plausible%20Analytics.svg"
 ---
@@ -40,7 +40,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_breakdown_stats` — Query Plausible analytics grouped by a single dimension such as source, page, country, or browser.
 - `get_timeseries_stats` — Query Plausible analytics as a timeseries grouped by a time dimension such as day or hour.
 - `query_stats` — Query historical or real-time analytics for a Plausible site using the Stats API v2.
-- `record_event` — Record a pageview or custom event through the Plausible Events API for server-side or app tracking.
+- `record_event` — Record a pageview or custom event through the Plausible Events API for server-side or app tracking. [write]
 
 ## Safety
 
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Plausible Analytics is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=plausible_analytics
+  https://console.oomol.com/connections/plausible_analytics
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Plausible Analytics homepage: https://plausible.io
+- API documentation: https://plausible.io/docs/stats-api

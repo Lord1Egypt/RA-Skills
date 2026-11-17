@@ -1,46 +1,66 @@
-## Description: <br>
-Anima helps agents turn prompts, website URLs, Figma designs, or Anima playgrounds into live hosted apps or generated code for existing projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns ideas into live, full-stack web applications with editable code, built-in database, user authentication, and hosting.
 
-## Publisher: <br>
-[dannyshmueli](https://clawhub.ai/user/dannyshmueli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dannyshmueli](https://clawhub.ai/user/dannyshmueli)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to create hosted web app prototypes, clone website experiences, convert Figma designs, publish Anima playgrounds, or generate design-aware code for an existing codebase. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad build requests can lead to live published apps or local code changes without clear confirmation. <br>
-Mitigation: Make publish or deploy intent explicit, and review generated files and write locations before execution. <br>
-Risk: Prompts, Figma designs, and private URLs may be sent to Anima as an external design, code-generation, and hosting service. <br>
-Mitigation: Use only data approved for Anima, and avoid confidential designs or private URLs unless that service is approved for the data. <br>
-Risk: The skill requires ANIMA_API_KEY for headless use. <br>
-Mitigation: Provide ANIMA_API_KEY only through a secure environment variable or secret store. <br>
+## Use Case:
 
+Developers and designers use Anima to turn prompts, website URLs, Figma designs, and Anima Playground URLs into live applications or code that can be integrated into an existing project.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dannyshmueli/anima-design-agent) <br>
-- [Anima MCP server guide](https://github.com/AnimaApp/mcp-server-guide) <br>
-- [Anima CLI documentation](https://github.com/AnimaApp/anima-cli) <br>
-- [Anima MCP documentation](https://docs.animaapp.com/docs/integrations/anima-mcp) <br>
-- [Anima MCP setup guide](https://github.com/AnimaApp/mcp-server-guide/blob/main/anima-skill-references/setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline CLI and MCP examples, plus generated application code or hosted playground links when tools are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require ANIMA_API_KEY and Anima account access; Figma flows may require connected Figma authorization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill can trigger on broad build or design requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intended Anima flow and destination before invoking Anima for ambiguous requests.
+
+Risk: Prompts, Figma content, website content, or project context may be sent to Anima's external service.
+
+Mitigation: Avoid private designs, internal websites, secrets, and regulated data unless external processing is explicitly approved.
+
+Risk: The skill can publish live URLs.
+
+Mitigation: Require explicit user confirmation before publishing any generated playground or application.
+
+Risk: The workflow may run an unpinned third-party CLI.
+
+Mitigation: Run CLI commands in an isolated project environment with a scoped API key and pin the package version where possible.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dannyshmueli/skills/anima-design-agent)
+- [Anima MCP Server Guide](https://github.com/AnimaApp/mcp-server-guide)
+- [Anima CLI Documentation](https://github.com/AnimaApp/anima-cli)
+- [Anima MCP Setup Guide](https://github.com/AnimaApp/mcp-server-guide/blob/main/anima-skill-references/setup.md)
+- [Anima MCP Tools Reference](https://github.com/AnimaApp/mcp-server-guide/blob/main/anima-skill-references/mcp-tools.md)
+- [Anima MCP Documentation](https://docs.animaapp.com/docs/integrations/anima-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and MCP call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce live application URLs or local code files through the Anima service; long-running create and publish operations require extended timeouts.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence; artifact metadata reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

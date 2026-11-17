@@ -1,44 +1,59 @@
-## Description: <br>
-基于明日DMP开放平台API，帮助用户获取广告账户、创建人群同步任务并查询同步状态，用于将DMP人群包同步到广告平台进行投放。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于明日DMP开放平台API，提供人群同步管理功能。支持获取广告账户、创建同步任务、查询同步状态。采用10步标准化工作流程，包含请求类型识别、凭证检查、参数引导、格式校验、参数确认、任务记录等完整流程。适用于将DMP人群包同步到各大广告平台（小红书/腾讯/字节等）进行精准投放。
 
-## Publisher: <br>
-[mingri26](https://clawhub.ai/user/mingri26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingri26](https://clawhub.ai/user/mingri26)
 
-## Use Case: <br>
-Marketing operators and developers use this skill to synchronize Mingdata DMP audience packages to supported advertising platforms, then check account lists and task status. It is intended for audience activation workflows that require API credentials, explicit parameter confirmation, and review of data authorization obligations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive Mingdata DMP Access Key and Secret Key could be exposed if provided directly in chat. <br>
-Mitigation: Use a credential store or out-of-band secret setup, and do not paste AK/SK values into chat. <br>
-Risk: The skill depends on separately installed auth and logger skills, and the artifact scans local skill directories before executing the discovered auth script. <br>
-Mitigation: Install only trusted versions of the dependency skills and prefer a release that pins the auth dependency to a verified path. <br>
-Risk: Task logging may record task IDs and synchronization parameters that could be sensitive for campaign operations. <br>
-Mitigation: Review what the logger records before enabling it, and skip or disable logging when recorded fields exceed internal policy. <br>
+## Use Case:
 
+External marketing and operations users use this skill to synchronize Mingri DMP audience packages to supported advertising platforms, retrieve available ad accounts, and check sync task status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mingri26/dmp-audience-sync) <br>
-- [Mingdata DMP auth skill](https://clawhub.ai/mingri26/mingdata-dmp-auth) <br>
-- [DMP task logger skill](https://clawhub.ai/mingri26/dmp-skill-logger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API/script responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Mingdata DMP API credentials and the separate mingdata-dmp-auth skill; task logging is optional through skill-logger.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill workflow asks users to provide Mingri DMP Access Key and Secret Key values in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure secret manager or a tightly permissioned local credential file, and avoid pasting AK/SK secrets into chat.
+
+Risk: Helper scripts locate and execute authentication code from broad local skill directories, which can be spoofed if untrusted skills are present.
+
+Mitigation: Install only verified dependencies, confirm publisher, version, and integrity before use, and avoid running the skill in environments with untrusted skills in searched directories.
+
+Risk: Audience synchronization can affect advertising activation and relies on lawful source data and valid user authorization.
+
+Mitigation: Require explicit user confirmation before creating sync tasks and confirm that audience data usage is authorized and compliant before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingri26/skills/dmp-audience-sync)
+- [Mingri DMP auth dependency](https://clawhub.ai/mingri26/mingdata-dmp-auth)
+- [DMP skill logger dependency](https://clawhub.ai/mingri26/dmp-skill-logger)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API results from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confirmation tables, credential-setup prompts, task IDs, sync status summaries, and error guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

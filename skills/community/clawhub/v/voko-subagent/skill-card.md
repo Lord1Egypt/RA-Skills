@@ -1,44 +1,57 @@
-## Description: <br>
-Creates and manages OpenClaw Gateway subagents to process VOKO visitor messages from provided prompts or a VOKO database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates OpenClaw Gateway subagents to handle VOKO visitor messages using provided prompts or visitor data assembled from a local VOKO database.
 
-## Publisher: <br>
-[tech-fcc-sys](https://clawhub.ai/user/tech-fcc-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tech-fcc-sys](https://clawhub.ai/user/tech-fcc-sys)
 
-## Use Case: <br>
-Developers and operators use this skill inside OpenClaw Gateway to generate customer-support replies for VOKO visitor conversations. It can consume a Base64 prompt directly or build a prompt from a trusted VOKO SQLite database path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visitor conversations and identifiers may be passed into retained subagent runs. <br>
-Mitigation: Review what tools the spawned subagent can use, where retained runs are stored, and how retained runs can be deleted before using real visitor data. <br>
-Risk: Base64 prompts, visitor identifiers, or database-derived conversation content may appear in logs or retained execution records. <br>
-Mitigation: Confirm logging behavior, avoid unnecessary personal data in prompts, and use trusted database paths with appropriate access controls. <br>
-Risk: Dependency installation and local SQLite database access affect the runtime trust boundary. <br>
-Mitigation: Use reproducible dependency installs and only point the skill at trusted VOKO database files. <br>
+## Use Case:
 
+Developers and operators running VOKO in OpenClaw Gateway use this skill to create subagents that draft customer-service replies, route responses to visitor UIDs, suggest intimacy scores, flag owner attention, and update tags.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tech-fcc-sys/voko-subagent) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON result delimited by ===RESULT=== and ===END=== markers, with operational logs on stdout/stderr.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The JSON includes reply text, visitor UID, intimacy suggestion, owner-attention flags, tag updates, run ID, and status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Callers can influence which local VOKO database path and visitor messages are used, which can expose or mix visitor data if the skill is available to untrusted callers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled OpenClaw Gateway, restrict dbPath to an approved directory, and bind requested message IDs to the supplied visitorUid.
+
+Risk: Subagent output can affect reply routing because the result includes a destination UID.
+
+Mitigation: Do not let model output choose the final to_uid; enforce the caller-validated visitorUid when routing replies.
+
+Risk: The release evidence flags vulnerable dependencies and missing privacy guidance for visitor data.
+
+Mitigation: Update vulnerable dependencies before production use and document privacy handling for visitor records, prompts, replies, and tags.
+
+## Reference(s):
+
+- [Voko Subagent ClawHub Release](https://clawhub.ai/tech-fcc-sys/skills/voko-subagent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON result delimited by ===RESULT=== and ===END=== markers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes reply text, destination UID, intimacy suggestion, owner-attention flag, attention reason, tag changes, run ID, and status.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

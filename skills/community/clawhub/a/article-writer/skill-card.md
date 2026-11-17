@@ -1,41 +1,47 @@
-## Description: <br>
-Article Writer helps agents draft high-quality Chinese-language articles from a selected topic using defined title, structure, quote, and conclusion guidelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Article Writer helps generate high-quality Chinese-language articles from a selected topic.
 
-## Publisher: <br>
-[xiaofenguser](https://clawhub.ai/user/xiaofenguser) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xiaofenguser](https://clawhub.ai/user/xiaofenguser)
 
-## Use Case: <br>
-Writers, content marketers, and agent users use this skill to turn a topic into a Markdown article with numbered sections, stronger titles, before-vs-after framing, and short quotable lines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Server security evidence marks the release suspicious and recommends installing only when the maintainer is trusted. <br>
-Mitigation: Review the skill source before installation and use it only when the publisher and release behavior meet local policy. <br>
-Risk: The skill directs the agent to search and fetch external material before drafting, which can introduce inaccurate or unsuitable source material. <br>
-Mitigation: Review cited material, facts, and publication rights before using generated articles publicly. <br>
-Risk: The writing guidance favors forceful language and discourages uncertainty, which can overstate claims. <br>
-Mitigation: Add human editorial review for factual accuracy, uncertainty, and appropriate tone before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaofenguser/article-writer) <br>
+## Use Case:
+
+External users and content creators use this skill to turn a selected topic into a Chinese-language Markdown article with a structured outline, numbered sections, quotable lines, title refinement, and an action-oriented conclusion.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Draft articles may include confident claims, statistics, or sourced material that are not publication-ready without review.
+
+Mitigation: Review factual claims, statistics, and source material before publishing generated articles.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs a titled article with numbered sections and a closing summary quote.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown article draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses web research steps when source material is needed; generated claims and statistics should be reviewed before publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

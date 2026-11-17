@@ -1,0 +1,1 @@
+Fixes the Remote Control daemon reconnect regression introduced by the pair/relink audit path. The hosted relay now casts the daemon E2EE audit timestamp parameter to Postgres `timestamptz`, so daemon identity persistence succeeds instead of closing the daemon WebSocket and making browsers report `daemon offline`.

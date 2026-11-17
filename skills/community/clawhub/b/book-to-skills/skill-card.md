@@ -1,40 +1,54 @@
-## Description: <br>
-This skill extracts and analyzes PDF, EPUB, TXT, and Markdown books to generate WorkBuddy knowledge-base, action-guide, or hybrid skill packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF, EPUB, TXT, or Markdown ebooks into structured analyses and installable WorkBuddy skill packages in knowledge-base, action-guide, or hybrid formats.
 
-## Publisher: <br>
-[guipi888](https://clawhub.ai/user/guipi888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guipi888](https://clawhub.ai/user/guipi888)
 
-## Use Case: <br>
-Developers, knowledge workers, and learners use this skill to turn electronic books into structured analysis reports and locally installable WorkBuddy skills for reference or practical action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install generated WorkBuddy skills persistently, which may leave broad or unwanted triggers active. <br>
-Mitigation: Review generated SKILL.md files and trigger phrases before installation, and remove generated skills that are too broad or no longer needed. <br>
-Risk: The skill can install Python packages while extracting PDF or EPUB files. <br>
-Mitigation: Use a sandbox or disposable environment for untrusted books and review dependency installation before running extraction scripts. <br>
+## Use Case:
 
+Readers and agent builders use the skill to extract an ebook's structure, concepts, and practical methods, then create WorkBuddy skills for knowledge lookup, guided action, or both. The user selects an output mode before package generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guipi888/book-to-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and generated WorkBuddy skill files, with shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create persistent local WorkBuddy skills and install Python package dependencies while extracting PDF or EPUB files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Optional ebook extraction dependencies may be installed into WorkBuddy's default Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency changes and use a dedicated Python environment when isolation is preferred.
+
+Risk: Broad activation phrases and generated skill instructions may trigger unexpectedly or provide inaccurate guidance.
+
+Mitigation: Review activation keywords and generated instructions, and scan each generated skill before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/guipi888/skills/book-to-skills)
+- [Publisher profile](https://clawhub.ai/user/guipi888)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Structured Markdown reports and installable WorkBuddy skill packages, with optional Python checklist scripts and ZIP archives.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce multiple skill directories and install them locally in WorkBuddy.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

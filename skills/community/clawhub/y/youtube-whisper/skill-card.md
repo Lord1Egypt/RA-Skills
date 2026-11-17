@@ -1,41 +1,57 @@
-## Description: <br>
-Downloads YouTube subtitles or audio and uses local Whisper to produce transcript text, with Traditional Chinese as the default output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube影片一鍵轉文字！自動下載影片並用AI轉成中文/英文字幕，沒有字幕的影片也能用。
 
-## Publisher: <br>
-[dolphins1123](https://clawhub.ai/user/dolphins1123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dolphins1123](https://clawhub.ai/user/dolphins1123)
 
-## Use Case: <br>
-External users and agents use this skill to turn YouTube videos into transcripts for notes, subtitle preparation, or summaries. The agent can summarize the transcript after transcription when the user asks for a summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads or extracts YouTube subtitles and audio, which may include copyrighted, private, or sensitive content. <br>
-Mitigation: Use it only with content you have permission to process, and review generated transcripts before sharing or reusing them. <br>
-Risk: Local Whisper transcription can consume significant CPU, memory, and disk resources, especially when --force skips resource checks. <br>
-Mitigation: Keep resource checks enabled unless you accept the extra load, choose an appropriate Whisper model, and reserve enough local storage before running. <br>
-Risk: Transcript files are written to the selected output path and could overwrite or expose local files if the path is chosen carelessly. <br>
-Mitigation: Use a dedicated output filename or directory and inspect the resulting file path before relying on or sharing the transcript. <br>
+## Use Case:
 
+External users and agents use this skill to download or inspect YouTube subtitles and produce transcript text with local Whisper when subtitles are unavailable. Agents may return the transcript directly, summarize it, or point users to the transcript file for longer output.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text transcript with a processing summary and optional transcript file path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write transcript text files to a user-selected output path; long transcript output is surfaced as a file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata) <br>
+Risk: The script downloads YouTube audio and writes transcript files locally, so output paths and existing files can be affected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a reviewed workspace, choose explicit output paths, and check for existing files before execution.
+
+Risk: Documented media limits are not enforced, and untrusted or very long media can create resource or reliability issues.
+
+Mitigation: Use reviewed media inputs, avoid very long videos unless necessary, and monitor runtime, storage, and memory use.
+
+Risk: Local dependencies such as yt-dlp, ffmpeg, and openai-whisper can change behavior across versions.
+
+Mitigation: Install reviewed or pinned dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dolphins1123/skills/youtube-whisper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown response with transcript text, processing summary, and a local transcript file path when output is long.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local yt-dlp, ffmpeg, and openai-whisper; long transcript output may be written to a text file.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

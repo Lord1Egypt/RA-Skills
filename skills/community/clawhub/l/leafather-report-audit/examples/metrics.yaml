@@ -1,0 +1,30 @@
+# examples/metrics.yaml — 可选增强层：给录像里的 SQL 认领一个稳定身份
+#
+# 不写也能跑，但账本 label 只能靠 SQL 猜（`COUNT(*) AS v` 会被猜成「v」），
+# 报告里写「总行数」就锚不住，结论里会出现「无法判定」。
+# 写了之后：label 与报告说法一致、跨报告能认出同一个指标、客户版台账能直接给客户。
+#
+# 用法：给 rla_report.py / rla_collect.py 加 --metrics examples/metrics.yaml
+#
+# 认领规则：match_sql 是 SQL 的**子串**匹配；命中多条时取最长的（最具体的那条）。
+
+metrics:
+  - id: demo.rows
+    label: 总行数
+    caliber: 数据源全部记录数（不做任何筛选）
+    match_sql: "COUNT(*) AS v FROM data"
+
+  - id: demo.scenes
+    label: 场景数
+    caliber: 去重后的交易场景数
+    match_sql: 'COUNT(DISTINCT "场景ID")'
+
+  - id: demo.deal_rows
+    label: 成交行数
+    caliber: 交易是否达成 = 是 的记录数
+    match_sql: 'COUNT(*) AS v FROM data WHERE "交易是否达成"'
+
+  - id: demo.sd_rows
+    label: 山东省行数
+    caliber: 省份 = 山东省 的记录数
+    match_sql: 'COUNT(*) AS v FROM data WHERE "省份"'

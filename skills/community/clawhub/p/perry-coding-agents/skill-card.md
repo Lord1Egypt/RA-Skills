@@ -1,38 +1,56 @@
-## Description: <br>
-Dispatch coding tasks to OpenCode or Claude Code on Perry workspaces for development work, PR reviews, or coding tasks that need an isolated environment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dispatch coding tasks to OpenCode or Claude Code on Perry workspaces.
 
-## Publisher: <br>
-[gricha](https://clawhub.ai/user/gricha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gricha](https://clawhub.ai/user/gricha)
 
-## Use Case: <br>
-Developers use this skill to delegate coding work, PR review follow-up, and CI-fix tasks to OpenCode or Claude Code running on Perry workspaces while tracking each dispatched task. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates coding work to remote agents with broad ability to run commands and change repositories. <br>
-Mitigation: Review each dispatch request, use it only with intended Perry workspaces, and avoid enabling it in sensitive repositories unless remote background tasks creating branches or PRs are acceptable. <br>
-Risk: The documented dispatch flow relies on SSH connections and remote background execution. <br>
-Mitigation: Use trusted host aliases or pinned SSH host keys where possible, confirm workspace IPs before dispatch, and inspect generated branches, PRs, and CI results before merging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate coding work, pull request review, and follow-up fixes to OpenCode or Claude Code agents running in Perry workspaces.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces SSH dispatch patterns and task-tracking guidance that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote agent dispatch can execute broad coding tasks in Perry workspaces with weak scoping.
+
+Mitigation: Use this skill only for trusted Perry workspaces and trusted task text, and define branch, goal, and done criteria before dispatch.
+
+Risk: Prompt or command text can expose bearer tokens or encourage unsafe SSH behavior.
+
+Mitigation: Avoid long-lived bearer tokens in prompts or command lines, prefer strict SSH host-key validation, and do not copy untrusted issue or pull request text into shell templates.
+
+Risk: Reused remote agent sessions can carry context between unrelated tasks.
+
+Mitigation: Reset or isolate remote agent sessions between unrelated tasks.
+
+## Reference(s):
+
+- [Perry Coding Agents ClawHub page](https://clawhub.ai/gricha/skills/perry-coding-agents)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes SSH and curl command templates plus task-tracking guidance for remote Perry workspace dispatch.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

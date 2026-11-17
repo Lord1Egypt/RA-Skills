@@ -1,41 +1,58 @@
-## Description: <br>
-Turn a product brief, campaign idea, or reference image into MaxArt-ready image and video prompt packs, shot lists, style directions, and creative variation plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a product brief, campaign idea, or reference image into MaxArt-ready image and video prompt packs, shot lists, style directions, and creative variation plans.
 
-## Publisher: <br>
-[jerrybi](https://clawhub.ai/user/jerrybi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerrybi](https://clawhub.ai/user/jerrybi)
 
-## Use Case: <br>
-Marketing teams, creators, and developers use this skill to convert briefs or reference images into MaxArt-ready image prompts, video motion plans, campaign prompt packs, and production notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated creative prompts may include inaccurate, off-brand, or misleading marketing direction. <br>
-Mitigation: Review generated creative prompts before production use and test outputs in MaxArt.ai before publishing. <br>
-Risk: Users may provide sensitive unreleased product images, proprietary campaign material, or confidential brand assets to third-party rendering services. <br>
-Mitigation: Avoid sending sensitive or confidential assets to third-party rendering services unless their terms and privacy practices are acceptable. <br>
+## Use Case:
 
+External users and creative teams use this skill to turn product, campaign, or reference-image briefs into MaxArt-ready creative packages for ads, social creatives, product shots, stylized edits, and image-to-video concepts.
 
-## Reference(s): <br>
-- [MaxArt.ai](https://maxart.ai) <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown creative brief with prompt sets, variations, negative constraints, shot lists or scene lists, and production notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute code, call tools, or access credentials; outputs are human-readable creative instructions for use with MaxArt.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Creative briefs may include confidential product, brand, audience, or campaign details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details intended for use in MaxArt.ai and remove confidential information unless disclosure is deliberate.
+
+Risk: Generated creative instructions can produce visual artifacts such as distorted hands, broken logos, unreadable text, or product geometry drift.
+
+Mitigation: Review outputs before production use and use the skill's negative constraints and production notes to test and refine prompts.
+
+Risk: Prompts may imply exact MaxArt controls or behavior that are not documented.
+
+Mitigation: Keep instructions framed as creative guidance and verify final rendering behavior in MaxArt.ai.
+
+## Reference(s):
+
+- [Prompt Patterns](references/prompt-patterns.md)
+- [MaxArt.ai](https://maxart.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with creative direction, prompt sets, variations, negative constraints, shot or scene lists, and production notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended as human-reviewed creative instructions for use in MaxArt.ai; the skill does not execute code or call external services.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

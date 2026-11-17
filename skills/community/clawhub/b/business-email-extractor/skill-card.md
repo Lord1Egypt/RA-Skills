@@ -1,43 +1,62 @@
-## Description: <br>
-Extract verified business email addresses from Google Maps listings for a chosen industry and location, with filtering guidance for outreach-ready contact lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract verified business email addresses from Google Maps listings and prepare contact lists for outreach campaigns.
 
-## Publisher: <br>
-[gmapsscraper](https://clawhub.ai/user/gmapsscraper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmapsscraper](https://clawhub.ai/user/gmapsscraper)
 
-## Use Case: <br>
-Sales, marketing, and business-development users use this skill to identify publicly listed business email addresses for targeted B2B outreach and to prepare a filtered CSV contact list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business search targets and extraction requests are sent to the third-party gmapsscraper.io API. <br>
-Mitigation: Use only with approval to share those targets with the service, and protect the API key through environment variables rather than hard-coding it. <br>
-Risk: Harvested email lists may contain personal data or be subject to outreach, privacy, and opt-out requirements. <br>
-Mitigation: Confirm the intended outreach complies with applicable email and privacy rules, include unsubscribe handling, and honor opt-out requests promptly. <br>
-Risk: The skill saves extracted email data to local CSV files. <br>
-Mitigation: Store CSV outputs in approved locations, restrict access, and delete data when it is no longer needed. <br>
+## Use Case:
 
+External users, sales operators, and developers use this skill to define a business search target, run Google Maps email extraction through gmapsscraper.io, and filter the downloaded contacts for outreach readiness.
 
-## Reference(s): <br>
-- [GMaps Scraper](https://gmapsscraper.io) <br>
-- [Business Email Extractor on ClawHub](https://clawhub.ai/gmapsscraper/business-email-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown with bash commands and CSV file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GMAPS_SCRAPER_API_KEY and curl; outputs a locally saved CSV of extracted emails with quality guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: User-supplied search text may be inserted into shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize industry and location values before running generated curl commands.
+
+Risk: The workflow requires an external API key and produces exported contact CSVs.
+
+Mitigation: Use a dedicated low-privilege API key and deliberately store, share, or delete downloaded CSV files.
+
+Risk: Outreach requirements vary by target region and campaign context.
+
+Mitigation: Independently verify applicable outreach-law requirements before using extracted contacts.
+
+Risk: The skill includes cost and promotional guidance for the extraction service.
+
+Mitigation: Confirm credit costs and service terms before authorizing paid or high-volume extraction.
+
+## Reference(s):
+
+- [Business Email Extractor on ClawHub](https://clawhub.ai/gmapsscraper/skills/business-email-extractor)
+- [gmapsscraper.io](https://gmapsscraper.io)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and CSV contact-list output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and the GMAPS_SCRAPER_API_KEY environment variable; extraction results are downloaded as CSV for filtering.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

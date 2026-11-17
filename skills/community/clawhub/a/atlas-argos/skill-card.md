@@ -1,40 +1,61 @@
-## Description: <br>
-Gestor autónomo e operador executivo do ecossistema ARGOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous manager and executive operator guidance for the ARGOS crypto trading-bot ecosystem.
 
-## Publisher: <br>
-[felix1983](https://clawhub.ai/user/felix1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[felix1983](https://clawhub.ai/user/felix1983)
 
-## Use Case: <br>
-External developers and ARGOS operators use this skill to guide an agent that monitors, maintains, documents, and grows an ARGOS trading-bot deployment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad system-control instructions could let an agent alter ARGOS services, files, scheduled jobs, processes, credentials, payments, or social-posting workflows. <br>
-Mitigation: Install only in an ARGOS environment you own, and grant filesystem, sudo, SSH, cron, process, credential, payment, and social-posting permissions only after explicit review. <br>
-Risk: Automatic Telegram reports could expose operational details or user, payment, and system data to an unintended recipient. <br>
-Mitigation: Disable or narrow automatic reports until the recipient, data categories, and redaction rules are explicitly approved. <br>
-Risk: Persistent automation could continue running after the initial agent session. <br>
-Mitigation: Review any cron entries, background processes, and notification scripts before enabling them, and keep a documented rollback path. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to guide ARGOS bot monitoring, debugging, user and payment administration, marketing operations, scheduled reporting, and operational documentation. It is intended for a tightly controlled ARGOS environment because the guidance covers credentials, process restarts, persistent jobs, and external notifications.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline code and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational checklists, command snippets, scripts, and prompts for delegated coding agents.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence release and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill gives an agent broad autonomous control over a trading-bot system, including credentials, persistent jobs, and external Telegram reporting.
+
+Mitigation: Install only in a tightly controlled ARGOS environment and require explicit approval before code changes, restarts, cron jobs, payments, or public posts.
+
+Risk: Credential discovery across home directories can expose secrets and expand operational access.
+
+Mitigation: Replace broad /home .env discovery with a fixed secret source and grant only the minimum required filesystem access.
+
+Risk: Telegram reports and marketing workflows can expose user identifiers, payment details, or operational status externally.
+
+Mitigation: Disable or gate Telegram reporting and redact user IDs, payment details, and sensitive operational information before sending notifications.
+
+Risk: Whole-system or sudo-level access can allow unintended changes outside the ARGOS application.
+
+Mitigation: Avoid sudo and whole-filesystem access unless separately approved for a specific maintenance action.
+
+## Reference(s):
+
+- [Atlas Argos ClawHub skill page](https://clawhub.ai/felix1983/skills/atlas-argos)
+- [felix1983 ClawHub publisher profile](https://clawhub.ai/user/felix1983)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese operational procedures for ARGOS, including monitoring, restart, reporting, marketing, and payment-management workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

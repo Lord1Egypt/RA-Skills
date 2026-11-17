@@ -1,45 +1,59 @@
-## Description: <br>
-Use Yahoo Finance for quotes, symbol search, watchlists, market briefs, and catalyst-aware stock decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Yahoo Finance for quotes, symbol search, watchlists, market briefs, and catalyst-aware stock decisions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to resolve Yahoo Finance symbols, retrieve quote snapshots, compare watchlists, and turn market data into risk-aware thesis or no-trade decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols and finance search terms are sent to Yahoo Finance. <br>
-Mitigation: Use the skill only when sharing those market lookups with Yahoo is acceptable. <br>
-Risk: The skill runs local Python scripts to fetch Yahoo Finance data. <br>
-Mitigation: Review commands before execution and allow outbound access only to the disclosed Yahoo Finance endpoints. <br>
-Risk: Optional local finance notes can create privacy exposure if sensitive account details are saved. <br>
-Mitigation: Create ~/yahoo/ only with user approval and avoid storing broker credentials, account numbers, tax records, exact holdings, or other sensitive records. <br>
+## Use Case:
 
+External users and developers use this skill to resolve Yahoo Finance symbols, fetch quote snapshots, compare watchlists, and frame risk-aware stock decisions without broker order placement.
 
-## Reference(s): <br>
-- [ClawHub Yahoo Skill](https://clawhub.ai/ivangdavila/yahoo) <br>
-- [Skill Homepage](https://clawic.com/skills/yahoo) <br>
-- [Yahoo Finance Quote Pages](https://finance.yahoo.com/quote/{symbol}) <br>
-- [Yahoo Finance Search Endpoint](https://query1.finance.yahoo.com/v1/finance/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May optionally create local finance notes in ~/yahoo/ only with user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The multi-ticker briefing script can read a user-supplied local file path and send each non-comment line to Yahoo Finance as a quote lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --file only with a known watchlist file, preferably under ~/yahoo/, and do not provide .env files, private notes, exports, or other sensitive local files.
+
+Risk: Ticker symbols and search queries leave the user's machine when Yahoo Finance quote or search workflows run.
+
+Mitigation: Use the skill only when sharing those market lookups with Yahoo Finance is acceptable, and avoid including private account or holding details in search text.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/yahoo)
+- [Yahoo Finance Quote Pages](https://finance.yahoo.com/quote/{symbol})
+- [Yahoo Finance Search Endpoint](https://query1.finance.yahoo.com/v1/finance/search)
+- [Command Recipes](commands.md)
+- [Market Playbook](market-playbook.md)
+- [Risk Playbook](risk-playbook.md)
+- [Thesis Card](thesis-card.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and local Python script output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use outbound Yahoo Finance requests for ticker symbols or search text; optional local continuity files live under ~/yahoo/ only with user approval.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

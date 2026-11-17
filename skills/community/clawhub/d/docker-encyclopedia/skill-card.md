@@ -1,44 +1,60 @@
-## Description: <br>
-Docker documentation-first workflow for Docker-specific questions, troubleshooting, command planning, image/build work, container/runtime operations, Compose behavior, networking, volumes, registries, and diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Docker Encyclopedia gives agents a documentation-first workflow for Docker-specific questions, troubleshooting, command planning, builds, runtime operations, Compose, networking, volumes, registries, and diagnostics.
 
-## Publisher: <br>
-[kklouzal](https://clawhub.ai/user/kklouzal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kklouzal](https://clawhub.ai/user/kklouzal)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer Docker-specific questions, plan Docker commands, troubleshoot build/runtime behavior, and maintain a workspace-local cache of consulted official Docker documentation and operational notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may write Docker environment details into workspace-local cache, note, or inventory files. <br>
-Mitigation: Review or disable note-taking for sensitive environments and keep credentials, tokens, private URLs, and other secrets out of .Docker-Encyclopedia/. <br>
-Risk: Docker command guidance can affect running containers, images, volumes, networks, registries, credentials, or host reachability if executed without review. <br>
-Mitigation: Consult official Docker documentation, inspect current environment state first, and review high-impact commands before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill when an agent needs grounded Docker help, including command planning, Dockerfile and BuildKit work, Compose review, runtime troubleshooting, and Docker environment diagnostics. The skill directs the agent to prefer cached or freshly consulted official Docker documentation and to record useful workspace-local operational notes.
 
-## Reference(s): <br>
-- [Docker Documentation](https://docs.docker.com/) <br>
-- [Docker Encyclopedia Skill Page](https://clawhub.ai/kklouzal/docker-encyclopedia) <br>
-- [Workflow](references/workflow.md) <br>
-- [Cache Layout](references/cache-layout.md) <br>
-- [Topic Map](references/topic-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and workspace note files when caching or recording Docker knowledge] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May fetch official Docker documentation and write cached documentation, notes, and inventory files under .Docker-Encyclopedia/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may save persistent workspace-local Docker notes that could accidentally include secrets, private registry credentials, tokens, or private URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep notes high-level and redact or omit credentials, tokens, private URLs, and other secret material before writing to .Docker-Encyclopedia/.
+
+Risk: Docker operations proposed through the workflow can affect running containers, volumes, networks, registries, credential paths, or daemon configuration.
+
+Mitigation: Review proposed Docker commands and configuration changes before execution, consult the relevant official Docker documentation, and inspect current state before high-impact changes.
+
+Risk: Cached documentation and local observations can become stale or be mistaken for official behavior.
+
+Mitigation: Distinguish official documentation, observed local state, and inference in answers or notes, and refresh official Docker docs when syntax, feature boundaries, or version-sensitive behavior matters.
+
+## Reference(s):
+
+- [Docker Documentation](https://docs.docker.com/)
+- [Docker Encyclopedia Workflow](references/workflow.md)
+- [Docker Encyclopedia Cache Layout](references/cache-layout.md)
+- [Docker Topic Map](references/topic-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create workspace-local Docker documentation cache and operational note files under .Docker-Encyclopedia/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

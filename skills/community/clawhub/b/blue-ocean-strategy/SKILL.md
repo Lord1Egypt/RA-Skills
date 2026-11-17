@@ -1,7 +1,7 @@
 ---
 name: blue-ocean-strategy
 description: "Activate when: user asks 'how do we stop competing on price?', 'what new market can we create?', 'is there a way to differentiate and cut costs at the same time?', describes an industry where all competitors look identical and margins are eroding, or a team is choosing a market entry angle to avoid head-to-head competition.
-  Do NOT activate when: competitive dimensions are fixed by regulation (utilities, certain financial products); or a network-effects incumbent already dominates the space — use disruptive-innovation instead."
+  Do NOT activate when: competitive dimensions are fixed by regulation (utilities, certain financial products); or a network-effects incumbent already dominates the space — use disruptive-innovation instead. More: deciqai.com/c/blue-ocean-strategy"
 ---
 
 # Blue Ocean Strategy
@@ -12,13 +12,13 @@ Most competitive strategy assumes industry boundaries are fixed. Blue Ocean Stra
 
 The mechanism is the ERRC grid (Eliminate, Reduce, Raise, Create): Eliminate+Reduce drive cost below industry average; Raise+Create drive buyer value above it — breaking the differentiation/cost trade-off simultaneously. The critical input is the **non-customer lens**: blue oceans are found by studying people who refuse the category, not existing customers.
 
-Compose with: [porters-five-forces](../porters-five-forces/SKILL.md) before; [disruptive-innovation](../disruptive-innovation/SKILL.md) as complementary lens; [pricing-strategy](../pricing-strategy/SKILL.md) after ERRC; [first-mover-advantage](../first-mover-advantage/SKILL.md) for defense window.
+Compose with: porters-five-forces before; disruptive-innovation as complementary lens; pricing-strategy after ERRC; first-mover-advantage for defense window.
 
 ## When to Use
 
-Apply when: visible industry convergence (products similar, price is primary differentiator, margins eroding); team choosing market entry angle to avoid commoditized competition; product losing pricing power despite feature improvements; someone asks "how do we stop competing on price?" or "what new market can we create?"
+Apply when: visible industry convergence (products similar, price is primary differentiator, margins eroding); team choosing market entry angle to avoid commoditized competition; product losing pricing power despite feature improvements; a team asks how to avoid competing head-to-head with AI-native incumbents or trillion-dollar platforms on a commoditized general capability (e.g., "everyone's shipping the same AI chatbot — where's the uncontested space?", AI capex arms race, saturated AI adoption); someone asks "how do we stop competing on price?" or "what new market can we create?"
 
-**When NOT to use:** competitive dimensions fixed by law/safety standards; early-stage startup without sufficient market exposure to identify non-customer patterns; company lacks execution capability for a new value proposition; blue ocean with network-effect protection already exists — use [disruptive-innovation](../disruptive-innovation/SKILL.md).
+**When NOT to use:** competitive dimensions fixed by law/safety standards; early-stage startup without sufficient market exposure to identify non-customer patterns; company lacks execution capability for a new value proposition; blue ocean with network-effect protection already exists — use disruptive-innovation.
 
 ## Coaching Novices (Adaptive Front Door)
 
@@ -58,13 +58,19 @@ Target Canvas: To-Be scores + Focus / Divergence / Tagline check
 Buyer Utility: utility gaps closed + non-customer response + stop-rule decision
 ```
 
-*→ Method in Action: [Cirque du Soleil (1984)](examples/cirque-du-soleil-1984.md)*
+*→ Method in Action: [Cirque du Soleil (1984)](examples/cirque-du-soleil-1984.md) · [Yellow Tail Wine (2001)](examples/yellow-tail-wine-2001.md)*
+*→ 2026 lens: [Escaping the red ocean of general AI chatbots via vertical/agentic AI (2024–2026)](examples/vertical-agentic-ai-2024-2026.md)*
 
 ## Innovation Packs
 
-- **Consumer goods/food-bev:** Eliminate conventions buyers don't value (Yellow Tail: removed wine-knowledge requirement). Stop-rule: if non-customer's stated reason for non-purchase was NOT the complexity you eliminated, you restructured for convenience, not their value.
-- **B2B software:** Canvas converges on features, integration depth, enterprise compliance. ERRC: eliminate customization depth / reduce onboarding friction / raise time-to-value / create self-serve. Stop-rule: if "Create" requires rebuilding enterprise security non-customers don't need, Eliminate is underperforming.
-- **Healthcare:** Raise/Create on convenience while Eliminating facility overhead. Stop-rule: if regulatory minimums are indistinguishable from "industry assumption" standards, you cannot Eliminate them.
+| Domain | Canvas convergence (what everyone competes on) | ERRC emphasis | Common failure |
+|---|---|---|---|
+| Consumer goods / food-bev | brand prestige, category expertise, range breadth | Eliminate conventions buyers don't value (Yellow Tail: removed the wine-knowledge requirement); Create ease of selection | eliminating complexity that was never the non-customer's stated reason for refusing — restructuring for convenience, not their value |
+| B2B software | features, integration depth, enterprise compliance | Eliminate customization depth / reduce onboarding friction / raise time-to-value / create self-serve | "Create" quietly rebuilds enterprise machinery non-customers don't need — Eliminate is underperforming |
+| Healthcare | facility scale, specialist breadth, coverage networks | Raise/Create convenience and access while Eliminating facility overhead | treating regulatory minimums as eliminable "industry assumptions" — they are fixed, map them before ERRC |
+| Travel / airlines | hub networks, seat classes, in-flight amenities | Eliminate lounges, meals, seat classes; Raise departure frequency; Create point-to-point speed priced against driving (Southwest) | benchmarking rival carriers instead of the substitute (the car) — Path 1 skipped |
+
+*Contribute a pack for your domain — see the template at the repo root.*
 
 ## Applying It Well
 
@@ -72,7 +78,7 @@ Buyer Utility: utility gaps closed + non-customer response + stop-rule decision
 - **Eliminate is the discipline.** Force at least two items into Eliminate. Eliminating costs without losing buyer value funds the value jump.
 - **Non-customers over customers.** Non-customers reveal structural problems; existing customers suggest incremental improvements.
 - **One sentence test.** If the new value prop requires more than one sentence for a non-customer, the canvas lacks divergence — iterate.
-- **Blue oceans turn red.** Build switching costs and network effects from day one. Use [first-mover-advantage](../first-mover-advantage/SKILL.md).
+- **Blue oceans turn red.** Build switching costs and network effects from day one. Use first-mover-advantage.
 
 *→ Primary sources: [references/sources.md](references/sources.md)*
 
@@ -113,4 +119,6 @@ Buyer Utility: utility gaps closed + non-customer response + stop-rule decision
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/blue-ocean-strategy** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/blue-ocean-strategy.json*

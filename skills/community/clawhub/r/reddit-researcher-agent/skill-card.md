@@ -1,41 +1,58 @@
-## Description: <br>
-Scan Reddit for posts matching keywords and summarize findings using Bing search with Reddit JSON API and Google fallbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans Reddit for posts matching keywords, summarizes findings, and extracts themes and pain points from Reddit discussions.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers, researchers, product teams, and community analysts use this skill to find Reddit discussions for selected keywords and summarize posts, comments, pain points, requests, and recurring themes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research terms, subreddit names, and Reddit URLs may be sent to external services such as Bing, DuckDuckGo, and Reddit. <br>
-Mitigation: Avoid confidential project names and sensitive topics when choosing keywords or subreddit filters. <br>
-Risk: Fetched Reddit content and generated research reports may remain in local cache or export files. <br>
-Mitigation: Review and clear generated cache and export files after use when the research topic is sensitive. <br>
+## Use Case:
 
+Developers, researchers, and product teams use this skill to collect Reddit posts for supplied keywords, inspect community feedback, and export concise markdown research summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kryzl19/reddit-researcher-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/kryzl19) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and line-oriented shell output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exports timestamped markdown research reports and may cache fetched Reddit content locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Outbound requests to search engines and Reddit can expose search terms and depend on third-party service availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review keywords before use, run only in environments approved for external network access, and select the documented search mode that fits the deployment.
+
+Risk: Cached Reddit content and exported reports can persist fetched discussion data and user-provided keywords on local storage.
+
+Mitigation: Store outputs in an approved workspace, review generated markdown before sharing, and clear local cache or exports when retention is not needed.
+
+Risk: Generated summaries are extraction-oriented and may miss context or reflect imprecise search results.
+
+Mitigation: Validate important conclusions against the linked Reddit posts and treat the output as research input rather than a final analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/reddit-researcher-agent)
+- [Publisher profile](https://clawhub.ai/user/kryzl19)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown reports and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write cached Reddit content and exported markdown reports locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Frontend theme engineer skill for i18n-compliant user text, translation files, and framework-safe user notification patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Frontend theme engineer skill for i18n-compliant user text, translation files, and framework-safe user notification patterns.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to keep Weline UI text translatable, update translation files, and replace browser-native dialogs with framework-safe notification patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposed wording or translation-file changes can introduce incorrect user-facing messages or incomplete localization coverage. <br>
-Mitigation: Review changed copy and translation files before applying them, then validate the affected UI path. <br>
-Risk: Notification changes can alter confirmation, success, warning, or failure behavior in the UI. <br>
-Mitigation: Verify prompts use framework toast or confirmation components and preserve the intended feedback flow. <br>
+## Use Case:
 
+Developers and frontend engineers use this skill to keep Weline UI copy translatable and to replace browser-native dialogs with framework-safe notification and confirmation patterns.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with proposed template, translation, notification, or validation changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include validation evidence for affected UI paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated UI changes could leave visible strings outside the intended translation mechanism.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate new or changed UI text against the repository's i18n files and conventions before release.
+
+Risk: User prompts could retain blocking browser-native dialogs in modified frontend paths.
+
+Mitigation: Replace alert, confirm, and prompt usage with framework toast or confirmation components and verify the affected screen.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/frontend-i18n-notification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code or configuration changes when applicable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include validation evidence and notes about missing translation coverage or UX copy risks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

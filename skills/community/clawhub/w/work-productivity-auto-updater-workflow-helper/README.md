@@ -1,0 +1,48 @@
+# Work Productivity Auto Updater Workflow Helper
+
+## Requirement
+
+Validated demand: Agent users show strong demand for Auto-Updater Skill-style workflows on Clawhub. They need practical help fixing bugs, hardening setup and safety, improving reliability, or creating adjacent skills inspired by the same job-to-be-done. This requirement is supported by 11 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
+
+Audience: AI-agent users, skill authors, maintainers, and teams who want proven popular skill patterns adapted into more reliable or adjacent workflows
+
+Category: `work-productivity`
+
+Demand score: 100/100
+
+Evidence coverage: 11 signals across 3 source families.
+
+## Evidence
+
+- clawhub-popular-skill: [Popular Clawhub skill demand: self-improving agent has 493,493 downloads](https://clawhub.ai/skills/self-improving-agent)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Auto-Updater Skill has 101,601 downloads](https://clawhub.ai/skills/auto-updater)
+- clawhub-popular-skill: [Popular Clawhub skill demand: Skill Creator has 104,769 downloads](https://clawhub.ai/skills/skill-creator)
+- segmentfault-search: [HarmonyOS 开发者社区](https://segmentfault.com/brand/harmonyos-next)
+- segmentfault-search: [javascript](https://segmentfault.com/t/javascript)
+- segmentfault-search: [typescript](https://segmentfault.com/t/typescript)
+- segmentfault-search: [ONES 研发管理](https://ones.cn/?utm_term=ONES%C2%A0%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86&utm_campaign=%E9%A6%96%E9%A1%B5%E6%A0%87%E7%AD%BE&_channel_track_key=myqX1C0f&utm_source=%E6%80%9D%E5%90%A6%E8%BD%AC%20ONES)
+- segmentfault-search: [问： electron-builder自动更新缺少依赖](https://segmentfault.com/q/1010000018396754)
+- segmentfault-search: [Mysql多张表关联时的分页查询](https://segmentfault.com/a/1190000040061279)
+- segmentfault-search: [答： SpringBootVFS这个类是干嘛用的?](https://segmentfault.com/q/1010000040626252/a-1020000040626536)
+- csdn-search: [取消Java自动更新[项目源码]](https://wenku.csdn.net/doc/6j0zr9f8xesz?ops_request_misc=elastic_search_misc&request_id=1b20108737094f8388cbdb0c8bef60ff&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-6-6j0zr9f8xesz-null-null.142^v102^pc_search_result_base1&utm_term=auto-updater-skill%20auto%20updater%20automatically)
+
+## How This Skill Meets The Requirement
+
+Transforms the live request into a repeatable workflow that clarifies the user's context, produces a concrete deliverable, checks the result against the original need, and keeps execution feasible on ordinary CPU or family GPU hardware.
+
+## Usage
+
+Keywords: `work-productivity`, `auto-updater-skill`, `auto`, `updater`, `automatically`, `update`, `installed`, `once`, `daily`, `bug fix`
+
+Trigger sentences:
+
+- `Help me Agent users show strong demand for Auto-Updater Skill-style workflows on Clawhub. They need practical help fixing bugs,.`
+- `I need a practical workflow for Agent users show strong demand for Auto-Updater Skill-style workflows on Clawhub. They need practical help fixing bugs,.`
+- `Use $work-productivity-auto-updater-workflow-helper to handle Agent users show strong demand for Auto-Updater Skill-style workflows on Clawhub. They need practical help fixing bugs,.`
+
+## Files
+
+- `SKILL.md`: English skill instructions.
+- `SKILL.zh-CN.md`: Chinese skill instructions.
+- `README.md`: English user-facing guide.
+- `README.zh-CN.md`: Chinese user-facing guide.

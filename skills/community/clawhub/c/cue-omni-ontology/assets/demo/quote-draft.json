@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.1.0",
+  "scope": {
+    "title": "Northstar Demo public knowledge",
+    "as_of": "2026-09-28"
+  },
+  "entities": [
+    {
+      "id": "org:northstar-demo",
+      "type": "Organization",
+      "name": "Northstar Demo (fictional)"
+    },
+    {
+      "id": "product:alpha",
+      "type": "Product",
+      "name": "Alpha (fictional)"
+    }
+  ],
+  "definitions": [
+    {
+      "id": "metric:revenue",
+      "kind": "metric",
+      "name": "Revenue",
+      "description": "Revenue as explicitly reported; basis and exclusions remain part of the fact key.",
+      "value_type": "number",
+      "status": "candidate"
+    },
+    {
+      "id": "relation:offers",
+      "kind": "relation",
+      "name": "Offers product",
+      "description": "Explicitly disclosed organization-to-product relationship; absence is not retirement.",
+      "value_type": "entity",
+      "status": "candidate"
+    }
+  ],
+  "sources": [
+    {
+      "id": "demo-r1",
+      "url": "https://example.org/demo-r1",
+      "title": "Synthetic demo-r1",
+      "published_at": "2026-01-01",
+      "accessed_at": "2026-09-28",
+      "public_status": "synthetic",
+      "parse_origin": "synthetic",
+      "content_file": "demo-r1.txt",
+      "page_spans": [
+        {
+          "page": 1,
+          "start_utf8": 0,
+          "end_utf8": 143,
+          "basis": "synthetic_page"
+        }
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "entity_id": "org:northstar-demo",
+      "concept_id": "metric:revenue",
+      "value": 100,
+      "period": "2025Q4",
+      "basis": "IFRS",
+      "unit": "CNY_million",
+      "qualifiers": {},
+      "valid_from": null,
+      "valid_to": null,
+      "claim_kind": "reported",
+      "evidence": [
+        {
+          "source_id": "demo-r1",
+          "role": "claim",
+          "quote": "Northstar Demo reported revenue of 100 CNY million for 2025Q4 under IFRS."
+        }
+      ]
+    },
+    {
+      "entity_id": "org:northstar-demo",
+      "concept_id": "relation:offers",
+      "value": "product:alpha",
+      "period": "not_applicable",
+      "basis": "explicit_disclosure",
+      "unit": "not_applicable",
+      "qualifiers": {},
+      "valid_from": null,
+      "valid_to": null,
+      "claim_kind": "reported",
+      "evidence": [
+        {
+          "source_id": "demo-r1",
+          "role": "claim",
+          "quote": "The Alpha product belongs to Northstar Demo."
+        }
+      ]
+    }
+  ]
+}

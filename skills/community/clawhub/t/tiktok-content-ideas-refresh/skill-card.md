@@ -1,41 +1,55 @@
-## Description: <br>
-Refresh TikTok content ideas when your posts start feeling repetitive. Use when you need new angles from recent comments, failed posts, and current audience intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refresh TikTok content ideas when your posts start feeling repetitive. Use when you need new angles from recent comments, failed posts, and current audience intent.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators and operators use this skill to refresh weekly TikTok topic pipelines from recent posts, comments, audience intent, and product context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide comments, audience details, product context, or failed-post examples that contain sensitive business or personal information. <br>
-Mitigation: Provide only content-planning inputs that are appropriate to share with the agent, and omit private account, customer, or credential details. <br>
-Risk: Generated TikTok ideas could include weak claims, unsupported trend assumptions, or messaging that does not match real audience intent. <br>
-Mitigation: Review the risk notes, remove unsupported claims, and tie selected topics to actual audience comments, objections, or observed engagement patterns before posting. <br>
+## Use Case:
 
+External creators and content operators use this skill to refresh repetitive TikTok topic pipelines from recent posts, audience comments, objections, and product context.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Leooooooow/tiktok-content-ideas-refresh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with ordered sections and a topic table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a fatigue diagnosis, at least 10 refreshed topic ideas, opening lines, risk notes, and a 7-day posting order.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated topic ideas may include unsupported trend claims or weak content angles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review topics against real audience intent and remove fake trend claims before publishing.
+
+Risk: The listed license limits use to non-commercial reuse unless a separate commercial license is obtained.
+
+Mitigation: Confirm usage rights with the publisher before using the skill for commercial content operations.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/tiktok-content-ideas-refresh)
+- [Publisher profile](https://clawhub.ai/user/leooooooow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown content plan with diagnosis, topic table, opening lines, risk notes, and 7-day posting order]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, tools, privileged actions, persistence, or hidden data handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Use APIDot model catalog guidance to choose currently available APIDot image, video, chat, music, and 3D model pages, avoid offline model routes, prevent duplicate skill selection, and route users to the right APIDot docs and model-specific skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot model catalog guidance to choose currently available APIDot image, video, chat, music, and 3D model pages, avoid offline model routes, prevent duplicate skill selection, and route users to the right APIDot docs and model-specific skills.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and agents use this skill to route APIDot model-selection questions to the right live model catalog page, category skill, or model-specific skill while preserving API-key handling guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: APIDot API keys could be exposed if copied into browser code, public repositories, logs, screenshots, or chat output. <br>
-Mitigation: Store APIDOT_API_KEY only in server-side environment variables or an approved backend secret manager. <br>
-Risk: Model availability, product details, pricing, or commercial terms may be misstated if the agent relies on stale or local draft information. <br>
-Mitigation: Verify current details against APIDot model pages and docs before presenting availability or terms. <br>
-Risk: Live API calls may be made in an unsafe context if the user has not explicitly requested them or provided a suitable server-side environment. <br>
-Mitigation: Do not make live API calls unless the user explicitly asks and provides a safe server-side environment. <br>
+## Use Case:
 
+Developers and agents use this skill to route APIDot model-selection and integration questions to the right APIDot catalog page, documentation page, category skill, or model-specific skill while avoiding unavailable routes and unsupported claims.
 
-## Reference(s): <br>
-- [APIDot Docs](https://apidot.ai/docs) <br>
-- [APIDot Model Catalog](https://apidot.ai/models) <br>
-- [APIDot Quickstart](https://apidot.ai/docs/quickstart) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiehao71727/skills/apidot-model-catalog-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with links, routing recommendations, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no executable behavior, bundled API client, automatic network calls, or credential storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: APIDOT_API_KEY or private prompt, media, callback, transcript, or user data could be exposed if used in browser code, logs, public repositories, screenshots, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDot API keys and private integration data in approved server-side environment variables, backend secret managers, and secure storage; avoid logging or displaying secrets.
+
+Risk: Live API calls or storage of prompts and media data could occur in an environment that has not been approved for those operations.
+
+Mitigation: Only make live API calls or persist prompts, media URLs, task IDs, transcripts, and user identifiers when the user explicitly requests it and provides an approved server-side environment.
+
+Risk: Outdated or unsupported model routing could lead users to unavailable APIDot model pages or invented product details.
+
+Mitigation: Use the current APIDot model catalog and model pages for availability and product details, and avoid inventing pricing, performance, reliability, benchmark, commercial-term, or competitor-comparison claims.
+
+## Reference(s):
+
+- [APIDot API Docs](https://apidot.ai/docs)
+- [APIDot Model Catalog](https://apidot.ai/models)
+- [APIDot Quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot Examples](https://github.com/APIDotAI/apidot-examples)
+- [ClawHub Skill Page](https://clawhub.ai/jiehao71727/skills/apidot-model-catalog-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown guidance with links and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only; no executable files, automatic network calls, or stored credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Generate a grounded nuclear energy policy brief from live news using Apify and Contextual. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a grounded nuclear energy policy brief from live news using Apify + Contextual.
 
-## Publisher: <br>
-[ab-naidu](https://clawhub.ai/user/ab-naidu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ab-naidu](https://clawhub.ai/user/ab-naidu)
 
-## Use Case: <br>
-Policy analysts and energy teams use this skill to turn recent public nuclear policy and regulatory news into a concise brief with changes, implications, risks, recommended actions, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends search terms, topics, and retrieved source material to Apify and Contextual. <br>
-Mitigation: Use scoped API keys, monitor provider usage, and avoid confidential information in queries or topics. <br>
-Risk: Changing the default Apify actor can alter the data source and trust boundary. <br>
-Mitigation: Use the default actor or only override it with an actor the operator trusts. <br>
+## Use Case:
 
+Policy analysts and energy policy teams use this skill to turn recent public nuclear energy policy and regulatory news into a concise, source-grounded brief with changes, risks, and recommended actions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ab-naidu/global-nuclear-brief) <br>
-- [Apify run-sync dataset items API](https://api.apify.com/v2/acts/{actor_id}/run-sync-get-dataset-items) <br>
-- [Contextual generation API](https://api.contextual.ai/v1/generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style structured brief with source titles and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live public news retrieval and grounded synthesis; output is capped by the script's max-token setting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Search topic, audience, and fetched article content are sent to Apify and Contextual.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive queries, use scoped API keys with spending limits, and keep credentials out of commits and logs.
+
+Risk: Generated briefs can be influenced by incomplete, stale, or misleading public news snippets.
+
+Mitigation: Treat the brief as a draft and verify important claims against the cited source links before acting on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ab-naidu/skills/global-nuclear-brief)
+- [Project repository](https://github.com/ab-naidu/global-nuclear-brief)
+- [Apify dataset items API endpoint](https://api.apify.com/v2/acts/{actor_id}/run-sync-get-dataset-items)
+- [Contextual generation API endpoint](https://api.contextual.ai/v1/generate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown-style policy brief with source titles and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIFY_API_TOKEN and CONTEXTUAL_API_KEY; generated from live public news results and grounded source snippets.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

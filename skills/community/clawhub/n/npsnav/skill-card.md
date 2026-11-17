@@ -1,42 +1,60 @@
-## Description: <br>
-Query Indian NPS (National Pension System) fund NAV data, scheme info, returns, and history via the free npsnav.in REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Indian NPS (National Pension System) fund NAV data, scheme info, returns, and history via the free npsnav.in REST API.
 
-## Publisher: <br>
-[kanaksinghal](https://clawhub.ai/user/kanaksinghal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kanaksinghal](https://clawhub.ai/user/kanaksinghal)
 
-## Use Case: <br>
-External users, developers, and finance operations teams use this skill to look up Indian National Pension System scheme codes, latest NAVs, fund details, returns, and historical NAV data through public API queries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Requested NPS scheme codes are sent to the public npsnav.in API. <br>
-Mitigation: Avoid querying sensitive or unintended scheme selections, and review commands before execution. <br>
-Risk: Returned NAV and performance data may be incomplete, stale, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Verify NAV, return, and scheme information against authoritative financial sources before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Npsnav ClawHub Release](https://clawhub.ai/kanaksinghal/npsnav) <br>
-- [npsnav.in](https://npsnav.in) <br>
-- [NPS Funds List](https://npsnav.in/nps-funds-list) <br>
-- [npsnav.in API Base](https://npsnav.in/api) <br>
+## Use Case:
 
+Developers, analysts, and finance users use this skill to look up Indian NPS scheme NAV, scheme information, returns, and historical fund data through the npsnav.in public API.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Text, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON or plain-text API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; no authentication or API keys are required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Using the examples sends requested scheme codes or search terms to npsnav.in.
+
+Mitigation: Avoid sending sensitive or unnecessary query terms, and confirm the external data-sharing posture before use.
+
+Risk: The skill returns public fund data that may be delayed, incomplete, or unsuitable as the sole basis for financial decisions.
+
+Mitigation: Verify important values against authoritative NPS, Protean eGov Technologies, or NPS Trust sources before acting on them.
+
+Risk: The artifact describes the API as free for non-commercial use.
+
+Mitigation: Review npsnav.in usage terms before business, commercial, or redistribution use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kanaksinghal/skills/npsnav)
+- [Publisher profile](https://clawhub.ai/user/kanaksinghal)
+- [npsnav.in](https://npsnav.in)
+- [npsnav API base URL](https://npsnav.in/api)
+- [NPS funds list](https://npsnav.in/nps-funds-list)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with curl and jq examples, plus plain-text or JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; no authentication or API keys are required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

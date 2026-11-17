@@ -1,51 +1,61 @@
-## Description: <br>
-Codex CLI Guardian manages API key setup, background Codex task execution, result summaries, PID locking, status tracking, and worker orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages Codex CLI API key setup, background task execution, PID locking, task status, result summaries, and worker orchestration.
 
-## Publisher: <br>
-[alukardo](https://clawhub.ai/user/alukardo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alukardo](https://clawhub.ai/user/alukardo)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate coding tasks to Codex CLI in the background while tracking, summarizing, and stopping active jobs. It also provides worker templates and orchestration patterns for multi-step coding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local credential storage can expose API keys if the workspace or skill directory is not tightly controlled. <br>
-Mitigation: Use only a disposable or tightly scoped workspace and do not enter a valuable API key until secret input and storage are fixed. <br>
-Risk: Background Codex execution can perform high-impact code actions with weak scoping. <br>
-Mitigation: Review carefully before installing, run only in constrained workspaces, and scan outputs before using the skill on real projects. <br>
-Risk: The security evidence flags a confirmed shell-command construction flaw around `bash -c` invocation. <br>
-Mitigation: Replace the `bash -c` invocation with safe argument passing before using the skill on real projects. <br>
-Risk: Bundled task history may expose prior task descriptions or summaries. <br>
-Mitigation: Remove bundled task history before installation or distribution. <br>
-Risk: Broad natural-language auto-triggers may start automation unintentionally. <br>
-Mitigation: Use explicit confirmation and narrower trigger phrases before execution. <br>
+## Use Case:
 
+Developers use this skill to launch and monitor Codex CLI tasks asynchronously while managing local API key setup, single-task locking, status checks, and result summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alukardo/codex-cli-guardian) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Codex CLI reference](artifact/CLI.md) <br>
-- [Format and workflow references](artifact/REFERENCES.md) <br>
-- [Usage examples](artifact/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command snippets and JSON task/status records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Background task runner with one active task guarded by PID locking, local credential setup, and task history summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Local API key handling can expose credentials if the skill directory or generated files are mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid plaintext skill-local secrets for real use, and remove bundled task history before deployment.
+
+Risk: Crafted task text or a modified credential file may become command execution because of shell parsing flaws.
+
+Mitigation: Fix shell quoting and command construction before running the launcher on a real machine.
+
+Risk: Background Codex execution can make changes outside the user's immediate attention.
+
+Mitigation: Use the status and lock workflow, review completed task summaries, and inspect generated changes before accepting them.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/alukardo/skills/codex-cli-guardian)
+- [README.md](artifact/README.md)
+- [CLI.md](artifact/CLI.md)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+- [REFERENCES.md](artifact/REFERENCES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, shell command snippets, JSON task metadata, and text status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local credential, lock, task status, task history, and summary files when installed and run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,145 @@
+{
+  "schema": "2.0",
+  "config": {
+    "wide_screen_mode": true,
+    "update_multi": true
+  },
+  "header": {
+    "title": {
+      "tag": "plain_text",
+      "content": "20260719-周报-7篇日报-12个concept-2主种子升级"
+    },
+    "subtitle": {
+      "tag": "plain_text",
+      "content": "2026-07-19 · obsidian-loop v2.1 · 第 29 周周报 · 7 月 13-19 日 · 周日 08:00 自动生成"
+    },
+    "template": "indigo",
+    "icon": {
+      "tag": "standard_icon",
+      "token": "myai_colorful"
+    }
+  },
+  "body": {
+    "direction": "vertical",
+    "padding": "16px 16px 16px 16px",
+    "elements": [
+      {
+        "tag": "markdown",
+        "content": "**本周产出**：7 篇日报 → 12 concepts 入库 → 2 主种子升级（sprout → seedling）→ 21 行动卡片 → 4 跨域融合\n\n**周报使命**：不是日报堆叠，而是从 7 天数据中识别「趋势、共振、涌现」——单日看不出的信号，在周尺度浮现。"
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "indigo-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "indigo-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "📈 **本周趋势（3 个）**\n\n**趋势 1：信任崩塌叙事集中爆发**\n▸ 7 天内 3 篇独立素材涉及「信任崩塌不可逆」\n▸ 信源：Dario 离开 OpenAI / 卡尔知识管理 / 晨然 AI 视频工具 PMF\n▸ 共同模式：分歧可争论，但信任崩塌后争论本身失去意义\n▸ 周度信号：单日看不出，跨日 3 次出现 = 弱信号转强\n\n**趋势 2：L3 真实生成作为通用健康检查**\n▸ 7 天内 5 篇素材提及「L3 探真 vs 探活」\n▸ 信源：xhs-crafter / ppt-zhizuo / web-dev / pic-book / obsidian-loop\n▸ 共同模式：所有 Skill 部署后必须跑 L3 真实数据流通检查\n▸ 周度信号：跨 5 个独立 Skill 项目，统一为方法论\n\n**趋势 3：行动卡片闭环率提升**\n▸ 本周 21 行动卡片中 14 个已关闭（67% 闭环率）\n▸ 上周 18 行动卡片 9 个关闭（50% 闭环率）\n▸ 周度信号：用户行动节奏在加快，obsidian-loop 价值显现"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "yellow-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "yellow-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "🌟 **本周涌现（2 个）**\n\n**涌现 1：「认知排期」机制**\n▸ 单日线索：Dario 信任崩塌 + 卡尔知识管理需排期\n▸ 周度涌现：跨域融合 → 「认知排期」= 定期审视未处理的信息/关系/决策是否进入崩塌临界点\n▸ 数学原理：两个独立信号在同周出现 = 概率耦合（P(同周) = 0.03 vs P(单日) = 0.4）\n▸ 落地：obsidian-loop 周报增加「信任健康度」+「信息积压度」两维\n\n**涌现 2：Skill 健康度三件套**\n▸ 单日线索：5 个独立 Skill 都提到 L3 真实生成\n▸ 周度涌现：归纳为「Skill 健康度三件套」= L1 探活 + L2 半真 + L3 探真\n▸ 数学原理：5 个独立项目同周提及同一概念，远超泊松分布期望值 λ=1.4\n▸ 落地：写入 skill-forge Skill 锻造规范"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "grey-50",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "background_style": "grey-50",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "📊 **本周统计**\n\n| 维度 | 本周 | 上周 | 变化 |\n|------|------|------|------|\n| 日报数 | 7 | 7 | - |\n| 素材篇数 | 42 | 38 | +11% |\n| atoms 总数 | 124 | 98 | +27% |\n| concepts 入库 | 12 | 8 | +50% |\n| 主种子升级 | 2 | 1 | +100% |\n| 跨域融合 | 4 | 2 | +100% |\n| 行动卡片 | 21 | 18 | +17% |\n| 行动闭环率 | 67% | 50% | +17pp |\n| 健康度均分 | 62 | 56 | +6 |\n\n**7 日健康度走势**：56 → 54 → 58 → 60 → 55 → 61 → 62（C 级，环比 +6）"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "column_set",
+        "flex_mode": "none",
+        "background_style": "default",
+        "columns": [
+          {
+            "tag": "column",
+            "width": "weighted",
+            "weight": 1,
+            "vertical_align": "top",
+            "elements": [
+              {
+                "tag": "markdown",
+                "content": "🎯 **下周重点（3 个）**\n\n**重点 1**：修复提取密度 Critical 项\n▸ 目标：从 2.7/千字 提升至 ≥10/千字\n▸ 路径：C0 子代理强制 Read extraction-guide.md + 硬阻断机制\n\n**重点 2**：重启发芽机制\n▸ 目标：本周至少 3 个种子进入 50-Seeds 池\n▸ 路径：发芽日报 cron 重新启用 + 种子标准降为 3/4 命中\n\n**重点 3**：「认知排期」概念落地\n▸ 目标：周报增加「信任健康度」+「信息积压度」两维\n▸ 路径：修改 compile-track-v2.1.md C7 阶段 + 周报模板"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tag": "hr"
+      },
+      {
+        "tag": "button",
+        "text": {
+          "tag": "plain_text",
+          "content": "📄 查看完整周报（含 7 篇日报链接 + 涌现详细推导）"
+        },
+        "type": "primary",
+        "width": "fill",
+        "behaviors": [
+          {
+            "type": "open_url",
+            "default_url": "https://example.com/weekly-review"
+          }
+        ]
+      },
+      {
+        "tag": "markdown",
+        "content": "> 🤖 obsidian-loop v2.1 · 周日 08:00 周报 · schema 2.0 · 邻近色环 indigo+yellow+grey（3 主色系）"
+      }
+    ]
+  }
+}

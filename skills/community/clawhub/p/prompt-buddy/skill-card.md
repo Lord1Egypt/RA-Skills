@@ -1,40 +1,53 @@
-## Description: <br>
-PromptBuddy rewrites user requests into structured optimized prompts, shows a short preview of the optimized prompt, and then helps answer or skips optimization for simple queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PromptBuddy optimizes user inputs into structured prompts, displays the first several optimized lines before answering, and skips simple queries when appropriate.
 
-## Publisher: <br>
-[steventsang18](https://clawhub.ai/user/steventsang18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steventsang18](https://clawhub.ai/user/steventsang18)
 
-## Use Case: <br>
-External users and developers use this skill to see how an informal request is transformed into a structured prompt before receiving an answer. The skill is also intended to bypass optimization for simple queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to inspect and rewrite every user message, which may expose sensitive prompt content. <br>
-Mitigation: Use only with explicit opt-in for conversations where prompt content can be shared with the optimizer, and avoid sending sensitive or regulated information. <br>
-Risk: The submitted artifact references a local optimizer script that is not included for review. <br>
-Mitigation: Require the publisher to include and document the optimizer script before trusting execution, and review the script before installation. <br>
+## Use Case:
 
+Developers and external users can use this skill to transform informal requests into more structured prompts before the agent answers. It is intended for prompt optimization and visible prompt-preview workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/steventsang18/prompt-buddy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text with JSON-derived prompt excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows the first 6-8 lines of optimized_prompt when available; skips optimization for simple queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill processes every user input through a prompt optimizer, which can expose secrets, private documents, credentials, or regulated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when prompt optimization is intentional, avoid sensitive inputs, and add opt-in behavior plus redaction before deployment with private or regulated data.
+
+Risk: The artifact references a local smart_engine.py script that is not included for review.
+
+Mitigation: Review and scan the script before installation, use safe argument passing, and restrict execution to trusted local environments.
+
+## Reference(s):
+
+- [PromptBuddy ClawHub skill page](https://clawhub.ai/steventsang18/skills/prompt-buddy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with prompt-preview text and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Displays the first 6-8 lines of the optimized prompt and may return a short skip notice for simple queries.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

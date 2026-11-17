@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn76xsw4ptqy3btzwbx3wzhkmd81nw32",
-  "slug": "stock-advisor",
+  "name": "stock-advisor",
   "version": "1.0.0",
-  "publishedAt": 1774779704997
+  "description": "你的私人 AI 投顾。提供 A 股个股深度多维分析、持仓管理。",
+  "author": "Antigravity",
+  "entrypoint": "SKILL.md"
 }

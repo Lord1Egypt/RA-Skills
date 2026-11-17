@@ -2,6 +2,63 @@
 
 All notable changes to `research-to-wechat` will be documented in this file.
 
+## 0.7.2 - 2026-10-03
+
+### Added
+
+- `scripts/make_text_cover.py`: default dark text cover at 2048×872. The title
+  block is centered and at most 760px wide, so WeChat's automatic square
+  thumbnail shows the whole title. `--square-preview` writes a check-only crop.
+- Cover design guide: documents the default layout (colors, fonts, coordinates,
+  copy rules), based on the 2026-09-26 GSD tutorial cover.
+- Reader-perspective paragraph review is now a blocking gate before rendering
+  or draft save.
+
+## 0.7.1 - 2026-09-29
+
+### Added
+
+- Phase 6 now invokes the installed sibling `wechat-compliance-check` scanner
+  as a blocking executable gate with a bounded rewrite-and-rescan loop.
+- Missing scanner, Jev failure, and malformed word-list outcomes now block only
+  the WeChat delivery path; non-WeChat workflows remain unchanged.
+
+### Notes
+
+- The gate guarantees zero hits against the current word list and Jev checks,
+  not approval by WeChat's changing and unpublished moderation rules.
+
+## 0.7.0 - 2026-09-28
+
+### Added
+
+- `references/original-rewrite.md` — canonical contract for the optional `rewriteMode: methodology-only`: activation (readable source material AND explicit rewrite intent, both required), the intake evidence record, positive/negative trigger examples, private source separation, methodology brief and exclusion ledger, the independent research ledger, persona resolution, the five Jev evaluation dimensions, gate policy `screening-policy-1`, round records, `rewrite-report.md`, and version binding after render normalization
+- `scripts/jev_rewrite.py` — standard-library-only screening evaluator with offline `--help`, `--policy`, `--example-input`, `--example-output`; credential comes from `TYPESAFE_API_KEY` in the environment
+- `tests/` — offline unit and documentation/regression tests; no network call and no WeChat write
+
+### Updated
+
+- SKILL.md, `references/execution-contract.md`, `references/style-engine.md`, `references/capability-map.md` — each source-preservation instruction now carries a clearly scoped exception that applies **only** in `rewriteMode: methodology-only`; Path A/Path B, capture, rendering, disclosure, factual-accuracy and draft-only behavior are otherwise unchanged
+- README.md and `docs/EXAMPLES.md` — document the mode with positive and negative trigger prompts, and the text-cover-brief versus actual-image limit
+
+### Notes
+
+- Non-triggered workflows are unchanged: no review artifact, no `TYPESAFE_API_KEY`, zero provider calls
+- Gate thresholds are local screening policy, not calibrated legal probabilities and not readership predictions
+- SKILL.md frontmatter `license` and `metadata.license` now read `MIT-0`, matching the terms ClawHub publishes every skill under
+- Released as 0.7.0, not 0.6.0: the ClawHub registry already holds an older, out-of-sequence 0.6.0 (2026-04-16), and version numbers there cannot be reused. 0.5.7 was never published, so the registry's `latest` moves from 0.5.6 to 0.7.0, which includes the 0.5.7 changes below
+
+## 0.5.7 - 2026-09-25
+
+### Added
+
+- `wechat_delivery.py update-cover` — swap ONLY an existing draft's cover, reading the live body back via `draft/get` and re-pushing only `thumb_media_id` so the article body cannot drift (no re-render, no `save-draft`)
+- `references/cover-design-guide.md` — cover/thumbnail dimensions, the single-`thumb_media_id` two-crop reality (wide 头图 and square 缩略图 are crops of one cover, not two API fields), crop-safe text layout, and the manual-settings ordering constraint
+
+### Fixed
+
+- SKILL.md now states the cover must be the wide 2.35:1 `cover.png` with `--cover-type image`; a square thumb gets center-cropped by the feed card and loses its bottom text line
+
 ## 0.4.2 - 2026-03-06
 
 ### Updated

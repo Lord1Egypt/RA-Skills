@@ -1,0 +1,47 @@
+---
+name: {{workflow-name}}
+description: {{one sentence on what this workflow does}}. Trigger scenarios: {{what the user says / what situation activates this flow}}.
+---
+
+# {{Workflow Name}}
+
+{{One sentence of business context. Relevant business rules: reference the corresponding entries in docs/business-capabilities.md.}}
+
+## How to Execute
+
+**This flow's deterministic logic lives in `scripts/{{workflow}}.py`. Run the script directly — do NOT decompose it into per-step MCP tool calls yourself.**
+
+```bash
+# Dangerous flows: dry-run first, show the user, then execute for real
+python3 scripts/{{workflow}}.py --{{id_param}} {{value}} --dry-run
+python3 scripts/{{workflow}}.py --{{id_param}} {{value}}
+```
+
+## Parameters
+
+| Parameter | Meaning | Constraints |
+|---|---|---|
+| `--{{id_param}}` | {{meaning}} | {{format/values}} |
+| `--dry-run` | validate only, no side effects | mandatory first pass for dangerous flows |
+
+## Output
+
+The script prints JSON on stdout:
+
+- `{"ok": true, "data": {...}}` — success; `data.{{field}}` means {{meaning}}
+- `{"ok": false, "error": {"code": ..., "message": ...}}` — failure
+
+## Exit Codes & Remedies
+
+| Code | Meaning | Remedy |
+|---|---|---|
+| 0 | success | report the `data` result to the user |
+| 2 | bad arguments | fix parameters and retry |
+| 3 | business validation failed (e.g. `INVALID_STATE`, `AMOUNT_EXCEEDED`) | report the validation result honestly; **do not retry with tweaked parameters to bypass** |
+| 4 | external dependency error | report the error code; suggest manual checks in the {{system name}} console |
+
+## Forbidden
+
+- Never bypass the script and complete this flow via per-step MCP tool calls (the script contains validations that must run in order)
+- Never resubmit after an exit-code-3 failure
+- {{other flow-specific prohibitions}}

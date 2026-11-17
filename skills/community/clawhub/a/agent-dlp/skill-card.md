@@ -1,45 +1,57 @@
-## Description: <br>
-Agent DLP helps agents check inputs, memory, tool use, outputs, and audit logs for prompt-injection and sensitive-data risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent DLP helps agents inspect prompts, memory entries, tool requests, and outputs for prompt injection, sensitive data exposure, dangerous tool use, and audit logging.
 
-## Publisher: <br>
-[caidongyun](https://clawhub.ai/user/caidongyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caidongyun](https://clawhub.ai/user/caidongyun)
 
-## Use Case: <br>
-Developers and agent operators can use this skill as DLP-oriented guidance for checking prompt injection, sensitive data exposure, risky tool calls, output filtering, and audit logging in agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release claims DLP enforcement behavior without shipping the referenced implementation files. <br>
-Mitigation: Review the package before installing and ask the publisher to provide the missing implementation before relying on the skill for sensitive DLP enforcement. <br>
-Risk: The release requests wallet-related access that is not explained by the submitted artifact. <br>
-Mitigation: Ask the publisher to explain or remove the wallet capability before using the skill. <br>
-Risk: The artifact describes audit logging but does not document log redaction, retention, storage, or protection controls. <br>
-Mitigation: Require clear audit-log handling documentation before deploying the skill in workflows that may process sensitive data. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add DLP checks around agent workflows, including input injection detection, memory filtering, tool approval checks, output redaction or blocking, and audit review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caidongyun/agent-dlp) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/caidongyun) <br>
-- [Submitted skill definition](artifact/SKILL.md) <br>
-- [Submitted feature list](artifact/FEATURES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with CLI examples, configuration snippets, and Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The submitted artifact describes status checks, input checks, output checks, tool checks, log review, and normal/strict modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill claims broad inspection and audit logging of prompts, outputs, memory entries, tool parameters, IP addresses, and MAC addresses without enough scoping, retention, or user-notice detail.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using it with real user data, define logged fields, redaction-before-storage behavior, access controls, retention, and user notice.
+
+Risk: Normal mode may log some detected issues while blocking only severe risks.
+
+Mitigation: Use strict mode for sensitive workflows and test representative prompts, outputs, memory entries, and tool calls before relying on the skill.
+
+Risk: Dangerous tool control depends on correctly configured approval policy and review practices.
+
+Mitigation: Require explicit approval for destructive or high-impact tools and review audit logs for denied, approved, and bypassed tool actions.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/caidongyun/skills/agent-dlp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands, Python examples, and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes normal and strict operating modes plus audit-log review guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/SKILL.md; artifact/FEATURES.md mentions v2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

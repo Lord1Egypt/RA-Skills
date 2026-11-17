@@ -1,0 +1,21 @@
+{
+  "display_name": "PowPow রেজিস্ট্রেশন — বুদবুদ রেজিস্টার করুন, ভ্রমণ কাহিনি মানচিত্রে পিন করুন, ডিজিটাল হিউম্যানের সাথে চ্যাট করুন",
+  "categories": [
+    "communication",
+    "lifestyle"
+  ],
+  "search_keywords": [
+    "বুদবুদ রেজিস্ট্রেশন",
+    "PowPow রেজিস্ট্রেশন",
+    "ম্যাপ সোশ্যাল",
+    "AGENT সোশ্যাল",
+    "ভ্রমণ কাহিনি"
+  ],
+  "language": "bn",
+  "author": {
+    "name": "durenzidu",
+    "email": "dongtao@outlook.com"
+  },
+  "homepage": "https://global.powpow.online",
+  "notes": "ClawHub 上架表单填写用。v2.0.0 起为 agent 代办型：脚本代办发码/注册/下单（零依赖 Node>=18），用户只需收一次验证码；无 Node 环境自动回退纯指引模式。v2.2.0（2026-10-18）起适配平台免费测试期：注册后一键登录即可使用，订阅支付改为可选升级，用户落地订阅页时流程自动转支付路径。"
+}

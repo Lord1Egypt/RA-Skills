@@ -1,42 +1,56 @@
-## Description: <br>
-Guides agents and developers through integrating PayRam as a self-hosted crypto and stablecoin payment gateway for applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents and developers integrate PayRam as a self-hosted crypto and stablecoin payment gateway for USDT, USDC, Bitcoin, and ETH payments across supported networks.
 
-## Publisher: <br>
-[BuddhaSource](https://clawhub.ai/user/BuddhaSource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[buddhasource](https://clawhub.ai/user/buddhasource)
 
-## Use Case: <br>
-Developers and agents use this skill to assess projects, configure PayRam, generate payment and webhook integration code, and scaffold applications that accept crypto or stablecoin payments without hosted payment intermediaries. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to run a third-party MCP helper and generate payment-related code. <br>
-Mitigation: Inspect the PayRam MCP repository, prefer a pinned commit or release, and run it in a development environment before production use. <br>
-Risk: Generated payment, webhook, payout, and environment files can affect funds flow or application secrets if applied without review. <br>
-Mitigation: Review generated files and configuration before deploying them to production. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PayRam website](https://payram.com) <br>
-- [PayRam GitHub](https://github.com/PayRam) <br>
-- [PayRam helper MCP server](https://github.com/PayRam/payram-helper-mcp-server) <br>
-- [PayRam setup skill](https://github.com/PayRam/payram-helper-mcp-server/tree/main/skills/payram-setup) <br>
+## Use Case:
 
+External developers and engineering teams use this skill to evaluate PayRam, run its MCP helper server, generate payment and webhook integration code, and scaffold payment-enabled starter applications.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, framework scaffolding guidance, and configuration templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated payment, webhook, payout, and environment files should be reviewed before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to run an external MCP server from an unpinned repository.
+
+Mitigation: Pin the referenced repository to a reviewed commit and run the MCP server only in a sandbox or disposable development environment.
+
+Risk: Codebase assessment and scaffolding tools may touch sensitive payment flows or project files.
+
+Mitigation: Use a clean branch, review generated changes before merging, and avoid exposing unrelated secrets or wallet credentials during assessment or scaffolding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/buddhasource/skills/crypto-payments-self-hosted-payram)
+- [PayRam setup skill](https://github.com/PayRam/payram-helper-mcp-server/tree/main/skills/payram-setup)
+- [PayRam helper MCP server](https://github.com/PayRam/payram-helper-mcp-server)
+- [PayRam GitHub organization](https://github.com/PayRam)
+- [PayRam website](https://payram.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce framework-specific payment routes, webhook handlers, environment templates, starter app scaffolding guidance, and MCP tool instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

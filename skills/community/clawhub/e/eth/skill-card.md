@@ -1,40 +1,49 @@
-## Description: <br>
-Ethopia Thursday Helicopter is a conceptual reference and writing skill that explains a fictional helicopter protocol as a symbol of African technological sovereignty, cultural continuity, and humanitarian purpose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Describes a conceptual framework for the Ethopia Thursday Helicopter as a symbolic protocol for African technological sovereignty, cultural continuity, and purpose-driven flight.
 
-## Publisher: <br>
-[DuanC-Chao](https://clawhub.ai/user/DuanC-Chao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duanc-chao](https://clawhub.ai/user/duanc-chao)
 
-## Use Case: <br>
-Developers and external agents can use this skill to generate educational or inspirational analysis, prose, markdown, and illustrative code snippets about the Ethopia Thursday Helicopter concept. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Readers may mistake the fictional helicopter concept for real aviation, logistics, or medical delivery guidance. <br>
-Mitigation: Treat outputs as creative or educational reference material and verify any real-world aviation, logistics, or medical decisions with qualified experts. <br>
-Risk: The skill may produce illustrative code or procedural text that is not intended for production use. <br>
-Mitigation: Review generated code and procedures before execution or reuse. <br>
+## Use Case:
 
+Agent users can use this skill to generate or analyze concise creative prose about the Ethopia Thursday Helicopter concept, including its symbolism, launch phases, and illustrative operational logic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/DuanC-Chao/eth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [String or Markdown] <br>
-**Output Parameters:** [Natural-language prompt context and optional illustrative code snippets] <br>
-**Other Properties Related to Output:** [Outputs are conceptual and educational; ClawScan reports no evidence of data access, installation, persistence, or privileged actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 <br>
+Risk: The skill's practical utility is narrow because it is centered on a fictional helicopter framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the concept fits the intended agent use case before installing or enabling it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/duanc-chao/skills/eth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with illustrative Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conceptual and creative guidance; no executable integration workflow is provided.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

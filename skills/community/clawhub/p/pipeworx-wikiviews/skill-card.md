@@ -1,39 +1,50 @@
-## Description: <br>
-Provides Wikipedia pageview data, including daily views for specific articles, top 1000 articles by date, and total English Wikipedia traffic trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Wikipedia pageview data including daily views for specific articles, top articles by date, and aggregate English Wikipedia traffic trends.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to query Wikipedia article, top-page, and project-level pageview metrics through a Pipeworx-hosted MCP endpoint for research, trend analysis, and reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wikipedia article names and date ranges may be sent to a Pipeworx-hosted MCP endpoint. <br>
-Mitigation: Avoid sensitive private context in prompts that invoke the skill and review endpoint use before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to query Wikipedia article, top-page, and project-wide pageview analytics through the disclosed Pipeworx wikiviews MCP endpoint.
 
-## Reference(s): <br>
-- [Pipeworx wikiviews MCP endpoint](https://gateway.pipeworx.io/wikiviews/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-wikiviews) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown guidance with JSON configuration and JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Wikipedia pageview counts, rankings, article titles, and aggregate traffic totals from the configured MCP endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Wikipedia pageview queries are sent to the disclosed Pipeworx gateway rather than directly to Wikimedia.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive private research topics through this skill when that traffic exposure matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-wikiviews)
+- [Pipeworx wikiviews MCP endpoint](https://gateway.pipeworx.io/wikiviews/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Wikipedia pageview counts, ranked article lists, and aggregate traffic trend data from a disclosed external MCP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

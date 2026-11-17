@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability report
+    url: https://github.com/JohnSmithfan/K12-Teacher/blob/main/SECURITY.md
+    about: Report security issues privately per SECURITY.md. Do not open public issues.
+  - name: Contribution guidelines
+    url: https://github.com/JohnSmithfan/K12-Teacher/blob/main/CONTRIBUTING.md
+    about: Read the contribution workflow, branch naming, and commit format before opening a pull request.
+  - name: Support and usage questions
+    url: https://github.com/JohnSmithfan/K12-Teacher/blob/main/SUPPORT.md
+    about: See the support channels for usage questions about the teaching methodology.

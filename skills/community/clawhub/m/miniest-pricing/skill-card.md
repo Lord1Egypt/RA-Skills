@@ -1,40 +1,48 @@
-## Description: <br>
-Provides Chinese-language pricing guidance for products or services using minimalist entrepreneurship principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用极简主义创业者原则帮助确定产品或服务的定价。
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ethan-china](https://clawhub.ai/user/ethan-china)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Entrepreneurs, founders, and product builders use this skill to choose an initial price, compare cost-based and value-based pricing, plan pricing tiers, and calculate the customer count needed for financial independence.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad mentions of price and provide pricing advice when the user did not intend to request it.
+
+Mitigation: Users should phrase requests clearly when they do or do not want pricing guidance, and review recommendations before applying them to business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Founders, builders, and product teams use this skill to choose an initial price, compare cost-based and value-based pricing, plan pricing tiers, and estimate the customer count needed for financial independence. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad pricing-related activation terms may cause the skill to respond to general price discussions. <br>
-Mitigation: Use it when the user is explicitly seeking product or service pricing guidance, and redirect unrelated price questions to a more specific workflow. <br>
-Risk: Pricing conversations can include confidential business numbers. <br>
-Mitigation: Avoid sharing sensitive revenue, cost, margin, or customer data unless it is appropriate to include in the chat context. <br>
+**Output Format:** [Markdown or plain text advisory guidance with pricing questions, calculations, and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethan-china/miniest-pricing) <br>
+**Other Properties Related to Output:** [Chinese-language pricing guidance; no code, credential access, persistence, or hidden behavior is indicated by the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include pricing model recommendations, an initial price point, tier ideas, financial-independence calculations, and reminders to revisit pricing.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

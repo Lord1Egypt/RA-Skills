@@ -1,43 +1,49 @@
-## Description: <br>
-Musk's mental operating system for applying first-principles reasoning, cost deconstruction, decision heuristics, and direct engineering-style analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Musk's mental operating system distills research from biographies, podcasts, tweets, court testimonies, decision records, and external critiques into 5 core mental models, 8 decision heuristics, and a complete expression DNA.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers, operators, and other external users use this skill as a thinking advisor for cost analysis, first-principles problem solving, process critique, vertical-integration decisions, and radical iteration planning. It should be used only where the user explicitly asks for a Musk-style perspective or the problem involves quantitative cost, engineering, or strategic assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona's confident tone could make estimates, assumptions, or recommendations seem more authoritative than the evidence supports. <br>
-Mitigation: Treat outputs as a thinking aid and independently verify quantitative estimates, assumptions, and high-impact recommendations before acting. <br>
-Risk: The framework may be misapplied to engineering, financial, legal, safety, or highly regulated decisions where unsupported conclusions could cause harm. <br>
-Mitigation: Use domain experts, current data, and formal review processes for high-impact decisions; do not rely on the skill as an authority. <br>
-Risk: Musk-style cost and iteration analysis can underweight human costs, resource constraints, and systemic resistance. <br>
-Mitigation: Balance first-principles analysis with resource, workforce, regulatory, and operational feasibility checks. <br>
+## Use Case:
 
+External users and developers use this skill as a thinking advisor for cost deconstruction, first-principles analysis, process/design scrutiny, vertical-integration decisions, and challenges to industry assumptions through a Musk-style engineering and business lens.
 
-## Reference(s): <br>
-- [Musk Mindset on ClawHub](https://clawhub.ai/openlark/musk-mindset) <br>
-- [Musk Mindset - Deep Reference](references/deep-dive.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured sections and optional estimates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only persona and decision-framework output; no code execution, data access, credential use, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can produce assertive, aggressive optimization guidance that may underweight human, legal, regulatory, or resource constraints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations critically against organizational policy, applicable law, safety constraints, and available resources before acting.
+
+## Reference(s):
+
+- [Musk Mindset - Deep Reference](references/deep-dive.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis with structured sections and optional order-of-magnitude estimates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only output; may include cost ratios, prioritized recommendations, and concise decision guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

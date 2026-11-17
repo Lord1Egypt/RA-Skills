@@ -1,40 +1,48 @@
-## Description: <br>
-Guides users through tracking AI-driven search traffic in Google Analytics 4 and Google Search Console. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through tracking AI-driven search traffic in Google Analytics 4 and Google Search Console.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing, analytics, and SEO practitioners use this skill to separate AI referral and AI search traffic from other acquisition channels in GA4 and GSC. It helps configure reports, channel groups, source matching, and AI Overview tracking checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may create or modify GA4 reporting views or channel groups in the wrong analytics property.
+
+Mitigation: Review the intended GA4 property and channel group order before saving changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Marketers, analysts, and site operators use this skill to identify AI referral sources, create GA4 reports or channel groups, and reason about AI Overview traffic in GA4 and GSC. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Configuration instructions, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: GA4 regex, channel group, report, or GTM changes can alter traffic categorization. <br>
-Mitigation: Review suggested changes against the current analytics setup and keep a copy of existing reporting settings before applying them. <br>
-Risk: AI traffic source patterns may not match every site or may change over time. <br>
-Mitigation: Adapt regex patterns to observed referral sources and validate reports before using them for business decisions. <br>
+**Output Format:** [Markdown guidance with analytics setup steps and regex examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/ai-traffic) <br>
+**Other Properties Related to Output:** [Produces GA4 and GSC tracking guidance; does not execute code or access local data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with GA4/GSC setup steps, checklists, and regex snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; may propose analytics configuration changes and regex patterns.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

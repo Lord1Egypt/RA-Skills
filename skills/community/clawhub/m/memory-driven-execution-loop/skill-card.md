@@ -1,37 +1,53 @@
-## Description: <br>
-Deterministic external-memory execution loop using rules/goal/plan/progress/notes/lessons with strict preflight, one-step execution, and measurable lesson quality gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic external-memory execution loop using rules/goal/plan/progress/notes/lessons with strict preflight, one-step execution, and measurable lesson quality gates.
 
-## Publisher: <br>
-[kdylan1010-alt](https://clawhub.ai/user/kdylan1010-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kdylan1010-alt](https://clawhub.ai/user/kdylan1010-alt)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run work from explicit Markdown memory files, enforce one clear next action, record reasoning and progress, and turn failures into reusable lessons. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent task memory files can accumulate sensitive, stale, or unrelated project information if they are not curated. <br>
-Mitigation: Keep rules.md, goal.md, plan.md, progress.md, notes.md, and lessons.md in a trusted project folder, review them before use, and avoid storing secrets or unrelated private information in those files. <br>
+## Use Case:
 
+External users and developers use this skill to run tasks through a local file-backed memory loop that records rules, goals, plans, progress, notes, and lessons before executing one clear step at a time.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files] <br>
-**Output Format:** [Markdown guidance and file-update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires trusted local rules.md, goal.md, plan.md, progress.md, notes.md, and lessons.md files; no executable code, installs, credentials, or network behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill relies on persistent local memory files that may accumulate sensitive task details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where persistent state is desired, and review the memory files before and after sensitive tasks.
+
+Risk: Stored notes, progress, or lessons can steer later task execution if they become stale or inaccurate.
+
+Mitigation: Review rules.md, goal.md, plan.md, progress.md, notes.md, and lessons.md during preflight before relying on the next action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kdylan1010-alt/skills/memory-driven-execution-loop)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown guidance for stepwise agent execution and memory-file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local markdown memory files: rules.md, goal.md, plan.md, progress.md, notes.md, and lessons.md.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

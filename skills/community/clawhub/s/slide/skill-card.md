@@ -1,42 +1,58 @@
-## Description: <br>
-Create and manage presentation slides using JSONL storage for deck building, theme application, and HTML or JSON export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage presentation slides using JSONL storage. Use when building slide decks, applying themes, or exporting to HTML presentations.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and agents use this skill to create, edit, organize, preview, and export local slide decks with themes, templates, speaker notes, and ordered slides. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Bash/Python helper runs locally and writes presentation content, including speaker notes, to ~/.slide/data.jsonl. <br>
-Mitigation: Install only when local script execution and persistent local storage are acceptable, and avoid placing secrets or highly sensitive content in decks. <br>
-Risk: Exported presentations can include business content copied from local deck records. <br>
-Mitigation: Review generated HTML or JSON exports before sharing and delete local or exported files when the deck content should no longer persist. <br>
+## Use Case:
 
+Developers and presentation authors use this skill to create, edit, theme, preview, and export local slide decks with speaker notes and built-in templates.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/slide) <br>
-- [Publisher Profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, HTML, Shell commands, Files] <br>
-**Output Format:** [Structured JSON to stdout, with optional self-contained HTML or JSON export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores deck and slide records locally in ~/.slide/data.jsonl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Slide data and speaker notes are stored locally in ~/.slide/data.jsonl.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local storage of deck content and notes is acceptable, and avoid storing sensitive information unless the local environment is appropriately protected.
+
+Risk: HTML export can turn slide text into executable browser script.
+
+Mitigation: Avoid adding untrusted HTML or text from outside sources, and review exported HTML before sharing or hosting it.
+
+Risk: Exports can write to user-supplied paths and may overwrite existing user-writable files.
+
+Mitigation: Choose export paths carefully and verify the target path before running an export.
+
+## Reference(s):
+
+- [Slide ClawHub Skill Page](https://clawhub.ai/ckchzh/skills/slide)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [JSON command output, text previews, and exported HTML or JSON files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores deck and slide records locally in ~/.slide/data.jsonl; HTML exports are self-contained files.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence; artifact frontmatter and script report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

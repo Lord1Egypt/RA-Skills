@@ -1,47 +1,62 @@
-## Description: <br>
-腾讯广告妙问 helps agents answer Tencent Ads and WeChat Ads questions, query campaign reports, analyze accounts, diagnose delivery issues, find creative inspiration, and guide ad material review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Miaowen-based Tencent Ads assistant that helps agents answer advertising questions, query and analyze ad performance, diagnose delivery issues, suggest creative ideas, and support ad material review.
 
-## Publisher: <br>
-[yishuang07](https://clawhub.ai/user/yishuang07) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yishuang07](https://clawhub.ai/user/yishuang07)
 
-## Use Case: <br>
-Marketing operators, advertisers, and agent users use this skill to consult Tencent Ads guidance, query authorized account reports, analyze delivery performance, diagnose campaign issues, get creative examples, and handle material review questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Tencent Ads/Miaowen API tokens are required and stored locally for helper scripts. <br>
-Mitigation: Use the local token setup flow, avoid exposing tokens in chat or logs, and rotate the token if it may have been shared. <br>
-Risk: The API-mode helper can use the stored token for broad authenticated requests. <br>
-Mitigation: Keep API-mode use to documented Tencent Ads report paths and review request parameters before execution. <br>
-Risk: Material audit workflows can upload local files to Tencent/Miaowen services. <br>
-Mitigation: Upload only files the user is authorized to send for audit and avoid sensitive or unrelated materials. <br>
+## Use Case:
 
+Advertising operators, marketers, and agents use this skill to consult Tencent Ads and WeChat Ads guidance, retrieve account and report data, analyze delivery performance, diagnose under-delivery, generate creative inspiration, and assist with material review.
 
-## Reference(s): <br>
-- [腾讯广告妙问 on ClawHub](https://clawhub.ai/yishuang07/tencent-ads-assistant) <br>
-- [妙问官网](https://miaowen.qq.com/) <br>
-- [Token Management](references/token_management.md) <br>
-- [daily_reports/get API Reference](references/api/daily_reports_get.md) <br>
-- [hourly_reports/get API Reference](references/api/hourly_reports_get.md) <br>
-- [Report Fields Reference](references/api/report_fields.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses, JSON API results, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Tencent Ads/Miaowen access token for authenticated account data, report queries, and file upload workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact frontmatter says 1.0.5) <br>
+Risk: The skill handles Miaowen API keys in ways the security evidence flags as unsafe.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid pasting API keys into chat, prefer a safer local secret mechanism, and rotate any token previously pasted into conversation or passed on a command line.
+
+Risk: The skill can upload arbitrary local files to a remote service.
+
+Mitigation: Check the exact file path before upload and upload only intended advertising materials.
+
+Risk: The skill sends requests to Tencent/Miaowen endpoints and may access advertising account data.
+
+Mitigation: Use the skill only if you trust the publisher and Tencent/Miaowen endpoints, and limit account scope to the intended accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yishuang07/skills/tencent-ads-assistant)
+- [Miaowen platform](https://miaowen.qq.com/)
+- [Token management](references/token_management.md)
+- [daily_reports/get API reference](references/api/daily_reports_get.md)
+- [hourly_reports/get API reference](references/api/hourly_reports_get.md)
+- [Report fields reference](references/api/report_fields.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON responses with shell command and configuration guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Miaowen chat, report, and file upload endpoints through bundled Node.js scripts.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Book blowout services through Lokuli MCP. Use when user needs to find and book blowout. Triggers on requests like "book a blowout", "find blowout near me", or any blowout service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book blowout services through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users and agents use this skill to find blowout services, check provider availability, and create bookings through Lokuli's MCP server. It is intended for appointment booking workflows that may require location, selected provider and service, appointment time, and customer contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send personal contact details and booking selections to an external booking service. <br>
-Mitigation: Require explicit user approval before sending name, email, phone number, location or ZIP code, selected provider, service, appointment time, and final booking terms. <br>
-Risk: The skill can create a real appointment through the external service. <br>
-Mitigation: Confirm the appointment details and user consent immediately before invoking the booking creation tool. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing for Book Blowout](https://clawhub.ai/edwardrodriguez703-design/book-blowout) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for blowout providers, check appointment availability, and create a booking through Lokuli after confirming the provider, time, and contact details.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown with JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can guide calls to Lokuli MCP tools for search, availability checks, and booking creation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send a user's name, email, and phone number to an external booking endpoint.
+
+Mitigation: Confirm the provider, service, appointment time, and explicit user consent before creating a booking or sharing contact information.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-blowout)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON-RPC MCP tool call payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider search, availability checks, and booking requests that use customer contact details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

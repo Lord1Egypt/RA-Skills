@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7damjysh059fvz4j4c13qgss86q0dj",
-  "slug": "tyrpay-buyer-skill",
+  "name": "tyrpay-buyer-skill",
   "version": "0.1.8",
-  "publishedAt": 1778867127123
+  "description": "Buyer-side TyrPay workflow bundle for LLM agents.",
+  "entrypoint": "SKILL.md",
+  "tags": ["tyrpay", "payments", "evm", "agents", "buyer"],
+  "author": "TyrPay"
 }

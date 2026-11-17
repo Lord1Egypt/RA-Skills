@@ -1,41 +1,58 @@
-## Description: <br>
-Provides authenticated access to Moegirlpedia's MediaWiki API for page search, wikitext parsing, page content, categories, category members, page summaries, user permissions, watchlist briefs, and recent changes briefs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides authenticated Moegirlpedia MediaWiki API access for searching pages, retrieving page content and categories, parsing wikitext, checking user information, and summarizing watchlist or recent changes.
 
-## Publisher: <br>
-[annangela](https://clawhub.ai/user/annangela) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[annangela](https://clawhub.ai/user/annangela)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve authenticated Moegirlpedia data through documented command-line operations. It supports read-oriented wiki research workflows that need search results, page content, parsed wikitext, category data, user permission data, watchlist summaries, or recent changes summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Moegirlpedia credentials could expose account access if the bot password is overprivileged or reused. <br>
-Mitigation: Use a dedicated Moegirlpedia bot password instead of the main password, grant only the documented read and watchlist-view permissions, and restrict IP ranges and editable pages where possible. <br>
-Risk: The bundled client contains unused write-capable helpers even though this release is disclosed as an authenticated reader. <br>
-Mitigation: Avoid granting edit, rollback, options, watchlist-modification, or other write-oriented rights unless a future version explicitly documents and gates those actions. <br>
+## Use Case:
 
+External developers and agents use this skill to retrieve authenticated Moegirlpedia data, including page details, categories, user permissions, watchlist summaries, and recent-change summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/annangela/moegirlpedia-mediawiki-api) <br>
-- [Moegirlpedia Bot Passwords](https://mzh.moegirl.org.cn/Special:BotPasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [Structured JSON printed to stdout; brief-style commands include concise summary arrays.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports pagination through continueToken values; requires bash, Node.js, internet access, MOEGIRLPEDIA_USERNAME, and MOEGIRLPEDIA_BOT_PASSWORD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.0 (source: server release metadata and package.json) <br>
+Risk: The skill uses a Moegirlpedia bot password and can access authenticated data, including watchlist information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated BotPassword with only the documented basic and watchlist permissions; avoid broad edit, rollback, or account-changing rights.
+
+Risk: Persistent memory may be used for credential-rotation tracking across sessions.
+
+Mitigation: Disable or ignore memory-based rotation tracking unless explicitly desired, and handle password rotation reminders outside persistent memory when needed.
+
+Risk: Security evidence reports dormant account-changing API methods in the bundled client.
+
+Mitigation: Review before installation and run only the documented read, lookup, watchlist, and recent-change operations with least-privilege credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/annangela/skills/moegirlpedia-mediawiki-api)
+- [Moegirlpedia BotPasswords](https://mzh.moegirl.org.cn/Special:BotPasswords)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Structured JSON on stdout, with brief text arrays for summary operations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports pagination tokens; the skill documentation says not to fetch additional pages unless the user explicitly requests more content.]
+
+## Skill Version(s):
+
+0.7.0 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

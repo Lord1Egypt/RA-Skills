@@ -1,0 +1,835 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:taohtml:project-handoff:1.1",
+  "title": "TaoHtml portable project handoff snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "workspace_ref",
+    "project_identity",
+    "handoff_snapshot",
+    "task",
+    "source_ledger",
+    "decisions",
+    "confirmations",
+    "design_binding",
+    "artifacts",
+    "qa_records",
+    "lineage",
+    "audit_metadata"
+  ],
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "schema_version": {"const": "1.0"}
+          },
+          "not": {"required": ["current_build"]}
+        },
+        {
+          "properties": {
+            "schema_version": {"const": "1.1"}
+          },
+          "required": ["current_build"]
+        }
+      ]
+    }
+  ],
+  "properties": {
+    "schema_version": {"enum": ["1.0", "1.1"]},
+    "workspace_ref": {"$ref": "#/$defs/workspace_ref"},
+    "project_identity": {"$ref": "#/$defs/project_identity"},
+    "handoff_snapshot": {"$ref": "#/$defs/handoff_snapshot"},
+    "task": {"$ref": "#/$defs/task"},
+    "source_ledger": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/source_record"}
+    },
+    "decisions": {"$ref": "#/$defs/decisions"},
+    "confirmations": {"$ref": "#/$defs/confirmations"},
+    "design_binding": {"$ref": "#/$defs/design_binding"},
+    "artifacts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/artifact"}
+    },
+    "qa_records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/qa_record"}
+    },
+    "current_build": {
+      "anyOf": [
+        {"$ref": "#/$defs/current_build"},
+        {"type": "null"}
+      ]
+    },
+    "lineage": {"$ref": "#/$defs/lineage"},
+    "audit_metadata": {"$ref": "#/$defs/audit_metadata"}
+  },
+  "$defs": {
+    "short_string": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "nullable_short_string": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "nullable_text": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "nullable_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "workflow_profile_definition_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "nullable_workflow_profile_definition_version": {
+      "anyOf": [
+        {"$ref": "#/$defs/workflow_profile_definition_version"},
+        {"type": "null"}
+      ]
+    },
+    "string_list": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/text"},
+      "uniqueItems": true
+    },
+    "id_list": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/short_string"},
+      "uniqueItems": true
+    },
+    "environment_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["local_absolute_path", "observed_at"],
+      "properties": {
+        "local_absolute_path": {"$ref": "#/$defs/nullable_text"},
+        "observed_at": {"$ref": "#/$defs/nullable_short_string"}
+      }
+    },
+    "workspace_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "portable_ref", "observation"],
+      "properties": {
+        "kind": {"enum": ["opaque_ref", "unavailable"]},
+        "portable_ref": {"$ref": "#/$defs/nullable_text"},
+        "observation": {"$ref": "#/$defs/environment_observation"}
+      }
+    },
+    "project_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project_id", "identity_version", "project_ref"],
+      "properties": {
+        "project_id": {"$ref": "#/$defs/short_string"},
+        "identity_version": {"$ref": "#/$defs/short_string"},
+        "project_ref": {"$ref": "#/$defs/text"}
+      }
+    },
+    "handoff_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["handoff_id", "created_at", "exporter_version"],
+      "properties": {
+        "handoff_id": {"$ref": "#/$defs/short_string"},
+        "created_at": {"$ref": "#/$defs/short_string"},
+        "exporter_version": {"$ref": "#/$defs/short_string"}
+      }
+    },
+    "requested_delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "affected_source_refs",
+        "affected_decision_ids",
+        "preserves_meaning",
+        "interpretation_basis",
+        "confirmation_ref"
+      ],
+      "properties": {
+        "summary": {"$ref": "#/$defs/text"},
+        "affected_source_refs": {"$ref": "#/$defs/id_list"},
+        "affected_decision_ids": {"$ref": "#/$defs/id_list"},
+        "preserves_meaning": {"type": ["boolean", "null"]},
+        "interpretation_basis": {
+          "enum": [
+            "not_applicable",
+            "source_reinspection",
+            "explicit_user_confirmation",
+            "both"
+          ]
+        },
+        "confirmation_ref": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_intent",
+        "content_route",
+        "change_class",
+        "requested_delta"
+      ],
+      "properties": {
+        "task_intent": {
+          "enum": ["new_build", "review_only", "continue_existing"]
+        },
+        "content_route": {
+          "enum": ["idea_only", "word_pdf", "existing_ppt_html", null]
+        },
+        "change_class": {
+          "enum": [
+            "not_applicable",
+            "meaning_preserving_local",
+            "meaning_changing"
+          ]
+        },
+        "requested_delta": {"$ref": "#/$defs/requested_delta"}
+      }
+    },
+    "portable_locator": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value", "sha256"],
+          "properties": {
+            "kind": {"const": "portable_path"},
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096,
+              "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//).+$"
+            },
+            "sha256": {"$ref": "#/$defs/nullable_sha256"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value", "sha256"],
+          "properties": {
+            "kind": {
+              "enum": [
+                "stable_external_locator",
+                "conversation_ref",
+                "upload_ref",
+                "description_only"
+              ]
+            },
+            "value": {"$ref": "#/$defs/text"},
+            "sha256": {"$ref": "#/$defs/nullable_sha256"}
+          }
+        }
+      ]
+    },
+    "inspection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["coverage", "observed_at", "observation_basis"],
+      "properties": {
+        "coverage": {"enum": ["complete", "partial", "not_retrieved"]},
+        "observed_at": {"$ref": "#/$defs/nullable_short_string"},
+        "observation_basis": {"$ref": "#/$defs/text"}
+      }
+    },
+    "source_support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "support_kind"],
+      "properties": {
+        "claim_id": {"$ref": "#/$defs/short_string"},
+        "support_kind": {
+          "enum": [
+            "source_fact",
+            "orientation_only",
+            "rendered_state",
+            "visual_fact",
+            "generated_content",
+            "availability_description"
+          ]
+        }
+      }
+    },
+    "source_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "identity",
+        "source_binding",
+        "source_role",
+        "availability_status",
+        "evidence_verification",
+        "inspection",
+        "supports",
+        "limits"
+      ],
+      "properties": {
+        "source_id": {"$ref": "#/$defs/short_string"},
+        "identity": {"$ref": "#/$defs/portable_locator"},
+        "source_binding": {
+          "enum": [
+            "current_upload_or_user_explicit",
+            "task_instruction_explicit",
+            "candidate_confirmed",
+            "agent_retrieved_external"
+          ]
+        },
+        "source_role": {
+          "enum": [
+            "original_customer_material",
+            "external_public_evidence",
+            "secondary_handoff_summary",
+            "current_artifact",
+            "visual_reference",
+            "agent_generated_material",
+            "described_unavailable_material"
+          ]
+        },
+        "availability_status": {
+          "enum": [
+            "workspace_readable",
+            "external_retrieved_inspected",
+            "platform_visible_not_retrieved",
+            "handoff_record_only",
+            "confirmed_missing",
+            "not_yet_verified"
+          ]
+        },
+        "evidence_verification": {
+          "enum": ["verified", "unverified", "conflicting", "not_applicable"]
+        },
+        "inspection": {"$ref": "#/$defs/inspection"},
+        "supports": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/source_support"},
+          "uniqueItems": true
+        },
+        "limits": {
+          "allOf": [
+            {"$ref": "#/$defs/string_list"},
+            {"minItems": 1}
+          ]
+        }
+      }
+    },
+    "decision_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "category", "value", "basis_source_refs"],
+      "properties": {
+        "decision_id": {"$ref": "#/$defs/short_string"},
+        "category": {"$ref": "#/$defs/short_string"},
+        "value": {"$ref": "#/$defs/text"},
+        "basis_source_refs": {"$ref": "#/$defs/id_list"}
+      }
+    },
+    "inferred_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "category", "value", "basis"],
+      "properties": {
+        "decision_id": {"$ref": "#/$defs/short_string"},
+        "category": {"$ref": "#/$defs/short_string"},
+        "value": {"$ref": "#/$defs/text"},
+        "basis": {"$ref": "#/$defs/text"}
+      }
+    },
+    "unresolved_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_id",
+        "category",
+        "impact",
+        "required_input",
+        "blocks_continuation",
+        "blocks_delivery"
+      ],
+      "properties": {
+        "decision_id": {"$ref": "#/$defs/short_string"},
+        "category": {"$ref": "#/$defs/short_string"},
+        "impact": {"$ref": "#/$defs/text"},
+        "required_input": {"$ref": "#/$defs/text"},
+        "blocks_continuation": {"type": "boolean"},
+        "blocks_delivery": {"type": "boolean"}
+      }
+    },
+    "decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["still_valid", "inferred", "unresolved"],
+      "properties": {
+        "still_valid": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/decision_record"}
+        },
+        "inferred": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/inferred_decision"}
+        },
+        "unresolved": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/unresolved_decision"}
+        }
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "scope",
+        "artifact_ref",
+        "artifact_sha256",
+        "confirmation_ref"
+      ],
+      "properties": {
+        "status": {"enum": ["not_required", "pending", "confirmed"]},
+        "scope": {
+          "enum": ["not_applicable", "inherited_baseline", "current_snapshot"]
+        },
+        "artifact_ref": {"$ref": "#/$defs/nullable_short_string"},
+        "artifact_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "confirmation_ref": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "production_authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "scope",
+        "record_artifact_ref",
+        "record_sha256",
+        "target_artifact_ref",
+        "target_artifact_sha256",
+        "design_brief_sha256",
+        "authorized_actions"
+      ],
+      "properties": {
+        "status": {"enum": ["not_required", "pending", "authorized"]},
+        "scope": {
+          "enum": ["not_applicable", "inherited_baseline", "current_snapshot"]
+        },
+        "record_artifact_ref": {"$ref": "#/$defs/nullable_short_string"},
+        "record_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "target_artifact_ref": {"$ref": "#/$defs/nullable_short_string"},
+        "target_artifact_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "design_brief_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "authorized_actions": {
+          "type": "array",
+          "items": {
+            "enum": ["formal-html", "browser-qa", "deliver-formal-html"]
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "confirmations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["vi", "design_brief", "production_authorization"],
+      "properties": {
+        "vi": {"$ref": "#/$defs/confirmation"},
+        "design_brief": {"$ref": "#/$defs/confirmation"},
+        "production_authorization": {
+          "$ref": "#/$defs/production_authorization"
+        }
+      }
+    },
+    "resource_locator": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": {"const": "portable_path"},
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096,
+              "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)(?!.*//).+$"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": {"const": "stable_locator"},
+            "value": {"$ref": "#/$defs/text"}
+          }
+        }
+      ]
+    },
+    "built_in_theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theme_id", "theme_version", "theme_sha256"],
+      "properties": {
+        "theme_id": {
+          "enum": [
+            "black-white-fluorescent-cards",
+            "corporate-annual-report",
+            "editorial-collage",
+            "rigorous-consulting-report",
+            "deep-data-dashboard",
+            "warm-brand-narrative",
+            "minimal-product-whitespace",
+            "formal-government-bluewhite"
+          ]
+        },
+        "theme_version": {"$ref": "#/$defs/short_string"},
+        "theme_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "project_theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_ref", "theme_version", "theme_sha256"],
+      "properties": {
+        "artifact_ref": {"$ref": "#/$defs/short_string"},
+        "theme_version": {"$ref": "#/$defs/short_string"},
+        "theme_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "enterprise_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_ref",
+        "profile_id",
+        "profile_version",
+        "theme_fingerprint",
+        "binding_sha256"
+      ],
+      "properties": {
+        "profile_ref": {"$ref": "#/$defs/resource_locator"},
+        "profile_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "profile_version": {"type": "integer", "minimum": 1},
+        "theme_fingerprint": {"$ref": "#/$defs/sha256"},
+        "binding_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "design_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "built_in_theme",
+        "project_theme",
+        "enterprise_profile"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "unresolved",
+            "built_in_theme",
+            "project_theme",
+            "enterprise_profile"
+          ]
+        },
+        "built_in_theme": {
+          "anyOf": [
+            {"$ref": "#/$defs/built_in_theme"},
+            {"type": "null"}
+          ]
+        },
+        "project_theme": {
+          "anyOf": [
+            {"$ref": "#/$defs/project_theme"},
+            {"type": "null"}
+          ]
+        },
+        "enterprise_profile": {
+          "anyOf": [
+            {"$ref": "#/$defs/enterprise_profile"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "baseline_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_ref", "sha256"],
+      "properties": {
+        "artifact_ref": {"$ref": "#/$defs/short_string"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "artifact_versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_version",
+        "editor_version",
+        "theme_version",
+        "compiler_version"
+      ],
+      "properties": {
+        "runtime_version": {"$ref": "#/$defs/nullable_short_string"},
+        "editor_version": {"$ref": "#/$defs/nullable_short_string"},
+        "theme_version": {"$ref": "#/$defs/nullable_short_string"},
+        "compiler_version": {"$ref": "#/$defs/nullable_short_string"}
+      }
+    },
+    "report_ir_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sha256"],
+      "properties": {
+        "ref": {"$ref": "#/$defs/resource_locator"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "workflow_profile_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "binding_state",
+        "primary_profile_id",
+        "definition_version",
+        "binding_sha256"
+      ],
+      "properties": {
+        "binding_state": {"enum": ["legacy_unbound", "bound"]},
+        "primary_profile_id": {
+          "enum": [
+            "formal-submission-writing",
+            "research-analysis-argumentation",
+            "periodic-operations-reporting",
+            "proposal-planning-decision",
+            "live-presentation-persuasion",
+            "teaching-training-knowledge-transfer",
+            "project-lifecycle-reporting",
+            "brand-communication-editorial-publishing",
+            "rule-response-application-defense",
+            null
+          ]
+        },
+        "definition_version": {
+          "$ref": "#/$defs/nullable_workflow_profile_definition_version"
+        },
+        "binding_sha256": {"$ref": "#/$defs/nullable_sha256"}
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "binding_state": {"const": "legacy_unbound"},
+                "primary_profile_id": {"const": null},
+                "definition_version": {"const": null},
+                "binding_sha256": {"const": null}
+              }
+            },
+            {
+              "properties": {
+                "binding_state": {"const": "bound"},
+                "primary_profile_id": {
+                  "enum": [
+                    "formal-submission-writing",
+                    "research-analysis-argumentation",
+                    "periodic-operations-reporting",
+                    "proposal-planning-decision",
+                    "live-presentation-persuasion",
+                    "teaching-training-knowledge-transfer",
+                    "project-lifecycle-reporting",
+                    "brand-communication-editorial-publishing",
+                    "rule-response-application-defense"
+                  ]
+                },
+                "definition_version": {
+                  "$ref": "#/$defs/workflow_profile_definition_version"
+                },
+                "binding_sha256": {"$ref": "#/$defs/sha256"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "current_build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_ref",
+        "build_manifest_ref",
+        "workflow_profile"
+      ],
+      "properties": {
+        "artifact_ref": {"$ref": "#/$defs/short_string"},
+        "build_manifest_ref": {"$ref": "#/$defs/report_ir_ref"},
+        "workflow_profile": {"$ref": "#/$defs/workflow_profile_summary"}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "kind",
+        "role",
+        "availability_status",
+        "locator",
+        "sha256",
+        "baseline_identity",
+        "versions",
+        "report_ir_ref"
+      ],
+      "properties": {
+        "artifact_id": {"$ref": "#/$defs/short_string"},
+        "kind": {
+          "enum": [
+            "html",
+            "zip",
+            "pdf",
+            "attachment",
+            "design_brief",
+            "vi_board",
+            "project_theme",
+            "authorization_record",
+            "qa_record"
+          ]
+        },
+        "role": {
+          "enum": [
+            "current",
+            "delivered_baseline",
+            "previous",
+            "supporting",
+            "gate_record"
+          ]
+        },
+        "availability_status": {
+          "enum": [
+            "workspace_readable",
+            "external_retrieved_inspected",
+            "platform_visible_not_retrieved",
+            "handoff_record_only",
+            "confirmed_missing",
+            "not_yet_verified"
+          ]
+        },
+        "locator": {"$ref": "#/$defs/resource_locator"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "baseline_identity": {
+          "anyOf": [
+            {"$ref": "#/$defs/baseline_identity"},
+            {"type": "null"}
+          ]
+        },
+        "versions": {"$ref": "#/$defs/artifact_versions"},
+        "report_ir_ref": {
+          "anyOf": [
+            {"$ref": "#/$defs/report_ir_ref"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "qa_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_id",
+        "check_type",
+        "status",
+        "artifact_ref",
+        "artifact_sha256",
+        "record_artifact_ref",
+        "record_sha256"
+      ],
+      "properties": {
+        "record_id": {"$ref": "#/$defs/short_string"},
+        "check_type": {
+          "enum": [
+            "asset_qa",
+            "browser_qa",
+            "runtime_editor_qa",
+            "traceability",
+            "delivery_verification"
+          ]
+        },
+        "status": {"enum": ["passed", "failed", "not_run", "not_applicable"]},
+        "artifact_ref": {"$ref": "#/$defs/short_string"},
+        "artifact_sha256": {"$ref": "#/$defs/sha256"},
+        "record_artifact_ref": {"$ref": "#/$defs/nullable_short_string"},
+        "record_sha256": {"$ref": "#/$defs/nullable_sha256"}
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_handoff_sha256",
+        "baseline_artifact_ref",
+        "baseline_artifact_sha256",
+        "previous_artifact_refs",
+        "current_delta_summary"
+      ],
+      "properties": {
+        "parent_handoff_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "baseline_artifact_ref": {"$ref": "#/$defs/nullable_short_string"},
+        "baseline_artifact_sha256": {"$ref": "#/$defs/nullable_sha256"},
+        "previous_artifact_refs": {"$ref": "#/$defs/id_list"},
+        "current_delta_summary": {"$ref": "#/$defs/text"}
+      }
+    },
+    "audit_cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["amount", "currency", "source"],
+      "properties": {
+        "amount": {"type": "number", "minimum": 0},
+        "currency": {"$ref": "#/$defs/short_string"},
+        "source": {"$ref": "#/$defs/text"}
+      }
+    },
+    "audit_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "model", "cost", "notes"],
+      "properties": {
+        "platform": {"$ref": "#/$defs/nullable_short_string"},
+        "model": {"$ref": "#/$defs/nullable_short_string"},
+        "cost": {
+          "anyOf": [
+            {"$ref": "#/$defs/audit_cost"},
+            {"type": "null"}
+          ]
+        },
+        "notes": {"$ref": "#/$defs/string_list"}
+      }
+    }
+  }
+}

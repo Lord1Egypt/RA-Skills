@@ -1,0 +1,25 @@
+{
+  "nextId": "oc-009",
+  "cardIndex": 9,
+  "totalCards": 287,
+  "marker": "9 / 287",
+  "bookTitle": "OpenClaw 官方文档",
+  "chapter": "开始 · Overview",
+  "topic": "Features",
+  "coreIdea": "OpenClaw is local-first: agents, tools and data stay on your own machine, and every capability is gated by an explicit policy.",
+  "explanation": "## What you get\n\nA local gateway, a Control UI, and agent runtimes you can drive from your chat channels.\n\n| Capability | Where it lives |\n|---|---|\n| Agents | `openclaw agents add <name>` |\n| Tools | policy-gated |\n\n<Note>\nRun `openclaw dashboard` to reopen the Control UI.\n</Note>\n\n<img src=\"/assets/install-script.svg\" alt=\"install script\" />\n\nThe Gateway binds to `127.0.0.1:18789` by default, and nothing is exposed until you say so.",
+  "quote": "功能列表不是重点，重点是：什么留在本地、什么才被允许行动。",
+  "points": [
+    "一切从本地网关起步：默认只绑定 127.0.0.1，不主动对外暴露。",
+    "Control UI 与 CLI 是同一套能力的两个入口，`openclaw dashboard` 可随时打开。",
+    "工具调用受策略约束，`<plugin-spec>` 这类占位符要替换成真实插件名。",
+    "渠道（聊天软件）只是入口，真正的执行发生在你自己的机器上。"
+  ],
+  "terminology": ["Gateway", "Control UI", "Agent runtime", "Tool policy"],
+  "relatedLinks": [
+    { "text": "Getting started", "href": "https://docs.openclaw.ai/start/getting-started" },
+    { "text": "Gateway architecture", "href": "https://docs.openclaw.ai/concepts/architecture" }
+  ],
+  "source": "https://docs.openclaw.ai/concepts/features",
+  "language": "en"
+}

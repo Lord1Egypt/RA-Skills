@@ -1,0 +1,50 @@
+{
+  "name": "coppa-guard",
+  "displayName": "COPPA 美国儿童隐私护栏 (coppa-guard)",
+  "version": "1.0.0",
+  "description": "COPPA 美国儿童隐私护栏。在面向美国市场的儿童向 App / 游戏 / 电商 / 教育产品的文案、隐私政策、应用商店描述发布前，实时检测面向儿童(触发适用)、收集儿童个人信息、儿童行为定向广告、缺少可验证家长同意(VPC)、第三方披露儿童数据、儿童持久标识符追踪等高频触发/违规表述，按风险分级输出命中与整改建议。纯本地运行，零网络、零动态执行。",
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "keywords": [
+    "护栏",
+    "guardrail",
+    "COPPA",
+    "儿童隐私",
+    "出海美国",
+    "可验证家长同意",
+    "VPC",
+    "儿童数据",
+    "compliance",
+    "children privacy"
+  ],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "requirements.txt",
+    "CHANGELOG.md",
+    "README.md",
+    "scripts/"
+  ],
+  "scripts": {
+    "guard": "python3 scripts/guard.py",
+    "detect": "python3 scripts/guard.py --format json",
+    "categories": "python3 scripts/guard.py --list-categories"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "us",
+    "dependencies": [],
+    "emoji": "🛡️"
+  },
+  "security": {
+    "scanned": true,
+    "issues": 0,
+    "warnings": 0
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/coppa-guard"
+  },
+  "homepage": "https://github.com/wwumit/coppa-guard"
+}

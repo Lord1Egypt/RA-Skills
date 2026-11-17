@@ -1,0 +1,45 @@
+# mcu-debug-mcp · C 驱动逻辑测试（9 款驱动全量）
+#
+# 用法：
+#   make -f Makefile.logic test        （类 Unix / msys2 shell 里）
+#   python tests/run_c_tests.py        （Windows 无 make 时的等价脚本，推荐）
+#
+# ⚠ msys2/mingw64 的 gcc 在 Windows 上有个坑：cc1.exe 需要同目录的运行时 DLL
+#   （libgmp/libmpfr/libisl 等），而这些 DLL 不在 exe 自己的搜索路径里。
+#   如果直接以绝对路径裸调 gcc，会得到 rc=1 且 stdout/stderr 全空（cc1 崩在
+#   STATUS_DLL_NOT_FOUND=0xC0000135）。解决办法：把 mingw64/bin 放进 PATH。
+#   本 Makefile 通过 MINGW_BIN 变量自动处理。
+#
+# 前置：gcc（msys2 mingw64 / w64devkit / linux gcc 均可）
+
+CC          = gcc
+MINGW_BIN   ?= /d/tools/msys64/mingw64/bin
+CFLAGS      = -Wall -Wextra -O1 -I stub -I ../assets -I ../assets \
+              -I ../assets -I ../assets -I ../assets -I ../assets \
+              -I ../assets -I ../assets -I ../assets
+DRIVERS = ../assets/dht11__dht11.c ../assets/hcsr04__hcsr04.c \
+          ../assets/ds18b20__ds18b20.c ../assets/mpu6050__mpu6050.c \
+          ../assets/esp8266at__esp8266at.c ../assets/ssd1306__ssd1306.c \
+          ../assets/servo_sg90__servo_sg90.c ../assets/stepper_28byj48__stepper_28byj48.c \
+          ../assets/hc05__hc05.c
+
+# mingw64/bin 不存在时（如 Linux）不影响：PATH 前置一个不存在的目录无害
+export PATH := $(MINGW_BIN):$(PATH)
+
+test: test_driver_logic.exe
+	./test_driver_logic.exe
+
+test_driver_logic.exe: test_driver_logic.c $(DRIVERS)
+	$(CC) $(CFLAGS) -o $@ $^
+
+# 逐款编译，验证零警告目标（CI 可用）
+warncheck:
+	@for d in dht11 hcsr04 ds18b20 mpu6050 esp8266at ssd1306 servo_sg90 stepper_28byj48 hc05; do \
+		out=$$($(CC) -c $(CFLAGS) -I ../assets ../assets/$$d__$$d.c -o /tmp/$$d.o 2>&1); \
+		if [ -n "$$out" ]; then echo "$$d: 有警告"; echo "$$out"; else echo "$$d: OK 零警告"; fi; \
+	done
+
+clean:
+	$(RM) test_driver_logic.exe
+
+.PHONY: test warncheck clean

@@ -1,0 +1,9 @@
+{
+  "model": "nimble-v3:9b",
+  "baseUrl": "http://localhost:11434",
+  "timeoutMs": 180000,
+  "maxStateChars": 24000,
+  "agentId": "coder",
+  "logFile": "./logs/calls.jsonl",
+  "logMaxBytes": 5242880
+}

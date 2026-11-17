@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sentisense.ai/contracts/stock-terminal/canvas-2.0.schema.json",
+  "title": "Stock terminal canvas AST 2.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "title", "created", "blocks"],
+  "properties": {
+    "schemaVersion": { "const": "2.0" },
+    "id": { "$ref": "#/$defs/id" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[^<>]*$" },
+    "created": { "type": "string", "format": "date-time", "maxLength": 8192 },
+    "author": { "$ref": "#/$defs/string" },
+    "tags": { "type": "array", "maxItems": 12, "items": { "type": "string", "minLength": 1, "maxLength": 48, "pattern": "^[^<>]*$" } },
+    "version": { "$ref": "#/$defs/string" },
+    "template": { "$ref": "#/$defs/string" },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 48,
+      "items": { "oneOf": [{ "$ref": "#/$defs/fullBlock" }, { "$ref": "#/$defs/row" }] }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,63}$" },
+    "snapshotId": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:-]{0,127}$" },
+    "string": { "type": "string", "maxLength": 8192, "pattern": "^[^<>]*$" },
+    "dateTime": { "type": "string", "format": "date-time", "maxLength": 64 },
+    "blockBase": {
+      "type": "object",
+      "required": ["id", "type", "width", "props"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "width": { "enum": ["full", "half", "third"] }
+      }
+    },
+    "sectionHeader": {
+      "allOf": [
+        { "$ref": "#/$defs/blockBase" },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "type", "width", "props"],
+          "properties": {
+            "id": { "$ref": "#/$defs/id" }, "type": { "const": "section-header" }, "width": { "enum": ["full", "half", "third"] },
+            "props": {
+              "type": "object", "additionalProperties": false, "required": ["title"],
+              "properties": { "title": { "$ref": "#/$defs/string" }, "subtitle": { "$ref": "#/$defs/string" } }
+            }
+          }
+        }
+      ]
+    },
+    "narrative": {
+      "allOf": [
+        { "$ref": "#/$defs/blockBase" },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "type", "width", "props", "content"],
+          "properties": {
+            "id": { "$ref": "#/$defs/id" }, "type": { "const": "narrative" }, "width": { "enum": ["full", "half", "third"] },
+            "props": { "type": "object", "additionalProperties": false, "properties": { "title": { "$ref": "#/$defs/string" } } },
+            "content": { "type": "string", "minLength": 1, "maxLength": 8192 }
+          }
+        }
+      ]
+    },
+    "callout": {
+      "allOf": [
+        { "$ref": "#/$defs/blockBase" },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "type", "width", "props", "content"],
+          "properties": {
+            "id": { "$ref": "#/$defs/id" }, "type": { "const": "callout" }, "width": { "enum": ["full", "half", "third"] },
+            "props": {
+              "type": "object", "additionalProperties": false, "required": ["tone"],
+              "properties": { "tone": { "enum": ["neutral", "bullish", "bearish", "warning"] }, "title": { "$ref": "#/$defs/string" } }
+            },
+            "content": { "type": "string", "minLength": 1, "maxLength": 8192 }
+          }
+        }
+      ]
+    },
+    "tableProps": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "title": { "$ref": "#/$defs/string" }, "dataRef": { "$ref": "#/$defs/snapshotId" },
+        "columns": { "$ref": "#/$defs/string" }, "rows": { "$ref": "#/$defs/string" }, "asOf": { "$ref": "#/$defs/dateTime" },
+        "synthetic": { "const": "true" }
+      },
+      "oneOf": [
+        { "required": ["dataRef"], "not": { "anyOf": [{ "required": ["columns"] }, { "required": ["rows"] }, { "required": ["asOf"] }, { "required": ["synthetic"] }] } },
+        { "required": ["columns", "rows", "asOf", "synthetic"], "not": { "required": ["dataRef"] } }
+      ]
+    },
+    "metricProps": {
+      "type": "object", "additionalProperties": false, "required": ["label"],
+      "properties": {
+        "label": { "$ref": "#/$defs/string" }, "field": { "$ref": "#/$defs/string" }, "dataRef": { "$ref": "#/$defs/snapshotId" },
+        "value": { "$ref": "#/$defs/string" }, "asOf": { "$ref": "#/$defs/dateTime" }, "synthetic": { "const": "true" }
+      },
+      "oneOf": [
+        { "required": ["dataRef", "field"], "not": { "anyOf": [{ "required": ["value"] }, { "required": ["asOf"] }, { "required": ["synthetic"] }] } },
+        { "required": ["value", "asOf", "synthetic"], "not": { "required": ["dataRef"] } }
+      ]
+    },
+    "priceProps": {
+      "type": "object", "additionalProperties": false, "required": ["ticker", "range"],
+      "properties": {
+        "ticker": { "$ref": "#/$defs/string" }, "range": { "$ref": "#/$defs/string" }, "dataRef": { "$ref": "#/$defs/snapshotId" },
+        "points": { "$ref": "#/$defs/string" }, "asOf": { "$ref": "#/$defs/dateTime" }, "synthetic": { "const": "true" }
+      },
+      "oneOf": [
+        { "required": ["dataRef"], "not": { "anyOf": [{ "required": ["points"] }, { "required": ["asOf"] }, { "required": ["synthetic"] }] } },
+        { "required": ["points", "asOf", "synthetic"], "not": { "required": ["dataRef"] } }
+      ]
+    },
+    "sentimentProps": {
+      "type": "object", "additionalProperties": false, "required": ["ticker"],
+      "properties": {
+        "ticker": { "$ref": "#/$defs/string" }, "dataRef": { "$ref": "#/$defs/snapshotId" }, "value": { "$ref": "#/$defs/string" },
+        "score": { "$ref": "#/$defs/string" }, "asOf": { "$ref": "#/$defs/dateTime" }, "synthetic": { "const": "true" }
+      },
+      "oneOf": [
+        { "required": ["dataRef"], "not": { "anyOf": [{ "required": ["value"] }, { "required": ["score"] }, { "required": ["asOf"] }, { "required": ["synthetic"] }] } },
+        { "required": ["value", "asOf", "synthetic"], "not": { "required": ["dataRef"] } }
+      ]
+    },
+    "feedProps": {
+      "type": "object", "additionalProperties": false, "required": ["ticker"],
+      "properties": {
+        "ticker": { "$ref": "#/$defs/string" }, "dataRef": { "$ref": "#/$defs/snapshotId" }, "items": { "$ref": "#/$defs/string" },
+        "asOf": { "$ref": "#/$defs/dateTime" }, "synthetic": { "const": "true" }
+      },
+      "oneOf": [
+        { "required": ["dataRef"], "not": { "anyOf": [{ "required": ["items"] }, { "required": ["asOf"] }, { "required": ["synthetic"] }] } },
+        { "required": ["items", "asOf", "synthetic"], "not": { "required": ["dataRef"] } }
+      ]
+    },
+    "watchlistProps": {
+      "type": "object", "additionalProperties": false, "required": ["title"],
+      "properties": {
+        "title": { "$ref": "#/$defs/string" }, "dataRef": { "$ref": "#/$defs/snapshotId" }, "items": { "$ref": "#/$defs/string" },
+        "asOf": { "$ref": "#/$defs/dateTime" }, "synthetic": { "const": "true" }
+      },
+      "oneOf": [
+        { "required": ["dataRef"], "not": { "anyOf": [{ "required": ["items"] }, { "required": ["asOf"] }, { "required": ["synthetic"] }] } },
+        { "required": ["items", "asOf", "synthetic"], "not": { "required": ["dataRef"] } }
+      ]
+    },
+    "moodProps": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "dataRef": { "$ref": "#/$defs/snapshotId" }, "score": { "$ref": "#/$defs/string" }, "phase": { "$ref": "#/$defs/string" },
+        "asOf": { "$ref": "#/$defs/dateTime" }, "synthetic": { "const": "true" }
+      },
+      "oneOf": [
+        { "required": ["dataRef"], "not": { "anyOf": [{ "required": ["score"] }, { "required": ["phase"] }, { "required": ["asOf"] }, { "required": ["synthetic"] }] } },
+        { "required": ["score", "phase", "asOf", "synthetic"], "not": { "required": ["dataRef"] } }
+      ]
+    },
+    "dataBlock": {
+      "type": "object", "additionalProperties": false, "required": ["id", "type", "width", "props"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "type": { "enum": ["table", "metric-card", "price-chart", "sentiment", "news-feed", "watchlist", "market-mood"] },
+        "width": { "enum": ["full", "half", "third"] }, "props": { "type": "object" }
+      },
+      "oneOf": [
+        { "properties": { "type": { "const": "table" }, "props": { "$ref": "#/$defs/tableProps" } }, "required": ["type", "props"] },
+        { "properties": { "type": { "const": "metric-card" }, "props": { "$ref": "#/$defs/metricProps" } }, "required": ["type", "props"] },
+        { "properties": { "type": { "const": "price-chart" }, "props": { "$ref": "#/$defs/priceProps" } }, "required": ["type", "props"] },
+        { "properties": { "type": { "const": "sentiment" }, "props": { "$ref": "#/$defs/sentimentProps" } }, "required": ["type", "props"] },
+        { "properties": { "type": { "const": "news-feed" }, "props": { "$ref": "#/$defs/feedProps" } }, "required": ["type", "props"] },
+        { "properties": { "type": { "const": "watchlist" }, "props": { "$ref": "#/$defs/watchlistProps" } }, "required": ["type", "props"] },
+        { "properties": { "type": { "const": "market-mood" }, "props": { "$ref": "#/$defs/moodProps" } }, "required": ["type", "props"] }
+      ]
+    },
+    "block": { "oneOf": [{ "$ref": "#/$defs/sectionHeader" }, { "$ref": "#/$defs/narrative" }, { "$ref": "#/$defs/callout" }, { "$ref": "#/$defs/dataBlock" }] },
+    "fullBlock": {
+      "allOf": [
+        { "$ref": "#/$defs/block" },
+        { "type": "object", "properties": { "width": { "const": "full" } } }
+      ]
+    },
+    "row": {
+      "type": "object", "additionalProperties": false, "required": ["type", "blocks"],
+      "properties": {
+        "type": { "const": "row" },
+        "blocks": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "$ref": "#/$defs/block" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "blocks": { "maxItems": 2 } } },
+          "then": { "properties": { "blocks": { "items": { "allOf": [{ "$ref": "#/$defs/block" }, { "properties": { "width": { "const": "half" } } }] } } } }
+        },
+        {
+          "if": { "properties": { "blocks": { "minItems": 3 } } },
+          "then": { "properties": { "blocks": { "items": { "allOf": [{ "$ref": "#/$defs/block" }, { "properties": { "width": { "const": "third" } } }] } } } }
+        }
+      ]
+    }
+  }
+}

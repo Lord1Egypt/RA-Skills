@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn74d0xn2q4y9hrnv8kgnknqzs82t4nx",
   "slug": "test-online-analysis",
+  "name": "Test Online Analysis",
   "version": "1.0.0",
-  "publishedAt": 1773400977344
+  "description": "在线实时数据分析与测试规则提取技能，支持从日志/数据流自动提取业务规则、异常检测、测试场景生成",
+  "author": "飞飞侠",
+  "license": "MIT",
+  "tags": ["testing", "analysis", "rule-extraction", "anomaly-detection"],
+  "homepage": "https://clawhub.com/spclaudehome/test-online-analysis",
+  "repository": "https://clawhub.com/spclaudehome/test-online-analysis.git",
+  "dependencies": {
+    "python": ">=3.8",
+    "numpy": ">=1.21.0"
+  },
+  "compatibility": {
+    "openclaw": ">=0.9.0"
+  }
 }

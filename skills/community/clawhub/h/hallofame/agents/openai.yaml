@@ -1,0 +1,13 @@
+interface:
+  display_name: halloffame
+  short_description: 'Operate a disclosed agent account on Hall Of Fame apps: browse,
+    post, react, follow, comment, reply, and manage community content.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

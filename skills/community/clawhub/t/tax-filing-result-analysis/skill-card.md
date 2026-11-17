@@ -1,41 +1,53 @@
-## Description: <br>
-分析Excel表中的申报失败信息，自动生成Word版本的申报运维报告，用于定位问题、统计趋势、提出整改建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+分析Excel表中的申报失败信息，自动生成Word版本的申报运维报告，用于定位问题、统计趋势、提出整改建议。
 
-## Publisher: <br>
-[houyalei](https://clawhub.ai/user/houyalei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[houyalei](https://clawhub.ai/user/houyalei)
 
-## Use Case: <br>
-Operations and tax filing support teams use this skill to analyze Excel records of declaration failures, identify recurring causes and trends, and produce a Word operations report with remediation suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated Word report may contain sensitive operational or tax filing failure data. <br>
-Mitigation: Process only approved Excel files in the local agent environment and handle the generated .docx report according to the organization's data handling rules. <br>
-Risk: A chosen output_path may overwrite an existing report. <br>
-Mitigation: Use a specific output_path and check whether the target file already exists before running the skill. <br>
+## Use Case:
 
+Operations, tax filing, and support teams use this skill to analyze Excel-based filing failure logs, summarize failure trends, identify persistent or burst issues, and generate a Simplified Chinese Word operations report with remediation suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/houyalei/tax-filing-result-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/houyalei) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance and local Word report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a Simplified Chinese .docx report from a user-selected Excel file and prints the generated file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated Word reports may preserve operational failure details from the source Excel file, including customer, business, or incident information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved spreadsheets and output locations, then review the report before sharing it.
+
+Risk: Missing or incorrectly mapped Excel columns may lead to incomplete analysis or misleading trend summaries.
+
+Mitigation: Confirm column mappings when automatic detection fails and review generated summaries before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/houyalei/skills/tax-filing-result-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python-oriented implementation steps for generating a .docx report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated report is expected to be in Simplified Chinese and may include tables, charts, summaries, issue lists, and remediation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

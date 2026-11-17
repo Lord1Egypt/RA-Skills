@@ -1,0 +1,151 @@
+{
+ "pages": [
+  {
+   "fp": "3c802486fa41a33690ee41a281a3a93def6565b036b3361cf35eb3ca1fbf05c7",
+   "made": "2026-11-09T14:00:00Z",
+   "sent": "2026-11-09T14:10:00Z",
+   "rule": {
+    "rule": "auto_after_hours",
+    "hours": 48,
+    "agreed_in_writing": "EXAMPLE ONLY: email from Jordan Example, 1 Nov 2026"
+   },
+   "deadline": "2026-11-11T14:00:00Z",
+   "clips": {
+    "01": {
+     "hash": "f7c85aaf2b4545e741e328e14170f2ff132f1711ee8257b5bbb26b7dc7c772b6",
+     "sha256": "8b94bd65abb02fa0b9223c129202a130ab1f7567071f47f94668243ce58a03e0"
+    },
+    "02": {
+     "hash": "d611fd7e536cd473d239d6dd1d9df5407379d5a7a089b6c5051a0d61290d4105",
+     "sha256": "db76d964db72a22b4f8a6a6705ff13a79fb0b0ca4b97de1af1afc83aa73368ce"
+    },
+    "03": {
+     "hash": "61328ea17ecf899610089fdf5524c5eb3dbbd6e718abbafe8d937543de202ea1",
+     "sha256": "7d01c68b8ff991bf5263b73d4c3b3236a628b664791801069766e73980b90da9"
+    }
+   },
+   "order": [
+    "01",
+    "02",
+    "03"
+   ],
+   "planned": {
+    "01": "2026-11-09T23:00:00Z",
+    "02": "2026-11-11T23:00:00Z",
+    "03": "2026-11-13T23:00:00Z"
+   },
+   "seq": 1,
+   "page": "approval/approve-ep-007.html",
+   "media": "file",
+   "answered": "2026-11-09T19:30:00Z"
+  },
+  {
+   "fp": "8dfb057aee2f99c43f4ebb605d6dab3e7726f6c9d9e907314fc83fa344d266af",
+   "made": "2026-11-10T14:00:00Z",
+   "sent": "2026-11-10T14:05:00Z",
+   "rule": {
+    "rule": "auto_after_hours",
+    "hours": 48,
+    "agreed_in_writing": "EXAMPLE ONLY: email from Jordan Example, 1 Nov 2026"
+   },
+   "deadline": "2026-11-12T14:00:00Z",
+   "clips": {
+    "01": {
+     "hash": "f7c85aaf2b4545e741e328e14170f2ff132f1711ee8257b5bbb26b7dc7c772b6",
+     "sha256": "8b94bd65abb02fa0b9223c129202a130ab1f7567071f47f94668243ce58a03e0"
+    },
+    "02": {
+     "hash": "d611fd7e536cd473d239d6dd1d9df5407379d5a7a089b6c5051a0d61290d4105",
+     "sha256": "db76d964db72a22b4f8a6a6705ff13a79fb0b0ca4b97de1af1afc83aa73368ce"
+    },
+    "03": {
+     "hash": "1c99ecced75b0c01b1befcc7a2b615819a17cc6b852cecf1e5ddf7669dc056f7",
+     "sha256": "3e1c3e9ecd369ef4d89e0b1ae32d20805e156c98e313abff40fcf36431c38b4a"
+    }
+   },
+   "order": [
+    "01",
+    "02",
+    "03"
+   ],
+   "planned": {
+    "01": "2026-11-11T23:00:00Z",
+    "02": "2026-11-13T23:00:00Z",
+    "03": "2026-11-16T23:00:00Z"
+   },
+   "seq": 2,
+   "page": "approval/approve-ep-007.html",
+   "media": "file"
+  }
+ ],
+ "decisions": {
+  "01": {
+   "decision": "approve",
+   "hash": "f7c85aaf2b4545e741e328e14170f2ff132f1711ee8257b5bbb26b7dc7c772b6",
+   "sha256": "8b94bd65abb02fa0b9223c129202a130ab1f7567071f47f94668243ce58a03e0",
+   "fp": "3c802486fa41a33690ee41a281a3a93def6565b036b3361cf35eb3ca1fbf05c7",
+   "page": 1,
+   "at": "2026-11-09T19:30:00Z",
+   "received": "2026-11-09T19:12:00Z",
+   "by": "Jordan Example",
+   "by_source": "the Name or From line of the reply",
+   "how": "reply"
+  },
+  "02": {
+   "decision": "approve",
+   "hash": "d611fd7e536cd473d239d6dd1d9df5407379d5a7a089b6c5051a0d61290d4105",
+   "sha256": "db76d964db72a22b4f8a6a6705ff13a79fb0b0ca4b97de1af1afc83aa73368ce",
+   "fp": "3c802486fa41a33690ee41a281a3a93def6565b036b3361cf35eb3ca1fbf05c7",
+   "page": 1,
+   "at": "2026-11-09T19:30:00Z",
+   "received": "2026-11-09T19:12:00Z",
+   "by": "Jordan Example",
+   "by_source": "the Name or From line of the reply",
+   "how": "reply"
+  },
+  "03": {
+   "decision": "approve",
+   "hash": "1c99ecced75b0c01b1befcc7a2b615819a17cc6b852cecf1e5ddf7669dc056f7",
+   "sha256": "3e1c3e9ecd369ef4d89e0b1ae32d20805e156c98e313abff40fcf36431c38b4a",
+   "fp": "8dfb057aee2f99c43f4ebb605d6dab3e7726f6c9d9e907314fc83fa344d266af",
+   "page": 2,
+   "at": "2026-11-12T14:05:00Z",
+   "by": "no reply by the deadline on page 2, as agreed in writing",
+   "agreement": "EXAMPLE ONLY: email from Jordan Example, 1 Nov 2026",
+   "how": "auto"
+  }
+ },
+ "tiktok": {
+  "privacyLevel": "FOLLOWER_OF_CREATOR",
+  "allowComment": true,
+  "allowDuet": false,
+  "allowStitch": true,
+  "fp": "3c802486fa41a33690ee41a281a3a93def6565b036b3361cf35eb3ca1fbf05c7",
+  "page": 1,
+  "at": "2026-11-09T19:30:00Z",
+  "by": "Jordan Example"
+ },
+ "replies": [
+  {
+   "page": 1,
+   "key": "e19a3d4352d2d541",
+   "at": "2026-11-09T19:30:00Z",
+   "received": "2026-11-09T19:12:00Z",
+   "by": "Jordan Example",
+   "by_source": "the Name or From line of the reply",
+   "answers": {
+    "01": "approve",
+    "02": "approve",
+    "03": "change"
+   },
+   "recorded": [
+    "01",
+    "02",
+    "03"
+   ],
+   "void": [],
+   "unanswered": [],
+   "tiktok": true
+  }
+ ]
+}

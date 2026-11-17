@@ -1,40 +1,52 @@
-## Description: <br>
-Operate the agent-email CLI to create disposable inboxes, poll for new mail, retrieve full message details, and manage local mailbox profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate the agent-email CLI to create disposable inboxes, poll for new mail, retrieve full message details, and manage local mailbox profiles.
 
-## Publisher: <br>
-[zaddy6](https://clawhub.ai/user/zaddy6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zaddy6](https://clawhub.ai/user/zaddy6)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create disposable or agent-specific inboxes, poll for incoming email, retrieve message details, and manage local mailbox profiles from a terminal workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Email privacy exposure from routing sensitive personal or business messages through disposable or agent-managed inboxes. <br>
-Mitigation: Use the skill for disposable or agent-specific inboxes, avoid sensitive mail unless storage and credential handling are understood, and do not print or summarize secret values. <br>
-Risk: Supply-chain exposure from installing and running a globally installed npm or bun CLI. <br>
-Mitigation: Install only when the publisher is trusted, review the package before use, and verify CLI availability and behavior before relying on it in automation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zaddy6/agent-email-cli) <br>
+## Use Case:
 
+Developers and automation agents use this skill to create disposable inboxes, poll for incoming email, retrieve message details, and manage local mailbox profiles from a terminal workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON field summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers JSON-native CLI output and avoids repeating secret fields such as passwords or tokens.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may direct an agent to install an unpinned global npm or Bun package when the CLI is missing.
+
+Mitigation: Install only trusted package sources, and prefer pinning or reviewing @zaddy6/agentemail before global installation.
+
+Risk: Mailbox content and local account profiles may expose sensitive information to the agent runtime.
+
+Mitigation: Avoid using the CLI in environments with unrelated sensitive secrets, and do not print, store, or summarize password or token fields.
+
+## Reference(s):
+
+- [Command Reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON field summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Avoids repeating secret values such as mailbox passwords or tokens.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

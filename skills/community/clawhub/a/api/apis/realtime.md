@@ -2,13 +2,14 @@
 
 | API | Line |
 |-----|------|
-| Stream Chat | 105 |
-| Pusher Channels | 223 |
-| Ably | 303 |
-| OneSignal | 375 |
-| Courier | 438 |
-| Knock | 531 |
-| Novu | 611 |
+| Sendbird | 16 |
+| Stream Chat | 119 |
+| Pusher Channels | 237 |
+| Ably | 317 |
+| OneSignal | 389 |
+| Courier | 452 |
+| Knock | 545 |
+| Novu | 625 |
 
 ---
 

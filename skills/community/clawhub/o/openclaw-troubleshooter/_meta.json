@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7d1m9fs809nwm12h8vshzpa582tfn0",
-  "slug": "openclaw-troubleshooter",
+  "name": "openclaw-troubleshooter",
   "version": "1.0.0",
-  "publishedAt": 1773432541529
+  "slug": "openclaw-troubleshooter",
+  "license": "MIT-0",  
+  "acceptLicenseTerms": true, 
+  "confirmOwnership": true    
 }

@@ -1,40 +1,57 @@
-## Description: <br>
-Comprehensive quantitative data platform for A-share market. Real-time quotes, historical data, alternative data (sentiment, news, fundamentals), factor data, and data quality monitoring. Essential infrastructure for quantitative trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quant Data Platform provides data infrastructure for Chinese A-share quantitative trading, including real-time quotes, historical market data, alternative data, factor data, and data quality monitoring.
 
-## Publisher: <br>
-[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jason-aka-chen](https://clawhub.ai/user/jason-aka-chen)
 
-## Use Case: <br>
-Developers and quantitative analysts use this skill to work with Chinese A-share market data APIs, including quotes, historical bars, alternative data, factor data, and data quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the skill may present randomly generated market data as real trading data. <br>
-Mitigation: Do not use returned data for trading, backtesting, valuation, alerts, or risk decisions unless the implementation fails closed, requires explicit simulation mode, and labels every payload with its true source. <br>
-Risk: Testing with market data providers may expose credentials or broaden access. <br>
-Mitigation: Use a dedicated low-privilege Tushare token in an isolated environment when evaluating the skill. <br>
+## Use Case:
 
+Developers and quantitative trading teams use this skill to access and prototype A-share market data workflows for backtesting, research, live data review, factor analysis, and data quality checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason-aka-chen/quant-data-platform) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Python usage examples, installation commands, API method descriptions, and configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Production-looking market data APIs may silently return mock or random financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or explicitly gate mock/random paths before live trading, automated decisions, compliance checks, or serious backtests.
+
+Risk: Market data results may lack clear source and provenance labeling.
+
+Mitigation: Require every result to identify its data source and provenance before using it in analysis or trading workflows.
+
+Risk: External data provider integrations may expose tokens or share requests with third-party services.
+
+Mitigation: Pin dependencies, protect the Tushare token, and treat provider calls as external data sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jason-aka-chen/skills/quant-data-platform)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or reference market data records, factor values, quality metrics, and configuration details for external data providers.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

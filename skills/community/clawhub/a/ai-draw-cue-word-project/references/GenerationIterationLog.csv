@@ -1,0 +1,2 @@
+Date,Character version,Model,Full prompt,seed,Key parameters,Reference image,Result,Failure point,Next-round adjustment
+2026-08-07,Nanwang · Plain-Dress Garden Version,Niji V6,"young woman, mole below left eye (1.8), white daisy in hair (1.5), light mint cotton plain dress (1.4), spring garden (0.8), rule of thirds, side-backlight, golden hour --ar 3:4 --cref URL --cw 100 --no heavy makeup, red dress, short hair",20260807,--s 100 --chaos 5,nanwang_v12.png,✅ kept,Hem pattern missing,Raise pattern weight 1.2→1.4

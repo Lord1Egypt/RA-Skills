@@ -1,42 +1,62 @@
-## Description: <br>
-Creates bilingual Chinese and English picture-book story videos from story scripts, including scene images, narration, subtitles, final MP4 files, and Douyin publishing copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates bilingual Chinese and English picture-book story videos with scene images, narration, ASS subtitles, final MP4 files, and Douyin publishing copy.
 
-## Publisher: <br>
-[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vincentlau2046-sudo](https://clawhub.ai/user/vincentlau2046-sudo)
 
-## Use Case: <br>
-Creators and developers use this skill to turn a provided picture-book story script into Chinese and English video outputs with generated scenes, narration, subtitles, and posting metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can hand generated videos and posting copy to a Douyin publishing workflow without a clear final consent step. <br>
-Mitigation: Require explicit manual confirmation before invoking any publishing skill or upload step, and review generated videos, titles, descriptions, and topics first. <br>
-Risk: Story text may be processed by remote TTS when the Edge TTS fallback is used. <br>
-Mitigation: Avoid sensitive or private story text when remote TTS fallback is enabled, or disable the fallback for sensitive projects. <br>
+## Use Case:
 
+Developers and content creators use this skill to transform a supplied picture-book story script into bilingual narrated videos and accompanying Douyin release text after storyboarding confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentlau2046-sudo/picture-book-video) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, generated file paths, and publishing copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local scripts to create bilingual MP4 files, narration audio, subtitle files, scene metadata, and Douyin publishing descriptions after user-confirmed story planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Narration text may be sent to Edge TTS when the fallback path is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not process sensitive scripts through external TTS; prefer the local Qwen3-TTS path where available and disclose or approve external TTS use before generation.
+
+Risk: Host-specific dependency paths and local media tools can fail or behave differently across environments.
+
+Mitigation: Verify ComfyUI, ffmpeg, TTS dependencies, fonts, and character assets in a dedicated project environment before running the pipeline.
+
+Risk: File-handling behavior can overwrite outputs or remove generated scene images in the selected output directory.
+
+Mitigation: Use a fresh project output directory, keep backups of source assets, avoid pointing --output-dir at existing asset folders, and use --keep-temp when intermediate files need review.
+
+Risk: Generated Douyin titles, descriptions, and hashtags may be unsuitable for publication without review.
+
+Mitigation: Review all generated publishing copy and final videos before posting or handing off to a publishing skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vincentlau2046-sudo/skills/picture-book-video)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, video files, audio files]
+
+**Output Format:** [Markdown guidance with shell commands; generated files include MP4, MP3, SRT, ASS, PNG, JSON, and Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese and English video variants, subtitles, narration audio, scene prompts, cover/scene media, and Douyin publishing copy; requires local ComfyUI, TTS, and ffmpeg dependencies.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

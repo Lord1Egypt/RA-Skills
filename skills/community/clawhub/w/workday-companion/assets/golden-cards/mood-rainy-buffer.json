@@ -1,0 +1,13 @@
+{
+  "module": "精神天气台",
+  "route": "mood-notice",
+  "time_label": "15:00",
+  "title": "阵雨缓冲",
+  "reason": "状态起伏，先收窄任务",
+  "action": "关一扇干扰窗口",
+  "tags": ["阵雨", "缓冲"],
+  "corner": "稳一点",
+  "footer": "今天先这么过。",
+  "alt_text": "精神天气台。阵雨缓冲。状态起伏，先收窄任务。现在做：关一扇干扰窗口。",
+  "share_safe": true
+}

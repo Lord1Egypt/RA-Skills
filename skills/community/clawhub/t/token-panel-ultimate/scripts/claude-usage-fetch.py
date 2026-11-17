@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """
 Claude Max Usage Fetcher
-Extracts OAuth token from Claude Code credentials and fetches real-time usage.
-Writes to claude-usage.json for the Budget Panel widget.
+Fetches real-time Claude usage and writes claude-usage.json for the Budget Panel widget.
+
+The only credential it will ever use is ITS OWN: a token you mint yourself with
+`claude setup-token` and hand to this tool's keychain entry. It does not read Claude
+Code's credential file, or any other application's — with no token of its own it fails
+and tells you how to give it one.
 
 Usage:
     ./claude-usage-fetch.py              # Print usage
     ./claude-usage-fetch.py --update     # Update claude-usage.json
     ./claude-usage-fetch.py --json       # Output raw JSON
+    ./claude-usage-fetch.py --login      # Store your own token (read from stdin)
+    ./claude-usage-fetch.py --logout     # Erase it from every local store
 """
 
 import json
@@ -17,25 +23,38 @@ import urllib.request
 from datetime import datetime
 from pathlib import Path
 
-CREDENTIALS_PATH = Path.home() / '.claude' / '.credentials.json'
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import secretstore
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _secure_write import write_private_json  # owner-only JSON writes
+
 USAGE_JSON_PATH = Path.home() / '.openclaw/workspace/memory/claude-usage.json'
 API_URL = 'https://api.anthropic.com/api/oauth/usage'
 
+# This script reads NO other application's credential store. Earlier versions could
+# borrow the OAuth token Claude Code keeps in its own config directory behind an
+# environment-variable opt-in. That token was issued to Claude Code, not to this
+# dashboard, and an opt-in does not turn a borrowed credential into a first-party one,
+# so the path is gone rather than gated. Give this tool a token of its own.
+NO_TOKEN_MESSAGE = (
+    "No Claude credential is configured for this tool.\n\n"
+    "Give it one of its own — nothing else on your machine is read:\n"
+    "    claude setup-token | python3 {store} --login anthropic\n\n"
+    "That token is stored in your OS keychain (or, if you have no keychain, in a 0600 file\n"
+    "that this tool warns you about every run). Remove it at any time with:\n"
+    "    python3 {store} --logout anthropic\n"
+)
+
+
 def get_oauth_token():
-    """Extract OAuth token from Claude Code credentials."""
-    if not CREDENTIALS_PATH.exists():
-        raise FileNotFoundError(f"Claude Code credentials not found at {CREDENTIALS_PATH}")
-    
-    with open(CREDENTIALS_PATH) as f:
-        creds = json.load(f)
-    
-    oauth = creds.get('claudeAiOauth', {})
-    token = oauth.get('accessToken')
-    
-    if not token:
-        raise ValueError("No accessToken found in credentials")
-    
-    return token, oauth
+    """Return (token, info) for this tool's OWN credential, or fail closed."""
+    token, source = secretstore.get_secret('anthropic')
+    if token:
+        return token, {'source': source}
+
+    raise PermissionError(
+        NO_TOKEN_MESSAGE.format(store=Path(secretstore.__file__).resolve())
+    )
 
 def fetch_usage(token):
     """Fetch usage from Anthropic OAuth API."""
@@ -44,7 +63,9 @@ def fetch_usage(token):
         headers={
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'User-Agent': 'claude-code/2.0.32',
+            # Identifies this tool honestly. Earlier versions sent a Claude Code
+            # User-Agent, presenting the request as coming from another application.
+            'User-Agent': 'token-panel-ultimate/2.6.2',
             'Authorization': f'Bearer {token}',
             'anthropic-beta': 'oauth-2025-04-20'
         }
@@ -102,10 +123,10 @@ def update_usage_json(usage_data, oauth_info):
         }
     }
     
-    USAGE_JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with open(USAGE_JSON_PATH, 'w') as f:
-        json.dump(output, f, indent=2)
-    
+    # Owner-only: this file reports your plan, quota and reset times. Do not let it
+    # inherit a loose umask from whatever shell or daemon happened to run us.
+    write_private_json(USAGE_JSON_PATH, output)
+
     return output
 
 def print_usage(usage_data):
@@ -141,9 +162,37 @@ def print_usage(usage_data):
     
     print("╚══════════════════════════════════════════╝\n")
 
+def manage_credentials(args):
+    """Handle --login / --logout here rather than advertising them and doing nothing.
+
+    Returns an exit code if the run was a credential-management command, else None.
+    """
+    if '--login' in args:
+        if sys.stdin.isatty():
+            print("Paste the Anthropic token, then press Ctrl-D:", file=sys.stderr)
+            print("  (mint one with: claude setup-token)", file=sys.stderr)
+        value = sys.stdin.read().strip()
+        if not value:
+            print("Nothing read from stdin; aborted.", file=sys.stderr)
+            return 1
+        where = secretstore.set_secret('anthropic', value)
+        print(f"Stored the anthropic credential in: {where}")
+        return 0
+
+    if '--logout' in args:
+        secretstore.clear_secret('anthropic')
+        return 0
+
+    return None
+
+
 def main():
     args = sys.argv[1:]
-    
+
+    code = manage_credentials(args)
+    if code is not None:
+        sys.exit(code)
+
     try:
         token, oauth_info = get_oauth_token()
         usage_data = fetch_usage(token)
@@ -157,14 +206,14 @@ def main():
         else:
             print_usage(usage_data)
             
-    except FileNotFoundError as e:
+    except PermissionError as e:
         print(f"❌ {e}", file=sys.stderr)
-        print("   Install Claude Code and login first: npm install -g @anthropic-ai/claude-code", file=sys.stderr)
         sys.exit(1)
     except urllib.error.HTTPError as e:
         print(f"❌ API Error {e.code}: {e.reason}", file=sys.stderr)
         if e.code == 401:
-            print("   Token expired. Run: claude /login", file=sys.stderr)
+            print("   This tool's token was rejected. Mint a fresh one:", file=sys.stderr)
+            print("   claude setup-token | ./claude-usage-fetch.py --login", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
         print(f"❌ Error: {e}", file=sys.stderr)

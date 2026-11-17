@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expected Move</title>
+
+<!--
+  Expected-move visualizer. Self-contained: no network request is made at view time, no
+  external stylesheet, no script from anywhere else. Everything it draws comes from the two
+  JSON blocks below.
+
+  BINDING: each of the two JSON blocks below holds exactly one placeholder token, and each
+  token appears exactly once in this whole file, so a plain text replacement is unambiguous.
+  Put the JSON that scripts/prepare_data.mjs printed into the data block, and the small meta
+  object into the meta block, replacing the token text and leaving the surrounding script
+  tags alone. Nothing else in this file should be edited: the expected-move math lives here
+  so that it is written once and reviewed once, rather than re-derived per render.
+-->
+
+<script type="application/json" id="emv-data">/*__SENTISENSE_DATA__*/</script>
+<script type="application/json" id="emv-meta">/*__SENTISENSE_META__*/</script>
+
+<style>
+:root {
+  color-scheme: light;
+  --navy: #102c44;
+  --gold: #d4a843;
+  --bg: #f7f5ef;
+  --surface: #ffffff;
+  --surface-2: #f0ece1;
+  --border: #ddd6c6;
+  --text: #102c44;
+  --text-dim: #5b6b7c;
+  --up: #1f7a5a;
+  --down: #b4442f;
+  --cone-30: rgba(212, 168, 67, 0.38);
+  --cone-60: rgba(212, 168, 67, 0.24);
+  --cone-90: rgba(212, 168, 67, 0.13);
+  --grid: rgba(16, 44, 68, 0.10);
+  --data: #3182ce;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0f;
+    --surface: #0d1117;
+    --surface-2: #131a24;
+    --border: #232c38;
+    --text: #f5f1e6;
+    --text-dim: #93a1b1;
+    --up: #4ec98f;
+    --down: #f2795c;
+    --cone-30: rgba(212, 168, 67, 0.42);
+    --cone-60: rgba(212, 168, 67, 0.26);
+    --cone-90: rgba(212, 168, 67, 0.14);
+    --grid: rgba(245, 241, 230, 0.10);
+    --data: #63b3ed;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.55 ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 24px 16px 40px;
+}
+.wrap { max-width: 860px; margin: 0 auto; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+
+header.card { padding-bottom: 16px; }
+.title-row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: 10px 14px; margin-bottom: 4px;
+}
+h1 { font-size: 26px; line-height: 1.2; margin: 0; letter-spacing: -0.01em; }
+.ticker { color: var(--gold); }
+.subtitle { color: var(--text-dim); font-size: 13.5px; margin: 2px 0 0; }
+
+.badge {
+  display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text-dim); background: var(--surface-2);
+  white-space: nowrap;
+}
+.badge.accent { border-color: var(--gold); color: var(--gold); }
+
+.stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 14px; margin-top: 18px;
+}
+.stat .k {
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-dim); margin-bottom: 3px;
+}
+.stat .v { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat .n { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+
+h2 {
+  font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-dim); margin: 0 0 3px; font-weight: 600;
+}
+.lede { color: var(--text-dim); font-size: 13px; margin: 0 0 16px; }
+
+.chart-scroll { overflow-x: auto; }
+svg { display: block; max-width: 100%; height: auto; }
+svg text { font-family: inherit; }
+
+.legend {
+  display: flex; flex-wrap: wrap; gap: 8px 18px;
+  margin-top: 12px; font-size: 12.5px; color: var(--text-dim);
+}
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 4px; }
+th, td { text-align: right; padding: 7px 6px; border-bottom: 1px solid var(--border); }
+th:first-child, td:first-child { text-align: left; }
+th {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-dim); font-weight: 600;
+}
+td { font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: none; }
+.up { color: var(--up); }
+.down { color: var(--down); }
+
+footer { margin-top: 22px; font-size: 12px; color: var(--text-dim); }
+footer p { margin: 0 0 7px; }
+.stamp { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+a { color: var(--gold); }
+.disclaimer {
+  border-top: 1px solid var(--border); padding-top: 11px; margin-top: 11px; line-height: 1.5;
+}
+.error {
+  border: 1px solid var(--border); border-radius: 14px; padding: 22px;
+  background: var(--surface); color: var(--text-dim);
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="root"></div>
+
+<script>
+"use strict";
+
+// ── Bound inputs ───────────────────────────────────────────────────────────────
+// Read from the JSON blocks in <head>. An unbound template throws here and renders the
+// "no data" state below, rather than drawing an empty chart that looks like a real one.
+function readJson(id) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  var raw = (el.textContent || "").trim();
+  // An unbound block still holds a comment-shaped token. Detected by shape rather than by
+  // spelling the token out, so this guard cannot itself become a second copy of it.
+  if (!raw || (raw.slice(0, 2) === "/*" && raw.slice(-2) === "*/")) return null;
+  try { return JSON.parse(raw); } catch (e) { return null; }
+}
+
+var DATA = readJson("emv-data");
+var META = readJson("emv-meta") || {};
+
+// ── The math, written once ─────────────────────────────────────────────────────
+//
+// One-sigma expected move over `days` calendar days, from an annualized implied volatility
+// expressed as a fraction:
+//
+//     move = spot * iv * sqrt(days / 365)
+//
+// Calendar days, not trading days: an option's life is wall-clock time to expiry, and the
+// implied volatilities served here are annualized on that basis. (The realized-volatility
+// comparison below is the opposite case and uses 252 trading days, because its sample is one
+// return per session. Mixing the two conventions is the usual way these two numbers end up
+// looking 25% apart for no real reason.)
+//
+// This is a MODELED figure, not a quoted straddle price. It assumes a lognormal diffusion
+// with no drift, and it describes a one-standard-deviation band: roughly a 68% chance of
+// finishing inside it if the model holds, which is an assumption about the world, not a fact
+// about it. Real distributions have fatter tails, and an earnings event inside the window
+// makes the single-number description weaker still.
+function expectedMove(spot, iv, days) {
+  if (!(spot > 0) || !(iv > 0) || !(days > 0)) return null;
+  return spot * iv * Math.sqrt(days / 365);
+}
+
+// The cone tilts when puts and calls carry different implied volatilities. The 25-delta legs
+// are served for the ~30 day expiry only, so the ratio they imply against that expiry's ATM
+// volatility is carried forward to the 60 and 90 day horizons: the shape of the skew is held
+// constant across the term even though its level is not. That carry-forward is an assumption,
+// and it is why every number here is labeled modeled. With no 25-delta legs the cone is
+// symmetric around ATM volatility.
+function ivLegs(iv) {
+  var atm30 = iv.atm30;
+  var upRatio = 1, downRatio = 1;
+  if (iv.call25 > 0 && iv.put25 > 0 && atm30 > 0) {
+    upRatio = iv.call25 / atm30;
+    downRatio = iv.put25 / atm30;
+  }
+  return { upRatio: upRatio, downRatio: downRatio };
+}
+
+function horizons(data) {
+  var iv = data.iv || {};
+  var legs = ivLegs(iv);
+  var defs = [
+    { days: 30, iv: iv.atm30 },
+    { days: 60, iv: iv.atm60 },
+    { days: 90, iv: iv.atm90 }
+  ];
+  var out = [];
+  for (var i = 0; i < defs.length; i++) {
+    var d = defs[i];
+    if (!(d.iv > 0)) continue;
+    var up = expectedMove(data.spot, d.iv * legs.upRatio, d.days);
+    var down = expectedMove(data.spot, d.iv * legs.downRatio, d.days);
+    if (up === null || down === null) continue;
+    out.push({
+      days: d.days, iv: d.iv,
+      up: up, down: down,
+      high: data.spot + up, low: data.spot - down
+    });
+  }
+  return out;
+}
+
+// ── Formatting ─────────────────────────────────────────────────────────────────
+function money(v) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  return "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function pct(v, dp) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  return (v * 100).toFixed(dp === undefined ? 1 : dp) + "%";
+}
+function signedPct(v) {
+  if (typeof v !== "number" || !isFinite(v)) return "n/a";
+  return (v >= 0 ? "+" : "") + v.toFixed(2) + "%";
+}
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function daysBetween(fromIso, toIso) {
+  var a = Date.parse(fromIso + "T00:00:00Z"), b = Date.parse(toIso + "T00:00:00Z");
+  if (isNaN(a) || isNaN(b)) return null;
+  return Math.round((b - a) / 86400000);
+}
+var TIMING_LABEL = {
+  before_open: "before the open",
+  after_close: "after the close",
+  during_market: "during the session",
+  unknown: "time not published"
+};
+
+// ── The cone chart ─────────────────────────────────────────────────────────────
+function coneSvg(data, hz) {
+  var W = 780, H = 380, PL = 62, PR = 96, PT = 22, PB = 40;
+  var plotW = W - PL - PR, plotH = H - PT - PB;
+  var maxDays = 90;
+
+  var hi = hz[hz.length - 1].high, lo = hz[hz.length - 1].low;
+  var pad = (hi - lo) * 0.10;
+  hi += pad; lo -= pad;
+  if (!(hi > lo)) return "";
+
+  function X(d) { return PL + (d / maxDays) * plotW; }
+  function Y(p) { return PT + (1 - (p - lo) / (hi - lo)) * plotH; }
+
+  var parts = [];
+
+  // Price gridlines, five of them, on round-ish values.
+  var step = (hi - lo) / 4;
+  for (var i = 0; i <= 4; i++) {
+    var p = lo + step * i, y = Y(p);
+    parts.push('<line x1="' + PL + '" y1="' + y.toFixed(1) + '" x2="' + (PL + plotW) +
+      '" y2="' + y.toFixed(1) + '" stroke="var(--grid)" stroke-width="1"/>');
+    parts.push('<text x="' + (PL - 9) + '" y="' + (y + 4).toFixed(1) +
+      '" text-anchor="end" font-size="11" fill="var(--text-dim)">' + money(p) + "</text>");
+  }
+
+  // The cone, drawn outermost band first so the nearer, denser bands sit on top.
+  var shades = ["var(--cone-90)", "var(--cone-60)", "var(--cone-30)"];
+  for (var b = hz.length - 1; b >= 0; b--) {
+    var band = hz[b];
+    var d = "M " + X(0) + " " + Y(data.spot).toFixed(1) +
+      " L " + X(band.days).toFixed(1) + " " + Y(band.high).toFixed(1) +
+      " L " + X(band.days).toFixed(1) + " " + Y(band.low).toFixed(1) + " Z";
+    parts.push('<path d="' + d + '" fill="' + shades[Math.min(b, 2)] + '"/>');
+  }
+
+  // Horizon markers with their price bounds.
+  for (var h = 0; h < hz.length; h++) {
+    var band2 = hz[h], x = X(band2.days);
+    parts.push('<line x1="' + x.toFixed(1) + '" y1="' + Y(band2.high).toFixed(1) +
+      '" x2="' + x.toFixed(1) + '" y2="' + Y(band2.low).toFixed(1) +
+      '" stroke="var(--gold)" stroke-width="1.5" stroke-opacity="0.75"/>');
+    parts.push('<text x="' + x.toFixed(1) + '" y="' + (Y(band2.high) - 7).toFixed(1) +
+      '" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text)">' +
+      money(band2.high) + "</text>");
+    parts.push('<text x="' + x.toFixed(1) + '" y="' + (Y(band2.low) + 15).toFixed(1) +
+      '" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text)">' +
+      money(band2.low) + "</text>");
+    parts.push('<text x="' + x.toFixed(1) + '" y="' + (H - PB + 17) +
+      '" text-anchor="middle" font-size="11" fill="var(--text-dim)">' + band2.days + "d</text>");
+  }
+
+  // Spot line.
+  parts.push('<line x1="' + PL + '" y1="' + Y(data.spot).toFixed(1) + '" x2="' + (PL + plotW) +
+    '" y2="' + Y(data.spot).toFixed(1) +
+    '" stroke="var(--text)" stroke-width="1.5" stroke-dasharray="4 3" stroke-opacity="0.55"/>');
+  parts.push('<text x="' + (PL + plotW + 8) + '" y="' + (Y(data.spot) + 4).toFixed(1) +
+    '" font-size="11.5" font-weight="600" fill="var(--text)">' + money(data.spot) + "</text>");
+  parts.push('<text x="' + (PL + plotW + 8) + '" y="' + (Y(data.spot) + 18).toFixed(1) +
+    '" font-size="10.5" fill="var(--text-dim)">last</text>');
+
+  // The next report, marked inside the cone rather than beside it: the point of the chart is
+  // that the event sits within the window the options are pricing.
+  var ne = data.nextEarnings;
+  if (ne && ne.date && data.asOf) {
+    var dd = daysBetween(data.asOf, ne.date);
+    if (dd !== null && dd >= 0 && dd <= maxDays) {
+      var ex = X(dd);
+      parts.push('<line x1="' + ex.toFixed(1) + '" y1="' + PT + '" x2="' + ex.toFixed(1) +
+        '" y2="' + (PT + plotH) + '" stroke="var(--data)" stroke-width="1.5" stroke-dasharray="5 4"/>');
+      var anchor = dd > maxDays * 0.72 ? "end" : "start";
+      var tx = dd > maxDays * 0.72 ? ex - 7 : ex + 7;
+      parts.push('<text x="' + tx.toFixed(1) + '" y="' + (PT + 13) + '" text-anchor="' + anchor +
+        '" font-size="11.5" font-weight="600" fill="var(--data)">earnings ' + esc(ne.date) + "</text>");
+      parts.push('<text x="' + tx.toFixed(1) + '" y="' + (PT + 27) + '" text-anchor="' + anchor +
+        '" font-size="10.5" fill="var(--text-dim)">' + esc(TIMING_LABEL[ne.timing] || "") + "</text>");
+    }
+  }
+
+  // Axes.
+  parts.push('<line x1="' + PL + '" y1="' + (PT + plotH) + '" x2="' + (PL + plotW) + '" y2="' +
+    (PT + plotH) + '" stroke="var(--border)" stroke-width="1"/>');
+  parts.push('<text x="' + (PL + plotW / 2) + '" y="' + (H - 6) +
+    '" text-anchor="middle" font-size="11" fill="var(--text-dim)">calendar days from ' +
+    esc(data.asOf || "the last session") + "</text>");
+
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" role="img" ' +
+    'aria-label="Modeled expected move cone">' + parts.join("") + "</svg>";
+}
+
+// ── Comparison: past earnings reactions, when they are bound ────────────────────
+function reactionsPanel(data, hz) {
+  var rows = (data.reactions || []).slice(0, 8);
+  if (!rows.length) return "";
+
+  var moves = rows.map(function (r) { return Math.abs(r.movePct); })
+    .filter(function (v) { return typeof v === "number" && isFinite(v); });
+  var sorted = moves.slice().sort(function (a, b) { return a - b; });
+  var median = sorted.length
+    ? (sorted.length % 2 ? sorted[(sorted.length - 1) / 2]
+      : (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2)
+    : null;
+
+  // Reference: the modeled move over the window that actually contains the report, so the
+  // dashed line is labeled with the horizon it belongs to instead of implying a one-day
+  // number the served data cannot support. Drawn ONLY when a next report is scheduled:
+  // with no event to model toward, a fallback line reads as a forecast for a report that
+  // does not exist. Same averaged up/down convention as the header stat, so the two never
+  // disagree on a skewed cone.
+  var ref = null, refDays = 0, refPct = null;
+  if (data.nextEarnings && data.nextEarnings.date && data.asOf) {
+    var dd = daysBetween(data.asOf, data.nextEarnings.date);
+    // A report dated on asOf itself is still ahead only when it comes after that session's
+    // close; before the open (or unknown timing) the session already priced it.
+    var tm = String(data.nextEarnings.timing || "").toLowerCase();
+    if (dd !== null && (dd > 0 || (dd === 0 && tm === "after_close"))) {
+      ref = hz[0];
+      for (var i = 0; i < hz.length; i++) { if (hz[i].days >= dd) { ref = hz[i]; break; } }
+      refDays = ref.days;
+      refPct = ((ref.up + ref.down) / 2 / data.spot) * 100;
+    }
+  }
+
+  // Bar labels print the raw timing code the reactions endpoint serves (AMC / BMO, a distinct
+  // vocabulary from the calendar endpoint's after_close / before_open). The code is standard
+  // market shorthand worth keeping, so gloss it rather than replace it, and only for the codes
+  // actually drawn below.
+  var seenTiming = {};
+  rows.forEach(function (r) { if (r.timing) seenTiming[String(r.timing).toUpperCase()] = true; });
+  var vocab = [];
+  if (seenTiming.AMC) vocab.push("AMC means after the market close");
+  if (seenTiming.BMO) vocab.push("BMO means before the market open");
+  var timingNote = vocab.length
+    ? " Each bar is labeled with the report date and when it was published: " +
+      vocab.join(", ") + "."
+    : "";
+
+  var maxAbs = Math.max.apply(null, moves.concat(refPct !== null ? [refPct] : [])) * 1.15 || 1;
+  var W = 780, rowH = 30, PT = 26, PB = 34;
+  var H = PT + rows.length * rowH + PB;
+  var PL = 118, PR = 22, plotW = W - PL - PR, mid = PL + plotW / 2;
+  function X(p) { return mid + (p / maxAbs) * (plotW / 2); }
+
+  var parts = [];
+  parts.push('<line x1="' + mid + '" y1="' + (PT - 8) + '" x2="' + mid + '" y2="' +
+    (PT + rows.length * rowH) + '" stroke="var(--border)" stroke-width="1"/>');
+
+  if (refPct !== null) {
+    [-refPct, refPct].forEach(function (v) {
+      var x = X(v);
+      parts.push('<line x1="' + x.toFixed(1) + '" y1="' + (PT - 8) + '" x2="' + x.toFixed(1) +
+        '" y2="' + (PT + rows.length * rowH) +
+        '" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="5 4"/>');
+    });
+    parts.push('<text x="' + X(refPct).toFixed(1) + '" y="' + (PT - 14) +
+      '" text-anchor="middle" font-size="11" font-weight="600" fill="var(--gold)">modeled ' +
+      refDays + "d move " + refPct.toFixed(1) + "%</text>");
+  }
+
+  rows.forEach(function (r, i) {
+    var y = PT + i * rowH + 6, h = rowH - 13;
+    var v = typeof r.movePct === "number" ? r.movePct : 0;
+    var x0 = Math.min(mid, X(v)), w = Math.abs(X(v) - mid);
+    parts.push('<rect x="' + x0.toFixed(1) + '" y="' + y + '" width="' + Math.max(w, 1).toFixed(1) +
+      '" height="' + h + '" rx="2.5" fill="' + (v >= 0 ? "var(--up)" : "var(--down)") + '"/>');
+    parts.push('<text x="6" y="' + (y + h - 3) + '" font-size="11.5" fill="var(--text-dim)">' +
+      esc(r.reportDate || "") + (r.timing ? " " + esc(r.timing) : "") + "</text>");
+    var lx = v >= 0 ? X(v) + 6 : X(v) - 6;
+    parts.push('<text x="' + lx.toFixed(1) + '" y="' + (y + h - 3) + '" text-anchor="' +
+      (v >= 0 ? "start" : "end") + '" font-size="11.5" font-weight="600" fill="var(--text)">' +
+      signedPct(v) + "</text>");
+  });
+
+  parts.push('<text x="' + mid + '" y="' + (H - 10) +
+    '" text-anchor="middle" font-size="11" fill="var(--text-dim)">' +
+    "close before the report to the next session close</text>");
+
+  var note = "";
+  if (median !== null && refPct !== null) {
+    note = "Median reaction " + median.toFixed(1) + "% against a modeled " + refDays +
+      " day move of " + refPct.toFixed(1) + "%. The modeled figure spans the whole window to " +
+      "the report, so it covers more than the single session each bar measures: read it as " +
+      "context, not as a like for like forecast.";
+  } else if (median !== null) {
+    note = "Median absolute reaction across these quarters is " + median.toFixed(1) + "%. " +
+      (data.nextEarningsStatus === "outside_preview"
+        ? "The next report date is past the free calendar preview, so no modeled move is drawn against the bars."
+        : data.nextEarningsStatus === "unavailable"
+          ? "The next report date could not be read, so no modeled move is drawn against the bars."
+          : "No next report is scheduled, so no modeled move is drawn against the bars.");
+  }
+
+  return '<section class="card">' +
+    "<h2>Past earnings reactions</h2>" +
+    '<p class="lede">The last ' + rows.length +
+    " reported quarters, newest first, measured close to close across the reaction session." +
+    esc(timingNote) + "</p>" +
+    '<div class="chart-scroll"><svg viewBox="0 0 ' + W + " " + H + '" width="' + W +
+    '" role="img" aria-label="Past earnings reactions' +
+    (refPct !== null ? " against the modeled expected move" : "") + '">' +
+    parts.join("") + "</svg></div>" +
+    (note ? '<p class="lede" style="margin:12px 0 0">' + esc(note) + "</p>" : "") +
+    "</section>";
+}
+
+// ── Comparison: implied against realized, the default ───────────────────────────
+function realizedPanel(data, hz) {
+  var rv = data.realizedVolatility || [];
+  var iv30 = data.iv && data.iv.atm30;
+  if (!(iv30 > 0)) return "";
+
+  var series = [{ label: "Implied, 30 day at the money", value: iv30, accent: true }];
+  rv.forEach(function (r) {
+    if (typeof r.value === "number") {
+      series.push({ label: "Realized, last " + r.sessions + " sessions", value: r.value });
+    }
+  });
+  if (series.length < 2) return "";
+
+  var maxV = Math.max.apply(null, series.map(function (s) { return s.value; })) * 1.18;
+  var W = 780, rowH = 34, PT = 10, PB = 30;
+  var H = PT + series.length * rowH + PB;
+  var PL = 232, PR = 66, plotW = W - PL - PR;
+
+  var parts = [];
+  series.forEach(function (s, i) {
+    var y = PT + i * rowH + 5, h = rowH - 14;
+    var w = Math.max((s.value / maxV) * plotW, 2);
+    parts.push('<rect x="' + PL + '" y="' + y + '" width="' + w.toFixed(1) + '" height="' + h +
+      '" rx="3" fill="' + (s.accent ? "var(--gold)" : "var(--data)") + '"/>');
+    parts.push('<text x="' + (PL - 10) + '" y="' + (y + h - 3) +
+      '" text-anchor="end" font-size="12" fill="var(--text-dim)">' + esc(s.label) + "</text>");
+    parts.push('<text x="' + (PL + w + 8).toFixed(1) + '" y="' + (y + h - 3) +
+      '" font-size="12" font-weight="600" fill="var(--text)">' + pct(s.value) + "</text>");
+  });
+  parts.push('<text x="' + (PL + plotW / 2) + '" y="' + (H - 8) +
+    '" text-anchor="middle" font-size="11" fill="var(--text-dim)">' +
+    "annualized volatility</text>");
+
+  var iv0 = series[0].value, rvLast = series[series.length - 1].value;
+  var gap = iv0 - rvLast;
+  var verdict = Math.abs(gap) < 0.02
+    ? "Implied and realized are close, so the options market is pricing roughly the movement this stock has actually been delivering."
+    : gap > 0
+      ? "Implied sits about " + (gap * 100).toFixed(1) +
+        " points above the longest realized window, so options are pricing more movement than the stock has recently delivered."
+      : "Implied sits about " + (Math.abs(gap) * 100).toFixed(1) +
+        " points below the longest realized window, so options are pricing less movement than the stock has recently delivered.";
+
+  return '<section class="card">' +
+    "<h2>Implied against realized</h2>" +
+    '<p class="lede">What the options market is pricing, next to what this stock has actually done. ' +
+    "Realized volatility is the annualized standard deviation of daily closing returns.</p>" +
+    '<div class="chart-scroll"><svg viewBox="0 0 ' + W + " " + H + '" width="' + W +
+    '" role="img" aria-label="Implied volatility against realized volatility">' +
+    parts.join("") + "</svg></div>" +
+    '<p class="lede" style="margin:12px 0 0">' + esc(verdict) + "</p>" +
+    "</section>";
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+function render() {
+  var root = document.getElementById("root");
+
+  if (!DATA || typeof DATA !== "object") {
+    root.innerHTML = '<div class="error"><strong>No data bound.</strong><br>' +
+      "This template still holds its placeholder tokens. Run the data command, then replace " +
+      "the data and meta tokens in the two JSON blocks with its output.</div>";
+    return;
+  }
+
+  var hz = horizons(DATA);
+  if (!hz.length) {
+    root.innerHTML = '<div class="error"><strong>Not enough implied volatility to draw a cone.</strong><br>' +
+      "The bound snapshot carries no usable at the money implied volatility for " +
+      esc(DATA.ticker || "this ticker") + ".</div>";
+    return;
+  }
+
+  var near = hz[0];
+  var iv = DATA.iv || {};
+  var title = META.title || ("Expected move: " + (DATA.ticker || ""));
+  var out = [];
+
+  out.push('<header class="card"><div class="title-row">' +
+    "<h1>Expected move <span class=\"ticker\">" + esc(DATA.ticker || "") + "</span></h1>" +
+    '<span class="badge accent">modeled</span>' +
+    (DATA.isPreview ? '<span class="badge">preview slice</span>' : "") +
+    "</div>" +
+    '<p class="subtitle">' + esc(META.subtitle ||
+      "One standard deviation bands implied by options pricing, around the last close.") +
+    "</p>");
+
+  // A missing date is only "not scheduled" when the calendar answered for its whole window. A
+  // free preview that left rows out, or a failed call, leaves the date unknown, and says why.
+  var neText = "not scheduled", neNote = "";
+  if (DATA.nextEarnings && DATA.nextEarnings.date) {
+    var dd = DATA.asOf ? daysBetween(DATA.asOf, DATA.nextEarnings.date) : null;
+    neText = DATA.nextEarnings.date + (dd !== null && dd >= 0 ? " (" + dd + "d)" : "");
+    neNote = esc(TIMING_LABEL[DATA.nextEarnings.timing] || "");
+  } else if (DATA.nextEarningsStatus === "outside_preview") {
+    neText = "unknown";
+    neNote = "past the free calendar week";
+  } else if (DATA.nextEarningsStatus === "unavailable") {
+    neText = "unknown";
+    neNote = "calendar not read";
+  }
+
+  out.push('<div class="stats">' +
+    stat("Last price", money(DATA.spot), "delayed, not live") +
+    stat("30 day expected move", "&plusmn;" + (((near.up + near.down) / 2 / DATA.spot) * 100).toFixed(1) + "%",
+      money(DATA.spot - near.down) + " to " + money(DATA.spot + near.up)) +
+    stat("At the money IV", pct(iv.atm30),
+      typeof iv.rank1y === "number"
+        ? "rank " + iv.rank1y.toFixed(0) + " of 100 in its own year"
+        : "one year rank still building") +
+    stat("Next report", esc(neText), neNote) +
+    "</div></header>");
+
+  var tilted = iv.call25 > 0 && iv.put25 > 0;
+  var coneNotes = [];
+  if (DATA.isPreview) {
+    coneNotes.push("This snapshot is the free tier's headline preview: the month's full options " +
+      "dossiers are spent, so only the 30 day band draws, with no tilt. The 60 and 90 day bands " +
+      "and the 25 delta skew return with a new calendar month, or on any ticker with a PRO key.");
+  }
+  if (!(DATA.nextEarnings && DATA.nextEarnings.date) && DATA.nextEarningsStatus === "outside_preview") {
+    coneNotes.push("The next report date is not in this snapshot: the free earnings calendar " +
+      "covers the current week only. A report inside these horizons cannot be ruled out, and " +
+      "one that falls inside is part of why the implied volatility is where it is.");
+  }
+  out.push('<section class="card"><h2>The cone</h2>' +
+    '<p class="lede">Each band is a one standard deviation range at that horizon, modeled from ' +
+    "at the money implied volatility" +
+    (tilted ? " and tilted by 25 delta put and call demand" :
+      ", symmetric because no 25 delta legs are bound") +
+    ". It is a probability band, not a target and not a forecast.</p>" +
+    coneNotes.map(function (n) { return '<p class="lede">' + esc(n) + "</p>"; }).join("") +
+    '<div class="chart-scroll">' + coneSvg(DATA, hz) + "</div>" +
+    '<div class="legend">' +
+    hz.map(function (b) {
+      return '<span><i class="swatch" style="background:var(--cone-' + b.days + ')"></i>' +
+        b.days + " day</span>";
+    }).join("") +
+    (DATA.nextEarnings && DATA.nextEarnings.date
+      ? '<span><i class="swatch" style="background:var(--data)"></i>next report</span>' : "") +
+    "</div>");
+
+  var rowsHtml = hz.map(function (b) {
+    return "<tr><td>" + b.days + " days</td><td>" + pct(b.iv) + "</td><td>" +
+      money(b.low) + "</td><td>" + money(b.high) + "</td><td>&plusmn;" +
+      (((b.up + b.down) / 2 / DATA.spot) * 100).toFixed(1) + "%</td></tr>";
+  }).join("");
+  out.push("<table><thead><tr><th>Horizon</th><th>ATM IV</th><th>Lower</th><th>Upper</th>" +
+    "<th>Move</th></tr></thead><tbody>" + rowsHtml + "</tbody></table></section>");
+
+  // The comparison panel keys off the bound data: reactions when they are present, the
+  // implied-against-realized read otherwise.
+  out.push(reactionsPanel(DATA, hz) || realizedPanel(DATA, hz));
+
+  var stampDate = DATA.generatedAt ? String(DATA.generatedAt).replace("T", " ").slice(0, 16) + " UTC" : "";
+  out.push('<footer><div class="stamp">' +
+    "<span>Data: SentiSense, options as of " + esc(DATA.asOf || "the last completed session") +
+    (stampDate ? ". Rendered " + esc(stampDate) : "") + ".</span>" +
+    '<span><a href="https://sentisense.ai">made with SentiSense</a></span></div>' +
+    '<p class="disclaimer">Expected move figures are modeled from end of day implied ' +
+    "volatility, not quoted option prices, and they describe a probability band under " +
+    "assumptions that real markets break. Prices are delayed, not live. This is information " +
+    "for research and education only. It is not investment advice, not a recommendation, and " +
+    "not a forecast. Markets involve risk of loss.</p></footer>");
+
+  root.innerHTML = out.join("");
+  document.title = title;
+}
+
+function stat(k, v, n) {
+  return '<div class="stat"><div class="k">' + esc(k) + '</div><div class="v">' + v + "</div>" +
+    (n ? '<div class="n">' + n + "</div>" : "") + "</div>";
+}
+
+render();
+</script>
+</body>
+</html>

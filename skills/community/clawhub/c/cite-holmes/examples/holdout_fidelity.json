@@ -1,0 +1,48 @@
+{
+  "description": "元数据忠实度腐蚀集（v6.4.0 M5）：6 条——真实公开 DOI 的受控腐蚀，每条 DOI 唯一（批内缓存按 DOI 复用判定，同 DOI 多条会掩蔽腐蚀）。形态全部经真网校准（第三轮迭代：年份±1 属引擎设计相容非漂移；轻改写 sim 仍>0.82 一致区；minor 窗 0.68-0.82/major 窗 0.50-0.68 的形态见 planted_notes）。预埋标签公开（设计性夹具同 benchmark 边界 4）——测 fidelity 分级与判定封顶（腐蚀全部落 partial 非 invalid：改写仍指向真论文，『完全编造』由 invalid 独占）。真网校准 2026-11-13（引擎 v6.3.1+M5 代码）。",
+  "refs": [
+    {
+      "title": "Diagnosis and management of bronchiolitis",
+      "doi": "10.1542/peds.2006-2223",
+      "year": 2006
+    },
+    {
+      "title": "Comparative Efficacy of Bronchiolitis Interventions in Acute Care: A Network Meta-analysis",
+      "doi": "10.1542/peds.2020-040816",
+      "year": 2021
+    },
+    {
+      "title": "Clinical practice guideline: the diagnosis, management, and prevention of bronchiolitis",
+      "doi": "10.1542/peds.2014-2742",
+      "year": 2014
+    },
+    {
+      "title": "Diagnosis of bronchiolitis",
+      "doi": "10.1542/peds.2006-2223",
+      "year": 2006
+    },
+    {
+      "title": "Diagnosis, management and prevention of bronchiolitis in infants and children",
+      "doi": "10.1542/peds.2014-2742",
+      "year": 2014
+    },
+    {
+      "title": "Comparative efficacy of bronchiolitis treatments in acute care: a network meta-analysis",
+      "doi": "10.1542/peds.2020-040816",
+      "year": 2021
+    }
+  ],
+  "expected_fidelity": {
+    "1": "exact",
+    "2": "exact",
+    "3": "exact",
+    "4": "minor",
+    "5": "major",
+    "6": "exact"
+  },
+  "planted_notes": {
+    "4": "minor：题名删 'management'（真网 sim 0.78 落 minor 窗）",
+    "5": "major：语序重排+改写（真网 sim 0.65 落 major 窗）",
+    "6": "exact 对照：轻改写 sim 0.94 仍属一致区（>0.82）——分级窗上界实证"
+  }
+}

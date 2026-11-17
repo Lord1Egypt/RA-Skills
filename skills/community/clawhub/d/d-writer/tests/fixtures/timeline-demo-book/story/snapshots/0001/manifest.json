@@ -1,0 +1,19 @@
+{
+  "snapshotVersion": "1.0.0",
+  "chapter": 1,
+  "createdAt": "2025-06-02T00:00:00Z",
+  "includedFiles": [
+    "story/current_state.md",
+    "story/pending_hooks.md",
+    "story/chapter_summaries.md",
+    "story/current_focus.md",
+    "story/audit-drift.md",
+    "chapters/index.json",
+    "story/roles/major/陆沉舟.md",
+    "story/roles/major/苏晚晴.md",
+    "story/roles/minor/寒山子.md"
+  ],
+  "fileHashes": {},
+  "skillVersion": "1.0.0",
+  "schemaVersion": "1.0.0"
+}

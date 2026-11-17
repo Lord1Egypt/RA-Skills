@@ -1,0 +1,13 @@
+{
+  "module": "下班放行单",
+  "route": "afterwork-pass",
+  "time_label": "18:30",
+  "title": "判了：短撤退",
+  "reason": "想独处，只加小缓冲",
+  "action": "顺路安静10分钟",
+  "tags": ["独处", "少花钱"],
+  "corner": "放行",
+  "footer": "今天先这么过。",
+  "alt_text": "下班放行单。判了：短撤退。想独处，只加小缓冲。现在做：顺路安静10分钟。",
+  "share_safe": true
+}

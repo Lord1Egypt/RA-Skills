@@ -1,0 +1,47 @@
+{
+  "name": "@yottameta/yotta-security-testing",
+  "version": "0.3.4",
+  "description": "YuanCe (元测) — a disciplined, authorization-first AI security-testing methodology: a four-stage (recon → discovery → verification → reporting) web security testing workflow on authorized targets (self-owned assets / SRC bug bounty / CTF / local labs), with a built-in Scope Guard (allowlist, target triage, blacklist, audit trail, legal redlines) and zero executable payloads. Triggers: authorized security / penetration / vulnerability assessment requests, SRC bug bounty, CTF or lab drills (DVWA / Juice Shop / HTB / VulnHub). Boundaries: unauthorized targets rejected by default; no payloads / evasion / phishing / social engineering; no mass scanning or exploit automation; human review required.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-security-testing",
+    "security-testing",
+    "authorized-testing",
+    "scope-guard",
+    "penetration-testing",
+    "web-security",
+    "bug-bounty",
+    "yottaskills"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "playbooks",
+    "scripts",
+    "assets",
+    "bin",
+    "!**/__pycache__",
+    "!**/*.pyc",
+    "!scripts/test_*.py"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-security-testing.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-security-testing": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\" && python scripts/test_yotta_security_testing.py"
+  }
+}

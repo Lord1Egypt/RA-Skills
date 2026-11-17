@@ -1,44 +1,59 @@
-## Description: <br>
-Wonda helps agents use the Wonda CLI to generate and edit media, run social research, automate selected social workflows, and publish content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wonda CLI helps terminal-based agents generate and edit images, videos, music, and audio, plus research and automate activity across LinkedIn, Reddit, and X/Twitter.
 
-## Publisher: <br>
-[degausai](https://clawhub.ai/user/degausai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[degausai](https://clawhub.ai/user/degausai)
 
-## Use Case: <br>
-External developers, marketers, and agent operators use this skill to route content generation, media editing, local video finishing, social research, and publishing through the Wonda CLI. It is intended for accounts and content the user controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide high-impact social actions such as signup, posting, direct messages, follows, votes, connection requests, permission grants, Terms acceptance, and deletes. <br>
-Mitigation: Require explicit user approval before any account, consent, permission, posting, messaging, voting, following, connection, or delete action. <br>
-Risk: The skill uses Wonda credentials and may handle social tokens, verification codes, API keys, and short-lived device stream URLs. <br>
-Mitigation: Keep credentials, verification data, and stream URLs private; use accounts the user controls and rotate or revoke exposed credentials. <br>
-Risk: The security summary flags suspicious social automation behavior, including stealth or detection-avoidance language. <br>
-Mitigation: Install only if the Wonda CLI provider is trusted, review automation plans before execution, and stop for human handoff on rate-limit, CAPTCHA, consent, or ambiguous screens. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route Wonda CLI commands for media generation, editing, social research, social publishing, and local finishing workflows. It is intended for agents that need concise command guidance for producing media assets or interacting with connected social accounts.
 
-## Reference(s): <br>
-- [Wonda homepage](https://wonda.sh) <br>
-- [ClawHub Wonda listing](https://clawhub.ai/degausai/wonda) <br>
-- [Degaus AI publisher profile](https://clawhub.ai/user/degausai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke external Wonda services and create, edit, or publish media depending on user-approved commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can guide agents through broad external social actions, including publishing, messaging, following, deleting, and account workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before posting, messaging, following, deleting, accepting terms, granting permissions, or making other externally visible account changes.
+
+Risk: The security summary flags stealthy social-account automation and the guidance calls out disposable signup, internal API, and detection-avoidance workflows.
+
+Mitigation: Avoid stealth, disposable signup, internal API, and detection-avoidance workflows; prefer official account APIs and hand off rate-limit or verification challenges to a human.
+
+Risk: Use requires Wonda credentials and may operate on connected social accounts.
+
+Mitigation: Run in an isolated environment, protect WONDERCAT_API_KEY as a secret, pin dependencies where practical, and grant only the account access needed for the task.
+
+## Reference(s):
+
+- [Wonda homepage](https://wonda.sh)
+- [ClawHub skill page](https://clawhub.ai/degausai/skills/wonda)
+- [Publisher profile](https://clawhub.ai/user/degausai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and JSON-oriented command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create media files, social posts, messages, account actions, and local analysis artifacts when executed.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

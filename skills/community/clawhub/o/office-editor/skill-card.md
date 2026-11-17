@@ -1,46 +1,64 @@
-## Description: <br>
-Helps an agent create or modify Word (.docx), Excel (.xlsx), and PowerPoint (.pptx) files while checking required Python document libraries before making changes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create or modify Word (.docx), Excel (.xlsx), and PowerPoint (.pptx) files.
 
-## Publisher: <br>
-[Noah-Wu66](https://clawhub.ai/user/Noah-Wu66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-wu66](https://clawhub.ai/user/noah-wu66)
 
-## Use Case: <br>
-Developers, analysts, and knowledge workers use this skill to generate or update Office documents from agent workflows. It is useful for document export, spreadsheet creation, presentation drafting, and structured edits to existing local Office files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts or edits can overwrite or alter local Office documents if pointed at the wrong filename. <br>
-Mitigation: Review target filenames before running generated scripts, preserve originals by default, and overwrite only when explicitly intended. <br>
-Risk: Office document creation depends on local Python libraries such as python-docx, openpyxl, and python-pptx. <br>
-Mitigation: Check imports before implementation and report missing packages directly instead of installing dependencies automatically. <br>
+## Use Case:
 
+Developers and agents use this skill to create or edit Word documents, Excel workbooks, and PowerPoint presentations while checking required Python Office libraries before use.
 
-## Reference(s): <br>
-- [Office-Editor on ClawHub](https://clawhub.ai/Noah-Wu66/office-editor) <br>
-- [python-docx API Summary](references/docx_api_summary.md) <br>
-- [python-pptx API Quick Reference](references/pptx_api_reference.md) <br>
-- [PowerPoint Chart Creation Guide](references/pptx_chart_guide.md) <br>
-- [Excel Charts Reference](references/xlsx_charts.md) <br>
-- [Excel Advanced Features Reference](references/xlsx_features.md) <br>
-- [Excel pandas Integration Reference](references/xlsx_pandas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with Python code snippets and generated or modified Office files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local .docx, .xlsx, and .pptx files when the required Python libraries are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated Office files may contain unintended or incomplete content if the requested document details are ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated .docx, .xlsx, and .pptx files before sharing or relying on them.
+
+Risk: Important local documents could be changed unexpectedly if an output path is unclear.
+
+Mitigation: Use explicit output filenames and preserve originals by default; overwrite only when the user explicitly asks for it.
+
+Risk: Missing Office libraries can prevent document creation or editing.
+
+Mitigation: Check required imports first and report missing packages instead of attempting automatic installation.
+
+## Reference(s):
+
+- [python-docx API Summary](references/docx_api_summary.md)
+- [python-pptx API Quick Reference](references/pptx_api_reference.md)
+- [PowerPoint Chart Creation Guide](references/pptx_chart_guide.md)
+- [Excel Charts Reference](references/xlsx_charts.md)
+- [Excel Advanced Features Reference](references/xlsx_features.md)
+- [Pandas & NumPy Integration](references/xlsx_pandas.md)
+- [ClawHub Skill Page](https://clawhub.ai/noah-wu66/skills/office-editor)
+- [Publisher Profile](https://clawhub.ai/user/noah-wu66)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with Python code and generated .docx, .xlsx, or .pptx files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes concrete Office files to local target filenames and defaults edited documents to updated_* outputs unless overwrite is explicitly requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

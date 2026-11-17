@@ -1,39 +1,52 @@
-## Description: <br>
-Measure network download speed, upload speed, and latency from the command line using Cloudflare speed test endpoints and public DNS targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measures network download speed, upload speed, and latency from the command line using Cloudflare speed test endpoints and public DNS latency targets with no external dependencies.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, IT administrators, and support teams use this skill to check internet throughput, diagnose slow connections, measure latency and jitter, and collect command-line or JSON network performance results.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill sends test traffic to Cloudflare endpoints and opens TCP connections to public DNS IPs.
+
+Mitigation: Run it only on networks where that traffic is approved and expected.
+
+Risk: Very large custom --size values can consume significant bandwidth and memory.
+
+Mitigation: Use the default or modest --size values, especially on metered or shared networks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to measure download speed, upload speed, latency, and jitter while diagnosing network performance from a command line. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts Cloudflare and public DNS services to measure network performance. <br>
-Mitigation: Use it only on networks where outbound tests to those public endpoints are acceptable. <br>
-Risk: Large test sizes can consume noticeable bandwidth and memory, especially on metered, shared, or sensitive networks. <br>
-Mitigation: Use reasonable test sizes and avoid running large tests where bandwidth cost, congestion, or policy restrictions matter. <br>
+**Output Format:** [Plain text or structured JSON from command-line execution, with Markdown instructions and bash examples.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No API keys or accounts required; custom test size controls bandwidth and upload memory use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text, Analysis] <br>
-**Output Format:** [Command-line text output or structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run all tests together or individual download, upload, and latency checks with adjustable test size.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

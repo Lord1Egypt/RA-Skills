@@ -1,39 +1,48 @@
-## Description: <br>
-Write LaTeX documents with correct syntax, packages, and compilation workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write LaTeX documents with correct syntax, packages, and compilation workflow.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, researchers, students, and technical writers use this skill as a LaTeX writing reference for syntax, packages, document structure, references, tables, figures, and common compilation issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Compiling untrusted LaTeX documents or packages can expose users to unsafe external build behavior, especially when shell-escape or external tools are enabled. <br>
-Mitigation: Compile only documents and packages from trusted sources, and avoid shell-escape unless the workflow requires it and the source is trusted. <br>
-Risk: LaTeX guidance may be applied incorrectly to a specific document class, package combination, or build workflow. <br>
-Mitigation: Review generated LaTeX snippets and compilation commands against the target document and run the normal LaTeX build checks before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/latex) <br>
+## Use Case:
 
+External users and developers use this skill to have an agent draft, review, and explain LaTeX documents using conventional syntax, packages, math, floats, tables, images, references, and compilation practices.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with LaTeX snippets and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in the skill artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can bias agent responses toward conventional LaTeX formatting choices, including TeX-style quotes, even when a user prefers a different style.
+
+Mitigation: Users should state project-specific LaTeX conventions in their prompt when they want those conventions to override the skill guidance.
+
+## Reference(s):
+
+- [ClawHub LaTeX skill page](https://clawhub.ai/ivangdavila/skills/latex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown responses with LaTeX snippets and optional shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill itself adds guidance only; it does not add tools, permissions, persistence, credential access, or code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

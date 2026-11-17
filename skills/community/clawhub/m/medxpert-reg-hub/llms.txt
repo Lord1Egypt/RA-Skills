@@ -1,0 +1,37 @@
+# medxpert-reg-hub
+
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`；人类看 `README.md`。
+
+## Purpose / 一句话定位
+
+All-in-one hub for medical device registration engineers — global pathways & classification (CN NMPA / US FDA / EU MDR / JP PMDA / ASEAN·LATAM), plus 20 topic hubs (UDI, STED, biocompatibility, GMP, post-market, labeling/IFU, risk, clinical evaluation, design control, software/human factors, sterilization, submission, review, after-sales, market access...) mapped to the 7-stage lifecycle, with verified official links. From feasibility to certificate, no more scattered searching.
+
+医疗器械注册工程师的「随身资料库」——中/美/欧/日及全球注册路径与分类、UDI/STED/生物相容/GMP/上市后/标签IFU/风险/临床评价/设计开发/软件/灭菌/注册检验申报/审评核查/售后/市场准入等 20 个专题枢纽，按全生命周期 7 阶段全覆盖，官方直达链接一站直达。
+
+## When to use / 什么时候用
+
+- 这个产品在国内算几类，走哪条路
+- 美国 510(k) 要准备哪些资料
+- 欧盟 CE 认证大概是个什么流程
+- 想找 FDA 官方的器械分类数据库
+- 注册到一半被要求补临床资料
+- 同一个产品想同时报中欧美怎么排期
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md) — 主说明书（frontmatter + 触发条件 + 执行步骤）
+- [README.md](README.md) — 人类总览
+- [LICENSE.md](LICENSE.md) — 分层许可（代码层 MIT／理论与文本保留权利）
+
+## Boundaries / 边界
+
+- 本技能只处理上面写的场景；不覆盖同领域其它技能的职责范围。
+- 输出不含未经验证的事实性断言；需要证据时给出出处。理论根基：LGD 三律（有籍 Recorded · 有证 Evidenced · 有门禁 Gated）。
+
+## Ecosystem / 生态入口
+
+- 生态总入口 / hub: https://zhaoxinghua09-cell.github.io/lgd-hub/
+- 理论正本 / theory: https://github.com/zhaoxinghua09-cell/LGD
+- 形式化论文 / paper: https://doi.org/10.5281/zenodo.22456647
+- 协议与参考实现 / protocol: https://github.com/zhaoxinghua09-cell/uibc-core
+- 全部已发布技能 / all skills: https://github.com/zhaoxinghua09-cell/agent-skills

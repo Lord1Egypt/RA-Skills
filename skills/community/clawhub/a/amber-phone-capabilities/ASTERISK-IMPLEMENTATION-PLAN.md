@@ -2,6 +2,8 @@
 
 > **Status: Future Roadmap** — This document describes a planned future carrier integration (Asterisk/SIP) for cost reduction. It is not part of the current release. The current implementation uses Twilio as the telephony provider.
 
+> **Privacy/compliance note:** Any Asterisk/SIP deployment would still process live caller audio, metadata, transcripts, and possibly CRM/contact data through configured providers such as OpenAI Realtime. Operators must provide caller notice/consent where required, define retention/deletion practices, and protect logs and credentials before production use.
+
 ## Executive Summary
 
 **Feasibility:** ✅ **HIGHLY FEASIBLE** - Multiple working implementations exist in production

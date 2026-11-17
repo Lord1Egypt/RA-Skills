@@ -1,42 +1,59 @@
-## Description: <br>
-Creates reliable Excalidraw diagrams in OpenClaw using the Excalidraw MCP, export-safe labels, Excalifont text, and clear system-diagram structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create reliable Excalidraw diagrams in OpenClaw using the Excalidraw MCP, with export-safe labels, Excalifont text, and clear system-diagram structure.
 
-## Publisher: <br>
-[nickytonline](https://clawhub.ai/user/nickytonline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickytonline](https://clawhub.ai/user/nickytonline)
 
-## Use Case: <br>
-Developers, architects, and other OpenClaw users use this skill to create editable Excalidraw architecture diagrams, system diagrams, flowcharts, and hand-drawn diagrams with preview and export checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require Excalidraw MCP installation, configuration changes, or saved preferences. <br>
-Mitigation: Require explicit user approval before MCP installation or configuration changes and verify availability with a minimal Excalidraw scene. <br>
-Risk: Exported excalidraw.com links can be empty, simplified, or different from the previewed scene. <br>
-Mitigation: Preview first, export the same full native Excalidraw scene, verify the link is non-empty, and disclose any simplified fallback. <br>
-Risk: Diagram labels or arrows may lose editability if Excalidraw metadata is flattened during export. <br>
-Mitigation: Use explicit text elements, preserve container and binding metadata, and audit semantic connectors before delivery. <br>
+## Use Case:
 
+Developers and technical teams use Excaliclaw to create editable Excalidraw architecture diagrams, system diagrams, flowcharts, and hand-drawn style diagrams in OpenClaw. The skill emphasizes preview-first diagram generation, export-safe native Excalidraw scenes, readable labels, and preserved editability metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickytonline/excaliclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, text, markdown] <br>
-**Output Format:** [Markdown replies with Excalidraw scene JSON guidance, MCP workflow steps, and editable excalidraw.com links when export succeeds.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Normal output includes preview-before-export checks, non-empty link verification, and disclosed fallbacks such as Excalidraw JSON, SVG/PNG, Mermaid, or another diagram format when MCP export is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Diagram content may be shared externally through an editable excalidraw.com link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diagram content before approving export or sharing, and only share externally when the content is acceptable.
+
+Risk: The skill may ask to install or configure an Excalidraw MCP, which changes the local agent environment.
+
+Mitigation: Require explicit user approval before installation or configuration, use current OpenClaw-supported setup paths, and verify MCP availability with a minimal scene before proceeding.
+
+Risk: Exports can fail, be empty, or lose editability metadata if preview and export payloads diverge.
+
+Mitigation: Preview the diagram first, export the same full native Excalidraw scene, preserve binding metadata, and verify the exported link is non-empty before delivering it.
+
+## Reference(s):
+
+- [Excaliclaw on ClawHub](https://clawhub.ai/nickytonline/skills/excaliclaw)
+- [nickytonline Publisher Profile](https://clawhub.ai/user/nickytonline)
+- [Excalidraw](https://excalidraw.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON scene examples, shell or configuration instructions when setup is approved, and editable Excalidraw links when export succeeds.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce fallback diagram formats such as Excalidraw JSON, SVG/PNG, or Mermaid when MCP preview or export is unavailable.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

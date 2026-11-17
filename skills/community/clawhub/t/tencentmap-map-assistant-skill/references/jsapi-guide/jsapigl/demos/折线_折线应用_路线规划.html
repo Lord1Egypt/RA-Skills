@@ -8,7 +8,7 @@
     <title>折线应用: 路线规划</title>
 </head>
 <script charset="utf-8"
-    src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77"></script>
+    src="https://map.qq.com/api/gljs?v=1.exp&key={TMAP_JSAPI_KEY}"></script>
 <style>
     html,
     body {
@@ -47,7 +47,7 @@ function initMap(){
 	url+="?from=39.984039,116.307630";  //起点坐标
 	url+="&to=39.977263,116.337063";  //终点坐标
 	url+="&output=jsonp&callback=cb" ;	//指定JSONP回调函数名，本例为cb
-	url+="&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77"; //开发key，可在控制台自助创建
+	url+="&key={TMAP_JSAPI_KEY}"; //开发key，可在控制台自助创建
 
 	//发起JSONP请求，获取路线规划结果
 	jsonp_request(url);

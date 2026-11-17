@@ -1,48 +1,61 @@
-## Description: <br>
-Provides a least-privilege interface for managing user data, personas, memory, and configuration snapshots in MyVector/MySQL with input validation and secret redaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a secure, least-privilege interface for managing user data, personas, memory, and configuration snapshots in a self-hosted MyVector MySQL database.
 
-## Publisher: <br>
-[paradoxfuzzle](https://clawhub.ai/user/paradoxfuzzle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paradoxfuzzle](https://clawhub.ai/user/paradoxfuzzle)
 
-## Use Case: <br>
-Developers and agent operators use VectorClaw to install and operate a self-hosted MyVector/MySQL memory database for user profiles, interaction history, preferences, moods, relationships, agent learnings, and retrieval-time knowledge graph context. The skill is intended for controlled deployments where administrators can enforce opt-in consent, retention, deletion, backups, and least-privilege database access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: VectorClaw can persist broad sensitive user profiles, inferred facts, mood data, relationships, and agent reasoning logs. <br>
-Mitigation: Require explicit per-user opt-in before enabling storage or auto-extraction, keep auto-extraction in dry-run or human-review mode until validated, disable or remove thought_stream chain-of-thought logging, and honor deletion requests through the provided rollback workflow. <br>
-Risk: Database credentials and schema migrations can expose data or damage a production database if handled casually. <br>
-Mitigation: Use a dedicated least-privilege MySQL user, protect and rotate credentials, run migrations only after backups, and test migrations, retention, and deletion behavior on non-production data first. <br>
-Risk: Auto-extracted or graph-derived memories may be inaccurate or overly sensitive. <br>
-Mitigation: Review extracted memories before they affect agent behavior, use human verification flags for promoted facts, and prefer dry-run consolidation before committing graph edges. <br>
+## Use Case:
 
+Developers and agent operators use VectorClaw to give an OpenClaw-style agent controlled MySQL-backed memory, profile, relationship, mood, reminder, and usage-tracking operations in a self-hosted MyVector container. Administrators should review consent, retention, and deletion controls before enabling auto-extraction or profiling.
 
-## Reference(s): <br>
-- [VectorClaw ClawHub Page](https://clawhub.ai/paradoxfuzzle/custom-mysql) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CAPABILITIES.md](artifact/CAPABILITIES.md) <br>
-- [SETUP_GUIDE.md](artifact/SETUP_GUIDE.md) <br>
-- [changelog.md](artifact/changelog.md) <br>
-- [rollback_user.sql](artifact/rollback_user.sql) <br>
-- [MyVector](https://github.com/askdba/myvector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and SQL command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose database reads and writes, setup steps, migrations, retention actions, and deletion workflows that require operator review and environment-specific credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.1 (source: server release metadata and SKILL.md version section, released 2026-05-27) <br>
+Risk: Persistent profiling of sensitive personal data and agent reasoning logs can create privacy and consent risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable auto-extraction, mood tracking, engagement tracking, and heartbeat jobs until each user has recorded opt-in consent; use extraction_config, data_retention_policy, audit_log, and rollback_user.sql for consent, retention, audit, and deletion workflows.
+
+Risk: Setup and migration require credentials, Docker MyVector, and administrator schema changes.
+
+Mitigation: Use a dedicated least-privilege MySQL user, avoid root/admin for agent-facing commands, keep .env chmod 600, back up before migrations, and run DDL upgrade scripts manually through docker exec rather than through sql_safe_exec.sh.
+
+Risk: Unpinned container images and unresolved SQL validation concerns could weaken the intended safety controls.
+
+Mitigation: Pin and verify the MyVector container image, route agent SQL through sql_safe_exec.sh, keep SELECT-only queries separate from confirmed DML, and complete the security review guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/paradoxfuzzle/skills/custom-mysql)
+- [SKILL.md](artifact/SKILL.md)
+- [SETUP_GUIDE.md](artifact/SETUP_GUIDE.md)
+- [CAPABILITIES.md](artifact/CAPABILITIES.md)
+- [changelog.md](artifact/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and SQL scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Self-hosted MyVector/MySQL operations through reviewed scripts; DML requires interactive confirmation.]
+
+## Skill Version(s):
+
+5.0.1 (source: server release metadata and artifact/SKILL.md, released 2026-05-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

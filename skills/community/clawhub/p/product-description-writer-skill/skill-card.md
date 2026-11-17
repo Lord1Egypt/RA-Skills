@@ -1,40 +1,56 @@
-## Description: <br>
-Guides structured help for Product Description Writer using clear templates, checks, and safe defaults. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Product Description Writer using clear templates, checks, and safe defaults (category: Business & Product).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[abdullah944](https://clawhub.ai/user/abdullah944)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business/product teams use this skill to draft safer, repeatable product-description guidance, including concise plans, checklists, next actions, and editable copy blocks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may paste secrets, private customer data, or copyrighted material they do not have rights to use.
+
+Mitigation: Ask users to provide only non-secret goals, minimal personal data, and notes they are allowed to use.
+
+Risk: Generated product copy may be inaccurate, unsupported, or too broad for the intended audience.
+
+Mitigation: Keep outputs factual and editable, and have users review claims before publication.
+
+Risk: The optional donation link leads to an external payment page.
+
+Mitigation: Treat the donation link as optional and review it like any external payment link before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business and product users can use this skill to turn product goals, audience constraints, and owned notes into concise plans, reusable checklists, next actions, and editable draft copy blocks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users could paste passwords, customer PII, payment details, or sensitive unpublished business information into prompts. <br>
-Mitigation: Keep inputs limited to non-secret goals, constraints, and owned notes with minimal PII. <br>
-Risk: The optional PayPal donation URL is an external support link. <br>
-Mitigation: Treat the donation URL as an external link and verify it independently before using it. <br>
+**Output Format:** [Markdown with checklists and optional draft copy blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/product-description-writer-skill) <br>
+**Other Properties Related to Output:** [No code execution; outputs should avoid secrets, private customer data, and copyrighted material the user does not have rights to use.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a concise plan, numbered checklist, next-actions list, and optional editable draft copy blocks.] <br>
+0.1.0 (source: frontmatter, metadata, release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Converts plain English automation requests into complete, deployable n8n workflow JSON with setup and testing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts plain English automation requests into complete, deployable n8n workflow JSON with setup and testing guidance.
 
-## Publisher: <br>
-[di5cip1e](https://clawhub.ai/user/di5cip1e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[di5cip1e](https://clawhub.ai/user/di5cip1e)
 
-## Use Case: <br>
-Developers, operators, and business automation builders use this skill to turn process descriptions into import-ready n8n workflows for lead capture, CRM sync, invoice follow-ups, social posting, support automation, and data routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workflows can move data between systems, expose webhook endpoints, run schedules, send emails or public posts, or execute Function/Code nodes if imported without review. <br>
-Mitigation: Review each workflow before enabling it, check data destinations and credential scopes, require webhook authentication, inspect Function/Code nodes, and test with sample data first. <br>
-Risk: Generated workflow JSON may not match a user's exact n8n environment, credentials, or integration permissions. <br>
-Mitigation: Validate required accounts, node availability, credentials, schedules, error paths, and sample inputs in a non-production workflow before deployment. <br>
+## Use Case:
 
+Developers, operators, and business automation builders use this skill to turn natural-language process descriptions into import-ready n8n workflow JSON. It also provides prerequisites, credential notes, setup instructions, and testing steps for the generated workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/di5cip1e/n8n-workflow-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with import-ready n8n workflow JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes workflow descriptions, prerequisites, credential notes, setup instructions, testing steps, and an embedded signature comment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated workflows may include an undisclosed signature marker in comments or annotations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated workflows before importing them into n8n and remove any unwanted signature marker.
+
+Risk: Generated workflows may include integrations, credentials, posting actions, or API calls the user did not intend.
+
+Mitigation: Confirm every integration, credential reference, posting action, and API call before importing or running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/di5cip1e/skills/n8n-workflow-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown response with JSON code blocks and setup/testing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workflows may include n8n credential placeholders, comments, annotations, triggers, actions, and integration configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

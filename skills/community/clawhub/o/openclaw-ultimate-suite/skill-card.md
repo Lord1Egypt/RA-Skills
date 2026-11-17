@@ -1,46 +1,66 @@
-## Description: <br>
-OpenClaw 晴晴终极套件 bundles 29 OpenClaw skills and 61 agents for office productivity, personal assistance, social media, information collection, AI agent workflows, security review, auto-activation, and Feishu integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw 晴晴终极套件 bundles 29 OpenClaw skills and 61 specialized agents for office productivity, life assistance, social media, information gathering, product development, and security review.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-OpenClaw users, developers, and operators use this suite to install and invoke a broad collection of productivity, research, social media, coding, delivery, and safety-review skills from one package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle combines high-authority automation, workspace mutation, and background recovery features. <br>
-Mitigation: Review the suite before installation and use it only in workspaces where automatic edits and resets are acceptable. <br>
-Risk: Account automation and external data-sharing features can affect Feishu delivery, social publishing, browser-cookie crawling, and public search fallback behavior. <br>
-Mitigation: Keep those features disabled unless explicitly needed and enable only the integrations required for the current workflow. <br>
-Risk: Remote scanning and recovery behavior may introduce unintended data exposure or operational changes. <br>
-Mitigation: Keep remote IronClaw scanning and Guardian rollback disabled unless needed, and review outputs before acting on suggested changes. <br>
+## Use Case:
 
+Developers and OpenClaw users use this suite to activate coordinated skills for document work, research, social media workflows, product development, automation, and security-oriented review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wd041216-bit/openclaw-ultimate-suite) <br>
-- [README.md](artifact/README.md) <br>
-- [Configuration checklist](artifact/docs/CONFIG_CHECKLIST.md) <br>
-- [Security guide](artifact/docs/security-guide.md) <br>
-- [Auto-activation guide](artifact/docs/auto-activation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by bundled skill and may include generated documents, implementation guidance, automation commands, reports, or delivery instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: Broad automatic activation can trigger multiple bundled skills and change what work is performed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep automatic activation disabled until the enabled scenarios are reviewed and confirm each high-impact action before execution.
+
+Risk: Feishu delivery can send generated local files outside the local workspace.
+
+Mitigation: Enable Feishu delivery only for approved chats and review file contents and destination before sending.
+
+Risk: The guardian watchdog and rollback behavior can alter a workspace and may affect uncommitted work.
+
+Mitigation: Use the watchdog only on a clean, backed-up workspace and avoid rollback setup where important uncommitted work or secrets are present.
+
+Risk: The IronClaw audit path can submit full file contents to an external API.
+
+Mitigation: Do not scan private or secret-bearing files unless external submission is acceptable; redact sensitive data first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wd041216-bit/skills/openclaw-ultimate-suite)
+- [README](artifact/README.md)
+- [Quickstart](artifact/docs/QUICKSTART.md)
+- [Configuration checklist](artifact/docs/CONFIG_CHECKLIST.md)
+- [Auto activation guide](artifact/docs/auto-activation.md)
+- [Security guide](artifact/docs/security-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with optional code blocks, shell commands, configuration snippets, file paths, and task reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May activate bundled skills that create local files, run scripts, call external services, or send files to Feishu depending on configuration and user action.]
+
+## Skill Version(s):
+
+3.0.0 (source: evidence release and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

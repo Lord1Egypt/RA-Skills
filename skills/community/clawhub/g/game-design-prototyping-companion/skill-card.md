@@ -1,40 +1,56 @@
-## Description: <br>
-Helps agents track game design prototype ideas, branching outcomes, dead ends, baselines, next experiments, and optional SVG branch maps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track game design prototype ideas, branching outcomes, dead ends, baselines, and next experiments, and optionally generate a simple SVG visualization of prototype evolution.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, developers, and agent-assisted teams use this skill to preserve prototype decision trees, record what each branch taught, and decide which paths to pursue, park, or revisit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional visualization workflow writes local files and could expose or overwrite sensitive locations if paths are chosen carelessly. <br>
-Mitigation: Use explicit non-sensitive input and output paths, avoid private directories, and review the generated SVG before sharing it. <br>
+## Use Case:
 
+Game designers, developers, and product teams use this skill to preserve prototype learning as branching design memory, including chosen paths, parked ideas, dead ends, backtrack notes, and next experiments. When a visual map is useful, the agent can create branch-map JSON and run the bundled SVG renderer.
 
-## Reference(s): <br>
-- [Branch Map Format](references/branch-map-format.md) <br>
-- [Example Branch Map](references/example-branch-map.json) <br>
-- [State Labels](references/state-labels.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown responses, optional JSON branch-map data, and an SVG file path when visualization is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write branch-map JSON and render a local SVG from explicit input and output paths when visualization is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated prototype logs or branch maps could be written outside the intended project area if the output path is not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated files in a controlled project or output directory and review paths before running the SVG renderer.
+
+Risk: Prototype records may preserve assumptions or dead-end labels that later become outdated.
+
+Mitigation: Review generated logs and maps before relying on them for roadmap, production, or team decisions.
+
+## Reference(s):
+
+- [Branch Map Format](references/branch-map-format.md)
+- [Example Branch Map](references/example-branch-map.json)
+- [State Labels](references/state-labels.md)
+- [ClawHub skill page](https://clawhub.ai/stanestane/skills/game-design-prototyping-companion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, code, guidance]
+
+**Output Format:** [Markdown guidance with optional JSON branch-map files, shell commands, and SVG file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local files for prototype logs, branch-map JSON, and SVG visualizations when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

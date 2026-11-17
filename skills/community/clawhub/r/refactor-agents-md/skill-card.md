@@ -1,42 +1,55 @@
-## Description: <br>
-Refactors AGENTS.md files into a minimal root file plus topic-specific follow-up docs using progressive disclosure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refactors AGENTS.md files into a minimal root file plus topic-specific follow-up docs using progressive disclosure.
 
-## Publisher: <br>
-[clarezoe](https://clawhub.ai/user/clarezoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarezoe](https://clawhub.ai/user/clarezoe)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit, propose, or apply refactors to AGENTS.md and CLAUDE.md guidance, splitting monolithic instruction files into a minimal root file plus focused topic documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Apply mode can change repository instruction files and alter future agent behavior. <br>
-Mitigation: Use review or proposal mode first for sensitive repositories, then apply changes only after reviewing the planned AGENTS.md and topic-document diff. <br>
-Risk: Conflicting, stale, or vague instructions may be preserved, moved, or removed incorrectly if the repository guidance is incomplete. <br>
-Mitigation: Pause on conflicts, present the exact disagreement to the user, and require a choice before rewriting; call out deletion candidates for review. <br>
+## Use Case:
 
+Developers and engineers use this skill to review, split, or refactor oversized AGENTS.md or CLAUDE.md guidance into a minimal root file and focused topic documents.
 
-## Reference(s): <br>
-- [Principles and heuristics](references/principles.md) <br>
-- [Project homepage](https://github.com/Fei2-Labs/skill-genie) <br>
-- [ClawHub skill page](https://clawhub.ai/clarezoe/refactor-agents-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, audit findings, proposed file structures, and repository instruction-file edits when apply mode is selected] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can operate in review-only, proposal, or apply-refactor mode depending on user intent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, server release metadata) <br>
+Risk: Apply mode can intentionally change repository guidance files that future agents may read.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use review or proposal mode first when instructions may conflict, and inspect proposed changes before applying them.
+
+Risk: Conflicting AGENTS.md or CLAUDE.md instructions can lead to incorrect refactoring decisions.
+
+Mitigation: Pause on conflicts, present the exact disagreement, and require the user to choose which instruction to keep before rewriting.
+
+## Reference(s):
+
+- [Skill Genie repository](https://github.com/Fei2-Labs/skill-genie)
+- [Principles and heuristics](references/principles.md)
+- [ClawHub skill page](https://clawhub.ai/clarezoe/skills/refactor-agents-md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, proposed file structures, and repository file edits when apply mode is requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May change AGENTS.md, CLAUDE.md, or related topic guidance files in apply mode.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

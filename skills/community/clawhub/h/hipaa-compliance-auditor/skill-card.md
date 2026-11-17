@@ -1,46 +1,66 @@
-## Description: <br>
-Automatically detect and de-identify PII (Personal Identifiable Information) and PHI (Protected Health Information) from clinical/medical text to ensure HIPAA compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically detect and de-identify PII and PHI from clinical or medical text for HIPAA-oriented review workflows.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Healthcare developers, compliance teams, and data reviewers use this skill to identify and replace potential PII or PHI in clinical text before sharing or downstream processing. Outputs require manual review before they are used for HIPAA-related release decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient data may be exposed through console output, generated files, or audit logs. <br>
-Mitigation: Use only in a controlled local environment, avoid shared terminals and CI logs, and protect any audit logs as PHI. <br>
-Risk: The skill's compliance claims are stronger than the implementation can guarantee. <br>
-Mitigation: Require manual review and documented QA before relying on outputs for HIPAA-related release decisions. <br>
-Risk: Unpinned or optional NLP dependencies can change detection behavior across environments. <br>
-Mitigation: Pin and review dependencies, including spaCy models and optional Presidio packages, before operational use. <br>
+## Use Case:
 
+Healthcare, compliance, and data engineering teams use this skill to scan clinical text for HIPAA Safe Harbor identifier categories and produce de-identified text with reviewable detection details.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AIPOCH-AI/hipaa-compliance-auditor) <br>
-- [HIPAA Safe Harbor Guide](references/hipaa_safe_harbor_guide.md) <br>
-- [PII Pattern Reference](references/pii_patterns.json) <br>
-- [Python Dependencies](references/requirements.txt) <br>
-- [HHS De-identification Guidance](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, guidance] <br>
-**Output Format:** [De-identified text, JSON audit logs, console statistics, and validation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write output files and audit logs when paths are provided; manual review is recommended before relying on results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill processes medical text and may miss context-dependent identifiers or other PHI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual HIPAA review of de-identified output before any release or downstream use.
+
+Risk: Audit logs and console output can retain sensitive context or patient details from detections.
+
+Mitigation: Use secured storage for audit logs, limit console exposure, and avoid running on real PHI unless logs are protected or redacted.
+
+Risk: The validation status can report APPROVED even though it is not compliance proof.
+
+Mitigation: Treat automated status as a triage signal only and document reviewer decisions for compliance workflows.
+
+Risk: Unpinned or optional NLP dependencies can change detection behavior across environments.
+
+Mitigation: Pin dependencies and spaCy models in an isolated environment before processing sensitive records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/hipaa-compliance-auditor)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+- [HIPAA Safe Harbor guide](references/hipaa_safe_harbor_guide.md)
+- [PII pattern reference](references/pii_patterns.json)
+- [Dependency reference](references/requirements.txt)
+- [HHS guidance on de-identification](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [Plain text and JSON audit logs, with Markdown guidance and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces semantic replacement tokens, detection metadata, confidence scores, and validation status for human review.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

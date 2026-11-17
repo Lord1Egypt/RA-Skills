@@ -1,16 +1,102 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# AssetClaw Direct API Helper Script
+# AssetClaw Direct API Helper Script (v1.7.0)
 # 用法: bash scripts/assethub_api.sh <command> [args...]
+#
+# v1.7.0 增量升级（2026-07-29，基于 backend swagger 101 模块 / 1,809 ops 同步）：
+#   - 新增 domains / stats / redirects 命令（基于 15 业务域分组）
+#   - 新增旧路径 → 新路径 自动警告（warn_deprecated_path）
+#   - 新增 IoT token 注入（ASSETHUB_IOT_TOKEN）
+#   - 新增 ASSETHUB_HIGH_RISK_CONFIRM 显式控制高风险重放（默认 OFF）
+#   - 新增 Idempotency-Key 可由 ASSETHUB_IDEMPOTENCY_KEY 注入（自动生成仍为默认）
+#   - 保留 v1.6.0 的全部能力（login/logout/session/set-tenant/login_from_temp_session/
+#     自动 401 重登、两段式 X-Risk-Confirm-Token 重放、临时凭证文件支持）
+#
+# 与 references/api-modules-overview.md / references/auth-and-workflows.md /
+# references/endpoint-quick-ref.md 协同使用。
 
-API_URL="${ASSETHUB_API_URL:-http://192.168.1.111:5183/api}"
+API_URL="${ASSETHUB_API_URL:-http://localhost:13579/api}"
 SESSION_FILE="${ASSETHUB_SESSION_FILE:-/tmp/assethub-claw-session.json}"
 TEMP_SESSION_FILE="/tmp/assethub-claw-temp-session.json"
+TEMP_SESSION_FILE="/tmp/assethub-claw-temp-session.json"
+
+# 旧路径 → 新路径 映射（v1.7.0 加入：仅警告，不强制替换）
+PATH_OLD_KEYS=(
+  "maintenance"
+  "adverse-events"
+  "transfer"
+  "assets/transfer-requests"
+  "compliance/special-equipment"
+  "compliance/staff-qualification"
+  "compliance/uptime-statistics"
+  "compliance/safety-inspection"
+  "iot-devices"
+  "asset-location"
+  "asset-images"
+  "asset-labels"
+  "procurement"
+  "acceptance"
+  "ai"
+  "chat"
+  "asset-ai-analysis"
+  "asset-depreciation"
+  "sms-verification"
+)
+PATH_NEW_VALUES=(
+  "maintenance-management"
+  "adverse-reaction"
+  "asset-allocation"
+  "asset-allocation"
+  "key-equipment"
+  "staff"
+  "uptime"
+  "safety-inspection"
+  "iot/devices"
+  "iot/locations"
+  "assets/images"
+  "assets/labels"
+  "tendering/procurement-requests"
+  "acceptance-management"
+  "asset-ai-assistant"
+  "asset-ai-assistant"
+  "asset-ai-assistant"
+  "depreciation"
+  "(removed)"
+)
+
+warn_deprecated_path() {
+  local target="$1"
+  local stripped="${target#/api}"
+  stripped="${stripped#/}"
+  local first_segment="${stripped%%/*}"
+  local i
+  for ((i = 0; i < ${#PATH_OLD_KEYS[@]}; i++)); do
+    local old="${PATH_OLD_KEYS[$i]}"
+    local new="${PATH_NEW_VALUES[$i]}"
+    if [[ "$stripped" == "$old" || "$stripped" == "$old/"* || "$first_segment" == "$old" ]]; then
+      echo "⚠️  DEPRECATED PATH: /api/$old → use /api/$new" >&2
+      return 0
+    fi
+  done
+  return 1
+}
+
+high_risk_confirm_enabled() {
+  local value="${ASSETHUB_HIGH_RISK_CONFIRM:-}"
+  case "$value" in
+    YES|yes|true|TRUE|1)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
 
 print_help() {
   cat <<'EOF'
-AssetClaw Direct API Helper
+AssetClaw Direct API Helper (v1.7.0)
 
 Usage:
   bash scripts/assethub_api.sh login
@@ -19,14 +105,21 @@ Usage:
   bash scripts/assethub_api.sh set-tenant <序号>
   bash scripts/assethub_api.sh modules
   bash scripts/assethub_api.sh module <path>
+  bash scripts/assethub_api.sh endpoints
+  bash scripts/assethub_api.sh domains                # v1.7.0 新增
+  bash scripts/assethub_api.sh stats                  # v1.7.0 新增
+  bash scripts/assethub_api.sh redirects              # v1.7.0 新增
   bash scripts/assethub_api.sh request <METHOD> <PATH> [JSON_BODY]
 
 Environment:
-  ASSETHUB_API_URL       API基础地址 (默认: http://192.168.1.111:5183/api)
-  ASSETHUB_API_USERNAME  登录用户名
-  ASSETHUB_API_PASSWORD  登录密码
-  ASSETHUB_TENANT_ID     显式租户ID
-  ASSETHUB_SESSION_FILE  会话缓存文件 (默认: /tmp/assethub-claw-session.json)
+  ASSETHUB_API_URL           API基础地址 (默认: http://localhost:13579/api)
+  ASSETHUB_API_USERNAME      登录用户名
+  ASSETHUB_API_PASSWORD      登录密码
+  ASSETHUB_TENANT_ID         显式租户ID（super_admin 跨租户必填）
+  ASSETHUB_SESSION_FILE      会话缓存文件 (默认: /tmp/assethub-claw-session.json)
+  ASSETHUB_IDEMPOTENCY_KEY   写操作幂等键（v1.7.0 新增，留空则自动生成）
+  ASSETHUB_HIGH_RISK_CONFIRM YES|true|1 仅用于 428 二次重放（v1.7.0 新增，默认 OFF）
+  ASSETHUB_IOT_TOKEN         IoT ingest 路径专用 token（v1.7.0 新增，可选）
 
 Examples:
   # 登录
@@ -131,7 +224,7 @@ if (!payload || payload.success === false || !payload.data || !payload.data.toke
 }
 
 const sessionFile = process.env.SESSION_FILE || '/tmp/assethub-claw-session.json';
-const apiUrl = process.env.ASSETHUB_API_URL || 'http://192.168.1.111:5183/api';
+const apiUrl = process.env.ASSETHUB_API_URL || 'http://localhost:13579/api';
 const session = {
   apiUrl: apiUrl,
   token: payload.data.token,
@@ -204,7 +297,7 @@ if (!payload || payload.success === false || !payload.data || !payload.data.toke
 }
 
 const sessionFile = process.env.SESSION_FILE || '/tmp/assethub-claw-session.json';
-const apiUrl = process.env.ASSETHUB_API_URL || 'http://192.168.1.111:5183/api';
+const apiUrl = process.env.ASSETHUB_API_URL || 'http://localhost:13579/api';
 const session = {
   apiUrl: apiUrl,
   token: payload.data.token,
@@ -285,9 +378,12 @@ perform_request() {
   url="$(normalize_url "$target_path")"
 
   # 自动生成 Idempotency-Key（写操作必须，防重复提交）
-  local idempotency_key=""
+  # v1.7.0: 允许调用方通过 ASSETHUB_IDEMPOTENCY_KEY 显式 pin（保证重试幂等）
+  local idempotency_key="${ASSETHUB_IDEMPOTENCY_KEY:-}"
   if [[ "$method" == "POST" || "$method" == "PUT" || "$method" == "DELETE" ]]; then
-    idempotency_key="op-$(date +%s)-$RANDOM"
+    if [[ -z "$idempotency_key" ]]; then
+      idempotency_key="op-$(date +%s)-$RANDOM"
+    fi
   fi
 
   local -a curl_args
@@ -300,12 +396,36 @@ perform_request() {
   )
 
   if [[ -n "$tenant_id" ]]; then
-    curl_args+=(-H "X-Tenant-ID: $tenant_id")
+    curl_args+=(-H "X-Tenant-Id: $tenant_id")
+  fi
+
+  # v1.7.0: IoT ingest 路径使用专用 token（ASSETHUB_IOT_TOKEN），不影响其它路径
+  # 重建数组以避免留下空元素
+  if [[ -n "${ASSETHUB_IOT_TOKEN:-}" && "$target_path" == */iot/* ]]; then
+    _old_auth="Authorization: Bearer $token"
+    _new_args=()
+    _i=0
+    while [[ $_i -lt ${#curl_args[@]} ]]; do
+      if [[ "${curl_args[$_i]}" == "-H" ]] \
+         && [[ $((_i+1)) -lt ${#curl_args[@]} ]] \
+         && [[ "${curl_args[$((_i+1))]}" == "$_old_auth" ]]; then
+        _new_args+=("-H" "Authorization: Bearer ${ASSETHUB_IOT_TOKEN}")
+        _i=$((_i+2))
+      else
+        _new_args+=("${curl_args[$_i]}")
+        _i=$((_i+1))
+      fi
+    done
+    curl_args=("${_new_args[@]}")
+    unset _old_auth _new_args _i
   fi
 
   if [[ -n "$idempotency_key" ]]; then
     curl_args+=(-H "Idempotency-Key: $idempotency_key")
   fi
+
+  # v1.7.0: 旧路径警告（不拦截，只提示到 stderr）
+  warn_deprecated_path "$target_path" || true
 
   if [[ -n "$body" ]]; then
     curl_args+=(-H 'Content-Type: application/json' --data-binary "$body")
@@ -333,8 +453,14 @@ try {
 " 2>/dev/null || true)"
   fi
 
-  # 两段式确认：检测到 confirmToken，自动用 X-Risk-Confirm-Token 重放
+  # v1.7.0: 两段式确认需要 ASSETHUB_HIGH_RISK_CONFIRM=YES 显式开启（默认 OFF，避免静默重放）
   if [[ -n "$confirm_token" ]]; then
+    if ! high_risk_confirm_enabled; then
+      printf '%s\n' "$payload"
+      echo "[高风险] 检测到 confirmToken，需要 ASSETHUB_HIGH_RISK_CONFIRM=YES 才自动重放（当前 OFF）" >&2
+      echo "[高风险] 如需重放，请人工确认后设置环境变量再调用，或在 Web 管理后台完成。" >&2
+      exit 1
+    fi
     echo "[两段式确认] 检测到 confirmToken，自动重放请求..." >&2
     local -a retry_args
     retry_args=(
@@ -349,7 +475,7 @@ try {
       -w $'\n__STATUS__:%{http_code}'
     )
     if [[ -n "$tenant_id" ]]; then
-      retry_args+=(-H "X-Tenant-ID: $tenant_id")
+      retry_args+=(-H "X-Tenant-Id: $tenant_id")
     fi
     response="$(curl "${retry_args[@]}")"
     status="${response##*$'\n'__STATUS__:*}"
@@ -502,6 +628,67 @@ NODE
       ;;
     endpoints)
       perform_request GET /api-documentation/endpoints
+      ;;
+    domains)
+      # v1.7.0: 15 业务域速查（基于 2026-07-29 swagger 同步）
+      cat <<'EOF'
+AssetHub 15 业务域速查:
+
+  1. core-assets       核心资产              assets, asset-allocation, idle, scrapping, ...
+  2. maintenance       维修与保养            maintenance-management, warranty, daily-maintenance, ...
+  3. procurement       采购/合同/供应商        tendering, supplier, contracts
+  4. quality           质量管理              quality-control, poct-quality-control, metrology, adverse-reaction
+  5. inspection        巡检/合规/安全          inspection, compliance, risk, key-equipment, staff
+  6. equipment         设备/备件/技术资料      iot, technical-documents, knowledge-base, large-equipment
+  7. acceptance        验收/事件/PDCA        acceptance-management, event-reminder, pdca, ...
+  8. org               用户/权限/组织          users, departments, tenants, roles-permissions
+  9. finance           财务/折旧              finance, depreciation
+ 10. notification      通知/消息              notifications, in-app-notifications
+ 11. system            工作流/审计/分析        workflow, audit-logs, dashboard
+ 12. ai                AI 智能                asset-ai-assistant
+ 13. integration       第三方集成              feishu, wechat-mp, wx-cloud
+ 14. auth              认证/系统              auth, service-tokens, health
+ 15. deprecated        已弃用/迁移(勿引用)     inventory, materials, ...
+
+详细代表 API 见 ../references/api-modules-overview.md 和 references/endpoint-quick-ref.md
+EOF
+      ;;
+    stats)
+      # v1.7.0: 显示文档统计（运行时拉取 /api/api-documentation/modules 计算）
+      perform_request GET /api-documentation/modules > /tmp/_assethub_modules.json
+      if [[ -s /tmp/_assethub_modules.json ]]; then
+        MODULES_FILE=/tmp/_assethub_modules.json node <<'NODE'
+const fs = require('node:fs');
+let payload;
+try { payload = JSON.parse(fs.readFileSync(process.env.MODULES_FILE, 'utf8')); } catch { process.exit(1); }
+const mods = (payload && payload.data && payload.data.modules) || payload.modules || payload.data || [];
+const arr = Array.isArray(mods) ? mods : [];
+console.log(`AssetHub API 运行时统计（${new Date().toISOString()}）`);
+console.log(`  总模块数: ${arr.length}`);
+const byPrefix = {};
+for (const m of arr) {
+  const p = (m.path || m.module || '').split('/')[0] || '(root)';
+  byPrefix[p] = (byPrefix[p] || 0) + 1;
+}
+console.log('\n  按一级路径分组:');
+Object.entries(byPrefix).sort((a, b) => b[1] - a[1]).forEach(([k, v]) => {
+  console.log(`    ${k.padEnd(28)} ${String(v).padStart(4)} 个模块`);
+});
+NODE
+      else
+        echo "无法拉取模块列表，请确认已登录 (bash scripts/assethub_api.sh login)" >&2
+      fi
+      rm -f /tmp/_assethub_modules.json
+      ;;
+    redirects)
+      # v1.7.0: 列出旧路径 → 新路径 重定向
+      echo "旧路径 → 新路径 重定向表（v1.7.0 同步，调用时请用新路径）："
+      local i
+      for ((i = 0; i < ${#PATH_OLD_KEYS[@]}; i++)); do
+        printf '  %-45s → %s\n' "/api/${PATH_OLD_KEYS[$i]}" "${PATH_NEW_VALUES[$i]}"
+      done
+      echo ""
+      echo "详细说明见 references/endpoint-quick-ref.md 路径消歧表"
       ;;
     request)
       local method="${2:-}"

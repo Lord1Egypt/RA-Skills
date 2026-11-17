@@ -1,40 +1,55 @@
-## Description: <br>
-An informational profile of Chen Tianqiao covering his Shanda founder history, gaming industry milestones, investment themes, and later focus on brain science philanthropy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国网络游戏开创者，盛大集团创始人，后转向脑科学研究与投资，推动脑机接口和神经科学发展。
 
-## Publisher: <br>
-[LeoCryptoFlow](https://clawhub.ai/user/LeoCryptoFlow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leocryptoflow](https://clawhub.ai/user/leocryptoflow)
 
-## Use Case: <br>
-External users and agents can use this skill as a concise Chinese-language reference profile on Chen Tianqiao, including career timeline, Shanda business history, philanthropy, brain science interests, and related links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an informational profile from a low-trust, non-official publisher and contains factual claims plus promotional links or contact information. <br>
-Mitigation: Verify factual claims and external links against primary sources before relying on, redistributing, or citing the profile. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about Chen Tianqiao's career, Shanda, philanthropy, brain science interests, and related resources. The skill is best treated as a concise Chinese-language profile rather than an authoritative biography.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/LeoCryptoFlow/chentianqiao) <br>
-- [Tianqiao and Chrissy Chen Institute](https://www.cheninstitute.org) <br>
-- [Shanda Games](https://www.shandagames.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown profile with tables, timelines, links, and short explanatory sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language content with some English names and links] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Biographical claims and external links may be incomplete, promotional, or outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify important claims and links before relying on the profile for factual, publication, or business decisions.
+
+Risk: The artifact includes an off-topic OpenClaw promotional appendix that may distract from the Chen Tianqiao profile.
+
+Mitigation: Treat the appendix as contextual content only and do not treat it as security authority or provenance evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leocryptoflow/skills/chentianqiao)
+- [Chen Institute](https://www.cheninstitute.org)
+- [Shanda Games](https://www.shandagames.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, tables, and concise structured profile content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational content with no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

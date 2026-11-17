@@ -1,46 +1,57 @@
-## Description: <br>
-Tabussen helps agents plan Västerbotten and Umeå public transport journeys using the ResRobot API, including stops, addresses, coordinates, regional routes, and local routes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Västerbotten & Umeå public transport trip planner (Tabussen/Ultra) that plans bus journeys using the ResRobot API and supports stops, addresses, coordinates, regional routes, and local routes throughout Västerbotten county.
 
-## Publisher: <br>
-[Simskii](https://clawhub.ai/user/Simskii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[simskii](https://clawhub.ai/user/simskii)
 
-## Use Case: <br>
-External users and agent operators use Tabussen to find stops and plan bus, train, and walking journeys in Västerbotten, especially around Umeå local and regional public transport. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Sweden <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Trip searches and location queries are sent to the ResRobot service. <br>
-Mitigation: Use the skill only when users are comfortable sharing the requested trip details with ResRobot. <br>
-Risk: The skill requires a ResRobot/Trafiklab API key. <br>
-Mitigation: Use a dedicated API key, provide it through RESROBOT_API_KEY, and keep it out of shared logs. <br>
-Risk: The scripts depend on local curl and jq installations. <br>
-Mitigation: Confirm curl and jq are installed before using the search and journey scripts. <br>
+## Use Case:
 
+External users and agents use this skill to search Swedish public transport stops and plan Tabussen, Ultra, and regional Västerbotten journeys using ResRobot-backed shell commands.
 
-## Reference(s): <br>
-- [Tabussen ClawHub release](https://clawhub.ai/Simskii/tabussen) <br>
-- [ResRobot API](https://api.resrobot.se/v2.1/) <br>
-- [ResRobot trip endpoint](https://api.resrobot.se/v2.1/trip) <br>
-- [ResRobot location endpoint](https://api.resrobot.se/v2.1/location.name) <br>
-- [Trafiklab developer portal](https://developer.trafiklab.se) <br>
+### Deployment Geography for Use:
 
+Global use for Västerbotten, Sweden public transport planning
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with shell command examples and plain-text journey results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and a RESROBOT_API_KEY environment variable; trip searches are sent to ResRobot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Trip-planning queries, stop identifiers, addresses, or coordinates are sent to ResRobot/Trafiklab when the shell scripts run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing trip-planning queries with ResRobot/Trafiklab is acceptable, and avoid including sensitive location details beyond what the journey search requires.
+
+Risk: The ResRobot API key may be exposed through local shell tracing, process logging, or command-line handling.
+
+Mitigation: Use a dedicated low-privilege ResRobot API key, avoid shell tracing and process logging when running the scripts, and rotate the key if exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/simskii/skills/tabussen)
+- [ResRobot API v2.1](https://api.resrobot.se/v2.1/)
+- [ResRobot Trip Endpoint](https://api.resrobot.se/v2.1/trip)
+- [ResRobot Location Lookup Endpoint](https://api.resrobot.se/v2.1/location.name)
+- [Trafiklab Developer Portal](https://developer.trafiklab.se)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text journey results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and RESROBOT_API_KEY for live API-backed searches.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

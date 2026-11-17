@@ -1,46 +1,59 @@
-## Description: <br>
-Monitor Bank of China FX rates and manage reusable GBP/HKD/JPY alert workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Bank of China FX rates and manage reusable GBP/HKD/JPY alert workflows.
 
-## Publisher: <br>
-[xiehuapeng](https://clawhub.ai/user/xiehuapeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiehuapeng](https://clawhub.ai/user/xiehuapeng)
 
-## Use Case: <br>
-External users and developers use this skill to check current Bank of China GBP, HKD, and JPY rates, compare them with local history, and receive Chinese alert messages or status reports. It also supports setup and troubleshooting for recurring FX monitor cron runs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cron setup could enable or modify recurring local execution in a way the user did not intend. <br>
-Mitigation: Review the exact cron entry before applying it and keep only the FX monitor cron enabled unless the user asks otherwise. <br>
-Risk: The checker depends on a public Bank of China page and may fail or produce an error if the page, network, or parser behavior changes. <br>
-Mitigation: Handle ERROR status as a short failure message and inspect the page or script before relying on alert decisions. <br>
-Risk: Alerts are produced in Chinese by default, which may not fit every user's workflow. <br>
-Mitigation: Ask for English or another language when Chinese alert text is not suitable. <br>
-Risk: A host-specific script path in the skill instructions may not match the user's installed skill path. <br>
-Mitigation: Confirm the actual skill installation path before running or scheduling the checker. <br>
+## Use Case:
 
+External users and agents use this skill to check current Bank of China exchange rates, compare GBP/HKD/JPY values against saved history, produce Chinese alert text, and help configure recurring FX monitoring.
 
-## Reference(s): <br>
-- [FX Monitor ClawHub release](https://clawhub.ai/xiehuapeng/fx-monitor) <br>
-- [xiehuapeng publisher profile](https://clawhub.ai/user/xiehuapeng) <br>
-- [Bank of China foreign exchange rates](https://www.boc.cn/sourcedb/whpj/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and concise Chinese text derived from key-value command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local CSV history file and may return NO_REPLY when no alert is triggered.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The security review marks the release suspicious because it can run a user-specific external script path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and adjust the workflow to execute the bundled checker through a relative or otherwise trusted path.
+
+Risk: Cron management could disable unrelated scheduled jobs.
+
+Mitigation: Do not let the skill manage cron unless the workflow is changed or confirmed to preserve all existing scheduled jobs.
+
+Risk: The checker fetches a public FX page and writes local CSV history.
+
+Mitigation: Run it only in environments where outbound Bank of China page access and local history storage are acceptable.
+
+## Reference(s):
+
+- [FX Monitor ClawHub page](https://clawhub.ai/xiehuapeng/skills/fx-monitor)
+- [Bank of China foreign exchange rates](https://www.boc.cn/sourcedb/whpj/)
+- [Publisher profile](https://clawhub.ai/user/xiehuapeng)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese alert text, NO_REPLY status, or concise Markdown status with command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit ALERT, NO_ALERT, or ERROR handling guidance based on checker key-value output.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

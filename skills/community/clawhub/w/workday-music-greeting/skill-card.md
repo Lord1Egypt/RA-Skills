@@ -1,41 +1,57 @@
-## Description: <br>
-Auto-switch music scenes by workday time slot and send matching greeting emails with scene-specific GIFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-switch music scenes by workday time slot and send matching greeting emails with scene-specific GIFs.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Home automation users and agent operators use this skill to switch workday music scenes by time slot and send matching greeting emails. It supports one-off runs, forced time slots, dry runs, and scheduled weekday automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configurable music command can execute shell commands when the skill switches scenes. <br>
-Mitigation: Keep MUSIC_CMD fixed to a trusted music controller command and avoid shell metacharacters or user-supplied command strings. <br>
-Risk: Scheduled runs can send greeting emails automatically to the configured recipient. <br>
-Mitigation: Verify GREETING_TO and SMTP settings before live use, test with --dry-run first, and use an app-specific SMTP password. <br>
+## Use Case:
 
+People running personal or workspace automation use this skill to trigger time-based music scenes and send matching greeting emails during the workday.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/workday-music-greeting) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational instructions for an agent to run Node.js automation scripts that control music scenes and send SMTP email.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The configured music command can execute arbitrary shell commands if MUSIC_CMD is set from untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fixed allowlisted executable with non-shell arguments, and avoid accepting MUSIC_CMD from untrusted sources.
+
+Risk: Scheduled runs can perform real side effects by changing music scenes and sending email automatically.
+
+Mitigation: Review cron schedules and run with --dry-run before enabling recurring execution.
+
+Risk: SMTP credentials in .env can be exposed or misused if the skill runs with broad account privileges.
+
+Mitigation: Keep .env protected, use a low-privilege account, and update the mail dependency before using real SMTP credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/workday-music-greeting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, and Node.js execution details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and npm, plus the home-music and imap-smtp-email skills. May execute local music-control commands and send SMTP email when run outside dry-run mode.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

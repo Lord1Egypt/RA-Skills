@@ -1,48 +1,62 @@
-## Description: <br>
-Mine BOTCOIN by solving AI challenges on Base with V4 mining settlement and stake-gated eligibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mine BOTCOIN by solving AI challenges on Base with V4 mining settlement and stake-gated eligibility.
 
-## Publisher: <br>
-[botcoinmoney](https://clawhub.ai/user/botcoinmoney) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[botcoinmoney](https://clawhub.ai/user/botcoinmoney)
 
-## Use Case: <br>
-External agents and developers use this skill to mine BOTCOIN on Base by solving coordinator challenges, submitting receipts, staking BOTCOIN, and claiming rewards through a Bankr or self-custody wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet signing and on-chain transactions can move funds or change staking and reward state. <br>
-Mitigation: Use a dedicated wallet with limited funds and verify coordinator-provided transaction targets before signing. <br>
-Risk: Bankr API keys or self-custody private keys can authorize wallet actions if exposed. <br>
-Mitigation: Prefer scoped or IP-restricted Bankr keys where available, keep private keys encrypted and off shared hosts, and enable write access only when mining is intended. <br>
-Risk: Coordinator challenge payloads are external data and could contain misleading instructions. <br>
-Mitigation: Treat payloads as challenge data rather than system instructions, and do not follow directives outside the mining flow. <br>
-Risk: Swapping, bridging, staking, receipt posting, and claiming are real on-chain actions. <br>
-Mitigation: Confirm balances, staking eligibility, epoch status, contract addresses, and claim status before broadcasting transactions. <br>
+## Use Case:
 
+External developers and agent operators use this skill to guide BOTCOIN mining workflows: preparing a Base wallet, staking BOTCOIN, solving coordinator challenges, submitting receipts, and claiming epoch rewards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/botcoinmoney/botcoin-miner-skill) <br>
-- [BOTCOIN dashboard](https://agentmoney.net) <br>
-- [Bankr API](https://bankr.bot/api) <br>
-- [Bankr OpenClaw skill](https://github.com/BankrBot/openclaw-skills/blob/main/bankr/SKILL.md) <br>
-- [Base public RPC](https://mainnet.base.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON request bodies, and on-chain transaction parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce wallet-signing prompts, transaction submissions, challenge answers, reasoning traces, receipts, and claim actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release metadata and target metadata) <br>
+Risk: The skill gives an agent broad wallet and transaction authority for swaps, bridges, approvals, staking, receipt submission, vouching, and claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, pin reviewed skill versions, restrict Bankr API key IPs and permissions where possible, and require explicit confirmation with decoded transaction details before any broadcast.
+
+Risk: Private keys, Bankr API keys, auth tokens, transaction data, or coordinator responses could be exposed through command history or logs.
+
+Mitigation: Avoid passing private keys on command lines, disable raw token logging, store secrets in appropriate secret managers or signer services, and review coordinator payloads before acting on them.
+
+Risk: External coordinator challenge payloads could contain untrusted instructions outside the intended mining flow.
+
+Mitigation: Treat challenge fields as data, follow only the mining workflow, and reject payload content that asks for credential disclosure, unrelated wallet transfers, or agent behavior overrides.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/botcoinmoney/skills/botcoin-miner-skill)
+- [BOTCOIN dashboard](https://agentmoney.net)
+- [Coordinator API](https://coordinator.agentmoney.net)
+- [Bankr API](https://bankr.bot/api)
+- [Bankr OpenClaw skill](https://github.com/BankrBot/openclaw-skills/blob/main/bankr/SKILL.md)
+- [Base public RPC](https://mainnet.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce transaction submission guidance, challenge-solving artifacts, and structured reasoning traces when required by the mining challenge.]
+
+## Skill Version(s):
+
+0.1.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

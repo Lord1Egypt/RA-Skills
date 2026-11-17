@@ -1,43 +1,54 @@
-## Description: <br>
-Ethnographic UX research skill that passively observes OpenClaw usage, extracts interaction data, detects friction and delight signals, and generates structured daily research reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ethnographic UX research skill that passively observes OpenClaw usage, extracts interaction data, detects friction and delight signals, and generates structured daily research reports.
 
-## Publisher: <br>
-[giulianomorse](https://clawhub.ai/user/giulianomorse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[giulianomorse](https://clawhub.ai/user/giulianomorse)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to analyze local agent session history, detect friction and delight patterns, and generate daily UX research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and stores sensitive OpenClaw conversation history. <br>
-Mitigation: Run it only when local conversation analysis is intended, review generated data and reports before sharing them, and delete stored data when no longer needed. <br>
-Risk: PII redaction is best-effort and may miss sensitive details. <br>
-Mitigation: Inspect redacted outputs before display or distribution and avoid relying on the redactor as the only privacy control. <br>
-Risk: Automated cron use can create ongoing local analysis and retained reports. <br>
-Mitigation: Enable scheduled runs only after a manual review confirms the generated files and retention behavior are acceptable. <br>
+## Use Case:
 
+OpenClaw users, developers, and UX/product teams use this skill to analyze local session transcripts, redact sensitive text, detect friction and delight patterns, and generate daily Markdown research reports and trend summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/giulianomorse/nutcrackertest) <br>
-- [Publisher profile](https://clawhub.ai/user/giulianomorse) <br>
-- [OpenClaw skill homepage](https://clawhub.com/skills/uxr-observer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON analysis data, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local python3 and jq; generated reports and analysis data are stored locally by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads local OpenClaw conversation transcripts and writes derived session data, reports, quotes, behavioral summaries, and trend files on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for histories the user is comfortable analyzing, keep generated files local, and review or delete files in the skill's data and reports directories as needed.
+
+Risk: The security review reports incomplete redaction and date-scoping safeguards.
+
+Mitigation: Avoid running it on histories that may contain secrets or sensitive personal data until those issues are fixed, and review generated output before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/giulianomorse/skills/nutcrackertest)
+- [UXR Observer Homepage](https://clawhub.com/skills/uxr-observer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON analysis data, and concise text responses with shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write redacted session JSON, trend JSON, and Markdown report files to local data and reports directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

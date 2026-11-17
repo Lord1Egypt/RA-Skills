@@ -1,46 +1,63 @@
-## Description: <br>
-Extracts structured articles from construction regulation PDFs, cleans text and OCR artifacts, produces reviewable JSON, and can sync records to Feishu Bitable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured articles from construction-regulation PDFs, cleans OCR and formatting noise, writes JSON for review, and can sync the resulting records to Feishu Bitable.
 
-## Publisher: <br>
-[youfeijun123](https://clawhub.ai/user/youfeijun123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youfeijun123](https://clawhub.ai/user/youfeijun123)
 
-## Use Case: <br>
-Developers, engineering teams, and operations staff use this skill to extract article-level text from Chinese construction regulation PDFs, clean OCR and formatting issues, and prepare JSON records for human review or Feishu Bitable synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send extracted document content to Feishu Bitable using command-line application credentials. <br>
-Mitigation: Use a least-privilege Feishu application, avoid exposing long-lived secrets in shell history or shared logs, and confirm the destination table before syncing. <br>
-Risk: The sync workflow can create records and delete duplicate Bitable records when delete-dupes behavior is enabled. <br>
-Mitigation: Run dry-run checks first, review records marked for synchronization or deletion, and use backups or staging tables for large updates. <br>
-Risk: OCR output and long-article splitting may produce inaccurate text or imperfect boundaries. <br>
-Mitigation: Human-review entries marked as OCR errors, inspect split long articles, and validate extracted regulation text before relying on it downstream. <br>
-Risk: The quality-check script was flagged because it scans a hard-coded local path instead of the intended directory. <br>
-Mitigation: Fix or avoid the quality-check script until it accepts the user-provided target directory. <br>
+## Use Case:
 
+Developers and operations teams use this skill to convert Chinese construction-regulation PDFs into article-level JSON, run cleaning and quality checks, and optionally load reviewed records into Feishu Bitable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youfeijun123/regulation-extractor) <br>
-- [Bitable schema reference](references/bitable-schema.md) <br>
-- [OCR patterns reference](references/ocr-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated JSON contains article records, quality labels, chapter metadata, page references, and summary reports for human review or Feishu Bitable synchronization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: release evidence) <br>
+Risk: The Feishu sync path can send extracted document text to Feishu and may expose Feishu secrets through command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run sync only after confirming the documents may be shared with the target Feishu workspace; prefer local review first, avoid passing secrets in shared shells or CI logs, and use the documented dry-run mode before writing.
+
+Risk: Cleaning scripts overwrite local JSON outputs in place.
+
+Mitigation: Keep backups or work on copied JSON outputs before running cleaning, deep-cleaning, or quality-repair steps.
+
+Risk: The Bitable sync script can delete duplicate records when delete-dupes is enabled.
+
+Mitigation: Export or review existing Bitable records before enabling duplicate deletion, and avoid the delete option until the target table and deduplication behavior have been verified.
+
+Risk: OCR and rule-based splitting can leave recognition errors, residual page or chapter noise, or imperfect long-article splits.
+
+Mitigation: Manually review records marked as OCR errors, inspect long split articles, and run the quality check before using the data for retrieval or compliance workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youfeijun123/skills/regulation-extractor)
+- [Feishu Bitable schema reference](references/bitable-schema.md)
+- [OCR error pattern reference](references/ocr-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts produce JSON article files, quality reports, and optional Feishu Bitable API writes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Python scripts mutate local JSON outputs in place during cleaning and can make authenticated Feishu API calls when sync is invoked.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence and skill heading)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Downloads arXiv PDFs or reads local paper files, extracts and cleans paper text with a bundled preprocessing script, then generates summary, detailed, contribution, and consistency-check sections in the requested language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads arXiv PDFs or accepts local paper files, preprocesses and cleans extracted text, then guides summary, detailed summary, contribution extraction, and consistency review in the requested language.
 
-## Publisher: <br>
-[crw0149](https://clawhub.ai/user/crw0149) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crw0149](https://clawhub.ai/user/crw0149)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to run a repeatable paper summarization workflow for arXiv PDFs or local paper files. It is intended for manifest-aware summarization where source extraction status and missing evidence are surfaced before the final answer is trusted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled Python preprocessing script downloads arXiv PDFs or reads selected local files and writes downloaded PDFs, extracted text, and combined text under the chosen output directory. <br>
-Mitigation: Run it only on papers you intend to process, avoid private or unrelated local files, and review the generated manifest and output directory before sharing results. <br>
-Risk: PDF, DOCX, or text extraction can fail or be partial, which can make generated summaries incomplete or less reliable. <br>
-Mitigation: Use the manifest status, notes, and missing-or-uncertain section to lower confidence or stop generation when extraction is incomplete. <br>
+## Use Case:
 
+External users, developers, and researchers use this skill to summarize arXiv PDFs or local paper files after deterministic extraction and cleaning. It helps keep summaries, detailed notes, contribution extraction, and quality checks grounded in the extracted paper text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crw0149/paper-summary-scripted) <br>
-- [Script usage](references/script-usage.md) <br>
-- [Prompt mapping](references/prompts.md) <br>
-- [Output template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with per-paper sections and preprocessing status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps papers separate unless comparison is requested and includes consistency scores plus error lists for generated sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill downloads arXiv PDFs, reads user-provided files, and leaves PDFs, extracted text, and manifests in the selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a controlled output directory, avoid sensitive private documents unless sandboxing or resource limits are in place, and review generated files before sharing them.
+
+Risk: PDF, DOCX, or unsupported file extraction can fail or be partial, which can make summaries incomplete.
+
+Mitigation: Check manifest status, errors, notes, and missing-or-uncertain sections before relying on the generated summary.
+
+Risk: Generated summaries may become misleading if they include claims not supported by the extracted paper text.
+
+Mitigation: Keep generation stages grounded in the cleaned text and use the final quality judgment stage to list consistency errors for each generated section.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crw0149/skills/paper-summary-scripted)
+- [Prompt mapping](references/prompts.md)
+- [Output template](references/output-template.md)
+- [Script usage](references/script-usage.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown with manifest-aware status sections, paper summaries, contribution extraction, and quality scores]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local PDFs, extracted text files, combined extracted text, and manifest.json in the chosen output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

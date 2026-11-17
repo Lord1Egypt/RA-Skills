@@ -1,41 +1,57 @@
-## Description: <br>
-A Chinese-language productivity prompt toolkit for schedule planning, goal tracking, knowledge organization, and efficiency diagnosis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language personal productivity toolkit for schedule planning, goal tracking, knowledge organization, and efficiency diagnosis.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-Individuals and teams use this skill to turn productivity requests into structured markdown plans, including daily schedules, SMART goals, knowledge cards, and time-use diagnostics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases can activate the skill unexpectedly in workspaces with many installed skills. <br>
-Mitigation: Use the skill when the intended productivity mode is clear, or narrow trigger phrases before deployment in crowded skill environments. <br>
-Risk: The skill produces productivity plans from user-provided context, so incomplete input can lead to impractical schedules or goals. <br>
-Mitigation: Review the generated plan against real constraints before relying on it for commitments or deadlines. <br>
+## Use Case:
 
+External users use this skill to ask an agent for Chinese-language planning support, including daily schedule planning, SMART goal breakdowns, note synthesis, and time-use analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtaoid/popeye-productivity) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangtaoid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only responses tailored to the user's supplied productivity context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: Broad Chinese trigger phrases may activate the skill when a user intended a general assistant response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent before applying the productivity workflow when the request is ambiguous.
+
+Risk: The artifact content is Chinese-only, which may reduce usability for non-Chinese users.
+
+Mitigation: Ask whether the user wants another language before translating or adapting the workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiangtaoid/skills/popeye-productivity)
+- [Schedule Planning Module](artifact/modules/schedule.md)
+- [Goal Tracking Module](artifact/modules/goals.md)
+- [Knowledge Organization Module](artifact/modules/knowledge.md)
+- [Efficiency Diagnosis Module](artifact/modules/efficiency.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown with tables, checklists, and structured advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, tool calls, or hidden data access are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

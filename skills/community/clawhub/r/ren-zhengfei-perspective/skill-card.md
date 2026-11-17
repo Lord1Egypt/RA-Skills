@@ -1,49 +1,63 @@
-## Description: <br>
-Ren Zhengfei Perspective helps agents answer business strategy and management questions through Ren Zhengfei-inspired mental models such as crisis awareness, focused investment, customer focus, and long-termism. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language business analysis through a Ren Zhengfei-inspired management lens focused on crisis awareness, long-termism, customer value, concentrated investment, and open ecosystems.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Agents use this skill when users ask for a Ren Zhengfei perspective on business strategy, crisis management, research and development investment, organizational management, customer focus, or ecosystem cooperation. It frames responses as a perspective model rather than impersonating Ren Zhengfei. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly on general strategy questions and apply a Ren Zhengfei or Huawei management frame where the user did not clearly request it. <br>
-Mitigation: Prefer activation for explicit Ren Zhengfei, Huawei, crisis-awareness, long-termism, customer-focus, research-investment, or related management-methodology requests. <br>
-Risk: Quoted historical claims or public statements may be incomplete or need source confirmation before being used for consequential decisions. <br>
-Mitigation: Independently verify quoted historical claims and important factual assertions before relying on them. <br>
-Risk: Management concepts such as wolf culture or militarized execution can be over-applied or read as endorsement of harmful workplace practices. <br>
-Mitigation: Present the output as a bounded perspective model, include relevant caveats, and avoid normalizing harmful labor practices. <br>
+## Use Case:
 
+External users and business operators use this skill to evaluate strategy, risk, research investment, organizational design, customer focus, and ecosystem decisions through a documented Ren Zhengfei and Huawei management framework.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiejianjun000/ren-zhengfei-perspective) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Ren Zhengfei writings and speeches research](artifact/references/research/01-writings.md) <br>
-- [Interviews and conversations research](artifact/references/research/02-conversations.md) <br>
-- [Expression DNA research](artifact/references/research/03-expression-dna.md) <br>
-- [External views research](artifact/references/research/04-external-views.md) <br>
-- [Major decisions research](artifact/references/research/05-decisions.md) <br>
-- [Timeline research](artifact/references/research/06-timeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only perspective analysis; does not require code execution, credentials, network access, persistence, or privileged changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill may activate on broad business prompts and frame answers through a strong persona-specific perspective.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it deliberately for Ren Zhengfei or Huawei-management analysis, and disable it for neutral general business advice.
+
+Risk: The skill's Chinese-language framing may be unsuitable for users expecting multilingual or neutral analysis.
+
+Mitigation: Ask for the desired language and viewpoint explicitly when using the skill in mixed-language or neutral advisory workflows.
+
+Risk: The source behavior limits the skill to public writings, interviews, and compiled research, so it cannot validate private Huawei information or rumors.
+
+Mitigation: Treat outputs as a management-perspective analysis and verify factual claims against authoritative public sources before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/ren-zhengfei-perspective)
+- [Ren Zhengfei writings and speeches](references/research/01-writings.md)
+- [Ren Zhengfei interviews and conversations](references/research/02-conversations.md)
+- [Ren Zhengfei expression DNA](references/research/03-expression-dna.md)
+- [External views, analysis, and criticism](references/research/04-external-views.md)
+- [Ren Zhengfei major decisions](references/research/05-decisions.md)
+- [Ren Zhengfei timeline](references/research/06-timeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory business analysis; does not execute code, access credentials, persist data, or retrieve private Huawei information.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

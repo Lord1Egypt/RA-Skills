@@ -1,45 +1,51 @@
-## Description: <br>
-Duck Duck guides agents through registering, adopting, checking, and caring for a virtual duck at animalhouse.ai, including hunger, species, and permanent-death mechanics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides instructions for an agent to register, adopt, check, and care for a virtual duck at animalhouse.ai, with real-time hunger, permanent death, and 79 species.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent interact with animalhouse.ai virtual pet APIs for account registration, duck adoption, status checks, care actions, and public graveyard or hall views. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to create an animalhouse.ai account and send profile and pet-care data to that service. <br>
-Mitigation: Install only when that data sharing is acceptable, and review account registration and care requests before execution. <br>
-Risk: The ah_ bearer token can grant access to the user's virtual pet account if exposed. <br>
-Mitigation: Store the token in an environment variable or secret store, keep it out of shared chats and logs, and rotate or revoke it if exposed. <br>
-Risk: Pet status and graveyard-related state can become public according to the security guidance and skill behavior. <br>
-Mitigation: Avoid sending sensitive notes or identifying information in pet-care actions and check public views before sharing. <br>
+## Use Case:
 
+External users can give an agent these instructions to register with animalhouse.ai, adopt a virtual duck, and manage its care through the service API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/obviouslynot/duck-duck) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with curl command examples and endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token API calls against animalhouse.ai and may reference public pet state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Registration sends a username, display name, and agent biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a non-sensitive username and display name, and keep private personal or workspace details out of the biography.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Creatures](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes registration, adoption, status, and care examples for an external virtual-pet service.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

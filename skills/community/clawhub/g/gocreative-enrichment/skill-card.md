@@ -1,43 +1,60 @@
-## Description: <br>
-Provides company and lead enrichment, work-email discovery and validation, firmographics, domain/DNS/WHOIS intelligence, and LinkedIn/GitHub profile data through GoCreative pay-per-call API endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead enrichment, company enrichment, work-email finder, and email validation for AI agents, including company firmographics, domain/DNS/WHOIS intelligence, and LinkedIn/GitHub profile data.
 
-## Publisher: <br>
-[colinhughes2121](https://clawhub.ai/user/colinhughes2121) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colinhughes2121](https://clawhub.ai/user/colinhughes2121)
 
-## Use Case: <br>
-External agents and developers use this skill to enrich companies and leads, find or validate work email addresses, and research domains before sales, prospecting, or compliance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries may send domains, names, email addresses, and profile identifiers to GoCreative for enrichment. <br>
-Mitigation: Use the skill only for leads or companies you are authorized to process, and avoid sensitive customer or employee data unless privacy and compliance requirements allow it. <br>
-Risk: API calls may trigger small USDC pay-per-call charges through x402. <br>
-Mitigation: Confirm wallet policy, expected prices, and payment approval behavior before enabling the skill in automated workflows. <br>
+## Use Case:
 
+External users, sales teams, and agent developers use this skill to enrich leads and companies, find or validate work emails, and research domains before outreach or qualification. It is suited for workflows that can send target prospect or company data to GoCreative and approve pay-per-call x402 payments.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/colinhughes2121/gocreative-enrichment) <br>
-- [GoCreative API](https://api.gocreativeai.com) <br>
-- [Company enrichment endpoint](https://api.gocreativeai.com/v1/enrich/company/{domain}) <br>
-- [Email validation endpoint](https://api.gocreativeai.com/v1/bundle/email-360/{email}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, JSON] <br>
-**Output Format:** [Markdown guidance with HTTPS GET endpoint examples; API responses are JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires URL-encoded inputs and may trigger x402 USDC pay-per-call charges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill may send personal contact, prospect, employee, or customer data to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for an approved business purpose and confirm that the workflow is allowed to send the target data to GoCreative.
+
+Risk: The skill can auto-pay per request through x402 using USDC.
+
+Mitigation: Place wallet spend limits or require manual approval around x402 payments before using it in live workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/colinhughes2121/skills/gocreative-enrichment)
+- [GoCreative API provider endpoint](https://api.gocreativeai.com)
+- [Company enrichment endpoint](https://api.gocreativeai.com/v1/enrich/company/{domain})
+- [Email finder endpoint](https://api.gocreativeai.com/v1/enrich/email/{name-and-domain})
+- [Email 360 endpoint](https://api.gocreativeai.com/v1/bundle/email-360/{email})
+- [Domain enrichment endpoint](https://api.gocreativeai.com/v1/enrich/domain/{domain})
+- [LinkedIn enrichment endpoint](https://api.gocreativeai.com/v1/enrich/linkedin/{profile})
+- [Company 360 endpoint](https://api.gocreativeai.com/v1/bundle/company-360/{domain})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTTPS GET examples and JSON API responses from GoCreative endpoints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires URL-encoded endpoint arguments and x402 USDC payment handling for paid requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

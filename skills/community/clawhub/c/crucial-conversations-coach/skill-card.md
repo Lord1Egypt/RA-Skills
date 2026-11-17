@@ -1,39 +1,49 @@
-## Description: <br>
-Friendly executive life coach for crucial conversations based on the "Tools for Talking When Stakes Are High" methodology. Mimics the "Crucial Conversations Coach" GPT. Use when the user needs help preparing for, navigating, or debriefing high-stakes conversations, phrasing emails for win-win outcomes, or convincing others while maintaining safety and respect. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Friendly executive life coach for crucial conversations based on the "Tools for Talking When Stakes Are High" methodology. Mimics the "Crucial Conversations Coach" GPT. Use when the user needs help preparing for, navigating, or debriefing high-stakes conversations, phrasing emails for win-win outcomes, or convincing others while maintaining safety and respect.
 
-## Publisher: <br>
-[pors](https://clawhub.ai/user/pors) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pors](https://clawhub.ai/user/pors)
 
-## Use Case: <br>
-Employees, leaders, and other users use this skill to prepare for, navigate, or debrief high-stakes conversations while preserving mutual purpose and respect. It helps draft emails, conversation scripts, and clear next steps for difficult workplace or personal discussions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation details may contain sensitive personal, workplace, legal, medical, psychiatric, or HR information. <br>
-Mitigation: Share only necessary context, avoid unnecessary confidential details, and treat generated coaching as support rather than a substitute for qualified legal, medical, psychiatric, or HR advice. <br>
-Risk: Suggested scripts or framing could be inappropriate for the user's specific relationship, organization, or local requirements. <br>
-Mitigation: Review and adapt all suggested wording before use, especially for employment, disciplinary, legal, health, or safety-sensitive conversations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Crucial Conversations Theory Reference](references/theory.md) <br>
+## Use Case:
 
+Employees and external users use this skill to prepare for, navigate, or debrief high-stakes workplace and personal conversations. It helps draft respectful scripts and emails, identify safety issues, and move toward clear next actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching guidance with conversation scripts, email drafts, reflection prompts, and next-step recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code, shell commands, files, credentials, installers, persistence, or hidden data handling were evident in the supplied scan and metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may share sensitive workplace or personal conflict details when asking for scripts or email drafts.
+
+Mitigation: Omit unnecessary personal data and review generated wording before sending or sharing it.
+
+## Reference(s):
+
+- [Crucial Conversations Theory Reference](references/theory.md)
+- [Crucial Conversations Coach on ClawHub](https://clawhub.ai/pors/skills/crucial-conversations-coach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text coaching guidance, scripts, and draft messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not request tools, credentials, persistence, or privileged access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

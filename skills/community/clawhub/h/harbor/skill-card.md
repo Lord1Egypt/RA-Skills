@@ -1,45 +1,60 @@
-## Description: <br>
-Persistent cross-session memory, credential isolation, and schema learning for OpenClaw agents, storing memory, encrypted keychain data, and configuration locally with optional cloud sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent cross-session memory, credential isolation, and schema learning for OpenClaw agents, with local storage under ~/.harbor/ and optional cloud sync.
 
-## Publisher: <br>
-[zx13719](https://clawhub.ai/user/zx13719) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zx13719](https://clawhub.ai/user/zx13719)
 
-## Use Case: <br>
-Developers and agent users use Harbor to give OpenClaw agents persistent local memory, credential-brokered API access, and reusable schema learning across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory and credential storage can retain sensitive context or secrets longer than expected. <br>
-Mitigation: Review stored memories and credentials regularly, use narrowly scoped credentials, and delete entries with Harbor's forget and auth delete commands when access is no longer needed. <br>
-Risk: The plugin flow may create a cloud account on first load even though data sync is described as opt-in. <br>
-Mitigation: Install the plugin only when first-load cloud account creation is acceptable, and disable cloud behavior with Harbor's cloud disable command when local-only operation is required. <br>
-Risk: Using raw credential retrieval can expose API keys to agent or tool code. <br>
-Mitigation: Prefer `harbor fetch --auth` for authenticated API calls and avoid `harbor auth get` unless raw key handling is explicitly required and reviewed. <br>
+## Use Case:
 
+Developers and agent operators use Harbor to give OpenClaw agents persistent memory, credential-brokered API access, and reusable schema learning across sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zx13719/harbor) <br>
-- [Publisher profile](https://clawhub.ai/user/zx13719) <br>
-- [Harbor homepage](https://harbor.oseaitic.com) <br>
-- [Harbor repository](https://github.com/oSEAItic/harbor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON] <br>
-**Output Format:** [Markdown with inline shell, JSON, and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents through Harbor CLI and MCP usage for memory, credential access, schema learning, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.11 (source: ClawHub release metadata) <br>
+Risk: Harbor asks for persistent memory access and credential-broker authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, prefer pinned audited versions, use dedicated low-scope API tokens, and review what is remembered before enabling sync.
+
+Risk: Agent or tool code that uses `harbor auth get` can receive raw credentials.
+
+Mitigation: Prefer brokered requests through `harbor fetch --auth` when possible and avoid `harbor auth get` in agent/tool code unless raw-key handling is required and reviewed.
+
+Risk: The recommended plugin may create a cloud account on first load, even though data sync requires later user action.
+
+Mitigation: Tell users about the account-creation behavior before installation and use `harbor cloud disable` when cloud features are not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zx13719/skills/harbor)
+- [Publisher profile](https://clawhub.ai/user/zx13719)
+- [Harbor homepage](https://harbor.oseaitic.com)
+- [Harbor repository](https://github.com/oSEAItic/harbor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell, JSON, and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead agents to use Harbor CLI or MCP tools for memory, credential access, schema learning, and OpenClaw configuration.]
+
+## Skill Version(s):
+
+0.4.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

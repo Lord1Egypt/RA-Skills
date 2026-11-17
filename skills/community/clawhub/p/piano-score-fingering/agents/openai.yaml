@@ -1,0 +1,6 @@
+interface:
+  display_name: "Piano Score Fingering Skill"
+  short_description: "Verify score facts, arrange both-hand piano fingerings, and export reviewable results"
+  default_prompt: "Use $piano-score-fingering to read this piano score. Verify noteheads and rests measure by measure, lock score facts, then arrange fingerings and deliver an annotated PDF with a quality report."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/icon.svg"

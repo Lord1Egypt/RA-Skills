@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_tokens.css">
+<style>
+.terminal {
+  width: 880px;
+  border-radius: var(--r-terminal);
+  background: var(--terminal-bg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-mono);
+}
+.terminal-chrome {
+  background: var(--terminal-chrome);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #000;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.dot-r { background: #FF5F57; }
+.dot-y { background: #FEBC2E; }
+.dot-g { background: #28C840; }
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--terminal-dim);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  margin-right: 56px; /* compensar los 3 dots de la izquierda */
+}
+.terminal-body {
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 84px;
+}
+.terminal-command {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--terminal-text);
+  font-weight: 500;
+  line-height: 1.4;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+.terminal-prompt {
+  color: var(--terminal-prompt);
+  margin-right: 8px;
+  font-weight: 600;
+}
+.copy-btn {
+  flex-shrink: 0;
+  background: var(--coral-dark);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+}
+.copy-btn svg { width: 14px; height: 14px; }
+.copy-btn.hidden { display: none; }
+</style>
+</head>
+<body data-bg="{{bg}}">
+<div class="stage" data-bg="{{bg}}">
+  <div class="terminal">
+    <div class="terminal-chrome">
+      <span class="dot dot-r"></span>
+      <span class="dot dot-y"></span>
+      <span class="dot dot-g"></span>
+      <span class="terminal-title">{{title}}</span>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-command"><span class="terminal-prompt">$</span>{{command}}</div>
+      <button class="copy-btn {{copy_hidden}}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copiar
+      </button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

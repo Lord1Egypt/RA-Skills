@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="420" viewBox="0 0 880 420" id="habitat-section">
+  <rect width="880" height="420" fill="#1b140f"/>
+  <rect x="40" y="40" width="800" height="120" fill="#6b4b32"/>
+  <text x="60" y="78" fill="#f3efe6" font-family="sans-serif" font-size="16">regolith overburden, extra shielding about 200 g/cm2 (estimate)</text>
+  <text x="60" y="104" fill="#e7d7c3" font-family="sans-serif" font-size="13">transmission model 1 / (1 + extra / 50). Not HZETRN. extra = 0 reproduces MSL/RAD.</text>
+  <rect x="160" y="180" width="560" height="150" rx="70" fill="#243044" stroke="#d7c4a3" stroke-width="3"/>
+  <text x="250" y="250" fill="#f3efe6" font-family="sans-serif" font-size="16">pressure vessel · 98% water loop · crops need kilowatts of light per person-area</text>
+  <rect x="200" y="300" width="80" height="16" fill="#88c0d0"/>
+  <text x="290" y="314" fill="#88c0d0" font-family="sans-serif" font-size="12">storm shelter, about 20 g/cm2 extra water/poly (estimate)</text>
+</svg>

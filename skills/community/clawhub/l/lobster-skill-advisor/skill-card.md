@@ -1,40 +1,53 @@
-## Description: <br>
-OpenClaw Skill Advisor recommends OpenClaw skills for a user's stated task, compares alternatives, and provides install and usage guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Skill Advisor recommends ClawHub skills based on a user's task description and provides comparisons, installation guidance, and usage tips.
 
-## Publisher: <br>
-[zhanqirong](https://clawhub.ai/user/zhanqirong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanqirong](https://clawhub.ai/user/zhanqirong)
 
-## Use Case: <br>
-External users and developers use this skill to find relevant OpenClaw skills, compare candidate options, and get installation and first-use guidance for a described task. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can recommend other skills and install commands that have not been vetted as approvals. <br>
-Mitigation: Before running a suggested install command, review the recommended skill's publisher, files, permissions, scan results, and documentation. <br>
-Risk: Recommendation details such as ratings, download counts, or fit scores may be incomplete or stale. <br>
-Mitigation: Verify claimed popularity and quality signals on ClawHub before relying on a recommendation. <br>
+## Use Case:
 
+External users and developers use this skill to identify ClawHub skills that fit a described task, compare alternatives, and get installation and usage guidance.
 
-## Reference(s): <br>
-- [OpenClaw Skill Advisor on ClawHub](https://clawhub.ai/zhanqirong/lobster-skill-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations and install commands should be reviewed against the current ClawHub skill page before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may recommend installing named third-party skills using unverified package names, ratings, or popularity signals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm the publisher, source repository, current ClawHub listing, requested permissions, version, and recent changes; install first in a low-risk environment.
+
+Risk: Broad trigger phrases may cause skill recommendations to appear when a user intended ordinary task help.
+
+Mitigation: Confirm that the user wants skill recommendations before presenting installation commands, and label example package names and ratings as illustrative unless independently verified.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/zhanqirong/skills/lobster-skill-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations may include skill names, comparisons, installation commands, and usage tips.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

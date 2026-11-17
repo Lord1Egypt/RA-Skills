@@ -1,0 +1,41 @@
+{
+  "id": "college-male-18-24",
+  "label": "College Male 18-24",
+  "emoji": "🧑‍🎓",
+  "demographics": {
+    "gender": "male",
+    "age_range": [18, 24],
+    "tier": "gen-z"
+  },
+  "active_hours": {
+    "description": "Late study sessions, night owl",
+    "peak": [11, 14, 20, 3],
+    "off_peak_min": 3
+  },
+  "typing": {
+    "description": "Fast, tech-adjacent, low corrections",
+    "wpm": { "min": 90, "max": 130 },
+    "profile": "natural",
+    "think_prob": 0.006,
+    "think_ms": [200, 800],
+    "backspace_freq": 0.025
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Targeted — scrolls to find, then stops",
+    "speed_px_per_ms": { "min": 30, "max": 80 },
+    "pause_between_passes_ms": { "min": 200, "max": 800 },
+    "depth_per_pass": { "min": 0.2, "max": 0.5 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 400, "max": 1800 },
+    "pre_click_pause_ms": { "min": 100, "max": 400 },
+    "inter_action_pause_ms": { "min": 150, "max": 600 }
+  },
+  "mouse": {
+    "speed": 1.2,
+    "curvature": 0.2,
+    "jitter": 0.4,
+    "description": "Moderate-fast, direct"
+  }
+}

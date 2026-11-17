@@ -7,6 +7,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -144,7 +149,7 @@ def normalize_file_name(value):
 
 def normalize_group(group):
     return {
-        "url": normalize_url(group.get("url", DEFAULT_URL)),
+        "url": normalize_url(group.get("url")),
     }
 
 
@@ -181,7 +186,7 @@ def load_groups_from_json(raw):
 def build_groups(args):
     if args.params_json:
         return load_groups_from_json(args.params_json)
-    urls = args.url or [DEFAULT_URL]
+    urls = args.url or []
     return [normalize_group({"url": url}) for url in urls]
 
 
@@ -236,32 +241,36 @@ def main():
     parser = argparse.ArgumentParser(description="Submit a Dataify YouTube video file by URL Builder task.")
     parser.add_argument("--list-options", action="store_true", help="Print dropdown options as Markdown tables and exit.")
     parser.add_argument("--url", action="append", help="YouTube video URL. Repeat for multiple URLs.")
-    parser.add_argument("--resolution", default=DEFAULT_RESOLUTION, help="Shared resolution value. Default: 360p.")
-    parser.add_argument("--resolution-direction", default=DEFAULT_RESOLUTION_DIRECTION, help="Shared resolution direction. Default: <=.")
-    parser.add_argument("--video-codec", default=DEFAULT_VIDEO_CODEC, help="Shared video_codec value. Default: vp9.")
-    parser.add_argument("--audio-format", default=DEFAULT_AUDIO_FORMAT, help="Shared audio_format value. Default: opus.")
-    parser.add_argument("--bitrate", default=DEFAULT_BITRATE, help="Shared bitrate value. Default: 320.")
-    parser.add_argument("--bitrate-direction", default=DEFAULT_BITRATE_DIRECTION, help="Shared bitrate direction. Default: <=.")
-    parser.add_argument("--subtitles-language", default=DEFAULT_SUBTITLES_LANGUAGE, help="Shared subtitles_language value. Default: ab.")
-    parser.add_argument("--selected-only", default=DEFAULT_SELECTED_ONLY, help="Shared selected_only value. Default: false.")
+    parser.add_argument("--resolution", help="Shared resolution value. Default: 360p.")
+    parser.add_argument("--resolution-direction", help="Shared resolution direction. Default: <=.")
+    parser.add_argument("--video-codec", help="Shared video_codec value. Default: vp9.")
+    parser.add_argument("--audio-format", help="Shared audio_format value. Default: opus.")
+    parser.add_argument("--bitrate", help="Shared bitrate value. Default: 320.")
+    parser.add_argument("--bitrate-direction", help="Shared bitrate direction. Default: <=.")
+    parser.add_argument("--subtitles-language", help="Shared subtitles_language value. Default: ab.")
+    parser.add_argument("--selected-only", help="Shared selected_only value. Default: false.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of url parameter objects.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=1800, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
     if args.list_options:
         list_options()
         return 0
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one.".format(LOGIN_URL),
+            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one. New accounts receive 50 free credits.".format(LOGIN_URL),
             file=sys.stderr,
         )
         return 2
 
     try:
         groups = build_groups(args)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         spider_universal = normalize_universal(args)
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
@@ -269,7 +278,7 @@ def main():
         return 2
 
     try:
-        task_id, status = submit_builder(args.api_token, groups, spider_universal, file_name)
+        task_id, status = submit_builder(api_token, groups, spider_universal, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -281,12 +290,19 @@ def main():
             "parameters": groups,
             "spider_universal": spider_universal,
             "file_name": file_name,
-            "dashboard_url": DASHBOARD_URL,
-            "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+            "message": "Task submitted. Continue monitoring the returned task_id.",
         },
         ensure_ascii=False,
         indent=2,
     ))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

@@ -1,0 +1,186 @@
+<!doctype html>
+<!--
+  A SECOND WHOLE SCREEN, deliberately not another form.
+
+  `settings-screen.html` is the form-shaped screen: capped controls, a switcher, mapping rows.
+  This one is the other shape an integration takes — a list of connected things, gated by a pricing
+  plan. Amazon here is the invented service; the composition is what to copy.
+  `references/check-classes.sh --app-prefix app- examples/amazon-connections-screen.html` is clean.
+
+  What this screen adds over the first one:
+
+    components.md, Plan gating
+            The paid family instead of a hand-written upgrade box: one `.alert.alert-paid` at the
+            top of the gated `.panel-body`, its `.badge-paid` as the alert's own child carrying
+            `&nbsp;` (an empty inline span collapses and the 48px inset then looks like a bug), the
+            upgrade link inline in the copy, and the gated control `disabled` with a small
+            `.badge-paid-sm` beside its label. Nothing else on the screen turns purple.
+    components.md, Lists
+            Cards, not a table. That is a content decision the catalogue makes for you: a table is
+            for uniform rows with no per-row state, cards once a row has state and actions — and
+            these rows have both. `.list-group-item` ships collapsed (transparent border, one top
+            rule, -1px margin), so separated cards need the three app CSS rules below; they are
+            written out in the *Lists* section and this is what they render as.
+    Step 2  One signal per state, applied to a list: the left border IS the connected state. No dot,
+            no label, no icon repeating it — and the paused row says it once, in muted text.
+    Step 3  `icon-ellipsis` in a `.btn-more-action` is the row kebab (that rule is one of the two
+            that set an 18px glyph), and `.dropdown-menu-right` is load-bearing on it: the default
+            `left:0` would open the menu off the right edge of the panel.
+    #5      The CDN ships NO JavaScript. `data-toggle="dropdown"` is an inert marker; `.open` is a
+            class you add. The eight lines at the bottom are that, and they are the whole behaviour.
+            A menu row is styled by `.dropdown-menu > li > a` only, so it is an `<a role="button">`
+            — a `<button>` in there inherits nothing.
+    Step 2  Empty states are text first. The commented block below the list is what to render
+            instead of it when nothing is connected: a sentence and one action, no illustration.
+-->
+<html lang="en" class="ma-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon — SendPulse</title>
+
+    <link id="sp-theme-light" rel="stylesheet"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=light" />
+    <link id="sp-theme-dark" rel="stylesheet" media="not all"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=dark" />
+
+    <link rel="stylesheet" href="../references/tokens.css" />
+    <link rel="stylesheet" href="../references/bundle-fixes.css" />
+
+    <script>
+      // The host passes ?theme=dark on this app's URL. Read it, apply it, stop. No switcher.
+      (function () {
+        var dark = new URLSearchParams(location.search).get("theme") === "dark";
+        document.getElementById("sp-theme-light").media = dark ? "not all" : "all";
+        document.getElementById("sp-theme-dark").media = dark ? "all" : "not all";
+        document.documentElement.classList.toggle("ma-dark", dark);
+        document.documentElement.classList.toggle("ma-light", !dark);
+      })();
+    </script>
+
+    <style>
+      /* app.css — three rules, each naming what it exists for. This is the ceiling, not the start:
+         a fourth rule usually means a bundle class was missed. */
+
+      /* The design's control width (Step 4); the bundle has no 364px class. */
+      .app-form-mw { max-width: 364px; }
+
+      /* Separated cards. `.list-group-item` is built collapsed — transparent border, a single top
+         rule, `margin-bottom:-1px` — so the rule colour goes back on all four edges plus the gap.
+         Both var()s are in tokens.css; the 10px radius is the literal from Step 1, because the CDN
+         bundle defines no geometry tokens. (components.md, *Lists*) */
+      .app-item-row {
+        border: 1px solid var(--divider-color);
+        border-radius: 10px;
+        margin-bottom: 8px;
+      }
+      /* State on the edge — the row's whole status signal. */
+      .app-item-row--connected { border-left: 3px solid var(--success-color); }
+    </style>
+  </head>
+
+  <body>
+    <!-- Nothing wraps the panel: the host frame is already inset and already sized. -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>Amazon</h2>
+        <p class="text-muted spacing-bottom-lg">
+          Import Amazon orders as SendPulse deals and email buyers after each purchase.
+        </p>
+
+        <!-- Rendered only when the account lacks the plan. The badge must be the alert's own child,
+             and the upgrade link is inline HTML in the copy — escape it and every locale loses it. -->
+        <div class="alert alert-paid has-paid-badge spacing-bottom-lg">
+          <span class="badge badge-paid">&nbsp;</span>
+          Order sync is available on a paid pricing plan.
+          <a href="https://login.sendpulse.com/crm/plans" target="_blank" rel="noopener">
+            Upgrade your pricing plan
+          </a>
+        </div>
+
+        <!-- The gated control: disabled, with the small badge beside the label and nothing else
+             marking it. `bundle-fixes.css` is what makes that badge sit on the label's baseline. -->
+        <div class="form-group app-form-mw spacing-bottom-lg">
+          <label class="control-label" for="frequency">
+            Check for new orders
+            <span class="badge badge-paid badge-paid-sm">&nbsp;</span>
+          </label>
+          <select class="form-control" id="frequency" disabled>
+            <option>Every 15 minutes</option>
+            <option>Hourly</option>
+          </select>
+          <span class="help-block">Hourly on the free plan.</span>
+        </div>
+
+        <label class="control-label spacing-bottom-sm">Connected marketplaces</label>
+
+        <div class="list-group">
+          <div class="list-group-item app-item-row app-item-row--connected d-flex align-items-center">
+            <div class="flex-fill">
+              <p class="margin-0"><strong>Amazon.com</strong></p>
+              <p class="margin-0 text-muted">Seller ID A1B2C3 · last order 11:38</p>
+            </div>
+            <div class="dropdown">
+              <button type="button" class="btn btn-more-action dropdown-toggle"
+                      data-toggle="dropdown" aria-label="Amazon.com actions">
+                <i class="sp-icon icon-ellipsis" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#" role="button" tabindex="0">Pause sync</a></li>
+                <li><a href="#" role="button" tabindex="0">Disconnect</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Paused: no connected border, and the state said once in muted text. -->
+          <div class="list-group-item app-item-row d-flex align-items-center">
+            <div class="flex-fill">
+              <p class="margin-0"><strong>Amazon.co.uk</strong></p>
+              <p class="margin-0 text-muted">Sync paused · last order yesterday</p>
+            </div>
+            <div class="dropdown">
+              <button type="button" class="btn btn-more-action dropdown-toggle"
+                      data-toggle="dropdown" aria-label="Amazon.co.uk actions">
+                <i class="sp-icon icon-ellipsis" aria-hidden="true"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#" role="button" tabindex="0">Resume sync</a></li>
+                <li><a href="#" role="button" tabindex="0">Disconnect</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-link" type="button">
+          <i class="sp-icon icon-plus-add" aria-hidden="true"></i>
+          <span class="dashed">Connect a marketplace</span>
+        </button>
+
+        <!-- EMPTY STATE — render this INSTEAD of the list and the link above when nothing is
+             connected yet. A sentence and one action; no illustration, no card, no alert.
+        <p class="text-muted spacing-bottom-md">
+          No marketplaces connected yet. Connect one to start importing orders.
+        </p>
+        <button class="btn btn-primary" type="button">Connect a marketplace</button>
+        -->
+      </div>
+
+      <div class="panel-footer">
+        <button class="btn btn-primary" type="button">Save</button>
+        <button class="btn btn-link" type="button">Cancel</button>
+      </div>
+    </div>
+
+    <script>
+      // The bundle is CSS only (non-negotiable #5): `data-toggle="dropdown"` styles nothing and
+      // does nothing. Toggling `.open` on the wrapper is the entire dropdown behaviour.
+      document.addEventListener("click", function (e) {
+        var toggle = e.target.closest('[data-toggle="dropdown"]');
+        document.querySelectorAll(".dropdown.open").forEach(function (d) {
+          if (!toggle || d !== toggle.parentElement) d.classList.remove("open");
+        });
+        if (toggle) toggle.parentElement.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

@@ -1,40 +1,51 @@
-## Description: <br>
-Explains the cultural meaning and symbolism of the number 10 in Chinese, English, and cross-cultural contexts, and may also provide information about Chen Lang and related OpenClaw projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Chinese and English guidance on the cultural meanings and symbolism of the number 10, including Chinese, Western, and other cultural examples plus Chen Lang/OpenClaw context.
 
-## Publisher: <br>
-[leogoodai](https://clawhub.ai/user/leogoodai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leogoodai](https://clawhub.ai/user/leogoodai)
 
-## Use Case: <br>
-External users can use this skill to answer questions about the number 10, including Chinese idioms such as ten-out-of-ten perfection, Western references such as the Ten Commandments and decimal system, and other cultural examples. It can also surface concise informational context about Chen Lang and OpenClaw-related projects when relevant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may surface promotional Chen Lang or OpenClaw project claims and links. <br>
-Mitigation: Treat promotional claims, destinations, and contact details as unverified informational references unless separately confirmed. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about the number 10, ten, 十全十美, and cross-cultural numeric symbolism in Chinese or English. It may also provide context about Chen Lang and the OpenClaw project matrix when the user asks about those topics.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leogoodai/ten) <br>
-- [Openclaw123](https://Openclaw123.xyz) <br>
-- [aixin](https://aixin.chat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Bilingual natural-language Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Switches between Chinese and English based on the user's language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may surface Chen Lang/OpenClaw promotional material, links, and a contact email alongside cultural information about the number 10.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated answers for relevance and include promotional links or contact details only when they directly address the user's request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leogoodai/skills/ten)
+- [Openclaw123 resource portal](https://Openclaw123.xyz)
+- [aixin chat](https://aixin.chat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Bilingual Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses may include cultural explanations, project links, and contact context when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

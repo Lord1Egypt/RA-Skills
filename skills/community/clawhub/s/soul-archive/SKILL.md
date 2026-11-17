@@ -1,9 +1,17 @@
 ---
 name: soul-archive
-description: "Soul Archive — A digital personality persistence system + agentic memory. Builds your digital soul clone through everyday AI conversations, with proactive context injection, cross-session recall, failure-pattern warning, and pattern distillation. All data stored locally as plaintext JSON. Six modes: Soul Extract, Soul Chat, Soul Report, Soul Context Inject, Agent Memory Recall, AI Self-Improvement. | 灵魂存档 ---- 通过日常 AI 对话构建数字人格克隆体 + 主动智能体记忆。支持自动 hook、对话开始时主动注入人格摘要、跨会话召回、失败模式预警、行为模式蒸馏。数据全部本地明文 JSON。六大模式：灵魂沉淀、灵魂对话、灵魂报告、上下文注入、智能体记忆召回、AI 自我改进。Trigger words: soul extract, soul archive, soul update, soul chat, soul report, soul context, soul recall, soul warn, self-reflect, self-improve, learn from mistakes, 灵魂沉淀, 灵魂提取, 灵魂存档, 灵魂报告, 灵魂对话, 自我反思, 自我批评, 自我学习."
+slug: soul-archive
+displayName: 灵魂存档 (Soul Archive)
+display_name: 灵魂存档 (Soul Archive)
+display_name_en: Soul Archive
+version: 3.2.2
+author: dqsjqian
+description: "Soul Archive — digital personality persistence + agentic memory. Builds your digital soul clone through everyday AI conversations: persona injection at session start, cross-session recall, failure-pattern warning, pattern distillation. Conversation-end auto sedimentation (auto_extract defaults ON). All data local plaintext JSON. | 灵魂存档 —— 数字人格持久化 + 主动智能体记忆。对话开始注入人格摘要、跨会话召回、失败预警、模式蒸馏；对话结束自动沉淀。数据全本地明文 JSON。Trigger: soul extract/chat/report, 灵魂沉淀/存档, 自我反思."
+description_zh: "灵魂存档 —— 数字人格持久化系统 + 主动智能体记忆。通过日常 AI 对话沉淀说话习惯、知识观点、性格特征、工作偏好与情景记忆，构建数字灵魂副本。对话开始注入人格摘要（≤800 token）、跨会话召回、失败模式预警、行为模式蒸馏；对话结束自动沉淀（auto_extract 默认开启）。数据全部本地明文 JSON，不上传云端，细粒度隐私开关。"
+description_en: "Soul Archive — digital personality persistence + agentic memory. Builds your digital soul clone through everyday AI conversations: speech habits, knowledge, personality, workflow preferences, episodic memories. Persona injection at session start (under 800 tokens), cross-session recall, failure-pattern warning, behavior-pattern distillation; conversation-end auto sedimentation (auto_extract defaults ON). All data local plaintext JSON, never uploaded, fine-grained privacy switches."
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 # ^^^ 工具说明：Read/Write/Edit 用于读写数据文件；Bash 用于执行 Python 脚本；
-# Grep/Glob 用于文件搜索。数据目录默认为 ~/.agent-commons/skills_data/soul-archive/，
+# Grep/Glob 用于文件搜索。数据目录默认为 ~/.agent-guild/skills_data/soul-archive/，
 # 用户可通过 --soul-dir 或 SOUL_DIR 环境变量自定义。
 requirements:
   - "Python 3.10+"
@@ -33,7 +41,7 @@ Soul Archive 是一个**数字人格持久化 + 主动智能体记忆**系统。
 ## Core Principles
 
 ### 🔒 Privacy First
-- 全部数据存在 `~/.agent-commons/skills_data/soul-archive/`，**不上传任何云端**
+- 全部数据存在 `~/.agent-guild/skills_data/soul-archive/`，**不上传任何云端**
 - 全部明文 JSON。`.gitignore` 拦截 VCS 提交。
 - **Soul Chat 流向**：基于本地档案构建 prompt，是否被外部 LLM 看到，取决于你的 agent/平台配置。
 - 通过 `config.json` 细粒度控制每个维度的开关。
@@ -57,10 +65,10 @@ Soul Archive 是一个**数字人格持久化 + 主动智能体记忆**系统。
 
 ```
 {SKILL_DIR}/                                 ← Skill 引擎（本仓库）
-~/.agent-commons/skills_data/soul-archive/   ← 你的灵魂数据
+~/.agent-guild/skills_data/soul-archive/   ← 你的灵魂数据
 ```
 
-数据放在 [Agent Commons](https://github.com/dqsjqian/agent-commons) 共享目录的 skills_data 下，所以同机器上任何 IDE / AI 工具 / Workspace 都能访问同一份灵魂；备份/迁移时整个 `~/.agent-commons/` 一并带走即可。
+数据放在 [Agent Guild](https://github.com/dqsjqian/agent-guild) 共享目录的 skills_data 下（与跨 agent 共享记忆协议同根），所以同机器上任何 IDE / AI 工具 / Workspace 都能访问同一份灵魂；备份/迁移时整个 `~/.agent-guild/` 一并带走即可。从 v3.1 及更早版本升级时，旧目录（`~/.agent-commons/`、`~/.skills_data/`）会被静默自动迁移。
 
 ---
 
@@ -195,10 +203,24 @@ python3 scripts/soul.py session-start --task "..."
 | ⚡ 自我批评 | 用户纠正时记录失误 | 用户纠正自动 |
 | 📚 自我学习 | 从反思/批评抽象行为模式 | 蒸馏阈值触发 |
 | 🧹 自我整理 | 合并重复模式，调整置信度 | 内存增长时 |
+| ✅ 条目闭环 | pending → resolved/promoted | resolve 命令 |
+
+**Detection Triggers**（检测到即记录，无需用户点名）：
+
+| 信号 | 记录为 | 典型用语 |
+|---|---|---|
+| 用户纠正 | correction | "不对，应该是…" / "别胡扯" / "No, that's wrong…" |
+| 命令/操作失败 | correction（trigger=error） | 非零退出码、异常栈 |
+| 知识过时 | correction（trigger=knowledge_gap） | "这已经改了" / "文档不是这么写的" |
+| 复现的坑 | recurrence_count +1，priority 升级 | 同 pattern_id 或高相似历史条目 |
+
+**条目生命周期**（v3.2.0+）：每条 correction/reflection 自动获得稳定 ID（`COR-YYYYMMDD-XXX` / `RFL-YYYYMMDD-XXX`）和 `status`（pending → resolved / promoted / wont_fix）。新增 correction 自动做**复现检测**：命中同 pattern 或高相似（≥0.6）历史条目 → `recurrence_count`+1、`see_also` 链接、priority 自动升级。**recurrence_count ≥ 3 的教训必须晋升**——提炼成行为模式（patterns.json）或写入 agent 共享记忆。
 
 ```bash
-python3 scripts/soul.py reflect --mode status     # 查看自我改进状态
+python3 scripts/soul.py reflect --mode status     # 查看自我改进状态（含 pending 计数）
 python3 scripts/soul.py reflect --mode patterns   # 查看行为模式库
+python3 scripts/soul.py reflect --mode review     # pending 概览 + 高优先级 + 待晋升清单
+python3 scripts/soul.py reflect --mode resolve --id COR-20260818-001 --notes "已修复"
 ```
 
 ---

@@ -1,44 +1,59 @@
-## Description: <br>
-Connect to Robinhood's Agentic Trading MCP server and act on the user's behalf to list account and position tools, analyze a portfolio, and place trades via the official MCP with persistent OAuth authentication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an agent to Robinhood's Agentic Trading MCP server to read account tools and positions, analyze a portfolio, and place trades when the user explicitly requests it.
 
-## Publisher: <br>
-[zmtucker](https://clawhub.ai/user/zmtucker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmtucker](https://clawhub.ai/user/zmtucker)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to a Robinhood account for account-aware portfolio review and user-authorized trading workflows. It is appropriate when the user intentionally wants the agent to authenticate to Robinhood and interact with the Agentic Trading MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent OAuth credentials grant ongoing access to a Robinhood trading account. <br>
-Mitigation: Keep ROBINHOOD_MCP_HOME in protected persistent storage, treat credentials.json as a trading credential, and use logout or Robinhood revocation when access is no longer needed. <br>
-Risk: The generic MCP tool-call path can place real orders without enforcement inside the script. <br>
-Mitigation: Require separate explicit human confirmation before every order, including symbol, side, quantity, order type, and estimated cost. <br>
-Risk: Robinhood MCP tools may change as the beta evolves. <br>
-Mitigation: Discover available tools and inspect each input schema before calling a tool; surface tool errors to the user and avoid blind retries. <br>
+## Use Case:
 
+External users and agents use this skill to connect to a Robinhood account, discover available trading MCP tools, review portfolio information, and invoke account actions after explicit user approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zmtucker/robinhood-mcp) <br>
-- [Robinhood Agentic Trading Overview](https://robinhood.com/us/en/support/articles/agentic-trading-overview/) <br>
-- [OAuth & cross-session persistence](references/oauth_and_persistence.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [MCP tool calls can return account data and trading results; tool-level errors are surfaced as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can keep ongoing access to a Robinhood account and that access can include trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user is comfortable granting this authority, prefer read-only actions by default, and require explicit human approval for every order.
+
+Risk: Stored OAuth credentials can grant trading access if the credential directory is exposed.
+
+Mitigation: Keep ROBINHOOD_MCP_HOME on private local storage, avoid shared or synced folders, and revoke access or run logout immediately if exposure is suspected.
+
+Risk: Changing the MCP server URL could send account actions or authentication flow to an untrusted endpoint.
+
+Mitigation: Do not set ROBINHOOD_MCP_URL except to a trusted Robinhood endpoint.
+
+## Reference(s):
+
+- [Robinhood Agentic Trading overview](https://robinhood.com/us/en/support/articles/agentic-trading-overview/)
+- [OAuth and cross-session persistence](references/oauth_and_persistence.md)
+- [ClawHub skill page](https://clawhub.ai/zmtucker/skills/robinhood-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and mcp>=1.9.0; commands may read, refresh, or delete local OAuth credential files.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

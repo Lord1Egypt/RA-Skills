@@ -1,40 +1,58 @@
-## Description: <br>
-Manage Organizze personal finance data through the Organizze API, including bank accounts, credit cards, invoices, transactions, transfers, categories, and budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Organizze personal finance data through the Organizze API, including bank accounts, credit cards, invoices, transactions, transfers, categories, budgets, and users.
 
-## Publisher: <br>
-[rafaels-dev](https://clawhub.ai/user/rafaels-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rafaels-dev](https://clawhub.ai/user/rafaels-dev)
 
-## Use Case: <br>
-External Organizze users use this skill to let an agent inspect and manage personal finance records through local Organizze API calls. It supports account, card, invoice, transaction, transfer, category, budget, and user workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and change Organizze financial records when provided with the user's Organizze credentials. <br>
-Mitigation: Install only when agent access to Organizze finance data is intended, and require confirmation of exact record IDs, amounts, dates, and target resources before write or delete actions. <br>
-Risk: Organizze email and API token exposure could allow unauthorized access to financial data. <br>
-Mitigation: Keep credentials in environment variables when possible, never reveal or log them, and rotate the API token if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Organizze API v2](https://api.organizze.com.br/rest/v2) <br>
-- [Organizze API key settings](https://app.organizze.com.br/configuracoes/api-keys) <br>
+## Use Case:
 
+External users and finance-focused agent operators use this skill to inspect and manage Organizze accounts, cards, invoices, transactions, transfers, categories, and budgets through API-backed shell commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local environment variables for Organizze credentials and may propose read, write, update, or delete API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read, create, update, and delete sensitive financial records.
+
+Mitigation: Approve every create, update, or delete operation only after checking the target resource IDs, dates, and monetary amounts.
+
+Risk: Credentials grant access to Organizze financial data.
+
+Mitigation: Use session environment variables or a secret manager, avoid storing tokens in shared config, and rotate the API token if exposure is suspected.
+
+Risk: The release is non-official and has a suspicious security verdict.
+
+Mitigation: Install only after reviewing the skill behavior and accepting the requested financial-data access.
+
+## Reference(s):
+
+- [Organizze API v2](https://api.organizze.com.br/rest/v2)
+- [Organizze API token settings](https://app.organizze.com.br/configuracoes/api-keys)
+- [ClawHub skill page](https://clawhub.ai/rafaels-dev/skills/organizze)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ORGANIZZE_EMAIL, ORGANIZZE_API_TOKEN, and ORGANIZZE_USER_AGENT environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

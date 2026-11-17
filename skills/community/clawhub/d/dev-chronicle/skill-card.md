@@ -1,41 +1,53 @@
-## Description: <br>
-Generate narrative chronicles of developer work from git history, session transcripts, and memory files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate narrative chronicles of developer work from git history, session transcripts, and memory files.
 
-## Publisher: <br>
-[sssamuelll](https://clawhub.ai/user/sssamuelll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sssamuelll](https://clawhub.ai/user/sssamuelll)
 
-## Use Case: <br>
-Developers use this skill to turn local git history, memory files, and agent session metadata into daily chronicles, weekly recaps, standup notes, or portfolio narratives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The gather workflow can read local git history, memory files, and agent session metadata that may include private work details or secrets. <br>
-Mitigation: Review and narrow config.json before use, especially projectDirs, memoryDir, and sessionsDir. <br>
-Risk: Generated chronicles may include unrelated personal or sensitive development context. <br>
-Mitigation: Treat generated output as private until it has been reviewed and redacted. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn local git history, memory notes, and session metadata into daily chronicles, weekly recaps, standup notes, or portfolio narratives.
 
-## Reference(s): <br>
-- [Voice Profile Template](references/voice-profile.md) <br>
-- [Dev Chronicle on ClawHub](https://clawhub.ai/sssamuelll/dev-chronicle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown prose with optional shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chronicles may include sensitive local development context and should be reviewed before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can pull private developer history, memory notes, and session metadata into agent context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review config.json before use, restrict projectDirs, memoryDir, and sessionsDir to intended locations, and avoid auto-detected memory or session sources unless they are explicitly needed.
+
+Risk: The security scan reports unsafe configurable path handling in the bundled gather.sh script.
+
+Mitigation: Review and fix scripts/gather.sh before use in shared or untrusted environments, and run it only with reviewed paths in a trusted workspace.
+
+## Reference(s):
+
+- [Voice Profile Template](artifact/references/voice-profile.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown narrative prose with optional shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce daily, weekly, standup, or portfolio narrative formats from gathered local development history.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

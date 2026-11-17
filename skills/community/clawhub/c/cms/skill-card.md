@@ -1,39 +1,51 @@
-## Description: <br>
-cms reference tool <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cms provides plain-text CMS reference documentation for devtools workflows.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local CMS reference helper for plain-text guidance on introductions, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides generic CMS reference guidance that may be incomplete or not applicable to a specific CMS environment. <br>
-Mitigation: Review the generated reference guidance for fit before applying it to production workflows. <br>
+## Use Case:
 
+Developers and engineers use Cms to retrieve concise CMS reference guidance for introductions, quickstarts, patterns, debugging, performance, security, migration, and cheat-sheet topics.
 
-## Reference(s): <br>
-- [Cms on ClawHub](https://clawhub.ai/ckchzh/cms) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, network access, or system changes are indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generic CMS reference text may not match a specific deployment's credential, migration, or operational requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat output as reference guidance and verify credential, migration, and production steps against the target system's official documentation before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/cms)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text with Markdown-style headings, lists, and tables emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access; local reference output only.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

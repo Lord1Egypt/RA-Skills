@@ -1,41 +1,50 @@
-## Description: <br>
-Build, optimize, and operate production-ready Retrieval-Augmented Generation systems with guidance for architecture, chunking, embeddings, retrieval, evaluation, monitoring, security, and cost control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, optimize, and operate production-ready Retrieval-Augmented Generation systems with guidance across architecture, chunking, embedding selection, retrieval, evaluation, security, cost, and monitoring.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, review, troubleshoot, and operate production RAG systems. It helps agents walk through architecture choices, document processing, chunking, embedding selection, retrieval evaluation, monitoring, access control, and cost optimization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The README install command uses a different slug than the server-resolved release slug. <br>
-Mitigation: Verify the ClawHub install slug against the release page before installing or sharing commands. <br>
-Risk: RAG systems that index private documents can expose sensitive content if privacy, retention, and access controls are not implemented. <br>
-Mitigation: Apply retrieval-time authorization, audit logging, retention controls, and relevant compliance safeguards before using the guidance with private or regulated data. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to design, evaluate, and operate production RAG systems, including architecture selection, document processing, retrieval tuning, access-control planning, monitoring, and cost optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-rag-production) <br>
-- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, decision trees, YAML templates, checklists, and inline examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; no executable code or runtime access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may steer broad RAG requests into its methodology and recommend production architecture, service, logging, or access-control changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against system requirements, security policy, compliance obligations, and production change-control processes before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-rag-production)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with YAML, code, shell command, checklist, table, and architecture examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only methodology; recommendations should be reviewed before production implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

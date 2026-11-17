@@ -1,44 +1,59 @@
-## Description: <br>
-EVE manages the research lifecycle with Auto, Semi-Manual, and Manual modes for literature search, gap analysis, idea generation, experiment planning, and publication-ready LaTeX drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EVE is a persistent AI research supervisor agent with Auto, Semi-Manual, and Manual modes for managing a research lifecycle from literature search to publication-ready LaTeX paper drafting.
 
-## Publisher: <br>
-[amzayn](https://clawhub.ai/user/amzayn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amzayn](https://clawhub.ai/user/amzayn)
 
-## Use Case: <br>
-External researchers, students, and developers use this skill to coordinate literature discovery, citation analysis, research-gap review, idea generation, experiment planning, paper drafting, and project memory workflows through an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Install-time code can modify the local environment. <br>
-Mitigation: Review install.sh and the Python scripts before installation, and run the skill in a constrained workspace where possible. <br>
-Risk: Research notes and prompts may be sent to external LLM endpoints using local AI credentials. <br>
-Mitigation: Verify OPENAI_BASE_URL and OPENAI_API_KEY before use, and avoid processing sensitive or confidential research material unless the endpoint is approved. <br>
-Risk: Server-monitoring features can operate over SSH with weak controls. <br>
-Mitigation: Use scoped credentials, avoid broad production SSH keys, and re-enable host-key verification where supported. <br>
-Risk: Persistent project memory can retain research context across sessions. <br>
-Mitigation: Periodically inspect or delete the skill memory directory, especially after working with sensitive projects. <br>
+## Use Case:
 
+External researchers, students, and developers use this agent to organize literature discovery, gap analysis, research-idea generation, experiment planning, citation management, and LaTeX paper drafting across multi-session projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amzayn/eve-research-supervisor-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON templates, LaTeX/code snippets, and generated research files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project memory, downloaded papers, BibTeX, figures, tables, and LaTeX paper drafts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.0 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Credentials and research content may be sent to a non-official LLM endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the code before installing, configure a trusted LLM endpoint, and do not reuse an official OpenAI API key with the default api.openai-hk.com endpoint unless that operator is explicitly trusted.
+
+Risk: Research profiles, notes, project details, and server configuration are kept as long-lived local memory files.
+
+Mitigation: Avoid storing sensitive material unless needed, restrict local file access, and manually clear the memory directory when retention is no longer appropriate.
+
+Risk: SSH monitoring features can automate remote server access and were flagged for unsafe host-key checking, command validation, and path handling.
+
+Mitigation: Avoid using those features on sensitive servers until the SSH behavior is reviewed and fixed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/amzayn/skills/eve-research-supervisor-pro)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text guidance with generated files such as LaTeX, BibTeX, JSON, plots, tables, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include persistent local research memory, downloaded paper metadata, research notes, gap lists, ideas, roadmaps, and publication drafts.]
+
+## Skill Version(s):
+
+5.1.0 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

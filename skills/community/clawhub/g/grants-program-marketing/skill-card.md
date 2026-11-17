@@ -1,44 +1,51 @@
-## Description: <br>
-Designs, markets, and operates Web3 grants programs for DAO and protocol teams, covering positioning, applicant acquisition, review, communications, and impact reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete system for designing, marketing, and operating a Web3 grants program.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-DAO contributors, protocol marketing leads, and grants committee members use this skill to design grants programs, attract qualified applicants, review applications, communicate results, and publish impact reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated announcements, direct messages, scorecards, or reports may be inaccurate or unsuitable for a specific grants program if used without review. <br>
-Mitigation: Review and edit generated materials before posting them publicly or using them in funding workflows. <br>
-Risk: Applicant-sensitive information, confidential project details, or treasury credentials could be exposed if unnecessarily pasted into an agent session. <br>
-Mitigation: Avoid entering confidential applicant data or treasury credentials unless the user intentionally provides that context and accepts the handling risk. <br>
-Risk: Application scorecards and review frameworks can influence funding decisions when they are only templates. <br>
-Mitigation: Have the grants committee verify criteria, scoring, and final recommendations before making awards. <br>
+## Use Case:
 
+External DAO contributors, protocol marketing leads, and grants committee members use this skill to design grants programs, attract applicants, review applications, prepare announcements, and report program impact.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/renehdzgtz/grants-program-marketing) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, templates, checklists, scorecards, announcements, and report outlines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution or hidden data access is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Planning and copywriting guidance may be used directly for grant announcements, direct messages, rejection notices, or funding decisions without adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have responsible grants staff or committee members review outputs before publishing communications, contacting applicants, rejecting applicants, or making funding decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renehdzgtz/skills/grants-program-marketing)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub](https://clawhub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Configuration]
+
+**Output Format:** [Markdown guidance, templates, scorecards, and structured planning copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden execution, persistence, credential use, or destructive behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

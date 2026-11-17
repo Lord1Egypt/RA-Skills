@@ -1,40 +1,58 @@
-## Description: <br>
-Fetches articles from Farnam Street RSS. Use when asking about decision-making, mental models, learning, or wisdom from Farnam Street blog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches articles from Farnam Street RSS. Use when asking about decision-making, mental models, learning, or wisdom from Farnam Street blog.
 
-## Publisher: <br>
-[hjw21century](https://clawhub.ai/user/hjw21century) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hjw21century](https://clawhub.ai/user/hjw21century)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve Farnam Street RSS entries by date or keyword and format article metadata and content for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script makes outbound requests to Farnam Street and depends on feedparser and requests. <br>
-Mitigation: Install in an isolated environment and pin dependencies when supply-chain assurance matters. <br>
-Risk: RSS entries can be unavailable, outside the available date range, or limited to members-only teaser content. <br>
-Mitigation: Treat no-content and members-only responses as partial results and verify important article details against the source URL. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Output Format Reference](references/output-format.md) <br>
-- [Farnam Street RSS Feed](https://fs.blog/feed/) <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Farnam Street RSS articles by relative date, absolute date, date range, or topic keyword, then present the results for decision-making, mental-model, learning, and leadership queries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summaries with optional JSON from the fetch script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include article URLs, publication dates, content snippets, available date ranges, and members-only indicators.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script fetches article content from an external RSS feed.
+
+Mitigation: Treat fetched RSS article content as external website content before relying on or redistributing it.
+
+Risk: Runtime dependencies are installed separately and may change over time.
+
+Mitigation: Install dependencies in an isolated environment and consider pinning versions before use.
+
+Risk: Premium member-only articles may return only teaser content.
+
+Mitigation: Surface member-only or unavailable-content states clearly instead of presenting partial RSS content as complete.
+
+## Reference(s):
+
+- [Output Format Reference](references/output-format.md)
+- [Farnam Street RSS Feed](https://fs.blog/feed/)
+- [ClawHub Skill Page](https://clawhub.ai/hjw21century/skills/fs-street)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown article summaries and JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [RSS article lookups may return premium-member teasers or no result when the requested date is unavailable.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

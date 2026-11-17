@@ -2,33 +2,31 @@
 name: friction-detector
 description: |
   Detect friction signals; graduate patterns into rules. Use for session retrospectives
-version: 1.9.8
+version: 1.10.3
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/abstract", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: abstract
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/abstract](https://github.com/athola/claude-night-market/tree/master/plugins/abstract). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Friction-to-Learning Pipeline
 
-Detect friction signals during agent execution, track
-them across sessions, and graduate recurring patterns
-into permanent guidance. Bridges the gap between
-ephemeral session friction and durable CLAUDE.md rules.
+## Overview
 
-**Research backing**: Claude Coach (hook-based friction
-detection with SQLite storage), alirezarezvani's
-self-improving-agent (three-tier MEMORY to CLAUDE.md
-graduation), and the ACE framework (arXiv: evolving
-playbooks from execution feedback, +10.6% on agent
-tasks).
+Detect friction signals during agent execution, track them across sessions,
+and graduate recurring patterns into permanent guidance. Bridges the gap
+between ephemeral session friction and durable CLAUDE.md rules.
 
-**Current gap**: LEARNINGS.md exists but requires manual
-aggregation via `/abstract:aggregate-logs`. This skill
-adds automatic friction detection and a structured
-promotion path.
+**Research backing**: Claude Coach (hook-based friction detection with SQLite
+storage), alirezarezvani's self-improving-agent (three-tier MEMORY to
+CLAUDE.md graduation), and the ACE framework (arXiv: evolving playbooks from
+execution feedback, +10.6% on agent tasks).
+
+**Current gap**: LEARNINGS.md exists but requires manual aggregation via
+`/abstract:aggregate-logs`. This skill adds automatic friction detection and
+a structured promotion path.
 
 ## Friction Signal Types
 
@@ -83,7 +81,8 @@ Tier 3 proposal:  graduation_score >= 12.0
 
 Run at session end, at 80% context usage (via
 `conserve:clear-context`), or after failed improvement
-cycles (when `metacognitive-self-mod` detects regression).
+cycles (when `abstract:metacognitive-self-mod` detects
+regression).
 
 ### Step 1: Scan Session for Signals
 
@@ -164,7 +163,7 @@ formula recency_factor).
 ## Friction Report Format
 
 ```markdown
-## Friction Report -- Session {date}
+## Friction Report: Session {date}
 
 ### New Signals (Tier 1)
 - [RETRY] `rg` command failed 3x, fell back to `grep`
@@ -190,8 +189,9 @@ formula recency_factor).
 
 **Feeds into**: LEARNINGS.md (Tier 2 patterns, same
 format as `/abstract:aggregate-logs`),
-skill-improver (priority scoring), and
-metacognitive-self-mod (pipeline effectiveness).
+`abstract:skill-improver` (priority scoring), and
+`abstract:metacognitive-self-mod` (pipeline
+effectiveness).
 
 **Consumes from**: session transcripts,
 `aggregate_learnings_daily` hook data, and the
@@ -209,3 +209,16 @@ performance tracker for trend correlation.
 - `abstract:skills-eval`: evaluation criteria
 - `/abstract:aggregate-logs`: manual LEARNINGS.md generation
 - `conserve:clear-context`: triggers friction scan at 80%
+
+## Exit Criteria
+
+- [ ] Session friction report produced in "Friction Report Format"
+      with at least one section (New Signals, Recurring Patterns,
+      or Graduation Proposals) populated
+- [ ] Each signal written as JSON to
+      `~/.claude/friction/sessions/{date}-{session_id}.json`
+      via the `session-capture/1` schema
+- [ ] Patterns with `graduation_score` >= 12.0 generate a Tier 3
+      proposal. The skill does not auto-modify CLAUDE.md
+- [ ] Noise signals (network failures, user exploration) appear in
+      "Noise Filtered" and are excluded from graduation scoring

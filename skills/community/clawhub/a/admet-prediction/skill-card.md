@@ -1,41 +1,54 @@
-## Description: <br>
-ADMET (Absorption, Distribution, Metabolism, Excretion, Toxicity) prediction for drug candidates to assess drug-likeness, pharmacokinetic properties, and safety risks early in drug discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADMET prediction for drug candidates, including drug-likeness, pharmacokinetic properties, and early toxicity screening.
 
-## Publisher: <br>
-[huifer](https://clawhub.ai/user/huifer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[huifer](https://clawhub.ai/user/huifer)
 
-## Use Case: <br>
-External developers, researchers, and drug discovery teams use this skill to screen compounds for ADMET properties, drug-likeness, pharmacokinetic concerns, and toxicity signals before prioritizing candidates for experimental follow-up. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ADMET, PK, hERG, DILI, Ames, and progression recommendations are screening predictions rather than experimental evidence. <br>
-Mitigation: Validate important safety and development decisions experimentally before using results for candidate progression. <br>
-Risk: Running local analysis on unintended compound libraries could expose or process data outside the user's intended scope. <br>
-Mitigation: Install dependencies in a virtual environment and run the tool only on compound files selected for analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ADMET Properties Reference](reference/admet-properties.md) <br>
-- [Toxicity Alerts Reference](reference/toxicity-alerts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/huifer/admet-prediction) <br>
+## Use Case:
 
+Drug discovery users can use this skill to estimate ADMET properties from SMILES strings or compound libraries and prioritize candidates for follow-up review. Results are appropriate for early screening and should be validated by domain experts before scientific, clinical, regulatory, or safety decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries and JSON result files for single-compound, batch, and filtering workflows.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include ADMET property tables, rule-filter results, confidence-oriented interpretation, and recommendations for experimental validation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Simplified ADMET and toxicity estimates could be mistaken for validated scientific predictions.
+
+Mitigation: Treat outputs as early screening signals only and require expert review plus experimental validation before acting on hERG, DILI, Ames, or drug-likeness results.
+
+Risk: The bundled script depends on chemistry packages and optional model packages.
+
+Mitigation: Install the skill in an isolated environment with pinned, reviewed dependencies.
+
+## Reference(s):
+
+- [ADMET Properties Reference](reference/admet-properties.md)
+- [Toxicity Alerts Reference](reference/toxicity-alerts.md)
+- [ClawHub Skill Page](https://clawhub.ai/huifer/skills/admet-prediction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown summaries, JSON result files, and command-line guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize individual compounds, batch prediction results, or drug-likeness filter outcomes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

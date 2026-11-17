@@ -1,48 +1,65 @@
-## Description: <br>
-AI tool that creates fitness recipe videos with generated food images, voiceovers, rendered MP4 output, and optional TikTok posting support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fitness Recipes AI creates short-form fitness recipe videos with generated food images, voiceovers, rendered video outputs, and optional TikTok/Postiz posting.
 
-## Publisher: <br>
-[G0atfac3](https://clawhub.ai/user/G0atfac3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g0atfac3](https://clawhub.ai/user/g0atfac3)
 
-## Use Case: <br>
-Fitness influencers, nutrition coaches, and health content creators use this skill to generate short-form recipe video assets and batch production workflows for social publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release evidence reports a hard-coded ElevenLabs API key in the artifact. <br>
-Mitigation: Remove and rotate the embedded key before use, then configure only user-owned scoped provider keys with spending limits. <br>
-Risk: The skill can use paid media-generation and rendering services. <br>
-Mitigation: Set provider budgets and review batch counts, quality settings, and automation schedules before running production jobs. <br>
-Risk: Optional TikTok/Postiz publishing can make generated content public. <br>
-Mitigation: Do not configure posting credentials until the posting path and generated media have been reviewed and approved. <br>
-Risk: Prompts, scripts, images, and audio may be sent to third-party services. <br>
-Mitigation: Avoid private, sensitive, or regulated content in prompts and media inputs. <br>
+## Use Case:
 
+Fitness influencers, nutrition coaches, and health content creators use this skill to generate single or batch short-form recipe videos for TikTok or manual export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/G0atfac3/g0atbot-fitness-recipes) <br>
-- [Publisher profile](https://clawhub.ai/user/G0atfac3) <br>
-- [fal.ai](https://fal.ai) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
-- [Shotstack](https://shotstack.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown documentation, Python scripts, environment variable configuration, and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can create image, audio, and MP4 video files through paid third-party services when configured with API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The artifact includes a hard-coded ElevenLabs credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate the exposed credential if you own it and replace hard-coded secrets with isolated environment variables before execution.
+
+Risk: The skill sends content to external media-generation and rendering services.
+
+Mitigation: Run it in a virtual environment with scoped credentials and spending limits, and review what content may be shared before enabling API calls.
+
+Risk: Optional TikTok/Postiz posting may publish generated content if enabled without a clear approval step.
+
+Mitigation: Keep posting disabled until an explicit human approval step is confirmed.
+
+Risk: The security guidance states that --test should not be relied on to prevent live API calls.
+
+Mitigation: Verify execution paths and credentials before running test or batch workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g0atfac3/skills/g0atbot-fitness-recipes)
+- [Publisher profile](https://clawhub.ai/user/g0atfac3)
+- [fal.ai](https://fal.ai)
+- [ElevenLabs](https://elevenlabs.io)
+- [Shotstack](https://shotstack.io)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Code]
+
+**Output Format:** [Markdown usage guidance with Python scripts and generated media file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce MP4 videos, generated images, voiceover audio, and batch-processing logs when executed with configured service credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-03-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

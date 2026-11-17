@@ -2,7 +2,7 @@
 
 ## 接口概述
 
-基于 PaddleOCR-VL-1.5-0.9B 多模态大模型，具备全要素精准解析能力，支持 111 种语言，可处理不规则布局和长文档跨页解析。
+基于 PaddleOCR-VL-1.6-0.9B 多模态大模型，具备全要素精准解析能力，支持 100+ 种语言，可处理不规则布局和长文档跨页解析。
 
 ## API 接口地址
 
@@ -26,7 +26,7 @@ Content-Type: application/x-www-form-urlencoded
 
 | 参数 | 必选 | 类型 | 说明 |
 |------|------|------|------|
-| file_data | 和 file_url 二选一 | string | 文件 Base64 编码。版式文档：pdf, jpg, jpeg, png, bmp, tif, tiff, ofd（图片最长边≤4096px）；流式文档：doc, docx, txt, wps, ppt, pptx。图片≤10M，版式文档≤100M，流式文档≤50M，PDF≤500页。超过50M须用file_url。优先级：file_data > file_url |
+| file_data | 和 file_url 二选一 | string | 文件 Base64 编码。版式文档：pdf, jpg, jpeg, png, bmp, tif, tiff, ofd（图片最长边不大于 8192px）；流式文档：doc, docx, txt, wps, ppt, pptx。图片≤10M，版式文档≤100M，流式文档≤50M，PDF≤500页。超过50M须用file_url。优先级：file_data > file_url |
 | file_url | 和 file_data 二选一 | string | 文件URL，≤1024字节。PDF≤100M，≤500页。请关闭URL防盗链 |
 | file_name | 是 | string | 文件名，后缀须正确，如 "1.pdf" |
 

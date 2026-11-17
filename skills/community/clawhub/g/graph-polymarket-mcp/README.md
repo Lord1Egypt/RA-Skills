@@ -75,6 +75,13 @@ Use the stdio transport with `npx graph-polymarket-mcp` as the command, passing 
 
 ### OpenClaw / Remote Agents (SSE)
 
+> **The SSE transport has no authentication.** Anyone who can reach the port can call every tool,
+> and those calls spend *your* `GRAPH_API_KEY` quota. `--http` binds `0.0.0.0` inside a container,
+> so publish it to `127.0.0.1` on the host and put a reverse proxy with TLS and auth in front of
+> anything reachable off-box. For local agents, prefer the default stdio transport — it has no
+> network surface at all.
+
+
 Start the server with the HTTP transport:
 
 ```bash
@@ -158,6 +165,29 @@ A `/health` endpoint is available at `http://localhost:3851/health` when HTTP tr
 | `get_clob_market` | CLOB market details: token IDs, live prices, min order/tick sizes | CLOB |
 | `search_markets_enriched` | **Power tool**: search + auto-enrich with live CLOB prices AND on-chain resolution status in one call | Gamma + CLOB + Graph |
 
+### CLOB V2 Tools
+
+Polymarket migrated to V2 exchange contracts on **2026-04-28**. These tools read the V2 subgraphs,
+which index from block 84902353 and hold **no pre-migration history** — V1 and V2 are different
+eras, not old and new.
+
+| Tool | Description | Subgraphs |
+|------|-------------|-----------|
+| `get_builder_leaderboard` | Rank V2 builders by routed volume, order count or fees, with each builder's share of V2 volume. **No V1 equivalent** — the V1 contracts never emitted a builder code | V2 Orderbook |
+| `get_builder_activity` | Recent fills routed by one builder code, plus that builder's aggregate totals | V2 Orderbook |
+| `get_v2_top_traders` | Top real V2 traders, with the exchange contracts filtered out | V2 Orderbook |
+| `check_subgraph_freshness` | How far behind chainhead any subgraph is, read live from its `_meta` block | Any |
+
+**Builder attribution** is the capability V2 adds. Every V2 fill carries the `builder` code of the
+frontend, bot or integrator that routed it, so "who is actually routing this flow" becomes an
+answerable question — 3,325 builders as of 2026-08-08.
+
+**Two traps these tools handle for you.** The V2 exchange contracts appear as `Account` rows, because
+the exchange is the `taker` when an order matches the book — ranking accounts naively returns
+`0xe111…996b` (176M fills) and `0xe222…0f59` (41M fills) above every human. `get_v2_top_traders`
+excludes them. And `v2_main` is still syncing, so it answers with stale data rather than erroring;
+`check_subgraph_freshness` tells you how stale before you trust a number.
+
 ## Data Sources
 
 ### The Graph Subgraphs (requires `GRAPH_API_KEY`)
@@ -176,6 +206,21 @@ On-chain indexed data — authoritative for historical analytics, P&L, open inte
 | Open Interest | `QmbT2MmS2VGbGihiTUmWk6GMc2QYqoT9ZhiupUicYMWt6H` | Per-market and global OI with hourly snapshots |
 | Resolution | `QmZnnrHWCB1Mb8dxxXDxfComjNdaGyRC66W8derjn3XDPg` | UMA oracle resolution lifecycle |
 | Traders | `QmfT4YQwFfAi77hrC2JH3JiPF7C4nEn27UQRGNpSpUupqn` | Per-trader event logs and USDC flows |
+
+### CLOB V2 (from block 84902353 — no earlier history)
+
+| Name | IPFS Hash | Status | Description |
+|------|-----------|--------|-------------|
+| V2 Orderbook | `QmNtJGxpAjFgoHhMwdijyvbLrpPPiHHX2qct56nTpk42Bs` | at chainhead | V2 fills with **builder-code attribution** |
+| V2 P&L | `QmT21E4p8r6FCzW2EPK4NVj1dbcggdvKxZr8uuMcB4P5Cu` | at chainhead | Cost basis and realized P&L from V2 fills only |
+| V2 Main | `QmTKrqyYg23BjhihmsrRjbV9cVS2piNmnHsr7cjYaTgdWu` | ⚠️ **syncing** | Conditions and counters — ~86 days behind as of 2026-08-08 |
+
+Open Interest (above) is already a V2 deployment; it reads ConditionalTokens, which V2 left
+unchanged, so it has no migration discontinuity.
+
+Which era to ask: **all-time or pre-2026-04-28 → V1.** Post-migration activity, or anything about
+builders → V2. `beefy_pnl` keeps the hedge-fund metrics (winRate, profitFactor, maxDrawdown, daily
+series) that V2 P&L does not have, so trader-quality scoring stays on V1.
 
 ## Example Queries
 

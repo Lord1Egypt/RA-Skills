@@ -1,42 +1,54 @@
-## Description: <br>
-Generate precise financial charts for stocks, indices, and crypto using Python-based market data and charting tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate precise financial charts (candlestick, OHLC, line) for stocks, indices, and crypto using Python.
 
-## Publisher: <br>
-[ericw12](https://clawhub.ai/user/ericw12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericw12](https://clawhub.ai/user/ericw12)
 
-## Use Case: <br>
-Developers and agents use this skill to generate visual financial price-history and technical-analysis charts for requested tickers, date ranges, intervals, chart styles, and moving averages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install Python charting and market-data packages at runtime. <br>
-Mitigation: Run it in an environment where runtime package installation is permitted, or preinstall the required packages from trusted package sources. <br>
-Risk: The skill contacts yfinance to retrieve public market data. <br>
-Mitigation: Use it only where outbound access to public market-data services is acceptable, and treat retrieved data as external data rather than authoritative financial advice. <br>
-Risk: The skill creates PNG files in the working directory or requested output directory. <br>
-Mitigation: Choose an appropriate output directory and review generated file paths before sharing or retaining outputs. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to generate visual price history and technical analysis charts for equities, indices, and crypto assets.
 
-## Reference(s): <br>
-- [Chart Master on ClawHub](https://clawhub.ai/ericw12/chart-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script prints the generated file path and a MEDIA line with the absolute PNG path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Runtime package resolution can make results depend on the currently available package versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a locked Python environment with pinned versions for yfinance, mplfinance, and pandas.
+
+Risk: The skill fetches financial data at runtime, which may expose requested ticker symbols to the data provider and can return unavailable or delayed data.
+
+Mitigation: Use approved network environments and review generated charts before relying on them for analysis.
+
+## Reference(s):
+
+- [Chart Master ClawHub listing](https://clawhub.ai/ericw12/skills/chart-master)
+- [Publisher profile](https://clawhub.ai/user/ericw12)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, files]
+
+**Output Format:** [Markdown guidance with shell command examples and generated PNG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches financial market data at runtime and saves a timestamped PNG chart path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

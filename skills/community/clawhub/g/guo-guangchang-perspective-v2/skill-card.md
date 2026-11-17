@@ -1,38 +1,54 @@
-## Description: <br>
-Provides a Guo Guangchang-inspired perspective for analyzing globalization, investment, industrial operations, mergers and acquisitions, and ecosystem synergy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language persona skill that frames business, investment, globalization, industrial operations, M&A integration, and ecosystem strategy analysis from a Guo Guangchang-inspired perspective.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Analysts, strategists, and agents use this skill to frame business, investment, mergers and acquisitions, globalization, industrial operations, and ecosystem-synergy questions through a Guo Guangchang and Fosun-inspired lens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce analytical viewpoints that sound authoritative about business, financial, or investment topics. <br>
-Mitigation: Treat outputs as reference analysis, verify current facts independently, and do not use them as personalized investment advice. <br>
+## Use Case:
 
+External users and developers use this skill to generate Chinese-language strategic analysis and brainstorming from a Guo Guangchang-inspired business and investment perspective. It is suited for perspective-taking on globalization, industrial operations, mergers and acquisitions, ecosystem synergy, and risk control topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/guo-guangchang-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Perspective-based strategic analysis; current business and financial facts should be independently verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Outputs may sound like business or investment advice while reflecting a persona perspective rather than verified facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as brainstorming or perspective-taking, verify factual claims independently, and do not rely on them as financial advice.
+
+Risk: Broad business or investment keywords may steer the response style toward this persona when that is not intended.
+
+Mitigation: Use explicit prompts to request a neutral style or disable this skill for tasks that require objective financial, legal, or compliance analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/guo-guangchang-perspective-v2)
+- [Publisher profile](https://clawhub.ai/user/xiejianjun000)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses in Chinese, depending on the agent conversation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, credential access, persistence, or hidden data handling found in security evidence.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

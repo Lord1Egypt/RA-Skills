@@ -1,42 +1,55 @@
-## Description: <br>
-Helps an agent proactively report task progress, surface blockers quickly, and respond promptly when the user asks for help. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent proactively report task progress, raise blockers immediately, respond quickly to user requests, and maintain continuity through memory notes.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-External users and developers can use this skill to guide an agent toward timely progress updates, blocker escalation, context-aware reminders, and persistent notes that help work continue across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages persistent cross-session memory about tasks, preferences, patterns, and prior interactions. <br>
-Mitigation: Define what may be stored before use, exclude sensitive projects or data, and periodically review or delete memory files. <br>
-Risk: Proactive reminders and check-ins may become intrusive or poorly timed. <br>
-Mitigation: Keep interventions brief, relevant, and tied to active user context; stop or reduce proactive behavior when it is not helpful. <br>
+## Use Case:
 
+Developers and agent users can use this skill to shape an assistant's communication behavior so it reports completed work, surfaces blockers promptly, records useful memory, and avoids unnecessary check-ins.
 
-## Reference(s): <br>
-- [Proactive Agent Guidelines](assets/PROACTIVE-GUIDELINES.md) <br>
-- [Proactive Agent Memory System](assets/MEMORY-SYSTEM.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sdt328606/stitch-proactive-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown with optional status updates and memory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No configuration parameters are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill encourages persistent memory about user preferences, active tasks, and lessons learned, which can expose sensitive context if used without boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where persistent memory is acceptable, and add consent, redaction, retention, and deletion controls before deployment.
+
+Risk: The skill uses broad priority language around proactive responses and cross-skill coordination.
+
+Mitigation: Keep platform and user instructions higher priority than this skill, and review proactive messages before they affect important workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdt328606/skills/stitch-proactive-agent)
+- [Proactive Agent Memory System](assets/MEMORY-SYSTEM.md)
+- [Proactive Agent Guidelines](assets/PROACTIVE-GUIDELINES.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance for agent communication and memory practices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No explicit runtime parameters; behavior depends on the agent applying the guidance and any available memory files.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

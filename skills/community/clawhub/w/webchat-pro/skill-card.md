@@ -1,45 +1,60 @@
-## Description: <br>
-OpenClaw Web Chat Pro provides a Node.js web chat interface for AI conversations with model switching, streaming responses, persisted sessions, and conversation export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Web Chat Pro provides a browser-based AI chat application with model switching, streaming responses, conversation persistence, export, and dark mode.
 
-## Publisher: <br>
-[qqkzlm](https://clawhub.ai/user/qqkzlm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qqkzlm](https://clawhub.ai/user/qqkzlm)
 
-## Use Case: <br>
-Developers and teams use this skill to deploy a web-based AI chat application with configurable models, streaming responses, history, export, and subscription-oriented feature tiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Packaged password protection does not fully protect chat history, exports, websocket access, or AI usage. <br>
-Mitigation: Add real server-side authentication and authorization to all API routes and websocket events before exposing the service beyond a trusted local environment. <br>
-Risk: The packaged configuration includes a default password and permissive CORS behavior. <br>
-Mitigation: Change the default password, restrict allowed origins, and avoid public hosting until access controls have been reviewed. <br>
-Risk: Rendered Markdown and conversation export paths can expose user-provided chat content. <br>
-Mitigation: Sanitize rendered Markdown and protect history and export endpoints with authenticated, session-scoped access checks. <br>
+## Use Case:
 
+External users and developers use this skill to run a local or self-hosted AI chat interface with selectable models, streamed responses, saved conversations, and exportable chat history.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qqkzlm/webchat-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/qqkzlm) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [Moltbook community](https://moltbook.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration values; runtime chat responses are text or Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes web chat session data, model metadata, token and cost estimates, and JSON or Markdown conversation exports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.json, package.json, README.md) <br>
+Risk: Private chats and AI execution may be exposed if the web chat is deployed on a network with only the provided authentication controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for local testing or place it behind strong network controls until real server-side authentication and session authorization are added.
+
+Risk: Default or plaintext password handling can leave deployments accessible to unintended users.
+
+Mitigation: Remove default passwords, require secure password setup, and store credentials with appropriate hashing before using sensitive chats.
+
+Risk: Rendered Markdown and deployment hooks may create additional review obligations before production use.
+
+Mitigation: Sanitize rendered Markdown and review or remove postinstall and systemd deployment steps before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qqkzlm/skills/webchat-pro)
+- [Publisher Profile](https://clawhub.ai/user/qqkzlm)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [Moltbook Community](https://moltbook.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [Browser chat responses with Markdown rendering and JSON or Markdown conversation exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Streams responses and can persist per-session conversation history.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact skill.json, artifact package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

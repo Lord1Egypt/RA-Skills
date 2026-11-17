@@ -1,43 +1,63 @@
-## Description: <br>
-Monitors websites for content changes, compares page snapshots with diffs, schedules periodic checks, and sends alerts through email or webhooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when monitoring websites for content changes, comparing page snapshots with diff, scheduling periodic checks, or sending alerts via email and webhook notifications.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers, operators, and site owners use this skill to monitor public web pages, compare stored snapshots, schedule recurring checks, and receive change notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package creates persistent local state containing monitored URLs, snapshots, and configuration. <br>
-Mitigation: Use it for non-sensitive pages unless the local data directory is protected, and avoid storing secrets or sensitive webhook URLs. <br>
-Risk: The scheduling feature can install cron jobs that keep checking URLs after setup. <br>
-Mitigation: Inspect any cron entry before keeping it and remove stale entries when monitoring is no longer needed. <br>
-Risk: The release contains duplicate root and nested skill artifacts with different behavior. <br>
-Mitigation: Prefer the root script for the website monitor workflow or remove the stale nested skill and script before operational use. <br>
+## Use Case:
 
+Developers, site operators, and external users can use this skill to monitor web pages, compare snapshots, schedule checks, and receive change alerts. It is suited to page text, price, stock, status, and reporting workflows where local logs and snapshots are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/site-change-alert) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces stdout status messages, diffs, snapshot history, notification setup details, and local state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The release has a suspicious security verdict due to unsafe persistent cron and configuration handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and do not use scheduling until cron construction and shell-sourced configuration are fixed.
+
+Risk: Website monitoring can expose sensitive URLs, query strings, tokens, or notification destinations.
+
+Mitigation: Use only trusted URLs and notification targets, and avoid sensitive query strings or tokens.
+
+Risk: Notification setup may send monitored content or metadata to external email or webhook services.
+
+Mitigation: Do not use notify features until the unsafe configuration handling is fixed and destinations are reviewed.
+
+Risk: The package stores snapshots, configuration, and logs under the home directory, and includes a nested logger that records arbitrary inputs locally.
+
+Mitigation: Run in a controlled environment, review local data retention, and avoid submitting secrets or private content as inputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/site-change-alert)
+- [Publisher Profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text, diffs, local snapshot files, logs, and notification setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write watch lists, snapshots, configuration, logs, and exports under the user's home directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

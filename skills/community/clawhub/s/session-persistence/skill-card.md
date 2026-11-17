@@ -1,43 +1,58 @@
-## Description: <br>
-Helps OpenClaw preserve session context across restarts by reading, appending, and archiving local conversation summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OpenClaw session memory workflow that stores, restores, and archives conversation summaries to reduce context loss after session restarts without extra API calls.
 
-## Publisher: <br>
-[winter1102](https://clawhub.ai/user/winter1102) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[winter1102](https://clawhub.ai/user/winter1102)
 
-## Use Case: <br>
-Developers using OpenClaw can use this skill to maintain local session summaries so agents can recover recent context after restarts and archive useful conversation notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation summaries may contain secrets, sensitive business data, or personal data saved in local memory files. <br>
-Mitigation: Avoid saving sensitive data, inspect the ./memory files regularly, and delete retained summaries when they are no longer needed. <br>
-Risk: Automatic reuse of previous summaries can reintroduce stale or inappropriate context into new sessions. <br>
-Mitigation: Review restored summaries before relying on them and clear last-session-summary.md when starting unrelated or sensitive work. <br>
-Risk: Installation requires manual AGENTS.md changes that could alter agent behavior. <br>
-Mitigation: Review any AGENTS.md changes manually before applying them. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to preserve useful conversation context across restarted sessions by reading, appending, and archiving local session summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/winter1102/session-persistence) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/winter1102) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell script behavior and local file conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls are described; behavior depends on local memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Conversation summaries may be saved locally and reused in later sessions without clear user controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in, retention, review, deletion, and secret-redaction controls before enabling automatic persistence.
+
+Risk: The referenced AGENTS.md.patch is missing from the artifact, so installation behavior cannot be fully reviewed from the release files.
+
+Mitigation: Inspect or supply the missing patch before deployment and verify that restored summaries are treated as untrusted notes rather than instructions.
+
+Risk: Workspace-relative memory paths can place persisted summaries somewhere the operator did not intend.
+
+Mitigation: Configure storage under a trusted absolute directory with appropriate access controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/winter1102/skills/session-persistence)
+- [Publisher profile](https://clawhub.ai/user/winter1102)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Files]
+
+**Output Format:** [Markdown guidance and Bash-managed local Markdown session summary files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and reads local session memory under a workspace-relative memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

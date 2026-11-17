@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7df7kqkj7pzdx3c5ryknvff9857tcq",
-  "slug": "openclaw-coinbase",
+  "ownerId": "@mtrab",
+  "slug": "coinbase",
   "version": "1.0.0",
-  "publishedAt": 1776681086209
+  "publishedAt": null,
+  "description": "Coinbase API integration for crypto trading agents",
+  "tags": ["crypto", "trading", "coinbase", "api"]
 }

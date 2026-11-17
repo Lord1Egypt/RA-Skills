@@ -1,25 +1,42 @@
 #!/usr/bin/env node
-// Atomic Mail AgentSkill — register | jmap_request | help
+// Atomic Mail AgentSkill — register | everyday mail | jmap_request | calendar | help
 import "../_dnt.polyfills.js";
 import process from "node:process";
 import { parseArgs } from "node:util";
-import { AgentSession, DEFAULT_API_URL, DEFAULT_AUTH_URL, DEFAULT_JMAP_USING, DEFAULT_POW_SCRYPT_SALT_HEX, defaultFilesFromOutDir, expandCredentialDirInput, getHelp, parseUserVarsJson, persistLoginWithApiKey, readCredentials, readOpsFile, runJmapRequest, sharedError, } from "../lib/mod.js";
+import { AgentSession, CalendarError, calendarRunnerForSession, cancelInvite, DEFAULT_API_URL, DEFAULT_AUTH_URL, DEFAULT_JMAP_USING, DEFAULT_POW_SCRYPT_SALT_HEX, defaultFilesFromOutDir, expandCredentialDirInput, getHelp, listInvites, MailError, parseUserVarsJson, parseUtm, persistLoginWithApiKey, readCredentials, readOpsFile, respondToInvite, runJmapRequest, sendInvite, sharedError, updateInvite, } from "../lib/mod.js";
+import { CliUsageError, isMailCommand, runMailCommand, } from "./mail-commands.js";
+import { resolveRegisterWatch, scheduleSetup } from "./register-watch.js";
 const USAGE = `Atomic Mail — AgentSkill
 
 Usage:
   atomicmail <command> [options]
 
 Commands:
-  register       PoW signup or login with API key (writes credentials)
-  jmap_request   Send a JMAP batch (inline --ops or --ops-file; optional --attachment)
-  help           Full documentation [--topic TOPIC] (topic readme = built-in stub)
+  register          PoW signup or login with API key (writes credentials)
+  read_inbox        Latest inbox messages
+  read_message      One message as plain text
+  search_messages   Full-text search
+  send_email        Send plain text and/or HTML, with From name, Reply-To, attachments
+  reply_to_message  Reply in-thread
+  list_agents       The inbox these credentials hold
+  jmap_request      Send a JMAP batch (inline --ops or --ops-file; optional --attachment)
+  calendar          Meeting invitations: send | update | cancel | list | respond
+  help              Full documentation [--topic TOPIC] (topic readme = built-in stub)
 
 Examples:
   atomicmail register --username alice
+  atomicmail register --username alice --utm "utm_source=blog&utm_campaign=launch"
   atomicmail register --api-key UUID
+  atomicmail read_inbox --limit 10
+  atomicmail read_message --message-id M123
+  atomicmail send_email --to a@b.com --subject Hi --body "Hello" --from-name "Alice" --reply-to me@b.com
+  atomicmail send_email --to a@b.com --subject Hi --html-body-file ./mail.html --attachment ./notes.txt
+  atomicmail reply_to_message --message-id M123 --body "Thanks!"
   atomicmail jmap_request --ops-file list_inbox.json
   atomicmail jmap_request --credentials-dir ./.atomic-mail --ops-file send.json --vars '{"TO":"a@b.com","SUBJECT":"Hi"}'
   atomicmail jmap_request --ops-file send_mail_blob_attachment.json --attachment ./notes.txt --vars '{"TO":"self@example.com","SUBJECT":"File","BODY":"See attach."}'
+  atomicmail calendar send --title "Demo" --start 2026-10-16T15:00 --time-zone Europe/Moscow --attendees anna@example.com
+  atomicmail calendar list
   atomicmail help --topic presets
   atomicmail help --topic readme
 
@@ -27,6 +44,38 @@ Call  atomicmail help  early and often — topics match this install; prefer hel
 over guessing JMAP or preset details.
 
 Run  atomicmail <command> --help  for command-specific flags.
+`;
+// The accepted `--watch` values are deliberately NOT listed here: an agent that
+// reads them off --help can fill the flag in without ever hitting the validation
+// error, where the "operator's decision" wording lives. Run register without the
+// flag to see the values.
+export const REGISTER_HELP = `Usage: atomicmail register [OPTIONS]
+
+Register a new inbox (--username) or log in with an existing API key (--api-key).
+
+Options:
+  --auth-url URL       Auth-service base URL [env: ATOMIC_MAIL_AUTH_URL, default: https://auth.atomicmail.ai]
+  --api-url URL        API / JMAP base URL [env: ATOMIC_MAIL_API_URL, default: https://api.atomicmail.ai]
+  --scrypt-salt SALT   PoW salt override [env: ATOMIC_MAIL_SCRYPT_SALT]
+  --username NAME      New account (5–21 characters; mutually exclusive with --api-key).
+                       Permanent public address — it appears on every message this
+                       inbox sends and cannot be changed afterwards. If your operator
+                       has not named it, ask them rather than inventing one.
+  --api-key KEY        Existing API key (mutually exclusive with --username)
+  --credentials-dir DIR  Credential directory (default: ~/.atomicmail)
+  --utm STRING         Install-attribution, URL-query style (only with --username) [env: ATOMICMAIL_UTM]
+                       e.g. "utm_source=blog&utm_medium=cpc&utm_campaign=launch"
+  --watch VALUE        Required. Decides whether a recurring job is created that wakes
+                       an agent to read this inbox — a standing commitment on your
+                       operator's machine, so it is their call, not yours. Ask them.
+                       Run register with no --watch for what each value does.
+  --quiet              Less stderr output
+  --help, -h           This message
+
+The --watch value comes from your operator (run register without it to see the
+choices). When it enables a recurring check, register prints the setup step for
+your host's own scheduler — you run it (see atomicmail help --topic cron).
+Otherwise it prints nothing extra.
 `;
 function exitUsage(code = 0) {
     process.stdout.write(USAGE);
@@ -48,7 +97,13 @@ async function cmdRegister(argv) {
                 username: { type: "string" },
                 "api-key": { type: "string" },
                 "credentials-dir": { type: "string" },
+                utm: { type: "string" },
+                // --forced still parses, but is deliberately absent from REGISTER_HELP
+                // (same reason as the watch values): overwriting an inbox is irreversible,
+                // and an agent that finds a ready-made flag in --help reaches for it. Its
+                // danger is spelled out only in the refusal error.
                 forced: { type: "boolean" },
+                watch: { type: "string" },
                 quiet: { type: "boolean" },
                 help: { type: "boolean", short: "h" },
             },
@@ -60,28 +115,17 @@ async function cmdRegister(argv) {
         fail(err.message, 2);
     }
     if (parsed.values.help) {
-        process.stdout.write(`Usage: atomicmail register [OPTIONS]
-
-Register a new inbox (--username) or log in with an existing API key (--api-key).
-
-Options:
-  --auth-url URL       Auth-service base URL [env: ATOMIC_MAIL_AUTH_URL, default: https://auth.atomicmail.ai]
-  --api-url URL        API / JMAP base URL [env: ATOMIC_MAIL_API_URL, default: https://api.atomicmail.ai]
-  --scrypt-salt SALT   PoW salt override [env: ATOMIC_MAIL_SCRYPT_SALT]
-  --username NAME      New account (5–21 characters; mutually exclusive with --api-key)
-  --api-key KEY        Existing API key (mutually exclusive with --username)
-  --credentials-dir DIR  Credential directory (default: ~/.atomicmail)
-  --forced             Allow replacing existing credentials with a new account
-  --quiet              Less stderr output
-  --help, -h           This message
-
-After register, arrange hourly inbox polling per your runtime (atomicmail help
---topic cron): native cron hosts schedule an AGENT turn with list_inbox.json;
-no-native-cron hosts ask the operator or remind manual fetch — do not work
-around with OS crontab or cross-platform scheduling. Do NOT cron atomicmail
-jmap_request alone.
-`);
+        process.stdout.write(REGISTER_HELP);
         process.exit(0);
+    }
+    // `watch` is a wrapper-only precondition: the register command cannot proceed
+    // without an operator-supplied value. It never reaches session.register().
+    let watch;
+    try {
+        watch = resolveRegisterWatch(parsed.values.watch);
+    }
+    catch (err) {
+        fail(err.message, 2);
     }
     const env = process.env;
     const authUrl = parsed.values["auth-url"] ??
@@ -92,6 +136,9 @@ jmap_request alone.
         env.ATOMIC_MAIL_SCRYPT_SALT ?? DEFAULT_POW_SCRYPT_SALT_HEX;
     const dir = parsed.values["credentials-dir"];
     const credentialDir = expandCredentialDirInput(dir);
+    // UTM install-attribution: --utm flag takes precedence over ATOMICMAIL_UTM.
+    // Parsing never throws, so a malformed value simply sends no utm fields.
+    const utm = parseUtm(parsed.values.utm ?? env.ATOMICMAIL_UTM);
     const username = parsed.values.username;
     const apiKey = parsed.values["api-key"];
     if (!!username === !!apiKey) {
@@ -113,9 +160,16 @@ jmap_request alone.
         });
         const result = await session.register(username, {
             forced: parsed.values.forced === true,
+            utm,
         });
         log(`Wrote credentials under ${credentialDir}`);
         process.stdout.write(JSON.stringify(result, null, 2) + "\n");
+        if (watch === "scheduled") {
+            process.stdout.write(`\n${scheduleSetup({
+                credentialsDir: credentialDir,
+                inboxId: result.inbox,
+            })}\n`);
+        }
         return;
     }
     log("Logging in with API key...");
@@ -128,6 +182,9 @@ jmap_request alone.
     });
     log(`Wrote ${files.credentialsFile}`);
     process.stdout.write(JSON.stringify({ inboxId }, null, 2) + "\n");
+    if (watch === "scheduled") {
+        process.stdout.write(`\n${scheduleSetup({ credentialsDir: credentialDir, inboxId })}\n`);
+    }
 }
 async function cmdJmapRequest(argv) {
     let parsed;
@@ -266,6 +323,210 @@ Options:
     }
     process.stdout.write(bodyText.endsWith("\n") ? bodyText : bodyText + "\n");
 }
+export const CALENDAR_HELP = `Usage: atomicmail calendar <send|update|cancel|list|respond> [OPTIONS]
+
+Meeting invitations by email. Guests get a standard invitation (Gmail, Outlook,
+Apple Mail) with Yes / No / Maybe; answers come back to this inbox. Confirm the
+date, time, time zone and guests with your operator before sending.
+
+  send      --title T --start S --attendees a@x.com,b@y.com
+            [--duration MIN | --end E] [--time-zone ZONE] [--all-day]
+            [--meeting-url URL] [--location L] [--description D]
+  update    --invite-id ID [--title T] [--start S] [--duration MIN | --end E]
+            [--time-zone ZONE] [--all-day | --no-all-day]
+            [--attendees FULL_NEW_LIST] [--meeting-url URL] [--location L]
+            [--description D]
+  cancel    --invite-id ID [--note N] [--time-zone ZONE]
+  list      [--invite-id ID] [--limit N]          (N messages per mailbox, default 50)
+  respond   --message-id ID --response accepted|declined|tentative [--note N]
+
+Times: ISO 8601 with an offset (2026-10-16T15:00:00+03:00), or a local time
+(2026-10-16T15:00) with --time-zone (IANA, e.g. Europe/Moscow). A local time
+without a zone is refused — ask which zone is meant.
+
+All-day: --all-day with --start 2026-11-10 and optional --end 2026-11-12 (the
+LAST day, inclusive; default one day). Not with --time-zone or --duration. On
+update, --all-day / --no-all-day switch the kind (pass --start too).
+
+Video call: --meeting-url https://… adds the link as a Join line (and as the
+location when --location is not given). On update, --meeting-url "" removes it;
+an empty --location or --description clears those too.
+
+Common options:
+  --credentials-dir DIR   Credential directory (default: ~/.atomicmail)
+  --help, -h              This message
+
+Output is JSON on stdout. See: atomicmail help --topic calendar
+`;
+async function sessionForCredentialDir(dir) {
+    const credentialDir = expandCredentialDirInput(dir);
+    const files = defaultFilesFromOutDir(credentialDir);
+    const creds = await readCredentials(files.credentialsFile);
+    return AgentSession.create({
+        authUrl: creds.authUrl,
+        apiUrl: creds.apiUrl,
+        scryptSalt: creds.scryptSalt,
+        apiKey: creds.apiKey,
+        inboxId: creds.inboxId,
+        credentialDir,
+        files,
+    });
+}
+async function cmdCalendar(argv) {
+    const sub = argv[0];
+    if (!sub || sub === "-h" || sub === "--help") {
+        process.stdout.write(CALENDAR_HELP);
+        process.exit(sub ? 0 : 2);
+    }
+    let parsed;
+    try {
+        parsed = parseArgs({
+            args: argv.slice(1),
+            options: {
+                "credentials-dir": { type: "string" },
+                title: { type: "string" },
+                start: { type: "string" },
+                end: { type: "string" },
+                duration: { type: "string" },
+                "time-zone": { type: "string" },
+                attendees: { type: "string", multiple: true },
+                location: { type: "string" },
+                description: { type: "string" },
+                "meeting-url": { type: "string" },
+                "all-day": { type: "boolean" },
+                "no-all-day": { type: "boolean" },
+                "invite-id": { type: "string" },
+                "message-id": { type: "string" },
+                response: { type: "string" },
+                note: { type: "string" },
+                limit: { type: "string" },
+                help: { type: "boolean", short: "h" },
+            },
+            strict: true,
+            allowPositionals: false,
+        });
+    }
+    catch (err) {
+        fail(err.message, 2);
+    }
+    if (parsed.values.help) {
+        process.stdout.write(CALENDAR_HELP);
+        process.exit(0);
+    }
+    const v = parsed.values;
+    const str = (k) => v[k];
+    const num = (k) => {
+        const raw = str(k);
+        if (raw === undefined)
+            return undefined;
+        const n = Number(raw);
+        if (!Number.isInteger(n) || n <= 0) {
+            fail(`--${k} must be a positive integer.`, 2);
+        }
+        return n;
+    };
+    const need = (k) => {
+        const value = str(k);
+        if (!value)
+            fail(`calendar ${sub} needs --${k}.`, 2);
+        return value;
+    };
+    const attendees = v.attendees;
+    const flags = parsed.values;
+    if (flags["all-day"] && flags["no-all-day"]) {
+        fail("Pass --all-day or --no-all-day, not both.", 2);
+    }
+    const allDay = flags["all-day"]
+        ? true
+        : flags["no-all-day"]
+            ? false
+            : undefined;
+    const session = await sessionForCredentialDir(str("credentials-dir"));
+    const runner = await calendarRunnerForSession(session);
+    let out;
+    try {
+        switch (sub) {
+            case "send":
+                out = await sendInvite(runner, {
+                    title: need("title"),
+                    start: need("start"),
+                    end: str("end"),
+                    durationMinutes: num("duration"),
+                    timeZone: str("time-zone"),
+                    attendees: attendees ?? fail("calendar send needs --attendees.", 2),
+                    allDay,
+                    location: str("location"),
+                    meetingUrl: str("meeting-url"),
+                    description: str("description"),
+                });
+                break;
+            case "update":
+                out = await updateInvite(runner, {
+                    inviteId: need("invite-id"),
+                    title: str("title"),
+                    start: str("start"),
+                    end: str("end"),
+                    durationMinutes: num("duration"),
+                    timeZone: str("time-zone"),
+                    attendees,
+                    allDay,
+                    location: str("location"),
+                    meetingUrl: str("meeting-url"),
+                    description: str("description"),
+                });
+                break;
+            case "cancel":
+                out = await cancelInvite(runner, {
+                    inviteId: need("invite-id"),
+                    note: str("note"),
+                    timeZone: str("time-zone"),
+                });
+                break;
+            case "list":
+                out = await listInvites(runner, {
+                    inviteId: str("invite-id"),
+                    limit: num("limit"),
+                });
+                break;
+            case "respond": {
+                const response = need("response");
+                if (!["accepted", "declined", "tentative"].includes(response)) {
+                    fail("--response must be accepted, declined or tentative.", 2);
+                }
+                out = await respondToInvite(runner, {
+                    messageId: need("message-id"),
+                    response: response,
+                    note: str("note"),
+                });
+                break;
+            }
+            default:
+                process.stderr.write(`Unknown calendar command: ${sub}\n\n`);
+                process.stdout.write(CALENDAR_HELP);
+                process.exit(2);
+        }
+    }
+    catch (err) {
+        if (err instanceof CalendarError) {
+            fail(`calendar ${sub}: ${err.message}`, 1);
+        }
+        throw err;
+    }
+    process.stdout.write(JSON.stringify(out, null, 2) + "\n");
+}
+async function cmdMail(cmd, argv) {
+    try {
+        const out = await runMailCommand(cmd, argv, sessionForCredentialDir);
+        process.stdout.write(out.endsWith("\n") ? out : out + "\n");
+    }
+    catch (err) {
+        if (err instanceof CliUsageError)
+            fail(err.message, 2);
+        if (err instanceof MailError)
+            fail(err.message, 1);
+        throw err;
+    }
+}
 async function cmdHelp(argv) {
     let parsed;
     try {
@@ -285,7 +546,7 @@ async function cmdHelp(argv) {
     if (parsed.values.help) {
         process.stdout.write(`Usage: atomicmail help [--topic TOPIC]
 
-Topics include: overview, installation, auth, jmap_cheatsheet, tools, presets, troubleshooting, readme.
+Topics include: overview, installation, auth, jmap_cheatsheet, tools, presets, calendar, cron, multi_account, troubleshooting, readme.
 Topic readme prints the built-in SKILL stub.
 `);
         process.exit(0);
@@ -307,15 +568,26 @@ async function main() {
         case "jmap_request":
             await cmdJmapRequest(rest);
             break;
+        case "calendar":
+            await cmdCalendar(rest);
+            break;
         case "help":
             await cmdHelp(rest);
             break;
         default:
+            if (isMailCommand(cmd)) {
+                await cmdMail(cmd, rest);
+                break;
+            }
             process.stderr.write(`Unknown command: ${cmd}\n\n`);
             process.stdout.write(USAGE);
             process.exit(2);
     }
 }
-main().catch((err) => {
-    fail(err instanceof Error ? err.message : String(err));
-});
+// Guarded so importing this module (e.g. for REGISTER_HELP in tests) does not
+// run the CLI against the importer's argv.
+if (globalThis[Symbol.for("import-meta-ponyfill-esmodule")](import.meta).main) {
+    main().catch((err) => {
+        fail(err instanceof Error ? err.message : String(err));
+    });
+}

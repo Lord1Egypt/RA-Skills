@@ -1,45 +1,56 @@
-## Description: <br>
-Guides an agent through configuring and running OnelapSyncStrava to sync Onelap cycling activities to Strava. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through syncing Onelap cycling activities to Strava with the OnelapSyncStrava command-line tool after Onelap's automatic Strava sync was discontinued.
 
-## Publisher: <br>
-[kermit-r-wood](https://clawhub.ai/user/kermit-r-wood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kermit-r-wood](https://clawhub.ai/user/kermit-r-wood)
 
-## Use Case: <br>
-External users and developers use this skill to set up OnelapSyncStrava, configure Onelap and Strava credentials, complete Strava OAuth authorization, and run activity sync commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow relies on a third-party sync binary that can access Onelap account credentials and Strava upload authorization. <br>
-Mitigation: Install only if comfortable with that access, prefer building from source or verifying the release, and revoke or rotate credentials if exposure is suspected. <br>
-Risk: The local config.json contains Onelap credentials, Strava API credentials, and OAuth tokens. <br>
-Mitigation: Keep config.json local with restrictive permissions and do not commit, paste, or share it. <br>
-Risk: Incorrect configuration can cause failed authorization or failed sync attempts. <br>
-Mitigation: Run the status and check commands before syncing, then review the reported result after sync completes. <br>
+## Use Case:
 
+External users and developers use this skill to configure credentials, authorize Strava OAuth access, and run OnelapSyncStrava commands that transfer Onelap cycling records to Strava.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kermit-r-wood/onelap-sync-strava) <br>
-- [OnelapSyncStrava releases](https://github.com/kermit-r-wood/OnelapSyncStrava/releases) <br>
-- [OnelapSyncStrava build artifacts](https://github.com/kermit-r-wood/OnelapSyncStrava/actions/workflows/binaries.yml) <br>
-- [Strava API settings](https://www.strava.com/settings/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include credential setup, OAuth authorization, status checks, and sync command guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Users are asked to run an externally obtained OnelapSyncStrava binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after verifying the referenced project and the exact binary, or build the tool from reviewed source.
+
+Risk: config.json stores Onelap credentials, Strava API secrets, and OAuth tokens locally.
+
+Mitigation: Keep config.json out of version control and shared folders, restrict file access, and rotate Strava and Onelap credentials if the file or binary is exposed.
+
+## Reference(s):
+
+- [OnelapSyncStrava GitHub Releases](https://github.com/kermit-r-wood/OnelapSyncStrava/releases)
+- [OnelapSyncStrava Build Binaries Workflow](https://github.com/kermit-r-wood/OnelapSyncStrava/actions/workflows/binaries.yml)
+- [Strava API Settings](https://www.strava.com/settings/api)
+- [ClawHub Skill Page](https://clawhub.ai/kermit-r-wood/skills/onelap-sync-strava)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration field names]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local config.json fields and OnelapSyncStrava command invocations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

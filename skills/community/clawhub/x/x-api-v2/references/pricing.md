@@ -76,17 +76,8 @@ Design for rate limits: exponential backoff, queue requests, spread load.
 
 ## Monitoring Usage
 
-**Via API:**
-
-```bash
-curl "https://api.x.com/2/usage/tweets" \
-  -H "Authorization: Bearer $BEARER_TOKEN"
-```
-
-Returns daily tweet consumption counts.
-
-**Via Console:**
-- Real-time usage tracking: <https://developer.x.com/en/portal/dashboard>
+- The Developer Console's dashboard shows the usage per day: <https://developer.x.com/en/portal/dashboard>
+- X's API also reports daily post consumption at its `/2/usage/tweets` endpoint (bearer token); this skill doesn't call it.
 
 ## Cost Control Strategies
 

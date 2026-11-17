@@ -1,43 +1,64 @@
-## Description: <br>
-Ollama fleet router - herd your Ollama LLMs into one smart endpoint, route common Ollama models across multiple devices with 7-signal scoring, auto-retry, VRAM-aware fallback, context protection, image generation, speech-to-text, embeddings, and drop-in OpenAI SDK compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes requests across multiple Ollama devices through one OpenAI-compatible endpoint with fleet scoring, auto-retry, VRAM-aware fallback, context protection, and support for chat, image generation, speech-to-text, and embeddings.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and operate an Ollama fleet router that exposes one smart endpoint across multiple local Ollama devices. It helps route chat, embeddings, image generation, and speech-to-text requests while showing safe operational guardrails for router, node, and model changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fleet nodes may receive prompts, files, audio, and metadata routed through the shared endpoint. <br>
-Mitigation: Install only when every fleet node is trusted, keep the router on trusted networks, and review upstream package behavior before use. <br>
-Risk: Router or model operations can trigger large downloads or remote node state changes. <br>
-Mitigation: Use pinned package versions where practical and require confirmation before model pulls, model deletion, router restarts, or node-agent changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and operate an Ollama fleet router that presents one endpoint for model serving across multiple machines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/ollama-fleet-router) <br>
-- [ollama-herd package](https://pypi.org/project/ollama-herd/) <br>
-- [ollama-herd repository](https://github.com/geeks-accelerator/ollama-herd) <br>
-- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with bash, Python, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes guardrails for confirmation before router restarts, node-agent changes, fleet-manager file changes, and model pulls or deletions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: Fleet nodes may receive prompts, files, audio, images, request metadata, and outputs routed to them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted fleet nodes and treat routed data as visible to the selected node.
+
+Risk: Installing the Python package without review can introduce supply-chain exposure.
+
+Mitigation: Install in an isolated Python environment or pin a reviewed package version.
+
+Risk: Model downloads can consume significant bandwidth and disk space.
+
+Mitigation: Require confirmation before pulling models and monitor storage on target nodes.
+
+Risk: Operational commands can disrupt a running router or alter fleet state.
+
+Mitigation: Keep confirmation guardrails for router and node restarts and for changes under ~/.fleet-manager/.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/ollama-fleet-router)
+- [Publisher profile](https://clawhub.ai/user/twinsgeeks)
+- [ollama-herd package](https://pypi.org/project/ollama-herd/)
+- [Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup commands, endpoint URLs, API examples, and operational guardrails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

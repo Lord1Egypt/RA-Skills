@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pixel Asset Compiler"
+  short_description: "Compile AI sprites into validated game assets"
+  default_prompt: "Use $pixel-asset-compiler to compile these AI-generated sprite actions into a validated Godot-ready character asset."

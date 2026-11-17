@@ -1,43 +1,62 @@
-## Description: <br>
-Provides image processing capabilities for objects in Bytedance TOS using the official SDK, including image information retrieval, format conversion, resizing, visible watermarking, blind watermarking, and generic TOS image processing operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides image processing capabilities for objects in Bytedance TOS using the official SDK, including image info retrieval, format conversion, resizing, and watermarking.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect and transform images stored in Bytedance TOS without manually assembling each SDK call. It supports common image metadata, conversion, resize, watermark, blind-watermark, local-save, and save-back-to-TOS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires TOS credentials and can access or transform objects in configured buckets. <br>
-Mitigation: Use short-lived, least-privilege STS credentials scoped to only the required buckets and object paths. <br>
-Risk: Process strings, key-value options, output paths, and save-back targets can change what image operations run and where results are stored. <br>
-Mitigation: Review --process, --kv, --output, --saveas-bucket, and --saveas-object values before execution. <br>
-Risk: The release depends on the external tos Python SDK. <br>
-Mitigation: Pin and review the tos SDK version used in production environments. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and transform images stored in Bytedance TOS, including metadata lookup, format conversion, resizing, visible watermarking, blind watermarking, and saving processed outputs locally or back to TOS.
 
-## Reference(s): <br>
-- [Volcengine TOS Image Processing Documentation](https://www.volcengine.com/docs/6349/153623) <br>
-- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/byted-tos-image-process) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus optional JSON or image files returned by the TOS SDK scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts can write processed images locally or save processed objects back to TOS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill uses TOS credentials and can access configured buckets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the agent is intended to access those buckets and use short-lived, least-privilege STS credentials.
+
+Risk: The generic processor can pass arbitrary TOS image processing strings.
+
+Mitigation: Avoid exposing the generic processor to untrusted task input and review process strings before execution.
+
+Risk: The unpinned tos dependency can change behavior across installations.
+
+Mitigation: Pin the tos package to a reviewed version before deployment.
+
+Risk: A misconfigured endpoint could send requests outside the intended TOS service.
+
+Mitigation: Set TOS_ENDPOINT to an official HTTPS TOS endpoint for the target region.
+
+## Reference(s):
+
+- [Volcengine TOS Image Processing documentation](https://www.volcengine.com/docs/6349/153623)
+- [ClawHub skill page](https://clawhub.ai/volcengine-skills/skills/byted-tos-image-process)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to produce local image files or save processed objects back to TOS when credentials and bucket settings are provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

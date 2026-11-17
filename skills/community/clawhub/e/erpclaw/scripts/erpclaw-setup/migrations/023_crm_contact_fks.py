@@ -1,6 +1,6 @@
 """Migration 023: Foundation nullable FK columns to addon-owned CRM entities (Wave 1B F1).
 
-Per ADR-0023 (planning/decisions/ADR-0023-foundation-fk-columns-for-addon-owned-entities.md),
+Per ADR-0023 (foundation FK columns for addon-owned entities),
 foundation schema MAY carry nullable FK columns pointing at tables owned by the
 erpclaw-growth addon (crm_contact / crm_company), so a "show the contact for this
 lead" read needs at most one optional JOIN rather than forcing the addon to be a
@@ -31,6 +31,10 @@ rebuild). Idempotent. Dialect-aware.
 import argparse
 import os
 import sqlite3
+
+# M102: adds tables / columns / indexes only — nothing a row held before this
+# run is different afterwards.
+MIGRATION_DATA_CLASS = "none"
 
 DEFAULT_DB_PATH = os.path.join(os.path.expanduser(os.environ.get("ERPCLAW_HOME", "~/.openclaw/erpclaw")), "data.sqlite")
 

@@ -2,7 +2,7 @@
   "type": "function",
   "function": {
     "name": "_javascript_eval",
-    "description": "Execute JavaScript code represented as a string. And return the result value after execution is complete.",
+    "description": "Execute JavaScript code represented as a string. And return the result value after execution is complete. Note: informat APIs cannot be used directly in _javascript_eval.",
     "parameters": {
       "type": "object",
       "properties": {

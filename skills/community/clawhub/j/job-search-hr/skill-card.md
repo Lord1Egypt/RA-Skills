@@ -1,43 +1,53 @@
-## Description: <br>
-应届毕业生求职信息搜索助手，支持根据专业或岗位搜索招聘信息、薪资、公司评价和面经。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A job-search assistant for new graduates that helps search recruiting, salary, company review, and interview-experience information by role, major, city, and preferences.
 
-## Publisher: <br>
-[3492027682](https://clawhub.ai/user/3492027682) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3492027682](https://clawhub.ai/user/3492027682)
 
-## Use Case: <br>
-Recent graduates and job seekers use this skill to search for role-specific hiring information, compare salary and requirement signals, find application links, and gather interview-preparation material. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad job-search and interview-preparation phrases may activate the skill during normal conversation. <br>
-Mitigation: Confirm the user wants job-search assistance before running searches or giving job-market guidance. <br>
-Risk: Recruiting listings, salary ranges, and interview reports can become stale or inaccurate. <br>
-Mitigation: Show publication timing when available and encourage users to verify important details across multiple sources before applying. <br>
-Risk: Job-search workflows can involve sensitive personal information. <br>
-Mitigation: Remind users to avoid sharing unnecessary personal, credential, or identity details while researching or applying. <br>
+## Use Case:
 
+External users, especially new graduates, use this skill to find and compare public job postings, salary ranges, company signals, and interview-experience summaries. It also helps structure application advice and reminders to verify time-sensitive recruiting information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/3492027682/job-search-hr) <br>
-- [Publisher profile](https://clawhub.ai/user/3492027682) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries with tables, links, analysis, and numbered recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prioritizes entry-level roles, cites multiple information sources where available, and reminds users to verify recency and protect personal information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Job postings, salary ranges, company reviews, and interview reports may be stale, incomplete, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important claims against multiple current sources and prefer official recruiting pages before applying or making career decisions.
+
+Risk: Users may share unnecessary personal identifiers, private application materials, or account credentials while searching for jobs.
+
+Mitigation: Avoid collecting or exposing sensitive personal information and remind users to keep credentials and private application documents out of search queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3492027682/skills/job-search-hr)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with tables and bullet-point recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include links to public recruiting, company-review, and interview-experience sources for user verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

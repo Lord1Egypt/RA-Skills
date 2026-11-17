@@ -1,40 +1,53 @@
-## Description: <br>
-Automates no-credential public webpage checks and summaries by running the local OpenClaw Automation Kit query path and returning structured results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates quick, no-credential public website checks such as summaries, keyword checks, and simple page facts through the local OpenClaw Automation Kit query path.
 
-## Publisher: <br>
-[marcosathanasoulis](https://clawhub.ai/user/marcosathanasoulis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcosathanasoulis](https://clawhub.ai/user/marcosathanasoulis)
 
-## Use Case: <br>
-Developers and agents use this skill to run quick public website checks, such as summarizing a page or counting a keyword, without collecting credentials. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad web access for public webpage automation. <br>
-Mitigation: Use it only with public, unauthenticated webpages and avoid private URLs, credentials, or account-specific tasks. <br>
-Risk: The skill depends on a local OpenClaw Automation Kit installation. <br>
-Mitigation: Install and run it only with a trusted local OpenClaw Automation Kit checkout. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marcosathanasoulis/openclaw-web-automation) <br>
-- [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/schema) <br>
+## Use Case:
 
+Developers and agents use this skill to run public webpage automation checks, extract page facts, count keyword mentions, and return concise highlights without collecting credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [Concise natural-language summary plus structured JSON results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include page title, keyword count, highlights, parsed notes, credential status, or errors.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.7 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill states that it is for public websites only, but evidence.security reports that it does not enforce that network boundary.
+
+Mitigation: Run it only in environments where unrestricted outbound requests are acceptable, or add URL and redirect validation that permits only public http/https destinations and blocks localhost, private IP ranges, link-local metadata endpoints, and unsafe redirects.
+
+Risk: Using the skill for login-required or credentialed workflows would exceed the artifact's documented safety boundary.
+
+Mitigation: Use it only for no-credential public page checks and route login-required tasks to a separate reviewed flow.
+
+## Reference(s):
+
+- [Openclaw Web Automation on ClawHub](https://clawhub.ai/marcosathanasoulis/skills/openclaw-web-automation)
+- [JSON Schema 2020-12](https://json-schema.org/draft/2020-12/schema)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results with concise Markdown-facing summary guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes success status, script identifiers, result object, parsed notes, credential status when present, and error details.]
+
+## Skill Version(s):
+
+1.0.7 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

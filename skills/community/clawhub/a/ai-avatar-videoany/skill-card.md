@@ -1,41 +1,54 @@
-## Description: <br>
-Guide users to VideoAny AI Avatar tool to create talking avatar videos from an image and voice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to VideoAny AI Avatar tool to create talking avatar videos from an image and voice.
 
-## Publisher: <br>
-[GaoQ1](https://clawhub.ai/user/GaoQ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoq1](https://clawhub.ai/user/gaoq1)
 
-## Use Case: <br>
-External users and developers use this skill to prepare image and voice inputs for the VideoAny AI Avatar web workflow and receive concise quality and responsible-use guidance before generating a talking avatar video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends uploaded photos, voices, and optional script text to the third-party VideoAny service for avatar generation. <br>
-Mitigation: Review VideoAny privacy and consent terms before uploading media, and use only images, voices, and scripts the user owns or is authorized to use. <br>
-Risk: Talking avatar generation can be misused for deceptive deepfakes or non-consensual impersonation. <br>
-Mitigation: Follow the skill's responsible-use reminders, avoid deceptive impersonation, and comply with platform policy and applicable law. <br>
+## Use Case:
 
+External users and developers use this skill to get concise guidance for preparing an avatar image and voice or audio input, then completing talking-avatar generation through VideoAny's AI Avatar web workflow.
 
-## Reference(s): <br>
-- [VideoAny AI Avatar](https://videoany.io/tools/ai-avatar) <br>
-- [ClawHub Skill Page](https://clawhub.ai/GaoQ1/ai-avatar-videoany) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Plain text guidance and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external Python dependencies; actual avatar generation happens on VideoAny web.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release, SKILL.md frontmatter, clawhub.json) <br>
+Risk: Avatar images and voice or audio files are handled by an external VideoAny webpage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only media appropriate for that service and review the service's handling requirements before uploading.
+
+Risk: Talking-avatar generation can be misused for deceptive or non-consensual impersonation.
+
+Mitigation: Use only images and voices the user owns or is authorized to use, and avoid deceptive deepfakes or non-consensual impersonation.
+
+## Reference(s):
+
+- [VideoAny AI Avatar Tool](https://videoany.io/tools/ai-avatar)
+- [ClawHub AI Avatar Skill Page](https://clawhub.ai/gaoq1/skills/ai-avatar-videoany)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown prose with bash command examples and plain-text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local helper output is guidance only; avatar video generation happens on the external VideoAny web page.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, skill frontmatter, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

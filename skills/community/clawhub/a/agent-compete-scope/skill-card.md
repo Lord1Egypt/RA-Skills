@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes competitor positioning, builds comparison matrices, and identifies whitespace strategy opportunities for a user's product. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes competitor positioning and identifies whitespace opportunities for a product.
 
-## Publisher: <br>
-[jinu4you](https://clawhub.ai/user/jinu4you) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[jinu4you](https://clawhub.ai/user/jinu4you)
 
-## Use Case: <br>
-Product marketers, founders, and strategy teams use this agent to compare a product against named competitors, summarize competitor profiles, and identify whitespace opportunities with recommended positioning moves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Competitor-research inputs and generated analysis are sent to Tavily and the selected external LLM provider. <br>
-Mitigation: Avoid confidential strategy or customer data unless those providers are approved for the intended use. <br>
-Risk: API keys are required for web search and LLM calls. <br>
-Mitigation: Use dedicated, limited-scope API keys and rotate them according to the organization's credential policy. <br>
-Risk: The default npm start path runs mock job behavior that may not match production orchestration. <br>
-Mitigation: Review or disable the mock behavior before production use. <br>
+## Use Case:
 
+External users and developers use this agent to compare a product against named competitors, generate competitor profiles, produce a comparison matrix, and summarize whitespace opportunities with a strategic recommendation.
 
-## Reference(s): <br>
-- [Agent Compete Scope on ClawHub](https://clawhub.ai/jinu4you/agent-compete-scope) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [JSON response containing competitor profiles, comparison matrix rows, whitespace findings, and a markdown strategy recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires competitor names and a product description; optional focus values are pricing, features, positioning, or all.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: package.json and server release metadata) <br>
+Risk: Product details, competitor names, search queries, retrieved snippets, and generated prompts may be sent to Tavily and the selected LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive inputs unless the provider terms are acceptable, and restrict API keys, quotas, and access to the minimum needed.
+
+Risk: Generated competitive analysis can be influenced by incomplete web results or model errors.
+
+Mitigation: Treat profiles, comparison rows, whitespace items, and recommendations as advisory and review them against trusted market sources before business use.
+
+Risk: Provider credentials and dependencies require normal operational hygiene.
+
+Mitigation: Keep API keys out of version control, rotate or scope keys where possible, and update dependencies during maintenance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jinu4you/skills/agent-compete-scope)
+- [Publisher profile](https://clawhub.ai/user/jinu4you)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [JSON response containing competitor profiles, a comparison matrix, whitespace items, and a markdown-formatted recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires product and competitor inputs; supports focus values for pricing, features, positioning, or all.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

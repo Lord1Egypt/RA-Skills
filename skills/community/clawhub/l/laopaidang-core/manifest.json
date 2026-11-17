@@ -1,0 +1,9 @@
+{
+  "name": "nomos-core",
+  "normalizedName": "laopaidang-core",
+  "description": "协作拍档核心规范（Core Spec）的可加载封装。定义协作拍档 AI 拍档的核心权威 DNA：身份 + 7条铁律 + 思考判档 + 调研 PDCA + 质量门禁 v1.7 + 跨会话 + 专家团编排 + 下属负责人实例化指令。任何运行时（本机 AI 助手平台 / DSH / WorkSwarm）要孵化「协作拍档系负责人」，均调用本技能继承同一 DNA，防止各写一份导致漂移。触发：固化协作拍档 / 核心规范 / 孵化负责人 / 培训 DSH 负责人 / 培训 WorkSwarm 负责人 / 协作拍档 DNA / 一致性负责人。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

@@ -1,41 +1,60 @@
-## Description: <br>
-国内天气+空气质量查询。支持城市和区县级，中文输出。数据源: wttr.in + Open-Meteo。无需 API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+国内天气+空气质量查询。支持城市和区县级，中文输出。数据源: wttr.in + Open-Meteo。无需 API Key。
 
-## Publisher: <br>
-[lujun2508](https://clawhub.ai/user/lujun2508) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lujun2508](https://clawhub.ai/user/lujun2508)
 
-## Use Case: <br>
-External users and developers use this skill to query Chinese city or district weather, optional air-quality data, tomorrow forecasts, and clothing guidance in Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups send the searched city or district to wttr.in, and AQI lookups send coordinates to Open-Meteo. <br>
-Mitigation: Avoid querying sensitive personal locations when location privacy matters. <br>
-Risk: Weather and AQI results depend on third-party data sources and may be delayed or unavailable. <br>
-Mitigation: Treat results as informational and verify important decisions against authoritative local forecasts or air-quality sources. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Chinese-language current or next-day weather and optional US AQI summaries for supported Chinese cities and districts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lujun2508/weather-cn-jj) <br>
-- [Publisher profile](https://clawhub.ai/user/lujun2508) <br>
+### Deployment Geography for Use:
 
+Global; weather coverage is focused on China.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese weather, AQI, forecast, and clothing-advice responses; requires Python and external requests to wttr.in and Open-Meteo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: City or district queries are sent to wttr.in, and AQI requests send coordinates to Open-Meteo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill only with locations that are acceptable to share with those external weather services.
+
+Risk: Weather or AQI data may be delayed, unavailable, or less precise for district-level locations.
+
+Mitigation: Treat results as informational and verify with an authoritative source before making safety-critical or operational decisions.
+
+Risk: The skill is designed for Chinese output and does not provide a language option.
+
+Mitigation: Use it only in workflows where Chinese-language weather guidance is appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lujun2508/skills/weather-cn-jj)
+- [Publisher profile](https://clawhub.ai/user/lujun2508)
+- [wttr.in weather endpoint](https://wttr.in/)
+- [Open-Meteo Air Quality API endpoint](https://air-quality-api.open-meteo.com/v1/air-quality)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, guidance]
+
+**Output Format:** [Plain text Chinese weather and AQI summary, with shell command and Python usage guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional AQI and next-day forecast flags; output is designed for Chinese-language use.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

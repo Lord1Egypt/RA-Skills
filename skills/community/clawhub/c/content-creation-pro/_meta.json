@@ -1,6 +1,28 @@
 {
-  "ownerId": "kn72a3kqhw330jbwe6g1q9hen582whqp",
-  "slug": "content-creation-pro",
+  "name": "content-creation-pro",
   "version": "1.0.1",
-  "publishedAt": 1774069426091
+  "description": "内容创作超级助手 v1.0.1 - 多平台内容生成+热点选题+自动排期+批量生成+实时热门话题搜索",
+  "author": "dxie48892-jpg",
+  "license": "MIT",
+  "platforms": ["openclaw"],
+  "tags": [
+    "content",
+    "social-media",
+    "copywriting",
+    "xiaohongshu",
+    "zhihu",
+    "douyin",
+    "wechat",
+    "content-calendar",
+    "batch-generation",
+    "hot-topics"
+  ],
+  "homepage": "",
+  "source": "https://github.com/",
+  "star_score": 0,
+  "downloads": 0,
+  "_openclaw": {
+    "emoji": "✍️",
+    "category": "content"
+  }
 }

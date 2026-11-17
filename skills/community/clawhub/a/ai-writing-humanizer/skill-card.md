@@ -1,38 +1,57 @@
-## Description: <br>
-Automatically strip AI writing patterns and stock phrases from user-facing prose before sending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically strip AI writing patterns and stock phrases from user-facing prose before sending.
 
-## Publisher: <br>
-[hosthobbit](https://clawhub.ai/user/hosthobbit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[hosthobbit](https://clawhub.ai/user/hosthobbit)
 
-## Use Case: <br>
-External users and developers use this skill to clean longer user-facing prose by removing common AI-writing tells before publishing or sending it. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Regex cleanup can remove words or structure that may matter in legal, medical, academic, financial, quoted, or meaning-sensitive text. <br>
-Mitigation: Review edited prose before sending and compare against the source text when accuracy or wording is important. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Signs of AI Writing](references/signs-of-ai-writing.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/hosthobbit/ai-writing-humanizer) <br>
+## Use Case:
 
+Writers, editors, and agents preparing user-facing prose use this skill to clean longer drafts by removing common AI-writing patterns, stock phrases, and obvious AI tells before sending.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown, with optional Python function output and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Regex-based rewrites should be reviewed before use on meaning-sensitive text.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Automatic prose cleanup can change meaning, tone, or nuance in important legal, medical, security, business, or confidential text.
+
+Mitigation: Review important text before sending and compare the cleaned result against the original draft.
+
+Risk: The script writes to the selected output path and can overwrite an existing draft.
+
+Mitigation: Use a new output filename or keep a backup when running the script.
+
+Risk: Pattern-based rewriting may remove legitimate words or phrasing that only resembles an AI-writing tell.
+
+Mitigation: Treat the output as an editable draft and restore any wording needed for accuracy or voice.
+
+## Reference(s):
+
+- [Signs of AI Writing](references/signs-of-ai-writing.md)
+- [ClawHub skill page](https://clawhub.ai/hosthobbit/skills/ai-writing-humanizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text or Markdown prose, with optional shell commands or code for script use and integration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local text cleanup; no API keys, external services, MCP tools, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

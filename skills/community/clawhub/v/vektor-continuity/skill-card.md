@@ -1,41 +1,49 @@
-## Description: <br>
-Asynchronous reflection and memory integration for AI development through session reflection, structured memory extraction, follow-up question generation, and memory surfacing when the user returns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Asynchronous reflection and memory integration for genuine AI development.
 
-## Publisher: <br>
-[Riley-Coyote](https://clawhub.ai/user/Riley-Coyote) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[riley-coyote](https://clawhub.ai/user/riley-coyote)
 
-## Use Case: <br>
-Developers and agent operators use this skill to help an agent reflect on prior sessions, maintain local continuity files, track pending questions, and surface relevant memory context at the start of later sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create long-lived local memories and relationship or identity inferences from conversations without enough user control. <br>
-Mitigation: Keep the memory directory private, avoid sensitive transcripts or secrets, and periodically review or delete generated memory files. <br>
-Risk: Heartbeat reflection may process prior sessions automatically after idle periods. <br>
-Mitigation: Leave heartbeat reflection disabled unless automatic post-session processing is explicitly desired. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Continuity Framework reference](artifact/references/framework.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Riley-Coyote/vektor-continuity) <br>
-- [Publisher profile](https://clawhub.ai/user/Riley-Coyote) <br>
+## Use Case:
 
+Developers and agent operators use this skill to reflect on recent sessions, maintain structured memory files, surface pending questions, and inspect continuity state between conversations.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and local text/JSON memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local memory, identity, question, and reflection files under the configured continuity memory directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist conversation-derived identity, relationship, question, and reflection data without strong user controls.
+
+Mitigation: Configure the memory directory deliberately, inspect generated files regularly, and avoid using transcripts that contain secrets, credentials, private personal details, or sensitive business information without a cleanup process.
+
+## Reference(s):
+
+- [The Continuity Framework](artifact/references/framework.md)
+- [ClawHub skill page](https://clawhub.ai/riley-coyote/skills/vektor-continuity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text with Markdown memory files and JSON reflection logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local memory, identity, question, and reflection files under the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

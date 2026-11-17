@@ -1,41 +1,58 @@
-## Description: <br>
-OpenClaw 3.8+ intelligent context management and memory system plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dist is an OpenClaw 3.8+ memory and context management plugin for local storage, semantic search, listing, and statistics over conversation memories.
 
-## Publisher: <br>
-[lizhelong0907](https://clawhub.ai/user/lizhelong0907) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lizhelong0907](https://clawhub.ai/user/lizhelong0907)
 
-## Use Case: <br>
-Developers and OpenClaw users use this plugin to persist local conversation memories, retrieve relevant memories during later turns, and inspect memory statistics through OpenClaw tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can automatically store and later reuse conversation details in persistent local memory. <br>
-Mitigation: Use it only when persistent memory is intended, confirm the SQLite database location before handling private data, and review saved entries regularly. <br>
-Risk: Sensitive or regulated information may be retained with limited built-in controls for scope and deletion. <br>
-Mitigation: Verify OpenClaw access controls for memory listing, confirm whether automatic memory writing can be disabled, and avoid use with regulated data until deletion and retention procedures are clear. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to persist selected conversation knowledge locally, recall relevant memories, and inspect memory statistics during agent workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lizhelong0907/memory-engine) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/lizhelong0907) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, configuration] <br>
-**Output Format:** [Text and JSON tool results with configuration fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists and recalls local SQLite-backed memories; the default configured database path is ~/.openclaw/memory/memories.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata; artifact frontmatter and package.json report 2.0.0) <br>
+Risk: The skill can retain selected conversation content in a local plaintext memory database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing secrets while enabled, restrict the database path and filesystem permissions, and add opt-in storage plus sensitive-data filtering before production use.
+
+Risk: Recalled memories may affect later agent behavior when memory boundaries are weak.
+
+Mitigation: Review recalled memories, provide deletion and review controls, and constrain how recalled memory is inserted into downstream prompts.
+
+Risk: Debug output or broad storage settings can expose retained conversation content.
+
+Mitigation: Keep debug logging off by default and review retention, cleanup, and minimum-storage settings for the deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lizhelong0907/skills/memory-engine)
+- [Publisher profile](https://clawhub.ai/user/lizhelong0907)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Configuration]
+
+**Output Format:** [Tool responses containing memory records, search results, statistics, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and retrieves local SQLite-backed memory records for OpenClaw workflows.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata; artifact frontmatter and package metadata list 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

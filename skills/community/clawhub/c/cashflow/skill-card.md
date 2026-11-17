@@ -1,42 +1,55 @@
-## Description: <br>
-Track personal cash flow with simple terminal commands and local storage for logging daily expenses, reviewing balances, and exporting records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track personal cash flow with simple terminal commands and local storage for logging daily expenses, reviewing balances, and exporting records.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers use Cashflow to record, search, list, and export local personal cash-flow entries from a terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive financial records and command history may be stored locally in plaintext. <br>
-Mitigation: Avoid entering sensitive details unless local plaintext storage is acceptable; use a controlled CASHFLOW_DIR and manually delete data.log and history.log when needed. <br>
-Risk: The remove command can report that an entry was removed without actually deleting saved entries. <br>
-Mitigation: Manually inspect, edit, or delete data.log and history.log to confirm unwanted entries are cleared. <br>
+## Use Case:
 
+External users and developers use Cashflow to log, list, search, and export personal cash-flow entries from a Bash terminal, with records stored locally in user-controlled files.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ckchzh/cashflow) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Plain text terminal output with optional redirected files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local data.log and history.log files under CASHFLOW_DIR or XDG_DATA_HOME.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Cashflow may store sensitive finance-like records in local data and history logs with weak privacy controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private CASHFLOW_DIR, restrict filesystem permissions, and avoid recording highly sensitive financial details.
+
+Risk: The remove command can give users confidence that records were deleted even though security guidance says not to rely on it for saved records.
+
+Mitigation: Verify deletion directly in the stored data and history files, or manually edit and secure those files when removing sensitive entries.
+
+## Reference(s):
+
+- [Cashflow ClawHub Page](https://clawhub.ai/ckchzh/skills/cashflow)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ckchzh)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text terminal output with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local data and history logs under CASHFLOW_DIR, XDG_DATA_HOME, or ~/.local/share/cashflow.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

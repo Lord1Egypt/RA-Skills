@@ -1,40 +1,53 @@
-## Description: <br>
-Transforms long-form videos into short-form clips optimized for different platforms and audiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms long-form video content into multiple short-form clips optimized for different platforms and audiences.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Content creators, marketers, and production teams use this skill to analyze long-form videos, identify high-value clips, adapt captions, hooks, and formats for target platforms, and plan publishing schedules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated clip selections, hooks, captions, and schedules may be misleading, off-brand, or poorly matched to platform rules and audience context. <br>
-Mitigation: Manually review generated recommendations against the source video, brand guidelines, platform policies, and analytics before publishing. <br>
-Risk: Video, transcript, analytics, or publishing-plan inputs may contain sensitive or unreleased information. <br>
-Mitigation: Provide only content you are comfortable having an agent analyze, and remove confidential details before use. <br>
+## Use Case:
 
+Content creators, marketers, and media teams use this skill to plan and draft workflows for turning webinars, podcasts, interviews, tutorials, and other long-form videos into short-form clips, captions, hooks, platform variants, schedules, and performance feedback loops.
 
-## Reference(s): <br>
-- [Video Repurposer Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with TypeScript examples and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations for clip selection, platform adaptation, captions, hooks, batch workflows, schedules, and analytics review; it does not perform editing or posting itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The agent may recommend clip selections, captions, hooks, or schedules that are inaccurate, off-brand, or unsuitable for the intended platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated repurposing plans, captions, hooks, and publishing schedules before editing or publishing content.
+
+Risk: Input videos, transcripts, or platform context may contain sensitive or rights-restricted content.
+
+Mitigation: Provide only source materials and platform context that are appropriate for this repurposing task and approved for the intended use.
+
+## Reference(s):
+
+- [Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript code examples and workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning and drafting guidance; it does not execute video processing itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

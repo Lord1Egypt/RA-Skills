@@ -1,38 +1,50 @@
-## Description: <br>
-Swift internationalization patterns, String(localized:) usage, and semantic key naming for macOS/iOS apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Swift internationalization patterns, String(localized:) usage, and semantic key naming for macOS/iOS apps.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill to add and review Swift localization patterns for macOS and iOS apps, including semantic keys, Localizable.strings organization, and String(localized:) usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated localization changes could introduce incorrect user-facing text, missing translations, or misleading keys. <br>
-Mitigation: Review proposed strings and translation files before applying them, and run localization tests where available. <br>
+## Use Case:
 
+Developers working on macOS or iOS apps use this skill to add or review localized SwiftUI text, semantic localization keys, and Localizable.strings organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/i18n-swift) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with Swift and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance for Swift localization; generated localization changes should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated localization guidance or edits could introduce incorrect keys, missing translations, or inappropriate test commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed Localizable.strings changes, Swift localization call sites, and test commands before applying or running them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/i18n-swift)
+- [Publisher profile](https://clawhub.ai/user/soponcd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Swift and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

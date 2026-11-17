@@ -1,43 +1,55 @@
-## Description: <br>
-Professional AI-powered platform that generates personalized career guidance based on user assessment data, skills, goals, and preferences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional AI-powered platform that generates personalized career guidance based on user assessment data, skills, goals, and preferences.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to generate personalized career recommendations, career pathways, skill gap analysis, and learning resource suggestions from structured assessment data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Career, workplace, and compensation details submitted to the API may be personal or sensitive data. <br>
-Mitigation: Use pseudonymous session IDs, omit userId when it is not needed, and avoid sharing exact compensation or highly sensitive workplace details unless the provider's privacy, retention, and deletion practices have been reviewed. <br>
-Risk: Generated career recommendations may be incomplete, generic, or inappropriate for a user's specific workplace context. <br>
-Mitigation: Treat the output as planning support, review recommendations before acting on them, and validate important career or compensation decisions with trusted human guidance. <br>
+## Use Case:
 
+Professionals, career changers, employees, and organizations use this skill to generate personalized career guidance from background, skills, goals, and preference data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-elevate-your-profile-at-work) <br>
-- [Career guidance API docs](https://api.mkkpro.com:8083/docs) <br>
-- [Career guidance API route](https://api.mkkpro.com/career/elevate-your-profile-at-work) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, JSON] <br>
-**Output Format:** [JSON API response containing a guidance summary, recommendations, career pathways, skill gaps, resource recommendations, session ID, and generated timestamp.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated from session, timestamp, background, skills, goals, and preference fields supplied in the request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and OpenAPI info.version) <br>
+Risk: Users may send career background, goals, preferences, compensation expectations, session IDs, and optional user IDs to the provider's API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only information the user is comfortable sending to the provider and review the provider's privacy terms before including sensitive details.
+
+Risk: Generated career guidance can be incomplete, unsuitable, or misleading for a user's specific employment situation.
+
+Mitigation: Treat recommendations as planning input and review them with appropriate human judgment before making career, compensation, or organizational decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-elevate-your-profile-at-work)
+- [API Route](https://api.mkkpro.com/career/elevate-your-profile-at-work)
+- [API Docs](https://api.mkkpro.com:8083/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, JSON]
+
+**Output Format:** [JSON response containing career guidance, recommendations, pathways, skill gaps, and resource recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The API accepts session and timestamp fields plus optional user identifiers and assessment details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and OpenAPI metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

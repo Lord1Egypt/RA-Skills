@@ -39,6 +39,11 @@ Meaning:
 
 Treat unindexed malps as a state to report, not a state to automatically open.
 
+Authority order:
+- `~/.malp-home/MAP.txt` defines active state
+- `~/.malp-home/attic/MAP.txt` defines attic state
+- project-local presence on disk is evidence of a `.malp/`, not authority for how it should be classified
+
 If the user asks for malp discovery in a scope where unindexed malps are found:
 - present them separately from active malps
 - label them clearly as unindexed

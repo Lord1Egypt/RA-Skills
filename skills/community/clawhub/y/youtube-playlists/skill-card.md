@@ -1,42 +1,57 @@
-## Description: <br>
-Create and manage YouTube playlists, including creating playlists, adding videos, and listing existing playlists through a Python command-line helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage YouTube playlists through a Python command-line helper that authenticates with YouTube via OAuth.
 
-## Publisher: <br>
-[matejmicek](https://clawhub.ai/user/matejmicek) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[matejmicek](https://clawhub.ai/user/matejmicek)
 
-## Use Case: <br>
-External users and agents use this skill to authenticate with a YouTube account, create playlists, add videos by ID or URL, and inspect playlist information from the command line. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad YouTube account authority and can modify playlists. <br>
-Mitigation: Install and run it only for accounts where playlist modification is acceptable, and review each command before execution. <br>
-Risk: The skill stores a reusable local OAuth token in token.pickle. <br>
-Mitigation: Delete token.pickle or revoke the Google OAuth grant when the skill is no longer needed. <br>
-Risk: Implemented commands can print liked videos and subscriptions in addition to documented playlist operations. <br>
-Mitigation: Treat command output as account data and avoid sharing logs that may contain private viewing or subscription information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/matejmicek/youtube-playlists) <br>
-- [YouTube OAuth scope used by the skill](https://www.googleapis.com/auth/youtube) <br>
+## Use Case:
 
+External users and developers can use this skill to authenticate to a YouTube account, create playlists, add videos, list playlists, and manage playlist contents from shell commands.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can create or modify YouTube playlists and can print playlist, liked-video, and subscription data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can change a user's YouTube account through OAuth, including creating playlists, adding videos, and removing playlist items.
+
+Mitigation: Run it only in a private, trusted workspace with an account intended for these changes, and review each command before execution.
+
+Risk: The security summary reports undocumented commands that expose liked videos and subscriptions.
+
+Mitigation: Avoid undocumented account-data commands, or use a reviewed version that removes them before installation.
+
+Risk: The security summary reports that OAuth tokens are cached in an unsafe local pickle file.
+
+Mitigation: Protect the skill directory, do not share token.pickle, and prefer a version that stores tokens safely without pickle and narrows OAuth permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/matejmicek/skills/youtube-playlists)
+- [Publisher profile](https://clawhub.ai/user/matejmicek)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, browser-based OAuth, a local credentials.json file, and a local token cache.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

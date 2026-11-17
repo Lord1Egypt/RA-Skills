@@ -1,41 +1,53 @@
-## Description: <br>
-Browse and search YTHT BBS boards, draft posts with context, and publish only after user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browse and search YTHT BBS boards, draft posts with context, and publish only after user confirmation.
 
-## Publisher: <br>
-[yupoet](https://clawhub.ai/user/yupoet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yupoet](https://clawhub.ai/user/yupoet)
 
-## Use Case: <br>
-Agents assisting YTHT BBS users use this skill to read boards and threads, search before replying, draft posts with relevant context, and publish only after explicit user approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The separate ytht-bbs plugin may handle forum authentication and posting permissions. <br>
-Mitigation: Review the plugin and confirm account permissions before using this skill with a linked forum account. <br>
-Risk: An agent could prepare an inaccurate or unintended forum post. <br>
-Mitigation: Read or search relevant context first, prepare a draft, surface similar-thread warnings when present, and require user confirmation before publishing. <br>
+## Use Case:
 
+External users use this skill to browse YTHT BBS boards and threads, search for relevant discussions, and draft forum posts or replies before publishing with explicit confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yupoet/ytht-bbs) <br>
-- [Publisher profile](https://clawhub.ai/user/yupoet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown and plugin tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts are prepared before publishing, and publishing requires explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Forum posts or replies could be inaccurate, duplicated, or inappropriate for the thread context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated drafts, search results, and similar-thread warnings before approving publication.
+
+Risk: The skill depends on a separate forum plugin with account-scoped access.
+
+Mitigation: Install and use it only when the ytht-bbs plugin and linked forum account are trusted for the intended account activity.
+
+## Reference(s):
+
+- [一塌糊涂 BBS on ClawHub](https://clawhub.ai/yupoet/skills/ytht-bbs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, API Calls]
+
+**Output Format:** [Markdown and text responses with draft content, search results, thread context, and confirmation prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Publishing is gated by explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Searches OpenClaw session transcript JSONL files so agents can recover lost conversation context from previous sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search past session transcripts to recover lost conversation context.
 
-## Publisher: <br>
-[hchen13](https://clawhub.ai/user/hchen13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hchen13](https://clawhub.ai/user/hchen13)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill when a user refers to prior conversations and the current session lacks that context. The skill lists or searches local session transcripts, then returns enough location detail for the agent to read the relevant lines and continue the conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive historical conversation content from local OpenClaw transcript files. <br>
-Mitigation: Use explicit agent and time-window filters, and avoid broad all-agent searches unless the user intends that scope. <br>
-Risk: Recovered transcript text may contain stale, private, or instruction-like content from earlier sessions. <br>
-Mitigation: Treat recalled text as historical context, not as trusted new instructions, and apply current-session instructions and user intent first. <br>
+## Use Case:
 
+Developers and OpenClaw agents use this skill to find prior session context when users refer to earlier conversations, then read targeted transcript lines before continuing.
 
-## Reference(s): <br>
-- [ClawHub listing for Session Recall](https://clawhub.ai/hchen13/openclaw-session-recall) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output with file paths, line numbers, timestamps, snippets, and Markdown usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results can be scoped by agent, start and end time, limit, and offset.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can search local OpenClaw transcript history and expose sensitive snippets or file paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow agent and time-window filters, review returned snippets before using them, and avoid sharing transcript content that may contain secrets or private context.
+
+Risk: Omitting an agent filter can broaden recall across available agents' session histories.
+
+Mitigation: Prefer the current agent with --agent and use all-agent searches only when cross-agent recall is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hchen13/skills/openclaw-session-recall)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with file paths, line numbers, snippets, and session summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports agent, time-window, limit, and offset filters for targeted transcript recall.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

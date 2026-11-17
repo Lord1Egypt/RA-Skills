@@ -1,44 +1,63 @@
-## Description: <br>
-Set up a new OpenClaw agent from scratch. Use when Tom asks to create, add, or onboard a new agent. Covers everything: gathering requirements, Discord bot setup, openclaw.json configuration, Mission Control registration, heartbeat, cron, OneDrive access, and final verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a new OpenClaw agent end to end, including requirement gathering, Discord bot setup, OpenClaw configuration, Mission Control registration, heartbeat scheduling, optional OneDrive access, and final verification.
 
-## Publisher: <br>
-[boltth](https://clawhub.ai/user/boltth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boltth](https://clawhub.ai/user/boltth)
 
-## Use Case: <br>
-OpenClaw administrators use this skill to onboard a new agent by collecting setup details, coordinating required manual Discord steps, updating configuration, registering Mission Control, scheduling heartbeat checks, optionally linking OneDrive libraries, and verifying the completed setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup workflow handles Discord bot credentials. <br>
-Mitigation: Avoid pasting bot tokens into chat; use a secret manager or environment variable when the OpenClaw environment supports it. <br>
-Risk: The workflow can grant broad Discord and OneDrive access to a new agent. <br>
-Mitigation: Grant only the minimum required Discord permissions and limit OneDrive links to approved libraries or folders. <br>
-Risk: The workflow creates persistent registrations and scheduled cron check-ins. <br>
-Mitigation: Record new agent registrations and cron entries so administrators can audit or disable them later. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to onboard a new agent with Discord routing, Mission Control registration, heartbeat automation, optional shared storage access, and final operational checks.
 
-## Reference(s): <br>
-- [New Agent Setup checklist](references/checklist.md) <br>
-- [Discord Developer Portal](https://discord.com/developers/applications) <br>
-- [ClawHub release page](https://clawhub.ai/boltth/new-agent-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown instructions with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces step-by-step operational guidance for an agent setup workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The setup flow asks operators to handle a Discord bot token and store it locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect or externalize the token, restrict file access, and rotate or revoke the bot token if exposure is suspected.
+
+Risk: The runbook creates durable automation through cron and heartbeat configuration.
+
+Mitigation: Require explicit approval before adding scheduled jobs and document how to remove cron entries, heartbeat state, memory entries, and bot access.
+
+Risk: Agent IDs, roles, and routing values are used in shell commands and configuration edits.
+
+Mitigation: Validate agent IDs, roles, and channel identifiers before using them in commands or writing OpenClaw configuration.
+
+Risk: Optional OneDrive access can expose shared files beyond the new agent's intended scope.
+
+Mitigation: Grant only the requested libraries, verify symlink targets, and confirm the new agent creates files only in its assigned subfolder.
+
+## Reference(s):
+
+- [New Agent Setup checklist](references/checklist.md)
+- [Discord Developer Portal](https://discord.com/developers/applications)
+- [ClawHub skill page](https://clawhub.ai/boltth/skills/new-agent-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown runbook with inline JSON, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires operator-provided agent identity, Discord bot details, channel ID, and optional OneDrive access choices.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

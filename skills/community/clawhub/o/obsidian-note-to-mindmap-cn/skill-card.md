@@ -1,44 +1,55 @@
-## Description: <br>
-将用户明确提供的 Obsidian 笔记或 Markdown 大纲默认转换为 KMind 导图 PNG，并在明确要求时输出可编辑的 KMind 导图；如果缺少已审核的 KMind core skill，先征求确认后再从 ClawHub 安装。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将用户明确提供的 Obsidian 笔记或 Markdown 大纲默认转换为 KMind 导图 PNG，或在明确要求时输出可编辑的 KMind 导图。
 
-## Publisher: <br>
-[suka233](https://clawhub.ai/user/suka233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suka233](https://clawhub.ai/user/suka233)
 
-## Use Case: <br>
-Developers and Obsidian users use this Chinese-localized wrapper to turn explicitly provided notes, Markdown outlines, or one specified note file into KMind mind map output. The skill delegates rendering to the audited core skill after user approval if installation is needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-time use may install the delegated core skill through the ClawHub CLI. <br>
-Mitigation: Require explicit user approval before running the exact documented install command and do not install any other skill. <br>
-Risk: Repo-local automation can run authenticated ClawHub, GitHub, or Convex commands. <br>
-Mitigation: Install only in environments where that automation is acceptable, and prefer non-bypass review modes unless elevated review authority is intentional. <br>
-Risk: Processing broader Obsidian vault content could expose unrelated notes or configuration. <br>
-Mitigation: Process only pasted content or the single note path explicitly provided by the user, and do not scan the vault or read global Obsidian configuration. <br>
+## Use Case:
 
+Developers, knowledge workers, and Obsidian users use this skill to turn pasted Markdown, pasted Obsidian notes, or a single explicitly named note file into a KMind mind map. It defaults to PNG output and delegates conversion to the referenced core KMind skill after explicit approval if installation is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suka233/obsidian-note-to-mindmap-cn) <br>
-- [Audited KMind Markdown to Mind Map core skill](https://clawhub.ai/suka233/kmind-markdown-to-mindmap) <br>
-- [KMind Zen](https://kmind.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with optional shell command and generated PNG, SVG, or KMind editable file output from the delegated core skill] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to PNG unless the user explicitly requests SVG or editable KMind output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter, package.json, CHANGELOG, server release) <br>
+Risk: The skill may ask to install and delegate to an unpinned third-party core skill that was not included in this artifact review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after explicit user approval, verify the referenced publisher and registry resolution, and prefer a digest-pinned or immutable release when available.
+
+Risk: The wrapper depends on the delegated core skill and its runtime requirements for actual mind-map generation.
+
+Mitigation: Review the delegated core skill before use and surface any missing Node.js, browser, ClawHub CLI, or network requirements without substituting another installer or skill.
+
+## Reference(s):
+
+- [ClawHub skill page: obsidian-note-to-mindmap-cn](https://clawhub.ai/suka233/skills/obsidian-note-to-mindmap-cn)
+- [Delegated core skill: suka233/kmind-markdown-to-mindmap](https://clawhub.ai/suka233/kmind-markdown-to-mindmap)
+- [KMind Zen](https://kmind.app)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command and generated PNG, SVG, or .kmindz.svg file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to PNG; emits editable .kmindz.svg or SVG only when explicitly requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, package.json, CHANGELOG, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

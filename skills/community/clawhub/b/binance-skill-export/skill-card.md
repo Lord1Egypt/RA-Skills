@@ -1,42 +1,60 @@
-## Description: <br>
-Provides Binance API integration for spot and futures trading, including balances, market data, order management, leverage settings, and position management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Binance API integration for spot and futures trading, including balance checks, market data, order management, leverage settings, and position management.
 
-## Publisher: <br>
-[ly5201314gjx](https://clawhub.ai/user/ly5201314gjx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ly5201314gjx](https://clawhub.ai/user/ly5201314gjx)
 
-## Use Case: <br>
-Developers and agents use this skill to query Binance account and market data and to execute spot and futures trading actions through configured Binance API credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can place spot and futures orders, change leverage, and close positions against a live Binance account. <br>
-Mitigation: Use a separate restricted API key with withdrawals disabled, test first with testnet or very small limits, and require explicit human confirmation before trades, leverage changes, or position closes. <br>
-Risk: Credential exposure or misuse could allow unauthorized account access. <br>
-Mitigation: Provide BINANCE_API_KEY and BINANCE_SECRET_KEY only through environment variables or a managed secret store, never hardcode them, and rotate keys if exposure is suspected. <br>
+## Use Case:
 
+Developers and trading operators use this skill to let an agent query Binance spot and futures account information, inspect market data, place or review orders, set leverage, and close futures positions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ly5201314gjx/binance-skill-export) <br>
-- [Binance Spot API endpoint](https://api.binance.com) <br>
-- [Binance Futures API endpoint](https://fapi.binance.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, JSON, configuration, guidance] <br>
-**Output Format:** [Text responses with structured details objects from Binance API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BINANCE_API_KEY and BINANCE_SECRET_KEY environment variables for authenticated account and trading operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can place live spot or futures orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Binance API key, prefer read-only or testnet keys where possible, and require separate human confirmation before any order function is called.
+
+Risk: The skill can change futures leverage and close futures positions.
+
+Mitigation: Restrict key permissions and IPs, set explicit operational limits outside the skill, and require human approval before leverage or close-position actions.
+
+Risk: API credentials are required for account and trading actions.
+
+Mitigation: Provide credentials only through environment variables, never hardcode secrets in source, and rotate or revoke keys if exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ly5201314gjx/skills/binance-skill-export)
+- [Publisher Profile](https://clawhub.ai/user/ly5201314gjx)
+- [Binance Spot API Endpoint](https://api.binance.com)
+- [Binance Futures API Endpoint](https://fapi.binance.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [Plain text responses with JavaScript examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BINANCE_API_KEY and BINANCE_SECRET_KEY environment variables; functions may call live Binance spot and futures endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

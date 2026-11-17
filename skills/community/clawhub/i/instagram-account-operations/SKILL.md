@@ -1,244 +1,134 @@
 ---
 name: instagram-account-operations
-description: Operating doctrine for Instagram account automation — careful creator + business pattern via Meta Business Suite, role separation, action-block awareness (24h/7d/permanent), comment + DM ops (Playwright click + type + Enter), reply qualification, hashtag-shadowban discipline, and recovery. Use this for any scheduled IG activity (cron, agent, recurring task) where account safety and Reels reach matter more than raw output.
+description: Keep an automated Instagram account out of action blocks — Meta Business Suite DMs, comments, quotas. Use when scheduling IG replies from a cron or agent. Trigger on "instagram bot", "action blocked", "instagram dm automation", "reply to instagram comments", "instagram shadowban".
+metadata: {"clawdbot":{"emoji":"📸","homepage":"https://openclaw.ai"}}
 ---
 
 # Instagram Account Operations
 
-This skill is the operating doctrine for every Instagram automation run on a brand, professional or personal account.
+**The goal is not to reply fast. The goal is to operate Instagram like a careful, helpful human contributor — through Meta Business Suite, inside quota, and openly, on an account you are authorized to run.**
 
-**The goal is not to comment fast. The goal is to operate Instagram like a careful, helpful human contributor: stable browser, correct context (Meta Business Suite), useful action, no action block, no shadowban risk.**
+## Access, Data & Network — read before running anything
 
-Drop-in for any niche (legal, medical, software, finance, creator, ecommerce). Replace the placeholders in section 0 with your own values.
+| What it needs | Why | Default |
+|---|---|---|
+| A browser profile already logged into `business.facebook.com` | MBS is the only surface this skill drives | You log in by hand. The skill never handles credentials, never types a password, never launches a login flow. |
+| Read access to your IG DMs and comments | It replies to them | Scoped to the one asset ID you configure |
+| Local directory `<WORKSPACE_DIR>/memory/` | Quota counting, dedupe, phase state | Created by you (see checklist) |
+| Alert webhook (Telegram/Slack/Discord) | Run recaps | **Off by default. Opt-in.** Leave `alerts.webhook` empty and the skill writes recaps to disk only — no network egress beyond Meta's own domains. |
 
----
+Persisted locally, and nothing else: run recaps, counts of replies sent, IG handles you replied to (for the 7-day dedupe), phase state, follower count, hashtag notes. **Retention: 90 days** — truncate the memory files on that cadence. If you enable a webhook, the recap block in *Recap output* leaves your machine verbatim, including hot-lead handles; redact or keep it off. Instagram's Terms of Use and Community Guidelines, and Meta's Platform Terms, are a hard constraint on everything below, not a footnote: run this only on an account you own or are contractually authorized to operate, and only where automated replies are permitted for your account type.
 
-## 0. Configure for your brand
+## When to Use
 
-Before running anything, fill these placeholders in your local copy or your agent's memory:
+| Trigger | Action |
+|---|---|
+| "check my Instagram DMs" / cron DM pass | Session check → MBS `inbox/all` → qualify → reply within quota |
+| "reply to instagram comments" | MBS `inbox/instagram` → `@username` flow |
+| "action blocked" / "try again later" toast | **Stop the run.** Flip to Phase A, alert, human reviews |
+| "am I shadowbanned" / followers dropped overnight | Flip to Phase A, alert, no automated recovery attempt |
+| "set up my instagram bot" | Configure → first-run checklist → 14 days manual first |
+| Any challenge, CAPTCHA, or "verify it's you" screen | **Stop. Hand to a human.** Never solve, never retry, never reshape behavior to get past it |
+
+## Configure
 
 | Placeholder | Example | Your value |
 |---|---|---|
 | `<BRAND_NAME>` | "Acme Studio" | — |
-| `<BRAND_DOMAIN>` | "acme.studio" | — |
 | `<IG_HANDLE>` | "@acmestudio" | — |
 | `<META_BUSINESS_ID>` | numeric ID from business.facebook.com → Settings | — |
-| `<META_ASSET_ID>` | numeric ID of the IG account asset in MBS | — |
+| `<META_ASSET_ID>` | numeric ID of the IG asset in MBS | — |
 | `<BROWSER_PROFILE>` | "instagram-live" | — |
 | `<BROWSER_PORT>` | "18802" | — |
-| `<NICHE_KEYWORDS>` | "lost license OR speeding ticket" | — |
 | `<PRIMARY_CTA>` | "WhatsApp / form / app — pick ONE" | — |
-| `<WORKSPACE_DIR>` | "~/.openclaw/workspace/instagram-<brand>" | — |
-
-All shell snippets below assume an [OpenClaw](https://openclaw.ai) browser CLI bound by CDP, but the doctrine works with any browser-automation stack (Playwright, Puppeteer, Chrome MCP). Swap the CLI calls for your own.
-
-### Quick config (copy-paste YAML)
-
-If your agent reads config from YAML, drop this in `<WORKSPACE_DIR>/config.yaml`:
+| `<WORKSPACE_DIR>` | "~/.openclaw/workspace/instagram-acme" | — |
 
 ```yaml
-brand:
-  name: <BRAND_NAME>
-  domain: <BRAND_DOMAIN>
-
-instagram:
-  handle: <IG_HANDLE>
-  account_type: business | creator    # business strongly recommended for MBS access
-  browser_profile: <BROWSER_PROFILE>  # e.g. "instagram-live"
-  browser_port: <BROWSER_PORT>        # e.g. 18802
-
-meta_business_suite:
-  business_id: <META_BUSINESS_ID>
-  asset_id: <META_ASSET_ID>
-  base_url: https://business.facebook.com/latest/inbox
-
-discovery:
-  niche_keywords: <NICHE_KEYWORDS>
-
-cta:
-  primary: <PRIMARY_CTA>              # one channel only
-
-workspace:
-  dir: <WORKSPACE_DIR>
-
-alerts:
-  channel: telegram | slack | discord
-  webhook: <YOUR_WEBHOOK_URL>
-
+# <WORKSPACE_DIR>/config.yaml
+instagram: { handle: <IG_HANDLE>, account_type: business, browser_profile: <BROWSER_PROFILE>, browser_port: <BROWSER_PORT> }
+meta_business_suite: { business_id: <META_BUSINESS_ID>, asset_id: <META_ASSET_ID> }
+cta: { primary: <PRIMARY_CTA> }        # one channel only
+alerts: { channel: telegram, webhook: "" }   # empty = no egress, recaps to disk only
 schedule:
   timezone: Europe/Paris
-  windows:
-    dm_check:      "*/15 9-22 * * *"       # every 15 min
-    comment_check: "10,25,40,55 9-22 * * *" # offset to avoid collision
-    browser_health: "0 * * * *"
-    daily_recap:   "21:00"
+  windows: { dm_check: "*/15 9-22 * * *", comment_check: "10,25,40,55 9-22 * * *", daily_recap: "21:00" }
 ```
 
-### Compatibility
+Shell snippets use the OpenClaw browser CLI over CDP; any CDP-capable stack works (Playwright, Puppeteer, Chrome MCP) — swap the calls. Multi-account: one workspace dir, one browser profile and one port per account; each account carries its own `<META_ASSET_ID>`.
 
-| Stack | Skill install path |
-|---|---|
-| [Claude Code](https://claude.ai/code) | `~/.claude/skills/instagram-account-operations/` |
-| [OpenClaw](https://openclaw.ai) | `~/.openclaw/skills/instagram-account-operations/` |
-| ClawHub-published | one-click install via [clawhub.ai](https://clawhub.ai) |
-| Cursor / Copilot CLI | drop `SKILL.md` into your project's `.cursorrules` or `AGENTS.md` |
-| Any LLM agent reading markdown rules | concatenate `SKILL.md` into your system prompt |
+## Meta Business Suite is the only surface
 
----
-
-## 1. The Meta Business Suite is the only sane surface
-
-**Doctrine: EVERYTHING goes through `business.facebook.com`. Never automate against `instagram.com` directly.**
-
-Why:
-- No iframes (unlike TikTok).
-- Single UI for **4 channels**: IG DMs, FB Messenger DMs, IG comments, FB comments.
-- Playwright `click + type + press Enter` works out of the box.
-- Built-in CRM-style features: labels, notes, prospect stages.
-- Link previews are auto-generated for the `<PRIMARY_CTA>`.
-- Bypasses `instagram.com`'s "redirect to `/direct/inbox/`" bug.
-
-### Physical profile
-
-A single browser profile per account:
-
-- `<BROWSER_PROFILE>` (CDP direct, attached to `http://127.0.0.1:<BROWSER_PORT>`)
-
-The IG account must be **logged into Meta Business Suite** in this profile and have an Asset assigned to a Business — otherwise the URLs below will 404 or redirect to a setup wizard.
-
-```bash
-openclaw browser --browser-profile <BROWSER_PROFILE> status
-openclaw browser --browser-profile <BROWSER_PROFILE> navigate https://business.facebook.com/latest/inbox/all/?business_id=<META_BUSINESS_ID>&asset_id=<META_ASSET_ID>
-openclaw browser --browser-profile <BROWSER_PROFILE> snapshot --limit 200
-```
-
-### Canonical URLs (per tab)
+**Everything goes through `business.facebook.com`. Never automate against `instagram.com`.** No iframes; one UI for IG DMs, FB DMs, IG comments, FB comments; `click + type + Enter` works; link previews auto-generate. Append `?business_id=<META_BUSINESS_ID>&asset_id=<META_ASSET_ID>` to each URL fragment below.
 
 | Tab | URL fragment |
 |---|---|
-| All messages (IG DMs + FB Messenger DMs) | `/latest/inbox/all?asset_id=<META_ASSET_ID>&business_id=<META_BUSINESS_ID>` |
-| Messenger only (FB DMs) | `/latest/inbox/messenger?asset_id=<META_ASSET_ID>&business_id=<META_BUSINESS_ID>` |
-| Instagram DMs only | `/latest/inbox/instagram_direct?asset_id=<META_ASSET_ID>&business_id=<META_BUSINESS_ID>` |
-| Instagram comments | `/latest/inbox/instagram?asset_id=<META_ASSET_ID>&business_id=<META_BUSINESS_ID>` |
-| Facebook comments | `/latest/inbox/facebook?asset_id=<META_ASSET_ID>&business_id=<META_BUSINESS_ID>` |
+| All messages | `/latest/inbox/all` |
+| Instagram DMs only | `/latest/inbox/instagram_direct` |
+| Instagram comments | `/latest/inbox/instagram` |
+| Messenger (FB DMs) | `/latest/inbox/messenger` |
 
-This skill covers IG-specific concerns; for FB-specific doctrine (Pages, groups, page moderation), see the companion `facebook-account-operations` skill.
+Roles are a mental separation on one physical profile: `ig-post` acts as the brand inside MBS · `ig-engage` reads and qualifies, and **never acts outside MBS** · `ig-observe` checks hashtag reach in a logged-out window, so results reflect what the public sees rather than what your own account history personalizes — nothing is posted, liked, or followed from there. Return to `inbox/all` at the end of every run. Approved Graph API app available (`instagram_basic` / `instagram_manage_messages` / `instagram_manage_comments`)? Use it — this playbook is the fallback for accounts without one, and for the MBS UI features the API lacks (labels, prospect stages, link previews).
 
-### Roles (mental separation, single physical profile)
-
-#### Role: `ig-post`
-
-Account cockpit (acting as the brand). Use for:
-- DM replies in MBS All / IG Direct tab.
-- Comment replies in MBS IG Comments tab.
-- Direct profile checks (only when MBS doesn't expose the metric).
-
-Default page: MBS `inbox/all`.
-
-#### Role: `ig-engage`
-
-Discovery. Use for:
-- Reading public conversations under your own posts (in MBS).
-- Inspecting a candidate user's profile before replying to a comment (open in a new tab on `instagram.com`, but DO NOT act from there).
-
-Default page: MBS `inbox/instagram` (comments tab).
-
-#### Role: `ig-stealth`
-
-Quiet maintenance. Use for:
-- Story view audits.
-- Hashtag-state checks (open hashtag in incognito, NOT in this profile).
-
-Default page: MBS dashboard.
-
-### Operational law
-
-- `ig-post` = act as the account via MBS.
-- `ig-engage` = discover and qualify, NEVER act outside MBS.
-- `ig-stealth` = maintain and observe.
-- Stability matters more than speed.
-- After every run, return to MBS `inbox/all`.
-
----
-
-## 2. Session check (run first on every cron)
+## Session check — run first, every cron
 
 ```bash
 openclaw browser --browser-profile <BROWSER_PROFILE> status
-openclaw browser --browser-profile <BROWSER_PROFILE> navigate "https://business.facebook.com/latest/inbox/all/?business_id=<META_BUSINESS_ID>&asset_id=<META_ASSET_ID>"
+# Output: profile=instagram-live state=running cdp=http://127.0.0.1:18802
+openclaw browser --browser-profile <BROWSER_PROFILE> navigate \
+  "https://business.facebook.com/latest/inbox/all/?business_id=<META_BUSINESS_ID>&asset_id=<META_ASSET_ID>"
 openclaw browser --browser-profile <BROWSER_PROFILE> snapshot --limit 60
+# Output: … [textbox "Search messages"] … [list] Conversations (12)   → OK, continue
+# Output: … [form] Log into Facebook …                                → exit 3, stop
 ```
 
-Check:
-- If `status` is `stopped`: report and stop.
-- If the snapshot shows a Facebook login form: session expired, report and stop.
-- If the snapshot shows the MBS chrome but with a "Reauthenticate to manage this asset" banner: same — stop and report.
-- If the snapshot shows the inbox with conversation list visible: continue.
+`status: stopped`, a login form, or a "Reauthenticate to manage this asset" banner all mean **stop and report**. Never relaunch Chrome from inside a cron. Never re-login programmatically.
 
-Never relaunch Chrome from inside a cron.
+## Phase gating
 
----
+Instagram has no karma. It has **action blocks** — 24 h (warning), 7 d (second), permanent (third+).
 
-## 3. Phase gating (action-block awareness)
+| Phase | Condition | Authorized |
+|---|---|---|
+| **A** | account < 30 d, OR an action block in the last 30 d, OR < 500 followers | Inbound DM/comment replies inside MBS only. **Zero outbound.** |
+| **B** | ≥ 30 d, no block in 30 d, ≥ 500 followers, no guideline flag | All crons |
 
-Instagram does not have karma; it has **action blocks** — a tiered penalty system:
+Read `<WORKSPACE_DIR>/memory/ig-state.md` at start; last line is the current phase. A→B is **never automatic**: on threshold, alert `🎉 IG account ready for Phase B — review and flip manually`, and a human flips it. First week of B: cap at 3 replies/run. Observed block thresholds (not officially published, treat as ceilings you stay far under — they are limits that protect the account, not a budget to spend; if you are anywhere near one, the run is doing too much): follow/unfollow > 50/day or > 200/week · comments on others' posts > 30/hr or > 200/day · proactive DMs to non-followers > 10/day on a young account · likes > 60/hr · posts > 5/24h · > 6 actions in 10 min on one role · follow + like of the same account's last 5 posts inside 1 min → immediate block · the same DM body to > 3 accounts in 24 h → "Action blocked" toast within minutes.
 
-- **Phase A** (account < 30 d, OR last 30 d had an action block, OR less than 500 followers): only inbound DM/comment replies inside MBS, **zero outbound actions** (no proactive DMs, no comment-on-other-people's-posts, no following).
-- **Phase B** (account ≥ 30 d, no recent block, ≥ 500 followers, no community-guideline flag): all crons authorized.
+## Quotas — hard limits
 
-Always read `<WORKSPACE_DIR>/memory/ig-state.md` at start (last line = current phase).
+| Action | Phase A | Phase B |
+|---|---|---|
+| DMs handled per 24 h | 20 | 60 |
+| DMs handled per run | 4 | 8 |
+| Comment replies per 24 h | 30 | 100 |
+| Comment replies per run | 5 | 10 |
+| Outbound DMs / day | 0 | 5 |
+| Follows / day · Unfollows / day | 5 | 20 |
+| Likes / hour | 30 | 60 |
+| Gap, same conversation | ≥ 60 s | ≥ 30 s |
+| Gap, globally | ≥ 30 s | ≥ 15 s |
 
-### Action-block thresholds (observed, not officially published)
+Count entries in `ig-reply-log.md` for the last 24 h at start of every run. Quota met → abort early with `status: skipped`.
 
-| Action | Frequency that triggers a block |
+## Posting cadence and hashtags
+
+Out of scope for the reactive crons; the rhythm the rest of the doctrine assumes, logged in `ig-post-log.md`.
+
+| Surface | Phase B rhythm |
 |---|---|
-| Follow / unfollow | > 50/day or > 200/week |
-| Comment on others' posts | > 30/hr or > 200/day |
-| DMs to non-followers (proactive) | > 10/day on a young account |
-| Liking | > 60/hr |
-| Posting | > 5 posts/24h |
+| Reels | 3-5/week · hook in the first 1.5 s · vertical 9:16 · native or licensed sound |
+| Carousels | 2-3/week · educational — saves are the strongest ranking signal |
+| Stories | 3-7/day · polls and stickers carry reach |
+| Lives | ≤ 1/week, planned |
+| Hashtags | 3-5 per post — 1 broad + 2-3 niche + 1 micro (< 50k posts). The "30 hashtags" advice is dead: IG cut the cap and over-tagging reads as spam. Re-check `ig-hashtag-state.md` monthly for tags gone dead. |
 
-A block lasts 24 h (warning), 7 d (second offense), or **permanent** (third+). The thresholds tighten on Phase A accounts.
+## Qualify before replying
 
-### Manual override (advanced)
+Repliable only if **all** hold: the thread has a user-authored message (not a bare Reel forward — skip those silently) · the user isn't sitting on an unacknowledged auto-reply · it's a real question in your domain · Phase B if the reply mentions the brand · no brand-mentioning reply to that handle in the last 7 days (`ig-reply-log.md`). Any check fails → skip, and say why in the recap. If the handle is in `ig-clients-known.md`: reply with empathy, **paste no link**, redirect to the support channel — `<PRIMARY_CTA>` is for prospects only.
 
-You can force Phase B by appending `YYYY-MM-DD - phase=B (manual override)` to `ig-state.md`. Use only if the account is grandfathered (verified business, long history, no warnings). Document in `ig-learnings.md`.
+## Reply templates
 
----
-
-## 4. Qualification of an inbound DM or comment
-
-A DM or comment is repliable only if **all** of:
-
-- The thread has at least one user-authored message (not a pure share / reel forward — those have no question).
-- The user did NOT just receive a templated auto-reply that they haven't acknowledged.
-- Phase B authorized for proactive / brand-mentioning replies (see §3).
-- The message is a real question or intent in your domain.
-- The same user has not been sent a brand-mentioning reply in the last 7 days (`ig-reply-log.md`).
-
-If any check fails: skip. Document why in the recap.
-
-### Special: a user shared a Reel with no message
-
-Default action: **skip silently**. A Reel share without a question is usually a forward to friends; replying creates noise and confuses the conversation.
-
-### Special: existing client recognized
-
-If the user appears in `ig-clients-known.md`: reply with empathy, **do not paste any link**, redirect to the standard support channel (NOT `<PRIMARY_CTA>` which is for prospects).
-
----
-
-## 5. Reply templates
-
-### Phase A (warming, NO brand mention)
-
-- 1-3 sentences.
-- Match the conversation tone.
-- No links, no expert-grade advice.
-
-### Phase B (brand-aware, expert)
-
-DM reply (any length, but ≤ 700 chars stays human):
+Phase A: 1-3 sentences, match the tone, no links, no expert-grade advice. Phase B DM (≤ 700 chars — past that nobody reads it):
 ```
 [Acknowledge the situation in 1 sentence, neutral tone.]
 
@@ -246,326 +136,145 @@ DM reply (any length, but ≤ 700 chars stays human):
 
 [Concrete next step — point to <PRIMARY_CTA>. ONE channel only.]
 ```
+Filled:
+```
+Sorry you're dealing with that — a suspended licence is stressful and the clock matters.
 
-Comment reply (≤ 200 chars, prefix with `@username` to target the parent comment):
+Broadly, two things decide the outcome: the notice date on the decision, and whether the procedural steps were followed. Both are checkable from the paperwork you already have.
+
+If you want it looked at properly, the intake form on our profile is the fastest route.
+```
+Phase B comment (≤ 200 chars):
 ```
 @username [contextual acknowledgement]. [Indirect signal — "DM us" or "form on profile"].
 ```
 
-### What never to paste verbatim
+Never paste: anything with `[brackets]` left in · the same opening phrase more than twice in 7 days · a URL in a comment body, ever · more than one URL in a DM · a URL in the *first* message of a conversation — Meta's link-preview takes 1-2 s to generate and IG classes the bare link as spam; the `<PRIMARY_CTA>` link goes in the second message · any shortener (bit.ly, tinyurl — IG treats them as spam).
 
-- Anything with `[brackets]` left in it (final read-through is mandatory).
-- The same opening phrase across more than 2 replies in 7 days.
-- A literal URL inside a DM unless it is the `<PRIMARY_CTA>`'s own link AND it is the second message in the conversation (Meta's link-preview takes 1-2 s; if pasted as the first interaction, IG marks it as spam).
+## MBS flow — DMs
 
-### Brand link policy
+1. Session check (above), then navigate `inbox/all`. Wait 5 s for the list to render.
+2. Click the "Unread" filter chip, or read the list for unread badges.
+3. Per conversation, top-to-bottom: click the tile → **read the whole thread** (IG threads often span auto-template + the real reply) → qualify → click `[contenteditable='true']` → `type` the message → **press Enter** → verify the textbox emptied and the message landed before moving on.
+4. Sweep the `Messenger` and `Instagram` tabs after `all` — some conversations surface only there.
 
-- Inside a comment body: NEVER paste a URL. "Form on profile" / "DM us" is the only allowed signal.
-- Inside a DM: max ONE URL, ONE channel (`<PRIMARY_CTA>`). Never a bit.ly / tinyurl / shortener — IG marks shorteners as spam.
+**Press Enter, do not click "Send".** MBS renders visual duplicates of the send button and a Playwright `click` lands on the wrong one roughly one time in ten — silently, with no error. Enter is unambiguous.
 
----
+## MBS flow — comments
 
-## 6. Original posting cadence
-
-Out of scope for the live reactive crons. Recommended rhythm for a Phase B account:
-
-- **Reels**: 3-5/week. Hook in first 1.5 s. Vertical 9:16. Native sound or licensed library only.
-- **Carousels**: 2-3/week. Educational, multi-slide. Drives saves (the strongest ranking signal).
-- **Stories**: 3-7/day. Reuse top reel hooks. Polls + sticker engagement = strong reach signal.
-- **Lives**: ad hoc, max 1/week. Plan, don't ad-lib.
-- **Static feed posts**: out, except for branded covers.
-
-Hashtag discipline (Reels + posts):
-- 3-5 hashtags per post (the "30 hashtags" old advice is dead — IG reduced the cap and over-tagging looks spammy).
-- 1 broad + 2-3 niche + 1 micro (< 50k posts).
-- Re-check the `<WORKSPACE_DIR>/memory/ig-hashtag-state.md` registry monthly for shadowbanned tags.
-
----
-
-## 7. Quotas (hard limits)
-
-| Action | Phase A limit | Phase B limit |
-|--------|---------------|---------------|
-| DMs handled (inbound replies) per 24 h | 20 | 60 |
-| DMs handled per cron run | 4 | 8 |
-| Comment replies handled per 24 h | 30 | 100 |
-| Comment replies handled per cron run | 5 | 10 |
-| Outbound DMs / day (to non-followers) | 0 | 5 |
-| Follows / day | 5 | 20 |
-| Unfollows / day | 5 | 20 |
-| Likes per hour | 30 | 60 |
-| Actions in same conversation | min 60 s apart | min 30 s apart |
-| Actions globally | min 30 s apart | min 15 s apart |
-
-Quota tracking: read `ig-reply-log.md` at start of every run, count entries in the last 24 h, abort early if quotas already met.
-
----
-
-## 8. Anti-spam triggers
-
-### Content
-
-| Avoid | Use instead |
-|-------|-------------|
-| "Check link in bio" repeated | (mention bio at most once per conversation) |
-| `<BRAND_NAME>` more than once per reply | (max one mention) |
-| "DM me", "WhatsApp me", "click here" stacked | (one CTA, one channel — `<PRIMARY_CTA>`) |
-| Phone numbers, emails | (never in comment bodies; OK in DM tail if user explicitly asked) |
-| Emojis in regulated / sober niches | (drop them) |
-| All caps for emphasis | (use sparingly) |
-| Shorteners (bit.ly / tinyurl) | (use the full canonical URL) |
-
-### Behavioral
-
-- Replying within 30 s of a comment going live → bot-like; wait ≥ 2 min.
-- Same opening phrase across multiple replies → flagged. Vary the first 1-2 words.
-- > 6 actions in 10 min → rate limit on that role.
-- Following + liking the same user's last 5 posts within 1 min → instant action block.
-- Sending the same DM body to > 3 users in 24 h → "Action blocked" toast within minutes.
-
----
-
-## 9. Operational flow inside Meta Business Suite
-
-Reactive DM + comment ops run inside MBS exclusively. The flow below is validated end-to-end.
-
-### DM check / reply (validated)
-
-URL: `https://business.facebook.com/latest/inbox/all?business_id=<META_BUSINESS_ID>&asset_id=<META_ASSET_ID>`
-
-1. Pre-flight session check (see §2).
-2. Navigate to the `all` tab. Wait 5 s for the conversation list to render.
-3. **Filter for unread** by clicking the "Unread" filter chip, or query the conversation list for nodes with the unread badge.
-4. For each unread conversation, top-to-bottom:
-   a. Click the conversation tile (the user's name).
-   b. **Read the entire message thread** for context — IG conversations often span across the auto-template + user's real reply.
-   c. Qualify (see §4). If skip-eligible, click the next conversation.
-   d. **Click the textbox**: selector `[contenteditable='true']` or `[aria-label*='Reply'], [aria-label*='Répondre']`.
-   e. **Type the message** via Playwright `type` (or `evaluate` with `document.execCommand('insertText', false, msg)` ONLY if `contenteditable` is a vanilla React-controlled input — verify first).
-   f. **Press Enter** to send. Do NOT click "Send" — there are visual duplicates of the send button and a Playwright `click` sometimes lands on the wrong one. Enter is unambiguous.
-5. After sending, the textbox empties; verify before moving to the next conversation.
-6. After processing all unread, switch to the `Messenger` tab and to the `Instagram` tab in turn to catch any FB-only or IG-only inboxes that didn't surface in `all`.
-
-### Comment reply (validated — partial)
-
-URL: `https://business.facebook.com/latest/inbox/instagram?business_id=<META_BUSINESS_ID>&asset_id=<META_ASSET_ID>`
-
-The comments tab is **less stable than DMs** — see "Known issue" below.
-
-1. Navigate to the comments tab. Wait 5 s.
-2. Posts with new comments appear in the left rail with an unread badge.
-3. For each post:
-   a. Click the post tile.
-   b. Comments render in the right pane.
-   c. For each lead-qualified comment:
-      - **Find the page-level "Ajoutez un commentaire..." / "Add a comment..."** textarea **at the bottom** of the right pane.
-      - Type `@username your reply` (the `@username` prefix targets the parent comment without clicking "Reply").
-      - **Click the send-arrow button** (SVG arrow to the right of the textarea) — Enter does NOT submit a comment in this UI.
-
-### Known issue: do NOT click "Reply" on comments
-
-Clicking the "Reply" affordance under a comment navigates the right pane to a different post (Meta's SPA bug, present in 2025-2026). The validated workaround is `@username` prefix + page-level textarea + send-arrow click — described above.
-
-If you must produce a true nested reply (rare): open the post URL on `instagram.com` in a separate ig-engage tab, reply there manually, then mark the conversation done in `ig-reply-log.md`. Do not script the `instagram.com` reply path — Instagram's anti-automation is much tighter than MBS.
-
-### Selectors quick-reference
+Less stable than DMs. Navigate to `inbox/instagram`, wait 5 s, click a post tile, comments render in the right pane. Per qualified comment: find the page-level "Add a comment…" / "Ajoutez un commentaire…" textarea **at the bottom** of the right pane, type `@username your reply`, then **click the send-arrow** — Enter does not submit here. **Do not click "Reply" under a comment.** Meta's SPA navigates the right pane to a *different post* (bug present 2025-2026). You'll think it worked; you replied somewhere else. The `@username` prefix targets the parent comment without it. If you truly need a nested reply, a human does it on `instagram.com` and logs it in `ig-reply-log.md` — do not script the `instagram.com` reply path.
 
 | Element | Selector |
 |---|---|
-| DM textbox | `[contenteditable='true']` or `[aria-label*='Reply'], [aria-label*='Répondre']` |
-| DM send (preferred) | `press Enter` |
+| DM textbox | `[contenteditable='true']`, `[aria-label*='Reply'], [aria-label*='Répondre']` |
+| DM send | `press Enter` |
 | Comment textarea | `textarea[placeholder*='comment'], textarea[placeholder*='commentaire']` |
-| Comment send | the SVG arrow button to the right of the textarea — `[aria-label*='Send'], [aria-label*='Envoyer']` |
-| Conversation tile | `text=<user's display name>` |
-| Tab "Messenger" | `text=Messenger` |
-| Tab "Instagram" | `text=Instagram` (the DMs tab) |
-| Tab "Commentaires Instagram" | `text=Instagram` (in comments URL — same string, different URL) |
+| Comment send | `[aria-label*='Send'], [aria-label*='Envoyer']` (SVG arrow) |
 | Unread filter chip | `text=Unread, text=Non lu` |
 
-### Exit codes (recommended convention)
+| Exit | Meaning | Recap |
+|---|---|---|
+| 0 | Replies sent and verified | `status: ok` |
+| 1 | Fatal (selector missing, MBS error toast) | `status: error` + screenshot |
+| 2 | "Action blocked" / "Try again later" | `status: blocked`, flip to Phase A pause |
+| 3 | Session expired / reauth banner | `status: blocked`, alert human |
+| 4 | Comment "Reply" navigated away (known bug) | `status: partial`, log for manual review |
 
-| Code | Meaning | Recap action |
-|------|---------|--------------|
-| 0 | Replies sent, verified | `status: ok` |
-| 1 | Fatal error (selector missing, MBS error toast) | `status: error`, attach screenshot |
-| 2 | "Action blocked" / "Try again later" toast | `status: blocked`, flip the role to Phase A pause |
-| 3 | Session expired (login form rendered) | `status: blocked`, alert user |
-| 4 | Comment "Reply" caused page navigation (known bug — see above) | `status: partial`, log for manual review |
+## Content rules
 
-### Gotchas
+| Avoid | Use instead |
+|---|---|
+| "Check link in bio" repeated | Mention bio once per conversation, max |
+| `<BRAND_NAME>` twice in one reply | One mention |
+| "DM me" + "WhatsApp me" + "click here" stacked | One CTA, one channel |
+| Phone numbers, emails in comments | Never in a comment; DM tail only if asked |
+| Emojis in regulated/sober niches | Drop them |
+| Same opening phrase across replies | Vary it — identical openers *are* spam, that's why they get flagged |
+| Replying < 30 s after a comment lands | Wait ≥ 2 min. You haven't read it yet in 30 s |
 
-- **The MBS comment-Reply navigation bug**: still present. Use the `@username` workaround.
-- **Localized labels**: `Reply` / `Répondre`, `Send` / `Envoyer` — maintain a label map and try both in selectors.
-- **MBS soft logout**: after ~48 h of inactivity, MBS asks for re-authentication on next navigation. Treat as session expired (exit 3).
-- **Tab switching**: if you operate on multiple tabs (`all`, `messenger`, `instagram_direct`), wait ≥ 3 s after switching — MBS re-fetches the conversation list and clicking too early lands on stale tiles.
-- **The `Non Lu` / `Unread` filter chip is sometimes mis-clicked**: it has a transparent overlay. Snapshot before clicking.
-- **Cron timeout**: bump to ≥ 1200 s. MBS pages can take 4-6 s to render fully.
+## Identity and conduct
 
----
+- **If anyone asks whether they are talking to a bot, an AI, or a human: say so, plainly and immediately.** "Yes — this account's replies are handled by an automated assistant. Want me to get a person on it?" Then offer the human.
+- If the person asks for a human, **stop automated replies in that thread**, escalate, and log it in the recap.
+- Never give expert-grade advice on a specific case — redirect to `<PRIMARY_CTA>`. Never share private client details, names, or numbers. Never promise an outcome. Never solicit payment in DM.
+- Handle and bio: brand-aligned, not aggressive (`@drsmithlegal` > `@bestlawyerinparis`). One line + one `<PRIMARY_CTA>` link.
 
-## 10. Account state management
+## Stop conditions — the agent halts, a human takes over
 
-File: `<WORKSPACE_DIR>/memory/ig-state.md`
-
-For each day:
-- Phase (A / B).
-- Followers count.
-- Last action-block timestamp + duration.
-- Last community-guideline notice.
-- Posts published today (cap at 5/24h per §6).
-
-File: `<WORKSPACE_DIR>/memory/ig-clients-known.md`
-
-For each existing client:
-- IG handle.
-- Last contact date.
-- Sensitive flag (do-not-paste-CTA).
-
-Update at the end of every run.
-
----
-
-## 11. Recovery & blockers
-
-| Issue | Action |
-|-------|--------|
+| Signal | Action |
+|---|---|
+| "Please verify it's you" / CAPTCHA / any challenge | **Stop.** Never solve it, never retry, never change timing or behavior to get past it. Alert for manual login. A challenge is Instagram telling you a human should be here — believe it. |
+| "Action blocked — try again later" | Stop the run. Phase A pause 24 h. Alert. |
+| MBS → Settings → Account Status shows any "warning" | Revert to Phase A immediately, alert. Check this daily, not just at first run. |
+| Login form or reauth banner | Session expired. Alert, stop. |
 | `status: stopped` | Report, stop. |
-| Login form rendered on MBS | Session expired, alert, stop. |
-| "Reauthenticate to manage this asset" banner | Same as login expired. |
-| "Action blocked — try again later" toast | Flip the role to Phase A pause for 24 h. Alert. |
-| "Please verify it's you" / re-captcha | Stop. Never auto-solve. Alert for manual login. |
-| MBS shows "Something went wrong" generic error | Refresh once. If persists, stop and alert. |
-| Comment "Reply" click navigated to wrong post | Mark exit 4, fall back to manual via `instagram.com`. |
-| Followers drop > 5 % overnight | Likely shadowban — flip to Phase A, alert. |
-| Two consecutive comments removed within < 10 min of post | Auto-freeze comment cron for 6 h. |
+| "Something went wrong" (generic) | Refresh once. Persists → stop and alert. |
+| Followers drop > 5 % overnight | Suspected shadowban → Phase A, alert. No automated recovery. |
+| 2 comments removed within 10 min of posting | Freeze the comment cron 6 h. |
+| Account suspended (not just blocked) | Stop everything. **Do not appeal automatically** — the appeal flow is sensitive to repeated automated submissions. Human, manually, once. Log the last 20 actions in `ig-learnings.md`. |
 
----
+## Recap output
 
-## 12. Mandatory recap (alert channel + memory)
-
-At the end of each cron:
-
-**Alert channel — final run message**:
+Every run ends with this block — to `<WORKSPACE_DIR>/memory/ig-recaps.md` always, to the webhook only if you opted in. **Never fake a successful reply:** better silence than spam, better a blockage report than a false success.
 ```
-[Job name] — [status: ok|partial|blocked|skipped]
-DMs handled: [N or "—"]
-Comments handled: [N or "—"]
-Hot leads: [list short OR "—"]
-Phase: [A|B]
-Blockers: [text OR "—"]
-Next action: [1 line]
-```
-
-**Memory** — append to `<WORKSPACE_DIR>/memory/ig-recaps.md`:
-```
-## YYYY-MM-DD HH:MM TZ — <job-id> — status: <status>
-- Job: <description>
+## YYYY-MM-DD HH:MM TZ — <job-id> — status: ok|partial|blocked|skipped
 - Phase: A|B
-- DMs sent: <N>
-- Comments sent: <N>
+- DMs handled: <N or "—">
+- Comments handled: <N or "—">
 - Hot leads: <list or "—">
+- Escalated to human: <N or "—">
 - Blockers: <text or "—">
 - Next useful action: <1 line>
 ```
-
----
-
-## 13. Memory files inventory
-
-Located at: `<WORKSPACE_DIR>/memory/`
-
-| File | Purpose | Update cadence |
-|------|---------|----------------|
-| `ig-recaps.md` | Per-run logs | Every cron run |
-| `ig-post-log.md` | Reels + carousels + stories (URL, type, date, reach) | Each posting run |
-| `ig-reply-log.md` | DM + comment replies sent | Each reply pass |
-| `ig-state.md` | Daily phase + followers + warning flags | Daily Metrics Recap |
-| `ig-hashtag-state.md` | Per-hashtag reach + shadowban check | Weekly |
-| `ig-clients-known.md` | Existing clients to NEVER pitch | Ad hoc |
-| `ig-ideas.md` | Content backlog | Weekly Planning |
-| `ig-learnings.md` | Patterns (what reached, what got removed) | Weekly + ad hoc |
-| `ig-alerts-sent.md` | Anti-doublon hot-lead alerts | Each alert |
-
----
-
-## 14. Account identity guardrails
-
-- Handle: brand-aligned but not aggressively promotional (`@drsmithlegal` > `@bestlawyerinparis`).
-- Bio: one line + the single `<PRIMARY_CTA>` link. No emojis, no flag salad in regulated niches.
-- Never reply to a DM that asks for expert-grade advice on a specific case — redirect to `<PRIMARY_CTA>`.
-- Never share private client details, names, or numbers.
-- Never reuse strict CRM templates as IG content.
-- Never promise an outcome ("you will win").
-- Never charge or solicit payment in DM.
-- If asked "are you a bot?": one sober, ambiguous line, then redirect. Do not confirm AI.
-
----
-
-## 15. Phase A → Phase B transition
-
-When the Daily Metrics Recap detects (account_age_days ≥ 30) AND (followers ≥ 500) AND (last_action_block_days_ago > 30):
-
-1. Append to `ig-state.md`: `YYYY-MM-DD - phase=A - PHASE_B_THRESHOLD_REACHED`.
-2. Send a distinct alert: `🎉 IG account ready for Phase B — review and flip outbound crons manually`.
-3. Manual user flip (no auto-flip).
-4. First week of Phase B: cap reply pass at **3 replies/run** (not 8).
-5. Daily check on `Action Status` (MBS → Settings → Account Status). Any "warning" reverts to Phase A.
-
----
-
-## 16. Stability discipline
-
-- Read the UI before clicking.
-- One click → verify with a snapshot.
-- Switch tabs only after the previous tab settled.
-- Close stale tabs at the end of every run.
-- Never fake a successful reply — always verify the message landed in the thread.
-
-**Better silence than spam. Better a blockage report than a fake success.**
-
----
-
-## 17. First-run checklist
-
-- [ ] Section 0 placeholders filled.
-- [ ] IG account is **Business** or **Creator**, linked to a Meta Business Suite asset.
-- [ ] `<META_BUSINESS_ID>` and `<META_ASSET_ID>` extracted (open MBS, copy from the URL).
-- [ ] Bio is one line + single `<PRIMARY_CTA>` link.
-- [ ] Browser profile launched at `http://127.0.0.1:<BROWSER_PORT>` and logged into facebook.com (the MBS gate).
-- [ ] Navigating to `inbox/all` renders the conversation list (no login form, no setup wizard).
-- [ ] `<WORKSPACE_DIR>/memory/` exists with the 9 memory files.
-- [ ] Alert channel webhook tested.
-- [ ] Phase A confirmed: only inbound DM cron enabled.
-- [ ] At least 14 days of manual posting + manual replies before turning on the cron.
-- [ ] Account Status checked (MBS → Settings → Account Status): **green / no warning**.
-
-Init memory:
-
-```bash
-mkdir -p "<WORKSPACE_DIR>/memory" && cd "$_" && touch ig-recaps.md ig-post-log.md ig-reply-log.md ig-state.md ig-hashtag-state.md ig-clients-known.md ig-ideas.md ig-learnings.md ig-alerts-sent.md
+Filled:
+```
+## 2026-07-16 21:00 Europe/Paris — ig-dm-check — status: partial
+- Phase: A
+- DMs handled: 3
+- Comments handled: —
+- Hot leads: @marc_r (licence suspension, asked for a callback)
+- Escalated to human: 1 (@sofia.k asked to speak to a person)
+- Blockers: comment tab hit the Reply-navigation bug once (exit 4)
+- Next useful action: reply to @sofia.k manually before 10:00
 ```
 
----
+## Memory files
 
-## 18. FAQ
+`<WORKSPACE_DIR>/memory/` — `ig-recaps.md` (per run) · `ig-reply-log.md` (replies sent, quota + dedupe source) · `ig-state.md` (daily phase, followers, flags) · `ig-post-log.md` · `ig-hashtag-state.md` (weekly) · `ig-clients-known.md` (never pitch these) · `ig-ideas.md` · `ig-learnings.md` · `ig-alerts-sent.md` (alert dedupe). Plain markdown, local, yours to delete. 90-day retention.
 
-**Q: Do I need OpenClaw to use this skill?**
-A: No. OpenClaw browser CLI is the example stack — the doctrine works with Playwright (Node or Python), Puppeteer, Chrome MCP, or any CDP-capable tool.
+## First-run checklist
 
-**Q: Can I just use the Instagram Graph API?**
-A: Partially. The Graph API covers `instagram_basic`, `instagram_manage_messages`, `instagram_manage_comments` — if you have an approved app, you can build a more robust webhook-based flow. The doctrine in this skill is the **fallback for accounts not yet approved for Graph API access, or for cases where MBS UI features are needed** (labels, prospect stages, link previews).
+- [ ] Placeholders filled; you own or are authorized to operate `<IG_HANDLE>`.
+- [ ] Account is Business or Creator, linked to an MBS asset.
+- [ ] `<META_BUSINESS_ID>` / `<META_ASSET_ID>` copied from the MBS URL.
+- [ ] Browser profile at `http://127.0.0.1:<BROWSER_PORT>`, **logged in by hand**, `inbox/all` renders the conversation list.
+- [ ] Memory dir created.
+- [ ] Webhook decided: empty (no egress) or tested, knowing recaps carry handles.
+- [ ] Phase A confirmed: inbound DM cron only.
+- [ ] ≥ 14 days of manual posting and manual replies before any cron.
+- [ ] Account Status (MBS → Settings) green, no warning.
 
-**Q: What about multi-account?**
-A: Clone the workspace dir per account. Use a separate browser profile + port. **Each IG account must have its own Meta Business asset** — you can manage multiple assets from one MBS, but they have distinct `<META_ASSET_ID>` values.
+```bash
+mkdir -p "<WORKSPACE_DIR>/memory" && cd "$_" && for f in recaps post-log reply-log state hashtag-state clients-known ideas learnings alerts-sent; do [ -f "ig-$f.md" ] || touch "ig-$f.md"; done
+# Output: (silent, idempotent — re-running never truncates an existing log)
+```
 
-**Q: My account got an action block during testing. What now?**
-A: Stop everything. Flip to Phase A. Manual usage only for 7-14 days. Document in `ig-learnings.md` the exact last 20 actions. Do NOT appeal automatically.
+## Troubleshooting
 
-**Q: Does the doctrine cover Reels Ads / Boost / Shopping?**
-A: No. This skill is for organic + reactive ops only. Ads have a separate dashboard and a separate (different) sanction pattern.
+| Symptom | Cause | Fix |
+|---|---|---|
+| Reply "sent" but the thread is unchanged | `click` landed on a duplicate Send button | Press Enter instead; verify the textbox emptied |
+| Right pane jumped to another post | The MBS comment-Reply SPA bug | `@username` prefix + page-level textarea + send-arrow; exit 4 |
+| Selector matches nothing | UI is localized | Try both labels — `Reply`/`Répondre`, `Send`/`Envoyer` |
+| Clicks land on stale tiles after a tab switch | MBS re-fetches the list on switch | Wait ≥ 3 s after switching tabs |
+| Unread chip click does nothing | Transparent overlay on the chip | Snapshot before clicking |
+| Reauth prompt out of nowhere | MBS soft-logs-out after ~48 h idle | Treat as session expired (exit 3), human logs in |
+| Cron dies mid-run | MBS pages take 4-6 s to render | Timeout ≥ 1200 s |
 
-**Q: What's the most common reason this skill's crons get flagged?**
-A: Same opening phrase across replies. Vary the first 1-2 words every time. The second most common: replying within 30 s of a comment landing — wait ≥ 2 min.
+## Scope
 
-**Q: What if my account is suspended (not just action-blocked)?**
-A: Stop everything. Do not appeal automatically — Instagram's appeal flow is sensitive to repeated automated submissions. Manual review only. Document the exact last 20 actions before the suspension in `ig-learnings.md`.
+**This skill ONLY:** drives Meta Business Suite in a browser profile *you* logged into · replies to inbound DMs and comments within stated quotas · counts, dedupes, and reports what it did · stops and escalates when the platform pushes back · states plainly that it is automated when asked.
+
+**This skill NEVER:** handles your password or performs a login · solves, retries, or works around a CAPTCHA, challenge, or any anti-abuse control · shapes timing or behavior to avoid being detected as automation · denies or obscures being automated · scripts `instagram.com` directly · exceeds the quota table · sends outbound DMs in Phase A · appeals a suspension automatically · touches an account you are not authorized to operate · sends anything off your machine unless you set a webhook.
+
+Anti-abuse controls protect accounts, including yours. When a defense fires, the run ends and a human takes over.

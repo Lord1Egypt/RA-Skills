@@ -1,43 +1,60 @@
-## Description: <br>
-Uses the Chanjing TTS API to clone a user-provided reference voice from a public audio URL, synthesize speech from text, poll asynchronous jobs, and return generated audio download URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the Chanjing TTS API to create a cloned voice from a user-provided public reference-audio URL, synthesize speech from text, and return generated audio URLs.
 
-## Publisher: <br>
-[iamzn1018](https://clawhub.ai/user/iamzn1018) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamzn1018](https://clawhub.ai/user/iamzn1018)
 
-## Use Case: <br>
-Developers and agents use this skill to create a custom Chanjing voice from authorized reference audio and generate Chinese or English speech from text. It is suited to workflows that need scripted voice-clone TTS with task polling and returned audio URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and updates local Chanjing credentials, including access_token and expire_in. <br>
-Mitigation: Keep ~/.chanjing/credentials.json private, do not commit it to version control, and use CHANJING_CONFIG_DIR only for trusted credential storage. <br>
-Risk: Reference audio and synthesis text are sent to Chanjing for processing. <br>
-Mitigation: Use only voice material and text that the user is authorized to send to the Chanjing service. <br>
-Risk: Changing CHANJING_API_BASE redirects credentialed requests to another endpoint. <br>
-Mitigation: Set CHANJING_API_BASE only when the replacement API endpoint is deliberately trusted. <br>
+## Use Case:
 
+Developers and creators use this skill to automate voice-clone text-to-speech workflows with Chanjing, including creating a custom voice, polling asynchronous jobs, and retrieving the generated audio URL.
 
-## Reference(s): <br>
-- [Chanjing API Documentation](https://doc.chanjing.cc) <br>
-- [ClawHub Skill Page](https://clawhub.ai/iamzn1018/chanjing-tts-voice-clone) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and command-line output, including voice IDs, task IDs, and generated audio URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Chanjing credentials and network access to the configured Chanjing API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release metadata) <br>
+Risk: Credential handling persists app_id, secret_key, access_token, and expire_in in credentials.json, and token refresh overwrites token fields on disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep CHANJING_CONFIG_DIR in a private user-owned directory, restrict file permissions, exclude credentials.json from version control and backups, and rotate credentials if exposure is suspected.
+
+Risk: CHANJING_API_BASE can redirect requests carrying credentials, reference-audio URLs, synthesis text, tokens, and task identifiers to an environment-controlled API endpoint.
+
+Mitigation: Leave CHANJING_API_BASE unset unless intentionally using a trusted HTTPS Chanjing-compatible endpoint.
+
+Risk: Reference-audio URLs and generated output URLs cross service trust boundaries and may expose sensitive voice or text content to the configured API service.
+
+Mitigation: Use only authorized reference audio, avoid sensitive synthesis text, and trust the configured API host and returned download URLs before use.
+
+## Reference(s):
+
+- [Chanjing documentation](https://doc.chanjing.cc)
+- [Chanjing Open API endpoint](https://open-api.chanjing.cc)
+- [ClawHub skill page](https://clawhub.ai/iamzn1018/skills/chanjing-tts-voice-clone)
+- [Publisher profile](https://clawhub.ai/user/iamzn1018)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts print voice IDs, task IDs, and generated audio URLs as plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses asynchronous API polling; generated audio is retrieved from API-returned URLs.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

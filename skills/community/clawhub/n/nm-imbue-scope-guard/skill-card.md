@@ -1,41 +1,54 @@
-## Description: <br>
-Scores feature worthiness and enforces branch-size limits against overengineering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores feature worthiness and enforces branch-size limits against overengineering.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill during brainstorming, planning, and execution to score proposed work, compare it against backlog priorities, and keep branches within reviewable size limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent to publish deferred work and reasoning to GitHub. <br>
-Mitigation: Require explicit confirmation before creating issues, comments, or Discussions, and review the exact text before posting. <br>
-Risk: Deferred-work records may expose sensitive project context in private or public repositories. <br>
-Mitigation: Use only in repositories where visibility and permissions are understood, and remove confidential details before creating persistent GitHub records. <br>
+## Use Case:
 
+Developers use Scope Guard during brainstorming and planning to score proposed features against value, cost, backlog priority, and branch limits, then decide whether to implement, discuss, defer, or reject them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-scope-guard) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with checklists, scoring tables, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct the agent to create GitHub issues or discussions for deferred work after user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Feature deferrals can involve publishing project reasoning or context to GitHub without clear approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the issue and Discussion content and obtain explicit approval before publishing project-specific context.
+
+Risk: The security scan is partial because several referenced local paths were unresolved.
+
+Mitigation: Resolve and review the referenced paths, especially their GitHub publishing behavior, before relying on the workflow.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-imbue-scope-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands]
+
+**Output Format:** [Markdown guidance with scoring summaries and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations depend on project goals, backlog, and branch metrics.]
+
+## Skill Version(s):
+
+1.10.3 (source: release metadata, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

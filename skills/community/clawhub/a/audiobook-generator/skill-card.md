@@ -1,44 +1,55 @@
-## Description: <br>
-Generate audiobooks from novels and long-form text with chapter management and character voices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate audiobooks from novels and long-form text with chapter management and character voices.
 
-## Publisher: <br>
-[scikkk](https://clawhub.ai/user/scikkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scikkk](https://clawhub.ai/user/scikkk)
 
-## Use Case: <br>
-Developers and creators use this skill to guide audiobook generation from novels, long-form articles, e-learning content, and other written material using SenseAudio text-to-speech. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input text submitted for narration is sent to SenseAudio and may include confidential, unpublished, copyrighted, or personal content. <br>
-Mitigation: Review SenseAudio privacy, retention, billing, and rights terms before use, and avoid sensitive or unlicensed inputs unless approved. <br>
-Risk: The workflow requires a SenseAudio API key. <br>
-Mitigation: Store the key in an environment variable or secret manager, do not embed it in shared code, and rotate it if exposed. <br>
-Risk: Generated MP3 audio and metadata files are saved locally. <br>
-Mitigation: Choose a controlled output directory and manage or delete generated files according to retention and access requirements. <br>
+## Use Case:
 
+Developers, content teams, and accessibility teams use this skill to convert books, novels, long-form articles, and e-learning material into narrated audiobook outputs with chapter structure and distinct narrator or character voices.
 
-## Reference(s): <br>
-- [SenseAudio](https://senseaudio.cn) <br>
-- [SenseAudio API Key Portal](https://senseaudio.cn/platform/api-key) <br>
-- [ClawHub Audiobook Release](https://clawhub.ai/scikkk/audiobook-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown with Python code examples and file output descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of MP3 audio files, JSON chapter timestamps, and metadata files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Input text is sent to SenseAudio's external TTS API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential, regulated, private, or rights-restricted manuscripts unless approved for that external service.
+
+Risk: Generated MP3 and metadata files remain on disk after creation.
+
+Mitigation: Store outputs only in approved locations and delete generated files when they are no longer needed.
+
+## Reference(s):
+
+- [SenseAudio Homepage](https://senseaudio.cn)
+- [SenseAudio API Key Portal](https://senseaudio.cn/platform/api-key)
+- [ClawHub Skill Page](https://clawhub.ai/scikkk/skills/audiobook-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration, Files]
+
+**Output Format:** [Markdown with inline Python code blocks and generated audio or metadata file descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide generation of MP3 audiobook files, chapter timestamps, and metadata files through SenseAudio API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

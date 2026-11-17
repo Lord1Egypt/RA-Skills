@@ -1,0 +1,56 @@
+part: STM32U575
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: STM32 Ultra-Low-Power (Cortex-M33, non-crypto variant)
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32u5-series.html
+datasheet_path_expected: ../../embedded_dev/st/datasheet/STM32U5_datasheet.pdf
+datasheet_source_url: https://akizukidenshi.com/goodsaffix/stm32u575zi.pdf
+datasheet_source_note: 'Akizukidenshi mirror of st.com STM32U575 datasheet (DS13737, 341 pages).
+
+  st.com is Cloudflare-gated as of 2026-06; this Akizukidenshi mirror is the reliable route. Distinguishing feature vs U585:
+  U575 has HASH but lacks AES/PKA/OTFDEC. For designs that need hardware crypto, see STM32U585.'
+related_parts:
+  STM32U585: ../../embedded_dev/st/datasheet/STM32U585_datasheet.pdf
+created_at: '2026-06-28T08:59:00+08:00'
+updated_at: '2026-06-28T08:59:17+08:00'
+extracted_at: '2026-06-28T08:59:17+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description
+specs:
+  cores:
+  - Arm Cortex-M33 @ up to 160 MHz (TrustZone, FPU, MPU, DSP)
+  dmips: 240
+  flash: up to 2 MB
+  ram: 786 KB
+  coremark: 651.0
+  ulpmark_cp: 450
+  ulpmark_pp: 109.0
+  voltage_v_min: 1.71
+  voltage_v_max: 3.6
+  shutdown_current_na: 160
+  run_current_ua_per_mhz: 19.5
+  crypto_accelerators:
+  - HASH
+  math_coprocessors:
+  - CORDIC
+  - FMAC
+notes:
+- Independent YAML extracted from DS13737 (STM32U575 specific datasheet).
+- Same 13 core specs as STM32U5 family alias; the discriminator vs U585 is the crypto block (U575 has only HASH; U585 adds
+  AES + PKA + OTFDEC).
+- "ST does not publish a separate U575 product page on st.com \u2014 both U575 and U585 share the family landing page; the\
+  \ datasheet doc ID is the only reliable way to distinguish them."
+- For crypto-enabled designs, prefer STM32U585.
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify (LARGE PDF 7.0MB, scanned first 100 pages): 11/14 spec
+  fields matched (79%). Replaces pre-v0.4.1 tag.'

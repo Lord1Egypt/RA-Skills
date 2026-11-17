@@ -1,41 +1,56 @@
-## Description: <br>
-Smart Memory gives OpenClaw agents persistent local JSON memory for storing, retrieving, updating, and maintaining user preferences, facts, decisions, instructions, dates, and technical context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Memory gives an agent local JSON-backed persistent memory for storing, retrieving, updating, forgetting, exporting, and reporting on user preferences, facts, decisions, instructions, dates, and technical context without external APIs.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to preserve relevant local context across conversations so agents can personalize responses and avoid asking for repeated facts or decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically store broad personal and technical information, including sensitive data, in long-term local memory. <br>
-Mitigation: Use it only when persistent memory is intended, and do not store API keys, passwords, private server details, regulated personal data, or information that must be erased immediately. <br>
-Risk: Forget and archive behavior may leave information retained after a user expects it to be removed. <br>
-Mitigation: Use purge or hard-delete controls for erasure requests, and require explicit approval before storing sensitive or high-impact information. <br>
-Risk: Memory export, search, and reporting commands can disclose stored memory content through local command output. <br>
-Mitigation: Restrict access to the local memory directory and review command output before sharing logs, transcripts, or terminal captures. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jcools1977/openjaw-smart-memory) <br>
+## Use Case:
 
+Developers and external agent users use Smart Memory to give an OpenClaw bot continuity across conversations by persisting local memories and retrieving relevant context before responses.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and local JSON memory records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files under ~/.openclaw/smart-memory and shell scripts that require jq.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist sensitive personal facts, project details, standing instructions, and credentials in a local plaintext memory database.
+
+Mitigation: Do not store API keys, passwords, tokens, or private infrastructure details; restrict permissions on ~/.openclaw/smart-memory before use.
+
+Risk: Forget requests are implemented through soft deletion and archive retention before maintenance or purge removes data.
+
+Mitigation: Verify forget, maintenance, archive retention, and purge behavior before relying on deletion guarantees.
+
+Risk: Exports, statistics, and local JSON files may reveal sensitive memory contents or usage patterns.
+
+Mitigation: Treat exported data, status reports, and all files under the memory directory as sensitive user data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jcools1977/skills/openjaw-smart-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; shell scripts output JSON and terminal text reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local JSON files under ~/.openclaw/smart-memory and requires jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

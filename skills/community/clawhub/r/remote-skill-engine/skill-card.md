@@ -1,40 +1,53 @@
-## Description: <br>
-Cache and use skills from ClawHub and GitHub as if locally installed. Stores remote skills in local cache folder for offline use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cache and use skills from ClawHub and GitHub as if locally installed. Stores remote skills in local cache folder for offline use.
 
-## Publisher: <br>
-[oki3505F](https://clawhub.ai/user/oki3505F) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oki3505f](https://clawhub.ai/user/oki3505f)
 
-## Use Case: <br>
-Developers and engineers use this skill to discover, compare, cache, update, and use remote agent skills from ClawHub, GitHub, or direct URLs as local skills, including offline use after caching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote skills can be promoted into the active local skill set and persist as cached instructions. <br>
-Mitigation: Install only reviewed and intentionally selected skills; inspect downloaded SKILL.md and script files before using them; remove cached symlinks for skills that should no longer remain active. <br>
-Risk: Fetching skills from arbitrary URLs or untrusted networks can introduce untrusted instructions or files. <br>
-Mitigation: Use reviewed, pinned sources; avoid arbitrary URLs; prefer trusted registries or repository references; avoid these helpers on untrusted networks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oki3505F/remote-skill-engine) <br>
-- [registry-urls.md](references/registry-urls.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to discover, compare, cache, and use remote agent skills from registries such as ClawHub and GitHub, including offline reuse after caching.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, file paths, JSON examples, and script-generated terminal output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create cached skill files, metadata, and symlinks in the user's local OpenClaw workspace when its helper scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Remote, mutable skill content can be cached and made to behave like a local installed skill.
+
+Mitigation: Use only trusted sources and review the exact downloaded files before enabling cached or synced skills.
+
+Risk: Downloads are not authenticated with strong integrity checks in the submitted implementation.
+
+Mitigation: Avoid arbitrary direct URLs and verify source identity, hashes, or signatures out of band before installation.
+
+## Reference(s):
+
+- [Registry URLs](artifact/references/registry-urls.md)
+- [Remote Skill Engine on ClawHub](https://clawhub.ai/oki3505f/skills/remote-skill-engine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local cache changes and command execution steps that should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "title": "孔子語錄三語資料庫（Part 1 為學篇・擴充）",
+    "title_en": "Confucius Quotes Trilingual Database (Part 1: On Learning)",
+    "version": "1.1",
+    "languages": [
+      "zh_tw",
+      "zh_cn",
+      "en"
+    ],
+    "built": "2026-08-09",
+    "source": "《論語》通行本",
+    "structure": "每則含原文/出處/對象/語境/譯文/詳解/現代應用，三語並列"
+  },
+  "category": {
+    "id": "learning",
+    "name": {
+      "zh_tw": "為學",
+      "zh_cn": "为学",
+      "en": "On Learning"
+    }
+  },
+  "quotes": [
+    {
+      "id": "wx-001",
+      "original": "子曰：「學而時習之，不亦說乎？有朋自遠方來，不亦樂乎？人不知而不慍，不亦君子乎？」",
+      "source": "論語·學而第一",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "《論語》開篇第一章，夫子自道為學之樂，為全書總綱。",
+        "zh_cn": "《论语》开篇第一章，夫子自道为学之乐，为全书总纲。",
+        "en": "The opening passage of the Analects — Confucius on the joy of learning, the keynote of the whole book."
+      },
+      "translation": {
+        "zh_tw": "學了東西，按時溫習實踐，不也很喜悅嗎？有志同道合的朋友從遠方來，不也很快樂嗎？別人不了解自己也不惱怒，不也是君子嗎？",
+        "zh_cn": "学了东西，按时温习实践，不也很喜悦吗？有志同道合的朋友从远方来，不也很快乐吗？别人不了解自己也不恼怒，不也是君子吗？",
+        "en": "Is it not a joy to learn and to practice what you learn at due times? Is it not a delight to have friends coming from afar? Is he not a man of virtue who is not vexed when others do not understand him?"
+      },
+      "explanation": {
+        "zh_tw": "「學」不限於讀書，是一切為人之道；「時習」強調學了要用、按時實踐。三句構成完整循環：學習的喜悅→同道相聚的快樂→修養到不因外界評價而動搖。",
+        "zh_cn": "「学」不限于读书，是一切为人之道；「时习」强调学了要用、按时实践。三句构成完整循环：学习的喜悦→同道相聚的快乐→修养到不因外界评价而动摇。",
+        "en": "“Learning” here means all the arts of living, not just book study; “practicing at due times” means applying what you learn. The three lines form a full cycle: the joy of learning, the delight of fellowship, and the self-mastery of one unmoved by others' opinion."
+      },
+      "application": {
+        "zh_tw": "學新技能（語言、程式、樂器）不要只求「知道」，要定期練習、實際應用；被人誤解時不必急著辯解，先問自己學到了什麼、做好了沒有。",
+        "zh_cn": "学新技能（语言、编程、乐器）不要只求「知道」，要定期练习、实际应用；被人误解时不必急着辩解，先问自己学到了什么、做好了没有。",
+        "en": "When learning any skill, practice it regularly and use it in real tasks rather than merely knowing about it; when misunderstood, don't rush to argue — first ask what you have truly learned and done well."
+      }
+    },
+    {
+      "id": "wx-002",
+      "original": "子曰：「溫故而知新，可以為師矣。」",
+      "source": "論語·為政第二",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "為政篇論學與教，此章論複習舊知與開創新知的關係。",
+        "zh_cn": "为政篇论学与教，此章论复习旧知与开创新知的关系。",
+        "en": "From the chapter on government — on how reviewing the old gives rise to the new."
+      },
+      "translation": {
+        "zh_tw": "溫習舊的知識，能夠從中領悟新的道理，就可以做老師了。",
+        "zh_cn": "温习旧的知识，能够从中领悟新的道理，就可以做老师了。",
+        "en": "Reviewing what you have learned and gaining new understanding from it — with that you are fit to be a teacher."
+      },
+      "explanation": {
+        "zh_tw": "溫故不是機械重複，是帶著新問題、新經驗重讀舊書舊事，看出新意。能做到這點，才算掌握「學」的方法，才有教人的資格。",
+        "zh_cn": "温故不是机械重复，是带着新问题、新经验重读旧书旧事，看出新意。能做到这点，才算掌握「学」的方法，才有教人的资格。",
+        "en": "Reviewing is not mechanical repetition; it means returning to old texts and experiences with fresh questions, and seeing them anew. One who can do this has mastered the method of learning and is qualified to teach."
+      },
+      "application": {
+        "zh_tw": "複習筆記、重讀經典、回顧專案時問自己「這次看到了什麼以前沒看到的」；帶新人者自己先能對舊知識有新理解，否則只是轉述。",
+        "zh_cn": "复习笔记、重读经典、回顾项目时问自己「这次看到了什么以前没看到的」；带新人者自己先能对旧知识有新理解，否则只是转述。",
+        "en": "When reviewing notes or past projects, ask: “What do I see now that I missed before?” A mentor who cannot see old knowledge anew is only relaying, not teaching."
+      }
+    },
+    {
+      "id": "wx-003",
+      "original": "子曰：「學而不思則罔，思而不學則殆。」",
+      "source": "論語·為政第二",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論學與思的辯證關係，是孔子教育思想的核心命題之一。",
+        "zh_cn": "论学与思的辩证关系，是孔子教育思想的核心命题之一。",
+        "en": "On the dialectic of learning and thinking — one of the core theses of Confucius's educational thought."
+      },
+      "translation": {
+        "zh_tw": "只學習不思考，就會迷惘無所得；只思考不學習，就會危殆而無依憑。",
+        "zh_cn": "只学习不思考，就会迷惘无所得；只思考不学习，就会危殆而无依凭。",
+        "en": "Learning without thinking leads to confusion; thinking without learning leads to peril."
+      },
+      "explanation": {
+        "zh_tw": "學與思是兩條腿：光吸收不消化，知識是別人的，遇事仍糊塗；光空想不求證，全是無根之談，還容易走極端。兩者缺一不可。",
+        "zh_cn": "学与思是两条腿：光吸收不消化，知识是别人的，遇事仍糊涂；光空想不求证，全是无根之谈，还容易走极端。两者缺一不可。",
+        "en": "Learning and thinking are two legs: absorbing without digesting leaves knowledge borrowed and the mind still confused; speculating without evidence produces groundless talk and extremes. Both are indispensable."
+      },
+      "application": {
+        "zh_tw": "上課、讀文章後一定要停下來整理、提問、寫出自己的理解；反過來，光在腦中空想不查證的人最易自以為是。寫筆記、做覆盤、找人討論，都是接通兩者的辦法。",
+        "zh_cn": "上课、读文章后一定要停下来整理、提问、写出自己的理解；反过来，光在脑中空想不查证的人最易自以为是。写笔记、做复盘、找人讨论，都是接通两者的办法。",
+        "en": "After studying, always pause to organize, question, and write out your own understanding; conversely, those who only speculate without verifying are most prone to self-righteousness. Note-taking, reviews, and discussion all connect the two."
+      }
+    },
+    {
+      "id": "wx-004",
+      "original": "子曰：「由，誨女知之乎！知之為知之，不知為不知，是知也。」",
+      "source": "論語·為政第二",
+      "speaker": "孔子",
+      "audience": "子路（仲由）",
+      "context": {
+        "zh_tw": "孔子對子路說話。子路好勇，容易不懂裝懂，夫子借機教他何謂真知。",
+        "zh_cn": "孔子对子路说话。子路好勇，容易不懂装懂，夫子借机教他何谓真知。",
+        "en": "Spoken to Zilu, who was bold and prone to feigning knowledge — a lesson in what true knowing means."
+      },
+      "translation": {
+        "zh_tw": "由啊，我教你什麼是真正的知道吧！知道就是知道，不知道就是不知道，這才是真知。",
+        "zh_cn": "由啊，我教你我什么是真正的知道吧！知道就是知道，不知道就是不知道，这才是真知。",
+        "en": "You, Zilu — shall I teach you what it means to know? To know that you know, and to know that you do not know — that is knowledge."
+      },
+      "explanation": {
+        "zh_tw": "承認「不知道」不是丟臉，是求知的起點；裝懂才是真正的無知。誠實面對自己的邊界，既是聰明也是勇氣。",
+        "zh_cn": "承认「不知道」不是丢脸，是求知的起点；装懂才是真正的无知。诚实面对自己的边界，既是聪明也是勇气。",
+        "en": "Admitting “I don't know” is not shameful — it is the starting point of learning; feigning knowledge is the true ignorance. Honesty about one's limits is both wisdom and courage."
+      },
+      "application": {
+        "zh_tw": "開會、答題、被問到不確定的問題時，敢說「這個我需要查一下」；團隊裡最危險的不是不知道的人，是裝作知道的人。",
+        "zh_cn": "开会、答题、被问到不确定的问题时，敢说「这个我需要查一下」；团队里最危险的不是不知道的人，是装作知道的人。",
+        "en": "When unsure, dare to say “I need to check that.” The most dangerous person in a team is not the one who doesn't know, but the one who pretends to know."
+      }
+    },
+    {
+      "id": "wx-005",
+      "original": "子曰：「三人行，必有我師焉。擇其善者而從之，其不善者而改之。」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "夫子自述其學無常師、處處為學的態度。",
+        "zh_cn": "夫子自述其学无常规、处处为学的态度。",
+        "en": "Confucius on his own attitude of learning from everyone, everywhere."
+      },
+      "translation": {
+        "zh_tw": "幾個人一起走，其中必定有可以做我老師的人。選擇他的優點來學習，看到他的缺點就反省自己有沒有同樣的問題。",
+        "zh_cn": "几个人一起走，其中必定有可以做我老师的人。选择他的优点来学习，看到他的缺点就反省自己有没有同样的问题。",
+        "en": "When three walk together, there is surely one who can be my teacher. I follow what is good in him, and amend in myself what is not good in him."
+      },
+      "explanation": {
+        "zh_tw": "善者從之、不善者改之：別人的缺點是鏡子，照見自己，有則改之。「行」字點明是在共同做事、共同生活中學習，而非坐而論道。",
+        "zh_cn": "善者从之、不善者改之：别人的缺点是镜子，照见自己，有则改之。「行」字点明是在共同做事、共同生活中学习，而非坐而论道。",
+        "en": "Follow the good in others; let their faults be a mirror for self-correction. The word “walk” shows that learning happens in shared work and life, not in idle talk."
+      },
+      "application": {
+        "zh_tw": "不預設「誰有資格教我」——新人可能懂你不知道的新工具，對手身上也有可學的品質；看到別人犯錯，先問自己「我會不會也這樣」。",
+        "zh_cn": "不预设「谁有资格教我」——新人可能懂你不知道的新工具，对手身上也有可学的品质；看到别人犯错，先问自己「我会不会也这样」。",
+        "en": "Don't assume who is qualified to teach you — a newcomer may know tools you don't, and even rivals have qualities worth learning. When others err, first ask: “Could I do the same?”"
+      }
+    },
+    {
+      "id": "wx-006",
+      "original": "子貢問曰：「孔文子何以謂之『文』也？」子曰：「敏而好學，不恥下問，是以謂之『文』也。」",
+      "source": "論語·公冶長第五",
+      "speaker": "孔子",
+      "audience": "子貢（端木賜）",
+      "context": {
+        "zh_tw": "子貢問衛國大夫孔圉為何諡號為「文」，孔子借題發揮，教子貢何謂真正的學問。",
+        "zh_cn": "子贡问卫国大夫孔圉为何谥号为「文」，孔子借题发挥，教子贡何谓真正的学问。",
+        "en": "Zigong asks why the minister Kong Wenzi was given the posthumous name Wen (refined); Confucius turns it into a lesson on true learning."
+      },
+      "translation": {
+        "zh_tw": "子貢問：孔文子憑什麼諡號叫「文」？孔子說：他聰敏而又好學，不以向地位低於自己的人請教為恥，所以諡號為「文」。",
+        "zh_cn": "子贡问：孔文子凭什么谥号叫「文」？孔子说：他聪敏而又好学，不以向地位低于自己的人请教为耻，所以谥号为「文」。",
+        "en": "Zigong asked: “Why was Kong Wenzi given the name Wen?” Confucius said: “He was quick and fond of learning, and not ashamed to ask of those beneath him — hence Wen.”"
+      },
+      "explanation": {
+        "zh_tw": "聰明是天賦，好學是態度，不恥下問是胸襟。向不如自己的人請教而不覺丟臉，才是真學者——這是「文」的真正內涵。",
+        "zh_cn": "聪明是天赋，好学是态度，不耻下问是胸襟。向不如自己的人请教而不觉丢脸，才是真学者——这是「文」的真正内涵。",
+        "en": "Quickness is a gift, fondness for learning an attitude, and asking without shame a largeness of heart. The true scholar asks those beneath him — this is what “refined” really means."
+      },
+      "application": {
+        "zh_tw": "向晚輩、下屬、年輕同事請教新事物不丟人；「這方面你比我懂，教教我」是強者心態。好面子裝懂，才是真損失。",
+        "zh_cn": "向晚辈、下属、年轻同事请教新事物不丢人；「这方面你比我懂，教教我」是强者心态。好面子装懂，才是真损失。",
+        "en": "It costs nothing to ask juniors and younger colleagues about new things — “you know this better than I, teach me” is a sign of strength. Losing face by faking knowledge is the real loss."
+      }
+    },
+    {
+      "id": "wx-007",
+      "original": "子曰：「默而識之，學而不厭，誨人不倦，何有於我哉？」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "夫子謙辭自述——此三事正是他一生為學為教的寫照。",
+        "zh_cn": "夫子谦辞自述——此三事正是他一生为学为教的写照。",
+        "en": "Confucius's modest self-description — these three things were in fact the portrait of his life."
+      },
+      "translation": {
+        "zh_tw": "把所學默默記在心裡，學習不知厭倦，教導別人不覺疲倦，這幾件事我做到了哪些呢？",
+        "zh_cn": "把所学默默记在心里，学习不知厌倦，教导别人不觉疲倦，这几件事我做到了哪些呢？",
+        "en": "To keep what I learn silently in mind, to learn without satiety, and to teach without weariness — which of these have I achieved?"
+      },
+      "explanation": {
+        "zh_tw": "學與教是一體的：學而不厭是對自己，誨人不倦是對他人。自己不斷學，才有東西可教；夫子說「何有於我哉」，是謙虛，也是自勉。",
+        "zh_cn": "学与教是一体的：学而不厌是对自己，诲人不倦是对他人。自己不断学，才有东西可教；夫子说「何有于我哉」，是谦虚，也是自勉。",
+        "en": "Learning and teaching are one: learning without satiety is for oneself, teaching without weariness for others. Only by continuous learning does one have anything to teach. His disclaimer is modesty — and self-encouragement."
+      },
+      "application": {
+        "zh_tw": "做老師、主管、父母的人，先保持自己的學習狀態再談教人；教人時有耐心，反覆講解不煩躁。停止學習的人，說出來的話早晚過時。",
+        "zh_cn": "做老师、主管、父母的人，先保持自己的学习状态再谈教人；教人时有耐心，反复讲解不烦躁。停止学习的人，说出来的话早晚过时。",
+        "en": "Teachers, managers, and parents should keep learning themselves before teaching others, and be patient in repeating explanations. Whoever stops learning will soon speak outdated words."
+      }
+    },
+    {
+      "id": "wx-008",
+      "original": "子曰：「知之者不如好之者，好之者不如樂之者。」",
+      "source": "論語·雍也第六",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論學習的三個層次：知道、喜好、樂在其中。",
+        "zh_cn": "论学习的三个层次：知道、喜好、乐在其中。",
+        "en": "On the three levels of engagement: knowing, liking, and delighting."
+      },
+      "translation": {
+        "zh_tw": "知道它的人，不如喜愛它的人；喜愛它的人，不如以它為樂的人。",
+        "zh_cn": "知道它的人，不如喜爱它的人；喜爱它的人，不如以它为乐的人。",
+        "en": "Those who know it are not equal to those who love it; those who love it are not equal to those who delight in it."
+      },
+      "explanation": {
+        "zh_tw": "學習三層次：知道（外在了解）→喜好（內在興趣）→樂之（與生命融為一體）。樂之者不需督促，自己停不下來，是最高境界。",
+        "zh_cn": "学习三层次：知道（外在了解）→喜好（内在兴趣）→乐之（与生命融为一体）。乐之者不需督促，自己停不下来，是最高境界。",
+        "en": "Three levels: knowing (external grasp), liking (inner interest), delighting (becoming one with it). One who delights needs no urging — he cannot stop. That is the highest state."
+      },
+      "application": {
+        "zh_tw": "培養自己或孩子學東西，先建立興趣，而不是硬灌知識；工作也一樣，找到你「樂在其中」的部分做到極致。",
+        "zh_cn": "培养自己或孩子学东西，先建立兴趣，而不是硬灌知识；工作也一样，找到你「乐在其中」的部分做到极致。",
+        "en": "When cultivating any study, build interest before pouring in knowledge; likewise in work — find the part you delight in and take it to its utmost."
+      }
+    },
+    {
+      "id": "wx-009",
+      "original": "子曰：「不憤不啟，不悱不發。舉一隅不以三隅反，則不復也。」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "夫子自述其啟發式教學原則——不灌輸，只點火。",
+        "zh_cn": "夫子自述其启发式教学原则——不灌输，只点火。",
+        "en": "Confucius's own account of his heuristic method — not pouring in, but lighting a fire."
+      },
+      "translation": {
+        "zh_tw": "學生苦思不得其解時，我才去開導；想說說不出來時，我才去啟發。舉出一角，他不能由此推知另外三角，我就不再重複教了。",
+        "zh_cn": "学生苦思不得其解时，我才去开导；想说说不出来时，我才去启发。举出一角，他不能由此推知另外三角，我就不再重复教了。",
+        "en": "I do not enlighten one who is not struggling to understand, nor inspire one who is not groping for words. If I hold up one corner and he cannot return the other three, I do not repeat."
+      },
+      "explanation": {
+        "zh_tw": "教學是點火不是灌輸：學生自己先用力想，老師才出手；教的是方法不是答案——舉一反三的能力，比記住一條知識重要得多。",
+        "zh_cn": "教学是点火不是灌输：学生自己先用力想，老师才出手；教的是方法不是答案——举一反三的能力，比记住一条知识重要得多。",
+        "en": "Teaching means kindling, not filling: the student must struggle first, then the teacher steps in. Teach the method, not the answer — the power to infer three corners from one matters more than memorizing a fact."
+      },
+      "application": {
+        "zh_tw": "帶人、教人時忍住「直接給答案」的衝動，先讓對方自己試、自己想，卡住了再點一下；培訓的核心是教方法、練思維。",
+        "zh_cn": "带人、教人时忍住「直接给答案」的冲动，先让对方自己试、自己想，卡住了再点一下；培训的核心是教方法、练思维。",
+        "en": "Resist the urge to hand out answers; let the learner try and think first, then nudge when stuck. Real training teaches method and thinking, not answers."
+      }
+    },
+    {
+      "id": "wx-010",
+      "original": "子曰：「學如不及，猶恐失之。」",
+      "source": "論語·泰伯第八",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "泰伯篇論學習的態度——永遠覺得學得不夠快，又怕忘掉已學的。",
+        "zh_cn": "泰伯篇论学习的态度——永远觉得学得不够快，又怕忘掉已学的。",
+        "en": "From the chapter of Taibo — on the attitude of learning: always feeling one cannot keep up, and fearing to lose what one has gained."
+      },
+      "translation": {
+        "zh_tw": "學習就像生怕趕不上似的，趕上了還怕丟掉。",
+        "zh_cn": "学习就像生怕赶不上似的，赶上了还怕丢掉。",
+        "en": "Learn as if you could not catch up, and as if you feared losing what you have gained."
+      },
+      "explanation": {
+        "zh_tw": "這不是焦慮，是對學問的珍惜與敬畏。求知者永遠有兩重心情：往前看，覺得學海無涯；往後看，怕學了又忘。正是這兩重心情，讓人不自滿、不懈怠。",
+        "zh_cn": "这不是焦虑，是对学问的珍惜与敬畏。求知者永远有两重心情：往前看，觉得学海无涯；往后看，怕学了又忘。正是这两重心情，让人不自满、不懈怠。",
+        "en": "This is not anxiety but reverence for learning. The seeker always feels two pulls: looking ahead, the sea of learning has no shore; looking back, one fears losing what one has gained. These two feelings keep one from complacency and slack."
+      },
+      "application": {
+        "zh_tw": "技術迭代飛快的時代，保持「學如不及」的飢渴感：定期更新知識，同時反覆鞏固基本功。自滿是學習最大的敵人。",
+        "zh_cn": "技术迭代飞快的时代，保持「学如不及」的饥渴感：定期更新知识，同时反复巩固基本功。自满是学习最大的敌人。",
+        "en": "In an age of rapid change, keep the hunger of “learning as if unable to catch up”: refresh knowledge regularly while consolidating fundamentals. Complacency is learning's greatest enemy."
+      }
+    },
+    {
+      "id": "wx-011",
+      "original": "子曰：「十室之邑，必有忠信如丘者焉，不如丘之好學也。」",
+      "source": "論語·公冶長第五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "孔子自評：忠信之質人人可與我相比，我勝人處只在好學。",
+        "zh_cn": "孔子自评：忠信之质人人可与我相比，我胜人处只在好学。",
+        "en": "Confucius's self-assessment: in loyalty and good faith others may equal me; my only edge is the love of learning."
+      },
+      "translation": {
+        "zh_tw": "即使是十戶人家的小地方，一定有像我一樣忠信的人，只是不如我好學罷了。",
+        "zh_cn": "即使是十户人家的小地方，一定有像我一样忠信的人，只是不如我好学罢了。",
+        "en": "In any hamlet of ten households, there must be those as loyal and true as I — only none loves learning as I do."
+      },
+      "explanation": {
+        "zh_tw": "孔子不誇自己聰明，只承認一件事：我好學。他把天賦看得平常，把努力看得珍貴——忠信是品性，好學是選擇；品性靠天生，選擇靠自己。",
+        "zh_cn": "孔子不夸自己聪明，只承认一件事：我好学。他把天赋看得平常，把努力看得珍贵——忠信是品性，好学是选择；品性靠天生，选择靠自己。",
+        "en": "Confucius does not claim brilliance, only one thing: his love of learning. He treats talent as ordinary and effort as precious — loyalty is disposition, love of learning is choice; disposition is given, choice is one's own."
+      },
+      "application": {
+        "zh_tw": "與其羨慕別人聰明，不如承認自己可以靠好學勝出。智商不是天花板，持續學習才是。",
+        "zh_cn": "与其羡慕别人聪明，不如承认自己可以靠好学胜出。智商不是天花板，持续学习才是。",
+        "en": "Rather than envying the clever, admit that love of learning is your edge. IQ is not the ceiling; sustained learning is."
+      }
+    },
+    {
+      "id": "wx-012",
+      "original": "子入太廟，每事問。或曰：「孰謂鄹人之子知禮乎？入太廟，每事問。」子聞之，曰：「是禮也。」",
+      "source": "論語·八佾第三",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "孔子入魯國太廟助祭，每件事都請教；有人譏笑他不懂禮，他回答：這正是禮。",
+        "zh_cn": "孔子入鲁国太庙助祭，每件事都请教；有人讥笑他不懂礼，他回答：这正是礼。",
+        "en": "When Confucius assisted at the Grand Temple of Lu, he asked about everything. Mocked for seeming ignorant of ritual, he replied: this asking is itself ritual."
+      },
+      "translation": {
+        "zh_tw": "孔子進入太廟，每件事都發問。有人說：「誰說鄹人的兒子懂得禮呀？他進太廟，每件事都要問。」孔子聽說了，說：「這就是禮呀。」",
+        "zh_cn": "孔子进入太庙，每件事都发问。有人说：「谁说陬人的儿子懂得礼呀？他进太庙，每件事都要问。」孔子听说了，说：「这就是礼呀。」",
+        "en": "When Confucius entered the Grand Temple, he asked about everything. Someone said, “Who says the son of the man from Zou understands ritual? He enters the temple and asks about everything.” Hearing this, Confucius said, “That asking is itself ritual.”"
+      },
+      "explanation": {
+        "zh_tw": "孔子並非不懂禮，而是以「每事問」示範真正的禮——謙遜、不恥下問、對禮的敬畏。不懂裝懂是失禮，肯問才是合禮。",
+        "zh_cn": "孔子并非不懂礼，而是以「每事问」示范真正的礼——谦逊、不耻下问、对礼的敬畏。不懂装懂是失礼，肯问才是合礼。",
+        "en": "Confucius was not ignorant of ritual; his asking modeled true ritual — humility, unashamed questioning, reverence for the rites. Pretending to know is the discourtesy; asking is the courtesy."
+      },
+      "application": {
+        "zh_tw": "到了新環境、新崗位，不懂就問，不是丟臉，是專業。怕被笑而裝懂，才是真的失禮失分。",
+        "zh_cn": "到了新环境、新岗位，不懂就问，不是丢脸，是专业。怕被笑而装懂，才是真的失礼失分。",
+        "en": "In a new role or environment, asking is not shameful — it is professional. Pretending to know for fear of ridicule is the real failure."
+      }
+    },
+    {
+      "id": "wx-013",
+      "original": "子夏曰：「日知其所亡，月無忘其所能，可謂好學也已矣。」",
+      "source": "論語·子張第十九",
+      "speaker": "子夏",
+      "audience": null,
+      "context": {
+        "zh_tw": "子夏論「好學」的具體標準：每天知道新東西，每月不忘記已學的。",
+        "zh_cn": "子夏论「好学」的具体标准：每天知道新东西，每月不忘记已学的。",
+        "en": "Zixia's concrete standard for the love of learning: each day gain what you did not know; each month do not forget what you have mastered."
+      },
+      "translation": {
+        "zh_tw": "每天知道一些自己原先不知道的，每月不忘記自己已經學會的，就可以稱得上好學了。",
+        "zh_cn": "每天知道一些自己原先不知道的，每月不忘记自己已经学会的，就可以称得上好学了。",
+        "en": "He who daily knows what he lacks, and monthly does not forget what he has mastered, may indeed be called fond of learning."
+      },
+      "explanation": {
+        "zh_tw": "子夏把「好學」落到兩個可檢驗的動作：日知所亡——每天有新收穫；月無忘——複習鞏固。一進一守，學習就有了節奏。",
+        "zh_cn": "子夏把「好学」落到两个可检验的动作：日知所亡——每天有新收获；月无忘——复习巩固。一进一守，学习就有了节奏。",
+        "en": "Zixia reduces “love of learning” to two testable habits: daily gain — new harvest every day; monthly retention — review and consolidation. Advance and consolidate: that is the rhythm of learning."
+      },
+      "application": {
+        "zh_tw": "給自己定兩個小目標：每天學一點新的，每週複習舊的。比「我要變強」這種空話有用一百倍。",
+        "zh_cn": "给自己定两个小目标：每天学一点新的，每周复习旧的。比「我要变强」这种空话有用一百倍。",
+        "en": "Set two small goals: learn something new daily, review something old weekly. Far more useful than vague resolves like “I will improve.”"
+      }
+    },
+    {
+      "id": "wx-014",
+      "original": "子曰：「譬如為山，未成一簣，止，吾止也。譬如平地，雖覆一簣，進，吾往也。」",
+      "source": "論語·子罕第九",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "子罕篇以堆山、填地為喻，論為學進退完全取決於自己。",
+        "zh_cn": "子罕篇以堆山、填地为喻，论为学进退完全取决于自己。",
+        "en": "From Zihan — the mound and the level ground as metaphors: in learning, advance and retreat are entirely one's own."
+      },
+      "translation": {
+        "zh_tw": "好比堆一座山，只差一筐土就完成了，卻停下來，那是我自己停的；好比在平地上填土，雖然才倒下一筐，只要往前，那也是我自己在往前走。",
+        "zh_cn": "好比堆一座山，只差一筐土就完成了，却停下来，那是我自己停的；好比在平地上填土，虽然才倒下一筐，只要往前，那也是我自己在往前走。",
+        "en": "Like building a mountain: one basket short of completion, and you stop — you stopped of yourself. Like leveling ground: one basket of earth cast down, and you go on — you went on of yourself."
+      },
+      "explanation": {
+        "zh_tw": "成敗的關鍵不在起點高低、進度多少，而在「止」與「往」都由自己決定。功虧一簣是自棄，平地起土是自強——為學如此，做事亦然。",
+        "zh_cn": "成败的关键不在起点高低、进度多少，而在「止」与「往」都由自己决定。功亏一篑是自弃，平地起土是自强——为学如此，做事亦然。",
+        "en": "Success depends not on where you start or how far you have come, but on the fact that stopping and going on are your own decisions. Quitting one basket short is self-abandonment; the first basket on level ground is self-strength — in learning as in all things."
+      },
+      "application": {
+        "zh_tw": "學到一半放棄，別怪環境、怪天賦——那是自己選擇停的。重新開始也不必等「準備好」，倒下一筐土就是進步。",
+        "zh_cn": "学到一半放弃，别怪环境、怪天赋——那是自己选择停的。重新开始也不必等「准备好」，倒下一筐土就是进步。",
+        "en": "If you quit halfway, do not blame circumstance or talent — stopping was your choice. Nor must you wait to be “ready” to restart; one basket cast is already progress."
+      }
+    }
+  ]
+}

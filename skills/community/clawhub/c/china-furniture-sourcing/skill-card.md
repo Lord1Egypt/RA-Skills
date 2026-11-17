@@ -1,42 +1,52 @@
-## Description: <br>
-Comprehensive furniture industry sourcing guide for international buyers - provides detailed information about China's residential, office, hotel, outdoor, and custom furniture manufacturing clusters, supply chain structure, regional specializations, and industry trends (2026 updated). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive furniture industry sourcing guide for international buyers that provides information about China's residential, office, hotel, outdoor, and custom furniture manufacturing clusters, supply chain structure, regional specializations, and 2026 industry trends.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1970168137](https://clawhub.ai/user/1970168137)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External buyers, sourcing teams, and agents use this skill to answer China furniture sourcing questions, compare manufacturing clusters, understand supply chain structure, and review supplier evaluation practices using bundled reference data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The bundled sourcing data is reference material and does not prove supplier quality, availability, pricing, compliance, or current market conditions.
+
+Mitigation: Treat outputs as starting points for due diligence and verify suppliers, certifications, terms, and market data through independent current sources before making sourcing decisions.
+
+Risk: The evidence does not include source URLs or live validation for the government, industry, and research sources summarized by the skill.
+
+Mitigation: Ask the agent to surface uncertainty and require human review when using the data for procurement, contracting, or compliance-sensitive decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's furniture manufacturing regions, supply chain structure, subsectors, supplier evaluation criteria, lead times, payment norms, and product certifications. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The server security guidance flags powerful maintainer-style workflows in the reviewed evidence. <br>
-Mitigation: Install only when those workflows are expected, use explicit targets, confirm account-impacting actions before execution, and use no-yolo review behavior when broad local access is not intended. <br>
-Risk: The skill provides sourcing intelligence and supplier-evaluation guidance that may become stale or incomplete for a specific purchasing decision. <br>
-Mitigation: Validate supplier claims, certificates, test reports, samples, factory audits, and pre-shipment inspection results before committing to a purchase. <br>
+**Output Format:** [Markdown or structured text responses based on local JSON lookup functions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [China Furniture Sourcing Skill](https://clawhub.ai/1970168137/china-furniture-sourcing) <br>
-- [MIIT, CNFA, National Bureau of Statistics, and industry research sources listed by the skill](artifact/SKILL.md) <br>
-- [Structured furniture sourcing data](artifact/data.json) <br>
+**Other Properties Related to Output:** [Uses bundled static data; no live supplier verification or source URL validation is evidenced.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or Python-returned structured dictionaries and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Natural language responses may summarize structured data from data.json; programmatic use returns Python dictionaries or lists.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

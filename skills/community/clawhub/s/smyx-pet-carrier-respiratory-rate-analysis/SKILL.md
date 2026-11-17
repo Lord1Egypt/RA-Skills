@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-carrier-respiratory-rate-analysis"
 description: "Triggers when a user provides a video of a pet inside an airline carrier/crate for analysis; supports local uploads or network URLs to call server-side APIs for respiratory rate monitoring, detecting chest/abdomen rise-fall cycles to calculate resting breathing frequency (breaths/min), and outputting an alert when the rate exceeds the safety threshold (>40 bpm), helping early detection of hypoxia, anxiety, or health abnormalities during pet air transport to reduce transport risks (without diagnosing diseases). Application scenarios: pet airline carriers, pet cargo transport, long-distance pet transport. | 当用户提供航空箱内宠物视频时，触发本技能进行呼吸频率监测分析；支持通过上传本地视频或网络视频URL，调用服务端API检测胸腹起伏运动，计算静息呼吸频率（次/分），超过安全阈值（>40次/分）时输出预警，帮助托运过程中早期发现缺氧、焦虑或健康异常，降低托运风险（不诊断疾病）。应用场景：宠物航空箱、宠物托运、宠物长途运输。"
-version: "1.0.2"
+version: "1.0.18"
 license: "MIT-0"
 ---
 

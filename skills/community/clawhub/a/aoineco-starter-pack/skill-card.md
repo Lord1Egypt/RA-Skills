@@ -1,39 +1,49 @@
-## Description: <br>
-Installs a curated AOI/Aoineco starter pack of ClawHub skills for security, stability, memory, and ops through the ClawHub CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs a curated AOI/Aoineco starter pack of ClawHub skills from edmonddantesj with minimal, core, and full bundle options.
 
-## Publisher: <br>
-[edmonddantesj](https://clawhub.ai/user/edmonddantesj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edmonddantesj](https://clawhub.ai/user/edmonddantesj)
 
-## Use Case: <br>
-External users and developers use this skill to install a beginner-friendly minimal, core, or full bundle of AOI/Aoineco ClawHub skills from a fixed list. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill bulk-installs multiple ClawHub skills from a fixed list. <br>
-Mitigation: Review the minimal, core, or full skill list before running the script, and choose the smallest bundle that fits the user's needs. <br>
-Risk: Install commands run under the currently authenticated ClawHub session. <br>
-Mitigation: Confirm `clawhub whoami` shows the intended account before running the installer. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill List](references/skill_list.md) <br>
+## Use Case:
 
+External users and developers use this skill to install a recommended bundle of AOI/Aoineco security, stability, memory, and operations skills through the ClawHub CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and PowerShell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installer scripts execute ClawHub CLI install commands for minimal, core, or full bundle modes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The pack non-interactively installs multiple mutable third-party skills into the user's ClawHub environment.
+
+Mitigation: Review the listed skills and publishers before installing, prefer pinned versions or verified publisher and digest information when available, and avoid full mode unless all 13 persistent skills are acceptable.
+
+## Reference(s):
+
+- [Curated skill list](references/skill_list.md)
+- [AOI Starter Pack ClawHub page](https://clawhub.ai/edmonddantesj/skills/aoineco-starter-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides install-mode choices for minimal, core, and full bundles.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

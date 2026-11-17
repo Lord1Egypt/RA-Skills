@@ -1,41 +1,57 @@
-## Description: <br>
-Automates DOI lookup and academic-library download workflows for books and articles using titles, DOIs, URLs, or reading lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates DOI extraction and academic library download workflows for books and articles using institutional access when authorized.
 
-## Publisher: <br>
-[neckr0ik](https://clawhub.ai/user/neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Students, researchers, and academic support agents use this skill to look up DOIs, process reading lists, and prepare library download attempts for scholarly books and articles. Users should only provide credentials and access content when they are authorized to do so. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to configure institutional library credentials. <br>
-Mitigation: Use only credentials you are authorized to use, avoid sharing them with untrusted runtimes, and review the publisher's credential-handling behavior before installation. <br>
-Risk: The advertised automation is incomplete and may still require manual download steps. <br>
-Mitigation: Treat results as assistance rather than guaranteed downloads, review any suggested source or file manually, and keep organization access-policy checks in the workflow. <br>
-Risk: External DOI lookup and library requests can reveal research interests. <br>
-Mitigation: Run the skill only in environments where those queries are acceptable and avoid submitting sensitive reading lists unless disclosure risk has been reviewed. <br>
+## Use Case:
 
+Developers and agents use this skill to configure and run academic download workflows, extract DOIs, and preserve citation metadata for materials they are authorized to access.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and text or JSON status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require Playwright, Python dependencies, institutional library configuration, and network access to DOI and library services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and claw.json) <br>
+Risk: The skill asks for institutional credentials and supports bulk academic access without enough safety boundaries or disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only accounts and materials the operator is authorized to access, follow applicable institutional and publisher terms, and review each automated workflow before running it.
+
+Risk: Library credentials may be exposed through shell history or shared execution environments.
+
+Mitigation: Use secure secret handling, avoid typing credentials directly into shared shells, and remove credentials from the environment after use.
+
+Risk: The Playwright/Node helper and unpinned dependency ranges increase review and supply-chain risk before automated downloads are trusted.
+
+Mitigation: Review the helper script, pin dependency versions, and run the downloader in an isolated environment before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-anne-library)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create downloaded files and metadata in a local output directory when run with authorized access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Place outbound phone calls via Mobayilo with safe defaults (preview mode by default) and explicit live execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place outbound phone calls via Mobayilo with safe defaults (preview mode by default) and explicit live execution.
 
-## Publisher: <br>
-[adusingi](https://clawhub.ai/user/adusingi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[adusingi](https://clawhub.ai/user/adusingi)
 
-## Use Case: <br>
-Developers and OpenClaw workflow operators use this skill to check Mobayilo readiness and place outbound calls for booking, confirmation, or follow-up workflows with dry-run defaults and explicit live execution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live execution can place real outbound calls using the user's Mobayilo account. <br>
-Mitigation: Keep dry-run mode for testing and enable MOBY_REQUIRE_APPROVAL=1 for workflows that may place real calls. <br>
-Risk: The skill depends on the external moby CLI installer or binary. <br>
-Mitigation: Verify the moby installer or use a pinned trusted binary before enabling workflows. <br>
-Risk: Local status logs and verification-script output can expose operational account or call details on shared hosts. <br>
-Mitigation: Protect local log files and delete or secure /tmp verification outputs on shared systems. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Mobayilo homepage](https://mobayilo.com) <br>
-- [Mobayilo Voice ClawHub listing](https://clawhub.ai/adusingi/mobayilo-voice) <br>
-- [Mobayilo Voice Adapter Runbook](docs/runbook.md) <br>
-- [Mobayilo Voice README](README.md) <br>
+## Use Case:
 
+Developers and workflow operators use this skill when an OpenClaw workflow needs a guarded outbound phone call step for booking, confirmation, or follow-up. It supports readiness checks, preview-mode call preparation, and explicitly enabled live calling.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Operator summary text, JSON payloads, and Markdown instructions with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is the default; live calls require explicit execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0-beta.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place real outbound phone calls when live execution is enabled.
+
+Mitigation: Keep preview mode as the default, require explicit --execute for live calls, and use approval gates when workflows need human confirmation.
+
+Risk: Installation and update guidance relies on trusted local code execution paths, including curl|sh and self-update behavior.
+
+Mitigation: Use pinned, verified Mobayilo CLI releases before production deployment.
+
+Risk: Status and telemetry handling may expose account details or operational metadata.
+
+Mitigation: Preserve phone-number masking and tighten logs and temporary files so account email, exact balances, and unrelated environment secrets are not unnecessarily exposed.
+
+## Reference(s):
+
+- [Mobayilo Voice ClawHub listing](https://clawhub.ai/adusingi/skills/mobayilo-voice)
+- [Mobayilo homepage](https://mobayilo.com)
+- [Mobayilo Voice README](README.md)
+- [Mobayilo Voice Adapter Runbook](docs/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Human-facing summaries, Markdown instructions, shell commands, and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preview mode is the default; live calls require explicit execution.]
+
+## Skill Version(s):
+
+0.2.0-beta.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

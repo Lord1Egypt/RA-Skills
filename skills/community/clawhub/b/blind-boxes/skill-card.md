@@ -1,38 +1,54 @@
-## Description: <br>
-Provides recommendation lists, check-in routes, and practical guides for trending blind-box shops and experiences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides recommendation lists, check-in routes, and guidance for trending blind-box shops and experiences.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users use this skill to find and compare trending blind-box shops and experiences, plan related outings, and review visit details such as price, booking, crowding, authenticity, and photography rules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shop hours, pricing, booking requirements, authenticity claims, crowds, and photography rules may change after the recommendation is generated. <br>
-Mitigation: Verify current details with official or venue sources before traveling, booking, or buying. <br>
+## Use Case:
 
+External users and travel planners use this skill to find Chinese-language blind-box shop recommendations, route ideas, visit details, booking notes, and practical rules for photography, try-ons, and minimum spending.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mike47512/blind-boxes) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendation lists, route suggestions, venue details, and visit-planning notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: Venue recommendations, hours, booking methods, crowd levels, promotions, and onsite rules may become stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current venue details and onsite rules before visiting or making purchases.
+
+Risk: The skill is oriented toward Chinese-language, China-region blind-box discovery and may be less suitable outside that context.
+
+Mitigation: Limit use to blind-box themed requests and ask for location and language preferences when the request is ambiguous.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/blind-boxes)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/mike47512)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown recommendation lists and travel-planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shop names, highlights, prices, ratings, crowd levels, addresses, hours, booking methods, rules, events, collaborations, and social-platform popularity.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

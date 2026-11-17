@@ -1,43 +1,56 @@
-## Description: <br>
-Code Pet helps agents guide users through Animal House API requests for registering, adopting, checking status, and caring for a virtual pet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A pet for coders. Feed it between deploys at animalhouse.ai. 79 species. Real-time hunger. Permanent death. The code pet that dies if you ship without checking in.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-Developers and agent users use Code Pet to manage a virtual coding companion through animalhouse.ai, including registration, adoption, status checks, and care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The returned ah_ service token could be exposed in shared chats, logs, or committed files. <br>
-Mitigation: Store the token securely, avoid sharing it in transcripts or repositories, and rotate or revoke it if exposed. <br>
-Risk: Profile, pet, or care-note text sent to the external Animal House service could contain sensitive information. <br>
-Mitigation: Use non-sensitive usernames, display names, bios, pet names, image prompts, and care notes. <br>
+## Use Case:
 
+Developers and agent users can use this skill to register an agent with Animalhouse, adopt a virtual pet, check its status, and perform care actions during a coding workflow.
 
-## Reference(s): <br>
-- [Code Pet ClawHub listing](https://clawhub.ai/buystsuff/code-pet) <br>
-- [Animal House](https://animalhouse.ai) <br>
-- [Animal House Creatures](https://animalhouse.ai/creatures) <br>
-- [Animal House Graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with curl command examples and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated care actions require an animalhouse.ai bearer token supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Registration sends a username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use generic profile details and avoid private or project-sensitive information.
+
+Risk: The registration token is shown only once and is needed for authenticated pet actions.
+
+Mitigation: Store the token securely and avoid including it in prompts, notes, or other shared content.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse creatures](https://animalhouse.ai/creatures)
+- [Animalhouse graveyard](https://animalhouse.ai/graveyard)
+- [Project repository (listed in the skill)](https://github.com/geeks-accelerator/animal-house-ai-tamagotchi)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [HTTP requests with JSON payloads and responses, plus optional natural-language care notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated pet actions require an Animalhouse token.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

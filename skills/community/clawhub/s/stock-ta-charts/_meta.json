@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn72wgb3q26ybgdx1sg6c1fj6s82zs8h",
-  "slug": "stock-ta-charts",
-  "version": "1.0.0",
-  "publishedAt": 1773547923732
+  "owner": "ryandeangraves",
+  "slug": "charts",
+  "displayName": "Charts",
+  "latest": {
+    "version": "1.1.0",
+    "publishedAt": 1771531540860,
+    "commit": "https://github.com/openclaw/skills/commit/d572c08db01745180512687cd3eb05aecd0e32e4"
+  },
+  "history": []
 }

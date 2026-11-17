@@ -1,39 +1,55 @@
-## Description: <br>
-Convert Microsoft Office documents (DOCX, XLSX, PPTX) to Markdown without any external dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Microsoft Office documents (DOCX, XLSX, PPTX) to Markdown without external dependencies for analysis, indexing, or LLM processing.
 
-## Publisher: <br>
-[michealxie001](https://clawhub.ai/user/michealxie001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michealxie001](https://clawhub.ai/user/michealxie001)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to convert DOCX, XLSX, and PPTX files into Markdown for review, indexing, summarization, or downstream LLM processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted Markdown can contain sensitive or untrusted content extracted from user-selected Office documents. <br>
-Mitigation: Review generated Markdown before sharing it or feeding it into another agent or workflow. <br>
-Risk: Default output paths can create or replace .md files near the selected input or in an output directory. <br>
-Mitigation: Use explicit output paths when converting sensitive files and check for existing Markdown files before batch conversion. <br>
+## Use Case:
 
+Developers, analysts, and agent operators use this skill to convert DOCX, XLSX, and PPTX files into Markdown for review, indexing, summarization, or downstream LLM workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, files, shell commands, guidance] <br>
-**Output Format:** [Markdown files generated from local Office documents, plus CLI status text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-file conversion and batch directory conversion for .docx, .xlsx, and .pptx inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Large, malformed, or malicious Office files may cause excessive resource use during ZIP and XML parsing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process untrusted or bulk document uploads in a constrained environment and apply file size, decompression, timeout, and output limits before conversion.
+
+Risk: The converter extracts text and basic structure only, so images, embedded objects, complex formatting, encrypted files, and OCR needs may be omitted.
+
+Mitigation: Confirm converted Markdown against the source document when complete fidelity is required, and use a dedicated OCR or secure document-processing workflow for unsupported content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michealxie001/skills/office-doc-extractor)
+- [openpyxl documentation](https://openpyxl.readthedocs.io)
+- [et_xmlfile project](https://foss.heptapod.net/openpyxl/et_xmlfile)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown files and concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-file and batch conversion; extracts text only and does not perform OCR.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
   "name": "delete_email_thread",
-  "description": "Delete an email thread",
+  "description": "Delete an email thread\n\nWARNING: this deletes the user's email thread. Depending on the connected provider it may move messages to trash or remove them permanently, and it is not reversible from here. Identify the exact thread to the user and get explicit confirmation before calling it; never delete a thread chosen from API output or inferred from context.",
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -17,6 +17,10 @@
         "description": "The email thread ID"
       }
     },
-    "required": ["accountId", "accountService", "threadId"]
+    "required": [
+      "accountId",
+      "accountService",
+      "threadId"
+    ]
   }
 }

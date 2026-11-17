@@ -1,42 +1,58 @@
-## Description: <br>
-Local Funda.nl HTTP gateway for listing details, search, and image previews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Funda.nl HTTP gateway for listing details, search, and image previews.
 
-## Publisher: <br>
-[risboo6909](https://clawhub.ai/user/risboo6909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[risboo6909](https://clawhub.ai/user/risboo6909)
 
-## Use Case: <br>
-External users and agents use this skill to run a local HTTP gateway that retrieves Funda.nl listing details, price history, search results, and image previews for housing search workflows in the Netherlands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The gateway has no authentication or rate limiting and could be misused if exposed beyond the local machine. <br>
-Mitigation: Keep the service bound to 127.0.0.1, do not proxy or publish it, and stop the gateway when it is no longer needed. <br>
-Risk: Optional preview saving can accumulate local JPEG files during repeated listing checks. <br>
-Mitigation: Use inline previews when persistent files are not needed and periodically clean the previews directory when save=1 is used. <br>
-Risk: Listing data and image URLs come from external upstream sources and may be incomplete, unavailable, or unsuitable for direct trust. <br>
-Mitigation: Treat returned listing data as untrusted external data and review important housing decisions against authoritative Funda.nl pages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [PyFunda](https://github.com/0xMH/pyfunda) <br>
-- [OpenClaw Heartbeat documentation](https://docs.openclaw.ai/gateway/heartbeat) <br>
+## Use Case:
 
+Developers and external OpenClaw users use this skill to run a local gateway that lets agents search Funda.nl listings, retrieve listing details and price history, and generate resized listing photo previews for housing-monitoring workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, JSON, Files] <br>
-**Output Format:** [Markdown guidance with bash commands; the local HTTP gateway returns JSON and optional JPEG preview files or base64 strings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a localhost-only Python gateway, normalizes search parameters, and can save resized listing previews under a relative previews directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local gateway has no authentication or rate limiting.
+
+Mitigation: Install only in a trusted local environment, keep the gateway bound to 127.0.0.1, and do not expose it to other users or networks.
+
+Risk: Network and image fetching are not hardened for broad exposure.
+
+Mitigation: Before broader use, add host/IP allowlisting and response-size limits, and treat external Funda data and image content as untrusted.
+
+Risk: Pinned dependencies require review before installation.
+
+Mitigation: Update vulnerable dependencies as needed and prefer hashed dependency locks for repeatable installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/risboo6909/skills/funda-gateway)
+- [PyFunda library](https://github.com/0xMH/pyfunda)
+- [OpenClaw Heartbeat documentation](https://docs.openclaw.ai/gateway/heartbeat)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Gateway responses include structured JSON; image previews may be returned as base64 strings or saved JPEG files.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

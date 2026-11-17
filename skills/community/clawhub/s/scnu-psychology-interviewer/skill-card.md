@@ -1,40 +1,50 @@
-## Description: <br>
-Simulate SCNU psychology postgraduate interviews with professional questions, English practice, research discussions, evaluations, and constructive feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simulates SCNU psychology postgraduate interviews with professional questions, English practice, research discussion, evaluations, and constructive feedback.
 
-## Publisher: <br>
-[youabo](https://clawhub.ai/user/youabo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youabo](https://clawhub.ai/user/youabo)
 
-## Use Case: <br>
-Students preparing for SCNU psychology postgraduate re-examination interviews use this skill as a study aid to practice professional, English, research, and career-planning questions and receive brief feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the mock interview for official SCNU admissions guidance. <br>
-Mitigation: Treat the skill as a study aid and verify admissions requirements with official SCNU sources. <br>
-Risk: Interview practice may invite users to share personal academic or admissions details. <br>
-Mitigation: Avoid sharing unnecessary personal or sensitive admissions information while practicing. <br>
+## Use Case:
 
+Students preparing for psychology postgraduate interviews at South China Normal University use this skill to practice realistic questioning, English interview responses, research discussion, and answer improvement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youabo/scnu-psychology-interviewer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with interview questions, evaluation, improvement suggestions, and follow-up prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Asks one question at a time and increases difficulty gradually.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Interview feedback may be mistaken for official SCNU admissions guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as simulated coaching and verify admissions expectations with official university sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youabo/skills/scnu-psychology-interviewer)
+- [Publisher profile](https://clawhub.ai/user/youabo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown interview prompts, evaluations, suggestions, and follow-up questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One question at a time with brief evaluation and gradually deeper follow-up.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

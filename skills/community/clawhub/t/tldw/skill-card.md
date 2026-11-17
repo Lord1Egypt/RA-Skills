@@ -1,44 +1,60 @@
-## Description: <br>
-Extracts YouTube video transcripts and provides concise summaries highlighting main points, arguments, and conclusions without watching the full video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts YouTube video transcripts and provides concise summaries highlighting main points, arguments, and conclusions without watching the full video.
 
-## Publisher: <br>
-[vovavvk](https://clawhub.ai/user/vovavvk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[vovavvk](https://clawhub.ai/user/vovavvk)
 
-## Use Case: <br>
-External users and developers use this skill to extract available YouTube captions and turn them into structured summaries of long videos. It is intended for quick review of educational, news, documentary, or reference videos without watching the full recording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Using browser cookies for restricted YouTube videos can expose an authenticated account session. <br>
-Mitigation: Prefer public YouTube videos without cookies. If cookies are used, treat the cookie file like a password, keep it out of shared folders and source control, and delete it after use. <br>
-Risk: The extractor disables certificate checks, which can make network interception harder to detect. <br>
-Mitigation: Avoid untrusted networks unless certificate checking is restored, especially when using cookies or other sensitive session material. <br>
-Risk: Videos without captions, restricted videos, or inaccurate auto-generated captions can produce missing or misleading summaries. <br>
-Mitigation: Use the summaries as a review aid, verify important claims against the source video, and inform users when captions are unavailable or extraction fails. <br>
+## Use Case:
 
+Users and agents use this skill when a YouTube URL needs to be summarized from available captions, especially for educational, news, documentary, or reference videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vovavvk/tldw) <br>
-- [Original TL;DW Project](https://github.com/stong/tldw) <br>
-- [TL;DW Website](https://tldw.tube) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with optional JSON transcript metadata from the extractor.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an available YouTube caption track; may use a local transcript cache and optional browser cookies for restricted videos.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Browser cookies can grant access to a YouTube account if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill with public videos when possible; if cookies are needed, avoid primary-account exports, store cookie files outside shared directories, and delete them after use.
+
+Risk: Part of the download flow disables TLS certificate verification.
+
+Mitigation: Fix certificate verification before using cookies or running the skill on untrusted networks.
+
+Risk: Caption text and video metadata are cached locally.
+
+Mitigation: Review and clear the cache when transcripts or metadata should not remain on disk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vovavvk/skills/tldw)
+- [Attribution](artifact/ATTRIBUTION.md)
+- [Original TL;DW project](https://github.com/stong/tldw)
+- [Original TL;DW website](https://tldw.tube)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown summaries with optional JSON transcript metadata and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces transcript-based summaries from YouTube captions; cached caption and metadata files may be created locally.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

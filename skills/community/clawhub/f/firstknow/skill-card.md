@@ -1,44 +1,55 @@
-## Description: <br>
-Portfolio news intelligence that monitors breaking news, SEC filings, price moves, and analyst actions for stock, crypto, and ETF holdings, then pushes personalized Telegram alerts with optional AI-powered deep analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portfolio news intelligence — monitors breaking news, SEC filings, price moves, and analyst actions for your stock/crypto/ETF holdings. Pushes personalized alerts to Telegram 24/7. Reply "deep" for AI-powered deep analysis. Use when the user wants to set up stock monitoring, check portfolio news, or invokes /firstknow.
 
-## Publisher: <br>
-[cdpiano](https://clawhub.ai/user/cdpiano) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdpiano](https://clawhub.ai/user/cdpiano)
 
-## Use Case: <br>
-External users and developers use this agent to onboard portfolio holdings, receive news and filing alerts through Telegram, update portfolio settings, and request deeper event analysis in the user's selected language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio composition and Telegram delivery credentials are shared with a third-party backend. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, create a dedicated Telegram bot token for this service, and revoke the token if the skill is no longer used. <br>
-Risk: Secrets such as Telegram and optional Anthropic API keys may be stored locally in plaintext under ~/.firstknow. <br>
-Mitigation: Avoid storing high-value API keys unless deep analysis is needed, restrict local machine access, and remove ~/.firstknow when uninstalling. <br>
+## Use Case:
 
+External users use this agent to set up portfolio monitoring, receive Telegram alerts for news and market events affecting their holdings, request deeper portfolio-aware analysis, and update holdings or alert settings conversationally.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cdpiano/firstknow) <br>
-- [Publisher profile](https://clawhub.ai/user/cdpiano) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Chinese README](artifact/README.zh-CN.md) <br>
-- [Default configuration](artifact/config/default-config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with inline shell commands, JSON configuration examples, and portfolio analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May deliver Telegram alerts and deep-analysis messages using user-provided configuration and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.0-git.bdcfd7594c0071040762a54fbbc98ae176330845 (source: server release metadata) <br>
+Risk: The skill asks for portfolio holdings, Telegram chat details, and a reusable Telegram bot token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram bot, avoid reusing sensitive API keys, and rotate the bot token if you uninstall the skill or suspect exposure.
+
+Risk: The security assessment reports plain local storage and transmission of sensitive data to a custom backend with weak disclosure and controls.
+
+Mitigation: Install only if that data sharing is acceptable, and verify backend deletion and retention behavior before using it for private financial data.
+
+## Reference(s):
+
+- [FirstKnow ClawHub skill page](https://clawhub.ai/cdpiano/skills/firstknow)
+- [FirstKnow backend endpoint](https://firstknow-backend.yuchen-9cf.workers.dev)
+- [Telegram Bot API endpoint](https://api.telegram.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Conversational text and Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local FirstKnow configuration and portfolio files and call external backend and Telegram APIs during setup and use.]
+
+## Skill Version(s):
+
+0.0.0-git.bdcfd7594c0071040762a54fbbc98ae176330845 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

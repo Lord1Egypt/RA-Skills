@@ -1,43 +1,54 @@
-## Description: <br>
-Helps compare takeout and food prices and coupons across Meituan, Ele.me, JD, Taobao, and related platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+外卖比价 helps agents compare takeout and food prices across Meituan, Ele.me, JD.com, Taobao, and related coupon sources, then generate an HTML comparison report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Consumers and shopping assistants use this skill to search multiple delivery and ecommerce platforms, compare estimated food or grocery prices, and identify available coupons before ordering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search-based prices, delivery fees, and coupons can be stale or vary by location, time, store, and user eligibility. <br>
-Mitigation: Confirm final totals and coupon terms in the relevant platform apps before purchasing. <br>
-Risk: The generated HTML report may load chart code from a CDN. <br>
-Mitigation: Open reports in a trusted environment, or review and replace the CDN dependency when offline or controlled execution is required. <br>
-Risk: The skill may activate on broad price-checking requests. <br>
-Mitigation: Confirm the product, city, and whether the user wants price comparison, coupons, or both before running searches. <br>
+## Use Case:
 
+Consumers and shopping assistants use this skill to collect recent price and coupon information for takeout or food products, compare platform totals, and produce a readable report for choosing an ordering option.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/waimai-compare) <br>
-- [Publisher profile](https://clawhub.ai/user/bettermen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with structured JSON inputs and a generated local HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The HTML report may load chart code from a CDN and should be treated as a local report for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The generated HTML report can run browser code from report content and a remote chart library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Open only reports generated from trusted search results, treat report contents as untrusted, and prefer a reviewed version that escapes all report data and pins or bundles the chart library.
+
+Risk: Search-derived prices and coupons can be stale or location dependent.
+
+Mitigation: Use the report as a planning aid and verify final prices, delivery fees, coupon terms, and availability inside each platform app before ordering.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/waimai-compare)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with structured JSON data and a generated HTML report file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports should be treated as untrusted local HTML and checked against current platform prices before purchase decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

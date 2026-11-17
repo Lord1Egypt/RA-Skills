@@ -1,40 +1,52 @@
-## Description: <br>
-Datayes Web Search uses the Datayes gptMaterials/v2 API to run structured semantic searches across news, research reports, announcements, meeting summaries, and indicator background materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs structured semantic searches against the Datayes gptMaterials/v2 API for news, research reports, announcements, meeting summaries, industry updates, and indicator background materials.
 
-## Publisher: <br>
-[datayes](https://clawhub.ai/user/datayes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[datayes](https://clawhub.ai/user/datayes)
 
-## Use Case: <br>
-Agents and users who need current Datayes-indexed financial or industry materials use this skill to query news, research reports, announcements, meeting summaries, and indicators through a Python helper with a Datayes token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Datayes skill page](https://clawhub.ai/datayes/datayes-web-search) <br>
-- [Datayes token login](https://r.datayes.com/auth/login) <br>
-- [Datayes gptMaterials/v2 API endpoint](https://gw.datayes.com/aladdin_info/web/gptMaterials/v2) <br>
-- [Datayes API metadata endpoint](https://gw.datayes.com/aladdin_llm_mgmt/web/mgr/api) <br>
+Developers and analysts use this skill to retrieve Datayes search results for current news, sell-side research, official announcements, meeting summaries, and macro or industry indicator material through a token-authenticated Python helper.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; script output is raw JSON arrays.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and DATAYES_TOKEN. The skill sends queries and the token to Datayes endpoints and prints raw API JSON results, so avoid sensitive query terms or returned data in untrusted chats or logs.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Redirect handling could leak the Datayes bearer token outside the intended Datayes host allowlist.
+
+Mitigation: Review before installation; use a revocable least-privilege Datayes token, avoid highly sensitive queries, and prefer a version that disables redirects or revalidates every redirect before sending Authorization headers.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/datayes/skills/datayes-web-search)
+- [Datayes Authentication](https://r.datayes.com/auth/login)
+- [Datayes API Metadata Endpoint](https://gw.datayes.com/aladdin_llm_mgmt/web/mgr/api)
+- [Datayes gptMaterials v2 Endpoint](https://gw.datayes.com/aladdin_info/web/gptMaterials/v2)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Raw JSON arrays from the API, with Markdown usage guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DATAYES_TOKEN and python3; search results default to 15 items and are capped at 50 items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

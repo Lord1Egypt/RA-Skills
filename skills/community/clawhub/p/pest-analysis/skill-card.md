@@ -1,38 +1,53 @@
-## Description: <br>
-Analyze macro-environmental factors affecting an industry or company. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze macro-environmental factors affecting an industry or company as a precursor to strategic analysis, market entry assessment, or scenario planning.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Strategy, market, and business planning users use this skill to structure PEST or PESTLE analysis for an industry, company, market entry decision, or scenario-planning exercise. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Macro-environmental, legal, political, and market facts can change quickly or vary by jurisdiction. <br>
-Mitigation: Verify important claims with current sources before relying on the output for business decisions. <br>
+## Use Case:
 
+Strategy, product, market, and planning teams use this skill to structure PEST or PESTLE analysis for a company, industry, market entry, or scenario-planning question.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/pest-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with overview text, factor tables, implications, priority factors, and strategic recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can extend the core PEST analysis with Legal and Environmental factors for PESTLE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad business phrases may trigger the skill when a user only meant to discuss external factors generally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it for deliberate PEST, PESTLE, macro-environment, market-entry, or scenario-planning analysis requests.
+
+Risk: Strategic recommendations can become outdated as macro-environmental conditions change.
+
+Mitigation: Review the analysis against current political, economic, social, and technological evidence before relying on it for decisions.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/linuszz/skills/pest-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured PEST tables with impact, probability, priority, implications, and strategic recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

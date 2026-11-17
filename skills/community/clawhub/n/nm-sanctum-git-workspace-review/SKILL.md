@@ -2,27 +2,27 @@
 name: git-workspace-review
 description: |
   Verifies workspace state and staged changes as a read-only preflight. Use before commits or PRs to confirm staged set is clean and correct
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - preflight
   - status
   - diff
   - staged
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:shared"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Git Workspace Review
 
-## Table of Contents
+## When NOT To Use
 
-1. [Usage](#usage)
-2. [Required Progress Tracking](#required-progress-tracking)
+- Writing the commit message (use `sanctum:commit-messages`)
+- Running the full pre-PR gate (use `sanctum:pr-prep`)
 
 ## Verification
 
@@ -56,7 +56,18 @@ Analyze the `git status -sb` output for staged and unstaged changes. Stage or un
 
 ## Step 3: Check Code Quality (`code-quality-check`)
 
-Run `make format && make lint` to validate code quality before committing. Fix any errors immediately. Do not bypass pre-commit hooks with `--no-verify`. This check identifies issues early and avoids late-stage pipeline failures.
+Run `make lint` from the repository root to validate code quality
+before committing. It checks ruff format, runs the per-plugin ruff
+check, and runs bandit. It rewrites nothing: a check that edits the
+tree cannot report the diff it was asked to find. When it fails it
+names `make fix`, which is the mutating pair (`ruff format` plus
+`ruff check --fix`). The root Makefile defines no `format` target, and
+the plugin Makefiles that define one only apply inside their own
+directory.
+
+Fix any errors immediately. Do not bypass pre-commit hooks with
+`--no-verify`. This check identifies issues early and avoids
+late-stage pipeline failures.
 
 ## Step 4: Review Diff Statistics (`diff-stat`)
 
@@ -77,7 +88,15 @@ Run `git diff --cached` to examine the actual changes. For unstaged work, use `g
 
 ## Exit Criteria
 
-Complete all progress tracking items. You should have a clear understanding of modified files and areas, and the correct work should be staged. Subsequent workflows can then rely on this context without re-executing git commands.
+Downstream workflows rely on this context without re-running git.
+
+- [ ] The branch name and upstream are recorded from `git status -sb`
+- [ ] `git diff --cached --stat` lists exactly the files intended for
+  the next commit, with nothing intended left unstaged
+- [ ] `make lint` exits 0, or each failure it reports is fixed or
+  named to the user
+- [ ] The key themes of the staged diff are written down for the
+  summary that follows
 
 ## Supporting Modules
 
@@ -85,4 +104,7 @@ Complete all progress tracking items. You should have a clear understanding of m
 
 ## Troubleshooting
 
-If pre-commit hooks block a commit, resolve the reported issues instead of using `--no-verify`. Run `make format` to fix styling errors automatically and use `make lint` to isolate logical failures. If merge conflicts occur, use `git merge --abort` to return to a clean state before retrying.
+If pre-commit hooks block a commit, resolve the reported issues instead
+of using `--no-verify`. `make lint` fixes styling automatically and
+surfaces the logical failures that remain. If merge conflicts occur, use
+`git merge --abort` to return to a clean state before retrying.

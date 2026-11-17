@@ -1,40 +1,54 @@
-## Description: <br>
-Consolidates Agentic SWMM run artifacts into auditable provenance, comparison records, and local Obsidian audit notes for SWMM build, run, or QA attempts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Consolidate Agentic SWMM run artifacts into auditable provenance, comparison records, and local Obsidian audit notes.
 
-## Publisher: <br>
-[zhonghao1995](https://clawhub.ai/user/zhonghao1995) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhonghao1995](https://clawhub.ai/user/zhonghao1995)
 
-## Use Case: <br>
-Developers, researchers, and engineers use this skill after Agentic SWMM runs to create traceable audit records, compare runs, and generate Obsidian-readable notes from existing run artifacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit workflow may run Python code from sibling Agentic SWMM skill folders. <br>
-Mitigation: Install only from a trusted Agentic SWMM repository and review sibling helper scripts before auditing sensitive projects. <br>
-Risk: The direct script can copy audit notes into a default home-directory Obsidian vault. <br>
-Mitigation: Use the canonical audit path or pass --no-obsidian when local note export is not intended. <br>
+## Use Case:
 
+Developers and engineers use this skill after Agentic SWMM build, run, or QA attempts to consolidate manifests, logs, metrics, artifact paths, QA checks, and optional run-to-run comparisons into auditable records for reproducibility and review.
 
-## Reference(s): <br>
-- [Agentic SWMM project](https://github.com/Zhonghao1995/agentic-swmm-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON/Markdown file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces experiment_provenance.json, experiment_note.md, model_diagnostics.json, and optional comparison.json in the run audit directory; Obsidian export can be disabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.7.3 (source: server release metadata) <br>
+Risk: Direct script mode can write audit notes outside the run directory to a local Obsidian vault by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the canonical aiswmm audit command without --obsidian, or pass --no-obsidian to the direct script, unless vault updates are explicitly intended.
+
+Risk: The audit script can execute adjacent repository helper modules when certain water-quality or uncertainty artifacts are present.
+
+Mitigation: Run the skill only in a trusted Agentic SWMM repository and inspect adjacent helper code before auditing untrusted artifacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhonghao1995/skills/swmm-experiment-audit)
+- [Agentic SWMM project](https://github.com/Zhonghao1995/agentic-swmm-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes, JSON audit records, and CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes experiment_provenance.json, experiment_note.md, model_diagnostics.json, and comparison.json under a run audit directory; direct script mode can also copy notes to a local Obsidian vault unless disabled.]
+
+## Skill Version(s):
+
+0.7.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

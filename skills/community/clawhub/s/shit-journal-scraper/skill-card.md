@@ -1,41 +1,54 @@
-## Description: <br>
-Automates extraction and AI-assisted analysis of research papers from shitjournal.org, including titles, abstracts, DOI values, and publication dates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates extraction of research paper metadata from shitjournal.org and supports AI-assisted abstract analysis.
 
-## Publisher: <br>
-[Excalibur9527](https://clawhub.ai/user/Excalibur9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[excalibur9527](https://clawhub.ai/user/excalibur9527)
 
-## Use Case: <br>
-Developers and researchers use this skill to collect publicly available Shit Journal article metadata and summarize abstracts for knowledge-management or analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses a target website and may send scraped page content to an AI service for analysis. <br>
-Mitigation: Use it only on pages you are permitted to process, and avoid private, confidential, or consent-sensitive content unless the data-sharing path is approved. <br>
-Risk: Headless browser automation and scraping can trigger site policy, availability, or network-control concerns. <br>
-Mitigation: Review the target site's terms and run the skill in an environment with appropriate dependency review and network controls. <br>
+## Use Case:
 
+Developers and researchers can use this skill to scrape article titles, abstracts, DOI values, and publication information from shitjournal.org for downstream review or knowledge workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Excalibur9527/shit-journal-scraper) <br>
-- [Shit Journal](https://shitjournal.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Console text with JSON-ready article records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs scraped article titles, abstracts, DOI values, and analysis-oriented summaries; requires network access to the target website and Playwright Chromium dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill relies on npm browser automation dependencies that may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin npm dependencies with a lockfile before installing or deploying the skill.
+
+Risk: Future LLM-analysis behavior may send scraped abstracts to a model provider.
+
+Mitigation: Confirm model-provider configuration and data handling expectations before enabling LLM analysis.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/excalibur9527/skills/shit-journal-scraper)
+- [shitjournal.org](https://shitjournal.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and console text, with scraped article records suitable for JSON workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses browser automation to render the target site before extracting article metadata.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

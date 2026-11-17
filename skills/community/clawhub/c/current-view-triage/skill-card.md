@@ -1,50 +1,60 @@
-## Description: <br>
-Turn one Campus Copilot snapshot or MCP-backed current view into a plain-language what-to-do-first answer for a student. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn one Campus Copilot snapshot or MCP-backed current view into a plain-language what-to-do-first answer for a student.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Students, operators, and agent hosts use this skill to turn a Campus Copilot snapshot or read-only current view into one concrete next action with cited evidence and explicit trust gaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic snapshot data may contain sensitive student information visible to the agent. <br>
-Mitigation: Provide only snapshot or current-view data the student or operator is comfortable letting the agent read. <br>
-Risk: Exporting a snapshot artifact creates a saved copy of the current-view evidence. <br>
-Mitigation: Use export only when a saved proof artifact is needed and review where the artifact will be stored or shared. <br>
-Risk: The optional Campus Copilot MCP setup runs a separate pnpm-based third-party project locally. <br>
-Mitigation: Review the external MCP project and local configuration before launching it. <br>
+## Use Case:
 
+Students, student-support agents, and developers use this skill to turn a Campus Copilot snapshot or read-only MCP current view into one prioritized next action with supporting evidence and trust gaps.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/xiaojiou176/current-view-triage) <br>
-- [Campus Copilot Capability Map](references/CAPABILITIES.md) <br>
-- [Campus Copilot MCP Setup](references/INSTALL.md) <br>
-- [OpenHands / OpenClaw Demo Walkthrough](references/DEMO.md) <br>
-- [Campus Copilot Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Current View Input Shape](references/input-shape.md) <br>
-- [Example Output](references/example-output.md) <br>
-- [OpenHands MCP Configuration](references/OPENHANDS_MCP_CONFIG.json) <br>
-- [OpenClaw MCP Configuration](references/OPENCLAW_MCP_CONFIG.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain-language Markdown with top_action, why_now, evidence_used, and trust_gaps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only, snapshot-scoped triage; does not claim live browser or session truth from snapshot-only evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup may execute unpinned external Campus Copilot MCP code without integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned reviewed commit or signed release, verify checksums, use a frozen lockfile, and run the MCP server with a dedicated low-privilege account or sandbox.
+
+Risk: Snapshot-only inputs can produce stale or incomplete triage if treated as live browser truth.
+
+Mitigation: Keep outputs explicitly snapshot-scoped, cite the Focus Queue or snapshot surface used, and include trust gaps when live state is unavailable.
+
+## Reference(s):
+
+- [ClawHub Current View Triage Listing](https://clawhub.ai/xiaojiou176/skills/current-view-triage)
+- [Campus Copilot MCP Setup](references/INSTALL.md)
+- [Campus Copilot Capability Map](references/CAPABILITIES.md)
+- [Current View Input Shape](references/input-shape.md)
+- [OpenHands / OpenClaw Demo Walkthrough](references/DEMO.md)
+- [Campus Copilot Troubleshooting](references/TROUBLESHOOTING.md)
+- [Campus Copilot Repository](https://github.com/xiaojiou176-open/campus-copilot.git)
+- [Campus Copilot MCP Bundle Release Asset](https://github.com/xiaojiou176-open/campus-copilot/releases/download/v0.1.0/campus-copilot-mcp-0.1.0.mcpb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain-language Markdown with top_action, why_now, evidence_used, and trust_gaps fields.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only and snapshot-scoped; it should not claim live browser or session truth from snapshot-only evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

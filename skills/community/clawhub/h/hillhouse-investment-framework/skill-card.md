@@ -1,44 +1,67 @@
-## Description: <br>
-基于高瓴资本投资哲学和案例，提供创始人评估、护城河分析、长期价值判断及投资决策审视的框架和思维指导。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于高瓴资本和张磊公开投资哲学、案例和访谈材料，提供创始人评估、护城河分析、长期价值判断和投资决策审视的中文思维框架。
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Investors, founders, and analysts use this skill to examine investment questions through a Hillhouse-style long-term value framework, including founder quality, business fundamentals, moat durability, risk-reward, and post-investment value creation. It is a thinking aid for investment analysis, not official Hillhouse guidance or personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can activate on broad investing terms and frame ordinary finance discussions through a specific Hillhouse-style perspective. <br>
-Mitigation: Use it only when that perspective is desired, and review whether the framing fits the user's actual investment question. <br>
-Risk: Users may mistake the generated analysis for official Hillhouse advice or personalized financial advice. <br>
-Mitigation: Clearly treat the output as a public-information-based reasoning framework and pair it with professional due diligence before making investment decisions. <br>
+## Use Case:
 
+Investors, founders, and analysts use this Chinese-language skill to examine companies, founders, moats, long-term value, and investment decisions through a Hillhouse-style investment framework. It supports structured analysis and review, not licensed financial advice or professional due diligence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/hillhouse-investment-framework) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [analysis-summary.md](artifact/analysis-summary.md) <br>
-- [redwood-comparison.md](artifact/redwood-comparison.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with checklists, scoring rubrics, comparison tables, and investment-analysis prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as a structured decision-support perspective, not financial, legal, or official Hillhouse advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill may activate on broad investment terms and frame unrelated finance discussions through a Hillhouse-style lens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants this framework, and switch language or analytical framework when requested.
+
+Risk: Users could mistake framework-based analysis for licensed financial advice.
+
+Mitigation: Present outputs as decision-support analysis only, and direct users to qualified professionals for investment recommendations, due diligence, or regulated advice.
+
+Risk: Server-resolved import provenance is unavailable for this release.
+
+Mitigation: Rely on the packaged artifact files and server evidence for review, and avoid claiming GitHub or upstream provenance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/hillhouse-investment-framework)
+- [Core skill definition](artifact/SKILL.md)
+- [README](artifact/README.md)
+- [Analysis summary](artifact/analysis-summary.md)
+- [Investment methodology](artifact/01-methodology.md)
+- [Partner interviews and statements](artifact/02-partner-interviews.md)
+- [Official voice](artifact/03-official-voice.md)
+- [External views](artifact/04-external-views.md)
+- [Decision cases](artifact/05-decision-cases.md)
+- [History timeline](artifact/06-history-timeline.md)
+- [Redwood comparison](artifact/redwood-comparison.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis]
+
+**Output Format:** [Markdown prose with structured checklists, comparison tables, and scoring rubrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language investment framework responses; no code execution or data-access behavior]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

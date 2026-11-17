@@ -1,39 +1,60 @@
-## Description: <br>
-Develop custom Telegram and Discord bots with trading, gaming, automation, webhook integration, notification, and engagement analytics guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Develop custom Telegram and Discord bots with trading, gaming, automation, webhook integration, and engagement analytics guidance.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-Developers and operators use this skill to scope Telegram or Discord bot projects, choose features, discuss implementation approach, and prepare delivery estimates for automation, trading, gaming, utility, notification, or analytics bots. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrasing may trigger the skill when a user casually asks about making a bot. <br>
-Mitigation: Confirm the user's intent and target platform before giving implementation, pricing, or delivery guidance. <br>
-Risk: Bots built from the guidance may process analytics, user behavior data, bot tokens, trading features, or public posting permissions. <br>
-Mitigation: Require explicit user consent, protect secrets, and review any generated bot code or configuration before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Katrina-jpg/telegram-discord-bot-dev) <br>
+## Use Case:
 
+Developers and bot builders use this skill to scope and plan Telegram or Discord bots, including feature selection, API or webhook integration, automation, analytics, pricing, and delivery timeline guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional code, shell commands, and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include feature scoping questions, implementation recommendations, pricing ranges, timelines, and bot integration considerations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Mutable installation commands can install a newer package than the reviewed release.
+
+Mitigation: Verify the ClawHub package source before installing and prefer a pinned installer version where available.
+
+Risk: Telegram or Discord bot tokens and webhook secrets can grant account or server access if exposed.
+
+Mitigation: Store tokens securely, avoid placing secrets in chat transcripts or source-controlled files, and rotate credentials after suspected exposure.
+
+Risk: Engagement analytics can collect user behavior data without clear consent or retention limits.
+
+Mitigation: Minimize analytics data, obtain appropriate user consent, set retention limits, and follow applicable platform rules.
+
+Risk: Automated bot messaging can violate platform anti-spam or messaging policies.
+
+Mitigation: Review Telegram and Discord platform rules before deployment and add rate limits and opt-out controls where appropriate.
+
+## Reference(s):
+
+- [Telegram Discord Bot Dev on ClawHub](https://clawhub.ai/katrina-jpg/skills/telegram-discord-bot-dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with plain-language guidance and inline command or code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bot feature recommendations, integration steps, pricing ranges, and development timelines.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

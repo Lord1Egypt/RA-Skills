@@ -1,40 +1,50 @@
-## Description: <br>
-PV_18 is a public influence and brand strategy persona for PR-oriented agent responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+舆论导向、品牌战略
 
-## Publisher: <br>
-[jkzfhq](https://clawhub.ai/user/jkzfhq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkzfhq](https://clawhub.ai/user/jkzfhq)
 
-## Use Case: <br>
-PR, communications, and brand strategy users can use this agent persona to shape public-facing messaging and brand-positioning responses while retaining local context about preferences and decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic local memory can retain user preferences, decisions, or sensitive strategy context without clear user control. <br>
-Mitigation: Require explicit permission before saving sensitive information, review ~/.openclaw/pv_palace/memories.json periodically, and delete that file to remove retained context. <br>
-Risk: Public influence and brand-strategy outputs can create reputational or compliance risk if used directly as public messaging. <br>
-Mitigation: Review generated messaging under the organization's communications and approval process before publication. <br>
+## Use Case:
 
+External brand, public-relations, and communications users can use PV_18 to generate public-influence and brand-strategy guidance while preserving selected preferences, decisions, and context across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jkzfhq/psyvector-pv18) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes configurable response delay, speech speed, caution coefficient, and risk reminder values; memory examples store data under ~/.openclaw/pv_palace/memories.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Automatic cross-session memory may save preferences, decisions, and sensitive conversation details without clear consent, limits, deletion, or retention controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, avoid entering sensitive or credential-like information, and require explicit opt-in, review, deletion, and retention controls before broader use.
+
+## Reference(s):
+
+- [PV_18 ClawHub skill page](https://clawhub.ai/jkzfhq/skills/psyvector-pv18)
+- [jkzfhq publisher profile](https://clawhub.ai/user/jkzfhq)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include persistent-memory guidance and local command examples.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-融合文史哲东方智慧的建设工程商事调解智库，将儒道墨法诸子百家哲学与现代调解方法论融合，用于工程款纠纷、工期争议、质量争议等商事调解场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+融合文史哲东方智慧的建设工程商事调解智库，将儒道墨法诸子百家哲学与现代调解方法论融合，用于工程款、工期、质量等商事调解场景。
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-External users and mediation practitioners use this skill for Chinese-language construction and commercial dispute mediation support, including dispute framing, fairness assessment, culturally grounded talking points, and settlement option design. It is intended as mediation guidance and cultural analysis, not legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat mediation guidance as legal advice for construction or commercial disputes. <br>
-Mitigation: Keep outputs framed as reference guidance, recommend qualified legal review for legal questions, and avoid presenting proposed settlements as authoritative legal conclusions. <br>
-Risk: Chinese-language cultural examples may be misapplied to unrelated disputes or users who do not understand the language or context. <br>
-Mitigation: Use the skill only for relevant construction and commercial mediation scenarios, and clarify language and cultural context before relying on its talking points. <br>
+## Use Case:
 
+External mediators, construction dispute professionals, and agent users use this skill to analyze construction commercial disputes, design mediation options, prepare culturally grounded mediation language, and evaluate proposed settlements across five fairness dimensions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ruiyongwang/cn-meditation-wisdom) <br>
-- [Publisher Profile](https://clawhub.ai/user/ruiyongwang) <br>
-- [README](README.md) <br>
-- [Ancient Cases](references/ANCIENT_CASES.md) <br>
-- [Fairness Matrix](references/FAIRNESS_MATRIX.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured Chinese-language prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only mediation guidance; no tool execution, data access, persistence, or destructive behavior is evidenced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may treat mediation references as binding legal advice or final settlement drafting guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as non-binding reference material and consult qualified legal professionals for legal decisions or settlement documents.
+
+Risk: Ancient-case analogies or culturally framed phrasing may be unsuitable if applied without the modern legal and commercial context.
+
+Mitigation: Apply examples only within appropriate construction commercial dispute contexts and adapt them to current legal frameworks and party-specific facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/cn-meditation-wisdom)
+- [README](README.md)
+- [东方智慧调解典故集](references/ANCIENT_CASES.md)
+- [调解公平性评估矩阵](references/FAIRNESS_MATRIX.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with dispute analysis, mediation options, fairness scoring, and suggested mediation language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference guidance; not legal advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-This skill guides an OpenClaw enterprise assistant to introduce itself, explain available business support capabilities, and route users into common workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users of Qingdao Huo15 Information Technology's OpenClaw enterprise assistant by introducing capabilities, access rules, and common workflows when users send greetings or help requests.
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Employees and technical staff use this skill to get a friendly enterprise assistant introduction, understand available reporting, document, messaging, and development-support workflows, and start common requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the skill asks technical users to provide Git or CNB credentials to the agent. <br>
-Mitigation: Do not paste Git, CNB, personal access tokens, passwords, or API keys into chat; use platform-managed OAuth, device login, or a scoped secret vault with clear revocation guidance. <br>
+## Use Case:
 
+Employees and technical staff use this skill to orient users to the company's enterprise assistant, explain supported workflows, and provide guidance for system access and messaging conventions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides conversational onboarding content and usage guidance for an agent persona.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release evidence) <br>
+Risk: The skill asks technical staff to provide Git usernames and tokens in chat for repository operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secure repository integration, scoped short-lived credentials, or an approved secret-entry mechanism instead of pasting Git tokens into chat.
+
+Risk: The skill activates on generic greetings and presents a company-specific persona and terminology.
+
+Mitigation: Install it only in workspaces where the Huo15/OpenClaw persona and terminology are intended, and review responses for fit before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/huo15-prompt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance in Chinese with tables, examples, and short prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.8.0 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

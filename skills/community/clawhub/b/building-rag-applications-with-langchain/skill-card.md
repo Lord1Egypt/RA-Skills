@@ -1,38 +1,54 @@
-## Description: <br>
-Provides a concise learning guide for building Retrieval-Augmented Generation applications with LangChain, Python, and FAISS vector stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through building basic Retrieval-Augmented Generation applications with LangChain, Python, and FAISS.
 
-## Publisher: <br>
-[Robinyves](https://clawhub.ai/user/Robinyves) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robinyves](https://clawhub.ai/user/robinyves)
 
-## Use Case: <br>
-Developers use this skill as a quick reference for building LangChain-based RAG applications with FAISS-backed retrieval and RetrievalQA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample code and dependency guidance are incomplete tutorial material. <br>
-Mitigation: Review and choose current LangChain, FAISS, and model-provider packages before installing dependencies or running code in a real project. <br>
+## Use Case:
 
+Developers and technical learners use this skill for concise guidance and sample code when prototyping Retrieval-Augmented Generation applications with LangChain and FAISS.
 
-## Reference(s): <br>
-- [Source material](https://towardsdatascience.com/rag-langchain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes illustrative Python snippets; no executable hooks or generated files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and artifact metadata) <br>
+Risk: LangChain package names and APIs may differ from the illustrative examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current LangChain and FAISS installation names, imports, and APIs before using the guidance in a real project.
+
+Risk: The sample code assumes existing LLM and vector store objects and does not provide a complete production RAG pipeline.
+
+Mitigation: Treat the example as a learning reference and add project-specific setup, retrieval evaluation, error handling, and security review before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/robinyves/skills/building-rag-applications-with-langchain)
+- [Source URL Listed in Artifact Metadata](https://towardsdatascience.com/rag-langchain)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown with Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Illustrative examples; verify current LangChain package names and APIs before using them in a real project.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

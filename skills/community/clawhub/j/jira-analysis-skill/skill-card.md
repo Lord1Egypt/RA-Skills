@@ -1,43 +1,61 @@
-## Description: <br>
-Pulls Bug data from Jira Server/Data Center, analyzes trends, priority, severity, components, resolution time, workload, aging, and labels, then helps generate an interactive self-contained HTML report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从 Jira Server/DC 拉取 Bug 数据，进行全面的 AI 分析，并生成交互式 HTML 报表。
 
-## Publisher: <br>
-[cntesters](https://clawhub.ai/user/cntesters) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cntesters](https://clawhub.ai/user/cntesters)
 
-## Use Case: <br>
-Developers, QA engineers, and engineering managers use this skill to collect Jira Bug data, review defect trends and workload indicators, and produce an interactive HTML report for project quality analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Jira credentials and can read internal project issue data. <br>
-Mitigation: Use a least-privilege Personal Access Token scoped to the required project and avoid passing secrets directly in reusable shell history. <br>
-Risk: Disabling TLS verification can expose credentials and Jira data in transit. <br>
-Mitigation: Keep TLS verification enabled and use --no-verify only for controlled internal troubleshooting when the connection path is trusted. <br>
-Risk: Generated HTML and Excel reports can contain confidential issue summaries, assignees, reporters, labels, and timing data. <br>
-Mitigation: Store and share generated reports only in approved confidential locations with access limited to the intended project audience. <br>
+## Use Case:
 
+Developers, QA engineers, and project teams use this skill to collect Jira Server/Data Center bug data, analyze backlog and resolution patterns, and generate an interactive HTML report for bug metrics and recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cntesters/jira-analysis-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/cntesters) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Analysis, HTML, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, structured JSON from the Jira fetch script, and a self-contained HTML report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Jira credentials and project access; generated reports can contain confidential issue data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles Jira credentials while retrieving issue data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived, read-only Jira PAT scoped to the specific project and avoid username/password authentication.
+
+Risk: Disabling TLS verification can expose Jira credentials and issue data to interception.
+
+Mitigation: Avoid --no-verify and curl -k unless the user explicitly accepts that risk for a trusted network.
+
+Risk: Generated HTML and XLS exports can contain sensitive internal Jira issue details.
+
+Mitigation: Treat generated reports and exports as sensitive internal files and share them only through approved channels.
+
+Risk: Dependency installation uses an unpinned requests dependency.
+
+Mitigation: Install dependencies in an isolated environment and pin reviewed versions when operationalizing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cntesters/skills/jira-analysis-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON data handling, and self-contained HTML report code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local HTML report and optional Excel XML export based on Jira issue data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

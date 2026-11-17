@@ -1,43 +1,58 @@
-## Description: <br>
-A 5-phase framework for reliable AI-to-AI task delegation with task tracking, sub-agent performance logging, automated verification, fallback chains, and multi-axis task scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A 5-phase framework for reliable AI-to-AI task delegation, inspired by Google DeepMind's "Intelligent AI Delegation" paper (arXiv 2602.11865). Includes task tracking, sub-agent performance logging, automated verification, fallback chains, and multi-axis task scoring.
 
-## Publisher: <br>
-[Hogpile](https://clawhub.ai/user/Hogpile) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[hogpile](https://clawhub.ai/user/hogpile)
 
-## Use Case: <br>
-Developers and agent operators use this skill to plan, monitor, verify, and recover delegated AI-agent work. It provides task logs, delegation contracts, fallback chains, scoring guidance, and lightweight verification commands for multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent task logs and performance notes may capture sensitive project context if used carelessly. <br>
-Mitigation: Keep logs project-scoped and avoid storing secrets or sensitive data in TASKS.md, performance notes, or delegation records. <br>
-Risk: Scheduled follow-up checks and delegated actions may persist beyond the intended task or affect high-impact work. <br>
-Mitigation: Approve any scheduled check before creating it, remove checks after completion, and require human approval for irreversible or high-impact actions. <br>
-Risk: Automated scoring can understate the risk of irreversible or ambiguous tasks. <br>
-Mitigation: Treat scoring output as guidance only and manually review tasks involving sensitive data, unclear requirements, or irreversible effects. <br>
+## Use Case:
 
+Developers and agent operators use this skill to structure AI-to-AI delegation with task logs, verification contracts, fallback chains, and performance tracking. It helps agents choose delegation posture, monitor delegated work, and decide when human approval is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Hogpile/intelligent-delegation) <br>
-- [Intelligent AI Delegation paper](https://arxiv.org/abs/2602.11865) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python CLI commands and template files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task tracking templates, delegation scoring recommendations, and verification check outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, and server release metadata) <br>
+Risk: The skill encourages persistent scheduled checks and task or performance logs that can change an agent's delegation workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned schedules and logs before enabling the workflow, and keep sensitive task details out of persistent records unless retention is approved.
+
+Risk: The scoring tool can understate risk for irreversible, external, financial, deletion, or sensitive-data actions.
+
+Mitigation: Require separate human approval before using score output to authorize high-impact or irreversible actions.
+
+Risk: Delegated outputs may be accepted too readily if verification contracts are incomplete.
+
+Mitigation: Define machine-checkable success criteria before delegation and require manual review where outputs depend on judgment or sensitive context.
+
+## Reference(s):
+
+- [Intelligent AI Delegation](https://arxiv.org/abs/2602.11865)
+- [ClawHub skill page](https://clawhub.ai/hogpile/skills/intelligent-delegation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with templates, Python command-line tools, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes task tracking templates, delegation contract templates, fallback guidance, a scoring CLI, and a verification CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

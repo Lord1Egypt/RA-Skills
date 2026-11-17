@@ -1,100 +1,57 @@
-# Polymarket API 参考文档
+# Polymarket API 只读参考
+
+本 skill 只使用公开的 GET 接口。它不会调用 POST、PUT、PATCH 或 DELETE，也不需要钱包或交易凭据。
 
 ## Base URLs
 
-```
-Gamma API: https://gamma-api.polymarket.com
-CLOB API:  https://clob.polymarket.com
-```
+    Gamma API: https://gamma-api.polymarket.com
+    CLOB API:  https://clob.polymarket.com
 
-## Gamma API (市场信息)
+## Gamma API
 
-### 获取市场详情
+获取活跃市场：
 
-```bash
-GET /markets?slug={slug}
-```
+    GET /markets?active=true&closed=false&limit=100
 
-响应字段:
-- `id`: 市场ID
-- `question`: 市场问题
-- `slug`: 市场slug
-- `clobTokenIds`: CLOB代币ID数组 [Yes, No]
-- `outcomePrices`: 当前价格 ["0.50", "0.50"]
-- `liquidity`: 流动性
-- `volume24hr`: 24小时成交量
-- `bestBid`: 最佳买价
-- `bestAsk`: 最佳卖价
-- `endDate`: 结束时间
+脚本读取的主要字段：
 
-### 获取活跃市场
+- id
+- question
+- slug
+- clobTokenIds
+- outcomes
+- liquidity
+- endDate
 
-```bash
-GET /markets?active=true&closed=false&limit=100
-```
+## CLOB API
 
-## CLOB API (订单簿)
+获取某个 token 的订单簿：
 
-### 获取订单簿
+    GET /book?tokenId={token_id}
 
-```bash
-GET /book?tokenId={token_id}
-```
+读取价格或中间价时可使用：
 
-响应:
-```json
-{
-  "bids": [
-    {"price": "0.50", "size": "100"}
-  ],
-  "asks": [
-    {"price": "0.51", "size": "50"}
-  ]
-}
-```
+    GET /price?tokenId={token_id}
+    GET /midpoint?tokenId={token_id}
 
-### 获取价格
+订单簿响应的 bids 和 asks 只用于展示与候选筛选：
 
-```bash
-GET /price?tokenId={token_id}
-GET /midpoint?tokenId={token_id}
-```
-
-## 交易
-
-### 限价单
-
-```bash
-POST /orders
-{
-  "tokenId": "...",
-  "side": "BUY",  // or "SELL"
-  "price": "0.50",
-  "size": 10
-}
-```
-
-### 市价单
-
-```bash
-POST /orders
-{
-  "tokenId": "...",
-  "side": "BUY",
-  "size": 10,
-  "type": "MARKET"
-}
-```
+    {
+      "bids": [{"price": "0.50", "size": "100"}],
+      "asks": [{"price": "0.51", "size": "50"}]
+    }
 
 ## BTC 5分钟市场
 
-- **系列Slug**: `btc-up-or-down-5m`
-- **市场Slug格式**: `btc-updown-5m-{timestamp}`
-- **代币**: Up (Yes) / Down (No)
-- **分辨率**: Chainlink BTC/USD
+- 系列：btc-up-or-down-5m
+- 结果：Up 或 Down
+- 分辨率：Chainlink BTC/USD
 
-### 获取当前市场
+市场 slug 和返回字段可能随平台版本变化。脚本只在返回数据中确认 BTC/5m/updown 相关标识后再处理，不会猜测 token ID。
 
-```bash
-curl "https://gamma-api.polymarket.com/markets?slug=btc-up-or-down-5m"
-```
+## 禁止范围
+
+以下接口不属于本 skill 的权限范围：
+
+- 任何下单、撤单、授权、转账或支付接口
+- 任何第三方计费接口

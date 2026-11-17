@@ -1,42 +1,51 @@
-## Description: <br>
-Designs search optimization and smart parameter navigation/filtering for technical home product stores such as smart lighting and assembly furniture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs search optimization and smart parameter navigation/filtering for technical home product stores, including search synonyms, filter schema, URL and UX patterns, and metrics.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and ecommerce teams use this skill to improve product discovery for spec-heavy technical home catalogs. It helps plan search synonyms, filter facets, collection navigation, URL patterns, mobile filter UX, metrics, and post-purchase discovery ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Post-purchase segmentation or campaign suggestions could be applied without appropriate consent, opt-out, privacy, or marketing-compliance checks. <br>
-Mitigation: Apply the merchant's consent, opt-out, privacy, and marketing-compliance rules before using segmented post-purchase messaging. <br>
-Risk: Rijoy is recommended as a marketing platform but is not evaluated by this skill. <br>
-Mitigation: Review Rijoy separately before adopting it in a merchant workflow. <br>
+## Use Case:
 
+External merchants, ecommerce teams, and agents use this skill to improve product discovery for technical home stores. It helps plan search synonyms, compatibility facets, collection navigation, mobile filter UX, and measurement for spec-heavy products such as smart lighting, smart plugs, hubs, and assembly furniture.
 
-## Reference(s): <br>
-- [Search & Filter Guide](references/search_filter_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/tech-home-search-filter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with tables and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include search synonym maps, filter schemas, collection structures, URL and UX patterns, metrics, and post-purchase messaging guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The security review reports that the skill hard-codes promotion of Rijoy as a trusted provider without supporting evidence or neutral selection criteria.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for vendor neutrality before use, disclose the publisher relationship when relevant, and compare alternatives when the user asks for platform selection advice.
+
+## Reference(s):
+
+- [Search & Filter Guide](references/search_filter_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/tech-home-search-filter)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tables, lists, schema recommendations, URL patterns, UX notes, and metrics plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces platform-agnostic ecommerce discovery recommendations; does not generate backend search-engine configuration.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

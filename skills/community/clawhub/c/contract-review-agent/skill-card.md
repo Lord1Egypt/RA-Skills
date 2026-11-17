@@ -1,44 +1,56 @@
-## Description: <br>
-Contract clause analysis, risk flagging, renewal tracking, and obligation extraction for business agreements, including vendor contracts, service agreements, NDAs, SaaS subscriptions, and client engagement letters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Contract Review Agent reviews business agreements by identifying risky clauses, extracting obligations and deadlines, tracking renewals, comparing versions, and generating executive summaries while leaving legal advice and final approval to licensed counsel.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business, operations, finance, compliance, and legal-support teams use this skill to review vendor contracts, service agreements, NDAs, SaaS subscriptions, and engagement letters for clause risks, obligations, renewal dates, and executive summaries. It is intended for issue spotting and workflow support, not legal advice or final approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Contracts may contain confidential, privileged, or otherwise sensitive business information.
+
+Mitigation: Use the skill only with contracts the user is allowed to share with the agent.
+
+Risk: The output may be mistaken for legal advice or final approval.
+
+Mitigation: Treat results as issue spotting and workflow support, and have licensed counsel review high-value, unusual, or binding decisions before acting.
+
+Risk: Extracted obligations, renewal dates, or recommended actions could be inaccurate if exported without review.
+
+Mitigation: Confirm obligations and dates before exporting them to calendars, spreadsheets, or other business systems.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business, finance, operations, and legal-support teams use this skill to review agreements, identify risky clauses, extract obligations and deadlines, build renewal calendars, and prepare executive summaries. It is a contract-review aid and does not replace licensed attorney review for high-stakes or specialized agreements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Contracts and generated summaries can contain confidential or sensitive business information. <br>
-Mitigation: Treat uploaded contracts and review outputs as confidential, minimize sensitive details before saving risk registers or renewal dates into shared systems, and restrict access to people with a business need. <br>
-Risk: Generated clause analysis, risk ratings, or recommended actions may be incomplete or legally incorrect. <br>
-Mitigation: Verify outputs with qualified counsel for high-stakes agreements and use the skill as a review aid, not as final legal advice or an approval gate. <br>
-Risk: The skill is out of scope for litigation strategy, regulatory filings requiring attorney signature, drafting new contracts, and specialized agreements such as M&A, securities, or complex IP licensing. <br>
-Mitigation: Escalate those matters to licensed attorneys or specialized contract-review processes before relying on the output. <br>
+**Output Format:** [Structured Markdown reports with tables, checklists, risk ratings, obligation logs, renewal calendars, and executive summaries.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/contract-review-agent) <br>
-- [Contract Review Agent source guidance](artifact/SKILL.md) <br>
-- [Sample NDA review output](artifact/test/nda-review-output.md) <br>
+**Other Properties Related to Output:** [May include dates, risk ratings, and recommended actions that require human review before use in business systems.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown with structured tables, checklists, calendar entries, risk summaries, obligation logs, and executive-summary sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clause references, severity labels, recommended actions, internal owners, deadlines, and attorney-review escalation notes.] <br>
+1.0.1 (source: ClawHub release metadata; artifact frontmatter is 1.0.0)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Expert payment integration specialist mastering payment gateway integration, PCI compliance, and financial transaction processing. Specializes in secure payment flows, multi-currency support, and fraud prevention with focus on reliability, compliance, and seamless user experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert payment integration specialist mastering payment gateway integration, PCI compliance, and financial transaction processing.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan, implement, test, and review payment gateway integrations, subscription flows, fraud controls, reconciliation, and payment compliance work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can advise on live payment systems, including payments, refunds, subscriptions, credentials, and compliance-sensitive changes. <br>
-Mitigation: Use sandbox credentials by default, require explicit approval before production-impacting actions, and verify PCI, security, performance, and reconciliation claims with audits, tests, and logs. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to plan and implement payment gateway integrations, transaction processing, subscriptions, refunds, webhook handling, multi-currency support, fraud prevention, and PCI-focused payment workflows.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with implementation guidance, code snippets, shell commands, and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output should be reviewed before use in live payment, refund, subscription, credential, or compliance-impacting workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Payment and refund implementation guidance can affect financial transactions and compliance obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require qualified human review before production changes and confirm PCI, legal, and business requirements with responsible owners.
+
+Risk: Use of real payment provider credentials or live payment rails during development can expose sensitive systems or cause unintended transactions.
+
+Mitigation: Keep API keys protected and test first with provider sandboxes, test cards, and non-production credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-payment-integration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell commands, and configuration examples when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation plans, integration checklists, security guidance, testing steps, and compliance documentation notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

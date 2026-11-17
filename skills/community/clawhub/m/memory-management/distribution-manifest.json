@@ -1,0 +1,76 @@
+{
+  "capabilities": [
+    "inline-delivery",
+    "canonical-state-read"
+  ],
+  "capability_ceiling": "lite",
+  "catalog_sha256": "6f0256cf52710f2916ecebaea0f3110c9313099ec4a69a11cac72ba9b2f3b940",
+  "files": [
+    {
+      "bytes": 11809,
+      "mode": "0644",
+      "path": "SKILL.md",
+      "sha256": "fdcb3fd6cbdbc40a48054ce2f496ca5f6c680c0b95c2d7184146a07000ff8bc5"
+    },
+    {
+      "bytes": 1974,
+      "mode": "0644",
+      "path": "references/consolidation-pass.md",
+      "sha256": "ba007b0ffb1a85ece783f3caf2d99192b48b5f5c2d8df77faf8cca4b37abffdf"
+    },
+    {
+      "bytes": 4319,
+      "mode": "0644",
+      "path": "references/examples.md",
+      "sha256": "f9d2addf70792f93aca92e731f4b64ea006646e2e0b77c88bf24f961fa5026c1"
+    },
+    {
+      "bytes": 2590,
+      "mode": "0644",
+      "path": "references/gdpr-purge-log-template.md",
+      "sha256": "de7ca93161f6b40b090898992b16898fef130415840070d719daa00173111c3c"
+    },
+    {
+      "bytes": 1368,
+      "mode": "0644",
+      "path": "references/glossary-template.md",
+      "sha256": "1a976f503d6cacbb4d3ca881de30318295902d89c50d21ae85d22bf90bcee9a3"
+    },
+    {
+      "bytes": 2482,
+      "mode": "0644",
+      "path": "references/hot-cache-template.md",
+      "sha256": "7cc2b67a977b73a7f4bab569c588ee9fe8068f66b3f3204be8e076b34d5d7379"
+    },
+    {
+      "bytes": 1486,
+      "mode": "0644",
+      "path": "references/promotion-demotion-rules.md",
+      "sha256": "29caab3e2ef9046268c5399f3b40a308aeaf0b643ddf156c7fe3dbad7e2101a3"
+    },
+    {
+      "bytes": 3258,
+      "mode": "0644",
+      "path": "references/update-triggers-integration.md",
+      "sha256": "d89fe474ed59fee59f9b4f200472b8b47a03bffb4788d01d0a17cea9bd4d8b3d"
+    }
+  ],
+  "files_sha256": "45afd415ba84b9ec0436363ef8a33682cc27935db667cc8380ffdec9088a2458",
+  "hash_algorithm": "sha256",
+  "kind": "standalone-skill",
+  "manifest_excludes": [
+    "distribution-manifest.json"
+  ],
+  "manifest_path": "distribution-manifest.json",
+  "package_ceiling": {
+    "max_bytes": 1000000,
+    "max_files": 64
+  },
+  "profile": "lite",
+  "profile_definition_sha256": "4598e1f7bba667ef928ea2a60a6252ad9348086e9eecab29437db442df2a568e",
+  "schema_version": "1.1",
+  "source": {
+    "commit": "f552620c278afddcb25d09637a0cfcc1ce48faf4",
+    "repository": "aaron-he-zhu/aaron-marketing-skills"
+  }
+}

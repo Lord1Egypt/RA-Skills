@@ -1,40 +1,54 @@
-## Description: <br>
-A voice-learning writing assistant that helps you communicate in your own style - not generic AI prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A voice-learning writing assistant that helps users communicate in their own style by learning from writing examples, audience context, and corrections.
 
-## Publisher: <br>
-[EvanL1](https://clawhub.ai/user/EvanL1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evanl1](https://clawhub.ai/user/evanl1)
 
-## Use Case: <br>
-Employees and other agent users use this skill to draft emails, replies, documents, reports, and team feedback in their own writing style. The skill studies provided writing examples, adapts tone to the audience, and incorporates corrections into a voice profile through its sage-cognitive dependency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may learn from private messages, emails, documents, and long-term memory without clear limits. <br>
-Mitigation: Use intentionally provided writing samples instead of broad mailbox or document access, and avoid sensitive or third-party content where possible. <br>
-Risk: The skill depends on persistent voice-profile memory through sage-cognitive. <br>
-Mitigation: Confirm that memory review, opt-out, and deletion controls are available before relying on persistent profile updates. <br>
+## Use Case:
 
+Employees, external communicators, and writers use this skill to draft emails, replies, documents, reports, and team feedback in a style calibrated from their own writing samples and corrections.
 
-## Reference(s): <br>
-- [Sage project homepage](https://github.com/nicholasgasior/sage) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text writing drafts with optional structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a persistent voice profile through the sage-cognitive dependency when the user provides corrections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: The skill reads and persists broad personal writing samples, profile data, audience context, and possibly team-member information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with writing samples and profile data the user is comfortable storing; confirm memory scope before use and review or delete voice profile data when possible.
+
+Risk: Drafting confidential emails, documents, or reviews can expose sensitive personal or workplace information through memory-backed style calibration.
+
+Mitigation: Avoid confidential or regulated content unless memory access, retention, and deletion controls have been confirmed for the deployment.
+
+## Reference(s):
+
+- [Sage project homepage](https://github.com/nicholasgasior/sage)
+- [Sage Voice on ClawHub](https://clawhub.ai/evanl1/skills/sage-voice)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown writing drafts, replies, document structures, feedback text, and calibration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on and update sage-cognitive memory for voice profiles, audience-specific registers, corrections, and recent draft context.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

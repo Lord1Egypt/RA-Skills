@@ -1,43 +1,58 @@
-## Description: <br>
-Identify duplicate HubSpot company records by domain and name, export audit CSVs for review, and guide manual or third-party assisted merging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify duplicate company records by domain and name, export audit CSVs for review, and guide merging; API access is used for discovery, while HubSpot company merges are handled through third-party tools or manual UI.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-Revenue operations, sales operations, and CRM administrators use this skill to find duplicate HubSpot company records, produce audit CSVs, and plan safe manual or third-party assisted cleanup before changing live CRM data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exports sensitive HubSpot CRM data to local CSV files. <br>
-Mitigation: Use a narrowly scoped HubSpot private app token, run in a trusted workspace, write outputs to an access-controlled location, and delete or protect CSV files after review. <br>
-Risk: HubSpot company merges are irreversible and may discard conflicting property values from the non-primary record. <br>
-Mitigation: Review the exported audit CSVs with the responsible team, choose the surviving record deliberately, and require explicit human confirmation before any merge. <br>
-Risk: Name-based duplicate matching can produce false positives for distinct organizations with similar names. <br>
-Mitigation: Prioritize domain-based groups, manually inspect name-only matches, and skip uncertain pairs until a CRM owner confirms they refer to the same company. <br>
+## Use Case:
 
+Developers and operations teams use this skill to audit duplicate HubSpot company records, produce CSV review files, and plan safe manual or tool-assisted merges. It is intended for CRM data hygiene workflows where merges must be reviewed before execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tomgranot/merge-duplicate-companies) <br>
-- [HubSpot CRM API](https://api.hubapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, CSV files, guidance] <br>
-**Output Format:** [Markdown guidance with Python code, setup commands, environment configuration, and CSV audit outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces audit files for review and does not automatically merge company records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: HubSpot company merges are irreversible and may discard conflicting property values from the non-primary record.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated audit CSVs and choose the primary record manually before each merge.
+
+Risk: Generated CSVs can contain CRM company identifiers and business relationship metadata.
+
+Mitigation: Store CSV exports in a trusted workspace and keep them out of shared folders and repositories.
+
+Risk: An over-scoped HubSpot token increases blast radius if the local environment is compromised.
+
+Mitigation: Use a private app token limited to the crm.objects.companies.read scope for discovery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tomgranot/skills/merge-duplicate-companies)
+- [HubSpot CRM API endpoint](https://api.hubapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell code blocks plus CSV audit file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local duplicate-company audit CSVs and human-facing merge guidance; it does not perform automatic HubSpot merges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

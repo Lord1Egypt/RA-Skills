@@ -1,41 +1,53 @@
-## Description: <br>
-Blind date preparation assistant that uses volunteered meeting context, profile notes, chat excerpts, or follow-up goals to produce respectful conversation topics, safety boundaries, logistics checklists, and optional message drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blind date preparation assistant that helps prepare respectful conversation topics, safety boundaries, logistics checklists, and optional follow-up message drafts without manipulation, stalking, private-data inference, or guaranteed relationship outcomes.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to prepare for blind dates, matchmaking introductions, first meetings, respectful follow-up, and safety boundary planning. It helps organize non-sensitive context into conversation starters, topics to avoid, safety checks, logistics considerations, and optional polite messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dating preparation can involve personal details or sensitive information. <br>
-Mitigation: Share only context the user is comfortable providing, and avoid exact addresses, private photos, IDs, passwords, or other sensitive information. <br>
-Risk: Generated conversation or follow-up advice could be misunderstood as a guarantee of compatibility, safety, or relationship outcome. <br>
-Mitigation: Use the output as preparation guidance only, keep safety boundaries explicit, and do not treat it as a guarantee about another person or meeting. <br>
-Risk: Prompts involving another person could drift into manipulation, private-data inference, stalking, or secret monitoring. <br>
-Mitigation: Keep requests limited to respectful, volunteered context and reject manipulative scripts, background scraping, doxxing, secret monitoring, or private-fact inference. <br>
+## Use Case:
 
+External users use this skill to prepare for blind dates, matchmaking introductions, first meetings, respectful follow-up, and safety boundary planning. It helps turn volunteered non-sensitive context into conversation starters, topics to avoid, logistics checks, safety reminders, and optional message drafts.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with optional message drafts and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls or file writes; outputs depend on user-provided non-sensitive context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: skill.json and server release evidence) <br>
+Risk: The skill may process personal dating context or chat excerpts supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the context needed for the task and redact identifying or sensitive details about other people.
+
+Risk: Dating assistance can be misused for manipulation, stalking, private-data inference, or pressure tactics.
+
+Mitigation: Keep outputs within the skill boundaries: no stalking, doxxing, secret monitoring, manipulative scripts, sensitive-data collection, or guaranteed relationship outcomes.
+
+## Reference(s):
+
+- [Blind Date Assistant on ClawHub](https://clawhub.ai/harrylabsj/skills/blind-date-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include conversation starters, safety checklists, logistics guidance, and optional message drafts.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

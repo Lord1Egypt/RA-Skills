@@ -1,47 +1,66 @@
-## Description: <br>
-Adds Auth0 authentication to Expo (React Native) mobile apps, including login, logout, session handling, protected routes, biometrics, token management, Expo config plugin setup, and native iOS/Android build guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when adding authentication to Expo (React Native) mobile apps, including login, logout, user sessions, protected routes, biometrics, token management, app.json plugin configuration, custom scheme setup, and credential management with the react-native-auth0 SDK and Expo Config Plugin.
 
-## Publisher: <br>
-[auth0](https://clawhub.ai/user/auth0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auth0](https://clawhub.ai/user/auth0)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Auth0 authentication to Expo mobile apps, configure Auth0 tenant and application settings, install react-native-auth0, set callback URLs, and verify native builds with a custom Expo development client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token-handling examples could be copied into a real app without adequate review, including examples that log access tokens or pass session transfer tokens in URL query parameters. <br>
-Mitigation: Review token-handling examples before reuse, avoid logging access tokens, and use safer server-side protections for session transfer flows. <br>
-Risk: Automatic setup can affect an Auth0 tenant and modify Expo project configuration. <br>
-Mitigation: Confirm the active Auth0 tenant, review the script change plan before applying changes, and keep the project under version control. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Auth0 authentication to Expo React Native applications, configure native callback schemes, set up login and logout flows, manage credentials, and verify development or EAS builds. It is intended for Expo projects that can use a custom development client or native build, not Expo Go or non-Expo React Native projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/auth0/auth0-expo) <br>
-- [Auth0 agent skills repository](https://github.com/auth0/agent-skills) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Integration Patterns](references/integration.md) <br>
-- [API Reference and Testing](references/api.md) <br>
-- [Auth0 Expo Quickstart](https://auth0.com/docs/quickstart/native/react-native-expo/interactive) <br>
-- [react-native-auth0 repository](https://github.com/auth0/react-native-auth0) <br>
-- [react-native-auth0 API documentation](https://auth0.github.io/react-native-auth0/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide project file updates and Auth0 setup steps; review proposed changes before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and artifact frontmatter) <br>
+Risk: Unsafe token-handling examples could expose access tokens, API tokens, or session-transfer tokens if copied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact token values, avoid logging credentials, and review any session-transfer URL handling before using the generated code.
+
+Risk: Mutable install commands and unpinned package or tool versions can change behavior between runs.
+
+Mitigation: Prefer pinned package versions, a reviewed lockfile, and verified installer contents before running bootstrap or dependency installation commands.
+
+Risk: Bootstrap automation can create or update Auth0 tenant resources and modify app.json for the active tenant.
+
+Mitigation: Confirm the active Auth0 tenant, review the displayed change plan, and use manual setup when changes should not be applied automatically.
+
+## Reference(s):
+
+- [Auth0 Expo ClawHub Page](https://clawhub.ai/auth0/skills/auth0-expo)
+- [Auth0 Agent Skills Homepage](https://github.com/auth0/agent-skills)
+- [Setup Guide](references/setup.md)
+- [Integration Patterns](references/integration.md)
+- [API Reference & Testing](references/api.md)
+- [Auth0 Expo Quickstart](https://auth0.com/docs/quickstart/native/react-native-expo/interactive)
+- [react-native-auth0 Repository](https://github.com/auth0/react-native-auth0)
+- [react-native-auth0 API Documentation](https://auth0.github.io/react-native-auth0/)
+- [Auth0 Expo Sample App](https://github.com/auth0-samples/auth0-react-native-sample/tree/master/00-Login-Expo)
+- [react-native-auth0 Examples](https://github.com/auth0/react-native-auth0/blob/master/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run Node.js and Auth0 CLI bootstrap automation, install Expo dependencies, update app.json, and provide manual setup guidance based on project state.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

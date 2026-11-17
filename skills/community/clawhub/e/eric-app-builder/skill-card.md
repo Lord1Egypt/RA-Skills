@@ -1,38 +1,57 @@
-## Description: <br>
-Full-stack application builder that creates web apps, APIs, mobile apps, and more from natural language requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+App Builder guides agents through building or enhancing web apps, APIs, mobile apps, and other software projects from natural language requests.
 
-## Publisher: <br>
-[ericn26-star](https://clawhub.ai/user/ericn26-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericn26-star](https://clawhub.ai/user/ericn26-star)
 
-## Use Case: <br>
-Developers and builders use this skill to plan, scaffold, implement, test, and deploy full-stack applications, APIs, mobile apps, and feature changes from natural language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward production deployment without enough explicit approval or release safeguards. <br>
-Mitigation: Require explicit approval for the exact deployment target before publishing, exposing a live URL, modifying production resources, connecting payment services, or using secrets; review costs, tests, and rollback steps first. <br>
+## Use Case:
 
+Developers and external users use this skill to plan, scaffold, implement, test, and deploy full-stack applications or add features to existing projects.
 
-## Reference(s): <br>
-- [ClawHub App Builder listing](https://clawhub.ai/ericn26-star/eric-app-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with code blocks and implementation steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include project plans, generated source files, dependency commands, test guidance, and deployment instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-11.0.0 (source: server release metadata) <br>
+Risk: The skill can guide broad project scaffolding and code changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed implementation plan and file changes before allowing significant modifications.
+
+Risk: The skill may recommend package installation or deployment steps.
+
+Mitigation: Confirm dependency, build, and deployment commands before execution.
+
+Risk: The skill may involve external service setup, payment integration, or authentication integration.
+
+Mitigation: Confirm service accounts, credentials, permissions, and configuration choices before setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericn26-star/skills/eric-app-builder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown plans, code snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation plans, generated project files, dependency recommendations, and deployment steps.]
+
+## Skill Version(s):
+
+11.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Connects to Preny AI Chatbot so an agent can summarize and analyze sales, customer, conversation, conversion, and tag data in near real time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects directly with Preny AI Chatbot to summarize and analyze sales, customer, conversation, and tag data in real time.
 
-## Publisher: <br>
-[nguyentdam](https://clawhub.ai/user/nguyentdam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nguyentdam](https://clawhub.ai/user/nguyentdam)
 
-## Use Case: <br>
-Shop owners, sales teams, managers, and customer support teams use this skill to ask natural-language questions about Preny sales and CRM performance, including customer counts, conversations, conversions, revenue, and customer tags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Preny token that can access business and customer data. <br>
-Mitigation: Use a scoped official API credential where possible, keep the token out of shell startup files and repositories, rotate it if exposed, and install only when the publisher is trusted. <br>
-Risk: Bundled conversation tools can read customer conversations and send customer-facing replies. <br>
-Mitigation: Review conversation access before use and use the reply helper only when a human explicitly intends to send the message. <br>
+## Use Case:
 
+Shop owners, sales teams, managers, and customer-support teams use this skill to ask natural-language questions about Preny sales performance, customer activity, message volume, conversion signals, and tag-based CRM status.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nguyentdam/preny-analytics) <br>
-- [Preny website](https://preny.ai) <br>
-- [Preny app](https://app.preny.ai) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [How to get Preny Token](docs/how-to-get-token.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and PRENY_TOKEN; some bundled scripts also reference PRENY_API_KEY and PRENY_WORKSPACE_ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence and artifact/claw.json) <br>
+Risk: Live Preny tokens may expose business or customer data if copied from browser sessions or stored insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only, scoped Preny API credential where available, rotate exposed tokens promptly, and avoid storing tokens in shell startup files such as ~/.bashrc.
+
+Risk: The artifact includes customer conversation and reply capabilities in addition to analytics reporting.
+
+Mitigation: Enable conversation or reply scripts only when explicitly needed and authorized for customer-support operations; review any outbound message before sending.
+
+Risk: The skill makes authenticated requests to Preny API hosts.
+
+Mitigation: Verify configured API hosts before use and run the skill in an environment where credentials and network access are scoped to the intended Preny workspace.
+
+## Reference(s):
+
+- [Preny Analytics README](artifact/README.md)
+- [Preny token setup guide](artifact/docs/how-to-get-token.md)
+- [Preny](https://preny.ai)
+- [Preny app](https://app.preny.ai)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/nguyentdam/skills/preny-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal-formatted text with shell command examples and Preny analytics summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and PRENY_TOKEN; some scripts also expect Preny API or workspace credentials.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and artifact/claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

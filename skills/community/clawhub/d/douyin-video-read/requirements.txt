@@ -1,0 +1,21 @@
+# 依赖（按需安装，不是全都要）
+
+# L1 + L2 必需
+playwright>=1.40
+requests>=2.28
+
+# L2 字幕裁剪必需
+Pillow>=10.0
+
+# OCR 后端 A：Windows 内置 OCR（Windows 专用，推荐）
+# winrt-runtime
+# winrt-Windows.Media.Ocr
+# winrt-Windows.Globalization
+# winrt-Windows.Graphics.Imaging
+# winrt-Windows.Storage
+# winrt-Windows.Storage.Streams
+# winrt-Windows.Foundation
+# winrt-Windows.Foundation.Collections
+
+# OCR 后端 B：跨平台（需另装 tesseract 可执行文件）
+# pytesseract>=0.3.10

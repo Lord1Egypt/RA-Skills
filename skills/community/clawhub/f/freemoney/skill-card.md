@@ -1,44 +1,60 @@
-## Description: <br>
-Chinese-language skill for querying class-action settlement opportunities across the United States, Canada, the United Kingdom, and Australia, with no-proof claims highlighted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Freemoney helps Chinese-speaking users query open class-action settlement claims in the United States, Canada, the United Kingdom, and Australia, including no-proof claim opportunities and application guidance.
 
-## Publisher: <br>
-[adsorgcn](https://clawhub.ai/user/adsorgcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adsorgcn](https://clawhub.ai/user/adsorgcn)
 
-## Use Case: <br>
-Chinese-speaking users ask an agent for current class-action settlement listings, country-specific cases, no-proof claims, and application guidance. The skill helps users understand eligibility and find claim links while reminding them to apply only for claims they genuinely qualify for. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts an external API to retrieve settlement data and presents external claim links. <br>
-Mitigation: Review and approve the api.ilang.ai data access before use, and verify claim details on official settlement sites before submitting any application. <br>
-Risk: Users may misunderstand settlement eligibility or attempt claims they do not qualify for. <br>
-Mitigation: Use the skill's eligibility warnings and apply only to claims where the user genuinely meets the stated requirements. <br>
-Risk: Setup guidance may involve DeepSeek or platform API keys outside the skill itself. <br>
-Mitigation: Keep API keys private, avoid sharing them in chats or screenshots, and rotate any key that may have been exposed. <br>
+## Use Case:
 
+External Chinese-speaking users use this skill to find potentially relevant class-action settlement claims, filter no-proof claims, and receive Chinese guidance for where to apply. The skill is positioned as a passive lookup tool that retrieves settlement data only when the user asks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/adsorgcn/freemoney) <br>
-- [I-Lang Homepage](https://ilang.ai) <br>
-- [Claims API Status](https://api.ilang.ai/claims/api/stats) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown summaries, tables, and step-by-step claim guidance with external claim links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only GET requests to api.ilang.ai after user activation; no code or persistent local files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: release evidence and frontmatter) <br>
+Risk: The skill points users to class-action claim opportunities where eligibility errors or false submissions can create legal or financial risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify eligibility and claim details on the official claim site before submitting, and apply only for claims where the user genuinely meets the stated criteria.
+
+Risk: The reviewed skill mentions external setup paths, a separate freemoney-plugin, Tencent Cloud, DeepSeek, and a QQ support group that were not reviewed as part of this release evidence.
+
+Mitigation: Treat those external resources as unaudited, avoid sharing API keys or credentials in chat or support groups, and review them separately before use.
+
+Risk: The skill depends on an external read-only API for settlement data, so results can be unavailable, stale, incomplete, or superseded by official claim administrators.
+
+Mitigation: Use API results as a starting point and confirm deadlines, eligibility, amounts, and submission instructions against official claim pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adsorgcn/skills/freemoney)
+- [Publisher profile](https://clawhub.ai/user/adsorgcn)
+- [I-Lang homepage](https://ilang.ai)
+- [Claims API stats endpoint](https://api.ilang.ai/claims/api/stats)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown responses with tables, settlement details, claim links, and short safety reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses read-only GET requests to api.ilang.ai after user confirmation; the reviewed skill does not provide proactive push behavior.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

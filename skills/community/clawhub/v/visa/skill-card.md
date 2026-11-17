@@ -1,42 +1,56 @@
-## Description: <br>
-Visa helps agents identify visa types, build document checklists, track timelines, prepare for interviews, and track application status without promising approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Visa application guidance with document tracking and timeline management for identifying visa types, building document checklists, managing timelines, preparing for interviews, and tracking application status without guaranteeing approval.
 
-## Publisher: <br>
-[agenticio](https://clawhub.ai/user/agenticio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agenticio](https://clawhub.ai/user/agenticio)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to reason through visa application workflows, identify likely visa categories, prepare document checklists and interview materials, and track application timelines. It should be used as planning support only, with current requirements verified against official government or consular sources.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Visa rules and consular requirements change frequently, so generated guidance may be incomplete or outdated.
+
+Mitigation: Verify requirements with official government or consular sources before acting on any checklist, timeline, or recommendation.
+
+Risk: Visa application details and document status can be sensitive when tracked locally.
+
+Mitigation: Keep local visa records under user-controlled storage, review retention needs, and delete records that are no longer needed.
+
+Risk: The inspected artifact contains only a basic visa identification script, while the skill text describes broader tracking and checklist workflows.
+
+Mitigation: Treat unavailable modules as unsupported until their implementation is present and reviewed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to plan visa applications, identify likely visa categories, organize documents and timelines, and prepare for consulate interviews while verifying current requirements with official sources. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Visa requirements can change and generated recommendations may be incomplete or outdated. <br>
-Mitigation: Verify current requirements with official government or consulate sources before acting. <br>
-Risk: Visa planning can involve sensitive personal and immigration details stored in local notes. <br>
-Mitigation: Store only necessary information locally and delete retained notes when they are no longer needed. <br>
-Risk: Some advertised workflows depend on helper scripts that are not included in this artifact. <br>
-Mitigation: Treat unavailable workflows as planning guidance unless the missing helper scripts are added and reviewed. <br>
+**Output Format:** [Markdown guidance with optional shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Visa skill page](https://clawhub.ai/agenticio/visa) <br>
+**Other Properties Related to Output:** [Does not submit applications or connect to government systems; local visa data may be stored under memory/visa when supported by the host agent.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local tracking notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not connect to government systems, upload documents, submit applications, or guarantee visa approval.] <br>
+2.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

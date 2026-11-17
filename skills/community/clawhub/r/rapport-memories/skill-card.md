@@ -1,42 +1,59 @@
-## Description: <br>
-Extends an OpenClaw agent's memory with semantic search over persistent memory files so it can recall prior decisions, conversations, and context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extends the agent's memory with semantic search capabilities using Retrieval-Augmented Generation (RAG) for enhanced contextual awareness and continuity.
 
-## Publisher: <br>
-[carlosdelfino](https://clawhub.ai/user/carlosdelfino) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carlosdelfino](https://clawhub.ai/user/carlosdelfino)
 
-## Use Case: <br>
-Developers and agent operators use this skill to build a local searchable memory index for OpenClaw workspaces. It helps agents retrieve prior memory entries, decisions, and conversation context through semantic or fallback keyword search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory indexing can retain sensitive or personal context beyond the original session. <br>
-Mitigation: Index only curated memory files, avoid secrets or personal data, review memory content before indexing, and delete /workspace/.rapport-memories and unwanted /workspace/memory entries when the data should be removed. <br>
-Risk: Embedding requests can expose memory content to the configured Ollama endpoint if that endpoint is not trusted. <br>
-Mitigation: Use a trusted local Ollama endpoint and verify OLLAMA_HOST before indexing or searching memory content. <br>
-Risk: Using a prebuilt sandbox image requires trusting the publisher's image contents. <br>
-Mitigation: Prefer building the Docker image from the provided artifact source before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to index OpenClaw memory files and search past decisions, conversations, and contextual notes for continuity across sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carlosdelfino/rapport-memories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples; runtime commands emit text search results and JSON statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local SQLite, ChromaDB, and Markdown memory artifacts under the configured workspace paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles sensitive agent memories, and its sanitizer may not remove all secrets or personal data before indexing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit mounted workspaces and memory directories, review memory contents before indexing, and avoid shared cross-agent memory directories unless that sharing is intended.
+
+Risk: Memory text can be sent to an environment-configurable HTTP embedding endpoint.
+
+Mitigation: Use only a trusted, preferably local Ollama endpoint, and do not point OLLAMA_HOST at an untrusted or remote HTTP service for sensitive memories.
+
+Risk: Container images and Python dependencies affect the runtime trusted computing base.
+
+Mitigation: Pin or locally build the container and dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/carlosdelfino/skills/rapport-memories)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text, JSON metrics, and Markdown memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include matching memory content, source path, taxonomy, creation time, and similarity score when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

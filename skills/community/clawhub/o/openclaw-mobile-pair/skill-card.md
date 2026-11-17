@@ -1,38 +1,57 @@
-## Description: <br>
-Generates an OpenClaw mobile control center pairing code using the local gateway token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a mobile pairing code for OpenClaw control app users.
 
-## Publisher: <br>
-[szx19970521](https://clawhub.ai/user/szx19970521) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szx19970521](https://clawhub.ai/user/szx19970521)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to create a pairing code for connecting a mobile control app to a BFF URL, then receive the pairing code, output file path, and next step. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced PowerShell script is missing from the artifact, so its handling of the gateway token and pairing data cannot be reviewed from the submitted files. <br>
-Mitigation: Obtain and inspect scripts/generate-mobile-pairing.ps1 before use; confirm the BFF URL is trusted and understand where the gateway token, pairing code, output file, and clipboard contents go. <br>
+## Use Case:
 
+External OpenClaw users and operators use this skill to generate a mobile control center pairing code, receive the generated file path, and get the next step for connecting a mobile app.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szx19970521/openclaw-mobile-pair) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with a PowerShell command and short actionable text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a pairing code, output file path, and clipboard-copy behavior when the referenced script is present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The referenced PowerShell script is missing from the artifact and would be resolved at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a release that bundles or pins the script and resolves it from the installed skill directory.
+
+Risk: Pairing-code generation reads a local gateway token and sends data to a user-provided BFF URL.
+
+Mitigation: Confirm the BFF URL is trusted and review token handling before installing or running the skill.
+
+Risk: The command template bypasses PowerShell execution policy.
+
+Mitigation: Prefer a version that avoids execution-policy bypass or review the script before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/szx19970521/skills/openclaw-mobile-pair)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown text with PowerShell command guidance and pairing results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a pairing code, an output file path, and a short next step for the mobile user.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

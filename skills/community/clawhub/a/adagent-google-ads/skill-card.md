@@ -1,44 +1,59 @@
-## Description: <br>
-Manage Google Ads campaigns by creating, monitoring, pausing, and optimizing search ads through AdAgent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Ads campaigns: create, monitor, pause, and optimize search ads, keyword research, performance reporting, and account workflows.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External Google Ads account owners and marketing operators use this skill to inspect accounts, research keywords, create paused search campaigns, review performance, and pause or enable campaigns through an AdAgent MCP connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can affect ad spend and campaign delivery by creating campaigns, changing budgets, enabling campaigns, or pausing active campaigns. <br>
-Mitigation: Require explicit user confirmation before any campaign creation, budget change, enablement, or pause action. <br>
-Risk: The MCP connector link contains embedded authorization material and should be treated as a credential. <br>
-Mitigation: Store the connector link like a password, avoid sharing it publicly, and rotate or reconnect access if it may have been exposed. <br>
-Risk: The skill depends on a third-party AdAgent service with Google Ads OAuth access. <br>
-Mitigation: Install and use it only if the operator trusts AdAgent with the connected Google Ads accounts and reviews account access before use. <br>
+## Use Case:
 
+External users and ad operators use this skill to manage Google Ads accounts through AdAgent, including account listing, keyword research, campaign creation, performance reporting, and campaign pause or enable actions.
 
-## Reference(s): <br>
-- [AdAgent homepage](https://adagent.10xboost.org) <br>
-- [ClawHub skill page](https://clawhub.ai/snoopyrain/adagent-google-ads) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/snoopyrain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP connector setup steps, tool-call examples, and tabular campaign or performance results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct AdAgent MCP operations that read Google Ads data or change campaign state after connector configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The MCP Connector link functions like a secret and may allow access to Google Ads account data and actions if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the connector link private, avoid committing or sharing it, and revoke or regenerate access immediately if it is exposed.
+
+Risk: The connected service can create campaigns, change budgets, enable or pause campaigns, and read performance data.
+
+Mitigation: Verify OAuth permissions and confirm the target account, budget, geography, language, final URL, and activation state before campaign creation or enablement.
+
+Risk: Installation depends on trust in the third-party AdAgent service for Google Ads account access.
+
+Mitigation: Install only after reviewing the service and confirming it is acceptable for the user's Google Ads account and organizational policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/adagent-google-ads)
+- [snoopyrain publisher profile](https://clawhub.ai/user/snoopyrain)
+- [AdAgent homepage](https://adagent.10xboost.org)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, API calls]
+
+**Output Format:** [Markdown with tool-call guidance and tabular summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign IDs, performance metrics, keyword suggestions, account lists, and setup instructions for an MCP Connector link.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

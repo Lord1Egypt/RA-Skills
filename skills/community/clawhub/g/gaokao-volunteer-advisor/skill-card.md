@@ -1,53 +1,62 @@
-## Description: <br>
-A Gaokao admissions-advising skill that helps families compare school, major, city, employment, safety, cost, and risk factors before preparing volunteer application choices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language gaokao application advisor that helps families analyze school, major, safety, employment, and cost tradeoffs and produce structured Markdown analysis or a single-file HTML report.
 
-## Publisher: <br>
-[lifenglei](https://clawhub.ai/user/lifenglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lifenglei](https://clawhub.ai/user/lifenglei)
 
-## Use Case: <br>
-Students and families use this skill to build and review Gaokao volunteer application options, including reach/match/safety grouping, school background checks, major fit, employment outlook, and a final shareable HTML report. It is advisory only and leaves final admissions decisions and submissions to the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions plans, scores, rules, fees, and final submission requirements may change or vary by province and school. <br>
-Mitigation: Verify all actionable admissions information with the provincial exam authority and school websites before relying on it. <br>
-Risk: School-safety rumors and student-platform posts may be incomplete, emotional, or unverified. <br>
-Mitigation: Treat those posts as leads, distinguish confirmed facts from unverified claims, and prefer official notices, court records, school documents, and credible media. <br>
-Risk: The skill's output can influence real education choices but cannot guarantee admission or outcomes. <br>
-Mitigation: Use the analysis as decision support only, review the official verification checklist, and keep final choices with the student and family. <br>
-Risk: Admissions workflows can involve sensitive personal information or exam-system access. <br>
-Mitigation: Do not share ID numbers, exam credentials, passwords, or verification codes with the agent; users should complete final submissions on official platforms themselves. <br>
+## Use Case:
 
+External users, especially gaokao candidates and families, use this skill to evaluate Chinese college application options, build rush/stable/safe volunteer lists, investigate schools and majors, and prepare a shareable decision report. It is intended to support family review, not to guarantee admission or submit applications.
 
-## Reference(s): <br>
-- [Gaokao Volunteer Advisor on ClawHub](https://clawhub.ai/lifenglei/skills/gaokao-volunteer-advisor) <br>
-- [README](artifact/README.md) <br>
-- [Gaokao Admission Analysis Rules](artifact/references/admission-rules.md) <br>
-- [School Background Check Dimensions](artifact/references/c1-dimensions.md) <br>
-- [Search Playbook](artifact/references/c2-search-playbook.md) <br>
-- [Authoritative Data Sources](artifact/references/c3-sources.md) <br>
-- [School Selection Strategy](artifact/references/p1-select-school.md) <br>
-- [Major Selection Strategy](artifact/references/p2-select-major.md) <br>
-- [Employment Analysis Guide](artifact/references/p5-employment.md) <br>
-- [Special Admissions Types](artifact/references/special-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Structured Markdown during analysis and a single-file HTML report for final output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current admissions data and source attribution; does not submit applications, log in to exam systems, or handle exam credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version; target metadata version) <br>
+Risk: Generated HTML reports can include unescaped user or web text that may execute in a browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review this skill before installing if HTML reports will be generated or shared; require HTML escaping or safe templating for every dynamic value and avoid pasting untrusted HTML-like content into report fields until fixed.
+
+Risk: Gaokao guidance may affect real application outcomes if treated as a guarantee or final authority.
+
+Mitigation: Use the skill's required reminders: verify all admissions plans, rules, major requirements, fees, and final choices against the current provincial examination authority and target school admissions documents.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lifenglei/skills/gaokao-volunteer-advisor)
+- [README](artifact/README.md)
+- [Admission Rules](artifact/references/admission-rules.md)
+- [School Evaluation Dimensions](artifact/references/c1-dimensions.md)
+- [Search Playbook](artifact/references/c2-search-playbook.md)
+- [Authoritative Data Sources](artifact/references/c3-sources.md)
+- [School Selection Strategy](artifact/references/p1-select-school.md)
+- [Major Selection Strategy](artifact/references/p2-select-major.md)
+- [Employment Analysis Guidance](artifact/references/p5-employment.md)
+- [Special Admission Types](artifact/references/special-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, HTML, guidance]
+
+**Output Format:** [Structured Markdown during analysis and a single-file HTML report for final output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite data sources and query dates, flag uncertain information, avoid admission guarantees, and require official verification before final submission.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

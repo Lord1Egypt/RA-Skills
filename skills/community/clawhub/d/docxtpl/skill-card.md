@@ -1,40 +1,55 @@
-## Description: <br>
-Docxtpl helps agents generate Word (.docx) documents from Microsoft Word templates populated with Python data through docxtpl, python-docx, and Jinja2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Word (.docx) documents from Jinja2 templates using python-docx and Jinja2.
 
-## Publisher: <br>
-[killgfat](https://clawhub.ai/user/killgfat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[killgfat](https://clawhub.ai/user/killgfat)
 
-## Use Case: <br>
-Developers and automation agents use this skill to create .docx reports, letters, and batch documents from Jinja2-enabled Word templates and structured data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The batch renderer can write generated files outside the chosen output folder when CSV id values contain path-like text. <br>
-Mitigation: Use trusted CSV data, avoid path-like id values, avoid --overwrite with untrusted data, and run batch rendering in a contained working directory until filenames are sanitized. <br>
+## Use Case:
 
+Developers and document automation teams use this skill to create Word templates with Jinja2 tags, render .docx files from Python, JSON, or CSV data, and inspect missing template variables.
 
-## Reference(s): <br>
-- [Official docxtpl documentation](https://docxtpl.readthedocs.io/en/latest/) <br>
-- [Bundled docxtpl reference](references/official-docs.md) <br>
-- [ClawHub Docxtpl release](https://clawhub.ai/killgfat/docxtpl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can guide rendering from inline values, JSON, JSON files, and CSV batch inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Batch rendering from CSV or TSV data can allow ID column values to influence output paths and write outside the intended output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted data, inspect or constrain ID column values, avoid --overwrite with untrusted input, and run the scripts in a limited working directory or sandbox.
+
+Risk: Unescaped template values containing XML-special characters can break rendering or produce unintended document content.
+
+Mitigation: Use RichText, template escaping, escaped Python values, or the autoescape option when rendering untrusted or free-form text.
+
+## Reference(s):
+
+- [docxtpl documentation](https://docxtpl.readthedocs.io/en/latest/)
+- [Official docxtpl Documentation Reference](references/official-docs.md)
+- [ClawHub skill page](https://clawhub.ai/killgfat/skills/docxtpl)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate .docx files when the bundled scripts are run.]
+
+## Skill Version(s):
+
+0.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

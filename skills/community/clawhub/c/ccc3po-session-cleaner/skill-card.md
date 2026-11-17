@@ -1,40 +1,53 @@
-## Description: <br>
-Safely clean OpenClaw old session files and rebuild sessions.json for Ubuntu ARM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely clean OpenClaw old session files and rebuild sessions.json for Ubuntu ARM.
 
-## Publisher: <br>
-[ccc-3po](https://clawhub.ai/user/ccc-3po) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccc-3po](https://clawhub.ai/user/ccc-3po)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw on Ubuntu ARM use this skill to remove old session history and rebuild the sessions.json index. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The cleanup permanently deletes OpenClaw .jsonl session files older than three days without a preview. <br>
-Mitigation: Confirm the target path and retention window are acceptable before execution, and back up sessions that must be retained. <br>
-Risk: The automation assumes the hardcoded Ubuntu path and an available openclaw CLI. <br>
-Mitigation: Verify /home/ubuntu/.openclaw/agents/main/sessions/ exists for the intended agent and that openclaw session rebuild works before deleting files. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to clean older OpenClaw session files on Ubuntu ARM systems and rebuild the sessions.json index.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccc-3po/ccc3po-session-cleaner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports session file counts and sessions.json size before and after cleanup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release metadata; artifact frontmatter says 2.1.0) <br>
+Risk: Permanent deletion of OpenClaw session history can occur without preview, confirmation, backup, or reliable protection of the main session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before use, validate the session directory, preview files selected for deletion, require confirmation, exclude active or main sessions, and back up session files before deletion.
+
+Risk: The cleanup commands use an absolute OpenClaw session path, which may be unsafe if run on an unexpected host or directory layout.
+
+Mitigation: Confirm the target session directory before running cleanup and avoid executing the commands outside the intended Ubuntu ARM OpenClaw environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccc-3po/skills/ccc3po-session-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Guidance]
+
+**Output Format:** [Markdown with shell commands and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands report session counts and sessions.json size, delete .jsonl files older than 3 days, and rebuild sessions.json.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

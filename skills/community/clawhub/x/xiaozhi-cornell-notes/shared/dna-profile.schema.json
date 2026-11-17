@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaozhi-skills.openclaw.dev/schemas/dna-profile.schema.json",
+  "title": "LearningDNAProfile",
+  "x-distributed-to": "xiaozhi-cornell-notes",
+  "x-skill-scope": {
+    "note": "本副本随 xiaozhi-cornell-notes 分发，已按其 SKILL.md 裁剪：只保留正文在非否定语境下提到的字段（共 1 项，删去 12 个顶层字段）。完整定义在归属技能处。读/写权限与授权位以 SKILL.md 为准。",
+    "paths": [
+      "extensions.notes"
+    ]
+  },
+  "description": "学习DNA 档案结构——随 xiaozhi-cornell-notes 分发的裁剪副本，只含 extensions.notes；完整定义见归属技能 xiaozhi-learning-dna 的 dna-profile.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "extensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "通用扩展档案：notes 由康奈尔笔记写入，focus 由时间与专注力教练写入，plans 由 30 天学习计划制定师写入，projects 由跨学科侦探周写入，understanding 由费曼学习法写入。各分支只由对应 SKILL 写入，写入一律经 handover 的 subject_profile_writeback",
+      "properties": {
+        "notes": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "noteCount": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "recurringGaps": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 60,
+                "description": "反复出现的笔记缺口，如‘只记结论不记推导’"
+              }
+            },
+            "lastUpdated": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": []
+}

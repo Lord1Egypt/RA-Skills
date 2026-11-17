@@ -1,45 +1,59 @@
-## Description: <br>
-Amazon Listing Doctor reviews Amazon listing copy across Rufus fit, scenario keyword coverage, conversion logic, defensive copy, and visual optimization, then returns scores and listing improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Listing Doctor reviews Amazon listing text across Rufus fit, scenario keyword coverage, conversion logic, defensive copy, and visual optimization opportunities, then produces scoring and improvement guidance.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-External marketplace sellers and listing operators use this skill to diagnose Amazon listing titles and bullet points, estimate Rufus visibility, and draft targeted copy improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential unreleased product details, proprietary keyword strategy, or internal marketing plans into the skill. <br>
-Mitigation: Use only listing content approved for the active agent environment and follow the organization's data handling policy before submission. <br>
-Risk: The included Python helper is executable local code. <br>
-Mitigation: Review the helper script and run it deliberately in an appropriate local environment before relying on its output. <br>
-Risk: Listing recommendations may be incomplete or unsuitable for a specific marketplace, category, or policy context. <br>
-Mitigation: Have a marketplace operator review generated scores and copy recommendations before publishing listing changes. <br>
+## Use Case:
 
+External Amazon sellers and ecommerce operators use this skill to evaluate listing titles, bullet points, and keywords, then receive a markdown diagnostic report with prioritized optimization suggestions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/amazon-listing-doctor) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangm-a3) <br>
-- [CloudTrip Homepage](https://cloudtrip.ai) <br>
-- [Rufus Keywords Reference](artifact/references/rufus-keywords.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic reports with scores, issue lists, prioritized fixes, and optimized listing copy.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Inputs are text listing fields such as product category, title, bullet points, description, and keywords.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence) <br>
+Risk: Users may over-rely on heuristic scores or recommendations as a guaranteed prediction of Amazon Rufus visibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the report as advisory, validate changes against current Amazon policies, and review recommendations before publishing listing updates.
+
+Risk: Listing inputs may contain confidential launch plans, unreleased product details, or personal data.
+
+Mitigation: Remove sensitive or personal information before providing listing text to the skill.
+
+Risk: The skill is primarily Chinese-language and may be unsuitable for teams that cannot review Chinese diagnostic guidance.
+
+Mitigation: Use it only when reviewers can understand the generated Chinese-language recommendations or can translate them accurately before acting.
+
+## Reference(s):
+
+- [Rufus scenario keyword reference](references/rufus-keywords.md)
+- [CloudTrip homepage](https://cloudtrip.ai)
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/amazon-listing-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic report with scores, issue lists, fix priorities, and rewritten listing suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured scoring across listing dimensions and prioritized recommendations for manual review.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

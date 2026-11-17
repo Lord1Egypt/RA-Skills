@@ -1,43 +1,53 @@
-## Description: <br>
-Expert visual design guidance for UI and UX of GUI apps and websites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides practical visual design guidance for designing, critiquing, and improving website and app interfaces.
 
-## Publisher: <br>
-[jhauga](https://clawhub.ai/user/jhauga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jhauga](https://clawhub.ai/user/jhauga)
 
-## Use Case: <br>
-Designers, developers, and product teams use this skill to design, critique, and improve UI visuals, accessibility, layout systems, color, typography, motion, and design tokens for apps and websites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketplace metadata includes crypto and purchase capability tags that are not reflected in the markdown-only design guidance. <br>
-Mitigation: Treat the skill as UI/UX design guidance and review the tags before relying on marketplace capability filters. <br>
-Risk: Design recommendations could introduce inaccessible contrast, motion, or interaction patterns if applied without review. <br>
-Mitigation: Apply the skill's WCAG, keyboard, focus, and reduced-motion checks before shipping UI changes. <br>
+## Use Case:
 
+Designers, developers, and other interface builders use this skill to plan or review visual hierarchy, color, typography, layout, design systems, motion, and accessibility for websites and apps.
 
-## Reference(s): <br>
-- [Principles deep-dive](references/principles.md) <br>
-- [Design systems and tokens](references/design-systems.md) <br>
-- [Accessibility checklist](references/accessibility.md) <br>
-- [2026 trends with caveats](references/trends-2026.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional code and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces design critique, recommendations, checklists, and implementation-oriented UI guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Unreviewed design recommendations may create accessibility or usability problems in production interfaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed UI changes in context and test contrast, keyboard access, reduced motion, and critical user flows before release.
+
+## Reference(s):
+
+- [Graphic Designer release on ClawHub](https://clawhub.ai/jhauga/skills/graphic-designer)
+- [Visual principles](artifact/references/principles.md)
+- [Design systems and tokens](artifact/references/design-systems.md)
+- [Accessibility checklist](artifact/references/accessibility.md)
+- [2026 design trends and caveats](artifact/references/trends-2026.md)
+
+## Skill Output:
+
+**Output Type(s):** [Design guidance, Markdown, Configuration guidance]
+
+**Output Format:** [Text or Markdown with actionable UI recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested design tokens, layout specifications, and accessibility checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,56 @@
-## Description: <br>
-SynapseAI Merchant lets AI agents register as merchants, create receiving wallets and payment links, configure webhooks, and receive on-chain payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SynapseAI Merchant is an AI agent payment receiving layer for registering as a merchant, creating wallets, generating payment links and QR codes, receiving on-chain payments, and managing receiving status.
 
-## Publisher: <br>
-[pandagg110](https://clawhub.ai/user/pandagg110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pandagg110](https://clawhub.ai/user/pandagg110)
 
-## Use Case: <br>
-Developers and external agents use this skill to add merchant payment receiving flows, including wallet creation, payment links, QR-code payment pages, webhook notifications, and payment history queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority over merchant payment receiving, wallet creation, payment links, webhooks, and receiving status. <br>
-Mitigation: Use a narrowly scoped token where available and require confirmation of wallet, payment link, amount, webhook URL, and status-change requests before API calls are sent. <br>
-Risk: The security evidence says the skill depends on trust in SynapseAI's wallet service. <br>
-Mitigation: Install only when the wallet service is trusted for the intended payment flow and monitor merchant activity through payment history and ledger queries. <br>
-Risk: The skill includes an agent toggle endpoint that can also change broader agent spending status. <br>
-Mitigation: Avoid sending spending-status toggle fields from this merchant flow unless the operator explicitly intends to change agent spending behavior. <br>
-Risk: Webhook callbacks can affect fulfillment decisions after payment events. <br>
-Mitigation: Store webhook secrets securely and verify webhook signatures before delivering products or services. <br>
+## Use Case:
 
+External developers and AI-agent operators use this skill to guide agents through SynapseAI merchant receiving workflows, including wallet creation, payment-link generation, webhook setup, and payment history queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pandagg110/agent-to-merchant) <br>
-- [SynapseAI Wallet homepage](https://wallet.synapseai.pro) <br>
-- [SynapseAI Merchant API](https://wallet.synapseai.pro/api/merchant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with HTTP request and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes merchant API endpoints, request bodies, response examples, webhook setup notes, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Agents using this skill handle bearer tokens and webhook secrets for merchant receiving workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep bearer tokens and webhook secrets private, and verify webhook signatures before acting on payment events.
+
+Risk: The skill can guide agents to create wallets and public payment links, configure callback URLs, and change merchant receiving state in the provider account.
+
+Mitigation: Install only for agents that are authorized to manage SynapseAI merchant receiving, and review wallet, payment-link, webhook, and toggle actions before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pandagg110/skills/agent-to-merchant)
+- [Publisher Profile](https://clawhub.ai/user/pandagg110)
+- [SynapseAI Wallet](https://wallet.synapseai.pro)
+- [SynapseAI Merchant API](https://wallet.synapseai.pro/api/merchant)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration, code]
+
+**Output Format:** [Markdown with HTTP examples and JSON payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bearer-token authenticated merchant API examples, webhook configuration guidance, supported network and currency values, and public payment-link lookup behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

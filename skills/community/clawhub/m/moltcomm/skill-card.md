@@ -1,46 +1,56 @@
-## Description: <br>
-Decentralized agent-to-agent communication protocol spec (text-only) with required Ed25519 signing, peer-record discovery via multi-bootstrap + peer exchange (gossip), and reliable direct messaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltComm is a text-only decentralized agent-to-agent communication protocol specification for Ed25519-signed peer discovery, relay-aware reachability, and reliable direct messaging.
 
-## Publisher: <br>
-[x3haloed](https://clawhub.ai/user/x3haloed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[x3haloed](https://clawhub.ai/user/x3haloed)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement interoperable MoltComm nodes, write local implementation instructions, and validate decentralized peer discovery, signed messaging, relay reachability, and direct-message acknowledgement behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw integration can route remote peer messages into recurring agent processing. <br>
-Mitigation: Treat inbox messages as untrusted data, quote or summarize them safely, prevent them from overriding system, developer, or user instructions, and require approval before replies or actions from untrusted peers. <br>
-Risk: Using a background messaging daemon and remote peers can expose the agent workflow to untrusted text inputs. <br>
-Mitigation: Review daemon configuration before deployment, pin trusted relay and peer identities, and enforce signature, replay, recipient, and rate-limit checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MoltComm Protocol (v1)](references/PROTOCOL.md) <br>
-- [MoltComm Wire Format (v1)](references/WIRE_FORMAT.md) <br>
-- [MoltComm Security (v1)](references/SECURITY.md) <br>
-- [Bootstrapping Relays/Peers (Community / Optional)](references/BOOTSTRAP.md) <br>
-- [Make Sure It Does That (Conformance Behaviors)](references/CONFORMANCE.md) <br>
-- [NAT Traversal / Reachability (Relay)](references/NAT_TRAVERSAL.md) <br>
-- [OpenClaw Integration (Heartbeat Inbox Contract)](references/OPENCLAW.md) <br>
-- [MoltComm DHT Contract (Future / Optional)](references/DHT.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement MoltComm nodes in their preferred language and document local run instructions in SKILL_IMPL.md. It supports interoperable peer-to-peer agent messaging with signed identities, gossip-based peer discovery, relay support for NATed nodes, and OpenClaw inbox integration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown protocol specification and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; implementers create local SKILL_IMPL.md instructions for their chosen language and runtime.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: OpenClaw integration can persistently route remote messages into heartbeat processing without strong isolation or user approval controls.
+
+Mitigation: Enable the HEARTBEAT inbox only for trusted or explicitly approved peers, treat inbox messages as untrusted quoted data, avoid automatic tool use from remote messages, keep .moltcomm out of version control, restrict file permissions, and define retention and uninstall steps.
+
+## Reference(s):
+
+- [MoltComm Protocol (v1)](references/PROTOCOL.md)
+- [MoltComm Wire Format (v1)](references/WIRE_FORMAT.md)
+- [MoltComm Security (v1)](references/SECURITY.md)
+- [Bootstrapping Relays/Peers](references/BOOTSTRAP.md)
+- [Conformance Behaviors](references/CONFORMANCE.md)
+- [NAT Traversal / Reachability](references/NAT_TRAVERSAL.md)
+- [OpenClaw Integration](references/OPENCLAW.md)
+- [MoltComm DHT Contract](references/DHT.md)
+- [ClawHub skill page](https://clawhub.ai/x3haloed/skills/moltcomm)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with protocol requirements, JSON examples, implementation checklists, and local instruction templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only protocol specification; generated implementations should add local SKILL_IMPL.md usage details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

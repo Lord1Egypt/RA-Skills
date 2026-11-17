@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/plan-bundle.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "bundleId",
+    "projectId",
+    "runId",
+    "mode",
+    "documents",
+    "status"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "bundleId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "runId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "mode": {
+      "enum": [
+        "audit",
+        "assist"
+      ]
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project",
+        "transcript",
+        "editPlan",
+        "statePlan",
+        "ownerLedger",
+        "captionPlan",
+        "evidenceManifest"
+      ],
+      "properties": {
+        "project": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        },
+        "transcript": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        },
+        "editPlan": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        },
+        "statePlan": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        },
+        "ownerLedger": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        },
+        "captionPlan": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        },
+        "evidenceManifest": {
+          "$ref": "creator-os-common.schema.json#/$defs/relativePath"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "validated"
+      ]
+    }
+  }
+}

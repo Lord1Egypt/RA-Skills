@@ -1,45 +1,61 @@
-## Description: <br>
-Rent portable WiFi devices for overseas travel - share with travel companions, unlimited data, and pickup/return at airport counters. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more - powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rent portable WiFi devices for overseas travel, with support for related travel booking tasks including flights, hotels, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, and car rental through Fliggy-powered flyai CLI results.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to search for portable WiFi rentals and related travel booking options through flyai CLI results, then present concise Markdown recommendations with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to install and run a global third-party CLI. <br>
-Mitigation: Have the user explicitly approve any @fly-ai/flyai-cli installation before use. <br>
-Risk: Travel queries may include sensitive booking, account, passport, or payment data. <br>
-Mitigation: Avoid providing passport, payment, account, or other sensitive booking data to the skill. <br>
-Risk: The skill can persist raw travel queries in a local .flyai-execution-log.json file. <br>
-Mitigation: Disable or remove .flyai-execution-log.json when local query history retention is not desired. <br>
+## Use Case:
 
+External travel users and agent operators use this skill to search for portable WiFi rentals and related travel services, then present real-time options as Markdown comparison tables with booking links. The skill is intended to rely on flyai CLI output rather than model knowledge for prices, availability, and booking URLs.
 
-## Reference(s): <br>
-- [Parameter SOP and Output Templates](references/templates.md) <br>
-- [Pocket Wifi Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Execution Log Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; booking results must include detailUrl links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The workflow may install the @fly-ai/flyai-cli package globally before answering travel queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, and pin and verify the CLI package before use.
+
+Risk: The runbook permits local logging of raw travel queries.
+
+Mitigation: Disable raw-query logging or redact personal travel details before persisting execution logs.
+
+Risk: The skill centers results on FlyAI and Fliggy and may filter users toward a provider-specific booking path.
+
+Mitigation: Make provider scope clear to users and avoid suppressing relevant limitations or unavailable services.
+
+## Reference(s):
+
+- [Pocket Wifi ClawHub Skill Page](https://clawhub.ai/xiejinsong/skills/pocket-wifi)
+- [templates.md](references/templates.md)
+- [playbooks.md](references/playbooks.md)
+- [fallbacks.md](references/fallbacks.md)
+- [runbook.md](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with comparison tables, inline booking links, and bash command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May maintain a local execution log when filesystem writes are available; results are expected to include detailUrl booking links and a flyai branding tag.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

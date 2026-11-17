@@ -1,0 +1,601 @@
+{
+ "files": {
+  ".github/workflows/tests.yml": {
+   "sha256": "0ac7aa64ed330e91c9a74d187e3c092ed9529ca8dbad3eccbd3e5de223de10ed",
+   "size": 584
+  },
+  "README.md": {
+   "sha256": "051fb8bef3afef652942807ee054839775614cb65ffaf6339794331ee1641e08",
+   "size": 4755
+  },
+  "SKILL.md": {
+   "sha256": "38b24de56a0857c1924f6bb9ddffa89aeb4ea55bf27e1d6ddfc0ef2f2c73175a",
+   "size": 32658
+  },
+  "docs/ADR-0001-af-draw-split.md": {
+   "sha256": "e22e656aaa687af62b9b66547f31108d5d49978a831c8cfa31bf066e090eb0ba",
+   "size": 2088
+  },
+  "evals/evals.json": {
+   "sha256": "b646fdf854cdf75d3d7c2aaef948349e04ed6387ce8fa80a96e5d35dd82a68d8",
+   "size": 10675
+  },
+  "examples/README.md": {
+   "sha256": "a545aefff334dbf4a9cd05c2616ba9d8d00bc9f61de6d4cb701152e45d6d5937",
+   "size": 5192
+  },
+  "examples/example_arena.json": {
+   "sha256": "73e65dbc10190922eb93f6fded19c7ffc028d55e7823550fcb2371182973e044",
+   "size": 501
+  },
+  "examples/example_bar.json": {
+   "sha256": "21480cf7d70f51ea139950522c4500767a16a2c963842709ba677da5db713a81",
+   "size": 184
+  },
+  "examples/example_box.json": {
+   "sha256": "6405b4edfd4076e7c2a8dc084a14b121eba895fe5ce39aebef907ec77f90aa5e",
+   "size": 177
+  },
+  "examples/example_composite.json": {
+   "sha256": "39d2126999542f90666ee92975eb6be87bf84db34ff0d8c21bee898665b5d307",
+   "size": 291
+  },
+  "examples/example_diagram.json": {
+   "sha256": "fad50b5705b31e1562bdbce2a95ba39878fcea4d3072ab96717bd3eba39ec0f0",
+   "size": 397
+  },
+  "examples/example_dual.json": {
+   "sha256": "efc60e34c2486ce4c37bf27183fa4e46561c7312cab6f923e5458fae423304ad",
+   "size": 149
+  },
+  "examples/example_forest.json": {
+   "sha256": "3a27c081f31a7ee2c293a446ea41b082edf4bb0c3901ed095634fb9655e89556",
+   "size": 381
+  },
+  "examples/example_heatmap.json": {
+   "sha256": "70c2864cc3ef82342c4e35ab83e85f50d371b1271895ecaf4d9fb93f64d97d1a",
+   "size": 425
+  },
+  "examples/example_km.json": {
+   "sha256": "9707a4e407996e5c013dff40a02b729e5ed4ab14b077f3ef56ba6523b5ba6e76",
+   "size": 190
+  },
+  "examples/example_line.json": {
+   "sha256": "abe7cb465e9cd58a2ab7cef29ad0d8316cb6f7f2bb3b0f300074d35a4bccab49",
+   "size": 269
+  },
+  "examples/example_prisma.json": {
+   "sha256": "1ef6d8d5fbd178efc2852772f58a43e16afbc60a5df92312d3ed086abdbd6c2d",
+   "size": 268
+  },
+  "examples/example_roc.json": {
+   "sha256": "2d2cd6b95adc09e01b2570d028ea2346342c8da29212573b0079b279aa6821dc",
+   "size": 280
+  },
+  "examples/example_scatter.json": {
+   "sha256": "86f3103c27632cc25e0c3954ce57d351d225500fc680426fec9f2597b89ed1de",
+   "size": 206
+  },
+  "examples/example_stacked.json": {
+   "sha256": "b92990d9e57ae4e479417de5a4a0ce73ccd83c1bbc63359c28836f189b2fa591",
+   "size": 184
+  },
+  "examples/gallery/README.md": {
+   "sha256": "ee26df94f33220b67bb9d3791dadfba8c5e23a54b512c9c3ffec64b3faedce7c",
+   "size": 951
+  },
+  "examples/gallery/fleiss93_labbe.json": {
+   "sha256": "2f947368abcd8708fd0a3692717a3694833466d108a2a662502c583edafd59b2",
+   "size": 1143
+  },
+  "examples/gallery/fleiss93_labbe_preview.svg": {
+   "sha256": "b008a23dcf8d4a60e150c978f4d0ebdcb89ee52ac4b75986e0babf4787e99f56",
+   "size": 142031
+  },
+  "examples/gallery/ovarian_km.json": {
+   "sha256": "bca8cca5e6a499110e9f4d25135f79fa010ac02746a67366b8d4b780a7511950",
+   "size": 714
+  },
+  "examples/gallery/ovarian_km_preview.svg": {
+   "sha256": "7ee661f6bfd31ea6af08840a44bf50926e7b3b20805e83231be6bbb8aa4121b9",
+   "size": 61942
+  },
+  "examples/gallery/pbc_km.json": {
+   "sha256": "554b33c20a03930b8f2bae35ff11eb11fed1d5d08c16f53e980a0bd882236f66",
+   "size": 4498
+  },
+  "examples/gallery/pbc_km_preview.svg": {
+   "sha256": "fd2e7011b3a885c02c6993fa55a1e1e8143d29911f188b0c13ce808b4019e5c3",
+   "size": 88724
+  },
+  "examples/realworld/cardio_fleiss93_aspirin_labbe.json": {
+   "sha256": "42a8d295e73a2212deddebc1660e6620ed5b65130dd85bddd9a58e08e0ad67fa",
+   "size": 1429
+  },
+  "examples/realworld/evidence_quadas_diagnostic.json": {
+   "sha256": "e127cdcec6d41e6a87ac488b90ce707df75b8def3d9483d2d850bca73037a238",
+   "size": 2474
+  },
+  "examples/realworld/evidence_rob1_cochrane_rct.json": {
+   "sha256": "9e4b4a08f845f1be73e64569cb12208dc1886b8ab5e58784ef8bb5f4232f7f96",
+   "size": 4322
+  },
+  "examples/realworld/evidence_rob2_metformin.json": {
+   "sha256": "e63bd01e1e27106963fd6db5c07163f97d4c62ad97697fdb9eae5c2c464abf20",
+   "size": 2471
+  },
+  "examples/realworld/evidence_robins_nonrandomized.json": {
+   "sha256": "c08a30099d4ef906590dd371ad5f9b1ae5234e7574e9218ab2ac83584df2e017",
+   "size": 3105
+  },
+  "examples/realworld/hematology_mgus_cif.json": {
+   "sha256": "55e3f620eee767701a1c18cb80e079c0dd5b093cb507a08c1cd4b5b3da201127",
+   "size": 22230
+  },
+  "examples/realworld/oncology_colon_rmst.json": {
+   "sha256": "aaf2dcd80acd81927fa745196178909a2997cb1fd72f39e56ad1ddf5dace8d7c",
+   "size": 9708
+  },
+  "examples/realworld/realworld_bmi_mortality_rcs.json": {
+   "sha256": "c1e1e8bcc07874116565b6a4df3e223fbd9aae32a9ffdeac825b0f260f3d6fb9",
+   "size": 1440
+  },
+  "examples/realworld/realworld_csle_swimmer.json": {
+   "sha256": "4dfb7fc9e2b90925675cff89e033405148614afea52b829cf8ff4bc1582962d2",
+   "size": 1374
+  },
+  "examples/realworld/realworld_hcc_nomogram.json": {
+   "sha256": "1c13ad5923112e813c6925b698fa5296180d067ce8f62595d1d835a375b52e63",
+   "size": 1758
+  },
+  "examples/realworld/realworld_immunotherapy_subgroup.json": {
+   "sha256": "7b8b1362c01bddc20288a13ce0ad6332b090681a400bfce37180327328240c15",
+   "size": 2073
+  },
+  "examples/realworld/realworld_meta_galbraith.json": {
+   "sha256": "b12c3bc5c3df4fa48669e8d012f546a2261d4ace03ec9a24380225f5603eee2a",
+   "size": 1461
+  },
+  "examples/realworld/realworld_omics_volcano.json": {
+   "sha256": "cec085859b1cb0ea14f69818f8ee456996d526aa579b7bc23e025c7cff0a283d",
+   "size": 705
+  },
+  "examples/realworld/realworld_oncology_waterfall.json": {
+   "sha256": "83d73da3052dc1eba17fe1f33503a6eff74756efc9bc6aa58e727811083b32fc",
+   "size": 1350
+  },
+  "examples/realworld/realworld_rct_response.json": {
+   "sha256": "cf069b703e99dddf7b39c406d9f39307119500babe63b7f50f8db41b60663fa0",
+   "size": 689
+  },
+  "examples/realworld/realworld_sepsis_calibration.json": {
+   "sha256": "932151348a344fb1ab8512a04e7011865666c67d3e90d713c56ae34334873d72",
+   "size": 1151
+  },
+  "examples/realworld/realworld_sepsis_dca.json": {
+   "sha256": "31e4f2c183cf813db7e12828def1a60550491b7dff81884cb80315ab589c7d87",
+   "size": 1357
+  },
+  "examples/realworld/realworld_survival_km.json": {
+   "sha256": "aaa6399ceee0e07415829108839abb17ac4629b1ef1da3e1223cae6c6e1f29ef",
+   "size": 807
+  },
+  "mcp/MCP_SUBMISSION.md": {
+   "sha256": "7ad7842992098224b3ed7a4d74b211dd50c754344a443b505b099ab3fe80a667",
+   "size": 1738
+  },
+  "mcp/README.md": {
+   "sha256": "63fee7c7c6b8942ceba998e9e64e959c6100fdb010be5c903628bdd265a7f869",
+   "size": 2802
+  },
+  "mcp/pyproject.toml": {
+   "sha256": "cc5063ac830a95cbdded670aab8c35c31f4dc2aefbaf0f0a029365da2b933196",
+   "size": 979
+  },
+  "mcp/server.py": {
+   "sha256": "03df2f3f2763d56a99656ac3e53a0624b8c3230ceb99c414cd4723e465858603",
+   "size": 16769
+  },
+  "mcp/sync_engine.sh": {
+   "sha256": "6db655b8e320c1a0daca478e91d3d001dd3684854ba32484b48d7f1743c5e931",
+   "size": 1612
+  },
+  "mcp/tests/e2e.py": {
+   "sha256": "facbbc5cde1275b965b576dc92b1f45eb340a76c9c6690dfb84e055631f3acc1",
+   "size": 3983
+  },
+  "mcp/tests/e2e_transcript.md": {
+   "sha256": "bd31de316b1902f621bc47bba3957864b844a268e4f2599ab977240b7b5dcb03",
+   "size": 836
+  },
+  "mcp/tests/test_bounds.py": {
+   "sha256": "04acd8bc4b92ae66e44ac2969a36b6478ce837ac6ed8b5104c7af6405db8be8d",
+   "size": 2295
+  },
+  "references/advanced.md": {
+   "sha256": "eb494b5122bc553c969636871c1447c394aa9939b0097db3b9c20d491237c02f",
+   "size": 12417
+  },
+  "references/antipatterns.md": {
+   "sha256": "dd24dcfc68baa50af877212e42eff1c4b42845a20eb82a0e57220a556041a101",
+   "size": 5159
+  },
+  "references/changelog-full.md": {
+   "sha256": "bd14c3a9b8e11f90ed69e30d7db5229b408b65f3a275fa63f80294f5c1fa2cfd",
+   "size": 127605
+  },
+  "references/changelog.md": {
+   "sha256": "18c99a553fe346e9eec9655b55cd7b7797d4ec030a22a00d00370cd74dff0cb6",
+   "size": 36756
+  },
+  "references/cheatsheet.md": {
+   "sha256": "467bfa79525bdcc7e0621f341bfd22021e80ba4bd85df6fd617adffa56aa8bf2",
+   "size": 6961
+  },
+  "references/clinical-lab-trends.md": {
+   "sha256": "51213551649578e6effc72ee05d3ebe87e29cb1e40fc64f283decd36da365ff6",
+   "size": 4209
+  },
+  "references/color-guide.md": {
+   "sha256": "249cd2587b03ac03d4ec39b05cd504867f8c7eaebc1e4a4d9f32b70128ad4b93",
+   "size": 5761
+  },
+  "references/combo-guide.md": {
+   "sha256": "e6753b1b0ca7c068d7fad096e6612f15ad85bb187ea19adda57c1e2c3d96b800",
+   "size": 4028
+  },
+  "references/composite-layouts.md": {
+   "sha256": "d76dbbec0883da2fe407daafccf616d7b96511dac793896501b04a472a2ce3e8",
+   "size": 7884
+  },
+  "references/data-formats.md": {
+   "sha256": "343e624efa245fb09e2577f52b6bb1547407f13069337d5f45454fa44d66c31d",
+   "size": 26340
+  },
+  "references/faq.md": {
+   "sha256": "3ef1f11e8befa3d901a309cd4e17c29aec7f5a20d035c15852766c134973a893",
+   "size": 16765
+  },
+  "references/limits.md": {
+   "sha256": "5f97282e7c51347e1398f7188fb530f9bb47d8a0e34ebf8bfcf55641dbaf666b",
+   "size": 15065
+  },
+  "references/pitfalls.md": {
+   "sha256": "bf2646bd396c9866df863aaa4f878abc07634c05f1dfbb57ff8b500a3d51b9c3",
+   "size": 21414
+  },
+  "references/prompt-cards.md": {
+   "sha256": "14d664158a4425f9b2a19af0a5ed469cef86e894c370bfec166f4ce75408975b",
+   "size": 11219
+  },
+  "references/python-api.md": {
+   "sha256": "9b418f2bad75ed63c9afe95768615fa6029c46cea601eddd851ec14e76780a17",
+   "size": 6003
+  },
+  "references/quickstart.md": {
+   "sha256": "e8dad07f0dd7199422763709908e6d853a900cec65cfea91823926b83bd05166",
+   "size": 5294
+  },
+  "references/reverse-engineering-colors.md": {
+   "sha256": "ba92b515f598f21c9170d7fb711ea7d5788381ec19fc7cb848509de464c006a5",
+   "size": 3252
+  },
+  "references/reviewer-cases.md": {
+   "sha256": "ba45259d6643e0c1768619b2cc007ed6b63f97101859c4f99e0f020bb27c9dea",
+   "size": 4409
+  },
+  "references/scenario-cards.md": {
+   "sha256": "be6e43ff9de91174d6ce4ba9f1b016f0750f337127acaadecaf2e064c18a402b",
+   "size": 8782
+  },
+  "references/v1.5-upgrade-analysis.md": {
+   "sha256": "5e901931348c7cb3510b3c1a1c8f112b85415a881cb7e996ed406b63251d251a",
+   "size": 4725
+  },
+  "requirements.txt": {
+   "sha256": "d0f40efa0ce5c8b1a39d14bb7712f0870ffde350004cb1e005a402928161bb7c",
+   "size": 67
+  },
+  "scripts/af_diagnostics.py": {
+   "sha256": "a030c5db4add374dfdd2b5de97efdc71b945b903eeb0c6e69e6f1f33ea19dceb",
+   "size": 16357
+  },
+  "scripts/af_draw.py": {
+   "sha256": "43afd2733df7fd1a8357af66504d8f69ccd58d6b27bd4c8f311f53c93a640a55",
+   "size": 260695
+  },
+  "scripts/af_flow.py": {
+   "sha256": "31d10406ad7c1464151a453ce0979dd1ef49b5a526a734eaf2e4a6fb9b04253e",
+   "size": 49214
+  },
+  "scripts/af_resilience.py": {
+   "sha256": "9625f46744cb65ab660542701fc63eb6b2915f04b93a15518b95dd6a2383408d",
+   "size": 2547
+  },
+  "scripts/af_shared.py": {
+   "sha256": "274764dac447a75d81bd2582554e2bcd64c3427a51d88442b1ace7f156c5b990",
+   "size": 35059
+  },
+  "scripts/af_v23_charts.py": {
+   "sha256": "f89d66b205e54dededaacb48fc5bf7db842476d2f8daf4916f7ac63d3eec8ac4",
+   "size": 124174
+  },
+  "scripts/af_v23_stats.py": {
+   "sha256": "426e2f58107065c7aa6dd3cbdac54014a24b06f78ab5d49cdcaa237510e7f146",
+   "size": 45653
+  },
+  "scripts/af_wizard.py": {
+   "sha256": "86f9eedd4a5f8838f2de7dc25ae5e09805f097e2a9dabb89ca056051c99afbf2",
+   "size": 6819
+  },
+  "scripts/audit_pdf.py": {
+   "sha256": "1b226f5a42cb8f737289ee74594abfbd22d2862bdea6e402250e62e5cbb2cf8a",
+   "size": 5325
+  },
+  "scripts/banned_af.txt": {
+   "sha256": "3f975543f70e18f06d3fd24f6ba039811c694b873819eec64be0b8d39b0efbc0",
+   "size": 186
+  },
+  "scripts/check_consistency.py": {
+   "sha256": "21580fc0561461829456e4f4c65527918ccd2dd129ddec2af80180efe022452a",
+   "size": 9874
+  },
+  "scripts/detect_cjk_font.py": {
+   "sha256": "9d362f3482d8b37cefc8bd65cadab959339f5767fc7342203e917574b920a600",
+   "size": 2351
+  },
+  "scripts/gen_figure.py": {
+   "sha256": "47c63045d06ad77104a18baa0e2ad2d3ec65150b73e110f399d71a4042f298c9",
+   "size": 190973
+  },
+  "scripts/gen_legend.py": {
+   "sha256": "e8c9da60868df2c3a795cb46a25edfd829a46d839e427aec69c0e6e5853be043",
+   "size": 9183
+  },
+  "scripts/journal/cell.json": {
+   "sha256": "79a870815dabec36a00dcf023948887416d968341e9b93472e0a7ca371a7fb4c",
+   "size": 140
+  },
+  "scripts/journal/cma.json": {
+   "sha256": "12c13a81809f2a3fba965692ba94cd0882241298e1a345394f59bd47e218c25b",
+   "size": 163
+  },
+  "scripts/journal/cn-core.json": {
+   "sha256": "2bd6021f17ee92bd059b7413dd640a120900e8c5fb1be7977ef5073735f22793",
+   "size": 163
+  },
+  "scripts/journal/ieee.json": {
+   "sha256": "61158a4e719a03ffc2c6349c7bb0bcee7185b9db080054b1f3229b7c8e76bf49",
+   "size": 150
+  },
+  "scripts/journal/jama.json": {
+   "sha256": "b5491f1318189391900cc3844993bb027e2ae17f20c144d48e6499ddbe72add8",
+   "size": 140
+  },
+  "scripts/journal/lancet.json": {
+   "sha256": "11f774b04016015308753976e88c3ea4c3ca1f14f5405fee5e25212f3668ec29",
+   "size": 140
+  },
+  "scripts/journal/nature.json": {
+   "sha256": "8c8cb56c0cd5a9d64947e6008465d7c8f1b2c7674888ec5e27dc7aac5ccb6678",
+   "size": 144
+  },
+  "scripts/journal/nejm.json": {
+   "sha256": "ba42cbcddbd609f8b40634920a3da70e019cc7de32d25012c4dcab86b314f299",
+   "size": 144
+  },
+  "scripts/journal/science.json": {
+   "sha256": "066c722647ee5fe7759473add02a78d0f76c8d6a66410ecba2cc4bcf60ffda89",
+   "size": 144
+  },
+  "scripts/pixel_probe.py": {
+   "sha256": "00612adabfad1e5060f6cbd3e091e41c912f37ab0692bbc52b72e29a73b62313",
+   "size": 6665
+  },
+  "scripts/setup_env.py": {
+   "sha256": "fe44567806f839835a3e1f7bc7740963a0b406be122a51196f8f6d53f8e243f2",
+   "size": 4784
+  },
+  "scripts/verify_overlap_pixel.py": {
+   "sha256": "b7d96f615cef2c4b89ec69c073e1dcc89c6aac38201f68557a6f24a5025f4322",
+   "size": 7625
+  },
+  "templates/01-meta-forest.json": {
+   "sha256": "5c690c4bf4ce9e67ea2e408104a85583407d5c0c4d10a2e34dcc907101c33e96",
+   "size": 1303
+  },
+  "templates/02-rct-baseline-bar.json": {
+   "sha256": "e7e62b719e3b7b7fcffcabf67799020fe58cf8588663db415ed4ddc105ae9c8e",
+   "size": 903
+  },
+  "templates/03-survival-km.json": {
+   "sha256": "f9b46cae703d6902f3279eaed64faa3a6e6eaf8a44a57e603616caa6d28fcb38",
+   "size": 1461
+  },
+  "templates/04-diagnostic-roc.json": {
+   "sha256": "b3bbcf801b38c1bf88d9f10d4928455a7f297f867748189d2323f588429911d1",
+   "size": 1083
+  },
+  "templates/05-correlation-heatmap.json": {
+   "sha256": "c72808bbc9ca0b69f42bfcf321f4ee7bf8cda3c75a09e8412b32b52dd04840e0",
+   "size": 851
+  },
+  "templates/06-prisma-review.json": {
+   "sha256": "da390407b8457cec4bb692c9c88b4c21799955c93b4ca7155331131ac146ed20",
+   "size": 784
+  },
+  "templates/07-dose-response-line.json": {
+   "sha256": "d319b021baf6a808607f389707f6fa964940e44fbfae6557e4dec8797cbaf5a0",
+   "size": 753
+  },
+  "templates/08-panel-composite.json": {
+   "sha256": "5887988f3ab2da75cf7da5e1802b1fd2b9ebe01bcf09c062d015307a055dbd95",
+   "size": 1879
+  },
+  "templates/09-survey-stacked.json": {
+   "sha256": "dea33e754e9bd3788d1a1af75eca463ac76c767b4a4c2350107310c7643fd9bd",
+   "size": 882
+  },
+  "templates/10-cn-journal-hbar.json": {
+   "sha256": "4a9d32ed4331f1e4ff19534236294a365d9c32bffe0425fb637a496793107165",
+   "size": 918
+  },
+  "templates/11-rct-grouped-bar.json": {
+   "sha256": "0e32b674cc7e6849eaab0092c479836346e7a1baf134ebd80723f35d76e8950f",
+   "size": 975
+  },
+  "templates/12-dose-response-scatter.json": {
+   "sha256": "892ca8f2ddb8dd0b1c6489f9823a436fd006d6823317ffa95d7850ae4428820c",
+   "size": 880
+  },
+  "templates/13-qol-box.json": {
+   "sha256": "0196d483a23f1d2df624c31e88d77db103a1735e12a16286f9074db82cb70e91",
+   "size": 917
+  },
+  "templates/14-cytokine-violin.json": {
+   "sha256": "aaebfdb8ce0bc95ea40497e30868c762bfd51b963d7c62f247f84e7463e12c5e",
+   "size": 903
+  },
+  "templates/15-lab-trend-dual-axis.json": {
+   "sha256": "d56977490b615862b22e00339d4e503a6e0b47a7e31fecb120d91c9da7708ff1",
+   "size": 800
+  },
+  "templates/16-study-design-diagram.json": {
+   "sha256": "9bf59dfe66253195cf388ec28429b81520ee8f680ec64f0b1cd4bf54a40481d4",
+   "size": 1384
+  },
+  "templates/README.md": {
+   "sha256": "c5a1ffb97dba0cf1d3bd30f0a5e0bd46a5405c426cb44e690e8920e211fa6be9",
+   "size": 3333
+  },
+  "templates/bland_altman.json": {
+   "sha256": "579f5e3c19ec8d9dfe5a23a26a0ba0df724a196e615dd83246fdcc30507ebd86",
+   "size": 666
+  },
+  "templates/calibration.json": {
+   "sha256": "d526f3a193c05f4e3e61498e0d58fceedb4ed480b824f4f098c2883f61193418",
+   "size": 1048
+  },
+  "templates/cif.json": {
+   "sha256": "75ccec99840264740fed5fbafeca9149d6e31cd14d1f03ef045f8433f31faa45",
+   "size": 1116
+  },
+  "templates/cluster_heatmap.json": {
+   "sha256": "54109169e5f60cc0979dfd356ee1a665e408a18127cf0ed58b84d82319b56bb0",
+   "size": 831
+  },
+  "templates/composite-hero.json": {
+   "sha256": "c8c2041a0b1c306c5dafec909cb9d14f34583753c47c2012418609930eaa5152",
+   "size": 17410
+  },
+  "templates/dca.json": {
+   "sha256": "eeb0d3117e28b9516e85a8b0b069b8a8cfe096f2134c806b16d5fb0f91adf804",
+   "size": 1140
+  },
+  "templates/dumbbell.json": {
+   "sha256": "2112ca23c6fb8b2dd743b0ba4e81c6c325f4784b2c97b5ca10ced0e5a82be893",
+   "size": 765
+  },
+  "templates/flow.json": {
+   "sha256": "5496ad9612caee6a31968c69f2ce643eec17cc336be6659b0b6cf3db93585d4f",
+   "size": 1133
+  },
+  "templates/funnel.json": {
+   "sha256": "9f951ff1a1d9567df1b422c71a83b02dc51442640fa2e5dadd2579a508d3efb0",
+   "size": 862
+  },
+  "templates/galbraith.json": {
+   "sha256": "706802b6804ab882774db78217dce5fed035ba217777084d9242abd716d3c99f",
+   "size": 1234
+  },
+  "templates/labbe.json": {
+   "sha256": "eaac5debb4b5fafdea4b003eb1fb66eb0f6cf62e6b39bc5aa929944e5f81eb44",
+   "size": 1877
+  },
+  "templates/nomogram.json": {
+   "sha256": "804838ab03afd9a077e34a6dfe81fe9628aaa6155e8d04290f32be89695a678b",
+   "size": 1785
+  },
+  "templates/paired.json": {
+   "sha256": "9009a1653bf8d8158693fe3df2d7ccc0ec133c827feaad70390abf1b215d8f9b",
+   "size": 561
+  },
+  "templates/pca.json": {
+   "sha256": "81297c5ec64aa0d6792f0097bdbec8035c23b185c7ef2bebf0bc8c2ca56f4c89",
+   "size": 993
+  },
+  "templates/raincloud.json": {
+   "sha256": "6b38dad335f5d6277184f76f4e985ad27922a93e119c127910a3095a5d4c3e05",
+   "size": 911
+  },
+  "templates/rcs.json": {
+   "sha256": "0f11c2c8b38cec25ebfed837d8fb94138685d439220936f45045a5f554c2ca52",
+   "size": 1603
+  },
+  "templates/ridgeline.json": {
+   "sha256": "810302c4956dd72a75bddd76a1fb1c3c890f343f45dc9fb133f6ef8aa075cd10",
+   "size": 945
+  },
+  "templates/rmst.json": {
+   "sha256": "f51f131abf23bf05d045f0edd1f3c6841faafd3efee07f6e19f4029be6f87e8b",
+   "size": 3997
+  },
+  "templates/rob.json": {
+   "sha256": "d13bf66c865c15dfe669f043edcaf4865300ea37abbc2eb22a44d11b4e5a58fe",
+   "size": 1651
+  },
+  "templates/slope.json": {
+   "sha256": "f6b7ff069dbfba81f25f254c636e67f5f5dca548040771b9a1fec35697fb12ca",
+   "size": 554
+  },
+  "templates/subgroup.json": {
+   "sha256": "ff11af9d9896124bb195a5d2e461831b9fd606f031329a5d03c4d46a64ed3bf6",
+   "size": 2204
+  },
+  "templates/swimmer.json": {
+   "sha256": "4c6daad04066a7b2bd304c73e96397455afa1b4c37e0606d427e563d4f55081c",
+   "size": 1004
+  },
+  "templates/upset.json": {
+   "sha256": "01baf35e2dfb9ab4388bc77658cd7e291b7848e00bf1310dc9f5e7caf5a9ff2d",
+   "size": 827
+  },
+  "templates/venn.json": {
+   "sha256": "08b0d3aaf52792bc686b8962316fab8a54f01190f001236190e5eed823050f46",
+   "size": 909
+  },
+  "templates/volcano.json": {
+   "sha256": "2b9f2ab8a98847679b73de42da228e8f8614295bfdc0a5739b325633ab3b6fa7",
+   "size": 725
+  },
+  "templates/waterfall.json": {
+   "sha256": "9786b3a3f47a85968ad9bd9c5b41419bb60a8d1fcbea46cec70b63444ff99cc9",
+   "size": 925
+  },
+  "tests/fixtures/colon_rmst.csv": {
+   "sha256": "d6fb58b0b3d65b92195ebb18995d8d2186bc34ab2228b3c94c266c9cac3a05b2",
+   "size": 8474
+  },
+  "tests/fixtures/veteran.csv": {
+   "sha256": "3fba5cb9b15a10ab94d54e28b54d2c39d95c27b0fcff1c57aee0eb7edfd93950",
+   "size": 4073
+  },
+  "tests/run_tests.py": {
+   "sha256": "b309b52958c708ccfd225d79f7459c904ac6f6893552987f5423db86a4142efd",
+   "size": 457939
+  },
+  "tests/stress_200.py": {
+   "sha256": "e4e9a92f68b04082d693c0541f9a36c6bdeb0b3d1cd657243348e1060c617c17",
+   "size": 3377
+  },
+  "tests/trigger_benchmark.py": {
+   "sha256": "d1956c125e6592d105ac406770adf0048fff11f655efb79b74085c71e1a4ec4a",
+   "size": 8086
+  },
+  "tests/trigger_cases.json": {
+   "sha256": "965247ac3e91916f1c1444ece822c104a4735c9ebe96cdacef7f674415659e83",
+   "size": 5440
+  }
+ },
+ "generated_by": "pkg_dual_lang.sh"
+}

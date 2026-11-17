@@ -96,7 +96,7 @@ def validate_management_type(management_type: str) -> str:
 def call_temu_api(
     url: str,
     body: dict,
-    timeout: int = 60,
+    timeout: int = 150,
     linkfox_params=None,
 ) -> dict:
     """调用 Temu 网关接口；必须先具备 LinkFox 用户 Token。"""

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dataify Review Intelligence"
+  short_description: "Turn customer reviews into evidence-backed product actions"
+  default_prompt: "Use $dataify-review-intelligence to analyze public customer feedback across relevant sources and return themes, risks, and prioritized actions."
+
+policy:
+  allow_implicit_invocation: true

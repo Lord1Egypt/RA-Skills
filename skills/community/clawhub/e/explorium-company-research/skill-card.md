@@ -1,48 +1,64 @@
-## Description: <br>
-Deep-dive company research using Explorium AgentSource, producing company profiles with firmographics, technographics, funding history, executive team context, competitors, workforce trends, and recent news. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep company research using Explorium AgentSource that produces company profiles, competitive intelligence, technology stack analysis, funding history, workforce trends, executive information, and recent news.
 
-## Publisher: <br>
-[haroExplorium](https://clawhub.ai/user/haroExplorium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haroexplorium](https://clawhub.ai/user/haroexplorium)
 
-## Use Case: <br>
-External users, sales teams, market researchers, account planners, and due-diligence teams use this skill to research companies, compare competitors, map markets, and prepare structured business intelligence reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles an Explorium API key. <br>
-Mitigation: Treat the key as sensitive, prefer environment-variable configuration, and avoid copying real keys into chat, logs, screenshots, or shared files. <br>
-Risk: Search filters, entity identifiers, and optional request context can be sent to a third-party API. <br>
-Mitigation: Use the skill only when third-party company and prospect research is acceptable, and omit optional call-reasoning metadata when query logging is not appropriate. <br>
-Risk: Company research exports may contain business intelligence or personal contact data. <br>
-Mitigation: Review generated JSON and CSV outputs before saving or sharing them, and limit contact enrichment to the minimum fields needed. <br>
-Risk: The server security verdict is suspicious because the skill performs credential handling, remote API calls, local exports, and person/contact enrichment. <br>
-Mitigation: Review and scan the skill before deployment, and confirm the data handling posture matches the intended business use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haroExplorium/explorium-company-research) <br>
-- [Explorium API endpoint](https://api.explorium.ai/v1/) <br>
-- [README](README.md) <br>
-- [Enrichment Reference](references/enrichments.md) <br>
-- [Events Reference](references/events.md) <br>
-- [Filter Reference](references/filters.md) <br>
+## Use Case:
 
+Sales, marketing, investment, and business research users use this skill to gather company intelligence for account planning, competitive analysis, due diligence, market mapping, and pre-call preparation. The skill can also find and enrich prospect or executive contact information when the user has proper authorization and a legal basis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and local JSON or CSV file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write API results to temporary JSON files and export CSV files when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default workflow can send search filters, entity IDs, and optional request metadata, including the original request, to Explorium.
+
+Mitigation: Avoid confidential prompt context unless the user has approved that disclosure, and omit optional request metadata when it is not needed.
+
+Risk: The skill supports broad prospect and contact enrichment workflows that may return personal or professional contact data.
+
+Mitigation: Use prospect and contact enrichment only with appropriate authorization, legal basis, and data-handling controls.
+
+Risk: API keys can be saved locally or entered through setup/config commands.
+
+Mitigation: Prefer a protected EXPLORIUM_API_KEY environment variable, avoid pasting keys into chat, keep local config files protected, and rotate any key that was exposed.
+
+Risk: Research results and exports can persist in /tmp or CSV files after the agent finishes.
+
+Mitigation: Review, protect, or delete temporary JSON files and CSV exports after use, especially when they contain company intelligence or contact data.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/haroexplorium/skills/explorium-company-research)
+- [Explorium AgentSource API](https://api.explorium.ai/v1/)
+- [Enrichment Reference](references/enrichments.md)
+- [Events Reference](references/events.md)
+- [Filter Reference](references/filters.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown research reports with tables, CLI commands, JSON temp-file paths, and optional CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Explorium API results and may write local JSON result files under /tmp and user-selected CSV export files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

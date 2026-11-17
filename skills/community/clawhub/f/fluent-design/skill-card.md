@@ -1,38 +1,54 @@
-## Description: <br>
-A practical Microsoft Fluent Design reference for Windows 11 UI language, Mica and Acrylic materials, WinUI 3 control specs, typography, layout patterns, dark mode, accessibility, and Electron adaptation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fluent Design is a Chinese-language reference skill that guides agents on Windows 11 Fluent Design materials, WinUI 3 controls, typography, layout, dark mode, accessibility, and Electron adaptation.
 
-## Publisher: <br>
-[bingfoon](https://clawhub.ai/user/bingfoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bingfoon](https://clawhub.ai/user/bingfoon)
 
-## Use Case: <br>
-Developers and designers use this skill to apply or audit Microsoft Fluent Design patterns for Windows desktop, WinUI, WPF, Electron, and Windows-styled cross-platform applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: CSS or Electron snippets could be copied into a project without review for platform fit, security, or accessibility. <br>
-Mitigation: Review snippets against the target application's requirements before integrating them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Fluent Design release](https://clawhub.ai/bingfoon/fluent-design) <br>
-- [Microsoft Fluent Design System 2](https://fluent2.microsoft.design/) <br>
+## Use Case:
 
+Developers and designers use this skill to create or audit Windows desktop, WinUI, WPF, Electron, and cross-platform interfaces that need a Windows-native Fluent Design feel.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown reference material with tables, checklists, and CSS or TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference-only guidance; the skill does not request credentials, run code, install software, or make changes automatically.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Non-Chinese readers may misunderstand or miss design guidance because the skill content is Chinese-language.
+
+Mitigation: Use with a Chinese-proficient reviewer or translate and review the guidance before applying it to production UI work.
+
+Risk: Static design-reference guidance can be applied incorrectly to a specific app, platform version, or accessibility requirement.
+
+Mitigation: Review generated recommendations against current Microsoft Fluent and WinUI documentation, then test visual states, dark mode, and accessibility before release.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bingfoon/skills/fluent-design)
+- [Microsoft Fluent Design System 2](https://fluent2.microsoft.design)
+- [WinUI Gallery](https://github.com/microsoft/WinUI-Gallery)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CSS and TypeScript code blocks, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference content; no executable behavior detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

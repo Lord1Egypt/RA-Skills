@@ -1,41 +1,59 @@
-## Description: <br>
-AKY-ES helps agents use Elasticsearch 8.17 to store, index, search, retrieve, and manage persistent data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AKY-ES helps agents store, index, search, and retrieve persistent data with Elasticsearch 8.17, prioritizing localhost:9200 and falling back to Elastic Cloud when configured.
 
-## Publisher: <br>
-[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangfromchu-ai](https://clawhub.ai/user/wangfromchu-ai)
 
-## Use Case: <br>
-Agents and developers use this skill to operate Elasticsearch-backed memory and document indexes, including CRUD, search, bulk import, and service status workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic fallback to Elastic Cloud can store notes, documents, or memory data outside the local machine. <br>
-Mitigation: Verify ES_URL and credential variables before storing data, and avoid or disable cloud fallback when strictly local storage is required. <br>
-Risk: Write, bulk import, and delete commands can change or remove indexed data. <br>
-Mitigation: Review target index names and JSON payloads before running commands, especially when using sensitive or production data. <br>
+## Use Case:
 
+Developers and agents use AKY-ES to maintain searchable long-term memory, index documents and skill outputs, run CRUD and search operations, and bulk import JSONL records into an Elasticsearch-backed store.
 
-## Reference(s): <br>
-- [AKY-ES on ClawHub](https://clawhub.ai/wangfromchu-ai/skills/aky-es) <br>
-- [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python examples, and Elasticsearch JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that read, write, import, search, or delete Elasticsearch indexes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent searchable storage may retain sensitive material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive data unless retention, access, deletion, and review expectations are acceptable.
+
+Risk: The skill presents local Elasticsearch usage while also allowing automatic Elastic Cloud fallback.
+
+Mitigation: Disable cloud fallback or require explicit destination confirmation before indexing or searching data.
+
+Risk: The skill depends on unaudited external workspace scripts and a keepalive cron job.
+
+Mitigation: Review the scripts before installing, pin dependencies, and approve any cron or keepalive behavior.
+
+## Reference(s):
+
+- [Elasticsearch Reference](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
+- [ClawHub Skill Page](https://clawhub.ai/wangfromchu-ai/skills/aky-es)
+- [Publisher Profile](https://clawhub.ai/user/wangfromchu-ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May interact with persistent Elasticsearch storage through external workspace scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

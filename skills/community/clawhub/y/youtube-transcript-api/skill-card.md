@@ -1,44 +1,57 @@
-## Description: <br>
-Extract, transcribe, and translate YouTube video transcripts using the YouTubeTranscript.dev V2 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract, transcribe, and translate YouTube video transcripts using the YouTubeTranscript.dev V2 API.
 
-## Publisher: <br>
-[volodstaimi](https://clawhub.ai/user/volodstaimi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[volodstaimi](https://clawhub.ai/user/volodstaimi)
 
-## Use Case: <br>
-Developers, agents, and content workflows use this skill to retrieve YouTube captions, run ASR transcription when captions are unavailable, translate transcripts, and process videos in batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube video identifiers and transcript content may be sent to the external YouTubeTranscript.dev API. <br>
-Mitigation: Use the skill only when sending this data to YouTubeTranscript.dev is allowed by the user's data-handling requirements. <br>
-Risk: ASR jobs can deliver results to a webhook URL supplied in the request. <br>
-Mitigation: Use only trusted HTTPS webhook endpoints under the user's control and avoid confidential, regulated, or private video content unless approved. <br>
+## Use Case:
 
+Developers and external users use this skill to retrieve YouTube captions, request ASR transcription when captions are unavailable, translate transcripts, and process multiple videos for AI or content workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volodstaimi/youtube-transcript-api) <br>
-- [YouTubeTranscript.dev website](https://youtubetranscript.dev) <br>
-- [YouTubeTranscript.dev API documentation](https://youtubetranscript.dev/api-docs) <br>
-- [npm SDK](https://www.npmjs.com/package/youtube-audio-transcript-api) <br>
-- [YouTubeTranscript.dev pricing](https://youtubetranscript.dev/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API request examples, code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to YouTubeTranscript.dev and a bearer API key supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill sends YouTube video URLs or IDs, transcript options, webhook URLs, and an API key to the third-party youtubetranscript.dev service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use direct HTTPS requests when possible, keep API keys secret, and only send webhook URLs for trusted HTTPS endpoints under the user's control.
+
+Risk: Using the optional npm SDK adds dependency exposure beyond the direct API examples.
+
+Mitigation: Pin and review the npm SDK before use, or prefer the direct HTTP examples for minimal dependency exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/volodstaimi/skills/youtube-transcript-api)
+- [YouTubeTranscript.dev](https://youtubetranscript.dev)
+- [YouTubeTranscript.dev API documentation](https://youtubetranscript.dev/api-docs)
+- [youtube-audio-transcript-api npm package](https://www.npmjs.com/package/youtube-audio-transcript-api)
+- [YouTubeTranscript.dev pricing](https://youtubetranscript.dev/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with Python, JavaScript, and cURL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a YouTubeTranscript.dev API key and network access to the third-party API.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Fridge Manager helps households track food inventory, expiry dates, storage locations, and bilingual storage advice through conversational updates and optional local reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fridge Manager tracks household fridge, freezer, and pantry inventory, calculates expiry dates from a bilingual food-storage knowledge base, and supports inventory queries and expiry reminders.
 
-## Publisher: <br>
-[qiangm1](https://clawhub.ai/user/qiangm1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qiangm1](https://clawhub.ai/user/qiangm1)
 
-## Use Case: <br>
-External household users use this skill to add, remove, query, and audit fridge, freezer, pantry, and counter inventory. It also supports expiry checks, food storage advice, and optional local cron-style reminders for items expiring soon. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores household food inventory, quantities, expiry dates, and change timestamps in a workspace-visible JSON file. <br>
-Mitigation: Use it only in workspaces where this household inventory data is acceptable to store, and review family/fridge.json access before sharing the workspace. <br>
-Risk: Optional daily reminders may create recurring local expiry checks. <br>
-Mitigation: Enable the cron or heartbeat workflow only when recurring local checks are desired, and disable it when reminders are no longer needed. <br>
-Risk: Shelf-life guidance can be approximate for foods not covered by the knowledge base or when packaging labels differ. <br>
-Mitigation: Prefer package labels and food-safety judgment over generated expiry estimates, and keep conservative notes when the skill estimates an item. <br>
+## Use Case:
 
+External users use this skill to maintain a household food inventory through conversation, including adding, consuming, discarding, and querying items. It also helps users check expiry dates, receive scheduled expiry reminders, and get basic storage guidance.
 
-## Reference(s): <br>
-- [Food Storage Knowledge Base (English)](references/food-knowledge-en.md) <br>
-- [食品保存知识库（中文版）](references/food-knowledge-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with structured inventory summaries, expiry alerts, confirmations, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write and update a workspace-relative family/fridge.json inventory and log when used by an agent with file access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The local inventory and change log can reveal household food habits to other users who share the same workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the workspace private when possible and periodically clear or trim family/fridge.json if the history is no longer needed.
+
+Risk: Expiry dates are estimates for opened or loose items and may not match packaged-food labels or actual storage conditions.
+
+Mitigation: Use package labels and user judgment as the authority for sealed foods, spoiled food, or uncertain storage history.
+
+## Reference(s):
+
+- [Food Storage Knowledge Base (English)](references/food-knowledge-en.md)
+- [Food Storage Knowledge Base (Chinese)](references/food-knowledge-zh.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational text with JSON inventory updates and optional Markdown-style expiry alerts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains a workspace-relative family/fridge.json inventory and change log when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

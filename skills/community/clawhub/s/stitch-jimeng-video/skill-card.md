@@ -1,43 +1,59 @@
-## Description: <br>
-Generates 1080P Jimeng image-to-video clips through Volcengine's Jimeng AI API using first-frame and last-frame inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 1080P image-to-video clips from first and last frame images using the Volcano Engine Jimeng AI API.
 
-## Publisher: <br>
-[sdt328606](https://clawhub.ai/user/sdt328606) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdt328606](https://clawhub.ai/user/sdt328606)
 
-## Use Case: <br>
-Developers and creative operators use this skill to submit prompts plus start and end images to Volcengine's Jimeng API, poll generation status, and optionally download the resulting video file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and first/last-frame images are sent to Volcengine for cloud processing. <br>
-Mitigation: Use non-sensitive prompts and media, and confirm the service is appropriate for the user's privacy and compliance requirements. <br>
-Risk: The skill requires Volcengine API credentials and may incur API charges. <br>
-Mitigation: Store credentials in environment variables, limit credential scope where possible, and monitor API usage and billing. <br>
-Risk: Generated video download URLs are returned by the remote service. <br>
-Mitigation: Review returned URLs and downloaded files before using them in sensitive environments. <br>
+## Use Case:
 
+Developers and creators use this skill to submit first-frame and last-frame image-to-video generation jobs to Jimeng, poll for results, and save the generated video file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdt328606/stitch-jimeng-video) <br>
-- [Prompt guide](references/prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with Python CLI execution and optional MP4 output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses VOLC_ACCESS_KEY and VOLC_SECRET_KEY, accepts prompt, first-frame image, last-frame image, seed, output path, and no-poll options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and first/last frame images are sent to an external Volcengine API under the user's VOLC credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved content and credentials, and do not submit sensitive or regulated images unless that external processing is authorized.
+
+Risk: The script uses a hard-coded user site-packages path for Python dependencies.
+
+Mitigation: Run the skill in an isolated virtual environment with trusted, pinned dependencies and remove or avoid the hard-coded dependency path before deployment.
+
+Risk: The security verdict is suspicious despite no specific risk findings.
+
+Mitigation: Review the skill before installing and scan it as part of deployment approval.
+
+## Reference(s):
+
+- [Jimeng Video Prompt Guide](references/prompt-guide.md)
+- [Volcano Engine Visual API Endpoint](https://visual.volcengineapi.com)
+- [ClawHub Skill Page](https://clawhub.ai/sdt328606/skills/stitch-jimeng-video)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, API Calls, Files, Guidance]
+
+**Output Format:** [Markdown guidance with command-line examples and generated MP4 video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VOLC_ACCESS_KEY and VOLC_SECRET_KEY credentials; can submit a job without polling when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

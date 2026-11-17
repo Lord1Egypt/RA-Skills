@@ -151,50 +151,6 @@ templates:
     risk_level: "high"
     confidence: 0.5
 
-  # 8. 返回值类型变更
-  - id: "return_type_change"
-    name: "返回值类型变更"
-    description: "检测函数返回值类型变更"
-    detection_patterns:
-      - type: "changelog_keyword"
-        patterns: ["return type", "返回值类型", "返回类型", "type change", "类型变更"]
-      - type: "diff_pattern"
-        patterns: ["->\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*:"]
-    extraction:
-      - source: "changelog"
-        regex: "(?:return|返回)\\s+(?:type|类型)\\s+(?:change|变更)\\s+(?:from|从)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_<>, ]+)['\"]?\\s+(?:to|到)\\s+['\"]?([a-zA-Z_][a-zA-Z0-9_<>, ]+)['\"]?"
-        groups: ["old_type", "new_type"]
-    fix_action:
-      type: "text_replace"
-      scope: "adapter_file"
-      pattern: "-> {old_type}"
-      replacement: "-> {new_type}"
-      description: "将返回值类型 {old_type} 替换为 {new_type}"
-    risk_level: "medium"
-    confidence: 0.7
-
-  # 9. 装饰器变更
-  - id: "decorator_change"
-    name: "装饰器变更"
-    description: "检测装饰器变更"
-    detection_patterns:
-      - type: "changelog_keyword"
-        patterns: ["decorator", "装饰器", "annotation", "注解", "@"]
-      - type: "diff_pattern"
-        patterns: ["@[a-zA-Z_][a-zA-Z0-9_]*"]
-    extraction:
-      - source: "changelog"
-        regex: "(?:decorator|装饰器)\\s+(?:change|变更)\\s+(?:from|从)\\s+['\"]?@?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?\\s+(?:to|到)\\s+['\"]?@?([a-zA-Z_][a-zA-Z0-9_]*)['\"]?"
-        groups: ["old_decorator", "new_decorator"]
-    fix_action:
-      type: "text_replace"
-      scope: "adapter_file"
-      pattern: "@{old_decorator}"
-      replacement: "@{new_decorator}"
-      description: "将装饰器 @{old_decorator} 替换为 @{new_decorator}"
-    risk_level: "low"
-    confidence: 0.8
-
 # 适用范围配置
 scopes:
   adapter_files:
@@ -215,5 +171,3 @@ match_priority:
   - "parameter_add"
   - "config_key_change"
   - "import_path_change"
-  - "return_type_change"
-  - "decorator_change"

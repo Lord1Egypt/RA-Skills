@@ -1,0 +1,14 @@
+{
+  "_note": "真实科研场景示例：儿童狼疮肾炎（cSLE）队列 n=14，标准治疗（糖皮质激素+霉酚酸酯/环磷酰胺±贝利木单抗）下的治疗持续时间与肾脏应答（模拟数据，分布形态参照儿科风湿文献惯例）。横条=治疗/随访持续周数，端部箭头=数据截止时仍在治疗或应答持续中，圆点=首次肾脏应答时间（周，仅 CR/PR 例），虚线=26/52 周地标（半年/一年）。类别与时间自洽：里程碑不早于入组、CR/PR 均有首次应答时点、PD 例无应答里程碑。",
+  "_command": "python3 scripts/gen_figure.py -t swimmer -d examples/realworld/realworld_csle_swimmer.json -o fig5_swimmer.pdf --cjk",
+  "end": [56.0, 51.5, 47.0, 43.5, 40.0, 38.5, 35.0, 31.0, 28.5, 25.0, 21.5, 17.0, 13.5, 9.0],
+  "start": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.0, 0, 0],
+  "names": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08",
+            "C09", "C10", "C11", "C12", "C13", "C14"],
+  "group": ["CR", "CR", "PR", "PR", "PR", "PR", "SD", "SD",
+            "SD", "SD", "PD", "PR", "CR", "PD"],
+  "milestones": [[11.0], [15.5], [9.0], [13.0], [8.5], [17.5], [], [], [], [], [], [19.0], [12.0], []],
+  "ongoing": [true, true, false, true, false, false, false, true, false, false, false, false, false, false],
+  "ref_lines": [26, 52],
+  "x_label": "自入组时间（周）"
+}

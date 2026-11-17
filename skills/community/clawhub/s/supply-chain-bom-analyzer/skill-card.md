@@ -1,41 +1,54 @@
-## Description: <br>
-供应链 BOM 数据分析 extracts, cleans, and aligns hardware BOM data from supplier quotes and Excel/CSV files, then produces time-based material demand forecast summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从工程报价单和 Excel/CSV 表格中提取、清洗、标准化硬件设备 BOM 数据，并按项目交付时间生成物料需求预测汇总表。
 
-## Publisher: <br>
-[git-Surellc](https://clawhub.ai/user/git-Surellc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[git-surellc](https://clawhub.ai/user/git-surellc)
 
-## Use Case: <br>
-Supply-chain, procurement, and engineering users use this skill to analyze supplier quotes and BOM spreadsheets, extract physical hardware materials, normalize equivalent items, and aggregate quantities by project delivery timeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplier quotes and BOM spreadsheets may contain sensitive business data. <br>
-Mitigation: Only provide files the user is authorized to process, and run the skill in an approved agent environment. <br>
-Risk: Incorrect item normalization, quantity extraction, or timeline mapping could distort demand forecasts. <br>
-Mitigation: Review generated tables against the source documents and confirm unresolved items, missing quantities, and project delivery dates before relying on the output. <br>
+## Use Case:
 
+Developers, procurement analysts, and supply-chain teams use this skill to analyze Chinese-language BOM and supplier quote tables, exclude non-material service lines, standardize equivalent hardware items, and produce time-based demand summaries.
 
-## Reference(s): <br>
-- [Data Extraction Rules](references/extraction-rules.md) <br>
-- [Material Standardization Mapping](references/material-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown tables and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on physical material rows, standardized product names, summed quantities, and timeline-based demand columns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Supplier quotes and project delivery timelines may contain sensitive commercial information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide files you are comfortable having the agent analyze in the current workspace.
+
+Risk: Incorrect item standardization, quantity extraction, or time mapping could distort the generated demand summary.
+
+Mitigation: Review ambiguous names, missing quantities, unit conversions, and project delivery mappings against the source tables before using the summary for procurement decisions.
+
+## Reference(s):
+
+- [数据提取规则详解](references/extraction-rules.md)
+- [物料标准化映射表](references/material-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown tables and concise explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Focuses on hardware BOM extraction, standardized material mapping, quantity aggregation, and timeline-based demand summaries.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

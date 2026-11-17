@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/LeoStehlik/visual-architecture/schemas/pr-delta.schema.json",
+  "title": "PR delta artifact spec",
+  "allOf": [{ "$ref": "architecture.schema.json" }],
+  "properties": {
+    "mode": { "const": "pr-delta" },
+    "delta": {
+      "type": "object",
+      "properties": {
+        "addedNodes": { "type": "array", "items": { "type": "string" } },
+        "removedNodes": { "type": "array", "items": { "type": "string" } },
+        "addedEdges": { "type": "array" },
+        "removedEdges": { "type": "array" }
+      }
+    }
+  }
+}

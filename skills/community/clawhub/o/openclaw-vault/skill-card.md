@@ -1,42 +1,60 @@
-## Description: <br>
-Audits credential exposure, detects misconfigured permissions, inventories credential files, and flags stale credentials in local agent workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Vault helps agents audit credential exposure, detect misconfigured permissions, inventory secrets, and identify stale credentials that may need rotation.
 
-## Publisher: <br>
-[AtlasPA](https://clawhub.ai/user/AtlasPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[atlaspa](https://clawhub.ai/user/atlaspa)
 
-## Use Case: <br>
-Developers and operators use this skill to run local credential lifecycle checks across agent workspaces, review exposure vectors, and inventory files that may need permission changes or rotation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects local files that may contain credentials and can print findings to the terminal. <br>
-Mitigation: Run it only against an explicit workspace and treat all output as sensitive. <br>
-Risk: Some commands can change file permissions or move files into or out of quarantine. <br>
-Mitigation: Use protect, fix-permissions, quarantine, and unquarantine only when those local changes are intended and a backup or clean version-control state exists. <br>
+## Use Case:
 
+Developers and agent operators use this skill to review workspaces for credential lifecycle issues, including exposed secret files, shell history leaks, git configuration risks, hardcoded credentials, stale credentials, and public-directory exposure.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/AtlasPA/openclaw-vault) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text reports with tables, status lines, and exit codes; agent guidance may include Markdown and shell command snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python standard library only; no network calls are documented.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill reads sensitive user-level files such as shell history and shell configuration while looking for credential exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scan-only commands first in a constrained workspace and review reported file paths before broadening scope.
+
+Risk: Remediation commands can change permissions or move files during quarantine and protect flows.
+
+Mitigation: Avoid protect, fix-permissions, quarantine, and unquarantine until behavior is documented and the operator has explicitly consented to file changes.
+
+Risk: Credential findings may include sensitive file locations or masked secret fragments in terminal output.
+
+Mitigation: Treat reports as sensitive security output and avoid pasting them into shared logs or public issue trackers.
+
+## Reference(s):
+
+- [OpenClaw Vault on ClawHub](https://clawhub.ai/atlaspa/skills/openclaw-vault)
+- [AtlasPA Publisher Profile](https://clawhub.ai/user/atlaspa)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands and tabular findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Exit codes indicate clean, warning, or critical credential exposure states.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

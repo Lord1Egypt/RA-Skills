@@ -1,40 +1,61 @@
-## Description: <br>
-Auto Reflection automates recurring learning reflection by generating reflection reports, updating capability assessments, adjusting learning plans, and optimizing knowledge graph data every five learning rounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Reflection automatically runs deep learning reflections every five rounds, updates capability assessments, adjusts learning plans, and optimizes a knowledge graph.
 
-## Publisher: <br>
-[wyblhl](https://clawhub.ai/user/wyblhl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyblhl](https://clawhub.ai/user/wyblhl)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to automate periodic self-reflection over local learning records, capability assessments, and knowledge graph data. It produces summaries, improvement suggestions, and next-step learning plans after learning rounds. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes reflection reports, logs, HEARTBEAT.md, capabilities.json, and knowledge-graph.json in the local OpenClaw workspace. <br>
-Mitigation: Review or back up those files before installation and require confirmation before writes when using it in a shared or important workspace. <br>
-Risk: Automatic reflection can persistently update local learning state every five learning rounds. <br>
-Mitigation: Narrow triggers, disable automatic execution, or run the script manually when a reflection pass is intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to maintain reflection reports, capability assessments, HEARTBEAT updates, and learning plans during iterative learning workflows.
 
-## Reference(s): <br>
-- [Auto Reflection on ClawHub](https://clawhub.ai/wyblhl/auto-reflection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON reflection reports, Markdown HEARTBEAT.md updates, and console or log text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes to a local OpenClaw workspace using fixed Windows paths unless the script is modified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill automatically changes persistent workspace and agent-context files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and use it only when writes under D:\OpenClaw\workspace are acceptable.
+
+Risk: The script does not document an explicit confirmation or dry-run mode before writing reflection state.
+
+Mitigation: Add or require a confirmation or dry-run workflow before deployment.
+
+Risk: The shipped JavaScript is currently broken.
+
+Mitigation: Fix the JavaScript syntax error before installing or running the skill.
+
+Risk: HEARTBEAT.md updates may influence future agent behavior.
+
+Mitigation: Validate generated content before writing HEARTBEAT.md and review the file after each automated update.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wyblhl/skills/auto-reflection)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration, guidance]
+
+**Output Format:** [JSON files, Markdown updates, and console or log text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When executed, the script writes under D:\OpenClaw\workspace and does not document a dry-run mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

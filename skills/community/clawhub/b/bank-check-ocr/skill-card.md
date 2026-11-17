@@ -1,45 +1,61 @@
-## Description: <br>
-Extracts structured data from bank check images, including check number, issue date, written and numeric amounts, and issuer signature or seal details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes key fields on bank checks, including check numbers, dates, written and numeric amounts, and signatures or stamps, only when the user explicitly requests bank-check OCR.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and developers use this skill to send local bank check images or PDFs to the Scnet OCR API and receive structured JSON fields for downstream review, extraction, or workflow automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Bank check images may contain account numbers, names, amounts, signatures, and seals that are uploaded to Scnet's remote OCR API. <br>
-Mitigation: Use only files you are authorized to process, verify Scnet's privacy and retention terms before deployment, and require explicit confirmation before each upload. <br>
-Risk: The skill requires a sensitive SCNET_API_KEY credential. <br>
-Mitigation: Store the key in an environment variable or a local config file with restrictive permissions, keep it out of chat, and rotate it if exposed. <br>
-Risk: The OCR API has rate limits and repeated requests may fail or be throttled. <br>
-Mitigation: Run calls sequentially and rely on the built-in retry and backoff behavior for 429 responses. <br>
+## Use Case:
 
+External users and developers with authorization to process bank-check images use this skill to send a specified check image to SCNet OCR and receive structured check-field extraction results.
 
-## Reference(s): <br>
-- [Sugon-Scnet OCR API docs](references/api-docs.md) <br>
-- [Bank check field summary](assets/templates/fields-summary.md) <br>
-- [Scnet website](https://www.scnet.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/scnet-sugon/bank-check-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [JSON emitted to standard output, with setup and troubleshooting guidance in Markdown documentation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recognized data is returned from the API data field; the script removes top-level per-item confidence values before printing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.yaml, changelog, and server release metadata) <br>
+Risk: Sensitive bank-check images and credentials can be sent to SCNet or a configured OCR endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data transfer is acceptable, keep SCNET_API_BASE on the official HTTPS SCNet endpoint, and process checks only with authorization from the account holder or signer.
+
+Risk: Input validation can be bypassed with symlinked files.
+
+Mitigation: Do not process symlinked files, and review the resolved absolute path before sending a check image for OCR.
+
+Risk: Bank-check images may contain account numbers, signatures, stamps, and payment amounts that could enable financial fraud if mishandled.
+
+Mitigation: Upload only the minimum required check image, avoid unrelated sensitive content, and follow the provider's retention and deletion guidance after receiving results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/bank-check-ocr)
+- [SCNet website](https://www.scnet.cn)
+- [Sugon-Scnet OCR API documentation summary](references/api-docs.md)
+- [Bank-check OCR field summary](assets/templates/fields-summary.md)
+- [SCNet OCR API endpoint](https://api.scnet.cn/api/llm/v1/ocr/recognize)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results with text guidance and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs structured OCR data from the API response and friendly error messages for configuration, authentication, unsupported files, rate limits, and network failures.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter, skill.yaml, ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

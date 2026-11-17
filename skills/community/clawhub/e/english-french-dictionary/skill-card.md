@@ -1,37 +1,49 @@
-## Description: <br>
-Comprehensive English-French and French-English dictionary with common phrases, verb conjugations, grammar tips, and pronunciation guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive English-French and French-English dictionary with common phrases, verb conjugations, grammar tips, and pronunciation guides.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and language learners use this skill to translate common English and French words or phrases, check basic verb conjugations, and get practical grammar and pronunciation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/english-french-dictionary) <br>
+External users and language learners use this skill to translate between English and French, learn vocabulary, check common verb conjugations, and get basic grammar or pronunciation help.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference text with translation pairs, phrase lists, conjugation examples, grammar tips, and pronunciation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference content; no tools, network access, credentials, install steps, or background capabilities.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may activate for a broad range of French translation, grammar, conjugation, and pronunciation questions.
+
+Mitigation: Use it for English-French reference tasks and tighten trigger wording if a deployment needs narrower activation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/english-french-dictionary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text dictionary guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network access, persistence, or sensitive data handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Bonds provides a local command-line interface for recording bond-related notes, viewing recent activity and statistics, searching entries, and exporting saved logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Record bond holdings, analyze yields, and track maturity dates. Use when managing fixed-income portfolios, comparing yields, or exporting data.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External users and developers can use this as a local personal-finance note and logging utility for bond-related entries, searches, summaries, and exports. It should not be treated as a real bond-analysis or portfolio-management system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as bond analysis, while security evidence says it mostly acts as a generic plaintext input logger for potentially sensitive financial data. <br>
-Mitigation: Use it only as a local note and logging tool; verify any financial analysis with a separate trusted portfolio or bond-analysis system. <br>
-Risk: Entered data and history are stored in plaintext under ~/.local/share/bonds. <br>
-Mitigation: Do not enter account numbers, credentials, or sensitive portfolio details, and review or remove local stored data when it is no longer needed. <br>
+## Use Case:
 
+External users can use Bonds to record fixed-income portfolio notes, inspect recent entries, search local logs, and export saved records. Security evidence indicates it should be treated as a simple local logger rather than relied on for bond calculations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/bonds) <br>
-- [Publisher profile](https://clawhub.ai/user/bytesagain-lab) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and terminal text or local export files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local plaintext logs under ~/.local/share/bonds and can export JSON, CSV, or TXT files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill is advertised for bond analysis, but security evidence says it behaves mostly as a broad local logger and does not actually perform the advertised bond calculations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when simple local logging is acceptable, and independently verify any bond yields, maturity tracking, or portfolio analysis before relying on it.
+
+Risk: Sensitive portfolio details may be stored as raw local text.
+
+Mitigation: Avoid entering sensitive financial details unless the local machine is trusted, and protect or delete the ~/.local/share/bonds/ data directory according to the user's data-handling requirements.
+
+## Reference(s):
+
+- [Bonds on ClawHub](https://clawhub.ai/bytesagain-lab/skills/bonds)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain ClawHub profile](https://clawhub.ai/user/bytesagain-lab)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files]
+
+**Output Format:** [Plain text terminal output and local JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local command logs under ~/.local/share/bonds/.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

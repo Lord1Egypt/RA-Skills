@@ -140,7 +140,22 @@ def word_setup(args):
     print("Listen to each:")
     for i, t in enumerate(takes, 1):
         print("  Take " + str(i) + ": " + str(t))
-    chosen = int(input("Which take is cleanest? [1-5]: "))
+    chosen = None
+    while chosen is None:
+        try:
+            raw = input(f"Which take is cleanest? [1-{len(takes)}]: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nAborted.")
+            sys.exit(1)
+        try:
+            val = int(raw)
+        except ValueError:
+            print(f"Please enter a whole number between 1 and {len(takes)}.")
+            continue
+        if not (1 <= val <= len(takes)):
+            print(f"Out of range — enter a number between 1 and {len(takes)}.")
+            continue
+        chosen = val
     final = CLIPS_DIR / (word + ".wav")
     subprocess.run(
         ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",

@@ -1,40 +1,50 @@
-## Description: <br>
-Phone number formatting, cache inspection, contact export, and message ID generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Phone number formatting, cache inspection, contact export, and message ID generation.
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
 
-## Use Case: <br>
-Developers and agents use this skill to run WhatsApp automation utilities that format or clean phone numbers, inspect OpenClaw WhatsApp cache information, export cached contacts, and generate WhatsApp-style message IDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local OpenClaw WhatsApp state and display cached contacts in the conversation or logs. <br>
-Mitigation: Run contact export only on explicit user request, avoid shared or untrusted agent sessions, and review outputs before storing or sharing them. <br>
-Risk: Cache inspection can reveal local WhatsApp state paths and session metadata. <br>
-Mitigation: Use cache inspection only when troubleshooting a trusted local setup and avoid pasting resulting paths or metadata into public channels. <br>
+## Use Case:
 
+Developers and automation operators use this skill to run small WhatsApp utility commands for normalizing phone numbers, inspecting local OpenClaw WhatsApp cache state, exporting contacts, and generating WhatsApp-style message IDs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MarcosRippel/whatsapp-utils) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text] <br>
-**Output Format:** [JSON emitted by Node.js command-line utilities] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may read local OpenClaw WhatsApp state when inspecting cache information or exporting contacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The export-contacts command can print the full local WhatsApp contact list into agent output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run export-contacts only when full contact export is intentional, and prefer confirmation, filtering, or redaction before routine use with real contacts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcosrippel/skills/whatsapp-utils)
+- [Publisher profile](https://clawhub.ai/user/marcosrippel)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [JSON objects printed by Node.js utility commands, with Markdown command examples in the skill documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Phone formatting defaults local 10- or 11-digit numbers to Brazil country code +55; cache and contact commands read from the local OpenClaw WhatsApp credential state directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

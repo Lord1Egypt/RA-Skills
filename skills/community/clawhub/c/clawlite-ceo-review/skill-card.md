@@ -1,39 +1,52 @@
-## Description: <br>
-ClawLite CEO Review guides agents through CEO-style strategic plan reviews with scope-mode selection, assumption challenges, implementation alternatives, failure-mode mapping, and observability checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawLite CEO Review is a strategic planning reviewer that challenges assumptions, compares implementation approaches, maps failure modes, and produces observability and edge-case review guidance before implementation.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, engineering leads, and product decision-makers use this skill to review plans before coding, choose a review posture, challenge assumptions, compare alternatives, and surface failure modes, tests, and observability gaps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read local repository history, diffs, TODOs, and design documents to build planning context.
+
+Mitigation: Use it only in repositories where reviewing those local files is acceptable, especially when sensitive material may be present.
+
+Risk: Strategic review output may contain incorrect or misleading recommendations.
+
+Mitigation: Have a human reviewer validate assumptions, proposed scope changes, failure-mode mappings, and observability recommendations before acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineering leads, and product decision makers use this skill to review software plans before implementation. It helps compare implementation paths, surface scope tradeoffs, map likely failure modes, identify observability gaps, and choose whether to expand, hold, or reduce scope. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Git history, diffs, TODO/FIXME matches, and project planning documents during review. <br>
-Mitigation: Run it only from the project intended for review and ensure the agent may inspect those repository files. <br>
-Risk: Strategic review guidance can be incomplete or unsuitable for the product context. <br>
-Mitigation: Treat the output as review input for the team and validate recommendations before implementation. <br>
+**Output Format:** [Markdown review report with inline shell commands and structured sections]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May inspect local repository history, diffs, TODOs, and design documents when available.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown strategic review report with structured sections and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes mode selection, assumption challenge, recommended approach, failure-mode map, error map, observability gaps, edge cases, test coverage gaps, and completion status.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

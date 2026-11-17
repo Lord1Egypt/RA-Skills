@@ -1,48 +1,72 @@
-## Description: <br>
-Recruit and orient a new AI agent into Guild KC (Crabla) on the Structs blockchain, including guild signup, substation connection, the first mine-refine-infuse cycle, strategic guidance, and daily human reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recruit and orient a new AI agent into Guild KC (Crabla) on the Structs blockchain, including guild signup, substation connection, the first mine-refine-infuse cycle, strategic guidance, and daily human reporting with explicit approval required before blockchain transactions.
 
-## Publisher: <br>
-[abstrct](https://clawhub.ai/user/abstrct) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abstrct](https://clawhub.ai/user/abstrct)
 
-## Use Case: <br>
-External users and agents use this skill to join Guild KC in the Structs blockchain game, perform initial setup, and plan the first gameplay cycle with human approval for wallet transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Blockchain wallet actions can alter game state or expose funds if transactions are signed without review. <br>
-Mitigation: Use a separate low-value wallet, inspect every transaction before signing, require explicit human approval, and avoid automatic signing. <br>
-Risk: Ongoing gameplay automation or event-stream responses can continue beyond the user's intended scope. <br>
-Mitigation: Set operating hours, a stop condition, and a reporting cadence before automation; keep event streams informational unless explicit action rules are approved. <br>
-Risk: Proof-of-work mining can consume local compute resources. <br>
-Mitigation: Start with low difficulty and get human approval before increasing CPU usage. <br>
+## Use Case:
 
+External users and agents use this skill to join and operate within Guild KC in the Structs blockchain game, with human approval for transaction signing and ongoing gameplay decisions. It provides onboarding steps, command examples, safety boundaries, and daily reporting guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abstrct/join-crabla) <br>
-- [structsd install skill](https://structs.ai/skills/structsd-install/SKILL) <br>
-- [Structs onboarding skill](https://structs.ai/skills/structs-onboarding/SKILL) <br>
-- [Structs mining skill](https://structs.ai/skills/structs-mining/SKILL) <br>
-- [Structs energy skill](https://structs.ai/skills/structs-energy/SKILL) <br>
-- [Structs building skill](https://structs.ai/skills/structs-building/SKILL) <br>
-- [Structs streaming skill](https://structs.ai/skills/structs-streaming/SKILL) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit human review before signing blockchain transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence) <br>
+Risk: The skill includes irreversible blockchain-style asset commands and security evidence reports a conflicting destination address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require fresh human approval for every transaction and independently verify the chain ID, destination address, reactor or validator relationship, and amount before signing.
+
+Risk: The skill encourages use of a wallet and interaction with game assets.
+
+Mitigation: Use only a dedicated low-value wallet and do not expose a primary wallet or unrelated credentials.
+
+Risk: The skill includes promotional and daily-report automation language that may not match the user's intent.
+
+Mitigation: Install only when the user specifically wants Guild KC/Crabla behavior, and agree on reporting cadence, operating hours, approval boundaries, and stop conditions before ongoing automation.
+
+Risk: The skill can start background proof-of-work mining that consumes CPU resources.
+
+Mitigation: Confirm background mining and CPU use with the human before starting or increasing mining difficulty.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/abstrct/skills/join-crabla)
+- [structsd-install](https://structs.ai/skills/structsd-install/SKILL)
+- [structs-onboarding](https://structs.ai/skills/structs-onboarding/SKILL)
+- [structs-mining](https://structs.ai/skills/structs-mining/SKILL)
+- [structs-energy](https://structs.ai/skills/structs-energy/SKILL)
+- [structs-building](https://structs.ai/skills/structs-building/SKILL)
+- [structs-streaming](https://structs.ai/skills/structs-streaming/SKILL)
+- [structs-combat](https://structs.ai/skills/structs-combat/SKILL)
+- [structs-exploration](https://structs.ai/skills/structs-exploration/SKILL)
+- [structs-reconnaissance](https://structs.ai/skills/structs-reconnaissance/SKILL)
+- [Guild dashboard](https://cast.crab.la)
+- [Guild app](https://shell.crab.la)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands, URLs, and status-report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes blockchain transaction examples that require human approval before signing.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

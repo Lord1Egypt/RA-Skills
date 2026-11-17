@@ -1,43 +1,58 @@
-## Description: <br>
-AgentGuard monitors agent file access, API calls, and communications to detect suspicious behavior, log events, and generate actionable security reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentGuard monitors agent file access, API calls, and communications to detect suspicious behavior, log events, and generate security reports.
 
-## Publisher: <br>
-[manas-io-ai](https://clawhub.ai/user/manas-io-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[manas-io-ai](https://clawhub.ai/user/manas-io-ai)
 
-## Use Case: <br>
-Developers and security operators use AgentGuard to observe AI agent activity, detect suspicious file or network behavior, and review alerts and reports before deciding whether to block, investigate, or tune monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill collects sensitive activity telemetry, including file access, API calls, and communications. <br>
-Mitigation: Limit watched directories, keep retention short, review what is written under ~/.agentguard, and confirm sensitive data hashing before use. <br>
-Risk: Privacy claims about local processing may conflict with optional Telegram, Discord, email, or webhook alerting. <br>
-Mitigation: Keep alerting console-only unless external delivery is intentional, and review destination settings before enabling any channel. <br>
-Risk: The security scan verdict is suspicious and recommends source and dependency review before execution. <br>
-Mitigation: Verify the publisher, source, and dependencies, then run the Python scripts only in an environment where monitoring scope is intentionally constrained. <br>
+## Use Case:
 
+Developers and operators use AgentGuard to monitor AI agent activity, review security alerts, and generate reports about file access, API destinations, communications, and anomalous behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manas-io-ai/agentguard) <br>
-- [Publisher profile](https://clawhub.ai/user/manas-io-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line status text, JSON logs, YAML configuration, and Markdown security reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local monitoring logs, alerts, anomaly summaries, and periodic reports; external alert channels are configurable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill persistently records sensitive file and communication metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow watched directories, keep retention short, restrict permissions on ~/.agentguard, and review generated logs before sharing them.
+
+Risk: Privacy protections are advertised but may need hardening before relying on them for sensitive environments.
+
+Mitigation: Avoid logging full URLs or sensitive paths, verify hashing behavior against expected data, and do not rely on advertised encryption without an implementation review.
+
+Risk: Monitoring or alerting may be disabled or altered if it runs with the same permissions as a compromised agent.
+
+Mitigation: Run the monitor separately with limited write access, as suggested by the artifact notes.
+
+## Reference(s):
+
+- [AgentGuard ClawHub Skill Page](https://clawhub.ai/manas-io-ai/skills/agentguard)
+- [AgentGuard Documentation](https://docs.clawdhub.com/skills/agentguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, JSON status output, JSONL logs, YAML configuration, and Markdown security reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local logs, alerts, baselines, and reports under ~/.agentguard by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact README, and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Save web content such as articles, videos, notes, Xiaohongshu posts, YouTube pages, Zhihu content, WeChat articles, and general web pages to an Obsidian vault with automatic classification, intelligent naming, and content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian Clipper saves web content such as articles, videos, notes, and social posts to an Obsidian vault with automatic classification, naming, extraction, and Markdown generation.
 
-## Publisher: <br>
-[flyeasy](https://clawhub.ai/user/flyeasy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flyeasy](https://clawhub.ai/user/flyeasy)
 
-## Use Case: <br>
-External users and developers use this skill to collect user-provided web links or descriptions into an Obsidian vault as organized Markdown notes. It is intended for personal knowledge management workflows that need automatic source detection, categorization, naming, summarization, and batch saving. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged config may contain a vault path or collector name that does not match the installing user's environment. <br>
-Mitigation: Edit or verify config.json before use so the vault path, collector name, and categories are appropriate for the user. <br>
-Risk: The skill fetches, searches, or opens user-provided URLs, which can expose confidential, private, intranet, or tokenized links to available retrieval tools. <br>
-Mitigation: Use explicit save-to-Obsidian commands and avoid submitting sensitive URLs unless that tool access is acceptable. <br>
-Risk: Some sources, including login-gated or hard-to-parse platforms, may produce incomplete extracted content. <br>
-Mitigation: Review generated notes and provide copied text or screenshots when automatic retrieval cannot access the source reliably. <br>
+## Use Case:
 
+External Obsidian users and agent operators use this skill to collect links, notes, videos, and articles into a configured Obsidian vault as organized Markdown notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flyeasy/obsidian-clipper) <br>
-- [Publisher profile](https://clawhub.ai/user/flyeasy) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration] <br>
-**Output Format:** [Structured Markdown notes saved to an Obsidian vault, plus concise confirmation text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update config.json and writes notes under the configured vault path and category folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata) <br>
+Risk: File-writing instructions are loosely scoped, so generated paths or categories could place content outside the intended Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure an explicit vault path, use trusted destination categories, and verify that saved files remain inside the intended vault before routine use.
+
+Risk: The artifact ships a personal local configuration with a vault path and collector name.
+
+Mitigation: Replace the bundled configuration with the user's own vault path and collector name before first use.
+
+Risk: Web content extraction can be incomplete on platforms with login walls or unsupported parsing paths.
+
+Mitigation: Review generated summaries and provide copied text or screenshots when automated fetch, search, or browser extraction cannot capture the source.
+
+## Reference(s):
+
+- [Obsidian Clipper ClawHub Skill Page](https://clawhub.ai/flyeasy/skills/obsidian-clipper)
+- [Obsidian Clipper GitHub Repository](https://github.com/flyeasy/obsidian-clipper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files, concise text responses, shell command blocks, and JSON configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes collected content to a user-configured Obsidian vault path and reports the saved path and key points.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

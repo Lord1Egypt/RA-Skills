@@ -1,43 +1,58 @@
-## Description: <br>
-Drafts chemical compatibility groupings, storage plans, and warnings for laboratory inventory review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sort chemicals by compatibility for safe laboratory storage. Prevents dangerous reactions by segregating incompatible chemicals (acids, bases, oxidizers, flammables) and provides storage recommendations compliant with safety regulations.
 
-## Publisher: <br>
-[theresayao0614-sudo](https://clawhub.ai/user/theresayao0614-sudo) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theresayao0614-sudo](https://clawhub.ai/user/theresayao0614-sudo)
 
-## Use Case: <br>
-Laboratory staff, EHS reviewers, and developers use this skill to draft chemical storage groupings and compatibility warnings for inventory review. Results should be verified against SDS documents, institutional EHS rules, authoritative compatibility charts, and qualified safety personnel before real storage decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The simple local classifier can misclassify chemicals or miss specific incompatibilities. <br>
-Mitigation: Verify every result against SDS documents, institutional EHS rules, authoritative compatibility charts, and qualified safety personnel. <br>
-Risk: The skill overstates chemical safety and compliance readiness. <br>
-Mitigation: Treat outputs as rough educational or inventory-drafting aids, not as the basis for real lab storage, inspections, relocation, or training. <br>
-Risk: The skill can work with local inventory files despite claims of no file access. <br>
-Mitigation: Review any file reads or writes the agent proposes before execution, especially when inventory files may contain sensitive operational data. <br>
+## Use Case:
 
+Lab staff, EHS reviewers, and developers can use this skill for demonstration or non-operational triage of chemical inventory grouping, compatibility checks, and storage-plan drafts. Do not use its outputs for real lab storage, inspection, relocation, or training decisions without independent SDS, SOP, and qualified EHS review.
 
-## Reference(s): <br>
-- [OSHA Chemical Storage Guidelines](https://www.osha.gov/chemical-storage) <br>
-- [SDS Search (MSDSOnline)](https://www.msdsonline.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and plain text with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include chemical storage groups, compatibility messages, warnings, storage-plan drafts, and local command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill provides safety-critical chemical storage advice, and the security evidence reports under-scoped warnings and unsafe classification behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for rough demonstration or non-operational triage; verify every output against current SDS data, institutional SOPs, and qualified EHS review before any lab action.
+
+Risk: Chemical inventory files or lists may contain local lab data that the skill can read or transform during local workflows.
+
+Mitigation: Run the skill only in an approved local environment and provide inventory data only when local data handling requirements are satisfied.
+
+Risk: Unknown, ambiguous, mixed, or multi-hazard chemicals may be classified too broadly or default to general storage.
+
+Mitigation: Treat uncertain classifications as unresolved, consult SDS or EHS staff, and document any manual overrides before relying on a storage plan.
+
+## Reference(s):
+
+- [OSHA Chemical Storage Guidelines](https://www.osha.gov/chemical-storage)
+- [SDS Search (MSDSOnline)](https://www.msdsonline.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce storage groups, compatibility warnings, storage-plan drafts, and local command examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

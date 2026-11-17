@@ -1,42 +1,52 @@
-## Description: <br>
-A skill that enables AI agents to create and verify decentralized identities using Billions Network. <br>
+## Description:
 
-This skill is for research and development only. <br>
+A skill that enables AI agents to create and verify decentralized identities using Billions Network.
 
-## Publisher: <br>
-[gamingjancok11-ctrl](https://clawhub.ai/user/gamingjancok11-ctrl) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gamingjancok11-ctrl](https://clawhub.ai/user/gamingjancok11-ctrl)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to create verifiable agent identities, verify identity credentials, and interact with decentralized identity systems for testing and development workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Identity credentials and human-to-agent linkage can expose sensitive information if handled broadly.
+
+Mitigation: Treat credentials and linkage data as sensitive, and limit use to clearly scoped identity workflows.
+
+Risk: Future signing, wallet, or credential requests could authorize unintended identity actions.
+
+Mitigation: Approve signing, wallet, and credential requests only when the requested action is explicit and tied to the current task.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and external agent builders use this skill to guide agents through creating and verifying decentralized identities, linking agent and human identities, and interacting with decentralized identity systems. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The server security guidance notes that some bundled workflows can change public or account state. <br>
-Mitigation: Review moderation-related actions before use and limit execution to expected ClawHub or Convex development environments. <br>
-Risk: The security guidance notes that autoreview may default to a full-access nested review. <br>
-Mitigation: Run autoreview with --no-yolo or AUTOREVIEW_YOLO=0 when full-access nested review is not intended. <br>
-Risk: The skill requires Billions Network access, so identity operations may depend on external network availability and credentials. <br>
-Mitigation: Confirm the target environment has the required Node.js setup and Billions Network access before relying on the workflow. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gamingjancok11-ctrl/my-clean-skill) <br>
+**Other Properties Related to Output:** [May include identity workflow steps that depend on Node.js and Billions Network access.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance for agent workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Node.js environment and Billions Network access when following the skill guidance.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

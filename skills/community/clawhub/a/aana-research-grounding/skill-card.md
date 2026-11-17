@@ -1,43 +1,61 @@
-## Description: <br>
-Helps agents produce source-grounded research answers by checking citations, source boundaries, unsupported claims, and uncertainty before publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents keep research answers, cited summaries, and knowledge-work outputs grounded in allowed sources while clearly marking unsupported or uncertain claims.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Researchers, analysts, documentation agents, and knowledge-work assistants use this skill to keep cited answers, evidence briefs, literature notes, and source-bounded summaries aligned with allowed sources. It is especially useful when unsupported claims, invented citations, stale evidence, or missing caveats would create false confidence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents could include secrets, private records, paywalled full text, or unrelated user messages in a review payload. <br>
-Mitigation: Use only minimal redacted summaries for review payloads and exclude secrets, tokens, passwords, unrelated private records, and full source text when a summary is sufficient. <br>
-Risk: Unsupported, forbidden, stale, or uncertain evidence could be presented as a confident sourced claim. <br>
-Mitigation: Apply the grounding loop before publishing: identify allowed sources, verify important claims, label uncertainty, and revise, retrieve, ask, defer, or refuse when evidence is insufficient. <br>
+## Use Case:
 
+Developers and research-focused agents use this skill before publishing source-bounded answers, evidence briefs, literature notes, technical explainers, and similar cited work. It guides claim checks, citation checks, uncertainty labeling, and decisions to revise, retrieve, ask, defer, or refuse when evidence is insufficient.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mindbomber/aana-research-grounding) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Research Grounding Review Schema](artifact/schemas/research-grounding-review.schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, json] <br>
-**Output Format:** [Markdown guidance with an optional JSON review payload shape] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; it does not execute commands, install dependencies, call remote services, write files, or persist memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact manifest lists 0.1.0) <br>
+Risk: Unsupported or overconfident claims could appear in research or knowledge-work answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the grounding loop to check each important claim against allowed sources, then revise, retrieve, ask, defer, or label uncertainty before publishing.
+
+Risk: Private records, secrets, paywalled full text, or unrelated user messages could be exposed in optional review payloads.
+
+Mitigation: Send only minimal redacted summaries for review and exclude secrets, private records, full source text, and unrelated messages.
+
+Risk: Forbidden, stale, unavailable, or insufficient sources could be treated as stronger evidence than they support.
+
+Mitigation: Restrict answers to the allowed source list, distinguish sourced claims from inference, and state source limits when evidence is incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-research-grounding)
+- [Skill instructions](artifact/SKILL.md)
+- [Package README](artifact/README.md)
+- [Research grounding review schema](artifact/schemas/research-grounding-review.schema.json)
+- [Redacted review payload example](artifact/examples/redacted-research-grounding-review.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown or plain text answer sections with evidence and limits; optional redacted JSON review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; does not install dependencies, execute commands, write files, call remote services, or persist data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

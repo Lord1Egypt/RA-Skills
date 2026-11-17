@@ -1,0 +1,4 @@
+interface:
+  display_name: "FDE Adoption and Value"
+  short_description: "Turn POC evidence into adoption, value, and investment decisions"
+  default_prompt: "Use $fde-adoption-and-value to turn this POC run report into an adoption and value review package."

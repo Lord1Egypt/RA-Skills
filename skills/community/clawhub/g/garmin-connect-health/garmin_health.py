@@ -28,6 +28,7 @@ import os
 import sqlite3
 import subprocess
 import sys
+import time
 from datetime import date, timedelta, datetime
 
 try:
@@ -286,23 +287,29 @@ def get_client(email=None, password=None, is_cn=None):
     if is_cn is None:
         is_cn = os.environ.get("GARMIN_IS_CN", "").lower() in ("1", "true", "yes")
 
-    client = Garmin(is_cn=is_cn)
-    try:
-        client.garth.load(TOKENSTORE)
-        profile = client.garth.profile
-        client.display_name = profile.get("displayName") if profile else None
-        if client.display_name:
-            return client
-    except Exception:
-        pass
+    # garminconnect 0.3.x owns token loading, refresh, profile validation, and
+    # persistence through login(tokenstore). Do not access the removed Garth
+    # implementation directly.
+    if os.path.exists(TOKENSTORE):
+        client = Garmin(is_cn=is_cn)
+        for attempt in range(3):
+            try:
+                client.login(TOKENSTORE)
+                if client.display_name:
+                    return client
+            except Exception:
+                pass
+            if attempt < 2:
+                time.sleep(attempt + 1)
 
     email, password = _load_credentials(email, password)
-    client = Garmin(email, password, is_cn=is_cn)
-    try:
-        client.login(TOKENSTORE)
-    except Exception:
-        client.login()
-        client.garth.dump(TOKENSTORE)
+    client = Garmin(
+        email=email,
+        password=password,
+        is_cn=is_cn,
+        prompt_mfa=lambda: input("Enter the Garmin MFA code: ").strip(),
+    )
+    client.login(TOKENSTORE)
     return client
 
 

@@ -1,41 +1,56 @@
-## Description: <br>
-A Chinese classical literature tutoring skill that uses first-person historical author roleplay, poem comprehension, memorization games, and essay-citation coaching to help students understand classical Chinese poetry and prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese tutoring for classical texts and poetry through historical role-play, memorization practice, writing prompts, and exam-answer guidance.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students and Chinese-language learners use this skill to understand classical Chinese poems and prose through author roleplay, historical context, memorization practice, and writing citation coaching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses broad routing language for classical Chinese, translation, memorization, and essay-citation requests, which may cause it to handle requests where neutral analysis or generic writing help was intended. <br>
-Mitigation: Clarify user intent before roleplay, translation, memorization drills, or citation coaching, and let users opt out of roleplay when they request neutral analysis. <br>
-Risk: Roleplay and historical background guidance may present interpretive literary context as definitive. <br>
-Mitigation: Treat author perspectives as teaching scaffolds, verify historical facts against source materials, and separate roleplay from exam-style analysis. <br>
+## Use Case:
 
+External students use the skill to understand classical Chinese and poetry, practice recitation, explore literary context, and learn structured approaches to reading and appreciation questions. Younger students should use it with a parent or teacher present.
 
-## Reference(s): <br>
-- [Classical author profiles](references/classical-author-profiles.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/chinese-classical-revival) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain-text tutoring responses in Chinese, including examples, quizzes, roleplay passages, and concise analysis.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include first-person author roleplay, exam-answer summaries, memorization questions, and citation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-999999.0.5 (source: ClawHub release metadata) <br>
+Risk: The security review was partial because a reference in SKILL.md did not resolve; its benign verdict is not a guarantee of safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Resolve and review the missing reference, then assess the complete skill before deployment.
+
+Risk: Historical or literary context may be inaccurate, especially where sources disagree or leave details undocumented.
+
+Mitigation: Check claims against the author-profile fact-check guidance and distinguish documented facts from uncertain interpretations.
+
+## Reference(s):
+
+- [High school classical Chinese and poetry guidance](references/chinese-hs-classical.md)
+- [High school recitation list](references/chinese-hs-recitation-list.md)
+- [Classical author profiles and fact checks](references/classical-author-profiles.md)
+- [ClawHub skill release](https://clawhub.ai/qizhitang/skills/chinese-classical-revival)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text and Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive explanations, practice questions, and feedback in a tutoring conversation.]
+
+## Skill Version(s):
+
+1000011.7.0 (source: server-resolved ClawHub release metadata; skill frontmatter and changelog: 2.12.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

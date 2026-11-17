@@ -1,42 +1,59 @@
-## Description: <br>
-One-step Safe rebalancer using on-chain 31Third policies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One-step Safe rebalancer using on-chain 31Third policies.
 
-## Publisher: <br>
-[Phips0812](https://clawhub.ai/user/Phips0812) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phips0812](https://clawhub.ai/user/phips0812)
 
-## Use Case: <br>
-External users and developers use this skill to verify a 31Third Safe policy deployment and execute a one-step Safe rebalance from on-chain AssetUniverse, StaticAllocation, SlippagePolicy, and PriceOracle state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign and broadcast live trades from a Safe through an executor private key, which can incur gas costs and move assets. <br>
-Mitigation: Use a dedicated executor wallet with minimal permissions, never use the Safe owner key, verify deployed policies and slippage limits first, and require explicit human approval before each live rebalance. <br>
-Risk: Incorrect or stale deployment configuration can cause failed or unintended rebalance execution. <br>
-Mitigation: Run verify_deployment_config against the deployment troubleshooting summary and on-chain module state before enabling rebalance_now. <br>
+## Use Case:
 
+External Safe operators and developers use this skill to verify a 31Third policy deployment and execute a one-step on-chain rebalance from Safe balances into configured target allocations.
 
-## Reference(s): <br>
-- [31Third Homepage](https://31third.com) <br>
-- [31Third Safe Policy Deployer](https://app.31third.com/safe-policy-deployer) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Phips0812/31third-safe-rebalancer-simple) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [JSON tool results and Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [rebalance_now returns execution status, drift data, effective slippage values, and a transaction hash when executed; verify_deployment_config returns deployment checks, mismatches, warnings, and a summary message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: package.json, skill.yaml, skill.json, server release metadata) <br>
+Risk: The skill can execute real on-chain rebalancing with an executor private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege executor wallet, keep the Safe owner key out of the tool, run verify-deployment before rebalance_now, and test with minimal value first.
+
+Risk: Secrets such as the executor private key and 31Third API key are required at runtime.
+
+Mitigation: Store secrets outside committed files and provide them through a controlled runtime environment.
+
+Risk: Install metadata is not reproducible enough for a production financial automation workflow.
+
+Mitigation: Regenerate and review the lockfile from the current package.json, prefer npm ci, and pin maintainer CLI tooling before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phips0812/skills/31third-safe-rebalancer-simple)
+- [31Third](https://31third.com)
+- [31Third Safe Policy Deployer](https://app.31third.com/safe-policy-deployer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON results and Markdown-readable CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return transaction hashes, deployment verification checks, warnings, and rebalance status messages.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata, package.json, skill.yaml, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

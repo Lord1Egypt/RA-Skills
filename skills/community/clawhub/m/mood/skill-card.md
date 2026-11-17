@@ -1,39 +1,50 @@
-## Description: <br>
-Mood and emotional wellness reference covering mood science, regulation strategies, journaling techniques, and emotional literacy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mood and emotional wellness reference: mood science, regulation strategies, journaling techniques, emotional literacy.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and developers use this skill as a static educational reference for understanding mood patterns, emotional regulation techniques, journaling practices, and mood-tracking system design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the mood and wellness reference for diagnosis, treatment, therapy, or crisis support. <br>
-Mitigation: Present it as educational guidance only and direct users with persistent, severe, or urgent safety concerns to licensed professionals, local emergency services, or crisis support. <br>
+## Use Case:
 
+External users, developers, and agents use this skill as a static reference for mood science, emotional regulation strategies, journaling methods, mood triggers, lifestyle factors, tracking approaches, and resilience practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/mood) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference output with Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local educational reference; no API keys, network services, or external tools are described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Users could mistake general mood and wellness reference material for professional mental-health care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as educational reference content and direct users to licensed or emergency support for severe distress, self-harm risk, suicidality, medication questions, or urgent symptoms.
+
+## Reference(s):
+
+- [Mood on ClawHub](https://clawhub.ai/bytesagain3/skills/mood)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static wellness reference content; no network, credential, file, or persistent system-setting access reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

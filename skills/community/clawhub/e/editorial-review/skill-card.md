@@ -1,45 +1,61 @@
-## Description: <br>
-Comprehensive editorial review for Chinese content before publication, covering typos, grammar, punctuation, fact-checking, political compliance, and advertising law. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive editorial review for Chinese content before publication, covering proofreading, grammar, punctuation, fact-checking, political compliance, and advertising law review.
 
-## Publisher: <br>
-[liqiongyu](https://clawhub.ai/user/liqiongyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liqiongyu](https://clawhub.ai/user/liqiongyu)
 
-## Use Case: <br>
-External users and editorial teams use this skill to review Chinese public-facing text before publication, with structured checks for language quality, facts, political and territorial sensitivity, and advertising-law risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mainland-China-oriented political and advertising compliance checks may be mistaken for neutral editorial truth, legal approval, or globally applicable guidance. <br>
-Mitigation: Specify the target region and audience before review, treat compliance findings as advisory and jurisdiction-specific, and use qualified human review for sensitive publication contexts. <br>
-Risk: Fact-checking quality depends on available sources and tool access, so unverifiable claims may remain unresolved. <br>
-Mitigation: Require source citations for factual claims and have the agent flag claims that cannot be verified with available tools or evidence. <br>
+## Use Case:
 
+External users, editors, marketers, and publishing teams use this skill to review public-facing Chinese text before release. It produces layered findings for text quality, factual accuracy, mainland-China publication norms, and advertising-law compliance.
 
-## Reference(s): <br>
-- [Advertising Law Compliance Reference](references/advertising-law.md) <br>
-- [Fact-Checking Reference](references/fact-checking.md) <br>
-- [Grammar and Logic Reference](references/grammar-and-logic.md) <br>
-- [Political and Territorial Compliance Reference](references/political-compliance.md) <br>
-- [Typography and Punctuation Reference](references/typography-and-punctuation.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liqiongyu/editorial-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured review report with issue tables and optional corrected text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Review modes include Quick, Standard, and Deep; reports locate issues, assign severity, and suggest fixes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and skill.json) <br>
+Risk: The skill applies mainland China publication and compliance norms by default, which may be unsuitable for Taiwan, Hong Kong, Macau, or non-PRC audiences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State the target publication region before review and have a qualified human reviewer assess political and legal suggestions for that audience.
+
+Risk: Fact-checking and compliance findings are advisory and may depend on web access or the agent environment's available tools.
+
+Mitigation: Verify important claims, legal conclusions, and sensitive compliance findings against authoritative sources before publication.
+
+Risk: Optional file writes and web checks may expose draft documents or claims to the active agent environment.
+
+Mitigation: Only permit file or web access for documents and claims that are appropriate to share in that environment.
+
+## Reference(s):
+
+- [Advertising Law Compliance Reference](references/advertising-law.md)
+- [Fact-Checking Reference](references/fact-checking.md)
+- [Grammar and Logic Reference](references/grammar-and-logic.md)
+- [Political and Territorial Compliance Reference](references/political-compliance.md)
+- [Typography and Punctuation Reference](references/typography-and-punctuation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown structured review report with issue tables and optional corrected text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include review mode, severity counts, layer-by-layer issues, suggested fixes, and reviewer notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: artifact/skill.json and changelog, released 2026-03-19)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

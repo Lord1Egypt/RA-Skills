@@ -1,41 +1,58 @@
-## Description: <br>
-Checks Hainan Airlines 666Plus round-trip benefit flight availability from Beijing across configured destinations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Hainan Airlines 666Plus round-trip flight eligibility and automatically checks configured destinations.
 
-## Publisher: <br>
-[aywd2026](https://clawhub.ai/user/aywd2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aywd2026](https://clawhub.ai/user/aywd2026)
 
-## Use Case: <br>
-Travelers or travel-planning agents use this skill to check whether Hainan Airlines 666Plus benefit round trips are available between Beijing and configured destinations for supplied outbound and return dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local browser automation and repeatedly queries Hainan Airlines availability pages. <br>
-Mitigation: Install only in a trusted local environment, verify the Playwright runtime path, and ensure the user has permission to automate the site. <br>
-Risk: Flight availability can change after the skill reports a matching route. <br>
-Mitigation: Confirm availability directly with Hainan Airlines before relying on results for travel decisions. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to check whether Hainan Airlines 666Plus benefits have available round-trip routes between Beijing and configured destinations for user-supplied outbound and return dates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aywd2026/hna-666-flight-checker) <br>
-- [Hainan Airlines 666Plus availability query](https://m.hnair.com/hnams/plusMember/ableAirlineQuery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text results with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound and return dates; reports eligible round-trip destinations from the configured destination list.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: The skill launches Playwright and submits automated searches to Hainan Airlines' mobile query page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the airline site's terms and run the skill only when automated querying for the selected dates and destinations is acceptable.
+
+Risk: The documented execution command includes a hardcoded local path and Playwright environment.
+
+Mitigation: Adjust paths and verify the Playwright runtime before deployment.
+
+Risk: The skill is primarily documented in Chinese, which may affect operator understanding.
+
+Mitigation: Have a Chinese-capable reviewer confirm intended behavior, inputs, and output interpretation before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aywd2026/skills/hna-666-flight-checker)
+- [Hainan Airlines 666Plus query page](https://m.hnair.com/hnams/plusMember/ableAirlineQuery)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires outbound and return dates; output lists eligible round-trip destinations when found.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

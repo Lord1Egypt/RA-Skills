@@ -1,43 +1,60 @@
-## Description: <br>
-Parameterize and apply a Chinese mutual-fund buy, add, reduce, or hold strategy driven by price drawdown, recurring DCA, cash-pool management, and position limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parameterize and apply a Chinese mutual-fund buy, add, reduce, or hold strategy driven by price drawdown, recurring DCA, cash-pool management, and position limits.
 
-## Publisher: <br>
-[seanmwx](https://clawhub.ai/user/seanmwx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seanmwx](https://clawhub.ai/user/seanmwx)
 
-## Use Case: <br>
-Developers and fund-strategy users use this skill to maintain a parameterized Chinese mutual-fund decision framework, refresh public fund data, evaluate daily buy/add/reduce/hold decisions, and keep live strategy state in SQLite instead of SKILL.md. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update a local SQLite database containing financial-planning data. <br>
-Mitigation: Use a separate --db path for isolation and review file locations before running account or trade scripts. <br>
-Risk: Strategy suggestions or local ledger entries could be mistaken for real brokerage actions or proof of transactions. <br>
-Mitigation: Review suggested actions before running confirm_strategy_action.py or record_strategy_trade.py, and keep brokerage confirmation separate from the local ledger. <br>
+## Use Case:
 
+External users and developers use this skill to maintain and apply a reusable Chinese mutual-fund strategy, including DCA, dip-buy, take-profit, cash-pool, reminder, and reporting workflows. It produces strategy suggestions and local records rather than broker-executed trades.
 
-## Reference(s): <br>
-- [Strategy Parameters](artifact/references/strategy_parameters.md) <br>
-- [Data Inputs](artifact/references/data_inputs.md) <br>
-- [Fund Buying Decision Pro on ClawHub](https://clawhub.ai/seanmwx/fund-buying-decision) <br>
-- [Eastmoney Fund Data Endpoint](https://fund.eastmoney.com/pingzhongdata/{fund_code}.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands, JSON-like strategy outputs, and Python script invocations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Single decision cycles return one explicit action: buy_dca, buy_dip, sell_take_profit, hold, or skip_data_missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores fund strategy state, balances, holdings, and trade history in a local plaintext SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the database in a private user directory, avoid shared or synced locations unless protected, and limit access to the local user account.
+
+Risk: Generated buy or sell actions could be mistaken for broker-executed trades.
+
+Mitigation: Treat actions as local strategy records and review them before recording or acting on them outside the skill.
+
+Risk: Market data refreshes fetch fund data from Eastmoney, so availability and data freshness depend on that external source.
+
+Mitigation: Check source availability and skip decisions when required inputs are missing or stale.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/seanmwx/skills/fund-buying-decision)
+- [Data Inputs](artifact/references/data_inputs.md)
+- [Strategy Parameters](artifact/references/strategy_parameters.md)
+- [Eastmoney Pingzhongdata Endpoint](https://fund.eastmoney.com/pingzhongdata/{fund_code}.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write strategy account state, reminders, and trade history to a local plaintext SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

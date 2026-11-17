@@ -1,45 +1,57 @@
-## Description: <br>
-Deploy and start OpenClaw Agent Control with one command (backend + frontend) using skill-based workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy and start OpenClaw Agent Control with one command (backend + frontend) using skill-based workflow.
 
-## Publisher: <br>
-[JiangAgentLabs](https://clawhub.ai/user/JiangAgentLabs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiangagentlabs](https://clawhub.ai/user/jiangagentlabs)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy OpenClaw Agent Control locally, start its backend and frontend, and validate the running service endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The deployment workflow runs unpinned remote code from the configured repository. <br>
-Mitigation: Install only when the repository is trusted, and review or pin the source revision before execution. <br>
-Risk: The workflow starts persistent backend and frontend services. <br>
-Mitigation: Bind services to localhost unless external access is required, and plan how to stop the started processes after use. <br>
-Risk: The default project path is under /root and the workflow installs runtime dependencies. <br>
-Mitigation: Set PROJECT_DIR to a non-root path when possible and review dependency installation behavior before running the script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JiangAgentLabs/openclaw-agent-control) <br>
-- [Publisher profile](https://clawhub.ai/user/JiangAgentLabs) <br>
-- [Usage guide (English)](references/USAGE.en.md) <br>
-- [Usage guide (Chinese)](references/USAGE.zh-CN.md) <br>
-- [OpenClaw Agent Control repository](https://github.com/JiangAgentLabs/OpenClaw-Agent-Control.git) <br>
+## Use Case:
 
+Developers and operators use this skill to deploy, start, and validate an OpenClaw Agent Control backend and frontend from a ClawHub skill workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with bash commands, environment variable names, log paths, and local service URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The deployment script starts backend and frontend services when executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill deploys mutable remote code and npm scripts with broad host and network impact.
+
+Mitigation: Review scripts/deploy_project.sh and the target repository before running it, and prefer a pinned, trusted commit.
+
+Risk: The default deployment path and service binding can expose more host privileges or network access than intended.
+
+Mitigation: Run the deployment as an unprivileged user outside /root and restrict MONITOR_PORT and PORT to trusted interfaces.
+
+Risk: A custom REPO_URL can change the deployed code and dependency tree.
+
+Mitigation: Use a custom REPO_URL only when the repository and npm dependencies are fully trusted.
+
+## Reference(s):
+
+- [Usage (EN)](references/USAGE.en.md)
+- [Usage (ZH-CN)](references/USAGE.zh-CN.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and deployment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service URLs, log paths, port settings, environment variables, and validation steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Academic Suite provides three academic writing roles for supervisor-style feedback, simulated peer review, and technical writing checks on dissertations, theses, journal articles, and conference papers in Polish or English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Three-in-one academic writing toolkit with three distinct agent roles: Supervisor (promotor), Reviewer (recenzent), and Writer Assistant.
 
-## Publisher: <br>
-[kbakdev](https://clawhub.ai/user/kbakdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kbakdev](https://clawhub.ai/user/kbakdev)
 
-## Use Case: <br>
-Students, researchers, and academic authors use this skill to get structured feedback on academic drafts, simulate critical review before submission, and check citation, terminology, formatting, and pre-submission quality details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Academic drafts or research material may contain confidential, sensitive, or unpublished information. <br>
-Mitigation: Avoid sharing confidential drafts or sensitive research material unless the agent environment is approved for that content. <br>
-Risk: Mode selection can be ambiguous when the user does not specify whether they want supervisor feedback, peer review, or writing checks. <br>
-Mitigation: Specify /supervisor, /reviewer, or /writer, or ask the user to choose the intended mode before giving detailed feedback. <br>
-Risk: The skill's feedback may be incomplete or may not match institutional, journal, or reviewer requirements. <br>
-Mitigation: Treat outputs as advisory and confirm requirements with supervisors, institutions, journal guidelines, or qualified reviewers. <br>
+## Use Case:
 
+Students, researchers, and academic authors use this skill to get structured feedback on dissertations, theses, journal articles, and conference papers. It supports directional supervision, simulated peer review, citation checks, terminology consistency checks, formatting validation, and pre-submission review in Polish or English academic contexts.
 
-## Reference(s): <br>
-- [Academic Suite on ClawHub](https://clawhub.ai/kbakdev/academic-suite) <br>
-- [Citation Style Guide](references/citation-styles.md) <br>
-- [Discipline-Specific Conventions](references/disciplines.md) <br>
-- [Review Standards by Work Type](references/review-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted academic feedback, peer review reports, checklists, and citation or formatting notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports Polish and English academic contexts; outputs are advisory and should be reviewed against applicable requirements.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may auto-select a role for broad academic-writing requests, which could produce feedback in the wrong review posture or locale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the desired role, language, discipline, work type, and citation standard when those choices matter.
+
+Risk: Academic review guidance may be incomplete or mismatched to institution, journal, or supervisor requirements.
+
+Mitigation: Use the output as review support and confirm final requirements against the relevant institution, venue, style guide, or supervisor.
+
+## Reference(s):
+
+- [Citation Style Guide](references/citation-styles.md)
+- [Discipline-Specific Conventions](references/disciplines.md)
+- [Review Standards by Work Type](references/review-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style structured feedback, review reports, checklists, and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific responses may include supervisor feedback, simulated peer-review scores, citation and formatting checks, terminology notes, and pre-submission checklist items.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Constructs precise, multi-query Google searches using advanced operators, result filtering, source credibility checks, and relevance ranking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Constructs precise, multi-query Google searches with advanced operators, source filtering, relevance ranking, and credibility annotations.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers and agents use this skill to turn web-search requests into targeted Google queries, rank credible sources, deduplicate results, and present source-aware findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad web-search trigger phrases may activate the skill more often than intended. <br>
-Mitigation: Review and narrow activation phrases if tighter control is needed in the target agent environment. <br>
-Risk: Search requests may expose passwords, private tokens, confidential business details, or highly sensitive personal information to web-search tooling. <br>
-Mitigation: Avoid including secrets, credentials, confidential business data, or highly sensitive personal information in search queries. <br>
-Risk: Search results can be outdated, duplicated, low quality, or misleading if source quality and date context are not checked. <br>
-Mitigation: Apply the skill's source credibility, freshness, deduplication, and primary-source preference checks before presenting results. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn broad information-retrieval requests into targeted Google searches, then rank and summarize credible, current sources.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/calvinxhk/botlearn-google-search) <br>
-- [Publisher profile](https://clawhub.ai/user/calvinxhk) <br>
-- [README](README.md) <br>
-- [Skill definition](skill.md) <br>
-- [Google Search Strategy](strategies/main.md) <br>
-- [Google Search Best Practices](knowledge/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with ranked results, source credibility annotations, summaries, relevance notes, and synthesis when multiple sub-queries are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optimized Google query strings, deduplicated result lists, publication-date context, and source-quality notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.md frontmatter; package metadata lists 0.1.0) <br>
+Risk: Broad activation phrases such as "look up" may route routine information requests through this search workflow more often than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review activation behavior during deployment and ask a clarifying question when a request is ambiguous or does not require web search.
+
+Risk: Search-result quality depends on source credibility, freshness, and deduplication checks being applied consistently.
+
+Mitigation: Keep the credibility, date-context, and multi-query verification steps in the workflow active for time-sensitive or high-impact topics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-google-search)
+- [Publisher profile](https://clawhub.ai/user/calvinxhk)
+- [README](artifact/README.md)
+- [Skill definition](artifact/skill.md)
+- [Search strategy](artifact/strategies/main.md)
+- [Google Search operator syntax](artifact/knowledge/domain.md)
+- [Search best practices](artifact/knowledge/best-practices.md)
+- [Search anti-patterns](artifact/knowledge/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with ranked source summaries, credibility annotations, date context, and optional synthesis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include advanced Google query strings, source-quality tiers, relevance notes, and deduplicated result lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

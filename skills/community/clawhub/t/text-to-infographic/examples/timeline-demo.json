@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "meta": { "title": "4 周内容计划", "subtitle": "小红书 + 公众号双线" },
+  "layout": "timeline",
+  "visual_system": { "palette": "terracotta" },
+  "blocks": [
+    { "id": "w1", "time": "第 1 周", "title": "AI 部署实操", "text": "先把环境跑通，边做边记" },
+    { "id": "w2", "time": "第 2 周", "title": "AI 迭代实操", "text": "同一项目连续迭代两版" },
+    { "id": "w3", "time": "第 3 周", "title": "证书攻略系列", "text": "Claude Academy 篇" },
+    { "id": "w4", "time": "第 4 周", "title": "复盘与迁移", "text": "沉淀到知识库" }
+  ]
+}

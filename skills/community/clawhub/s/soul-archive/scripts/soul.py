@@ -62,7 +62,7 @@ HELP = """🧬 Soul Archive — Unified CLI
   extract            从对话提取信息（--input "..." [--mode auto|manual]）
   chat               生成角色扮演 prompt（--mode prompt|summary|json）
   report             生成 HTML 灵魂画像报告（--lang zh|en --output 路径）
-  reflect            AI 自我改进引擎（写入侧；--mode status|patterns|reflect|critique|learn）
+  reflect            AI 自我改进引擎（写入侧；--mode status|patterns|review|reflect|critique|learn|resolve）
   context            输出精简的人格摘要（用于 system prompt 注入）
   recall             跨会话召回相关行为模式 / 用户纠正 / 反思（--task "..."）
   warn               失败模式预警：检测当前任务是否匹配过去坑（--task "..."）
@@ -70,7 +70,7 @@ HELP = """🧬 Soul Archive — Unified CLI
   session-start      会话开始综合简报：recall + warn + distill（--task "..."）
 
 通用参数（所有子命令）：
-  --soul-dir <path>  自定义灵魂数据目录（默认 ~/.agent-commons/skills_data/soul-archive/）
+  --soul-dir <path>  自定义灵魂数据目录（默认 ~/.agent-guild/skills_data/soul-archive/）
 """
 
 

@@ -1,43 +1,53 @@
-## Description: <br>
-Queries Copilot Money personal finance data, including accounts, transactions, net worth, holdings, asset allocation, and bank connection refresh workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Copilot Money personal finance data (accounts, transactions, net worth, holdings, asset allocation) and refresh bank connections. Use when the user asks about finances, account balances, recent transactions, net worth, investment allocation, or wants to sync/refresh bank data.
 
-## Publisher: <br>
-[jayhickey](https://clawhub.ai/user/jayhickey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jayhickey](https://clawhub.ai/user/jayhickey)
 
-## Use Case: <br>
-External users use this skill to ask an agent for Copilot Money account balances, recent transactions, net worth, holdings, asset allocation, and bank connection refresh commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal financial data from Copilot Money. <br>
-Mitigation: Install and use it only when the user is comfortable giving the agent access to Copilot Money account, transaction, net worth, holdings, and allocation data. <br>
-Risk: Authentication can read a Copilot Money session token from local browser storage on supported macOS browsers. <br>
-Mitigation: Prefer manual token entry or an explicit browser source when broad browser scanning is not desired. <br>
-Risk: Refresh commands can act on bank connections. <br>
-Mitigation: Ask for explicit confirmation before running refresh actions against bank connections. <br>
-Risk: The skill depends on the external copilot-money-cli package. <br>
-Mitigation: Review the external package before installation or use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Copilot Money](https://copilot.money) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent query Copilot Money through an unofficial CLI for account balances, transactions, net worth, holdings, allocation, and bank-connection refresh workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local CLI authentication, queries, and refresh actions for Copilot Money data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install an unpinned unofficial CLI that handles sensitive financial data.
+
+Mitigation: Install only after verifying the copilot-money-cli package source and version, preferably in an isolated Python environment.
+
+Risk: Browser auto-detection can read Copilot Money session tokens from local browser storage.
+
+Mitigation: Avoid auto-detection unless needed, use manual token entry when appropriate, and know how to revoke the Copilot Money session token.
+
+## Reference(s):
+
+- [Copilot Money](https://copilot.money)
+- [ClawHub Copilot Money Skill](https://clawhub.ai/jayhickey/skills/copilot-money)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide installation, authentication, Copilot Money CLI commands, and interpretation of returned personal finance data.]
+
+## Skill Version(s):
+
+1.1.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Analyzes uploaded CSV, Excel, JSON, TSV, SQL-export, or pasted table data and returns a structured report with data overview, findings, anomalies, quality notes, and actionable recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload CSV, Excel, JSON, TSV, or pasted table data to receive a structured data analysis report with insights, anomalies, data quality notes, and recommendations.
 
-## Publisher: <br>
-[a799549967-lang](https://clawhub.ai/user/a799549967-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a799549967-lang](https://clawhub.ai/user/a799549967-lang)
 
-## Use Case: <br>
-Business users, analysts, and operators use this skill in OpenClaw to turn uploaded or pasted tabular data into a plain-language markdown analysis report. It is intended for exploratory summaries, anomaly detection, trend review, data quality checks, and follow-up reporting without writing code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded file contents, row samples, prompts, and derived reports may be sent to the user's configured AI provider, which can expose confidential, regulated, customer, financial, or proprietary data. <br>
-Mitigation: Review before installing for sensitive-data workflows; use anonymized data or an AI provider whose privacy, retention, and compliance terms are acceptable. <br>
-Risk: The artifact's user-facing safety language may understate third-party AI-provider processing risk. <br>
-Mitigation: Tell users that configured AI providers may process uploaded data and require approval before using confidential or regulated datasets. <br>
+## Use Case:
 
+Employees, analysts, operators, and other non-technical users can upload or paste business data and ask the agent to summarize structure, detect anomalies, identify trends, and produce action-oriented recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a799549967-lang/smart-data-analyst) <br>
-- [Operation guide](artifact/操作说明.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, findings, anomaly warnings, data quality notes, and recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows a data overview before deeper analysis, uses Chinese for Chinese datasets, and may sample very large datasets while stating the sample size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server-resolved release evidence) <br>
+Risk: Uploaded datasets may contain sensitive or regulated data and may be processed by the user's configured AI provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only datasets appropriate for the configured AI provider and avoid relying on the skill's privacy wording unless the OpenClaw setup is local-only.
+
+Risk: The active skill instructions include unrelated Telegram promotion.
+
+Mitigation: Review the active instructions before deployment and remove promotional content if it is not acceptable for the target environment.
+
+Risk: Broad natural-language triggers may activate the skill during general data questions.
+
+Mitigation: Confirm user intent and dataset scope before processing uploaded or pasted data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/a799549967-lang/skills/smart-data-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with overview tables, key findings, anomaly notes, data quality notes, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May sample large datasets and should state the sample size when sampling is used.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

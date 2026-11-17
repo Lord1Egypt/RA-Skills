@@ -1,42 +1,54 @@
-## Description: <br>
-Discover agent-native CLIs for professional software and use the live catalog to find tools for creative workflows, productivity, AI, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover agent-native CLIs for professional software. Access the live catalog to find tools for creative workflows, productivity, AI, and more.
 
-## Publisher: <br>
-[yuh-yang](https://clawhub.ai/user/yuh-yang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuh-yang](https://clawhub.ai/user/yuh-yang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to discover, search, and install CLI-Anything tools for creative, productivity, AI, communication, development, and content-generation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the catalog as blanket approval could lead an agent to install downstream CLI packages without sufficient review. <br>
-Mitigation: Treat the skill as a discovery aid; review each downstream package or source before installing it. <br>
-Risk: Installed downstream CLIs may access local files, accounts, browsers, infrastructure, or external services. <br>
-Mitigation: Prefer isolated environments, pin versions where practical, and explicitly approve tools that request sensitive access. <br>
+## Use Case:
 
+External developers and agent operators use this skill to discover CLI-Anything tools and produce commands for browsing, installing, and running agent-native command-line interfaces.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuh-yang/cli-anything-hub) <br>
-- [CLI-Anything live catalog](https://clianything.cc/SKILL.txt) <br>
-- [CLI-Anything web hub](https://clianything.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downstream CLI tools may provide JSON output when invoked with their own --json flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill may lead an agent to install unpinned packages from a mutable live catalog.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package names, versions, sources, and maintainer trust before installation, and run installs only in disposable or least-privileged environments.
+
+Risk: Catalog-suggested commands could run in a workspace that contains sensitive files or credentials.
+
+Mitigation: Require explicit approval before executing install commands and avoid running them in sensitive workspaces.
+
+## Reference(s):
+
+- [Live CLI-Hub Catalog](https://clianything.cc/SKILL.txt)
+- [CLI-Anything Web Hub](https://clianything.cc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference a mutable live catalog and package install commands that require review before execution]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

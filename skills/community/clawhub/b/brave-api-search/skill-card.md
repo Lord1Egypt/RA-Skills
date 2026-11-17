@@ -1,44 +1,60 @@
-## Description: <br>
-Real-time web search, autosuggest, spellcheck, and AI-powered answers using the official Brave Search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web, suggest and correct queries, and generate grounded answers with citations through the Brave Search API.
 
-## Publisher: <br>
-[broedkrummen](https://clawhub.ai/user/broedkrummen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[broedkrummen](https://clawhub.ai/user/broedkrummen)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve current web results, search suggestions, spell corrections, and cited Brave Answers responses for documentation lookup, fact finding, current events, and research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, answer prompts, and optional location context are sent to Brave using the configured API keys. <br>
-Mitigation: Avoid secrets, regulated data, and sensitive personal data in queries; review Brave account settings, usage, and data handling expectations before deployment. <br>
-Risk: The security evidence notes user input in shell-like command templates. <br>
-Mitigation: Run the skill in an agent runtime that passes arguments with argv-style escaping and review generated commands before execution. <br>
-Risk: The release requires sensitive Brave API credentials. <br>
-Mitigation: Store keys in environment variables or a local secret manager, do not paste keys into prompts or committed files, and rotate keys if exposed. <br>
+## Use Case:
 
+Developers and other agent users use this skill to retrieve current web results, query suggestions, spelling corrections, and AI-grounded answers for research and information lookup.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/broedkrummen/brave-api-search) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
-- [Brave API Dashboard](https://api-dashboard.search.brave.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text command output with result URLs, citations, suggestions, corrections, entity summaries, usage details, and setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on Brave API responses and configured API keys; cited answers and entity extraction require streaming mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.0 (source: server release evidence and artifact metadata) <br>
+Risk: Search terms, questions, and optional search context are sent to Brave under the user's API account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit secrets or sensitive personal data as queries; use only if Brave's data handling is acceptable.
+
+Risk: API calls may consume quota or incur charges, especially for Answers and paid rich suggestions.
+
+Mitigation: Keep API keys in environment variables or an uncommitted .env file, and monitor account quota and costs.
+
+Risk: Citation and entity behavior outside streaming mode is ambiguously documented, and Answers uses English internally.
+
+Mitigation: Use streaming when citations or entities matter and check the returned sources before relying on answers.
+
+## Reference(s):
+
+- [Brave Search API](https://brave.com/search/api/)
+- [Brave Search API dashboard](https://api-dashboard.search.brave.com)
+- [Brave API Search native plugin](https://clawhub.ai/plugins/brave-api-search-plugin)
+- [Brave API Search skill release](https://clawhub.ai/broedkrummen/skills/brave-api-search)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown-formatted search results, suggestions, corrections, or answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers can include citations and usage/cost details; streaming is required for full citation, entity, and research features.]
+
+## Skill Version(s):
+
+4.2.1 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

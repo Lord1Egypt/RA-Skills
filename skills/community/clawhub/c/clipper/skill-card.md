@@ -1,44 +1,63 @@
-## Description: <br>
-Save web content to an Obsidian vault, with routing for Twitter/X, WeChat MP, Xiaohongshu, YouTube, Bilibili, and general web pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save web content to Obsidian vault. Supports Twitter/X, WeChat MP, Xiaohongshu, YouTube, Bilibili, and any web page. Automatically routes to the best fetch method per platform.
 
-## Publisher: <br>
-[pazzilivo](https://clawhub.ai/user/pazzilivo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pazzilivo](https://clawhub.ai/user/pazzilivo)
 
-## Use Case: <br>
-Agents and users who collect web references use this skill to fetch supported URLs, save the resulting content as Markdown in an Obsidian vault, and return structured status for the clipping operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved clips are automatically pulled, committed, and pushed to the detected vault's Git remote. <br>
-Mitigation: Install and run the skill only for vaults where automatic Git sync is intended, and verify the vault path and remote before clipping. <br>
-Risk: Private or sensitive URLs and clipped content may be sent to external fetch services, image proxies, or the configured Git remote. <br>
-Mitigation: Avoid clipping sensitive content unless those services and the remote repository are approved for that data. <br>
-Risk: The skill may affect the wrong Obsidian vault if vault detection selects an unintended path. <br>
-Mitigation: Confirm or explicitly provide the vault path before running clipping workflows. <br>
+## Use Case:
 
+External users and developers use Clipper to save supported social and web URLs into an Obsidian vault as Markdown files, with platform-specific routing for Twitter/X, WeChat MP, and general web pages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pazzilivo/clipper) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/pazzilivo) <br>
-- [x-reader dependency](https://github.com/runesleo/x-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown files in an Obsidian vault plus JSON status from the clipping scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Twitter/X and general web clipping can run from a URL; WeChat MP clipping may require browser snapshot guidance before saving.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can automatically commit and push clipped content from the user's Obsidian vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a vault and git remote where publishing clipped content is acceptable, and review clipped content before relying on automatic sync.
+
+Risk: The skill fetches target URLs through external services or tools.
+
+Mitigation: Avoid clipping sensitive URLs unless sharing them with the configured fetch services is acceptable.
+
+Risk: The general web path depends on x-reader from a GitHub installation command.
+
+Mitigation: Pin or review the x-reader dependency before installation.
+
+Risk: The skill writes Markdown files into the detected Obsidian vault.
+
+Mitigation: Confirm the selected vault path before use, especially when first evaluating the skill.
+
+## Reference(s):
+
+- [Clipper on ClawHub](https://clawhub.ai/pazzilivo/skills/clipper)
+- [x-reader dependency](https://github.com/runesleo/x-reader.git)
+- [Jina Reader endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter and JSON status responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves clips under an Obsidian vault and may return git_warnings when automatic git sync fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

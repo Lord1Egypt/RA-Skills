@@ -1,45 +1,60 @@
-## Description: <br>
-Automates WeChat desktop actions to send a custom text message to a specified contact from the command line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过命令行自动控制微信向指定联系人发送文本消息，并支持自定义等待时间、倒计时和详细日志。
 
-## Publisher: <br>
-[2450550235-debug](https://clawhub.ai/user/2450550235-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2450550235-debug](https://clawhub.ai/user/2450550235-debug)
 
-## Use Case: <br>
-Users and agent operators use this skill to send predefined WeChat text messages to named contacts through local desktop automation when WeChat is already installed, logged in, and visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real WeChat messages from the user's logged-in account without a final confirmation. <br>
-Mitigation: Require an explicit yes/no confirmation immediately before sending, and use it only for low-risk messages. <br>
-Risk: Desktop focus or contact-name mismatch can send the message to the wrong window or recipient. <br>
-Mitigation: Keep WeChat visible and focused, verify the recipient and message text before execution, and abort on focus errors. <br>
-Risk: Sensitive content could be exposed through an unintended message send. <br>
-Mitigation: Avoid passwords, keys, personal data, or other sensitive content in messages sent through this automation. <br>
+## Use Case:
 
+External users can ask an agent to send a WeChat text message to a named contact after they provide the recipient and exact message. The skill is intended for desktop automation where WeChat is already installed, logged in, and visible.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2450550235-debug/wechat-auto-send) <br>
-- [README](artifact/README.md) <br>
-- [Usage examples](artifact/EXAMPLES.md) <br>
-- [OpenClaw usage notes](artifact/OPENCLAW_USAGE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain text with command-line examples and execution status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local WeChat desktop session and can trigger real message sends from the logged-in account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic desktop control can send or paste messages to the wrong active WeChat window or contact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit commands, verify the recipient and exact message before execution, keep WeChat visible, and test first with File Transfer Assistant.
+
+Risk: Clipboard and keyboard automation can expose or send sensitive content.
+
+Mitigation: Avoid sensitive content and do not use the desktop while the skill is running.
+
+Risk: Batch or scheduled sends can amplify mistakes or unwanted messaging.
+
+Mitigation: Do not enable batch or scheduled sends without additional confirmation, rate limits, and cancellation controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/2450550235-debug/skills/wechat-auto-send)
+- [README.md](artifact/README.md)
+- [OPENCLAW_USAGE.md](artifact/OPENCLAW_USAGE.md)
+- [EXAMPLES.md](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown and command-line instructions with script output text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces status messages for dependency checks, countdown, WeChat focus, contact selection, message paste, send completion, and errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

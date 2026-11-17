@@ -1,0 +1,157 @@
+{
+  "word": "the",
+  "pronunciation": "/ðə/ · 元音前 /ði/",
+  "audience": "小学高年级+初中",
+  "core_meanings": [
+    {
+      "meaning": "定冠词：特指双方都知道的人或物",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "独一无二的事物前（the sun）",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "第二次提到的事物",
+      "level": "P1",
+      "priority": 5
+    },
+    {
+      "meaning": "某些专有名词/乐器等习惯用法",
+      "level": "P2",
+      "priority": 4
+    }
+  ],
+  "parts_of_speech": [
+    {
+      "type": "determiner (article)",
+      "meanings": [
+        "定冠词 the"
+      ]
+    }
+  ],
+  "collocations": [
+    {
+      "phrase": "the sun / the moon",
+      "meaning": "独一无二",
+      "priority": 5,
+      "example": "The sun is bright.",
+      "translation": "太阳很亮。"
+    },
+    {
+      "phrase": "play the piano",
+      "meaning": "演奏乐器前常用 the",
+      "priority": 4,
+      "example": "She plays the piano.",
+      "translation": "她弹钢琴。"
+    },
+    {
+      "phrase": "the same",
+      "meaning": "同样的",
+      "priority": 4,
+      "example": "We have the same book.",
+      "translation": "我们有同一本书。"
+    }
+  ],
+  "word_forms": {},
+  "word_family": [],
+  "grammar_patterns": [
+    {
+      "pattern": "the + 特指名词",
+      "meaning": "双方都知道是哪一个",
+      "example": "Open the door.",
+      "translation": "打开那扇门。"
+    },
+    {
+      "pattern": "零冠词 vs the",
+      "meaning": "泛指复数/不可数常不用 the",
+      "example": "I like apples. / The apples on the table are sweet.",
+      "translation": "我喜欢苹果。/ 桌上的那些苹果很甜。"
+    }
+  ],
+  "examples": [
+    {
+      "english": "Open the door.",
+      "chinese": "打开那扇门。",
+      "target": "the door"
+    },
+    {
+      "english": "The sun is bright.",
+      "chinese": "太阳很亮。",
+      "target": "The sun"
+    },
+    {
+      "english": "I saw a cat. The cat was white.",
+      "chinese": "我看见一只猫。那只猫是白色的。",
+      "target": "The cat"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "topic": "a/an vs the",
+      "explanation": "第一次提到常用 a/an；双方都明确是哪一个时用 the。"
+    },
+    {
+      "topic": "球类 vs 乐器",
+      "explanation": "play basketball 常不用 the；play the piano 常用 the。"
+    },
+    {
+      "topic": "三餐",
+      "explanation": "have breakfast 通常不加 the（除非特指那一顿）。"
+    }
+  ],
+  "memory_tip": "the =「就是那个」：你和我都知道指谁/指什么时才用。",
+  "layout_plan": {
+    "mode": "function-word",
+    "reason": "限定词，无派生词族",
+    "cards": [
+      {
+        "slot": "T1",
+        "title": "什么时候用",
+        "items": [
+          "特指",
+          "独一无二",
+          "第二次提到"
+        ]
+      },
+      {
+        "slot": "T2",
+        "title": "正例",
+        "items": [
+          "Open the door.",
+          "The sun is bright.",
+          "I saw a cat. The cat was white."
+        ]
+      },
+      {
+        "slot": "T3",
+        "title": "别和 a/an 混",
+        "items": [
+          "a/an vs the",
+          "泛指复数常不用 the"
+        ]
+      },
+      {
+        "slot": "T4",
+        "title": "习惯说法",
+        "items": [
+          "play the piano",
+          "play basketball（常无 the）",
+          "the same"
+        ]
+      }
+    ],
+    "knowledge_chain": [
+      "特指",
+      "怎么用",
+      "别和 a/an 混",
+      "习惯说法"
+    ],
+    "omit": [
+      "空 word_family",
+      "不上假派生"
+    ]
+  }
+}

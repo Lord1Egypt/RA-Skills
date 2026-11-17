@@ -1,49 +1,66 @@
-## Description: <br>
-End-to-end AI video generation for creating videos from text prompts using image generation, video synthesis, voice-over, and FFmpeg editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+End-to-end AI video generation - create videos from text prompts using image generation, video synthesis, voice-over, and editing.
 
-## Publisher: <br>
-[mmyg11](https://clawhub.ai/user/mmyg11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmyg11](https://clawhub.ai/user/mmyg11)
 
-## Use Case: <br>
-Developers and creative operators use this skill to guide an agent through generating short videos from prompts, assembling image sequences into MP4 files, and adding voice-over with configured AI providers and FFmpeg. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, narration text, and generated media may be sent to configured third-party AI providers. <br>
-Mitigation: Avoid sensitive content and review provider terms before use. <br>
-Risk: Use of paid AI APIs can incur provider charges. <br>
-Mitigation: Use limited API keys with spending controls and monitor provider usage. <br>
-Risk: Generated media outputs and FFmpeg commands can overwrite local files when output paths collide. <br>
-Mitigation: Run the skill in a dedicated working folder and choose output filenames that will not replace important files. <br>
+## Use Case:
 
+Developers and creators use this skill to generate short videos from text prompts, assemble image sequences into MP4 files, and add narrated voice-over audio through local scripts and configured AI services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mmyg11/ai-video-gen-temp) <br>
-- [README.md](README.md) <br>
-- [QUICK_START.md](QUICK_START.md) <br>
-- [OpenAI platform](https://platform.openai.com) <br>
-- [LumaAI](https://lumalabs.ai) <br>
-- [Runway](https://runwayml.com) <br>
-- [Replicate](https://replicate.com) <br>
-- [ElevenLabs](https://elevenlabs.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local MP4, PNG, and MP3 artifacts through Python scripts and FFmpeg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Prompts, narration, and media-related data may be sent to third-party cloud AI providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive content and review provider data handling before use.
+
+Risk: AI-service keys are expected to be stored in environment variables or a .env file.
+
+Mitigation: Keep credentials out of shared repositories, restrict key permissions where possible, and rotate keys if exposed.
+
+Risk: Provider support is overstated for Runway and ElevenLabs in this version.
+
+Mitigation: Treat those integrations as unverified and test the selected provider path before relying on it.
+
+Risk: Dependencies are specified with broad minimum versions.
+
+Mitigation: Use pinned dependencies or a lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mmyg11/skills/ai-video-gen-temp)
+- [OpenAI platform](https://platform.openai.com)
+- [LumaAI](https://lumalabs.ai)
+- [Runway](https://runwayml.com)
+- [ElevenLabs](https://elevenlabs.io)
+- [Replicate](https://replicate.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown instructions with Python command examples and generated media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local Python scripts, FFmpeg, environment variables, and optional cloud AI providers to create image, audio, and MP4 outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

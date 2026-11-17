@@ -1,47 +1,56 @@
-## Description: <br>
-Content Matrix Publisher helps agents discover trending topics, generate original social content, adapt it for Xiaohongshu and WeChat Official Accounts, and prepare or publish the resulting posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates a content matrix workflow that discovers trending topics, summarizes source material, creates original drafts, adapts them for Xiaohongshu and WeChat, and prepares platform publishing outputs.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Content creators and marketing teams use this skill to turn one topic or source into platform-specific content for Xiaohongshu and WeChat. It supports trend discovery, summarization, original draft generation, visual-content guidance, publishing preparation, and release reporting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can publish to connected social accounts automatically despite settings that imply draft-only or manual control.
+
+Mitigation: Disable schedules and webhooks by default, keep publishing in draft mode where possible, and require human preview and approval before every publish action.
+
+Risk: The workflow requires publishing access to real Xiaohongshu and WeChat accounts.
+
+Mitigation: Install only when that access is intended, pin and verify dependency skills, and store credentials outside plaintext configuration files.
+
+Risk: Generated or adapted posts may create originality, platform-compliance, sensitive-content, or posting-frequency issues.
+
+Mitigation: Run originality checks, sensitive-word review, platform compliance review, and frequency controls before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content creators, marketers, and agent operators use this skill to turn one topic or source item into platform-specific Xiaohongshu notes and WeChat articles. It supports hot-topic discovery, content summarization, draft generation, image-assisted adaptation, optional publishing, and a final publishing report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Configured credentials, schedules, or webhook triggers can cause content to be posted to real social accounts. <br>
-Mitigation: Keep dry-run or draft-only behavior enabled by default, disable scheduled and webhook triggers unless explicitly needed, and require manual approval before publication. <br>
-Risk: Publishing integrations depend on platform credentials such as session cookies, app IDs, and secrets. <br>
-Mitigation: Store credentials outside skill files, restrict access to them, and rotate or revoke them when they are no longer needed. <br>
-Risk: Generated or adapted posts may violate platform rules, originality expectations, or sensitive-word policies. <br>
-Mitigation: Review originality, sensitive terms, and platform compliance before any post goes live. <br>
+**Output Format:** [Markdown, JSON, and shell command guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/content-matrix-publisher) <br>
-- [README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
-- [Workflow configuration](workflow.json) <br>
-- [Xiaohongshu template](templates/xiaohongshu.md) <br>
-- [WeChat template](templates/wechat.md) <br>
+**Other Properties Related to Output:** [May include platform-specific drafts, image-generation guidance, publishing commands, draft or published links, and a summary report.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON configuration, YAML configuration, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare drafts or publish to linked social accounts when publishing credentials and dependent skills are configured.] <br>
+1.0.0 (source: release evidence, workflow.json, SKILL.md, README.md)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, SKILL.md, workflow.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

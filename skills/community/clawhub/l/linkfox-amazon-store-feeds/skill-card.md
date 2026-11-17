@@ -1,50 +1,62 @@
-## Description: <br>
-Helps agents manage Amazon SP-API Feeds v2021-06-30 through LinkFox store-token and developer-proxy calls, including creating feed documents, uploading feed content, creating feeds, checking feed status, listing feeds, retrieving feed documents, and canceling feeds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Amazon store Feed workflows for bulk inventory or listing data, including creating feed documents, uploading feed content to presigned URLs, submitting feeds, checking status, retrieving result documents, and cancelling feeds.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External developers and operators use this skill to prepare, submit, monitor, and cancel Amazon seller feed workflows from an agent environment. It is intended for workflows that already have LinkFox API credentials, Amazon seller authorization, and the required Amazon Feeds roles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials and may process seller IDs, feed files, feed results, API keys, and access tokens. <br>
-Mitigation: Install only when the publisher is trusted, keep LINKFOXAGENT_API_KEY and Amazon tokens protected, and treat feed input and output files as sensitive business data. <br>
-Risk: The scripts make network calls to configured LinkFox gateway endpoints and to Amazon presigned upload URLs. <br>
-Mitigation: Verify STORE_API_BASE_URL, SPAPI_BASE_URL, and uploadUrl values before execution, and confirm that the upload URL came from the expected createFeedDocument response. <br>
-Risk: Creating or canceling feeds can affect Amazon seller listings, inventory, fulfillment, or other store operations. <br>
-Mitigation: Review feedType, contentType, marketplaceIds, inputFeedDocumentId, and cancellation targets before running the scripts. <br>
+## Use Case:
 
+External users and developers use this skill to automate Amazon SP-API Feeds tasks for bulk store data updates, including feed document creation, upload, submission, polling, result retrieval, and cancellation. It is intended for workflows that already have LinkFox authorization and the required Amazon Feeds permissions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/linkfox-ai/linkfox-amazon-store-feeds) <br>
-- [Local API reference](references/api.md) <br>
-- [Amazon SP-API createFeedDocument](https://developer-docs.amazon.com/sp-api/reference/createfeeddocument) <br>
-- [Amazon SP-API getFeedDocument](https://developer-docs.amazon.com/sp-api/reference/getfeeddocument) <br>
-- [Amazon SP-API createFeed](https://developer-docs.amazon.com/sp-api/reference/createfeed) <br>
-- [Amazon SP-API getFeed](https://developer-docs.amazon.com/sp-api/reference/getfeed) <br>
-- [Amazon SP-API getFeeds](https://developer-docs.amazon.com/sp-api/reference/getfeeds) <br>
-- [Amazon SP-API cancelFeed](https://developer-docs.amazon.com/sp-api/reference/cancelfeed) <br>
-- [Amazon SP-API Feed Type Values](https://developer-docs.amazon.com/sp-api/docs/feed-type-values) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON command inputs, and JSON script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts require LINKFOXAGENT_API_KEY and Amazon seller/feed identifiers; feed file contents and returned feed documents may contain sensitive business data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles login, API keys, billing flows, feed uploads, and saved response files that may contain seller data or presigned URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege LinkFox key, upload only explicit feed files to fresh Amazon presigned URLs, avoid endpoint override environment variables unless you control them, and clean up saved linkfox response files after use.
+
+Risk: Repeated bad requests, authorization failures, missing resources, or high-frequency polling can trigger Amazon SP-API store-protection cooldown behavior.
+
+Mitigation: Stop automatic retries, fix parameters or authorization before retrying, follow retryAfter or blockedUntil when present, and reduce polling or pagination frequency.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-amazon-store-feeds)
+- [API reference](references/api.md)
+- [Onboarding and authentication guidance](references/onboarding.md)
+- [Amazon SP-API createFeedDocument](https://developer-docs.amazon.com/sp-api/reference/createfeeddocument)
+- [Amazon SP-API getFeedDocument](https://developer-docs.amazon.com/sp-api/reference/getfeeddocument)
+- [Amazon SP-API createFeed](https://developer-docs.amazon.com/sp-api/reference/createfeed)
+- [Amazon SP-API getFeed](https://developer-docs.amazon.com/sp-api/reference/getfeed)
+- [Amazon SP-API getFeeds](https://developer-docs.amazon.com/sp-api/reference/getfeeds)
+- [Amazon SP-API cancelFeed](https://developer-docs.amazon.com/sp-api/reference/cancelfeed)
+- [Amazon Feed Type Values](https://developer-docs.amazon.com/sp-api/docs/feed-type-values)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python shell commands and JSON response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts persist full JSON responses under a local linkfox session directory and print full or summarized JSON to stdout.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

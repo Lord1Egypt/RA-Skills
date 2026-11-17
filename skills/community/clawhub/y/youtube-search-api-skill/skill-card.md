@@ -1,44 +1,58 @@
-## Description: <br>
-This skill helps agents search YouTube through BrowserAct and return structured result data for videos, Shorts, channels, and playlists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents extract structured data from YouTube search results using BrowserAct's YouTube Search API workflow.
 
-## Publisher: <br>
-[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccmagia2-gif](https://clawhub.ai/user/ccmagia2-gif)
 
-## Use Case: <br>
-Developers, researchers, and market analysts use this skill to collect structured YouTube search results for topic discovery, competitor scanning, trend monitoring, channel research, tutorial aggregation, and creator outreach. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: YouTube search queries are sent to BrowserAct and may reveal sensitive research topics. <br>
-Mitigation: Review queries before execution and avoid submitting confidential or regulated terms unless BrowserAct is approved for that use. <br>
-Risk: The skill requires a BrowserAct API key. <br>
-Mitigation: Provide BROWSERACT_API_KEY through an environment variable or secrets manager and avoid pasting secrets into chat. <br>
-Risk: The workflow depends on BrowserAct service availability and authorization. <br>
-Mitigation: If authorization fails, stop and refresh the API key; retry non-authorization failures at most once as described by the skill. <br>
+## Use Case:
 
+Developers, analysts, and content teams use this skill to search YouTube by keyword and retrieve structured video, Shorts, channel, or playlist result data for research, monitoring, and reporting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ccmagia2-gif/youtube-search-api-skill) <br>
-- [BrowserAct Console integrations](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal status logs followed by structured YouTube search result text or JSON from the BrowserAct workflow response.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY. The script accepts search keywords, result type, and result limit, then polls BrowserAct until completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The BrowserAct bearer token could be exposed if pasted into chat or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set BROWSERACT_API_KEY through a protected environment or secret manager and avoid sharing the token in conversation.
+
+Risk: YouTube search terms and retrieved result data are sent to BrowserAct for processing.
+
+Mitigation: Use the skill only for queries and data that are appropriate to send to BrowserAct.
+
+Risk: The script polls an external workflow until completion and may run longer than expected.
+
+Mitigation: Monitor terminal status output and stop the process manually if polling runs too long.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccmagia2-gif/skills/youtube-search-api-skill)
+- [BrowserAct API key setup](https://www.browseract.com/reception/integrations)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal logs followed by structured YouTube search result text from the BrowserAct API response.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and BROWSERACT_API_KEY; can poll for several minutes and retries failed non-authorization runs once.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

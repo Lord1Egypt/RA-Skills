@@ -1,39 +1,58 @@
-## Description: <br>
-Okx Defi Portfolio helps agents view DeFi positions and per-protocol holdings across supported chains without handling deposit, redeem, claim, wallet balance, or swap operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents view OKX DeFi portfolio positions, holdings, and per-protocol position details across supported chains without performing deposit, redeem, claim, wallet-balance, or swap operations.
 
-## Publisher: <br>
-[ok-james-01](https://clawhub.ai/user/ok-james-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ok-james-01](https://clawhub.ai/user/ok-james-01)
 
-## Use Case: <br>
-External users and developers use this skill to inspect wallet DeFi holdings, staking positions, lending positions, and protocol-level position details across supported chains through onchainos commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The all-wallets flow can switch active wallet accounts without a documented restore or confirmation step. <br>
-Mitigation: Prefer a manually supplied public address when possible, and after any all-wallets query confirm which wallet account is active before making transactions. <br>
+## Use Case:
 
+External users and agents use this skill to inspect DeFi holdings, summarize positions by protocol and chain, and retrieve identifiers needed for later detail or portfolio-management workflows.
 
-## Reference(s): <br>
-- [OKX Web3](https://web3.okx.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ok-james-01/okx-defi-portfolio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet address, chain, platform-id, investment-id, and account-selection guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may query OKX Agentic Wallet addresses and DeFi position data when the user asks for portfolio views.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for requested portfolio inspection, confirm automatically resolved addresses when needed, and review displayed results before relying on them.
+
+Risk: Position identifiers shown by this read-only skill can be used by separate invest, redeem, or claim workflows.
+
+Mitigation: Treat identifiers as references only and require explicit user intent before invoking any separate skill that changes positions.
+
+Risk: Mixing incompatible wallet address formats and chains can produce failed or misleading portfolio queries.
+
+Mitigation: Query compatible chain and address groups separately, such as EVM chains with EVM addresses and Solana with Solana addresses.
+
+## Reference(s):
+
+- [OKX Web3](https://web3.okx.com)
+- [ClawHub Skill Page](https://clawhub.ai/ok-james-01/skills/okx-defi-portfolio)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables with inline shell commands and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only portfolio views; position-detail output includes identifiers that may be used by separate invest, redeem, or claim workflows.]
+
+## Skill Version(s):
+
+3.1.3 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

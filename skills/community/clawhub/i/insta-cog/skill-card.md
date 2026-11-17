@@ -1,41 +1,58 @@
-## Description: <br>
-AI social media video and content creation powered by CellCog, including Instagram Reels, TikTok videos, Stories, carousels, social posts, and full video production from a single prompt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI social media video and content creation powered by CellCog. Instagram Reels, TikTok videos, Stories, carousels, social posts. Full video production from a single prompt — scripted, shot, stitched, and scored automatically.
 
-## Publisher: <br>
-[nitishgargiitd](https://clawhub.ai/user/nitishgargiitd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellcog](https://clawhub.ai/user/cellcog)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to prompt CellCog for short-form social videos, Instagram carousels, Stories, static posts, and campaign-oriented social content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires CELLCOG_API_KEY and sends prompts, brand details, and any attached media to CellCog's external service. <br>
-Mitigation: Use a scoped or dedicated API key where possible, monitor usage, and avoid confidential or regulated data unless CellCog's terms and handling are acceptable. <br>
-Risk: AI video generation may consume credits without producing usable social media assets. <br>
-Mitigation: Start with small test prompts, review outputs before publishing, and set expectations around iteration cost and quality variability. <br>
+## Use Case:
 
+Creators, social media teams, and developers use this skill to request short-form videos, Stories, carousels, and social posts through CellCog. It provides example prompts and guidance for specifying content, style, platform, and generation settings.
 
-## Reference(s): <br>
-- [Insta Cog on ClawHub](https://clawhub.ai/nitishgargiitd/insta-cog) <br>
-- [CellCog](https://cellcog.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python examples and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and CELLCOG_API_KEY; uses CellCog SDK chat modes for social content generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.13 (source: server release evidence) <br>
+Risk: Prompts and supplied materials may be shared with CellCog during content generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and materials you are authorized to share with CellCog.
+
+Risk: Generation can consume substantial credits, and results may not be usable.
+
+Mitigation: Account for generation costs and review outputs before using or publishing them.
+
+Risk: The separately installed CellCog SDK and service-side behavior were outside the supplied skill document review.
+
+Mitigation: Review the SDK and prefer reviewed, pinned versions where supported.
+
+## Reference(s):
+
+- [CellCog](https://cellcog.ai)
+- [Instagram Reels on ClawHub](https://clawhub.ai/cellcog/skills/instagram-reels-tiktok-cellcog)
+
+## Skill Output:
+
+**Output Type(s):** [Video, Images, Text, Guidance]
+
+**Output Format:** [Generated social media assets and accompanying text or guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content format and quality depend on the prompt and generation service; generated results may require review.]
+
+## Skill Version(s):
+
+1.0.20 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

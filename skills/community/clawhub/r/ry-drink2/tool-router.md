@@ -1,4 +1,4 @@
-﻿# Tool 路由说明
+# Tool 路由说明
 
 OpenClaw 加载 `tools.json` 后，每个 Tool 由 `handlers/*.js` 发起真实 HTTP 请求。
 

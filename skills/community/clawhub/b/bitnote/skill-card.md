@@ -1,45 +1,59 @@
-## Description: <br>
-BitNote provides decentralized encrypted memory for agents to store identity, secrets, messages, and critical knowledge outside centralized infrastructure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BitNote provides decentralized encrypted memory for agents to preserve identity, secrets, and critical knowledge without relying on centralized infrastructure.
 
-## Publisher: <br>
-[RockwellShah](https://clawhub.ai/user/RockwellShah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[rockwellshah](https://clawhub.ai/user/rockwellshah)
 
-## Use Case: <br>
-Developers and agent operators use BitNote to preserve encrypted agent identity, secrets, critical knowledge, and agent-to-agent messages with optional human oversight. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use local key material to sign and broadcast on-chain transactions. <br>
-Mitigation: Keep dry-run mode as the default, require explicit human approval before non-dry-run writes, and avoid wallets or contract authorities that can move meaningful funds unless intentionally needed. <br>
-Risk: Passphrases or decrypted private key material could be exposed through logs, chat output, or committed files. <br>
-Mitigation: Use at least 256 bits of passphrase entropy, store passphrases in environment variables or a secret manager, keep profile files free of secrets, and redact private details in shared logs. <br>
-Risk: Plaintext or incorrectly addressed encrypted content could become difficult to remove or unrecoverable after on-chain publication. <br>
-Mitigation: Never store plaintext secrets on-chain, use the canonical write and share scripts, verify usernames and recipients before use, and rely on stable request ids for deterministic retries. <br>
+## Use Case:
 
+Developers and agent operators use BitNote to read account mappings, write encrypted UI-compatible notes, preserve agent identity state, and generate recipient-bound share links. It is intended for workflows where persistent encrypted memory, retry-safe writes, and explicit operator approval for on-chain actions are required.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/RockwellShah/bitnote) <br>
-- [BitNote Contracts](references/contracts.md) <br>
-- [BitNote Ops Runbook](references/ops.md) <br>
-- [BitNote App](https://app.bitnote.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, environment variables, and operational checks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write and share operations may require BITNOTE_PASSPHRASE, profile settings, and optional RPC or Snowtrace configuration; dry-run writes are recommended before broadcast.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Write and share workflows decrypt private-key material and can broadcast on-chain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only or dry-run modes first, require explicit human approval before non-dry-run writes, and test with a throwaway wallet that does not hold real funds.
+
+Risk: Passphrases and decrypted secrets could be exposed through command arguments, logs, or committed profile data.
+
+Mitigation: Provide secrets through protected environment variables or a secret manager, avoid passphrases in CLI arguments, keep profile JSON free of secrets, and redact sensitive output.
+
+Risk: Incorrect request IDs or retry handling can create duplicate or unverifiable writes.
+
+Mitigation: Use a stable request ID for each intended note and require TX_HASH, NOTE_INDEX, and READ_AFTER_WRITE_OK 1 before treating a write as successful.
+
+## Reference(s):
+
+- [BitNote Contracts](references/contracts.md)
+- [BitNote Ops Runbook](references/ops.md)
+- [BitNote Web App](https://app.bitnote.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command output contracts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes deterministic request-id guidance, dry-run recommendations, and expected output markers for read, write, and share-link operations.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Local Whisper provides local speech-to-text for Telegram and WhatsApp voice messages on Apple Silicon Macs using MLX Whisper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free local speech-to-text for Telegram and WhatsApp using MLX Whisper on Apple Silicon. Private, no API costs.
 
-## Publisher: <br>
-[ImpKind](https://clawhub.ai/user/ImpKind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[impkind](https://clawhub.ai/user/impkind)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to transcribe Telegram, WhatsApp, and other voice-message audio locally on Apple Silicon Macs instead of relying on paid transcription APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes local and private transcription claims while also including cloud transcription paths for OpenAI and Groq. <br>
-Mitigation: Force a local backend for private use and avoid setting OpenAI or Groq credentials in the environment unless cloud transcription is intentional. <br>
-Risk: The large-file helper has a code-injection risk when handling crafted filenames. <br>
-Mitigation: Do not use the large-file helper on untrusted filenames until its path handling is fixed and reviewed. <br>
+## Use Case:
 
+External users and developers use this skill to transcribe Telegram, WhatsApp, and other audio messages on Apple Silicon Macs through OpenClaw or local command-line workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ImpKind/whisper-mlx-local) <br>
-- [Source Repository](https://github.com/ImpKind/local-whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcription output, JSON API responses, and Markdown setup guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS on Apple Silicon with Python 3.9+; the first local model download is about 1.5 GB.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: release metadata and OpenClaw metadata) <br>
+Risk: Audio may be sent to OpenAI or Groq if cloud fallback is available, despite local-only privacy claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or remove cloud backends and related API keys before use when local-only transcription is required.
+
+Risk: The local daemon is unauthenticated and can accept filesystem paths for transcription.
+
+Mitigation: Run the daemon only in a trusted local environment, add access controls, and prefer upload-only handling that does not process arbitrary paths.
+
+Risk: Auto-start configuration can keep the transcription daemon running after login.
+
+Mitigation: Audit any LaunchAgent plist before loading it and confirm the unload process before enabling persistence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/impkind/skills/whisper-mlx-local)
+- [Declared Source Repository](https://github.com/ImpKind/local-whisper)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcription, JSON daemon responses, and Markdown instructions with shell and JSON configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audio transcription may include optional translation to English when requested.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata and OpenClaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

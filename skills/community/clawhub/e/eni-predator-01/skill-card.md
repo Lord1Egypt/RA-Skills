@@ -1,43 +1,58 @@
-## Description: <br>
-Analyzes A-share limit-up market data with AkShare, filters stocks with at least two consecutive limit-up days, and returns a markdown summary of key stock attributes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ENI收割者v14 analyzes public A-share limit-up stock data through AkShare and returns a markdown table of stocks with at least two consecutive limit-up days plus turnover entropy.
 
-## Publisher: <br>
-[gxfc888aa](https://clawhub.ai/user/gxfc888aa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gxfc888aa](https://clawhub.ai/user/gxfc888aa)
 
-## Use Case: <br>
-Developers, analysts, and agent users can use this skill to fetch current A-share limit-up pool data and produce a compact markdown table for market review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes live AkShare market-data requests. <br>
-Mitigation: Confirm network access and data-provider terms before installation or use. <br>
-Risk: The artifact describes randomized delay behavior in connection-stability and anti-blocking terms. <br>
-Mitigation: Do not use or modify the skill for aggressive scraping, rate-limit evasion, or provider rule bypass. <br>
-Risk: Dependencies are listed without pinned versions. <br>
-Mitigation: Pin and review dependency versions before controlled or production deployment. <br>
+## Use Case:
 
+Developers and market-analysis agents use this skill to fetch public A-share limit-up pool data, filter for stocks with at least two consecutive limit-up days, and review the resulting names, industries, and turnover-entropy values.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gxfc888aa/eni-predator-01) <br>
-- [Publisher profile](https://clawhub.ai/user/gxfc888aa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown table or plain text status/error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live AkShare market-data requests and applies a randomized delay before fetching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill makes outbound requests through AkShare to retrieve live public market data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a least-privileged environment with network access limited to expected market-data sources.
+
+Risk: The artifact declares unpinned akshare and pandas dependencies.
+
+Mitigation: Pin dependency versions before production use and review updates before installing them.
+
+Risk: The skill returns market-analysis output that may be delayed, unavailable, or unsuitable as trading advice.
+
+Mitigation: Treat results as informational screening data and verify them against authoritative market sources before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gxfc888aa/skills/eni-predator-01)
+- [Publisher profile](https://clawhub.ai/user/gxfc888aa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown table or short plain-text status/error message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May pause briefly before returning results and depends on current public AkShare market-data availability.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

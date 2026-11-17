@@ -1,50 +1,63 @@
-## Description: <br>
-Literature review paper writing assistant that guides systematic academic search, DOI and arXiv ID validation, multi-format citation output, and structured Markdown review generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Literature review paper writing assistant that helps agents frame topics, search scholarly sources, validate DOI and arXiv identifiers, format citations, and draft structured Markdown literature reviews.
 
-## Publisher: <br>
-[sherry-zh0u](https://clawhub.ai/user/sherry-zh0u) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sherry-zh0u](https://clawhub.ai/user/sherry-zh0u)
 
-## Use Case: <br>
-Researchers, students, and developers use this skill to plan systematic literature searches, collect paper metadata from academic sources, validate identifiers, format citations, and draft a structured literature review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, DOIs, arXiv IDs, and selected source requests may be sent to external academic metadata services. <br>
-Mitigation: Avoid submitting sensitive or unpublished research topics, and review which sources are enabled before running searches. <br>
-Risk: A Semantic Scholar API key can be used for higher rate limits. <br>
-Mitigation: Keep real API keys in private local configuration or environment-based handling, and do not hardcode them into shared or version-controlled files. <br>
-Risk: Preprints and cross-source metadata can be incomplete, provisional, or conflicting. <br>
-Mitigation: Use the skill's validation and conflict-detection outputs, then manually verify important citations and claims before publication. <br>
+## Use Case:
 
+External users, developers, and research teams use this skill to run systematic academic searches, validate paper identifiers, format citations, and assemble literature-review drafts for review articles, survey papers, thesis background chapters, or topic-based reference collection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sherry-zh0u/literature-review-writing-assistant) <br>
-- [Search Strategy Guide](references/search_strategy.md) <br>
-- [Literature Review API Reference](references/api_reference.md) <br>
-- [Semantic Scholar API keys](https://www.semanticscholar.org/api-keys) <br>
-- [Semantic Scholar Graph API](https://api.semanticscholar.org/graph/v1/paper/search) <br>
-- [OpenAlex Works API](https://api.openalex.org/works) <br>
-- [Crossref Works API](https://api.crossref.org/works) <br>
-- [PubMed E-utilities Search API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi) <br>
-- [PubMed E-utilities Summary API](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with citations, shell command examples, and optional BibTeX, RIS, APA, MLA, IEEE, or JSON-like paper metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external academic metadata services and may use an optional Semantic Scholar API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Search terms are sent to external scholarly APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only queries and research topics that are acceptable to share with the configured academic services.
+
+Risk: Sensitive unpublished research queries could be exposed when using the arXiv source before its endpoint is changed to HTTPS.
+
+Mitigation: Avoid sensitive unpublished queries over the arXiv source and prefer HTTPS-backed sources for sensitive work.
+
+Risk: Advertised advanced review features may be incomplete or may overstate the quality of generated review content.
+
+Mitigation: Review generated literature reviews, citations, metadata conflicts, and source-quality tags before relying on the output.
+
+## Reference(s):
+
+- [Search Strategy Guide](references/search_strategy.md)
+- [Literature Review API Reference](references/api_reference.md)
+- [Semantic Scholar Graph API](https://api.semanticscholar.org/graph/v1/paper/search)
+- [OpenAlex Works API](https://api.openalex.org/works)
+- [CrossRef Works API](https://api.crossref.org/works)
+- [PubMed E-utilities ESearch](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi)
+- [PubMed E-utilities ESummary](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, citation text, BibTeX, RIS, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write formatted citation or review output to a user-specified file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

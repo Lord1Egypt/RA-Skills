@@ -1,47 +1,67 @@
-## Description: <br>
-Fetch real-time crypto prices and calculate technical indicators (SMA, EMA, MACD, RSI, Bollinger Bands, ATR) for BTC, ETH, SOL, BNB, XRP, DOGE. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time crypto prices and calculate technical indicators (SMA, EMA, MACD, RSI, Bollinger Bands, ATR) for BTC, ETH, SOL, BNB, XRP, DOGE using multi-source market data.
 
-## Publisher: <br>
-[totoxu](https://clawhub.ai/user/totoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[totoxu](https://clawhub.ai/user/totoxu)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve cryptocurrency market data and technical indicators for BTC, ETH, SOL, BNB, XRP, and DOGE. Results are for market analysis and educational review, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes hardcoded fallback billing credentials and a mismatched default skill ID. <br>
-Mitigation: Install only after replacing defaults with properly scoped SKILL_BILLING_API_KEY and SKILL_ID environment configuration. <br>
-Risk: Each normal invocation uses SkillPay billing. <br>
-Mitigation: Confirm publisher billing setup and expected per-call charges before enabling the skill for users. <br>
-Risk: Crypto market indicators can be mistaken for financial advice. <br>
-Mitigation: Present outputs as educational market analysis and include the documented disclaimer that they are not financial advice. <br>
+## Use Case:
 
+External users and agents use this paid OpenClaw skill to retrieve cryptocurrency market data, historical OHLCV data, and technical-analysis signals for supported coins. Results should be presented as educational market analysis, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/totoxu/totoxu-crypto-analyzer) <br>
-- [Binance API](https://api.binance.com/api/v3) <br>
-- [CoinGecko API](https://api.coingecko.com/api/v3) <br>
-- [CoinCap API](https://api.coincap.io/v2) <br>
-- [CryptoCompare API](https://min-api.cryptocompare.com/data) <br>
-- [SkillPay billing endpoint](https://skillpay.me/api/v1/billing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, analysis, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Market-data commands require a user ID for billing unless test mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Paid invocations contact SkillPay and the release includes a packaged billing credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove and rotate the hardcoded billing key before installation; configure billing through environment variables and make user billing consent explicit.
+
+Risk: The skill contacts external market-data and billing APIs during normal use.
+
+Mitigation: Install only where those network destinations and data-sharing expectations are acceptable; monitor failures and present payment links only when billing errors require them.
+
+Risk: Automated buy, sell, and neutral signals could be mistaken for investment advice.
+
+Mitigation: Present outputs as educational technical analysis and include the cryptocurrency volatility and non-financial-advice disclaimer from the artifact.
+
+Risk: Runtime dependency versions are not pinned in the artifact.
+
+Mitigation: Pin and review dependencies before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/totoxu/skills/totoxu-crypto-analyzer)
+- [Publisher Profile](https://clawhub.ai/user/totoxu)
+- [Binance API](https://api.binance.com/api/v3)
+- [CoinGecko API](https://api.coingecko.com/api/v3)
+- [CoinCap API](https://api.coincap.io/v2)
+- [CryptoCompare API](https://min-api.cryptocompare.com/data)
+- [SkillPay Billing API](https://skillpay.me/api/v1/billing)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scripts return JSON market data, historical data, billing errors, and technical-indicator analysis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.9+, requests, supported coin symbols, and billing environment variables for non-test paid invocations.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

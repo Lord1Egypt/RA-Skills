@@ -1,41 +1,53 @@
-## Description: <br>
-Skill Router Pro helps an agent find matching local skills or search ClawHub before building a new skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Router Pro helps an agent find existing local skills or search ClawHub before building a new skill.
 
-## Publisher: <br>
-[kennyzir](https://clawhub.ai/user/kennyzir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kennyzir](https://clawhub.ai/user/kennyzir)
 
-## Use Case: <br>
-Developers and agent users use this skill to check installed local skills, search ClawHub for missing matches, and avoid creating duplicate skills when an existing option is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may expose local skill names, descriptions, and paths to future agent sessions by updating the local skill index. <br>
-Mitigation: Review ~/.openclaw/skills/INDEX.md after index updates and remove entries that should not be reused or exposed. <br>
-Risk: The skill can recommend ClawHub install commands for discovered skills. <br>
-Mitigation: Review the matched skill page and install command before installing or using a recommended third-party skill. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect a local skill index, search ClawHub for matching skills, and avoid creating duplicate skills when an existing local or marketplace skill can handle the task.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kennyzir/skill-router-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/kennyzir) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and skill recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and update the local skill index and may suggest ClawHub install commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The generated skill index can reveal local skill names, descriptions, and install paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated INDEX.md before sharing logs, screenshots, or workspace artifacts outside the environment.
+
+Risk: The skill can guide an agent to search ClawHub and present install commands for third-party skills.
+
+Mitigation: Review search results and install only skills whose publisher and behavior are acceptable for the environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kennyzir/skills/skill-router-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and tabular index entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local skill names, descriptions, install locations, ClawHub search results, and install commands.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

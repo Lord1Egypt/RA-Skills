@@ -1,44 +1,61 @@
-## Description: <br>
-Installs agent skills from ClawHub, skillhub.cn, skills.sh, Anthropic's skills repository, or a configured self-hosted hub, with source routing, conflict handling, license prompts, and safe archive extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs skills from ClawHub, SkillHub, skills.sh, Anthropic's skills repository, or a configured self-hosted hub based on the user's request.
 
-## Publisher: <br>
-[songhonglei](https://clawhub.ai/user/songhonglei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songhonglei](https://clawhub.ai/user/songhonglei)
 
-## Use Case: <br>
-Developers and agent users use this skill to install skills from the hub they name or from a private hub, while preserving clear choices for conflicts, restricted licenses, and custom-hub setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing skills from public, GitHub-backed, or self-hosted hubs can introduce untrusted prompts or code into an agent environment. <br>
-Mitigation: Install only from trusted sources, review downloaded skills before relying on them, and scan artifacts before deployment. <br>
-Risk: Installer actions can replace local skill directories when the user chooses overwrite, which may discard local modifications. <br>
-Mitigation: Read overwrite prompts carefully and back up locally modified skills before replacing them. <br>
+## Use Case:
 
+Developers and agent users use the installer to add a named skill from the hub they specify, resolve name conflicts, and handle source-specific license restrictions.
 
-## Reference(s): <br>
-- [Skill Hub United on ClawHub](https://clawhub.ai/songhonglei/skill-hub-united) <br>
-- [ClawHub](https://clawhub.ai) <br>
-- [SkillHub](https://skillhub.cn) <br>
-- [skills.sh](https://skills.sh) <br>
-- [Anthropic Skills documentation](https://docs.claude.com/en/docs/build-with-claude/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and structured status guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke installer commands that download and extract skill archives when the user requests an installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence; artifact SKILL.md Version field agrees) <br>
+Risk: The scanner reports destination-safety concerns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the installation destination and avoid installing until destination handling has been addressed.
+
+Risk: Automatic use of unpinned packages can install changed content.
+
+Mitigation: Pin package versions or review the exact release before allowing automated installation.
+
+Risk: Security analysis is incomplete because three local references could not be resolved.
+
+Mitigation: Review unresolved references and rescan the complete package before relying on the security assessment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/songhonglei/skills/skill-hub-united)
+- [ClawHub](https://clawhub.ai)
+- [SkillHub](https://skillhub.cn)
+- [skills.sh](https://skills.sh)
+- [Anthropic Skills repository (install source)](https://github.com/anthropics/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, JSON]
+
+**Output Format:** [Installed skill files with text status messages; JSON for structured conflict or license outcomes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available files and status details depend on the selected source and installer outcome.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

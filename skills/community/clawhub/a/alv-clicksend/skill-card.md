@@ -1,48 +1,66 @@
-## Description: <br>
-SkillBoss API Hub integration for SMS/MMS messaging and voice calls that sends messages, manages contacts and lists, and tracks delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillBoss API Hub integration for SMS/MMS messaging and voice calls that helps agents send messages, place voice calls, manage contacts and lists, and track delivery.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and operators use this skill to send SMS, MMS, and voice messages through SkillBoss API Hub, query message status and pricing, and manage ClickSend-style contacts, lists, and templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send paid SMS, MMS, and voice messages to real recipients. <br>
-Mitigation: Require explicit user confirmation for recipient, message body, provider, and cost-sensitive send details before using billing-enabled accounts. <br>
-Risk: The skill documents contact, list, and template create, update, delete, copy, transfer, and cancel operations. <br>
-Mitigation: Treat every cancel, delete, or contact/list/template mutation as destructive until confirmed against the intended account and record identifiers. <br>
-Risk: Provider routing is unclear across SkillBoss, Prelude, and ClickSend-style endpoints. <br>
-Mitigation: Verify the actual service path and account that will process each request before sending to real recipients or relying on delivery, pricing, or receipt data. <br>
-Risk: Use requires a sensitive SKILLBOSS_API_KEY with messaging and contact-management authority. <br>
-Mitigation: Store the key only in the intended environment variable, limit its account permissions where possible, and avoid exposing it in prompts, logs, or examples. <br>
+## Use Case:
 
+Developers and external agent users use this skill to work with ClickSend-style messaging workflows through SkillBoss API Hub, including SMS, MMS, voice messages, contact lists, templates, pricing, history, and delivery receipts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/alv-clicksend) <br>
-- [SkillBoss API Hub](https://heybossai.com) <br>
-- [ClickSend Developer Portal](https://developers.clicksend.com/) <br>
-- [ClickSend REST API v3 Documentation](https://developers.clicksend.com/docs) <br>
-- [ClickSend Help Center](https://help.clicksend.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python, JavaScript, bash, JSON, and HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a SKILLBOSS_API_KEY and network access; examples use the SkillBoss /v1/run endpoint and ClickSend-style API paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can send billable SMS, MMS, or voice messages and can cancel scheduled messaging actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review of recipients, message content, schedule, and estimated cost before any send, call, or cancellation request.
+
+Risk: The skill can create, update, transfer, or delete contact and list data.
+
+Mitigation: Require explicit confirmation for destructive or bulk contact operations and prefer test or least-privilege credentials during setup.
+
+Risk: Recipient numbers, message contents, contact records, and account data are processed by SkillBoss/Prelude.
+
+Mitigation: Use the skill only for data approved for that processing path and monitor billing, delivery, and account activity.
+
+Risk: Troubleshooting steps can expose the SkillBoss API key if users print or paste environment variables.
+
+Mitigation: Do not print, paste, or log API keys; store credentials in a secret manager or protected environment variable.
+
+## Reference(s):
+
+- [SkillBoss API Hub](https://heybossai.com)
+- [SkillBoss API Run Endpoint](https://api.skillboss.com/v1/run)
+- [ClickSend Developer Portal](https://developers.clicksend.com/)
+- [ClickSend REST API v3 Documentation](https://developers.clicksend.com/docs)
+- [ClickSend Help Center](https://help.clicksend.com/)
+- [ClickSend PHP SDK](https://github.com/ClickSend/clicksend-php)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API examples, JSON payloads, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires network access and a valid SKILLBOSS_API_KEY. Generated requests can transmit recipient numbers, message contents, contact records, and account data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata version 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

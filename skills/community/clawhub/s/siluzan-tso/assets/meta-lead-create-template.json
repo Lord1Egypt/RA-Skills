@@ -1,0 +1,136 @@
+{
+  "_meta": {
+    "schema": "meta-lead-create/v1",
+    "doc": "meta-lead-create-template.md",
+    "note": "以 _ 开头的键仅作说明，CLI 提交前会剥离。金额填主币种元。",
+    "agentPitfalls": [
+      "仅 Instant Form 线索广告（OUTCOME_LEADS）；勿当完整 Meta 投放后台",
+      "先 meta-ad pages 取 pageId，空列表不要硬填历史 page_id",
+      "budgetMode=CBO 预算只放 campaign；ABO 只放 adset",
+      "dailyBudget / lifetimeBudget 填元（10 = $10 / ¥10），禁止填网关最小单位 1000 当 10 元",
+      "form.reuseId 与新建表单字段二选一；表单建成后几乎不可改",
+      "图片三选一：imageHash / imagePath / imageUrl；创意必须用 hash",
+      "提交前：validate → meta-ad plan-render 出 4 Sheet xlsx + md → 用户确认 → create --commit",
+      "仅出方案：account=[PENDING_ACCOUNT] pageId=[PENDING_PAGE]；勿因缺账户阻塞",
+      "create 默认 PAUSED；投放须三个对象分别 *-status ACTIVE",
+      "pages --json-out 读 items[].id（不是 pages[]）；403 或空列表不要硬填 pageId",
+      "建广告报支付方式则停，补付款后 ad-create 续跑，不要重头 create",
+      "create/adset-create 会提交 targeting_automation.advantage_audience（默认 1；有 flexibleSpec 时默认 0）。adset-edit 不套这个默认",
+      "BID_AMOUNT_REQUIRED 不会把预算当成 bid cap；要当时改策略须事先填 adset.bidAmountOnRequired",
+      "细定向写 adset.flexibleSpec + advantageAudience=0；审查稿兴趣也可只放 plan.targeting",
+      "create 失败用 json-out 已建成 ID 续跑，禁止再 campaign-create / 新建空系列",
+      "拉已有线索走 clue -m Meta（W11），不是本模板"
+    ]
+  },
+  "account": "REPLACE_mediaCustomerId",
+  "pageId": "REPLACE_pageId",
+  "budgetMode": "CBO",
+  "form": {
+    "name": "询盘表单",
+    "locale": "en_US",
+    "privacyPolicyUrl": "https://www.example.com/privacy",
+    "followUpActionUrl": "https://www.example.com/thanks",
+    "questions": [
+      { "type": "FULL_NAME" },
+      { "type": "EMAIL" },
+      { "type": "PHONE" },
+      { "type": "CUSTOM", "label": "公司名称", "key": "company" }
+    ],
+    "thankYouPage": {
+      "title": "已收到",
+      "body": "我们会尽快联系您",
+      "buttonText": "了解更多",
+      "buttonType": "VIEW_WEBSITE",
+      "websiteUrl": "https://www.example.com"
+    }
+  },
+  "campaign": {
+    "name": "Lead-CBO",
+    "dailyBudget": 10,
+    "specialAdCategories": []
+  },
+  "adset": {
+    "name": "Lead-US",
+    "countries": ["US"],
+    "ageMin": 18,
+    "ageMax": 65,
+    "optimizationGoal": "LEAD_GENERATION"
+  },
+  "creative": {
+    "name": "Lead-Creative",
+    "message": "留下联系方式，获取资料",
+    "link": "https://www.example.com/privacy",
+    "headline": "即时表单线索",
+    "imageUrl": "https://www.example.com/lead.jpg"
+  },
+  "ad": {
+    "name": "Lead-Ad"
+  },
+  "plan": {
+    "brand": "ExampleBrand",
+    "customerName": "Example Co.",
+    "siteUrl": "https://www.example.com",
+    "pageUrl": "",
+    "businessOneLiner": "一句话业务",
+    "mainResult": "Instant Form 询盘",
+    "landingType": "产品页询盘 + 广告内即时表单（非仅官网首页）",
+    "products": "核心产品线（换行可写多条）",
+    "adFocus": "Aluminum Motor Housing / Heat Sink",
+    "sellingPoints": "可核对的差异化卖点",
+    "factory": "工厂实力 / 年限 / 产能（不可证的标 endorsements.verified=false）",
+    "certifications": "ISO9001 / IATF16949",
+    "targetMarkets": "欧洲、北美",
+    "subtitle": "原生表单询盘 ｜ 目标市场 ｜ 英文受众定向 + 英文广告文案",
+    "structureSummary": "1 Campaign × N Ad Sets（本次 create：1×1×1）",
+    "strategy": "Lead Form 即时表单获客",
+    "structureNote": "C1 表单询盘覆盖计划中的广告组；本次 create 只落地 1 组",
+    "creativeSpec": "4:5（1080×1350）或 1:1；图字 <20%",
+    "targeting": {
+      "industries": [{ "en": "Electric Motor Manufacturing", "zh": "电机制造" }],
+      "jobs": [{ "en": "Procurement Manager", "zh": "采购经理" }],
+      "extraInterests": "Aluminum Extrusion ｜ Heat Sink ｜ Liquid Cooling",
+      "disclaimer": "本批组定向只认国家/年龄/性别，兴趣词仅作素材与获客说明"
+    },
+    "endorsements": [{ "text": "公开页面可见的认证/年限", "verified": false }],
+    "tracks": [
+      {
+        "id": "A",
+        "name": "产线实拍",
+        "shots": [
+          {
+            "id": "A1",
+            "composition": "车间中景，主体居中",
+            "onImageText": "Precision Aluminum Parts",
+            "tone": "工厂实证",
+            "forbid": "虚假认证、无法核对的数字",
+            "headlines": ["Factory Direct Quote", "Custom Aluminum Parts"],
+            "primaryText": "Hook\nPositioning\nProof + emoji\nCTA",
+            "cta": "Get Quote",
+            "description": "ISO-listed factory"
+          }
+        ]
+      },
+      { "id": "B", "name": "产品特写", "shots": [{ "id": "B1", "headlines": ["EV Motor Housing"], "primaryText": "…", "cta": "Learn More" }] },
+      { "id": "C", "name": "场景应用", "shots": [{ "id": "C1", "headlines": ["Liquid-Cooled Housing"], "primaryText": "…", "cta": "Get Quote" }] }
+    ],
+    "matrix": {
+      "visual": ["产线实拍", "产品特写", "场景应用"],
+      "bodyTone": ["证据向", "痛点向"],
+      "headline": ["规格向", "交付向"]
+    },
+    "complianceNotes": ["年限/客户数投放前核对", "不要写死无法核对的公差"],
+    "emojiPerPost": 2,
+    "adSets": [
+      {
+        "name": "Lead-US",
+        "label": "Ad Set 1 北美",
+        "region": "美国、加拿大",
+        "countries": ["US", "CA"],
+        "targeting": "全产品线 + 行业/职位定向（审查稿）",
+        "creatives": "视频 x1 / 图片 x3",
+        "cpl": "CPL $8-$16",
+        "note": "本次 create 落地这一组"
+      }
+    ]
+  }
+}

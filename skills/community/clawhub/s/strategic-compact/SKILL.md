@@ -1,8 +1,12 @@
 ---
+
+
 name: strategic-compact
 description: "Manual context compaction at logical workflow boundaries rather than arbitrary auto-compaction. Use after completing exploration phases, before switching major tasks, or when context approaches limits. Preserves context through task phases. Trigger phrases: context limit, compact, memory pressure, save context, phase transition. Adapted from everything-claude-code by @affaan-m (MIT)"
-metadata: {"clawdbot":{"emoji":"📦","requires":{"bins":[],"env":[]},"os":["darwin","linux","win32"]}}
+metadata: {"clawdbot":{"emoji":"\ud83d\udce6","requires":{"bins":[],"env":[]},"os":["darwin","linux","win32"],"version":"1.0.2"}}
 ---
+
+
 
 # Strategic Compact Skill
 

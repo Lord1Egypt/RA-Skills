@@ -1,0 +1,3 @@
+interface:
+  display_name: "Canvas LMS Navigation"
+  short_description: "Navigate institution-neutral Canvas LMS pages, verify assignment context, and prioritize work across authorized courses."

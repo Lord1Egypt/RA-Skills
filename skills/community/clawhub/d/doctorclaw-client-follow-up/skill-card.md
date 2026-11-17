@@ -1,41 +1,54 @@
-## Description: <br>
-Automated client follow-up - scan your client list, find stale leads, draft personalized outreach. Weekly cron or on-demand. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated client follow-up that scans a client list, identifies stale leads, drafts personalized outreach, and supports weekly or on-demand review.
 
-## Publisher: <br>
-[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ceobotson-bot](https://clawhub.ai/user/ceobotson-bot)
 
-## Use Case: <br>
-Business owners, sales teams, and operators use this skill to identify stale client or lead records, prioritize follow-ups, draft personalized outreach for approval, and maintain outreach logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes sensitive client or lead data and may access contact lists, CRM records, email, SMS, calendar data, or digest channels. <br>
-Mitigation: Limit access to the specific sources and channels required for follow-up tracking, and periodically clean up retained outreach logs. <br>
-Risk: Drafted outbound messages could be sent to the wrong recipient or include incorrect content if approved without review. <br>
-Mitigation: Review recipients and message text before approving sends, and avoid bulk approval unless drafts have been checked. <br>
+## Use Case:
 
+External users and business operators use this skill to scan client or lead records, prioritize stale contacts, draft follow-up messages for approval, and maintain outreach digests or logs.
 
-## Reference(s): <br>
-- [DoctorClaw website](https://www.doctorclaw.ceo) <br>
-- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/doctorclaw-client-follow-up) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown digest with follow-up drafts, status summaries, approval prompts, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update client records and outreach logs only when the user configures data access and approves actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Client lists and follow-up logs may contain contact details, deal values, and communication history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to required data sources and periodically review or delete local follow-up logs.
+
+Risk: Optional email, SMS, CRM, or messaging integrations can expose client data or trigger outreach through connected channels.
+
+Mitigation: Enable only the integrations needed for the workflow and require user approval before any outbound follow-up is sent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ceobotson-bot/skills/doctorclaw-client-follow-up)
+- [DoctorClaw website](https://www.doctorclaw.ceo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown digest with draft outreach text and optional configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft outreach is intended for user review before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,58 @@
-## Description: <br>
-Provides Finloop financial news search, market-period briefings, AI hot-news lookup, and stock quote retrieval through documented HTTP API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Finloop-based financial news retrieval, categorized news search, AI trending news lookup, and real-time stock quote guidance through direct HTTP API calls.
 
-## Publisher: <br>
-[CZZLEGEND](https://clawhub.ai/user/CZZLEGEND) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[czzlegend](https://clawhub.ai/user/czzlegend)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve Finloop finance news, AI hot-news details, market-period summaries, and real-time stock or index quote data when answering time-sensitive financial information requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some Finloop requests may require an sl-session cookie without clear consent, scoping, or credential-handling safeguards. <br>
-Mitigation: Do not provide or reuse an sl-session cookie unless the user understands which account it belongs to and why the request needs it; prefer scoped or temporary credentials when available. <br>
-Risk: Finance queries, tickers, and related request data are sent to Finloop endpoints. <br>
-Mitigation: Install and use the skill only when the user trusts the Finloop package and is comfortable sharing those queries with the listed Finloop services. <br>
-Risk: Returned market data, rankings, and news summaries may be incomplete, delayed, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Treat results as informational and verify important financial decisions against additional authoritative sources. <br>
+## Use Case:
 
+External users and developers use this skill to answer finance information requests with Finloop market-period news, categorized financial news, AI hot news details, and stock or index quote data.
 
-## Reference(s): <br>
-- [Finloop News API Reference](.agents/skills/finloop-news-skill/references/REFERENCE.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/CZZLEGEND/finloop-news-skills) <br>
-- [Finloop News API Base](https://ai-uat.finloopfintech.com) <br>
-- [Finloop Market Data API Base](https://papi-uat.finloopg.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON-derived text responses with direct HTTP request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include categorized finance-news summaries, AI hot-news details, market-period briefs, stock quote fields, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Finance and news queries are sent to external Finloop UAT API domains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where sending those queries to the documented UAT domains is acceptable.
+
+Risk: The AI hot-news endpoint may require an sl-session cookie.
+
+Mitigation: Do not paste or log session cookies; confirm endpoint ownership and credential scope before use.
+
+Risk: The package is installed through npx and includes an installer that copies skill files into the current project.
+
+Mitigation: Review the skill before installing, prefer a pinned package version, and avoid running npx with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/czzlegend/skills/finloop-news-skills)
+- [Finloop API reference](artifact/.agents/skills/finloop-news-skill/references/REFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline HTTP, curl, JavaScript, or JSON examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include direct HTTP request instructions and finance or news response fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact manifest reports 1.1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

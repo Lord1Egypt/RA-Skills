@@ -1,0 +1,17 @@
+[
+  {
+    "id": "craft-of-research-4th",
+    "title": "The Craft of Research",
+    "author": "Wayne C. Booth, Gregory G. Colomb, Joseph M. Williams, Joseph Bizup, William T. FitzGerald",
+    "isbn": "9780226239569",
+    "skill": "paper-skeleton-forge",
+    "skill_path": ".trae/skills/paper-skeleton-forge/",
+    "scope": "把 AI 协作项目发现转化为可发表论文骨架（论证构造层）",
+    "reading_scope": "Ch4, Ch7, Ch8, Ch9, Ch10（完整读，OCR）",
+    "source_url": "https://www.mcdowellbiblecollege.org/Library/Book482.pdf",
+    "status": "simulated",
+    "created": "2026-09-19",
+    "supplements": ["SIGSOFT Empirical Standards (General)", "arXiv:2506.11002 ESE writing primer"],
+    "run_dir": "gbs-runs/ai-collab-findings-to-paper/"
+  }
+]

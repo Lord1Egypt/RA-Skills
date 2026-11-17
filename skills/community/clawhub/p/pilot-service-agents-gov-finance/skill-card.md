@@ -1,44 +1,58 @@
-## Description: <br>
-Government economic and financial records for SEC EDGAR, BLS time series, HTS/USITC tariffs, and US Department of Education data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Government economic and financial records covering SEC EDGAR, BLS time series, HTS/USITC tariffs, and US Department of Education data.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-AGPL-3.0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and analysts use this skill to query government economic and financial data agents for SEC company facts and submissions, BLS time series, tariff classification, and Department of Education datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+AGPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent through Pilot Protocol tooling and remote agents reachable over its overlay network. <br>
-Mitigation: Install only when the Pilot Protocol tooling and reachable agents are trusted, and confirm the daemon is joined to the intended network before use. <br>
-Risk: /summary requests and free-text queries may share data with external services that generate prose responses. <br>
-Mitigation: Avoid sending private credentials, secrets, or sensitive non-public data in pilotctl queries. <br>
-Risk: Agent contracts and catalog entries can change over time. <br>
-Mitigation: Run a fresh list-agents query and read each agent's /help output before relying on filters or response fields. <br>
+## Use Case:
 
+Developers and analysts use this skill to discover and query Pilot Protocol service agents for public government finance datasets, including SEC company facts and submissions, BLS time series, HTS tariff data, and Department of Education records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-service-agents-gov-finance) <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [Pilot Skills Catalog](https://teoslayer.github.io/pilot-skills/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pilotctl, a running Pilot Protocol daemon joined to network 9, and reachable remote service agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Queries and filters are sent over the Pilot Protocol network to reachable service agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and Pilot Protocol service agents are trusted, and avoid sending sensitive inputs.
+
+Risk: Agent contracts and catalog entries can change over time.
+
+Mitigation: Run a fresh list-agents query and read each target agent's /help contract before requesting data.
+
+Risk: Natural-language summaries may be generated prose rather than primary-source output.
+
+Mitigation: Use /data instead of /summary when primary-source or structured records are required.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-service-agents-gov-finance)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to use pilotctl commands and read JSON inbox responses from reachable Pilot Protocol service agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

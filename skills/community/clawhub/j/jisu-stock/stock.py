@@ -89,13 +89,86 @@ def detail(appkey: str, req: dict):
     return _call_stock_api("detail", appkey, {"code": str(code).strip()})
 
 
+def calendar(appkey: str, req: dict):
+    """
+    交易日历 /stock/calendar
+    查询指定日期大陆/香港股市是否开市。请求 JSON：{ "date": "2026-04-29" }（date 可选）
+    """
+    params = {}
+    if req.get("date"):
+        params["date"] = req["date"]
+    return _call_stock_api("calendar", appkey, params)
+
+
+def financial_main(appkey: str, req: dict):
+    """
+    主要财务指标 /stock/financialmain
+    请求 JSON：{ "code": "688808", "indicator": "按报告期", "startdate": "", "enddate": "" }
+    """
+    code = req.get("code")
+    if not code:
+        return {"error": "missing_param", "message": "code is required"}
+    params = {"code": str(code).strip()}
+    if req.get("indicator"):
+        params["indicator"] = req["indicator"]
+    if req.get("startdate"):
+        params["startdate"] = req["startdate"]
+    if req.get("enddate"):
+        params["enddate"] = req["enddate"]
+    return _call_stock_api("financialmain", appkey, params)
+
+
+def financial_balancesheet(appkey: str, req: dict):
+    """资产负债表 /stock/financialbalancesheet"""
+    code = req.get("code")
+    if not code:
+        return {"error": "missing_param", "message": "code is required"}
+    params = {"code": str(code).strip()}
+    if req.get("startdate"):
+        params["startdate"] = req["startdate"]
+    if req.get("enddate"):
+        params["enddate"] = req["enddate"]
+    return _call_stock_api("financialbalancesheet", appkey, params)
+
+
+def financial_profit(appkey: str, req: dict):
+    """利润表 /stock/financialprofit"""
+    code = req.get("code")
+    if not code:
+        return {"error": "missing_param", "message": "code is required"}
+    params = {"code": str(code).strip()}
+    if req.get("startdate"):
+        params["startdate"] = req["startdate"]
+    if req.get("enddate"):
+        params["enddate"] = req["enddate"]
+    return _call_stock_api("financialprofit", appkey, params)
+
+
+def financial_cashflow(appkey: str, req: dict):
+    """现金流量表 /stock/financialcashflow"""
+    code = req.get("code")
+    if not code:
+        return {"error": "missing_param", "message": "code is required"}
+    params = {"code": str(code).strip()}
+    if req.get("startdate"):
+        params["startdate"] = req["startdate"]
+    if req.get("enddate"):
+        params["enddate"] = req["enddate"]
+    return _call_stock_api("financialcashflow", appkey, params)
+
+
 def main():
     if len(sys.argv) < 2:
         print(
             "Usage:\n"
             "  stock.py query '{\"code\":\"300917\"}'              # 当日行情（含分钟趋势）\n"
             "  stock.py list '{\"classid\":1,\"pagenum\":1,\"pagesize\":10}'  # 股票列表\n"
-            "  stock.py detail '{\"code\":\"300917\"}'              # 股票详情",
+            "  stock.py detail '{\"code\":\"300917\"}'              # 股票详情\n"
+            "  stock.py calendar '{\"date\":\"2026-04-29\"}'        # 交易日历（date 可选）\n"
+            "  stock.py financialmain '{\"code\":\"688808\"}'       # 主要财务指标\n"
+            "  stock.py financialbalancesheet '{\"code\":\"688808\"}'  # 资产负债表\n"
+            "  stock.py financialprofit '{\"code\":\"688808\"}'     # 利润表\n"
+            "  stock.py financialcashflow '{\"code\":\"688808\"}'   # 现金流量表",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -122,6 +195,16 @@ def main():
         result = list_stock(appkey, req)
     elif cmd == "detail":
         result = detail(appkey, req)
+    elif cmd == "calendar":
+        result = calendar(appkey, req)
+    elif cmd == "financialmain":
+        result = financial_main(appkey, req)
+    elif cmd == "financialbalancesheet":
+        result = financial_balancesheet(appkey, req)
+    elif cmd == "financialprofit":
+        result = financial_profit(appkey, req)
+    elif cmd == "financialcashflow":
+        result = financial_cashflow(appkey, req)
     else:
         print(f"Error: unknown command '{cmd}'", file=sys.stderr)
         sys.exit(1)

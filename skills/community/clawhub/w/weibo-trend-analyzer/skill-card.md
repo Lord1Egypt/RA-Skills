@@ -1,41 +1,56 @@
-## Description: <br>
-Deep Weibo trending analysis that clusters topics, detects trend inflection points, and generates content angles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Weibo trending analysis - cluster topics, detect trend inflection points, generate content angles.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and social media analysts use this skill to monitor Weibo hot topics, cluster trend themes, detect heat inflection points, and generate timely content angles.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Trend data may require network access to Weibo APIs or public pages, so source availability, access restrictions, or public-page changes can affect results.
+
+Mitigation: Confirm that the deployment context permits the intended public trend-data access and handle unavailable or changing sources before relying on reports.
+
+Risk: The skill is intended for public trend analysis; adding workflows that process private account data would introduce different privacy risks.
+
+Mitigation: Use public trend data only unless a separate privacy review and explicit data-handling workflow are added.
+
+Risk: LLM clustering, inflection labels, and content-angle suggestions can be incomplete, stale, or misleading.
+
+Mitigation: Review generated clusters, trend labels, and suggested angles before publishing content or making business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, developers, and social media analysts use this skill to monitor public Weibo trends, group hot topics, identify rapid movers, and produce daily trend reports with content angle suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may fetch or scrape public Weibo trend data. <br>
-Mitigation: Use only public trend data, respect platform access limits, and avoid adding credentialed or account-mutating behavior without separate review. <br>
-Risk: Monitoring may keep or compare trend snapshots during user-directed analysis. <br>
-Mitigation: Scope snapshot retention to the monitoring task and avoid storing unnecessary personal or sensitive data. <br>
+**Output Format:** [Markdown report or structured JSON]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/weibo-trend-analyzer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+**Other Properties Related to Output:** [May include clustered topic maps, rising-topic content angles, related-topic maps, and heat-curve summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown or JSON reports with clustered topics, trend status, heat metrics, and content suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include topic clusters, heat deltas, trend duration, related-topic maps, and user-filtered domains.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

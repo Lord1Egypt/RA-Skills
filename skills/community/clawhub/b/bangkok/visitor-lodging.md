@@ -1,5 +1,13 @@
 # Bangkok Accommodation Guide
 
+## Decision Rules
+
+1. **Rail access beats everything else.** A ฿500-cheaper room 800 m from BTS costs you an hour a day in 35°C heat. Check Google Maps *walking* time — listings write "near BTS" for anything under 1 km.
+2. **First visit → Sukhumvit (Asok-Phrom Phong) or Silom.** Old Town is temple-convenient but rail-less; you'll taxi everywhere else.
+3. **Stays ≥7 nights → serviced apartment or condo**, not hotel. Weekly/monthly rates typically undercut the same nights at hotel rack rate by 30-50%, and you get a kitchen and laundry.
+4. **Temples are a 2-3 night riverside side-quest, not a base.** Stay riverside for the experience, then move to the rail grid.
+5. **High floor, back of building.** Bangkok street noise is constant; a soi-facing low floor near a bar street means earplugs or misery.
+
 ## Area Selection
 
 | Area | Best For | Vibe | Transit |
@@ -12,136 +20,42 @@
 | **Thonglor/Ekkamai** | Hipster, nightlife | Trendy, expat-heavy | BTS |
 | **Ari** | Authentic, cafés | Local, residential | BTS |
 | **Chinatown** | Food, culture | Old-school, street food | MRT Wat Mangkon |
+| Anything else / unsure | Default | Asok — BTS+MRT interchange, everything reachable | BTS + MRT |
 
-## By Budget
+## By Budget (per night, double)
 
-### Budget (Under $30/night)
+| Tier | Price | What you get | Watch for |
+|------|-------|--------------|-----------|
+| **Hostel** | ฿300-700 ($9-20) | Dorm or basic private; strong social scene in Silom/Khao San/Ari design hostels | Party hostels are honest about it — read 3 recent reviews |
+| **Budget hotel** | ฿700-1,800 ($20-50) | AC, hot water, often a pool | Rooms of 12-15 sqm and windowless "inner" rooms are common — check the floor plan |
+| **Mid-range** | ฿1,800-3,500 ($50-100) | 4-star comfort, rooftop pool, breakfast often included | Same hotel varies ฿1,000+ by season — compare dates |
+| **Upscale** | ฿3,500-9,000 ($100-250) | International 5-star quality at 4-star prices — Bangkok's sweet spot | Book direct for upgrades; loyalty rates beat OTAs here |
+| **Luxury** | ฿9,000+ ($250+) | Riverside grande dames (Mandarin Oriental, Peninsula) and new builds (Four Seasons, Capella, Rosewood) | Riverside luxury = boat/taxi dependence; decide eyes open |
 
-**Hostels**
-- **NapPark Hostel** (Khao San) — Best-rated hostel in Bangkok
-- **Lub d** (Silom, Siam) — Modern chain hostels, social vibe
-- **Slumber Party** (Sukhumvit) — Party hostel done right
-- **Yard Hostel** (Ari) — Design hostel, local neighborhood
+Bangkok's quality-per-dollar peaks in the ฿2,000-5,000 range: rooftop pools, gyms, and breakfast buffets that would price 3× in Singapore or Tokyo.
 
-**Budget Hotels**
-- **ibis Bangkok** (multiple locations) — Reliable chain
-- **Red Planet** (Sukhumvit, Asok) — Japanese efficiency, tiny rooms
-- **Smile Society** (Khao San) — Above typical Khao San standards
+## Booking Heuristics
 
-**Tips**:
-- Agoda often has better Bangkok prices than Booking.com
-- Check room size — many budget rooms are 12-15 sqm
-- AC and hot water standard, but check reviews
-
-### Mid-Range ($30-100/night)
-
-**Sukhumvit**
-- **Galleria 10** (Soi 10) — Great location, rooftop pool
-- **Grande Centre Point Ratchadamri** — Spacious, near Siam
-- **Citrus Sukhumvit 13** — Modern, BTS accessible
-
-**Silom/Sathorn**
-- **Eastin Grand Sathorn** — Connected to BTS, excellent value
-- **Travelodge Silom** — Simple, central
-- **Chatrium Residence Sathorn** — Serviced apartments, good for longer stays
-
-**Riverside**
-- **Ibis Styles Bangkok Khaosan Viengtai** — Modern, Old Town access
-- **Sala Rattanakosin** — Boutique, Wat Arun views
-
-**Tips**:
-- Book hotels with BTS/MRT access — saves hours in traffic
-- Breakfast often included at this level
-- Ask for high floor to reduce street noise
-
-### Upscale ($100-250/night)
-
-**Best Value Luxury**
-- **Anantara Sathorn** — Pool, service, reasonable price
-- **Siam @ Siam** — Design hotel, Siam Square location
-- **Hansar Bangkok** — Modern, great breakfast
-- **137 Pillars Suites** — Boutique, Sukhumvit
-
-**Riverside**
-- **Riva Surya** — Boutique, river views, local feel
-- **Sala Arun** — Wat Arun views, intimate
-
-### Luxury ($250+/night)
-
-**Top Tier**
-- **Mandarin Oriental** — The historic grande dame, legendary service
-- **Four Seasons Bangkok at Chao Phraya** — Newest luxury, river location
-- **The Peninsula** — Across from Mandarin Oriental, equally iconic
-- **Rosewood Bangkok** — Vertical gardens, design statement
-- **Capella Bangkok** — Ultra-luxury riverfront, 2020 opening
-
-**Grand Dame Hotels**
-- **The Sukhothai** — Garden oasis, classic elegance
-- **The Siam** — Art deco, antique-filled, river location
-- **Shangri-La** — River views, classic luxury
-
-## Booking Tips
-
-### Best Booking Platforms
-1. **Agoda** — Best for Southeast Asia, flash sales
-2. **Booking.com** — Good inventory, free cancellation options
-3. **Direct booking** — Sometimes cheapest, especially luxury
-4. **Traveloka** — Good for last-minute
-
-### When to Book
-- **High season (Nov-Feb)**: Book 2-4 weeks ahead
-- **Low season (May-Oct)**: Same-day deals available
-- **Songkran (April 13-15)**: Book months ahead, prices spike
-
-### What to Check
-- **BTS/MRT distance**: "Near BTS" can mean 800m walk
-- **Room size**: Thai rooms often 20-25 sqm
-- **Window**: Many budget rooms are internal facing
-- **Reviews mentioning**: Noise (Bangkok is loud), cleanliness, WiFi
+- **Platform**: Agoda usually beats Booking.com on Southeast Asia inventory and flash prices; luxury is often cheapest booked direct.
+- **When to book**: high season (Nov-Feb) 2-4 weeks ahead; low season (May-Oct) same-week deals are normal. **Songkran (Apr 13-15)**: months ahead, prices spike citywide.
+- **Season delta**: expect high-season rates roughly 20-40% above low-season for the same room.
+- **What to verify before paying**: walking minutes to rail; room size in sqm; real window; recent reviews mentioning noise, smell, or construction next door (Bangkok always has construction next door).
 
 ## Long-Term Stays (1 week+)
 
-### Serviced Apartments
-Better value than hotels for 1+ week:
+- **Serviced apartments** (Citadines, Somerset, Ascott, Marriott Executive): hotel services + kitchenette; ask directly for weekly/monthly rates — the website rarely shows the real long-stay price.
+- **Airbnb/condos**: sub-30-day rentals are technically illegal in Thailand (Hotel Act); enforcement hits buildings, not guests, but hosts may coach you to lie to security — factor that in. For 1+ month, condo rentals are fully legal and the best value: ฿15,000-35,000/month for a modern 1BR (see `neighborhoods-index.md` for per-area rents).
+- **Negotiate**: monthly rate for 1+ month stays, deposit terms, and the electricity rate — buildings billing ฿7-8/unit vs government ~฿4-5 doubles your AC bill.
+- **Intel channel**: many condo buildings run LINE groups; joining one surfaces sublets and real prices.
 
-**Mid-Range**
-- **Citadines** (multiple locations) — Reliable, kitchenette
-- **Somerset** (Sukhumvit) — Family-friendly, pools
-- **LiT Bangkok** — Hip, long-stay focused
+## Quick Picks by Trip Type
 
-**Upscale**
-- **Marriott Executive Apartments** (Sathorn, Sukhumvit)
-- **137 Pillars Residences** — Luxury long-stay
-- **Ascott Sathorn** — Business traveler favorite
+| Trip | Budget | Mid | Luxury |
+|------|--------|-----|--------|
+| First visit, 3-5 nights | Silom design hostel | Sukhumvit Soi 8-15 hotel with pool | Riverside icon or Rosewood |
+| Temples focus | Old Town guesthouse | Boutique with Wat Arun view (Tha Tien area) | The Siam / riverside with private boat |
+| Nightlife | Sukhumvit party hostel | Hotel walkable to Soi 11 | Design hotel near Lumphini |
+| Family | — | Serviced apartment with pool (Sukhumvit 24-39) | Riverside resort with kids' facilities |
+| Anything else | Default: mid-range near Asok — central, connected, refundable | | |
 
-### Airbnb/Condos
-- Legal gray area but widely available
-- **Sukhumvit Soi 24-63**: Good value condos
-- **On Nut area**: Budget long-stay haven
-- Expect 15,000-35,000 THB/month for decent 1BR
-
-### Tips for Long Stays
-- Negotiate weekly/monthly rates directly
-- Ask for local SIM card, laundry discounts
-- Join building LINE groups for tips
-
-## Specific Recommendations
-
-### First Visit, 3-5 Nights
-- **Budget**: Lub d Silom — central, social, near BTS
-- **Mid**: Galleria 10 Sukhumvit — perfect base, walkable
-- **Luxury**: Rosewood Bangkok — modern luxury, great location
-
-### Temples Focus
-- **Budget**: Once Again Hostel — Old Town location
-- **Mid**: Sala Rattanakosin — Wat Arun views
-- **Luxury**: The Siam — river access to temples
-
-### Nightlife Focus
-- **Budget**: Slumber Party Hostel — party hostel
-- **Mid**: Galleria 10 — near Soi 11
-- **Luxury**: Sofitel So — hip, near Lumphini
-
-### Family Visit
-- **Mid**: Grande Centre Point — space, pool
-- **Luxury**: Anantara Riverside — kids facilities
+Name-brand recommendations age fast; verify any specific property's recent reviews before recommending it.

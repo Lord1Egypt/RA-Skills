@@ -1,39 +1,50 @@
-## Description: <br>
-Orchestrate real ELPA-style ensemble forecasting workflows by triggering external sub-model training jobs (for example PyTorch/Prophet/TiDE/transformers), then computing ELPA online/offline weights from validation errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate real ELPA-style ensemble forecasting workflows by triggering external sub-model training jobs (for example PyTorch/Prophet/TiDE/transformers), then computing ELPA online/offline weights from validation errors.
 
-## Publisher: <br>
-[AnonymousCodeMaker](https://clawhub.ai/user/AnonymousCodeMaker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anonymouscodemaker](https://clawhub.ai/user/anonymouscodemaker)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to plan and run multi-model forecasting training workflows, then build ELPA ensemble policy JSON from validation errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Execute mode runs training commands from the user's configuration on the local machine. <br>
-Mitigation: Start with dry-run mode, inspect every rendered train_cmd, use trusted configs and training code only, and run without unnecessary secrets or elevated privileges. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan or execute external forecasting model training jobs, then produce ELPA online and offline ensemble policy weights from validation errors.
 
-## Reference(s): <br>
-- [ELPA Config Schema](references/config-schema.md) <br>
-- [ClawHub ELPA Release](https://clawhub.ai/AnonymousCodeMaker/elpa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON configuration and policy files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run mode writes a training manifest; integration writes an ELPA policy JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Training configs can become unrestricted local shell commands with broad environment access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every train_cmd and placeholder before using --execute, run only trusted configs, avoid sensitive API keys in the environment, and use an isolated workspace or container.
+
+## Reference(s):
+
+- [ELPA Config Schema](references/config-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/anonymouscodemaker/skills/elpa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration files; scripts can emit JSON manifests and ELPA policy JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run planning records commands without training; execution requires trusted configuration, local ML dependencies, and suitable hardware.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,4 @@
-﻿# 首次安装向导（Setup Wizard）
+# 首次安装向导（Setup Wizard）
 
 > 适用版本：clawhub-daily v1.0.0+
 > 用户首次安装本技能后必读
@@ -16,9 +16,7 @@ ClawHub Daily 提供 **2 种使用模式**，请根据你的需求选择 A 或 B
 **触发词**（在 Agent 对话中输入任一即可）：
 - "每日推荐"
 - "ClawHub 日报"
-- "今天有什么好 Skill"
-- "帮我推荐技能"
-- "扫描 ClawHub"
+- "ClawHub 每日洞察"
 
 **示例对话**：
 ```
@@ -75,12 +73,19 @@ pip install requests
 
 ### 2. 配置飞书凭证（仅需推送时）
 
+> **⚠️ 凭证安全须知**：
+> - 飞书 App Secret 是敏感凭证，泄露后他人可冒充应用发送消息和创建文档
+> - **存储**：凭证只应存放在 `references/config.json`（已在 `.gitignore` 中）或环境变量，不要硬编码在脚本中
+> - **轮换**：如怀疑泄露，立即到飞书开放平台重置 App Secret
+> - **权限最小化**：只勾选下方列出的 4 个权限，不要添加多余权限
+> - **ClawHub publish 不遵守 .gitignore**：发布到 ClawHub 前必须确认 `references/config.json` 只含占位符（`<your_xxx>`），不含真实凭证
+
 #### 步骤 1：创建飞书应用
 
 1. 访问 [飞书开放平台](https://open.feishu.cn/app)
 2. 创建企业自建应用
 3. 获取 `App ID` 和 `App Secret`
-4. 权限配置：
+4. 权限配置（仅勾选以下 4 项，最小权限原则）：
    - `im:message` — 发送消息
    - `im:message:send_as_bot` — 以应用身份发消息
    - `docx:document:create` — 创建云文档
@@ -89,7 +94,7 @@ pip install requests
 
 #### 步骤 2：填写凭证
 
-编辑 `references/config.json`：
+编辑 `references/config.json`（此文件已在 `.gitignore` 中，不会上传到 GitHub）：
 
 ```json
 {
@@ -99,7 +104,10 @@ pip install requests
 }
 ```
 
-> ⚠️ **请勿将此文件提交到 GitHub**！建议加入 `.gitignore`。
+> ⚠️ **安全提醒**：
+> - `references/config.json` 只能放占位符（`<your_xxx>`），真实凭证通过环境变量传递
+> - 环境变量方式（推荐）：`FEISHU_APP_ID` / `FEISHU_APP_SECRET` / `FEISHU_USER_OPEN_ID`
+> - **ClawHub publish 会上传整个目录**：即使文件在 `.gitignore` 中，ClawHub 也会上传。所以 `config.json` 永远不能含真实凭证
 
 #### 步骤 3：获取 user_open_id
 
@@ -109,21 +117,32 @@ pip install requests
 
 ### 3. 测试运行
 
+> **⚠️ 数据推送警告**：以下步骤 4-6 会将简报内容传输到外部服务（飞书/IMA）。请确认：
+> - 你已了解简报内容会被发送到飞书云文档和 IMA 知识库
+> - 接收方是你在飞书应用中配置的 user_open_id 对应的用户
+> - 如只想本地测试，跳过步骤 4-6，只执行步骤 1-3
+
 ```bash
-# 1. 抓取数据
+# 1. 抓取数据（本地操作，无外部传输）
 python scripts/fetch_clawhub.py --date 2026-06-03
 
-# 2. 计算指标
+# 2. 计算指标（本地操作，无外部传输）
 python scripts/compute_metrics.py --input data/snapshots/2026-06-03.json
 
-# 3. 生成推荐
+# 3. 生成推荐（本地操作，无外部传输）
 python scripts/daily_recommend.py --date 2026-06-03 --data-dir data
 
-# 4. 推送到飞书
+# 4. 推送到飞书（⚠️ 外部传输：简报内容发送到飞书云文档 + 卡片消息）
 python scripts/push_to_feishu.py --recommendation data/recommended/2026-06-03.json
+
+# 5. 推送到 IMA（⚠️ 外部传输：简报内容发送到腾讯 IMA 知识库）
+python scripts/push_to_ima.py --recommendation data/recommended/2026-06-03.json --mode official
+
+# 6. 推送到 Obsidian（本地操作，写入 vault 目录）
+python scripts/push_to_obsidian.py --recommendation data/recommended/2026-06-03.json
 ```
 
-预期：飞书收到一条带 200-400 字摘要的卡片消息 + 一个云文档链接。
+预期：飞书收到卡片消息 + 云文档链接；IMA 知识库出现新笔记；Obsidian vault 出现 .md 文件。
 
 ---
 

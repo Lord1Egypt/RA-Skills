@@ -1,46 +1,56 @@
-## Description: <br>
-Agent-Selector selects and loads an appropriate expert persona from a bundled library of 146+ agent prompts based on the user's task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-Selector matches a task description to one of 146+ bundled specialist agent personas and supports automatic or manual persona selection.
 
-## Publisher: <br>
-[Krislu1221](https://clawhub.ai/user/Krislu1221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krislu1221](https://clawhub.ai/user/krislu1221)
 
-## Use Case: <br>
-Developers and agent users use this skill to route tasks to a more specialized persona, load the matching prompt, and return to a default identity after the task is complete. It is suited for local prompt selection and persona guidance, including coding, design, marketing, testing, project management, and other specialist workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled personas may suggest sensitive actions such as payments, production deployments, social posting, analytics export, or customer-data handling without enough approval detail. <br>
-Mitigation: Keep sensitive tools disabled by default and require explicit human approval, privacy/legal review, audit logging, and least-privilege tool scopes before granting those capabilities. <br>
-Risk: Prompt loading may fail or load an unexpected set of prompts because scanner guidance notes a possible mismatch between the selector's expected bundled-agent path and the package contents. <br>
-Mitigation: Verify prompt loading in the target runtime before deployment and confirm the selector points only to the intended bundled prompt directory. <br>
-Risk: The broad persona library can produce domain-specific guidance that appears authoritative outside the user's expertise. <br>
-Mitigation: Use the selected persona output as draft guidance and require domain-owner review for legal, compliance, security, medical, finance, deployment, or public-communications decisions. <br>
+## Use Case:
 
+Developers and agent users use this skill to route tasks to specialist personas and load matching prompt context for coding, design, testing, product, marketing, sales, support, strategy, and operations work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Krislu1221/agent-selector) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Release README](artifact/README.md) <br>
-- [ClawHub package metadata](artifact/clawhub.json) <br>
-- [Bundled agent library README](artifact/agency-agents/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, selected agent identifiers, and prompt text with occasional code or shell examples from bundled personas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local bundled prompt files, uses keyword-based selection, and caches loaded prompts; no external API use is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: Bundled personas can direct agents toward public posting, scheduled work, or payment handling without sufficient approval boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review selected persona prompts before use in environments with browser, scheduler, social-media, payment, or secret access; disable or tightly sandbox high-impact personas and require explicit confirmation for public posts, scheduled runs, and payments.
+
+Risk: Persona loading can change an agent's behavior even when the selector itself is described as read-only.
+
+Mitigation: Scan the package before deployment and keep tool permissions, credential access, and execution approvals separate from persona selection.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krislu1221/skills/agent-selector)
+- [Skill Usage Documentation](artifact/SKILL.md)
+- [Release Notes and Setup](artifact/README.md)
+- [ClawHub Package Metadata](artifact/clawhub.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with agent identifiers, persona prompt content, and optional Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Selects from bundled local persona files; package metadata says no external APIs are required.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

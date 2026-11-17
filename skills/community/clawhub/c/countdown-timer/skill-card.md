@@ -1,40 +1,54 @@
-## Description: <br>
-Provides countdown management, important-date reminders, Pomodoro timers, and custom reminder support for an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language countdown management, important-date countdowns, Pomodoro timing, and reminder guidance.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Users ask the agent to calculate days until events, record birthdays or anniversaries, view saved countdowns, start a Pomodoro work timer, or set simple reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Countdown names, birthdays, anniversaries, and reminder labels are saved locally in JSON data. <br>
-Mitigation: Avoid storing sensitive labels or personal details unless the local storage location and access controls are acceptable. <br>
-Risk: Documentation and implementation describe different countdowns.json storage locations. <br>
-Mitigation: Confirm the actual local file path before relying on privacy, backup, or cleanup assumptions. <br>
+## Use Case:
 
+Chinese-speaking users can ask an agent to track dates, list countdowns, and receive Pomodoro or reminder-style timing guidance. It is suitable for lightweight personal productivity and date awareness, not safety-critical alarms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/countdown-timer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown text responses with countdown lists, timer confirmations, and reminder status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write local JSON countdown data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reminder behavior may be overstated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated alarm, calendar, or scheduler for time-sensitive or safety-critical reminders.
+
+Risk: Countdown titles and dates are saved locally.
+
+Mitigation: Avoid storing sensitive personal dates, or review and remove local countdown data before sharing the workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/countdown-timer)
+- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted Chinese text with countdown, date, Pomodoro, and reminder responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save countdown titles and dates in local JSON data when countdowns are added.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill document)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

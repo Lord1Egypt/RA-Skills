@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn78nhyx5gv3f281rd26gc7mtn82a6c3",
-  "slug": "baidu-qianfan-search",
+  "name": "baidu-qianfan-search",
   "version": "1.0.0",
-  "publishedAt": 1773648847375
+  "description": "百度千帆搜索API调用技能"
 }

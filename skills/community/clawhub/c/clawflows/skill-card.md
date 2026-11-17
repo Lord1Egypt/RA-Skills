@@ -1,42 +1,59 @@
-## Description: <br>
-Search, install, and run multi-skill automations from clawflows.com that combine skills through workflow logic, conditions, and data flow between steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, install, and run multi-skill automations from clawflows.com. Combine multiple skills into powerful workflows with logic, conditions, and data flow between steps.
 
-## Publisher: <br>
-[Cluka-399](https://clawhub.ai/user/Cluka-399) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cluka-399](https://clawhub.ai/user/cluka-399)
 
-## Use Case: <br>
-Developers and automation builders use this skill to discover, install, check, run, schedule, inspect, and publish ClawFlows automations that coordinate multiple capability-providing skills. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Downloaded or registry-provided workflows can chain installed skills and produce real side effects. <br>
-Mitigation: Review the npm package and workflow YAML before use, run `clawflows check`, and start with `--dry-run`. <br>
-Risk: Automations may affect external systems such as email, calendars, databases, publishing tools, or cron schedules. <br>
-Mitigation: Avoid untrusted registry workflows and require additional review before enabling workflows that write to external services or scheduled jobs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Cluka-399/clawflows) <br>
-- [ClawFlows registry](https://clawflows.com) <br>
-- [ClawFlows CLI on npm](https://www.npmjs.com/package/clawflows) <br>
-- [ClawFlows registry GitHub repository](https://github.com/Cluka-399/clawflows-registry) <br>
+## Use Case:
 
+Developers and automation users use this skill to discover, install, check, run, schedule, and publish ClawFlows multi-skill automations that coordinate capabilities across other skills.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to install and run the clawflows CLI; dry-run and review steps are recommended before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installed automations are mutable third-party workflows that may use sensitive local capabilities.
+
+Mitigation: Review each automation YAML and the requested capabilities before running it, especially workflows that access email, calendars, databases, or scheduling.
+
+Risk: The documented global npm install is not pinned to a reviewed package version.
+
+Mitigation: Review the clawflows npm package before installation and prefer a pinned or otherwise verified version when operating in a controlled environment.
+
+Risk: Running an automation can execute actions across multiple skills.
+
+Mitigation: Use the documented --dry-run option first and run workflows with only the permissions needed for the intended task.
+
+## Reference(s):
+
+- [Clawflows on ClawHub](https://clawhub.ai/cluka-399/skills/clawflows)
+- [ClawFlows Registry](https://clawflows.com)
+- [clawflows npm package](https://www.npmjs.com/package/clawflows)
+- [ClawFlows registry repository listed by the skill](https://github.com/Cluka-399/clawflows-registry)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and YAML examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may install or run workflow YAML files and can use a dry-run mode before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

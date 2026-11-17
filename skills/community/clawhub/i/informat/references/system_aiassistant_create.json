@@ -1,0 +1,149 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_aiassistant_create",
+    "description": "Create a new AI agent module (designer agent configuration).",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "AI agent module name"
+        },
+		"icon": {
+		 "type": "string",
+		 "description": "AI agent module icon eg：robot-2"
+		},
+        "remark": {
+          "type": "string",
+          "description": "Description"
+        },
+        "aiAgentSetting": {
+          "type": "object",
+          "description": "AI agent settings, including model configuration, plugin list, etc.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "AI assistant name"
+            },
+            "description": {
+              "type": "string",
+              "description": "AI assistant description"
+            },
+            "icon": {
+              "type": "string",
+              "description": "Icon",
+              "default": "robot-2"
+            },
+            "iconColor": {
+              "type": "string",
+              "description": "Icon color",
+              "default": "#4f40ef"
+            },
+            "openingRemarkList": {
+              "type": "array",
+              "description": "Opening remark guide question list",
+              "items": {
+                "type": "string"
+              }
+            },
+            "aiModelKey": {
+              "type": "string",
+              "description": "AI model key, obtained by calling `_company_get_ai_model_list` and using the key field from the returned list"
+            },
+            "userMessagePlaceholder": {
+              "type": "string",
+              "description": "User input placeholder"
+            },
+            "systemRoleMessage": {
+              "type": "string",
+              "description": "Persona and response logic"
+            },
+            "agentProvider": {
+              "type": "string",
+              "description": "Model provider"
+            },
+            "agentLangModel": {
+              "type": "string",
+              "description": "Language model"
+            },
+            "agentApiKeyVar": {
+              "type": "string",
+              "description": "API key variable name"
+            },
+            "agentApiUrlVar": {
+              "type": "string",
+              "description": "API proxy address variable name"
+            },
+            "agentTemperature": {
+              "type": "number",
+              "description": "Randomness Temperature, higher value makes responses more random",
+              "default": 0.5
+            },
+            "agentMaxTokens": {
+              "type": "integer",
+              "description": "Maximum token count for response",
+              "default": 0
+            },
+            "agentPresencePenalty": {
+              "type": "integer",
+              "description": "Topic freshness",
+              "default": 0
+            },
+            "agentFrequencyPenalty": {
+              "type": "integer",
+              "description": "Frequency penalty",
+              "default": 0
+            },
+            "agentThreadTurns": {
+              "type": "integer",
+              "description": "Number of conversation turns to carry",
+              "default": 100
+            },
+            "enableUploadImage": {
+              "type": "boolean",
+              "description": "Whether to support image upload",
+              "default": false
+            },
+            "pluginList": {
+              "type": "array",
+              "description": "Plugin list, cannot be empty, must contain at least one plugin. Only the following plugins are available (by key): _query_app_define(Query app config), _query_app_user_list(Query app members), _read_office_file(Read Office files), _read_informat_expression_doc(Read expression doc), _bpmn_process_define_list(Query process define list), _bpmn_get_process_define(Get process define config), _bpmn_create_instance(Create workflow instance), _bpmn_query_instance_list(Query workflow instances), _bpmn_query_instance_info(Query instance details), _bpmn_query_task_list(Query workflow tasks), _bpmn_query_task_info(Query task details), _bpmn_complete_task(Complete workflow task), _get_current_time(Get current time), _get_current_user(Get current user), _web_content(Web content), _javascript_eval(JavaScript eval), _render_html(Render HTML), _send_system_email(Send email), _send_notification(Send notification), _query_all_table_list(Query table list), _query_table_define(Query table define), _query_table_record_list(Query table records), _query_table_record_list_count(Count table records), _table_record_batch_insert(Batch insert records), _table_record_batch_update(Batch update records), _table_record_batch_delete(Batch delete records), _query_all_textindex_list(Query textindex modules), _textindex_search(Textindex search), _knowledgebase_search(Knowledge base search)",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Plugin ID, must equal the value of the key field"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Plugin name"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "Plugin key"
+                  },
+                  "remark": {
+                    "type": "string",
+                    "description": "Plugin remark"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Plugin type"
+                  },
+                  "isEnable": {
+                    "type": "boolean",
+                    "description": "Whether enabled"
+                  }
+                },
+                "required": ["id", "name", "key", "type", "isEnable"]
+              }
+            }
+          }
+        }
+      },
+      "required": ["name", "aiAgentSetting"]
+    }
+  }
+}

@@ -1,46 +1,68 @@
-## Description: <br>
-A comprehensive spiritual companion for Muslims during Ramadan's last ten nights that provides personalized worship plans, authentic dua resources, reflection prompts, and practical Ramadan routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Ramadan spiritual planning assistant that helps Muslims prepare for Laylatul Qadr with personalized worship plans, dua resources, reflection tools, family activities, and practical coaching.
 
-## Publisher: <br>
-[vajih](https://clawhub.ai/user/vajih) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vajih](https://clawhub.ai/user/vajih)
 
-## Use Case: <br>
-Muslim individuals, families, students, working professionals, and people in i'tikaf use this skill to prepare for and navigate Ramadan's last ten nights with realistic worship schedules, dua collections, journals, trackers, and family activities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Personalized worship plans may include sensitive details such as family circumstances, schedules, health considerations, spiritual goals, or location and timezone. <br>
-Mitigation: Share only details you are comfortable using in generated plans, approve calendar access only when explicitly needed, and review generated artifacts before saving or sharing them. <br>
-Risk: Generated Islamic guidance could be mistaken for a formal fatwa, medical advice, or a substitute for qualified local counsel. <br>
-Mitigation: Use the skill as planning and devotional guidance, and consult qualified scholars or medical professionals for complex fiqh, fasting, health, or personal religious rulings. <br>
-Risk: The HTML checklist can save progress locally in the browser. <br>
-Mitigation: Use local browser storage only on devices you trust, and clear saved progress if the device is shared. <br>
+## Use Case:
 
+External users use this skill to build realistic Ramadan last-ten-night worship routines, dua lists, trackers, family plans, and reflection prompts tailored to energy, schedule, family responsibilities, and spiritual goals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vajih/laylatul-qadr-guide) <br>
-- [README](README.md) <br>
-- [Authentic Duas for Laylatul Qadr](references/authentic-duas.md) <br>
-- [Behavioral Psychology for Sustainable Ramadan Worship](references/behavioral-psychology.md) <br>
-- [Dua Book Template](templates/dua-book-template.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, HTML] <br>
-**Output Format:** [Conversational guidance, structured Markdown plans, checklists, journals, and optional HTML dua-book artifacts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may be personalized from user-provided schedule, energy level, family context, location or timezone, Arabic proficiency, and worship goals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill may activate for broad Ramadan discussions beyond a specific Laylatul Qadr planning request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's intent and scope before generating detailed worship plans or artifacts.
+
+Risk: Generated dua books, journals, and checklists may contain sensitive personal spiritual reflections or supplications.
+
+Mitigation: Treat personal duas and journal entries as private user content and avoid unnecessary sharing or persistence.
+
+Risk: The generated HTML dua book can save checklist progress in browser local storage.
+
+Mitigation: Tell users who share devices to clear browser storage or use a private profile for sensitive worship tracking.
+
+Risk: Opening the HTML template online may contact Google Fonts.
+
+Mitigation: Use local fonts or block network access when offline or privacy-sensitive rendering is required.
+
+Risk: Users may treat the skill as a source of binding religious or medical advice.
+
+Mitigation: Direct complex fiqh questions to qualified scholars and health-related fasting concerns to medical professionals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vajih/skills/laylatul-qadr-guide)
+- [Authentic Duas for Laylatul Qadr](references/authentic-duas.md)
+- [Behavioral Psychology for Sustainable Ramadan Worship](references/behavioral-psychology.md)
+- [Dua Book HTML Template](templates/dua-book-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Conversational text, Markdown plans and trackers, and HTML artifact templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML checklist artifacts may save checkbox state locally in the user's browser.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Helps developers create, develop, and package FastAdmin application plugins, including directory structures, PHP files, menu configuration, and database scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastAdmin插件开发助手。用于创建、开发和打包FastAdmin应用插件。当用户需要创建FastAdmin插件、开发插件功能、配置插件菜单、数据库、打包插件时使用此skill。支持生成插件目录结构、控制器、模型、视图、配置文件、菜单配置、数据库脚本等。
 
-## Publisher: <br>
-[xiaohe4966](https://clawhub.ai/user/xiaohe4966) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohe4966](https://clawhub.ai/user/xiaohe4966)
 
-## Use Case: <br>
-Developers building FastAdmin plugins use this skill to scaffold add-on structure, draft PHP controllers, models, views, configuration files, menu setup, database scripts, and packaging commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated application/ or public/ files may overwrite or alter an existing FastAdmin project. <br>
-Mitigation: Review diffs, keep backups, and apply generated files selectively before integrating them into a project. <br>
-Risk: Wildcard noNeedLogin or noNeedRight examples can weaken endpoint access controls if copied into production code unchanged. <br>
-Mitigation: Replace wildcard access examples with narrow method lists and project-specific authentication and authorization checks. <br>
+## Use Case:
 
+Developers use this skill to create, develop, configure, and package FastAdmin application plugins. It provides scaffold commands, directory conventions, PHP controller and configuration examples, database script patterns, menu setup guidance, and packaging notes.
 
-## Reference(s): <br>
-- [FastAdmin plugin development documentation](https://doc.fastadmin.net/developer/55.html) <br>
-- [ClawHub skill page](https://clawhub.ai/xiaohe4966/fastadmin-addon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with PHP, INI, SQL, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces developer guidance and code/configuration snippets for FastAdmin plugin projects.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated or copied FastAdmin scaffold files can overwrite existing site files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review file paths and changes before applying them to an existing FastAdmin installation, and test the plugin in staging first.
+
+Risk: Example controller defaults exempt all actions from login and authorization checks.
+
+Mitigation: Restrict no-login and no-right exemptions to intentionally public read-only actions before using generated controllers in production.
+
+## Reference(s):
+
+- [FastAdmin plugin development documentation](https://doc.fastadmin.net/developer/55.html)
+- [FastAdmin plugin identifier check](https://www.fastadmin.net/developer/idcheck.html)
+- [ClawHub skill page](https://clawhub.ai/xiaohe4966/skills/fastadmin-addon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with PHP, SQL, INI, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scaffold guidance for files that can overwrite parts of a FastAdmin site and should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

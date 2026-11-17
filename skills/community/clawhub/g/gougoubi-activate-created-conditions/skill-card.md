@@ -1,42 +1,56 @@
-## Description: <br>
-Activate all CREATED conditions under a Gougoubi proposal with deterministic committee checks, optional auto-stake joining, and structured voting results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activates all CREATED conditions under a Gougoubi proposal with deterministic committee checks, optional minimum stake joining, and structured voting results.
 
-## Publisher: <br>
-[chinasong](https://clawhub.ai/user/chinasong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chinasong](https://clawhub.ai/user/chinasong)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent validate a Gougoubi BSC proposal, join the committee by minimum stake when explicitly approved, and vote to activate all CREATED conditions while returning structured results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can stake funds and submit governance votes on BSC. <br>
-Mitigation: Require a dry run, review every transaction, confirm the staking amount and asset, and require separate explicit approval before staking or voting. <br>
-Risk: Voting may continue after an individual condition fails, producing partial activation results. <br>
-Mitigation: Review the returned successes, failures, warnings, and next actions before treating the proposal activation as complete. <br>
+## Use Case:
 
+External users and developers with wallet and contract-call capability use this skill to activate all CREATED conditions for a Gougoubi proposal on BSC Mainnet, including committee membership checks, optional minimum staking, and per-condition voting result reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasong/gougoubi-activate-created-conditions) <br>
-- [Contract methods reference](references/CONTRACT_METHODS.md) <br>
-- [Gougoubi website](https://gougoubi.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [structured JSON, guidance] <br>
-**Output Format:** [JSON object with success, failure, warning, and next action fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes transaction hashes, per-condition success and failure details, and retryable failure stages when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can initiate live BSC Mainnet staking and voting transactions from a user's wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the on-chain effects are intended, review the stake amount and gas, and confirm each wallet transaction deliberately.
+
+Risk: Automated operation could submit stake or vote transactions without a user's desired limits.
+
+Mitigation: Avoid unattended use unless explicit stake and vote approval limits are added before execution.
+
+## Reference(s):
+
+- [Contract Methods](references/CONTRACT_METHODS.md)
+- [Gougoubi Repository](https://github.com/gougoubi/gougoubi)
+- [Gougoubi Website](https://gougoubi.ai)
+- [ClawHub Skill Page](https://clawhub.ai/chinasong/skills/gougoubi-activate-created-conditions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with structured JSON success and failure results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns transaction hashes, condition counts, per-condition successes and failures, warnings, and next actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Claw Memory Lite helps OpenClaw users extract, store, and query distilled long-term memory in a local SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and query an agent's distilled long-term memory with lightweight SQLite-backed tools and automated daily extraction.
 
-## Publisher: <br>
-[timothysong0w0](https://clawhub.ai/user/timothysong0w0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timothysong0w0](https://clawhub.ai/user/timothysong0w0)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to index daily memory notes, query remembered facts by keyword or category, and automate local memory extraction during heartbeat or scheduled maintenance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores distilled memory notes in a local SQLite database, which may contain sensitive information if users place secrets or private data in memory files. <br>
-Mitigation: Review memory/*.md and REGRESSIONS.md before enabling extraction, keep API keys and passwords out of memory files, and delete ~/.openclaw/database/insight.db to clear stored memory. <br>
-Risk: Heartbeat or cron automation can repeatedly process local memory files without an interactive review step. <br>
-Mitigation: Use review mode where available before enabling scheduled extraction, and remove the scheduled heartbeat or cron command to stop automation. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to extract daily memory notes into a local SQLite database, query stored memory by keyword or category, and schedule recurring memory maintenance.
 
-## Reference(s): <br>
-- [Claw Memory Lite on ClawHub](https://clawhub.ai/timothysong0w0/claw-memory-lite) <br>
-- [API Reference](docs/api.md) <br>
-- [Installation Guide](docs/installation.md) <br>
-- [Integration Guide](docs/integration.md) <br>
-- [Examples](examples/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local SQLite query results, memory extraction logs, heartbeat configuration snippets, and setup instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Persistent automation can perform daily local writes to MEMORY.md and the SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not enable heartbeat or cron automation until the release is reviewed, and back up MEMORY.md before first use.
+
+Risk: The local insight.db database may contain copied memory records, configuration details, and credential-related notes in plaintext.
+
+Mitigation: Restrict database file permissions and avoid storing secrets in memory files.
+
+Risk: Mutable install paths can change what code is installed later.
+
+Mitigation: Install from a pinned release or commit and avoid the mutable curl install path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/timothysong0w0/skills/claw-memory-lite)
+- [Artifact README](artifact/README.md)
+- [Installation Guide](artifact/docs/installation.md)
+- [Integration Guide](artifact/docs/integration.md)
+- [API Reference](artifact/docs/api.md)
+- [Examples](artifact/examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python/SQLite examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory query results, extraction summaries, database setup guidance, heartbeat or cron configuration, and maintenance reports.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

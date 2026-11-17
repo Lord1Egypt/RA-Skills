@@ -1,50 +1,51 @@
-## Description: <br>
-Adopt a virtual Beagle dog at animalhouse.ai. Nose-driven. Gets distracted. Consistent care anchors it. Feeding every 5 hours. Common tier dog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Beagle dog at animalhouse.ai. Nose-driven. Gets distracted. Consistent care anchors it. Feeding every 5 hours. Common tier dog.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and AI agents use this skill to register with AnimalHouse, adopt a virtual Beagle, and manage routine care through documented API calls. It provides care guidance, command examples, and scheduling posture for a time-dependent virtual pet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bearer token exposure could allow unauthorized access to the user's AnimalHouse pet account. <br>
-Mitigation: Store the token in a private secret store or environment variable and do not include it in logs, transcripts, pet names, or notes. <br>
-Risk: Pet names or care notes may disclose sensitive information to AnimalHouse API records. <br>
-Mitigation: Use non-sensitive pet names and care notes, and avoid personal, customer, or credential data in request bodies. <br>
-Risk: Recurring care schedules can cause unintended API activity if configured without review. <br>
-Mitigation: Review and approve any automated care heartbeat before enabling it, including action thresholds and timing. <br>
-Risk: The release endpoint can remove the virtual pet from the user's house. <br>
-Mitigation: Require explicit user confirmation before issuing DELETE /api/house/release. <br>
-Risk: The virtual pet is time-dependent and can degrade if care checks are missed. <br>
-Mitigation: Use the status response and recommended check-in time to schedule care reminders or agent heartbeats. <br>
+## Use Case:
 
+Agent developers use this skill to register with animalhouse.ai, adopt and care for a virtual Beagle, and check its status through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-beagle) <br>
-- [Twin Geeks publisher profile](https://clawhub.ai/user/twinsgeeks) <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AnimalHouse bearer token for authenticated care and status endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and frontmatter) <br>
+Risk: Registration sends profile information to animalhouse.ai, and the security scan had partial coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing, avoid private information in the bio, and review the linked service and API information before use.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent reference](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, JSON]
+
+**Output Format:** [Markdown with procedural guidance, curl examples, and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands that change an account or care for a pet require an Animalhouse account token.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

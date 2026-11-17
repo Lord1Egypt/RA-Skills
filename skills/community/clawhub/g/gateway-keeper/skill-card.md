@@ -1,40 +1,57 @@
-## Description: <br>
-Gateway Keeper installs an OS-level watchdog that checks OpenClaw gateway health, restarts the gateway when it appears down, and records a recovery signal for interrupted sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OS-level watchdog that monitors OpenClaw gateway health and auto-restarts on crash, then triggers session recovery so interrupted work can resume automatically.
 
-## Publisher: <br>
-[russellfei](https://clawhub.ai/user/russellfei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[russellfei](https://clawhub.ai/user/russellfei)
 
-## Use Case: <br>
-Developers and operators responsible for OpenClaw deployments use this skill to add recurring gateway health checks, automatic restarts, and recovery prompts after a crash. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill installs recurring background automation that monitors and restarts the OpenClaw gateway. <br>
-Mitigation: Install it only when continuous gateway monitoring is intended, and review the scheduled cron or task entry before use. <br>
-Risk: Recovery behavior can influence future agent work after a gateway restart. <br>
-Mitigation: Review the HEARTBEAT.md recovery block and require fresh approval before retrying file, deployment, account, or external-service changes. <br>
-Risk: The documentation includes Windows administrator PowerShell commands, but the provided artifact evidence does not include the referenced PowerShell scripts. <br>
-Mitigation: Do not run the Windows commands unless the missing scripts are provided and reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to add watchdog monitoring, automatic restart, and recovery signaling for OpenClaw gateway deployments.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and PowerShell command examples plus JSON recovery-file examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes install, uninstall, gateway check, and recovery workflow guidance for OpenClaw environments.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installer creates persistent user-level scheduled execution for the gateway health check.
+
+Mitigation: Review the exact crontab entry before enabling the skill and use the uninstall script to remove the scheduled job when it is no longer needed.
+
+Risk: Unsafe cron or path handling can run an unintended script when installed from an unsuitable location.
+
+Mitigation: Install only from a trusted, simple path and verify that the scheduled command points to the expected check-gateway.sh file.
+
+Risk: The installer may modify HEARTBEAT.md and the watchdog writes gateway recovery status under the OpenClaw workspace logs.
+
+Mitigation: Expect these file changes during installation and recovery; manually remove the HEARTBEAT.md recovery section if the behavior is no longer desired.
+
+## Reference(s):
+
+- [Gateway Keeper ClawHub Page](https://clawhub.ai/russellfei/skills/gateway-keeper)
+- [russellfei ClawHub Publisher Profile](https://clawhub.ai/user/russellfei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON recovery examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Installs or removes a user-level scheduled health check and writes gateway recovery status when restart succeeds.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

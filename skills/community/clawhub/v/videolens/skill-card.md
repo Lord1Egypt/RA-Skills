@@ -1,46 +1,59 @@
-## Description: <br>
-AI video reviews for creators and teams that return timestamped feedback from prompts for pacing, clarity, hook, retention, structure, proof, CTA, and publish-readiness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VideoLens turns user-selected YouTube videos, local files, or supported video URLs into timestamped HTML, Markdown, and JSON reports using a pinned local runtime and OpenAI BYOK analysis.
 
-## Publisher: <br>
-[shadoprizm](https://clawhub.ai/user/shadoprizm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shadoprizm](https://clawhub.ai/user/shadoprizm)
 
-## Use Case: <br>
-Creators, teams, and agent developers use VideoLens.io to review videos with custom prompts and produce timestamped feedback, summaries, bug reports, and QA artifacts before publishing or handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an OpenAI API key for local video analysis. <br>
-Mitigation: Provide credentials only in trusted environments and use the preflight action to confirm key availability before analysis. <br>
-Risk: Bootstrap and analysis clone and execute the external VideoLens CLI locally. <br>
-Mitigation: Review the upstream repository and use the default OCC data paths, especially when processing sensitive videos. <br>
-Risk: Analysis can spend model or API credits. <br>
-Mitigation: The wrapper refuses analysis unless allow_credit_spend is explicitly set to true. <br>
+## Use Case:
 
+Developers, creators, product teams, researchers, and operations users can use this skill to turn videos they are authorized to access into timestamped written reports for summaries, tutorials, meetings, bug review, UX review, privacy review, and creator QA.
 
-## Reference(s): <br>
-- [VideoLens.io](https://videolens.io) <br>
-- [VideoLens source repository](https://github.com/shadoprizm/videolens) <br>
-- [ClawHub release page](https://clawhub.ai/shadoprizm/videolens) <br>
-- [artifact/README.md](artifact/README.md) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured JSON, status metadata, and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analysis writes report.md and analysis.json under the OCC data directory for each run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill downloads and runs an external VideoLens runtime without sandbox or signature verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing that risk and use the pinned runtime and locked dependency flow described by the skill.
+
+Risk: Selected video-derived content and prompts may be sent to OpenAI with the user's API key during analysis.
+
+Mitigation: Use a dedicated low-budget OpenAI key and avoid sensitive videos unless that transmission is acceptable.
+
+Risk: Generated media artifacts and reports may remain in the managed VideoLens state directory.
+
+Mitigation: Remove the managed VideoLens state directory when cached media artifacts and reports should no longer be retained locally.
+
+## Reference(s):
+
+- [VideoLens homepage](https://videolens.io)
+- [ClawHub skill listing](https://clawhub.ai/shadoprizm/skills/videolens)
+- [shadoprizm publisher profile](https://clawhub.ai/user/shadoprizm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON status responses with local HTML, Markdown, and JSON report artifact paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis requires explicit credit-spend approval and supports bounded frame and capture settings.]
+
+## Skill Version(s):
+
+1.1.3 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

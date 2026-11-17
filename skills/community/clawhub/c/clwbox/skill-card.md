@@ -1,45 +1,60 @@
-## Description: <br>
-Use the ClawBox CLI to upload, download, organize, search, and share files on ClawBox (clawbox.ink) or a self-hosted ClawBox server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the ClawBox CLI to upload, download, organize, search, and share files on ClawBox or a self-hosted ClawBox server.
 
-## Publisher: <br>
-[bennyoooo](https://clawhub.ai/user/bennyoooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bennyoooo](https://clawhub.ai/user/bennyoooo)
 
-## Use Case: <br>
-Developers and agent users use this skill to manage cloud or self-hosted ClawBox files from the CLI, including uploads, downloads, folder organization, semantic search, sharing links, and token or quota checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide uploads to a third-party cloud file service where sensitive files may be stored or shared. <br>
-Mitigation: Avoid uploading sensitive files to clawbox.ink unless the user trusts the service; prefer self-hosting for private data. <br>
-Risk: ClawBox tokens grant access to stored files and can be exposed through copied logs or shared shell history. <br>
-Mitigation: Treat tokens as secrets and redact them from logs, transcripts, and shared command output. <br>
-Risk: Upload, share, and delete commands can mutate remote storage or expose files through share links. <br>
-Mitigation: Confirm uploads, shares, and deletions before running them, and prefer non-destructive inspection commands first. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage files through the ClawBox CLI, including upload, download, folder organization, semantic search, sharing links, token setup, and storage checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bennyoooo/clwbox) <br>
-- [ClawBox API Reference](references/api.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [ClawBox service](https://clawbox.ink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report file IDs, download paths, share links, status output, and token or quota state after CLI operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The setup flow can install CLI code from a local checkout or cloned repository before the user has reviewed the source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a pinned or reviewed source, preferably in an isolated environment.
+
+Risk: The skill handles external file uploads, downloads, semantic search, and share links through ClawBox or a self-hosted server.
+
+Mitigation: Avoid uploading sensitive files unless the server, token, quota, and sharing model are understood.
+
+Risk: Share links, drop codes, and bearer tokens can grant access to stored files.
+
+Mitigation: Treat tokens, share links, and drop codes as secrets and revoke sharing links when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bennyoooo/skills/clwbox)
+- [ClawBox API Reference](artifact/references/api.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+- [ClawBox Service](https://clawbox.ink)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file IDs, download paths, share links, status summaries, and configuration details returned by the ClawBox CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

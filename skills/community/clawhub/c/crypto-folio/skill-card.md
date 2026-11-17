@@ -1,45 +1,60 @@
-## Description: <br>
-Asset Management helps users record crypto holdings, trades, finance products, transfers, and account data through natural-language workflows and export CSV or Excel reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Asset Management helps agents record and manage crypto holdings, trades, yield products, transfers, accounts, and export portfolio reports.
 
-## Publisher: <br>
-[ChristinaFanxy](https://clawhub.ai/user/ChristinaFanxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christinafanxy](https://clawhub.ai/user/christinafanxy)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to maintain personal crypto portfolio records, review holdings and transactions, configure optional Cloudflare sync, open a local dashboard, and export reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto holdings and transaction history are sensitive financial records when stored locally or in Cloudflare KV. <br>
-Mitigation: Install only when that storage model is acceptable, protect the local data directory, and use a Cloudflare account and KV namespace you control. <br>
-Risk: Cloud sync credentials can be exposed if real tokens are committed, pasted into shared logs, or left in shell history. <br>
-Mitigation: Use a strong unique sync token, avoid storing real tokens in source files, and rotate the token if it may have been exposed. <br>
-Risk: The local dashboard API can expose portfolio data while it is running. <br>
-Mitigation: Run the dashboard only when needed, keep it bound to local use, and stop it after reviewing or editing portfolio data. <br>
-Risk: AI parsing may send prompts, uploaded files, and API keys to the selected AI provider. <br>
-Mitigation: Avoid entering unnecessary secrets or sensitive records into prompts and review provider data-handling terms before using AI-assisted parsing. <br>
+## Use Case:
 
+External users and agents use this skill to manage cryptocurrency portfolios through natural-language entries, local or optional Cloudflare-backed storage, visual review, and CSV-style exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ChristinaFanxy/crypto-folio) <br>
-- [Project homepage](https://github.com/ChristinaFanxy/CryptoFolio-Skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown and concise text with command examples and generated CSV or Excel files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSON portfolio data, cloud sync configuration, exported reports, and local dashboard responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill frontmatter, package.json) <br>
+Risk: The skill handles sensitive financial portfolio data in local files, browser storage, and optional Cloudflare KV.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data the user is comfortable storing in those locations and review the skill carefully before installing.
+
+Risk: The security summary flags unsafe local/cloud APIs and persistent browser-stored credentials.
+
+Mitigation: Avoid enabling cloud sync until the local API is authenticated and loopback-only, browser rendering is XSS-safe, and stored credentials are handled appropriately.
+
+Risk: The security guidance warns about hardcoded Worker tokens and third-party AI processing of financial context.
+
+Mitigation: Use Worker secrets instead of hardcoded tokens, rotate any token or AI key already used with this version, and warn before sending financial documents or portfolio context to third parties.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/christinafanxy/skills/crypto-folio)
+- [Project homepage](https://github.com/ChristinaFanxy/CryptoFolio-Skill)
+- [CryptoFolio README](artifact/readme.md)
+- [Cloudflare Worker deployment guide](artifact/cloudflare-worker/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Chinese conversational confirmations, shell commands, JSON state, and CSV report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores portfolio data in local files and browser storage, with optional Cloudflare KV synchronization.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, skill frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

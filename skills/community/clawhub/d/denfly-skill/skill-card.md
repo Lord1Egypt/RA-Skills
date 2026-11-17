@@ -1,43 +1,55 @@
-## Description: <br>
-Get current weather and forecasts with no API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get current weather and forecasts without an API key.
 
-## Publisher: <br>
-[denfly618](https://clawhub.ai/user/denfly618) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[denfly618](https://clawhub.ai/user/denfly618)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to fetch current weather summaries and forecasts with curl. It supports wttr.in for quick text or PNG output and Open-Meteo for JSON weather data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather queries may disclose requested locations to public weather services. <br>
-Mitigation: Use coarse locations instead of exact home or work coordinates when privacy matters. <br>
-Risk: The skill depends on public weather services for availability and forecast accuracy. <br>
-Mitigation: Verify weather information with an authoritative source before using it for safety-critical decisions. <br>
-Risk: The listing name differs from the artifact's weather skill name, which can make publisher review less obvious. <br>
-Mitigation: Confirm the ClawHub publisher and listing before installing when identity matters. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent produce quick weather lookup commands and guidance for current conditions, forecasts, units, and programmatic JSON weather queries.
 
-## Reference(s): <br>
-- [wttr.in Help](https://wttr.in/:help) <br>
-- [Open-Meteo Forecast API Documentation](https://open-meteo.com/en/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, JSON] <br>
-**Output Format:** [Markdown with bash code blocks and example weather service responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for command examples; weather services may return text summaries, JSON, or PNG images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: Weather lookups disclose the requested city, airport code, or coordinates to external weather services along with normal network metadata such as IP address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only locations appropriate to share with wttr.in or Open-Meteo, and avoid submitting sensitive coordinates or private place names.
+
+Risk: The skill relies on network calls to third-party weather APIs, so results depend on those services being reachable and accurate.
+
+Mitigation: Review API responses before acting on them and use the Open-Meteo fallback when wttr.in is unavailable or unsuitable.
+
+## Reference(s):
+
+- [wttr.in Help](https://wttr.in/:help)
+- [Open-Meteo Forecast API Documentation](https://open-meteo.com/en/docs)
+- [Open-Meteo Forecast API Example](https://api.open-meteo.com/v1/forecast?latitude=51.5&longitude=-0.12&current_weather=true)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and occasional JSON API output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl commands for wttr.in or Open-Meteo and may describe PNG or JSON weather outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

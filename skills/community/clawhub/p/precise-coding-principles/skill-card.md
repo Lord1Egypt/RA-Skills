@@ -1,42 +1,55 @@
-## Description: <br>
-编程原则技能，源于 Andrej Karpathy 的 LLM 编程四大通病与核心原则，帮助代理在非平凡编码任务中保持精确、最小化且目标驱动。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A coding-guidance skill based on Andrej Karpathy's four common LLM coding failure modes, helping agents keep non-trivial coding work precise, minimal, scoped, and validation-driven.
 
-## Publisher: <br>
-[nmww](https://clawhub.ai/user/nmww) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nmww](https://clawhub.ai/user/nmww)
 
-## Use Case: <br>
-Developers and coding agents use this skill when writing, reviewing, creating, or refactoring non-trivial code so they ask before making uncertain assumptions, avoid over-design, limit edits to the requested scope, and verify outcomes against explicit success criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can shift an agent toward more cautious, verification-heavy coding behavior during non-trivial tasks. <br>
-Mitigation: Review before deployment if that workflow guidance is not desired for the target coding environment. <br>
-Risk: Instruction-only guidance may still affect implementation choices even though it has no executable code. <br>
-Mitigation: Apply normal code review and validation to any changes produced while the skill is active. <br>
+## Use Case:
 
+Developers and coding agents use this skill when writing, reviewing, refactoring, or debugging non-trivial code so the work starts from explicit assumptions, avoids over-engineering, limits unrelated edits, and defines concrete verification criteria.
 
-## Reference(s): <br>
-- [Karpathy 编程原则](references/karpathy-principles.md) <br>
-- [Skill release page](https://clawhub.ai/nmww/precise-coding-principles) <br>
-- [andrej-karpathy-skills reference cited by artifact](https://github.com/forrestchang/andrej-karpathy-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and concise text recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; produces no executable code or files by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Guidance is mostly Chinese, which may reduce clarity for reviewers or agents configured for another working language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill text before deployment and keep user language preferences authoritative during use.
+
+Risk: Coding-guidance skills can make agents over-apply process to simple one-line changes.
+
+Mitigation: Apply the full workflow only to non-trivial coding, review, refactoring, or debugging tasks as stated in the artifact.
+
+## Reference(s):
+
+- [Karpathy Principles Reference](references/karpathy-principles.md)
+- [ClawHub Skill Page](https://clawhub.ai/nmww/skills/precise-coding-principles)
+- [Andrej Karpathy Skills Reference](https://github.com/forrestchang/andrej-karpathy-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Markdown guidance and concise natural-language recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No commands, persistence, credential use, or hidden data handling are described by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Scores TikTok Shop creator-product fit using audience match, content style, conversion evidence, and execution risk. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Scores TikTok Shop creator-product fit using audience match, content style, conversion evidence, and execution risk.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-CC BY-NC-SA 4.0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Marketing operators, affiliate managers, and ecommerce teams use this skill to rank TikTok Shop creators for a specific product, choose outreach priorities, and prepare brief starters while tracking evidence quality and execution risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Creator fit scores can be misleading if creator metrics, audience claims, or conversion evidence are incomplete or unverified. <br>
-Mitigation: Review creator metrics and conversion claims before acting, mark unknown values explicitly, and lower confidence when evidence is weak. <br>
-Risk: Commercial reuse may require separate licensing from the rights holder because the artifact states non-commercial CC BY-NC-SA 4.0 terms. <br>
-Mitigation: Confirm licensing terms before commercial deployment or derivative reuse. <br>
+## Use Case:
 
+Affiliate and UGC campaign operators use this skill to compare TikTok Shop creators before outreach, rank candidates into priority tiers, and prepare outreach angles with risk flags.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown decision brief with an executive summary, priority actions, evidence table, and 7-day execution plan.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied or researched creator evidence; unknown metrics should be marked explicitly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Creator performance or audience metrics may be private, unavailable, or unverifiable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep unavailable metrics marked as unknown, lower confidence for those signals, and avoid relying on the skill to verify private creator data.
+
+Risk: Guessed follower, conversion, or fit data could produce misleading outreach priorities.
+
+Mitigation: Use supplied product facts, target buyer details, creator links or metrics, and budget constraints; do not fabricate missing creator data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/tiktok-shop-creator-fit-scorer)
+- [Output Template](artifact/references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown decision report with an executive summary, priority actions, evidence table, and 7-day plan.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ranked priority tiers, fit evidence, outreach angles, and risk flags; unknown creator metrics should remain marked as unknown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

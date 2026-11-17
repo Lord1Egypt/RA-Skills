@@ -1,40 +1,59 @@
-## Description: <br>
-Controls Sensibo smart AC devices through Sensibo's REST API for power, temperature, mode, sensor, automation, and schedule tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Sensibo smart AC devices through the Sensibo REST API for power, temperature, mode, fan, sensor readings, schedules, timers, and Climate React automation.
 
-## Publisher: <br>
-[omere2](https://clawhub.ai/user/omere2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[omere2](https://clawhub.ai/user/omere2)
 
-## Use Case: <br>
-Developers and smart-home users use this skill to let an agent operate Sensibo-connected AC devices, inspect temperature and humidity, and manage schedules or climate automations from natural language requests. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensibo API keys grant access to smart-home AC controls. <br>
-Mitigation: Protect the API key, avoid committing or sharing TOOLS.md, and store only the minimum device mapping needed for use. <br>
-Risk: Agent actions can change AC power, temperatures, schedules, timers, or Climate React settings. <br>
-Mitigation: Require confirmation for bulk operations, schedule deletion, and ambiguous room or device commands before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Sensibo API key page](https://home.sensibo.com/me/api) <br>
-- [Published ClawHub skill page](https://clawhub.ai/omere2/sensibo) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent control Sensibo-connected AC devices, query room temperature and humidity, and manage device schedules or climate automations.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl command examples and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Sensibo API key and device IDs; generated commands can change device state, schedules, and automation settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to store a Sensibo API key in plaintext, and expanded curl commands could expose the key in logs or chat history.
+
+Mitigation: Store the API key in a protected secret store or environment variable, avoid logging commands with expanded credentials, and rotate the key if exposed.
+
+Risk: The skill can change real AC device state, schedules, timers, Climate React automation, and bulk device settings.
+
+Mitigation: Require explicit user confirmation before deleting schedules, changing automations, setting timers, or applying bulk changes; verify the room and device ID before execution.
+
+Risk: Incorrect target temperatures, modes, or device selections could affect comfort, energy use, or equipment behavior.
+
+Mitigation: Check the selected device, supported AC ranges, requested units, and API success response before treating a change as complete.
+
+## Reference(s):
+
+- [Sensibo API key page](https://home.sensibo.com/me/api)
+- [Sensibo API v2 base URL](https://home.sensibo.com/api/v2)
+- [ClawHub Sensibo skill page](https://clawhub.ai/omere2/skills/sensibo)
+- [Publisher profile](https://clawhub.ai/user/omere2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Sensibo API URLs, JSON request bodies, and confirmation-oriented guidance for real device actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

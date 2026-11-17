@@ -1,43 +1,62 @@
-## Description: <br>
-AI SkillHub helps an agent extract content from supported URLs, classify it, generate raw-content and skill markdown files, and publish the result to GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI SkillHub helps an agent extract content from supported URLs, classify the material, generate source-content and skill Markdown files, and publish the result to GitHub.
 
-## Publisher: <br>
-[eeyan2025-art](https://clawhub.ai/user/eeyan2025-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eeyan2025-art](https://clawhub.ai/user/eeyan2025-art)
 
-## Use Case: <br>
-Content curators and agent operators use this skill to turn a URL into a categorized knowledge skill by extracting source content, summarizing key facts, saving markdown files, and publishing them to a configured GitHub repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can extract and store full raw content from external sources, including potentially sensitive or copyrighted material. <br>
-Mitigation: Use it only on content the operator is permitted to process, and manually review generated files before publishing. <br>
-Risk: The workflow can use local GitHub credentials to publish generated files without a clearly documented approval step. <br>
-Mitigation: Use a dedicated private repository and least-privilege GitHub token, then inspect generated files and the git diff before allowing any push. <br>
-Risk: The artifact depends on local extraction and transcription scripts whose implementation is not included in the artifact. <br>
-Mitigation: Inspect and pin the referenced local scripts and tools before enabling automated use. <br>
+## Use Case:
 
+Developers and content curators use this skill to turn web, video, or pasted source material into structured skill documentation and repository-ready files.
 
-## Reference(s): <br>
-- [AI SkillHub ClawHub Page](https://clawhub.ai/eeyan2025-art/ai-skillhub) <br>
-- [eeyan2025-art ClawHub Publisher Profile](https://clawhub.ai/user/eeyan2025-art) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON prompt blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create raw content and skill markdown files and publish them to GitHub when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill may publish complete extracted or pasted source material to GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive source material and require explicit confirmation before publishing generated files.
+
+Risk: Local GitHub credentials may be used during automated repository publishing.
+
+Mitigation: Use a narrowly scoped GitHub token and avoid running the workflow with broad or personal credentials.
+
+Risk: Weak URL, keyword, command, and repository-path validation can lead to unsafe or unintended operations.
+
+Mitigation: Validate URLs, generated path components, shell arguments, and repository targets before executing commands.
+
+Risk: Shared temporary paths can expose or overwrite extracted content between runs.
+
+Mitigation: Use secure per-run temporary directories and remove generated working files after review or publishing.
+
+## Reference(s):
+
+- [AI SkillHub on ClawHub](https://clawhub.ai/eeyan2025-art/skills/ai-skillhub)
+- [Publisher profile: eeyan2025-art](https://clawhub.ai/user/eeyan2025-art)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce raw extracted content, generated SKILL.md content, classification metadata, and GitHub publishing commands.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

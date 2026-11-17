@@ -1,48 +1,56 @@
-## Description: <br>
-Create, manage, and scale AI-generated virtual influencers with consistent characters, multi-platform content, and monetization workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and scale AI-generated virtual influencers with consistent characters, multi-platform content, and monetization workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Creators, marketers, and agents use this skill to plan fictional AI influencer personas, generate social content workflows, manage platform-specific posting, and structure monetization with disclosure and compliance checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can support monetized synthetic influencer activity that may mislead audiences if the persona or media is not clearly disclosed as AI-generated. <br>
-Mitigation: Use the skill only for clearly fictional AI personas, keep AI-generated and sponsored-content disclosures visible, and require explicit human approval before publishing. <br>
-Risk: The artifact includes guidance for making AI media less detectable. <br>
-Mitigation: Do not follow detection-evasion advice; prioritize visible disclosure, platform labeling, and review for truthful presentation. <br>
-Risk: Voice, likeness, brand, contract, or payment workflows could create consent, intellectual-property, or commercial risk. <br>
-Mitigation: Use only fully generated, licensed, or explicitly consented voices and likenesses, keep persona/API materials private, and require human approval before contacting brands, signing contracts, or handling payments. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Influencer Skill Page](https://clawhub.ai/ivangdavila/influencer) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Legal & Compliance for AI Influencers](artifact/compliance.md) <br>
-- [Content Strategy for AI Influencers](artifact/content.md) <br>
-- [Image Generation for AI Influencers](artifact/image-gen.md) <br>
-- [Video Generation for AI Influencers](artifact/video-gen.md) <br>
-- [Voice & Audio for AI Influencers](artifact/voice.md) <br>
-- [Monetization for AI Influencers](artifact/monetization.md) <br>
+## Use Case:
 
+External creators, marketing teams, and agent operators use this skill to plan fictional AI influencer personas, generate multi-platform content ideas, maintain character consistency, and document monetization and disclosure workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists, templates, file structures, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to organize persona workspaces and generated media outside the skill package.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes detection-avoidance advice and workflows for synthetic influencer content.
+
+Mitigation: Use visible AI disclosures and sponsorship labels, and remove or ignore detection-avoidance guidance before deployment.
+
+Risk: The skill describes face swapping, likeness reuse, and voice cloning workflows that could be misused without consent.
+
+Mitigation: Use only fully fictional or properly licensed personas, document consent for any likeness or voice source, and avoid impersonating real people or public figures.
+
+Risk: Commercial influencer content can create legal, platform, and endorsement risks if claims or relationships are not disclosed.
+
+Mitigation: Require review of sponsored posts, product claims, asset licenses, platform policies, and jurisdiction-specific disclosure requirements before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/influencer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with templates, checklists, example prompts, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persona documents, content calendars, captions, media generation prompts, compliance checklists, and analytics tracking templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

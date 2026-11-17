@@ -1,0 +1,30 @@
+{
+  "composition": {"width": 1080, "height": 608, "fps": 30},
+  "scenes": [
+    {
+      "id": "chang-an-wide",
+      "durationInFrames": 450,
+      "background": "assets/plates/01-tang-wide-bg.png",
+      "caption": {"title": "盛唐长安，气象万千", "subtitle": "主角先立起，侍从与群臣次第入画"},
+      "layers": [
+        {"src": "assets/layers/emperor.png", "role": "primary", "x": 291, "y": 116, "width": 545, "delay": 16, "z": 5, "from": "bottom"},
+        {"src": "assets/layers/ceremony-1.png", "role": "secondary", "x": 112, "y": 264, "width": 245, "delay": 52, "z": 4, "from": "left"},
+        {"src": "assets/layers/ceremony-2.png", "role": "tertiary", "x": 796, "y": 294, "width": 177, "delay": 82, "z": 3, "from": "right"},
+        {"src": "assets/layers/ceremony-2.png", "role": "tertiary", "x": 901, "y": 341, "width": 140, "delay": 106, "z": 2, "from": "right"}
+      ]
+    },
+    {
+      "id": "tribute-close",
+      "durationInFrames": 450,
+      "background": "assets/plates/02-tang-close-bg.png",
+      "caption": {"title": "万邦来朝，礼献长安", "subtitle": "前后遮挡，让纸片人物真正有了层次"},
+      "layers": [
+        {"src": "assets/layers/ceremony-3.png", "role": "primary", "x": 374, "y": 104, "width": 385, "delay": 16, "z": 5, "from": "bottom"},
+        {"src": "assets/layers/ceremony-4.png", "role": "foreground", "x": 87, "y": 408, "width": 365, "delay": 56, "z": 6, "from": "left"},
+        {"src": "assets/layers/ceremony-4.png", "role": "secondary", "x": 714, "y": 419, "width": 290, "delay": 76, "z": 4, "from": "right"},
+        {"src": "assets/layers/ceremony-1.png", "role": "tertiary", "x": 176, "y": 196, "width": 162, "delay": 102, "z": 2, "from": "left"},
+        {"src": "assets/layers/ceremony-2.png", "role": "tertiary", "x": 785, "y": 226, "width": 152, "delay": 122, "z": 2, "from": "right"}
+      ]
+    }
+  ]
+}

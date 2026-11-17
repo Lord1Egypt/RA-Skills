@@ -1,6 +1,6 @@
-# Storybook 配置与示例
+# Storybook configuration and examples
 
-## 初始化
+## Initialization
 
 ```bash
 npx storybook@latest init
@@ -75,22 +75,22 @@ import * as InputStories from "./Input.stories";
 
 <Meta of={InputStories} />
 
-# Input 输入框
+#Input input box
 
-用于用户文本输入，支持校验提示、前后缀图标、字数统计等。
+Used for user text input, supporting verification prompts, suffix and suffix icons, word count, etc.
 
-### 何时使用
+### When to use
 
-- 单行文本输入
-- 需要实时校验反馈的表单字段
+- Single line text input
+- Form fields that require real-time verification feedback
 
 <Canvas of={InputStories.Default} />
 
-### 属性
+### Properties
 
 <Controls />
 
-### 源码
+### Source code
 
 <Source of={InputStories.Default} />
 ```
@@ -103,9 +103,9 @@ import { expect, userEvent, within } from "@storybook/test";
 export const FormSubmission: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.type(canvas.getByLabelText("用户名"), "admin");
-    await userEvent.click(canvas.getByRole("button", { name: /登录/ }));
-    await expect(canvas.findByText("登录成功")).resolves.toBeInTheDocument();
+await userEvent.type(canvas.getByLabelText("username"), "admin");
+    await userEvent.click(canvas.getByRole("button", { name: /login/ }));
+    await expect(canvas.findByText("Login successful")).resolves.toBeInTheDocument();
   },
 };
 ```

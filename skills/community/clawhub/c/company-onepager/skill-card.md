@@ -1,44 +1,60 @@
-## Description: <br>
-Generates a one-page public-company research brief with company basics, market data, ten-year financial tables, ten-year monthly price charts, shareholder structure, recent news, and source labels for each section. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a one-page listed-company research brief with basic company information, market data, 10-year financial tables, monthly price charts, shareholder structure, recent news, and source labels.
 
-## Publisher: <br>
-[laigen](https://clawhub.ai/user/laigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laigen](https://clawhub.ai/user/laigen)
 
-## Use Case: <br>
-External users and financial research workflows use this skill to assemble a concise stock or company brief from iFinD, Tushare, AkShare, and web-search-assisted source material. It is intended for generating Markdown and PDF one-pagers for company research, not for making investment decisions without review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles finance API credentials while one remote request disables TLS certificate verification. <br>
-Mitigation: Use isolated, revocable finance API tokens and remove or fix disabled TLS verification before sending iFinD credentials. <br>
-Risk: The skill imports code from another local skill path, which can execute unexpected local code. <br>
-Mitigation: Inspect or disable the hard-coded local brave-search import before installing or running the skill. <br>
-Risk: The skill can process confidential watchlists through web search and remote font requests. <br>
-Mitigation: Run in an environment where web search and remote font access are acceptable, or disable those features for confidential inputs. <br>
+## Use Case:
 
+External users and analysts use this skill to generate concise stock or listed-company research reports from financial data, market data, shareholder information, news, charts, and source annotations.
 
-## Reference(s): <br>
-- [Data Sources and Field Mapping](references/data_sources.md) <br>
-- [Tushare](https://tushare.pro) <br>
-- [Company Onepager on ClawHub](https://clawhub.ai/laigen/company-onepager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report, PDF file, chart image, JSON data file, and console summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a stock code input and finance data credentials for the higher-priority data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-7.1.0 (source: server release metadata) <br>
+Risk: The skill uses Tushare and iFinD credentials and contacts external financial and search services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only credentials approved for this workflow, limit credential scope where possible, and run the skill only in an environment where those services are allowed.
+
+Risk: The security scan flags disabled TLS verification, cross-skill Python import behavior, output path validation, and Markdown/PDF sanitization for review.
+
+Mitigation: Review or fix those items before using the skill with valuable credentials, sensitive research targets, or untrusted output paths.
+
+Risk: Generated financial research may rely on incomplete, stale, or unavailable third-party data.
+
+Mitigation: Check the report's data-source labels and verify important figures against authoritative market or company filings before making decisions.
+
+## Reference(s):
+
+- [Data Sources](references/data_sources.md)
+- [Tushare](https://tushare.pro)
+- [Company Onepager on ClawHub](https://clawhub.ai/laigen/skills/company-onepager)
+- [Publisher Profile](https://clawhub.ai/user/laigen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Generated report files and console output, including JSON data, PNG chart, Markdown report, HTML conversion, and PDF report paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a stock code input and writes outputs to the requested directory or an OpenClaw temp directory.]
+
+## Skill Version(s):
+
+7.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

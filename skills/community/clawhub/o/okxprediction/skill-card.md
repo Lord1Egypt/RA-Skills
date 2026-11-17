@@ -1,39 +1,55 @@
-## Description: <br>
-Predicts short-term BTC market direction using multi-timeframe market data, funding rates, sentiment, and liquidity signals to recommend execute, watch, or no-trade outcomes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts short-term BTC market direction for OKX contract trading using multi-timeframe structure, funding-rate, long-short-ratio, liquidity, and trigger analysis.
 
-## Publisher: <br>
-[maserati8](https://clawhub.ai/user/maserati8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maserati8](https://clawhub.ai/user/maserati8)
 
-## Use Case: <br>
-Developers, analysts, and trading operators use this skill as decision support for BTC short-term trend analysis on OKX-style futures workflows. It converts market structure, position, sentiment, liquidity, and trigger checks into a structured signal that still requires independent human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat BTC trading recommendations as permission to trade real money. <br>
-Mitigation: Treat execute signals as informational decision support, verify them independently, and require explicit human approval plus separate risk controls before any trade. <br>
+## Use Case:
 
+Developers and trading-focused agent users can use this skill as a Chinese-language template for BTC/OKX signal analysis. It structures market inputs into an execute, watch, or no-trade signal with score, direction, stop loss, target zone, and rationale.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/maserati8/okxprediction) <br>
-- [Logic reference](references/logic.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Structured JSON signal with explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes direction, score, signal, entry type, stop loss, target, and rationale when sufficient input data is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Trade signals may be incorrect or misunderstood as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat execute, watch, and no-trade signals as informational only and verify market data independently before acting.
+
+Risk: Automated trading based solely on this skill could cause financial loss.
+
+Mitigation: Do not allow an agent to place trades automatically from this skill alone; define position size, stop loss, and maximum loss controls separately.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maserati8/skills/okxprediction)
+- [SKILL.md](artifact/SKILL.md)
+- [logic.txt](artifact/references/logic.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Markdown with a structured JSON trade-signal example]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language market-analysis guidance; trade signals should be treated as informational and independently verified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

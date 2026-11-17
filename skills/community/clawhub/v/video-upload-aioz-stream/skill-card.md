@@ -1,42 +1,61 @@
-## Description: <br>
-Quick upload video to AIOZ Stream API. Create video objects with default or custom encoding configurations, upload the file, complete the upload, then return the video link to the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick upload video to AIOZ Stream API. Create video objects with default or custom encoding configurations, upload the file, complete the upload, then return the video link to the user.
 
-## Publisher: <br>
-[vinhbui3004](https://clawhub.ai/user/vinhbui3004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vinhbui3004](https://clawhub.ai/user/vinhbui3004)
 
-## Use Case: <br>
-Developers and operators use this skill to create AIOZ Stream video records, upload local video files, finalize transcoding, and retrieve streaming links. It also supports optional cost estimation, thumbnail upload, and custom encoding configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AIOZ/W3Stream API credentials may allow broader account actions than video upload. <br>
-Mitigation: Use least-privilege or temporary credentials when available, and review the requested action before sharing keys with the agent. <br>
-Risk: Secrets passed through shell commands can be exposed in terminal history, logs, or process listings. <br>
-Mitigation: Avoid placing public and secret keys directly in logged commands; provide them through a secure runtime path and keep command output private. <br>
-Risk: The artifact includes actions that can list, update, replace thumbnails for, or delete existing videos. <br>
-Mitigation: Require explicit user confirmation before running any account-wide, metadata-changing, thumbnail replacement, or deletion operation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/vinhbui3004/video-upload-aioz-stream) <br>
-- [AIOZ Stream API endpoint](https://api-w3stream.attoaioz.cyou) <br>
+## Use Case:
 
+Developers and operators use this skill to create AIOZ Stream video objects, upload local video files, finalize uploads, and retrieve streaming links. It also supports custom encoding settings, thumbnail upload, and transcoding cost checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, md5sum, AIOZ Stream API credentials, and access to the local video or thumbnail files being uploaded.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reusable AIOZ Stream credentials are required for API calls.
+
+Mitigation: Use least-privileged or short-lived upload keys where possible, and avoid passing secrets on the command line.
+
+Risk: The skill sends credentials and media files to a hard-coded service endpoint.
+
+Mitigation: Verify that `api-w3stream.attoaioz.cyou` is the intended endpoint for the account before installing or running the skill.
+
+Risk: The artifact includes account-changing video operations beyond the upload flow.
+
+Mitigation: Allow delete, update, thumbnail, or cost-related operations only when the user explicitly requests them.
+
+Risk: Local media paths identify files that may be uploaded to the service.
+
+Mitigation: Confirm the exact file path and intended visibility before upload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vinhbui3004/skills/video-upload-aioz-stream)
+- [AIOZ Stream API endpoint](https://api-w3stream.attoaioz.cyou)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and md5sum; API keys and local media paths are provided by the user.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

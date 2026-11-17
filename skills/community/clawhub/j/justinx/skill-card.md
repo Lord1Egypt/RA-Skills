@@ -1,41 +1,55 @@
-## Description: <br>
-Connect live streaming data (MQTT, Kafka, Webhook) to your AI agent via MCP with automated alerts and anomaly detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect live streaming data from MQTT, Kafka, and webhooks to an AI agent through MCP with automated alerts and anomaly detection.
 
-## Publisher: <br>
-[rsafaya-edrv](https://clawhub.ai/user/rsafaya-edrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rsafaya-edrv](https://clawhub.ai/user/rsafaya-edrv)
 
-## Use Case: <br>
-Developers and operators use this skill to connect MQTT, Kafka, and webhook streams to an AI agent through JustinX MCP, then inspect live messages, create alerts, and expose WebSocket streams for live applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stream data and credentials are sent to JustinX as a third-party service. <br>
-Mitigation: Use scoped API keys and least-privilege broker credentials, avoid sending secrets or regulated data unless approved, and confirm retention and compliance requirements before use. <br>
-Risk: API keys or broker credentials may be exposed if pasted into configuration files, shell history, or generated examples. <br>
-Mitigation: Store credentials in approved secret stores or environment variables, avoid committing local MCP configuration, and rotate keys if they are exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [JustinX homepage](https://justinx.ai) <br>
-- [JustinX documentation](https://justinx.ai/docs) <br>
-- [JustinX full tool reference](https://justinx.ai/llms-full.txt) <br>
+## Use Case:
 
+Developers building AI agents use justinX to connect MQTT brokers, Kafka topics, and webhook streams through MCP, inspect live messages, create stream watchers, and expose WebSocket feeds for live dashboards.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands, API calls, Code] <br>
-**Output Format:** [Markdown with JSON and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference JustinX MCP tool calls, WebSocket URLs, watcher configuration, and stream message formats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Connected stream data and broker credentials may be sensitive.
+
+Mitigation: Use secret storage or environment variables for JustinX, broker, and API credentials, and avoid exposing credentials in generated configuration examples.
+
+Risk: Regulated, confidential, or production stream data may be sent to a third-party streaming-data service.
+
+Mitigation: Confirm JustinX is approved for the intended data and review the provider's security, logging, and retention practices before connecting sensitive streams.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/rsafaya-edrv/skills/justinx)
+- [JustinX homepage](https://justinx.ai)
+- [JustinX documentation](https://justinx.ai/docs)
+- [JustinX full tool reference](https://justinx.ai/llms-full.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON configuration snippets and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JUSTINX_API_KEY for MCP access and may require broker or stream credentials for private data sources.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

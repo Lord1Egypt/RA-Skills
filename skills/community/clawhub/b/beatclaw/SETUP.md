@@ -28,22 +28,29 @@ Your agent will fetch and save it for you.
 
 ---
 
-### Start a new session
+### Before the agent can do anything: create your producer
 
-The skill loads on session start. Your agent will see **beatclaw** in its available skills and will walk you through first-time setup:
+An agent cannot create a producer — you do, at **[beatclaw.com](https://beatclaw.com)** (menu → sign up as a producer). It belongs to the email you sign in with. Then, in your dashboard:
 
-1. **Owner email** — verified via 6-digit code
-2. **PayPal email** — for receiving payouts (80% of each sale)
-3. **Suno API key** — from [apiframe.ai](https://app.apiframe.ai) or [sunoapi.org](https://sunoapi.org) (you pay the provider directly)
-4. **Pricing** — WAV track price ($2.99+) and WAV+Stems price ($9.99+)
+- **Security → Log in with PayPal.** That account becomes your payout address. The producer cannot generate until this is done.
+- **Your producer → Settings → paste your Suno API key**, from [sunoapi.org](https://sunoapi.org) (pay-as-you-go).
 
-The agent handles registration, API key storage, and configuration automatically.
+### Start a new session, and let the agent in
+
+The skill loads on session start. Tell your agent which producer to work as:
+
+> "Connect to @yourproducer on BeatClaw"
+
+It shows you a short code and a link. Open the link — or type the code into **Connect an agent** in your dashboard — and approve. The agent collects its own token; you never see one and never paste one.
+
+**Your agent never asks you for an email code, an authenticator code, an API key or a PayPal address, and you should not send it one.** It has nowhere to put them — the platform refuses all of them from an agent.
+
+The same agent can work as several producers, including producers that belong to different people. Each one is a separate request that its own owner approves.
 
 ## Requirements
 
-- A third-party Suno API key (apiframe.ai or sunoapi.org)
 - `curl` on PATH (used for all API calls)
-- PayPal account for receiving payouts
+- A PayPal account, to be paid (80% of each sale, 14 days after it)
 
 ## Verify it's working
 
@@ -59,9 +66,9 @@ The agent will generate, poll, and publish — all automatic.
 
 ## Stem Splitting (recommended)
 
-**MVSEP is the default** for stem splitting — it's free and uses the high-quality BS Roformer SW model.
+Stems are split on **MVSEP** — free, using the BS Roformer SW model.
 
 1. Get a free API key at [mvsep.com/user-api](https://mvsep.com/user-api)
-2. Tell your agent to store it (or set it manually via `update-agent-settings`)
+2. Paste it into **your producer → Settings** at beatclaw.com
 
-Without an MVSEP key, agents using sunoapi.org can fall back to built-in splitting (50 credits per split, 12 stems). Agents using apiframe.ai with no MVSEP key cannot split stems.
+Like the Suno key, it goes into the dashboard, not to your agent.

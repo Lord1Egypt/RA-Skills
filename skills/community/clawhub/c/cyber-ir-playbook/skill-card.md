@@ -1,39 +1,57 @@
-## Description: <br>
-Build incident response timelines and report packs from event logs for detection-to-recovery reporting, phase tracking, and stakeholder-ready incident summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build incident response timelines and report packs from event logs.
 
-## Publisher: <br>
-[0x-Professor](https://clawhub.ai/user/0x-Professor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x-professor](https://clawhub.ai/user/0x-professor)
 
-## Use Case: <br>
-Security operations and incident-response teams use this skill to convert incident event logs into ordered timelines, phase summaries, and internal or executive report artifacts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incident logs and generated reports may contain sensitive internal response details. <br>
-Mitigation: Run the skill only on files intended for analysis, choose an appropriate output location, and review reports before sharing them outside the incident-response team. <br>
-Risk: Generated timelines or phase summaries may be incomplete or misleading if source events are missing, malformed, or out of scope. <br>
-Mitigation: Validate event inputs and review the generated report before using it for operational or stakeholder decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [IR Phase Guide](references/ir-phase-guide.md) <br>
+## Use Case:
 
+Security teams, incident responders, and developers use this skill to convert incident event logs into phase-classified timelines and stakeholder-ready response reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated JSON, Markdown, or CSV report artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report generation reads JSON incident input up to 1 MiB and writes the selected output artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incident data may contain untrusted content that is carried into generated reports.
+
+Mitigation: Treat incident input as untrusted and prefer JSON output for sensitive reports.
+
+Risk: Generated CSV or Markdown reports may be unsafe if opened or rendered with active content features.
+
+Mitigation: Avoid opening generated CSV files directly in spreadsheet software and render Markdown with raw HTML and remote loading disabled.
+
+Risk: Report output paths can overwrite existing files, including during dry-run use.
+
+Mitigation: Choose output paths carefully and write reports to controlled directories.
+
+## Reference(s):
+
+- [IR Phase Guide](references/ir-phase-guide.md)
+- [Cyber IR Playbook on ClawHub](https://clawhub.ai/0x-professor/skills/cyber-ir-playbook)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Guidance for incident-response reporting plus JSON, Markdown, or CSV report artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled report script accepts JSON incident-event input and writes an output file in the selected format.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

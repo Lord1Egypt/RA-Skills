@@ -1,47 +1,63 @@
-## Description: <br>
-Guides agents to write, review, and audit idiomatic Go error handling, including wrapping, inspection, structured logging, panic boundaries, and production error context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to write, review, and audit idiomatic Go error handling, including error creation, wrapping, inspection, joining, panic/recover boundaries, and structured logging.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineering teams use this skill when creating, reviewing, or auditing Go code that returns, wraps, inspects, logs, or aggregates errors. It helps agents produce maintainable error paths, avoid duplicate logging, keep operational messages low-cardinality, and use Go error APIs consistently. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can direct an agent to edit repository files, run Go, golangci-lint, or git commands, and launch audit sub-agents. <br>
-Mitigation: Use it only in trusted workspaces, review proposed commands and diffs before accepting changes, and keep normal repository safeguards such as tests and code review in place. <br>
-Risk: Audit or review findings may be incomplete or overbroad when applied to large codebases or unfamiliar error-handling conventions. <br>
-Mitigation: Scope audits to relevant packages, verify findings against the code, and treat generated guidance as review input rather than an automatic policy decision. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to have an agent create, review, or audit Go code for robust error handling, structured logging, and production-safe propagation patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/golang-error-handling) <br>
-- [Project Homepage](https://github.com/samber/cc-skills-golang) <br>
-- [Error Creation](references/error-creation.md) <br>
-- [Error Wrapping and Inspection](references/error-wrapping.md) <br>
-- [Error Handling Patterns and Logging](references/error-handling.md) <br>
-- [samber/oops](https://github.com/samber/oops) <br>
-- [slog package](https://pkg.go.dev/log/slog) <br>
-- [samber/slog-http](https://github.com/samber/slog-http) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Analysis] <br>
-**Output Format:** [Markdown guidance with Go code snippets and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply code edits and run Go, golangci-lint, or git commands when the host agent permits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Agent-proposed Go edits or audit findings may introduce incorrect behavior if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed diffs, run relevant Go tests, and confirm error-handling changes match project conventions before merging.
+
+Risk: The skill can invoke Go, lint, and git commands during coding or audit workflows.
+
+Mitigation: Confirm command scope before execution and inspect command output before using it to change source code.
+
+Risk: Parallel sub-agent audits can surface noisy or overlapping findings across error creation, wrapping, logging, and panic/recover categories.
+
+Mitigation: Consolidate findings, deduplicate issues, and validate each recommendation against the local code path before remediation.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/samber/cc-skills-golang)
+- [Error Creation](references/error-creation.md)
+- [Error Handling Patterns and Logging](references/error-handling.md)
+- [Error Wrapping and Inspection](references/error-wrapping.md)
+- [samber/oops](https://github.com/samber/oops)
+- [log/slog package](https://pkg.go.dev/log/slog)
+- [samber/slog-http](https://github.com/samber/slog-http)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with Go code examples, audit findings, and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to Go files, run Go/lint/git command suggestions, and coordinate sub-agent audits; review outputs before applying.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

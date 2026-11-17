@@ -30,9 +30,12 @@ class XHSFetcher(BaseFetcher):
 
     def _extract_json_state(self, soup):
         """从 script 标签提取 __INITIAL_STATE__ JSON 数据"""
+        import html as _html
         for script in soup.find_all('script'):
             if script.string and 'window.__INITIAL_STATE__=' in script.string:
-                json_str = script.string.replace('window.__INITIAL_STATE__=', '').strip().rstrip(';')
+                # 使用 get_text() + unescape 防止 BS4 转义 HTML 实体破坏 JSON
+                raw = _html.unescape(script.get_text()).strip()
+                json_str = raw.replace('window.__INITIAL_STATE__=', '', 1).strip().rstrip(';')
                 try:
                     state = json.loads(json_str)
                     return self._traverse(state)

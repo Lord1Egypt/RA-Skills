@@ -1,39 +1,56 @@
-## Description: <br>
-Audits code for security issues including sensitive data exposure, dependency vulnerabilities, SQL injection, and hardcoded secrets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits code for sensitive data exposure, dependency vulnerabilities, SQL injection, hardcoded secrets, XSS and injection issues, authorization gaps, and unsafe logging or error disclosure.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to review code before deployment, during dependency changes, or when investigating sensitive data exposure, vulnerable dependencies, injection risks, authorization gaps, and unsafe logging.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad security-adjacent activation wording may lead to audits outside the user's intended scope.
+
+Mitigation: Define the audit scope, target files, dependency manifests, and expected output before applying the checklist.
+
+Risk: Optional pip install examples use unpinned scanner packages.
+
+Mitigation: Run scanner installs in an isolated virtual environment or with pipx, avoid root execution, and prefer pinned versions from trusted package sources.
+
+Risk: Checklist-style security reviews can miss project-specific vulnerabilities or produce incomplete remediation guidance.
+
+Mitigation: Use the report as review guidance alongside code review, dependency scanning, tests, and project-specific security requirements.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to perform security reviews before deployment, third-party adoption, or periodic code audits. It focuses the review on secrets, vulnerable dependencies, injection risks, authorization, and unsafe logging. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested local scans can surface secrets or sensitive findings in terminal output or audit notes. <br>
-Mitigation: Confirm the target directory before scanning and avoid sharing any secrets discovered during review. <br>
-Risk: Dependency scan commands may require installing or running local audit tools. <br>
-Mitigation: Review commands before execution and run them in an appropriate project environment with normal least-privilege safeguards. <br>
+**Output Format:** [Markdown security audit report with checklist items, code examples, and optional command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Severity-grouped findings with locations, remediation guidance, passing checks, and optional local scanner commands.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown security audit report with checklist items and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes severity sections, remediation guidance, and passed-check summaries.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

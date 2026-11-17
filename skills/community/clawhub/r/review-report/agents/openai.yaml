@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊评论分析报告 · 一键生成VOC"
+  short_description: "一条指令走完采集、分析、归档全流程"
+  default_prompt: "使用 $amazon-review-report 为一个 Amazon ASIN 一键生成 VOC 报告。"

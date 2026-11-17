@@ -1,42 +1,53 @@
-## Description: <br>
-Find fresh, viral Xiaohongshu videos by niche, apply search filters for type, date, and popularity, and extract full video URLs with valid tokens for downstream use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find fresh, viral Xiaohongshu videos by niche with filters for type, date, and popularity, and extract URLs with valid xsec_token for repurposing.
 
-## Publisher: <br>
-[travislius](https://clawhub.ai/user/travislius) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[travislius](https://clawhub.ai/user/travislius)
 
-## Use Case: <br>
-External users and automation operators use this skill to find recent Xiaohongshu video posts in a target niche, evaluate basic popularity and visual criteria, and copy usable video or share URLs for repurposing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a logged-in Xiaohongshu browser session, so search results may be blocked if the session expires. <br>
-Mitigation: Confirm the managed browser is logged in before use and re-scan the login QR code when search results are unavailable. <br>
-Risk: Copied Xiaohongshu URLs can contain tokenized xsec_token values that expire and may expose session-specific access context if shared publicly. <br>
-Mitigation: Use fresh URLs for downstream tools and avoid sharing tokenized links publicly. <br>
-Risk: Using the Xiaohongshu share button can replace the current clipboard contents. <br>
-Mitigation: Check clipboard contents after sharing and preserve any important clipboard data before clicking the share button. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travislius/xhs-video-finder) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
+## Use Case:
 
+Creators and social media workflow operators use this skill to find recent, popular Xiaohongshu video posts by niche and capture usable source URLs for downstream repurposing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with browser action commands and copied URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in Xiaohongshu browser session; copied URLs may include expiring xsec_token values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Xiaohongshu URLs and share links can include temporary tokens or sharing metadata.
+
+Mitigation: Paste copied URLs only into trusted tools and regenerate fresh links when tokens expire.
+
+Risk: The managed browser may retain a Xiaohongshu login session after the workflow is complete.
+
+Mitigation: Use a separate managed browser profile when session reuse is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travislius/skills/xhs-video-finder)
+- [Xiaohongshu](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, shell commands]
+
+**Output Format:** [Markdown with browser workflow commands, filters, troubleshooting notes, and URL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-facing browser workflow guidance; final URLs may contain temporary xsec_token or sharing metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

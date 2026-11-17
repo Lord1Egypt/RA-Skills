@@ -1,45 +1,61 @@
-## Description: <br>
-Helps agents find overnight and late-night flight departures by collecting route and date parameters, running the flyai CLI, and formatting real-time results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find overnight and late-night departure flights, compare options using live flyai CLI results, and return booking-linked travel summaries for late-evening and red-eye itineraries.
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to search for red-eye or late-night flights, compare options, and present booking-linked Markdown results in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install and run a global third-party CLI that sends travel search details to an external service. <br>
-Mitigation: Review and trust @fly-ai/flyai-cli before installation, run it in an approved environment, and only allow global or sudo installation when intentionally approved. <br>
-Risk: Raw travel queries may be retained locally in .flyai-execution-log.json when logging is enabled. <br>
-Mitigation: Avoid entering sensitive travel details and delete or disable the local execution log when query retention is not desired. <br>
-Risk: Flight prices and availability can become stale or unavailable if the CLI fails. <br>
-Mitigation: Require fresh flyai CLI results with booking links and report retrieval failures instead of substituting unsourced travel data. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search for overnight, after-midnight, and late-evening flights, compare day-versus-night pricing, and return booking-linked Markdown rather than unsourced travel advice.
 
-## Reference(s): <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Flight search playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Execution log runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown tables with booking links and occasional bash commands for flyai installation, search, or retry steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires fresh flyai CLI output for travel data and should not fabricate prices, schedules, or booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server evidence) <br>
+Risk: The skill asks agents to install and run an unpinned global flyai CLI and may escalate to sudo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment, avoid sudo and global npm installation, and pin and verify the CLI package before execution.
+
+Risk: The execution log can persist raw travel requests that may include sensitive itinerary details.
+
+Mitigation: Disable or remove the execution log when travel details are sensitive, and avoid storing personal travel data unnecessarily.
+
+Risk: Search and booking results route through the flyai/Fliggy flow rather than neutral flight-search sources.
+
+Mitigation: Tell users the source of results and cross-check important itinerary, price, and booking details before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/night-flights)
+- [Parameter and output templates](artifact/references/templates.md)
+- [Scenario playbooks](artifact/references/playbooks.md)
+- [Failure recovery guidance](artifact/references/fallbacks.md)
+- [Execution log schema](artifact/references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel-search summaries with comparison tables, booking links, and occasional inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live flyai CLI output, should include booking detail links, and should not emit raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

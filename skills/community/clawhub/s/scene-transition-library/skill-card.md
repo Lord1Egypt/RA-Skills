@@ -1,41 +1,54 @@
-## Description: <br>
-Scene Transition Library is a Chinese-language reference skill that helps AI short-drama and short-video creators write prompts for cinematic scene transitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scene Transition Library helps AI short-drama and short-video creators write concise Chinese prompts for transitions between storyboard shots.
 
-## Publisher: <br>
-[beermanzz](https://clawhub.ai/user/beermanzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beermanzz](https://clawhub.ai/user/beermanzz)
 
-## Use Case: <br>
-External creators and agent users use this skill as a prompt reference library for selecting and writing scene transitions in AI short-drama, short-video, and storyboard workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated transition prompts may be stylistically or narratively inaccurate if used without review. <br>
-Mitigation: Review generated prompts for style, accuracy, and fit before using them in production. <br>
-Risk: The main adoption consideration is content usefulness and publisher trust rather than direct security risk. <br>
-Mitigation: Review the skill contents and publisher profile before adopting it in production workflows. <br>
+## Use Case:
 
+External creators and developers use this skill to choose and phrase transitions such as dissolves, hard cuts, match cuts, fades, and wipes in AI short-drama or short-video storyboards.
 
-## Reference(s): <br>
-- [Transition Types](references/transition-types.md) <br>
-- [Transition Prompt Examples](references/transition-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and prompt templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language cinematic transition reference guidance; no code execution or external tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Complex or ambiguous transition descriptions may be interpreted inconsistently by AI video models.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's concise transition tokens, concrete visual anchors, and quality checklist before using generated prompts.
+
+Risk: The artifact is written for Chinese-language scene-transition prompting and may not satisfy multilingual workflows.
+
+Mitigation: Confirm language scope before deployment and request publisher clarification if multilingual output is required.
+
+## Reference(s):
+
+- [Transition Types](references/transition-types.md)
+- [Transition Prompt Examples](references/transition-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with prompt templates and transition notation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language prompt guidance for AI video scene transitions]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

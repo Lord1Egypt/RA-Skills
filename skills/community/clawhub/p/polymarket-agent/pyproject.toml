@@ -4,41 +4,50 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "polymarket-agent"
-version = "0.1.0"
-description = "AI-powered Polymarket trading agent for Clawdbot"
+version = "2.2.1"
+description = "Polymarket prediction-market research with risk guard-rails, for OpenClaw"
 readme = "README.md"
-requires-python = ">=3.9"
-license = {text = "MIT"}
-authors = [
-    {name = "Polymarket Agent", email = "agent@polymarket.local"}
-]
-keywords = ["polymarket", "trading", "ai", "clawdbot", "prediction-markets"]
+# 3.10+: the code uses `str | None` (PEP 604) and native `dict[str, ...]`.
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "andretuta" }]
+keywords = ["polymarket", "prediction-markets", "openclaw", "trading", "research"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Environment :: Console",
-    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial :: Investment",
 ]
 
+# Same floors as requirements.txt — see the CVE comments there.
 dependencies = [
-    "py-clob-client",
-    "requests",
-    "rich",
-    "typer",
-    "questionary",
-    "web3",
+    "requests>=2.33.0,<3",
+    "py-clob-client>=0.34.6,<0.35",
+    "eth-account>=0.13.7,<0.14",
+    "typer>=0.15.1,<0.28",
+    "rich>=13.9.4,<16",
 ]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0"]
 
 [project.scripts]
-poly = "cli:main"
+# BUG FIX: v1.0.2 pointed to `cli:main` with `py-modules = ["cli"]`, so
+# analyze.py/trade.py/configure.py were NOT packaged — `pip install .`
+# produced a `poly` that crashed on first import. Now it's a real package.
+poly = "polymarket_agent.cli:main"
 
 [project.urls]
-Homepage = "https://clawdhub.com/polymarket-agent"
-Repository = "https://github.com/clawdhub/polymarket-agent"
+Homepage = "https://clawhub.ai/andretuta/skills/polymarket-agent"
+Security = "https://clawhub.ai/andretuta/skills/polymarket-agent/security-audit"
 
-[tool.setuptools]
-py-modules = ["cli"]
+[tool.setuptools.packages.find]
+include = ["polymarket_agent*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

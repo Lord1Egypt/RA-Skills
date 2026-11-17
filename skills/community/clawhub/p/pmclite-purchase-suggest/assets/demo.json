@@ -1,0 +1,38 @@
+{
+  "notice": "示例数据 · 不是你的真实库存",
+  "skill": "采购缺口与下单建议",
+  "ask": "未来两周要开工的单，缺什么料、各买多少",
+  "horizon_days": 14,
+  "verdict": { "level": "amber", "label": "2 项料不够", "text": "一项要立刻补，一项在途赶不上需求日" },
+  "items": [
+    {
+      "code": "M001",
+      "name": "螺栓 M6",
+      "gap": 200,
+      "unit": "个",
+      "demand": 500,
+      "orders": 3,
+      "earliest": "11-18",
+      "stock": 300,
+      "inTransit": 0,
+      "inTransitLate": false,
+      "suggest": 200
+    },
+    {
+      "code": "M002",
+      "name": "垫片",
+      "gap": 50,
+      "unit": "个",
+      "demand": 400,
+      "orders": 2,
+      "earliest": "11-18",
+      "stock": 200,
+      "inTransit": 150,
+      "inTransitLate": true,
+      "inTransitEta": "11-25",
+      "suggest": 50
+    }
+  ],
+  "action": "M001 建议下单 200；M002 在途 150 预计 11-25 到，晚于 11-18 需求，需另补 50 或找现货",
+  "note": "口径：净缺口 = 毛需求 − 现存 − 在途未到量，只展开一层 BOM；不含供应商提前期与最小起订量。"
+}

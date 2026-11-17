@@ -1,40 +1,58 @@
-## Description: <br>
-Everything Claude Code (ECC) system integration for multi-agent, multi-language coding workflows with TDD, verification gates, security-first checks, and code review guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ECCSystem installs a bundled set of 23 ECC skills for agentic engineering, security review, deployment, Docker, Git workflow, search-first, safety, and related engineering workflows.
 
-## Publisher: <br>
-[18816478335q-pixel](https://clawhub.ai/user/18816478335q-pixel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18816478335q-pixel](https://clawhub.ai/user/18816478335q-pixel)
 
-## Use Case: <br>
-Developers and engineering teams use ECCSystem to guide software engineering sessions with test-first development, verification evidence, security checks, language-specific review, and coordinated agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is broad and opinionated, so it may influence most development sessions with strict TDD, verification, orchestration, hook, and observer expectations. <br>
-Mitigation: Review the workflow requirements before installation and enable it only where those coding-process constraints match the intended project practices. <br>
-Risk: The artifact references local tools, agents, hooks, and observer components that may not exist or may not be trusted in every environment. <br>
-Mitigation: Confirm referenced local tools and agents before use, and review any proposed shell commands or configuration changes before execution. <br>
+## Use Case:
 
+Developers and engineers use ECCSystem to bootstrap an OpenClaw or local agent-skills environment with 23 bundled ECC skills covering planning, security, deployment, Docker, Git workflow, research, prompt optimization, and safety practices.
 
-## Reference(s): <br>
-- [ClawHub ECCSystem skill page](https://clawhub.ai/18816478335q-pixel/eccsystem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline command and workflow examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only workflow guidance; no hidden execution, credential handling, persistence, or data exfiltration is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The installer persistently changes local agent skill directories and can overwrite same-named skills when force mode is used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled skill list, run with dry-run first, use an explicit test target when evaluating, and use force mode only when replacement is intended.
+
+Risk: Uninstall mode can remove whole same-named skill directories, including extra files the bundle may not own.
+
+Mitigation: Inspect or back up target skill directories before uninstalling and prefer manual removal when directories contain local changes.
+
+Risk: Bundled security-scan guidance can lead agents to run npm or npx tooling.
+
+Mitigation: Prefer pinned package versions and review generated commands before execution.
+
+## Reference(s):
+
+- [ECCSystem ClawHub skill page](https://clawhub.ai/18816478335q-pixel/skills/eccsystem)
+- [Publisher profile](https://clawhub.ai/user/18816478335q-pixel)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and Python installer actions that create local SKILL.md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; installer supports dry-run, custom target, force, backup/no-backup, and uninstall modes.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

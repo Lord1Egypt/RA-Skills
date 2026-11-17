@@ -1,41 +1,53 @@
-## Description: <br>
-Monthly Report Zh helps employees turn monthly work notes, project progress, metrics, issues, risks, and next-month plans into a structured professional Chinese monthly report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese monthly work reports from monthly work notes, emphasizing project progress, measurable highlights, issues, risks, and next-month plans.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Employees, project managers, and team leads use this skill to transform fragmented monthly work records, weekly updates, or status notes into polished Chinese monthly summaries for managers or team briefings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary reports that a bundled autoreview helper can give a nested reviewer full filesystem and command authority by default. <br>
-Mitigation: Review the helper before installation or execution, and use --no-yolo or AUTOREVIEW_YOLO=0 unless full local authority is intentional. <br>
-Risk: Moderation, PR publishing, Convex deploys, and auth setup can affect external services or production state when used with trusted credentials. <br>
-Mitigation: Confirm credentials, targets, reasons, and production impact before running those workflows. <br>
+## Use Case:
 
+Employees, project managers, and team leads use this skill to turn fragmented monthly work notes, weekly reports, and status records into polished Chinese monthly summaries suitable for manager or department briefings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/monthly-report-zh) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/olina1ye) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured Chinese monthly report sections such as work summary, highlights, issues and risks, and next-month plan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Monthly work notes may contain sensitive internal project, performance, or personnel details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the notes needed for the report and review the generated report before sharing it.
+
+Risk: The generated report may overstate progress, metrics, or impact when source notes are vague or incomplete.
+
+Mitigation: Verify numbers, claims, risks, and next-month commitments against source records before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/monthly-report-zh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated from user-provided monthly work notes; review claims, metrics, and sensitive details before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

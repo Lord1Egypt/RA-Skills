@@ -1,43 +1,53 @@
-## Description: <br>
-The universal computer skill - hardware diagnostics, system performance, computational tasks, binary operations, and everything about the physical machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The universal computer skill - hardware diagnostics, system performance, computational tasks, binary operations, and everything about the physical machine.
 
-## Publisher: <br>
-[openlang-cn](https://clawhub.ai/user/openlang-cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlang-cn](https://clawhub.ai/user/openlang-cn)
 
-## Use Case: <br>
-Developers and operators use this skill to guide computer hardware diagnostics, system health checks, performance monitoring, resource management, optimization, and machine-level troubleshooting across Linux, macOS, and Windows environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad system-administration guidance may lead an agent to propose high-impact changes such as privileged commands, process termination, service restarts, crontab edits, packet capture, remote commands, disk benchmarks, kernel or sysctl tuning, or external reports. <br>
-Mitigation: Require explicit user approval before executing those actions, and review the exact command, target host, affected device or service, and rollback plan. <br>
-Risk: Performance tuning, disk tests, and hardware diagnostics can disrupt workloads or alter system behavior. <br>
-Mitigation: Prefer read-only diagnostics first, avoid production targets for benchmarks and tuning, and confirm backups or maintenance windows before changing kernel, storage, scheduler, or power settings. <br>
-Risk: Packet capture, remote commands, and email or Slack reporting can expose sensitive host, network, or operational data. <br>
-Mitigation: Limit collection scope, redact secrets and identifiers where practical, and confirm destinations before sending reports or running remote diagnostics. <br>
+## Use Case:
 
+Developers, operators, and power users use this skill as a system-administration reference for hardware diagnostics, performance monitoring, optimization, troubleshooting, and binary or mathematical command examples.
 
-## Reference(s): <br>
-- [Computer on ClawHub](https://clawhub.ai/openlang-cn/computer) <br>
-- [openlang-cn publisher profile](https://clawhub.ai/user/openlang-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown skill instructions with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose privileged, destructive, remote, or telemetry-sending system administration commands that require human approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Suggested commands can change system settings, disrupt services, capture traffic, schedule reports, or run commands on remote hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every command before execution, confirm the target host or device, obtain explicit consent, and use backups or rollback steps for system changes.
+
+Risk: Optimization, benchmark, packet-capture, remote, crontab, and sudo examples may affect availability or expose captured data.
+
+Mitigation: Run these examples only as manual expert operations with clear scope, least necessary privileges, and awareness of what data may be captured or transmitted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlang-cn/skills/computer)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [System-administration examples require review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

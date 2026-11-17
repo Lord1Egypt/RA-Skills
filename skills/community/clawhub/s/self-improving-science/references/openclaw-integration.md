@@ -45,14 +45,10 @@ cp -r self-improving-science ~/.openclaw/skills/
 Copy the hook to OpenClaw's hooks directory:
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-science
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-science
 ```
 
-Enable the hook:
-
-```bash
-openclaw hooks enable self-improving-science
-```
 
 ### 3. Create Learning Files
 
@@ -77,9 +73,9 @@ Purpose: Experiment orchestration and ML pipeline patterns.
 - Use experiment tracking (MLflow, W&B) for all runs
 
 ## Delegation Rules
-- Use explore agent for dataset investigation
-- Spawn sub-agents for hyperparameter sweeps
-- Use sessions_send for sharing experiment results across sessions
+- Do not spawn sub-agents or read other sessions from this skill
+- Log a redacted note in this workspace only
+- Do not send cross-session messages
 ```
 
 ### SOUL.md (Science-Oriented)
@@ -94,18 +90,9 @@ Purpose: Research rigor and communication guidelines.
 - Distinguish correlation from causation
 - Acknowledge limitations explicitly
 
-## Communication Style
-- Use precise statistical language
-- Cite methodology choices with references
-- Flag uncertainty honestly
-```
+## Scope
 
-### TOOLS.md (Science-Oriented)
-
-Purpose: ML framework gotchas and data tool capabilities.
-
-```markdown
-# Tool Knowledge
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## PyTorch
 - DataLoader workers leak memory on macOS — use num_workers=0 for debugging
@@ -163,39 +150,9 @@ Is the learning project-specific?
 - Performance degrades when minority class ratio < 5% — use class weights or SMOTE
 ```
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session communication. Use only when cross-session sharing is explicitly needed.
-
-### sessions_list
-
-View active and recent sessions:
-```
-sessions_list(activeMinutes=30, messageLimit=3)
-```
-
-### sessions_history
-
-Read transcript from another session:
-```
-sessions_history(sessionKey="session-id", limit=50)
-```
-
-### sessions_send
-
-Send experiment result to another session:
-```
-sessions_send(sessionKey="session-id", message="Learning: Model requires temporal split, random split leaks")
-```
-
-Prefer sending concise findings with metric summaries rather than raw data or full notebooks.
-
-### sessions_spawn
-
-Spawn a background sub-agent:
-```
-sessions_spawn(task="Run hyperparameter sweep on config_v2.yaml", label="hp-sweep")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## Available Hook Events
 

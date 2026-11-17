@@ -1,43 +1,56 @@
-## Description: <br>
-Download a small corpus of open-access arXiv survey and review PDFs about LLM agents, then extract text for style learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download a small corpus of open-access arXiv survey or review PDFs about LLM agents and extract text for style learning.
 
-## Publisher: <br>
-[WILLOSCAR](https://clawhub.ai/user/WILLOSCAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willoscar](https://clawhub.ai/user/willoscar)
 
-## Use Case: <br>
-Developers and researchers use this skill to build a local reference corpus of arXiv agent survey papers and inspect extracted text, section structure, and style patterns for survey-writing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes broad research-writing pipeline files and workflow tooling beyond the advertised arXiv corpus downloader. <br>
-Mitigation: Review before installing, keep it sandboxed in sensitive repositories, and invoke artifact/scripts/run.py directly for the advertised ref/agent-surveys workflow. <br>
-Risk: The skill downloads remote PDFs and writes local PDF, text, JSONL, and Markdown files into the selected workspace. <br>
-Mitigation: Review the arXiv ID input list, run in a dedicated workspace, and keep generated ref/agent-surveys PDF and text directories out of git. <br>
+## Use Case:
 
+Developers and researchers use this skill to create a local reference corpus of arXiv agent-survey PDFs and extracted text for studying survey structure, section sizing, comparison style, and evidence-backed writing patterns.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/WILLOSCAR/agent-survey-corpus) <br>
-- [arXiv abstract pages](https://arxiv.org/abs/) <br>
-- [arXiv PDF downloads](https://arxiv.org/pdf/) <br>
-- [arXiv API query endpoint](https://export.arxiv.org/api/query?id_list={arxiv_id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions plus generated PDFs, text extracts, JSONL index records, and a Markdown style report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and network access; downloads only arXiv PDFs and writes outputs under ref/agent-surveys by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 0.1.0) <br>
+Risk: Server security evidence reports path handling weaknesses that can exceed the stated ref/ boundary when broader bundled tooling or untrusted inputs are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, run only in an isolated workspace, and use trusted arXiv identifier files until path containment and arXiv ID validation are fixed.
+
+Risk: The package bundles broader research-pipeline tooling in addition to the advertised arXiv PDF helper, and that tooling can create or modify many project files.
+
+Mitigation: Limit normal use to the documented survey-corpus workflow and inspect planned file changes before running bundled pipeline machinery.
+
+## Reference(s):
+
+- [Agent Survey Corpus on ClawHub](https://clawhub.ai/willoscar/skills/agent-survey-corpus)
+- [Publisher Profile](https://clawhub.ai/user/willoscar)
+- [arXiv PDF endpoint](https://arxiv.org/pdf/)
+- [arXiv API endpoint](https://export.arxiv.org/api/query?id_list={arxiv_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated local PDFs, text extracts, JSONL index records, and a Markdown style report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and network access to arXiv; PDF text extraction depends on readable PDF text and the configured page limit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; bundled SKILL.md frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

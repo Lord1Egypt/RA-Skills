@@ -1,42 +1,56 @@
-## Description: <br>
-Guides FAQ page content, structure, and optimization for SEO, conversion, and rich-result visibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides creation, optimization, and auditing of FAQ page content, structure, schema, and SEO/rich-result targeting.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External marketers, SEO practitioners, and content teams use this skill to plan FAQ pages or in-page FAQ sections that answer real user questions, reduce objections, and support search visibility.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: FAQ and schema guidance may be applied broadly when a request uses FAQ-related wording.
+
+Mitigation: Confirm the user intended FAQ-page work before applying recommendations to unrelated content.
+
+Risk: Generated FAQ answers, SEO claims, or schema markup could be inaccurate or mismatched with visible page content.
+
+Mitigation: Review factual claims, visible Q&A content, and FAQPage schema parity before publishing.
+
+Risk: The skill may consult local project context files when present.
+
+Mitigation: Use only appropriate project context for the task and avoid exposing confidential details in generated FAQ content.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content teams, SEO practitioners, and developers use this skill to create, optimize, or audit FAQ pages and in-page FAQ sections. It helps structure question lists, answers, FAQPage schema, and SEO metadata from real user questions and search-intent signals. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SEO claims or schema recommendations may be incorrect, outdated, or unsuitable for a specific site or region. <br>
-Mitigation: Review FAQ copy, structured data, and metadata before publishing, and validate schema with appropriate rich-result or Schema.org tooling. <br>
-Risk: Broad trigger wording may cause the skill to be invoked for generic help-page or Q&A requests. <br>
-Mitigation: Narrow trigger wording or confirm the user's intent when the request is ambiguous. <br>
-Risk: FAQPage schema can misrepresent the page if it does not match visible Q&A content. <br>
-Mitigation: Ensure generated JSON-LD exactly matches visible FAQ questions and answers before deployment. <br>
+**Output Format:** [Markdown with FAQ question lists, category structures, answer guidance, FAQPage schema examples, and SEO metadata recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/faq-page-generator) <br>
+**Other Properties Related to Output:** [May include visible FAQ content, JSON-LD schema guidance, validation recommendations, and page-specific SEO metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with optional JSON-LD schema snippets and SEO metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; no code execution, credentials, persistence, or system access.] <br>
+1.2.0 (source: server release metadata and skill metadata)
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

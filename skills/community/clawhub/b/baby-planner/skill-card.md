@@ -1,47 +1,53 @@
-## Description: <br>
-Provides Chinese-language support for preconception planning, pregnancy tracking, birth preparation, baby naming, parenting knowledge, pregnancy records, and social content templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language planning support for preconception, pregnancy management, birth preparation, baby naming, early parenting references, pregnancy logs, and social-content templates.
 
-## Publisher: <br>
-[xbmchina](https://clawhub.ai/user/xbmchina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbmchina](https://clawhub.ai/user/xbmchina)
 
-## Use Case: <br>
-Expecting parents, caregivers, and content creators use this skill to generate planning guidance, checklists, pregnancy-stage summaries, naming ideas, infant-care references, and public-account or social-post templates. Health-related outputs should be treated as planning support and checked with qualified clinicians before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pregnancy, medical, and infant-care guidance may be incomplete or unsuitable for an individual case. <br>
-Mitigation: Review health-related recommendations with a qualified clinician before relying on them. <br>
-Risk: Some reference files are placeholders or differ from the paths listed in the skill overview. <br>
-Mitigation: Verify the relevant artifact files and script outputs before using generated checklists, timelines, or templates. <br>
-Risk: Local helper scripts use simplified date, checklist, and naming logic. <br>
-Mitigation: Treat script output as planning guidance and confirm important dates, hospital requirements, and naming decisions with authoritative sources. <br>
+## Use Case:
 
+Chinese-speaking expecting parents, caregivers, and content creators use this skill to plan pregnancy milestones, generate birth-prep checklists, explore baby names, reference early-childhood care topics, and draft public-account or social posts.
 
-## Reference(s): <br>
-- [Baby Planner on ClawHub](https://clawhub.ai/xbmchina/baby-planner) <br>
-- [Publisher Profile](https://clawhub.ai/user/xbmchina) <br>
-- [Pregnancy Stages Reference](artifact/references/pregnancy_stages.md) <br>
-- [Baby Milestones Reference](artifact/references/baby_milestones.md) <br>
-- [Feeding Guide Reference](artifact/references/feeding_guide.md) <br>
-- [Public Account Templates](artifact/assets/gongzhonghao_templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional Python helper script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language templates, checklists, schedules, naming suggestions, and parenting references; local scripts print console output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Pregnancy, infant-feeding, allergy, prematurity, growth, or urgent-symptom guidance may be mistaken for personalized medical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as general planning information and confirm care decisions, symptoms, and feeding concerns with a qualified clinician.
+
+## Reference(s):
+
+- [孕期各阶段详解参考](artifact/references/pregnancy_stages.md)
+- [分月龄育儿里程碑参考](artifact/references/baby_milestones.md)
+- [辅食添加完整指南](artifact/references/feeding_guide.md)
+- [公众号内容模板库](artifact/assets/gongzhonghao_templates.md)
+- [ClawHub skill page](https://clawhub.ai/xbmchina/skills/baby-planner)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Chinese-language Markdown guidance and console-style text from local helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include date calculations, checklists, name suggestions, and reusable content templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

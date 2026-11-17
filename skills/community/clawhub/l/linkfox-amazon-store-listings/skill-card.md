@@ -1,49 +1,71 @@
-## Description: <br>
-Helps agents manage Amazon store listings through LinkFox-mediated SP-API calls for Listings Items, Listings Restrictions, and Product Type Definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+亚马逊卖家 Listing 刊登与商品类型定义管理，用于查询、搜索、创建、更新、局部修改和删除卖家 Listing，检查 ASIN 刊登限制，并查询 product type 及其 JSON Schema 属性要求。
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, operators, and developers use this skill to inspect, search, update, create, delete, and validate Amazon listing data and product type requirements through authorized store access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete live Amazon store listings. <br>
-Mitigation: Require exact seller ID, SKU, marketplace, and explicit human approval before running PATCH, PUT, or DELETE operations. <br>
-Risk: The skill requires sensitive Amazon seller credentials and listing data access. <br>
-Mitigation: Install and run it only where LinkFox is trusted with those credentials and data. <br>
+## Use Case:
 
+External Amazon sellers and their agents use this skill to manage seller-owned Listings through LinkFox and Amazon SP-API workflows. It supports Listing lookup, search, patch, put, delete, restrictions checks, and product type schema discovery.
 
-## Reference(s): <br>
-- [Amazon Store Listings API Reference](references/api.md) <br>
-- [getListingsItem](https://developer-docs.amazon.com/sp-api/reference/getlistingsitem) <br>
-- [searchListingsItems](https://developer-docs.amazon.com/sp-api/reference/searchlistingsitems) <br>
-- [patchListingsItem](https://developer-docs.amazon.com/sp-api/reference/patchlistingsitem) <br>
-- [putListingsItem](https://developer-docs.amazon.com/sp-api/reference/putlistingsitem) <br>
-- [deleteListingsItem](https://developer-docs.amazon.com/sp-api/reference/deletelistingsitem) <br>
-- [getListingsRestrictions](https://developer-docs.amazon.com/sp-api/reference/getlistingsrestrictions) <br>
-- [searchDefinitionsProductTypes](https://developer-docs.amazon.com/sp-api/reference/searchdefinitionsproducttypes) <br>
-- [getDefinitionsProductType](https://developer-docs.amazon.com/sp-api/reference/getdefinitionsproducttype) <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-amazon-store-listings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request or response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LinkFox API credentials and an authorized Amazon seller account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: frontmatter and release evidence) <br>
+Risk: The skill can read and modify Amazon seller listings, including create, update, patch, and delete actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before patch, put, or delete operations, and verify sellerId, region, SKU, marketplaceIds, productType, and request body before execution.
+
+Risk: The skill can assist with LinkFox account login, API-key generation, billing, and payment/order flows.
+
+Mitigation: Run only in a trusted environment, keep API keys out of shared logs, and require explicit user approval before login, API-key, payment, or order steps.
+
+Risk: Saved LinkFox response files may contain sensitive seller or listing data.
+
+Mitigation: Review generated linkfox response files before sharing or committing them and apply local data handling controls for seller information.
+
+Risk: Custom LinkFox endpoint environment variables can redirect requests to a different destination.
+
+Mitigation: Do not set custom LinkFox endpoint variables unless the destination is controlled and trusted.
+
+## Reference(s):
+
+- [Amazon 店铺 Listings API 参考](artifact/references/api.md)
+- [解决认证和算力问题](artifact/references/onboarding.md)
+- [getListingsItem](https://developer-docs.amazon.com/sp-api/reference/getlistingsitem)
+- [searchListingsItems](https://developer-docs.amazon.com/sp-api/reference/searchlistingsitems)
+- [patchListingsItem](https://developer-docs.amazon.com/sp-api/reference/patchlistingsitem)
+- [putListingsItem](https://developer-docs.amazon.com/sp-api/reference/putlistingsitem)
+- [deleteListingsItem](https://developer-docs.amazon.com/sp-api/reference/deletelistingsitem)
+- [getListingsRestrictions](https://developer-docs.amazon.com/sp-api/reference/getlistingsrestrictions)
+- [searchDefinitionsProductTypes](https://developer-docs.amazon.com/sp-api/reference/searchdefinitionsproducttypes)
+- [getDefinitionsProductType](https://developer-docs.amazon.com/sp-api/reference/getdefinitionsproducttype)
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-amazon-store-listings)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses; scripts save full JSON response files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include Amazon seller Listing data and LinkFox account or billing guidance.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

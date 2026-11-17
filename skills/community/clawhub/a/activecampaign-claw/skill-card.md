@@ -1,48 +1,64 @@
-## Description: <br>
-ActiveCampaign agent for marketers + sales: list health, lead scoring, deliverability, campaign postmortems, automation diagnostics, and 40+ more reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ActiveCampaign agent for marketers and sales teams: list health, lead scoring, deliverability, campaign postmortems, automation diagnostics, and 40+ more reports.
 
-## Publisher: <br>
-[ji282h7](https://clawhub.ai/user/ji282h7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ji282h7](https://clawhub.ai/user/ji282h7)
 
-## Use Case: <br>
-External marketing, sales, and operations users use this skill to analyze ActiveCampaign account health, campaign performance, automation behavior, contact quality, deliverability, and CRM pipeline activity from their own account data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The ActiveCampaign API token may be able to modify important CRM or marketing records. <br>
-Mitigation: Use a dedicated least-privileged ActiveCampaign integration user and set AC_READ_ONLY=1 when only reporting or analysis is needed. <br>
-Risk: Some raw API examples or commands can bypass the skill's advertised write safeguards. <br>
-Mitigation: Avoid running raw curl write examples, review every write request before execution, and prefer the audited script paths that enforce confirmations and write caps. <br>
-Risk: Tokens and exported customer data can be exposed through command history, local files, or shared reports. <br>
-Mitigation: Do not pass tokens directly on the command line, store local exports securely, prune reports when no longer needed, and limit access to the local user account. <br>
+## Use Case:
 
+Marketing and sales operators use this skill to analyze ActiveCampaign account health, campaign performance, automation hygiene, segmentation, and pipeline activity from live account data. It also produces campaign and automation specifications that users implement in the ActiveCampaign UI.
 
-## Reference(s): <br>
-- [ActiveCampaign Skill Page](https://clawhub.ai/ji282h7/activecampaign-claw) <br>
-- [ActiveCampaign v3 API Reference](https://developers.activecampaign.com/reference) <br>
-- [Contacts API Reference](references/contacts.md) <br>
-- [Deals API Reference](references/deals.md) <br>
-- [Custom Fields API Reference](references/custom-fields.md) <br>
-- [Email Best Practices Framework](frameworks/email-best-practices.md) <br>
-- [Segmentation Theory Framework](frameworks/segmentation-theory.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, plain-English guidance, JSON or local files from supporting scripts, and shell commands for setup or analysis workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read live ActiveCampaign account data through the user's API token and may write local reports, exports, snapshots, history, and audit logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.4 (source: frontmatter, pyproject.toml, server release metadata) <br>
+Risk: Some instructions can bypass built-in write safeguards or use direct write examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged ActiveCampaign integration user, set AC_READ_ONLY=1 for analysis-only work, and prefer named scripts or the Python client for changes.
+
+Risk: The webhook audit can probe configured webhook URLs, including internal or sensitive URLs if they are present in the account.
+
+Mitigation: Run webhook_audit.py with --skip-probe unless the configured webhook URLs have been reviewed and outbound probes are acceptable.
+
+Risk: Snapshots, contact exports, suppression exports, and local state can contain customer data.
+
+Mitigation: Treat local outputs as customer data, store them securely, and delete them when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ji282h7/skills/activecampaign-claw)
+- [ActiveCampaign v3 API reference](https://developers.activecampaign.com/reference)
+- [Contacts reference](references/contacts.md)
+- [Deals reference](references/deals.md)
+- [Custom fields reference](references/custom-fields.md)
+- [Installation guide](INSTALL.md)
+- [Security policy](SECURITY.md)
+- [Scaling notes](SCALING.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown reports, JSON exports, local files, and shell command or configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some scripts write local Markdown or JSON outputs; write actions are guarded by confirmation and can be disabled with AC_READ_ONLY=1.]
+
+## Skill Version(s):
+
+1.9.4 (source: frontmatter and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

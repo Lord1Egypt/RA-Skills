@@ -1,44 +1,58 @@
-## Description: <br>
-Teaches an agent how to serve content to the OpenPot iOS client, including cards, apps, page captures, calendar, voice, chat persistence, and onboarding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teaches this agent how to serve content to the OpenPot iOS client: cards, apps, page captures, calendar, voice, chat persistence, and onboarding.
 
-## Publisher: <br>
-[almnotai](https://clawhub.ai/user/almnotai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[almnotai](https://clawhub.ai/user/almnotai)
 
-## Use Case: <br>
-Developers and agents use this skill to integrate with the OpenPot iOS control center and decide when to respond in chat, create Pulse cards, build persistent web apps, handle page captures, use calendar context, configure voice, and set up chat persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve calendar credentials, backend chat storage, device pairing, optional SSH terminal access, and third-party voice or weather services. <br>
-Mitigation: Install only when broad OpenPot integration is needed, review all tokens and calendar credentials before enabling, and use least-privilege accounts for connected services. <br>
-Risk: Chat persistence may retain user conversations on a backend service. <br>
-Mitigation: Decide retention and deletion behavior before enabling chat persistence, and document where chat history is stored. <br>
-Risk: Voice and weather lookups may share data with external providers. <br>
-Mitigation: Treat ElevenLabs and weather requests as external data sharing even when the local guide language suggests local-only behavior. <br>
+## Use Case:
 
+External users and developers use this skill to teach an agent how to integrate with OpenPot iOS surfaces, including chat, Pulse cards, calendar, apps, terminal, voice, page captures, chat persistence, and onboarding.
 
-## Reference(s): <br>
-- [OpenPot homepage](https://openpot.app) <br>
-- [OpenPot Awareness ClawHub release](https://clawhub.ai/almnotai/openpot-awareness) <br>
-- [Server-resolved publisher profile](https://clawhub.ai/user/almnotai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples, inline shell commands, HTML app files, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Pulse card payloads, calendar blocks, OpenPot status JSON updates, and self-contained HTML apps when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: The skill can guide an agent through device approval and SSH access setup, which may grant deep access to the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is expected, manually verify each device pairing, avoid approving the first pending request by name alone, and review SSH keys after setup.
+
+Risk: Chat, calendar, and page-capture data may be retained by the environment configured for OpenPot.
+
+Mitigation: Review retention expectations before enabling persistence and limit access to stored conversation, schedule, and capture data.
+
+Risk: The bundled Weather and Billable Hours apps are reported by security evidence as having unsafe HTML rendering.
+
+Mitigation: Patch or avoid those bundled apps until their unsafe rendering is fixed.
+
+## Reference(s):
+
+- [OpenPot homepage](https://openpot.app)
+- [ClawHub skill page](https://clawhub.ai/almnotai/skills/openpot-awareness)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, HTML, SQL, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Pulse card JSON, calendar blocks, setup instructions, self-contained HTML apps, and configuration guidance for OpenPot integrations.]
+
+## Skill Version(s):
+
+6.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-A Chinese-language travel tax-refund guide that helps travelers look up refund policies, estimate refund amounts, and understand airport, shop, and customs steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+出境购物退税全流程指引，帮旅行者了解各国退税政策、计算退税金额、掌握退税流程和避坑注意事项。暑假旅行退税攻略，机场退税流程指南
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External travelers use this skill to get practical tax-refund guidance for international shopping, including destination-specific policy summaries, estimated refund calculations, and process tips. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tax-refund rules, thresholds, rates, and airport procedures may change after the static policy data was authored. <br>
-Mitigation: Verify current rules with official customs, airport, or tax-refund program sources before purchases or departure procedures. <br>
-Risk: Refund estimates can differ from the final amount because commercial refund processors, payment methods, and currency conversion can affect payouts. <br>
-Mitigation: Present estimates as approximate and remind users to check processor fees and refund method terms before relying on the amount. <br>
+## Use Case:
 
+Chinese-speaking travelers use this skill to look up destination tax refund policies, estimate VAT refund amounts, and get step-by-step refund process guidance before or during outbound shopping trips.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands] <br>
-**Output Format:** [Markdown or natural-language guidance derived from local JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses static local policy data and does not require API keys, network access, or credential setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Embedded tax refund policies and rates may become outdated or vary by item, airport, refund provider, or local rule changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current rules, minimum spend thresholds, and refund amounts with official customs sources or refund providers before relying on the guidance.
+
+Risk: The artifact metadata declares PROXY_TOKEN even though the inspected code does not use it.
+
+Mitigation: Clean up unused environment metadata before deployment to avoid unnecessary configuration expectations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/travel-tax-refund)
+- [Publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose with JSON-backed travel tax refund policy, calculation, and tips results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local embedded policy data; no external network calls or user data collection indicated by security evidence.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

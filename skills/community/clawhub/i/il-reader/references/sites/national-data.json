@@ -1,0 +1,756 @@
+{
+  "version": "2.4.0",
+  "source_id": "national-data",
+  "status": "query_verified",
+  "checked_at": "2026-10-09T09:00:33.766Z",
+  "entry": {
+    "url": "https://data.stats.gov.cn/",
+    "final_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+    "title": "国家数据",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:33.766Z",
+    "identity": {
+      "declared_name": "国家数据（国家统计局）",
+      "hostname": "data.stats.gov.cn",
+      "domain_matches": true
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": null,
+      "text": "×",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "×",
+        "exact": true
+      },
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "如：2012年 北京 GDP",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "如：2012年 北京 GDP",
+      "name": null,
+      "id": "",
+      "css": "input[placeholder=\"如：2012年 北京 GDP\"]",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"如：2012年 北京 GDP\"]"
+      },
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "搜索",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "前一年",
+      "label": "",
+      "aria_label": "前一年",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "前一年",
+        "exact": true
+      },
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "上个月",
+      "label": "",
+      "aria_label": "上个月",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "上个月",
+        "exact": true
+      },
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "2026 年",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "span",
+      "type": null,
+      "text": "10月",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "button",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "下个月",
+      "label": "",
+      "aria_label": "下个月",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "下个月",
+        "exact": true
+      },
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "后一年",
+      "label": "",
+      "aria_label": "后一年",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "后一年",
+        "exact": true
+      },
+      "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "observed_at": "2026-10-09T09:00:33.219Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "national-data:statistics-ranking",
+      "source_id": "national-data",
+      "task_kind": "statistics-ranking",
+      "status": "query_verified",
+      "parameters": [
+        "indicator",
+        "region",
+        "time",
+        "unit",
+        "data_series"
+      ],
+      "instructions": [
+        "把本题条件逐一填入已观察字段或该库自己的专业语法；清除上题筛选；核对结果回显、资源类型、年份、匹配方式、排序及统计口径。"
+      ],
+      "transitions": {
+        "results": {
+          "mode": "same-page",
+          "container": {
+            "css": "#search_table"
+          },
+          "ready": {
+            "css": "div.header-list-length"
+          },
+          "match": {
+            "css": "#search_table",
+            "match": "contains"
+          }
+        }
+      },
+      "entry_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "×",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "×",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "如：2012年 北京 GDP",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "如：2012年 北京 GDP",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"如：2012年 北京 GDP\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"如：2012年 北京 GDP\"]"
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "前一年",
+          "label": "",
+          "aria_label": "前一年",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "前一年",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "上个月",
+          "label": "",
+          "aria_label": "上个月",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "上个月",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "下个月",
+          "label": "",
+          "aria_label": "下个月",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "下个月",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "后一年",
+          "label": "",
+          "aria_label": "后一年",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "后一年",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        }
+      ],
+      "pending": [
+        "本题参数、资源类型、年份与匹配方式仍需按题核查；未验证的筛选控件变化时重新观察"
+      ],
+      "query_input": {
+        "css": "input[placeholder=\"如：2012年 北京 GDP\"]"
+      },
+      "submit": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "query_template": "<本题时间> <本题地区> <本题指标>",
+      "condition_check": "在当前结果表同一行逐一核对指标、地区、数据时间、单位；该系统可能拆词返回其他指标，首条或总数不可直接作为答案",
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "表格#search_table已经确认；独立数据行的DOM定位器需按本题首次观察确认，不能把全表回显混合为同一行"
+      },
+      "record_identity": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "指标",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "地区",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "数据时间",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "数值",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "单位",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "所属栏目",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "observed",
+        "ready": {
+          "css": "#search_table"
+        },
+        "empty": null,
+        "loading": null,
+        "rule": "本题指标、地区、年份必须在同一数据行核对；相关结果总数及拆词搜索的其他指标不能代替目标记录",
+        "snapshot": "validation/site-audit-v24/national-data-query-results.json"
+      }
+    },
+    {
+      "id": "national-data:record-lookup",
+      "source_id": "national-data",
+      "task_kind": "record-lookup",
+      "status": "query_verified",
+      "parameters": [
+        "indicator",
+        "region",
+        "time",
+        "unit",
+        "data_series"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {
+        "results": {
+          "mode": "same-page",
+          "container": {
+            "css": "#search_table"
+          },
+          "ready": {
+            "css": "div.header-list-length"
+          },
+          "match": {
+            "css": "#search_table",
+            "match": "contains"
+          }
+        }
+      },
+      "entry_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+      "controls": [
+        {
+          "tag": "button",
+          "type": null,
+          "text": "×",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "×",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "如：2012年 北京 GDP",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "如：2012年 北京 GDP",
+          "name": null,
+          "id": "",
+          "css": "input[placeholder=\"如：2012年 北京 GDP\"]",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"如：2012年 北京 GDP\"]"
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "搜索",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "搜索",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "前一年",
+          "label": "",
+          "aria_label": "前一年",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "前一年",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "上个月",
+          "label": "",
+          "aria_label": "上个月",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "上个月",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "下个月",
+          "label": "",
+          "aria_label": "下个月",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "下个月",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "后一年",
+          "label": "",
+          "aria_label": "后一年",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "后一年",
+            "exact": true
+          },
+          "observed_url": "https://data.stats.gov.cn/dg/website/page.html#/pc/national/home",
+          "observed_at": "2026-10-09T09:00:33.219Z"
+        }
+      ],
+      "pending": [
+        "本题参数、资源类型、年份与匹配方式仍需按题核查；未验证的筛选控件变化时重新观察"
+      ],
+      "query_input": {
+        "css": "input[placeholder=\"如：2012年 北京 GDP\"]"
+      },
+      "submit": {
+        "role": "button",
+        "name": "搜索",
+        "exact": true
+      },
+      "query_template": "<本题时间> <本题地区> <本题指标>",
+      "condition_check": "在当前结果表同一行逐一核对指标、地区、数据时间、单位；该系统可能拆词返回其他指标，首条或总数不可直接作为答案",
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "表格#search_table已经确认；独立数据行的DOM定位器需按本题首次观察确认，不能把全表回显混合为同一行"
+      },
+      "record_identity": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "指标",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "地区",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "数据时间",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "数值",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "单位",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "所属栏目",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "observed",
+        "ready": {
+          "css": "#search_table"
+        },
+        "empty": null,
+        "loading": null,
+        "rule": "本题指标、地区、年份必须在同一数据行核对；相关结果总数及拆词搜索的其他指标不能代替目标记录",
+        "snapshot": "validation/site-audit-v24/national-data-query-results.json"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "national-data",
+    "quiz_entries": [
+      "quiz-entry-027"
+    ],
+    "example_ids": [
+      "2025-M09-Q1",
+      "2026-M09-Q1",
+      "PT1-Q14",
+      "KH-Q064"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:33.766Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/national-data-query-before.json",
+      "original_entry_snapshot": "validation/site-audit-v24/national-data-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。",
+      "query_snapshot": "validation/site-audit-v24/national-data-query-results.json"
+    }
+  },
+  "query_validation": {
+    "checked_at": "2026-10-09T09:25:20.808Z",
+    "scope": "仅确认检索提交、真实结果容器与页面打开方式；本题条件、排序、筛选和答案必须重新核验",
+    "snapshot": "validation/site-audit-v24/national-data-query-results.json"
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "表格#search_table已经确认；独立数据行的DOM定位器需按本题首次观察确认，不能把全表回显混合为同一行"
+  },
+  "record_identity": {
+    "status": "partial",
+    "fields": [
+      {
+        "name": "指标",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "地区",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "数据时间",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "数值",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "单位",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "所属栏目",
+        "locator": null,
+        "status": "text_observed"
+      }
+    ]
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "observed",
+    "ready": {
+      "css": "#search_table"
+    },
+    "empty": null,
+    "loading": null,
+    "rule": "本题指标、地区、年份必须在同一数据行核对；相关结果总数及拆词搜索的其他指标不能代替目标记录",
+    "snapshot": "validation/site-audit-v24/national-data-query-results.json"
+  }
+}

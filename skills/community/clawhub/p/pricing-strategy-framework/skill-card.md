@@ -1,41 +1,53 @@
-## Description: <br>
-Provides structured pricing strategy frameworks, templates, and actionable recommendations based on cost, value, and competitive analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured frameworks for pricing decisions based on cost, value, and competitive analysis.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Developers and external users use this skill to produce structured pricing analyses, templates, and next-step checklists for B2B SaaS, ecommerce, and marketplace pricing decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing advice may be mistaken for financial, tax, compliance, budgeting, or professional advice. <br>
-Mitigation: Treat outputs as informational and consult qualified professionals for high-impact pricing, tax, compliance, or financial decisions. <br>
-Risk: The trigger wording is broader than the skill's pricing focus. <br>
-Mitigation: Use the skill for pricing and monetization guidance; route broader financial planning requests to a dedicated professional or specialized skill. <br>
+## Use Case:
 
+Business operators, founders, product teams, and marketplace sellers use this skill to analyze pricing choices, plan price changes, design pricing experiments, and generate practical pricing templates. It is informational guidance only, not financial, tax, or legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/pricing-strategy-framework) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured JSON and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Descriptive, non-executable pricing recommendations; no API calls, persistence, credential handling, or transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat pricing recommendations as financial, tax, or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational pricing frameworks and direct users to consult qualified professionals for decisions with legal, tax, or financial consequences.
+
+Risk: Broad financial prompts could produce guidance outside pricing-specific use cases.
+
+Mitigation: Keep use focused on pricing strategy, pricing experiments, price changes, and marketplace pricing decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/pricing-strategy-framework)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Structured Markdown or JSON containing analysis, recommendations, templates, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Descriptive output only; no external API calls, network access, account access, transactions, or code execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

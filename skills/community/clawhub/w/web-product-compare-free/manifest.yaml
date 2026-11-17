@@ -1,0 +1,32 @@
+name: web-product-compare-free
+display_name: 浏览器商品对比助手
+slug: web-product-compare-free
+version: 1.0.3
+category: 电商运营 / 商品研究
+author: Skill Factory
+description: 免费免第三方 API Key，复用已登录浏览器对比 2–5 个商品页的可见价格、规格、售后和适用场景，生成带来源与日期的 Markdown 报告。
+trigger_words:
+  - 商品对比
+  - 对比商品价格规格
+  - 电商选品对比
+  - 浏览器商品报告
+tags:
+  - product-comparison
+  - ecommerce
+  - browser-automation
+  - easy-webbridge
+  - markdown-report
+  - easybr
+license: MIT-0
+repository: https://github.com/xxjrq/web-product-compare-free
+icon: icon-512.png
+self_test: node scripts/self-test.mjs
+interface:
+  display_name: 浏览器商品对比助手
+  short_description: 免费复用登录浏览器对比商品页并生成可复制带来源报告
+  icon_small: ./icon-512.png
+  icon_large: ./icon-512.png
+  brand_color: '#D85B4A'
+  default_prompt: 使用 $web-product-compare-free 在指定 browserId 中只读对比 2 到 5 个商品页面，输出带来源和日期的 Markdown 报告；不要购买或调用第三方 API。
+policy:
+  allow_implicit_invocation: true

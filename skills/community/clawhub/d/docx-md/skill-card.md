@@ -1,44 +1,63 @@
-## Description: <br>
-Converts DOCX files into compact Markdown or JSON for review, applies structured edit JSON back to DOCX with tracked revisions and comments, and finalizes documents by accepting revisions and removing comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+docx-md helps agents read DOCX files as compact Markdown or JSON, apply structured edit JSON back into DOCX tracked revisions and comments, and finalize DOCX files by accepting revisions and removing comments.
 
-## Publisher: <br>
-[yanweiliang323868-del](https://clawhub.ai/user/yanweiliang323868-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GPL-3.0 <br>
+## Publisher:
 
+[yanweiliang323868-del](https://clawhub.ai/user/yanweiliang323868-del)
 
-## Use Case: <br>
-Developers and document-review agents use this skill to extract DOCX content into token-efficient Markdown or structured JSON, produce targeted edit JSON, write those edits back with Word tracked changes and comments, and create a clean final DOCX after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0-or-later
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts read DOCX contents and write derived files, so an incorrect path or output choice can expose or overwrite sensitive document data. <br>
-Mitigation: Run the workflow on document copies, choose explicit output paths, and review generated DOCX files before replacing originals. <br>
-Risk: The finalize step removes tracked changes and comments from the output. <br>
-Mitigation: Finalize only after human approval and retain the reviewed DOCX with tracked revisions/comments as an audit copy. <br>
-Risk: Runtime dependencies are version ranges rather than exact pins. <br>
-Mitigation: Pin and review Python dependency versions in sensitive or regulated environments. <br>
+## Use Case:
 
+Developers and document-review agents use this skill to convert DOCX content into model-friendly Markdown or JSON, apply reviewed edit JSON back to Word documents with tracked changes and comments, and produce final DOCX files after review approval.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yanweiliang323868-del/docx-md) <br>
-- [LLM-oriented DOCX pipeline](references/llm-pipeline.md) <br>
-- [OOXML reference for DOCX](references/ooxml.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON edit structures; supporting scripts produce Markdown, JSON, and DOCX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read output uses blockIndex markers for edit targeting; finalize output removes tracked changes and comments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and LICENSE.txt) <br>
+Risk: DOCX files may contain sensitive contract or business content that could be exposed if sent to an unapproved external LLM.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved model providers for confidential data and keep document processing in an approved environment.
+
+Risk: Applying generated edits can introduce incorrect changes into a Word document.
+
+Mitigation: Run the scripts on document copies and review tracked revisions and comments before accepting changes.
+
+Risk: Finalization removes tracked revisions and comments from the output file.
+
+Mitigation: Run finalization only after explicit review approval and retain the reviewed source copy.
+
+Risk: Unpinned Python dependencies can change behavior across installations.
+
+Mitigation: Install in an isolated Python environment and pin dependency versions where possible.
+
+## Reference(s):
+
+- [LLM-Oriented DOCX Pipeline](references/llm-pipeline.md)
+- [OOXML Reference for DOCX](references/ooxml.md)
+- [ClawHub skill page](https://clawhub.ai/yanweiliang323868-del/skills/docx-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or JSON for document reads, JSON edit instructions for modifications, and DOCX output files for reviewed or finalized documents.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill works on local DOCX copies; finalization removes tracked revisions and comments from the output file.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence, LICENSE.txt)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

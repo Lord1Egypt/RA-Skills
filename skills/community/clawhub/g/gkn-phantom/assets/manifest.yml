@@ -1,0 +1,113 @@
+name: gkn-phantom
+display_name: GKN-Phantom
+version: 5.0.0
+category: security
+runtime: openclaw-agent
+requires_auth: true
+safe_mode_default: true
+description: >-
+  Automated, authorized penetration testing and security validation for
+  staging/dev/internal/lab environments. v5.0.0 adds interactive browser agent
+  (Playwright), HTML/PDF visualization reports, YAML rule configuration with
+  hot-reload, professional PoC generator, and pytest test suite, upgrading to
+  30 modules from 19. Retains v4.0.0: 7 specialized recon/testing modules (passive
+  recon, directory fuzzer, advanced SQLi, SSL analyzer, tech fingerprinting, nuclei
+  integration, WAF evasion),
+  (passive reconnaissance, directory fuzzer, advanced SQL injection engine,
+  SSL/TLS analyzer, technology fingerprinting, nuclei integration, advanced
+  WAF evasion), upgrading total module count to 30 from 19, with a comprehensive
+  optional tool integration layer (nuclei, subfinder, amass, ffuf, httpx, katana,
+  naabu auto-detection with graceful pure-Python fallbacks). Retains all v3.0
+  capabilities: 38 vulnerability types, 25+ WAF fingerprints, 20+ attack chain
+  patterns, 5 v3 specialized modules (JS analysis, CVE correlation, advanced
+  injection, API auditing, cloud security). v2.2 deterministic heuristic decision
+  engine, execution trace + replayable execution. v2.1 execution state recovery,
+  machine-readable tool contracts. v2 pre-flight safety simulation, adaptive
+  probing engine, multi-factor confidence scoring. Implements scope-guarded,
+  rate-limited recon, severity-tiered vulnerability detection, evidence-based
+  validation, attack path analysis, and SARIF-like report generation.
+tools:
+  - httpRequest
+  - runShell
+  - browser
+  - logger
+input_schema_ref: references/data_schemas.md#inputschema
+output_schema_ref: references/data_schemas.md#outputschema
+safety_policy_ref: references/safety_policy.md
+script_contracts_ref: references/script_contracts.md
+state_machine:
+  - INIT
+  - SCOPE_CHECK
+  - PRE_FLIGHT          # v2: dry-run + risk score + scope narrowing
+  - PASSIVE_RECON       # v4 NEW: crt.sh/DNS/WHOIS/OSINT (zero-touch)
+  - ACTIVE_RECON        # v4 NEW: nmap + directory fuzzing + tech fingerprint + SSL analysis
+  - AUTH_SETUP
+  - ACTIVE_TESTING      # v4: 12 specialized modules (JS/CVE/API/Cloud/SQLi/WAF/Nuclei/etc.)
+  - VALIDATION          # v2: confidence scoring applied
+  - ATTACK_PATH_ANALYSIS
+  - REPORT_GENERATION
+  - DONE
+risk_levels:
+  L1: passive recon
+  L2: safe probing
+  L3: authenticated testing
+  L4: destructive / privilege / write (requires human approval; blocked in safe_mode)
+rate_limit:
+  default_rps: 3
+  burst: 5
+  max_queue: 100
+evidence_required_fields:
+  - request
+  - response
+  - timestamp
+  - tool
+  - reproducible
+confidence_scoring:           # v2 NEW
+  method: weighted_v2
+  threshold: 0.80
+  weights:
+    evidence_strength: 0.30
+    reproducibility_score: 0.30
+    signal_clarity: 0.25
+    corroboration: 0.15
+adaptive_engine:              # v2 NEW
+  max_retries: 3
+  backoff_base_ms: 500
+  backoff_max_ms: 8000
+  waf_detection: true
+  payload_mutation: true
+  alternative_signals: true
+pre_flight:                   # v2 NEW
+  dry_run: true
+  target_risk_scoring: true
+  automatic_scope_narrowing: true
+decision_engine:              # v2.2 REFACTORED (heuristic, optional plugin)
+  optional: true               # core pipeline works without it
+  continue_yield_threshold: 0.05
+  upgrade_score_threshold: 2.5
+  expand_chain_threshold: 0.5
+  heuristic_confidence: true
+  scoring:
+    upgrade_pii: 3.0
+    upgrade_cross_user: 2.5
+    upgrade_corroboration: 2.0
+    upgrade_reproducibility: 1.5
+    chain_component_exposure: 0.7
+    chain_weak_credential: 0.6
+    chain_same_host: 0.5
+    chain_high_severity: 0.3
+execution_trace:               # v2.2 NEW
+  enabled: true
+  record_all_decisions: true
+  replayable: true
+  determinism_verification: true
+state_recovery:               # v2.1 NEW
+  max_checkpoint_retries: 3
+  retry_backoff_ms: [500, 1000, 2000]
+  partial_resume_states: [ACTIVE_TESTING, VALIDATION]
+  rollback_safe_states: [INIT, SCOPE_CHECK, PRE_FLIGHT, RECONNAISSANCE]
+formal_algorithms_ref: references/formal_algorithms.md  # v2.2: documentation only
+tool_contracts_ref: references/tool_contracts.json
+disclaimer: >-
+  For authorized security testing, internal audits, and staging/dev/lab
+  verification ONLY. Unauthorized use is prohibited.

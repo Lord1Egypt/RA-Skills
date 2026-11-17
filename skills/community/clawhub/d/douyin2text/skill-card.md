@@ -1,42 +1,63 @@
-## Description: <br>
-自动提取抖音分享文案中的视频链接，转录视频语音并结构化总结核心内容。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts Douyin video links from shared text, downloads the video, transcribes its audio with SiliconFlow, and summarizes the core content.
 
-## Publisher: <br>
-[kongym1234](https://clawhub.ai/user/kongym1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongym1234](https://clawhub.ai/user/kongym1234)
 
-## Use Case: <br>
-用户将包含抖音短链接的分享文案交给 Agent，用于快速获取视频标题、语音转录文本和结构化内容摘要。需要完整内容时，Agent 可输出原始转录文本而不做总结。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Douyin video or audio is downloaded locally and uploaded to SiliconFlow for transcription. <br>
-Mitigation: Use the skill only for videos where local download and third-party transcription are acceptable, and avoid private, confidential, or sensitive content. <br>
-Risk: The skill requires a sensitive SF_API_KEY credential. <br>
-Mitigation: Store the API key in the configured environment file or environment variable, and do not place the key directly in prompts or shell commands. <br>
-Risk: Temporary video files may remain if execution is interrupted before cleanup completes. <br>
-Mitigation: Check and clear the temp_douyin directory after failures or interrupted runs. <br>
+## Use Case:
 
+External users and agents use this skill to turn messy Douyin share text into a clean video transcript and a concise structured summary. It is useful when a user wants the key points, highlights, or full transcript of a Douyin video.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kongym1234/douyin2text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown summary or plain transcript text, with shell commands used to run the extraction script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SF_API_KEY, network access, and temporary local video download before transcription.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Untrusted Douyin share text may be passed through shell execution paths if it is not handled carefully.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review command construction before installation and pass user text as data, not executable shell syntax.
+
+Risk: The skill downloads media and sends it to SiliconFlow for transcription, which may transfer user-provided or third-party video content to an external service.
+
+Mitigation: Disclose the external transcription provider and obtain appropriate user consent before processing sensitive media.
+
+Risk: The current release accepts a broader URL scope than the stated Douyin use case.
+
+Mitigation: Restrict accepted URLs to expected Douyin hosts before deployment.
+
+Risk: Sourcing a local .env file as executable shell code can run unintended commands if that file is modified.
+
+Mitigation: Load required environment variables with a non-executing parser or otherwise ensure the environment file is trusted and controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongym1234/skills/douyin2text)
+- [Publisher profile](https://clawhub.ai/user/kongym1234)
+- [SiliconFlow audio transcription endpoint](https://api.siliconflow.cn/v1/audio/transcriptions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown summary or plain transcript text with command-line execution guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a video title, raw transcript, key points, highlights, and the extracted source URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

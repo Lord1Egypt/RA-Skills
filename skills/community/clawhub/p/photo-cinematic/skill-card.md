@@ -1,42 +1,57 @@
-## Description: <br>
-Professional photo processing and cinematic color grading powered by Pillow and NumPy for editing, retouching, dehazing, color grading, saturation, exposure, light effects, vignette, and film grain workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Photo Cinematic Editor helps agents process photos with Pillow and NumPy, including cinematic color grading, dehazing, exposure and color adjustments, light effects, vignette, film grain, and HEIC/JPEG/PNG handling.
 
-## Publisher: <br>
-[akira362680164](https://clawhub.ai/user/akira362680164) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akira362680164](https://clawhub.ai/user/akira362680164)
 
-## Use Case: <br>
-Developers and image-editing agents use this skill to process local photos with cinematic color grading, dehazing, levels, vibrance, light texture, sharpening, blur, vignette, glow, and HEIC/JPEG/PNG handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation can affect the system Python environment when using --break-system-packages. <br>
-Mitigation: Install Pillow, NumPy, and pillow-heif in a virtual environment when possible. <br>
-Risk: Running helper scripts without explicit paths can read or write unintended local paths. <br>
-Mitigation: Run scripts with explicit input and output file paths and review the target output location before execution. <br>
+## Use Case:
 
+External users and developers use this skill to guide local photo enhancement workflows and run image-processing scripts for cinematic grading, dehazing, saturation or vibrance adjustment, levels correction, sharpening, blur, and light effects.
 
-## Reference(s): <br>
-- [Photo Editing Reference](references/photo-editing-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/akira362680164/photo-cinematic) <br>
-- [Publisher profile](https://clawhub.ai/user/akira362680164) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and local file path guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces edited local image files when the included Python scripts are run with explicit input and output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documented install command can modify the system Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install dependencies in a virtual environment or other isolated Python environment, preferably with pinned dependency versions.
+
+Risk: Auxiliary scripts include hardcoded default OpenClaw media and workspace paths.
+
+Mitigation: Run scripts with explicit input and output paths unless those defaults are intentionally desired.
+
+Risk: HEIC-to-JPEG conversion and image editing can alter output files and may not preserve original metadata.
+
+Mitigation: Work on copies of source images and preserve metadata separately when metadata retention matters.
+
+## Reference(s):
+
+- [Photo Editing Reference](references/photo-editing-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with bash command examples and generated image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The main script processes local image inputs through ordered effects and saves edited image files; large inputs may be resized to a maximum dimension of 3840 pixels.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

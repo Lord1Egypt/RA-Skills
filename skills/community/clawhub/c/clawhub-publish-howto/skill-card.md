@@ -1,43 +1,49 @@
-## Description: <br>
-A ClawHub publishing guide that helps agents walk users through skill release, update, authentication, verification, and troubleshooting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through publishing, updating, and troubleshooting OpenClaw skills on ClawHub.
 
-## Publisher: <br>
-[bbj375767338-arch](https://clawhub.ai/user/bbj375767338-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbj375767338-arch](https://clawhub.ai/user/bbj375767338-arch)
 
-## Use Case: <br>
-Developers and agents use this skill when publishing or updating OpenClaw skills on ClawHub, especially to configure authentication, run publish commands, verify releases, and troubleshoot common publish failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The guide includes an example that permanently stores a GitHub token in ~/.bashrc. <br>
-Mitigation: Prefer temporary environment variables, an OS credential manager, or a CI secret store; rotate any token that was stored in plaintext or shared accidentally. <br>
-Risk: Publishing troubleshooting can involve authentication tokens and account metadata. <br>
-Mitigation: Use narrowly scoped tokens, avoid pasting secrets into logs or skill text, and verify release state with ClawHub CLI or the release page after publishing. <br>
+## Use Case:
 
+Developers use this skill as a practical guide for publishing skills to ClawHub, configuring authentication, avoiding GitHub rate limits, and diagnosing common release errors.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bbj375767338-arch/clawhub-publish-howto) <br>
-- [Publisher profile](https://clawhub.ai/user/bbj375767338-arch) <br>
-- [GitHub rate limit endpoint](https://api.github.com/rate_limit) <br>
-- [GitHub authenticated user endpoint](https://api.github.com/user) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and troubleshooting tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes ClawHub CLI commands, GitHub token checks, and post-publish verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: The guide recommends storing a GitHub access token in persistent shell configuration, which can expose long-lived credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a credential manager, GitHub CLI/keychain flow, or a short-lived fine-grained token for a single command, then revoke it afterward.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bbj375767338-arch/skills/clawhub-publish-howto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes publishing checklists, authentication notes, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

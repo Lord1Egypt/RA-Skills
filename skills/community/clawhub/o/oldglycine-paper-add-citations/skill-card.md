@@ -1,44 +1,58 @@
-## Description: <br>
-Automatically adds relevant academic references to research papers by reading Overleaf-style TeX projects, searching Google Scholar, adding BibTeX entries, inserting citation markers, and generating a report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically adds relevant academic references to research papers. Supports Overleaf project directories, extracts keywords from TeX files, searches Google Scholar for relevant papers, adds BibTeX entries to the project's bib file, and inserts citation markers in key sections.
 
-## Publisher: <br>
-[oldglycine](https://clawhub.ai/user/oldglycine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oldglycine](https://clawhub.ai/user/oldglycine)
 
-## Use Case: <br>
-Researchers and technical writers use this skill to add missing citations to LaTeX research papers, especially Introduction, Related Work, and Method sections. It is intended for projects with TeX files and a BibTeX bibliography. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the target paper project and sends search terms derived from the paper to Google Scholar through scholarly. <br>
-Mitigation: Use it only on paper projects whose content may be used for external literature search, and avoid sensitive unpublished material unless that disclosure is acceptable. <br>
-Risk: The skill modifies bibliography, manuscript, and report files, which can introduce incorrect citations or unwanted edits. <br>
-Mitigation: Run it on a copy or version-controlled project and review diffs before relying on the added citations. <br>
-Risk: Google Scholar access through scholarly may trigger service rate limits or automated-access controls. <br>
-Mitigation: Use conservative request volumes and stop if Google Scholar blocks or challenges automated access. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to add academic citations to LaTeX or Overleaf paper projects by extracting topics, finding candidate Google Scholar references, updating BibTeX, and producing an ADD.MD report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oldglycine/oldglycine-paper-add-citations) <br>
-- [Publisher profile](https://clawhub.ai/user/oldglycine) <br>
-- [Paper Reference Adder Tool](reference/TOOL.MD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with parameter descriptions, shell commands, generated BibTeX entries, TeX citation markers, and an ADD.MD report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads TeX and BibTeX project files, queries Google Scholar through scholarly, appends references to the bibliography, and writes a citation report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill can change bibliography files using unvalidated remote metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable branch or backup copy, inspect proposed references, and verify BibTeX entries before compiling or publishing.
+
+Risk: The documented backup and citation-insertion behavior may overstate what the implementation safely performs.
+
+Mitigation: Do not rely on automated backup or insertion claims unless the implementation is reviewed and fixed for the target paper project.
+
+Risk: Dependency behavior and remote paper lookup may vary at install or runtime.
+
+Mitigation: Pin dependencies in a virtual environment and review the skill carefully before installation.
+
+## Reference(s):
+
+- [Paper Reference Adder Tool](reference/TOOL.MD)
+- [ClawHub skill page](https://clawhub.ai/oldglycine/skills/oldglycine-paper-add-citations)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python and shell command examples; generated agent work may update BibTeX and write an ADD.MD report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may propose or perform file changes in a paper project, including bibliography updates and citation report generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

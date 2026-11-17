@@ -1,42 +1,50 @@
-## Description: <br>
-SwiftData best practices, batch queries, N+1 avoidance, and model relationships for macOS/iOS apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SwiftData best practices, batch queries, N+1 avoidance, and model relationships for macOS/iOS apps.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers use this skill as a SwiftData coding reference for model design, batch fetching, relationship handling, persistence-layer architecture, and test setup in macOS and iOS apps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SwiftData choices such as cascade deletes can affect application data. <br>
-Mitigation: Review relationship delete rules against the app's data-retention requirements before using the generated pattern. <br>
-Risk: Manual autosave behavior can change when data is persisted or rolled back. <br>
-Mitigation: Validate save points, error handling, and rollback behavior in tests before applying the service-layer pattern. <br>
-Risk: App group storage and CloudKit configuration choices can affect data location and synchronization behavior. <br>
-Mitigation: Confirm entitlements, store URLs, and CloudKit settings for the target app environment before release. <br>
+## Use Case:
 
+Developers and engineers use this skill for SwiftData model design, query optimization, relationship handling, persistence-layer structure, and test patterns in macOS and iOS apps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/soponcd/swiftdata-patterns) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Swift and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reference guidance and examples that should be reviewed before being applied to production app data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: SwiftData examples involving cascade deletes, App Group storage, or CloudKit syncing can affect data retention and privacy behavior if copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm delete rules, shared container identifiers, storage locations, and syncing behavior against the app's intended data-retention and privacy requirements before use.
+
+## Reference(s):
+
+- [Swiftdata Patterns ClawHub Skill Page](https://clawhub.ai/soponcd/skills/swiftdata-patterns)
+- [soponcd ClawHub Publisher Profile](https://clawhub.ai/user/soponcd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with Swift and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

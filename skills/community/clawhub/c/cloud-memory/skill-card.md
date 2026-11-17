@@ -1,42 +1,62 @@
-## Description: <br>
-Cloud memory for AI agents. Store, search, and recall context across sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cloud memory for AI agents. Store, search, and recall context across sessions.
 
-## Publisher: <br>
-[aerialcombat](https://clawhub.ai/user/aerialcombat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aerialcombat](https://clawhub.ai/user/aerialcombat)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to Ctxly cloud memory so they can register, store selected memories, search prior context, bootstrap startup context, and delete memories. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected memories and the API key are sent to and stored by ctxly.app. <br>
-Mitigation: Install only when external cloud retention of agent context is intended, protect and rotate CTXLY_API_KEY if exposed, and periodically review or delete stored memories. <br>
-Risk: Stored memories could include secrets, regulated data, or highly sensitive personal information. <br>
-Mitigation: Do not store secrets, regulated data, or highly sensitive personal information; use purpose-built secret storage and data governance controls instead. <br>
-Risk: Tweet-based verification may publish account-related verification content. <br>
-Mitigation: Require explicit human approval before any tweet-based verification and use the provided claim URL path when tweeting is not appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MyMemory.bot on ClawHub](https://clawhub.ai/aerialcombat/cloud-memory) <br>
-- [Ctxly service homepage](https://ctxly.app) <br>
+## Use Case:
 
+Developers and agent operators use MyMemory.bot to register an agent with ctxly.app, store selected context, search or bootstrap memory across sessions, and delete stored memories.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CTXLY_API_KEY for authenticated memory operations and documents rate limits of 100 requests per minute and 30 writes per minute.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected agent and user context is sent to ctxly.app for persistent third-party storage.
+
+Mitigation: Use the skill only when that storage is acceptable, and save only context the user has approved for persistence.
+
+Risk: Secrets, sensitive personal data, medical data, financial data, authentication data, or confidential business data could be stored if the agent saves broad context indiscriminately.
+
+Mitigation: Do not store sensitive categories or secrets; keep API keys in configuration or environment storage rather than memory records.
+
+Risk: Retrieved memories may be stale, incomplete, or unsuitable as instructions.
+
+Mitigation: Treat recalled memories as reference data and confirm important actions with the user before acting on them.
+
+Risk: Deleting memories changes persistent user context.
+
+Mitigation: Require explicit user approval before deleting existing memories.
+
+## Reference(s):
+
+- [Ctxly homepage](https://ctxly.app)
+- [ClawHub skill page](https://clawhub.ai/aerialcombat/skills/cloud-memory)
+- [Publisher profile](https://clawhub.ai/user/aerialcombat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API key setup, memory storage and retrieval commands, deletion guidance, and rate-limit notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

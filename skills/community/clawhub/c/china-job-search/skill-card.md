@@ -1,51 +1,62 @@
-## Description: <br>
-Searches Chinese recruitment platforms including BOSS Zhipin, Zhaopin, and 51job with keyword, location, salary, and experience filters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Chinese recruitment platforms including BOSS Zhipin, Zhaopin, and 51job with filters for keyword, location, salary range, experience, and platform.
 
-## Publisher: <br>
-[jarryk](https://clawhub.ai/user/jarryk) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jarryk](https://clawhub.ai/user/jarryk)
 
-## Use Case: <br>
-External users and developers use this skill to search and compare job listings in the Chinese recruitment market from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Job-search keywords and locations may be sent to third-party recruitment sites. <br>
-Mitigation: Use non-sensitive search terms and review the target platform behavior before running networked searches. <br>
-Risk: Search results may include simulated or fallback listings. <br>
-Mitigation: Treat results as unverified and confirm any job listing through the official recruitment platform before acting on it. <br>
-Risk: The skill can save or export job-search artifacts locally. <br>
-Mitigation: Review export settings, avoid storing sensitive searches, and delete generated JSON or CSV files when no longer needed. <br>
-Risk: Some artifact guidance discusses anti-bot or scraping-evasion techniques. <br>
-Mitigation: Respect recruitment-site terms, robots.txt, and rate limits; disable or review scripts that rotate user agents or attempt bypass behavior. <br>
+## Use Case:
 
+External users and developers use this skill to search and compare Chinese job listings by role, location, salary, experience, and platform. Results should be checked against original platform links because security evidence flags mixed live and synthetic data.
 
-## Reference(s): <br>
-- [API Reference](references/API_REFERENCE.md) <br>
-- [Deployment Guide](references/DEPLOYMENT_GUIDE.md) <br>
-- [Quick Start](references/QUICK_START.md) <br>
-- [Final Summary](references/FINAL_SUMMARY.md) <br>
-- [Final Test Report](references/FINAL_TEST_REPORT.md) <br>
-- [BOSS Zhipin](https://www.zhipin.com) <br>
-- [Zhaopin](https://sou.zhaopin.com) <br>
-- [51job](https://search.51job.com) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Structured job-search results as JSON or Markdown-style tables, with optional command-line usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include platform, title, company, salary, location, experience, education, skills, URL, publish time, company size, and company type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and package.json) <br>
+Risk: Search results may combine live data with synthetic fallback data, and documentation may overstate live platform searching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat results as leads only, preserve source indicators where available, and verify important details on the original platform links.
+
+Risk: The skill can create local JSON or CSV exports, caches, databases, and test files.
+
+Mitigation: Run it in a controlled workspace and review generated files before sharing, retaining, or relying on them.
+
+Risk: The skill performs third-party recruitment-site scraping behavior and includes scraping-circumvention guidance.
+
+Mitigation: Review target site terms, robots rules, request rates, and organizational policy before enabling live requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jarryk/skills/china-job-search)
+- [README](README.md)
+- [API Reference](references/API_REFERENCE.md)
+- [Quick Start](references/QUICK_START.md)
+- [Deployment Guide](references/DEPLOYMENT_GUIDE.md)
+- [Final Test Report](references/FINAL_TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Files]
+
+**Output Format:** [Structured job listings as tables, JSON objects, or CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform, job title, company, salary, location, experience, education, skills, publish time, and detail URL when available; some results may be synthetic fallback data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

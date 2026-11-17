@@ -1,44 +1,57 @@
-## Description: <br>
-GitHub team collaboration toolkit for managing team workflows, code reviews, issue tracking, sprint planning, and team metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub team collaboration toolkit for managing team workflows, code reviews, issue tracking, sprint planning, and team metrics.
 
-## Publisher: <br>
-[kaiyuelv](https://clawhub.ai/user/kaiyuelv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaiyuelv](https://clawhub.ai/user/kaiyuelv)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate GitHub repository work, automate pull request and issue workflows, track milestone progress, and analyze collaboration metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a GitHub token for repository actions that can modify repository state. <br>
-Mitigation: Use a fine-grained GitHub token with only the repository permissions needed and require explicit confirmation before write actions. <br>
-Risk: Running the module directly can partially print the configured GitHub token prefix. <br>
-Mitigation: Avoid running the module entry point until token-prefix printing is removed, and keep tokens out of logs and shared terminal output. <br>
-Risk: Automated issue and pull request operations can make unintended changes if called with incorrect repository, issue, or reviewer parameters. <br>
-Mitigation: Review target owner, repository, pull request, issue, labels, assignees, and reviewer inputs before executing write-capable functions. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate GitHub pull requests, issue triage, sprint milestones, and collaboration metrics for repository workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaiyuelv/github-team-collaboration) <br>
-- [Publisher Profile](https://clawhub.ai/user/kaiyuelv) <br>
-- [GitHub REST API](https://api.github.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a GITHUB_TOKEN environment variable and may return GitHub API JSON dictionaries or error dictionaries from helper functions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can perform write actions on GitHub repositories, including assigning reviewers and creating issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before write actions and use a least-privilege GitHub token scoped only to the needed repositories and permissions.
+
+Risk: Running the helper script directly can print the first characters of the GitHub token.
+
+Mitigation: Remove token-prefix printing before direct execution and avoid logging credentials.
+
+Risk: Dependencies are specified with lower bounds only.
+
+Mitigation: Pin and review dependency versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaiyuelv/skills/github-team-collaboration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GitHub API operations that require a GITHUB_TOKEN environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

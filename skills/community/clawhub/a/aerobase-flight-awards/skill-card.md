@@ -1,43 +1,59 @@
-## Description: <br>
-Search 24+ airline loyalty programs for award space with miles cost, seat availability, and canonical jetlag scores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search 24+ airline loyalty programs for award space with miles cost, seat availability, and canonical jetlag scores.
 
-## Publisher: <br>
-[kurosh87](https://clawhub.ai/user/kurosh87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kurosh87](https://clawhub.ai/user/kurosh87)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search award-flight availability, compare mileage cost and seat scarcity, and assess recovery quality for a route and date window. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an Aerobase API key and sends route, date, cabin, and optional fare details to aerobase.app. <br>
-Mitigation: Install only when that data sharing is acceptable, store the key in AEROBASE_API_KEY, and redact API keys from agent output. <br>
-Risk: The skill can create, modify, and delete saved award alerts. <br>
-Mitigation: Ask the user to confirm before creating, changing, or deleting saved alerts. <br>
-Risk: Google Flights Pro wording may imply browser-powered behavior beyond the disclosed API flow. <br>
-Mitigation: Treat that wording as marketing unless Aerobase provides a clearly documented and consented mechanism. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to find and compare flight award redemptions by route, date, cabin, miles cost, seat availability, and recovery context. It can also help create, list, update, and delete Aerobase award alerts when the user asks.
 
-## Reference(s): <br>
-- [Aerobase homepage](https://aerobase.app) <br>
-- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown summaries with ranked award options and concise follow-up actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AEROBASE_API_KEY and sends route, date, cabin, and optional fare details to Aerobase API endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses an Aerobase API key for award searches and alert management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key in AEROBASE_API_KEY, avoid printing raw keys, and redact secrets in user-facing output.
+
+Risk: Alert actions can create, deactivate, or delete Aerobase alerts.
+
+Mitigation: Use clear user instructions for alert changes and summarize the intended action before making changes.
+
+Risk: Users may share travel-account credentials or one-time authentication details unnecessarily.
+
+Mitigation: Do not request passwords, OTPs, cookies, loyalty logins, or other travel-account secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kurosh87/skills/aerobase-flight-awards)
+- [Aerobase homepage](https://aerobase.app)
+- [Aerobase OpenClaw travel agent setup](https://aerobase.app/openclaw-travel-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with concise ranked travel options and follow-up actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses AEROBASE_API_KEY for Aerobase API access; can manage award alerts when requested.]
+
+## Skill Version(s):
+
+3.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Use this skill when a chartering manager, post-fixture operator, claims handler, or maritime counsel needs to convert a voyage charter party, Statement of Facts, and NOR record into a laytime statement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts voyage charter terms, Statement of Facts entries, and Notice of Readiness records into a draft laytime, demurrage, or despatch calculation packet for review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-External maritime chartering managers, post-fixture operators, claims handlers, port agents, and counsel use this skill to draft voyage-charter laytime statements from charter terms, Statements of Facts, and NOR records before invoice, claim, or arbitration review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste privileged, unlawfully obtained, or commercially sensitive charter materials into the workflow. <br>
-Mitigation: Avoid privileged or unlawfully obtained counterparty materials, limit sensitive details to what the computation requires, and confirm document authority before use. <br>
-Risk: A generated laytime statement or demurrage computation may be mistaken for a final invoice, legal opinion, arbitration filing, or binding claim position. <br>
-Mitigation: Treat every output as a draft for professional review and verify charter clauses, NOR validity, evidence, disputed periods, and amounts before any operational or legal action. <br>
+## Use Case:
 
+External chartering managers, post-fixture operators, claims handlers, port agents, traders, and maritime counsel use this skill to draft a clause-by-clause laytime statement, NOR validity walkthrough, timesheet, computation worksheet, evidence index, disputed-period flags, and open-questions list before commercial or legal review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/laytime-demurrage-calculator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft laytime packet with timesheet, computation, evidence index, disputed-period flags, and open questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft material for chartering, operations, claims-team, and counsel review; not an invoice, legal opinion, arbitration filing, or waiver.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence and changelog, released 2026-05-28) <br>
+Risk: The skill may handle confidential voyage, rate, party, and claims materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit inputs and outputs to information needed for the calculation, and avoid echoing commercially sensitive facts beyond what the draft packet requires.
+
+Risk: A laytime, demurrage, or despatch computation may be relied on commercially or legally before review.
+
+Mitigation: Keep outputs marked as drafts and require chartering, claims, or counsel review before relying on the calculation.
+
+Risk: Privileged or unlawfully obtained counterparty material could be supplied as evidence.
+
+Mitigation: Do not incorporate privileged or unlawfully obtained counterparty materials; ask the user to confirm the source before using questionable material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/laytime-demurrage-calculator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft laytime packet with tables, formulas, appendices, disputed-period flags, and an evidence index]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are drafts for chartering, operations, claims-team, and counsel review; the skill does not issue invoices, notices of claim, or legal pleadings.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and CHANGELOG, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

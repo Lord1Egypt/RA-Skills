@@ -1,42 +1,53 @@
-## Description: <br>
-Mindmatch helps an agent look for compatible people using deep psychological profiling rather than surface interests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MindMatch helps an agent find compatible people by building psychological profiles and assessing romantic, business, friendship, or custom matches.
 
-## Publisher: <br>
-[ivankoriako](https://clawhub.ai/user/ivankoriako) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivankoriako](https://clawhub.ai/user/ivankoriako)
 
-## Use Case: <br>
-External users can ask their agent to search for romantic partners, business co-founders, friends, or custom matches by building a psychological profile and comparing candidate compatibility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may cause an agent to infer sensitive psychological traits from conversation history. <br>
-Mitigation: Require explicit user approval before creating a profile, limit profiling to user-approved context, and let the user review or delete the profile before it is used. <br>
-Risk: The skill describes sending a profile to a matching server while also claiming that data stays local. <br>
-Mitigation: Do not send profile data to an external service unless the publisher clarifies what is collected, what leaves the device, retention terms, and consent requirements. <br>
-Risk: The matching service and profile builder are described as under development and may not be functional or reliable. <br>
-Mitigation: Treat compatibility results as advisory, avoid relying on them for consequential decisions, and verify behavior before deployment. <br>
+## Use Case:
 
+External users ask an agent to identify compatible romantic partners, business co-founders, friends, or custom matches from psychological compatibility signals. The skill is described as coming soon, with the profile builder and matching engine still in development.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivankoriako/mindmatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, shell commands] <br>
-**Output Format:** [Markdown or conversational text with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide psychological profile creation from conversation history and compatibility analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill describes psychological profiling from conversation history and remote matching, while the server evidence says its privacy claims and controls are under-scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user opt-in, explain what conversation history is read, show the derived profile for review before upload, and disclose where profile data is sent and retained.
+
+Risk: Users could disclose private conversation history or sensitive inferred traits to a remote matching service.
+
+Mitigation: Do not use the skill with private conversation history unless the missing disclosure, consent, profile review, retention, and remote-transfer controls are added or the user accepts that disclosure.
+
+## Reference(s):
+
+- [Mindmatch ClawHub skill page](https://clawhub.ai/ivankoriako/skills/mindmatch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance and compatibility analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve sensitive psychological profile data and remote matching when the service is implemented.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

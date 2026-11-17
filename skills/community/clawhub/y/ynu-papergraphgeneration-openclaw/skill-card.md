@@ -1,41 +1,60 @@
-## Description: <br>
-Generates academic figures from PDF or plain-text papers, including architecture diagrams, flowcharts, motivation figures, results charts, captions, and Mermaid topology descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates academic paper diagrams from PDF or plain-text papers, including architecture diagrams, flowcharts, motivation figures, results plots, captions, and Mermaid topology descriptions.
 
-## Publisher: <br>
-[ljk00000](https://clawhub.ai/user/ljk00000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljk00000](https://clawhub.ai/user/ljk00000)
 
-## Use Case: <br>
-Researchers, developers, and agents use this skill to extract visualizable structure from academic papers and generate publication-oriented diagrams, result charts, captions, and reusable topology descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The results-chart path can run generated Python code with the user's local permissions. <br>
-Mitigation: Review generated Python before execution and run chart generation in a sandboxed environment. <br>
-Risk: Paper contents may be sent to configured third-party model or image-generation providers. <br>
-Mitigation: Use only trusted papers and providers, and avoid confidential or unpublished manuscripts unless the provider terms permit that use. <br>
+## Use Case:
 
+Researchers, developers, and paper authors use this skill to convert academic paper content into visual figure plans, generated diagrams, result charts, captions, and reusable topology descriptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ljk00000/ynu-papergraphgeneration-openclaw) <br>
-- [Artifact README](artifact/readme.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Generated image files with Markdown or plain-text captions, Mermaid topology descriptions, and optional Python/Matplotlib code or shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and image-generation API credentials such as BANANA2_API_URL and BANANA2_API_KEY, with documented fallback environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Paper-derived content may be sent to the configured external image API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, unpublished, or proprietary papers unless the configured API and data handling terms are acceptable.
+
+Risk: The result-chart path can execute generated Python code.
+
+Mitigation: Review the generated code before running it and execute it in a sandbox without secrets or broad filesystem access.
+
+Risk: The image download behavior was flagged as under-scoped by the authoritative security review.
+
+Mitigation: Use trusted API endpoints and inspect downloaded outputs before relying on them in publications or downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ljk00000/skills/ynu-papergraphgeneration-openclaw)
+- [Skill instructions](artifact/skill.md)
+- [Artifact README](artifact/readme.md)
+- [Default image API endpoint](https://api.acedata.cloud/nano-banana/images)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with command examples, generated prompts, image files, Matplotlib code, captions, and Mermaid topology text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write extracted text and generated images or charts to an output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

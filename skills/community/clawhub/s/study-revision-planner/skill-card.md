@@ -1,44 +1,53 @@
-## Description: <br>
-Convert a syllabus, exam scope, or course notes into a revision calendar with spaced review, mock tests, and weak-point loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert a syllabus, exam scope, or course notes into a revision calendar with spaced review, mock tests, and weak-point loops.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Students, educators, and learners use this skill to convert course material and exam scope into a practical revision plan with study blocks, spaced reviews, mock tests, and weak-topic follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local Python helper writes CSV output and could replace an important file if the chosen output path already exists. <br>
-Mitigation: Use an explicit noncritical output filename and review the target path before running the helper. <br>
-Risk: Server evidence notes a small provenance/version mismatch. <br>
-Mitigation: Review the server release version against the artifact frontmatter and changelog before relying on version-specific claims. <br>
+## Use Case:
 
+Students, educators, and learning-support agents use this skill to convert syllabus or exam-scope material into actionable revision plans, topic effort tables, mock test schedules, and next-step checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/study-revision-planner) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Example prompt](artifact/examples/example-prompt.md) <br>
-- [Smoke test](artifact/tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance, tables, checklists, and optional CSV output from the local Python helper.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are based on user-provided syllabus, topic difficulty, exam date, weekly availability, and preferred study block length.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The bundled helper script creates only a basic topic/date CSV and does not implement the full spaced-review or mock-test workflow described by the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated plans and treat script output as a first-pass draft before relying on it for study scheduling.
+
+Risk: Study materials can contain sensitive personal or academic information.
+
+Mitigation: Use explicit input files and avoid pointing the helper script at sensitive files unless needed for the planning task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/study-revision-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional CSV files and local Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a local python3 helper script to create a basic topic/date CSV; generated plans should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

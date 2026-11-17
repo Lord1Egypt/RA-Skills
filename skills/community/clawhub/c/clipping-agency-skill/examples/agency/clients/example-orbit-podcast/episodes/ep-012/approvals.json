@@ -1,0 +1,112 @@
+{
+ "pages": [
+  {
+   "fp": "482437c0b47aa40b8bcfa8732116e7fdc02d8b19b2ee047be60c746d3499ae95",
+   "made": "2026-10-05T14:00:00Z",
+   "sent": "2026-10-05T14:05:00Z",
+   "rule": {
+    "rule": "hold"
+   },
+   "deadline": null,
+   "clips": {
+    "01": {
+     "hash": "ee91ddd5951ae7d18e19e30139906669f84a51492aa69cabca6cddcfe6df5214",
+     "sha256": "28a9ff978696dcbd9c1c8bb0c22bcdca4a2f2b9c5c2928d47ade2755a4831597"
+    },
+    "02": {
+     "hash": "ad6f8dddbba1d00ebebdd24899d44ef34746dc0a04a9ca763a7821fd8329a00e",
+     "sha256": "be95e3bf2c5ede2b506fb5e19cbaffdb7693f72cd003139877cf40a92ac7f27e"
+    },
+    "03": {
+     "hash": "e0849952aa57fb072df1609ac085f4dcd08b29d450fef13f3c5bc6f2a32c9507",
+     "sha256": "c70cd7d8f29fb71cfb911db1559753452f920e711700993be26d598d0375f247"
+    }
+   },
+   "order": [
+    "01",
+    "02",
+    "03"
+   ],
+   "planned": {
+    "01": "2026-10-06T16:30:00Z",
+    "02": "2026-10-08T16:30:00Z",
+    "03": "2026-10-10T16:30:00Z"
+   },
+   "seq": 1,
+   "page": "approval/approve-ep-012.html",
+   "media": "file",
+   "answered": "2026-10-05T21:00:00Z"
+  }
+ ],
+ "decisions": {
+  "01": {
+   "decision": "approve",
+   "hash": "ee91ddd5951ae7d18e19e30139906669f84a51492aa69cabca6cddcfe6df5214",
+   "sha256": "28a9ff978696dcbd9c1c8bb0c22bcdca4a2f2b9c5c2928d47ade2755a4831597",
+   "fp": "482437c0b47aa40b8bcfa8732116e7fdc02d8b19b2ee047be60c746d3499ae95",
+   "page": 1,
+   "at": "2026-10-05T21:00:00Z",
+   "received": "2026-10-05T20:40:00Z",
+   "by": "Alex Example",
+   "by_source": "the Name or From line of the reply",
+   "how": "reply"
+  },
+  "02": {
+   "decision": "approve",
+   "hash": "ad6f8dddbba1d00ebebdd24899d44ef34746dc0a04a9ca763a7821fd8329a00e",
+   "sha256": "be95e3bf2c5ede2b506fb5e19cbaffdb7693f72cd003139877cf40a92ac7f27e",
+   "fp": "482437c0b47aa40b8bcfa8732116e7fdc02d8b19b2ee047be60c746d3499ae95",
+   "page": 1,
+   "at": "2026-10-05T21:00:00Z",
+   "received": "2026-10-05T20:40:00Z",
+   "by": "Alex Example",
+   "by_source": "the Name or From line of the reply",
+   "how": "reply"
+  },
+  "03": {
+   "decision": "approve",
+   "hash": "e0849952aa57fb072df1609ac085f4dcd08b29d450fef13f3c5bc6f2a32c9507",
+   "sha256": "c70cd7d8f29fb71cfb911db1559753452f920e711700993be26d598d0375f247",
+   "fp": "482437c0b47aa40b8bcfa8732116e7fdc02d8b19b2ee047be60c746d3499ae95",
+   "page": 1,
+   "at": "2026-10-05T21:00:00Z",
+   "received": "2026-10-05T20:40:00Z",
+   "by": "Alex Example",
+   "by_source": "the Name or From line of the reply",
+   "how": "reply"
+  }
+ },
+ "tiktok": {
+  "privacyLevel": "PUBLIC_TO_EVERYONE",
+  "allowComment": true,
+  "allowDuet": false,
+  "allowStitch": false,
+  "fp": "482437c0b47aa40b8bcfa8732116e7fdc02d8b19b2ee047be60c746d3499ae95",
+  "page": 1,
+  "at": "2026-10-05T21:00:00Z",
+  "by": "Alex Example"
+ },
+ "replies": [
+  {
+   "page": 1,
+   "key": "3da078dd8cf99f3a",
+   "at": "2026-10-05T21:00:00Z",
+   "received": "2026-10-05T20:40:00Z",
+   "by": "Alex Example",
+   "by_source": "the Name or From line of the reply",
+   "answers": {
+    "01": "approve",
+    "02": "approve",
+    "03": "approve"
+   },
+   "recorded": [
+    "01",
+    "02",
+    "03"
+   ],
+   "void": [],
+   "unanswered": [],
+   "tiktok": true
+  }
+ ]
+}

@@ -1,47 +1,63 @@
-## Description: <br>
-Publish posts to Jike using browser automation, including text posts with emoji, hashtags, topics, and links without requiring an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish posts to Jike using browser automation for text posts with emoji, hashtags, topics, and links.
 
-## Publisher: <br>
-[maoruibin](https://clawhub.ai/user/maoruibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maoruibin](https://clawhub.ai/user/maoruibin)
 
-## Use Case: <br>
-External users and developers use this skill to draft and publish Jike posts through a managed browser session when they want browser-guided posting workflows rather than a direct API integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence reports the skill may mark posts as successful without actually publishing or verifying them. <br>
-Mitigation: Manually confirm the final Jike post in the browser before relying on success output or downstream state. <br>
-Risk: The skill can persist posted content in a local JSON state file. <br>
-Mitigation: Avoid posting sensitive content, and clear or disable local state when stored post text should not remain on disk. <br>
-Risk: The skill operates a real Jike account through an active browser session. <br>
-Mitigation: Use only an intended account and confirm each publish action before execution. <br>
+## Use Case:
 
+Developers and agents use this skill to draft and publish Jike updates through an already logged-in managed browser session. It is intended for text-based posts that may include Chinese content, emoji, hashtags, topics, links, and line breaks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maoruibin/jike-publisher) <br>
-- [Jike web app](https://web.okjike.com/) <br>
-- [Quick Reference](QUICK_REFERENCE.md) <br>
-- [Examples](references/EXAMPLES.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Unicode Escape Guide](references/UNICODE_ESCAPE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline browser automation and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local JSON state file with the last publish time and post content when the bundled script is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill can publish public posts through an already logged-in Jike browser session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to show the exact account and post content, then wait for explicit approval before publishing.
+
+Risk: Post text may be stored locally in memory/jike-state.json.
+
+Mitigation: Delete or minimize the state file when post content is sensitive.
+
+Risk: The optional script describes the posting workflow and can report success without proving that a post was published.
+
+Mitigation: Verify publication in the Jike browser session rather than relying on script output alone.
+
+## Reference(s):
+
+- [Jike Publisher Quick Reference](QUICK_REFERENCE.md)
+- [Jike Publisher Examples](references/EXAMPLES.md)
+- [Jike Publisher Troubleshooting](references/TROUBLESHOOTING.md)
+- [Unicode Escape Guide for Chinese Content](references/UNICODE_ESCAPE.md)
+- [Jike Web](https://web.okjike.com/)
+- [Jike Following Feed](https://web.okjike.com/following)
+- [ClawHub Skill Page](https://clawhub.ai/maoruibin/skills/jike-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and browser automation command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active Jike login in the managed browser profile and fresh browser snapshots before page actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

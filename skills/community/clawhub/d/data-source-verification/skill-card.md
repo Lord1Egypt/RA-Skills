@@ -1,41 +1,54 @@
-## Description: <br>
-Verify numerical data against original papers and maintain traceable provenance for every value in datasets, tables, and plots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify numerical data against original papers and maintain traceable provenance for every value in datasets, tables, and plots.
 
-## Publisher: <br>
-[Larry-of-cosmotim](https://clawhub.ai/user/Larry-of-cosmotim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[larry-of-cosmotim](https://clawhub.ai/user/larry-of-cosmotim)
 
-## Use Case: <br>
-Researchers, data reviewers, and developers use this skill to verify compiled numerical datasets against original papers, PDFs, tables, figures, and manuscript outputs before relying on the data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downloaded PDFs and supplementary files may be untrusted external documents. <br>
-Mitigation: Approve DOI or URL downloads before use and treat downloaded files as untrusted until reviewed. <br>
-Risk: Generated CITATION.md files or audit reports may contain incomplete or incorrect source details. <br>
-Mitigation: Review generated citation files and provenance summaries before relying on them in datasets, tables, plots, or manuscripts. <br>
+## Use Case:
 
+Researchers, data curators, and developers use this skill to verify literature-derived numerical datasets, maintain citation source folders, and produce audit reports before values are used in tables, plots, or manuscripts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Larry-of-cosmotim/data-source-verification) <br>
-- [Project Homepage](https://github.com/Larry-of-cosmotim/data-source-verification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline examples, file templates, audit tables, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local Citation_Sources folders, CITATION.md files, provenance summaries, and audit reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: PDFs fetched from DOI or URL inputs may be unavailable, paywalled, or untrusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review source identifiers before download, treat PDFs as untrusted files, and mark missing or paywalled sources as needing confirmation.
+
+Risk: Literature values can be misattributed, estimated, or unverifiable.
+
+Mitigation: Require exact paper, DOI, page, table, figure, method, data type, and verification status before treating a value as confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/larry-of-cosmotim/skills/data-source-verification)
+- [Project homepage](https://github.com/Larry-of-cosmotim/data-source-verification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with citation templates, audit summaries, provenance tables, and optional CSV or JSON examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces traceability records, verification statuses, discrepancy notes, and recommended actions for flagged values.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact SKILL.md frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

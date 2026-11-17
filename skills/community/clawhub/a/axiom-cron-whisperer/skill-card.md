@@ -1,40 +1,58 @@
-## Description: <br>
-Cron expression explainer that translates standard 5-field cron syntax into English or French and helps users document or validate cron expressions without an LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cron expression explainer that translates standard five-field cron syntax into human-readable English or French and can validate expressions locally without an LLM.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers, DevOps practitioners, and no-code users use this skill to understand, document, and validate standard cron expressions before relying on scheduled jobs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill explains and validates standard 5-field cron expressions but does not calculate next run times or support Quartz and other extended cron syntax. <br>
-Mitigation: Use it for documentation and basic validation, and use scheduler-specific tooling when next-run timing or extended syntax support is required. <br>
-Risk: High-volume or untrusted input could still consume local processing time even though the skill has no network access or credential handling. <br>
-Mitigation: Apply normal input length and timeout limits before exposing the helper to untrusted or high-volume use. <br>
+## Use Case:
 
+Developers, DevOps engineers, and operators use this skill to understand cron expressions they did not write, document scheduled jobs, and perform a lightweight pre-deployment validation check.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/axiom-cron-whisperer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Plain text or JSON cron explanation and validation result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [English or French output; supports standard 5-field cron syntax only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill supports standard five-field cron expressions and does not support Quartz syntax, seconds fields, or next-occurrence calculation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for explanation and lightweight validation only; use scheduler-native checks or a cron library such as croniter for runtime scheduling and advanced cron dialects.
+
+Risk: The security guidance says not to treat its validation as the sole production safety gate until edge-case parsing bugs and stale documentation are fixed.
+
+Mitigation: Review the expression against the target scheduler and test it in the deployment environment before enabling production jobs.
+
+Risk: Localized documentation may imply broader language coverage than the implementation provides.
+
+Mitigation: Expect only English and French explanations from the current implementation and review localized documentation before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/axiom-cron-whisperer)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text or JSON, with optional Markdown code blocks for CLI and Python usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deterministic local output for standard five-field cron expressions; explanations are limited to English and French.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

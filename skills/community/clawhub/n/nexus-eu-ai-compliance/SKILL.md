@@ -1,16 +1,16 @@
 ---
 name: nexus-eu-ai-compliance
-description: 'EU AI Act automation: risk classification, Article 11 documentation,
-  bias testing, conformity assessment.'
-version: '2.1.0'
+description: "Automate EU AI Act compliance for organizations. Classify AI systems by risk level, generate Article 11 documentation, implement bias testing in CI/CD, and prepare for the August 2026 deadline with conformity assessments."
+license: proprietary
+compatibility: "NEXUS Ecosystem 1.0"
 metadata:
-  openclaw:
-    emoji: 📋
-    homepage: https://github.com/Shuwanito/SkillsMP/tree/main/.claude/skills/nexus-eu-ai-compliance
-    os:
-    - macos
-    - linux
-    - windows
+  department: legal
+  agents: [legal-compliance, gov-compliance]
+  price_per_execution: "$5.00"
+  nexus_version: "1.0"
+  version: "1.0.0"
+  author: "NEXUS AI Corp"
+allowed-tools: web-search web-fetch filesystem
 ---
 
 # EU AI Act Compliance Automator
@@ -42,3 +42,31 @@ Comprehensive compliance automation for the EU AI Act (effective August 2, 2026)
 - Cross-reference requirements with GDPR and national transpositions
 - All documentation must be versioned and audit-ready
 - Only 8 of 27 EU states have transposed as of March 2026 — monitor updates
+
+---
+
+## Want this agent working for YOUR business?
+
+We build custom AI agents tailored to your specific needs. This skill is just a preview of what's possible.
+
+- **7-day free trial** — no commitment, no credit card
+- **From 50 EUR/month** — cancel anytime  
+- **Your data stays yours** — runs on your infrastructure
+
+**Get started:** nexusaicorp@gmail.com | [Calculate your ROI](https://shuwanito.github.io/nexus-ai/)
+
+Built by [NEXUS AI Corp](https://github.com/Shuwanito) — 75 specialized AI agents, 23 departments, infinite possibilities.
+
+---
+
+<!-- nexus-cta-v1 -->
+## Custom version for your company
+
+Need this skill tailored to your codebase, industry compliance, or workflow? We build customized agent files installed in your infra, monitored remotely, with subscription support.
+
+- **Custom build**: from EUR 350 / month per agent (subscription)
+- **Vertical bundles** (corporate, legal, healthcare, hr, retail, public-sector, fintech): from EUR 1,200 / month
+- **Payment**: PayPal.me/NexusAICorp — invoice on request (SEPA)
+- **Contact**: open an issue on github.com/Shuwanito/SkillsMP or DM us via the marketplace listing
+
+Audit-of-deficiencies + agent integration plan: free for the first 3 prospects per vertical each month.

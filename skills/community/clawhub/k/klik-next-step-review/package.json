@@ -1,0 +1,8 @@
+{
+  "name": "klik-next-step-review-skill",
+  "version": "1.0.2",
+  "private": true,
+  "scripts": {
+    "test": "node test/validate-skill.mjs"
+  }
+}

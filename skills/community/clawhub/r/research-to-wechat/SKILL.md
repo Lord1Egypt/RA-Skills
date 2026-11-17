@@ -1,8 +1,8 @@
 ---
 name: "research-to-wechat"
 description: "A native research-first pipeline that turns a topic, notes, article, URL, or transcript into a sourced article with an evidence ledger, polished Markdown, inline visuals, cover image, WeChat-ready HTML, browser/API-ready draft assets, and optional multi-platform distribution. Use when the user wants 深度研究、改写成公众号、写作、排版、配图、HTML 转换、公众号草稿生成、多平台分发."
-license: "MIT"
-metadata: {"openclaw":{"emoji":"🔬","homepage":"https://github.com/Fei2-Labs/skill-genie","requires":{"anyBins":["python3"]},"primaryEnv":"WECHAT_APPID"},"version":"0.5.6","category":"content-generation","author":"Skill Genie","license":"MIT","tags":["wechat","research","content-generation","publishing"],"hermes":{"tags":["wechat","research","content-generation","publishing"]}}
+license: "MIT-0"
+metadata: {"openclaw":{"emoji":"🔬","homepage":"https://github.com/Fei2-Labs/skill-genie","requires":{"anyBins":["python3"]},"primaryEnv":"WECHAT_APPID"},"version":"0.7.2","category":"content-generation","author":"Skill Genie","license":"MIT-0","tags":["wechat","research","content-generation","publishing"],"hermes":{"tags":["wechat","research","content-generation","publishing"]}}
 ---
 
 # Research to WeChat
@@ -17,6 +17,7 @@ Use this skill as a native, research-first article system. It does not route exe
 - Ask only when the answer changes source interpretation, structure frame, style fidelity, or draft delivery behavior.
 - Keep Markdown as the canonical article asset until the HTML handoff.
 - Save a draft only. Never publish live.
+- Never report a draft write as successful on the strength of the API response. Read the draft back first.
 - Separate verified fact, working inference, and open question.
 - Every major claim must be traceable to a source.
 - Every article must end with a "## 参考链接" or "## References" section listing all sources.
@@ -25,7 +26,8 @@ Use this skill as a native, research-first article system. It does not route exe
 - the renderer converts `[text](url)` into `text (url)` because WeChat forbids clickable links.
 - Never pretend the workflow did interviews, long field research, team debate, or hands-on testing when it did not.
 - Prefer visible disclosure of AI assistance and source scope.
-- Treat source capture as a runtime boundary: preserve title, author, description, body text, and image list before rewriting.
+- Keep production history and editorial notes out of reader-facing copy unless that history directly helps the reader use the article. Put source provenance in metadata or references; explain only the version distinction a reader needs.
+- Treat source capture as a runtime boundary: preserve title, author, description, body text, and image list before rewriting. **Exception — `rewriteMode: methodology-only` only**: capture is still mandatory, but the captured original and its images are kept privately for comparison and are excluded from the deliverable; see [original-rewrite.md](references/original-rewrite.md).
 
 ## Operating Paths
 
@@ -36,6 +38,16 @@ Use this skill as a native, research-first article system. It does not route exe
 - `Path B: source-to-WeChat edition`
   use for: article text, markdown file, article URL, WeChat URL
   goal: preserve the useful source core, then rebuild it for WeChat reading and distribution
+  **Exception — `rewriteMode: methodology-only` only**: when the user supplied readable source material *and* explicitly asked for a rewrite, this preservation goal is superseded — keep only the abstract methodology and write an independently researched new article. See [original-rewrite.md](references/original-rewrite.md).
+
+Optional mode (orthogonal to the path choice):
+
+- `rewriteMode: methodology-only`
+  activate only when BOTH hold: readable source material was actually obtained, AND the user explicitly asked to rewrite / 改写 / 重写 / recreate an article from it.
+  do not activate for: topic only, render-only, save-only, translation-only, reference-only, voice-samples-only, or any explicit "不要改写" restriction.
+  ambiguous intent or failed source capture blocks the mode — ask one question, never keyword-match and never fall back to topic generation.
+  when inactive, everything below behaves exactly as written, no `TYPESAFE_API_KEY` is needed, and zero Jev calls are made.
+  full contract: [original-rewrite.md](references/original-rewrite.md).
 
 Default routing:
 - procedural or tool-teaching material -> `tutorial`
@@ -60,6 +72,7 @@ PDF policy:
 - save extracted figures to `imgs/source-fig-*.png`
 - record captions and page numbers in `source.md`
 - prefer source figures over generated visuals when they support the claim
+  **Exception — `rewriteMode: methodology-only` only**: extracted figures stay private comparison evidence; plan new visuals for the new article and keep `imgs/source-fig-*.png` out of the deliverable image set. See [original-rewrite.md](references/original-rewrite.md).
 
 Video policy:
 - a video source is valid only when the workflow can obtain the full spoken transcript
@@ -118,8 +131,10 @@ Determine this SKILL.md directory as `SKILL_DIR`, then use `${SKILL_DIR}/scripts
 | Script | Purpose |
 |--------|---------|
 | `scripts/fetch_wechat_article.py` | WeChat article fetch (mobile UA) |
-| `scripts/wechat_delivery.py` | Native WeChat delivery entrypoint (`check`, `design-catalog`, `render`, `upload-images`, `save-draft`) |
+| `scripts/wechat_delivery.py` | Native WeChat delivery entrypoint (`check`, `design-catalog`, `render`, `upload-images`, `save-draft`, `update-cover`) |
+| `scripts/make_text_cover.py` | Default 2048×872 dark text cover; title block centered so WeChat's automatic square thumbnail shows it ([cover-design-guide.md](references/cover-design-guide.md)) |
 | `scripts/install-openclaw.sh` | OpenClaw skill installer |
+| `scripts/jev_rewrite.py` | Jev rewrite screening evaluator — **only** under `rewriteMode: methodology-only` ([original-rewrite.md](references/original-rewrite.md)) |
 
 ## Native Capability Contract
 
@@ -184,7 +199,20 @@ Run the article through these phases:
    # exclamation marks (must be 0)
    grep -c '！' article-formatted.md
    ```
-6. **微信敏感词合规检查**（⛔ 必须通过才能继续）：用 `wechat-compliance-check` 扫描 `article-formatted.md`，有命中则改写后重新扫描，直到零违规。
+6. **微信敏感词合规检查**（⛔ 必须通过才能继续）：解析与本技能并列安装的 `wechat-compliance-check` 目录为 `COMPLIANCE_SKILL_DIR`，然后执行：
+   ```bash
+   COMPLIANCE_SKILL_DIR="${COMPLIANCE_SKILL_DIR:-$(dirname "${SKILL_DIR}")/wechat-compliance-check}"
+   test -f "${COMPLIANCE_SKILL_DIR}/scripts/compliance_scan.py" || { echo "compliance scanner unavailable; block WeChat delivery"; exit 2; }
+   python3 "${COMPLIANCE_SKILL_DIR}/scripts/compliance_scan.py" article-formatted.md --json
+   ```
+   退出码 0 才能继续；退出码 1 时只改写报告列出的片段并重扫，最多 5 轮，用尽后 `needs_revision`，不得交付；退出码 2 或 3 为 `blocked`，不得交付。无 scanner 时不得回退为通过，也不影响非公众号流程。
+
+   **⛔ Reader-perspective paragraph review (BLOCKING before HTML rendering or draft save):**
+   - Read the entire final `article-formatted.md` in order, one paragraph and heading at a time. Ignore frontmatter when judging reader-facing prose. For each paragraph, ask: What does a first-time reader know at this point? What question does this answer? Does it require an unstated earlier draft, private decision, working file, or production step? Does it repeat another paragraph or interrupt the promised tutorial?
+   - Flag author-to-editor notes, revision history, internal version comparisons that do not guide installation, process claims, ungrounded examples, undefined terms, and transitions that assume missing context. Preserve version warnings that affect commands, but write them for a reader with no knowledge of the source draft.
+   - Record each flagged location with its exact quote, reader impact, and edit; repair the canonical Markdown and regenerate `article-formatted.md` as needed. Re-read adjacent paragraphs after every repair. Rerun de-AI and compliance scans on the final text. A whole-article score from Jev or another model does not replace this paragraph pass; use semantic judgments only to prioritize ambiguous passages.
+   - Before rendering, confirm the reader-facing body contains no unexplained mentions of "old draft", "rewritten", "this revision", "above discussion", or internal file/process names. For example, "This article was rewritten from an old draft" tells the reader nothing useful; remove it, while keeping a warning that a named repository was archived when it changes which install command works. A zero-hit keyword scan alone does not pass; manually inspect every paragraph. Do not claim this gate passed unless the full article was read and flagged passages were resolved.
+   - Repeat this pass on changed sections after any late rewrite. Compare rendered HTML and any saved draft against the approved text before reporting delivery.
 7. refinement, visual strategy, and image evaluation
 
    **⛔ Pre-delivery compliance gate (BLOCKING — must execute before Phase 8):**
@@ -205,6 +233,40 @@ Run the article through these phases:
    - If `manifest.json` already contains a `media_id`, pass `--media-id` to `save-draft` to **update the existing draft**. Never create a duplicate.
    - If a duplicate draft was accidentally created, delete it via API (`draft/delete`) immediately and keep only the original `media_id`.
    - `manifest.json` is the single source of truth for `media_id`.
+
+   **Cover = the 2.35:1 `cover.png`, `--cover-type image`. Never the square crop.**
+   The feed card and the article header both use the cover set on the draft. Use the wide `cover.png` (`--cover-type image`), not `cover-thumb.png` / `--cover-type thumb`: verified 2026-09-25, a square thumb gets center-cropped to the card's wide aspect and the bottom line of text is chopped off, so it reads as oversized and clipped. The wide cover keeps its one line of text in the visible band. `cover-thumb.png` is only a fallback where a square is explicitly required. Full rules — dimensions, the single-`thumb_media_id` two-crop reality, and crop-safe text layout — are in [cover-design-guide.md](references/cover-design-guide.md).
+
+   **Default cover layout (non-Kompany articles): `scripts/make_text_cover.py`.** It keeps the cover wide (2048×872) and centers the whole title block within 760px, so the square thumbnail WeChat crops from the center after publishing still shows the full title. Do not make a square cover. `--square-preview` writes a check-only image; never upload it.
+
+   **To change ONLY the cover of an existing draft, use `update-cover` — not `save-draft`.**
+   `save-draft` rewrites the whole article from local html/markdown (risking body drift and needing a re-render). `update-cover` reads the live body back via `draft/get` and re-pushes only `thumb_media_id`, so the body cannot move:
+   ```bash
+   python3 "${SKILL_DIR}/scripts/wechat_delivery.py" update-cover \
+     --media-id "$MEDIA_ID" --cover-image imgs/cover.png --cover-type image
+   ```
+   It reads the draft back after writing (same BLOCKING verification as below) and, like every write, still resets 原创/赞赏/合集 — so run it BEFORE those are set in the editor.
+
+   **⛔ After every draft write, read the draft back (BLOCKING).**
+   `draft/update` returning `errcode:0` does **not** mean the content landed. Observed 2026-09-25: the API reported ok while the live draft still held the previous title and body. Never judge success from the write response, and never report success to the user from it.
+   ```bash
+   python3 -c "
+   import json,urllib.request,sys
+   token=open('/tmp/wx_token.txt').read().strip()
+   media_id=sys.argv[1]
+   req=urllib.request.Request('https://api.weixin.qq.com/cgi-bin/draft/get?access_token='+token,
+     data=json.dumps({'media_id':media_id}).encode(),headers={'Content-Type':'application/json'})
+   a=json.load(urllib.request.urlopen(req,timeout=30))['news_item'][0]
+   print('TITLE:',a['title']); print('LEN:',len(a['content']))
+   for p in sys.argv[2:]: print(('OK  ' if p in a['content'] else 'FAIL'),p)
+   " <media_id> <distinctive phrase from the new body> ...
+   ```
+   Compare the returned `title`/`digest` against `manifest.json` and probe the body for phrases unique to the latest revision (not phrases that also existed in the prior version — those cannot detect a stale draft). Any mismatch means re-push and re-verify.
+
+   **Backend-only fields the draft API cannot set.**
+   原创声明 (original declaration), 赞赏 (reward), and 合集 (album) are **not** in the `articles` schema — it accepts only `article_type`, `title`, `author`, `digest`, `content`, `content_source_url`, `thumb_media_id`, `need_open_comment`, `only_fans_can_comment`, `image_info`, `cover_info`, `product_info`. Setting them requires driving the mp.weixin.qq.com editor in a logged-in browser. Order within the editor matters: declare 原创 first (赞赏 stays disabled until it is), then 赞赏, then 合集, then click 保存为草稿 or everything is lost. Saving in the editor rewrites the draft `author` field to the 赞赏 account name. Check the project AGENTS file for the account's specific values.
+
+   **A later `draft/update` silently wipes all three.** Verified 2026-09-25: re-pushing content after setting them reset 原创 to 未声明, disabled 赞赏, and cleared 合集. Set them only once the body is final, and never call `draft/add`/`draft/update` afterwards. If the body must change again, the order is: edit → `draft/update` → read back → re-set all three in the editor → 保存为草稿.
 
    **Before draft save, run HTML compliance check** (must all pass):
    ```bash
@@ -260,7 +322,9 @@ The skill is complete only when all of these hold:
 - markdown and HTML agree on title, summary, cover, and image paths
 - HTML contains zero `class=` attributes, zero `<style>` tags, zero `<a href>` links, and outermost `<section>` has explicit `background`
 - `manifest.json` agrees with the actual output set and draft state
+- the saved draft was **read back via `draft/get`** and its title, digest, and revision-specific body phrases match the local files — the write call's `errcode:0` alone does not satisfy this
 - the article does not overclaim research effort or authorship
+- the reader-perspective paragraph review passed on the final markdown; each changed section was reviewed again after its last edit
 - `wechat-compliance-check` returned zero violations on the final markdown
 - the workflow can stop safely at the highest-quality completed artifact if a later handoff fails
 - if Phase 8 was triggered, platform copies follow [platform-copy.md](references/platform-copy.md) and manifest includes their output entries

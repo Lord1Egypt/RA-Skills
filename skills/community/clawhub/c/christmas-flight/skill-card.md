@@ -1,49 +1,62 @@
-## Description: <br>
-Book Christmas flights for holiday travel and Xmas vacation; also supports flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and related travel tasks powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Christmas flights for holiday travel and Xmas vacation, with related support for flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa information, travel insurance, car rental, and other travel tasks powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-support agents use this skill to search Christmas and holiday flight options through the flyai CLI, compare routes by price, duration, or directness, and return booking links from real-time results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install a global third-party flyai CLI package. <br>
-Mitigation: Require explicit approval before installation and prefer a pinned or sandboxed CLI setup. <br>
-Risk: Travel itinerary details are sent to an external flyai or Fliggy-backed service. <br>
-Mitigation: Confirm user consent before sharing route, date, budget, or booking-related details with the service. <br>
-Risk: Booking-related results could be acted on without enough user review. <br>
-Mitigation: Treat CLI output as search results, require user confirmation before booking actions, and preserve visible Book links for review. <br>
-Risk: If the CLI fails or returns incomplete data, the agent could produce unsupported travel information. <br>
-Mitigation: Stop or retry according to the fallback guidance and do not answer from training data when CLI evidence is unavailable. <br>
+## Use Case:
 
+External users and travel agents use this skill to search real-time Christmas and holiday travel options through the flyai CLI, compare routes by recommendation, price, speed, or directness, and return booking links in Markdown.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/christmas-flight) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown flight comparison with booking links and brief CLI-derived guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each included travel result must have a Book link based on detailUrl and a flyai real-time pricing brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill may install a third-party CLI globally with npm.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed, isolated installation instead of automatic global installation, especially on sensitive machines.
+
+Risk: Travel details are passed to a third-party flight CLI.
+
+Mitigation: Use the skill only when sharing origin, destination, dates, and related travel preferences with that CLI is acceptable.
+
+Risk: Shell commands are assembled from user-provided travel text.
+
+Mitigation: Validate origin, destination, date, and sort parameters against the documented allowlist before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/christmas-flight)
+- [Publisher profile](https://clawhub.ai/user/dingtom336-gif)
+- [Scenario playbooks](references/playbooks.md)
+- [Parameter collection and output templates](references/templates.md)
+- [Failure recovery](references/fallbacks.md)
+- [Execution runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands when execution steps are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires real-time flyai CLI results and booking links from detailUrl; raw JSON should not be returned.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

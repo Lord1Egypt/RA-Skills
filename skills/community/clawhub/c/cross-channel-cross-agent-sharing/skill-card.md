@@ -1,39 +1,53 @@
-## Description: <br>
-Ensures capabilities gained from workspace-installed tools or packages are documented, verified, and propagated across channels and agent sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures new capabilities gained from workspace-installed tools or packages are documented, verified, and propagated across channels and related agent sessions.
 
-## Publisher: <br>
-[skglau](https://clawhub.ai/user/skglau) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skglau](https://clawhub.ai/user/skglau)
 
-## Use Case: <br>
-Developers and agent operators use this skill after installing or upgrading workspace tools to record verification details, update reusable skill guidance, log memory, and notify related sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persisted workspace notes or skill updates can carry inaccurate capability claims into future sessions. <br>
-Mitigation: Run the verification command before claiming a capability and review generated TOOLS.md, SKILL.md, scripts, and memory changes before relying on them. <br>
-Risk: Cross-session notifications can spread irrelevant or noisy guidance. <br>
-Mitigation: Send only brief notices to related sessions and include the invocation plus any critical caveat. <br>
+## Use Case:
 
+Developers and agent operators use this skill after workspace tool, environment, or package changes to record exact capability details, verify availability, and share concise updates with related sessions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and file update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to TOOLS.md, SKILL.md, scripts, memory logs, and brief session notifications; includes a shell verifier for Python module availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill asks agents to persist capability notes and alter reusable skill instructions, which can make incorrect or stale capability claims durable across the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review before persistent memory, TOOLS.md, or reusable skill updates are applied, and run the bundled verification helper before claiming a capability.
+
+Risk: The skill can notify related sessions after capability changes, which may create unwanted cross-session sharing or noise.
+
+Mitigation: Limit notifications to active related sessions and include only the invocation details and critical caveats needed for the receiving agent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/skglau/skills/cross-channel-cross-agent-sharing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and file update guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include concise cross-session notification text and verification results.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

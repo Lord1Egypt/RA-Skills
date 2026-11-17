@@ -1,0 +1,13 @@
+{
+  "ownerId": "583963",
+  "slug": "description-writer",
+  "version": "1.5.3",
+  "workflow": "listing",
+  "focus": "description",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ],
+  "releaseWave": 2
+}

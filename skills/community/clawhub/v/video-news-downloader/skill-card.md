@@ -1,43 +1,63 @@
-## Description: <br>
-Automates daily downloads of CBS Evening News and BBC News at Ten from YouTube, extracts English subtitles, prepares DeepSeek proofreading prompts, and serves the videos through local HTTP players. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated daily news video downloader with AI subtitle proofreading for CBS Evening News and BBC News at Ten, including subtitle extraction, DeepSeek proofreading task preparation, HTTP video serving, and scheduled cron updates.
 
-## Publisher: <br>
-[Cyberpsychosissss](https://clawhub.ai/user/Cyberpsychosissss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cyberpsychosissss](https://clawhub.ai/user/cyberpsychosissss)
 
-## Use Case: <br>
-Developers and operators use this skill to automate scheduled news video downloads, subtitle extraction, proofreading preparation, local HTTP playback, and cron-based update management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent daily cron jobs for downloading videos and preparing subtitle proofreading tasks. <br>
-Mitigation: Install cron jobs only after confirming the recurring schedule is desired, review existing crontab entries, and use the provided status or remove commands to audit or remove the jobs. <br>
-Risk: The skill can run HTTP video servers on ports 8093 and 8095 that may be reachable from untrusted networks. <br>
-Mitigation: Confirm those ports are not exposed outside trusted networks before starting the servers, and use firewall or network controls when local-only streaming is intended. <br>
-Risk: Subtitle text may be shared with DeepSeek if a user manually submits the generated proofreading prompt. <br>
-Mitigation: Review generated proofreading task files before submission and share subtitle text only when it is acceptable to send that content to DeepSeek. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Detailed workflow](references/workflow.md) <br>
-- [Cron job setup guide](references/cron-setup.md) <br>
-- [ClawHub listing](https://clawhub.ai/Cyberpsychosissss/video-news-downloader) <br>
+## Use Case:
 
+Developers and operators use this skill to automate downloading daily CBS and BBC news videos, extract subtitles, prepare AI proofreading tasks, serve local web players, and schedule recurring updates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and Python and shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local video, subtitle, proofreading task, correction report, log, cron, and HTTP server artifacts when executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Downloaded videos and subtitles may be exposed over the network when the HTTP servers bind to all interfaces.
+
+Mitigation: Bind the HTTP server to 127.0.0.1 unless LAN access is intentional, and review exposed directories before starting the server.
+
+Risk: Cron installation creates persistent scheduled jobs that run download and proofreading scripts automatically.
+
+Mitigation: Inspect the proposed crontab entries before installation and run the skill as an unprivileged user.
+
+Risk: Subtitle text sent to DeepSeek or another AI provider may disclose downloaded transcript content to a third party.
+
+Mitigation: Treat subtitle proofreading as third-party data sharing and review transcript sensitivity before submitting text to an AI provider.
+
+Risk: Unpinned tools and Python dependencies can change behavior across installs.
+
+Mitigation: Pin dependencies in a virtual environment and review tool versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cyberpsychosissss/skills/video-news-downloader)
+- [Video News Downloader workflow](references/workflow.md)
+- [Cron Job Setup Guide](references/cron-setup.md)
+- [CBS Evening News YouTube playlist](https://www.youtube.com/playlist?list=PLotzEBRQdc0cMXjf4FKw6_1Pu8in6rzBQ)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python and shell scripts, cron configuration, local media files, WebVTT subtitles, proofreading task text, and correction reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or manages MP4 videos, VTT subtitle files, backup subtitles, AI proofreading prompt files, corrected subtitle text, correction reports, cron entries, logs, and HTTP player endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

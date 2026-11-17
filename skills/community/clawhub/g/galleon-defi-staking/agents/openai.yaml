@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Staking"
+  short_description: "Plan staking, restaking and queued withdrawals"
+  default_prompt: "Use $galleon-defi-staking to research the selected position and prepare a source-backed plan with explicit access, risk and settlement checks."

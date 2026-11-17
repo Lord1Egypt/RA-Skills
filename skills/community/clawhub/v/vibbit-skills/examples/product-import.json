@@ -1,0 +1,23 @@
+{
+  "products": [
+    {
+      "url": "https://example.com/products/projector",
+      "name": "Portable projector",
+      "price": 99,
+      "price_unit": "USD",
+      "image_url": "https://example.com/projector.jpg",
+      "image_urls": [
+        "https://example.com/projector.jpg"
+      ],
+      "description": "A portable projector",
+      "selling_points": [
+        "Compact design"
+      ],
+      "third_product_id": "projector-001",
+      "third_product_url": "https://example.com/products/projector",
+      "source": "shopline",
+      "platform": "shopline",
+      "status": "SUCCESS"
+    }
+  ]
+}

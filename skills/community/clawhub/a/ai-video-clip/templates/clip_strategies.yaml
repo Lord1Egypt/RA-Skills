@@ -1,0 +1,98 @@
+# 剪辑策略模板 — AI Agent 可用的预置剪辑模式
+# 每个策略定义：适用场景、决策规则、参数说明
+
+strategies:
+
+  remove_fillers:
+    name: "去口癖 & 去空白"
+    description: "删除 umm/uh/然后/那个 等填充词，以及长段静音"
+    applicable: "播客、教程、采访、演讲。口播类长视频去冗余。"
+    rules:
+      - 识别填充词列表: ["umm", "uh", "嗯", "呃", "那个", "然后", "就是说", "就是", "对吧", "you know", "like", "I mean", "actually", "basically"]
+      - 如果填充词独立短语（不承载语义），删除整段
+      - 如果填充词在句子中间，保留短语但标记可闪切
+      - 静音超过 1.5s 的片段裁剪为 0.3s
+      - 连续停顿超过 2s 视为"思考间隙"，裁剪为 0.5s
+      - 保留说话人切换处的自然停顿（0.3-0.8s）
+    parameters:
+      silence_threshold: 1.5   # 静音阈值（秒）
+      silence_keep: 0.3        # 保留的最小停顿
+      filler_confidence: 0.7   # 填充词识别置信度阈值
+
+  extract_highlights:
+    name: "提取高光片段"
+    description: "从长视频中提取最有价值的高光时刻"
+    applicable: "直播回放、比赛录像、长时间录像、活动记录"
+    rules:
+      - 优先提取音频能量峰值区域（笑声、掌声、音量突增）
+      - 提取关键语义节点：总结/结论、转折、提问、答案、数字/数据陈述
+      - 场景切换点前后各取 3s 作为过渡
+      - 按精彩度评分排序，取 top-N
+      - 每个片段最小时长 15s，最大 120s
+    parameters:
+      num_clips: 3              # 提取片段数
+      min_duration: 15          # 最小片段时长（秒）
+      max_duration: 120         # 最大片段时长（秒）
+      energy_weight: 0.3        # 音频能量权重
+      semantic_weight: 0.7      # 语义权重
+      scene_buffer: 3           # 场景切换缓冲（秒）
+
+  condense:
+    name: "精简到 N 分钟"
+    description: "把长视频压缩到指定的总时长"
+    applicable: "需要做摘要、限制时长的场景"
+    rules:
+      - 保留主题句和结论句
+      - 删减重复表达和展开细节
+      - 保留过渡句维持流畅性
+      - 优先保留高信息密度的片段
+      - 维持原来的叙事顺序
+    parameters:
+      target_duration: 300      # 目标总时长（秒）
+
+  topic_splits:
+    name: "按主题分片"
+    description: "根据内容语义将长视频切分为多个独立主题片段"
+    applicable: "教程、课程、研讨会、圆桌讨论"
+    rules:
+      - 检测主题转换信号词："下一个"/"接下来"、"第二点"、"总结一下"、"ok so"、"moving on to"
+      - 检测话题边界：长停顿(>3s) + 新主题词
+      - 每个片段独立成章，包含开头引入 + 主体 + 小结
+      - 片段之间截断在说话人切换处
+    parameters:
+      min_segment_duration: 60  # 最小片段时长（秒）
+      topic_boundary_confidence: 0.6
+
+  social_clip:
+    name: "社交平台适配剪辑"
+    description: "为抖音/小红书/B站/TikTok 等平台制作适配格式"
+    applicable: "任何需要多平台分发的视频内容"
+    rules:
+      - 垂直 9:16 裁切中心区域或关键主体追踪
+      - 开头 3 秒必须有 hook（悬念/问题/惊艳画面）
+      - 字幕放在安全区域（垂直：y=40%-85%）
+      - 结尾 3s 加 CTA（关注/点赞/评论引导）
+      - 片段总时长控制在平台推荐范围内
+    parameters:
+      platform: "douyin"        # douyin/tiktok/bilibili/youtube
+      max_duration: 60          # 平台最大时长
+      hook_duration: 3          # 开头吸引时长
+      cta_duration: 3           # 结尾引导时长
+      safe_zone_top: 0.15       # 字幕安全区顶部比例
+      safe_zone_bottom: 0.85    # 字幕安全区底部比例
+
+  highlight_reel:
+    name: "精彩混剪集锦"
+    description: "从多段素材中挑选最激动人心的片段混剪"
+    applicable: "体育赛事、游戏集锦、旅行 vlog、活动花絮"
+    rules:
+      - 提取音频能量爆发点（欢呼、爆炸、高潮音乐）
+      - 提取快速运动/动作片段
+      - BGM 节奏匹配（快节奏片段配快节奏音乐段）
+      - 剪辑长度按音乐节拍对齐
+      - 片段之间 0.2s 硬切或 0.3s dissolve
+    parameters:
+      energy_threshold: 0.6     # 高能量阈值
+      clip_duration_range: [2, 8]  # 每个片段时长范围（秒）
+      bgm_track: ""             # 背景音乐路径
+      cut_style: "hard"         # 切点风格: hard/dissolve

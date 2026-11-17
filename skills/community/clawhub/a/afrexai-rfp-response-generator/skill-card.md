@@ -1,42 +1,58 @@
-## Description: <br>
-Generates structured, compliant responses to RFPs, RFIs, and RFQs by extracting requirements, mapping company capabilities, identifying gaps, and drafting proposal sections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured, compliant RFP, RFI, and RFQ response packages by extracting requirements, mapping company capabilities, flagging gaps, and drafting proposal sections.
 
-## Publisher: <br>
-[afrexai-cto](https://clawhub.ai/user/afrexai-cto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[afrexai-cto](https://clawhub.ai/user/afrexai-cto)
 
-## Use Case: <br>
-Proposal, sales, capture, and delivery teams use this skill to analyze formal solicitations and produce tailored first drafts of compliance matrices, executive summaries, technical approaches, management approaches, past performance narratives, and review checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Proposal materials can contain confidential pricing, customer references, personal data, export-controlled content, or procurement-restricted information. <br>
-Mitigation: Use only redacted or organization-approved materials and remove sensitive information before sharing it with the agent environment. <br>
-Risk: Generated proposal claims may be incomplete, unsupported, or misaligned with solicitation requirements. <br>
-Mitigation: Review every draft against the source RFP, company evidence, page limits, and final compliance matrix before submission. <br>
+## Use Case:
 
+Developers, proposal teams, sales teams, and consultants use this skill to turn solicitation documents and company profiles into first-draft proposal packages with compliance mapping, response sections, and review checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/afrexai-cto/afrexai-rfp-response-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/afrexai-cto) <br>
-- [AfrexAI](https://afrexai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown documents and structured review tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected outputs include compliance-matrix.md, executive-summary.md, technical-response.md, management-response.md, past-performance.md, and review-checklist.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Proposal work may include confidential company or customer information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only documents the user is authorized to process and review generated proposal content before sharing it.
+
+Risk: Generated proposal claims or past-performance details may be unsupported if source materials are incomplete.
+
+Mitigation: Verify all claims against provided company evidence and leave placeholders for missing project details instead of fabricating them.
+
+Risk: The artifact references an unbundled SOUL.md style file that could influence narrative text if resolved at runtime.
+
+Mitigation: Inspect and trust any external SOUL.md file before applying it, or ignore that reference when generating proposal sections.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/afrexai-cto/skills/afrexai-rfp-response-generator)
+- [AfrexAI](https://afrexai.com)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown files with structured proposal sections, compliance tables, and review checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a compliance matrix, executive summary, technical response, management response, past-performance narratives, and final review checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

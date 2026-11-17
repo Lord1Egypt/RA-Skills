@@ -1,45 +1,55 @@
-## Description: <br>
-ElevenLabs Text-to-Speech API for high-quality speech synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ElevenLabs Text-to-Speech API for high-quality speech synthesis.
 
-## Publisher: <br>
-[lnj22](https://clawhub.ai/user/lnj22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lnj22](https://clawhub.ai/user/lnj22)
 
-## Use Case: <br>
-Developers and external users use this skill to generate speech audio from text with the ElevenLabs API, including handling long documents by chunking text and combining MP3 output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Text submitted for conversion is sent to ElevenLabs for processing. <br>
-Mitigation: Use only text approved for external processing and avoid secrets, confidential documents, personal data, or regulated content unless the provider terms and data handling have been approved. <br>
-Risk: The skill requires an ElevenLabs API key. <br>
-Mitigation: Provide the API key through the ELEVENLABS_API_KEY environment variable and avoid hard-coding or logging the credential. <br>
-Risk: ElevenLabs usage can be affected by subscription rate limits, quotas, retention terms, and billing. <br>
-Mitigation: Check the active ElevenLabs plan terms before use, cache generated audio where appropriate, and monitor quota or billing impact. <br>
-Risk: Long text must be split across requests, which can create awkward cuts or missing content if chunking is poor. <br>
-Mitigation: Split long documents at sentence boundaries, verify generated chunks, and concatenate reviewed audio outputs. <br>
+## Use Case:
 
+Developers and agents use this skill to call the ElevenLabs Text-to-Speech API, configure voices and model settings, and generate MP3 speech audio from text.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lnj22/pg-essay-to-audiobook-elevenlabs-tts) <br>
-- [ElevenLabs Text-to-Speech API endpoint](https://api.elevenlabs.io/v1/text-to-speech/{voice_id}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python, JSON, HTTP endpoint, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce MP3 audio files when the example code is executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Text submitted for speech synthesis and the ElevenLabs API key are sent to ElevenLabs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for text that is appropriate to share with ElevenLabs, protect the ELEVENLABS_API_KEY environment variable, and review ElevenLabs' data and billing terms before using private, regulated, or customer-provided text.
+
+Risk: Generated audio is written to local MP3 files when the example code is executed.
+
+Mitigation: Store generated files only in approved locations and apply the same handling controls used for the source text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lnj22/skills/pg-essay-to-audiobook-elevenlabs-tts)
+- [Publisher profile](https://clawhub.ai/user/lnj22)
+- [ElevenLabs Text-to-Speech API endpoint](https://api.elevenlabs.io/v1/text-to-speech/{voice_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local MP3 audio files when the generated API-call code is executed with a valid ElevenLabs API key.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

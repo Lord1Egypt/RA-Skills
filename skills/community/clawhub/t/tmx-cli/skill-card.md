@@ -1,42 +1,60 @@
-## Description: <br>
-Manage Thermomix/Cookidoo meal planning via tmx-cli, including recipe search, weekly meal plan management, shopping list generation, favorites, and recipe details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Thermomix/Cookidoo meal planning via tmx-cli for recipe search, weekly meal plans, shopping lists, favorites, and recipe details.
 
-## Publisher: <br>
-[Lars147](https://clawhub.ai/user/Lars147) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lars147](https://clawhub.ai/user/lars147)
 
-## Use Case: <br>
-External users and agent operators use this skill to manage Cookidoo meal planning from a terminal-oriented workflow. It helps agents search recipes, inspect recipe details, maintain weekly plans and favorites, and generate or export shopping lists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and modify a user's Cookidoo account, including meal plans, shopping lists, and favorites. <br>
-Mitigation: Confirm plan, favorites, and shopping-list changes before execution, especially remove, move, clear, and generated-list actions. <br>
-Risk: The skill handles Cookidoo passwords and session cookies in ways that can leak account access. <br>
-Mitigation: Prefer interactive login over password-based flows, avoid sharing or committing the skill directory, and delete local cookie or token files when the integration is no longer needed. <br>
+## Use Case:
 
+External users and AI agents use this skill to manage Cookidoo/Thermomix recipes, meal plans, favorites, and shopping lists through the bundled tmx-cli command-line tool.
 
-## Reference(s): <br>
-- [Command Reference](references/commands.md) <br>
-- [Cookidoo skill page](https://clawhub.ai/Lars147/tmx-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/Lars147) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON-producing CLI invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can direct use of --json for programmatic parsing and may produce shopping-list exports in Markdown or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: pyproject.toml and server-resolved release metadata) <br>
+Risk: The CLI requires Cookidoo account access and stores session or token data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if comfortable granting Cookidoo account access, prefer the bundled reviewed file or a pinned release, and protect or delete local cookie and token files when finished.
+
+Risk: Supplying a password through command-line flags can expose credentials through shell history or process inspection.
+
+Mitigation: Use the interactive login flow when possible and avoid passing passwords as command-line arguments.
+
+Risk: Meal plan, favorites, and shopping-list commands can remove or clear user data.
+
+Mitigation: Confirm destructive actions, including plan removal and shopping-list clearing, before running the command.
+
+## Reference(s):
+
+- [Full Command Reference](references/commands.md)
+- [tmx-cli README](README.md)
+- [Cookidoo](https://cookidoo.de)
+- [tmx-cli Repository](https://github.com/Lars147/tmx-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and CLI outputs in text, Markdown, or JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill directs agents to prefer --json for parseable CLI output and to confirm destructive actions before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

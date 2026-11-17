@@ -1,7 +1,7 @@
 {
   "name": "gateway-watchdog",
   "displayName": "Gateway Watchdog Discord",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Monitor OpenClaw gateway health with a watchdog state machine and Discord alerts.",
   "author": "jonyjing",
   "slug": "openclaw-gateway-watchdog-skill",

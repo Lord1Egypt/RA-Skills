@@ -1,40 +1,54 @@
-## Description: <br>
-skill-scanner reviews SKILL.md-format agent skills for malicious patterns, permission abuse, prompt injection, and ClawHavoc attack vectors, then reports a Safe, Caution, or Danger verdict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents that scans SKILL.md content for malicious patterns, permission abuse, prompt injection, and ClawHavoc attack vectors, then returns a Safe, Caution, or Danger verdict.
 
-## Publisher: <br>
-[billyhetech](https://clawhub.ai/user/billyhetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billyhetech](https://clawhub.ai/user/billyhetech)
 
-## Use Case: <br>
-Developers and agent users use this skill to vet OpenClaw, Claude Code, GitHub, local, or pasted SKILL.md content before deciding whether to install or trust a skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Static skill review can miss runtime behavior that is not visible in SKILL.md content. <br>
-Mitigation: Treat reports as advisory and review GitHub issues, ClawHub community feedback, and runtime behavior before installation. <br>
-Risk: Scanning local paths or pasted content may expose sensitive information to the reviewing agent. <br>
-Mitigation: Avoid providing files or skill text that contain secrets, credentials, or private operational details. <br>
+## Use Case:
 
+Developers and agents use this skill to review, vet, or audit agent skills before installation or use. It accepts ClawHub URLs, GitHub URLs, local paths, or pasted SKILL.md content and reports specific concerns with remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billyhetech/skill-scanner-v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown safety report with check-level findings, verdict, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses static analysis only; evidence provenance says no server-resolved GitHub import provenance is stored for this version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Static skill review can miss runtime behavior or community-reported issues outside the SKILL.md source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill's verdict as guidance and verify the source, author, and community reports before installing or relying on another skill.
+
+Risk: The skill includes example threat strings as detection patterns, which scanners or reviewers may flag without context.
+
+Mitigation: Interpret those strings as disclosed examples for analysis, not behavior the skill instructs an agent to execute.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billyhetech/skills/skill-scanner-v1)
+- [Publisher profile](https://clawhub.ai/user/billyhetech)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown safety report with verdict, findings, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Safe, Caution, or Danger verdict based on five static checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

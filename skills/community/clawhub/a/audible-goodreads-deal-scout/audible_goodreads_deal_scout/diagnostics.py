@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import os
 from datetime import UTC, datetime
 from pathlib import Path
@@ -15,8 +14,17 @@ from .audible_fetch import (
     curl_available,
     fetch_text_with_final_url,
 )
-from .delivery import build_cron_message, list_cron_jobs, resolve_openclaw_bin
-from .settings import default_config_path, default_storage_dir, load_config, skill_root, validate_marketplace
+from .delivery import SCHEDULED_THINKING, build_cron_message, list_cron_jobs, resolve_openclaw_bin
+from .settings import (
+    ConfigError,
+    config_template,
+    default_config_path,
+    default_storage_dir,
+    load_config,
+    resolve_configured_path,
+    skill_root,
+    validate_marketplace,
+)
 from .shared import normalize_space
 
 
@@ -36,12 +44,24 @@ def _path_check(path_value: str | None, *, required: bool = False, label: str = 
         }
     path = Path(path_text).expanduser()
     exists = path.exists()
+    regular_file = exists and path.is_file()
+    readable = regular_file and os.access(path, os.R_OK)
+    if not exists:
+        status = "missing"
+    elif not regular_file:
+        status = "not_file"
+    elif not readable:
+        status = "unreadable"
+    else:
+        status = "ok"
     return {
-        "ok": exists or not required,
-        "status": "ok" if exists else "missing",
+        "ok": bool(readable),
+        "status": status,
         "path": str(path),
         "exists": exists,
-        "message": f"{label} {'exists' if exists else 'does not exist'}.",
+        "isFile": regular_file,
+        "readable": readable,
+        "message": f"{label} is {status.replace('_', ' ')}.",
     }
 
 
@@ -175,6 +195,11 @@ def _cron_check(
         "timezone": spec["timezone"],
         "stateFile": state_file or None,
         "expectedMessage": expected_message,
+        "expectedThinking": SCHEDULED_THINKING,
+        "expectedDelivery": {
+            "channel": config.get("deliveryChannel"),
+            "to": config.get("deliveryTarget"),
+        },
     }
     if not check_live_cron:
         return result
@@ -186,9 +211,15 @@ def _cron_check(
     disabled_matches = []
     config_path_text = str(config_path)
     for job in jobs:
-        payload = job.get("payload") if isinstance(job.get("payload"), dict) else {}
+        payload_value = job.get("payload")
+        schedule_value = job.get("schedule")
+        delivery_value = job.get("delivery")
+        trigger_value = job.get("trigger")
+        payload = payload_value if isinstance(payload_value, dict) else {}
         message = normalize_space(str(payload.get("message") or payload.get("text") or ""))
-        schedule = job.get("schedule") if isinstance(job.get("schedule"), dict) else {}
+        schedule = schedule_value if isinstance(schedule_value, dict) else {}
+        delivery = delivery_value if isinstance(delivery_value, dict) else {}
+        trigger = trigger_value if isinstance(trigger_value, dict) else {}
         name = normalize_space(str(job.get("name") or ""))
         looks_related = (
             config_path_text in message
@@ -198,26 +229,67 @@ def _cron_check(
         )
         if not looks_related:
             continue
+        message_matches = config_path_text in message or expected_message == message
+        schedule_matches = normalize_space(str(schedule.get("cron") or schedule.get("expr") or "")) == cron_expr
+        timezone_matches = normalize_space(str(schedule.get("tz") or "")) == spec["timezone"]
+        expected_channel = normalize_space(str(config.get("deliveryChannel") or ""))
+        expected_target = normalize_space(str(config.get("deliveryTarget") or ""))
+        if expected_channel and expected_target:
+            delivery_matches = (
+                normalize_space(str(delivery.get("channel") or "")) == expected_channel
+                and normalize_space(str(delivery.get("to") or "")) == expected_target
+            )
+        else:
+            delivery_matches = (
+                normalize_space(str(delivery.get("mode") or "none")) in {"", "none"}
+                and not normalize_space(str(delivery.get("channel") or ""))
+                and not normalize_space(str(delivery.get("to") or ""))
+            )
+        light_context_matches = payload.get("lightContext") is True
+        thinking = normalize_space(str(payload.get("thinking") or ""))
+        thinking_matches = thinking == SCHEDULED_THINKING
+        trigger_configured = bool(trigger.get("script"))
         match = {
             "id": job.get("id"),
             "name": job.get("name"),
             "enabled": job.get("enabled"),
             "schedule": schedule,
-            "messageMatchesConfig": config_path_text in message or expected_message == message,
-            "scheduleMatchesConfig": normalize_space(str(schedule.get("cron") or schedule.get("expr") or "")) == cron_expr,
-            "timezoneMatchesMarketplace": normalize_space(str(schedule.get("tz") or "")) == spec["timezone"],
+            "messageMatchesConfig": message_matches,
+            "scheduleMatchesConfig": schedule_matches,
+            "timezoneMatchesMarketplace": timezone_matches,
+            "deliveryMatchesConfig": delivery_matches,
+            "lightContextEnabled": light_context_matches,
+            "thinking": thinking,
+            "thinkingDisabled": thinking == "off",
+            "thinkingMatchesConfig": thinking_matches,
+            "triggerConfigured": trigger_configured,
+            "matchesConfig": (
+                message_matches
+                and schedule_matches
+                and timezone_matches
+                and delivery_matches
+                and light_context_matches
+                and thinking_matches
+                and trigger_configured
+            ),
         }
         if job.get("enabled"):
             active_matches.append(match)
         else:
             disabled_matches.append(match)
-    ok = bool(active_matches)
-    status = "matched" if active_matches else ("disabled" if disabled_matches else "not_found")
+    matching_active = [match for match in active_matches if match["matchesConfig"]]
+    ok = bool(matching_active)
+    status = (
+        "matched"
+        if matching_active
+        else ("mismatch" if active_matches else ("disabled" if disabled_matches else "not_found"))
+    )
     return {
         **result,
         "ok": ok,
         "status": status,
         "matches": active_matches,
+        "matching": matching_active,
         "disabledMatches": disabled_matches,
     }
 
@@ -233,20 +305,22 @@ def doctor_report(
     resolved_config_path = (config_path or default_config_path()).expanduser().resolve()
     config_exists = resolved_config_path.exists()
     config_parse_error = ""
-    config: dict[str, Any] = {}
-    if config_exists:
-        try:
-            parsed_config = json.loads(resolved_config_path.read_text(encoding="utf-8"))
-            if isinstance(parsed_config, dict):
-                config = parsed_config
-            else:
-                config_parse_error = "Config file must contain a JSON object."
-        except Exception as exc:
-            config_parse_error = f"Config file is not readable JSON: {exc}"
-    _, loaded_config = load_config(resolved_config_path)
-    config = {**loaded_config, **config}
+    try:
+        _, config = load_config(resolved_config_path)
+    except ConfigError as exc:
+        config_parse_error = str(exc)
+        config = config_template()
     storage_dir = _storage_dir_for(resolved_config_path, config)
-    configured_auth_path = normalize_space(str(auth_path or config.get("audibleAuthPath") or ""))
+    csv_path = resolve_configured_path(resolved_config_path, config.get("goodreadsCsvPath"))
+    notes_path = resolve_configured_path(
+        resolved_config_path,
+        config.get("preferencesPath") or config.get("notesFile"),
+    )
+    configured_auth = auth_path.expanduser().resolve() if auth_path else resolve_configured_path(
+        resolved_config_path,
+        config.get("audibleAuthPath"),
+    )
+    configured_auth_path = str(configured_auth) if configured_auth else ""
     checks: dict[str, Any] = {
         "config": {
             "ok": config_exists and not config_parse_error,
@@ -258,8 +332,8 @@ def doctor_report(
         "wrapper": _wrapper_check(),
         "openclaw": _openclaw_check(openclaw_bin),
         "audibleFetchBackend": _audible_fetch_backend_check(config),
-        "csv": _path_check(config.get("goodreadsCsvPath"), required=False, label="Goodreads CSV"),
-        "notes": _path_check(config.get("preferencesPath") or config.get("notesFile"), required=False, label="Preference notes file"),
+        "csv": _path_check(str(csv_path) if csv_path else None, required=False, label="Goodreads CSV"),
+        "notes": _path_check(str(notes_path) if notes_path else None, required=False, label="Preference notes file"),
         "cache": {
             "ok": True,
             "status": "ok" if (storage_dir / "cache" / "audible").exists() else "not_created",

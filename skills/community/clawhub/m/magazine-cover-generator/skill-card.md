@@ -1,42 +1,59 @@
-## Description: <br>
-Generate AI magazine cover art in Vogue, TIME, GQ, and editorial styles from text prompts via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI magazine cover art from text prompts in editorial styles such as Vogue, TIME, and GQ using the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate magazine-cover image mockups from text prompts through Neta/TalesOfAI, with optional size and reference-image controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts, optional reference image UUIDs, and the Neta API token are sent to Neta/TalesOfAI. <br>
-Mitigation: Avoid sensitive or regulated content in prompts and use a token appropriate for this third-party service. <br>
-Risk: Passing the API token on the command line can expose it through shell history or process listings. <br>
-Mitigation: Run in a trusted environment, avoid shared shells, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to generate magazine cover mockups, parody covers, personal branding images, social media posts, pet covers, and mixed-media editorial collage designs from text prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/magazine-cover-generator) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
-- [TalesOfAI API service](https://api.talesofai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls] <br>
-**Output Format:** [Plain text direct image URL or command-line error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall sizes plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Prompts and optional reference image IDs are sent to api.talesofai.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and reference IDs that are acceptable to share with the third-party Neta API service.
+
+Risk: The documented command passes the API token as a command-line argument, which can expose it locally through shell history or process listings.
+
+Mitigation: Prefer a safer secret mechanism when adapting the script and avoid pasting real tokens into reusable shell commands.
+
+Risk: The documented npx installer is unpinned.
+
+Mitigation: Review or pin the installer source before using the install command in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/skills/magazine-cover-generator)
+- [Neta API Token Setup](https://www.neta.art/open/)
+- [Neta API Service](https://api.talesofai.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Plain text image URL returned from a command-line invocation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports portrait, landscape, square, and tall sizes, plus an optional reference image UUID for style inheritance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

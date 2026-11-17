@@ -1,43 +1,54 @@
-## Description: <br>
-Concept Validation helps institutions plan, build, and operate concept-validation centers across positioning, funding, governance, intellectual property, compliance, project management, partnerships, goals, and TRL 1-4 handoff planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides institutions through planning, building, and operating concept-validation center platforms across positioning, funding, talent, governance, intellectual property, operations, compliance, project management, ecosystem development, partnerships, annual targets, and staged evaluation for TRL 1-4 feasibility validation.
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External institutional planners, incubator operators, technology-transfer teams, and platform developers use this skill to generate structured guidance for concept-validation center design and operations. It focuses on platform-level planning rather than execution of a specific technical validation experiment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share confidential project, patent, investor, or funding details while seeking planning guidance. <br>
-Mitigation: Provide only the details needed for the planning task and remove sensitive information when it is not required. <br>
-Risk: Broad planning terms may trigger recommendations for adjacent business-planning skills that are not relevant to the user's current task. <br>
-Mitigation: Review related-skill recommendations before using them and continue only with skills that match the current planning need. <br>
-Risk: Generated planning, policy, or investment guidance may be incomplete or become outdated. <br>
-Mitigation: Check current official policy documents and have qualified reviewers validate investment, compliance, and intellectual-property decisions. <br>
+## Use Case:
 
+External users and institutional operators use this skill to structure concept-validation center platform strategy, governance, funding, operations, compliance, project intake, and TRL 1-4 handoff decisions. It is intended for universities, research institutes, incubators, industrial parks, and enterprise research organizations planning or operating a sustainable validation platform.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/golngod/concept-validation) <br>
-- [Training class core materials](references/研修班核心资料.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured sections, module recommendations, risk prompts, and 30-day, 90-day, and one-year action paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend adjacent planning skills when broad business-planning terms appear; no executable behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence) <br>
+Risk: The skill may suggest related skills when discussing funding, IP, risk, investment, or annual planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat referrals as optional and confirm before sharing project, IP, investor, or business-plan details with any separate skill.
+
+Risk: Platform planning guidance may affect governance, compliance, financial, IP, or technology-transfer decisions.
+
+Mitigation: Have responsible institutional, legal, financial, and domain experts review recommendations before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/concept-validation)
+- [Fifth Concept Validation Center and Pilot Platform Training Core Materials](artifact/references/研修班核心资料.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown advisory response with structured recommendations and action paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May suggest optional related skills for policy, IP, risk, investment, or annual planning workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

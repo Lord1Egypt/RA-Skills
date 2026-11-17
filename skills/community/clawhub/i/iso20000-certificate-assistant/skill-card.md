@@ -1,47 +1,50 @@
-## Description: <br>
-ISO20000辅助认证助手 (ISO20000 Certification Assistant) helps organizations prepare for ISO 20000-1:2018 IT Service Management System certification with document gap analysis, compliance checking, and bilingual document generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ISO20000辅助认证助手 (ISO20000 Certification Assistant) helps organizations prepare for ISO 20000-1:2018 IT Service Management System certification with document gap analysis, compliance checking, and bilingual Chinese/English document generation.
 
-## Publisher: <br>
-[kooui](https://clawhub.ai/user/kooui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kooui](https://clawhub.ai/user/kooui)
 
-## Use Case: <br>
-External consultants, IT service organizations, and certification teams use this skill to parse ISO 20000-1:2018 ITSM documents, identify gaps, check high-priority compliance practices, and draft bilingual remediation documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Client ISO/ITSM documents may contain confidential business data, personal data, or other sensitive content that the skill parses into analysis artifacts and generated drafts. <br>
-Mitigation: Use only necessary source documents, remove secrets or unrelated personal data before analysis, and review generated outputs before sharing. <br>
-Risk: Legacy .doc conversion has higher document-parsing risk when a local converter is used. <br>
-Mitigation: Prefer .docx or .txt inputs for sensitive work; if .doc conversion is required, run a patched converter in a sandboxed local environment. <br>
-Risk: Generated ISO 20000 compliance materials are drafts and may not fully satisfy an auditor or the organization's real operating context. <br>
-Mitigation: Have qualified ISO/ITSM reviewers validate recommendations and generated procedures before certification use. <br>
+## Use Case:
 
+External consultants, IT service organizations, and compliance teams use this skill to parse ITSM documents, check ISO 20000-1:2018 coverage, identify gaps, and draft bilingual certification-support documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kooui/iso20000-certificate-assistant) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Example interactions](artifact/examples/example_interaction.md) <br>
-- [ISO 20000-1:2018 framework data](artifact/knowledge/iso20000_framework.json) <br>
-- [Generic ISO 20000 templates](artifact/knowledge/generic_templates.json) <br>
-- [Bilingual ISO 20000 templates](artifact/knowledge/bilingual_templates.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON analysis results, and local document or text files produced through Python script commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local JSON, text output files, converted .doc text, and parser or analyzer log files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact notes internal Version 2.0) <br>
+Risk: Processing confidential client documents may leave local plaintext conversion files or logs, especially when legacy .doc files are converted before analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer .docx inputs, run the skill in a controlled working directory, and review or delete generated .txt conversion files and logs after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kooui/skills/iso20000-certificate-assistant)
+- [Example interactions](artifact/examples/example_interaction.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown reports, JSON analysis data, shell command guidance, and generated document files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local logs and converted text files when parsing legacy .doc inputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

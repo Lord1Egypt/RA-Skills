@@ -1,42 +1,57 @@
-## Description: <br>
-Reconcile QuickBooks Online payroll GL accounts against payroll provider reports from Gusto, ADP, and Paychex across payroll, tax, headcount, employee-cost, and change-log views. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reconcile QuickBooks Online payroll GL accounts against payroll provider reports from Gusto, ADP, or Paychex across 12 payroll categories and produce an Excel workbook for discrepancies, Form 941 tax reconciliation, W-2 checks, headcount, per-employee cost, and change logging.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Finance, accounting, and month-end close teams use this skill to compare payroll provider reports with QuickBooks Online payroll GL activity, review discrepancies, and prepare Excel workbooks for reconciliation, 941 checks, W-2 support, headcount, employee-cost, and change tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payroll reconciliation outputs may affect financial close work, payroll tax review, or public-facing accounting decisions. <br>
-Mitigation: Review discrepancies, 941 comparisons, W-2 helper totals, and suggested journal-entry actions with qualified finance staff before posting entries or filing taxes. <br>
-Risk: QuickBooks Online access, payroll reports, and cached reconciliation history can include sensitive payroll and employee information. <br>
-Mitigation: Install and run the skill only in trusted environments, protect payroll files and QBO credentials, and limit access to authorized maintainers. <br>
-Risk: Provider auto-detection and keyword-based GL categorization can produce best-effort results when CSV headers or account names are customized. <br>
-Mitigation: Confirm provider detection, validate account mappings, adjust thresholds when needed, and manually review unsupported or generic provider formats. <br>
+## Use Case:
 
+Accounting and finance teams use this skill during month-end close, quarterly payroll tax review, and W-2 season to compare payroll provider reports with QuickBooks Online payroll GL activity and investigate discrepancies before close or filing review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/payroll-reconciliation) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated Excel workbook expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of a payroll reconciliation pipeline that expects payroll CSV inputs and can produce an eight-tab Excel workbook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Payroll reports, generated workbooks, and the CDC cache may contain sensitive payroll data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an environment approved for payroll data, protect generated workbooks and .cache/payroll-reconciliation/{slug}.json, and delete or relocate cache files according to retention policy.
+
+Risk: The workflow requires installing openpyxl, which can introduce dependency supply-chain risk.
+
+Mitigation: Use a dedicated virtual environment and pin openpyxl to a reviewed version before installing.
+
+Risk: Reconciliation outputs could be mistaken for payroll tax preparation or filing advice.
+
+Mitigation: Use outputs for review support and require CPA review before payroll tax preparation or filing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/payroll-reconciliation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash command examples and Excel workbook output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an .xlsx reconciliation workbook and a local CDC cache when the referenced pipeline is run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

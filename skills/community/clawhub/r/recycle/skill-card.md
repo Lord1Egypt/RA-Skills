@@ -1,40 +1,49 @@
-## Description: <br>
-Provides guidance for scheduling recycling pickup for used clothing, empty bottles, and obsolete electronics, plus green carbon account guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for scheduling pickup recycling of old clothes, bottles, and used electronics, with green carbon account guidance.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External users can ask an agent for recycling appointment guidance, filtering by processing speed, interaction cost, and official authority. The skill also helps surface carbon account guidance and reminds users to verify complex cases through official channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recycling pickup availability, discounts, policies, or carbon-account details may be outdated or provider-specific. <br>
-Mitigation: Verify appointment details, offers, policy requirements, and account actions through official providers before acting. <br>
-Risk: Pickup scheduling can involve personal or location information. <br>
-Mitigation: Share only the information required by the official provider and avoid unnecessary personal data disclosure. <br>
+## Use Case:
 
+External users can ask an agent for recycling pickup guidance for old clothes, bottles, and electronics, including filters for speed, interaction cost, and provider authority.
 
-## Reference(s): <br>
-- [ClawHub Recycle skill page](https://clawhub.ai/codenova58/recycle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured response fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include parsing accuracy, tool usage records, backup details, permissions, data retention, export rights, and plugin support details when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Recycling pickup, data retention, or carbon account details may be incomplete or out of date.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm any real booking, retention, or account-related detail through the relevant official provider channel before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/recycle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with short lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; guidance should be checked against official provider channels for bookings, account details, and retention terms.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

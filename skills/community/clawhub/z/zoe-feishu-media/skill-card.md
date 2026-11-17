@@ -1,43 +1,54 @@
-## Description: <br>
-Sends local images to Feishu group or individual chats using Feishu app credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends local image files to Feishu group or individual chats using a configured Feishu app.
 
-## Publisher: <br>
-[ye1358215818](https://clawhub.ai/user/ye1358215818) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ye1358215818](https://clawhub.ai/user/ye1358215818)
 
-## Use Case: <br>
-Developers and operators use this skill to send screenshots, design images, and other local image files to Feishu groups or individual recipients from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu App Secret or access credentials could be exposed if pasted into chat, code, or logs. <br>
-Mitigation: Keep credentials in environment variables or a secret manager, avoid sharing them in prompts, and rotate any credentials that may have been exposed. <br>
-Risk: The skill can send images through a Feishu app, so an incorrect recipient ID or overbroad app permission can send content to the wrong place. <br>
-Mitigation: Use a least-privilege Feishu app and confirm the image path and chat or user ID before each send. <br>
-Risk: The JavaScript helper imports a parent-relative Feishu media module that is not included in the artifact. <br>
-Mitigation: Verify the referenced helper dependency before use, or remove the JavaScript helper and rely on the reviewed Python path. <br>
+## Use Case:
 
+Developers and automation users use this skill to send screenshots, design images, or other local image files to a Feishu group or individual recipient from an agent workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ye1358215818/zoe-feishu-media) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; runtime calls return Feishu API JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Feishu app credentials, a local image path, and a Feishu chat or user ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Feishu app credentials may be exposed if passed on the command line or hardcoded.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a secret manager for FEISHU_APP_ID and FEISHU_APP_SECRET.
+
+Risk: Sensitive local images may be sent to an unintended chat or user.
+
+Mitigation: Review image contents and confirm the destination chat or user ID before sending.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [ClawHub skill page](https://clawhub.ai/ye1358215818/skills/zoe-feishu-media)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local image path, Feishu recipient ID, and Feishu app credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

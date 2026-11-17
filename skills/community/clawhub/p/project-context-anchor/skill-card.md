@@ -1,40 +1,56 @@
-## Description: <br>
-Writes a project-local AI_CONTEXT.md snapshot that captures project structure, recent changes, active plans, and a compact bootstrap block for cross-session AI handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes AI_CONTEXT.md into the project root as a dynamic project snapshot that captures the tech stack, recent git diffs, key decisions, active plan, and an AI_BOOTSTRAP_BLOCK for cross-session recovery.
 
-## Publisher: <br>
-[xiao3333](https://clawhub.ai/user/xiao3333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[xiao3333](https://clawhub.ai/user/xiao3333)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and teams use this skill to create a repo-local AI_CONTEXT.md handoff document for preserving project state, active work, and restart context across AI sessions or tools.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The generated AI_CONTEXT.md file can persist recent chat, project context, git summaries, private URLs, customer data, proprietary plans, or credentials in a repo-visible location.
+
+Mitigation: Review and redact AI_CONTEXT.md before committing or sharing it, scan it for secrets when appropriate, and add it to .gitignore for private or sensitive projects.
+
+Risk: The skill intentionally writes a project-local context file instead of using normal memory behavior, which may surprise users who expected private session memory only.
+
+Mitigation: Install and invoke the skill only when a repo-local handoff document is desired, and confirm the target project root before running it.
+
+Risk: Recent git diffs and commit messages may expose sensitive implementation details or secrets in the generated snapshot.
+
+Mitigation: Inspect the generated Current Status, Recent Diff, and Bootstrap Block sections before distribution, and use secret scanning or manual redaction for shared repositories.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and AI-assisted engineering teams use this skill to create a project-root context snapshot for session recovery, team handoff, and continuity across AI tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The generated AI_CONTEXT.md can persist recent project and chat context, including sensitive project details. <br>
-Mitigation: Inspect AI_CONTEXT.md before committing or sharing it, run a secrets scan, and keep it out of version control for private or credential-heavy work. <br>
+**Output Format:** [Markdown file with a compact AI_BOOTSTRAP_BLOCK]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiao3333/project-context-anchor) <br>
-- [Publisher profile](https://clawhub.ai/user/xiao3333) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Writes a repo-local AI_CONTEXT.md file that may include scanned project state, git diffs, active plans, and recent-session context.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, shell commands, guidance] <br>
-**Output Format:** [Markdown file with a compact AI_BOOTSTRAP_BLOCK] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes AI_CONTEXT.md in the project root and may include project structure, git history, diffs, decisions, plans, and session-derived context.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

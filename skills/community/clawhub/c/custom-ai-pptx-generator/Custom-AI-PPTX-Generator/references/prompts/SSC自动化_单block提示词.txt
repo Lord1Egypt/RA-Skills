@@ -1,0 +1,30 @@
+# SSC 自动化项目汇总报告 · 6 页样图提示词（单 block 版）
+# 用法：逐段复制到即梦 / Midjourney / DALL·E / Stable Diffusion 出图
+# 统一风格词（每段已内置）：LEGO yellow #FFD700 + navy blue #1B2A4A + mid-blue #003366 + red accent #E3000B
+# 出图比例建议：16:9 横版
+
+# ---------- P1 封面 ----------
+A corporate presentation cover slide, 16:9, deep navy blue background (#1B2A4A), a bold vertical LEGO-yellow (#FFD700) accent bar on the left, large white sans-serif title "SSC Automation Project" with a short yellow underline, subtitle in light gray, small geometric decorations (yellow star, triangle) in bottom-right corner, footer bar with team name and date, clean flat modern business design, minimalist vector style, no photo
+
+# ---------- P2 进展一览 ----------
+A business slide with KPI metric cards, 16:9, warm off-white background (#FEFBF5), four white rounded-rectangle cards in a row, each card has a thin colored top bar (yellow, blue, red, navy), giant navy blue numbers "25 / 20 / 39.3 / 460" with small yellow unit labels, below the cards a horizontal flow diagram showing an employee namelist icon connecting to M365 and WeCom logos as blue circle nodes linked by a line, footnote in small gray italic text, flat vector infographic style, clean and airy layout
+
+# ---------- P3 应用领域 ----------
+A business slide with a 2x2 grid of white rounded cards, 16:9, warm off-white background, each card contains a flat icon in a colored circle (bar chart, chat bubble, circular sync arrows, bell), a bold navy title, two or three short bullet lines, and a small rounded tag pill at the bottom with colored background (yellow "less manual work", blue "better employee experience", red "data consistency", yellow "faster follow-up"), navy blue page title on top with yellow underline, flat modern infographic style, generous white space
+
+# ---------- P4 能力沉淀 ----------
+A business slide with three horizontal step cards, 16:9, warm off-white background, three white rounded cards in a row, each with a colored top bar in sequence (LEGO yellow, navy blue, red), a flat gear / compass / magnifier icon in a circle, short navy title and two-line description, at the bottom a single navy blue summary line with a yellow bullet arrow, flat vector style, clean corporate design
+
+# ---------- P5 未来路线图 ----------
+A business slide showing a roadmap, 16:9, warm off-white background, four large navy blue circles connected by yellow arrows left to right, each circle has a white number and an English word (Identify, Evaluate, Automate, Expand) with a short Chinese caption below, a small curved return arrow hinting a cycle from the last circle back to the first, below the roadmap a light yellow rounded example box with two short lines and a small gift icon, navy page title with yellow underline, flat modern infographic style
+
+# ---------- P6 结尾 ----------
+A closing slide, 16:9, deep navy blue background (#1B2A4A) echoing the cover, a short LEGO-yellow (#FFD700) underline, white heading "Next Steps" with two short white bullet lines, large white "Thank You" text in the lower area, small yellow geometric decorations (star, triangle, dots) in the corner, a thin gray data-source footnote at the bottom, flat minimalist business style, no photo
+
+# ---------- 中文对照（仅供核对，不用于出图）----------
+# P1 封面：深蓝底+黄色左竖条+大标题+黄下划线+几何点缀
+# P2 指标：奶白底+4张白卡（顶部黄/蓝/红/深蓝色条）+大数字25/20/39.3/460+花名册→M365+企微连线
+# P3 应用领域：2x2白卡+彩色圆底图标（柱图/气泡/循环箭头/铃铛）+底部彩色标签药丸
+# P4 能力沉淀：3张横排白卡（黄/蓝/红顶部色条）+齿轮/指南针/放大镜图标+底部总结句
+# P5 路线图：4个深蓝圆+黄箭头（Identify→Evaluate→Automate→Expand）+回环示意+浅黄示例框
+# P6 结尾：深蓝底呼应封面+Next Steps两条+Thank You+黄色几何点缀+数据来源脚注

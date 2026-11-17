@@ -1,40 +1,53 @@
-## Description: <br>
-Generates meeting summaries, extracts decisions and action items, coordinates meeting schedules, and provides reusable meeting templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese meeting summaries, extracts action items, coordinates meeting scheduling prompts, and provides reusable meeting templates.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-Employees, teams, and agents use this skill to turn meeting text into concise minutes, action-item lists, schedule prompts, and meeting-template guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting notes, attendees, decisions, and action items may be saved locally. <br>
-Mitigation: Use the skill only where local storage is acceptable, control the storage location, and delete JSON data when it is no longer needed. <br>
-Risk: Generated summaries and action items may omit context or assign tasks incorrectly. <br>
-Mitigation: Review meeting minutes and task lists before sharing them or relying on them for follow-up. <br>
+## Use Case:
 
+Employees and teams use this skill to convert meeting notes into structured minutes, extract owners and deadlines, review meeting templates, and inspect scheduled meeting records.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cp3d1455926-svg/cp3d1455926-svg-meeting-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown meeting notes, task lists, schedule prompts, and local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save meeting and task details locally as JSON files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release metadata) <br>
+Risk: Meeting content may be saved locally as plaintext JSON, including attendee names, notes, decisions, action items, and schedule details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where local plaintext storage is acceptable, avoid highly confidential meetings, and define retention and deletion practices before deployment.
+
+Risk: Generated minutes and extracted action items may omit context or assign incorrect ownership or deadlines.
+
+Mitigation: Have a meeting owner review generated summaries and task lists before sharing them or using them for follow-up.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/cp3d1455926-svg-meeting-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Chinese-language Markdown-style text responses and local JSON meeting records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save meeting content, attendee names, action items, and schedule details as plaintext JSON in the skill artifact directory.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact SKILL.md lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

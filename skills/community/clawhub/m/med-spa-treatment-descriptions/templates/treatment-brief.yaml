@@ -1,0 +1,38 @@
+# Med Spa Treatment Descriptions - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+clinic:
+  name: ""
+  city: ""
+  state: ""
+  medical_director: ""
+  provider_credentials: ""
+treatment:
+  name: ""
+  category: ""
+  device_or_product: ""
+  fda_status: ""
+  clearance_or_approval_number: ""
+  session_minutes: 0
+  typical_sessions: ""
+  price_range: ""
+candidate_profile: ""
+visit_includes:
+  - ""
+aftercare:
+  - ""
+risks_and_contraindications:
+  - ""
+expected_timeline: ""
+images:
+  before_after_used: false
+  typical_results_statement: ""
+  authorization_on_file: false
+claims:
+  - statement: ""
+    evidence: ""
+    approved_by: ""
+pricing_and_promotions:
+  promo_copy: ""
+  exclusions: ""
+published_by: ""
+published_on: ""

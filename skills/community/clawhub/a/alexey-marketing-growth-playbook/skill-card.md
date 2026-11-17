@@ -1,66 +1,85 @@
-## Description: <br>
-Provides 23 marketing playbooks for CRO, SEO, copywriting, analytics, experiments, pricing, launches, ads, and social content, with checklists and copy/paste deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides 23 marketing playbooks for CRO, SEO, copywriting, analytics, experiments, pricing, launches, ads, and social content, with checklists and copy/paste deliverables.
 
-## Publisher: <br>
-[AlexeyVorobiev](https://clawhub.ai/user/AlexeyVorobiev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexeyvorobiev](https://clawhub.ai/user/alexeyvorobiev)
 
-## Use Case: <br>
-Marketing teams, founders, growth practitioners, and agents use this skill to choose a marketing module and produce practical drafts, checklists, audits, campaign plans, and optimization recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage an agent to act with under-scoped authority around ad accounts, budgets, social publishing, tracking, or audience use. <br>
-Mitigation: Keep the skill in draft and recommendation mode by default, and require human review before modifying campaigns, changing budgets, scheduling posts, instrumenting tracking, or sharing audiences. <br>
-Risk: Marketing outputs can depend on missing or unverified metrics, keyword volumes, audience assumptions, or platform-policy constraints. <br>
-Mitigation: Require the agent to label assumptions, avoid invented metrics, and have a human verify account context, audience consent, and platform-policy impact before execution. <br>
-Risk: Large-scale competitor, SEO, or social-content workflows could lead to inappropriate third-party content collection or unsupported claims. <br>
-Mitigation: Limit automated collection and publication; review source material, claims, and legal or policy constraints before using recommendations publicly. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AlexeyVorobiev/alexey-marketing-growth-playbook) <br>
-- [A/B Test Setup](references/ab-test-setup/SKILL.md) <br>
-- [Analytics Tracking](references/analytics-tracking/SKILL.md) <br>
-- [Competitor & Alternative Pages](references/competitor-alternatives/SKILL.md) <br>
-- [Copy Editing](references/copy-editing/SKILL.md) <br>
-- [Copywriting](references/copywriting/SKILL.md) <br>
-- [Email Sequence Design](references/email-sequence/SKILL.md) <br>
-- [Form CRO](references/form-cro/SKILL.md) <br>
-- [Free Tool Strategy](references/free-tool-strategy/SKILL.md) <br>
-- [Launch Strategy](references/launch-strategy/SKILL.md) <br>
-- [Marketing Ideas for SaaS](references/marketing-ideas/SKILL.md) <br>
-- [Marketing Psychology & Mental Models](references/marketing-psychology/SKILL.md) <br>
-- [Onboarding CRO](references/onboarding-cro/SKILL.md) <br>
-- [Page Conversion Rate Optimization](references/page-cro/SKILL.md) <br>
-- [Paid Ads](references/paid-ads/SKILL.md) <br>
-- [Paywall and Upgrade Screen CRO](references/paywall-upgrade-cro/SKILL.md) <br>
-- [Popup CRO](references/popup-cro/SKILL.md) <br>
-- [Pricing Strategy](references/pricing-strategy/SKILL.md) <br>
-- [Programmatic SEO](references/programmatic-seo/SKILL.md) <br>
-- [Referral & Affiliate Programs](references/referral-program/SKILL.md) <br>
-- [Schema Markup](references/schema-markup/SKILL.md) <br>
-- [SEO Audit](references/seo-audit/SKILL.md) <br>
-- [Signup Flow CRO](references/signup-flow-cro/SKILL.md) <br>
-- [Social Content](references/social-content/SKILL.md) <br>
-- [Evan Miller A/B test sample size calculator](https://www.evanmiller.org/ab-testing/sample-size.html) <br>
-- [Optimizely sample size calculator](https://www.optimizely.com/sample-size-calculator/) <br>
+## Use Case:
 
+External marketers, founders, and growth teams use this skill to select marketing modules and produce draft campaigns, CRO and SEO checklists, copy, tracking plans, and launch, pricing, and referral guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with drafts, checklists, tables, implementation notes, and occasional code or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should label assumptions and avoid inventing metrics, keyword volumes, or campaign performance data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review says two modules tell the agent it has direct access to ad and social publishing accounts without clear approval boundaries.
+
+Mitigation: Keep the skill in draft/advisory mode for ads and social media; require human approval before launching campaigns, changing budgets, uploading audiences, scheduling posts, or publishing content.
+
+Risk: Marketing outputs can contain incorrect claims, misleading comparisons, or noncompliant campaign guidance if treated as final material.
+
+Mitigation: Have a human reviewer check the exact claim, offer, audience, spend, timing, and compliance requirements before external use.
+
+Risk: The social content module includes post collection and scraping-oriented workflow examples.
+
+Mitigation: Do not let the agent scrape platforms or automate collection from third-party services unless the user has confirmed permissions, platform terms, privacy requirements, and data handling controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexeyvorobiev/skills/alexey-marketing-growth-playbook)
+- [Skill router](artifact/SKILL.md)
+- [A/B Test Setup](artifact/references/ab-test-setup/SKILL.md)
+- [Analytics Tracking](artifact/references/analytics-tracking/SKILL.md)
+- [Competitor & Alternative Pages](artifact/references/competitor-alternatives/SKILL.md)
+- [Copy Editing](artifact/references/copy-editing/SKILL.md)
+- [Copywriting](artifact/references/copywriting/SKILL.md)
+- [Email Sequence Design](artifact/references/email-sequence/SKILL.md)
+- [Form CRO](artifact/references/form-cro/SKILL.md)
+- [Free Tool Strategy](artifact/references/free-tool-strategy/SKILL.md)
+- [Launch Strategy](artifact/references/launch-strategy/SKILL.md)
+- [Marketing Ideas for SaaS](artifact/references/marketing-ideas/SKILL.md)
+- [Marketing Psychology & Mental Models](artifact/references/marketing-psychology/SKILL.md)
+- [Onboarding CRO](artifact/references/onboarding-cro/SKILL.md)
+- [Page Conversion Rate Optimization](artifact/references/page-cro/SKILL.md)
+- [Paid Ads](artifact/references/paid-ads/SKILL.md)
+- [Paywall and Upgrade Screen CRO](artifact/references/paywall-upgrade-cro/SKILL.md)
+- [Popup CRO](artifact/references/popup-cro/SKILL.md)
+- [Pricing Strategy](artifact/references/pricing-strategy/SKILL.md)
+- [Programmatic SEO](artifact/references/programmatic-seo/SKILL.md)
+- [Referral & Affiliate Programs](artifact/references/referral-program/SKILL.md)
+- [Schema Markup](artifact/references/schema-markup/SKILL.md)
+- [SEO Audit](artifact/references/seo-audit/SKILL.md)
+- [Signup Flow CRO](artifact/references/signup-flow-cro/SKILL.md)
+- [Social Content](artifact/references/social-content/SKILL.md)
+- [Evan Miller A/B test sample size calculator](https://www.evanmiller.org/ab-testing/sample-size.html)
+- [Optimizely sample size calculator](https://www.optimizely.com/sample-size-calculator/)
+- [Google Analytics recommended events](https://support.google.com/analytics/answer/9267735)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Schema.org Validator](https://validator.schema.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with checklists, draft copy, tables, code snippets, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft/advisory output; assumptions should be labeled when metrics, budgets, keyword volumes, or account details are missing.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

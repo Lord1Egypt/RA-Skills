@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PDF水印工具</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, "PingFang SC", sans-serif; background: #0f111a; color: #e0e0e0; }
+.header { padding: 14px 16px; background: #161822; border-bottom: 1px solid #2a2d3a; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+.header h1 { font-size: 17px; color: #ffb800; font-weight: 600; }
+.header button { padding: 8px 14px; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn-apply { background: #009bd5; color: #fff; }
+.btn-reset { background: #2a2d3a; color: #aaa; margin-right: 8px; }
+
+.page { padding: 16px; padding-bottom: 80px; }
+.section { font-size: 11px; color: #555c70; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #2a2d3a; }
+.section:first-child { margin-top: 4px; }
+.param { margin-bottom: 14px; }
+.param label { display: block; font-size: 13px; color: #8890a4; margin-bottom: 6px; }
+.param input[type="text"], .param select { width: 100%; padding: 10px 12px; background: #1e2030; border: 1px solid #2a2d3a; border-radius: 8px; color: #e0e0e0; font-size: 16px; outline: none; }
+.param input[type="text"]:focus, .param select:focus { border-color: #009bd5; }
+.slider-row { display: flex; align-items: center; gap: 12px; }
+.slider-row input[type="range"] { flex: 1; accent-color: #009bd5; height: 6px; }
+.slider-row .val { min-width: 48px; text-align: right; font-size: 14px; color: #009bd5; font-weight: 600; }
+.color-row { display: flex; align-items: center; gap: 12px; }
+.color-row input[type="color"] { width: 48px; height: 40px; border: none; background: none; cursor: pointer; border-radius: 6px; }
+.color-row .val { font-size: 13px; color: #8890a4; }
+
+/* Preview section */
+.preview-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid #2a2d3a; }
+.preview-title { font-size: 14px; color: #8890a4; margin-bottom: 12px; }
+.preview-box { width: 100%; max-width: 400px; margin: 0 auto; aspect-ratio: 595/842; background: #fafafa; border-radius: 8px; box-shadow: 0 2px 16px rgba(0,0,0,0.3); overflow: hidden; }
+.preview-box canvas { width: 100%; height: 100%; display: block; }
+
+/* Output */
+.output-area { margin-top: 24px; padding-top: 16px; border-top: 1px solid #2a2d3a; }
+.output-area textarea { width: 100%; height: 160px; background: #1e2030; border: 1px solid #2a2d3a; border-radius: 8px; color: #4ec9b0; font-family: "SF Mono", Menlo, monospace; font-size: 12px; padding: 12px; resize: none; outline: none; }
+.output-area .hint { font-size: 12px; color: #666; margin-top: 8px; line-height: 1.6; }
+.btn-copy { margin-top: 12px; width: 100%; padding: 12px; background: #4ec9b0; color: #0f111a; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }
+
+.toast { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: #4ec9b0; color: #0f111a; padding: 10px 24px; border-radius: 20px; font-size: 14px; font-weight: 600; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 100; }
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>PDF 水印工具</h1>
+  <div>
+    <button class="btn-reset" onclick="resetDefaults()">重置</button>
+    <button class="btn-apply" onclick="exportConfig()">导出配置</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section">基本设置</div>
+  <div class="param">
+    <label>水印文字</label>
+    <input type="text" id="text" value="内部资料 请勿外传" oninput="updatePreview()">
+  </div>
+  <div class="param">
+    <label>布局模式</label>
+    <select id="pattern" onchange="updatePreview()">
+      <option value="diagonal">对角线（经典）</option>
+      <option value="grid">网格平铺</option>
+      <option value="center">居中单个</option>
+    </select>
+  </div>
+
+  <div class="section">文字样式</div>
+  <div class="param">
+    <label>字号</label>
+    <div class="slider-row">
+      <input type="range" id="fontSize" min="12" max="120" value="60" oninput="updatePreview()">
+      <span class="val" id="fontSizeVal">60</span>
+    </div>
+  </div>
+  <div class="param">
+    <label>透明度</label>
+    <div class="slider-row">
+      <input type="range" id="opacity" min="2" max="80" value="15" oninput="updatePreview()">
+      <span class="val" id="opacityVal">15%</span>
+    </div>
+  </div>
+  <div class="param">
+    <label>旋转角度</label>
+    <div class="slider-row">
+      <input type="range" id="rotation" min="-90" max="90" value="45" oninput="updatePreview()">
+      <span class="val" id="rotationVal">45&deg;</span>
+    </div>
+  </div>
+  <div class="param">
+    <label>颜色</label>
+    <div class="color-row">
+      <input type="color" id="color" value="#808080" oninput="updatePreview()">
+      <span class="val" id="colorVal">#808080</span>
+    </div>
+  </div>
+
+  <div class="section">布局参数</div>
+  <div class="param">
+    <label>水平重复 (网格)</label>
+    <div class="slider-row">
+      <input type="range" id="repeatX" min="1" max="8" value="3" oninput="updatePreview()">
+      <span class="val" id="repeatXVal">3</span>
+    </div>
+  </div>
+  <div class="param">
+    <label>垂直重复 (网格)</label>
+    <div class="slider-row">
+      <input type="range" id="repeatY" min="1" max="8" value="3" oninput="updatePreview()">
+      <span class="val" id="repeatYVal">3</span>
+    </div>
+  </div>
+  <div class="param">
+    <label>偏移间距 (对角线)</label>
+    <div class="slider-row">
+      <input type="range" id="offset" min="50" max="400" value="200" oninput="updatePreview()">
+      <span class="val" id="offsetVal">200</span>
+    </div>
+  </div>
+
+  <div class="preview-section">
+    <div class="preview-title">实时预览（模拟 A4 页面）</div>
+    <div class="preview-box">
+      <canvas id="preview" width="400" height="565"></canvas>
+    </div>
+  </div>
+
+  <div class="output-area" id="outputArea" style="display:none;">
+    <div class="section">导出配置</div>
+    <textarea id="jsonOutput" readonly></textarea>
+    <div class="hint">复制上方 JSON 配置，发送给你的 AI 助手即可应用到 PDF 水印。</div>
+    <button class="btn-copy" onclick="copyConfig()">复制配置</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function getConfig() {
+  const hex = document.getElementById('color').value;
+  return {
+    text: document.getElementById('text').value || 'WATERMARK',
+    fontSize: parseInt(document.getElementById('fontSize').value),
+    opacity: parseInt(document.getElementById('opacity').value) / 100,
+    rotation: parseInt(document.getElementById('rotation').value),
+    color: [parseInt(hex.slice(1,3),16)/255, parseInt(hex.slice(3,5),16)/255, parseInt(hex.slice(5,7),16)/255],
+    pattern: document.getElementById('pattern').value,
+    repeatX: parseInt(document.getElementById('repeatX').value),
+    repeatY: parseInt(document.getElementById('repeatY').value),
+    offsetX: parseInt(document.getElementById('offset').value),
+    offsetY: parseInt(document.getElementById('offset').value)
+  };
+}
+
+function updatePreview() {
+  document.getElementById('fontSizeVal').textContent = document.getElementById('fontSize').value;
+  document.getElementById('opacityVal').textContent = document.getElementById('opacity').value + '%';
+  document.getElementById('rotationVal').innerHTML = document.getElementById('rotation').value + '&deg;';
+  document.getElementById('colorVal').textContent = document.getElementById('color').value;
+  document.getElementById('repeatXVal').textContent = document.getElementById('repeatX').value;
+  document.getElementById('repeatYVal').textContent = document.getElementById('repeatY').value;
+  document.getElementById('offsetVal').textContent = document.getElementById('offset').value;
+
+  const cfg = getConfig();
+  const canvas = document.getElementById('preview');
+  const W = canvas.width, H = canvas.height;
+  const ctx = canvas.getContext('2d');
+
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#fafafa';
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.fillStyle = '#ddd';
+  ctx.font = '9px sans-serif';
+  for (let i = 0; i < 12; i++) ctx.fillText('Sample document content line ' + (i+1), 20, 50 + i * 18);
+
+  const scale = W / 595;
+  const fs = cfg.fontSize * scale;
+  const r = Math.round(cfg.color[0]*255), g = Math.round(cfg.color[1]*255), b = Math.round(cfg.color[2]*255);
+  ctx.fillStyle = `rgba(${r},${g},${b},${cfg.opacity})`;
+  ctx.font = `bold ${fs}px sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+
+  if (cfg.pattern === 'center') {
+    ctx.save(); ctx.translate(W/2, H/2); ctx.rotate(cfg.rotation * Math.PI/180);
+    ctx.fillText(cfg.text, 0, 0); ctx.restore();
+  } else if (cfg.pattern === 'grid') {
+    for (let iy = 0; iy < cfg.repeatY; iy++) {
+      for (let ix = 0; ix < cfg.repeatX; ix++) {
+        const x = (ix+1)*W/(cfg.repeatX+1), y = (iy+1)*H/(cfg.repeatY+1);
+        ctx.save(); ctx.translate(x, y); ctx.rotate(cfg.rotation * Math.PI/180);
+        ctx.fillText(cfg.text, 0, 0); ctx.restore();
+      }
+    }
+  } else {
+    const ox = cfg.offsetX * scale, oy = cfg.offsetY * scale;
+    ctx.save(); ctx.translate(W/2, H/2); ctx.rotate(cfg.rotation * Math.PI/180);
+    ctx.fillText(cfg.text, 0, 0);
+    ctx.fillText(cfg.text, -ox, oy); ctx.fillText(cfg.text, ox, -oy);
+    ctx.fillText(cfg.text, -2*ox, 2*oy); ctx.fillText(cfg.text, 2*ox, -2*oy);
+    ctx.restore();
+  }
+}
+
+function exportConfig() {
+  document.getElementById('outputArea').style.display = 'block';
+  document.getElementById('jsonOutput').value = JSON.stringify(getConfig(), null, 2);
+  document.getElementById('outputArea').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyConfig() {
+  const ta = document.getElementById('jsonOutput');
+  ta.select();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(ta.value).then(() => toast('已复制到剪贴板'));
+  } else {
+    document.execCommand('copy');
+    toast('已复制到剪贴板');
+  }
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function resetDefaults() {
+  document.getElementById('text').value = '内部资料 请勿外传';
+  document.getElementById('fontSize').value = 60;
+  document.getElementById('opacity').value = 15;
+  document.getElementById('rotation').value = 45;
+  document.getElementById('color').value = '#808080';
+  document.getElementById('pattern').value = 'diagonal';
+  document.getElementById('repeatX').value = 3;
+  document.getElementById('repeatY').value = 3;
+  document.getElementById('offset').value = 200;
+  document.getElementById('outputArea').style.display = 'none';
+  updatePreview();
+  toast('已恢复默认值');
+}
+
+updatePreview();
+</script>
+</body>
+</html>

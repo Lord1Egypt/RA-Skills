@@ -1,37 +1,51 @@
-## Description: <br>
-Request feedback or assistance from Eureka, the primary AI agent <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Request feedback or assistance from Eureka, the primary AI agent.
 
-## Publisher: <br>
-[Arnarsson](https://clawhub.ai/user/Arnarsson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arnarsson](https://clawhub.ai/user/arnarsson)
 
-## Use Case: <br>
-Developers and operators use this skill to ask Eureka for planning, architecture, or task feedback and to report completion of delegated work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Messages may send user or task details to a Telegram-linked agent and fixed reply recipient. <br>
-Mitigation: Verify the Eureka bot, reply account, and recipient ID before use, and avoid sending secrets, credentials, private project data, or personal information unless the destination is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Arnarsson/eureka-feedback) <br>
+## Use Case:
+
+Developers and agent operators use this skill to request strategic feedback, architectural guidance, task handoff support, or completion reporting from Eureka.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Task content and replies can be sent to an external Eureka/Telegram route with a fixed recipient.
+
+Mitigation: Install only when the configured destination is controlled or trusted, and do not send secrets, credentials, private files, or sensitive personal or business context unless the destination is verified and approved for that invocation.
+
+Risk: Users may install the skill without recognizing that delegation sends context outside the local agent workflow.
+
+Mitigation: Review the skill before installation and confirm that delegating content to Eureka is appropriate for the intended environment.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may direct messages and replies through a Telegram-linked Eureka workflow.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Guidance, Shell commands]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route message content and replies through the configured Eureka/Telegram destination.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

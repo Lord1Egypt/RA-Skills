@@ -1,40 +1,49 @@
-## Description: <br>
-Check URL health status, including HTTP response code, redirect outcome, broken links, and server errors, using Python standard library networking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks URL health status, including HTTP response codes, redirects, broken links, and server errors, using the Python standard library.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers, site maintainers, and content operators use this skill to check whether a URL is reachable, inspect HTTP status results, and identify broken links or server-side errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make outbound HTTP requests to user-supplied URLs, which may expose sensitive internal endpoints if used carelessly. <br>
-Mitigation: Review target URLs before execution and avoid checking private, credential-bearing, or internal-only endpoints unless the environment is approved for that use. <br>
-Risk: HTTP status and error output can be transient or misleading because remote servers, redirects, and network conditions change. <br>
-Mitigation: Treat results as point-in-time diagnostics and re-run checks before making operational decisions. <br>
+## Use Case:
 
+Developers, content maintainers, and site operators use this skill to check whether URLs are reachable, inspect HTTP status codes, and identify broken links or server errors.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/freedompixels/cn-url-health-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The URL checker returns status, final_url when available, redirect metadata placeholder, and error text when a request fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release metadata; artifact/SKILL.md frontmatter declares 1.0.0) <br>
+Risk: The skill can make unrestricted outbound URL checks from the agent runtime to any supplied URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in runtimes where outbound egress is acceptable, and avoid localhost, private-network, cloud metadata, credential-bearing, or untrusted redirecting URLs unless egress controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-url-health-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API key required.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.
 
-## Publisher: <br>
-[hhjack](https://clawhub.ai/user/hhjack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hhjack](https://clawhub.ai/user/hhjack)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to run Tavily web searches, retrieve concise source snippets, search current news, and extract page content from URLs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The search script lets an external API response choose JavaScript to load and run locally. <br>
-Mitigation: Review or patch scripts/search.mjs before installing by replacing response-controlled formatter imports with fixed bundled formatting or a hardcoded local allowlist. <br>
-Risk: Queries and URLs are sent to Tavily, which may expose sensitive or private information to a third-party service. <br>
-Mitigation: Avoid sending sensitive queries or private/internal URLs unless that sharing is acceptable, and use a limited Tavily API key. <br>
+## Use Case:
 
+Developers and agent users use this skill to run Tavily-backed web searches and extract page content from URLs for concise source material.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hhjack/t-web-searcher) <br>
-- [Tavily](https://tavily-search.com) <br>
-- [Tavily Search API endpoint](https://api.tavily-search.com/search) <br>
-- [Tavily Extract API endpoint](https://api.tavily-search.com/extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-like command-line text with answers, source lists, URLs, snippets, and extracted page content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; search results are capped between 1 and 20.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The search script lets Tavily response metadata choose formatter code to import and run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and restrict formatter selection to a local allowlist before deployment.
+
+Risk: Search queries, requested URLs, and the Tavily API key are sent to Tavily.
+
+Mitigation: Use a scoped API key and avoid sending sensitive queries or private URLs unless Tavily use is approved.
+
+## Reference(s):
+
+- [Tavily](https://tavily-search.com)
+- [Tavily Search API endpoint](https://api.tavily-search.com/search)
+- [Tavily Extract API endpoint](https://api.tavily-search.com/extract)
+- [ClawHub skill page](https://clawhub.ai/hhjack/skills/t-web-searcher)
+- [ClawHub publisher profile](https://clawhub.ai/user/hhjack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal output with search answers, source lists, snippets, extracted page text, and failed URL notices.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and TAVILY_API_KEY; supports result count, deep search, general/news topics, and news recency filtering.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,57 @@
-## Description: <br>
-Host-based Linux incident response and remediation skill focused on precise threat detection, forensic-safe data collection, firewall control (iptables/nftables), integrity validation, and controlled remediation while preserving system stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Host-based Linux incident response and remediation skill focused on precise threat detection, forensic-safe data collection, firewall control, integrity validation, and controlled remediation while preserving system stability.
 
-## Publisher: <br>
-[kiaraho](https://clawhub.ai/user/kiaraho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kiaraho](https://clawhub.ai/user/kiaraho)
 
-## Use Case: <br>
-Security engineers, system administrators, and incident responders use this skill to inspect Linux hosts, collect evidence, contain suspicious activity, and apply controlled remediation while preserving system stability. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Administrator-level incident response commands can modify firewall rules, services, processes, and forensic state. <br>
-Mitigation: Review each command before execution, capture pre- and post-change state, prefer reversible changes, and back up firewall and service configuration first. <br>
-Risk: Raw third-party GitHub downloads are unpinned and may change over time. <br>
-Mitigation: Replace raw download steps with pinned versions, checksum verification, or internally vetted forensic tools. <br>
-Risk: Host-modifying remediation can reduce forensic preservation during strict evidence handling. <br>
-Mitigation: Avoid modifying steps when preservation is required, hash artifacts before containment, quarantine rather than delete where possible, and log timestamped actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [ClawHub skill page](https://clawhub.ai/kiaraho/sys-guard-linux-remediator) <br>
-- [Publisher profile](https://clawhub.ai/user/kiaraho) <br>
-- [Didier Stevens Suite base64dump.py](https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/base64dump.py) <br>
-- [Didier Stevens Suite re-search.py](https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/re-search.py) <br>
-- [Didier Stevens Suite zipdump.py](https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/zipdump.py) <br>
-- [Didier Stevens Suite 1768.py](https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/1768.py) <br>
-- [Didier Stevens Suite pdf-parser.py](https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/pdf-parser.py) <br>
-- [Didier Stevens Suite oledump.py](https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/oledump.py) <br>
+## Use Case:
 
+Security engineers, system administrators, and incident responders use this skill to analyze Linux hosts during suspected compromise, collect evidence safely, inspect network, process, integrity, and authentication signals, and apply controlled containment or remediation steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Analysis] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes host inspection, evidence collection, containment, firewall handling, and remediation guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Privileged remediation commands can disrupt access or services if applied to the wrong host, interface, process, or firewall backend.
+
+Mitigation: Verify current state before and after changes, preserve management access, prefer narrow reversible commands, and document each action.
+
+Risk: The skill references installing remote forensic scripts from mutable GitHub URLs.
+
+Mitigation: Pin exact commits, verify checksums or signatures, download as an unprivileged user, and prefer a trusted internal forensic toolkit or disposable analysis VM.
+
+Risk: Rootkit, malware, and audit tools can produce false positives or increase system load during live response.
+
+Mitigation: Scope scans carefully, validate findings manually before destructive actions, and preserve hashes and timestamps for evidence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kiaraho/skills/sys-guard-linux-remediator)
+- [Didier Stevens Suite](https://github.com/DidierStevens/DidierStevensSuite)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Linux host incident-response recommendations and commands; execution requires operator review and appropriate privileges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

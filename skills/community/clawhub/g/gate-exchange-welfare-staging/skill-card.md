@@ -1,47 +1,63 @@
-## Description: <br>
-Gate welfare center and new-user task skill for answering welfare, reward, and task-claiming questions using real Gate MCP data only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gate welfare center and new-user task skill for checking welfare eligibility, rewards, and task status using real Gate MCP data only.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External Gate users and support agents use this skill to check welfare eligibility, retrieve new-user onboarding tasks, and provide fallback guidance for existing or restricted accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad welfare, task, or reward triggers may route generic user questions into the Gate welfare workflow. <br>
-Mitigation: Ask for clarification when intent is ambiguous and route trading, asset, funding, or KYC completion intents to the appropriate skill or official Gate surface. <br>
-Risk: The skill requires a Gate MCP session with API credentials. <br>
-Mitigation: Use an API key restricted to Welfare:Read and never ask users to paste secrets into chat. <br>
-Risk: Reward or task responses could mislead users if example values are used as live data. <br>
-Mitigation: Call the identity endpoint first, render only fields returned by the beginner task list endpoint, and fall back to the official rewards hub when live data is unavailable. <br>
+## Use Case:
 
+Gate users and support-oriented agents use this skill to answer welfare, reward, and new-user task questions. It checks the user's eligibility first, then returns existing-user guidance or a new-user task list based only on live MCP data.
 
-## Reference(s): <br>
-- [Gate skills homepage](https://github.com/gate/gate-skills) <br>
-- [Gate rewards hub](https://www.gate.com/rewards_hub) <br>
-- [Gate API key management](https://www.gate.com/myaccount/profile/api-key/manage) <br>
-- [Gate welfare MCP specification](references/mcp.md) <br>
-- [Gate welfare runtime rules](references/gate-runtime-rules.md) <br>
-- [MCP data usage examples](references/mcp-data-usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-formatted user guidance with task lists and fallback messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses only real MCP-returned task and reward fields; does not claim rewards or perform writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads Gate welfare eligibility and new-user task status through the configured Gate MCP session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when account-specific welfare lookup is intended, keep credentials in the configured MCP session, and do not paste secrets into chat.
+
+Risk: Ambiguous welfare, reward, or task requests may trigger an eligibility check.
+
+Mitigation: Use the skill for Gate welfare and rewards intents, and stop on missing authentication, permission errors, or unavailable welfare tools.
+
+Risk: Reward or task guidance can be misleading if values are fabricated or stale.
+
+Mitigation: Render only fields returned by the documented MCP tools and direct failures or uncertain cases to the official Gate rewards hub.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gaixianggeng/skills/gate-exchange-welfare-staging)
+- [Gate Skills Repository](https://github.com/gate/gate-skills)
+- [Gate Rewards Hub](https://www.gate.com/rewards_hub)
+- [Gate API Key Management](https://www.gate.com/myaccount/profile/api-key/manage)
+- [Gate Welfare MCP Specification](artifact/references/mcp.md)
+- [Gate MCP Data Usage Examples](artifact/references/mcp-data-usage.md)
+- [Gate Welfare Runtime Rules](artifact/references/gate-runtime-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with Gate welfare eligibility, task details, reward fields, status labels, and fallback messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only output; uses configured Gate MCP credentials and must not claim rewards, trade, or modify account data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter version 2026.4.3-1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

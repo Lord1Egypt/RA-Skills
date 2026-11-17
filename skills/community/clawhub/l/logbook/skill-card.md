@@ -1,41 +1,54 @@
-## Description: <br>
-Logbook helps agents propose local command-line workflows for importing, querying, validating, transforming, and exporting simple data logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logbook provides local shell commands for importing, querying, validating, exporting, and summarizing line-based data while recording command history.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, analysts, and productivity-focused users can use this skill to get guidance and shell-command examples for operating the local Logbook data-tool stub. It is best suited for lightweight local data logging workflows, not for handling sensitive personal journal content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The public summary describes personal journaling, while the artifact behaves as a local data-processing command tool. <br>
-Mitigation: Evaluate it as a local data-tool stub and confirm the behavior matches the intended use before deployment. <br>
-Risk: Command activity and arguments can be written to the local Logbook history file. <br>
-Mitigation: Avoid passing private journal text, secrets, credentials, or sensitive file paths as command arguments. <br>
+## Use Case:
 
+Developers and command-line users can use this skill as a lightweight local data-processing helper for importing files, querying records, validating a fixed schema, viewing simple counts, and exporting results.
 
-## Reference(s): <br>
-- [ClawHub Logbook release page](https://clawhub.ai/ckchzh/logbook) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths and command arguments for the Logbook shell script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The release summary describes personal journaling, while the artifact behaves as a generic local data-processing CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed commands and documentation before use, and do not rely on the marketplace summary as the sole description of behavior.
+
+Risk: Queries, filenames, destinations, and other command values may be written to a persistent local history file.
+
+Mitigation: Avoid passing sensitive notes, private filenames, or confidential destinations unless local history retention is acceptable.
+
+## Reference(s):
+
+- [ClawHub Logbook skill page](https://clawhub.ai/ckchzh/skills/logbook)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs and command examples are intended for local terminal workflows.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

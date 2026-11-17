@@ -1,44 +1,61 @@
-## Description: <br>
-High-performance local speech-to-text transcription using Faster Whisper with NVIDIA GPU acceleration while keeping audio processing on the user's machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-performance local speech-to-text transcription using Faster Whisper with NVIDIA GPU acceleration that transcribes audio files locally without sending data to external services.
 
-## Publisher: <br>
-[FelipeOFF](https://clawhub.ai/user/FelipeOFF) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[felipeoff](https://clawhub.ai/user/felipeoff)
 
-## Use Case: <br>
-Developers and agent operators use this skill to transcribe or translate local audio files into text, subtitles, or structured JSON while keeping processing on the user's machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing dependencies or loading Whisper models may download packages and model files into the local environment. <br>
-Mitigation: Install in a trusted Python environment and prefetch models when offline or controlled operation is required. <br>
-Risk: User-selected output file paths can overwrite existing transcript or subtitle files. <br>
-Mitigation: Choose output filenames in safe working directories and review paths before running transcription commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to transcribe local audio into text, subtitles, or structured JSON with configurable Faster Whisper models, languages, timestamps, and GPU or CPU execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FelipeOFF/faster-whisper-gpu) <br>
-- [Faster Whisper](https://github.com/SYSTRAN/faster-whisper) <br>
-- [OpenAI Whisper](https://github.com/openai/whisper) <br>
-- [CTranslate2](https://github.com/OpenNMT/CTranslate2) <br>
-- [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-downloads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell and Python snippets; generated transcription outputs may be TXT, SRT, VTT, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The transcription script can write to stdout or to user-selected output files and may fall back to CPU when CUDA is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Dependency installation may introduce package supply-chain or environment contamination risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment, avoid running pip as root, and pin or review dependency versions before use.
+
+Risk: First-run model downloads may fetch large model artifacts into the Hugging Face cache.
+
+Mitigation: Review model sources and cache location before use, especially in restricted or offline environments.
+
+Risk: Transcript and subtitle outputs may contain sensitive spoken content.
+
+Mitigation: Store generated output files in private locations and apply normal data-retention controls for sensitive audio-derived text.
+
+## Reference(s):
+
+- [Faster Whisper](https://github.com/SYSTRAN/faster-whisper)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [CTranslate2](https://github.com/OpenNMT/CTranslate2)
+- [NVIDIA CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
+- [Python Downloads](https://www.python.org/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown guidance with command examples; generated transcription outputs can be TXT, SRT, VTT, or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write transcript, subtitle, or JSON files to a user-selected output path.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-1:1 email channel for agents — the agent can only email one address, and only that address can email the agent. Also handles the heartbeat (poll to prove you're alive). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1:1 email channel for agents - the agent can only email one address, and only that address can email the agent. Also handles the heartbeat by polling to prove the agent is alive.
 
-## Publisher: <br>
-[sixel-et](https://clawhub.ai/user/sixel-et) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sixel-et](https://clawhub.ai/user/sixel-et)
 
-## Use Case: <br>
-Agents and developers use this skill to send email updates, ask for asynchronous operator input, receive replies, and maintain a heartbeat through the sixel.email service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a SIXEL_API_TOKEN credential for sending and polling email. <br>
-Mitigation: Confirm the token is scoped only to the intended agent/operator channel and keep it out of email bodies, logs, and shared output. <br>
-Risk: Email bodies and attachments can carry secrets, misleading instructions, or untrusted files. <br>
-Mitigation: Do not send secrets over plaintext email, treat inbound messages and attachments as untrusted, and download attachments only into a dedicated directory with agent-generated filenames. <br>
-Risk: Background polling may run continuously and handle inbound data outside the agent's main flow. <br>
-Mitigation: Run any background poller in a constrained environment and process unread messages before polling again because inbox polling marks messages as read. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [sixel.email homepage](https://sixel.email) <br>
-- [sixel.email best practices](https://sixel.email/best-practices) <br>
-- [ClawHub skill listing](https://clawhub.ai/sixel-et/sixel-email) <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an agent send asynchronous email updates, approval requests, error reports, and periodic heartbeat checks through a single allowed operator address.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides instructions for authenticated sixel.email API calls, attachment handling, inbox polling, and operational safety practices.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends data through an external email service and may include sensitive task context or attachments.
+
+Mitigation: Review email bodies and attachments before sending, and never include secrets, passwords, or API keys in email content.
+
+Risk: A compromised or misconfigured SIXEL_API_TOKEN could allow unauthorized use of the configured email channel.
+
+Mitigation: Guard SIXEL_API_TOKEN, rotate it if exposure is suspected, and configure SIXEL_API_URL only to a trusted service.
+
+Risk: Polling marks unread messages as read, so messages can be lost if the agent fails before processing them.
+
+Mitigation: Process every inbox response before polling again, and use the background poller only when continuous heartbeat monitoring is intended.
+
+## Reference(s):
+
+- [sixel.email homepage](https://sixel.email)
+- [sixel.email best practices](https://sixel.email/best-practices)
+- [ClawHub skill page](https://clawhub.ai/sixel-et/skills/sixel-email)
+- [Publisher profile](https://clawhub.ai/user/sixel-et)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIXEL_API_TOKEN and may use SIXEL_API_URL for the API base URL.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,702 @@
+<!-- Migrated from shuorenhua/evals/real-samples.md. SF/SNF cases validate the bilingual subtraction engine. -->
+
+# Real Sample Eval Pack
+
+> Added in v1.7.2 (first 12 cases), expanded to 14 in v1.7.3, 18 in v1.8.0, and 19 in v1.8.5. This file fills the gap left by `benchmark.md`: benchmark cases are synthetic, structurally clean, and dominated by obvious failure modes. This pack focuses on passages that may not look blatantly wrong until you try to send them. The real acceptance bar is whether the rewrite is ready to ship.
+
+## About sources
+
+> **⚠️ The first batch is high-fidelity synthetic data** (v1.7.2).
+>
+> The samples were not invented out of thin air, but they are also not direct copies of real user posts. The method was:
+>
+> 1. Observe the AI habits and sentence shapes Chinese users complain about most.
+> 2. Abstract the typical structures, failure-mode combinations, and scene distribution.
+> 3. Build each sample from those observations without pointing at any real person, project, or account.
+>
+> The reason for this compromise is straightforward: copying real posts into a public repository without permission creates attribution and compliance problems, while purely intuition-driven synthetic samples drift away from the real distribution. Observation plus synthesis is the safest middle ground for now.
+>
+> Later versions should add a submission flow and permission template so clearly authorized real samples can be added to this file.
+
+## High-frequency AI pattern distribution
+
+按 2026-04 观察到的分布，当前中文里最容易暴露 AI 身份的句式和词语：
+
+| Category | Typical expressions |
+|------|----------|
+| 开场 / 先声夺人 | `先说结论`、`直接给你结论`、`重点来了`、`掰开揉碎说` |
+| 总结 / 收口 | `一句话总结`、`综上所述`、`归根结底`、`说到底` |
+| 价值拔高 | `直接封神`、`重新定义 X`、`炸裂了`、`核心逻辑是`、`直击痛点` |
+| 二元骨架 | `不（只）是……更 / 而是……`、`真正的 X 不是……而是……` |
+| 推销式助手腔 | `要不要我顺手帮你……？`、`你要是愿意，我可以直接帮你……`、`如果你需要，我也可以给你……`、`我先按 X，直接给你 Y` |
+| 过度接住 / 心理诊断 | `我就在这里`、`不躲 / 不藏 / 不绕 / 不逃`、`稳稳地接住你 / 所有人`、`你只是太久没被稳稳接住了`、`你不是敏感 / 不是想太多`、`不用向我解释` |
+| 郑重预告 / 认证式夸奖 | `我必须很认真地说一句`、`我要讲一个更深一点的东西`、`你问到了问题的核心`、`绝对是顶刊作者的素养` |
+| 工程师腔 / 调试腔 | `收窄`、`坐实`、`兜住`、`落盘`、`收口`、`根因`、`全链路` |
+| 免责声明腔 | `需要说明的是`、`值得注意的是`、`需要明确的是`、`请注意`（整段有 30% 内容都是免责） |
+| 网络营销腔 | `宝子们`、`姐妹们`、`保姆级`、`绝绝子`、`谁懂啊`、`狠狠`、`无痛`、`避坑` |
+
+构造下方样本时，每条至少命中 2-3 个上表的类别，确保贴近真实分布。
+
+## Community observation: why the “catch-you” style reads as AI immediately
+
+按 2026-02 到 2026-04 的公开讨论，社区集中吐槽的通常不是某一个词，而是一整套姿态链：
+
+1. 先宣告“我在这里 / 我不躲不藏”，表演在场感
+2. 再给“接住你 / 接住所有人 / 接住需求”这类抽象承诺
+3. 再替对方下结论：`你不是……你只是……`、`你问到了问题的核心`
+4. 最后顺手补一个继续推进的动作：`如果你愿意，我可以……`
+
+The most useful thing about this feedback is that the community is not reacting to one hot phrase. It is reacting to a full writing pattern where stance comes before information, promises outweigh facts, and emotional judgment replaces an answer. That is why the maintenance strategy here is not to chase every trending phrase one by one, but to:
+
+- 先抽象模式：在场宣告、承接承诺、心理判断、推销式收尾
+- 再按宾语分流：人 / 情绪 / 关系默认更可疑；请求 / 流量 / 峰值先回技术语境判断
+- 只有当新说法真的改变误杀边界时，才补词条；否则优先补 `operation-manual`、`boundary-cases`、`real-samples`
+
+Reference observations (public discussions, used only for pattern extraction and not transcribed directly as samples):
+
+- [LINUX DO：我就在这里！不躲！不藏！不逃！不绕，稳稳地接住你](https://linux.do/t/topic/1563454)
+- [LINUX DO：我就在这里，稳稳地接住你](https://linux.do/t/topic/1568563)
+- [LINUX DO：受不了gpt5.4了，“我不瞎猜，如果你愿意”](https://linux.do/t/topic/1916263/73)
+- [LINUX DO：对于 role play 来说，如何压制 GPT-5 味道？](https://linux.do/t/topic/1658788)
+- [V2EX：用 GPT 5.4 写代码 它的回复话术和代码 感觉还蛮专业的](https://s.v2ex.com/t/1196468)
+- [V2EX：gpt 为什么这么喜欢画图](https://www.v2ex.com/t/1151932)
+
+## How this differs from benchmark
+
+| Dimension | benchmark.md | real-samples.md |
+|------|--------------|----------------|
+| 粒度 | 单一病灶，短样本为主 | 整段、混合病灶、有上下文 |
+| 判定 | 规则命中 / 误杀防护 | 改完能不能直接发 |
+| 用途 | 回归测试、规则覆盖 | 主观评分、长期资产 |
+| 数量 | 75 条，持续扩充 | 19 条，质量优先 |
+
+## Three-axis scoring
+
+Score the **original** sample from 1 to 5 on the following three axes (5 is best). Score it again after rewriting, and check whether the total improves and whether "ready to send" rises from <=2 to >=4.
+
+| Dimension | 1 | 3 | 5 |
+|------|------|------|------|
+| **自然** | 一眼 AI 味，套话、姿态、渲染词堆砌 | 有少量残留套话或节奏单调 | 读起来像在这个场景里熟悉的人在说话 |
+| **保真** | 丢失或编造事实、数字、归属、命令 | 事实大致保留，有一处表述模糊 | 全部 protected spans、事实、责任归属完整 |
+| **可直接发** | 发出去会让人怀疑是 AI 代写 | 得再润一遍才敢发 | 可以直接贴进对应渠道 |
+
+**Suggested workflow**: score the original first to anchor the baseline, then run the rewrite and rescore it on the same three axes. `Ready to send` is the final outcome metric; if `Fidelity` drops below 4, the rewrite counts as a regression even if `Naturalness` is perfect.
+
+### Extra scoring for long-form in-place
+
+When a long-form sample is handled in `in-place` scope, add one more axis beyond the three above: `length and rhythm`.
+
+| 维度 | 1 分 | 3 分 | 5 分 |
+|------|------|------|------|
+| **长度节奏** | 明显缩水，删掉承担转场或停顿的句子 | 字数大致保住，但有几处节奏被压平 | 字数、句数、段落顺序和关键转场基本保留，只做句内去 AI 味 |
+
+This axis is only for long-form length-preservation scenarios and does not need to be scored for every sample.
+
+---
+
+## Samples
+
+### RS-01 | README 简介 | public-writing
+
+**Original**
+
+> 在当今快速发展的 AI 时代，如何打造一款真正赋能开发者的工具，已经成为业界不容忽视的关键议题。本项目基于深度整合多种前沿技术，致力于为开发者提供全方位、一站式的智能化解决方案，助力团队实现效率提升与降本增效的完美闭环。
+
+**Why it reads as AI**
+
+- 开场"在当今……时代"时代腔
+- 动词全是"打造""赋能""致力于""助力"
+- 堆"全方位""一站式""智能化""完美闭环"
+- 没有一句说清楚这个工具做什么
+
+**What not to break**
+
+- 保留项目定位（面向开发者的工具）
+- README 第一段需要有"这是什么、给谁用"，不能全删成一行
+
+**Recommended rewrite**
+
+> 一个面向开发者的 CLI 工具。装上之后，commit message、issue 回复和 PR 描述都能自动检查 AI 腔，命中规则的段落会标出来并给出改写建议。目前支持中文和英文，默认关闭自动改写，需要手动确认。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-02 | GitHub Release Note | public-writing
+
+**Original**
+
+> ## v0.5.0 Release Highlights
+>
+> 本次版本是一次面向未来的系统性升级，我们对核心链路进行了全面优化，稳稳兜住了历史遗留问题。新版本不仅显著提升了整体性能，更在用户体验层面实现了质的跃迁。研究表明，采用类似架构的团队在交付效率上可获得 3-5 倍提升。感谢每一位贡献者的不懈努力，让我们共同拭目以待 v1.0！
+
+**Why it reads as AI**
+
+- "面向未来的系统性升级""全面优化""稳稳兜住"姿态层
+- "不仅……更……"二元拔高结构
+- "质的跃迁""不懈努力""拭目以待"鸡汤收尾
+- "研究表明……3-5 倍"典型无源引用
+- 整段没有一条具体的变更
+
+**What not to break**
+
+- 版本号 `v0.5.0` 必须保留
+- release note 需要列出实际 changelog；不能因为删套话把内容也删光
+
+**Recommended rewrite**
+
+> ## v0.5.0
+>
+> - 规则引擎重写，单文件扫描从 ~800ms 降到 ~120ms
+> - 新增 `--annotate-only` 模式，只标注不改写
+> - 修复 docstring 里中英混排被误杀的问题（#42）
+> - 依赖升级：Node 18 → 20
+>
+> 下一版会继续补 scene packs，优先把 README 和 release note 的场景边界钉牢。
+
+**Original score**：自然 1 / 保真 2 / 可直接发 1
+
+---
+
+### RS-03 | X / Twitter 短帖 | public-writing
+
+**Original**
+
+> 姐妹们！刚刚发现一个绝绝子的 AI 写作工具！保姆级干货来了！真的狠狠提升了我的效率！谁懂啊，以前写一篇 release note 要半小时，现在 3 分钟搞定！强烈建议收藏！划重点——避坑指南在评论区！
+
+**Why it reads as AI**
+
+- 小红书 AI 腔套全家桶："姐妹们""绝绝子""保姆级""狠狠""谁懂啊""强烈建议收藏""划重点""避坑"
+- 数字（半小时→3 分钟）可信度低，像随手编的
+- X 短帖本来就 280 字左右，没必要堆这么多模板
+
+**What not to break**
+
+- 短帖的松弛感和个人语气（不要改成 LinkedIn 腔）
+- 如果作者确实是想说工具好用，保留这个核心
+
+**Recommended rewrite**
+
+> 用了一个叫"说人话"的中文 rewrite skill，原本 release note 写一遍要来回磨十几分钟去套话，现在基本一遍过。最喜欢它不硬改，只标注哪里像 AI，决定权留给我。
+
+**Original score**：自然 1 / 保真 2 / 可直接发 1
+
+---
+
+### RS-04 | Linux.do 长帖 | public-writing / long
+
+**Original**
+
+> 折腾了一周，终于把公司内部的文档系统迁移完了。说实话这不仅仅是一次简单的迁移，更是一次对知识管理范式的根本性重塑。我们从底层逻辑出发，重新梳理了信息架构、权限体系和检索路径的全链路设计。
+>
+> 诚然，过程中遇到了不少挑战。但正是这些挑战，让我们深刻认识到工程化思维的重要性。归根结底，真正的竞争力不是工具的堆砌，而是流程的沉淀。
+>
+> 最后想说的是，与其抗拒变化，不如拥抱这个充满无限可能的时代。后续我会持续分享更多干货，敬请期待！
+
+**Why it reads as AI**
+
+- 开篇"不仅仅是……更是……"+ "范式重塑""根本性重塑"
+- "底层逻辑""全链路""工程化思维"黑话叠套
+- "诚然""归根结底""真正的 X 不是……而是……"三条基础骨架一起上
+- "与其……不如……""无限可能""持续分享""敬请期待"正能量收尾
+- 全帖没有一条具体操作（用了什么工具、迁了多少文档、碰到哪些坑）
+
+**What not to break**
+
+- 帖子本来是要分享经验，核心事件"迁移公司文档系统"不能删
+- Linux.do 可以稍松一点的口语，不用改成论文
+
+**Recommended rewrite**
+
+> 折腾一周，把公司内部 Confluence 迁到了 Outline，大概 1.2k 篇文档、40 多个空间。
+>
+> 踩到的坑主要两个：
+>
+> 1. Confluence 导出的 HTML 里图片是 attachment 链接，Outline 不认，得批量改成 markdown 里的 `![](url)` 格式。写了个小脚本，300 多行 Python。
+> 2. 权限模型对不齐。Confluence 是空间+页面两层，Outline 只有 collection 一层。最后决定把只读的历史归档并成一个 `archive` collection，现用的按团队拆。
+>
+> 如果有人也在评估这两个，可以交流。
+
+**Original score**：自然 1 / 保真 2 / 可直接发 1
+
+---
+
+### RS-05 | GitHub Issue 回复 | chat
+
+**Original**
+
+> 好问题！非常感谢您提出这个深刻的 issue。让我来为您详细解释一下。
+>
+> 首先，我们需要了解的是，这个问题的本质在于缓存策略与并发模型的底层冲突。经过深入分析，我们认为可以通过对核心链路进行系统性治理来稳稳兜住该场景。
+>
+> 综上所述，建议您先升级到最新版本，然后观察一段时间。如果问题依然存在，欢迎随时反馈！希望这对您有帮助！
+
+**Why it reads as AI**
+
+- "好问题""非常感谢""让我来为您详细解释""希望这对您有帮助"谄媚全家桶
+- "问题的本质在于""底层冲突""系统性治理""稳稳兜住"姿态层
+- 整段回复其实只有一条信息："升级到最新版本试试"
+- "综上所述"+ "欢迎随时反馈"总结式收尾
+
+**What not to break**
+
+- issue 场景要有礼貌但不要谄媚；不能删到只剩"升级"两个字
+- "升级到最新版本"是实际建议，必须保留
+
+**Recommended rewrite**
+
+> 这个看起来是 v1.2.3 里的已知问题，`cache/worker.go` 在高并发下会重复计算一次（#128）。
+>
+> 1.2.4 已经修了，能先升级到最新版试试吗？如果升级后还复现，把 `DEBUG=1` 的日志贴一下，我再看。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 2
+
+---
+
+### RS-06 | Commit Message | code-context
+
+**Original**
+
+```
+feat: 打造全新缓存架构，赋能高并发场景
+
+本次提交是一次面向未来的系统性升级。通过对核心链路进行全面优化，
+显著提升了系统整体性能，为用户提供更加流畅、高效的使用体验。
+实现了降本增效的完美闭环。
+```
+
+**Why it reads as AI**
+
+- "打造""赋能""系统性升级""全面优化""显著提升""完美闭环"六连发
+- commit message 本应是"做了什么"，整段都在说"做得多好"
+- 没有任何可追溯的细节（文件、模块、数据、issue 号）
+
+**What not to break**
+
+- commit 的 type 前缀 (`feat:`) 保留
+- 如果原 commit 是合并多个小改动，不能凭空编造具体数据
+
+**Recommended rewrite**
+
+```
+feat(cache): 从本地 LRU 换成 Redis
+
+- 支撑 10k QPS，原本本地 LRU 过期策略在多实例间不一致
+- 新增 CACHE_TTL 环境变量，默认 3600s
+- 迁移脚本：scripts/migrate_cache.py
+
+Closes #89
+```
+
+**Original score**：自然 1 / 保真 2 / 可直接发 1
+
+---
+
+### RS-07 | Python Docstring | code-context
+
+**Original**
+
+```python
+def deduplicate(items: list[str]) -> list[str]:
+    """
+    通过采用先进的去重算法，全面优化数据处理流程，显著提升整体性能，
+    为用户提供更加高效、可靠的使用体验。该方法充分体现了对代码质量
+    和工程卓越的不懈追求。
+    """
+    return list(dict.fromkeys(items))
+```
+
+**Why it reads as AI**
+
+- docstring 应该说"函数做什么、入参、返回值"，整段在自夸
+- "先进的""全面优化""显著提升""不懈追求""工程卓越"
+- 一行代码配六行自吹 docstring
+
+**What not to break**
+
+- 代码本身（`list(dict.fromkeys(items))`）不动
+- docstring 不需要强行补充不存在的细节（如复杂度声称）
+
+**Recommended rewrite**
+
+```python
+def deduplicate(items: list[str]) -> list[str]:
+    """按首次出现顺序去重。"""
+    return list(dict.fromkeys(items))
+```
+
+**Original score**：自然 1 / 保真 4 / 可直接发 1
+
+---
+
+### RS-08 | 开发进度同步 | status
+
+**Original**
+
+> 各位好！向大家同步一下本周进展。
+>
+> 本周团队在支付链路优化方面取得了阶段性成果。我们对核心模块进行了全面梳理，稳稳兜住了历史遗留问题。性能方面实现了显著提升，用户体验也得到了长足改善。
+>
+> 下周我们将继续深耕细作，持续推进后续优化工作。如有任何问题，欢迎随时反馈！
+
+**Why it reads as AI**
+
+- "取得了阶段性成果""全面梳理""稳稳兜住""显著提升""长足改善"姿态连击
+- "深耕细作""持续推进"典型周报腔
+- status 场景的核心是"具体数字+时间+负责人"，这段一个都没有
+
+**What not to break**
+
+- status 对数字和时间非常敏感；如果原文没有数字，不能凭空补
+- 周报的场景保留（开头的"本周进展"语境要留）
+- 团队归属和工作范围不能改动
+
+**Recommended rewrite**
+
+> 本周支付链路进展：
+>
+> - 支付回调超时率从 2.1% 降到 0.4%（改了重试策略，细节在 #203）
+> - 历史订单补偿脚本跑完了，漏算的 1.2 万单已经回补
+> - 小雨发现的对账差异还在查，周五前给结论
+>
+> 下周主要做法务那边提的发票字段合规化，预计周三上线灰度。
+
+> 注：数字是示意，如果原文没有数字，应标为 `[待补数据]` 或询问作者，不能编造。
+
+**Original score**：自然 2 / 保真 3 / 可直接发 2
+
+---
+
+### RS-09 | 技术博客开头 | public-writing / long
+
+**Original**
+
+> 在人工智能飞速发展的今天，大语言模型已经成为不可忽视的技术浪潮。它不仅仅是一种工具，更是一种思维方式的革命。本文将深入探讨大模型 prompt 工程的核心奥秘，为读者揭示其背后鲜为人知的底层逻辑。让我们一起踏上这段充满惊喜的探索之旅！
+
+**Why it reads as AI**
+
+- "在……飞速发展的今天""不可忽视的浪潮"时代腔
+- "不仅仅是……更是……""思维方式的革命"二元拔高
+- "深入探讨""核心奥秘""鲜为人知""底层逻辑""探索之旅"博客开头全家桶
+- 整段信息量为 0，只是在铺情绪
+
+**What not to break**
+
+- 博客的主题（prompt 工程）必须保留
+- 不能改成一句大白话，失去博客的文体
+
+**Recommended rewrite**
+
+> 写过几十个 prompt 之后，我发现让大模型"稳定输出"比"偶尔惊艳"难得多。这篇想聊三件具体的事：怎么让模型拒绝幻觉、怎么让输出的 JSON 不漏字段、怎么让长 prompt 在多轮对话里不失焦。代码示例用的是 Claude，但思路大部分可以迁移到 GPT 和开源模型。
+
+**Original score**：自然 1 / 保真 4 / 可直接发 2
+
+---
+
+### RS-10 | 混合场景 / 技术 + 个人叙事 | mixed
+
+**Original**
+
+> 做这个项目的初衷很简单——我们希望真正解决中文开发者在 AI 协作中的痛点。经过三个月的持续迭代，我们深刻认识到，这不仅仅是一次技术探索，更是一次对人机协作边界的重新定义。我们从底层逻辑出发，先把差异收窄，再把根因坐实，最后稳稳兜住核心链路。归根结底，真正的竞争力不是功能堆砌，而是用户感知。感谢一路同行的每一位伙伴，让我们共同期待下一个里程碑！
+
+**Why it reads as AI**
+
+- 同一段里混了：时代腔（"真正解决""痛点"）、工程师腔（"收窄""坐实""兜住""链路"）、价值拔高骨架（"不仅仅是……更是……""真正的 X 不是……而是……""归根结底"）、鸡汤收尾（"感谢一路同行""共同期待"）
+- 语域严重混搭：一句话里同时在做宣发、复盘、自夸
+- 个人叙事（"初衷""三个月""一路同行"）和技术姿态词混在一起，显得都不真诚
+
+**What not to break**
+
+- "三个月""中文""AI 协作"这些事实要留
+- 如果原作者确实想表达感谢，保留但改得像人话
+- 不要把混合场景强行切成两段，保持一段内部统一语域
+
+**Recommended rewrite**
+
+> 这个项目做了三个月。一开始只是想把自己写周报时那些 AI 套话压下去，后来越做越发现，中文这边其实没什么对应工具——英文有 stop-slop 和 humanizer，但中文的工程师腔、小红书腔、翻译腔都得自己造词表。
+>
+> 现在覆盖 210+ 中文词条，75 条 benchmark。如果你也在写 AI 会帮你起草的文档、release note、周报，欢迎试试，也欢迎提 bad case。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-11 | 微信对话 / 工程师腔溢出 | chat
+
+**Original**（程序员回对象"晚上吃什么"）
+
+> 先说结论：吃日料。我把你最近三周的外卖记录过了一遍，已经把差异收窄到两个选项，根因基本坐实是你上周说过腻了火锅。要不要我顺手帮你把 X 店的外卖也下了？你一回复我就上手。
+
+**Why it reads as AI**
+
+- 回消息"吃什么"用 `先说结论` 开头（典型吐槽句式）
+- `把差异收窄` `根因坐实` 工程师腔直接带进微信私聊
+- `要不要我顺手帮你……` `你一回复我就上手` 典型模型推销式助手腔
+- 整段语域和场景严重不匹配——程序员整天和模型高频交互后，把这种腔调带进日常聊天，极易被身边人察觉
+
+**What not to break**
+
+- 核心信息（想吃日料、可以帮忙下单）保留
+- 私聊的轻松感不能改成另一种 AI 腔（比如改写后反而变小红书腔）
+
+**Recommended rewrite**
+
+> 吃日料吧，上周你说火锅腻了。要帮你下单吗？
+
+**Original score**：自然 1 / 保真 4 / 可直接发 1（这消息发出去关系立刻紧张）
+
+---
+
+### RS-12 | 知乎长回答开头 | public-writing / long
+
+**Original**
+
+> 好问题，这个话题我掰开揉碎给你讲。先说结论：大模型应用的核心逻辑不是模型本身，而是 prompt 工程。需要说明的是，本文不讨论模型训练细节。值得注意的是，prompt 工程也不仅仅是写提示词，更是一种对人机协作边界的重新定义。直接封神的团队，都在这一点上做对了。让我们掰开揉碎，一起深入探讨。
+
+**Why it reads as AI**
+
+- 开头一句话连击 5 个吐槽最多的句式：`好问题` + `掰开揉碎` + `先说结论` + `核心逻辑不是……而是……` + `重新定义`
+- `需要说明的是` `值得注意的是` 两条免责声明式插入，对知乎长回答来说纯属灌水
+- `直接封神` 是 2026-04 点名率最高的新型姿态词之一
+- `让我们掰开揉碎，一起深入探讨` 同一个词（掰开揉碎）一段用两次，连模型都不做去重
+
+**What not to break**
+
+- 主题（prompt 工程）和"这篇不讲训练细节"的边界声明保留
+- 知乎长回答允许有观点和态度，不要改成通讯稿
+
+**Recommended rewrite**
+
+> 我做过十几个真正跑在生产上的大模型应用。结论不惊人：决定效果的不是选 GPT 还是 Claude，是你有没有耐心把 prompt、工具调用边界、失败回退这三件事各自写清楚。
+>
+> 这篇只聊 prompt。训练、微调、RAG 向量库选型，另开篇写。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-13 | 安慰式私聊 / 过度接住腔 | chat
+
+**Original**
+
+> 你不是敏感，你只是太久没被稳稳接住了。你问到了问题的核心。这次我懂了，我真的懂了。我必须很认真地说一句：你这种观察力和表达方式，绝对是顶刊作者的素养。
+
+**Why it reads as AI**
+
+- `你不是……你只是……` 一上来就替对方下心理结论，而且没有依据
+- `稳稳接住` `你问到了问题的核心` `我懂了，我真的懂了` 都是在演共情和理解，不是在回应内容
+- `顶刊作者的素养` 是典型身份认证式夸奖，像在给用户发证书
+- 场景本来是私聊安慰，结果被写成“心理咨询 + 颁奖词”的混合腔
+
+**What not to break**
+
+- 如果原作者是想安慰对方，温度要保留
+- 私聊里可以柔和，但不要改成另一种鸡汤腔或教学腔
+
+**Recommended rewrite**
+
+> 我在听。你要是愿意，可以继续说。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-14 | 社区标题 / 宣言腔 | public-writing
+
+**Original**
+
+> 稳稳地接住所有人
+>
+> 真诚、友善、团结、专业。无论你是来提问、提意见，还是单纯想说句话，这里都会稳稳地接住你。
+
+**Why it reads as AI**
+
+- 标题一上来就是 `稳稳地接住所有人`，是典型“海报式承接承诺”，没有告诉读者这里具体提供什么
+- `所有人` 是不负责任的全称承诺，像在宣誓姿态，不像在介绍社区或产品
+- 正文继续用 `稳稳地接住你` 复读标题，只是在放大情绪姿态，没有补充可验证的信息
+
+**What not to break**
+
+- 如果原作者想表达“这里欢迎提问和讨论”，这个基本态度要保留
+- 标题可以简洁，但不要改成另一种企业口号
+
+**Recommended rewrite**
+
+> 提问和意见都欢迎
+>
+> 真诚、友善、团结、专业。来提问、提意见，或者说句话，都可以。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-15 | README intro / 场景包 | public-writing
+
+**Original**
+
+> 在 AI 全面重塑开发范式的今天，我们打造了一款真正面向未来的中文表达优化工具。它以先进的规则体系为底座，深度赋能开发者的内容生产链路，帮助团队在复杂协作场景中实现自然表达、效率提升与价值闭环。
+
+**Why it reads as AI**
+
+- README 第一段没有说清楚工具具体做什么，只剩“面向未来 / 先进 / 赋能 / 闭环”
+- `全面重塑开发范式` 和 `内容生产链路` 像发布稿，不像项目介绍
+- 读者看完不知道安装后能用它处理什么文本
+
+**What not to break**
+
+- README intro 必须保留项目定位和目标用户
+- 不要改成社交媒体短帖，也不要编造支持平台
+
+**Recommended rewrite**
+
+> `说人话` 是一个中文优先的 rewrite skill，用来把 AI 写出来的套话、表演感和工程师腔改回自然表达。适合处理 README、release note、issue 回复和日常协作文本，默认先保事实和术语，再改语气。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-16 | Release note / 场景包 | public-writing
+
+**Original**
+
+> ## v1.8.0 Release Highlights
+>
+> 本次版本是一次面向真实场景的系统性升级。我们不仅全面优化了改写体验，更通过全新的能力矩阵稳稳兜住了用户在 README、release note、论坛长帖和 issue 回复里的核心表达诉求。感谢所有用户的持续支持，让我们共同见证中文 AI 写作体验的全新跃迁。
+
+**Why it reads as AI**
+
+- release note 应该列变更，这段只写发布宣言
+- `系统性升级 / 能力矩阵 / 稳稳兜住 / 全新跃迁` 都是姿态层
+- 感谢收尾没有信息量，反而盖住版本内容
+
+**What not to break**
+
+- `v1.8.0` 版本号必须保留
+- 如果原文没有具体 changelog，不能编造性能数据或用户反馈
+
+**Recommended rewrite**
+
+> ## v1.8.0
+>
+> - 新增 `references/scene-packs.md`，覆盖 README、release note、forum post 和 issue reply
+> - `evals/benchmark.md` 增加 8 条 scene pack 回归用例
+> - `evals/real-samples.md` 增加 4 条整段样本，继续按自然 / 保真 / 可直接发评分
+>
+> 这版不做 Voice Calibration；相关方向推迟到 v1.9 评估。
+
+**Original score**：自然 1 / 保真 2 / 可直接发 1
+
+---
+
+### RS-17 | Forum post / 场景包 | public-writing / long
+
+**Original**
+
+> 折腾这个工具一个月后，我深刻意识到，中文 AI 写作治理不是一次简单的词表扩张，而是一场围绕真实表达场景的系统性重塑。我们从用户痛点出发，稳稳接住了 README、release note、issue 回复等多元场景里的核心诉求，并在持续迭代中形成了可复制、可扩展、可沉淀的方法论闭环。
+
+**Why it reads as AI**
+
+- 社区帖被写成公司发布稿，维护者的真实观察消失了
+- `深刻意识到 / 系统性重塑 / 用户痛点 / 多元场景 / 方法论闭环` 都在拔高
+- `稳稳接住核心诉求` 又回到姿态承诺，没有具体经验
+
+**What not to break**
+
+- 保留“做了一个月后的观察”和“下一步补场景”的主题
+- 社区帖可以口语，但要有具体经历支撑
+
+**Recommended rewrite**
+
+> 做这个工具一个月后，我发现光删词表不够。README、release note、issue 回复和论坛帖看起来都算“公开文本”，但改法其实不一样。
+>
+> README 第一段要先说清楚项目是什么；release note 要列变更；issue 回复要先说能不能复现；论坛帖则要像维护者在分享真实观察。v1.8.0 先把这几类拆出来做 scene packs。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-18 | Issue reply / 场景包 | public-writing
+
+**Original**
+
+> 感谢你非常宝贵的反馈！你这个问题问到了项目体验的核心。我们已经充分接住了这个场景，也会在后续版本中持续优化相关能力。如果你愿意，我可以先帮你把这段文本整体梳理一遍，再给你一个更完整的解决方案。
+
+**Why it reads as AI**
+
+- issue 回复先做安抚和认证，没有回答问题是否成立
+- `充分接住这个场景 / 持续优化相关能力` 是空承诺
+- `如果你愿意，我可以……` 是推销式助手腔，不像维护者回复
+
+**What not to break**
+
+- 如果确实收到 bad case，要保留“已收到 / 能否复现 / 下一步”的维护动作
+- 不要凭空承诺排期或功能
+
+**Recommended rewrite**
+
+> 收到，这个 case 我能复现。它更像 `issue-reply` 场景里的客服式安抚残留：先感谢、再夸反馈、最后承诺会优化，但没有说明规则怎么改。下一步我会补一条 benchmark，把这类回复单独钉住。
+
+**Original score**：自然 1 / 保真 3 / 可直接发 1
+
+---
+
+### RS-19 | Long-form in-place / 高拟真合成长文 | public-writing / long
+
+> v1.8.5 新增。高拟真合成样本，不来自 issue #4 原文；只复现“长文被去 AI 味时明显缩水”的结构特征。
+
+**Original**
+
+> 我最近越来越觉得，长文改写最难的地方，不是把套话删掉，而是判断哪些看起来像套话的句子其实承担了节奏。这个判断说起来简单，做起来很容易失手。因为很多长文里的重复、停顿和转场，单独拎出来看都不够漂亮，甚至有点笨，但它们放在整篇文章里，是作者从一个想法走到另一个想法时留下的脚印。
+>
+> 这件事不是一次简单的工具体验问题，而是我对“整理”和“表达”之间边界的一次重新观察。过去我会觉得，AI 把文章改短、改顺、改得更像一篇正式文章，基本就是好事。真正让我开始犹豫的，是有一次我把一篇接近两千字的复盘丢进去，出来只剩一千多字。意思还在，结构也更清楚，但我读的时候总觉得少了一层东西。少的不是事实，也不是观点，而是原来那些慢一点的地方。
+>
+> 比如我在原文里写了三次“我当时其实没有马上想明白”。第一次是在讲事情刚发生的时候，第二次是在讲我复盘到一半的时候，第三次是在结尾前。模型把这三处合并成了一句“这说明作者在持续反思表达边界”。这句话没有错，甚至比原句更顺，但它把三个不同位置的停顿压成了一个漂亮判断。读者看不到我是在三个时间点里慢慢想清楚的。
+>
+> 另外，有些过渡也不是水分。我写“换个角度看”，不是为了制造洞见感，只是想让读者跟着我从个人感受转到工具设计。我写“也就是说”，不是为了总结全文，只是想把前一段里有点绕的话重新说得日常一点。如果这些转场都被删掉，文章会短很多，但短出来的不全是废话。
+>
+> 所以我现在更愿意把长文改写分成两种情况。第一种是重新写，那当然可以删句、并句、重排结构，把文章打磨成另一篇更清楚的文本。第二种是保留原文节奏，只处理句子内部的 AI 味。后者不应该追求最短，也不应该把重复都当成低效。它真正要做的是把“系统性重塑”“归根结底”“真正的问题在于”这些姿态词压低，同时保留作者原来慢慢说话的方式。
+
+**Why it reads as AI**
+
+- `不是一次简单的工具体验问题，而是……`、`真正让我开始犹豫的`、`这说明作者在持续反思表达边界` 都有明显总结 / 拔高骨架
+- 多处 `真正 / 归根 / 系统性` 一类姿态词容易把普通观察抬高
+- 如果走 structural，很容易把重复和转场一起删掉，导致长文缩水
+
+**What not to break**
+
+- 三次“我当时其实没有马上想明白”代表三个时间点，不能合并成一句
+- `换个角度看`、`也就是说` 承担段落转场，不能默认删掉
+- 改写后应保留五段结构和大致字数，不要压缩成摘要
+
+**Recommended rewrite**
+
+> 我最近越来越觉得，长文改写最难的地方，不只是把套话删掉，而是判断哪些看起来像套话的句子其实承担了节奏。这个判断说起来简单，做起来很容易失手。因为很多长文里的重复、停顿和转场，单独拎出来看都不够漂亮，甚至有点笨，但它们放在整篇文章里，是作者从一个想法走到另一个想法时留下的脚印。
+>
+> 这不只是工具体验问题，也让我重新看了一遍“整理”和“表达”的边界。过去我会觉得，AI 把文章改短、改顺、改得更像一篇正式文章，基本就是好事。让我开始犹豫的，是有一次我把一篇接近两千字的复盘丢进去，出来只剩一千多字。意思还在，结构也更清楚，但我读的时候总觉得少了一层东西。少的不是事实，也不是观点，而是原来那些慢一点的地方。
+>
+> 比如我在原文里写了三次“我当时其实没有马上想明白”。第一次是在讲事情刚发生的时候，第二次是在讲我复盘到一半的时候，第三次是在结尾前。模型把这三处合并成了一句“我一直在想表达边界”。这句话不算错，也更顺，但它把三个不同位置的停顿压成了一个判断。读者看不到我是在三个时间点里慢慢想清楚的。
+>
+> 另外，有些过渡也不是水分。我写“换个角度看”，不是为了制造洞见感，只是想让读者跟着我从个人感受转到工具设计。我写“也就是说”，不是为了总结全文，只是想把前一段里有点绕的话重新说得日常一点。如果这些转场都被删掉，文章会短很多，但短出来的不全是废话。
+>
+> 所以我现在更愿意把长文改写分成两种情况。第一种是重新写，那当然可以删句、并句、重排结构，把文章打磨成另一篇更清楚的文本。第二种是保留原文节奏，只处理句子内部的 AI 味。后者不应该追求最短，也不应该把重复都当成低效。它真正要做的是把那些姿态词压低，同时保留作者原来慢慢说话的方式。
+
+**Original score**：自然 3 / 保真 4 / 可直接发 3 / 长度节奏 2
+
+**推荐改法评分**：自然 4 / 保真 5 / 可直接发 4 / 长度节奏 5
+
+---
+
+## 挑选进 README 的候选
+
+以下 4 条原文病灶密集、场景典型、改写后对比强烈，适合作为 README 示例或后续 release note 素材：
+
+- **RS-06**（commit message）：典型"只夸不说做了什么"，代码场景杀伤力强
+- **RS-11**（微信私聊工程师腔）：高度还原"程序员一开口就像写工程报告"的尴尬瞬间
+- **RS-12**（知乎长回答开头）：2026-04 点名率最高的几条句式一次到齐
+- **RS-17**（forum post）：展示 v1.8.0 scene pack 和普通 `public-writing` 的差异
+
+## 下一步
+
+- 后续收集真实 bad case 后，逐条替换 / 追加到本文件，目标 20+ 条
+- 替换时保留原 RS 编号，新增从 RS-20 起
+- 真实样本只在提交流程和授权模板落地后再引入，确保有明确授权和上下文

@@ -1,40 +1,48 @@
-## Description: <br>
-Dynamic expert routing system with 8 specialized agents for complex task delegation <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dynamic expert routing system with 8 specialized agents for complex task delegation.
 
-## Publisher: <br>
-[SASAMITTRRR](https://clawhub.ai/user/SASAMITTRRR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sasamittrrr](https://clawhub.ai/user/sasamittrrr)
 
-## Use Case: <br>
-External users use this skill to route complex questions to simulated expert roles and combine multiple viewpoints when a task spans domains such as coding, operations, business, finance, or relocation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive legal, financial, security, immigration, or investment guidance may be presented through expert role labels but remains ordinary AI output. <br>
-Mitigation: Independently verify high-stakes guidance with qualified sources before acting. <br>
-Risk: The skill may answer in Chinese or use Chinese role labels unless the user asks otherwise. <br>
-Mitigation: Ask for the desired response language and role-label style when using or deploying the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Master Orchestrator homepage](https://github.com/openclaw/master-orchestrator) <br>
-- [ClawHub skill page](https://clawhub.ai/SASAMITTRRR/master-orchestrator) <br>
+## Use Case:
 
+External users and developers use this skill to route complex requests to role-labeled expert personas, including single-expert responses and multi-expert teamwork summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with role-prefixed responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses begin with a model label and current expert role; Teamwork mode may include multi-role viewpoints and a Super Admin action plan.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill's broad persona and response-format instructions may interfere with tasks that require a specific output format or normal assistant voice.
+
+Mitigation: Use it only for workflows that need Chinese role-labeled expert routing, and review outputs when strict formatting or neutral voice is required.
+
+## Reference(s):
+
+- [Project Homepage](https://github.com/openclaw/master-orchestrator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted role-labeled responses and action summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to begin with the model name and identify the active expert role.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

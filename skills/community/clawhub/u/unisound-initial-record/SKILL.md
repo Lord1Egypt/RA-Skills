@@ -97,7 +97,7 @@ python doctor/emr-gen/initial-record/scripts/run.py \
 - `--encoding STRING`：`txt/csv` 编码（默认：`utf-8`）。
 - `--appkey STRING`：**必填**。调用内部医疗大模型的鉴权 key，使用 Bearer 方式认证。
 - `--base URL`：大模型 base URL（默认：`https://maas-api.hivoice.cn/v1`）。
-- `--model STRING`：模型名称（默认：`u1-insuremed`）。
+- `--model STRING`：模型名称（默认：`u2-med`）。
 - `--timeout SECONDS`：HTTP 超时秒数；`0` 表示一直等待（默认：0）。
 - `--output PATH`：输出文件路径（默认：`stdout`）。
 - `--save-prepared`：保存预处理后的数据，便于调试。

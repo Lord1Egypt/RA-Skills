@@ -32,6 +32,7 @@ REQUIRED_CLAWHUB_IGNORE_ENTRIES = [
     "DECISIONS.md",
     "CURRENT_TASK.md",
     "TODO.md",
+    "skill-card.md",
 ]
 
 SENSITIVE_REGEXES = [
@@ -222,6 +223,7 @@ def iter_release_files(root: Path):
         "DECISIONS.md",
         "PROJECT_CONTEXT.md",
         "SKILL.md",
+        "skill-card.md",
         "TODO.md",
     }
     for path in root.rglob("*"):
@@ -394,9 +396,10 @@ def assert_removed_release_files_absent(root: Path):
 
 def assert_version_consistency(root: Path):
     skill_text = (root / "SKILL.md").read_text(encoding="utf-8")
-    skill_match = re.search(r"^version:\s*([0-9]+\.[0-9]+\.[0-9]+)\s*$", skill_text, re.MULTILINE)
+    frontmatter = skill_text.split("---", 2)[1] if skill_text.startswith("---") else ""
+    skill_match = re.search(r"^\s+version:\s*[\"']?([0-9]+\.[0-9]+\.[0-9]+)[\"']?\s*$", frontmatter, re.MULTILINE)
     if not skill_match:
-        fail("SKILL.md missing semantic version")
+        fail("SKILL.md metadata missing semantic version")
     version = skill_match.group(1)
     changelog_text = (root / "CHANGELOG.md").read_text(encoding="utf-8")
     changelog_match = re.search(r"^##\s+([0-9]+\.[0-9]+\.[0-9]+)\s*$", changelog_text, re.MULTILINE)
@@ -404,6 +407,87 @@ def assert_version_consistency(root: Path):
         fail("CHANGELOG.md missing version heading")
     if changelog_match.group(1) != version:
         fail(f"version mismatch: SKILL.md={version}, CHANGELOG top={changelog_match.group(1)}")
+
+
+def assert_current_automation_templates(root: Path):
+    """Keep publishable cron guidance on the deterministic 2.2.x runtime shape."""
+    template_text = (root / "references" / "private-life-cron-templates.md").read_text(encoding="utf-8")
+    integration_text = (root / "references" / "presence-integration.md").read_text(encoding="utf-8")
+    combined_presence = template_text + "\n" + integration_text
+
+    presence_requirements = [
+        '"kind": "command"',
+        '"python3"',
+        '"<SKILL_DIR>/scripts/companion_presence_tick.py"',
+        '"--config"',
+        '"<CONFIG_PATH>"',
+        '"cwd": "<SKILL_DIR>"',
+        '"PYTHONUNBUFFERED": "1"',
+        '"timeoutSeconds": 120',
+        '"outputMaxBytes": 65536',
+        '"mode": "none"',
+        "--command-argv",
+        "--command-cwd",
+        "--command-env 'PYTHONUNBUFFERED=1'",
+    ]
+    for phrase in presence_requirements:
+        if phrase not in combined_presence:
+            fail(f"presence command automation guidance missing: {phrase}")
+    if "openclaw cron edit <JOB_ID>" not in integration_text:
+        fail("presence integration must use the current openclaw cron edit CLI")
+    if "never `sh -lc`" not in combined_presence:
+        fail("presence command guidance must forbid shell interpolation")
+
+    builder_requirements = [
+        '"name": "companion-build-day-schedule"',
+        '"kind": "agentTurn"',
+        '"lightContext": true',
+        '"timeoutSeconds": 900',
+    ]
+    for phrase in builder_requirements:
+        if phrase not in template_text:
+            fail(f"day-schedule builder guidance missing: {phrase}")
+
+
+def assert_release_authorization_boundaries(root: Path):
+    """Keep invocation, setup authorization, and reversible lifecycle controls publishable."""
+    agent_text = (root / "agents" / "openai.yaml").read_text(encoding="utf-8")
+    if "allow_implicit_invocation: false" not in agent_text:
+        fail("agents/openai.yaml must require explicit skill invocation")
+
+    required_phrases = {
+        "SKILL.md": [
+            "explicit user confirmation",
+            "Permanently remove jobs only after a separate explicit request",
+        ],
+        "references/first-time-setup.md": [
+            "Authorization Preview Gate",
+            "Wait for an explicit confirmation",
+            "public-web search",
+        ],
+        "references/standard-init-upgrade-flow.md": [
+            "Preview the setup and get authorization",
+            "Preview the migration and get authorization",
+            "permanent job removal requires separate explicit authorization",
+        ],
+        "references/agent-first-time-qa-template.md": [
+            "请确认后我再执行",
+            "永久删除任务会另行征得你的明确同意",
+        ],
+        "references/presence-integration.md": [
+            "Authorization And Lifecycle Controls",
+            "openclaw cron disable <PRESENCE_JOB_ID>",
+            "openclaw cron rm <JOB_ID>",
+        ],
+    }
+    for relative_path, phrases in required_phrases.items():
+        path = root / relative_path
+        if not path.exists():
+            fail(f"missing release authorization document: {relative_path}")
+        text = path.read_text(encoding="utf-8")
+        for phrase in phrases:
+            if phrase not in text:
+                fail(f"{relative_path} missing release authorization boundary: {phrase}")
 
 
 def assert_no_obsolete_current_docs(root: Path):
@@ -453,9 +537,9 @@ def assert_runner_contract_boundary(label: str, payload: dict):
             if not isinstance(callback, dict):
                 fail(f"{label} event_media missing callback_context")
             if not callback.get("requires_original_session_context"):
-                fail(f"{label} event_media callback must return to the stable companion session")
+                fail(f"{label} event_media callback must return to the same dispatch session")
             if callback.get("strategy") != "same_stable_session":
-                fail(f"{label} event_media callback must use the stable companion session")
+                fail(f"{label} event_media callback must use the same dispatch session")
             if callback.get("send_media_with") != "delivery_contract":
                 fail(f"{label} event_media callback must send with delivery_contract")
             if callback.get("commit_after_media_send_with") not in ("", None):
@@ -483,6 +567,7 @@ def assert_dispatch_lock_schema(lock: dict, label: str = "dispatch_lock"):
         "agent_completed",
         "agent_launch_failed",
         "agent_start_timeout",
+        "delivery_failed",
         "",
     }
     status = str(lock.get("status", ""))
@@ -521,7 +606,7 @@ def assert_agent_message_contract(message: str, label: str = "agent_message"):
 
 
 def assert_prepare_contract_boundary(payload: dict):
-    """Validate that the prepare contract matches the 2.1.x presence contract."""
+    """Validate that the prepare contract matches the current presence contract."""
     assert_runner_contract_boundary("presence prepare", payload)
     if "mode" in payload:
         fail("presence prepare should not expose legacy mode")
@@ -660,7 +745,7 @@ def smoke_presence_tick(root: Path, config_path: Path):
             fail(f"presence tick dry-run status={tick_payload.get('status')}")
         if not tick_payload.get("run_id"):
             fail("presence tick dry-run missing run_id")
-        if tick_payload.get("session_key") != "agent:main:companion-runtime":
+        if not str(tick_payload.get("session_key") or "").startswith("agent:main:companion-runtime-"):
             fail(f"presence tick dry-run unexpected session_key: {tick_payload.get('session_key')}")
 
         # 2. Validate the agent message contract from the prepare output
@@ -725,6 +810,8 @@ def main():
 
     validate_json_files(root)
     assert_version_consistency(root)
+    assert_current_automation_templates(root)
+    assert_release_authorization_boundaries(root)
     validate_markdown_artifacts(root)
     validate_clawhub_ignore(root)
     assert_no_git_artifacts(root)

@@ -1,0 +1,245 @@
+{
+  "status": "deep_analyze",
+  "conversation": {
+    "id": "g-demo-1",
+    "name": "示例AI学习群",
+    "type": "group",
+    "platform": "douyin",
+    "source_path": "tests/fixtures/sample_group.jsonl"
+  },
+  "scope": {
+    "person_filter": null,
+    "messages_analyzed": 13,
+    "prose_messages": 12,
+    "share_like_messages": 1,
+    "owner_aliases_used": [
+      "主理人小a"
+    ],
+    "unique_senders": 4,
+    "date_start": "2023-11-14",
+    "date_end": "2023-11-14"
+  },
+  "blocks": {
+    "hard_facts": [
+      {
+        "fact": "本地 Whisper 能用吗？还是必须上云端百炼 Key？",
+        "sender": "学员小B",
+        "ts": "2023-11-14",
+        "evidence": "本地 Whisper 能用吗？还是必须上云端百炼 Key？",
+        "score": 4,
+        "msg_id": "m1700000500"
+      },
+      {
+        "fact": "打不开 GitHub 的，可以去我公众号回复关键字",
+        "sender": "主理人小A",
+        "ts": "2023-11-14",
+        "evidence": "打不开 GitHub 的，可以去我公众号回复关键字",
+        "score": 4,
+        "msg_id": "m1700000400"
+      },
+      {
+        "fact": "资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取",
+        "sender": "主理人小A",
+        "ts": "2023-11-14",
+        "evidence": "资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取",
+        "score": 4,
+        "msg_id": "m1700000100"
+      },
+      {
+        "fact": "基础能力免费，进阶模板才收费",
+        "sender": "主理人小A",
+        "ts": "2023-11-14",
+        "evidence": "基础能力免费，进阶模板才收费",
+        "score": 3,
+        "msg_id": "m1700000900"
+      },
+      {
+        "fact": "这个 skill 收费吗？看起来要付费订阅？",
+        "sender": "路过小D",
+        "ts": "2023-11-14",
+        "evidence": "这个 skill 收费吗？看起来要付费订阅？",
+        "score": 3,
+        "msg_id": "m1700000800"
+      },
+      {
+        "fact": "点链接显示无法访问页面，是不是必须科学上网？",
+        "sender": "学员小C",
+        "ts": "2023-11-14",
+        "evidence": "点链接显示无法访问页面，是不是必须科学上网？",
+        "score": 1,
+        "msg_id": "m1700000300"
+      },
+      {
+        "fact": "可以本地，也可以云端，看你机器",
+        "sender": "主理人小A",
+        "ts": "2023-11-14",
+        "evidence": "可以本地，也可以云端，看你机器",
+        "score": 0,
+        "msg_id": "m1700000600"
+      }
+    ],
+    "open_contradictions": [
+      {
+        "theme": "极性对 #1: 免费 vs (收费|付费|订阅|买断)",
+        "side_a": {
+          "sender": "主理人小A",
+          "quote": "资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取",
+          "ts": "2023-11-14",
+          "msg_id": "m1700000100"
+        },
+        "side_b": {
+          "sender": "路过小D",
+          "quote": "这个 skill 收费吗？看起来要付费订阅？",
+          "ts": "2023-11-14",
+          "msg_id": "m1700000800"
+        },
+        "status": "unresolved_candidate",
+        "note": "启发式候选；终审时若上下文已闭合请删除或标 resolved"
+      },
+      {
+        "theme": "极性对 #2: (能用|可以|没问题|支持) vs (不能|无法|不支持|打不开|失败)",
+        "side_a": {
+          "sender": "主理人小A",
+          "quote": "资料都在群公告了，GitHub 仓库免费，也可以公众号回复关键字领取",
+          "ts": "2023-11-14",
+          "msg_id": "m1700000100"
+        },
+        "side_b": {
+          "sender": "学员小C",
+          "quote": "点链接显示无法访问页面，是不是必须科学上网？",
+          "ts": "2023-11-14",
+          "msg_id": "m1700000300"
+        },
+        "status": "unresolved_candidate",
+        "note": "启发式候选；终审时若上下文已闭合请删除或标 resolved"
+      },
+      {
+        "theme": "极性对 #3: (本地|开源) vs (云端|闭源|必须.?key)",
+        "side_a": {
+          "sender": "学员小B",
+          "quote": "本地 Whisper 能用吗？还是必须上云端百炼 Key？",
+          "ts": "2023-11-14",
+          "msg_id": "m1700000500"
+        },
+        "side_b": {
+          "sender": "主理人小A",
+          "quote": "可以本地，也可以云端，看你机器",
+          "ts": "2023-11-14",
+          "msg_id": "m1700000600"
+        },
+        "status": "unresolved_candidate",
+        "note": "启发式候选；终审时若上下文已闭合请删除或标 resolved"
+      },
+      {
+        "theme": "重复提问未收敛",
+        "side_a": {
+          "sender": "学员小B",
+          "quote": "自动生成视频的是哪个？有详细的工作流教程吗？",
+          "ts": "2023-11-14"
+        },
+        "side_b": {
+          "sender": "—",
+          "quote": "同义/相同问题出现 2 次",
+          "ts": ""
+        },
+        "status": "unresolved_candidate",
+        "note": "需人工确认是否已被群公告/后续回复闭合"
+      }
+    ],
+    "demand_quotes": [
+      {
+        "sender": "学员小B",
+        "ts": "2023-11-14",
+        "quote": "自动生成视频的是哪个？有详细的工作流教程吗？",
+        "msg_id": "m1700000200"
+      },
+      {
+        "sender": "学员小C",
+        "ts": "2023-11-14",
+        "quote": "点链接显示无法访问页面，是不是必须科学上网？",
+        "msg_id": "m1700000300"
+      },
+      {
+        "sender": "学员小B",
+        "ts": "2023-11-14",
+        "quote": "本地 Whisper 能用吗？还是必须上云端百炼 Key？",
+        "msg_id": "m1700000500"
+      },
+      {
+        "sender": "学员小C",
+        "ts": "2023-11-14",
+        "quote": "我这边本地一直失败，还是不能跑",
+        "msg_id": "m1700000700"
+      },
+      {
+        "sender": "路过小D",
+        "ts": "2023-11-14",
+        "quote": "这个 skill 收费吗？看起来要付费订阅？",
+        "msg_id": "m1700000800"
+      },
+      {
+        "sender": "学员小C",
+        "ts": "2023-11-14",
+        "quote": "有没有 Windows 安装说明？我不会配环境",
+        "msg_id": "m1700001200"
+      }
+    ],
+    "actions": [
+      {
+        "action": "针对「自动生成视频的是哪个？有详细的工作流教程吗？」补一份可执行说明或置顶答复",
+        "why": "需求墙高频/明确提问",
+        "refs": [
+          "msg:m1700000200"
+        ],
+        "priority": "P1"
+      },
+      {
+        "action": "针对「点链接显示无法访问页面，是不是必须科学上网？」补一份可执行说明或置顶答复",
+        "why": "需求墙高频/明确提问",
+        "refs": [
+          "msg:m1700000300"
+        ],
+        "priority": "P1"
+      },
+      {
+        "action": "针对「本地 Whisper 能用吗？还是必须上云端百炼 Key？」补一份可执行说明或置顶答复",
+        "why": "需求墙高频/明确提问",
+        "refs": [
+          "msg:m1700000500"
+        ],
+        "priority": "P1"
+      },
+      {
+        "action": "澄清矛盾主题：极性对 #1: 免费 vs (收费|付费|订阅|买断)（给出唯一官方口径）",
+        "why": "未闭合矛盾会造成反复提问与信任损耗",
+        "refs": [
+          "msg:m1700000100",
+          "msg:m1700000800"
+        ],
+        "priority": "P0"
+      },
+      {
+        "action": "澄清矛盾主题：极性对 #2: (能用|可以|没问题|支持) vs (不能|无法|不支持|打不开（给出唯一官方口径）",
+        "why": "未闭合矛盾会造成反复提问与信任损耗",
+        "refs": [
+          "msg:m1700000100",
+          "msg:m1700000300"
+        ],
+        "priority": "P0"
+      }
+    ]
+  },
+  "meta": {
+    "generator": "douyin-chat-insight",
+    "version": "0.1.1",
+    "mode": "heuristic_draft",
+    "note": "本报告为可复现启发式草稿 + 证据包。Agent/人工应按 references/report-4block.md 做 chat-first 终审：删分享刷榜、闭合已解决矛盾、动作必须指回原话。"
+  },
+  "quality_checklist": [
+    "是否 chat-first（分享文案未刷高分）",
+    "未闭合问题是否标清（无圆场）",
+    "需求墙是否以非博主/非群主为主",
+    "动作是否条条指回事实/矛盾/原话",
+    "是否单页、无重复叙事"
+  ]
+}

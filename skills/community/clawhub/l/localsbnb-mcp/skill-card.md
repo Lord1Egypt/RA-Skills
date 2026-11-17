@@ -1,44 +1,53 @@
-## Description: <br>
-Guides agents and users in configuring the localsbnb-mcp-server npm package to query LocalsBnb/Lukeyun room status, room rates, orders, and operational data through the official API using user-provided APP_ID and APP_SECRET. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+LocalsBnb MCP helps MCP-capable clients such as OpenClaw, Hermes Agent, and Cursor use the localsbnb-mcp-server npm package to query LocalsBnb/Lukeyun room status, prices, orders, and operating metrics through the official API with user-provided APP_ID and APP_SECRET.
 
-## Publisher: <br>
-[localsbnb](https://clawhub.ai/user/localsbnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[localsbnb](https://clawhub.ai/user/localsbnb)
 
-## Use Case: <br>
-Hotel and homestay operators, support teams, and developers use this skill to configure MCP access to LocalsBnb/Lukeyun business data and route room status, pricing, order, and operational questions to the correct tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server requires APP_ID and APP_SECRET credentials that could expose LocalsBnb account data if shared or committed. <br>
-Mitigation: Provide credentials only through the MCP client's environment configuration, avoid public chats and repositories, prefer least-privilege read-only tokens where possible, and rotate exposed credentials. <br>
-Risk: The skill runs an external npm package through npx, so package trust and version drift affect runtime behavior. <br>
-Mitigation: Install only when the publisher and npm package are trusted, consider pinning the npm package version, and review updates before deployment. <br>
-Risk: Order and business-data queries can include sensitive operational details and guest names, including masked names. <br>
-Mitigation: Use accounts with appropriate permissions, keep outputs in controlled environments, and preserve order identifiers with guest-name fields without unnecessary redistribution. <br>
+## Use Case:
 
+External hotel and short-term rental operators use this skill to configure an MCP client and route questions about room availability, rates, orders, order details, and operating metrics to the appropriate LocalsBnb tools. Agents use the guidance to preserve date-range semantics, order categories, and credential handling expectations.
 
-## Reference(s): <br>
-- [localsbnb-mcp-server npm package](https://www.npmjs.com/package/localsbnb-mcp-server) <br>
-- [LocalsBnb MCP on ClawHub](https://clawhub.ai/localsbnb/localsbnb-mcp) <br>
-- [localsbnb publisher profile](https://clawhub.ai/user/localsbnb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown with JSON configuration snippets and inline command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APP_ID and APP_SECRET environment variables and uses npx to run the published localsbnb-mcp-server package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill directs users to run an npm MCP server while providing sensitive API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the package publisher and deployment path, prefer a pinned reviewed package version, and use a controlled install instead of ad-hoc npx execution.
+
+Risk: APP_SECRET exposure could grant access to LocalsBnb operational data.
+
+Mitigation: Use least-privilege read-only credentials where possible, avoid sharing secrets in public channels or repositories, and rotate APP_SECRET if package or environment exposure is suspected.
+
+## Reference(s):
+
+- [localsbnb-mcp-server npm package](https://www.npmjs.com/package/localsbnb-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with JSON configuration examples and tool-routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided APP_ID and APP_SECRET environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

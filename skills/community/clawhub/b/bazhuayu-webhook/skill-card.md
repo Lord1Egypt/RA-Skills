@@ -1,47 +1,62 @@
-## Description: <br>
-Triggers Bazhuayu/Octoparse RPA tasks through a configured webhook and passes custom parameters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bazhuayu Webhook helps agents trigger Octoparse RPA tasks through a signed webhook with custom parameters.
 
-## Publisher: <br>
-[blogwebsem](https://clawhub.ai/user/blogwebsem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[blogwebsem](https://clawhub.ai/user/blogwebsem)
 
-## Use Case: <br>
-Developers and automation operators use this skill to configure and trigger Bazhuayu/Octoparse RPA workflows from an agent or shell, pass task parameters, and verify webhook credential setup before live execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook URL and signing key exposure could let an unauthorized party trigger configured RPA tasks. <br>
-Mitigation: Store real values in a secrets manager or tightly permissioned private environment file, and do not commit config files, env files, logs, screenshots, or shell profiles containing credentials. <br>
-Risk: Live runs can trigger real RPA automation against the configured account or workflow. <br>
-Mitigation: Use the documented test or dry-run mode before live execution, and enable unattended cron execution only when repeated task triggering is intended. <br>
+## Use Case:
 
+Developers and automation operators use this skill to configure a Bazhuayu/Octoparse RPA webhook, test the request payload, and trigger a selected RPA workflow with default or custom parameters.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blogwebsem/bazhuayu-webhook) <br>
-- [README](README.md) <br>
-- [Quickstart](QUICKSTART.md) <br>
-- [Webhook Setup Guide](WEBHOOK_SETUP.md) <br>
-- [Security Guide](SECURITY.md) <br>
-- [Bazhuayu RPA Help Center](https://rpa.bazhuayu.com/helpcenter) <br>
-- [Webhook Trigger Documentation](https://rpa.bazhuayu.com/helpcenter/docs/skmvua) <br>
-- [RPA API Documentation](https://rpa.bazhuayu.com/helpcenter/docs/rpaapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration examples, and text command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus BAZHUAYU_WEBHOOK_URL and BAZHUAYU_WEBHOOK_KEY environment variables for live webhook execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: package.json, release evidence, RELEASE-2.0.4.md) <br>
+Risk: Webhook keys can trigger the configured RPA workflow if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat BAZHUAYU_WEBHOOK_KEY as an account credential, prefer environment variables, and keep real keys out of config files, screenshots, shell history, and Git.
+
+Risk: Setup and migration helpers handle secrets and may create local environment examples or configuration backups.
+
+Mitigation: Run helper scripts only from a trusted skill directory, review generated .env.example, .env.migrated, and backup files, and delete or protect them after migration.
+
+Risk: Live execution can trigger the configured RPA task.
+
+Mitigation: Use test or dry-run mode first, then run live commands only when the webhook URL, key, parameters, and target workflow are intentional.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blogwebsem/skills/bazhuayu-webhook)
+- [Bazhuayu RPA Help Center](https://rpa.bazhuayu.com/helpcenter)
+- [Webhook Trigger Task Documentation](https://rpa.bazhuayu.com/helpcenter/docs/skmvua)
+- [RPA API Documentation](https://rpa.bazhuayu.com/helpcenter/docs/rpaapi)
+- [Webhook Setup Guide](WEBHOOK_SETUP.md)
+- [Security Guide](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; runtime commands emit console text and dry-run JSON payload previews.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus BAZHUAYU_WEBHOOK_URL and BAZHUAYU_WEBHOOK_KEY; live run commands send a POST request to the configured webhook.]
+
+## Skill Version(s):
+
+2.0.4 (source: package.json, release evidence, RELEASE-2.0.4.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

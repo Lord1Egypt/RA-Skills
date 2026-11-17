@@ -1,49 +1,64 @@
-## Description: <br>
-Operate and maintain OpenClaw installations through CLI guidance for configuration, channel and agent setup, model management, security auditing, troubleshooting, gateway administration, logs, cron, and memory commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate and maintain OpenClaw installations with CLI commands, configuration management, channel, agent, and model setup, security auditing, troubleshooting, and gateway administration guidance.
 
-## Publisher: <br>
-[kapslap](https://clawhub.ai/user/kapslap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kapslap](https://clawhub.ai/user/kapslap)
 
-## Use Case: <br>
-Developers and operators use this skill to administer OpenClaw installations, including channel setup, agent and model configuration, gateway operations, diagnostics, security audits, and routine maintenance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad OpenClaw administration guidance, including delete, auto-fix, cron, gateway, credential, and memory-indexing actions. <br>
-Mitigation: Require explicit user approval before executing destructive, privileged, credential-related, or broad indexing operations. <br>
-Risk: Some artifact guidance is environment-specific, including Jared and root@clawdbot references. <br>
-Mitigation: Remove or customize environment-specific instructions before using the skill in another OpenClaw installation. <br>
-Risk: Security audits over ~/.openclaw can expose secrets or sensitive configuration details. <br>
-Mitigation: Limit audit scope, redact secrets, and avoid broad scans unless the file scope is clear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Power Ops release page](https://clawhub.ai/kapslap/openclaw-power-ops) <br>
-- [OpenClaw CLI Cheat Sheet](references/cli-cheatsheet.md) <br>
-- [OpenClaw Security Audit Reference](references/security-audit.md) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw CLI documentation](https://docs.openclaw.ai/cli) <br>
-- [OpenClaw channels documentation](https://docs.openclaw.ai/cli/channels) <br>
-- [OpenClaw agents documentation](https://docs.openclaw.ai/cli/agents) <br>
-- [OpenClaw models documentation](https://docs.openclaw.ai/cli/models) <br>
-- [OpenClaw config documentation](https://docs.openclaw.ai/cli/config) <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to operate installations, manage channels and agents, change model configuration, run security audits, troubleshoot gateway issues, and perform maintenance tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include high-privilege operational commands that should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad operational and destructive commands may affect live OpenClaw channels, agents, gateways, credentials, or configuration.
+
+Mitigation: Review commands before execution, confirm destructive actions, and back up configuration before using commands with --fix or delete behavior.
+
+Risk: Token-handling examples can expose credentials if tokens are placed directly in shell commands or stored insecurely.
+
+Mitigation: Use credential stores, environment variables, or tokenFile references where supported, and avoid pasting secrets into reusable shell history.
+
+Risk: Personal environment notes in the artifact may not apply to other installations.
+
+Mitigation: Adapt or remove hard-coded local environment details before applying the guidance to another deployment.
+
+## Reference(s):
+
+- [OpenClaw CLI Cheat Sheet](references/cli-cheatsheet.md)
+- [OpenClaw Security Audit Reference](references/security-audit.md)
+- [OpenClaw Docs](https://docs.openclaw.ai)
+- [OpenClaw CLI Docs](https://docs.openclaw.ai/cli)
+- [OpenClaw Channel CLI Docs](https://docs.openclaw.ai/cli/channels)
+- [OpenClaw Agent CLI Docs](https://docs.openclaw.ai/cli/agents)
+- [OpenClaw Model CLI Docs](https://docs.openclaw.ai/cli/models)
+- [OpenClaw Config CLI Docs](https://docs.openclaw.ai/cli/config)
+- [ClawHub Skill Page](https://clawhub.ai/kapslap/skills/openclaw-power-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands are operator references and should be reviewed before execution in live OpenClaw environments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

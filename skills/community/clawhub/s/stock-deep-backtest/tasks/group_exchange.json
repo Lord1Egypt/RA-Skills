@@ -1,0 +1,6 @@
+{
+    "tool_name": "group_by_attrs",
+    "attr_names": "交易所",
+    "direction": "y",
+    "k": 1.0
+}

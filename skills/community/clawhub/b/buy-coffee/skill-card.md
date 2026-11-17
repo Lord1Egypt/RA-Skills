@@ -1,41 +1,58 @@
-## Description: <br>
-Lobster Brew helps your OpenClaw discover coffee roasters, compare coffees, build personalized carts, and hand off a secure Shopify checkout link for you to complete the purchase. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buy Coffee uses Lobster Brew to help OpenClaw discover coffee roasters, compare coffees, build carts, and hand off a Shopify checkout link for owner payment.
 
-## Publisher: <br>
-[abuiles](https://clawhub.ai/user/abuiles) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abuiles](https://clawhub.ai/user/abuiles)
 
-## Use Case: <br>
-External users and shopping agents use this skill to discover coffee roasters, compare coffee, subscription, and brewing gear options, prepare merchant carts, and return a checkout link for user-controlled payment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Coffee-shopping queries, cart details, preference information, and selected merchant data may be used with Lobster Brew and the merchant's Shopify MCP service. <br>
-Mitigation: Use the skill only when comfortable with that sharing, and clear agent memory if coffee preferences or prior purchases should not be retained. <br>
-Risk: Product availability, prices, subscription cadence, checkout terms, and selling-plan support can vary by merchant. <br>
-Mitigation: Treat merchant MCP data and Shopify checkout as authoritative, review products, quantities, subscription details, prices, and checkout terms before paying, and stop when a required subscription flow is unsupported. <br>
+## Use Case:
 
+External users use this skill to discover coffee merchants, compare coffee or subscription options, prepare carts, and receive checkout links they can review and complete themselves.
 
-## Reference(s): <br>
-- [Lobster Brew](https://lobsterbrew.com) <br>
-- [Buy Coffee on ClawHub](https://clawhub.ai/abuiles/buy-coffee) <br>
+### Deployment Geography for Use:
 
+Global, subject to Lobster Brew country support and merchant availability.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, api calls, guidance] <br>
-**Output Format:** [Markdown text with a structured checkout handoff summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes merchant, product, variant, purchase type, selling plan details, cadence, savings summary, checkout URL, and resolution path when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and SKILL.md) <br>
+Risk: The skill contacts Lobster Brew and merchant Shopify endpoints to look up products and prepare carts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review merchant, product, cart, and checkout details before following the returned checkout URL.
+
+Risk: A merchant flow may not support applying a required subscription selling plan through the merchant MCP.
+
+Mitigation: Report the flow as unsupported instead of adding the item without the required selling plan.
+
+Risk: Product, pricing, availability, and cart details can become stale if treated as locally stored truth.
+
+Mitigation: Use merchant MCP data as the source of truth at purchase time and avoid relying on stored product claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abuiles/skills/buy-coffee)
+- [Lobster Brew homepage](https://lobsterbrew.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown summary with merchant, product, variant, purchase type, subscription details, savings, checkout URL, and resolution path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns checkout URLs for owner review and payment; does not complete payment.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and SKILL.md body)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

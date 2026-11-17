@@ -12,9 +12,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const { queryBalance } = require('./manager.js');
+const { queryBalance, getEnvKey } = require('./manager.js');
 
-const DATA_DIR = path.join(__dirname, '..', '.data');
+const DATA_DIR = process.env.TOKEN_MANAGER_DATA_DIR || path.join(__dirname, '..', '.data');
 const ALERT_STATE_FILE = path.join(DATA_DIR, 'alert-state.json');
 
 // Ensure data directory exists
@@ -42,46 +42,43 @@ function saveState(state) {
 }
 
 // Format alert message
-function formatAlert(balance, threshold, provider) {
+function formatAlert(balance, threshold, provider, currency = 'CNY') {
   const emoji = balance < 1 ? '🚨' : balance < threshold ? '⚠️' : '💡';
   const urgency = balance < 1 ? 'URGENT' : balance < threshold ? 'WARNING' : 'NOTICE';
+  const symbol = currency === 'USD' ? '$' : currency === 'FREE' ? '' : '¥';
   
   return {
     en: `${emoji} [${urgency}] Token Manager Alert
 Provider: ${provider}
-Current Balance: ¥${balance.toFixed(2)}
-Threshold: ¥${threshold}
+Current Balance: ${symbol}${balance.toFixed(2)} (${currency})
+Threshold: ${symbol}${threshold}
 
 Recommendations:
 ${balance < 1 ? '- Add funds immediately' : '- Consider adding funds'}
-- Enable save mode: /thinking off
 - Use sub-agents for large tasks
-- Switch to cheaper models (GPT-4o-mini, Claude Haiku)`,
+- Switch to cheaper models (GPT-6 Luna, Claude Haiku, Gemini Flash, DeepSeek Flash)`,
     
     cn: `${emoji} [${urgency === 'URGENT' ? '紧急' : urgency === 'WARNING' ? '警告' : '提醒'}] Token 管家提醒
 提供商: ${provider}
-当前余额: ¥${balance.toFixed(2)}
-阈值: ¥${threshold}
+当前余额: ${symbol}${balance.toFixed(2)} (${currency})
+阈值: ${symbol}${threshold}
 
 建议:
 ${balance < 1 ? '- 立即充值' : '- 考虑充值'}
-- 开启省钱模式: /thinking off
 - 大任务使用子代理
-- 切换到更便宜的模型 (GPT-4o-mini, Claude Haiku)`
+- 切换到更便宜的模型 (GPT-6 Luna、Claude Haiku、Gemini Flash、DeepSeek Flash)`
   };
 }
 
 // Check balance and alert if needed
 async function checkAndAlert(provider, threshold) {
   const state = loadState();
-  const apiKey = process.env.MOONSHOT_API_KEY || 
-                 process.env.OPENAI_API_KEY || 
-                 process.env.ANTHROPIC_API_KEY;
+  const apiKey = getEnvKey(provider);
   
   if (!apiKey) {
     return { 
       success: false, 
-      error: 'No API key found in environment variables' 
+      error: `No API key found for ${provider}. Set the provider's API key environment variable (e.g. MOONSHOT_API_KEY / DEEPSEEK_API_KEY).` 
     };
   }
   
@@ -116,7 +113,7 @@ async function checkAndAlert(provider, threshold) {
     (now - new Date(state.lastAlert).getTime()) < cooldownMs;
   
   if (shouldAlert && !alreadyAlerted) {
-    const alertMsg = formatAlert(currentBalance, threshold, provider);
+    const alertMsg = formatAlert(currentBalance, threshold, provider, balance.currency);
     
     // Update state
     state.lastAlert = new Date().toISOString();
@@ -139,12 +136,13 @@ async function checkAndAlert(provider, threshold) {
   state.lastBalance = currentBalance;
   saveState(state);
   
+  // 修复：lastAlert 是 ISO 字符串，必须先转时间戳再做加法，否则字符串拼接出 Invalid Date → toISOString() 抛 RangeError
   return { 
     success: true, 
     alert: false, 
     balance: currentBalance,
     provider: provider,
-    nextCheck: alreadyAlerted ? new Date(state.lastAlert + cooldownMs).toISOString() : null
+    nextCheck: alreadyAlerted ? new Date(new Date(state.lastAlert).getTime() + cooldownMs).toISOString() : null
   };
 }
 

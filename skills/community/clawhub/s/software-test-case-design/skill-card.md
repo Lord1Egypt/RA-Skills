@@ -1,55 +1,70 @@
-## Description: <br>
-This skill helps agents draft standardized functional, API, platform-specific, and AI agent test cases, including exception scenarios, boundary values, complex interactions, security boundaries, linkage, routing, compatibility, adaptation, and UI visual coverage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill generates standardized Markdown-table test cases for functional, API, UI, compatibility, platform-specific, and AI Agent testing while excluding test plans, test strategies, automation scripts, vulnerability scanning, and performance or load testing.
 
-## Publisher: <br>
-[cassianran](https://clawhub.ai/user/cassianran) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cassianran](https://clawhub.ai/user/cassianran)
 
-## Use Case: <br>
-Developers, QA engineers, and product teams use this skill to generate executable Markdown test cases for functional, API, AI agent, and platform-specific scenarios. It is intended for test case drafting and coverage review, not test planning, automation scripting, vulnerability scanning, or performance testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad Agent trigger may activate the skill when the user did not intend AI agent test case design. <br>
-Mitigation: Use specific phrasing such as "AI agent testing" or "agent test case design" when requesting agent test cases. <br>
-Risk: Generated test cases may be incomplete or may not match the product's actual requirements. <br>
-Mitigation: Review generated cases against the requirement source and the applicable checklist before using them for QA execution. <br>
-Risk: The skill is scoped to drafting test cases and may not safely satisfy requests for planning documents, automation scripts, vulnerability scanning, or load testing. <br>
-Mitigation: Keep use to test case design and route out-of-scope testing, security, or automation work to appropriate specialist processes. <br>
+## Use Case:
 
+Developers, QA engineers, and product teams use this skill to turn feature, API, platform, or AI Agent requirements into executable test cases with concrete inputs, expected results, priorities, and checklist-based coverage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cassianran/software-test-case-design) <br>
-- [General Test Case Rules](references/templates/common-rules.md) <br>
-- [Functional Testing](references/core-capabilities/functional-testing.md) <br>
-- [API Testing](references/core-capabilities/api-testing.md) <br>
-- [AI Agent Testing](references/core-capabilities/agent-testing.md) <br>
-- [Test Case Output Format Specification](references/examples/format-spec.md) <br>
-- [General Testing Checklist](references/checklists/common-checklist.md) <br>
-- [API Testing Checklist](references/checklists/api-checklist.md) <br>
-- [AI Agent Test Case Design Checklist](references/checklists/agent-checklist.md) <br>
-- [PC Web Platform-Specific Testing](references/platform/pc-web.md) <br>
-- [Mobile App Platform-Specific Testing](references/platform/mobile-app.md) <br>
-- [Mobile Web Platform-Specific Testing](references/platform/mobile-web.md) <br>
-- [Desktop Platform-Specific Testing](references/platform/desktop.md) <br>
-- [Mini-Program Platform-Specific Testing](references/platform/mini-program.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces drafted test cases and self-check guidance; does not produce test plans, automation scripts, vulnerability scans, or performance test execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Generated test cases could contain incorrect assumptions or unsafe execution steps if used without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each generated case against the target requirement, environment, and authorization boundary before execution.
+
+Risk: Example credentials, bearer tokens, payment actions, or production data could be copied into generated test cases.
+
+Mitigation: Use test-only placeholders, sandbox payment rails, and non-production data when adapting generated cases.
+
+Risk: The broad Agent trigger may produce overly broad AI Agent test coverage when the user's request is ambiguous.
+
+Mitigation: Narrow prompts by naming the agent workflow, tool boundary, data sensitivity, and platform under test.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cassianran/skills/software-test-case-design)
+- [General test case rules](references/templates/common-rules.md)
+- [Functional testing capability](references/core-capabilities/functional-testing.md)
+- [API testing capability](references/core-capabilities/api-testing.md)
+- [AI Agent testing capability](references/core-capabilities/agent-testing.md)
+- [Test case output format](references/examples/format-spec.md)
+- [Common checklist](references/checklists/common-checklist.md)
+- [API checklist](references/checklists/api-checklist.md)
+- [Agent checklist](references/checklists/agent-checklist.md)
+- [Mobile app platform guidance](references/platform/mobile-app.md)
+- [Mobile web platform guidance](references/platform/mobile-web.md)
+- [Mini-program platform guidance](references/platform/mini-program.md)
+- [Desktop platform guidance](references/platform/desktop.md)
+- [PC web platform guidance](references/platform/pc-web.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Test cases include concrete steps and expected results; generated cases require review before execution.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

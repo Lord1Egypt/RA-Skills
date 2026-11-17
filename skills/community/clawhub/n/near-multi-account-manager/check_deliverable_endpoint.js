@@ -16,7 +16,7 @@ async function testEndpoint(path, method = 'GET', body = null) {
       path: path,
       method: method,
       headers: {
-        'Authorization': 'Bearer sk_live_iOQS6NKYgLCf8sAcIsjeNpIvsN9ml7fK6CVrfIyPIVs'
+        'Authorization': 'Bearer REDACTED-SECRET'
       }
     };
 

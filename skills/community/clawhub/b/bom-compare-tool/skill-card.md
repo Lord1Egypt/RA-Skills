@@ -1,38 +1,54 @@
-## Description: <br>
-Compares two BOM spreadsheets and identifies added, removed, and changed material items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BOM Compare Tool compares two versions of a bill of materials and identifies added, removed, quantity-changed, specification-changed, and price-changed material items.
 
-## Publisher: <br>
-[yongjie666888](https://clawhub.ai/user/yongjie666888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yongjie666888](https://clawhub.ai/user/yongjie666888)
 
-## Use Case: <br>
-Developers, manufacturing engineers, and procurement teams use this skill to compare old and new BOM CSV or XLSX files during design changes, supplier checks, purchasing-to-engineering consistency reviews, and version upgrades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Node.js script against BOM files and uses the xlsx dependency to parse spreadsheets. <br>
-Mitigation: Install xlsx from a trusted source, run the script only on intended BOM files, and avoid pointing it at unrelated sensitive files. <br>
+## Use Case:
 
+Developers, engineers, procurement teams, and BOM reviewers use this skill to compare old and new BOM files for design changes, supplier reconciliation, procurement-to-engineering checks, and version upgrade analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yongjie666888/bom-compare-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Text, Shell commands] <br>
-**Output Format:** [Plain text BOM comparison report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local CSV or XLSX BOM files selected by the user and reports additions, removals, field changes, quantity changes, and item-count totals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: BOM data from untrusted parties could include crafted values that make terminal output misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted BOM inputs where possible, review comparison results in a controlled terminal, and validate material changes before acting on them.
+
+Risk: The workflow and report text are Chinese-language, which may be unsuitable for teams that require another language.
+
+Mitigation: Install only when a Chinese-language BOM comparison workflow is acceptable, or translate and review outputs before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yongjie666888/skills/bom-compare-tool)
+- [Publisher profile](https://clawhub.ai/user/yongjie666888)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code]
+
+**Output Format:** [Markdown or terminal text report summarizing BOM differences]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language report content; compares CSV or XLSX BOM inputs when used with the bundled script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

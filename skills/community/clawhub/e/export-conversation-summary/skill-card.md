@@ -1,39 +1,52 @@
-## Description: <br>
-Export current Claude Code conversation to markdown document with full dialogue context and model operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Export current Claude Code conversation to markdown document with full dialogue context and model operations.
 
-## Publisher: <br>
-[youngbeauty](https://clawhub.ai/user/youngbeauty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[youngbeauty](https://clawhub.ai/user/youngbeauty)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to export a local conversation into a structured Markdown transcript with dialogue turns, tool-operation summaries, statistics, and evaluation notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated conversation exports can contain sensitive chat content, private code, personal data, internal file paths, command history, and session metadata. <br>
-Mitigation: Review the generated Markdown before sharing, uploading, or committing it, and redact sensitive content as needed. <br>
-Risk: The skill may select the wrong conversation log when multiple Claude Code sessions are active. <br>
-Mitigation: Confirm the selected JSONL conversation file before exporting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/youngbeauty/export-conversation-summary) <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to create a durable markdown transcript of a problem-solving session, including dialogue, summarized tool activity, conversation statistics, and evaluation notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown transcript with operation summaries, conversation statistics, and evaluation sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local conversation metadata, token usage, file paths, command summaries, and preserved dialogue formatting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can save sensitive conversation history and detailed tool activity into a persistent markdown file without redaction.
+
+Mitigation: Review and redact the generated markdown before sharing, committing, or storing it outside the local workspace.
+
+Risk: Conversation exports may contain secrets, internal paths, command output, proprietary code, private project details, or personal information.
+
+Mitigation: Use a limited or redacted export when the conversation involved credentials, proprietary debugging, or other sensitive material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youngbeauty/skills/export-conversation-summary)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown transcript with summarized tool activity, conversation statistics, and evaluation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a persistent conversation export, usually under docs/{YYYY-MM-DD}-conversation.md, and reports the output path, line count, and file size.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

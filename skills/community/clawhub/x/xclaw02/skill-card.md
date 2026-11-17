@@ -1,46 +1,57 @@
-## Description: <br>
-Make x402 payments. Pay for APIs, sell your services, handle 402 Payment Required responses with USDC on Base and other EVM chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make x402 payments, pay for APIs, sell services, and handle 402 Payment Required responses with USDC on Base and other EVM chains.
 
-## Publisher: <br>
-[primer-dev](https://clawhub.ai/user/primer-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[primer-dev](https://clawhub.ai/user/primer-dev)
 
-## Use Case: <br>
-Developers and agent operators use xClaw02 to inspect and satisfy x402 payment requests, make USDC payments for paid APIs, manage wallet setup and balances, and add x402 paywalls to their own services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make real x402/USDC payments and sign transactions. <br>
-Mitigation: Require explicit user confirmation for the amount, recipient, network, and URL before any payment, and use configured spending limits. <br>
-Risk: Wallet private keys or mnemonics could be exposed through chat, logs, or command output. <br>
-Mitigation: Use environment variables or local configuration for wallet credentials, never paste secrets into chat, and use a dedicated low-balance wallet. <br>
-Risk: Installing or running package commands from npm or PyPI can execute third-party code. <br>
-Mitigation: Verify the package source before running npx or pip commands and install only when agent-assisted x402 payments are intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to discover x402 payment requirements, confirm payment amounts, pay for protected APIs, check wallet balances, and configure services that charge through x402.
 
-## Reference(s): <br>
-- [x402 Protocol](https://x402.org) <br>
-- [xClaw02 npm package](https://npmjs.com/package/xclaw02) <br>
-- [xClaw02 PyPI package](https://pypi.org/project/xclaw02) <br>
-- [xClaw02 GitHub repository](https://github.com/primer-systems/xClaw02) <br>
-- [xClaw02 ClawHub page](https://clawhub.ai/primer-dev/xclaw02) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose CLI commands, environment variables, wallet operations, payment confirmations, and Node.js or Python integration snippets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: Setup can run unpinned external packages that manage wallets or authorize payments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the package source and version before installation, prefer pinned versions, and run setup in an isolated environment when practical.
+
+Risk: The skill can guide agents through transactions using private keys and stablecoin balances.
+
+Mitigation: Use a dedicated low-balance wallet, keep private keys out of logs and chat, and confirm the destination and amount before every payment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/primer-dev/skills/xclaw02)
+- [x402 protocol](https://x402.org)
+- [Primer x402](https://primer.systems/x402)
+- [xclaw02 npm package](https://npmjs.com/package/xclaw02)
+- [xclaw02 PyPI package](https://pypi.org/project/xclaw02)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose payment, wallet, package-installation, and service-configuration actions that require user confirmation before execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

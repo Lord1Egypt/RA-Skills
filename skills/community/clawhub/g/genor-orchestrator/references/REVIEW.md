@@ -90,8 +90,8 @@
 ### 16. models.json `free_models` key is empty/unused
 **Problem:** models.json has a `free_models` key. server.py never reads it. Either use it or remove it.
 
-### 17. SKILL.md Vision last resort says "the-host (SLOW)"
-**Problem:** the-host is a hostname, not a model name. Agent won't know what this means.
+### 17. SKILL.md Vision last resort says "genorbox1 (SLOW)"
+**Problem:** genorbox1 is a hostname, not a model name. Agent won't know what this means.
 
 ### 18. BOOTSTRAP.md "Analysis" section contains internal deliberation notes
 **Problem:** Bloats BOOTSTRAP.md with content the agent should never act on.

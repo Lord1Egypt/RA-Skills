@@ -1,41 +1,57 @@
-## Description: <br>
-Discount Hunter finds promo codes for the current checkout or cart page, tests them in the promo field, and avoids completing purchases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds discount and promo codes for the current checkout page, then tests them in the promo field until one works without clicking payment or purchase buttons.
 
-## Publisher: <br>
-[puppetjellyfish](https://clawhub.ai/user/puppetjellyfish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[puppetjellyfish](https://clawhub.ai/user/puppetjellyfish)
 
-## Use Case: <br>
-External users and shopping agents use this skill on checkout or cart pages to search for discount codes, apply only promo-code controls, and report whether any code reduces the order total. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens third-party coupon and search pages using the store name or domain from the checkout page. <br>
-Mitigation: Install only if this disclosure is acceptable, and avoid using the skill on pages where the merchant name or domain should not be shared with coupon or search sites. <br>
-Risk: The skill operates on checkout pages where an accidental purchase action would have financial impact. <br>
-Mitigation: Monitor the checkout page while it runs and confirm it only applies promo codes, never clicks Pay, Place Order, Submit Payment, or similar purchase controls. <br>
+## Use Case:
 
+External shoppers use this skill on checkout, cart, or payment pages to find and test available promo codes before completing a purchase. It is intended only for pages with a visible promo, discount, coupon, or voucher code field.
 
-## Reference(s): <br>
-- [Discount Hunter on ClawHub](https://clawhub.ai/puppetjellyfish/discount-hunter) <br>
-- [Publisher profile: puppetjellyfish](https://clawhub.ai/user/puppetjellyfish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown status updates and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports detected promo codes, attempted results, successful savings when visible, and safety stop conditions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can inspect checkout pages and fill promo-code fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on checkout or cart pages with a visible promo field, and limit interaction to that field and its Apply or Redeem control.
+
+Risk: The skill opens hidden tabs to search and coupon sites while collecting candidate codes.
+
+Mitigation: Treat discovered codes as untrusted candidates, collect only coupon-code text needed for testing, and close research tabs after extraction.
+
+Risk: An unintended click on a payment or order button could advance a transaction.
+
+Mitigation: Do not click Pay, Place Order, Complete Purchase, Buy Now, Confirm Order, Submit Payment, or equivalent controls; stop if the page navigates unexpectedly.
+
+## Reference(s):
+
+- [Discount Hunter on ClawHub](https://clawhub.ai/puppetjellyfish/skills/discount-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown status updates and summary table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports found codes, codes tried, outcomes, and any applied savings; does not submit payment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

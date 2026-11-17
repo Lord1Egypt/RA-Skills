@@ -46,7 +46,7 @@ None — pure L3 utility. Receives content, produces formatted output.
 
 | Format | Generate | Parse | Node.js Library | Python Library |
 |--------|----------|-------|-----------------|----------------|
-| PDF | Yes | Yes (via Read tool) | jsPDF, Puppeteer (HTML→PDF) | reportlab, weasyprint |
+| PDF | Yes | Yes (via the runtime's document/PDF reader) | jsPDF, Puppeteer (HTML→PDF) | reportlab, weasyprint |
 | DOCX | Yes | Yes | docx (officegen) | python-docx |
 | XLSX | Yes | Yes | ExcelJS | openpyxl |
 | PPTX | Yes | Yes | pptxgenjs | python-pptx |
@@ -162,7 +162,7 @@ Identify file format from extension and MIME type.
 
 | Format | Extraction Strategy |
 |--------|-------------------|
-| PDF | Use Read tool (Claude can read PDFs natively) |
+| PDF | Use the runtime's native document/PDF reader when available; otherwise use a supported PDF parsing library |
 | DOCX | docx library → extract text, tables, images |
 | XLSX | ExcelJS → extract sheets, rows, formulas |
 | PPTX | pptxgenjs → extract slides, text, notes |
@@ -259,7 +259,7 @@ Format-specific fields: `sheets` (XLSX), `pages` (PDF/DOCX), `slides` (PPTX), `r
 ~1000-3000 tokens input, ~500-2000 tokens output. Sonnet — document processing requires understanding format libraries and generating correct code, but not deep reasoning.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

@@ -1,39 +1,49 @@
-## Description: <br>
-Audit GitHub Actions reliability by commit SHA to surface risky commits causing repeated workflow failures across branches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub Actions reliability by commit SHA to surface risky commits causing repeated workflow failures across branches.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to analyze exported GitHub Actions run data, group failures by repository and commit SHA, and identify commits that may need rollback, revert, or targeted fixes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local GitHub Actions JSON exports selected by RUN_GLOB, so an overly broad glob can include runs the user did not intend to analyze. <br>
-Mitigation: Set RUN_GLOB only to the GitHub Actions JSON export path intended for the audit. <br>
-Risk: Enabling FAIL_ON_CRITICAL can intentionally fail CI when critical commit-risk results are found. <br>
-Mitigation: Enable FAIL_ON_CRITICAL only when critical commit-risk findings should block the workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-commit-health-audit) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to audit exported GitHub Actions runs, group failures by repository and commit SHA, and prioritize rollback, revert, or targeted fixes for repeated CI failures.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Text report or JSON summary with scored commit-risk groups] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports filters, severity thresholds, top-N ranking, and optional CI fail-gating.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The local audit may read unintended or sensitive JSON files if RUN_GLOB or filter variables are too broad.
+
+Mitigation: Run it only against intended GitHub Actions export directories and review RUN_GLOB plus branch, workflow, repository, and SHA filters before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-commit-health-audit)
+- [Publisher profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text report or JSON summary with ranked commit-risk groups and critical commit details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit with status 1 when FAIL_ON_CRITICAL=1 and critical commit groups are found.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

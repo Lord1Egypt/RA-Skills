@@ -1,43 +1,53 @@
-## Description: <br>
-Validates story premises, maps narrative structure, and plans emotional tension arcs for screenplay development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents validate a story premise, design a story architecture map, and plan emotional tension arcs for screenplay development.
 
-## Publisher: <br>
-[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal)
 
-## Use Case: <br>
-Writers, editors, and story-development agents use this skill early in screenplay planning to check premise strength and produce a story architecture map and tone blueprint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads project source materials, memory files, and project artifacts that may contain sensitive creative context. <br>
-Mitigation: Use it only in projects where agent access to those writing materials is acceptable. <br>
-Risk: The skill updates story planning artifacts that may guide downstream creative work. <br>
-Mitigation: Review premise reports and execution brief changes before relying on them for production writing. <br>
-Risk: Weak or missing premises can lead to unsupported story architecture decisions. <br>
-Mitigation: Require human review when premise validation reports weak tension or missing core elements. <br>
+## Use Case:
 
+Writers, editors, and story-development agents use this skill to check whether a screenplay premise has the required dramatic elements before expanding it into structure, tone, and tension plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/editor-story-architect) <br>
-- [Publisher profile](https://clawhub.ai/user/huangliujiao-tal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON artifact structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a premise report and story architecture fields for execution planning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill expects specific workflow inputs and output filenames, which may not match every production pipeline.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the expected input sources and output artifacts before adding the skill to an agent workflow.
+
+Risk: Story-structure recommendations may be incomplete if the source premise lacks required dramatic elements.
+
+Mitigation: Use the skill's premise validation step and treat weak or missing premise results as requiring human review before continuing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/skills/editor-story-architect)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-shaped output specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a premise report and updates story architecture and tone blueprint fields for downstream screenplay planning.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,63 @@
-## Description: <br>
-Generates Amap travel roadbooks from natural-language trip requests, including clarification questions, place resolution, route planning, daily timelines, weather reminders, and HTML, JSON, and Excel outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Amap road books from natural-language travel plans, including clarification questions, place lookup, route planning, daily timelines, weather notes, and optional public HTML, JSON, and Excel outputs.
 
-## Publisher: <br>
-[zuo-wentao](https://clawhub.ai/user/zuo-wentao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuo-wentao](https://clawhub.ai/user/zuo-wentao)
 
-## Use Case: <br>
-Travel planners and ClawHub/OpenClaw users use this skill to turn natural-language itinerary ideas into executable Amap roadbooks with map-ready route data, shareable HTML pages, and Excel planning sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default public publishing can expose itinerary details such as dates, lodging areas, companions, and budget. <br>
-Mitigation: Use local-only mode when privacy matters, avoid adding sensitive personal details, and share public links only with trusted recipients. <br>
-Risk: Amap credentials may be exposed if they are included in generated or published outputs. <br>
-Mitigation: Use restricted or throwaway Amap keys for this skill and rotate any credentials that were already used in published outputs. <br>
-Risk: Generated travel details can depend on third-party data and may omit or misstate prices, schedules, availability, or opening hours. <br>
-Mitigation: Confirm tickets, schedules, prices, lodging, and time-sensitive travel details with authoritative sources before relying on the itinerary. <br>
+## Use Case:
 
+External users and travel planners use this skill to turn travel ideas into executable Amap itineraries with routes, daily schedules, weather reminders, assumptions, and shareable outputs. It is also useful for agents that need to produce structured roadbook JSON plus optional HTML and Excel artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuo-wentao/amap-road-book) <br>
-- [Publisher profile](https://clawhub.ai/user/zuo-wentao) <br>
-- [Amap Open Platform](https://lbs.amap.com/) <br>
-- [Amap API map](references/amap-api-map.md) <br>
-- [Clarification policy](references/clarification-policy.md) <br>
-- [Roadbook schema](references/roadbook-schema.md) <br>
-- [Demo scenarios](references/demo-scenarios.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown responses with route summaries, assumptions, links or file paths, map-renderable JSON, HTML output, and Excel workbook output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Amap Web Service, JavaScript API, and JavaScript security credentials; public publishing is enabled by default unless local-only output is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Default public publishing can expose itinerary details, travel dates, lodging areas, budgets, generated files, and Amap credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local-only generation unless the user accepts public sharing; remove credentials from exported JSON and share public links only with trusted recipients.
+
+Risk: The evidence security summary flags unsafe upload and rendering paths for published roadbooks.
+
+Mitigation: Use authenticated HTTPS publishing, enforce the publish token server-side, sanitize generated HTML, and review generated artifacts before sharing.
+
+Risk: Unrestricted or valuable Amap keys can be exposed or misused if used with this skill as written.
+
+Mitigation: Use restricted test keys, rotate keys after testing, and avoid storing real keys in committed files or public outputs.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/zuo-wentao/skills/amap-road-book)
+- [Amap Open Platform](https://lbs.amap.com/)
+- [OpenClaw Skill Format](https://docs.openclaw.ai/clawhub/skill-format)
+- [Amap API mapping](references/amap-api-map.md)
+- [Clarification policy](references/clarification-policy.md)
+- [Roadbook schema](references/roadbook-schema.md)
+- [Demo scenarios](references/demo-scenarios.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, HTML, Excel files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown response with itinerary details and links; generated JSON, HTML, and XLSX files when the bundled scripts run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AMAP_WEB_SERVICE_KEY, AMAP_JS_API_KEY, and AMAP_JS_SECURITY_CODE for full Amap-backed generation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

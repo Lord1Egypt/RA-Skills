@@ -1,0 +1,6 @@
+timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
+2026-08-30T12:39:00Z	baseline	photo_imprint	-	59.45	baseline	-	Phase1 avg 62.9/56.0 dry_run 100% weighted_gap max dim8=13.8	dry_run
+2026-08-30T19:45:04Z	bb0792d	photo_imprint	59.45	3-0 better	keep	dim8+dim4+dim9	Round1 fixes 9:16 defaults, 5-style gate, batch hash-lock, step notifications, 🔴🛑 gates, 12-item blacklist — 3 judges clear better	paired
+2026-08-30T19:46:44Z	1d7f561	photo_imprint	59.45	3-0 better	keep	dim5+dim2	Round2 adds per-step Input/Output/Command, JSON schemas for brief/contract/style_choice/receipt, last-step.md example with hashes, no soft wording — 3 judges clear better	paired
+2026-08-30T19:49:21Z	1c32d0b	photo_imprint	59.45	3-0 better	keep	dim3+dim7	Round3 adds Architecture 6 layers + 6 invariants + 22-row Failure Mode Matrix with Code/Detection/Recovery/Notification + escalation — 3 judges clear better	paired
+2026-08-30T20:04:42Z	48ea3f8	photo_imprint	59.45	91.9	final	avg91.9	JudgeA 91.4 (9/9/10/9/9/8/9/9/10) JudgeB 92.4 (9/9/10/10/9/9/9/9/10) avg 91.9 vs baseline 59.45 +32.45	runtime-neutral

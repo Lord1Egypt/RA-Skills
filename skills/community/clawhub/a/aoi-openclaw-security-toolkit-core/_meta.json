@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn7f59rjdw92g48qp4r345de3n80xe7k",
-  "slug": "aoi-openclaw-security-toolkit-core",
+  "name": "aoi-openclaw-security-toolkit-core",
   "version": "0.1.6",
-  "publishedAt": 1771228843761
+  "description": "Public-safe, fail-closed security toolkit for OpenClaw operators: local-only scans (allowlist/secret/egress/prompt) with PASS/WARN/BLOCK outputs.",
+  "author": "Aoineco & Co.",
+  "license": "MIT",
+  "tags": ["security", "openclaw", "allowlist", "secrets", "prompt-injection", "ops"],
+  "sdna": "AOI-2026-0216-SDNA-SECKIT01"
 }

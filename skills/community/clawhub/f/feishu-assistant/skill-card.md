@@ -1,41 +1,54 @@
-## Description: <br>
-Feishu Assistant sends selected local images to Feishu chats, users, or message threads through a configured Feishu bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Assistant helps an agent send selected local images to Feishu chats, users, or message threads using configured Feishu bot credentials.
 
-## Publisher: <br>
-[gushenjie](https://clawhub.ai/user/gushenjie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gushenjie](https://clawhub.ai/user/gushenjie)
 
-## Use Case: <br>
-Agents and developers use this skill to send generated or selected local images to Feishu chats, individual users, or message replies through a Feishu bot. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images may be sent to the wrong Feishu recipient if chat, user, open, or message IDs are incorrect. <br>
-Mitigation: Verify the local image path and intended Feishu recipient identifier before execution, especially for group chats or sensitive images. <br>
-Risk: The skill uses Feishu bot credentials to upload and send local images. <br>
-Mitigation: Configure credentials only in trusted environments and limit the bot to the intended Feishu application permissions and conversations. <br>
+## Use Case:
 
+Developers and agent users use this skill to deliver generated or selected image files into Feishu group chats, direct messages, or replies from an automated workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gushenjie/feishu-assistant) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local image path and one Feishu recipient identifier such as chat_id, user_id, open_id, or message_id.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill uses Feishu bot credentials and uploads the selected local image to Feishu.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact local file and destination chat, user, or message thread before sending.
+
+Risk: The local RIFF/WebP validation weakness could allow a non-image RIFF file to be uploaded if selected.
+
+Mitigation: Send only trusted image files and review questionable WebP or RIFF-based files before use.
+
+## Reference(s):
+
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [Feishu Assistant on ClawHub](https://clawhub.ai/gushenjie/skills/feishu-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The invoked script sends API requests to Feishu and prints status messages plus the Feishu API response JSON.]
+
+## Skill Version(s):
+
+1.1.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

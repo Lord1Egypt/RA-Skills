@@ -1,0 +1,7 @@
+interface:
+  display_name: "Harness 检查器"
+  short_description: "给 Harness 打分、查证据并区分真实宿主边界"
+  default_prompt: "使用 $hekouwang-harness-check-skill 检查当前仓库的 Harness，生成 Scorecard，分别报告分数、硬门槛、自动化结果与人工宿主验收边界。"
+
+policy:
+  allow_implicit_invocation: true

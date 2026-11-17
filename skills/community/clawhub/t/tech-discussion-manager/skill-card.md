@@ -1,41 +1,54 @@
-## Description: <br>
-标准化管理技术讨论全生命周期：讨论记录 → 决策沉淀 → 架构文档 → 开发规划。支持 Git 版本管理（可选）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+标准化管理技术讨论全生命周期：讨论记录 → 决策沉淀 → 架构文档 → 开发规划。支持 Git 版本管理（可选）。
 
-## Publisher: <br>
-[ah0210](https://clawhub.ai/user/ah0210) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ah0210](https://clawhub.ai/user/ah0210)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to record technical discussions, preserve decisions, generate architecture and development planning documents, and optionally record release versions in Git. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Discussion records may save sensitive project details or secrets to disk. <br>
-Mitigation: Use the skill only in intended workspaces, avoid recording secrets, and review generated markdown before sharing. <br>
-Risk: The optional version-recording flow can commit or tag unintended workspace changes. <br>
-Mitigation: Check git status and staged files before allowing the Git commit or tag step. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to capture technical discussions, decisions, architecture notes, and development plans as workspace Markdown documents, with optional Git version recording when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ah0210/tech-discussion-manager) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ah0210) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown files, index tables, workspace directory structure, and optional Git command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates workspace-local discussion, decision, architecture, and development-plan files; optional Git commits and tags only when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.0 (source: frontmatter and release evidence) <br>
+Risk: The skill writes technical discussion records and related planning documents into the workspace, which may later be shared with a repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated documents before sharing or publishing the workspace.
+
+Risk: The optional version-recording flow may create Git commits and tags when the user requests it.
+
+Mitigation: Inspect Git status and confirm the version number and release note before using version recording.
+
+## Reference(s):
+
+- [Usage examples](examples.md)
+- [ClawHub skill page](https://clawhub.ai/ah0210/skills/tech-discussion-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and concise agent responses with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes discussion artifacts under the configured workspace discussion directory and may create Git commits or tags only when the user requests version recording.]
+
+## Skill Version(s):
+
+0.8.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

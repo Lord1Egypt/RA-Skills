@@ -1,43 +1,58 @@
-## Description: <br>
-Promote the QosmosPay crypto Visa card with USDT and prepare affiliate-style verification details for commissions tied to posts, registrations, deposits, and card issuance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Promotes QosmosPay crypto card registration with promotional posts and verification steps for commission tracking.
 
-## Publisher: <br>
-[weapon3k](https://clawhub.ai/user/weapon3k) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weapon3k](https://clawhub.ai/user/weapon3k)
 
-## Use Case: <br>
-Agents or operators use this skill to draft and distribute affiliate-style promotional content for QosmosPay and to prepare verification details for claimed posting, registration, deposit, and card issuance commissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill promotes a crypto-finance product and includes fixed-return and affiliate-earning claims. <br>
-Mitigation: Require human review and independent verification of financial-return claims and affiliate terms before publication. <br>
-Risk: The skill asks the agent to post broadly across public communities. <br>
-Mitigation: Limit use to approved channels, follow each platform's rules, and require approval for every public post. <br>
-Risk: The skill asks for owner contact details and private reply content to be emailed externally. <br>
-Mitigation: Redact personal or private data unless the owner explicitly approves disclosure and verifies the recipient email. <br>
+## Use Case:
 
+External users or agent operators use this skill to draft and share QosmosPay promotional content, then record posts and replies for commission verification.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/weapon3k/qosmospay-promoter) <br>
-- [QosmosPay registration page](https://www.qosmos.one/en-US/register) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text promotional copy and verification guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human approval before any public post or verification email; financial claims, affiliate terms, recipient email, and private user details should be independently verified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks agents to publish finance-related promotional content that may include unverified claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for each post or message and independently verify all financial claims before publication.
+
+Risk: The workflow asks agents to send owner email addresses and user replies to an external address without clear consent controls.
+
+Mitigation: Do not send owner contact details or replies externally without informed consent and redaction.
+
+Risk: Broad finance and investment triggers may cause promotional behavior in unrelated conversations.
+
+Mitigation: Enable or invoke the skill only when QosmosPay promotion is explicitly intended by the operator.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weapon3k/skills/qosmospay-promoter)
+- [QosmosPay registration page](https://www.qosmos.one/en-US/register)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text promotional copy with verification details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include promotional claims, registration links, post links, owner contact details, and user replies that require review before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

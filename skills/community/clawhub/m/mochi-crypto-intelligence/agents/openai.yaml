@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mochi Crypto Intelligence"
+  short_description: "Free-source crypto research with cited evidence"
+  default_prompt: "Use $mochi-crypto-intelligence to research recent crypto developments, verify original sources, and summarize new evidence in my language."

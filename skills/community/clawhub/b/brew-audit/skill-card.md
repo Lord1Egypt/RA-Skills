@@ -1,39 +1,53 @@
-## Description: <br>
-Audit Homebrew installation for outdated packages, cleanup opportunities, and health checks on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit Homebrew installation - outdated packages, cleanup opportunities, and health checks for macOS package maintenance.
 
-## Publisher: <br>
-[rogue-agent1](https://clawhub.ai/user/rogue-agent1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rogue-agent1](https://clawhub.ai/user/rogue-agent1)
 
-## Use Case: <br>
-Developers and macOS users use this skill to inspect Homebrew package status, cleanup opportunities, and brew doctor health findings before deciding on maintenance actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audit output may reveal local Homebrew package inventory and system health details in the chat. <br>
-Mitigation: Review where the audit output is shared and avoid posting local package details in sensitive channels. <br>
-Risk: Follow-up Homebrew maintenance commands such as upgrades or cleanup can change or remove installed package versions. <br>
-Mitigation: Review the audit results before approving any separate brew upgrade or brew cleanup action. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Homebrew](https://brew.sh) <br>
+## Use Case:
 
+Developers and engineers use this skill to audit a macOS Homebrew installation for outdated packages, cleanup opportunities, and health issues before maintenance or upgrades.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text terminal output, with JSON available for outdated-package audits.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with Homebrew installed; supports outdated, cleanup, doctor, and full audit sections.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Audit output may prompt package upgrades or cleanup that change installed software or remove cached versions if run separately.
+
+Mitigation: Review the audit output before manually running brew upgrade or brew cleanup commands.
+
+Risk: The skill inspects local Homebrew package state on the user's machine.
+
+Mitigation: Install and run it only when local Homebrew package inspection is intended.
+
+## Reference(s):
+
+- [Homebrew Homepage](https://brew.sh)
+- [ClawHub Skill Page](https://clawhub.ai/rogue-agent1/skills/brew-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and optional JSON from the audit script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Homebrew on macOS; the audit script supports full audits, sectional audits, and JSON output for outdated packages.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

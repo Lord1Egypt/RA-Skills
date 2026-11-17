@@ -1,11 +1,11 @@
 ---
 name: oo-razorpay
-description: "Razorpay (razorpay.com). Use this skill for ANY Razorpay request — reading, creating, and updating data. Whenever a task involves Razorpay, use this skill instead of calling the API directly."
+description: "Razorpay (razorpay.com). Use this skill for ANY Razorpay request — reading, creating, updating, and deleting data. Whenever a task involves Razorpay, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Razorpay"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["razorpay"]
   icon: "https://static.oomol.com/logo/third-party/razorpay.png"
 ---
@@ -38,8 +38,8 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `create_order` — Create a Razorpay order for an amount, currency, and optional receipt metadata. [write]
-- `create_refund` — Create a Razorpay refund for a payment, with optional amount, speed, and notes. [write]
-- `get_order` — Fetch one Razorpay order by its order identifier. [write]
+- `create_refund` — Create a Razorpay refund for a payment, with optional amount, speed, and notes. [destructive]
+- `get_order` — Fetch one Razorpay order by its order identifier.
 - `get_payment` — Fetch one Razorpay payment by its payment identifier.
 - `list_orders` — List Razorpay orders with optional receipt, status-window, and expansion filters.
 - `list_payments` — List Razorpay payments within an optional time window and pagination range.
@@ -73,11 +73,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Razorpay is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=razorpay
+  https://console.oomol.com/connections/razorpay
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Razorpay homepage: https://razorpay.com
+- API documentation: https://razorpay.com/docs/api/authentication/

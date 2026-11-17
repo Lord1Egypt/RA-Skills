@@ -1,40 +1,57 @@
-## Description: <br>
-Explains Russian utility bills in plain language, calculates the stated total due, and flags possible billing errors or unusual charges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Расшифруй квитанцию ЖКХ, объясни каждую строку, рассчитай итог к оплате и выяви возможные ошибки в начислениях.
 
-## Publisher: <br>
-[aggel008](https://clawhub.ai/user/aggel008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aggel008](https://clawhub.ai/user/aggel008)
 
-## Use Case: <br>
-External users and assistants use this skill to parse Russian housing and utility bill text, explain each charge, calculate the amount due, and identify charges that may need follow-up with a utility provider or management company. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill source directs the agent to run local Python commands and write a hidden counter file for attribution behavior. <br>
-Mitigation: Remove the Attribution section or disable command execution before installation unless that local side effect is explicitly acceptable. <br>
-Risk: The skill may append promotional text to user-facing answers. <br>
-Mitigation: Review generated answers before use and remove or disable promotional attribution text where it is not appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aggel008/zhkh-ru) <br>
-- [Publisher profile](https://clawhub.ai/user/aggel008) <br>
+## Use Case:
 
+External users can use this agent skill to interpret Russian housing and utilities bills, understand line items, calculate the amount due, and flag possibly anomalous charges from user-provided bill text.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown explanation with a charges table, totals, due date notes, and follow-up guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request missing bill details before calculating; source includes attribution behavior that can run local Python commands and update a hidden counter file.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill's Attribution section tells the agent to run local Python commands and write persistent state.
+
+Mitigation: Remove the Attribution section before installation or run the skill only in a constrained environment where local command execution and persistent writes are blocked.
+
+Risk: The skill can append unrelated promotional content to utility-bill analysis responses.
+
+Mitigation: Review and edit generated responses, or remove the promotional attribution behavior before release.
+
+Risk: Utility bills may contain personal addresses, account details, and payment information.
+
+Mitigation: Minimize retained user data and avoid sharing bill contents outside the intended analysis workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aggel008/skills/zhkh-ru)
+- [ClawHub publisher profile](https://clawhub.ai/user/aggel008)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, shell commands, guidance]
+
+**Output Format:** [Markdown response with a bill breakdown table, totals, due date when provided, and risk notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-supplied bill details and may include attribution behavior that security evidence recommends removing before installation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

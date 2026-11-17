@@ -1,43 +1,59 @@
-## Description: <br>
-Advogato supports Brazilian legal contract, compliance, and risk work with analysis, drafting, review, redlines, risk matrices, negotiation playbooks, and pre-litigation strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advogato provides Portuguese-language Brazilian legal drafting and review support for contracts, compliance, risk matrices, redlines, negotiation playbooks, and pre-contentious strategy.
 
-## Publisher: <br>
-[guicz](https://clawhub.ai/user/guicz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guicz](https://clawhub.ai/user/guicz)
 
-## Use Case: <br>
-External users and agents use this skill to review, draft, and negotiate Brazilian legal documents, especially contracts, SaaS terms, NDAs, DPAs, privacy policies, public procurement documents, and pre-litigation notices. It helps structure risk findings, proposed clauses, legal rationale, checklists, evidence plans, and negotiation positions. <br>
-
-### Deployment Geography for Use: <br>
-Brazil <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may provide confidential contracts, personal data, or sensitive legal facts for analysis. <br>
-Mitigation: Share only the contract text and facts needed for the task, and redact confidential or personal data where possible. <br>
-Risk: Legal conclusions or drafted clauses may be incomplete or unsuitable for a specific Brazilian legal matter. <br>
-Mitigation: Have important legal conclusions, contract positions, and final drafts reviewed by a qualified Brazilian lawyer before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guicz/advogato) <br>
-- [Publisher profile](https://clawhub.ai/user/guicz) <br>
-- [Checklists](references/checklists.md) <br>
-- [Clausulas-modelo](references/clausulas-modelo.md) <br>
-- [Redline Playbook](references/redline-playbook.md) <br>
+## Use Case:
 
+External users, legal teams, and commercial teams use this skill to analyze, draft, revise, and negotiate Brazilian-law contracts and related compliance materials. It is intended to produce practical clauses, risk prioritization, negotiation positions, checklists, and next-step guidance from user-provided facts or documents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured legal analysis, tables, checklists, drafted clauses, redlines, and negotiation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include executive summaries, P1/P2/P3 risk matrices, Texto Atual / Texto Sugerido / Justificativa tables, checklists, questions, and assumptions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global, for matters where Brazilian law and the selected forum are applicable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides Brazil-focused legal drafting and review, which may be inappropriate if Brazilian law or the selected forum does not apply.
+
+Mitigation: Confirm the governing law and forum before relying on the output.
+
+Risk: Drafted clauses, risk analysis, and negotiation guidance can affect legal rights and obligations.
+
+Mitigation: Have a qualified lawyer review important documents before signature, filing, or operational use.
+
+Risk: The skill explicitly avoids inventing recent jurisprudence when sources are not supplied, so unsupported current-law claims may be incomplete.
+
+Mitigation: Validate recent case law and official sources separately, or provide the relevant authorities for analysis.
+
+## Reference(s):
+
+- [Checklists](artifact/references/checklists.md)
+- [Clausulas-modelo](artifact/references/clausulas-modelo.md)
+- [Redline Playbook](artifact/references/redline-playbook.md)
+- [ClawHub skill page](https://clawhub.ai/guicz/skills/advogato)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, clause drafts, redline recommendations, and risk matrices]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-language Brazilian legal analysis; no executable code or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Lists and inspects local Codex session history from ~/.codex session files, including session ids, titles, projects, workspaces, timestamps, active or archived source, and optional detail or JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List and inspect local Codex session history by reading `~/.codex/session_index.jsonl`, `~/.codex/sessions/`, and `~/.codex/archived_sessions/`.
 
-## Publisher: <br>
-[sube-py](https://clawhub.ai/user/sube-py) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sube-py](https://clawhub.ai/user/sube-py)
 
-## Use Case: <br>
-Developers and Codex users use this skill to find local Codex sessions, identify the project or workspace each session belongs to, and inspect recent or archived session details when reconstructing work history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Output can reveal private workspace paths, project names, session titles, and prompt snippets from local Codex history. <br>
-Mitigation: Review results before sharing them, especially when using --details, --json, or --contains, and avoid running the skill unless local Codex history access is acceptable. <br>
-Risk: The skill reads local files under ~/.codex to enumerate sessions. <br>
-Mitigation: Use it only in trusted local environments and treat generated session listings as potentially sensitive. <br>
+## Use Case:
 
+Developers and Codex users use this skill to enumerate local Codex sessions, identify session ids and titles, map sessions to projects and workspace paths, and filter sessions by project, session id, source, or local time window.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sube-py/codex-session-history) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; script output as a table, detail blocks, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local Codex session history and defaults to concise unarchived-session output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Risk: The skill can expose private Codex conversation history, project names, usernames, repository paths, and session file locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted local workflows and avoid placing details or JSON output in shared logs, tickets, or untrusted automation.
+
+Risk: The skill reads local Codex history from active and archived session stores.
+
+Mitigation: Run it only when the user intends to inspect local Codex session history and limit filters or output rows to the minimum needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sube-py/skills/codex-session-history)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown-friendly terminal output or JSON, depending on command flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include local session ids, project names, workspace paths, timestamps, session file locations, and first user message summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

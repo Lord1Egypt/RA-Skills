@@ -1,45 +1,59 @@
-## Description: <br>
-Liepin Jobs helps an agent search Liepin jobs, review or update resume data, and prepare job applications through the Liepin MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Liepin jobs, reviews or updates resumes, and prepares job applications through the Liepin MCP service.
 
-## Publisher: <br>
-[xllinbupt](https://clawhub.ai/user/xllinbupt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xllinbupt](https://clawhub.ai/user/xllinbupt)
 
-## Use Case: <br>
-External users can use this skill to search for roles on Liepin, inspect resume information, and prepare job applications. The skill should be used with explicit confirmation before submitting applications or changing resume data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can act on a real Liepin account, including submitting job applications and editing resume data. <br>
-Mitigation: Require clear manual confirmation before any application submission or resume update. <br>
-Risk: The skill stores or uses a Liepin user token to access account and resume data. <br>
-Mitigation: Protect the token, avoid exposing it in logs or chat, and install only when account access is acceptable. <br>
-Risk: The generic MCP call command can invoke arbitrary Liepin tools. <br>
-Mitigation: Avoid the generic call command unless the exact remote tool and arguments are understood. <br>
+## Use Case:
 
+Job seekers and career-support agents use this skill to search roles on Liepin, inspect resume information, update resume sections, and prepare applications after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xllinbupt/liepin-jobs) <br>
-- [Publisher profile](https://clawhub.ai/user/xllinbupt) <br>
-- [Project homepage](https://github.com/xllinbupt/MCP2skill) <br>
-- [Liepin MCP server configuration](https://www.liepin.com/mcp/server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Human-readable text or JSON, often summarized by the agent as Markdown tables and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include live Liepin job, application, and resume data returned from the remote MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: The skill handles Liepin account tokens, resume data, and job application actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the saved configuration file, avoid exposing full tokens in logs or conversations, and revoke or regenerate the token if it may have been saved with weak permissions or sent to an untrusted endpoint.
+
+Risk: Job applications and resume updates can affect the user's account and may be difficult to undo.
+
+Mitigation: Manually verify every resume update or job application and require explicit user confirmation before applying to a role.
+
+Risk: The configurable MCP URL can send tokens and account data to an untrusted destination.
+
+Mitigation: Use only the official Liepin endpoint unless the alternate destination is fully trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xllinbupt/skills/liepin-jobs)
+- [Project Homepage](https://github.com/xllinbupt/MCP2skill)
+- [Liepin MCP Configuration Page](https://www.liepin.com/mcp/server)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON tool output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return human-readable job and resume summaries or raw JSON when requested.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

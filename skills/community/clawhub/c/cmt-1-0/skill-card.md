@@ -1,41 +1,54 @@
-## Description: <br>
-This skill checks PDF, Word, and Excel files for sensitive or prohibited words from a built-in or external word library and highlights matched content in yellow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks PDF, Word, and Excel files for sensitive or prohibited words using a built-in 65-word library or an external word list, then highlights matching terms in yellow.
 
-## Publisher: <br>
-[betty831221](https://clawhub.ai/user/betty831221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[betty831221](https://clawhub.ai/user/betty831221)
 
-## Use Case: <br>
-Employees, external reviewers, and document compliance teams use this skill to scan local documents for built-in or custom sensitive-word lists and produce highlighted copies for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes highlighted output files and could overwrite an original document if the output directory and filename collide. <br>
-Mitigation: Use an explicit output directory and keep original documents in a separate location before running the checker. <br>
-Risk: The built-in and custom word lists may miss context-specific sensitive terms or flag benign partial matches. <br>
-Mitigation: Review the highlighted output and update the custom word list for the organization or document set being checked. <br>
+## Use Case:
 
+Employees, compliance reviewers, and document owners use this skill to scan PDF, Word, and Excel documents against a built-in or external sensitive-word list and produce highlighted review copies.
 
-## Reference(s): <br>
-- [Usage Guide](references/usage.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/betty831221/skills/cmt-1-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Highlighted PDF, Word, or Excel files with Markdown guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local documents and writes annotated output files, usually to the Desktop unless an explicit output directory is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 3.0) <br>
+Risk: The script may overwrite files with the same name.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a separate output directory and keep backups of source documents before running the checker.
+
+Risk: The skill processes local documents that may contain sensitive information.
+
+Mitigation: Run it only on documents approved for local processing and install dependencies in a virtual environment.
+
+## Reference(s):
+
+- [Usage Guide](references/usage.md)
+- [ClawHub Skill Page](https://clawhub.ai/betty831221/skills/cmt-1-0)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Annotated PDF, DOCX, or XLSX files with concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Highlights matched sensitive words or cells in yellow; uses local document processing and optional external DOCX word lists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

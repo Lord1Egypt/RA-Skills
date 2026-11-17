@@ -1,39 +1,48 @@
-## Description: <br>
-Detect configuration drift across environments (dev, staging, production). Compare config files, environment variables, feature flags, and secrets across deployments to find dangerous inconsistencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect configuration drift across environments (dev, staging, production). Compare config files, environment variables, feature flags, and secrets across deployments to find dangerous inconsistencies.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, DevOps engineers, and platform teams use this skill to compare configuration files, environment variables, feature flags, secrets, and deployment settings across development, staging, and production environments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Configuration comparison examples can expose secrets or infrastructure values in logs, temporary files, CI output, or agent responses.
+
+Mitigation: Run only in controlled environments; compare redacted values or key names when possible; avoid raw production secrets; scrub temporary files and reports before sharing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, platform engineers, and operations teams use this skill to compare configuration across dev, staging, and production environments, identify dangerous drift, and prepare parity or remediation guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration scans can expose sensitive values from config files, environment variables, secrets, temporary files, terminal output, or CI logs. <br>
-Mitigation: Redact sensitive values by default, avoid raw .env or tfvars diffs in chat and CI logs, and delete temporary files containing configuration data after use. <br>
-Risk: Kubernetes examples may inspect the wrong cluster or namespace or use broader access than needed. <br>
-Mitigation: Verify the active cluster and namespaces before running commands and use read-only, narrowly scoped Kubernetes credentials. <br>
+**Output Format:** [Markdown with inline shell, YAML, Python, and report examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May produce drift findings, config parity checklists, CI snippets, secret-rotation review guidance, and remediation recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include drift classifications, checklists, CI configuration snippets, and remediation recommendations.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

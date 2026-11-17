@@ -1,42 +1,59 @@
-## Description: <br>
-Recommends appropriate statistical methods, assumption checks, and approximate power analysis based on dataset characteristics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users in selecting statistical tests, checking assumptions, and estimating power or sample size from study characteristics.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, analysts, and researchers use this skill to select candidate statistical tests, check assumptions, and estimate power or sample size before applying methods to a study. Recommendations are advisory and require domain review before use in published or consequential analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Statistical test recommendations and power estimates can be misleading if assumptions, study design, or domain constraints are wrong. <br>
-Mitigation: Treat outputs as advisory, verify assumptions with domain expertise, and independently review analyses before publication or consequential use. <br>
-Risk: Approximate power calculations may be insufficient for publication-ready analysis. <br>
-Mitigation: Use validated statistical software or specialist review for final power and sample-size decisions. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to identify candidate statistical methods, assumption checks, and power-analysis considerations for a documented analysis plan.
 
-## Reference(s): <br>
-- [Statistical Tests Guide](references/statistical_tests_guide.md) <br>
-- [Assumption Checking Procedures](references/assumption_tests.md) <br>
-- [Power Analysis Guide](references/power_analysis_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, code, shell commands] <br>
-**Output Format:** [Markdown guidance with optional Python examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory statistical recommendations, assumptions, risks, and next-step checks; no raw data analysis is performed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Installing unnecessary compatibility packages from requirements.txt on Python 3.10+ can add avoidable dependency risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the dataclasses and enum requirements for Python 3.10+ or install the skill only in an isolated virtual environment.
+
+Risk: Statistical test recommendations and approximate power calculations may be incorrect for a specific study design or publication context.
+
+Mitigation: Treat outputs as advisory, verify assumptions and calculations against the study data, and obtain human statistical review before research or publication use.
+
+Risk: Complex multivariate, Bayesian, clustered, or otherwise specialized designs may fall outside the skill's documented scope.
+
+Mitigation: Stop at a documented limitation and route the analysis plan to a qualified statistical reviewer instead of broadening the recommendation.
+
+## Reference(s):
+
+- [Statistical Tests Guide](references/statistical_tests_guide.md)
+- [Assumption Checking Procedures](references/assumption_tests.md)
+- [Power Analysis Guide](references/power_analysis_guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional Python snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory recommendations only; human verification is required before research or publication use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

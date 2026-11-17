@@ -1,44 +1,55 @@
-## Description: <br>
-Local speech-to-text with the Whisper CLI (no API key). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local speech-to-text with the Whisper CLI (no API key).
 
-## Publisher: <br>
-[utromaya-code](https://clawhub.ai/user/utromaya-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[utromaya-code](https://clawhub.ai/user/utromaya-code)
 
-## Use Case: <br>
-Developers and other agent users use this skill to run local speech-to-text or translation workflows with the Whisper CLI without configuring an API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Homebrew installs the openai-whisper package and its dependencies. <br>
-Mitigation: Review the package and dependency source before installing in managed or sensitive environments. <br>
-Risk: Whisper reads the audio files passed to the CLI, which may contain sensitive content. <br>
-Mitigation: Run the skill only on intended local files and follow the applicable data handling policy for audio and transcripts. <br>
-Risk: Whisper models may be cached in the user's home directory and transcript files are written to the chosen output directory. <br>
-Mitigation: Choose output directories deliberately and clean cached models or generated transcripts when retention is not desired. <br>
+## Use Case:
 
+Developers and agents use this skill to install and invoke the local Whisper CLI for transcribing or translating user-selected audio files.
 
-## Reference(s): <br>
-- [OpenAI Whisper](https://openai.com/research/whisper) <br>
-- [ClawHub Skill Page](https://clawhub.ai/utromaya-code/whisper-speech-to-text) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/utromaya-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent provides Whisper CLI usage guidance; transcript files are produced by the local Whisper CLI in the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Installing the Whisper CLI through Homebrew adds local software and may download model files to the user's cache.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Homebrew formula and local storage behavior are acceptable for the environment.
+
+Risk: Transcripts can contain sensitive information from user-selected audio.
+
+Mitigation: Review audio contents before transcription and handle generated transcript files according to applicable data handling requirements.
+
+## Reference(s):
+
+- [OpenAI Whisper](https://openai.com/research/whisper)
+- [ClawHub skill page](https://clawhub.ai/utromaya-code/skills/whisper-speech-to-text)
+- [Publisher profile](https://clawhub.ai/user/utromaya-code)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes the local whisper binary is installed and model files may be downloaded to the user's local cache.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

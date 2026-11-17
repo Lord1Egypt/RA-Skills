@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn74j8b2z52d7cj7c7mbms4yj983qrh5",
-  "slug": "session-sync-detect",
+  "name": "session-sync-detect",
+  "displayName": "Session Sync Detect",
+  "summary": "跨会话同步检测与询问技能",
+  "description": "当用户谈到当前 session 没有的事情时，自动检测并询问是否进行跨会话同步",
   "version": "0.1.0",
-  "publishedAt": 1774595847462
+  "author": "郭泉 (Dr. Guo) 🎯",
+  "license": "MIT-0",
+  "tags": ["session", "memory", "sync", "detect"],
+  "config": {
+    "requiredPaths": [],
+    "optionalPaths": [
+      "~/.openclaw/workspace/memory/*.md",
+      "~/.openclaw/workspace/MEMORY.md"
+    ]
+  },
+  "capabilities": {
+    "readSessionHistory": true,
+    "searchMemoryFiles": true,
+    "writeMemoryFiles": true
+  },
+  "security": {
+    "requiresUserConfirmation": true,
+    "autoDetect": true,
+    "silentExecution": false
+  }
 }

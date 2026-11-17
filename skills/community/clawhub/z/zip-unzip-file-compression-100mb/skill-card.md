@@ -1,42 +1,55 @@
-## Description: <br>
-Zip / Unzip - File Compression < 100MB compresses and decompresses ZIP or GZIP archives between 10MB and 100MB, storing outputs in AgentPMT cloud storage with signed download URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses and decompresses 10MB to 100MB ZIP and GZIP archives through AgentPMT, returning cloud-stored outputs with signed download URLs.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to package large datasets, media collections, logs, backups, software distributions, or database exports as ZIP or GZIP archives, and to extract large archives for downstream processing. It is intended for non-sensitive archive workflows that can use AgentPMT-hosted cloud storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Archives and extracted files are uploaded to AgentPMT cloud services and stored for signed URL retrieval. <br>
-Mitigation: Use the skill only for non-sensitive archives unless the organization has approved AgentPMT storage, access, retention, and deletion practices. <br>
-Risk: Inputs may include secrets, customer data, regulated records, proprietary files, or other material that must remain local. <br>
-Mitigation: Do not submit sensitive or regulated content to this skill; keep inputs scoped to the minimum non-sensitive files needed for the task. <br>
+## Use Case:
 
+Developers and operators use this skill to package, unpack, and share large datasets, media bundles, logs, exports, or deployment archives through AgentPMT-hosted archive actions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/zip-unzip-file-compression-100mb) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/zip-unzip-file-compression-100mb) <br>
-- [Generated Action Schema](artifact/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls, shell commands] <br>
-**Output Format:** [Markdown with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The remote tool returns JSON that can include file IDs, signed URLs, expiration information, file counts, and byte sizes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Archive contents and extracted files are sent to AgentPMT cloud storage and returned through signed URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data approved for that storage model, and avoid confidential, regulated, or customer-sensitive archives unless organizational policy allows it.
+
+Risk: The skill relies on mutable remote instructions and setup commands that may change after installation.
+
+Mitigation: Review live schemas and instructions before production use, prefer pinned or reviewed setup packages, and require explicit approval before expanding data sent, destinations, credential requests, or security rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/zip-unzip-file-compression-100mb)
+- [AgentPMT marketplace page](https://www.agentpmt.com/marketplace/zip-unzip-file-compression-100mb)
+- [Generated action schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, Guidance]
+
+**Output Format:** [JSON responses with file IDs, size metadata, and signed download URLs for compressed or extracted files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports ZIP and GZIP archives from 10MB to 100MB; ZIP compression supports up to 500 files; signed URLs expire after 7 days.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-TypeScript `any` sprawl auditor and type-coverage enforcer that scans TypeScript projects for explicit and implicit `any` usage, TypeScript suppression comments, weak tsconfig safety settings, and type-coverage gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits TypeScript projects for any usage, weak tsconfig safety settings, type-coverage gaps, and suppression comments, then produces prioritized remediation guidance and CI budget configuration.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to audit TypeScript repositories for type-safety debt, prioritize files with high `any` density, and generate CI guidance for type-coverage enforcement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local audit commands and may generate or suggest `.type-coverage` and CI threshold settings. <br>
-Mitigation: Run it only in the intended repository and review generated coverage budgets or CI thresholds before committing them. <br>
-Risk: The workflow can invoke `npx --yes type-coverage` at runtime. <br>
-Mitigation: For sensitive projects, pin or preinstall the `type-coverage` package instead of relying on runtime package resolution. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess TypeScript type safety, locate high-priority any usage, review tsconfig strictness settings, and prepare CI type-coverage enforcement.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-ts-any-auditor) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with shell commands, tables, TypeScript examples, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose a `.type-coverage` CI budget and threshold guidance based on local project findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill recommends running an unpinned npm package through npx, including examples suitable for CI, which creates a supply-chain review concern.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin type-coverage as a devDependency with a committed lockfile, run the local binary or npx --no-install, and execute audits with minimal privileges.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-ts-any-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes static-analysis findings, ranked file hotspots, tsconfig recommendations, and optional .type-coverage CI budget content.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

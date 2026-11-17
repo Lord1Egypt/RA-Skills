@@ -1,432 +1,272 @@
 #!/usr/bin/env python3
 """
-八字命理分析脚本 - 可复用版本
+八字命理分析脚本 v2 — 覆盖 lunar_python EightChar/Yun 全部能力
 用法:
-  python bazi_analysis.py --year <年> --month <月> --day <日> --gender <男/女>
-                          [--lunar] [--hour <时>] [--focus <分析重点>]
+  bazi_analysis.py --date 1990-05-15 --time 10:30 --gender 男 [选项]
+  bazi_analysis.py --date 1990-四-廿一 --lunar --gender 女 ...
 
-参数:
-  --year, -y      出生年份 (必填)
-  --month, -m     出生月份 (必填)
-  --day, -d       出生日期 (必填)
-  --gender, -g    性别: 男/女 (必填)
-  --lunar         如果输入的是农历日期 (默认公历)
-  --hour, -H      出生时辰 0-23 (可选, 默认12点午时)
-  --focus, -f     分析重点: 综合/子女/婚姻/事业/财运 (默认综合)
+选项:
+  --date   必填。公历 YYYY-MM-DD；--lunar 时为农历 年-月-日，闰月用负数(-5=闰五月)
+  --time   时辰 HH:MM 或 0-23；缺省=不知道时辰，只排三柱（不虚构时柱）
+  --gender 男|女  必填，影响大运顺逆
+  --lunar  输入为农历
+  --leap   农历闰月（等价于月份取负）
+  --sect   晚子时口径: 1=曰分早晚子时(默认, 23点后日柱按次日) 2=子时不换日
+  --focus  综合|子女|婚姻|事业|财运|格局  (默认综合)
+  --years  流年展望年数 (默认5, 从当年起)
+  --json   输出机器可读 JSON（供 agent 解读），默认人类可读文本
+依赖: ~/.venvs/bazi/bin/python (pip install lunar_python)
 """
+import argparse, json, sys, datetime
 
-import argparse
-import json
-from lunar_python import Lunar, Solar, EightChar
+try:
+    from lunar_python import Lunar, Solar
+except ImportError:
+    sys.exit("缺少 lunar_python —— 运行: python3 -m venv ~/.venvs/bazi && ~/.venvs/bazi/bin/pip install lunar_python")
 
-# ============================================================
-# 基础数据
-# ============================================================
-
-WU_XING = {
-    '甲': '木', '乙': '木', '丙': '火', '丁': '火', '戊': '土',
-    '己': '土', '庚': '金', '辛': '金', '壬': '水', '癸': '水'
-}
-
-YIN_YANG = {
-    '甲': '阳', '乙': '阴', '丙': '阳', '丁': '阴', '戊': '阳',
-    '己': '阴', '庚': '阳', '辛': '阴', '壬': '阳', '癸': '阴'
-}
-
-KE_MAP = {'木': '土', '火': '金', '土': '水', '金': '木', '水': '火'}
-BEI_KE_MAP = {'木': '金', '火': '水', '土': '木', '金': '火', '水': '土'}
-SHENG_MAP = {'木': '火', '火': '土', '土': '金', '金': '水', '水': '木'}
-BEI_SHENG_MAP = {'木': '水', '火': '木', '土': '火', '金': '土', '水': '金'}
-
-LIU_HE = {
-    '子': '丑', '丑': '子', '寅': '亥', '亥': '寅',
-    '卯': '戌', '戌': '卯', '辰': '酉', '酉': '辰',
-    '巳': '申', '申': '巳', '午': '未', '未': '午'
-}
-
-SAN_HE = {
-    '申': ['子', '辰'], '子': ['申', '辰'], '辰': ['申', '子'],
-    '寅': ['午', '戌'], '午': ['寅', '戌'], '戌': ['寅', '午'],
-    '巳': ['酉', '丑'], '酉': ['巳', '丑'], '丑': ['巳', '酉'],
-    '亥': ['卯', '未'], '卯': ['亥', '未'], '未': ['亥', '卯']
-}
-
-CHONG = {
-    '子': '午', '午': '子', '丑': '未', '未': '丑',
-    '寅': '申', '申': '寅', '卯': '酉', '酉': '卯',
-    '辰': '戌', '戌': '辰', '巳': '亥', '亥': '巳'
-}
+# ============ 基础数据 ============
+GAN_WX = {'甲':'木','乙':'木','丙':'火','丁':'火','戊':'土','己':'土','庚':'金','辛':'金','壬':'水','癸':'水'}
+GAN_YY = {'甲':'阳','乙':'阴','丙':'阳','丁':'阴','戊':'阳','己':'阴','庚':'阳','辛':'阴','壬':'阳','癸':'阴'}
+SHENG = {'木':'火','火':'土','土':'金','金':'水','水':'木'}
+KE    = {'木':'土','土':'水','水':'火','火':'金','金':'木'}
+LIU_HE = {'子':'丑','丑':'子','寅':'亥','亥':'寅','卯':'戌','戌':'卯','辰':'酉','酉':'辰','巳':'申','申':'巳','午':'未','未':'午'}
+CHONG  = {'子':'午','午':'子','丑':'未','未':'丑','寅':'申','申':'寅','卯':'酉','酉':'卯','辰':'戌','戌':'辰','巳':'亥','亥':'巳'}
+SAN_HE = {'申':'水','子':'水','辰':'水','寅':'火','午':'火','戌':'火','巳':'金','酉':'金','丑':'金','亥':'木','卯':'木','未':'木'}
+# 十神判定：以日干为我
+def shi_shen(day_gan, other_gan):
+    dw, ow = GAN_WX[day_gan], GAN_WX[other_gan]
+    same_yy = GAN_YY[day_gan] == GAN_YY[other_gan]
+    if dw == ow:            return '比肩' if same_yy else '劫财'
+    if SHENG[dw] == ow:     return '食神' if same_yy else '伤官'
+    if KE[dw] == ow:        return '偏财' if same_yy else '正财'
+    if KE[ow] == dw:        return '七杀' if same_yy else '正官'
+    if SHENG[ow] == dw:     return '偏印' if same_yy else '正印'
+    return '?'
 
 SHI_SHEN_MEANING = {
-    '比肩': '同辈、兄弟、竞争、合作',
-    '劫财': '破耗、争夺、冲动、姐妹',
-    '食神': '才华、享受、口福、晚辈',
-    '伤官': '创意、叛逆、表达、晚辈',
-    '偏财': '意外之财、投机、父亲',
-    '正财': '稳定收入、务实、妻子(男)',
-    '七杀': '压力、竞争、魄力、儿子(男)',
-    '正官': '权力、地位、约束、女儿(男)/丈夫(女)',
-    '偏印': '偏门学识、灵感、继母',
-    '正印': '学识、保护、贵人、母亲',
-}
+    '比肩':'同辈、兄弟、竞争、合作','劫财':'破耗、争夺、冲动、姐妹',
+    '食神':'才华、享受、口福、晚辈(男)','伤官':'创意、叛逆、表达、晚辈(男)',
+    '偏财':'意外之财、投机、父亲','正财':'稳定收入、务实、妻子(男)/父亲(女)',
+    '七杀':'压力、竞争、魄力、儿子(男)/情人(女)','正官':'权力、地位、约束、丈夫(女)/事业(男)',
+    '偏印':'偏门学识、灵感、继母','正印':'学识、保护、贵人、母亲'}
+# 子女星（传统口径：男以官杀为子女，女以食伤为子女；时柱为子女宫）
+CHILD_STAR = {'男': ['正官','七杀'], '女': ['食神','伤官']}
+MARRIAGE_STAR = {'男': ['正财'], '女': ['正官']}
+CAREER_STAR  = ['正官','七杀','正印']
+WEALTH_STAR  = ['正财','偏财']
 
-# ============================================================
-# 核心函数
-# ============================================================
+YONG_HINT = {'木':'宜东方、绿色、文教','火':'宜南方、红色、传媒','土':'宜中央、黄色、地产',
+             '金':'宜西方、白色、金融','水':'宜北方、黑色、贸易'}
 
-def get_solar_date(year, month, day, is_lunar=False):
-    """获取公历日期"""
+# ============ 排盘 ============
+def build(date_str, gender, time_str=None, is_lunar=False, leap=False, sect='1'):
+    parts = [p for p in date_str.replace('／','/').replace('.','-').split('-') if p.strip()]
+    if len(parts) != 3:
+        sys.exit(f"日期格式应为 年-月-日，收到: {date_str}")
+    try:
+        y, m, d = int(parts[0]), int(parts[1]), int(parts[2])
+    except ValueError:
+        sys.exit("农历中文月日(如 四-廿一)请用 --date 1990-4-21 数字形式，lunar_python 仅支持数字")
+    if leap and m > 0: m = -m
+    has_time = time_str is not None
     if is_lunar:
-        lunar = Lunar.fromYmd(year, month, day)
-        solar = lunar.getSolar()
-        return lunar, solar
+        solar0 = Lunar.fromYmd(y, m, d).getSolar()
+        sy, sm, sd = solar0.getYear(), solar0.getMonth(), solar0.getDay()
     else:
-        solar = Solar.fromYmd(year, month, day)
-        lunar = solar.getLunar()
-        return lunar, solar
-
-
-def get_bazi_info(lunar, hour=12):
-    """获取八字信息"""
-    solar_noon = Solar.fromYmdHms(
-        lunar.getSolar().getYear(),
-        lunar.getSolar().getMonth(),
-        lunar.getSolar().getDay(),
-        hour, 0, 0
-    )
-    lunar_noon = solar_noon.getLunar()
-    bazi = lunar_noon.getEightChar()
-    
-    return {
-        'year_gz': bazi.getYear(),
-        'month_gz': bazi.getMonth(),
-        'day_gz': bazi.getDay(),
-        'time_gz': bazi.getTime(),
-        'year_nayin': bazi.getYearNaYin(),
-        'month_nayin': bazi.getMonthNaYin(),
-        'day_nayin': bazi.getDayNaYin(),
-        'time_nayin': bazi.getTimeNaYin(),
-        'day_gan': bazi.getDayGan(),
-        'day_zhi': bazi.getDayZhi(),
-        'year_gan': bazi.getYearGan(),
-        'year_zhi': bazi.getYearZhi(),
-        'month_gan': bazi.getMonthGan(),
-        'month_zhi': bazi.getMonthZhi(),
-        'time_gan': bazi.getTimeGan(),
-        'time_zhi': bazi.getTimeZhi(),
-        'year_shishen': bazi.getYearShiShenGan(),
-        'month_shishen': bazi.getMonthShiShenGan(),
-        'time_shishen': bazi.getTimeShiShenGan(),
-    }
-
-
-def get_dayun(bazi, gender):
-    """获取大运信息"""
-    yun = bazi.getYun(1 if gender == '男' else 0)
-    da_yun = yun.getDaYun()
-    
-    result = {
-        'start_year': yun.getStartYear(),
-        'start_month': yun.getStartMonth(),
-        'start_date': yun.getStartSolar().toYmd(),
-        'da_yun': []
-    }
-    
-    for i in range(1, min(9, len(da_yun))):
-        dy = da_yun[i]
-        result['da_yun'].append({
-            'index': i,
-            'gan_zhi': dy.getGanZhi(),
-            'start_year': dy.getStartYear(),
-            'end_year': dy.getEndYear(),
-        })
-    
-    return result
-
-
-def get_child_stars(day_gan, gender):
-    """根据日主和性别获取子女星"""
-    wx = WU_XING[day_gan]
-    yy = YIN_YANG[day_gan]
-    
-    if gender == '男':
-        # 男命: 克我者为子女星 (官杀)
-        bei_ke_wx = BEI_KE_MAP[wx]
-        stars = []
-        for gan, w in WU_XING.items():
-            if w == bei_ke_wx:
-                if YIN_YANG[gan] != yy:
-                    stars.append({'name': '正官', 'gan': gan, 'child': '女儿'})
-                else:
-                    stars.append({'name': '七杀', 'gan': gan, 'child': '儿子'})
-        return stars
+        sy, sm, sd = y, m, d
+    if has_time:
+        ts = time_str.strip()
+        if ':' in ts:
+            hh, mm = ts.split(':')[:2]; hh, mm = int(hh), int(mm)
+        else:
+            hh, mm = int(ts), 0
+        if not (0 <= hh <= 23 and 0 <= mm <= 59):
+            sys.exit("时间应为 HH:MM 或 0-23")
     else:
-        # 女命: 我生者为子女星 (食伤)
-        sheng_wx = SHENG_MAP[wx]
-        stars = []
-        for gan, w in WU_XING.items():
-            if w == sheng_wx:
-                if YIN_YANG[gan] == yy:
-                    stars.append({'name': '食神', 'gan': gan, 'child': '女儿'})
-                else:
-                    stars.append({'name': '伤官', 'gan': gan, 'child': '儿子'})
-        return stars
+        hh, mm = 12, 0  # 正午占位，仅取年月日柱；时柱在结果中被屏蔽
+    solar = Solar.fromYmdHms(sy, sm, sd, hh, mm, 0)
+    lunar = solar.getLunar()
+    ec = lunar.getEightChar()
+    ec.setSect(int(sect))
+    return ec, lunar, solar, has_time
 
+def pillar_map(ec):
+    r = {}
+    for name, (g,z,n,ds,xk,hg,ssg,ssz,wx,xun) in {
+        '年': (ec.getYearGan, ec.getYearZhi, ec.getYearNaYin, ec.getYearDiShi, ec.getYearXunKong, ec.getYearHideGan, ec.getYearShiShenGan, ec.getYearShiShenZhi, ec.getYearWuXing, ec.getYearXun),
+        '月': (ec.getMonthGan, ec.getMonthZhi, ec.getMonthNaYin, ec.getMonthDiShi, ec.getMonthXunKong, ec.getMonthHideGan, ec.getMonthShiShenGan, ec.getMonthShiShenZhi, ec.getMonthWuXing, ec.getMonthXun),
+        '日': (ec.getDayGan, ec.getDayZhi, ec.getDayNaYin, ec.getDayDiShi, ec.getDayXunKong, ec.getDayHideGan, ec.getDayShiShenGan, ec.getDayShiShenZhi, ec.getDayWuXing, ec.getDayXun),
+        '时': (ec.getTimeGan, ec.getTimeZhi, ec.getTimeNaYin, ec.getTimeDiShi, ec.getTimeXunKong, ec.getTimeHideGan, ec.getTimeShiShenGan, ec.getTimeShiShenZhi, ec.getTimeWuXing, ec.getTimeXun),
+    }.items():
+        r[name] = {'gan': g(), 'zhi': z(), 'nayin': n(), 'dishi': ds(), 'xunkong': xk(),
+                   'hide_gan': hg(), 'shishen_gan': ssg(), 'shishen_zhi': ssz(), 'wuxing': wx(), 'xun': xun()}
+    return r
 
-def get_marriage_stars(day_gan, gender):
-    """根据日主和性别获取婚姻星"""
-    wx = WU_XING[day_gan]
-    yy = YIN_YANG[day_gan]
-    
-    if gender == '男':
-        # 男命: 我克者为妻星 (财星)
-        ke_wx = KE_MAP[wx]
-        stars = []
-        for gan, w in WU_XING.items():
-            if w == ke_wx:
-                if YIN_YANG[gan] != yy:
-                    stars.append({'name': '正财', 'gan': gan, 'meaning': '正妻'})
-                else:
-                    stars.append({'name': '偏财', 'gan': gan, 'meaning': '偏缘/情人'})
-        return stars
-    else:
-        # 女命: 克我者为夫星 (官杀)
-        bei_ke_wx = BEI_KE_MAP[wx]
-        stars = []
-        for gan, w in WU_XING.items():
-            if w == bei_ke_wx:
-                if YIN_YANG[gan] != yy:
-                    stars.append({'name': '正官', 'gan': gan, 'meaning': '正夫'})
-                else:
-                    stars.append({'name': '七杀', 'gan': gan, 'meaning': '偏缘/情人'})
-        return stars
+def strength(ec, has_time):
+    """日主强弱启发式：月令得令 + 四柱干支(含藏干)生扶计数，透明可复核"""
+    day = ec.getDayGan(); dw = GAN_WX[day]
+    score, detail = 0, []
+    mz = ec.getMonthZhi()
+    # 藏干五行
+    pools = {'年': ec.getYearHideGan(), '月': ec.getMonthHideGan(), '日': ec.getDayHideGan()}
+    if has_time: pools['时'] = ec.getTimeHideGan()
+    cnt = {'比劫':0,'印':0,'食伤':0,'财':0,'官杀':0}
+    for pillar, gans in pools.items():
+        for g in gans:
+            ss = shi_shen(day, g)
+            k = {'比肩':'比劫','劫财':'比劫','正印':'印','偏印':'印','食神':'食伤','伤官':'食伤',
+                 '正财':'财','偏财':'财','正官':'官杀','七杀':'官杀'}[ss]
+            cnt[k] += 1
+    # 月令：日干五行与月支藏干本气
+    benqi = ec.getMonthHideGan()[0] if ec.getMonthHideGan() else ''
+    if GAN_WX.get(benqi) == dw: score += 3; detail.append(f'月令{benqi}本气比和+3')
+    elif SHENG.get(GAN_WX.get(benqi)) == dw: score += 2; detail.append(f'月令{benqi}生我+2')
+    support = cnt['比劫'] + cnt['印']; drain = cnt['食伤'] + cnt['财'] + cnt['官杀']
+    score += support - drain
+    detail.append(f'藏干比劫{cnt["比劫"]}+印{cnt["印"]} vs 食伤{cnt["食伤"]}+财{cnt["财"]}+官杀{cnt["官杀"]}')
+    body = '偏旺' if score >= 2 else ('偏弱' if score <= -2 else '中和')
+    # 简易喜用神：旺者宜克泄(官杀/食伤/财)，弱者宜生扶(印/比劫)
+    if body == '偏旺': fav = ['官杀','食伤','财']
+    elif body == '偏弱': fav = ['印','比劫']
+    else: fav = ['印','官杀']
+    bei_ke = [k for k, v in KE.items() if v == dw][0]
+    wx_map = {'比劫': dw, '印': [k for k, v in SHENG.items() if v == dw][0],
+              '食伤': SHENG[dw], '财': KE[dw], '官杀': bei_ke}
+    fav_wx = sorted({wx_map[k] for k in fav})
+    return {'日主': f'{day}{ec.getDayZhi()}({dw})', '强弱': body, '得分': score,
+            '依据': detail, '五行计数': cnt, '喜用五行': fav_wx,
+            '喜用提示': '；'.join(f'{w}行→{YONG_HINT[w]}' for w in fav_wx)}
 
+def yun_info(ec, gender, has_time):
+    g = 1 if gender == '男' else 0
+    yun = ec.getYun(g)
+    out = {'forward': yun.isForward(),
+           '起运': f"{yun.getStartYear()}年{yun.getStartMonth()}月{yun.getStartDay()}日",
+           '大运': []}
+    for dy in yun.getDaYun():
+        item = {'index': dy.getIndex(), 'ganZhi': dy.getGanZhi(),
+                'startYear': dy.getStartYear(), 'endYear': dy.getEndYear(),
+                'startAge': dy.getStartAge(), 'endAge': dy.getEndAge(), 'xunKong': dy.getXunKong()}
+        if dy.getIndex() > 0 and dy.getGanZhi() != '':
+            item['liuNian'] = [{'year': ln.getYear(), 'ganZhi': ln.getGanZhi(), 'age': ln.getAge()}
+                               for ln in dy.getLiuNian()]
+        out['大运'].append(item)
+    return out
 
-def get_career_stars(day_gan):
-    """根据日主获取事业相关星"""
-    wx = WU_XING[day_gan]
-    yy = YIN_YANG[day_gan]
-    
+def relations(pillars_zhi, target_zhi):
+    """目标地支与命局四支的合冲关系"""
+    rels = []
+    for i, z in enumerate(pillars_zhi):
+        if z in CHONG and CHONG[z] == target_zhi: rels.append(f'冲{["年","月","日","时"][i]}支{z}')
+        if z in LIU_HE and LIU_HE[z] == target_zhi: rels.append(f'合{["年","月","日","时"][i]}支{z}')
+    return rels
+
+def focus_stars(ec, gender, has_time, focus):
+    day = ec.getDayGan()
     stars = []
-    # 官杀代表事业、权力
-    bei_ke_wx = BEI_KE_MAP[wx]
-    for gan, w in WU_XING.items():
-        if w == bei_ke_wx:
-            if YIN_YANG[gan] != yy:
-                stars.append({'name': '正官', 'gan': gan, 'meaning': '正职、管理'})
-            else:
-                stars.append({'name': '七杀', 'gan': gan, 'meaning': '创业、竞争'})
-    
-    # 印星代表学识、贵人
-    bei_sheng_wx = BEI_SHENG_MAP[wx]
-    for gan, w in WU_XING.items():
-        if w == bei_sheng_wx:
-            if YIN_YANG[gan] != yy:
-                stars.append({'name': '正印', 'gan': gan, 'meaning': '正途学识、贵人'})
-            else:
-                stars.append({'name': '偏印', 'gan': gan, 'meaning': '偏门学识、灵感'})
-    
-    return stars
+    pools = [('年', ec.getYearGan(), ec.getYearHideGan()), ('月', ec.getMonthGan(), ec.getMonthHideGan()),
+             ('日', None, ec.getDayHideGan()), ('时', ec.getTimeGan(), ec.getTimeHideGan())]
+    if not has_time: pools = pools[:3]
+    target_map = {
+        '子女': (CHILD_STAR[gender], '子女星'), '婚姻': (MARRIAGE_STAR[gender], '婚姻星'),
+        '事业': (CAREER_STAR, '事业星(官印)'), '财运': (WEALTH_STAR, '财星'),
+        '综合': (list(SHI_SHEN_MEANING.keys()), '全部十神'), '格局': (list(SHI_SHEN_MEANING.keys()), '全部十神')}
+    names, label = target_map[focus]
+    for pos, tg, hides in pools:
+        seen = set()
+        for g in ([tg] if tg else []) + list(hides):
+            if not g: continue
+            ss = shi_shen(day, g)
+            if ss in names and (pos, ss) not in seen:
+                seen.add((pos, ss))
+                stars.append({'pos': pos, 'shishen': ss, 'gan': g,
+                              'meaning': SHI_SHEN_MEANING[ss],
+                              'is_child': focus in ('综合','子女') and ss in CHILD_STAR[gender],
+                              'is_marriage': focus in ('综合','婚姻') and ss in MARRIAGE_STAR[gender]})
+    return label, stars
 
-
-def get_wealth_stars(day_gan):
-    """根据日主获取财运相关星"""
-    wx = WU_XING[day_gan]
-    yy = YIN_YANG[day_gan]
-    
-    # 我克者为财
-    ke_wx = KE_MAP[wx]
-    stars = []
-    for gan, w in WU_XING.items():
-        if w == ke_wx:
-            if YIN_YANG[gan] != yy:
-                stars.append({'name': '正财', 'gan': gan, 'meaning': '正职收入、稳定'})
-            else:
-                stars.append({'name': '偏财', 'gan': gan, 'meaning': '意外之财、投资'})
-    
-    return stars
-
-
-def analyze_liunian(bazi_info, child_stars, marriage_stars, career_stars, wealth_stars, 
-                    focus='综合', start_year=2025, end_year=2030):
-    """分析流年运势"""
-    results = []
-    day_zhi = bazi_info['day_zhi']
-    
-    for year in range(start_year, end_year + 1):
-        lunar_year = Lunar.fromYmd(year, 1, 1)
-        year_gz = lunar_year.getYearInGanZhi()
-        year_gan = lunar_year.getYearGan()
-        year_zhi = lunar_year.getYearZhi()
-        shengxiao = lunar_year.getYearShengXiao()
-        
-        year_info = {
-            'year': year,
-            'gan_zhi': year_gz,
-            'shengxiao': shengxiao,
-            'events': []
-        }
-        
-        # 检查子女星
-        if focus in ['综合', '子女']:
-            for star in child_stars:
-                if star['gan'] == year_gan:
-                    year_info['events'].append(
-                        f"⭐ 子女星出现: {star['name']}({star['child']})"
-                    )
-        
-        # 检查婚姻星
-        if focus in ['综合', '婚姻']:
-            for star in marriage_stars:
-                if star['gan'] == year_gan:
-                    year_info['events'].append(
-                        f"💕 婚姻星出现: {star['name']}({star['meaning']})"
-                    )
-        
-        # 检查事业星
-        if focus in ['综合', '事业']:
-            for star in career_stars:
-                if star['gan'] == year_gan:
-                    year_info['events'].append(
-                        f"💼 事业星出现: {star['name']}({star['meaning']})"
-                    )
-        
-        # 检查财运星
-        if focus in ['综合', '财运']:
-            for star in wealth_stars:
-                if star['gan'] == year_gan:
-                    year_info['events'].append(
-                        f"💰 财运星出现: {star['name']}({star['meaning']})"
-                    )
-        
-        # 检查地支关系
-        if LIU_HE.get(year_zhi) == day_zhi:
-            year_info['events'].append("🤝 流年地支与日支六合(吉)")
-        
-        if day_zhi in SAN_HE.get(year_zhi, []):
-            year_info['events'].append("🔗 流年地支与日支三合(吉)")
-        
-        if CHONG.get(year_zhi) == day_zhi:
-            year_info['events'].append("⚡ 流年地支与日支冲(动)")
-        
-        results.append(year_info)
-    
-    return results
-
-
-# ============================================================
-# 主函数
-# ============================================================
+def liunian_view(yun, years, pillars_zhi):
+    now = datetime.date.today().year
+    flat = {}
+    for dy in yun['大运']:
+        for ln in dy.get('liuNian', []):
+            flat[ln['year']] = ln
+    view = []
+    for yr in range(now, now + years):
+        ln = flat.get(yr)
+        if not ln: continue
+        gz = ln['ganZhi']; zg = gz[1]
+        rels = relations(pillars_zhi, zg)
+        dy_idx = next((d['index'] for d in yun['大运'] if d['startYear'] <= yr <= d['endYear']), None)
+        view.append({'year': yr, 'ganZhi': gz, 'age': ln['age'], '大运序': dy_idx,
+                     '关系': rels or ['无明显刑冲合']})
+    return view
 
 def main():
-    parser = argparse.ArgumentParser(description='八字命理分析')
-    parser.add_argument('--year', '-y', type=int, required=True, help='出生年份')
-    parser.add_argument('--month', '-m', type=int, required=True, help='出生月份')
-    parser.add_argument('--day', '-d', type=int, required=True, help='出生日期')
-    parser.add_argument('--gender', '-g', choices=['男', '女'], required=True, help='性别')
-    parser.add_argument('--lunar', action='store_true', help='如果输入的是农历日期')
-    parser.add_argument('--hour', '-H', type=int, default=12, help='出生时辰 0-23 (默认12点午时)')
-    parser.add_argument('--focus', '-f', choices=['综合', '子女', '婚姻', '事业', '财运'],
-                        default='综合', help='分析重点')
-    
-    args = parser.parse_args()
-    
-    # 1. 获取日期
-    lunar, solar = get_solar_date(args.year, args.month, args.day, args.lunar)
-    
-    print("=" * 60)
-    print(f"八字排盘 ({args.gender}命)")
-    print("=" * 60)
-    
-    if args.lunar:
-        print(f"农历: {args.year}年{args.month}月{args.day}日")
-    else:
-        print(f"公历: {args.year}年{args.month}月{args.day}日")
-    print(f"公历: {solar.getYear()}年{solar.getMonth()}月{solar.getDay()}日")
-    print(f"生肖: {lunar.getYearShengXiao()}")
-    
-    # 2. 八字信息
-    bazi_info = get_bazi_info(lunar, args.hour)
-    
-    print(f"\n【四柱】")
-    print(f"  年柱: {bazi_info['year_gz']} ({bazi_info['year_nayin']})")
-    print(f"  月柱: {bazi_info['month_gz']} ({bazi_info['month_nayin']})")
-    print(f"  日柱: {bazi_info['day_gz']} ({bazi_info['day_nayin']})")
-    if args.hour != 12:
-        print(f"  时柱: {bazi_info['time_gz']} ({bazi_info['time_nayin']})")
-    else:
-        print(f"  时柱: {bazi_info['time_gz']} ({bazi_info['time_nayin']}) [按午时计算]")
-    
-    day_gan = bazi_info['day_gan']
-    day_wx = WU_XING[day_gan]
-    day_yy = YIN_YANG[day_gan]
-    print(f"\n【日主】: {day_gan} ({day_wx}命, {day_yy})")
-    
-    print(f"\n【十神】")
-    print(f"  年干: {bazi_info['year_shishen']} — {SHI_SHEN_MEANING.get(bazi_info['year_shishen'], '')}")
-    print(f"  月干: {bazi_info['month_shishen']} — {SHI_SHEN_MEANING.get(bazi_info['month_shishen'], '')}")
-    print(f"  时干: {bazi_info['time_shishen']} — {SHI_SHEN_MEANING.get(bazi_info['time_shishen'], '')}")
-    
-    # 3. 大运
-    bazi = lunar.getEightChar()
-    dayun = get_dayun(bazi, args.gender)
-    
-    print(f"\n【大运】")
-    print(f"  起运: {dayun['start_year']}年{dayun['start_month']}个月 ({dayun['start_date']})")
-    for dy in dayun['da_yun']:
-        print(f"  第{dy['index']}步: {dy['gan_zhi']} ({dy['start_year']}-{dy['end_year']}岁)")
-    
-    # 4. 专项分析
-    child_stars = get_child_stars(bazi_info['day_gan'], args.gender)
-    marriage_stars = get_marriage_stars(bazi_info['day_gan'], args.gender)
-    career_stars = get_career_stars(bazi_info['day_gan'])
-    wealth_stars = get_wealth_stars(bazi_info['day_gan'])
-    
-    print(f"\n【{args.focus}分析】")
-    
-    if args.focus in ['综合', '子女']:
-        print(f"\n  子女星:")
-        for star in child_stars:
-            print(f"    {star['name']}({star['gan']}) → {star['child']}")
-    
-    if args.focus in ['综合', '婚姻']:
-        print(f"\n  婚姻星:")
-        for star in marriage_stars:
-            print(f"    {star['name']}({star['gan']}) → {star['meaning']}")
-    
-    if args.focus in ['综合', '事业']:
-        print(f"\n  事业星:")
-        for star in career_stars:
-            print(f"    {star['name']}({star['gan']}) → {star['meaning']}")
-    
-    if args.focus in ['综合', '财运']:
-        print(f"\n  财运星:")
-        for star in wealth_stars:
-            print(f"    {star['name']}({star['gan']}) → {star['meaning']}")
-    
-    # 5. 流年分析
-    liunian = analyze_liunian(
-        bazi_info, child_stars, marriage_stars, career_stars, wealth_stars,
-        args.focus, 2026, 2030
-    )
-    
-    print(f"\n【流年运势 (2026-2030)】")
-    for yn in liunian:
-        print(f"\n  --- {yn['year']}年 {yn['gan_zhi']}年 ({yn['shengxiao']}年) ---")
-        if yn['events']:
-            for event in yn['events']:
-                print(f"    {event}")
-        else:
-            print(f"    (无明显特殊关系)")
-    
-    # 6. 提醒
-    print(f"\n{'=' * 60}")
-    print("⚠️ 重要提示:")
-    print("  1. 缺少出生时辰时，时柱(子女宫)无法准确推算")
-    print("  2. 八字属于传统文化，结果仅供娱乐参考")
-    print("  3. 科学态度和实际行动才是最重要的")
-    print(f"{'=' * 60}")
+    ap = argparse.ArgumentParser(description='八字排盘 v2（lunar_python 全能力）')
+    ap.add_argument('--date', required=True, help='年-月-日')
+    ap.add_argument('--time', default=None, help='HH:MM 或 0-23；缺省=三柱模式')
+    ap.add_argument('--gender', required=True, choices=['男','女'])
+    ap.add_argument('--lunar', action='store_true', help='输入为农历')
+    ap.add_argument('--leap', action='store_true', help='农历闰月')
+    ap.add_argument('--sect', default='1', choices=['1','2'], help='晚子时口径')
+    ap.add_argument('--focus', default='综合', choices=['综合','子女','婚姻','事业','财运','格局'])
+    ap.add_argument('--years', type=int, default=5)
+    ap.add_argument('--json', action='store_true')
+    a = ap.parse_args()
 
+    ec, lunar, solar, has_time = build(a.date, a.gender, a.time, a.lunar, a.leap, a.sect)
+    P = pillar_map(ec)
+    zhis = [P[k]['zhi'] for k in ['年','月','日']] + ([P['时']['zhi']] if has_time else [])
+    strength_r = strength(ec, has_time)
+    yun = yun_info(ec, a.gender, has_time)
+    label, stars = focus_stars(ec, a.gender, has_time, a.focus)
+    lnview = liunian_view(yun, a.years, zhis)
+
+    result = {
+        '输入': {'日期': f'{solar.getYear()}-{solar.getMonth()}-{solar.getDay()}(公历)',
+                 '农历': lunar.toString(), '时辰': a.time or '未知(三柱模式)', '性别': a.gender},
+        '四柱': {k: P[k] for k in ['年','月','日','时'] if has_time or k != '时'},
+        '日主': {'天干': ec.getDayGan(), '十神(干)': ec.getDayShiShenGan(),
+                 '命宫': ec.getMingGong(), '命宫纳音': ec.getMingGongNaYin(),
+                 '身宫': ec.getShenGong(), '胎元': ec.getTaiYuan(), '胎息': ec.getTaiXi()},
+        '强弱': strength_r, '专项': {'标签': label, '星曜': stars},
+        '大运': yun, '流年': lnview,
+        '提示': [] if has_time else ['未提供出生时辰：时柱(子女宫)与各支十神不可推，三柱结论置信度较低']}
+
+    if a.json:
+        print(json.dumps(result, ensure_ascii=False, indent=1))
+        return
+    R = result
+    print('=' * 58)
+    print(f"  公历 {R['输入']['日期']} {R['输入']['时辰']}  性别{a.gender}")
+    print(f"  农历 {R['输入']['农历']}")
+    print('=' * 58)
+    for k in ['年','月','日','时']:
+        if k not in R['四柱']:
+            print(f"  {k}柱: ——（未知时辰，三柱模式）"); continue
+        p = R['四柱'][k]
+        print(f"  {k}柱: {p['gan']}{p['zhi']}  纳音{p['nayin']}  地势{p['dishi']}  空亡{p['xunkong']}")
+        print(f"       十神(干){p['shishen_gan']}  藏干{'/'.join(p['hide_gan'])}  支十神{'/'.join(p['shishen_zhi'])}")
+    print(f"\n  日主 {R['日主']['天干']} | 命宫{R['日主']['命宫']}({R['日主']['命宫纳音']}) 身宫{R['日主']['身宫']} 胎元{R['日主']['胎元']} 胎息{R['日主']['胎息']}")
+    s = R['强弱']
+    print(f"\n【日主强弱·启发式】{s['日主']} → {s['强弱']}（得分{s['得分']}）")
+    for d in s['依据']: print(f"  · {d}")
+    print(f"  喜用五行: {'、'.join(s['喜用五行'])} → {s['喜用提示']}")
+    print(f"\n【{R['专项']['标签']}】")
+    for st in R['专项']['星曜']:
+        tag = '★' if (st['is_child'] and a.focus in ('综合','子女')) or (st['is_marriage'] and a.focus in ('综合','婚姻')) else ' '
+        print(f"  {tag}{st['pos']}柱 {st['shishen']}({st['gan']}) — {st['meaning']}")
+    y = R['大运']
+    print(f"\n【大运】{'顺行' if y['forward'] else '逆行'}，起运 {y['起运']}")
+    for d in y['大运']:
+        if d['ganZhi']:
+            print(f"  {d['startAge']}-{d['endAge']}岁 {d['startYear']}-{d['endYear']}: {d['ganZhi']} (空亡{d['xunKong']})")
+    print(f"\n【近年流年】")
+    for v in R['流年']:
+        print(f"  {v['year']} {v['ganZhi']}({v['age']}岁,大运{v['大运序']}) — {'、'.join(v['关系'])}")
+    for t in R['提示']: print(f"\n⚠ {t}")
+    print('\n※ 八字为传统文化模型，强弱/喜用为可复核的启发式估算，仅供娱乐参考。')
 
 if __name__ == '__main__':
     main()

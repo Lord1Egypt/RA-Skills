@@ -1,0 +1,32 @@
+# Company Policy Drafter - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+policy_name: ""
+policy_owner_role: ""
+business_owner_role: ""
+states_with_employees:
+  - ""
+employee_count: ""
+current_versions:
+  - version: ""
+    effective_date: ""
+    approved_by_role: ""
+scope:
+  applies_to: ""
+  excludes: ""
+key_definitions:
+  - term: ""
+    definition: ""
+sections:
+  - section: ""
+    current_rule: ""
+    proposed_rule: ""
+    owner_role: ""
+state_variations:
+  - state: ""
+    requirement: ""
+    source: ""
+counsel_questions:
+  - ""
+effective_date: ""
+review_cycle: "annual"
+acknowledgment_clause: ""

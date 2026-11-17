@@ -1,43 +1,57 @@
-## Description: <br>
-Checks whether conclusions in research or analysis are supported by provided evidence and highlights gaps in the evidence chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research Claim Checker helps review research or analysis claims against supplied evidence and identify gaps in the evidence chain.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Researchers, analysts, reviewers, and developers use this skill to review research drafts, claims, and evidence summaries for support, gaps, missing evidence, suggested revisions, and confidence judgments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-provided research material and can write a report file, so sensitive input or an unsafe output path could expose or overwrite local content. <br>
-Mitigation: Use dry-run or stdout for sensitive reviews, provide only intended input files, and avoid writing output to important paths. <br>
-Risk: The output is an evidence-checking aid and may miss context or produce incomplete confidence judgments. <br>
-Mitigation: Treat results as review guidance, not peer review or final factual validation, and verify claims against authoritative sources before relying on them. <br>
+## Use Case:
 
+Researchers, analysts, reviewers, and developers use this skill to turn supplied analysis drafts, claims, and evidence summaries into a structured claim-support review with evidence gaps, needed follow-up evidence, revision suggestions, and confidence judgments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/research-claim-checker) <br>
-- [README](artifact/README.md) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Structured output spec](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured Markdown report, with optional JSON output from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a report to a user-specified output path or emit to stdout; dry-run mode is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The output can look like an evidence-verification result even though the skill works from the user's supplied materials and is not a final truth determination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the report as a structured review draft, confirm source material independently, and avoid treating it as a replacement for peer review.
+
+Risk: The local helper reads the input path and may write an output report when requested.
+
+Mitigation: Review inputs for sensitive information before use and direct output to an intended local path.
+
+Risk: Dormant audit modes exist beyond the default structured claim-review workflow.
+
+Mitigation: Document or remove unused audit modes before relying on the skill in stricter deployment environments.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/52yuanchangxing/skills/research-claim-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown or JSON report, with optional local shell command usage when execution is available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local input only; requires python3 for the bundled script and has no additional third-party dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

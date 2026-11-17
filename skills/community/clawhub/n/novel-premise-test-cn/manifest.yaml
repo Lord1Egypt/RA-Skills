@@ -1,0 +1,26 @@
+name: novel-premise-test-cn
+slug: novel-premise-test-cn
+display_name: 小说梗概可写性测试
+description: 输入一句小说灵感、类型与目标读者，输出可执行的主冲突、赌注、主题和三种展开方向，帮助作者在动笔前筛选短篇、章节或场景的故事命题。若缺少灵感、类型或读者定位，会逐项列出缺料并说明应补什么，不虚构设定或假装读完全文。
+version: 1.0.1
+repository: https://github.com/xxjrq/novel-premise-test-cn
+license: MIT-0
+tags:
+  - 小说创作
+  - 故事命题
+  - 创意评估
+  - 中文写作
+trigger_words:
+  - 小说灵感能写吗
+  - 测试故事梗概
+  - 主冲突和赌注
+triggers:
+  - 帮我判断这个小说点子是否可写
+  - 给我的故事命题三个展开方向
+  - 梳理灵感的冲突、主题与赌注
+icon: assets/icon-512.png
+entrypoint: SKILL.md
+self_test: python3 scripts/self_test.py
+assets:
+  icon: assets/icon-512.png
+  promo: assets/promo-1600x900.png

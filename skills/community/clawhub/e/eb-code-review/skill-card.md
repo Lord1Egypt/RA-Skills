@@ -1,40 +1,49 @@
-## Description: <br>
-Multi-agent code review for pull requests that checks for bugs, CLAUDE.md compliance, git history context, and previous PR comments, using confidence scoring to filter false positives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Review provides multi-agent pull request review that checks for bugs, CLAUDE.md compliance, git history context, and previous PR comments while using confidence scoring to filter false positives.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers and engineers use this skill to review pull requests for significant, verifiable bugs and repository-specific guidance compliance before merging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish GitHub pull request comments using the active GitHub CLI account. <br>
-Mitigation: Confirm the repository, pull request number, and GitHub account before use, and require the agent to draft the comment for approval before posting. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to review GitHub pull requests for significant, verifiable issues. It summarizes review findings and can post concise Markdown comments with linked code evidence.
 
-## Reference(s): <br>
-- [Review Patterns](references/review-patterns.md) <br>
-- [ClawHub skill page](https://clawhub.ai/emersonbraun/eb-code-review) <br>
-- [Publisher profile](https://clawhub.ai/user/emersonbraun) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review comments with links to relevant files, lines, and supporting evidence] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May post a GitHub pull request comment through the active GitHub CLI account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; skill frontmatter lists 1.1.0) <br>
+Risk: The skill can post team-visible GitHub PR comments after broad review-style triggers without an explicit confirmation step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when a pull request review comment is intended, and consider requiring confirmation before gh pr comment is run.
+
+## Reference(s):
+
+- [Review Patterns](references/review-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown review comments with GitHub links and supporting analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May post a team-visible GitHub pull request comment via gh pr comment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata.version is 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

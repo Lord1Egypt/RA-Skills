@@ -1,41 +1,49 @@
-## Description: <br>
-Creates, optimizes, and audits alternatives and comparison pages or blog articles for SEO, PPC, and competitor-brand search intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, optimize, or audit alternatives and comparison pages or blog articles for SEO, PPC, and competitor-brand search intent.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Marketing, growth, and content teams use this skill to plan or draft alternatives pages, comparison pages, and related blog articles that target high-intent competitor and switching searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Project-context-derived product, competitor, or differentiator details may be sensitive. <br>
-Mitigation: Review generated content for confidentiality before publishing or sharing externally. <br>
-Risk: Competitor pricing, features, and advertising-platform rules can change or vary by region. <br>
-Mitigation: Independently verify competitor claims, cite current sources, and confirm ad-policy compliance before launch. <br>
+## Use Case:
 
+Marketing, growth, SEO, and PPC teams use this skill to draft or audit fair alternatives and comparison content for high-intent competitor search traffic. It guides competitor grouping, page structure, comparison tables, metadata, landing-page alignment, and conversion calls to action.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/alternatives-page-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or structured text with lists, tables, outlines, metadata, and page recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include competitor lists, keyword lists, headlines, comparison-table structure, per-competitor summaries, positioning, internal-link recommendations, SEO metadata, and PPC landing-page guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release metadata) <br>
+Risk: Generated competitor claims, pricing, feature comparisons, or ad references may be inaccurate, unfair, outdated, or noncompliant if published without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims, prices, competitor references, and ad copy for accuracy, fairness, and platform or legal compliance before publishing or using them in campaigns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/alternatives-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with structured lists, SEO metadata, PPC guidance, and HTML comparison table examples when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated content should be reviewed for factual accuracy, fairness, and advertising or platform compliance before publication.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata, target metadata, and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-A skill that allows AI agents to send emails using the AssistantMail API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assistant Mail lets agents use managed email mailboxes through MCP with API key authentication, allowlisted outbound sending, consent controls, retention controls, and send caps.
 
-## Publisher: <br>
-[assistantmail](https://clawhub.ai/user/assistantmail) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[assistantmail](https://clawhub.ai/user/assistantmail)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to AssistantMail mailboxes through MCP tools for sending, replying to, listing, reading, and managing mailbox data with API-key authentication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill grants broad mailbox authority, including reading, sending, modifying policies and recipients, and deleting mailboxes or messages. <br>
-Mitigation: Use a least-privilege API key where possible and require human approval for sending email, changing policies, managing recipients, or deleting mailbox data. <br>
+## Use Case:
 
+External developers and small teams use this skill to connect OpenClaw, Hermes, Claude, or OpenAI agents to Assistant Mail mailboxes for listing, reading, sending, replying, recipient management, and usage checks through MCP.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/assistantmail/assistant-mail) <br>
-- [AssistantMail app](https://app.assistant-mail.ai) <br>
-- [AssistantMail site](https://assistant-mail.ai) <br>
-- [AssistantMail API base URL](https://api.assistant-mail.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, API calls] <br>
-**Output Format:** [Markdown with JSON examples and MCP configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AssistantMail API key or Cognito JWT and a mailboxId for mailbox operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can connect real mailboxes through an unverified third-party MCP using an API key with broad mailbox read, send, update, and delete authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a narrowly scoped and revocable API key when available, avoid broad mailbox or delete permissions where possible, and confirm the assistantmail-mcp package provenance and version before use.
+
+Risk: Changing ASSISTANT_MAIL_API_BASE_URL can route mailbox operations to a non-default endpoint.
+
+Mitigation: Keep ASSISTANT_MAIL_API_BASE_URL at the default hosted endpoint unless you deliberately trust the replacement endpoint.
+
+Risk: Mailbox operations require the correct mailboxId and API key, so mishandled credentials or mailbox identifiers could expose or affect the wrong mailbox.
+
+Mitigation: Store the API key securely, share it only with the intended agent runtime, and verify the target mailboxId from the mailbox listing before read, send, update, or delete actions.
+
+## Reference(s):
+
+- [Assistant Mail documentation](https://assistant-mail.ai/docs)
+- [Assistant Mail ClawHub skill page](https://clawhub.ai/assistantmail/skills/assistant-mail)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP tool names, environment variables, API key handling notes, mailboxId requirements, and example tool inputs.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

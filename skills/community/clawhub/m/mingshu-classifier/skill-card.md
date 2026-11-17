@@ -1,43 +1,63 @@
-## Description: <br>
-Classifies and labels files under a target directory by scanning filenames and supported file contents for personal-information sensitivity under GB/T 35273 rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans a specified directory and classifies files under the GB/T 35273 personal information security specification by matching filenames and supported file contents to sensitive or general personal-information categories.
 
-## Publisher: <br>
-[kkming1998](https://clawhub.ai/user/kkming1998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kkming1998](https://clawhub.ai/user/kkming1998)
 
-## Use Case: <br>
-Developers, security reviewers, and compliance teams use this skill to scan local directories, identify files that may contain sensitive or general personal information, and produce reviewable classification results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect filenames and supported file contents in a selected local directory, and exported reports may reveal sensitive paths or matched keywords. <br>
-Mitigation: Choose a narrow target directory, use --name-only when content inspection is unnecessary, and treat terminal, CSV, and JSON results as sensitive. <br>
-Risk: Keyword-based classifications are advisory and may be incomplete or overinclusive. <br>
-Mitigation: Review classifications against actual file contents before using results for compliance, access-control, or handling decisions. <br>
-Risk: PDF and legacy .doc files are not read for content and are classified from filenames only. <br>
-Mitigation: Inspect unsupported formats separately or convert them to a supported format before relying on the classification. <br>
+## Use Case:
 
+Developers, compliance reviewers, and privacy operations teams can use this skill to scan directories for files that may contain sensitive or general personal information and to generate classification reports for review. It is useful for bulk privacy assessment, data labeling, and file-naming compliance checks.
 
-## Reference(s): <br>
-- [GB/T 35273 file classification keyword rules](references/classification_rules.md) <br>
-- [ClawHub release page](https://clawhub.ai/kkming1998/mingshu-classifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with terminal output and optional CSV or JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include file paths, matched keywords, category labels, match source, and handling suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The scan reads filenames and, by default, supported file contents in the directory supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run scans only on narrowly scoped directories and use --name-only when content access is not needed.
+
+Risk: Automated keyword classifications can miss context or overstate sensitivity.
+
+Mitigation: Treat results as review aids and manually verify sensitive classifications before making compliance or handling decisions.
+
+Risk: CSV reports created from untrusted directory contents may carry spreadsheet-handling risk.
+
+Mitigation: Open generated CSV files cautiously and review them with tools or settings appropriate for untrusted spreadsheet data.
+
+Risk: Some file formats, including legacy .doc and PDF files, are not read for content by the bundled scanner.
+
+Mitigation: Review unsupported formats manually or convert them to supported text-readable formats before relying on scan results.
+
+## Reference(s):
+
+- [GB/T 35273 classification rules](references/classification_rules.md)
+- [ClawHub skill page](https://clawhub.ai/kkming1998/skills/mingshu-classifier)
+- [ClawHub publisher profile](https://clawhub.ai/user/kkming1998)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; scan results may be displayed as terminal text or written as CSV or JSON reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include file path, file name, category, category name, matched keywords, keyword source, and suggested handling.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

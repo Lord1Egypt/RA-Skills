@@ -1,44 +1,60 @@
-## Description: <br>
-Use when vmctl is already installed and the agent must immediately run safe post-install checks and first lifecycle actions without guessing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when vmctl is already installed and the agent must immediately run safe post-install checks and first lifecycle actions without guessing.
 
-## Publisher: <br>
-[bashrusakh](https://clawhub.ai/user/bashrusakh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bashrusakh](https://clawhub.ai/user/bashrusakh)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill after vmctl is installed on a Hermes host to run health checks, smoke-test a test VM lifecycle, clean up test artifacts, recover drift, and report operator-ready status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and remove VM resources during smoke testing. <br>
-Mitigation: Use it only on the intended Hermes/vmctl host and keep actions scoped to vmctl-test-* resources. <br>
-Risk: Cleanup or recovery against old, ambiguous, or non-test resources could affect unintended state. <br>
-Mitigation: Verify the deleted tombstone belongs to the smoke-test VM and require operator approval before recover --apply or ambiguous cleanup. <br>
-Risk: Missing vmctl installation, configuration, state paths, or credentials can lead to unsafe guessing. <br>
-Mitigation: Stop and ask the operator to install or configure vmctl instead of attempting bootstrap installation or credential changes. <br>
+## Use Case:
 
+Developers and operators use this skill after vmctl installation to run health checks, perform a test VM lifecycle smoke run, clean up test artifacts, recover state drift when needed, and report concise operational status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bashrusakh/vmctl-ops) <br>
-- [vmctl operator installation source](https://github.com/bashrusakh/vmctl) <br>
-- [vmctl latest release page](https://github.com/bashrusakh/vmctl/releases/latest) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise operator status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Assumes vmctl, configuration, state paths, and credentials are already present; status reporting should stay limited to the requested post-install validation flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can run destructive cleanup and recovery operations through existing vmctl credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation to explicit vmctl smoke-test requests and require operator approval before `delete --force`, `purge`, or `recover --apply`.
+
+Risk: Incorrect purge or recovery targets could affect VM state beyond the intended smoke-test resource.
+
+Mitigation: Use test-only VM names, verify the deleted tombstone name before purge, and confirm recovery targets exactly match the intended test VM.
+
+Risk: Existing ESXi/helper credentials may permit more than the minimum lifecycle actions needed for validation.
+
+Mitigation: Limit credential scope to the vmctl helper workflow and test VM lifecycle operations: diagnostics, create/status, cleanup, and reconciliation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bashrusakh/skills/vmctl-ops)
+- [ClawHub publisher profile](https://clawhub.ai/user/bashrusakh)
+- [vmctl repository](https://github.com/bashrusakh/vmctl)
+- [vmctl latest release](https://github.com/bashrusakh/vmctl/releases/latest)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown status summaries with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise operator-facing pass/fail status, VM name, cleanup result, and residual recovery action count.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,47 @@
-## Description: <br>
-Documentation-as-Source-of-Truth workflow. Use when working with projects that use docs/ as the canonical source for definitions, rules, and tasks. Routes to specialized sub-skills for specific documentation types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OGT Docs guides agents through a documentation-as-source-of-truth workflow for projects where docs/ defines canonical definitions, rules, and tasks.
 
-## Publisher: <br>
-[EduardoU24](https://clawhub.ai/user/EduardoU24) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[eduardou24](https://clawhub.ai/user/eduardou24)
 
-## Use Case: <br>
-Developers and agents use this skill to navigate and apply a docs-first workflow where project documentation defines entities, rules, and tasks before implementation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Outdated or incorrect project documentation could steer agents toward incorrect implementation decisions because this skill treats docs/ as authoritative. <br>
-Mitigation: Keep docs/ reviewed and current, and require human review when documentation conflicts with observed implementation behavior. <br>
-Risk: The skill references specialized ogt-docs sub-skills that are not included in this artifact. <br>
-Mitigation: Review and approve each referenced sub-skill separately before relying on it in an agent workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and agent operators use this skill to navigate docs-first projects, choose the right documentation sub-skill, initialize a docs structure, and follow conventions for definitions, rules, and task workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The docs-first convention can cause agents to propose changing implementation to match documentation, even when documentation is stale or incorrect.
+
+Mitigation: Review documentation assumptions and any meaningful code or project-structure changes before applying them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with folder structures, naming conventions, workflow references, and task routing notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [text, markdown, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with folder structures, tables, and workflow conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code, network behavior, credential use, or hidden execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

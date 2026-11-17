@@ -1,40 +1,56 @@
-## Description: <br>
-Manage environment promotions between development, staging, and production by comparing configuration, detecting drift, generating promotion plans, validating prerequisites, and preparing rollback guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage environment promotions from dev to staging to production by comparing configurations, detecting drift, generating promotion plans, validating prerequisites, and preparing rollback support.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, DevOps engineers, and release managers use this skill to compare environment configuration, detect drift, build promotion plans, validate readiness, and prepare rollback steps before promoting changes across environments.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The compare workflow can expose secrets from .env files.
+
+Mitigation: Review before installing and avoid running the compare command on production .env files until redaction is fixed.
+
+Risk: Unsafe command patterns and untrusted file paths may create installation or execution risk.
+
+Mitigation: Use only trusted local paths and manually review commands before execution.
+
+Risk: Validation may contact endpoints discovered in configuration files.
+
+Mitigation: Require explicit approval before any validation command contacts endpoints found in config files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, release engineers, and operations teams use this skill to inspect environment differences, identify configuration drift, plan promotions, validate readiness, and document rollback steps before deployment changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Environment comparisons can expose secrets or sensitive deployment values from environment and configuration files. <br>
-Mitigation: Use key-only or hash-only comparisons by default, mask sensitive values, and manually review generated diffs before sharing them. <br>
-Risk: Validation and history commands may run live checks using local credentials, configured URLs, or GitHub CLI access. <br>
-Mitigation: Run the skill only in authorized repositories and require explicit confirmation before curl-based validation or GitHub CLI history commands. <br>
+**Output Format:** [Markdown, text reports, inline shell commands, and optional JSON-shaped examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Environment Promoter on ClawHub](https://clawhub.ai/charlie-morrison/environment-promoter) <br>
+**Other Properties Related to Output:** [Produces environment comparison reports, drift summaries, promotion plans, validation checks, history summaries, and environment matrices; it does not execute deployments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Human-readable text, Markdown reports, JSON summaries, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Masks some sensitive values in examples, but generated diffs and checks still require human review before sharing or execution.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

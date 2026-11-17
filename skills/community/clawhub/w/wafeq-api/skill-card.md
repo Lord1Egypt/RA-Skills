@@ -1,46 +1,65 @@
-## Description: <br>
-Complete Wafeq accounting and e-invoicing API reference for the Middle East, including invoices, contacts, accounts, bills, expenses, notes, payments, payroll, quotes, reports, and related Wafeq REST API tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wafeq API Reference helps agents answer and draft integration guidance for Wafeq accounting and e-invoicing API workflows across invoices, contacts, accounts, payments, reports, and related resources.
 
-## Publisher: <br>
-[YordiLorenzo](https://clawhub.ai/user/YordiLorenzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yordilorenzo](https://clawhub.ai/user/yordilorenzo)
 
-## Use Case: <br>
-Developers and integration engineers use this skill to reference Wafeq API authentication, schemas, endpoint patterns, and workflows for accounting, e-invoicing, reporting, payroll, and payment integrations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide actions against sensitive accounting, payroll, payment, and tax-reporting APIs. <br>
-Mitigation: Manually review write, delete, bulk-send, payment, payroll, and tax-reporting actions before execution, and use the narrowest available API scopes. <br>
-Risk: Wafeq API keys and OAuth tokens can grant access to financial-system data. <br>
-Mitigation: Store credentials in a protected secret store or OpenClaw configuration, never hardcode them, and avoid logging credential values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Wafeq homepage](https://wafeq.com) <br>
-- [ClawHub skill page](https://clawhub.ai/YordiLorenzo/wafeq-api) <br>
-- [Core concepts](references/core-concepts.md) <br>
-- [Enum types](references/enums.md) <br>
-- [Invoices](references/invoices.md) <br>
-- [Accounts, banking, and contacts](references/accounts-banking-contacts.md) <br>
-- [Bills, expenses, credit notes, and debit notes](references/bills-expenses-notes.md) <br>
-- [Quotes, payments, payslips, items, files, journals, and reports](references/quotes-payments-remaining.md) <br>
+## Use Case:
 
+Developers and finance-system integrators use this skill to work with the Wafeq REST API, including authentication, idempotency, CRUD endpoints, financial documents, payments, reports, tax-authority reporting, and entity management.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with endpoint references, JSON examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; API calls require user-provided Wafeq credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide high-impact financial, payment, payroll, tax-reporting, and bulk email actions.
+
+Mitigation: Use a least-privilege Wafeq API key, start in a sandbox or test organization, and require explicit human review before write, delete, payment, payroll, bulk email, or tax-authority requests.
+
+Risk: Incorrect recipients, amounts, record IDs, or tax details could create inaccurate accounting or reporting outcomes.
+
+Mitigation: Review all recipients, amounts, record IDs, invoice details, tax fields, and generated request bodies before execution.
+
+Risk: API credentials could be exposed if copied into code, prompts, or skill files.
+
+Mitigation: Store credentials only in WAFEQ_API_KEY or the configured skill entry, and avoid hardcoding secrets in generated code or documentation.
+
+## Reference(s):
+
+- [Wafeq Homepage](https://wafeq.com)
+- [Wafeq App](https://app.wafeq.com)
+- [Wafeq API Keys](https://app.wafeq.com/c/api-keys)
+- [Wafeq API Base URL](https://api.wafeq.com/v1/)
+- [Core Concepts and Guides](references/core-concepts.md)
+- [Enum Types Reference](references/enums.md)
+- [Invoices API Reference](references/invoices.md)
+- [Accounts, Banking, and Contacts API Reference](references/accounts-banking-contacts.md)
+- [Bills, Expenses, Credit Notes, and Debit Notes API Reference](references/bills-expenses-notes.md)
+- [Quotes, Payments, Payslips, Items, Files, Journals, Reports, and Entity Management API Reference](references/quotes-payments-remaining.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code, JSON examples, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no direct API calls are executed by the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

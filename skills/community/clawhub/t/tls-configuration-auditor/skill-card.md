@@ -1,39 +1,52 @@
-## Description: <br>
-Audit TLS/SSL configuration of servers and applications. Check protocol versions, cipher suites, certificate chain validity, HSTS headers, and compliance with security standards (PCI-DSS, NIST, Mozilla recommendations). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit TLS/SSL configuration of servers and applications, including protocol versions, cipher suites, certificate chain validity, HSTS headers, and alignment with PCI-DSS, NIST, and Mozilla recommendations.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, security engineers, and operations teams use this skill to audit HTTPS endpoints for TLS protocol support, certificate health, cipher strength, security headers, and compliance-oriented findings before assessments or remediation work.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: TLS probes run network checks against the host supplied by the user; an incorrect or unauthorized HOST value could test the wrong system.
+
+Mitigation: Use the skill only on systems you own or are authorized to test, and validate the HOST value before running commands.
+
+Risk: Generated command snippets and audit findings may be treated as authoritative compliance evidence without review.
+
+Mitigation: Review shell snippets before execution and treat generated findings as a starting point for security or compliance validation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, platform engineers, and security reviewers use this skill to audit a chosen host's TLS configuration, certificate chain, cipher support, security headers, and compliance posture before assessments or operational changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: TLS probes and header checks are active scans against a selected host. <br>
-Mitigation: Run the generated commands only against systems the user is authorized to assess. <br>
-Risk: Generated monitoring scripts or CI jobs can create recurring network checks or operational alerts. <br>
-Mitigation: Review and approve any generated monitoring or CI configuration before enabling it. <br>
+**Output Format:** [Markdown with inline bash code blocks and audit report templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces host-specific TLS audit findings, recommendations, and optional monitoring script or CI job guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and audit findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated certificate-expiry monitoring scripts or CI job guidance for reviewer approval.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

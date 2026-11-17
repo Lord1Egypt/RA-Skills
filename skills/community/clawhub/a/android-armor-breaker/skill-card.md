@@ -1,48 +1,60 @@
-## Description: <br>
-Android Armor Breaker helps authorized security researchers analyze protected Android APKs, bypass anti-debug protections, and extract DEX files using Frida, ADB, and root memory extraction workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Android Armor Breaker helps agents guide authorized Android APK protection analysis, Frida-based dynamic unpacking, root memory extraction, anti-debug bypass workflows, and DEX extraction for security research and testing.
 
-## Publisher: <br>
-[haonings](https://clawhub.ai/user/haonings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haonings](https://clawhub.ai/user/haonings)
 
-## Use Case: <br>
-External developers and security researchers use this skill for authorized Android application security analysis, APK protection assessment, anti-debug testing, and DEX extraction in controlled test environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control rooted Android devices, bypass application protections, and read protected app memory or code. <br>
-Mitigation: Use it only for authorized security research on applications you own or have written permission to analyze, and run it on a disposable emulator or dedicated test device. <br>
-Risk: ADB shell commands have unsafe package-name handling according to the security evidence. <br>
-Mitigation: Treat package names and APK paths as trusted input, and review or patch package-name validation before operational use. <br>
-Risk: Extracted memory and DEX artifacts may contain sensitive or proprietary data. <br>
-Mitigation: Keep extracted artifacts local to the controlled test environment, restrict access, and delete them when they are no longer needed. <br>
+## Use Case:
 
+Developers, mobile security engineers, and authorized security testers use this skill to analyze Android APK protections, choose an unpacking strategy, run Frida or root-memory extraction tooling, and handle extracted DEX artifacts responsibly.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/haonings/android-armor-breaker) <br>
-- [Publisher Profile](https://clawhub.ai/user/haonings) <br>
-- [README](artifact/README.md) <br>
-- [Security and Responsible Use Guidelines](artifact/SECURITY.md) <br>
-- [Quick Start Guide](artifact/QUICK_START.md) <br>
-- [Release Notes v2.2.2](artifact/RELEASE_NOTES_v2.2.2.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local analysis artifacts when executed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce DEX files, JSON reports, execution logs, and memory extraction artifacts on the user's authorized test device or workstation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.6 (source: server release evidence and target metadata) <br>
+Risk: The skill can use root and Frida to bypass Android application protections, read process memory, and extract code or data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on apps and devices the operator owns or has written permission to assess, and run in an isolated rooted test device or emulator.
+
+Risk: Extracted DEX files, reports, logs, and memory dumps may contain sensitive application code, tokens, keys, or user data.
+
+Mitigation: Treat all extracted artifacts as sensitive data, restrict access, avoid redistribution without authorization, and delete test outputs when no longer needed.
+
+Risk: Dependency and device tooling such as Frida, ADB, and Python packages can affect the trust boundary of the test environment.
+
+Mitigation: Review bundled scripts before execution, install dependencies from trusted sources, and pin or verify dependency versions before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haonings/skills/android-armor-breaker)
+- [Security and Responsible Use Guidelines](artifact/SECURITY.md)
+- [Android Armor Breaker README](artifact/README.md)
+- [Quick Start Guide](artifact/QUICK_START.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, analysis]
+
+**Output Format:** [Markdown guidance with inline shell commands and references to generated files such as DEX files, JSON reports, and execution logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or reference sensitive Android memory dumps, extracted DEX files, analysis reports, and local logs during authorized testing.]
+
+## Skill Version(s):
+
+2.2.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

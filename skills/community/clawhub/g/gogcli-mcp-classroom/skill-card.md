@@ -1,44 +1,55 @@
-## Description: <br>
-Use when the user asks to manage Google Classroom: create or update courses, enroll students and teachers, post announcements, create assignments, view submissions, grade work, manage topics, or send/accept invitations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to manage Google Classroom courses, rosters, coursework, submissions, announcements, topics, invitations, profiles, and authentication through gogcli-backed MCP tools.
 
-## Publisher: <br>
-[chrischall](https://clawhub.ai/user/chrischall) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chrischall](https://clawhub.ai/user/chrischall)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to Google Classroom through gogcli for course, roster, coursework, submission, announcement, topic, invitation, and profile management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live Google Classroom operations can affect courses, rosters, grades, submissions, announcements, invitations, and deletions. <br>
-Mitigation: Confirm the selected Google account, course, student or teacher identity, and requested action before executing mutating tools. <br>
-Risk: The gog_classroom_run escape hatch can reach Classroom operations beyond the dedicated tools. <br>
-Mitigation: Prefer dedicated tools when available and review the exact escape-hatch command and intended scope before use. <br>
-Risk: Broad classroom-related triggers may activate the skill for ambiguous requests. <br>
-Mitigation: Verify that the user intends live Google Classroom management before authenticating or acting on account data. <br>
+## Use Case:
 
+Developers, educators, and administrators use this skill to let an agent help manage Google Classroom courses, participants, assignments, submissions, grading, announcements, topics, and invitations through an MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chrischall/gogcli-mcp-classroom) <br>
-- [gogcli](https://github.com/openclaw/gogcli) <br>
-- [gogcli-mcp project link in skill text](https://github.com/chrischall/gogcli-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippets and tool-use guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18 or later and an authenticated gogcli account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.8.0 (source: server release metadata) <br>
+Risk: The skill can make high-impact Google Classroom account and course changes through an unpinned npm-run MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Trust and review the npm package and publisher, pin or review the package version where possible, use least-privileged Google accounts and scopes, and require explicit confirmation before destructive or administrative actions.
+
+Risk: The escape-hatch command can reach Classroom functionality beyond the dedicated tool list.
+
+Mitigation: Require explicit review and confirmation before using the escape hatch, especially for guardian, material, and assignee-management operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chrischall/skills/gogcli-mcp-classroom)
+- [gogcli](https://github.com/openclaw/gogcli)
+- [gogcli-mcp](https://github.com/chrischall/gogcli-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and MCP tool actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or later, an installed and authenticated gogcli setup, and a configured Google account.]
+
+## Skill Version(s):
+
+2.8.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

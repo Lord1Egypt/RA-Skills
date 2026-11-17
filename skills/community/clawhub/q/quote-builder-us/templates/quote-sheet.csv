@@ -1,0 +1,12 @@
+# US Quote Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+line_item,description,qty,unit_cost_usd,unit_price_usd,taxable
+1,"Stainless steel enclosure, grade 304",10,42.00,79.00,yes
+2,"DIN rail mount kit",10,6.50,14.00,yes
+3,"Assembly and burn-in test, per unit",10,11.00,22.00,yes
+4,"Calibration certificate, per unit",10,3.20,9.00,no
+5,"Freight, prepaid, contiguous US",1,145.00,195.00,yes
+6,"Installation visit, 8 hours",1,640.00,1150.00,yes
+7,"Extended warranty, 24 months",1,210.00,395.00,yes
+8,"On-site training, half day",1,350.00,650.00,no
+9,"Annual support plan, first year",1,480.00,890.00,yes

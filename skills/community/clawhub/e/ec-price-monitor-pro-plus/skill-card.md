@@ -1,43 +1,58 @@
-## Description: <br>
-EC Price Monitor Pro compares prices across Taobao, Pinduoduo, JD, and Amazon, supports scheduled monitoring, price-difference alerts, and price history tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paid professional price monitor for comparing Taobao, Pinduoduo, JD.com, and Amazon prices with scheduled monitoring, price-difference alerts, notifications, and price-history tracking.
 
-## Publisher: <br>
-[since198905](https://clawhub.ai/user/since198905) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[since198905](https://clawhub.ai/user/since198905)
 
-## Use Case: <br>
-External shoppers and commerce operators use this skill to monitor product prices across Taobao, Pinduoduo, JD, and Amazon, track 30-day price history, and receive configured price-difference or target-price alerts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Hourly product searches may send monitored keywords to Taobao, Pinduoduo, JD, or Amazon. <br>
-Mitigation: Use the skill only for keywords you are comfortable sharing with the listed shopping sites. <br>
-Risk: Configured Feishu or Telegram notifications may send alert content to those services. <br>
-Mitigation: Leave notification credentials blank unless third-party alert delivery is acceptable. <br>
-Risk: Local price history can reveal shopping interests. <br>
-Mitigation: Treat the local price history database as sensitive shopping-interest data. <br>
+## Use Case:
 
+External users and shopping automation agents use this skill to compare product prices across supported e-commerce platforms, monitor configured items hourly, review local price history, and receive optional Feishu or Telegram alerts.
 
-## Reference(s): <br>
-- [Configuration reference](references/config.yaml) <br>
-- [ClawHub skill page](https://clawhub.ai/since198905/ec-price-monitor-pro-plus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown-style text reports with command examples and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local price history records and optionally send configured alert text to Feishu or Telegram.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Hourly monitoring can repeatedly query marketplace pages for every configured item.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review references/config.yaml before use, remove sample products, and enable recurring scans only for products the user intends to monitor.
+
+Risk: Notification settings may include Feishu webhooks or Telegram bot credentials.
+
+Mitigation: Leave notification fields blank unless delivery is intended and treat configured webhook URLs, bot tokens, and chat identifiers as sensitive secrets.
+
+Risk: Live marketplace price extraction may fail or produce incomplete results when pages change or block automated access.
+
+Mitigation: Review generated price reports before acting on them and verify important purchases against the marketplace directly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/since198905/skills/ec-price-monitor-pro-plus)
+- [Configuration reference](artifact/references/config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown-style text reports with price comparisons, alerts, and history summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local SQLite price history and send optional Feishu or Telegram notifications when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

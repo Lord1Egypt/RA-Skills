@@ -1,0 +1,86 @@
+# packs/opc.yaml — 一人公司行业包 (One Person Company)
+# 本体论智能体 (Ontology Agent) · 天津市微数人工智能科技有限责任公司
+# 定位：首发参考实现包。行业特有实体/部门/工作流在此定义，基础语义层由 semantic.yaml 提供，
+# 不重复定义基础实体（遵循 template/instance 分离 + packs 扩展契约）。
+
+meta:
+  pack_id: opc
+  display_name: 一人公司 (One Person Company)
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [一人公司, OPC, 个体, 独资, 个人独资, 微数, 一个人开公司, 一个人的公司, 个体户]
+  description: >
+    适用于单一自然人持有、无（或极少）雇员的有限责任公司。法人与唯一股东合一，
+    税务与合规相对简单，是验证四层骨架 + 引导式实例化的最小完整切片。
+
+# ── 一、行业特有实体（基础层未覆盖，须明确类型与关系）──
+# 一人公司核心是「owner 同时是法人与唯一股东」，用基础 Person/Organization 表达，
+# 此处仅补充一人公司语境下的派生视图，不新增冗余实体。
+entities_extra:
+  - type: SoleProprietorView
+    extends: Person
+    note: "法人即唯一股东，role 绑定 owner（见 roles.yaml）；无独立股东实体"
+  - type: OpcTaxProfile
+    extends: Account
+    properties:
+      - { name: entity_type, type: enum, enum: [一人有限责任公司, 个人独资企业], required: true }
+      - { name: tax_category, type: enum, enum: [企业所得税, 经营所得个税], required: true }
+      - { name: region, type: string, example: "天津市和平区" }
+    relations:
+      - { to: Organization, type: belongs_to, cardinality: many_to_one }
+
+# ── 二、推荐部门（从 department_actions 的 12 部门全选）──
+recommended_departments:
+  - { code: lead,        name: 领导决策 }
+  - { code: admin,       name: 行政综合 }
+  - { code: hr,          name: 人力资源 }
+  - { code: finance,     name: 财税 }
+  - { code: legal,       name: 法务合规 }
+  - { code: rnd,         name: 研发 }
+  - { code: mkt_content, name: 内容营销 }
+  - { code: mkt_dist,    name: 渠道分发 }
+  - { code: mkt_seo,     name: SEO推广 }
+  - { code: sales,       name: 销售 }
+  - { code: data,        name: 数据 }
+  - { code: strategy,    name: 战略 }
+
+# ── 三、默认工作流（引用 logic.yaml 的 opc_build）──
+default_workflow: opc_build
+workflow_bindings:
+  opc_build:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [接单, 交付, 开票, 记账, 报税, 复盘]
+
+# ── 四、本地化政策钩子（引用 decision.yaml 合规红线）──
+policy_hooks:
+  region: 天津市
+  reg_city: 和平区
+  redline_refs:
+    - compliance_redlines.tax                # 发票/完税凭证不存明文、报税需 owner 确认
+    - compliance_redlines.social_security    # 法人缴社保无减免
+    - compliance_redlines.company_reg        # 河川大厦工位地址 ≠ 实体办公
+  local_services:
+    - { name: 天开和平园·模创社区, note: "OPC 专属服务（五个一），注册载体不在模创社区需主动对接确认入驻条件" }
+    - { name: 和平区税务局南营门所, note: "主管税务机关" }
+
+# ── 五、B 层风味（注入到人设的「行业红线」，按部门名 key，default 兜底）──
+flavor:
+  default: >-
+    你服务的是一人有限责任公司，法人即唯一股东；财产独立红线必须严守（否则可能无限连带）。
+    开票/报税/签约等重大操作须经老板本人二次确认；统一社会信用代码等公开工商登记信息可记，
+    个人身份证/银行卡/社保号/票据影像等 PII 一律不存明文。
+  finance: 小规模纳税人身份尽早确认以锁优惠；开票→记账→申报必须形成 SOP；公私账户尽早隔离。
+  legal: 河川大厦为集中注册/工位地址，非实体办公，对外披露须一致；新公司法下一人公司更需财产独立证据链。
+  hr: 法人本人缴社保无专项减免；招用员工可享个人缴费 25% 补贴（截至 2026.12.31）。
+  strategy: 天津和平区有天开和平园·模创社区 OPC 专属服务，注册载体不在模创社区需主动对接确认入驻条件。
+
+# ── 六、实例化提示（GUIDE 引导时给用户的填空项）──
+instance_prompts:
+  - "请描述企业类型与法律形态（一人有限责任公司 / 个人独资企业）"
+  - "请介绍企业情况（行业、地区、注册信息、统一社会信用代码）"
+  - "想搭建哪些部门（默认 12 部门全选，可增删）"
+  - "核心业务逻辑（如 接单 → 交付 → 开票 → 记账 → 报税）"
+  - "老板画像（决策风格/风险偏好/沟通腔调/授权边界/称呼/禁忌）"
+  - "企业文化与品牌语气、当前阶段与核心产品、客户类型与工具栈"

@@ -1,45 +1,58 @@
-## Description: <br>
-A retail-focused crypto opportunity framework that evaluates sector fit, on-chain verifiability, VC token pressure, retail advantages, and practical participation posture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+散户决胜法 is a Chinese-language Crypto VC cycle framework that helps retail users assess crypto opportunities through sector positioning, on-chain verifiability, VC token structure, retail advantage, and actionable participation conclusions.
 
-## Publisher: <br>
-[0xcii](https://clawhub.ai/user/0xcii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcii](https://clawhub.ai/user/0xcii)
 
-## Use Case: <br>
-External users and retail crypto researchers use this skill to assess whether a crypto project or token opportunity is suitable for retail participation. It produces a structured view of sector positioning, on-chain evidence, VC unlock pressure, retail advantage, rating, and participation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto opportunity analysis may be misleading if market data, token unlock schedules, legal restrictions, or project facts are stale or unverified. <br>
-Mitigation: Independently verify current market data, unlock schedules, legal restrictions, and project facts before acting on the skill's conclusions. <br>
-Risk: Crypto assets are speculative and can lead to substantial or total loss. <br>
-Mitigation: Use the output as research guidance only and avoid treating ratings or participation suggestions as financial advice. <br>
+## Use Case:
 
+External users and retail crypto researchers use this skill to evaluate whether a crypto project, token, protocol, DApp, or on-chain opportunity is suitable for retail participation. It produces a structured assessment of sector fit, verifiable data, VC unlock pressure, retail edge, participation path, and major risks.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/0xcii/retail-edge-framework) <br>
-- [Example evaluations](references/example-evaluations.md) <br>
-- [Macro background](references/macro-background.md) <br>
-- [AntCaveClub X profile](https://x.com/AntCaveClub) <br>
-- [0xcii YouTube channel](https://www.youtube.com/@0xcii) <br>
-- [Yongzhuan bot](https://t.me/yongzhuan_bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with a structured crypto opportunity evaluation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not run code, access user data, or perform transactions according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can produce buy, wait, avoid, or participation-style conclusions for crypto opportunities that may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as due diligence prompts, verify information independently, and do not rely on them as personalized financial advice.
+
+Risk: Crypto project claims, token unlock schedules, and on-chain metrics can change quickly or be incomplete.
+
+Mitigation: Check current primary sources such as block explorers, dashboards, token unlock schedules, and official disclosures before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/0xcii/skills/retail-edge-framework)
+- [Macro Background](references/macro-background.md)
+- [Example Evaluations](references/example-evaluations.md)
+- [AntCaveClub X Profile](https://x.com/AntCaveClub)
+- [0xcii YouTube Channel](https://www.youtube.com/@0xcii)
+- [Yongzhuan Bot](https://t.me/yongzhuan_bot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown opportunity evaluation with ratings, checklist findings, and concise conclusions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution; outputs should be treated as research guidance rather than personalized financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

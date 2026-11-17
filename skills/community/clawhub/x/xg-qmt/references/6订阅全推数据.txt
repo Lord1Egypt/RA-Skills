@@ -1,0 +1,47 @@
+'''
+6订阅全推数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.subscribe_whole_quote - 订阅全推数据
+提示
+
+内置python
+
+ContextInfo.subscribe_whole_quote(code_list,callback=None)
+释义
+
+订阅全推数据，全推数据只有分笔周期，每次增量推送数据有变化的品种
+
+参数
+
+字段名	数据类型	解释
+code_list	list[str,...]	市场代码列表/品种代码列表,如 ['SH','SZ'] 或 ['600000.SH', '000001.SZ']
+callback	function	数据推送回调
+返回值int，订阅号，可用ContextInfo.unsubscribe_quote做反订阅
+
+示例返回值
+
+# conding = gbk
+def call_back(data):
+	print(data)
+	
+def init(C):
+	C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	C.subID = C.subscribe_whole_quote(C.stock_list,callback=call_back)
+def handlebar(C):
+	print("============================")
+	print("C.subID: ",C.subID)
+'''
+运行结果
+C.subID:  2
+{'000001.SZ': {'time': 1699326201000, 'stime': '20231107110321.000', 'lastPrice': 10.620000000000001, 'amount': 310826160.0, 'volume': 292680, 'pvolume': 292680, 'openInt': 13, 'stockStatus': 3, 'lastSettlementPrice': 0.0, 'open': 10.66, 'high': 10.66, 'low': 10.58, 'settlementPrice': 0.0, 'lastClose': 10.69, 'transactionNum': 0, 'askPrice': [10.63, 10.64, 10.65, 10.66, 10.67], 'bidPrice': [10.620000000000001, 10.61, 10.6, 10.59, 10.58], 'askVol': [3284, 4654, 6762, 8346, 1431], 'bidVol': [574, 5275, 13643, 8898, 14521]}}
+{'510050.SH': {'time': 1699326202000, 'stime': '20231107110322.000', 'lastPrice': 2.519, 'amount': 578313036.0, 'volume': 2294893, 'pvolume': 2294893, 'openInt': 13, 'stockStatus': 3, 'lastSettlementPrice': 0.0, 'open': 2.528, 'high': 2.528, 'low': 2.515, 'settlementPrice': 0.0, 'lastClose': 2.533, 'transactionNum': 0, 'askPrice': [2.519, 2.52, 2.521, 2.5220000000000002, 2.523], 'bidPrice': [2.5180000000000002, 2.517, 2.516, 2.515, 2.5140000000000002], 'askVol': [15233, 71470, 59978, 30042, 17226], 'bidVol': [34168, 57565, 82326, 59915, 23790]}}
+{'600519.SH': {'time': 1699326203000, 'stime': '20231107110323.000', 'lastPrice': 1790.9, 'amount': 1714097021.0, 'volume': 9547, 'pvolume': 9547, 'openInt': 13, 'stockStatus': 3, 'lastSettlementPrice': 0.0, 'open': 1805.0, 'high': 1810.0, 'low': 1789.0, 'settlementPrice': 0.0, 'lastClose': 1812.0, 'transactionNum': 0, 'askPrice': [1790.9, 1791.0, 1791.4, 1791.5, 1791.58], 'bidPrice': [1790.3400000000001, 1790.33, 1790.23, 1790.18, 1790.17], 'askVol': [1, 11, 1, 3, 2], 'bidVol': [3, 1, 1, 1, 1]}}
+============================
+C.subID:  2
+{'000001.SZ': {'time': 1699326204000, 'stime': '20231107110324.000', 'lastPrice': 10.63, 'amount': 310842090.0, 'volume': 292695, 'pvolume': 292695, 'openInt': 13, 'stockStatus': 3, 'lastSettlementPrice': 0.0, 'open': 10.66, 'high': 10.66, 'low': 10.58, 'settlementPrice': 0.0, 'lastClose': 10.69, 'transactionNum': 0, 'askPrice': [10.63, 10.64, 10.65, 10.66, 10.67], 'bidPrice': [10.620000000000001, 10.61, 10.6, 10.59, 10.58], 'askVol': [3279, 4654, 6762, 8346, 1431], 'bidVol': [579, 5275, 13628, 8898, 14521]}}
+{'510050.SH': {'time': 1699326205000, 'stime': '20231107110325.000', 'lastPrice': 2.519, 'amount': 578313036.0, 'volume': 2294893, 'pvolume': 2294893, 'openInt': 13, 'stockStatus': 3, 'lastSettlementPrice': 0.0, 'open': 2.528, 'high': 2.528, 'low': 2.515, 'settlementPrice': 0.0, 'lastClose': 2.533, 'transactionNum': 0, 'askPrice': [2.519, 2.52, 2.521, 2.5220000000000002, 2.523], 'bidPrice': [2.5180000000000002, 2.517, 2.516, 2.515, 2.5140000000000002], 'askVol': [15243, 71470, 59778, 29042, 20670], 'bidVol': [34668, 62360, 81475, 59866, 24894]}}
+{'600519.SH': {'time': 1699326206000, 'stime': '20231107110326.000', 'lastPrice': 1790.3400000000001, 'amount': 1714276564.0, 'volume': 9548, 'pvolume': 9548, 'openInt': 13, 'stockStatus': 3, 'lastSettlementPrice': 0.0, 'open': 1805.0, 'high': 1810.0, 'low': 1789.0, 'settlementPrice': 0.0, 'lastClose': 1812.0, 'transactionNum': 0, 'askPrice': [1790.89, 1790.9, 1791.0, 1791.4, 1791.5], 'bidPrice': [1790.3400000000001, 1790.33, 1790.23, 1790.18, 1790.17], 'askVol': [1, 1, 11, 1, 3], 'bidVol': [2, 1, 1, 1, 1]}}
+
+
+'''

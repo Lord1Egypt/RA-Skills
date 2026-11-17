@@ -1,43 +1,52 @@
-## Description: <br>
-Teach users any new skill or knowledge topic in about one hour through a fixed four-step workflow for complete beginners, focused on high-value concepts, hands-on practice, common errors, and next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teach beginners any new skill or knowledge topic in about one hour using a fixed 4-step workflow focused on 80/20 concepts, hands-on practice, common errors, and next steps.
 
-## Publisher: <br>
-[315133264](https://clawhub.ai/user/315133264) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[315133264](https://clawhub.ai/user/315133264)
 
-## Use Case: <br>
-External users and employees use this skill to get a beginner-friendly crash course on a new skill or knowledge topic in about one hour, including key concepts, a hands-on demo, common errors, and an advanced roadmap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated crash courses may provide oversimplified or incorrect guidance for sensitive medical, legal, financial, safety-critical, or command-heavy topics. <br>
-Mitigation: Review the generated guidance with qualified sources before acting on sensitive advice. <br>
-Risk: Hands-on demos for technical topics may include commands or code that change files or system state. <br>
-Mitigation: Read and adapt commands before running them, preferably in an isolated or disposable environment. <br>
+## Use Case:
 
+External users use this skill to get a beginner-friendly crash course on a new topic or skill, structured around core concepts, a practical demo, common errors, and an advanced learning roadmap.
 
-## Reference(s): <br>
-- [80/20 Topics](references/80-20-topics.md) <br>
-- [Common Error Cheat Sheets](references/common-error-sheets.md) <br>
-- [Advanced Study Roadmap Templates](references/advanced-roadmap-templates.md) <br>
-- [ClawHub skill page](https://clawhub.ai/315133264/learn-anything-in-one-hour) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code, Shell commands] <br>
-**Output Format:** [Markdown with step-by-step instructions, tables, and topic-specific examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include resource links, concise learning roadmaps, code snippets, or commands when relevant to the topic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, frontmatter, package.json) <br>
+Risk: The broad fast-learning trigger may activate when a user wanted a brief answer or more advanced treatment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for a concise answer, advanced depth, or not to use the one-hour workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/315133264/skills/learn-anything-in-one-hour)
+- [Pre-curated 80/20 Key Point Lists](references/80-20-topics.md)
+- [Common Error Cheat Sheets](references/common-error-sheets.md)
+- [Advanced Study Roadmap Templates](references/advanced-roadmap-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with step-by-step instructions, tables, and inline code or shell commands when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive beginner workflow that waits for user confirmation before moving from hands-on practice to summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

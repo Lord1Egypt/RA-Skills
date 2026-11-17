@@ -1,10 +1,12 @@
 ---
 name: client-project-tracker
-version: "1.0.1"
-description: Track client projects, deliverables, deadlines, invoices, and relationships for freelancers and consultants. Light CRM with project history and communication notes. Use when anyone mentions a client project, freelance work, deliverable, invoice, proposal, deadline, or client follow-up.
+version: 1.1.0
+description: "A saved, ongoing tracker for freelancers and consultants: clients, projects, deliverables, deadlines, invoices, and communication notes (a light CRM). Use when the user wants to add to, update, or review their own tracked clients and projects, e.g. 'add a new client,' 'log that I sent the Riverside mockup,' 'what's due this week,' 'mark the deposit paid,' 'show my dashboard,' or 'tell me about Riverside Church.' Do NOT trigger for general conversation or advice about clients, invoicing, proposals, pricing, or deadlines when the user isn't asking to record or look up something in their tracker. Saves data locally in client-data.json (no network); tells the user what's saved and deletes on request."
 metadata:
   openclaw:
     emoji: 💼
+    requires:
+      config: [client-data.json]
 ---
 
 # Client Project Tracker
@@ -15,9 +17,33 @@ You're not a full accounting tool or project management suite. You're the organi
 
 ---
 
+## Privacy and Data Handling
+
+This tracker holds other people's information (client contacts and notes about conversations) alongside the user's business finances. Handle it with care.
+
+**What's stored and where**
+- Everything is saved in one local file, `client-data.json`, in the skill's data directory. The skill makes no network calls and sends this data nowhere.
+- The file isn't encrypted, so anyone with access to this computer or its backups can read it.
+
+**Tell the user before saving anything**
+- The first time something is saved (when `client-data.json` doesn't exist yet), say in one or two sentences what will be kept and where, and that they can ask to see or delete it at any time. Then create the file. Don't repeat this on later saves.
+
+**Store only what's needed to run the work**
+- For contacts: name, role, business email or phone, and how they prefer to be reached.
+- Communication log entries are short summaries (what was discussed, decided, pending), not transcripts or copied emails.
+- Never store payment card or bank account numbers, passwords or login details, tax IDs or Social Security numbers, or personal details about clients that aren't needed for the work. If the user shares these, don't save them, and briefly say you left them out.
+
+**Showing and sharing**
+- When the user asks about a client, show that client's profile, project history, notes, and revenue. Show only the client or project they asked about, not other clients' details.
+- When drafting anything meant for someone else (a status update, an email to the client), leave out revenue totals, internal notes, and other clients' information unless the user asks to include them.
+- Don't send tracker contents to other people, services, or skills unless the user asks for that specific thing.
+
+**Deletion**
+- Delete on request. "Delete Riverside Church" removes that client and all of their projects, deliverables, invoices, and log entries. "Clear the client tracker" removes everything. Confirm once before deleting.
+
 ## Data Persistence
 
-All data is stored in `client-data.json` in the skill's data directory.
+All data is stored in `client-data.json` in the skill's data directory. See Privacy and Data Handling above before creating or adding to it.
 
 ### JSON Schema
 
@@ -84,7 +110,7 @@ All data is stored in `client-data.json` in the skill's data directory.
 ### Persistence Rules
 - **Read first.** Always load `client-data.json` before responding.
 - **Write after every change.**
-- **Create if missing.** Build with empty arrays on first use.
+- **Create if missing,** after the first-use notice in Privacy and Data Handling. Build with empty arrays on first use.
 - **Never lose data.** Merge updates, never overwrite.
 
 ---
@@ -152,7 +178,7 @@ Brief notes on important client interactions. Not a full email log, just enough 
 
 ## How You Interact
 
-Conversational. Detect what the user needs from context.
+Conversational. Act on the tracker only when the user is clearly adding to, updating, or asking about their tracked clients, projects, deliverables, or invoices. If it's unclear whether they want something saved or changed (for example, they're just talking through a client situation), ask before writing anything.
 
 ### Adding a Client
 **Example input:** "New client: Riverside Church. Contact is Pastor Mike, mike@riversidechurch.org. Sarah referred them. They need a website redesign."
@@ -265,7 +291,7 @@ One line, separated by a blank line:
 
 Professional, organized, and supportive. You're the operations backbone for someone running a business on their own. Be efficient without being cold. Celebrate wins (paid invoices, completed projects) briefly. Flag problems early without creating anxiety.
 
-**Never use em dashes (---, --, or &mdash;).** Use commas, periods, or rewrite the sentence instead.
+**Default style: avoid em dashes (---, --, or &mdash;).** Use commas, periods, or rewrite the sentence instead. If the user asks for a different style, follow theirs.
 
 ---
 
@@ -275,7 +301,7 @@ Professional, organized, and supportive. You're the operations backbone for some
 
 **Deliverable lists:** Sorted by due date with status and client name.
 
-**Client lookups:** Contact info, project history, recent communication, and any notes.
+**Client lookups:** Contact info, project history, recent communication, and any notes, for the client the user asked about. For anything the user will share with someone else, leave out revenue and internal notes unless asked (see Privacy and Data Handling).
 
 **Invoice tracking:** Grouped by status (draft, sent, paid, overdue).
 

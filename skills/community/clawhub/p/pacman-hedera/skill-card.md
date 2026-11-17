@@ -1,44 +1,58 @@
-## Description: <br>
-Autonomous AI agent for DeFi on Hedera - natural language trading, portfolio management, Power Law BTC rebalancing, HCS signal publishing, limit orders, staking, NFTs, and multi-account wallet operations via SaucerSwap V1/V2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous AI agent for DeFi on Hedera — natural language trading, portfolio management, Power Law BTC rebalancing, HCS signal publishing, limit orders, staking, NFTs, and multi-account wallet operations via SaucerSwap V1/V2.
 
-## Publisher: <br>
-[Chris0x88](https://clawhub.ai/user/Chris0x88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris0x88](https://clawhub.ai/user/chris0x88)
 
-## Use Case: <br>
-External users and agent operators use this skill to manage Hedera DeFi wallet activity through natural-language requests, including portfolio checks, token swaps, transfers, staking, NFT views, limit orders, and BTC rebalancing. The skill is intended to propose and execute live wallet operations through a local launcher with explicit approval for write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests powerful wallet access and can execute live Hedera DeFi transactions. <br>
-Mitigation: Use a testnet or dedicated low-balance wallet, avoid primary wallet keys, and require explicit approval for every transaction. <br>
-Risk: The skill documents daemon activity for rebalancing, limit orders, HCS publication, and related wallet automation. <br>
-Mitigation: Inspect the launcher and Python CLI before installation and require explicit approval before daemon start, restart, or any autonomous wallet operation. <br>
-Risk: The artifact describes interaction logging and training-data workflows that may retain account and transaction details. <br>
-Mitigation: Avoid enabling log or training-data workflows until the retained data and sharing behavior are understood. <br>
+## Use Case:
 
+External users and developers use this skill to operate a local-first Hedera DeFi wallet agent for portfolio review, swaps, transfers, rebalancing, HCS signal publishing, limit orders, staking, NFTs, and multi-account workflows. The skill is intended for agents that can run the repository launcher and present proposed write actions for user approval.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Chris0x88/pacman-hedera) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown conversational responses with inline shell commands and occasional JSON parsing guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Hedera wallet configuration and the PRIVATE_KEY, HEDERA_ACCOUNT_ID, and PACMAN_NETWORK environment variables; ClawHub metadata lists darwin and linux support.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill gives an agent broad control over real Hedera wallet funds and background services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for intentional wallet-agent use, keep wallet funds limited, review the runtime repository separately, and verify daemon behavior before use.
+
+Risk: Runtime behavior is not fully verified by the provided artifact evidence.
+
+Mitigation: Review the actual runtime repository and disable automatic startup where possible until behavior is understood.
+
+Risk: Markdown approval rules alone may not adequately protect real transactions.
+
+Mitigation: Use independent transaction review, confirm write actions explicitly, and avoid shared-folder backups of wallet keys.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chris0x88/skills/pacman-hedera)
+- [Publisher Profile](https://clawhub.ai/user/chris0x88)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command proposals, portfolio summaries, transaction summaries, setup guidance, and risk notices.]
+
+## Skill Version(s):
+
+5.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

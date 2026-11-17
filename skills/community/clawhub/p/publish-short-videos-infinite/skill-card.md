@@ -1,41 +1,58 @@
-## Description: <br>
-Coordinates browser automation for a short-video workflow across Kuaishou, Douyin, and Xiaohongshu, publishing to Kuaishou and saving Douyin and Xiaohongshu as drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates short-video publishing across Kuaishou, Douyin, and Xiaohongshu in sequence, publishing on Kuaishou and saving drafts on Douyin and Xiaohongshu.
 
-## Publisher: <br>
-[infiniteask](https://clawhub.ai/user/infiniteask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[infiniteask](https://clawhub.ai/user/infiniteask)
 
-## Use Case: <br>
-Creators and social-media operators use this skill to run a sequential multi-platform short-video upload workflow with one video file, reused browser state, and platform-specific metadata settings. It is intended for workflows that need Kuaishou published first, then Douyin and Xiaohongshu saved as drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates actions against live social-media accounts and publishes to Kuaishou while Douyin and Xiaohongshu are saved as drafts. <br>
-Mitigation: Confirm the video file, target accounts, per-platform settings, and final action for each platform before browser automation starts. <br>
-Risk: Users may misunderstand which platforms are published live versus saved as drafts. <br>
-Mitigation: Treat Kuaishou as the live publish step and Douyin and Xiaohongshu as draft-save steps unless updated release evidence says otherwise. <br>
+## Use Case:
 
+Content operators and creators use this skill to coordinate one short-video asset across three Chinese social video platforms with a fixed platform order and platform-specific final actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/infiniteask/publish-short-videos-infinite) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/infiniteask) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown instructions with ordered browser automation steps and local sub-skill paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates to three local platform-specific skills and should be run only after confirming the video file, target accounts, platform settings, and final action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow can publish a video publicly on Kuaishou.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any live publish action and verify the intended video, title, description, tags, and permissions before submission.
+
+Risk: The workflow depends on three local child skills that the security evidence describes as unaudited.
+
+Mitigation: Review and trust the referenced child skills before installation or execution.
+
+Risk: Platform-specific final actions differ: Kuaishou is published live, while Douyin and Xiaohongshu are saved as drafts.
+
+Mitigation: Keep the documented execution order and final-action checks visible during use so draft-only steps are not accidentally converted into publish actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/infiniteask/skills/publish-short-videos-infinite)
+- [ClawHub publisher profile](https://clawhub.ai/user/infiniteask)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with ordered workflow steps and local skill paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates browser-based platform actions and delegates platform-specific details to local child skills.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,91 @@
+# packs/sme.yaml — Small & Medium Enterprise industry pack
+# Ontology Agent · Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+# Bilingual note: the Chinese counterpart of this file is `sme.zh.yaml`.
+# Same paradigm as opc.yaml; the focus is "multiple employees, multi-role collaboration", used to
+# validate whether enterprise connections / roles governance can hold up.
+
+meta:
+  pack_id: sme
+  display_name: Small & Medium Enterprise
+  version: 0.1.0
+  base_layer_ref: references/semantic.yaml
+  logic_ref: references/logic.yaml
+  decision_ref: references/decision.yaml
+  match_keywords: [small business, SME, small and medium enterprise, startup, hiring, team, a few people, limited company]
+  description: >
+    For micro / small enterprises with a few to a few dozen people. Needs arise around
+    "multiple employees, cross-department collaboration, owner + employee role separation", which is
+    exactly what validates the employee role in roles.yaml and multi-role governance
+    (reserved for Phase 6 IM connectivity).
+
+# ── 1. Industry-specific entities ──
+entities_extra:
+  - type: Employee
+    extends: Person
+    properties:
+      - { name: role_title, type: string, required: true }   # actual job title
+      - { name: department_code, type: string }
+      - { name: employment_status, type: enum, enum: [active, probation, resigned] }
+    relations:
+      - { to: Organization, type: employed_by, cardinality: many_to_one }
+      - { to: Department, type: belongs_to, cardinality: many_to_one }
+  - type: Team
+    extends: Project
+    properties:
+      - { name: lead_employee, type: string }
+    relations:
+      - { to: Employee, type: members, cardinality: many_to_many }
+
+# ── 2. Recommended departments (12; SME emphasizes hr/admin/finance collaboration) ──
+recommended_departments:
+  - { code: lead,        name: Executive Decision }
+  - { code: admin,       name: Administration }
+  - { code: hr,          name: Human Resources }
+  - { code: finance,     name: Finance & Tax }
+  - { code: legal,       name: Legal & Compliance }
+  - { code: rnd,         name: R&D }
+  - { code: mkt_content, name: Content Marketing }
+  - { code: mkt_dist,    name: Channel Distribution }
+  - { code: mkt_seo,     name: SEO & Promotion }
+  - { code: sales,       name: Sales }
+  - { code: data,        name: Data }
+  - { code: strategy,    name: Strategy }
+
+# ── 3. Default workflow ──
+default_workflow: sme_growth
+workflow_bindings:
+  sme_growth:
+    stages: [discovery, design, build, validate, operate, grow]
+    core_loop: [acquisition, delivery, collection, review, expansion, hiring]
+
+# ── 4. Localization policy hooks ──
+policy_hooks:
+  region: nationwide
+  redline_refs:
+    - compliance_redlines.social_security   # hiring employees can qualify for a 25% individual-contribution subsidy (extended to 2026-12-31)
+    - compliance_redlines.tax
+    - compliance_redlines.company_reg
+  local_services:
+    - { name: Entrepreneurship guaranteed loan, note: "up to 300k for individuals / up to 4M for micro and small enterprises (CNY)" }
+
+# ── 5. Layer-B flavor (injected into personas as "industry red lines", keyed by department, default as fallback) ──
+flavor:
+  default: >-
+    You serve a multi-employee micro / small enterprise where owner + employee delegation is the norm;
+    employment compliance red lines (labor contract / social insurance / individual income tax) must be
+    strictly observed, and employee-visible data must be authorized by role to avoid privilege
+    escalation. Public business registration data such as the Unified Social Credit Code may be
+    recorded, but PII must never be stored in plain text.
+  hr: Sign labor contracts and pay social insurance and housing fund as required by law; hiring employees can qualify for a 25% individual-contribution subsidy (extended to 2026-12-31); keep probation periods compliant.
+  finance: Keep personal and corporate accounts separate; employee reimbursements require receipts; withhold and remit individual income tax on wages.
+  legal: Employee confidentiality / non-compete agreements; preventing labor disputes takes priority over remediation.
+  admin: Separate duties for seal usage / asset custody; complete onboarding and offboarding procedures.
+  strategy: Match expansion pace with cash flow; avoid blind hiring.
+  data: Protect employee information (ID numbers / bank cards) as required and never persist it in plain text.
+
+# ── 6. Instantiation prompts ──
+instance_prompts:
+  - "Please describe the enterprise size and whether you hire staff (how many people, which roles)"
+  - "Please introduce the enterprise (industry, region, legal form, Unified Social Credit Code)"
+  - "Which departments do you want to build (12 by default; SMEs should keep hr/admin/finance collaboration)"
+  - "Core business logic (e.g. acquisition → delivery → collection → review → expansion)"

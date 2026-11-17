@@ -1,41 +1,48 @@
-## Description: <br>
-Shape HTTP/JSON APIs-resources and verbs, error payloads, pagination, idempotency, and docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shape HTTP/JSON APIs--resources and verbs, error payloads, pagination, idempotency, and docs.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[codenova58](https://clawhub.ai/user/codenova58)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design and review HTTP/JSON APIs with predictable resources, methods, errors, pagination, idempotency, and documentation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat advisory API conventions as an automatically enforced security, compatibility, or correctness policy.
+
+Mitigation: Review recommendations against project requirements and pair them with dedicated security, compatibility, authentication, or schema-review processes where needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design and review HTTP/JSON APIs with consistent resource modeling, method semantics, error payloads, pagination, idempotency, and self-serve documentation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Security guidance says to install only when ClawHub maintainer and Convex project workflow authority is intended. <br>
-Mitigation: Review the authority granted to the agent before installation and use documented confirmations or opt-out flags before moderation, publishing, GitHub commenting, or full-access review actions. <br>
-Risk: API design guidance can still produce inconsistent or misleading endpoint behavior if applied without project-specific review. <br>
-Mitigation: Review generated endpoint, error, idempotency, pagination, and documentation recommendations against the target API contract and test failure cases before release. <br>
+**Output Format:** [Markdown guidance with examples and optional API snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Http Api on ClawHub](https://clawhub.ai/codenova58/http-api) <br>
-- [Publisher Profile](https://clawhub.ai/user/codenova58) <br>
+**Other Properties Related to Output:** [Advisory output only; it does not enforce security, compatibility, or implementation policy.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown API design and review guidance with examples such as endpoint shapes, error payloads, pagination patterns, and OpenAPI snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool, credential, MCP, or command requirements were identified in the artifact.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

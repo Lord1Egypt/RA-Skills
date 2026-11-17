@@ -1,43 +1,62 @@
-## Description: <br>
-Provides Web3 development guidance for MetaMask Smart Accounts Kit, including ERC-4337 smart accounts, user operations, signers, paymasters, delegations, advanced permissions, and Viem integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web3 development using MetaMask Smart Accounts Kit. Use when the user wants to build dApps with ERC-4337 smart accounts, send user operations, batch transactions, configure signers (EOA, passkey, multisig), implement gas abstraction with paymasters, create delegations, or request advanced permissions (ERC-7715). Supports Viem integration, multiple signer types (Dynamic, Web3Auth, Wagmi), gasless transactions, and the Delegation Framework.
 
-## Publisher: <br>
-[AyushBherwani1998](https://clawhub.ai/user/AyushBherwani1998) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ayushbherwani1998](https://clawhub.ai/user/ayushbherwani1998)
 
-## Use Case: <br>
-Developers and engineers use this skill to build dApps with MetaMask smart accounts, gas abstraction, delegation flows, and ERC-7715 advanced permissions. It helps agents answer implementation questions and draft code, configuration, and command examples for smart-account workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated wallet or smart-account code can move assets or authorize future transactions if chain IDs, recipients, token amounts, expiry times, caveats, or delegation scopes are wrong. <br>
-Mitigation: Use testnets first and verify all transaction, permission, and delegation parameters before running code with real accounts or funds. <br>
-Risk: Private keys, signer credentials, or wallet secrets may be exposed if inserted into source code, prompts, logs, or client-side applications. <br>
-Mitigation: Keep private keys and credentials out of prompts, logs, repositories, and browser code; use secure key management and environment-specific secret handling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [MetaMask Smart Accounts Kit Documentation](https://docs.metamask.io/smart-accounts-kit) <br>
-- [MetaMask Flask](https://metamask.io/flask) <br>
-- [Smart Accounts Reference](references/smart-accounts.md) <br>
-- [Delegations Reference](references/delegations.md) <br>
-- [Advanced Permissions Reference](references/advanced-permissions.md) <br>
+## Use Case:
 
+Developers use this skill to build dApps with MetaMask smart accounts, ERC-4337 user operations, gas abstraction, delegation flows, and ERC-7715 advanced permissions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet, chain, contract, permission, delegation, bundler, and paymaster values that must be verified before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples can spend tokens, spend gas, grant recurring permissions, or exercise signing authority.
+
+Mitigation: Use testnets first, require explicit user confirmation before signing or broadcasting, and show clear permission details.
+
+Risk: Private keys or signer credentials could be exposed if copied into source code or logs.
+
+Mitigation: Keep private keys out of source code and logs, and use secure signer or wallet integrations.
+
+Risk: Overly broad delegations can authorize unintended actions.
+
+Mitigation: Use least-privilege scopes, caveats, expiration times, redeemer limits, and call limits before redeeming delegations.
+
+## Reference(s):
+
+- [MetaMask Smart Accounts Kit documentation](https://docs.metamask.io/smart-accounts-kit)
+- [Smart Accounts Reference](references/smart-accounts.md)
+- [Delegations Reference](references/delegations.md)
+- [Advanced Permissions (ERC-7715) Reference](references/advanced-permissions.md)
+- [MetaMask Flask](https://metamask.io/flask)
+- [ERC-7710](https://eips.ethereum.org/EIPS/eip-7710)
+- [ERC-7715](https://eips.ethereum.org/EIPS/eip-7715)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Web3 transaction, delegation, signer, paymaster, and permission guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

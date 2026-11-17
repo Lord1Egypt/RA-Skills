@@ -1,40 +1,52 @@
-## Description: <br>
-Evaluate strategic options by NPV vs ease of implementation. Use for project prioritization, resource allocation, and strategic decision making. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate strategic options by NPV vs ease of implementation. Use for project prioritization, resource allocation, and strategic decision making.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[linuszz](https://clawhub.ai/user/linuszz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external users, and business analysts use this skill to compare strategic options by net present value, implementation ease, strategic fit, and risk so they can prioritize projects and allocate resources.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The NPV-versus-ease framework may be applied to decisions where financial value is not the controlling factor.
+
+Mitigation: Confirm the framework is appropriate for the decision and supplement it with strategic fit, risk, compliance, and qualitative criteria.
+
+Risk: Portfolio recommendations can be misleading if NPV estimates, ease scores, or risk inputs are incomplete or subjective.
+
+Mitigation: Review assumptions with domain owners and make scoring criteria explicit before using the output for resource allocation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Business leaders, portfolio managers, and strategy teams use this skill to compare project options by net present value, implementation ease, strategic fit, and risk before prioritizing resources. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio recommendations may be misleading if NPV, risk, or ease assumptions are incomplete or stale. <br>
-Mitigation: Verify financial inputs, risk ratings, and implementation assumptions with current project data before making resource decisions. <br>
-Risk: Broad trigger terms may invoke the skill during general prioritization discussions. <br>
-Mitigation: Confirm that a portfolio matrix analysis is intended before relying on the structured output. <br>
+**Output Format:** [Markdown portfolio analysis with tables and matrix-style prioritization]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linuszz/portfolio-matrix) <br>
+**Other Properties Related to Output:** [May include option evaluations, portfolio balance, resource allocation, strategic recommendations, and risk assessment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables and a portfolio matrix] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory business analysis; verify NPV, risk, and implementation assumptions independently.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

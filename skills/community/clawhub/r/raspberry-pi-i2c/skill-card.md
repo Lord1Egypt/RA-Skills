@@ -1,49 +1,63 @@
-## Description: <br>
-A practical Raspberry Pi I2C sensor development guide covering GPIO pinouts, hardware and software I2C choices, gpiod bit-banging, BMI270 and MAX30205 driver patterns, performance limits, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Raspberry Pi I2C sensor development, including GPIO pin selection, hardware and software I2C tradeoffs, gpiod usage, BMI270 and MAX30205 driver notes, performance constraints, and troubleshooting.
 
-## Publisher: <br>
-[ntsmzt2009](https://clawhub.ai/user/ntsmzt2009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ntsmzt2009](https://clawhub.ai/user/ntsmzt2009)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill to plan and debug Raspberry Pi I2C sensor integrations, especially BMI270 IMU and MAX30205 temperature sensor projects, with concrete wiring, setup, code, and troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup guidance includes sudo commands, package installation, Raspberry Pi configuration changes, killing Python processes, and adding a user to the gpio group. <br>
-Mitigation: Review each privileged command before running it and apply only the changes that match the target Raspberry Pi environment. <br>
-Risk: Incorrect wiring or voltage assumptions can damage Raspberry Pi GPIO pins or attached sensors. <br>
-Mitigation: Verify 3.3V logic, power limits, grounds, pull-ups, and SDA/SCL pin assignments against the board and sensor documentation before connecting hardware. <br>
-Risk: Generated driver snippets and troubleshooting steps may not fit every kernel, libgpiod, or sensor-board revision. <br>
-Mitigation: Test code on non-critical hardware first, confirm device addresses with I2C scans, and validate timing and config-file requirements against the sensor datasheets. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and troubleshoot Raspberry Pi I2C sensor projects, especially systems using BMI270 IMUs, MAX30205 temperature sensors, standard /dev/i2c-1, or gpiod-based software I2C.
 
-## Reference(s): <br>
-- [Raspberry Pi GPIO documentation](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html) <br>
-- [pinout.xyz interactive pinout](https://pinout.xyz/) <br>
-- [Raspberry Pi 4 pinout guide](https://www.wevolver.com/article/raspberry-pi-4-pinout-a-comprehensive-guide-for-engineers) <br>
-- [Electronics For You GPIO guide](https://electronicsforyou.com/blog/all-about-raspberry-pi-gpio-pins/) <br>
-- [BMI270 datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi270-ds000.pdf) <br>
-- [BMI270 Sensor API](https://github.com/boschsensortec/BMI270-Sensor-API) <br>
-- [MAX30205 product page](https://www.analog.com/en/products/max30205.html) <br>
-- [libgpiod documentation](https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, and C code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes hardware pin tables, setup commands, driver snippets, performance notes, and troubleshooting checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: An overbroad privileged process command may stop unrelated Python services on the device.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution; replace `sudo killall python3` with targeted process identification and stop only the process holding the GPIO or I2C resource.
+
+Risk: Unpinned Python package installation can produce unreproducible behavior across devices.
+
+Mitigation: Use a virtual environment and pin dependency versions before installing GPIO or SMBus libraries.
+
+Risk: Incorrect voltage wiring can damage Raspberry Pi GPIO pins.
+
+Mitigation: Verify sensor logic levels before connecting hardware; use 3.3V-compatible devices or level shifting for 5V signals.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ntsmzt2009/skills/raspberry-pi-i2c)
+- [Raspberry Pi GPIO Documentation](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html)
+- [pinout.xyz Interactive Pinout](https://pinout.xyz/)
+- [BMI270 Datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi270-ds000.pdf)
+- [BMI270 Sensor API](https://github.com/boschsensortec/BMI270-Sensor-API)
+- [MAX30205 Product Page](https://www.analog.com/en/products/max30205.html)
+- [libgpiod Documentation](https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with tables, checklists, and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hardware wiring notes, command examples, Python and C snippets, performance notes, and troubleshooting checklists.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

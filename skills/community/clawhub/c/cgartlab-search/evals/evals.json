@@ -1,0 +1,68 @@
+{
+  "skill_name": "cgartlab-search",
+  "evals": [
+    {
+      "id": 1,
+      "name": "docs-via-context7",
+      "prompt": "React 19 的 use() hook 怎么用？给我官方文档里的用法",
+      "expected_output": "Routes to context7; returns cited doc excerpts with context7.com source links.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "news-hot-dsh",
+      "prompt": "最近有什么重大新闻？",
+      "expected_output": "In DSH: qqnews hot list and/or bing news-intent query returns real current items with titles, dates and links; curl harnesses may use brave --news / tencent. Never fabricates news.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "zhihu-live-then-degrade",
+      "prompt": "知乎上大家怎么看 Rust 在后端的落地？",
+      "expected_output": "zhihu is a live backend (official OpenAPI global search, whole-public-web index incl. 知乎 threads) — return its results with links. Only when ZHIHU_API_KEY is absent: bing site:zhihu.com fallback, explicitly noting the substitution.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "broad-fanout",
+      "prompt": "全面调研一下 Bun 这个 JS runtime 的现状、性能和生态",
+      "expected_output": "Fan-out bing+context7+hn (+exa,brave with curl); merged, deduped by URL, cited summary grouped by type.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "football-news-dsh",
+      "prompt": "搜搜最新足球比赛新闻",
+      "expected_output": "In DSH: hupu fresh football headlines with bbs.hupu.com links + bing(q=足球 新闻) (+qqnews hot); cited Markdown with dates. This query failed in v1; must now return real results without fabrication.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "dev-repo-discovery",
+      "prompt": "有什么值得看的 Rust web 框架？顺便给我一个例子项目",
+      "expected_output": "github repo search sorted by stars (full_name, stars, description) plus optional so/hn results; all with links.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "name": "data-two-step",
+      "prompt": "比亚迪最新销量数据是多少？",
+      "expected_output": "bing keyword query, then per numbers two-step direct-fetch a data page (or transparently quote a figure found in an RSS snippet). Must NOT present portal homepages as if they answered the figure; if no number found, say so plainly.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "zhihu-fallback-honesty",
+      "prompt": "知乎上大家怎么看产品经理转行做AI？",
+      "expected_output": "zhihu (live OpenAPI) returns real 知乎/web items with links. If the key is missing, bing site:zhihu.com best-effort; if those collapse to generic 'what is 产品' definitions, report the miss and degrade — never cite off-topic pages to look complete.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "name": "tencent-news-search-and-hot",
+      "prompt": "帮我搜一下最近的 AI 芯片新闻，再看看今天的热点榜",
+      "expected_output": "tencent with a keyword → `search` results (标题/摘要/来源/发布时间/链接 parsed into normalized items, view.inews.qq.com links); empty keyword → `hot` 热点榜. If the CLI is missing or its key is unset, report that in `errors` and fall back to qqnews/bing instead of fabricating headlines.",
+      "files": []
+    }
+  ]
+}

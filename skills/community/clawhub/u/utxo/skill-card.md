@@ -1,41 +1,55 @@
-## Description: <br>
-Utxo reference tool for blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Utxo reference tool for blockchain contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and blockchain practitioners use this skill as a local command-line reference for UTXO concepts, formulas, regulations, risk categories, strategies, glossary terms, and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes generic blockchain, finance, regulatory, strategy, and risk text that may be incomplete, outdated, or non-authoritative. <br>
-Mitigation: Verify blockchain, compliance, investment, and risk conclusions with trusted current sources before relying on them. <br>
-Risk: The artifact executes a local shell script to display reference material. <br>
-Mitigation: Review the script before installation or execution and use it only as a lightweight local reference helper. <br>
+## Use Case:
 
+Developers and blockchain practitioners use this skill to retrieve quick Markdown reference material, formulas, regulatory notes, risk summaries, tools, strategies, glossary entries, and checklists related to UTXO work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/utxo) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text emitted by local shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; no network access, dependency installation, persistence, or external actions are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: The skill is framed as UTXO and blockchain guidance but the security summary says much of the content is generic finance and checklist text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the emitted material before use and do not rely on it for UTXO, blockchain, compliance, or financial decisions without independent validation.
+
+Risk: Users may treat placeholder-style regulatory, risk, or calculation output as authoritative domain advice.
+
+Mitigation: Limit use to lightweight reference drafting unless the publisher replaces the content with accurate, scoped UTXO material.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/utxo)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections; no API keys or external tool integrations detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-English Learning Coach helps learners practice speaking, listening, reading, writing, and exam preparation with prompts, methods, examples, and study plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+English Learning Coach helps learners practice speaking, listening, reading, writing, and exam preparation with prompts, study methods, and resource suggestions.
 
-## Publisher: <br>
-[jiangtaoid](https://clawhub.ai/user/jiangtaoid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangtaoid](https://clawhub.ai/user/jiangtaoid)
 
-## Use Case: <br>
-Learners and language-practice agents use this skill to structure English practice across conversation, listening, reading, writing, and IELTS or TOEFL preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Language practice may involve personal writing, recordings, or private details. <br>
-Mitigation: Avoid sharing sensitive personal content unless it is appropriate for the learning context. <br>
+## Use Case:
 
+External learners use this skill as an English practice coach for conversation, listening drills, reading strategies, writing feedback prompts, IELTS/TOEFL preparation, and daily study planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangtaoid/english-learning-coach) <br>
-- [Publisher profile](https://clawhub.ai/user/jiangtaoid) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with example prompts, practice plans, tables, and short English phrases] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; no code execution, credentials, background behavior, or system access is described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Practice prompts may default to English or be invoked for broad English-learning requests that do not match the learner's preferred explanation style.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for Chinese or bilingual explanations and specify the learner's level, goal, topic, and desired correction style.
+
+Risk: Writing reviews, grammar corrections, ratings, and study advice may be imperfect or too general for exam-critical preparation.
+
+Mitigation: Use the feedback as practice support and verify high-stakes exam, academic, or professional writing with qualified instruction or authoritative materials.
+
+## Reference(s):
+
+- [English Learning Coach on ClawHub](https://clawhub.ai/jiangtaoid/skills/english-learning-coach)
+- [jiangtaoid publisher profile](https://clawhub.ai/user/jiangtaoid)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain text learning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

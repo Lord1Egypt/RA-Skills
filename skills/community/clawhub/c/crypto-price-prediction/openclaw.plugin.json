@@ -1,0 +1,48 @@
+{
+  "id": "crypto-price-prediction",
+  "name": "Crypto Price Prediction",
+  "description": "Fetches next-hour predicted price for BTC/ETH from external API (zeabur). Supports BTCUSDT and ETHUSDT symbols.",
+  "version": "1.0.0",
+  "tools": [
+    {
+      "name": "predictPrice",
+      "description": "Get next-hour predicted price for BTC or ETH",
+      "input": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "enum": ["BTCUSDT", "ETHUSDT"],
+            "description": "Trading pair (BTCUSDT or ETHUSDT)",
+            "default": "BTCUSDT"
+          },
+          "hours": {
+            "type": "number",
+            "description": "Prediction horizon in hours (only 1 supported by API)",
+            "default": 1.0
+          }
+        },
+        "required": ["symbol"]
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string", "description": "Prediction timestamp in HKT" },
+          "symbol": { "type": "string" },
+          "horizonHours": { "type": "number" },
+          "currentPrice": { "type": ["number", "null"] },
+          "predictedPrice": { "type": "number" },
+          "changePercent": { "type": ["number", "null"] },
+          "direction": { "type": "string", "enum": ["UNKNOWN"] },
+          "confidence": { "type": "string", "enum": ["API"] },
+          "dataSource": { "type": "string" },
+          "signals": { "type": "object" }
+        }
+      }
+    }
+  ],
+  "runtime": "node",
+  "main": "skill.js",
+  "installCommand": "",
+  "requiredEnvVars": []
+}

@@ -1,46 +1,62 @@
-## Description: <br>
-调用图可丽（Tukeli）视觉处理 API，实现通用抠图、人脸变清晰、AI背景更换三项能力。支持文件上传、图片URL两种输入方式，返回二进制流或Base64编码结果。AI背景更换为异步接口，需先提交任务再查询结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calls the Tukeli visual processing API for background removal, face enhancement, and AI background replacement using uploaded image files or image URLs.
 
-## Publisher: <br>
-[cutout-pro](https://clawhub.ai/user/cutout-pro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cutout-pro](https://clawhub.ai/user/cutout-pro)
 
-## Use Case: <br>
-Developers and content-production teams use this skill to remove image backgrounds, enhance face images, and submit or query AI background replacement jobs through the Tukeli visual API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Images, image URLs, Base64 image data, face-analysis requests, and AI background prompts are sent to Tukeli's external API. <br>
-Mitigation: Use the skill only with images the user is authorized to process, and avoid regulated or private face images unless consent and a suitable data-handling basis are in place. <br>
-Risk: TUKELI_API_KEY authorizes billable API calls that can spend account credits. <br>
-Mitigation: Store the key in an environment variable or local .env file, keep it out of logs and shared repositories, and configure daily limits where appropriate. <br>
-Risk: Generated .meta.json files can include local file paths, source image URLs, request parameters, and timing details. <br>
-Mitigation: Review or delete metadata sidecar files before sharing outputs when paths, URLs, or processing context are sensitive. <br>
+## Use Case:
 
+Developers and external users use this skill to route image-processing tasks to Tukeli, including matting, clearer face images, and AI-generated replacement backgrounds. It is useful when an agent needs CLI-driven image API calls with setup and API reference guidance.
 
-## Reference(s): <br>
-- [API 参考文档](references/api-reference.md) <br>
-- [配置指南](references/setup-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cutout-pro/tukeli-visual-api) <br>
-- [Tukeli website](https://www.tukeli.net) <br>
-- [Tukeli image matting API documentation](https://www.tukeli.net/apidoc-image-matting.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; API calls can produce image files, JSON status, or Base64 image data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TUKELI_API_KEY and may write generated images plus .meta.json sidecar files under data/outputs/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends selected images, image URLs, prompts, optional facial landmark data, and an API key to Tukeli's external paid service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key in an isolated environment, avoid sensitive image inputs unless approved, and confirm the provider's data handling terms before use.
+
+Risk: The security review warns that documented local usage limits may not be implemented or provider-enforced.
+
+Mitigation: Rely on provider-side quota and billing controls, monitor credit usage, and do not treat local daily-limit settings as a hard safeguard.
+
+Risk: Dependency pinning should be reviewed before deployment.
+
+Mitigation: Review and pin Python dependencies in the deployment environment before installing or running the skill.
+
+## Reference(s):
+
+- [Setup Guide](references/setup-guide.md)
+- [API Reference](references/api-reference.md)
+- [Tukeli API base endpoint](https://picupapi.tukeli.net)
+- [Tukeli website](https://www.tukeli.net)
+- [Tukeli image matting API documentation](https://www.tukeli.net/apidoc-image-matting.html)
+- [ClawHub skill page](https://clawhub.ai/cutout-pro/skills/tukeli-visual-api)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Files]
+
+**Output Format:** [Markdown guidance with CLI commands; API responses may be PNG files, Base64 JSON, or task status JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TUKELI_API_KEY. Processed image files and metadata are written under data/outputs when the bundled script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, scripts/tukeli.py)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

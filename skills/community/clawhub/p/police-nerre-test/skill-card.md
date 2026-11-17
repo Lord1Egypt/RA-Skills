@@ -1,41 +1,54 @@
-## Description: <br>
-Extracts specified entities and relationships from Chinese police incident report text and returns only strict structured JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公安警情文本实体关系抽取工具，从警情文本中精准抽取指定实体与关系，输出严格结构化JSON，无任何多余内容
 
-## Publisher: <br>
-[andy020326](https://clawhub.ai/user/andy020326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy020326](https://clawhub.ai/user/andy020326)
 
-## Use Case: <br>
-Developers and analysts use this skill to extract predefined entities and relationship triples from police incident report text for downstream structured review or case-data workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to extract sensitive personal data from police-report text, including IDs, phone numbers, bank card numbers, case details, people, locations, and alleged behavior. <br>
-Mitigation: Use it only in workflows authorized to process that data, and avoid submitting real personal or case information unless the agent runtime and downstream systems are approved for it. <br>
-Risk: Incorrect extraction or reversed relationship direction could misrepresent people, organizations, actions, or case facts. <br>
-Mitigation: Have a qualified reviewer check the JSON output before using it for operational, investigative, or legal decisions. <br>
+## Use Case:
 
+Authorized users processing Chinese police-incident text use this skill to extract predefined entities and relationships into a fixed JSON structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andy020326/police-nerre-test) <br>
-- [Publisher profile](https://clawhub.ai/user/andy020326) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Analysis] <br>
-**Output Format:** [Strict JSON object with entity arrays and relationship triples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The output must preserve the required Chinese field names and relationship labels, include empty arrays when no entity values are found, and contain no Markdown or explanatory text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter says 1.0.3) <br>
+Risk: The skill can surface highly sensitive personal data from police-incident text in structured JSON.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use it only in approved workflows where the user is authorized to process the provided incident text.
+
+Risk: Structured extraction can make personal identifiers and sensitive relationships easier to retain or share.
+
+Mitigation: Avoid pasting data that should not be processed or retained by the agent environment, and review outputs before downstream use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andy020326/skills/police-nerre-test)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Strict JSON object containing Chinese entity arrays and relationship triples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs the agent to output only JSON, with no Markdown, commentary, or extra text.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

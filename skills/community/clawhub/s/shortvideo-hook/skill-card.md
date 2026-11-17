@@ -1,42 +1,54 @@
-## Description: <br>
-Generates Chinese short-video opening hooks for platforms such as Douyin, Kuaishou, WeChat Video Accounts, and Xiaohongshu, with hook-type filtering, platform phrasing, and local usage counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese short-video opening hooks for Douyin, Kuaishou, WeChat Channels, and Xiaohongshu, with hook-type selection, platform phrasing, and local usage tracking.
 
-## Publisher: <br>
-[Alone55](https://clawhub.ai/user/Alone55) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[alone55](https://clawhub.ai/user/alone55)
 
-## Use Case: <br>
-Content creators, marketers, and social media operators use this skill to draft multiple Chinese opening hooks for a short-video topic, optionally tailored by hook style or target platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local usage tracking and optional monitoring can retain topics, hook types, platforms, and anonymous user identifiers on disk. <br>
-Mitigation: Avoid sensitive private topics and enable the optional monitoring task only when recurring local reports are intended. <br>
-Risk: The release evidence notes inconsistent free-versus-paid wording, which can confuse users about limits and available features. <br>
-Mitigation: Clarify free and paid terms before broad deployment or commercial promotion. <br>
+## Use Case:
 
+External creators and marketers use this skill to draft Chinese short-video opening hooks from a topic and optionally tailor them by hook type or platform.
 
-## Reference(s): <br>
-- [ClawHub listing for shortvideo-hook](https://clawhub.ai/Alone55/shortvideo-hook) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown or plain text with generated hook lists, usage status, and short tips.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are generated from local templates and may include local daily usage-limit status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: Local analytics and optional scheduled monitoring can record topics, hook types, platforms, and optional user identifiers as behavioral data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep monitoring disabled unless needed, disclose collected fields to users, protect or periodically delete local analytics files, and provide a removal path for scheduled tasks.
+
+Risk: Generated short-video hooks may contain exaggerated claims or wording that is unsuitable for a target platform or brand.
+
+Mitigation: Review generated copy before publication and apply platform, brand, and advertising-policy checks before using it in public content.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/alone55/skills/shortvideo-hook)
+- [Publisher profile](https://clawhub.ai/user/alone55)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese text with numbered hook suggestions, platform notes, and usage status.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free-mode behavior documented in the artifact limits generation to 10 hooks per day and records local usage counts.]
+
+## Skill Version(s):
+
+1.1.1 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

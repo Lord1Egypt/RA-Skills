@@ -54,6 +54,7 @@ Agent Memory System - Memory Conflict Detector（记忆冲突检测器）
 
 from __future__ import annotations
 
+import uuid
 from datetime import datetime
 from enum import Enum
 from typing import Any, Optional
@@ -390,13 +391,11 @@ class MemoryConflictDetector:
 
                     if similarity > self._config.similarity_threshold:
                         conflicts.append(MemoryConflict(
-                            conflict_id=f"conf_factual_{datetime.now().strftime('%Y%m%d%H%M%S')}",
+                            conflict_id=f"conf_factual_{uuid.uuid4().hex[:8]}",
                             conflict_type=ConflictType.FACTUAL_CONTRADICTION,
-                            severity=ConflictSeverity.HIGH,
-                            involved_memories=[new_id, mem.memory_id],
+                            memory_ids=[new_id, mem.memory_id],
                             description=f"事实冲突: '{word_a}' vs '{word_b}'",
                             detected_at=datetime.now(),
-                            resolution_mode=ResolutionMode.RECENCY,
                         ))
 
         return conflicts
@@ -432,13 +431,11 @@ class MemoryConflictDetector:
             for key, value in preference_keywords.items():
                 if value and key in new_content and value not in new_content:
                     conflicts.append(MemoryConflict(
-                        conflict_id=f"conf_pref_{datetime.now().strftime('%Y%m%d%H%M%S')}",
+                        conflict_id=f"conf_pref_{uuid.uuid4().hex[:8]}",
                         conflict_type=ConflictType.CONCEPT_AMBIGUITY,
-                        severity=ConflictSeverity.LOW,
-                        involved_memories=[new_id],
+                        memory_ids=[new_id],
                         description=f"偏好可能变化: {key} 相关",
                         detected_at=datetime.now(),
-                        resolution_mode=ResolutionMode.USER_CONFIRMATION,
                     ))
 
         return conflicts
@@ -466,13 +463,11 @@ class MemoryConflictDetector:
                 # 检查热度和时间差异
                 if mem.heat_level.value == "cold":
                     conflicts.append(MemoryConflict(
-                        conflict_id=f"conf_temp_{datetime.now().strftime('%Y%m%d%H%M%S')}",
+                        conflict_id=f"conf_temp_{uuid.uuid4().hex[:8]}",
                         conflict_type=ConflictType.TEMPORAL_INVALIDATION,
-                        severity=ConflictSeverity.MEDIUM,
-                        involved_memories=[new_id, mem.memory_id],
+                        memory_ids=[new_id, mem.memory_id],
                         description="时效冲突: 新记忆可能覆盖过时信息",
                         detected_at=datetime.now(),
-                        resolution_mode=ResolutionMode.RECENCY,
                     ))
 
         return conflicts
@@ -500,13 +495,11 @@ class MemoryConflictDetector:
             # 高相似度 + 高矛盾度 = 语义冲突
             if similarity > self._config.similarity_threshold and contradiction > self._config.contradiction_threshold:
                 conflicts.append(MemoryConflict(
-                    conflict_id=f"conf_sem_{datetime.now().strftime('%Y%m%d%H%M%S')}",
+                    conflict_id=f"conf_sem_{uuid.uuid4().hex[:8]}",
                     conflict_type=ConflictType.CONCEPT_AMBIGUITY,
-                    severity=ConflictSeverity.MEDIUM,
-                    involved_memories=[new_id, mem.memory_id],
+                    memory_ids=[new_id, mem.memory_id],
                     description=f"语义冲突: 相似度{similarity:.2f}, 矛盾度{contradiction:.2f}",
                     detected_at=datetime.now(),
-                    resolution_mode=ResolutionMode.CONTEXTUAL,
                 ))
 
         return conflicts
@@ -612,7 +605,7 @@ class MemoryConflictDetector:
         Returns:
             ResolutionResult 解决结果
         """
-        actual_mode = mode or conflict.resolution_mode
+        actual_mode = mode or ResolutionMode.RECENCY
 
         if actual_mode == ResolutionMode.RECENCY:
             return self._resolve_by_recency(conflict, memories or [])
@@ -633,10 +626,10 @@ class MemoryConflictDetector:
         memories: list[ActivatedMemory],
     ) -> ResolutionResult:
         """基于新近性解决"""
-        involved_ids = set(conflict.involved_memories)
+        involved_ids = set(conflict.memory_ids)
 
         # 选择第一个（通常是最新的）
-        winning_memory = conflict.involved_memories[0] if conflict.involved_memories else ""
+        winning_memory = conflict.memory_ids[0] if conflict.memory_ids else ""
 
         return ResolutionResult(
             conflict_id=conflict.conflict_id,
@@ -654,7 +647,7 @@ class MemoryConflictDetector:
         memories: list[ActivatedMemory],
     ) -> ResolutionResult:
         """基于频率解决"""
-        involved_ids = set(conflict.involved_memories)
+        involved_ids = set(conflict.memory_ids)
 
         # 简化：选择热度高的
         winning_memory = ""
@@ -667,8 +660,8 @@ class MemoryConflictDetector:
                     max_score = score
                     winning_memory = mem.memory_id
 
-        if not winning_memory and conflict.involved_memories:
-            winning_memory = conflict.involved_memories[0]
+        if not winning_memory and conflict.memory_ids:
+            winning_memory = conflict.memory_ids[0]
 
         return ResolutionResult(
             conflict_id=conflict.conflict_id,
@@ -693,7 +686,7 @@ class MemoryConflictDetector:
             confidence=0.0,
             rationale="冲突需要用户确认",
             user_required=True,
-            alternatives=conflict.involved_memories,
+            alternatives=conflict.memory_ids,
         )
 
     def _resolve_by_trust(
@@ -702,7 +695,7 @@ class MemoryConflictDetector:
         memories: list[ActivatedMemory],
     ) -> ResolutionResult:
         """基于可信度解决"""
-        involved_ids = set(conflict.involved_memories)
+        involved_ids = set(conflict.memory_ids)
 
         # 计算可信度
         trust_scores: dict[str, float] = {}
@@ -711,12 +704,12 @@ class MemoryConflictDetector:
                 trust = mem.relevance_score
                 if mem.heat_level.value == "hot":
                     trust += 0.2
-                trust_scores[mem.memory_id] = trust
+                trust_scores[mem.memory_id] = min(1.0, trust)
 
         winning_memory = max(
             trust_scores,
             key=trust_scores.get,
-            default=conflict.involved_memories[0] if conflict.involved_memories else "",
+            default=conflict.memory_ids[0] if conflict.memory_ids else "",
         )
 
         return ResolutionResult(
@@ -735,7 +728,7 @@ class MemoryConflictDetector:
         memories: list[ActivatedMemory],
     ) -> ResolutionResult:
         """基于上下文相关性解决"""
-        involved_ids = set(conflict.involved_memories)
+        involved_ids = set(conflict.memory_ids)
 
         # 选择相关性最高的
         relevance_scores: dict[str, float] = {}
@@ -746,7 +739,7 @@ class MemoryConflictDetector:
         winning_memory = max(
             relevance_scores,
             key=relevance_scores.get,
-            default=conflict.involved_memories[0] if conflict.involved_memories else "",
+            default=conflict.memory_ids[0] if conflict.memory_ids else "",
         )
 
         return ResolutionResult(
@@ -790,8 +783,12 @@ class MemoryConflictDetector:
         if conflict.conflict_type == ConflictType.EMOTIONAL_INCONSISTENCY:
             return ConflictSeverity.LOW
 
-        # 默认
-        return conflict.severity
+        # 其他类型：涉及记忆越多，严重程度越高
+        if len(conflict.memory_ids) >= 3:
+            return ConflictSeverity.HIGH
+        if len(conflict.memory_ids) == 2:
+            return ConflictSeverity.MEDIUM
+        return ConflictSeverity.LOW
 
     # -----------------------------------------------------------------------
     # 冲突日志
@@ -852,13 +849,13 @@ class MemoryConflictDetector:
 
         # 按严重程度统计
         for entry in self._conflict_log:
-            severity = entry.conflict.severity.value
+            severity = self.assess_severity(entry.conflict).value
             stats.by_severity[severity] = stats.by_severity.get(severity, 0) + 1
 
         # 按动作统计
         for entry in self._conflict_log:
-            if entry.action:
-                action = entry.action.value
+            if entry.action_taken:
+                action = entry.action_taken.value
                 stats.by_action[action] = stats.by_action.get(action, 0) + 1
 
         return stats

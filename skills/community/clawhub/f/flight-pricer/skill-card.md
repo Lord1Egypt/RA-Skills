@@ -1,41 +1,54 @@
-## Description: <br>
-Flight Pricer is a command-line tool that searches flight prices through the Duffel API with options for dates, passengers, stops, and cabin class. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line tool to search flight prices using the Duffel API with options for dates, passengers, stops, and cabin class.
 
-## Publisher: <br>
-[jrojas537](https://clawhub.ai/user/jrojas537) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jrojas537](https://clawhub.ai/user/jrojas537)
 
-## Use Case: <br>
-Developers and agents use this skill to configure a Duffel API key and query flight offers from the command line for specified routes, dates, passenger counts, stop limits, and cabin classes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The Duffel API key is stored on disk in the user's configuration directory. <br>
-Mitigation: Install in a virtual environment, use a least-privilege Duffel key where possible, and check permissions on ~/.config/flight-pricer/config.yaml. <br>
-Risk: Unpinned dependencies can reduce supply-chain reproducibility. <br>
-Mitigation: Use pinned dependencies or install from a controlled lockfile for environments that require stronger reproducibility. <br>
+## Use Case:
 
+Agents, developers, and travelers use Flight Pricer to configure a Duffel API key and search flight offers by route, date, passenger count, stop count, and cabin class from the command line.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jrojas537/flight-pricer) <br>
-- [Duffel](https://duffel.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Terminal text with human-readable tables and status or error messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores the Duffel API key in ~/.config/flight-pricer/config.yaml and calls the Duffel flight offer API during searches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: The skill stores a Duffel API key that may have billing or account privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer entering the key through a hidden prompt, environment variable, or credential store, and restrict ~/.config/flight-pricer/config.yaml to the local user only.
+
+Risk: Runtime dependencies are not pinned in the artifact.
+
+Mitigation: Install in an isolated virtual environment and consider pinning dependencies before use.
+
+## Reference(s):
+
+- [Flight Pricer on ClawHub](https://clawhub.ai/jrojas537/skills/flight-pricer)
+- [Duffel](https://duffel.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Plain text CLI output with tabular flight offers, status messages, and error details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes Duffel API key configuration to ~/.config/flight-pricer/config.yaml when configured.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Audit and compliance assistant for reviewing financial records, internal controls, processes, and regulatory compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit and compliance assistant for reviewing financial records, internal controls, processes, and regulatory compliance.
 
-## Publisher: <br>
-[jiwenbing](https://clawhub.ai/user/jiwenbing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jiwenbing](https://clawhub.ai/user/jiwenbing)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, external auditors, and compliance reviewers use this skill to scope audits, design audit procedures, review financial records and controls, and document risks or corrective actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be used with sensitive financial or compliance records.
+
+Mitigation: Provide only the records needed for the audit task and avoid unnecessary sensitive data exposure.
+
+Risk: Audit or compliance conclusions may be incomplete or incorrect for a specific jurisdiction, standard, or organization.
+
+Mitigation: Verify conclusions against applicable standards, internal policies, and qualified professional advice before relying on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external auditors, and compliance teams use Auditor to plan audit scope, review financial records and controls, and identify control weaknesses, compliance gaps, or fraud risks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Audit guidance can be incomplete or misapplied if the user omits scope, materiality, jurisdiction, or applicable accounting standards. <br>
-Mitigation: Have qualified audit or compliance personnel review findings and provide the specific standards, thresholds, and evidence needed for the review. <br>
-Risk: Financial, compliance, and internal-control reviews may involve sensitive business or personal information. <br>
-Mitigation: Share only the records and details needed for the specific audit task and avoid unnecessary confidential or regulated data. <br>
+**Output Format:** [Markdown or structured prose]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [No code execution, external access, persistence, or generated files are part of the skill behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only responses; no code execution, install hooks, credential use, or hidden behavior declared.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

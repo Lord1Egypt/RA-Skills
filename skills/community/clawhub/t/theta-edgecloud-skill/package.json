@@ -1,21 +1,31 @@
 {
   "name": "theta-edgecloud-skill",
-  "version": "0.1.26",
+  "version": "0.2.0",
   "private": true,
-  "description": "Theta EdgeCloud runtime for OpenClaw cost optimization across AI, media, inference, video, and GPU workloads",
+  "description": "Theta EdgeCloud runtime for OpenClaw: on-demand inference, GPU nodes, RAG agents, video and AI Characters with code-enforced approval gates",
   "type": "module",
   "files": [
     "README.md",
     "SKILL.md",
-    "package.json"
+    "package.json",
+    "dist/",
+    "src/",
+    "tests/",
+    "references/",
+    "tsconfig.json"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && esbuild build/index.js --bundle --platform=node --format=esm --target=node20 --legal-comments=none --outfile=dist/index.js",
     "check": "tsc -p tsconfig.json --noEmit",
     "test": "npm run build && node --test tests/**/*.test.ts tests/**/*.test.mjs"
   },
   "devDependencies": {
-    "typescript": "^5.7.3",
-    "@types/node": "^22.10.2"
+    "@types/node": "22.19.11",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
   }
 }

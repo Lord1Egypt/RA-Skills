@@ -1,42 +1,54 @@
-## Description: <br>
-This skill provides audio sleep aid recommendations and guidance for users experiencing insomnia or sleep-related issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides audio sleep aid recommendations and guidance for users experiencing insomnia or sleep-related issues.
 
-## Publisher: <br>
-[hcrunner](https://clawhub.ai/user/hcrunner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hcrunner](https://clawhub.ai/user/hcrunner)
 
-## Use Case: <br>
-External users can use this skill when they ask for help with insomnia, difficulty sleeping, or sleep quality concerns and need concise guidance toward an audio sleep-aid resource. The skill is supplementary and should not be treated as medical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to a third-party sleep-audio webpage outside the agent environment. <br>
-Mitigation: Treat the link as an external resource and install only if that recommendation is acceptable for the deployment context. <br>
-Risk: Users may describe persistent, severe, or health-related insomnia that needs professional care. <br>
-Mitigation: Keep responses supplementary, avoid diagnosis or treatment claims, and direct users to healthcare guidance when sleep issues persist or appear medically significant. <br>
+## Use Case:
 
+External users and assistants use this skill to respond to insomnia or sleep-related requests with supportive guidance and a link to an audio sleep aid resource.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hcrunner/insomnia-audio-sleep-aid) <br>
-- [hcrunner publisher profile](https://clawhub.ai/user/hcrunner) <br>
-- [Audio sleep aid resource](https://myxt.com/link/c8f32a1b-a757-46fb-b9c9-0d21292068db) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown or plain text with an external resource link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise supportive response; no code execution, credential collection, local access, or persistence requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill broadly triggers on sleep complaints and directs users to one opaque third-party link.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the destination, provider transparency, and privacy practices before installation or use.
+
+Risk: Users may treat sleep-aid guidance as medical advice for chronic or serious sleep issues.
+
+Mitigation: Keep responses supplementary, avoid diagnosis or treatment claims, and recommend healthcare professionals for persistent sleep problems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hcrunner/skills/insomnia-audio-sleep-aid)
+- [Audio sleep aid resource](https://myxt.com/link/c8f32a1b-a757-46fb-b9c9-0d21292068db)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Concise Markdown response with a web link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes sleep-related requests to a single third-party audio resource and advises professional care for persistent symptoms.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

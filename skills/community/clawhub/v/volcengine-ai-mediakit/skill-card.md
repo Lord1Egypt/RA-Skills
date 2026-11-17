@@ -1,56 +1,61 @@
-## Description: <br>
-Volcengine AI MediaKit helps agents upload, edit, enhance, analyze, translate, and query audio/video assets through Volcengine VOD workflows, returning task IDs and generated playback links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Volcengine AI MediaKit helps agents upload, process, enhance, translate, analyze, and query audio and video assets, returning task IDs and playback links for completed media jobs.
 
-## Publisher: <br>
-[volc-ai-mediakit](https://clawhub.ai/user/volc-ai-mediakit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volc-ai-mediakit](https://clawhub.ai/user/volc-ai-mediakit)
 
-## Use Case: <br>
-External developers, media operators, and content teams use this skill to run Volcengine-backed audio and video processing workflows such as clipping, stitching, enhancement, subtitle handling, translation, and media metadata lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use Volcengine VOD credentials to upload, process, store, bill for, and in some cases publish media. <br>
-Mitigation: Install only when the publisher is trusted, use least-privilege Volcengine credentials, and confirm account, storage, billing, and publishing expectations before running media workflows. <br>
-Risk: Media information lookup can expose or publish private or draft asset information. <br>
-Mitigation: Avoid running get_media_info on private or draft assets unless making those assets accessible is acceptable. <br>
-Risk: Generated playback links and processed outputs may reveal user media or derived content. <br>
-Mitigation: Review links before sharing them and keep source media, generated outputs, and task IDs within the intended audience. <br>
+## Use Case:
 
+Developers, media operators, and content teams use this skill to drive Volcengine media workflows for editing, enhancement, captioning, translation, content analysis, and playback-link retrieval from agent conversations.
 
-## Reference(s): <br>
-- [Capabilities overview](references/00-detail.md) <br>
-- [Billing instructions](references/00-billing-instructions.md) <br>
-- [Video and audio stitching](references/01-stitching.md) <br>
-- [Clipping](references/02-clipping.md) <br>
-- [Speed adjustment](references/04-speedup.md) <br>
-- [Image to video](references/05-image-to-video.md) <br>
-- [Audio extraction](references/07-extract-audio.md) <br>
-- [Quality enhancement](references/12-quality-enhance.md) <br>
-- [Super resolution](references/13-super-resolution.md) <br>
-- [ASR speech to text](references/15-asr-speech-to-text.md) <br>
-- [OCR text extraction](references/16-ocr-text-extract.md) <br>
-- [Video translation](references/24-video-translation.md) <br>
-- [Drama recap](references/25-drama-recap.md) <br>
-- [Drama script](references/26-drama-script.md) <br>
-- [Media information lookup](references/27-get-media-info.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON script output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Volcengine task IDs, resume commands, media metadata, generated asset references, and playback URLs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release metadata) <br>
+Risk: A media-info lookup can automatically publish unpublished videos to obtain playback links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped Volcengine credentials and avoid querying sensitive unpublished videos unless publication and shareable playback URLs are acceptable.
+
+Risk: The skill can upload media and submit processing jobs that may create storage, processing, or traffic charges.
+
+Mitigation: Confirm the intended media, VOD space, and expected billing exposure before running jobs, especially on large files or batch requests.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volc-ai-mediakit/skills/volcengine-ai-mediakit)
+- [Publisher Profile](https://clawhub.ai/user/volc-ai-mediakit)
+- [Capability Summary](references/00-detail.md)
+- [Billing Instructions](references/00-billing-instructions.md)
+- [Media Storage Billing](https://www.volcengine.com/docs/4/76542?lang=zh)
+- [Video Editing Billing](https://www.volcengine.com/docs/4/1941016?lang=zh)
+- [Media Processing Billing](https://www.volcengine.com/docs/4/1941013?lang=zh)
+- [Distribution Acceleration Configuration](https://www.volcengine.com/docs/4/177122)
+- [Distribution Acceleration Billing](https://www.volcengine.com/docs/4/1941015?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include asynchronous task IDs, playback URLs, media metadata, error JSON, and resume commands for polling long-running jobs.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

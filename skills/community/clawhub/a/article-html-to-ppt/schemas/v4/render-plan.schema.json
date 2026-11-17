@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/SkillMelody/PPT-Smith/main/schemas/v4/render-plan.schema.json",
+  "title": "Render Plan v4",
+  "description": "The engine -> builder geometry contract: a fully resolved, builder-agnostic description of every object on every slide. Everything upstream (policy, archetype, style, text fitting) is already decided — builders execute, they do not design. Determinism rules: all geometry is integer EMU (914400/inch), all font sizes are integer centipoints, all colors are resolved hex; no floats, no token references, no engine callbacks. Two builders given the same render plan must produce inspection-identical decks. Connector objects preserve the v3 native-connector contract: one native connector with its arrowhead on the line, endpoints bound where the builder supports binding.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "plan", "canvas", "slides"],
+  "properties": {
+    "schema_version": { "const": "4.0.0" },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plan_id", "engine_version", "ir_sha256"],
+      "properties": {
+        "plan_id": { "$ref": "#/$defs/idSlug" },
+        "engine_version": { "type": "string", "maxLength": 40 },
+        "ir_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "trace_run_id": { "$ref": "#/$defs/idSlug" },
+        "style_pack": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pack_id", "version"],
+          "properties": {
+            "pack_id": { "$ref": "#/$defs/idSlug" },
+            "version": { "type": "string", "maxLength": 40 }
+          }
+        }
+      }
+    },
+    "canvas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width_emu", "height_emu"],
+      "properties": {
+        "width_emu": { "$ref": "#/$defs/emu" },
+        "height_emu": { "$ref": "#/$defs/emu" }
+      }
+    },
+    "fonts_used": {
+      "type": "array",
+      "maxItems": 12,
+      "items": { "type": "string", "maxLength": 60 },
+      "description": "Every font family referenced by any run. Builders verify availability against the capability report before rendering."
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 60,
+      "items": { "$ref": "#/$defs/slide" }
+    }
+  },
+  "$defs": {
+    "idSlug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$" },
+    "emu": { "type": "integer", "minimum": 0, "maximum": 30000000 },
+    "emuOffset": { "type": "integer", "minimum": -30000000, "maximum": 30000000 },
+    "centipoints": { "type": "integer", "minimum": 100, "maximum": 20000, "description": "Font size * 100, e.g. 1350 = 13.5pt." },
+    "hexColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+    "opacityPct": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": { "$ref": "#/$defs/emuOffset" },
+        "y": { "$ref": "#/$defs/emuOffset" },
+        "w": { "$ref": "#/$defs/emu" },
+        "h": { "$ref": "#/$defs/emu" }
+      }
+    },
+    "fill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["color"],
+      "properties": {
+        "color": { "$ref": "#/$defs/hexColor" },
+        "opacity_pct": { "$ref": "#/$defs/opacityPct" }
+      }
+    },
+    "stroke": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["color", "width_emu"],
+      "properties": {
+        "color": { "$ref": "#/$defs/hexColor" },
+        "width_emu": { "$ref": "#/$defs/emu" },
+        "dash": { "type": "string", "enum": ["solid", "dash", "dot"] }
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "font", "size_cpt", "color"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "font": { "type": "string", "maxLength": 60 },
+        "size_cpt": { "$ref": "#/$defs/centipoints" },
+        "color": { "$ref": "#/$defs/hexColor" },
+        "weight": { "type": "integer", "minimum": 100, "maximum": 900, "multipleOf": 100 },
+        "italic": { "type": "boolean" },
+        "spacing_cpt": { "type": "integer", "minimum": -100, "maximum": 300 }
+      }
+    },
+    "paragraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runs"],
+      "properties": {
+        "runs": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "$ref": "#/$defs/run" } },
+        "align": { "type": "string", "enum": ["left", "center", "right"] },
+        "line_height_pct": { "type": "integer", "minimum": 90, "maximum": 200 },
+        "space_after_cpt": { "type": "integer", "minimum": 0, "maximum": 2400 },
+        "bullet": { "type": "string", "enum": ["none", "dot", "number"] },
+        "indent_level": { "type": "integer", "minimum": 0, "maximum": 4 }
+      }
+    },
+    "textboxElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["element_id", "type", "frame", "paragraphs"],
+      "properties": {
+        "element_id": { "$ref": "#/$defs/idSlug" },
+        "type": { "const": "textbox" },
+        "frame": { "$ref": "#/$defs/frame" },
+        "paragraphs": { "type": "array", "minItems": 1, "maxItems": 40, "items": { "$ref": "#/$defs/paragraph" } },
+        "valign": { "type": "string", "enum": ["top", "middle", "bottom"] },
+        "wrap": { "type": "boolean", "default": true },
+        "editable": { "type": "boolean", "default": true },
+        "semantic_role": { "type": "string", "maxLength": 40, "description": "IR lineage tag (e.g. title, message, fact, metric_label) for QA and inspection, not for builder behavior." }
+      }
+    },
+    "shapeElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["element_id", "type", "frame", "shape"],
+      "properties": {
+        "element_id": { "$ref": "#/$defs/idSlug" },
+        "type": { "const": "shape" },
+        "frame": { "$ref": "#/$defs/frame" },
+        "shape": { "type": "string", "enum": ["rect", "round_rect", "oval", "pill", "line", "chevron", "diamond"] },
+        "corner_radius_emu": { "$ref": "#/$defs/emu" },
+        "fill": { "$ref": "#/$defs/fill" },
+        "stroke": { "$ref": "#/$defs/stroke" },
+        "shadow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["blur_emu", "opacity_pct"],
+          "properties": {
+            "blur_emu": { "$ref": "#/$defs/emu" },
+            "offset_x_emu": { "$ref": "#/$defs/emuOffset" },
+            "offset_y_emu": { "$ref": "#/$defs/emuOffset" },
+            "opacity_pct": { "$ref": "#/$defs/opacityPct" }
+          }
+        },
+        "paragraphs": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/paragraph" }, "description": "Optional text inside the shape." },
+        "editable": { "type": "boolean", "default": true },
+        "semantic_role": { "type": "string", "maxLength": 40 }
+      }
+    },
+    "imageElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["element_id", "type", "frame", "path"],
+      "properties": {
+        "element_id": { "$ref": "#/$defs/idSlug" },
+        "type": { "const": "image" },
+        "frame": { "$ref": "#/$defs/frame" },
+        "path": { "type": "string", "maxLength": 500, "description": "Path relative to the plan's asset directory. No URLs; assets are staged before rendering." },
+        "crop_pct": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "left": { "$ref": "#/$defs/opacityPct" },
+            "right": { "$ref": "#/$defs/opacityPct" },
+            "top": { "$ref": "#/$defs/opacityPct" },
+            "bottom": { "$ref": "#/$defs/opacityPct" }
+          }
+        },
+        "overlay": { "$ref": "#/$defs/fill" },
+        "semantic_role": { "type": "string", "maxLength": 40 }
+      }
+    },
+    "tableElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["element_id", "type", "frame", "col_widths_emu", "rows"],
+      "properties": {
+        "element_id": { "$ref": "#/$defs/idSlug" },
+        "type": { "const": "table" },
+        "frame": { "$ref": "#/$defs/frame" },
+        "col_widths_emu": { "type": "array", "minItems": 1, "maxItems": 12, "items": { "$ref": "#/$defs/emu" } },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 31,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["cells"],
+            "properties": {
+              "header": { "type": "boolean" },
+              "height_emu": { "$ref": "#/$defs/emu" },
+              "cells": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 12,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["paragraphs"],
+                  "properties": {
+                    "paragraphs": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "$ref": "#/$defs/paragraph" } },
+                    "fill": { "$ref": "#/$defs/fill" },
+                    "col_span": { "type": "integer", "minimum": 1, "maximum": 12 }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "border": { "$ref": "#/$defs/stroke" },
+        "variant": { "type": "string", "enum": ["default", "minimal", "matrix"] },
+        "semantic_role": { "type": "string", "maxLength": 40 }
+      }
+    },
+    "chartElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["element_id", "type", "frame", "chart_type", "series"],
+      "properties": {
+        "element_id": { "$ref": "#/$defs/idSlug" },
+        "type": { "const": "chart" },
+        "frame": { "$ref": "#/$defs/frame" },
+        "chart_type": { "type": "string", "enum": ["bar", "column", "line", "area", "pie", "donut", "scatter"] },
+        "categories": { "type": "array", "maxItems": 24, "items": { "type": "string", "maxLength": 60 } },
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "values", "color"],
+            "properties": {
+              "name": { "type": "string", "maxLength": 60 },
+              "values": { "type": "array", "minItems": 1, "maxItems": 24, "items": { "type": ["number", "null"] } },
+              "color": { "$ref": "#/$defs/hexColor" }
+            }
+          }
+        },
+        "label_size_cpt": { "$ref": "#/$defs/centipoints" },
+        "label_color": { "$ref": "#/$defs/hexColor" },
+        "gridline": { "$ref": "#/$defs/stroke" },
+        "legend": { "type": "string", "enum": ["none", "bottom", "right"] },
+        "semantic_role": { "type": "string", "maxLength": 40 }
+      }
+    },
+    "connectorElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["element_id", "type", "route", "from_element", "to_element", "stroke"],
+      "properties": {
+        "element_id": { "$ref": "#/$defs/idSlug" },
+        "type": { "const": "connector" },
+        "route": { "type": "string", "enum": ["straight", "orthogonal", "curved"] },
+        "from_element": { "$ref": "#/$defs/idSlug" },
+        "to_element": { "$ref": "#/$defs/idSlug" },
+        "from_side": { "type": "string", "enum": ["left", "right", "top", "bottom", "auto"] },
+        "to_side": { "type": "string", "enum": ["left", "right", "top", "bottom", "auto"] },
+        "stroke": { "$ref": "#/$defs/stroke" },
+        "arrowhead": { "type": "string", "enum": ["none", "end", "both"] },
+        "label": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["paragraphs", "frame"],
+          "properties": {
+            "paragraphs": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "$ref": "#/$defs/paragraph" } },
+            "frame": { "$ref": "#/$defs/frame" }
+          },
+          "description": "Connector text lives in its own safely-placed textbox, never floating on the line unprotected (v3 arrow-text-safety rule)."
+        }
+      },
+      "description": "One native connector object, arrowhead on the line. Builders that cannot bind endpoints or route orthogonal/curved must fail closed, not approximate."
+    },
+    "element": {
+      "oneOf": [
+        { "$ref": "#/$defs/textboxElement" },
+        { "$ref": "#/$defs/shapeElement" },
+        { "$ref": "#/$defs/imageElement" },
+        { "$ref": "#/$defs/tableElement" },
+        { "$ref": "#/$defs/chartElement" },
+        { "$ref": "#/$defs/connectorElement" }
+      ]
+    },
+    "slide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slide_id", "background", "elements"],
+      "properties": {
+        "slide_id": { "$ref": "#/$defs/idSlug" },
+        "background": { "$ref": "#/$defs/fill" },
+        "elements": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 80,
+          "items": { "$ref": "#/$defs/element" },
+          "description": "Z-order is array order: first element is bottom-most."
+        },
+        "notes": { "type": "string", "maxLength": 4000 }
+      }
+    }
+  }
+}

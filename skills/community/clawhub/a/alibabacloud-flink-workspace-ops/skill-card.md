@@ -1,50 +1,70 @@
-## Description: <br>
-Helps agents execute Alibaba Cloud Flink, Ververica, and Realtime Compute Console workspace operations through the bundled Python CLI for drafts, SQL checks, deployments, jobs, session clusters, tables, members, variables, and checkpoint diagnostics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to operate Alibaba Cloud Flink and Ververica Console workspace resources through the bundled Python CLI, including SQL drafts, validation, deployments, jobs, session clusters, workspace administration, table lookup, and diagnostics.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and platform operators use this skill to run scoped Alibaba Cloud Flink Console workspace tasks, including SQL draft validation, deployment and job operations, session cluster lifecycle actions, workspace administration, and diagnostics. It is intended for live workspace operations and expects the agent to execute the provided CLI rather than produce plans or mock output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live changes to Alibaba Cloud Flink workspace resources. <br>
-Mitigation: Install and run it only in a sandbox or tightly scoped Alibaba Cloud account unless live workspace changes are intended. <br>
-Risk: The skill requires sensitive Alibaba Cloud credentials. <br>
-Mitigation: Use least-privilege RAM policies, avoid production credentials, and do not persist long-lived access keys in shell profiles. <br>
-Risk: Mutating and destructive commands may affect deployments, jobs, members, variables, and session clusters. <br>
-Mitigation: Review every command that includes `--confirm` before execution and verify state with read-back commands after mutations. <br>
-Risk: The generic Flink API proxy can broaden what the agent can reach. <br>
-Mitigation: Avoid proxy-style commands unless the target backend endpoint and expected effect are fully understood. <br>
+## Use Case:
 
+Developers and cloud operations teams use this skill to route explicit Alibaba Cloud Flink workspace requests into concrete CLI operations for drafts, SQL validation, deployments, jobs, session clusters, members, variables, tables, and diagnostics. It is intended for scoped workspace operations, not instance lifecycle, generic cloud infrastructure, billing, storage, or unrelated workspace contexts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sdk-team/alibabacloud-flink-workspace-ops) <br>
-- [CLI Installation Guide](references/cli-installation-guide.md) <br>
-- [Agent Operating Protocol](references/agent-operating-protocol.md) <br>
-- [Command Catalog](references/command-catalog.md) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Verification Method](references/verification-method.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output summaries; some commands can emit JSON, table, or text output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python dependencies and Alibaba Cloud credentials via the default credential chain; mutating and destructive operations require explicit confirmation flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill can drive live Alibaba Cloud Flink workspace changes, including when scope is missing or placeholder IDs are used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege temporary credentials and verify workspace, namespace, region, deployment, job, session cluster, and other resource IDs before permitting mutation or deletion.
+
+Risk: Commands such as UDF, connector, execute_sql, deployment-target, and API-proxy operations can materially affect workspace behavior.
+
+Mitigation: Restrict RAM permissions to the smallest needed action set and require careful review before allowing these commands in production workspaces.
+
+Risk: Long-lived cloud credentials may be exposed or reused if stored in shell startup files or logs.
+
+Mitigation: Prefer temporary credentials, avoid persisting access keys in shell profiles, and do not print or store credential values in command output or generated artifacts.
+
+## Reference(s):
+
+- [Agent Operating Protocol](references/agent-operating-protocol.md)
+- [CLI Installation Guide](references/cli-installation-guide.md)
+- [Command Catalog](references/command-catalog.md)
+- [Command Map Index](references/command-map.md)
+- [Error Handling](references/error-handling.md)
+- [RAM Policies for Flink Console Operations](references/ram-policies.md)
+- [Related APIs](references/related-apis.md)
+- [Resource Loading Policy](references/resource-disclosure.md)
+- [Verification Methods](references/verification-method.md)
+- [VVP Product Concept Model](references/vvp-product-model.md)
+- [Playbook: Create -> Validate -> Deploy](references/playbooks/create-validate-deploy.md)
+- [Playbook: List -> Filter -> Act](references/playbooks/list-filter-act.md)
+- [Playbook: Session Cluster Lifecycle](references/playbooks/session-cluster-lifecycle.md)
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-flink-workspace-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance, API calls, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON, table, or text CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include direct cloud-operation results and follow-up guidance; mutating and destructive operations rely on explicit confirmation gates and read-back verification.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

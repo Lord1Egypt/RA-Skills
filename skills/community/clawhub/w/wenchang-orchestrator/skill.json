@@ -1,0 +1,29 @@
+{
+  "slug": "wenchang-orchestrator",
+  "title": "Wenchang Orchestrator",
+  "category": "content",
+  "summary": "Coordinates research, review, adaptive image generation, recoverable handoff, long-form illustration, publish-ready card rendering, URL preparation, and final gates.",
+  "keywords": [
+    "content workflow",
+    "orchestrator",
+    "writing",
+    "content_state",
+    "multi-platform publishing",
+    "card image pipeline",
+    "adaptive image generation",
+    "ChatGPT image handoff"
+  ],
+  "user_needs": [
+    "turn a topic into a structured content workflow",
+    "decide which content skill to run next",
+    "keep writing, research, review, illustration, image handling, and publishing steps aligned",
+    "coordinate WeChat, Zhihu, Xiaohongshu, and Zhihu Idea delivery from one reviewed source",
+    "continue publish-ready card packages through real image production and visual QA",
+    "recover image generation when built-in ImageGen or Computer Use is unavailable"
+  ],
+  "source_dir": "skills/content/wenchang-orchestrator",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

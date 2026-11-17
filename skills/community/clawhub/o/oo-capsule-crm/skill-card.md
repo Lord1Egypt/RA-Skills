@@ -1,46 +1,55 @@
-## Description: <br>
-Operate Capsule CRM through an OOMOL-connected account for reading, creating, updating, deleting, listing, and searching CRM records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Capsule CRM through an OOMOL-connected account to read, create, update, and delete CRM records.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and operators use this skill to let an agent work with Capsule CRM records through OOMOL, including parties, opportunities, tasks, and CRM reference data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Write and delete actions can change or remove Capsule CRM records. <br>
-Mitigation: Confirm the exact action, target record, and payload with the user before running create, update, or delete operations. <br>
-Risk: The skill requires access to a Capsule CRM account through OOMOL and may use sensitive credentials. <br>
-Mitigation: Install it only when the agent should access Capsule CRM through OOMOL, and rely on the server-side credential injection described by the release evidence. <br>
-Risk: The optional oo CLI installation command downloads and runs a remote installer. <br>
-Mitigation: Run the installer only when the CLI is missing and after reviewing OOMOL's official installation guidance. <br>
+## Use Case:
 
+External users can use this skill to manage Capsule CRM parties, tasks, and opportunities through their connected account, including reading, searching, creating, updating, and deleting records.
 
-## Reference(s): <br>
-- [ClawHub Capsule CRM Skill](https://clawhub.ai/oomol/oo-capsule-crm) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Capsule CRM Homepage](https://capsulecrm.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector actions return JSON responses when run through the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and skill frontmatter) <br>
+Risk: CLI startup synchronization can add or refresh skills across agent tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI setup and installed skills; set OO_SKILLS_SYNC_DISABLED=1 to disable startup synchronization.
+
+Risk: Create, update, and delete actions can change Capsule CRM data.
+
+Mitigation: Keep account access limited, inspect the live action schema, and obtain user approval for the exact write or deletion before running it.
+
+## Reference(s):
+
+- [Capsule CRM](https://capsulecrm.com)
+- [Capsule CRM API documentation](https://developer.capsulecrm.com/v2/overview/authentication)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands]
+
+**Output Format:** [JSON action payloads and CRM results issued through shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Capsule CRM account and its permissions.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

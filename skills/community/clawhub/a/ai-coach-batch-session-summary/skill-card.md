@@ -1,43 +1,63 @@
-## Description: <br>
-Generates AI coach and outreach insight reports from authorized ASR transcript records after clarifying the user's time range, analysis focus, and delivery format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch-analyzes ASR recording transcripts and generates a multidimensional outreach insight report.
 
-## Publisher: <br>
-[legionspace-hackathon](https://clawhub.ai/user/legionspace-hackathon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[legionspace-hackathon](https://clawhub.ai/user/legionspace-hackathon)
 
-## Use Case: <br>
-OpenClaw or Legion agents use this skill to summarize batches of ASR recordings into user-requested AI coach, outreach, sales script, or customer-need reports. The workflow asks for missing scope details before fetching data and grounds final conclusions in transcript text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles private ASR transcripts and bearer-token API access. <br>
-Mitigation: Install and run it only in trusted Legion/OpenClaw environments where authorization headers, LEGION_* environment variables, and the API base URL are controlled by trusted configuration. <br>
-Risk: Untrusted LEGION_USER_MESSAGE or LEGION_SKIP_CLARIFICATION values can change the requested time range or analysis scope. <br>
-Mitigation: Do not set those environment variables from untrusted sources; require explicit user or gateway confirmation when time range or analysis focus is ambiguous. <br>
-Risk: Reports could include unsupported conclusions if they use non-transcript fields or infer content when the selected theme is absent. <br>
-Mitigation: Ground conclusions only in asrText, avoid aiJiaolianResultJson and aiSummaryContent as evidence, and return no related content when transcript text does not match the requested theme. <br>
+## Use Case:
 
+Sales and operations teams use this skill to turn batches of completed ASR recordings into outreach-dimension statistics, charts, excerpts, and a shareable HTML report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/legionspace-hackathon/ai-coach-batch-session-summary) <br>
-- [Report page template](templates/insight-report-page.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown report page or text summary; helper scripts return JSON for intent parsing, clarification, fetch results, and report planning.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask a clarification question before fetching recordings; large result sets include a hint to prioritize recent samples and sample excerpts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Recording transcripts can contain private or identifying information and may be exposed through shareable report links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private or expiring authenticated report delivery and redact identifiers and raw excerpts by default before approval.
+
+Risk: Bundled live-looking test artifacts may disclose transcript content or operational details.
+
+Mitigation: Remove live transcript test artifacts from the release package or replace them with minimal synthetic fixtures.
+
+Risk: Custom dimensions and upload destinations can change what content is extracted and where reports are delivered.
+
+Mitigation: Validate custom dimension files and approved upload destinations before execution.
+
+Risk: Report rendering depends on external browser scripts.
+
+Mitigation: Bundle report scripts locally or pin external script integrity where supported.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/legionspace-hackathon/skills/ai-coach-batch-session-summary)
+- [DIMENSIONS.md](artifact/DIMENSIONS.md)
+- [ASR insight template](artifact/asr_insight_template.html)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, HTML, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown response with a shareable HTML report link and optional JSON metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates report files only when ASR records are present; may write local temporary files before upload.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

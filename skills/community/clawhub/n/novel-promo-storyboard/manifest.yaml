@@ -1,0 +1,22 @@
+name: "novel-promo-storyboard"
+display_name: "小说转推文分镜"
+slug: "novel-promo-storyboard"
+version: "1.0.2"
+category: "content-tools"
+author: "xxjrq"
+repository: "https://github.com/xxjrq/novel-promo-storyboard"
+description: "由 AI 基于原文创作推广方案；脚本仅校验结构与时间线并排版。"
+icon: "icon-512.png"
+trigger_words:
+  - "小说推文"
+  - "小说推广脚本"
+  - "小说短视频分镜"
+  - "小说宣传"
+tags:
+  - "novel"
+  - "promotion"
+  - "short-video"
+  - "storyboard"
+  - "中文内容"
+license: MIT-0
+self_test: "python3 scripts/self_test.py self-test"

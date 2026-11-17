@@ -1,40 +1,57 @@
-## Description: <br>
-MetricHub 指标平台 helps agents guide MetricHub users through metric catalog browsing, query construction, visualization recommendations, dashboard orchestration, and workspace Gateway configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MetricHub multi-tenant metrics platform orchestration for metric catalog browsing, query construction and execution, visualization recommendations, and dashboard composition.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-MetricHub users and workspace operators use this skill to navigate a multi-tenant metrics platform, construct valid metric queries, choose visualizations, compose dashboards, and configure Gateway access for trusted workspaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide actions that use tenant credentials, execute metric queries, or create persistent dashboards in MetricHub workspaces. <br>
-Mitigation: Use it only in trusted workspaces, keep API keys scoped per workspace, and confirm before changing Gateway settings or creating persistent dashboards. <br>
-Risk: Incorrect query construction can produce misleading metric results, especially for time windows, proportions, rankings, or ambiguous business terms. <br>
-Mitigation: Review generated query JSON against the skill's query rules and require clarification when metric context, dimensions, or time constraints are insufficient. <br>
+## Use Case:
 
+MetricHub users, analysts, and developers use this skill to navigate metric workspaces, construct MetricHub/Gateway metric queries, choose visualizations, and assemble dashboards while following the documented query rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/metric-platform) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JSON and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MetricHub routes, Gateway query JSON, chart recommendations, dashboard instructions, and workspace configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Dashboard, workspace, or Gateway configuration changes could affect shared MetricHub resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the workspace, user role, target dashboard, and Gateway/API-key setting before allowing write actions.
+
+Risk: Metric query output can be wrong when the requested metric, dimensions, filters, or time context are underspecified.
+
+Mitigation: Follow the skill's refusal rule and return empty JSON when query context is insufficient; review generated query JSON before execution.
+
+Risk: API keys or Gateway credentials could be exposed if handled outside the trusted settings workflow.
+
+Mitigation: Keep API keys inside MetricHub's workspace Gateway settings flow and avoid placing secrets in prompts, generated queries, or logs.
+
+## Reference(s):
+
+- [MetricHub skill page](https://clawhub.ai/bettermen/skills/metric-platform)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON query examples, route suggestions, API request shapes, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce empty JSON when query context is insufficient; may propose MetricHub route navigation and dashboard changes that should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

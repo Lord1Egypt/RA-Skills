@@ -1,0 +1,10 @@
+{
+  "name": "humanize-text-skill-detector",
+  "version": "0.1.0",
+  "description": "Bilingual (zh/en) detection + voice engine for the humanize-text-skill skill. Zero-dependency, runs in Node >=18 and the browser.",
+  "license": "MIT",
+  "main": "patterns.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

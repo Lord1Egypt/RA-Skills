@@ -1,39 +1,57 @@
-## Description: <br>
-Analyze database replication topology, detect lag, and recommend replication strategy based on CAP tradeoffs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze database replication topology, detect lag, and recommend replication strategy based on CAP tradeoffs.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers and database operators use this skill to assess replication health, evaluate lag and failover readiness, and design replication strategies for PostgreSQL, MySQL, Redis, and AWS RDS environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes live write, failover, promotion, ALTER SYSTEM, AWS RDS failover, table create/drop, and pg_rewind examples that could alter or disrupt a database. <br>
-Mitigation: Keep execution under human control, prefer test environments or dedicated test objects, use least-privileged credentials, verify backups, obtain change approval, and schedule a maintenance window before running commands. <br>
-Risk: Operational recommendations may be unsafe if applied without matching the actual database engine, topology, data-loss tolerance, and failover process. <br>
-Mitigation: Require a database operator to review the proposed runbook against the current environment and abort commands when prerequisites or pre-flight checks do not pass. <br>
+## Use Case:
 
+Database and platform engineers use this skill to assess replication health, investigate lag and conflicts, evaluate failover readiness, and design replication topologies with CAP tradeoff analysis.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline SQL, Python, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational runbooks, risk assessments, topology recommendations, and database command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Live database and cloud failover commands could disrupt production or change replication state if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require operator review, explicit approval, and change-management controls before any failover, promotion, rewind, or AWS RDS failover command.
+
+Risk: Assessment probes may run against production databases with credentials that are broader than needed.
+
+Mitigation: Use least-privilege credentials and run probes in non-production or only with explicit production approval.
+
+Risk: Command examples may expose database passwords when passed directly on the command line.
+
+Mitigation: Use approved secret handling such as protected client configuration or a secret manager, and avoid command-line database passwords.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/database-replication-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and runbooks with inline SQL, bash, Python, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operator-reviewed database assessment, topology recommendation, and failover guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

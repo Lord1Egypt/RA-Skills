@@ -1,40 +1,57 @@
-## Description: <br>
-Configure and troubleshoot OpenClaw model providers, routing, session model locks, cron model pinning, and provider switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure and troubleshoot OpenClaw model providers, routing, session model locks, cron model pinning, and provider switching.
 
-## Publisher: <br>
-[hohobohan](https://clawhub.ai/user/hohobohan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hohobohan](https://clawhub.ai/user/hohobohan)
 
-## Use Case: <br>
-Developers and operators use this skill to configure OpenClaw model providers, confirm active session models, pin cron models, and troubleshoot provider routing issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent through provider settings and API key handling. <br>
-Mitigation: Use it only where the agent is allowed to inspect or edit OpenClaw configuration and handle provider credentials. <br>
-Risk: Model configuration changes can leave existing sessions or scheduled jobs using an unexpected model. <br>
-Mitigation: Confirm the active model after changes, use explicit session switching when needed, and pin models for time-sensitive cron jobs. <br>
+## Use Case:
 
+Developers and operators use this skill to configure OpenClaw model providers, verify active model routing, switch session models, and pin models for time-sensitive cron jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hohobohan/hobohan-model-config) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide inspection or edits of OpenClaw provider configuration, cron payloads, and session model settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and changelog, released 2026-06-03) <br>
+Risk: Suggested OpenClaw configuration changes may affect API keys, provider URLs, default models, or cron model pins.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed openclaw.json edits and cron payload changes before applying them.
+
+Risk: Existing sessions can remain locked to an older model after the default model changes.
+
+Mitigation: Check the active session model and use an explicit /model switch or start a new session when the intended model must be used immediately.
+
+Risk: Time-sensitive cron jobs can miss deadlines if they rely on a slow or cold-starting global default model.
+
+Mitigation: Pin the model explicitly in cron payloads for scheduled jobs where delay matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hohobohan/skills/hobohan-model-config)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose edits to OpenClaw configuration, provider settings, session model selection, cron payloads, and dmScope routing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

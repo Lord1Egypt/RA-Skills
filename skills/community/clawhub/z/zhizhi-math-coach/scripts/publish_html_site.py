@@ -174,6 +174,8 @@ def date_from_slug(slug: str) -> str:
 
 
 def count_items(spec: dict) -> int | None:
+    if spec.get("render_mode") == "model_html" and isinstance(spec.get("questions"), list):
+        return len(spec["questions"])
     sections = spec.get("sections")
     if not isinstance(sections, list):
         return None
@@ -408,13 +410,27 @@ def main() -> int:
     if not publish_dirs:
         raise ValueError("no worksheet.html files found")
 
+    # Keep earlier publications in the index without publishing unselected drafts.
+    candidates = set(discover_worksheet_dirs([workspace / "worksheets"])) | set(publish_dirs)
+    all_dirs = sorted(path for path in candidates if path in publish_dirs or (
+        (path / "publish.json").exists()
+        and (site_dir / "worksheets" / safe_slug(path, workspace) / "index.html").is_file()
+    ))
+    slugs: dict[str, Path] = {}
+    for path in all_dirs:
+        slug = safe_slug(path, workspace)
+        if slug in slugs and slugs[slug] != path:
+            raise ValueError(f"worksheet publication slug collision: {slugs[slug]} and {path}")
+        slugs[slug] = path
+    assert_site_safe(site_dir)
+    for path in publish_dirs:
+        assert_public_html_safe(path / "worksheet.html")
+        load_json_if_exists(path / "worksheet-spec.json")
+        load_json_if_exists(path / "publish.json")
+
     site_dir.mkdir(parents=True, exist_ok=True)
     (site_dir / ".nojekyll").write_text("", encoding="utf-8")
-
-    all_dirs = discover_worksheet_dirs([workspace / "worksheets"])
-    if not all_dirs:
-        all_dirs = publish_dirs
-    for path in all_dirs:
+    for path in publish_dirs:
         publish_one(path, workspace, site_dir, args.base_url)
 
     path_status, title_status = load_status_rows(workspace)

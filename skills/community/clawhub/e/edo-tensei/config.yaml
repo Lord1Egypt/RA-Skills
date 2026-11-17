@@ -1,0 +1,15 @@
+# 秽土转生 · 出厂默认配置（随技能包发布，不含任何个人路径）
+#
+# 个人配置请使用「设置」指令修改，例如：
+#   设置 export_dir=<你的目录>
+# 个人配置会写入用户主目录 ~/.edo-tensei/config.yaml，绝不进入技能包。
+#
+# 未配置时，导出目录默认为：<用户主目录>/.edo-tensei/exports
+# （~ 在 Windows / macOS / Linux / 云端会话 均自动解析为主目录，无需手动指定绝对路径）
+#
+# 上下文深度 context_depth（可选 minimal / standard / full，默认 standard）：
+#   控制「转生 / 导出」时交接文档与导出包的内联信息量。
+#   改法：设置 context_depth=full   （随时可改，改完再执行转生/导出即生效）
+#     minimal : 仅指针+关键决策，最快
+#     standard: 指针+完整叙述（默认）
+#     full    : 叙述+内嵌关键上下文块；导出额外生成 CONTEXT_DIGEST.md

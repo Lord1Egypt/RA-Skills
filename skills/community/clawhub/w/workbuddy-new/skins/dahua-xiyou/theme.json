@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "dahua-xiyou",
+  "displayName": "大话西游经典界面",
+  "version": "1.0.0",
+  "images": {
+    "hero": "../../assets/dahua_scene.png",
+    "texture": "../../assets/dahua_scene.png"
+  },
+  "copy": {
+    "brandTitle": "大话西游 · 经典界面",
+    "brandSubtitle": "WorkBuddy 月光限定版",
+    "signature": "大话西游 ♡",
+    "tagline": "身披金甲圣衣，脚踩七色祥云"
+  },
+  "targets": {
+    "workbuddy": {
+      "css": "workbuddy.css",
+      "verification": {
+        "contexts": [
+          {
+            "name": "home",
+            "when": { "any": [".wb-home-page"] },
+            "required": [
+              { "name": "home-hero", "any": [".wb-home-header"] },
+              { "name": "home-composer", "any": [".wb-home-composer"] }
+            ],
+            "recommended": [
+              { "name": "scene-tabs", "any": [".wb-scene-tabs"] },
+              { "name": "quick-actions", "any": [".quick-actions"] }
+            ]
+          },
+          {
+            "name": "conversation",
+            "when": { "any": [".chat-container:not(.chat-container--welcome)"] },
+            "required": [
+              {
+                "name": "conversation-composer-shell",
+                "any": [".chat-container:not(.chat-container--welcome) section:has([role='textbox'][contenteditable='true'])"]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  高思导引暑假总复习 · 计划模板（可直接复制后微调）
+  ------------------------------------------------------------
+  本模板为已验证成品。复用时仅需调整以下「可编辑项」：
+   1. <title> 与正文标题中的年份/版本字样。
+   2. 8 周路线与 W1–W8 详细表中的「日期」列（现以 07-20 起预填，
+      按实际暑假起始日整体平移；周一~周五排课、周六日休息）。
+   3. 打卡表（4.1）中 40 个学习日的日期列（同一起始日平移）。
+   4. 若实际年级/时长不同，按模块权重缩放（见 workflow.md）。
+  固定不变：知识树真值（七/八模块 × 四/五/六讲次）、红黄蓝分级、
+  兴趣+拓展全做基线、题量参考（兴趣≈10/拓展≈14/超越≈8）。
+  导出 PDF：python scripts/build_pdf.py plan-template.html out.pdf
+  ============================================================
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高思导引 · 小学数学暑假总复习计划（四~六年级 · UPDATED）</title>
+<style>
+  :root{
+    --ink:#1f2933; --muted:#5b6b7b; --line:#dbe2ea; --brand:#2f6fed; --brand-soft:#eaf1ff;
+    --c1:#2f6fed; --c2:#16a085; --c3:#e67e22; --c4:#8e44ad; --c5:#c0392b;
+    --c6:#2980b9; --c7:#b8860b; --c8:#27ae60;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;
+       color:var(--ink);background:#fff;line-height:1.55;font-size:13px}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 30px 60px}
+  header{border-bottom:3px solid var(--brand);padding-bottom:14px;margin-bottom:6px}
+  h1{font-size:23px;margin:0 0 4px;color:var(--brand)}
+  h2{font-size:17px;margin:26px 0 10px;padding-left:9px;border-left:5px solid var(--brand)}
+  h3{font-size:14px;margin:18px 0 6px;color:#234}
+  .sub{color:var(--muted);font-size:13px;margin:0}
+  p{margin:6px 0}
+  .note{background:var(--brand-soft);border:1px solid #cfe0ff;border-radius:8px;padding:11px 15px;font-size:12.5px;margin:12px 0}
+  .req{background:#fff7e6;border:1px solid #ffe0a3;color:#5a4500;border-radius:8px;padding:11px 15px;font-size:12.5px;margin:12px 0}
+  table{border-collapse:collapse;width:100%;margin:10px 0;font-size:11.5px}
+  th,td{border:1px solid var(--line);padding:5px 7px;vertical-align:top;text-align:left}
+  th{background:#f3f7fc;font-weight:600}
+  tr:nth-child(even) td{background:#fafcff}
+  .badge{display:inline-block;padding:1px 7px;border-radius:9px;color:#fff;font-size:11px;font-weight:700}
+  .m1{background:var(--c1)} .m2{background:var(--c2)} .m3{background:var(--c3)}
+  .m4{background:var(--c4)} .m5{background:var(--c5)} .m6{background:var(--c6)}
+  .m7{background:var(--c7)} .m8{background:var(--c8)}
+  .wk{display:grid;grid-template-columns:54px 1fr;gap:0;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin:10px 0;page-break-inside:avoid}
+  .wk .lab{background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+  .wk .body{padding:10px 14px}
+  .wk .body .top{font-weight:700;font-size:13.5px;margin-bottom:5px}
+  .pill{display:inline-block;background:#eef2f7;border:1px solid #dde5ee;border-radius:5px;padding:1px 6px;margin:2px 3px 2px 0;font-size:11px}
+  .pill b{color:#234}
+  .g4{color:#1d6fb8;font-weight:600} .g5{color:#b8740f;font-weight:600} .g6{color:#9b2d20;font-weight:600}
+  ul{margin:5px 0 5px 0;padding-left:18px} li{margin:2px 0}
+  .lvl{font-size:11.5px;color:var(--muted)}
+  .small{font-size:11px;color:var(--muted)}
+  .footer{margin-top:34px;color:var(--muted);font-size:11px;border-top:1px solid var(--line);padding-top:12px}
+  .sec-break{page-break-before:always}
+  .tier{display:inline-block;padding:0 5px;border-radius:4px;color:#fff;font-size:9px;font-weight:700;margin-right:3px;vertical-align:middle}
+  .t-red{background:#c0392b} .t-ylw{background:#d4a017} .t-blu{background:#2f6fed}
+  .legend{margin-top:8px;font-size:11.5px;color:#33414f}
+  .legend .tier{font-size:10px;padding:1px 6px}
+  .ck{font-size:10px}
+  .ck th,.ck td{padding:4px 5px}
+  .ck tr:nth-child(even) td{background:#fafcff}
+  .etype{font-size:10.5px;color:#33414f;background:#f7f9fc;border:1px dashed #cdd8e3;border-radius:7px;padding:8px 12px;margin:8px 0}
+  .etype b{color:#c0392b}
+  @media print{
+    @page{size:A4;margin:12mm}
+    body{font-size:11.5px}
+    .wk,.note,.req,table{page-break-inside:avoid}
+    h2{page-break-after:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>高思导引 · 小学数学暑假总复习计划</h1>
+  <p class="sub">覆盖四~六年级 · 按《高思导引专题知识树》七大模块路线 · 暑期 8 周（周一~周五学习，周六日休息）· 红黄分级版</p>
+</header>
+
+<div class="req">
+  <b>总体要求（务必遵守）</b><br>
+  ① <b>兴趣篇 + 拓展篇：全部必做（基线）。</b>本轮复习，所有讲次的 <b>兴趣篇、拓展篇必须全部写完</b>——不分板块、不分颜色，是统一底线。<br>
+  ② <b>超越篇：按板块分级（红 / 黄）。</b><br>
+     &nbsp;&nbsp;<span class="tier t-red">红</span> <b>必做（全做）：</b>计算、数论、几何、应用题、计数 五大重要板块 + <b>行程、组合</b> 两大专题的<b>全部专题</b>，以及上述板块内所有「综合类」讲次（如 计算综合、几何综合、应用题综合、计数综合、数论综合）。<br>
+     &nbsp;&nbsp;<span class="tier t-ylw">黄</span> <b>建议做（优先选做）：</b>数字谜 板块的全部专题。<br>
+  ③ <b>时间安排：</b>周一至周五每天 <b>4~5 小时</b> 集中学习；<b>周六、周日休息</b>（不排新内容，可自由整理错题，非强制）。<br>
+  ④ <b>教材：</b>《高思学校竞赛数学导引》四、五、六三册（详解升级版）。每讲含 兴趣篇 / 拓展篇 / 超越篇 三部分。<br>
+  <div class="legend">图例：<span class="tier t-red">红</span> 超越必做（含行程、组合） &nbsp; <span class="tier t-ylw">黄</span> 超越建议做（数字谜） &nbsp; <b>★</b> 兴趣+拓展必做（所有板块的基线）</div>
+</div>
+
+<div class="note">
+  <b>路线依据：</b>图片《高思导引专题知识树.jpg》（IMA 知识库「小学数学总复习」目录）即高思导引横向知识体系——<b>七大专题</b>（计算、几何、应用题、计数、数论、数字谜、组合数学）纵向分配到 3~6 年级，行程问题归入应用题核心专题。本计划按此路线，聚焦 <b>四~六年级</b> 全部 72 讲 做暑假总复习。下方知识点均按官方各年级目录逐讲列出。
+</div>
+
+<!-- ============ 一、知识树总览 ============ -->
+<h2>一、七大模块知识树总览（四~六年级 · 完整讲次 · 红黄分级）</h2>
+<p class="lvl">每格列出该模块在该年级的全部 讲 次（讲号 + 标题）。高思导引四/五/六每册各 24 讲，三册共 72 讲；六年级第24讲《数学家的故事》为阅读收尾篇，不列入刷题。模块后 <span class="tier t-red">红</span>/<span class="tier t-ylw">黄</span> 表示该板块超越篇的完成等级。</p>
+<table>
+  <tr><th style="width:6%">序</th><th style="width:11%">模块（超越分级）</th><th style="width:27%">四年级（24讲）</th><th style="width:27%">五年级（24讲）</th><th style="width:29%">六年级（24讲）</th></tr>
+  <tr><td><span class="badge m1">1</span></td><td><b>计算</b> <span class="tier t-red">红</span></td>
+      <td><span class="g4">①整数计算综合 ⑩数列与数表 ⑬多位数与小数</span></td>
+      <td><span class="g5">①分数计算与比较大小 ⑧分数与循环小数 ⑨比较与估算 ⑬计算综合一</span></td>
+      <td><span class="g6">①分数数列计算 ②计算综合二</span></td></tr>
+  <tr><td><span class="badge m2">2</span></td><td><b>几何</b> <span class="tier t-red">红</span></td>
+      <td><span class="g4">④几何图形剪拼 ⑦直线形计算一 ⑰格点与割补</span></td>
+      <td><span class="g5">⑥几何计数 ⑭直线形计算二 ⑮圆与扇形 ⑲直线形计算三</span></td>
+      <td><span class="g6">⑨立体几何 ⑩几何综合一 ⑪几何综合二</span></td></tr>
+  <tr><td><span class="badge m3">3</span></td><td><b>应用题</b> <span class="tier t-red">红</span><br><span class="lvl">(不含行程)</span></td>
+      <td><span class="g4">⑧和差倍问题三 ⑨还原问题与年龄问题 ⑭平均数问题</span></td>
+      <td><span class="g5">⑪和差倍分问题 ⑫应用题拓展 ⑰工程问题 ⑱牛吃草问题与钟表问题</span></td>
+      <td><span class="g6">③比例解应用题 ④方程解应用题 ⑤浓度问题与经济问题 ⑧不定方程 ⑰应用题综合一 ⑱应用题综合二</span></td></tr>
+  <tr><td><span class="badge m4">4</span></td><td><b>行程</b> <span class="tier t-red">红</span><br><span class="lvl">(应用专题)</span></td>
+      <td><span class="g4">⑤行程问题一 ⑱行程问题二 ⑲行程问题三</span></td>
+      <td><span class="g5">⑤行程问题四 ⑳行程问题五</span></td>
+      <td><span class="g6">⑭行程问题六</span></td></tr>
+  <tr><td><span class="badge m5">5</span></td><td><b>计数</b> <span class="tier t-red">红</span></td>
+      <td><span class="g4">⑪加法原理与乘法原理 ㉑排列组合 ㉒计数综合一</span></td>
+      <td><span class="g5">④包含与排除 ㉒计数综合二</span></td>
+      <td><span class="g6">⑫计数综合三 ⑬计数综合四 ㉓概率初步</span></td></tr>
+  <tr><td><span class="badge m6">6</span></td><td><b>数论</b> <span class="tier t-red">红</span></td>
+      <td><span class="g4">（四年级未设数论专题，五年级起系统学习）</span></td>
+      <td><span class="g5">②整除 ③质数与合数 ⑦约数与倍数 ⑯余数</span></td>
+      <td><span class="g6">⑮数论综合一 ⑲进位制与取整符号 ⑳数论综合二 ㉑数论综合三</span></td></tr>
+  <tr><td><span class="badge m7">7</span></td><td><b>数字谜</b> <span class="tier t-ylw">黄</span></td>
+      <td><span class="g4">②数阵图初步 ③竖式问题 ⑮复杂竖式 ⑯横式问题 ⑳幻方与数阵图扩展</span></td>
+      <td><span class="g5">⑩数字谜综合一 ㉑数字问题</span></td>
+      <td><span class="g6">⑯数字谜综合二</span></td></tr>
+  <tr><td><span class="badge m8">8</span></td><td><b>组合数学</b> <span class="tier t-red">红</span></td>
+      <td><span class="g4">⑥抽屉原理一 ⑫统筹与对策 ㉓最值问题一 ㉔逻辑推理一</span></td>
+      <td><span class="g5">㉓构造论证一 ㉔抽屉原理二</span></td>
+      <td><span class="g6">⑥逻辑推理二 ⑦最值问题二 ㉒构造论证二</span></td></tr>
+</table>
+<p class="small">注：讲号沿用各年级导引目录原序号（如"⑬"=第13讲），便于在书上直接定位。<span class="tier t-red">红</span>板块（计算/数论/几何/应用/计数/行程/组合）含所有「综合类」讲次，超越篇原则上全做；仅 <span class="tier t-ylw">黄</span>数字谜 超越篇建议做、可量力。</p>
+
+<!-- ============ 二、8周路线日历 ============ -->
+<h2 class="sec-break">二、8 周复习路线（日历 · 每周完整知识点 · 红黄分级）</h2>
+<div class="wk"><div class="lab">W1</div><div class="body">
+  <div class="top"><span class="badge m1">1</span> 计算（9讲）— 根基周 <span class="tier t-red">红·超越全做</span></div>
+  <span class="pill"><b>四①</b>整数计算综合</span><span class="pill"><b>四⑩</b>数列与数表</span><span class="pill"><b>四⑬</b>多位数与小数</span><span class="pill"><b>五①</b>分数计算与比较大小</span><span class="pill"><b>五⑧</b>分数与循环小数</span><span class="pill"><b>五⑨</b>比较与估算</span><span class="pill"><b>五⑬</b>计算综合一</span><span class="pill"><b>六①</b>分数数列计算</span><span class="pill"><b>六②</b>计算综合二</span>
+</div></div>
+<div class="wk"><div class="lab">W2</div><div class="body">
+  <div class="top"><span class="badge m2">2</span> 几何（10讲）— 模型周 <span class="tier t-red">红·超越全做</span></div>
+  <span class="pill"><b>四④</b>几何图形剪拼</span><span class="pill"><b>四⑦</b>直线形计算一</span><span class="pill"><b>四⑰</b>格点与割补</span><span class="pill"><b>五⑥</b>几何计数</span><span class="pill"><b>五⑭</b>直线形计算二</span><span class="pill"><b>五⑮</b>圆与扇形</span><span class="pill"><b>五⑲</b>直线形计算三</span><span class="pill"><b>六⑨</b>立体几何</span><span class="pill"><b>六⑩</b>几何综合一</span><span class="pill"><b>六⑪</b>几何综合二</span>
+</div></div>
+<div class="wk"><div class="lab">W3</div><div class="body">
+  <div class="top"><span class="badge m3">3</span> 应用题（不含行程，13讲）— 主干周 <span class="tier t-red">红·超越全做</span></div>
+  <span class="pill"><b>四⑧</b>和差倍问题三</span><span class="pill"><b>四⑨</b>还原问题与年龄问题</span><span class="pill"><b>四⑭</b>平均数问题</span><span class="pill"><b>五⑪</b>和差倍分问题</span><span class="pill"><b>五⑫</b>应用题拓展</span><span class="pill"><b>五⑰</b>工程问题</span><span class="pill"><b>五⑱</b>牛吃草与钟表</span><span class="pill"><b>六③</b>比例解应用题</span><span class="pill"><b>六④</b>方程解应用题</span><span class="pill"><b>六⑤</b>浓度与经济问题</span><span class="pill"><b>六⑧</b>不定方程</span><span class="pill"><b>六⑰</b>应用题综合一</span><span class="pill"><b>六⑱</b>应用题综合二</span>
+</div></div>
+<div class="wk"><div class="lab">W4</div><div class="body">
+  <div class="top"><span class="badge m4">4</span> 行程（6讲）— 应用专题周 <span class="tier t-red">红·超越全做</span></div>
+  <span class="pill"><b>四⑤</b>行程问题一</span><span class="pill"><b>四⑱</b>行程问题二</span><span class="pill"><b>四⑲</b>行程问题三</span><span class="pill"><b>五⑤</b>行程问题四</span><span class="pill"><b>五⑳</b>行程问题五</span><span class="pill"><b>六⑭</b>行程问题六</span>
+</div></div>
+<div class="wk"><div class="lab">W5</div><div class="body">
+  <div class="top"><span class="badge m5">5</span> 计数（8讲）— 工具周 <span class="tier t-red">红·超越全做</span></div>
+  <span class="pill"><b>四⑪</b>加法原理与乘法原理</span><span class="pill"><b>四㉑</b>排列组合</span><span class="pill"><b>四㉒</b>计数综合一</span><span class="pill"><b>五④</b>包含与排除</span><span class="pill"><b>五⑥</b>几何计数</span><span class="pill"><b>五㉒</b>计数综合二</span><span class="pill"><b>六⑫</b>计数综合三</span><span class="pill"><b>六⑬</b>计数综合四</span><span class="pill"><b>六㉓</b>概率初步</span>
+</div></div>
+<div class="wk"><div class="lab">W6</div><div class="body">
+  <div class="top"><span class="badge m6">6</span> 数论 <span class="tier t-red">红·超越全做</span> + 数字谜 <span class="tier t-ylw">黄·超越建议做</span></div>
+  <span class="pill"><b>五②</b>整除</span><span class="pill"><b>五③</b>质数与合数</span><span class="pill"><b>五⑦</b>约数与倍数</span><span class="pill"><b>五⑯</b>余数</span><span class="pill"><b>六⑮</b>数论综合一</span><span class="pill"><b>六⑲</b>进位制与取整符号</span><span class="pill"><b>六⑳</b>数论综合二</span><span class="pill"><b>六㉑</b>数论综合三</span><span class="pill"><b>四②</b>数阵图初步</span><span class="pill"><b>四③</b>竖式问题</span><span class="pill"><b>四⑮</b>复杂竖式</span><span class="pill"><b>四⑯</b>横式问题</span><span class="pill"><b>四⑳</b>幻方数阵扩展</span><span class="pill"><b>五⑩</b>数字谜综合一</span><span class="pill"><b>五㉑</b>数字问题</span><span class="pill"><b>六⑯</b>数字谜综合二</span>
+</div></div>
+<div class="wk"><div class="lab">W7</div><div class="body">
+  <div class="top"><span class="badge m8">7</span> 组合数学（9讲）— 思维周 <span class="tier t-red">红·超越全做</span></div>
+  <span class="pill"><b>四⑥</b>抽屉原理一</span><span class="pill"><b>四⑫</b>统筹与对策</span><span class="pill"><b>四㉓</b>最值问题一</span><span class="pill"><b>四㉔</b>逻辑推理一</span><span class="pill"><b>五㉓</b>构造论证一</span><span class="pill"><b>五㉔</b>抽屉原理二</span><span class="pill"><b>六⑥</b>逻辑推理二</span><span class="pill"><b>六⑦</b>最值问题二</span><span class="pill"><b>六㉒</b>构造论证二</span>
+</div></div>
+<div class="wk"><div class="lab">W8</div><div class="body">
+  <div class="top">综合模拟 + 查漏补缺 — 收口周（按薄弱模块回炉，无新超越篇）</div>
+  <span class="pill">跨模块综合(一) 计算+几何</span><span class="pill">跨模块综合(二) 应用+行程</span><span class="pill">跨模块综合(三) 计数+数论+数字谜</span><span class="pill">跨模块综合(四) 组合+全模块压轴</span><span class="pill">总评+错题回炉</span><span class="pill">薄弱模块二刷</span><span class="pill">小升初/竞赛真题演练</span>
+</div></div>
+
+<!-- ============ 三、W1-W8 详细安排 ============ -->
+<h2 class="sec-break">三、每周详细安排（W1–W8 · 周一~周五，每天 4~5 小时）</h2>
+<p class="lvl">"要求"列用 <span class="tier t-red">红</span><span class="tier t-ylw">黄</span> 标注该日讲次 <b>超越篇</b> 的完成等级（兴趣篇+拓展篇在所有日均为 ★ 必做基线，不另标）。红=必做全做；黄=建议做。时长按 4~5h 弹性安排。</p>
+
+<table>
+  <tr><th style="width:7%">周</th><th style="width:8%">日</th><th style="width:30%">当日讲次（模块）</th><th style="width:30%">学习重点</th><th style="width:15%">要求（超越分级）</th><th style="width:10%">时长</th></tr>
+  <!-- W1 -->
+  <tr><td rowspan="5"><b>W1<br>计算</b></td><td>一</td><td>四①整数计算综合；四⑩数列与数表</td><td>整数四则、分组凑整、数列与数表规律</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>二</td><td>四⑬多位数与小数；五①分数计算与比较大小</td><td>小数巧算、分数四则、比较大小</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>三</td><td>五⑧分数与循环小数；五⑨比较与估算</td><td>分数↔循环小数互化、放缩估算</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>四</td><td>五⑬计算综合一；六①分数数列计算</td><td>综合运算、分数数列与通项</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>五</td><td>六②计算综合二</td><td>换元、连分数、裂项综合</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <!-- W2 -->
+  <tr><td rowspan="5"><b>W2<br>几何</b></td><td>一</td><td>四④几何图形剪拼；四⑦直线形计算一</td><td>图形剪拼、基本面积公式</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>二</td><td>四⑰格点与割补；五⑥几何计数</td><td>毕克定理、格点、几何计数</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>三</td><td>五⑭直线形计算二；五⑮圆与扇形</td><td>等高/一半模型、圆与扇形面积</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>四</td><td>五⑲直线形计算三；六⑨立体几何</td><td>复杂直线形、长方体正方体表面积体积</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>五</td><td>六⑩几何综合一；六⑪几何综合二</td><td>比例模型(鸟头/蝴蝶/沙漏)、勾股定理、几何综合</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <!-- W3 -->
+  <tr><td rowspan="5"><b>W3<br>应用</b></td><td>一</td><td>四⑧和差倍问题三；四⑨还原与年龄</td><td>和差倍分组比较、还原法、年龄差不变</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>二</td><td>四⑭平均数问题；五⑪和差倍分</td><td>平均数、分数和差倍</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>三</td><td>五⑫应用题拓展；五⑰工程问题</td><td>综合应用、工程效率</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>四</td><td>五⑱牛吃草与钟表；六③比例解应用；六④方程解应用</td><td>牛吃草模型、比例、方程思想</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>五</td><td>六⑤浓度与经济；六⑧不定方程；六⑰⑱应用综合</td><td>浓度/利润、不定方程、综合压轴</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <!-- W4 -->
+  <tr><td rowspan="5"><b>W4<br>行程</b></td><td>一</td><td>四⑤行程问题一；四⑱行程问题二</td><td>s=vt、相遇追及基础</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>二</td><td>四⑲行程问题三；五⑤行程问题四</td><td>火车过桥、流水行船</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>三</td><td>五⑳行程问题五；六⑭行程问题六</td><td>环形/多次相遇、比例行程、复杂综合</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>四</td><td>行程专题串讲（四~六跨年级综合）</td><td>错题重做、方法归纳</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>五</td><td>行程专题限时自测 + 拔高</td><td>综合题演练、查漏</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <!-- W5 -->
+  <tr><td rowspan="5"><b>W5<br>计数</b></td><td>一</td><td>四⑪加法原理与乘法原理；四㉑排列组合</td><td>加乘原理、排列组合基础</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>二</td><td>四㉒计数综合一；五④包含与排除</td><td>容斥原理、计数综合</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>三</td><td>五⑥几何计数；五㉒计数综合二</td><td>几何计数、递推计数</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>四</td><td>六⑫计数综合三；六⑬计数综合四</td><td>对应计数、复杂计数</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>五</td><td>六㉓概率初步</td><td>古典概型基础</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <!-- W6 -->
+  <tr><td rowspan="5"><b>W6<br>数论+<br>数字谜</b></td><td>一</td><td>五②整除；五③质数合数；四②数阵图初步</td><td>整除特征、质合、数阵图</td><td><span class="tier t-red">红</span>数论 / <span class="tier t-ylw">黄</span>数字谜</td><td>4~5h</td></tr>
+  <tr><td>二</td><td>五⑦约数倍数；五⑯余数；四③竖式问题</td><td>GCD/LCM、同余、竖式谜</td><td><span class="tier t-red">红</span>数论 / <span class="tier t-ylw">黄</span>数字谜</td><td>4~5h</td></tr>
+  <tr><td>三</td><td>六⑮数论综合一；六⑲进位制取整；四⑮⑯复杂/横式</td><td>数论综合、进位制、数字谜</td><td><span class="tier t-red">红</span>数论 / <span class="tier t-ylw">黄</span>数字谜</td><td>4~5h</td></tr>
+  <tr><td>四</td><td>六⑳数论综合二；六㉑数论综合三；四⑳幻方数阵扩展</td><td>数论压轴、幻方数阵</td><td><span class="tier t-red">红</span>数论 / <span class="tier t-ylw">黄</span>数字谜</td><td>4~5h</td></tr>
+  <tr><td>五</td><td>五⑩数字谜综合一；五㉑数字问题；六⑯数字谜综合二</td><td>数字谜综合</td><td><span class="tier t-ylw">黄</span>数字谜</td><td>4~5h</td></tr>
+  <!-- W7 -->
+  <tr><td rowspan="5"><b>W7<br>组合</b></td><td>一</td><td>四⑥抽屉原理一；四⑫统筹与对策</td><td>抽屉原理、统筹优化</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>二</td><td>四㉓最值问题一；四㉔逻辑推理一</td><td>最值、逻辑推理</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>三</td><td>五㉓构造论证一；五㉔抽屉原理二</td><td>构造论证、抽屉进阶</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>四</td><td>六⑥逻辑推理二；六⑦最值问题二</td><td>复杂推理、组合最值</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <tr><td>五</td><td>六㉒构造论证二</td><td>构造与论证压轴</td><td><span class="tier t-red">红</span></td><td>4~5h</td></tr>
+  <!-- W8 -->
+  <tr><td rowspan="5"><b>W8<br>综合</b></td><td>一</td><td>跨模块综合(一)：计算 + 几何</td><td>综合卷、错题回炉</td><td>★综合</td><td>4~5h</td></tr>
+  <tr><td>二</td><td>跨模块综合(二)：应用题 + 行程</td><td>综合卷、查漏</td><td>★综合</td><td>4~5h</td></tr>
+  <tr><td>三</td><td>跨模块综合(三)：计数 + 数论 + 数字谜</td><td>综合卷、查漏</td><td>★综合</td><td>4~5h</td></tr>
+  <tr><td>四</td><td>跨模块综合(四)：组合 + 全模块压轴</td><td>真题演练（小升初/竞赛）</td><td>★综合</td><td>4~5h</td></tr>
+  <tr><td>五</td><td>总评 + 错题本回炉 + 薄弱模块二刷 + 暑期总结</td><td>收口、定秋期计划</td><td>★综合</td><td>4~5h</td></tr>
+</table>
+
+<!-- ============ 四、打卡表 ============ -->
+<h2 class="sec-break">四、暑假总复习每日量化打卡表 + 不足汇总分析</h2>
+<h3>4.1 每日量化打卡（40 个学习日 · 错题记录 + 正确率）</h3>
+<p class="lvl">共 8 周 × 5 学习日 = <b>40 个学习日</b>。兴趣篇/拓展篇/超越篇 各填「<b>错误题号</b>」（如 3、7、12；全对填"—"），便于回溯二刷。当日正确率 = (当日总题数 − 错误题数) ÷ 当日总题数。日期按建议排期预填（自 2026-07-20 起），可据实际平移。<span class="tier t-red">红</span>板块的超越篇须全做，计入量化。</p>
+<div class="etype">
+  <b>填写说明：</b>「错误题号」列记录当日做错的题号（跨兴趣/拓展/超越三篇分列），是错题本与二刷的索引。&nbsp;|&nbsp; <b>二次强化</b>：当日有错且需回炉，填 ✅，并在 4.2 登记薄弱讲次。&nbsp;|&nbsp; 每讲一般 <b>兴趣篇约 10 题、拓展篇约 14 题、超越篇约 8 题</b>，按实际错题数计算正确率。
+</div>
+<table class="ck">
+  <tr><th style="width:5%">周</th><th style="width:5%">星期</th><th style="width:9%">日期</th><th style="width:18%">当日模块 / 讲次（要求）</th>
+      <th style="width:14%">兴趣篇<br>错误题号</th><th style="width:14%">拓展篇<br>错误题号</th><th style="width:14%">超越篇<br>错误题号</th>
+      <th style="width:9%">当日<br>正确率</th><th style="width:9%">二次<br>强化</th></tr>
+  <tr><td>W1</td><td>一</td><td>07-20</td><td><span class="tier t-red">红</span>计算：四①⑩</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W1</td><td>二</td><td>07-21</td><td><span class="tier t-red">红</span>计算：四⑬；五①</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W1</td><td>三</td><td>07-22</td><td><span class="tier t-red">红</span>计算：五⑧⑨</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W1</td><td>四</td><td>07-23</td><td><span class="tier t-red">红</span>计算：五⑬；六①</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W1</td><td>五</td><td>07-24</td><td><span class="tier t-red">红</span>计算：六②</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W2</td><td>一</td><td>07-27</td><td><span class="tier t-red">红</span>几何：四④⑦</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W2</td><td>二</td><td>07-28</td><td><span class="tier t-red">红</span>几何：四⑰；五⑥</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W2</td><td>三</td><td>07-29</td><td><span class="tier t-red">红</span>几何：五⑭⑮</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W2</td><td>四</td><td>07-30</td><td><span class="tier t-red">红</span>几何：五⑲；六⑨</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W2</td><td>五</td><td>07-31</td><td><span class="tier t-red">红</span>几何：六⑩⑪</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W3</td><td>一</td><td>08-03</td><td><span class="tier t-red">红</span>应用：四⑧⑨</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W3</td><td>二</td><td>08-04</td><td><span class="tier t-red">红</span>应用：四⑭；五⑪</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W3</td><td>三</td><td>08-05</td><td><span class="tier t-red">红</span>应用：五⑫⑰</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W3</td><td>四</td><td>08-06</td><td><span class="tier t-red">红</span>应用：五⑱；六③④⑧</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W3</td><td>五</td><td>08-07</td><td><span class="tier t-red">红</span>应用：六⑤⑰⑱</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W4</td><td>一</td><td>08-10</td><td><span class="tier t-red">红</span>行程：四⑤⑱</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W4</td><td>二</td><td>08-11</td><td><span class="tier t-red">红</span>行程：四⑲；五⑤</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W4</td><td>三</td><td>08-12</td><td><span class="tier t-red">红</span>行程：五⑳；六⑭</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W4</td><td>四</td><td>08-13</td><td><span class="tier t-red">红</span>行程：专题串讲</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W4</td><td>五</td><td>08-14</td><td><span class="tier t-red">红</span>行程：限时自测</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W5</td><td>一</td><td>08-17</td><td><span class="tier t-red">红</span>计数：四⑪㉑</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W5</td><td>二</td><td>08-18</td><td><span class="tier t-red">红</span>计数：四㉒；五④</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W5</td><td>三</td><td>08-19</td><td><span class="tier t-red">红</span>计数：五⑥㉒</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W5</td><td>四</td><td>08-20</td><td><span class="tier t-red">红</span>计数：六⑫⑬</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W5</td><td>五</td><td>08-21</td><td><span class="tier t-red">红</span>计数：六㉓</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W6</td><td>一</td><td>08-24</td><td><span class="tier t-red">红</span>数论：五②③ <span class="tier t-ylw">黄</span>数字谜：四②</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W6</td><td>二</td><td>08-25</td><td><span class="tier t-red">红</span>数论：五⑦⑯ <span class="tier t-ylw">黄</span>数字谜：四③</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W6</td><td>三</td><td>08-26</td><td><span class="tier t-red">红</span>数论：六⑮⑲ <span class="tier t-ylw">黄</span>数字谜：四⑮⑯</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W6</td><td>四</td><td>08-27</td><td><span class="tier t-red">红</span>数论：六⑳㉑ <span class="tier t-ylw">黄</span>数字谜：四⑳</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W6</td><td>五</td><td>08-28</td><td><span class="tier t-ylw">黄</span>数字谜：五⑩㉑；六⑯</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W7</td><td>一</td><td>08-31</td><td><span class="tier t-red">红</span>组合：四⑥⑫</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W7</td><td>二</td><td>09-01</td><td><span class="tier t-red">红</span>组合：四㉓㉔</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W7</td><td>三</td><td>09-02</td><td><span class="tier t-red">红</span>组合：五㉓㉔</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W7</td><td>四</td><td>09-03</td><td><span class="tier t-red">红</span>组合：六⑥⑦</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W7</td><td>五</td><td>09-04</td><td><span class="tier t-red">红</span>组合：六㉒（压轴）</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W8</td><td>一</td><td>09-07</td><td>综合(一) 计算+几何</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W8</td><td>二</td><td>09-08</td><td>综合(二) 应用+行程</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W8</td><td>三</td><td>09-09</td><td>综合(三) 计数+数论+数字谜</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W8</td><td>四</td><td>09-10</td><td>综合(四) 组合+压轴</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W8</td><td>五</td><td>09-11</td><td>总评+错题回炉+总结</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+
+<h3 class="sec-break">4.2 每周不足汇总与分析（量化复盘）</h3>
+<p class="lvl">每周五填写：汇总本周正确率、定位薄弱讲次，制定强化/改进措施。这是把"刷题量"转化为"提分"的关键一步。</p>
+<table class="ck">
+  <tr><th style="width:6%">周</th><th style="width:13%">模块</th><th style="width:14%">日期范围</th><th style="width:12%">本周正确率</th><th style="width:22%">薄弱讲次<br>(需二刷)</th><th style="width:23%">强化 / 改进措施</th><th style="width:10%">周打卡</th></tr>
+  <tr><td>W1</td><td>计算</td><td>07-20~07-24</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W2</td><td>几何</td><td>07-27~07-31</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W3</td><td>应用题</td><td>08-03~08-07</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W4</td><td>行程</td><td>08-10~08-14</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W5</td><td>计数</td><td>08-17~08-21</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W6</td><td>数论+数字谜</td><td>08-24~08-28</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W7</td><td>组合</td><td>08-31~09-04</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>W8</td><td>综合</td><td>09-07~09-11</td><td></td><td></td><td></td><td></td></tr>
+  <tr><td colspan="3"><b>暑期合计</b></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p class="small">提示：每讲一般 兴趣篇约 10 题、拓展篇约 14 题、超越篇约 8 题；按实际正确/错误数填入。"正确率"建议周维度统计（本周正确题数 ÷ 本周总题数），低于 85% 的模块优先二刷。</p>
+
+<div class="footer">
+  本计划依据 IMA 知识库《小学数学总复习 / 高思导引专题知识树.jpg》及《高思学校竞赛数学导引》四/五/六册官方目录（共 72 讲，每册 24 讲）制定。图片 OCR 仅识别标题与年级标注，模块与讲次按高思导引横向七大专题（计算·几何·应用题·计数·数论·数字谜·组合数学）及年级纵向分布重构。日程排期自 2026-07-20 起，可按实际暑假起止日平移。超越篇完成等级以红黄标注：红=计算/数论/几何/应用/计数（含综合类）+ 行程 + 组合 必做，黄=数字谜 建议做。
+</div>
+
+</div>
+</body>
+</html>

@@ -1,44 +1,54 @@
-## Description: <br>
-Provides agent guidance for accessing and summarizing public Tonghuashun market, news, announcement, and sector trend pages without trading or account operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents access and summarize public Tonghuashun market, news, announcement, and sector-trend pages without trading or account activity.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and agents use this skill to organize public Tonghuashun market data, news, announcements, and sector activity into concise informational summaries. It is intended for lightweight analysis and reminders, not trading, account access, reverse engineering, or bulk scraping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial market summaries may be stale, incomplete, or unsuitable for decisions if treated as authoritative. <br>
-Mitigation: Use outputs as informational summaries and verify important financial data with authoritative market or issuer sources. <br>
-Risk: Automated access to public pages can exceed platform expectations or terms if run too frequently. <br>
-Mitigation: Apply rate limits, avoid bulk scraping, and keep access within Tonghuashun's published terms and limits. <br>
-Risk: The skill discusses market information but is not designed for trading or account operations. <br>
-Mitigation: Do not use it to place trades, access accounts, reverse engineer interfaces, or automate transaction workflows. <br>
+## Use Case:
 
+Agents supporting analysts or developers use this skill to retrieve and summarize public Tonghuashun market pages, news, announcements, and sector trend information. It is limited to lightweight public-page organization and reminders, not trading, account access, bulk scraping, or regulated financial advice.
 
-## Reference(s): <br>
-- [Tonghuashun homepage](https://www.10jqka.com.cn/) <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/tonghuashun) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/mike47512) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown or structured text summaries with source links and extracted public-page fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational and should be verified against authoritative financial sources before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Public market and news summaries may be mistaken for regulated financial advice or trading recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs informational, cite public source links where available, and avoid trade instructions or investment recommendations.
+
+Risk: Using the skill for logged-in brokerage activity, account data, or bulk scraping would exceed its reviewed scope.
+
+Mitigation: Use it only for public Tonghuashun market and news summaries, respect platform access limits, and avoid account workflows or high-volume collection.
+
+## Reference(s):
+
+- [Tonghuashun homepage](https://www.10jqka.com.cn/)
+- [ClawHub skill listing](https://clawhub.ai/mike47512/skills/tonghuashun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise text summaries with source links and structured market, news, announcement, or sector fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public-page summaries; no trading, account operations, reverse engineering, or bulk scraping.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Use when the user wants Codex to speed test Clash Verge Rev or Mihomo proxies, auto-detect currently used Clash groups from the live controller, switch a selector group to the fastest working node, diagnose controller connectivity, or install a macOS launchd job with a user-chosen interval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants Codex to speed test Clash Verge Rev or Mihomo proxies, auto-detect currently used Clash groups from the live controller, switch a selector group to the fastest working node, diagnose controller connectivity, or install a macOS launchd job with a user-chosen interval.
 
-## Publisher: <br>
-[tankeito](https://clawhub.ai/user/tankeito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankeito](https://clawhub.ai/user/tankeito)
 
-## Use Case: <br>
-Developers and external users use this skill to let Codex inspect a local Clash Verge Rev or Mihomo controller, test proxy latency, switch selected groups to the fastest healthy node, and set up or remove a macOS launchd schedule for repeated switching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change local Clash/Mihomo selector choices through the controller API. <br>
-Mitigation: Start with --dry-run or --list-groups, target explicit groups when needed, and confirm the reported winning node before allowing changes. <br>
-Risk: Controller secrets or remote controller URLs can expose proxy control beyond the intended local session. <br>
-Mitigation: Keep the controller local or otherwise trusted, protect any controller secret, and avoid sharing logs or commands that include secret values. <br>
-Risk: The launchd installer creates a recurring user-level schedule that continues switching proxies until removed. <br>
-Mitigation: Choose the interval deliberately, review the generated job behavior through the install output and logs, and run the bundled uninstall script when scheduled switching is no longer wanted. <br>
+## Use Case:
 
+External developers and macOS users use this skill to have an agent test Clash Verge Rev or Mihomo proxy selector groups, choose the lowest-latency healthy node, diagnose controller access, and optionally install or remove a scheduled launchd switch job.
 
-## Reference(s): <br>
-- [Runtime Notes](artifact/references/runtime-notes.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/tankeito/clash-verge-auto-switch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and execution summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke bundled Python and shell scripts that read local Clash/Mihomo controller settings, call the local controller API, and optionally install a user-level macOS launchd job.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can install a persistent macOS LaunchAgent that keeps running at the selected interval and can continue changing Clash proxy selections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run or list mode before enabling scheduled switching, verify the installed plist and script path, and uninstall the LaunchAgent when automatic switching is no longer wanted.
+
+Risk: Controller secrets may be handled while connecting to the Clash or Mihomo controller.
+
+Mitigation: Avoid passing controller secrets on the command line; prefer environment variables, a Unix socket, or a loopback HTTPS controller where possible.
+
+Risk: Automatic switching can alter active proxy routing based on live latency tests.
+
+Mitigation: Start with explicit groups or the current group scope, review the reported winning node and latency, and keep dry-run mode available for inspection-only use.
+
+## Reference(s):
+
+- [Runtime Notes](references/runtime-notes.md)
+- [ClawHub skill page](https://clawhub.ai/tankeito/skills/clash-verge-auto-switch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and status output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that change local Clash selector state or install/remove a macOS LaunchAgent when the user chooses those workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

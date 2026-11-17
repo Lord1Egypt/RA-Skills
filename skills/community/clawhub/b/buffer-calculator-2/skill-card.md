@@ -1,43 +1,61 @@
-## Description: <br>
-Calculate complex buffer recipes with precise measurements for molecular biology and biochemistry applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate complex buffer recipes with precise measurements for molecular biology and biochemistry applications, including mass and volume calculations, pH considerations, and step-by-step preparation instructions.
 
-## Publisher: <br>
-[theresayao0614-sudo](https://clawhub.ai/user/theresayao0614-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theresayao0614-sudo](https://clawhub.ai/user/theresayao0614-sudo)
 
-## Use Case: <br>
-External lab users and developers use this skill to calculate and review buffer recipes for common molecular biology and biochemistry workflows. It is best suited for planning, teaching, and pre-checking recipes before independent verification against trusted laboratory references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that the included calculation code can produce dangerously incorrect laboratory quantities. <br>
-Mitigation: Do not rely on generated recipes for real lab preparation until the calculations are fixed and independently tested; verify every recipe against a trusted lab reference. <br>
-Risk: The security review reports broader local permissions than the skill discloses. <br>
-Mitigation: Install only with caution, restrict file-writing permissions where possible, and inspect generated instructions before use. <br>
+## Use Case:
 
+Developers, laboratory staff, and research teams use this skill to generate buffer preparation guidance for common molecular biology and biochemistry buffers such as PBS, RIPA, and TAE. Outputs should be independently checked before lab use because the security evidence flags calculation correctness concerns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/theresayao0614-sudo/buffer-calculator-2) <br>
-- [Cold Spring Harbor Protocols](https://cshprotocols.org) <br>
-- [Thermo Fisher Buffer Resources](https://www.thermofisher.com/buffers) <br>
-- [Sigma-Aldrich Biochemicals](https://www.sigmaaldrich.com/biochemicals) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with code blocks, command examples, and structured buffer calculation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reagent masses, liquid volumes, concentration scaling, pH guidance, and step-by-step preparation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: Recipe outputs may contain incorrect buffer calculations or ambiguous reagent forms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify all masses, volumes, unit conversions, pH targets, and reagent forms against trusted laboratory protocols before preparing buffers.
+
+Risk: Declared tool permissions are broader than the documented local calculator behavior requires.
+
+Mitigation: Install or run only after review, and prefer a corrected release with narrower permissions.
+
+Risk: Laboratory use can create safety or experimental quality issues if generated guidance is followed without local review.
+
+Mitigation: Have qualified lab personnel review outputs, safety data sheets, institutional procedures, and pH or sterility requirements before use.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/theresayao0614-sudo/skills/buffer-calculator-2)
+- [Publisher profile](https://clawhub.ai/user/theresayao0614-sudo)
+- [Cold Spring Harbor Protocols](https://cshprotocols.org)
+- [Thermo Fisher Buffer Reference](https://www.thermofisher.com/buffers)
+- [Sigma-Aldrich Buffer Calculator](https://www.sigmaaldrich.com/biochemicals)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks, plus command-line text output from the bundled calculator script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include buffer component masses, liquid volumes, pH notes, preparation steps, troubleshooting guidance, and calculation examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

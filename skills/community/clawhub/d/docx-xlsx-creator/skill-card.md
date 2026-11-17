@@ -1,42 +1,60 @@
-## Description: <br>
-Generates Word (.docx) reports and Excel (.xlsx) workbooks as downloadable files for SMSF, accounting, compliance, and business document workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Word (.docx) reports and Excel (.xlsx) workbooks as downloadable files for SMSF, accounting, compliance, and business document workflows.
 
-## Publisher: <br>
-[mysmsf](https://clawhub.ai/user/mysmsf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mysmsf](https://clawhub.ai/user/mysmsf)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and business practitioners use this skill to create draft SMSF reports, trustee summaries, checklists, budget workbooks, invoice layouts, and simple spreadsheet exports as real Word or Excel files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Spreadsheet text from untrusted JSON may be interpreted as an active formula by spreadsheet software.
+
+Mitigation: Use trusted JSON data for spreadsheets and review cells that begin with formula characters before sharing workbooks.
+
+Risk: Python dependencies are version-ranged rather than pinned.
+
+Mitigation: Install in a virtual environment and pin dependency versions for repeatable deployments.
+
+Risk: Generated SMSF, accounting, and compliance documents may be mistaken for final professional advice or compliant filings.
+
+Mitigation: Treat generated documents as drafts and require review by a qualified accountant, auditor, or adviser before client or regulator use.
+
+Risk: The skill writes user-requested files to disk.
+
+Mitigation: Write only to user-approved locations and overwrite existing files only when explicitly authorized.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, accountants, and business operators use this skill to generate draft SMSF reports, trustee summaries, checklists, budgets, invoices, and simple spreadsheet workbooks that require review before client or regulatory use. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [files, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SMSF, accounting, or compliance documents may be mistaken for final professional advice or regulator-ready material. <br>
-Mitigation: Treat generated documents as drafts and have a qualified accountant, auditor, or adviser review them before client or regulatory use. <br>
-Risk: Local file generation can write to unintended locations or replace existing files when output paths or --force are used incorrectly. <br>
-Mitigation: Choose explicit safe output locations and use --force only when the user intends to replace an existing file. <br>
-Risk: Unpinned package dependencies may reduce reproducibility or introduce supply-chain exposure. <br>
-Mitigation: Install dependencies only from trusted package sources and pin versions when reproducible builds are needed. <br>
+**Output Format:** [DOCX and XLSX files generated from command-line arguments or JSON configuration]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mysmsf/docx-xlsx-creator) <br>
+**Other Properties Related to Output:** [Creates draft .docx and .xlsx files; refuses to overwrite existing outputs unless --force is used.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration] <br>
-**Output Format:** [DOCX and XLSX files generated from command-line arguments or JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local .docx and .xlsx files; existing output files are not overwritten unless --force is used.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

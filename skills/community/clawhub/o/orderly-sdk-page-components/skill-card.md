@@ -1,38 +1,49 @@
-## Description: <br>
-Use pre-built page components from Orderly SDK to quickly assemble complete DEX pages (TradingPage, Portfolio, Markets, Leaderboard, etc.) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use pre-built page components from Orderly SDK to quickly assemble complete DEX pages (TradingPage, Portfolio, Markets, Leaderboard, etc.).
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers building DEX applications use this skill to integrate Orderly SDK page components for trading, portfolio, markets, leaderboard, affiliate, and rewards experiences with less custom UI assembly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial application integrations can be unsafe if Orderly SDK packages, TradingView assets, wallet flows, order placement, deposits, or withdrawals are accepted without review. <br>
-Mitigation: Verify Orderly SDK packages and TradingView assets come from official sources, pin dependency versions where practical, and separately review wallet connection, order placement, deposit, and withdrawal flows before production use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Tarnadas/orderly-sdk-page-components) <br>
-- [Publisher profile](https://clawhub.ai/user/Tarnadas) <br>
+## Use Case:
 
+Developers building DEX applications use this skill to integrate Orderly SDK page components for trading, portfolio, markets, leaderboard, affiliate, and rewards pages with responsive layouts and routing examples.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, CSS, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides integration examples and configuration notes; it does not execute code or handle credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated DEX asset pages may become capable of moving real funds when connected to wallets and providers.
+
+Mitigation: Before installation or use, confirm package provenance, wallet and network configuration, token amounts, destination addresses, fees, and transaction prompts in the actual app.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tarnadas/skills/orderly-sdk-page-components)
+- [Publisher profile](https://clawhub.ai/user/tarnadas)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript, CSS, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes package installation guidance, React component usage examples, routing examples, and customization notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

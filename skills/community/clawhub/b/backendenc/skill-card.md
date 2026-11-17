@@ -1,43 +1,54 @@
-## Description: <br>
-Backend Agent Data Encryption. High-security MK->KEK->DEK hierarchy for backend environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backend Agent Data Encryption. High-security MK->KEK->DEK hierarchy for backend environments.
 
-## Publisher: <br>
-[anydefai](https://clawhub.ai/user/anydefai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anydefai](https://clawhub.ai/user/anydefai)
 
-## Use Case: <br>
-Developers and backend agent operators use this skill to add local filesystem-backed encryption for Node.js agents, including multi-user and channel-isolated storage for memory, cache, logs, and assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weak or lost passphrases can make the local encryption vault either easier to attack or unrecoverable. <br>
-Mitigation: Use strong passphrases, document recovery expectations, and protect passphrase handling outside the skill. <br>
-Risk: The skill writes vault metadata and encrypted asset files under the working directory. <br>
-Mitigation: Restrict filesystem permissions for the working directory and vault files before using the skill in shared backend environments. <br>
-Risk: Unsanitized user, channel, scope, or asset key inputs can affect local storage paths or key names. <br>
-Mitigation: Validate and sanitize context identifiers and asset keys before passing them to the encryption service. <br>
+## Use Case:
 
+Developers and backend engineers use this skill to add passphrase-unlocked, locally persisted encryption and key management to Node.js OpenClaw agents handling memory, logs, cache, or assets.
 
-## Reference(s): <br>
-- [Backend Storage Schema](references/storage-keys.md) <br>
-- [ClawHub skill page](https://clawhub.ai/anydefai/backendenc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript usage examples and local storage configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Node.js runtime with crypto and filesystem access; encrypted vault data is stored locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata and artifact metadata.json) <br>
+Risk: The scanner reported that tenant isolation can break and encrypted asset files can be written outside the intended vault path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill carefully before installation in multi-user or security-sensitive backends, and fix path handling and tenant context formatting before relying on its isolation claims.
+
+Risk: The scanner guidance identifies userId, channelId, scope, and key values as security-sensitive inputs.
+
+Mitigation: Use only strictly validated and trusted values for userId, channelId, scope, and key before invoking the encryption service.
+
+## Reference(s):
+
+- [Backend Storage Schema](artifact/references/storage-keys.md)
+- [ClawHub Skill Page](https://clawhub.ai/anydefai/skills/backendenc)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript code examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local Node.js encryption service usage patterns and storage-key guidance; no network output is described.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

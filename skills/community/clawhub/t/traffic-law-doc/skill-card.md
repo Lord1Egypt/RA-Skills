@@ -1,43 +1,54 @@
-## Description: <br>
-Parse traffic accident legal documents and generate exam answers for Chinese traffic safety law workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses Chinese traffic accident legal documents, extracts legal article references, and generates markdown templates for traffic safety exam answers.
 
-## Publisher: <br>
-[zhanghaibo7612](https://clawhub.ai/user/zhanghaibo7612) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghaibo7612](https://clawhub.ai/user/zhanghaibo7612)
 
-## Use Case: <br>
-External users, legal operations teams, and developers use this skill to parse local Word documents containing traffic accident legal material, build structured legal-reference JSON, and draft Markdown answer templates for traffic safety exams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated legal text or exam answers may be incomplete, outdated, or unsuitable for a specific case. <br>
-Mitigation: Review generated outputs with a qualified legal professional or authoritative current legal source before relying on them. <br>
-Risk: Parsed Word documents and generated JSON or Markdown may contain private legal, case, or exam information. <br>
-Mitigation: Run the skill only on trusted local folders, choose output locations deliberately, and avoid sharing generated files that contain sensitive source content. <br>
-Risk: The document parsing scripts depend on local file paths and have limited support for older .doc files. <br>
-Mitigation: Confirm the target folder and file formats before execution, and manually review files that the parser reports as unsupported or requiring manual parsing. <br>
+## Use Case:
 
+Developers and legal operations users can use this skill to parse local Chinese traffic-law Word documents into structured JSON, look up article references, and produce review-ready traffic safety exam answer drafts.
 
-## Reference(s): <br>
-- [Traffic Accident Legal Articles Quick Reference](references/legal_articles.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhanghaibo7612/traffic-law-doc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown answers, structured JSON legal extracts, Python scripts, and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local user-selected Word documents and writes generated JSON or Markdown outputs to chosen paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can copy local document text into JSON, Markdown, or text outputs, and generated answer files are templates rather than finished legal or exam answers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input and output paths before running scripts, and have a qualified human review extracted legal text and generated answer drafts before relying on them.
+
+Risk: Document parsing has format and environment limits, including simplified .docx parsing, manual handling for old .doc files, and a documented Microsoft Word dependency.
+
+Mitigation: Confirm the local document format and runtime environment before batch processing, and inspect parser status fields for skipped or failed files.
+
+## Reference(s):
+
+- [Traffic accident legal articles quick reference](artifact/references/legal_articles.md)
+- [ClawHub skill page](https://clawhub.ai/zhanghaibo7612/skills/traffic-law-doc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON for parsed law documents and Markdown or text files for exam-answer templates and extracted content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include copied source document text and should be reviewed before legal or exam use.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Adds a concise Chinese footer after each assistant response that reports which non-built-in specialized skills were used in the turn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+每次AI回复后自动分析本轮实际调用的专项技能，在回复末尾追加汇报。自动挂载，无需命令触发。
 
-## Publisher: <br>
-[chn012cjus](https://clawhub.ai/user/chn012cjus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chn012cjus](https://clawhub.ai/user/chn012cjus)
 
-## Use Case: <br>
-Agents and users use this skill to make skill usage visible in each reply by listing specialized ClawHub or user-installed skills while omitting built-in tools and the reporting skill itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill appends a usage footer to every assistant response, which may add unwanted disclosure or formatting in contexts where skill usage should not be shown. <br>
-Mitigation: Install it only in environments where a per-response skill-usage footer is expected, and review downstream formatting requirements before use. <br>
-Risk: The helper script can retain a temporary local history of skill names in skill_usage_log.json under TEMP or /tmp. <br>
-Mitigation: Clear that file or avoid the helper script if local retention of skill usage history is not acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to append a concise record of specialized skills used in the current agent turn. It is intended for visibility into skill usage, not for exact audit logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chn012cjus/skill-steward) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown/plain text footer appended to assistant responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One skill name per line, or a no-skill message when no specialized skill was used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill globally alters every assistant reply, which can disrupt workflows that require exact JSON, code-only output, or stable response formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where an always-on Chinese skill-usage footer is desired, and avoid using it for strict machine-readable or code-only outputs unless the behavior is made opt-in.
+
+Risk: The bundled reporting script writes skill usage records to a local temporary log path, which may be unsuitable for privacy-sensitive or reliable audit workflows.
+
+Mitigation: Review the logging behavior before deployment and revise it to use a private per-user location, retention controls, or no logging for sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chn012cjus/skills/skill-steward)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown footer text appended to agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also produce a local plain-text usage report when the bundled reporting script is run.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

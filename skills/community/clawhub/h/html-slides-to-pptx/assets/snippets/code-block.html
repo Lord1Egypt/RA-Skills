@@ -1,0 +1,35 @@
+<!--
+  code-block.html — 代码展示(深色渐变背景 + 虚线边框 + pre/code + 圆点装饰)
+  用法:在页面中放置一个代码展示区。
+  参数:
+    X / Y / W / H     — 代码区位置与尺寸
+    BG_FROM           — 渐变起始色(变量名,如 var(--code-bg))
+    BG_TO             — 渐变结束色(变量名,如 var(--brand-dark))
+    TITLE             — 窗口标题(如 workflow.js)
+    CODE              — 代码内容(放在 <pre><code> 内,可用 <span> 做语法高亮)
+  z 序:背景 z-index:1 → 圆点 z-index:5 → 标题/代码 z-index:10
+  提示:代码内语法高亮用 <span style="color:var(--code-highlight);">关键字</span> 等;
+        上下标用 <sup>/<sub>;保留空白靠 pre 的 white-space:pre
+-->
+<!-- 深色渐变背景 + 虚线边框 -->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};
+            background:linear-gradient(135deg,{{BG_FROM}},{{BG_TO}});border-radius:12px;
+            border:2px dashed rgba(255,255,255,0.15);z-index:1;"></div>
+<!-- 窗口圆点 -->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:calc({{X}} + 24px);top:calc({{Y}} + 20px);width:16px;height:16px;border-radius:50%;background:var(--signal-red);z-index:5;"></div>
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:calc({{X}} + 52px);top:calc({{Y}} + 20px);width:16px;height:16px;border-radius:50%;background:var(--signal-yellow);z-index:5;"></div>
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:calc({{X}} + 80px);top:calc({{Y}} + 20px);width:16px;height:16px;border-radius:50%;background:var(--signal-green);z-index:5;"></div>
+<!-- 窗口标题 -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 120px);top:calc({{Y}} + 20px);width:400px;height:20px;
+            font-size:16px;color:var(--code-comment);line-height:20px;
+            font-family:'Courier New',monospace;z-index:10;">{{TITLE}}</div>
+<!-- 代码内容 -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 24px);top:calc({{Y}} + 56px);width:calc({{W}} - 48px);height:calc({{H}} - 80px);z-index:10;">
+  <pre style="font-family:'Courier New',monospace;font-size:20px;color:var(--code-text);line-height:1.7;white-space:pre;margin:0;"><code>{{CODE}}</code></pre>
+</div>

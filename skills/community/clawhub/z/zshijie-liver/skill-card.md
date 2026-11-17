@@ -1,41 +1,51 @@
-## Description: <br>
-Resolves Z视介 live channel requests or common program aliases to a supported channel, opens the corresponding live page, and returns a short Markdown watch card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolves supported Z视介 live TV channel requests or common program aliases to the correct channel ID and returns a Markdown link to the live page.
 
-## Publisher: <br>
-[jkbwfi](https://clawhub.ai/user/jkbwfi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jkbwfi](https://clawhub.ai/user/jkbwfi)
 
-## Use Case: <br>
-External users and agents use this skill to open supported Z视介 live TV channels by channel name, cid, or common aliases such as 跑男 or 奔跑吧. The skill maps the request to a live channel and returns a concise Markdown card with a clickable watch link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper may open a fixed Z视介 live page in the user's browser. <br>
-Mitigation: Use --no-open or request a link-only response when automatic browser navigation is not wanted. <br>
-Risk: Short aliases may resolve to a supported live channel without asking for clarification. <br>
-Mitigation: Ask the user to confirm when a channel request is ambiguous or unsupported, and rely on the bundled channel map instead of guessing. <br>
+## Use Case:
 
+External users and agents use this skill to open supported Z视介 live channels by channel name, channel ID, or common aliases such as 跑男 and 奔跑吧 that map to 浙江卫视.
 
-## Reference(s): <br>
-- [Z视介 Channel Map](references/channel_map.md) <br>
-- [Zshijie Liver on ClawHub](https://clawhub.ai/jkbwfi/zshijie-liver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, text, shell commands, guidance] <br>
-**Output Format:** [Markdown card with a clickable live-link by default; optional JSON or URL-only text from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May open the resolved live page in the default browser unless the agent uses --no-open.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The skill may open the default browser automatically when resolving a live channel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use or request --no-open when only a Markdown response, JSON result, or link is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jkbwfi/skills/zshijie-liver)
+- [Channel/cid mapping](artifact/references/channel_map.md)
+- [Z视介 live page URL template](https://zmtv.cztv.com/cmsh5-share/prod/cztv-tvLive/index.html?pageId={cid})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Short Markdown card with a clickable live-page link; the helper script can also emit JSON or a URL-only string.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Resolves fixed channel and cid mappings for supported Z视介 live channels and may open the default browser unless disabled.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

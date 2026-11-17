@@ -1,41 +1,64 @@
-## Description: <br>
-Helps agents research Chinese tax law, tax policy, court judgments, administrative reconsideration decisions, and comparable tax dispute cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with Chinese tax-law research by guiding searches for tax cases, administrative review decisions, tax regulations, State Taxation Administration notices, local tax practice examples, and similar tax dispute matters.
 
-## Publisher: <br>
-[codefarmerman](https://clawhub.ai/user/codefarmerman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codefarmerman](https://clawhub.ai/user/codefarmerman)
 
-## Use Case: <br>
-Tax, legal, and compliance researchers use this skill to locate and organize Chinese tax regulations, agency guidance, court judgments, and administrative decisions for tax dispute response, compliance review, and legal research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal and tax research can become incorrect if citations, source authority, or effective dates are stale or unsupported. <br>
-Mitigation: Verify each cited authority against the original legal or tax database, including current validity, amendment status, and effective date, before relying on conclusions. <br>
+## Use Case:
 
+External users and tax researchers use this skill to structure Chinese tax-law and tax-dispute research, locate relevant regulations and case materials, and organize findings by legal authority, issue, source, date, and applicability.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/codefarmerman/case-research) <br>
-- [National Taxation Administration](https://www.chinatax.gov.cn/) <br>
-- [National Laws and Regulations Database](https://flk.npc.gov.cn/) <br>
-- [China Judgments Online](https://wenshu.court.gov.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown research guidance with source citations and structured case or regulation analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to use browser automation for external legal and tax database searches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Tax laws, regulations, administrative interpretations, and case materials may be amended, repealed, superseded, or subject to transitional rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify every cited source against authoritative legal and tax databases, including current validity, version history, effective dates, and applicability to the relevant transaction period.
+
+Risk: External legal and tax databases may be incomplete, unavailable, access-restricted, or inconsistent in coverage.
+
+Mitigation: Cross-check important findings across primary government sources and reputable legal databases, and document any access limitations or gaps in the research record.
+
+Risk: Research summaries or case comparisons may be incomplete or misleading if used as legal or tax advice without expert review.
+
+Mitigation: Have qualified legal or tax professionals review material conclusions, cited authorities, and factual fit before relying on the output for compliance, planning, or dispute response.
+
+## Reference(s):
+
+- [Case Research ClawHub page](https://clawhub.ai/codefarmerman/skills/case-research)
+- [Publisher profile](https://clawhub.ai/user/codefarmerman)
+- [State Taxation Administration](https://chinatax.gov.cn)
+- [National Laws and Regulations Database](https://flk.npc.gov.cn)
+- [Ministry of Finance](https://mof.gov.cn)
+- [Pkulaw](https://pkulaw.com)
+- [China Judgments Online](https://wenshu.court.gov.cn)
+- [China Trial Process Information Online](https://tts.court.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Analysis, Markdown]
+
+**Output Format:** [Markdown with structured research steps, source citations, case summaries, and legal-basis analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires independent verification of legal-source currency, validity, effective dates, and applicability before reliance.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

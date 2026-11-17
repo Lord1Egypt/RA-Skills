@@ -1,40 +1,52 @@
-## Description: <br>
-Alter Manager helps an OpenClaw agent create, list, delete, and route messages to independent sub-sessions for parallel task handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alter Manager helps an agent create, list, delete, and route messages to independent OpenClaw sub-sessions.
 
-## Publisher: <br>
-[johnluicn](https://clawhub.ai/user/johnluicn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[johnluicn](https://clawhub.ai/user/johnluicn)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to manage multiple OpenClaw sub-sessions for separate work streams, including creating labeled sessions, listing active sessions, routing messages, and deleting selected sessions after confirmation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can read local OpenClaw session metadata and persist a routing target in the workspace.
+
+Mitigation: Review the active session list and routing state before forwarding sensitive work to a sub-session.
+
+Risk: The skill can delete selected sessions after confirmation while archiving transcripts.
+
+Mitigation: Confirm the target label and session key before deletion, and rely on archived transcripts when recovery is needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to manage separate OpenClaw sub-sessions for independent tasks, including creating labeled sessions, listing active sessions, deleting sessions after confirmation, and routing follow-up messages to a selected session. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: A user may delete the wrong sub-session if labels or session keys are confused. <br>
-Mitigation: Ask for confirmation and verify the exact label or session key before deletion. <br>
-Risk: Normal messages may continue routing to a selected sub-session while route mode is active. <br>
-Mitigation: Make route state visible when entering or starting a session, and exit route mode before unrelated work. <br>
+**Output Format:** [Markdown with inline shell commands and JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/johnluicn/alter-manager) <br>
+**Other Properties Related to Output:** [May include session labels, session keys, routing state details, and deletion results.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown with inline command and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a workspace route-state JSON file and may direct session-management actions through OpenClaw session tools or CLI commands.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Knowledge Expansion Notetaking (KEN) turns newly shared knowledge, concepts, or methods into sourced, structured deep-note cards and archives them to Get notes, Feishu wiki/docs, and a local file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+知识拓展笔记术 (Knowledge Expansion Notetaking, KEN) turns a newly shared concept, method, or piece of knowledge into a structured deep-note with source context, concept analysis, applicability boundaries, ambiguity checks, follow-up questions, AI continuation, and synchronized archiving.
 
-## Publisher: <br>
-[binhuatochina](https://clawhub.ai/user/binhuatochina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binhuatochina](https://clawhub.ai/user/binhuatochina)
 
-## Use Case: <br>
-External users use this skill to expand a newly learned idea into a structured note with source context, concept analysis, boundaries, ambiguity checks, follow-up questions, and an AI-written continuation. It is intended for personal knowledge management workflows that sync generated notes into Get notes, Feishu wiki/docs, and local backup files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically archive user-provided knowledge content to external Get note and Feishu destinations. <br>
-Mitigation: Use it only with the intended Feishu workspace and Get note account, avoid sensitive personal or proprietary notes unless external archiving is acceptable, and require explicit confirmation before syncing. <br>
-Risk: The workflow grants full Feishu document access to a hardcoded user identifier. <br>
-Mitigation: Review and replace the recipient before use, or remove the automatic permission grant and require explicit approval for permission changes. <br>
-Risk: The skill depends on sensitive credentials and external workspace permissions for Feishu and Get note operations. <br>
-Mitigation: Keep credentials scoped to the minimum required access, store them outside the skill files, and rotate them if workspace membership or intended usage changes. <br>
+## Use Case:
 
+External users and personal knowledge workers use this skill to convert newly encountered knowledge into reusable notes with definitions, limits, misunderstandings, deeper questions, and concise AI-written expansion. It also prepares archive outputs for Get notes, Feishu Knowledge Base, Feishu Docs, and local fallback storage.
 
-## Reference(s): <br>
-- [Feishu knowledge base configuration](references/feishu-kb-config.md) <br>
-- [ClawHub release page](https://clawhub.ai/binhuatochina/knowledge-expansion-notetaking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown notes with Feishu XML conversion guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates an eight-section deep note, up to 800 Chinese characters for the AI continuation section, and returns archive links plus a core finding and follow-up question.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.5 (source: frontmatter and server release evidence) <br>
+Risk: The workflow can archive user-provided note content to Get notes, Feishu Knowledge Base, Feishu Docs, and local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that sync is intended, require confirmation before external archive actions, and restrict activation triggers to deliberate user requests.
+
+Risk: Created Feishu documents grant full_access to a fixed user account.
+
+Mitigation: Remove or parameterize the fixed recipient before use and grant only the minimum permission needed for the intended workspace.
+
+Risk: Generated titles, filenames, and XML document content are derived from user-supplied knowledge text.
+
+Mitigation: Sanitize titles and filenames and XML-escape generated content before writing files or executing Feishu update commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binhuatochina/skills/knowledge-expansion-notetaking)
+- [Feishu knowledge base configuration](references/feishu-kb-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown note content with Feishu XML update guidance, shell command snippets, archive status links, and a short finding summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [AI continuation is capped at 800 Chinese characters; archive behavior targets configured Get and Feishu destinations plus local fallback storage.]
+
+## Skill Version(s):
+
+0.4.5 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

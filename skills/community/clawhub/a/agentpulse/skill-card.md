@@ -1,41 +1,55 @@
-## Description: <br>
-Track LLM API costs, tokens, latency, and errors for your AI agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentPulse tracks LLM API costs, token usage, latency, errors, and rate-limit signals for AI agents.
 
-## Publisher: <br>
-[sru4ka](https://clawhub.ai/user/sru4ka) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sru4ka](https://clawhub.ai/user/sru4ka)
 
-## Use Case: <br>
-Developers and agent operators use AgentPulse to report LLM API usage metadata and answer questions about cost, token usage, latency, errors, and model mix. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends ongoing LLM usage metadata and an API key to an endpoint that the scanner says may not match the publisher's active AgentPulse site. <br>
-Mitigation: Confirm the correct AgentPulse endpoint with the publisher before setting AGENTPULSE_API_KEY or installing the skill. <br>
-Risk: LLM usage metadata and error strings may leave the user's environment during reporting and statistics lookups. <br>
-Mitigation: Test with a disposable AgentPulse account and API key, and avoid sending sensitive error details until the endpoint and data handling expectations are verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub AgentPulse release](https://clawhub.ai/sru4ka/agentpulse) <br>
-- [AgentPulse dashboard](https://agentpulse.dev/dashboard) <br>
-- [AgentPulse alerts dashboard](https://agentpulse.dev/dashboard/alerts) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect OpenClaw usage telemetry to AgentPulse, then answer questions about spend, token volume, errors, latency, model usage, and alert setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Text summaries] <br>
-**Output Format:** [Markdown guidance with inline curl commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and AGENTPULSE_API_KEY; reports and retrieves LLM usage metadata through AgentPulse endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may silently send detailed metadata for every LLM call to AgentPulse, including model names, token counts, latency, status, and costs.
+
+Mitigation: Install and configure it only where that telemetry flow is approved, and ensure users understand that reporting can occur in the background.
+
+Risk: Raw error messages may contain sensitive context and can be forwarded to the AgentPulse service.
+
+Mitigation: Avoid including sensitive data in error messages where possible, and control or disable telemetry in OpenClaw environments that handle restricted information.
+
+## Reference(s):
+
+- [ClawHub AgentPulse skill page](https://clawhub.ai/sru4ka/skills/agentpulse)
+- [AgentPulse service](https://agentpulse.dev)
+- [AgentPulse dashboard](https://agentpulse.dev/dashboard)
+- [AgentPulse alerts dashboard](https://agentpulse.dev/dashboard/alerts)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance, API calls]
+
+**Output Format:** [Markdown with shell commands and JSON API payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AGENTPULSE_API_KEY and curl; may send LLM usage metadata and raw error messages to agentpulse.dev.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

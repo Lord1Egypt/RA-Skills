@@ -1,41 +1,59 @@
-## Description: <br>
-Turn a user's described feelings, mood, or emotional state into a concise, resonant line. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn a user's described feelings, mood, or emotional state into a concise, resonant line.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users and writers use this skill to interpret a described feeling, summarize its emotional core, and produce a concise expressive line for self-expression, captions, diaries, or messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat emotional-expression help as therapy or crisis support. <br>
-Mitigation: Position outputs as writing assistance, avoid diagnosis, and encourage trusted people or professional support for crisis signals. <br>
-Risk: Quote attribution may be unreliable when referenced quote whitelist files are absent. <br>
-Mitigation: Use unattributed natural expressions unless a quote source is reliably verified. <br>
+## Use Case:
 
+External users use this skill to turn raw emotional descriptions into concise, human-facing lines for captions, diary entries, self-reflection, or messages. It can also help identify the core feeling behind a user's description without presenting that interpretation as a diagnosis.
 
-## Reference(s): <br>
-- [Mood Line README](artifact/README.md) <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/mood-line) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with concise structured sections and expressive text lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include optional variants for social media, diary writing, friend messages, or self-reflection.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata) <br>
+Risk: Mood descriptions can include sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including unnecessary identifying details and treat outputs as personal writing assistance rather than professional advice.
+
+Risk: Quote attribution may be limited because the referenced quote whitelist and quote safety files are not included in the package.
+
+Mitigation: Verify any attributed quote against a reliable source before publishing it; otherwise use an unattributed expression.
+
+Risk: A user may describe self-harm, harm to others, or extreme distress.
+
+Mitigation: Prioritize supportive, non-romanticized language and encourage trusted personal or professional help instead of producing a polished mood line.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/skills/mood-line)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with short labeled sections and optional variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include quote attribution only when the source is reliable; otherwise produces unattributed original phrasing.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

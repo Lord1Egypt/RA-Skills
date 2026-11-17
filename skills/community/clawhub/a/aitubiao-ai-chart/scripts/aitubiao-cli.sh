@@ -65,13 +65,13 @@ load_credentials() {
 
   if [[ -z "${API_KEY:-}" ]]; then
     echo "Error: API_KEY is empty in $CREDENTIALS_FILE" >&2
-    echo "Please add your API Key. Get one at: https://app.aitubiao.com/setting/api-keys?utm_source=skill_skill-clawhub&channel=skill-clawhub" >&2
+    echo "Please add your API Key. Get one at: https://app.aitubiao.com/setting/api-keys" >&2
     exit 1
   fi
 
   if [[ ! "${API_KEY}" =~ ^sk_v1_ ]]; then
     echo "Error: API_KEY format invalid (must start with sk_v1_)" >&2
-    echo "Your current key may have expired. Create a new one at: https://app.aitubiao.com/setting/api-keys?utm_source=skill_skill-clawhub&channel=skill-clawhub" >&2
+    echo "Your current key may have expired. Create a new one at: https://app.aitubiao.com/setting/api-keys" >&2
     exit 1
   fi
 
@@ -166,7 +166,7 @@ api_request() {
     case "$http_code" in
       401|403)
         echo "Error: Authentication failed (HTTP $http_code)" >&2
-        echo "Check or recreate your API Key at: https://app.aitubiao.com/setting/api-keys?utm_source=skill_skill-clawhub&channel=skill-clawhub" >&2
+        echo "Check or recreate your API Key at: https://app.aitubiao.com/setting/api-keys" >&2
         exit 1
         ;;
       429)
@@ -259,13 +259,13 @@ cmd_auth() {
   local api_key="${1:-}"
   if [[ -z "$api_key" ]]; then
     echo "Error: API Key required. Usage: aitubiao-cli.sh auth <sk_v1_...>" >&2
-    echo "Get one at: https://app.aitubiao.com/setting/api-keys?utm_source=skill_skill-clawhub&channel=skill-clawhub" >&2
+    echo "Get one at: https://app.aitubiao.com/setting/api-keys" >&2
     exit 4
   fi
 
   if [[ ! "$api_key" =~ ^sk_v1_ ]]; then
     echo "Error: Invalid API Key format (must start with sk_v1_)" >&2
-    echo "Get a valid key at: https://app.aitubiao.com/setting/api-keys?utm_source=skill_skill-clawhub&channel=skill-clawhub" >&2
+    echo "Get a valid key at: https://app.aitubiao.com/setting/api-keys" >&2
     exit 4
   fi
 
@@ -344,22 +344,7 @@ cmd_create_chart() {
   load_credentials
   local body
   body=$(read_stdin_body)
-  # 同步阶段（AI 生成 + portal 建项目）一般在 60s 内返回；截图改为后台异步，
-  # 响应里带 snapshotJob.id，调用方拿到后用 `query-snapshot-job <id>` 自行轮询。
-  api_request POST "/api/v1/agent/chart/create-project" 90 "$body" "false"
-}
-
-# 查询截图作业进度。stdout 输出 { id, status, totalCharts, results, ... }，
-# status 为 processing | success | failed。作业 TTL 1 小时。
-cmd_query_snapshot_job() {
-  load_credentials
-  local job_id="${1:-}"
-  if [[ -z "$job_id" ]]; then
-    echo "Error: query-snapshot-job 需要 jobId 参数" >&2
-    echo "用法: bash scripts/aitubiao-cli.sh query-snapshot-job <jobId>" >&2
-    exit 4
-  fi
-  api_request GET "/api/v1/agent/chart/snapshot-job/${job_id}" 30 "" "true"
+  api_request POST "/api/v1/agent/chart/create-project" 120 "$body" "false"
 }
 
 cmd_create_ppt() {
@@ -655,11 +640,7 @@ Commands:
   check-auth    Validate credentials (no API call)
   quota            Get user balance and project quota
                    Optional: --skill chart|ppt|sankey|3d (returns only that skill's pricing)
-  create-chart     Create chart visualization project (POST, JSON body).
-                   Returns project + snapshotJob.id immediately; charts screenshots
-                   are generated in background. Poll with `query-snapshot-job <id>`.
-  query-snapshot-job  Query chart snapshot job status (GET, no body)
-                   Usage: bash scripts/aitubiao-cli.sh query-snapshot-job <jobId>
+  create-chart     Create chart visualization project (POST, JSON body)
   create-ppt       Create PPT presentation project (POST, JSON body)
   create-sankey    Create Sankey diagram project (POST, JSON body)
   create-3d        Create 3D illustration image (POST, JSON body)
@@ -742,7 +723,6 @@ main() {
     check-auth)   cmd_check_auth ;;
     quota)        cmd_quota "${@:2}" ;;
     create-chart) cmd_create_chart ;;
-    query-snapshot-job) cmd_query_snapshot_job "${2:-}" ;;
     create-ppt)   cmd_create_ppt ;;
     create-sankey) cmd_create_sankey ;;
     create-3d)    cmd_create_3d ;;

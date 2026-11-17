@@ -1,44 +1,55 @@
-## Description: <br>
-Place, manage, and cancel orders using REST API or SDK hooks. Covers market, limit, IOC, FOK, POST_ONLY order types and batch operations <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place, manage, and cancel orders using REST API or SDK hooks. Covers market, limit, IOC, FOK, POST_ONLY order types and batch operations
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Orderly Network order placement, validation, editing, cancellation, batch order handling, and order monitoring to trading interfaces or automated trading workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill teaches live financial order placement and broad cancellation flows that could cause unintended trades or cancellations. <br>
-Mitigation: Require manual confirmation for every live order, use a sandbox or limited account first, and prefer symbol-scoped cancellation. <br>
-Risk: Trading API keys could grant more authority than the workflow needs. <br>
-Mitigation: Keep trading keys tightly scoped, protect private keys, and avoid using unrestricted production credentials during testing. <br>
-Risk: Batch or automated examples can amplify order size and notional exposure. <br>
-Mitigation: Set external order size, notional, and account limits before using batch or automated order workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Tarnadas/orderly-trading-orders) <br>
-- [Orderly Place Order Endpoint](https://api.orderly.org/v1/order) <br>
-- [Orderly Symbol Info Endpoint](https://api.orderly.org/v1/public/info/PERP_ETH_USDC) <br>
-- [Orderly Batch Order Endpoint](https://api.orderly.org/v1/batch-order) <br>
+## Use Case:
 
+Developers building Orderly Network trading interfaces or automation use this skill to implement order placement, editing, cancellation, batch workflows, validation, and order monitoring.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, REST API, and React SDK examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before use with live trading accounts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill covers live trading actions, including order placement, editing, cancellation, batch cancellation, and cancel-all operations.
+
+Mitigation: Use testnet or low-permission keys where possible and require human confirmation before placing, editing, canceling, batch-canceling, or canceling all orders.
+
+Risk: Broad cancel-all workflows can affect more orders than intended.
+
+Mitigation: Prefer scoped cancellations by symbol or specific order identifiers and avoid unscoped cancel-all operations.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/tarnadas/skills/orderly-trading-orders)
+- [Orderly order API endpoint](https://api.orderly.org/v1/order)
+- [Orderly symbol rules endpoint](https://api.orderly.org/v1/public/info/PERP_ETH_USDC)
+- [Orderly batch order API endpoint](https://api.orderly.org/v1/batch-order)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, API calls, Configuration]
+
+**Output Format:** [Markdown with TypeScript examples and REST endpoint snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes order parameter guidance, validation checks, lifecycle operations, and rate-limit notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

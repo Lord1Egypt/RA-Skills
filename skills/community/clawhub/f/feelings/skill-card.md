@@ -1,39 +1,48 @@
-## Description: <br>
-Build a personal emotional tracking system for understanding patterns, triggers, and what helps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal emotional tracking system for understanding patterns, triggers, and what helps.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Individuals use this skill to keep a local mood journal, capture feelings with context and intensity, and review triggers, patterns, and coping strategies over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local journal entries may contain private emotional details, triggers, and reflections. <br>
-Mitigation: Use the skill only on trusted devices and review local file access, backups, and sharing settings for ~/feelings/. <br>
-Risk: Proactive check-ins may feel intrusive during difficult periods. <br>
-Mitigation: Ask the agent to limit, pause, or disable proactive check-ins if they are not helpful. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/feelings) <br>
+## Use Case:
 
+External users use this skill to have an agent help them keep a local emotional journal, track triggers and what helps, and surface personal patterns over time.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Text guidance and Markdown journal entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local notes under ~/feelings/ when the agent follows the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can result in sensitive moods, triggers, physical sensations, and personal context being stored in local plaintext files.
+
+Mitigation: Use the skill only when local plaintext storage is acceptable, limit sensitive detail where appropriate, choose a private storage location, and protect or delete the files as needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/feelings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance and local journal templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may guide an agent to create or update local plaintext files under ~/feelings/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

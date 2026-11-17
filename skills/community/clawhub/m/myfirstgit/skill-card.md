@@ -1,38 +1,54 @@
-## Description: <br>
-Interact with GitHub through the GitHub CLI to list repositories, issues, and pull requests, and to create new issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with GitHub via the GitHub CLI to list repositories, issues, pull requests, and create issues in repositories.
 
-## Publisher: <br>
-[M3159](https://clawhub.ai/user/M3159) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[m3159](https://clawhub.ai/user/m3159)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent inspect GitHub repositories, issues, and pull requests, or prepare issue creation through an authenticated GitHub CLI session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub operations use the currently authenticated GitHub CLI account and its repository permissions. <br>
-Mitigation: Before creating an issue, confirm the active GitHub account, target repository, title, and body. <br>
+## Use Case:
 
+Developers and repository maintainers use this skill to ask an agent to list GitHub repositories, issues, and pull requests, or to create issues through an authenticated GitHub CLI session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/M3159/myfirstgit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline GitHub CLI commands and command arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May depend on the active GitHub CLI account, repository permissions, and local authentication state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can use the user's authenticated GitHub CLI permissions to create issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target repository, title, and issue body before asking the agent to create an issue.
+
+Risk: Repository, issue, and pull request listings may expose information available to the authenticated account.
+
+Mitigation: Use the skill only in workspaces where sharing GitHub CLI output with the agent is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/m3159/skills/myfirstgit)
+- [Publisher profile](https://clawhub.ai/user/m3159)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the local authenticated GitHub CLI context for GitHub operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

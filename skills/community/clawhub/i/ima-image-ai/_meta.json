@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7ac9knfd0gdwhn8ktjvqqgj181thkt",
+  "ownerid": "kn70cjr952qdec1nx70zs6wefn7ynq2t",
   "slug": "ima-image-ai",
-  "version": "1.0.14",
-  "publishedAt": 1776915153672
+  "name": "IMA Image Generator",
+  "description": "IMA 图像生成：默认推荐 GPT Image 2，支持文生图/图生图与多模型选择。Image gen with recommended GPT Image 2 plus SeeDream, Midjourney, Nano Banana.",
+  "version": "1.0.8",
+  "publishedAt": 1741277713337
 }

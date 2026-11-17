@@ -1,45 +1,55 @@
-## Description: <br>
-fal.ai sync-lipsync v3 generates a new video where a speaker's lip movement matches supplied audio, supporting dubbing, localization, and virtual presenter re-syncing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses fal.ai sync-lipsync v3 to align a speaker’s lip movements in an input video with supplied audio, for dubbing, localization, and virtual presenters.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External users and developers use this skill to call the dLazy CLI for lip-sync video generation from input video and audio, including dubbing, localization, and virtual presenter workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install path uses @latest for @dlazy/cli, so the installed CLI can change over time. <br>
-Mitigation: Review the @dlazy/cli package or source before installation when supply-chain stability matters. <br>
-Risk: The skill requires a dLazy API key and may save it in the local CLI config. <br>
-Mitigation: Use per-invocation DLAZY_API_KEY when persistent local credential storage is not desired. <br>
-Risk: Local video and audio files passed to the CLI are uploaded to dLazy-hosted services for processing. <br>
-Mitigation: Only provide media files intended for upload to dLazy. <br>
+## Use Case:
 
+Content creators and developers can align a speaker’s mouth movements in a video with supplied audio for dubbing, localization, or virtual presenters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/dlazy-sync-lipsync-3) <br>
-- [dLazy CLI project](https://github.com/dlazyai/cli) <br>
-- [@dlazy/cli npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy CLI metadata homepage](https://github.com/dlazyai/cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return hosted media URLs or asynchronous task identifiers from the dLazy service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and release evidence) <br>
+Risk: Local video and audio files supplied to the skill are uploaded to dLazy media storage, and request details are sent to its hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check your organization’s privacy requirements and use only media approved for external processing.
+
+Risk: The security scan had medium confidence and left some CLI behavior and referenced details unverified.
+
+Mitigation: Review the CLI’s authentication and command behavior before installing it or providing credentials.
+
+## Reference(s):
+
+- [CLI project page (listed in skill metadata)](https://github.com/dlazy-ai/cli)
+- [@dlazy/cli on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Video, JSON]
+
+**Output Format:** [Generated video asset with a JSON result containing its URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The input video and audio are aligned; the result can be saved locally.]
+
+## Skill Version(s):
+
+1.3.41 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

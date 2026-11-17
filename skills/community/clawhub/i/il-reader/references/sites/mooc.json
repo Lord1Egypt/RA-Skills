@@ -1,0 +1,123 @@
+{
+  "version": "2.4.0",
+  "source_id": "mooc",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:01:05.020Z",
+  "entry": {
+    "url": "https://www.icourse163.org/",
+    "final_url": "https://www.icourse163.org/",
+    "title": "",
+    "status": "network_error",
+    "http_status": null,
+    "checked_at": "2026-10-09T09:01:05.020Z",
+    "identity": {
+      "declared_name": "中国大学 MOOC",
+      "hostname": null,
+      "domain_matches": false
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [],
+  "recipes": [
+    {
+      "id": "mooc:course-video",
+      "source_id": "mooc",
+      "task_kind": "course-video",
+      "status": "blocked",
+      "parameters": [
+        "title",
+        "institution",
+        "instructor_or_speaker",
+        "chapter_or_timestamp",
+        "target_field"
+      ],
+      "instructions": [
+        "根据本题课程或视频名称、机构和讲者匹配记录；打开目标章节或时间点读取课程字段或播放信息。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.icourse163.org/",
+      "controls": [],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "network_error",
+      "attempt": 1,
+      "detail": "page.goto: Navigation to \"https://www.icourse163.org/\" is interrupted by another navigation to \"https://aiqicha.baidu.com/\"\nCall log:\n\u001b[2m  - navigating to \"https://www.icourse163.org/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 2,
+      "detail": "page.goto: Navigation to \"https://www.icourse163.org/\" is interrupted by another navigation to \"https://www.icourse163.org/\"\nCall log:\n\u001b[2m  - navigating to \"https://www.icourse163.org/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    },
+    {
+      "kind": "network_error",
+      "attempt": 3,
+      "detail": "page.goto: Navigation to \"https://www.icourse163.org/\" is interrupted by another navigation to \"https://www.icourse163.org/\"\nCall log:\n\u001b[2m  - navigating to \"https://www.icourse163.org/\", waiting until \"domcontentloaded\"\u001b[22m\n"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "mooc",
+    "quiz_entries": [
+      "quiz-entry-061"
+    ],
+    "example_ids": [
+      "2025-M17-Q1",
+      "2026-M17-Q1"
+    ],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:01:05.020Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": null,
+      "original_entry_snapshot": null,
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

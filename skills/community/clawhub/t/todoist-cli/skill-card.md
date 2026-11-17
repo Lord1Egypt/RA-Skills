@@ -1,45 +1,53 @@
-## Description: <br>
-Manage Todoist tasks, projects, labels, and sections via the `todoist` CLI when users ask to add, complete, list, search, or organize Todoist work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Todoist tasks, projects, labels, and sections via the `todoist` CLI.
 
-## Publisher: <br>
-[buddyh](https://clawhub.ai/user/buddyh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[buddyh](https://clawhub.ai/user/buddyh)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to manage Todoist tasks, projects, labels, sections, comments, and completed items from an agent through the Todoist CLI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill needs a Todoist API token and can change Todoist tasks when requested. <br>
-Mitigation: Treat TODOIST_API_TOKEN as a secret, avoid placing it in shared logs or prompts, and revoke it from Todoist settings when it is no longer needed. <br>
-Risk: Destructive or state-changing commands such as delete, move, complete, reopen, and update can affect the user's Todoist data. <br>
-Mitigation: Verify task IDs, project names, labels, sections, and dates before executing state-changing Todoist CLI commands. <br>
-Risk: The Todoist CLI is installed from an external source. <br>
-Mitigation: Install only if the external Todoist CLI source is trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buddyh/todoist-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/buddyh) <br>
-- [Todoist API token settings](https://todoist.com/app/settings/integrations/developer) <br>
-- [Todoist CLI project homepage](https://github.com/buddyh/todoist-cli) <br>
-- [Go install module](https://github.com/buddyh/todoist-cli/tree/main/cmd/todoist) <br>
+## Use Case:
 
+External users and developers use this skill to manage Todoist tasks, projects, labels, sections, comments, and completed tasks through the `todoist` command-line interface.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Todoist CLI commands and optional JSON command output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may call the Todoist CLI and can use TODOIST_API_TOKEN for authentication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Todoist API tokens can expose personal or business task data if typed directly into commands, stored in shell history, or shared through environment output.
+
+Mitigation: Prefer interactive authentication, avoid pasting tokens into command history, and rotate the token if exposure is suspected.
+
+Risk: The skill installs an unpinned third-party CLI through Homebrew or `go install ...@latest`.
+
+Mitigation: Install only after trusting the publisher and review or pin the upstream CLI version before managed deployment.
+
+## Reference(s):
+
+- [Todoist developer integrations settings](https://todoist.com/app/settings/integrations/developer)
+- [ClawHub skill page](https://clawhub.ai/buddyh/skills/todoist-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON-producing CLI examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may use Todoist authentication and can request machine-readable output with `--json`.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

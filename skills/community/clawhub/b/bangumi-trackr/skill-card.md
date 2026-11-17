@@ -1,41 +1,61 @@
-## Description: <br>
-Manage Bangumi collections and track watch progress via OAuth for anime, book, game, music, and personal Bangumi data workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Bangumi collections and track watch, read, game, and music progress through Bangumi OAuth.
 
-## Publisher: <br>
-[mountlynx](https://clawhub.ai/user/mountlynx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mountlynx](https://clawhub.ai/user/mountlynx)
 
-## Use Case: <br>
-External users and developers use this skill to configure OAuth access to a Bangumi account, inspect personal collection status, and update watch or collection progress from command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores OAuth credentials or tokens locally and can change Bangumi account collections when mutating commands are run. <br>
-Mitigation: Install only when OAuth account access is acceptable, protect or remove ~/.bangumi/token.json on non-Windows systems when no longer needed, and review IDs before running collect, uncollect, watch, or related mutating commands. <br>
+## Use Case:
 
+External users and developers use this skill to configure a local Bangumi OAuth client, inspect personal account data, and update Bangumi collection or episode progress from command-line workflows.
 
-## Reference(s): <br>
-- [Bangumi Tracker - Command Reference](references/COMMANDS.md) <br>
-- [Bangumi Tracker - API Compliance](references/API.md) <br>
-- [Bangumi API v0](https://github.com/bangumi/api) <br>
-- [Bangumi OAuth App Registration](https://bgm.tv/dev/app/create) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and command reference tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.9+, a Bangumi account, a browser for OAuth, and local credential storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reusable Bangumi OAuth tokens may be exposed on non-Windows systems where credentials are stored under ~/.bangumi.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on machines where ~/.bangumi is private, do not share or commit those files, and revoke the Bangumi OAuth app if tokens may have been exposed.
+
+Risk: The OAuth callback flow needs review before installation.
+
+Mitigation: Create a dedicated Bangumi OAuth app with the documented localhost callback and review the authorization flow before entering credentials.
+
+Risk: Collection, character, person, and episode commands can modify a user's Bangumi account.
+
+Mitigation: Review proposed commands before execution and use read-only status, list, or progress commands first when confirming targets.
+
+## Reference(s):
+
+- [Command Reference](references/COMMANDS.md)
+- [API Documentation](references/API.md)
+- [Bangumi API v0](https://github.com/bangumi/api)
+- [Bangumi OAuth App Setup](https://bgm.tv/dev/app/create)
+- [ClawHub Skill Page](https://clawhub.ai/mountlynx/skills/bangumi-trackr)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline shell commands and command reference text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide local OAuth setup and user-invoked Bangumi account updates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

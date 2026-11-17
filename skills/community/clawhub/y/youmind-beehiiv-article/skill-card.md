@@ -1,52 +1,67 @@
-## Description: <br>
-Write and publish Beehiiv posts with AI, including topic research via the YouMind knowledge base, Beehiiv-native writing, Markdown-to-HTML conversion, and publishing through the Beehiiv account connected in YouMind. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write and publish Beehiiv posts with AI by researching via YouMind, drafting Beehiiv-native newsletter content, converting Markdown to HTML, and publishing through the user's connected Beehiiv account.
 
-## Publisher: <br>
-[mindy-youmind](https://clawhub.ai/user/mindy-youmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindy-youmind](https://clawhub.ai/user/mindy-youmind)
 
-## Use Case: <br>
-External users and developers use this skill to draft, adapt, preview, and publish newsletter posts for Beehiiv through YouMind-managed credentials and Beehiiv account connections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, list, and potentially delete posts in a connected Beehiiv account. <br>
-Mitigation: Use draft mode by default, validate the target account before publishing, and avoid delete actions unless the user intentionally names a specific post to remove. <br>
-Risk: The local YouMind configuration file contains a sensitive API key. <br>
-Mitigation: Protect ~/.youmind/config.yaml as a secret and avoid sharing logs or artifacts that include credential values. <br>
-Risk: Source material may be sent to YouMind, Beehiiv, and web-search services during research and publishing workflows. <br>
-Mitigation: Avoid confidential source material unless those transfers are acceptable for the user's workspace and publication process. <br>
-Risk: Beehiiv plan or API limits may block post creation, sending, or update operations. <br>
-Mitigation: Validate the Beehiiv connection and plan state first, keep drafts as the safe default, and report Send API or Enterprise caveats in the result summary. <br>
+## Use Case:
 
+External users, newsletter operators, creator businesses, and editorial growth teams use this skill to create, adapt, preview, and publish Beehiiv newsletter posts through a YouMind-connected Beehiiv account.
 
-## Reference(s): <br>
-- [ClawHub Skill Release](https://clawhub.ai/mindy-youmind/youmind-beehiiv-article) <br>
-- [YouMind Beehiiv OpenAPI Reference](references/api-reference.md) <br>
-- [Beehiiv Pipeline](references/pipeline.md) <br>
-- [Beehiiv Platform DNA](references/platform-dna.md) <br>
-- [Generation Playbook: Idea to Beehiiv-Native Post](references/content-generation-playbook.md) <br>
-- [Adaptation Playbook: Existing Content to Beehiiv Post](references/content-adaptation-playbook.md) <br>
-- [Publishing Guidelines](shared/PUBLISHING.md) <br>
-- [YouMind API Keys](https://youmind.com/settings/api-keys?utm_source=youmind-beehiiv-article) <br>
-- [YouMind Connector Settings](https://youmind.com/settings/connector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance] <br>
-**Output Format:** [Markdown drafts, Beehiiv-safe HTML payloads, CLI output, and concise result summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft mode is the default; publishing requires a YouMind API key and a Beehiiv account connected in YouMind.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill can act on a connected Beehiiv account through YouMind, including creating, updating, listing, and deleting posts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that connected-account access is acceptable, prefer draft mode, and run update or delete actions only when the user explicitly intends to change existing posts.
+
+Risk: The local YouMind API key in ~/.youmind/config.yaml is tied to the connected publishing account.
+
+Mitigation: Protect the config file and rotate the API key if the file is exposed.
+
+Risk: Untrusted Markdown can be converted to preview HTML or published content.
+
+Mitigation: Review Markdown from untrusted sources before previewing or publishing it.
+
+Risk: Changing youmind.base_url away from the official YouMind endpoint can route credentials and content to a different service.
+
+Mitigation: Keep youmind.base_url set to https://youmind.com/openapi/v1 unless deliberately performing local backend debugging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindy-youmind/skills/youmind-beehiiv-article)
+- [Beehiiv Pipeline](references/pipeline.md)
+- [YouMind Beehiiv OpenAPI Reference](references/api-reference.md)
+- [Platform DNA](references/platform-dna.md)
+- [Generation Playbook](references/content-generation-playbook.md)
+- [Content Adaptation Playbook](references/content-adaptation-playbook.md)
+- [Dispatch Capability Manifest](dispatch-capabilities.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown drafts, concise status text, configuration steps, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce local Markdown drafts, Beehiiv-safe HTML previews, post status details, and result links when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Gpu Check polls two local RTX 3090 and RTX 4090 GPU status endpoints and reports memory usage and node availability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically polls and displays memory usage and online status for configured RTX 3090 and RTX 4090 AI compute nodes on a local network.
 
-## Publisher: <br>
-[fainaltn](https://clawhub.ai/user/fainaltn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[fainaltn](https://clawhub.ai/user/fainaltn)
 
-## Use Case: <br>
-Developers and operators use this skill in chat to check whether local AI compute nodes are online and how much GPU memory is currently in use before routing work to them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The configured private IP addresses may not be the intended GPU nodes in another environment. <br>
-Mitigation: Confirm the two node addresses and /gpu endpoints before installing or running the skill. <br>
-Risk: GPU status data from the /gpu endpoints may be visible in chat output. <br>
-Mitigation: Expose only status data that is acceptable for chat display and restrict endpoint access to trusted local network users. <br>
-Risk: Dependency installation may pull packages from an untrusted or unexpected source. <br>
-Mitigation: Install with the included lockfile or a trusted npm registry. <br>
+## Use Case:
 
+Developers and operators managing local AI compute nodes use this skill to check GPU memory usage and whether the configured node APIs are online from chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fainaltn/gpu-check) <br>
-- [Publisher profile](https://clawhub.ai/user/fainaltn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API status] <br>
-**Output Format:** [Markdown text with GPU usage percentages, progress bars, and node status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries two configured private-network /gpu endpoints with a short timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill contacts two hard-coded local-network GPU API endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments that intentionally expose those endpoints, and update the node URLs before use if they do not match the deployment.
+
+Risk: Dependency hygiene needs review before installation.
+
+Mitigation: Audit and update npm dependencies, including axios and transitive HTTP packages, before deploying the skill.
+
+## Reference(s):
+
+- [Gpu Check ClawHub listing](https://clawhub.ai/fainaltn/skills/gpu-check)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls]
+
+**Output Format:** [Markdown status lines with progress bars and node availability messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Queries configured local-network /gpu endpoints with a short timeout and summarizes used and total GPU memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

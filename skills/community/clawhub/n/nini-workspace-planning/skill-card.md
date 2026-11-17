@@ -1,44 +1,59 @@
-## Description: <br>
-Workspace-level project schedule management for YAML schedules that track modules, milestones, delivery phases, OpenSpec links, and optional Yunxiao sync. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workspace Planning helps agents manage project schedules by reviewing and updating modules, milestones, phases, and delivery status stored in YAML.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Developers and project teams use this skill to review project progress, manage module status transitions, link OpenSpec changes, initialize schedule YAML, and optionally sync schedule modules to Yunxiao. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create a local Python environment and install PyYAML from package infrastructure. <br>
-Mitigation: Run it in a controlled workspace and review environment changes before using the helper script. <br>
-Risk: The skill can edit schedule YAML files in the workspace. <br>
-Mitigation: Review diffs before committing or sharing generated schedule changes. <br>
-Risk: External Yunxiao sync may send schedule or module information outside the local workspace. <br>
-Mitigation: Use sync only after confirming which modules will be sent and after explicit user approval. <br>
+## Use Case:
 
+Developers, engineering leads, and project teams use this skill to inspect delivery progress, update module status, link OpenSpec changes, and coordinate YAML-backed schedules with optional Yunxiao work items.
 
-## Reference(s): <br>
-- [Schedule YAML Schema Reference](references/yaml-schema.md) <br>
-- [Workspace Planning on ClawHub](https://clawhub.ai/niracler/nini-workspace-planning) <br>
-- [Publisher profile](https://clawhub.ai/user/niracler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, JSON-formatted command results, shell commands, and YAML schedule edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update planning/schedules YAML files and may call a local Python helper for deterministic schedule operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: The planning CLI can automatically bootstrap PyYAML into a persistent home-directory virtual environment without a pinned version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall and pin PyYAML in the deployment environment, or review and control dependency installation before enabling the script.
+
+Risk: Schedule files can reference additional module files, and untrusted module_files entries may point outside the intended schedule set.
+
+Mitigation: Use this skill only with trusted schedule YAML and review module_files paths before running review, update, or link workflows.
+
+Risk: Yunxiao sync can create business work items and write returned IDs back into YAML.
+
+Mitigation: Require explicit user confirmation for the exact items to be created and inspect the resulting YAML changes before committing them.
+
+## Reference(s):
+
+- [Schedule YAML Schema Reference](references/yaml-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/niracler/skills/nini-workspace-planning)
+- [Release v0.3.0 Changelog](https://github.com/niracler/skill/releases/tag/v0.3.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON command results and YAML configuration edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses schedule YAML under planning/schedules/*.yaml; update and link workflows validate with the bundled CLI before the agent edits YAML.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

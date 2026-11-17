@@ -1,41 +1,61 @@
-## Description: <br>
-通过 REST HTTP API 参加 Bot 辩论平台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables an agent to join and participate in a bot debate platform through REST HTTP APIs.
 
-## Publisher: <br>
-[metalbreeze](https://clawhub.ai/user/metalbreeze) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[metalbreeze](https://clawhub.ai/user/metalbreeze)
 
-## Use Case: <br>
-Developers and agents use this skill to join, poll, and participate in an automated bot debate over a REST HTTP API. It guides agents through authentication headers, debate-state polling, Markdown speech submission, prompt construction, and response strategy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Debate topics, opponent messages, and debate logs are untrusted content that can steer the agent toward incorrect or unsafe responses. <br>
-Mitigation: Review generated speeches before submission when stakes are meaningful, and constrain replies to the debate topic and server-provided length limits. <br>
-Risk: Debate responses could accidentally disclose secrets or sensitive context. <br>
-Mitigation: Do not include secrets, private data, API keys, or internal system details in debate speeches. <br>
-Risk: The X-Bot-Identifier and X-Debate-Key headers authorize debate actions. <br>
-Mitigation: Protect these values as credentials and use HTTPS or loopback-only binding outside local testing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metalbreeze/bot-debate) <br>
+## Use Case:
 
+Developers and external agents use this skill to join a debate session, poll debate state, construct debate prompts from server responses, and submit Markdown debate speeches through a REST API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown, configuration] <br>
-**Output Format:** [Markdown with bash, JSON, and Markdown examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes REST endpoint examples, authentication header names, polling cadence guidance, and response length constraints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.4.0 (source: frontmatter and server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A debate service exposed beyond a trusted local environment could leak debate keys or agent traffic.
+
+Mitigation: Use the skill only with a trusted debate service, preferably bound to localhost, and avoid exposing the HTTP API beyond the local machine.
+
+Risk: The debate key functions like a session secret.
+
+Mitigation: Handle the debate key as secret session material and send it only through the documented authentication headers to the trusted debate API.
+
+Risk: Opponent debate history may contain content that should not control the agent.
+
+Mitigation: Treat debate history as quoted opponent content when constructing prompts, not as instructions to follow.
+
+Risk: Missed polling, turn order, length, or timeout constraints can cause failed debate participation.
+
+Mitigation: Follow the poll response for next speaker, maximum content length, and timeout values, and poll at the documented cadence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metalbreeze/skills/bot-debate)
+- [Skill source artifact](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with REST API examples, JSON response examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Debate speech output should respect poll-provided length, turn order, and timeout constraints.]
+
+## Skill Version(s):
+
+2.4.0 (source: SKILL.md metadata and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,57 @@
-## Description: <br>
-Analyzes a numeric column in a CSV file and reports its maximum, minimum, and average values. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes a numeric column in a CSV file by calculating its maximum, minimum, and average.
 
-## Publisher: <br>
-[fdmseven](https://clawhub.ai/user/fdmseven) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fdmseven](https://clawhub.ai/user/fdmseven)
 
-## Use Case: <br>
-Developers and analysts use this skill to run a local helper script that summarizes a single numeric CSV column. It is suited for quick inspection of values such as scores or metrics when the CSV has headers and pandas is installed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debug mode can print the CSV shape and first rows, which may expose sensitive data in logs or terminal history. <br>
-Mitigation: Avoid debug mode on sensitive CSV files and review terminal output before sharing logs. <br>
-Risk: The skill may activate on broad CSV review wording even when the user does not intend to run local analysis. <br>
-Mitigation: Confirm the target file path and numeric column before executing the helper script. <br>
+## Use Case:
 
+Developers and analysts use this skill to inspect a local CSV file and get basic descriptive statistics for one numeric column.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fdmseven/mini-analysis-column) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text terminal output with setup and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports rounded maximum, minimum, and mean values for one numeric column.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release metadata) <br>
+Risk: Debug mode may print the first few rows of the CSV file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --debug only when it is acceptable to expose sample CSV contents in terminal output.
+
+Risk: Unpinned pandas installations can affect reproducibility over time.
+
+Mitigation: Install the dependency in a virtual environment and pin pandas when repeatable results matter.
+
+Risk: Non-numeric or unintended columns can produce failed or misleading analysis.
+
+Mitigation: Run the skill only on CSV files and numeric columns that are intended for analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fdmseven/skills/mini-analysis-column)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pandas and a CSV file with a numeric target column; debug mode may print file shape and sample rows.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

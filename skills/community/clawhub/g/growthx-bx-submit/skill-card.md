@@ -1,42 +1,53 @@
-## Description: <br>
-Submit your project to Built at GrowthX, the community builder showcase for GrowthX members, using a GrowthX API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit your project to Built at GrowthX, the community builder showcase for GrowthX members, using a GrowthX API key.
 
-## Publisher: <br>
-[gxt-admin](https://clawhub.ai/user/gxt-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gxt-admin](https://clawhub.ai/user/gxt-admin)
 
-## Use Case: <br>
-GrowthX members and developers use this skill to detect project details from a workspace, confirm the final submission fields, and submit a project to Built at GrowthX. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A GrowthX API key could be exposed or reused outside the intended account context. <br>
-Mitigation: Use a GrowthX-specific API key, store it in an environment variable or protected configuration, and do not share the key. <br>
-Risk: Incorrect or unintended project details could be submitted to Built at GrowthX. <br>
-Mitigation: Review the final project name, description, stack, URL, and status before approving submission. <br>
-Risk: The skill sends project metadata to GrowthX. <br>
-Mitigation: Install and use it only when you trust GrowthX and intend to submit project details there. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gxt-admin/growthx-bx-submit) <br>
-- [Built at GrowthX Project Submission API](https://backend.growthx.club/api/v1/bx/projects/agent) <br>
+## Use Case:
 
+Developers and GrowthX members use this skill to inspect a workspace project, confirm project details, and submit the reviewed summary to the Built at GrowthX showcase.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON request fields and curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation before submission and uses GROWTHX_API_KEY for authentication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can submit project metadata, including name, description, stack, URL, and status, to GrowthX.
+
+Mitigation: Review the detected project details and submit only after the user confirms the final payload.
+
+Risk: The skill requires a GrowthX API key for authenticated submission.
+
+Mitigation: Store the API key in the configured environment or OpenClaw configuration and avoid exposing it in shared logs or prompts.
+
+## Reference(s):
+
+- [Built at GrowthX Skill Page](https://clawhub.ai/gxt-admin/skills/growthx-bx-submit)
+- [Built at GrowthX Project Submission API](https://backend.growthx.club/api/v1/bx/projects/agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, git, and a GROWTHX_API_KEY.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

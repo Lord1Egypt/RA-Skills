@@ -1,44 +1,57 @@
-## Description: <br>
-AI全自动化编程,Claude Code作为项目经理指挥Builder自动完成编程任务(需求对齐→指令生成→自动执行→验收→文档归档暂存). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Auto Dev guides a coding agent workflow in which Claude Code acts as a project manager and a builder agent executes implementation tasks from requirements alignment through specification, execution, validation, and documentation staging.
 
-## Publisher: <br>
-[mwangxiang](https://clawhub.ai/user/mwangxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mwangxiang](https://clawhub.ai/user/mwangxiang)
 
-## Use Case: <br>
-Developers use this skill to coordinate an AI project-manager and builder workflow for coding tasks, including requirements alignment, spec generation, execution, validation, and documentation staging. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks an AI builder to change files and run commands with broad project access. <br>
-Mitigation: Run it only in a tightly scoped or disposable project and review generated specs, commands, and diffs before allowing execution. <br>
-Risk: The workflow recommends bypassing confirmations and using unrestricted execution for builder tools. <br>
-Mitigation: Keep approvals enabled where possible and avoid danger-full-access style settings unless the project is isolated and the commands are understood. <br>
-Risk: The workflow can automatically stage documentation and synchronize commits, tags, or pushes to GitHub. <br>
-Mitigation: Disable or manually gate commit, tag, and push behavior unless automatic remote synchronization is explicitly intended. <br>
-Risk: Persistent progress files, logs, and archive files may capture sensitive project details. <br>
-Mitigation: Review generated logs and staging files before sharing, committing, or pushing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mwangxiang/ai-auto-dev) <br>
-- [Publisher profile](https://clawhub.ai/user/mwangxiang) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to coordinate autonomous coding work: clarify requirements, generate task specifications, dispatch builder agents, run checks, and stage delivery documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces procedural guidance for delegating coding work, tracking progress, validating generated files, and staging documentation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill promotes a highly autonomous coding workflow with disabled approval prompts and full filesystem access.
+
+Mitigation: Keep approval prompts enabled and avoid danger-full-access unless it is narrowly justified for a reviewed task.
+
+Risk: The workflow includes automatic GitHub commit, tag, and push behavior without requiring user confirmation.
+
+Mitigation: Remove automatic publishing steps or require explicit human review before commits, tags, or pushes are created.
+
+Risk: Persistent logs under a user home directory may retain sensitive project details across sessions.
+
+Mitigation: Redirect logs to a project-local location and minimize sensitive details in retained logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mwangxiang/skills/ai-auto-dev)
+- [Publisher Profile](https://clawhub.ai/user/mwangxiang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline command and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces plans, task specifications, validation reports, documentation staging content, and operational guidance for autonomous coding workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

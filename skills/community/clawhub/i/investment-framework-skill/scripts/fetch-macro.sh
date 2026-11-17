@@ -4,7 +4,7 @@
 
 set -e
 
-export QVERIS_API_KEY=sk-7E-kK4yDTr61yT8UNiJPAJlUDM3HjzWsBs01-24F5HU
+export QVERIS_API_KEY=REDACTED-SECRET
 
 # 配置
 CACHE_DIR=~/.openclaw/workspace/data/macro

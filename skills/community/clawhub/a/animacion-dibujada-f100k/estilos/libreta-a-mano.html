@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Libreta a mano</title>
+<style>
+  html,body{margin:0;background:#141210;display:grid;place-items:center;height:100vh}
+  canvas{height:100vh;width:auto;max-width:100vw}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+// ====================== LO QUE PUEDES CAMBIAR ======================
+const FRASE_ESCRITA = 'lo que nadie te dice de vender';   // lo que el plumón escribe (máx. ~40 letras)
+const PALABRA_FUERTE = 'vender';                      // se subraya en rojo al final ('' = sin subrayado)
+const COLORES = {
+  pared: '#6f4f86',     // fondo detrás de la libreta
+  mesa: '#c89a62',      // la mesa de abajo
+  hoja: '#fbf5e6',      // el papel
+  tinta: '#2f5fc4',     // el marcador
+  subrayado: '#d8412f', // la línea bajo la palabra fuerte
+  brillo: '255,214,120', // el halo y las chispas del plumón mágico (r,g,b)
+};
+const LETRAS_POR_SEGUNDO = 13;                        // velocidad de escritura
+// ===================================================================
+// La letra de marcador (Marker Felt) no tiene MAYÚSCULAS con tilde: las pinta en minúscula («PSICóLOGO»).
+// Si la frase trae alguna, se escribe toda en minúscula, que es como se ve a mano.
+const FRASE = /[ÁÉÍÓÚÜ]/.test(FRASE_ESCRITA) ? FRASE_ESCRITA.toLowerCase() : FRASE_ESCRITA;
+
+const W = 1080, H = 1920, FPS = 30;
+const T_INICIO = .6;                                  // el plumón aparece
+const T_ESCRIBE = FRASE.replace(/\s/g, '').length / LETRAS_POR_SEGUNDO;
+const T_FIN_ESCRIBE = T_INICIO + .5 + T_ESCRIBE;
+const T_SUBRAYA = T_FIN_ESCRIBE + .15;
+const DUR = +(T_SUBRAYA + (PALABRA_FUERTE ? .6 : 0) + 1.6).toFixed(2);
+</script>
+<script src="../nucleo/nucleo.js"></script>
+<script>
+const PAPEL = hacerPapel(COLORES.pared, { fibras: false, viñeta: .22 });
+const HOJA = { x: 110, y: 470, w: 860, h: 960 };      // dentro de la zona segura
+
+// texto: se acomoda en hasta 3 renglones, centrado en la hoja
+const AJ = autoajuste(FRASE, LETRA_MANO, 700, HOJA.w - 210, 3, 170, 80);
+const INTER = AJ.size * 1.28;                          // interlineado
+const ARRIBA = HOJA.y + 150 + (HOJA.h - 190 - INTER * AJ.rs.length) / 2 + AJ.size * .9;   // bloque centrado en la hoja
+const LINEAS = AJ.rs.map((r, i) => {
+  const ancho = medir(r, AJ.font);
+  return { txt: r, x: HOJA.x + 125 + (i % 2) * 16, y: ARRIBA + i * INTER, w: ancho };
+});
+// cada renglón recibe una fracción del tiempo proporcional a su largo
+const TOTAL_W = LINEAS.reduce((a, l) => a + l.w, 0);
+let acc = 0; for (const l of LINEAS) { l.t0 = acc / TOTAL_W; acc += l.w; l.t1 = acc / TOTAL_W; }
+
+function avance(t) { return prog(t, T_INICIO + .5, T_FIN_ESCRIBE); }
+// dónde está la punta del marcador en el tiempo t
+function punta(t) {
+  const p = avance(t);
+  if (p >= 1) { const l = LINEAS[LINEAS.length - 1]; return [l.x + l.w, l.y]; }
+  const l = LINEAS.find(l => p < l.t1) || LINEAS[0];
+  const k = prog(p, l.t0, l.t1);
+  const bob = Math.sin(t * 38) * 9 * (p > 0 && p < 1 ? 1 : 0);   // el plumón sube y baja con cada letra
+  return [l.x + l.w * k, l.y - 20 + bob];
+}
+
+function hoja(t) {
+  const { x, y, w, h } = HOJA;
+  // sombra y hoja con borde ligeramente irregular
+  fill(rect(x + 16, y + 20, w, h), 'rgba(30,15,40,.28)', { amp: 2 });
+  fill(rect(x, y, w, h), COLORES.hoja, { amp: 1.4, seed: 2 });
+  // renglones
+  ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
+  for (let yy = y + 150; yy < y + h - 20; yy += 62) ink(line(x + 10, yy, x + w - 10, yy), { w: 2.2, col: 'rgba(80,120,190,.35)', passes: 1, amp: .8, seed: yy });
+  ink(line(x + 95, y + 10, x + 95, y + h - 10), { w: 2.4, col: 'rgba(214,80,80,.5)', passes: 1, amp: .8, seed: 5 });
+  ctx.restore();
+  // espiral
+  for (let i = 0; i < 12; i++) {
+    const cx = x + 55 + i * ((w - 110) / 11);
+    fill(circle(cx, y + 42, 13), 'rgba(40,20,50,.55)', { amp: .6, seed: i });
+    ink(arc(cx, y + 20, 22, Math.PI * .95, Math.PI * 2.05, 40), { w: 7, col: '#8b8fa0', passes: 1, amp: .8, seed: i * 3 });
+    ink(arc(cx - 2, y + 18, 20, Math.PI * 1.2, Math.PI * 1.7, 36), { w: 2.5, col: '#e4e6ee', passes: 1, amp: .5, seed: i * 3 + 1 });
+  }
+}
+
+function texto(t) {
+  const p = avance(t);
+  ctx.save(); ctx.font = AJ.font; ctx.fillStyle = COLORES.tinta; ctx.textBaseline = 'alphabetic';
+  for (const l of LINEAS) {
+    const k = prog(p, l.t0, l.t1); if (k <= 0) continue;
+    ctx.save(); ctx.beginPath(); ctx.rect(l.x - 20, l.y - AJ.size * 1.1, l.w * k + 20, AJ.size * 1.6); ctx.clip();
+    // pequeño temblor de trazo a mano
+    const dx = (vnoise(BOIL * .7, l.y) - .5) * 2.4, dy = (vnoise(l.y, BOIL * .7) - .5) * 2.4;
+    ctx.fillText(l.txt, l.x + dx, l.y + dy);
+    ctx.restore();
+  }
+  ctx.restore();
+  // subrayado de la palabra fuerte
+  if (!PALABRA_FUERTE) return;
+  const i = LINEAS.findIndex(l => l.txt.toLowerCase().includes(PALABRA_FUERTE.toLowerCase()));
+  if (i < 0) { if (t === 0) console.warn(`[libreta] «${PALABRA_FUERTE}» quedó partida entre renglones: no se subraya. Usa una sola palabra de la frase.`); return; }
+  const l = LINEAS[i], antes = l.txt.slice(0, l.txt.toLowerCase().indexOf(PALABRA_FUERTE.toLowerCase()));
+  const x0 = l.x + medir(antes, AJ.font), x1 = x0 + medir(PALABRA_FUERTE, AJ.font);
+  const pts = resample([[x0 - 10, l.y + 26], [lerp(x0, x1, .5), l.y + 34], [x1 + 14, l.y + 22]], 8);
+  drawOn(pts, easeOut(prog(t, T_SUBRAYA, T_SUBRAYA + .45)), { w: 13, col: COLORES.subrayado, amp: 2.5, seed: 9 });
+}
+
+function plumonMagico(t) {
+  // aparece con un destello, escribe y se va
+  const entra = prog(t, T_INICIO - .1, T_INICIO + .4);
+  const sale = (prog(t, T_SUBRAYA + (PALABRA_FUERTE ? .5 : 0), T_SUBRAYA + (PALABRA_FUERTE ? .5 : 0) + .7));
+  let [px, py] = punta(t);
+  if (PALABRA_FUERTE && t > T_SUBRAYA - .05) {         // sigue el subrayado
+    const i = LINEAS.findIndex(l => l.txt.toLowerCase().includes(PALABRA_FUERTE.toLowerCase()));
+    if (i >= 0) { const l = LINEAS[i], antes = l.txt.slice(0, l.txt.toLowerCase().indexOf(PALABRA_FUERTE.toLowerCase()));
+      const x0 = l.x + medir(antes, AJ.font), x1 = x0 + medir(PALABRA_FUERTE, AJ.font);
+      const k = easeOut(prog(t, T_SUBRAYA, T_SUBRAYA + .45)); px = lerp(x0 - 10, x1 + 14, k); py = l.y + 30; }
+  }
+  // el plumón escribe solo: sin mano ni brazo (salen deformes)
+  herramientaMagica(px, py, t, entra, sale, { tipo: 'plumon', col: '#243a7a', punta: COLORES.tinta, brillo: COLORES.brillo });
+}
+
+arrancar(frame => {
+  const t = frame / FPS;
+  BOIL = Math.floor(frame / 4);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.drawImage(PAPEL, 0, 0);
+  // mesa
+  fill(resample([[-20, 1560], [W + 20, 1540], [W + 20, H + 20], [-20, H + 20]], 20, true), COLORES.mesa, { amp: 2, seed: 1 });
+  ink(line(-20, 1560, W + 20, 1540), { w: 4, col: 'rgba(90,50,20,.45)', passes: 1, amp: 1.5 });
+  // la hoja entra con un pequeño asentamiento
+  const cae = back(prog(t, 0, .45));
+  ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate((1 - cae) * .05 - .012); ctx.translate(-W / 2, -H / 2 + (1 - cae) * 60);
+  hoja(t); texto(t);
+  ctx.restore();
+  ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate(-.012); ctx.translate(-W / 2, -H / 2);
+  plumonMagico(t);
+  ctx.restore();
+});
+</script>
+</body>
+</html>

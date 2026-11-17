@@ -1,43 +1,64 @@
-## Description: <br>
-Automates local video-editing workflows from media analysis through clipping, subtitles, effects, audio processing, and final export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI视频剪辑Skill helps agents automate local video-editing workflows, including media analysis, clip selection, transitions, audio processing, subtitle generation, effects, and final export.
 
-## Publisher: <br>
-[ai285384076-droid](https://clawhub.ai/user/ai285384076-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai285384076-droid](https://clawhub.ai/user/ai285384076-droid)
 
-## Use Case: <br>
-Creators, editors, and developers use this skill to process local video, audio, and image folders and generate edited videos such as highlights, short videos, explainers, and vlogs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and FFmpeg media-processing tools over user-selected folders. <br>
-Mitigation: Use a virtual environment, point the skill only at intended media folders, and review command inputs before execution. <br>
-Risk: Generated videos and intermediate files may overwrite or expose sensitive media if output locations are chosen carelessly. <br>
-Mitigation: Use a dedicated output directory, avoid sensitive or cloud-synced folders unless intended, keep backups, and review outputs before sharing. <br>
+## Use Case:
 
+External users, developers, and content creators use this skill to turn local video, audio, and image assets into edited videos for short clips, compilations, explainers, Vlogs, and tutorial-style content.
 
-## Reference(s): <br>
-- [Quickstart Guide](references/quickstart.md) <br>
-- [Default Configuration](references/default_config.yaml) <br>
-- [FFmpeg Command Reference](references/ffmpeg_guide.md) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local Python and FFmpeg media-processing scripts that read selected media folders and write generated video outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can broadly process private local media and transcribe speech from selected recordings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on explicitly chosen media directories, avoid sensitive recordings unless transcription is intended, and use a dedicated output folder.
+
+Risk: Installation guidance includes ambiguous dependency instructions around Whisper.
+
+Mitigation: Install in a virtual environment with pinned dependencies and prefer the unambiguous `openai-whisper` package.
+
+Risk: Path validation and FFmpeg concat escaping require review before handling untrusted media filenames or analysis JSON.
+
+Mitigation: Treat media filenames and generated analysis JSON as untrusted inputs until path validation and escaping are fixed.
+
+Risk: Running media-processing scripts with elevated privileges increases the impact of unsafe path handling.
+
+Mitigation: Do not run the skill as administrator or root.
+
+## Reference(s):
+
+- [Quickstart](artifact/references/quickstart.md)
+- [Default Configuration](artifact/references/default_config.yaml)
+- [FFmpeg Guide](artifact/references/ffmpeg_guide.md)
+- [FFmpeg Downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with bash commands, JSON or YAML configuration examples, Python scripts, analysis JSON, and generated video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Processes local media directories and can produce intermediate analysis, subtitle, audio, effects, and final export files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

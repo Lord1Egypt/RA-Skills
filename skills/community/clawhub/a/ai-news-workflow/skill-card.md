@@ -1,44 +1,56 @@
-## Description: <br>
-Collects, filters, deduplicates, and classifies AI industry news, then generates Chinese titles, summaries, Excel tables, and Word briefings from configured company and source lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects AI industry news from RSS and web sources, filters and classifies items, generates Chinese titles and summaries, and exports Excel tables and Word briefings.
 
-## Publisher: <br>
-[Nighmat1220](https://clawhub.ai/user/Nighmat1220) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nighmat1220](https://clawhub.ai/user/nighmat1220)
 
-## Use Case: <br>
-Analysts and operations teams use this skill to run a repeatable AI-news collection workflow from configured RSS and web sources, company lists, and time windows. It supports daily briefing workflows that need categorized company news, global AI-event highlights, and export-ready Excel and Word deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches configured RSS and web sources, so it may process untrusted or changing external content. <br>
-Mitigation: Review configured sources, keep crawl scope limited to intended sites, and inspect generated results before relying on them. <br>
-Risk: When Ark/Doubao summarization is enabled, article content and related company/category context may be sent to Volcengine Ark. <br>
-Mitigation: Use ARK_API_KEY only through the environment, process only shareable content, and avoid confidential or regulated material. <br>
-Risk: Generated summaries, classifications, or importance scores may be affected by source content, prompt injection, or model error. <br>
-Mitigation: Review generated titles, summaries, and selected key events before distribution. <br>
+## Use Case:
 
+Analysts and operations teams use this skill to monitor priority AI companies and broader AI industry events, then produce Chinese briefing materials for daily review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Nighmat1220/ai-news-workflow) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill metadata](artifact/skill.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, configuration] <br>
-**Output Format:** [Excel workbooks (.xlsx), Word documents (.docx), logs, and terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes Excel outputs under ./output/excel and Word briefings under ./output/word; optional Doubao summaries target about 80 Chinese characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: Configured RSS and web sources can direct the crawler to arbitrary URLs, including unwanted internal network locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted source spreadsheets and config.yaml values, and run the workflow with network controls that block localhost, cloud metadata, and private intranet ranges.
+
+Risk: Optional AI summarization can send article content and an Ark API key to a configured model endpoint.
+
+Mitigation: Keep ARK_API_KEY in the environment, keep ark.base_url pointed at the official Volcengine Ark endpoint, and avoid submitting confidential articles.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nighmat1220/skills/ai-news-workflow)
+- [Artifact README](artifact/README.md)
+- [Artifact skill summary](artifact/SKILL.md)
+- [Default configuration](artifact/config.default.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, configuration]
+
+**Output Format:** [Plain text status with generated Excel workbooks and Word documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports under ./output/excel and ./output/word; optional AI summarization uses ARK_API_KEY.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence; artifact skill.yaml reports 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

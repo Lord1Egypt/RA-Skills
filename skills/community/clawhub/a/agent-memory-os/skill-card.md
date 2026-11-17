@@ -1,48 +1,63 @@
-## Description: <br>
-Stop agents from "forgetting, mixing projects, and rotting over time" by giving them a practical memory operating system: global memory, project memory, promotion rules, validation cases, and a maintenance loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stop agents from "forgetting, mixing projects, and rotting over time" by giving them a practical memory operating system: global memory, project memory, promotion rules, validation cases, and a maintenance loop.
 
-## Publisher: <br>
-[aslan-ai-labs](https://clawhub.ai/user/aslan-ai-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aslan-ai-labs](https://clawhub.ai/user/aslan-ai-labs)
 
-## Use Case: <br>
-Developers and agent builders use this skill to design long-term memory for AI agents, separate global and project-specific knowledge, promote reusable lessons, validate recovery and reuse, and maintain the memory system over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or personal information could be promoted into shared or global memory if users apply the workflow without privacy boundaries. <br>
-Mitigation: Define allowed memory content before broad use, avoid secrets and personal identifiers, and apply the skill's privacy-preserving abstraction guidance before publishing or sharing outputs. <br>
-Risk: Stale or project-specific details could become durable rules and affect unrelated future work. <br>
-Mitigation: Use evidence-based promotion, scope and boundary fields, validation cases, and periodic reviews to deprecate outdated or overly local rules. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design structured long-term and project-specific memory for AI agents, including routing, promotion, validation, and maintenance practices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aslan-ai-labs/agent-memory-os) <br>
-- [Architecture Decision Guide](references/architecture-decision-guide.md) <br>
-- [Architecture](references/architecture.md) <br>
-- [Failure Modes](references/failure-modes.md) <br>
-- [Routing](references/routing.md) <br>
-- [Promotion](references/promotion.md) <br>
-- [Validation](references/validation.md) <br>
-- [Maintenance](references/maintenance.md) <br>
-- [Publish Checklist](references/publish-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with reusable templates and structured runbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only skill; no tools, API keys, or runtime integrations detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Memory files can contain private names, paths, IDs, document URLs, or raw conversation details if users publish them without abstraction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep private data out of public or shareable outputs and replace personal or project-specific details with neutral placeholders.
+
+Risk: Unvalidated project lessons can become misleading global rules if promoted too early.
+
+Mitigation: Require evidence, validation history, and clear scope boundaries before promoting lessons into reusable or canonical memory.
+
+Risk: A memory system can decay when status, asset indexes, lessons, or global rules are not reviewed.
+
+Mitigation: Use the maintenance loop to update project state, review candidates, promote proven lessons, and deprecate stale rules on a regular cadence.
+
+## Reference(s):
+
+- [Architecture Decision Guide](references/architecture-decision-guide.md)
+- [Architecture](references/architecture.md)
+- [Failure Modes](references/failure-modes.md)
+- [Routing](references/routing.md)
+- [Promotion](references/promotion.md)
+- [Validation](references/validation.md)
+- [Maintenance](references/maintenance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with reusable file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce project memory structures, routing rules, promotion rules, validation cases, and maintenance runbooks.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

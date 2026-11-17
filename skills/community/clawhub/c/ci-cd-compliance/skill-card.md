@@ -1,40 +1,53 @@
-## Description: <br>
-CI/CD pipeline requirements and deployment standards for setting up pipelines, debugging CI failures, configuring deployment workflows, managing staging and production releases, and investigating build failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CI/CD pipeline requirements and deployment standards for gate sequencing, merge policy, staging deployment, production approval, and build-failure handling.
 
-## Publisher: <br>
-[urbantech](https://clawhub.ai/user/urbantech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[urbantech](https://clawhub.ai/user/urbantech)
 
-## Use Case: <br>
-Developers and release engineers use this skill to apply CI gate requirements, merge policies, CI failure handling, and staging or production deployment standards during CI/CD work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose terminal commands, merge decisions, or deployment actions that affect CI/CD systems. <br>
-Mitigation: Review proposed commands and release actions before execution, especially for production approvals or deployment changes. <br>
-Risk: The artifact references references/pipeline-requirements.md, but that detailed guide is not included in the package. <br>
-Mitigation: Treat the packaged SKILL.md as the available guidance and verify detailed CI configuration against the repository's actual pipeline files. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to configure CI/CD expectations, diagnose CI failures, and apply merge, staging, and production approval policies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/urbantech/ci-cd-compliance) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, policy notes, and optional shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is packaged; proposed commands, merge decisions, and deployment actions require review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The packaged artifact references a detailed pipeline requirements file that is not included in this release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced file if the publisher later includes it, and rely on repository-specific CI policies for exact gate definitions.
+
+Risk: Staging auto-deploy guidance could be misread as permission to bypass existing release controls.
+
+Mitigation: Keep production deployment tied to the repository's normal tag and approval controls.
+
+## Reference(s):
+
+- [CI/CD Compliance on ClawHub](https://clawhub.ai/urbantech/skills/ci-cd-compliance)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown prose with checklists and optional inline shell commands or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory CI/CD policy guidance; no autonomous deployment or credential handling.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

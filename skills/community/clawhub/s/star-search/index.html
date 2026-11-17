@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
 <title>Star Search — 知你所问 · 思你所疑 · 答你所想</title>
 <meta name="description" content="博观约取 · 16 引擎实时中文搜索 · OpenAI 兼容 · 跨源验证">
-<!-- 实战 53: PWA (Progressive Web App) -->
+<!-- v20.53: PWA (Progressive Web App) -->
 <link rel="manifest" href="/manifest.webmanifest">
-<!-- 实战 60: Cloudflare Turnstile -->
+<!-- v20.60: Cloudflare Turnstile -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <!-- 实战 55: 用户系统登录弹窗 -->
+  <!-- v20.55: 用户系统登录弹窗 -->
   <style>
     #auth-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
     #auth-modal.show { display: flex; }
@@ -24,7 +24,7 @@
     .auth-user-chip { display: none; align-items: center; gap: 6px; background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); color: #4a9eff; padding: 6px 12px; border-radius: 8px; font-size: 13px; cursor: pointer; }
     .auth-user-chip.show { display: inline-flex; }
   </style>
-<!-- 实战 56: Mermaid + Markdown 渲染 -->
+<!-- v20.56: Mermaid + Markdown 渲染 -->
 <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 <meta name="theme-color" content="#0e0e10">
@@ -37,7 +37,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  /* 实战 54: 移动端 UI 优化 */
+  /* v20.54: 移动端 UI 优化 */
   * {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -345,7 +345,7 @@
 </style>
 </head>
 <body>
-<!-- 实战 39 多轮对话: 左侧 session 列表 -->
+<!-- v20.39 多轮对话: 左侧 session 列表 -->
 <aside id="session-sidebar" class="fixed top-0 left-0 h-full w-64 bg-[#0a0a0d] border-r border-gray-800/60 z-50 flex flex-col">
   <div class="p-4 border-b border-gray-800/60 flex items-center justify-between">
     <span class="text-sm font-medium text-gray-300">对话历史</span>
@@ -383,7 +383,7 @@
   .session-item .del-btn:hover { color: #ef4444; }
 </style>
 <script>
-  // ===== 实战 39 多轮对话 JS =====
+  // ===== v20.39 多轮对话 JS =====
   // Session 管理
   function uuid() { return 'sess-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8); }
   function getSessions() {
@@ -604,19 +604,9 @@
           <span id="answer-model" class="text-xs text-gray-400"></span>
           <span id="answer-elapsed" class="text-xs text-gray-500 ml-auto"></span>
         </div>
-        <!-- 实战 73: brain_info 小徽章 -->
-        <div id="answer-brain-info" class="hidden mb-4 flex flex-wrap gap-2 text-xs">
-        </div>
-        <!-- 实战 73: entity_card 知识卡片 (Wikipedia/Perplexity 风格) -->
-        <div id="answer-entity-card" class="hidden mb-5 p-4 rounded-xl border border-purple-500/30 bg-purple-500/5">
-        </div>
         <div id="answer-text" class="text-gray-100 text-[15px] leading-relaxed mb-5 answer-text"></div>
         <div class="border-t border-gray-700/50 pt-4">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="text-xs text-gray-500">来源</div>
-            <!-- 实战 73: cross_verify 一致度 -->
-            <div id="answer-consensus" class="hidden text-xs"></div>
-          </div>
+          <div class="text-xs text-gray-500 mb-2">来源</div>
           <div id="answer-sources" class="flex flex-wrap gap-2 mb-3"></div>
           <div id="answer-followups-wrap" class="hidden mt-4">
             <div class="text-xs text-gray-500 mb-2">相关问题</div>
@@ -649,7 +639,7 @@
 <!-- 底栏 -->
 <footer class="text-center py-6 text-xs text-gray-600 tracking-wide">
   16 引擎 · 跨源验证 · OpenAI 兼容 ·
-  <a href="https://github.com/muchenhengxin/Star" target="_blank" class="footer-link">GitHub</a> ·
+  <a href="https://github.com/<github-repo>" target="_blank" class="footer-link">GitHub</a> ·
   <a href="https://clawhub.ai/skill/star-search" target="_blank" class="footer-link">ClawHub</a> ·
   <a href="#" id="api-doc-link" class="footer-link">API 文档</a> ·
   <a href="/pricing.html" class="footer-link">定价</a> ·
@@ -787,11 +777,11 @@
     }
 
     try {
-      // 实战 39 多轮对话: 拼 history
+      // v20.39 多轮对话: 拼 history
       const _sid = getCurrentSessionId();
       const _hist = getHistory(_sid);
       const t0 = performance.now();
-      // 实战 36 P0-2: 流式输出 (SSE)
+      // v20.36 P0-2: 流式输出 (SSE)
       if (answerMode) {
         // 走流式端点
         currentResults = [];
@@ -867,7 +857,7 @@
                   sourcesEl.appendChild(chip);
                 });
               }
-              // 实战 56: 根据 fmt 渲染 (table/mermaid/json/markdown)
+              // v20.56: 根据 fmt 渲染 (table/mermaid/json/markdown)
               const fmt = data.fmt || 'default';
               const answerText = data.answer || '';
               const answerEl = $('answer-text');
@@ -901,7 +891,7 @@
                   answerEl.innerHTML = renderAnswerTextWithCitations(answerText, data.citations || {});
                 }
               } else {
-                // default: 实战 39 markdown 渲染 + 内联引用
+                // default: v20.39 markdown 渲染 + 内联引用
                 answerEl.innerHTML = renderAnswerTextWithCitations(answerText, data.citations || {});
               }
               // followups
@@ -920,7 +910,7 @@
               } else {
                 fw.classList.add('hidden');
               }
-              // 实战 39: 保存到 history + 自动命名 session
+              // v20.39: 保存到 history + 自动命名 session
               try {
                 const __sid = getCurrentSessionId();
                 const __h = getHistory(__sid);
@@ -1006,99 +996,6 @@
     $('answer-model').textContent = a.model || 'AI';
     const elapsedText = a.elapsed_ms ? `${a.elapsed_ms}ms · ${a.tokens || 0} tokens` : '';
     $('answer-elapsed').textContent = elapsedText + (a.cached ? ' · ⚡cached' : '');
-
-    // 实战 73: brain_info 徽章 (entity + intent + category)
-    const brainInfoEl = $('answer-brain-info');
-    const brainInfo = a.brain_info || (currentResponse && currentResponse.brain_info);
-    if (brainInfo && brainInfo.entity) {
-      brainInfoEl.innerHTML = '';
-      const entityBadge = document.createElement('span');
-      entityBadge.className = 'px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 border border-blue-500/30';
-      entityBadge.textContent = '🏷️ ' + brainInfo.entity;
-      brainInfoEl.appendChild(entityBadge);
-      if (brainInfo.intent) {
-        const intentBadge = document.createElement('span');
-        const intentColor = brainInfo.intent === 'navigation' ? 'green' : brainInfo.intent === 'comparison' ? 'orange' : 'gray';
-        intentBadge.className = `px-2 py-0.5 rounded-md bg-${intentColor}-500/20 text-${intentColor}-300 border border-${intentColor}-500/30`;
-        intentBadge.textContent = '🎯 ' + brainInfo.intent;
-        brainInfoEl.appendChild(intentBadge);
-      }
-      if (brainInfo.category) {
-        const catBadge = document.createElement('span');
-        catBadge.className = 'px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/30';
-        catBadge.textContent = '📂 ' + brainInfo.category;
-        brainInfoEl.appendChild(catBadge);
-      }
-      if (brainInfo.expected_info) {
-        const expBadge = document.createElement('span');
-        expBadge.className = 'px-2 py-0.5 rounded-md bg-yellow-500/20 text-yellow-300 border border-yellow-500/30';
-        expBadge.textContent = '✨ 期望: ' + brainInfo.expected_info;
-        brainInfoEl.appendChild(expBadge);
-      }
-      if (currentResponse && currentResponse.recency) {
-        const recBadge = document.createElement('span');
-        recBadge.className = 'px-2 py-0.5 rounded-md bg-red-500/20 text-red-300 border border-red-500/30';
-        recBadge.textContent = '⏱️ ' + currentResponse.recency;
-        brainInfoEl.appendChild(recBadge);
-      }
-      brainInfoEl.classList.remove('hidden');
-    } else {
-      brainInfoEl.classList.add('hidden');
-    }
-
-    // 实战 73: entity_card 知识卡片 (Wikipedia/Perplexity 风格)
-    const entityCardEl = $('answer-entity-card');
-    const entityCard = a.entity_card || (currentResponse && currentResponse.entity_card);
-    if (entityCard && entityCard.name) {
-      let cardHtml = '<div class="flex items-start gap-3">';
-      if (entityCard.logo) {
-        cardHtml += `<div class="text-3xl flex-shrink-0">${entityCard.logo}</div>`;
-      }
-      cardHtml += '<div class="flex-1 min-w-0">';
-      cardHtml += `<div class="flex items-center gap-2 mb-1">`;
-      cardHtml += `<span class="font-semibold text-white text-base">${entityCard.name}</span>`;
-      if (entityCard.type) {
-        cardHtml += `<span class="text-xs px-1.5 py-0.5 rounded bg-gray-700/50 text-gray-300">${entityCard.type}</span>`;
-      }
-      if (entityCard.category) {
-        cardHtml += `<span class="text-xs px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">${entityCard.category}</span>`;
-      }
-      cardHtml += '</div>';
-      if (entityCard.description) {
-        cardHtml += `<div class="text-sm text-gray-300 mb-2">${entityCard.description}</div>`;
-      }
-      if (entityCard.official_url) {
-        cardHtml += `<a href="${entityCard.official_url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-sm text-cyan-400 hover:text-cyan-300 mb-2 break-all">`;
-        cardHtml += `🔗 ${entityCard.official_url}</a>`;
-      }
-      if (entityCard.tags && entityCard.tags.length) {
-        cardHtml += '<div class="flex flex-wrap gap-1 mt-2">';
-        entityCard.tags.forEach(tag => {
-          cardHtml += `<span class="text-xs px-1.5 py-0.5 rounded-full bg-gray-700/40 text-gray-300">#${tag}</span>`;
-        });
-        cardHtml += '</div>';
-      }
-      cardHtml += '</div></div>';
-      entityCardEl.innerHTML = cardHtml;
-      entityCardEl.classList.remove('hidden');
-    } else {
-      entityCardEl.classList.add('hidden');
-    }
-
-    // 实战 73: cross_verify 一致度 + cross_verified 标注
-    const cv = a.cross_verify || (currentResponse && currentResponse.cross_verify);
-    const consensusEl = $('answer-consensus');
-    if (cv) {
-      const score = cv.consensus_score || 0;
-      let color = 'red';
-      if (score >= 20) color = 'orange';
-      if (score >= 40) color = 'yellow';
-      if (score >= 60) color = 'green';
-      consensusEl.innerHTML = `<span class="px-1.5 py-0.5 rounded bg-${color}-500/20 text-${color}-300 border border-${color}-500/30">📊 一致度: ${score}/100 · ${cv.source_count || 0} 源</span>`;
-      consensusEl.classList.remove('hidden');
-    } else {
-      consensusEl.classList.add('hidden');
-    }
 
     // 来源 chips
     const sourcesEl = $('answer-sources');
@@ -1204,7 +1101,7 @@
           <button class="fav-btn text-lg" data-url="${escapeHtml(item.url)}" title="收藏" style="background:none;border:none;cursor:pointer;color:#6b7280;flex-shrink:0;align-self:center;padding:4px 8px;">☆</button>
         </div>
       `;
-      // 实战 43: ⭐ 按钮事件
+      // v20.43: ⭐ 按钮事件
       const favBtn = card.querySelector('.fav-btn');
       if (favBtn) {
         favBtn.onclick = (e) => {
@@ -1215,7 +1112,7 @@
       }
       resultsList.appendChild(card);
     }
-    renderFavButtons();  // 实战 43: 渲染收藏状态
+    renderFavButtons();  // v20.43: 渲染收藏状态
 
     if (to < currentResults.length) {
       const loadMore = $('load-more');
@@ -1264,7 +1161,7 @@ Content-Type: application/json
   "results": [{ "title", "url", "snippet", "engine", "score", "cross_verified", "date" }, ...]
 }
 
-文档: https://github.com/muchenhengxin/Star`);
+文档: https://github.com/<github-repo>`);
   };
 
   // URL hash 路由（可选）
@@ -1277,7 +1174,7 @@ Content-Type: application/json
     if (q) doSearch(q);
   });
 
-  // ===== 实战 43 P0-6 历史/收藏 =====
+  // ===== v20.43 P0-6 历史/收藏 =====
   // 收藏
   function getFavs() {
     try { return JSON.parse(localStorage.getItem('star_favs') || '[]'); } catch { return []; }
@@ -1388,7 +1285,7 @@ Content-Type: application/json
   document.getElementById('fav-btn').onclick = showFavPanel;
 </script>
 
-<!-- 实战 55: 登录弹窗 -->
+<!-- v20.55: 登录弹窗 -->
 <div id="auth-modal">
   <div class="auth-card">
     <div class="auth-tabs">
@@ -1398,7 +1295,7 @@ Content-Type: application/json
     </div>
     <input id="auth-phone" class="auth-input" placeholder="手机号" type="tel" maxlength="20">
     <input id="auth-password" class="auth-input" placeholder="密码 (至少 6 位)" type="password">
-    <!-- 实战 60: Turnstile 验证码 (注册时) -->
+    <!-- v20.60: Turnstile 验证码 (注册时) -->
     <div id="turnstile-widget" class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-callback="onTurnstileToken" data-action="register" style="margin: 8px auto;"></div>
     <div id="auth-error" style="color:#f87171;font-size:13px;margin-bottom:8px;display:none"></div>
     <button class="auth-btn" id="auth-submit">登录</button>
@@ -1408,7 +1305,7 @@ Content-Type: application/json
   </div>
 </div>
 
-<!-- 实战 55: 用户认证 JS -->
+<!-- v20.55: 用户认证 JS -->
 <script>
 let __authMode = 'login';  // or 'register'
 let __authToken = localStorage.getItem('star_token') || '';
@@ -1433,7 +1330,7 @@ document.getElementById('auth-submit').addEventListener('click', async () => {
   const errEl = document.getElementById('auth-error');
   errEl.style.display = 'none';
   if (!phone || !password) { errEl.textContent = '请输入手机号和密码'; errEl.style.display = 'block'; return; }
-  // 实战 60: 注册时拿 Turnstile token
+  // v20.60: 注册时拿 Turnstile token
   let cfToken = '';
   if (__authMode === 'register' && window.turnstile && window.turnstile.getResponse) {
     cfToken = window.turnstile.getResponse();
@@ -1460,7 +1357,7 @@ document.getElementById('auth-submit').addEventListener('click', async () => {
   }
 });
 
-// 实战 60: Turnstile 回调
+// v20.60: Turnstile 回调
 function onTurnstileToken(token) {
   console.log('[turnstile] token received:', token.substring(0, 20) + '...');
 }
@@ -1481,7 +1378,7 @@ function getAuthHeader() { return __authToken ? { 'Authorization': 'Bearer ' + _
 if (__authToken) updateAuthChip();
 </script>
 
-<!-- 实战 53: PWA Service Worker 注册 -->
+<!-- v20.53: PWA Service Worker 注册 -->
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

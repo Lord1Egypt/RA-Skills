@@ -1,46 +1,60 @@
-## Description: <br>
-Master AI Automation Agent for the Farcaster ecosystem. Specializes in autonomous on-chain actions, cross-chain bridging via LI.FI, and long-term FID memory management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master AI Automation Agent for the Farcaster ecosystem. Specializes in autonomous on-chain actions, cross-chain bridging via LI.FI, and long-term FID memory management.
 
-## Publisher: <br>
-[mrxlolcat](https://clawhub.ai/user/mrxlolcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrxlolcat](https://clawhub.ai/user/mrxlolcat)
 
-## Use Case: <br>
-External Web3 and Farcaster users can use this agent to draft social interactions, monitor public wallet activity, and guide non-custodial bridge or swap workflows while keeping transaction signing in the user's wallet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad Web3, Farcaster posting, and long-term memory authority without enough user-control or privacy detail. <br>
-Mitigation: Use explicit previews and confirmations for every wallet action, fee, recipient, Farcaster post, attachment, and transaction link. <br>
-Risk: Long-term memory and remote service access can store or process wallet and Farcaster activity with the publisher's services. <br>
-Mitigation: Avoid enabling long-term memory or remote service access unless the user accepts that data handling. <br>
-Risk: Users may confuse bridge guidance with signed transaction execution. <br>
-Mitigation: Keep all signing in the user's local wallet interface and never request private keys or seed phrases. <br>
+## Use Case:
 
+External users and developers use this skill to coordinate Farcaster interactions, wallet monitoring, cross-chain bridge guidance, and long-term FID-linked memory for the MRX LOLCAT agent experience.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mrxlolcat/mrxlolcat-agent) <br>
-- [MRX LOLCAT Agent homepage](https://mrxlolcat-agent.vercel.app) <br>
-- [Agent metadata](https://mrxlolcat-agent.vercel.app/agent.json) <br>
-- [MCP endpoint](https://mrxlolcat-agent.vercel.app/api/mcp) <br>
-- [Analytics dashboard](https://mrxlolcat-agent.vercel.app/analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses with wallet-action previews and Farcaster cast drafts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transaction route summaries, public wallet observations, cast drafts, and links for user-confirmed actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter metadata reports 3.0.0) <br>
+Risk: The skill may guide users into bridge or swap flows where chain, token, amount, destination, route, and fee details can materially affect funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the user to verify every chain, token, amount, fee recipient, route, destination, and transaction link in their own wallet interface before signing.
+
+Risk: The skill may draft or publish Farcaster content and external TTS output that could expose unintended information or misrepresent user intent.
+
+Mitigation: Present cast text, generated voice content, and links for explicit user review before publishing or attaching them.
+
+Risk: The skill stores transaction-related context in long-term memory without enough documented scoping or privacy controls.
+
+Mitigation: Store only necessary public transaction context, avoid private keys or seed phrases, and allow users to decline or limit memory use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrxlolcat/skills/mrxlolcat-agent)
+- [MRX LOLCAT Agent homepage](https://mrxlolcat-agent.vercel.app)
+- [Agent metadata endpoint](https://mrxlolcat-agent.vercel.app/agent.json)
+- [MCP endpoint](https://mrxlolcat-agent.vercel.app/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Plain text or Markdown responses with wallet, bridge, monitoring, and Farcaster action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include route summaries, wallet-status summaries, cast drafts, transaction-link guidance, and reminders that users must verify and sign actions in their own wallet interface.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

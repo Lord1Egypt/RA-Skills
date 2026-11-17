@@ -1,0 +1,127 @@
+{
+  "settings": {
+    "timeout": 15,
+    "retries": 2,
+    "retry_delay": 3,
+    "insecure_skip_verify": false,
+    "proxy": "",
+    "_comment": "timeout 单次请求超时秒数；retries 仅对网络错误和 5xx/429 重试；insecure_skip_verify 仅在证书报错时临时设为 true；proxy 留空=直连（推荐，避免被 Clash 等系统代理劫持），填 system 走系统代理，或填 http://127.0.0.1:7890"
+  },
+  "sites": [
+    {
+      "id": "buddy",
+      "name": "Buddy加油站（WorkBuddy每日签到）",
+      "enabled": true,
+      "request": {
+        "method": "POST",
+        "url": "https://www.workbuddy.cn/billing/meter/daily-checkin",
+        "headers": {
+          "Cookie": "REPLACE_WITH_YOUR_COOKIE",
+          "Content-Type": "application/json",
+          "Accept": "application/json, text/plain, */*",
+          "Origin": "https://www.workbuddy.cn",
+          "Referer": "https://www.workbuddy.cn/app",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+        },
+        "body_type": "json",
+        "body": {}
+      },
+      "expect": {
+        "success_when": [
+          {
+            "path": "code",
+            "op": "eq",
+            "value": 0
+          }
+        ],
+        "already_when": [
+          {
+            "path": "code",
+            "op": "eq",
+            "value": 10001
+          }
+        ],
+        "fail_when": [],
+        "points_path": "data.credit",
+        "message_path": "msg"
+      }
+    },
+    {
+      "id": "buddy-status",
+      "name": "Buddy加油站-状态查询（只读，排查用）",
+      "enabled": false,
+      "request": {
+        "method": "POST",
+        "url": "https://www.workbuddy.cn/billing/meter/checkin-status",
+        "headers": {
+          "Cookie": "REPLACE_WITH_YOUR_COOKIE",
+          "Content-Type": "application/json",
+          "Accept": "application/json, text/plain, */*",
+          "Origin": "https://www.workbuddy.cn",
+          "Referer": "https://www.workbuddy.cn/app",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0"
+        },
+        "body_type": "json",
+        "body": {}
+      },
+      "expect": {
+        "success_when": [
+          {
+            "path": "code",
+            "op": "eq",
+            "value": 0
+          }
+        ],
+        "already_when": [],
+        "fail_when": [],
+        "points_path": "data.credit",
+        "message_path": "msg"
+      }
+    },
+    {
+      "id": "example",
+      "name": "通用示例（换成自己的站点后把 enabled 改成 true）",
+      "enabled": false,
+      "request": {
+        "method": "POST",
+        "url": "https://example.com/api/user/checkin",
+        "headers": {
+          "Cookie": "sessionid=REPLACE_WITH_YOUR_COOKIE",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+          "Referer": "https://example.com/checkin",
+          "Origin": "https://example.com"
+        },
+        "body_type": "json",
+        "body": {
+          "date": "{{today}}",
+          "ts": "{{timestamp|int}}"
+        }
+      },
+      "expect": {
+        "success_when": [
+          {
+            "path": "code",
+            "op": "eq",
+            "value": 0
+          }
+        ],
+        "already_when": [
+          {
+            "path": "msg",
+            "op": "contains",
+            "value": "已签到"
+          }
+        ],
+        "fail_when": [
+          {
+            "path": "code",
+            "op": "ne",
+            "value": 0
+          }
+        ],
+        "points_path": "data.points",
+        "message_path": "msg"
+      }
+    }
+  ]
+}

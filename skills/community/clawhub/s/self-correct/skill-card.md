@@ -1,40 +1,54 @@
-## Description: <br>
-Self-Correct provides a lightweight framework for retry strategies, error tagging, result verification, and state snapshots before higher-risk operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-Correct provides a lightweight self-correction framework with retry/error tags, result verification, and snapshots before higher-risk operations.
 
-## Publisher: <br>
-[jokerli530](https://clawhub.ai/user/jokerli530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jokerli530](https://clawhub.ai/user/jokerli530)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add simple self-correction patterns around shell and API tool use, including retry decisions, verification messages, and pre-operation snapshots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recursive cleanup or batch removal commands could erase unintended files. <br>
-Mitigation: Require explicit confirmation before cleanup or removal, verify paths are under the intended snapshot directory, and replace xargs rm -rf patterns with safer bounded deletion. <br>
+## Use Case:
 
+Developers and agent operators use Self-Correct to add lightweight retry tagging, command-result verification, and snapshot routines around tool and shell workflows before higher-risk actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jokerli530/self-correct) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [snapshot.sh](artifact/scripts/snapshot.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with Bash code blocks and shell script snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, list, and clean snapshot files under /tmp/nova-snapshots when adopted by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Snapshot handling uses a shared /tmp location, which could expose copied files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private per-user snapshot directory with restrictive permissions before enabling the snapshot helper.
+
+Risk: Recursive deletion in cleanup and batch removal flows can cause data loss if targets are wrong or retention behavior is unclear.
+
+Mitigation: Validate and confirm deletion targets, make snapshot creation fail closed, and keep cleanup out of automatic heartbeat loops until retention policy is explicit.
+
+## Reference(s):
+
+- [Self-Correct on ClawHub](https://clawhub.ai/jokerli530/skills/self-correct)
+- [jokerli530 publisher profile](https://clawhub.ai/user/jokerli530)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with bash code blocks and shell script snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes autonomous-only usage metadata and snapshot cleanup behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

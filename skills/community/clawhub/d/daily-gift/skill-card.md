@@ -1,53 +1,60 @@
-## Description: <br>
-Generate personalized, relationship-aware daily gifts in H5, image, video, text, or interactive text-play formats to mark meaningful moments and milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate personalized, relationship-aware daily gifts in H5, image, video, text, or interactive text-play formats to mark meaningful moments and milestones.
 
-## Publisher: <br>
-[jiawei248](https://clawhub.ai/user/jiawei248) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiawei248](https://clawhub.ai/user/jiawei248)
 
-## Use Case: <br>
-External OpenClaw users use this skill to set up a relationship-aware gift engine that can decide whether a day or interaction deserves a gift, then produce and deliver one personalized artifact. It supports onboarding, scheduled daily runs, and manual creative requests across H5, image, video, text, text-play, and hybrid formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled runs can read conversation context and local memory while operating with limited visible user control. <br>
-Mitigation: Install only when autonomous daily operation is desired, keep the cron disabled when it is not, and review scheduled delivery settings during setup or reconfiguration. <br>
-Risk: The skill stores long-term personal taste, profile, and gift-history records under workspace/daily-gift/. <br>
-Mitigation: Review and periodically delete workspace/daily-gift/ data, and avoid placing sensitive personal details in taste or setup files unless they are needed for gift personalization. <br>
-Risk: Optional image, video, hosting, audio, and background-removal paths may rely on third-party services and sensitive API credentials. <br>
-Mitigation: Prefer environment variables for API keys, avoid storing raw credentials in setup state, and enable only the external providers needed for the selected gift formats. <br>
-Risk: Local shell scripts are used for delivery, rendering, deployment, asset retrieval, and post-delivery bookkeeping. <br>
-Mitigation: Review scripts before deployment and run the skill in a workspace where local file writes and command execution are acceptable. <br>
+## Use Case:
 
+External users use this skill to decide whether an onboarding moment, scheduled daily run, milestone, anniversary, or manual creative prompt deserves a personalized gift, then produce the gift in the format that best fits the moment.
 
-## Reference(s): <br>
-- [Daily Gift ClawHub Release](https://clawhub.ai/jiawei248/daily-gift) <br>
-- [README](README.md) <br>
-- [Setup Flow](references/setup-flow.md) <br>
-- [Daily Run Flow](references/daily-run-flow.md) <br>
-- [Manual Run Flow](references/manual-run-flow.md) <br>
-- [Delivery Policy](references/delivery-policy.md) <br>
-- [Gift Format Chooser](references/gift-format-chooser.md) <br>
-- [Image Integration](references/image-integration.md) <br>
-- [Video Integration](references/video-integration.md) <br>
-- [Asset Manifest](references/asset-manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown delivery messages, HTML/H5 artifacts, generated media briefs, JSON state files, and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create recurring schedule configuration, local workspace memory, gift history, taste profile records, H5 files, and optional image or video outputs depending on configured services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can read and summarize personal conversations, store taste and emotional context, and save positively shared images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data retention expectations and storage paths before installation, and enable recurring runs only when this personal-context handling is acceptable.
+
+Risk: Optional third-party providers, hosted previews, remote asset fetching, video support, and Freesound may expose user data or credentials.
+
+Mitigation: Keep those optional network features disabled until endpoint allowlists, integrity checks, and clearer privacy controls are in place.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiawei248/skills/daily-gift)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Setup flow](artifact/references/setup-flow.md)
+- [Daily run flow](artifact/references/daily-run-flow.md)
+- [Manual run flow](artifact/references/manual-run-flow.md)
+- [Delivery policy](artifact/references/delivery-policy.md)
+- [Asset manifest](artifact/references/asset-manifest.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance, generated text, HTML/H5 artifacts, image or video generation prompts, JSON state updates, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local workspace state, gift history, taste-profile records, H5 files, image or video assets, and optional hosted previews.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence, created 2026-04-27T13:22:15Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

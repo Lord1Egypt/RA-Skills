@@ -1,39 +1,55 @@
-## Description: <br>
-DeepVista CLI: Authentication, global flags, and security conventions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DeepVista CLI: Authentication, global flags, and security conventions.
 
-## Publisher: <br>
-[jingconan](https://clawhub.ai/user/jingconan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingconan](https://clawhub.ai/user/jingconan)
 
-## Use Case: <br>
-Developers and agents use this shared reference to work with the DeepVista CLI, including authentication, global flags, command syntax, output formats, and security conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The on-load update check may run a command and make a network request without explicit user awareness. <br>
-Mitigation: Review the skill before installation and require user approval or disable automatic update checks in environments where background commands or network calls are not acceptable. <br>
+## Use Case:
 
+Developers and agents use this shared reference to install and operate the DeepVista CLI, authenticate, choose profiles and global flags, and follow command safety conventions.
 
-## Reference(s): <br>
-- [DeepVista CLI homepage](https://cli.deepvista.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/jingconan/deepvista-shared) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes CLI usage guidance, authentication commands, exit-code references, and safety conventions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0-alpha.21 (source: server release metadata) <br>
+Risk: The skill directs agents to run an update-check command when loaded, which can execute local CLI behavior without an explicit user request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the silent load-time check or require explicit user approval before running it. Use an isolated, non-privileged installation and a trusted, pinned package version.
+
+Risk: DeepVista authentication uses local credentials and configurable profiles or API URLs.
+
+Mitigation: Do not expose tokens, verify the active profile and API URL before use, and preview write or destructive operations with --dry-run where supported.
+
+## Reference(s):
+
+- [DeepVista CLI homepage](https://cli.deepvista.ai)
+- [ClawHub skill page](https://clawhub.ai/jingconan/skills/deepvista-shared)
+- [Publisher profile](https://clawhub.ai/user/jingconan)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes CLI installation, authentication, profile, output, exit-code, and safety guidance.]
+
+## Skill Version(s):
+
+0.1.0-alpha.21 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

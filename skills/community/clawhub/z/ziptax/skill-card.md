@@ -1,44 +1,62 @@
-## Description: <br>
-Looks up U.S. sales tax rates, jurisdiction-level tax breakdowns, freight and service taxability, product taxability codes, and account usage metrics through the ZipTax API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up U.S. sales tax rates with the ZipTax API for addresses, ZIP codes, coordinates, jurisdiction breakdowns, freight or service taxability, use tax versus sales tax, account metrics, and product taxability codes.
 
-## Publisher: <br>
-[ericlakich](https://clawhub.ai/user/ericlakich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ericlakich](https://clawhub.ai/user/ericlakich)
 
-## Use Case: <br>
-External users, developers, and finance operations teams use this skill to retrieve sales and use tax rates for U.S. addresses, ZIP codes, and coordinates, and to integrate ZipTax taxability data into applications. <br>
-
-### Deployment Geography for Use: <br>
-Global, for U.S. sales tax lookup use cases <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Lookup requests send address, ZIP code, or coordinate data to ZipTax. <br>
-Mitigation: Use the skill only with location data appropriate to share with ZipTax. <br>
-Risk: API keys may be exposed when placed in URLs. <br>
-Mitigation: Prefer the X-API-KEY request header and avoid logging URLs that include API keys. <br>
-Risk: The bundled lookup script can run local code from specially crafted address text. <br>
-Mitigation: Do not run scripts/lookup.sh with untrusted address text until the quoting issue is fixed; use direct API calls or a client with safe parameter handling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZipTax API Reference](references/api-reference.md) <br>
-- [ZipTax API Platform](https://platform.zip.tax) <br>
-- [ZipTax OpenAPI Specification](https://raw.githubusercontent.com/ZipTax/ziptax-reference/main/openapi/openapi.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericlakich/ziptax) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve and interpret U.S. sales tax rates and taxability details for addresses, postal codes, or coordinates. It can also guide ZipTax API integration and account usage checks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with API request examples, shell commands, and JSON response interpretation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ZIPTAX_API_KEY for live API calls; lookups may send location data to ZipTax.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled lookup script has unsafe address handling that can run injected local commands when addresses are user-controlled.
+
+Mitigation: Review or patch scripts/lookup.sh before use with user-supplied addresses; prefer direct API calls with safe parameter encoding.
+
+Risk: The metrics path places the API key in the request URL.
+
+Mitigation: Use header-based authentication and avoid putting API keys in query strings.
+
+Risk: Precise addresses or coordinates are sent to ZipTax during live lookups.
+
+Mitigation: Inform users before sending location data and avoid submitting sensitive addresses unless the lookup requires that precision.
+
+## Reference(s):
+
+- [ZipTax API Reference](artifact/references/api-reference.md)
+- [ZipTax Platform](https://platform.zip.tax)
+- [ZipTax API Base URL](https://api.zip-tax.com)
+- [ZipTax OpenAPI Specification](https://raw.githubusercontent.com/ZipTax/ziptax-reference/main/openapi/openapi.json)
+- [ZipTax Python SDK](https://github.com/ZipTax/ziptax-python)
+- [ZipTax Go SDK](https://github.com/ZipTax/ziptax-go)
+- [ZipTax Node.js SDK](https://github.com/ZipTax/ziptax-node)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API examples, and JSON response interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ZipTax API requests that return JSON; live use requires ZIPTAX_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

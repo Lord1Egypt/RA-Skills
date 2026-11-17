@@ -1,49 +1,57 @@
-## Description: <br>
-Paper Reader Deep helps agents extract metadata and key data from PDF papers, analyze their scientific contribution, and produce structured deep-reading reports in Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paper Reader Deep helps agents extract metadata from PDF papers and generate structured Chinese-language Markdown reading reports with core-understanding, critique, and research-relevance sections.
 
-## Publisher: <br>
-[jibeilindong](https://clawhub.ai/user/jibeilindong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jibeilindong](https://clawhub.ai/user/jibeilindong)
 
-## Use Case: <br>
-Researchers, students, and technical readers use this skill to process directories of PDF papers, extract basic bibliographic and numerical signals, and create structured reports for deeper AI-assisted critique and follow-up research notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads all PDFs in the directory supplied by the user. <br>
-Mitigation: Run it only on directories intended for analysis and avoid confidential or unpublished papers unless that access is approved. <br>
-Risk: The skill writes Markdown reports and a summary into the same directory as the PDFs. <br>
-Mitigation: Use a working copy or dedicated output directory when preserving the original folder contents matters. <br>
-Risk: The skill may query CrossRef for DOI metadata during paper processing. <br>
-Mitigation: Avoid network metadata lookup for sensitive paper collections unless external DOI queries are acceptable. <br>
-Risk: Generated critique and relevance sections can contain incomplete or placeholder analysis. <br>
-Mitigation: Have a qualified reader review the Markdown reports before using them for research decisions or publication planning. <br>
+## Use Case:
 
+Researchers, students, and technical readers use this skill to process directories of PDF papers, extract paper metadata and key data, and produce structured Markdown reading reports for later AI-assisted analysis and user research notes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jibeilindong/paper-reader-deep) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Analysis framework](artifact/config/analysis_framework.md) <br>
-- [Report template](artifact/config/report_template.md) <br>
-- [Section configuration](artifact/config/section_config.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates one Markdown report per PDF and a summary report in the supplied PDF directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The skill reads PDFs from a user-supplied directory and writes generated Markdown reports alongside those files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended directories and review generated report files before sharing or committing them.
+
+Risk: DOI metadata lookup may disclose DOI values to Crossref.
+
+Mitigation: Disable or avoid networked DOI lookup for sensitive unpublished papers, or run the workflow in a controlled offline environment.
+
+Risk: Unpinned Python dependencies can vary across environments.
+
+Mitigation: Install dependencies in a virtual environment and pin versions for stricter or repeatable deployments.
+
+## Reference(s):
+
+- [Paper Reader Deep on ClawHub](https://clawhub.ai/jibeilindong/skills/paper-reader-deep)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes one Markdown report per PDF and a summary report in the source PDF directory.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

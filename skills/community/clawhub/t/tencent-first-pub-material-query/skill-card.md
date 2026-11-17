@@ -1,42 +1,59 @@
-## Description: <br>
-首发素材消耗批量查询。根据提供的账户ID列表，查询指定日期内的首发素材（图片+视频）消耗数据。首次使用时自动检查依赖环境（tencentads技能+API Key）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Batch queries first-publication image and video material spend for Tencent Ads accounts over a specified date range and returns aggregated performance metrics.
 
-## Publisher: <br>
-[tazdingoooo](https://clawhub.ai/user/tazdingoooo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tazdingoooo](https://clawhub.ai/user/tazdingoooo)
 
-## Use Case: <br>
-Marketing operators and agents use this skill to batch query Tencent Ads first-publication image and video material spend for supplied account IDs and date ranges. It returns account-level summaries and detailed JSON that can be converted into readable tables or reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Tencent Ads API credentials and may prompt users to provide an API key. <br>
-Mitigation: Use a trusted credential setup path, avoid pasting long-lived keys into chat, and prefer least-privileged Tencent Ads keys. <br>
-Risk: The setup flow can install or rely on a global npm package and dependent Tencent Ads skills. <br>
-Mitigation: Install only when the publisher, dependency skills, and tencentads-cli package are trusted; review or pin the CLI before allowing global installation. <br>
+## Use Case:
 
+Marketing operators, analysts, and agents use this skill to query Tencent Ads accounts for first-publication creative spend, impressions, clicks, conversions, and cost metrics across image and video materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tazdingoooo/tencent-first-pub-material-query) <br>
-- [Tencent Ads skill install guide](http://skills.ad.qq.com/install/tencentads.md) <br>
-- [Tencent Ads skill portal](https://skills.ad.qq.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries account IDs over a date range, batches up to 20 accounts per request, and returns first-publication material metrics sorted by spend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub server release evidence) <br>
+Risk: The setup flow may expose Tencent Ads API keys if credentials are pasted into chat or shell history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials through a secure local prompt or official provider flow, and avoid sharing API keys in chat.
+
+Risk: The skill depends on external Tencent Ads tooling and npm installation steps.
+
+Mitigation: Verify Tencent Ads installation links over HTTPS and pin required npm package versions before running setup commands.
+
+Risk: The skill grants access to Tencent Ads reporting data for supplied account IDs.
+
+Mitigation: Install and run it only in environments authorized to access those advertising accounts and review the skill before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tazdingoooo/skills/tencent-first-pub-material-query)
+- [Tencent Ads skill installation guide](http://skills.ad.qq.com/install/tencentads.md)
+- [Tencent Ads skills portal](https://skills.ad.qq.com/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON report data with optional Markdown summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Tencent Ads account IDs and a start/end date; queries accounts in batches of 20.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

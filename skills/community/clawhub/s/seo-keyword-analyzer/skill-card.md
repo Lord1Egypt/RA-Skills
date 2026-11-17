@@ -1,39 +1,53 @@
-## Description: <br>
-Analyzes SEO keywords by estimating search volume, competition, and ranking difficulty, then generating keyword suggestions, content ideas, and optimization recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes SEO keywords by estimating search volume, competition, ranking difficulty, and content optimization opportunities.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Content creators, marketers, and site operators use this skill to evaluate target keywords, identify long-tail opportunities, and plan SEO-focused content improvements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO volumes, competition levels, and difficulty scores may be inaccurate when not backed by live SEO data. <br>
-Mitigation: Treat generated metrics as estimates and validate important decisions against current SEO data sources. <br>
-Risk: Sensitive business strategy could be exposed if an agent uses external research tools during keyword analysis. <br>
-Mitigation: Avoid sharing confidential strategy, unreleased product plans, or sensitive customer details in prompts or external lookups. <br>
+## Use Case:
 
+Content creators, marketers, and SEO practitioners use this skill to research target keywords, compare ranking difficulty, identify long-tail opportunities, and improve content structure for blogs, product pages, and landing pages.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with tables, checklists, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keyword metrics are estimates unless backed by a live SEO data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: SEO search volume, competition, trend, and difficulty values may be estimates or become stale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify material SEO recommendations against current search data, SERP results, and analytics before publishing or making business decisions.
+
+Risk: The skill can produce confident content optimization advice from incomplete page, audience, or competitor context.
+
+Mitigation: Review recommendations with human SEO judgment and provide current page content, target audience, and market context when using the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huajianjiu000/skills/seo-keyword-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with tables, checklists, and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [SEO metrics are presented as estimates and should be checked against current search data before business decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

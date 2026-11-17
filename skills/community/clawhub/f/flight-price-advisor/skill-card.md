@@ -1,45 +1,60 @@
-## Description: <br>
-Generates concise, user-friendly flight price summaries with buy/wait recommendations for chat interfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate concise, user-friendly flight price summaries with buy/wait recommendations. Requires SerpAPI key for real-time price data. Use when users ask about flight prices, purchase timing, or price trends. Designed for C-end chat interfaces.
 
-## Publisher: <br>
-[keyikoi](https://clawhub.ai/user/keyikoi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keyikoi](https://clawhub.ai/user/keyikoi)
 
-## Use Case: <br>
-External travelers and chat product agents use this skill to turn current and historical flight price data into plain-language buy/wait recommendations, price-level summaries, and caveats when data is limited. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A shared SerpAPI key or unclear local config location could expose operational credentials. <br>
-Mitigation: Use a dedicated SerpAPI key and confirm where price/config.json is stored before deployment. <br>
-Risk: Price history may contain traveler-identifying or route preference details. <br>
-Mitigation: Avoid storing traveler-identifying details in price/data/ and retain only the minimum data needed for price analysis. <br>
-Risk: Broad trigger wording may activate the skill for non-flight price questions. <br>
-Mitigation: Configure the host router to require flight context before invoking the skill. <br>
+## Use Case:
 
+External end users and chat agents use this skill to turn flight price data into concise Markdown price analysis and buy-or-wait guidance.
 
-## Reference(s): <br>
-- [Flight Price Advisor ClawHub page](https://clawhub.ai/keyikoi/flight-price-advisor) <br>
-- [SerpAPI signup](https://serpapi.com/users/sign_up) <br>
-- [Copywriting Templates](artifact/references/copywriting-templates.md) <br>
-- [Price Analysis Algorithm](artifact/references/price-analysis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with concise tables and buy/wait recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires current price and historical price data; can include setup guidance when SerpAPI or price history is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill requires a SerpAPI key for real-time flight price data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure SerpAPI only in the intended project and use a limited API key where possible.
+
+Risk: Broad trigger wording may activate the skill on generic price questions.
+
+Mitigation: Narrow trigger patterns or route only flight-related price questions to this skill.
+
+Risk: Flight price recommendations can be misleading when historical data is sparse or unavailable.
+
+Mitigation: Label limited data as reference-only and ask users to gather more flight searches or compare current prices before purchasing.
+
+## Reference(s):
+
+- [Price analysis algorithm](artifact/references/price-analysis.md)
+- [Copywriting templates](artifact/references/copywriting-templates.md)
+- [SerpAPI sign-up](https://serpapi.com/users/sign_up)
+- [ClawHub skill page](https://clawhub.ai/keyikoi/skills/flight-price-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise price summaries, simple comparison tables, trend labels, and buy/wait recommendations; notes when price data is limited.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

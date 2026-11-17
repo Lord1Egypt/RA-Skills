@@ -1,43 +1,57 @@
-## Description: <br>
-Sandbox Simulator coordinates multi-character social roleplay simulations, using child sessions for parallel character actions and Markdown files for scenario state, character state, and history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sandbox Simulator coordinates Chinese-language, multi-character social roleplay simulations with parallel session scheduling, Markdown state files, and user intervention controls.
 
-## Publisher: <br>
-[jasonhu](https://clawhub.ai/user/jasonhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonhu](https://clawhub.ai/user/jasonhu)
 
-## Use Case: <br>
-Developers and scenario designers use this skill to run controllable, multi-character sandbox simulations with pause, resume, state editing, event injection, and status review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and modifies Markdown scenario files while maintaining simulation state. <br>
-Mitigation: Run it in a dedicated project folder and review state changes before relying on simulation outputs. <br>
-Risk: Scenario context is sent to spawned child sessions for character roleplay. <br>
-Mitigation: Use fictional or non-sensitive scenario data, especially for character backgrounds, relationships, and injected events. <br>
-Risk: Natural-language controls could trigger unintended state changes or event injections. <br>
-Mitigation: Prefer explicit slash commands for start, set, inject, remove, and reset actions. <br>
+## Use Case:
 
+External users and developers use this skill to set up and run roleplay-style sandbox simulations with multiple characters, persistent scenario state, and interactive interventions such as pause, resume, state edits, and event injection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jasonhu/sandbox-simulator) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jasonhu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown scenario files, status panels, dialogue logs, event summaries, and slash-command style instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains world state, character state, and round history as Markdown artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Simulation runs can create or update local Markdown scenario state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace or scenario folder and review changed character, world-state, and history files before reuse.
+
+Risk: Natural-language interventions may be interpreted as state mutations or injected events.
+
+Mitigation: Prefer explicit /sandbox commands for mutations and check scenario status after interventions.
+
+Risk: Future external API extensions could change the skill's security profile.
+
+Mitigation: Review security findings and requested integrations before enabling any external API extension.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasonhu/skills/sandbox-simulator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-formatted status panels, dialogue logs, event summaries, and local scenario state files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State is represented in Markdown character files, world-state files, and per-round history files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

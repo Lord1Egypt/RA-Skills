@@ -1,43 +1,52 @@
-## Description: <br>
-Based on facial video, this skill identifies abnormal rhythms such as premature beats, atrial fibrillation, tachycardia, and bradycardia to assist early heart-health risk screening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Based on facial video, identifies abnormal rhythms such as premature beats, atrial fibrillation, tachycardia/bradycardia, assists in early detection of heart health risks.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-External users and agents use this skill to submit facial video for non-invasive arrhythmia early-warning analysis and to retrieve structured risk reports. The results are screening guidance only and do not replace ECG testing or diagnosis by a cardiology professional. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Facial video and health-risk report data are processed by the vendor's cloud service. <br>
-Mitigation: Use only when the publisher's privacy, retention, deletion, and account-scoping terms are acceptable for the data being submitted. <br>
-Risk: The skill silently creates or reuses an internal identity and stores tokens locally. <br>
-Mitigation: Review installation and runtime handling before deployment, especially for sensitive medical or account-scoped use cases. <br>
+## Use Case:
 
+Individuals or care teams can submit facial video for an early warning screen for possible rhythm abnormalities and retrieve prior reports. The results are for risk screening and do not replace ECG testing or a clinician's diagnosis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-arrhythmia-early-warning-analysis) <br>
-- [Skill Demo](https://lifeemergence.com/sample.html) <br>
-- [API Documentation](references/api_doc.md) <br>
-- [SMYX Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON-style structured analysis reports with report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include historical report tables and health-risk screening guidance from the vendor cloud service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: frontmatter and server release evidence) <br>
+Risk: Identifiable facial videos may be uploaded; the export-only option still permits uploads, and account creation and credential storage controls are unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Wait for a working export-only option and clearer privacy and account controls before sharing identifiable video. Confirm report access, video and credential retention or deletion, and any service charges.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/18072937735/skills/smyx-arrhythmia-early-warning-analysis)
+- [Skill demo](https://lifeemergence.com/sample.html)
+- [API interface documentation](references/api_doc.md)
+- [API reference and error codes](skills/smyx_analysis/references/api_doc.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Markdown, Guidance]
+
+**Output Format:** [Structured JSON analysis reports and Markdown tables for report lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes screening results, recommendations, and report links; results do not replace ECG testing or clinician diagnosis.]
+
+## Skill Version(s):
+
+1.0.21 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

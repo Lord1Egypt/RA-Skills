@@ -1,46 +1,60 @@
-## Description: <br>
-Call APIs through Keychains without exposing real credentials to the agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call any API without leaking credentials. Keychains proxies requests and injects real tokens server-side; your agent never sees them.
 
-## Publisher: <br>
-[smarcombes](https://clawhub.ai/user/smarcombes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smarcombes](https://clawhub.ai/user/smarcombes)
 
-## Use Case: <br>
-Developers and agent operators use this skill to route API calls through Keychains, replacing credential values with placeholders while Keychains injects approved tokens server-side. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Approved providers may grant agents broad ongoing ability to call third-party APIs through Keychains. <br>
-Mitigation: Use narrowly scoped provider permissions, avoid approving high-risk accounts unless required, and revoke machine or provider access when the task is complete. <br>
-Risk: API calls routed through the credential proxy can perform writes, billing changes, or account actions if the approved provider token allows them. <br>
-Mitigation: Require explicit user confirmation before writes, billing actions, or account changes, and review activity in the Keychains dashboard. <br>
-Risk: Installing the skill depends on trust in keychains.dev and the keychains npm package. <br>
-Mitigation: Install only after reviewing the publisher, package, and Keychains documentation, and keep the installed CLI or SDK version under normal dependency review. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smarcombes/secure-api-calls) <br>
-- [Keychains](https://keychains.dev) <br>
-- [Keychains Dashboard](https://keychains.dev/dashboard) <br>
-- [Keychains Security Whitepaper](https://keychains.dev/api/whitepaper) <br>
-- [Keychains Python SDK](https://pypi.org/project/keychains/) <br>
-- [Keychains Client SDK](https://www.npmjs.com/package/@keychains/client-sdk) <br>
+## Use Case:
 
+Developers and agent builders use this skill to make API requests through Keychains using credential placeholders instead of exposing real API keys or OAuth tokens to the agent.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance may include approval links, polling steps, provider-specific API examples, and setup requirements for the keychains CLI or SDKs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API requests and connected credentials are routed through a third-party credential proxy and vault.
+
+Mitigation: Install only after accepting that trust boundary, use narrowly scoped credentials, and review approval pages before authorizing access.
+
+Risk: The CLI creates a persistent local machine identity in ~/.keychains/ for authentication.
+
+Mitigation: Verify machine revocation and local key rotation procedures before relying on the skill.
+
+Risk: The skill can support high-impact write-capable or financial/account APIs.
+
+Mitigation: Avoid broad or write-capable credentials unless necessary, and prefer least-privilege provider scopes.
+
+## Reference(s):
+
+- [Keychains homepage](https://keychains.dev)
+- [Keychains dashboard](https://keychains.dev/dashboard)
+- [Keychains security whitepaper](https://keychains.dev/api/whitepaper)
+- [Python SDK](https://pypi.org/project/keychains/)
+- [Client SDK](https://www.npmjs.com/package/@keychains/client-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell and TypeScript code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include placeholder credential variables and approval URLs for user authorization.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

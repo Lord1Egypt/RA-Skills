@@ -1,48 +1,67 @@
-## Description: <br>
-Chain of Verification (CoVe) fact-checks responses against the user's knowledge base, memory, and optional web search before they are presented. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chain of Verification (CoVe) fact-checks responses against the user's knowledge base, memory, and web search before they are presented.
 
-## Publisher: <br>
-[bhawanakatiyar](https://clawhub.ai/user/bhawanakatiyar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhawanakatiyar](https://clawhub.ai/user/bhawanakatiyar)
 
-## Use Case: <br>
-Developers and agent operators use this skill to verify factual claims in OpenClaw responses against local workspace files, memory, optional vector stores, and web search before sending user-facing answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read broad OpenClaw workspace and memory content and may send verification context to configured LLM, search, embedding, vector-store, or sidecar services. <br>
-Mitigation: Keep custom document paths empty or tightly scoped, disable web and vector features for sensitive work, and avoid use around secrets, regulated data, or private conversations unless clear data-handling controls are in place. <br>
-Risk: Verification results and auto-corrections can still be wrong or unverifiable. <br>
-Mitigation: Review reported inaccuracies and corrections before presenting final answers, and use strict mode when unverifiable claims should block output. <br>
-Risk: The security verdict requires review before installation. <br>
-Mitigation: Review the skill and its configured data sources before deployment, especially in environments with sensitive workspace or memory content. <br>
+## Use Case:
 
+Developers and agent operators use this skill to check factual claims in agent responses against local OpenClaw memory, workspace files, optional vector stores, and optional web search. It is intended for responses that include business facts, dates, numbers, policies, customer information, or other claims that should be verified before delivery.
 
-## Reference(s): <br>
-- [ClawHub cove listing](https://clawhub.ai/bhawanakatiyar/cove-plugin) <br>
-- [OpenClaw](https://openclaw.sh) <br>
-- [Qdrant documentation](https://qdrant.tech/documentation/) <br>
-- [Chroma documentation](https://docs.trychroma.com/) <br>
-- [Weaviate documentation](https://weaviate.io/developers/weaviate) <br>
-- [Milvus documentation](https://milvus.io/docs/) <br>
-- [Redis vector search documentation](https://redis.io/docs/interact/search-and-query/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [Plain text reports or JSON verification results, with optional corrected response text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exit codes distinguish verified, inaccurate, and unverifiable claims; strict mode can fail on unverifiable claims.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill reads private OpenClaw workspace and memory content by default and may include selected context in verification prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that access is acceptable, and disable system memory or custom document sources in sensitive environments unless they are explicitly needed.
+
+Risk: Verification may send claim text and selected context to configured model, search, or vector services.
+
+Mitigation: Use approved providers and API keys, disable web or vector sources unless needed, and avoid ambient generic API keys in shared environments.
+
+Risk: Auto-correction can change an agent response after verification.
+
+Mitigation: Disable auto-correction for high-sensitivity workflows and review verification reports before sending corrected text.
+
+Risk: Structured verification logs may contain sensitive claim text or correction details.
+
+Mitigation: Review stdout and session logs in environments where customer, policy, or private workspace details may be included.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhawanakatiyar/skills/cove-plugin)
+- [OpenClaw](https://openclaw.sh)
+- [Qdrant documentation](https://qdrant.tech/documentation/)
+- [Chroma documentation](https://docs.trychroma.com/)
+- [Weaviate documentation](https://weaviate.io/developers/weaviate)
+- [Milvus documentation](https://milvus.io/docs/)
+- [Redis vector search documentation](https://redis.io/docs/interact/search-and-query/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Plain text or JSON verification report with optional corrected response text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verified, inaccurate, and unverifiable claim counts, source snippets, corrections, and exit codes for command-line use.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

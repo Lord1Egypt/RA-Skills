@@ -1,45 +1,64 @@
-## Description: <br>
-Private Web App (PWA) helps agents install, run, configure, and extend a personal FastAPI and React PWA dashboard with plugin apps, system monitoring, file browsing, and push notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal PWA dashboard server for installing, operating, building, extending, and configuring a private FastAPI and React home-server app with plugin apps.
 
-## Publisher: <br>
-[camopel](https://clawhub.ai/user/camopel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[camopel](https://clawhub.ai/user/camopel)
 
-## Use Case: <br>
-Developers and home-server administrators use this skill to set up and operate a private PWA dashboard, manage its service lifecycle, build frontend assets, add plugin apps, and configure web push notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can expose local file browsing and downloads from its configured root. <br>
-Mitigation: Bind the service to localhost or protect it with strong authentication and firewall or Tailscale ACLs, and configure the file browser to a narrow directory instead of the whole home directory. <br>
-Risk: Plugin discovery can load executable app code from configured paths. <br>
-Mitigation: Review each plugin path and app before enabling it, and keep discovery paths limited to trusted directories. <br>
-Risk: System monitor actions include host restart and shutdown controls. <br>
-Mitigation: Disable or remove the reboot and shutdown endpoints unless the deployment explicitly requires remote power controls. <br>
+## Use Case:
 
+Developers and home-server operators use this skill to install and run PrivateApp, manage its service, build frontend assets, add plugin apps, configure push notifications, and operate private system monitoring and file browsing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/camopel/privateapp) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Instructions](artifact/SKILL.md) <br>
-- [Tailscale Download](https://tailscale.com/download) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, Python, TypeScript, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local file edits, service commands, frontend build commands, and configuration changes for a personal PWA server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence, created 2026-02-23T01:17:39Z) <br>
+Risk: Default network exposure can make the dashboard reachable beyond the intended private environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only behind a trusted private network, bind to localhost unless strong network controls are in place, and add authentication before exposing it to any network.
+
+Risk: The file browser can expose the user's home directory by default.
+
+Mitigation: Change the file browser root away from the home directory and restrict it to the smallest directory needed.
+
+Risk: Unauthenticated restart, shutdown, and plugin-discovery management endpoints can affect the host system.
+
+Mitigation: Remove, disable, or lock down restart, shutdown, and plugin-discovery management endpoints before network exposure.
+
+Risk: Installation and frontend build dependencies may introduce supply-chain exposure.
+
+Mitigation: Upgrade frontend build dependencies and avoid the optional pipe-to-shell Tailscale install path unless it has been independently trusted and verified.
+
+## Reference(s):
+
+- [PrivateApp ClawHub Skill Page](https://clawhub.ai/camopel/skills/privateapp)
+- [PrivateApp README](artifact/README.md)
+- [PrivateApp Skill Instructions](artifact/SKILL.md)
+- [Tailscale Download](https://tailscale.com/download)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local installation steps, service management commands, frontend build commands, plugin scaffolding guidance, and push notification configuration.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

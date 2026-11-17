@@ -1,43 +1,59 @@
-## Description: <br>
-Collects AMap POI data for medical beauty and life beauty businesses by city, then exports raw JSON data and an Excel summary workbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects Amap POI data for medical beauty and lifestyle beauty organizations by city keyword, then outputs raw JSON data and an optional Excel summary workbook.
 
-## Publisher: <br>
-[supperwk](https://clawhub.ai/user/supperwk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supperwk](https://clawhub.ai/user/supperwk)
 
-## Use Case: <br>
-Analysts and operators can use this skill to collect city-level AMap POI listings for medical beauty and life beauty organizations and produce JSON plus spreadsheet outputs for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release publishes and uses a real AMap API key by default. <br>
-Mitigation: Review before installing and supply a controlled AMap key with --key or AMAP_KEY instead of relying on the bundled key. <br>
-Risk: Generated POI data is written into the OpenClaw workspace. <br>
-Mitigation: Review workspace data handling and retention before running the skill on sensitive or regulated workflows. <br>
-Risk: Excel export depends on openpyxl in the execution environment. <br>
-Mitigation: Install openpyxl only in a trusted environment, or run with --skip-excel when spreadsheet output is not needed. <br>
+## Use Case:
 
+External users and developers use this skill to collect district-level Amap POI records for selected Chinese cities and summarize medical beauty and lifestyle beauty organization counts and details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supperwk/amap-poi-fetch) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/supperwk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, API Calls, Configuration] <br>
-**Output Format:** [JSON files, Excel workbook, and command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an AMap API key supplied with --key or AMAP_KEY; Excel export requires openpyxl and can be skipped with --skip-excel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release includes a reusable Amap API key that should be treated as exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace it with a user-owned, restricted key before installation or pass a key with --key or AMAP_KEY.
+
+Risk: Generated Excel workbooks contain third-party POI text and may be opened in spreadsheet software with active content enabled.
+
+Mitigation: Open generated XLSX files with external links and active content disabled, or use --skip-excel when workbook output is unnecessary.
+
+Risk: The optional Excel export depends on openpyxl being installed in the runtime environment.
+
+Mitigation: Install a pinned openpyxl version in a virtual environment before running Excel export.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/supperwk/skills/amap-poi-fetch)
+- [Amap district API endpoint](https://restapi.amap.com/v3/config/district)
+- [Amap place text API endpoint](https://restapi.amap.com/v3/place/text)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [Command-line progress text plus JSON files and optional XLSX workbook]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes city-specific POI data under ~/.openclaw/workspace/data/<city>_poi/ and can skip Excel generation with --skip-excel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

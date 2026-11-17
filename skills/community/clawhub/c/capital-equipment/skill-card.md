@@ -1,40 +1,57 @@
-## Description: <br>
-Search, book, and manage scientific research equipment across facilities, track usage, submit service requests, and find collaborators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search, book, and manage scientific research equipment across 500+ facilities, track usage, submit service requests, and find collaborators securely.
 
-## Publisher: <br>
-[cesco345](https://clawhub.ai/user/cesco345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cesco345](https://clawhub.ai/user/cesco345)
 
-## Use Case: <br>
-Researchers, lab managers, and research operations teams use this skill to find suitable shared instruments, check availability, manage bookings, request services, monitor equipment opportunities, and coordinate with collaborators. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a remote equipment service, so user queries and equipment activity may leave the local agent environment. <br>
-Mitigation: Confirm the service's retention, access, and deletion controls before connecting it or sending sensitive research or procurement details. <br>
-Risk: The skill can save research profile details such as institution, interests, watched equipment, and notification channel in persistent memory. <br>
-Mitigation: Store only necessary preferences and avoid saving confidential research plans, procurement strategy, or sensitive institutional information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Capital Equipment Network (CapNetEq) on ClawHub](https://clawhub.ai/cesco345/capital-equipment) <br>
-- [Capital Equipment MCP endpoint](https://us-central1-capital-equipment-dev.cloudfunctions.net/mcpServer/mcp) <br>
+## Use Case:
 
+Researchers and lab operations teams use this skill to find shared scientific equipment, check availability, book instruments, monitor marketplace changes, request service quotes, and manage equipment-related reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Markdown] <br>
-**Output Format:** [Markdown with JSON and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a remote MCP service and persistent memory for saved research preferences, watched equipment, and notification settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill connects to a remote development MCP service that may be able to make bookings or submit service requests.
+
+Mitigation: Confirm the server operator, production status, OAuth scopes, and whether bookings or service requests require explicit user confirmation before installing.
+
+Risk: The automations rely on persistent memory for research interests, institution, equipment watchlists, and notification preferences.
+
+Mitigation: Store only preferences that are acceptable to retain, and confirm that users can review, update, or delete saved preferences.
+
+Risk: Marketplace, availability, compliance, and pricing outputs may affect purchasing or facility access decisions.
+
+Mitigation: Review prices, booking details, institutional requirements, and safety or IP obligations before committing to a reservation or transaction.
+
+## Reference(s):
+
+- [Capital Equipment skill page](https://clawhub.ai/cesco345/skills/capital-equipment)
+- [Capital Equipment MCP server endpoint](https://us-central1-capital-equipment-dev.cloudfunctions.net/mcpServer/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, YAML, and short notification-style text where appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce equipment search summaries, booking reminders, marketplace alerts, service request guidance, and configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

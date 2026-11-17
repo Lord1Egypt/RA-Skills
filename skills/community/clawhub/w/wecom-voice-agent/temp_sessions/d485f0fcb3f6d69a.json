@@ -1,0 +1,53 @@
+{
+  "session_id": "d485f0fcb3f6d69a",
+  "userid": "test_user",
+  "messages": [
+    {
+      "role": "user",
+      "content": "这个产品太差了！",
+      "timestamp": 1784780539,
+      "intent": null,
+      "emotion": "angry"
+    },
+    {
+      "role": "assistant",
+      "content": "非常抱歉...",
+      "timestamp": 1784780539,
+      "intent": null,
+      "emotion": "neutral"
+    },
+    {
+      "role": "user",
+      "content": "我要投诉！",
+      "timestamp": 1784780539,
+      "intent": null,
+      "emotion": "angry"
+    }
+  ],
+  "current_intent": null,
+  "collected_entities": {},
+  "awaiting": null,
+  "created_at": 1784780539,
+  "updated_at": 1784780539,
+  "max_history": 5,
+  "active": true,
+  "emotion_state": {
+    "current_emotion": "angry",
+    "consecutive_negative": 1,
+    "emotion_history": [
+      {
+        "emotion": "angry",
+        "timestamp": 1784780539
+      },
+      {
+        "emotion": "neutral",
+        "timestamp": 1784780539
+      },
+      {
+        "emotion": "angry",
+        "timestamp": 1784780539
+      }
+    ],
+    "should_escalate": false
+  }
+}

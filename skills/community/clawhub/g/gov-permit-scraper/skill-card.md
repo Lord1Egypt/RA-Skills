@@ -1,44 +1,60 @@
-## Description: <br>
-Scrape government permit databases for B2B sales leads, enrich permit records with business emails via web scraping, and automate cold outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape government permit databases (liquor licenses, business registrations, contractor permits, health permits) to generate B2B sales leads, enrich raw permit data with business emails via web scraping, and auto-email outreach.
 
-## Publisher: <br>
-[merjua14](https://clawhub.ai/user/merjua14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[merjua14](https://clawhub.ai/user/merjua14)
 
-## Use Case: <br>
-External sales, marketing, insurance, POS, and service teams can use this skill to build prospect lists from public permit records and contact newly licensed businesses. Developers can adapt the included Node.js pipeline for specific state or county permit sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pipeline can automatically send cold outreach emails to discovered contacts without a clear approval gate. <br>
-Mitigation: Run with --dry-run first, inspect the generated CSV and recipient list, and add an explicit approval step before sending. <br>
-Risk: Cold outreach and use of public permit data can trigger privacy, anti-spam, unsubscribe, suppression-list, and jurisdiction-specific compliance obligations. <br>
-Mitigation: Confirm the applicable requirements for each campaign and jurisdiction, use verified sending domains, honor opt-outs, suppress bounces, and keep records of public-record data sources. <br>
-Risk: A sending API key with broad limits could amplify mistakes in recipient selection or message content. <br>
-Mitigation: Use a dedicated low-limit sending key and rate-limit outreach before increasing volume. <br>
+## Use Case:
 
+External users and developers use this skill to build B2B lead lists from public permit records, enrich them with contact information, and prepare or run outreach workflows for newly licensed businesses.
 
-## Reference(s): <br>
-- [Government Permit Data Sources](references/data-sources.md) <br>
-- [Cold Email Compliance](references/compliance.md) <br>
-- [Texas TABC New Permits Issued](https://www.tabc.texas.gov/public-information/new-permits-issued/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript, JSON configuration, shell commands, and CSV output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a CSV lead list and may send outreach emails when configured with API keys and run without --dry-run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The pipeline can automatically email scraped and search-enriched contacts before adequate review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run mode first, review recipients and message content, and do not provide a Resend API key until outreach is approved.
+
+Risk: Live campaigns may lack sufficient safeguards for date filtering, suppression, unsubscribe handling, rate limiting, and CSV escaping.
+
+Mitigation: Implement and verify those controls before enabling live email delivery.
+
+Risk: Public-record scraping and outreach requirements vary by jurisdiction and data source.
+
+Mitigation: Confirm each source and outreach use is lawful for the relevant jurisdiction and retain records of data provenance.
+
+## Reference(s):
+
+- [Government Permit Data Sources](references/data-sources.md)
+- [Cold Email Compliance](references/compliance.md)
+- [Texas TABC New Permits Issued](https://www.tabc.texas.gov/public-information/new-permits-issued/)
+- [ClawHub Skill Page](https://clawhub.ai/merjua14/skills/gov-permit-scraper)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript code, JSON configuration, and CSV output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires external API keys for Brave Search enrichment and Resend email delivery; dry-run mode is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

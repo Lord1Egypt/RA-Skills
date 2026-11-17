@@ -1,43 +1,56 @@
-## Description: <br>
-Provides a modular smart wallet protocol for AI agents, including session keys, spending limits, and delegated transaction management on the Kite AI network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Kite AI smart wallet workflows, including session keys, spending limits, deployed contracts, and network configuration.
 
-## Publisher: <br>
-[nihaovand](https://clawhub.ai/user/nihaovand) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nihaovand](https://clawhub.ai/user/nihaovand)
 
-## Use Case: <br>
-Developers and wallet operators use this skill to guide smart wallet setup and delegated transaction workflows for AI agents on Kite AI, including session-key authorization, spending limits, and contract configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes real on-chain wallet delegation and transaction execution without enough contract provenance. <br>
-Mitigation: Start on testnet and independently verify the Kite chain IDs, RPC endpoints, contract source, ownership, and deployed addresses before use. <br>
-Risk: Delegated session keys and spending limits can expose wallets to unauthorized or excessive transactions if configured too broadly. <br>
-Mitigation: Use isolated wallets with minimal funds, narrow function allowlists, low spending limits, revocable session keys, and explicit approval before wallet creation, session-key grants, or transaction execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kite AI Docs](https://docs.gokite.ai) <br>
-- [Biconomy Nexus Documentation](https://docs.biconomy.io/new/learn-about-biconomy/nexus) <br>
-- [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) <br>
-- [ERC-7579](https://eips.ethereum.org/EIPS/eip-7579) <br>
-- [ClawHub Release Page](https://clawhub.ai/nihaovand/kite-agent-wallet) <br>
+## Use Case:
 
+Developers and agent builders use this skill to configure and reason about Kite AI smart wallets, session keys, spending limits, and delegated transaction flows.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with JavaScript examples and contract configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Kite network chain IDs, RPC endpoints, explorer URLs, and deployed testnet contract addresses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet and session-key examples can authorize delegated transaction activity.
+
+Mitigation: Use testnet or throwaway accounts first, apply spending limits, and revoke session keys that are no longer needed.
+
+Risk: Incorrect or stale contract addresses and network settings can direct transactions to the wrong environment.
+
+Mitigation: Verify contract addresses, chain IDs, RPC endpoints, and explorer links against trusted Kite AI sources before use.
+
+## Reference(s):
+
+- [Kite AI Docs](https://docs.gokite.ai)
+- [Biconomy Nexus](https://docs.biconomy.io/new/learn-about-biconomy/nexus)
+- [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337)
+- [ERC-7579](https://eips.ethereum.org/EIPS/eip-7579)
+- [ClawHub skill page](https://clawhub.ai/nihaovand/skills/kite-agent-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript examples and network configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes smart contract addresses and Kite AI network endpoints that should be verified before wallet actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata, skill.json, artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

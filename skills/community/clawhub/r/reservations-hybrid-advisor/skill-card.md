@@ -1,40 +1,51 @@
-## Description: <br>
-Recommend optimal Azure Reservations and Hybrid Benefit coverage for maximum stacked savings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommend optimal Azure Reservations and Hybrid Benefit coverage for maximum stacked savings.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-External Azure cost owners, FinOps practitioners, and cloud engineers use this skill to review exported Azure cost, reservation, and inventory data and plan Reservation plus Azure Hybrid Benefit savings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Azure cost and inventory exports may include sensitive subscription, resource, or licensing details. <br>
-Mitigation: Limit exports to the relevant subscriptions and date ranges, remove secrets and unnecessary identifiers, and confirm no credentials are included before analysis. <br>
-Risk: Reservation and Azure Hybrid Benefit recommendations can affect long-term cloud spend and licensing posture. <br>
-Mitigation: Treat the output as planning guidance and review recommendations with the responsible FinOps, cloud, or licensing owner before purchase or configuration changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anmolnagpal/reservations-hybrid-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/anmolnagpal) <br>
+## Use Case:
+
+External Azure cost owners, FinOps practitioners, and cloud engineers use this skill to analyze exported reservation, usage, and license inventory data, then plan Reservation and Azure Hybrid Benefit coverage for stable workloads.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requires exported Azure cost, usage, and license inventory data, which may include sensitive business information.
+
+Mitigation: Use only read-only exports, review pasted data for secrets or unnecessary sensitive details, and share the minimum data needed for the analysis.
+
+Risk: Reservation and Hybrid Benefit recommendations can affect financial commitments.
+
+Mitigation: Independently verify current Azure pricing, eligibility, workload stability, and commitment terms before purchasing reservations or changing license assignments.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, risk flags, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only analysis based on user-provided Azure exports or workload descriptions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown analysis with tables, recommendations, risk flags, and optional inline shell commands for exporting read-only Azure data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; the user provides exported Azure cost, usage, and license inventory data.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

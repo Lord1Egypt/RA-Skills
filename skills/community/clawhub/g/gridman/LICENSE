@@ -1,0 +1,121 @@
+古立特 Gridman — 许可协议
+Copyright (c) 2026 真寻Charlotte
+
+本项目采用分层许可。使用前请确认你要使用的内容属于哪一层。
+
+================================================================================
+一、知识层：CC BY-NC-SA 4.0
+================================================================================
+
+适用范围：本项目的全部 Markdown 内容，包括但不限于
+  SKILL.md、INSTALL.md、CHANGELOG.md、_format_standard.md、
+  operations/、references/（knowledge、workflows、extra）、gridman-character/
+
+许可协议：知识共享 署名-非商业性使用-相同方式共享 4.0 国际
+          (Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International)
+
+协议全文：https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans
+协议摘要：https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-Hans
+
+在遵守下列条件的前提下，你可以自由复制、分发、演绎本项目的知识层内容：
+
+  署名 (BY)
+    必须标明原作者「真寻Charlotte」与项目名「古立特 Gridman」，提供本协议链接，
+    并说明是否对原内容作了修改。
+
+  非商业性使用 (NC)
+    不得将本项目内容用于主要以商业利益或金钱补偿为目的的用途。
+    关于执业使用的说明，见下方第三节。
+
+  相同方式共享 (SA)
+    若你基于本项目内容进行演绎并对外发布，必须以相同的 CC BY-NC-SA 4.0
+    协议（或 CC 认定的兼容协议）授权你的演绎作品。
+
+以协议全文为准。本节文字仅为便于阅读的说明，不构成对协议全文的修改。
+
+================================================================================
+二、工具层：MIT
+================================================================================
+
+适用范围：本项目附带的脚本与代码，包括但不限于 scripts/ 目录下的 Python 文件。
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+三、执业使用的额外许可
+================================================================================
+
+为避免「非商业性使用」在专业场景下的歧义，版权方在 CC BY-NC-SA 4.0 之外
+额外授予下列许可：
+
+  允许 —— 会计师、审计师、税务师、财务人员及其他专业人士，在其自身的执业
+          活动或雇主内部工作中使用本项目内容作为辅助参考，即使该执业活动
+          本身是收费的。此类使用不视为违反本协议的非商业性条款。
+
+  禁止 —— 将本项目（整体或实质性部分）转售、再许可、或包装为付费产品、
+          付费订阅、付费培训、付费 API 或付费服务对外分发；
+          以及在上述分发中移除署名或改用更宽松的许可条件。
+
+本节仅扩大授权范围，不缩减 CC BY-NC-SA 4.0 已授予的任何权利。
+
+================================================================================
+四、不在本许可范围内的内容
+================================================================================
+
+以下内容的权利不属于版权方，版权方无权就其向第三方授予许可。使用者需自行
+确认并遵守相应权利人的要求：
+
+  1. 法律、法规、准则与规范性文件原文
+     依《中华人民共和国著作权法》第五条，法律、法规、国家机关的决议、决定、
+     命令及其官方正式译文不受著作权保护。本项目对上述文件的引用、整理、编排、
+     摘要与判断表达受本许可保护，但被引用的原文本身不在本许可范围内，也不因
+     本项目的许可而改变其法律地位。
+
+  2. 行业协会与第三方机构文件
+     本项目部分内容引用或整理自行业协会及第三方机构发布的指引、报告与规范，
+     其中部分明确保留权利。例如中国内部审计协会发布的内部审计指引，其版权
+     声明要求：转载、摘编或以其他方式使用应注明「中国内部审计协会」，且
+     未经版权方同意不得擅自出版或用于营利目的。此类内容按原权利人要求使用。
+
+  3. 教材、专业出版物与公开文章
+     本项目对教材、专业书籍及公开文章的知识点进行了重写与决策化提炼。提炼后
+     的表达受本许可保护；原作品的著作权仍归原作者与出版方所有。
+
+  4. 上游开源项目
+     见 NOTICE 文件。
+
+  5. 第三方角色、作品名称与商标
+     本项目名称与角色设定涉及的第三方作品名称、角色形象与商标，权利归其各自
+     权利人所有。本项目为非官方的爱好者性质命名，与相关权利人无隶属、赞助或
+     背书关系。
+
+================================================================================
+五、免责声明
+================================================================================
+
+本项目为专业知识整理与工作方法参考，不构成审计意见、会计鉴证、税务筹划建议、
+法律意见、投资建议或任何其他法定专业意见。
+
+财税法规、会计准则、税率与文号会随时间变化。本项目内容可能滞后于现行有效
+规定。任何实际业务判断均应以核实后的官方现行原文为准，并由具备相应资质的
+专业人员独立作出。版权方不对因使用本项目内容而产生的任何直接或间接后果
+承担责任。
+
+本许可仅授予著作权层面的权利，不包含任何商标许可，亦不包含任何明示或默示的
+专利授权。

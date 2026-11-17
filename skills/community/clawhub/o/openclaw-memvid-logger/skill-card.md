@@ -1,46 +1,63 @@
-## Description: <br>
-Logs OpenClaw conversations and events to JSONL and Memvid files so agents can preserve and search long-term conversation context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Logs OpenClaw conversations and events with role tags, saving them to JSONL and Memvid for full-context search using monthly sharded or single-file storage.
 
-## Publisher: <br>
-[stackBlock](https://clawhub.ai/user/stackBlock) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[stackblock](https://clawhub.ai/user/stackblock)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to maintain searchable long-term memory across user messages, assistant responses, sub-agent activity, tool results, and system events. It is suited for users who intentionally want broad conversation logging and accept the related privacy responsibilities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent broad logging can capture sensitive prompts, assistant responses, tool outputs, file contents, and system events. <br>
-Mitigation: Install only for intentional always-on memory use, keep JSONL and .mv2 files in protected locations, and review or delete stored logs regularly. <br>
-Risk: API mode can send captured content to the Memvid cloud service. <br>
-Mitigation: Use local free or monthly sharding mode for sensitive work, or enable API mode only after accepting third-party processing. <br>
-Risk: Configuring MEMVID_BIN, MEMVID_PATH, or JSONL_LOG_PATH to untrusted locations can expose data or execute an unexpected Memvid binary. <br>
-Mitigation: Set these environment variables only to paths and binaries under your control. <br>
-Risk: The skill does not provide built-in scope, redaction, or retention controls. <br>
-Mitigation: Limit deployment to environments where complete conversation memory is acceptable, and manage retention externally through file permissions, rotation, and deletion. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to maintain searchable long-term memory of agent sessions, including messages, tool activity, sub-agent interactions, and system events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stackBlock/openclaw-memvid-logger) <br>
-- [Memvid documentation](https://memvid.com/docs) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local JSONL logs and Memvid .mv2 memory files when installed; API mode can send data to memvid.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server release metadata) <br>
+Risk: The skill continuously records broad OpenClaw activity, including messages, tool output, and sub-agent interactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when complete conversation memory is intended and avoid using it in sessions that may expose credentials, regulated data, private files, or confidential tool output without clear consent and retention rules.
+
+Risk: Captured logs and Memvid files may persist sensitive information with limited built-in controls.
+
+Mitigation: Store JSONL and .mv2 files in an encrypted private directory, verify file permissions, and review retention or deletion practices before deployment.
+
+Risk: API mode can send captured data to a third-party Memvid service.
+
+Mitigation: Prefer local free or sharded mode for sensitive work and avoid API mode unless remote storage is acceptable.
+
+Risk: The skill invokes the external Memvid CLI while logging.
+
+Mitigation: Pin and review the Memvid CLI before use and keep the configured executable path under user control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stackblock/skills/openclaw-memvid-logger)
+- [Memvid documentation](https://memvid.com/docs)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSONL records, Memvid .mv2 files, and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-file or monthly sharded storage modes and can call the Memvid CLI to create and append memory files.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

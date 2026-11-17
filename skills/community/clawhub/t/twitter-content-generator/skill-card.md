@@ -1,43 +1,59 @@
-## Description: <br>
-AI-powered Twitter/X content generator. Generate engaging tweets, threads, and content strategies using Sloan agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered Twitter/X content generator for tweets, threads, and content strategies using the Sloan agent.
 
-## Publisher: <br>
-[icepopma](https://clawhub.ai/user/icepopma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[icepopma](https://clawhub.ai/user/icepopma)
 
-## Use Case: <br>
-Content creators, marketers, and social media managers use this skill to generate Twitter/X tweets, multi-post threads, and content strategies with configurable style, tone, hashtags, and emojis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The billing flow is inconsistent and can make real SkillPay calls with an embedded merchant key. <br>
-Mitigation: Confirm which merchant key and account are used before generation, use test mode for evaluation, and avoid running npm test with real payment credentials. <br>
-Risk: Server security guidance flags package-lock provenance issues. <br>
-Mitigation: Verify dependency sources and lockfile integrity before installing or running the skill in a trusted environment. <br>
+## Use Case:
 
+Content creators, marketers, and social media managers use this skill to generate tweets, multi-post threads, and short content strategies with configurable style, tone, hashtags, and emojis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/icepopma/twitter-content-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/icepopma) <br>
-- [GitHub support repository](https://github.com/icepopma/twitter-content-generator) <br>
-- [SkillPay payment provider](https://skillpay.me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text output with generated social posts and metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate a single tweet, a numbered thread, or a 7-day content strategy; normal runs may initiate a 0.002 USDT SkillPay charge before generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata and SKILL.md frontmatter; package.json reports 1.1.0) <br>
+Risk: The security evidence says the skill automatically contacts a payment service before generating content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user configuration and confirmation for paid charges, and use test mode before any paid run.
+
+Risk: The security evidence reports an embedded merchant credential and recommends review before install.
+
+Mitigation: Remove and rotate the embedded credential, require SKILLPAY_MERCHANT_KEY to be provided by the user, and review the payment flow before deployment.
+
+Risk: The security guidance flags package version misalignment and non-HTTPS registry sources.
+
+Mitigation: Align package, lockfile, and release versions, then regenerate dependency metadata from HTTPS registry sources before treating the release as low risk.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/icepopma/skills/twitter-content-generator)
+- [SkillPay](https://skillpay.me)
+- [Artifact-declared GitHub Support Link](https://github.com/icepopma/twitter-content-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [CLI text containing generated tweet, thread, or content strategy content plus run metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Normal runs process a 0.002 USDT payment before generation; test mode skips payment.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

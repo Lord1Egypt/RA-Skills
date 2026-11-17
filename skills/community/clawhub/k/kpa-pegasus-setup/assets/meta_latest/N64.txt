@@ -1,0 +1,111 @@
+collection: N64
+sort-by: 10
+shortname: n64
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/mupen64plus_next_gles3_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 冲浪大赛
+file: 冲浪大赛.v64
+assets.box_front: Imgs/冲浪大赛.png
+description: 《冲浪大赛》，由 Nintendo 出品，1997 年发行，竞速类游戏，任天堂 N64 平台，支持 4-4 人游玩。
+publisher: Nintendo
+release: 1997
+genre: Racing
+players: 4
+game: 动物之森
+file: 动物之森.n64
+assets.box_front: Imgs/动物之森.png
+description: 《动物之森》，任天堂 N64 平台。
+game: 塞尔达传说：时之笛
+file: 塞尔达传说：时之笛.n64
+assets.box_front: Imgs/塞尔达传说：时之笛.png
+description: 《塞尔达传说：时之笛》，任天堂 N64 平台。
+game: 塞尔达传说：梅祖拉的假面
+file: 塞尔达传说：梅祖拉的假面.n64
+assets.box_front: Imgs/塞尔达传说：梅祖拉的假面.png
+description: 《塞尔达传说：梅祖拉的假面》，任天堂 N64 平台。
+game: 恶魔城默示录
+file: 恶魔城默示录.z64
+assets.box_front: Imgs/恶魔城默示录.png
+description: 《恶魔城默示录》，由 Konami 出品，1999 年发行，平台跳跃类游戏，任天堂 N64 平台，单人游玩。
+publisher: Konami
+release: 1999
+genre: Platform
+players: 1
+game: 报童
+file: 报童.v64
+assets.box_front: Imgs/报童.png
+description: 《报童》，由 Midway 出品，2000 年发行，体育类游戏，任天堂 N64 平台，单人游玩。
+publisher: Midway
+release: 2000
+genre: Sports
+players: 1
+game: 星之卡比64：水晶碎片
+file: 星之卡比64：水晶碎片.n64
+assets.box_front: Imgs/星之卡比64：水晶碎片.png
+description: 《星之卡比64：水晶碎片》，由 Nintendo 出品，2000 年发行，平台跳跃类游戏，任天堂 N64 平台，支持 4-4 人游玩。
+publisher: Nintendo
+release: 2000
+genre: Platform
+players: 4
+game: 森喜刚64
+file: 森喜刚64.n64
+assets.box_front: Imgs/森喜刚64.png
+description: 《森喜刚64》，由 Nintendo 出品，1999 年发行，平台跳跃类游戏，任天堂 N64 平台，支持 4-4 人游玩。
+publisher: Nintendo
+release: 1999
+genre: Platform
+players: 4
+game: 泡泡龙
+file: 泡泡龙.v64
+assets.box_front: Imgs/泡泡龙.png
+description: 《泡泡龙》，由 Acclaim 出品，1999 年发行，策略类游戏，任天堂 N64 平台，支持 4-4 人游玩。
+publisher: Acclaim
+release: 1999
+genre: Strategy
+players: 4
+game: 火爆炸弹人2
+file: 火爆炸弹人2.n64
+assets.box_front: Imgs/火爆炸弹人2.png
+description: 《火爆炸弹人2》是 Hudson Soft 于 2000 年在 N64 平台推出的动作游戏。
+  本作延续了系列经典的爆破对战玩法，支持最多 4 名玩家同屏竞技。
+publisher: Vatical Entertainment
+release: 2000
+genre: Action
+players: 4
+
+game: 碟中谍
+file: 碟中谍.v64
+assets.box_front: Imgs/碟中谍.png
+description: 《碟中谍》，由 Ocean 出品，1998 年发行，动作类游戏，任天堂 N64 平台，单人游玩。
+publisher: Ocean
+release: 1998
+genre: Action
+players: 1
+game: 纸片马力欧64
+file: 纸片马力欧64.n64
+assets.box_front: Imgs/纸片马力欧64.png
+description: 《纸片马力欧64》，任天堂 N64 平台。
+game: 超级杰克龙3
+file: 超级杰克龙3.v64
+assets.box_front: Imgs/超级杰克龙3.png
+description: 《超级杰克龙3》，由 Crave Entertainment 出品，1999 年发行，平台跳跃类游戏，任天堂 N64 平台，单人游玩。
+publisher: Crave Entertainment
+release: 1999
+genre: Platform
+players: 1
+game: 超级杰克龙64
+file: 超级杰克龙64.v64
+assets.box_front: Imgs/超级杰克龙64.png
+description: 《超级杰克龙64》，由 GT Interactive 出品，1998 年发行，平台跳跃类游戏，任天堂 N64 平台，单人游玩。
+publisher: GT Interactive
+release: 1998
+genre: Platform
+players: 1
+game: 马里奥高尔夫64
+file: 马里奥高尔夫64.n64
+assets.box_front: Imgs/马里奥高尔夫64.png
+description: 《马里奥高尔夫64》，由 Nintendo 出品，1999 年发行，体育类游戏，任天堂 N64 平台，支持 4-4 人游玩。
+publisher: Nintendo
+release: 1999
+genre: Sports
+players: 4

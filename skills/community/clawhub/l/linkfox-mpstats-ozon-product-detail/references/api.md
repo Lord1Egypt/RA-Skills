@@ -1,23 +1,23 @@
-# MPSTATS Ozon 商品详情（批量）API 参考
+# MPSTATS Ozon 商品详情（单个 SKU）API 参考
 
 ## 调用规范
 
 - **请求地址**：`${LINKFOX_TOOL_GATEWAY}/mpstats/ozon/productDetail`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和算力问题** 处理）
 
 ## 请求参数
 
-POST Body（JSON）。以下字段与工具网关当前登记的「MPSTATS-Ozon-商品详情」入参 schema 一致（同步日期 2026-04-30）。
+POST Body（JSON）。以下字段与工具网关当前登记的「MPSTATS-Ozon-商品详情」入参 schema 一致（同步日期 2026-09-01）。
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| productIds | array | 是 | Ozon 商品 ID 列表（整数或字符串），**单次最多 100 个**，超过请分批调用 |
-| startDate | string | 否 | 统计起始日，格式 `YYYY-MM-DD`；整批共享；最晚可选昨日 |
-| endDate | string | 否 | 统计结束日，格式 `YYYY-MM-DD`；整批共享；最晚可选昨日 |
-| includeFbs | boolean | 否 | 是否包含 FBS 数据；整批共享 |
+| productId | integer\|string | 是 | 单个 Ozon 商品 ID（SKU）；不接受数组/列表 |
+| startDate | string | 否 | 统计起始日，格式 `YYYY-MM-DD`；最晚可选昨日 |
+| endDate | string | 否 | 统计结束日，格式 `YYYY-MM-DD`；最晚可选昨日 |
+| includeFbs | boolean | 否 | 是否包含 FBS 数据 |
 
-> 服务端并发请求每个 SKU，单条失败自动重试一次；支持部分成功。
+> `productIds` 已废弃；本 skill 只接受单个 `productId`。
 
 ## 响应结构
 
@@ -26,10 +26,10 @@ POST Body（JSON）。以下字段与工具网关当前登记的「MPSTATS-Ozon-
 | code | string | 返回码（字符串），`"200"` 表示成功 |
 | errcode | integer | 返回码（整数），`200` 表示成功 |
 | msg / errmsg | string | 消息；成功为 `ok` |
-| total | integer | 返回的 SKU 数（= `successCount` + `failedCount`） |
-| successCount | integer | 成功返回卡片的 SKU 数 |
-| failedCount | integer | 失败的 SKU 数 |
-| failures | array | 失败 SKU 明细列表（每项含失败的 `productId` 与错误信息） |
+| total | integer | 返回的 SKU 数（通常为 0 或 1，= `successCount` + `failedCount`） |
+| successCount | integer | 成功返回卡片的 SKU 数（通常为 0 或 1） |
+| failedCount | integer | 失败的 SKU 数（通常为 0 或 1） |
+| failures | array | 失败 SKU 明细列表（通常最多 1 项，每项含失败的 `productId` 与错误信息） |
 | products | array | 商品卡列表（详见下方） |
 | columns | array | 渲染列定义 |
 | costTime | integer | 接口耗时（毫秒） |
@@ -111,8 +111,9 @@ POST Body（JSON）。以下字段与工具网关当前登记的「MPSTATS-Ozon-
 | errcode | 含义 | 处理建议 |
 |---------|------|----------|
 | 200 | 成功 | 正常解析 `products` |
-| 401 | 认证失败 | 检查 `Authorization` 请求头是否正确携带 API Key |
-| 其他非 200 值 | 业务异常 | 查看 `errmsg` / `msg`；常见为批量超过 100、日期越过昨日等 |
+| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
+| 402 | 算力或余额不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和算力问题** 处理。 |
+| 其他非 200 值 | 业务异常 | 查看 `errmsg` / `msg`；常见为缺少/非法 `productId`、日期越过昨日等 |
 
 ## curl 示例
 
@@ -121,7 +122,7 @@ curl -X POST https://tool-gateway.linkfox.com/mpstats/ozon/productDetail \
   -H "Authorization: $LINKFOXAGENT_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "productIds": [1786874757, 151623766, 142257239],
+    "productId": 1786874757,
     "startDate": "2025-03-01",
     "endDate": "2025-03-31",
     "includeFbs": true
@@ -142,7 +143,7 @@ curl -X POST https://tool-gateway.linkfox.com/mpstats/ozon/productDetail \
   "skillName": "linkfox-mpstats-ozon-product-detail",
   "sentiment": "NEGATIVE",
   "category": "BUG",
-  "content": "Batch with 80 SKUs returned only 40 entries."
+  "content": "productId 1786874757 returned an empty products list despite a successful response."
 }
 ```
 

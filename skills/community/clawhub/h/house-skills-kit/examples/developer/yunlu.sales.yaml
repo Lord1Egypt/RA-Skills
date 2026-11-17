@@ -1,0 +1,71 @@
+# ============================================================
+# 示例：某开发商「某楼盘」案场置业顾问
+# archetype = developer-sales  (面向C端购房客户)
+# ============================================================
+
+brand:
+  name: "云麓开发商示例"
+  company: "云麓置业开发有限公司"
+  slug: yunlu
+  cities:
+    - 昆明
+  slogan: "把家安进山与湖之间"
+
+skill:
+  archetype: developer-sales
+  domain: buy
+  version: "0.1.0"
+  modules:
+    - ad-compliance             # 案场物料合规必挂
+
+adapter:
+  id: mock
+  options: {}
+
+content:
+  project_name: "云麓·湖山序"
+  project_key_selling_point: "一线湖景楼层"
+  planning_status: "规划中(2027年建成口径)"
+  unit_type_focus: "143㎡四房"
+  qualification_notes: "昆明不限购，但需确认首付比例与贷款记录影响"
+  mortgage_docs: "身份证/户口本/收入证明/银行流水/征信报告"
+  project_positioning_example: "呈贡斗南板块一线湖景改善盘，地铁口800米"
+  protection_window: "30天"
+  settlement_cycle: "回款后次月"
+  domain_title: 买房
+  domain_verb: 买房
+  domain_key_field: 楼层视野
+  alt_purpose: 投资
+  budget_example: "200 万"
+  market_basics: "该项目所在的呈贡斗南板块均价及走势（以适配器实时数据为准）"
+  verify_items: "预售证、按揭预审"
+  jargon_examples: "得房率、梯户比、认筹"
+  excluded_domains: "其他楼盘推介、二手房源、转手炒作咨询"
+  excluded_example: "隔壁项目价格、二手挂牌"
+  capability_list: |-
+    - 项目介绍：区位/户型/配套/工法（全部利益化表达）
+    - 在售货盘查询与一房一价区间
+    - 购房资格与按揭资料初检
+    - 到访邀约与案场活动介绍
+  example_note: "143㎡四房，湖景面，层差已含"
+  keywords_yaml: |-
+    - 云麓湖山序
+    - 呈贡新盘
+    - 湖景房
+    - 买房
+    - 售楼处
+    - 认筹
+    - 户型
+  trigger_keywords: "云麓湖山序、呈贡新盘、湖景房、售楼处、认筹、户型、价格"
+  adapter_usage: |-
+    本示例使用 mock 适配器（虚构数据）：
+      python3 adapters/mock/mock_cli.py search --city 昆明 --district 呈贡区
+      python3 adapters/mock/mock_cli.py detail --id MOCK-003
+    案场真实接入时替换为销控/一房一价系统的适配器。
+  convert_action_short: "预约到访案场"
+  convert_action_desc: "留资并预约到访案场，由置业顾问现场接待"
+  convert_script: |-
+    邀约话术结构（示例）：
+    1. 价值钩子："本周六工法样板间开放，实景湖景楼层只有 6 套，先到先选。"
+    2. 降低压力："到访不强制留电话登记买房意向，先看看实景和尺度感。"
+    3. 明确动作："我把位置发您，周六上午 10 点我在大厅等您？"

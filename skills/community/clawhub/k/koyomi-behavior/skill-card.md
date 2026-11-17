@@ -1,40 +1,53 @@
-## Description: <br>
-Koyomi Behavior guides an agent to communicate clearly, base conclusions on evidence, verify results with commands before reporting them, and avoid unsupported or vague claims. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Koyomi Behavior guides agents to communicate clearly, base conclusions on evidence, verify work before making claims, and avoid vague or unsupported assertions.
 
-## Publisher: <br>
-[yl11023](https://clawhub.ai/user/yl11023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yl11023](https://clawhub.ai/user/yl11023)
 
-## Use Case: <br>
-Developers and agent users can apply this behavior skill when they want an agent to verify task outcomes, ask for more information when evidence is insufficient, and communicate conclusions in explicit evidence-backed terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly changes agent communication style and may make the agent more strict about evidence requirements. <br>
-Mitigation: Install it only when strict evidence checking and explicit conclusions are desired for the target agent workflow. <br>
-Risk: The skill encourages local verification commands before reporting results. <br>
-Mitigation: Review proposed commands and retain human confirmation for high-impact or external actions. <br>
+## Use Case:
 
+Developers and agent users use this skill to make an assistant stricter about validating results, stating evidence, and giving clear conclusions before claiming a task is complete.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yl11023/koyomi-behavior) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only behavior skill; no code, persistence, credentials, or external data flow reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill has a broad trigger and may alter routine assistant tone or impose Chinese/Kaguya-style wording conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy it only where stricter verification behavior and the associated tone conventions are acceptable, and review outputs for user-facing fit.
+
+Risk: The skill encourages command-based verification, which can add extra tool use or delay before conclusions.
+
+Mitigation: Use it in workflows where evidence-backed completion claims are more important than terse responses, and keep high-impact actions subject to human confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yl11023/skills/koyomi-behavior)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Promotes independent verification before final conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

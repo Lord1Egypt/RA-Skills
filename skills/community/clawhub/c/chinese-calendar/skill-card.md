@@ -1,41 +1,54 @@
-## Description: <br>
-Provides Chinese calendar lookup guidance for holidays, adjusted rest days, and workday checks using the timor.tech API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取中国节假日、调休安排和工作日判断信息，并通过 timor.tech API 提供自动更新的日历查询指导。
 
-## Publisher: <br>
-[TEweitao](https://clawhub.ai/user/TEweitao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teweitao](https://clawhub.ai/user/teweitao)
 
-## Use Case: <br>
-Developers and agents use this skill to check whether China-specific dates are workdays or holidays, retrieve annual holiday schedules, and build reminders that account for adjusted work and rest days. <br>
-
-### Deployment Geography for Use: <br>
-Global; calendar data is specific to China. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Date queries are sent to the third-party timor.tech API, which may reveal scheduling intent. <br>
-Mitigation: Avoid confidential scheduling or sensitive operational planning and only query dates that are appropriate to share with the service. <br>
-Risk: Holiday or workday data may be incorrect, delayed, or differ from official announcements. <br>
-Mitigation: Verify critical holiday and workday decisions against an official source before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TEweitao/chinese-calendar) <br>
-- [timor.tech Holiday Info API Example](https://timor.tech/api/holiday/info/2026-02-28) <br>
-- [timor.tech Annual Holiday API Example](https://timor.tech/api/holiday/year/2026/) <br>
+## Use Case:
 
+Agents and automation builders use this skill to check whether China calendar dates are workdays, holidays, weekends, or adjusted work/rest days. It also supports annual holiday schedule lookup and reminder workflows that depend on official public holiday arrangements.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with Bash and PowerShell command examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl for shell examples and sends date queries to timor.tech.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Calendar date lookups are sent to the third-party timor.tech API.
+
+Mitigation: Use the skill only where outbound third-party API calls are approved, and avoid confidential planning workflows unless that data sharing is acceptable.
+
+Risk: Holiday and adjusted workday answers depend on third-party maintained data.
+
+Mitigation: For high-impact scheduling decisions, verify important dates against an authoritative public holiday source before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teweitao/skills/chinese-calendar)
+- [timor.tech holiday info API example](https://timor.tech/api/holiday/info/2026-02-28)
+- [timor.tech annual holiday API example](https://timor.tech/api/holiday/year/2026/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Code, Configuration]
+
+**Output Format:** [Markdown with Bash, PowerShell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for shell examples; API responses are JSON from timor.tech.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

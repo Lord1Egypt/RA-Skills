@@ -1,38 +1,52 @@
-## Description: <br>
-Perform advanced filesystem tasks including recursive listing, name and content searching, batch copying, moving, deleting, and directory size and type analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform advanced filesystem tasks including recursive listing, name and content searching, batch copying, moving, deleting, and directory size and type analysis.
 
-## Publisher: <br>
-[srikanth-hn](https://clawhub.ai/user/srikanth-hn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[srikanth-hn](https://clawhub.ai/user/srikanth-hn)
 
-## Use Case: <br>
-Developers and operators use this skill to ask an agent for practical filesystem workflows, including listing directories, searching files and content, analyzing directory structure and size, and preparing scoped batch file operations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Batch copy, move, delete, rename, or sed replacement commands can modify or remove unintended files if paths or matches are too broad. <br>
-Mitigation: Review the exact command, path scope, and file list before execution; keep operations inside the intended project directory and back up important files before destructive changes. <br>
-Risk: Filesystem searches and previews can expose private or sensitive files when run across broad directories. <br>
-Mitigation: Limit searches to the intended workspace and avoid system, home, credential, or private directories unless that access is explicitly intended. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to guide filesystem inspection, search, cleanup, batch file operations, and directory analysis workflows through shell-command examples and safety reminders.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands should be reviewed and scoped before execution, especially copy, move, delete, rename, and sed replacement operations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Batch copy, move, delete, or rename commands can affect many files at once or remove files irreversibly.
+
+Mitigation: Confirm the target directory and file list before execution, prefer dry runs or backups, and review destructive commands before running them.
+
+Risk: Filesystem commands may target sensitive system directories or require elevated permissions.
+
+Mitigation: Avoid sudo and system directories unless that level of access is explicitly intended and the scope has been confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/srikanth-hn/skills/doctor-nexus-filesystem)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes filesystem operation examples and safety guidance for reviewing targets before batch edits, moves, or deletes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

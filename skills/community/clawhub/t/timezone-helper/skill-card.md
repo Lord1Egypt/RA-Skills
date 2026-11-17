@@ -1,41 +1,50 @@
-## Description: <br>
-Timezone Helper converts times, shows world clocks, plans meetings across time zones, and provides DST guidance using built-in IANA timezone data for 200+ cities without APIs or scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Timezone Helper converts times between zones, provides world clock answers, plans meetings across regions, and explains DST using built-in city-to-IANA mapping data.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to convert times, check world clocks, plan meetings across regions, and reason about DST-sensitive scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DST-sensitive timezone guidance can become outdated because the skill relies on static reference data. <br>
-Mitigation: For important scheduling, legal, or business deadlines, verify results against a current authoritative timezone source. <br>
-Risk: Ambiguous abbreviations or partial place names can map to the wrong timezone. <br>
-Mitigation: Clarify ambiguous inputs such as IST or CST before giving a final conversion. <br>
+## Use Case:
 
+External users and developers use this skill to answer time zone conversion, current-time, DST, and meeting-planning questions without network calls or API keys.
 
-## Reference(s): <br>
-- [City to IANA Timezone Mapping](references/cities.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ToBeWin/timezone-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style text with time conversions, world clock tables, meeting options, and DST notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline reference guidance with no code execution, credential access, persistence, or data transmission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Time-zone and DST rules can change, and precise current-time answers depend on the system clock.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as convenience guidance; confirm the current date, DST status, and authoritative time-zone rules for high-stakes scheduling.
+
+## Reference(s):
+
+- [City to IANA Timezone Mapping](references/cities.md)
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/timezone-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-formatted time zone conversions, world clock summaries, meeting planner options, and DST explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fully offline; current-time answers depend on the system clock and DST-sensitive results should be checked for high-stakes scheduling.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

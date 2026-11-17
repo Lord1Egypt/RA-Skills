@@ -40,7 +40,7 @@ grep -c "<html" {workspace}/paper.html
 使用 `scripts/extract_html_text.py` 提取干净的正文文本，保留数学公式和表格基本结构：
 
 ```bash
-{PYTHON} scripts/extract_html_text.py {workspace}/paper.html {workspace}/paper_text.txt
+python3 scripts/extract_html_text.py {workspace}/paper.html {workspace}/paper_text.txt
 ```
 
 脚本将 `<math>` 标签转为 LaTeX 格式（`$...$` / `$$...$$`），表格转为管道分隔行，输出到 `paper_text.txt`。
@@ -50,7 +50,7 @@ grep -c "<html" {workspace}/paper.html
 使用 `scripts/extract_figure_urls.py` 扫描 HTML 中所有 `<figure>` 块，提取可下载图片 URL 并识别内联 SVG：
 
 ```bash
-{PYTHON} scripts/extract_figure_urls.py {workspace}/paper.html "{HTML_URL}"
+python3 scripts/extract_figure_urls.py {workspace}/paper.html "{HTML_URL}"
 ```
 
 脚本输出两类结果：
@@ -100,7 +100,7 @@ curl -sL "{FIGURE_URL}" -o {workspace}/figures/{FIGURE_NAME}
 
 识别方式：`<figure>` 内包含 `<svg>` 标签而非 `<img>` 标签。
 
-处理方法——**直接将 SVG 转为 PNG**（依赖 `cairosvg`，首次使用时安装：`pip install cairosvg`）：
+处理方法——**直接将 SVG 转为 PNG**（依赖 `cairosvg`，首次使用时安装：`python3 -m pip install cairosvg`）：
 
 ```python
 import re, cairosvg

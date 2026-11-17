@@ -1,44 +1,55 @@
-## Description: <br>
-Monitors daily DataWorks task runs, summarizes success, failure, and running counts, and sends Feishu reports with failure alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily monitors Alibaba Cloud DataWorks task runs, summarizes status counts and failed tasks, and sends the report and alerts through Feishu.
 
-## Publisher: <br>
-[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexmayanjun-collab](https://clawhub.ai/user/alexmayanjun-collab)
 
-## Use Case: <br>
-Data engineers and operations teams use this skill to check the previous day's DataWorks task status, review failed tasks, and receive a daily Feishu report with alerts when failures are present. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses cloud credentials to read DataWorks task metadata. <br>
-Mitigation: Configure a least-privilege RAM subaccount with only the DataWorks project and instance query permissions needed for monitoring. <br>
-Risk: Failure details may be sent to a broad or unintended Feishu recipient. <br>
-Mitigation: Confirm the Feishu recipient or webhook before enabling notifications, and avoid sending detailed error messages to broad chats unless approved. <br>
-Risk: The daily schedule may continue sending reports after it is no longer needed. <br>
-Mitigation: Enable the 9:00 daily schedule only when the operator knows how to disable or change it. <br>
+## Use Case:
 
+Data platform operators and engineers use this skill to check the previous day's DataWorks task health, identify failures, and notify stakeholders through Feishu.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/alexmayanjun-collab/dataworks-daily-monitor) <br>
-- [README](artifact/README.md) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style daily status report with environment variable configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include DataWorks task counts, failed task details, console links, Feishu notification text, and failure alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill recommends persistent Alibaba Cloud AccessKeys for DataWorks monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a RAM subaccount or short-lived credentials with read-only DataWorks permissions, and avoid storing AccessKeys in shell startup files or broad application configuration.
+
+Risk: Generated Feishu reports may disclose operational task names, owners, error messages, or console links.
+
+Mitigation: Confirm the Feishu destination before enabling notifications, and redact sensitive task details or links when they reveal business information.
+
+## Reference(s):
+
+- [DataWorks API Documentation](https://help.aliyun.com/document_detail/138726.html)
+- [ListDagInstances API](https://help.aliyun.com/document_detail/138730.html)
+- [DataWorks Monitoring Best Practices](https://help.aliyun.com/document_detail/144230.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown report with status counts, failed-task details, console links, and Feishu notification text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational task names, owners, error messages, and DataWorks console links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

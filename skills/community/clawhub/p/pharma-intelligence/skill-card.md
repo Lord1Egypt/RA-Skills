@@ -1,47 +1,62 @@
-## Description: <br>
-In-depth, multi-region pharmaceutical intelligence search and synthesis, plus drug repurposing, target discovery, clinical evidence review, and bioactivity analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+In-depth, multi-region pharmaceutical intelligence search and synthesis for drug approvals, clinical trials, regulatory submissions, pipeline assets, patent landscapes, competitive intelligence, scientific evidence, disease targets, genetic associations, and compound bioactivity.
 
-## Publisher: <br>
-[sciminer](https://clawhub.ai/user/sciminer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sciminer](https://clawhub.ai/user/sciminer)
 
-## Use Case: <br>
-Pharmaceutical intelligence users, biomedical researchers, and developers use this skill to gather source-grounded regulatory, clinical, literature, target, genetic association, and compound bioactivity evidence across major markets and public biomedical databases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad outbound web requests while collecting biomedical and regulatory evidence. <br>
-Mitigation: Run it in a constrained workspace and review requested sources before execution. <br>
-Risk: Some bundled scripts can save raw API responses to local paths. <br>
-Mitigation: Keep raw saving disabled unless needed and write raw outputs only to a dedicated safe directory. <br>
-Risk: Untrusted JSON inputs may influence script requests or output paths. <br>
-Mitigation: Avoid passing untrusted JSON inputs to the bundled scripts. <br>
+## Use Case:
 
+Employees, external users, developers, and analysts use this skill to gather source-grounded pharmaceutical and biomedical intelligence across regulatory, clinical, literature, patent, safety, target-discovery, and bioactivity sources.
 
-## Reference(s): <br>
-- [Pharma Intelligence Workflow](references/pharma-intelligence-workflow.md) <br>
-- [Sources by Region](references/sources-by-region.md) <br>
-- [Sub-Skills Quick Reference](references/sub-skills.md) <br>
-- [Drug Naming Conventions by Region](references/drug-naming.md) <br>
-- [Regulatory Timelines by Agency](references/regulatory-timelines.md) <br>
-- [GEO Within Entrez](skills/ncbi-entrez-skill/references/geo.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, citations, JSON request examples, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite source tier and access date; bundled scripts may return compact JSON summaries or save raw API responses when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Helper scripts can make broad public API and web requests, and untrusted URL or path inputs could steer the agent outside the intended biomedical sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a sandboxed agent runtime, keep filesystem write access limited, and restrict requests to the documented public biomedical sources.
+
+Risk: Prompts or retrieved content could influence tool parameters such as base_url, path, query_path, or raw_output_path.
+
+Mitigation: Require user oversight for tool inputs and review generated commands or saved-output paths before execution in sensitive environments.
+
+Risk: Pharmaceutical evidence can be incomplete, stale, region-specific, or blocked by source availability.
+
+Mitigation: Prefer official regulatory and trial registry sources, cite source tier and access date, rerun live searches for current answers, and clearly label unresolved gaps or conflicts.
+
+## Reference(s):
+
+- [Sub-Skills Quick Reference](references/sub-skills.md)
+- [Sources by Region](references/sources-by-region.md)
+- [Pharma Intelligence Workflow](references/pharma-intelligence-workflow.md)
+- [Drug Naming Conventions by Region](references/drug-naming.md)
+- [Regulatory Timelines by Agency](references/regulatory-timelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/sciminer/skills/pharma-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, tables, cited findings, JSON API request examples, and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should cite source tier and access date, distinguish missing data from negative findings, and save raw API payloads only when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

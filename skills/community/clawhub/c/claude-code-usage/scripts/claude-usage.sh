@@ -105,8 +105,6 @@ if [ -z "$CREDS" ]; then
 fi
 
 TOKEN=$(echo "$CREDS" | grep -o '"accessToken":"[^"]*"' | sed 's/"accessToken":"//;s/"//')
-REFRESH_TOKEN=$(echo "$CREDS" | grep -o '"refreshToken":"[^"]*"' | sed 's/"refreshToken":"//;s/"//')
-EXPIRES_AT=$(echo "$CREDS" | grep -o '"expiresAt":[0-9]*' | sed 's/"expiresAt"://')
 
 if [ -z "$TOKEN" ]; then
   if [ "$FORMAT" = "json" ]; then
@@ -115,38 +113,6 @@ if [ -z "$TOKEN" ]; then
     echo "❌ Could not extract access token"
   fi
   exit 1
-fi
-
-# Check if token is expired and refresh if needed
-if [ -n "$EXPIRES_AT" ]; then
-  NOW_MS=$(($(date +%s) * 1000))
-  if [ "$NOW_MS" -gt "$EXPIRES_AT" ]; then
-    # Token expired - trigger Claude CLI to auto-refresh
-    if command -v claude >/dev/null 2>&1; then
-      # Run a simple query to trigger token refresh
-      echo "2+2" | claude >/dev/null 2>&1 || true
-      
-      # Reload credentials from keychain after refresh
-      if [[ "$OSTYPE" == "darwin"* ]]; then
-        CREDS=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null || echo "")
-      else
-        if command -v secret-tool >/dev/null 2>&1; then
-          CREDS=$(secret-tool lookup application "Claude Code" 2>/dev/null || echo "")
-        fi
-      fi
-      
-      if [ -n "$CREDS" ]; then
-        TOKEN=$(echo "$CREDS" | grep -o '"accessToken":"[^"]*"' | sed 's/"accessToken":"//;s/"//')
-      fi
-    else
-      if [ "$FORMAT" = "json" ]; then
-        echo '{"error":"token_expired","session":null,"weekly":null}'
-      else
-        echo "❌ OAuth token expired. Run 'claude' CLI to refresh."
-      fi
-      exit 1
-    fi
-  fi
 fi
 
 # Fetch usage from API

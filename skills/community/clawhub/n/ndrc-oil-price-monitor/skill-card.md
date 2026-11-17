@@ -1,45 +1,57 @@
-## Description: <br>
-Monitor NDRC website news releases for oil price adjustment announcements on 10-working-day windows and emit Feishu-ready notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor NDRC (National Development and Reform Commission) website for oil price adjustment announcements, checking every 10 working days at 17:30 from 2026-04-07 and pushing notifications via Feishu.
 
-## Publisher: <br>
-[manucode2000-max](https://clawhub.ai/user/manucode2000-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[manucode2000-max](https://clawhub.ai/user/manucode2000-max)
 
-## Use Case: <br>
-Operators and developers use this skill to monitor China NDRC oil price announcements, skip non-window days, and generate concise notification output when potential price adjustments are detected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China-specific source data and scheduling assumptions. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notification and scheduling behavior is under-documented, including how Feishu delivery is triggered. <br>
-Mitigation: Review SKILL.md and oil_price_monitor.py before installation, then document the actual scheduler, stdout capture behavior, credentials, and Feishu delivery path used in the target environment. <br>
-Risk: The skill runs web scraping, local cache writes, and a subprocess path that should be understood before deployment. <br>
-Mitigation: Confirm the exact commands, cache location, subprocess behavior, and network destinations before enabling scheduled execution. <br>
-Risk: Dependencies are version-ranged rather than pinned to reviewed builds. <br>
-Mitigation: Pin and audit requests, beautifulsoup4, lxml, and the required chinese-workdays skill before installing in a production environment. <br>
-Risk: Extracted price adjustment details may be incomplete or incorrect if the NDRC page layout changes or scraper matching is too broad. <br>
-Mitigation: Treat generated alerts as advisory and verify material price-change information against the official NDRC announcement before acting on it. <br>
+## Use Case:
 
+Operators and developers use this skill to monitor China's NDRC news releases for refined oil price adjustment notices and receive scheduled Feishu/OpenClaw announcements. It can also report upcoming adjustment windows and recent NDRC news for manual checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manucode2000-max/ndrc-oil-price-monitor) <br>
-- [NDRC news releases](https://www.ndrc.gov.cn/xwdt/xwfb/) <br>
+### Deployment Geography for Use:
 
+Global, with China-focused data sources and scheduling logic.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notification text and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes a local adjustment-window cache, fetches NDRC web pages, and normally skips execution on non-window days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved ClawHub release evidence) <br>
+Risk: Security evidence marks the release suspicious because unsafe adjacent Python imports and an unnecessary subprocess search stub require review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, run it only where the skills directory is not writable by less-trusted code, and remove or disable the subprocess search stub if it is not required.
+
+Risk: The skill depends on chinese-workdays and unpinned Python packages.
+
+Mitigation: Verify the chinese-workdays dependency and pin or lock Python dependencies before operational use.
+
+Risk: The skill performs scheduled NDRC web requests and sends stdout announcements through the configured OpenClaw/Feishu path.
+
+Mitigation: Confirm the scheduled request frequency, Feishu delivery path, and Chinese-language output are intended for the deployment environment.
+
+## Reference(s):
+
+- [NDRC news releases](https://www.ndrc.gov.cn/xwdt/xwfb/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown/plain text status messages and notification text emitted to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes calculated adjustment-window dates, NDRC article titles, source URLs, and cautionary text to confirm against official notices.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

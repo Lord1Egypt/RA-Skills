@@ -1,44 +1,59 @@
-## Description: <br>
-Canvas as an app platform. Build, store, and run rich visual apps on the OpenClaw Canvas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Canvas OS helps agents build, store, and run rich visual HTML, CSS, and JavaScript apps on the OpenClaw Canvas.
 
-## Publisher: <br>
-[Knightluozichu](https://clawhub.ai/user/Knightluozichu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[knightluozichu](https://clawhub.ai/user/knightluozichu)
 
-## Use Case: <br>
-Developers and OpenClaw agent users use this skill to build, store, serve, and run rich HTML/CSS/JavaScript apps on the OpenClaw Canvas, including dashboards, trackers, and quick visual displays. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts may stop unrelated local processes when clearing a port. <br>
-Mitigation: Check the target port before opening an app, and only run close or open commands when the intended Canvas app owns the process. <br>
-Risk: Unsafe or path-like app names may cause the local server to expose unintended folders. <br>
-Mitigation: Use simple app names and keep sensitive files outside folders served through Canvas OS. <br>
-Risk: Canvas apps can send messages back to the agent through deep links. <br>
-Mitigation: Require confirmation before app-originated messages trigger consequential agent actions. <br>
+## Use Case:
 
+Developers and agent builders use this skill to create, serve, open, update, and close local Canvas apps for dashboards, trackers, quick displays, and other interactive OpenClaw visual workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Knightluozichu/canvas-os-1-0-1) <br>
-- [Canvas Loading Reference](CANVAS-LOADING.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and HTML/CSS/JavaScript app templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Canvas app instructions and helper commands that may start or stop local HTTP servers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Local web servers can expose files from the served app directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Serve only dedicated app directories with trusted contents, avoid sensitive files in app folders, and stop the server when the app is no longer needed.
+
+Risk: Port cleanup can terminate unrelated local processes using the same port.
+
+Mitigation: Use known app-specific ports and inspect the active listener before allowing cleanup or process termination.
+
+Risk: JavaScript injection and Canvas app messages can trigger unintended behavior when app content or data is untrusted.
+
+Mitigation: Use trusted HTML, JavaScript, and data only; review generated code before Canvas evaluation; and validate app-originated messages before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/knightluozichu/skills/canvas-os-1-0-1)
+- [Canvas Loading Reference](artifact/CANVAS-LOADING.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with HTML, CSS, JavaScript, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Canvas app files and provide commands for OpenClaw Canvas navigation, JavaScript evaluation, and server lifecycle management.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

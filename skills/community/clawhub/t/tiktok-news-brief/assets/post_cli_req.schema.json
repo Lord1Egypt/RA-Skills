@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "TikTok 博主作品 - 命令行入参",
+    "description": "url 会先规范成主页链接或 sec_uid。视频链接会直接失败。",
+    "required": ["url"],
+    "properties": {
+        "url": {
+            "type": "string",
+            "description": "https://www.tiktok.com/@用户名 、@用户名，或整段 MS4w 开头的 sec_uid。最长 255",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "sort": {
+            "type": "integer",
+            "description": "0=最新，1=最热。与搜索的 sort 含义不同",
+            "default": 0,
+            "enum": [0, 1]
+        },
+        "limit": {
+            "type": "integer",
+            "description": "获取数量。技能硬上限 10000（按量）。包月 Token 超过 30 返回 PLAN_LIMIT（后端 errcode 14）",
+            "minimum": 1,
+            "maximum": 10000,
+            "default": 10
+        }
+    },
+    "additionalProperties": false
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Obsidian Charts & Layout guides agents through Obsidian Charts View plugin setup, G2Plot-compatible chart code blocks, always-visible chart annotations, and bilingual Markdown layout for reports and PDF export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian Charts View plugin setup and troubleshooting guidance for creating G2Plot-based charts, always-visible annotations, and bilingual Chinese-English Markdown layouts for Obsidian notes and PDF export.
 
-## Publisher: <br>
-[l-vagod](https://clawhub.ai/user/l-vagod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[l-vagod](https://clawhub.ai/user/l-vagod)
 
-## Use Case: <br>
-Developers, analysts, and Obsidian users use this skill to install and troubleshoot the Charts View plugin, generate Pie/Bar/Column/Line/Scatter chart blocks, write chart notes into an Obsidian vault, and format bilingual Chinese-English daily reports for PDF export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party Obsidian Charts View plugin that is outside the skill package. <br>
-Mitigation: Review the third-party Obsidian plugin separately before using the workflow. <br>
-Risk: Python examples can create or overwrite Markdown notes in an Obsidian vault. <br>
-Mitigation: Set and review vault paths carefully before running file-writing examples. <br>
+## Use Case:
 
+Developers, analysts, and Obsidian users use this skill to install and configure Charts View, write valid chartsview/G2Plot chart blocks, troubleshoot rendering problems, and produce bilingual CN/EN Markdown reports suitable for Obsidian and PDF export.
 
-## Reference(s): <br>
-- [Bilingual Layout Reference](references/bilingual-layout.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/l-vagod/obsidian-charts-layout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with fenced chartsview, YAML, Python, and PowerShell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes chart templates, field-mapping guidance, troubleshooting steps, and bilingual layout rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated notes or chart blocks could contain incorrect chart syntax, misleading annotations, or content that is not appropriate for a target vault.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated Markdown and chart blocks before writing them into an Obsidian vault or exporting them to PDF.
+
+Risk: Plugin installation, enablement, and vault-writing commands can change local Obsidian configuration or files.
+
+Mitigation: Confirm the target vault, plugin ID, and command before execution, and prefer direct file writes for complex multilingual content.
+
+## Reference(s):
+
+- [Bilingual Layout Reference](references/bilingual-layout.md)
+- [ClawHub skill page](https://clawhub.ai/l-vagod/skills/obsidian-charts-layout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with fenced chartsview, YAML, shell command, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Obsidian Charts View chart blocks and bilingual CN/EN layout guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

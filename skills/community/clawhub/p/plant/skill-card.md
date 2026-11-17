@@ -1,39 +1,54 @@
-## Description: <br>
-Manage houseplant care with watering and fertilizer schedules. Use when adding plants, tracking watering, scheduling fertilizing, setting care reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage houseplant care with watering and fertilizer schedules. Use when adding plants, tracking watering, scheduling fertilizing, setting care reminders.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External users use Plant to manage houseplant records from a terminal, including watering, fertilizer schedules, reminders, costs, maintenance notes, reports, and exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plant notes, schedules, costs, and activity history are saved locally on the user's machine. <br>
-Mitigation: Avoid entering passwords or unrelated sensitive information, and remove ~/.local/share/plant manually when the stored data should be deleted. <br>
+## Use Case:
 
+External users use Plant to manage local houseplant care notes, including watering, fertilizing, reminders, inventory, reports, and care activity history.
 
-## Reference(s): <br>
-- [Plant on ClawHub](https://clawhub.ai/xueyetianya/plant) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Terminal text with local log files and JSON, CSV, or plain text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores plant-care data locally under ~/.local/share/plant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Local plant or household-care records may include sensitive personal or financial details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep entries limited to plant-care information and review local records before sharing exported files.
+
+Risk: CSV export values are not safely escaped before opening in spreadsheet software.
+
+Mitigation: Inspect and sanitize exported CSV values before opening them in spreadsheets or sharing them with others.
+
+## Reference(s):
+
+- [Plant on ClawHub](https://clawhub.ai/xueyetianya/skills/plant)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, JSON, CSV]
+
+**Output Format:** [Terminal text with optional JSON, CSV, or plain text exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores local records under ~/.local/share/plant and can export logged entries for backup.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

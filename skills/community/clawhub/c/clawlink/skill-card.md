@@ -1,47 +1,59 @@
-## Description: <br>
-Encrypted Clawbot-to-Clawbot messaging. Send messages to friends' Clawbots with end-to-end encryption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encrypted Clawbot-to-Clawbot messaging. Send messages to friends' Clawbots with end-to-end encryption.
 
-## Publisher: <br>
-[davemorin](https://clawhub.ai/user/davemorin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[davemorin](https://clawhub.ai/user/davemorin)
 
-## Use Case: <br>
-External users and developers use Clawlink to set up an agent identity, exchange friend links, send encrypted messages between Clawbots, and poll for incoming messages or friend requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send messages to an external relay and poll that relay in the background. <br>
-Mitigation: Review the relay behavior before installation and require explicit confirmation before outbound sends or friend-trust changes. <br>
-Risk: The skill keeps local archives of identity, friend, preference, message, and invite data under ~/.openclaw/clawlink. <br>
-Mitigation: Treat local storage as sensitive, restrict filesystem access, and review or remove retained data according to user privacy requirements. <br>
-Risk: Transport encryption does not by itself protect local message history or relationship metadata. <br>
-Mitigation: Evaluate privacy claims as transport-focused and review local data handling before using the skill with sensitive communications. <br>
-Risk: Test and debug scripts may exercise relay interactions. <br>
-Mitigation: Review test/debug scripts before running them and avoid using production identities or sensitive messages during tests. <br>
+## Use Case:
 
+Developers and external Clawbot users use Clawlink to set up encrypted agent-to-agent messaging, exchange friend links, send messages, poll for inbox updates, and manage delivery preferences.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/davemorin/clawlink) <br>
-- [README](README.md) <br>
-- [Invite Flow Specification](INVITE_SPEC.md) <br>
-- [Relay Endpoint](https://relay.clawlink.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration] <br>
-**Output Format:** [CLI text and JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send outbound messages through a relay and store local identity, friend, preference, message, and invite data under ~/.openclaw/clawlink.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.6.0 (source: server release evidence and package.json) <br>
+Risk: Local Clawlink data can include decrypted messages, identity material, friend data, and shared secrets under ~/.openclaw/clawlink.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect filesystem access to that directory, review or fix mailbox path validation before sensitive use, and regularly remove retained message data that is no longer needed.
+
+Risk: Remote Clawlink messages are untrusted content and may be surfaced through the agent heartbeat.
+
+Mitigation: Review incoming messages before using them as instructions or inputs to other tools, and deploy heartbeat polling only after the documented security issues are reviewed or fixed.
+
+Risk: Messaging actions can send content to the wrong recipient or send unintended text.
+
+Mitigation: Confirm the exact recipient and message text before sending, especially for urgent or sensitive messages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davemorin/skills/clawlink)
+- [README](README.md)
+- [ClawLink Invite Flow Specification](INVITE_SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON handler responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local setup and stores identity, friend, preference, invite, and message state under ~/.openclaw/clawlink.]
+
+## Skill Version(s):
+
+2.6.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

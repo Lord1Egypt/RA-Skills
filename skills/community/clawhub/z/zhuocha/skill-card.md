@@ -1,42 +1,58 @@
-## Description: <br>
-Helps authorized users assess whether bid records grouped under the same reid are true duplicates before writing confirmed deduplication decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+zhuocha helps agents verify whether bid records grouped under the same reid are true duplicates by comparing project identifiers, customers, procurement details, source text, and attachments.
 
-## Publisher: <br>
-[cybluesky](https://clawhub.ai/user/cybluesky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cybluesky](https://clawhub.ai/user/cybluesky)
 
-## Use Case: <br>
-Authorized operations or data-quality users use this skill to review groups of bid jy_id records under a shared reid, compare business fields and source text, and decide whether the records should be marked as duplicate or non-duplicate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist duplicate-review decisions to an internal result table. <br>
-Mitigation: Use it only with authorization for the relevant bidding databases and require human confirmation before insert operations. <br>
-Risk: The documented recovery path includes a full-table truncate operation. <br>
-Mitigation: Run any truncate only with a current backup, administrator approval, and a clear plan to restore or rewrite all needed records. <br>
-Risk: A mismatch between helper behavior and the documented 5200 data-source workflow can undermine automated judgments. <br>
-Mitigation: Align the helper with the documented 5200 detail-field workflow before relying on automated duplicate classifications. <br>
+## Use Case:
 
+Employees or operations analysts use this skill to review procurement and bid deduplication groups, decide whether grouped jy_id records represent true duplicates, and prepare result-table writebacks after confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cybluesky/zhuocha) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, code, shell commands] <br>
-**Output Format:** [Markdown guidance with SQL examples, Python snippets, and text summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be human-confirmed before any database insert.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: The skill can guide agents to make persistent writebacks to internal duplicate-review result tables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit preview-and-confirm step before any insert and retain enough audit detail to review each duplicate decision.
+
+Risk: The documented recovery path includes a full-table TRUNCATE operation if bad rows are inserted.
+
+Mitigation: Remove or tightly gate any full-table truncation workflow and prefer scoped correction procedures.
+
+Risk: The workflow depends on internal HTTP services and SQL-bearing API payloads.
+
+Mitigation: Use the skill only in a trusted internal database environment, prefer authenticated HTTPS or another protected channel, and scope or parameterize queries wherever the service allows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cybluesky/skills/zhuocha)
+- [ClawHub publisher profile](https://clawhub.ai/user/cybluesky)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with optional Python snippets and JSON API writeback payloads.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce duplicate/non-duplicate decisions, retained/deleted jy_id lists, reasoning, batch totals, and guarded database writeback instructions.]
+
+## Skill Version(s):
+
+1.3.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

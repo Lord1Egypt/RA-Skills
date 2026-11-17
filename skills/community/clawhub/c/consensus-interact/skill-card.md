@@ -1,44 +1,66 @@
-## Description: <br>
-Use the open-source @consensus-tools/consensus-tools engine to run multi-LLM policy-based decision workflows: post jobs, collect submissions, cast votes, and resolve outcomes with customizable consensus logic gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the open-source @consensus-tools/consensus-tools engine to run multi-LLM policy-based decision workflows: post jobs, collect submissions, cast votes, and resolve outcomes with customizable consensus logic gates.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to run consensus.tools workflows that post jobs, collect submissions, cast votes, resolve outcomes, and fetch final decisions from local-first or explicitly configured hosted boards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Hosted or global board mode can transmit job inputs, submissions, votes, or results to a remote consensus.tools service. <br>
-Mitigation: Use local mode for sensitive work unless the hosted service is explicitly trusted, and do not send secrets, private documents, or regulated data without reviewing privacy and retention terms. <br>
-Risk: Mutating workflows can post jobs, create submissions, cast votes, or resolve outcomes when network side effects and optional tools are enabled. <br>
-Mitigation: Keep network side effects disabled and require opt-in for optional mutating tools until the operator intentionally enables those actions for the deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run consensus.tools workflows end to end, including posting jobs, submitting artifacts, voting, resolving outcomes, and retrieving final decisions. It is suited to local-first multi-agent decision workflows with optional hosted-board connectivity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-interact) <br>
-- [consensus.tools API reference](references/api.md) <br>
-- [consensus.tools jobs guide](JOBS.md) <br>
-- [@consensus-tools/consensus-tools npm package](https://www.npmjs.com/package/@consensus-tools/consensus-tools) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference optional local or hosted consensus.tools workflows; hosted mutations require explicit configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata and package.json) <br>
+Risk: Hosted-board mode can send job artifacts, submissions, votes, resolutions, or credentials across a third-party data boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local mode by default; enable hosted mode and network side effects only after approving the data boundary and excluding secrets or sensitive artifacts.
+
+Risk: Mutating tools can post jobs, submit artifacts, cast votes, or resolve outcomes when enabled.
+
+Mitigation: Keep optional mutating tools opt-in and keep safety.allowNetworkSideEffects disabled unless deliberate remote mutations are required.
+
+Risk: Consensus policy choices can produce misleading outcomes when the task schema, voting mode, reward, stake, or risk tolerance is unclear.
+
+Mitigation: Escalate to a human before resolving ambiguous or high-stakes jobs and prefer manual or oracle-style resolution during early deployments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/consensus-interact)
+- [consensus-interact source](https://github.com/kaicianflone/consensus-interact)
+- [consensus-tools package](https://www.npmjs.com/package/@consensus-tools/consensus-tools)
+- [consensus-tools upstream](https://github.com/kaicianflone/consensus-tools)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw source](https://github.com/openclaw/openclaw)
+- [consensus.tools Reference](references/api.md)
+- [Jobs, modes, and policies](JOBS.md)
+- [Heartbeat workflow](HEARTBEAT.md)
+- [AI self-improvement overview](AI-SELF-IMPROVEMENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands, OpenClaw configuration examples, job workflow guidance, and status-response text.]
+
+## Skill Version(s):
+
+1.0.9 (source: package.json, metadata.json, _meta.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

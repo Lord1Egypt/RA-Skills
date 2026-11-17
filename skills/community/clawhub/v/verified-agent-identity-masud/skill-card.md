@@ -1,49 +1,65 @@
-## Description: <br>
-Enables agents to create, manage, link, prove, and verify Billions Network decentralized identities using iden3 signatures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verified Agent Identity Masud helps agents create, manage, link, prove, and verify Billions Network decentralized identities using iden3-based cryptographic signatures.
 
-## Publisher: <br>
-[masudijkp003-star](https://clawhub.ai/user/masudijkp003-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[masudijkp003-star](https://clawhub.ai/user/masudijkp003-star)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create local DID identities, sign or verify ownership challenges, and link an agent identity to a human owner through the Billions Network. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles durable private keys and can store them with unsafe defaults. <br>
-Mitigation: Set BILLIONS_NETWORK_MASTER_KMS_KEY before creating or importing identities, keep the master key outside chat and logs, and run the skill only on a trusted machine. <br>
-Risk: Passing private keys on the command line can expose credentials through shell history or process inspection. <br>
-Mitigation: Avoid command-line private key arguments unless there is an explicit, reviewed operational need; prefer generating new identities in a trusted environment. <br>
-Risk: Signing a challenge or creating a human-agent linking URL can bind an agent identity to a user workflow. <br>
-Mitigation: Require explicit user confirmation before signing challenges or creating linking URLs, and stop if identity checks or script execution fail. <br>
-Risk: Server evidence marks the security verdict as suspicious. <br>
-Mitigation: Review the publisher, Billions/iden3 workflow, and local key-storage behavior before installation or deployment. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to create Billions Network DIDs, link an agent DID to a human owner, and run challenge signing or signature verification flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/masudijkp003-star/verified-agent-identity-masud) <br>
-- [Publisher profile](https://clawhub.ai/user/masudijkp003-star) <br>
-- [Billions Network](https://billions.network/) <br>
-- [OpenClaw environment documentation](https://docs.openclaw.ai/help/environment) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON or text script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local identity records, DID strings, verification URLs, challenge strings, and signature verification results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores long-lived agent identity keys under $HOME/.openclaw/billions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where this storage location is acceptable and configure BILLIONS_NETWORK_MASTER_KMS_KEY before creating or importing identities.
+
+Risk: Real private keys passed on the command line may be exposed through shell history or process inspection.
+
+Mitigation: Avoid passing real private keys on the command line.
+
+Risk: Generated proofs and linking URLs can be sensitive.
+
+Mitigation: Treat generated proofs and linking URLs as sensitive material and share them only with intended parties.
+
+Risk: The security evidence recommends review before production trust decisions.
+
+Mitigation: Review the dependency state and authentication challenge behavior before using the skill for production trust decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/masudijkp003-star/skills/verified-agent-identity-masud)
+- [Billions Network](https://billions.network/)
+- [Skill usage instructions](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+- [OpenClaw environment documentation](https://docs.openclaw.ai/help/environment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or string script outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce DIDs, verification URLs, signed challenge status, identity listings, and local configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

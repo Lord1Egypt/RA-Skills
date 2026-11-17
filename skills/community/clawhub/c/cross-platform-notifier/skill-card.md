@@ -1,38 +1,54 @@
-## Description: <br>
-Triggers native system notifications across Windows, macOS, and Linux (including WSL) to alert the user when tasks are complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triggers native system notifications across Windows, macOS, and Linux, including WSL, to alert the user when tasks are complete.
 
-## Publisher: <br>
-[1tsnakers](https://clawhub.ai/user/1tsnakers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1tsnakers](https://clawhub.ai/user/1tsnakers)
 
-## Use Case: <br>
-Developers and agents use this skill to send desktop alerts when long-running tasks finish, urgent blockers need attention, or high-impact actions complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notification title or message text that includes untrusted strings may be interpreted by PowerShell or AppleScript command wrappers. <br>
-Mitigation: Use simple trusted notification text, and avoid passing raw logs, untrusted filenames, or user-supplied strings unless the script is hardened to escape those arguments. <br>
+## Use Case:
 
+Developers and agents use this skill to send native desktop notifications after long-running work, urgent blockers, or high-impact actions complete across Windows, macOS, Linux, and WSL environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1tsnakers/cross-platform-notifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces native desktop notifications through OS-specific command-line tools; no API keys or credential parameters are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Crafted notification text can be interpreted as AppleScript or PowerShell code on macOS, Windows, and WSL notification paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted, fixed notification messages and titles until those platform branches pass values as data rather than concatenating them into script source.
+
+Risk: The release has a suspicious security verdict from the authoritative scan evidence.
+
+Mitigation: Review the skill before installing or deploying it, and treat notification inputs as untrusted unless they are fixed by the calling workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1tsnakers/skills/cross-platform-notifier)
+- [Publisher profile](https://clawhub.ai/user/1tsnakers)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and usage guidance for triggering local desktop notifications; notification message and title should come from trusted, fixed text.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

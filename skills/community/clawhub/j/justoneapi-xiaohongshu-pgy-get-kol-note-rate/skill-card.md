@@ -1,41 +1,55 @@
-## Description: <br>
-Call GET /api/xiaohongshu-pgy/get-kol-note-rate/v1 for Xiaohongshu Creator Marketplace (Pugongying) Note Performance Metrics through JustOneAPI with kolId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/xiaohongshu-pgy/get-kol-note-rate/v1 for Xiaohongshu Creator Marketplace (Pugongying) Note Performance Metrics through JustOneAPI with kolId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to call JustOneAPI for Xiaohongshu Creator Marketplace note performance metrics by KOL ID. It supports content efficiency analysis, creator benchmarking, and campaign planning with configurable date, note type, traffic, business, and cache filters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is passed on the command line and sent as a URL query parameter, which can expose it in shell history, process telemetry, screenshots, or logs. <br>
-Mitigation: Use a scoped or revocable token where available, avoid logging commands or full request URLs, protect command output and screenshots, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Xiaohongshu Creator Marketplace note performance metrics for a specific KOL through JustOneAPI. It supports content efficiency analysis, creator benchmarking, and campaign planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-xiaohongshu-pgy-get-kol-note-rate) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_kol_note_rate&utm_content=project_link) <br>
-- [Generated operation reference](generated/operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with shell command examples and raw JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and a JUST_ONE_API_TOKEN; the endpoint requires kolId and accepts optional query filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: A JustOneAPI token and the requested kolId are sent to api.justoneapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped, revocable token and avoid exposing token values in chat, screenshots, logs, shell history, proxy logs, or process monitors.
+
+Risk: If token exposure is suspected, the credential could be reused until revoked.
+
+Mitigation: Rotate the JustOneAPI token promptly after suspected exposure.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [JustOneAPI usage guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_kol_note_rate&utm_content=project_link)
+- [JustOneAPI dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_xiaohongshu_pgy_get_kol_note_rate&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API Calls, JSON]
+
+**Output Format:** [Markdown summary with endpoint details and raw JSON response data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a JustOneAPI token and a kolId query parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

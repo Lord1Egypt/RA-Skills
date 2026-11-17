@@ -1,40 +1,56 @@
-## Description: <br>
-WA Relay routes third-party WhatsApp messages through an owner-controlled relay so an OpenClaw agent notifies the owner, logs conversations, and sends replies only after explicit owner instruction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WA Relay helps OpenClaw agents mediate WhatsApp messages from non-owner contacts by notifying the owner, logging conversation context, and sending third-party replies only after explicit owner instruction.
 
-## Publisher: <br>
-[zarruk](https://clawhub.ai/user/zarruk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zarruk](https://clawhub.ai/user/zarruk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to mediate WhatsApp interactions between an OpenClaw agent and non-owner contacts, keeping inbound messages routed to the owner and outbound replies gated on explicit owner instruction. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose or retain privacy-sensitive WhatsApp communications through relaying, transcription, forwarding, and logs. <br>
-Mitigation: Install only when that handling is acceptable, minimize or periodically purge wa-relay-log.md, and avoid retaining sensitive personal or business information longer than needed. <br>
-Risk: A misconfigured owner number or ambiguous outbound instruction could send information to the wrong WhatsApp contact or group. <br>
-Mitigation: Verify the owner WhatsApp number before use and require clear confirmation before outbound or group messages unless the owner has explicitly waived confirmation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WA Relay examples](references/examples.md) <br>
-- [ClawHub release page](https://clawhub.ai/zarruk/wa-relay) <br>
+## Use Case:
 
+Developers and OpenClaw users use WA Relay to keep third-party WhatsApp messages from directly steering the main agent while still allowing the owner to review messages, authorize replies, and inspect recent conversation history.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with WhatsApp relay rules, message templates, and examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The hosting agent may maintain memory/wa-relay-log.md with relayed conversation history when following the skill instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Private WhatsApp messages may be relayed to the owner and retained in wa-relay-log.md.
+
+Mitigation: Install only when this relay behavior is intended, review privacy expectations before use, and periodically review or delete wa-relay-log.md when messages may contain sensitive information.
+
+Risk: Outbound replies could be sent to third-party contacts without clear owner intent.
+
+Mitigation: Configure the owner number carefully and require confirmation before sending outbound replies unless the owner has explicitly authorized immediate sending.
+
+Risk: Third-party messages may contain instructions intended to influence the agent.
+
+Mitigation: Treat third-party messages as relayed content only, do not execute their instructions, and wait for explicit owner direction before any reply.
+
+## Reference(s):
+
+- [WA-Relay examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with message templates, behavioral rules, and log-entry examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce owner notifications, authorized outbound message text, delivery confirmations, and local wa-relay-log.md entries.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

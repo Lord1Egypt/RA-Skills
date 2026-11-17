@@ -1,48 +1,60 @@
-## Description: <br>
-Complete cold email outreach system for AI agents. Handles lead generation via Apollo API, email enrichment, Saleshandy sequence creation, prospect import, warmup monitoring, and campaign management. Use when setting up cold outreach, finding decision-maker emails, building email sequences, or managing cold email campaigns. Includes proven email copy templates and deliverability best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete cold email outreach system for AI agents that supports Apollo lead generation, email enrichment, Saleshandy prospect import, warmup monitoring, campaign management, email templates, and deliverability guidance.
 
-## Publisher: <br>
-[joeytbuilds](https://clawhub.ai/user/joeytbuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeytbuilds](https://clawhub.ai/user/joeytbuilds)
 
-## Use Case: <br>
-External teams, founders, and operators use this skill to have an agent search Apollo, enrich prospect emails, import verified leads into Saleshandy, and monitor warmup before cold outreach campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect prospect emails and add people to outbound campaign systems. <br>
-Mitigation: Review lead lists and email copy before import or sending, keep sequences paused by default, and confirm privacy, anti-spam, unsubscribe, suppression-list, and client-confidentiality requirements. <br>
-Risk: The skill uses sensitive Apollo and Saleshandy credentials and can spend paid enrichment credits. <br>
-Mitigation: Use dedicated limited-scope API keys, avoid command-line secrets, and set strict batch and credit limits before running enrichment or import workflows. <br>
-Risk: Activating cold outreach before account readiness can harm deliverability. <br>
-Mitigation: Verify SPF, DKIM, and DMARC, require warmup scores of 85 or higher, and start with conservative daily sending limits. <br>
+## Use Case:
 
+Sales and growth operators, founders, and developers use this skill to build and run cold email workflows that search for prospects, enrich contact data, import leads into Saleshandy sequences, monitor sender readiness, and draft campaign copy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joeytbuilds/ai-cold-outreach) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Configuration Template](references/config-template.json) <br>
-- [Cold Email Templates](references/email-templates.md) <br>
-- [Apollo People Search Endpoint](https://api.apollo.io/api/v1/mixed_people/api_search) <br>
-- [Apollo People Match Endpoint](https://api.apollo.io/api/v1/people/match) <br>
-- [Saleshandy Open API](https://open-api.saleshandy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and CSV-oriented workflow outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce lead CSV files and trigger third-party outreach imports when credentials are supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles prospect personal data and can prepare generated CSV files for outreach workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep generated prospect files out of version control, limit retained data to the campaign need, and verify lead sourcing and enrichment practices against applicable privacy rules.
+
+Risk: The skill uses Apollo and Saleshandy API credentials for live third-party services.
+
+Mitigation: Use least-privileged API keys, avoid storing real keys in workspace config files or shell history, and rotate credentials if exposed.
+
+Risk: The skill can import prospects into outreach systems and support campaign activation.
+
+Mitigation: Require manual approval before importing prospects, activating sequences, or sending campaigns, and verify unsubscribe, personalization, and cold-email compliance requirements first.
+
+## Reference(s):
+
+- [API Reference](references/api-reference.md)
+- [Configuration Template](references/config-template.json)
+- [Cold Email Templates](references/email-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/joeytbuilds/skills/ai-cold-outreach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, Python script usage, and CSV workflow outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Apollo and Saleshandy API credentials and may produce prospect CSV files for import into outreach systems.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

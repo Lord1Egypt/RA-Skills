@@ -1,45 +1,53 @@
-## Description: <br>
-Review and redline DOCX contracts paragraph by paragraph with tracked changes, clause-level risk analysis, and draft comment responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review and redline DOCX contracts paragraph by paragraph with tracked changes, clause-level risk analysis, and draft comment responses.
 
-## Publisher: <br>
-[ChipmunkRPA](https://clawhub.ai/user/ChipmunkRPA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chipmunkrpa](https://clawhub.ai/user/chipmunkrpa)
 
-## Use Case: <br>
-Legal, procurement, privacy, security, and business reviewers use this skill to prepare paragraph-level DOCX contract redlines, clause-specific risk analysis, and draft responses to opponent comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill processes confidential contract text and writes sidecar outputs that can include contract text, comments, and proposed legal language. <br>
-Mitigation: Run it only in an approved local environment for the contract data, control access to generated review JSON and DOCX files, and delete or archive outputs according to the user's data-handling policy. <br>
-Risk: Generated redlines, risk reports, and comment responses may be legally or commercially incorrect if accepted without review. <br>
-Mitigation: Have a qualified reviewer inspect the review JSON, tracked changes, and risk report before sharing or relying on the outputs. <br>
-Risk: Materializing outputs can create amended files that may be confused with originals. <br>
-Mitigation: Keep original contracts unchanged, write amended and report files to clearly named paths, and verify tracked changes are readable before use. <br>
-Risk: The workflow depends on Python packages for DOCX and XML processing. <br>
-Mitigation: Install dependencies only from trusted sources and use a controlled Python environment. <br>
+## Use Case:
 
+Legal, procurement, and contract-review users can use this skill to create paragraph-level review data, proposed replacement language, tracked-change amendments, and risk reports for DOCX contracts. It is especially relevant for privacy, security, data-processing, liability, AI, and other negotiated legal terms.
 
-## Reference(s): <br>
-- [Contract Review JSON Schema](references/review-json-schema.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ChipmunkRPA/redline-contract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON review data, and generated DOCX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a review JSON dataset, a tracked-changes amended DOCX, and a risk-report DOCX from user-selected contract files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted DOCX files may expose unsafe XML or ZIP handling in the bundled parser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review contracts only from trusted sources or run the skill in a constrained workspace; harden XML parsing and reject suspicious DOCX archives before broad use.
+
+Risk: Contract redlines and risk reports can affect legal positions if accepted without review.
+
+Mitigation: Have qualified reviewers verify the generated review JSON, tracked changes, and risk report before relying on them.
+
+## Reference(s):
+
+- [Contract Review JSON Schema](references/review-json-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated review JSON and DOCX outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a tracked-changes amended DOCX, a risk-report DOCX, and a review JSON dataset when materialized.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

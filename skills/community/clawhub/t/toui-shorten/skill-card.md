@@ -1,42 +1,58 @@
-## Description: <br>
-Shorten URLs with toui.io and read click statistics for toui.io short codes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shorten URLs with toui.io and read their click stats.
 
-## Publisher: <br>
-[thebrecht](https://clawhub.ai/user/thebrecht) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thebrecht](https://clawhub.ai/user/thebrecht)
 
-## Use Case: <br>
-Developers and agent users use this skill to create toui.io short links through the toui MCP server or REST API, and to retrieve click statistics over REST when they have an appropriately scoped key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends URLs to toui.io and may require OAuth authorization or a TOUI_API_KEY for REST access. <br>
-Mitigation: Confirm that sharing the target URL with toui.io is acceptable and use the minimum-scope API key needed for the task. <br>
-Risk: Click statistics require a full-scope key over REST. <br>
-Mitigation: Use a full-scope key only when statistics access is specifically required. <br>
+## Use Case:
 
+External users and developers use this skill to create toui.io short links through the toui MCP server or REST API and to check click statistics for existing short codes.
 
-## Reference(s): <br>
-- [toui skill listing](https://clawhub.ai/thebrecht/toui-shorten) <br>
-- [toui homepage](https://toui.io) <br>
-- [toui admin](https://toui.io/admin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return short URL, short code, QR URL, and click statistics when supported by the selected toui access path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The REST fallback curl template can mishandle crafted URLs or titles if an agent pastes raw values into shell or JSON snippets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the toui MCP tool path; when REST is used, validate and JSON-escape URL and title values or send them through a structured API client.
+
+Risk: The REST path may require a TOUI_API_KEY, and stats require a broader full-scope key.
+
+Mitigation: Use minimally scoped credentials, avoid exposing API keys in command output, and use full-scope keys only when click statistics are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thebrecht/skills/toui-shorten)
+- [toui homepage](https://toui.io)
+- [toui admin API key page](https://toui.io/admin)
+- [toui MCP server](https://mcp.toui.io)
+- [toui REST shorten endpoint](https://toui.io/api/v1/shorten)
+- [toui REST stats endpoint](https://toui.io/api/v1/urls/{code}/stats)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with short URL values, JSON examples, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [MCP output can include short_url, code, and qr_url; REST output can include short_url, short_code, and stats JSON.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

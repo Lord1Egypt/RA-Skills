@@ -1,39 +1,54 @@
-## Description: <br>
-AI video production asset management system for creating, locking, versioning, planning, archiving, consistency-checking, and rework tracking for character, scene, prop, and shot assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage AI video production assets, including character, scene, and prop records, shot planning, generation logs, consistency checks, and rework tracking.
 
-## Publisher: <br>
-[dlxeva](https://clawhub.ai/user/dlxeva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlxeva](https://clawhub.ai/user/dlxeva)
 
-## Use Case: <br>
-Developers and creators use this skill to organize AI video production projects around locked character, scene, prop, shot, generation-record, consistency-check, and rework files. It helps maintain repeatable asset naming, project structure, and consistency checks across tools such as Runway, Kling, Pika, Sora, and Veo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The download helper can fetch arbitrary URLs and write files using unsafe local paths if provided crafted filenames. <br>
-Mitigation: Use the helper only in a controlled project directory, avoid untrusted URLs and path-like filenames, and restrict URL schemes, internal hosts, file sizes, file types, overwrites, and destination paths before deployment. <br>
+## Use Case:
 
+External creators and production teams use this skill to keep AI video assets, shot plans, reference indexes, generation records, consistency checks, and rework notes organized across a project.
 
-## Reference(s): <br>
-- [Consistency Rules](references/consistency-rules.md) <br>
-- [Project Templates](references/project-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with file paths, project templates, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local project folders, markdown asset cards, generation logs, consistency checks, rework records, and downloaded media files when helper scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The batch downloader can fetch arbitrary URLs and write files outside the intended asset directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review URLs and filenames before use, restrict downloads to trusted HTTPS sources, enforce destination containment, avoid silent overwrites, and add size and content-type checks before production use.
+
+Risk: The project initializer creates or updates files under user-provided project paths.
+
+Mitigation: Run the initializer only on intended project directories and review generated files before committing or using them in production workflows.
+
+## Reference(s):
+
+- [Consistency Rules](references/consistency-rules.md)
+- [Project Templates](references/project-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown records, project directory structures, Python helper commands, and project configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces asset cards, shot cards, reference indexes, generation logs, consistency check records, rework records, and initialization/download commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

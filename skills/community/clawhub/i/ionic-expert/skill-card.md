@@ -1,45 +1,63 @@
-## Description: <br>
-A comprehensive starting point for AI agents to work with the Ionic Framework. Covers core concepts, components, CLI, theming, layout, lifecycle, navigation, and framework-specific patterns for Angular, React, and Vue. Pair with the other Ionic skills in this collection for deeper topic-specific guidance like app creation, framework integration, and upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ionic Expert helps AI agents provide Ionic Framework guidance across core concepts, components, CLI workflows, theming, layout, lifecycle, navigation, and Angular, React, and Vue patterns.
 
-## Publisher: <br>
-[robingenz](https://clawhub.ai/user/robingenz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robingenz](https://clawhub.ai/user/robingenz)
 
-## Use Case: <br>
-Developers and AI agents use this skill as a compact Ionic Framework reference for building, styling, navigating, troubleshooting, and maintaining Ionic apps across Angular, React, and Vue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes ordinary Ionic and Capacitor development commands that can install global packages, repair dependencies, run native targets, or expose a dev server on external network interfaces. <br>
-Mitigation: Review and approve global npm installs, dependency repair commands, Capacitor sync/run commands, and any --external dev-server use before allowing an agent to execute them, especially on shared or untrusted networks. <br>
+## Use Case:
 
+Developers and AI agents use this skill to answer Ionic Framework questions, scaffold or adjust Ionic apps, and apply component, theming, navigation, lifecycle, and framework-specific patterns across Angular, React, and Vue.
 
-## Reference(s): <br>
-- [Ionic Expert on ClawHub](https://clawhub.ai/robingenz/ionic-expert) <br>
-- [Ionic app creation reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-creation/SKILL.md) <br>
-- [Ionic layout components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-layout.md) <br>
-- [Ionic form components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-form.md) <br>
-- [Ionic Angular reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-angular/SKILL.md) <br>
-- [Ionic React reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-react/SKILL.md) <br>
-- [Ionic Vue reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-vue/SKILL.md) <br>
-- [Capawesome Cloud](https://cloud.capawesome.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only reference; review npm, Ionic CLI, and Capacitor commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Global npm installs and Ionic CLI operations can change a developer environment or project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before running them, especially global npm installs, repair, build, sync, and run operations.
+
+Risk: Using --external for live reload can expose a development server on the local network.
+
+Mitigation: Use --external only on trusted networks and stop the development server when finished.
+
+Risk: Cloud publishing workflows can affect live updates, native builds, or app store submissions.
+
+Mitigation: Confirm the target app, credentials, release channel, and publishing destination before running cloud workflows.
+
+## Reference(s):
+
+- [Ionic Expert on ClawHub](https://clawhub.ai/robingenz/skills/ionic-expert)
+- [Ionic app creation reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-creation/SKILL.md)
+- [Ionic layout components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-layout.md)
+- [Ionic form components reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-app-development/references/components-form.md)
+- [Ionic React reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-react/SKILL.md)
+- [Ionic Vue reference](https://github.com/capawesome-team/skills/blob/main/skills/ionic-vue/SKILL.md)
+- [Capawesome Cloud](https://cloud.capawesome.io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, tables, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Ionic CLI commands, framework-specific code examples, and implementation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

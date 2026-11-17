@@ -1,7 +1,7 @@
 ---
 name: "smyx-pet-climbing-frame-heatmap-analysis"
 description: "Triggers when a user provides a cat climbing frame / cat tree area video URL or file for analysis; supports local video uploads or network URLs to call server-side APIs for multi-region activity recognition, analyzing dwell time on each layer, jump/transition counts, and generating a 2D activity heatmap to evaluate exercise volume and mental wellbeing (without diagnosing diseases). Application scenarios: cat climbing frame + camera, pet behavior monitoring, cat health management. Development reason: quantify cat activity distribution and enrichment usage. | 当用户提供猫爬架/猫树区域的视频URL或文件时，触发本技能进行活动热力图分析；支持通过上传本地视频或网络视频URL，调用服务端API进行多区域活动识别，分析各层停留时长、跳跃/转移次数，生成2D活动热力图，用于评估运动量与心理健康（不诊断疾病）。应用场景：猫爬架+摄像头、宠物行为监测、猫咪健康管理。"
-version: "1.0.3"
+version: "1.0.18"
 license: "MIT-0"
 ---
 

@@ -1,52 +1,77 @@
-## Description: <br>
-Use this skill for normal SecondMe end-user workflows, including login, profile management, chat, Plaza posts and comments, friend workflows, Key Memory, notes, daily activity, user discovery, avatar management, API key distribution, and third-party skill catalog installation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secondme helps end users operate SecondMe account workflows, including login, profile management, chat, Plaza posts and comments, friends, key memory, notes, activity, discover, avatar management, and third-party skill catalog actions.
 
-## Publisher: <br>
-[daihaochen-mv](https://clawhub.ai/user/daihaochen-mv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daihaochen-mv](https://clawhub.ai/user/daihaochen-mv)
 
-## Use Case: <br>
-External SecondMe users and agent operators use this skill to manage their SecondMe account, social workflows, memories, notes, avatars, and skill catalog tasks through an assistant. It is intended for end-user SecondMe operations, not developer API documentation, OAuth integration development, or app submission workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a local SecondMe access token and sensitive account operations. <br>
-Mitigation: Install only from the trusted publisher profile, keep credentials local, and review authenticated actions such as profile updates, posts, deletions, API key changes, and memory sync before execution. <br>
-Risk: The skill can record local feedback and analytics data and may upload pending telemetry after opt-in. <br>
-Mitigation: Review the telemetry prompt, keep telemetry off if collection is not acceptable, and inspect or edit the local SecondMe configuration before syncing data. <br>
-Risk: The skill can update itself and install or overwrite local third-party skill files. <br>
-Mitigation: Review self-update and third-party skill installation behavior before use, and confirm local file changes before relying on newly installed or refreshed skills. <br>
+## Use Case:
 
+External SecondMe users use this skill to manage their account and social workflows through an agent interface. It can also help them browse and install approved third-party skills from the SecondMe skill catalog.
 
-## Reference(s): <br>
-- [ClawHub SecondMe Release](https://clawhub.ai/daihaochen-mv/secondme) <br>
-- [SecondMe API Base](https://app.mindos.com/gate/lab) <br>
-- [SecondMe App](https://go.second.me) <br>
-- [Connect Flow](references/connect.md) <br>
-- [Profile Flow](references/profile.md) <br>
-- [Plaza Flow](references/plaza.md) <br>
-- [Key Memory Flow](references/key-memory.md) <br>
-- [Note Flow](references/note.md) <br>
-- [Avatar Center Flow](references/avatar-center.md) <br>
-- [Telemetry Sync Flow](references/telemetry-sync.md) <br>
-- [Third-Party Skills Flow](references/third-party-skills.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, API requests, JSON payloads, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or write local SecondMe credentials, telemetry preferences, analytics records, and installed skill files during relevant workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can automatically update itself or install executable third-party skill bundles into the local skill root.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher and SecondMe service are trusted, review installed skill contents before use, and confirm any third-party skill selection before allowing local writes.
+
+Risk: The skill stores account credentials and uses a bearer token for authenticated SecondMe operations.
+
+Mitigation: Keep `~/.secondme/credentials` protected, avoid sharing the file, and re-login or revoke access if the local machine or token may be compromised.
+
+Risk: Telemetry and feedback records can be persisted locally and synced when telemetry is enabled.
+
+Mitigation: Review `~/.secondme/config` before use, choose the intended telemetry mode, and inspect or remove local analytics records if they are not desired.
+
+Risk: The skill can access and modify profile, notes, chats, memory-related data, Plaza content, avatar settings, and API key distribution settings.
+
+Mitigation: Confirm destructive or sensitive actions before execution, especially note deletion, avatar deletion, API key changes, public posts, and profile updates.
+
+## Reference(s):
+
+- [Secondme on ClawHub](https://clawhub.ai/daihaochen-mv/skills/secondme)
+- [SecondMe API base](https://app.mindos.com/gate/lab)
+- [SecondMe app](https://go.second.me)
+- [Connect](references/connect.md)
+- [Profile](references/profile.md)
+- [Plaza](references/plaza.md)
+- [Friend](references/friend.md)
+- [Discover](references/discover.md)
+- [Key Memory](references/key-memory.md)
+- [Note](references/note.md)
+- [Chat](references/chat.md)
+- [Activity](references/activity.md)
+- [Avatar Center](references/avatar-center.md)
+- [Third-Party Skills](references/third-party-skills.md)
+- [Feedback Preference Flow](references/feedback-prompt.md)
+- [Session Feedback](references/session-feedback.md)
+- [Telemetry Sync](references/telemetry-sync.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local SecondMe credentials, configuration, analytics, and installed skill files as part of user-requested workflows.]
+
+## Skill Version(s):
+
+2.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

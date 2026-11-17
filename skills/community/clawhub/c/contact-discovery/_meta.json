@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7bj0db1ydm0bam8j7c2fcbrx83ttp5",
-  "slug": "contact-discovery",
+  "name": "contact-discovery",
+  "displayName": "Contact Discovery",
   "version": "1.0.0",
-  "publishedAt": 1778619902823
+  "description": "Find public contact details for a person or company using Prismfy-powered search.",
+  "author": "Prismfy",
+  "entry": "SKILL.md",
+  "tags": [
+    "leadgen",
+    "sales",
+    "contact",
+    "outreach",
+    "prismfy"
+  ],
+  "runtime": {
+    "requiresEnv": ["PRISMFY_API_KEY"],
+    "requiresBins": ["curl", "jq"]
+  }
 }

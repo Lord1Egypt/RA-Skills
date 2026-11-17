@@ -1,41 +1,53 @@
-## Description: <br>
-Extract guest appearances, speaking topics, and soundbites from podcast transcripts to build authority portfolios and generate podcast pitch templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract guest appearances, speaking topics, and soundbites from podcast transcripts to build authority portfolios and generate podcast pitch templates.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-External users, consultants, agencies, and content teams use this skill to mine podcast transcripts for authority positioning, speaking opportunities, pitch templates, and multi-channel content repurposing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Transcript-derived business content may be sent to external services or publishing workflows. <br>
-Mitigation: Use least-privilege API keys, restricted Slack channels, draft-only publishing credentials, and manual approval before content leaves the local agent or becomes public. <br>
-Risk: Uploaded transcripts may include client, strategy, or private business discussions. <br>
-Mitigation: Review transcript sensitivity before use and avoid connecting automation or publishing credentials for confidential material. <br>
+## Use Case:
 
+External users, consultants, agencies, and content teams use this skill to mine podcast transcripts for authority positioning assets, including soundbites, speaking topics, guest appearance portfolios, outreach pitches, and repurposed content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/podcast-transcript-mining-authority-positioning) <br>
-- [Publisher profile](https://clawhub.ai/user/ncreighton) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Configuration instructions, Shell commands, API Calls] <br>
-**Output Format:** [Markdown, JSON, HTML snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate transcript-derived outreach, portfolio, social, blog, email, and Slack-ready content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version and SKILL.md frontmatter) <br>
+Risk: Podcast transcripts, business context, generated pitches, and repurposed content may be sent to configured third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege API keys, avoid confidential transcripts unless approved, and configure only the integrations needed for the intended workflow.
+
+Risk: Publishing integrations could expose draft or sensitive content through WordPress, Slack, Zapier, RSS, Whisper, or related services.
+
+Mitigation: Keep WordPress publishing in draft or staging by default and review generated content before external distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/podcast-transcript-mining-authority-positioning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, HTML, CSV, configuration snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source attribution, timestamps, social post variants, portfolio sections, pitch templates, and channel-specific content bundles.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Deep error handling workflow-taxonomy, user-visible vs internal errors, retries and idempotency, observability, and supportability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep error handling workflow for taxonomy, user-visible vs internal errors, retries and idempotency, observability, and supportability when standardizing failure modes across APIs, clients, and async workers.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mike47512](https://clawhub.ai/user/mike47512)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to standardize error classification, transport mapping, safe user messages, retry behavior, observability, and client SDK handling across APIs, clients, and asynchronous workers.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Logging recommendations may involve identifiers such as user IDs, which can create privacy concerns if applied without local policy review.
+
+Mitigation: Review observability guidance in the deployment privacy context and limit logged identifiers to values allowed by policy.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering teams use this skill to standardize error taxonomies, transport mappings, user-safe messages, retry behavior, observability, and client SDK handling across APIs, clients, and async workers. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Error-handling guidance can lead teams to expose secrets, stack traces, internal details, or unnecessary personal data in logs or user-facing errors. <br>
-Mitigation: Keep client messages user-safe, use opaque support reference ids, and review logs so observability fields avoid secrets, stack traces, and unnecessary personal data. <br>
+**Output Format:** [Markdown guidance with checklists and implementation recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/error-handling) <br>
+**Other Properties Related to Output:** [Advisory documentation only; no code execution, persistence, or hidden authority.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists and structured workflow steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No tool calls, credentials, installs, or background behavior are required.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

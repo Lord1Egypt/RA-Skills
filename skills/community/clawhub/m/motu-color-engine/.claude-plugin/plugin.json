@@ -1,0 +1,11 @@
+{
+  "name": "motu-color-engine",
+  "description": "AI portrait color grading, pro skin smoothing, segmentation masks, ID/passport crop generation, compliance checks, upload optimization, and print-sheet packaging via the MotuArt Color Engine API.",
+  "version": "1.1.0",
+  "author": {
+    "name": "MotuArt",
+    "email": "hi@motu.art"
+  },
+  "homepage": "https://mce.motu.art/developers",
+  "license": "MIT"
+}

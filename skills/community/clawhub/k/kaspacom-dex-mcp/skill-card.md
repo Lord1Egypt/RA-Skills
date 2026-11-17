@@ -1,40 +1,52 @@
-## Description: <br>
-Use KaspaCom DEX through the KaspaCom DeFi MCP/CLI for pair discovery, token pricing, swaps, and liquidity management on IGRA and Kasplex. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use KaspaCom DEX through the KaspaCom DeFi MCP/CLI for pair discovery, token pricing, swaps, and liquidity management on IGRA and Kasplex.
 
-## Publisher: <br>
-[marciano147](https://clawhub.ai/user/marciano147) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[marciano147](https://clawhub.ai/user/marciano147)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers and agent users use this skill to operate the KaspaCom DEX through MCP or CLI commands for pair lookup, token price checks, swaps, and liquidity management on IGRA and Kasplex.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent toward swaps and liquidity actions that move assets.
+
+Mitigation: Use an isolated or least-privileged environment and require manual approval after checking token identifiers, network, amounts, destination effects, quotes, and slippage before submitting any swap or liquidity command.
+
+Risk: The referenced DEX CLI package may change after publication.
+
+Mitigation: Pin and verify the npm package version before installation or execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to discover KaspaCom DEX pairs, check token prices, and prepare swap or liquidity-management commands for IGRA and Kasplex. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Transaction commands can move crypto funds if swaps or liquidity changes are run without sufficient review. <br>
-Mitigation: Require the exact token pair, amount, network, wallet, quote, fees, slippage, and expected transaction effect to be shown and explicitly confirmed before any transaction command runs. <br>
-Risk: DEX helper output may be legitimate but still operationally risky when used unattended. <br>
-Mitigation: Use read-only pair and price commands freely, and keep swaps or liquidity changes under direct human approval. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [KaspaCom DEX MCP on ClawHub](https://clawhub.ai/marciano147/kaspacom-dex-mcp) <br>
+**Other Properties Related to Output:** [May include asset-moving swap and liquidity commands that require manual review before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include read-only DEX queries and transaction command proposals that require explicit user confirmation.] <br>
+0.1.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

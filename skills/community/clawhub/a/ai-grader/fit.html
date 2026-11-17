@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 领域适配评估</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:#eef1f7;display:flex;justify-content:center;padding:26px;color:#1d2433}
+  .post{width:680px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 18px 44px rgba(59,91,219,.18)}
+  .head{background:linear-gradient(120deg,#0ea5a4,#3b5bdb 60%,#5b7cfa);padding:22px 26px;color:#fff}
+  .head .kicker{font-size:12px;letter-spacing:1px;opacity:.92;display:flex;align-items:center;gap:8px}
+  .head .live{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:999px;font-size:11px}
+  .dot{width:7px;height:7px;border-radius:50%;background:#7CFFB2;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,255,178,.6)}70%{box-shadow:0 0 0 8px rgba(124,255,178,0)}100%{box-shadow:0 0 0 0 rgba(124,255,178,0)}}
+  .head .obj{font-size:20px;font-weight:800;margin-top:10px}
+  .head .dir{font-size:13px;opacity:.92;margin-top:4px}
+  .row{display:flex;gap:18px;padding:22px 26px 6px;align-items:center}
+  .radar{flex:none}
+  .summ{flex:1}
+  .fitnum{font-size:46px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#0ea5a4}
+  .fitnum small{font-size:15px;font-weight:600;color:#6b7488}
+  .fitlv{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:#0ea5a4;background:#def7f5;padding:3px 10px;border-radius:999px}
+  .legend{display:flex;gap:14px;margin-top:14px;font-size:12px;color:#6b7488}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .verdict{margin:10px 22px 0;background:#f8f9ff;border:1px solid #e6eaf2;border-left:4px solid #0ea5a4;border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.7}
+  .sec{margin:16px 26px 0}
+  .sec h4{font-size:13px;color:#3a4456;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12px;padding:5px 11px;border-radius:999px;font-weight:600}
+  .chip.g{background:#def4ef;color:#2a9d8f}
+  .chip.r{background:#fde8e2;color:#e4572e}
+  .chip.y{background:#fff3d6;color:#b8860b}
+  .chip.m{background:#e7ecfd;color:#3b5bdb}
+  .target{margin:14px 22px 20px;background:#f5f7fb;border:1px solid #e6eaf2;border-radius:12px;padding:14px 16px}
+  .target h4{font-size:13px;color:#3a4456;margin-bottom:9px}
+  .target li{font-size:13px;line-height:1.7;margin:4px 0 4px 18px}
+  .foot{background:#f5f7fb;border-top:1px solid #e6eaf2;padding:12px 26px;font-size:11.5px;color:#6b7488;display:flex;justify-content:space-between;align-items:center}
+  .foot .brand{font-weight:700;color:#3b5bdb}
+</style>
+</head>
+<body>
+  <div class="post">
+    <div class="head">
+      <div class="kicker"><span class="live"><span class="dot"></span>AI 领域适配评估</span></div>
+      <div class="obj">AI-A（营销助手）</div>
+      <div class="dir">针对方向：医疗器械注册 / 合规国际业务</div>
+    </div>
+    <div class="row">
+      <svg class="radar" id="radar" width="360" height="360" viewBox="0 0 360 360"></svg>
+      <div class="summ">
+        <div class="fitnum">81<small> / 100 适配分</small></div>
+        <div class="fitlv">高度对口</div>
+        <div class="legend">
+          <span><i style="background:#5b7cfa"></i>AI 实得</span>
+          <span><i style="background:#f3a712"></i>方向需求</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="verdict">⚠️ 有关键缺口：你这摊事最吃重的能力它还没到位，直接上会踩坑——先把缺口补上再用。 已很强：安全、核实、可解释、可复现、人类监督。还缺：知识产权。错配(强但用不上)：无。</div>
+    </div>
+    <div class="sec">
+      <h4>💪 已很强（对口强项）</h4>
+      <div class="chips"><span class="chip g">安全</span><span class="chip g">核实</span><span class="chip g">可解释</span><span class="chip g">可复现</span><span class="chip g">人类监督</span></div>
+    </div>
+    <div class="sec">
+      <h4>🔧 还缺（该方向关键缺口）</h4>
+      <div class="chips"><span class="chip r">知识产权</span></div>
+    </div>
+    <div class="target">
+      <h4>🎯 靶向补缺（先补这些才对口）</h4>
+      <ul><li>补强「知识产权」（需求权重 5/5，当前 52）→ 达到 85+ 再上主力</li></ul>
+    </div>
+    <div class="foot">
+      <span>由 <span class="brand">ai-grader</span> 生成 · 注册老炮</span>
+      <span>领域适配评估 · 比通用体检更对口</span>
+    </div>
+  </div>
+<script>
+const DATA = {"object": "AI-A（营销助手）", "direction": "医疗器械注册 / 合规国际业务", "fit": 81, "axes": [{"name": "安全", "code": "P0", "need": 100, "have": 95, "missing": false}, {"name": "核实", "code": "P9", "need": 100, "have": 85, "missing": false}, {"name": "知识产权", "code": "P13", "need": 100, "have": 52, "missing": false}, {"name": "可解释", "code": "P37", "need": 80, "have": 78, "missing": false}, {"name": "可复现", "code": "P38", "need": 80, "have": 88, "missing": false}, {"name": "人类监督", "code": "P39", "need": 100, "have": 80, "missing": false}, {"name": "暗纹溯源", "code": "P35", "need": 60, "have": 82, "missing": false}, {"name": "效果优化", "code": "P36", "need": 60, "have": 92, "missing": false}], "good": ["P0", "P9", "P37", "P38", "P39"], "gap": ["P13"], "mismatch": []};
+const SVGNS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById('radar');
+const cx = 180, cy = 180, R = 125, N = DATA.axes.length;
+function pt(i, ratio){
+  const a = -Math.PI/2 + i * 2 * Math.PI / N;
+  return [cx + R*ratio*Math.cos(a), cy + R*ratio*Math.sin(a)];
+}
+[0.25,0.5,0.75,1].forEach(r=>{
+  const p=[]; for(let i=0;i<N;i++){const [x,y]=pt(i,r);p.push(x+','+y);}
+  const pl=document.createElementNS(SVGNS,'polygon');
+  pl.setAttribute('points',p.join(' '));pl.setAttribute('fill','none');
+  pl.setAttribute('stroke','#e6eaf2');pl.setAttribute('stroke-width','1');svg.appendChild(pl);
+});
+DATA.axes.forEach((ax,i)=>{
+  const [x,y]=pt(i,1);
+  const ln=document.createElementNS(SVGNS,'line');
+  ln.setAttribute('x1',cx);ln.setAttribute('y1',cy);ln.setAttribute('x2',x);ln.setAttribute('y2',y);
+  ln.setAttribute('stroke','#e6eaf2');svg.appendChild(ln);
+  const [lx,ly]=pt(i,1.2);
+  const t=document.createElementNS(SVGNS,'text');
+  t.setAttribute('x',lx);t.setAttribute('y',ly);t.setAttribute('font-size','11');
+  t.setAttribute('fill','#3a4456');
+  t.setAttribute('text-anchor', lx<cx-5?'end':(lx>cx+5?'start':'middle'));
+  t.setAttribute('dominant-baseline','middle');t.textContent=ax.name;svg.appendChild(t);
+});
+function poly(vals,stroke,fill,width){
+  const p=[];DATA.axes.forEach((ax,i)=>{const [x,y]=pt(i,Math.max(0,Math.min(1,vals[i]/100)));p.push(x+','+y);});
+  const pl=document.createElementNS(SVGNS,'polygon');
+  pl.setAttribute('points',p.join(' '));pl.setAttribute('fill',fill);
+  pl.setAttribute('stroke',stroke);pl.setAttribute('stroke-width',width);svg.appendChild(pl);
+}
+poly(DATA.axes.map(a=>a.need), '#f3a712', 'none', 2);
+poly(DATA.axes.map(a=>a.have), '#5b7cfa', 'rgba(91,124,250,.22)', 2);
+</script>
+</body>
+</html>

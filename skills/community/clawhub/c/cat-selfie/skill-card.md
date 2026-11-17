@@ -1,43 +1,53 @@
-## Description: <br>
-Generates high-quality cat selfie images with random or selected scenes using a Volcengine Doubao Seedream image model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates cat selfie image files by selecting a random or requested scene and calling the Volcengine Doubao Seedream image-generation workflow.
 
-## Publisher: <br>
-[Romanticjojo](https://clawhub.ai/user/Romanticjojo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[romanticjojo](https://clawhub.ai/user/romanticjojo)
 
-## Use Case: <br>
-External users and agent developers use this skill to generate cat portrait images for chat, heartbeat messages, or scripted workflows with a random or named scene. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Editable scene prompts are passed through shell command execution. <br>
-Mitigation: Use only trusted scene files and avoid custom prompts containing shell metacharacters until command execution is changed to argument arrays. <br>
-Risk: The skill depends on a separate volcengine-image-generate skill and sends prompts to Volcengine, which may create API cost or data handling exposure. <br>
-Mitigation: Verify the dependent image-generation skill and confirm Volcengine API usage, cost, and prompt handling before installing or running. <br>
+## Use Case:
 
+Agents and users use this skill to create themed cat selfie images, either randomly or from one of eight configured scenes, and save the generated image in the OpenClaw workspace.
 
-## Reference(s): <br>
-- [ClawHub Cat Selfie release page](https://clawhub.ai/Romanticjojo/cat-selfie) <br>
-- [Publisher profile](https://clawhub.ai/user/Romanticjojo) <br>
-- [README](README.md) <br>
-- [Scene configuration](config/scenes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance, CLI output, JavaScript return objects, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved under ~/.openclaw/workspace/images/ with generated_image_<timestamp>_<index> filenames.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Configurable scene prompts can be passed through a shell command, which creates a local command-injection risk if prompts come from untrusted sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review custom scene configuration before use and prefer argument-array execution such as execFileSync or spawnSync when invoking the image-generation script.
+
+Risk: Heartbeat integration can generate and send images automatically if connected to a messaging workflow.
+
+Mitigation: Require explicit confirmation or rate limits before sending generated images and restrict access to the shared images directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/romanticjojo/skills/cat-selfie)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PNG or JPG image files with console status text and image path metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are saved under ~/.openclaw/workspace/images/ with timestamped filenames.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

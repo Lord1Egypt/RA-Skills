@@ -1,43 +1,61 @@
-## Description: <br>
-Daily Wisdom helps an agent generate recurring historical anecdotes, philosophical insights, or cultural stories with verified quotes, narrative context, and modern connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Wisdom helps an agent generate and deliver recurring historical anecdotes, philosophical insights, or cultural stories with original-language quotes and modern connections.
 
-## Publisher: <br>
-[AytuncYildizli](https://clawhub.ai/user/AytuncYildizli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aytuncyildizli](https://clawhub.ai/user/aytuncyildizli)
 
-## Use Case: <br>
-External users and developers use this skill to configure an agent for daily wisdom messages, recurring cultural storytelling, or scheduled historical reflections across channels such as chat or team messaging tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a local history file that may be modified by users or other tools. <br>
-Mitigation: Treat the history file as untrusted editable text, do not store secrets in it, and review or clear it when others can modify the workspace. <br>
-Risk: Generated stories and quotes can become inaccurate if source verification is skipped or weak. <br>
-Mitigation: Use web search or trusted references to verify original-language quotes, dates, names, and historical facts before delivery. <br>
+## Use Case:
 
+External users and developers use this skill to schedule recurring cultural and historical content through an LLM or cron-connected agent. It is suited for daily wisdom messages, morning reflections, and recurring storytelling workflows that should avoid repeated topics.
 
-## Reference(s): <br>
-- [Daily Wisdom ClawHub Page](https://clawhub.ai/AytuncYildizli/daily-wisdom) <br>
-- [Publisher Profile](https://clawhub.ai/user/AytuncYildizli) <br>
-- [README](artifact/README.md) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [History File Template](artifact/history.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown narrative messages with prompt templates, example cron configuration, and setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include original-language quotes, translations, historical stories, modern connections, and history-file entries to reduce repeat topics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Enabled scheduled delivery can generate and send recurring content automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the cron schedule, timezone, and destination channel before enabling the job, and disable or remove it when recurring delivery is no longer wanted.
+
+Risk: The skill relies on a history file to avoid repeated topics.
+
+Mitigation: Use a dedicated history file and keep it available to the agent so generated topics can be tracked across runs.
+
+Risk: Generated historical quotes or facts may be inaccurate if not verified.
+
+Mitigation: Use an agent with web research access and review important quotes, dates, and attributions before broad distribution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aytuncyildizli/skills/daily-wisdom)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [History File Template](artifact/history.md)
+- [Example Outputs](artifact/examples/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown content with quote, story, modern connection, and optional cron configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append delivered topics to a local history file and may send scheduled messages through a user-configured delivery channel.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

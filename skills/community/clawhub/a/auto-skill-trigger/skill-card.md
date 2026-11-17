@@ -1,37 +1,53 @@
-## Description: <br>
-Auto Skill Trigger matches skills to tasks using keyword scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto Skill Trigger matches skills to tasks using keyword scoring.
 
-## Publisher: <br>
-[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanxiao-bot](https://clawhub.ai/user/hanxiao-bot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to narrow the available skill list by keyword relevance before a model selects which skill to load. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keyword-based skill hints can cause an agent to overlook a better skill for complex or ambiguous tasks. <br>
-Mitigation: Tune or disable automatic skill hints when the configured threshold or max-skill limit produces poor matches. <br>
+## Use Case:
 
+Developers and agent operators use this skill to pre-filter available skills and surface prompt hints based on keyword overlap between a user message and skill descriptions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Code] <br>
-**Output Format:** [Markdown with inline JavaScript and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces skill hints from configurable keyword scoring, including max-skill and threshold settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically influence an agent prompt and skill selection with weak scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit when automatic matching runs and provide a user-controlled way to disable or confirm prompt hints.
+
+Risk: Installed skill metadata may be untrusted and could affect generated prompt hints.
+
+Mitigation: Sanitize skill names and descriptions before including them in prompts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hanxiao-bot/skills/auto-skill-trigger)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompt-hint text that prioritizes matched skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

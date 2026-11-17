@@ -3,7 +3,7 @@ name: maverick-canva-mcp
 description: Search, read, and manage Canva design work through Canva's hosted MCP server. Thin pass-through to Canva's official MCP; the live tool catalog is whatever that server advertises. Use when the user asks about Canva designs, assets, exports, brand materials, folders, comments, or templates.
 metadata:
   openclaw:
-    emoji: "🎨"
+    emoji: '🎨'
     homepage: https://www.canva.dev/docs/mcp/
     primaryEnv: MAVERICK_CANVA_MCP_REFRESH_TOKEN
     requires:

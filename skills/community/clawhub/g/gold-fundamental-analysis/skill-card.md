@@ -1,48 +1,62 @@
-## Description: <br>
-Fetches live gold fundamental data from FRED, CFTC, SPDR/SSGA, Federal Reserve RSS, and ForexFactory/faireconomy.media so an agent can produce bullish, bearish, and neutral factors, a -100 to +100 score, and short-, medium-, and long-term outlooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches gold fundamental data from FRED, CFTC, SPDR ETF, Fed RSS, and economic-calendar sources, then guides an agent to produce bullish and bearish factors, a -100 to +100 score, and short-, medium-, and long-term outlooks.
 
-## Publisher: <br>
-[kimminhpro](https://clawhub.ai/user/kimminhpro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kimminhpro](https://clawhub.ai/user/kimminhpro)
 
-## Use Case: <br>
-External users and agent developers use this skill to gather current gold macro, positioning, ETF, Fed, and calendar data and turn it into a structured supplemental XAU/USD fundamental analysis. It is intended for on-demand analysis and scheduled trading-session context, not as standalone financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound live-data requests to FRED, CFTC, SSGA, the Federal Reserve, and faireconomy.media. <br>
-Mitigation: Run it only in environments where those network destinations are approved, and review fetched data before relying on the generated analysis. <br>
-Risk: The generated analysis could be mistaken for financial advice. <br>
-Mitigation: Present the output as supplemental market context and require human review, position sizing, and stop-loss or other risk controls before trading decisions. <br>
-Risk: The artifact includes an exposed default FRED API key and accepts FRED credentials by argument or environment variable. <br>
-Mitigation: Use a personal FRED_API_KEY or --fred-key value, avoid shared sensitive keys, and remove or rotate the exposed default key before operational use. <br>
-Risk: The dependency requirement is broad rather than pinned. <br>
-Mitigation: Pin and scan dependencies in the deployment environment before installing the skill. <br>
+## Use Case:
 
+External users and agents use this skill to gather gold-market macro, positioning, ETF, Fed-policy, and calendar data for supplementary XAU/USD fundamental analysis. It supports on-demand analysis and scheduled trading-session context, but its output should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kimminhpro/gold-fundamental-analysis) <br>
-- [FRED API documentation](https://fred.stlouisfed.org/docs/api/fred/) <br>
-- [CFTC COT gold data](https://www.cftc.gov/dea/newcot/f_disagg.txt) <br>
-- [SPDR Gold Shares](https://www.ssga.com/us/en/intermediary/etfs/spdr-gold-shares-gld) <br>
-- [Federal Reserve monetary policy RSS](https://www.federalreserve.gov/feeds/press_monetary.xml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON data from the Python fetcher followed by a structured Markdown analysis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires outbound network access to public financial and economic data sources; accepts a FRED API key through --fred-key or FRED_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, created 2026-06-14) <br>
+Risk: The skill makes outbound HTTPS requests to public financial-data services, so execution depends on network access and third-party data availability.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment with expected network egress and treat missing or stale data as reduced-confidence analysis.
+
+Risk: The artifact includes an exposed default FRED API key.
+
+Mitigation: Use a controlled FRED_API_KEY environment variable and avoid passing secrets on the command line.
+
+Risk: The output is market analysis support and could be mistaken for investment advice.
+
+Mitigation: Keep the financial-advice disclaimer visible and require users to make independent trading or investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kimminhpro/skills/gold-fundamental-analysis)
+- [FRED API documentation](https://fred.stlouisfed.org/docs/api/fred/)
+- [CFTC COT disaggregated report](https://www.cftc.gov/dea/newcot/f_disagg.txt)
+- [SPDR Gold Shares](https://www.ssga.com/us/en/intermediary/etfs/spdr-gold-shares-gld)
+- [Federal Reserve monetary policy RSS feed](https://www.federalreserve.gov/feeds/press_monetary.xml)
+- [Source repository referenced by artifact](https://github.com/kimminhpro/gold-fundamental-analysis-skill.git)
+
+## Skill Output:
+
+**Output Type(s):** [json, markdown, guidance]
+
+**Output Format:** [Structured JSON data followed by concise Markdown analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bullish, bearish, and neutral factors; a -100 to +100 fundamental score; short-, medium-, and long-term outlooks; and a confidence estimate.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

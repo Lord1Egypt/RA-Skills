@@ -1,40 +1,57 @@
-## Description: <br>
-Clean, tag, and index a user-provided prompt collection so the right prompt can be found, reused, and improved quickly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean, tag, and index a user-provided prompt collection so the right prompt can be found, reused, and improved quickly.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to organize user-provided prompt collections into job-based groups, practical tags, duplicate decisions, reusable names, and short reuse notes. It is intended for prompt libraries pasted, uploaded, or summarized by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples may imply that the skill can import prompts from private apps, inspect chat history, run live model tests, or use usage metrics without supplied data. <br>
-Mitigation: Limit use to prompt text and context the user explicitly provides; revise or treat those examples as scenarios requiring user-provided data. <br>
-Risk: Prompt classifications, duplicate decisions, and archive recommendations can be uncertain or misleading when source prompts are incomplete. <br>
-Mitigation: Mark uncertain classifications, keep duplicate decisions transparent, and require user confirmation before archiving or merging variants. <br>
+## Use Case:
 
+External users use this skill to organize prompt collections they provide in the conversation. It creates a cleaned library with job-based groups, consistent names, practical tags, duplicate decisions, reuse notes, and a maintenance checklist.
 
-## Reference(s): <br>
-- [Prompt Library Gardener on ClawHub](https://clawhub.ai/harrylabsj/prompt-library-gardener) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown tables and concise prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, API calls, network access, or credential handling; works from user-provided prompt content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact files also report 1.1.0 in SKILL.md, 1.0.1 in _meta.json, and 1.0.0 in skill.json) <br>
+Risk: A user may ask the skill to find prompts in notes, chat history, cloud drives, browser history, email, or local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompt text and context the user deliberately pastes, uploads, or summarizes in the conversation.
+
+Risk: Prompt libraries may contain confidential business details, personal data, credentials, or other sensitive content.
+
+Mitigation: Ask users to redact secrets or use placeholders, and keep the work limited to the current conversation.
+
+Risk: Automated grouping, tagging, and duplicate decisions can be wrong when prompt intent or usage history is unclear.
+
+Mitigation: Mark uncertain classifications as provisional and ask for user decisions before treating variants as merged, stale, or archived.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/prompt-library-gardener)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and concise prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include prompt inventories, job groups, duplicate review logs, naming rules, tag rules, reuse notes, and maintenance checklists.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter lists 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

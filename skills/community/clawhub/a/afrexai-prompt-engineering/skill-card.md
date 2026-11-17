@@ -1,39 +1,52 @@
-## Description: <br>
-Convert vague instructions into clear AI prompts using structures, techniques, and templates for reliable, precise, and measurable outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents write, review, test, debug, and document prompts using structured frameworks, templates, rubrics, and prompt management practices.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, prompt writers, and AI teams use this skill to draft, review, test, debug, optimize, and document prompts. It provides reusable frameworks for prompt architecture, examples, constraints, evaluation, production management, and agent system prompts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as "Review this prompt" may invoke the skill during ordinary prompt-writing conversations. <br>
-Mitigation: Use explicit wording when invoking or avoiding this skill, especially in conversations about prompt writing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-prompt-engineering) <br>
-- [README](artifact/README.md) <br>
-- [Skill Source](artifact/SKILL.md) <br>
+## Use Case:
 
+Developers, prompt authors, and agent builders use this skill to turn vague requests into structured prompts, evaluate prompt quality, generate test suites, diagnose failures, and prepare production prompt documentation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, rubrics, examples, and structured code or configuration blocks when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no external dependencies.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated prompts may contain unsuitable assumptions or generic guidance when used in sensitive or production workflows.
+
+Mitigation: Review, test, and adapt generated prompts against the target domain, edge cases, and organizational requirements before deployment.
+
+Risk: Generic phrases such as "review this prompt" may activate the skill when the user did not intend a full prompt engineering review.
+
+Mitigation: Confirm the intended scope when the request is ambiguous and keep the response limited to the user's stated prompt task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-prompt-engineering)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with prompt templates, rubrics, structured examples, and occasional code or configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No runtime dependencies; outputs should be reviewed before use in sensitive or production workflows.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

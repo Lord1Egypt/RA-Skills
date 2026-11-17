@@ -1,40 +1,55 @@
-## Description: <br>
-百度热榜监控 | Baidu Hot Topics Monitor. 获取百度热搜榜、搜索趋势、关键词热度 | Get Baidu trending searches, trends, keyword popularity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+百度热榜监控 | Baidu Hot Topics Monitor. 获取百度热搜榜、搜索趋势、关键词热度 | Get Baidu trending searches, trends, keyword popularity.
 
-## Publisher: <br>
-[noah-1106](https://clawhub.ai/user/noah-1106) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noah-1106](https://clawhub.ai/user/noah-1106)
 
-## Use Case: <br>
-External users and developers use this skill to fetch Baidu hot-search topics, monitor keyword popularity, save local trend history, query collected records, and generate an HTML report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create persistent local SQLite databases, logs, and HTML reports containing retained monitoring history. <br>
-Mitigation: Use it only in workspaces where retained local Baidu trend data is acceptable, and review or delete the data directory when the history is no longer needed. <br>
+## Use Case:
 
+Developers and analysts use this skill to fetch Baidu hot search topics, store collected results in a local SQLite database, query recent topics and category counts, and generate a local HTML visualization report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noah-1106/baidu-hot-monitor) <br>
-- [Baidu realtime hot topics API](https://top.baidu.com/api/board?platform=wise&tab=realtime) <br>
-- [Baidu Top](https://top.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with command examples, JSON examples, Python scripts, SQLite data, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Python 3, fetches public Baidu trend data, and may create persistent local SQLite databases, logs, and HTML reports under the skill data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Generated HTML can render remote topic data unsafely when the report is opened or hosted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Escape remote data and replace innerHTML-based rendering before using reports with untrusted data or publishing them.
+
+Risk: The advertised trend, region, and keyword-monitoring scope is broader than the implemented scripts demonstrate.
+
+Mitigation: Validate required analysis capabilities against the actual script outputs before relying on the skill for decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/noah-1106/skills/baidu-hot-monitor)
+- [Baidu Hot Search API](https://top.baidu.com/api/board?platform=wise&tab=realtime)
+- [Baidu Top](https://top.baidu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, HTML files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, plain-text query output, and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; writes local SQLite data and an HTML report under data/ when the included scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

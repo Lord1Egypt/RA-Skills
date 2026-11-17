@@ -1,0 +1,1 @@
+Universal Installer now recognizes repos that expose agent skills through `skills/<name>/SKILL.md`, not just a root `SKILL.md`. This lets WIP Inc design skills install through the normal LDM OS path and deploy to Codex, OpenClaw, Claude Code, and WIP agent skill directories without manual copies or symlinks.

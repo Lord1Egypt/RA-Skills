@@ -1,42 +1,52 @@
-## Description: <br>
-Use when developing Vite plugins: scaffolding plugin structure, implementing hooks, handling virtual modules, HMR integration, SSR compatibility, and publishing to npm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when developing Vite plugins: scaffolding plugin structure, implementing hooks such as transform, resolveId, load, and buildStart, handling virtual modules, HMR integration, SSR compatibility, and publishing to npm for the Vite 5 and 6 plugin API.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, test, and publish Vite plugins with guidance for hooks, virtual modules, HMR, SSR compatibility, and npm packaging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example configuration injection patterns could expose private values to frontend bundles if copied without review. <br>
-Mitigation: Only inject deliberately public build metadata or app configuration; exclude tokens, secrets, credentials, private environment variables, and internal settings. <br>
+## Use Case:
 
+Developers and engineers use this skill to create, test, make SSR-compatible, and publish Vite plugins for Vite 5 and 6 projects.
 
-## Reference(s): <br>
-- [Vite Plugin Development on ClawHub](https://clawhub.ai/goldath/vite-plugin-dev) <br>
-- [Publisher Profile](https://clawhub.ai/user/goldath) <br>
-- [Vite Plugin Hooks Reference](artifact/references/hooks-reference.md) <br>
-- [Vite Plugin Patterns & Examples](artifact/references/plugin-patterns.md) <br>
-- [Publishing a Vite Plugin to npm](artifact/references/publishing-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples may require adaptation to the user's Vite plugin project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Config injection examples can expose sensitive server-side values if secrets are included in Vite define or virtual modules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only pass explicitly public values into Vite define or virtual modules; exclude tokens, passwords, private endpoints, and server-only environment values.
+
+## Reference(s):
+
+- [Vite Plugin Hooks Reference](references/hooks-reference.md)
+- [Vite Plugin Patterns & Examples](references/plugin-patterns.md)
+- [Publishing a Vite Plugin to npm](references/publishing-guide.md)
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/vite-plugin-dev)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation checklists and package configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

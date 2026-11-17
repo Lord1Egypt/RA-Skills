@@ -1,40 +1,51 @@
-## Description: <br>
-Analyzes PostgreSQL, MySQL, or SQLite EXPLAIN output to identify SQL performance bottlenecks and recommend indexes, statistics updates, and query rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes PostgreSQL, MySQL, and SQLite execution plans to identify bottlenecks, stale statistics, missing indexes, N+1 patterns, and practical fixes.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and database engineers use this skill to interpret slow-query plans and produce prioritized SQL tuning guidance for PostgreSQL, MySQL, or SQLite. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run or suggest live database analysis commands without enough safety limits. <br>
-Mitigation: Prefer pasted EXPLAIN output, confirm the exact database target, use read-only or sandbox access, avoid production when possible, and review any EXPLAIN ANALYZE, ANALYZE, or CREATE INDEX command before it runs. <br>
+## Use Case:
 
+Developers and database engineers use this skill to analyze pasted SQL queries and execution plans, then receive a concise diagnosis with prioritized index, statistics, configuration, and rewrite recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-sql-explainer) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown report with SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include database-specific SQL statements for EXPLAIN, ANALYZE, CREATE INDEX, and query rewrites.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and artifact frontmatter) <br>
+Risk: The skill can direct an agent to run live database analysis, including EXPLAIN ANALYZE, without clear confirmation or safety limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pasted execution plans; before live analysis, confirm the target database, permissions, statement safety, and resource limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-sql-explainer)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+- [Canlah AI homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown report with SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prioritized SQL index, ANALYZE, configuration, and query rewrite suggestions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

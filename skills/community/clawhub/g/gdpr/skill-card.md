@@ -1,41 +1,59 @@
-## Description: <br>
-Audit GDPR compliance, generate privacy policies, and document data flows. Use when auditing practices, drafting policies, or checking consent flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GDPR compliance, generate privacy policies, and document data flows. Use when auditing practices, drafting policies, or checking consent flows.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Privacy, security, and compliance teams use this skill to record GDPR-related audit, policy, consent, retention, and data-access events in a local command-line log and export those records for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Entries are saved in plaintext local logs and exports, so secrets, raw personal data, or full identifiers could be exposed on the user's machine. <br>
-Mitigation: Enter only redacted or non-sensitive summaries; avoid passwords, API keys, raw personal data, and full identifiers. <br>
-Risk: Local GDPR log and export files may persist longer than intended under ~/.local/share/gdpr. <br>
-Mitigation: Protect or delete the local data directory according to the user's retention policy and access-control requirements. <br>
+## Use Case:
 
+Developers, privacy teams, and compliance operators use this skill to record GDPR compliance activities, audit findings, consent changes, retention events, and policy updates in local command-line logs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/gdpr) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text terminal output with local log files and JSON, CSV, or TXT exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores activity logs and exports locally under ~/.local/share/gdpr.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Compliance notes may be retained in local plaintext logs and exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for non-secret audit notes and protect the local data directory and exported files according to internal retention and access-control requirements.
+
+Risk: Users may enter passwords, tokens, private keys, full personal identifiers, or regulated records into stored command entries.
+
+Mitigation: Do not enter secrets or regulated personal data unless the environment has appropriate privacy controls and plaintext storage is acceptable.
+
+Risk: The security verdict is suspicious because the GDPR-branded logger lacks stronger privacy controls for sensitive compliance text.
+
+Mitigation: Review the skill before installing and confirm that its local logging behavior fits the intended compliance workflow.
+
+## Reference(s):
+
+- [Gdpr Skill on ClawHub](https://clawhub.ai/bytesagain3/skills/gdpr)
+- [bytesagain3 Publisher Profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Files, Configuration]
+
+**Output Format:** [Command-line text plus local plaintext logs and optional JSON, CSV, or TXT exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores command entries under ~/.local/share/gdpr/ and can export accumulated records.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

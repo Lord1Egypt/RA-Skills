@@ -1,44 +1,56 @@
-## Description: <br>
-Token Freedom helps users compare AI API providers, find free or lower-cost token options, register with providers, and configure API keys in QClaw or similar clients. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Token Freedom helps users compare AI API providers, find free or lower-cost token options, and configure their own API keys in QClaw or compatible clients.
 
-## Publisher: <br>
-[yanqj1218](https://clawhub.ai/user/yanqj1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yanqj1218](https://clawhub.ai/user/yanqj1218)
 
-## Use Case: <br>
-Developers and AI tool users use this skill to compare AI API platforms by price, free quota, model availability, and regional fit. It provides registration guidance and QClaw or client setup steps for using the user's own API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referral or invite links can create perceived bias in platform recommendations. <br>
-Mitigation: Disclose referral rewards, compare alternatives, and share referral links only after the user consents. <br>
-Risk: Users may accidentally expose API keys while following setup guidance. <br>
-Mitigation: Use placeholders in examples, remind users not to share real keys in chat, code, screenshots, or untrusted tools, and recommend spending limits. <br>
-Risk: Provider pricing, free quotas, and terms can change after the skill is published. <br>
-Mitigation: Ask users to verify provider pricing and terms before registering, adding funds, or routing production traffic. <br>
+## Use Case:
 
+External users and developers use this skill when they need recommendations for AI API platforms, free quota options, referral-aware registration guidance, and client configuration steps for using their own API keys.
 
-## Reference(s): <br>
-- [Platform Database](references/platforms.json) <br>
-- [AI API Platform Registration and Setup Guide](references/setup-guide.md) <br>
-- [Default Affiliate Configuration](references/default_config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown text with comparison summaries, provider links, setup steps, and occasional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include referral links after disclosure and user consent; reminds users not to expose real API keys and to set spending limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Referral-link behavior may include invite codes that are not fully surfaced to users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose referral rewards before sharing invite links and offer direct provider links for users who do not want invite codes involved.
+
+Risk: Users may handle API keys or sensitive prompts while following third-party provider setup guidance.
+
+Mitigation: Remind users not to paste real API keys or sensitive prompts into third-party services unless they accept that provider's terms and data handling.
+
+## Reference(s):
+
+- [Platform Data](artifact/references/platforms.json)
+- [Setup Guide](artifact/references/setup-guide.md)
+- [Default Affiliate Configuration](artifact/references/default_config.json)
+- [ClawHub Skill Page](https://clawhub.ai/yanqj1218/skills/token-freedom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, API base URLs, model names, and provider comparison text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider registration links, free-quota summaries, referral disclosures, and API-key handling reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

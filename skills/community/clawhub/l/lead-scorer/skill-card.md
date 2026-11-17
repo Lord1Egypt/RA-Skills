@@ -1,39 +1,55 @@
-## Description: <br>
-Score and qualify leads using customizable criteria. Prioritize your pipeline by fit, intent, and engagement to focus on deals most likely to close. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score and qualify leads using customizable criteria. Prioritize your pipeline by fit, intent, and engagement to focus on deals most likely to close.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Sales reps, SDRs, founders, and revenue teams use this skill to score, qualify, rank, and prioritize leads across fit, intent, and engagement dimensions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The scoring model may not match a user's actual qualification criteria or business priorities. <br>
-Mitigation: Review and adapt the fit, intent, engagement, BANT, and MEDDIC criteria before relying on recommendations. <br>
-Risk: Lead data can include sensitive customer or prospect information. <br>
-Mitigation: Avoid entering sensitive customer data unless the agent environment is approved for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lead Scorer ClawHub Listing](https://clawhub.ai/1kalin/lead-scorer) <br>
+## Use Case:
+
+Sales reps, SDRs, founders, and revenue teams use this skill to score, qualify, grade, and rank sales leads by fit, intent, and engagement so they can prioritize follow-up.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Lead scores may be incomplete or misleading because they are heuristic business advice.
+
+Mitigation: Review scoring criteria, grade assignments, and recommended next actions before changing pipeline priority or contacting a lead.
+
+Risk: Lead records may contain sensitive personal, customer, or prospect data.
+
+Mitigation: Share only data appropriate for the operating environment and follow internal privacy and customer-data handling requirements.
+
+Risk: The README links to optional external paid context packs that are not required for the skill to operate.
+
+Mitigation: Treat external context packs as optional resources and evaluate them separately before use.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown lead scoring report with scores, grades, scoring breakdowns, ranked tables, and recommended next actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include lead scores on a 0-100 scale and A-F grades.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown text with scoring breakdowns, grades, ranked tables, and recommended next actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces heuristic business recommendations for human review; it does not perform automated CRM actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

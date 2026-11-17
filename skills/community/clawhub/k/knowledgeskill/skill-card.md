@@ -1,41 +1,53 @@
-## Description: <br>
-Records document summaries, user-specified categories, and original links into a fixed WeCom smart sheet work knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Records document summaries, user-selected topic categories, and original links into a fixed WeCom smart sheet knowledge base.
 
-## Publisher: <br>
-[TangSuan1221](https://clawhub.ai/user/TangSuan1221) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangsuan1221](https://clawhub.ai/user/tangsuan1221)
 
-## Use Case: <br>
-Employees or teams use this skill to archive document links with short summaries and user-confirmed categories into a WeCom work knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Document links and summaries are written to a fixed WeCom smart sheet, which may be inappropriate for confidential or restricted material if the destination is not authorized. <br>
-Mitigation: Use only an approved knowledge base with suitable sharing settings, and avoid submitting confidential or restricted links unless that destination is authorized to store them. <br>
-Risk: The skill requires a WeCom/MCP account that can add smart sheet records. <br>
-Mitigation: Use a WeCom/MCP account with limited write permissions for the intended smart sheet. <br>
+## Use Case:
 
+Employees and knowledge workers use this skill to archive document names, concise summaries, source links, and user-confirmed categories into a WeCom smart sheet knowledge base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TangSuan1221/knowledgeskill) <br>
-- [Configured WeCom smart sheet](https://doc.weixin.qq.com/smartsheet/s3_ALIA4HicAGQCNvM2rGEgMRsiZ11bd_a?scode=AJEAIQdfAAoyejQcdBALIA4HicAGQ) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and JSON arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes document title, user-selected category, original link, and AI-generated summary to a fixed WeCom smart sheet after category confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes persistent records to a fixed enterprise WeCom smart sheet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with a WeCom sheet you control or trust, and confirm the destination before each write.
+
+Risk: The documented shell-command pattern can include user-controlled titles, URLs, categories, and summaries.
+
+Mitigation: Avoid executing raw shell commands with unescaped user input; prefer structured tool calls or validate and escape fields before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangsuan1221/skills/knowledgeskill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise summaries, category-confirmation prompts, WeCom smart sheet write commands, and completion messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Orchestrate script-to-final-video production with a strict stage-gated workflow (outline -> episode_plan -> storyboard -> storyboard_images -> render), using Seedream image generation, Seedance multi-shot rendering, checkpoint-based confirmation/resume, and optional FFmpeg concatenation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates script-to-final-video production through a strict stage-gated workflow that prepares storyboards, generates Seedream images, renders Seedance multi-shot videos, supports checkpointed confirmation and resume, and optionally concatenates the final mp4.
 
-## Publisher: <br>
-[KKenny0](https://clawhub.ai/user/KKenny0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kkenny0](https://clawhub.ai/user/kkenny0)
 
-## Use Case: <br>
-Developers and content-production agents use this skill to convert text, JSON, or staged story artifacts into reviewed storyboard assets, generated shot videos, and an optional merged MP4. The staged checkpoints support manual review before each major production step. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, source material, generated metadata, URLs, and media may be handled by an external generation provider or retained in local project outputs. <br>
-Mitigation: Use a dedicated ARK_API_KEY, avoid sensitive inputs unless approved for the provider, and store project directories in locations appropriate for retained media and metadata. <br>
-Risk: The workflow delegates rendering to a separate Seedance video skill and uses a local FFmpeg binary. <br>
-Mitigation: Install only trusted versions of the Seedance dependency and FFmpeg, and review generated checkpoints before confirming each stage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KKenny0/seedance-story-orchestrator) <br>
-- [Design document](artifact/docs/design-doc-v0.2.0-phase1.md) <br>
-- [Stage-gated logic flow](artifact/docs/logic-flow-v0.2.0-phase1.md) <br>
-- [Storyboard schema](artifact/references/storyboard-v1.schema.json) <br>
-- [Assets schema](artifact/references/assets-v1.schema.json) <br>
-- [Staged artifacts schema](artifact/references/staged-artifacts-v1.schema.json) <br>
-- [Subagent parser contract](artifact/references/subagent-parser-contract.md) <br>
+## Use Case:
 
+Developers and video workflow builders use this skill to convert raw text, JSON, or staged artifacts into auditable storyboard assets, rendered shot videos, and an optional final merged mp4 while reviewing each checkpoint before continuing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [JSON artifacts, Markdown review notes, shell commands, generated image/video files, and optional MP4 output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates staged checkpoints, storyboard/assets JSON, result indexes, generated media files, and an optional final-video.mp4.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Storyboards and prompts may be sent to configured external generation providers.
+
+Mitigation: Use non-sensitive source material and install only when external provider processing is acceptable.
+
+Risk: Video download and filename handling were flagged as under-scoped by the authoritative security scan.
+
+Mitigation: Use a dedicated project directory, review generated storyboard JSON before confirming stages, and avoid untrusted storyboard JSON until identifiers and downloaded URLs are constrained or patched.
+
+## Reference(s):
+
+- [Design Document v0.2.0 Phase 1](docs/design-doc-v0.2.0-phase1.md)
+- [Logic Flow v0.2.0 Phase 1](docs/logic-flow-v0.2.0-phase1.md)
+- [Storyboard v1 Schema](references/storyboard-v1.schema.json)
+- [Assets v1 Schema](references/assets-v1.schema.json)
+- [Staged Artifacts v1 Schema](references/staged-artifacts-v1.schema.json)
+- [Sub-Agent Parser Contract](references/subagent-parser-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON, files]
+
+**Output Format:** [Markdown guidance with shell commands, Python CLI usage, JSON storyboard/assets artifacts, checkpoint files, generated images, shot videos, run summaries, and optional final mp4 output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8+, ARK_API_KEY, access to the seedance-video-generation skill, and FFmpeg for final video concatenation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Ray-Ban glasses to voice command to WhatsApp to OpenClaw auto-routes your photo into the right database for hands-free life logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes user-selected photos from Meta Ray-Ban glasses or another camera through a configured messaging ingress to an approved specialist and destination with opt-in controls, allowlisted destinations, and confirmation before cross-session forwarding or persistent writes.
 
-## Publisher: <br>
-[JonathanJing](https://clawhub.ai/user/JonathanJing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jonathanjing](https://clawhub.ai/user/jonathanjing)
 
-## Use Case: <br>
-External users and developers use this skill as a routing protocol for sending photos from Meta Ray-Ban glasses through WhatsApp into OpenClaw, where images are classified and routed to configured specialist agents and databases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically forward personal photos from WhatsApp into configured agents, channels, or databases without per-item confirmation. <br>
-Mitigation: Use private ingress channels, allowlist destination session keys, and add a review step before posting images or writing records. <br>
-Risk: Connected services such as databases or Discord channels may receive sensitive or third-party photos. <br>
-Mitigation: Use least-privilege database tokens and avoid processing sensitive or third-party photos without consent. <br>
+## Use Case:
 
+External users and developers use this skill to route intentionally submitted camera photos from a messaging ingress to configured specialist agents and destination databases while keeping forwarding and persistence visible and consent-bound.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JonathanJing/glass2claw) <br>
-- [README](artifact/README.md) <br>
-- [Vision Hub sample routing logic](artifact/SAMPLE_AGENT.md) <br>
-- [Wine Specialist sample persona](artifact/SAMPLE_SOUL_WINE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands and sample agent instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes routing templates for forwarding images to configured sessions and destination databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.3 (source: frontmatter, skill.json, release metadata) <br>
+Risk: The skill routes personal photos and extracted identifiers to configured destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only private, allowlisted source and destination sessions; show the destination before forwarding or writing; keep automatic routing disabled unless scoped to a named route.
+
+Risk: The sample specialist can post images and write database records based on a forgeable routing marker.
+
+Mitigation: Before deployment, add a local approval or signed-envelope check so direct or replayed [Vision Router] messages cannot trigger posting images or creating database records.
+
+Risk: Connected Discord, Notion, Airtable, or database credentials can create external side effects.
+
+Mitigation: Grant credentials only the minimum write permissions needed and review destination behavior before installing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jonathanjing/skills/glass2claw)
+- [ClawHub Homepage](https://clawhub.ai/jonathanjing/glass2claw)
+- [README](artifact/README.md)
+- [Vision Hub Sample Routing Logic](artifact/SAMPLE_AGENT.md)
+- [Wine Specialist Sample Persona](artifact/SAMPLE_SOUL_WINE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with sample routing commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces routing protocol guidance and starter specialist-agent prompts; it does not provide executable code.]
+
+## Skill Version(s):
+
+2.3.4 (source: server release metadata, SKILL.md metadata, CHANGELOG, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

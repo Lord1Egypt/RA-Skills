@@ -1,43 +1,58 @@
-## Description: <br>
-AI 智能家庭厨助 helps users choose recipes from available ingredients, generate cooking steps, find ingredient substitutions, plan menus, answer cooking questions, surface kitchen safety guidance, and create interactive HTML recipe reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI 智能家庭厨助 helps users recommend recipes from available ingredients or preferences, generate cooking steps, suggest ingredient substitutions, plan multi-day meals, answer cooking questions, provide kitchen safety guidance, and create card-style HTML reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users and agent operators use this skill for household cooking support: recipe recommendations, step-by-step preparation guidance, substitutions, multi-day meal planning, cooking tips, safety prompts, and local HTML report generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive health, allergy, household, or dietary details could be included in prompts or optional web searches. <br>
-Mitigation: Avoid entering sensitive details unless needed, and review prompts before allowing search-based fallback. <br>
-Risk: Generated HTML reports may persist recipe, meal-planning, or dietary details on disk. <br>
-Mitigation: Review generated files and remove or store them according to the user's local data handling expectations. <br>
-Risk: Cooking and kitchen safety guidance may be incomplete for emergencies or specialized dietary needs. <br>
-Mitigation: Treat generated guidance as a cooking reference and consult appropriate professionals or emergency services for urgent or specialized cases. <br>
+## Use Case:
 
+Home cooks and agents assisting them use this skill to turn ingredients, dish names, or dietary preferences into recipe recommendations, guided steps, substitutions, meal plans, cooking tips, safety notes, and HTML recipe reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/chef-cooking) <br>
-- [Project homepage](https://github.com/bettermen/chef-cooking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance, command examples, optional JSON from helper scripts, and local HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a bundled recipe database and may use web search when local recipe data is insufficient.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Cooking questions can trigger online lookup behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access expectations before installation and disable or avoid online fallback where offline-only behavior is required.
+
+Risk: Generated HTML reports may persist and may not safely escape dynamic recipe, query, or plan content.
+
+Mitigation: Treat generated reports as untrusted, open them only from trusted inputs, and sanitize dynamic content before sharing or publishing reports.
+
+Risk: Food safety guidance may be inconsistent for higher-risk topics such as raw seafood or home fermentation.
+
+Mitigation: Use authoritative food-safety sources for high-risk preparations and review safety notes before following or sharing generated guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/chef-cooking)
+- [Project homepage](https://github.com/bettermen/chef-cooking)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown or text summaries, optional JSON, and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent HTML report files from recipe, menu, or tips data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

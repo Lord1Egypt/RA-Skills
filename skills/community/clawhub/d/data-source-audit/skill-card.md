@@ -1,42 +1,55 @@
-## Description: <br>
-Comprehensive audit of all construction data sources and systems. Map data flows, identify silos, assess quality, and create integration roadmap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive audit of all construction data sources and systems. Map data flows, identify silos, assess quality, and create integration roadmap.
 
-## Publisher: <br>
-[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[datadrivenconstruction](https://clawhub.ai/user/datadrivenconstruction)
 
-## Use Case: <br>
-Construction data, operations, and integration teams use this skill to inventory project systems, map data flows, identify silos, assess source quality, and plan integration roadmaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may process local files or folders for construction data-source audits. <br>
-Mitigation: Provide only specific approved files or folders, and avoid broad filesystem access. <br>
-Risk: Survey data and exported reports may contain sensitive system inventory, credentials, or business-process details. <br>
-Mitigation: Do not include secrets or credentials in input data, and review Excel, CSV, JSON, or Markdown outputs before sharing. <br>
+## Use Case:
 
+Construction data, analytics, and operations teams use this skill to inventory project data sources, map integrations and data flows, identify silos, assess data quality, and plan an integration roadmap.
 
-## Reference(s): <br>
-- [Data Source Audit on ClawHub](https://clawhub.ai/datadrivenconstruction/data-source-audit) <br>
-- [Publisher Profile](https://clawhub.ai/user/datadrivenconstruction) <br>
-- [Project Homepage](https://datadrivenconstruction.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with structured tables, summary findings, Python examples, and export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide local Excel, CSV, or JSON exports from user-approved construction data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill may handle construction project metadata and local files provided by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended input scope before use and provide explicit file paths instead of broad project-directory scans.
+
+Risk: Spreadsheet exports can preserve untrusted survey values that begin with formula characters.
+
+Mitigation: Sanitize or review values beginning with =, +, -, or @ before exporting Excel or CSV catalogs.
+
+## Reference(s):
+
+- [Data Driven Construction](https://datadrivenconstruction.io)
+- [ClawHub skill listing](https://clawhub.ai/datadrivenconstruction/skills/data-source-audit)
+- [ClawHub publisher profile](https://clawhub.ai/user/datadrivenconstruction)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with structured tables and optional CSV, Excel, or JSON export guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include audit reports, data catalogs, integration matrices, quality scores, silo findings, and roadmap recommendations.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,7 +10,7 @@ This document describes how to verify that PAI-EAS service diagnosis is executed
 aliyun eas describe-service \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Expected result**:
@@ -23,7 +23,7 @@ aliyun eas describe-service \
 aliyun eas describe-service-event \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Expected result**:
@@ -38,7 +38,7 @@ aliyun eas describe-service-log \
   --service-name <service-name> \
   --keyword "error" \
   --limit 10 \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Expected result**:
@@ -51,7 +51,7 @@ aliyun eas describe-service-log \
 aliyun eas list-service-instances \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Expected result**:
@@ -64,7 +64,7 @@ aliyun eas list-service-instances \
 aliyun eas describe-service-diagnosis \
   --cluster-id cn-hangzhou \
   --service-name <service-name> \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Expected result**:
@@ -131,7 +131,7 @@ aliyun eas describe-service-diagnosis \
 aliyun eas describe-service \
   --cluster-id cn-hangzhou \
   --service-name non-existent-service \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Expected result**:
@@ -149,7 +149,7 @@ aliyun eas describe-service \
 aliyun eas describe-service \
   --cluster-id invalid-region \
   --service-name my-service \
-  --user-agent AlibabaCloud-Agent-Skills
+  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-diagnose
 ```
 
 **Expected result**:

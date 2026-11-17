@@ -1,0 +1,24 @@
+{
+  "mode": "release_readiness",
+  "sample": {
+    "artifacts": [
+      {
+        "name": "demo",
+        "version": "1.0.0",
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "testStatus": "passed"
+      }
+    ]
+  },
+  "expected": {
+    "readyForReview": true,
+    "artifacts": 1
+  },
+  "invalid": {
+    "artifacts": [
+      {
+        "version": "1.0.0"
+      }
+    ]
+  }
+}

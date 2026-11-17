@@ -1,46 +1,59 @@
-## Description: <br>
-联网搜索, 网页搜索, 实时联网, 一键配置。让 OpenClaw 用 Tavily 实现实时搜索（含免费额度）。One-step install + guided key setup. Guide: github.com/plabzzxx/openclaw-tavily-search <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds Tavily-powered real-time web search, page extraction, crawling, and site mapping to OpenClaw, with guided API key setup.
 
-## Publisher: <br>
-[plabzzxx](https://clawhub.ai/user/plabzzxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plabzzxx](https://clawhub.ai/user/plabzzxx)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to add Tavily-backed real-time web search, page extraction, site crawling, and URL mapping to agent workflows. It is intended for guided local setup with a Tavily API key and concise command outputs for downstream agent use. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries, URLs, extracted pages, crawls, and maps are sent to Tavily. <br>
-Mitigation: Do not send secrets, private prompts, internal URLs, or sensitive sites through search, extract, crawl, or map unless Tavily is intended to receive them. <br>
-Risk: The Tavily API key can be exposed if pasted into chat or committed to source control. <br>
-Mitigation: Store the API key locally in an environment variable or ~/.openclaw/.env, avoid committing .env files, and prefer manual local editing for setup. <br>
-Risk: Making Tavily the default fallback for web lookups can route more agent queries to an external service than expected. <br>
-Mitigation: Review the optional memory preference before enabling Tavily as the default fallback for web lookup tasks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/plabzzxx/tavily-one-step-search) <br>
-- [Publisher profile](https://clawhub.ai/user/plabzzxx) <br>
-- [Project guide](https://github.com/plabzzxx/openclaw-tavily-search) <br>
-- [Tavily](https://tavily.com) <br>
-- [Tavily API endpoint](https://api.tavily.com) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to run Tavily web searches, extract page content, crawl documentation sites, and map site URLs from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, JSON, and Brave-like JSON emitted by a Node CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports search, extract, crawl, and map commands with domain, time, depth, proxy, timeout, retry, and output-format controls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The installation flow asks the agent to persistently prefer Tavily for future general web searches.
+
+Mitigation: Add that persistent preference only when the user explicitly wants future general searches routed through Tavily.
+
+Risk: The installation flow clones mutable code from GitHub.
+
+Mitigation: Install from a pinned commit or verified release and review the release before use.
+
+Risk: The skill requires a Tavily API key in the local environment.
+
+Mitigation: Keep the API key in a trusted local environment file and avoid sending the secret through chat.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/plabzzxx/skills/tavily-one-step-search)
+- [Tavily](https://tavily.com)
+- [Tavily documentation](https://docs.tavily.com)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, and concise setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TAVILY_API_KEY in the environment or ~/.openclaw/.env; results may include external web content.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

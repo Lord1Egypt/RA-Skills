@@ -1,41 +1,49 @@
-## Description: <br>
-A spatial reasoning and style skill that teaches an OpenClaw agent to describe environmental controls through Chinese antonym pairs, Hanzi morphological shifts, and dynamic masking instead of numeric settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A hardcore spatial physics and dialectical reasoning framework. Teaches the OpenClaw agent to process environmental controls using Chinese antonym morphological shifts and dynamic masking, transcending traditional numerical GUI logic.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-External users and developers use this skill to make an OpenClaw agent respond to ambience, spatial design, and environmental-control requests with dialectical Hanzi antonym language rather than standard numeric GUI phrasing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can obscure exact environmental settings by replacing numeric controls with poetic Hanzi antonym descriptions. <br>
-Mitigation: For real smart-home actions, ask for exact numeric settings and explicit confirmation before changing devices. <br>
-Risk: Users may assume this skill controls hardware directly. <br>
-Mitigation: Treat it as a text-only stylistic skill and review any separate hardware-control plugin before installation. <br>
+## Use Case:
 
+External users and developers use this skill to make an OpenClaw agent describe ambience, spatial-design, and environmental-control requests through Hanzi antonym shifts instead of numeric control language.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/spacesq/s2-hanzi-antonym-logic) <br>
-- [Project Homepage](https://github.com/SpaceSQ/s2-os-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Natural-language text or Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tools, credentials, or persistence are provided by this skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Stylized spatial-control language may obscure exact temperature, brightness, noise, accessibility, or other safety-sensitive settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep normal numeric settings and user confirmations available whenever the skill is used for real smart-home or environmental-control discussions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-hanzi-antonym-logic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses using Hanzi-based ambience and spatial-design language]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code, tools, installs, persistence, or direct hardware authority.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

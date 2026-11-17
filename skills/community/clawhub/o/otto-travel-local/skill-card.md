@@ -1,41 +1,58 @@
-## Description: <br>
-OpenClaw plugin for Otto Travel that searches, compares, and books flights and hotels via Otto's MCP endpoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw plugin for Otto Travel -- search, compare, and book flights and hotels via Otto's MCP endpoint.
 
-## Publisher: <br>
-[cd-otto](https://clawhub.ai/user/cd-otto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cd-otto](https://clawhub.ai/user/cd-otto)
 
-## Use Case: <br>
-External users and travel-focused agents use this plugin to search travel options, compare results, book flights or hotels, and manage Otto preferences and loyalty programs through an authenticated Otto account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can run real booking and account-changing actions through Otto's remote MCP server. <br>
-Mitigation: Require explicit human approval before book_flight, book_hotel, preference, or loyalty-program write actions are executed. <br>
-Risk: OAuth tokens are stored locally for subsequent authenticated travel actions. <br>
-Mitigation: Treat ~/.openclaw/.otto-tokens.json like a password and avoid syncing, sharing, or exposing it. <br>
-Risk: Authenticated requests are sent to the configured MCP server URL. <br>
-Mitigation: Install and use the plugin only when you trust Otto and the configured server URL. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect an agent to Otto Travel's MCP endpoint for flight and hotel search, booking, booking lookup, preferences, and loyalty program management.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Configuration] <br>
-**Output Format:** [Text responses from Otto Travel tools and configuration JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Tools are discovered dynamically from the configured Otto MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: A configurable remote MCP server receives OAuth material and travel details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the default Otto HTTPS endpoint unless the custom server is fully trusted.
+
+Risk: The skill can book travel and change preferences or loyalty-program data through authenticated tools.
+
+Mitigation: Require explicit user confirmation before any booking, preference, or loyalty-program change.
+
+Risk: OAuth tokens are stored locally and can grant account access if exposed.
+
+Mitigation: Treat the local token file as sensitive and keep access restricted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cd-otto/skills/otto-travel-local)
+- [Otto MCP endpoint](https://api.ottotheagent.com/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text responses with configuration snippets and tool-call results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Discovers available MCP tools dynamically from the configured Otto server.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

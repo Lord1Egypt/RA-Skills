@@ -1,51 +1,66 @@
-## Description: <br>
-Home Design helps generate renovation design plans, room rendering prompts, and draft construction documents from floor-plan and household requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Home Design helps agents produce home renovation planning outputs from floor-plan and requirements evidence, including layout analysis, style guidance, room image prompts, construction-document drafts, electrical and plumbing plans, and material lists.
 
-## Publisher: <br>
-[yqrpaul](https://clawhub.ai/user/yqrpaul) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yqrpaul](https://clawhub.ai/user/yqrpaul)
 
-## Use Case: <br>
-External users and design assistants use this skill to turn floor-plan details and household requirements into renovation analysis, layout recommendations, room prompt files, draft construction documents, material lists, and budget guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Construction, wiring, plumbing, structural, or material outputs may be incomplete or unsuitable for a real property. <br>
-Mitigation: Treat generated plans as drafts and have qualified local professionals review them before buying materials or starting work. <br>
-Risk: Floor plans, addresses, household details, and personal renovation requirements can expose private information. <br>
-Mitigation: Redact addresses and identifying household details from floor plans and prompts before using the skill or third-party image services. <br>
-Risk: Image-generation backends may require API keys or service accounts. <br>
-Mitigation: Keep API-key configuration files private, exclude them from version control, and review third-party image-service privacy terms before uploading plans or prompts. <br>
+## Use Case:
 
+External users and agents use this skill to collect home renovation requirements, analyze a floor plan, propose room layouts and design styles, generate image prompts or optional room renderings, and draft construction, electrical, plumbing, materials, and budget planning documents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yqrpaul/home-design) <br>
-- [README](README.md) <br>
-- [Effects Guide](EFFECTS_GUIDE.md) <br>
-- [Stable Diffusion Install Guide](INSTALL_SD.md) <br>
-- [Construction Standards](references/construction.md) <br>
-- [Ergonomics Reference](references/ergonomics.md) <br>
-- [Materials Guide](references/materials.md) <br>
-- [Style Guide](references/style_guide.md) <br>
-- [LiblibAI](https://www.liblib.ai/) <br>
-- [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports and instructions, JSON prompt or material files, Python command examples, and image-generation configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce draft construction files and API configuration examples; rendered images depend on external or local image-generation backends.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata and skill.yaml) <br>
+Risk: Generated construction, electrical, plumbing, material, and code-compliance outputs may be incomplete or unsuitable for real renovation work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those outputs as conceptual drafts and have licensed local professionals verify them before procurement, permitting, or construction.
+
+Risk: Floor plans, client details, and private room data may be exposed when using remote image-generation services.
+
+Mitigation: Avoid sending sensitive property or client data to remote services unless the user has reviewed and accepted those providers' terms.
+
+Risk: Optional setup guidance includes third-party installation or system commands that may affect the user's environment.
+
+Mitigation: Review third-party setup steps and any privileged commands before running them.
+
+## Reference(s):
+
+- [Home Design ClawHub listing](https://clawhub.ai/yqrpaul/skills/home-design)
+- [Construction standards reference](artifact/references/construction.md)
+- [Ergonomics reference](artifact/references/ergonomics.md)
+- [Materials selection guide](artifact/references/materials.md)
+- [Interior style guide](artifact/references/style_guide.md)
+- [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+- [LiblibAI](https://www.liblib.ai/)
+- [TusiArt](https://tusiart.com/)
+- [SeaArt](https://www.seaart.ai/)
+- [Tongyi Wanxiang](https://wanxiang.aliyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON material lists and prompt files, shell commands, configuration snippets, and optional PNG room renderings when an image backend is configured.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are planning drafts; construction, electrical, plumbing, code-compliance, and material recommendations require local professional review before real-world use.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence and artifact/skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

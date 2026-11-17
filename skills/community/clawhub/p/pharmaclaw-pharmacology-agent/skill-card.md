@@ -1,44 +1,54 @@
-## Description: <br>
-PharmaClaw profiles drug candidates from SMILES strings with ADME/PK descriptors, drug-likeness scores, toxicity alerts, and pharmacology risk flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Profiles drug candidates from SMILES by computing drug-likeness, ADME/PK descriptors and predictions, toxicity-related alerts, and downstream recommendations.
 
-## Publisher: <br>
-[Cheminem](https://clawhub.ai/user/Cheminem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cheminem](https://clawhub.ai/user/cheminem)
 
-## Use Case: <br>
-Developers and drug discovery teams use this agent to screen candidate molecules from SMILES strings before downstream toxicology, literature, or IP-expansion work. It is intended for early pharmacology triage and lead-optimization support, not as a clinical or regulatory decision system. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Molecule strings may be sent to the external ADMETlab service when using scripts/admetlab3.py. <br>
-Mitigation: Use scripts/chain_entry.py for confidential or proprietary molecules, or run the ADMETlab helper only after confirming external submission is acceptable. <br>
-Risk: Pharmacology and toxicity predictions are screening estimates and can be wrong or incomplete. <br>
-Mitigation: Review outputs with qualified scientific judgment and confirm important findings with validated assays, regulatory workflows, or domain-specific review. <br>
-Risk: The skill executes local Python chemistry tooling and depends on packages such as RDKit and requests. <br>
-Mitigation: Install in a controlled environment, review dependencies, and scan the skill before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ADME Prediction Rules Reference](references/api_reference.md) <br>
-- [ADMETlab 3.0](https://admetlab3.scbdd.com) <br>
-- [PharmaClaw Pharmacology Agent on ClawHub](https://clawhub.ai/Cheminem/pharmaclaw-pharmacology-agent) <br>
-- [Cheminem publisher profile](https://clawhub.ai/user/Cheminem) <br>
+## Use Case:
 
+Developers and cheminformatics researchers use this skill to turn a SMILES string into screening-oriented ADME/PK, drug-likeness, and risk outputs for lead optimization workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON reports and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include canonical SMILES, descriptor tables, ADME predictions, risk flags, recommendations for downstream agents, confidence, warnings, and timestamps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill changelog, released 2026-02-18) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive SMILES strings could disclose confidential research compounds if sent through the optional ADMETlab path.
+
+Mitigation: Use the local chain_entry.py/RDKit path for sensitive molecules and only use scripts/admetlab3.py when external submission is acceptable.
+
+Risk: ADME, toxicity, and drug-likeness outputs are screening predictions and may be incorrect or incomplete for scientific, clinical, or regulatory decisions.
+
+Mitigation: Treat results as triage information and require expert review, validated assays, and appropriate regulatory evidence before acting on them.
+
+## Reference(s):
+
+- [ADME Prediction Rules Reference](references/api_reference.md)
+- [ADMETlab 3.0](https://admetlab3.scbdd.com)
+- [ClawHub Release Page](https://clawhub.ai/cheminem/skills/pharmaclaw-pharmacology-agent)
+
+## Skill Output:
+
+**Output Type(s):** [json, text, shell commands, guidance]
+
+**Output Format:** [JSON pharmacology profiles with markdown guidance and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts SMILES input and may include descriptor values, ADME predictions, toxicity alerts, risk flags, confidence, warnings, timestamps, and recommended next agents.]
+
+## Skill Version(s):
+
+2.0.0 (source: release metadata and changelog, released 2026-02-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

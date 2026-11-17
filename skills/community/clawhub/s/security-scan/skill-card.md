@@ -1,40 +1,52 @@
-## Description: <br>
-Security review workflow for OpenClaw skills and other small code folders. Use when auditing a skill before publishing or installing it, checking for dangerous code patterns, possible hardcoded secrets, risky file permissions, or lightweight supply-chain concerns. Best for quick static review and cautious go/no-go recommendations, not full malware analysis or sandbox forensics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security Scan helps agents perform a lightweight static security review of OpenClaw skills and small code folders before publishing, installing, or trusting them.
 
-## Publisher: <br>
-[ShadowLoong](https://clawhub.ai/user/ShadowLoong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shadowloong](https://clawhub.ai/user/shadowloong)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, skill publishers, and reviewers use this skill to run a quick static security pass over OpenClaw skills or small code folders and produce a concise risk summary with recommended next steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Scan output can include sensitive matched lines from repositories that contain real credentials or private code.
+
+Mitigation: Keep scan output private, avoid sharing raw matches broadly, and rotate any exposed credentials confirmed during review.
+
+Risk: The bundled scanner is lightweight and heuristic, so it can miss issues or report benign matches.
+
+Mitigation: Treat results as review signals, inspect flagged code manually, and use deeper security tooling when publish or install risk remains unclear.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and reviewers use this skill to perform a quick static security pass on OpenClaw skills, script bundles, or small code folders before publishing, installing, or trusting them. It helps summarize dangerous code patterns, likely hardcoded credentials, risky file permissions, and practical next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner is lightweight and heuristic, so it can miss risky behavior or flag benign code as suspicious. <br>
-Mitigation: Treat results as review signals, manually inspect matched code, and use stronger manual or sandboxed analysis when higher assurance is required. <br>
-Risk: Raw scan output can expose private paths, code snippets, or suspected credentials from the reviewed directory. <br>
-Mitigation: Run it only on directories intended for inspection and redact sensitive output before sharing results. <br>
+**Output Format:** [Markdown or compact plain-text security summary with optional shell command snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Security Scan skill page](https://clawhub.ai/ShadowLoong/security-scan) <br>
+**Other Properties Related to Output:** [May include sensitive matched lines from scanned files; keep scan output private and review findings manually.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and concise text risk summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are heuristic review signals and may include matched file paths, code snippets, or suspected credential strings from the scanned target.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

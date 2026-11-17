@@ -1,40 +1,56 @@
-## Description: <br>
-Track, analyze, and optimize AI API costs across OpenAI, Anthropic, OpenRouter, Google, and other LLM providers using local billing exports, usage logs, or API response files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track, analyze, and optimize AI API costs across OpenAI, Anthropic, OpenRouter, Google, and other LLM providers by parsing billing data, usage logs, or API responses into cost breakdowns, trends, budget alerts, and optimization recommendations.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and teams use this skill to analyze AI API spending from billing exports, usage logs, or provider API responses and to produce cost reports, budget checks, and optimization guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Billing and usage exports may contain sensitive account, project, usage, or spending data.
+
+Mitigation: Use trusted local exports, limit report sharing, and review generated outputs before redistribution.
+
+Risk: Environment/API-key based access can query provider account data when explicitly enabled.
+
+Mitigation: Prefer user-provided export files, and only provide API keys when live account access is intended.
+
+Risk: Built-in pricing may differ from current provider pricing or negotiated account rates.
+
+Mitigation: Override pricing with a custom pricing JSON file and verify figures against provider billing before making financial decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, engineering teams, and operations users use this skill to inspect LLM provider usage, break down spend by model or time period, detect trends, and generate cost optimization reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Billing exports and usage logs may contain sensitive spending patterns, model choices, and operational metadata. <br>
-Mitigation: Run the analyzer locally on explicit export files, keep those files out of shared folders, and review generated reports before sharing. <br>
-Risk: The documented API-key auto mode may lead users to expect live provider access that is not implemented in the reviewed script. <br>
-Mitigation: Use explicit local usage or billing export files and do not rely on API-key auto mode for collection. <br>
+**Output Format:** [Terminal tables, Markdown reports, JSON objects, CSV exports, and inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/charlie-morrison/cm-api-cost-tracker) <br>
+**Other Properties Related to Output:** [May use user-provided billing or usage exports; pricing data can be overridden with a custom JSON file.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Guidance] <br>
-**Output Format:** [Terminal tables, Markdown reports, JSON objects, or CSV-style tabular output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports can include cost breakdowns, trend summaries, budget warnings, top-spender lists, and model substitution suggestions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

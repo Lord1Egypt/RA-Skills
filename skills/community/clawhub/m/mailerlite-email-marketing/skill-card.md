@@ -1,47 +1,57 @@
-## Description: <br>
-Manage MailerLite email marketing campaigns, automations, subscribers, and e-commerce stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage MailerLite email marketing campaigns, automations, subscribers, and e-commerce stores. Create campaigns, manage groups and segments, handle subscribers, and track e-commerce activity.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and operators use this skill to manage MailerLite email marketing work through ClawLink, including campaigns, automations, subscribers, groups, segments, e-commerce records, and webhooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires OAuth access and sensitive account credentials through ClawLink. <br>
-Mitigation: Install only when MailerLite account access is expected, complete connection through the ClawLink dashboard, and review account or credential prompts before use. <br>
-Risk: Write operations can alter campaigns, subscribers, automations, groups, segments, stores, products, orders, carts, and webhooks. <br>
-Mitigation: Use tool descriptions and previews before write actions, then execute only after explicit user confirmation of the target resource and intended effect. <br>
-Risk: Some destructive actions, including subscriber deletion and GDPR forget operations, are permanent or irreversible after processing. <br>
-Mitigation: Confirm destructive requests separately and verify identifiers with read operations before invoking delete or forget tools. <br>
+## Use Case:
 
+External users and developers use this skill to operate MailerLite marketing workflows from an agent, including campaign, automation, subscriber, group, segment, webhook, and e-commerce account tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/mailerlite-email-marketing) <br>
-- [Publisher Profile](https://clawhub.ai/user/hith3sh) <br>
-- [MailerLite API Documentation](https://developers.mailerlite.com/) <br>
-- [MailerLite Integrations](https://www.mailerlite.com/integrations) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON command parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for ClawLink tool discovery, previews, confirmations, and MailerLite API actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill can perform sensitive MailerLite account actions, including subscriber deletion, campaign sending, automation changes, and e-commerce updates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review connected account permissions, preview write actions, and confirm every write or destructive action before execution.
+
+Risk: The skill depends on ClawLink for hosted connection flows and credential handling.
+
+Mitigation: Install only when ClawLink is trusted, keep the MailerLite connection scoped to the intended account, and revoke the connection when it is no longer needed.
+
+## Reference(s):
+
+- [MailerLite API Documentation](https://developers.mailerlite.com/)
+- [MailerLite Integrations](https://www.mailerlite.com/integrations)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/mailerlite-email-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a connected MailerLite account through ClawLink; write and destructive actions require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

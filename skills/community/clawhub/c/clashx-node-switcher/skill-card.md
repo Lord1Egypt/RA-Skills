@@ -1,40 +1,53 @@
-## Description: <br>
-Control ClashX VPN via Peekaboo to test latency and switch to the US proxy node with the lowest latency using menu bar automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Controls ClashX through Peekaboo to test proxy latency and switch to the lowest-latency US node using menu bar automation.
 
-## Publisher: <br>
-[shifengwang333-ai](https://clawhub.ai/user/shifengwang333-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shifengwang333-ai](https://clawhub.ai/user/shifengwang333-ai)
 
-## Use Case: <br>
-Developers and operators use this skill to guide ClashX menu bar automation with Peekaboo, run latency tests, and select a lower-latency US proxy node. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshot steps can capture sensitive screen content. <br>
-Mitigation: Close or hide sensitive windows before use and delete /tmp/clash_nodes.png or /tmp/screen.png after screenshots are no longer needed. <br>
-Risk: Coordinate-based menu automation may click the wrong UI element on displays or ClashX layouts that differ from the documented setup. <br>
-Mitigation: Review the Peekaboo commands and adjust coordinates for the active display before executing clicks. <br>
+## Use Case:
 
+Developers and operators use this skill to automate ClashX proxy node testing and select a US node with the lowest observed latency on a macOS menu bar setup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shifengwang333-ai/skills/clashx-node-switcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes UI coordinate references for a 1920x1080 display and temporary screenshot paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Full-screen screenshots saved to predictable temporary paths may capture unrelated private windows or notifications.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Hide unrelated windows and notifications before use, prefer capturing only the ClashX menu into a private temporary directory, and delete screenshots immediately.
+
+Risk: Coordinate-based menu automation can select the wrong item when the display resolution, menu position, or ClashX state differs from the documented setup.
+
+Mitigation: Confirm the ClashX menu position and visible node list before clicking, and adjust coordinates for the active display layout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shifengwang333-ai/skills/clashx-node-switcher)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates and node choices depend on the user's ClashX menu state and display layout.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

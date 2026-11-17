@@ -1,42 +1,55 @@
-## Description: <br>
-钉钉快速集成配置 - 5分钟连接 OpenClaw 与钉钉，解锁机器人消息、审批流程、智能办公。适合：企业用户、钉钉生态、国内企业。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+钉钉快速集成配置 helps OpenClaw users connect DingTalk for robot messages, approval workflows, and intelligent office automation.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and enterprise OpenClaw users use this skill to configure DingTalk bot messaging, alert notifications, daily briefs, and approval workflow integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook URLs and signing secrets can expose DingTalk bot access if committed, logged, or shared. <br>
-Mitigation: Store webhook URLs and signing secrets securely, avoid committing or screenshotting configuration files, and use test webhooks for troubleshooting. <br>
-Risk: Automatic approval-processing guidance is broad for a business workflow without clear user controls. <br>
-Mitigation: Do not enable automatic approval processing unless actions are explicitly allowlisted, credentials are least-privilege, and a human confirms approve, reject, or modify decisions. <br>
+## Use Case:
 
+Developers and enterprise users use this skill to configure OpenClaw with DingTalk webhooks, signing secrets, message templates, and troubleshooting steps for workplace messaging and approval automation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/dingtalk-quickstart-cn) <br>
-- [DingTalk developer documentation](https://open.dingtalk.com/document) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code] <br>
-**Output Format:** [Markdown with YAML, JSON, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl plus DingTalk webhook and optional signing-secret configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, and skill.json) <br>
+Risk: DingTalk webhook tokens and signing secrets can grant message-sending access if exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep webhook credentials out of source control, logs, screenshots, and shared chats; restrict config file permissions and rotate exposed webhooks.
+
+Risk: Automated DingTalk messages may include sensitive customer, employee, approval, or incident details.
+
+Mitigation: Send business data only to approved DingTalk groups and review message templates before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/dingtalk-quickstart-cn)
+- [DingTalk Developer Documentation](https://open.dingtalk.com/document)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance]
+
+**Output Format:** [Markdown with YAML, JSON, shell command, and text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and DingTalk webhook credentials supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

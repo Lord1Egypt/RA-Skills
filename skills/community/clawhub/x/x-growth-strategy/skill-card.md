@@ -1,41 +1,50 @@
-## Description: <br>
-Create an X account growth strategy from public algorithm signals. Use when planning positioning, content pillars, audience graph, and weekly growth experiments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create an X account growth strategy from public algorithm signals. Use when planning positioning, content pillars, audience graph, and weekly growth experiments.
 
-## Publisher: <br>
-[mikaelaldy](https://clawhub.ai/user/mikaelaldy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mikaelaldy](https://clawhub.ai/user/mikaelaldy)
 
-## Use Case: <br>
-External creators, social media strategists, and operators use this skill to plan deliberate X account growth through positioning, content pillars, audience targeting, reply strategy, weekly experiments, and analytics review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generated growth plan could encourage spammy, manipulative, or platform-policy-violating engagement behavior. <br>
-Mitigation: Review plans for X policy compliance before use, keep the skill as a planning aid, and avoid automation or engagement tactics designed to manipulate platform signals. <br>
-Risk: Public algorithm signals and account analytics can be incomplete or change over time. <br>
-Mitigation: Treat recommendations as hypotheses, compare them with current platform guidance and account analytics, and revise weekly experiments based on measured outcomes. <br>
+## Use Case:
 
+External users and creators use this skill to plan deliberate X account growth, including positioning, content pillars, audience neighborhoods, reply strategy, metrics, and weekly experiments.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mikaelaldy/x-growth-strategy) <br>
-- [Publisher profile](https://clawhub.ai/user/mikaelaldy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown plan with structured sections and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No account access, automation, local data access, or privileged execution requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The growth strategy could be applied as spammy or deceptive engagement behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the guidance in line with X platform rules, focus on useful positive engagement, and avoid deceptive or spam-like posting and replies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mikaelaldy/skills/x-growth-strategy)
+- [Publisher profile](https://clawhub.ai/user/mikaelaldy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns account strategy sections including an account promise, target audience, content pillars, retrieval neighborhood, 7-day growth plan, daily reply plan, metrics, and weekly experiments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

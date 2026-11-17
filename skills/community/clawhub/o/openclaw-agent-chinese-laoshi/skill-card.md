@@ -1,46 +1,66 @@
-## Description: <br>
-Use when studying or normalizing Chinese lesson transcript/subtitle inputs with bundled public lesson data, learner docs, local export bundles, and pilot-first prepublish leak gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when studying or normalizing Chinese lesson transcript/subtitle inputs with bundled public lesson data, learner docs, local export bundles, and pilot-first prepublish leak gates.
 
-## Publisher: <br>
-[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zack-dev-cm](https://clawhub.ai/user/zack-dev-cm)
 
-## Use Case: <br>
-Learners, tutors, and content operators use this skill to study sanitized Chinese lesson data, normalize transcript or subtitle inputs, create learner-facing Markdown and JSON lesson assets, and apply pilot-first publication gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some referenced course-data and system-prompt assets may be absent from the published package. <br>
-Mitigation: Confirm the referenced assets are present in the source repository before relying on course data, prompt packs, or publication checks. <br>
-Risk: Repository or Drive-sync commands could affect local files or exports if run without checking the command and target folder. <br>
-Mitigation: Approve only exact commands shown in the conversation, and require a user-supplied local Drive mount for optional sync. <br>
-Risk: Unsupported or incomplete lesson source material can lead to guessed Chinese text, weak answer keys, or synthetic filler. <br>
-Mitigation: Keep uncertainty visible, require transcript or subtitle input for new material, and reject unsupported lesson content during review. <br>
+## Use Case:
 
+Learners, tutors, and developers use this skill to study or normalize Chinese lesson transcript/subtitle inputs, create grounded Chinese lesson materials, and check public release bundles before publication.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zack-dev-cm/openclaw-agent-chinese-laoshi) <br>
-- [Metadata Homepage](https://github.com/zack-dev-cm/openclaw-agent-chinese-laoshi) <br>
-- [Pipeline Reference](references/pipeline.md) <br>
-- [Release Gates](references/release-gates.md) <br>
-- [ChatGPT Connector Guidance](references/chatgpt-connector-guidance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text with optional JSON lesson assets and explicit command proposals] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Repository commands require explicit user confirmation; optional Drive sync requires a user-supplied local mount and documented repo command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: frontmatter and release evidence) <br>
+Risk: The skill advertises bundled course-data and system-prompts assets that are not present in the release artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the publisher to include the missing assets or revise the skill so it no longer claims they are bundled before relying on those workflows.
+
+Risk: Repository commands or Drive sync could run with unintended local access if treated as implicit capabilities.
+
+Mitigation: Allow commands or Drive sync only after the exact command is shown, the source repository documents it, and the user intentionally provides any required local mount path.
+
+Risk: Publication workflows could expose private paths, secret-shaped strings, debug endpoints, or known file IDs.
+
+Mitigation: Run the documented public release gate and block publication when leak indicators or bundle drift are detected.
+
+Risk: Chinese lesson outputs could become misleading if missing Hanzi, pinyin, translations, or weak source material are filled in by guesswork.
+
+Mitigation: Keep uncertainty visible, mark missing fields, reject unsupported content, and build learner-facing materials only after grounded extraction exists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zack-dev-cm/skills/openclaw-agent-chinese-laoshi)
+- [Publisher profile](https://clawhub.ai/user/zack-dev-cm)
+- [ClawDIS homepage](https://github.com/zack-dev-cm/openclaw-agent-chinese-laoshi)
+- [Pipeline Reference](references/pipeline.md)
+- [Release Gates](references/release-gates.md)
+- [ChatGPT Connector Guidance](references/chatgpt-connector-guidance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional JSON lesson assets, local export guidance, configuration notes, and proposed shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands must be shown for explicit user confirmation before execution; outputs should stay grounded in bundled public lesson data or user-provided transcript/subtitle text.]
+
+## Skill Version(s):
+
+1.0.15 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

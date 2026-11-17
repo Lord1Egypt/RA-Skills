@@ -1,0 +1,14 @@
+interface:
+  display_name: 论文全文中文翻译
+  short_description: Translate full papers into searchable Chinese PDFs
+  default_prompt: Use $translate-paper-zh to translate this academic paper fully into
+    Chinese, preserving its two-column layout, figures, formulas, and references.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

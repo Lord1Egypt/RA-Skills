@@ -1,41 +1,54 @@
-## Description: <br>
-Novel Scraper SPA helps an agent scrape novel text from static or JavaScript-rendered web pages by using requests for static pages and Playwright for SPA pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports scraping JavaScript-loaded novel sites with Playwright browser rendering, while automatically using requests for static sites when appropriate.
 
-## Publisher: <br>
-[yuzhihui886](https://clawhub.ai/user/yuzhihui886) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuzhihui886](https://clawhub.ai/user/yuzhihui886)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch a specified public novel chapter URL, extract article or content text, and save it as a local text file. It is suited for pages that require browser rendering as well as simpler static pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches arbitrary user-provided URLs and renders pages in a headless browser when SPA behavior is detected or forced. <br>
-Mitigation: Use it only on public pages that the user is allowed to access, and avoid private or authenticated URLs. <br>
-Risk: Custom output paths or generated book and chapter filenames can overwrite existing local files. <br>
-Mitigation: Choose book names, chapter labels, and output paths carefully, and review the destination before running the scraper. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch novel chapter text from static or JavaScript-rendered web pages and save the extracted content locally.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yuzhihui886/novel-scraper-spa) <br>
-- [Publisher Profile](https://clawhub.ai/user/yuzhihui886) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text files with CLI status messages and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves scraped text locally, by default under ~/.openclaw/workspace/novels/ unless a custom output path is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scraper accepts unrestricted URLs, which could cause the host to access internal, localhost, metadata, file://, or redirected resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public novel pages that the operator intends to scrape, and reject internal, local, metadata, file://, and untrusted redirected URLs before execution.
+
+Risk: The scraper writes extracted content to local storage.
+
+Mitigation: Confirm the output path before running the scraper and review saved files before sharing or using them downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuzhihui886/skills/novel-scraper-spa)
+- [Publisher profile](https://clawhub.ai/user/yuzhihui886)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text files and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saved output defaults to ~/.openclaw/workspace/novels/ unless a command-line output path is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

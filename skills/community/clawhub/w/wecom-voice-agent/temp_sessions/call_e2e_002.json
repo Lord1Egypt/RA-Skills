@@ -1,0 +1,25 @@
+{
+  "call_id": "e2e_002",
+  "userid": "lisi",
+  "direction": "inbound",
+  "state": "speaking",
+  "confidence": 0.65,
+  "asr_text": "我要退订",
+  "pending_confirmation": "我要退订",
+  "history": [
+    {
+      "role": "agent",
+      "content": "您好请说",
+      "time": "2026-07-15T15:42:59.517207"
+    },
+    {
+      "role": "user",
+      "content": "我要退订",
+      "confidence": 0.65,
+      "time": "2026-07-15T15:42:59.517672"
+    }
+  ],
+  "start_time": 1784101379.51673,
+  "last_activity": 1784101379.5181956,
+  "turn_count": 1
+}

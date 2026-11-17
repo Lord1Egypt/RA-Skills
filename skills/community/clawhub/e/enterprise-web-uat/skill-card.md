@@ -1,44 +1,57 @@
-## Description: <br>
-面向企业 Web 系统、SaaS 管理后台、内部业务平台和多角色权限系统，提供隐私安全、证据驱动的 UAT 验收测试流程，覆盖规划、设计、执行、复核、审计和交付包整理。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through privacy-safe enterprise Web UAT for SaaS, admin, internal business, and role-permission systems, covering acceptance baselines, RTM mapping, evidence collection, issue reporting, final review, and delivery packages.
 
-## Publisher: <br>
-[jerryxn](https://clawhub.ai/user/jerryxn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jerryxn](https://clawhub.ai/user/jerryxn)
 
-## Use Case: <br>
-QA engineers, product owners, delivery teams, and agents use this skill to plan, execute, review, and package enterprise Web UAT with requirement traceability, role-permission coverage, reproducible defects, and evidence-backed acceptance conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: UAT work on real business systems can expose credentials, tokens, private customer data, sensitive screenshots, or irreversible actions. <br>
-Mitigation: Define scope and safety boundaries before use, prefer test data, avoid high-risk operations without explicit authorization, and review all reports and evidence packages before sharing. <br>
-Risk: Generated acceptance conclusions may be misleading if requirements, accounts, environment access, or evidence are incomplete. <br>
-Mitigation: Mark missing inputs as Blocked, To-confirm, or OutOfScope, maintain RTM coverage, and require final review before delivery. <br>
+## Use Case:
 
+QA teams, delivery teams, and agents use this skill to plan, execute, document, and review enterprise Web UAT with privacy-safe evidence, traceability, role-permission coverage, and clear acceptance decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jerryxn/enterprise-web-uat) <br>
-- [Enterprise Web / SaaS GUI UAT Standards](references/uat-standards.md) <br>
-- [Final UAT Audit Checklist](references/audit-checklist.md) <br>
-- [Issue Writing Guide](references/issue-writing.md) <br>
-- [Report Structure Templates](references/report-structures.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured tables, checklists, issue records, delivery package manifests, and optional HTML report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include RTM tables, UAT cases, execution records, evidence indexes, risk notes, and review-fixed delivery package guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Bundled HTML report templates can render copied test content as active browser content if fields are inserted without escaping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use report generation that escapes scalar fields, sanitizes rich blocks, validates URLs, and keeps secrets, personal data, cookies, and tokens out of evidence.
+
+Risk: Enterprise UAT can touch destructive actions, production data, notifications, payments, or configuration changes when scope and authorization boundaries are unclear.
+
+Mitigation: Confirm safety boundaries before execution and default high-risk or irreversible actions to blocked unless the user explicitly authorizes them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jerryxn/skills/enterprise-web-uat)
+- [Enterprise Web / SaaS GUI UAT Standards](artifact/references/uat-standards.md)
+- [Final UAT Audit Checklist](artifact/references/audit-checklist.md)
+- [Issue Writing Guide](artifact/references/issue-writing.md)
+- [Report Structure Templates](artifact/references/report-structures.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown, tables, structured checklists, issue records, RTM entries, evidence indexes, and optional HTML report package guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include privacy-safe UAT delivery package structure and report template usage guidance when requested.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

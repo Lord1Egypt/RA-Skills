@@ -1,42 +1,60 @@
-## Description: <br>
-Routes uncertain, high-impact, irreversible, low-evidence, or sensitive actions to user approval, human review, professional review, admin review, or refusal before proceeding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes uncertain, high-impact, irreversible, low-evidence, private, external, financial, legal, medical, production, or policy-sensitive actions to user approval or qualified human review before an agent proceeds.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Agents use this instruction-only skill to decide when sensitive, uncertain, irreversible, or high-impact work should proceed, ask the user, require explicit approval, route to a qualified reviewer, route to an administrator, or be refused. It is especially relevant for financial, legal, medical, production, publishing, deletion, permission, private-data, or other consequential workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review packets may expose sensitive task context if shared through untrusted review channels. <br>
-Mitigation: Use only trusted review channels and share compact, redacted summaries without secrets, credentials, full private records, full logs, full transcripts, or unrelated private data. <br>
-Risk: Approval and review gates add friction to financial, legal, medical, production, deletion, publishing, and other high-impact tasks. <br>
-Mitigation: Apply the routing gates where the additional review is appropriate, and continue only after the required user approval, human review, professional review, or admin review is complete. <br>
+## Use Case:
 
+Developers and agent operators use this instruction-only skill to decide when an agent should proceed, ask the user, require explicit approval, route to qualified review, or refuse unsafe work. It is intended for workflows involving sensitive data, irreversible actions, production systems, professional domains, money, external communication, or weak evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-human-review-router) <br>
-- [Human review route schema](artifact/schemas/human-review-route.schema.json) <br>
-- [Redacted human review route example](artifact/examples/redacted-human-review-route.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with optional redacted JSON review payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; it does not install dependencies, execute commands, call services, write files, persist memory, or approve high-impact actions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Review packets can expose sensitive information if they include raw secrets, private records, full logs, transcripts, or unrelated data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use compact redacted summaries and exclude forbidden sensitive payload content, as specified by the skill and manifest.
+
+Risk: An optional checker or external review integration could receive review data through an untrusted path.
+
+Mitigation: Use only a trusted user- or administrator-approved host tool, in-memory API connector, or manual review route.
+
+Risk: The agent may act too early after identifying that approval or review is required.
+
+Mitigation: Do not proceed until the required user approval, human review, professional review, or admin review is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-human-review-router)
+- [Publisher profile](https://clawhub.ai/user/mindbomber)
+- [Human review route schema](artifact/schemas/human-review-route.schema.json)
+- [Redacted human review route example](artifact/examples/redacted-human-review-route.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with optional structured JSON review payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; does not install dependencies, execute commands, call services, write files, or persist memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

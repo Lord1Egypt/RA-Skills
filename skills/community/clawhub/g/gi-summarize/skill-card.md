@@ -1,40 +1,52 @@
-## Description: <br>
-Summarize long text, meeting notes, documents, or code into concise key points. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize long text, meeting notes, documents, or code into concise key points.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees, developers, and other agent users use this skill to condense long documents, meeting notes, requirements, PR descriptions, and code explanations into structured key points and action-oriented summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Summaries can omit important details when source material is dense or when the requested summary is very short.
+
+Mitigation: Ask the agent to preserve named people, dates, numbers, decisions, and source references for important conclusions.
+
+Risk: The output language may not match the reader's preferred language.
+
+Mitigation: Specify the preferred output language when invoking the skill if language consistency matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to condense long text, meeting notes, documents, code, PR descriptions, and requirements into concise structured summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Input text may contain sensitive or confidential information. <br>
-Mitigation: Only provide content the user is comfortable having the agent process. <br>
-Risk: Summaries can omit nuance or misstate details from the source material. <br>
-Mitigation: Review generated summaries against the original text before using them for decisions or distribution. <br>
+**Output Format:** [Markdown summaries with headings, bullet lists, numbered requirements, or task checklists depending on the source material.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [GI Summarize on ClawHub](https://clawhub.ai/laimiaohua/gi-summarize) <br>
+**Other Properties Related to Output:** [The skill asks the agent to preserve important names, dates, numbers, decisions, and source references while keeping summaries concise.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown summaries with headings and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports general summaries, meeting minutes, technical documentation or code summaries, and requirements extraction; target length is about 10-30% of source content when appropriate.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

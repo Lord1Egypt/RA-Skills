@@ -1,39 +1,54 @@
-## Description: <br>
-Designs REST API endpoints and OpenAPI 3.0 specifications from user-provided JSON data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs REST API endpoints and OpenAPI 3.0 specifications from raw JSON data, including endpoints, schemas, HTTP methods, status codes, and examples.
 
-## Publisher: <br>
-[wangjipeng977](https://clawhub.ai/user/wangjipeng977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjipeng977](https://clawhub.ai/user/wangjipeng977)
 
-## Use Case: <br>
-Developers and API designers use this skill to turn example JSON payloads into REST API contracts with endpoints, HTTP methods, request and response schemas, status codes, and examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated endpoint designs or OpenAPI schemas could omit fields, choose unsuitable REST methods, or imply behavior not supported by the target service. <br>
-Mitigation: Review the generated contract against the source JSON and intended API behavior before using it for implementation or publication. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn user-provided JSON into REST endpoint designs and OpenAPI 3.0 schemas. It is suited for API contract drafting, not backend implementation or API client generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangjipeng977/json-to-api) <br>
-- [Declared metadata source](https://github.com/MiniMax-AI/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with OpenAPI 3.0 YAML examples and REST endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated API contracts should be reviewed for field coverage, method choices, and status-code consistency before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and CHANGELOG, released 2026-05-18) <br>
+Risk: Generated API contracts may suggest DELETE or update endpoints that do not match the user's real authorization, data model, or business rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review mutating endpoints, validation rules, authorization assumptions, and schema details before using the generated OpenAPI specification.
+
+Risk: Stale artifact files refer to the older user-provides-json name, which can confuse reviewers or downstream checks.
+
+Mitigation: Publisher should update stale references and tests to the json-to-api name before relying on those files for release validation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangjipeng977/skills/json-to-api)
+- [Metadata Source: MiniMax-AI Skills](https://github.com/MiniMax-AI/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with OpenAPI 3.0 YAML examples and REST endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Design suggestions are derived from user-provided JSON and should be reviewed before implementation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and changelog, released 2026-05-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

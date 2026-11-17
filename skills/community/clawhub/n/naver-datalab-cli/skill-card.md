@@ -1,44 +1,55 @@
-## Description: <br>
-Naver Datalab Cli helps agents run NAVER DataLab search-keyword and shopping-insight trend queries for Korean market research, content planning, campaign timing, and trend analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Korean search-keyword and shopping-trend analytics via the official NAVER DataLab API, with shell subcommands for search trends and shopping insight breakdowns by category, keyword, device, gender, and age.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, analysts, and market-research agents use this skill to query Korean NAVER DataLab trend signals, compare keyword or category interest over time, and produce JSONL data for downstream reporting or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trend query inputs and NAVER API credentials are sent to NAVER DataLab. <br>
-Mitigation: Use only intended keywords, categories, dates, and filters; keep NAVER_CLIENT_ID and NAVER_CLIENT_SECRET private and out of committed files. <br>
-Risk: The API base URL can be changed with NAVER_DATALAB_BASE, which could redirect credentials and query data away from the official endpoint. <br>
-Mitigation: Leave NAVER_DATALAB_BASE unset or verify it points to https://openapi.naver.com/v1/datalab before using real credentials. <br>
-Risk: NAVER DataLab returns normalized relative ratios, which can be mistaken for absolute search or shopping volume. <br>
-Mitigation: Present outputs as relative trend indices and avoid claims about raw demand volume unless supported by another data source. <br>
+## Use Case:
 
+Developers, analysts, and marketing teams use this skill to collect Korean NAVER DataLab trend signals for SEO planning, commerce demand sensing, campaign timing, brand monitoring, and trend dashboards.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chloepark85/naver-datalab-cli) <br>
-- [NAVER Developers application registration](https://developers.naver.com/apps/#/register) <br>
-- [NAVER Shopping Insight category reference](https://datalab.naver.com/shoppingInsight/sCategory.naver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, text] <br>
-**Output Format:** [JSONL trend records from shell commands, with setup guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, jq, and NAVER DataLab credentials; results are relative trend ratios rather than absolute counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: NAVER credentials and query data could be redirected away from the official API if NAVER_DATALAB_BASE is overridden.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with NAVER_DATALAB_BASE unset or locked to https://openapi.naver.com/v1/datalab before providing NAVER_CLIENT_ID and NAVER_CLIENT_SECRET.
+
+Risk: Submitted keywords, dates, categories, and demographic filters are sent to NAVER DataLab.
+
+Mitigation: Avoid submitting confidential campaign terms or sensitive data as query inputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chloepark85/skills/naver-datalab-cli)
+- [NAVER Developers Application Registration](https://developers.naver.com/apps/#/register)
+- [NAVER Shopping Insight Category Reference](https://datalab.naver.com/shoppingInsight/sCategory.naver)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [JSONL records and Markdown usage guidance with bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs relative trend ratios rather than absolute search or shopping volumes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

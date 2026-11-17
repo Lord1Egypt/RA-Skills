@@ -1,47 +1,61 @@
-## Description: <br>
-Harena connects AI assistants to Harena's MCP service for 24/7 market monitoring, personalized news analysis, trading signals, and alerts across crypto and US stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Harena connects AI assistants to an MCP trading-intelligence workbench for market monitoring, personalized news analysis, trading signals, and alerts covering crypto and US stocks.
 
-## Publisher: <br>
-[wall-e](https://clawhub.ai/user/wall-e) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wall-e](https://clawhub.ai/user/wall-e)
 
-## Use Case: <br>
-External users and developers use Harena to ask an AI assistant for market briefings, symbol analysis, alerts, watchlist and topic management, and profile personalization through Harena's MCP tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market interests, watchlists, topic subscriptions, profile preferences, and API-key-authenticated requests are sent to Harena's MCP service. <br>
-Mitigation: Install only if you trust Harena and are comfortable sharing that information with the service. <br>
-Risk: The skill can register accounts and change profile, watchlist, and topic-subscription settings through MCP tools. <br>
-Mitigation: Confirm the user's intent before registration or before changing profile, watchlist, or subscription settings. <br>
-Risk: HARENA_API_KEY values and API keys returned during registration are sensitive secrets. <br>
-Mitigation: Store API keys in environment variables or client secret storage and avoid exposing them in shared logs, prompts, or screenshots. <br>
-Risk: Financial-market analysis, alerts, and trading signals can be incomplete, delayed, or wrong. <br>
-Mitigation: Treat outputs as informational and verify important market information independently before making trading decisions. <br>
+## Use Case:
 
+External users and developers use Harena to add read-only market data, portfolio watchlist management, news feeds, trading-signal analysis, and alert workflows to AI assistants through MCP.
 
-## Reference(s): <br>
-- [Harena homepage](https://harena.world) <br>
-- [Harena install guide](https://www.harena.world/install) <br>
-- [Harena MCP docs](https://www.harena.world/mcp/docs) <br>
-- [Harena MCP discovery](https://www.harena.world/.well-known/mcp.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Natural-language responses, MCP tool results, JSON examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Authenticated tools require HARENA_API_KEY; registration tools can return a new API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.3 (source: frontmatter and server release evidence) <br>
+Risk: Registration answers and profile preferences can reveal investment interests and risk tolerance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Harena's privacy terms before submitting questionnaire answers, watchlists, or profile preferences.
+
+Risk: The OpenClaw example uses an unpinned `npx clawhub@latest` installer.
+
+Mitigation: Prefer direct MCP configuration or review the package before running the installer, and do not execute it with elevated privileges.
+
+Risk: Market summaries, alerts, and trading signals can be incomplete or misleading if treated as financial advice.
+
+Mitigation: Use the skill for information gathering and require human review before making trading or investment decisions.
+
+## Reference(s):
+
+- [Harena Website](https://harena.world)
+- [Harena Install Guide](https://www.harena.world/install)
+- [Harena MCP Docs](https://www.harena.world/mcp/docs)
+- [Harena MCP Discovery](https://www.harena.world/.well-known/mcp.json)
+- [Harena ClawHub Release](https://clawhub.ai/wall-e/skills/harena)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include market summaries, alerts, symbol analysis, watchlist updates, profile settings, and MCP connection configuration.]
+
+## Skill Version(s):
+
+0.3.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

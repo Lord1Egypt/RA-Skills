@@ -1,11 +1,11 @@
 ---
 name: oo-you
-description: "You.com (you.com). Use this skill for ANY You.com request — searching and reading data. Whenever a task involves You.com, use this skill instead of calling the API directly."
+description: "You.com (you.com). Use this skill for ANY You.com request — reading, creating, and updating data. Whenever a task involves You.com, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "You.com"
   author: "OOMOL"
-  version: "1.0.2"
+  version: "1.0.7"
   services: ["you"]
   icon: "https://static.oomol.com/logo/third-party/you.svg"
 ---
@@ -38,9 +38,9 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `fetch_contents` — Fetch HTML, Markdown, or metadata for one or more webpages with You.com.
-- `finance_research` — Generate a cited finance-grade answer with the You.com Finance Research API.
+- `finance_research` — Generate a cited finance-grade answer with the You.com Finance Research API. [write]
 - `get_account_balance` — Get the remaining You.com credit balance for the API key account.
-- `research` — Generate a cited research answer with the You.com Research API.
+- `research` — Generate a cited research answer with the You.com Research API. [write]
 - `search` — Search web and news sources with the You.com Search API.
 
 ## Safety
@@ -72,11 +72,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — You.com is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=you
+  https://console.oomol.com/connections/you
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - You.com homepage: https://you.com/
+- API documentation: https://you.com/docs

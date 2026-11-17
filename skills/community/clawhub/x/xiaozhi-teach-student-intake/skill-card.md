@@ -1,43 +1,57 @@
-## Description: <br>
-Helps independent teachers turn trial lessons into structured student intake, needs diagnosis, diagnostic lesson planning, trial records, follow-up guidance, and student profile creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为独立教师提供试听诊断、最小化需求采集与新学员建档流程，涵盖监护人同意、需求访谈、前测、试讲观察和试听后报名跟进。
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-External independent teachers use this skill to structure student trial lessons, intake interviews, baseline diagnostics, trial feedback, follow-up decisions, and formal student records while minimizing sensitive student and family data collection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Student or parent intake workflows may collect personal information if users enter more detail than needed. <br>
-Mitigation: Use aliases where possible, collect only the minimum required contact and learning information, and avoid IDs, exact addresses, income, or other high-sensitivity family information. <br>
-Risk: Generated parent follow-up text or dashboard write-back content could be saved or sent before a teacher reviews it. <br>
-Mitigation: Require teacher review and confirmation before saving student records, sending parent messages, or acting on follow-up recommendations. <br>
+## Use Case:
 
+独立教师可用此技能为新学员准备试听与需求访谈、整理学情观察，并在取得监护人同意后建立精简的学员档案。它也提供试听后报名阶段的跟进建议；排课、课后记录和续费等后续事务交由相应技能处理。
 
-## Reference(s): <br>
-- [Xiaozhi Teach Student Intake on ClawHub](https://clawhub.ai/qizhitang/xiaozhi-teach-student-intake) <br>
-- [Publisher Profile](https://clawhub.ai/user/qizhitang) <br>
-- [Intake Interview Guide](references/intake-interview-guide.md) <br>
-- [Intake Template](references/intake-template.md) <br>
+### Deployment Geography for Use:
 
+Global; follow local requirements for tutoring, minors' data, and safeguarding.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance, interview prompts, diagnostic templates, feedback scripts, and student record structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language teacher workflow content; no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The security review notes instructions and write access that may extend beyond intake, and reports incomplete analysis because two referenced paths were missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, review the reported scope mismatches and confirm that any student-profile or course-package ledger write access is needed; keep records limited to consented, pseudonymous learning information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qizhitang/skills/xiaozhi-teach-student-intake)
+- [Student basic information form](references/student-basic-info-form.md)
+- [5W needs interview checklist](references/needs-interview-5w-checklist.md)
+- [Trial lesson structure](references/trial-lesson-5-segment-structure.md)
+- [Trial observation record](references/trial-observation-record.md)
+- [Formal student profile template](references/formal-student-profile-template.md)
+- [Trial-to-enrollment follow-up scripts](references/followup-scripts-trial-conversion.md)
+- [Crisis referral protocol](shared/crisis-referral-protocol.md)
+- [Student workspace schema](shared/solo-teacher-workspace.schema.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Chinese-language interview prompts, lesson and observation templates, follow-up drafts, and structured student profile data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafts are for teacher review; persistent student profile creation requires guardian consent.]
+
+## Skill Version(s):
+
+2.12.7 (source: frontmatter; server release 2.12.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

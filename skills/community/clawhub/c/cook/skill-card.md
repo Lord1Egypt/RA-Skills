@@ -1,40 +1,56 @@
-## Description: <br>
-Recipe search skill that searches a curated recipe database from 101 Cookbooks and Omnivore's Cookbook for dishes, ingredients, cuisines, and cooking techniques. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recipe search skill that searches a curated recipe database from 101 Cookbooks and Omnivore's Cookbook for recipes, ingredients, cuisines, and cooking techniques.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and agents use this skill to search a local Markdown recipe database and return relevant recipe or how-to links grouped by source and category. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recipe summaries and links are based on third-party recipe sites and may have accuracy, freshness, or provenance limitations. <br>
-Mitigation: Review linked source recipes before relying on them for cooking, dietary, or redistribution decisions. <br>
+## Use Case:
 
+External users and agents use this skill to find recipe and cooking-guide links by ingredient, cuisine, recipe category, source, or cooking technique.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/cook) <br>
-- [101 Cookbooks Vegetarian Recipes](https://www.101cookbooks.com/vegetarian_recipes) <br>
-- [Omnivore's Cookbook How-Tos](https://omnivorescookbook.com/category/how-tos/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recipe and guide recommendations with titles, links, source labels, and brief descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows the top matching results, groups multiple matches by category, and suggests related categories when no match is found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The bundled recipe index is built from third-party recipe sites and returns links to those sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify attribution, reuse rights, and source-site terms before republishing, expanding, or redistributing the dataset.
+
+Risk: Recipe and cooking-guide matches may be incomplete or stale because they come from a static bundled Markdown database.
+
+Mitigation: Review matched source links before relying on a recipe and refresh the database when adding or updating recipe sources.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/goog/skills/cook)
+- [Publisher Profile](https://clawhub.ai/user/goog)
+- [101 Cookbooks Vegetarian Recipes](https://www.101cookbooks.com/vegetarian_recipes)
+- [Omnivore's Cookbook How-Tos](https://omnivorescookbook.com/category/how-tos/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown recipe and guide results with links, brief descriptions, source labels, and category groupings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows the top 8 relevant matches for large result sets and can offer additional matches.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

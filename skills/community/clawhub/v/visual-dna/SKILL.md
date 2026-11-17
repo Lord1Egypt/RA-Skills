@@ -2,7 +2,7 @@
 name: visual-dna
 description: "Extract visual identity into reusable Design DNA JSON, then apply it to generate faithful UI from references."
 metadata:
-  version: "0.2.2"
+  version: "0.2.3"
 ---
 # Design DNA
 
@@ -91,3 +91,7 @@ When generating UI from DNA:
 - DNA tells you WHAT the design is
 - `no-slop-ui` tells you what NOT to do (no AI defaults slipping in)
 - Together: faithful to reference, clean execution
+
+## Reference and dependency handling
+
+Fetching a supplied URL contacts its host; local project assets stay local unless the requested workflow needs a fetch. Report the references and any external dependency URLs used. Keep the human’s ownership/sensitivity decisions with the human. Pin or vendor generated JavaScript dependencies as described in `references/generation-guide.md`.

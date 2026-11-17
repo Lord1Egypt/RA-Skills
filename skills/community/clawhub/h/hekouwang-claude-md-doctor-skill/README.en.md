@@ -90,6 +90,26 @@ docker run --rm -v "$PWD:/work" claude-md-doctor /work --json
 ```
 This repo's own CI lives in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) (syntax + good/bad fixtures + JSON validity).
 
+## This is NOT the built-in `/doctor` command
+
+Claude Code ships a `/doctor` command that also says "doctor" — but it checks a
+**completely different thing**: `/doctor` audits your whole tool *environment*,
+this tool audits one *document*. Don't confuse them.
+
+| Dimension | Built-in `/doctor` | This tool (claude-md-doctor) |
+|-----------|--------------------|------------------------------|
+| **Audits** | Your whole Claude Code **environment / install** | A single project's **`CLAUDE.md` file** |
+| **Looks at** | Install health, unused extensions, context bloat, slow hooks, version, permission mode | Whether `CLAUDE.md` reads as runtime config, length, lazy-loading, the 10-check score |
+| **Edits** | `~/.claude/` global config | The project's `CLAUDE.md` content |
+| **Scope** | Global · across all projects | Just this one project's doc |
+
+**The one overlap**: `/doctor` dedups local vs checked-in `CLAUDE.md` and migrates
+lazy-loadable content out — but only from a "context cost" angle; it **does not
+grade document quality**. **How to combine them**: run `/doctor` first to catch
+"your CLAUDE.md is too big", then use this tool to score it, surface the Top 3,
+and rewrite it — `/doctor` finds that the doc is bloated, this tool answers *which
+lines to cut and how*.
+
 ## Free / Paid (Freemium)
 
 - **Free (open-source core)**: the `check.py` CLI — text / JSON report, score,

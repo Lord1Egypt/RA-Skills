@@ -1,0 +1,6 @@
+# Source and rights record — aimegeo-citation-rewrite
+
+- SkillHub distributor: `user_068e9c11`; package slug `aimegeo-citation-rewrite`; source release 1.0.1.
+- Downloaded package archive: `aimegeo-citation-rewrite-skillhub-1.0.1.zip`; SHA-256 `2bd4b237de8784d24902e48271624941c0c1b5abb658f0b6d12a27e0982a946f`. The source zip and extraction are not included in this distribution.
+- SkillHub source listing: https://skillhub.cn/skills/user_2c0f1e77/geo-content-optimizer. Source package records Copyright 2024 Aaron He Zhu and says it was adapted from `geo-content-optimizer` 19.0.0, Apache-2.0; source repository https://github.com/aaron-he-zhu/aaron-marketing-skills. Original inspected source archive SHA-256 `0a809d0fd6dd46a54580da02f27647330698f94037d71f00b9862396a25d187c`; Apache license text SHA-256 `664cd12e1c315650bf14cb1385359d13d4724ac03940ac10918390ef78e4f5e7`. The original SkillHub `NOTICE.md` stated that adapted material consisted of instructions and technique references, while scripts and fixtures were new.
+- Candidate 1.0.2 removes the adapted instructions/references and all source package metadata. It retains the new local checker and synthetic fixtures. MIT-0 applies only to files in `candidate-1.0.2/`; no upstream adaptation is asserted as MIT-0.

@@ -51,7 +51,7 @@ This skill owns pre-sale fact-finding and scoping. Hand off to `agentic-proposal
 - System, document, data, or access review: use `systems-and-data-access-checklist`.
 - API/tool feasibility: use `tool-api-readiness-checklist`.
 - Approval and escalation design: use `human-approval-gate-checklist`.
-- Regulated, sensitive, or risky workflow: use `risk-and-excluded-use-checklist`.
+- Regulated, sensitive, or risky workflow: use `riREDACTED-SECRET`.
 - Buyer asks what success looks like: use `success-criteria-worksheet`.
 - Need test examples: use `evaluation-example-worksheet`.
 - Decide whether to propose a pilot: use `pilot-readiness-scorecard`.

@@ -1,47 +1,62 @@
-## Description: <br>
-Guides agents in reviewing or creating conversational elicitation content for psychological profiling using narrative identity research, self-defining memory elicitation, and Motivational Interviewing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in psychologically informed elicitation and interview design using narrative identity, self-defining memory, and motivational interviewing techniques.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users and developers use this skill to design or critique interview scripts, user research flows, and conversational guidance that elicit values, formative memories, identity themes, and motivations. Use only in transparent, voluntary settings where participants understand the purpose and can skip or stop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can elicit and summarize highly sensitive autobiographical and psychological information. <br>
-Mitigation: Use it only for transparent, voluntary interviewing, coaching, research, or self-reflection where participants know the purpose and can skip or stop. <br>
-Risk: The skill may encourage profiling or inference about sensitive traits from language, memories, or life stories. <br>
-Mitigation: Do not use it to profile unaware people or infer mental health, sexuality, or other sensitive attributes. <br>
-Risk: Retaining generated psychological profiles could expose sensitive personal information. <br>
-Mitigation: Retain sensitive autobiographical profiles only with explicit consent and clear retention limits. <br>
+## Use Case:
 
+External users, researchers, and content reviewers can use this skill to design or critique reflective interview flows, conversation scripts, and user research prompts that seek deeper personal context through gradual disclosure.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marjoriebroad/mar-elicitation) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Narrative Identity](artifact/narrative-identity.md) <br>
-- [Motivational Interviewing](artifact/motivational-interviewing.md) <br>
-- [Question Sequences](artifact/question-sequences.md) <br>
-- [Language Inference](artifact/language-inference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with interview prompts, assessments, and revision guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a 0-10 assessment and specific feedback for improving elicitation content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can be used for psychological profiling or sensitive personal elicitation without adequate consent, privacy notice, or participant control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for explicit, voluntary reflective interviewing or user research where participants know the purpose, can skip questions, and understand how disclosures will be used.
+
+Risk: The skill includes prompts and techniques that can touch trauma, sexuality, mental health, childhood experiences, grief, and other high-sensitivity topics.
+
+Mitigation: Avoid probing high-sensitivity areas unless there is clear consent, appropriate support, and a defined boundary that the interaction is not diagnosis or therapy.
+
+Risk: Language and narrative patterns can be overread as precise or definitive psychological conclusions.
+
+Mitigation: Treat interpretations as tentative hypotheses, cross-validate with explicit statements, and disclose uncertainty rather than presenting inferred traits as facts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/marjoriebroad/skills/mar-elicitation)
+- [Skill Definition](artifact/SKILL.md)
+- [Narrative Identity](artifact/narrative-identity.md)
+- [Motivational Interviewing](artifact/motivational-interviewing.md)
+- [Question Sequences](artifact/question-sequences.md)
+- [Language Inference](artifact/language-inference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance with conversational examples, scoring feedback, and review recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a 0-10 assessment and targeted feedback when reviewing elicitation content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata.version is 1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

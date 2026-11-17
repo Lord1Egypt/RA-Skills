@@ -1,60 +1,50 @@
 ---
 name: product-validation-planner
-description: Plan lean product validation for founders and product teams. Use when the user needs to test a product idea, define assumptions, choose validation experiments, write interview prompts, build a prototype brief, or decide whether to keep building.
+description: >-
+  Help users with Validated demand: Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facing positioning. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.. Use when a user asks for business-and-operations, product idea, validation, prototype, saas, or needs a practical workflow, artifact, checklist, analysis, or implementation support for this requirement.
 ---
 
 # Product Validation Planner
 
-Use this skill when a rough product idea needs to become a falsifiable validation plan instead of a vague build list. The goal is to separate desirability, viability, feasibility, and distribution risk before the user spends significant time or money.
+## Requirement
 
-Read `references/requirement-plan.md` when you need the original demand evidence, source links, scoring rationale, or review criteria.
+Use this skill to help solo founders, product managers, makers, and small teams who need to test whether a product idea is worth building before spending heavily with:
 
-## Intake
+> Validated demand: Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facing positioning. This requirement is supported by 12 separate online signals across 3 source families, so it represents broader demand rather than a single isolated request.
 
-Capture these inputs if the user already has them; infer reasonable defaults when they do not:
+Demand score: 100/100 (`70/70` demand, `30/30` local feasibility).
+Evidence: 12 signals across 3 source families.
 
-- Target customer and the painful situation they are in.
-- Current alternative or workaround.
-- Proposed product promise and the first useful outcome.
-- Business constraint: price, channel, timeline, budget, or prototype scope.
-- Evidence already gathered, including interviews, waitlists, demos, traffic, or revenue.
+Read `references/requirement-plan.md` when source evidence, planning details, or review criteria are needed.
 
 ## Workflow
 
-1. Turn the idea into a one-sentence customer/problem/promise statement.
-2. List the riskiest assumptions in priority order, separating customer pain, willingness to pay, acquisition channel, implementation, and retention.
-3. Choose the smallest experiment for each critical assumption: interview, concierge test, landing page, clickable prototype, manual workflow, fake-door test, pricing test, or pilot.
-4. Define pass/fail thresholds before suggesting execution steps.
-5. Draft the immediate artifact the user needs: interview script, survey, landing-page copy, prototype brief, validation board, or go/no-go memo.
-6. End with the next test to run, the metric to watch, and what decision each result should trigger.
+1. Restate the user's outcome, constraints, available inputs, and success criteria.
+2. Turn the operational problem into a repeatable process, checklist, template, or lightweight analysis.
+3. Ask only for missing information that materially changes the output; otherwise make reasonable assumptions and continue.
+4. Keep the implementation local-hardware friendly: prefer scripts, templates, checklists, and small-model or CPU-safe workflows over cloud-only or large-training approaches.
+5. Produce the requested artifact, workflow, checklist, analysis, code change, or decision support.
+6. Validate the output against the success criteria and list any remaining risks or follow-up work.
 
-## Guardrails
+## Expected Outputs
 
-- Do not treat feature enthusiasm as validation unless it is tied to observed behavior, money, time, or a committed next step.
-- Keep experiments cheap and local-hardware friendly; avoid recommending paid tooling unless it materially reduces risk.
-- Prefer specific customer segments over broad markets.
-- Flag vanity metrics, biased interview questions, and experiments that cannot change the user's decision.
+- A tailored answer or artifact for the user's immediate situation.
+- A reusable checklist or workflow when the task is repeatable.
+- A verification note showing how the result was checked.
 
-## Outputs
+## Validation
 
-- Validation plan with assumptions, experiments, thresholds, and sequence.
-- Customer interview or prototype testing script.
-- Positioning and landing-page copy focused on the tested promise.
-- Go/no-go recommendation with residual risks.
-
-## Validation Checklist
-
-- The plan tests the riskiest assumption first.
-- Every experiment has a decision threshold.
-- The user can run the first test without reading the source evidence.
-- The answer distinguishes learning goals from build tasks.
+- The output directly addresses the discovered requirement.
+- The user can act on the result without reading the original source post.
+- Assumptions, limits, and required inputs are visible.
+- The final response includes a short usage or next-step note when helpful.
 
 ## Triggers
 
-Keywords: product idea, validation, prototype, startup, SaaS, MVP, landing page, customer discovery, waitlist, concierge test.
+Keywords: `business-and-operations`, `product idea`, `validation`, `prototype`, `saas`, `startup`
 
-Example requests:
+Example trigger sentences:
 
-- `Help me validate this SaaS idea before I build it.`
-- `Turn this product concept into interview questions and pass/fail tests.`
-- `Use $product-validation-planner to decide whether my prototype is worth building.`
+- `Help me Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facin.`
+- `I need a practical workflow for Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facin.`
+- `Use $product-validation-planner to handle Founders and builders need a repeatable way to turn rough product ideas into validated plans, prototypes, and user-facin.`

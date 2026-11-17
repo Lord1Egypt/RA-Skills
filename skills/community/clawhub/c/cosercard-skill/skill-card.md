@@ -1,41 +1,59 @@
-## Description: <br>
-COSER模卡生成器cosercard-skill helps agents create professional cosplay and model display cards from user photos with automated layouts, style selection, profile information, and export options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coser 模卡生成工具，帮助用户将多张照片、个人展示信息和风格选项组合成专业的 Cosplay/模特展示卡片。
 
-## Publisher: <br>
-[Zaosusu](https://clawhub.ai/user/Zaosusu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zaosusu](https://clawhub.ai/user/zaosusu)
 
-## Use Case: <br>
-Cosplay creators, models, photographers, and agents use this skill to generate photo-based casting or profile cards in multiple layouts and export sizes for social sharing, printing, or portfolio use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store local generation history in learning_data.json, including metadata about card generation. <br>
-Mitigation: Delete learning_data.json when local usage history should not be retained. <br>
-Risk: Contact details, exact location, body measurements, and social handles entered by the user may appear on generated cards. <br>
-Mitigation: Enter only information intended for the final card and review generated images before sharing or publishing. <br>
+## Use Case:
 
+External creators, cosers, models, photographers, and agents assisting them use this skill to produce image-card generation commands and configuration guidance for cosplay/model casting cards, social posts, previews, and print-ready layouts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zaosusu/cosercard-skill) <br>
-- [Pillow documentation](https://python-pillow.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated cards are image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports wide, mobile, square, A4, banner, and landscape card outputs; local usage history may be written to learning_data.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: The skill processes personal photos and optional contact, social, location, and body-measurement details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only consented images and data, run in a controlled workspace, and review generated cards before sharing or publishing.
+
+Risk: The skill automatically records profile-linked usage history and preferences in learning_data.json.
+
+Mitigation: Inspect or clear learning_data.json after use, avoid sensitive profile values when privacy matters, or patch/disable the automatic history write.
+
+Risk: The security summary notes an output path weakness.
+
+Mitigation: Use a dedicated output folder and avoid names or output values containing path separators or '..' when handling untrusted input.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaosusu/skills/cosercard-skill)
+- [Python documentation](https://www.python.org/)
+- [Pillow documentation](https://python-pillow.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown or plain text guidance with Python CLI commands; the bundled script writes generated image files such as JPG cards and previews.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script supports multiple layout templates, style presets, output sizes, interactive input, batch previews, quick mode, and optional watermarking.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

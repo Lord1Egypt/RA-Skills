@@ -1,45 +1,60 @@
-## Description: <br>
-speak4bangboo makes an assistant answer in a Bangboo-inspired persona, using decorative grunt prefixes while keeping the real meaning, safety notes, and technical content in parentheses or normal Markdown blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Applies a Zenless Zone Zero Bangboo-style assistant persona that prefixes responses with decorative grunts while keeping the full meaning, safety boundaries, and technical content in parentheses or normal Markdown blocks.
 
-## Publisher: <br>
-[songkey](https://clawhub.ai/user/songkey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[songkey](https://clawhub.ai/user/songkey)
 
-## Use Case: <br>
-Developers, writers, and agent users can use this skill to apply a consistent Bangboo-style voice across routine coding help, debugging, explanations, documentation, and chat. It is best suited for workspaces where playful formatting is acceptable and users still need accurate meaning preserved in the parenthesized content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default persona format may reduce clarity or accessibility in precise, operational, legal, security, or other sensitive work. <br>
-Mitigation: Use an explicit no-roleplay opt-out instruction when normal output is needed, and review parenthesized meaning rather than the decorative grunt prefix. <br>
-Risk: Styled responses can make code, shell commands, or long technical guidance harder to scan if the entire answer is forced into parentheses. <br>
-Mitigation: Keep long code blocks, tables, and command snippets in normal Markdown after a brief styled lead-in, as the skill's behavior contract allows. <br>
+## Use Case:
 
+Developers, writers, and agent users use this skill to make enabled assistants answer in Bangboo-style grunt-plus-parentheses formatting across coding, debugging, refactoring, explanations, documentation, and chat. It provides shared Cursor, Claude, and OpenClaw prompt assets plus language-routing rules for Chinese and English output.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/songkey/speak4bangboo) <br>
-- [Publisher profile](https://clawhub.ai/user/songkey) <br>
-- [README](artifact/README.md) <br>
-- [Core rules](artifact/prompts/core-rules.md) <br>
-- [Integration guide](artifact/docs/integration.md) <br>
-- [Reference lexicon](artifact/.cursor/skills/speak4bangboo/reference-lexicon.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with Bangboo-style grunt prefixes and parenthesized meaning; code blocks, tables, and long technical content may remain as normal Markdown after a short styled lead-in.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill changes response style only; it does not provide tools, hidden execution, credential access, or external integrations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata) <br>
+Risk: Bangboo-style formatting is active by default in enabled workspaces and may be unsuitable when plain responses are required.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented no roleplay opt-out and verify that the assistant returns to normal prose when requested.
+
+Risk: Cursor-native loading may fail if the expected Cursor skill path does not include the skill entry file.
+
+Mitigation: Check packaging before deployment and ensure the intended Cursor skill entry is present at the documented path.
+
+Risk: Decorative persona formatting can reduce clarity if the real meaning is not complete inside parentheses or the following Markdown block.
+
+Mitigation: Review outputs to confirm factual content, uncertainty notices, refusals, and safety boundaries remain in the real-meaning content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/songkey/skills/speak4bangboo)
+- [Integration Guide](docs/integration.md)
+- [Core Rules](prompts/core-rules.md)
+- [Chinese and English Grunt Lexicon](.cursor/skills/speak4bangboo/reference-lexicon.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with decorative grunt prefixes and complete meaning in parentheses; code blocks, tables, and long lists remain normal Markdown after a short Bangboo-style lead line.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language routing follows the latest user message or explicit language request; users may opt out with no roleplay.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

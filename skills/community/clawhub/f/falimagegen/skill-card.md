@@ -1,48 +1,57 @@
-## Description: <br>
-Call fal.ai model APIs for image generation (text-to-image and image-to-image). Use when a user asks to integrate fal, construct requests, run jobs, handle auth, or return image URLs from fal model APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call fal.ai model APIs for image generation (text-to-image and image-to-image). Use when a user asks to integrate fal, construct requests, run jobs, handle auth, or return image URLs from fal model APIs.
 
-## Publisher: <br>
-[xxmzdxxxm](https://clawhub.ai/user/xxmzdxxxm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xxmzdxxxm](https://clawhub.ai/user/xxmzdxxxm)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate fal.ai text-to-image and image-to-image model APIs, construct SDK or REST requests, handle authentication, and return generated image URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: fal.ai API keys or other credentials could be exposed if hardcoded into generated examples or shared logs. <br>
-Mitigation: Keep fal.ai API keys in environment variables and avoid embedding secrets directly in code or prompts. <br>
-Risk: Prompts, source images, or generated outputs may be processed by fal.ai and should be treated as third-party API data. <br>
-Mitigation: Confirm model inputs before submitting jobs and avoid sending prompts or images that should not be processed by fal.ai. <br>
-Risk: Model schemas and response fields vary by fal.ai model and can change over time. <br>
-Mitigation: Verify the selected model's current documentation before constructing requests or parsing image URLs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xxmzdxxxm/falimagegen) <br>
-- [Fal Model API Checklist](references/fal-model-api-checklist.md) <br>
-- [fal Model API Examples](references/fal-model-examples.md) <br>
-- [fal model API quickstart](https://docs.fal.ai/model-apis/quickstart) <br>
-- [Generate images from text](https://docs.fal.ai/model-apis/guides/generate-images-from-text) <br>
-- [fal client documentation](https://docs.fal.ai/model-apis/client) <br>
-- [fal model endpoints](https://docs.fal.ai/model-apis/model-endpoints) <br>
-- [fal queue endpoints](https://docs.fal.ai/model-apis/model-endpoints/queue) <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate fal.ai image-generation model APIs, construct SDK or REST requests, validate model inputs, and return generated image URLs.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns implementation guidance and generated image URL handling patterns; no files are produced by the skill itself.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: fal.ai requests may send prompts, source images, and request metadata to an external service.
+
+Mitigation: Use a scoped FAL key and avoid sending sensitive prompts or private images unless external processing is intended.
+
+Risk: Model schemas and output fields vary across fal.ai models, so stale examples can produce failed or incorrect requests.
+
+Mitigation: Confirm the selected model's current documentation before constructing requests and review generated calls before execution.
+
+## Reference(s):
+
+- [Fal Model API Checklist](references/fal-model-api-checklist.md)
+- [fal Model API Examples](references/fal-model-examples.md)
+- [fal Model APIs Quickstart](https://docs.fal.ai/model-apis/quickstart)
+- [Generate Images from Text](https://docs.fal.ai/model-apis/guides/generate-images-from-text)
+- [fal Client Libraries](https://docs.fal.ai/model-apis/client)
+- [fal Model Endpoints](https://docs.fal.ai/model-apis/model-endpoints)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces request templates and response-handling guidance; generated API calls should be reviewed before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

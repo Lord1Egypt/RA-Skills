@@ -1,40 +1,49 @@
-## Description: <br>
-Clarify a vague request into purpose, constraints, success criteria, unknowns, and next-step readiness before planning or implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clarify a vague request into purpose, constraints, success criteria, unknowns, and next-step readiness before planning or implementation when the real objective is still blurry.
 
-## Publisher: <br>
-[malleus35](https://clawhub.ai/user/malleus35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[malleus35](https://clawhub.ai/user/malleus35)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to turn broad or ambiguous requests into an actionable clarification brief before choosing a workflow or starting implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence notes sensitive API-key and browser-control access associated with a Ziniao/ZClaw bridge. <br>
-Mitigation: Install only if you trust that bridge, keep ZCLAW_API_KEY private, review local ZClaw configuration before use, and limit use to browser stores or pages you intend the agent to control. <br>
-Risk: The skill can delay or redirect execution when a request is ambiguous or key success criteria are missing. <br>
-Mitigation: Use it before planning or implementation, then proceed only after the clarification brief identifies a concrete purpose, at least one success criterion, and the main blocking ambiguity. <br>
+## Use Case:
 
+External users, developers, and teams use this skill to turn broad or ambiguous requests into an actionable clarification brief before planning, coding, debate, or governance work begins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/malleus35/agora-clarify-goals) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown clarification brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes request restatement, purpose, constraints, success criteria, unknowns, decision posture, blocking ambiguity, and a recommended next workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The skill can slow execution by pausing work until goals and success criteria are clear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when purpose, constraints, success criteria, or blocking ambiguity are unclear; skip it when the task already has a crisp decision question and explicit criteria.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/malleus35/skills/agora-clarify-goals)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown clarification brief with structured sections and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stop further planning or implementation until purpose, success criteria, and the main blocking ambiguity are clear.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

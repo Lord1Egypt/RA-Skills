@@ -1,38 +1,48 @@
-## Description: <br>
-Applies Howard Marks' Second Level Thinking framework to investment decisions by researching public financial data, challenging consensus assumptions, testing supply and demand economics, and producing a structured seven-stage analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply Howard Marks' Second Level Thinking framework to investment decisions by helping users challenge consensus views, test risk/reward asymmetry, and produce evidence-based investment analysis.
 
-## Publisher: <br>
-[0xEzreal](https://clawhub.ai/user/0xEzreal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[0xezreal](https://clawhub.ai/user/0xezreal)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and investment researchers use this skill to structure an investment thesis, identify what the market may be mispricing, and test whether a contrarian view has a real edge. It guides the agent through consensus decoding, second-level challenge, supply/demand economics, risk asymmetry, cycle positioning, edge testing, and a final verdict.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat the generated investment analysis as financial advice or rely on stale or incorrect market data.
+
+Mitigation: Use the output as a research and reasoning framework only, and verify cited data and sources before making any investment decision.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and investment analysts use this skill to evaluate investment opportunities, stress-test trade theses, identify what consensus views may already price in, and assess risk/reward asymmetry with explicit evidence. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Investment analysis may rely on incomplete, stale, or incorrect public financial data and may be mistaken for financial advice. <br>
-Mitigation: Verify cited data independently against current filings and market data, confirm assumptions before acting, and treat outputs as decision support. <br>
+**Output Format:** [Markdown structured analysis]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/0xEzreal/second-level-thinking) <br>
+**Other Properties Related to Output:** [Prompts for one focused missing input when needed; quantitative claims should cite data sources.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown investment analysis across seven stages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes cited public data sources, probability-weighted scenarios, conviction level, and thesis-breaker monitoring variables when available.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

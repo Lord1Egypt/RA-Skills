@@ -1,6 +1,15 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "pets",
-  "version": "1.0.0",
-  "publishedAt": 1770977175311
+  "displayName": "Pets",
+  "latest": {
+    "version": "1.0.1",
+    "publishedAt": 1785140325498
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770977175311
+    }
+  ]
 }

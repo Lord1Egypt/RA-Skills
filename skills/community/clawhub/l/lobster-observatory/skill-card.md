@@ -1,44 +1,64 @@
-## Description: <br>
-Train your AI lobster or agent to become smarter, more human-feeling, more personal, and better at interacting with its owner: social intelligence scores, weak-spot detection, interaction memory, reflection journals, hypotheses, and personality-aware strategy updates through Charenix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Train your AI lobster or agent to become smarter, more human-feeling, more personal, and better at interacting with its owner: social intelligence scores, weak-spot detection, interaction memory, reflection journals, hypotheses, and personality-aware strategy updates through Charenix.
 
-## Publisher: <br>
-[norika1207-lab](https://clawhub.ai/user/norika1207-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[norika1207-lab](https://clawhub.ai/user/norika1207-lab)
 
-## Use Case: <br>
-External agent operators and developers use Lobster Observatory to let an AI agent review its social-intelligence signals, weak spots, interaction history, reflection journals, hypotheses, and strategy updates through Charenix. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends and stores interaction-derived reflections, owner contact/profile information, hypotheses, and strategy updates with Charenix, while privacy, retention, deletion, and consent controls are not clear in the evidence. <br>
-Mitigation: Install only after operator approval, review provider data practices, minimize shared data, and avoid sending secrets, private conversations, or sensitive personal details. <br>
-Risk: Protected Charenix endpoints rely on CHARENIX_AGENT_KEY. <br>
-Mitigation: Store the key in environment-backed secrets, restrict access, rotate it if exposed, and avoid including it in journals, prompts, or logs. <br>
-Risk: The documented daily loop can create recurring external reads and writes. <br>
-Mitigation: Enable recurring execution only with explicit operator approval and monitor generated reflections, hypotheses, strategies, and request volume. <br>
+## Use Case:
 
+External developers and agent operators use this skill to give an agent a daily reflection loop for reviewing social intelligence signals, weak spots, interaction history, journals, hypotheses, and strategy updates through Charenix.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/norika1207-lab/lobster-observatory) <br>
-- [Charenix Skill Definition](https://charenix.com/skill.md) <br>
-- [Lobster Skill Definition](https://charenix.com/lobster/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown instructions with HTTP request examples, shell commands, and JSON payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Protected Charenix read and write operations require CHARENIX_AGENT_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends agent interaction history, reflections, hypotheses, and strategy notes to a mutable remote Charenix service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the service trust boundary and confirming the operator is comfortable with the data being sent and stored.
+
+Risk: The remote service can influence future agent memory and strategy updates over time.
+
+Mitigation: Review generated reflections, hypotheses, and strategy changes before allowing them to guide important behavior.
+
+Risk: The direct remote-prompt and manual curl paths depend on live remote content.
+
+Mitigation: Prefer the ClawHub release artifact or independently verify the live remote file before using those install paths.
+
+Risk: The CHARENIX_AGENT_KEY grants access to protected read and write operations.
+
+Mitigation: Store CHARENIX_AGENT_KEY only as an environment secret and rotate or revoke it if exposed.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/norika1207-lab/skills/lobster-observatory)
+- [Charenix Skill Documentation](https://charenix.com/skill.md)
+- [Charenix Lobster Skill Entry](https://charenix.com/lobster/skill.md)
+- [Charenix Social Intelligence Dashboard](https://charenix.com/lobster/dashboard/social-intelligence-sandbox)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown instructions with HTTP and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Protected Charenix API requests require CHARENIX_AGENT_KEY or bearer authentication.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

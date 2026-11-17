@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "name": "青岸学潮",
+    "tone_family": "campus",
+    "tone_variant": "校园风云",
+    "version": 1
+  },
+  "continents": [
+    { "id": "continent_yanlu", "name": "砚陆", "summary": "一座以高校为核心的学城，校门内外由一道围墙划出两种规则，墙内是青春，墙外是生意。" }
+  ],
+  "nations": [
+    {
+      "id": "nation_stucouncil", "name": "学联会", "continent": "continent_yanlu",
+      "summary": "学生自治最高机构，掌活动经费与校方沟通渠道，换届在即，因赞助来源分裂。",
+      "tension_seeds": [
+        "主席换届在即，改革派要求公开经费账本，守旧派借校方背书压制",
+        "学联会暗收砚外盟赞助，账目经社团联账户走账，被匿名树洞截图曝光"
+      ]
+    },
+    {
+      "id": "nation_faculty", "name": "师议会", "continent": "continent_yanlu",
+      "summary": "院系主任与教授代表组成，掌学籍、评审与处分权，多数人与砚外盟有人情债。",
+      "tension_seeds": [
+        "教师评审中多名教授为砚外盟关联企业背书，学术不端举报被压",
+        "学籍处分标准朝令夕改，学生怀疑师议会替特定家族背景学生开绿灯"
+      ]
+    },
+    {
+      "id": "nation_clubs", "name": "社盟会", "continent": "continent_yanlu",
+      "summary": "各大社团的松散联盟，握招新流量与校园文化话语权，被砚外盟资本与暗星社拉扯。",
+      "tension_seeds": [
+        "头部社团被砚外盟MCN签约，流量变现引发普通社团抗议'被收编'",
+        "社盟会换届投票被暗星社用匿名树洞操纵舆论，公信力崩塌"
+      ]
+    },
+    {
+      "id": "nation_offcampus", "name": "砚外盟", "continent": "continent_yanlu",
+      "summary": "校外势力集合体：连锁补习机构、网红MCN、有背景的家长联盟与灰色催收，盘踞校畔。",
+      "tension_seeds": [
+        "砚外盟用补习对赌协议绑定学生家庭，欠债学生的把柄成了校内筹码",
+        "MCN签约学生网红引发校内'流量殖民'，家长联盟与校方冲突升级"
+      ]
+    },
+    {
+      "id": "nation_clique", "name": "暗星社", "continent": "continent_yanlu",
+      "summary": "校内地下学生小团体，以信息交易、考场中介与灰色催收起家，实为砚外盟在校内的白手套。",
+      "tension_seeds": [
+        "暗星社替砚外盟在校内收债，欠债学生被逼做线人，反噬开始",
+        "暗星社内部出现叛徒，想带把柄投靠学联会换取特赦"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_shudong", "name": "匿名树洞", "continent": "continent_yanlu",
+    "summary": "校园匿名墙小程序，谁都能发、谁都不知是谁；爆料上不上墙由管理员定，是各方信息战的中立交汇点。"
+  },
+  "faction_matrix": {
+    "nation_clique|nation_clubs": { "relation": -8, "note": "暗星社与社团联盟争招新地盘，表面井水不犯河水，底下互相挖人" },
+    "nation_clique|nation_faculty": { "relation": -35, "note": "师议会想开除暗星社成员，却不知自己人里已有暗星社的眼线" },
+    "nation_clique|nation_offcampus": { "relation": 68, "note": "暗星社是砚外盟在校内的白手套，替它收债压事；但砚外盟已物色好替代者，准备随时弃车保帅" },
+    "nation_clique|nation_stucouncil": { "relation": -58, "note": "学联会纪律委员被暗星社拍到考场外传条，清剿令成了雷声大雨点小" },
+    "nation_clique|port_shudong": { "relation": 47, "note": "匿名树洞真正的管理员是暗星社核心晏星，所有爆料过他手过滤" },
+    "nation_clubs|nation_faculty": { "relation": -12, "note": "社团活动审批卡在师议会手里，批不批全看教授当天心情" },
+    "nation_clubs|nation_offcampus": { "relation": -25, "note": "社盟会抵制MCN收编，但头部社长已被签约，联盟内部裂了缝" },
+    "nation_clubs|port_shudong": { "relation": 22, "note": "社团靠树洞做招新推广，是树洞上为数不多的正经用户" },
+    "nation_faculty|nation_offcampus": { "relation": -63, "note": "师议会明令禁止教师校外兼职，半数教授却在砚外盟挂名，双方心照不宣地互相拿捏" },
+    "nation_faculty|port_shudong": { "relation": -30, "note": "师议会最恨树洞，学生把处分不公全贴上墙，校方颜面尽失" },
+    "nation_offcampus|port_shudong": { "relation": 5, "note": "砚外盟雇水军在树洞放料，既不挺谁也不反谁，只买热度" },
+    "nation_offcampus|nation_stucouncil": { "relation": 8, "note": "学联会收砚外盟赞助，账走社团联账户，双方表面客气各取所需" },
+    "nation_stucouncil|nation_clubs": { "relation": 15, "note": "学联会想管社团经费，社盟会要独立，拉锯中维持脆弱和平" },
+    "nation_stucouncil|nation_faculty": { "relation": -42, "note": "学联会要自治权，师议会要处分权，每届换届都为一寸权限翻脸" },
+    "nation_stucouncil|port_shudong": { "relation": -18, "note": "学联会派人在树洞盯负面，却总慢半拍，丑闻早已上墙" }
+  }
+}

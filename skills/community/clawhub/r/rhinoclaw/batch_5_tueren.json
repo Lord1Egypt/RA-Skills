@@ -1,0 +1,40 @@
+{
+  "definition": "C:/Users/Adi.Muff/Documents/Rhino/GH/Rahmentuer_UD4.gh",
+  "defaults": {
+    "Rahmendicke": 53,
+    "Tuerstaerke": 58,
+    "DichtNut_Rahmen": true
+  },
+  "items": [
+    {
+      "id": "T01_WC_700",
+      "Lichtbreite": 700,
+      "Lichthoehe": 2000,
+      "Point": "0,0,0"
+    },
+    {
+      "id": "T02_Standard_800",
+      "Lichtbreite": 800,
+      "Lichthoehe": 2100,
+      "Point": "1500,0,0"
+    },
+    {
+      "id": "T03_Standard_900",
+      "Lichtbreite": 900,
+      "Lichthoehe": 2100,
+      "Point": "3000,0,0"
+    },
+    {
+      "id": "T04_Gross_1000",
+      "Lichtbreite": 1000,
+      "Lichthoehe": 2200,
+      "Point": "4500,0,0"
+    },
+    {
+      "id": "T05_ExtraGross_1200",
+      "Lichtbreite": 1200,
+      "Lichthoehe": 2400,
+      "Point": "6000,0,0"
+    }
+  ]
+}

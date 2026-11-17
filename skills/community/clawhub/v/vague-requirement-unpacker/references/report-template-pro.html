@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>模糊需求接招包 · __requirement_title__</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#3b82f6;--blue-d:#2563eb;--blue-l:#dbeafe;--blue-ul:#eff6ff;
+  --green:#16a34a;--green-l:#dcfce7;--red:#dc2626;--red-l:#fee2e2;
+  --amber:#d97706;--amber-l:#fef3c7;--violet:#7c3aed;
+  --s50:#f8fafc;--s100:#f1f5f9;--s200:#e2e8f0;--s300:#cbd5e1;--s400:#94a3b8;--s500:#64748b;--s600:#475569;--s700:#334155;--s800:#1e293b;--s900:#0f172a;
+  --card:#fff;--r:12px;--r2:16px;--r3:20px;
+  --sh:0 1px 3px rgba(50,50,93,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh-m:0 4px 12px rgba(50,50,93,.10),0 2px 4px rgba(0,0,0,.04);
+}
+html{font-size:14px}
+body{
+  font-family:'Inter',-apple-system,'PingFang SC','Noto Sans SC','Microsoft YaHei',system-ui,sans-serif;
+  color:var(--s800);line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:#f0f4f8;min-height:100vh;padding:24px 16px;
+}
+.wrap{max-width:1160px;margin:0 auto}
+.hero{
+  position:relative;overflow:hidden;border-radius:var(--r3);
+  background:linear-gradient(135deg,#7eb8d8 0%,#a3d0e8 25%,#bddcee 50%,#d0e8f5 75%,#e3f1fa 100%);
+  color:#1a3a52;padding:0;margin-bottom:20px;
+  box-shadow:0 20px 60px -15px rgba(126,184,216,.35),0 8px 20px -8px rgba(0,0,0,.08);
+}
+.hero-grid{display:grid;grid-template-columns:1fr 240px;gap:0;min-height:180px}
+.hero-left{padding:28px 32px}
+.hero-kicker{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;opacity:.55;margin-bottom:8px;font-weight:500}
+.hero-title{font-size:28px;font-weight:700;letter-spacing:-.5px;line-height:1.3;color:#1a3a52}
+.hero-desc{opacity:.75;margin-top:10px;font-size:13px;line-height:1.6;max-width:640px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hp{background:rgba(255,255,255,.45);border:1px solid rgba(26,58,82,.12);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:500;color:#1a3a52}
+.hp.green{background:rgba(22,163,74,.20);border-color:rgba(22,163,74,.35);color:#15803d}
+.hp.amber{background:rgba(217,119,6,.20);border-color:rgba(217,119,6,.35);color:#b45309}
+.hp.red{background:rgba(220,38,38,.20);border-color:rgba(220,38,38,.35);color:#dc2626}
+.hero-right{display:flex;flex-direction:column;align-items:center;justify-content:center;border-left:1px solid rgba(26,58,82,.12);padding:24px}
+.hero-ts{font-size:10px;opacity:.50;margin-bottom:4px}
+.hero-big{font-size:40px;font-weight:800;letter-spacing:-2px;line-height:1.2;color:#1a3a52;text-align:center}
+.hero-big-sub{font-size:11px;opacity:.55;margin-top:6px;letter-spacing:.3px;text-align:center;max-width:170px}
+.kpi-strip{display:flex;background:var(--card);border:1px solid var(--s200);border-radius:var(--r2);box-shadow:var(--sh-m);overflow:hidden;margin-bottom:16px}
+.kpi{flex:1;padding:20px 16px 16px;text-align:center;border-right:1px solid var(--s100);position:relative}
+.kpi:last-child{border-right:none}
+.kpi::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.kpi.k-blue::before{background:linear-gradient(90deg,var(--blue),var(--blue-d))}
+.kpi.k-green::before{background:linear-gradient(90deg,var(--green),#15803d)}
+.kpi.k-amber::before{background:linear-gradient(90deg,var(--amber),#b45309)}
+.kpi.k-violet::before{background:linear-gradient(90deg,var(--violet),#6d28d9)}
+.kpi-v{font-size:26px;font-weight:800;letter-spacing:-1.5px;line-height:1}
+.kpi.k-blue .kpi-v{color:var(--blue-d)}
+.kpi.k-green .kpi-v{color:var(--green)}
+.kpi.k-amber .kpi-v{color:var(--amber)}
+.kpi.k-violet .kpi-v{color:var(--violet)}
+.kpi-k{font-size:9.5px;color:var(--s400);margin-top:5px;font-weight:600;text-transform:uppercase;letter-spacing:.9px}
+.cos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.co{border-radius:var(--r);padding:14px 16px;display:flex;gap:10px;align-items:flex-start;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.co.insight{background:linear-gradient(135deg,#eff6ff,var(--blue-l));border:1px solid rgba(59,130,246,.15)}
+.co.action{background:linear-gradient(135deg,#f0fdf4,var(--green-l));border:1px solid rgba(22,163,74,.15)}
+.co.risk{background:linear-gradient(135deg,#fff5f5,var(--red-l));border:1px solid rgba(220,38,38,.15)}
+.co.warn{background:linear-gradient(135deg,#fffbeb,var(--amber-l));border:1px solid rgba(217,119,6,.15)}
+.co-icon{font-size:20px;flex:none;line-height:1}
+.co-title{font-size:12px;font-weight:600;color:var(--s700);margin-bottom:3px}
+.co-body{font-size:13px;color:var(--s600);line-height:1.5}
+.card{background:var(--card);border:1px solid var(--s200);border-radius:var(--r2);padding:20px 24px;box-shadow:var(--sh);margin-bottom:16px}
+.card-h{font-size:15px;font-weight:600;color:var(--s800);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-sub{font-size:11px;color:var(--s400);margin:-6px 0 12px;line-height:1.4}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+th,td{padding:8px 12px;text-align:left;vertical-align:top}
+th{font-size:10px;font-weight:600;color:var(--s400);text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--s100);background:var(--s50)}
+td{border-bottom:1px solid var(--s100)}
+tr:last-child td{border-bottom:none}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:.3px}
+.pill.g{color:var(--green);background:var(--green-l)}
+.pill.w{color:var(--amber);background:var(--amber-l)}
+.pill.r{color:var(--red);background:var(--red-l)}
+.pill.b{color:var(--blue);background:var(--blue-l)}
+.pill.n{color:var(--s500);background:var(--s100)}
+.finding{padding:12px 14px;border-left:3px solid var(--blue);background:var(--blue-ul);border-radius:0 var(--r) var(--r) 0;margin:8px 0;font-size:13px}
+.finding.warn{border-left-color:var(--amber);background:var(--amber-l)}
+.finding.risk{border-left-color:var(--red);background:var(--red-l)}
+.finding .dim{color:var(--blue);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.flow{white-space:pre-wrap;background:var(--s900);color:white;border-radius:var(--r);padding:14px;font-size:12px;overflow:auto}
+.disc{background:var(--s50);border:1px solid var(--s200);border-radius:var(--r);padding:16px 20px;margin-bottom:16px;font-size:11px;color:var(--s500);line-height:1.7}
+.ft{text-align:center;font-size:10px;color:var(--s300);padding:16px 0;letter-spacing:.5px}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr}.hero-right{border-left:none;border-top:1px solid rgba(26,58,82,.12)}.g2{grid-template-columns:1fr}.cos{grid-template-columns:1fr}}
+@media(max-width:640px){body{padding:12px 8px}.kpi-strip{flex-wrap:wrap}.kpi{flex:1 1 50%;border-bottom:1px solid var(--s100)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-kicker">Vague Requirement Unpacker · 接招包</div>
+        <h1 class="hero-title">__requirement_title__</h1>
+        <p class="hero-desc">__one_line_summary__</p>
+        <div class="hero-pills">
+          <span class="hp">__delivery_level__</span>
+          <span class="hp">__urgency__</span>
+          <span class="hp">__audience__</span>
+          <span class="hp __readiness_style__">__readiness_level__</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-ts">__generated_at__</div>
+        <div class="hero-big">__readiness_score__</div>
+        <div class="hero-big-sub">接招就绪度</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="kpi-strip">
+    <div class="kpi k-blue"><div class="kpi-v">__delivery_level__</div><div class="kpi-k">Delivery Level</div></div>
+    <div class="kpi k-green"><div class="kpi-v">__scenario_count__</div><div class="kpi-k">Core Scenarios</div></div>
+    <div class="kpi k-amber"><div class="kpi-v">__question_count__</div><div class="kpi-k">Confirm Questions</div></div>
+    <div class="kpi k-violet"><div class="kpi-v">__risk_count__</div><div class="kpi-k">Risk Flags</div></div>
+  </div>
+
+  <div class="cos">
+    <div class="co insight"><span class="co-icon">&#128161;</span><div><div class="co-title">当前判断</div><div class="co-body">__top_insight__</div></div></div>
+    <div class="co action"><span class="co-icon">&#9889;</span><div><div class="co-title">优先动作</div><div class="co-body">__top_action__</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-h">&#128483; 原话/会议纪要</div>
+    <div class="finding">__verbatim__</div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-h">&#127919; 一页结论卡</div>
+      <table>
+        <tbody>
+          <tr><td>当前判定</td><td>__requirement_type__</td></tr>
+          <tr><td>现在能交付</td><td>__can_deliver_now__</td></tr>
+          <tr><td>不能承诺</td><td>__cannot_commit__</td></tr>
+          <tr><td>最大风险</td><td>__top_risk__</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-h">&#10067; 待确认问题</div>
+      <table>
+        <thead><tr><th>优先级</th><th>问题</th><th>为什么要问</th></tr></thead>
+        <tbody>__question_rows__</tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h">&#129513; 五层接招展开</div>
+    __layer_sections__
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-h">&#128230; MoSCoW 范围</div>
+      <table>
+        <tbody>
+          <tr><td><span class="pill r">Must</span></td><td>__must__</td></tr>
+          <tr><td><span class="pill w">Should</span></td><td>__should__</td></tr>
+          <tr><td><span class="pill b">Could</span></td><td>__could__</td></tr>
+          <tr><td><span class="pill n">Won't</span></td><td>__wont__</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-h">&#128260; 主流程</div>
+      <pre class="flow">__main_flow__</pre>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-h">&#128202; 接招就绪度</div>
+    <table>
+      <thead><tr><th>维度</th><th>分数</th><th>扣分原因</th><th>补齐动作</th></tr></thead>
+      <tbody>__score_rows__</tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-h">&#128681; 风险红旗</div>
+    <table>
+      <thead><tr><th>风险</th><th>严重度</th><th>为什么</th><th>应对动作</th></tr></thead>
+      <tbody>__risk_rows__</tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-h">&#128172; 回话话术</div>
+    <div class="finding"><div class="dim">30 秒版</div>__reply_short__</div>
+    <div class="finding"><div class="dim">稍正式版</div>__reply_formal__</div>
+  </div>
+
+  <div class="disc">
+    <strong>说明</strong>：本报告用于模糊需求冷启动拆解，不替代完整 PRD、合规评审或最终研发排期。所有未由原话提供的信息都应标注为假设或待确认。
+  </div>
+  <div class="ft">Vague Requirement Unpacker · __generated_at__</div>
+</div>
+</body>
+</html>

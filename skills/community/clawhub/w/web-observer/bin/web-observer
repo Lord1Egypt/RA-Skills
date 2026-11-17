@@ -1,0 +1,37 @@
+#!/bin/sh
+# A convenience launcher that works from any working directory.
+#
+# It resolves its own location, following symlinks, so `web-observer` on a PATH
+# and `./bin/web-observer` from a checkout both find lib/. An agent invokes a
+# skill from its own working directory, so nothing here may assume one.
+#
+# This is a convenience, not the documented route. Some install paths drop the
+# executable bit, which would make this file unusable while the skill itself is
+# fine, so SKILL.md and README.md tell people to run:
+#
+#   node <skill-dir>/lib/cli.js <command>
+#
+# That form needs no permissions and cannot be broken by a packer.
+set -eu
+
+script=$0
+while [ -L "$script" ]; do
+    target=$(readlink "$script")
+    case $target in
+        /*) script=$target ;;
+        *) script=$(dirname "$script")/$target ;;
+    esac
+done
+here=$(cd "$(dirname "$script")" && pwd)
+root=$(dirname "$here")
+
+if [ ! -f "$root/lib/cli.js" ]; then
+    # Naming the missing file and the fix, rather than letting node print a
+    # module-resolution error about a path the reader did not choose.
+    echo "web-observer: $root/lib/cli.js is missing." >&2
+    echo "  A release ships lib/ already built. In a development checkout run:" >&2
+    echo "    npm install && npm run build" >&2
+    exit 2
+fi
+
+exec node "$root/lib/cli.js" "$@"

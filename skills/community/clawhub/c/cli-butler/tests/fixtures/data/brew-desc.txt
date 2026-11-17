@@ -1,0 +1,4 @@
+cowsay: Configurable talking cow
+fd: Simple, fast and user-friendly alternative to find
+orbstack: Docker and Linux in a fast VM
+ripgrep: Recursively search directories for a regex pattern

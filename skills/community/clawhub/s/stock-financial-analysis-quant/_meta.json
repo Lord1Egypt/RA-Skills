@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7c8aabextwamexg3f163nksn8350xn",
-  "slug": "stock-financial-analysis-quant",
-  "version": "1.0.0",
-  "publishedAt": 1775123209878
+  "id": 379067750777530,
+  "name": "stock-financial-analysis",
+  "platform": "minimax",
+  "updated_at": 1774100136675,
+  "version": "1.0.0"
 }

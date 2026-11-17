@@ -1,0 +1,11 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_read_informat_dashboard_ui_preset",
+    "description": "Read the Informat dashboard AI generation UI preset document. The document contains: 7 theme palettes (Aqua Sky / Enterprise Violet / Vivid Multi / Forest / Sunset / Dark Cyber / Morandi Pastel), 6 layout templates (KPI Dashboard / Trend Monitor / Analytics Deep Dive / Comprehensive / Simple Feed / Single Focus), universal cardStyle preset, Number card three-tier preset (Compact/Standard/Hero), ProChart per-series-type beautification defaults (line/bar/pie/scatter/radar/gauge etc.), 4 complete copy-ready JSON examples, and anti-patterns. [When to call] Call this tool ONCE before creating or editing any dashboard card, and generate cardStyle and proChartSetting/numberSetting fields according to its content. Return value is a markdown string.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+}

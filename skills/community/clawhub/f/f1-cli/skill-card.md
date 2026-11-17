@@ -1,46 +1,59 @@
-## Description: <br>
-F1 CLI helps agents answer Formula 1 data questions by using the third-party f1 command-line tool backed by the OpenF1 API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Formula 1 data using the f1-cli command-line tool, which wraps the OpenF1 API for race results, lap times, standings, pit stops, telemetry, weather, team radio, overtakes, tire strategy, and other F1 statistics.
 
-## Publisher: <br>
-[barronlroth](https://clawhub.ai/user/barronlroth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[barronlroth](https://clawhub.ai/user/barronlroth)
 
-## Use Case: <br>
-Developers, analysts, and F1-focused agents use this skill to retrieve and compare Formula 1 sessions, results, telemetry, pit stops, standings, weather, race-control events, team radio, tire stints, and related statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a third-party f1 CLI and network-backed OpenF1 queries. <br>
-Mitigation: Install and use it only when third-party CLI execution and F1 query parameters sent to the OpenF1-backed service are acceptable. <br>
-Risk: Raw filters or free-form query values could include personal or sensitive data. <br>
-Mitigation: Avoid entering personal or sensitive data in filters, driver/session lookups, or other free-form query values. <br>
-Risk: Large telemetry or location queries can retrieve high-volume data even when client-side limits are used. <br>
-Mitigation: Prefer server-side filters before applying client-side limits for telemetry and location queries. <br>
-Risk: Position time-series data can be mistaken for final race classification. <br>
-Mitigation: Use driver standings for final race results and treat positions output as session time-series data. <br>
+## Use Case:
 
+Developers, engineers, and F1 analysts use this skill to have an agent retrieve and interpret Formula 1 session, timing, telemetry, standings, weather, race-control, and strategy data through the f1 CLI and OpenF1.
 
-## Reference(s): <br>
-- [OpenF1 API](https://openf1.org) <br>
-- [F1 CLI on ClawHub](https://clawhub.ai/barronlroth/f1-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/barronlroth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON or CSV command-output references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke the third-party f1 CLI, which queries OpenF1-backed services and can return table, JSON, or CSV data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Installing and using a third-party CLI can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a reviewed or pinned f1-cli release or Homebrew formula revision.
+
+Risk: The skill may make network requests to OpenF1 for public Formula 1 data, including for broad F1-related prompts.
+
+Mitigation: Enable it only in environments where outbound OpenF1 access is acceptable.
+
+Risk: High-frequency telemetry and location queries can fetch large result sets before local limiting is applied.
+
+Mitigation: Prefer server-side filters and narrow session or driver selections for large telemetry-style queries.
+
+## Reference(s):
+
+- [OpenF1 API](https://openf1.org)
+- [ClawHub Skill Page](https://clawhub.ai/barronlroth/skills/f1-cli)
+- [Publisher Profile](https://clawhub.ai/user/barronlroth)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and references to table, JSON, or CSV CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend f1 CLI commands that query OpenF1; JSON and CSV output modes are available through CLI flags.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

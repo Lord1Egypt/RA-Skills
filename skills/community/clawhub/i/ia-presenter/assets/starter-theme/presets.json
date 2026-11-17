@@ -1,0 +1,44 @@
+{
+  "Presets": [
+    {
+      "Name": "Light",
+      "TitleFont": "system-ui",
+      "BodyFont": "system-ui",
+      "Appearance": "light",
+      "DarkBodyTextColor": "#111111",
+      "LightBodyTextColor": "#f5f5f5",
+      "DarkTitleTextColor": "#000000",
+      "LightTitleTextColor": "#ffffff",
+      "DarkBackgroundColor": "#141414",
+      "LightBackgroundColor": "#ffffff",
+      "DarkAccent1": "#0a84ff",
+      "LightAccent1": "#64b5ff",
+      "Accent1": "#0a84ff",
+      "Accent2": "#30d158",
+      "Accent3": "#ffd60a",
+      "Accent4": "#ff9f0a",
+      "Accent5": "#ff375f",
+      "Accent6": "#bf5af2"
+    },
+    {
+      "Name": "Dark",
+      "TitleFont": "system-ui",
+      "BodyFont": "system-ui",
+      "Appearance": "dark",
+      "DarkBodyTextColor": "#111111",
+      "LightBodyTextColor": "#f5f5f5",
+      "DarkTitleTextColor": "#000000",
+      "LightTitleTextColor": "#ffffff",
+      "DarkBackgroundColor": "#141414",
+      "LightBackgroundColor": "#ffffff",
+      "DarkAccent1": "#0a84ff",
+      "LightAccent1": "#64b5ff",
+      "Accent1": "#64b5ff",
+      "Accent2": "#30d158",
+      "Accent3": "#ffd60a",
+      "Accent4": "#ff9f0a",
+      "Accent5": "#ff375f",
+      "Accent6": "#bf5af2"
+    }
+  ]
+}

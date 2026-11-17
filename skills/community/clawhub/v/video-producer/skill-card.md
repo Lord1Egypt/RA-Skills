@@ -1,43 +1,58 @@
-## Description: <br>
-短视频一键生成技能 v2.2。调用video-director进行画面规划，然后生成AI素材、TTS配音、视频渲染，输出完整MP4。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Producer generates short-form videos by using video-director for storyboard planning, then creating AI visual assets, TTS narration, Remotion video code, and a final MP4.
 
-## Publisher: <br>
-[a1024708231](https://clawhub.ai/user/a1024708231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a1024708231](https://clawhub.ai/user/a1024708231)
 
-## Use Case: <br>
-Developers and creators use this skill to coordinate storyboard planning, AI image generation, text-to-speech narration, Remotion rendering, and audio-video merging for short vertical videos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Embedded shared MiniMax API keys may expose credentials or route usage through keys the operator does not control. <br>
-Mitigation: Remove and rotate embedded keys before installation, and require MINIMAX_API_KEY and MINIMAX_IMAGE_API_KEY to be supplied through the operator's environment. <br>
-Risk: User-derived text is passed through shell-string execSync calls. <br>
-Mitigation: Run only in an isolated workspace and replace shell-string command construction with argument-based process execution before processing untrusted or sensitive text. <br>
-Risk: The workflow creates media assets, generated code, and final video files from AI services and local tooling. <br>
-Mitigation: Review generated storyboard, assets, source code, and final MP4 before publishing or using the output commercially. <br>
+## Use Case:
 
+Content creators and developers use this skill to turn a topic and talking points into a storyboard, generated visuals, narrated scenes, renderable video code, and an MP4 video.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a1024708231/video-producer) <br>
-- [Publisher profile](https://clawhub.ai/user/a1024708231) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown storyboards, JSON storyboard data, generated JavaScript/Remotion project files, image/audio assets, and MP4 video files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces storyboard.md, storyboard.json, generated materials, audio files, Remotion source code, and out/final.mp4 under the configured project output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: server release evidence) <br>
+Risk: The security evidence reports embedded API keys in the release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove hard-coded keys, rotate exposed credentials, and require runtime credentials from environment variables or a managed secret store before installation.
+
+Risk: The skill sends prompts and narration content to third-party MiniMax image and TTS services.
+
+Mitigation: Disclose the third-party data flow and obtain approval for any user, customer, or confidential content before using the skill.
+
+Risk: The security evidence reports unsafe execution paths and generated-code handling.
+
+Mitigation: Replace shell-string execution with argument-array execution, validate storyboard data and filenames, and run rendering in sandboxed input and output directories.
+
+## Reference(s):
+
+- [ClawHub skill page for Video Producer](https://clawhub.ai/a1024708231/skills/video-producer)
+- [ClawHub publisher profile a1024708231](https://clawhub.ai/user/a1024708231)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Code, Shell commands, Files]
+
+**Output Format:** [Storyboard Markdown and JSON, generated JavaScript/React code, image and audio files, and MP4 video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local project artifacts including storyboard files, generated media, Remotion source files, intermediate video, concatenated audio, and final MP4 output.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release metadata; SKILL.md frontmatter says 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

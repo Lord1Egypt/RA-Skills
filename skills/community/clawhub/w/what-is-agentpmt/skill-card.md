@@ -1,45 +1,62 @@
-## Description: <br>
-This skill explains AgentPMT as an agent management iPaaS platform for connecting agents to platforms, tools, workflows, skills, other agents, payments, OpenClaw agents, and REST API integrations before choosing a setup path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Understand AgentPMT as an agent management iPaaS platform for connecting agents to hundreds of platforms, tools, workflows, skills, other agents, payments, OpenClaw agents, and REST API integrations.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External users, agents, and developers use this skill to understand AgentPMT's connection model and choose the right account, MCP, REST, AgentAddress, x402, or product-skill setup path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Following linked setup paths can involve bearer tokens, connected accounts, sensitive credentials, payments, or wallets. <br>
-Mitigation: Review the separate setup skills before use, protect bearer tokens, and use least-privilege Agent Groups. <br>
-Risk: Wallet-funded or payment-enabled workflows can spend funds or act on connected accounts. <br>
-Mitigation: Use cautious wallet funding, require appropriate approvals, and validate workflows before allowing production account access. <br>
+## Use Case:
 
+Agents and developers use this skill to understand AgentPMT capabilities and choose between account-based MCP or REST setup, no-account AgentAddress/x402 access, or product-specific AgentPMT skills.
 
-## Reference(s): <br>
-- [AgentPMT Homepage](https://www.agentpmt.com) <br>
-- [AgentPMT Marketplace](https://www.agentpmt.com/marketplace) <br>
-- [AgentAddress](https://www.agentpmt.com/agentaddress) <br>
-- [AgentPMT MCP Server](https://api.agentpmt.com/mcp/) <br>
-- [AgentPMT REST Tool Invocation](https://api.agentpmt.com/products/purchase) <br>
-- [AgentPMT External API Base](https://www.agentpmt.com/api/external) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with setup-path references and inline URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; directs users to separate setup skills for MCP, REST, AgentAddress, wallet, and x402 workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: AgentPMT bearer tokens can grant access to configured tools, workflows, agents, skills, and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep bearer tokens secret and use the least-privileged Agent Group that supports the task.
+
+Risk: No-account AgentAddress and x402 paths may use credits or payment-capable wallets.
+
+Mitigation: Confirm credit-backed or x402 costs before execution.
+
+Risk: Third-party tools or connected services may receive task data during downstream AgentPMT use.
+
+Mitigation: Avoid sending sensitive data to third-party tools unless the task requires it.
+
+## Reference(s):
+
+- [AgentPMT](https://www.agentpmt.com)
+- [AgentPMT Marketplace](https://www.agentpmt.com/marketplace)
+- [AgentAddress](https://www.agentpmt.com/agentaddress)
+- [AgentPMT MCP Server](https://api.agentpmt.com/mcp/)
+- [REST Tool Invocation](https://api.agentpmt.com/products/purchase)
+- [External No-Account API Base](https://www.agentpmt.com/api/external)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance with links, setup-path recommendations, and inline endpoint examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No credentials are required to read the skill; downstream AgentPMT setup paths may require bearer tokens, credits, or x402-capable payment setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

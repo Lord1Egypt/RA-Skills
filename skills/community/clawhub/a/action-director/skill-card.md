@@ -1,41 +1,50 @@
-## Description: <br>
-Action Director turns action or fight-scene ideas into Chinese AI video prompts with 15-second timelines, 0.1-second hit marks, physical feedback, particle effects, and camera direction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+动作导演将战斗创意转化为带精确时间戳、动作区间、物理反馈、运镜和粒子效果的 AI 视频提示词。
 
-## Publisher: <br>
-[chang9852](https://clawhub.ai/user/chang9852) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chang9852](https://clawhub.ai/user/chang9852)
 
-## Use Case: <br>
-Creators, video prompt engineers, and agents use this skill to convert action-scene concepts into structured Chinese shot plans and AI video prompts. It is best suited for stylized action design that needs timed hit markers, impact effects, and consistent cinematic framing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad action-related triggers may steer mixed-language or general action requests into a fixed Chinese video-prompt format. <br>
-Mitigation: Use the skill when Chinese action-scene prompt formatting is desired, and narrow or disable activation phrases when mixed-language behavior or more selective routing is needed. <br>
-Risk: Generated fight-scene prompts may need review for platform, brand, or safety requirements before video generation. <br>
-Mitigation: Review generated scene plans before use and adjust action details, visual effects, and compliance language for the target deployment context. <br>
+## Use Case:
 
+External creators and prompt writers use this skill to turn Chinese-language action or fight-scene ideas into structured AI video prompts with 15-second timelines, hit-marking tables, cinematic camera direction, and physical feedback cues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chang9852/action-director) <br>
-- [Publisher profile](https://clawhub.ai/user/chang9852) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with a global setup, timeline hit-marking table, and per-interval AI video prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are Chinese-language action-scene prompt plans, typically organized around a 15-second video split into 4-5 intervals with 0.1-second hit marks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad action or fight-related triggers may steer responses into a structured cinematic action-shot format.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for Chinese-language cinematic action video prompt generation and review outputs before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chang9852/skills/action-director)
+- [ClawHub publisher profile](https://clawhub.ai/user/chang9852)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a global setup, timeline hit-marking table, and per-interval AI video prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language output structured around 15-second timelines, 4-5 action intervals, and 0.1-second hit points.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

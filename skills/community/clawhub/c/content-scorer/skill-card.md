@@ -1,39 +1,55 @@
-## Description: <br>
-Score marketing copy for resonance, hook strength, NLP technique usage, and conversion readiness. Returns a 0-100 Content Resonance Score with per-dimension breakdown and actionable rewrite suggestions. Calibrated against fMRI brain-response data (TRIBE v2). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Score marketing copy for resonance, hook strength, NLP technique usage, and conversion readiness, returning a 0-100 Content Resonance Score with per-dimension breakdown, actionable rewrite suggestions, and TRIBE v2 calibration context.
 
-## Publisher: <br>
-[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenautoplex1](https://clawhub.ai/user/drivenautoplex1)
 
-## Use Case: <br>
-Marketing, sales, and content teams use this skill to evaluate copy before publishing, compare hooks, check forbidden terms, and request targeted rewrites. Agent workflows can use its JSON mode to score copy programmatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Normal scoring, rewriting, or comparison can send submitted marketing copy to Anthropic when the local backend is unavailable. <br>
-Mitigation: Use --demo or --compliance-only for no external call, or set LLM_BACKEND=local when local-only processing is required. <br>
+## Use Case:
 
+Marketing, sales, and content teams use this skill to evaluate draft copy before publishing, with scores for hook strength, emotional resonance, NLP technique usage, specificity, CTA strength, and compliance. Agent workflows can also use its JSON mode for batch scoring, hook comparison, and rewrite suggestions.
 
-## Reference(s): <br>
-- [Content Scorer ClawHub Page](https://clawhub.ai/drivenautoplex1/content-scorer) <br>
-- [Project Homepage](https://github.com/drivenautoplex1/openclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Human-readable score report or JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include per-dimension scores, compliance findings, hook comparisons, and rewrite suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Normal scoring can send pasted marketing copy to Anthropic when Haiku is selected or local backend auto-detection fails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --demo or --compliance-only for no remote call, and set LLM_BACKEND=local for sensitive drafts.
+
+Risk: The TRIBE v2/fMRI calibration claims are not verified by the provided provenance evidence.
+
+Mitigation: Treat calibration claims as unverified unless the publisher provides the referenced calibration artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/drivenautoplex1/skills/content-scorer)
+- [Publisher Profile](https://clawhub.ai/user/drivenautoplex1)
+- [OpenClaw Skills Homepage](https://github.com/drivenautoplex1/openclaw-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON scoring reports with optional rewritten copy and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local demo and compliance-only modes without remote calls; normal scoring can use a local LLM server or Anthropic Claude depending on backend settings.]
+
+## Skill Version(s):
+
+1.0.2 (source: SKILL.md frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,57 @@
-## Description: <br>
-Set up a basic coal forge using scrap and local materials, then learn the core hand techniques to repair farm tools, make simple hardware, and start earning income or bartering in a rural village setting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up a basic coal forge using scrap and local materials, then learn the core hand techniques to repair farm tools, make simple hardware, and start earning income or bartering in a rural village setting.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and agents use this skill to plan a low-cost village blacksmithing setup, create setup and practice logs, and follow staged guidance for basic repairs, barter, or small local income. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create or update local markdown notes and logs in the user's workspace. <br>
-Mitigation: Review generated files and workspace diffs before keeping, sharing, or acting on the notes. <br>
-Risk: Real-world forge work can involve burns, smoke inhalation, fire hazards, unsafe scrap metal, and local legal or commercial requirements. <br>
-Mitigation: Use protective equipment, ventilation, supervision, fire controls, material checks, and local legal or trade guidance before doing forge work or selling repaired items. <br>
+## Use Case:
 
+External users can use this agent skill to plan a low-capital village blacksmithing setup, build basic operating files, practice core hand-forging techniques, and track early repair or barter work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/howtousehumans/village-blacksmith-starter) <br>
-- [Publisher profile](https://clawhub.ai/user/howtousehumans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown notes and concise instructional guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update blacksmith-setup.md, daily-practice-log.md, and income-log.md in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill covers hazardous forge setup and hot-metal work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance before use, require appropriate protective equipment and supervision, and stop work when safety conditions are not met.
+
+Risk: The skill may create or update local files during blacksmithing setup and tracking tasks.
+
+Mitigation: Use the skill in a dedicated workspace and confirm before file writes.
+
+Risk: The provided installer command is unpinned.
+
+Mitigation: Avoid running the installer with elevated privileges and verify the package source before installation.
+
+## Reference(s):
+
+- [Village Blacksmith Starter on ClawHub](https://clawhub.ai/howtousehumans/skills/village-blacksmith-starter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown files and concise step-by-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local planning and log files for setup, practice, and income tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

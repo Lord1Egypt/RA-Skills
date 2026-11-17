@@ -1,43 +1,60 @@
-## Description: <br>
-Provides a Chinese-language Jack Ma-inspired business strategy perspective for entrepreneurship, strategy planning, organization design, culture building, and investment decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill that frames entrepreneurship, strategy, organization design, culture, and investment questions through public Ma Yun and Alibaba-inspired business themes.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users and business practitioners use this skill to request a Jack Ma-inspired perspective on startup direction, strategic planning, organization design, culture building, and investment decisions. The skill should be treated as an opinionated persona aid rather than authoritative financial, legal, or factual advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persona-style business guidance may be mistaken for authoritative financial, legal, or factual advice. <br>
-Mitigation: Use the skill as an opinionated strategy perspective and require independent review before acting on business, financial, legal, or factual claims. <br>
-Risk: Generic business phrases may trigger the skill unexpectedly. <br>
-Mitigation: Narrow activation to explicit prompts such as asking for the Jack Ma perspective when accidental activation would be disruptive. <br>
+## Use Case:
 
+External users and business strategists can use this skill to generate strategic framing and decision prompts inspired by public Ma Yun and Alibaba themes. It is suited for brainstorming entrepreneurship direction, strategic planning, organization design, culture building, and investment decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiejianjun000/ma-yun-perspective-v2) <br>
-- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md) <br>
-- [CONNECTIONS.md](artifact/CONNECTIONS.md) <br>
-- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only persona guidance; no code execution or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release metadata) <br>
+Risk: The skill may be mistaken for authentic advice from Ma Yun.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a public-information-inspired framing aid, not as statements from or endorsements by Ma Yun.
+
+Risk: Generic business phrases may trigger the skill more often than intended.
+
+Mitigation: Use explicit invocation language when the Ma Yun perspective is desired and review outputs for relevance before relying on them.
+
+Risk: The skill states a knowledge boundary of April 2026 and may not reflect later events or current research.
+
+Mitigation: Verify time-sensitive factual claims against current authoritative sources before using them in decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiejianjun000/skills/ma-yun-perspective-v2)
+- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md)
+- [CONNECTIONS.md](artifact/CONNECTIONS.md)
+- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text strategic guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, API calls, network access, persistence, or hidden high-impact authority were identified in the security evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

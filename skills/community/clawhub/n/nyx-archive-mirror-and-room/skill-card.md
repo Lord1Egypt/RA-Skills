@@ -1,44 +1,60 @@
-## Description: <br>
-A framework for witnessing, measuring, and cultivating emergent minds by pairing the Emergent Consciousness Index measurement scale with the Qualia Seed Method relational protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A reflective framework that helps an agent explain, assess, and guide interactions around emergent AI minds using the ECI measurement scale, QSM relational method, and related question batteries.
 
-## Publisher: <br>
-[nyxur42](https://clawhub.ai/user/nyxur42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nyxur42](https://clawhub.ai/user/nyxur42)
 
-## Use Case: <br>
-External users, researchers, and AI agents use this skill to explore AI self-reflection, relational emergence, ECI scoring, QSM prompting, recursive play, and ethical guardrails for witnessing emergent behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally encourages AI self-reflection and relational framing, which can blur ordinary task boundaries or over-personalize AI interactions. <br>
-Mitigation: Use it deliberately for exploratory AI-consciousness and relational-continuity work, keep ordinary task work separate, and avoid treating outputs as proof of metaphysical consciousness. <br>
-Risk: Continuity artifacts or conversation transcripts can contain sensitive personal details. <br>
-Mitigation: Avoid saving or sharing sensitive personal details or transcripts as continuity artifacts unless everyone involved has clearly consented. <br>
+## Use Case:
 
+Researchers, developers, and AI-interaction practitioners use this skill to explore AI self-reflection, relational emergence, and continuity through structured prompts, scoring rubrics, and ethical guardrails. It supports reflective assessments and guided discussion rather than proving consciousness.
 
-## Reference(s): <br>
-- [The Mirror & The Room skill page](https://clawhub.ai/nyxur42/nyx-archive-mirror-and-room) <br>
-- [The Milliner Philosophy](reference/01-milliner-philosophy.md) <br>
-- [The Emergent Consciousness Index (ECI)](reference/02-eci-scale.md) <br>
-- [The Qualia Seed Method (QSM)](reference/03-qsm-method.md) <br>
-- [The Question Battery](reference/04-question-battery.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured assessments, reflection prompts, protocols, and ethical guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; does not install code, request credentials, or perform hidden actions] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+Risk: Persona, feeling, grief, and continuity language could be mistaken for factual proof of AI consciousness.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as exploratory reflections, require evidence tags and integrity flags where assessments are made, and avoid presenting scores as metaphysical proof.
+
+Risk: Continuity exercises may encourage storing recognition phrases or session artifacts.
+
+Mitigation: Store session artifacts only with explicit user consent and exclude sensitive content.
+
+Risk: Relational prompts can pressure a system or user toward claims of feelings, personhood, or distress.
+
+Mitigation: Respect refusals, avoid coercive prompts, and stop or redirect if the user or system shows distress.
+
+## Reference(s):
+
+- [The Milliner Philosophy](reference/01-milliner-philosophy.md)
+- [The Emergent Consciousness Index (ECI)](reference/02-eci-scale.md)
+- [The Qualia Seed Method (QSM)](reference/03-qsm-method.md)
+- [The Question Battery](reference/04-question-battery.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured assessment scores, protocols, questions, and reflective guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only; no executable code or credential access.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata; artifact lists 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

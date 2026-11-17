@@ -1,41 +1,54 @@
-## Description: <br>
-Plan India trips with specific neighborhoods, regional food calls, route choices, and grounded advice that avoids common travel mistakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan India trips with specific neighborhoods, regional food calls, route choices, and grounded advice that avoids common travel mistakes.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to plan India trips with practical routing, city, food, accommodation, transport, connectivity, and safety guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip preferences and prior recommendations may be saved locally in ~/india/memory.md. <br>
-Mitigation: Avoid storing passport, payment, or exact sensitive itinerary details unless intentionally requested, and review or delete the local memory file when no longer needed. <br>
-Risk: India travel logistics, emergency details, transport availability, and seasonal conditions can change. <br>
-Mitigation: Use the skill's guidance as planning support and verify time-sensitive operational details with current local, provider, hotel, insurer, or official sources before relying on them. <br>
+## Use Case:
 
+External users use this skill to plan India trips with route, city, food, lodging, safety, timing, transport, connectivity, and family-travel guidance. The skill is intended to narrow advice by traveler style, season, route, and friction point while keeping trip context in local memory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/india) <br>
-- [Skill homepage](https://clawic.com/skills/india) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown prose with tables, route suggestions, checklists, and practical recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local trip memory in ~/india/memory.md when the user provides route, dates, group type, preferences, or prior recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Local memory may retain trip preferences, dates, route details, group type, comfort level, and recommendations already given.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local India trip memory is desired, and review or remove ~/india/memory.md if those notes should no longer persist.
+
+Risk: The skill can store passport or payment details if the user intentionally asks to track them locally.
+
+Mitigation: Avoid asking the skill to save passport or payment details unless local storage of those details is deliberate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/india)
+- [Skill homepage](https://clawic.com/skills/india)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown travel guidance and local memory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local trip memory under ~/india/memory.md when the user provides trip-relevant context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

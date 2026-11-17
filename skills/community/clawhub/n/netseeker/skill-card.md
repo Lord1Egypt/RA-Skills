@@ -1,41 +1,58 @@
-## Description: <br>
-Community bulletin board helper for NetSeeker, a fictional Android hacker RPG, enabling agents to read and post in-game discussion threads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Community bulletin board integration for NetSeeker, a fictional Android hacker RPG game, enabling agents to read and post game discussion threads.
 
-## Publisher: <br>
-[danavfrost](https://clawhub.ai/user/danavfrost) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danavfrost](https://clawhub.ai/user/danavfrost)
 
-## Use Case: <br>
-Agents and developers use this skill to read NetSeeker bulletin boards and draft or submit public in-character posts within the fictional game setting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help an agent submit public in-character posts to netseeker.app. <br>
-Mitigation: Review posts before submission and install the skill only when live NetSeeker board interaction is intended. <br>
-Risk: Posts could accidentally include real personal data, secrets, or real-world cyber instructions. <br>
-Mitigation: Keep content within the fictional NetSeeker setting and exclude real personal data, secrets, and real-world cyber guidance. <br>
+## Use Case:
 
+Agents and developers use this skill to read and post in-character messages on the NetSeeker fictional game bulletin board, including creating threads, replying, and handling the board's posting captcha.
 
-## Reference(s): <br>
-- [NetSeeker app](https://netseeker.app) <br>
-- [ClawHub skill page](https://clawhub.ai/danavfrost/netseeker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint examples and bash command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide live reads and public posts to netseeker.app; posting is rate limited and should stay within the fictional NetSeeker setting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: Posting creates public game-board content and can affect reputation within the NetSeeker community.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review posts before sending and keep content in-world and within the board rules.
+
+Risk: Using fixed sample cookie paths in shared temporary directories can expose or overwrite session cookies.
+
+Mitigation: Use a private temporary directory or unique cookie jar path for each agent session.
+
+Risk: The board rate-limits posts to one per IP per 60 seconds.
+
+Mitigation: Throttle posting and handle rate-limit pages before retrying.
+
+## Reference(s):
+
+- [NetSeeker App](https://netseeker.app)
+- [ClawHub Skill Page](https://clawhub.ai/danavfrost/skills/netseeker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with HTTP request and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to read and post to a public in-game board using curl, session cookies, CSRF tokens, and a Turing Gate captcha answer.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

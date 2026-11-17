@@ -1,46 +1,64 @@
-## Description: <br>
-Use this skill when the user wants to operate Airtap or complete a request through a mobile app on an Airtap device. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to operate Airtap or complete a request through a mobile app on an Airtap device.
 
-## Publisher: <br>
-[skills-airtap](https://clawhub.ai/user/skills-airtap) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skills-airtap](https://clawhub.ai/user/skills-airtap)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to delegate mobile-app tasks to Airtap devices, monitor task progress, provide follow-up input, cancel tasks, and update location when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, cancel, and continue mobile-app automation tasks that may change account or app state. <br>
-Mitigation: Prefer explicit $airtap invocation and confirm task creation, cancellation, continuation, and location updates before running commands. <br>
-Risk: A long-lived Airtap personal access token may be stored locally in scripts/.env. <br>
-Mitigation: Avoid pasting tokens into chat or shell history, restrict permissions on scripts/.env or use an external secret store, and rotate the token if exposed. <br>
-Risk: Unpinned Python dependencies can change behavior between installs. <br>
-Mitigation: Pin reviewed versions of requests and python-dotenv before production use. <br>
-Risk: OpenClaw progress mirroring can disclose task progress to an unintended destination if routing values are wrong. <br>
-Mitigation: Use OpenClaw delivery only when explicitly requested and use only routing values supplied or approved by the user. <br>
+## Use Case:
 
+External users and developers use Airtap to delegate mobile-app tasks to Airtap devices, monitor progress, add follow-up messages, cancel tasks, and optionally relay milestone updates into OpenClaw.
 
-## Reference(s): <br>
-- [OpenClaw Relay](references/openclaw.md) <br>
-- [Airtap app](https://airtap.ai/app) <br>
-- [Airtap Cortex API](https://airtap.ai/cortex/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON task responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include local polling summaries and optional OpenClaw progress updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release metadata) <br>
+Risk: The skill handles an Airtap personal access token and can store it in scripts/.env.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Airtap credentials, keep scripts/.env private, and avoid pasting tokens into chat.
+
+Risk: Task text, routing data, and precise location may be written to /tmp/log.
+
+Mitigation: Share location only when needed, avoid sensitive task text where possible, and review or clear local logs according to your retention policy.
+
+Risk: AIRTAP_BASE_URL can redirect authenticated requests away from the official Airtap endpoint.
+
+Mitigation: Keep AIRTAP_BASE_URL set to the official endpoint unless using separate test credentials in a controlled environment.
+
+Risk: The skill can send authenticated task, image, and location data to Airtap and optionally mirror progress into OpenClaw.
+
+Mitigation: Install only after review, use a locked virtual environment with pinned dependencies, and enable OpenClaw delivery only for approved destinations.
+
+## Reference(s):
+
+- [OpenClaw Relay](references/openclaw.md)
+- [Airtap Web App](https://airtap.ai/app)
+- [Airtap API Endpoint](https://airtap.ai/cortex/api)
+- [ClawHub Airtap Skill Page](https://clawhub.ai/skills-airtap/skills/airtap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Airtap task identifiers, task-state summaries, follow-up prompts, cancellation results, location update responses, and optional OpenClaw relay messages.]
+
+## Skill Version(s):
+
+1.0.7 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

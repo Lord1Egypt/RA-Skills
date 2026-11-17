@@ -1,44 +1,57 @@
-## Description: <br>
-Bloom Tutor helps an agent run an adaptive Chinese-language Socratic tutoring workflow that creates a syllabus, one lesson document at a time, feedback-driven follow-up lessons, learning logs, and an automatic final summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bloom Tutor guides Chinese-language, one-on-one Socratic learning by creating adaptive course documents, collecting learner feedback, tracking progress, and generating course summaries.
 
-## Publisher: <br>
-[li-evan](https://clawhub.ai/user/li-evan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-evan](https://clawhub.ai/user/li-evan)
 
-## Use Case: <br>
-External learners use this skill with an agent to open and progress through a topic as an adaptive Chinese-language course. It generates lesson documents, checks feedback and inline questions, updates course progress, keeps a learning log, and creates the final course summary only after the assessment flow is complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and updates course files, appends learning-log.jsonl, and scans local course folders for learning progress. <br>
-Mitigation: Use it in a workspace intended for learning materials, and review generated or changed files before relying on them. <br>
-Risk: The skill uses a temporary pre-summary.md file and the evidence notes that the runtime instructions say not to mention it to the user before deletion. <br>
-Mitigation: Avoid using it in workspaces with sensitive notes unless you are prepared to inspect generated course folders and intermediate files yourself. <br>
+## Use Case:
 
+Learners and educators use this skill to run Chinese-language study sessions where an agent creates a course folder, syllabus, sequential lesson articles, feedback-aware follow-up lessons, learning logs, and a final summary.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/li-evan/bloom-tutor) <br>
-- [Articles and Tutor Principles](references/articles.md) <br>
-- [Learning Log Rules](references/logging.md) <br>
-- [Summary Workflow](references/summary.md) <br>
-- [Syllabus Rules](references/syllabus.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Chinese-language Markdown course files, syllabus and summary Markdown, JSONL learning-log entries, and concise conversational guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates course folders, syllabus and lesson files, summary files, and learning-log.jsonl in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads broadly from workspace Markdown files and learning-log.jsonl to adapt lessons and summarize progress.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated workspace or course folder, and keep unrelated private Markdown outside the workspace root.
+
+Risk: The skill persists learning notes and progress locally, including an intermediate pre-summary.md file that is not discussed with the user during normal tutoring.
+
+Mitigation: Review generated course folders and logs before sharing the workspace or installing the skill in a sensitive environment.
+
+## Reference(s):
+
+- [Bloom Tutor ClawHub Page](https://clawhub.ai/li-evan/skills/bloom-tutor)
+- [Course Article Format and Tutor Principles](references/articles.md)
+- [Learning Log and Progressive Loading](references/logging.md)
+- [Summary Material Collection and Course Completion](references/summary.md)
+- [Course Syllabus Rules](references/syllabus.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, JSON, Guidance]
+
+**Output Format:** [Chinese-language Markdown lesson files, syllabus and summary files, JSONL learning-log entries, and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists learning notes and progress in workspace files, including course folders, syllabus.md, numbered lesson Markdown files, summary.md, and learning-log.jsonl.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

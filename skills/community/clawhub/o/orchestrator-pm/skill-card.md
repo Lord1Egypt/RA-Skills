@@ -1,46 +1,54 @@
-## Description: <br>
-Strategic project manager that reads between the lines, expands scope intelligently, creates job postings, and routes to spawner. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Strategic project manager that reads between the lines, expands scope intelligently, creates job postings, and routes to spawner.
 
-## Publisher: <br>
-[dodge1218](https://clawhub.ai/user/dodge1218) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dodge1218](https://clawhub.ai/user/dodge1218)
 
-## Use Case: <br>
-Developers and operators use this skill to classify incoming work, infer bounded follow-up tasks, build a dependency-aware job board, route work to specialist agents, and reconcile completion status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, archive, or delete workflow files as part of orchestration. <br>
-Mitigation: Review the skill before installation and require explicit approval before file creation, archival, or deletion in sensitive workspaces. <br>
-Risk: The skill can delegate work to sub-agents and interrupt agents that exceed timeouts. <br>
-Mitigation: Use it only where delegated sub-agent work is acceptable, and require approval before spawning or killing active agents. <br>
-Risk: The skill writes risk notes and insight logs that may influence later planning. <br>
-Mitigation: Periodically review generated planning, risk, and insight files before relying on them for future routing decisions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to classify ambiguous work, infer a concise set of missing tasks, plan dependency-aware execution waves, and route work to specialist agents. It is intended for session starts, post-agent handoffs, weak or missing next tickets, and blocker escalation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dodge1218/orchestrator-pm) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Orchestrator Instructions](artifact/instructions.md) <br>
-- [orchestrator.md](artifact/orchestrator.md) <br>
-- [examples.template.json](artifact/examples.template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown files and structured routing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update workspace planning files, routing files, risk notes, and insight logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can infer additional work beyond the user's explicit request, including high-impact actions such as deploys, Git pushes, sub-agent work, and persistent project memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before executing inferred or high-impact tasks, especially for repositories, deployments, outreach, payments, and account-connected workflows.
+
+Risk: The skill creates and mutates workspace planning files and can route work to other agents, which may amplify incorrect scope or stale project assumptions.
+
+Mitigation: Review generated job boards, NEXT_AGENT handoffs, risk-register updates, and persistent insights before relying on them for execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dodge1218/skills/orchestrator-pm)
+- [ClawHub publisher profile](https://clawhub.ai/user/dodge1218)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown planning and routing files with concise handoff guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes and updates workspace planning artifacts such as JOB_BOARD.md, NEXT_AGENT.md, NEXT_TICKET.md, RISK_REGISTER.md, insights.md, and worklog.md; may route work to specialist or sub-agent skills.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

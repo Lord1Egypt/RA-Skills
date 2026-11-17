@@ -1,42 +1,60 @@
-## Description: <br>
-Uses Python to extract metadata and article body content from WeChat Official Account article URLs, including title, author, body HTML, publish time, and cover image. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mp-weixin helps agents use Python scripts to extract metadata and body content from WeChat Official Account article URLs.
 
-## Publisher: <br>
-[bozoyan](https://clawhub.ai/user/bozoyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bozoyan](https://clawhub.ai/user/bozoyan)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch public mp.weixin.qq.com article pages and convert WeChat article metadata and content into structured data for archiving, analysis, or downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill could be misused to scrape restricted WeChat content, bypass verification, or use logged-in cookies without authorization. <br>
-Mitigation: Use it only with intended public mp.weixin.qq.com URLs, respect access controls and rate limits, and do not use it for CAPTCHA bypass or unauthorized logged-in sessions. <br>
-Risk: Extracted article HTML and saved JSON may contain third-party content, links, or sensitive data from the source page. <br>
-Mitigation: Review extracted output paths and JSON contents before automated use, and handle copied article content according to applicable privacy, copyright, and organizational requirements. <br>
+## Use Case:
 
+Developers and agents use this skill to parse mp.weixin.qq.com article links, collect article metadata, and convert article content into structured data for archiving, monitoring, or downstream processing.
 
-## Reference(s): <br>
-- [WeChat Official Accounts Platform](https://mp.weixin.qq.com) <br>
-- [BeautifulSoup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) <br>
-- [Requests Documentation](https://docs.python-requests.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, code, guidance] <br>
-**Output Format:** [CLI text summaries and structured JSON extraction results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful extraction returns article metadata, body HTML, account metadata when available, source URL parameters, and copyright status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can make network requests from the user's environment and does not enforce its stated WeChat-only URL scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment and provide only intended mp.weixin.qq.com article URLs.
+
+Risk: The skill documentation discusses CAPTCHA and anti-bot workarounds.
+
+Mitigation: Do not use logged-in cookies or attempt to bypass CAPTCHA or platform anti-bot controls.
+
+Risk: Extracted article content may be copied to /tmp/wechat_article.json.
+
+Mitigation: Treat that file as copied article data and remove, relocate, or protect it according to the intended retention policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bozoyan/skills/mp-weixin)
+- [WeChat Official Accounts Platform](https://mp.weixin.qq.com)
+- [Beautiful Soup documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [Requests documentation](https://docs.python-requests.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Code]
+
+**Output Format:** [Markdown guidance with bash and Python examples; extractor results are returned as structured JSON and summarized as terminal text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The direct extractor script can write copied article data to /tmp/wechat_article.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

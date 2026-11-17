@@ -1,41 +1,53 @@
-## Description: <br>
-Coordinates complex tasks by splitting them across multiple helper agents and summarizing the results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates complex tasks by splitting them across multiple helper agents and summarizing the results.
 
-## Publisher: <br>
-[nic-yuan](https://clawhub.ai/user/nic-yuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nic-yuan](https://clawhub.ai/user/nic-yuan)
 
-## Use Case: <br>
-Developers and agent users use this skill to coordinate Hub-and-Spoke task decomposition, parallel subagent work, timeout handling, conflict surfacing, and final result synthesis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included status-check script reads local OpenClaw workflow and task metadata and writes a coordinator state file. <br>
-Mitigation: Run it only in the intended OpenClaw workspace and review workflow or task status files first if they may contain sensitive information. <br>
-Risk: Parallel helper-agent outputs can conflict, time out, or contain incorrect guidance. <br>
-Mitigation: Keep the coordinator responsible for surfacing conflicts, marking timeouts, and requiring human review before acting on the final synthesis. <br>
+## Use Case:
 
+Developers and agent users use this skill to coordinate complex work by decomposing a task into independent spoke-agent assignments and consolidating structured results, timeouts, and conflicts.
 
-## Reference(s): <br>
-- [Apollo Coordinator on ClawHub](https://clawhub.ai/nic-yuan/apollo-coordinator) <br>
-- [nic-yuan publisher profile](https://clawhub.ai/user/nic-yuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with structured task and result sections; the included shell script prints a local coordination status report.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task decomposition, per-task status, timeout notes, conflict notes, and local workspace coordination status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The support script reads local OpenClaw workflow and task metadata and writes coordinator state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in the intended local OpenClaw workspace and review the generated coordinator state before relying on it.
+
+Risk: Server security guidance flags under-disclosed local state handling and non-JSON-safe output generation.
+
+Mitigation: Require publisher documentation of the script behavior and JSON-safe state output before deployment in stricter environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nic-yuan/skills/apollo-coordinator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese-language Markdown guidance with structured task and result templates; optional shell status output from the coordinator check script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The status script reads local OpenClaw workflow and task metadata and writes coordinator state JSON.]
+
+## Skill Version(s):
+
+2.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

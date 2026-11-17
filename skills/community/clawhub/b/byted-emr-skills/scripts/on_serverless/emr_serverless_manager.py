@@ -38,6 +38,9 @@ def manage_emr_serverless(service: str, action: str,
                   "ListJobDefinitions"]:
         service = "emr"
         endpoint = semi_managed_region_endpoint_map.get(region, None)
+    elif action in ["GetMetricData"]:
+        service = "cloudmonitor"
+        endpoint = cloud_monitor_endpoint_map.get(region, None)
     if not endpoint:
         raise ValueError(f"endpoint not found for region: {region}")
     result = request(service=service, action=action,

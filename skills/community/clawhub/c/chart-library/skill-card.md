@@ -1,44 +1,57 @@
-## Description: <br>
-Chart Library helps agents search historically similar stock chart patterns, compute forward-return analogs, and summarize results for stock-chart research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chart Library helps agents find historically similar stock chart patterns and summarize forward-return outcomes from Chart Library API data.
 
-## Publisher: <br>
-[grahammccain](https://clawhub.ai/user/grahammccain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[grahammccain](https://clawhub.ai/user/grahammccain)
 
-## Use Case: <br>
-Developers and market-research agents use this skill to query Chart Library for similar historical stock chart patterns, forward-return distributions, and plain-English summaries. It is intended for research support, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker and date queries, and any configured Chart Library API key, are sent to chartlibrary.io. <br>
-Mitigation: Avoid sharing private portfolio, account, or credential details in prompts or configuration. <br>
-Risk: Generated market summaries may be mistaken for investment advice. <br>
-Mitigation: Frame outputs as historical research, verify important findings independently, and do not present results as predictions or financial advice. <br>
+## Use Case:
 
+Developers and market-research agents use this skill to search visual stock-chart analogs, compare historical follow-through returns, and present plain-English pattern summaries. Outputs should be treated as historical research, not financial advice.
 
-## Reference(s): <br>
-- [Chart Library homepage](https://chartlibrary.io) <br>
-- [Chart Library API documentation](https://chartlibrary.io/developers) <br>
-- [Chart Library OpenAPI specification](https://chartlibrary.io/api/openapi.json) <br>
-- [Chart Library AI plugin manifest](https://chartlibrary.io/.well-known/ai-plugin.json) <br>
-- [ClawHub release page](https://clawhub.ai/grahammccain/chart-library) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown or plain-text summaries with structured API response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include match counts, forward-return distributions, median returns, ranges, similarity notes, and AI-generated summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Chart queries, optional screenshots, and configured API keys may be sent to chartlibrary.io.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review data-sharing expectations before use and prefer runtimes that restrict outbound network access to documented Chart Library endpoints.
+
+Risk: Historical pattern outcomes may be mistaken for financial advice or predictions.
+
+Mitigation: Frame outputs as historical research, include uncertainty and sample-size context, and avoid predictive language.
+
+## Reference(s):
+
+- [Chart Library homepage](https://chartlibrary.io)
+- [Chart Library OpenAPI spec](https://chartlibrary.io/api/openapi.json)
+- [Chart Library AI plugin manifest](https://chartlibrary.io/.well-known/ai-plugin.json)
+- [Chart Library MCP server](https://github.com/grahammccain/chart-library-mcp)
+- [ClawHub skill page](https://clawhub.ai/grahammccain/skills/chart-library)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown or plain text summaries with structured chart-pattern metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include match counts, outcome distributions, median returns, ranges, and API-derived summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

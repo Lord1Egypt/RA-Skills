@@ -1,40 +1,49 @@
-## Description: <br>
-Trigger Alter macOS app actions via x-callback-urls. Catalog of 84+ actions including ask-anything, translate, summarize, grammar correction, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger Alter macOS app actions via x-callback-URLs, including ask-anything, translation, summarization, grammar correction, and other cataloged actions.
 
-## Publisher: <br>
-[OlivierAlter](https://clawhub.ai/user/OlivierAlter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[olivieralter](https://clawhub.ai/user/olivieralter)
 
-## Use Case: <br>
-External users, developers, and macOS automation users use this skill to discover and trigger Alter macOS actions with x-callback URLs for writing, translation, summarization, code, extraction, formatting, content creation, and related tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected text or files in Alter may be handed to Alter for processing. <br>
-Mitigation: Install only if you use and trust the Alter macOS app, and avoid sending secrets or confidential content. <br>
-Risk: The documented node index.js helper is not included in the supplied package. <br>
-Mitigation: Review any separately obtained helper code before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Alter callback URLs guide](https://alterhq.com/blog/alter-callback-urls-guide) <br>
-- [ClawHub skill page](https://clawhub.ai/OlivierAlter/alter-actions) <br>
+## Use Case:
 
+Developers and ClawHub users on macOS use this skill to trigger, discover, and document Alter actions from an agent or command line using x-callback-URLs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash and JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires macOS with the Alter app; actions may operate on selected text or files in Alter.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Selected text or files may be sent to Alter actions and connected services chosen by the action.
+
+Mitigation: Avoid using the skill on sensitive email, private documents, code, or business data unless you trust Alter and understand the selected action's data flow.
+
+## Reference(s):
+
+- [Alter Callback URLs Guide](https://alterhq.com/blog/alter-callback-urls-guide)
+- [ClawHub Skill Page](https://clawhub.ai/olivieralter/skills/alter-actions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with shell command examples and x-callback-url patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS only; actions may operate on selected text or files in Alter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

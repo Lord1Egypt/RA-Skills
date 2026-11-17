@@ -1,43 +1,54 @@
-## Description: <br>
-Intelligent skill router that analyzes the current problem statement and context, scores available skills for applicability, and recommends the most relevant ones in priority order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent skill router that analyzes the current problem statement and context, scores available skills for applicability, and recommends the most relevant ones in priority order.
 
-## Publisher: <br>
-[science-prof-robot](https://clawhub.ai/user/science-prof-robot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[science-prof-robot](https://clawhub.ai/user/science-prof-robot)
 
-## Use Case: <br>
-Developers and engineers use autoskill to identify which available agent skills are relevant to a task, review a scored execution plan, and choose whether any recommended or high-risk skills should run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A downstream skill selected through autoskill may perform high-risk actions such as deployment, billing, account operations, database changes, or external communications. <br>
-Mitigation: Review the execution plan before confirmation, decline any downstream skill you do not trust, and treat skills marked high-risk as requiring separate scrutiny. <br>
-Risk: Skill recommendations can be incomplete or misleading if the task context or available skill inventory is ambiguous. <br>
-Mitigation: Use the scored table and reasons as decision support, then confirm only the skills that match the actual task. <br>
-Risk: Installing the artifact creates a persistent /autoskill command in the local Claude configuration. <br>
-Mitigation: Install only when persistent routing behavior is desired, and review install.sh before running it. <br>
+## Use Case:
 
+Developers and engineers use Autoskill to identify applicable agent skills for a task, review a scored execution plan, and explicitly approve which skills may run.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/science-prof-robot/autoskill) <br>
-- [Project homepage](https://github.com/Science-Prof-Robot/autoskill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown decision tables, execution previews, confirmation prompts, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local git and language-detection shell commands in its preamble; downstream skill execution requires explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence and skill frontmatter) <br>
+Risk: Approved downstream skills may perform file, network, or external-service actions outside Autoskill's own behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the execution plan before approval, decline high-risk skills that are not needed, and cancel when the proposed queue is broader than intended.
+
+Risk: Skill recommendations could route work to an unsuitable or overly broad skill.
+
+Mitigation: Use the scored table and mandatory confirmation step to select only the skills that match the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/science-prof-robot/skills/autoskill)
+- [Project homepage](https://github.com/Science-Prof-Robot/autoskill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with scored recommendations, execution previews, confirmation prompts, and audit tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before invoking recommended, suggested, or high-risk downstream skills.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

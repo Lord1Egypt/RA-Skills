@@ -1,44 +1,58 @@
-## Description: <br>
-Creates a coin on trends.fun and deploys a Meteora DBC liquidity pool on Solana mainnet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a coin on trends.fun and deploys a Meteora Dynamic Bonding Curve pool.
 
-## Publisher: <br>
-[poploli2](https://clawhub.ai/user/poploli2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[poploli2](https://clawhub.ai/user/poploli2)
 
-## Use Case: <br>
-External users and developers use this skill to automate token creation on trends.fun, upload token media and metadata, and create a Meteora DBC pool using a local Solana wallet. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill signs Solana mainnet transactions with a local wallet and can spend real SOL, including an optional first buy. <br>
-Mitigation: Use a dedicated low-balance wallet, confirm the wallet address and balance before execution, and review the --first-buy value before running commands. <br>
-Risk: Unsafe setup wording could lead an agent or user to reveal private key material. <br>
-Mitigation: Never print, paste, upload, or share the Solana keypair or private key; only confirm that the keypair file exists and is readable locally. <br>
-Risk: Token images, metadata, and created pools are public and may be difficult or impossible to undo. <br>
-Mitigation: Review name, symbol, description, image, URL, pool configuration, and RPC endpoint before submitting any transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/poploli2/trendsdotfun) <br>
-- [Publisher profile](https://clawhub.ai/user/poploli2) <br>
-- [Pinata file upload API](https://docs.pinata.cloud/api-reference/endpoint/files/upload) <br>
-- [trends.fun](https://trends.fun) <br>
+## Use Case:
 
+External developers and crypto operators use this skill to create trends.fun coins, upload token media and metadata, and submit Solana mainnet pool transactions.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Text, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pnpm; optionally uses SOLANA_RPC_URL and TRENDS_POOL_CONFIG.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact package.json is 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Solana wallet secrets and mainnet transactions with unsafe disclosure and confirmation gaps.
+
+Mitigation: Use a fresh low-balance Solana keypair, keep private key material out of chat and logs, and manually verify each mainnet transaction.
+
+Risk: Optional first-buy transactions are flagged by the security guidance because slippage protection is not present.
+
+Mitigation: Avoid `--first-buy` until slippage protection is added.
+
+Risk: Dependency risk remains relevant for this release.
+
+Mitigation: Update and pin dependencies before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/poploli2/skills/trendsdotfun)
+- [trends.fun](https://trends.fun)
+- [Pinata file upload API](https://docs.pinata.cloud/api-reference/endpoint/files/upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, configuration notes, and transaction status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Solana addresses, IPFS URIs, transaction hashes, and balance or error messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

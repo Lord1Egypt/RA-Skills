@@ -1,41 +1,57 @@
-## Description: <br>
-Use this skill to generate high-quality AI videos using the SeaArt platform (seaart.ai), including Text-to-Video and Image-to-Video generation with multiple models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI videos on the SeaArt platform from text prompts or image URLs using supported video models.
 
-## Publisher: <br>
-[foxwzh](https://clawhub.ai/user/foxwzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxwzh](https://clawhub.ai/user/foxwzh)
 
-## Use Case: <br>
-Developers and agent users use this skill to submit text-to-video or image-to-video jobs to SeaArt, choose supported video models and aspect ratios, and receive the generated video URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The SeaArt session token represents account access and is sent as a cookie to SeaArt API endpoints. <br>
-Mitigation: Store SEAART_TOKEN only in the local agent configuration, avoid printing it in logs or chat, and rotate or revoke the SeaArt session if it is exposed. <br>
-Risk: Prompts and image URLs provided for generation are sent to SeaArt. <br>
-Mitigation: Use the skill only when the user trusts SeaArt with the prompt, image URLs, and generated content workflow. <br>
+## Use Case:
 
+External users and developers use this skill to request text-to-video or image-to-video generation through SeaArt and receive the generated video URL.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/foxwzh/seaart-video) <br>
-- [SeaArt platform](https://www.seaart.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and a final generated video URL as text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SEAART_TOKEN and a SeaArt account; the Python helper polls SeaArt until completion or timeout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Token-checking guidance can print the password-equivalent SeaArt session token into logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check whether the token is configured without echoing or otherwise printing SEAART_TOKEN, and keep the SeaArt cookie private.
+
+Risk: Prompts, image URLs, and the SeaArt token cookie are sent to seaart.ai.
+
+Mitigation: Use the skill only when the user trusts SeaArt with the creative content and understands the token is used as an authentication cookie.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foxwzh/skills/seaart-video)
+- [SeaArt platform](https://www.seaart.ai)
+- [Text-to-video endpoint](https://www.seaart.ai/api/v1/task/v2/video/text-to-video)
+- [Image-to-video endpoint](https://www.seaart.ai/api/v1/task/v2/video/img-to-video)
+- [Batch progress endpoint](https://www.seaart.ai/api/v1/task/batch-progress)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and a generated video URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SeaArt session token and sends prompts, image URLs, and the token cookie to seaart.ai while polling for completion.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

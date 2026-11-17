@@ -1,58 +1,71 @@
-## Description: <br>
-Connects an AI assistant to GoHighLevel CRM through the official API v2 for contacts, conversations, calendars, pipelines, invoices, payments, workflows, and related endpoint groups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your AI assistant to GoHighLevel CRM via the official API v2 to manage contacts, conversations, calendars, pipelines, invoices, payments, workflows, and more through natural language with setup guidance and pre-built API commands.
 
-## Publisher: <br>
-[mbright4497](https://clawhub.ai/user/mbright4497) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mbright4497](https://clawhub.ai/user/mbright4497)
 
-## Use Case: <br>
-Developers, operators, and CRM administrators use this skill to configure a GoHighLevel private integration and let an assistant produce setup guidance, safe helper-script commands, and API-oriented CRM actions. Typical tasks include searching and updating contacts, sending messages, booking appointments, reviewing opportunities, creating invoices, managing workflows, and troubleshooting API access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an assistant broad live CRM authority. <br>
-Mitigation: Use a sub-account token with the smallest scopes needed and start with read-only scopes where possible. <br>
-Risk: Write actions such as deletes, messages, appointments, invoices, workflow changes, and social posts can affect customers or business records. <br>
-Mitigation: Manually confirm those actions before allowing the assistant to execute them. <br>
-Risk: Bearer tokens can expose CRM access if printed, shared, or entered in an unsafe environment. <br>
-Mitigation: Do not print or share the token, and run setup only in a private terminal. <br>
-Risk: Agency-level, financial, or broad write scopes increase impact if the assistant makes a mistake. <br>
-Mitigation: Avoid agency-level or financial/write scopes unless the use case clearly requires them. <br>
+## Use Case:
 
+CRM operators, marketers, and developers use this skill to connect an assistant to GoHighLevel for contacts, conversations, calendars, opportunities, invoices, payments, workflows, and related API tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mbright4497/highlevel-1-0-7) <br>
-- [LaunchMyOpenClaw homepage](https://launchmyopenclaw.com) <br>
-- [GoHighLevel API docs](https://marketplace.gohighlevel.com/docs/) <br>
-- [GoHighLevel OpenAPI specs](https://github.com/GoHighLevel/highlevel-api-docs) <br>
-- [GoHighLevel webhook integration guide](https://marketplace.gohighlevel.com/docs/webhook/WebhookIntegrationGuide) <br>
-- [Contacts API reference](references/contacts.md) <br>
-- [Conversations API reference](references/conversations.md) <br>
-- [Calendars API reference](references/calendars.md) <br>
-- [Opportunities API reference](references/opportunities.md) <br>
-- [Invoices and payments API reference](references/invoices-payments.md) <br>
-- [Locations and users API reference](references/locations-users.md) <br>
-- [Social media API reference](references/social-media.md) <br>
-- [Forms, surveys, and funnels API reference](references/forms-surveys-funnels.md) <br>
-- [Advanced API reference](references/advanced.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python helper-script invocations, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HIGHLEVEL_TOKEN and HIGHLEVEL_LOCATION_ID environment variables and network access to services.leadconnectorhq.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.2.0 and artifact _meta.json reports 1.0.7) <br>
+Risk: The skill can perform broad live CRM actions, including delete, send, billing, social posting, workflow, bulk, and agency-level actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before high-impact operations and review the requested action, target record, and account scope before execution.
+
+Risk: GoHighLevel tokens can expose sensitive customer and business data.
+
+Mitigation: Use a least-privilege sub-account integration, store tokens only in environment variables, treat them like passwords, and rotate them on a regular schedule.
+
+Risk: Agency-wide integrations can affect multiple sub-accounts.
+
+Mitigation: Prefer sub-account integrations for normal use and grant agency-level access only when the task requires multi-location administration.
+
+## Reference(s):
+
+- [Highlevel ClawHub Release](https://clawhub.ai/mbright4497/skills/highlevel-1-0-7)
+- [LaunchMyOpenClaw](https://launchmyopenclaw.com)
+- [GoHighLevel API Docs](https://marketplace.gohighlevel.com/docs/)
+- [GoHighLevel API OpenAPI Specs](https://github.com/GoHighLevel/highlevel-api-docs)
+- [GoHighLevel Webhook Integration Guide](https://marketplace.gohighlevel.com/docs/webhook/WebhookIntegrationGuide)
+- [Contacts API Reference](references/contacts.md)
+- [Conversations & Messaging API Reference](references/conversations.md)
+- [Calendars & Appointments API Reference](references/calendars.md)
+- [Opportunities & Pipelines API Reference](references/opportunities.md)
+- [Invoices, Payments & Products API Reference](references/invoices-payments.md)
+- [Locations & Users API Reference](references/locations-users.md)
+- [Social Media Planner API Reference](references/social-media.md)
+- [Forms, Surveys & Funnels API Reference](references/forms-surveys-funnels.md)
+- [Advanced API Reference](references/advanced.md)
+- [Troubleshooting Reference](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses HIGHLEVEL_TOKEN and HIGHLEVEL_LOCATION_ID for authenticated GoHighLevel requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact _meta reports 1.0.7 and SKILL.md frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

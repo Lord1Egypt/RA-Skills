@@ -1,41 +1,53 @@
-## Description: <br>
-Provides guidance for internal enterprise communication, private-domain traffic management, and office collaboration in WeChat Work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for WeChat Work internal communication, private-domain traffic management, and office collaboration.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Employees and operators use this skill for concise WeChat Work guidance, including feature entry points, workflow steps, productivity tips, status tracking, and security reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may touch sensitive authorizations, privacy settings, or enterprise communication workflows. <br>
-Mitigation: Review actual WeChat Work permissions, privacy implications, and sensitive authorizations before applying the advice. <br>
-Risk: Some recommended workflows may depend on third-party integrations whose availability or behavior can change. <br>
-Mitigation: Validate third-party integrations, permissions, and service status separately before relying on them in production. <br>
+## Use Case:
 
+Employees and operators use this skill to get concise steps, highlights, status notes, and safety reminders for WeChat Work communication and collaboration workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/codenova58/enterprise-wechat) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/codenova58) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance with concise steps, highlights, tips, pitfalls, and security reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational only; no system access, credentials, or tool execution requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated guidance may touch privacy, authorization, or third-party integration steps for real WeChat Work usage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm sensitive authorization, privacy, and integration decisions against the organization's WeChat Work policies and current vendor documentation before acting.
+
+Risk: Product workflows and feature availability may change as WeChat Work evolves.
+
+Mitigation: Use this skill for task-specific assistance and verify time-sensitive product behavior in the live WeChat Work interface or official product materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/enterprise-wechat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with concise steps, highlights, tips, pitfalls, and security reminders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, or hidden access requests are included in the artifact.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

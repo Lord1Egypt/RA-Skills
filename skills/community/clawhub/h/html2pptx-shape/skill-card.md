@@ -1,44 +1,56 @@
-## Description: <br>
-HTML-to-PPTX converter that turns HTML slide decks into editable widescreen PPTX files while embedding local CSS and mapping common HTML elements to native PowerPoint shapes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts HTML slide decks into editable PPTX presentations with embedded local CSS, preserved styling and layout, and native PowerPoint shapes for text, images, and containers.
 
-## Publisher: <br>
-[iiustrator](https://clawhub.ai/user/iiustrator) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[iiustrator](https://clawhub.ai/user/iiustrator)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and presentation automation workflows use this skill to convert local HTML presentations into editable PowerPoint decks for later review, sharing, and manual refinement.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted HTML can trigger unrestricted network requests during conversion.
+
+Mitigation: Use trusted local inputs in a sandboxed or offline environment, make remote asset fetching explicit and opt-in, block private and localhost destinations, and apply timeouts and size limits.
+
+Risk: Input HTML or CSS can reference local files outside the presentation folder.
+
+Mitigation: Constrain stylesheet and asset paths to the input directory, reject absolute or traversal paths, and review files before broader deployment.
+
+Risk: Unpinned dependencies can change conversion behavior or security posture over time.
+
+Mitigation: Pin and review Python and Playwright dependencies before commercial use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and presentation authors use this skill to convert HTML slide content into editable PPTX decks for later review and editing in presentation tools. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Input HTML can trigger outbound network requests when image elements reference remote URLs. <br>
-Mitigation: Review HTML before conversion and run the skill in a network-restricted environment when processing untrusted inputs. <br>
-Risk: Dependencies are specified with minimum versions rather than exact pins. <br>
-Mitigation: Pin and review Python dependencies before production use. <br>
+**Output Format:** [PPTX file output with command-line status and file path information]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/iiustrator/html2pptx-shape) <br>
-- [Publisher profile](https://clawhub.ai/user/iiustrator) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Runtime requirements](artifact/requirements.txt) <br>
+**Other Properties Related to Output:** [Produces 16:9 editable PowerPoint presentations from HTML inputs; fidelity depends on supported CSS, layout, image, and SVG features.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [PPTX files, command-line output, and Python return data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates 16:9 Office Open XML presentation files; default output name is <input>_converted.pptx unless an output path is supplied.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog, released 2026-04-17) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

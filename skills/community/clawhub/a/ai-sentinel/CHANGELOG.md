@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.2.2 (2026-08-28)
+
+Security-audit remediation (docs-only; still installs plugin 0.2.1).
+
+- Declare `~/.openclaw/openclaw.json` in `writes-files` — the Step 5 plugin-config merge writes this file (still gated behind explicit user confirmation). Resolves the scope-creep finding where an instructed write exceeded declared file permissions.
+- Rework the Test 2 verification step to describe the prompt-injection probe rather than embedding the literal directive in the manifest, so it is not mistaken for an instruction to the reviewing agent. Restores the "benign-to-scan" convention from 1.0.1.
+- Update skill card and README file-write declarations to match.
+
+## 0.2.1 (2026-08-27)
+
+Versioning tracks the `ai-sentinel` npm plugin release the skill installs (npm already at 0.2.1).
+
+- Document obfuscation-resistant preprocessing added to the plugin: base64 and HTML-entity decoding plus zero-width/bidirectional Unicode stripping before pattern matching (plugin 0.1.13–0.1.15 hardening; scanned content is only inspected, never executed)
+- Disclose channel type (e.g., slack, webchat) as part of the telemetry payload description (plugin 0.1.16–0.1.17)
+- Document optional `scanExcludePatterns` config for skipping internal agent commands (plugin 0.2.0)
+- Update version references in install/verification examples from 0.1.10 to 0.2.1 (includes plugin fix for stale config after SIGUSR1 restart, 0.1.18)
+
 ## 1.2.0 (2026-02-10)
 
 - Set `disableModelInvocation: true` to prevent autonomous agent invocation (skill now requires explicit user action)

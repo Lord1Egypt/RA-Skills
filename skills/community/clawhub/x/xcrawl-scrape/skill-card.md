@@ -1,42 +1,61 @@
-## Description: <br>
-Use this skill for XCrawl scrape tasks, including single-URL fetch, format selection, sync or async execution, and JSON extraction with prompt or json_schema. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for XCrawl scrape tasks, including single-URL fetch, format selection, sync or async execution, and JSON extraction with prompt or json_schema.
 
-## Publisher: <br>
-[wykings](https://clawhub.ai/user/wykings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wykings](https://clawhub.ai/user/wykings)
 
-## Use Case: <br>
-Developers and agents use this skill to call XCrawl's single-page scrape API, choose output formats, run sync or async jobs, and return raw API responses for extraction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scrape requests can send target URLs, request headers, cookies, and page data to the XCrawl third-party service. <br>
-Mitigation: Use the skill only with URLs and page data suitable for XCrawl, and avoid session cookies, authorization headers, internal-only URLs, and secrets unless intentionally shared. <br>
-Risk: The skill depends on a local XCrawl API key stored in ~/.xcrawl/config.json. <br>
-Mitigation: Protect the local config file and restrict runtime access to curl, node, and the required config path. <br>
+## Use Case:
 
+Developers and agents use this skill to perform single-page XCrawl scraping, choose response formats, run synchronous or asynchronous requests, and request JSON extraction from web content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wykings/xcrawl-scrape) <br>
-- [XCrawl homepage](https://www.xcrawl.com/) <br>
-- [XCrawl dashboard](https://dash.xcrawl.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with curl or Node commands and raw XCrawl API response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns endpoint and mode, request payload, raw response bodies, task metadata, and error details when requests fail.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill metadata) <br>
+Risk: The skill can send scrape targets, supplied headers, cookies, prompts, and extracted content to XCrawl.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for approved public or permitted pages, avoid private or regulated content unless authorized, and review request payloads before execution.
+
+Risk: The skill depends on a local XCrawl API key file.
+
+Mitigation: Protect ~/.xcrawl/config.json, limit access to the API key, and rotate the key if exposure is suspected.
+
+Risk: The scanner notes broader Write/Edit permissions than the workflow explains.
+
+Mitigation: Review requested permissions before use and grant only the permissions needed for the specific scrape task.
+
+## Reference(s):
+
+- [XCrawl homepage](https://www.xcrawl.com/)
+- [XCrawl dashboard](https://dash.xcrawl.com/)
+- [XCrawl API base](https://run.xcrawl.com)
+- [ClawHub skill page](https://clawhub.ai/wykings/skills/xcrawl-scrape)
+- [Publisher profile](https://clawhub.ai/user/wykings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns endpoint and mode details, request payloads, raw XCrawl API responses, and error details when requests fail.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,54 @@
-## Description: <br>
-Summarize end-of-session development progress and sync project handoff documentation in Chinese or English. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize end-of-session development progress and sync project handoff documentation in Chinese or English.
 
-## Publisher: <br>
-[loo-y](https://clawhub.ai/user/loo-y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loo-y](https://clawhub.ai/user/loo-y)
 
-## Use Case: <br>
-Developers and engineering agents use this skill at the end of a development session to inspect repository evidence, write a concrete handoff, and keep README, handover, TODO, or runbook notes aligned for the next teammate or agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may edit several repository documentation files when invoked for handoff synchronization. <br>
-Mitigation: Ask for a dry run or name the exact files to update when only a summary or a narrower documentation change is desired. <br>
-Risk: Handoff content can become misleading if proposed changes are accepted without checking the repository evidence and validation status. <br>
-Mitigation: Review the generated handoff and changed documentation before relying on it, especially the stated validations, unresolved issues, and next steps. <br>
+## Use Case:
 
+Developers and agents use this skill at the end of a development session to inspect repository evidence, summarize actual changes, and keep handoff documentation aligned for the next teammate or agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loo-y/handover-sync) <br>
-- [README.en.md](artifact/README.en.md) <br>
-- [README.md](artifact/README.md) <br>
-- [English session summary template](artifact/references/session_summary_template.en.md) <br>
-- [Chinese session summary template](artifact/references/session_summary_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown handoff summaries and documentation edits] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update handoff, README, TODO, and runbook files when the request or repository state calls for synchronized documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The default workflow may update README sections and nearby handoff notes in addition to handover.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the allowed document scope before use and review the resulting diff before accepting changes.
+
+Risk: A handoff can mislead future work if it summarizes from memory or omits unverified checks.
+
+Mitigation: Ground the handoff in repository evidence, name validations actually performed, and explicitly label anything not verified.
+
+## Reference(s):
+
+- [Chinese Session Summary Template](artifact/references/session_summary_template.md)
+- [English Session Summary Template](artifact/references/session_summary_template.en.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown handoff documentation and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update handover.md, README.md, and nearby TODO or runbook notes when the user does not narrow scope.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

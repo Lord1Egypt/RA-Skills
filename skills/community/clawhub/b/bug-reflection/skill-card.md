@@ -1,39 +1,53 @@
-## Description: <br>
-Guides an agent through a disciplined bug-fixing workflow that covers issue analysis, module and documentation checks, performance review, user communication, and a post-fix report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a structured bug-fixing workflow that guides an agent to analyze reported bugs, inspect module logic and syntax, compare behavior with official documentation, check performance, and write a Fix Report after repairs.
 
-## Publisher: <br>
-[MiyaHui](https://clawhub.ai/user/MiyaHui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miyahui](https://clawhub.ai/user/miyahui)
 
-## Use Case: <br>
-Developers and engineering agents use this skill when a user reports a bug to structure investigation, validate code against official documentation and performance expectations, communicate findings, and write a Fix Report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fix Reports may accidentally include passwords, tokens, private customer data, or unnecessary logs. <br>
-Mitigation: Decide where reports should be stored before use and omit secrets, private data, and irrelevant logs. <br>
-Risk: The workflow text is primarily Chinese, which can cause misunderstanding for non-Chinese users. <br>
-Mitigation: Translate or adapt the workflow wording before using it in a non-Chinese operating environment. <br>
+## Use Case:
 
+Developers and maintainers use this skill when a user reports a bug and they need the agent to move through diagnosis, source inspection, documentation comparison, performance review, transparent user communication, and post-fix reporting.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with a Fix Report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no tools, code execution, credentials, or elevated access are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may prompt the agent to inspect repository or project files while debugging.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with repositories and project files that are appropriate for agent review.
+
+Risk: Fix Report notes or reused debugging knowledge may retain project-specific details.
+
+Mitigation: Keep reports and any knowledge-base entries scoped to the relevant project.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miyahui/skills/bug-reflection)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance and Fix Report notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include bug analysis, inspected modules, documentation comparisons, performance observations, repair attempts, final solution notes, and lessons learned.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

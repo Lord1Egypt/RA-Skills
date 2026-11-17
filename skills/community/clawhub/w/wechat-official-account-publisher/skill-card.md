@@ -1,43 +1,59 @@
-## Description: <br>
-Publishes Markdown articles with optional local images to a WeChat Official Account draft box through the WeChat API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish articles to a WeChat Official Account draft box via API, including token management, local image upload to WeChat CDN, Markdown-to-HTML conversion, and draft creation.
 
-## Publisher: <br>
-[yuejiangli](https://clawhub.ai/user/yuejiangli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuejiangli](https://clawhub.ai/user/yuejiangli)
 
-## Use Case: <br>
-External users and developers use this skill to prepare WeChat Official Account drafts from local Markdown articles and image files. It helps an agent handle credential setup guidance, image uploads, Markdown-to-HTML conversion, and draft creation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires WeChat account credentials. <br>
-Mitigation: Use environment variables or a protected local config for secrets, keep config.json and .token_cache.json out of version control, and restrict file permissions where possible. <br>
-Risk: The skill uploads selected article files and images to WeChat. <br>
-Mitigation: Confirm the article content and image files before upload, and install only when WeChat draft creation from local files is intended. <br>
+## Use Case:
 
+External developers and content teams use this skill to have an agent turn a Markdown article plus local cover and body images into a WeChat Official Account draft for manual review and publication.
 
-## Reference(s): <br>
-- [WeChat Official Account API Reference](references/wechat_api.md) <br>
-- [WeChat MP Backend](https://mp.weixin.qq.com) <br>
-- [WeChat Stable Token API](https://api.weixin.qq.com/cgi-bin/stable_token) <br>
-- [WeChat Draft Add API](https://api.weixin.qq.com/cgi-bin/draft/add) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, generated HTML, and WeChat media identifiers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local intermediate files such as article HTML and image maps, and may return WeChat draft media_id values after upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill handles WeChat Official Account API credentials and caches access tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a protected secrets manager, keep config.json and .token_cache.json out of source control, and restrict permissions on token-cache files.
+
+Risk: Article text, metadata, cover images, and selected body images are uploaded to WeChat.
+
+Mitigation: Run the skill only for content approved for WeChat upload and review generated drafts in the WeChat backend before publishing.
+
+Risk: WeChat API permissions, token expiry, or media constraints can prevent draft creation.
+
+Mitigation: Confirm the account has the required draft and API access, re-upload media when IDs are invalid, and refresh cached tokens when authentication fails.
+
+## Reference(s):
+
+- [WeChat Official Account API Reference](references/wechat_api.md)
+- [WeChat MP Backend](https://mp.weixin.qq.com)
+- [ClawHub Skill Page](https://clawhub.ai/yuejiangli/skills/wechat-official-account-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON configuration, generated HTML, and WeChat media IDs or URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uploads article text, metadata, cover images, and optional inline images to WeChat; the draft is not published automatically.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

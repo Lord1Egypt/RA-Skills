@@ -1,41 +1,58 @@
-## Description: <br>
-Search and retrieve Magic: The Gathering card data using the Scryfall API, including names, types, colors, mana costs, oracle text, images, prices, rulings, legality information, and random cards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and retrieve Magic: The Gathering card data using the Scryfall API.
 
-## Publisher: <br>
-[santidev95](https://clawhub.ai/user/santidev95) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[santidev95](https://clawhub.ai/user/santidev95)
 
-## Use Case: <br>
-External users and developers use this skill to answer Magic: The Gathering card lookup questions, run Scryfall searches, retrieve card details, and format results for agent responses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Card names and search queries are sent to Scryfall. <br>
-Mitigation: Avoid entering unrelated private information into card searches. <br>
-Risk: Frequent automated searches may encounter Scryfall rate limits. <br>
-Mitigation: Use the documented 50-100 ms delay between API requests and handle 429 responses with retry behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Scryfall API](https://api.scryfall.com) <br>
-- [Scryfall Search Syntax Reference](references/search_syntax.md) <br>
-- [ClawHub skill page](https://clawhub.ai/santidev95/scryfall-card) <br>
+## Use Case:
 
+External users and developers use this skill to search for Magic: The Gathering cards and retrieve card details such as images, prices, rulings, legality, and random card results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON-formatted API results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may include Scryfall card fields, prices, legalities, image URLs, and errors returned by Scryfall.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Card search terms are sent to Scryfall's public API.
+
+Mitigation: Use the skill for MTG-related lookups and avoid including sensitive personal or proprietary information in card search queries.
+
+Risk: Ambiguous user wording could trigger an unnecessary external card lookup.
+
+Mitigation: Invoke the skill only when the request is clearly about MTG, Magic: The Gathering, card names, deck building, or card information.
+
+Risk: The Scryfall API may return errors or rate-limit responses.
+
+Mitigation: Validate API responses, handle error objects, and follow the documented 50-100ms delay between requests.
+
+## Reference(s):
+
+- [Scryfall API](https://api.scryfall.com)
+- [Scryfall Search Syntax Reference](references/search_syntax.md)
+- [ClawHub Skill Page](https://clawhub.ai/santidev95/skills/scryfall-card)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with text summaries, API usage examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Scryfall card fields, card image URLs, prices, legalities, set details, and API error guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

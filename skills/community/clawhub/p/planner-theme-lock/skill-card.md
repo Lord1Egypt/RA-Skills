@@ -1,40 +1,53 @@
-## Description: <br>
-主题声明锁定 helps story planners extract, validate, and lock a Theme Statement before creative expansion begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+主题声明锁定：在进入任何创意展开之前，先锁定项目相信什么。验证主题声明的深度、不可替代性和可持续性。触发词：主题声明、theme statement、它相信什么、价值观锚点、theme lock。
 
-## Publisher: <br>
-[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal)
 
-## Use Case: <br>
-Story planners and creative teams use this skill after Boundary Lock and before Pitch Draft to decide what the story believes. It validates whether the theme statement is specific, durable, emotionally grounded, and ready to guide downstream creative choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create theme-lock.md and update planning or todo state in the active project. <br>
-Mitigation: Review the proposed theme lock and project-state changes before relying on them in a shared repository. <br>
-Risk: A locked theme can steer later pitch, character, world, and pilot decisions too narrowly if accepted without review. <br>
-Mitigation: Check the four validation results and ask for alternative directions before treating the Theme Statement as final. <br>
+## Use Case:
 
+Story planners, writers, and creative development agents use this skill as a strict pre-pitch checkpoint to extract, validate, and lock a Theme Statement before creative expansion. It is intended to keep downstream pitch, character, world, and pilot decisions anchored to a verified story belief.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/planner-theme-lock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance and a theme-lock.md file when validation passes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update project planning or todo state after user-visible validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may slow or block creative drafting until the Theme Statement passes its checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a strict pre-pitch theme gate is intended, and route unresolved or repeatedly failing themes to human review.
+
+Risk: The workflow is written in Chinese and may be hard to apply accurately for non-Chinese users.
+
+Mitigation: Review the instructions with a fluent Chinese speaker or provide a bilingual version before deployment to non-Chinese teams.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/skills/planner-theme-lock)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with validation results and a theme-lock record when checks pass]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update a theme-lock.md record and todo item when the Theme Statement passes validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

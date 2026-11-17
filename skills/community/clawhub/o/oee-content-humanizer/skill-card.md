@@ -1,40 +1,53 @@
-## Description: <br>
-Rewrites AI-generated text with more natural cadence and channel-specific style while preserving the core message. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rewrites AI-generated text into more natural, channel-specific prose and can detect common AI-sounding phrases without rewriting.
 
-## Publisher: <br>
-[OdinBot33](https://clawhub.ai/user/OdinBot33) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odinbot33](https://clawhub.ai/user/odinbot33)
 
-## Use Case: <br>
-Agents use this skill to turn draft AI-generated copy into more natural text for Twitter/X, LinkedIn, blogs, email, Telegram, or general prose. It can also report common AI-style phrases without rewriting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Submitted text is sent to Anthropic for rewriting. <br>
-Mitigation: Avoid confidential, regulated, customer, or proprietary content unless external LLM processing is approved. <br>
-Risk: API usage may incur costs on the configured Anthropic key. <br>
-Mitigation: Use an approved API key and monitor usage before enabling repeated or automated rewrites. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OdinBot33/oee-content-humanizer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/OdinBot33) <br>
+## Use Case:
 
+Agents, content editors, and developers use this skill to rewrite AI-generated drafts for Twitter/X, LinkedIn, blog, email, Telegram, or general prose while preserving the core message. They can also run detection-only mode to identify common robotic phrasing before editing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text on stdout with detection notes on stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANTHROPIC_API_KEY and sends submitted text to Anthropic Claude for rewriting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Text submitted for rewriting is sent to Anthropic using the configured API key.
+
+Mitigation: Avoid secrets, regulated data, and confidential drafts unless that external processing is approved.
+
+Risk: Rewritten output may change tone, emphasis, or wording in ways that are unsuitable for publication or downstream automation.
+
+Mitigation: Review rewritten text before publishing it or passing it into another automated workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odinbot33/skills/oee-content-humanizer)
+- [Artifact documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text output with Markdown usage examples and command-line options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rewrite mode requires ANTHROPIC_API_KEY and sends submitted text to Anthropic; detection-only mode reports matching AI tell phrases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Supports Chinese-language study and application of Chapter 4 hybrid job analysis methods, including C-JAM, MJDQ, WDQ, O*NET, task/KSAO integration, job design trade-offs, and work design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+在对话中辅助学习"工作分析/Job Analysis"第 4 章"Hybrid Methods"，覆盖 C-JAM、MJDQ、WDQ、O*NET、task + KSAO integration、job design trade-offs、work design、DOT vs O*NET、O*NET content model、general vs occupation-specific descriptors，以及 work-oriented 与 worker-oriented 方法的整合。
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, instructors, and employees use this skill as a Chinese-language study aid for understanding and comparing hybrid job analysis methods and applying textbook examples to coursework or discussion. It is educational support and not authoritative HR, legal, hiring, or compliance advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could treat educational explanations as authoritative HR, legal, hiring, or compliance advice. <br>
-Mitigation: Verify important job-analysis decisions against the textbook and qualified experts. <br>
+## Use Case:
 
+Students and instructors use this skill as a Chinese-language study assistant for Chapter 4 hybrid job-analysis methods. It helps explain, compare, and apply C-JAM, MJDQ, WDQ, and O*NET concepts using progressive disclosure and textbook-grounded examples.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/junwugit/job-analysis-hybrid) <br>
-- [overview.md](references/overview.md) <br>
-- [c-jam.md](references/c-jam.md) <br>
-- [mjdq.md](references/mjdq.md) <br>
-- [wdq.md](references/wdq.md) <br>
-- [onet.md](references/onet.md) <br>
-- [examples.md](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Progressive disclosure; reads reference material on demand.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users who prefer English or bilingual study support may receive Chinese-language responses by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for English or bilingual explanations when needed.
+
+Risk: The skill is scoped to Chapter 4 hybrid job-analysis methods and may not cover adjacent legal, compensation, or earlier-chapter topics in depth.
+
+Mitigation: Use the skill for Chapter 4 concepts and supplement with the appropriate chapter-specific material for topics outside that scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junwugit/skills/job-analysis-hybrid)
+- [Chapter 4 Overview: Hybrid Methods](artifact/references/overview.md)
+- [C-JAM: Combination Job Analysis Method](artifact/references/c-jam.md)
+- [MJDQ: Multimethod Job Design Questionnaire](artifact/references/mjdq.md)
+- [WDQ: Work Design Questionnaire](artifact/references/wdq.md)
+- [O*NET: Occupational Information Network](artifact/references/onet.md)
+- [Chapter 4 Examples and Teaching Anchors](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language responses by default; English or bilingual output may require explicit user request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

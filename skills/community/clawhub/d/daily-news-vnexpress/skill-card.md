@@ -1,41 +1,59 @@
-## Description: <br>
-Fetches the latest trending VNExpress RSS news for selected topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch the latest trending global news from https://vnexpress.net/rss/{topic}.rss.
 
-## Publisher: <br>
-[MrNquyen](https://clawhub.ai/user/MrNquyen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrnquyen](https://clawhub.ai/user/mrnquyen)
 
-## Use Case: <br>
-Agents use this skill to fetch current VNExpress RSS headlines for supported topics and summarize relevant items for users asking for latest news or trending events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to record user behavior in a local USERS.md file without clear notice, limits, or consent. <br>
-Mitigation: Remove or ignore local behavior logging unless the user explicitly wants it, and review any retained local files. <br>
-Risk: The skill fetches live RSS content and installs unpinned Python dependencies. <br>
-Mitigation: Run it in an isolated environment, review fetched news before relying on it, and prefer pinned dependency versions. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve current VNExpress RSS headlines for selected topics and summarize the returned titles, links, summaries, and publication dates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MrNquyen/daily-news-vnexpress) <br>
-- [VNExpress RSS feeds](https://vnexpress.net/rss/tin-moi-nhat.rss) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands] <br>
-**Output Format:** [Markdown summaries with news titles, links, summaries, and published dates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses topic and count arguments to select VNExpress RSS feeds and item limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks the agent to remember user behavior and write it to USERS.md, which can persist preferences or behavior beyond what is needed for news retrieval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the behavior logging instruction or require explicit user consent before storing any preference or behavior data.
+
+Risk: Dependencies are listed without pinned versions.
+
+Mitigation: Pin dependency versions before routine or production use and review updates before upgrading.
+
+Risk: The skill fetches live RSS content and summarizes it, so freshness and source availability depend on VNExpress feeds.
+
+Mitigation: Present publication dates and source links with summaries, and handle feed failures without treating missing results as verified news.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrnquyen/skills/daily-news-vnexpress)
+- [VNExpress RSS feed template](https://vnexpress.net/rss/{topic}.rss)
+- [Publisher profile](https://clawhub.ai/user/mrnquyen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with RSS-derived news titles, links, summaries, and publication dates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches live RSS data for predefined VNExpress topics and a requested item count.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

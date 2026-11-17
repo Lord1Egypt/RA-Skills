@@ -1,42 +1,56 @@
-## Description: <br>
-AI-driven Playwright test code generator for QA engineers that creates Page Object Models, standard scripts, and data-driven tests from natural-language descriptions, HTML analysis, or page URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Playwright Page Object Models, standard test scripts, data-driven tests, and locator data from natural language descriptions, HTML, or page URLs for pytest-playwright, Jest Playwright, and native Playwright.
 
-## Publisher: <br>
-[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shenghoo123-png](https://clawhub.ai/user/shenghoo123-png)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, QA engineers, and test automation specialists use this skill to bootstrap Playwright tests, Page Object Models, and locator sets from natural language, HTML snippets, or trusted page URLs before reviewing and adapting the generated code.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can browse arbitrary URLs during page analysis.
+
+Mitigation: Use mock or trusted test URLs, avoid internal or production systems, and review generated outputs before running them in CI.
+
+Risk: Generated executable tests may include unescaped or incorrect data from user input, HTML, or page content.
+
+Mitigation: Review and edit generated tests before execution, especially when inputs include untrusted HTML or test data.
+
+Risk: Dependencies may become outdated or differ from the reviewed artifact state.
+
+Mitigation: Pin and update dependencies deliberately before installation or CI use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-QA engineers, test automation specialists, and developers use this skill to bootstrap Playwright tests, Page Object Models, data-driven suites, and locators from plain-language scenarios, HTML snippets, or URL/page analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [code, files, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Live URL analysis can open pages in a headless browser and include DOM-derived locators in generated output. <br>
-Mitigation: Avoid private intranet pages, admin consoles, authenticated sessions, localhost services, and cloud metadata or internal addresses unless inspection is intended. <br>
-Risk: Generated tests and locator files can be written to local output paths. <br>
-Mitigation: Review the requested output path and inspect generated code before committing or running it in CI. <br>
+**Output Format:** [Markdown, source code, JSON locator data, and shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenghoo123-png/playwright-test-generator) <br>
-- [README](README.md) <br>
-- [Design document](DESIGN-playwright-test-generator.md) <br>
+**Other Properties Related to Output:** [Generated test code should be reviewed before execution, especially when derived from URLs, HTML, or user-provided test data.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses containing generated Python or JavaScript/TypeScript Playwright code, JSON locator maps, and CLI commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write generated test code or locator JSON to local files when an output path is requested.] <br>
+1.1.0 (source: server release metadata; artifact package.json and setup.py report 1.0.0)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact package.json and setup.py list 1.0.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

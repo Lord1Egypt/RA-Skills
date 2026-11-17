@@ -1,40 +1,54 @@
-## Description: <br>
-Automate email campaigns, sequences, and analytics for small businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates email campaigns, sequences, and analytics for small businesses, including drip campaigns, welcome series, performance tracking, and integrations with Mailchimp, ConvertKit, and ActiveCampaign.
 
-## Publisher: <br>
-[ncreighton](https://clawhub.ai/user/ncreighton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ncreighton](https://clawhub.ai/user/ncreighton)
 
-## Use Case: <br>
-Small business owners and marketing teams use this skill to create email campaigns, build drip sequences, segment lists, configure provider integrations, and generate campaign analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send campaigns, modify subscriber lists, track engagement, and share marketing reports through third-party services. <br>
-Mitigation: Use least-privilege provider credentials, require previews and explicit confirmation before sending campaigns or changing lists, and limit reports to approved private channels. <br>
-Risk: Email marketing workflows can affect consent, unsubscribe handling, tracking, and privacy obligations. <br>
-Mitigation: Independently verify consent, unsubscribe, tracking, data-handling, and regional compliance requirements before using generated campaign workflows. <br>
+## Use Case:
 
+Small business owners, marketers, agencies, and consultants use this skill to plan, launch, automate, and analyze email marketing workflows across common email-service providers. It is intended for campaigns, welcome sequences, segmentation, reporting, template guidance, and related configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ncreighton/emailelevate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON, YAML, shell commands, campaign plans, reports, and workflow diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose campaign sends, list changes, tracking, analytics exports, and Slack or email reports that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks an agent to use marketing-service credentials and may access customer or subscriber data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only the provider key needed for the task, prefer least-privilege tokens, and avoid exposing unrelated marketing accounts or datasets.
+
+Risk: The skill describes high-impact external actions such as sending campaigns, changing lists or tags, syncing CRM or ecommerce data, exporting reports, and posting to Slack.
+
+Mitigation: Require explicit human approval before any external send, data mutation, data export, CRM or ecommerce sync, or Slack notification.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ncreighton/skills/emailelevate)
+- [Publisher profile](https://clawhub.ai/user/ncreighton)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, YAML, shell-command, workflow-diagram, and analytics-report examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include email campaign plans, sequence structures, segmentation logic, template guidance, configuration examples, and reporting recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

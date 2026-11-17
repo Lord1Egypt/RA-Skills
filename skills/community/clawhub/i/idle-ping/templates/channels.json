@@ -1,0 +1,15 @@
+{
+  "channels": {
+    "topic": 30,
+    "news": 25,
+    "onthisday": 20,
+    "misconceptions": 20,
+    "randomwiki": 15,
+    "deep": 15,
+    "arxiv": 10,
+    "reddit": 10,
+    "xsearch": 0
+  },
+  "mix_probability": 0.2,
+  "lastChannels": []
+}

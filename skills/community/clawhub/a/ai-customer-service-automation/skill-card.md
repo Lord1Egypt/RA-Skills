@@ -1,41 +1,53 @@
-## Description: <br>
-AI Customer Service Automation provides a 24/7 customer-service workflow for FAQ replies, sentiment-based escalation, ticket creation, multi-channel support, dashboards, and knowledge-base synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides 24/7 AI customer service automation with common-question replies, sentiment-based escalation, ticket creation, multi-channel support, dashboards, and knowledge-base syncing.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Customer support teams and developers use this skill to configure an AI customer-service agent that answers common questions, escalates negative sentiment, creates tickets for complex issues, and connects to messaging or email channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated customer replies and ticket creation can affect real customers without documented human approval controls. <br>
-Mitigation: Review and document approval, escalation, rollback, and monitoring controls before connecting production customer channels or ticketing systems. <br>
-Risk: The skill describes learning from historical conversations and connecting third-party channels without documented data scope, retention, or redaction behavior. <br>
-Mitigation: Limit credentials and data access, define retention and redaction rules, and test with non-production data until the publisher documents the implementation. <br>
+## Use Case:
 
+Support teams use this skill to automate routine customer conversations across approved channels, escalate negative sentiment or complex issues, and create tickets for human follow-up. Operators can also configure knowledge-base sources and review service metrics such as response time, resolution rate, and satisfaction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-customer-service-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with YAML and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include knowledge-base, sentiment threshold, ticketing provider, and customer-channel configuration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic handling and reuse of customer conversations can expose PII, account data, or other sensitive support content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require redaction of PII and account data, and define retention, deletion, and access controls before using historical conversations or exported tickets.
+
+Risk: Automatic ticket creation and third-party channel forwarding can route sensitive cases without enough operator approval.
+
+Mitigation: Enable only approved support channels and disable or gate automatic ticket creation for sensitive or escalated cases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-customer-service-automation)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with shell and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installation commands, channel configuration, knowledge-base configuration, sentiment thresholds, ticketing setup, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

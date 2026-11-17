@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SKILL.md Optimizer · 可勾选审计清单</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #f7f8fa;
+    --panel-border: #e5e8ee;
+    --text: #1a1c20;
+    --text-muted: #5c6470;
+    --accent: #2f6bff;
+    --accent-soft: #eaf1ff;
+    --green: #1f9d57;
+    --amber: #b8860b;
+    --red: #d6484f;
+    --track: #d7dce4;
+    --shadow: 0 1px 3px rgba(20,25,35,.06), 0 4px 14px rgba(20,25,35,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14161c;
+      --panel: #1c1f27;
+      --panel-border: #2a2e38;
+      --text: #e9ecf2;
+      --text-muted: #9aa2b2;
+      --accent: #5b8dff;
+      --accent-soft: #24305a;
+      --green: #4fd08a;
+      --amber: #e0b34a;
+      --red: #f2707a;
+      --track: #3a3f4a;
+      --shadow: 0 1px 3px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.35);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 20px 80px;
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--text-muted); font-size: 13px; margin: 0 0 24px; }
+  .meta { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+
+  .progress {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg); padding: 12px 0; border-bottom: 1px solid var(--panel-border);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .bar { flex: 1; height: 8px; background: var(--track); border-radius: 99px; overflow: hidden; }
+  .bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .pct { font-variant-numeric: tabular-nums; font-size: 13px; color: var(--text-muted); min-width: 70px; text-align: right; }
+
+  section {
+    background: var(--panel); border: 1px solid var(--panel-border);
+    border-radius: 14px; padding: 20px 22px; margin-bottom: 18px; box-shadow: var(--shadow);
+  }
+  section > h2 {
+    font-size: 15px; margin: 0 0 4px; display: flex; align-items: center; gap: 8px;
+  }
+  section > h2 .tag {
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 99px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  section > p.lead { font-size: 12.5px; color: var(--text-muted); margin: 0 0 14px; }
+
+  .item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px dashed var(--panel-border);
+  }
+  .item:last-child { border-bottom: 0; }
+  .item input[type=checkbox] {
+    flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px;
+    accent-color: var(--accent); cursor: pointer;
+  }
+  .item .body { flex: 1; }
+  .item .title { font-size: 13.5px; }
+  .item .hint { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .sev { font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 99px; margin-left: 6px; }
+  .sev.p0 { background: rgba(214,72,79,.15); color: var(--red); }
+  .sev.must { background: rgba(184,134,11,.15); color: var(--amber); }
+
+  .tools { display: flex; gap: 10px; margin: 18px 0 4px; flex-wrap: wrap; }
+  button {
+    font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    padding: 9px 16px; border-radius: 10px; border: 1px solid var(--panel-border);
+    background: var(--panel); color: var(--text);
+  }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .foot { font-size: 11.5px; color: var(--text-muted); margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SKILL.md Optimizer · 可勾选审计清单</h1>
+  <p class="sub">配合 <code>skill-md-optimizer</code> 使用 · 勾选「已满足」项，未勾项即改进目标</p>
+  <p class="meta">四根判据 T/L/C/B · 9 条硬约束 H1–H9 · 5 步流程 · readme 五问 · i18n 政策 · 共 35 项</p>
+
+  <div class="progress">
+    <div class="bar"><i id="fill"></i></div>
+    <div class="pct" id="pct">0/33</div>
+  </div>
+
+  <!-- T 触发精准 -->
+  <section>
+    <h2>T · 触发精准 <span class="tag">frontmatter</span></h2>
+    <p class="lead">name / description / when_to_use 贴合真实提问习惯，含触发词 + 边界 + 不触发。</p>
+    <label class="item"><input type="checkbox" data-k="t1"><div class="body"><div class="title">description 含「做什么 + 何时用 + NOT-for」三段 <span class="sev must">must</span></div><div class="hint">NOT-for 每个都要点名承接它的那个 skill（如 skill-clean-audit）。</div></div></label>
+    <label class="item"><input type="checkbox" data-k="t2"><div class="body"><div class="title">when_to_use 列 ≥3 触发 + ≥3 不触发</div><div class="hint">与 description 的 NOT-for 镜像，覆盖只读 when_to_use 的宿主。</div></div></label>
+    <label class="item"><input type="checkbox" data-k="t3"><div class="body"><div class="title">name / slug 符合小写连字符规范 <span class="sev p0">P0</span></div><div class="hint">^[a-z0-9]+(-[a-z0-9]+)*$；slug 与 name 一致。</div></div></label>
+    <label class="item"><input type="checkbox" data-k="t4"><div class="body"><div class="title">1 正例 + 1 反例 + 1 易混淆边界例</div><div class="hint">反例/边界例点名兄弟 skill，防止误触发与过触发。</div></div></label>
+
+    <!-- L 分层 -->
+    <h2 style="margin-top:22px">L · 分层 <span class="tag">body</span></h2>
+    <label class="item"><input type="checkbox" data-k="l1"><div class="body"><div class="title">硬约束表与单次执行流程分离 <span class="sev must">must</span></div><div class="hint">硬约束显式标「每轮必须遵守 + 压缩后重新生效」。</div></div></label>
+    <label class="item"><input type="checkbox" data-k="l2"><div class="body"><div class="title">核心规则置于前 3000 token 内</div><div class="hint">T/L/C/B 判据 + 硬约束表留在主文件前半。</div></div></label>
+
+    <!-- C 收敛 -->
+    <h2 style="margin-top:22px">C · 收敛 <span class="tag">flow</span></h2>
+    <label class="item"><input type="checkbox" data-k="c1"><div class="body"><div class="title">单次执行流程 ≤ 5 步 <span class="sev p0">P0</span></div><div class="hint">超过 5 步拆分或合并；保持单轮闭环。</div></div></label>
+    <label class="item"><input type="checkbox" data-k="c2"><div class="body"><div class="title">每步写明 输入 / 动作 / 输出 / 失败兜底</div><div class="hint">不依赖后续轮次重新读文件即能闭环。</div></div></label>
+
+    <!-- B 预算 -->
+    <h2 style="margin-top:22px">B · 预算 <span class="tag">length</span></h2>
+    <label class="item"><input type="checkbox" data-k="b1"><div class="body"><div class="title">全文 ≤ 8000 token，留 ~5000 截断余量</div><div class="hint">主文件目标 ≤150 行、硬上限 200 行；细则下沉 references/。</div></div></label>
+    <label class="item"><input type="checkbox" data-k="b2"><div class="body"><div class="title">悬空引用 = 0；references/assets/scripts 路径真实存在</div><div class="hint">跑 scripts/check_skillmd.py 验证。</div></div></label>
+  </section>
+
+  <!-- 硬约束 H1-H9 -->
+  <section>
+    <h2>硬约束 H1–H9 <span class="tag">每轮必守</span></h2>
+    <p class="lead">上下文压缩后须保留并重新生效，违反任一条即执行失败。</p>
+    <label class="item"><input type="checkbox" data-k="h1"><div class="body"><div class="title">H1 不静默丢规则（只下沉 + 加指针，删除须用户确认）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h2"><div class="body"><div class="title">H2 不覆盖（写回前必备份原文）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h3"><div class="body"><div class="title">H3 改动可追溯（changelog 旧→新+理由+是否假设+P0）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h4"><div class="body"><div class="title">H4 零网络、零凭据</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h5"><div class="body"><div class="title">H5 不猜目标（未指定先追问；读不到给 3 步自查）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h6"><div class="body"><div class="title">H6 机械项交脚本（frontmatter/预算/悬空引用）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h7"><div class="body"><div class="title">H7 不越界（不审被调代码、不做发布门禁）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h8"><div class="body"><div class="title">H8 声明与行为一致（读 env/调二进制/联网须声明）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="h9"><div class="body"><div class="title">H9 不猜输出语言（zh/en 显式 > 交互推断 > 询问）</div></div></label>
+  </section>
+
+  <!-- readme 五问 -->
+  <section>
+    <h2>readme 模式 · 五问 + 固定顺序 <span class="tag">README.md</span></h2>
+    <p class="lead">若启用 readme 模式，对照核心五问与字段规范。</p>
+    <label class="item"><input type="checkbox" data-k="r1"><div class="body"><div class="title">回答「是什么/怎么跑/怎么用/怎么贡献/还该知道啥」五问</div></div></label>
+    <label class="item"><input type="checkbox" data-k="r2"><div class="body"><div class="title">顺序固定（名称→徽章→上手→安装→使用→配置→贡献→许可证），不重排</div></div></label>
+    <label class="item"><input type="checkbox" data-k="r3"><div class="body"><div class="title">徽章 3–5 个且都承载「会变」的值；org/repo 取自真实 git remote</div></div></label>
+    <label class="item"><input type="checkbox" data-k="r4"><div class="body"><div class="title">配置用表格且与 .env.example 对齐；架构优先 mermaid</div></div></label>
+    <label class="item"><input type="checkbox" data-k="r5"><div class="body"><div class="title">架构细节/API/changelog/起源故事 不进 README；许可证不缺席</div></div></label>
+  </section>
+
+  <!-- i18n 政策 -->
+  <section>
+    <h2>i18n / Natural-Language Policy <span class="tag">ClawHub</span></h2>
+    <p class="lead">兼容非中文用户且不触发政策告警（§6）。</p>
+    <label class="item"><input type="checkbox" data-k="i1"><div class="body"><div class="title">frontmatter 不写死 language（或写了必就近声明理由+退出方式）<span class="sev p0">P0</span></div></div></label>
+    <label class="item"><input type="checkbox" data-k="i2"><div class="body"><div class="title">正文提供 auto/zh/en 三态选择（置于前 3000 token）</div></div></label>
+    <label class="item"><input type="checkbox" data-k="i3"><div class="body"><div class="title">description 英文主位，非中文用户可被触发</div></div></label>
+    <label class="item"><input type="checkbox" data-k="i4"><div class="body"><div class="title">默认假设项中英各一句；路径用正斜杠；产物命名双语</div></div></label>
+    <label class="item"><input type="checkbox" data-k="i5"><div class="body"><div class="title">判定/结论类产物成对出「中 + EN」两版，命名 <code>*.md</code> / <code>*.en.md</code>（或 .html / .en.html）</div><div class="hint">与 §7.6 产物命名对齐；缺英文版时 fallback 单语并在报告标注。</div></div></label>
+    <label class="item"><input type="checkbox" data-k="i6"><div class="body"><div class="title">token 估算器二选一（char ÷4 / tiktoken 真数），缺库自动回落</div><div class="hint">P2 增强：linter 加 <code>--estimator</code>；离线保持零依赖，宿主有 tiktoken 时走真数。</div></div></label>
+  </section>
+
+  <div class="tools">
+    <button class="primary" id="export">导出结果（Markdown）</button>
+    <button id="reset">全部重置</button>
+  </div>
+  <p class="foot">进度自动保存在 <code>localStorage</code>。导出会把未勾项作为「待改进清单」复制到剪贴板。</p>
+</div>
+
+<script>
+(function () {
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[type=checkbox]'));
+  var KEY = 'skill-md-optimizer-checklist';
+  var fill = document.getElementById('fill');
+  var pct = document.getElementById('pct');
+
+  function load() {
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+    boxes.forEach(function (b) { b.checked = !!saved[b.dataset.k]; });
+    render();
+  }
+  function save() {
+    var s = {};
+    boxes.forEach(function (b) { if (b.checked) s[b.dataset.k] = 1; });
+    localStorage.setItem(KEY, JSON.stringify(s));
+  }
+  function render() {
+    var done = boxes.filter(function (b) { return b.checked; }).length;
+    fill.style.width = (boxes.length ? (done / boxes.length * 100) : 0) + '%';
+    pct.textContent = done + '/' + boxes.length;
+  }
+  boxes.forEach(function (b) {
+    b.addEventListener('change', function () { save(); render(); });
+  });
+
+  document.getElementById('reset').addEventListener('click', function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    save(); render();
+  });
+
+  document.getElementById('export').addEventListener('click', function () {
+    var lines = ['# SKILL.md Optimizer · 待改进清单', '', '未勾项（改进目标）：'];
+    boxes.forEach(function (b) {
+      if (!b.checked) {
+        var t = b.parentElement.querySelector('.title').textContent.trim();
+        lines.push('- [ ] ' + t);
+      }
+    });
+    var done = boxes.filter(function (b) { return b.checked; }).length;
+    lines.push('', '已满足 ' + done + '/' + boxes.length + '。');
+    navigator.clipboard.writeText(lines.join('\n')).then(function () {
+      var btn = document.getElementById('export');
+      var old = btn.textContent; btn.textContent = '已复制到剪贴板 ✓';
+      setTimeout(function () { btn.textContent = old; }, 1500);
+    });
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

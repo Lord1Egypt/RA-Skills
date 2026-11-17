@@ -1,40 +1,54 @@
-## Description: <br>
-Autonomous DeFi yield management on Giza for onboarding, portfolio reviews, withdrawals, rewards, and education across Base, Arbitrum, Plasma, and HyperEVM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous DeFi yield management on Giza -- onboarding, portfolio reviews, withdrawals, rewards, and education.
 
-## Publisher: <br>
-[raphaelDkhn](https://clawhub.ai/user/raphaelDkhn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raphaeldkhn](https://clawhub.ai/user/raphaeldkhn)
 
-## Use Case: <br>
-External users use this skill to manage Giza DeFi stablecoin accounts: onboarding, reviewing balances and APR, routing account actions through Giza tools, and learning about risks and fees. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change real DeFi account state and yield strategy, including withdrawals, deposits, deactivation, and protocol changes. <br>
-Mitigation: Before any withdrawal, deactivation, deposit processing, or protocol change, require the assistant to restate the exact network, amount or protocols, expected fund movement, fees, risks, and reversibility, then proceed only after explicit user approval. <br>
-Risk: The security review says the skill is coherent but has some under-scoped or overly broad instructions for DeFi account automation. <br>
-Mitigation: Install only if the user trusts Giza and is comfortable with DeFi account automation; verify portfolio data, APRs, protocols, and transaction details before relying on an action. <br>
+## Use Case:
 
+External users use this skill to manage Giza stablecoin yield workflows, including onboarding, portfolio review, APR checks, rewards review, withdrawals, top-ups, protocol changes, and education about DeFi risks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raphaelDkhn/giza) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, API Calls] <br>
-**Output Format:** [Markdown-formatted conversational responses with Giza MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include financial amounts, APRs, networks, protocols, transaction status, login URLs, and confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can initiate account actions involving real stablecoin funds, including withdrawals and deactivation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network, token, protocol choices, amounts, and withdrawal or deactivation confirmations carefully before proceeding.
+
+Risk: Users may misunderstand DeFi yield as bank-like savings or guaranteed income.
+
+Mitigation: State that DeFi funds are not bank-insured and can be lost through smart-contract, stablecoin, or protocol risk.
+
+## Reference(s):
+
+- [Giza ClawHub Skill Page](https://clawhub.ai/raphaeldkhn/skills/giza)
+- [raphaeldkhn Publisher Profile](https://clawhub.ai/user/raphaeldkhn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown with MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Consumer-friendly financial explanations, formatted portfolio summaries, confirmation prompts for withdrawals and deactivation, and plain-language error recovery.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

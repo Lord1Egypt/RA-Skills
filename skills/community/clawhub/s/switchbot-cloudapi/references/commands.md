@@ -280,11 +280,9 @@ Same commands as S10.
 | turnOn | default | ON |
 | turnOff | default | OFF |
 | setNightLightMode | `off`, `1`, or `2` | off; 1=bright; 2=dim |
-| setWindMode | `direct`, `natural`, `sleep`, `baby`, or `hurricane` | fan mode (hurricane supported on Pro models) |
+| setWindMode | `direct`, `natural`, `sleep`, or `baby` | fan mode |
 | setWindSpeed | `{1-100}` | fan speed |
 | closeDelay | `{1-36000}` | auto-off timer (seconds) |
-
-**Note:** All Circulator Fan variants (including Pro) share deviceType `Circulator Fan` in the API. Always attempt the requested wind mode — do NOT reject `hurricane` based on deviceType alone.
 
 ### Smart Radiator Thermostat
 | Command | Parameter | Description |
@@ -337,80 +335,6 @@ Same commands as S10.
 - `password`: 6-12 digit passcode in plain text
 - `startTime`: 10-digit unix timestamp (required for timeLimit & disposable)
 - `endTime`: 10-digit unix timestamp (required for timeLimit & disposable)
-
-### Lock Ultra 2
-deviceType in API: `Smart Lock Ultra 2`
-
-| Command | Parameter | Description |
-|---------|-----------|-------------|
-| lock | default | lock the door |
-| unlock | default | unlock the door |
-| deadbolt | default | toggle deadbolt |
-
-**Notes:** Same capabilities as Lock Ultra. Status includes `lockState` (locked/unlocked/locking/unlocking/jammed/latchBoltLocked/halfLocked), `doorState` (open/close), `calibrate`, `battery`.
-
-### Lock Vision / Lock Vision Pro
-| Command | Parameter | Description |
-|---------|-----------|-------------|
-| lock | default | lock the door |
-| unlock | default | unlock the door |
-| createKey | `{"name": str, "type": str, "password": str, "startTime": long, "endTime": long}` | create a passcode |
-| deleteKey | `{"id": str}` | delete a passcode |
-
-**Notes:** Same keypad createKey/deleteKey parameter format. deviceType in API: `Lock Vision` / `Lock Vision Pro`. Status includes `lockState`, `doorState`, `calibrate`, `onlineStatus`. Webhook deviceType: `W1141000` (Vision) / `W1141001` (Vision Pro).
-
-### Permanent Outdoor Lights
-| Command | Parameter | Description |
-|---------|-----------|-------------|
-| turnOn | default | turn on |
-| turnOff | default | turn off |
-| toggle | default | toggle on/off |
-| setBrightness | `0-100` | set brightness |
-| setColorTemperature | `2700-6500` | set color temperature |
-| setColor | `"R:G:B"` (e.g. `"255:100:0"`) | set RGB color |
-
-### RGBICWW Ceiling Light
-| Command | Parameter | Description |
-|---------|-----------|-------------|
-| turnOn | default | master power on (turns on all lights — do NOT send turnOnMainLight/turnOnColorLight separately after this) |
-| turnOff | default | master power off (turns off all lights — do NOT send turnOffMainLight/turnOffColorLight separately after this) |
-| toggle | default | toggle master power |
-| turnOnMainLight | default | turn on main (white) light only (use when you want to control main light independently, not with turnOn) |
-| turnOffMainLight | default | turn off main (white) light only |
-| turnOnColorLight | default | turn on color (RGB) light only (use when you want to control color light independently, not with turnOn) |
-| turnOffColorLight | default | turn off color (RGB) light only |
-| setMainLightBrightness | `1-100` | set main light brightness |
-| setMainLightColorTemp | `2700-6500` | set main light color temperature |
-| setColorLightBrightness | `1-100` | set color light brightness |
-| setColorLightRGB | `"R:G:B"` (e.g. `"255:134:3"`) | set color light RGB |
-
-**Status fields:** `power` (on/off/partial), `mainLightPower`, `mainLightBrightness`, `mainLightColorTemp`, `colorLightPower`, `colorLightBrightness`, `colorLightRGB`. Webhook deviceType: `W1162000`.
-
-### Battery Circulator Fan 2 Pro
-deviceType in API: `Circulator Fan` (same as original Circulator Fan)
-
-| Command | Parameter | Description |
-|---------|-----------|-------------|
-| turnOn | default | turn on |
-| turnOff | default | turn off |
-| setNightLightMode | `"off"` \| `"0"` \| `"1"` | night light: off / bright / soft |
-| setWindMode | `"direct"` \| `"natural"` \| `"sleep"` \| `"hurricane"` | wind mode |
-| setWindSpeed | `1-100` | fan speed |
-
-**Differences from original Circulator Fan:** Wind modes include `hurricane` (no `baby`). Night light param: `off`/`0`(bright)/`1`(soft) vs old `off`/`1`/`2`. No `closeDelay` or `battery`. Status adds `chargingStatus` (charging/uncharged).
-
-### Kata Friends (AI Pet)
-| Command | Parameter | Description |
-|---------|-----------|-------------|
-| mode | `"Normal"` \| `"Standby"` \| `"Sleep"` | set operating mode |
-| childLock | `"on"` \| `"off"` | toggle child lock |
-| backHome | default | recall to home base |
-| picture | `"on"` \| `"off"` | toggle photo taking |
-| talk | `"on"` \| `"off"` | toggle conversation mode |
-
-**Status fields:** `battery`, `onlineStatus`, `mode` (Normal/Standby/Sleep), `status` (Strolling/Welcoming Home/Wake-up Call/Sleeping/Playing/Returning), `childLock`, `hospitalized` (0=normal, 1=repair, 2=maintenance, 3=cleaning).
-
-**Diary API:** `GET /v1.1/devices/{deviceId}/diary?startTimestamp=<ms>&endTimestamp=<ms>` — returns event logs (`diary`), AI text diary (`diaryAI`), and AI comic diary (`comicDiaryAI`). Time window ≤ 31 days.
 
 ---
 
@@ -473,6 +397,26 @@ deviceType in API: `Circulator Fan` (same as original Circulator Fan)
 | commandType | Command | Parameter | Description |
 |-------------|---------|-----------|-------------|
 | `customize` | `{button name}` | default | user-defined buttons must use commandType=customize |
+
+---
+
+## AI MindClip (录音笔)
+
+deviceType: `AI MindClip`
+
+**设备指令:** 不支持
+
+**额外接口:**
+
+| 接口 | 方法 | 说明 |
+|------|------|------|
+| `/v1.1/mindclip/recordings?deviceID=xxx&pageNum=1&pageSize=20` | GET | 获取录音列表 |
+| `/v1.1/mindclip/recordings/{recordingId}` | GET | 获取单条录音详情 |
+| `/v1.1/mindclip/summaries/{recordingId}` | GET | 获取总结内容（转写+AI摘要+待办+说话人） |
+| `/v1.1/mindclip/todos?completedNum=1&pageNum=1&pageSize=20` | GET | 获取待办列表 |
+| `/v1.1/mindclip/assistant/daily?date=YYYY-MM-DD` | GET | 获取每日回忆 |
+| `/v1.1/mindclip/assistant/weekly?week=YYYY-Wxx` | GET | 获取每周总结 |
+| `/v1.1/mindclip/assistant/urgent-todos?date=YYYY-MM-DD` | GET | 获取紧急待办 |
 
 ---
 

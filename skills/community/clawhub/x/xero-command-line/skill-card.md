@@ -1,44 +1,64 @@
-## Description: <br>
-Interact with the Xero accounting API using the `xero` CLI tool. Manage contacts, invoices, quotes, credit notes, payments, bank transactions, items, manual journals, tracking categories, currencies, tax rates, reports, and organisation details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Xero accounting API using the `xero` CLI tool to manage contacts, invoices, quotes, credit notes, payments, bank transactions, items, manual journals, tracking categories, currencies, tax rates, reports, and organisation details.
 
-## Publisher: <br>
-[xeroapi](https://clawhub.ai/user/xeroapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xeroapi](https://clawhub.ai/user/xeroapi)
 
-## Use Case: <br>
-Developers, finance operators, and accounting teams use this skill to let an agent work with Xero organisation data through the Xero CLI. It supports read workflows, reporting, and user-approved accounting writes such as invoices, contacts, payments, and journals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Xero organisation and financial data through OAuth credentials. <br>
-Mitigation: Grant only the OAuth scopes needed for the task and install the skill only when agent access to the Xero organisation is intended. <br>
-Risk: Write commands can create, update, or delete accounting records in the wrong organisation if profile selection is mistaken. <br>
-Mitigation: Confirm the active organisation with `xero org details`, use explicit profiles when applicable, and require a clear user-approved write summary before execution. <br>
-Risk: File-based or environment-variable token key fallbacks can weaken credential protection on shared or remotely administered machines. <br>
-Mitigation: Prefer keychain-backed token storage and avoid file or environment-variable fallbacks unless the user understands the tradeoff. <br>
+## Use Case:
 
+Developers and finance operations users can use this skill to guide an agent in running the Xero CLI for accounting workflows, including reading organisation data and preparing approved changes to financial records.
 
-## Reference(s): <br>
-- [Xero command line homepage](https://github.com/XeroAPI/xero-command-line#readme) <br>
-- [Xero command line source](https://github.com/XeroAPI/xero-command-line) <br>
-- [TOON format](https://github.com/toon-format/toon) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend TOON, JSON, CSV, or table output depending on parsing and presentation needs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.6 (source: release evidence) <br>
+Risk: The CLI can access financial data in a Xero organisation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only scopes when possible and confirm the active organisation/profile before any command.
+
+Risk: Write commands can create or change accounting records.
+
+Mitigation: Review IDs and target records with read-only commands first, then require explicit user approval before each write.
+
+Risk: Token storage settings can weaken credential protection on Linux, WSL, SSH, or headless systems.
+
+Mitigation: Prefer OS keychain storage, treat file-based fallback and passphrase settings as sensitive, and review relevant environment variables before use.
+
+Risk: Global npm installation affects the user's local toolchain.
+
+Mitigation: Review the npm install command before running it and install only when the user intends to use the Xero CLI.
+
+## Reference(s):
+
+- [Xero command line homepage](https://github.com/XeroAPI/xero-command-line#readme)
+- [Xero command line source](https://github.com/XeroAPI/xero-command-line)
+- [TOON format](https://github.com/toon-format/toon)
+- [ClawHub skill page](https://clawhub.ai/xeroapi/skills/xero-command-line)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON payload snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to prefer TOON for parsing CLI read/list results, JSON when explicitly needed, and tables for user-facing summaries.]
+
+## Skill Version(s):
+
+0.0.6 (source: server release metadata, created 2026-05-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

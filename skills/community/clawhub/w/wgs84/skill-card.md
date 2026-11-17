@@ -1,43 +1,58 @@
-## Description: <br>
-Explain and work with the WGS 84 coordinate system for GPS-style longitude/latitude data, including EPSG:4326 usage, axis-order checks, range validation, UTM zone recommendation, and reprojection planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains and works with WGS 84 coordinate data, including EPSG:4326 usage, axis-order checks, range validation, UTM zone recommendations, and reprojection planning.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers, GIS practitioners, and agents use this skill to validate GPS-style longitude/latitude coordinates, reason about EPSG:4326 usage, choose tuple order, and decide when to keep WGS84 or reproject for mapping and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Coordinate tuple order or coordinate system ambiguity can lead to incorrect GIS recommendations. <br>
-Mitigation: Confirm the source CRS and tuple order before relying on recommendations for important GIS work. <br>
-Risk: Coordinates sourced from mainland China consumer-map systems may use GCJ-02 or BD-09 rather than raw WGS84. <br>
-Mitigation: Verify whether China-region coordinates come from WGS84, GCJ-02, or BD-09 before conversion or analysis. <br>
-Risk: Using WGS84 degrees directly for distance, area, or buffer analysis can produce misleading results. <br>
-Mitigation: Reproject to an appropriate projected CRS, such as a local CRS or UTM zone, before measurement-heavy analysis. <br>
+## Use Case:
 
+Developers, GIS practitioners, and data engineers use this skill to validate GPS-style longitude/latitude pairs, resolve WGS84/EPSG:4326 usage questions, choose an appropriate projected CRS, and identify common coordinate-order or China map-offset risks.
 
-## Reference(s): <br>
-- [WGS84 Reference](references/wgs84-reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/wgs84) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include interpreted coordinate order, WGS84 range validity, CRS recommendations, UTM zone and EPSG code, and China mapping offset warnings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Coordinate pairs may be interpreted in the wrong axis order when both longitude-latitude and latitude-longitude ranges are numerically valid.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the source system's expected order and report ambiguity when the values alone cannot determine order.
+
+Risk: WGS84 coordinates can be unsuitable for distance, area, buffer, or engineering workflows that require projected units.
+
+Mitigation: Recommend a projected CRS such as an appropriate UTM zone or local mandated CRS for measurement-focused analysis.
+
+Risk: Coordinates from mainland-China consumer map sources may use GCJ-02 or BD-09 rather than raw WGS84.
+
+Mitigation: Warn users to verify the source coordinate system before treating those points as EPSG:4326.
+
+## Reference(s):
+
+- [WGS84 Reference](references/wgs84-reference.md)
+- [ClawHub WGS84 Skill Page](https://clawhub.ai/jvy/skills/wgs84)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include coordinate validity results, inferred coordinate order, CRS recommendations, UTM zone and EPSG code, or China offset-risk warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

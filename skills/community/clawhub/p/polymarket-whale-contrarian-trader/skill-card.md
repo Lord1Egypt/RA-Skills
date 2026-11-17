@@ -1,45 +1,59 @@
-## Description: <br>
-Detects smart money divergence in Polymarket by finding top-performing whale wallets that take positions opposite retail consensus at probability extremes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects smart money divergence where top-performing whale wallets take positions opposite to retail consensus, then trades with the whales using conviction-boosted sizing when markets are at probability extremes.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External prediction-market operators and agents use this skill to monitor Polymarket whale-versus-retail divergence and produce paper or explicitly live trading actions with configurable limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-money prediction-market trading can place live Polymarket orders when --live is enabled. <br>
-Mitigation: Run in paper mode first, require clear human approval before enabling --live, and keep SIMMER_MAX_POSITION and SIMMER_MAX_POSITIONS low. <br>
-Risk: The skill requires SIMMER_API_KEY, which is sensitive and could authorize trading activity. <br>
-Mitigation: Store SIMMER_API_KEY only in a protected secret or environment variable and rotate it if exposure is suspected. <br>
-Risk: Whale leaderboard and market activity signals may be incomplete, stale, or wrong. <br>
-Mitigation: Review generated trade logs, retain spread, volume, days-to-resolution, slippage, and minimum-whale safeguards, and validate signals before live use. <br>
+## Use Case:
 
+External users and developers use this skill to monitor Polymarket whale activity, identify contrarian signals against retail consensus, and place paper or live trades through Simmer with configurable risk limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-whale-contrarian-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/diagnostikon) <br>
-- [Polymarket data API](https://data-api.polymarket.com) <br>
-- [Polymarket leaderboard API](https://predicting.top/api/leaderboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, API calls, Shell commands, Configuration] <br>
-**Output Format:** [Console log text with Simmer SDK trade requests and environment-variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket orders require the explicit --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Live mode can place real-money Polymarket trades.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode unless live trading has been explicitly reviewed and approved.
+
+Risk: Documented safeguards may be missing or flawed.
+
+Mitigation: Review trade-direction parsing and advertised safeguards before enabling live mode.
+
+Risk: The skill depends on simmer-sdk and SIMMER_API_KEY.
+
+Mitigation: Pin and verify the SDK dependency, and scope SIMMER_API_KEY to limited trading permissions and account exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/polymarket-whale-contrarian-trader)
+- [Polymarket leaderboard API](https://predicting.top/api/leaderboard)
+- [Polymarket data API](https://data-api.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, API calls]
+
+**Output Format:** [Console text with Simmer SDK trade requests]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper mode unless live mode is explicitly enabled.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

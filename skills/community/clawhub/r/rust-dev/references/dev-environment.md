@@ -13,28 +13,101 @@ The commands, fastest to slowest:
 
 In your editor, point rust-analyzer's check command at clippy so you get lint feedback inline (in VS Code: `"rust-analyzer.check.command": "clippy"`). rust-analyzer itself does most type-checking as you type; `cargo check` is the fallback the editor runs to populate diagnostics.
 
-## Build speed
-
-Two things make Rust builds slow: compiling code, and linking it. The fixes differ by platform.
-
-### macOS
-
-Set up `sccache` and stop there. It is a compilation cache: install it (`brew install sccache`) and point Cargo at it once, globally, in `~/.cargo/config.toml`:
+Team flags belong in a repo-local `.cargo/config.toml`, as aliases everyone gets on checkout:
 
 ```toml
+# .cargo/config.toml
+[alias]
+lint = "clippy --locked --all-targets"
+```
+
+Pick new names. `b`, `c`, `d`, `t`, `r`, and `rm` are aliases built into Cargo, and an alias of the same name silently redefines them for everyone in the repo - only real commands are protected ("Aliases are not allowed to redefine existing built-in commands"), so `c = "clippy"` quietly changes what `cargo c` means.
+
+## Build speed
+
+Two things make Rust builds slow: compiling code, and linking it. Caching compilation is the bigger win and is the same on every platform; the linker story is the part that differs.
+
+### Build caching: use kache
+
+[kache](https://github.com/kunobi-ninja/kache) is a content-addressed `RUSTC_WRAPPER`. It gives you a persistent, global cache of compiled **dependencies** - shared across every project on the machine, surviving `cargo clean`, branch switches, and fresh worktrees or clones at a different path. Cache hits restore zero-copy where the filesystem allows it: a copy-on-write clone on APFS/btrfs/XFS-with-reflink, then a restricted hardlink fallback for immutable artifacts on Unix, and a plain copy for everything else. Since 0.23.0 build-script runs and `cargo clippy` units are cached too, with diagnostics replayed. An optional S3 remote shares artifacts across machines and CI. 2.0.0 also reaches into your own crates' edit loop: "compatible local worktrees can seed private incremental state automatically with supported rustc 1.98 or later" (`KACHE_SEED_INCREMENTAL=0` turns it off).
+
+```sh
+# Install (mise, or brew on macOS)
+mise use -g github:kunobi-ninja/kache@latest
+brew install kunobi-ninja/kunobi/kache
+
+kache init --check   # preview the plan without changing anything
+kache init           # wires RUSTC_WRAPPER into ~/.cargo/config.toml, installs + starts the daemon
+kache doctor         # verify
+kache doctor --probe # compile a throwaway crate and confirm a local cache hit
+```
+
+`kache init` is idempotent - re-run it any time to repair the setup. It does more than set the wrapper: on Unix it also sets `HOST_CC`/`HOST_CXX` when unset (so the C and C++ that build scripts compile are cached too), offers compiler shims plus a `PATH` line for your shell's startup file, installs shell completions, and offers a login service. `-y` accepts the plan non-interactively; `--no-shell` leaves shell setup alone ("no C/C++ shims on PATH, test runner, or completions") and `--no-service` skips the daemon service. To wire it by hand instead, set `rustc-wrapper = "kache"` under `[build]` in `$CARGO_HOME/config.toml`.
+
+Since 2.0.0 kache is two binaries, `kache` and a matching `kache-engine`. Its upgrade notes: "Install matching `kache` and `kache-engine` binaries together. Custom archives, container images and installers must copy both." A Dockerfile that `COPY`s only `kache` breaks.
+
+Sharing artifacts across machines needs a remote, in `~/.config/kache/config.toml`:
+
+```toml
+[cache.remote]
+type = "s3"
+bucket = "my-build-cache"
+endpoint = "https://s3.example.com"   # omit for AWS S3; required for Ceph/MinIO/R2
+profile = "my-aws-profile"            # an AWS profile, not env vars - see the quirks below
+```
+
+The remote `type` can also be `gcs`, `filesystem`, or (since 1.0.0) `oci`, which stores artifacts in a container-registry repository (`repository = "ghcr.io/my-org/kache-cache"`) using your Docker credential helpers.
+
+**kache strips Cargo's incremental flags for the compiles it caches.** That is deliberate: artifact caching replaces that path (and it sidesteps APFS-related incremental corruption on macOS). It is no longer the whole story, though - `adaptive_incremental` defaults to `true`, and since 0.27.0 it "switches on in a normal edit loop": a build followed by an edit seeds incremental state, and in 2.0.0's wording "Kache skips the cache for up to eight builds of such a unit, each within 15 minutes of the last". You should not force incremental back on globally. Instead, time a one-line edit to your own crate with and without the wrapper before settling on it locally: `cache.incremental_crates` forces a known churner onto the incremental path, and `cache.bypass_crates` takes a crate out of kache entirely while its dependencies stay cached.
+
+### kache quirks worth knowing before they cost you a day
+
+| Quirk | Why it bites |
+|---|---|
+| `local_max_size` defaults to a **share of the disk**, not a fixed number | Since 0.17.0 the default is "5% of the volume that holds the store, rounded to the nearest GiB, then clamped to 5GiB..=100GiB", with 50GiB only as a fallback when the size probe fails. The budget therefore moves with the machine, and older advice quoting a flat 50GiB is stale. A dependency tree with heavy native or data crates (100-300 MB artifacts each) blows past a small share, GC starts evicting, and reuse you expected stops landing. This looks exactly like "cross-path reuse is broken" - it is not. Check what you actually got rather than assuming a number, then set it explicitly (`kache config set cache.local_max_size 50GiB`, or `KACHE_MAX_SIZE`). Automatic GC starts only when the store passes **110%** of the cap and evicts down to 90% (a manual `kache gc` evicts from 100%), so a healthy store routinely sits up to 10% *over* the size you configured - budget the disk for that. Since 0.12.0 eviction is **cost-aware** - it indexes each entry's `compile_time_ms` and weighs what an artifact costs to rebuild, not just how big it is - so the old "size-only LRU throws away your expensive artifacts first" failure mode is gone. |
+| Count hit rate lies | Judge by **cost-weighted** hit rate (`kache stats`, or `kache stats --full` for the whole report). Cheap leaf crates hitting while the expensive spine misses every time still reads as a healthy-looking 60% by count. |
+| `cache_executables` is on by default on Linux and macOS | Only Windows still defaults it to `false` (its `.pdb` path keeps debug info outside the binary). If you read older advice telling you to turn this on, it is already on. dylib/cdylib/proc-macro are always cached and unaffected by the flag either way. |
+| `kache sync --push` filters to **workspace members** | Seeding an existing store to S3 from your project directory silently uploads almost nothing - the push filter is `cargo metadata --no-deps`. Run it from a directory with **no** `Cargo.toml` to push everything. Push also does a full unfiltered LIST of the prefix, which is a real cost on a large bucket. Since 0.15.0 `kache sync` exits non-zero if any transfer fails; pass `--allow-partial` when best-effort really is what you want. |
+| An auto-started daemon does **not** inherit your shell environment | `KACHE_S3_*` credentials exported from your shell profile leave the launchd/systemd daemon with no credentials at all. Put the remote in the watched `[cache.remote]` config block, use an AWS profile (`cache.remote.profile`) or `~/.aws/credentials`, or start the daemon yourself from the intended environment with `kache daemon run`. Since 1.1.0 "A selected AWS profile now fails explicitly if it cannot supply credentials", instead of falling through to another identity. |
+| Set `endpoint` for any non-AWS object store | Ceph, MinIO, and R2 all need `cache.remote.endpoint` (or `KACHE_S3_ENDPOINT`) set explicitly; omit it only for AWS S3. kache always addresses path-style, so you do not need bucket-subdomain DNS to work. |
+| Upgrading kache can orphan the service | The launchd plist or systemd unit keeps pointing at the deleted old binary. Re-run `kache init` (or `kache daemon install`) after an upgrade, then `kache daemon restart` - 2.0.0 changed the daemon's execution protocol ("Restart the daemon after upgrading") - and `kache doctor --probe`. |
+| Keys encode **toolchain identity**, not machine identity | The key hashes the `rustc --version --verbose` banner (commit hash plus host triple), plus the linker's `--version` for outputs that actually link. Machines can share one bucket prefix safely - objects cannot collide - but only *matching toolchains* ever hit each other. Think **prefix per toolchain**, not per machine. Absolute build and checkout paths are deliberately normalized out, which is what makes a different clone path still hit. 2.0.0 also keys the selected Linux linker, Apple deployment-target variables, and Windows resource inputs. |
+| `key_salt` covers what the key cannot see | A glibc, linker, or Nix-store change alters compiled output while leaving every version banner unchanged, so the key does not move and a stale artifact can be restored. With `cache_executables = true` a `nix store gc` can restore a binary pointing at a garbage-collected ELF interpreter - an error no `cargo clean` fixes. Set `cache.key_salt` to something that changes with your toolchain (a closure hash, a store-path digest). |
+| Macro-read files are invisible to the key | sqlx's `query!` reads `.sqlx/*.json`, migration macros read `migrations/` - rustc never reports them, so editing one does not re-key the crate and you get a **stale hit**. Declare them in a per-crate `kache.toml` (`extra_inputs = [".sqlx/**/*.json", "migrations/**/*.sql"]`), or workspace-wide with a `[[workspace.extra_inputs]]` block. Note this is `kache.toml`, distinct from the project config `.kache.toml`. (Environment variables a proc macro reads during expansion *are* keyed as of 0.13.0, so that adjacent stale-hit class is closed.) |
+| `[cache.volumes]` keeps a shard next to the checkout | Added in 0.17.0: a store on the same volume as your source tree, which the wrapper consults first while the daemon imports remote hits into it. This is what makes reflink restores possible when your checkout and your main store live on different volumes - without it, a cross-volume restore silently degrades to a copy. |
+| kache keeps untrusted CI read-only by itself | On GitHub Actions and GitLab CI it "suppresses remote writes unless the job is a **push to a protected branch**" - pull requests, tags, `workflow_dispatch`, and scheduled runs only read, and `KACHE_REMOTE_READONLY=0` "does not turn that off". That closes the supply-chain hole of a fork PR seeding a poisoned artifact every later build restores, but it also means PR runs never warm the shared cache. `pull_request_prefix` (0.27.0) gives them a separate prefix to write - on S3-style remotes only: "OCI pull requests stay read-only even with `pull_request_prefix`", because registry permissions cover the whole repository. |
+| S3 permission failures read as misses | Since 0.27.0 readers need only `s3:GetObject`, and a refused read counts as a miss - "a policy that denies the prefix, or an expired token on an existence check, also reads as a miss, and the build compiles instead of failing". A remote that never hits is a credentials question first: run `kache doctor`. `kache sync` still needs `s3:ListBucket`. |
+| The daemon now deletes and copies target directories | Since 0.27.0 it removes target directories of deleted workspaces, prunes build units unused for 30 days, and seeds a new checkout's `target/` from the most recent one built by the same `rustc`. That is what makes a fresh worktree start warm, and it also means kache deletes things you never asked it to. 1.0.0 adds a third default: with `cache.auto_share_target_files` on, the daemon replaces large `target/` files that are byte-for-byte copies of stored artifacts with clones of them, keeping path and mtime. `kache clean --dry-run` shows what it tracks and would remove; `cache.auto_clean_orphaned_targets = false`, `cache.seed_new_targets = false`, and `cache.auto_share_target_files = false` turn the three behaviors off. Since 1.2.0 the daemon also records the `target/` directories in "every Git worktree of the repositories you build, and in the other repositories next to them", including ones never built through kache. Disk-pressure recovery is **on** by default since 1.2.0: below 10 GiB free (`cache.auto_recover_min_free_bytes`, `0` in CI) builds evict cache entries. Removing idle target directories on top of that stays opt-in (`cache.auto_recover_targets = true`). |
+| A different kache on `PATH` misses everything | `rustc-wrapper = "kache"` resolves through `PATH`, so a project dev shell (Nix, mise) that carries its own kache silently replaces yours. Two versions on different key schemas never serve each other's entries, so every crate misses. Point `rustc-wrapper` at an absolute path when that can happen. |
+| Do not bind-mount the cache directory into a container | kache's SQLite index needs single-machine file locking. Shared across an OS boundary it cannot open, and kache silently builds **uncached** (the build still succeeds). Give the container its own `KACHE_CACHE_DIR`. The same applies to NFS/SMB. |
+
+Diagnosing a cache that is not paying off: `kache stats` for the weighted hit rate, `kache list --sort size` (large entries showing `hits: 0` mean eviction thrash, not a keying problem), `kache explain <crate>` for a specific crate (1.0.0 renamed it from `why-miss`, which still works as an alias), `explain_miss = true` under `[cache]` to record the dependency detail that the monitor's Why tab groups by cause (0.18.0 - it only explains builds recorded *after* you turn it on), and `KACHE_LOG=warn cargo build` to run the path-leak detector, which flags any key field retaining a machine-local absolute path. For the full picture of what went into a key, `KACHE_LOG=trace` prints every component hashed - prefer that over any hand-kept list, which drifts as the keying logic evolves. `kache explain` also explains a miss *across* checkouts (0.24.0), provided both builds had `explain_miss` on.
+
+**Any `RUSTC_WRAPPER` puts your build cache in the failure path.** Once a wrapper is wired in, a broken, misconfigured, or sandboxed cache surfaces as a *compile failure* - and it will not look like a cache problem, it will look like a baffling Rust error. Before you spend an hour on a compile error that makes no sense, take the wrapper out of the picture and confirm the failure is real: `KACHE_DISABLED=1 cargo build` (kache's own bypass - note it still strips incremental flags unless you also set `KACHE_PRESERVE_INCREMENTAL=1`), or `RUSTC_WRAPPER= cargo build` for any wrapper. This applies equally to sccache.
+
+Upgrading kache never requires wiping the cache, but it can cost a fully cold build. A key-schema bump invalidates every entry: 0.27.0 moved from 31 to 32, so "no entry written by 0.26.x matches any more, locally or on a remote." The 1.x line stayed on schema 32, and 2.0.0 moved to 33 - its upgrade guide: "changed cache-key recipes cause compatible work to be rebuilt under new keys", so budget a cold build when crossing from 1.x. Even within a major, commands and config keys are stable, keys are not: "Cache-key recipes and private storage layouts can change during 1.x, so an upgrade may cause misses and rebuilds." Re-run `kache init` and `kache daemon restart` after any upgrade. Upgrade CI runners and developer machines together - two versions sharing one remote hold two sets of entries that never serve each other - and drop the old local entries with `kache gc --stale-schema`.
+
+### sccache: the conservative alternative
+
+[sccache](https://github.com/mozilla/sccache) is the older, more widely deployed compilation cache, and it is a reasonable choice if you want the most boring option:
+
+```toml
+# ~/.cargo/config.toml
 [build]
 rustc-wrapper = "sccache"
 ```
 
-That gives you a persistent, global cache of compiled **dependencies** - shared across every project, and surviving `cargo clean` and branch switches. Most library dependencies are cached after building once; note that proc-macro and other linker-invoking crates cannot be cached by sccache, so those still recompile.
+It caches dependencies but cannot cache linker-invoking crates - its docs are explicit that "Crates that invoke the system linker cannot be cached. This includes `bin`, `dylib`, `cdylib`, and `proc-macro` crates." It also does not touch your incremental setting, but that is not the win it sounds like: "Incrementally compiled crates cannot be cached" either, which is why the CI recipe below sets `CARGO_INCREMENTAL=0` when using sccache. The trade-off against kache: sccache does not restore zero-copy, and it has no cross-machine story as direct as kache's S3 sync. The two can also be chained - set `KACHE_FALLBACK=sccache` and kache hands the compiles it declines to cache over to sccache.
 
-What sccache does *not* do: speed up rebuilds of your own workspace crates. Those use incremental compilation, which sccache cannot cache - and that is fine, leave incremental on, it already makes your own crates rebuild fast. sccache covers the other half (dependencies).
+### Linkers
 
-Do not spend time on alternative linkers on macOS. The fast third-party linkers (`mold`, `wild`) are ELF/Linux-only and cannot link macOS Mach-O binaries, and Apple's bundled linker is already fast. There is no win there - sccache is the whole story.
+Independent of which cache you use.
 
-### Linux
+On **macOS**, do nothing. The fast third-party linkers are Linux-first: mold describes itself as "a high-performance drop-in replacement for existing Unix linkers" and its supported-architecture list is ELF-only (x86-64, i386, ARM 32/64, RISC-V 32/64, PowerPC 32/64, s390x, LoongArch 32/64, SPARC64, m68k, SH-4) - no Mach-O anywhere in it; wild (now at `wild-linker/wild`, published as the `wild-linker` crate) still lists Mach-O under what it does not yet support. Apple's bundled linker is already fast.
 
-You already have the linker win for free: since Rust 1.90, `x86_64-unknown-linux-gnu` uses the bundled `rust-lld` linker by default (around 7x faster incremental linking than GNU `ld`, no setup). `mold` is faster still if you want to go further, via `.cargo/config.toml`:
+What macOS does cost you is XProtect: it malware-scans every freshly linked binary on its first launch, single-threaded, and every build script, test binary, and `cargo run` is a fresh binary. Registering your terminal as a developer tool exempts what it launches - `sudo spctl developer-mode enable-terminal`, then enable the terminal under System Settings > Privacy & Security > Developer Tools. A multiplexer (tmux, zellij) is not a child of the terminal app, so add it too. Nicholas Nethercote measured rustc's own UI test suite dropping from 9m42s to 3m33s ([Faster Rust builds on Mac](https://nnethercote.github.io/2025/09/04/faster-rust-builds-on-mac.html)). It is a real security trade-off: malware scanning is off for everything run from those apps.
+
+On **Linux**, you have the win for free: since Rust 1.90, `x86_64-unknown-linux-gnu` uses the bundled `rust-lld` linker by default (around 7x faster incremental linking than GNU `ld`, no setup). `mold` is faster still if you want to go further - its own August 2026 benchmarks claim it "links 4.9x faster than [LLVM lld](https://lld.llvm.org) and 1.9x faster than [wild](https://github.com/wild-linker/wild) at the median". Wire it up via `.cargo/config.toml`:
 
 ```toml
 [target.x86_64-unknown-linux-gnu]
@@ -42,7 +115,7 @@ linker = "clang"
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 ```
 
-Profile before assuming linking is your bottleneck - often it is not. On Linux, `sccache` mainly helps cold builds and CI rather than the warm local loop.
+Profile before assuming linking is your bottleneck - often it is not.
 
 ### CI
 
@@ -61,14 +134,71 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - uses: actions/checkout@v7
+      - uses: actions-rust-lang/setup-rust-toolchain@v2
       - run: cargo fmt --check
-      - run: cargo clippy --locked -- -D warnings
+      - run: cargo clippy --locked --all-targets
       - run: cargo test --locked
 ```
 
-`actions-rust-lang/setup-rust-toolchain` reads `rust-toolchain.toml` for the channel and components and bundles `Swatinem/rust-cache` - toolchain install and build cache in one step, no separate cache action. `--locked` fails CI if `Cargo.lock` is stale; `clippy -- -D warnings` turns every lint in your `[lints]` table into a CI failure. Do not add `sccache` on top - it competes with the bundled cache for the same Actions cache budget. If you do use `sccache` in CI, set `CARGO_INCREMENTAL=0` so it can cache every compilation.
+`actions-rust-lang/setup-rust-toolchain` reads `rust-toolchain.toml` for the channel and components and bundles `Swatinem/rust-cache` - toolchain install and build cache in one step, no separate cache action. `--locked` fails CI if `Cargo.lock` is stale. `--all-targets` matters more than it looks: with no target flags, clippy lints only the library and binaries, so `tests/`, `benches/`, and `examples/` are never linted and a green gate says nothing about them.
+
+Note the **v2** pin. v2.0.0 (September 2026) stopped exporting `RUSTFLAGS="-D warnings"` and sets cargo's own `build.warnings` config instead, via a `build-warnings` input that already defaults to `deny`. That is why the clippy step above carries no `-- -D warnings`: the action is doing it, for every cargo command rather than only the one you remembered to append flags to. The change exists because a `RUSTFLAGS` export silently overrides any `target.*.rustflags` and `.cargo/config.toml` flags your project set. If you are still on `@v1`, you need the explicit `cargo clippy --locked --all-targets -- -D warnings` form - and note the lint flags must come *after* `--`, since they are for the lint driver, not for cargo.
+
+The setting the action reaches for is cargo's own, stabilized in 1.97, and you can own it yourself rather than delegating to CI. The 1.97 release notes say `build.warnings` "controls how lint warnings from local packages are treated" and describe it as "useful for enforcing a warning-free build in CI, replacing `-Dwarnings`". Committing it to `.cargo/config.toml` means local builds and CI enforce the same thing, with no action input to keep in sync:
+
+```toml
+# .cargo/config.toml
+[build]
+warnings = "deny"
+```
+
+Weigh that against the Cargo guide, which frames it the other way round: projects "want to be "warnings clean" on official branches while being lax for local development", and "CI can fail due to new toolchain versions because there are limited compatibility guarantees around warnings". Committing `deny` works when the toolchain is pinned to an exact version; with a floating one, any Rust release can break the build of a tree nobody touched.
+
+A pin does not cover the linker, though. 1.97 made rustc "Warn on linker output by default" (the `linker_messages` lint), and exempted it from `-D warnings` but not from cargo's setting - in the PR's words, "I downgraded it for -Dwarnings but not for Cargo's `build.warnings = deny`". So a runner image that updates Xcode, or any linker that starts printing a new warning, fails a `build.warnings = "deny"` build with nothing you pinned changing ([cargo#17142](https://github.com/rust-lang/cargo/issues/17142), open). The same applies to `setup-rust-toolchain@v2`'s default. `[lints.rust] linker_messages = "allow"` restores the `-D warnings` behavior.
+
+Rust 1.99 is a concrete case. Its new `semicolon_in_expressions_from_non_local_macros` warning fires at call sites of a *dependency's* macro that expands to a trailing semicolon, when the call is in expression position (a block's last line with no `;`). insta's serialized snapshot macros did until 1.49.0 (and `assert_binary_snapshot!` still does in 1.49.0, so end that line with `;`): a test ending in `insta::assert_json_snapshot!(v)` builds on 1.98, and on 1.99 with insta 1.48 fails with "warnings are denied by `build.warnings` configuration" - without a line of your code changing. The release notes ask you to "report it to the crate providing the macro so they can fix it; don't just silence it in your own crate"; upgrading the dependency is usually the fix. The same release adds three clippy lints to groups the skill's `Cargo.toml` denies (`block_scrutinee` and `mismatched_bit_width_type` in `suspicious`, `nonnull_unchecked_on_box_ptr` in `complexity`). This is what bumping the pin deliberately, in its own PR, is for.
+
+**Keep the toolchain current, not just pinned.** Cargo shipped fixes for CVE-2026-5222 and CVE-2026-5223 in Rust 1.96.0, and 1.96.1 patched CVE-2025-15661, CVE-2026-55199 and CVE-2026-55200 in its vendored libssh2. It is not only CVEs: 1.98.1 (September 2026) is a one-line point release that fixes "a miscompilation in generating vtables" - 1.98.0 could emit a vtable with a null pointer where a function pointer belonged, which is undefined behavior in code that compiled cleanly. 1.99.1 (October 2026) did it again: "rustc: fix miscompilation of FFI `bool` return values on x86_64". A `rust-toolchain.toml` pin is for reproducibility, not for freezing - bump it deliberately and regularly.
+
+**Think twice before adding `--all-features` to a lint or test job.** It is common advice, and it breaks the moment any optional feature needs a toolchain the runner does not have - a `cuda` feature that makes a build script shell out to `nvcc`, a feature pulling a GPU or FFI SDK. Those features exist precisely so that people who lack the toolchain can skip them, and `--all-features` removes that choice, making the job unbuildable on an ordinary machine. Lint the feature combinations you actually ship.
+
+**A cache a job writes is something it can leak into.** Whatever lands in `target/` travels with the cache, and the Rust project's guidance after Miri was found persisting environment variables there is blunt: "Cargo/Miri/Rust does not guarantee that environment variables will be safe from being copied into `target/`." Keep secrets (publish tokens, cloud credentials) out of any job that writes a shared or public cache ([Rust blog, 2026-09-21](https://blog.rust-lang.org/2026/09/21/github-actions-leaking-secrets-when-miri-output-is-cached/)).
+
+**Pick one cache, not two.** Stacking a compiler cache on top of the bundled `rust-cache` competes for the same Actions cache budget and usually makes things worse. When you outgrow `rust-cache` - typically once the dependency tree is big enough that restoring `target/` is itself slow, or you want runners and laptops to share compiled artifacts - swap it for [`kache-action`](https://github.com/kunobi-ninja/kache-action), which is a one-liner:
+
+```yaml
+- uses: kunobi-ninja/kache-action@v1
+  with:
+    version: "2.0.0"     # the input defaults to "latest"
+```
+
+Pin `version`. The action otherwise installs the newest kache on every run, so CI moves to a new release - and possibly a new key recipe - while laptops sharing the same remote stay behind and stop hitting each other's entries. That is not hypothetical: kache 2.0.0 changed the key schema, so any unpinned CI picked it up on its next run. Also note the action's cache-saving post step is declared `post-if: "success() || failure()"`, so a run cancelled by `concurrency: cancel-in-progress` saves nothing; do not cancel in-progress runs on the branch that warms the cache. That uses the Actions cache by default; pass `s3-bucket` plus credentials to back it with S3, which is what makes reuse work across runners and across machines. Remember that cross-machine hits only land where the toolchain matches exactly, so a CI runner and a laptop on different host triples will never share artifacts no matter how the bucket is configured. If you use `sccache` in CI instead, set `CARGO_INCREMENTAL=0` so it can cache every compilation (kache handles this itself by disabling incremental). From Rust 1.99 (2026-10-01) Cargo does it on its own - "Incremental compilation is now disabled by default when running in CI", detected via the `CI` variable - and `setup-rust-toolchain` already exports `CARGO_INCREMENTAL=0`, so the explicit setting only matters on older toolchains or unusual runners.
+
+## Dependency hygiene
+
+Three cheap CI steps that catch things clippy never looks at. None of them need to be there on day 1; add them once the dependency tree is real.
+
+- **`cargo audit`** checks `Cargo.lock` against the [RustSec advisory database](https://rustsec.org) - "Audit `Cargo.lock` files for crates with security vulnerabilities." This is the one to add first; it is a single command and it is the only thing in your pipeline that knows about published advisories. A concrete case: rustls 0.23.46 (October 2026) fixed four advisories at once (RUSTSEC-2026-0346 to -0349, one of them "Unauthenticated ServerHello can downgrade later connections to classical key exchange"), and rustls-webpki followed with RUSTSEC-2026-0382 - and rustls is reqwest 0.13's default TLS backend, so an ordinary HTTP-client binary carried them without naming rustls anywhere. Releases get pulled too: tokio 1.54.0 was yanked over a race in `tokio::time::Interval` (RUSTSEC-2026-0384, fixed in 1.54.1).
+- **`cargo deny check`** is the broader gate: licenses, banned crates, advisories, and allowed sources in one pass. **Its generated template does not work out of the box** - `cargo deny init` writes a `deny.toml` whose license allow-list is empty, which rejects every dependency and fails the check immediately. That is not a bug report waiting to happen, it is a file you are expected to fill in. Decide your license policy before wiring it into CI.
+- **`cargo machete`** finds dependencies you declare and never use. It works by scanning for `use` statements, which is fast and deliberately imprecise - its own README calls the approach out. Expect false positives on dependencies that exist for a feature flag, a build script, or a re-export, and verify each hit against the source before deleting it. (`cargo-udeps` is more accurate and needs nightly; `cargo-shear` is a third option.) Cargo now has a first-party `unused_dependencies` lint covering the same ground, but its whole lint system "is unstable and can only be used on nightly toolchains", so on stable the external tools are still the answer.
+- **Steering one dependency.** `cargo update -p <crate> --precise <version>` moves exactly that entry - the standard response to a bad release or an advisory - where a bare `cargo update -p <crate>` can re-resolve unrelated edges too. `cargo tree --duplicates` lists crates compiled at two versions, usually a direct dependency waiting for a bump. And `cargo metadata --locked --format-version 1 >/dev/null` is a sub-second pre-push check that fails exactly when `Cargo.lock` would need to change, without typing `--locked` on every local command.
+
+## Finding out where build time actually goes
+
+Before installing a cache, measure. `cargo build --timings` (stable since Cargo 1.60) writes an HTML report showing how long each crate took and how much of the build was actually parallel. It is free, it needs no setup, and it regularly shows that the problem is one pathological dependency or a serialized critical path rather than anything a cache would fix.
+
+When the report shows minutes going to crates you never chose - a geospatial stack, a second TLS implementation, a cloud SDK - they almost always arrive through a dependency's **default features**. `cargo remove` cannot touch a transitive crate; the lever is the direct dependency that enables it. `cargo tree -e features -i <heavy-crate>` shows which feature path pulls it in, and then `some-dep = { version = "...", default-features = false, features = ["the-one-backend-you-use"] }` cuts the branch. On a large tree this is routinely the biggest cold-build saving available, bigger than any linker or cache change.
+
+Two more commands worth knowing in the same breath: `cargo fix --edition` applies the mechanical changes for an edition migration, and `cargo clippy --fix` applies the lint suggestions that clippy marks as machine-applicable. Both operate on a clean git tree by default, which is exactly the safety you want.
+
+## Keeping `target/` in check
+
+Cargo never garbage-collects `target/`. Every lockfile, feature set, and profile you have built leaves hashed artifacts in `target/debug/deps`, and nothing removes the stale ones, so a long-lived checkout can grow to tens or hundreds of GiB. `cargo clean` is the blunt fix, `cargo clean --profile dev` spares release artifacts, and `cargo-sweep` removes artifacts by age or by toolchains you no longer have installed.
+
+Sharing one target directory trades the other way. Pointing several checkouts or worktrees at one `CARGO_TARGET_DIR` saves disk, but a build locks it, so parallel builds serialize: the waiting one prints `Blocking waiting for file lock on build directory` and then looks hung, with no `rustc` running. For parallel work, give each checkout its own `target/` and let a compiler cache (above) supply the sharing.
+
+Check and build do not share either. `cargo check` and `cargo clippy` compile dependencies "without performing the final step of code generation" and save only metadata, so Cargo treats them as different units from what `cargo build` and `cargo test` produce: alternating the two rebuilds every dependency in the other mode, and a lint job and a test job on one `target/` also wait on each other's lock. Give a lint job its own `CARGO_TARGET_DIR`. kache 2.0's Cargo shim does this for you, giving check and clippy "their own `target/check` directory by default" (`cache.separate_check_targets = false` opts out). `build.build-dir` (stable since 1.91) splits the two halves: intermediate artifacts go to a directory of your choosing, templated per workspace with `{workspace-path-hash}`, while final binaries stay in `target/`.
 
 ## Optimizing dependencies in dev builds
 
@@ -76,13 +206,30 @@ Debug builds are slow at runtime because nothing is optimized. If a dependency d
 
 ```toml
 [profile.dev.package."*"]
+opt-level = 1            # much cheaper to compile than 3, usually fast enough
+
+[profile.dev.package.sha2]   # replace with the one dependency that dominates
 opt-level = 3
 ```
 
-Your crates still compile fast; the dependencies, compiled once, then run fast.
+Your crates still compile fast; the dependencies, compiled once, then run fast. `opt-level = 3` on `"*"` is the common recipe and the slowest to compile; `1` for the long tail plus `3` for the few genuinely hot crates usually gets most of the runtime for a fraction of the cold build.
 
-To speed up your own crate's debug rebuilds, set `[profile.dev] debug = "line-tables-only"` - it keeps file and line numbers for panics and backtraces but drops the heavier per-variable debug info.
+To speed up your own crate's debug rebuilds, cut the debug info you are not reading. Measure it on your own project - the gain ranges from a few percent to a lot, depending on how much of the rebuild is codegen. Cargo's own guide now ships this recipe, which goes a step further than the usual one-liner - dependencies get no debug info at all, and a separate opt-in profile exists for the days you actually need a debugger:
+
+```toml
+[profile.dev]
+debug = "line-tables-only"      # keep file/line for panics and backtraces
+
+[profile.dev.package."*"]
+debug = false                   # you almost never step into a dependency
+
+[profile.debugging]
+inherits = "dev"
+debug = true                    # cargo build --profile debugging
+```
+
+That recipe comes from the Cargo Book's [Optimizing Build Performance](https://doc.rust-lang.org/stable/cargo/guide/build-performance.html) chapter, added in Rust 1.92 - it is the canonical, first-party version of most of this page and worth reading straight through before you install anything. Rust 1.99 adds a built-in `debug` profile for the same job (`cargo build --profile debug`, inheriting `dev`, and what `cargo install --debug` now uses) as "a preparation for transitioning the `dev` profile away from debugging". For now "there is no difference between `dev` and `debug` profiles" - so with the recipe above, `--profile debug` inherits the line-tables-only setting and gives you no more debug info than `dev`. Until upstream changes the default, either keep the custom profile or set `[profile.debug] debug = true` yourself (which also needs an MSRV of 1.99).
 
 ## File watchers
 
-`bacon` runs `check`/`clippy`/`test` in a loop, re-running on save, with a compact summary view. Install with `cargo install bacon` and run `bacon` in the project. Optional, but a nice background companion to the editor.
+`bacon` runs `check`/`clippy`/`test` in a loop, re-running on save, with a compact summary view. Install with `cargo install --locked bacon` and run `bacon` in the project. Optional, but a nice background companion to the editor.

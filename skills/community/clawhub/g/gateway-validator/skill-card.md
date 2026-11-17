@@ -1,45 +1,52 @@
-## Description: <br>
-Validate OpenClaw gateway configuration changes before applying them to production by testing changes on an isolated gateway when possible or checking provider connectivity directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate OpenClaw gateway configuration changes before applying them to production.
 
-## Publisher: <br>
-[loopintoai](https://clawhub.ai/user/loopintoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[loopintoai](https://clawhub.ai/user/loopintoai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to validate OpenClaw gateway provider, model, API key, and related configuration changes before production rollout. It checks config syntax, provider connectivity, and model availability, then reports whether the change should be applied.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Provider API keys may be transmitted to configurable provider endpoints during validation.
+
+Mitigation: Use only trusted gateway configs and trusted provider endpoints, and avoid validating untrusted baseUrl changes with real API keys.
+
+Risk: Applying a validated file can replace production gateway configuration and trigger a gateway restart.
+
+Mitigation: Review the exact config file, confirm the backup location, and run the apply step only when prepared for production impact.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to validate OpenClaw gateway model, provider, API key, and gateway setting changes before applying them to a production configuration. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use live provider API keys during validation. <br>
-Mitigation: Use test or least-privileged API keys where possible and confirm before any live provider test. <br>
-Risk: The skill can overwrite OpenClaw gateway configuration and attempt a gateway restart. <br>
-Mitigation: Review the exact configuration diff first, keep the generated backup, and require confirmation before apply or restart actions. <br>
-Risk: A configured baseUrl could direct validation traffic to an untrusted endpoint. <br>
-Mitigation: Verify every configured baseUrl is trusted before running provider or gateway checks. <br>
-Risk: Gateway startup checks may not prove completions work end to end. <br>
-Mitigation: Run an actual completion validation before treating a gateway change as production-ready. <br>
+**Output Format:** [Markdown status messages with inline shell commands and configuration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Gateway Validator on ClawHub](https://clawhub.ai/loopintoai/gateway-validator) <br>
-- [Publisher profile](https://clawhub.ai/user/loopintoai) <br>
+**Other Properties Related to Output:** [May perform provider API connectivity checks and advise whether changes should be applied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with validation results, command suggestions, and configuration change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform live provider API checks and gateway restart commands when invoked by an agent.] <br>
+1.0.0 (source: ClawHub release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

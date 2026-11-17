@@ -15,7 +15,7 @@ After completing this operations task, evaluate if extractable knowledge emerged
 - Alert fatigue or noisy monitoring? → LEARNINGS.md (monitoring)
 - Toil consuming >50% of on-call time? → LEARNINGS.md (toil_accumulation)
 
-If recurring pattern (3+ occurrences): promote to runbook or SLO definition.
+If a recurring pattern (3+ occurrences): propose promotion to runbook or SLO definition.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction.
 </operations-self-improvement-reminder>
 EOF

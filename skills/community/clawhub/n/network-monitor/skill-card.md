@@ -1,45 +1,55 @@
-## Description: <br>
-Network Monitor helps agents inspect local network interfaces, active connections, listening ports, bandwidth, latency, routes, DNS, whois data, and download speed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Network Monitor helps inspect local network interfaces, active connections, listening ports, bandwidth, latency, DNS, whois, traceroute, and download speed from shell commands.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and operators can use this skill to request local network diagnostics from an agent, including interface status, connection summaries, port listeners, bandwidth estimates, latency checks, DNS lookups, whois results, traceroute output, and a simple download speed test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DNS lookups can run unintended local code if the domain argument contains crafted text. <br>
-Mitigation: Do not pass untrusted domain strings to the DNS command until the publisher fixes the command construction. <br>
-Risk: Network diagnostics can expose local network interfaces, connection details, ports, routes, DNS results, whois output, and other environment-specific data. <br>
-Mitigation: Install and run the skill only when local network diagnostics are needed, and review command output before sharing it. <br>
-Risk: The speed test contacts an external HTTP endpoint. <br>
-Mitigation: Run the speed command only in environments where outbound contact to the speed-test service is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to ask an agent for local network diagnostics, connectivity checks, and concise command output for troubleshooting.
 
-## Reference(s): <br>
-- [Network Monitor on ClawHub](https://clawhub.ai/bytesagain-lab/network-monitor) <br>
-- [Publisher profile: bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
-- [GyulyVGC/sniffnet reference project](https://github.com/GyulyVGC/sniffnet) <br>
-- [Tele2 speed test endpoint](http://speedtest.tele2.net/1MB.zip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include local network interface names, addresses, connection details, port listeners, DNS results, whois excerpts, latency measurements, traceroute paths, and speed-test results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The DNS command has an input handling bug that can execute arbitrary Python code as the user running the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix DNS argument handling before use; avoid running the DNS command with untrusted domains until remediated.
+
+Risk: The skill inspects local network metadata and performs outbound diagnostics, including a speed test to a third-party HTTP host.
+
+Mitigation: Run only in environments where local network inspection and outbound diagnostic traffic are approved, and disclose this behavior to users before deployment.
+
+## Reference(s):
+
+- [Network Monitor on ClawHub](https://clawhub.ai/bytesagain-lab/skills/network-monitor)
+- [GyulyVGC/sniffnet reference project](https://github.com/GyulyVGC/sniffnet)
+- [Publisher profile](https://clawhub.ai/user/bytesagain-lab)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output with concise diagnostic guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect local network metadata and may initiate outbound diagnostic requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

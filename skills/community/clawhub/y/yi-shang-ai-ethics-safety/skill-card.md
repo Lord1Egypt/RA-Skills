@@ -1,44 +1,57 @@
-## Description: <br>
-Provides local heuristic checks for AI ethics safety and authenticity, including alienation-pattern detection, value-alignment review, IIQ/EQ/IQ scoring, and AI personality-matrix guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI ethics audit helpers for authenticity monitoring, alienation-pattern detection, value-alignment checks, and 27-type personality matrix guidance based on Instinctual Integrity Quotient theory.
 
-## Publisher: <br>
-[zxfei420](https://clawhub.ai/user/zxfei420) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxfei420](https://clawhub.ai/user/zxfei420)
 
-## Use Case: <br>
-Developers, AI reviewers, and ethics teams use this skill to inspect AI outputs for authenticity, over-compliance, manipulation, value-alignment concerns, and personality/team-configuration patterns. It produces advisory assessments and audit-report material for human review rather than a validated enforcement layer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents heuristic checks as broad AI ethics monitoring and protection, which can overstate reliability. <br>
-Mitigation: Treat results as advisory signals, review findings manually, and validate them with domain-specific evaluations before relying on them for governance or enforcement. <br>
-Risk: Local reports or logs may contain the AI text being assessed, including confidential or sensitive content. <br>
-Mitigation: Use a controlled output directory and avoid processing confidential content unless local report and log storage is acceptable. <br>
+## Use Case:
 
+Developers and AI governance reviewers use this skill to inspect AI responses for authenticity, over-compliance, manipulation, KPI-driven behavior, and value-alignment signals before manual review.
 
-## Reference(s): <br>
-- [AI 树德 theory article](https://blog.csdn.net/Figo_Cheung/article/details/159044535) <br>
-- [theory.md](artifact/references/theory.md) <br>
-- [equality_measurement.md](artifact/references/equality_measurement.md) <br>
-- [personality_matrix.md](artifact/references/personality_matrix.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zxfei420/yi-shang-ai-ethics-safety) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples, shell commands, JSON configuration, and local audit-report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and may write reports to a caller-controlled local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release evidence and artifact metadata) <br>
+Risk: The skill may overstate safety-monitoring capability while relying on fragile heuristics and fixed or fail-open scores.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat its reports as review prompts, not automated approval decisions, and manually verify findings against the underlying AI output.
+
+Risk: Running a prototype ethics-audit aid directly in a host environment can create unnecessary dependency and file-output exposure.
+
+Mitigation: Review dependencies first, run the scripts in an isolated environment, and provide only intended text inputs and output directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxfei420/skills/yi-shang-ai-ethics-safety)
+- [AI 树德理论框架](artifact/references/theory.md)
+- [AI 三商测评指南](artifact/references/equality_measurement.md)
+- [AI 三商人格分类矩阵](artifact/references/personality_matrix.md)
+- [AI 树德论文](https://blog.csdn.net/Figo_Cheung/article/details/159044535)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports, Python helper code examples, and concise textual guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit report files can be written to a user-specified output directory.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

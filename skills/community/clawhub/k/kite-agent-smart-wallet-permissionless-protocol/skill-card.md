@@ -1,43 +1,61 @@
-## Description: <br>
-Create and manage modular, permissioned smart wallets for AI agents with session keys and spending limits on the Kite AI network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage modular, permissioned smart wallets for AI agents with session keys and spending limits on the Kite AI network.
 
-## Publisher: <br>
-[nihaovand](https://clawhub.ai/user/nihaovand) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nihaovand](https://clawhub.ai/user/nihaovand)
 
-## Use Case: <br>
-Developers building blockchain-enabled agents use this skill to understand wallet setup on Kite AI, including session keys, spending limits, deployed contract addresses, and network endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet actions and session-key examples can affect blockchain assets if used with real funds or broad permissions. <br>
-Mitigation: Use testnet first, decode each transaction before signing, keep session-key spending limits narrow, and revoke session keys when they are no longer needed. <br>
-Risk: Incorrect contract addresses or RPC endpoints can route users to unintended network interactions. <br>
-Mitigation: Verify contract addresses and RPC endpoints against official Kite sources before executing wallet operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nihaovand/kite-agent-smart-wallet-permissionless-protocol) <br>
-- [Kite AI Docs](https://docs.gokite.ai) <br>
-- [Biconomy Nexus](https://docs.biconomy.io/new/learn-about-biconomy/nexus) <br>
-- [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) <br>
-- [ERC-7579](https://eips.ethereum.org/EIPS/eip-7579) <br>
+## Use Case:
 
+Developers building AI-agent wallet workflows use this skill to generate guidance, code snippets, and configuration details for Kite smart wallets with session keys, spending limits, and modular wallet logic.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript examples and configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes contract addresses, chain IDs, RPC endpoints, explorer links, and wallet interaction examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet and session-key examples can authorize asset-affecting actions.
+
+Mitigation: Verify the chain ID and contract addresses, start on testnet or low-value accounts, and review each transaction before execution.
+
+Risk: Session keys may grant broader or longer-lived permissions than intended.
+
+Mitigation: Use narrow spending limits and allowed function selectors, set short session lifetimes when supported, and confirm the revocation path before use.
+
+Risk: Mainnet use can expose real funds to errors in configuration or copied snippets.
+
+Mitigation: Treat mainnet deployment as a separate review step with independent address verification and wallet-owner approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nihaovand/skills/kite-agent-smart-wallet-permissionless-protocol)
+- [Kite AI Docs](https://docs.gokite.ai)
+- [Biconomy Nexus](https://docs.biconomy.io/new/learn-about-biconomy/nexus)
+- [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337)
+- [ERC-7579](https://eips.ethereum.org/EIPS/eip-7579)
+- [Kite Testnet Explorer](https://testnet.kitescan.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript code snippets and network configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes smart contract addresses, chain IDs, RPC endpoints, and usage guidance for Kite testnet and mainnet.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact skill.json, and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

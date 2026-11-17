@@ -1,43 +1,53 @@
-## Description: <br>
-Contextstable helps stabilize long-form fiction and article continuation by extracting core settings, retrieving relevant context, building enhanced prompts, and checking consistency. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stabilizes context for long-form novel and article continuation by extracting core settings, retrieving relevant context, and checking consistency.
 
-## Publisher: <br>
-[yiyiyiba](https://clawhub.ai/user/yiyiyiba) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiyiyiba](https://clawhub.ai/user/yiyiyiba)
 
-## Use Case: <br>
-Developers and writers use this skill to support long-form story, article, and multi-turn text generation where character, plot, style, and world-building consistency need to be maintained across a large context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved sessions, exports, and caches can contain private manuscript or prompt content. <br>
-Mitigation: Use a private working directory, avoid shared machines for sensitive writing, and delete generated session, cache, and export files when they are no longer needed. <br>
-Risk: Dependency versions and downloaded embedding models can affect supply-chain and reproducibility risk. <br>
-Mitigation: Install in a virtual environment, pin and review dependency versions before serious use, and allow model downloads only from trusted sources. <br>
-Risk: Loading session or cache files from an untrusted source can expose the agent runtime to unsafe local data handling. <br>
-Mitigation: Only load session and cache files that were created in a trusted workspace. <br>
+## Use Case:
 
+External users and developers use this skill to help agents maintain continuity across long fiction, story continuation, long document generation, multi-turn dialogue, character settings, and worldbuilding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yiyiyiba/contextstable) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yiyiyiba) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Enhanced prompts, consistency reports, Python usage examples, and local text or JSON exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local session, cache, or export files when save, load, auto-save, or export features are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server release evidence) <br>
+Risk: Saved sessions, exports, and caches may contain private story drafts, prompts, or generated text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store outputs only in trusted locations, treat saved files as plaintext, and avoid loading persistent caches or sessions from untrusted sources.
+
+Risk: Dependency installation and first-run model downloads may introduce supply-chain or network exposure.
+
+Mitigation: Use an isolated virtual environment, pin and audit dependencies, and review network access before installation or first run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yiyiyiba/skills/contextstable)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Enhanced prompts, consistency-check results, Python usage snippets, and optional TXT or JSON story exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save session history, configuration, and embedding cache files when persistence APIs are used.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence; artifact frontmatter lists 0.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

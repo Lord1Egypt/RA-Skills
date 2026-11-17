@@ -1,49 +1,61 @@
-## Description: <br>
-NexLink connects Nextcloud, Microsoft Exchange, and YouTube so agents can work with email, calendars, tasks, contacts, files, document understanding, analytics, and transcript extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NexLink is an enterprise connector for Nextcloud, Microsoft Exchange, and YouTube that supports email, calendar, tasks, file management, document understanding, transcript extraction, contacts, analytics, security confirmations, and least-privilege defaults.
 
-## Publisher: <br>
-[asistent-alex](https://clawhub.ai/user/asistent-alex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asistent-alex](https://clawhub.ai/user/asistent-alex)
 
-## Use Case: <br>
-Employees, operators, and developers use this skill to manage Exchange mail, calendars, tasks, contacts, Nextcloud files, document workflows, and YouTube transcripts through a single agent interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live changes to email, calendars, tasks, contacts, and files. <br>
-Mitigation: Review commands before execution and require explicit human confirmation for mailbox switching, sending mail, public link creation, attachment downloads, and cross-user task actions. <br>
-Risk: Broad Exchange delegate or impersonation permissions could expose or modify data across users. <br>
-Mitigation: Use dedicated low-privilege service accounts and avoid broad delegate or impersonation rights. <br>
-Risk: Disabling TLS verification can weaken transport security. <br>
-Mitigation: Keep TLS verification enabled except for temporary, controlled exceptions. <br>
-Risk: File sharing and attachment workflows may expose business data. <br>
-Mitigation: Apply local allowlists and review public links, downloaded attachments, and file transfer destinations before execution. <br>
+## Use Case:
 
+Developers, operators, and team assistants use NexLink to connect Exchange, Nextcloud, and YouTube workflows for mail, calendar, task, file, contact, transcript, and document operations.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/asistent-alex/nexlink) <br>
-- [Publisher profile](https://clawhub.ai/user/asistent-alex) <br>
-- [Project homepage](https://firmade.ai) <br>
-- [Repository](https://github.com/asistent-alex/openclaw-nexlink) <br>
-- [Setup guide](references/setup.md) <br>
-- [Security best practices](references/security-best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, plain text, JSON-like command results, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May trigger live Exchange, Nextcloud, or YouTube operations depending on the invoked command and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.15.9 (source: server release evidence and skill frontmatter) <br>
+Risk: Exchange and Nextcloud credentials can grant broad access to mail, files, contacts, tasks, and calendars.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated least-privilege service accounts, scoped Nextcloud app passwords, and HTTPS endpoints for every deployment.
+
+Risk: Attachment downloads, public share links, and destructive file, contact, or task operations can affect or expose the wrong data if the target is not checked.
+
+Mitigation: Review exact targets before execution and use per-command confirmation bypasses only after the requested operation has been verified.
+
+Risk: Untrusted local configuration can redirect the connector or expose sensitive operational settings.
+
+Mitigation: Review local config files before use, keep secrets out of version control, and prefer managed secrets for credentials.
+
+## Reference(s):
+
+- [NexLink Setup Guide](artifact/references/setup.md)
+- [NexLink Security Best Practices](artifact/references/security-best-practices.md)
+- [NexLink ClawHub Listing](https://clawhub.ai/asistent-alex/skills/nexlink)
+- [Firma de AI Homepage](https://firmade.ai)
+- [NexLink Repository](https://github.com/asistent-alex/openclaw-nexlink)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, modify, download, upload, share, or delete data in connected Exchange and Nextcloud accounts when explicitly commanded.]
+
+## Skill Version(s):
+
+0.15.9 (source: frontmatter, changelog, clawhub metadata, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

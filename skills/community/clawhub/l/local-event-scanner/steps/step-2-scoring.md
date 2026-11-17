@@ -12,7 +12,7 @@ Evaluate candidate events against preferences, availability rules, date-window p
 ## Procedure
 
 1. Add `local-event-scanner-scoring` to the current run note's `Skills used` list before scoring work starts.
-2. Read the taste profile and scoring rubric.
+2. Read the `taste-profile.md` and `scoring-rubric.md`.
 3. Compare each event against fit, practicality, novelty, timing, price friction, and confidence.
 4. Apply hard dealbreakers from the taste profile before recommending an event.
 5. Apply date-window practicality from the scoring rubric: near-term scans should prefer shorter, cheaper, lower-friction events; farther-future scans may favor bigger commitments when fit is strong.
@@ -23,20 +23,10 @@ Evaluate candidate events against preferences, availability rules, date-window p
    - Skip for now
 7. Explain the reason in plain language.
 8. Mention missing details and uncertainty.
-9. Replace the run note's `Scored Candidates` placeholder with scored candidates or a concise scoring summary.
+9. Replace the run note's `Scored Candidates` placeholder with scored candidates.
 
 ## Output Shape
-
-```md
-## Event Title
-
-- Label:
-- Why it fits:
-- Caveats:
-- Next action:
-- Source:
-- Confidence:
-```
+According to the Required Explanation in `scoring-rubric.md`.
 
 ## Rule
 

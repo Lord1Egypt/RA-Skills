@@ -1,42 +1,55 @@
-## Description: <br>
-对银行卡图片 OCR，返回卡号、银行与卡类型等。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes bank-card images with OCR and returns the card number, bank name, card type, and bank identifier.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agents use this skill to recognize a bank card image and return card number, bank name, card type, and bank code through JisuAPI. It is intended for cases where the user is authorized to process the card image and needs a concise OCR result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided bank card images to JisuAPI for OCR, which is sensitive-data processing. <br>
-Mitigation: Use it only for cards the user is authorized to process, disclose the external API use, and avoid retaining card photos or full card numbers longer than necessary. <br>
-Risk: The JISU_API_KEY credential is required to call the provider API. <br>
-Mitigation: Store the key in the environment, restrict access to it, and avoid logging or sharing the key in prompts, outputs, or artifacts. <br>
+## Use Case:
 
+External users and developers use this skill to process authorized bank-card images and obtain OCR fields such as card number, bank name, card type, and bank code. It is suited for workflows where an agent can safely send the image to JisuAPI and handle the returned card data with appropriate privacy controls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jisuapi/bankcardcognition) <br>
-- [JisuAPI Bank Card Recognition Documentation](https://www.jisuapi.com/api/bankcardcognition/) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON result object or JSON error object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; accepts a local relative image path or base64 image content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Sensitive bank-card images and OCR results are sent to a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for cards the operator is authorized to process, review JisuAPI privacy and retention terms, and avoid storing full card numbers unless necessary.
+
+Risk: Path handling could upload an unintended local file.
+
+Mitigation: Run the skill from a narrow working folder containing only the intended image, avoid symlinks, and review the selected file path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/bankcardcognition)
+- [JisuAPI bank card recognition API documentation](https://www.jisuapi.com/api/bankcardcognition/)
+- [JisuAPI provider website](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON object containing recognized bank-card fields or structured error details, with natural-language guidance when used by an agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; accepts a local relative image path or raw base64 image content.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Give your AI agent eyes to see the entire internet by installing and configuring upstream access tools for social, video, code, RSS, and web sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Moss Skill-9 installs and configures upstream internet data tools for social platforms, video sites, GitHub, RSS, and web pages so an agent can call those tools directly.
 
-## Publisher: <br>
-[jiangwzh](https://clawhub.ai/user/jiangwzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jiangwzh](https://clawhub.ai/user/jiangwzh)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install, configure, check, and troubleshoot upstream platform tools for internet research and content access across Twitter/X, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu, Douyin, LinkedIn, Boss Zhipin, WeChat public articles, RSS, and general webpages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may request live browser cookies or extract local browser sessions for third-party platforms. <br>
-Mitigation: Use a dedicated browser profile or throwaway accounts, avoid pasting raw cookies into chat, and only enable browser-cookie extraction after reviewing and trusting the upstream tools. <br>
-Risk: The skill installs broad upstream tools that can access many external platforms. <br>
-Mitigation: Review installation commands and run health checks before use; install only the channels needed for the current workflow. <br>
-Risk: Some referenced upstream tools include social posting actions beyond setup and read-access workflows. <br>
-Mitigation: Do not enable publishing actions unless explicitly required and approved for the account or workspace being used. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jiangwzh/moss-skill-9) <br>
-- [Agent Reach upstream installer archive](https://github.com/Panniantong/agent-reach/archive/main.zip) <br>
-- [Cookie-Editor Chrome Web Store listing](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) <br>
+## Use Case:
 
+Developers and external agent users use this skill to install, check, and configure platform access channels, then run upstream tools for web, social, video, repository, job, and feed retrieval tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell, Python, curl, and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May instruct agents to install upstream tools, configure cookies or proxies, run health checks, and call external platform tools directly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to install unverified remote tooling with broad local tool access.
+
+Mitigation: Install only after reviewing the upstream repository, prefer pinned or audited releases, and run commands in a constrained environment.
+
+Risk: The skill may require live account cookies or proxy credentials for platform access.
+
+Mitigation: Do not paste personal cookies or proxy passwords into agent chat; use dedicated low-privilege accounts and verify exactly what credentials will be stored.
+
+Risk: Cookie-based access can expose accounts or trigger platform account enforcement.
+
+Mitigation: Use dedicated accounts where possible and avoid storing sensitive cookies beyond the minimum needed for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangwzh/skills/moss-skill-9)
+- [Publisher profile](https://clawhub.ai/user/jiangwzh)
+- [agent-reach installation archive](https://github.com/Panniantong/agent-reach/archive/main.zip)
+- [Cookie-Editor browser extension](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific commands and configuration guidance for upstream tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

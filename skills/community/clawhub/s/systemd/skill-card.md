@@ -1,39 +1,54 @@
-## Description: <br>
-Systemd reference tool. Use when working with systemd in sysops contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Systemd reference tool. Use when working with systemd in sysops contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and sysops practitioners use this skill for quick systemd reference material, troubleshooting checklists, and operational guidance prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review says the skill's systemd guidance is mostly generic placeholder text and could mislead users expecting operationally accurate systemd help. <br>
-Mitigation: Review generated guidance against trusted systemd documentation before using it for production operations. <br>
+## Use Case:
 
+Developers, system administrators, and sysops practitioners use this skill for quick systemd reference material, troubleshooting checklists, and operational guidance prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/systemd) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credential or external tool requirements were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and skill frontmatter) <br>
+Risk: The reference content is generic and may be incomplete or misleading for real systemd operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a quick checklist only and verify operational decisions against official systemd, systemctl, and journalctl documentation.
+
+Risk: Operational guidance may not fit a specific production host or service configuration.
+
+Mitigation: Review commands and configuration changes before execution, test in a non-production environment, and keep backups and rollback plans for service changes.
+
+## Reference(s):
+
+- [Systemd on ClawHub](https://clawhub.ai/ckchzh/skills/systemd)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reference text with shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output selected by command.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

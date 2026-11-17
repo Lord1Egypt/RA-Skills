@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Grafana Cloud"
   author: "OOMOL"
-  version: "1.0.0"
+  version: "1.0.4"
   services: ["grafana_cloud"]
   icon: "https://static.oomol.com/logo/third-party/grafana_cloud.svg"
 ---
@@ -40,7 +40,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_billed_usage` — Get Grafana Cloud billed usage for the connected organization by month.
 - `get_stack_connectivity` — Get private connectivity information for a Grafana Cloud stack.
 - `list_regions` — List Grafana Cloud stack regions that can host Grafana Cloud stacks.
-- `list_stacks` — List Grafana Cloud stacks in the connected organization.
+- `list_stacks` — List every Grafana Cloud stack in the connected organization in one response.
 
 ## Safety
 
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Grafana Cloud is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=grafana_cloud
+  https://console.oomol.com/connections/grafana_cloud
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Grafana Cloud homepage: https://grafana.com/products/cloud/
+- API documentation: https://grafana.com/docs/grafana-cloud/developer-resources/api-reference/cloud-api/

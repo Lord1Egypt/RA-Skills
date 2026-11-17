@@ -1,42 +1,54 @@
-## Description: <br>
-Advanced JavaScript web page renderer using ScrapingBee API. Extracts main content and returns clean Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced JavaScript web page renderer using the ScrapingBee API that extracts main content and returns clean Markdown.
 
-## Publisher: <br>
-[flobo3](https://clawhub.ai/user/flobo3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flobo3](https://clawhub.ai/user/flobo3)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch JavaScript-heavy web pages through ScrapingBee and return the extracted page title and relevant body text as clean Markdown for analysis or summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested URLs are sent to ScrapingBee as a third-party processor. <br>
-Mitigation: Use only for URLs whose data flow is approved, and avoid private, internal, token-bearing, or sensitive research URLs unless that processing is authorized. <br>
-Risk: The skill depends on a ScrapingBee API key. <br>
-Mitigation: Keep SCRAPINGBEE_API_KEY out of source control and provide it through the runtime environment or an approved secrets mechanism. <br>
+## Use Case:
 
+Developers and external users use this skill to fetch JavaScript-heavy web pages through ScrapingBee and return extracted page title and body text as Markdown for LLM reading or data extraction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/flobo3/scrapingbee-fetch) <br>
-- [ScrapingBee](https://www.scrapingbee.com/) <br>
-- [ScrapingBee dashboard](https://dashboard.scrapingbee.com/dashboard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCRAPINGBEE_API_KEY and sends requested URLs to ScrapingBee for fetching and rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Requested URLs, rendering parameters, the ScrapingBee API key, and returned page content are sent through ScrapingBee.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for approved public or non-sensitive URLs; avoid private intranet pages, authenticated pages, or URLs containing tokens unless that transfer is approved.
+
+Risk: The security evidence notes unpinned Python dependencies.
+
+Mitigation: Pin dependencies or run the skill in a controlled environment before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flobo3/skills/scrapingbee-fetch)
+- [ScrapingBee](https://www.scrapingbee.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCRAPINGBEE_API_KEY; output contains the extracted title and relevant body text from the requested URL.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-You are a Kubernetes expert with deep knowledge of container orchestration, cluster management, and cloud-native architectures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Kubernetes expertise for cluster architecture, workload orchestration, service mesh management, custom resource definitions, Helm charts, security, performance, and troubleshooting.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to design Kubernetes manifests, Helm configurations, security controls, monitoring setups, troubleshooting steps, and operational runbooks for cloud-native workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Kubernetes manifests or commands can affect live cluster resources if applied without review. <br>
-Mitigation: Review and adapt all manifests and commands for the target namespace, cluster policy, and operational context before applying them. <br>
-Risk: Powerful RBAC examples and secret-inspection commands may expose sensitive data or grant broader access than needed. <br>
-Mitigation: Prefer least-privilege Role and RoleBinding resources over cluster-wide grants, and avoid listing or describing Secrets unless there is a specific authorized operational need. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to draft, review, and troubleshoot Kubernetes manifests, Helm charts, RBAC policies, service and ingress configurations, monitoring setup, and operational runbooks.
 
-## Reference(s): <br>
-- [Kubernetes Expert Code Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML, Go, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Kubernetes manifests, Helm chart snippets, security configuration, monitoring and alerting setup guidance, troubleshooting guides, and operational runbooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated Kubernetes manifests or examples could grant overly broad cluster access to secrets and workloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review manifests before use and replace cluster-wide RBAC with namespace-scoped least-privilege roles.
+
+Risk: Troubleshooting guidance could encourage listing or inspecting secrets without proper authorization.
+
+Mitigation: Avoid listing or describing secrets unless explicitly authorized and operationally necessary.
+
+Risk: Example infrastructure dependencies and observability endpoints could be deployed with weak defaults.
+
+Mitigation: Enable Redis authentication, pin Helm dependencies, and expose monitoring endpoints only inside trusted observability environments.
+
+## Reference(s):
+
+- [Kubernetes Expert Code Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-kubernetes-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML, Go, and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Kubernetes manifests, Helm configuration, security configuration, monitoring setup, troubleshooting guides, and operational runbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

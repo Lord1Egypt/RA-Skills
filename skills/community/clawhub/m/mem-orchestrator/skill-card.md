@@ -1,49 +1,64 @@
-## Description: <br>
-Layered memory orchestration for OpenClaw conversations that helps implement or maintain systems for domain classification, preference and decision capture, long-term knowledge objects, summary-first recall, and periodic memory reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Orchestrator helps agents implement a layered, white-box memory system for classifying user input, capturing durable preferences and decisions, recalling relevant topic and object summaries, and reflecting on stored memory over time.
 
-## Publisher: <br>
-[jl1914](https://clawhub.ai/user/jl1914) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jl1914](https://clawhub.ai/user/jl1914)
 
-## Use Case: <br>
-Developers and engineers use this skill to build or maintain an inspectable local memory system for OpenClaw conversations, including memory gating, classification, capture, summary-first recall, and periodic reflection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation-derived preferences, decisions, and background facts in local memory files. <br>
-Mitigation: Use a dedicated MEMORY_ROOT, review the memory directory periodically, and avoid automatic capture of secrets or highly sensitive personal data without deletion, retention, and redaction controls. <br>
-Risk: Memory files are read from and written to the workspace, so an incorrect storage path can mix project data with long-term memory state. <br>
-Mitigation: Set MEMORY_ROOT explicitly to a scoped directory before enabling capture, recall, or reflection workflows. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add local, inspectable memory workflows to OpenClaw-style conversations. It supports gated memory capture, summary-first recall, durable topic and object records, and periodic reflection without loading all history on every turn.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Architecture](ARCHITECTURE.md) <br>
-- [Examples](EXAMPLES.md) <br>
-- [Roadmap](ROADMAP.md) <br>
-- [File Layout](references/file-layout.md) <br>
-- [Object Models](references/object-models.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Reflection](references/reflection.md) <br>
-- [Retrieval Strategy](references/retrieval-strategy.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/jl1914/mem-orchestrator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, shell commands, Python scripts, YAML memory files, Markdown logs, and compact JSON recall payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local workspace files for memory state and supports MEMORY_ROOT to point storage at a dedicated directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can persist broad conversation text into local memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a clearly scoped memory directory, avoid capturing sensitive data, and require operator review for memory-worthy events before durable storage.
+
+Risk: CLI path traversal bugs can write YAML files outside the intended memory folders.
+
+Mitigation: Validate and normalize slugs and object types before writing files, and reject paths that resolve outside the configured memory root.
+
+Risk: Memory records may accumulate stale, duplicate, or incorrect preferences and decisions.
+
+Mitigation: Add review, correction, deletion, and reflection workflows so stored memory can be inspected and maintained over time.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jl1914/skills/mem-orchestrator)
+- [File Layout](references/file-layout.md)
+- [Retrieval Strategy](references/retrieval-strategy.md)
+- [Reflection](references/reflection.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [Object Models](references/object-models.md)
+- [Architecture](ARCHITECTURE.md)
+- [Examples](EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON, YAML, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local memory files and compact JSON recall payloads when its helper scripts are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

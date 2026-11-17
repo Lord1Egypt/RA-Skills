@@ -1,0 +1,44 @@
+{
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "HSS ListHostStatus 主机防护列表 (read-only)",
+      "command": "hcloud HSS ListHostStatus --cli-region={region} --limit=10 --offset=0",
+      "expected": "JSON total_num + data_list of protected hosts or error envelope",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "HSS host list filtered by agent status online (read-only)",
+      "command": "hcloud HSS ListHostStatus --cli-region={region} --agent_status=online --limit=10",
+      "expected": "JSON host list filtered by agent status",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "own-script smoke: list_hss.py --help",
+      "command": "python3 $PWD/scripts/list_hss.py --help",
+      "expected": "usage text",
+      "type": "syntax",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-04",
+      "name": "own-script syntax: ensure_cli.sh",
+      "command": "bash -n $PWD/scripts/ensure_cli.sh",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "own-script syntax: install_cli.sh",
+      "command": "bash -n $PWD/scripts/install_cli.sh",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ]
+}

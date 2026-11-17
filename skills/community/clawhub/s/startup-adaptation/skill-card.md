@@ -1,40 +1,54 @@
-## Description: <br>
-Analyzes Western startups with proven product-market fit and adapts MVP launch plans for the Russian market considering sanctions, local regulations, competitors, and replacement technologies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes western startups with proven product-market fit and adapts promising MVP opportunities for the Russian market.
 
-## Publisher: <br>
-[reactlab23](https://clawhub.ai/user/reactlab23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reactlab23](https://clawhub.ai/user/reactlab23)
 
-## Use Case: <br>
-Developers, founders, and market researchers use this skill to screen startup candidates for adaptation to Russia, classify fit with a staged verifier, identify local alternatives to blocked technologies, and produce MVP roadmaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Russia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Startup ideas, business plans, customer details, or proprietary strategy may be sent to a named third-party API or retained in working memory during market research. <br>
-Mitigation: Avoid submitting trade secrets, unreleased plans, customer data, or regulated information unless the data flows and legal or compliance implications have been reviewed. <br>
-Risk: The skill can propose payment, hosting, sanctions, and market-entry choices for the Russian market that may have legal or compliance consequences. <br>
-Mitigation: Have a qualified reviewer validate sanctions, payments, hosting, and regulatory assumptions before acting on a generated MVP plan. <br>
+## Use Case:
 
+Startup operators, founders, and product strategists use this skill to screen foreign startup ideas, evaluate Russian-market barriers and competitors, and produce a practical MVP roadmap with candidate libraries and infrastructure choices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/reactlab23/startup-adaptation) <br>
+### Deployment Geography for Use:
 
+Russia
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured analysis sections, verification tables, library lists, and MVP roadmap templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed third-party API requests and market-research findings that should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Startup idea descriptions may be sent to a named third-party API during candidate validation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact confidential details or skip the API step when evaluating sensitive ideas.
+
+Risk: Candidate details may be saved in agent memory without clear consent or retention controls.
+
+Mitigation: Get explicit approval before writing candidate details to memory and avoid storing sensitive information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/reactlab23/skills/startup-adaptation)
+- [idea-reality-mcp API endpoint](https://idea-reality-mcp.onrender.com/api/check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Structured Markdown with tables, lists, JSON request examples, library recommendations, and MVP roadmap sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market-screening scores, competitor checks, API response summaries, and candidate risk labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

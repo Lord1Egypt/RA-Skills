@@ -10,13 +10,14 @@
       "brandGuidelinesEnabled 省略时网关默认 true（Google v21+）；品牌在 Campaign 级 brandAssets[]，首个 AG 不含 Logo/商家名",
       "改已上线品牌：先 pmax-get 看 _brandGuidelinesActive；true 用 pmax-brand-assets-edit，false 用 pmax-assets-update 或 pmax-brand-guidelines-enable",
       "本地视频：填 videoPath（或别名 video）；创建后 CLI 自动 PyAPI 上传并链接，与 --json-out 无关",
-      "提交前：ad pmax-validate → 用户确认 → ad pmax-create",
+      "提交前：ad pmax-validate → 写代码从 JSON 投影完整审查稿 → 用户确认 → ad pmax-create",
       "campaignExtensions 默认必填：宣传信息≥20、结构化摘要≥20、站内链接≥6、leadForm、businessMessage",
       "文案门禁：headlines 15、longHeadlines 5（Google 上限须填满）、descriptions 5",
       "勿用 Search 的 ExtensionsForBatchJob；PMax 用 campaignExtensions（CLI 会尝试自动转换 CALLOUT/SNIPPET）",
       "Lead Gen/B2B 询盘方案：默认保留 campaignExtensions.leadForm（勿只写 callouts/snippets）；用户明确不要表单才删 leadForm",
-      "方案 Markdown 须单列「潜在客户表单」节（标题/描述/字段/privacyPolicyUrl）；与 JSON 一致",
-      "不需要任何附加资产时设 skipCampaignExtensions: true（勿仅删除 campaignExtensions 块）"
+      "审查稿须单列「潜在客户表单」节（标题/描述/字段/privacyPolicyUrl）；结构见 google-ads-pmax-launch-plan-template.md",
+      "不需要任何附加资产时设 skipCampaignExtensions: true（勿仅删除 campaignExtensions 块）",
+      "创建失败：只有 400 且编号变多时，才把非空 budgetId / campaignId / assetGroupId 写回本 JSON 再跑一次，内容不改。首次创建不填。已经 200 只是扩展失败就不要再 pmax-create"
     ]
   },
 

@@ -1,40 +1,48 @@
-## Description: <br>
-生成中文销售沟通话术，覆盖场景化脚本、异议处理、FAB 转化和风格改写。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成销售场景话术，覆盖场景化脚本、异议处理、FAB转化和风格模仿。
 
-## Publisher: <br>
-[nycxk](https://clawhub.ai/user/nycxk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[nycxk](https://clawhub.ai/user/nycxk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales and customer-facing teams use this skill to draft copy-ready Simplified Chinese sales scripts, objection responses, FAB benefit translations, and style rewrites for phone, in-person, and WeChat conversations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated sales scripts or closing language could be used in a misleading or overly pressuring way.
+
+Mitigation: Review outputs for truthful claims, clearly labeled examples, respectful customer choice, and alignment with the user's actual product evidence before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External sales, business development, and marketing users can use this skill to draft ready-to-send Chinese sales scripts, handle common objections, convert product features into customer benefits, and rewrite copy in a requested style. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persuasive sales copy may include unsupported claims, overstated benefits, or unverified examples if the user provides incomplete product facts. <br>
-Mitigation: Review generated scripts for accuracy, remove unsupported claims, and label any illustrative examples as examples before use. <br>
-Risk: Sales prompts can accidentally include unnecessary personal customer data. <br>
-Mitigation: Provide only the minimum customer context needed for the conversation and avoid names, contact details, or other unnecessary identifiers. <br>
+**Output Format:** [Markdown with Simplified Chinese sales scripts, replaceable variables, and optional variants]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nycxk/top-salesperson) <br>
+**Other Properties Related to Output:** [Outputs are intended to be directly copied or read aloud, with prompts for missing product, customer, channel, stage, selling point, objection, and style details when needed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to Simplified Chinese and provides directly usable wording, replaceable variables, and optional refinement variants.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,91 @@
+part: CC2340R5
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: TI CC2340R SimpleLink 2.4 GHz Wireless MCU (BLE 5.4 + Zigbee + Thread + proprietary)
+main_page: https://www.ti.com/product/CC2340R5
+datasheet_path_expected: datasheets/cc2340r5.pdf
+datasheet_source_url: https://www.ti.com/lit/ds/symlink/cc2340r5.pdf
+created_at: '2026-06-30T09:43:00+08:00'
+specs:
+  family: CC2340R SimpleLink 2.4 GHz Wireless MCUs
+  cores:
+  - Arm Cortex-M0+ @ up to 48 MHz optimized
+  memory:
+    flash: 512 KB in-system programmable
+    rom: 12 KB (bootloader + drivers)
+    sram: 36 or 64 KB (full retention in standby)
+  wireless:
+    protocols:
+    - Bluetooth LE 5.4 (qualified; LE 2M, LE Coded, Periodic Adv, Ext Adv, LE Secure Connections)
+    - Zigbee (R23 plan, Zigbee 3.0)
+    - Thread 1.x
+    - Proprietary 2.4 GHz
+  radio:
+    tx_power_max_dbm: 8
+    rx_sensitivity_dbm:
+      ble_coded_125kbps: -102
+      ble_1m: -96.5
+      ieee_802_15_4: -98
+    integrated_balun: true
+    ota_upgrade: true
+  power:
+    mcu_active_coremark_ma: 2.6
+    mcu_running_coremark_ua_per_mhz: 53
+    standby_na_max: 710
+    shutdown_na: 165
+    radio_rx_ma: 5.3
+    radio_tx_0dbm_ma: 5.1
+    radio_tx_8dbm_ma: 11.0
+  peripherals:
+    gpio_pads: up to 26 (22 DIOs, SWD/LFXT muxed)
+    timers: 3x 16-bit + 1x 24-bit (quadrature decode + IR generation)
+    adc: 12-bit (1.2 Msps external ref, 267 ksps int ref, up to 12 ext inputs)
+    comparator: 1x low-power
+    uart: 1
+    spi: 1
+    i2c: 1
+    rtc: true
+    temperature_monitor: integrated
+    battery_monitor: integrated
+    watchdog: true
+  security:
+    crypto: AES 128-bit accelerator
+    rng: True Random Number Generator
+  operating_temp_c_min: -40
+  operating_temp_c_max: 125
+  package_options:
+  - "DSBGA YBG (28 pins, 2.806x1.606 mm, 4.5064 mm\xB2)"
+  - "VQFN RGE (24 pins, 4x4 mm, 16 mm\xB2)"
+  - "VQFN RKP (40 pins, 5x5 mm, 25 mm\xB2)"
+  family_members:
+  - part: CC2340R5
+    notes: flagship 512 KB flash
+  - part: CC2340R52
+    notes: lower-power standby variant
+  - part: CC2340R53
+    notes: higher TX power/variant
+  - part: CC2340R53P
+    notes: P suffix (different pinout / software package)
+  os_support:
+  - FreeRTOS
+  - Zephyr RTOS
+  regulatory_compliance:
+  - EN 300 328 (Europe)
+  - FCC CFR47 Part 15
+  - ARIB STD-T66 (Japan)
+unverified:
+- exact supply voltage range
+- exact flash endurance / retention
+- AES accelerator API/surface
+notes:
+- "Promoted on 2026-06-30 from previously-empty region in TI yaml set \u2014 extracted from ti.com/product/CC2340R5 product\
+  \ page via Firecrawl (251,842 bytes raw)."
+- 'Family replacement: CC2340R5 succeeds CC2642/CC2640R2 in BLE-only cost-sensitive designs (cost-down program).'
+- 'Cross-reference: Comparable to Nordic nRF52 (predecessor family), Espressif ESP32-C6.'
+- 'Use case: BLE beacon, BLE sensor, BLE CGM (continuous glucose monitor), home fitness machine, 2.4 GHz proprietary sensor.'
+- 'Verified 2026-07-01 via pdfplumber against cc2340r5.pdf: 25/26 spec fields matched (96%). Source: ti.com/lit/ds/symlink/<pn>.pdf
+  (vendor-direct download, no auth required).'
+extracted_at: '2026-06-30T09:43:00+08:00'
+extraction_method: firecrawl-extract (keyed) of ti.com product page markdown + manual enrich
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/CC2340R-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/TI/firecrawl-snapshots/CC2340R-family_raw.md
+extraction_credits_used: 1

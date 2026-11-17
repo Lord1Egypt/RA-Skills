@@ -1,42 +1,55 @@
-## Description: <br>
-Let agents control software, including Adobe Photoshop, Illustrator, After Effects, Premiere, Autodesk 3DS Max, Blender, Unity, Houdini, and Microsoft Office. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Let agents control software, including Adobe Photoshop, Illustrator, After Effects, Premiere, Autodesk 3DS Max, Blender, Unity, Houdini, and Microsoft Office.
 
-## Publisher: <br>
-[sfkislev](https://clawhub.ai/user/sfkislev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sfkislev](https://clawhub.ai/user/sfkislev)
 
-## Use Case: <br>
-Developers and agent users use Flue when a user asks for bounded inspection or edits inside supported desktop applications, including creative, 3D, game-development, and Office workflows. The skill is intended for user-directed automation in a specific requested application, not unattended background changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can control live creative, 3D, and Office desktop applications when the user allows it. <br>
-Mitigation: Confirm the target application, file or project, and whether the requested action is read-only or allowed to edit before using Flue. <br>
-Risk: Automation can modify important local files or active projects. <br>
-Mitigation: Work on copies for important files, prefer small inspectable steps, and avoid destructive actions unless the user explicitly requested them. <br>
-Risk: Installation or setup changes the local environment. <br>
-Mitigation: Install or run setup only after explicit approval in the current session. <br>
+## Use Case:
 
+External users and developers use Flue to let an agent inspect live state and make bounded, user-directed edits inside supported desktop applications. It is intended for creative, technical, game-development, and office-document workflows where the user has explicitly requested work in a specific application.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sfkislev/flue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, app-specific code snippets, and JSON result expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide an agent to send small app-specific scripts through Flue bridge commands and interpret structured JSON returned by desktop application runtimes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.18 (source: server release evidence) <br>
+Risk: Flue can execute user-provided scripts inside professional desktop applications, so unintended or destructive changes could affect open documents, scenes, or projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Flue only for explicit, user-requested tasks in a specific application, prefer small inspectable steps, and avoid destructive actions unless the user approves them.
+
+Risk: Installation and setup add desktop application integrations on the user's machine.
+
+Mitigation: Inspect the linked Flue project first, pin a reviewed version or use isolation when appropriate, and run installation or setup only after explicit current-session approval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sfkislev/skills/flue)
+- [Flue GitHub Project](https://github.com/SFKislev/flue)
+- [Flue on PyPI](https://pypi.org/project/flue)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and code examples; bridge results are structured JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user approval before installation, setup, or destructive desktop-application actions.]
+
+## Skill Version(s):
+
+1.0.18 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

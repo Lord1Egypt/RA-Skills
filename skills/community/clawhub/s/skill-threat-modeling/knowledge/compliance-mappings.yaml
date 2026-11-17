@@ -153,7 +153,7 @@ frameworks:
     name: "NIST AI Risk Management Framework"
     version: "1.0"
     category: ai_governance
-    url: "https://www.nist.gov/itl/ai-risk-management-framework"
+    url: "https://www.nist.gov/itl/ai-riREDACTED-SECRET"
 
   # AI Security Technical Frameworks
   owasp_llm:

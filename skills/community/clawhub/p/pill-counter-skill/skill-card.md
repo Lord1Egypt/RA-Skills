@@ -1,40 +1,58 @@
-## Description: <br>
-Pill Counter Skill counts pills from images using a local OpenCV mode by default and an optional MiMo V2 Omni AI mode when an API key is configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pill Counter Skill counts pills from images using local OpenCV or optional MiMo V2 Omni AI, classifies 13 pill shapes, and can produce text, JSON, CSV, and annotated-image outputs.
 
-## Publisher: <br>
-[johnsonxuan](https://clawhub.ai/user/johnsonxuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsonxuan](https://clawhub.ai/user/johnsonxuan)
 
-## Use Case: <br>
-External users and developers use this skill to count and classify pills in an image, generate a statistics table, and optionally save annotated image or CSV outputs. The local OpenCV path is suitable for regular pill layouts, while the optional AI mode can be used for more complex scenes when sharing the selected image with the MiMo API is acceptable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI mode uploads the selected pill image to Xiaomi MiMo, which may disclose medical details and consume paid API quota. <br>
-Mitigation: Use the default local OpenCV mode for sensitive images, and enable --ai only when the user accepts the privacy and cost implications. <br>
-Risk: OpenCV mode may miss pills in overlapping or complex scenes. <br>
-Mitigation: Review the generated counts and annotated image, and consider AI mode only when the image can be shared with the configured provider. <br>
+## Use Case:
 
+External users and developers use this skill to count and classify pills in image files, with a local OpenCV path for offline use and an optional AI path for more complex images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnsonxuan/pill-counter-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Command-line output as a text table or JSON, with optional CSV statistics and annotated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OpenCV mode runs locally by default; AI mode requires a configured MiMo API key and may use paid quota.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.0 (source: server release metadata; artifact frontmatter reports 4.0.0) <br>
+Risk: AI mode can upload medication photos to Xiaomi MiMo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local OpenCV mode for sensitive medication photos unless external image processing is acceptable.
+
+Risk: File handling is broader than the declared pill-counter workspace scope and output paths can overwrite files.
+
+Mitigation: Run the skill only on files inside the declared pill-counter workspace and choose output paths that do not replace important files.
+
+Risk: Pill counts can be inaccurate for overlapping or complex images.
+
+Mitigation: Review the generated count, CSV report, and annotated image before using the result for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsonxuan/skills/pill-counter-skill)
+- [Xiaomi MiMo chat completions API endpoint](https://api.xiaomimimo.com/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, code, shell commands, configuration, files]
+
+**Output Format:** [Terminal text or JSON, with optional CSV report and annotated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script accepts an image path, optional AI mode, optional JSON output, and optional CSV or annotated-image output paths.]
+
+## Skill Version(s):
+
+4.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

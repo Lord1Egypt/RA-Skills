@@ -1,46 +1,61 @@
-## Description: <br>
-This skill helps users monitor cryptocurrency prices, set threshold and percent-change alerts, and generate informational market reports from public market data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks cryptocurrency prices, helps set threshold or percentage-change alerts, and generates market reports for BTC, ETH, SOL, and meme coins without placing trades.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External users and developers use this skill to check cryptocurrency prices, configure local alert rules, and produce concise market summaries. It is for monitoring and informational reporting only; it does not execute trades, manage wallets, perform DeFi actions, or provide investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public crypto-price APIs can be unavailable, rate limited, delayed, or inconsistent across data sources. <br>
-Mitigation: Treat returned prices and reports as informational, verify important values against a trusted source, and avoid using the skill output as an automated trading signal. <br>
-Risk: Alert rules are saved locally and may expose monitored assets, target prices, or user intent on the local machine. <br>
-Mitigation: Review local alert storage before sharing the workspace or machine, and avoid placing sensitive personal or account information in alert labels or parameters. <br>
-Risk: Market report wording may be interpreted as operation or investment advice. <br>
-Mitigation: Keep market summaries informational, preserve the no-investment-advice framing, and require human review before acting on any market report. <br>
+## Use Case:
 
+External users and agent operators use this skill to check cryptocurrency market prices, configure local alert rules, and produce concise market summaries. It is for informational monitoring only, not trade execution, DeFi operations, wallet management, or investment advice.
 
-## Reference(s): <br>
-- [Detailed skill reference](artifact/references/details.md) <br>
-- [ClawHub release page](https://clawhub.ai/qqyougitcom/mimo-crypto-monitor) <br>
-- [CoinGecko price API referenced by artifact](https://api.coingecko.com/api/v3/simple/price) <br>
-- [CoinCap assets API referenced by artifact](https://api.coincap.io/v2/assets) <br>
-- [Binance ticker API referenced by artifact](https://api.binance.com/api/v3/ticker/price) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style price summaries, alert confirmations, market reports, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include current prices, 24-hour percentage changes, volume figures, data source labels, update timestamps, alert IDs, and local alert configuration details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata; artifact frontmatter lists 1.3.0) <br>
+Risk: Market reports, risk notes, and operation-advice wording could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational only, avoid treating them as investment recommendations, and independently verify market decisions.
+
+Risk: Configured alerts may not fire unless a monitoring process is actually running.
+
+Mitigation: Confirm the alert monitor is active and test alert delivery before relying on it.
+
+Risk: Public market APIs can fail, rate-limit, or return stale or inconsistent prices.
+
+Mitigation: Cross-check important prices against multiple sources and handle API failures or delays explicitly.
+
+## Reference(s):
+
+- [Detailed crypto monitoring reference](references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-crypto-monitor)
+- [Binance ticker price API](https://api.binance.com/api/v3/ticker/price)
+- [CoinGecko simple price API](https://api.coingecko.com/api/v3/simple/price)
+- [CoinCap assets API](https://api.coincap.io/v2/assets)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text with optional Python and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save alert configuration locally and may query public cryptocurrency market APIs.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter says 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

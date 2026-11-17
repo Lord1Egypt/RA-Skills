@@ -12,6 +12,7 @@ List all templates.
 | `--external-id <value>` | Filter by external ID |
 | `--archived` | Get only archived templates |
 | `--active` | Get only active templates |
+| `--shared` | List templates shared with test mode |
 | `-l, --limit <value>` | Number of results (default 10, max 100) |
 | `--after <value>` | Pagination cursor — pass `pagination.next` from previous response |
 | `--before <value>` | Pagination end cursor |

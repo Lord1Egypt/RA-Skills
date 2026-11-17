@@ -1,40 +1,58 @@
-## Description: <br>
-Track, categorize, and analyze personal expenses from receipts, bank statements, manual entries, CSV imports, budgets, and spending reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track, categorize, and analyze personal expenses from receipt scans, manual entries, CSV imports, budgets, and spending reports.
 
-## Publisher: <br>
-[eternal0404](https://clawhub.ai/user/eternal0404) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eternal0404](https://clawhub.ai/user/eternal0404)
 
-## Use Case: <br>
-External users and agents use this skill to log personal or business expenses, scan receipts, import bank-statement CSVs, set budgets, and produce spending reports. It is intended for local expense tracking where users are comfortable storing financial records on their own machine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Receipt and bank-statement-derived transaction data can include sensitive financial records stored locally under ~/.expense-tracker/ or exported CSV files. <br>
-Mitigation: Protect that local directory and exported CSVs as private financial records, import only needed fields, and delete or secure files when they are no longer needed. <br>
-Risk: Receipt OCR and CSV column mapping can create incorrect transaction records or categories. <br>
-Mitigation: Review scanned and imported transactions before relying on reports or budget summaries. <br>
+## Use Case:
 
+External users use this skill to maintain a local personal or business expense ledger, scan receipts, import bank statement CSVs, track budgets, and generate spending reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eternal0404/eternal-expense-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Files] <br>
-**Output Format:** [Markdown guidance with inline bash commands; local outputs include terminal reports plus JSON and CSV files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores transactions, budgets, and categories under ~/.expense-tracker/ and can export transaction data to CSV.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Local storage of financial transaction, receipt, merchant, and imported bank-statement data can expose sensitive personal finance information on shared systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private machine or account and protect the ~/.expense-tracker/ directory according to the sensitivity of the stored records.
+
+Risk: CSV exports can contain sensitive expense records and may be redistributed or opened in tools with unsafe spreadsheet behavior.
+
+Mitigation: Review exported CSVs before opening, sharing, or importing them into other systems.
+
+Risk: Receipt OCR relies on optional local dependencies and may extract or categorize items incorrectly.
+
+Mitigation: Review scanned receipt results and category assignments before relying on reports or budgets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eternal0404/skills/eternal-expense-tracker)
+- [Publisher profile](https://clawhub.ai/user/eternal0404)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; local JSON data and CSV exports when commands are run]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores transaction, budget, and category data locally under ~/.expense-tracker/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

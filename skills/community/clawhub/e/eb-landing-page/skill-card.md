@@ -1,41 +1,50 @@
-## Description: <br>
-Build high-conversion landing pages for conversion-focused pages such as waitlists, launch pages, product pages, hero sections, and CTA-driven signup pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build high-conversion landing pages with conversion-focused copy, page structure, and implementation guidance.
 
-## Publisher: <br>
-[emersonbraun](https://clawhub.ai/user/emersonbraun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emersonbraun](https://clawhub.ai/user/emersonbraun)
 
-## Use Case: <br>
-Developers, founders, and marketing teams use this skill to plan, write, and implement landing pages that convert visitors into signups or customers. It helps structure copy, social proof, CTAs, technical implementation, and a final conversion checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated landing pages may contain unsupported claims, testimonials, pricing, analytics snippets, or urgency language. <br>
-Mitigation: Review all generated page content and snippets before publishing; verify claims, testimonial permissions, pricing accuracy, analytics behavior, and any urgency or scarcity statements. <br>
-Risk: The broad activation wording may trigger this skill for some general product-page or hero-section requests. <br>
-Mitigation: Confirm the user wants conversion-focused landing-page structure and copy before applying the full landing-page workflow. <br>
+## Use Case:
 
+Developers, marketers, and founders use this skill to produce copy-first landing page plans and implementation-ready page code for signup, waitlist, product, and launch pages.
 
-## Reference(s): <br>
-- [Conversion Patterns Reference](references/conversion-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/emersonbraun/eb-landing-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with copy sections, checklist items, and code blocks when implementation is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Next.js, Tailwind, shadcn/ui, SEO, analytics-event, and schema-markup guidance based on the requested landing page.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated landing-page copy can include claims, testimonials, urgency, or analytics tracking that may be inaccurate or noncompliant if published unchanged.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review all generated claims, testimonials, urgency statements, and analytics events for accuracy, consent, and compliance before publishing.
+
+## Reference(s):
+
+- [Conversion Patterns Reference](artifact/references/conversion-patterns.md)
+- [Landing Page on ClawHub](https://clawhub.ai/emersonbraun/skills/eb-landing-page)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with implementation code and checklist sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces copy documents, Next.js/Tailwind page code, and conversion checklists; generated marketing claims require human review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

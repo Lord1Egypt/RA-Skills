@@ -1,40 +1,58 @@
-## Description: <br>
-Guides users through making durable natural plant dyes from local foraged or garden plants by supporting plant identification, mordant calculations, batch scheduling, fastness testing, and inventory or barter templates while humans perform the physical dye work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to plan natural plant dye batches from local plants, including plant-identification prompts, mordant calculations, extraction schedules, fastness logging, inventory records, and barter templates while the user performs all hands-on dye work.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External makers, textile hobbyists, and small-scale producers use this skill to plan and document natural dye batches for yarn, fabric, clothing repairs, rugs, or trade goods. The agent provides identification support, calculations, schedules, reminders, logs, reports, and templates while the user handles all harvesting, simmering, mordanting, dyeing, and safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Plant photos and approximate location can reveal sensitive personal or site information. <br>
-Mitigation: Share only the minimum location detail needed for plant identification and avoid including private places or identifiable people in photos. <br>
-Risk: Natural dyeing involves plant identification, hot liquids, mordants, ventilation, allergies, and local foraging rules. <br>
-Mitigation: Use the skill's safety checks, verify plants and local rules before harvesting, work with ventilation and protective equipment, test small samples first, and keep physical handling decisions with the human user. <br>
+## Use Case:
 
+External crafters, textile hobbyists, homesteaders, and small producers use this skill to plan natural dye batches from local plants, kitchen scraps, and garden materials. It helps the agent organize identification prompts, mordant calculations, schedules, logs, and trade-ready records while the user handles the physical dye work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/howtousehumans/natural-plant-dye-making-basics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, schedules, logs, reports, and reusable templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request plant photos, approximate location, material weights, timing data, and fastness-test observations; may maintain local progress logs through filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Incorrect plant identification, local foraging assumptions, or mordant handling could create physical safety or legal issues.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify plant identity, local foraging rules, ventilation needs, and mordant safety before harvesting plants or handling hot dye baths.
+
+Risk: Batch files or plant survey notes may contain precise location data.
+
+Mitigation: Keep dye-batch files in a dedicated project folder and avoid sharing GPS or location details unless they are needed.
+
+Risk: Installer supply-chain risk remains possible for normal ClawHub releases.
+
+Mitigation: Use a trusted or pinned ClawHub installer where possible before installing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/howtousehumans/skills/natural-plant-dye-making-basics)
+- [ClawHub publisher profile](https://clawhub.ai/user/howtousehumans)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text, Files, Shell commands]
+
+**Output Format:** [Markdown guidance with inline templates, logs, schedules, and install command text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce plant survey checklists, dye batch logs, progress dashboards, inventory cards, barter messages, and safety reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

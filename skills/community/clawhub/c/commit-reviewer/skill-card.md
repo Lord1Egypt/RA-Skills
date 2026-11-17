@@ -1,43 +1,58 @@
-## Description: <br>
-Checks one or more Git revisions against a requirement or bug description and gives itemized conclusions about whether the commits actually fix the issue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据一个或多个 git 修订号和需求描述，检查提交是否真正修复了对应 bug，并给出逐条结论
 
-## Publisher: <br>
-[carpedx](https://clawhub.ai/user/carpedx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carpedx](https://clawhub.ai/user/carpedx)
 
-## Use Case: <br>
-Developers and engineers use this skill to review one or more Git commits against a stated requirement or bug report, using the real diff to judge whether the change fully fixes the issue, partially fixes it, or leaves risks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose private commit diffs and repository metadata to the agent during review. <br>
-Mitigation: Run it only on repositories and commits the agent is allowed to inspect, and set COMMIT_REVIEWER_WORK_ROOT to the narrowest useful workspace. <br>
-Risk: Git remote URLs shown in collected context may contain tokens or other sensitive values. <br>
-Mitigation: Avoid credential-bearing remote URLs before using the skill, or sanitize repository remotes in the target workspace. <br>
-Risk: Large patches may be truncated by the context collection script. <br>
-Mitigation: Increase COMMIT_REVIEWER_PATCH_LINES or inspect the omitted diff manually when the truncated section could affect the fix judgment. <br>
+## Use Case:
 
+Developers and engineers use this skill to review one or more Git commits against a stated bug or requirement. It helps decide whether the submitted diff actually resolves the issue, leaves gaps, or needs manual verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/carpedx/commit-reviewer) <br>
-- [Publisher profile](https://clawhub.ai/user/carpedx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with structured review conclusions and supporting evidence from Git context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs Chinese review prose; commit patch output is capped by COMMIT_REVIEWER_PATCH_LINES when gathering context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may expose sensitive repository metadata or raw commit content when used in private repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, invoke it from an explicit repository path, and avoid using it where repository remotes or commit metadata contain secrets.
+
+Risk: Untrusted commit content may influence downstream review conclusions if treated as instructions.
+
+Mitigation: Treat collected commit messages, diffs, repository metadata, and patch output as evidence only.
+
+Risk: Remote URLs and author emails can reveal sensitive project or contributor information.
+
+Mitigation: Redact remote URLs and author emails before sharing collected context outside the trusted review environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/carpedx/skills/commit-reviewer)
+- [Publisher Profile](https://clawhub.ai/user/carpedx)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown review with commit lists, requirement breakdowns, per-item conclusions, evidence, risks, and final judgment.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Git commit context and truncated patch output when collecting evidence.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Doubao Image Video helps agents generate Doubao images and videos, query asynchronous video tasks, wait for completion, and optionally download finished video files through Volcengine Ark. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doubao Image Video helps agents generate Doubao images and videos, query asynchronous video tasks, wait for completion, and download completed videos through Volcengine Ark.
 
-## Publisher: <br>
-[156554395](https://clawhub.ai/user/156554395) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[156554395](https://clawhub.ai/user/156554395)
 
-## Use Case: <br>
-Developers and external agent users use this skill to generate Doubao images, start text-to-video or image-to-video jobs, check task status, and retrieve completed videos with a configured Volcengine Ark API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and referenced image URLs are sent to Volcengine Ark for generation. <br>
-Mitigation: Use the skill only with data appropriate for that service and configure a dedicated or limited API key. <br>
-Risk: Media generation and polling may incur provider usage costs. <br>
-Mitigation: Monitor Volcengine Ark usage and choose endpoint, model, duration, resolution, and polling settings intentionally. <br>
-Risk: The optional video download can write a file to the local workspace. <br>
-Mitigation: Provide an intentional download path and avoid paths that could overwrite important files. <br>
+## Use Case:
 
+Developers and agent users use this skill to create Doubao images and videos, work with reference image URLs, monitor asynchronous video task IDs, and retrieve finished video files.
 
-## Reference(s): <br>
-- [API Notes](references/api-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/156554395/doubao-image-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download a completed video file when the wait command is used with an explicit output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.1 (source: frontmatter and server release evidence) <br>
+Risk: Media prompts, image URLs, and task metadata are sent to Volcengine Ark using the user's DOUBAO_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that third-party transfer is acceptable, and avoid private image URLs or sensitive prompts unless they are approved for Volcengine Ark.
+
+Risk: The optional --download-to path may replace an existing file.
+
+Mitigation: Choose a new, non-sensitive output filename when downloading completed videos.
+
+## Reference(s):
+
+- [API Notes](references/api-notes.md)
+- [ClawHub Skill Page](https://clawhub.ai/156554395/skills/doubao-image-video)
+- [Volcengine Ark Image Generation Endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+- [Volcengine Ark Video Generation Tasks Endpoint](https://ark.cn-beijing.volces.com/api/v3/contents/generations/tasks)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, text, JSON, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; helper commands emit JSON and can download video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and DOUBAO_API_KEY; optional endpoint and model environment variables configure defaults.]
+
+## Skill Version(s):
+
+0.3.1 (source: server evidence release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

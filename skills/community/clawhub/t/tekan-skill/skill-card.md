@@ -1,53 +1,80 @@
-## Description: <br>
-特看视频 AI 创作工具 lets an agent generate and edit videos, images, digital-human videos, ecommerce assets, background removal outputs, and voice/TTS assets through Tekan scripts and APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Tekan AI creation skill that lets agents generate and edit videos, images, digital avatar videos, ecommerce visuals, speech, and voice clones from natural-language requests.
 
-## Publisher: <br>
-[tekancn](https://clawhub.ai/user/tekancn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tekancn](https://clawhub.ai/user/tekancn)
 
-## Use Case: <br>
-External creators, marketers, ecommerce teams, and developers use this skill to create AI videos, images, product visuals, digital-human presentations, cloned or synthetic voices, and organized board outputs from natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores account credentials and requires OAuth-backed access to Tekan services. <br>
-Mitigation: Install only when the publisher and Tekan/Topview are trusted, use trusted machines, and run logout or remove ~/.tekan/credentials.json on shared machines. <br>
-Risk: The skill can upload personal media, product assets, faces, voices, and other user files for remote processing. <br>
-Mitigation: Explicitly confirm uploads before execution, avoid confidential assets unless remote processing is acceptable, and do not submit third-party faces or voices without consent. <br>
-Risk: The skill can spend account credits and perform sensitive creative actions such as voice cloning, watermark removal, webhook use, and deletion. <br>
-Mitigation: Confirm paid generation jobs, voice cloning, watermark removal, webhook URLs, and deletion actions before running the corresponding scripts. <br>
+## Use Case:
 
+External creators, marketers, ecommerce operators, and agents use this skill to turn natural-language requests and provided media into generated videos, edited images, digital avatar videos, product visuals, text-to-speech audio, voice clones, and organized board outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tekancn/tekan-skill) <br>
-- [Tekan website](https://tekan.cn) <br>
-- [README](artifact/README.md) <br>
-- [Authentication reference](artifact/references/auth.md) <br>
-- [Video generation reference](artifact/references/video_gen.md) <br>
-- [AI image reference](artifact/references/ai_image.md) <br>
-- [Ecommerce image reference](artifact/references/ecommerce_image.md) <br>
-- [Digital human reference](artifact/references/avatar4.md) <br>
-- [Voice reference](artifact/references/voice.md) <br>
-- [Text-to-voice reference](artifact/references/text2voice.md) <br>
-- [Board reference](artifact/references/board.md) <br>
-- [User account reference](artifact/references/user.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON-like task results, and links to generated media or board items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is produced through remote Tekan services and may require OAuth login, account credits, and uploaded user files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill uses a Tekan account and saved reusable credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted agents and environments, review local credential storage, and log out or revoke access when no longer needed.
+
+Risk: Generation workflows may consume paid credits, especially bulk ecommerce image or multi-step media jobs.
+
+Mitigation: Confirm user intent, scope, and estimated cost before high-volume or automatic generation.
+
+Risk: Voice cloning, watermark removal, and media transformation can be sensitive or rights-dependent.
+
+Mitigation: Require explicit user confirmation and appropriate rights or consent before running these workflows.
+
+Risk: Board and voice management commands can delete or modify account resources.
+
+Mitigation: Confirm destructive operations and target identifiers before executing deletion or update commands.
+
+Risk: The skill includes rigid messaging requirements that could override normal user-facing communication expectations.
+
+Mitigation: Review messaging behavior during integration and keep platform safety, consent, and communication policies authoritative.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tekancn/skills/tekan-skill)
+- [Tekan](https://tekan.cn)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Avatar4](references/avatar4.md)
+- [Video Gen](references/video_gen.md)
+- [AI Image](references/ai_image.md)
+- [Remove BG](references/remove_bg.md)
+- [Product Avatar](references/product_avatar.md)
+- [Text2Voice](references/text2voice.md)
+- [Voice](references/voice.md)
+- [Ecommerce Image](references/ecommerce_image.md)
+- [Board](references/board.md)
+- [Auth](references/auth.md)
+- [User](references/user.md)
+- [Error Handling](references/error_handling.md)
+- [Model Mapping](references/model_mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown status messages with command-line invocations and generated media, task, or board URLs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May consume Tekan credits and create, update, or delete Tekan account resources such as boards, tasks, generated media, and cloned voices.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

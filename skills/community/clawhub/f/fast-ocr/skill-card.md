@@ -1,43 +1,59 @@
-## Description: <br>
-FastOCR is an offline OCR skill for extracting text and structured fields from invoices, train tickets, air tickets, taxi receipts, and other business documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastOCR helps agents perform local OCR on receipt, invoice, and ticket images and return extracted text plus structured fields for supported document types.
 
-## Publisher: <br>
-[gaojiren](https://clawhub.ai/user/gaojiren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaojiren](https://clawhub.ai/user/gaojiren)
 
-## Use Case: <br>
-Finance, operations, travel, and administrative users use this skill to extract OCR text and structured receipt or ticket fields for reimbursement, ticket management, document digitization, and batch processing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR inputs and extracted text may contain sensitive financial, medical, travel, or identity information. <br>
-Mitigation: Process only documents appropriate for the current agent environment, avoid unnecessary retention or logging, and handle extracted text as sensitive data. <br>
-Risk: OCR output may be incomplete or incorrect for low-quality images, complex layouts, or compliance-critical fields. <br>
-Mitigation: Review extracted fields before reimbursement, accounting, legal, medical, or compliance use. <br>
-Risk: The OCR dependency or first-run model download can affect supply-chain trust in business workflows. <br>
-Mitigation: Pin and verify the rapidocr-onnxruntime dependency and model source before deployment in controlled environments. <br>
+## Use Case:
 
+Finance, operations, travel, and administrative users can use this skill to extract text and key fields from invoices, tickets, receipts, screenshots, and scanned documents. It is especially oriented toward local processing of financial, tax, medical, and travel records where extracted output should be handled as confidential.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaojiren/fast-ocr) <br>
-- [FastOCR documentation](https://docs.openclaw.ai/skills/fast-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and JSON-like structured OCR results with Markdown usage guidance and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include sensitive document text and confidence scores; important financial or compliance fields should be reviewed by a human.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Offline and no-network claims conflict with an unpinned OCR dependency and a first-run model download.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the dependency before installation, pin the OCR package version, and verify or pre-cache model artifacts before using the skill in sensitive environments.
+
+Risk: The skill may process financial, tax, medical, or travel records that contain confidential information.
+
+Mitigation: Only process documents intended for OCR, handle extracted text as confidential, and apply appropriate retention and access controls.
+
+Risk: OCR extraction can be incomplete or inaccurate when images are blurred, poorly lit, obstructed, or contain unsupported handwriting.
+
+Mitigation: Use clear source images and manually verify important extracted fields before relying on the output for reimbursement, tax, medical, or travel workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaojiren/skills/fast-ocr)
+- [FastOCR documentation](https://docs.openclaw.ai/skills/fast-ocr)
+- [OpenClaw repository](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-like OCR extraction results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR quality depends on image clarity, lighting, document condition, and model availability.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

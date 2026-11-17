@@ -1,49 +1,66 @@
-## Description: <br>
-Travel Guide Generator helps users create multilingual, responsive HTML travel guides with daily itineraries, route timing, hotel and food recommendations, budget estimates, and practical travel tips. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates multilingual travel-guide itineraries as responsive HTML and companion exports, including daily plans, routes, lodging, food, budget guidance, and travel caveats.
 
-## Publisher: <br>
-[gmmg55](https://clawhub.ai/user/gmmg55) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gmmg55](https://clawhub.ai/user/gmmg55)
 
-## Use Case: <br>
-External users and travel planners use this skill to turn destination, duration, departure city, and style preferences into a detailed travel guide. It is intended for itinerary planning, route estimation, hotel and food recommendations, avoid-list guidance, and shareable HTML output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel details may be sent to external search services and Amap during guide generation. <br>
-Mitigation: Review whether the destination, route, and itinerary details are appropriate to share with those services before using live lookups. <br>
-Risk: The skill can require a sensitive Amap API key for route calculations. <br>
-Mitigation: Provide the key through a scoped, revocable environment variable or secret manager, avoid pasting it into chat, and rotate any key that was exposed. <br>
-Risk: Generated travel recommendations, prices, schedules, and route timing can be incomplete or outdated. <br>
-Mitigation: Verify important reservations, opening hours, transportation options, and safety-sensitive travel details against authoritative current sources before relying on the guide. <br>
+## Use Case:
 
+External ClawHub users planning leisure trips use this skill to turn a destination, trip length, origin, and preferences into a reviewable itinerary package. It is aimed at travel-guide creation rather than booking, visa handling, business travel, or payment workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gmmg55/travel-guide-generator) <br>
-- [README](README.md) <br>
-- [Daily Itinerary Specification](references/daily-itinerary-spec.md) <br>
-- [Design Specification](references/design-spec.md) <br>
-- [Amap Web Service API](https://lbs.amap.com/) <br>
-- [Amap Driving Route API](https://restapi.amap.com/v3/direction/driving) <br>
-- [Amap Distance API](https://restapi.amap.com/v3/distance) <br>
-- [Amap POI Search API](https://restapi.amap.com/v3/place/text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Responsive HTML file plus Markdown or text itinerary summary; helper scripts may emit JSON route or search-query data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an optional AMAP_KEY environment variable for Amap route calculations; without it, route details may rely on estimates or other available sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Travel preferences and route queries may be used for web research or optional Amap routing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including sensitive personal details in trip prompts, and use the offline route estimator when privacy or Amap coverage is a concern.
+
+Risk: AMAP_KEY is a sensitive credential when optional precise routing is enabled.
+
+Mitigation: Provide it through a temporary environment variable or secrets manager, do not paste it into chat, and rotate it if exposure is suspected.
+
+Risk: Generated travel details such as route times, opening hours, weather, and prices can be stale, estimated, or incomplete.
+
+Mitigation: Review sources and confirm live details before booking or departure; keep estimated routes clearly labeled in generated outputs.
+
+Risk: One dependency maintenance issue is noted in the security guidance.
+
+Mitigation: Use Python 3.10+ where possible and update the requests dependency pin when compatible with the runtime.
+
+## Reference(s):
+
+- [Travel Guide Generator README](README.md)
+- [Travel guide schema](references/guide-schema.json)
+- [Daily itinerary HTML specification](references/daily-itinerary-spec.md)
+- [HTML design specification](references/design-spec.md)
+- [Amap Open Platform](https://lbs.amap.com/)
+- [ClawHub skill page](https://clawhub.ai/gmmg55/skills/travel-guide-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, HTML, JSON, ICS calendar files, GeoJSON, Guidance]
+
+**Output Format:** [Responsive HTML files, Markdown summaries, ICS, GeoJSON, normalized JSON, and conversational text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use optional AMAP_KEY for route lookups; falls back to labeled estimates when the API is unavailable.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence, artifact metadata, and README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Show the current public IP address of the server. Use when asked about IP, public IP, or network identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Show the current public IP address of the server. Use when asked about IP, public IP, or network identity.
 
-## Publisher: <br>
-[ericsantos](https://clawhub.ai/user/ericsantos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ericsantos](https://clawhub.ai/user/ericsantos)
 
-## Use Case: <br>
-Developers and operators use this skill to check the public IPv4 and IPv6 address of the machine running the agent for network debugging, VPN or proxy checks, allowlisting, and server identity confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts ifconfig.me and exposes the host's public IP address to that service. <br>
-Mitigation: Install and run it only in environments where sharing the host's public IP with ifconfig.me is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ifconfig.me](https://ifconfig.me) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericsantos/show-my-ip) <br>
+## Use Case:
 
+Developers and engineers use this skill to check the public network identity of the agent host for debugging, VPN verification, allowlisting, and firewall setup.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns IPv4 when available and may include IPv6.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to ifconfig.me and displays the host's public IP address, which may be sensitive in privacy-conscious or enterprise environments.
+
+Mitigation: Install only where public IP disclosure is acceptable; use an approved internal IP-reflection endpoint in controlled enterprise environments.
+
+## Reference(s):
+
+- [ifconfig.me](https://ifconfig.me)
+- [ClawHub skill page](https://clawhub.ai/ericsantos/skills/show-my-ip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with IPv4 and optional IPv6 lines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and outbound HTTPS access to ifconfig.me; IPv4 is reported as unavailable if the request does not return a value.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

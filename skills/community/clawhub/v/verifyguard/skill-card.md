@@ -1,41 +1,53 @@
-## Description: <br>
-VerifyGuard is a Python-based pre-publication checker for Markdown outputs that flags completeness, link-format, sensitive-data, and formatting issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VerifyGuard prechecks AI-generated Markdown before publishing or submission for completeness, link syntax, sensitive information, and formatting issues.
 
-## Publisher: <br>
-[lxr-666](https://clawhub.ai/user/lxr-666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lxr-666](https://clawhub.ai/user/lxr-666)
 
-## Use Case: <br>
-Developers, writers, and agents use this skill before publishing or submitting Markdown content to check for unfinished markers, possible sensitive information, Markdown formatting issues, and links that need review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Link checks may flag HTTP links for review but do not confirm external URL reachability. <br>
-Mitigation: Treat link results as review prompts and verify important URLs with a network-capable checker before publication. <br>
-Risk: Secret findings may print matching file snippets to the terminal or logs. <br>
-Mitigation: Run the tool locally in a trusted environment, avoid sharing captured logs, and rotate any exposed secrets. <br>
+## Use Case:
 
+Developers, writers, and agents use this skill to inspect Markdown content before publication or task submission. It reports potential completeness, formatting, link, and sensitive-information issues so the user can review them before release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lxr-666/verifyguard) <br>
-- [Publisher profile](https://clawhub.ai/user/lxr-666) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text diagnostics with severity labels and suggested command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; runs locally against a user-provided file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can print detected secret matches into terminal, CI, or agent logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in protected sessions and avoid scanning files with live credentials in shared or logged environments unless output redaction is added.
+
+Risk: The skill should not be treated as proof that links are reachable.
+
+Mitigation: Use it as a local syntax and pattern precheck, and verify important links with a dedicated availability checker before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lxr-666/skills/verifyguard)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text reports with severity-labeled findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include matched snippets from scanned files; protect output when checking sensitive content.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

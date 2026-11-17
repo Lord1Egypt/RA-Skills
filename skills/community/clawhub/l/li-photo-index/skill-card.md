@@ -1,44 +1,62 @@
-## Description: <br>
-Photo Index With LLM scans selected photo folders, analyzes images with local or explicitly configured remote vision-language models, stores a local SQLite index, and supports natural-language photo search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Photo Index With LLM scans photo directories, uses local or configured remote vision-language models to describe images, stores a searchable local index, and returns natural-language photo search results for agents.
 
-## Publisher: <br>
-[43622283](https://clawhub.ai/user/43622283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[43622283](https://clawhub.ai/user/43622283)
 
-## Use Case: <br>
-Agents and users use this skill to scan personal or work photo directories, build searchable local indexes, and retrieve matching photos from natural-language queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote model analysis can send full images to the configured provider. <br>
-Mitigation: Use local-only mode for sensitive photos and enable remote analysis only after reviewing the provider and consent settings. <br>
-Risk: The local database and .env file can contain sensitive paths, image-derived metadata, or credentials. <br>
-Mitigation: Restrict file permissions, avoid committing local data files, and protect the SQLite database and .env file. <br>
-Risk: Search output can expose local photo paths and descriptive metadata. <br>
-Mitigation: Run the skill only in trusted environments and review outputs before sharing them outside the local workflow. <br>
+## Use Case:
 
+Developers and agent builders use this skill to let CLI-capable agents scan, index, and search personal or work photo collections using natural-language queries. It is most useful when the user has a verified local vision-language model endpoint and wants structured JSON or readable text results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/43622283/li-photo-index) <br>
-- [Privacy guide](artifact/PRIVACY_GUIDE.md) <br>
-- [Cross-platform support](artifact/CROSS_PLATFORM.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Plain text or JSON from CLI commands, with Markdown documentation examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results and statistics may include local photo paths, tags, descriptions, confidence scores, and model connection status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill.yaml) <br>
+Risk: Private photos may be sent to a configured remote vision-language model endpoint or an unverified local endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified loopback endpoint such as localhost or 127.0.0.1 by default, and enable remote endpoints only after explicit review and consent.
+
+Risk: Auto-loaded .env configuration may silently change endpoint, API key, or privacy settings.
+
+Mitigation: Inspect any .env file before running scans, keep API keys out of shared repositories, and verify that remote upload settings match the intended privacy posture.
+
+Risk: The local SQLite index stores photo paths and model-generated descriptions without encryption.
+
+Mitigation: Restrict database file permissions, avoid indexing sensitive photos until controls are reviewed, and remove or encrypt the index when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/43622283/skills/li-photo-index)
+- [SKILL.md](artifact/SKILL.md)
+- [skill.yaml](artifact/skill.yaml)
+- [Privacy Guide](artifact/PRIVACY_GUIDE.md)
+- [Privacy and Data Security Report](artifact/PRIVACY.md)
+- [Cross-Platform Compatibility](artifact/CROSS_PLATFORM.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, files]
+
+**Output Format:** [CLI stdout as readable text or structured JSON; scan commands also update a local SQLite photo index.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.10+, requests, and a verified local LM Studio-compatible endpoint by default; configured remote endpoints may receive image content.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

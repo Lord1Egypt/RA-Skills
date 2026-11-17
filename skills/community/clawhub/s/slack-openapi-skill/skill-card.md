@@ -1,47 +1,66 @@
-## Description: <br>
-Operate Slack Web API through UXC with a curated OpenAPI schema, bearer-token auth, and messaging-core guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Slack Web API through UXC with a curated OpenAPI schema, bearer-token auth, and messaging-core guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure bearer-token access and execute Slack messaging-core operations through UXC, including auth checks, channel inspection, conversation and thread reads, message posting, reactions, and limited Socket Mode event intake. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables an agent to read from or write to Slack using provided tokens. <br>
-Mitigation: Install it only for intended Slack automation and use least-privileged bot tokens by default. <br>
-Risk: Writes such as messages and reactions can affect Slack conversations. <br>
-Mitigation: Confirm the target channel or thread and message content before executing write operations. <br>
-Risk: User-token and Socket Mode access can broaden what the agent can read or receive. <br>
-Mitigation: Reserve user-token access for explicit cases and stop Socket Mode subscriptions when finished. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure bearer-token access and operate a focused Slack messaging workflow through UXC, including auth validation, channel inspection, conversation and thread reads, message posting, reactions, and limited Socket Mode event intake.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Curated Slack Web API OpenAPI Schema](references/slack-web.openapi.json) <br>
-- [Slack Web API Docs](https://docs.slack.dev/apis/web-api) <br>
-- [Slack chat.postMessage](https://docs.slack.dev/reference/methods/chat.postMessage) <br>
-- [Slack conversations.history](https://docs.slack.dev/reference/methods/conversations.history) <br>
-- [Slack conversations.replies](https://docs.slack.dev/reference/methods/conversations.replies/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Slack Web API operation guidance and UXC command patterns; command results are Slack JSON envelopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can access Slack through user-provided tokens and may expose workspace content if credentials are over-scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer least-privilege bot tokens, avoid user tokens unless a workflow explicitly requires them, and review Slack app scopes before use.
+
+Risk: The skill can post messages and add reactions in Slack.
+
+Mitigation: Confirm every write action before execution and validate channel, thread, and message content before sending.
+
+Risk: The documented default schema link points to a mutable GitHub main-branch URL.
+
+Mitigation: Use a pinned or local OpenAPI schema when integrity and repeatability matter.
+
+Risk: Socket Mode event capture can persist raw Slack event data locally.
+
+Mitigation: Treat NDJSON sinks as sensitive Slack history, restrict file permissions, and use a short retention policy.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Curated Slack Web API OpenAPI Schema](references/slack-web.openapi.json)
+- [Slack Web API Documentation](https://docs.slack.dev/apis/web-api)
+- [Slack chat.postMessage](https://docs.slack.dev/reference/methods/chat.postMessage)
+- [Slack conversations.history](https://docs.slack.dev/reference/methods/conversations.history)
+- [Slack conversations.replies](https://docs.slack.dev/reference/methods/conversations.replies/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may lead an agent to make Slack Web API calls through UXC when the user provides credentials and confirms write actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

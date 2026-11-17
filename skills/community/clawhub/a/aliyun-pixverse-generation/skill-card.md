@@ -1,48 +1,63 @@
-## Description: <br>
-Helps agents prepare Alibaba Cloud Model Studio PixVerse video-generation requests for text-to-video, image-to-video, keyframe-to-video, and multi-image reference workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when generating videos with Alibaba Cloud Model Studio PixVerse models (`pixverse/pixverse-v5.6-t2v`, `pixverse/pixverse-v5.6-it2v`, `pixverse/pixverse-v5.6-kf2v`, `pixverse/pixverse-v5.6-r2v`).
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and agent operators use this skill to select PixVerse model variants, prepare normalized DashScope video-generation requests, and capture request and task evidence for Alibaba Cloud Model Studio workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland (Beijing) for PixVerse service execution. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DashScope API credentials may be exposed if users place secrets in prompts, media URLs, output files, or shared logs. <br>
-Mitigation: Use a scoped DASHSCOPE_API_KEY where possible and avoid storing or sharing generated request and evidence files that contain sensitive prompts or media URLs. <br>
-Risk: Prompts and media submitted to Alibaba Cloud PixVerse are handled by a third-party cloud provider. <br>
-Mitigation: Submit confidential media only when that provider and region are approved for the intended data. <br>
-Risk: The release has a naming mismatch noted by the security summary, which may confuse users about the exact Alibaba Cloud video family being used. <br>
-Mitigation: Confirm the selected model string starts with pixverse/pixverse-v5.6 and matches the intended text, image, keyframe, or reference workflow before task submission. <br>
+## Use Case:
 
+Developers and agents use this skill to prepare Alibaba Cloud Model Studio PixVerse video-generation requests for text-to-video, image-to-video, keyframe-to-video, and multi-image reference-to-video workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cinience/aliyun-pixverse-generation) <br>
-- [Skill reference sources](references/sources.md) <br>
-- [Alibaba Cloud video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation) <br>
-- [PixVerse text-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-text-to-video-api-reference) <br>
-- [PixVerse image-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-image-to-video-api-reference) <br>
-- [PixVerse keyframe-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-keyframe-to-video-api-reference) <br>
-- [PixVerse reference-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-reference-to-video-api-reference) <br>
+### Deployment Geography for Use:
 
+China mainland (Beijing)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON request files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes normalized request JSON under output/aliyun-pixverse-generation/ and may capture task polling evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Prompts, media URLs, or regulated data may be submitted to Alibaba Cloud Model Studio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for transfer to Alibaba Cloud Model Studio in the documented region.
+
+Risk: The skill depends on the dashscope package for SDK-based use.
+
+Mitigation: Install in a virtual environment and pin or review the dashscope package for controlled deployments.
+
+Risk: Credentials are required for DashScope access.
+
+Mitigation: Provide DASHSCOPE_API_KEY through the environment or approved credentials storage, and avoid placing secrets in prompts or output files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-pixverse-generation)
+- [references/sources.md](references/sources.md)
+- [Video generation overview](https://help.aliyun.com/zh/model-studio/use-video-generation)
+- [Aishi text-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-text-to-video-api-reference)
+- [Aishi image-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-image-to-video-api-reference)
+- [Aishi keyframe-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-keyframe-to-video-api-reference)
+- [Aishi reference-to-video API reference](https://help.aliyun.com/zh/model-studio/pixverse-reference-to-video-api-reference)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash examples and JSON request files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes normalized request payloads and task evidence under output/aliyun-pixverse-generation/.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

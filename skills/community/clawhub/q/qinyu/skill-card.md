@@ -1,43 +1,57 @@
-## Description: <br>
-QinYu Pro v2.0 is an all-in-one cryptocurrency analysis skill for real-time prices, technical indicators, market sentiment, DeFi data, funding rates, gas prices, and spot or futures strategy reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QinYu Pro v2.0 is an all-in-one cryptocurrency analysis skill that fetches public market data to provide real-time prices, technical indicators, market sentiment, DeFi analytics, funding rates, gas prices, and spot/futures strategy guidance.
 
-## Publisher: <br>
-[woshiqinyu520](https://clawhub.ai/user/woshiqinyu520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woshiqinyu520](https://clawhub.ai/user/woshiqinyu520)
 
-## Use Case: <br>
-External users and developers use this skill to request cryptocurrency market analysis, price monitoring, technical indicator summaries, DeFi analytics, and trading-oriented scenario guidance for supported assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading-oriented analysis and buy, sell, futures, or leverage suggestions could be mistaken for financial advice. <br>
-Mitigation: Treat reports as informational only, apply independent judgment, and avoid automated trading without separate review. <br>
-Risk: Reports depend on public market-data APIs whose availability, limits, or returned data can change. <br>
-Mitigation: Validate important outputs against current market sources before acting on them. <br>
+## Use Case:
 
+External users and developers use QinYu to request Chinese-language cryptocurrency market analysis, price checks, technical indicators, DeFi and futures context, and informational trading-strategy guidance for supported crypto assets.
 
-## Reference(s): <br>
-- [QinYu ClawHub Skill Page](https://clawhub.ai/woshiqinyu520/qinyu) <br>
-- [Supported Coins](references/supported_coins.md) <br>
-- [CoinGecko](https://www.coingecko.com/) <br>
-- [Alternative.me Fear and Greed Index API](https://api.alternative.me/fng/?limit=2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown-style analysis reports or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public cryptocurrency market data APIs and prints informational reports; no credential access or trade execution is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The skill may provide trading or leverage suggestions that users could mistake for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational analysis only and require users to make decisions based on their own risk tolerance and independent review.
+
+Risk: The skill contacts public cryptocurrency data APIs, so outputs depend on third-party API availability, freshness, and rate limits.
+
+Mitigation: Check source availability and timestamps before relying on the analysis, and avoid treating failed or partial data fetches as complete market coverage.
+
+## Reference(s):
+
+- [QinYu ClawHub Skill Page](https://clawhub.ai/woshiqinyu520/skills/qinyu)
+- [Supported Coins](references/supported_coins.md)
+- [CoinGecko](https://www.coingecko.com/)
+- [Binance API](https://api.binance.com/api/v3/ticker/24hr?symbol={symbol})
+- [Alternative.me Fear and Greed API](https://api.alternative.me/fng/?limit=2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Chinese-language terminal report or JSON, with command examples in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes informational crypto market analysis, indicators, support/resistance levels, and spot/futures strategy suggestions.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

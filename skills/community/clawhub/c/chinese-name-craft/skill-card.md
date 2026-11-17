@@ -1,44 +1,60 @@
-## Description: <br>
-Chinese Name Craft guides an agent through a traditional Chinese naming workflow using Bazi, Wuxing, and name-study references to generate candidate names, analysis, JSON, and an optional Word report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language workflow for proposing newborn or adult Chinese names using Bazi, Wuxing, name-study numerology, taboo-character checks, candidate generation, and Word-document reporting.
 
-## Publisher: <br>
-[ruokkkkk](https://clawhub.ai/user/ruokkkkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruokkkkk](https://clawhub.ai/user/ruokkkkk)
 
-## Use Case: <br>
-External users and agents use this skill to collect birth and naming preferences, perform traditional Chinese Bazi, Wuxing, and name-study analysis, generate candidate Chinese names, and prepare a local Word report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses birth date, birth time, and family naming details that may be sensitive. <br>
-Mitigation: Use the skill only with informed user consent, avoid unnecessary retention, and review where generated reports are stored locally. <br>
-Risk: The Word export path can install python-docx automatically if it is missing. <br>
-Mitigation: Review the generated JSON first and prefer installing python-docx explicitly before running the export. <br>
-Risk: Traditional naming, Bazi, Wuxing, and numerology analysis may be mistaken if treated as determinative advice. <br>
-Mitigation: Treat the analysis as cultural and advisory, verify input birth details, and let user preference drive the final name choice. <br>
+## Use Case:
 
+External users can use this skill to collect birth and naming preferences, apply traditional Chinese naming analysis, compare candidate names, and prepare structured content for a formatted naming proposal.
 
-## Reference(s): <br>
-- [Bazi and Wuxing Reference](references/bazi-wuxing.md) <br>
-- [Name Study Numerology Reference](references/name-study.md) <br>
-- [Output Template and JSON Schema](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, JSON, shell commands, files] <br>
-**Output Format:** [Markdown guidance with structured JSON data and optional DOCX file generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate a local Word document from user-provided birth and family naming details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release evidence reports that the skill can automatically install a Python package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install dependencies explicitly in an isolated environment before running the document-generation script.
+
+Risk: The release evidence reports that the skill writes Word files using user-controlled names.
+
+Mitigation: Provide an explicit safe output path and review generated filenames before creating documents.
+
+Risk: The workflow may place precise birth and family details into generated local files.
+
+Mitigation: Avoid sharing sensitive birth or family details unless the user is comfortable with those details being included in local artifacts.
+
+## Reference(s):
+
+- [Bazi and Wuxing Reference](references/bazi-wuxing.md)
+- [Name-Study Numerology Reference](references/name-study.md)
+- [Output Template and JSON Schema](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/ruokkkkk/skills/chinese-name-craft)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance, files]
+
+**Output Format:** [Conversational analysis and structured JSON that can be rendered into a .docx Word document.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a local Word document through the bundled Python script when provided a valid naming-analysis JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Places GTC limit orders on both bid and ask sides of selected liquid Polymarket markets to attempt to capture bid/ask spread. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Places GTC limit orders on both YES and NO sides of selected liquid Polymarket markets to quote around the CLOB midpoint and pursue bid/ask spread capture.
 
-## Publisher: <br>
-[richducat](https://clawhub.ai/user/richducat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richducat](https://clawhub.ai/user/richducat)
 
-## Use Case: <br>
-External users and developers use this skill to run or review a configurable Polymarket market-making strategy that can dry-run, place live GTC limit orders, show positions, and adjust order-selection settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live prediction-market trades when run with --live. <br>
-Mitigation: Run the default dry-run mode or set TRADING_VENUE=sim before enabling live trading. <br>
-Risk: The skill can cancel existing open orders in the connected account before placing new orders. <br>
-Mitigation: Use it only on an account where automated order cancellation is acceptable, or isolate it from manual and other-strategy open orders. <br>
-Risk: The skill requires a trading API key. <br>
-Mitigation: Use a least-privilege API key when available and avoid sharing the key across unrelated strategies. <br>
+## Use Case:
 
+External developers and trading operators use this skill to run or dry-run a Polymarket market-making strategy that selects liquid markets, manages open orders, and places small bid/ask limit orders.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/richducat/dolph-market-maker) <br>
-- [Polymarket CLOB API endpoint](https://clob.polymarket.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls] <br>
-**Output Format:** [Terminal text with optional JSON automaton report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; dry run is the default unless --live is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Live mode can place real orders and cancel existing open orders when used with a broad trading API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, run with a dedicated trading account or scoped API key, and avoid accounts with unrelated active orders.
+
+Risk: The skill depends on simmer-sdk and external market data, so dependency or market-data changes can affect trading behavior.
+
+Mitigation: Pin and review simmer-sdk before installation, review market behavior before live use, and keep safeguards enabled unless independently validated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/richducat/skills/dolph-market-maker)
+- [Polymarket CLOB endpoint](https://clob.polymarket.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, API calls]
+
+**Output Format:** [Console text with optional JSON automaton report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; default execution is dry-run unless --live is supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact metadata also lists 1.2.0 and _meta.json lists 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-赛博江湖向导 - 创建侠客、实时掌握角色动态、随时托梦干预 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cyber-Jianghu Guide helps users create wuxia characters, check live character status, and send dream-like interventions into the game world.
 
-## Publisher: <br>
-[kumarajiava](https://clawhub.ai/user/kumarajiava) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kumarajiava](https://clawhub.ai/user/kumarajiava)
 
-## Use Case: <br>
-Players and OpenClaw users use this skill as an immersive Cyber-Jianghu companion to create a character, check the character's current game state, and send limited dream-like guidance through a local agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The companion agent exposes local control APIs for character registration and dream injection. <br>
-Mitigation: Keep the API bound to localhost, or add authentication and TLS before allowing non-local access. <br>
-Risk: The companion agent stores a game authentication token and persistent game state. <br>
-Mitigation: Store the agent configuration and data directories securely and avoid deleting token files unless re-registration is intended. <br>
-Risk: Installation relies on a container image or release artifact outside the skill package. <br>
-Mitigation: Verify trust in the ghcr.io/8kugames/cyber-jianghu-agent image or GitHub release before installation. <br>
+## Use Case:
 
+External users use this skill as an immersive OpenClaw guide for a Cyber-Jianghu game agent: it helps them create a character, understand current character state, and pass limited dream interventions to the character.
 
-## Reference(s): <br>
-- [Cyber Skill on ClawHub](https://clawhub.ai/kumarajiava/cyber-jianghu) <br>
-- [Deployment guide](artifact/DEPLOYMENT.md) <br>
-- [Publisher profile](https://clawhub.ai/user/kumarajiava) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with structured tool arguments and inline shell commands when deployment help is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call Cyber-Jianghu character, status, and dream tools through a locally running companion agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: frontmatter and server release evidence) <br>
+Risk: Mutable container tags or unverified binaries can change what code runs after installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned image digest or a verified release binary before deployment.
+
+Risk: The agent API can expose character registration and dream-intervention controls if bound too broadly.
+
+Mitigation: Bind the API to 127.0.0.1 or an internal Docker network, and add TLS and authentication before any required public exposure.
+
+Risk: Plaintext public test-server URLs are preview resources and are not appropriate for real use.
+
+Mitigation: Use a self-hosted or trusted game server endpoint for production deployments.
+
+Risk: The agent stores an auth token and persistent game data locally.
+
+Mitigation: Persist configuration and data in protected local directories, and avoid exposing or deleting agent.yaml without planning for re-registration.
+
+## Reference(s):
+
+- [Cyber Skill on ClawHub](https://clawhub.ai/kumarajiava/skills/cyber-jianghu)
+- [Cyber-Jianghu Agent Deployment Guide](artifact/DEPLOYMENT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, API Calls, Guidance]
+
+**Output Format:** [Markdown prose with inline structured tool-call parameters and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Chinese-language immersive roleplay narration, Docker or service setup commands, and structured parameters for Cyber-Jianghu tools.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

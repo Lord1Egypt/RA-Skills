@@ -1,40 +1,49 @@
-## Description: <br>
-Formats user-provided reporting or project-plan content into a polished one-page HTML brief, using horizontal timelines when milestones, dates, or staged plans are present. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Chinese executive-report and project one-page HTML layouts, including adaptive horizontal timelines for content with dates, milestones, or staged plans.
 
-## Publisher: <br>
-[vector4wang](https://clawhub.ai/user/vector4wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vector4wang](https://clawhub.ai/user/vector4wang)
 
-## Use Case: <br>
-Business users, product teams, and agents use this skill to turn rough upward reports, project one-pagers, milestone plans, or phased work summaries into concise HTML briefings with segmented modules, highlighted terms, and timeline presentation where appropriate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML reports may expose confidential business details if the source text contains sensitive information. <br>
-Mitigation: Review the generated HTML before sharing and remove confidential or restricted information. <br>
-Risk: Broad trigger wording may cause some general report requests to be formatted more aggressively than expected. <br>
-Mitigation: Check that the chosen layout matches the intended audience and ask the agent to simplify or use a standard list layout when needed. <br>
+## Use Case:
 
+External users and content creators use this skill to turn Chinese project updates, milestone plans, and upward-reporting notes into a polished one-page HTML summary with dynamic sections, color-matched highlights, and horizontal timeline blocks when timing cues are present.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vector4wang/one-page) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with an inline HTML one-page report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces styled HTML intended for review before sharing; generated content depends on the user's source text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may apply Chinese wording cleanup and a styled HTML timeline template when the user intended a plain summary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it only when the desired output is a Chinese executive-report or project-one-pager presentation, and review the generated HTML before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vector4wang/skills/one-page)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code]
+
+**Output Format:** [Markdown containing inline HTML]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Styled HTML one-page report with adaptive list or horizontal timeline sections.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Downloads videos from Threads links, saves the highest-resolution MP4 to a specified folder, and applies a consistent filename. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads high-resolution videos from Threads links and saves them locally with predictable filenames.
 
-## Publisher: <br>
-[tangqi00987](https://clawhub.ai/user/tangqi00987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangqi00987](https://clawhub.ai/user/tangqi00987)
 
-## Use Case: <br>
-Creators and general users use this skill to save Threads video links for permitted reuse, secondary creation, or offline viewing. It is intended for explicit Threads URLs and user-confirmed save locations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and writes video files locally, which can consume disk space during batch use. <br>
-Mitigation: Use explicit Threads links, confirm the save folder, and monitor disk usage when downloading multiple videos. <br>
-Risk: Downloaded media may be subject to rights or platform restrictions. <br>
-Mitigation: Only download, keep, or reuse media when the user has permission to do so. <br>
-Risk: Browser-based download workflows can expose the agent to untrusted web content. <br>
-Mitigation: Run the workflow in an isolated browser environment as described by the artifact and security guidance. <br>
+## Use Case:
 
+Content creators and external users use this skill to save Threads videos for offline viewing or secondary creation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tangqi00987/threads-downloader) <br>
-- [Publisher profile](https://clawhub.ai/user/tangqi00987) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Files] <br>
-**Output Format:** [Downloaded MP4 files with concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves files to a user-selected or confirmed directory using filenames that include Threads_Video, resolution, and date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Downloaded media can conflict with platform rules or content-owner rights.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Download only content the user has permission to save and confirm use complies with Threads rules and the rights of the content owner.
+
+Risk: Saved videos may collide with existing files in the target directory.
+
+Mitigation: Choose a clear target directory and check generated filenames before moving or renaming downloaded files.
+
+Risk: Browser downloads may leave temporary files outside the intended output folder.
+
+Mitigation: Use an isolated browser environment and move only the intended downloaded MP4 files from the temporary directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tangqi00987/skills/threads-downloader)
+- [Publisher profile](https://clawhub.ai/user/tangqi00987)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Guidance]
+
+**Output Format:** [Local MP4 files with concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves downloaded videos to a target directory using resolution and date-based filenames when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

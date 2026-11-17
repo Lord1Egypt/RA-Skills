@@ -1,42 +1,60 @@
-## Description: <br>
-Helps agents guide Clash Verge and mihomo REST API configuration, proxy selection, connection monitoring, rule management, and sample client usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through Clash Verge external controller setup and mihomo REST API operations, including proxy switching, connection monitoring, rule management, configuration changes, delay testing, and kernel restart examples.
 
-## Publisher: <br>
-[gyaoshi](https://clawhub.ai/user/gyaoshi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gyaoshi](https://clawhub.ai/user/gyaoshi)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and operate a Clash Verge or mihomo controller through documented REST endpoints and example code. It is most useful for node switching, proxy inspection, connection management, delay testing, and controller maintenance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Clash Verge or mihomo controller exposed beyond localhost can allow unauthorized control of proxy settings if the secret or network boundary is weak. <br>
-Mitigation: Keep the controller bound to 127.0.0.1 when possible, set a strong secret, and use firewall restrictions before enabling remote access. <br>
-Risk: Mutating API actions can change routing behavior, delete connections, update configuration, upgrade components, or restart the controller. <br>
-Mitigation: Require explicit user confirmation before node switching, configuration updates, connection deletion, upgrades, or restarts. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and administer a Clash Verge or mihomo controller through REST API calls. It helps agents provide setup guidance, API examples, sample client code, and operational commands for local or remote proxy management.
 
-## Reference(s): <br>
-- [Clash Verge / mihomo API Reference](references/api_reference.md) <br>
-- [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev) <br>
-- [mihomo API Documentation](https://wiki.metacubex.one/api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with YAML, bash, Python, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include REST endpoint descriptions and JSON request examples for a user-provided controller address and secret.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill enables high-impact proxy administration, including restart, configuration changes, cache flushing, rule changes, upgrades, and closing connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before performing disruptive controller actions.
+
+Risk: Controller exposure or unsafe network defaults can disclose or alter proxy administration state.
+
+Mitigation: Keep the controller bound to 127.0.0.1 where possible, avoid wildcard CORS, and restrict remote access with firewall controls.
+
+Risk: API secrets can be mishandled when included in commands or plaintext requests.
+
+Mitigation: Avoid passing secrets on the command line and use HTTPS for sensitive remote controller access.
+
+## Reference(s):
+
+- [Clash Verge / mihomo API Reference](references/api_reference.md)
+- [Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev)
+- [mihomo API Documentation](https://wiki.metacubex.one/api/)
+- [ClawHub Skill Page](https://clawhub.ai/gyaoshi/skills/clash-verge-controller)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with YAML, bash, Python, and JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST API endpoints, Authorization header examples, and local controller configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

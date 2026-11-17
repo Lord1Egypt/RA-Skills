@@ -1,51 +1,75 @@
-## Description: <br>
-Enhances an OpenClaw agent loop with planning, parallel execution, confidence gates, semantic error recovery, observable state, and a Mode dashboard for configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhanced agentic loop with planning, parallel execution, confidence gates, semantic error recovery, and observable state machine.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and teams using OpenClaw use this skill to add persistent planning, state tracking, checkpointing, context management, and approval-aware execution to agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes the agent loop in high-impact ways and safety controls may not reliably require explicit approval before risky actions proceed. <br>
-Mitigation: Review Mode settings, test on a non-production agent first, and avoid enabling it for unattended high-impact actions. <br>
-Risk: Planning and summarization may send task details, tool outputs, and file paths to the configured LLM provider. <br>
-Mitigation: Avoid use with sensitive local project data unless the configured provider and auth profile are approved for that data. <br>
-Risk: Approval gates can proceed after a timeout for high-risk operations. <br>
-Mitigation: Use stricter approval settings where explicit human approval is required for high or critical actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to add an enhanced OpenClaw agent loop with persistent planning, parallel execution, confidence gates, semantic error recovery, checkpointing, and dashboard configuration.
 
-## Reference(s): <br>
-- [Agentic Loop Upgrade ClawHub Page](https://clawhub.ai/maverick-software/agent-mode-upgrades) <br>
-- [Security and Trust Documentation](artifact/SECURITY.md) <br>
-- [Integration Guide](artifact/INSTRUCTIONS.md) <br>
-- [Confidence Gates](artifact/references/confidence-gates.md) <br>
-- [Context Management](artifact/references/context-management.md) <br>
-- [Error Recovery](artifact/references/error-recovery.md) <br>
-- [Parallel Execution](artifact/references/parallel-execution.md) <br>
-- [Planning and Reflection](artifact/references/planning-reflection.md) <br>
-- [Observable State Machine](artifact/references/state-machine.md) <br>
-- [Task Hierarchy](artifact/references/task-hierarchy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, JSON configuration snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local OpenClaw configuration, plan state, and checkpoint files when enabled by the host agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: server release and skill.json) <br>
+Risk: The skill wraps agent behavior and can affect agents with broad tool access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before enabling on production agents, enable per agent through the Mode dashboard, and test with least-privilege tool access first.
+
+Risk: Approval timeouts can allow risky actions to proceed if left in the documented fail-open posture.
+
+Mitigation: Configure or patch approval timeouts to deny on timeout for sensitive environments and keep high/critical approval gates enabled.
+
+Risk: The skill reuses host LLM credentials and provider access.
+
+Mitigation: Limit host auth profiles to approved providers and verify child environments do not expose stale or unintended credentials.
+
+Risk: Local plan state and checkpoints may contain sensitive task context.
+
+Mitigation: Protect the local OpenClaw state directory, prune checkpoints when no longer needed, and avoid enabling memory injection where sensitive data should not be reused.
+
+Risk: The installed hook may differ from the documented integration.
+
+Mitigation: Verify the installed hook and Mode dashboard integration match the packaged documentation before relying on enhanced-loop behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/agent-mode-upgrades)
+- [README](artifact/README.md)
+- [Security & Trust Documentation](artifact/SECURITY.md)
+- [Integration Guide](artifact/INSTRUCTIONS.md)
+- [Planning and Self-Reflection](artifact/references/planning-reflection.md)
+- [Parallel Tool Execution](artifact/references/parallel-execution.md)
+- [Confidence-Gated Autonomy](artifact/references/confidence-gates.md)
+- [Semantic Error Recovery](artifact/references/error-recovery.md)
+- [Proactive Context Management](artifact/references/context-management.md)
+- [Observable State Machine](artifact/references/state-machine.md)
+- [Hierarchical Task Management](artifact/references/task-hierarchy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured plan/status text with TypeScript APIs, shell commands, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces additive plan context, progress/status events, local checkpoint state, and Mode dashboard configuration when enabled.]
+
+## Skill Version(s):
+
+2.4.1 (source: server release and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

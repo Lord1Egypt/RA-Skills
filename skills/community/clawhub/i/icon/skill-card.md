@@ -1,42 +1,56 @@
-## Description: <br>
-Generate and convert icons. Use when creating SVGs, building sprite sheets, converting ICO/PNG/SVG, or generating favicon sets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and convert icons. Use when creating SVGs, building sprite sheets, converting ICO/PNG/SVG, or generating favicon sets.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and designers use this skill to generate SVG icons, assemble sprite sheets, convert icon formats, resize icon assets, and create favicon sets for web and app projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes generated and converted icon files to local output paths. <br>
-Mitigation: Use project-local output directories and review input and output paths before running batch resize, conversion, or favicon commands. <br>
-Risk: Raster and ICO conversion depends on local image conversion tools. <br>
-Mitigation: Keep ImageMagick or librsvg up to date and process trusted image files. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate SVG icons, assemble sprite sheets, convert icon formats, resize assets, search built-in icon names, and create favicon sets for web and app projects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/icon) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash commands plus generated SVG, PNG, ICO, web manifest, and HTML snippet files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes icon outputs to user-specified local paths; PNG and ICO conversion may require ImageMagick or librsvg.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.1 (source: ClawHub release metadata; artifact frontmatter reports 3.4.0) <br>
+Risk: Unsafe script inputs may lead to local command execution or writes outside the intended output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted icon names, sizes, colors, prefixes, output paths, and source files until the script validates numeric dimensions and constrains filenames to safe basenames.
+
+Risk: Processing untrusted SVG or XML content may expose the agent environment to unsafe file content.
+
+Mitigation: Process only trusted SVGs until SVG/XML sanitization is added; review generated files before using them in downstream projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/icon)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+- [Publisher homepage](https://bytesagain.com)
+- [Feedback page](https://bytesagain.com/feedback/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; generated artifacts include SVG, PNG, ICO, sprite sheet SVG, web manifest JSON, and HTML snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes icon assets and favicon files to caller-selected output paths when its shell script is executed.]
+
+## Skill Version(s):
+
+3.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Turn your code scan findings into search queries so users can research existing implementations before consulting an attorney. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn your code scan findings into search queries - research existing implementations before consulting an attorney. NOT legal advice.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to convert code patent scanner findings into structured search strategies, evidence maps, and differentiation questions for self-directed research. It supports preparation for attorney review but does not provide legal conclusions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake generated research strategies for legal advice or patentability conclusions. <br>
-Mitigation: Present outputs as search planning guidance only and direct users to consult a qualified patent attorney for legal conclusions or filing decisions. <br>
-Risk: Users may include confidential invention details in the agent context while asking for search planning. <br>
-Mitigation: Avoid sharing sensitive invention details unless the user is comfortable placing them in the agent context. <br>
-Risk: Generated search queries and evidence checklists may be incomplete or misleading if used without review. <br>
-Mitigation: Review generated strategies before use, run searches manually across the recommended sources, and document findings systematically. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leegitw/code-patent-validator) <br>
-- [Skill homepage](https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-validator) <br>
+## Use Case:
 
+Developers and engineers use this skill to turn code-patent-scanner findings into self-directed search strategies, evidence maps, and differentiation questions. It helps organize research before consulting a registered patent attorney.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown guidance and structured JSON search strategy examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces search queries, source-priority guidance, analysis questions, evidence checklists, and required disclaimers; it does not perform searches or assess patentability.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated search strategies may be mistaken for legal analysis or a professional patent search.
+
+Mitigation: Keep the required disclaimer in outputs and have users run searches themselves and consult a registered patent attorney for intellectual property guidance.
+
+Risk: Redistributed outputs may include the skill's default share-card attribution link.
+
+Mitigation: Review output templates before external redistribution and approve, edit, or remove attribution links according to the installer's policy.
+
+## Reference(s):
+
+- [Code Patent Validator ClawHub Page](https://clawhub.ai/leegitw/skills/code-patent-validator)
+- [Skill Homepage](https://github.com/Obviously-Not/patent-skills/tree/main/code-patent-validator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Markdown and structured JSON research planning outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates search strategies, evidence checklists, analysis questions, and required disclaimers; it does not perform searches or provide legal conclusions.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

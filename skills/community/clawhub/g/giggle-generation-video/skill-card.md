@@ -1,41 +1,58 @@
-## Description: <br>
-Supports text-to-video and image-to-video generation through giggle.pro, including start/end frame inputs, model selection, aspect ratio, duration, and resolution options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports text-to-video and image-to-video generation with configurable model, duration, aspect ratio, resolution, and optional start or end frame references.
 
-## Publisher: <br>
-[patches429](https://clawhub.ai/user/patches429) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patches429](https://clawhub.ai/user/patches429)
 
-## Use Case: <br>
-External users and developers use this skill to submit text-to-video or image-to-video jobs to giggle.pro, then query task status and receive generated video links. It is suited for creating short AI videos from prompts, reference images, and selected generation parameters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image URLs, asset IDs, base64 image data, generated videos, and API usage are sent to giggle.pro. <br>
-Mitigation: Avoid submitting private or sensitive media, use a revocable API key where possible, and install only if the user trusts giggle.pro with these inputs and outputs. <br>
-Risk: Task IDs and generated video links may expose previous generation jobs or signed media URLs. <br>
-Mitigation: Clear saved task IDs when old jobs should not be remembered, and avoid sharing signed video URLs beyond the intended audience. <br>
+## Use Case:
 
+Developers and external users can use this skill to submit text-to-video or image-to-video jobs to the Giggle Generation API, then query task status and receive generated video links.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/patches429/giggle-generation-video) <br>
-- [Giggle API Service](https://giggle.pro/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON task responses, status messages, and signed video links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, and GIGGLE_API_KEY; submitted generation jobs return task IDs for later status queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.10 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Authenticated requests may expose the Giggle API key if redirected off-site.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Giggle API key with limited quota and require same-origin redirect validation or disabled redirects before routine use.
+
+Risk: Prompts, reference images, and generated video links may contain sensitive or private content.
+
+Mitigation: Avoid submitting sensitive prompts or private images, and treat returned signed URLs as temporary private access links.
+
+Risk: The dependency declaration allows future requests versions rather than a pinned, reviewed package.
+
+Mitigation: Pin and review Python dependencies before deploying the skill in a routine or production environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patches429/skills/giggle-generation-video)
+- [Giggle API service](https://giggle.pro/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON task status, and signed video links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GIGGLE_API_KEY and python3 with requests; generated video links are temporary signed URLs.]
+
+## Skill Version(s):
+
+0.0.10 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

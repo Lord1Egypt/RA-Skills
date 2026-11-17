@@ -1,42 +1,58 @@
-## Description: <br>
-Delegates coding tasks to Codex, Claude Code, OpenCode, or Pi agents through PTY-backed bash sessions and background process monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates coding tasks to Codex, Claude Code, OpenCode, or Pi agents through PTY-backed shell sessions for feature work, PR review, refactoring, and iterative coding.
 
-## Publisher: <br>
-[nickchan0412](https://clawhub.ai/user/nickchan0412) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickchan0412](https://clawhub.ai/user/nickchan0412)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate larger coding, code review, refactoring, and iterative implementation tasks to installed coding-agent CLIs while monitoring long-running sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The runnable artifact can send prompts, code, or other entered text to Google/Gemini using an embedded API key. <br>
-Mitigation: Remove or rotate the embedded key, use approved credentials, and avoid entering secrets or private code unless that data transfer is acceptable. <br>
-Risk: The skill includes high-authority autonomous agent examples such as unsandboxed or auto-approved execution modes. <br>
-Mitigation: Prefer constrained approval modes, use disposable clones or worktrees, and manually review diffs before any commit, push, pull request, or GitHub comment. <br>
-Risk: Delegated coding agents may produce incorrect code, shell commands, or review guidance. <br>
-Mitigation: Inspect generated output, run relevant tests, and verify file changes before applying or publishing results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nickchan0412/coding-agent-backup) <br>
-- [Gemini generateContent API endpoint used by artifact](https://generativelanguage.googleapis.com/v1/models/gemini-3.1-pro:generateContent) <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate larger coding tasks, pull request reviews, refactors, and iterative coding work to local coding-agent CLIs while monitoring PTY sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; the runnable JavaScript artifact returns generated code or short explanatory text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PTY-capable bash tooling and installed agent CLIs; generated code may depend on a remote model response when using artifact/index.js.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The shipped runtime sends user prompts to Google Gemini using an embedded API key.
+
+Mitigation: Rotate and remove the exposed key, require user-managed credentials, and avoid entering sensitive prompts until credential handling is corrected.
+
+Risk: The skill examples include unsandboxed agent execution and commit or push workflows.
+
+Mitigation: Use isolated workdirs or worktrees, limit credentials and network access, and require explicit approval before unsandboxed runs or repository publishing.
+
+Risk: Delegated coding agents can modify local files or produce incorrect code without direct review.
+
+Mitigation: Monitor sessions, inspect generated changes, run project tests, and review diffs before applying or merging work.
+
+## Reference(s):
+
+- [Coding Agent Backup ClawHub page](https://clawhub.ai/nickchan0412/skills/coding-agent-backup)
+- [Publisher profile](https://clawhub.ai/user/nickchan0412)
+- [Gemini Generative Language API endpoint used by runtime](https://generativelanguage.googleapis.com/v1/models/gemini-3.1-pro:generateContent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and runtime-generated text or code responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime output depends on installed coding-agent CLIs, PTY-capable shell tooling, and the configured Gemini API request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

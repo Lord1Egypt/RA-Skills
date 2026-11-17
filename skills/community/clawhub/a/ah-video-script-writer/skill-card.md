@@ -1,39 +1,53 @@
-## Description: <br>
-Creates video scripts with hooks, narration, visual direction, timing, B-roll suggestions, SEO metadata, and production notes for YouTube videos, documentaries, explainers, ads, courses, and cinematic content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are an AI-powered Video Script Writer specializing in creating compelling scripts for YouTube videos, documentaries, explainers, ads, courses, and cinematic content across formats and genres.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Content creators, marketers, educators, and production teams use this skill to draft and revise video scripts with audience-aware structure, spoken narration, visual direction, retention hooks, and publishing metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated scripts may include inaccurate factual claims, copyright-sensitive material, or unsupported advertising and marketing claims. <br>
-Mitigation: Review and fact-check scripts before publishing, and clear claims, sources, and rights with the relevant editorial or legal reviewer. <br>
+## Use Case:
 
+Employees, external creators, and content teams use this skill to draft and revise video scripts for YouTube videos, documentaries, explainers, ads, courses, and cinematic content. It helps structure hooks, narration, visual direction, B-roll notes, timing, calls to action, SEO metadata, and chapter markers.
 
-## Reference(s): <br>
-- [Video Script Writer examples](references/examples.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-video-script-writer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown scripts and production guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include timing breakdowns, B-roll notes, SEO metadata, chapter markers, and music/SFX recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated scripts may contain inaccurate claims, quotes, examples, or research-dependent details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fact-check script outputs before publication or production use.
+
+Risk: Ad, SEO, or audience-retention copy may be persuasive or poorly matched to a platform, audience, brand, or policy requirement.
+
+Mitigation: Review outputs for platform compliance, audience fit, brand voice, and required disclosures before use.
+
+## Reference(s):
+
+- [Video Script Writer Code Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown scripts with narration, visual notes, timing breakdowns, B-roll suggestions, SEO metadata, and chapter markers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include production notes, music and SFX recommendations, calls to action, and script revision guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

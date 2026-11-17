@@ -1,42 +1,52 @@
-## Description: <br>
-Headless OpenClaw client for Ubuntu and Raspbian servers with heartbeat, auto-reconnect, auto-recovery, queue management, and hot model switching. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Headless OpenClaw client for Ubuntu and Raspbian servers with heartbeat, auto-reconnect, recovery, queue management, and hot model switching.
 
-## Publisher: <br>
-[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chris6970barbarian-hue](https://clawhub.ai/user/chris6970barbarian-hue)
 
-## Use Case: <br>
-Developers and operators use this skill to run a headless OpenClaw gateway client on Ubuntu, Raspbian, Raspberry Pi, or cloud hosts. It supports persistent service operation with heartbeat reporting, reconnection, queue handling, recovery, and model switching. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A long-running gateway-connected service can expose message contents and runtime telemetry to the configured gateway operator. <br>
-Mitigation: Use only trusted gateways, prefer HTTPS for non-local gateways, and run the service only on hosts intended for persistent gateway connectivity. <br>
-Risk: A broadly scoped API key could increase impact if the service host or gateway configuration is compromised. <br>
-Mitigation: Use a dedicated low-privilege API key for this service and rotate it according to local credential policy. <br>
-Risk: Enabling the systemd service makes the client persistent across restarts. <br>
-Mitigation: Enable the service only when persistent background operation is desired and review the configured user, working directory, and gateway settings before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/chris6970barbarian-hue/glitch-kkclaw-server) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/chris6970barbarian-hue) <br>
+## Use Case:
 
+Developers and operators use this skill to run a headless KKClaw/OpenClaw client on Ubuntu, Raspbian, Raspberry Pi, or cloud hosts with resilient gateway connectivity and model-management controls.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, JSON, and systemd configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied gateway URL and API key; intended for long-running headless service use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2026.2.17 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The client can send API keys, messages, and telemetry over unencrypted HTTP.
+
+Mitigation: Use HTTPS for any non-local gateway and protect or avoid plaintext API keys in configuration files.
+
+Risk: The artifact documents persistent system service operation.
+
+Mitigation: Run systemd deployments under a dedicated least-privilege account, harden the unit, and document how to stop, disable, and remove the service.
+
+## Reference(s):
+
+- [Kkclaw Server ClawHub listing](https://clawhub.ai/chris6970barbarian-hue/skills/glitch-kkclaw-server)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash, JSON, JavaScript, and systemd configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational setup guidance for a Node.js headless client and gateway configuration.]
+
+## Skill Version(s):
+
+2026.2.17 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

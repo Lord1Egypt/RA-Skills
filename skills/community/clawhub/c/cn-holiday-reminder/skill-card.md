@@ -1,40 +1,57 @@
-## Description: <br>
-Chinese holiday and adjusted-workday reminder skill with a relationship assistant for anniversaries, birthdays, custom dates, and romantic holiday reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese statutory holiday and adjusted-workday lookups, proactive holiday reminders, and relationship anniversary, birthday, custom date, and romantic holiday reminders.
 
-## Publisher: <br>
-[ironmanc2014](https://clawhub.ai/user/ironmanc2014) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ironmanc2014](https://clawhub.ai/user/ironmanc2014)
 
-## Use Case: <br>
-Users and agents use this skill to answer China holiday, workday, and upcoming holiday questions, and to configure automated reminders for holidays, anniversaries, birthdays, and custom relationship dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relationship names, anniversaries, birthdays, and custom dates may be stored locally and reminders may be sent through Feishu if configured. <br>
-Mitigation: Install only when local storage of these details is acceptable, and use a private Feishu destination or a local/private notification path for relationship reminders. <br>
-Risk: Some holiday data is marked as predicted until official schedules are updated. <br>
-Mitigation: Review predicted holiday and adjusted-workday results before relying on them for scheduling decisions. <br>
+## Use Case:
 
+External users and agents use this skill to answer China holiday, workday, next-holiday, annual-calendar, anniversary, birthday, and romantic-reminder questions, and to configure scheduled reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ironmanc2014/cn-holiday-reminder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python command examples, plain text reminders, JSON command output, and cron configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads built-in holiday data and may read or write local relationship reminder data under ~/agent-memory/love.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill stores partner names, birthdays, anniversaries, and custom relationship dates in a plaintext local file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on a private machine or account and restrict permissions for ~/agent-memory/love.json.
+
+Risk: Reminder content may be sent through Feishu when automated reminder delivery is enabled.
+
+Mitigation: Use a private Feishu destination or avoid Feishu delivery for sensitive reminders.
+
+Risk: Some holiday dates are predicted until official schedules are updated.
+
+Mitigation: Treat predicted dates as provisional and update the bundled holiday data after official announcements are available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ironmanc2014/skills/cn-holiday-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Holiday data is embedded locally; relationship reminder data may be stored in ~/agent-memory/love.json.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

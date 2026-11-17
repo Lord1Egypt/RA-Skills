@@ -1,49 +1,63 @@
-## Description: <br>
-Helps agents discover documented BlockPI RPC methods, choose JSON-RPC, HTTP, gRPC, or GraphQL routes, estimate RU usage, persist endpoints locally, and make user-directed calls with user-provided BlockPI endpoints or tokens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-protocol BlockPI access skill for discovering documented methods, routing requests by protocol, mapping RU pricing, and calling BlockPI endpoints across JSON-RPC, HTTP, gRPC, and GraphQL where the official docs support them.
 
-## Publisher: <br>
-[neganzhao](https://clawhub.ai/user/neganzhao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neganzhao](https://clawhub.ai/user/neganzhao)
 
-## Use Case: <br>
-External developers and blockchain operators use this skill to validate documented BlockPI methods, choose the right transport for a chain, estimate request-unit impact, and prepare or execute live RPC calls through user-provided BlockPI credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BlockPI endpoints and tokens may be sensitive local runtime data. <br>
-Mitigation: Keep the state/ directory private, avoid sharing real endpoints or keys in chats, and do not commit local endpoint state. <br>
-Risk: Live blockchain RPC calls may consume request units or submit already-signed transaction data. <br>
-Mitigation: Require explicit user-provided endpoints or tokens before live calls, review the method and payload first, and treat RU estimates as guidance rather than final billing truth. <br>
-Risk: gRPC execution can expose tokens in local command arguments or grpcurl output. <br>
-Mitigation: Treat grpcurl tokens, proto paths, and output as sensitive runtime material and review commands before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to validate BlockPI-supported methods, choose protocol-aware access paths, estimate documentation-based RU costs, and prepare or execute calls against user-provided BlockPI endpoints.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neganzhao/blockpi-rpc-skill) <br>
-- [BlockPI Dashboard](https://dashboard.blockpi.io/) <br>
-- [BlockPI pricing](https://blockpi.io/pricing/) <br>
-- [BlockPI Protocol Catalog Summary](references/rpc_summary.md) <br>
-- [BlockPI Protocol Matrix](references/protocol_matrix.md) <br>
-- [BlockPI RPC Catalog](references/rpc_catalog.json) <br>
-- [Request Unit Pricing Notes](references/pricing_notes.md) <br>
-- [Solana Yellowstone gRPC Design Notes](references/solana-yellowstone-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown guidance with command examples, JSON request payloads, and user-directed RPC/API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create encrypted local endpoint state under state/ when the user approves endpoint persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Secret-bearing BlockPI endpoints or tokens may be exposed during chat, debug, or metadata output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use short-lived, least-privileged keys, avoid pasting full secret-bearing endpoints into chat, and avoid debug or metadata output when real credentials are present.
+
+Risk: Live blockchain calls can have high-impact or irreversible effects if signed transactions are broadcast.
+
+Mitigation: Review each action before execution and only allow signed transaction broadcasts when the user explicitly intends that on-chain action.
+
+Risk: Saved endpoint state contains sensitive runtime data.
+
+Mitigation: Keep endpoint state local, do not commit or distribute state files or key material, and re-provide endpoints if local key material is lost.
+
+## Reference(s):
+
+- [BlockPI Protocol Catalog Summary](references/rpc_summary.md)
+- [BlockPI Protocol Matrix](references/protocol_matrix.md)
+- [BlockPI RPC Catalog](references/rpc_catalog.json)
+- [Request Unit Pricing Notes](references/pricing_notes.md)
+- [Solana Yellowstone gRPC Design Notes](references/solana-yellowstone-design.md)
+- [BlockPI Pricing](https://blockpi.io/pricing/)
+- [BlockPI Dashboard](https://dashboard.blockpi.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and shell command snippets; live call results may be JSON or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist local endpoint configuration and may initiate user-requested network calls through the bundled script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

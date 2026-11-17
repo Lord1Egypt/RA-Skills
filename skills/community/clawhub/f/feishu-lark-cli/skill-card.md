@@ -1,55 +1,79 @@
-## Description: <br>
-Guides an agent in using lark-cli for Feishu/Lark instant messaging, including sending and replying to messages, searching chat history, managing group chats and members, downloading chat files, and managing message reactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Feishu/Lark instant messaging CLI guidance for sending, replying to, and searching messages, managing group chats and members, downloading message resources, and managing reactions.
 
-## Publisher: <br>
-[roy-oss1](https://clawhub.ai/user/roy-oss1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roy-oss1](https://clawhub.ai/user/roy-oss1)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent perform Feishu/Lark messaging workflows through lark-cli. It is suited for chat and message lookup, group management, message sending and replies, attachment download, and reaction management when the appropriate user or bot authorization is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authorized use can read and change real Feishu/Lark chat data. <br>
-Mitigation: Install only for workspaces where agent messaging access is intended, and grant the narrowest OAuth scopes needed for the task. <br>
-Risk: State-changing actions can send messages, modify groups, add members, or create reactions under the selected user or bot identity. <br>
-Mitigation: Confirm recipients, group members, identity, and message content before execution, especially when switching between user and bot identity. <br>
-Risk: Broad message searches and downloaded attachments can expose sensitive chat content. <br>
-Mitigation: Avoid broad all-chat searches unless necessary, and treat downloaded chat attachments as sensitive untrusted files. <br>
+## Use Case:
 
+Developers and agents use this skill to operate Feishu/Lark IM through lark-cli: identify chats, send or reply to approved messages, inspect or search chat history, download resources, and manage chat metadata or reactions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/roy-oss1/feishu-lark-cli) <br>
-- [lark-cli project homepage](https://github.com/larksuite/cli) <br>
-- [im +chat-create](references/lark-im-chat-create.md) <br>
-- [Group Chat Identity Rules](references/lark-im-chat-identity.md) <br>
-- [im +chat-messages-list](references/lark-im-chat-messages-list.md) <br>
-- [im +chat-search](references/lark-im-chat-search.md) <br>
-- [im +chat-update](references/lark-im-chat-update.md) <br>
-- [im +messages-mget](references/lark-im-messages-mget.md) <br>
-- [im +messages-reply](references/lark-im-messages-reply.md) <br>
-- [im +messages-resources-download](references/lark-im-messages-resources-download.md) <br>
-- [im +messages-search](references/lark-im-messages-search.md) <br>
-- [im +messages-send](references/lark-im-messages-send.md) <br>
-- [im reactions](references/lark-im-reactions.md) <br>
-- [im +threads-messages-list](references/lark-im-threads-messages-list.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with lark-cli shell commands and optional JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose state-changing messaging actions and file downloads that require Feishu/Lark OAuth authorization and lark-cli installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The release installs an unpinned executable CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after trusting the @larksuite/cli npm package and pin or review a specific package version in managed deployments.
+
+Risk: The skill can read or search broad chat history when granted wide Lark scopes.
+
+Mitigation: Use the narrowest Lark scopes possible and search only chats, users, and time ranges that are authorized for the task.
+
+Risk: The skill can send messages or mutate chats, which may affect other users.
+
+Mitigation: Use dry-run before writes and confirm recipient, content, and user-or-bot identity before sending messages or changing chats.
+
+Risk: Lark app credentials and user or tenant tokens may be exposed to the CLI.
+
+Mitigation: Use scoped credentials, avoid unnecessary token exposure, and rotate credentials according to the deployment's normal secret-handling policy.
+
+Risk: Markdown messages with remote images may cause external URLs to be fetched and uploaded by the CLI.
+
+Mitigation: Avoid remote Markdown images unless the URL is trusted and the fetch/upload behavior is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roy-oss1/skills/feishu-lark-cli)
+- [Lark CLI GitHub homepage](https://github.com/larksuite/cli)
+- [im (v1)](SKILL.md)
+- [im +chat-create](references/lark-im-chat-create.md)
+- [Group Chat Identity Rules](references/lark-im-chat-identity.md)
+- [im +chat-messages-list](references/lark-im-chat-messages-list.md)
+- [im +chat-search](references/lark-im-chat-search.md)
+- [im +chat-update](references/lark-im-chat-update.md)
+- [im +messages-mget](references/lark-im-messages-mget.md)
+- [im +messages-reply](references/lark-im-messages-reply.md)
+- [im +messages-resources-download](references/lark-im-messages-resources-download.md)
+- [im +messages-search](references/lark-im-messages-search.md)
+- [im +messages-send](references/lark-im-messages-send.md)
+- [im reactions](references/lark-im-reactions.md)
+- [im +threads-messages-list](references/lark-im-threads-messages-list.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run commands and output-format flags; command effects depend on the authenticated Lark identity and authorized scopes.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

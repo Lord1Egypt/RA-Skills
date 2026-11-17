@@ -2,7 +2,7 @@
 
 ## What is a custom node graph?
 
-A **node graph** is a directed acyclic graph of steps that defines a workflow. Each graph must have exactly one `start` node (entry point) and one `end` node (exit point). Intermediate nodes perform actions — enrichments, transformations, branching, AI calls, etc. — and are linked together via `childrenUuids`.
+A **node graph** is a directed acyclic graph of steps that defines a workflow. Each graph must have one `start` node (entry point) and at least one `end` node (exit point; a `branch` can end each path in its own `end`). Intermediate nodes perform actions — enrichments, transformations, branching, AI calls, etc. — and are linked together via `childrenUuids`.
 
 Pass a custom node graph to override a tool's deployed release:
 
@@ -21,6 +21,12 @@ Also works with `batch create --nodes`. Cannot be combined with `--release-uuid`
 cargo-ai orchestration node validate --nodes '[...]'
 ```
 
+**Then show it before you deploy it.** `node validate` proves the graph is
+well-formed, not that it does what the user wanted. Render it as a Mermaid
+flowchart — [`node-diagram.md`](node-diagram.md) — and let them check the routing
+and the paid steps against their intent. The two go together: validate, diagram,
+ask, deploy.
+
 ## Node shape
 
 Every node in the `--nodes` JSON array has these fields:
@@ -29,13 +35,13 @@ Every node in the `--nodes` JSON array has these fields:
 | ------------------- | -------- | -------------------------------------------------------------------------- |
 | `uuid`              | yes      | Unique ID within the graph — must be a valid UUIDv4 (e.g. `"550e8400-e29b-41d4-a716-446655440000"`) |
 | `slug`              | yes      | Human-readable identifier (`start` and `end` are reserved)                 |
-| `kind`              | yes      | `native`, `connector`, `tool`, or `agent`                                  |
+| `kind`              | yes      | `native`, `connector`, `tool`, `agent`, or `worker`                        |
 | `config`            | yes      | Action-specific configuration (`{}` for start)                             |
 | `childrenUuids`     | yes      | UUIDs of downstream nodes — array length **must match** the `childrenCount` for the node's action (see native actions tables below) |
 | `fallbackOnFailure` | yes      | Continue to the next node even if this one fails                           |
 | `position`          | yes      | `{"x": 0, "y": 0}` — layout only, no runtime effect                        |
 | `fallbackChildUuid` | no       | UUID of a fallback node to run on failure                                  |
-| `retry`             | no       | `{"maximumAttempts": 3, "initialInterval": 1000, "backoffCoefficient": 2}` |
+| `retry`             | no       | `{"maximumAttempts": 3, "initialInterval": 1, "backoffCoefficient": 2}` (`initialInterval` is seconds, not milliseconds) |
 | `name`              | no       | Display name                                                               |
 | `description`       | no       | Description                                                                |
 
@@ -77,11 +83,11 @@ Embeds another tool (sub-workflow) as a node. The tool's deployed release config
 
 | Field          | Required | Description                                              |
 | -------------- | -------- | -------------------------------------------------------- |
-| `toolUuid`     | no       | Target tool UUID — get from `cargo-ai orchestration tool list` |
+| `toolUuid`     | yes, to validate | Target tool UUID — get from `cargo-ai orchestration tool list` |
 | `templateSlug` | no       | Template slug — use when instantiating from a template   |
 | `releaseUuid`  | no       | Pin to a specific release of the tool                    |
 
-Provide at least one of `toolUuid` or `templateSlug`. `childrenCount` is **1**.
+`node validate` rejects a `tool` node without `toolUuid` (`toolInvalid`), and also when the tool has no deployed release and no `releaseUuid` pins one. `childrenCount` is **1**.
 
 ```bash
 # Find toolUuid
@@ -95,11 +101,11 @@ Embeds a saved AI agent as a node. The agent runs to completion and its output i
 
 | Field          | Required | Description                                          |
 | -------------- | -------- | ---------------------------------------------------- |
-| `agentUuid`    | no       | Target agent UUID — get from `cargo-ai ai agent list` |
+| `agentUuid`    | yes, to validate | Target agent UUID — get from `cargo-ai ai agent list` |
 | `templateSlug` | no       | Template slug — use when instantiating from a template |
 | `releaseUuid`  | no       | Pin to a specific release of the agent               |
 
-Provide at least one of `agentUuid` or `templateSlug`. `childrenCount` is **1**.
+`node validate` rejects an `agent` node without `agentUuid` (`agentInvalid`), and also when the agent has no deployed release and no `releaseUuid` pins one. `childrenCount` is **1**.
 
 ```bash
 # Find agentUuid
@@ -239,6 +245,75 @@ The `end` node's `variables` array defines the workflow output. Each variable ha
 
 Same shape as `end` variables, but the output is available to downstream nodes via `{{nodes.<slug>.<name>}}`.
 
+### Storage
+
+Read and write Cargo models from inside a workflow. Use these, **not** an HTTP call to
+the model's `/records/ingest` webhook: that URL is for systems outside Cargo, and
+calling it from a node costs an HTTP node, a payload script, and a token in a header.
+
+| actionSlug    | Purpose                                         | childrenCount | Config                                                                                     |
+| ------------- | ----------------------------------------------- | -------- | ------------------------------------------------------------------------------------------ |
+| `modelUpsert` | Update the matching record, or insert one       | 1        | `{"modelUuid", "matchingColumnSlug", "matchingValue", "mappings": [{"columnSlug", "value"}]}` |
+| `modelUpdate` | Update matching records only                    | 1        | Same as `modelUpsert`                                                                      |
+| `modelInsert` | Insert a new record                             | 1        | `{"modelUuid", "mappings": [{"columnSlug", "value"}]}`                                     |
+| `modelRemove` | Remove matching records                         | 1        | `{"modelUuid", "matchingColumnSlug", "matchingValue"}`                                     |
+| `modelSearch` | Read records (filter, sort, limit)              | 1        | `{"modelUuid", "filter"?, "sort"?, "limit"?, "selectedColumnSlugs"?}`                      |
+
+Each mapping `value` (and `matchingValue`) is a template expression, so values come
+straight from upstream nodes with no prep step. `mappings` targets the model's own
+columns; `customMappings` (same shape) targets its custom columns. A null
+`matchingValue` fails the node without writing. All of them output an array of
+records.
+
+#### Files
+
+Read and write workspace **content files** by path (`reports/2026-q3/summary.md`: folder
+chain plus name). Use these, not an HTTP node to a storage API or a script that
+base64-juggles bytes.
+
+| actionSlug   | Purpose                                  | childrenCount | Config | Output |
+| ------------ | ---------------------------------------- | -------- | ------ | ------ |
+| `writeFile`  | Store text or base64 bytes at a path     | 1        | `{"path", "content", "encoding"?: "text"\|"base64", "contentType"?, "visibility"?: "private"\|"public", "indexMode"?: "none"\|"vectorStore"}` | `{fileUuid, path, size, url, publicUrl?}` |
+| `readFile`   | Read a file by path                      | 1        | `{"path", "encoding"?: "text"\|"base64"}` | `{fileUuid, path, contentType, size, content}` |
+| `getFileUrl` | Signed link to a file by path            | 1        | `{"path", "expiresInSeconds"?, "download"?}` | `{fileUuid, path, url, expiresAt, publicUrl?}` |
+
+- `writeFile` creates missing folders and **overwrites** the newest file of that name
+  in place (same `fileUuid`). A new file is `private`, `indexMode: "none"` (not
+  searchable by agents) and not mirrored to the context repo; an overwritten one keeps
+  its own settings unless the node sets them. `contentType` defaults to
+  `text/plain; charset=utf-8` (text) or `application/octet-stream` (base64).
+- `writeFile` / `readFile` cap at **10 MB**; a larger read fails and points at
+  `getFileUrl`. A **preview (dry) run of `writeFile` writes nothing** — it returns a
+  zero `fileUuid` and no `url`.
+- `url` is a signed link **anyone holding it can open** — 1 hour from `writeFile`,
+  `expiresInSeconds` (default 3600, max 10800) from `getFileUrl`. `publicUrl` is the
+  stable no-auth link, present only when the file is `public`. Do not route either to a
+  third party unless the play's purpose is to share that file.
+- All three fail without retry: `File not found at <path>`, `File not written: <reason>`
+  (`invalidPath`, `folderReadOnly`, …).
+
+Path model, defaults per surface, and the public link:
+[`../../cargo-content/references/objects.md`](../../cargo-content/references/objects.md).
+
+### Human review
+
+`humanReview` posts content to Slack with buttons and waits for a person. **2 children**:
+child 0 = approved (or edited), child 1 = declined.
+
+| Config | Notes |
+| --- | --- |
+| `connectorUuid`, `channelId` | Slack connector and channel (required; `channelId` autocompletes via `listChannels`) |
+| `title`, `content` | `title` is the posting username; `content` is Slack mrkdwn |
+| `threadTs`? | Post the review as a **reply in that thread** instead of a new message |
+| `enabledButtons`? | Subset of `["approve","decline","edit"]` (default all). An empty set fails: `At least one button (Approve, Decline, or Edit) must be enabled` |
+| `approveButtonLabel`?, `declineButtonLabel`?, `editButtonLabel`? | ≤ 75 characters each; `""` falls back to the default. The edit modal's submit button reuses the approve label only if it is ≤ 24 characters |
+| `timeoutMilliseconds`? | Default 24 h |
+
+Output: `{approved?, user?: {id, username, name}, content, channelId?, messageTs?}` —
+after an edit, `content` is the edited text and the run takes child 0. **A timeout
+errors the node** (`Human review timed out`, no retry) rather than taking a branch; give
+it a `fallbackOnFailure` path when a non-answer should route somewhere.
+
 ### Flow control
 
 | actionSlug | Purpose               | childrenCount | Config                                                      |
@@ -248,9 +323,9 @@ Same shape as `end` variables, but the output is available to downstream nodes v
 
 The `group` node iterates over `items`, running the child subgraph once per item. Each iteration can access the current item via `{{nodes.start.value}}` (for simple values) or `{{nodes.start.<field>}}` (for object items). Use `{{parentNodes.<slug>.<field>}}` to reference the parent run's data.
 
-> **Reading group results downstream:** the group node's output is an **array**, one entry per iteration, where each entry is that iteration's final (`end`) node output. Access it by index: `{{nodes.<groupSlug>[0].<field>}}`. There is **no `.results` wrapper** — `{{nodes.<groupSlug>.results[0]...}}` does not work — and arrow-function array methods like `{{nodes.<groupSlug>.map(x => x.field)}}` are not supported in template expressions. To collapse the array into one value, use a `script` node with `lodash` (or a `python` node). See [`node-selection.md`](node-selection.md) → "Group node results".
+> **Reading group results downstream:** the group node's output is an **array**, one entry per iteration, where each entry is that iteration's final (`end`) node output. Access it by index: `{{nodes.<groupSlug>[0].<field>}}`. There is **no `.results` wrapper**, so `{{nodes.<groupSlug>.results[0]...}}` does not work. To collapse the array into one value, use an expression: `{{nodes.<groupSlug>.map(x => x.field).filter(Boolean).join(", ")}}` or `.reduce(...)` works inline, with no code node.
 
-> **`delay` and context:** prior node outputs are **not** lost across a `delay` — the full run context is checkpointed and restored, so `{{nodes.<slug>...}}` still resolves after the delay regardless of node kind. The checkpoint is JSON, though, so values you read after a delay must be JSON-serializable. Materialize anything you need post-delay into a `variables` node (plain strings/numbers/objects) before the delay rather than relying on a `python` node's `result`. See [`node-selection.md`](node-selection.md) → "What survives a `delay` boundary".
+> **`delay` and context:** prior node outputs are **not** lost across a `delay` — the full run context is checkpointed and restored, so `{{nodes.<slug>...}}` still resolves after the delay regardless of node kind. The checkpoint is JSON, though, so values you read after a delay must be JSON-serializable. Materialize anything you need post-delay into a `variables` node (plain strings/numbers/objects) before the delay rather than relying on a `python` node's `result`.
 
 **Group sub-graph (`_nodes`):** The `_nodes` array inside the group's config defines the internal workflow executed for each item. It follows the **exact same rules** as a top-level node graph:
 
@@ -267,14 +342,51 @@ The `group` node iterates over `items`, running the child subgraph once per item
 | actionSlug | Purpose             | childrenCount | Config                                                                                                 |
 | ---------- | ------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
 | `agent`    | Inline AI agent     | 1        | `{"prompt": "...", "advancedSettings": {"connectorUuid": "...", "languageModelSlug": "gpt-4.1-mini"}}` |
+| `classify` | Typed yes/no, choice and score answers about one input | 1 | `{"state": <expression>, "questions": [...]}` — see below |
 | `python`   | Run Python code     | 1        | `{"script": "..."}`                                                                                    |
 | `script`   | Run JavaScript code | 1        | `{"script": "..."}`                                                                                    |
 
-The `agent` action requires `advancedSettings.connectorUuid` (an AI provider connector — get it from `connector list`). Optional fields: `actions`, `resources`, `capabilities`, `output` (structured output with `{"type": "jsonSchema", "jsonSchema": {...}}`), `advancedSettings.temperature`, `advancedSettings.maxSteps`, `advancedSettings.systemPrompt`.
+The `agent` action requires `advancedSettings.connectorUuid` (an AI provider connector — get it from `connector list`). Optional fields: `tools` (not `actions`), `resources`, `capabilities`, `mcpClients`, `output` (structured output with `{"type": "jsonSchema", "jsonSchema": {...}}`), `advancedSettings.temperature`, `advancedSettings.maxSteps`, `advancedSettings.systemPrompt`.
+
+#### `classify` — typed questions, no connector, no model to pick
+
+Every question is answered in one call, with probabilities. It runs on Cargo's own key,
+so there is no `connectorUuid` and no model choice (`model` is optional and defaults to
+`jev-latest`). Priced **0.01 credits per started 1,000 input tokens** (output tokens
+free), plus the 0.01 node execution charge.
+
+```json
+{
+  "state": "{{nodes.start}}",
+  "questions": [
+    {"type": "noul",   "id": "isB2b",   "instructions": "Does this company sell to businesses?",
+     "trueCriteria": "Sells primarily to companies", "falseCriteria": "Sells primarily to consumers"},
+    {"type": "choice", "id": "segment", "instructions": "Which market segment fits best?",
+     "options": [{"option": "SMB"}, {"option": "Mid-market"}, {"option": "Enterprise", "description": "1,000+ employees"}]},
+    {"type": "score",  "id": "fit",     "instructions": "How well does it match our ICP?",
+     "levels": ["poor", "weak", "good", "strong"]}
+  ]
+}
+```
+
+- **Yes/no is `"type": "noul"`** — not `yesNo` or `boolean`. `trueCriteria` /
+  `falseCriteria` are optional. Choice takes 2–255 `options`; score takes 2–10
+  `levels`, lowest first. `id` names the output key and is not sent to the model.
+- Output: `{model, answers: {<id>: …}, usage: {input_tokens, output_tokens}}` — read
+  `{{nodes.<slug>.answers.<id>.…}}` (**no `.answer` wrapper**, unlike `agent`):
+  - yes/no → `{type: "noul", noul}` — the **probability of yes**, 0–1; branch on
+    `{{nodes.<slug>.answers.isB2b.noul > 0.5}}`, not on a boolean.
+  - choice → `{type: "choice", choice, confidence, probabilities: {<option>: p}}`.
+  - score → `{type: "score", score, confidence, legend: {<index>: <level>}, probabilities}`
+    — `score` is a probability-weighted level **index**, so it can fall between levels.
+- One thing per question, and a fixed rubric rather than one templated per record, so
+  answers stay comparable across records. Rate limit: 600 requests/min.
 
 The `python` and `script` nodes receive `nodes` and `parentNodes` as context variables. The return value of the script becomes the node's output under `{{nodes.<slug>.result}}` (assign to a variable named `result` in Python; `return` a value in JS).
 
-> **Prefer built-in actions + expressions over code nodes.** Before adding a `python` or `script` node, read [`node-selection.md`](node-selection.md): most transforms belong in a `variables` node, LLM calls in the native `agent` node, API calls in the integration's connector action, and routing in `branch`/`filter`/`switch`. Reach for code only for genuine multi-step computation (prefer the JS `script` node — it ships `lodash`).
+The JS `script` node's `require()` allowlist is `axios`, `cheerio`, `crypto-js`, `date-fns`, `jsonschema`, `lodash`, `url`, `uuid`, and `zod`. Anything else throws — including `knex` (use `axios` for HTTP).
+
+> **Use a code node only when you need one.** A template expression is inline JavaScript, so a small transformation goes in `{{ }}` in the field that needs it. Before adding a `python` or `script` node, read [`node-selection.md`](node-selection.md).
 
 ## Examples
 
@@ -298,7 +410,7 @@ cargo-ai orchestration run create \
     },
     {
       "uuid":"22222222-2222-4222-a222-222222222222","slug":"enrich_company","kind":"connector",
-      "integrationSlug":"clearbit","actionSlug":"enrichCompanyFromDomain",
+      "integrationSlug":"clearbit","actionSlug":"enrichCompany",
       "connectorUuid":"<connector-uuid>",
       "config":{
         "domain":{"kind":"templateExpression","expression":"{{nodes.start.domain}}","instructTo":"none","fromRecipe":false}
@@ -311,7 +423,7 @@ cargo-ai orchestration run create \
       "config":{
         "variables":[
           {"name":"company_name","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.enrich_company.name}}","instructTo":"none","fromRecipe":false}},
-          {"name":"employee_count","type":"number","value":{"kind":"templateExpression","expression":"{{nodes.enrich_company.metrics.employeesRange}}","instructTo":"none","fromRecipe":false}}
+          {"name":"employees_range","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.enrich_company.metrics.employeesRange}}","instructTo":"none","fromRecipe":false}}
         ]
       },
       "childrenUuids":[],"fallbackOnFailure":false,
@@ -380,7 +492,7 @@ cargo-ai orchestration run create \
     },
     {
       "uuid":"d3d3d3d3-d3d3-4d3d-ad3d-d3d3d3d3d3d3","slug":"enrich","kind":"connector",
-      "integrationSlug":"clearbit","actionSlug":"enrichCompanyFromDomain",
+      "integrationSlug":"clearbit","actionSlug":"enrichCompany",
       "connectorUuid":"<connector-uuid>",
       "config":{
         "domain":{"kind":"templateExpression","expression":"{{nodes.start.domain}}","instructTo":"none","fromRecipe":false}
@@ -509,12 +621,15 @@ cargo-ai orchestration run create \
   ]'
 ```
 
-### Python node: custom data transformation
+### Variables node: custom data transformation
+
+Reshaping fields (trim, lowercase, split, pick a default) is a `variables` node, not a
+code node. Each variable is one expression:
 
 ```bash
 cargo-ai orchestration run create \
   --workflow-uuid <tool.workflowUuid> \
-  --data '{"name":"ACME CORP","domain":"  Acme.COM  "}' \
+  --data '{"name":"ACME CORP","email":"  Jane@Acme.COM  "}' \
   --nodes '[
     {
       "uuid":"a1a1a1a1-a1a1-4a1a-aa1a-a1a1a1a1a1a1","slug":"start","kind":"native","actionSlug":"start",
@@ -522,9 +637,12 @@ cargo-ai orchestration run create \
       "position":{"x":0,"y":0}
     },
     {
-      "uuid":"a2a2a2a2-a2a2-4a2a-aa2a-a2a2a2a2a2a2","slug":"normalize","kind":"native","actionSlug":"python",
+      "uuid":"a2a2a2a2-a2a2-4a2a-aa2a-a2a2a2a2a2a2","slug":"normalize","kind":"native","actionSlug":"variables",
       "config":{
-        "script":"name = nodes[\"start\"][\"name\"]\ndomain = nodes[\"start\"][\"domain\"]\nresult = {\"name\": name.strip().title(), \"domain\": domain.strip().lower()}"
+        "variables":[
+          {"name":"name","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.start.name.trim()}}","instructTo":"none","fromRecipe":false}},
+          {"name":"domain","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.start.email.trim().toLowerCase().split('@')[1]}}","instructTo":"none","fromRecipe":false}}
+        ]
       },
       "childrenUuids":["a3a3a3a3-a3a3-4a3a-aa3a-a3a3a3a3a3a3"],"fallbackOnFailure":false,
       "position":{"x":0,"y":166}
@@ -533,8 +651,8 @@ cargo-ai orchestration run create \
       "uuid":"a3a3a3a3-a3a3-4a3a-aa3a-a3a3a3a3a3a3","slug":"end","kind":"native","actionSlug":"end",
       "config":{
         "variables":[
-          {"name":"name","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.normalize.result.name}}","instructTo":"none","fromRecipe":false}},
-          {"name":"domain","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.normalize.result.domain}}","instructTo":"none","fromRecipe":false}}
+          {"name":"name","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.normalize.name}}","instructTo":"none","fromRecipe":false}},
+          {"name":"domain","type":"string","value":{"kind":"templateExpression","expression":"{{nodes.normalize.domain}}","instructTo":"none","fromRecipe":false}}
         ]
       },
       "childrenUuids":[],"fallbackOnFailure":false,
@@ -543,7 +661,10 @@ cargo-ai orchestration run create \
   ]'
 ```
 
-Python scripts receive `nodes` and `parentNodes` dicts. Set `result` to define the node output, accessible via `{{nodes.<slug>.result}}`.
+Downstream nodes read `{{nodes.normalize.<name>}}` directly, with no `.result` wrapper.
+Keep `python` / `script` for the cases in [`node-selection.md`](node-selection.md) →
+"When a code or HTTP node is genuinely warranted". Those nodes receive `nodes` and
+`parentNodes` and expose their output under `{{nodes.<slug>.result}}`.
 
 ### Group node: loop over items
 
@@ -572,7 +693,7 @@ cargo-ai orchestration run create \
           },
           {
             "uuid":"b2a2a2a2-a2a2-4a2a-aa2a-a2a2a2a2a2a2","slug":"enrich","kind":"connector",
-            "integrationSlug":"clearbit","actionSlug":"enrichCompanyFromDomain",
+            "integrationSlug":"clearbit","actionSlug":"enrichCompany",
             "connectorUuid":"<connector-uuid>",
             "config":{
               "domain":{"kind":"templateExpression","expression":"{{nodes.start.value}}","instructTo":"none","fromRecipe":false}
@@ -608,7 +729,7 @@ Each iteration receives the current item as its start data (`{{nodes.start.value
 
 ## Validation
 
-Always validate before running. The command checks for structural errors (missing start/end, broken UUID references, invalid connectors, etc.).
+Always validate before running. The command checks every node reachable from the root (the node no other node points to) for per-node errors: slug format, `childrenUuids` count, unknown native action, invalid connector, tool, or agent. It does not flag a missing `end` or a dangling `childrenUuids` entry (the unreachable part is simply skipped), so read the `warnings` from `node diagram` for those.
 
 ```bash
 cargo-ai orchestration node validate \
@@ -640,7 +761,7 @@ Error:
   "invalidNodes": [
     {
       "node": { "uuid": "22222222-2222-4222-a222-222222222222", "slug": "enrich_company" },
-      "reason": "connectorNotFound"
+      "reason": "connectorInvalid"
     }
   ]
 }
@@ -650,14 +771,17 @@ Error:
 
 | Error                         | Cause                                                | Fix                                 |
 | ----------------------------- | ---------------------------------------------------- | ----------------------------------- |
-| `startNodeNotFound`           | No node with `slug:"start"` and `actionSlug:"start"` | Add the required start node         |
-| `invalidReleaseOrCustomNodes` | Both `--release-uuid` and `--nodes` provided         | Use one or the other, not both      |
-| `nodesNotFound`               | `childrenUuids` references a UUID not in the array   | Verify all UUID cross-references    |
+| `rootNodeNotFound`            | `run create` / `batch create`: every node is some other node's child (a cycle), so there is no entry point | Add a `start` node nothing points to |
+| `invalidReleaseOrCustomNodes` | `run create` / `batch create`: both `--release-uuid` and `--nodes` provided | Use one or the other, not both      |
+| `nodesNotFound`               | `run create` / `batch create`: no node graph could be resolved for the workflow or release | Pass `--nodes`, or deploy a release first |
+| `duplicatedUuid`              | Two nodes share a `uuid` (also across a group's `_nodes`) | Give every node its own UUIDv4     |
 | `childrenUuidsInvalid`        | Wrong number of entries in `childrenUuids`            | Check the `childrenCount` column in the native actions tables — each node type requires an exact count (e.g. `variables` needs 1, `end` needs 0, `branch` needs 2). Inside a group's `_nodes`, the last node must be an `end` node (`childrenUuids: []`), not a `variables` or connector node with an empty array |
 | `subNodesInvalid`             | A group node's `_nodes` sub-graph has invalid nodes  | Check the nested `invalidNodes` array for details — the sub-graph must follow the same rules as a top-level graph (start + end nodes, correct childrenUuids counts) |
-| `connectorNotFound`           | `connectorUuid` doesn't match an active connector    | Check `connector list` for the UUID |
+| `connectorInvalid`            | `connectorUuid` missing, not found, or of another integration, or `actionSlug` unknown for that integration | Check `connector list` for the UUID and `integration get <slug>` for the action |
 | `nativeInvalid`               | `actionSlug` doesn't match a known native action     | Check the native actions table      |
-| `toolInvalid`                 | `toolUuid` doesn't match an existing tool            | Check `tool list` for the UUID      |
+| `toolInvalid`                 | `toolUuid` missing or unknown, or the tool has no deployed release | Check `tool list` for the UUID      |
+| `agentInvalid`                | `agentUuid` missing or unknown, or the agent has no deployed release | Check `ai agent list` for the UUID  |
+| `nestedGroup`                 | A `group` node inside a group's `_nodes`             | Groups cannot nest; flatten the loop |
 | `slugInvalid`                 | Slug contains non-word characters                    | Use only `[a-zA-Z0-9_]`             |
 
 ## Node compute
@@ -671,7 +795,7 @@ cargo-ai orchestration node compute \
     "slug": "enrich_company",
     "kind": "connector",
     "integrationSlug": "clearbit",
-    "actionSlug": "enrichCompanyFromDomain",
+    "actionSlug": "enrichCompany",
     "connectorUuid": "<connector-uuid>",
     "config": {
       "domain": {
@@ -688,7 +812,7 @@ cargo-ai orchestration node compute \
   --context '{"nodes": {"start": {"domain": "acme.com"}}}'
 ```
 
-The `--context` object mirrors what nodes receive at runtime — `nodes.<slug>.<field>` for data from previous nodes. Inside a `group` loop, also pass `groupContext`.
+The `--context` object mirrors what nodes receive at runtime — `nodes.<slug>.<field>` for data from previous nodes. For a node inside a `group` loop, pass the loop's per-item context with `--group-context '<json>'` — on `node compute` and on `node execute` alike; without it, expressions that read the group item resolve empty.
 
 Response shows the resolved config values that would be sent to the connector or action.
 
@@ -696,19 +820,41 @@ Response shows the resolved config values that would be sent to the connector or
 
 ## Node execute
 
-`node execute` runs a **single node** in isolation with real side effects — it makes the actual API call (connector, tool, or agent). Use it to test one node without running the full workflow.
+`node execute` runs a **single node of an existing workflow** in isolation with real side effects — it makes the actual API call (connector, tool, or agent). It exists for **one job: testing/debugging a node you are authoring inside a workflow.**
+
+> **Not a general-purpose runner — prefer `action execute`.** If you just want to
+> run an operation (enrich a domain, call a connector action, invoke a tool or
+> agent) and get its output, use `action execute` / `action execute-batch`. Those
+> take a small `--action` + `--data` payload, need no workflow, no release, and no
+> hand-built node JSON. Reach for `node execute` **only** when the node already
+> belongs to a workflow graph and you are verifying that node's behavior before
+> running the full graph.
+>
+> | You want to… | Use |
+> | --- | --- |
+> | Run one operation on one record | `action execute` |
+> | Run one operation on many records | `action execute-batch` |
+> | Test one node of a workflow you're building | `node execute` |
+> | Run the whole graph | `run create` / `batch create` |
 
 > **Note:** `node execute` consumes credits. It is a live execution, not a dry run.
+
+**All five flags are required** — `--workflow-uuid`, `--release-uuid`, `--node`,
+`--computed-config`, `--context`. The CLI rejects the call client-side if any is
+missing, which is why this command is unusable outside an existing workflow +
+release: get `--workflow-uuid` from `tool list` / `play list`, and `--release-uuid`
+from `release get-deployed --workflow-uuid <uuid>` (or `release get-draft`).
 
 ```bash
 cargo-ai orchestration node execute \
   --workflow-uuid <tool.workflowUuid> \
+  --release-uuid <release.uuid> \
   --node '{
     "uuid": "22222222-2222-4222-a222-222222222222",
     "slug": "enrich_company",
     "kind": "connector",
     "integrationSlug": "clearbit",
-    "actionSlug": "enrichCompanyFromDomain",
+    "actionSlug": "enrichCompany",
     "connectorUuid": "<connector-uuid>",
     "config": {
       "domain": {
@@ -728,15 +874,17 @@ cargo-ai orchestration node execute \
   --context '{"nodes": {"start": {"domain": "acme.com"}}}'
 ```
 
-**`--computed-config`** — the already-resolved config values (output of `node compute`). If you skip this, the CLI resolves expressions from `--context` automatically.
+**`--computed-config`** — required; the already-resolved config values. Produce them with `node compute` and pass the result through — the CLI does **not** resolve expressions for you here.
 
-**`--release-uuid`** — optional; pins the execution to a specific workflow release.
+**`--release-uuid`** — required; pins the execution to a specific workflow release. Resolve it with `release get-deployed --workflow-uuid <uuid>` (or `release get-draft` while iterating on a draft).
 
 ### Recommended debug workflow
 
+Use this while **authoring a workflow**. For a one-off operation that isn't part of a graph, skip straight to `action execute`.
+
 1. **Validate structure** — `node validate --nodes '[...]'` — catches structural errors
 2. **Preview expressions** — `node compute --node '{...}' --context '{...}'` — check resolved values
-3. **Test live** — `node execute --node '{...}' --computed-config '{...}' --context '{...}'` — confirm real output
+3. **Test live** — `node execute --workflow-uuid <uuid> --release-uuid <uuid> --node '{...}' --computed-config '{...}' --context '{...}'` — confirm real output for that one node
 4. **Run full graph** — `run create --nodes '[...]'` — execute the complete workflow
 
 ## Polling

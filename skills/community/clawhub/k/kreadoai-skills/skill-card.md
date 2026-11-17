@@ -1,46 +1,60 @@
-## Description: <br>
-KreadoAI Skills helps an agent call KreadoAI for digital avatar video generation, text-to-speech, instant avatar cloning, account queries, and subtitle or watermark removal through Node.js subcommands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KreadoAI Skills helps an agent call KreadoAI for digital avatar video generation, text-to-speech, instant avatar cloning, and subtitle or watermark removal.
 
-## Publisher: <br>
-[shifefiei](https://clawhub.ai/user/shifefiei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shifefiei](https://clawhub.ai/user/shifefiei)
 
-## Use Case: <br>
-Developers and external users use this skill to operate KreadoAI media workflows from an agent, including API token configuration, account checks, avatar selection or upload, video generation, TTS synthesis, instant avatar cloning, and subtitle or watermark removal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Avatar cloning can be used on likenesses without clear consent. <br>
-Mitigation: Use clone and avatar upload workflows only for people or assets the user owns or has explicit permission to modify. <br>
-Risk: Subtitle or watermark removal can remove attribution or rights signals from third-party media. <br>
-Mitigation: Avoid using removal workflows on third-party media unless the user has documented rights to edit it. <br>
-Risk: Media URLs, image URLs, and generated content are sent to KreadoAI services. <br>
-Mitigation: Do not submit sensitive media unless the user accepts KreadoAI processing; disclose that remote API calls are required. <br>
-Risk: KREADO_API_TOKEN can be exposed through logs, screenshots, shell history, or source control. <br>
-Mitigation: Prefer environment variables or the credentials file with restricted permissions, and do not echo or commit tokens. <br>
+## Use Case:
 
+Developers and external users can use this skill to route agent requests to KreadoAI account, avatar, video, clone, text-to-speech, and subtitle tools. It is intended for workflows that create or inspect KreadoAI-generated media through the provider API.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shifefiei/kreadoai-skills) <br>
-- [KreadoAI OpenAPI homepage](https://www.kreadoai.com/openapi) <br>
-- [KreadoAI API documentation](https://kreadoai.gitbook.io/kreadoai) <br>
+### Deployment Geography for Use:
 
+Global; the artifact notes that the KreadoAI service is deployed in Singapore and may be slower for users in China.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, a KreadoAI Pro account, and KREADO_API_TOKEN or stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Real KreadoAI account credentials may be used by this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer KREADO_API_TOKEN from a controlled environment, avoid passing tokens in visible shell commands, and rotate any token that may have entered shell history or logs.
+
+Risk: The skill can submit text, photos, videos, and watermark-removal jobs to KreadoAI for processing.
+
+Mitigation: Only submit media and text that the user is authorized to process and that is appropriate for a third-party API workflow.
+
+Risk: The security verdict is suspicious because credential handling and sensitive media workflows require review before installation.
+
+Mitigation: Review the skill and its credential configuration before using real credentials or sensitive media.
+
+## Reference(s):
+
+- [KreadoAI API Documentation](https://kreadoai.gitbook.io/kreadoai)
+- [KreadoAI OpenAPI](https://www.kreadoai.com/openapi)
+- [ClawHub Skill Page](https://clawhub.ai/shifefiei/skills/kreadoai-skills)
+- [Publisher Profile](https://clawhub.ai/user/shifefiei)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+ and a KreadoAI API token for live API calls.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 # Biome
 
-Fast, unified linting, formatting, and import organization for JS/TS/JSX/CSS/GraphQL in a single binary. Biome **2.5** (latest `2.5.2`) does type-aware linting without the TypeScript compiler, GritQL plugins for custom rules, and domain-based rule grouping. Zero config by default, ~97% Prettier compatibility.
+Fast, unified linting, formatting, and import organization for JS/TS/JSX/CSS/GraphQL in a single binary. Biome **2.6** (latest `2.6.5`) does type-aware linting without the TypeScript compiler, GritQL and (developer-preview) JavaScript plugins for custom rules, and domain-based rule grouping. 2.6 also formats and lints **Markdown, SCSS, and YAML**. Zero config by default, ~97% Prettier compatibility.
 
 ## Critical rules
 
@@ -17,6 +17,8 @@ For paths the scanner must skip entirely (even for assists), use the `!!` force-
 ```json
 { "files": { "includes": ["**", "!!**/legacy-vendor/**"] } }
 ```
+
+**Before 2.6.3, `!**/dir` also matched ancestor directories.** If the project itself lived under a directory with that name - e.g. an agent worktree at `<repo>/.claude/worktrees/x/` with `"!**/.claude"` in its config - every file was excluded and Biome checked 0 files (`No files were processed`). 2.6.3 stopped applying exclusions to directories above the project root. Root-anchoring exclusions for the project's own top-level folders (`"!.claude"`, `"!dist"`) is still the clearer habit; keep `**/` for names that genuinely recur at depth. To see what a config actually resolves to, run `biome inspect config` (2.6), which follows `extends` and overrides.
 
 ### One command: `biome check`
 
@@ -67,7 +69,7 @@ pnpm biome init
 }
 ```
 
-Biome 2.5 **deprecated `linter.rules.recommended`** in favor of `linter.rules.preset` (`"recommended"` or `"all"`); the boolean still works but emits a warning - run `biome migrate --write` to convert. The `domains` values (`"recommended"`/`"all"`/`"none"`) are unaffected.
+Biome 2.5 **deprecated `linter.rules.recommended`** in favor of `linter.rules.preset` (`"recommended"`, `"all"`, or `"none"`); the boolean still works but emits an info-level deprecation diagnostic - run `biome migrate --write` to convert. Groups take their own `preset` too (`"style": { "preset": "none" }`), as does `assist.actions`. The `domains` values (`"recommended"`/`"all"`/`"none"`) are unaffected.
 
 ### IDE setup
 
@@ -95,6 +97,8 @@ pnpm biome ci --reporter=concise .                       # short one-line-per-di
 ```
 
 `--reporter=concise` (Biome 2.5) prints one `file:line:col: rule: message` line per diagnostic - the recommended reporter when an AI coding agent reads the output, since it saves tokens versus the default rich format.
+
+`biome check` and `biome ci` exit 0 when only warnings remain, so a green run can still carry diagnostics (an unsafe fix such as removing an unused import is reported, not applied). Add the global `--error-on-warnings` flag where warnings should fail the pipeline: `pnpm biome ci --error-on-warnings .`.
 
 ## Configuration details
 
@@ -133,24 +137,41 @@ Root holds shared config; packages inherit with `"extends": "//"` and add their 
 
 ## Domains
 
-Domains group lint rules by technology - enable what your stack uses. Levels: `"recommended"` (stable only), `"all"` (includes nursery), `"none"`.
+Domains group lint rules by technology - enable what your stack uses. Levels: `"recommended"` (the domain's recommended stable rules), `"all"` (every stable rule in the domain), `"none"`. **Domains never enable nursery rules** - not even at `"all"` - so a nursery rule listed under a domain must be turned on individually under `linter.rules.nursery`.
 
 ```json
 { "linter": { "domains": { "react": "recommended", "test": "recommended", "types": "all" } } }
 ```
 
-Common domains: `react` (auto-detected at `react >= 16`), `next`, `solid`, `vue`, `test` (jest/vitest/mocha/ava), `playwright`, `drizzle`, `project` (cross-file: `noImportCycles`, `noUnresolvedImports`), `types` (type inference: `noFloatingPromises`, `noMisusedPromises`). The `project` and `types` domains trigger a file scan with small overhead.
+Common domains: `react` (auto-detected at `react >= 16`), `next`, `solid`, `vue`, `test` (jest/vitest/mocha/ava), `playwright`, `drizzle`, `tailwind` (auto-detected at `tailwindcss >= 4.0.0`; all its rules are nursery), `project` (cross-file: `noImportCycles`, `noUnresolvedImports`), `types` (type inference). The `project` and `types` domains trigger a file scan with small overhead.
 
 ## Type-aware linting
 
-Biome has its own Rust type-inference engine - no `typescript` dependency needed. Enable the `types` domain.
+Biome has its own Rust type-inference engine - no `typescript` dependency needed. The headline promise rules are still **nursery**, so the `types` domain alone does not turn them on - enable them explicitly:
 
-| Rule | Catches |
-|------|---------|
-| `noFloatingPromises` | unhandled promises (missing await/return/void) |
-| `noMisusedPromises` | promises in conditionals or array callbacks |
-| `useAwaitThenable` | awaiting non-thenables |
-| `noUnnecessaryConditions` | always-true/false conditions |
+```json
+{
+  "linter": {
+    "domains": { "types": "all" },
+    "rules": {
+      "nursery": {
+        "noFloatingPromises": "error",
+        "noMisusedPromises": "error",
+        "useAwaitThenable": "error"
+      }
+    }
+  }
+}
+```
+
+| Rule | Group | Catches |
+|------|-------|---------|
+| `noFloatingPromises` | nursery | unhandled promises (missing await/return/void) |
+| `noMisusedPromises` | nursery | promises in conditionals or array callbacks |
+| `useAwaitThenable` | nursery | awaiting non-thenables |
+| `noUnnecessaryConditions` | stable (`types` domain) | always-true/false conditions |
+| `useStrictBooleanExpressions` | nursery (2.5.15) | ambiguous truthiness like `if (count)` on `number \| undefined` |
+| `noUnsafeTypeAssertion` | nursery | `as` assertions (const assertions allowed) |
 
 ```ts
 async function loadData() { fetch("/api") }        // ERROR: floating promise
@@ -165,9 +186,30 @@ If you use the React Compiler, `useExhaustiveDependencies` can't tell the compil
 { "linter": { "rules": { "correctness": { "useExhaustiveDependencies": "off" } } } }
 ```
 
+The nursery rule `useReactCompiler` (2.5.8+, React domain) reports React Compiler lint-mode diagnostics - code the compiler will bail out on - without ESLint. Enable it with `"nursery": { "useReactCompiler": "error" }`.
+
 ### Tailwind v4 CSS
 
-To lint CSS that uses Tailwind at-rules, enable `css.parser.tailwindDirectives` so Biome parses `@theme`, `@utility`, and `@apply` instead of erroring on them.
+Point Biome at your Tailwind entry with the top-level `tailwind.stylesheet` option (2.6). It turns on `css.parser.tailwindDirectives`, so `@theme`, `@utility`, and `@apply` parse instead of erroring, and makes the Tailwind rules read your own `@theme` - without it they "recognize only Tailwind CSS's default configuration". `tailwind.mergeFunctions`, `variantFunctions`, and `attributes` tune where class strings are detected.
+
+```json
+{ "tailwind": { "stylesheet": "./src/styles.css" } }
+```
+
+The `tailwind` domain's nursery rules lint class strings in JSX - enable them individually:
+
+```json
+{ "linter": { "rules": { "nursery": {
+  "noTailwindRawColors": "error",
+  "useTailwindStaticClassStrings": "error",
+  "noTailwindRestyledComponents": "warn",
+  "useTailwindSortedClasses": "warn",
+  "useTailwindShorthandClasses": "warn",
+  "noTailwindArbitraryValue": "warn"
+} } } }
+```
+
+`noTailwindRawColors` enforces this skill's semantic-token rule, flagging palette classes like `bg-pink-500` in favor of tokens like `bg-primary`; its `allowBlackAndWhite` option defaults to `true`, so `text-white`/`bg-black` pass unless you set it to `false`. Two 2.6 rules back up the rest of the styling rules: `useTailwindStaticClassStrings` flags dynamically built class strings (the "never assemble class names" rule), and `noTailwindRestyledComponents` reports call-site utilities that change a component's color, typography, spacing, shape, effects, or motion - add a variant instead. `useTailwindShorthandClasses` suggests `size-4` for `w-4 h-4`; `noTailwindArbitraryValue` now allows arbitrary modifiers (`bg-black/[0.5]`) and takes `allowedCategories`/`allowedClasses`. The sorting rule is now `useTailwindSortedClasses` (renamed from `useSortedClasses`, with Tailwind v4 ordering) - `biome migrate --write` renames it in your config.
 
 ## GritQL custom rules
 
@@ -184,7 +226,7 @@ Declarative pattern-matching for project-specific rules. Register `.grit` files 
 }
 ```
 
-Target languages: JavaScript (default), CSS, and JSON.
+Target languages: JavaScript (default), CSS, and JSON. Biome 2.6 also adds **JavaScript plugins** as a developer preview, distributable as packages with a `biome-manifest.json`.
 
 ## Suppression
 
@@ -216,15 +258,17 @@ After removing ESLint (which respected `.gitignore`), enable VCS integration so 
 biome check --write .            # primary command
 biome check --changed .          # only VCS-changed files
 biome check --staged .           # only staged (good for pre-commit)
-biome lint --only=types .        # run just type-aware rules
+biome lint --only=types .        # run just type-aware rules (nursery ones report at info - won't fail CI)
 biome lint --enforce-assist .    # fail CI when assist actions remain unapplied
 biome check --watch .            # re-run on file changes (2.5; read-only, no --write/--fix)
 biome explain noFloatingPromises # explain a rule
 biome migrate --write            # after a version bump
 biome upgrade                    # 2.5: self-upgrade standalone (Homebrew/binary) installs
+biome inspect config             # 2.6: print the resolved config (extends, overrides)
+biome migrate stylelint --write  # 2.6: import a Stylelint config
 ```
 
-Biome 2.5 also adds `formatter.delimiterSpacing` (pads `[ 1, 2 ]` / `{ a }` / `( x )` - an accessibility aid for dyslexia; behavior varies per language) and can now format/lint `.svg` files.
+Standalone install without npm: `curl -fsSL https://biomejs.dev/install | bash` (2.6). 2.5.15 also restricts the daemon's Unix socket to the current user (`0600`, in a private `biome-daemon` cache dir) - another reason to stay on the latest patch. Biome 2.5 also adds `formatter.delimiterSpacing` (pads `[ 1, 2 ]` / `{ a }` / `( x )` - an accessibility aid for dyslexia; behavior varies per language) and can now format/lint `.svg` files.
 
 ## Gotchas
 
@@ -240,4 +284,4 @@ Biome 2.5 also adds `formatter.delimiterSpacing` (pads `[ 1, 2 ]` / `{ a }` / `(
 ## Resources
 
 - Docs: https://biomejs.dev/ - Config reference: https://biomejs.dev/reference/configuration/
-- Domains: https://biomejs.dev/linter/domains/ - Migrate: https://biomejs.dev/guides/migrate-eslint-prettier/
+- Domains: https://biomejs.dev/linter/domains/ - Migrate: https://biomejs.dev/installation/migrate-from-other-tools/ - v2.6: https://biomejs.dev/blog/biome-v2-6

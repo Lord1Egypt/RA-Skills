@@ -1,47 +1,64 @@
-## Description: <br>
-Barefoot Doctor (EN) provides reference-only integrative medicine guidance for symptom triage, TCM pattern differentiation, Western differential framing, first aid, acupuncture, herbal medicine, and prevention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Barefoot Doctor AI Assistant provides supervised educational reference guidance for integrative medicine topics based on the classic Barefoot Doctor's Manual (1969).
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-External users and agents can use this skill to structure reference-only responses about symptoms, TCM pattern differentiation, first aid triage, acupuncture, herbs, and prevention. It is intended to encourage emergency escalation and professional medical review rather than replace qualified care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: High-stakes diagnosis, treatment, emergency, pediatric, herbal, and acupuncture guidance may be incorrect or unsafe if treated as medical care. <br>
-Mitigation: Use the skill only as reference material and verify medical decisions with qualified local professionals. <br>
-Risk: The artifact references 120 for emergencies, which may not be the user's local emergency number. <br>
-Mitigation: Replace emergency-number guidance with the user's local emergency service number before relying on emergency instructions. <br>
-Risk: Users may disclose identifying health details while seeking guidance. <br>
-Mitigation: Avoid entering identifying health information and keep prompts limited to the minimum details needed for general reference guidance. <br>
-Risk: Medication, herb, acupuncture, pregnancy, pediatric, and chronic disease guidance can carry patient-specific contraindications. <br>
-Mitigation: Require review by qualified clinicians or pharmacists before acting on those recommendations. <br>
+## Use Case:
 
+External users can use this skill as supervised educational reference support for integrative medicine prompts covering symptom discussion, TCM pattern differentiation, first-aid topics, herbs, acupuncture, and prevention. It should not be used for direct diagnosis, emergency triage, medication dosing, herbal prescribing, pediatric dosing, acupuncture, bloodletting, or moxibustion advice without licensed clinician or pharmacist oversight.
 
-## Reference(s): <br>
-- [Barefoot Doctor (EN) ClawHub release](https://clawhub.ai/johnsmithfan/barefoot-doctor) <br>
-- [Method Patterns and Code Templates](references/method-patterns.md) <br>
-- [Copy-Paste Prompt Templates](01-implement-method.md) <br>
-- [Robustness and Safety Checklists](02-robustness-checks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON request and response structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reference medical guidance only; no tools or external services are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and target metadata; changelog v2.0.0) <br>
+Risk: The skill gives broad, high-stakes medical and emergency guidance that could be mistaken for direct diagnosis or triage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in tightly supervised educational or historical reference settings; route urgent, worsening, pediatric, pregnancy, poisoning, dosing, or emergency questions to local emergency services and licensed clinicians.
+
+Risk: Herbal, medication, pediatric dosing, and interaction guidance can cause harm if applied without patient-specific clinical review.
+
+Mitigation: Require licensed clinician or pharmacist oversight before any user-facing medication, herbal, dosing, pediatric, pregnancy, or interaction recommendation.
+
+Risk: Acupuncture, bloodletting, and moxibustion instructions can lead to injury when followed by untrained users.
+
+Mitigation: Remove or gate invasive and procedure-style instructions, prefer non-invasive education, and refer procedural care to qualified practitioners.
+
+Risk: The artifact uses China-specific emergency-services language that may be unsafe outside that locale.
+
+Mitigation: Revise emergency wording to direct users to their local emergency number and local medical services before release in other geographies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/barefoot-doctor)
+- [Barefoot Doctor - Method Patterns & Code Templates](artifact/references/method-patterns.md)
+- [Barefoot Doctor - Copy-Paste Prompt Templates](artifact/01-implement-method.md)
+- [Barefoot Doctor - Robustness & Safety Checklists](artifact/02-robustness-checks.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown guidance and structured JSON-style response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes triage, TCM and Western assessment sections, recommendations, warnings, follow-up criteria, and disclaimer fields.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release and SKILL.md changelog, released 2026-04-26)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

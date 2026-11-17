@@ -1,0 +1,66 @@
+{
+  "title": "窗上的颜色",
+  "description": "深橄榄纸色上，一条留空向上滑进金黄附色",
+  "theme": "窗上的颜色",
+  "audience": "想看颜色怎么出现的读者",
+  "format": "coloring-scroll",
+  "shell": {
+    "viewportHeight": 600,
+    "scrollDirection": "vertical",
+    "paperColor": "#1F3A28",
+    "paintColor": "#E6B325",
+    "plate": {
+      "id": "plate",
+      "role": "overlay-back",
+      "kind": "svg",
+      "purpose": "固定上色板：上半附色，下半纸色",
+      "height": 700,
+      "splitY": 420
+    },
+    "scroll": {
+      "id": "scroll",
+      "role": "scroller",
+      "purpose": "镂空内容向上穿过色带",
+      "contentHeight": 1140
+    }
+  },
+  "visual": {
+    "colorRoute": "chromatic-dark",
+    "imageMedium": "平涂色块",
+    "lightingHint": "无光影，两块纯色相接",
+    "throughline": "留空穿过金黄，字始终坐在纸色上",
+    "palette": {
+      "bg": "#1F3A28",
+      "panel": "#1F3A28",
+      "text": "#F4E7C3",
+      "muted": "#C4B48A",
+      "accent": "#E6B325"
+    }
+  },
+  "blocks": [
+    {
+      "id": "plate-bands",
+      "kind": "svg",
+      "layer": "plate",
+      "name": "上色板",
+      "height": 700,
+      "layout": "390×700 先铺 palette.bg；再盖 y=0、高 420 的 accent。无文字无点击"
+    },
+    {
+      "id": "scroll-window",
+      "kind": "svg",
+      "layer": "scroll",
+      "name": "镂空内容",
+      "height": 1100,
+      "layout": "左右各 120 宽的纸色通栏；y=48 高 120 的标题纸带；y=820 高 160 的收口纸带；x=120–270 且不在这两条纸带里的区域留空"
+    },
+    {
+      "id": "ai-credit",
+      "kind": "svg",
+      "layer": "scroll",
+      "name": "AI声明",
+      "height": 40,
+      "layout": "滑动层最后一个 SVG，整条纸色底，12px 居中声明"
+    }
+  ]
+}

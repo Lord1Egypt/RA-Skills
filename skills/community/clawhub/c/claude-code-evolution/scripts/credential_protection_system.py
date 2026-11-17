@@ -944,7 +944,7 @@ def main():
     print("\n测试凭证加密和存储...")
     
     # 测试Level 1: DeepSeek API密钥
-    deepseek_api_key = "sk-55778e8d0f884ac9b7dbab452e2209aa"  # 示例密钥
+    deepseek_api_key = "REDACTED-SECRET"  # 示例密钥
     success = cps.encrypt_and_store_credential(
         "models.providers.deepseek.apiKey",
         deepseek_api_key,

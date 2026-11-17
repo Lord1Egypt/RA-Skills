@@ -1,44 +1,60 @@
-## Description: <br>
-Prompt injection detection and security scanning for OpenClaw agents. Installs the ai-sentinel plugin via OpenClaw CLI, configures plugin settings, and offers local (Community) or remote (Pro) classification with dashboard reporting. All configuration changes require explicit user confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Sentinel helps OpenClaw developers install and configure the ai-sentinel plugin for prompt injection detection, local or Pro classification, and dashboard reporting with explicit confirmation before configuration changes.
 
-## Publisher: <br>
-[amandiwakar](https://clawhub.ai/user/amandiwakar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[amandiwakar](https://clawhub.ai/user/amandiwakar)
 
-## Use Case: <br>
-Developers and engineers use this skill to add AI Sentinel protection to an OpenClaw project, choose local or Pro scanning behavior, configure plugin settings, and verify that prompt-injection detection is working. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may edit OpenClaw configuration and local environment files. <br>
-Mitigation: Review the exact target path and proposed diff before approving changes, and prefer project-local configuration unless global settings are intended. <br>
-Risk: Pro mode can transmit scan results or message content to api.zetro.ai. <br>
-Mitigation: Use Community mode for local-only scanning, or enable Pro only for code and prompts you are allowed to share. <br>
-Risk: Incorrect plugin settings may block benign traffic or fail to enforce prompt-injection protections. <br>
-Mitigation: Start in monitor mode, choose an appropriate confidence threshold, restart OpenClaw, and run the verification steps before relying on enforcement. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add prompt-injection screening to agent messages, tool calls, and tool results. It supports local Community scanning and Pro reporting or cloud scanning when the operator explicitly consents to external transmission.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/amandiwakar/ai-sentinel) <br>
-- [Zetro AI](https://zetro.ai) <br>
-- [AI Sentinel npm package](https://www.npmjs.com/package/ai-sentinel) <br>
-- [AI Sentinel dashboard](https://app.zetro.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose OpenClaw configuration changes and Pro-tier environment variable setup after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.8 (source: server release evidence) <br>
+Risk: The skill installs a third-party gateway plugin that can inspect agent messages, tool calls, and tool results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package provenance before installation and use a pinned package version such as ai-sentinel@0.2.1 when supported.
+
+Risk: Pro mode can transmit scan results and, depending on configuration, raw message content to an external API.
+
+Mitigation: Use Community mode for local-only scanning, or require explicit consent and keep telemetry configured without raw input unless content transmission is acceptable.
+
+Risk: Pro mode requires an API key and writes local configuration files.
+
+Mitigation: Store the API key only in an ignored local .env file and require user confirmation before updating .env, .gitignore, or OpenClaw plugin configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amandiwakar/skills/ai-sentinel)
+- [AI Sentinel homepage](https://zetro.ai)
+- [ai-sentinel npm package](https://www.npmjs.com/package/ai-sentinel)
+- [AI Sentinel dashboard](https://app.zetro.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces OpenClaw setup guidance and proposes configuration or environment-file changes only after explicit user confirmation.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release evidence and changelog, released 2026-08-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Operates as an autonomous lead-list building agent that discovers businesses with outdated or broken websites, audits each site, enriches contact information, scores leads, and writes results to a Google Sheet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate as a Lead List Building Agent - an autonomous agent that discovers businesses with outdated or broken websites, audits each site, enriches contact information, scores every lead, and writes results to a Google Sheet.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Sales teams, agencies, and developers use this skill to build local business prospect lists by niche and region. It coordinates search, website auditing, contact enrichment, lead scoring, and Google Sheets delivery. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: API keys and Google service account credentials could grant access beyond this workflow. <br>
-Mitigation: Use dedicated low-privilege keys, share only the intended sheet with the service account, and keep .env and credentials.json out of source control. <br>
-Risk: The workflow collects and stores business contact details for outreach. <br>
-Mitigation: Limit sheet access to intended users, review collected data before use, and follow applicable privacy and outreach rules. <br>
-Risk: The workflow may query third-party search and enrichment services. <br>
-Mitigation: Review which services are configured, understand what data is sent to them, and monitor quota and terms-of-service constraints. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/lead-list-builder) <br>
-- [Lead List Builder Setup Guide](references/setup-guide.md) <br>
-- [Search Query Library](references/query-library.md) <br>
+## Use Case:
 
+External sales, marketing, and agency operators use this skill to find local businesses with outdated or broken websites, enrich contact details, score sales opportunities, and deliver a prioritized Google Sheet for outreach.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status summaries, setup guidance, command examples, and Google Sheets lead rows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write collected lead data to a user-configured Google Sheet and relies on user-provided API credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API keys and Google service account credentials are required for the workflow.
+
+Mitigation: Store credentials outside source control, use a dedicated environment, and restrict the Google service account to the intended sheet.
+
+Risk: The workflow collects and uses business contact data for lead generation.
+
+Mitigation: Confirm that collection, storage, and outreach practices comply with applicable privacy and anti-spam requirements before use.
+
+Risk: The skill depends on third-party Python packages and external data services.
+
+Mitigation: Review and pin dependencies before installation and monitor API service terms, quotas, and access permissions.
+
+## Reference(s):
+
+- [Lead List Builder Agent on ClawHub](https://clawhub.ai/maverick-software/skills/lead-list-builder)
+- [maverick-software Publisher Profile](https://clawhub.ai/user/maverick-software)
+- [Lead List Builder Setup Guide](references/setup-guide.md)
+- [Search Query Library](references/query-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status reports, Google Sheets lead records, setup commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires search, PageSpeed, optional contact-enrichment API credentials, and Google Sheets service account configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

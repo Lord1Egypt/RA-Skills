@@ -1,42 +1,54 @@
-## Description: <br>
-Activate specialized AI agent personas across 18+ domains with tailored expertise, workflows, communication styles, and technical deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Activate specialized AI agent personas across 18+ domains with tailored expertise, workflows, communication styles, and technical deliverables.
 
-## Publisher: <br>
-[jabir-srj](https://clawhub.ai/user/jabir-srj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jabir-srj](https://clawhub.ai/user/jabir-srj)
 
-## Use Case: <br>
-External users and developers use this skill to choose and activate domain-specific AI agent personas for focused professional work across engineering, product, sales, marketing, design, support, testing, strategy, and related domains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Some personas may encourage high-impact actions such as payments, production deployments, model routing changes, blockchain transactions, external telemetry, or persistent memory use. <br>
-Mitigation: Require explicit user approval before executing high-impact actions and treat persona recommendations as advisory until reviewed. <br>
-Risk: Persona guidance can influence an agent toward operational workflows that may be unsafe if copied directly into production. <br>
-Mitigation: Review and adapt generated workflows, commands, and examples before using them in production environments. <br>
+## Use Case:
 
+Developers and agent users use this skill to select, read, and adopt focused professional personas for domain-specific tasks such as engineering, marketing, product, sales, design, support, testing, strategy, academic, and specialized workflows.
 
-## Reference(s): <br>
-- [Agency Agents Wrapper ClawHub Page](https://clawhub.ai/jabir-srj/agency-agents-wrapper) <br>
-- [Agency Agents Reference Index](references/AGENTS-INDEX.md) <br>
-- [Contributing to The Agency](references/agents/CONTRIBUTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, with code blocks or shell commands when the selected persona calls for technical deliverables.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output depends on the activated persona and may include templates, workflows, code examples, analysis, or operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Some included personas direct agents to post publicly, schedule recurring jobs, move money, or persist memory without adequate approval gates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and enable only the specific persona files needed, and add explicit approval, dry-run, account scoping, retention, and disable controls before using high-impact personas.
+
+Risk: Some included examples may be insecure if copied directly into production.
+
+Mitigation: Treat code examples as patterns to review and fix before production use.
+
+## Reference(s):
+
+- [Agency Agents Reference Index](references/AGENTS-INDEX.md)
+- [Agency Agents Wrapper on ClawHub](https://clawhub.ai/jabir-srj/skills/agency-agents-wrapper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with persona-specific instructions, examples, code snippets, shell commands, and configuration blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on the selected persona and the user's task.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Provides Texas LLC formation guidance on filing steps, registered agent requirements, tax basics, compliance, and state comparisons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides LLC formation guidance advertised for Texas, with evidence that the executable may return Wyoming LLC guidance instead.
 
-## Publisher: <br>
-[zlc000190](https://clawhub.ai/user/zlc000190) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlc000190](https://clawhub.ai/user/zlc000190)
 
-## Use Case: <br>
-Entrepreneurs, business owners, and agents use this skill to answer questions about Texas LLC formation costs, filing steps, registered agent needs, compliance basics, and comparisons with other states. It should not be treated as legal or tax advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for users evaluating Texas, United States LLC formation <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Texas-branded package includes a runnable assistant that gives Wyoming LLC guidance, which could mislead users seeking Texas filing, tax, cost, or compliance information. <br>
-Mitigation: Review outputs before use, verify Texas-specific filing and tax details before making decisions, and correct the Texas/Wyoming mismatch in the artifact before relying on the runnable assistant. <br>
-Risk: The skill includes commercial links and can steer users toward services related to business formation. <br>
-Mitigation: Disclose the commercial context, compare official state requirements independently, and recommend qualified legal or tax professionals for complex filing decisions. <br>
+## Use Case:
 
+Entrepreneurs, business owners, and agents use this skill to ask for LLC formation steps, costs, registered agent requirements, tax basics, compliance reminders, and state comparisons. Users should verify current requirements with official sources or qualified legal and tax professionals before making formation decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlc000190/texas-llc-formation) <br>
-- [LLCClass Texas guide](https://llcclass.com/texas) <br>
-- [LLCClass formation hub](https://llcclass.com/get-started) <br>
-- [LLCClass LLC name generator](https://llcclass.com/llc-name-generator) <br>
+### Deployment Geography for Use:
 
+Global, with guidance focused on Texas, United States.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-style guidance with links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include cost figures, filing steps, timelines, state comparisons, and links to LLCClass resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The release is advertised as Texas LLC guidance, but security evidence says the executable returns Wyoming LLC guidance and commercial service links for Texas-triggered queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as unverified guidance, confirm Texas-specific requirements against authoritative sources, and align the executable behavior with the advertised Texas scope before relying on it.
+
+Risk: Formation, tax, and compliance claims may affect legal or business decisions.
+
+Mitigation: Verify current state fees and compliance rules before filing and consult a qualified legal or tax professional for complex cases.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlc000190/skills/texas-llc-formation)
+- [LLCClass Texas guide](https://llcclass.com/texas)
+- [LLCClass formation hub](https://llcclass.com/get-started)
+- [LLCClass name generator](https://llcclass.com/llc-name-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text guidance with links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commercial LLCClass links; users should verify legal, tax, fee, and compliance details before relying on outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

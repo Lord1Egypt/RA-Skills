@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Test and coverage artifacts
+.coverage
+cache/
+reports/
+htmlcov/
+test-reports/
+
+# Local environment noise
+*.log
+
+# Agent workspace metadata (memory / local state)
+.workbuddy/

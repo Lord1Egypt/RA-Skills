@@ -1,44 +1,58 @@
-## Description: <br>
-Generates junior high school math review HTML documents with knowledge summaries, embedded SVG diagrams, exercises, and step-by-step answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates junior-high math review guide HTML files with knowledge summaries, embedded SVG diagrams, practice questions, answers, and validation checks.
 
-## Publisher: <br>
-[wangmange](https://clawhub.ai/user/wangmange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangmange](https://clawhub.ai/user/wangmange)
 
-## Use Case: <br>
-Students, parents, tutors, and educators use this skill to create structured junior high math review materials and practice sets for geometry, linear functions, inverse functions, and similar chapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes generated HTML review documents into the current workspace. <br>
-Mitigation: Use explicit output requests and review generated file paths and contents before relying on or sharing the documents. <br>
-Risk: The skill records a short local memory entry with task paths and summaries after generation. <br>
-Mitigation: Disable or avoid the memory step when local retention of paths or summaries is not desired. <br>
-Risk: Generated math explanations and exercises may still need human review even after validator checks. <br>
-Mitigation: Review the final HTML and validator results before using the material for instruction or assessment. <br>
+## Use Case:
 
+Educators, students, parents, and tutoring agents use this skill to create Chinese junior-high math review materials for chapter study, exam preparation, practice sets, and mistake review. The generated materials combine concept summaries, SVG diagrams, exercises, and step-by-step explanations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangmange/ch-math-review-generator) <br>
-- [README](artifact/README.md) <br>
-- [Template guide](artifact/references/template_guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [HTML files with embedded CSS and SVG, plus concise Markdown delivery notes and local validator command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes files in the active workspace, runs bundled Python validators, and may append a local memory note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can create HTML files automatically in the current working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a dedicated workspace or review the output path before accepting generated files.
+
+Risk: The skill requires persistent task logging under .workbuddy/memory.
+
+Mitigation: Review or disable memory logging where persistent records are not desired.
+
+Risk: The broad activation wording may cause ordinary math help requests to generate files unexpectedly.
+
+Mitigation: Confirm the user's intent to create a full review document before running the generation workflow.
+
+## Reference(s):
+
+- [HTML Template and Validation Guide](artifact/references/template_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/wangmange/skills/ch-math-review-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [HTML files with embedded SVG, plus Markdown-style guidance and shell commands for validation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates files in the working directory and may append task records under .workbuddy/memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

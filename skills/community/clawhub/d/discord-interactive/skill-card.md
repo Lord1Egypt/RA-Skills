@@ -1,44 +1,61 @@
-## Description: <br>
-Send Discord Components v2 interactive messages (buttons, selects, modals, rich layouts) via the message tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send Discord Components v2 interactive messages (buttons, selects, modals, rich layouts) via the message tool.
 
-## Publisher: <br>
-[MuseLinn](https://clawhub.ai/user/MuseLinn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muselinn](https://clawhub.ai/user/muselinn)
 
-## Use Case: <br>
-Developers and agents use this skill to send richer Discord interactions when a workflow needs confirmation, option selection, structured status display, or form collection instead of plain text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Interactive controls for sensitive actions can be clicked by the wrong user or treated as authorization without enough confirmation. <br>
-Mitigation: Use explicit confirmation flows for sensitive actions and restrict buttons with allowedUsers where appropriate. <br>
-Risk: A user may interact with a button, select menu, or modal after the surrounding task context has changed. <br>
-Mitigation: Check that the context is still valid before acting on an interaction and update the Discord message when an action expires or completes. <br>
+## Use Case:
 
+Developers and agents use this skill to compose OpenClaw message tool payloads for Discord confirmations, selections, status cards, modal forms, and rich component layouts.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/MuseLinn/discord-interactive) <br>
-- [OpenClaw Homepage](https://github.com/openclaw/openclaw) <br>
-- [Components v2 Reference](references/components.md) <br>
-- [Component Examples](references/examples.md) <br>
-- [Handling Component Interactions](references/handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with JSON-style Discord message component examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces message component specifications for the Discord message tool; no shell commands or files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server evidence) <br>
+Risk: Ordinary typed messages could be mistaken for trusted button clicks or selections in restricted or destructive workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill for consequential actions only where trusted interaction metadata is available, or where the agent independently verifies the user, channel, original message, action ID, workflow state, and expiry before acting.
+
+Risk: Reusable or delayed interactions can arrive after the original workflow context is no longer valid.
+
+Mitigation: Check the current workflow state and expiry before executing an action, and update the Discord message when an interaction is expired or invalid.
+
+Risk: Buttons for approvals, deployments, deletion, moderation, or similar actions may be clicked by unintended users if access is not restricted.
+
+Mitigation: Use allowedUsers for restricted actions and verify the actor before carrying out sensitive operations.
+
+## Reference(s):
+
+- [Discord Interactive ClawHub Skill Page](https://clawhub.ai/muselinn/skills/discord-interactive)
+- [Components v2 Reference](references/components.md)
+- [Component Examples](references/examples.md)
+- [Handling Component Interactions](references/handling.md)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with JSON5 message payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Discord component payload patterns for the OpenClaw message tool; no executable files are generated.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

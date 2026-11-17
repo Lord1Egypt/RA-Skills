@@ -1,47 +1,59 @@
-## Description: <br>
-Deep domain research: entity extraction, cross-article connections, and structured domain reports from a local knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep domain research for entity extraction, cross-article connections, and structured domain reports from a local knowledge base.
 
-## Publisher: <br>
-[dainash](https://clawhub.ai/user/dainash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dainash](https://clawhub.ai/user/dainash)
 
-## Use Case: <br>
-External users and developers use this skill after running Knowledge Harvester to analyze saved articles, map entities and relationships, and produce recurring domain research reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local articles in memory/knowledge and synthesizes them into new reports. <br>
-Mitigation: Review or limit the knowledge files before running the skill, and check generated reports before sharing them. <br>
-Risk: Generated reports may include misleading synthesis or source-priority mistakes if the saved articles or source whitelist are incomplete. <br>
-Mitigation: Maintain the source whitelist, verify claims against cited sources, and rerun validation before relying on a report. <br>
-Risk: The README describes automatic Monday and Thursday runs, which may write reports without an interactive prompt if a scheduler is configured. <br>
-Mitigation: Confirm whether a scheduler is enabled and disable or adjust it when automatic report generation is not desired. <br>
+## Use Case:
 
+Developers and knowledge workers use this skill to analyze harvested knowledge articles by domain, extract recurring entities, map cross-article relationships, and produce source-attributed research reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dainash/clawforage-research-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/dainash) <br>
-- [InspireHub.ai](https://inspireehub.ai) <br>
-- [README](artifact/README.md) <br>
-- [Domain report template](artifact/templates/domain-report.md) <br>
-- [Source whitelist template](artifact/templates/sources-example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with shell command output used as analysis input] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes domain reports under memory/research and may create source whitelist files under memory/clawforage/sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence and frontmatter) <br>
+Risk: The skill reads local harvested knowledge markdown and may include private or unrelated material if the knowledge directory is too broad.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only against the intended domain subset and review source lists before generating reports.
+
+Risk: Entity extraction and connection mapping use shell-based text matching, so reports may contain missed entities, false positives, or weak relationships.
+
+Mitigation: Review generated entity maps and connection claims against the cited source articles before using the report for decisions.
+
+Risk: The skill writes source whitelist files and research reports under memory/.
+
+Mitigation: Inspect generated files before sharing them and keep sensitive knowledge bases separate from publishable research outputs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dainash/skills/clawforage-research-agent)
+- [Publisher Profile](https://clawhub.ai/user/dainash)
+- [InspireHub.ai](https://inspireehub.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Configuration]
+
+**Output Format:** [Markdown reports with source lists, entity maps, connection analysis, and validation output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads existing knowledge markdown and writes reports under memory/research/{domain}/ plus source whitelist files under memory/clawforage/sources/.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

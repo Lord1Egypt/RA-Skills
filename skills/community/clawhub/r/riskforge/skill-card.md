@@ -1,49 +1,63 @@
-## Description: <br>
-RiskForge helps development, QA, and technical leads review code changes before release by identifying financial AI, LLM, Agent, RAG, runtime, dependency, security, compliance, and regression-test risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RiskForge analyzes code changes for financial AI, LLM, Agent, RAG, runtime, dependency, security, compliance, performance, and regression risks, then produces test strategy, audit evidence, unit-test suggestions, and standardized reports.
 
-## Publisher: <br>
-[start-fish](https://clawhub.ai/user/start-fish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[start-fish](https://clawhub.ai/user/start-fish)
 
-## Use Case: <br>
-Developers, QA engineers, and technical leads use RiskForge during code review, pre-test, pre-release quality gates, regression planning, and defect retrospectives. It produces actionable risk findings, testing strategy, fix guidance, audit evidence, and optional unit-test suggestions for code changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports and repository metadata may be sent to an external HTTP service as part of the report upload workflow. <br>
-Mitigation: Review before installing; avoid proprietary, regulated, or sensitive repositories unless network egress is blocked or upload behavior is removed or changed to explicit opt-in. <br>
-Risk: Risk findings, line references, and test guidance may be incomplete or inaccurate for the target codebase. <br>
-Mitigation: Review generated findings, run the relevant tests, and verify high-severity recommendations before using the report for release decisions. <br>
+## Use Case:
 
+Developers, QA engineers, and technical leads use this skill before code review, test handoff, and release gates to identify code-risk findings, prioritize validation work, and produce auditable test reports.
 
-## Reference(s): <br>
-- [RiskForge on ClawHub](https://clawhub.ai/start-fish/riskforge) <br>
-- [Dependency Impact Analyzer](references/dependency-impact-analyzer.md) <br>
-- [Financial AI Risk Playbook](references/financial-ai-risk-playbook.md) <br>
-- [Git Diff Skill](references/git-diff-skill.md) <br>
-- [QA Methodology](references/qa-methodology.md) <br>
-- [Risk Backtracking Validator](references/risk-backtracking-validator.md) <br>
-- [Runtime Exception Detector](references/runtime-exception-detector.md) <br>
-- [Test Reports](references/test-reports/test-reports.md) <br>
-- [Report Upload Platform](references/test-reports/upload-platform.md) <br>
-- [Unit Testing](references/unit-testing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown risk and test reports with structured JSON blocks, optional unit-test code, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include severity-ranked findings, file and line references, validation notes, risk statistics, prioritized recommendations, and optional upload handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-6.1.4 (source: server release evidence) <br>
+Risk: The security scan reports that the skill uploads detailed reports and local project metadata to a fixed plaintext HTTP service without clear per-run consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; for private, enterprise, regulated, or security-sensitive repositories, require explicit approval, local-only operation, HTTPS, and payload redaction before any upload.
+
+Risk: Generated reports may include file paths, repository identifiers, tester metadata, issue details, and full report content.
+
+Mitigation: Treat reports as potentially sensitive, redact confidential content, and restrict use to repositories where this data can be shared with the configured external service.
+
+## Reference(s):
+
+- [RiskForge ClawHub Skill Page](https://clawhub.ai/start-fish/skills/riskforge)
+- [README](README.md)
+- [Dependency Impact Analyzer](references/dependency-impact-analyzer.md)
+- [Financial AI Risk Playbook](references/financial-ai-risk-playbook.md)
+- [Git Diff Skill](references/git-diff-skill.md)
+- [QA Methodology](references/qa-methodology.md)
+- [Risk Backtracking Validation Protocol](references/riREDACTED-SECRET.md)
+- [Runtime Exception Detector](references/runtime-exception-detector.md)
+- [Test Reports Template](references/test-reports/test-reports.md)
+- [Test Report Upload Platform Guide](references/test-reports/upload-platform.md)
+- [Unit Testing](references/unit-testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with structured JSON blocks, inline code, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include risk severity, code locations, validation notes, test strategy, remediation guidance, and optional unit-test recommendations.]
+
+## Skill Version(s):
+
+6.1.4 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

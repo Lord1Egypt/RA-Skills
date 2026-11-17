@@ -1,40 +1,48 @@
-## Description: <br>
-Bootstraps any SaaS, dashboard, mobile, or API project with a reusable 3-agent AI operating system that creates AGENTS.md, architect/builder/tester instructions, docs templates, and prompt templates for Codex-style execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstrap any SaaS, dashboard, mobile, or API project with a reusable 3-agent AI operating system for planning, building, and testing.
 
-## Publisher: <br>
-[mededdahby](https://clawhub.ai/user/mededdahby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
+
+[mededdahby](https://clawhub.ai/user/mededdahby)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to add a reusable Architect, Builder, and Tester workflow layer to SaaS, dashboard, mobile, API, or full-stack repositories while preserving the existing application structure.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can add AGENTS.md and role files that influence future agent behavior in a repository.
+
+Mitigation: Use it on a branch or review proposed file additions before accepting them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and teams use this skill to add a reusable three-agent workflow layer to SaaS, dashboard, mobile, API, or full-stack projects. It helps structure planning, implementation, testing, and project documentation while preserving existing application structure. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent AI workflow files may be added to a repository where they affect future agent behavior. <br>
-Mitigation: Install on a clean git branch and review AGENTS.md, .agents files, and docs/templates before committing. <br>
-Risk: Placeholder references to a separate starter repo may be incomplete or unsuitable for the target project. <br>
-Mitigation: Inspect and replace placeholder starter-repo content before relying on the generated workflow. <br>
+**Output Format:** [Markdown file templates and concise workflow guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mededdahby/saas-project-bootstrap) <br>
+**Other Properties Related to Output:** [Produces or proposes project workflow files, agent role files, documentation templates, and task prompt templates.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed repository workflow files and documentation templates; review generated files before committing.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

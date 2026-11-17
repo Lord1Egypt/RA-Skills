@@ -1,44 +1,54 @@
-## Description: <br>
-Designs multi-language, multi-currency checkout localization for global direct-mail artisan stores, producing locale matrices, payment plans, translation checklists, trust signals, and metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs multi-language and multi-currency checkout localization plans for global direct-mail artisan stores, including locale matrices, payment plans, translation priorities, trust signals, duty messaging, and metrics.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External ecommerce teams and Shopify merchants use this skill to plan localized checkout flows for international artisan-product buyers. It helps prioritize markets, languages, currencies, payment methods, duty messaging, trust signals, and measurement plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Localized checkout advice may be incomplete for duties, taxes, import rules, or payment availability in a specific market. <br>
-Mitigation: Use the skill for checkout localization planning, then verify market-specific duties, taxes, payment support, and trade requirements with qualified providers before launch. <br>
-Risk: Broad activation wording may make the skill respond to adjacent ecommerce topics such as shipping, growth, pricing, fraud, or retention strategy. <br>
-Mitigation: Use a more specific skill for those topics and keep this skill focused on international checkout localization. <br>
-Risk: Users may be tempted to share store admin access, payment data, or customer records while discussing checkout improvements. <br>
-Mitigation: Do not provide store admin access, payment data, or customer records unless a separate trusted integration clearly requires it. <br>
+## Use Case:
 
+External DTC artisan merchants and commerce operators use this skill to plan localized checkout experiences for international buyers, including languages, currencies, local payment methods, duties, shipping expectations, translation priorities, trust signals, and retention campaign ideas.
 
-## Reference(s): <br>
-- [Locale & Checkout Guide](artifact/references/locale_checkout_guide.md) <br>
-- [Rijoy](https://www.rijoy.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/RIJOYAI/craft-locale-checkout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured checkout localization plans, locale matrices, checklists, trust-signal recommendations, and metrics guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill may bias loyalty-platform advice toward Rijoy without neutral selection criteria.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review Rijoy recommendations critically, compare current alternatives, and verify capabilities, pricing, privacy terms, and store fit before acting on platform advice.
+
+Risk: Duty, tax, and cross-border checkout messaging may be mistaken for legal or customs compliance advice.
+
+Mitigation: Use the skill for UX and messaging planning, and have qualified trade, tax, or legal experts validate market-specific duty and import requirements.
+
+## Reference(s):
+
+- [Locale & Checkout Guide](references/locale_checkout_guide.md)
+- [Rijoy](https://www.rijoy.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with tables, checklists, and short action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces locale matrices, currency and payment plans, checkout localization guidance, translation checklists, trust-signal recommendations, metrics plans, and localized campaign guidance; no executable code.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

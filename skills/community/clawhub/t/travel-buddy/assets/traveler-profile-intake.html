@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title data-i18n="page.title">Travel Buddy · 旅行档案填写</title>
+  <style>
+    :root { --ink:#162235; --muted:#5d6b7c; --paper:#f7f9fc; --card:#fff; --accent:#0b6e69; --soft:#e4f4f1; --line:#d9e2ec; --warn:#8a4b08; --warn-bg:#fff5df; --radius:16px; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { max-width:980px; margin:auto; padding:28px 18px 54px; } h1 { margin:0 0 8px; font-size:clamp(2rem,5vw,3.3rem); letter-spacing:-.04em; line-height:1.06; } h2 { margin:0 0 12px; font-size:1.25rem; } h3 { margin:0 0 8px; font-size:1rem; } p { margin:0 0 10px; }
+    .hero,.section,.output { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:0 8px 24px rgb(20 40 65 / .05); } .hero { padding:26px; background:linear-gradient(135deg,#fff,var(--soft)); margin-bottom:18px; } .section,.output { padding:20px; margin:16px 0; }
+    .eyebrow,.hint { color:var(--muted); font-size:.92rem; } .eyebrow { color:var(--accent); font-weight:800; letter-spacing:.08em; text-transform:uppercase; } .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+    label { display:block; font-weight:750; margin:0 0 5px; } label span { color:var(--muted); font-weight:400; } input,select,textarea { width:100%; border:1px solid #b9c7d6; border-radius:10px; padding:10px 11px; color:var(--ink); background:#fff; font:inherit; } textarea { min-height:88px; resize:vertical; }
+    fieldset { margin:12px 0 0; border:1px solid var(--line); border-radius:11px; padding:12px; } legend { padding:0 6px; font-weight:750; } .checks { display:flex; flex-wrap:wrap; gap:9px 14px; } .checks label,.consent { display:flex; align-items:flex-start; gap:7px; font-weight:500; } .checks input,.consent input { width:auto; margin-top:5px; }
+    .example,.notice { padding:13px; border-radius:10px; background:#f0f5fa; } .notice { border-left:4px solid var(--warn); background:var(--warn-bg); } button { border:0; border-radius:10px; background:var(--accent); color:#fff; padding:10px 14px; font:inherit; font-weight:800; cursor:pointer; } button.secondary { background:var(--ink); } button.ghost { background:#e8eef4; color:var(--ink); } button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid #79c8c2; outline-offset:2px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; } .status { min-height:24px; color:#075952; font-weight:700; margin-top:10px; } .error { color:#a72525; } pre { max-height:380px; overflow:auto; margin:0; padding:14px; border-radius:10px; background:#101b2a; color:#e9f2ff; font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre-wrap; word-break:break-word; }
+    @media (max-width:600px) { main { padding:18px 12px 36px; } .hero,.section,.output { padding:17px; } }
+    @media print { body { background:#fff; } main { max-width:none; padding:0; } .hero,.section,.output { box-shadow:none; break-inside:avoid; } button,.status { display:none; } }
+  </style>
+  <style>
+    :root { --ink:#132238; --muted:#627086; --paper:#f6f1e9; --card:#fffdfa; --accent:#0f766e; --accent-deep:#075c58; --accent-soft:#dff3ee; --sky:#dbe9ef; --line:#d9d9d1; --warm:#ee8d4a; --warm-soft:#fff0e3; --shadow:0 20px 54px rgb(26 42 57 / .10); --radius:22px; }
+    body { background:radial-gradient(circle at 8% -8%,#d5ede8 0 13%,transparent 32%),radial-gradient(circle at 100% 5%,#f9dfc3 0 12%,transparent 29%),var(--paper); }
+    main { max-width:1080px; padding:36px 22px 72px; }
+    .hero { position:relative; isolation:isolate; overflow:hidden; margin:0; padding:clamp(30px,5vw,54px); border:0; border-radius:30px; color:#f8fffd; background:linear-gradient(135deg,#102c43 0%,#105f63 57%,#0d776e 100%); box-shadow:0 24px 60px rgb(10 41 55 / .22); }
+    .hero::before { content:""; position:absolute; z-index:-1; width:420px; height:420px; right:-150px; top:-245px; border:1px solid rgb(255 255 255 / .22); border-radius:50%; box-shadow:0 0 0 36px rgb(255 255 255 / .06),0 0 0 98px rgb(255 255 255 / .04); }
+    .hero::after { content:"01"; position:absolute; z-index:-1; right:30px; bottom:-52px; color:rgb(255 255 255 / .10); font:800 clamp(9rem,24vw,17rem)/1 ui-serif,Georgia,serif; letter-spacing:-.1em; }
+    .hero h1 { max-width:720px; margin-bottom:14px; color:#fff; }
+    .hero p { max-width:700px; color:#e3f5f1; font-size:1.03rem; }
+    .hero .eyebrow { color:#b6e9df; } .hero .hint { color:#c7e7e2; }
+    .journey-rail { display:flex; align-items:center; gap:10px; margin:16px 0 20px; padding:10px 12px; border:1px solid rgb(19 34 56 / .09); border-radius:16px; background:rgb(255 253 250 / .72); backdrop-filter:blur(12px); }
+    .journey-step { display:flex; align-items:center; gap:8px; min-width:0; color:var(--muted); font-size:.87rem; font-weight:750; }
+    .journey-step b { display:grid; width:28px; height:28px; place-items:center; border-radius:50%; background:#e6e9e8; color:#647077; font-size:.72rem; }
+    .journey-step.active { color:var(--ink); } .journey-step.active b { background:var(--accent); color:#fff; box-shadow:0 5px 12px rgb(15 118 110 / .25); }
+    .journey-line { flex:1; min-width:22px; height:1px; background:linear-gradient(90deg,var(--accent),#d4d9d6); }
+    .notice { margin:0 0 18px; border:1px solid #f1c99f; border-left:0; border-radius:18px; padding:15px 17px 15px 19px; color:#744016; background:linear-gradient(100deg,#fff7ed,#fff0e2); box-shadow:0 10px 22px rgb(99 67 32 / .06); }
+    .notice strong { color:#9b4a14; }
+    .profile-flow { counter-reset:profile-section; }
+    .section,.output { border:1px solid rgb(19 34 56 / .10); border-radius:var(--radius); background:rgb(255 253 250 / .92); box-shadow:var(--shadow); }
+    .section { position:relative; padding:clamp(22px,3vw,30px); margin:18px 0; }
+    .profile-flow > .section > h2 { display:flex; align-items:center; gap:11px; }
+    .profile-flow > .section > h2::before { counter-increment:profile-section; content:"0" counter(profile-section); display:grid; width:30px; height:30px; place-items:center; border-radius:10px; color:var(--accent-deep); background:var(--accent-soft); font-size:.75rem; letter-spacing:.04em; }
+    h2 { color:var(--ink); letter-spacing:-.02em; } label { color:#25364b; margin-bottom:7px; } label span,.hint { color:var(--muted); }
+    .grid { gap:18px; } input,select,textarea { min-height:48px; border:1px solid #cbd5d4; border-radius:13px; padding:11px 13px; background:#fff; box-shadow:inset 0 1px 0 rgb(19 34 56 / .03); transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease; }
+    textarea { min-height:106px; } input:hover,select:hover,textarea:hover { border-color:#9fbab7; }
+    input:focus,select:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 4px rgb(15 118 110 / .13); outline:0; }
+    fieldset { margin-top:16px; padding:15px; border:1px solid #d9e4e2; border-radius:16px; background:#f8fbfa; } legend { color:var(--ink); font-size:.94rem; } .checks { gap:9px; }
+    .checks label { margin:0; padding:8px 11px; border:1px solid #d6e2e0; border-radius:999px; background:#fff; transition:background .18s ease,border-color .18s ease; }
+    .checks label:has(input:checked) { border-color:#74bdb4; background:var(--accent-soft); color:var(--accent-deep); } .checks input,.consent input { accent-color:var(--accent); }
+    .consent { margin-top:18px; padding:13px 14px; border:1px dashed #a8c9c4; border-radius:15px; background:#f2faf8; }
+    .actions { gap:11px; margin-top:20px; } button { min-height:46px; border-radius:13px; padding:11px 17px; background:linear-gradient(135deg,var(--accent),#138b80); box-shadow:0 10px 18px rgb(15 118 110 / .20); transition:transform .18s ease,box-shadow .18s ease,filter .18s ease; }
+    button:hover { filter:brightness(1.03); transform:translateY(-1px); box-shadow:0 14px 23px rgb(15 118 110 / .25); } button.ghost { background:#edf1ef; box-shadow:none; } button.ghost:hover { background:#e1e8e5; }
+    .status { padding:4px 0 0; } .output { margin-top:24px; overflow:hidden; } .output h2 { padding-bottom:12px; border-bottom:1px solid #e1e6e3; } pre { border-radius:14px; background:#132238; box-shadow:inset 0 1px 0 rgb(255 255 255 / .06); }
+    @media (max-width:600px) { main { padding:20px 13px 46px; } .hero { border-radius:24px; padding:29px 23px 38px; } .journey-rail { overflow:auto; } .journey-step { white-space:nowrap; } .section,.output { padding:19px; } .checks label { width:100%; } }
+    /* Translatable text inside a label is wrapped in span.t so a language switch can replace it
+       without deleting the input beside it; it keeps the label's own weight and colour, not the
+       muted hint style every other span in a label gets. */
+    label span.t { color:inherit; font-weight:inherit; }
+    .hero-top { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 14px; margin-bottom:10px; }
+    .hero-top .eyebrow { margin:0; }
+    .lang-toggle { min-height:36px; padding:6px 15px; border:1px solid rgb(255 255 255 / .42); border-radius:999px; background:rgb(255 255 255 / .12); color:#fff; font-size:.9rem; box-shadow:none; }
+    .lang-toggle:hover { background:rgb(255 255 255 / .22); box-shadow:none; }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div class="hero-top"><p class="eyebrow">Travel Buddy · Local profile</p><button type="button" id="lang-toggle" class="lang-toggle" lang="en">English</button></div>
+      <h1 data-i18n="hero.title">建立你的旅行档案</h1>
+      <p data-i18n="hero.lead">这是首次使用时建立一次的稳定旅行偏好档案。此页面只会把资料提交给同一台电脑上的 Travel Buddy 本地服务；不会联网、登录或付款。</p>
+      <p class="hint" data-i18n="hero.hint">后续旅行会自动复用这份档案并预填稳定信息；短期日期、这次预算和同行人仍会在每次具体行程中单独确认。</p>
+    </header>
+    <nav class="journey-rail" aria-label="首次使用流程" data-i18n-aria-label="rail.aria"><span class="journey-step active"><b>01</b><span class="t" data-i18n="rail.profile">旅行档案</span></span><span class="journey-line" aria-hidden="true"></span><span class="journey-step"><b>02</b><span class="t" data-i18n="rail.trip">本次行程</span></span></nav>
+
+    <div class="notice" data-i18n-html="notice.privacy"><strong>隐私边界：</strong>请不要填写护照号/照片、签证照片、银行卡或账号密码、精确住址。国籍、现居国家和「在现居国的身份」可以填写——只记类别（例如「成员国居留卡」），不记证件号、签发日或有效期，用于判断去哪些国家不用另办签证。</div>
+
+    <form id="profile-form" class="profile-flow" novalidate>
+      <section class="section">
+        <h2 data-i18n="section.start">开始前</h2>
+        <div class="grid">
+          <div><label for="profile-id"><span class="t" data-i18n="label.profile-id">档案名称</span> <span data-i18n="hint.profile-id">必填。以后用它来指定这份档案（例如有多份时），中文也可以</span></label><input id="profile-id" required maxlength="80" autocomplete="off" placeholder="例如：我的档案 或 my-travel-profile" data-i18n-placeholder="ph.profile-id"></div>
+          <div><label for="response-language" data-i18n="label.response-language">希望输出语言</label><select id="response-language"><option value="" data-i18n="option.unspecified">未指定</option><option value="中文" data-i18n="option.response-language.2">中文</option><option value="English">English</option><option value="中文和 English" data-i18n="option.response-language.4">中文和 English</option><option value="其他" data-i18n="option.response-language.5">其他</option></select></div>
+        </div>
+        <label class="consent"><input id="consent" type="checkbox" required><span class="t" data-i18n="label.consent">我同意将下列旅行相关信息保存为本地 JSON，用于未来的旅行建议；我知道可以随时要求删除。</span></label>
+        <div class="actions"><button class="ghost" type="button" id="fill-example" data-i18n="button.fill-example">填入示例</button><button class="ghost" type="reset" data-i18n="button.reset">清空</button></div>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="section.identity">身份、语言与出发条件</h2>
+        <div class="grid">
+          <div><label for="nationality" data-i18n="label.nationality">护照国籍</label><input id="nationality" placeholder="例如：中国" data-i18n-placeholder="ph.nationality"></div>
+          <div><label for="residence-country"><span class="t" data-i18n="label.residence-country">现居国家/地区</span> <span data-i18n="hint.residence-country">你实际长期居住的国家</span></label><input id="residence-country" placeholder="例如：荷兰" data-i18n-placeholder="ph.residence-country"></div>
+          <div><label for="residence-status"><span class="t" data-i18n="label.residence-status">在现居国的身份</span> <span data-i18n="hint.residence-status">决定去哪些国家不用另办签证</span></label><select id="residence-status"><option value="" data-i18n="option.unspecified">未指定</option><option value="eu_eea_ch_citizen" data-i18n="option.residence-status.eu_eea_ch_citizen">欧盟/欧洲经济区/瑞士公民</option><option value="member_state_residence_permit" data-i18n="option.residence-status.member_state_residence_permit">第三国国籍 + 成员国居留卡（如荷兰居留卡）</option><option value="eu_long_term_resident" data-i18n="option.residence-status.eu_long_term_resident">第三国国籍 + 欧盟长期居留</option><option value="short_stay_visa_or_visa_free" data-i18n="option.residence-status.short_stay_visa_or_visa_free">短期签证或免签停留</option><option value="other_or_unspecified" data-i18n="option.residence-status.other_or_unspecified">其他/不便说明</option></select></div>
+          <div><label for="residence"><span class="t" data-i18n="label.residence">法定居住地</span> <span data-i18n="hint.residence">可选。只有当它和上面的现居国不同才填，并且只写到国家 —— 判断入境规则用，不要填详细地址</span></label><input id="residence" placeholder="例如：中国" data-i18n-placeholder="ph.residence"></div>
+          <div><label for="languages"><span class="t" data-i18n="label.languages">会使用的语言</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="languages" placeholder="中文, English" data-i18n-placeholder="ph.languages"></div>
+          <div><label for="language-comfort" data-i18n="label.language-comfort">当地语言适应度</label><select id="language-comfort"><option value="" data-i18n="option.unspecified">未指定</option><option value="需要中文/英文支持" data-i18n="option.language-comfort.2">需要中文/英文支持</option><option value="可用翻译工具" data-i18n="option.language-comfort.3">可用翻译工具</option><option value="愿意沉浸当地语言" data-i18n="option.language-comfort.4">愿意沉浸当地语言</option></select></div>
+          <div><label for="home-city" data-i18n="label.home-city">常住城市</label><input id="home-city" placeholder="例如：上海" data-i18n-placeholder="ph.home-city"></div>
+          <div><label for="home-country" data-i18n="label.home-country">常住国家/地区</label><input id="home-country" placeholder="例如：中国" data-i18n-placeholder="ph.home-country"></div>
+          <div><label for="airports"><span class="t" data-i18n="label.airports">可接受出发机场</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="airports" placeholder="PVG, SHA" data-i18n-placeholder="ph.airports"></div>
+          <div><label for="currency" data-i18n="label.currency">常用预算币种</label><input id="currency" placeholder="例如：CNY" data-i18n-placeholder="ph.currency"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="section.history">去过、想去与不推荐</h2>
+        <p class="hint" id="list-hint" data-i18n-html="hint.list">每行一条，字段用 <code>|</code> 分隔；不确定的字段可以留空。范围可写 <code>城市</code>、<code>国家</code> 或 <code>区域</code>。示例按钮会填入可参考的格式。</p>
+        <label for="visited"><span class="t" data-i18n="label.visited">去过的地方</span> <span data-i18n="hint.visited">地点 | 范围 | 什么时候去的 | 还想再去吗（想 / 不想 / 说不好） | 简短备注</span></label><textarea id="visited" placeholder="东京 | 城市 | 2024-04 | 想 | 喜欢美食和步行" data-i18n-placeholder="ph.visited"></textarea>
+        <label for="wishlist"><span class="t" data-i18n="label.wishlist">想去的地方</span> <span data-i18n="hint.wishlist">地点 | 范围 | 有多想去（1–5，5 最想） | 为什么</span></label><textarea id="wishlist" placeholder="冰岛 | 国家 | 5 | 想看极光和火山" data-i18n-placeholder="ph.wishlist"></textarea>
+        <label for="excluded"><span class="t" data-i18n="label.excluded">不推荐的地方</span> <span data-i18n-html="hint.excluded">地点 | 范围 | 原因（可简短） | 力度（<b>永不推荐</b> / 暂时避开）</span></label><textarea id="excluded" placeholder="某地 | 国家 | 去过不喜欢 | 永不推荐" data-i18n-placeholder="ph.excluded"></textarea>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="section.services">常用旅行服务</h2>
+        <p class="hint" data-i18n="hint.services">可选。只记录帮助你正常打开链接的偏好，不记录账号、密码、支付方式或设备信息。目的地的本地服务仍会优先于品牌习惯。</p>
+        <div class="grid">
+          <div><label for="map-apps"><span class="t" data-i18n="label.map-apps">常用地图/导航应用</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="map-apps" placeholder="例如：高德地图, Google Maps" data-i18n-placeholder="ph.map-apps"></div>
+          <div><label for="booking-platforms"><span class="t" data-i18n="label.booking-platforms">常用订票/酒店比较平台</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="booking-platforms" placeholder="例如：携程, Trip.com, Booking.com" data-i18n-placeholder="ph.booking-platforms"></div>
+          <div><label for="google-access" data-i18n="label.google-access">Google 服务的正常可用性</label><select id="google-access"><option value="unknown" data-i18n="option.google-access.unknown">不确定/按目的地判断</option><option value="available" data-i18n="option.google-access.available">可正常使用（不使用 VPN 或代理）</option><option value="unavailable" data-i18n="option.google-access.unavailable">不要使用 Google 服务</option></select></div>
+          <div><label for="services-to-avoid"><span class="t" data-i18n="label.services-to-avoid">不想使用的服务</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="services-to-avoid" placeholder="例如：仅限英文的平台" data-i18n-placeholder="ph.services-to-avoid"></div>
+        </div>
+        <label for="booking-access-notes" data-i18n="label.booking-access-notes">预订可访问性说明</label><input id="booking-access-notes" placeholder="例如：避免必须本地手机号或当地支付方式的渠道；不填卡号或账号信息" data-i18n-placeholder="ph.booking-access-notes">
+        <label for="service-notes" data-i18n="label.service-notes">其他可访问性说明</label><input id="service-notes" placeholder="例如：中国大陆路线优先高德；无需为了链接使用 VPN" data-i18n-placeholder="ph.service-notes">
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="section.preferences">旅行偏好</h2>
+        <div class="grid">
+          <div><label for="direction" data-i18n="label.direction">景色方向</label><select id="direction"><option value="" data-i18n="option.unspecified">未指定</option><option value="natural" data-i18n="option.direction.natural">自然</option><option value="human_cultural" data-i18n="option.direction.human_cultural">人文/文化</option><option value="balance" data-i18n="option.direction.balance">平衡</option></select></div>
+          <div><label for="pace" data-i18n="label.pace">偏好的节奏</label><select id="pace"><option value="" data-i18n="option.unspecified">未指定</option><option value="慢游/深度" data-i18n="option.pace.2">慢游/深度</option><option value="适中" data-i18n="option.pace.3">适中</option><option value="高密度多点" data-i18n="option.pace.4">高密度多点</option></select></div>
+          <div><label for="lodging" data-i18n="label.lodging">住宿风格</label><select id="lodging"><option value="" data-i18n="option.unspecified">未指定</option><option value="经济实用" data-i18n="option.lodging.2">经济实用</option><option value="舒适中档" data-i18n="option.lodging.3">舒适中档</option><option value="精品/特色" data-i18n="option.lodging.4">精品/特色</option><option value="高端" data-i18n="option.lodging.5">高端</option></select></div>
+          <div><label for="location-priority" data-i18n="label.location-priority">住宿位置优先级</label><select id="location-priority"><option value="" data-i18n="option.unspecified">未指定</option><option value="交通枢纽" data-i18n="option.location-priority.2">交通枢纽</option><option value="景点步行范围" data-i18n="option.location-priority.3">景点步行范围</option><option value="安静安全" data-i18n="option.location-priority.4">安静安全</option><option value="性价比" data-i18n="option.location-priority.5">性价比</option></select></div>
+          <div><label for="self-drive" data-i18n="label.self-drive">自驾偏好</label><select id="self-drive"><option value="" data-i18n="option.unspecified">未指定</option><option value="优先公共交通" data-i18n="option.self-drive.2">优先公共交通</option><option value="可接受自驾" data-i18n="option.self-drive.3">可接受自驾</option><option value="偏好自驾" data-i18n="option.self-drive.4">偏好自驾</option><option value="不自驾" data-i18n="option.self-drive.5">不自驾</option></select></div>
+          <div><label for="cabin" data-i18n="label.cabin">常用舱位/座位偏好</label><input id="cabin" placeholder="例如：经济舱，可接受一次转机" data-i18n-placeholder="ph.cabin"></div>
+        </div>
+        <fieldset><legend data-i18n="legend.natural">自然体验偏好</legend><div class="checks"><label><input type="checkbox" name="natural" value="海岸/海岛"><span class="t" data-i18n="check.natural.1">海岸/海岛</span></label><label><input type="checkbox" name="natural" value="山地徒步"><span class="t" data-i18n="check.natural.2">山地徒步</span></label><label><input type="checkbox" name="natural" value="湖泊/森林"><span class="t" data-i18n="check.natural.3">湖泊/森林</span></label><label><input type="checkbox" name="natural" value="野生动物"><span class="t" data-i18n="check.natural.4">野生动物</span></label><label><input type="checkbox" name="natural" value="雪景/极光"><span class="t" data-i18n="check.natural.5">雪景/极光</span></label></div></fieldset>
+        <fieldset><legend data-i18n="legend.cultural">人文体验偏好</legend><div class="checks"><label><input type="checkbox" name="cultural" value="历史建筑"><span class="t" data-i18n="check.cultural.1">历史建筑</span></label><label><input type="checkbox" name="cultural" value="博物馆/艺术"><span class="t" data-i18n="check.cultural.2">博物馆/艺术</span></label><label><input type="checkbox" name="cultural" value="当地美食"><span class="t" data-i18n="check.cultural.3">当地美食</span></label><label><input type="checkbox" name="cultural" value="街区漫步"><span class="t" data-i18n="check.cultural.4">街区漫步</span></label><label><input type="checkbox" name="cultural" value="节庆/夜生活"><span class="t" data-i18n="check.cultural.5">节庆/夜生活</span></label></div></fieldset>
+        <div class="grid"><div><label for="dietary"><span class="t" data-i18n="label.dietary">饮食偏好或限制</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="dietary" placeholder="例如：无辣, 素食友好" data-i18n-placeholder="ph.dietary"></div><div><label for="accessibility"><span class="t" data-i18n="label.accessibility">无障碍/舒适需要</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="accessibility" placeholder="例如：避免长距离步行" data-i18n-placeholder="ph.accessibility"></div><div><label for="avoid-list"><span class="t" data-i18n="label.avoid-list">其他避免项</span> <span data-i18n="hint.comma">逗号分隔</span></label><input id="avoid-list" placeholder="例如：高温, 红眼航班" data-i18n-placeholder="ph.avoid-list"></div></div>
+      </section>
+
+      <section class="section">
+        <h2 data-i18n="section.submit">提交并保存</h2>
+        <p data-i18n-html="section.submit-lead">点击提交后，资料会先在本地校验，再自动写入 Travel Buddy 的 <code>profiles</code> 目录；在首次工作流中，终端会随即自动进入本次行程信息填写。</p>
+        <div class="actions"><button type="submit" data-i18n="button.submit">提交并保存旅行档案</button></div>
+        <p id="status" class="status" aria-live="polite"></p>
+      </section>
+    </form>
+
+    <section class="output" aria-labelledby="preview-title"><h2 id="preview-title" data-i18n="section.preview">JSON 预览</h2><pre id="preview"></pre></section>
+  </main>
+  <script type="application/json" id="tb-i18n">
+{
+ "zh": {
+  "page.title": "Travel Buddy · 旅行档案填写",
+  "hero.title": "建立你的旅行档案",
+  "hero.lead": "这是首次使用时建立一次的稳定旅行偏好档案。此页面只会把资料提交给同一台电脑上的 Travel Buddy 本地服务；不会联网、登录或付款。",
+  "hero.hint": "后续旅行会自动复用这份档案并预填稳定信息；短期日期、这次预算和同行人仍会在每次具体行程中单独确认。",
+  "rail.profile": "旅行档案",
+  "rail.trip": "本次行程",
+  "rail.aria": "首次使用流程",
+  "notice.privacy": "<strong>隐私边界：</strong>请不要填写护照号/照片、签证照片、银行卡或账号密码、精确住址。国籍、现居国家和「在现居国的身份」可以填写——只记类别（例如「成员国居留卡」），不记证件号、签发日或有效期，用于判断去哪些国家不用另办签证。",
+  "section.start": "开始前",
+  "hint.profile-id": "必填。以后用它来指定这份档案（例如有多份时），中文也可以",
+  "label.profile-id": "档案名称",
+  "ph.profile-id": "例如：我的档案 或 my-travel-profile",
+  "label.response-language": "希望输出语言",
+  "option.unspecified": "未指定",
+  "option.response-language.2": "中文",
+  "option.response-language.4": "中文和 English",
+  "option.response-language.5": "其他",
+  "label.consent": "我同意将下列旅行相关信息保存为本地 JSON，用于未来的旅行建议；我知道可以随时要求删除。",
+  "button.fill-example": "填入示例",
+  "button.reset": "清空",
+  "section.identity": "身份、语言与出发条件",
+  "label.nationality": "护照国籍",
+  "ph.nationality": "例如：中国",
+  "hint.residence-country": "你实际长期居住的国家",
+  "label.residence-country": "现居国家/地区",
+  "ph.residence-country": "例如：荷兰",
+  "hint.residence-status": "决定去哪些国家不用另办签证",
+  "label.residence-status": "在现居国的身份",
+  "option.residence-status.eu_eea_ch_citizen": "欧盟/欧洲经济区/瑞士公民",
+  "option.residence-status.member_state_residence_permit": "第三国国籍 + 成员国居留卡（如荷兰居留卡）",
+  "option.residence-status.eu_long_term_resident": "第三国国籍 + 欧盟长期居留",
+  "option.residence-status.short_stay_visa_or_visa_free": "短期签证或免签停留",
+  "option.residence-status.other_or_unspecified": "其他/不便说明",
+  "hint.residence": "可选。只有当它和上面的现居国不同才填，并且只写到国家 —— 判断入境规则用，不要填详细地址",
+  "label.residence": "法定居住地",
+  "ph.residence": "例如：中国",
+  "hint.comma": "逗号分隔",
+  "label.languages": "会使用的语言",
+  "ph.languages": "中文, English",
+  "label.language-comfort": "当地语言适应度",
+  "option.language-comfort.2": "需要中文/英文支持",
+  "option.language-comfort.3": "可用翻译工具",
+  "option.language-comfort.4": "愿意沉浸当地语言",
+  "label.home-city": "常住城市",
+  "ph.home-city": "例如：上海",
+  "label.home-country": "常住国家/地区",
+  "ph.home-country": "例如：中国",
+  "label.airports": "可接受出发机场",
+  "label.currency": "常用预算币种",
+  "ph.currency": "例如：CNY",
+  "section.history": "去过、想去与不推荐",
+  "hint.list": "每行一条，字段用 <code>|</code> 分隔；不确定的字段可以留空。范围可写 <code>城市</code>、<code>国家</code> 或 <code>区域</code>。示例按钮会填入可参考的格式。",
+  "hint.visited": "地点 | 范围 | 什么时候去的 | 还想再去吗（想 / 不想 / 说不好） | 简短备注",
+  "label.visited": "去过的地方",
+  "ph.visited": "东京 | 城市 | 2024-04 | 想 | 喜欢美食和步行",
+  "hint.wishlist": "地点 | 范围 | 有多想去（1–5，5 最想） | 为什么",
+  "label.wishlist": "想去的地方",
+  "ph.wishlist": "冰岛 | 国家 | 5 | 想看极光和火山",
+  "hint.excluded": "地点 | 范围 | 原因（可简短） | 力度（<b>永不推荐</b> / 暂时避开）",
+  "label.excluded": "不推荐的地方",
+  "ph.excluded": "某地 | 国家 | 去过不喜欢 | 永不推荐",
+  "section.services": "常用旅行服务",
+  "hint.services": "可选。只记录帮助你正常打开链接的偏好，不记录账号、密码、支付方式或设备信息。目的地的本地服务仍会优先于品牌习惯。",
+  "label.map-apps": "常用地图/导航应用",
+  "ph.map-apps": "例如：高德地图, Google Maps",
+  "label.booking-platforms": "常用订票/酒店比较平台",
+  "ph.booking-platforms": "例如：携程, Trip.com, Booking.com",
+  "label.google-access": "Google 服务的正常可用性",
+  "option.google-access.unknown": "不确定/按目的地判断",
+  "option.google-access.available": "可正常使用（不使用 VPN 或代理）",
+  "option.google-access.unavailable": "不要使用 Google 服务",
+  "label.services-to-avoid": "不想使用的服务",
+  "ph.services-to-avoid": "例如：仅限英文的平台",
+  "label.booking-access-notes": "预订可访问性说明",
+  "ph.booking-access-notes": "例如：避免必须本地手机号或当地支付方式的渠道；不填卡号或账号信息",
+  "label.service-notes": "其他可访问性说明",
+  "ph.service-notes": "例如：中国大陆路线优先高德；无需为了链接使用 VPN",
+  "section.preferences": "旅行偏好",
+  "label.direction": "景色方向",
+  "option.direction.natural": "自然",
+  "option.direction.human_cultural": "人文/文化",
+  "option.direction.balance": "平衡",
+  "label.pace": "偏好的节奏",
+  "option.pace.2": "慢游/深度",
+  "option.pace.3": "适中",
+  "option.pace.4": "高密度多点",
+  "label.lodging": "住宿风格",
+  "option.lodging.2": "经济实用",
+  "option.lodging.3": "舒适中档",
+  "option.lodging.4": "精品/特色",
+  "option.lodging.5": "高端",
+  "label.location-priority": "住宿位置优先级",
+  "option.location-priority.2": "交通枢纽",
+  "option.location-priority.3": "景点步行范围",
+  "option.location-priority.4": "安静安全",
+  "option.location-priority.5": "性价比",
+  "label.self-drive": "自驾偏好",
+  "option.self-drive.2": "优先公共交通",
+  "option.self-drive.3": "可接受自驾",
+  "option.self-drive.4": "偏好自驾",
+  "option.self-drive.5": "不自驾",
+  "label.cabin": "常用舱位/座位偏好",
+  "ph.cabin": "例如：经济舱，可接受一次转机",
+  "legend.natural": "自然体验偏好",
+  "check.natural.1": "海岸/海岛",
+  "check.natural.2": "山地徒步",
+  "check.natural.3": "湖泊/森林",
+  "check.natural.4": "野生动物",
+  "check.natural.5": "雪景/极光",
+  "legend.cultural": "人文体验偏好",
+  "check.cultural.1": "历史建筑",
+  "check.cultural.2": "博物馆/艺术",
+  "check.cultural.3": "当地美食",
+  "check.cultural.4": "街区漫步",
+  "check.cultural.5": "节庆/夜生活",
+  "label.dietary": "饮食偏好或限制",
+  "ph.dietary": "例如：无辣, 素食友好",
+  "label.accessibility": "无障碍/舒适需要",
+  "ph.accessibility": "例如：避免长距离步行",
+  "label.avoid-list": "其他避免项",
+  "ph.avoid-list": "例如：高温, 红眼航班",
+  "section.submit": "提交并保存",
+  "section.submit-lead": "点击提交后，资料会先在本地校验，再自动写入 Travel Buddy 的 <code>profiles</code> 目录；在首次工作流中，终端会随即自动进入本次行程信息填写。",
+  "button.submit": "提交并保存旅行档案",
+  "section.preview": "JSON 预览",
+  "sep.list": "、",
+  "field.scope": "范围",
+  "field.revisit": "还想再去吗",
+  "field.strength": "力度",
+  "msg.unrecognised": "第 {row} 行的「{field}」写的是「{value}」，这个词无法识别。可以写：{words}。\n",
+  "msg.priority-invalid": "第 {row} 行的「有多想去」写的是「{value}」，这里要填 1 到 5 的整数（5 最想），或者留空。\n",
+  "msg.name-and-consent": "请填写档案名称并确认本地保存同意。\n",
+  "msg.open-from-service": "此表单必须由 Travel Buddy 本地服务打开；请返回终端使用显示的链接。\n",
+  "msg.saving": "正在本地校验并保存…",
+  "msg.save-failed": "本地保存失败。",
+  "msg.saved-opening-trip": "档案已保存，正在打开本次行程信息填写页…",
+  "msg.saved-see-terminal": "档案已保存；请查看终端中的下一步链接。",
+  "msg.saved": "已保存。终端已收到并读取档案，可以回到和助手的对话里继续规划。",
+  "msg.preview-empty": "填写后点击“提交并保存旅行档案”。",
+  "msg.loaded-existing": "已载入现有档案，请修改后重新提交；提交会覆盖同名档案。",
+  "msg.example-filled": "已填入虚构示例；请替换为自己的信息后再生成。",
+  "example.nationality": "示例国籍",
+  "example.residence-country": "示例现居国",
+  "example.languages": "中文, English",
+  "example.home-city": "示例城市",
+  "example.home-country": "示例国家",
+  "example.map-apps": "高德地图, Google Maps",
+  "example.booking-platforms": "携程, Trip.com",
+  "example.services-to-avoid": "需要 VPN 的服务",
+  "example.booking-access-notes": "避免必须本地手机号或当地支付方式的渠道",
+  "example.service-notes": "中国大陆路线优先高德地图",
+  "example.visited": "东京 | 城市 | 2024-04 | 想 | 喜欢美食和步行",
+  "example.wishlist": "冰岛 | 国家 | 5 | 想看极光和火山",
+  "example.excluded": "示例地点 | 国家 | 目前不想去 | 暂时避开",
+  "example.cabin": "经济舱，可接受一次转机",
+  "example.dietary": "无辣",
+  "example.accessibility": "避免长距离步行",
+  "example.avoid-list": "红眼航班",
+  "ph.airports": "PVG, SHA"
+ },
+ "en": {
+  "page.title": "Travel Buddy · Travel profile",
+  "hero.title": "Set up your travel profile",
+  "hero.lead": "This is a one-time profile of your lasting travel preferences, set up on first use. This page only sends your answers to the local Travel Buddy service on this same computer; it does not go online, log in or pay for anything.",
+  "hero.hint": "Later trips reuse this profile and fill in what stays the same; dates, this trip's budget and who is travelling are still confirmed separately for each trip.",
+  "rail.profile": "Profile",
+  "rail.trip": "This trip",
+  "rail.aria": "First-use steps",
+  "notice.privacy": "<strong>Privacy limits:</strong> please don't enter passport numbers or photos, visa photos, bank cards, account passwords or an exact address. Nationality, country of residence and “your status in that country” are fine — only the category is kept (e.g. “member-state residence permit”), never a document number, issue date or expiry date. It is used to work out which countries need no separate visa.",
+  "section.start": "Before you start",
+  "hint.profile-id": "Required. You'll use it later to choose this profile (e.g. if you have several); any characters are fine",
+  "label.profile-id": "Profile name",
+  "ph.profile-id": "e.g. my-travel-profile",
+  "label.response-language": "Preferred language for answers",
+  "option.unspecified": "Not specified",
+  "option.response-language.2": "Chinese",
+  "option.response-language.4": "Chinese and English",
+  "option.response-language.5": "Other",
+  "label.consent": "I agree that the travel-related information below is saved as a local JSON file and used for future travel suggestions. I know I can ask for it to be deleted at any time.",
+  "button.fill-example": "Fill in an example",
+  "button.reset": "Clear",
+  "section.identity": "Identity, languages and where you travel from",
+  "label.nationality": "Passport nationality",
+  "ph.nationality": "e.g. China",
+  "hint.residence-country": "the country you actually live in long-term",
+  "label.residence-country": "Country/region you live in",
+  "ph.residence-country": "e.g. Netherlands",
+  "hint.residence-status": "decides which countries need no separate visa",
+  "label.residence-status": "Your status in that country",
+  "option.residence-status.eu_eea_ch_citizen": "EU / EEA / Swiss citizen",
+  "option.residence-status.member_state_residence_permit": "Non-EU national with a member-state residence permit (e.g. a Dutch residence permit)",
+  "option.residence-status.eu_long_term_resident": "Non-EU national with EU long-term residence",
+  "option.residence-status.short_stay_visa_or_visa_free": "Short-stay visa or visa-free stay",
+  "option.residence-status.other_or_unspecified": "Other / prefer not to say",
+  "hint.residence": "optional. Only if it differs from the country above, and only the country — it is used for entry rules; don't enter an address",
+  "label.residence": "Legal residence",
+  "ph.residence": "e.g. China",
+  "hint.comma": "comma-separated",
+  "label.languages": "Languages you speak",
+  "ph.languages": "English, Chinese",
+  "label.language-comfort": "Comfort with the local language",
+  "option.language-comfort.2": "Need Chinese or English support",
+  "option.language-comfort.3": "Translation apps are fine",
+  "option.language-comfort.4": "Happy to immerse in the local language",
+  "label.home-city": "Home city",
+  "ph.home-city": "e.g. London",
+  "label.home-country": "Home country/region",
+  "ph.home-country": "e.g. United Kingdom",
+  "label.airports": "Departure airports you'd use",
+  "label.currency": "Usual budget currency",
+  "ph.currency": "e.g. GBP",
+  "section.history": "Been, want to go, never suggest",
+  "hint.list": "One entry per line, fields separated by <code>|</code>; leave any field you're unsure of blank. Scope can be <code>city</code>, <code>country</code> or <code>region</code>. The example button fills in the format to copy.",
+  "hint.visited": "place | scope | when you went | would you go back (yes / no / maybe) | short note",
+  "label.visited": "Places you've been",
+  "ph.visited": "Tokyo | city | 2024-04 | yes | loved the food and the walking",
+  "hint.wishlist": "place | scope | how much you want to go (1–5, 5 = most) | why",
+  "label.wishlist": "Places you want to go",
+  "ph.wishlist": "Iceland | country | 5 | the northern lights and volcanoes",
+  "hint.excluded": "place | scope | reason (short is fine) | strength (<b>never</b> / avoid for now)",
+  "label.excluded": "Places not to suggest",
+  "ph.excluded": "Somewhere | country | went and didn't like it | never",
+  "section.services": "Travel services you use",
+  "hint.services": "Optional. Only preferences that help links open for you are kept — no accounts, passwords, payment methods or device details. Local services at the destination still come before brand habits.",
+  "label.map-apps": "Map or navigation apps you use",
+  "ph.map-apps": "e.g. Google Maps, Apple Maps",
+  "label.booking-platforms": "Booking or hotel comparison sites you use",
+  "ph.booking-platforms": "e.g. Trip.com, Booking.com",
+  "label.google-access": "Can you use Google services normally?",
+  "option.google-access.unknown": "Not sure / depends on the destination",
+  "option.google-access.available": "Yes, normally (without a VPN or proxy)",
+  "option.google-access.unavailable": "Don't use Google services",
+  "label.services-to-avoid": "Services you'd rather avoid",
+  "ph.services-to-avoid": "e.g. sites that need a local phone number",
+  "label.booking-access-notes": "Booking access notes",
+  "ph.booking-access-notes": "e.g. avoid sites that need a local phone number or local payment; no card or account details",
+  "label.service-notes": "Other access notes",
+  "ph.service-notes": "e.g. Amap first for mainland China routes; no VPN needed just to open links",
+  "section.preferences": "Travel preferences",
+  "label.direction": "Nature, culture or a balance",
+  "option.direction.natural": "Nature",
+  "option.direction.human_cultural": "People and culture",
+  "option.direction.balance": "A balance",
+  "label.pace": "Preferred pace",
+  "option.pace.2": "Slow and in depth",
+  "option.pace.3": "Moderate",
+  "option.pace.4": "Packed, many places",
+  "label.lodging": "Accommodation style",
+  "option.lodging.2": "Budget and practical",
+  "option.lodging.3": "Comfortable mid-range",
+  "option.lodging.4": "Boutique / characterful",
+  "option.lodging.5": "High-end",
+  "label.location-priority": "Where you like to stay",
+  "option.location-priority.2": "Near transport hubs",
+  "option.location-priority.3": "Walking distance to the sights",
+  "option.location-priority.4": "Quiet and safe",
+  "option.location-priority.5": "Good value",
+  "label.self-drive": "Driving yourself",
+  "option.self-drive.2": "Public transport first",
+  "option.self-drive.3": "Driving is fine",
+  "option.self-drive.4": "Prefer to drive",
+  "option.self-drive.5": "No driving",
+  "label.cabin": "Usual cabin or seat preference",
+  "ph.cabin": "e.g. economy, one connection is fine",
+  "legend.natural": "Nature you enjoy",
+  "check.natural.1": "Coast / islands",
+  "check.natural.2": "Mountain hiking",
+  "check.natural.3": "Lakes / forests",
+  "check.natural.4": "Wildlife",
+  "check.natural.5": "Snow / northern lights",
+  "legend.cultural": "Culture you enjoy",
+  "check.cultural.1": "Historic buildings",
+  "check.cultural.2": "Museums / art",
+  "check.cultural.3": "Local food",
+  "check.cultural.4": "Neighbourhood walks",
+  "check.cultural.5": "Festivals / nightlife",
+  "label.dietary": "Dietary preferences or restrictions",
+  "ph.dietary": "e.g. no spicy food, vegetarian-friendly",
+  "label.accessibility": "Accessibility or comfort needs",
+  "ph.accessibility": "e.g. avoid long walks",
+  "label.avoid-list": "Anything else to avoid",
+  "ph.avoid-list": "e.g. heat, red-eye flights",
+  "section.submit": "Submit and save",
+  "section.submit-lead": "When you submit, your answers are checked locally and then written to Travel Buddy's <code>profiles</code> folder; on a first run, the terminal then moves straight on to this trip's form.",
+  "button.submit": "Submit and save the travel profile",
+  "section.preview": "JSON preview",
+  "sep.list": ", ",
+  "field.scope": "scope",
+  "field.revisit": "would you go back",
+  "field.strength": "strength",
+  "msg.unrecognised": "Line {row}: “{field}” says “{value}”, which this form does not recognise. You can write: {words}.\n",
+  "msg.priority-invalid": "Line {row}: “how much you want to go” says “{value}”; use a whole number from 1 to 5 (5 = most), or leave it blank.\n",
+  "msg.name-and-consent": "Please give the profile a name and tick the box agreeing to save it locally.\n",
+  "msg.open-from-service": "This form has to be opened through the local Travel Buddy service; go back to the terminal and use the link it shows.\n",
+  "msg.saving": "Checking and saving locally…",
+  "msg.save-failed": "Saving locally failed.",
+  "msg.saved-opening-trip": "Profile saved; opening the form for this trip…",
+  "msg.saved-see-terminal": "Profile saved; the terminal shows the link for the next step.",
+  "msg.saved": "Saved. The terminal has received and read the profile; you can go back to your conversation with the assistant to continue planning.",
+  "msg.preview-empty": "Fill in the form, then press “Submit and save the travel profile”.",
+  "msg.loaded-existing": "Your saved profile is loaded. Edit it and submit again; submitting replaces the profile with the same name.",
+  "msg.example-filled": "Filled in a made-up example; replace it with your own details before saving.",
+  "example.nationality": "Example nationality",
+  "example.residence-country": "Example country of residence",
+  "example.languages": "English, Chinese",
+  "example.home-city": "Example city",
+  "example.home-country": "Example country",
+  "example.map-apps": "Google Maps, Apple Maps",
+  "example.booking-platforms": "Trip.com, Booking.com",
+  "example.services-to-avoid": "services that need a VPN",
+  "example.booking-access-notes": "avoid sites that need a local phone number or a local payment method",
+  "example.service-notes": "Amap first for mainland China routes",
+  "example.visited": "Tokyo | city | 2024-04 | yes | loved the food and the walking",
+  "example.wishlist": "Iceland | country | 5 | the northern lights and volcanoes",
+  "example.excluded": "Example place | country | not keen right now | avoid for now",
+  "example.cabin": "economy, one connection is fine",
+  "example.dietary": "no spicy food",
+  "example.accessibility": "avoid long walks",
+  "example.avoid-list": "red-eye flights",
+  "ph.airports": "e.g. LHR, AMS"
+ }
+}
+  </script>
+  <script>
+    (() => {
+      const $ = (id) => document.getElementById(id);
+      const form = $("profile-form"); const preview = $("preview"); const status = $("status"); const intakeConfig = window.TRAVEL_BUDDY_PROFILE_INTAKE || {}; const submitEndpoint = intakeConfig.submit_url || window.TRAVEL_BUDDY_SUBMIT_URL || "";
+      // One page, two languages: every string a traveller reads comes from the tb-i18n dictionary,
+      // and every value the profile stores is the same in both (tests/test_profile_form.js).
+      const I18N = JSON.parse($("tb-i18n").textContent);
+      const LANGUAGE_NAMES = { zh:"中文", en:"English" };
+      let LANG = intakeConfig.language === "en" ? "en" : "zh";
+      function t(key, vars) {
+        const text = (I18N[LANG] && I18N[LANG][key]) || I18N.zh[key] || key;
+        if (!vars) return text;
+        return text.replace(/\{(\w+)\}/g, (_, name) => {
+          const value = typeof vars[name] === "function" ? vars[name]() : vars[name];
+          return value === undefined || value === null ? "" : String(value);
+        });
+      }
+      // Script-written text is kept as a render function per element, so a language switch
+      // re-renders a message already on screen.
+      const live = new Map();
+      function show(node, render) {
+        if (render) live.set(node, render); else live.delete(node);
+        node.textContent = render ? render() : "";
+      }
+      function say(node, key, vars) { show(node, key ? () => t(key, vars) : null); }
+      function keyedError(key, vars) {
+        const error = new Error(t(key, vars));
+        error.render = () => t(key, vars);
+        return error;
+      }
+      let profile = null;
+      const text = (id) => $(id).value.trim();
+      const list = (id) => text(id).split(",").map((value) => value.trim()).filter(Boolean);
+      const checked = (name) => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map((input) => input.value);
+      const lines = (id, mapper) => text(id).split("\n").map((line) => line.trim()).filter(Boolean).map((line, index) => mapper(line.split("|").map((part) => part.trim()), index + 1));
+      // These three columns end up as EXACT string comparisons downstream --
+      // `exclusion_strength === "never_recommend"` decides whether a place is a hard filter at all,
+      // and `revisit_interest === "no"` decides whether it is kept off the shortlist. Passing the
+      // traveller's own words through unchanged is therefore not permissive, it is silent data
+      // loss: somebody who wrote 「绝对不去」 -- the strongest thing they can say -- got an
+      // exclusion that matched nothing and filtered nothing, with no error anywhere. So each
+      // column is normalised from what a person actually writes, and whatever is still
+      // unrecognised is REFUSED by name rather than stored as a value that quietly does nothing.
+      const pick = (raw, table, fallback, field, row) => {
+        const value = String(raw || "").trim();
+        if (!value) return fallback;
+        const key = value.toLowerCase().replace(/\s+/g, " ");
+        for (const [canonical, spellings] of Object.entries(table)) {
+          if (canonical === key || spellings.includes(key)) return canonical;
+        }
+        throw keyedError("msg.unrecognised", { row, field: () => t(field), value, words: () => suggestions(table) });
+      };
+      // The words a refusal suggests are each canonical's first spelling in the page's language,
+      // taken from the table itself, so a suggestion is always something the form accepts. The
+      // English spellings are the words the English hints teach, added beside the Chinese ones.
+      const CJK_WORD = /[\u3400-\u9fff]/;
+      const suggestions = (table) => Object.values(table)
+        .map((spellings) => spellings.find((word) => CJK_WORD.test(word) === (LANG === "zh")) || spellings[0])
+        .join(t("sep.list"));
+      const SCOPE = { city_or_region: ["城市", "区域", "地区", "city", "region", "city_or_region"],
+                      country: ["国家", "country"] };
+      const REVISIT = { yes: ["想", "想再去", "是", "yes", "y"], no: ["不想", "不再去", "否", "no", "n"],
+                        maybe: ["说不好", "看情况", "也许", "maybe"], unknown: ["不确定", "not sure", "unsure", "unknown"] };
+      const STRENGTH = { never_recommend: ["永不推荐", "永远不去", "绝对不去", "never", "never recommend", "never_recommend"],
+                         avoid_for_now: ["暂时避开", "暂时不去", "这次不去", "avoid for now", "for now", "not now", "avoid_for_now", "avoid"] };
+      // A priority the traveller typed as 「高」 used to become `null` through Number() -- the wish
+      // list silently lost its ranking. Out-of-range numbers were stored as given, so a 999 sorted
+      // above every real answer.
+      const rank = (raw, row) => {
+        const value = String(raw || "").trim();
+        if (!value) return null;
+        const number = Number(value);
+        if (!Number.isInteger(number) || number < 1 || number > 5) {
+          throw keyedError("msg.priority-invalid", { row, value });
+        }
+        return number;
+      };
+      const today = () => new Date().toISOString().slice(0, 10);
+      function buildProfile() {
+        const profileId = text("profile-id");
+        if (!profileId || !$("consent").checked) throw keyedError("msg.name-and-consent");
+        return {
+          profile_version: "1.0", profile_id: profileId,
+          storage_consent: { personal_profile: true, confirmed_at: today(), purpose: "Reuse travel preferences and constraints across future planning requests." },
+          identity_and_language: { nationality: text("nationality") || null, residence_country: text("residence-country") || null, residence_status: text("residence-status") || null, legal_residence: text("residence") || text("residence-country") || null, preferred_response_language: text("response-language") || null, languages_spoken: list("languages"), local_language_comfort: text("language-comfort") || null },
+          home_and_logistics: { home_city: text("home-city") || null, home_country: text("home-country") || null, acceptable_departure_airports: list("airports"), default_currency: text("currency") || null, typical_cabin_or_seat_preference: text("cabin") || null, self_drive_preference: text("self-drive") || null },
+          digital_travel_access: { preferred_map_apps: list("map-apps"), preferred_booking_platforms: list("booking-platforms"), services_to_avoid: list("services-to-avoid"), google_services_access: text("google-access") || "unknown", booking_access_notes: text("booking-access-notes") || null, notes: text("service-notes") || null },
+          travel_history: {
+            visited_places: lines("visited", ([place, scope, visit_period, revisit_interest, notes], row) => ({ place: place || null, scope: pick(scope, SCOPE, "city_or_region", "field.scope", row), visit_period: visit_period || null, revisit_interest: pick(revisit_interest, REVISIT, "unknown", "field.revisit", row), notes: notes || null })),
+            wish_list: lines("wishlist", ([place, scope, priority, why], row) => ({ place: place || null, scope: pick(scope, SCOPE, "city_or_region", "field.scope", row), priority: rank(priority, row), why: why || null })),
+            excluded_places: lines("excluded", ([place, scope, reason, exclusion_strength], row) => ({ place: place || null, scope: pick(scope, SCOPE, "city_or_region", "field.scope", row), reason: reason || null, exclusion_strength: pick(exclusion_strength, STRENGTH, "never_recommend", "field.strength", row), confirmed_at: today() }))
+          },
+          recurring_preferences: { experience_direction: text("direction") || null, natural_subtypes: checked("natural"), human_cultural_subtypes: checked("cultural"), pace: text("pace") || null, lodging_style: text("lodging") || null, location_priority: text("location-priority") || null, food_and_dietary_preferences: list("dietary"), accessibility_needs: list("accessibility"), comfort_and_safety_preferences: [], avoid_list: list("avoid-list") },
+          data_controls: { last_reviewed_at: today(), sensitive_data_not_stored: ["passport number", "passport or visa image", "payment card or bank details", "exact home address", "account credentials"], forget_on_explicit_request: true }
+        };
+      }
+      function renderProfile() { const payload = JSON.stringify(profile, null, 2); show(preview, () => payload); }
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        try {
+          profile = buildProfile();
+          renderProfile();
+          if (!submitEndpoint) throw keyedError("msg.open-from-service");
+          status.className = "status";
+          say(status, "msg.saving");
+          // The page's CURRENT language, so a refusal comes back in the language on screen.
+          const response = await fetch(submitEndpoint, { method: "POST", headers: { "Content-Type": "application/json", "X-Travel-Buddy-Language": LANG }, body: JSON.stringify(profile) });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error || t("msg.save-failed"));
+          if (result.next_trip && result.next_url) {
+            say(status, "msg.saved-opening-trip");
+            window.setTimeout(() => window.location.assign(result.next_url), 250);
+            return;
+          }
+          say(status, result.next_trip ? "msg.saved-see-terminal" : "msg.saved");
+        } catch (error) {
+          status.className = "status error";
+          show(status, error.render || (() => error.message));
+        }
+      });
+      form.addEventListener("reset", () => { profile = null; say(preview, "msg.preview-empty"); say(status, null); });
+      // When the workflow reopens this form to edit a saved profile, load it in so the
+      // traveller reviews and adjusts rather than retyping twenty-nine fields.
+      function loadExisting(existing) {
+        if (!existing || typeof existing !== "object") return;
+        const ident = existing.identity_and_language || {}, home = existing.home_and_logistics || {};
+        const access = existing.digital_travel_access || {}, prefs = existing.recurring_preferences || {};
+        const history = existing.travel_history || {};
+        const put = (id, value) => { if ($(id) && typeof value === "string" && value) $(id).value = value; };
+        const putList = (id, value) => { if ($(id) && Array.isArray(value) && value.length) $(id).value = value.join(", "); };
+        put("profile-id", existing.profile_id);
+        put("response-language", ident.preferred_response_language); put("nationality", ident.nationality);
+        put("residence-country", ident.residence_country); put("residence-status", ident.residence_status);
+        put("residence", ident.legal_residence); putList("languages", ident.languages_spoken);
+        put("language-comfort", ident.local_language_comfort);
+        put("home-city", home.home_city); put("home-country", home.home_country);
+        putList("airports", home.acceptable_departure_airports); put("currency", home.default_currency);
+        put("cabin", home.typical_cabin_or_seat_preference); put("self-drive", home.self_drive_preference);
+        putList("map-apps", access.preferred_map_apps); putList("booking-platforms", access.preferred_booking_platforms);
+        put("google-access", access.google_services_access); putList("services-to-avoid", access.services_to_avoid);
+        put("booking-access-notes", access.booking_access_notes); put("service-notes", access.notes);
+        put("direction", prefs.experience_direction); put("pace", prefs.pace); put("lodging", prefs.lodging_style);
+        put("location-priority", prefs.location_priority);
+        putList("dietary", prefs.food_and_dietary_preferences); putList("accessibility", prefs.accessibility_needs);
+        putList("avoid-list", prefs.avoid_list);
+        for (const [name, values] of [["natural", prefs.natural_subtypes], ["cultural", prefs.human_cultural_subtypes]]) {
+          if (!Array.isArray(values)) continue;
+          document.querySelectorAll(`input[name="${name}"]`).forEach((input) => { input.checked = values.includes(input.value); });
+        }
+        const rows = (items, mapper) => Array.isArray(items) ? items.map(mapper).join("\n") : "";
+        $("visited").value = rows(history.visited_places, (v) => [v.place, v.scope, v.visit_period, v.revisit_interest, v.notes].map((x) => x || "").join(" | "));
+        $("wishlist").value = rows(history.wish_list, (v) => [v.place, v.scope, v.priority, v.why].map((x) => x || "").join(" | "));
+        $("excluded").value = rows(history.excluded_places, (v) => [v.place, v.scope, v.reason, v.exclusion_strength].map((x) => x || "").join(" | "));
+        $("consent").checked = true;
+        status.className = "status";
+        say(status, "msg.loaded-existing");
+      }
+      // Static text from the dictionary, then everything the script wrote, re-rendered in `lang`.
+      function applyLanguage(lang) {
+        LANG = lang === "en" ? "en" : "zh";
+        document.documentElement.lang = LANG === "en" ? "en" : "zh-CN";
+        document.querySelectorAll("[data-i18n]").forEach((node) => { node.textContent = t(node.dataset.i18n); });
+        document.querySelectorAll("[data-i18n-html]").forEach((node) => { node.innerHTML = t(node.dataset.i18nHtml); });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => { node.placeholder = t(node.dataset.i18nPlaceholder); });
+        document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => { node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel)); });
+        document.querySelectorAll("[data-i18n-title]").forEach((node) => { node.title = t(node.dataset.i18nTitle); });
+        // The switch names the other language in that language, so it can be found by someone who
+        // cannot read the page they are on.
+        const other = LANG === "en" ? "zh" : "en";
+        const toggle = $("lang-toggle");
+        toggle.textContent = LANGUAGE_NAMES[other];
+        toggle.lang = other === "en" ? "en" : "zh-CN";
+        live.forEach((render, node) => { node.textContent = render(); });
+      }
+      say(preview, "msg.preview-empty");
+      loadExisting(intakeConfig.existing_profile);
+      applyLanguage(LANG);
+      $("lang-toggle").addEventListener("click", () => applyLanguage(LANG === "en" ? "zh" : "en"));
+
+      // Typed answers come from the dictionary so an English page shows an English example; the
+      // select and checkbox VALUES are the stored words, the same in both languages.
+      $("fill-example").addEventListener("click", () => {
+        $("profile-id").value = "example-traveler"; $("consent").checked = true; $("response-language").value = LANG === "en" ? "English" : "中文";
+        $("nationality").value = t("example.nationality"); $("residence-country").value = t("example.residence-country"); $("residence-status").value = "member_state_residence_permit"; $("residence").value = "";
+        $("languages").value = t("example.languages"); $("home-city").value = t("example.home-city"); $("home-country").value = t("example.home-country"); $("airports").value = "AAA, BBB"; $("currency").value = "CNY";
+        $("map-apps").value = t("example.map-apps"); $("booking-platforms").value = t("example.booking-platforms"); $("google-access").value = "unavailable"; $("services-to-avoid").value = t("example.services-to-avoid");
+        $("booking-access-notes").value = t("example.booking-access-notes"); $("service-notes").value = t("example.service-notes");
+        $("visited").value = t("example.visited"); $("wishlist").value = t("example.wishlist"); $("excluded").value = t("example.excluded");
+        $("direction").value = "balance"; $("pace").value = "适中"; $("lodging").value = "舒适中档"; $("location-priority").value = "景点步行范围"; $("self-drive").value = "可接受自驾";
+        $("cabin").value = t("example.cabin"); $("dietary").value = t("example.dietary"); $("accessibility").value = t("example.accessibility"); $("avoid-list").value = t("example.avoid-list");
+        document.querySelector('input[name="natural"][value="雪景/极光"]').checked = true; document.querySelector('input[name="cultural"][value="当地美食"]').checked = true;
+        status.className = "status"; say(status, "msg.example-filled");
+      });
+    })();
+  </script>
+</body>
+</html>

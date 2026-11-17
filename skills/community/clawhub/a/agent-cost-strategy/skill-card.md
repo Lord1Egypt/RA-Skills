@@ -1,43 +1,58 @@
-## Description: <br>
-Tiered model selection and cost optimization for multi-agent AI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tiered model selection and cost optimization guidance for multi-agent AI workflows across AI providers.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and agent operators use this skill to choose lower-cost model tiers, caching patterns, batching, and session practices for multi-agent AI workflows while preserving room to escalate when quality or risk requires it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cost-focused routing can under-select model capability for tasks where accuracy, safety, privacy, or user-directed control matters more than spend. <br>
-Mitigation: Override cost guidance for sensitive sessions, background jobs, file edits, data-changing tasks, and any case where higher reliability or stronger review is required. <br>
-Risk: Long-lived cached sessions may retain workspace files, memory, secrets, or sensitive personal data in repeated context. <br>
-Mitigation: Avoid or end cached sessions that contain secrets or sensitive PII, and use a fresh privacy boundary when retention risk outweighs cost savings. <br>
-Risk: Batch processing and background cost optimizations can delay results when the user needs an immediate response. <br>
-Mitigation: Use batch or asynchronous APIs only for non-urgent work where delayed delivery is acceptable. <br>
+## Use Case:
 
+Developers and agent operators use this skill to choose cost-appropriate models, route sub-agent and scheduled work, and apply prompt caching and batch processing patterns without losing sight of accuracy, safety, or privacy needs.
 
-## Reference(s): <br>
-- [Cache Optimization Patterns](references/cache-optimization.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/djc00p/agent-cost-strategy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with tables, routing rules, and inline text/code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cost strategy recommendations for model routing, prompt caching, batch processing, and session management.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.6 (source: server release metadata and skill metadata) <br>
+Risk: Cost-focused defaults may route work to models that are too weak for accuracy, safety, or privacy-sensitive tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the tier rules as guidance and escalate model choice when task complexity, user impact, or safety sensitivity requires it.
+
+Risk: Cached context can include workspace files, memory, secrets, or sensitive personal data.
+
+Mitigation: Avoid caching sessions that contain secrets or sensitive personal data, and end those sessions when the privacy boundary matters more than cost savings.
+
+Risk: Provider prices, cache behavior, batch discounts, TTLs, and model names can change.
+
+Mitigation: Confirm current provider pricing and cache behavior before relying on the skill's example numbers in production workflows.
+
+## Reference(s):
+
+- [Cache Optimization Patterns](artifact/references/cache-optimization.md)
+- [ClawHub skill page](https://clawhub.ai/djc00p/skills/agent-cost-strategy)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, shell commands]
+
+**Output Format:** [Markdown guidance with routing tables, rules, and inline examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provider pricing, model names, cache TTLs, and discounts should be checked against current provider documentation before operational use.]
+
+## Skill Version(s):
+
+1.3.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

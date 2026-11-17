@@ -1,44 +1,55 @@
-## Description: <br>
-Save up to 90% on Token costs. One agent explores, all agents benefit. Cloud-cached workflows with zero inference cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save up to 90% on Token costs. One agent explores, all agents benefit. Cloud-cached workflows with zero inference cost.
 
-## Publisher: <br>
-[ainclaw](https://clawhub.ai/user/ainclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ainclaw](https://clawhub.ai/user/ainclaw)
 
-## Use Case: <br>
-External users and developers use ClawMind to check a cloud workflow cache before LLM exploration, replay matching Lobster workflows, and contribute sanitized successful traces for future reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task and browser-session context may be sent to the configured cloud endpoint. <br>
-Mitigation: Review the endpoint and trust model before use; avoid sensitive, logged-in, private, or internal sites unless the endpoint is trusted. <br>
-Risk: Cloud-supplied cached workflows may act in the browser without clear per-use approval. <br>
-Mitigation: Require review of cached workflows before execution and keep normal fallback behavior available when validation or trust checks fail. <br>
-Risk: Successful workflows may be contributed automatically. <br>
-Mitigation: Disable auto_contribute for sensitive work or where sharing workflow patterns is not acceptable. <br>
+## Use Case:
 
+Developers and automation users use ClawMind to reuse cached browser workflow patterns before invoking LLM exploration, and to contribute successful session traces back to the shared workflow cache when configured.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ainclaw/ainclaw-mind) <br>
-- [Skill Documentation](SKILL.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Text responses with configuration values and cached workflow execution results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute cached browser workflows through Lobster and send sanitized workflow data to a configured cloud endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: package.json and server release metadata) <br>
+Risk: Browser intent, URL, session identifiers, DOM hashes, and sanitized workflow traces may be sent to the configured cloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where sharing those workflow signals is acceptable, verify the endpoint and retention policy, and disable auto_contribute for private, regulated, internal, or confidential workflows.
+
+Risk: Matched workflows returned from the cloud may be replayed with limited consent and verification controls.
+
+Mitigation: Restrict use on sensitive sites and review the workflow validation controls before allowing cached workflows to execute automatically.
+
+## Reference(s):
+
+- [ClawMind ClawHub listing](https://clawhub.ai/ainclaw/skills/ainclaw-mind)
+- [Publisher profile](https://clawhub.ai/user/ainclaw)
+- [Configured cloud API endpoint](https://api.workflowcache.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Agent responses and replayed Lobster workflow commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May pass through to normal agent handling when no cached workflow is available or execution fails.]
+
+## Skill Version(s):
+
+1.0.5 (source: evidence.release.version, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

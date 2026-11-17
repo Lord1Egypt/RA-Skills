@@ -1,7 +1,7 @@
 ---
 name: mailbuttons
 description: Wire up a governed email inbox for an AI agent using Mailbuttons. Use this skill whenever the user wants to give an agent, app, bot, or workflow its own email address; set up sending or receiving email for an agent; add an agent inbox, sender allowlist, or email webhook; or integrate "Mailbuttons", "mbag", or "email for AI agents." Trigger this even when the user just says things like "let my agent send/receive email", "give my bot an inbox", "handle email in my agent", or names Mailbuttons/mbag — and even if they don't say the word "skill". This skill always works in a sandbox and never enables sending to external recipients without an explicit human approval step.
-version: 0.1.1
+version: 0.1.4
 metadata:
   openclaw:
     homepage: https://mailbuttons.com

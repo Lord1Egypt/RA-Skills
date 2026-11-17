@@ -1,44 +1,58 @@
-## Description: <br>
-Configures OSD watermark, channel title, time title, and privacy overlay settings for supported JF devices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures JFTech device on-screen display settings, including channel titles, timestamp overlays, and privacy mask regions.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and device administrators use this skill to query and change JF camera OSD settings, including displayed channel names, timestamps, and privacy masks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with documented JF regional API hosts for China, Asia, Europe, and North America. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts can modify camera OSD settings, including channel titles and privacy overlays. <br>
-Mitigation: Manually confirm the target device, channel, requested action, and current configuration before running any set operation. <br>
-Risk: The skill uses sensitive JF credentials and a device token to sign API requests. <br>
-Mitigation: Store the JF app secret and device token securely, avoid logging them, and rotate them if exposure is suspected. <br>
-Risk: JF_ENDPOINT is configurable, so signed requests could be sent to an unintended host. <br>
-Mitigation: Keep JF_ENDPOINT set only to an official JF regional API host before execution. <br>
+## Use Case:
 
+Developers and operators with JFTech OpenAPI credentials use this skill to query and update OSD settings on bound online devices, including channel titles, timestamp overlays, and privacy regions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jftech/jf-open-pro-device-osd) <br>
-- [JFTech publisher profile](https://clawhub.ai/user/jftech) <br>
-- [JFTech documentation](https://docs.jftech.com) <br>
+### Deployment Geography for Use:
 
+China Mainland (CN), Asia (AS), Europe (EU), and North America (NA)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with environment variables, shell commands, and Python script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce signed HTTPS API requests when the bundled scripts are run with JF credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: JF_ENDPOINT can redirect device tokens and signed API metadata to an untrusted host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set JF_ENDPOINT only to the documented JF regional API hosts and rotate the device token if it may have been used with an untrusted endpoint.
+
+Risk: State-changing OSD actions can modify a live device's channel title or visibility overlays.
+
+Mitigation: Confirm the target device, channel, action, title, and region values before running set operations; query current configuration first when practical.
+
+Risk: The skill requires JF credentials and device tokens to execute API calls.
+
+Mitigation: Use trusted credentials, keep secrets out of shared transcripts and logs, and scope execution to devices the operator is authorized to manage.
+
+## Reference(s):
+
+- [JFTech Open Platform documentation](https://docs.jftech.com)
+- [ClawHub skill page](https://clawhub.ai/jftech/skills/jf-open-pro-device-osd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide state-changing OSD actions that use JF credentials, device tokens, device serial numbers, and regional API endpoints.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact metadata says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

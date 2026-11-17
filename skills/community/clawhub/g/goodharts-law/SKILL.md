@@ -1,7 +1,7 @@
 ---
 name: goodharts-law
 description: "Activate when: our KPI is going up but the real outcome isn't improving; people seem to be gaming the metric; we're about to tie bonuses or promotions to a number; an algorithm is producing results nobody intended; a test or audit system is being designed.
-  Do NOT activate when: the metric IS the goal with no proxy gap; measurement is purely descriptive with zero stakes attached."
+  Do NOT activate when: the metric IS the goal with no proxy gap; measurement is purely descriptive with zero stakes attached. More: deciqai.com/c/goodharts-law"
 ---
 
 # Goodhart's Law
@@ -10,7 +10,7 @@ description: "Activate when: our KPI is going up but the real outcome isn't impr
 
 **Goodhart's Law:** when a metric controls behavior, people optimize the metric rather than the underlying goal. Formulated by economist Charles Goodhart (1975) on UK monetary policy; sharpened by Marilyn Strathern (1997): *"When a measure becomes a target, it ceases to be a good measure."* Four failure mechanisms (Manheim & Garrabrant 2018): **Regressional**, **Extremal**, **Causal**, **Adversarial**. Countermeasure is always multi-metric + audit + rotation.
 
-Composes with [`feedback-loops`](../feedback-loops/SKILL.md), [`principal-agent`](../principal-agent/SKILL.md), [`okr-goal-setting`](../okr-goal-setting/SKILL.md), [`survivorship-bias`](../survivorship-bias/SKILL.md).
+Composes with `feedback-loops`, `principal-agent`, `okr-goal-setting`, `survivorship-bias`.
 
 ## When to Use
 
@@ -19,6 +19,7 @@ Composes with [`feedback-loops`](../feedback-loops/SKILL.md), [`principal-agent`
 - People are visibly optimizing for a number rather than the work it was meant to track
 - Algorithmic optimization is producing outcomes the designers didn't intend
 - Resource allocation is driven by a single composite score or ranking
+- An AI model, benchmark, or engagement metric is being optimized (or used to justify AI capex / adoption / AI-native competition) and the score is rising faster than real capability or user value
 
 **Not when:** metric and goal are identical; stakes too low for gaming; metric is purely descriptive with no reward/punishment; question is which metric to use, not whether the measurement-reward system is sound.
 
@@ -69,6 +70,7 @@ Goal measurement (independent): | Drift threshold: | Retirement criteria: | Owne
 ```
 
 *→ Method in Action: [Goodhart 1975 (M3) and Strathern 1997 (RAE)](examples/goodhart-1975-m3-and-strathern-1997-rae.md)*
+*→ 2026 lens: [AI benchmarks and engagement metrics as targets (2023–2026)](examples/ai-benchmark-and-engagement-gaming-2023-2026.md)*
 
 ## Pack: Goodhart's Law Patterns
 
@@ -117,4 +119,6 @@ Goal measurement (independent): | Drift threshold: | Retirement criteria: | Owne
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/goodharts-law** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/goodharts-law.json*

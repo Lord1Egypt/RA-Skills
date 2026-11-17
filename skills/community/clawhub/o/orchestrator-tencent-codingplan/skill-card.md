@@ -1,42 +1,54 @@
-## Description: <br>
-Task orchestration framework for Tencent Coding Plan that routes parallel or decomposed work to Tencent-hosted models and can spawn sub-agents with selected workspace context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task orchestration framework for Tencent Coding Plan that routes decomposed work to provider models and can spawn cloud sub-agents with selected workspace context.
 
-## Publisher: <br>
-[drifting-snow](https://clawhub.ai/user/drifting-snow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drifting-snow](https://clawhub.ai/user/drifting-snow)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide when to delegate work to Tencent Coding Plan sub-agents, route tasks to suitable models, and aggregate results for coding, writing, search, reasoning, or large-file analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace file contents, user messages, and task prompts may be sent to the listed Tencent endpoint when included in delegated task context. <br>
-Mitigation: Use explicit invocation and per-task confirmation, and avoid repositories containing secrets, credentials, customer data, or private business material unless file inclusion is tightly controlled. <br>
-Risk: Broad orchestration triggers can spawn sub-agents and increase external data exposure or token cost. <br>
-Mitigation: Confirm before spawning multiple sub-agents, sending files, or handling tasks that can be completed directly in the main session. <br>
+## Use Case:
 
+Developers and engineers use this skill to decide when to delegate parallel or decomposed tasks through Tencent Coding Plan sub-agents, route work to appropriate models, and aggregate results while managing token and file-transfer limits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drifting-snow/orchestrator-tencent-codingplan) <br>
-- [Publisher profile](https://clawhub.ai/user/drifting-snow) <br>
-- [Tencent Coding Plan API endpoint](https://api.lkeap.cloud.tencent.com/coding/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with task plans, model-routing guidance, and generated implementation content when delegated agents are used] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include aggregated sub-agent results and recommendations for limiting file transfer and token use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: Task prompts, user messages, and selected workspace file contents may be sent to the Tencent Coding Plan endpoint during sub-agent work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that external routing is intended; confirm which files and prompts will be shared before delegating sensitive tasks.
+
+Risk: Broad orchestration triggers can lead to cloud sub-agent execution for requests such as delegate or parallel.
+
+Mitigation: Review the generated task plan and confirmation thresholds before spawning multiple sub-agents or transferring files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drifting-snow/skills/orchestrator-tencent-codingplan)
+- [Tencent Coding Plan API endpoint](https://api.lkeap.cloud.tencent.com/coding/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text responses with optional code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task decomposition, model-routing rationale, sub-agent results, and cost or file-transfer notices.]
+
+## Skill Version(s):
+
+1.0.6 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

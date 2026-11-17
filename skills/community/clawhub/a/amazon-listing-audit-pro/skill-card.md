@@ -1,46 +1,61 @@
-## Description: <br>
-Amazon Listing Audit Pro helps Amazon sellers audit listings across eight weighted dimensions, compare against category leaders, identify keyword gaps, and generate data-backed improvement recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Listing Audit Pro audits Amazon listings across eight dimensions, benchmarks them against category leaders, identifies keyword gaps, and generates data-backed optimization recommendations.
 
-## Publisher: <br>
-[apiclaw](https://clawhub.ai/user/apiclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[apiclaw](https://clawhub.ai/user/apiclaw)
 
-## Use Case: <br>
-Amazon sellers, agencies, and ecommerce operators use this skill to evaluate single or bulk ASIN listings, benchmark them against market leaders, and prioritize listing improvements. It is intended for external commercial workflows that use APIClaw data and require an APICLAW_API_KEY. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends ASINs, keywords, categories, competitor targets, and related business research to api.apiclaw.io. <br>
-Mitigation: Install only if the user trusts APIClaw for this data, and avoid submitting confidential product strategy unless permitted by the user's data handling policy. <br>
-Risk: The artifact includes code and reference material broader than the advertised listing-audit workflow. <br>
-Mitigation: Invoke the listing-audit workflow for this skill unless the user intentionally requests broader APIClaw market-entry, opportunity, monitoring, pricing, or review-deepdive capabilities. <br>
-Risk: Credential lookup supports APICLAW_API_KEY and local APIClaw configuration files. <br>
-Mitigation: Prefer setting APICLAW_API_KEY explicitly for the session and review or remove local APIClaw config files before use. <br>
+## Use Case:
 
+Amazon sellers, agencies, and their agents use this skill to assess single or bulk ASIN listing quality, compare against category leaders, and generate prioritized listing improvements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/apiclaw/amazon-listing-audit-pro) <br>
-- [APIClaw API documentation](https://api.apiclaw.io/api-docs) <br>
-- [APIClaw API key setup](https://apiclaw.io/en/api-keys) <br>
-- [APIClaw homepage](https://apiclaw.io) <br>
-- [API field reference](references/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with scorecards, tables, recommendations, data provenance, and API usage details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Report language should match the user's input language; conclusions are labeled as data-backed, inferred, or directional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and frontmatter) <br>
+Risk: API-key handling and endpoint override settings can create avoidable credential exposure risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use the default ZooData endpoint, avoid setting ZOODATA_BASE_URL, and prefer an environment variable over a persistent config file for the API key.
+
+Risk: Review-analysis outputs can be influenced by adversarial product reviews.
+
+Mitigation: Treat listing recommendations as decision support and validate material conclusions with additional sources before acting.
+
+Risk: The README installer command may resolve an unpinned installation path.
+
+Mitigation: Pin or otherwise verify the installer path before using the README npx command.
+
+## Reference(s):
+
+- [Listing Audit Pro API Field Reference](artifact/references/reference.md)
+- [ZooData CLI Contract](artifact/references/cli-contract.md)
+- [ZooData API Documentation](https://api.zoodata.ai/api-docs)
+- [ZooData](https://zoodata.ai)
+- [Skill Homepage](https://github.com/SerendipityOneInc/ZooData-Skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown report with scorecards, tables, suggested rewrites, data provenance, and API usage.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ZOODATA_API_KEY and uses credit-consuming ZooData API calls; normal reports include confidence labels and should be validated against additional sources before business decisions.]
+
+## Skill Version(s):
+
+1.0.8 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

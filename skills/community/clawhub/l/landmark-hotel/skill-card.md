@@ -1,46 +1,61 @@
-## Description: <br>
-Find hotels closest to a specific attraction, landmark, or scenic spot by verifying the point of interest and searching hotels sorted by walking distance, powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find hotels closest to a specific attraction, landmark, or scenic spot. First verifies the POI, then searches hotels sorted by walking distance. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-Travel users and agent operators use this skill to find hotels near landmarks, attractions, scenic areas, ancient towns, theme parks, and nature areas using real-time flyai CLI results. It helps collect parameters, verify the point of interest, run the appropriate hotel search, and format bookable results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to install the flyai CLI globally with npm, which can change the execution environment and introduce package trust risk. <br>
-Mitigation: Review and approve the @fly-ai/flyai-cli package before installation, and prefer a controlled or isolated environment for running the CLI. <br>
-Risk: Travel searches may be shared with the flyai/Fliggy service. <br>
-Mitigation: Use the skill only when users are comfortable sending destination, date, budget, and preference details to that service. <br>
-Risk: The artifact describes a hidden local execution log that may store raw trip details on disk. <br>
-Mitigation: Disable, avoid creating, or delete .flyai-execution-log.json when raw travel queries should not be retained locally. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to find hotels near landmarks, attractions, scenic areas, ancient towns, theme parks, and nature areas using FlyAI/Fliggy real-time CLI results. It also guides related travel-service searches such as flights, trains, attraction tickets, itinerary planning, visa information, travel insurance, and car rental when supported by the CLI.
 
-## Reference(s): <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
-- [ClawHub release page](https://clawhub.ai/xiejinsong/landmark-hotel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hotel results must come from flyai CLI output and include booking links when results are shown.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires a global third-party FlyAI CLI installation before it can retrieve travel data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a pinned and reviewed CLI version in an isolated environment before allowing the agent to execute searches.
+
+Risk: Raw travel queries and executed commands may be retained locally through the execution log behavior.
+
+Mitigation: Disable local log persistence where possible, or redact destinations, dates, and traveler preferences before retaining logs.
+
+Risk: The skill depends on FlyAI/Fliggy as the exclusive source for hotel data and booking links.
+
+Mitigation: Review CLI output before acting on recommendations and treat missing booking links as invalid results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejinsong/skills/landmark-hotel)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when setup or retry steps are needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should be based on flyai CLI output, include booking links for listed results, and match the user's language.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,37 @@
+---
+description: >
+  SendPulse Email Service (bulk email) rules — apply when the user works with
+  SendPulse email campaigns: address books/mailing lists, subscribers, segments,
+  campaign creation/scheduling, A/B tests, campaign analytics, bulk-email API.
+globs:
+alwaysApply: false
+---
+
+# SendPulse Email Service
+
+Full skill lives in `docs/sendpulse-email-skill/` (adjust path if cloned elsewhere).
+Read `docs/sendpulse-email-skill/SKILL.md` first; load `references/` and `examples/`
+files there as needed.
+
+Non-negotiable rules when generating SendPulse bulk-email code:
+
+1. Routing: building email HTML → `sendpulse-template-skill` (never hand-write
+   template HTML here); one-off transactional emails → `sendpulse-smtp-skill`.
+   Never loop the SMTP send endpoint over a subscriber list — that's what
+   campaigns are for.
+2. Auth: prefer the Single API Key (*Settings → API → API keys*, long-lived
+   Bearer); OAuth client_credentials (1 h TTL, refresh on 401) as the alternative.
+   Credentials from env vars only.
+3. `POST /campaigns`: `body` MUST be Base64-encoded HTML (or use `template_id`);
+   `sender_email` must be a verified sender on a corporate domain; max 4
+   campaigns/hour; ≤10 books per campaign (segment/test → exactly 1).
+4. Blacklist endpoints take `emails` as Base64 of a comma-separated STRING, not an
+   array. Subscriber `date` variables are `YYYY-MM-DD`.
+5. Campaigns can be held for review — routine for a new account's first sends; not
+   an error. Read `GET /campaigns/{id}` status before debugging anything else.
+6. Always enable tracking (`stats.opens/clicks` + UTM), check
+   `GET /addressbooks/{id}/cost` before sending, send a test first, target a
+   segment rather than the whole base.
+7. Mirror app opt-outs to SendPulse immediately (book unsubscribe or `/blacklist`);
+   never re-import unsubscribed/bounced addresses.
+8. Retry on 429/5xx with exponential backoff; never retry 4xx validation errors.

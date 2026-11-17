@@ -1,43 +1,56 @@
-## Description: <br>
-Automates PingCode timesheet workflows by creating sub-tasks, setting work item properties, logging work hours, and optionally deriving entries from Git commits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates PingCode timesheet filling by creating work items, setting task properties, and logging hours from manual task lists or Git commits.
 
-## Publisher: <br>
-[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid)
 
-## Use Case: <br>
-Employees and developers who track work in PingCode use this skill to prepare timesheet entries, create task structures under existing work items, and register hours after reviewing a proposed plan. It also supports generating candidate time entries from configured GitHub or GitLab commit history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a PingCode session cookie and can optionally read Git commit history through a token. <br>
-Mitigation: Store cookie and token files with restrictive permissions, never commit or share them, and use the narrowest Git token scopes available. <br>
-Risk: Approved runs can create PingCode tasks, update work item properties, and register work hours. <br>
-Mitigation: Review the full task plan and target work item details before approval, and use the first-time setup test call to validate configuration before real changes. <br>
+## Use Case:
 
+Employees and developers who track work in PingCode use this skill to create task and sub-task structures, set dates and states, and log work hours after reviewing and confirming the proposed plan.
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Configuration Template](references/config-template.yaml) <br>
-- [PingCode Work Category IDs](references/category-ids.md) <br>
-- [Git Integration](references/git-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with YAML and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May perform authenticated PingCode API calls or browser actions after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill handles live PingCode session cookies and optional Git tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store cookies and tokens with restrictive permissions, export only necessary cookies, prefer least-privilege short-lived Git tokens, and verify the configured PingCode and Git hosts before use.
+
+Risk: The skill can create PingCode work items and register hours in a live account.
+
+Mitigation: Use it only where automated work-item creation and hour logging are acceptable, and execute only after reviewing and explicitly confirming the proposed task and hour plan.
+
+## Reference(s):
+
+- [PingCode TimeLogger on ClawHub](https://clawhub.ai/huuuwnnn-droid/skills/pingcode-timelogger)
+- [PingCode Work Category IDs](references/category-ids.md)
+- [PingCode TimeLogger Configuration](references/config-template.yaml)
+- [Git Integration for PingCode TimeLogger](references/git-integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with YAML configuration snippets, API request details, and progress/status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before creating work items or logging hours.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

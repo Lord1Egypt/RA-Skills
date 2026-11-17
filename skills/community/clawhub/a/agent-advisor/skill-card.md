@@ -1,38 +1,53 @@
-## Description: <br>
-Agent Advisor recommends Claude models from a task description or recent OpenClaw conversation history and reports an OpenClaw gateway security score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Advisor recommends Claude models from either recent OpenClaw conversation history or a task description, and can report an OpenClaw gateway security score from local configuration.
 
-## Publisher: <br>
-[MrKangZuBin](https://clawhub.ai/user/MrKangZuBin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mrkangzubin](https://clawhub.ai/user/mrkangzubin)
 
-## Use Case: <br>
-Developers and OpenClaw users use Agent Advisor to choose an appropriate Claude model for a described or recent task and to understand basic OpenClaw gateway security posture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auto and full-without-task modes read recent local OpenClaw conversation history, which may include secrets, credentials, proprietary topics, or personal information. <br>
-Mitigation: Use recommend with an explicit task description when prior sessions may contain sensitive information. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to choose a Claude model for a described or recently observed task and to review basic OpenClaw gateway security posture.
 
-## Reference(s): <br>
-- [Agent Advisor on ClawHub](https://clawhub.ai/MrKangZuBin/agent-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Plain text console reports with model recommendations, security scores, and suggested configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads local OpenClaw configuration and, in auto and full-without-task modes, recent local OpenClaw conversation history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Risk: Auto mode can analyze recent local OpenClaw conversation history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use recommend mode with an explicit task description when prior chat content should not be read.
+
+Risk: Security reporting reads local OpenClaw configuration to score gateway posture.
+
+Mitigation: Review local OpenClaw configuration access before running the security or full report modes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrkangzubin/skills/agent-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration guidance]
+
+**Output Format:** [Markdown-style terminal report with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include model recommendations, matched task signals, configured-model availability notes, OpenClaw security score details, and configuration improvement guidance.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

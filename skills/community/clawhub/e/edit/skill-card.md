@@ -1,40 +1,51 @@
-## Description: <br>
-Professional editing assistant for improving existing writing by fixing grammar, improving clarity, tightening structure, adjusting tone, cutting length, or rewriting drafts while preserving author intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional editing assistant for improving existing writing through proofreading, clarity edits, structural tightening, tone adjustment, length reduction, and full rewrites.
 
-## Publisher: <br>
-[EthAgent](https://clawhub.ai/user/EthAgent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ethagent](https://clawhub.ai/user/ethagent)
 
-## Use Case: <br>
-Writers, editors, and other users use this skill to improve existing drafts through proofreading, line edits, structural edits, tone adjustments, cuts, or full rewrites while preserving meaning and voice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad editing triggers may be imprecise for vague requests. <br>
-Mitigation: Specify the desired edit type, such as proofreading, light editing, shortening, tone adjustment, or full rewrite, and review the result before use. <br>
-Risk: Drafts submitted for editing may contain sensitive text. <br>
-Mitigation: Avoid pasting sensitive content unless you are comfortable sharing it with the host agent. <br>
-Risk: Edits can accidentally change meaning or voice. <br>
-Mitigation: Review the edited draft against the original and ask for clarification when meaning is ambiguous. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and teams use this skill to improve existing drafts while preserving the author's voice, intent, and meaning. It supports proofreading, line editing, structural editing, tone adjustment, cutting for length, and full edits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on ambiguous editing requests where the user wanted drafting, summarization, critique, or another specialized task.
+
+Mitigation: Ask for clear context or specify the desired edit type when the request could be interpreted multiple ways.
+
+Risk: Edits can accidentally change meaning when the source text is unclear.
+
+Mitigation: Preserve the original meaning and ask for clarification instead of guessing when intent is ambiguous.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown containing edited text and a brief edit summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include an edited draft, concise change summary, preserved elements, and an optional next-step suggestion.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown containing the edited draft and a concise edit summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves authorial voice and flags unclear meaning rather than guessing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

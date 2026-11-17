@@ -1,39 +1,51 @@
-## Description: <br>
-AI agent for deck builder tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI agent for deck builder tasks.
 
-## Publisher: <br>
-[teamolab](https://clawhub.ai/user/teamolab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teamolab](https://clawhub.ai/user/teamolab)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to turn presentation requirements into a structured PowerPoint generation blueprint for downstream slide-generation agents. It supports global deck settings, slide-by-slide content, visual asset prompts, chart instructions, and final PPTX assembly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts or deck requirements may include sensitive information that is passed through the deck-generation workflow. <br>
-Mitigation: Define content boundaries before use and avoid including sensitive information unless it is approved for the downstream deck-generation process. <br>
-Risk: Generated presentation plans may contain incorrect, unsupported, or misleading content. <br>
-Mitigation: Review the generated blueprint and final deck before sharing or relying on the presentation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/teamolab/deck-builder) <br>
+## Use Case:
+
+External users and developers use this skill to turn presentation requirements into structured PowerPoint generation blueprints for downstream slide creation and deck assembly.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can trigger many slide-generation subtasks and automatic PPTX assembly.
+
+Mitigation: Specify the desired slide count and confirm that PPTX assembly and submission are acceptable before use.
+
+Risk: Generated presentation plans may contain incorrect structure, content, or visual guidance.
+
+Mitigation: Review the JSON blueprint and generated deck before sharing or relying on the output.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Guidance, Files] <br>
-**Output Format:** [Structured JSON blueprint with downstream PowerPoint file assembly] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The blueprint includes global design settings, ordered slide specifications, visual asset instructions, chart data, icon keywords, and rendering notes.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, code, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JSON blueprint with slide-by-slide generation instructions and concise agent guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate multiple slide-generation subtasks and request PPTX assembly.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

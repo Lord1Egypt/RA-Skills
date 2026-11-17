@@ -1,42 +1,58 @@
-## Description: <br>
-Office Automation Toolkit is a registry of CLI tools and Python packages for automating Excel, CSV, Word, PowerPoint, PDF, browser, network, and messaging workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Automation Toolkit helps agents choose and install CLI tools and Python packages for office document, PDF, browser automation, web scraping, and messaging workflows.
 
-## Publisher: <br>
-[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andyrenxu7255](https://clawhub.ai/user/andyrenxu7255)
 
-## Use Case: <br>
-Developers, operators, and office automation users use this skill to choose appropriate tools and installation commands for document conversion, spreadsheet processing, PDF handling, browser automation, and messaging integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bootstrap script can install packages and system tools, changing the host environment. <br>
-Mitigation: Run scripts/toolkit-bootstrap.sh with --check-only first, review the planned changes, and prefer a virtual environment or container before allowing installation. <br>
-Risk: The skill can bind Feishu lark-cli to Hermes credentials when matching environment variables are present. <br>
-Mitigation: Allow credential binding only when those credentials are intentional, approved, and least-privileged for the task. <br>
-Risk: Browser automation workflows may save reusable browser auth.json sessions for later headless use. <br>
-Mitigation: Avoid saving reusable browser sessions for sensitive accounts, or store them with the same controls used for other account credentials. <br>
+## Use Case:
 
+Developers, operators, and office-automation agents use this skill to identify appropriate tools for Excel, CSV, Word, PowerPoint, PDF, browser, web, and messaging tasks and to bootstrap those tools when needed.
 
-## Reference(s): <br>
-- [Office Automation Tool Quick Reference](references/tool-quick-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with tool tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a bootstrap shell script for checking or installing recommended office automation dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Risk: The bootstrap script may install Python packages, operating-system packages, and Playwright browser assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the script with --check-only first, review the package list, and approve installation only in an appropriate environment.
+
+Risk: Some installation paths use package managers that may request elevated privileges.
+
+Mitigation: Avoid running with elevated privileges unless the environment requires it and the requested packages have been reviewed.
+
+Risk: Messaging integrations may bind available Feishu, WeCom, or DingTalk credentials from environment variables.
+
+Mitigation: Confirm the intended messaging identity and environment variables before enabling messaging automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyrenxu7255/skills/office-automation-toolkit)
+- [Tool quick reference](artifact/references/tool-quick-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline install commands, tool tables, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend or run a bootstrap script that checks and installs office automation dependencies.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Searches coastal, seaside city, beach town, and harbor destination flights through the flyai/Fliggy CLI and formats real-time travel results with booking links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search coastal, seaside city, and beach-town flights with booking links, plus related travel tasks powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel-assistant agents use this skill to collect flight search parameters, run real-time flyai coastal flight searches, and present bookable flight options for seaside and harbor destinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may prompt installation of a global npm package for the flyai CLI. <br>
-Mitigation: Ask the user to approve package installation before running npm install, and continue only when the installed CLI can be verified. <br>
-Risk: Raw travel queries and command history may be retained locally in an execution log. <br>
-Mitigation: Confirm before writing the local execution log, and avoid collecting sensitive travel details beyond what the search requires. <br>
-Risk: Automatic fallback behavior can substitute dates after invalid or past-date input. <br>
-Mitigation: Confirm replacement travel dates with the user before executing searches that use substituted dates. <br>
+## Use Case:
 
+External travelers and travel agents use this skill to search real-time coastal flight options, compare recommended, budget, and direct routes, and present Markdown results with booking links.
 
-## Reference(s): <br>
-- [Coastal Flight skill listing](https://clawhub.ai/dingtom336-gif/coastal-flight) <br>
-- [Templates](references/templates.md) <br>
-- [Playbooks](references/playbooks.md) <br>
-- [Fallbacks](references/fallbacks.md) <br>
-- [Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands for execution or troubleshooting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output for flight data; valid flight results are expected to include Book links derived from detailUrl.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install an unpinned global flyai CLI before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI package and require explicit user approval before any global npm install.
+
+Risk: The skill depends on shell commands built from travel search parameters.
+
+Mitigation: Validate origin, destination, dates, and supported flags before execution, and avoid passing untrusted free-form text into shell commands.
+
+Risk: The skill may persist raw travel queries to a local execution log.
+
+Mitigation: Do not enter sensitive personal, payment, passport, visa, or account details unless logging is removed or clearly controlled.
+
+## Reference(s):
+
+- [Parameter and output templates](references/templates.md)
+- [Coastal flight playbooks](references/playbooks.md)
+- [Fallback handling](references/fallbacks.md)
+- [Execution log runbook](references/runbook.md)
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/coastal-flight)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should be based on flyai CLI output and include booking links when flight results are shown.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

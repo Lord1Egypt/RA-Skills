@@ -1,43 +1,54 @@
-## Description: <br>
-Agent skill for x402-paid global news aggregation and source/time-filtered search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent skill for x402-paid global news aggregation and source/time-filtered search.
 
-## Publisher: <br>
-[parsonssss](https://clawhub.ai/user/parsonssss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[parsonssss](https://clawhub.ai/user/parsonssss)
 
-## Use Case: <br>
-Developers and external agent users use this skill to search global news through a paid x402 API, with filters for source domain, publication time, country, and language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a paid remote news-search API and sends search queries to a third-party service. <br>
-Mitigation: Treat searches as third-party API requests and avoid submitting sensitive or confidential queries. <br>
-Risk: The skill requires a crypto private key or signer for x402 payments. <br>
-Mitigation: Use a dedicated low-balance wallet or delegated signer, keep keys out of prompts, logs, and source control, and require explicit per-call approval or spending limits. <br>
-Risk: The artifact labels the skill as local-only even though it calls a remote paid API. <br>
-Mitigation: Review the network and payment behavior before installation and deployment. <br>
+## Use Case:
 
+Developers and external agents use this skill to search global news through a paid x402 API, including source-domain and publication-time filters. It supports workflows that need recent news results with source and timestamp context.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/parsonssss/multi-news-aggregator) <br>
-- [x402 API service](https://www.x402api.app/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and TypeScript code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance includes payment-flow handling, search parameters, source and time filters, and error handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill asks agents to use an EVM private key to authorize paid x402 requests, which can create unintended spending or key-exposure risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, store the key only in local secret storage, set strict spending limits, and require confirmation or local validation of payment terms before signing.
+
+Risk: News queries are sent to the x402 API, so sensitive query text may leave the user's environment.
+
+Mitigation: Avoid sensitive or regulated search terms unless the API use is approved, and pin requests to the documented API origin.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/parsonssss/skills/multi-news-aggregator)
+- [x402 API base](https://www.x402api.app/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and TypeScript code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent instructions for calling a paid news-search API and handling x402 payment-required responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

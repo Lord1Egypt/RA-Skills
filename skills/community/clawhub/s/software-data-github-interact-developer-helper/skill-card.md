@@ -1,41 +1,54 @@
-## Description: <br>
-Guides GitHub issue, pull request, CI, and repository-context work so coding agents can triage, plan safe changes, and report actionable next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides GitHub issue, pull request, CI, and repository work for coding agents by turning repository context into safe action plans.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, maintainers, and agent users use this skill to inspect GitHub issues, pull requests, checks, branches, commits, and repository files, then turn that evidence into implementation plans, triage summaries, command plans, and final status notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose GitHub CLI or API actions for labels, comments, assignments, merges, and other live repository changes. <br>
-Mitigation: Review proposed commands before execution and perform live GitHub mutations only when the user explicitly requested them or they are a direct part of the workflow. <br>
-Risk: Broad activation hints could apply the workflow outside GitHub-related work. <br>
-Mitigation: Invoke the skill explicitly for GitHub-centered tasks and keep remote GitHub facts separate from local assumptions. <br>
+## Use Case:
 
+Developers, maintainers, and agent users use this skill to inspect GitHub issues, pull requests, CI, and repository context, then convert those signals into triage summaries, implementation checklists, safe command plans, and final status notes.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/kyro-ma/software-data-github-interact-developer-helper) <br>
-- [Requirement plan](references/requirement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise summaries, checklists, command plans, and status notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite relevant GitHub objects or local files when they drive a recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Broad implicit invocation could apply GitHub workflow guidance to repository actions the user did not intend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit GitHub issue, PR, CI, or repository-planning requests.
+
+Risk: Authenticated GitHub tools could modify live repository state or expose private repository context.
+
+Mitigation: Review before installing in agents with private repository access, scope credentials carefully, and require confirmation before any gh or API action that labels, assigns, comments, closes, merges, or otherwise changes live repository state.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/software-data-github-interact-developer-helper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with checklists, command plans, code or configuration snippets, and status notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include GitHub CLI or API command plans; live repository mutations require explicit user authorization.]
+
+## Skill Version(s):
+
+0.1.1 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

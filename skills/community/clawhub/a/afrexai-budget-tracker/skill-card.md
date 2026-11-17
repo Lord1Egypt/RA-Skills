@@ -1,42 +1,58 @@
-## Description: <br>
-Turns an AI agent into a local-first personal finance assistant for logging transactions, enforcing budgets, managing savings goals, and producing financial reports through natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Budget & Expense Tracker helps an AI agent log personal income and expenses, enforce category budgets, track recurring transactions and savings goals, and produce financial summaries from local workspace files.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Individuals use this skill with an AI agent to track personal expenses and income, enforce category budgets, manage recurring transactions and savings goals, and request weekly, monthly, or year-to-date financial summaries. It is intended for local workspace use with user-managed financial JSON and CSV files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates or updates local JSON and CSV files containing private financial records. <br>
-Mitigation: Install only in a workspace you control, keep ledgers out of shared or public repositories, and manage backups as sensitive financial data. <br>
-Risk: Natural-language transaction parsing, recurring rules, and budget reports can be incorrect or incomplete. <br>
-Mitigation: Review parsed transactions, recurring rules, and generated reports before relying on them for financial decisions. <br>
-Risk: Foreign-currency handling can require exchange-rate data that may conflict with the stated no-external-API privacy model. <br>
-Mitigation: Use manually supplied exchange rates when preserving local-only operation is important. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-budget-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
+## Use Case:
 
+Individuals use this skill with an AI agent to maintain a local personal finance ledger, monitor spending against budgets, manage savings goals, and request weekly, monthly, or year-to-date reports. It is intended for conversational personal budgeting rather than regulated financial advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with JSON and CSV examples, file-edit guidance, and occasional shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates local budget profile, ledger, goals, recurring-rules, and CSV export files when directed by the agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores detailed financial records in local workspace JSON files.
+
+Mitigation: Keep budget files out of shared folders and repositories, and review file permissions before recording sensitive transactions.
+
+Risk: Natural language requests can log, export, change, or undo financial records.
+
+Mitigation: Require explicit confirmation before logging transactions, exporting data, changing budgets, or undoing records.
+
+Risk: Backup guidance can expose financial history if ledger files are committed to git.
+
+Mitigation: Avoid committing budget files unless repository remotes and history retention are understood and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-budget-tracker)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, JSON files, CSV]
+
+**Output Format:** [Conversational text and Markdown with local JSON ledger/profile files and optional CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores financial profile, ledger, savings goal, and recurring transaction data locally in workspace files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,61 @@
+{
+  "id": "fec-code-smells",
+  "name": "Code Smell Diagnosis",
+  "category": "review-quality",
+  "tags": [
+    "code-smells",
+    "diagnosis",
+    "maintainability",
+    "evidence"
+  ],
+  "summary": "Evidence-based diagnosis of the 24 canonical code smells with false-positive guards and frontend manifestations.",
+  "version": "2.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "review-quality",
+    "code-smells",
+    "diagnosis",
+    "maintainability",
+    "evidence"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when diagnosing structural maintainability problems in existing frontend code before deciding how to refactor it, especially when evidence, false-positive checks, and candidate transformations are needed without editing business code.",
+  "source": "skills/fec-code-smells",
+  "references": [
+    "references/detection-guide.md",
+    "references/smell-catalog.md",
+    "references/smell-to-refactoring-map.md"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-refactoring",
+      "fec-refactoring-catalog",
+      "fec-code-review"
+    ],
+    "boundaryWorkflows": [
+      "Use dead-code cleanup for proven unused code, exports, styles, routes, fixtures, or dependencies.",
+      "Use TDD when adding new observable behavior or fixing a behavior-changing defect.",
+      "Use debugging first when the failure cause is unknown.",
+      "Use validation repair for understood lint, typecheck, test, or build failures that predate the refactoring step.",
+      "Use code review for merge-readiness review rather than structure-changing execution.",
+      "Use migration or architecture planning for dependency, framework, router, state-library, or platform replacements."
+    ],
+    "capabilityTags": [
+      "code-smells",
+      "diagnosis",
+      "maintainability",
+      "evidence"
+    ]
+  }
+}

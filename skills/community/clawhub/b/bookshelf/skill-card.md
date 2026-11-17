@@ -1,40 +1,55 @@
-## Description: <br>
-Track reading progress, rate finished books, and manage your library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track reading progress, rate finished books, and manage your library. Use when logging books, reviewing reading stats, or planning reading goals.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and personal productivity agents use Bookshelf to log books, reading plans, progress, reviews, reminders, tags, reports, and exports from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reading notes, reviews, reminders, and exports may contain personal information and are stored as local plain-text files. <br>
-Mitigation: Avoid entering highly sensitive information, restrict access to ~/.local/share/bookshelf, and delete or protect that directory before sharing or backing up the device. <br>
+## Use Case:
 
+External users use Bookshelf to manage personal reading lists, plans, progress logs, reviews, tags, reminders, exports, and reading summaries from a local command-line workflow.
 
-## Reference(s): <br>
-- [Bookshelf on ClawHub](https://clawhub.ai/ckchzh/bookshelf) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, files] <br>
-**Output Format:** [Plain text command output with local plain-text logs and JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores notes, reviews, reminders, activity history, and exports under ~/.local/share/bookshelf.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter and script report 2.0.0) <br>
+Risk: Reading notes, reminders, reviews, and exports are stored locally in plain text under ~/.local/share/bookshelf.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal information and apply local file-system protections appropriate for personal reading data.
+
+Risk: CSV exports may contain user-entered values that spreadsheet applications could interpret as formulas.
+
+Mitigation: Review CSV exports before sharing or opening them in spreadsheet software, especially when entries were copied from untrusted sources.
+
+## Reference(s):
+
+- [Bookshelf on ClawHub](https://clawhub.ai/ckchzh/skills/bookshelf)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Publisher profile](https://clawhub.ai/user/ckchzh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files, Configuration, Guidance]
+
+**Output Format:** [Plain text command output with local JSON, CSV, and TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists reading logs and exports under ~/.local/share/bookshelf.]
+
+## Skill Version(s):
+
+2.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

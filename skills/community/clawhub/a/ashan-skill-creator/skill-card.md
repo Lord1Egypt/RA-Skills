@@ -1,41 +1,57 @@
-## Description: <br>
-Skill Creator helps agents create, edit, improve, audit, organize, validate, and package OpenClaw AgentSkills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, edit, improve, audit, validate, and package OpenClaw AgentSkills using structured authoring guidance and helper scripts.
 
-## Publisher: <br>
-[ashanzzz](https://clawhub.ai/user/ashanzzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashanzzz](https://clawhub.ai/user/ashanzzz)
 
-## Use Case: <br>
-Developers and skill authors use this skill to structure OpenClaw AgentSkills, create supporting scripts and references, validate skill metadata, and prepare skills for optional publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or modify local skill files, which could introduce incorrect or misleading instructions into a published skill. <br>
-Mitigation: Name the exact target directory before use, review generated diffs, and scan or validate the skill before deployment. <br>
-Risk: This release has malformed frontmatter and confusing install-command text that could propagate into generated metadata. <br>
-Mitigation: Verify the package slug, install command, and generated SKILL.md metadata before publishing any skill created with it. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create new OpenClaw AgentSkills, improve or audit existing skill directories, validate required metadata, and package skills for distribution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ashanzzz/ashan-skill-creator) <br>
-- [Workflow Patterns Reference](references/workflow-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated skill files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify local skill directories, SKILL.md files, references, scripts, and packaged skill archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: Generated or modified skill files can contain incomplete instructions, misleading guidance, or publishing metadata that is not ready for release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated skill files before publishing and run the included validation workflow before packaging or release.
+
+Risk: Publishing or packaging actions can distribute unintended content if run without user confirmation.
+
+Mitigation: Keep publishing actions user-approved and inspect package contents before distribution.
+
+Risk: Adapted example scripts may introduce third-party dependencies without version constraints.
+
+Mitigation: Pin any third-party dependencies added when adapting the generated examples.
+
+## Reference(s):
+
+- [Workflow Patterns Reference](artifact/references/workflow-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional generated files and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create skill directories, SKILL.md files, optional resource folders, and .skill packages when requested by the user.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

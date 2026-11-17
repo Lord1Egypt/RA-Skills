@@ -1,45 +1,61 @@
-## Description: <br>
-Monitor remote servers over SSH, check service, database, disk, and memory health, restart crashed services when configured, and send alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor remote servers via SSH — check service health (PM2, systemd, Docker), database status (MongoDB, MySQL, PostgreSQL), disk space, memory, and auto-restart crashed services.
 
-## Publisher: <br>
-[Qoohsuan](https://clawhub.ai/user/Qoohsuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qoohsuan](https://clawhub.ai/user/qoohsuan)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect server health, diagnose service or database failures, and apply monitored restart procedures for PM2, systemd, Docker, and MongoDB environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent high-impact control over remote services and automatic restarts. <br>
-Mitigation: Use it only on servers where automatic MongoDB restarts are explicitly acceptable, and require human approval before production restarts. <br>
-Risk: Environment-specific hostnames, paths, chat IDs, and alert text may be unsuitable or sensitive if reused unchanged. <br>
-Mitigation: Edit all hostnames, file paths, chat IDs, and alert text before deployment. <br>
-Risk: Password-based SSH examples weaken host verification when used unchanged. <br>
-Mitigation: Prefer SSH keys with verified host keys. <br>
-Risk: The persistent watchdog depends on install-time Node.js packages. <br>
-Mitigation: Review and pin dependencies before installing. <br>
+## Use Case:
 
+Developers and system operators use this skill to inspect server health, diagnose service or database outages, propose restart commands, and set up MongoDB watchdog monitoring on servers they administer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Qoohsuan/server-watchdog) <br>
-- [Qoohsuan publisher profile](https://clawhub.ai/user/Qoohsuan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes operational guidance for SSH checks, service restarts, watchdog deployment, and alert summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can guide persistent service restarts and deploy a watchdog that restarts MongoDB automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on servers you administer, review restart commands before execution, and require explicit approval before enabling persistent PM2 deployment or automatic restarts.
+
+Risk: The watchdog may send MongoDB crash details to Telegram and includes a hard-coded chat ID and host-specific values.
+
+Mitigation: Remove host-specific defaults, configure alert destinations explicitly through environment variables or local configuration, and disable outbound alerts unless they are approved.
+
+Risk: The skill documents password-based SSH with relaxed host-key checking.
+
+Mitigation: Prefer key-based SSH, verify host keys, and avoid embedding or transmitting passwords in generated commands.
+
+Risk: The deployment recipe installs dependencies without a lockfile.
+
+Mitigation: Pin and review dependencies with a lockfile before deploying the watchdog service.
+
+## Reference(s):
+
+- [Server Watchdog ClawHub page](https://clawhub.ai/qoohsuan/skills/server-watchdog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include service restart steps, health-check commands, alert templates, and watchdog deployment guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

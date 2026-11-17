@@ -22,8 +22,7 @@ from _spapi_orders_common import (
     developer_proxy_call,
     emit_result,
     ensure_auth_skill_available,
-    get_store_tokens,
-    lf_inline_flag,
+        lf_inline_flag,
 )
 
 SHIPMENT_STATUSES = frozenset({"ReadyForPickup", "PickedUp", "RefusedPickup"})
@@ -81,16 +80,11 @@ def main() -> None:
     body_obj = _build_body(params)
     body_str = json.dumps(body_obj, ensure_ascii=False)
 
-    tokens = get_store_tokens(str(params["sellerId"]), str(params["region"]))
-    if "error" in tokens or "accessToken" not in tokens:
-        print(json.dumps(tokens, indent=2, ensure_ascii=False))
-        sys.exit(1)
-
     proxy = developer_proxy_call(
         str(params["region"]),
         path,
         "POST",
-        tokens["accessToken"],
+        seller_id,
         body=body_str,
     )
     out: dict = {

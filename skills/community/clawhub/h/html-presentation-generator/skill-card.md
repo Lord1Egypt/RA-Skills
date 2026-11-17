@@ -1,42 +1,56 @@
-## Description: <br>
-Generates professional multi-page HTML slide decks with cover pages, tables of contents, section dividers, content pages, summary slides, and export-oriented browser, PDF, and PPTX workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional multi-page HTML presentations with cover, table of contents, section divider, content, and summary slides, with support for PDF/PPTX export.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and presentation authors use this skill to create complete static HTML slide decks for reports, briefings, and presentations, including visual assets, slide layout, verification, and export-ready files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A broad presentation or report request may trigger web research, image generation, file creation, and deployment.
+
+Mitigation: Require explicit user confirmation for web access, external content generation, file paths, and deployment before running those steps.
+
+Risk: The final presentation may be published to an unintended destination or with unintended visibility.
+
+Mitigation: Confirm the deployment target and visibility with the user, and provide a local preview before publishing.
+
+Risk: Topic content or prompts may be sent to external services during research or image generation.
+
+Mitigation: Avoid sending confidential material to external services unless the user has approved that disclosure.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, analysts, educators, and business users use this skill to plan and generate complete HTML presentation decks with consistent page types, visual assets, and export-ready slide structure. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Code, Files, Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential presentation material may be processed by image-generation or deployment tools. <br>
-Mitigation: Confirm storage and publication behavior before using sensitive content, and avoid confidential inputs unless approved. <br>
-Risk: Broad presentation-related triggers may activate the skill for ordinary slide requests. <br>
-Mitigation: Review the activation context before following the workflow, especially for simple editing or formatting tasks. <br>
-Risk: Generated slide facts and visuals may be inaccurate or unsuitable for the audience. <br>
-Mitigation: Verify cited facts, inspect generated images, and review exported slides before presenting or sharing. <br>
+**Output Format:** [Markdown guidance plus generated HTML, image assets, and export/deployment instructions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/html-presentation-generator) <br>
+**Other Properties Related to Output:** [Produces 960x540 static HTML slides, generated images under slides/imgs/, and export-ready presentation assets.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with generated HTML, CSS, and asset file instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces static 960x540 HTML slides and image assets; final decks may be exported to PDF or PPTX.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

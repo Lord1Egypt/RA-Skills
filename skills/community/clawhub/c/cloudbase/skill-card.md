@@ -1,48 +1,60 @@
-## Description: <br>
-Cloudbase guides agents through CloudBase application development, deployment, debugging, migration, and troubleshooting across Web, WeChat Mini Program, native/mobile, database, cloud function, CloudRun, storage, AI model, and agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents developing, deploying, and troubleshooting Tencent CloudBase applications across web, WeChat Mini Programs, and mobile platforms.
 
-## Publisher: <br>
-[binggg](https://clawhub.ai/user/binggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binggg](https://clawhub.ai/user/binggg)
 
-## Use Case: <br>
-Developers and engineers use this skill to route CloudBase tasks to the right reference guidance, prepare backend resources through MCP or mcporter, and produce implementation, deployment, and troubleshooting steps for CloudBase projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent toward high-impact CloudBase resource operations such as create, modify, renew, deploy, or public-access actions. <br>
-Mitigation: Require human review of every MCP or CLI command before execution and confirm the intended CloudBase environment and operation. <br>
-Risk: The security evidence flags under-scoped deployment guidance and hidden agent-directed steps that could cause unsafe automatic actions. <br>
-Mitigation: Treat deployment and cleanup steps as proposals; confirm target paths, affected resources, and data-loss impact before running them. <br>
-Risk: Auth, logging, geolocation, public endpoint, and third-party AI examples may not be production-ready for a specific application. <br>
-Mitigation: Perform production security and privacy review before adopting those examples in deployed systems. <br>
+## Use Case:
 
+Developers use this skill to plan, build, deploy, and troubleshoot CloudBase applications, including authentication, databases, cloud functions, storage, AI features, and WeChat integrations.
 
-## Reference(s): <br>
-- [CloudBase main entry](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md) <br>
-- [CloudBase MCP setup reference](references/mcp-setup.md) <br>
-- [CloudBase activation map](references/activation-map.yaml) <br>
-- [CloudBase Web SDK CDN](https://static.cloudbase.net/cloudbase-js-sdk/latest/cloudbase.full.js) <br>
-- [CloudBase pricing](https://cloud.tencent.com/document/product/876/75213) <br>
-- [CloudBase skill page](https://clawhub.ai/binggg/skills/cloudbase) <br>
-- [Publisher profile](https://clawhub.ai/user/binggg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code, shell commands, configuration snippets, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose MCP or mcporter actions for CloudBase resource management; commands should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.92.11 (source: server release metadata; artifact frontmatter reports 2.23.6) <br>
+Risk: Cloud management and deployment steps can change live resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit the agent's cloud permissions and approve deployments or resource changes before execution.
+
+Risk: Temporary credentials may be exposed in chat or logs.
+
+Mitigation: Do not print temporary credentials; use approved secret-handling methods.
+
+Risk: Role-policy changes and destructive cleanup can remove access, local files, or cloud resources.
+
+Mitigation: Review IAM/CAM policy changes yourself and require explicit approval before destructive cleanup or cloud deletion.
+
+## Reference(s):
+
+- [CloudBase skill routing and development guidelines](artifact/SKILL.md)
+- [CloudBase MCP setup](artifact/references/mcp-setup.md)
+- [CloudBase deployment workflow](artifact/references/deployment-workflow.md)
+- [CloudBase tooling fallback](artifact/references/tooling-fallback.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with code and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment steps and troubleshooting recommendations.]
+
+## Skill Version(s):
+
+1.92.145 (source: ClawHub release; packaged skill frontmatter: 2.36.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

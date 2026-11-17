@@ -1,47 +1,64 @@
-## Description: <br>
-Supervise Claude Code sessions running in tmux with Claude Code hooks, bash pre-filtering, and fast LLM triage to detect errors, stuck agents, and task completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supervise Claude Code sessions running in tmux with Claude Code hooks, bash pre-filtering, fast LLM triage, notifications, and watchdog checks for errors, stuck agents, and task completion.
 
-## Publisher: <br>
-[johba37](https://clawhub.ai/user/johba37) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[johba37](https://clawhub.ai/user/johba37)
 
-## Use Case: <br>
-Developers and engineers use this skill to monitor long-running Claude Code sessions in tmux, triage stop/error/notification events, and route actionable status updates to an agent harness or notification backend. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Hook and watchdog scripts can read terminal output and send configured notifications, which may expose sensitive repository or session context. <br>
-Mitigation: Install only in trusted projects and avoid remote LLM or webhook backends for sensitive repositories unless that exposure is acceptable. <br>
-Risk: The watchdog can type nudges into live tmux sessions, so poorly scoped automation can approve or trigger unintended actions. <br>
-Mitigation: Do not run the watchdog or auto-approve permission prompts until nudges are tightly allowlisted, logged, and reviewed. <br>
-Risk: Generated Claude settings and project configuration can change lifecycle hook behavior for a repository. <br>
-Mitigation: Review the generated .claude settings and .claude-code-supervisor.yml before enabling hooks. <br>
-Risk: A fixed /tmp helper path can be overwritten or reused unexpectedly on shared systems. <br>
-Mitigation: Move or remove the fixed /tmp helper before use in sensitive or multi-user environments. <br>
+## Use Case:
 
+Developers and agent-harness operators use this skill to monitor long-running Claude Code sessions in tmux, classify failures or completion states, nudge sessions when appropriate, and notify a human or harness when attention is needed.
 
-## Reference(s): <br>
-- [State Detection Patterns](references/state-patterns.md) <br>
-- [Escalation Rules](references/escalation-rules.md) <br>
-- [Five Levels of AI-Assisted Programming](https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash, JSON, and YAML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces hook setup guidance, configuration examples, triage classifications, notification payloads, and tmux command patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs automatic hooks that can run project-configured triage and notification commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing, use it only in trusted repositories and environments, inspect any existing .claude-code-supervisor.yml, and avoid arbitrary triage.command or notify.command values.
+
+Risk: Notifications and triage can forward paths, prompts, error output, and task context to configured LLM or notification backends.
+
+Mitigation: Do not send notifications to external services unless sharing that context is acceptable for the project.
+
+Risk: Supervisor actions may involve permission prompts or potentially destructive actions.
+
+Mitigation: Require human approval for permission prompts and destructive actions, and follow the escalation rules for repeated errors, credential requests, or ambiguous states.
+
+Risk: The watchdog and generated helper behavior can rely on temporary files or fixed /tmp helper paths.
+
+Mitigation: Run the watchdog as a normal user and avoid fixed /tmp helpers where possible.
+
+## Reference(s):
+
+- [Escalation Rules](artifact/references/escalation-rules.md)
+- [State Detection Patterns](artifact/references/state-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/johba37/skills/claude-code-supervisor)
+- [The Five Levels from Spicy Autocomplete to the Software Factory](https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown guidance with shell commands, JSON examples, and YAML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires tmux and a Claude CLI-compatible command; optional notification backends and watchdog scheduling depend on local configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

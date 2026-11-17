@@ -1,0 +1,2427 @@
+{
+  "meta": {
+    "entity": "ПАО Сбербанк (Группа Сбер)",
+    "tickers": [
+      "MOEX:SBER",
+      "MOEX:SBERP"
+    ],
+    "data_as_of": "2026-10-21",
+    "language": "ru",
+    "description": "База знаний по открытым источникам о Сбере. Разбита на тематики (topics). Каждая тематика содержит описание, ключевые слова для маршрутизации запросов агента и список фактов с датой, статусом достоверности и источником.",
+    "fact_status_legend": {
+      "confirmed": "Подтверждено официальным сообщением Сбера, отчетностью или несколькими крупными СМИ",
+      "reported": "Сообщают СМИ со ссылкой на источники, официального подтверждения нет",
+      "rumor_denied": "Сообщалось в СМИ, но одна из сторон опровергла",
+      "analyst_estimate": "Оценка/прогноз аналитиков, не данные компании",
+      "historical": "Исторический факт, может быть неактуален на текущую дату"
+    },
+    "important_upcoming_event": "12 ноября 2026 года — День инвестора: итоги Стратегии 2026 и новая Стратегия 2027–2029. После этой даты разделы strategy и dividends нужно обновить.",
+    "disclaimer": "Информация собрана из публичных источников и может устаревать. Для инвестиционных решений проверяйте официальные данные на sberbank.com / investorday.sber.ru."
+  },
+  "topics": {
+    "company_overview": {
+      "title": "Общий профиль компании",
+      "description": "Кто такой Сбер, масштаб, клиентская база, рыночные доли, роль в экономике.",
+      "routing_keywords": [
+        "что такое сбер",
+        "профиль",
+        "масштаб",
+        "клиенты",
+        "доля рынка",
+        "крупнейший банк",
+        "обзор компании"
+      ],
+      "facts": [
+        {
+          "fact": "Крупнейший банк России; позиционирует себя как технологическую компанию с фокусом на ИИ и финтех.",
+          "status": "confirmed",
+          "source": "https://ru.themoscowtimes.com/2024/03/13/sberbank-zarabotaet-na-vnedrenii-iskusstvennogo-intellekta-v-24g-okolo-450-mlrd-r-vedyakhin-a124283"
+        },
+        {
+          "fact": "Розничных клиентов — 110,4 млн, корпоративных — 3,5 млн (по итогам 1 кв. 2026).",
+          "date": "2026-04-29",
+          "status": "confirmed",
+          "source": "https://investfuture.ru/articles/sberbank-uvelichil-pribyl-na-16-5-v-pervom-kvartale-2026-goda-1179040837"
+        },
+        {
+          "fact": "Доля на рынке розничного кредитования — 50,5%, на рынке ипотеки — 57,9%, в средствах частных клиентов — 45% (итоги 1 полугодия 2026).",
+          "date": "2026-07",
+          "status": "confirmed",
+          "source": "https://expert.ru/news/chistaya-pribyl-sbera-za-polugodie-vyrosla-na-186-do-bolee-chem-1-trln-rubley"
+        },
+        {
+          "fact": "Доля в корпоративном кредитовании — около 33,2% (1 кв. 2026).",
+          "date": "2026-04",
+          "status": "confirmed",
+          "source": "https://smart-lab.ru/blog/1303217.php"
+        },
+        {
+          "fact": "Программа лояльности СберСпасибо — 98,9 млн участников (по итогам 8 месяцев 2026).",
+          "date": "2026-09",
+          "status": "confirmed",
+          "source": "https://eastrussia.ru/news/sber-zarabotal-1-33-trln-rubley-chistoy-pribyli-za-8-mesyatsev-2026-goda/"
+        },
+        {
+          "fact": "Совокупный вклад Сбера в бюджеты РФ всех уровней в 2026 году оценивается примерно в 1,7 трлн руб. (интервью ТАСС).",
+          "date": "2026-08-31",
+          "status": "confirmed",
+          "source": "https://fomag.ru/news-streem/intervyu-vklad-sbera-v-byudzhety-rf-vsekh-urovney-v-2026-g-sostavit-1-7-trln-rub/"
+        },
+        {
+          "fact": "Сбер снизил собственный прогноз роста ВВП России на 2026 год до +0,5–1%.",
+          "date": "2026-04",
+          "status": "confirmed",
+          "source": "https://smart-lab.ru/blog/1303217.php"
+        }
+      ]
+    },
+    "ownership_governance": {
+      "title": "Акционеры, корпоративное управление, менеджмент",
+      "description": "Кому принадлежит банк, состав наблюдательного совета, ключевые руководители и их зоны ответственности.",
+      "routing_keywords": [
+        "акционеры",
+        "владелец",
+        "кому принадлежит",
+        "минфин",
+        "фнб",
+        "наблюдательный совет",
+        "правление",
+        "греф",
+        "ведяхин",
+        "руководство",
+        "менеджмент"
+      ],
+      "ownership": {
+        "controlling_shareholder": "Российская Федерация в лице Минфина — 50% + 1 акция уставного капитала (52,32% голосующих акций).",
+        "history": "До 2020 года контрольный пакет принадлежал Банку России; в 2020 году выкуплен правительством за счет средств ФНБ.",
+        "disclosure_note": "Детальная структура акционеров последний раз публиковалась за 2021 год.",
+        "sources": [
+          "https://investfuture.ru/articles/sberbank-sokhranyaet-sostav-nablyudatelnogo-soveta-posle-resheniya-aktsionerov-1182340475",
+          "https://www.banki.ru/webview/dialog/articles/6417/",
+          "https://t-j.ru/whose-sber/"
+        ]
+      },
+      "supervisory_board_known_members": [
+        {
+          "name": "Герман Греф",
+          "role": "Президент, председатель правления Сбербанка"
+        },
+        {
+          "name": "Александр Ведяхин",
+          "role": "Первый зампред правления"
+        },
+        {
+          "name": "Антон Силуанов",
+          "role": "Министр финансов РФ (представитель государства)"
+        },
+        {
+          "name": "Владимир Колычев",
+          "role": "Замминистра финансов (представитель государства)"
+        },
+        {
+          "name": "Максим Орешкин",
+          "role": "Замруководителя Администрации Президента (представитель государства)"
+        },
+        {
+          "name": "Александр Новак",
+          "role": "Вице-премьер (представитель государства)"
+        },
+        {
+          "name": "Сергей Швецов",
+          "role": "Председатель набсовета Московской биржи"
+        }
+      ],
+      "supervisory_board_note": "На ГОСА набсовет переизбран в прежнем составе (14 кандидатов). Список выше неполный — только упоминаемые в СМИ члены.",
+      "supervisory_board_source": "https://investfuture.ru/articles/sberbank-sokhranyaet-sostav-nablyudatelnogo-soveta-posle-resheniya-aktsionerov-1182340475",
+      "key_executives": [
+        {
+          "name": "Герман Греф",
+          "role": "Президент, председатель правления",
+          "source": "https://primamedia.ru/news/2648670/"
+        },
+        {
+          "name": "Александр Ведяхин",
+          "role": "Первый зампред правления; курирует B2B-экосистему, ИИ-трансформацию регионов, Sber500, криптовалютные расчеты",
+          "source": "https://www.bfm.ru/person/8992"
+        },
+        {
+          "name": "Тарас Скворцов",
+          "role": "Зампред правления, финансовый директор (CFO)",
+          "source": "https://www.interfax.ru/business/1086714"
+        },
+        {
+          "name": "Анатолий Попов",
+          "role": "Зампред правления; корпоративный бизнес, международное направление (Индия)",
+          "source": "https://investfuture.ru/articles/sberbank-rasshirit-set-filialov-v-indii-i-otkroet-shtab-kvartiru-v-nyu-deli-1180923744"
+        },
+        {
+          "name": "Антон Фролов",
+          "role": "Руководитель блока «Развитие генеративного ИИ» (ГигаЧат)",
+          "source": "https://3dnews.ru/1138791/sber-hochet-prevratit-gigachat-v-zamenu-vsem-prilogeniyam-i-sdelat-ego-platnim/amp"
+        },
+        {
+          "name": "Сергей Лебедь",
+          "role": "Вице-президент по кибербезопасности",
+          "source": "https://sberbusiness.live/news/ai-journey-2025-samie-vazhnie-zayavleniya"
+        },
+        {
+          "name": "Леонид Лишневецкий",
+          "role": "Генеральный директор холдинга «Сбер2В»",
+          "source": "https://telesputnik.ru/materials/companies/news/sber-sozdast-novyi-it-xolding-dlya-razvitiya-nefinansovyx-produktov"
+        }
+      ]
+    },
+    "financial_results": {
+      "title": "Финансовые результаты",
+      "description": "Прибыль, рентабельность, процентные и комиссионные доходы, кредитный портфель, капитал — по МСФО и РСБУ.",
+      "routing_keywords": [
+        "прибыль",
+        "отчетность",
+        "мсфо",
+        "рсбу",
+        "roe",
+        "рентабельность",
+        "маржа",
+        "nim",
+        "доходы",
+        "расходы",
+        "капитал",
+        "кредитный портфель",
+        "резервы",
+        "cost of risk"
+      ],
+      "ifrs": [
+        {
+          "period": "2025 (год)",
+          "net_profit_rub": "1,71 трлн",
+          "yoy": "+7,9%",
+          "notes": "Рекорд; кредитный портфель 50,4 трлн руб. (почти +12% за год)",
+          "status": "confirmed",
+          "sources": [
+            "https://investmint.ru/sber/reports/",
+            "https://www.vbr.ru/novosti/banki/2026/02/27/novii-rekord-po-pribili/"
+          ]
+        },
+        {
+          "period": "1 кв. 2026",
+          "net_profit_rub": "507,9 млрд",
+          "yoy": "+16,5%",
+          "roe": "24,4%",
+          "eps_rub": "23,80 (+16,7%)",
+          "status": "confirmed",
+          "source": "https://investfuture.ru/articles/sberbank-uvelichil-pribyl-na-16-5-v-pervom-kvartale-2026-goda-1179040837"
+        },
+        {
+          "period": "2 кв. 2026",
+          "net_profit_rub": "511,2 млрд",
+          "yoy": "+20,9%",
+          "roe": "24%",
+          "net_interest_income_rub": "1,07 трлн (+26,7%)",
+          "provisions_rub": "135,5 млрд (-30,6%)",
+          "capital_adequacy_N20_0": "15,1%",
+          "opex_rub": "336 млрд (+15%)",
+          "status": "confirmed",
+          "sources": [
+            "https://smart-lab.ru/blog/1334295.php",
+            "https://fomag.ru/news/sber-finansovye-rezultaty-prevzoshli-ozhidaniya-i-podderzhivayut-investitsionnyy-keys-banka-daydzhes/"
+          ]
+        },
+        {
+          "period": "1 полугодие 2026",
+          "net_profit_rub": "1,019 трлн",
+          "yoy": "+18,6%",
+          "roe": "24,2%",
+          "loan_portfolio_rub": "52,6 трлн",
+          "status": "confirmed",
+          "source": "https://expert.ru/news/chistaya-pribyl-sbera-za-polugodie-vyrosla-na-186-do-bolee-chem-1-trln-rubley"
+        }
+      ],
+      "ras": [
+        {
+          "period": "9 месяцев 2026",
+          "net_profit_rub": "1 501,2 млрд",
+          "yoy": "+18,2%",
+          "roe": "23,0%",
+          "net_interest_income_rub": "2 768,5 млрд (+24,1%)",
+          "net_fee_income_rub": "534,6 млрд (-0,8%)",
+          "cost_of_risk": "1,4%",
+          "cost_income_ratio": "26,0%",
+          "opex_rub": "915,2 млрд (+14,6%)",
+          "total_capital_rub": "8,2 трлн",
+          "status": "confirmed",
+          "sources": [
+            "https://www.interfax.ru/business/1121318",
+            "https://smart-lab.ru/blog/news/1360770.php",
+            "https://finance.mail.ru/article/sberbank-za-devyat-mesyacev-uvelichil-chistuyu-pribyl-po-rsbu-do-1501-trln-rublej-69231703/"
+          ]
+        },
+        {
+          "period": "Сентябрь 2026",
+          "net_profit_rub": "168,5 млрд",
+          "yoy": "+12,1%",
+          "roe": "23,4%",
+          "notes": "Рекордные выдачи семейной ипотеки перед изменением условий госпрограмм; розничный портфель +1,9% за месяц",
+          "status": "confirmed",
+          "sources": [
+            "https://www.akm.ru/news/chistaya_pribyl_sberbanka_po_rsbu_za_devyat_mesyatsev_2026_goda_vyrosla_18_2/",
+            "https://primamedia.ru/news/2648670/"
+          ]
+        }
+      ],
+      "guidance_and_forecasts": [
+        {
+          "fact": "Менеджмент повысил прогноз средней чистой процентной маржи (NIM) на 2026 год с 5,9% до 6,2%.",
+          "status": "confirmed",
+          "source": "https://smart-lab.ru/blog/1334295.php"
+        },
+        {
+          "fact": "Банк рассчитывает обновить рекорд по чистой прибыли по итогам 2026 года.",
+          "status": "confirmed",
+          "source": "https://www.tbank.ru/invest/social/profile/T-Investments/sberbank-zarabotal-bolee-1-5-trln-rublej/"
+        },
+        {
+          "fact": "Аналитики оценивают чистую прибыль за 2026 год в 1,9–2,0 трлн руб.",
+          "status": "analyst_estimate",
+          "source": "https://smart-lab.ru/blog/1360909.php"
+        },
+        {
+          "fact": "Менеджмент предупреждает о риске роста резервов во 2 полугодии 2026 и в 2027 году.",
+          "status": "confirmed",
+          "source": "https://smart-lab.ru/blog/1327451.php"
+        }
+      ],
+      "upcoming_reporting": "МСФО за 3 кв. 2026 ожидается в конце октября 2026 (точную дату проверять на сайте банка)."
+    },
+    "dividends": {
+      "title": "Дивиденды и дивидендная политика",
+      "description": "Размер выплат, политика распределения прибыли, ожидания по новой стратегии.",
+      "routing_keywords": [
+        "дивиденды",
+        "выплаты акционерам",
+        "дивидендная политика",
+        "payout",
+        "доходность акций"
+      ],
+      "facts": [
+        {
+          "fact": "Дивиденд за 2025 год — 37,64 руб. на акцию; общий объем выплаты 850,2 млрд руб., рекорд в истории банка.",
+          "status": "confirmed",
+          "sources": [
+            "https://smart-lab.ru/blog/1314111.php",
+            "https://ru.investing.com/news/general-news/article-3370728"
+          ]
+        },
+        {
+          "fact": "Текущая политика: 50% чистой прибыли по МСФО при достаточности капитала Н20.0 не ниже 13,3%.",
+          "status": "confirmed",
+          "source": "https://www.interfax.ru/business/1106408"
+        },
+        {
+          "fact": "В новой стратегии 2027–2029 банк намерен стремиться сохранить выплаты на уровне 50% прибыли; итог зависит от регулирования. Новая политика будет закреплена в ноябре 2026.",
+          "status": "confirmed",
+          "sources": [
+            "https://www.interfax.ru/business/1106408",
+            "https://ru.investing.com/news/general-news/article-3370728"
+          ]
+        },
+        {
+          "fact": "Прогноз дивиденда за 2026 год — около 43–45 руб. на акцию.",
+          "status": "analyst_estimate",
+          "sources": [
+            "https://finuslugi.ru/navigator/investirovat/stat_sberbank-finansovye-itogi-maya-i-5-mesyatsev-2026-goda",
+            "https://invest-era.ru/analytics-and-news/sber-samaya-visokaya-divdokhodnost-v-istorii-kompanii-20260827-152740"
+          ]
+        }
+      ]
+    },
+    "strategy": {
+      "title": "Стратегия развития",
+      "description": "Действующая Стратегия 2026, финансовые цели, подготовка новой стратегии 2027–2029, концепция человекоцентричности.",
+      "routing_keywords": [
+        "стратегия",
+        "цели",
+        "день инвестора",
+        "2026",
+        "2027",
+        "2029",
+        "человекоцентричность",
+        "планы развития",
+        "долгосрочные планы"
+      ],
+      "current_strategy_2024_2026": {
+        "core_idea": "Человекоцентричность — работа в долгосрочных интересах клиента; затрагивает культуру, технологии и бизнес-модели.",
+        "financial_targets": [
+          "ROE выше 22% в каждый год",
+          "Н20.0 выше 13,3%",
+          "Дивиденды 50% чистой прибыли по МСФО"
+        ],
+        "it_investment": "Инвестиции в ИТ за 2024–2026 — около 450 млрд руб. (рост в 1,5 раза к предыдущему циклу).",
+        "sources": [
+          "https://sber.pro/publication/den-investora-kurs-na-cheloveka-ii-i-transformaciyu/",
+          "https://www.interfax.ru/business/1086714",
+          "https://www.comnews.ru/content/230576/2023-12-07/2023-w49/1008/sber-pokazal-ambicii-novoy-strategii-razvitiya"
+        ]
+      },
+      "new_strategy_2027_2029": {
+        "presentation_date": "2026-11-12",
+        "event": "День инвестора Сбера",
+        "known_so_far": [
+          "Будут подведены итоги Стратегии 2026 и представлены ключевые направления до 2029 года.",
+          "Обсуждаются инвестиции в различные направления взаимодействия с клиентом, что повлияет на сроки окупаемости непрофильных активов.",
+          "Менеджмент не исключает продажу непрофильных активов экосистемы, но ждет более благоприятных цен."
+        ],
+        "status": "confirmed (детали до 12.11.2026 не раскрыты)",
+        "sources": [
+          "https://investorday.sber.ru/",
+          "https://www.interfax.ru/business/1086714",
+          "https://www.tbank.ru/invest/social/profile/DailyPulse/a73a9bb0-08c2-4894-882d-16e8ef60874b/"
+        ]
+      },
+      "strategic_shift_notes": [
+        {
+          "fact": "После 2022 года Сбер сместил фокус с потребительской экосистемы (маркетплейсы, развлечения) на ИИ, финтех и B2B-направления.",
+          "status": "reported",
+          "source": "https://alfabank.ru/alfa-investor/posts/t/0a22b89e-1463-f111-91c6-0050569e1fd0/"
+        },
+        {
+          "fact": "Сбер принял обязательство стать углеродно-нейтральным в операционной деятельности к 2030 году (заявлено в 2021).",
+          "status": "historical",
+          "source": "https://www.bfm.ru/person/8992"
+        }
+      ]
+    },
+    "artificial_intelligence": {
+      "title": "Искусственный интеллект: разработки и инвестиции",
+      "description": "GigaChat, Kandinsky, ИИ-агенты, объемы инвестиций в ИИ, экономический эффект, open source, B2B-доступ через API.",
+      "routing_keywords": [
+        "ии",
+        "искусственный интеллект",
+        "gigachat",
+        "гигачат",
+        "kandinsky",
+        "кандинский",
+        "нейросеть",
+        "llm",
+        "генеративный ии",
+        "ии-агент",
+        "api",
+        "open source",
+        "ai journey"
+      ],
+      "investments_and_effect": [
+        {
+          "fact": "Инвестиции в ИИ в 2026 году — около 350 млрд руб., в 2,3 раза больше, чем в 2025 (150 млрд); в 2024 — свыше 100 млрд.",
+          "status": "confirmed",
+          "sources": [
+            "https://sberbusiness.live/news/ai-journey-2025-samie-vazhnie-zayavleniya",
+            "https://ru.themoscowtimes.com/2026/06/04/vtb-vlozhit-v-razvitie-ii-v-sobstvennykh-protsessakh-desyatki-milliardov-rubley-v-blizhayshie-gody-a197320"
+          ]
+        },
+        {
+          "fact": "Доход от ИИ за 2024–2026 годы оценивается в 1,4 трлн руб.",
+          "status": "confirmed",
+          "source": "https://ru.themoscowtimes.com/2026/06/04/vtb-vlozhit-v-razvitie-ii-v-sobstvennykh-protsessakh-desyatki-milliardov-rubley-v-blizhayshie-gody-a197320"
+        },
+        {
+          "fact": "Цель по финансовому эффекту от внедрения ИИ на 2026 год — 550 млрд руб.",
+          "status": "confirmed",
+          "source": "https://www.comnews.ru/content/242874/2025-12-11/2025-w50/1008/effekt-germana-grefa-550-mlrd-ozhidaniya"
+        },
+        {
+          "fact": "Банк использует более 2000 ИИ-моделей в бизнес-процессах.",
+          "status": "confirmed",
+          "source": "https://www.comnews.ru/content/242874/2025-12-11/2025-w50/1008/effekt-germana-grefa-550-mlrd-ozhidaniya"
+        },
+        {
+          "fact": "ИИ-решения Сбера применяются в 90% регионов России; с 2023 года идет программа ИИ-трансформации субъектов РФ.",
+          "status": "confirmed",
+          "source": "https://sberbusiness.live/news/ai-journey-2025-samie-vazhnie-zayavleniya"
+        }
+      ],
+      "products": [
+        {
+          "name": "GigaChat (ГигаЧат)",
+          "type": "Мультимодальная LLM и ИИ-помощник",
+          "details": "Доступен в веб, мобильном приложении, мессенджерах, на устройствах Sber и в Салют ТВ. План — превратить в универсального помощника, заменяющего функции приложений; доступ пока бесплатный, в перспективе монетизация ИИ-агента и B2B-услуг.",
+          "sources": [
+            "https://3dnews.ru/1138791/sber-hochet-prevratit-gigachat-v-zamenu-vsem-prilogeniyam-i-sdelat-ego-platnim/amp",
+            "https://mobile-review.com/all/articles/misc/konferencziya-ai-journey-soczialnoe-i-ekonomicheskoe-vliyanie-ii-na-rus-k-2030-godu/"
+          ]
+        },
+        {
+          "name": "GigaChat API, GigaChain (SDK), модели Lite/Pro",
+          "type": "B2B / для разработчиков",
+          "details": "Программный доступ для юрлиц и ИП; SDK — адаптация LangChain для русского языка, доступен на GitHub.",
+          "sources": [
+            "https://kod.ru/iskusstviennyi-intielliekt-sbiera-vyviediet-biznies-na-novyi-urovien",
+            "https://habr.com/ru/news/780868"
+          ]
+        },
+        {
+          "name": "GigaChat Ultra Preview, GigaChat Lightning",
+          "type": "Открытые модели (open source)",
+          "details": "Сбер открыл флагманские модели для сообщества.",
+          "source": "https://habr.com/en/articles/968250"
+        },
+        {
+          "name": "GigaChat 3 Ultra",
+          "type": "Флагманская LLM",
+          "details": "По данным стороннего обзора — около 702 млрд параметров, веса открыты. Требует сверки с официальными данными.",
+          "status": "reported",
+          "source": "https://mayai.ru/gigachat-ot-sbera-2026-avtomatizacziya-kontenta-i-obzor-funkczij/"
+        },
+        {
+          "name": "GigaChat Audio",
+          "type": "Аудио-LLM",
+          "details": "Распознает эмоции, ищет фрагменты в длинных аудио; доступна в open source.",
+          "source": "https://prospect.com.ru/news/7074113/gigachat-nauchilsya-sozdavat-video-full-hd-s-rechyu-i-muzykoj.html"
+        },
+        {
+          "name": "Kandinsky 6.0 Image",
+          "type": "Генерация/редактирование изображений",
+          "date": "2026-04",
+          "details": "Архитектура Mixture of Experts; бесплатное редактирование без лимита генераций в ГигаЧате.",
+          "source": "https://www.cnews.ru/news/line/2026-04-28_sberbank_predstavil_kandinsky"
+        },
+        {
+          "name": "Kandinsky 6.0 Video",
+          "type": "Генерация видео со звуком",
+          "date": "2026-10-06",
+          "details": "Full HD, синхронная речь/музыка/звуки; звуковой модуль обучен на 20+ млн видео; разработчики могут бесплатно интегрировать модель.",
+          "sources": [
+            "https://rb.ru/news/sber-obnovil-ii-model-kandinsky-60-nejroset-nauchilas-generirovat-video-so-zvukom-i-v-full-hd/",
+            "https://aineuro-tools.ru/ai-photo/kandinsky/"
+          ]
+        },
+        {
+          "name": "Kandinsky WM 1.0",
+          "type": "World models для Physical AI",
+          "details": "Генерирует видео для обучения роботов, беспилотного транспорта и промышленных систем.",
+          "source": "https://eastrussia.ru/news/sber-zarabotal-1-33-trln-rubley-chistoy-pribyli-za-8-mesyatsev-2026-goda/"
+        },
+        {
+          "name": "ГигаАгент",
+          "type": "Автономный универсальный ИИ-агент",
+          "details": "Позиционируется как первый в РФ автономный универсальный ИИ-агент.",
+          "source": "https://sber.pro/publication/startoval-priyom-zayavok-v-mezhdunarodnii-akselerator-sber500/"
+        },
+        {
+          "name": "GigaCode",
+          "type": "ИИ-ассистент программиста",
+          "details": "Внутренний инструмент для ускорения разработки.",
+          "status": "historical",
+          "source": "https://habr.com/en/posts/796861"
+        }
+      ],
+      "ai_applications": [
+        {
+          "fact": "ИИ применяется в кибербезопасности: стратегические направления — автоматизация реагирования, безопасная разработка, копайлоты.",
+          "source": "https://sberbusiness.live/news/ai-journey-2025-samie-vazhnie-zayavleniya"
+        },
+        {
+          "fact": "ИИ-помощник на базе GigaChat работает в сервисе СберЗдоровье.",
+          "source": "https://eastrussia.ru/news/gigachat-ot-sbera-ispolnyaetsya-dva-goda/"
+        },
+        {
+          "fact": "ИИ-аналитик на базе ГигаЧата появился в «Звук Студио» для музыкантов.",
+          "source": "https://prospect.com.ru/news/7081718/polzovateli-gigachata-teper-mogut-sozdavat-video-so-zvukom-6.html"
+        }
+      ],
+      "events": [
+        {
+          "name": "AI Journey",
+          "description": "Ежегодная международная конференция по ИИ, организатор — Сбер (ноябрь).",
+          "source": "https://sberbusiness.live/news/ai-journey-2025-samie-vazhnie-zayavleniya"
+        }
+      ]
+    },
+    "robotics_physical_ai": {
+      "title": "Робототехника и физический ИИ",
+      "description": "Гуманоидный робот Грин, модели VLA, линейки роботов, Центр робототехники Сбера.",
+      "routing_keywords": [
+        "робот",
+        "робототехника",
+        "грин",
+        "гуманоид",
+        "physical ai",
+        "vla",
+        "антропоморфный"
+      ],
+      "facts": [
+        {
+          "fact": "Гуманоидный робот Грин представлен 19 ноября 2025 года на AI Journey; интегрирован с GigaChat. Рост 180 см, вес 75 кг, 41 степень подвижности, силомоментные пальцы.",
+          "status": "confirmed",
+          "sources": [
+            "https://ru.themoscowtimes.com/2026/06/19/glava-sbera-anonsiroval-k-oseni-lineyku-robotov-s-prodvinutymi-chelovekopodobnymi-dvizheniyami-a198605",
+            "https://www.kommersant.ru/doc/8760291"
+          ]
+        },
+        {
+          "fact": "Назначение Грина — автономная работа в ритейле, общепите и на производствах.",
+          "status": "confirmed",
+          "source": "https://www.kommersant.ru/doc/8760291"
+        },
+        {
+          "fact": "Разработка робота началась в 2022 году; первые прототипы конечностей — в 2024.",
+          "status": "confirmed",
+          "source": "https://habr.com/en/news/969518"
+        },
+        {
+          "fact": "Модель Green-VLA (Vision-Language-Action) открыта: код на GitHub, веса на Hugging Face, лицензия MIT; техотчет — февраль 2026.",
+          "status": "confirmed",
+          "source": "https://habr.com/ru/news/1007180"
+        },
+        {
+          "fact": "Греф анонсировал к осени 2026 линейку человекоподобных роботов.",
+          "date": "2026-06-19",
+          "status": "confirmed",
+          "source": "https://hi-tech.mail.ru/news/149885-sber-anonsiroval-linejku-chelovekopodobnyh-robotov/"
+        },
+        {
+          "fact": "В конце 2024 года представлены роботы-аниматроники Топа и Куба, роботы-помощники Краб и Слон.",
+          "status": "historical",
+          "source": "https://habr.com/en/news/969518"
+        }
+      ]
+    },
+    "microelectronics_hardware": {
+      "title": "Микроэлектроника и производство чипов",
+      "description": "Консолидация полупроводниковой отрасли: ГК «Элемент», «НМ-Тех», «Объединенная микроэлектронная компания» (ОМК).",
+      "routing_keywords": [
+        "микроэлектроника",
+        "чипы",
+        "полупроводники",
+        "элемент",
+        "нм-тех",
+        "омк",
+        "интегральные системы",
+        "ангстрем",
+        "технологический суверенитет"
+      ],
+      "facts": [
+        {
+          "fact": "В январе 2026 Сбер стал владельцем 41,9% ГК «Элемент» за 27 млрд руб. (37,6% у АФК «Система» и 4,3% у миноритариев). Покупатель — ООО «Интегральные системы».",
+          "date": "2026-01-22",
+          "status": "confirmed",
+          "source": "https://www.interfax.ru/business/1069065"
+        },
+        {
+          "fact": "По итогам оферты Сбер докупил 7,9% «Элемента» за 5,4 млрд руб. и довел долю до 49,8%.",
+          "date": "2026-07",
+          "status": "confirmed",
+          "source": "https://www.kommersant.ru/doc/8847375"
+        },
+        {
+          "fact": "«Интегральные системы» — юрлицо проекта ОМК, куда планируется консолидировать «Элемент», «Ангстрем» и «НМ-Тех».",
+          "status": "reported",
+          "source": "https://runet.news/news/81706"
+        },
+        {
+          "fact": "Сбер может купить зеленоградского производителя чипов «НМ-Тех» (структура ВЭБ.РФ) в октябре 2026, оценка около 19 млрд руб. Официально не подтверждено.",
+          "date": "2026-09-29",
+          "status": "reported",
+          "sources": [
+            "https://www.pvsm.ru/news/459021",
+            "https://www.kommersant.ru/doc/8990040"
+          ]
+        },
+        {
+          "fact": "Уставный капитал «Интегральных систем» увеличен с 27,63 до 44,16 млрд руб., что связывают с подготовкой сделки по «НМ-Тех».",
+          "status": "reported",
+          "source": "https://www.pvsm.ru/news/459021"
+        },
+        {
+          "fact": "Стратегия ОМК, подготовленная Сбером, предполагает инвестиции 1,1 трлн руб. и строительство трех заводов.",
+          "status": "reported",
+          "source": "https://www.tadviser.ru/index.php/%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F:%D0%9E%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F_%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F_%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F_(%D0%9E%D0%9C%D0%9A)"
+        },
+        {
+          "fact": "«НМ-Тех» реализует проект «ФАБ-300», включая освоение топологии 28 нм.",
+          "status": "reported",
+          "source": "https://www1.ru/news/2026/09/30/439193-sber-mozet-kupit-nm-tex-proizvoditelia-cipov-ocenili-v-19-mlrd-rublei.html"
+        }
+      ]
+    },
+    "investments_and_ma": {
+      "title": "Инвестиции, сделки M&A, продажи активов",
+      "description": "Куда Сбер вкладывает деньги: покупки компаний, доли, переговоры, а также выходы из активов.",
+      "routing_keywords": [
+        "инвестиции",
+        "куда инвестирует",
+        "сделки",
+        "покупка",
+        "приобретение",
+        "m&a",
+        "доля",
+        "продажа актива",
+        "ozon",
+        "2гис"
+      ],
+      "investment_directions_summary": [
+        "Искусственный интеллект и GenAI-инфраструктура (~350 млрд руб. в 2026)",
+        "ИТ в целом (~450 млрд руб. за 2024–2026)",
+        "Микроэлектроника (Элемент, НМ-Тех, ОМК)",
+        "Робототехника и Physical AI",
+        "B2B ИТ-продукты (холдинг Сбер2В)",
+        "Цифровые активы / крипто-инфраструктура",
+        "Международное развитие (Индия: филиалы и бизнес-центры в Нью-Дели)",
+        "Венчур через акселератор Sber500"
+      ],
+      "completed_deals": [
+        {
+          "deal": "ГК «Элемент» — 41,9%, затем до 49,8%",
+          "amount": "27 млрд + 5,4 млрд руб.",
+          "date": "2026-01 / 2026-07",
+          "status": "confirmed",
+          "source": "https://www.kommersant.ru/doc/8847375"
+        },
+        {
+          "deal": "2ГИС — выкуп доли основателя, Сбер стал единственным владельцем",
+          "date": "2025-07-28",
+          "status": "reported",
+          "notes": "Контроль с 2020 года; аудитория 2ГИС — более 86 млн в месяц",
+          "source": "https://digitalbusiness.kz/2025-09-09/osnovatel-2gis-prodal-dolyu-kompanii-i-pokinul-proekt-spustya-25-let/"
+        },
+        {
+          "deal": "Создание холдинга «Сбер2В» — объединение 10+ ИТ-дочек",
+          "date": "2026-03/04",
+          "status": "confirmed",
+          "source": "https://telesputnik.ru/materials/companies/news/sber-sozdast-novyi-it-xolding-dlya-razvitiya-nefinansovyx-produktov"
+        },
+        {
+          "deal": "Регистрация «Сверхтех» (98% у СберТеха) в Сириусе — разработка ПО для цифровой трансформации",
+          "date": "2025-05-30",
+          "status": "confirmed",
+          "source": "https://habr.com/ru/articles/915872"
+        },
+        {
+          "deal": "Инвестиции в два бизнес-центра в Нью-Дели",
+          "date": "2026-09",
+          "status": "reported",
+          "source": "https://oborot.ru/tag/sber/"
+        }
+      ],
+      "pending_or_rumored": [
+        {
+          "deal": "Покупка «НМ-Тех» (~19 млрд руб.)",
+          "status": "reported",
+          "source": "https://www.pvsm.ru/news/459021"
+        },
+        {
+          "deal": "Доля АФК «Система» в Ozon (31,8%)",
+          "status": "rumor_denied",
+          "notes": "В мае 2026 «Ъ» сообщил о переговорах; АФК опровергла. Позже АФК раскрыла сделку с залогом акций Ozon в пользу ВТБ.",
+          "sources": [
+            "https://www.interfax.ru/business/1092491",
+            "https://ru.investing.com/news/general-news/article-3370382"
+          ]
+        }
+      ],
+      "divestments": [
+        {
+          "asset": "Активы агрохолдинга KPI Agro (выставлены на торги за 1,13 млрд руб.)",
+          "status": "reported",
+          "source": "https://www.retail.ru/rbc/company/sberbank/"
+        },
+        {
+          "asset": "Возможная продажа непрофильных активов экосистемы — отложена до улучшения цен",
+          "status": "confirmed",
+          "source": "https://www.tbank.ru/invest/social/profile/DailyPulse/a73a9bb0-08c2-4894-882d-16e8ef60874b/"
+        }
+      ],
+      "historical_divestments_2022": "См. тематики sanctions_and_restructuring и group_companies_registry (relationship = former)"
+    },
+    "group_companies_registry": {
+      "title": "Реестр дочерних, ассоциированных и бывших компаний группы Сбер",
+      "description": "Карточка на каждую компанию: связь со Сбером, доля, статус достоверности владения, деятельность, руководство, ключевые факты с источниками. Включены текущие дочки, ассоциированные компании (доля без контроля), компании с неясным статусом и бывшие активы — чтобы агент мог корректно ответить «принадлежит ли X Сберу».",
+      "routing_keywords": [
+        "дочерние компании",
+        "дочки",
+        "группа сбер",
+        "экосистема",
+        "компании сбера",
+        "кому принадлежит",
+        "принадлежит ли сберу",
+        "бывшие активы",
+        "структура группы"
+      ],
+      "relationship_legend": {
+        "subsidiary": "Дочерняя компания под контролем Сбера",
+        "associate": "Ассоциированная компания: доля без контроля (обычно менее 50%)",
+        "branch": "Филиал ПАО Сбербанк, не отдельное юрлицо-дочка",
+        "project": "Проект/подразделение Сбера",
+        "product": "Продукт/бренд, не юрлицо",
+        "ecosystem_unclear_stake": "Позиционируется как часть экосистемы, но доля не раскрыта",
+        "unclear": "Статус владения неясен: исторически Сбер, текущие владельцы скрыты",
+        "former": "Бывший актив: Сбер вышел из капитала",
+        "closed": "Закрыт"
+      },
+      "segments": [
+        "financial",
+        "financial_international",
+        "technology",
+        "technology_b2b",
+        "microelectronics",
+        "cybersecurity",
+        "consumer_services",
+        "telecom",
+        "media",
+        "advertising",
+        "real_estate_education",
+        "entertainment",
+        "autonomous_transport",
+        "product"
+      ],
+      "agent_instructions": [
+        "При вопросе «принадлежит ли X Сберу» опирайся на поля relationship, sber_stake и ownership_status, а не на упоминание «экосистемы Сбера» в СМИ: многие проданные компании до сих пор так называют.",
+        "Если ownership_status = unclear или reported — явно сообщай пользователю о неопределенности.",
+        "Сбер не публикует полный перечень дочерних компаний с долями; точные данные — в примечаниях к отчетности МСФО и ЕГРЮЛ."
+      ],
+      "companies": [
+        {
+          "id": "sber_insurance_life",
+          "name": "СберСтрахование жизни",
+          "aliases": [
+            "Сбербанк страхование жизни",
+            "ООО СК «Сбербанк страхование жизни»"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (дочерняя компания; входит в блок «Управление благосостоянием»)",
+          "ownership_status": "confirmed",
+          "activity": "Страхование жизни: инвестиционное (ИСЖ), накопительное (НСЖ), рисковое, в т.ч. ипотечное и кредитное.",
+          "routing_keywords": [
+            "сберстрахование жизни",
+            "страхование жизни",
+            "исж",
+            "нсж",
+            "ипотечное страхование"
+          ],
+          "key_facts": [
+            {
+              "fact": "В 2025 году выплаты — рекордные 897,9 млрд руб., сборы — 1,036 трлн руб., заключено 14,8 млн новых договоров.",
+              "status": "confirmed",
+              "date": "2026-02-16",
+              "source": "https://sberbank-insurance.ru/news/16_02_26"
+            },
+            {
+              "fact": "В 1 полугодии 2026: выплаты свыше 373,8 млрд руб. (из них ИСЖ — 254,5 млрд, НСЖ — 107,4 млрд), сборы — 342,7 млрд руб.; инвестиционные и накопительные продукты — почти 93% сборов.",
+              "status": "confirmed",
+              "date": "2026-08",
+              "source": "https://kaluga24.tv/life/074399"
+            },
+            {
+              "fact": "По статистике ЦБ на компанию приходится примерно треть всех страховых выплат по страхованию жизни в стране.",
+              "status": "confirmed",
+              "source": "https://kaluga24.tv/life/074399"
+            },
+            {
+              "fact": "Активы на 30.09.2025 — 1,3 трлн руб.",
+              "status": "historical",
+              "source": "https://www.insur-info.ru/pressr/90950/"
+            }
+          ]
+        },
+        {
+          "id": "sber_insurance",
+          "name": "СберСтрахование (имущественное страхование)",
+          "aliases": [
+            "Сбербанк страхование",
+            "ООО СК «Сбербанк страхование»"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (входит в блок «Управление благосостоянием»)",
+          "ownership_status": "confirmed",
+          "activity": "Имущественное и личное (не жизни) страхование: жилье, авто, путешествия и др.",
+          "routing_keywords": [
+            "сберстрахование",
+            "страхование имущества",
+            "каско",
+            "страхование квартиры"
+          ],
+          "key_facts": [
+            {
+              "fact": "Бренд «СберСтрахование» объединяет линейку защитных продуктов дочерних компаний «Сбербанк страхование» и «Сбербанк страхование жизни».",
+              "status": "historical",
+              "source": "https://www.retail.ru/news/sbernpf-i-drugie-novye-brendy-sbera-24-sentyabrya-2020-197968/"
+            },
+            {
+              "fact": "Входит в блок «Управление благосостоянием» вместе со СберСтрахованием жизни, Сбер Управление Активами и НПФ Сбербанка.",
+              "status": "confirmed",
+              "source": "https://investfunds.ru/news/80265/"
+            }
+          ],
+          "data_gap": "Свежих публичных финансовых показателей именно по имущественному страхованию в найденных источниках нет."
+        },
+        {
+          "id": "sber_npf",
+          "name": "СберНПФ",
+          "aliases": [
+            "НПФ Сбербанка",
+            "АО «НПФ Сбербанка»"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (блок «Управление благосостоянием»)",
+          "ownership_status": "confirmed",
+          "activity": "Негосударственное пенсионное обеспечение, пенсионные накопления, программа долгосрочных сбережений (ПДС), корпоративные пенсионные программы.",
+          "management": [
+            {
+              "name": "Ольга Изюмова",
+              "role": "генеральный директор"
+            }
+          ],
+          "routing_keywords": [
+            "сбернпф",
+            "нпф",
+            "пенсия",
+            "пдс",
+            "программа долгосрочных сбережений",
+            "пенсионные накопления"
+          ],
+          "key_facts": [
+            {
+              "fact": "Активы на 31.03.2026 — 1,4 трлн руб.; к концу мая 2026 в ПДС через СберНПФ вступили 8,1 млн человек.",
+              "status": "confirmed",
+              "source": "https://www.napf.ru/upload/uf/ac0/2tltc843hwe7x6z6vbvipgalgni77nnn/Мониторинг СМИ 2026-06-04.docx"
+            },
+            {
+              "fact": "Объем вложений в ПДС за январь–август 2026 — 195 млрд руб., из них 88 млрд — перевод накопительной пенсии (+66% г/г).",
+              "status": "confirmed",
+              "date": "2026-09-25",
+              "source": "https://finuslugi.ru/navigator/news/novosti_bankovskoj_otrasli/sbernpf-napravil-88-mlrd-iz-nakopitelnoy-pensii-v-pds-spros-vyros-na-66"
+            }
+          ]
+        },
+        {
+          "id": "sber_am",
+          "name": "Сбер Управление Активами",
+          "aliases": [
+            "СберУА",
+            "АО «Сбер Управление Активами»"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (блок «Управление благосостоянием»)",
+          "ownership_status": "confirmed",
+          "activity": "Доверительное управление, паевые инвестиционные фонды для розничных и институциональных клиентов.",
+          "management": [
+            {
+              "name": "Евгений Зайцев",
+              "role": "генеральный директор"
+            }
+          ],
+          "routing_keywords": [
+            "сбер управление активами",
+            "пиф",
+            "паевые фонды",
+            "доверительное управление",
+            "управляющая компания"
+          ],
+          "key_facts": [
+            {
+              "fact": "Исторически — крупнейшая управляющая компания России по объему активов под управлением (данные «Эксперт РА» за 9 мес. 2021).",
+              "status": "historical",
+              "source": "https://investfunds.ru/news/79921/"
+            },
+            {
+              "fact": "Работает более 25 лет.",
+              "status": "confirmed",
+              "source": "https://investfunds.ru/news/80265/"
+            }
+          ],
+          "data_gap": "Свежих данных об объеме активов под управлением на 2026 год в найденных источниках нет."
+        },
+        {
+          "id": "sber_insurance_broker",
+          "name": "Сбер Страховой брокер",
+          "aliases": [
+            "Страховой брокер Сбербанка"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "н/д (дочерняя компания по брендовой информации)",
+          "ownership_status": "reported",
+          "activity": "Страховое брокерство.",
+          "routing_keywords": [
+            "страховой брокер сбер"
+          ],
+          "key_facts": [
+            {
+              "fact": "С 2020 года работает под брендом «Сбер Страховой брокер».",
+              "status": "historical",
+              "source": "https://www.retail.ru/news/sbernpf-i-drugie-novye-brendy-sbera-24-sentyabrya-2020-197968/"
+            }
+          ]
+        },
+        {
+          "id": "sberleasing",
+          "name": "СберЛизинг",
+          "aliases": [
+            "АО «Сбербанк Лизинг»"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (лизинговая компания экосистемы Сбера)",
+          "ownership_status": "confirmed",
+          "activity": "Лизинг транспорта, спецтехники, оборудования, общественного транспорта для госсектора; автолизинг для физлиц.",
+          "routing_keywords": [
+            "сберлизинг",
+            "лизинг",
+            "автолизинг",
+            "лизинг техники"
+          ],
+          "key_facts": [
+            {
+              "fact": "Портфель на 01.04.2026 — более 2 трлн руб., 2-е место среди лизинговых компаний России («Эксперт РА»).",
+              "status": "confirmed",
+              "source": "https://companies.rbc.ru/news/mbbDRAoXyI/sberlizing-zanyal-2-e-mesto-po-obemu-portfelya-v-renkinge-ekspert-ra/"
+            },
+            {
+              "fact": "Новый бизнес в 1 кв. 2026 — 32,1 млрд руб. (+23% г/г), доля рынка нового бизнеса — 8,7%; лидер в сегментах «средний бизнес» и госсектор, 1-е место в сегменте «Автобусы».",
+              "status": "confirmed",
+              "source": "https://finance.rambler.ru/business/56616337-sberlizing-zanyal-2-e-mesto-po-obemu-portfelya-v-renkinge-ekspert-ra/"
+            },
+            {
+              "fact": "Профинансировал сделку на программно-аппаратный комплекс ГигаЧат Бизнес (GigaChat Enterprise).",
+              "status": "confirmed",
+              "source": "https://spark.ru/user/152916"
+            },
+            {
+              "fact": "Запущен автолизинг для физлиц на 48–84 месяца.",
+              "status": "confirmed",
+              "source": "https://eastrussia.ru/news/sber-zarabotal-1-33-trln-rubley-chistoy-pribyli-za-8-mesyatsev-2026-goda/"
+            }
+          ]
+        },
+        {
+          "id": "yoomoney",
+          "name": "ЮMoney и ЮKassa",
+          "aliases": [
+            "ЮМани",
+            "НКО «ЮМани»",
+            "Яндекс.Деньги",
+            "Яндекс.Касса",
+            "ЮSoft"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (75% с 2013 года, оставшаяся доля выкуплена у Яндекса в 2020 за 2,4 млрд руб.)",
+          "ownership_status": "confirmed",
+          "activity": "Электронные кошельки (ЮMoney), прием онлайн-платежей для бизнеса (ЮKassa), сервисы для иностранных туристов, выпуск карт под брендом партнеров (ЮSoft).",
+          "routing_keywords": [
+            "юmoney",
+            "юмани",
+            "юkassa",
+            "юкасса",
+            "яндекс деньги",
+            "электронный кошелек",
+            "интернет-эквайринг"
+          ],
+          "key_facts": [
+            {
+              "fact": "Открыто более 70 млн кошельков; ЮKassa используют почти 40% российских онлайн-магазинов.",
+              "status": "confirmed",
+              "source": "https://www.bfm.ru/news/519424"
+            },
+            {
+              "fact": "В 2026 году: адаптация сервисов для туристов из Китая, карта туриста, доставка карт через Самокат, ИИ-рекрутер во внутреннем контуре.",
+              "status": "confirmed",
+              "source": "https://cnews.ru/link/b1063"
+            }
+          ]
+        },
+        {
+          "id": "domclick",
+          "name": "Домклик",
+          "aliases": [
+            "ДомКлик",
+            "ООО «Домклик»",
+            "департамент «Домклик» Сбербанка"
+          ],
+          "segment": "financial",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (сервис и департамент Сбербанка)",
+          "ownership_status": "confirmed",
+          "activity": "Сервис недвижимости и ипотеки: онлайн-ипотека Сбербанка, объявления, сопровождение сделок, аренда, страхование домов, кадастровые работы, аналитика рынка.",
+          "management": [
+            {
+              "name": "Алексей Лейпи",
+              "role": "директор департамента «Домклик» Сбербанка"
+            }
+          ],
+          "routing_keywords": [
+            "домклик",
+            "domclick",
+            "ипотека сбер",
+            "недвижимость",
+            "аренда квартиры"
+          ],
+          "key_facts": [
+            {
+              "fact": "Объем выдач ипотеки (по рынку) в 1 полугодии 2026 приблизился к 1,6 трлн руб. — аналитика Домклик.",
+              "status": "confirmed",
+              "source": "https://realty.rbc.ru/news/6a54c4b59a7947243d9717c8"
+            },
+            {
+              "fact": "2026: запущены страхование частных домов (июль), бесплатный сервис официальной сдачи квартир в аренду с защитой дохода (июнь).",
+              "status": "confirmed",
+              "source": "https://cnews.ru/link/b5949"
+            }
+          ]
+        },
+        {
+          "id": "sber_bank_belarus",
+          "name": "ОАО «Сбер Банк» (Беларусь)",
+          "aliases": [
+            "БПС-Сбербанк"
+          ],
+          "segment": "financial_international",
+          "relationship": "subsidiary",
+          "sber_stake": "контрольная доля (дочерний банк)",
+          "ownership_status": "confirmed",
+          "activity": "Универсальный банк в Беларуси.",
+          "routing_keywords": [
+            "сбер банк беларусь",
+            "бпс-сбербанк",
+            "беларусь"
+          ],
+          "key_facts": [
+            {
+              "fact": "Действует стратегия развития на 2025–2027 годы.",
+              "status": "confirmed",
+              "source": "https://www.sber-bank.by/page/development-strategy"
+            }
+          ]
+        },
+        {
+          "id": "sber_india",
+          "name": "СберИндия (филиал)",
+          "aliases": [
+            "Sberbank India"
+          ],
+          "segment": "financial_international",
+          "relationship": "branch",
+          "sber_stake": "не дочерняя компания, а филиал ПАО Сбербанк",
+          "ownership_status": "confirmed",
+          "activity": "Корпоративное обслуживание и расчеты между Россией и Индией; IT-хаб в Бангалоре.",
+          "routing_keywords": [
+            "сбер индия",
+            "индия"
+          ],
+          "key_facts": [
+            {
+              "fact": "Офисы в Нью-Дели и Мумбаи, IT-хаб в Бангалоре; план — до 10 филиалов и штаб-квартира в Нью-Дели.",
+              "status": "confirmed",
+              "date": "2026-06",
+              "source": "https://investfuture.ru/articles/sberbank-rasshirit-set-filialov-v-indii-i-otkroet-shtab-kvartiru-v-nyu-deli-1180923744"
+            }
+          ],
+          "see_also": "international_presence"
+        },
+        {
+          "id": "sbertech",
+          "name": "СберТех",
+          "aliases": [
+            "Сбербанк-Технологии",
+            "SberTech",
+            "АО «Сбертех»"
+          ],
+          "segment": "technology",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (дочерняя компания)",
+          "ownership_status": "confirmed",
+          "activity": "Основной разработчик ПО для Сбера и вендор для внешнего рынка: цифровая платформа Platform V (80+ продуктов: СУБД Pangolin DB, ОС SberLinux, Flow, DataGrid и др.), платформа для исходного кода GitVerse (с GigaCode и GigaIDE).",
+          "management": [
+            {
+              "name": "Максим Тятюшев",
+              "role": "генеральный директор"
+            }
+          ],
+          "employees": "4000+",
+          "routing_keywords": [
+            "сбертех",
+            "sbertech",
+            "platform v",
+            "pangolin",
+            "gitverse",
+            "sberlinux",
+            "импортозамещение по",
+            "отечественное по"
+          ],
+          "key_facts": [
+            {
+              "fact": "Сбер полностью мигрировал кредитование юрлиц с Pega Platform на собственное решение на Platform V (в работе участвовало 100+ команд).",
+              "status": "confirmed",
+              "date": "2026-01-13",
+              "source": "https://www.comnews.ru/content/243248/2026-01-13/2026-w03/1018/sber-perevyol-kreditovanie-yurlic-zarubezhnoy-pega-platform-sobstvennoe-reshenie-platform"
+            },
+            {
+              "fact": "GitVerse получил on-premise версию для крупного бизнеса, включая закрытые контуры; SaaS-версия перешла на тарификацию.",
+              "status": "confirmed",
+              "date": "2026-05-18",
+              "source": "https://mintrans.gov.ru/eye/press-center/branch-news/8900"
+            },
+            {
+              "fact": "Pangolin DB (совместима с PostgreSQL) получила функции для ИИ-агентов; десятки тысяч инсталляций.",
+              "status": "confirmed",
+              "date": "2026-06-18",
+              "source": "https://www.comnews.ru/content/245887/2026-06-18/2026-w25/1018/reshenie-sbertekha-pozvolit-biznesu-ispolzovat-iskusstvennyy-intellekt-dlya-raboty-bolshimi-dannymi"
+            },
+            {
+              "fact": "Партнерство с «Газпром нефтью» по единой платформе цифровых двойников; ИИ-агент в Platform V One Report.",
+              "status": "confirmed",
+              "date": "2026-09",
+              "source": "https://cnews.ru/link/b15807"
+            }
+          ],
+          "subsidiaries": [
+            {
+              "name": "Сверхтех",
+              "stake": "98%",
+              "note": "см. карточку sverkhtech"
+            }
+          ]
+        },
+        {
+          "id": "sberdevices",
+          "name": "SberDevices",
+          "aliases": [
+            "СберДевайсы",
+            "Салют",
+            "Sber (устройства)"
+          ],
+          "segment": "technology",
+          "relationship": "subsidiary",
+          "sber_stake": "в группе Сбера; юрлицо сменило название (без «Сбер»), раздел ЕГРЮЛ об учредителях закрыт",
+          "ownership_status": "reported",
+          "activity": "Умные устройства и ПО: телевизоры Sber, приставки SberBox, ОС Салют ТВ (также на ТВ партнеров), виртуальные ассистенты Салют, умный дом.",
+          "routing_keywords": [
+            "sberdevices",
+            "сбердевайсы",
+            "салют",
+            "салют тв",
+            "sberbox",
+            "телевизор sber",
+            "умный дом",
+            "умная колонка"
+          ],
+          "key_facts": [
+            {
+              "fact": "Представители Сбера называли SberDevices и СберТех «ключевыми направлениями»; юрлицо переименовано и учредители скрыты.",
+              "status": "reported",
+              "source": "https://zoom.cnews.ru/news/item/554201"
+            },
+            {
+              "fact": "Вышло крупное обновление Салют ТВ 2.0 с новым интерфейсом для SberBox, ТВ Sber и ТВ партнеров; GigaChat интегрирован в Салют ТВ.",
+              "status": "confirmed",
+              "source": "https://kod.ru/obzor-salut-tv-2-0"
+            },
+            {
+              "fact": "Телевизоры Sber производятся на заводе «Витязь» (Беларусь), производство и дистрибуция — группа «М.Видео-Эльдорадо».",
+              "status": "historical",
+              "source": "https://habr.com/ru/post/655759"
+            }
+          ]
+        },
+        {
+          "id": "sberservice",
+          "name": "СберСервис",
+          "segment": "technology",
+          "relationship": "subsidiary",
+          "sber_stake": "дочерняя компания",
+          "ownership_status": "confirmed",
+          "activity": "ИТ-аутсорсинг, поддержка и обслуживание ИТ-инфраструктуры.",
+          "routing_keywords": [
+            "сберсервис",
+            "ит-аутсорсинг"
+          ],
+          "key_facts": [
+            {
+              "fact": "Входит в рэнкинг крупнейших ИТ-компаний России TAdviser.",
+              "status": "historical",
+              "source": "https://lenta.ru/news/2023/06/16/rnkng/"
+            }
+          ]
+        },
+        {
+          "id": "sber2b",
+          "name": "Сбер2В (ИТ-холдинг)",
+          "aliases": [
+            "Сбер2B",
+            "ООО «ТОТ»"
+          ],
+          "segment": "technology_b2b",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (холдинг создан объединением 10+ дочерних компаний)",
+          "ownership_status": "confirmed",
+          "activity": "Коробочные B2B-решения: аналитика данных, ИИ, электронный документооборот, автоматизация маркетинга и торговли.",
+          "management": [
+            {
+              "name": "Леонид Лишневецкий",
+              "role": "генеральный директор"
+            }
+          ],
+          "components": [
+            "Сбераналитика",
+            "inSales",
+            "Сбер бизнес софт",
+            "Сберкорус (ЭДО)",
+            "Doma.ai",
+            "Цифровые решения регионов",
+            "Деловая среда",
+            "сервисы автоматизации маркетинга"
+          ],
+          "routing_keywords": [
+            "сбер2в",
+            "сбер2b",
+            "insales",
+            "сберкорус",
+            "эдо",
+            "деловая среда",
+            "сбераналитика",
+            "doma.ai"
+          ],
+          "key_facts": [
+            {
+              "fact": "Капитал объединенных юрлиц — 6,3 млрд руб.; совокупная выручка за 2025 — 3 млрд руб., чистая прибыль — 552 млн руб.",
+              "status": "confirmed",
+              "source": "https://telesputnik.ru/materials/companies/news/sber-sozdast-novyi-it-xolding-dlya-razvitiya-nefinansovyx-produktov"
+            },
+            {
+              "fact": "В марте 2026 ООО «ТОТ» переименовано в «Сбер2В», в апреле в капитал вошли остальные активы.",
+              "status": "confirmed",
+              "date": "2026-04",
+              "source": "https://telesputnik.ru/materials/companies/news/sber-sozdast-novyi-it-xolding-dlya-razvitiya-nefinansovyx-produktov"
+            }
+          ]
+        },
+        {
+          "id": "sverkhtech",
+          "name": "Сверхтех",
+          "segment": "technology",
+          "relationship": "subsidiary",
+          "sber_stake": "98% у СберТеха, 2% у ООО «Т-360»",
+          "ownership_status": "confirmed",
+          "activity": "ПО для цифровой трансформации; зарегистрирована в Сириусе.",
+          "routing_keywords": [
+            "сверхтех",
+            "сириус"
+          ],
+          "key_facts": [
+            {
+              "fact": "Зарегистрирована 30 мая 2025 года.",
+              "status": "confirmed",
+              "source": "https://habr.com/ru/articles/915872"
+            }
+          ]
+        },
+        {
+          "id": "integral_systems",
+          "name": "ООО «Интегральные системы» / Объединенная микроэлектронная компания (ОМК)",
+          "segment": "microelectronics",
+          "relationship": "subsidiary",
+          "sber_stake": "подконтрольна Сбербанку",
+          "ownership_status": "confirmed",
+          "activity": "Юрлицо для консолидации полупроводниковой отрасли (Элемент, Ангстрем, НМ-Тех) в ОМК.",
+          "routing_keywords": [
+            "интегральные системы",
+            "омк",
+            "микроэлектроника",
+            "чипы"
+          ],
+          "key_facts": [
+            {
+              "fact": "Уставный капитал увеличен с 27,63 до 44,16 млрд руб.",
+              "status": "reported",
+              "source": "https://www.pvsm.ru/news/459021"
+            },
+            {
+              "fact": "Возможная покупка «НМ-Тех» (~19 млрд руб.) в октябре 2026 — официально не подтверждена.",
+              "status": "reported",
+              "source": "https://www.pvsm.ru/news/459021"
+            }
+          ],
+          "see_also": "microelectronics_hardware"
+        },
+        {
+          "id": "element",
+          "name": "ГК «Элемент»",
+          "aliases": [
+            "ПАО «Элемент»"
+          ],
+          "segment": "microelectronics",
+          "relationship": "associate",
+          "sber_stake": "49,8% (через «Интегральные системы»); учитывается по методу долевого участия",
+          "ownership_status": "confirmed",
+          "activity": "Крупнейший российский разработчик и производитель микроэлектроники.",
+          "routing_keywords": [
+            "элемент",
+            "гк элемент",
+            "микроэлектроника"
+          ],
+          "key_facts": [
+            {
+              "fact": "Январь 2026 — покупка 41,9% за 27 млрд руб.; июль 2026 — плюс 7,9% за 5,4 млрд руб.",
+              "status": "confirmed",
+              "source": "https://www.kommersant.ru/doc/8847375"
+            }
+          ],
+          "see_also": "microelectronics_hardware"
+        },
+        {
+          "id": "bizone",
+          "name": "BI.ZONE",
+          "aliases": [
+            "Бизон",
+            "ООО «Бизон»",
+            "Безопасная информационная зона"
+          ],
+          "segment": "cybersecurity",
+          "relationship": "unclear",
+          "sber_stake": "не раскрывается",
+          "ownership_status": "unclear",
+          "activity": "Кибербезопасность: продукты и сервисы защиты, SOC/MDR, Bug Bounty, расследования.",
+          "routing_keywords": [
+            "bi.zone",
+            "бизон",
+            "кибербезопасность",
+            "информационная безопасность"
+          ],
+          "key_facts": [
+            {
+              "fact": "Основана Сбербанком в 2016 году; по состоянию на февраль 2022 принадлежала группе Сбер на 100%.",
+              "status": "historical",
+              "source": "https://www.tadviser.ru/index.php/%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F:%D0%A1%D0%B1%D0%B5%D1%80%D0%B1%D0%B0%D0%BD%D0%BA_(%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BE%D0%B9_%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81)"
+            },
+            {
+              "fact": "Владельцы основного юрлица ООО «Бизон» сейчас скрыты; часть СМИ называет компанию «ранее принадлежавшей Сберу», при этом сотрудничество с банком продолжается.",
+              "status": "reported",
+              "source": "https://secpost.ru/bi-zone-vyhodit-na-rynok-ngfw-antivirusov-i-ai-pentesta"
+            },
+            {
+              "fact": "Выручка 2025 — 24,9 млрд руб. (+16,7%), 5-е место среди крупнейших ИБ-компаний России.",
+              "status": "confirmed",
+              "source": "https://secpost.ru/bi-zone-vyhodit-na-rynok-ngfw-antivirusov-i-ai-pentesta"
+            },
+            {
+              "fact": "Планы: выход на рынок NGFW в конце 2026, антивирус и AI Pentest в 2027.",
+              "status": "reported",
+              "source": "https://secpost.ru/bi-zone-vyhodit-na-rynok-ngfw-antivirusov-i-ai-pentesta"
+            }
+          ],
+          "agent_note": "Статус владения неясен. Формулировка: «основана Сбером; текущая структура собственности не раскрывается; тесно связана с группой»."
+        },
+        {
+          "id": "2gis",
+          "name": "2ГИС",
+          "aliases": [
+            "ДубльГИС",
+            "ООО «Дубльгис»",
+            "2GIS"
+          ],
+          "segment": "consumer_services",
+          "relationship": "subsidiary",
+          "sber_stake": "100% (контроль с 2020 года, доля основателя выкуплена в июле 2025)",
+          "ownership_status": "reported",
+          "activity": "Карты, навигация и справочник организаций; реклама для бизнеса.",
+          "routing_keywords": [
+            "2гис",
+            "2gis",
+            "дубльгис",
+            "карты",
+            "навигатор"
+          ],
+          "key_facts": [
+            {
+              "fact": "Работает в 1400 городах (Россия, Казахстан, Италия, Чехия, ОАЭ и др.), ежемесячная аудитория — более 86 млн.",
+              "status": "confirmed",
+              "source": "https://digitalbusiness.kz/2025-09-09/osnovatel-2gis-prodal-dolyu-kompanii-i-pokinul-proekt-spustya-25-let/"
+            },
+            {
+              "fact": "Оценка Forbes — около $1 млрд.",
+              "status": "analyst_estimate",
+              "source": "https://www.cbinsights.com/company/rocketdata"
+            }
+          ]
+        },
+        {
+          "id": "o2o_holding",
+          "name": "О2О Холдинг",
+          "segment": "consumer_services",
+          "relationship": "associate",
+          "sber_stake": "менее 50% (по данным 2023 — 45,01%); Сбер не имеет контроля",
+          "ownership_status": "reported",
+          "activity": "Холдинг, консолидирующий Самокат и (по ряду источников) Ситидрайв; акционеры — Сбер и консорциум инвесторов.",
+          "routing_keywords": [
+            "о2о холдинг",
+            "o2o"
+          ],
+          "key_facts": [
+            {
+              "fact": "Основной владелец Самоката — «О2О Холдинг»; доля Сбера в холдинге менее 50%.",
+              "status": "confirmed",
+              "source": "https://ru.wikipedia.org/wiki/%D0%A1%D0%B0%D0%BC%D0%BE%D0%BA%D0%B0%D1%82_(%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8)"
+            },
+            {
+              "fact": "Исторически — СП Сбера и Mail.ru Group (VK); после раздела 2022 года VK получила Delivery Club, Сбер — Самокат и Ситидрайв.",
+              "status": "historical",
+              "source": "https://habr.com/ru/news/t/675718"
+            }
+          ]
+        },
+        {
+          "id": "samokat",
+          "name": "Самокат",
+          "aliases": [
+            "сервис доставки Самокат"
+          ],
+          "segment": "consumer_services",
+          "relationship": "associate",
+          "sber_stake": "косвенно через О2О Холдинг (доля Сбера в холдинге менее 50%)",
+          "ownership_status": "reported",
+          "activity": "Экспресс-доставка продуктов и товаров для дома из дарксторов (e-grocery).",
+          "routing_keywords": [
+            "самокат",
+            "доставка продуктов",
+            "e-grocery",
+            "даркстор"
+          ],
+          "key_facts": [
+            {
+              "fact": "Оборот 2025 — 279,3 млрд руб. (+12,3%), около 785,5 тыс. заказов в день, доля рынка онлайн-продаж продуктов — 16%.",
+              "status": "confirmed",
+              "source": "https://rb.ru/news/oborot-samokata-vyros-na-12-i-prevysil-279-mlrd-v-2025-m-servis-dostavlyaet-bolshe-785-tys-zakazov-v-den/"
+            },
+            {
+              "fact": "2 кв. 2026: оборот 80,5 млрд руб. (+3,9% кв/кв), в среднем 797,7 тыс. заказов в день.",
+              "status": "confirmed",
+              "source": "https://rb.ru/news/oborot-samokata-dostig-805-mlrd-vo-ii-kvartale-servis-stal-liderom-po-tempam-rosta-na-rynke-e-grocery/"
+            },
+            {
+              "fact": "Выполняет экспресс-доставку для Мегамаркета.",
+              "status": "confirmed",
+              "source": "https://www.sostav.ru/publication/prodazhi-megamarketa-sokratilis-vtroe-84420.html"
+            }
+          ],
+          "agent_note": "НЕ путать с ООО «Мой Самокат» — сторонний эмитент ВДО-облигаций (кикшеринг), к Сберу отношения не имеет."
+        },
+        {
+          "id": "citydrive",
+          "name": "Ситидрайв",
+          "aliases": [
+            "Citydrive",
+            "Ситидрайв Рент"
+          ],
+          "segment": "consumer_services",
+          "relationship": "ecosystem_unclear_stake",
+          "sber_stake": "не раскрывается; входит в экосистему Сбера (ранее — в О2О Холдинг)",
+          "ownership_status": "unclear",
+          "activity": "Каршеринг, аренда авто, продажа б/у авто, автосервис, аренда фургонов для бизнеса.",
+          "routing_keywords": [
+            "ситидрайв",
+            "citydrive",
+            "каршеринг"
+          ],
+          "key_facts": [
+            {
+              "fact": "GMV 2024 — более 18 млрд руб. (+40%), парк — 19 тыс. машин.",
+              "status": "historical",
+              "source": "https://new-retail.ru/novosti/retail/sitidrayv_narastil_godovoy_oborot_na_40/"
+            },
+            {
+              "fact": "Состав акционеров не раскрывается, но сервис продолжает входить в экосистему Сбера.",
+              "status": "reported",
+              "source": "https://zoom.cnews.ru/news/item/642442"
+            }
+          ]
+        },
+        {
+          "id": "kuper",
+          "name": "Купер",
+          "aliases": [
+            "СберМаркет",
+            "Instamart",
+            "ООО «Инстамарт Сервис»"
+          ],
+          "segment": "consumer_services",
+          "relationship": "subsidiary",
+          "sber_stake": "мажоритарий/владелец (контроль с 2019, доли партнеров выкуплены к 2021)",
+          "ownership_status": "confirmed",
+          "activity": "Доставка продуктов и товаров из ритейлеров и ресторанов (360+ городов); рекламная платформа для FMCG.",
+          "routing_keywords": [
+            "купер",
+            "kuper",
+            "сбермаркет",
+            "доставка продуктов"
+          ],
+          "key_facts": [
+            {
+              "fact": "Оборот 2024 — 204,2 млрд руб., 2-е место среди e-grocery-платформ.",
+              "status": "historical",
+              "source": "https://ru.wikipedia.org/wiki/%D0%9A%D1%83%D0%BF%D0%B5%D1%80_(%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD-%D1%80%D0%B8%D1%82%D0%B5%D0%B9%D0%BB%D0%B5%D1%80)"
+            },
+            {
+              "fact": "1 июля 2024 СберМаркет переименован в Купер.",
+              "status": "historical",
+              "source": "https://finance.mail.ru/card/kompaniya-kuper-894/"
+            },
+            {
+              "fact": "Доля на рынке онлайн-продаж продуктов в 2025 сократилась почти вдвое.",
+              "status": "reported",
+              "source": "https://new-retail.ru/novosti/retail/prodazhi_megamarketa_upali_vtroe/"
+            }
+          ]
+        },
+        {
+          "id": "megamarket",
+          "name": "Мегамаркет",
+          "aliases": [
+            "СберМегаМаркет",
+            "goods.ru"
+          ],
+          "segment": "consumer_services",
+          "relationship": "subsidiary",
+          "sber_stake": "85% (М.Видео-Эльдорадо — 10%, Александр Тынкован — 5%)",
+          "ownership_status": "reported",
+          "activity": "Маркетплейс; после сокращения инвестиций — доставка через Самокат и ПВЗ СДЭК.",
+          "management": [
+            {
+              "name": "Ярослав Афанасьев",
+              "role": "генеральный директор с июня 2026"
+            }
+          ],
+          "routing_keywords": [
+            "мегамаркет",
+            "сбермегамаркет",
+            "маркетплейс сбера"
+          ],
+          "key_facts": [
+            {
+              "fact": "Заказы: 39,8 млн (2024) → 4,08 млн (2025) → 620 тыс. в 1 кв. 2026; падение с 4-го на 38-е место в рейтинге интернет-магазинов.",
+              "status": "confirmed",
+              "source": "https://www.kommersant.ru/doc/8726651"
+            },
+            {
+              "fact": "Структура владения: Сбербанк 85%, М.Видео-Эльдорадо 10%, Тынкован 5%.",
+              "status": "reported",
+              "source": "https://www.tadviser.ru/index.php/%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F:%D0%9C%D0%B5%D0%B3%D0%B0%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82_(%D1%80%D0%B0%D0%BD%D0%B5%D0%B5_%D0%A1%D0%B1%D0%B5%D1%80%D0%9C%D0%B5%D0%B3%D0%B0%D0%9C%D0%B0%D1%80%D0%BA%D0%B5%D1%82)"
+            }
+          ],
+          "see_also": "non_core_business"
+        },
+        {
+          "id": "sberlogistics",
+          "name": "СберЛогистика",
+          "segment": "consumer_services",
+          "relationship": "subsidiary",
+          "sber_stake": "компания экосистемы Сбера (доля не раскрывается)",
+          "ownership_status": "reported",
+          "activity": "Логистический оператор: склады, курьерская доставка, ПВЗ и постаматы в отделениях Сбера, отправка посылок через СберБанк Онлайн; обслуживает Мегамаркет и Самокат.",
+          "routing_keywords": [
+            "сберлогистика",
+            "логистика",
+            "доставка посылок",
+            "постаматы"
+          ],
+          "key_facts": [
+            {
+              "fact": "4000+ сотрудников, 34 склада и логистических центра, более 800 тыс. м² складов.",
+              "status": "confirmed",
+              "date": "2026-08",
+              "source": "https://hh.ru/vacancy/135927879"
+            },
+            {
+              "fact": "Управляет складами и доставкой для Мегамаркета и Самоката.",
+              "status": "confirmed",
+              "source": "https://hh.ru/vacancy/135946119"
+            }
+          ]
+        },
+        {
+          "id": "rambler",
+          "name": "Rambler&Co",
+          "aliases": [
+            "Рамблер",
+            "Rambler Group",
+            "Лента.ру",
+            "Газета.Ru",
+            "Чемпионат",
+            "Афиша",
+            "LiveJournal"
+          ],
+          "segment": "media",
+          "relationship": "subsidiary",
+          "sber_stake": "Сбер довел долю в Rambler Group до 100% в 2020 году; медиаактивы управляются через ООО «Рамблер&КО Медиа» (80% — ООО «Медианна», 20% — ООО «Эпоха диджитал») из-за ограничений на владение СМИ",
+          "ownership_status": "reported",
+          "activity": "Медиахолдинг: портал Рамблер, Лента.ру, Газета.Ru, Чемпионат, Афиша, Секрет фирмы, Мотор, LiveJournal; рекламные технологии, сейлз-хаус «Индекс 20».",
+          "routing_keywords": [
+            "рамблер",
+            "rambler",
+            "лента.ру",
+            "газета.ру",
+            "чемпионат",
+            "афиша",
+            "livejournal",
+            "медиахолдинг"
+          ],
+          "key_facts": [
+            {
+              "fact": "Сбер купил 46,5% в 2019 (11 млрд руб.), 55% в июле 2020, затем 100% в 2020.",
+              "status": "historical",
+              "sources": [
+                "https://habr.com/ru/post/525704",
+                "https://habr.com/ru/post/526176"
+              ]
+            },
+            {
+              "fact": "Юридическая схема владения медиа: «Рамблер&КО Медиа» принадлежит «Медианне» (80%) и «Эпохе диджитал» (20%).",
+              "status": "reported",
+              "source": "https://finance.rambler.ru/business/45600707-kto-v-ramblere-hozyain/"
+            },
+            {
+              "fact": "2026: на портале Рамблер запущены ИИ-помощник по новостям и онлайн-запись к врачу совместно со СберЗдоровьем.",
+              "status": "confirmed",
+              "source": "https://cnews.ru/link/b4693"
+            }
+          ]
+        },
+        {
+          "id": "sberhealth",
+          "name": "СберЗдоровье",
+          "aliases": [
+            "DocDoc"
+          ],
+          "segment": "consumer_services",
+          "relationship": "subsidiary",
+          "sber_stake": "сервис экосистемы Сбера",
+          "ownership_status": "reported",
+          "activity": "Телемедицина, онлайн-запись к врачу, ИИ-помощник на базе GigaChat.",
+          "routing_keywords": [
+            "сберздоровье",
+            "телемедицина",
+            "запись к врачу",
+            "docdoc"
+          ],
+          "key_facts": [
+            {
+              "fact": "Запись к врачу через СберЗдоровье интегрирована в портал Рамблер (январь 2026).",
+              "status": "confirmed",
+              "source": "https://www.cbinsights.com/company/ramblerco"
+            },
+            {
+              "fact": "В сервисе работает ИИ-помощник на базе GigaChat.",
+              "status": "confirmed",
+              "source": "https://eastrussia.ru/news/gigachat-ot-sbera-ispolnyaetsya-dva-goda/"
+            }
+          ]
+        },
+        {
+          "id": "sbermobile",
+          "name": "СберМобайл",
+          "aliases": [
+            "ООО «Сбербанк-Телеком»",
+            "SberMobile"
+          ],
+          "segment": "telecom",
+          "relationship": "subsidiary",
+          "sber_stake": "дочерняя компания",
+          "ownership_status": "confirmed",
+          "activity": "Виртуальный мобильный оператор (MVNO) на сетях t2 и МегаФона; eSIM для путешествий.",
+          "management": [
+            {
+              "name": "Сергей Волков",
+              "role": "генеральный директор"
+            }
+          ],
+          "routing_keywords": [
+            "сбермобайл",
+            "sbermobile",
+            "мобильный оператор",
+            "сим-карта",
+            "esim",
+            "mvno"
+          ],
+          "key_facts": [
+            {
+              "fact": "Абонентская база в 2025 выросла в 2,6 раза; работает в 89 регионах; точка безубыточности — около 1 млн абонентов.",
+              "status": "confirmed",
+              "source": "https://www.comnews.ru/content/243242/2026-01-12/2026-w03/1010/abonentskaya-baza-sbermobayl-vyrosla-26-raza-za-2025-g"
+            },
+            {
+              "fact": "В феврале 2026 — 1-е место среди федеральных операторов по чистому балансу переносов номеров (MNP), 12,3% всех портаций.",
+              "status": "confirmed",
+              "source": "https://www.comnews.ru/content/244112/2026-03-06/2026-w10/1008/postoy-ne-ukhodi-operatory-vzyali-kurs-uderzhanie-klientov"
+            }
+          ]
+        },
+        {
+          "id": "sberauto",
+          "name": "СберАвто",
+          "segment": "consumer_services",
+          "relationship": "subsidiary",
+          "sber_stake": "сервис экосистемы Сбера",
+          "ownership_status": "reported",
+          "activity": "Подбор, покупка и продажа автомобилей онлайн с кредитом и страховкой; сделки с авто с пробегом между физлицами через Сбербанк.",
+          "routing_keywords": [
+            "сберавто",
+            "покупка авто",
+            "автокредит"
+          ],
+          "key_facts": [
+            {
+              "fact": "С мая 2026 через Сбербанк можно купить-продать автомобиль с пробегом у другого человека.",
+              "status": "confirmed",
+              "date": "2026-05-28",
+              "source": "https://cnews.ru/link/b56655"
+            }
+          ]
+        },
+        {
+          "id": "sber_ads",
+          "name": "СберМаркетинг и СберСеллер",
+          "segment": "advertising",
+          "relationship": "subsidiary",
+          "sber_stake": "компании группы Сбер",
+          "ownership_status": "reported",
+          "activity": "СберМаркетинг — креативное агентство; СберСеллер — сейлз-хаус рекламного инвентаря компаний и партнеров группы Сбер.",
+          "routing_keywords": [
+            "сбермаркетинг",
+            "сберселлер",
+            "реклама сбер"
+          ],
+          "key_facts": [
+            {
+              "fact": "Совместно с Ситидрайвом и Сбером реализуют рекламные проекты на автомобилях каршеринга.",
+              "status": "confirmed",
+              "source": "https://adindex.ru/news/releases/2026/09/4/348619.phtml"
+            }
+          ]
+        },
+        {
+          "id": "sbercity",
+          "name": "СберСити и Школа 21",
+          "segment": "real_estate_education",
+          "relationship": "project",
+          "sber_stake": "проект Сбера",
+          "ownership_status": "reported",
+          "activity": "СберСити — смарт-район в Рублево-Архангельском (461 га), полигон для беспилотников Navio; Школа 21 — школа цифровых технологий Сбера.",
+          "management": [
+            {
+              "name": "Андрей Лихачев",
+              "role": "генеральный директор СберСити"
+            }
+          ],
+          "routing_keywords": [
+            "сберсити",
+            "рублево-архангельское",
+            "школа 21",
+            "умный город"
+          ],
+          "key_facts": [
+            {
+              "fact": "Площадь СберСити — 461 га, район строится по принципам умного города.",
+              "status": "confirmed",
+              "source": "https://www.ixbt.com/news/2026/09/25/438272-17-tys-km-bez-voditelia-avto-bespilotniki-navio-osvaivaiut-sbersiti.html"
+            },
+            {
+              "fact": "В СберСити строится кампус Школы 21.",
+              "status": "confirmed",
+              "source": "https://www.mos.ru/mayor/themes/13084050/"
+            }
+          ]
+        },
+        {
+          "id": "sberprime",
+          "name": "СберПрайм",
+          "segment": "product",
+          "relationship": "product",
+          "sber_stake": "продукт Сбера (не юрлицо)",
+          "ownership_status": "confirmed",
+          "activity": "Подписка на сервисы экосистемы и партнеров (в т.ч. Okko, Звук).",
+          "routing_keywords": [
+            "сберпрайм",
+            "подписка сбер"
+          ],
+          "key_facts": [
+            {
+              "fact": "Сбер продолжает совместные маркетинговые активности с проданными Okko и Звуком.",
+              "status": "historical",
+              "source": "https://www.sostav.ru/publication/sber-prodal-servisy-okko-zvuk-evotor-i-drugie-aktivy-54406.html"
+            }
+          ]
+        },
+        {
+          "id": "navio",
+          "name": "Navio (ранее SberAutoTech)",
+          "aliases": [
+            "ООО «Автотех»",
+            "Сберавтотех"
+          ],
+          "segment": "autonomous_transport",
+          "relationship": "former",
+          "sber_stake": "0% по заявлению компании (с декабря 2024); учредители скрыты",
+          "ownership_status": "reported",
+          "activity": "Беспилотные грузовики, автомобили, шаттлы; PlayAuto.",
+          "routing_keywords": [
+            "navio",
+            "sberautotech",
+            "беспилотники"
+          ],
+          "key_facts": [],
+          "see_also": "autonomous_transport_navio"
+        },
+        {
+          "id": "cloud_ru",
+          "name": "Cloud.ru (ранее SberCloud)",
+          "aliases": [
+            "ООО «Облачные технологии»",
+            "SberCloud"
+          ],
+          "segment": "technology",
+          "relationship": "former",
+          "sber_stake": "0% с мая 2022; владелец — АО «Новые возможности»",
+          "ownership_status": "confirmed",
+          "activity": "Облачные и ИИ-сервисы (IaaS, PaaS, Evolution AI Factory с GigaChat и open-source моделями); остается партнером Сбера.",
+          "management": [
+            {
+              "name": "Михаил Лобоцкий",
+              "role": "генеральный директор с января 2026"
+            }
+          ],
+          "routing_keywords": [
+            "cloud.ru",
+            "sbercloud",
+            "сберклауд",
+            "облако"
+          ],
+          "key_facts": [
+            {
+              "fact": "Выручка 2025 по МСФО — 76,5 млрд руб. (+50%), чистая прибыль — 14,7 млрд руб.",
+              "status": "confirmed",
+              "source": "https://ru.ruwiki.ru/wiki/Cloud.ru"
+            },
+            {
+              "fact": "Лидер рынка IaaS (24,7%) и PaaS (45,6%) по итогам 2024 (iKS-Consulting).",
+              "status": "historical",
+              "source": "https://ru.ruwiki.ru/wiki/Cloud.ru"
+            },
+            {
+              "fact": "2026: дебютный выпуск облигаций на 10 млрд руб. (июль), второй — на 20 млрд руб. (октябрь).",
+              "status": "confirmed",
+              "source": "https://www.tadviser.ru/index.php/%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F:Cloud.ru_(%D0%9E%D0%B1%D0%BB%D0%B0%D1%87%D0%BD%D1%8B%D0%B5_%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8)_%D1%80%D0%B0%D0%BD%D0%B5%D0%B5_SberCloud"
+            }
+          ],
+          "agent_note": "Не дочерняя компания Сбера. Партнер; в ряде источников по-прежнему называется «облачной платформой Сбера» — это устаревшая формулировка."
+        },
+        {
+          "id": "okko",
+          "name": "Okko",
+          "aliases": [
+            "ООО «Окко»",
+            "Okko Спорт"
+          ],
+          "segment": "entertainment",
+          "relationship": "former",
+          "sber_stake": "0% с мая 2022; владелец — АО «Новые возможности»",
+          "ownership_status": "confirmed",
+          "activity": "Онлайн-кинотеатр; партнер Сбера (СберПрайм, телевизоры Sber).",
+          "routing_keywords": [
+            "okko",
+            "окко",
+            "онлайн-кинотеатр"
+          ],
+          "key_facts": [
+            {
+              "fact": "Продан АО «Новые возможности» в мае 2022; по словам руководства Okko, Сбер не имеет прямых или косвенных рычагов влияния.",
+              "status": "historical",
+              "source": "https://rtvi.com/news/rbk-sber-prodal-okko-i-drugie-aktivy-svoey-ekosistemy-iz-za-sanktsiy/"
+            },
+            {
+              "fact": "Великобритания ввела санкции против АО «Новые возможности».",
+              "status": "confirmed",
+              "source": "https://kod.ru/uk-vs-novie-vozmozhnosti-sber"
+            }
+          ]
+        },
+        {
+          "id": "zvuk",
+          "name": "Звук (ранее СберЗвук)",
+          "aliases": [
+            "ООО «Звук»",
+            "Zvooq",
+            "Звук Студио"
+          ],
+          "segment": "entertainment",
+          "relationship": "former",
+          "sber_stake": "0% с мая 2022; владелец — АО «Новые возможности»",
+          "ownership_status": "confirmed",
+          "activity": "Музыкальный стриминг; партнер Сбера, использует GigaChat («Звук Студио»).",
+          "routing_keywords": [
+            "звук",
+            "сберзвук",
+            "zvuk",
+            "музыкальный стриминг"
+          ],
+          "key_facts": [
+            {
+              "fact": "Выход Сбера из капитала — май 2022.",
+              "status": "historical",
+              "source": "https://rozetked.me/news/23633"
+            }
+          ]
+        },
+        {
+          "id": "evotor",
+          "name": "Эвотор",
+          "segment": "technology",
+          "relationship": "former",
+          "sber_stake": "0% с мая 2022 (АО «Новые возможности»)",
+          "ownership_status": "confirmed",
+          "activity": "Онлайн-кассы и решения для автоматизации торговли.",
+          "routing_keywords": [
+            "эвотор",
+            "онлайн-касса"
+          ],
+          "key_facts": [
+            {
+              "fact": "Выход Сбера из капитала — май 2022.",
+              "status": "historical",
+              "source": "https://rozetked.me/news/23633"
+            }
+          ]
+        },
+        {
+          "id": "crt",
+          "name": "Центр речевых технологий (ЦРТ)",
+          "segment": "technology",
+          "relationship": "former",
+          "sber_stake": "0% с мая 2022 (АО «Новые возможности»)",
+          "ownership_status": "confirmed",
+          "activity": "Речевые технологии и биометрия.",
+          "routing_keywords": [
+            "црт",
+            "центр речевых технологий",
+            "биометрия"
+          ],
+          "key_facts": [
+            {
+              "fact": "Выход Сбера из капитала — май 2022.",
+              "status": "historical",
+              "source": "https://rozetked.me/news/23633"
+            }
+          ]
+        },
+        {
+          "id": "eapteka",
+          "name": "Еаптека (ранее Сбер Еаптека)",
+          "segment": "consumer_services",
+          "relationship": "former",
+          "sber_stake": "0% — 45% продано структурам Алексея Репика (сделка закрыта около мая 2025)",
+          "ownership_status": "reported",
+          "activity": "Онлайн-аптека.",
+          "routing_keywords": [
+            "еаптека",
+            "сбер еаптека",
+            "онлайн-аптека"
+          ],
+          "key_facts": [
+            {
+              "fact": "В 2020–2021 Сбер и «Р-Фарм» купили по 45%; в 2025 Сбер продал долю структурам Алексея Репика, ставшим единственным владельцем.",
+              "status": "confirmed",
+              "source": "https://www.retail.ru/news/aleksey-repik-stal-edinstvennym-vladeltsem-eapteki-22-sentyabrya-2025-269291/"
+            },
+            {
+              "fact": "Для покупки доли Сбер докапитализировал компанию через долг примерно на 10 млрд руб.; эксперты называли актив «тяжелым».",
+              "status": "reported",
+              "source": "https://www.vedomosti.ru/business/articles/2025/09/22/1140847-strukturi-alekseya-repika-konsolidirovali-onlain-apteki-eapteka"
+            }
+          ]
+        },
+        {
+          "id": "foreign_banks_former",
+          "name": "Бывшие зарубежные дочерние банки",
+          "segment": "financial_international",
+          "relationship": "former",
+          "sber_stake": "0%",
+          "ownership_status": "confirmed",
+          "activity": "Дочерний банк в Казахстане (продан холдингу «Байтерек»), банк в Швейцарии (продан m3 GROUPE и «Монте Валле»), Sberbank Europe AG (уход из Европы).",
+          "routing_keywords": [
+            "сбербанк казахстан",
+            "сбербанк европа",
+            "сбербанк швейцария"
+          ],
+          "key_facts": [
+            {
+              "fact": "Проданы/закрыты в 2022 году.",
+              "status": "historical",
+              "source": "https://novayagazeta.eu/articles/2023/03/08/minfin-ssha-iskliuchil-iz-sanktsionnogo-spiska-neskolko-byvshikh-dochernikh-struktur-sberbanka-v-kazakhstane-news"
+            }
+          ]
+        },
+        {
+          "id": "sbergames",
+          "name": "SberGames",
+          "segment": "entertainment",
+          "relationship": "closed",
+          "sber_stake": "—",
+          "ownership_status": "confirmed",
+          "activity": "Игровое подразделение, закрыто в июне 2022.",
+          "routing_keywords": [
+            "sbergames",
+            "игры сбер"
+          ],
+          "key_facts": [
+            {
+              "fact": "Закрыто в 2022 году.",
+              "status": "historical",
+              "source": "https://habr.com/ru/news/t/675718"
+            }
+          ]
+        }
+      ],
+      "data_as_of": "2026-10-21"
+    },
+    "non_core_business": {
+      "title": "Нефинансовый (непрофильный) бизнес",
+      "description": "Выручка и убытки экосистемы, судьба e-commerce проектов (Мегамаркет, Купер, Самокат).",
+      "routing_keywords": [
+        "нефинансовый бизнес",
+        "непрофильные активы",
+        "экосистема",
+        "e-commerce",
+        "мегамаркет",
+        "самокат",
+        "купер",
+        "убыток экосистемы"
+      ],
+      "facts": [
+        {
+          "fact": "Выручка непрофильных направлений в 2025 году — 563 млрд руб. (505,5 млрд в 2024); убыток сократился на 50% до 156,3 млрд руб.",
+          "status": "confirmed",
+          "source": "https://www.tadviser.ru/index.php/%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F:%D0%A4%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%BE%D0%B2%D1%8B%D0%B5_%D0%BF%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D0%B8_%D0%A1%D0%B1%D0%B5%D1%80%D0%B1%D0%B0%D0%BD%D0%BA%D0%B0"
+        },
+        {
+          "fact": "В 2024 году почти половину выручки непрофильных бизнесов дал Самокат (оборот 249 млрд руб. с НДС).",
+          "status": "analyst_estimate",
+          "source": "https://www.tbank.ru/invest/social/profile/Long_Term_Investments/6f1527c5-63ee-48c0-a6a6-2ae5035939da/"
+        },
+        {
+          "fact": "Мегамаркет: заказы упали с 39,8 млн (2024) до 4,08 млн (2025), в 1 кв. 2026 — 620 тыс.; опустился с 4-го на 38-е место в рейтинге интернет-магазинов; аудитория -59% за год.",
+          "status": "confirmed",
+          "sources": [
+            "https://www.kommersant.ru/doc/8726651",
+            "https://adindex.ru/news/tendencies/2026/06/8/345679.phtml"
+          ]
+        },
+        {
+          "fact": "Мегамаркет отказался от 11+ складов и собственных ПВЗ, перешел на доставку через Самокат и выдачу в ПВЗ СДЭК.",
+          "status": "confirmed",
+          "source": "https://www.sostav.ru/publication/prodazhi-megamarketa-sokratilis-vtroe-84420.html"
+        },
+        {
+          "fact": "Доля Купера на рынке онлайн-продаж продуктов в 2025 году сократилась почти вдвое; рост Самоката замедлился.",
+          "status": "reported",
+          "source": "https://new-retail.ru/novosti/retail/prodazhi_megamarketa_upali_vtroe/"
+        }
+      ]
+    },
+    "digital_assets_crypto": {
+      "title": "Цифровые активы и криптовалюта",
+      "description": "Расчеты в криптовалюте, цифровой депозитарий, хранение криптоактивов.",
+      "routing_keywords": [
+        "криптовалюта",
+        "крипта",
+        "цифровые активы",
+        "цфа",
+        "депозитарий",
+        "трансграничные платежи",
+        "вэд"
+      ],
+      "facts": [
+        {
+          "fact": "С 1 сентября 2026 Сбер предлагает корпоративным клиентам-участникам ВЭД трансграничные платежи в криптовалюте: без минимальной суммы, средняя стоимость — 0,3%, перевод за пару минут.",
+          "status": "confirmed",
+          "sources": [
+            "https://ru.themoscowtimes.com/2026/09/01/sberbank-predlozhil-uchastnikam-vneshney-torgovli-raschety-v-kriptovalyute-i-zhdet-vysokiy-spros-a204859",
+            "https://sber.pro/publication/sber-zapustil-transgranichnie-raschyoti-v-kriptovalyute-dlya-biznesa/"
+          ]
+        },
+        {
+          "fact": "Пилот расчетов в криптовалюте шел с сентября 2024 в рамках экспериментального правового режима ЦБ.",
+          "status": "confirmed",
+          "source": "https://ru.themoscowtimes.com/2026/09/01/sberbank-predlozhil-uchastnikam-vneshney-torgovli-raschety-v-kriptovalyute-i-zhdet-vysokiy-spros-a204859"
+        },
+        {
+          "fact": "6 октября 2026 Сбер первым вошел в реестр цифровых депозитариев Банка России; запуск депозитария и инфраструктуры для торгов называли на 1 декабря 2026.",
+          "status": "reported",
+          "source": "https://techora.ru/news/sber-nachal-testirovanie-kriptovalyutnykh-operatsiy-v-2026-10-08"
+        },
+        {
+          "fact": "Сбер намерен предлагать услуги хранения криптоактивов.",
+          "status": "reported",
+          "source": "https://3dnews.ru/1126142"
+        }
+      ]
+    },
+    "international_presence": {
+      "title": "Международное присутствие",
+      "description": "Где Сбер работает за рубежом, планы экспансии, из каких стран ушел.",
+      "routing_keywords": [
+        "международный",
+        "зарубежье",
+        "индия",
+        "китай",
+        "беларусь",
+        "филиалы за рубежом",
+        "экспансия"
+      ],
+      "facts": [
+        {
+          "fact": "Индия: офисы в Нью-Дели и Мумбаи, ИТ-хаб в Бангалоре; «СберИндия» работает как локальный банк; план — расширение до 10 филиалов и штаб-квартира/Центр российского бизнеса в Нью-Дели.",
+          "date": "2026-06-05",
+          "status": "confirmed",
+          "sources": [
+            "https://www.gazeta.ru/business/news/2026/06/05/28625983.shtml",
+            "https://investfuture.ru/articles/sberbank-rasshirit-set-filialov-v-indii-i-otkroet-shtab-kvartiru-v-nyu-deli-1180923744"
+          ]
+        },
+        {
+          "fact": "Беларусь: дочерний ОАО «Сбер Банк».",
+          "status": "confirmed",
+          "source": "https://www.sber-bank.by/page/development-strategy"
+        },
+        {
+          "fact": "Китай: работает представительство, планировалось открытие филиала (информация 2022–2023).",
+          "status": "historical",
+          "sources": [
+            "https://incrussia.ru/news/sber-v-kitae/",
+            "https://smart-lab.ru/blog/news/925867.php"
+          ]
+        },
+        {
+          "fact": "В 2022 году Сбер ушел из Европы, продал дочерние банки в Казахстане (холдингу «Байтерек») и Швейцарии.",
+          "status": "historical",
+          "source": "https://novayagazeta.eu/articles/2023/03/08/minfin-ssha-iskliuchil-iz-sanktsionnogo-spiska-neskolko-byvshikh-dochernikh-struktur-sberbanka-v-kazakhstane-news"
+        }
+      ]
+    },
+    "venture_and_startups": {
+      "title": "Венчурные инвестиции и стартапы",
+      "description": "Акселератор Sber500, венчурные фонды, работа со стартапами.",
+      "routing_keywords": [
+        "стартапы",
+        "венчур",
+        "акселератор",
+        "sber500",
+        "фонд",
+        "инновации"
+      ],
+      "facts": [
+        {
+          "fact": "В 2026 году идет 7-й сезон международного акселератора Sber500; приоритеты — GenAI, робототехника, новые материалы, DeepTech; демо-день — Moscow Startup Summit осенью 2026.",
+          "status": "confirmed",
+          "sources": [
+            "https://misis.ru/events/6919/",
+            "https://sber.pro/publication/startoval-priyom-zayavok-v-mezhdunarodnii-akselerator-sber500/"
+          ]
+        },
+        {
+          "fact": "В 2025 году инвестиции в стартапы-выпускники Sber500 составили 1 млрд руб. (около 14% российского венчурного рынка за год).",
+          "status": "confirmed",
+          "source": "https://misis.ru/events/6919/"
+        },
+        {
+          "fact": "Участникам Sber500 предоставляются бесплатные токены GigaChat.",
+          "status": "confirmed",
+          "source": "https://misis.ru/events/6919/"
+        },
+        {
+          "fact": "В 2021 году Сбер и РВК объявили о фонде на $100 млн для ранних технологических стартапов.",
+          "status": "historical",
+          "source": "https://incrussia.ru/news/sber-rvk-fund/"
+        }
+      ]
+    },
+    "sanctions_and_restructuring": {
+      "title": "Санкции и реструктуризация после 2022 года",
+      "description": "Санкционный статус, вынужденные продажи активов, изменения в менеджменте.",
+      "routing_keywords": [
+        "санкции",
+        "ограничения",
+        "уход из европы",
+        "продажа okko",
+        "реструктуризация",
+        "2022"
+      ],
+      "facts": [
+        {
+          "fact": "Сбер находится под санкциями ЕС, США и Великобритании с 2022 года.",
+          "status": "confirmed",
+          "source": "https://novayagazeta.eu/amp/articles/2022/05/19/sber-prodal-onlain-kinoteatr-okko-i-riad-drugikh-svoikh-aktivov-news"
+        },
+        {
+          "fact": "В мае 2022 проданы Okko, Звук, SberCloud, Эвотор и ЦРТ компании АО «Новые возможности»; причина — санкционные ограничения при работе с иностранными контрагентами.",
+          "status": "historical",
+          "source": "https://mobile-review.com/all/news/sber-izbavilsya-ot-sbercloud-okko-sberzvuka-i-drugih-aktivov-svoej-ekosistemy/"
+        },
+        {
+          "fact": "В 2022 закрыто игровое подразделение SberGames; раздел СП «О2О Холдинг» с VK (Сбер получил Самокат).",
+          "status": "historical",
+          "source": "https://habr.com/ru/news/t/675718"
+        },
+        {
+          "fact": "Приложение 2ГИС удалялось из магазинов приложений из-за санкций против владельца.",
+          "status": "historical",
+          "source": "https://incrussia.ru/news/2gis-google/"
+        }
+      ]
+    },
+    "autonomous_transport_navio": {
+      "title": "Беспилотный транспорт (Navio, бывший SberAutoTech)",
+      "description": "Беспилотные грузовики и легковые автомобили, автономные шаттлы, автомобильная ИИ-платформа. Важно: формально Navio больше не принадлежит Сбербанку, но исторически и операционно связана с группой.",
+      "routing_keywords": [
+        "navio",
+        "навио",
+        "sberautotech",
+        "сберавтотех",
+        "автотех",
+        "беспилотник",
+        "беспилотные грузовики",
+        "автономное вождение",
+        "беспилотный автомобиль",
+        "тягач",
+        "шаттл",
+        "playauto",
+        "сберсити"
+      ],
+      "ownership": {
+        "legal_entity": "ООО «Автотех» (ИНН 9725045830), до переименования — «Сберавтотех»",
+        "status_vs_sber": "По заявлению представителей Navio, с декабря 2024 года Сбербанк не является участником ООО «Автотех». Сведения об учредителях в ЕГРЮЛ скрыты.",
+        "status": "reported",
+        "agent_instruction": "Не называть Navio дочерней компанией Сбера. Формулировка: «бывшая дочерняя компания Сбера (SberAutoTech); текущие владельцы не раскрываются».",
+        "sources": [
+          "https://www.tadviser.ru/index.php/%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F:Navio_(%D1%80%D0%B0%D0%BD%D0%B5%D0%B5_SberAutoTech)",
+          "https://runet.news/articles/65995"
+        ]
+      },
+      "history": [
+        {
+          "fact": "В 2019 году в Сбербанке создан департамент SberDigitalAuto; в сентябре 2020 банк объявил о выделении его в дочернюю компанию Sber Automotive Technologies (SberAutoTech).",
+          "status": "historical",
+          "source": "https://www.tadviser.ru/index.php/%D0%9A%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F:Navio_(%D1%80%D0%B0%D0%BD%D0%B5%D0%B5_SberAutoTech)"
+        },
+        {
+          "fact": "В 2024 году бренд SberAutoTech сменен на Navio, юрлицо переименовано в ООО «Автотех». Гендиректор — Григорий Форостовский (занимал пост и до ребрендинга).",
+          "status": "confirmed",
+          "source": "https://runet.news/articles/65995"
+        }
+      ],
+      "activity_and_results": [
+        {
+          "fact": "Navio разрабатывает полный стек беспилотного транспорта: транспортные средства, платформу управления беспилотным флотом и сервисы работы с данными.",
+          "status": "confirmed",
+          "source": "https://www.cnews.ru/book/Navio_-_%D0%90%D0%B2%D1%82%D0%BE%D1%82%D0%B5%D1%85_-_SberAutoTech_-_Sber_Automotive_Technologies_-_SberDigitalAuto_-_%D0%A1%D0%B1%D0%B5%D1%80%D0%90%D0%B2%D1%82%D0%BE%D0%A2%D0%B5%D1%85_-_%D0%A1%D0%B1%D0%B5%D1%80_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%BE%D1%82%D0%B8%D0%B2_%D0%A2%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8"
+        },
+        {
+          "fact": "Апрель 2026: беспилотный магистральный тягач Navio прошел 2,8 тыс. км без водителя в кабине на полигоне НАМИ, скорость до 83 км/ч, условия соответствуют 4-му уровню автоматизации SAE.",
+          "date": "2026-04-23",
+          "status": "confirmed",
+          "source": "https://www.tks.ru/logistics/2026/04/23/0005/"
+        },
+        {
+          "fact": "Проект «Беспилотные логистические коридоры» (Navio и «Национальный перевозчик»): тягачи на М-11, М-12 и ЦКАД прошли около 19 млн км, 100 грузовиков выполнили около 12,5 тыс. коммерческих рейсов. Экономия издержек на рейсах свыше 700 км — 15–20%, топлива — 5–7%.",
+          "date": "2026-08",
+          "status": "confirmed",
+          "source": "https://itrussia.media/ru/article/bespilotnye-tyagachi-snizhayut-izderzhki-perevozchikov-na-da"
+        },
+        {
+          "fact": "В 2026 году выполнена беспилотная международная грузоперевозка Россия — Казахстан: 3 тыс. км за 2,5 дня.",
+          "status": "reported",
+          "source": "https://itrussia.media/ru/article/bespilotnye-tyagachi-snizhayut-izderzhki-perevozchikov-na-da"
+        },
+        {
+          "fact": "По данным Минтранса, 121 беспилотный грузовик разработчиков Яндекс, Navio и КАМАЗ с 2023 года проехал более 20 млн км без аварий (М-11, М-4, ЦКАД, М-12) в рамках экспериментальных правовых режимов.",
+          "status": "confirmed",
+          "source": "https://cargorun.ru/blog/novosti/bespilotnye-gruzoviki-20-mln-km-2026"
+        },
+        {
+          "fact": "В СберСити с мая 2025 года три беспилотных автомобиля Navio проехали 17 тыс. км по маршрутам 9 км с семью точками посадки; компания также разработала автономный шаттл без водительского места.",
+          "date": "2026-09-25",
+          "status": "confirmed",
+          "sources": [
+            "https://www.ixbt.com/news/2026/09/25/438272-17-tys-km-bez-voditelia-avto-bespilotniki-navio-osvaivaiut-sbersiti.html",
+            "https://www.ng.ru/news/847746.html"
+          ]
+        },
+        {
+          "fact": "Navio готовит сервис беспилотных грузовиков по подписке.",
+          "status": "reported",
+          "source": "https://www.tadviser.ru/index.php/%D0%9F%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82:Navio:_%D0%91%D0%B5%D1%81%D0%BF%D0%B8%D0%BB%D0%BE%D1%82%D0%BD%D1%8B%D0%B5_%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D0%B8"
+        },
+        {
+          "fact": "Платформа PlayAuto (навигация и мультимедиа, аналог CarPlay/Android Auto) внедрена в кроссоверы Aito Seres M5 и M7.",
+          "status": "reported",
+          "source": "https://runet.news/articles/65995"
+        },
+        {
+          "fact": "В аэропорту Пулково планируется беспилотный транспорт Navio.",
+          "date": "2026-06-04",
+          "status": "reported",
+          "source": "https://www.cnews.ru/book/Navio_-_%D0%90%D0%B2%D1%82%D0%BE%D1%82%D0%B5%D1%85_-_SberAutoTech_-_Sber_Automotive_Technologies_-_SberDigitalAuto_-_%D0%A1%D0%B1%D0%B5%D1%80%D0%90%D0%B2%D1%82%D0%BE%D0%A2%D0%B5%D1%85_-_%D0%A1%D0%B1%D0%B5%D1%80_%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%BE%D1%82%D0%B8%D0%B2_%D0%A2%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8"
+        }
+      ],
+      "related_sber_activity": [
+        {
+          "fact": "Сбер выпустил модели Kandinsky WM 1.0 для генерации обучающего видео, в том числе для беспилотного транспорта (см. artificial_intelligence).",
+          "source": "https://eastrussia.ru/news/sber-zarabotal-1-33-trln-rubley-chistoy-pribyli-za-8-mesyatsev-2026-goda/"
+        }
+      ]
+    },
+    "upcoming_events_calendar": {
+      "title": "Ближайшие события",
+      "description": "Календарь событий, которые изменят данные в базе.",
+      "routing_keywords": [
+        "когда",
+        "ближайшие события",
+        "календарь",
+        "день инвестора",
+        "отчетность"
+      ],
+      "events": [
+        {
+          "date": "конец октября 2026",
+          "event": "Публикация МСФО за 3 кв. 2026 (ориентировочно)",
+          "status": "expected"
+        },
+        {
+          "date": "октябрь–декабрь 2026",
+          "event": "Возможное закрытие сделки по «НМ-Тех»",
+          "status": "reported"
+        },
+        {
+          "date": "2026-11-12",
+          "event": "День инвестора: Стратегия 2027–2029 и новая дивидендная политика",
+          "status": "confirmed",
+          "source": "https://investorday.sber.ru/"
+        },
+        {
+          "date": "ноябрь 2026",
+          "event": "Конференция AI Journey (ежегодно)",
+          "status": "expected"
+        },
+        {
+          "date": "осень 2026",
+          "event": "Демо-день Sber500 на Moscow Startup Summit; ожидаемая презентация линейки гуманоидных роботов",
+          "status": "confirmed"
+        },
+        {
+          "date": "2026-12-01",
+          "event": "Плановый запуск цифрового депозитария и крипто-инфраструктуры",
+          "status": "reported"
+        }
+      ]
+    }
+  }
+}

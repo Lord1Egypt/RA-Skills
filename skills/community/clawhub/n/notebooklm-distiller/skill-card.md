@@ -1,42 +1,60 @@
-## Description: <br>
-NotebookLM Distiller batch-extracts knowledge from Google NotebookLM into Obsidian, with support for Q&A generation, structured summaries, glossary extraction, web research sessions, and direct Markdown persistence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NotebookLM Distiller: Batch knowledge extraction from Google NotebookLM into Obsidian. Supports Q&A generation (15-20 deep questions), structured summaries, glossary extraction, web research sessions, and direct markdown persistence.
 
-## Publisher: <br>
-[anchor-jevons](https://clawhub.ai/user/anchor-jevons) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anchor-jevons](https://clawhub.ai/user/anchor-jevons)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn NotebookLM notebooks or research sessions into structured Obsidian notes, quiz questions, answer evaluations, and saved Markdown records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can use an authenticated NotebookLM session and create NotebookLM resources. <br>
-Mitigation: Confirm the Google account, target notebook or research topic, and whether NotebookLM writeback is intended before running side-effecting commands. <br>
-Risk: The skill can write or overwrite Markdown notes in a selected vault. <br>
-Mitigation: Confirm the vault directory and exact output path before execution, and avoid sensitive content until path containment and overwrite safeguards are reviewed. <br>
+## Use Case:
 
+Developers and knowledge-work agents use this skill to extract source-grounded NotebookLM content into Obsidian notes, create research notebooks, generate quiz questions, evaluate answers, and persist Markdown into a vault.
 
-## Reference(s): <br>
-- [NotebookLM Distiller on ClawHub](https://clawhub.ai/anchor-jevons/notebooklm-distiller) <br>
-- [OpenClaw](https://github.com/openclaw) <br>
-- [OpenClaw DeepReader](https://github.com/astonysh/OpenClaw-DeepReeder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown files with YAML frontmatter, JSON quiz and evaluation payloads, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write files into a selected vault and can optionally write distilled content back into NotebookLM.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can write durable Markdown files using user-supplied paths, and the security summary notes that write scoping is under-scoped.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated test vault or tightly controlled vault path, inspect destination paths before execution, and review generated files before merging them into a primary Obsidian vault.
+
+Risk: The writeback option can add distilled content back into NotebookLM, creating durable changes outside the local vault.
+
+Mitigation: Avoid autonomous writeback use; require explicit operator approval before adding sources back to NotebookLM.
+
+Risk: The skill depends on the external notebooklm-py package and the NotebookLM CLI.
+
+Mitigation: Pin notebooklm-py to a reviewed version and verify the installed CLI before use.
+
+## Reference(s):
+
+- [NotebookLM Distiller on ClawHub](https://clawhub.ai/anchor-jevons/skills/notebooklm-distiller)
+- [Publisher profile: anchor-jevons](https://clawhub.ai/user/anchor-jevons)
+- [OpenClaw](https://github.com/openclaw)
+- [OpenClaw DeepReader](https://github.com/astonysh/OpenClaw-DeepReeder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes with YAML frontmatter, JSON quiz or evaluation payloads, and command guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write files under a user-supplied vault path and can optionally write distilled notes back into NotebookLM.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,8 @@
+{
+  "title": "十维拓客 · 录音转写洞察报告",
+  "executiveSummary": "基于 7 条 ASR 转写，按十维拓客框架完成统计；7/10 个维度在样本中出现相关表述。",
+  "recordCount": 7,
+  "covered_dims": 7,
+  "dim_count": 10,
+  "window_label": "2026-04-21 至 2026-05-21"
+}

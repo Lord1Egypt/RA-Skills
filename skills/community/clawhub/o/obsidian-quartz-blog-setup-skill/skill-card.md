@@ -1,45 +1,61 @@
-## Description: <br>
-Sets up a Quartz v4 static blog from an Obsidian vault and prepares deployment to GitHub Pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an AI coding agent through setting up a Quartz v4 static blog from an Obsidian vault and deploying it to GitHub Pages with GitHub Actions.
 
-## Publisher: <br>
-[orbisz](https://clawhub.ai/user/orbisz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[orbisz](https://clawhub.ai/user/orbisz)
 
-## Use Case: <br>
-Developers and technical writers use this skill to create a new Quartz v4 project from an Obsidian vault, configure site metadata, and prepare a first GitHub Pages deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can copy and publish broad Obsidian vault content to a public GitHub Pages site. <br>
-Mitigation: Use a fresh Quartz project or reviewed export folder, and inspect copied content before committing or pushing. <br>
-Risk: The skill creates GitHub Actions deployment configuration and changes the Git remote and branch used for publishing. <br>
-Mitigation: Review .github/workflows changes and verify the target repository and branch before commit or push. <br>
-Risk: The artifact includes unrelated self-evolution diary and PR instructions. <br>
-Mitigation: Remove or ignore the self-evolution instructions before using the skill operationally. <br>
+## Use Case:
 
+Developers, technical writers, and Obsidian users use this skill to create an initial Quartz blog project, sync Markdown notes into it, configure GitHub Pages deployment, and publish the site. It is intended for first-time setup rather than incremental blog updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/orbisz/obsidian-quartz-blog-setup-skill) <br>
-- [Quartz documentation](https://quartz.jzhao.xyz/) <br>
-- [Obsidian](https://obsidian.md) <br>
-- [GitHub Pages](https://pages.github.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, PowerShell, YAML, and TypeScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided vault path, project directory, GitHub repository URL, site title, and base URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can publish broad content from an Obsidian vault, including private notes, credentials, client data, personal information, or sensitive attachments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated public-notes vault or allowlist, inspect the exact files to be copied, confirm repository visibility, and require final manual approval before git add, commit, or push.
+
+Risk: The artifact includes a self-evolution section that can propose modifying the skill after execution.
+
+Mitigation: Review or remove the self-evolution behavior before installation, and require human review for any proposed changes to the skill source.
+
+Risk: The workflow runs cloned Quartz and npm commands as part of local setup.
+
+Mitigation: Pin Quartz and npm execution to reviewed versions where possible and review commands before execution.
+
+## Reference(s):
+
+- [Quartz v4 Documentation](https://quartz.jzhao.xyz/)
+- [Obsidian](https://obsidian.md)
+- [GitHub Pages](https://pages.github.com/)
+- [Companion update skill](https://github.com/orbisz/obsidian-wiki-blog-push)
+- [ClawHub skill page](https://clawhub.ai/orbisz/skills/obsidian-quartz-blog-setup-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Code, Files, Guidance]
+
+**Output Format:** [Markdown with inline shell, PowerShell, TypeScript, and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup steps for local project changes, Quartz configuration, Git remote configuration, and a GitHub Actions deployment workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

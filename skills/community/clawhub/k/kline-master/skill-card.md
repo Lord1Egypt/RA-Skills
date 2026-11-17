@@ -1,45 +1,57 @@
-## Description: <br>
-Kline Master helps agents provide educational candlestick technical analysis, including pattern recognition, MACD/RSI/Bollinger Bands interpretation, support and resistance analysis, and risk-managed trading plan examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kline Master helps agents explain candlestick patterns, MACD/RSI/Bollinger Band signals, support and resistance, and risk-aware trading-plan examples for crypto, stock, and forex contexts.
 
-## Publisher: <br>
-[beibei030](https://clawhub.ai/user/beibei030) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[beibei030](https://clawhub.ai/user/beibei030)
 
-## Use Case: <br>
-External users, traders, investors, and trading-system developers use this skill to learn technical analysis concepts and draft educational market-analysis responses from provided chart, price, or indicator context. Outputs should be reviewed as educational material, not personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated entries, stop-losses, leverage, or position sizes may be mistaken for personalized financial advice. <br>
-Mitigation: Present outputs as educational analysis, require independent verification, and recommend paper trading before risking real funds. <br>
-Risk: Users may expose exchange credentials, wallet keys, or brokerage access while asking for market analysis. <br>
-Mitigation: Do not request or process exchange credentials, wallet keys, brokerage access, or other secrets. <br>
-Risk: Technical-analysis patterns and indicators can produce false signals, especially in volatile or illiquid markets. <br>
-Mitigation: Encourage multi-signal confirmation, explicit uncertainty, risk limits, and review of market context before acting. <br>
+## Use Case:
 
+External traders, investors, trading-education users, and developers use this skill to ask an agent for candlestick-pattern explanations, technical-indicator interpretation, support/resistance analysis, and structured trading-plan examples.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/beibei030/kline-master) <br>
-- [Kline Master Usage Guide](artifact/TOOLS.md) <br>
-- [Trading Strategies Knowledge Base](artifact/knowledge/trading-strategies.md) <br>
-- [Trading Case Studies](artifact/knowledge/case-studies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured technical-analysis sections and optional JSON-like trade-plan examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational trading analysis may include direction, entry, stop-loss, take-profit, risk/reward, and position-size examples when supplied context supports them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can produce specific entry, stop-loss, take-profit, leverage, and position-size examples that may be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational examples only, require independent analysis or licensed financial advice before trading, and avoid acting on recommendations directly.
+
+Risk: Following leveraged trading examples or exact entry and exit targets can expose users to high financial loss.
+
+Mitigation: Be especially cautious with leverage and exact targets, and do not connect the skill to a trading account or automate order placement from its outputs.
+
+## Reference(s):
+
+- [Kline Master ClawHub release page](https://clawhub.ai/beibei030/skills/kline-master)
+- [Kline Master skill definition](artifact/SKILL.md)
+- [Kline Master tool usage guide](artifact/TOOLS.md)
+- [K-line trading knowledge base](artifact/knowledge/trading-strategies.md)
+- [Trading case studies](artifact/knowledge/case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown responses with structured bullets and optional JSON-like trading-plan fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include entry, stop-loss, take-profit, risk/reward, and position-size examples when market context is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

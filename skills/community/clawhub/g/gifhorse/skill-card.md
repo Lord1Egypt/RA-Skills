@@ -1,47 +1,57 @@
-## Description: <br>
-Search video dialogue and create reaction GIFs with timed subtitles from movie and TV video libraries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search video dialogue and create reaction GIFs with timed subtitles.
 
-## Publisher: <br>
-[Coyote-git](https://clawhub.ai/user/Coyote-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[coyote-git](https://clawhub.ai/user/coyote-git)
 
-## Use Case: <br>
-External users and developers use GifHorse to transcribe local video libraries, search dialogue, preview clips, and create subtitled reaction GIFs or meme GIFs from selected quotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs and uses an external GifHorse CLI from a third-party GitHub repository. <br>
-Mitigation: Install only after trusting the external repository and reviewing the installed CLI behavior. <br>
-Risk: GifHorse processes selected local video folders and stores dialogue transcriptions in a local database. <br>
-Mitigation: Run it only on video folders you choose and keep GIFHORSE_DB in a location you control. <br>
-Risk: Default transcription can download subtitles from online providers. <br>
-Mitigation: Use --use-subtitles for local subtitle files or --use-whisper when you do not want default online subtitle lookup. <br>
-Risk: The create command can optionally send GIFs through iMessage. <br>
-Mitigation: Confirm the configured recipient before using --send or --send-to. <br>
+## Use Case:
 
+External users and creators use this skill to search dialogue in their video libraries, preview matching clips, and generate subtitled reaction GIFs or meme clips.
 
-## Reference(s): <br>
-- [GifHorse ClawHub Page](https://clawhub.ai/Coyote-git/gifhorse) <br>
-- [GifHorse GitHub Repository](https://github.com/Coyote-git/gifhorse) <br>
-- [GifHorse Usage Guide](https://github.com/Coyote-git/gifhorse/blob/main/USAGE_GUIDE.md) <br>
-- [GifHorse Roadmap](https://github.com/Coyote-git/gifhorse/blob/main/ROADMAP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and CLI arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can generate GIF files through the external gifhorse CLI, update a local transcription database, and optionally send GIFs through iMessage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The install path fetches mutable third-party code from an unpinned GitHub branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository before installing and prefer a pinned commit or signed release when deploying the skill.
+
+Risk: Automatic subtitle downloads and iMessage sending may share video-related metadata or generated media.
+
+Mitigation: Use local subtitle files and avoid send options for sensitive videos unless the user has approved that sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/coyote-git/skills/gifhorse)
+- [Publisher Profile](https://clawhub.ai/user/coyote-git)
+- [GifHorse GitHub Repository](https://github.com/Coyote-git/gifhorse)
+- [GifHorse Usage Guide](https://github.com/Coyote-git/gifhorse/blob/main/USAGE_GUIDE.md)
+- [GifHorse Roadmap](https://github.com/Coyote-git/gifhorse/blob/main/ROADMAP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include commands that call the gifhorse and ffmpeg binaries and produce GIF files from local video content.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

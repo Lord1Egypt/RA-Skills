@@ -1,46 +1,62 @@
-## Description: <br>
-Create interactive, self-contained HTML slide decks with sidebar navigation, comment panel, zoom controls, inline editing, and present mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates interactive, self-contained HTML slide decks with sidebar navigation, comments, zoom controls, inline editing, present mode, bilingual support, and configurable brand presets.
 
-## Publisher: <br>
-[edsml-yl10823](https://clawhub.ai/user/edsml-yl10823) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edsml-yl10823](https://clawhub.ai/user/edsml-yl10823)
 
-## Use Case: <br>
-Employees, external collaborators, and developers use this skill to create or enhance browser-based presentation decks for business reviews, roadmap updates, product reviews, training, and periodic reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML includes executable JavaScript and may be opened in a browser. <br>
-Mitigation: Review the generated HTML before opening or sharing it, and confirm before launching a browser. <br>
-Risk: Sensitive slide content may reference external fonts or remote images if requested. <br>
-Mitigation: Use bundled or explicitly named assets for sensitive decks, and avoid external fonts or remote images unless approved. <br>
-Risk: Local comments can remain on shared machines. <br>
-Mitigation: Clear local comments before sharing the deck or using the same browser profile on shared devices. <br>
+## Use Case:
 
+Developers and business users use this skill to create or enhance browser-based presentation decks for periodic updates, product reviews, roadmap discussions, retrospectives, quarterly business reviews, and training material.
 
-## Reference(s): <br>
-- [Components](references/components.md) <br>
-- [Design Tokens](references/design-tokens.md) <br>
-- [JavaScript Controller](references/js-controller.md) <br>
-- [Slide Types](references/slide-types.md) <br>
-- [Viewport Chrome](references/viewport-chrome.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Self-contained HTML file with inline CSS and JavaScript, plus brief Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated decks may include browser-local comments, inline editing controls, zoom controls, present mode, bilingual text, and brand-specific assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated decks may include external font links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final HTML before sharing or deployment, and replace remote font links with approved local assets when required.
+
+Risk: The skill may rely on prior presentation files for copied logos or JavaScript.
+
+Mitigation: Confirm the source and permissions for any reused presentation, logo, or script before publishing generated slides.
+
+Risk: Corporate or confidential material may be exposed through brand assets or deck content.
+
+Mitigation: Prefer the Neutral preset or provide explicit trusted asset paths when handling confidential corporate material.
+
+## Reference(s):
+
+- [Reusable Components](artifact/references/components.md)
+- [Design Tokens](artifact/references/design-tokens.md)
+- [JS Controller - SlidePresentation Class](artifact/references/js-controller.md)
+- [Slide Types](artifact/references/slide-types.md)
+- [Viewport Fitting and Interactive Chrome](artifact/references/viewport-chrome.md)
+- [ClawHub skill page](https://clawhub.ai/edsml-yl10823/skills/html-slides)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Markdown, Guidance]
+
+**Output Format:** [Self-contained HTML files with inline CSS and JavaScript, plus concise Markdown delivery notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks may include bilingual English/Chinese text, embedded or referenced brand assets, browser-side interaction controls, and localStorage-backed comments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

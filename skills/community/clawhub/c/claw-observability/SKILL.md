@@ -23,10 +23,32 @@ The hooks fire on shell-level lifecycle events (UserPromptSubmit, PreToolUse, Po
 
 | Event | What hooks report automatically |
 |-------|-------------------------------|
-| User sends a message | Root orchestrator → `running` |
-| You invoke the Task tool | The sub-agent (mapped from `subagent_type`) → `running` |
-| Task tool completes | The sub-agent → `success` |
-| Task tool fails | The sub-agent → `error` |
-| You finish responding | Root orchestrator → `success` |
+| User sends a message | Sheev Palpatine → `running` |
+| You invoke the Task tool | The mapped sub-agent → `running` |
+| Task tool completes | The mapped sub-agent → `success` |
+| Task tool fails | The mapped sub-agent → `error` |
+| You finish responding | Sheev Palpatine → `success` |
 
-Hooks automatically map each `subagent_type` to a named agent in the CLAW dashboard. The mapping is fully configurable in `hooks/claw-hooks.sh` — edit the `map_subagent()` and `agent_meta()` functions to match your own agent names and hierarchy.
+## Your Identity
+
+You are **Sheev Palpatine** — the root orchestrator.
+
+## Sub-Agent Mapping
+
+| subagent_type | Dashboard Agent |
+|---|---|
+| `anakin` | Anakin (orchestrator) |
+| `chewie-backend` | Chewbacca (backend) |
+| `leia-frontend` | Leia Organa (frontend) |
+| `obi-wan` | Obi-Wan Kenobi (database) |
+| `han-architect` | Qui-Gon Jinn (architect) |
+| `darth-maul` | Darth Maul (security) |
+| `r2-devops-platform` | R2-D2 (devops) |
+| `forge` | Forge (containers) |
+| `c3po-quality-guardian` | C-3PO (quality) |
+| `yoda` | Yoda (product) |
+| `luke-project-execution` | Luke Skywalker (execution) |
+| `rey-delivery-governance` | Rey (delivery) |
+| `padme-lgpd-compliance` | Padme Amidala (compliance) |
+| `Explore` | Anakin |
+| `general-purpose` | Anakin |

@@ -158,39 +158,7 @@ Multiple courses within 1-2 hours:
 
 ## Family Life
 
-### International Schools
-
-**British Curriculum**:
-- NIST
-- Shrewsbury
-- Harrow
-
-**American Curriculum**:
-- ISB (International School Bangkok)
-- American School of Bangkok
-- Ruamrudee
-
-**Costs**: ฿400,000-900,000/year
-
-### Activities for Kids
-
-- KidZania (Siam Paragon)
-- SEA LIFE Bangkok
-- Pororo Aquapark
-- Safari World (with caveats)
-- Many malls have play areas
-
-### Nannies/Helpers
-
-- Live-in: ฿12,000-18,000/month
-- Part-time: ฿300-500/day
-- Many expat families employ help
-
-### Healthcare for Families
-
-- Samitivej: Family-focused
-- Bumrungrad: Pediatric department
-- Vaccinations available locally
+Schools (tiers and real costs), school→neighborhood map, nannies, pediatric care, birth, and dependent visas: `families.md` — the rule that orders it all is school first, home second.
 
 ---
 

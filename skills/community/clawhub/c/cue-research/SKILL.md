@@ -1,15 +1,15 @@
 ---
 name: cue-research
-description: "Use when the user asks a research question they want Cue to run — against a saved 搭子(buddy) template or as free-form deep research. Triggers: 帮我查/调研/研究 + 主体或话题; ask Cue about X; 用 Cue 跑一下 Y; 看看哪个搭子能查 X; 把刚才那次调研存成搭子. Public-data scope only — refuse for private-data scenarios (real AML / medical / internal accounting)."
+description: "Use when the user asks a research question they want Cue to run — against a saved 搭子(buddy) template or as free-form deep research. 在 AI agent 里用自然语言把调研问题交给 Cue 深研平台：自动匹配 ≤2 个搭子（或走带隐私脱敏与公开信源约束的自由式深研），确认 credits 后后台执行，取回带来源链接的报告，满意可一键沉淀为搭子。Triggers: 帮我查/调研/研究 + 主体或话题; ask Cue about X; 用 Cue 跑一下 Y; 看看哪个搭子能查 X; 把刚才那次调研存成搭子. Public-data scope only — refuse for private-data scenarios (real AML / medical / internal accounting)."
 license: MIT
 metadata:
-  version: "0.3.0"
+  version: "0.3.4"
   requires:
     bins: ["python3"]
     envOptional: ["CUE_API_KEY", "CUE_API_BASE"]
   endpoints:
     base: "https://cuecue.cn/api"
-    apiKeyPage: "https://cuecue.cn/api-key"
+    apiKeyPage: "https://cuecue.cn/hub/api-key"
 ---
 
 # cue-research — 让 Cue 在你的 agent 里直接干活
@@ -24,7 +24,9 @@ Cue 工具面仅含**公开数据源**(工商/司法/监管/财报/资金流/招
 
 **依赖**:本 skill 只有一个薄运行时脚本 `scripts/research_run.py`(跑+取报告+落盘),它和其余调用都从 sibling `../cue-buddy/scripts` 导入共享原语(见下文"导入约定")。因此 **`cue-buddy` 必须与本 skill 同级目录并装**(例如都在 `~/.claude/skills/` 下)——只装 cue-research 会在 import 时失败。
 
-跟 cue-buddy 共用一套 API key 配置(`CUE_API_KEY` env 或 `~/.cue/config.json`)。详见 [`../cue-buddy/SKILL.md`](../cue-buddy/SKILL.md) 的"准备"段。
+**Cue API Key**:打开 <https://cuecue.cn/hub/api-key> 注册获取——**新用户注册一次性送 500 积分,之后每天再免费送 10 积分**。跟 cue-buddy 共用一套 API key 配置(`CUE_API_KEY` env 或 `~/.cue/config.json`)。详见 [`../cue-buddy/SKILL.md`](../cue-buddy/SKILL.md) 的"准备"段。
+
+**积分不够用**:打开 <https://cuecue.cn/>,点击页面**左下角**获取你的**专属邀请链接**,邀请好友加入,**每邀请一位再得 500 积分**;或前往 <https://cuecue.cn/pay> 充值(首次充值有优惠);也可等次日免费额度。加好积分后用**相同命令重跑即可,不会重复计费**。
 
 ## 调用约定(verbs)
 
@@ -79,7 +81,7 @@ while True:
     page += 1
 ```
 
-每个模板带 `title / primary_category / secondary_category / goal` 字段。agent 按 **`secondary_category`** 分组扫读(`深度核查` / `投资研究` / `信贷尽调` / `市值管理` / `财富投顾` / `私募尽调` / `融资融券` / `法律与行研` / `资本运作` / `行业研究` / `商机挖掘` / `保险营销` ...top 12 个 secondary cat 覆盖 ~80% 模板),拿 query 跟每个候选的 `goal` 做语义匹配,挑出最相关的 **≤2 个**候选。
+每个模板带 `template_id / title / primary_category / secondary_category / goal` 字段。**`template_id` 是字符串 `template_<base62后缀>`(如 `template_fnig0i`),Stage 4 跑搭子用它——必须取这个字段的值,绝不是数字 `id` 字段(搭子同时有数字 DB `id` 和字符串 `template_id`,易混)或列表序号;裸数字如 `142` 不是有效 id。** agent 按 **`secondary_category`** 分组扫读(`深度核查` / `投资研究` / `信贷尽调` / `市值管理` / `财富投顾` / `私募尽调` / `融资融券` / `法律与行研` / `资本运作` / `行业研究` / `商机挖掘` / `保险营销` ...top 12 个 secondary cat 覆盖 ~80% 模板),拿 query 跟每个候选的 `goal` 做语义匹配,挑出最相关的 **≤2 个**候选。
 
 **关键原则——主体 vs 意图分离:**
 
@@ -134,21 +136,76 @@ while True:
 
 ### Stage 4a: 用户选 1/2 — 跑搭子(后台跑 + 落盘,跑完再取)
 
-**别在 agent 回合里死守一小时的 live 流。** 深研单次 3-15 分钟(服务端 60min 硬超时),同步阻塞既浪费回合又脆弱(live 流常丢 reporter 段)。改用 **fire-and-retrieve**:`research_run.py` 在**后台**跑完整流程(发起 chat_stream → live 取报告 → 空则 replay 兜底 → 落盘),agent 回合立即让出;后台任务完成后 agent 被回叫,再读 `--output` 文件交付。
+**别在 agent 回合里死守一小时的 live 流。** 深研单次 3-15 分钟(服务端 60min 硬超时),同步阻塞既浪费回合又脆弱(live 流常丢 reporter 段)。改用 **fire-and-retrieve**:`research_run.py` 在**后台**跑完整流程(发起 chat_stream → live 取报告 → 空则 replay 兜底 → 落盘),agent 回合立即让出;后台任务完成后 agent 被回叫(**回叫机制因平台而异、并非总可靠——别干等,见下"主动检查完成"**),再读 `--output` 文件交付。**对用户别说"完成后自动通知我"**——主动检查完成,别把希望寄托在回叫上。
+
+**⚠️ stdout 是 agent 内部信号,不转用户:** `research_run.py` 的 `[cue-research] …` 行(`STARTED conv_id=` / `▶ agent=…` / `🔧 tool=…` / `✓ report finalized` / `RESULT`)是给 **agent 内部判断**启动/进度/完成用的,**绝不直接贴给用户**。agent 对用户说人话(起跑确认 / 进度翻译 / 完成交付);用户不该看到 conv_id / agent= / tool= 这些技术行。
 
 **起跑(Bash,`run_in_background: true`):**
+
+`--template-id` 取 Stage 2 候选搭子的 `template_id` 字段值(形如 `template_fnig0i`)。**别传数字 `id` 或序号**——runner 会对纯数字后缀(如 `142`→`template_142`)fail-fast 拒绝(不烧 credits),因 Cue id 后缀从不纯数字。
 
 ```bash
 python3 <skill>/scripts/research_run.py \
   --template-id <选中的 template_id> \
-  --query "<原问题或澄清后问题>" \
-  --output ~/cue-reports/$(date +%Y-%m-%d-%H%M)-<主体slug>.md
-# 续跑(Stage 5 不满意补充澄清时复用上下文,省 credits):再加 --conversation-id <上次的 conv_id>
+  --query "<原问题或澄清后问题>"
+# --output/--log 留空 -> runner 用默认唯一日志/报告路径;起跑后 log= 行打日志路径、RESULT 行打报告路径(都是绝对路径字面值,见下"完成检测")
 ```
 
-起跑后**对用户说一句**:"已在后台开跑(约 3-15 分钟),跑完我直接把报告贴出来,并存到 `~/cue-reports/…`。" 然后让出回合。
+**⚠️ 路径可写性:** `cue_api.py root` 已探测可写根并建好 `reports/` `logs/`(`~/.cue` 不可写时自动回落到 agent cwd 或 temp,跨平台无 `/tmp` 依赖)。**别再自己 `mkdir` 或 `touch .wtest`**--runner 起跑时 `cue_root()` 会再探一次,不可写直接早失败(烧 credits 前)。`--output` 指别处时 runner 也会探该目录。
 
-**完成回叫后:** 读 stdout 末行 `[cue-research] RESULT ok conv_id=… chars=… output=…`(失败是 `RESULT empty …`),`ok` 则读 `--output` 文件 → Stage 5 交付;`empty` 则按文件里/stdout 的诊断给下一步(多半去 cuecue.cn 网页端看该 conversation)。
+**起跑后确认启动(不等结果,只等启动信号):** 后台 stdout 出现 `[cue-research] STARTED conv_id=…`(通常 2-5 秒内,第一个 SSE 事件到达=后端已接受)再让出回合。若出现 `[cue-research] chat_stream failed`(启动失败,参数/鉴权问题),立即按诊断处理,不对用户说"已开跑"。
+
+**让出前对用户说(人话):** "已成功开跑(约 3-15 分钟),跑完我直接把报告贴出来,并存到你的 cue 目录下(跑完会给全路径)。" **不要把 `STARTED conv_id=` / `▶ agent=` 这些 stdout 行转给用户**(见上 ⚠️)。
+
+**起跑后必须消费 research_run.py 的流式 stdout(进度 + 完成都靠它):** research_run.py 的 stdout 是**流式实时输出**(`flush=True`):`STARTED` → `▶ agent=… task=…`(研究步骤) → `✓ report finalized` → `RESULT ok|empty`。这个流是你的**进度 + 完成的唯一来源**——必须消费它,不让出后睡等回叫(回叫不可靠,.workbuddy 等平台通知常不来)。
+
+**完成检测(必须):** runner 自带 `--log`(默认 `<root>/logs/cue-run-<conv_id>.log`,**每 run 唯一**),把进度**同时** tee 到该文件与 stdout--**不用再 shell `>` 重定向**(老 `./cue-run.log` 那套的坑:两个 Bash 得共用同一写死路径,沙箱/Windows 一变就失配)。**唯一日志名消两类竞态**:stale RESULT(新文件无旧内容,`tail -F` 不会匹上次结果)+ miss RESULT(`tail -F` 读新文件已有内容,即使 RESULT 在 watcher attach 前已写;`tail -n 0` 会漏掉秒级失败的 RESULT,watcher 干等 61min)。
+
+⚠️ **跨 Bash 不共享 shell 变量**:起跑(Bash1)和等 RESULT(Bash2)是两个独立 Bash 调用,`$root`/`$log` 不会带过去。**别**用变量,用**字面绝对路径**--runner 起跑后第一行打 `[cue-research] log=<绝对路径>`,agent 本来就要读 Bash1 stdout 确认 `STARTED`,顺手记下这行的路径字面值给 Bash2 用:
+```bash
+# Bash1 起跑(run_in_background;--output/--log 都留空,runner 用默认唯一日志,RESULT 行会打 output 全路径):
+python3 <skill>/scripts/research_run.py --template-id … --query …
+# -> 首行 [cue-research] log=<root>/logs/cue-run-<conv_id>.log  <- 记下这个绝对路径
+# -> STARTED conv_id=… ;进度行 ;末行 RESULT ok|empty output=<报告绝对路径>
+# Bash2 第二个 background Bash(tail -F 读新文件内容,不漏 RESULT;用上面记下的 log 字面路径):
+timeout 3660 tail -F "<Bash1 打的 log 绝对路径>" | grep -m1 "RESULT"
+# grep -m1 匹配 RESULT 退出;timeout 3660 防 runner 崩溃(OOM/SIGKILL/未捕获异常)不写 RESULT 时无限等(61min 超 60min hard timeout)
+# Bash 完成 -> 读 RESULT 行:ok 读其 output=<路径> 报告交付;empty/超时 -> 诊断/告诉用户失败
+```
+
+**进度展示:** 消费 stdout 进度行(`▶ agent=… task=…`)翻译研究步骤给用户:
+- Claude Code: `Monitor` 工具(`tail -F <Bash1 打的 log 绝对路径> | grep "▶\|✓\|RESULT"`),每行通知 → 翻译报用户。
+- 无 Monitor 的 agent(.workbuddy 等): **用户问进度时**读 `<Bash1 打的 log 绝对路径>` 最新行翻译(不是定期轮询——你让出后不醒,定期读不可行;background Bash 完成通知是唯一主动触发)。
+- 翻译:`▶ agent=researcher task=查…` → "研究步骤:查…";`✓ report finalized` → "报告已生成,正在取回";`RESULT` → 交付。**绝不贴原始 `▶ agent=` 行**(见上 ⚠️)。
+
+**绝不告诉用户"完成后会自动通知我"**——你消费流式 stdout 主动检测进度 + 完成,不把希望寄托在回叫上。
+
+翻译:把 `▶ agent=… task=<requirement>` 的 **task_requirement** 作为**研究步骤**告诉用户,**不贴 agent 名**(coordinator/supervisor/researcher 是内部角色,用户不关心):
+- `▶ agent=researcher task=查半导体细分景气度` → "研究步骤:查半导体细分景气度"
+- `▶ agent=reporter task=撰写半导体景气度报告` → "研究步骤:撰写半导体景气度报告"
+- 多个 task 整理成**步骤列表**(1. 2. 3. …),已完成的标 ✅、进行中的标 🔄、未到的标 ⏳
+- `▶ agent=coordinator/supervisor`(无 task_requirement):**跳过**,不报用户(内部协调)
+- `✓ report finalized` → "报告已生成,正在取回";`RESULT ok` → 读 `--output` 报告交付
+- **绝不贴原始 `▶ agent=` 行**(见上 ⚠️)。整个进度流从 `STARTED` 到 `RESULT` 都在 stdout 一个文件里。
+
+**⚠️ 别高频 Read stdout 轮询:** 进度是**事件驱动**的——要么用 `Monitor` 被动收推送(每行进度主动通知你),要么起一个 background Bash `tail -F <Bash1 打的 log 绝对路径> | grep -m1 "RESULT"` 等 RESULT 再由完成通知触发。长间歇无输出是**正常现象**(深研某步可能跑几分钟无进度行),**不要反复 Read 同一个 stdout 文件等事件**(浪费回合 + 上下文 overflow 风险)。
+
+**记住 conv_id:** 起跑后从 stdout `STARTED conv_id=…` 行取 conv_id(或起跑时用 `--conversation-id <自定义>` 指定),后续检查/replay 都用它。**绝不重复起跑**:已有 conv_id 在跑/已完成时,用户问进度检查该 conv_id(stdout/replay),**不要重新 `research_run.py`**(烧新 credits + 丢上下文);只有用户要换主体/换搭子才新起跑。
+
+**主动检查完成(持续定时查,别等回叫/别等用户问/别等 5 分钟):** 回叫不可靠——你不是被动等通知,而是**持续定时查 stdout 末行(每 1-2 分钟,直到 `RESULT` 出现)**(同上"起跑后立即主动跟踪"的定期查机制;不是查一次就完)。查到 `RESULT ok` → 交付;没 RESULT → replay(conv_id) 取报告:
+1. 读后台 stdout 末行。`RESULT ok` → 读 `--output` 交付;`RESULT empty` → 按诊断给下一步。
+2. stdout 没 `RESULT`(任务跑很久/回叫没来)→ **用 conv_id 主动 replay 取报告**(不耗 credits,后端若已完成必有报告):
+   ```python
+   import sys; sys.path.insert(0, "<repo>/cue-buddy/scripts")
+   from cue_api import replay
+   from sse_report import extract_reporter_content
+   events = list(replay("<conv_id>", max_seconds=60))
+   report = extract_reporter_content(events)
+   # report 非空 → 后端已完成,落盘交付;空 → 还在跑,等一会再查
+   ```
+3. replay 有报告 → 落盘 `--output` 交付(同 research_run 的落盘格式);replay 空 → 后端还没完成,等 1-2 分钟再查(别立刻重复 replay)。
+
+**完成回叫后(或主动检查拿到 RESULT):** 读 stdout 末行 `[cue-research] RESULT ok conv_id=… chars=… output=…`(失败是 `RESULT empty …`),`ok` 则读 `--output` 文件 → Stage 5 交付;`empty` 则按文件里/stdout 的诊断给下一步(多半去 cuecue.cn 网页端看该 conversation)。
 
 **为什么这套是对的(背景,别自己重写):** `research_run.py` 是 `cue_api` + `sse_report` 共享原语的**薄编排**(不复制、不漂移),内部把 **replay 当主取报告路径**:live 客户端流长跑常在 reporter 段到达前断连(server 仍跑完写 DB),所以 `extract_reporter_content(live_events)` 返回空是**常态不是 bug**——`chat_stream` 与 `replay` SSE 解析逐字节同款、共用同一 extract,replay 读 DB 完整 `workflow_events` 几乎总能拿到。这套 L1 诊断(`diagnose_empty_report` 的三种 `kind`)+ L2 replay 的硬化逻辑与 `cue-buddy/scripts/test_template.py` 同源、已跑通 ≥9 主体。注意 `stream_cut_before_reporter` 是 `diagnose_empty_report` 返回的 **`kind` 字符串,不是可 import 的函数**。前台调试需要时(`--foreground` 语义)直接去掉 `run_in_background` 即可,但默认走后台。
 
@@ -164,9 +221,8 @@ python3 <skill>/scripts/research_run.py \
 
 ```bash
 python3 <skill>/scripts/research_run.py \
-  --query "<rewrite_result['rewritten_mandate']>" \
-  --output ~/cue-reports/$(date +%Y-%m-%d-%H%M)-<主体slug>.md
-# 不传 --template-id = 自由式深研。同样 run_in_background:true,完成回叫后读 --output。
+  --query "<rewrite_result['rewritten_mandate']>"
+# 不传 --template-id = 自由式深研。同样 run_in_background:true(起跑后等 STARTED 信号确认启动 + 中途可读 stdout 查进度,见 Stage 4a),完成回叫后读 --output。
 ```
 
 **rewrite 仍由 agent 在前台先做、runner 不碰**(Hard Rule 3/4:不在 runner 里重写后端 rewrite 逻辑;且要先把 `user_confirmation` + `pii_masked` 给用户确认)。**为什么必须先 rewrite?** chat_stream 本身不调 rewrite_prompt(只有 /api/rewrite 端点会),跳过会丢隐私脱敏 + 公开信源约束 + 意图增强。runner 只负责「跑 + 取报告 + 落盘」。
@@ -178,6 +234,20 @@ python3 <skill>/scripts/research_run.py \
 - 给链接 → 加 `--mimic-url "<URL>"`;给文档 → 加 `--mimic-file "<本地路径>"`(runner 会先上传换 `file_hash`,支持类型以服务端 `/api/file_server/accept_type` 为准)。
 - **仅自由式**:`--mimic-*` **不可**与 `--template-id` 同用(搭子已有 report_format,后端会让 template_id 压过 mimic → 静默失效,runner 直接拒绝)。两个 mimic 参数也互斥。
 - **一次跑完、不中途确认**(`need_confirm=False`):后端按样本自动生成风格模板并直接往下跑,**不**为「审模板」停下来等输入——这是为了不破坏后台一次跑完。代价:你没机会在烧 credits 前先看那个自动模板;若风格推歪了就重给样本再跑。(交互式审模板是 Phase 2,暂未做。)
+
+**可选——文档接地(素材,搭子与自由式都可用)。** 当用户想让调研**基于自己的文档**(合同/年报/PDF/会议纪要…)而不只是公开信源时,把文档作为**素材**传进去:研究 agent 会用内置 `file_retrieval` 工具对其做**全文语义检索**(真 RAG,不是只看开头预览)。与 `mimic`(仿风格)正交、也能与 `--template-id` 同用。
+
+- 加 `--material "<本地路径>"`,**可重复**多个文件:`--material a.pdf --material b.docx`。runner 先把每个文件上传(SSE 走完 `…→completed` 才拿到 `file_id`),再随 `conversation_file_ids` 绑进这次跑。
+- **要先经用户确认再上传**(见安全规则:默认不上传本地材料)。问一句:"要把这份文档作为调研素材上传吗?它会用于检索,会占用本次 credits。"
+- 类型/大小(均为**服务端**约束,runner 不在本地预检大小):支持类型与精确上限以 `/api/file_server/accept_type` 为准,**单文件最大 256 MiB**(超限/不支持类型由服务端拒绝并报错);file_id **单次绑定**(后端行为:一个 file_id 只能用于一次会话,续跑/换会话需重传)。据后端:上传只校验余额、**不单独扣费**,**跑** chat 才扣 credits。
+- query 写法上**明确请 agent 检索上传的文档**(如"请基于我上传的素材回答…"),让它真去调 `file_retrieval`;别写"不要检索/只读"之类把工具禁掉的话。
+
+```bash
+python3 <skill>/scripts/research_run.py \
+  --query "<问题;明确要求基于上传素材调研>" \
+  --material "~/Downloads/某公司年报.pdf"
+# 自由式带素材如上(仍先 rewrite);搭子带素材则再加 --template-id <id>。同样 run_in_background:true。
+```
 
 ### Stage 5: 交付 + 满意度
 
@@ -213,7 +283,7 @@ Stage 5 满意且是 4b 自由式跑时,问用户(**对外文案不出现 verb �
 - **③ 卡住/报错**：匹配不到搭子 / 权限错 / 用户困惑时，**先帮用户处理 / 给下一步**，再把群作为**温和兜底**——不是报错就甩去群里（14 天冷却）。
 - **④ 用户显式问**："怎么加群 / 社区 / 反馈 / 有没有新模板" → **展示二维码图片**（**不冷却**）。
 
-**被动触发（①②③）只给一行文字 + 指向二维码 `../assets/community-group-qr.png`，不渲染大图；大图仅在 ④（用户主动要）时展示。** 加群入口只有二维码（已编码加群链接），**不发明文加群链接**。 冷却 `~/.cue/last-community-invite.json`（被动每会话最多一次、距上次 <14 天跳过；读写失败则本会话不再弹）。**外部群：飞书用户（含其它租户）可扫码加入；仅纯非飞书用户加不进**——完整规则与边界见 [`../community-invite.md`](../community-invite.md)。
+**被动触发（①②③）只给一行文字 + 指向二维码 `../assets/community-group-qr.png`，不渲染大图；大图仅在 ④（用户主动要）时展示。** 加群入口只有二维码（已编码加群链接），**不发明文加群链接**。 冷却 `${CUE_HOME:-$HOME/.cue}/last-community-invite.json`(与 config 同目录;设 CUE_HOME 则随迁)（被动每会话最多一次、距上次 <14 天跳过；读写失败则本会话不再弹）。**外部群：飞书用户（含其它租户）可扫码加入；仅纯非飞书用户加不进**——完整规则与边界见 [`../community-invite.md`](../community-invite.md)。
 
 ## Hard rules(铁律)
 
@@ -226,7 +296,7 @@ Stage 5 满意且是 4b 自由式跑时,问用户(**对外文案不出现 verb �
 
 ## 安全规则
 
-跟 cue-buddy 同源：API key 不出现在输出/日志/提交；用户粘了 key → 提醒去 cuecue.cn/api-key 立即轮换；本地材料不上传。
+跟 cue-buddy 同源：API key 不出现在输出/日志/提交；用户粘了 key → 提醒去 cuecue.cn/hub/api-key 立即轮换。**默认不上传本地材料**;仅当用户**明确要求做文档接地**(`--material`)时,经用户确认后才上传其指定的素材文件(用于 `file_retrieval` 检索),其余情况一律不碰用户本地文件。
 
 ## 脚本到 verb 映射
 

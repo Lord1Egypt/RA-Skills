@@ -1,41 +1,55 @@
-## Description: <br>
-Generate professional invoices from project data, including line items, tax calculation, payment terms, formatted output, outstanding invoice tracking, and payment reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional invoices from project data, including line items, tax calculation, payment terms, formatted output, outstanding invoice tracking, and payment reminders.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-External business users such as freelancers, agencies, and consultants use this skill to create client invoices, calculate totals, define payment terms, identify overdue invoices, and draft reminder messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Invoices and reminder drafts may contain sensitive client, payment, or banking details. <br>
-Mitigation: Provide only the billing details needed for the task, redact unnecessary account information, and confirm storage location before using tracking outputs as records. <br>
-Risk: Calculated totals, taxes, discounts, due dates, or late fees may be wrong if source inputs or jurisdiction-specific rules are incomplete. <br>
-Mitigation: Review calculations and payment terms against source records and applicable business or tax requirements before sending invoices. <br>
+## Use Case:
 
+External freelancers, agencies, consultants, and business operators use this skill to draft invoices, calculate totals, set payment terms, identify overdue invoices, and draft reminder emails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tktk-ai/tk-invoice-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/tktk-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text invoice layouts, reports, and reminder drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calculated subtotals, taxes, discounts, due dates, payment instructions, and reminder language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: Invoices can contain client addresses, email addresses, payment links, bank details, invoice history, and contract terms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat invoice inputs and outputs as sensitive business data; redact unnecessary details before sharing and avoid retaining account numbers or confidential terms unless retention is intentional.
+
+Risk: Generated invoice totals, tax amounts, due dates, and late-fee language may be inaccurate if the user provides incomplete data or local requirements differ.
+
+Mitigation: Review calculations, payment terms, and tax treatment before sending invoices or reminders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tktk-ai/skills/tk-invoice-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/tktk-ai)
+- [clawhub.com](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style invoice drafts, reports, and reminder email text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include calculated subtotals, tax, discounts, totals, due dates, payment terms, and reminder language based on user-provided billing data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

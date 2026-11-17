@@ -101,7 +101,7 @@ concierge config set elevenLabsApiKey xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 concierge config set elevenLabsVoiceId EXAVITQu4vr4xnSDxMaL
 
 # Anthropic (for AI conversation)
-concierge config set anthropicApiKey sk-ant-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+concierge config set anthropicApiKey REDACTED-SECRET
 
 # Optional: custom port (default: 3000)
 concierge config set callServerPort 3000

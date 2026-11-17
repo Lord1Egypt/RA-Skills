@@ -1,38 +1,52 @@
-## Description: <br>
-Runs simple shell scripts that print repeated static text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides simple shell scripts that print fixed echo output.
 
-## Publisher: <br>
-[wangwei0326](https://clawhub.ai/user/wangwei0326) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangwei0326](https://clawhub.ai/user/wangwei0326)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers can use this skill to have an agent run or suggest simple shell echo commands. The inspected release behaves like a placeholder echo skill rather than a directory creation utility.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill name and documentation imply directory-related behavior, while the inspected scripts only print repeated fixed text.
+
+Mitigation: Review the scripts and examples before use, and rely on this skill only when fixed echo output is the intended behavior.
+
+Risk: Low-quality documentation may cause users or agents to misunderstand what the skill does.
+
+Mitigation: Treat the release as poorly documented until the publisher fixes the name, description, examples, and scripts.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents can use this skill as a small shell-script echo utility. Review it before use because the documentation refers to mkdir, cron, and backup behavior that the reviewed scripts do not implement. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation describes mkdir, cron, and backup behavior that does not match the reviewed scripts. <br>
-Mitigation: Do not rely on this skill for directory creation, cron setup, or backups; inspect the scripts and treat it as a simple echo utility unless the artifact changes. <br>
+**Output Format:** [Markdown with inline bash code blocks and plain text command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangwei0326/wangwei-mkdir) <br>
+**Other Properties Related to Output:** [The inspected scripts ignore the shown directory argument and print repeated fixed text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, text, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; script output is repeated plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts ignore the provided argument and print repeated static text.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

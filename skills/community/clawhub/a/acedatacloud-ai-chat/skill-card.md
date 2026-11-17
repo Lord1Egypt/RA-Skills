@@ -1,42 +1,60 @@
-## Description: <br>
-Access 50+ LLM models through a unified OpenAI-compatible API via AceDataCloud for chat completions, streaming, function calling, and vision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in using AceDataCloud's LLM gateway for chat, embeddings, stateful conversations, and scheduled tasks across multiple model families.
 
-## Publisher: <br>
-[Germey](https://clawhub.ai/user/Germey) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[acedatacloud](https://clawhub.ai/user/acedatacloud)
 
-## Use Case: <br>
-Developers and agent users use Ai Chat to configure agents or applications to call GPT, Claude, Gemini, DeepSeek, Grok, and other models through AceDataCloud's OpenAI-compatible chat completions endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images or image URLs, tool definitions, and request metadata are sent to AceDataCloud and may reach downstream model providers. <br>
-Mitigation: Use the skill only when that data transfer is approved, and avoid secrets or regulated data unless organizational privacy and retention requirements are satisfied. <br>
-Risk: The skill requires an AceDataCloud API token and uses token-based billing. <br>
-Mitigation: Use a dedicated revocable token, keep it out of code and logs, rotate it if exposed, and monitor billing for unexpected usage. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure AceDataCloud access and build chat, embedding, multimodal, and scheduled-agent workflows.
 
-## Reference(s): <br>
-- [ClawHub Ai Chat release](https://clawhub.ai/Germey/acedatacloud-ai-chat) <br>
-- [AceDataCloud chat completions endpoint](https://api.acedata.cloud/v1/chat/completions) <br>
-- [AceDataCloud OpenAI-compatible API base](https://api.acedata.cloud/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, JSON request examples, and OpenAI-compatible response examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACEDATACLOUD_API_TOKEN; output may include model choices, request parameters, streaming guidance, function-calling examples, and vision request examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata reports 1.0) <br>
+Risk: Prompts, conversation history, embeddings input, and uploaded file URLs may be sent to AceDataCloud.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only data approved for that provider and review submitted content before making requests.
+
+Risk: An exposed API token could allow unauthorized use of the account.
+
+Mitigation: Keep the token private, do not include it in prompts or committed files, and restrict allowed APIs where possible.
+
+Risk: Scheduled agent runs are unattended and billable and may invoke permitted tools.
+
+Mitigation: Confirm the task, tool permissions, schedule, and spending scope before enabling it; monitor runs and pause failures.
+
+## Reference(s):
+
+- [ClawHub AI Chat release](https://clawhub.ai/acedatacloud/skills/ai-chat)
+- [AceDataCloud first-run guide](https://github.com/AceDataCloud/Skills#first-run-with-clawhub-and-openclaw)
+- [AceDataCloud authentication guidance](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/authentication.md)
+- [AceDataCloud unattended-task confirmation guard](https://github.com/AceDataCloud/Skills/blob/main/skills/_shared/unattended.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples cover API requests, authentication, and scheduled-task setup.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

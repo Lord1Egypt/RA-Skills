@@ -1,42 +1,54 @@
-## Description: <br>
-Basic web page fetching utility that supports anti-bot bypass, automatic main-content extraction, and HTML-to-Markdown conversion for blogs, news, announcements, and other static pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches static web pages, extracts the main content, and converts HTML to Markdown with optional JSON output.
 
-## Publisher: <br>
-[shuxiangfanclaw](https://clawhub.ai/user/shuxiangfanclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuxiangfanclaw](https://clawhub.ai/user/shuxiangfanclaw)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch web pages, extract likely article content, and convert the result to Markdown or JSON for downstream reading, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch third-party websites, including with stealth mode, which can create compliance risk if used on sites where scraping is not authorized. <br>
-Mitigation: Use the skill only on sites where access and scraping are authorized and comply with applicable terms, laws, and internal policies. <br>
-Risk: Fetched page text is untrusted input and may contain misleading instructions, prompt-injection content, or inaccurate information. <br>
-Mitigation: Treat fetched content as untrusted before asking an agent to summarize it, execute follow-up actions, or rely on extracted claims. <br>
-Risk: Optional stealth fetching depends on browser automation and anti-bot behavior that may be unsuitable for some production environments. <br>
-Mitigation: Prefer basic mode where possible, install and review dependencies before use, and restrict stealth mode to approved workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve article-like content from blogs, news pages, announcements, and similar static web pages, then return cleaned Markdown or structured JSON.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuxiangfanclaw/scrapling-fetch-basic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text by default, with optional JSON output containing URL, title, content, selector, length, truncation status, and mode.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content is truncated to the requested maximum character count; default maximum is 30000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, release metadata) <br>
+Risk: The skill can fetch arbitrary URLs reachable from the user's machine or agent runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on sites you are authorized to access, and do not allow untrusted content to choose target URLs.
+
+Risk: Stealth mode is intended to bypass anti-bot protections without clear safeguards.
+
+Mitigation: Avoid stealth mode unless you have explicit permission and the target site's terms permit this access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuxiangfanclaw/skills/scrapling-fetch-basic)
+- [Publisher profile](https://clawhub.ai/user/shuxiangfanclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown text by default, or pretty-printed JSON when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts a URL, optional maximum character count, basic or stealth fetch mode, JSON output, and debug output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, metadata, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

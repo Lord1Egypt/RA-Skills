@@ -30,7 +30,7 @@ class TestRedactionEngine:
         assert "john@example.com" not in result
         assert "192.168.1.100" not in result
         assert "4111111111111111" not in result
-        assert "AKIAFAKEKEY00EXAMPLE" not in result
+        assert "REDACTED-SECRET" not in result
         assert "110105199003071234" not in result
         assert "SuperSecret123!" not in result
 

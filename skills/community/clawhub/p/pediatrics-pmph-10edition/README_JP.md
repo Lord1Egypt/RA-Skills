@@ -156,7 +156,7 @@ Answer：
 
 ---
 
-**関連スキル：** [新生児黄疸リスク評価と生理的黄疸診断](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md)
+**関連スキル：** [新生児黄疸リスク評価と生理的黄疸診断](neonatal-jaundice-riREDACTED-SECRET/SKILL.md)
 ```
 
 #### 2. **臨床ケース分析**
@@ -192,7 +192,7 @@ Answer：
 
 ---
 
-**関連スキル：** [新生児黄疸リスク評価と生理的黄疸診断](neonatal-jaundice-risk-assessment-diagnosis/SKILL.md) · [ビリルビン脳症の病期分類と診断](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
+**関連スキル：** [新生児黄疸リスク評価と生理的黄疸診断](neonatal-jaundice-riREDACTED-SECRET/SKILL.md) · [ビリルビン脳症の病期分類と診断](bilirubin-encephalopathy-staging-and-diagnosis/SKILL.md)
 ```
 
 #### 3. **試験問題**

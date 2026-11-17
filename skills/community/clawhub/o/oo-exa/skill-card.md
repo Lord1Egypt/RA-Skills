@@ -1,43 +1,55 @@
-## Description: <br>
-Exa helps agents search the web, generate citation-backed answers, find similar pages, and retrieve page contents through OOMOL-connected Exa actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Exa search, content retrieval, similar-page, and citation-backed answer actions through the oo CLI.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to perform Exa web search, citation-backed answering, similar-page discovery, and content retrieval without handling raw Exa API tokens. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive service credentials through an OOMOL-connected Exa account. <br>
-Mitigation: Use the managed OOMOL connection flow, avoid exposing raw API tokens, and reconnect only when an authentication or connection error requires it. <br>
-Risk: The skill runs shell commands that access external Exa and OOMOL services. <br>
-Mitigation: Inspect the live connector schema and payload before execution, and review the skill files before use when high assurance is required. <br>
+## Use Case:
 
+Developers and other users use this skill to search the web, find similar pages, retrieve page contents, and generate citation-backed answers through Exa.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-exa) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Exa homepage](https://exa.ai) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON when commands are run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: Fallback setup runs downloaded installer code without a separate approval step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Preinstall a trusted, verified CLI version and require approval before allowing fallback installation.
+
+Risk: OOMOL mediates Exa requests and credentials, and the CLI may automatically sync skills.
+
+Mitigation: Review the CLI's automatic skill-sync settings and understand the OOMOL connection before use.
+
+## Reference(s):
+
+- [Exa](https://exa.ai)
+- [Exa API documentation](https://docs.exa.ai/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Text]
+
+**Output Format:** [JSON connector responses and citation-backed text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's connected Exa account through OOMOL; the answer action can write data.]
+
+## Skill Version(s):
+
+1.0.6 (source: artifact frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

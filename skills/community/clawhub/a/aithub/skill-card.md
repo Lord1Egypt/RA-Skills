@@ -1,43 +1,59 @@
-## Description: <br>
-AitHub Discovery Skill enables AI agents to search, install, rate, and contribute skills from the AitHub registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AitHub Discovery Skill enables AI agents to autonomously search, install, rate, and contribute skills from the global registry.
 
-## Publisher: <br>
-[vino0017](https://clawhub.ai/user/vino0017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vino0017](https://clawhub.ai/user/vino0017)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent discover, install, compare, rate, and submit reusable skills through AitHub when a task needs additional capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authority to fetch, install, deploy, rate, fork, and publish third-party skills. <br>
-Mitigation: Require explicit confirmation before deploy, rating, fork, or public submission, and inspect fetched skill content and publisher before use. <br>
-Risk: Generated or submitted skill files may expose secrets, internal paths, hostnames, company names, or proprietary workflow details. <br>
-Mitigation: Manually review generated SKILL.md content and apply the documented privacy cleaning rules before any public submission. <br>
-Risk: Unreviewed or unpinned CLI execution can install or execute unexpected third-party content. <br>
-Mitigation: Avoid unreviewed or unpinned CLI execution and scan skill content before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an AI agent discover, inspect, install, and contribute reusable skills through AitHub when a task requires capabilities beyond the agent's current environment.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/vino0017/aithub) <br>
-- [AitHub Registry API](https://aithub.space) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require an AitHub account or token for rating, submission, and fork actions; search, install, and details actions are documented as unauthenticated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide an agent to search an external registry and install or deploy remote skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Stage downloaded skills locally, inspect their full contents, scan them before use, and require explicit approval before deployment.
+
+Risk: The skill includes mutable CLI execution through npx and direct API workflows.
+
+Mitigation: Pin CLI versions where possible, run commands in a constrained environment, and review generated commands before execution.
+
+Risk: The skill can guide public submission, rating, or generated SKILL.md writing workflows.
+
+Mitigation: Keep public submission as a separate confirmed step and perform human review plus privacy cleaning before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/vino0017/skills/aithub)
+- [Publisher Profile](https://clawhub.ai/user/vino0017)
+- [AitHub Service](https://aithub.space)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, API examples, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose registry searches, CLI installs, API calls, skill submission steps, and privacy-cleaning guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

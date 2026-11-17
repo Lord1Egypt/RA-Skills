@@ -1,46 +1,57 @@
-## Description: <br>
-Get a PDF link from Sci-Hub for a DOI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get a PDF link from Sci-Hub for a DOI.
 
-## Publisher: <br>
-[aukaukauk](https://clawhub.ai/user/aukaukauk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aukaukauk](https://clawhub.ai/user/aukaukauk)
 
-## Use Case: <br>
-External users and developers can use this skill to resolve a DOI into a direct PDF URL when a Sci-Hub-style mirror can locate the paper. It also helps agents report not-found, open-access fallback, mirror-error, and invalid-input outcomes clearly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries Sci-Hub-style mirrors for DOI lookups. <br>
-Mitigation: Install it only when that behavior is intentional, and prefer official publisher or open-access sources when possible. <br>
-Risk: Returned PDF and open-access links are untrusted third-party URLs. <br>
-Mitigation: Treat returned links as untrusted and review them before opening, sharing, or using them in downstream workflows. <br>
-Risk: Custom mirror configuration can route requests through unexpected services. <br>
-Mitigation: Set SCIHUB_MIRRORS only to mirrors you trust. <br>
+## Use Case:
 
+External users and agents use this skill to resolve a DOI through Sci-Hub mirrors and return a direct PDF URL when available, or a concise status when no PDF is found.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aukaukauk/scihub-paper-downloader) <br>
-- [Publisher profile](https://clawhub.ai/user/aukaukauk) <br>
-- [Default Sci-Hub mirror: sci-hub.st](https://sci-hub.st) <br>
-- [Default Sci-Hub mirror: sci-hub.ru](https://sci-hub.ru) <br>
-- [Default Sci-Hub mirror: sci-hub.se](https://sci-hub.se) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text URL or status lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct PDF URL when found, or NOT_FOUND, OA_LINK, MIRROR_ERROR, or INVALID_INPUT status output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill contacts Sci-Hub mirrors and third-party PDF hosts using DOI queries, which may expose requested DOI information and may be legally or institutionally restricted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where this access is approved, and run it in a network-restricted sandbox that blocks localhost, private networks, link-local addresses, and metadata services.
+
+Risk: Custom SCIHUB_MIRRORS values can direct requests to untrusted hosts.
+
+Mitigation: Use default mirrors or only organization-approved mirror URLs.
+
+Risk: The script automates challenge solving.
+
+Mitigation: Review before installation and avoid use where automated challenge solving violates policy or site terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aukaukauk/skills/scihub-paper-downloader)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text URL or status line]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a direct PDF URL, NOT_FOUND with optional OA_LINK, MIRROR_ERROR, or INVALID_INPUT.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

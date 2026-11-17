@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Toggl Track"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["toggl"]
   icon: "https://static.oomol.com/logo/third-party/Toggl.svg"
 ---
@@ -56,7 +56,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_tasks` — List Toggl Track tasks for a project.
 - `list_time_entries` — List Toggl Track time entries for the authenticated user.
 - `list_workspaces` — List the Toggl Track workspaces available to the authenticated user.
-- `stop_time_entry` — Stop a running Toggl Track time entry. [write]
+- `stop_time_entry` — Stop a running Toggl Track time entry. [destructive]
 - `update_project` — Update an existing Toggl Track project. [write]
 - `update_tag` — Update an existing Toggl Track tag. [write]
 - `update_task` — Update an existing Toggl Track task. [write]
@@ -91,11 +91,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Toggl Track is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=toggl
+  https://console.oomol.com/connections/toggl
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Toggl Track homepage: https://toggl.com/track/
+- API documentation: https://engineering.toggl.com/docs/track/api/authentication/

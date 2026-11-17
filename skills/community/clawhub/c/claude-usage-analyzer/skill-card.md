@@ -1,39 +1,54 @@
-## Description: <br>
-Analyzes Claude Code token usage by showing where tokens went, which projects cost most, and how to reduce waste. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze Claude Code token usage by parsing local session logs to show token allocation, project costs, and burn-rate drivers.
 
-## Publisher: <br>
-[singggggyee](https://clawhub.ai/user/singggggyee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[singggggyee](https://clawhub.ai/user/singggggyee)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to inspect local session logs, understand token usage and cost drivers, and identify waste. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Claude Code session logs, and generated reports may expose sensitive project or conversation details. <br>
-Mitigation: Install only when the separately installed claude-usage-analyzer CLI is trusted, and review reports before sharing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to audit Claude Code token usage, identify high-cost projects or sessions, and choose narrower reports such as recent-day or per-session breakdowns.
 
-## Reference(s): <br>
-- [Claude Usage Analyzer project and installation instructions](https://github.com/SingggggYee/claude-usage-analyzer) <br>
-- [ClawHub skill page](https://clawhub.ai/singggggyee/claude-usage-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the underlying CLI can also emit JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the separately installed claude-usage-analyzer CLI and reads local Claude Code JSONL session logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The analyzer can read all matching Claude Code session logs for the account, which may include sensitive conversation and project data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrow date ranges or session-specific commands, and review any JSON or per-turn output before sharing it.
+
+Risk: The skill depends on an external CLI that is not included or version-pinned by the skill package.
+
+Mitigation: Verify the CLI source and installed version before use.
+
+## Reference(s):
+
+- [Claude Usage Analyzer on ClawHub](https://clawhub.ai/singggggyee/skills/claude-usage-analyzer)
+- [Claude Usage Analyzer CLI Repository](https://github.com/SingggggYee/claude-usage-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize local Claude Code session logs and suggest narrower date ranges or session-specific commands.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

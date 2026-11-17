@@ -1,40 +1,54 @@
-## Description: <br>
-Scans Vue2 projects for dependency security issues, risky Webpack settings, and Babel configuration problems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill 用于自动扫描 Vue2 项目的潜在风险，覆盖依赖安全、Webpack 配置风险和 Babel 配置问题。
 
-## Publisher: <br>
-[gfrxf](https://clawhub.ai/user/gfrxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gfrxf](https://clawhub.ai/user/gfrxf)
 
-## Use Case: <br>
-Developers working on Vue2 projects use this skill to run local or CI checks for dependency vulnerabilities, Webpack source-map or eval risks, and Babel polyfill or core-js configuration issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs shell scripts and npm audit commands in the current project directory. <br>
-Mitigation: Review the scripts before use and run them only from the intended Vue2 project root or a controlled CI job. <br>
-Risk: The checks are heuristic and may miss issues outside the declared dependency, Webpack, and Babel patterns. <br>
-Mitigation: Treat the output as a triage aid and confirm findings with standard dependency, build, and security review workflows. <br>
+## Use Case:
 
+Developers and engineers use this skill to run lightweight checks on Vue2 projects during local development, CI review, or agent-assisted diagnosis. It helps identify dependency security issues, Webpack configuration risks, and Babel configuration problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gfrxf/vue2-risk-scan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text with high and medium risk counts plus individual flagged findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs dependency, Webpack, and Babel checks from the project root; no structured JSON output is declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The scan is a lightweight helper and may miss issues that a full Vue2 security audit or CI security program would catch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the results manually and pair the skill with broader dependency, configuration, and CI security tooling before using findings for release decisions.
+
+Risk: The dependency check may run npm audit against the npm registry.
+
+Mitigation: Run the skill in an environment where registry access is expected and where local package data can be reviewed safely.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gfrxf/skills/vue2-risk-scan)
+- [Publisher profile](https://clawhub.ai/user/gfrxf)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with shell command examples and scan findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports high and medium risk counts from dependency, Webpack, and Babel checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

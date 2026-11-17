@@ -1,43 +1,56 @@
-## Description: <br>
-Guides OpenClaw agents in invoking the Claude Code CLI for code development, code review, bug fixing, automation, and Alibaba Cloud Bailian-compatible provider configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps OpenClaw users invoke Claude Code CLI for code development, code review, bug fixing, tests, automation tasks, and Aliyun Bailian-compatible provider configuration.
 
-## Publisher: <br>
-[Kotoriy](https://clawhub.ai/user/Kotoriy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kotoriy](https://clawhub.ai/user/kotoriy)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run Claude Code from OpenClaw for code review, refactoring, testing, bug fixing, commits, PR creation, and Alibaba Cloud Bailian-compatible Claude API configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Claude Code workflows can make broad code changes and assist with commits or PR creation. <br>
-Mitigation: Use plan or confirmation-oriented modes for sensitive repositories, review generated changes before applying them, and approve commits and PRs manually. <br>
-Risk: MCP servers and third-party provider endpoints can expose repositories or credentials to external services. <br>
-Mitigation: Add only trusted MCP servers, scope credentials to least privilege, and avoid plaintext API keys when a safer secret mechanism is available. <br>
-Risk: The skill includes powerful CLI options such as permission skipping and automated execution. <br>
-Mitigation: Reserve high-autonomy options for controlled environments and prefer explicit approval for file edits, shell commands, and network-connected tools. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Kotoriy/openclaw-claude-code-bailian) <br>
-- [Claude Code installer](https://claude.ai/install.ps1) <br>
-- [Alibaba Cloud Bailian Claude-compatible endpoint](https://coding.dashscope.aliyuncs.com/apps/anthropic) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to operate Claude Code from OpenClaw for implementation, review, refactoring, testing, documentation, repository workflow, and model-provider setup tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with PowerShell, JSON, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Claude Code CLI invocation patterns, permission-mode guidance, MCP examples, and provider configuration examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup examples can run remote PowerShell installer code if copied directly.
+
+Mitigation: Review commands before execution and prefer WinGet or a verified installer source.
+
+Risk: Placeholder MCP and package examples can lead users to install untrusted components.
+
+Mitigation: Replace placeholder commands with pinned packages from trusted publishers before use.
+
+Risk: Logs, diffs, code, or API keys may be exposed to model providers or local configuration files.
+
+Mitigation: Avoid sending sensitive inputs to providers and store API keys with protected secret handling and least-privilege scopes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kotoriy/skills/openclaw-claude-code-bailian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command patterns for interactive PTY usage, print mode, permissions, MCP setup, and provider environment configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

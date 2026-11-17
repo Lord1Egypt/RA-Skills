@@ -1,39 +1,61 @@
-## Description: <br>
-AI-powered academic paper reviewer. Uses a multi-agent system (Deconstructor, Devil's Advocate, Judge) to analyze papers for logical flaws, contradictions, and empirical validity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered academic paper reviewer. Uses a multi-agent system (Deconstructor, Devil's Advocate, Judge) to analyze papers for logical flaws, contradictions, and empirical validity.
 
-## Publisher: <br>
-[sschepis](https://clawhub.ai/user/sschepis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sschepis](https://clawhub.ai/user/sschepis)
 
-## Use Case: <br>
-Researchers, reviewers, and developers use this skill to review academic papers or scientific claims for logical flaws, contradictions with literature, empirical validity, and concrete improvement suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Manuscript or claim content may be sent to configured external LLM and search providers. <br>
-Mitigation: Avoid confidential or unpublished material unless the configured providers' data handling terms are acceptable. <br>
-Risk: Search execution may use shell-based handling of document-derived text. <br>
-Mitigation: Avoid SkillSearchAdapter or serper-tool use until shell execution is replaced with safe argument-based execution. <br>
+## Use Case:
 
+Developers, researchers, and technical reviewers use this skill to analyze academic papers or scientific claims for logical flaws, contradictions with literature, and empirical validity.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, json, guidance] <br>
-**Output Format:** [JSON merit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes an overall score, defense strategy, improvement suggestions, and dimension scores for logic, novelty, and related review criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: Paper text and extracted claims may be sent to configured third-party LLM and search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with approved providers and non-confidential content unless data handling has been reviewed.
+
+Risk: The shell-based SkillSearchAdapter introduces unsafe command execution risk.
+
+Mitigation: Disable or replace that adapter before production use, or strictly constrain executable paths and arguments.
+
+Risk: Credential handling and report storage paths are under-scoped for sensitive manuscripts.
+
+Mitigation: Use least-privilege credentials and harden report storage paths before processing confidential or unpublished work.
+
+Risk: The arXiv adapter uses an HTTP endpoint.
+
+Mitigation: Switch the arXiv integration to HTTPS before relying on it in higher-trust environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sschepis/skills/peer-reviewer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON merit report with scores, objections, defense strategy, and suggested improvements]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also save the report as a JSON file when run through the standalone CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

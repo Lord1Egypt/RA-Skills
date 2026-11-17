@@ -1,40 +1,50 @@
-## Description: <br>
-Searches the web with Google Programmable Search Engine so agents can retrieve live information, documentation, or research material when built-in web search is unavailable. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using Google Custom Search Engine (PSE) when live information, documentation, or topical research is needed and built-in web search is unavailable.
 
-## Publisher: <br>
-[ninonano64](https://clawhub.ai/user/ninonano64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ninonano64](https://clawhub.ai/user/ninonano64)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add Google Custom Search queries to an OpenClaw workflow, returning live web search results from a configured Programmable Search Engine. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Google API key and search engine ID for outbound Google Custom Search requests. <br>
-Mitigation: Keep credentials out of version control and prefer platform-managed secrets or user-level environment variables over a workspace .env file. <br>
+## Use Case:
 
+Developers and agents use this skill to perform live Google Custom Search queries for documentation lookup, current information, and topical research when a built-in web search tool is unavailable.
 
-## Reference(s): <br>
-- [Google Programmable Search Engine setup](https://cse.google.com/cse/all) <br>
-- [Google Custom Search JSON API endpoint](https://www.googleapis.com/customsearch/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/ninonano64/google-search-nino) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOGLE_API_KEY and GOOGLE_CSE_ID environment variables; defaults to five search results unless a result count is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Google API credentials may be exposed through command history, logs, request URLs, or unsanitized HTTP errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly restricted Google API key for Custom Search only, keep credentials in environment or secret storage, avoid inline keys in shell commands, and redact request URLs and HTTP errors before shared logging.
+
+## Reference(s):
+
+- [Google Programmable Search Engine](https://cse.google.com/cse/all)
+- [Google Custom Search JSON API endpoint](https://www.googleapis.com/customsearch/v1)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON search results with Markdown setup and usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GOOGLE_API_KEY and GOOGLE_CSE_ID; default result count is 5.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -5,26 +5,37 @@
 # Replaces content between <!-- SPACESUIT:BEGIN ... --> and <!-- SPACESUIT:END -->
 # markers with the latest base content. Preserves everything outside markers.
 #
-# If no markers exist in a root file, prepends the base content with markers at top.
+# Unmarked files are preserved unless --adopt-unmarked is explicitly selected.
 #
 # Usage: ./scripts/upgrade.sh [--workspace /path/to/workspace] [--dry-run]
 
 set -euo pipefail
+if (( BASH_VERSINFO[0] < 4 )); then
+  echo "Spacesuit requires Bash 4 or newer; select that bash explicitly." >&2
+  exit 1
+fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SPACESUIT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 BASE_DIR="$SPACESUIT_DIR/base"
-VERSION="$(cat "$SPACESUIT_DIR/VERSION")"
+VERSION_FILE="$SPACESUIT_DIR/VERSION"
+[[ -f "$VERSION_FILE" ]] || VERSION_FILE="$SPACESUIT_DIR/version.txt"
+VERSION="$(cat "$VERSION_FILE")"
 
 DRY_RUN=false
 WORKSPACE=""
+ADOPT_UNMARKED=false
+BACKUP=""
 
 # Parse args
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=true; shift ;;
-    --workspace) WORKSPACE="$2"; shift 2 ;;
-    *) WORKSPACE="$1"; shift ;;
+    --workspace) [[ $# -ge 2 && -n "$2" ]] || { echo "--workspace needs a path" >&2; exit 1; }; WORKSPACE="$2"; shift 2 ;;
+    --adopt-unmarked) ADOPT_UNMARKED=true; shift ;;
+    --help|-h) echo "Usage: bash upgrade.sh [--workspace PATH | PATH] [--dry-run] [--adopt-unmarked]"; exit 0 ;;
+    -*) echo "Unknown option: $1" >&2; exit 1 ;;
+    *) [[ -z "$WORKSPACE" ]] || { echo "Only one workspace is supported" >&2; exit 1; }; WORKSPACE="$1"; shift ;;
   esac
 done
 
@@ -62,6 +73,38 @@ declare -A TARGET_MAP=(
   ["SECURITY"]="SECURITY.md"
   ["MEMORY"]="MEMORY.md"
 )
+
+# Validate every target before writing any file. Malformed markers can otherwise
+# swallow user content; symlinked instruction files must not escape the workspace.
+for section in "${!SECTION_MAP[@]}"; do
+  target="$WORKSPACE/${TARGET_MAP[$section]}"
+  if [[ -L "$target" ]]; then echo "Refusing symlinked target: ${TARGET_MAP[$section]}" >&2; exit 1; fi
+  [[ -f "$target" ]] || continue
+  if ! awk -v expected="<!-- SPACESUIT:BEGIN $section -->" '
+    /<!-- SPACESUIT:BEGIN/ { if ($0 != expected || seen || inside) bad=1; seen++; inside=1 }
+    /<!-- SPACESUIT:END/ { if ($0 != "<!-- SPACESUIT:END -->" || !inside || ended) bad=1; ended++; inside=0 }
+    END { exit (bad || inside || seen != ended) ? 1 : 0 }
+  ' "$target"; then echo "Malformed managed markers: ${TARGET_MAP[$section]}" >&2; exit 1; fi
+done
+for target in "$WORKSPACE/.spacesuit-version" "$WORKSPACE/.spacesuit-backups"; do
+  [[ ! -L "$target" ]] || { echo "Refusing symlinked version/backup path" >&2; exit 1; }
+done
+ensure_backup() {
+  if [[ -z "$BACKUP" ]]; then
+    mkdir -p "$WORKSPACE/.spacesuit-backups"
+    BACKUP="$(mktemp -d "$WORKSPACE/.spacesuit-backups/upgrade.XXXXXXXX")"
+    if [[ -f "$WORKSPACE/.spacesuit-version" ]]; then
+      cp -p "$WORKSPACE/.spacesuit-version" "$BACKUP/.spacesuit-version"
+    else
+      touch "$BACKUP/.version-was-absent"
+    fi
+  fi
+}
+backup_target() {
+  local target="$1"
+  ensure_backup
+  cp -p "$target" "$BACKUP/$(basename "$target")"
+}
 
 upgrade_section() {
   local section="$1"
@@ -131,6 +174,7 @@ upgrade_section() {
     echo ""
 
     if ! $DRY_RUN; then
+      backup_target "$target_file"
       cp "$tmp_file" "$target_file"
       echo "  ✅ ${TARGET_MAP[$section]} — updated"
     else
@@ -140,7 +184,12 @@ upgrade_section() {
     rm -f "$tmp_file"
     CHANGED=$((CHANGED + 1))
   else
-    # No markers — prepend base content with markers at top
+    if ! $ADOPT_UNMARKED; then
+      echo "  Unmarked ${TARGET_MAP[$section]} preserved; review --adopt-unmarked separately."
+      SKIPPED=$((SKIPPED + 1))
+      return 0
+    fi
+    # Explicit migration — prepend base content with markers at top
     echo "  📌 ${TARGET_MAP[$section]} — no markers found, prepending framework section"
 
     local tmp_file
@@ -155,6 +204,7 @@ upgrade_section() {
     } > "$tmp_file"
 
     if ! $DRY_RUN; then
+      backup_target "$target_file"
       cp "$tmp_file" "$target_file"
       echo "  ✅ ${TARGET_MAP[$section]} — markers added + content prepended"
     else
@@ -174,9 +224,13 @@ for section in "${!SECTION_MAP[@]}"; do
 done
 
 # Update version tracker
-if ! $DRY_RUN; then
+if ! $DRY_RUN && [[ "$SKIPPED" -eq 0 ]]; then
+  if [[ ! -f "$WORKSPACE/.spacesuit-version" ]] || [[ "$(cat "$WORKSPACE/.spacesuit-version")" != "$VERSION" ]]; then
+    ensure_backup
+  fi
   echo "$VERSION" > "$WORKSPACE/.spacesuit-version"
 fi
+[[ -z "$BACKUP" ]] || echo "Rollback backup: $BACKUP (restore saved files to the workspace)"
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"

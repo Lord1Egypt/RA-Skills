@@ -1,38 +1,47 @@
-## Description: <br>
-Write Welsh that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Welsh that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill as Welsh writing guidance for producing more natural, casual Welsh text with appropriate register, regional consistency, bilingual flow, fillers, and reactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill helps make AI-generated Welsh sound more human, which could mislead readers when AI assistance should be disclosed. <br>
-Mitigation: Use the skill as a style aid and disclose AI assistance in contexts where disclosure is expected or required. <br>
-Risk: Naturalized language guidance can still produce incorrect register, regional usage, or unnatural Welsh for a specific audience. <br>
-Mitigation: Review important Welsh text with a fluent speaker or qualified reviewer before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and agents use this skill to produce casual, natural-sounding Welsh writing with appropriate register, regional consistency, and natural Welsh-English code-switching.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to casual Welsh with natural English mixing, which may be unsuitable for formal, academic, official, or Welsh-only writing.
+
+Mitigation: Ask explicitly for a formal, academic, official, or Welsh-only register when that output is required.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No commands, files, accounts, or sensitive data access requested by the skill.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, persistence, or hidden behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

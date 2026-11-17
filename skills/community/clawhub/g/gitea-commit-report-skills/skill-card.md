@@ -1,41 +1,58 @@
-## Description: <br>
-Collects Gitea repository commit activity, uses AI to summarize project progress, and helps send HTML progress reports to repository administrators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects commit activity from visible Gitea repositories, uses AI to summarize project progress, and prepares HTML email reports for repository administrators.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and team leads use this skill to generate daily, weekly, or ad hoc progress reports from Gitea repositories over a selected date range. It can cover all repositories visible to the configured token or a specified owner/repo, then prepare HTML email reports for repository administrators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can gather activity across all repositories visible to the configured Gitea token and email generated reports to derived recipients. <br>
-Mitigation: Use a read-only, narrowly scoped Gitea token; prefer a single repository and date range when practical; confirm the recipient list, report preview, and GITEA_URL before allowing email to be sent. <br>
-Risk: AI-generated summaries and risk notes may be incomplete or misleading when included in progress-report emails. <br>
-Mitigation: Review the generated JSON summary and HTML report preview before sending externally or using the report for management decisions. <br>
+## Use Case:
 
+Developers and engineering team leads use this skill to collect recent Gitea repository activity, summarize member contributions and risks, and send periodic progress reports to repository administrators.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/gitea-commit-report-skills) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/myd2002) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON fields; generated report emails are HTML.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GITEA_URL and GITEA_TOKEN; can operate on all visible repositories or a specified owner/repo and date range.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill can collect private repository activity across all visible repositories and email reports without clear confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only Gitea token limited to the intended repositories and confirm repository scope and recipients before sending reports.
+
+Risk: HTML report content may include repository data that has not been sufficiently escaped or reviewed.
+
+Mitigation: Review and fix HTML escaping before use in shared or sensitive environments, and inspect generated reports before distribution.
+
+Risk: Temporary report files, dependency ranges, fallback URLs, or environment file permissions may expose operational data or reduce deployment assurance.
+
+Mitigation: Review temp-file handling, dependency pinning, the hard-coded fallback URL, and .env file permissions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myd2002/skills/gitea-commit-report-skills)
+- [Publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON AI summary requirements, and generated HTML email content produced by scripts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITEA_URL and a GITEA_TOKEN with repository read access; email sending depends on the separate imap-smtp-email skill.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

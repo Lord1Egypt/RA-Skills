@@ -1,44 +1,61 @@
-## Description: <br>
-TopYappers provides social media intelligence for agents to discover viral TikTok content, search creators across TikTok, Instagram, and YouTube, and track trending song charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TopYappers is a social media intelligence skill for discovering viral TikTok content, searching creators across TikTok, Instagram, and YouTube, and tracking trending song charts.
 
-## Publisher: <br>
-[tadasgedgaudas](https://clawhub.ai/user/tadasgedgaudas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tadasgedgaudas](https://clawhub.ai/user/tadasgedgaudas)
 
-## Use Case: <br>
-Developers and social media teams use this skill to connect agents to TopYappers MCP workflows for creator discovery, viral content research, video search, and trending song analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: TopYappers API keys and account credits can be exposed or misused if shared broadly. <br>
-Mitigation: Use a scoped or revocable API key, store it outside prompts and checked-in files, and monitor credit usage. <br>
-Risk: Search terms may disclose confidential campaign plans or personal data to an external service. <br>
-Mitigation: Avoid sending confidential plans, private identifiers, or sensitive personal data as search queries. <br>
-Risk: Creator emails returned by profile tools are sensitive contact data. <br>
-Mitigation: Handle creator emails according to consent, anti-spam, platform, and privacy obligations. <br>
+## Use Case:
 
+External users, developers, and social media teams use this skill to query TopYappers for creator discovery, viral video analysis, video search, and trending music reports. It helps agents choose the right TopYappers tool, shape filters correctly, and manage credit usage.
 
-## Reference(s): <br>
-- [TopYappers Platform](https://www.topyappers.com) <br>
-- [TopYappers API Documentation](https://docs.topyappers.com) <br>
-- [TopYappers MCP Documentation](https://www.topyappers.com/tools/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with shell commands, JSON configuration examples, and API workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a TopYappers API key and may consume TopYappers credits depending on the selected MCP tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: TopYappers uses an external MCP API that requires a bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm trust in TopYappers before installation and handle the API key as a credential.
+
+Risk: Creator profiles can include emails and demographic fields that may be personal data.
+
+Mitigation: Retrieve only necessary fields, avoid unnecessary storage or redistribution, and follow platform rules and applicable privacy laws.
+
+Risk: Several tools consume credits per result or request.
+
+Mitigation: Use free creator search first, keep exploratory page sizes small, and monitor credit usage.
+
+## Reference(s):
+
+- [TopYappers Platform](https://www.topyappers.com)
+- [TopYappers API Documentation](https://docs.topyappers.com)
+- [TopYappers MCP Documentation](https://www.topyappers.com/tools/mcp)
+- [TopYappers MCP GitHub](https://github.com/topyappers/topyappers-mcp)
+- [ClawHub Skill Page](https://clawhub.ai/tadasgedgaudas/skills/topyappers)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and API call parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an external TopYappers MCP endpoint with bearer-token authentication, rate limits, and credit-based tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

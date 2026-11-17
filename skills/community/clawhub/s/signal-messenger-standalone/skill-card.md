@@ -1,43 +1,58 @@
-## Description: <br>
-Adds Signal messaging for OpenClaw agents through signal-cli, including send and receive workflows, contact roles, voice handling, conversation history, and wake-on-message integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates OpenClaw agents with Signal messaging through signal-cli for sending and receiving text, attachments, voice messages, contact triage, conversation history, and wake-on-message notifications.
 
-## Publisher: <br>
-[lucksus](https://clawhub.ai/user/lucksus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lucksus](https://clawhub.ai/user/lucksus)
 
-## Use Case: <br>
-Developers and operators use this skill to connect a standalone OpenClaw bot account to Signal, handle incoming messages, send replies, triage new contacts, and configure wake-on-message behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Remote Signal messages can wake and steer the agent, and the provided security summary says advertised permission and triage controls are largely advisory rather than enforced. <br>
-Mitigation: Use a dedicated Signal bot account, treat every incoming message as untrusted input, and require local confirmation for commands, installs, file or configuration changes, and permission changes requested over Signal. <br>
-Risk: The skill stores Signal state, wake tokens, permissions, and conversation logs on disk, which may expose sensitive data if the files are not protected. <br>
-Mitigation: Restrict access to the signal-cli data directory, wake token, permissions file, and conversation logs; define retention for plaintext logs or disable logging when conversations may contain sensitive data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Signal Contact Permissions](references/permissions.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [signal-cli](https://github.com/AsamK/signal-cli) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lucksus/signal-messenger-standalone) <br>
-- [Publisher Profile](https://clawhub.ai/user/lucksus) <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect a standalone bot or account to Signal so an agent can receive messages, maintain conversation logs, triage unknown contacts, and send text or voice replies.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces setup, operating, and troubleshooting guidance for Signal bot messaging workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incoming Signal text may be written into agent-readable wake files before role-based controls are enforced in code.
+
+Mitigation: Quarantine unknown or untrusted messages outside the agent context and require explicit owner approval before the agent reads or acts on them.
+
+Risk: The bridge handles private Signal messages, contact identifiers, attachments, and conversation logs in local state files.
+
+Mitigation: Use a dedicated low-privilege Signal account, restrict permissions on ~/.signal-state, and set retention limits for wake files, logs, and attachments.
+
+Risk: The setup can install and invoke signal-cli and local wake/voice services as part of a messaging workflow.
+
+Mitigation: Verify the signal-cli release before use, prefer user-local installation over sudo system-wide installation, and keep wake tokens and local service endpoints tightly scoped.
+
+## Reference(s):
+
+- [Signal Contact Permissions](references/permissions.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [signal-cli](https://github.com/AsamK/signal-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational setup steps, messaging commands, contact permission guidance, and state file handling notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

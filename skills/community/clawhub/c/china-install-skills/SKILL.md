@@ -8,24 +8,6 @@ metadata: {"clawdbot":{"emoji":"🇨🇳","requires":{"bins":["curl","unzip","ba
 
 你是一个 ClawHub 技能安装助手，专门为中国大陆用户设计。由于 clawhub.com API 对大陆地区有限流，你通过直接访问 Convex backend API 来绕过限制。
 
-## 🚀 安装后自动初始化
-
-**本技能安装后会自动运行初始化脚本，无需用户感知！**
-
-自动完成：
-- ✅ 配置每周自动更新检查（crontab）
-- ✅ 写入 Memory 记录
-- ✅ 创建便捷命令 `cinstall`
-- ✅ 替换 `clawhub install` 命令
-- ✅ 添加到 PATH
-
-用户可以直接使用：
-```bash
-cinstall <技能名>
-# 或
-clawhub install <技能名>  # 自动使用 china-install-skills
-```
-
 ## 核心 API
 
 - **搜索 API**: `https://clawhub.com/api/v1/skills?q=<query>`

@@ -13,9 +13,118 @@ const { URL } = require('url');
 const POLL_INTERVAL = 3;   // Polling interval (seconds)
 const POLL_TIMEOUT = 60;   // Auto-polling timeout limit (seconds)
 
+const API_KEY_ENV = 'DOCCHAIN_SKILLS_API_KEY';
+const API_KEY_FIELD = 'docchain_api_key';
+
+/**
+ * Check whether a value is a plain object usable as a config source.
+ * Rejects null, arrays and every non-object primitive.
+ * @param {any} value
+ * @returns {boolean}
+ */
+function isPlainObject(value) {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+/**
+ * Normalize a raw config value into a usable API key.
+ * Non-strings and blank strings are treated as "not configured".
+ * A leading `Bearer ` is stripped: the header built from this key adds that scheme itself,
+ * and the server only strips one level before looking the key up.
+ * @param {any} value
+ * @returns {string|null}
+ */
+function normalizeApiKey(value) {
+    if (typeof value !== 'string') {
+        return null;
+    }
+    const trimmed = value.trim().replace(/^Bearer\s+/i, '');
+    return trimmed === '' ? null : trimmed;
+}
+
+/**
+ * Resolve the API key from already-parsed config sources.
+ *
+ * Precedence:
+ *   non-blank env var > skill scripts/config.json
+ *
+ * The repository root docchain_skills_config.json is intentionally NOT read:
+ * doc2markdown is an externally exposed skill, and its key must stay scoped
+ * to the skill itself.
+ *
+ * Pure function: no filesystem access, no logging, never throws.
+ *
+ * @param {{env?: object, skillConfig?: object}} sources
+ * @returns {string|null} The API key, or null when unconfigured
+ */
+function resolveApiKey(sources = {}) {
+    const { env, skillConfig } = isPlainObject(sources) ? sources : {};
+
+    // Highest priority: environment variable (blank values do not participate)
+    if (isPlainObject(env)) {
+        const envKey = normalizeApiKey(env[API_KEY_ENV]);
+        if (envKey !== null) {
+            return envKey;
+        }
+    }
+
+    // Skill-level config (doc2markdown/scripts/config.json)
+    return normalizeApiKey(isPlainObject(skillConfig) ? skillConfig[API_KEY_FIELD] : null);
+}
+
+/**
+ * Read and parse a JSON config file.
+ * A missing file is silent; unreadable/invalid files warn on stderr and are skipped.
+ * The API key is optional, so this never throws and never exits.
+ * @param {string} configPath
+ * @returns {object|null}
+ */
+function readConfigFile(configPath) {
+    if (!fs.existsSync(configPath)) {
+        return null;   // Absent config source: stay silent
+    }
+
+    let raw;
+    try {
+        raw = fs.readFileSync(configPath, 'utf8');
+    } catch (error) {
+        console.error(`Warning: unable to read config file, ignoring it: ${configPath}`);
+        return null;
+    }
+
+    let parsed;
+    try {
+        parsed = JSON.parse(raw);
+    } catch (error) {
+        console.error(`Warning: config file is not valid JSON, ignoring it: ${configPath}`);
+        return null;
+    }
+
+    if (!isPlainObject(parsed)) {
+        console.error(`Warning: config file is not a JSON object, ignoring it: ${configPath}`);
+        return null;
+    }
+
+    return parsed;
+}
+
+/**
+ * Load the API key from the environment and the skill config file.
+ * Returns null when no key is configured — doc2markdown then uploads anonymously.
+ * @returns {string|null}
+ */
+function loadApiKey() {
+    // doc2markdown/scripts/config.json
+    const skillConfig = readConfigFile(path.join(__dirname, 'config.json'));
+
+    return resolveApiKey({ env: process.env, skillConfig });
+}
+
 class Doc2Markdown {
     constructor() {
         this.BASE_URL = "https://lab.hjcloud.com/llmdoc";
+        // Optional API key; null means anonymous upload
+        this.apiKey = loadApiKey();
     }
 
     /**
@@ -135,14 +244,26 @@ class Doc2Markdown {
             }
 
             const { body, boundary } = this.createMultipartFormData(filePath, asciiFilename);
-            const url = `${this.BASE_URL}/v1/skills/doc2markdown/convert`;
+
+            // Everything the convert request sends is built here: url, headers, body.
+            // The server reads priority from the query string, not from the multipart body.
+            // priority rides along with a configured API Key, never otherwise
+            const url = `${this.BASE_URL}/v1/skills/doc2markdown/convert${this.apiKey ? '?priority=1' : ''}`;
+
+            const headers = {
+                'Content-Type': `multipart/form-data; boundary=${boundary}`,
+                'Content-Length': body.length
+            };
+
+            if (this.apiKey) {
+                headers['X-Api-Key'] = this.apiKey;
+                // The convert endpoint resolves priority only from Authorization: Bearer <api_key>
+                headers['Authorization'] = `Bearer ${this.apiKey}`;
+            }
 
             const response = await this.request(url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': `multipart/form-data; boundary=${boundary}`,
-                    'Content-Length': body.length
-                },
+                headers: headers,
                 body: body,
                 timeout: 30000
             });
@@ -593,3 +714,5 @@ if (require.main === module) {
 }
 
 module.exports = Doc2Markdown;
+// Expose the pure resolver for tests without changing the existing export shape
+module.exports.resolveApiKey = resolveApiKey;

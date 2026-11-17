@@ -1,37 +1,51 @@
-## Description: <br>
-Identify publicly accessible Azure Storage accounts and misconfigured blob containers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify publicly accessible Azure Storage accounts and misconfigured blob containers.
 
-## Publisher: <br>
-[anmolnagpal](https://clawhub.ai/user/anmolnagpal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[anmolnagpal](https://clawhub.ai/user/anmolnagpal)
 
-## Use Case: <br>
-Security engineers, cloud administrators, and developers use this skill to review exported Azure Storage account and blob container configuration for anonymous access, public network exposure, missing protection settings, and hardening recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The permission guidance may lead users to grant broader Azure access than needed for a manual storage exposure review. <br>
-Mitigation: Use least-privilege read-only access, such as Reader for account configuration and Storage Blob Data Reader scoped only to required storage accounts or resource groups; provide redacted exported configuration only, never access keys, SAS secrets, tokens, or credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/anmolnagpal/storage-exposure-auditor) <br>
+## Use Case:
+
+Developers, cloud security teams, and Azure administrators use this skill to review exported Azure Storage account and blob container configuration for public exposure, missing hardening controls, and policy recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The security evidence reports that the skill recommends broad write-capable Azure permissions for a read-only workflow.
+
+Mitigation: Use the narrowest read-only Azure roles and scopes available, such as Reader for account-level configuration and Storage Blob Data Reader for container listing, instead of Storage Account Contributor.
+
+Risk: Exported Azure configuration can include sensitive account names, resource groups, network rules, tenant details, tokens, keys, or other identifiers.
+
+Mitigation: Redact sensitive identifiers, tokens, keys, and tenant details before sharing exported data for analysis.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with findings, tables, policy guidance, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided exported Azure configuration data and does not require direct Azure account access.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with findings tables, Azure CLI examples, ARM or Bicep snippets, and Azure Policy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only analysis of user-provided exported configuration data; the skill does not require credentials or direct Azure access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

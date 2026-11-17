@@ -1,44 +1,60 @@
-## Description: <br>
-Interact with Linear for issue tracking, including creating, updating, listing, searching, viewing assigned issues, changing status, adding comments, and managing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Linear for issue tracking, including creating, updating, listing, searching, assigning, commenting on, and changing the status of issues.
 
-## Publisher: <br>
-[emrekilinc](https://clawhub.ai/user/emrekilinc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emrekilinc](https://clawhub.ai/user/emrekilinc)
 
-## Use Case: <br>
-Developers and teams use this skill to manage Linear issues from an agent workflow, including listing assigned work, searching issues, creating issues, updating fields, and adding comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create issues, change issue status or assignee, and post comments in a real Linear workspace. <br>
-Mitigation: Confirm any create, update, assignment, status-change, or comment action before execution. <br>
-Risk: Linear API requests may include untrusted user text in create, update, comment, or search operations. <br>
-Mitigation: Avoid passing untrusted text directly into commands and review generated issue titles, descriptions, search strings, and comments. <br>
-Risk: The skill requires a Linear API key that can expose or modify workspace data. <br>
-Mitigation: Use the narrowest Linear API key available and store it only in the documented credential file or environment variable. <br>
+## Use Case:
 
+Developers and teams use this skill to manage Linear issue workflows from an AI assistant, including reviewing assigned work, creating issues, updating fields, and adding comments.
 
-## Reference(s): <br>
-- [Linear API Examples](references/api-examples.md) <br>
-- [Linear API Key Settings](https://linear.app/settings/api) <br>
-- [Linear GraphQL API Endpoint](https://api.linear.app/graphql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional raw JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Linear API key from LINEAR_API_KEY or ~/.clawdbot/credentials/linear.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can create issues, update issue fields, and add comments in a shared Linear workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human confirmation before create, update, or comment actions, especially in production workspaces.
+
+Risk: The skill uses a Linear API key from an environment variable or local credentials file.
+
+Mitigation: Use a least-privilege token where possible and protect any credentials file with restrictive permissions.
+
+Risk: Weak input and credential safeguards may expose the workspace to malformed requests or unintended changes.
+
+Mitigation: Validate issue IDs, team IDs, state IDs, assignee IDs, and priority values, and use GraphQL variables or proper JSON encoding.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emrekilinc/skills/linear-issues)
+- [Linear API examples](references/api-examples.md)
+- [Linear API settings](https://linear.app/settings/api)
+- [Linear GraphQL endpoint](https://api.linear.app/graphql)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration]
+
+**Output Format:** [Human-readable command output or raw JSON from Linear API-backed shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Linear API key provided by LINEAR_API_KEY or a local credentials file.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

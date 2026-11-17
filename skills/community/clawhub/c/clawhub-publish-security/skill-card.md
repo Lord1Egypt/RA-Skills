@@ -1,41 +1,56 @@
-## Description: <br>
-Automated pre-publish scanner that detects and blocks sensitive data like credentials, tokens, emails, and personal paths in ClawHub skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automated pre-publish scanner that detects and blocks sensitive data like credentials, tokens, emails, and personal paths in ClawHub skills.
 
-## Publisher: <br>
-[vilda007](https://clawhub.ai/user/vilda007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vilda007](https://clawhub.ai/user/vilda007)
 
-## Use Case: <br>
-Developers and skill publishers use this skill before ClawHub publication to scan skill directories for credentials, tokens, emails, personal paths, and other sensitive content that should not be released. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner is a security helper, but evidence notes one detection-quality weakness and says it is not a complete secret-scanning guarantee. <br>
-Mitigation: Review or test the allowlist before relying on it to block publication of local paths, usernames, or other sensitive project content. <br>
-Risk: The artifact scans local files and prints detected matches, which can expose sensitive strings in terminal output during review. <br>
-Mitigation: Run it locally in a trusted environment and treat scan output as sensitive until findings are replaced with placeholders or environment-variable references. <br>
+## Use Case:
 
+Developers and skill publishers use this skill before ClawHub publication to scan local skill directories for sensitive values and receive remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vilda007/skills/clawhub-publish-security) <br>
-- [Publisher profile](https://clawhub.ai/user/vilda007) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scanner exits nonzero when sensitive-content findings are detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The scanner can print detected secrets or personal values in terminal output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it locally, avoid shared CI logs for real secrets, redact output before sharing, and rotate any secret that may have been printed.
+
+Risk: A clean scan can create an overconfident safety signal because scanning rules are incomplete.
+
+Mitigation: Manually review configuration files, documentation examples, and generated artifacts before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vilda007/skills/clawhub-publish-security)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [VETTING_REPORT.md](artifact/VETTING_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and scanner console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scanner output may include matched sensitive values when findings are printed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

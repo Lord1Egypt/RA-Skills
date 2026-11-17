@@ -1,43 +1,55 @@
-## Description: <br>
-Create high-performing LinkedIn content images, including feed posts, article covers, carousel documents, and company page graphics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates LinkedIn feed post, article cover, carousel document, and company page graphics using platform strategy, B2B design guidance, and Rendshot image generation.
 
-## Publisher: <br>
-[zoohero500](https://clawhub.ai/user/zoohero500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoohero500](https://clawhub.ai/user/zoohero500)
 
-## Use Case: <br>
-External creators, marketers, founders, and company page operators use this skill to plan and generate professional LinkedIn visuals for announcements, thought leadership, carousels, data posts, and hiring updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts or saved templates could include sensitive unreleased business data, private photos, confidential logos, or regulated customer information. <br>
-Mitigation: Avoid submitting sensitive or regulated material unless the configured image provider's retention and privacy behavior has been reviewed. <br>
-Risk: LinkedIn algorithm and engagement guidance may change over time, reducing the reliability of reach-optimization advice. <br>
-Mitigation: Review current LinkedIn platform behavior and analytics before relying on the strategy guidance for high-stakes campaigns. <br>
+## Use Case:
 
+Marketing, communications, founders, and creators use this skill to plan and generate professional LinkedIn visuals for posts, carousels, article covers, company updates, hiring posts, and thought-leadership content.
 
-## Reference(s): <br>
-- [Algorithm and reach optimization](references/algorithm.md) <br>
-- [Visual design guide](references/design-style.md) <br>
-- [Recommended templates](references/templates.md) <br>
-- [ClawHub release page](https://clawhub.ai/zoohero500/rendshot-linkedin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with inline tool-call examples for image generation and template management] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can request or reuse LinkedIn post templates and generate platform-sized visual assets through Rendshot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated LinkedIn visuals may contain inaccurate branding, claims, language, or platform-policy mismatches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated visuals before posting, especially for brand accuracy, language, claims, and LinkedIn policy fit.
+
+Risk: The skill may activate on broad LinkedIn-related requests.
+
+Mitigation: Confirm the user wants LinkedIn image-generation guidance before applying the workflow.
+
+## Reference(s):
+
+- [Algorithm and reach optimization](artifact/references/algorithm.md)
+- [Visual design guide](artifact/references/design-style.md)
+- [Recommended templates](artifact/references/templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown with structured prompts, tool-call examples, and template variables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce image-generation prompts, template lookup commands, and reusable template configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Guides agents through systematic competitor research across positioning, pricing, features, marketing, technical signals, and market gaps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research competitors systematically. Analyze positioning, pricing, features, marketing, and gaps. Generate competitive intelligence reports with actionable insights.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-Business, product, marketing, and strategy users use this skill to structure public-source competitor research, compare products, identify market gaps, and draft competitive intelligence reports or battle cards. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research could include confidential, private, or unauthorized competitive information. <br>
-Mitigation: Use only public or explicitly authorized sources, cite sources, and avoid collecting confidential information. <br>
-Risk: Competitive claims could become misleading, outdated, or defamatory if not reviewed. <br>
-Mitigation: Focus on facts, timestamp findings where useful, and review reports before sharing or acting on them. <br>
-Risk: Broad market-analysis trigger wording may activate this workflow when a general research workflow was intended. <br>
-Mitigation: Confirm the user's requested scope before producing a competitor-specific analysis. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to structure competitive research, benchmark products, compare positioning, pricing, features, and marketing, and produce actionable competitive intelligence reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/market-competitor-research) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, tables, matrices, reports, and battle-card templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite sources, stay factual, and use only public or authorized information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate on broad market-analysis or benchmarking requests that are not actually competitive research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the task is competitive research before applying the framework.
+
+Risk: Competitive research can involve sensitive or inappropriate data collection if users go beyond public sources.
+
+Mitigation: Use public sources, cite sources properly, avoid private or confidential information, and avoid misrepresentation, false claims, or defamation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/engsathiago/skills/market-competitor-research)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, analysis]
+
+**Output Format:** [Markdown templates and structured analysis guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces competitor profiles, SWOT analyses, feature and pricing comparison tables, competitive reports, battle cards, and monitoring plans.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

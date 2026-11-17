@@ -1,42 +1,59 @@
-## Description: <br>
-Prepares Dataify builder requests for the github.com scraper family rooted at github_repository_by-repo-url, including tool selection, saved parameter options, and generation of a Dataify builder curl request using DATAIFY_API_TOKEN. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect structured GitHub repository information from one or more known repository URLs. Do not use for GitHub code search or arbitrary webpages.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers and operators use this skill to assemble Dataify builder requests for GitHub repository scraping tools, normalize spider_parameters from saved options or user inputs, and produce a curl command for the Dataify builder API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: DATAIFY_API_TOKEN can be exposed if generated curl commands containing a literal bearer token are shared, logged, or committed. <br>
-Mitigation: Keep the token in an environment variable, avoid sharing generated commands that include the token value, and rotate the token if it is exposed. <br>
-Risk: The artifact references a tool-params catalog and a PowerShell helper that are not included in the released files. <br>
-Mitigation: Confirm required helper files and parameter catalogs are available before relying on saved options; otherwise collect needed values from the user and prefer the included Python helper. <br>
+## Use Case:
 
+Developers and agents use this skill to collect structured data for known public GitHub repository URLs through Dataify, monitor the asynchronous task, and return the final JSON result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-github-repository-by-repo-url) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify builder API endpoint](https://scraperapi.dataify.com/builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated curl commands may include a Dataify bearer token when the helper script is run with DATAIFY_API_TOKEN set.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release evidence) <br>
+Risk: Repository targets and task results are sent through Dataify using the user's API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data flow is acceptable; keep the token in the environment and do not paste it into chat or generated outputs.
+
+Risk: The package contains broader business, search, and web unlocker workflows beyond the narrow GitHub repository collection purpose.
+
+Mitigation: Review the installed artifact and prefer a narrowed release that removes unrelated workflows before using it in sensitive environments.
+
+Risk: The security guidance flags scoping and credential-handling issues, including GitHub URL validation, import path behavior, curl quoting, and reusable tokens in URLs.
+
+Mitigation: Validate target URLs as GitHub repository URLs and resolve the flagged implementation issues before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-github-repository-by-repo-url)
+- [Publisher Profile](https://clawhub.ai/user/dataify-server)
+- [Tool Parameter Catalog](references/tool-params.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON results from completed Dataify tasks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a DATAIFY_API_TOKEN environment variable and a public GitHub repository URL; default behavior waits for completion and returns the final collected result.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Uses Microsoft Word VBA and ActiveX through Python to read, write, format, merge, compare, and batch-process DOC and DOCX files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Microsoft Word through Python VBA/ActiveX to read, write, merge, fill templates, replace text, generate tables of contents, compare, and batch-process DOC/DOCX files.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers and document automation users can use this skill to automate Microsoft Word on Windows for DOC/DOCX reading, formatting, merging, template filling, batch replacement, table of contents generation, and document comparison. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can open and overwrite local Word files through Microsoft Word automation. <br>
-Mitigation: Use trusted documents, set explicit new output paths, and back up originals before batch operations. <br>
-Risk: Word automation depends on Windows, Microsoft Word, and pywin32, and unsupported environments can fail or leave Word sessions running. <br>
-Mitigation: Run only on patched Windows systems with Microsoft Word installed, install a current pywin32 version, and close Word automation sessions after use. <br>
+## Use Case:
 
+Developers and document automation users use this skill to control local Microsoft Word for precise DOC/DOCX reading, creation, formatting, merging, template filling, and batch edits.
 
-## Reference(s): <br>
-- [Word Vba on ClawHub](https://clawhub.ai/jirboy/word-vba) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local Word document paths and generated DOC/DOCX output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact files mention 2.0) <br>
+Risk: The skill drives Microsoft Word under the user's local account and can read or change local documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local Word automation is needed, use explicit output paths, and keep backups of important documents.
+
+Risk: Opening untrusted Word files through local automation can expose the user to document-borne risks.
+
+Mitigation: Avoid opening untrusted Word files and scan documents before processing them.
+
+Risk: Batch replacement, merging, template filling, and comparison workflows can produce incorrect or unintended document changes.
+
+Mitigation: Write results to separate output files and review generated documents before distribution or overwrite.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/word-vba)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks; local DOC/DOCX files when the generated helper code is run.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows, Microsoft Word 2010 or later, and pywin32; use explicit output paths and review generated documents before replacing originals.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

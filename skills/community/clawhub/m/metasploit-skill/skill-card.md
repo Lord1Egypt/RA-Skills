@@ -1,43 +1,55 @@
-## Description: <br>
-Plan and execute authorized Metasploit assessments for OpenClaw tasks with repeatable workflows covering target triage, module selection, option tuning, resource-script generation, controlled execution, and evidence-focused reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan and execute authorized Metasploit assessments for OpenClaw tasks with repeatable workflows, including target triage, exploit module selection, option tuning, .rc generation, controlled execution, and evidence-focused reporting.
 
-## Publisher: <br>
-[zengyuxiu](https://clawhub.ai/user/zengyuxiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengyuxiu](https://clawhub.ai/user/zengyuxiu)
 
-## Use Case: <br>
-Security practitioners and developers use this skill for authorized Metasploit assessments that require scoped target triage, module and payload selection, repeatable resource-script generation, controlled execution, and concise evidence-based reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Metasploit workflows can be misused or run outside an authorized assessment scope. <br>
-Mitigation: Confirm written authorization, in-scope targets, test window, and prohibited techniques before any technical step. <br>
-Risk: Generated resource scripts may execute unintended module, payload, listener, or target options if reviewed poorly. <br>
-Mitigation: Review every generated .rc file before running msfconsole and confirm target, payload, listener, and optional settings. <br>
-Risk: Logs, reports, or generated scripts may contain sensitive credentials or proof artifacts. <br>
-Mitigation: Avoid storing real credentials in generated scripts and redact logs and reports before sharing. <br>
+## Use Case:
 
+External security testers and developers use this skill to plan and document authorized Metasploit assessments, including scoping, module and payload selection, reviewable .rc generation, controlled execution, evidence capture, and remediation reporting.
 
-## Reference(s): <br>
-- [Module Selection Heuristics](references/module-selection.md) <br>
-- [Execution and Reporting Workflow](references/workflow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and generated Metasploit resource-script content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated .rc script text, scoped execution steps, check results, session evidence summaries, and remediation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated .rc files can include unsafe extra Metasploit commands if crafted argument values are accepted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every generated .rc file before running it in msfconsole, and use only module, payload, host, path, and option values that were typed and validated by the operator.
+
+Risk: Metasploit execution can affect systems outside approved authorization or scope.
+
+Mitigation: Confirm target ownership, in-scope hosts, allowed ports, testing window, and prohibited techniques before selecting modules or generating execution scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zengyuxiu/skills/metasploit-skill)
+- [Module Selection Heuristics](references/module-selection.md)
+- [Execution and Reporting Workflow](references/workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline bash commands and generated Metasploit .rc content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reviewable Metasploit resource scripts and concise assessment reports; generated .rc files require manual review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

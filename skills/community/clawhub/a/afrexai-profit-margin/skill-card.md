@@ -1,44 +1,56 @@
-## Description: <br>
-Analyzes profit margins by product or service line, benchmarks them against industry data, identifies margin erosion, and recommends pricing and cost optimizations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes profit margins by product or service line, benchmarks them against industry data, identifies margin erosion patterns, and recommends pricing and cost optimizations.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Founders, CFOs, and operations leaders use this skill to analyze gross, operating, net, and contribution margins, compare results with stated industry benchmarks, and plan pricing or cost changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Financial inputs shared with the agent may include sensitive business data. <br>
-Mitigation: Provide only the data needed for the analysis and handle margin, pricing, vendor, and customer information as confidential. <br>
-Risk: Benchmark and pricing recommendations may be incorrect, stale, or unsuitable for a specific business context. <br>
-Mitigation: Validate benchmark assumptions and proposed pricing or cost changes with current financial records and qualified business review before acting. <br>
-Risk: External resource links may request payment or additional information. <br>
-Mitigation: Review linked resources independently before purchasing or sharing information outside the agent workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-profit-margin) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Founders, CFOs, and operations leaders use this skill to calculate margins, compare them with stated industry benchmarks, identify margin erosion, and plan pricing or cost improvements.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with tables, checklists, templates, and recommendation summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; outputs depend on user-provided financial data and stated benchmark assumptions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides benchmark and pricing guidance that may be inaccurate, outdated, or unsuitable for a specific business.
+
+Mitigation: Validate the stated 2026 benchmarks, assumptions, and pricing recommendations before using them for financial decisions.
+
+Risk: Margin analysis may involve confidential revenue, cost, customer, vendor, or contract data.
+
+Mitigation: Share only necessary business data with the agent, redact sensitive details where possible, and follow the organization's data handling requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-profit-margin)
+- [Publisher profile](https://clawhub.ai/user/1kalin)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown business analysis with calculations, benchmark comparisons, checklists, templates, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no executable automation behavior is present in the submitted artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

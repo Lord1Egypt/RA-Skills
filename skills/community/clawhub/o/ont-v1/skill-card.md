@@ -1,42 +1,56 @@
-## Description: <br>
-Ontology provides a typed knowledge graph for structured agent memory, entity relationships, validation constraints, and cross-skill state sharing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Typed knowledge graph for structured agent memory and composable skills.
 
-## Publisher: <br>
-[onlyloveher](https://clawhub.ai/user/onlyloveher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[onlyloveher](https://clawhub.ai/user/onlyloveher)
 
-## Use Case: <br>
-Developers and agents use Ontology to create, query, link, and validate typed entities such as people, projects, tasks, events, and documents as persistent local memory for multi-step workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores persistent local graph data that can contain sensitive personal, project, account, or workflow information. <br>
-Mitigation: Avoid storing secrets or highly sensitive personal data, review memory/ontology/graph.jsonl periodically, and manually delete or purge ontology files when retained history must be removed. <br>
-Risk: Append-only graph and schema updates may retain stale or incorrect facts after an entity changes. <br>
-Mitigation: Use update, delete, validation, and periodic review workflows to keep the graph accurate before relying on it for planning or cross-skill state sharing. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, query, link, and validate typed entities for shared agent memory, task tracking, dependency analysis, and cross-skill state sharing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/onlyloveher/ont-v1) <br>
-- [Ontology Schema Reference](references/schema.md) <br>
-- [Query Reference](references/queries.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON/YAML examples, and local JSONL/YAML graph files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local memory/ontology graph and schema files; graph data should be reviewed before use in decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent ontology history can retain sensitive workspace data in JSONL records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data suitable for persistent local storage and avoid entering passwords, tokens, API keys, or other secrets.
+
+Risk: Validation may not provide strict write-time enforcement for every documented constraint.
+
+Mitigation: Run validation after changes and review proposed graph/schema updates before relying on them for automated decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/onlyloveher/skills/ont-v1)
+- [Ontology schema reference](references/schema.md)
+- [Ontology query reference](references/queries.md)
+- [Legacy ClawHub skill homepage](https://clawhub.com/skills/ontology)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples; CLI operations emit JSON or status text and write JSONL/YAML files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local append-oriented ontology files under memory/ontology by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

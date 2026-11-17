@@ -1,36 +1,52 @@
-## Description: <br>
-Automates programming tasks with the Claude Code CLI, including code generation, bug fixing, project creation, and validation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cc Coder uses the Claude Code CLI to help automate coding tasks such as creating projects, fixing bugs, implementing features, validating changes, and reporting results.
 
-## Publisher: <br>
-[wenlavril](https://clawhub.ai/user/wenlavril) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wenlavril](https://clawhub.ai/user/wenlavril)
 
-## Use Case: <br>
-Developers use this skill to delegate implementation, bug fixing, and project creation tasks to Claude Code CLI while tracking progress and validation results in TASKS.md. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to run Claude Code CLI with approval safeguards bypassed during broad programming tasks. <br>
-Mitigation: Use only in trusted repositories, remove or avoid the approval-bypass flag where possible, verify the local claude binary, and require explicit confirmation before file edits, command execution, server starts, or Git commits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers use this skill to delegate routine coding work to Claude Code, including requirements analysis, file changes, syntax checks, web project smoke testing, review loops, and concise completion summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown status summaries with inline shell commands and generated code or file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify files, run validation commands, start development servers, and summarize test results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can invoke Claude Code with approval checks skipped.
+
+Mitigation: Run it only in a sandboxed workspace or unprivileged account, and avoid repositories or machines that contain secrets, deployment credentials, or unrelated private files.
+
+Risk: Generated code or shell commands may be incorrect, incomplete, or unsafe for the target project.
+
+Mitigation: Review generated changes before keeping them, run the requested syntax checks or tests, and require manual validation before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wenlavril/skills/cc-coder)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Files, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown status summaries, inline shell commands, and generated or modified project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses TASKS.md-style progress tracking and reports task status, change summary, and test conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

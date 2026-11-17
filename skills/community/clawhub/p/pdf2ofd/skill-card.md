@@ -1,40 +1,53 @@
-## Description: <br>
-Converts PDF documents, including invoices and reports, to high-fidelity OFD format with layout-focused precision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF documents (invoices, reports) to High-Fidelity OFD format with pixel-perfect precision.
 
-## Publisher: <br>
-[xzw](https://clawhub.ai/user/xzw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xzw](https://clawhub.ai/user/xzw)
 
-## Use Case: <br>
-Developers and document automation users use this skill to convert PDF invoices or reports into OFD files while preserving text placement, fonts, vector graphics, images, and transparency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted PDFs and document parser dependencies carry ordinary document-handling risk. <br>
-Mitigation: Use an isolated Python environment, pin current patched dependency versions, and process only PDFs intended for conversion. <br>
-Risk: Input PDFs and generated OFD files may contain sensitive invoice or report content. <br>
-Mitigation: Store and handle source and output files according to the user's data protection requirements. <br>
+## Use Case:
 
+Developers and document-workflow operators use this skill to convert selected PDFs, especially invoices and reports, into high-fidelity OFD files while preserving text placement, vector graphics, fonts, colors, images, and transparency.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xzw/pdf2ofd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Code, Guidance] <br>
-**Output Format:** [OFD file output with text status messages and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local .ofd document from a specified PDF input; no API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter and package.json report 1.1.0) <br>
+Risk: PDF parsing dependencies and large document handling can create operational risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated environment, pin and review dependencies, and convert only PDFs intentionally selected by the user.
+
+Risk: Exposing conversion as an upload-facing service can increase resource-exhaustion risk.
+
+Mitigation: Add strict input size, page count, image, memory, disk, runtime, and concurrency limits before service deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xzw/skills/pdf2ofd)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and generated OFD files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an OFD output file from a selected PDF input path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter and package.json report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

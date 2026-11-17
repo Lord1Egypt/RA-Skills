@@ -1,40 +1,56 @@
-## Description: <br>
-Use the shared Pinecone RAG index for any agent in this workspace. Use when an agent needs to ingest markdown/text docs into pulse-rag or query semantic context from the shared index. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the shared Pinecone RAG index for workspace agents that need to ingest markdown or text documents into pulse-rag or query semantic context from the shared index.
 
-## Publisher: <br>
-[cryptobro-man](https://clawhub.ai/user/cryptobro-man) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cryptobro-man](https://clawhub.ai/user/cryptobro-man)
 
-## Use Case: <br>
-Developers and agents use this skill to ingest markdown or text documents into a shared Pinecone-backed RAG index and query semantic context from that shared memory layer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill delegates ingest and query actions to a hardcoded external RAG project path. <br>
-Mitigation: Install only when you control and trust the rag-pinecone-starter project at that path, and review the external ingest and query scripts before use. <br>
-Risk: Shared RAG memory can retain or expose documents across agents if sensitive content is ingested without governance. <br>
-Mitigation: Ingest only documents suitable for shared agent memory, and define namespace, deletion, and retention practices before operational use. <br>
-Risk: The workflow depends on a Pinecone API key for external retrieval infrastructure. <br>
-Mitigation: Use a least-privilege Pinecone key and manage it through the referenced project environment file rather than embedding credentials in skill files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and workspace agents use this skill to ingest approved markdown or text documents into a shared Pinecone RAG index and query semantic context from the default namespace.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and setup notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a trusted local rag-pinecone-starter project, Python virtual environment, and Pinecone API key configured outside the skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shared ingestion and query access can expose documents placed in the shared Pinecone index to other agents using the default namespace.
+
+Mitigation: Only ingest non-sensitive documents approved for shared workspace retrieval, and confirm who can query the default namespace before use.
+
+Risk: The skill executes mutable external local code from the rag-pinecone-starter project and its Python virtual environment.
+
+Mitigation: Verify the external project and .venv are trusted, current, and protected from unapproved modification before running the scripts.
+
+Risk: The workflow depends on a Pinecone API key configured outside the skill.
+
+Mitigation: Store PINECONE_API_KEY in the referenced environment file with appropriate access controls and rotate it if workspace exposure is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptobro-man/skills/shared-pinecone-rag)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an existing rag-pinecone-starter project, protected Python virtual environment, and PINECONE_API_KEY configured outside the skill.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

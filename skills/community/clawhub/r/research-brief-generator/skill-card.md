@@ -1,38 +1,60 @@
-## Description: <br>
-Generates a comprehensive, structured research brief on any topic, person, case, or event. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a comprehensive, structured research brief on any topic, person, case, or event for users who need a fast briefing before deeper research.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-External journalists, podcasters, writers, content creators, and researchers use this skill to turn a topic, case, person, or event into a structured brief for orientation and follow-up research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated briefs may contain outdated, disputed, or incomplete facts on current or sensitive topics. <br>
-Mitigation: Treat generated briefs as starting points and independently verify important facts, dates, current status, and sensitive claims before publishing or relying on them. <br>
+## Use Case:
 
+External journalists, podcasters, writers, researchers, and content creators use this skill to get structured orientation on a topic, person, case, event, or controversy before conducting deeper source work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/research-brief-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research brief with sections, bullet lists, disputed-fact flags, source directions, and content warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Research briefs may contain outdated, disputed, or limited information for current, obscure, or sensitive topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The skill instructs the agent to distinguish established facts from claims or speculation, flag disputed or unverified items, and state knowledge limits.
+
+Risk: Broad topic coverage can include distressing subjects such as graphic violence, sexual abuse, suicide, or exploitation of minors.
+
+Mitigation: The skill requires content warnings for distressing topics so researchers and creators can prepare themselves and their audiences.
+
+Risk: Installing through an unpinned package installer can increase supply-chain exposure.
+
+Mitigation: Use a pinned and trusted ClawHub installer version when stricter supply-chain control is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tetsuakira-vk/skills/research-brief-generator)
+- [Publisher Profile](https://clawhub.ai/user/tetsuakira-vk)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown research brief with headings and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include content warnings and labels for disputed or unverified facts when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

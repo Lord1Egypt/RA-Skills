@@ -1,0 +1,8 @@
+GITEA_URL=
+GITEA_BOT_USERNAME=
+GITEA_BOT_TOKEN=
+GITEA_ORG=
+TEAM_KB_REPO=
+OPENCLAW_SHARED_DIR=
+# Optional, if using Tavily-backed web_search or a tavily-search helper.
+TAVILY_API_KEY=

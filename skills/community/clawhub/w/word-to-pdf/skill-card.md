@@ -1,45 +1,55 @@
-## Description: <br>
-Convert Word documents (.docx) to PDF using Python's reportlab library, with support for Chinese characters, emoji, and basic formatting preservation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert Word documents (.docx) to PDF using Python's reportlab library, with support for Chinese characters, emojis, and basic formatting preservation.
 
-## Publisher: <br>
-[lirenweiM](https://clawhub.ai/user/lirenweiM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lirenweim](https://clawhub.ai/user/lirenweim)
 
-## Use Case: <br>
-Developers and other users use this skill to convert local .docx documents into PDF files from the command line. It is especially relevant when basic paragraphs, headings, lists, Chinese text, and emoji need to be carried into the generated PDF. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Installing converter dependencies from untrusted sources can introduce supply-chain risk. <br>
-Mitigation: Install reportlab and python-docx from trusted package indexes, preferably inside a virtual environment. <br>
-Risk: The converter reads local documents and writes output files, so accidental file selection can expose or transform unintended content. <br>
-Mitigation: Run it only on documents the user intentionally selects and review the target output path before execution. <br>
-Risk: Generated PDFs may not preserve full Word layout, images, tables, or emoji exactly. <br>
-Mitigation: Review the generated PDF before sharing or relying on it, especially for documents with complex formatting. <br>
-Risk: Missing CJK fonts can cause Chinese text to render incorrectly. <br>
-Mitigation: Install a supported Chinese font or configure an appropriate system font before conversion. <br>
+## Use Case:
 
+Developers and document automation users use this skill to convert .docx files into PDF files from a command-line workflow, especially for documents that need Chinese text and emoji handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lirenweiM/word-to-pdf) <br>
-- [Publisher profile](https://clawhub.ai/user/lirenweiM) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Text] <br>
-**Output Format:** [PDF file with command-line status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads a selected .docx file and writes a local .pdf file; conversion fidelity depends on document structure, installed fonts, and python-docx/reportlab behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release evidence) <br>
+Risk: Dependency versions are not pinned, which can make conversion behavior vary across environments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and use pinned versions for reportlab and python-docx.
+
+Risk: Complex Word layouts, images, tables, numbering, and some emoji rendering may not be preserved accurately.
+
+Mitigation: Use this for trusted or low-risk documents and manually review generated PDFs before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lirenweim/skills/word-to-pdf)
+- [Publisher profile](https://clawhub.ai/user/lirenweim)
+- [OpenClaw homepage listed by artifact metadata](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance, files]
+
+**Output Format:** [Markdown guidance with command-line examples; runtime output is a PDF file and console status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The command accepts a required .docx input path and an optional PDF output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter, skill.json, _meta.json, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

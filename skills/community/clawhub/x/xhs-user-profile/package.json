@@ -1,0 +1,10 @@
+{
+  "name": "xhs-profile",
+  "version": "2.0.1",
+  "private": true,
+  "description": "小红书博主主页笔记采集 Skill CLI (博主主页链接, 按页计费: 一页30条=5点, 整单按实采退差 / 会话一页一页步进)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

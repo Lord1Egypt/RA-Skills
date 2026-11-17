@@ -1,47 +1,62 @@
-## Description: <br>
-Dating wingman that generates openers, replies, profile analysis, date plans, and coaching via the MemePickup API (Hinge/Tinder/Bumble/Instagram). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dating wingman that generates openers, replies, profile analysis, date plans, and coaching via the MemePickup API for Hinge, Tinder, Bumble, and Instagram.
 
-## Publisher: <br>
-[samcraw1](https://clawhub.ai/user/samcraw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[samcraw1](https://clawhub.ai/user/samcraw1)
 
-## Use Case: <br>
-External users use this skill as a dating assistant to generate openers and replies, analyze dating profile or conversation screenshots, manage preferences, plan dates, and receive coaching for Hinge, Tinder, Bumble, and Instagram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dating conversations, profile screenshots, and preferences may be sent to MemePickup and its processors. <br>
-Mitigation: Install only if comfortable sharing that data; use secure secret storage or environment variables for the API key. <br>
-Risk: Auto-swipe can use logged-in sessions and perform visible likes, skips, comments, follows, or DMs without per-profile confirmation. <br>
-Mitigation: Keep auto-swipe disabled unless actively supervised, limit sessions, and stop on CAPTCHA, errors, or unexpected behavior. <br>
-Risk: Auto-swipe may violate dating-app terms and can create account-ban or privacy risk. <br>
-Mitigation: Require explicit user acceptance before enabling and make the account-ban and privacy consequences clear. <br>
+## Use Case:
 
+External users use this skill to get dating-app openers, reply suggestions, screenshot and profile analysis, date planning, preference handling, and coaching through MemePickup. Agents can use it to call MemePickup helpers, return dating guidance, and optionally coordinate user-approved auto-swipe workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samcraw1/memepickup-wingman) <br>
-- [MemePickup Homepage](https://memepickup.com) <br>
-- [MemePickup App Store Listing](https://apps.apple.com/app/memepickup) <br>
-- [Auto-Swipe Reference](references/AUTO-SWIPE.md) <br>
-- [Manus Setup](references/MANUS-SETUP.md) <br>
-- [OpenClaw Setup](references/OPENCLAW-SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMEPICKUP_API_KEY; API-backed actions consume credits, while coaching and date planning can run locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release, skill frontmatter, package.json) <br>
+Risk: Private dating messages, screenshots, profile images, and preferences may be sent to remote MemePickup/OpenAI-backed processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the user accepts that data sharing, avoid unrelated sensitive content, and keep activation limited to dating-related contexts.
+
+Risk: API keys can be exposed if pasted into chat, shell startup files, or other shared logs.
+
+Mitigation: Prefer OpenClaw configuration, environment variables, or a secrets manager; rotate the MemePickup API key if it is disclosed.
+
+Risk: Auto-swipe can automate real dating-app account actions and may violate platform terms, causing account bans or unintended likes, messages, follows, or skips.
+
+Mitigation: Require explicit user opt-in, show the auto-swipe warning, keep the documented 30-profile cap and randomized delays, and stop immediately on CAPTCHA, API errors, interaction failures, pause, or stop requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samcraw1/skills/memepickup-wingman)
+- [MemePickup homepage](https://memepickup.com)
+- [MemePickup App Store listing](https://apps.apple.com/app/memepickup)
+- [Auto-Swipe Reference](references/AUTO-SWIPE.md)
+- [OpenClaw Setup](references/OPENCLAW-SETUP.md)
+- [Manus Setup](references/MANUS-SETUP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON and bash command examples; API helper calls return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEMEPICKUP_API_KEY and internet access; API-backed actions may consume MemePickup credits.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

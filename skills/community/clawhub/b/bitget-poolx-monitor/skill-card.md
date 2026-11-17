@@ -1,42 +1,60 @@
-## Description: <br>
-Monitor Bitget PoolX for new staking projects using r.jina.ai to bypass Cloudflare. Detect ETH, BTC, SOL and other pool launches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Bitget PoolX for new staking projects using r.jina.ai to bypass Cloudflare. Detect ETH, BTC, SOL and other pool launches.
 
-## Publisher: <br>
-[itonlyforfun-AI](https://clawhub.ai/user/itonlyforfun-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[itonlyforfun-ai](https://clawhub.ai/user/itonlyforfun-ai)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor Bitget PoolX for new or ongoing staking pools and surface launch status for assets such as BTC and ETH. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses r.jina.ai to proxy Bitget PoolX requests and bypass Cloudflare or anti-bot protection. <br>
-Mitigation: Use it only where proxying through r.jina.ai and the related anti-bot bypass behavior are explicitly acceptable. <br>
-Risk: The artifact includes live SkillPay billing code that can check balances, create payment links, and charge a user account. <br>
-Mitigation: Do not run billing.py or call charge_user unless the SkillPay account, API key, billed user_id, and user-approved charge flow have been verified. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itonlyforfun-AI/bitget-poolx-monitor) <br>
-- [Bitget PoolX page](https://www.bitget.com/events/poolx) <br>
-- [r.jina.ai PoolX proxy endpoint](https://r.jina.ai/https://www.bitget.com/events/poolx) <br>
-- [SkillPay service endpoint](https://skillpay.me) <br>
+## Use Case:
 
+External users and developers use this skill to monitor Bitget PoolX staking pages for active or newly launched pools and inspect status output for assets such as BTC and ETH.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included monitor scripts print status strings such as HAS_POOLS, NO_POOLS, UNKNOWN, or ERROR.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The included billing helper uses a hardcoded SkillPay API key and under-scoped payment behavior.
+
+Mitigation: Revoke and replace the exposed key, move billing to a server-side scoped integration, and require explicit per-charge user consent before use.
+
+Risk: The skill sends monitoring traffic through r.jina.ai and may send billing data to SkillPay.
+
+Mitigation: Run only in a constrained environment with explicit network allowlists and disclose the r.jina.ai and SkillPay data flows to users.
+
+Risk: The artifact includes bitget-final.py, an alternate browser-scraping path that disables safety controls.
+
+Mitigation: Avoid using bitget-final.py unless it is removed or hardened and reviewed before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/itonlyforfun-ai/skills/bitget-poolx-monitor)
+- [Publisher profile](https://clawhub.ai/user/itonlyforfun-ai)
+- [Bitget PoolX page](https://www.bitget.com/events/poolx)
+- [r.jina.ai Bitget PoolX endpoint](https://r.jina.ai/https://www.bitget.com/events/poolx)
+- [SkillPay service](https://skillpay.me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell and Python examples plus plain-text monitor status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform outbound HTTP requests to Bitget through r.jina.ai and to SkillPay when billing helpers are used.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Automates Doubao AI image creation by connecting to a browser or API session, submitting prompts, extracting generated image URLs, and saving images locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Doubao AI image creation by controlling an existing browser session or related API workflow to submit prompts, extract generated image URLs, and save images locally.
 
-## Publisher: <br>
-[huangm199](https://clawhub.ai/user/huangm199) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangm199](https://clawhub.ai/user/huangm199)
 
-## Use Case: <br>
-Developers and automation users can use this skill to drive Doubao image generation workflows, collect generated image URLs, and download results with less manual browser interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Direct authenticated API use relies on saved cookies and can act as the user account without manual browser interaction. <br>
-Mitigation: Use a dedicated Doubao account or browser profile and require explicit approval before any browserless API call uses saved cookies. <br>
-Risk: Referenced Node scripts are not present in the reviewed artifact, so their behavior cannot be confirmed from the release files. <br>
-Mitigation: Review the missing Node scripts before installation and confirm exactly which cookie file is read and where images are saved. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate images through Doubao by automating prompt submission, image URL extraction, and local download steps. It is intended for workflows where the user can manage the Doubao account session and review generated outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangm199/doubao-image-auto) <br>
-- [Doubao image creation page](https://www.doubao.com/chat/create-image) <br>
-- [Doubao](https://www.doubao.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with JavaScript and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce image URLs and downloaded image files when executed by an agent with browser, network, and local filesystem access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: The no-browser API workflow reuses a saved Doubao session cookie without clear scoping or user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with an intended Doubao account session, confirm where the session file is stored, and know how to revoke or refresh the session before running automation.
+
+Risk: The artifact references API scripts that are not included, reducing visibility into exact network behavior and file writes.
+
+Mitigation: Review the actual scripts and output directory behavior before using API mode or enabling automatic downloads.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huangm199/skills/doubao-image-auto)
+- [Doubao Image Creation Page](https://www.doubao.com/chat/create-image)
+- [Doubao](https://www.doubao.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and PowerShell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce image URLs and saved image files when connected to an authenticated Doubao session.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

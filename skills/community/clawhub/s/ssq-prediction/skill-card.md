@@ -1,41 +1,58 @@
-## Description: <br>
-Fetches recent Double Color Ball lottery history, applies a Contextual Quantum-like Bayesian Network simulation, and prepares Top 10 recommended combinations with optional Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Investment Research - Double Color Ball (SSQ) Prediction fetches historical draw data, applies a Contextual Quantum-like Bayesian Network simulation, and sends Top 10 recommendations to Feishu.
 
-## Publisher: <br>
-[rix-zhang](https://clawhub.ai/user/rix-zhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rix-zhang](https://clawhub.ai/user/rix-zhang)
 
-## Use Case: <br>
-External users and developers use this skill to generate a concise SSQ lottery prediction report from recent public draw history and optionally deliver it to a configured Feishu group. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lottery recommendations could be mistaken for reliable investment or gambling advice. <br>
-Mitigation: Treat predictions as speculative entertainment or mathematical research, and keep the report's cautionary language visible. <br>
-Risk: A configured Feishu group ID can route the generated report to a group chat. <br>
-Mitigation: Confirm FEISHU_SSQ_GROUP_ID points to the intended group before enabling automatic delivery. <br>
+## Use Case:
 
+External users and agents use this skill to fetch recent SSQ draw history, generate a speculative Top 10 lottery-number report, and optionally deliver the report to a configured Feishu group.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rix-zhang/ssq-prediction) <br>
-- [SSQ historical data source](https://datachart.500.com/ssq/history/newinc/history.php?start=24001&end=24200) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with optional Feishu delivery command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Top 10 recommended lottery combinations; sends to Feishu only when FEISHU_SSQ_GROUP_ID is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Speculative lottery-number output may be mistaken for reliable financial or investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present results as entertainment or research, preserve the report's risk warning, and avoid representing recommendations as predictive certainty.
+
+Risk: When FEISHU_SSQ_GROUP_ID is configured, the generated report is sent to that Feishu group.
+
+Mitigation: Verify the target group ID before use and leave FEISHU_SSQ_GROUP_ID unset when chat-only output is preferred.
+
+Risk: The report depends on public draw data fetched from an external source.
+
+Mitigation: Confirm the retrieved issue range and data recency before relying on the generated report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rix-zhang/skills/ssq-prediction)
+- [500.com SSQ historical draw data](https://datachart.500.com/ssq/history/newinc/history.php?start=24001&end=24200)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with ranked lottery-number combinations and optional Feishu delivery command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Top 10 recommendations; sends to Feishu only when FEISHU_SSQ_GROUP_ID is configured.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

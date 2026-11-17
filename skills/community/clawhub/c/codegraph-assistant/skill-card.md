@@ -1,40 +1,54 @@
-## Description: <br>
-Codegraph Assistant wraps npm codegraph to set up project indexing, query symbols, analyze affected files, and inject generated project context for coding workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codegraph Assistant wraps npm codegraph to initialize and index projects, query symbols, analyze affected files, and inject project summaries into MEMORY.md.
 
-## Publisher: <br>
-[huangxianzhan](https://clawhub.ai/user/huangxianzhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangxianzhan](https://clawhub.ai/user/huangxianzhan)
 
-## Use Case: <br>
-Developers and engineers use this skill to initialize and query a local code graph, inspect impacted files, and add generated codebase summaries to agent memory during implementation work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and indexes local project code through a globally installed npm codegraph tool. <br>
-Mitigation: Install and run it only in repositories where local indexing by that tool is acceptable. <br>
-Risk: The inject command changes MEMORY.md without creating a backup or asking for confirmation. <br>
-Mitigation: Review MEMORY.md after running inject and use version control before applying it in sensitive projects. <br>
+## Use Case:
 
+Developers and engineers use this skill to call npm codegraph through simpler commands for project setup, code context generation, symbol search, impact analysis, and memory summary injection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangxianzhan/codegraph-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Command-line text, Markdown context, optional JSON query output, and MEMORY.md updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the locally installed npm codegraph tool and the indexed repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The inject command can persist untrusted project or CodeGraph output into MEMORY.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use inject only on trusted repositories, inspect MEMORY.md after use, and add confirmation, backups, explicit markers, and untrusted-output delimiters before relying on memory workflows.
+
+Risk: The skill indexes the selected project and runs the globally installed CodeGraph executable.
+
+Mitigation: Install CodeGraph from a trusted source and run the skill only in intended project directories.
+
+## Reference(s):
+
+- [Codegraph Assistant ClawHub Skill](https://clawhub.ai/huangxianzhan/skills/codegraph-assistant)
+- [huangxianzhan ClawHub Profile](https://clawhub.ai/user/huangxianzhan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, Markdown, and optional JSON emitted by command-line workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a generated CodeGraph summary to MEMORY.md when the inject command is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

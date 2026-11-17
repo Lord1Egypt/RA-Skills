@@ -1,39 +1,54 @@
-## Description: <br>
-Generate professional PDF invoices with a clean layout, no browser dependency, and support for EUR, GBP, USD, multi-item tables, custom brand colours, and payment details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional PDF invoices from structured JSON input using jsPDF, with configurable branding, EUR/GBP/USD support, multi-item tables, and payment details.
 
-## Publisher: <br>
-[alexwong27](https://clawhub.ai/user/alexwong27) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexwong27](https://clawhub.ai/user/alexwong27)
 
-## Use Case: <br>
-Developers and business operators use this skill to generate branded invoice PDFs from structured invoice JSON and local company configuration in constrained Node.js environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated invoice PDFs may contain customer addresses, account references, IBAN/SWIFT details, or other sensitive business data saved to disk. <br>
-Mitigation: Use a private output directory, protect or delete generated PDFs according to retention needs, and avoid shared temporary locations for sensitive invoices. <br>
+## Use Case:
 
+Developers, operators, and business users use this skill to generate invoice PDFs from structured invoice JSON and reusable company configuration in constrained Node.js environments.
 
-## Reference(s): <br>
-- [Clawed Invoice Generator on ClawHub](https://clawhub.ai/alexwong27/clawed-invoice) <br>
-- [Default invoice configuration](references/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration] <br>
-**Output Format:** [PDF file written to a local output directory, with shell-command usage and JSON configuration inputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output path is /tmp/invoices; invoice filenames are derived from the invoice number.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Generated invoices and configuration can contain customer, billing, IBAN, and SWIFT details written to disk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a private secured outputDir, protect configuration files, avoid shared temp locations for real invoices, and delete generated PDFs when no longer needed.
+
+Risk: The local Node script reads invoice JSON and configuration files and writes a PDF to the filesystem.
+
+Mitigation: Run it only with trusted local invoice data and review the chosen input and output paths before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexwong27/skills/clawed-invoice)
+- [Configuration Reference](artifact/references/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration]
+
+**Output Format:** [PDF file plus a text path printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes invoice-<invoiceNumber>.pdf to the configured outputDir, defaulting to /tmp/invoices.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

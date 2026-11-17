@@ -1,42 +1,56 @@
-## Description: <br>
-Use one API key to pull YouTube channel, video, search, comments, subtitle, trend, and recommendation data as structured JSON for agents, automations, and analytics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YouTube channels, videos, transcripts, and comments for agents — no Google API key or daily quota to manage.
 
-## Publisher: <br>
-[jaencarrodine](https://clawhub.ai/user/jaencarrodine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[superagnt](https://clawhub.ai/user/superagnt)
 
-## Use Case: <br>
-Developers, automation builders, analytics teams, and product teams use this skill to query YouTube metadata, search results, trends, comments, subtitles, recommendations, channel details, and channel email lookup endpoints through AGNTDATA. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive AGNTDATA API key and sends YouTube queries, channel IDs, URLs, and use-case details to AGNTDATA. <br>
-Mitigation: Install only when the publisher and AGNTDATA are trusted, keep the API key in AGNTDATA_API_KEY, and avoid sharing unnecessary sensitive context in requests. <br>
-Risk: The skill includes channel email lookup endpoints without clear privacy or authorized-use limits. <br>
-Mitigation: Use email lookup only for lawful, authorized purposes, avoid bulk collection or unsolicited outreach, and review applicable privacy obligations before use. <br>
+## Use Case:
 
+Developers, marketing and research teams, and data teams can use the skill to search YouTube and retrieve video, channel, subtitle, recommendation, and comment data for research, monitoring, alerts, and analysis.
 
-## Reference(s): <br>
-- [AGNTDATA YouTube API Reference](https://agnt.mintlify.app/apis/social/youtube) <br>
-- [AGNTDATA Documentation](https://agnt.mintlify.app) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jaencarrodine/agntdata-youtube) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON API schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AGNTDATA_API_KEY and curl for authenticated requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.15 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Requests send the SUPERAGNT_API_KEY to the external YouTube Data API service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only if you trust the service and are comfortable providing the key for these requests; keep the key private.
+
+Risk: Channel email lookup returns creators’ business contact email addresses, which are personal contact data.
+
+Mitigation: Use email results only for the user's stated purpose and never for bulk unsolicited outreach.
+
+## Reference(s):
+
+- [YouTube Data documentation](https://superagnt.com/r/ch-youtube-data-docs)
+- [YouTube Data API](https://api.superagnt.com/v1/data/youtube)
+- [YouTube Data MCP server](https://mcp.superagnt.com/mcp/youtube)
+- [ClawHub listing](https://clawhub.ai/superagnt/skills/youtube-data)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Structured JSON API responses and Markdown usage guidance with inline curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live results depend on a valid SUPERAGNT_API_KEY and available account credits.]
+
+## Skill Version(s):
+
+2.0.14 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

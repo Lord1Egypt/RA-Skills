@@ -1,39 +1,52 @@
-## Description: <br>
-Summarizes important problem-solving events into structured memory notes and saves them for later review and reuse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将重要事件和问题解决过程整理成结构化记忆文档，便于后续查阅、复盘和经验沉淀。
 
-## Publisher: <br>
-[marklyk](https://clawhub.ai/user/marklyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marklyk](https://clawhub.ai/user/marklyk)
 
-## Use Case: <br>
-Developers and operators use this skill after troubleshooting, configuration changes, or notable decisions to decide whether a memory should be saved, classify it by priority and layer, and draft or update a concise record. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Memory notes may preserve secrets, sensitive logs, or private operational details if saved without review. <br>
-Mitigation: Review each generated note before saving and redact secrets, credentials, tokens, sensitive logs, and unnecessary personal or operational data. <br>
-Risk: High-priority or always-loaded memories can affect future agent behavior beyond the original session. <br>
-Mitigation: Reserve P0/L0 entries for durable rules or preferences that are intentionally reused, and use lower priority or archive layers for temporary troubleshooting records. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/marklyk/zongjie) <br>
+## Use Case:
 
+Agents and users use this skill after troubleshooting, configuration changes, important decisions, or debugging work to decide whether an event is worth saving and to produce a structured memory entry with priority, layer, root cause, steps, key details, result, and lessons learned.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown notes with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes priority and memory-layer labels plus a save-location confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent memory entries may capture sensitive content or prompt-like instructions.
+
+Mitigation: Review and sanitize proposed entries before saving, especially P0/L0 or shared entries; avoid raw logs, tokens, passwords, private URLs, customer data, and untrusted instruction-like text.
+
+Risk: Broad memory-writing guidance may preserve incorrect or misleading operational rules.
+
+Mitigation: Confirm that the proposed priority, memory layer, save location, and summary content are appropriate before writing or sharing the memory entry.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marklyk/skills/zongjie)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown memory entry with optional shell commands and a brief save confirmation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Classifies entries by P0/P1/P2 priority and L0/L1/L2 memory layer.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

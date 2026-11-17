@@ -1,43 +1,58 @@
-## Description: <br>
-Agent identity package for Aria 📍 — installs SOUL.md, IDENTITY.md, and AGENTS.md into an OpenClaw workspace to give an AI agent its personality, name, and operational rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent identity package for Aria that installs SOUL.md, IDENTITY.md, and AGENTS.md into an OpenClaw workspace to give an AI agent its Google Business Profile specialist identity, personality, and operating rules.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-External users and developers use this skill to install Aria, a Google Business Profile specialist identity, into an OpenClaw workspace. The package replaces workspace identity and operating-rule files for agents that manage, audit, and optimize Google Business Profiles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package changes an agent workspace's identity and operating rules. <br>
-Mitigation: Back up existing SOUL.md, IDENTITY.md, AGENTS.md, and BOOTSTRAP.md before installation. <br>
-Risk: The workspace memory behavior can expose personal context if used in shared sessions. <br>
-Mitigation: Avoid storing secrets in MEMORY.md or daily memory notes, and keep MEMORY.md restricted to direct main-session use. <br>
-Risk: Calendar, Google Business Profile, posting, or other external actions may affect accounts outside the local workspace. <br>
-Mitigation: Restrict external-action tools or require explicit approval before posting, messaging, calendar changes, or profile updates. <br>
+## Use Case:
 
+External developers or operators use this package when setting up or replacing an OpenClaw agent identity for Aria, a Google Business Profile specialist intended to help a marketing agency owner manage, audit, and optimize multiple business profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/aria-gbp-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/maverick-software) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown identity files with installation shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Installs SOUL.md, IDENTITY.md, and AGENTS.md into an OpenClaw workspace; no API keys or MCP tools are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md version section) <br>
+Risk: The package persistently replaces workspace identity and operating rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up existing SOUL.md, IDENTITY.md, AGENTS.md, BOOTSTRAP.md, MEMORY.md, and memory notes before copying the package files.
+
+Risk: The workspace rules enable broad private-context loading and memory updates.
+
+Mitigation: Review and narrow memory-loading, memory-writing, and group-chat rules before deployment, especially for shared or multi-user contexts.
+
+Risk: The setup rules allow deletion of BOOTSTRAP.md after first use.
+
+Mitigation: Require human review before deleting setup files or remove that behavior from the installed rules.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/maverick-software/skills/aria-gbp-agent)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/maverick-software)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown identity files and Markdown installation guidance with bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent workspace identity and operating-rule files for an OpenClaw agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version section)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

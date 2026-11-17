@@ -1,44 +1,61 @@
-## Description: <br>
-Reduce MCP token costs by up to 94% and enforce least-privilege tool access by creating YAML policies that control which MCP tools each agent can see and call. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduce MCP token costs by up to 94% and enforce least-privilege tool access by creating YAML policies that control which MCP tools each agent can see and call.
 
-## Publisher: <br>
-[ivanpantheon](https://clawhub.ai/user/ivanpantheon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivanpantheon](https://clawhub.ai/user/ivanpantheon)
 
-## Use Case: <br>
-Developers and platform teams use this skill to reduce MCP tool-schema token overhead, scope agent-visible tools, and draft least-privilege policy files for MCP-based workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation or setup commands can change local Python packages or system-level agent tooling. <br>
-Mitigation: Review commands before execution, prefer an isolated Python environment where practical, and confirm the installed package and source match the intended Navil release. <br>
-Risk: Policy changes can accidentally hide required tools from agents or leave broad tool access in place. <br>
-Mitigation: Test policies with explicit allow and deny checks, review generated policies before copying them into the active policy file, and keep rollback steps available. <br>
+## Use Case:
 
+Developers and agent operators use this skill to reduce MCP tool-schema token overhead and create least-privilege tool access policies for agents. It provides guidance, commands, and YAML examples for checking, generating, applying, monitoring, and rolling back Navil policies.
 
-## Reference(s): <br>
-- [Navil Policy on ClawHub](https://clawhub.ai/ivanpantheon/navil-policy) <br>
-- [Navil homepage](https://github.com/navilai/navil) <br>
-- [Policy documentation](https://github.com/navilai/navil#tool-scoping) <br>
-- [Community policy templates](https://github.com/navilai/navil/tree/main/policies) <br>
-- [Token cost guide](https://navil.ai/docs/token-costs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and YAML policy examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include installation checks, policy examples, token-savings estimates, and rollback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Artifact checksums do not match the bundled release evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the release package and file hashes before installation, and do not rely on the bundled checksums until the mismatch is resolved.
+
+Risk: Install guidance uses an unpinned pip package and may bypass system package protections.
+
+Mitigation: Install Navil in an isolated environment such as pipx or a virtual environment, and pin and verify the package version before use.
+
+Risk: Policy files can affect which MCP tools agents can see and call.
+
+Mitigation: Review ~/.navil/policy*.yaml before enabling the policy engine for agent tool access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivanpantheon/skills/navil-policy)
+- [Navil Homepage](https://github.com/navilai/navil)
+- [Policy Documentation](https://github.com/navilai/navil#tool-scoping)
+- [Community Policy Templates](https://github.com/navilai/navil/tree/main/policies)
+- [Token Cost Guide](https://navil.ai/docs/token-costs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include policy recommendations, Navil CLI commands, and YAML snippets for agent tool scoping.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, artifact/skill.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

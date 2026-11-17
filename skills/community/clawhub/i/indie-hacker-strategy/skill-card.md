@@ -1,47 +1,60 @@
-## Description: <br>
-Guides indie hackers and bootstrapped founders on growth channels, Build in Public, first users, and solo-founder tactics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When the user wants indie hacker or bootstrapping founder strategy, this skill provides guidance for growth, channels, Build in Public, solo founder tactics, and first-user planning.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-External founders, solo builders, and growth operators use this skill to choose indie-hacker growth channels, plan first-user acquisition, map related go-to-market skills, and structure Build in Public content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked for broad startup or growth questions where a narrower strategy skill would be a better fit. <br>
-Mitigation: Confirm the user is asking for indie-hacker or bootstrapped-founder strategy, and route cold-start execution, forum tactics, SEO, pricing, or launch-specific requests to the related specialized skills when appropriate. <br>
-Risk: Business metrics, revenue examples, and financial suggestions may be incomplete or stale for a user's specific market. <br>
-Mitigation: Treat the guidance as strategy support and verify market data, financial assumptions, and business metrics independently before making decisions. <br>
+## Use Case:
 
+Founders, indie hackers, and agents supporting bootstrapped product teams use this skill to choose sustainable growth channels, plan first-user outreach, structure Build in Public content, and route related launch or marketing tasks to companion skills.
 
-## Reference(s): <br>
-- [Indie Hacker Complete Guide](https://alignify.co/zh/insights/indie-hackers) <br>
-- [Pieter Levels: The One-Man Startup Empire](https://www.systemscowboy.com/pieter-levels-indie-hacker-strategy/) <br>
-- [How I Got My First 100 Users](https://www.indiehackers.com/post/how-i-got-my-first-100-users-2fc9d71c34) <br>
-- [Indie10k First 100 Users](https://indie10k.com/blog/get-first-100-users) <br>
-- [Building in Public: Complete Strategy 2026](https://getathenic.com/blog/building-in-public-startup-strategy-2026) <br>
-- [Indie Hackers Marketing 2025](https://awesome-directories.com/blog/indie-hackers-launch-strategy-guide-2025/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kostja94/indie-hacker-strategy) <br>
-- [Publisher Profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown with tables, bullet lists, and structured plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include channel selection, first-100-user plans, Build in Public content mixes, skill mappings, and launch timelines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and release evidence) <br>
+Risk: The skill may activate for broad indie-founder or startup-growth discussions and provide general marketing strategy where more specific context is needed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated strategy for fit against the user's product, audience, stage, and channel constraints before acting on it.
+
+Risk: The skill references external resources whose content may change over time.
+
+Mitigation: Review linked resources before relying on their claims or metrics in commercial planning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/indie-hacker-strategy)
+- [Publisher profile](https://clawhub.ai/user/kostja94)
+- [Alignify Indie Hacker Complete Guide](https://alignify.co/zh/insights/indie-hackers)
+- [Pieter Levels: The One-Man Startup Empire](https://www.systemscowboy.com/pieter-levels-indie-hacker-strategy/)
+- [How I got my first 100 users](https://www.indiehackers.com/post/how-i-got-my-first-100-users-2fc9d71c34)
+- [Indie10k First 100 Users](https://indie10k.com/blog/get-first-100-users)
+- [Building in Public: Complete Strategy 2026](https://getathenic.com/blog/building-in-public-startup-strategy-2026)
+- [Indie Hackers Marketing 2025](https://awesome-directories.com/blog/indie-hackers-launch-strategy-guide-2025/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with concise plans, channel selections, timelines, and skill mappings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory strategy output; no code execution or configuration changes are produced by the packaged artifact.]
+
+## Skill Version(s):
+
+1.1.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

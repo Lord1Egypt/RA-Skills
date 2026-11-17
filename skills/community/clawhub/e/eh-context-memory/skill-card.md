@@ -1,49 +1,65 @@
-## Description: <br>
-Context Memory helps agents manage context windows and preserve knowledge across session handoffs and compaction events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Memory helps agents preserve and reuse task context through handoff documents, periodic compaction snapshots, token-budget checks, and filesystem working memory patterns.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve decisions, rejected options, risks, and remaining work across long-running coding sessions. It provides handoff patterns, periodic compaction snapshots, and token-usage checks so an agent can recover important context after compaction or a session boundary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local handoff and snapshot files may contain sensitive conversation details, decisions, or personal data. <br>
-Mitigation: Keep secrets and personal data out of conversations that may be snapshotted, and review or delete saved handoffs periodically. <br>
-Risk: Generated memory files may be committed or retained longer than intended. <br>
-Mitigation: Add git-ignore or cleanup rules for .working-state and session-memory paths before using the skill in shared repositories. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage long-running coding sessions where decisions, rejected options, and current plans need to survive compaction, crashes, or handoffs across sessions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lanyasheng/eh-context-memory) <br>
-- [Handoff Documents](references/handoff-documents.md) <br>
-- [Compaction Extract](references/compaction-extract.md) <br>
-- [Memory Consolidation](references/memory-consolidation.md) <br>
-- [Token Budget](references/token-budget.md) <br>
-- [Context Usage](references/context-usage.md) <br>
-- [Filesystem Working Memory](references/filesystem-working-memory.md) <br>
-- [Compaction Quality Audit](references/compaction-quality-audit.md) <br>
-- [Auto-Compact Circuit Breaker](references/auto-compact-circuit-breaker.md) <br>
-- [Extended Patterns](references/extended-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON hook output, and local handoff files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local session handoff and compaction snapshot files when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: The skill can persist conversation-derived context as local plaintext handoff and memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive conversations unless local plaintext retention is acceptable, store snapshots in private per-project directories, and apply redaction and retention rules.
+
+Risk: Saved memory may be reinjected into later sessions without enough review.
+
+Mitigation: Require confirmation before reinjecting saved memory and review handoff content for relevance and sensitivity.
+
+Risk: The security summary reports an unsafe session-path write pattern.
+
+Mitigation: Restrict session IDs to safe characters before installing or running the hook scripts.
+
+## Reference(s):
+
+- [Handoff Documents](references/handoff-documents.md)
+- [Compaction Extract](references/compaction-extract.md)
+- [Compaction Quality Audit](references/compaction-quality-audit.md)
+- [Context Usage](references/context-usage.md)
+- [Filesystem Working Memory](references/filesystem-working-memory.md)
+- [Memory Consolidation](references/memory-consolidation.md)
+- [Token Budget](references/token-budget.md)
+- [Auto-Compact Circuit Breaker](references/auto-compact-circuit-breaker.md)
+- [Extended Patterns](references/extended-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON hook outputs, and file path conventions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local handoff and compaction snapshot files when configured as hooks.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,66 @@
-## Description: <br>
-Easy Xiaohongshu helps an agent generate Xiaohongshu text-and-image post content from a topic and optionally prepare publishing through a local Xiaohongshu MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Xiaohongshu post plans, captions, hashtags, and AI images, and can publish notes through a local xiaohongshu MCP service.
 
-## Publisher: <br>
-[baoshan685](https://clawhub.ai/user/baoshan685) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baoshan685](https://clawhub.ai/user/baoshan685)
 
-## Use Case: <br>
-Creators and social media operators use this skill to turn a post topic into an eight-page Xiaohongshu note with captions, tags, generated image prompts, and generated images. Publishing is optional and should be used only after review with a trusted local MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live content to Xiaohongshu through a local MCP service. <br>
-Mitigation: Review generated captions and images before publishing, confirm the MCP URL is trusted, and use publishing only when the local service is intentionally running. <br>
-Risk: Local configuration may contain API keys or other secrets in plaintext. <br>
-Mitigation: Keep config/local-config.json private, do not commit it, and prefer environment overrides when practical. <br>
-Risk: The auto-sync setup can create recurring background git commits of the skill directory. <br>
-Mitigation: Run setup-auto-sync.sh only when background commits are explicitly desired, and inspect the LaunchAgent and auto-sync script before enabling it. <br>
+## Use Case:
 
+Creators, marketers, and social-media operators use this skill to turn a topic into Xiaohongshu-ready visual post content, including structured page prompts, captions, hashtags, generated image files, and optional publishing steps.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/baoshan685/easy-xiaohongshu) <br>
-- [Prompt template](references/prompt-template.md) <br>
-- [Caption template](references/caption-template.md) <br>
-- [Style presets](references/style-presets.json) <br>
-- [Hashtag library](references/hashtag-library.json) <br>
-- [Z3i0 API](https://z.3i0.cn) <br>
-- [Gemini](https://ai.google.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, images, guidance] <br>
-**Output Format:** [Markdown guidance with JSON content files, PNG image files, configuration snippets, and shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Expected artifacts include generated_content.json, generated_caption.json, and generated_images/*.png; publishing requires user review, a valid API key, and a trusted local MCP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.4 (source: server release metadata) <br>
+Risk: Prompts and generated images may be sent to configured API and MCP services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content and assets that are acceptable to share with those services, and review provider configuration before running generation or publishing commands.
+
+Risk: API keys are stored in a local configuration file.
+
+Mitigation: Keep config/local-config.json out of Git, use a restricted and revocable API key, and rotate the key if it may have been exposed.
+
+Risk: The optional auto-sync setup creates a recurring background job that commits repository changes.
+
+Mitigation: Do not run setup-auto-sync.sh unless recurring commits are intentional; inspect Git status and exclude secrets or generated artifacts before enabling it.
+
+Risk: Publishing can post generated content to a real Xiaohongshu account.
+
+Mitigation: Review generated captions, tags, and images before publishing, and confirm that the local MCP service is connected to the intended account.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/baoshan685/skills/easy-xiaohongshu)
+- [Z3i0 API](https://z.3i0.cn)
+- [Prompt Template](artifact/references/prompt-template.md)
+- [Caption Template](artifact/references/caption-template.md)
+- [Style Presets](artifact/references/style-presets.json)
+- [Hashtag Library](artifact/references/hashtag-library.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON content artifacts and PNG image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include generated_content.json, generated_caption.json, generated_images/*.png, and MCP publish results.]
+
+## Skill Version(s):
+
+0.2.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

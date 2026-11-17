@@ -1,0 +1,512 @@
+{
+  "version": "2.4.0",
+  "source_id": "npc-laws",
+  "status": "query_verified",
+  "checked_at": "2026-10-09T09:00:35.703Z",
+  "entry": {
+    "url": "https://flk.npc.gov.cn/",
+    "final_url": "https://flk.npc.gov.cn/index",
+    "title": "国家法律法规数据库",
+    "status": "accessible",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:00:35.703Z",
+    "identity": {
+      "declared_name": "国家法律法规数据库",
+      "hostname": "flk.npc.gov.cn",
+      "domain_matches": true
+    },
+    "links": [
+      {
+        "text": "外交部：条约数据库",
+        "href": "http://treaty.mfa.gov.cn/web/index.jsp",
+        "target": "_blank"
+      }
+    ],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "el-id-8462-8",
+      "css": "#el-id-8462-8",
+      "role": "combobox",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://flk.npc.gov.cn/index",
+      "observed_at": "2026-10-09T09:00:35.663Z"
+    },
+    {
+      "tag": "input",
+      "type": "text",
+      "text": "请输入",
+      "label": "",
+      "aria_label": null,
+      "placeholder": "请输入",
+      "name": null,
+      "id": "el-id-8462-9",
+      "css": "#el-id-8462-9",
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "css": "input[placeholder=\"请输入\"]"
+      },
+      "observed_url": "https://flk.npc.gov.cn/index",
+      "observed_at": "2026-10-09T09:00:35.663Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "精确",
+      "label": "精确",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "el-id-8462-5",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "精确"
+      },
+      "observed_url": "https://flk.npc.gov.cn/index",
+      "observed_at": "2026-10-09T09:00:35.663Z"
+    },
+    {
+      "tag": "input",
+      "type": "radio",
+      "text": "模糊",
+      "label": "模糊",
+      "aria_label": null,
+      "placeholder": null,
+      "name": "el-id-8462-5",
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "label": "模糊"
+      },
+      "observed_url": "https://flk.npc.gov.cn/index",
+      "observed_at": "2026-10-09T09:00:35.663Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "npc-laws:record-lookup",
+      "source_id": "npc-laws",
+      "task_kind": "record-lookup",
+      "status": "query_verified",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {
+        "results": {
+          "mode": "popup",
+          "container": {
+            "css": "div.result-content"
+          },
+          "ready": {
+            "css": "div.result-content:has(div.result-item)"
+          },
+          "match": {
+            "css": "div.condition-result",
+            "match": "contains"
+          }
+        },
+        "detail": {
+          "mode": "popup",
+          "container": {
+            "css": "div.detail-page-content"
+          },
+          "ready": {
+            "css": "div.detail-page-content"
+          },
+          "match": {
+            "css": "div.detail-page-content",
+            "match": "contains"
+          }
+        }
+      },
+      "entry_url": "https://flk.npc.gov.cn/index",
+      "controls": [
+        {
+          "tag": "input",
+          "type": "text",
+          "text": "请输入",
+          "label": "",
+          "aria_label": null,
+          "placeholder": "请输入",
+          "name": null,
+          "id": "el-id-8462-9",
+          "css": "#el-id-8462-9",
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "css": "input[placeholder=\"请输入\"]"
+          },
+          "observed_url": "https://flk.npc.gov.cn/index",
+          "observed_at": "2026-10-09T09:00:35.663Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "精确",
+          "label": "精确",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "el-id-8462-5",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "精确"
+          },
+          "observed_url": "https://flk.npc.gov.cn/index",
+          "observed_at": "2026-10-09T09:00:35.663Z"
+        },
+        {
+          "tag": "input",
+          "type": "radio",
+          "text": "模糊",
+          "label": "模糊",
+          "aria_label": null,
+          "placeholder": null,
+          "name": "el-id-8462-5",
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "label": "模糊"
+          },
+          "observed_url": "https://flk.npc.gov.cn/index",
+          "observed_at": "2026-10-09T09:00:35.663Z"
+        }
+      ],
+      "pending": [
+        "本题参数、资源类型、年份与匹配方式仍需按题核查；未验证的筛选控件变化时重新观察"
+      ],
+      "query_input": {
+        "css": "input[placeholder=\"请输入\"]"
+      },
+      "submit": {
+        "action": "press",
+        "key": "Enter"
+      },
+      "filters_observed": [
+        "精确/模糊",
+        "法律法规分类",
+        "制定机关",
+        "时效性",
+        "公布日期",
+        "施行日期"
+      ],
+      "condition_check": "匹配condition-result中当前标题、精确/模糊和筛选条件；不按新标签出现顺序认定结果",
+      "result_items": {
+        "status": "observed",
+        "locator": {
+          "css": "div.result-item",
+          "scope": {
+            "css": "div.result-content"
+          }
+        },
+        "notes": "在列表中按本题题名、有效状态、发布机关及日期匹配条目，再在匹配的条目内操作"
+      },
+      "record_identity": {
+        "status": "observed",
+        "fields": [
+          {
+            "name": "标题",
+            "status": "observed",
+            "locator": {
+              "css": "div.title-content",
+              "scope": {
+                "css": "div.result-item"
+              }
+            }
+          },
+          {
+            "name": "有效状态",
+            "status": "observed",
+            "locator": {
+              "css": "div.status",
+              "scope": {
+                "css": "div.result-item"
+              }
+            }
+          },
+          {
+            "name": "公布日期",
+            "status": "observed",
+            "locator": {
+              "css": "div.publish-time",
+              "scope": {
+                "css": "div.result-item"
+              }
+            }
+          },
+          {
+            "name": "制定机关",
+            "status": "observed",
+            "locator": {
+              "css": "div.department",
+              "scope": {
+                "css": "div.result-item"
+              }
+            }
+          }
+        ]
+      },
+      "detail_fields": {
+        "status": "partial",
+        "fields": [
+          {
+            "name": "法律法规分类",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "制定机关",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "公布日期",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "施行日期",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "有效状态",
+            "locator": null,
+            "status": "text_observed"
+          },
+          {
+            "name": "相关资料",
+            "locator": null,
+            "status": "text_observed"
+          }
+        ]
+      },
+      "completion": {
+        "status": "observed",
+        "ready": {
+          "css": "div.result-content:has(div.result-item)"
+        },
+        "empty": null,
+        "loading": {
+          "text": "正在加载，请稍后...",
+          "exact": true
+        },
+        "rule": "实际结果条目已经出现，当前条件回显匹配本题；仅有分页或加载中不算完成；本轮未确认法库零结果标志",
+        "snapshot": "validation/site-audit-v24/npc-laws-runtime-result-structure.json"
+      },
+      "execution": {
+        "version": 1,
+        "queryMode": "literal",
+        "resetEntry": true,
+        "parameters": {
+          "query": {
+            "type": "string",
+            "required": true
+          },
+          "matchMode": {
+            "type": "string",
+            "values": [
+              "exact",
+              "fuzzy"
+            ],
+            "evidenceValues": {
+              "exact": "精确",
+              "fuzzy": "模糊"
+            }
+          }
+        },
+        "prepare": [
+          {
+            "action": "fill",
+            "locator": {
+              "css": "input[placeholder=\"请输入\"]"
+            },
+            "parameter": "query"
+          },
+          {
+            "action": "check",
+            "locator": {
+              "label": "精确"
+            },
+            "when": {
+              "parameter": "matchMode",
+              "value": "exact"
+            }
+          },
+          {
+            "action": "check",
+            "locator": {
+              "label": "模糊"
+            },
+            "when": {
+              "parameter": "matchMode",
+              "value": "fuzzy"
+            }
+          }
+        ],
+        "submit": {
+          "action": "press",
+          "locator": {
+            "css": "input[placeholder=\"请输入\"]"
+          },
+          "key": "Enter"
+        },
+        "scope": "标题或标识查找及明确的精确/模糊模式；机构、日期、状态等筛选仍须按题核验。"
+      }
+    }
+  ],
+  "blockers": [],
+  "provenance": {
+    "catalog_source_id": "npc-laws",
+    "quiz_entries": [
+      "quiz-entry-030"
+    ],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:00:35.703Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/npc-laws-query-before.json",
+      "original_entry_snapshot": "validation/site-audit-v24/npc-laws-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。",
+      "query_snapshot": "validation/site-audit-v24/npc-laws-query-results.json",
+      "detail_snapshot": "validation/site-audit-v24/npc-laws-query-detail.json"
+    }
+  },
+  "query_validation": {
+    "checked_at": "2026-10-09T09:25:20.807Z",
+    "scope": "仅确认检索提交、真实结果容器与页面打开方式；本题条件、排序、筛选和答案必须重新核验",
+    "snapshot": "validation/site-audit-v24/npc-laws-query-results.json"
+  },
+  "result_items": {
+    "status": "observed",
+    "locator": {
+      "css": "div.result-item",
+      "scope": {
+        "css": "div.result-content"
+      }
+    },
+    "notes": "在列表中按本题题名、有效状态、发布机关及日期匹配条目，再在匹配的条目内操作"
+  },
+  "record_identity": {
+    "status": "observed",
+    "fields": [
+      {
+        "name": "标题",
+        "status": "observed",
+        "locator": {
+          "css": "div.title-content",
+          "scope": {
+            "css": "div.result-item"
+          }
+        }
+      },
+      {
+        "name": "有效状态",
+        "status": "observed",
+        "locator": {
+          "css": "div.status",
+          "scope": {
+            "css": "div.result-item"
+          }
+        }
+      },
+      {
+        "name": "公布日期",
+        "status": "observed",
+        "locator": {
+          "css": "div.publish-time",
+          "scope": {
+            "css": "div.result-item"
+          }
+        }
+      },
+      {
+        "name": "制定机关",
+        "status": "observed",
+        "locator": {
+          "css": "div.department",
+          "scope": {
+            "css": "div.result-item"
+          }
+        }
+      }
+    ]
+  },
+  "detail_fields": {
+    "status": "partial",
+    "fields": [
+      {
+        "name": "法律法规分类",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "制定机关",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "公布日期",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "施行日期",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "有效状态",
+        "locator": null,
+        "status": "text_observed"
+      },
+      {
+        "name": "相关资料",
+        "locator": null,
+        "status": "text_observed"
+      }
+    ]
+  },
+  "completion": {
+    "status": "observed",
+    "ready": {
+      "css": "div.result-content:has(div.result-item)"
+    },
+    "empty": null,
+    "loading": {
+      "text": "正在加载，请稍后...",
+      "exact": true
+    },
+    "rule": "实际结果条目已经出现，当前条件回显匹配本题；仅有分页或加载中不算完成；本轮未确认法库零结果标志",
+    "snapshot": "validation/site-audit-v24/npc-laws-runtime-result-structure.json"
+  }
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-保险条款转交互式知识图谱HTML，含保障责任、免责、理赔等7种视图。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+保险条款转交互式知识图谱HTML，含保障责任/免责/理赔等7种视图
 
-## Publisher: <br>
-[wwbwin](https://clawhub.ai/user/wwbwin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwbwin](https://clawhub.ai/user/wwbwin)
 
-## Use Case: <br>
-Insurance agents, policy reviewers, and insurance customers use this skill to turn dense policy text into interactive HTML visualizations for coverage, exclusions, claims flow, product comparisons, scenarios, terminology, and policy timelines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive insurance policy details, including policy numbers, names, addresses, claim history, medical details, or other identifiers. <br>
-Mitigation: Redact sensitive identifiers unless they are necessary for the visualization, and review the generated HTML before sharing it. <br>
-Risk: Generated visualizations may simplify or misstate coverage, exclusions, claim steps, or scenario outcomes from complex policy language. <br>
-Mitigation: Review generated maps and scenario results against the original policy text before using them for decisions or customer-facing explanations. <br>
+## Use Case:
 
+External users, agents, and developers use this skill to turn Chinese-language insurance policy text into visual aids for understanding coverage, exclusions, claim steps, product comparisons, scenarios, terminology, and policy timelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/insurance-viz-craft) <br>
-- [Project homepage](https://github.com/wwbwin/clawhub-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown instructions and single-file HTML with inline CSS, JavaScript, and SVG] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports seven visualization modes: coverage map, exclusion web, claim flow, product compare, scenario simulation, term glossary, and policy timeline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat generated coverage, payout, or claim-flow analysis as legal, financial, or insurer-binding advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as explanatory aids and verify important conclusions against the policy text, the insurer, and a qualified professional.
+
+Risk: This release's HTML templates are placeholders, so generated visual output may require completion or review before practical use.
+
+Mitigation: Review rendered HTML before distribution and confirm that the selected visualization mode, labels, interactions, and policy details are complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwbwin/skills/insurance-viz-craft)
+- [ClawDIS homepage](https://github.com/wwbwin/clawhub-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [Single-file HTML with inline CSS, JavaScript, and SVG, plus concise explanatory text as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Designed for local browser rendering without external dependencies; template files in this release are placeholders.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

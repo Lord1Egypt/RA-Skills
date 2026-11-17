@@ -1,41 +1,54 @@
-## Description: <br>
-Splits PDF files locally into single pages or selected page ranges, with support for batch processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Splits PDF files into single pages or selected page ranges, with batch workflows and custom output prefixes.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-Developers and other users can use this skill to split local PDF files into page-level or range-based outputs without uploading the source documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads PDF files from user-specified paths and writes split PDFs to a chosen output directory. <br>
-Mitigation: Run it only on PDFs and output paths you intend to process, and review the output directory and filename prefix before execution. <br>
-Risk: The skill depends on the pdf-lib npm package to parse and write PDFs. <br>
-Mitigation: Install dependencies from trusted npm sources and apply normal dependency review before use. <br>
+## Use Case:
 
+Developers and operators use this skill to split local PDF documents into per-page files or selected page-range files without uploading the documents.
 
-## Reference(s): <br>
-- [PDF Split on ClawHub](https://clawhub.ai/fly3094/pdf-split) <br>
-- [pdf-lib npm package](https://www.npmjs.com/package/pdf-lib) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes split PDF files to a user-selected output directory; requires Node.js and the pdf-lib npm package.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill writes generated PDFs to a user-selected output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on PDFs intended for processing and choose output paths deliberately to avoid cluttering or overwriting expected locations.
+
+Risk: The release depends on the Node package pdf-lib, and the evidence does not include a lockfile.
+
+Mitigation: Pin pdf-lib or use a lockfile before deployment.
+
+## Reference(s):
+
+- [PDF Split on ClawHub](https://clawhub.ai/fly3094/skills/pdf-split)
+- [fly3094 publisher profile](https://clawhub.ai/user/fly3094)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [PDF files written locally, with console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and pdf-lib; outputs single-page PDFs or selected page-range PDFs to a chosen directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

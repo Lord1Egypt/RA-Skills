@@ -1,42 +1,53 @@
-## Description: <br>
-Provides per-channel session isolation, a Write-Ahead Log protocol, and working-buffer management so agents can preserve decisions, facts, and recovery context across long or complex sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maintains per-conversation decision notes and a write-ahead log to help OpenClaw agents recover context without mixing conversations.
 
-## Publisher: <br>
-[richgoodson](https://clawhub.ai/user/richgoodson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[richgoodson](https://clawhub.ai/user/richgoodson)
 
-## Use Case: <br>
-Developers and operators of multi-channel OpenClaw agents use this skill to maintain human-readable per-channel session notes, Write-Ahead Log decision entries, and a working buffer for context recovery across long sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived state can be written to shared workspace memory files, including raw working-buffer exchanges during long sessions. <br>
-Mitigation: Redact secrets and unnecessary personal data before writing, require user opt-in before buffering raw exchanges, and avoid storing credentials or sensitive identifiers. <br>
-Risk: Shared session state can expose one channel's notes to another user if workspace scoping or file permissions are weak. <br>
-Mitigation: Use per-channel session scoping, restrict memory/sessions/ permissions to the owning agent or user, and keep session filenames channel-specific. <br>
-Risk: Session files and working buffers may persist longer than appropriate for sensitive environments. <br>
-Mitigation: Define a deletion schedule, prune distilled entries during maintenance, and clear expired working-buffer content after compaction recovery. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to preserve decisions, corrections, and constraints for each conversation and recover them after interruptions or compaction.
 
-## Reference(s): <br>
-- [Agent Session State on ClawHub](https://clawhub.ai/richgoodson/agent-session-state) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown session files and concise operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes per-channel session files under memory/sessions/ and a working buffer at memory/working-buffer.md when active.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.4 (source: evidence.release.version and skill metadata) <br>
+Risk: Persistent conversation notes could retain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep credentials, financial identifiers, and unnecessary personal information out of session notes; use the stop or confirmed delete controls when needed.
+
+Risk: Promoting conversation-specific notes to shared memory could expose them to other conversations.
+
+Mitigation: Propose each promotion to the user and write only entries they approve.
+
+## Reference(s):
+
+- [Agent Session State on ClawHub](https://clawhub.ai/richgoodson/skills/agent-session-state)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown session notes and conversational summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Per-conversation notes; shared-memory promotion requires user approval.]
+
+## Skill Version(s):
+
+2.4.0 (source: SKILL.md frontmatter, ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

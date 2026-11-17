@@ -1,44 +1,53 @@
-## Description: <br>
-Intelligent orchestrator for Platonic Coding workflow. Auto-detects project state and routes to the right next step: initialize a project, run the recovery flow for existing code, formalize drafts into RFCs, refine specs, implement from guides with tests, or review code compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent orchestrator for the Platonic Coding workflow that auto-detects project state and routes agents through initialization, recovery, RFC specification, implementation, testing, and review tasks.
 
-## Publisher: <br>
-[caesar0301](https://clawhub.ai/user/caesar0301) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caesar0301](https://clawhub.ai/user/caesar0301)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a specification-driven development workflow: scaffold or recover project specs, refine RFCs, create implementation guides, implement code and tests, and produce spec-compliance review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change specifications, implementation guides, code, and tests in a target repository. <br>
-Mitigation: Use it only in repositories where that behavior is intended, review diffs before accepting changes, and prefer explicit operation names for scoped work. <br>
-Risk: Skipping confirmation gates can allow the workflow to proceed without intermediate review. <br>
-Mitigation: Avoid the 'no confirmations' mode unless the operator has already reviewed the implementation guide, coding plan, and expected repository changes. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to run a specification-driven development workflow: bootstrap project structure, recover specifications from existing code, manage RFCs, implement from guides with tests, and review code for specification compliance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/caesar0301/platonic-coding) <br>
-- [Complete Reference](artifact/references/REFERENCE.md) <br>
-- [Workflow Overview](artifact/references/WORKFLOW/workflow-overview.md) <br>
-- [Full Implementation Workflow](artifact/references/IMPL/impl-full.md) <br>
-- [Spec Compliance Review](artifact/references/REVIEW/review-spec-compliance.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, source files, tests, configuration snippets, shell commands, and review reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project specs, implementation guides, code, tests, and report-only review artifacts depending on the selected operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Project configuration can steer write-capable workflows without clear path confinement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review `.platonic.yml` before use, keep specs, impl, and drafts paths relative to the project, inspect proposed plans before write-capable modes, and reserve auto-mode or "no confirmations" for trusted repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caesar0301/skills/platonic-coding)
+- [Platonic Coding complete reference](references/REFERENCE.md)
+- [Workflow overview](references/WORKFLOW/workflow-overview.md)
+- [Implementation full workflow](references/IMPL/impl-full.md)
+- [Spec compliance review](references/REVIEW/review-spec-compliance.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with proposed file changes, templates, commands, implementation plans, and review reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write project files through initialization, specification, implementation, and review workflows when the agent has workspace access.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

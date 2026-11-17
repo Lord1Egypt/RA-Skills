@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-sync.py - Obsidian → 乐享知识库 同步执行器（零 token 架构）
+sync.py - Obsidian → 乐享知识库 同步执行器
 
 设计原则：
-  脚本直接调用乐享 OpenAPI 完成全部同步操作，文档内容从不进入 LLM 上下文。
+  Markdown 页面统一调用 upload-markdown-to-lexiang；目录和独立附件沿用连接器。
   LLM 只负责：1) 唤起 skill 2) 明确输入参数。脚本拿到参数后自主执行全部工作。
 
 使用方式:
@@ -24,14 +24,18 @@ sync.py - Obsidian → 乐享知识库 同步执行器（零 token 架构）
 
 输出：仅向 stdout 打印一行 JSON 摘要 + 报告路径。文档内容不输出。
 
-鉴权：零配置，复用 Agent 内置乐享连接器 OAuth token（见 lexiang_api.py）。
+Markdown 鉴权：使用 https://lexiangla.com/ai/claw 获取的个人凭证。
 """
 
 import argparse
 import fnmatch
 import json
 import os
+from pathlib import Path
+import shutil
+import subprocess
 import sys
+import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -41,10 +45,14 @@ from manifest import (
     DEFAULT_CONFIG, sync_lock, SyncLockError,
 )
 from converter import (
-    convert_file, get_obsidian_attachment_folder,
-    split_into_segments, has_local_images,
+    get_obsidian_attachment_folder,
+    split_into_segments, convert_wikilinks,
 )
-from lexiang_api import LexiangConnector, LexiangError
+from lexiang_api import (
+    LexiangConnector,
+    LexiangError,
+    resolve_personal_credential_selector,
+)
 from report import SyncReport
 from progress import ProgressWriter, read_progress, get_progress_path
 
@@ -79,10 +87,16 @@ def should_exclude(rel_path, exclude_patterns):
     for pattern in exclude_patterns:
         if fnmatch.fnmatch(rel_path, pattern):
             return True
+        # 对于 "dir/**" 模式，也排除目录本身
+        if pattern.endswith("/**") and fnmatch.fnmatch(rel_path, pattern[:-3]):
+            return True
         parts = rel_path.split(os.sep)
         for i in range(len(parts)):
             partial = os.sep.join(parts[: i + 1])
             if fnmatch.fnmatch(partial, pattern):
+                return True
+            # "dir/**" 也匹配 dir 本身
+            if pattern.endswith("/**") and fnmatch.fnmatch(partial, pattern[:-3]):
                 return True
     return rel_path.startswith(".obsidian")
 
@@ -186,6 +200,10 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
     respect_move = config.get("respect_move", True)
     exclude = config.get("exclude_patterns", DEFAULT_CONFIG["exclude_patterns"])
     attachment_folder = get_obsidian_attachment_folder(vault_path)
+    credential_selector = resolve_personal_credential_selector(
+        config.get("lexiang_profile") or None,
+        config.get("lexiang_credential_file") or None,
+    )
 
     report = SyncReport(
         mode=mode, vault_path=vault_path, target_space_id=space_id,
@@ -198,7 +216,24 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
 
     api = None
     if not dry_run:
-        api = LexiangConnector()
+        api = LexiangConnector(
+            personal_credential_file=(
+                credential_selector.path if credential_selector else None
+            )
+        )
+
+    # target_folder_id 为空时，自动获取知识库根目录的 root_entry_id
+    if not dry_run and not target_folder_id:
+        try:
+            root_id = api.resolve_root_entry_id(space_id)
+            if root_id:
+                target_folder_id = root_id
+                config["target_folder_entry_id"] = target_folder_id
+                log(f"  [配置] 未指定 --target-folder-id，自动获取知识库根目录: {root_id}")
+            else:
+                log(f"  [警告] 无法获取知识库根目录 ID，部分操作可能失败")
+        except LexiangError as e:
+            log(f"  [警告] 获取知识库根目录失败: {e}")
 
     # 关键：即便是 full 模式，也加载已有 manifest 作为「断点续传」基础，
     # 这样中途中断后重跑（无论 full/incremental）都能跳过已完成项。
@@ -216,6 +251,27 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
         if entry_id not in probe_cache:
             probe_cache[entry_id] = api.probe_entry(entry_id)
         return probe_cache[entry_id]
+
+    # 乐享侧目录子项缓存：{parent_id: {(name, entry_type): entry_dict}}
+    # 用于「manifest 丢失映射」时防重复创建——先查目标目录是否已有同名 entry，命中则复用。
+    lexiang_children_cache = {}
+
+    def find_lexiang_entry(parent_id, match_name, entry_type):
+        """在乐享目标父目录下查找同名同类型 entry，返回 entry dict 或 None。
+        按 parent_id 缓存，同一目录只 list 一次。dry_run 下不查（无网络）。"""
+        if dry_run or not parent_id or not match_name:
+            return None
+        if parent_id not in lexiang_children_cache:
+            try:
+                children = api.list_children(parent_id, limit=200)
+                cache = {}
+                for ch in children:
+                    cache[(ch.get("name", ""), ch.get("entry_type", ""))] = ch
+                lexiang_children_cache[parent_id] = cache
+            except LexiangError as e:
+                log(f"  [查重] 列目录失败，跳过查重: {e}")
+                lexiang_children_cache[parent_id] = {}
+        return lexiang_children_cache[parent_id].get((match_name, entry_type))
 
     def save():
         if persist and not dry_run:
@@ -291,13 +347,33 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
 
         # 新增（manifest 无记录，或类型不匹配）
         if not existing or existing.get("type") != manifest_type:
-            _sync_new(api, space_id, parent_id, name, rel_path, fi, vault_path,
-                      attachment_folder, sync_attachments, report, manifest,
-                      dry_run, save)
-            continue
+            # ⚠️ 防重复创建：manifest 丢失映射时（如断连重建失败冲映射），
+            # 先查乐享目标目录是否已有同名 entry，命中则复用走更新，避免创建重复文档。
+            match_name = name if manifest_type == "page" else os.path.basename(rel_path)
+            found = find_lexiang_entry(parent_id, match_name, manifest_type)
+            if found and found.get("id"):
+                found_id = found["id"]
+                log(f"  [{kind}] {rel_path} manifest 无映射，乐享已有同名 entry，复用 {found_id[:12]}…")
+                set_entry(manifest, rel_path, manifest_type, found_id, "", fi.get("mtime", 0))
+                save()  # 立即落盘，即使后续更新失败也不再重复创建
+                existing = entries.get(rel_path)
+                # 不 continue，继续走下面的 probe → 更新/跳过逻辑
+            else:
+                _sync_new(api, space_id, parent_id, name, rel_path, fi, vault_path,
+                          attachment_folder, sync_attachments, report, manifest,
+                          dry_run, save, credential_selector)
+                continue
 
         entry_id = existing["entry_id"]
-        info = probe(entry_id)
+        try:
+            info = probe(entry_id)
+        except LexiangError as e:
+            # 探活失败（如代理模式返回异常）→ 跳过，不 remove_entry，保留映射待下次重试。
+            # 避免因 probe 抛异常而中断整个同步或冲掉映射导致后续重复创建。
+            report.record_action("update_page", rel_path, "error", entry_id,
+                                 f"探活失败: {e}")
+            log(f"  [{kind}] {rel_path} ⚠ 探活失败，跳过（保留映射）: {e}")
+            continue
 
         # entry 已被删除 → 当作新增重建
         if not info["exists"]:
@@ -305,7 +381,7 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
             remove_entry(manifest, rel_path)
             _sync_new(api, space_id, parent_id, name, rel_path, fi, vault_path,
                       attachment_folder, sync_attachments, report, manifest,
-                      dry_run, save)
+                      dry_run, save, credential_selector)
             continue
 
         # 移动检测
@@ -316,7 +392,7 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
             remove_entry(manifest, rel_path)
             _sync_new(api, space_id, parent_id, name, rel_path, fi, vault_path,
                       attachment_folder, sync_attachments, report, manifest,
-                      dry_run, save)
+                      dry_run, save, credential_selector)
             continue
 
         # 内容未变 → 跳过
@@ -332,7 +408,7 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
             remove_entry(manifest, rel_path)
             _sync_new(api, space_id, parent_id, name, rel_path, fi, vault_path,
                       attachment_folder, sync_attachments, report, manifest,
-                      dry_run, save)
+                      dry_run, save, credential_selector)
             continue
 
         # page 内容有变 → 冲突策略
@@ -347,7 +423,7 @@ def do_sync(vault_path, config, mode, source_dirs, dry_run, persist=None, progre
 
         _update_page(api, entry_id, rel_path, fi, vault_path, attachment_folder,
                      sync_attachments, parent_id, space_id, report, manifest,
-                     dry_run, save)
+                     dry_run, save, credential_selector)
 
     if progress:
         progress.state["done"] = len(scan["files"])
@@ -388,7 +464,8 @@ def _is_under_target(folder_path, actual_parent_id, folder_id_map, target_folder
 
 
 def _sync_new(api, space_id, parent_id, name, rel_path, fi, vault_path,
-              attachment_folder, sync_attachments, report, manifest, dry_run, save):
+              attachment_folder, sync_attachments, report, manifest, dry_run, save,
+              credential_selector=None):
     """根据 kind 分派：.md → 创建 page；其他 → 上传文件型 entry"""
     if fi.get("kind") == "file":
         _create_file(api, parent_id, rel_path, fi, space_id, report, manifest,
@@ -396,7 +473,7 @@ def _sync_new(api, space_id, parent_id, name, rel_path, fi, vault_path,
     else:
         _create_page(api, space_id, parent_id, name, rel_path, fi, vault_path,
                      attachment_folder, sync_attachments, report, manifest,
-                     dry_run, save)
+                     dry_run, save, credential_selector)
 
 
 def _create_file(api, parent_id, rel_path, fi, space_id, report, manifest, dry_run, save):
@@ -421,66 +498,152 @@ def _read_text(abs_path):
         return f.read()
 
 
+def _find_markdown_uploader():
+    """Locate the shared uploader without assuming an Agent-specific home."""
+    override = os.environ.get("LEXIANG_UPLOADER_HOME", "").strip()
+    roots = [Path(override).expanduser()] if override else []
+    skill_root = Path(__file__).resolve().parents[1]
+    roots.append(skill_root.parent / "upload-markdown-to-lexiang")
+    for root in roots:
+        script = root / "scripts" / "lexiang_upload.py"
+        if script.is_file():
+            return script
+    raise LexiangError(
+        "未找到 upload-markdown-to-lexiang。请安装到当前 skills 根目录，"
+        "或设置 LEXIANG_UPLOADER_HOME。"
+    )
+
+
+def _prepare_markdown_package(
+        source_path, vault_path, attachment_folder, package_dir, include_images=True):
+    """Convert Obsidian syntax and stage local images beside a temporary Markdown."""
+    source = _read_text(source_path)
+    segments = split_into_segments(source, source_path, vault_path, attachment_folder)
+    image_dir = Path(package_dir) / "images"
+    output = []
+    image_count = 0
+    for segment in segments:
+        if segment.kind == "text":
+            output.append(convert_wikilinks(segment.text))
+            continue
+        if not include_images:
+            output.append(f"[本地图片未同步：{segment.image_alt}]")
+            continue
+        image_count += 1
+        source_image = Path(segment.image_abs_path)
+        safe_name = f"{image_count:04d}_{source_image.name}"
+        image_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_image, image_dir / safe_name)
+        output.append(f"![{segment.image_alt}](images/{safe_name})")
+    staged = Path(package_dir) / Path(source_path).name
+    staged.write_text("\n\n".join(output), encoding="utf-8")
+    return staged, image_count
+
+
+def _build_markdown_uploader_command(
+        uploader, staged, *, parent_id=None, entry_id=None, name=None,
+        credential_selector=None):
+    """构造公共 uploader 命令；返回值不含任何凭证内容。"""
+    command = [sys.executable, str(uploader), "upload", str(staged), "--json"]
+    if entry_id:
+        command += ["--entry-id", entry_id]
+    else:
+        command += ["--parent-id", parent_id, "--name", name]
+    if credential_selector:
+        if credential_selector.profile:
+            command += ["--profile", credential_selector.profile]
+        else:
+            command += ["--credential-file", str(credential_selector.path)]
+    return command
+
+
+def _run_markdown_uploader(source_path, vault_path, attachment_folder, *,
+                           parent_id=None, entry_id=None, name=None, include_images=True,
+                           credential_selector=None):
+    uploader = _find_markdown_uploader()
+    with tempfile.TemporaryDirectory(prefix="obsidian-lexiang-") as package_dir:
+        staged, image_count = _prepare_markdown_package(
+            source_path,
+            vault_path,
+            attachment_folder,
+            package_dir,
+            include_images=include_images,
+        )
+        command = _build_markdown_uploader_command(
+            uploader,
+            staged,
+            parent_id=parent_id,
+            entry_id=entry_id,
+            name=name,
+            credential_selector=credential_selector,
+        )
+        process = subprocess.run(command, capture_output=True, text=True)
+        if process.returncode != 0:
+            raise LexiangError(process.stderr.strip() or "公共 Markdown 上传器执行失败")
+        try:
+            result = json.loads(process.stdout)
+        except json.JSONDecodeError as error:
+            raise LexiangError(f"公共上传器返回非 JSON：{process.stdout[:200]}") from error
+        if not result.get("verified"):
+            raise LexiangError("公共上传器未通过线上对账")
+        result["staged_images"] = image_count
+        return result
+
+
 def _create_page(api, space_id, parent_id, name, rel_path, fi, vault_path,
-                 attachment_folder, sync_attachments, report, manifest, dry_run, save):
+                 attachment_folder, sync_attachments, report, manifest, dry_run, save,
+                 credential_selector=None):
     if dry_run:
         report.record_action("create_page", rel_path, "success", "", "dry-run")
         return
     try:
-        # 含本地图片 → 图文混排（文本+image block 按序内嵌）
-        if sync_attachments and has_local_images(
-                _read_text(fi["abs_path"]), fi["abs_path"], vault_path, attachment_folder):
-            raw = _read_text(fi["abs_path"])
-            # 先把 wikilink 文档链接等转标准 markdown（图片片段单独处理，不受影响）
-            segments = split_into_segments(raw, fi["abs_path"], vault_path, attachment_folder)
-            entry_id, img_ok, img_fail = api.create_page_with_segments(
-                space_id, name, segments, parent_id)
-            set_entry(manifest, rel_path, "page", entry_id, fi["hash"], fi["mtime"])
-            save()
-            note = f"图文：内嵌图 {img_ok}" + (f"，失败 {img_fail}" if img_fail else "")
-            report.record_action("create_page", rel_path, "success", entry_id, note)
-            for _ in range(img_ok):
-                report.record_action("upload_attachment", rel_path, "success", entry_id, "内嵌图片")
-            log(f"  [图文] {rel_path} ✓ (内嵌图 {img_ok})")
-            return
-
-        # 纯文本（或仅公网图）→ 直接 markdown 导入，服务端解析
-        result = convert_file(fi["abs_path"], vault_path, attachment_folder)
-        entry_id = api.create_page_with_content(space_id, name, result.content, parent_id)
+        result = _run_markdown_uploader(
+            fi["abs_path"],
+            vault_path,
+            attachment_folder,
+            parent_id=parent_id,
+            name=name,
+            include_images=sync_attachments,
+            credential_selector=credential_selector,
+        )
+        entry_id = result["entry_id"]
         set_entry(manifest, rel_path, "page", entry_id, fi["hash"], fi["mtime"])
-        save()  # 每篇成功立即落盘，保证中断幂等
-        report.record_action("create_page", rel_path, "success", entry_id, "")
-        log(f"  [文档] {rel_path} ✓")
+        save()
+        image_count = result.get("local_images", 0)
+        note = f"公共上传器 verified=true，图片 {image_count}"
+        report.record_action("create_page", rel_path, "success", entry_id, note)
+        log(f"  [文档] {rel_path} ✓ (图片 {image_count})")
     except LexiangError as e:
         report.record_action("create_page", rel_path, "error", "", str(e)[:120])
         log(f"  [文档] {rel_path} ✗ {e}")
 
 
 def _update_page(api, entry_id, rel_path, fi, vault_path, attachment_folder,
-                 sync_attachments, parent_id, space_id, report, manifest, dry_run, save):
+                 sync_attachments, parent_id, space_id, report, manifest, dry_run, save,
+                 credential_selector=None):
     if dry_run:
         report.record_action("update_page", rel_path, "success", entry_id, "dry-run 覆盖")
         return
     try:
-        # 含本地图片 → 清空后图文混排重写
-        if sync_attachments and has_local_images(
-                _read_text(fi["abs_path"]), fi["abs_path"], vault_path, attachment_folder):
-            raw = _read_text(fi["abs_path"])
-            segments = split_into_segments(raw, fi["abs_path"], vault_path, attachment_folder)
-            img_ok, img_fail = api.update_page_with_segments(entry_id, segments)
-            set_entry(manifest, rel_path, "page", entry_id, fi["hash"], fi["mtime"])
-            save()
-            note = f"图文覆盖：内嵌图 {img_ok}" + (f"，失败 {img_fail}" if img_fail else "")
-            report.record_action("update_page", rel_path, "success", entry_id, note)
-            log(f"  [图文] {rel_path} ↻ 已更新 (内嵌图 {img_ok})")
-            return
-
-        result = convert_file(fi["abs_path"], vault_path, attachment_folder)
-        api.update_page_content(entry_id, result.content, force_write=True)
+        result = _run_markdown_uploader(
+            fi["abs_path"],
+            vault_path,
+            attachment_folder,
+            entry_id=entry_id,
+            include_images=sync_attachments,
+            credential_selector=credential_selector,
+        )
         set_entry(manifest, rel_path, "page", entry_id, fi["hash"], fi["mtime"])
         save()
-        report.record_action("update_page", rel_path, "success", entry_id, "已覆盖更新")
-        log(f"  [文档] {rel_path} ↻ 已更新")
+        image_count = result.get("local_images", 0)
+        report.record_action(
+            "update_page",
+            rel_path,
+            "success",
+            entry_id,
+            f"公共上传器 verified=true，图片 {image_count}",
+        )
+        log(f"  [文档] {rel_path} ↻ 已更新 (图片 {image_count})")
     except LexiangError as e:
         report.record_action("update_page", rel_path, "error", entry_id, str(e)[:120])
         log(f"  [文档] {rel_path} ✗ {e}")
@@ -502,13 +665,25 @@ def _iso_to_ts(iso_str):
 
 # ── 主入口 ────────────────────────────────────────────────────
 
-def main():
+
+def build_argument_parser():
     p = argparse.ArgumentParser(description="Obsidian → 乐享知识库 同步执行器")
     p.add_argument("--mode", choices=["full", "incremental"], help="同步模式")
     p.add_argument("--vault-path", help="Obsidian vault 路径（默认自动检测）")
     p.add_argument("--source-dirs", nargs="*", default=[], help="要同步的目录（空=全部）")
     p.add_argument("--target-space-id", help="目标乐享知识库 space_id")
     p.add_argument("--target-folder-id", default="", help="目标目录 entry_id")
+    credential_group = p.add_mutually_exclusive_group()
+    credential_group.add_argument(
+        "--lexiang-profile",
+        metavar="NAME",
+        help="使用命名乐享个人凭证；default 对应旧 credentials.json",
+    )
+    credential_group.add_argument(
+        "--lexiang-credential-file",
+        metavar="PATH",
+        help="使用指定的乐享个人凭证 JSON 文件",
+    )
     p.add_argument("--conflict-strategy", choices=["lexiang_wins", "obsidian_wins"], default=None)
     p.add_argument("--respect-move", dest="respect_move", action="store_true", default=None,
                    help="尊重目的端移动：被移走的条目仍更新原 entry，不在目标目录重建（默认）")
@@ -524,6 +699,26 @@ def main():
     p.add_argument("--no-progress", action="store_true", help="不写进度文件")
     p.add_argument("--_bg-child", dest="bg_child", action="store_true",
                    help=argparse.SUPPRESS)  # 内部：标记当前是后台子进程
+    return p
+
+
+def _build_background_argv(original_args, script_path, vault_path):
+    """保留原始参数启动后台子进程，仅替换 background 标记。"""
+    original = list(original_args)
+    child = [sys.executable, os.path.abspath(script_path)]
+    child.extend(arg for arg in original if arg != "--background")
+    child.append("--_bg-child")
+    has_vault = any(
+        arg == "--vault-path" or arg.startswith("--vault-path=")
+        for arg in original
+    )
+    if not has_vault:
+        child += ["--vault-path", vault_path]
+    return child
+
+
+def main():
+    p = build_argument_parser()
     args = p.parse_args()
 
     vault_path = args.vault_path or detect_vault_path()
@@ -550,12 +745,28 @@ def main():
         config["target_space_id"] = args.target_space_id
     if args.target_folder_id:
         config["target_folder_entry_id"] = args.target_folder_id
+    if args.lexiang_profile is not None:
+        # 选择器互斥；切换时清掉另一种旧配置。
+        config["lexiang_profile"] = args.lexiang_profile
+        config["lexiang_credential_file"] = ""
+    elif args.lexiang_credential_file is not None:
+        config["lexiang_credential_file"] = args.lexiang_credential_file
+        config["lexiang_profile"] = ""
     if args.conflict_strategy:
         config["conflict_strategy"] = args.conflict_strategy
     if args.respect_move is not None:
         config["respect_move"] = args.respect_move
     if args.exclude is not None:
         config["exclude_patterns"] = args.exclude
+
+    try:
+        # 只解析位置并校验选择器，不读取凭证，更不会把 token 写入配置。
+        resolve_personal_credential_selector(
+            config.get("lexiang_profile") or None,
+            config.get("lexiang_credential_file") or None,
+        )
+    except LexiangError as error:
+        p.error(str(error))
 
     if args.init:
         path = save_config(vault_path, config)
@@ -576,18 +787,8 @@ def main():
     # dry-run 很快，不需要后台。
     if args.background and not args.bg_child and not args.dry_run:
         import subprocess
-        child_argv = [sys.executable, os.path.abspath(__file__)]
-        # 透传原参数，去掉 --background，加 --_bg-child
-        skip_next = False
         orig = sys.argv[1:]
-        for a in orig:
-            if a == "--background":
-                continue
-            child_argv.append(a)
-        child_argv.append("--_bg-child")
-        # 确保 vault-path 显式传给子进程（避免子进程再次自动检测出错）
-        if "--vault-path" not in orig:
-            child_argv += ["--vault-path", vault_path]
+        child_argv = _build_background_argv(orig, __file__, vault_path)
         # detach：新会话、脱离父进程，stdout/stderr 重定向到日志
         log_path = os.path.join(get_progress_path(vault_path) + ".log")
         try:

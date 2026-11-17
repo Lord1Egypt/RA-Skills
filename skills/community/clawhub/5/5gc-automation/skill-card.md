@@ -1,43 +1,66 @@
-## Description: <br>
-Automates 5GC web dashboard workflows for adding and editing network functions and configuring PCF policy chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates bulk creation, editing, and default policy setup for 5GC network functions and policy objects through a Flex web dashboard.
 
-## Publisher: <br>
-[liuwei120](https://clawhub.ai/user/liuwei120) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuwei120](https://clawhub.ai/user/liuwei120)
 
-## Use Case: <br>
-Telecom lab engineers and developers use this skill to automate 5GC dashboard configuration for AMF, UDM/AUSF, SMF, UPF, gNB, UE, PCF, NRF, QoS, Traffic Control, PCC, and SMPolicy resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes shared dashboard credentials. <br>
-Mitigation: Rotate the exposed credentials and require per-user or vault-provided credentials before use. <br>
-Risk: Reusable browser sessions may remain on disk. <br>
-Mitigation: Protect or disable session caching and clear cached sessions after controlled runs. <br>
-Risk: Automation can make live 5GC dashboard configuration changes. <br>
-Mitigation: Run only in controlled lab or trusted internal environments, and add confirmation, dry-run, and rollback procedures before shared or production use. <br>
+## Use Case:
 
+Network developers and lab engineers use this skill to run CLI-driven browser automation for AMF, UDM/AUSF, SMF/PGW-C, UPF/PGW-U, GNB, UE, PCF, NRF, QoS, Traffic Control, PCC, and SMPolicy configuration in an authorized 5GC management dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liuwei120/5gc-automation) <br>
-- [Publisher profile](https://clawhub.ai/user/liuwei120) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can modify the selected 5GC dashboard project and should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The skill automates sensitive 5GC console changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated lab or explicitly authorized 5GC management environment and review changes before execution.
+
+Risk: The security evidence reports shared credentials in the release.
+
+Mitigation: Rotate exposed credentials, avoid shared accounts, and use environment-specific secrets before installation or use.
+
+Risk: The security evidence reports disabled TLS checks.
+
+Mitigation: Require valid TLS certificates and remove or tightly control TLS verification bypasses before use.
+
+Risk: The security evidence reports session caching.
+
+Mitigation: Disable or protect cached browser sessions and clear session state after authorized automation runs.
+
+Risk: The security evidence reports policy mutations without strong safeguards.
+
+Mitigation: Add confirmation, dry-run, backup, or change-approval controls before policy replacement or bulk edits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuwei120/skills/5gc-automation)
+- [ClawHub publisher profile](https://clawhub.ai/user/liuwei120)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI options]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke Playwright-driven browser automation against a 5GC web dashboard.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

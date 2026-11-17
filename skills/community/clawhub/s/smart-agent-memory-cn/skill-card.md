@@ -1,45 +1,60 @@
-## Description: <br>
-Provides a cross-platform long-term memory system for OpenClaw agents with layered context retrieval, skill experience memory, structured Markdown/JSON/SQLite storage, search, archiving, and reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a cross-platform long-term memory system for OpenClaw agents with layered context retrieval, skill-experience memory, structured Markdown, JSON, and SQLite storage, temperature-based archiving, and Node.js-only operation.
 
-## Publisher: <br>
-[TNTest](https://clawhub.ai/user/TNTest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tntest](https://clawhub.ai/user/tntest)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give OpenClaw agents persistent local memory, scoped context recall, and reusable lessons across sessions without installing external dependencies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores broad conversation data as shared long-term local memory. <br>
-Mitigation: Set rules that prohibit storing credentials, secrets, regulated data, and sensitive personal details; review exports and session summaries before use. <br>
-Risk: The skill can generate new agent skills in the live skills directory. <br>
-Mitigation: Manually inspect any generated SKILL.md and scan extracted skills before allowing agents to use them. <br>
-Risk: Scheduled memory workflows can retain or summarize data in the background. <br>
-Mitigation: Avoid scheduled backfill, reflection, or garbage-collection jobs unless background retention is intended and reviewed. <br>
+## Use Case:
 
+Developers and external OpenClaw agent users use this skill to persist, search, recall, archive, and summarize long-term agent memory across sessions. It supports scoped context loading, skill-specific experience memory, structured fact and lesson storage, and optional extraction of reusable lesson-based skills.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TNTest/smart-agent-memory-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/TNTest) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration] <br>
-**Output Format:** [Plain text and Markdown from CLI commands, with JSON exports, configuration snippets, and generated SKILL.md files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local memory files under ~/.openclaw/workspace/memory and can create extracted skills under ~/.openclaw/skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata; artifact frontmatter lists 2.0.0) <br>
+Risk: The skill stores durable, searchable long-term memory under ~/.openclaw/workspace/memory, which can retain sensitive user or business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets, credentials, regulated personal data, or sensitive business details, and periodically review retained memory files.
+
+Risk: The extract command can generate persistent skills without enough containment.
+
+Mitigation: Do not use the extract command until the path traversal issues are fixed; review generated skills in a non-loaded draft location before installation.
+
+Risk: Suggested cron jobs can automate memory maintenance actions.
+
+Mitigation: Do not enable the suggested cron jobs until the path traversal issues are fixed and the scheduled behavior has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tntest/skills/smart-agent-memory-cn)
+- [Publisher profile](https://clawhub.ai/user/tntest)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation, CLI text output, JSON exports, memory files, and generated SKILL.md templates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes durable memory files under ~/.openclaw/workspace/memory; the optional extract command can write generated skills under ~/.openclaw/skills/<skill-name>.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

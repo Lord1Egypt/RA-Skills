@@ -1,0 +1,307 @@
+collection: FC
+sort-by: 10
+shortname: fc
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/nestopia_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 90坦克大战
+file: 90坦克大战.nes
+assets.box_front: Imgs/90坦克大战.png
+description: 《90坦克大战》，红白机 FC 平台。
+game: 三国志2：霸王的大陆
+file: 三国志2：霸王的大陆.nes
+assets.box_front: Imgs/三国志2：霸王的大陆.png
+description: 《三国志2：霸王的大陆》，红白机 FC 平台。
+game: 三目童子
+file: 三目童子.nes
+assets.box_front: Imgs/三目童子.png
+description: 《三目童子》，红白机 FC 平台。
+game: 中东战争
+file: 中东战争.nes
+assets.box_front: Imgs/中东战争.png
+description: 《中东战争》，红白机 FC 平台。
+game: 俄罗斯方块
+file: 俄罗斯方块.nes
+assets.box_front: Imgs/俄罗斯方块.png
+description: 《俄罗斯方块》，红白机 FC 平台。
+game: 兵蜂
+file: 兵蜂.nes
+assets.box_front: Imgs/兵蜂.png
+description: 《兵蜂》，1986 年发行，红白机 FC 平台。
+release: 1986
+game: 兵蜂3
+file: 兵蜂3.nes
+assets.box_front: Imgs/兵蜂3.png
+description: 《兵蜂3》，1989 年发行，红白机 FC 平台。
+release: 1989
+game: 勇者斗恶龙3
+file: 勇者斗恶龙3.nes
+assets.box_front: Imgs/勇者斗恶龙3.png
+description: 《勇者斗恶龙3》，红白机 FC 平台。
+game: 南极冒险
+file: 南极冒险.nes
+assets.box_front: Imgs/南极冒险.png
+description: 《南极冒险》，红白机 FC 平台。
+game: 双截龙
+file: 双截龙.nes
+assets.box_front: Imgs/双截龙.png
+description: 《双截龙》，1988 年发行，红白机 FC 平台。
+release: 1988
+game: 双截龙2：复仇
+file: 双截龙2：复仇.nes
+assets.box_front: Imgs/双截龙2：复仇.png
+description: 《双截龙2：复仇》，1990 年发行，红白机 FC 平台。
+release: 1990
+game: 吃豆人
+file: 吃豆人.nes
+assets.box_front: Imgs/吃豆人.png
+description: 《吃豆人》，1993 年发行，红白机 FC 平台。
+release: 1993
+game: 圣斗士星矢 - 黄金传说
+file: 圣斗士星矢 - 黄金传说.nes
+assets.box_front: Imgs/圣斗士星矢 - 黄金传说.png
+description: 《圣斗士星矢 - 黄金传说》，红白机 FC 平台。
+game: 坦克大战
+file: 坦克大战.nes
+assets.box_front: Imgs/坦克大战.png
+description: 《坦克大战》，1985 年发行，红白机 FC 平台。
+release: 1985
+game: 塞尔达传说
+file: 塞尔达传说.nes
+assets.box_front: Imgs/塞尔达传说.png
+description: 《塞尔达传说》，红白机 FC 平台。
+game: 大力水手
+file: 大力水手.nes
+assets.box_front: Imgs/大力水手.png
+description: 《大力水手》，1983 年发行，红白机 FC 平台。
+release: 1983
+game: 大金刚
+file: 大金刚.nes
+assets.box_front: Imgs/大金刚.png
+description: 《大金刚》，1983 年发行，红白机 FC 平台。
+release: 1983
+game: 大金刚合集
+file: 大金刚合集.nes
+assets.box_front: Imgs/大金刚合集.png
+description: 《大金刚合集》，1983 年发行，红白机 FC 平台。
+    本作为《大金刚》的合集版本。
+release: 1988
+game: 影之传说
+file: 影之传说.nes
+assets.box_front: Imgs/影之传说.png
+description: 《影之传说》，红白机 FC 平台。
+game: 忍者之影
+file: 忍者之影.nes
+assets.box_front: Imgs/忍者之影.png
+description: 《忍者之影》，红白机 FC 平台。
+game: 忍者神龟
+file: 忍者神龟.nes
+assets.box_front: Imgs/忍者神龟.png
+description: 《忍者神龟》，红白机 FC 平台。
+game: 忍者神龟2：街机版
+file: 忍者神龟2：街机版.nes
+assets.box_front: Imgs/忍者神龟2：街机版.png
+description: 《忍者神龟2：街机版》，1990 年发行，红白机 FC 平台。
+release: 1990
+game: 忍者神龟3：曼哈顿计划
+file: 忍者神龟3：曼哈顿计划.nes
+assets.box_front: Imgs/忍者神龟3：曼哈顿计划.png
+description: 《忍者神龟3：曼哈顿计划》，1992 年发行，红白机 FC 平台。
+release: 1992
+game: 忍者蛙
+file: 忍者蛙.nes
+assets.box_front: Imgs/忍者蛙.png
+description: 《忍者蛙》，红白机 FC 平台。
+game: 忍者龙剑传
+file: 忍者龙剑传.nes
+assets.box_front: Imgs/忍者龙剑传.png
+description: 《忍者龙剑传》，1989 年发行，红白机 FC 平台。
+release: 1989
+game: 忍者龙剑传2：暗黑的邪神剑
+file: 忍者龙剑传2：暗黑的邪神剑.nes
+assets.box_front: Imgs/忍者龙剑传2：暗黑的邪神剑.png
+description: 《忍者龙剑传2：暗黑的邪神剑》，1990 年发行，红白机 FC 平台。
+release: 1990
+game: 快打旋风
+file: 快打旋风.nes
+assets.box_front: Imgs/快打旋风.png
+description: 《快打旋风》，1993 年发行，红白机 FC 平台。
+release: 1993
+game: 怒2 - 胜利之路
+file: 怒2 - 胜利之路.nes
+assets.box_front: Imgs/怒2 - 胜利之路.png
+description: 《怒2 - 胜利之路》，红白机 FC 平台。
+game: 打砖块
+file: 打砖块.nes
+assets.box_front: Imgs/打砖块.png
+description: 《打砖块》，1987 年发行，红白机 FC 平台。
+release: 1987
+game: 敲冰块
+file: 敲冰块.nes
+assets.box_front: Imgs/敲冰块.png
+description: 《敲冰块》，1985 年发行，红白机 FC 平台。
+release: 1985
+game: 最终任务
+file: 最终任务.nes
+assets.box_front: Imgs/最终任务.png
+description: 《最终任务》，红白机 FC 平台。
+game: 松鼠大作战
+file: 松鼠大作战.nes
+assets.box_front: Imgs/松鼠大作战.png
+description: 《松鼠大作战》，1990 年发行，红白机 FC 平台。
+release: 1990
+game: 松鼠大作战2
+file: 松鼠大作战2.nes
+assets.box_front: Imgs/松鼠大作战2.png
+description: 《松鼠大作战2》，红白机 FC 平台。
+game: 气球大战
+file: 气球大战.nes
+assets.box_front: Imgs/气球大战.png
+description: 《气球大战》，1986 年发行，红白机 FC 平台。
+release: 1986
+game: 沙罗曼蛇
+file: 沙罗曼蛇.nes
+assets.box_front: Imgs/沙罗曼蛇.png
+description: 《沙罗曼蛇》，1988 年发行，红白机 FC 平台。
+release: 1988
+game: 泡泡龙
+file: 泡泡龙.nes
+assets.box_front: Imgs/泡泡龙.png
+description: 《泡泡龙》，1988 年发行，红白机 FC 平台。
+release: 1988
+game: 洛克人
+file: 洛克人.nes
+assets.box_front: Imgs/洛克人.png
+description: 《洛克人》，红白机 FC 平台。
+game: 炸弹人
+file: 炸弹人.nes
+assets.box_front: Imgs/炸弹人.png
+description: 《炸弹人》，1989 年发行，红白机 FC 平台。
+release: 1989
+game: 热血新纪录
+file: 热血新纪录.nes
+assets.box_front: Imgs/热血新纪录.png
+description: 《热血新纪录》，红白机 FC 平台。
+game: 热血格斗传说
+file: 热血格斗传说.nes
+assets.box_front: Imgs/热血格斗传说.png
+description: 《热血格斗传说》，红白机 FC 平台。
+game: 热血物语
+file: 热血物语.nes
+assets.box_front: Imgs/热血物语.png
+description: 《热血物语》，1990 年发行，红白机 FC 平台。
+release: 1990
+game: 热血篮球
+file: 热血篮球.nes
+assets.box_front: Imgs/热血篮球.png
+description: 《热血篮球》，红白机 FC 平台。
+game: 热血足球联盟
+file: 热血足球联盟.nes
+assets.box_front: Imgs/热血足球联盟.png
+description: 《热血足球联盟》，红白机 FC 平台。
+game: 热血进行曲
+file: 热血进行曲.nes
+assets.box_front: Imgs/热血进行曲.png
+description: 《热血进行曲》，红白机 FC 平台。
+game: 狡猾飞天德
+file: 狡猾飞天德.nes
+assets.box_front: Imgs/狡猾飞天德.png
+description: 《狡猾飞天德》，红白机 FC 平台。
+game: 绿色兵团
+file: 绿色兵团.nes
+assets.box_front: Imgs/绿色兵团.png
+description: 《绿色兵团》，红白机 FC 平台。
+game: 脱狱 - 被俘之战
+file: 脱狱 - 被俘之战.nes
+assets.box_front: Imgs/脱狱 - 被俘之战.png
+description: 《脱狱 - 被俘之战》，红白机 FC 平台。
+game: 花式九球
+file: 花式九球.nes
+assets.box_front: Imgs/花式九球.png
+description: 《花式九球》，红白机 FC 平台。
+game: 荒野大镖客
+file: 荒野大镖客.nes
+assets.box_front: Imgs/荒野大镖客.png
+description: 《荒野大镖客》，1988 年发行，红白机 FC 平台。
+release: 1988
+game: 西游记世界
+file: 西游记世界.nes
+assets.box_front: Imgs/西游记世界.png
+description: 《西游记世界》，红白机 FC 平台。
+game: 西游记世界2 天上界的魔神
+file: 西游记世界2 天上界的魔神.nes
+assets.box_front: Imgs/西游记世界2 天上界的魔神.png
+description: 《西游记世界2 天上界的魔神》，红白机 FC 平台。
+game: 赤色要塞
+file: 赤色要塞.nes
+assets.box_front: Imgs/赤色要塞.png
+description: 《赤色要塞》，红白机 FC 平台。
+game: 超级马力欧兄弟
+file: 超级马力欧兄弟.nes
+assets.box_front: Imgs/超级马力欧兄弟.png
+description: 《超级马力欧兄弟》，红白机 FC 平台。
+game: 超级马力欧兄弟2
+file: 超级马力欧兄弟2.nes
+assets.box_front: Imgs/超级马力欧兄弟2.png
+description: 《超级马力欧兄弟2》，1989 年发行，红白机 FC 平台。
+release: 1989
+game: 超级马力欧兄弟3
+file: 超级马力欧兄弟3.nes
+assets.box_front: Imgs/超级马力欧兄弟3.png
+description: 《超级马力欧兄弟3》，1990 年发行，红白机 FC 平台。
+release: 1990
+game: 超级魂斗罗
+file: 超级魂斗罗.nes
+assets.box_front: Imgs/超级魂斗罗.png
+description: 《超级魂斗罗》，红白机 FC 平台。
+game: 越野摩托车
+file: 越野摩托车.nes
+assets.box_front: Imgs/越野摩托车.png
+description: 《越野摩托车》，1984 年发行，红白机 FC 平台。
+release: 1984
+game: 踢王
+file: 踢王.nes
+assets.box_front: Imgs/踢王.png
+description: 《踢王》，红白机 FC 平台。
+game: 银河战士
+file: 银河战士.nes
+assets.box_front: Imgs/银河战士.png
+description: 《银河战士》，红白机 FC 平台。
+game: 镜花缘
+file: 镜花缘.nes
+assets.box_front: Imgs/镜花缘.png
+description: 《镜花缘》，红白机 FC 平台。
+game: 雪人兄弟
+file: 雪人兄弟.nes
+assets.box_front: Imgs/雪人兄弟.png
+description: 《雪人兄弟》，1991 年发行，红白机 FC 平台。
+release: 1991
+game: 马戏团
+file: 马戏团.nes
+assets.box_front: Imgs/马戏团.png
+description: 《马戏团》，红白机 FC 平台。
+game: 马里奥医生
+file: 马里奥医生.nes
+assets.box_front: Imgs/马里奥医生.png
+description: 《马里奥医生》，1991 年发行，红白机 FC 平台。
+release: 1991
+game: 高桥名人的冒险岛
+file: 高桥名人的冒险岛.nes
+assets.box_front: Imgs/高桥名人的冒险岛.png
+description: 《高桥名人的冒险岛》，红白机 FC 平台。
+game: 高桥名人的冒险岛2
+file: 高桥名人的冒险岛2.nes
+assets.box_front: Imgs/高桥名人的冒险岛2.png
+description: 《高桥名人的冒险岛2》，红白机 FC 平台。
+game: 高桥名人的冒险岛3
+file: 高桥名人的冒险岛3.nes
+assets.box_front: Imgs/高桥名人的冒险岛3.png
+description: 《高桥名人的冒险岛3》，红白机 FC 平台。
+game: 魂斗罗
+file: 魂斗罗.nes
+assets.box_front: Imgs/魂斗罗.png
+description: 《魂斗罗》，1988 年发行，红白机 FC 平台。
+release: 1988
+game: 魂斗罗力量
+file: 魂斗罗力量.nes
+assets.box_front: Imgs/魂斗罗力量.png
+description: 《魂斗罗力量》，红白机 FC 平台。

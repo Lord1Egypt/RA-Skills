@@ -1,41 +1,52 @@
-## Description: <br>
-Use when about to claim any work is complete, fixed, passing, or successful - requires running fresh verification commands and reading actual output before making any success claims; evidence before assertions always. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prompts an agent to run fresh verification commands and read actual output before claiming work is complete, fixed, passing, or successful.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[axelhu](https://clawhub.ai/user/axelhu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill to make an agent verify completion, fixes, test status, and other success claims with fresh command output before reporting them.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agents that cannot reliably understand the Chinese instructions may misapply or ignore the verification checklist.
+
+Mitigation: Install this skill only where the agent can understand the Chinese instructions and can run the relevant verification commands.
+
+Risk: The skill may make an agent more conservative about completion claims and add verification steps before reporting success.
+
+Mitigation: Use it where extra verification before completion claims is desired, and expect reports to include command evidence and output summaries.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and coding agents use this skill to require fresh verification evidence before reporting that work is complete, fixed, passing, or successful. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Verification commands, builds, tests, or rollback-style regression checks may be expensive or may change local files. <br>
-Mitigation: Keep normal command approvals or review enabled in repositories where those checks are costly or could modify local state. <br>
-Risk: The skill can delay completion claims because it requires fresh evidence before reporting success. <br>
-Mitigation: Run verification commands that are scoped to the claim being made and report the actual command result. <br>
+**Output Format:** [Markdown instructions with verification checklists and command-oriented guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/superpowers-verification) <br>
-- [Publisher profile](https://clawhub.ai/user/axelhu) <br>
+**Other Properties Related to Output:** [No executable code; directs the agent to verify claims with fresh command output.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with command and evidence summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no API keys, MCP tools, or credential environment variables were detected.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

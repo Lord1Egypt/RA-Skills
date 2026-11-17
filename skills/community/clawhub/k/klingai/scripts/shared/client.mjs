@@ -15,6 +15,8 @@ import {
   ensureIdentityForBind,
   patchKlingIdentity,
   persistBoundApiKeys,
+  hasStoredApiKey,
+  getCredentialsFilePath,
 } from './auth.mjs';
 
 const KLING_API_ENDPOINTS = Object.freeze([
@@ -82,7 +84,7 @@ function printConsoleUrlsHint(prefix = '     ') {
 
 async function probeBase(base, token) {
   try {
-    const res = await fetch(`${base}/v1/videos/text2video?pageNum=1&pageSize=1`, {
+    const res = await fetch(`${base}/tasks?task_ids=0`, {
       method: 'GET',
       headers: makeKlingHeaders(token, null),
       signal: AbortSignal.timeout(8000),
@@ -127,7 +129,7 @@ async function resolveApiBase(token) {
   console.error('  1. Token invalid or expired / Token 无效或已过期:');
   printConsoleUrlsHint();
   console.error('  2. Network issue / 网络问题');
-  console.error('\nCheck credentials file, KLING_TOKEN, or run account configure / 检查 credentials、KLING_TOKEN 或 account configure:\n');
+  console.error('\nCheck credentials file, KLING_API_KEY, or run account configure / 检查 credentials、KLING_API_KEY 或 account configure:\n');
   process.exit(1);
 }
 
@@ -365,20 +367,20 @@ function pickBindAuthorizeHint(data) {
   );
 }
 
-function pickBindAccessSecretKeys(data) {
+function pickBindIssuedCredential(data) {
   const src = data?.credential && typeof data.credential === 'object' ? data.credential : data;
   if (!src || typeof src !== 'object') {
     return {
-      ak: null, sk: null, credentialId: null, accountId: null,
+      type: null, apiKey: null, credentialId: null, accountId: null,
     };
   }
-  const ak = src.accessKey || src.access_key || src.access_key_id || src.accessKeyId || src.ak;
-  const sk = src.secretKey || src.secret_key || src.secret_access_key || src.secretAccessKey || src.sk;
+  const type = src.type != null ? String(src.type).trim().toUpperCase() : null;
+  const apiKey = src.apiKey || src.api_key || src.apikey;
   const credentialId = src.credentialId || src.credential_id || src.credentialID || src.credentialid;
   const accountId = src.accountId || src.account_id || src.accountID || src.accountid;
   return {
-    ak: ak != null ? String(ak).trim() : null,
-    sk: sk != null ? String(sk).trim() : null,
+    type,
+    apiKey: apiKey != null ? String(apiKey).trim() : null,
     credentialId: credentialId != null ? String(credentialId).trim() : null,
     accountId: accountId != null ? String(accountId).trim() : null,
   };
@@ -419,15 +421,8 @@ function defaultBindOnLog(ev) {
   }
 }
 
-function maskSecret(secret) {
-  const s = String(secret || '');
-  if (!s) return '';
-  if (s.length <= 6) return '***';
-  return `${s.slice(0, 3)}***${s.slice(-2)}`;
-}
-
-function maskAccessKey(accessKey) {
-  const s = String(accessKey || '');
+function maskApiKey(apiKey) {
+  const s = String(apiKey || '');
   if (!s) return '';
   if (s.length <= 8) return `${s.slice(0, 2)}***`;
   return `${s.slice(0, 4)}***${s.slice(-3)}`;
@@ -459,9 +454,24 @@ export async function runDeviceBindFlow(options = {}) {
     },
     onLog,
   });
+  if (!result.apiKey) {
+    if (result.status === 'ALREADY_EXCHANGED' && hasStoredApiKey()) {
+      return {
+        sessionId: result.sessionId,
+        authorizeUrl: result.authorizeHint || null,
+        savePath: getCredentialsFilePath(),
+        apiKeyMasked: '***',
+        alreadyExchanged: true,
+      };
+    }
+    throw new Error(
+      result.status === 'ALREADY_EXCHANGED'
+        ? 'ALREADY_EXCHANGED without credential.apiKey; rebind with --force / 已兑换且无明文 API Key，请使用 --force 重新绑定'
+        : 'Missing credential.apiKey / 缺少 credential.apiKey',
+    );
+  }
   const persisted = persistBoundApiKeys(
-    result.accessKey,
-    result.secretKey,
+    result.apiKey,
     { session_id: result.sessionId },
     {
       credentialId: result.credentialId || null,
@@ -472,8 +482,7 @@ export async function runDeviceBindFlow(options = {}) {
     sessionId: result.sessionId,
     authorizeUrl: result.authorizeHint || null,
     savePath: persisted.savePath,
-    accessKeyMasked: maskAccessKey(result.accessKey),
-    secretKeyMasked: maskSecret(result.secretKey),
+    apiKeyMasked: maskApiKey(result.apiKey),
   };
 }
 
@@ -622,12 +631,24 @@ export async function runAccountBindHttpSequence(options) {
       codeVerifier,
     }, 'POST');
     const status = normalizeBindStatus(exchangeData);
-    if (status === 'ISSUED' || status === 'ALREADY_EXCHANGED') {
+    if (status === 'ISSUED') {
       const {
-        ak, sk, credentialId, accountId,
-      } = pickBindAccessSecretKeys(exchangeData);
-      if (!ak || !sk) {
-        throw makeBindFlowError(`${status} without credential / ${status} 但缺少 credential`, {
+        type, apiKey, credentialId, accountId,
+      } = pickBindIssuedCredential(exchangeData);
+      if (type && type !== 'API_KEY') {
+        throw makeBindFlowError(
+          `ISSUED credential.type=${type}; expected API_KEY / ISSUED 凭证类型须为 API_KEY`,
+          {
+            code: 'MISSING_CREDENTIAL',
+            authorizeUrl: authorizeHint,
+            sessionId,
+            status,
+            responseData: exchangeData,
+          },
+        );
+      }
+      if (!apiKey) {
+        throw makeBindFlowError('ISSUED without credential.apiKey / ISSUED 但缺少 credential.apiKey', {
           code: 'MISSING_CREDENTIAL',
           authorizeUrl: authorizeHint,
           sessionId,
@@ -638,8 +659,20 @@ export async function runAccountBindHttpSequence(options) {
       return {
         sessionId,
         authorizeHint,
-        accessKey: ak,
-        secretKey: sk,
+        apiKey,
+        credentialId,
+        accountId,
+        status,
+      };
+    }
+    if (status === 'ALREADY_EXCHANGED') {
+      const {
+        apiKey, credentialId, accountId,
+      } = pickBindIssuedCredential(exchangeData);
+      return {
+        sessionId,
+        authorizeHint,
+        apiKey,
         credentialId,
         accountId,
         status,

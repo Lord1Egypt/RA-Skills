@@ -1,42 +1,60 @@
-## Description: <br>
-All-in-one Prisma Access management for Strata Cloud Manager (SCM). Generate configurations, audit against best practices, migrate between tenants, troubleshoot issues, and automate via SCM API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+All-in-one Prisma Access management for Strata Cloud Manager (SCM). Generate configurations, audit against best practices, migrate between tenants, troubleshoot issues, and automate via SCM API.
 
-## Publisher: <br>
-[leesandao](https://clawhub.ai/user/leesandao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leesandao](https://clawhub.ai/user/leesandao)
 
-## Use Case: <br>
-Network security engineers and administrators use this skill to generate, audit, migrate, troubleshoot, and automate Prisma Access configuration through Strata Cloud Manager APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can manage live security configuration and includes deletion and push operations. <br>
-Mitigation: Use credentials scoped to the minimum required folders and resources, and require explicit review of tenant, folder, resource type, immutable object ID, and planned effect before any delete or configuration push. <br>
-Risk: The security summary notes insufficient visible guardrails around destructive actions. <br>
-Mitigation: Prefer dry-run or read-only use until explicit destructive-action safeguards are documented and reviewed. <br>
+## Use Case:
 
+Network security administrators and engineers use this skill to generate, audit, migrate, troubleshoot, and automate Prisma Access configurations through Strata Cloud Manager workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leesandao/prisma-access) <br>
-- [Skill homepage](https://github.com/leesandao/prismaaccess-skill) <br>
-- [Strata Cloud Manager API base URL](https://api.sase.paloaltonetworks.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON payload examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SCM API endpoints, folder parameters, audit findings, migration plans, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can create, update, delete, migrate, and push Prisma Access security configuration using tenant credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged SCM service account and require explicit confirmation for every create, update, delete, migration, and push operation.
+
+Risk: Configuration changes may have tenant-wide network security impact if applied without review.
+
+Mitigation: Prefer dry runs with impact previews, review proposed changes before execution, and avoid automatic commits.
+
+Risk: Credential values may be exposed through shell command patterns on shared machines.
+
+Mitigation: Avoid passing secrets directly in shared shell histories or logs, and handle SCM client credentials through protected environment management.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leesandao/skills/prisma-access)
+- [Publisher profile](https://clawhub.ai/user/leesandao)
+- [Project homepage](https://github.com/leesandao/prismaaccess-skill)
+- [Strata Cloud Manager API base URL](https://api.sase.paloaltonetworks.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SCM API-compatible JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoints, required folder parameters, query parameters, audit findings, migration plans, and troubleshooting recommendations.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

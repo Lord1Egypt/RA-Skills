@@ -14,21 +14,21 @@
 
 ```bash
 curl -s "https://api.github.com/search/issues?q=关键词+repo:openclaw/openclaw&per_page=5" \
-  -H "Authorization: token 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"
+  -H "Authorization: token REDACTED-SECRET"
 ```
 
 ### 查看 issue 详情
 
 ```bash
 curl -s "https://api.github.com/repos/openclaw/openclaw/issues/66057" \
-  -H "Authorization: token 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"
+  -H "Authorization: token REDACTED-SECRET"
 ```
 
 ### 创建 issue
 
 ```bash
 curl -s -X POST \
-  -H "Authorization: token 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" \
+  -H "Authorization: token REDACTED-SECRET" \
   -H "Accept: application/vnd.github+json" \
   -H "Content-Type: application/vnd.github+json" \
   https://api.github.com/repos/openclaw/openclaw/issues \
@@ -39,7 +39,7 @@ curl -s -X POST \
 
 ```bash
 curl -s -X PATCH \
-  -H "Authorization: token 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" \
+  -H "Authorization: token REDACTED-SECRET" \
   -H "Accept: application/vnd.github+json" \
   -H "Content-Type: application/vnd.github+json" \
   https://api.github.com/repos/openclaw/openclaw/issues/<number> \

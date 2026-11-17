@@ -1,38 +1,53 @@
-## Description: <br>
-Analyze company spend data to identify waste, benchmark costs by industry, optimize vendor contracts, and forecast cash flow with a prioritized action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes company spend data to identify waste, benchmark costs, optimize vendor contracts, and forecast cash flow with a prioritized action plan.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Finance leaders, founders, and operations teams use this skill to categorize transaction data, identify waste patterns, benchmark spending, and produce prioritized spend-optimization plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Spend analysis may expose sensitive company transaction, vendor, employee, tax, banking, payment, or contract data. <br>
-Mitigation: Provide only the fields needed for the analysis and redact bank account numbers, tax IDs, payment credentials, employee personal data, confidential contract terms, and unrelated vendor details before use. <br>
-Risk: Savings projections, benchmarks, and cash-flow forecasts may be inaccurate if the input data is incomplete, stale, or miscategorized. <br>
-Mitigation: Validate categories, assumptions, benchmark fit, and projected actions with finance or operations owners before making vendor, budget, or staffing decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Finance and operations teams use this skill to analyze transaction data, identify waste patterns, benchmark spend, and produce prioritized cost-reduction and runway plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with summary bullets, tables, and action-plan sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include savings estimates, category benchmarks, owner assignments, timelines, and cash-flow forecasts based on user-provided spend data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to provide transaction data, which may contain sensitive vendor, account, or financial information.
+
+Mitigation: Redact unnecessary vendor, account, and identifying details before use, and share only the minimum spend data needed for the analysis.
+
+Risk: Hardcoded benchmark claims and linked promotional resources may be inaccurate or unsuitable for a specific business decision.
+
+Mitigation: Independently verify benchmark assumptions and external links before relying on the output for budgeting, vendor negotiations, or operational changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/1kalin/skills/afrexai-spend-intelligence)
+- [Publisher Profile](https://clawhub.ai/user/1kalin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown spend intelligence report with summary bullets, ranked actions, tables, and a 90-day optimization calendar]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financial figures, savings estimates, implementation difficulty, owners, timelines, and cash runway projections when supporting data is provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-AI News Daily fetches recent global AI news from RSS sources, deduplicates articles, translates English content to Chinese, and generates a daily Markdown digest. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches global AI industry news from RSS sources, filters and deduplicates items, translates English content to Chinese, and generates a daily Markdown news digest.
 
-## Publisher: <br>
-[aaa2531349](https://clawhub.ai/user/aaa2531349) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aaa2531349](https://clawhub.ai/user/aaa2531349)
 
-## Use Case: <br>
-External users and developers use this skill to automate a daily AI news workflow that collects public articles, summarizes selected items in Chinese, and prepares a Markdown update for OpenClaw or configured messaging targets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public articles and stores article data locally. <br>
-Mitigation: Review config/config.yaml before running, avoid private sources, and delete the data directory to remove stored articles and logs. <br>
-Risk: Article text may be sent to translation providers. <br>
-Mitigation: Review translation configuration and provider credentials before running, and only process content acceptable for external translation. <br>
-Risk: Automatic daily pushing can post unwanted or unreviewed news summaries. <br>
-Mitigation: Confirm OpenClaw and messaging target settings before enabling scheduled or automatic pushes. <br>
+## Use Case:
 
+External users and agents use this skill to collect recent AI industry news from configured RSS feeds, filter and deduplicate articles, translate English items to Chinese, and prepare a daily digest for review or delivery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaa2531349/ai-news-daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown daily news digest with source links and Chinese summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local article data, logs, and an OpenClaw message file when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill fetches RSS feeds and article pages from external sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in an isolated environment and restrict outbound access to approved news and translation endpoints where possible.
+
+Risk: Article text can be stored locally and sent to third-party translation APIs.
+
+Mitigation: Review data-handling requirements before use, avoid sensitive feeds or articles, and configure approved translation services only.
+
+Risk: Dependency ranges are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before installation, then install from a trusted package mirror or locked environment.
+
+Risk: The inspected code does not itself prove the advertised automatic OpenClaw scheduling and push behavior.
+
+Mitigation: Treat scheduling and push as platform-dependent and validate the runtime mechanism before relying on automatic delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaa2531349/skills/ai-news-daily)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration]
+
+**Output Format:** [Markdown digest with source links, plus configurable local text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a configurable number of selected news items; default configuration writes the digest to data/openclaw_message.txt.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata; artifact files identify 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

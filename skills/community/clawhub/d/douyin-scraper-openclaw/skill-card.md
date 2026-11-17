@@ -1,45 +1,59 @@
-## Description: <br>
-Searches Douyin video content from natural-language requests using browser automation and returns titles, authors, engagement metrics, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Douyin Scraper helps an agent search Douyin videos from natural-language requests using browser automation and return result details such as titles, authors, engagement metrics, and links.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-External users and developers use this skill to issue natural-language Douyin search requests and receive scraped video result summaries through browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation may trigger browser-based Douyin searches from vague topic prompts. <br>
-Mitigation: Invoke the skill only with explicit Douyin search wording and review the intended search terms before execution. <br>
-Risk: Saved browser state can include Douyin login credentials or session tokens. <br>
-Mitigation: Treat any saved douyin-auth.json file like a password: keep it out of source control, do not share it, and delete it when no longer needed. <br>
-Risk: Browser scraping can expose sensitive search terms and may encounter platform access limits or verification flows. <br>
-Mitigation: Avoid sensitive search terms and expect manual review when Douyin prompts for login, verification, or rate-limit handling. <br>
+## Use Case:
 
+External users and developers use this skill to issue natural-language Douyin search requests and have an agent open Douyin, submit the query, and summarize video search results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/douyin-scraper-openclaw) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Natural-language search examples](artifact/examples/search_requests.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text summaries with inline shell commands when executing browser automation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results may include Douyin video titles, author names, engagement metrics, links, and saved browser-session guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Broad natural-language activation can trigger automated Douyin browser actions unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit Douyin-specific invocation phrases, review the planned browser action before execution, and keep the browser dependency pinned or locally controlled.
+
+Risk: Saved browser state can expose a Douyin login session if douyin-auth.json is shared or stored carelessly.
+
+Mitigation: Store authentication state locally only when needed, do not share the state file, and remove it when the workflow no longer requires a logged-in session.
+
+Risk: Search terms are sent to Douyin and the workflow may encounter login, captcha, rate-limit, or platform-policy constraints.
+
+Mitigation: Avoid sensitive searches, follow Douyin platform terms, and stop automation when Douyin presents access-control or anti-abuse challenges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/douyin-scraper-openclaw)
+- [Publisher profile](https://clawhub.ai/user/terrycarter1985)
+- [Douyin search](https://www.douyin.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text search summaries with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser automation steps, extracted search result summaries, and local screenshot/state file paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

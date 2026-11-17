@@ -1,0 +1,253 @@
+/* 博物馆展品展示 · 业务样式 */
+
+.wf-vue-loading {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 24px;
+  border: 0;
+  color: var(--wf-500, #737373);
+  font: 14px/1.4 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.02em;
+  background: var(--board-bg, #f0f1f3);
+}
+
+.wf-vue-loading::before {
+  content: "";
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--wf-200, #d9d9d9);
+  border-top-color: var(--wf-700, #3d3d3d);
+  border-radius: 50%;
+  animation: wf-vue-loading-spin 0.75s linear infinite;
+}
+
+@keyframes wf-vue-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.museum-page {
+  padding: 16px;
+}
+
+.museum-section-heading {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.museum-chip-row {
+  flex-wrap: wrap;
+}
+
+.museum-meta-row {
+  flex-wrap: wrap;
+  color: #666;
+  font-size: 13px;
+}
+
+.museum-card__body {
+  padding: 12px 14px;
+}
+
+.museum-card {
+  overflow: hidden;
+}
+
+/* 首页 */
+.home__featured-body {
+  padding-top: 14px;
+}
+
+.home__featured-copy,
+.home__exhibition-note {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.home__exhibition-meta {
+  color: #666;
+  font-size: 13px;
+}
+
+.home__quick-actions {
+  width: 100%;
+}
+
+.home__quick-actions .wf-button {
+  flex: 1;
+}
+
+/* 展厅列表 */
+.exhibitions__card-meta {
+  color: #666;
+  font-size: 13px;
+}
+
+.exhibitions__map-body {
+  padding: 14px 16px;
+}
+
+.exhibitions__map-copy {
+  color: #555;
+  font-size: 14px;
+}
+
+/* 专题详情 */
+.exhibition-detail__intro,
+.exhibition-detail__fact {
+  padding: 12px 14px;
+}
+
+.exhibition-detail__fact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+}
+
+.exhibition-detail__fact-value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.exhibition-detail__fact-label {
+  color: #666;
+  font-size: 12px;
+}
+
+.exhibition-detail__intro-paragraph {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.exhibition-detail__actions .wf-button {
+  flex: 1;
+}
+
+/* 展品详情 */
+.artifact-detail__subtitle {
+  color: #666;
+  font-size: 14px;
+}
+
+.artifact-detail__audio {
+  padding: 14px 16px;
+}
+
+.artifact-detail__audio-row {
+  width: 100%;
+}
+
+.artifact-detail__spec {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+}
+
+.artifact-detail__spec-label {
+  color: #666;
+  font-size: 12px;
+}
+
+.artifact-detail__spec-value {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.artifact-detail__description {
+  padding: 14px 16px;
+}
+
+.artifact-detail__description-copy {
+  color: #444;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.artifact-detail__actions .wf-button {
+  flex: 1;
+}
+
+/* 楼层导览 */
+.floor-map__canvas {
+  min-height: 280px;
+}
+
+.floor-map__overlay-card {
+  padding: 12px 14px;
+}
+
+.floor-map__overlay-copy {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 搜索 */
+.search__result-count {
+  color: #666;
+  font-size: 13px;
+}
+
+/* 收藏 */
+.favorites__card-row {
+  padding: 12px 14px;
+  align-items: flex-start;
+}
+
+.favorites__card-meta,
+.favorites__card-time {
+  color: #666;
+  font-size: 13px;
+}
+
+.favorites__tip {
+  padding: 12px 14px;
+}
+
+.favorites__tip-copy {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* 个人设置 */
+.profile__visitor {
+  padding: 14px 16px;
+}
+
+.profile__visitor-meta {
+  color: #666;
+  font-size: 13px;
+}
+
+.profile__setting {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile__setting-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.profile__setting-hint {
+  color: #666;
+  font-size: 12px;
+}
+
+.profile__actions .wf-button {
+  flex: 1;
+}

@@ -1,42 +1,57 @@
-## Description: <br>
-Use the local `epub2md` CLI to inspect EPUB files and convert them into Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the local epub2md CLI to inspect EPUB files, convert them into chapter Markdown files, merge them into a single Markdown file, localize remote images, or unzip EPUB contents.
 
-## Publisher: <br>
-[liujuntao123](https://clawhub.ai/user/liujuntao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujuntao123](https://clawhub.ai/user/liujuntao123)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect local EPUB metadata and convert EPUB books into split or merged Markdown outputs, with optional image localization when requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: EPUB conversion runs a local CLI and writes files into a workspace. <br>
-Mitigation: Confirm the source path and requested output mode before conversion, and keep generated files in the documented workspace unless the user requests another location. <br>
-Risk: Remote images may be fetched when image localization is enabled. <br>
-Mitigation: Use localization only when the user intentionally wants remote assets downloaded from URLs contained in the EPUB. <br>
-Risk: The converter may require a global npm install if `epub2md` is missing. <br>
-Mitigation: Ask the user to approve any global install and verify the Node.js requirement before using image localization. <br>
+## Use Case:
 
+Developers and agents use this skill when a user needs to inspect an EPUB, export it as Markdown chapter files, create a merged Markdown file, localize referenced remote images, or unpack EPUB contents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujuntao123/epub2md-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and file paths; converted EPUB content is written as Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce split chapter files, a merged Markdown file, inspection text, and optional localized image assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends installing epub2md globally without pinning a reviewed version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin epub2md to a reviewed version and prefer a local project installation over a global npm install.
+
+Risk: The wrapper writes files and can clean existing output directories.
+
+Mitigation: Run conversions in a dedicated disposable workspace root and avoid pointing --workspace-root at valuable project directories.
+
+Risk: Using --localize may download remote images referenced by an EPUB.
+
+Mitigation: Use --localize only for trusted EPUBs or when outbound network requests are acceptable.
+
+## Reference(s):
+
+- [Epub2md Cli on ClawHub](https://clawhub.ai/liujuntao123/skills/epub2md-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and generated file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Markdown files, copied EPUB inputs, inspection text files, extracted EPUB contents, and image assets in a workspace directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

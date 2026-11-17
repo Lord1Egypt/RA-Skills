@@ -1,41 +1,51 @@
-## Description: <br>
-Explains, validates, converts, and audits cron expressions across major flavors, showing plain English meanings and next run times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explains, validates, converts, and audits cron expressions across Unix, GitHub Actions, Kubernetes, AWS EventBridge, Spring, and related cron formats.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand cron schedules, validate expressions before deployment, convert plain-English schedules to cron, and audit cron entries in workflow, Kubernetes, and crontab files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Next-run calculations may trigger an automatic pip install of croniter if the dependency is unavailable. <br>
-Mitigation: Review before installing, preinstall a reviewed croniter dependency, or remove the fallback package-install behavior. <br>
-Risk: Scan mode reads workflow, Kubernetes, and crontab files from the directories selected by the user. <br>
-Mitigation: Run scan mode only against directories whose scheduling files the agent is intended to inspect. <br>
+## Use Case:
 
+Developers and engineers use this skill to translate cron expressions into plain English, validate schedules, calculate upcoming run times, convert simple English schedules to cron, and audit cron schedules in GitHub Actions, Kubernetes YAML, and crontab-style files.
 
-## Reference(s): <br>
-- [Phy Cron Explainer on ClawHub](https://clawhub.ai/PHY041/phy-cron-explainer) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with cron expressions, tables, diagnostics, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include next-run timestamps, validation issues, suggested fixes, scan summaries, and converted cron expressions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill metadata) <br>
+Risk: The skill may silently install an unpinned Python package at runtime when croniter is unavailable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, especially for agents with network access or writable shared Python environments; prefer a release that declares and pins dependencies or fails with setup guidance instead of auto-installing packages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-cron-explainer)
+- [Publisher profile](https://clawhub.ai/user/phy041)
+- [Canlah AI](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with cron expressions, validation findings, next-run times, code snippets, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May scan local project configuration files for cron schedules; no external API use is claimed, but security evidence reports possible runtime package installation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

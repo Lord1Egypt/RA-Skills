@@ -1,38 +1,51 @@
-## Description: <br>
-Audits and rewrites LinkedIn profiles with section scoring, headline and About rewrites, experience bullet optimization, and an AI visibility checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits and rewrites LinkedIn profiles with scored section feedback, headline variants, an About rewrite, optimized experience bullets, and an AI visibility checklist.
 
-## Publisher: <br>
-[BrianRWagner](https://clawhub.ai/user/BrianRWagner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianrwagner](https://clawhub.ai/user/brianrwagner)
 
-## Use Case: <br>
-External users and professionals use this skill to audit and rewrite LinkedIn profile content for job search, client attraction, or thought leadership positioning. The skill uses the user's profile sections, target audience, desired action, and positioning goal to produce a focused optimization package. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may paste personal, employer, client, contact, or business-sensitive profile details into the agent. <br>
-Mitigation: Share only the profile sections needed for rewriting and redact confidential names, numbers, metrics, or contact details when they are not essential. <br>
-Risk: Generated profile rewrites could overstate claims or include unsupported positioning if the source profile lacks proof. <br>
-Mitigation: Review the generated copy before use, keep only claims supported by the user's real experience, and add metrics or proof only when the user can verify them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users use this skill to improve LinkedIn positioning for job seeking, client attraction, or thought leadership. It asks for profile text and goals, then returns a prioritized audit and rewritten profile sections tailored to the stated audience.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: LinkedIn profile text may contain personal contact details, private URLs, confidential employer or client information, or third-party personal data.
+
+Mitigation: Redact sensitive information before pasting profile content into the agent.
+
+Risk: Profile rewrite suggestions could overstate claims if the source profile lacks metrics or proof.
+
+Mitigation: Review generated claims against the user's actual evidence and add metrics only when they are provided or verified.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with section headers, scoring tables, checklists, and rewritten profile copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided LinkedIn profile sections and positioning goals; does not require external tools.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown response with tables, section rewrites, before/after bullets, and checklist scoring]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-supplied LinkedIn profile text and positioning goals; asks for missing intake details before producing recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

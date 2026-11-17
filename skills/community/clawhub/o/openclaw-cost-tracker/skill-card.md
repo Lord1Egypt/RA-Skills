@@ -1,41 +1,55 @@
-## Description: <br>
-Tracks OpenClaw token usage and API costs from local session data, with current analysis centered on openclaw-cost-diff and a bundled Python fallback for single-window reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks OpenClaw token usage and API costs from local session data, preferring openclaw-cost-diff for current cost analysis and comparisons while keeping the bundled Python script as a fallback.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local OpenClaw session history for token spend, API cost trends, model breakdowns, and window-over-window changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local OpenClaw session history, which can reveal usage timing, models, request volumes, and cost patterns. <br>
-Mitigation: Install only where that local read access is acceptable, run with the minimum needed permissions, and treat generated JSON or dashboard exports as sensitive. <br>
-Risk: The preferred workflow depends on a separately installed openclaw-cost-diff or ocost executable. <br>
-Mitigation: Verify the separate executable before relying on its analysis, and use the bundled Python fallback when the diff tool is unavailable. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect local session data for token spend, model-level cost breakdowns, daily trends, and window-over-window cost regressions without API keys.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pfrederiksen/openclaw-cost-tracker) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON report output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are derived from local OpenClaw session data and may include model, timing, token, request, and cost summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence) <br>
+Risk: The default workflow invokes a separate local openclaw-cost-diff executable that is not included in the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the external CLI's source, version, ownership, permissions, and checksum before use, or run the bundled scripts/cost_tracker.py fallback instead.
+
+Risk: Cost analysis reads local OpenClaw session data that may contain sensitive usage history.
+
+Mitigation: Run as a non-root user with read-only access limited to the required OpenClaw session data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pfrederiksen/skills/openclaw-cost-tracker)
+- [OpenClaw](https://openclaw.ai)
+- [Bundled fallback script](scripts/cost_tracker.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and optional JSON cost reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local OpenClaw session JSONL data; no API keys required.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

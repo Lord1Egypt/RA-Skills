@@ -1,44 +1,54 @@
-## Description: <br>
-Analyzes local or remote images with ByteDance Doubao vision models and writes results to an output file for agent consumption. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doubao Seed Skill lets an agent analyze image content with ByteDance Doubao vision models and write results to a file for reliable retrieval.
 
-## Publisher: <br>
-[maoyutofu](https://clawhub.ai/user/maoyutofu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maoyutofu](https://clawhub.ai/user/maoyutofu)
 
-## Use Case: <br>
-Developers and AI agents use this skill to run Doubao vision analysis on local or remote images. Agents should write the result to a unique temporary output file and read that file after the command completes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls an external Doubao API and requires an API key. <br>
-Mitigation: Use a dedicated API key and avoid sensitive or regulated images unless the provider handling is acceptable. <br>
-Risk: Installation relies on a third-party GitHub Release binary. <br>
-Mitigation: Install only if the publisher and release artifact are trusted, and verify release checksums or signatures when available. <br>
-Risk: Inference results are written to temporary files that may be overwritten or left behind. <br>
-Mitigation: Use unique private output paths per run and delete result files after the agent reads them. <br>
+## Use Case:
 
+Developers and external agent users can use this skill to call a Doubao/Volcengine vision model for image analysis, including local images or image URLs. Agent integrations should direct the CLI to write results to a unique temporary output file before reading them.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/maoyutofu/doubao-seed-skill) <br>
-- [Doubao Seed Skill GitHub releases](https://github.com/maoyutofu/doubao-seed-skill/releases/latest) <br>
-- [Doubao Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Text written to a file, with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an ARK_API_KEY value and strongly recommends a unique temporary output file for each run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill asks users to install and trust an unverified precompiled binary that handles API keys and local images.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned release with published SHA-256 checksums or signatures, and install the binary in a user-owned directory instead of /usr/local/bin.
+
+Risk: API keys and local images may be processed by the external CLI and Doubao/Volcengine service.
+
+Mitigation: Use a narrowly scoped ARK_API_KEY and review data handling expectations before passing local images or prompts to the tool.
+
+## Reference(s):
+
+- [Doubao Seed Skill release page](https://github.com/maoyutofu/doubao-seed-skill/releases/latest)
+- [Doubao Seed skill configuration](artifact/doubao-seed.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text file output from a CLI command, with Markdown usage guidance in the skill documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The artifact recommends unique temporary output paths, synchronous execution, file polling, and a 90 second timeout.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

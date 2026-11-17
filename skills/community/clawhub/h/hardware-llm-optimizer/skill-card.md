@@ -1,42 +1,52 @@
-## Description: <br>
-Auto-detects PC hardware details, estimates runnable LLM model sizes, and recommends quantization, deployment tools, and bottleneck optimizations with a Chinese output interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-detects PC CPU, GPU, RAM, and VRAM to recommend runnable local LLM sizes, quantization settings, deployment tools, and bottleneck fixes with Chinese-language output.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smseow001](https://clawhub.ai/user/smseow001)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and local LLM users use this skill to inspect a PC's available CPU, memory, GPU, and VRAM, then choose practical model sizes, quantization levels, and local deployment tools. It is especially oriented toward Chinese-speaking users who want quick hardware-fit guidance for running LLMs locally.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects basic local hardware details and may run nvidia-smi when available.
+
+Mitigation: Review this disclosed local inspection behavior before use and run the skill only in environments where local hardware inventory checks are acceptable.
+
+Risk: The skill depends on psutil for hardware detection.
+
+Mitigation: Install psutil in a virtual environment, avoid administrator or root-level pip installs, and use pinned dependencies when reproducibility matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and external users use this skill to inspect local CPU, RAM, GPU, and VRAM details and get Chinese-language guidance on runnable LLM model sizes, quantization levels, deployment tools, and bottleneck fixes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Hardware probing can expose local system details such as CPU, RAM, GPU, VRAM, driver, and OS or WSL information in the agent session. <br>
-Mitigation: Confirm that local hardware probing is intended before running the detector, and avoid sharing the output in untrusted contexts. <br>
-Risk: The skill outputs in Chinese, which may be unsuitable for some users or reviewers. <br>
-Mitigation: Ask the agent to translate or summarize the recommendations in the preferred language before acting on them. <br>
-Risk: Model and quantization recommendations are heuristic and may not match every model build, runtime, or workload. <br>
-Mitigation: Validate recommendations against the target model and deployment runtime documentation, then test with representative prompts before relying on the setup. <br>
+**Output Format:** [Chinese-language text and Markdown with inline shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Hardware Llm Optimizer ClawHub page](https://clawhub.ai/smseow001/hardware-llm-optimizer) <br>
+**Other Properties Related to Output:** [Reports local hardware capacity, model-size recommendations, quantization guidance, deployment tool suggestions, bottleneck analysis, and optimization tips.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text in Chinese, usually presented as terminal output with recommendation lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local hardware details such as CPU, RAM, GPU, VRAM, driver, and OS or WSL information when the detector is run.] <br>
+1.1.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

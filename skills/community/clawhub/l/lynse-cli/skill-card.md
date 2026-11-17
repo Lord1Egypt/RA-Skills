@@ -1,46 +1,59 @@
-## Description: <br>
-Lynse Cli lets agents call the lynse.ai backend API to inspect account information and manage files, transcripts, summaries, devices, AI models, teams, and messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lynse CLI lets agents call Lynse.ai APIs to query account information, manage files, transcripts, summaries, devices, AI models, teams, and send messages.
 
-## Publisher: <br>
-[johneyzhao-lynse](https://clawhub.ai/user/johneyzhao-lynse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johneyzhao-lynse](https://clawhub.ai/user/johneyzhao-lynse)
 
-## Use Case: <br>
-Developers and operators use this skill to connect an agent to Lynse APIs for account lookup, file and transcript workflows, AI model and device administration, team collaboration, and outbound messages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a powerful Lynse API key and can perform account-changing actions. <br>
-Mitigation: Use a dedicated least-privilege API key and require manual confirmation before deleting resources, changing users, teams, models, or devices, or sending messages. <br>
-Risk: The submitted package references install and runtime shell scripts that were not present for review. <br>
-Mitigation: Install only after reviewing or obtaining the referenced scripts from a trusted source. <br>
-Risk: Misconfigured LYNSE_API_HOST could send credentials or requests to an unintended backend. <br>
-Mitigation: Set LYNSE_API_HOST only to the intended Lynse backend and verify it before using LYNSE_API_KEY. <br>
-Risk: Token caching may expose access tokens if local permissions are weak. <br>
-Mitigation: Store token cache files with owner-only permissions such as mode 600 and protect the host account. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect an assistant to Lynse.ai account and workspace workflows, including account lookup, file transcription and summary management, device and team administration, AI model management, and outbound messaging.
 
-## Reference(s): <br>
-- [Lynse homepage](https://www.lynse.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/johneyzhao-lynse/lynse-cli) <br>
-- [CLI compatibility matrix](artifact/compatibility.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LYNSE_API_HOST and LYNSE_API_KEY; may use local token caching with owner-only file permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.3 (source: server release metadata; artifact frontmatter says 1.2.1) <br>
+Risk: The skill can use a Lynse API key for powerful account, file, device, AI model, team, and message-sending actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a private, trusted agent environment with a least-privileged Lynse API key and require explicit confirmation before delete, unbind, team-management, or message-sending actions.
+
+Risk: A misconfigured API host could route credentials or actions to an unintended endpoint.
+
+Mitigation: Set LYNSE_API_HOST only to the legitimate HTTPS Lynse endpoint before use.
+
+Risk: Private account data such as phone numbers, points, files, transcripts, and summaries may be exposed in shared contexts.
+
+Mitigation: Configure owner binding where available and redact sensitive fields unless the user explicitly requests them in a private context.
+
+## Reference(s):
+
+- [Lynse homepage](https://www.lynse.ai)
+- [Lynse CLI compatibility table](artifact/compatibility.md)
+- [ClawHub skill listing](https://clawhub.ai/johneyzhao-lynse/skills/lynse-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LYNSE_API_HOST and LYNSE_API_KEY; uses curl and bash.]
+
+## Skill Version(s):
+
+1.2.3 (source: server release evidence; artifact frontmatter lists 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

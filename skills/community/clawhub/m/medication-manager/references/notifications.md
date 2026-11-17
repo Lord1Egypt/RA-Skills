@@ -102,7 +102,7 @@ POST https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=YOUR_KEY
 
 #### Slack
 ```json
-POST https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
+POST REDACTED-SECRET
 
 {
   "text": ":pill: Medication Reminder",

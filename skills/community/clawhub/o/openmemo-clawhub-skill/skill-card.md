@@ -1,42 +1,59 @@
-## Description: <br>
-Provides OpenClaw agents with local, scene-aware, persistent structured memory for task deduplication and long-term workflow recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides OpenClaw agents with local, scene-aware, persistent structured memory for task deduplication and long-term workflow recall.
 
-## Publisher: <br>
-[openmemoai](https://clawhub.ai/user/openmemoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openmemoai](https://clawhub.ai/user/openmemoai)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let OpenClaw agents recall completed tasks, decisions, and successful workflows across sessions while reducing repeated work. It is best suited for coding, DevOps automation, research, and other multi-step agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent task memories may persist across sessions and influence future work. <br>
-Mitigation: Review stored memories through the adapter inspector or storage controls, delete stale or incorrect memories, and treat recalled memories as context to verify before acting. <br>
-Risk: Stored memories could include secrets, credentials, personal data, regulated data, or confidential customer details if users save them. <br>
-Mitigation: Avoid writing sensitive data to memory and keep the default local adapter unless a remote endpoint is intentionally trusted. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local persistent memory to OpenClaw agents so repeated coding, research, DevOps, and other multi-step workflows can recall past work and avoid duplicate execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openmemoai/openmemo-clawhub-skill) <br>
-- [OpenMemo project](https://github.com/openmemoai/openmemo) <br>
-- [OpenMemo OpenClaw adapter](https://github.com/openmemoai/openmemo-openclaw-adapter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Text setup guidance and JSON tool responses from local memory recall, write, and task-check operations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local OpenMemo adapter by default; remote endpoints require explicit trust and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+Risk: The skill can persist sensitive operational history in local memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not store credentials, regulated data, customer data, or other secrets in memory; keep memory inspection and deletion available to users.
+
+Risk: The intended localhost-only boundary can be weakened by remote endpoint configuration.
+
+Mitigation: Use only a trusted local OpenMemo adapter and avoid remote endpoints unless they have been explicitly reviewed and approved.
+
+Risk: Task deduplication can encourage an agent to reuse stale or incorrect prior work.
+
+Mitigation: Review recalled memories and task-match recommendations before skipping work or reusing a previous workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openmemoai/skills/openmemo-clawhub-skill)
+- [OpenMemo Project](https://github.com/openmemoai/openmemo)
+- [OpenMemo OpenClaw Adapter](https://github.com/openmemoai/openmemo-openclaw-adapter)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown setup guidance with shell commands and structured JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory tool responses depend on a reachable local OpenMemo adapter and the contents of the local memory store.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

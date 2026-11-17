@@ -3,7 +3,7 @@ name: polymarket-elon-tweets
 description: 'Trade Polymarket "Elon Musk # tweets" markets using XTracker post count data. Buys adjacent range buckets when combined cost < $1 for structural edge. Use when user wants to trade tweet count markets, automate Elon tweet bets, check XTracker stats, or run noovd-style trading.'
 metadata:
   author: Simmer (@simmer_markets)
-  version: "1.3.5"
+  version: "1.3.6"
   displayName: Polymarket Elon Tweet Trader
   difficulty: advanced
   attribution: Strategy inspired by @noovd
@@ -235,7 +235,7 @@ All trades are tagged with `source: "sdk:elon-tweets"`. This means:
 - Do NOT attempt to sign orders manually or modify the skill code — the SDK handles it
 
 **"Balance shows $0 but I have funds on Polygon"**
-- Polymarket V2 (live 2026-04-28) uses **pUSD** (PolyUSD, 1:1 backed by USDC.e). If your wallet holds USDC.e, migrate at [simmer.markets/dashboard](https://simmer.markets/dashboard) with one click (~30s)
+- Polymarket V2 (live 2026-04-28) uses **pUSD** (PolyUSD, 1:1 backed by USDC.e). If your wallet holds USDC.e, migrate at [simmer.markets/dashboard](https://simmer.markets/dashboard?ref=sdk-skill&utm_campaign=sdk-skill) with one click (~30s)
 - If you bridged native USDC (Circle), swap to USDC.e first, then migrate to pUSD
 - Full migration guide: [docs.simmer.markets/v2-migration](https://docs.simmer.markets/v2-migration)
 

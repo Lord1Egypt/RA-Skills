@@ -1,39 +1,49 @@
-## Description: <br>
-Reviews local git diffs before commit, grouping changed files and reporting potential bugs, security risks, and optimization suggestions in a structured Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews Git diffs before commit to identify newly introduced bugs, security risks, regression risks, and optimization opportunities in a structured report.
 
-## Publisher: <br>
-[wed840313](https://clawhub.ai/user/wed840313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wed840313](https://clawhub.ai/user/wed840313)
 
-## Use Case: <br>
-Developers and engineers use this skill before committing code to inspect staged, unstaged, and new files for defects, security risks, regression risk, and practical cleanup opportunities. It helps decide whether changes are ready to commit or need fixes first. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect local diffs or full new files that contain secrets. <br>
-Mitigation: Specify the repository or files to review and avoid including secret-bearing changes unless you intend the agent to inspect them. <br>
-Risk: Pre-commit review findings are advisory and may miss issues or suggest changes that do not fit the project. <br>
-Mitigation: Review the reported findings, run the project tests, and apply team security checks before committing. <br>
+## Use Case:
 
+Developers and engineers use this skill before committing code to review staged, unstaged, or untracked changes and decide whether fixes are needed before commit.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Markdown review report with issue levels, file locations, summary counts, and commit guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request repository or file scope when the target is ambiguous.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may inspect git diffs, untracked files, and nearby repository context, which can include secrets or private data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories and changes suitable for the agent conversation; remove or mask sensitive values before review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wed840313/skills/wenwei-commit-review)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown review report with categorized findings and commit readiness guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports focus on changed code and include file paths, line references, severity categories, remediation suggestions, and a submit-or-fix conclusion.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

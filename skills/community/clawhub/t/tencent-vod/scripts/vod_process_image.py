@@ -45,7 +45,7 @@ try:
     from tencentcloud.common.profile.http_profile import HttpProfile
     from tencentcloud.vod.v20180717 import vod_client, models
 except ImportError:
-    print("错误：请先安装腾讯云 SDK: pip install tencentcloud-sdk-python")
+    print("错误：请先安装腾讯云 SDK: python3 -m pip install tencentcloud-sdk-python")
     sys.exit(1)
 
 
@@ -61,13 +61,16 @@ def get_credential():
             _ensure_env_loaded(verbose=True)
             secret_id = os.environ.get("TENCENTCLOUD_SECRET_ID")
             secret_key = os.environ.get("TENCENTCLOUD_SECRET_KEY")
-        if not secret_id or not secret_key:
-            if _LOAD_ENV_AVAILABLE:
-                from vod_load_env import _print_setup_hint
-                _print_setup_hint(["TENCENTCLOUD_SECRET_ID", "TENCENTCLOUD_SECRET_KEY"])
-            else:
-                print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+    # 检查所有必需变量（SECRET_ID/KEY/SUB_APP_ID）
+    if _LOAD_ENV_AVAILABLE:
+        from vod_load_env import check_required_vars, _print_setup_hint
+        missing = check_required_vars()
+        if missing:
+            _print_setup_hint(missing)
             sys.exit(1)
+    elif not secret_id or not secret_key:
+        print("错误：请设置环境变量 TENCENTCLOUD_SECRET_ID 和 TENCENTCLOUD_SECRET_KEY", file=sys.stderr)
+        sys.exit(1)
 
     return credential.Credential(secret_id, secret_key)
 
@@ -518,31 +521,40 @@ def wait_for_task(client, task_id, sub_app_id=None, max_wait=600):
 
 
 def main():
+    # 先加载 .env，确保 argparse `default=os.environ.get(...)` 求值前环境变量已就绪
+    # 修复 BUG：之前 SubAppId 默认值在 add_argument 时立即从环境变量取值，
+    # 但 .env 加载发生在 get_credential() 内，时序错位导致 SubAppId 为 None。
+    if _LOAD_ENV_AVAILABLE:
+        try:
+            _ensure_env_loaded(verbose=False)
+        except Exception:
+            pass
+
     parser = argparse.ArgumentParser(
         description='VOD 图片处理工具（图片超分增强 + 图片理解）',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 示例:
   # 图片超分增强（默认2倍高级超分，自动等待结果）
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
 
   # 超分到固定分辨率 1920x1080
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --mode fixed --width 1920 --height 1080
 
   # 使用已有模板 ID 进行超分
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --template-id 7
 
   # 图片理解（默认提示词"理解这张图片"，自动等待结果）
-  python vod_process_image.py understand --file-id <id> --sub-app-id 1500046154
+  python3 vod_process_image.py understand --file-id <id> --sub-app-id 1500046154
 
   # 图片理解，自定义提示词 + 指定模型
-  python vod_process_image.py understand --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py understand --file-id <id> --sub-app-id 1500046154 \\
       --model gemini-2.5-pro --prompt "分析这张图片的构图和色彩"
 
   # 使用模板 ID 进行图片理解
-  python vod_process_image.py understand --url 'https://example.com/img.jpg' --sub-app-id 1500046154 \\
+  python3 vod_process_image.py understand --url 'https://example.com/img.jpg' --sub-app-id 1500046154 \\
       --template-id 10
 
 支持的图片理解模型: gemini-2.5-flash, gemini-2.5-flash-lite, gemini-2.5-pro, gemini-3-flash, gemini-3-pro
@@ -581,7 +593,7 @@ def main():
     understand_parser.add_argument('--session-context', help='来源上下文，透传用户请求信息')
     understand_parser.add_argument('--tasks-priority', type=int, help='任务优先级，范围 -10 到 10')
     understand_parser.add_argument('--ext-info', help='扩展信息（JSON 字符串，如指定模型名称）')
-    understand_parser.add_argument('--region', default='ap-guangzhou', help='地域，默认 ap-guangzhou')
+    understand_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域，默认 ap-guangzhou')
     understand_parser.add_argument('--no-wait', action='store_true',
                                    help='仅提交任务，不等待结果（默认自动等待）')
     understand_parser.add_argument('--max-wait', type=int, default=120, help='最大等待时间(秒)，默认 120')
@@ -604,18 +616,18 @@ def main():
 
 示例:
   # 2倍超分（默认高级超分，倍率模式）
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154
 
   # 固定分辨率超分到 1920x1080
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --mode fixed --width 1920 --height 1080
 
   # 比例适配超分到 4K
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --mode aspect --width 3840 --height 2160
 
   # 使用已有模板
-  python vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
+  python3 vod_process_image.py super-resolution --file-id <id> --sub-app-id 1500046154 \\
       --template-id 30023
         ''')
 
@@ -651,7 +663,7 @@ def main():
                            help='子应用 ID（必填）')
     sr_parser.add_argument('--session-id', help='去重识别码，三天内相同 ID 的请求会返回错误')
     sr_parser.add_argument('--tasks-priority', type=int, help='任务优先级，范围 -10 到 10')
-    sr_parser.add_argument('--region', default='ap-guangzhou', help='地域，默认 ap-guangzhou')
+    sr_parser.add_argument('--region', default=os.getenv('TENCENTCLOUD_REGION', 'ap-guangzhou'), help='地域，默认 ap-guangzhou')
     sr_parser.add_argument('--no-wait', action='store_true',
                            help='仅提交任务，不等待结果（默认自动等待）')
     sr_parser.add_argument('--max-wait', type=int, default=300,

@@ -1,46 +1,59 @@
-## Description: <br>
-Data Format Encoder helps agents encode, decode, escape, and convert text between Base64, URL encoding, HTML entities, JSON escaping, hexadecimal, binary, ROT13, and Unicode escape formats through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Encodes, decodes, escapes, and converts text across Base64, URL encoding, HTML entities, JSON escaping, hexadecimal, binary, ROT13, and Unicode escape formats through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and agents use this skill to transform text for web, data transmission, debugging, and source-code compatibility workflows. It is useful for encoding API payloads, URL parameters, HTML-safe text, JSON strings, byte representations, simple ROT13 obfuscation, and Unicode escape sequences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses AgentPMT-hosted remote calls for text transformation, so submitted text may be processed by a remote service. <br>
-Mitigation: Keep inputs to the minimum needed and avoid submitting secrets, wallet keys, mnemonics, tokens, payment headers, or private content unless remote processing is intended. <br>
-Risk: Some actions require an AgentPMT account, enabled product access, and credits, which can block or change runtime behavior. <br>
-Mitigation: Use the linked AgentPMT setup resources and fetch live schema or instructions before production integration when parameters, examples, or outputs are unclear. <br>
-Risk: Decoding malformed Base64, URL-encoded, hexadecimal, binary, JSON-escaped, or Unicode-escaped input can fail validation. <br>
-Mitigation: Validate input format before calling decode or unescape actions, and retry only after correcting schema, authentication, payment, or input errors. <br>
+## Use Case:
 
+Developers and agents use this skill to transform text for web, API, data transmission, debugging, and lightweight obfuscation workflows. It is suited for routine format conversion when the text can be sent to AgentPMT.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/data-format-encoder) <br>
-- [AgentPMT Marketplace Page](https://www.agentpmt.com/marketplace/data-format-encoder) <br>
-- [Action Schema](schema.md) <br>
-- [AgentPMT Account MCP/REST Setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
-- [What AgentPMT Is](https://clawhub.ai/agentpmt/what-is-agentpmt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance, configuration] <br>
-**Output Format:** [JSON responses containing transformed text and call metadata, with Markdown guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [All product actions require a text input; decoding actions can return validation errors for malformed input, and the evidence states processing uses UTF-8.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: The skill can send arbitrary text to AgentPMT for remote processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use it with secrets, credentials, private keys, proprietary files, regulated data, or other sensitive payloads unless organizational approval covers AgentPMT processing.
+
+Risk: Mutable remote setup or live schema content can affect invocation behavior.
+
+Mitigation: Use the included schema for ordinary calls, verify live schema details before production integration, and pin or audit referenced setup skills before using installation paths.
+
+Risk: The security verdict is suspicious because the skill is a remote text encoder with privacy and setup-chain considerations.
+
+Mitigation: Prefer local encoding tools for routine transformations and install this skill only when remote AgentPMT processing and the listed credits are acceptable.
+
+## Reference(s):
+
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/data-format-encoder)
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/data-format-encoder)
+- [Data Format Encoder Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API Calls, guidance]
+
+**Output Format:** [JSON responses containing transformed text and call status details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [All product actions take a required text parameter; each action is listed at 5 credits in the included schema.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

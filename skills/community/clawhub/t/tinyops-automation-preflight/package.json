@@ -1,0 +1,39 @@
+{
+  "name": "automation-integration-preflight-action",
+  "version": "1.1.0",
+  "private": false,
+  "description": "CLI and GitHub Action for bounded automation integration preflight checks",
+  "author": "TinyOps Studio LLC <support@tinyopsstudio.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/tinyopsstudio/automation-integration-preflight-action#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinyopsstudio/automation-integration-preflight-action.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tinyopsstudio/automation-integration-preflight-action/issues"
+  },
+  "keywords": [
+    "automation",
+    "preflight",
+    "github-actions",
+    "integration-testing",
+    "rapidapi"
+  ],
+  "bin": {
+    "automation-preflight": "bin/automation-preflight.js"
+  },
+  "files": [
+    "action.yml",
+    "bin/automation-preflight.js",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

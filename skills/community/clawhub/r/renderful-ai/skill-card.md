@@ -1,42 +1,55 @@
-## Description: <br>
-Generate images and videos through the renderful.ai API with API-key authentication and optional crypto payment support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images and videos through the renderful.ai API with model options such as FLUX, Kling, Sora, and WAN, including crypto payment support.
 
-## Publisher: <br>
-[luv005](https://clawhub.ai/user/luv005) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[luv005](https://clawhub.ai/user/luv005)
 
-## Use Case: <br>
-Developers and agents use this skill to call Renderful for AI image and video generation, configure authentication, and check generation status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can call Renderful's paid generation API and may trigger crypto payments through x402. <br>
-Mitigation: Use a dedicated API key, keep x402 disabled unless needed, and require explicit approval before each paid request. <br>
-Risk: Wallet-based payments can spend funds without defined safeguards. <br>
-Mitigation: Use a dedicated low-balance wallet and revoke or rotate credentials after use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Renderful API](https://api.renderful.ai/v1) <br>
-- [Renderful Dashboard](https://renderful.ai/dashboard) <br>
-- [Renderful Pricing](https://renderful.ai/pricing) <br>
-- [ClawHub skill page](https://clawhub.ai/luv005/renderful-ai) <br>
+## Use Case:
 
+External users and developers use this skill to request AI image or video generation through Renderful and to configure API-key or crypto-payment access when appropriate.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with curl examples and JSON request/response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RENDERFUL_API_KEY; x402 wallet settings should be used only with explicit approval and spending limits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and generation requests are sent to Renderful.
+
+Mitigation: Avoid sending confidential, regulated, or sensitive content unless Renderful's terms and data handling are acceptable for the use case.
+
+Risk: The skill documents autonomous x402 crypto payments without clear approval, spending limit, or cost-control requirements.
+
+Mitigation: Use a dedicated low-balance wallet and require explicit approval for each payment, including amount, network, recipient, and fees.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/luv005/skills/renderful-ai)
+- [Renderful API Base URL](https://api.renderful.ai/v1)
+- [Renderful Dashboard](https://renderful.ai/dashboard)
+- [Renderful Pricing](https://renderful.ai/pricing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, environment variable setup, generation parameters, status-check commands, and payment guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

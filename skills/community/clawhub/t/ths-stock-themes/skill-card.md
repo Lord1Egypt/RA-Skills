@@ -1,45 +1,59 @@
-## Description: <br>
-Retrieves Tonghuashun stock theme, concept-sector, and popularity-ranking data and helps generate Markdown reports for individual A-share stocks or popularity lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取同花顺个股题材/概念板块和人气排名数据。使用场景：(1) 查询单只股票在同花顺的题材/概念分类，(2) 获取同花顺个股人气排名榜单，(3) 生成包含题材和人气信息的 Markdown 报告。
 
-## Publisher: <br>
-[shinelp100](https://clawhub.ai/user/shinelp100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinelp100](https://clawhub.ai/user/shinelp100)
 
-## Use Case: <br>
-Developers and market-data users can query Tonghuashun/Iwencai pages for a stock's themes, regional and business details, or a current popularity ranking, then produce JSON or Markdown summaries. Returned market data should be treated as informational rather than investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock codes and ranking queries may be sent to third-party Tonghuashun or Iwencai pages. <br>
-Mitigation: Use the skill only with data that is appropriate to submit to those public websites. <br>
-Risk: Returned stock themes, prices, rankings, and popularity values may be incomplete, delayed, or unsuitable for financial decisions. <br>
-Mitigation: Treat results as informational market data and verify important conclusions against authoritative financial sources. <br>
-Risk: Changes to third-party page structure can cause missing or incorrectly parsed fields. <br>
-Mitigation: Review generated reports for empty or inconsistent values and update selectors or parsing notes when website layouts change. <br>
+## Use Case:
 
+External users and developers use this skill to query Tonghuashun stock themes, concept sectors, and popularity rankings for Chinese stock-market research, then generate Markdown reports or JSON summaries. Results should be treated as informational market data, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shinelp100/ths-stock-themes) <br>
-- [Implementation notes](references/implementation.md) <br>
-- [Tonghuashun stock pages](https://stockpage.10jqka.com.cn/) <br>
-- [Iwencai popularity ranking query](https://www.iwencai.com/unifiedwap/result?w=%E4%B8%AA%E8%82%A1%E4%BA%BA%E6%B0%94%E6%8E%92%E5%90%8D) <br>
+### Deployment Geography for Use:
 
+Global; data sources focus on China-market stocks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, JSON data, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes timestamps and source labels when producing stock theme or popularity data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: Market data and popularity rankings may be stale, incomplete, or affected by source-site page changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important outputs against the live Tonghuashun or iWenCai source pages before relying on them.
+
+Risk: Generated reports could be mistaken for investment advice.
+
+Mitigation: Label outputs as informational market-data summaries and apply independent financial review for investment decisions.
+
+Risk: Included scripts may return placeholder or empty data when browser-based collection is not performed.
+
+Mitigation: Check for empty result sets and confirm browser collection succeeded before using or sharing a report.
+
+## Reference(s):
+
+- [Implementation Details](references/implementation.md)
+- [Tonghuashun Stock Page Example](https://stockpage.10jqka.com.cn/000001/)
+- [iWenCai Popularity Ranking Query](https://www.iwencai.com/unifiedwap/result?w=个股人气排名)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON objects, and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes timestamped public market-data summaries; included scripts may return placeholder or empty data unless paired with browser-based data collection.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

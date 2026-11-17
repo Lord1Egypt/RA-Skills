@@ -1,41 +1,59 @@
-## Description: <br>
-Guide users to VideoAny Image-to-Video, an uncensored AI video generator with multi-model support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users to VideoAny Image-to-Video, an uncensored AI video generator with multi-model support.
 
-## Publisher: <br>
-[GaoQ1](https://clawhub.ai/user/GaoQ1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoq1](https://clawhub.ai/user/gaoq1)
 
-## Use Case: <br>
-External users and developers use this skill to prepare copy-ready image-to-video generation guidance and model choices for the VideoAny web workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using the skill can direct users to upload images and prompts to a third-party website. <br>
-Mitigation: Review VideoAny's terms and privacy practices before uploading, and avoid private, regulated, confidential, or consent-sensitive images or prompts. <br>
-Risk: The skill describes VideoAny as uncensored, which may encourage unsafe or non-compliant generation requests. <br>
-Mitigation: Do not use the skill or VideoAny to create illegal, harmful, deceptive, sexual, or privacy-invasive content. <br>
+## Use Case:
 
+External users and developers use this skill to get concise guidance for turning a source image and prompt into a VideoAny web workflow. The skill helps select among listed image-to-video models and produce copy-ready inputs, but actual generation occurs on VideoAny.
 
-## Reference(s): <br>
-- [Image To Video ClawHub page](https://clawhub.ai/GaoQ1/image-to-video-any) <br>
-- [VideoAny Image-to-Video](https://videoany.io/image-to-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a source image path, prompt, and selected model for the VideoAny web workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The skill steers image-to-video requests toward an uncensored third-party web workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review VideoAny's terms, content rules, and organizational acceptability before using or recommending the workflow.
+
+Risk: Users may upload sensitive, private, or proprietary images and prompts to VideoAny.
+
+Mitigation: Do not upload restricted content unless privacy, rights, and data-handling requirements have been checked.
+
+Risk: The skill declares shell execution even though the inspected helper scripts are mostly informational.
+
+Mitigation: Review the shell permission before installation and run helper scripts only from a trusted copy of the skill.
+
+## Reference(s):
+
+- [VideoAny Image-to-Video](https://videoany.io/image-to-video)
+- [ClawHub Skill Page](https://clawhub.ai/gaoq1/skills/image-to-video-any)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/gaoq1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional shell command examples and copy-ready web workflow inputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No automatic upload or video generation; helper scripts print guidance for a third-party web workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,4 @@
-#!/home/guoxh/.openclaw/venv-clawd/bin/python
+#!/usr/bin/env python3
 """
 Smart Crop Tool - Automatic intelligent cropping
 

@@ -1,40 +1,54 @@
-## Description: <br>
-Generates videos with Volcengine Ark from a text prompt and optionally a first-frame image, then prints the generated video URL and downloads the video file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates videos from text prompts with optional first-frame image input, prints the generated video URL, and downloads the resulting video file.
 
-## Publisher: <br>
-[warm-wm](https://clawhub.ai/user/warm-wm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[warm-wm](https://clawhub.ai/user/warm-wm)
 
-## Use Case: <br>
-Developers and agent users can use this skill to call Volcengine Ark video generation from the command line, supplying a filename, prompt, and optional first-frame image URL or local file path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and any provided first-frame images are sent to Volcengine/Ark for cloud processing. <br>
-Mitigation: Avoid confidential prompts, sensitive images, and internal-only URLs unless that third-party processing is acceptable. <br>
-Risk: The script downloads the generated video to the requested local output path. <br>
-Mitigation: Choose an output path where creating or overwriting a video file is safe. <br>
+## Use Case:
 
+Developers and content builders use this skill to run a Volcengine Ark video-generation script from an agent workflow, providing an output filename, prompt, and optionally a URL or local file for the first frame.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/warm-wm/volcengine-video-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Console text with a downloaded video file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Volcengine Ark API key environment variable and may send prompts and optional first-frame images to a third-party cloud service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A user-supplied local first-frame path can be read and sent to an external video API without validating that the file is an image.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only dedicated, non-sensitive image files for first-frame inputs; avoid passing sensitive local paths and review file paths before execution.
+
+Risk: The skill depends on external Volcengine Ark credentials and service calls.
+
+Mitigation: Keep credentials in environment variables, avoid placing secrets in prompts or source files, and run the script only in trusted environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/warm-wm/skills/volcengine-video-generate)
+- [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime output includes console text, a video URL, and a downloaded video file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API credentials through environment variables such as MODEL_VIDEO_API_KEY or ARK_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

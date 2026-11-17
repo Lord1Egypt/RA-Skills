@@ -1,46 +1,49 @@
-## Description: <br>
-Provides weighted scoring, rubrics, and decision-threshold patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides weighted scoring, evaluation rubrics, thresholds, and expected-gain-versus-cost utility guidance for quality gates and agent-action decisions.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, evaluators, and agents use this skill to define weighted criteria, score artifacts consistently, and map scores to review or approval decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad evaluation triggers may cause the skill to influence scoring, rubric, or quality-gate tasks beyond its intended context. <br>
-Mitigation: Use it as a scoring and rubric aid, and require human review before applying outputs to consequential decisions. <br>
-Risk: Reusable thresholds and rubrics may be mistaken for approval, hiring, moderation, compliance, or deployment policy. <br>
-Mitigation: Treat generated evaluation structures as templates and adapt them to domain-specific policy, evidence requirements, and reviewer accountability. <br>
+## Use Case:
 
+Developers and agent designers use it to build weighted evaluation rubrics and threshold-based quality gates, and to assess whether tool calls or agent dispatches are worth their expected cost.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-evaluation-framework) <br>
-- [Leyline homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Scoring Patterns](artifact/modules/scoring-patterns.md) <br>
-- [Decision Thresholds](artifact/modules/decision-thresholds.md) <br>
-- [Evaluation Rubric](artifact/modules/evaluation-rubric.md) <br>
-- [Multi-Metric Evaluation Methodology](artifact/modules/multi-metric-evaluation-methodology.md) <br>
-- [Quality Metrics](artifact/modules/quality-metrics.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with YAML and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only evaluation framework; no code execution or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence; artifact frontmatter lists 1.9.8) <br>
+Risk: The security review flags action-selection guidance that could override other guidance, along with a scoring example that could reward insecure results; the scan evidence is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and correct the action-selection instructions and penalty calculation before installation, as advised by the security guidance.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance, Configuration]
+
+**Output Format:** [Markdown with scoring rubrics, thresholds, decision guidance, and optional YAML or Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.10.3 (source: artifact frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

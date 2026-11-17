@@ -1,40 +1,53 @@
-## Description: <br>
-Action Guard helps agents avoid duplicate external actions by checking a local action log before acting and recording successful actions afterward. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents check and record local action history to reduce duplicate external actions such as posts, messages, token sends, and deployments.
 
-## Publisher: <br>
-[wrentheai](https://clawhub.ai/user/wrentheai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wrentheai](https://clawhub.ai/user/wrentheai)
 
-## Use Case: <br>
-Developers and coding agents use this skill to reduce repeat posts, replies, messages, transfers, deployments, and webhook calls across sessions. It is intended for workflows where an agent should check whether an external action was already completed before attempting it again. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local action log can contain sensitive targets or notes if users record them directly. <br>
-Mitigation: Keep the .action-guard directory private and avoid recording secrets or highly sensitive personal details in notes or target IDs. <br>
-Risk: Duplicate-action checks do not replace review for irreversible actions. <br>
-Mitigation: Keep normal human approval for money movement, public posts, emails, production deploys, and other irreversible actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to wrap irreversible or externally visible actions with a local check-before-act and record-after-success workflow. It is intended for actions such as social replies, messages, token sends, webhook triggers, and deployments where repeated execution would create user-visible or operational harm.
 
-## Reference(s): <br>
-- [Action Guard on ClawHub](https://clawhub.ai/wrentheai/action-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The record command appends local JSONL entries under .action-guard/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Concurrent agents or repeated automation can pass the check step before either run records completion, allowing duplicate irreversible actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a reminder log for low-stakes workflows; for money movement, public posting, production deploys, or other irreversible actions, require atomic reservations or locking before execution and record clear recovery behavior.
+
+Risk: The local action ledger can be edited or removed by processes with access to the data directory.
+
+Mitigation: Store the ledger in a restricted directory and review permissions before relying on it for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wrentheai/skills/action-guard)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, text]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSONL action records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads a local .action-guard/actions.jsonl ledger when the guard script is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

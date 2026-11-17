@@ -1,40 +1,54 @@
-## Description: <br>
-List and search WhatsApp Business labels/tags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List and search WhatsApp Business labels/tags.
 
-## Publisher: <br>
-[MarcosRippel](https://clawhub.ai/user/MarcosRippel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marcosrippel](https://clawhub.ai/user/marcosrippel)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect local WhatsApp Business label metadata, list available labels, and find contacts or chats associated with a selected label. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads the local OpenClaw WhatsApp Business session cache. <br>
-Mitigation: Run it only in environments where the agent is allowed to inspect that local session cache. <br>
-Risk: Output may include contact IDs, contact names, and label metadata. <br>
-Mitigation: Treat results as business/contact metadata and share them only with the intended task audience. <br>
+## Use Case:
 
+Agents and developers use this skill to inspect local WhatsApp Business label data, list available labels, and find contacts or chats associated with a selected label.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MarcosRippel/whatsapp-labels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON objects printed to stdout, with command examples in Markdown documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include WhatsApp Business label IDs, label names, colors, contact IDs, contact names, and matched labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release metadata) <br>
+Risk: The skill reads local WhatsApp Business cache data, which can include contact names, account identifiers, and label relationships.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where the agent is allowed to access that local WhatsApp Business cache.
+
+Risk: Command output may expose contact or chat metadata from local cache files.
+
+Mitigation: Review outputs before sharing them outside the trusted workspace or adding them to logs, tickets, or reports.
+
+## Reference(s):
+
+- [WhatsApp Labels skill page](https://clawhub.ai/marcosrippel/skills/whatsapp-labels)
+- [Publisher profile](https://clawhub.ai/user/marcosrippel)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands read local WhatsApp Business cache files and return label or contact records as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,60 @@
-## Description: <br>
-Trades Fed rate markets on Kalshi by scoring hawkish and dovish keyword signals from market question text and comparing adjusted fair probabilities with market prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Fed rate markets on Kalshi based on hawkish/dovish sentiment signals from market question text. Scores net sentiment from keyword dictionaries and adjusts rate cut probabilities. Requires SIMMER_API_KEY and simmer-sdk.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading agents use this skill to analyze Kalshi Fed rate markets and identify trades from hawkish or dovish keyword signals. It defaults to dry-run analysis and can execute live trades only when explicitly run with live credentials and the live flag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Kalshi trades when credentials are provided. <br>
-Mitigation: Start in dry-run mode and use the live flag only after reviewing the strategy, credentials, and position limits. <br>
-Risk: Trading credentials and wallet material can authorize financial activity. <br>
-Mitigation: Use a scoped SIMMER_API_KEY, avoid providing SOLANA_PRIVATE_KEY unless live trading is intended, and prefer a dedicated low-balance wallet. <br>
-Risk: Automated execution can compound losses if position size, trade count, or slippage settings are too loose. <br>
-Mitigation: Set conservative max position, max trades per run, entry edge, slippage, and liquidity tunables before scheduling automation. <br>
-Risk: Custody and execution depend on the external simmer-sdk package. <br>
-Mitigation: Review simmer-sdk and its custody behavior before providing live credentials or running the skill unattended. <br>
+## Use Case:
 
+External ClawHub users and trading agents use this skill to discover Fed rate markets on Kalshi, score hawkish/dovish signals from market text, and propose or execute constrained trades through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-fed-speech-signal-trader) <br>
-- [diagnostikon publisher profile](https://clawhub.ai/user/diagnostikon) <br>
-- [Simmer Markets skills](https://simmer.markets/skills) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text with optional JSON automaton report and command/configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live mode can execute Kalshi trades when credentials and the live flag are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Live exit logic can sell Fed-rate positions it did not create.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use live mode only after reviewing open Fed-rate positions, and prefer a code or configuration change that restricts exits to positions tagged by this skill.
+
+Risk: Dry-run mode can still change remote market state by importing markets.
+
+Mitigation: Treat dry-run as capable of remote state changes, use low-limit credentials, and prevent remote imports during dry-run before relying on it as a no-impact test.
+
+Risk: The skill can execute real-money trades when live mode is enabled with trading and wallet credentials.
+
+Mitigation: Avoid live mode unless the user understands the DFlow/Solana trading path, use low-limit credentials, and pin simmer-sdk before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-fed-speech-signal-trader)
+- [Simmer skills homepage](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, JSON automaton status, and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in dry-run mode by default or live mode when explicitly invoked with --live]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

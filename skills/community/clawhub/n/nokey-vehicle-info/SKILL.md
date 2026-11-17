@@ -58,7 +58,7 @@ Skill 会将认证信息缓存在本地文件中:
 
 ```
 请提供认证信息，格式为：vehicleToken####accessToken
-例如：sk-api-R44YuYJmggYqQi3nMch1uY8jBhJ...####eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
+例如：REDACTED-SECRET...####eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...
 ```
 
 ### 查询车况信息
@@ -376,7 +376,7 @@ Skill 会处理以下常见错误:
 缓存内容示例:
 ```json
 {
-  "vehicleToken": "sk-api-R44YuYJmggYqQi3nMch1uY8jBhJEToNmAZyMu6Z4nvlncdaDmqfGRtqJ2LWcvo63mGRsgELugjvnAU1QXzp5K7NKdxaLabXqd5yQBolsTeQpCw6rUsNH7fPRIcYE8tUc",
+  "vehicleToken": "REDACTED-SECRET",
   "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOjIzLCJyblN0ciI6IlBtNDhXUmV0SlAzczNLb1R4UjNpNWg0MHRLbHpHNExsIiwidGVuYW50X2NvZGUiOiJDSEVOR1FVIiwidGVuYW50X2lkIjoxLCJhcHBfaWQiOiJnNml0eWx4eHg1a2FiajFmIn0.HkbKnHimmyfY0b_ZGNBXyzVOpb0KxQhV58roMc84ueQ",
   "env": "PROD",
   "last_updated": "2026-03-20T16:57:53+08:00"

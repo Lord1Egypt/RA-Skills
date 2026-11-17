@@ -1,40 +1,56 @@
-## Description: <br>
-Discovers, monitors, and controls Tasmota-powered ESP8266 and ESP32 smart home devices on local networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, monitor, and control Tasmota smart home devices on local networks.
 
-## Publisher: <br>
-[wmantly](https://clawhub.ai/user/wmantly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wmantly](https://clawhub.ai/user/wmantly)
 
-## Use Case: <br>
-Developers, home automation operators, and authorized network administrators use this skill to discover Tasmota devices, check status, and issue supported power, brightness, and color commands on networks they own or administer. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Network discovery can scan local subnets and contact devices beyond the intended target set. <br>
-Mitigation: Run discovery only on networks you own or are authorized to scan, and review the target network before execution. <br>
-Risk: Device control commands can change power, brightness, color, or other Tasmota settings. <br>
-Mitigation: Review every control action before running it, prefer explicit device IPs and supported commands, and avoid raw Tasmota commands unless their effect is understood. <br>
-Risk: Status queries and inventory output may reveal local IP addresses, device names, Wi-Fi details, hostnames, or MAC addresses. <br>
-Mitigation: Use the skill in trusted environments and avoid sharing command output that contains local network or device identifiers. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, operators, and smart-home administrators use this skill to discover Tasmota devices on local networks, inspect device status, and control power, brightness, and color settings for devices they administer.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus JSON, tabular text, and CSV-style inventory data from scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a CSV inventory of discovered devices for bulk status checks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can scan a local network and read device and network details.
+
+Mitigation: Use it only on networks and Tasmota devices the user administers, and run discovery during an approved maintenance window when network scanning is acceptable.
+
+Risk: The skill can change smart-home device states, including power, brightness, and color.
+
+Mitigation: Confirm the target device IP and intended command before execution, and avoid raw commands unless the operator understands their effect.
+
+Risk: One script can execute a controller from outside the reviewed package.
+
+Mitigation: Fix or verify the external controller path before running bulk status checks so reviewed code is used.
+
+## Reference(s):
+
+- [ClawHub Tasmota skill page](https://clawhub.ai/wmantly/skills/tasmota-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run local-network discovery and device-control commands when used by an agent with shell access.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

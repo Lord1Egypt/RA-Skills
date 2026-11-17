@@ -1,45 +1,57 @@
-## Description: <br>
-Monitor Reddit, Hacker News, X, and Bluesky for product or website keyword mentions with the RedReplier API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Reddit, Hacker News, X, Bluesky, and Facebook for keyword mentions of a product or website using the RedReplier API.
 
-## Publisher: <br>
-[tarasshyn](https://clawhub.ai/user/tarasshyn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tarasshyn](https://clawhub.ai/user/tarasshyn)
 
-## Use Case: <br>
-Users who manage product monitoring use this skill to configure RedReplier websites and keywords, retrieve and filter AI-scored mentions, triage leads, and manage alert settings through the RedReplier API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a RedReplier API token. <br>
-Mitigation: Use a dedicated, revocable API token and keep REDREPLIER_API_KEY scoped to the agent runtime. <br>
-Risk: Activating pending keywords can charge for a plan upgrade. <br>
-Mitigation: Call the activation preview first, show the charge and target plan to the user, and require explicit confirmation before activation. <br>
-Risk: Deleting a monitored website stops monitoring for that website. <br>
-Mitigation: Confirm deletion with the user using the website domain, not only the resource ID. <br>
+## Use Case:
 
+OpenClaw agents use this skill to monitor brand and website mentions across social platforms, review relevance-scored leads, manage keywords, and configure mention alerts through RedReplier.
 
-## Reference(s): <br>
-- [RedReplier homepage](https://redreplier.com) <br>
-- [ClawHub skill page](https://clawhub.ai/tarasshyn/redreplier) <br>
-- [RedReplier API Reference](references/api-reference.md) <br>
-- [RedReplier Mention Filtering](references/mention-filtering.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl commands and API request guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDREPLIER_API_KEY; paid keyword activation and website deletion require explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The skill requires a RedReplier API token and makes authenticated requests to the service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, revocable token, send it only to the documented RedReplier API, and revoke or rotate it if exposed.
+
+Risk: The security review was partial and left dependency advisories and network scope questions unresolved.
+
+Mitigation: Review dependency versions and advisories, and confirm the plugin's network access fits the intended installation before use.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tarasshyn/skills/redreplier)
+- [RedReplier](https://redreplier.com)
+- [RedReplier API OpenAPI specification](https://ai.redreplier.com/ai-app/api/v1/openapi.json)
+- [API reference](references/api-reference.md)
+- [Mention filtering reference](references/mention-filtering.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline cURL and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

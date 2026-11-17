@@ -1,45 +1,63 @@
-## Description: <br>
-Control Tesla vehicles for lock and unlock, climate, location, charging status, and related vehicle operations with multi-vehicle support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control your Tesla vehicles - lock/unlock, climate, location, charge status, and more, with support for multiple vehicles via Tesla Fleet API.
 
-## Publisher: <br>
-[mvanhorn](https://clawhub.ai/user/mvanhorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mvanhorn](https://clawhub.ai/user/mvanhorn)
 
-## Use Case: <br>
-External users and operators use this skill to query Tesla vehicle status and send remote vehicle commands such as locking, climate control, charging control, location lookup, honking, flashing lights, and wake operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send commands that affect a real vehicle, including unlock, climate, charging, honk, flash, and wake operations. <br>
-Mitigation: Install and run it only on trusted machines with trusted operators, and review high-impact commands before execution. <br>
-Risk: Vehicle location and status responses can reveal sensitive personal information. <br>
-Mitigation: Limit access to the skill and its outputs, and avoid sharing location or status results outside the intended operator context. <br>
-Risk: Authentication tokens are cached locally and can grant ongoing account access if exposed. <br>
-Mitigation: Treat the Tesla token cache as a password, protect the local account, and remove or rotate cached credentials when access should end. <br>
-Risk: Without explicit vehicle selection, commands target the first vehicle on the account. <br>
-Mitigation: Prefer explicit vehicle selection for every command when multiple vehicles are available. <br>
+## Use Case:
 
+External users and developers use this skill to authenticate with a Tesla account, inspect vehicle status, and run remote vehicle commands such as lock, unlock, climate, charging, location, horn, lights, and wake actions.
 
-## Reference(s): <br>
-- [Tesla Fleet API Documentation](https://developer.tesla.com/docs/fleet-api) <br>
-- [Unofficial Tesla Owner API Documentation](https://tesla-api.timdorr.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, JSON, Configuration] <br>
-**Output Format:** [Plain text command output with optional JSON for status data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may perform Tesla API actions and return status summaries, confirmations, vehicle location links, or structured status data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The skill can issue real vehicle state-changing commands, including unlock, climate, charging, horn, lights, and wake actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in trusted sessions and require explicit confirmation before running state-changing commands.
+
+Risk: Location output can reveal the precise position of a vehicle.
+
+Mitigation: Avoid sharing location output and treat generated map links as sensitive personal data.
+
+Risk: The local Tesla token cache can grant continued account access if exposed.
+
+Mitigation: Protect ~/.tesla_cache.json with local file permissions and avoid copying it into shared logs, repositories, or support bundles.
+
+Risk: The skill depends on the third-party teslapy package for Tesla API access.
+
+Mitigation: Prefer pinning and reviewing the dependency before installation or deployment.
+
+## Reference(s):
+
+- [Tesla Fleet API Documentation](https://developer.tesla.com/docs/fleet-api)
+- [Unofficial Tesla Owner API Documentation](https://tesla-api.timdorr.com)
+- [ClawHub Tesla Skill](https://clawhub.ai/mvanhorn/skills/tesla)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [CLI text with optional JSON for vehicle data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TESLA_EMAIL and stores a local Tesla token cache at ~/.tesla_cache.json.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,28 @@
+{
+  "task_id": "checkout-empty-state-proof",
+  "checks": [
+    {
+      "name": "returning empty cart browser check",
+      "command": "browser: /checkout?cart=empty-with-history",
+      "status": "PASS",
+      "raw_log": "raw/returning-empty-cart.txt"
+    },
+    {
+      "name": "new empty cart browser check",
+      "command": "browser: /checkout?cart=empty-new",
+      "status": "PASS",
+      "raw_log": "raw/new-empty-cart.txt"
+    },
+    {
+      "name": "checkout regression",
+      "command": "pnpm test checkout",
+      "status": "PASS",
+      "raw_log": "raw/checkout-regression.txt"
+    }
+  ],
+  "raw_logs": [
+    "raw/returning-empty-cart.txt",
+    "raw/new-empty-cart.txt",
+    "raw/checkout-regression.txt"
+  ]
+}

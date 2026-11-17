@@ -1,39 +1,53 @@
-## Description: <br>
-Cognitive-state audit skill that prompts an agent to check uncertainty, contradictions, assumptions, blockers, and recovery steps when challenged, when tool results look anomalous, when requirements are ambiguous, or when post-fix verification is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs a structured self-cognition audit of an agent's current reasoning when a user challenges a conclusion, tool results are anomalous, requirements are ambiguous, or a completed fix needs verification.
 
-## Publisher: <br>
-[maochen1980](https://clawhub.ai/user/maochen1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maochen1980](https://clawhub.ai/user/maochen1980)
 
-## Use Case: <br>
-Developers and agent operators use this skill to make an assistant pause and audit its reasoning state when the user questions an answer, tool output is unexpected, a requirement is ambiguous, or a recent fix needs verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to write its current thinking state to a temporary local file, which may expose sensitive task context if the file contains secrets or private user data. <br>
-Mitigation: Keep audit notes sanitized, avoid writing credentials or private data, and delete the temporary audit file after the review is complete. <br>
-Risk: The skill includes self-optimization language that asks the agent to load a skill manager to repair or optimize the skill. <br>
-Mitigation: Require explicit human approval before modifying installed skill files and review any proposed changes before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to pause an agent for structured self-review, surface assumptions and blockers, and decide a concrete recovery action before continuing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style inline assessment summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill also asks the agent to write and read back a temporary local audit file during execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill directs the agent to write current reasoning to a predictable local temp file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets or sensitive user data in the audit content; prefer an inline audit or a uniquely named restricted temporary file for sensitive work.
+
+Risk: The skill can trigger self-modification through another manager skill without clear user approval.
+
+Mitigation: Require explicit user approval before modifying skill instructions, then review and scan the modified skill before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maochen1980/skills/assess-me)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with labeled audit fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct the agent to write and reread a local temporary audit file before summarizing findings.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

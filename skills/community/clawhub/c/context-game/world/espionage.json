@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "长夜暗局",
+    "tone_family": "espionage",
+    "tone_variant": "双面人生",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_linyuan",
+      "name": "临渊城",
+      "summary": "一座被占领的旧城：明面上政权更替、招牌照旧，暗地里各方情报网彼此渗透。茶楼、澡堂、货栈、义庄皆是接头暗点，谁的掩护身份先破，谁先出局。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_fuqiang",
+      "name": "拂晓社",
+      "continent": "continent_linyuan",
+      "summary": "本国情报机关转入地下的核心组，以同志情义维系网络，却在'谁已变节'的疑云里内耗。",
+      "tension_seeds": [
+        "站长黎明坚信上线安全，实则拂晓社的上线早被黑沙组策反，指令的源头已脏",
+        "报务员晚晴与双宿者头目有旧情，一份真密电的副本去向不明，组内开始互相猜忌"
+      ]
+    },
+    {
+      "id": "nation_heisha",
+      "name": "黑沙组",
+      "continent": "continent_linyuan",
+      "summary": "敌对情报机构的渗透组，目的早已不是窃密，而是把整座城的人都变成自己的棋子。",
+      "tension_seeds": [
+        "渗透组长乌鸦疑似被拂晓社反向策反，身份成了三重，连黑沙组自己都不知情",
+        "审讯官夜枭私放了一名拂晓社要犯，那人握着他投敌前的旧账，把柄随时会炸"
+      ]
+    },
+    {
+      "id": "nation_shuangxiu",
+      "name": "双宿者",
+      "continent": "continent_linyuan",
+      "summary": "两边领薪、两边背叛的双重间谍网络，靠'谁的秘密多'保命，是这盘棋里最不稳定的身份性势力。",
+      "tension_seeds": [
+        "话事人半面同时向拂晓社与黑沙组各交半份真情报，两边平衡随时可能崩",
+        "身份伪造师镜心私留了一份全体双宿者真身份的底册，成了所有人的催命符"
+      ]
+    },
+    {
+      "id": "nation_guxing",
+      "name": "孤星线",
+      "continent": "continent_linyuan",
+      "summary": "占领区的地下抵抗网，要抗战胜利，也要血债血偿，不信任任何'新上线'。",
+      "tension_seeds": [
+        "首领山猫手上的处决名单里有一人竟是拂晓社要保的线人，抗敌与内斗难以两全",
+        "交通员阿珍曾被黑沙组抓过又放出，没人知道她答应了什么，抵抗网因此人心浮动"
+      ]
+    },
+    {
+      "id": "nation_zhengyi",
+      "name": "蒸米社",
+      "continent": "continent_linyuan",
+      "summary": "中立线人、商人、旅店老板结成的松散行会，谁给钱给谁办事，底线是绝不当'死士'。",
+      "tension_seeds": [
+        "老板米三同时替拂晓社与黑沙组藏过人，两拨人曾在同一屋檐下擦肩而不知",
+        "账房算盘把双宿者两边的账目各抄一份、待价而沽，谁出价高就卖给谁"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_chalou",
+    "name": "半盏茶楼",
+    "continent": "continent_linyuan",
+    "summary": "各方线人共同认定的接头暗点：杯盏的摆放即暗号，所有人都在此'偶遇'；谁在茶楼动手，谁就烧了全城的桥。"
+  },
+  "faction_matrix": {
+    "nation_fuqiang|nation_guxing": { "relation": 30, "note": "拂晓社与孤星线名义上同为抗敌一方、互通情报；裂缝在于孤星线不信任任何'新上线'，两边的联络人至今对不上暗号。" },
+    "nation_fuqiang|nation_heisha": { "relation": -85, "note": "拂晓社与黑沙组互相渗透、互相猎杀，是不死不休的结构性死敌。" },
+    "nation_fuqiang|nation_shuangxiu": { "relation": -10, "note": "拂晓社把双宿者视作可利用亦可抛弃的叛徒，双宿者则两头下注、各留后手。" },
+    "nation_fuqiang|nation_zhengyi": { "relation": 20, "note": "蒸米社是拂晓社最常用的线人与藏身渠道，但商人只认钱、不认信仰。" },
+    "nation_fuqiang|port_chalou": { "relation": 35, "note": "半盏茶楼是拂晓社惯用的接头暗点，茶楼靠它赚钱，也怕被它连累。" },
+    "nation_guxing|nation_heisha": { "relation": -70, "note": "占领区抵抗网与黑沙组血债深重，一旦照面必见血。" },
+    "nation_guxing|nation_shuangxiu": { "relation": -25, "note": "孤星线视双宿者为'变节者'，双宿者反手利用孤星线的血债做文章。" },
+    "nation_guxing|nation_zhengyi": { "relation": 5, "note": "孤星线偶尔借蒸米社的旅店藏人，却从不把真身份交底。" },
+    "nation_guxing|port_chalou": { "relation": 15, "note": "孤星线在茶楼递帖联络，但进门先看退路，从不真正放心。" },
+    "nation_heisha|nation_shuangxiu": { "relation": 55, "note": "黑沙组重金收买双宿者当双面棋子，表面主仆相得；裂缝在于双宿者同时把黑沙组的底卖给拂晓社——同盟里早埋了内应。" },
+    "nation_heisha|nation_zhengyi": { "relation": -40, "note": "黑沙组强征蒸米社的商铺做据点、逼商人供账，商人敢怒不敢言。" },
+    "nation_heisha|port_chalou": { "relation": -15, "note": "黑沙组想控茶楼为耳目，茶楼以'谁动手烧谁的桥'的规矩硬顶回去。" },
+    "nation_shuangxiu|nation_zhengyi": { "relation": 45, "note": "双宿者靠蒸米社的旅店周转身份与经费；裂缝在于蒸米社手里握着双宿者两边的账。" },
+    "nation_shuangxiu|port_chalou": { "relation": 10, "note": "双宿者常在茶楼换身份、递死信，茶楼睁只眼闭只眼、只收钱不问人。" },
+    "nation_zhengyi|port_chalou": { "relation": 25, "note": "蒸米社与半盏茶楼共守'接头暗点'的规矩，互利共生，谁也离不开谁。" }
+  }
+}

@@ -1,43 +1,60 @@
-## Description: <br>
-Manage and execute Epistemic Council pipeline operations including status checks, claim validation, boundary audits, gap finding, and adversarial re-challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and execute Epistemic Council pipeline operations for cross-domain reasoning, status checks, claim validation, boundary audits, gap detection, and adversarial re-challenges.
 
-## Publisher: <br>
-[su-ariel](https://clawhub.ai/user/su-ariel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[su-ariel](https://clawhub.ai/user/su-ariel)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run a local epistemic reasoning pipeline, inspect its status, validate claims, audit boundaries, find evidence gaps, and re-challenge high-risk insights. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases can invoke local Python pipeline scripts and write persistent files. <br>
-Mitigation: Use the skill in a dedicated workspace and prefer explicit invocations for pipeline actions. <br>
-Risk: Prompts may be sent to a local Ollama-compatible model service. <br>
-Mitigation: Do not provide secrets or private documents unless the local model service and filesystem are trusted. <br>
-Risk: Reasoning, audit, status, and run-log files may persist after execution. <br>
-Mitigation: Review generated files before relying on their contents and clean the workspace according to local retention requirements. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/su-ariel/epistemic-council) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [skill.json](artifact/skill.json) <br>
+## Use Case:
 
+Developers and operators use this skill to run a local Epistemic Council reasoning pipeline, inspect substrate health, validate claims, audit boundaries, find evidence gaps, and re-challenge high-confidence insights. It is intended for workflows that need structured cross-domain reasoning with adversarial validation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with command examples and generated local report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write persistent reasoning, audit, status, and run-log files in the configured workspace.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can run scripts and write persistent memory or state.
+
+Mitigation: Install only after reviewing permissions and limit write access to the minimum files needed for the intended workflow.
+
+Risk: The manifest grants broader workspace authority than the skill purpose requires.
+
+Mitigation: Narrow workspace permissions before deployment, especially access to user, identity, agent, and tool configuration files.
+
+Risk: The skill depends on a localhost model service for parts of the pipeline.
+
+Mitigation: Use only with a trusted local model service and confirm requests do not leave the intended local environment.
+
+Risk: Memory compression can update generated memory content.
+
+Mitigation: Review or disable memory compression unless generated memory updates are quarantined and approved before reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/su-ariel/skills/epistemic-council)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and text or JSON status outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local Python entrypoints, can update persistent workspace state, and expects a trusted localhost model service.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

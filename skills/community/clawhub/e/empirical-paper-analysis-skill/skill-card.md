@@ -1,41 +1,48 @@
-## Description: <br>
-Analyzes empirical law and economics papers through a structured review of the research question, empirical challenges, identification strategy, findings, and academic contribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes empirical law and economics papers by evaluating research questions, empirical challenges, identification strategies, key findings, and academic contributions.
 
-## Publisher: <br>
-[zhouziyue233](https://clawhub.ai/user/zhouziyue233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhouziyue233](https://clawhub.ai/user/zhouziyue233)
 
-## Use Case: <br>
-Researchers in law and economics use this skill to analyze empirical research papers from a PDF and publication metadata. It produces a Chinese-primary academic report covering problem framing, causal inference challenges, research design, findings, and scholarly contribution. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided papers and metadata may contain sensitive or unpublished research information. <br>
-Mitigation: Provide only documents and metadata that are appropriate for the agent and runtime environment to process. <br>
-Risk: The skill defaults to Chinese-primary output, which may be unsuitable for some audiences or review workflows. <br>
-Mitigation: Explicitly request a different output language when needed. <br>
-Risk: Academic summaries and critiques can misstate or overinterpret empirical claims if used without review. <br>
-Mitigation: Verify important claims, estimates, and citations against the original paper before relying on the output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouziyue233/empirical-paper-analysis-skill) <br>
+## Use Case:
 
+Researchers in law and economics use this skill to produce structured, critical analyses of empirical papers, especially papers using econometrics, machine learning, natural language processing, or causal inference methods.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-primary Markdown research report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided paper PDFs and publication metadata; may include mathematical notation, bilingual terminology, and critical analysis.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to Chinese-first academic output, which may not match every review or publication workflow.
+
+Mitigation: Review or override the language preference when English or another language is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouziyue233/skills/empirical-paper-analysis-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report, primarily in Chinese with English technical terms where useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a PDF paper and publication metadata as inputs; no executable behavior is described.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-weekly-report-hy turns brief Chinese work notes into categorized, polished weekly report text without adding unsupported facts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured, polished Chinese weekly reports from rough work notes while preserving the facts supplied by the user.
 
-## Publisher: <br>
-[cryptocxf](https://clawhub.ai/user/cryptocxf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cryptocxf](https://clawhub.ai/user/cryptocxf)
 
-## Use Case: <br>
-People preparing Chinese workplace status updates use this skill to transform raw weekly activity notes into grouped report sections with polished wording and consistent numbering and punctuation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input work notes may contain confidential customer names, financial amounts, personal data, or internal identifiers that can appear in the final report. <br>
-Mitigation: Remove, redact, or ask the assistant to anonymize sensitive details before generating or sharing the report. <br>
-Risk: Polishing brief notes can accidentally overstate work or add unsupported context. <br>
-Mitigation: Review the generated report against the original notes and remove any details not supported by the source text. <br>
+## Use Case:
 
+Employees and external users who draft Chinese weekly work reports use this skill to turn rough notes into categorized, professionally worded report text. It is intended for rewriting and structuring user-provided work items without adding unsupported facts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cryptocxf/weekly-report-hy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown-style weekly report sections with bracketed headings and numbered items.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; review generated wording for factual accuracy and sensitive details before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated reports may preserve customer names, amounts, internal project names, or personal data from the user's notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for redaction before generation when needed and review the report before sharing it.
+
+Risk: Professional polishing can make ambiguous notes appear more complete than the source supports.
+
+Mitigation: Compare the final report against the original notes and remove any wording that implies unverified facts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cryptocxf/skills/weekly-report-hy)
+- [Publisher profile](https://clawhub.ai/user/cryptocxf)
+- [NPM package](https://www.npmjs.com/package/weekly-report-hy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese weekly report text with bracketed section headings and numbered work items]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves sensitive details unless the user asks for redaction.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package.json and _meta.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

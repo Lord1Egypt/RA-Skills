@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents through RDK X5 40-pin GPIO, PWM, I2C, SPI, UART, and CAN control with wiring guidance, Python snippets, and shell commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in controlling RDK X5 40-pin interfaces for GPIO digital I/O, PWM devices, I2C and SPI sensors, UART serial communication, CAN bus setup, and pinout checks.
 
-## Publisher: <br>
-[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[katherineedwards2475](https://clawhub.ai/user/katherineedwards2475)
 
-## Use Case: <br>
-Developers and engineers use this skill to control RDK X5 40-pin peripherals, configure hardware interfaces, and troubleshoot GPIO, PWM, I2C, SPI, UART, and CAN workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples can change physical device state through sudo, PWM output, I2C writes, serial writes, CAN sends, and sample scripts. <br>
-Mitigation: Run examples only when you intend to control RDK X5 hardware and have verified the connected devices and expected behavior. <br>
-Risk: Incorrect pinout, voltage level, current limit, pull-up, bus number, device address, or connected load assumptions can damage hardware or produce unsafe motion. <br>
-Mitigation: Verify the board pinout, voltage levels, current limits, pull-ups, bus numbers, device addresses, drivers, and connected loads before execution. <br>
+## Use Case:
 
+Developers and hardware engineers use this skill to ask an agent for RDK X5 40-pin peripheral commands, wiring guidance, setup checks, and troubleshooting for GPIO, PWM, I2C, SPI, UART, and CAN workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/rdk-x5-gpio) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides commands and wiring guidance; does not produce full scripts by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Root-level hardware commands and bus writes can affect connected RDK X5 peripherals or live equipment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the board model, pin mapping, voltage levels, attached devices, bus addresses, CAN bitrate, and test-state readiness before executing commands.
+
+Risk: Sample I2C, CAN, and sudo commands may be unsafe when copied directly onto production or shared hardware.
+
+Mitigation: Review sample scripts and commands before use, avoid arbitrary I2C writes or CAN sends on live systems, and prefer pinned or OS-vendor packages for spidev.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katherineedwards2475/skills/rdk-x5-gpio)
+- [Publisher profile](https://clawhub.ai/user/katherineedwards2475)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command and wiring guidance; it does not author full application scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

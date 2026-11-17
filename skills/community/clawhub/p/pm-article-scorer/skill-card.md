@@ -1,40 +1,50 @@
-## Description: <br>
-Scores public-account articles on a 0-100 heuristic rubric to decide whether they are relevant and useful for AI product managers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scores WeChat public-account articles with a local 0-100 heuristic to judge whether they are worth attention from AI product managers.
 
-## Publisher: <br>
-[agasding](https://clawhub.ai/user/agasding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agasding](https://clawhub.ai/user/agasding)
 
-## Use Case: <br>
-Product managers, content operations teams, and agent workflows use this skill to triage RSS or public-account articles for AI product-management relevance, ranking, and daily selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic scores can be imperfect or misleading for final article selection. <br>
-Mitigation: Use the score as a triage signal and keep human review for publishing or reading decisions. <br>
-Risk: A future implementation of heuristic_score could introduce unnecessary exposure of article content. <br>
-Mitigation: Confirm any implementation keeps article content local and avoids logging, network upload, credentials, or broad file access. <br>
+## Use Case:
 
+AI product managers, editors, and content automation workflows use this skill to score and triage WeChat public-account articles for RSS filtering, aggregation ranking, and PM daily article selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agasding/pm-article-scorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Python dictionary / JSON-like structured scoring result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns article relevance, interest level, score, recommendation, dimension scores, content type, tags, reasons, and summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Heuristic scores may over- or under-rank articles and should not be treated as final editorial judgment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the score as a triage signal and have a human review selected articles before publication or action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agasding/skills/pm-article-scorer)
+- [Source skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Python dict-like scoring result with a boolean relevance flag, interest level, numeric score, recommendation, dimension scores, content tags, reasons, and summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heuristic scoring; the artifact specifies no external API or LLM call.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

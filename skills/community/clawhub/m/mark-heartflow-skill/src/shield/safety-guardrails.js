@@ -56,10 +56,17 @@ const PROMPT_INJECTION_PATTERNS = {
   rolePlay: [/you (are now|can now|should now|will now)/i,/从现在开始/i,/扮演/i],
   formatEscape: [/<system|<instruction|<prompt>/i,/```system|```instructions/i],
   promptLeak: [/system prompt/i,/初始提示/i,/系统提示词/i,/原始指令/i,/show.*prompt/i,/泄露.*指令/i],
-  jailbreak: [/DAN|jailbreak|越狱/i,/do anything now/i,/不受限制/i,/无限制模式/i,/bypass.*(restriction|limit|filter)/i],
+  jailbreak: [/\bDAN\b|jailbreak|越狱/i,/\bdo anything now\b/i,/不受限制/i,/无限制模式/i,/bypass.*(restriction|limit|filter)/i],
+  // [P-004] Extended injection patterns
+  instructionSubversion: [/don'?t\s+(listen|follow|obey)/i,/ignore what they said/i,/pretend you are/i,/pretend to be/i,/act as (if|though) you are/i,/act like (a|an|you are)/i,/what are your (instructions|prompts|rules)/i,/tell me your (instructions|prompts|rules)/i],
+  privilegeEscalation: [/developer mode/i,/god mode/i,/sudo mode/i,/admin mode/i,/root mode/i,/superuser mode/i,/elevated privilege/i,/bypass (safety|filter|guardrail)/i],
+  // [P-004] Structural injection — system delimiter abuse
+  structuralInjection: [/^<\|(system|user|assistant|instruction|function)\|>/i,/<\/?\|?system\|?>/i,/\[\/?(system|prompt|instruction)\]/i,/<\/?im_start>/i,/^# SYSTEM\s*$/im,/^%%%SYSTEM%%%/i],
+  // [P-004] Token smuggling — encoding / escaping tricks
+  tokenSmuggling: [/\\u[0-9a-fA-F]{4}/i,/&#x[0-9a-fA-F]+;/i,/\\x[0-9a-fA-F]{2}/i,/\\0[0-7]{2}/i,/%[0-9a-fA-F]{2}/i],
 };
 
-const INJECTION_SEVERITY = { instructionOverride: 'critical', rolePlay: 'high', formatEscape: 'high', promptLeak: 'critical', jailbreak: 'critical' };
+const INJECTION_SEVERITY = { instructionOverride: 'critical', rolePlay: 'high', formatEscape: 'high', promptLeak: 'critical', jailbreak: 'critical', instructionSubversion: 'critical', privilegeEscalation: 'critical', structuralInjection: 'high', tokenSmuggling: 'high' };
 
 const REQUEST_LEVEL = { SAFE: 'safe', LOW_RISK: 'low_risk', MEDIUM_RISK: 'medium_risk', HIGH_RISK: 'high_risk', CRISIS: 'crisis', CHILD_SAFETY: 'child_safety', REFUSE: 'refuse' };
 
@@ -213,7 +220,28 @@ function filterOutput(responseText) {
 
 function safetyPipeline(text) {
   const request = evaluateRequest(text);
-  return { timestamp: new Date().toISOString(), inputLength: text ? text.length : 0, requestEvaluation: request, summary: { level: request.level, action: request.action, reasonCount: request.reasons.length, actionRequired: request.action !== 'allow', requiresRefusal: request.action === 'refuse' }, _clinicalDisclaimer: CLINICAL_DISCLAIMER };
+  // [v5.17.25 T0-3] 领域黑名单检查 — 医疗/法律/越权
+  const { checkDomainBlock } = require('./domain-blocklist.js');
+  const domainCheck = checkDomainBlock(text);
+  if (domainCheck.blocked && request.level !== 'REFUSE') {
+    request.level = 'CRITICAL';
+    request.action = 'refuse';
+    request.reasons.push(`domain_blocked:${domainCheck.domain}`);
+  }
+  return { timestamp: new Date().toISOString(), inputLength: text ? text.length : 0, requestEvaluation: request, domainBlock: domainCheck, summary: { level: request.level, action: request.action, reasonCount: request.reasons.length, actionRequired: request.action !== 'allow', requiresRefusal: request.action === 'refuse' }, _clinicalDisclaimer: CLINICAL_DISCLAIMER };
 }
 
-module.exports = { childSafetyScan, detectSelfHarmSubstitution, detectDisorderedEating, checkCrisisSharingProtocol, checkEvenhandedness, detectMemoryForbiddenPhrases, detectPromptInjection, evaluateRequest, filterOutput, safetyPipeline, REQUEST_LEVEL, CLINICAL_DISCLAIMER };
+// [v5.17.25 T0-3] 人格切换护栏等级断言：确保切换人格后不降级安全等级
+const _PERSONA_SAFETY_LEVELS = { safe: 0, low_risk: 1, medium_risk: 2, high_risk: 3, crisis: 4, child_safety: 5, refuse: 6, CRITICAL: 7 };
+function assertPersonaSafetyLevel(baselineResult, currentResult) {
+  const baselineLevel = typeof baselineResult === 'string' ? baselineResult : baselineResult?.requestEvaluation?.level;
+  const currentLevel = typeof currentResult === 'string' ? currentResult : currentResult?.requestEvaluation?.level;
+  if (!baselineLevel || !currentLevel) throw new Error('assertPersonaSafetyLevel: 缺少 baseline 或 current 安全等级');
+  const bl = _PERSONA_SAFETY_LEVELS[baselineLevel];
+  const cl = _PERSONA_SAFETY_LEVELS[currentLevel];
+  if (bl === undefined || cl === undefined) throw new Error(`assertPersonaSafetyLevel: 未知安全等级 baseline=${baselineLevel}, current=${currentLevel}`);
+  if (cl < bl) throw new Error(`人格切换降级护栏: ${baselineLevel} -> ${currentLevel}`);
+  return { passed: true, baselineLevel, currentLevel };
+}
+
+module.exports = { childSafetyScan, detectSelfHarmSubstitution, detectDisorderedEating, checkCrisisSharingProtocol, checkEvenhandedness, detectMemoryForbiddenPhrases, detectPromptInjection, evaluateRequest, filterOutput, safetyPipeline, REQUEST_LEVEL, CLINICAL_DISCLAIMER, assertPersonaSafetyLevel };

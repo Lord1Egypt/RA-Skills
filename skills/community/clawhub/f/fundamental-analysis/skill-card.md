@@ -1,47 +1,58 @@
-## Description: <br>
-A-share listed company fundamental analysis for key valuation, profitability, growth, financial health, peer comparison, and structured report output using East Money and 10jqka data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share listed company fundamental analysis for financial indicators, East Money and 10jqka data sourcing, valuation analysis, industry peer comparison, and structured report output.
 
-## Publisher: <br>
-[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaocaixia888](https://clawhub.ai/user/zhaocaixia888)
 
-## Use Case: <br>
-External users and agents use this skill to prepare A-share stock due diligence, earnings review, valuation checks, industry comparisons, and investment memo drafts. It gathers financial data from named public finance sources, computes common ratios, and produces structured Markdown analysis reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial analysis may be incomplete, stale, or unsuitable as a sole basis for investment decisions. <br>
-Mitigation: Treat generated reports as decision support, verify figures against current primary filings or market data, and apply qualified financial review before acting. <br>
-Risk: The skill depends on external finance websites and APIs whose availability, schemas, and terms can change. <br>
-Mitigation: Check source availability and attribution at run time, and fall back to official filings or alternate data providers when fetched data is missing or inconsistent. <br>
-Risk: Network fetching with curl or web tools can expose requests to third-party data providers. <br>
-Mitigation: Review requested URLs before execution, avoid sending credentials or private portfolio data, and use the optional referer setting only when appropriate for the environment. <br>
+## Use Case:
 
+External users and agents use this skill to prepare A-share equity research reports, compare company fundamentals with industry peers, and evaluate valuation, profitability, growth, and financial health metrics. It supports investment research workflows but should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhaocaixia888/fundamental-analysis) <br>
-- [East Money Data Center](https://data.eastmoney.com) <br>
-- [East Money Securities Data API](https://datacenter.eastmoney.com/securities/api/data/v1/get) <br>
-- [East Money F10 Financial Analysis](http://f10.eastmoney.com/cwfx.html?code=sh600519) <br>
-- [10jqka Stock Overview](https://basic.10jqka.com.cn/600519/) <br>
-- [CNINFO Disclosure Search](http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with tables, analysis notes, and optional code or command snippets for data gathering and ratio calculation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use curl and the optional EASTMONEY_REFERER environment variable when fetching East Money data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Financial-analysis outputs may influence investment decisions and can include buy or sell style suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as research support, verify key figures against official filings or a second trusted source, and avoid relying on the report as financial advice.
+
+Risk: Some documented financial-data URLs use unencrypted HTTP sources.
+
+Mitigation: Use secure HTTPS sources where available and avoid sending sensitive information through data-fetching requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaocaixia888/skills/fundamental-analysis)
+- [East Money finance data API](https://datacenter.eastmoney.com/securities/api/data/v1/get)
+- [East Money F10 financial analysis](https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html?type=web&code=SZ000858&color=w#/cwfx)
+- [10jqka financial analysis](https://basic.10jqka.com.cn/600519/finance.html)
+- [Sina Finance market data API](https://vip.stock.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sh600519&scale=5&ma=no&datalen=1)
+- [CNInfo disclosure search](http://www.cninfo.com.cn/new/disclosure/stock?stockCode=600519)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with tables, calculations, source attribution, and optional code or command snippets for data collection]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include valuation judgments, peer comparison tables, trend analysis, risk notes, and concise investment-research conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

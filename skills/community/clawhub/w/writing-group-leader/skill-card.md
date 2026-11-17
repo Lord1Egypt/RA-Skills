@@ -1,36 +1,47 @@
-## Description: <br>
-Coordinates writing tasks by analyzing available references, preparing content strategy or detailed guidance, and assigning work to appropriate MCP writing tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates writing tasks by analyzing available references, planning content strategy, and delegating guidance to available writing tools.
 
-## Publisher: <br>
-[urrrich](https://clawhub.ai/user/urrrich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[urrrich](https://clawhub.ai/user/urrrich)
 
-## Use Case: <br>
-Writers, editors, and agent operators use this skill to coordinate multi-step writing assignments. It helps decide whether to build a reference-backed content strategy or provide detailed task guidance before routing work to writing tools. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can route confidential drafts or private references to connected MCP writing tools. <br>
-Mitigation: Review connected MCP tools and their data handling before using the skill with confidential writing material. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and writing teams use this skill to coordinate multi-step writing work, select or interpret references, and turn writing requests into guidance for appropriate writing tools.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill delegates writing work to available tools, so tool permissions and outputs can affect the final content.
+
+Mitigation: Use trusted, scoped writing MCP tools and review generated strategies or assignments before relying on them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text instructions for writing workflow coordination] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include runtime template variables such as $DATE$ and $SESSION_GROUP_ID$ when provided by the host agent.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference runtime template variables such as $DATE$ or $SESSION_GROUP_ID$ when supplied by the host agent.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

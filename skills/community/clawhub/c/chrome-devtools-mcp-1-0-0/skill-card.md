@@ -1,42 +1,59 @@
-## Description: <br>
-Chrome DevTools MCP lets agents control Chrome through Puppeteer and the Chrome DevTools Protocol for browser testing, web automation, performance analysis, UI testing, form filling, screenshots, network inspection, console debugging, and visual regression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chrome DevTools MCP gives agents control of Chrome or Chromium through Puppeteer and the Chrome DevTools Protocol for browser testing, web automation, performance analysis, UI testing, form filling, and visual regression.
 
-## Publisher: <br>
-[Sieyer](https://clawhub.ai/user/Sieyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[sieyer](https://clawhub.ai/user/sieyer)
 
-## Use Case: <br>
-Developers and testing teams use this skill to connect an agent to Chrome or Chromium for browser automation, UI testing, debugging, screenshots, network inspection, and performance analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over a live Chrome browser, including navigation, form input, uploads, page-script execution, screenshots, network inspection, and performance tracing. <br>
-Mitigation: Use a separate or isolated browser profile, avoid sensitive accounts unless necessary, and confirm form submissions, uploads, or script execution before relying on the agent. <br>
-Risk: The setup examples run chrome-devtools-mcp with @latest, so the external MCP package can change after publication. <br>
-Mitigation: Prefer a pinned and vetted chrome-devtools-mcp package version for controlled environments. <br>
-Risk: Usage statistics and performance CrUX data collection may be enabled unless disabled. <br>
-Mitigation: Disable telemetry and CrUX collection where appropriate with --no-usage-statistics and --no-performance-crux. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and operate a Chrome DevTools MCP server so an agent can navigate pages, interact with UI elements, capture screenshots and snapshots, inspect network and console output, and run performance traces.
 
-## Reference(s): <br>
-- [Chrome DevTools MCP project](https://github.com/ChromeDevTools/chrome-devtools-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include MCP server setup commands, OpenClaw configuration, browser automation workflows, and operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and _meta.json) <br>
+Risk: The skill launches a mutable external npm package with @latest, so behavior can change without a skill update.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a reviewed chrome-devtools-mcp package version before production use.
+
+Risk: Browser-control access can expose active sessions, page contents, console output, network data, screenshots, and form inputs to an agent.
+
+Mitigation: Use a fresh or isolated Chrome profile and avoid connecting the agent to browser sessions that contain sensitive accounts or data.
+
+Risk: Usage statistics and performance CrUX behavior may disclose telemetry or performance-related data.
+
+Mitigation: Run with --no-usage-statistics and --no-performance-crux when privacy matters.
+
+## Reference(s):
+
+- [Chrome DevTools MCP homepage](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+- [ClawHub skill page](https://clawhub.ai/sieyer/skills/chrome-devtools-mcp-1-0-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/sieyer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands for npx, OpenClaw MCP configuration, setup/status/test script usage, and browser automation workflow guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

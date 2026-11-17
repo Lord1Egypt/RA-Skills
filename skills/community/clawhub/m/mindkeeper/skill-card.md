@@ -1,45 +1,59 @@
-## Description: <br>
-Time Machine for Your AI's Brain - version control for agent context files, used when users ask about changes in SOUL.md, AGENTS.md, MEMORY.md, or other agent context files, want to undo, rollback, or compare versions, or need a checkpoint before risky edits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mindkeeper guides an agent through version history, diffs, checkpoints, and rollback workflows for agent context files such as SOUL.md, AGENTS.md, MEMORY.md, and skills.
 
-## Publisher: <br>
-[liuhao6741](https://clawhub.ai/user/liuhao6741) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuhao6741](https://clawhub.ai/user/liuhao6741)
 
-## Use Case: <br>
-Developers and OpenClaw users install this skill so an agent can inspect history, show diffs, create checkpoints, and guide preview-first rollback for AI context and memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables persistent tracking and rollback of AI context and memory files, which can expose sensitive content if those files contain secrets. <br>
-Mitigation: Avoid storing secrets in tracked context files and review tracked files before enabling ongoing history. <br>
-Risk: First-use setup may install the external mindkeeper-openclaw plugin and restart Gateway. <br>
-Mitigation: Require explicit user confirmation before plugin installation or Gateway restart, and review the plugin before approving setup in sensitive environments. <br>
-Risk: Rollback can restore older file content that changes the active agent context. <br>
-Mitigation: Inspect rollback previews carefully and execute rollback only after confirmation. <br>
+## Use Case:
 
+Developers and OpenClaw users use Mindkeeper to inspect changes to agent context files, compare versions, create checkpoints before risky edits, and guide rollback with preview and confirmation.
 
-## Reference(s): <br>
-- [Mindkeeper ClawHub page](https://clawhub.ai/liuhao6741/mindkeeper) <br>
-- [Mindkeeper homepage](https://github.com/seekcontext/mindkeeper) <br>
-- [mindkeeper-openclaw package](https://www.npmjs.com/package/mindkeeper-openclaw) <br>
-- [Mindkeeper support](https://github.com/seekcontext/mindkeeper/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline tool calls and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides use of mind_status, mind_history, mind_diff, mind_snapshot, and preview-first mind_rollback; setup commands require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill bootstraps an external Gateway plugin that can watch and version sensitive agent context files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the plugin package before installation, verify the plugin source or package, and approve installation and Gateway restart only after that review.
+
+Risk: Rollback workflows can change active agent context files.
+
+Mitigation: Preview rollback diffs first, require explicit user confirmation before execution, and reload the session after a successful rollback.
+
+Risk: History and diff outputs may expose sensitive information contained in tracked context files.
+
+Mitigation: Review displayed history and diffs before sharing them outside the local workspace.
+
+## Reference(s):
+
+- [Mindkeeper project homepage](https://github.com/seekcontext/mindkeeper)
+- [mindkeeper-openclaw plugin package](https://www.npmjs.com/package/mindkeeper-openclaw)
+- [Mindkeeper ClawHub listing](https://clawhub.ai/liuhao6741/skills/mindkeeper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tool-call instructions and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides setup and use of mind_* tools; plugin installation, Gateway restart, and rollback execution require explicit confirmation.]
+
+## Skill Version(s):
+
+1.2.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

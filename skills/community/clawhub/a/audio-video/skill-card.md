@@ -1,49 +1,63 @@
-## Description: <br>
-Helps agents analyze, convert, compress, edit, stream, and validate audio or video files with ffmpeg and ffprobe. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert audio/video processing with ffmpeg and ffprobe for converting, compressing, editing, analyzing, streaming, and processing audio or video files.
 
-## Publisher: <br>
-[kunalshah](https://clawhub.ai/user/kunalshah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kunalshah](https://clawhub.ai/user/kunalshah)
 
-## Use Case: <br>
-Developers, media engineers, and content operators use this skill to generate ffmpeg and ffprobe workflows for media conversion, editing, analysis, streaming, repair, and quality checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ffmpeg commands may capture screens, cameras, microphones, streams, or rolling DVR windows without enough privacy, consent, destination, or retention guardrails. <br>
-Mitigation: Review commands before running them, confirm devices and screen regions, use capture or streaming only with consent, and verify destination URLs, audience settings, and retention windows. <br>
-Risk: Streaming and restreaming workflows can expose stream keys or private destinations through chat, logs, or shell history. <br>
-Mitigation: Avoid pasting real stream keys into prompts or logs; use environment variables or local secret handling where possible. <br>
+## Use Case:
 
+Developers, media engineers, and content teams use this skill to generate ffmpeg and ffprobe guidance for media conversion, quality analysis, encoding presets, streaming setup, capture, repair, metadata handling, and validation workflows.
 
-## Reference(s): <br>
-- [ffprobe Analysis Reference](references/ffprobe-analysis.md) <br>
-- [Codec & Container Compatibility Matrix](references/codecs-containers.md) <br>
-- [FFmpeg Flag Reference](references/ffmpeg-flags.md) <br>
-- [Audio-Video Skill Feature Overview](assets/features.md) <br>
-- [Platform-Specific Encoding Presets](assets/platform-presets.md) <br>
-- [Audio/Video Output Quality Checklist](assets/quality-checklist.md) <br>
-- [Homebrew FFmpeg Formula](https://formulae.brew.sh/formula/ffmpeg) <br>
-- [John Van Sickle FFmpeg Static Builds](https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz) <br>
-- [Gyan FFmpeg Windows Builds](https://www.gyan.dev/ffmpeg/builds/) <br>
-- [Google Spatial Media](https://github.com/google/spatial-media) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated commands should be reviewed before execution, especially for capture, streaming, restreaming, and DVR workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: Generated media commands may capture screen, microphone, webcam, or stream to remote destinations if run without confirming inputs and outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review device names, duration, output paths, and streaming destinations before execution.
+
+Risk: Installation guidance may involve elevated package installs, static binaries, or mutable container images.
+
+Mitigation: Prefer trusted package-manager installs and avoid unverified static binaries or unpinned images.
+
+Risk: Batch processing and overwrite behavior can damage or replace media outputs.
+
+Mitigation: Test on a small sample first, use separate output files or directories, and keep non-overwrite behavior unless replacement is intentional.
+
+## Reference(s):
+
+- [Codec & Container Compatibility Matrix](references/codecs-containers.md)
+- [FFmpeg Flag Reference](references/ffmpeg-flags.md)
+- [ffprobe Analysis Reference](references/ffprobe-analysis.md)
+- [Platform-Specific Encoding Presets](assets/platform-presets.md)
+- [Audio/Video Output Quality Checklist](assets/quality-checklist.md)
+- [Feature Overview](assets/features.md)
+- [Google Spatial Media Tool](https://github.com/google/spatial-media)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, command explanations, and validation checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands should be reviewed before execution and validated with ffprobe or ffmpeg checks.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Guides product managers, founders, and executives through a complete Business Model Canvas using progressive Socratic questioning in English and Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Socratic Business Model Canvas guides product managers, founders, and executives through progressive bilingual Socratic questioning to explore and build a complete Business Model Canvas.
 
-## Publisher: <br>
-[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuqingsonga](https://clawhub.ai/user/zhuqingsonga)
 
-## Use Case: <br>
-External users, product managers, founders, and executives use this skill to clarify, validate, and organize business model assumptions across the nine Business Model Canvas blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad business-strategy prompts, not only explicit Business Model Canvas requests. <br>
-Mitigation: Use it when Business Model Canvas coaching is intended and confirm the conversation scope before relying on its structure. <br>
-Risk: Business model discussions may include sensitive commercial details shared in chat. <br>
-Mitigation: Share only business information appropriate for the chat environment and review outputs before using them in planning or decision-making. <br>
-Risk: The release carries crypto and purchase capability tags whose practical permission effect may vary by platform. <br>
-Mitigation: Verify how the hosting platform interprets those tags before enabling the skill in environments with delegated permissions. <br>
+## Use Case:
 
+External users such as product managers, founders, and executives use this skill to clarify business-model assumptions, walk through the nine Business Model Canvas blocks, and organize the conversation into a structured canvas with validation next steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/socratic-business-model-canvas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and Markdown-style structured summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual English and Chinese questioning flow with a final Business Model Canvas summary and validation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad business-planning activation phrases may trigger the skill when a user only mentions adjacent strategy or monetization topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation phrases or confirm that the user wants a Business Model Canvas coaching session before starting the full question flow.
+
+Risk: Bilingual output may distract users who expect a single language.
+
+Mitigation: Clarify the user's preferred language at the start and keep subsequent questions and summaries in that language unless the user asks otherwise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuqingsonga/skills/socratic-business-model-canvas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Markdown with bilingual English/Chinese questions and a structured Business Model Canvas summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include customer-segment, value-proposition, channel, relationship, revenue, resource, activity, partnership, cost, assumption, and validation-plan sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

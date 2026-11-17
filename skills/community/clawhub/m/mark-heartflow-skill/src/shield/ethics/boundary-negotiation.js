@@ -5,8 +5,9 @@
  * v2 - 增强版：动态风险评分、权限过期、使用追踪、渐进式授权、相似度匹配
  */
 
-const fs = require('fs');
+const fs = require('../../utils/safe-fs');
 const path = require('path');
+const crypto = require('crypto');
 
 // 风险评分表 — 动作类型 × 数据敏感度 → 基础风险分
 const RISK_MATRIX = {
@@ -296,7 +297,7 @@ class BoundaryNegotiation {
                       risk.level === 'medium' ? '⚡ 中等风险' : '✓ 低风险';
 
     const request = {
-      request_id: `bn-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
+      request_id: `bn-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`,
       goal,
       permission,
       impact,
@@ -485,4 +486,52 @@ class BoundaryNegotiation {
   }
 }
 
-module.exports = { BoundaryNegotiation };
+// [P-006] Sensitive actions list — actions that always require explicit user consent
+const SENSITIVE_ACTIONS = [
+  'delete_file',
+  'delete_directory',
+  'force_push',
+  'git_push',
+  'npm_publish',
+  'docker_push',
+  'execute_sql',
+  'send_email',
+  'send_message',
+  'modify_system_config',
+  'access_credentials',
+  'access_payment',
+  'access_pii',
+  'share_data',
+  'run_arbitrary_code',
+  'install_package',
+  'uninstall_package',
+  'modify_permissions',
+  'restart_service',
+  'deploy_production',
+];
+
+/**
+ * [P-006] Enforce permission check for sensitive actions.
+ * Returns { allowed: boolean, reason: string }.
+ * Must be called before executing any sensitive action.
+ *
+ * @param {string} action — Action identifier (must be in SENSITIVE_ACTIONS)
+ * @param {BoundaryNegotiation} bn — BoundaryNegotiation instance
+ * @param {object} [context] — Additional context for risk scoring
+ * @returns {{ allowed: boolean, reason: string }}
+ */
+function enforcePermission(action, bn, context = {}) {
+  if (!SENSITIVE_ACTIONS.includes(action)) {
+    return { allowed: true, reason: 'not_sensitive' };
+  }
+  if (!bn || typeof bn.needsNegotiation !== 'function') {
+    return { allowed: false, reason: 'boundary_negotiator_unavailable' };
+  }
+  const result = bn.needsNegotiation(action, context);
+  if (result.needed) {
+    return { allowed: false, reason: result.reason || 'negotiation_required' };
+  }
+  return { allowed: true, reason: 'previously_granted' };
+}
+
+module.exports = { BoundaryNegotiation, SENSITIVE_ACTIONS, enforcePermission };

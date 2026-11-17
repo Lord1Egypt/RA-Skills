@@ -1,40 +1,57 @@
-## Description: <br>
-将某个话题或者网页内容总结合成为播客音频（Podcast）。基于火山引擎豆包语音播客合成协议生成最终音频。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates podcast audio from a topic, webpage, downloadable document, uploaded file text, or long text using Volcengine Doubao PodcastTTS.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and end users use this skill to turn a short topic, webpage, downloadable document, uploaded document, or long text into podcast-style speech audio with a segmented transcript. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Podcast inputs, webpage URLs, document contents, and generated audio are handled by the Bytedance/Volcengine speech service. <br>
-Mitigation: Avoid confidential or regulated inputs unless the provider terms, retention expectations, and account controls are acceptable. <br>
-Risk: Credential provisioning and persistence are under-disclosed, and the skill may store a speech API key in scripts/.env. <br>
-Mitigation: Use a dedicated low-privilege API key, rotate it regularly, and check or remove scripts/.env after use. <br>
+## Use Case:
 
+Users and agents use this skill to turn a short topic, webpage, file URL, uploaded document text, or long text into a podcast-style audio file and segmented transcript.
 
-## Reference(s): <br>
-- [Volcengine Doubao Podcast product documentation](https://www.volcengine.com/docs/6561/1668014?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Audio, JSON, Files] <br>
-**Output Format:** [JSON status object with a local audio path, optional service-provided audio URL, task identifier, and segmented transcript; generated audio file in MP3, WAV, or OGG format.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Volcengine/Bytedance speech service credentials. Audio URLs may be time-limited, and source text or URLs are processed by the external speech service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Credential management behavior is under-disclosed and may create or persist speech-service credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pre-provisioned MODEL_SPEECH_API_KEY and review local environment handling before installation.
+
+Risk: Custom ARK_SKILL_API_BASE values can direct credential-management requests to an untrusted endpoint.
+
+Mitigation: Set ARK_SKILL_API_BASE only to a verified HTTPS service endpoint, or leave it unset.
+
+Risk: Submitted documents, private URLs, prompts, and generated text are sent to an external Volcengine/Bytedance speech-service workflow and may appear in logs.
+
+Mitigation: Avoid confidential inputs unless the user accepts that external processing and logging exposure.
+
+## Reference(s):
+
+- [Volcengine Doubao Podcast product documentation](https://www.volcengine.com/docs/6561/1668014?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands, configuration, guidance]
+
+**Output Format:** [JSON status output with local audio file path, optional audio URL, and segmented transcript text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audio output can be mp3, wav, or ogg_opus; successful runs may include a time-limited service audio URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

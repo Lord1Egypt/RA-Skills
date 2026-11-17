@@ -1,43 +1,49 @@
-## Description: <br>
-Xquads Copy Chief diagnoses copywriting requests, routes them to a suitable copywriting specialist persona, reviews the response, and presents the final guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xquads Copy Chief diagnoses copywriting requests and routes them to an appropriate specialist persona for formats such as headlines, sales letters, email sequences, VSLs, funnels, offers, and ad copy.
 
-## Publisher: <br>
-[engsathiago](https://clawhub.ai/user/engsathiago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[engsathiago](https://clawhub.ai/user/engsathiago)
 
-## Use Case: <br>
-External users and teams use this skill to triage requests for headlines, sales letters, emails, VSLs, funnels, offers, ads, and launch copy, then receive routed copywriting guidance with a quality review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may produce or route marketing copy for sensitive, regulated, or high-stakes topics. <br>
-Mitigation: Review outputs before use, especially for email, legal, medical, financial, political, or regulated marketing content. <br>
-Risk: The artifact refers to external local specialist files that are not included in this release. <br>
-Mitigation: Confirm required specialist context is installed or treat those references as non-executable background guidance. <br>
-Risk: The security review notes overbroad and inconsistent wording in the skill instructions. <br>
-Mitigation: Confirm whether the agent should draft final copy or only diagnose and route before relying on generated output. <br>
+## Use Case:
 
+External users and marketing teams use this skill to triage copywriting requests, ask for missing campaign context, select a suitable copywriting framework, and review the resulting copy for framework alignment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/engsathiago/xquads-copy-chief) <br>
-- [XQuads homepage](https://github.com/synkra/xquads) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with diagnostic questions, routing decisions, specialist-style copywriting guidance, and quality review notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask clarifying questions before producing final guidance] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: skill.json and server release evidence) <br>
+Risk: Broad trigger terms such as email, offer, or funnel may activate the skill for ambiguous requests that are not intended as copywriting tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify the user's intent before applying the copywriting routing workflow when the request is ambiguous.
+
+## Reference(s):
+
+- [xquads homepage](https://github.com/synkra/xquads)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown dialogue and structured copywriting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Portuguese-oriented routing workflow; no code execution, credential use, persistence, or hidden data access reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

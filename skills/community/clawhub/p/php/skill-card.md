@@ -1,47 +1,50 @@
-## Description: <br>
-Write solid PHP avoiding type juggling traps, array quirks, and common security pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes, debugs, and reviews PHP code and configuration across type handling, arrays, OOP, Composer, PDO, sessions, PHP-FPM, OPcache, PHP 8 features, testing, static analysis, security, and deployment troubleshooting.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as PHP coding guidance for avoiding common language traps, security mistakes, and PHP 8+ compatibility issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PHP code can mishandle authentication, database access, file uploads, or input validation if the guidance is applied incorrectly. <br>
-Mitigation: Review generated PHP code before deployment, with focused checks for prepared SQL statements, output escaping, CSRF tokens, upload validation, session handling, and strict comparisons. <br>
-Risk: PHP loose comparison and array behavior can create subtle authorization or data-handling defects. <br>
-Mitigation: Prefer strict comparisons, strict in-array checks, explicit key existence checks, and careful array merge behavior as described in the skill references. <br>
+## Use Case:
 
+Developers and engineers use this skill to write and review PHP, diagnose runtime and deployment failures, harden web boundaries, and produce PHP code, configuration, tests, shell commands, and review guidance for common PHP application work.
 
-## Reference(s): <br>
-- [PHP skill page](https://clawhub.ai/ivangdavila/php) <br>
-- [PHP quick reference](artifact/SKILL.md) <br>
-- [Type traps](artifact/types.md) <br>
-- [Array traps](artifact/arrays.md) <br>
-- [OOP traps](artifact/oop.md) <br>
-- [String traps](artifact/strings.md) <br>
-- [Error traps](artifact/errors.md) <br>
-- [Security traps](artifact/security.md) <br>
-- [PHP 8+ traps](artifact/modern.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code] <br>
-**Output Format:** [Markdown guidance with inline PHP examples and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PHP when commands or examples need local execution; the skill itself is markdown-only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Applying generated production PHP-FPM configuration without review may expose more environment variables than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review environment-variable exposure before deployment, especially clear_env = no, and prefer explicitly forwarding only the variables the application needs.
+
+## Reference(s):
+
+- [ClawHub PHP skill page](https://clawhub.ai/ivangdavila/skills/php)
+- [Clawic PHP skill page](https://clawic.com/skills/php)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PHP snippets, Composer commands, php.ini or PHP-FPM configuration, PHPUnit/PHPStan setup, and review checklists.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

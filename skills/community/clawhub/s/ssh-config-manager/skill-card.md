@@ -1,44 +1,55 @@
-## Description: <br>
-CLI tool to manage SSH config files, organize hosts, generate configs, and test connections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool to manage SSH config files, organize hosts, generate configs, and test connections.
 
-## Publisher: <br>
-[Derick001](https://clawhub.ai/user/Derick001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[derick001](https://clawhub.ai/user/derick001)
 
-## Use Case: <br>
-Developers, operators, and system administrators use this skill to inspect, organize, update, validate, and test SSH configuration entries across local or team-managed environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Connection testing can contact hosts and pass unvalidated SSH config values to ssh. <br>
-Mitigation: Run tests only against trusted configs, review HostName and Port values first, and avoid testing shared or generated entries until they have been validated. <br>
-Risk: The skill can read and rewrite SSH config files. <br>
-Mitigation: Keep backups, prefer testing with an explicit copy via --config, and review changes before relying on the updated config. <br>
-Risk: SSH config validation is basic and may miss advanced syntax or edge cases. <br>
-Mitigation: Manually review important configs and verify behavior with SSH tooling before replacing production SSH configuration. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect, organize, validate, back up, and update SSH client configuration files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Derick001/ssh-config-manager) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Command-line text output, JSON/YAML listings when requested, and SSH config file changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and rewrite SSH config files and create timestamped backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can read and modify SSH client configuration, which may disrupt access or change connection behavior if entries are malformed or unintended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes before applying them and keep an independent backup of ~/.ssh/config.
+
+Risk: Connection testing can initiate SSH attempts to hosts named in configuration files.
+
+Mitigation: Avoid testing hosts from untrusted config files and verify target hosts before running test commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/derick001/skills/ssh-config-manager)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text output and Markdown usage guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read, write, validate, back up, and test SSH client configuration depending on the selected command.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

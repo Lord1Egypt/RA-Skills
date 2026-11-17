@@ -1,49 +1,60 @@
-## Description: <br>
-Memoria adds persistent, local-first memory to OpenClaw agents, with SQLite-backed recall, knowledge graph, procedural learning, continuous capture, and configurable local or remote LLM providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first, multi-agent persistent memory for AI assistants. Use it to install, operate, connect, diagnose, or update Memoria on macOS.
 
-## Publisher: <br>
-[nieto42](https://clawhub.ai/user/nieto42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nieto42](https://clawhub.ai/user/nieto42)
 
-## Use Case: <br>
-Developers and OpenClaw users use Memoria to give agents persistent recall of conversations, tool results, procedures, preferences, and project context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records conversations and tool output into persistent memory. <br>
-Mitigation: Enable it only in workspaces where persistent agent memory is acceptable, and keep generated memory files out of shared repositories. <br>
-Risk: Configured remote LLM fallbacks can send conversation data to cloud providers. <br>
-Mitigation: Use local providers only for local-only operation, or explicitly review and restrict remote provider configuration and API keys. <br>
-Risk: Generated markdown sync files may expose extracted facts if shared. <br>
-Mitigation: Review syncMd behavior and inspect generated summaries before committing or publishing workspace files. <br>
-Risk: The curl-to-bash installer path can execute remote shell code. <br>
-Mitigation: Inspect installer scripts before running them or install manually from reviewed source. <br>
+## Use Case:
 
+Developers and agent operators use Memoria to install and run a local-first persistent memory service for AI assistants, connect agents through MCP or OpenClaw, and diagnose recall, capture, sharing, and synchronization.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nieto42/openclaw-memoria) <br>
-- [Publisher profile](https://clawhub.ai/user/nieto42) <br>
-- [Project homepage](https://github.com/Primo-Studio/openclaw-memoria) <br>
-- [Architecture guide](docs/ARCHITECTURE.md) <br>
-- [Module guide](docs/MODULES.md) <br>
-- [Security policy](SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text memory context with optional configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist local SQLite memory and optional markdown summaries in the OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.34.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Persistent local memory can read and store conversation context for connected agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted use cases, keep sensitive workflows local, and disable automatic capture or sharing when persistent memory is not wanted.
+
+Risk: The documented installer uses a curl-to-shell path and can start a background service with login autostart.
+
+Mitigation: Prefer a pinned, inspectable installer or verified release, review the install script before running it, and disable autostart if background persistence is not desired.
+
+Risk: Remote LLM providers and imported or shared memories can expose or influence conversation data.
+
+Mitigation: Use local LLM providers for sensitive content, configure remote providers only with explicit approval, and review imported or shared memories before allowing recall.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nieto42/skills/openclaw-memoria)
+- [Memoria project homepage](https://github.com/Primo-Studio/openclaw-memoria)
+- [Memoria website](https://primo-studio.fr/app/memoria)
+- [Node.js](https://nodejs.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local installation, pairing, diagnostic, update, and risk guidance.]
+
+## Skill Version(s):
+
+3.35.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,52 @@
+{
+  "name": "lygo-flame-ward",
+  "displayName": "LYGO Flame Ward",
+  "version": "1.0.1",
+  "description": "Harden lattice against disinfo, injected half-truths, and silent WebAudio fingerprinting. Seals-first. Flame-scan, endpoint-scan, ingest-gate, quarantine, burn-receipt. Local-first, consent-gated.",
+  "slug": "lygo-flame-ward",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/clawhub/mirrors/lygo-flame-ward",
+  "clawhub": "https://clawhub.ai/deepseekoracle/lygo-flame-ward",
+  "signature": "Delta9Phi963-FLAME-WARD",
+  "tags": ["latest", "lygo", "flame", "security", "epistemic", "disinfo", "quarantine", "delta9"],
+  "entry": "SKILL.md",
+  "scripts": {
+    "enemy-model": "scripts/flame_cli.py enemy-model",
+    "flame-scan": "scripts/flame_cli.py flame-scan",
+    "ingest-gate": "scripts/flame_cli.py ingest-gate",
+    "endpoint-scan": "scripts/flame_cli.py endpoint-scan",
+    "concordance": "scripts/flame_cli.py concordance",
+    "quarantine": "scripts/flame_cli.py quarantine",
+    "burn-receipt": "scripts/flame_cli.py burn-receipt",
+    "demo": "scripts/flame_cli.py demo",
+    "self_check": "scripts/self_check.py"
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "optional --text-file / --skill-dir / --from-file / --file",
+      "write": "only with --i-consent"
+    },
+    "publish": false,
+    "doxing": false
+  },
+  "security": {
+    "no_network": true,
+    "no_subprocess": true,
+    "local_first": true,
+    "consent_required_for_writes": true,
+    "no_auto_publish": true,
+    "epistemic_default": "FABRICATED_UNTIL_CONCORDANCE"
+  },
+  "pairs_with": [
+    "lygo-ops-detector",
+    "lygo-skill-spector",
+    "lygo-continuum",
+    "lygo-mint-verifier",
+    "lygo-sanctuary-guardian",
+    "lygo-quantum-attestor"
+  ]
+}

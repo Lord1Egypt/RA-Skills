@@ -179,7 +179,7 @@ Use these verification prompts immediately after restart:
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-slack"],
       "env": {
-        "SLACK_BOT_TOKEN": "xoxb-your-token",
+        "SLACK_BOT_TOKEN": "REDACTED-SECRET",
         "SLACK_TEAM_ID": "T0XXXXXXX"
       }
     }

@@ -1,43 +1,54 @@
-## Description: <br>
-Creates vertical three-beat debunk videos with timed English captions using WeryAI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create vertical three-beat debunk videos with timed English captions for a "you think X, actually Y, but Z" structure using WeryAI.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to turn a topic or approved X/Y/Z concept set into a short vertical debunk-video workflow with prompt expansion, confirmation, and WeryAI generation commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid generation can consume WeryAI credits when submit or wait commands are run. <br>
-Mitigation: Require explicit approval of the full parameter table and expanded prompt before any paid submit or wait operation. <br>
-Risk: Using local image paths may upload local files to WeryAI. <br>
-Mitigation: Prefer public HTTPS image URLs and use local image paths only after the user intentionally approves the upload. <br>
-Risk: The WERYAI_API_KEY is a sensitive credential. <br>
-Mitigation: Keep the key out of source control and use an isolated or short-lived environment for higher-assurance runs. <br>
+## Use Case:
 
+External creators, marketers, and agent users use this skill to turn a topic or X/Y/Z brief into a short vertical debunk video plan, submit it to WeryAI after explicit confirmation, and retrieve the generated video link or error details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/think-x-actually-y-video-gen) <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with parameter tables, inline shell commands, task identifiers, status summaries, and video links when available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY and Node.js 18+; generation is paid and network-dependent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill uses paid WeryAI generation jobs and requires a WeryAI API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the full prompt and parameter table before confirming any submit or wait action, and use an isolated or short-lived API key where practical.
+
+Risk: Local image paths may be read and uploaded to WeryAI if used for image-to-video inputs.
+
+Mitigation: Prefer public HTTPS image URLs, and approve local file paths only after checking the exact file and accepting the upload.
+
+## Reference(s):
+
+- [WeryAI Video API](resources/WERYAI_VIDEO_API.md)
+- [Skill page](https://clawhub.ai/zoucdr/skills/think-x-actually-y-video-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, parameter tables, JSON command payloads, shell commands, and Markdown video links or error summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, explicit approval before paid submit or wait actions, and public HTTPS image URLs for normal image-to-video use.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

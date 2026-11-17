@@ -1,44 +1,57 @@
-## Description: <br>
-Create and optimize SVG graphics with proper viewBox, accessibility, and CSS styling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and optimize SVG graphics with proper viewBox, accessibility, and CSS styling.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and designers use this skill to create, review, optimize, embed, and style SVG assets while avoiding common scaling, accessibility, theming, and SVGO pitfalls. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can retain SVG workflow preferences in ~/svg/memory.md, which may persist user-specific choices across sessions. <br>
-Mitigation: Do not store secrets or sensitive content in that file; review or delete ~/svg/memory.md to reset stored SVG preferences. <br>
-Risk: SVG optimization guidance can affect accessibility or rendering if outputs are applied without review. <br>
-Mitigation: Review optimized SVGs for viewBox, title, desc, and ID preservation before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SVG skill page](https://clawhub.ai/ivangdavila/svg) <br>
-- [SVG Accessibility](accessibility.md) <br>
-- [SVG Embedding Methods](embedding.md) <br>
-- [SVG Optimization](optimization.md) <br>
-- [SVG CSS Styling](styling.md) <br>
-- [viewBox](viewbox.md) <br>
+## Use Case:
 
+Developers and designers use this skill to create, review, embed, style, optimize, and troubleshoot SVG assets for web and application interfaces.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration, shell commands] <br>
-**Output Format:** [Markdown with SVG, HTML, CSS, JavaScript configuration, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local SVG preference notes in ~/svg/memory.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create ~/svg/memory.md to store local SVG preferences.
+
+Mitigation: Review or delete ~/svg/memory.md if local preference persistence is not desired.
+
+Risk: The optional SVGO example uses an unpinned npx command.
+
+Mitigation: Prefer a pinned project dependency and lockfile-backed command before optimizing production SVG assets.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/svg)
+- [SVG Accessibility](artifact/accessibility.md)
+- [SVG Embedding Methods](artifact/embedding.md)
+- [SVG Optimization](artifact/optimization.md)
+- [SVG CSS Styling](artifact/styling.md)
+- [viewBox](artifact/viewbox.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline SVG, HTML, CSS, JavaScript configuration, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local preference memory in ~/svg/memory.md when the user wants persistent SVG workflow defaults.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Real-time Pump.fun token alerts for Solana traders, trading bots, Discord, Telegram, and AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prism Alerts helps agents and operators query Pump.fun bonding and graduated token data from the Strykr PRISM API and run a local polling alert script for newly seen token contracts.
 
-## Publisher: <br>
-[NextFrontierBuilds](https://clawhub.ai/user/NextFrontierBuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nextfrontierbuilds](https://clawhub.ai/user/nextfrontierbuilds)
 
-## Use Case: <br>
-External developers and trading automation builders use this skill to fetch and watch Pump.fun bonding and graduation token alerts from the PRISM API for chat bots, agent workflows, and alerting pipelines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Watch mode continuously polls an external cryptocurrency API. <br>
-Mitigation: Use a trusted PRISM endpoint, keep polling intervals conservative, and review API behavior before using results in production workflows. <br>
-Risk: Alert output can be connected to Telegram, Discord, trading, or public posting workflows. <br>
-Mitigation: Scope bot tokens to the intended channel and require review before connecting alerts directly to trading or public posting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NextFrontierBuilds/prism-alerts) <br>
-- [Default PRISM API endpoint](https://strykr-prism.up.railway.app) <br>
+## Use Case:
 
+Developers, trading bot operators, and agent builders use this skill to inspect Pump.fun token lists, monitor newly observed contracts, and connect alert output to downstream Telegram, Discord, or agent workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and plain-text alert output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command output depends on the configured PRISM API endpoint and live token data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The artifact claims broader alert and integration features than the packaged script implements.
+
+Mitigation: Review the script behavior before relying on claimed volume-spike, Telegram, Discord, or scanning features; implement and test missing integrations separately.
+
+Risk: The watch command stores seen token contracts in a shared temporary file.
+
+Mitigation: Run the script as an unprivileged user and move state to a per-user path with restricted permissions before production use.
+
+Risk: Messaging integration tokens could be exposed if copied into source files or shared command history.
+
+Mitigation: Store Telegram and Discord tokens outside source control, limit token scope where possible, and rotate any token that may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nextfrontierbuilds/skills/prism-alerts)
+- [Publisher profile](https://clawhub.ai/user/nextfrontierbuilds)
+- [Strykr PRISM API base URL](https://strykr-prism.up.railway.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with bash and JavaScript snippets; shell commands print plain-text token summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The packaged script expects curl and jq, accepts an optional PRISM_URL environment variable, and stores watch state locally.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence; artifact frontmatter says 1.1.1 and skill.json says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

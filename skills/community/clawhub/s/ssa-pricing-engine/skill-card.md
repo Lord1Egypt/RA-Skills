@@ -1,43 +1,58 @@
-## Description: <br>
-Pricing Engine calculates B2B quotes from LME copper prices, quantity tiers, customer grades, and exchange rates, then integrates with quotation-workflow to generate quotation files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pricing Engine calculates B2B product quotes using LME copper price data, quantity tiers, customer grades, exchange rates, and quotation workflow integration.
 
-## Publisher: <br>
-[cjboy007](https://clawhub.ai/user/cjboy007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjboy007](https://clawhub.ai/user/cjboy007)
 
-## Use Case: <br>
-Sales and operations teams use this skill to generate single-SKU or batch quotes, preview pricing, and create PDF/HTML/Excel quotation outputs. Developers can use its Node.js APIs and configuration files to connect product costs, customer discounts, exchange rates, copper costs, and quotation history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can execute local quotation-workflow scripts through a configured workflow path. <br>
-Mitigation: Install only from a trusted publisher, verify QUOTATION_WORKFLOW_ROOT points to a reviewed local directory, and use preview or DRY_RUN before production execution. <br>
-Risk: Customer-linked pricing records may be written to local output or history files. <br>
-Mitigation: Store output and history files in protected locations and define retention and deletion procedures before production use. <br>
-Risk: Quotes can depend on cached, fallback, or simulated copper price and exchange-rate data. <br>
-Mitigation: Confirm market inputs before sending binding quotations, especially after API outages or DRY_RUN testing. <br>
+## Use Case:
 
+Sales and operations teams use this skill through an agent to calculate single-SKU or batch B2B quotes, apply customer-specific pricing rules, preview totals, generate quotation files, and query quote history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cjboy007/ssa-pricing-engine) <br>
-- [Exchange rate API used by the artifact](https://open.er-api.com/v6/latest/USD) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with bash and JavaScript examples; runtime outputs include JSON pricing data and PDF/HTML/Excel quotation files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local configuration files, optional DRY_RUN mode, and JSONL quote history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can generate business quote files without enforcing the claimed approval hold for below-floor-margin quotes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and patch the quotation workflow so pending_approval blocks file generation or external sending until an authorized approval is recorded.
+
+Risk: The quotation integration uses an environment-controlled workflow path in shell command execution.
+
+Mitigation: Replace shell execution with execFile or spawn, validate configured paths against an allowlist, and run only in a controlled environment.
+
+Risk: Generated quotation files and price-history JSONL records may contain sensitive commercial pricing and customer data.
+
+Mitigation: Apply access controls, retention rules, and review procedures for generated output and history files.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/cjboy007/skills/ssa-pricing-engine)
+- [Exchange-rate API endpoint used by the skill](https://open.er-api.com/v6/latest/USD)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON pricing results and generated quotation files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Quote history is stored as JSONL when enabled by the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

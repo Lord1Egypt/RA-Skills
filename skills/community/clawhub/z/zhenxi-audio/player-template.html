@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+  珍惜音频资源服务 · 试听播放页模板（智能体交付用）
+  用法：替换全部 {{大写占位符}} 后整页交付（可渲染 artifact 的直接渲染，否则另存为 .html 让用户打开）。
+    {{BOOK_TITLE}}    书名，如 基金经理
+    {{EPISODE_LABEL}} 集数标签，试听固定填：第 1 集 · 在线试听
+    {{AUDIO_URL}}     get_trial 返回的试听直链，原样整段粘贴（含全部 query 参数，不要换行或改编码）
+    {{VALID_MINUTES}} 直链有效期分钟数（取 get_trial 返回，通常 120）
+    {{BOOK_PAGE_URL}} 官网书目页 https://zhenxi.miaoking.com/book.php?id=<get_book_detail 的 book_id>
+  页脚「非盈利存档 / 版权 / 联系删除」声明为固定文案，替换占位符时不得删改。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BOOK_TITLE}} · {{EPISODE_LABEL}} - 珍惜音频资源服务</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: #f5f4fa;
+    color: #2c2a33;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 40px;
+  }
+  .player-card {
+    width: 100%;
+    max-width: 560px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(80, 70, 160, .10);
+    padding: 28px 24px 22px;
+  }
+  .brand {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: .5px;
+    color: #7a6fd0;
+    background: #f0eefc;
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 22px;
+    line-height: 1.35;
+    margin-bottom: 4px;
+  }
+  .episode {
+    color: #8a8698;
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  audio {
+    width: 100%;
+    margin: 6px 0 14px;
+  }
+  .tips { list-style: none; }
+  .tips li {
+    font-size: 13px;
+    color: #6d6a7c;
+    line-height: 1.7;
+    padding-left: 18px;
+    position: relative;
+  }
+  .tips li::before {
+    content: "·";
+    position: absolute;
+    left: 6px;
+    color: #a99ef2;
+    font-weight: 700;
+  }
+  .cta {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, #7a6fd0, #5a8bf0);
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 11px 0;
+  }
+  .cta:hover { opacity: .92; }
+  footer {
+    width: 100%;
+    max-width: 560px;
+    margin-top: 18px;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #98949f;
+    text-align: center;
+  }
+  footer a { color: #8a83c9; text-decoration: none; }
+</style>
+</head>
+<body>
+  <main class="player-card">
+    <a class="brand" href="https://zhenxi.miaoking.com">珍惜音频资源服务</a>
+    <h1>《{{BOOK_TITLE}}》</h1>
+    <div class="episode">{{EPISODE_LABEL}}</div>
+    <audio controls preload="metadata" src="{{AUDIO_URL}}"></audio>
+    <ul class="tips">
+      <li>链接 {{VALID_MINUTES}} 分钟内有效，过期后让智能体重新签发即可。</li>
+      <li>本站仅第 1 集提供在线试听；想收全本请在智能体里说「获取整部」，ZIP 打包下载。</li>
+    </ul>
+    <a class="cta" href="{{BOOK_PAGE_URL}}">在官网查看这部书 / 获取整部</a>
+  </main>
+  <footer>
+    <p>本站为非盈利存档音频服务；本站内容版权归原演播者/出版方所有；<br>
+    如内容侵犯您的权利请联系我们（<a href="mailto:kf@miaoking.com">kf@miaoking.com</a>）删除。</p>
+  </footer>
+</body>
+</html>

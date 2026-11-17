@@ -1,47 +1,57 @@
-## Description: <br>
-Send messages, manage chats, handle files, and automate Telegram bot workflows via the Telegram Bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send messages, manage chats, handle files, and automate Telegram bot workflows via the Telegram Bot API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, operators, and other OpenClaw users use this skill to work with Telegram bots through ClawLink, including sending messages, reading chat metadata, managing chat workflows, and handling files or media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot tokens are sensitive credentials handled through ClawLink. <br>
-Mitigation: Install only if ClawLink is trusted for the connected bot token, and reconnect or revoke the Telegram bot token if access should change. <br>
-Risk: Write actions can send, delete, forward, or modify Telegram content and chat settings. <br>
-Mitigation: Review each preview carefully and approve execution only when the target chat, content, and action match the user's intent. <br>
-Risk: Admin-scoped actions can affect groups or channels where the bot has elevated rights. <br>
-Mitigation: Limit bot admin permissions to the minimum needed and double-check invite-link, deletion, moderation, and command changes before confirmation. <br>
+## Use Case:
 
+External users, developers, and operations teams use this skill to send Telegram bot messages, inspect chats, manage bot commands, handle media, and automate notifications through ClawLink-hosted Telegram Bot API tooling.
 
-## Reference(s): <br>
-- [ClawHub Telegram Skill Page](https://clawhub.ai/hith3sh/telegram-messaging) <br>
-- [Telegram Bot API Documentation](https://core.telegram.org/bots/api) <br>
-- [Telegram Bot Features](https://core.telegram.org/bots/features) <br>
-- [BotFather](https://t.me/botfather) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides live Telegram tool discovery and uses previews before write actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Risk: The setup installs and enables an external ClawLink plugin and hosted service that stores the connected Telegram bot token and proxies Telegram requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the user trusts ClawLink, understands the hosted credential flow, and has reviewed the enabled plugin access.
+
+Risk: Telegram write actions can send, delete, forward, moderate, or create invite-link changes in chats where the bot has permission.
+
+Mitigation: Keep explicit user confirmation in place for write operations and preview the intended action before calling the tool.
+
+## Reference(s):
+
+- [Telegram Bot API Documentation](https://core.telegram.org/bots/api)
+- [Telegram Bot Features](https://core.telegram.org/bots/features)
+- [BotFather](https://t.me/botfather)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/telegram-messaging)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON parameters for ClawLink tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Tool execution depends on the user connecting a Telegram bot through ClawLink; write operations require explicit user confirmation.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

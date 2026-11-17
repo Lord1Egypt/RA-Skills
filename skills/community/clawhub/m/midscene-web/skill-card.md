@@ -1,45 +1,60 @@
-## Description: <br>
-Midscene Web enables vision-driven browser automation from screenshots without relying on DOM structure or accessibility labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vision-driven browser automation using Midscene for browsing, scraping, form interaction, screenshots, and UI QA from page screenshots, with Puppeteer, CDP, and Bridge modes.
 
-## Publisher: <br>
-[lushi516](https://clawhub.ai/user/lushi516) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengzuo613](https://clawhub.ai/user/zengzuo613)
 
-## Use Case: <br>
-Developers and engineers use this skill to browse websites, collect page data, fill forms, take screenshots, and validate frontend behavior through Midscene-driven browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate logged-in Chrome sessions and act on visible account pages. <br>
-Mitigation: Prefer isolated Puppeteer mode for ordinary browsing, use a dedicated Chrome profile or tab for account work, and require explicit approval before purchases, payments, posting, form submission, deletion, or account changes. <br>
-Risk: Page screenshots may be sent to the configured AI model provider during automation. <br>
-Mitigation: Use only approved model providers and avoid exposing sensitive pages or credentials unless the user accepts that data flow. <br>
-Risk: CDP or Bridge access can keep an existing browser reachable after setup. <br>
-Mitigation: Disable CDP or Bridge access when finished and disconnect sessions after completing browser automation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to navigate, inspect, test, and interact with web pages when visible browser state, screenshots, data extraction, or an existing Chrome session is needed.
 
-## Reference(s): <br>
-- [Midscene.js](https://midscenejs.com) <br>
-- [Midscene Model Configuration](https://midscenejs.com/model-common-config) <br>
-- [Midscene Bridge Mode Documentation](https://midscenejs.com/bridge-mode-by-chrome-extension.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lushi516/midscene-web) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser screenshots, automation results, extracted page data, and task summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-26.5.14 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill can control browser pages and may operate against authenticated Chrome sessions in CDP or Bridge mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer isolated Puppeteer mode for ordinary browsing and testing; use CDP or Bridge only after explicitly deciding to expose the real Chrome session.
+
+Risk: The skill invokes mutable npm packages for browser automation.
+
+Mitigation: Pin Midscene package versions and run the skill in a controlled environment for reviewed deployments.
+
+Risk: Vision-grounded browser automation can misread visible state or act on the wrong page element.
+
+Mitigation: Inspect screenshots before actions, use assertions after important steps, and review results before sensitive or irreversible browser operations.
+
+## Reference(s):
+
+- [Midscene.js](https://midscenejs.com)
+- [Midscene Model Configuration](https://midscenejs.com/model-common-config)
+- [Midscene Bridge Mode Documentation](https://midscenejs.com/bridge-mode-by-chrome-extension.html)
+- [Midscene Chrome Extension](https://chromewebstore.google.com/detail/midscenejs/gbldofcpkknbggpkmbdaefngejllnief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown with shell commands, configuration snippets, status summaries, and optional generated browser artifacts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce screenshots and Midscene report files when browser automation commands are executed.]
+
+## Skill Version(s):
+
+26.5.14 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

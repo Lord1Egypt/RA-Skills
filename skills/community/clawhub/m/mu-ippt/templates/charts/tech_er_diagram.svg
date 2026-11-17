@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    ER 实体关系图模板
+    实体框（属性列表）+ 关系连线（1:1, 1:N, M:N）
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    实体用矩形+属性列表，PK用🔑标注，FK用🔗标注。
+    关系用菱形标注，连线端用符号表示基数。
+    LLM 生成时参考此结构，自由增减实体和关系。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="{{ARROW_COLOR}}"/>
+    </marker>
+    <!-- 1 端标记（竖线） -->
+    <marker id="one" markerWidth="6" markerHeight="14" refX="3" refY="7" orient="auto">
+      <line x1="3" y1="0" x2="3" y2="14" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+    </marker>
+    <!-- N 端标记（鸦脚） -->
+    <marker id="many" markerWidth="14" markerHeight="14" refX="14" refY="7" orient="auto">
+      <path d="M 0 0 L 14 7 L 0 14" fill="none" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+      <line x1="14" y1="0" x2="14" y2="14" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="35" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="20" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- ====== 实体 1（左侧） ====== -->
+  <rect x="40" y="80" width="210" height="200" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <!-- 实体名（头部） -->
+  <rect x="40" y="80" width="210" height="36" rx="8"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.18"/>
+  <rect x="40" y="100" width="210" height="16"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.18"/>
+  <text x="145" y="104" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{ENTITY_1}}</text>
+
+  <!-- 属性列表 -->
+  <text x="55" y="138" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT_COLOR}}">🔑 {{E1_ATTR_1}}</text>
+  <line x1="50" y1="148" x2="240" y2="148" stroke="{{BORDER_COLOR}}" stroke-width="0.6"/>
+  <text x="55" y="168" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E1_ATTR_2}}</text>
+  <line x1="50" y1="178" x2="240" y2="178" stroke="{{BORDER_COLOR}}" stroke-width="0.4"/>
+  <text x="55" y="198" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E1_ATTR_3}}</text>
+  <line x1="50" y1="208" x2="240" y2="208" stroke="{{BORDER_COLOR}}" stroke-width="0.4"/>
+  <text x="55" y="228" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E1_ATTR_4}}</text>
+  <line x1="50" y1="238" x2="240" y2="238" stroke="{{BORDER_COLOR}}" stroke-width="0.4"/>
+  <text x="55" y="258" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{SUBTITLE_COLOR}}">🔗 {{E1_ATTR_5}}</text>
+
+  <!-- ====== 实体 2（右上） ====== -->
+  <rect x="500" y="60" width="210" height="180" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="500" y="60" width="210" height="36" rx="8"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.18"/>
+  <rect x="500" y="80" width="210" height="16"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.18"/>
+  <text x="605" y="84" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{ENTITY_2}}</text>
+
+  <text x="515" y="118" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT2_COLOR}}">🔑 {{E2_ATTR_1}}</text>
+  <line x1="510" y1="128" x2="700" y2="128" stroke="{{BORDER_COLOR}}" stroke-width="0.6"/>
+  <text x="515" y="148" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E2_ATTR_2}}</text>
+  <line x1="510" y1="158" x2="700" y2="158" stroke="{{BORDER_COLOR}}" stroke-width="0.4"/>
+  <text x="515" y="178" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E2_ATTR_3}}</text>
+  <line x1="510" y1="188" x2="700" y2="188" stroke="{{BORDER_COLOR}}" stroke-width="0.4"/>
+  <text x="515" y="208" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E2_ATTR_4}}</text>
+
+  <!-- ====== 实体 3（右下） ====== -->
+  <rect x="500" y="290" width="210" height="180" rx="8"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="500" y="290" width="210" height="36" rx="8"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.18"/>
+  <rect x="500" y="310" width="210" height="16"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.18"/>
+  <text x="605" y="314" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="14" font-weight="bold" fill="{{TEXT_COLOR}}">{{ENTITY_3}}</text>
+
+  <text x="515" y="348" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{ACCENT3_COLOR}}">🔑 {{E3_ATTR_1}}</text>
+  <line x1="510" y1="358" x2="700" y2="358" stroke="{{BORDER_COLOR}}" stroke-width="0.6"/>
+  <text x="515" y="378" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E3_ATTR_2}}</text>
+  <line x1="510" y1="388" x2="700" y2="388" stroke="{{BORDER_COLOR}}" stroke-width="0.4"/>
+  <text x="515" y="408" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{SUBTITLE_COLOR}}">🔗 {{E3_ATTR_3}}</text>
+  <line x1="510" y1="418" x2="700" y2="418" stroke="{{BORDER_COLOR}}" stroke-width="0.4"/>
+  <text x="515" y="438" font-family="{{FONT_FAMILY}}"
+        font-size="11" fill="{{TEXT_COLOR}}">{{E3_ATTR_4}}</text>
+
+  <!-- ====== 关系 1: E1 → E2 (1:N)（菱形标注） ====== -->
+  <polygon points="350,140 395,115 440,140 395,165"
+           fill="{{ACCENT_COLOR}}" fill-opacity="0.1" stroke="{{ACCENT_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="395" y="144" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{ACCENT_COLOR}}">{{REL_1}}</text>
+
+  <!-- E1 → Rel1 -->
+  <line x1="250" y1="150" x2="348" y2="142" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+  <text x="275" y="135" font-family="{{FONT_FAMILY}}" font-size="10" font-weight="bold" fill="{{TEXT_COLOR}}">1</text>
+
+  <!-- Rel1 → E2 -->
+  <line x1="440" y1="135" x2="498" y2="130" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+  <text x="480" y="120" font-family="{{FONT_FAMILY}}" font-size="10" font-weight="bold" fill="{{TEXT_COLOR}}">N</text>
+
+  <!-- ====== 关系 2: E1 → E3 (M:N)（菱形标注） ====== -->
+  <polygon points="310,370 355,345 400,370 355,395"
+           fill="{{ACCENT3_COLOR}}" fill-opacity="0.1" stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="355" y="374" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{ACCENT3_COLOR}}">{{REL_2}}</text>
+
+  <!-- E1 → Rel2 -->
+  <line x1="215" y1="280" x2="325" y2="360" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+  <text x="250" y="330" font-family="{{FONT_FAMILY}}" font-size="10" font-weight="bold" fill="{{TEXT_COLOR}}">M</text>
+
+  <!-- Rel2 → E3 -->
+  <line x1="400" y1="370" x2="498" y2="380" stroke="{{ARROW_COLOR}}" stroke-width="2"/>
+  <text x="460" y="368" font-family="{{FONT_FAMILY}}" font-size="10" font-weight="bold" fill="{{TEXT_COLOR}}">N</text>
+
+  <!-- ====== 关系 3: E2 → E3 (1:1) 可选 ====== -->
+  <line x1="605" y1="240" x2="605" y2="288" stroke="{{ARROW_COLOR}}" stroke-width="1.5"/>
+  <text x="618" y="260" font-family="{{FONT_FAMILY}}" font-size="10" fill="{{TEXT_COLOR}}">{{REL_3}}</text>
+  <text x="595" y="252" font-family="{{FONT_FAMILY}}" font-size="9" font-weight="bold" fill="{{ACCENT2_COLOR}}">1</text>
+  <text x="595" y="282" font-family="{{FONT_FAMILY}}" font-size="9" font-weight="bold" fill="{{ACCENT3_COLOR}}">1</text>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="30" y="430" width="420" height="55" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="45" y="450" font-family="{{FONT_FAMILY}}"
+        font-size="10" font-weight="bold" fill="{{TITLE_COLOR}}">图例 Legend</text>
+
+  <!-- 实体 -->
+  <rect x="40" y="460" width="30" height="16" rx="3"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.5"/>
+  <text x="78" y="473" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">实体 Entity</text>
+
+  <!-- 关系 -->
+  <polygon points="140,468 155,460 170,468 155,476"
+           fill="{{ACCENT_COLOR}}" fill-opacity="0.15" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="180" y="473" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">关系</text>
+
+  <!-- PK -->
+  <text x="215" y="473" font-family="{{FONT_FAMILY}}" font-size="11" fill="{{ACCENT_COLOR}}">🔑</text>
+  <text x="233" y="473" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">主键 PK</text>
+
+  <!-- FK -->
+  <text x="285" y="473" font-family="{{FONT_FAMILY}}" font-size="11" fill="{{ACCENT2_COLOR}}">🔗</text>
+  <text x="303" y="473" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{TEXT_COLOR}}">外键 FK</text>
+
+  <!-- 基数 -->
+  <text x="355" y="473" font-family="{{FONT_FAMILY}}" font-size="9" fill="{{SUBTITLE_COLOR}}">1:1  1:N  M:N</text>
+</svg>

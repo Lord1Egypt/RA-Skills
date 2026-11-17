@@ -1,44 +1,62 @@
-## Description: <br>
-Helps OpenClaw agents search products, confirm shipping details, and place immediate or scheduled purchases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an OpenClaw agent search products and complete immediate or scheduled purchases after user selection and address confirmation.
 
-## Publisher: <br>
-[atomicservice](https://clawhub.ai/user/atomicservice) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atomicservice](https://clawhub.ai/user/atomicservice)
 
-## Use Case: <br>
-OpenClaw users use this skill to search shopping results, select goods, confirm delivery information, and automate immediate or scheduled purchases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place and schedule purchases using stored credentials and delivery addresses. <br>
-Mitigation: Install only when the publisher is trusted, protect the configuration file, and confirm purchase authority before enabling the skill. <br>
-Risk: Bundled or persistent configuration can expose cloud auth codes and shipping address data. <br>
-Mitigation: Replace or remove bundled config values before use, keep credentials scoped, and avoid sharing the configured skill directory. <br>
-Risk: Scheduled purchases may spend money later when the user is not present. <br>
-Mitigation: Schedule purchases only when the user can review or cancel the task and accepts delayed execution. <br>
-Risk: The skill depends on a remote shopping service for search and purchase execution. <br>
-Mitigation: Verify the configured remote service before use and review command outputs before completing purchases. <br>
+## Use Case:
 
+External users use this skill through OpenClaw to search for goods, choose a product, confirm or update a shipping address, and place an immediate or scheduled purchase.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/atomicservice/hi-shopping) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown product lists, JSON command results, shell command guidance, and configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local session cache and confirmation files while completing shopping flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can place immediate or scheduled real-world purchase orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit invocation, product selection, address confirmation, and final confirmation before any order is placed.
+
+Risk: Packaged configuration includes credential and delivery-address fields that may expose sensitive data.
+
+Mitigation: Replace packaged credentials and address data before installation and avoid showing full addresses in chat unless necessary for confirmation.
+
+Risk: Scheduled purchases and automatic result push can execute when the user is no longer present.
+
+Mitigation: Disable scheduled purchase and auto-push by default or tightly restrict them to trusted users and bounded purchase authority.
+
+Risk: Security evidence reports unsafe command, path, and input-validation issues.
+
+Mitigation: Review and fix command construction, path handling, and input validation before using the skill with real payment authority.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/atomicservice/skills/hi-shopping)
+- [SEAP API Endpoint](https://with-ai.cn:38080)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON configuration or result data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write session cache, confirmation, task, and purchase-result JSON files during operation.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

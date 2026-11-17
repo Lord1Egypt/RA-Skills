@@ -1,0 +1,98 @@
+part: i.MX_RT1170
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: i.MX RT Crossover MCU (dual-core M7 + M4 heterogeneous)
+main_page: https://www.nxp.com/products/i.MX-RT1170
+datasheet_path_expected: ../../embedded_dev/nxp/datasheet/iMX-RT1170_datasheet.pdf
+created_at: '2026-06-21T10:46:00+08:00'
+specs:
+  cores:
+  - Arm Cortex-M7 @ 1 GHz (application processor, 512 KB TCM)
+  - Arm Cortex-M4 @ 400 MHz (real-time / peripheral offload, 256 KB TCM)
+  performance:
+    coremark: 6468 (across both cores)
+  memory:
+    sram: 2 MB total
+    sram_breakdown:
+      m7_tcm: 512 KB
+      m4_tcm: 256 KB
+  connectivity:
+    ethernet:
+    - 2x GbE with AVB (Audio Video Bridging)
+    - 2x GbE with TSN (Time-Sensitive Networking)
+    display_camera:
+    - MIPI CSI (camera)
+    - MIPI DSI (display)
+    wireless: via companion ICs (e.g. IW612 Wi-Fi 6 + BT 5.4 + 802.15.4)
+  multimedia:
+    gpu: 2D GPU (vs RT1064's bare 2D acceleration engine)
+  security:
+    features:
+    - Secure Boot
+    - Hardware crypto engines
+    - EdgeLock Assurance program part (NXP security-by-design)
+  ecosystem:
+    software:
+    - MCUXpresso ecosystem (IDE, config, security provisioning, SDK)
+    - Zephyr RTOS support
+    related_products:
+    - FS26 (ASILD safety system basis chip)
+    - PF9453 (low power multi-rail PMIC for i.MX 91/93, simple Linux)
+    - i.MX-RT1160 (dual-core M7+M4 at lower speed/memory)
+    - IW612 (Wi-Fi 6 + BT 5.4 + 802.15.4 companion)
+    - PF5020 (automotive multi-channel PMIC, ASIL B)
+  applications_summary:
+    automotive:
+    - Digital Cluster
+    - Driver Monitoring Systems (DMS) and Occupant Monitoring Systems
+    - HVAC
+    consumer:
+    - AC
+    - Home Appliances System Control
+    - Major Home Appliances
+    - Point-of-Sales
+    - Robotic Appliance
+    - Small and Medium Appliances
+    industrial:
+    - Automatic Vehicle Identification
+    - BLDC Motor Control
+    - Building Safety
+    - Building Security
+    - Circuit Breaker
+    - Fleet Management
+    - General Avionics
+    - Home Control Panel
+    - In-Home Energy Display
+    - Industrial HMI
+    - Intermediate Flight Controller
+    - Inventory / SCM
+    - Motor Drives
+    - POS Terminal
+    - Power Grid Converter
+    - Smart Lock
+    - Smart Power Socket
+    - Solar PV
+    - Transport Ticketing
+    - Vision and Advanced Sensing
+  use_case_tier_hints:
+  - 'Industrial gateway with HMI: RT1170 + GbE (TSN) + MIPI-DSI display'
+  - 'Automotive digital cluster: RT1170 + MIPI-DSI + AVB + EdgeLock Assurance'
+unverified:
+- exact_flash_options_per_variant
+- exact_ethernet_throughput_under_tsn_load
+- exact_gpu_api_surface
+- exact_secure_boot_implementation_levels
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 (datasheet). Enriched on 2026-06-30 with marketing-level specs from\
+  \ nxp.com product page via Firecrawl (307,447 bytes raw, manual enrich of _clean.md since clean_markdown.py over-strips\
+  \ NXP single-H1 pages \u2014 see Gap #1 in .planning/v0.4.0-resume.md)."
+- First crossover MCU with M7 + M4 heterogeneous cores, 1 GHz capable.
+- 'Auto-update: NXP/i.MX_RT1170 datasheet download failed on 2026-06-23; YAML remains primary source is product page; deep
+  register map still requires manual datasheet download via nxp.com myPortal.'
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify against local datasheet PDF: 42/53 spec fields matched
+  (79%). Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-30T09:09:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract (keyed) of nxp.com product page markdown + manual enrich
+extraction_source: references/semiconductor-vendor/NXP/firecrawl-snapshots/iMX-RT1170_clean.md
+extraction_source_raw: references/semiconductor-vendor/NXP/firecrawl-snapshots/iMX-RT1170_raw.md
+extraction_credits_used: 1

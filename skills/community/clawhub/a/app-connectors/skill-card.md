@@ -1,41 +1,54 @@
-## Description: <br>
-Connect your AI agent to 1000+ apps - discover tools, manage OAuth connections, execute actions, and provide a self-service connector dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect your AI agent to 1000+ apps - discover tools, manage OAuth connections, execute actions, and provide a self-service connector dashboard.
 
-## Publisher: <br>
-[ts-sz](https://clawhub.ai/user/ts-sz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ts-sz](https://clawhub.ai/user/ts-sz)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect agents to third-party apps through Composio OAuth, discover app tools, manage active connections, and execute app actions after confirming the target account and action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent act across connected third-party accounts. <br>
-Mitigation: Use a scoped Composio API key and limit enabled OAuth connections to the apps and accounts required for the deployment. <br>
-Risk: The skill can send messages, change records, disconnect apps, or run batches without enough built-in confirmation guidance. <br>
-Mitigation: Require explicit confirmation of the target app, account, action, recipient or resource, and exact content before executing mutating or external-facing actions. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent discover Composio-backed app tools, manage OAuth connections, list connected apps, and execute actions in connected third-party services.
 
-## Reference(s): <br>
-- [App Connectors release page](https://clawhub.ai/ts-sz/app-connectors) <br>
-- [Composio Docs](https://docs.composio.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scoped COMPOSIO_API_KEY and active OAuth connections for target apps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can enable broad Composio-mediated access to connected third-party apps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a project-scoped COMPOSIO_API_KEY, limit connected apps to the operational need, and avoid letting the agent search unrelated secret stores.
+
+Risk: The security summary says the skill does not clearly require user confirmation for side-effecting actions.
+
+Mitigation: Require explicit approval before sends, writes, deletes, disconnects, or bulk actions in external services.
+
+## Reference(s):
+
+- [Composio Docs](https://docs.composio.dev)
+- [ClawHub App Connectors skill page](https://clawhub.ai/ts-sz/skills/app-connectors)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline bash and curl examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a project-scoped COMPOSIO_API_KEY and active user-approved OAuth connections before side-effecting tool execution.]
+
+## Skill Version(s):
+
+5.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

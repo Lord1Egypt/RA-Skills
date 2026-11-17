@@ -1,0 +1,8 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/decision-log.schema.json",
+  "schemaVersion": "majia.koubo.decisions.v1",
+  "runId": "run-negative-risk",
+  "decisions": [
+    {"decisionId": "dec-001", "type": "whole-sentence", "risk": "low", "action": "remove", "spokenExcerpt": "完整观点", "resultExcerpt": "已删除", "reason": "错误示例", "evidenceRefs": ["logical:word-range-001"], "status": "applied", "approvalRequired": false, "approvalRef": null}
+  ]
+}

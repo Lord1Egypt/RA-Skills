@@ -1,0 +1,141 @@
+{
+  "provenance": {
+    "source": "compromised-wallet table in the ainative repository CLAUDE.md (operator security policy)",
+    "description": "Addresses recorded there as compromised (leaked key, drained wallet) or as attacker aggregation points, vendored into this repo so the check works offline and cannot be silently disabled.",
+    "syncDate": "2026-08-08",
+    "syncedOn": "2026-08-08",
+    "addressCount": 18,
+    "addressesSha256": "12cb2019f4b93bde94d8f5bea594009620a3e4ae9d6b6d4d389912da7144d085",
+    "shaAlgorithm": "sha256(JSON.stringify(entries.map(e => e.address)))",
+    "digestScope": "The digest proves only that this vendored list has not been edited since the sync date. It is NOT a signature by the upstream source and does not attest that the upstream table still matches.",
+    "failMode": "closed — if this file is missing, malformed, empty, or the digest does not match, every send is refused"
+  },
+  "entries": [
+    {
+      "address": "GD2UZOA5RFWILHTPQL6CDTLIT6XPEGZQXJX4NWQC7ZU7DCEXK5NSQ2GH",
+      "chain": "stellar",
+      "family": "stellar",
+      "reportedOn": "2026-05-24",
+      "note": "Reported compromised by the operator; blacklisted preemptively"
+    },
+    {
+      "address": "0x8FE7155119d2975780c9e19B07dD98393965Bc2a",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-06-26",
+      "note": "Wallet drained in a reported key-compromise incident"
+    },
+    {
+      "address": "0xa9E3Da13EF5eADFC6EcB2BB6BDddE95016B567dB",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-06-26",
+      "note": "Wallet drained in a reported key-compromise incident"
+    },
+    {
+      "address": "0x5772FBe7a7817ef7F586215CA8b23b8dD22C8897",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-06-26",
+      "note": "Wallet drained in a reported key-compromise incident"
+    },
+    {
+      "address": "AEEtekA2EBYVy3e5Xx8fD3GkjWSoCsLvLzdD6pZTgHiH",
+      "chain": "solana",
+      "family": "solana",
+      "reportedOn": "2026-06-26",
+      "note": "Wallet drained in a reported key-compromise incident"
+    },
+    {
+      "address": "TBcegJf63xa5r7hi5jmqSsTnSEAAFkUcGu",
+      "chain": "tron",
+      "family": "tron",
+      "reportedOn": "2026-06-26",
+      "note": "Wallet drained in a reported key-compromise incident"
+    },
+    {
+      "address": "0x44d6B5a11FFc5Ba1043734d88af5E5dea36a648A",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-06-26",
+      "note": "Attacker aggregation address — never interact"
+    },
+    {
+      "address": "0x467AeD16d024405116cF4Ba12976Bf63B404517b",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-06-26",
+      "note": "Attacker aggregation address — never interact"
+    },
+    {
+      "address": "a23F2uanwzTDtWJmPK1y1DiKbnR7vCNZTqdQEacRz8W",
+      "chain": "solana",
+      "family": "solana",
+      "reportedOn": "2026-06-26",
+      "note": "Attacker aggregation address — never interact"
+    },
+    {
+      "address": "0xF621Ee3BaE3cbE924Ec05f795d14E31384Bd11b6",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-06-26",
+      "note": "Attacker aggregation address — never interact"
+    },
+    {
+      "address": "9Ms2FNXMY9ucKwzxcnGxvqMcfSkBhRdPZhrsj1Ui1KiN",
+      "chain": "solana",
+      "family": "solana",
+      "reportedOn": "2026-06-26",
+      "note": "Attacker aggregation address — never interact"
+    },
+    {
+      "address": "0x49CD5655Cc9bf7c7C93fBb2DF36AA3020d11eEe0",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-07-03",
+      "note": "Retired test wallet declared leaked"
+    },
+    {
+      "address": "EHhTSkqPpu4TENNpdyLewgxaMckSUke3c9hoNVu6zNMA",
+      "chain": "solana",
+      "family": "solana",
+      "reportedOn": "2026-07-03",
+      "note": "Retired test wallet declared leaked"
+    },
+    {
+      "address": "He9F3sHpDLN1br4Ts7AHpqQbGZaDkqgu2QK6dw93RpAk",
+      "chain": "solana",
+      "family": "solana",
+      "reportedOn": "2026-07-03",
+      "note": "Retired test wallet declared leaked"
+    },
+    {
+      "address": "GAN3YSPDH5VW7YFJJFUJH7LIYTJBWGH3GJMKOG6FP5RKHXGNMPX44UYY",
+      "chain": "stellar",
+      "family": "stellar",
+      "reportedOn": "2026-07-03",
+      "note": "Retired test wallet declared leaked"
+    },
+    {
+      "address": "TE78sm1mFajxtPjKMWQkLQTaBKQVqJVum4",
+      "chain": "tron",
+      "family": "tron",
+      "reportedOn": "2026-07-09",
+      "note": "Reported leaked wallet"
+    },
+    {
+      "address": "0xa9BacE1614d6cFf8aa159A2A41eE8BaA9a91Cc7B",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-07-15",
+      "note": "Rotated-out hot wallet; private key leaked"
+    },
+    {
+      "address": "0xfD0e6fA2ABA8436e95f3Fb3523AC14Ba299c0e79",
+      "chain": "evm",
+      "family": "evm",
+      "reportedOn": "2026-08-06",
+      "note": "Hot wallet with a compromised key; sweeper assumed active"
+    }
+  ]
+}

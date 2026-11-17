@@ -1,0 +1,689 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/SkillMelody/PPT-Smith/main/schemas/v4/presentation-ir.schema.json",
+  "title": "Presentation IR v4",
+  "description": "Model-authored semantic contract for PPT Smith. The model owns source understanding, narrative, visible content, chart/diagram data, speaker notes, and—on Template route—component intent. Route runtimes validate and execute those decisions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "deck", "sources", "slides"],
+  "properties": {
+    "schema_version": {
+      "enum": ["4.0.0", "4.1.0"],
+      "description": "Contract version. 4.1.0 adds native chart/diagram payloads and model-directed authoring metadata; 4.0.0 IRs remain valid for diagnostic compatibility."
+    },
+    "deck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "language"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "language": { "type": "string", "pattern": "^[a-z]{2}(-[A-Za-z]{2,8})?$", "description": "BCP-47 primary language of deck text, e.g. zh, zh-CN, en." },
+        "purpose": { "type": "string", "maxLength": 300 },
+        "audience": { "type": "string", "maxLength": 120 },
+        "narrative_intent": {
+          "type": "string",
+          "enum": ["report", "product", "research", "proposal", "training", "generic"],
+          "description": "Optional hint selecting a Narrative Grammar scaffold. Engine falls back to 'generic' when absent."
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "items": { "$ref": "#/$defs/source" },
+      "description": "Documents the deck is derived from. Every source_ref.source_id must match one entry."
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 40,
+      "items": { "$ref": "#/$defs/slide" }
+    },
+    "x_semantics": {
+      "type": "object",
+      "description": "Open extension slot at deck level for richer semantics (rhetorical structure, narrative arc, emphasis strategy). The engine uses keys it understands and ignores the rest. Never required."
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "type"],
+      "properties": {
+        "source_id": { "$ref": "#/$defs/idSlug" },
+        "type": { "type": "string", "enum": ["html", "markdown", "docx", "pdf", "text", "data", "image"] },
+        "title": { "type": "string", "maxLength": 200 },
+        "path": { "type": "string", "maxLength": 500 },
+        "url": { "type": "string", "maxLength": 1000 }
+      }
+    },
+    "idSlug": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]{0,63}$"
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "loc"],
+      "properties": {
+        "source_id": { "$ref": "#/$defs/idSlug" },
+        "loc": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*_[0-9]+(#[0-9]+-[0-9]+)?$",
+          "description": "Structural anchor emitted by the deterministic parser: <element>_<index>, optional #start-end character span. Examples: para_12, h2_3, table_2, list_4#0-2."
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Optional exact substring of the referenced element. When present the engine verifies it verbatim; mismatch rejects the IR."
+        }
+      },
+      "description": "Provenance anchor. Facts, metrics, quotes and tables MUST carry one; the engine deterministically verifies anchored content against the parsed source and rejects fabrication."
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "from", "to"],
+      "properties": {
+        "type": { "type": "string", "enum": ["causal", "comparison", "sequence", "hierarchy", "dependency", "contrast"] },
+        "from": { "$ref": "#/$defs/idSlug" },
+        "to": { "$ref": "#/$defs/idSlug" },
+        "label": { "type": "string", "maxLength": 80 }
+      },
+      "description": "Semantic relation between two blocks on the same slide, referenced by block id. Informs (but does not dictate) archetype selection."
+    },
+    "textBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "text"],
+      "properties": {
+        "id": { "$ref": "#/$defs/idSlug" },
+        "role": { "type": "string", "enum": ["insight", "risk", "recommendation", "context"] },
+        "text": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "source_refs": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/sourceRef" },
+          "description": "Supporting evidence for model-synthesized statements. Optional but strongly encouraged; unanchored synthesis is rendered with lower visual authority."
+        }
+      }
+    },
+    "factBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "text", "source_ref"],
+      "properties": {
+        "id": { "$ref": "#/$defs/idSlug" },
+        "role": { "type": "string", "enum": ["fact", "quote"] },
+        "text": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "source_ref": { "$ref": "#/$defs/sourceRef" }
+      }
+    },
+    "metricBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "label", "value", "source_ref"],
+      "properties": {
+        "id": { "$ref": "#/$defs/idSlug" },
+        "role": { "const": "metric" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "value": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "unit": { "type": "string", "maxLength": 20 },
+        "baseline": { "type": "string", "maxLength": 40, "description": "Reference value the metric is compared against, e.g. last year, target." },
+        "delta": { "type": "string", "maxLength": 40, "description": "Change expression, e.g. +36%, -2.8pct." },
+        "source_ref": { "$ref": "#/$defs/sourceRef" }
+      }
+    },
+    "listBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "items"],
+      "properties": {
+        "id": { "$ref": "#/$defs/idSlug" },
+        "role": { "const": "list" },
+        "ordered": { "type": "boolean", "default": false },
+        "semantics": {
+          "type": "string",
+          "enum": ["plain", "steps", "stages", "options", "criteria", "findings"],
+          "description": "What the list means, not how it looks. steps/stages inform process/timeline archetype rules."
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["text"],
+            "properties": {
+              "text": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "detail": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "One-sentence elaboration of the step/option (renders as the card body)."
+              },
+              "action_items": {
+                "type": "array",
+                "maxItems": 6,
+                "items": { "type": "string", "minLength": 1, "maxLength": 120 },
+                "description": "Concrete actions under this step (render as accent bullet points). Content semantics, not layout."
+              },
+              "source_ref": { "$ref": "#/$defs/sourceRef" },
+              "source_refs": {
+                "type": "array",
+                "maxItems": 16,
+                "items": { "$ref": "#/$defs/sourceRef" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "tableBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "source_ref"],
+      "properties": {
+        "id": { "$ref": "#/$defs/idSlug" },
+        "role": { "const": "table" },
+        "source_ref": { "$ref": "#/$defs/sourceRef", "description": "Must anchor a table_N element; the engine pulls cell content from the parsed source, so the model never retypes tables." },
+        "caption": { "type": "string", "maxLength": 200 },
+        "column_filter": {
+          "type": "array",
+          "maxItems": 12,
+          "items": { "type": "integer", "minimum": 0 },
+          "description": "Optional 0-based column indexes to keep, in order. Absent = all columns."
+        },
+        "row_offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000,
+          "description": "Optional 0-based offset into data rows (header excluded), used to split a dense source table across readable slides."
+        },
+        "row_limit": { "type": "integer", "minimum": 1, "maximum": 30 }
+      }
+    },
+    "imageBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "asset_ref"],
+      "properties": {
+        "id": { "$ref": "#/$defs/idSlug" },
+        "role": { "const": "image" },
+        "asset_ref": { "type": "string", "minLength": 1, "maxLength": 300, "description": "Key into the asset manifest, or a source image anchor img_N." },
+        "asset_kind": {
+          "type": "string",
+          "enum": ["illustration", "photo", "non_reconstructable_figure", "data_figure", "page_screenshot"]
+        },
+        "reconstructable": { "type": "boolean" },
+        "crop_audit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["includes_page_header", "includes_page_footer", "includes_navigation", "includes_body_prose"],
+          "properties": {
+            "includes_page_header": { "type": "boolean" },
+            "includes_page_footer": { "type": "boolean" },
+            "includes_navigation": { "type": "boolean" },
+            "includes_body_prose": { "type": "boolean" },
+            "text_area_ratio": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "caption": { "type": "string", "maxLength": 200 },
+        "source_ref": { "$ref": "#/$defs/sourceRef" },
+        "source_refs": {
+          "type": "array",
+          "maxItems": 32,
+          "items": { "$ref": "#/$defs/sourceRef" }
+        }
+      }
+    },
+    "block": {
+      "oneOf": [
+        { "$ref": "#/$defs/factBlock" },
+        { "$ref": "#/$defs/metricBlock" },
+        { "$ref": "#/$defs/listBlock" },
+        { "$ref": "#/$defs/tableBlock" },
+        { "$ref": "#/$defs/imageBlock" },
+        { "$ref": "#/$defs/textBlock" }
+      ]
+    },
+    "chart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "data", "source_ref"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/idSlug",
+          "description": "Required by slides[].charts[] so every native chart has an independent binding identity; optional for the legacy singular slide.chart payload."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["column", "bar", "line", "pie", "doughnut", "combo"],
+          "description": "Chart family. combo renders a column + line overlay (dual-series)."
+        },
+        "data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["categories", "series"],
+          "properties": {
+            "categories": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 20,
+              "items": { "type": "string", "maxLength": 60 }
+            },
+            "series": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "values"],
+                "properties": {
+                  "name": { "type": "string", "minLength": 1, "maxLength": 60 },
+                  "values": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 20,
+                    "items": { "type": "number" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "source_ref": {
+          "$ref": "#/$defs/sourceRef",
+          "description": "Anchor for the underlying data (usually a table_N or a metrics paragraph)."
+        }
+      }
+    },
+    "diagramIr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["diagram_type"],
+      "properties": {
+        "diagram_type": {
+          "type": "string",
+          "enum": ["causal_chain", "phase_roadmap", "layered_architecture", "heat_matrix", "drill_down_stair", "interaction_storyboard", "product_ui_overview"],
+          "description": "Diagram family the engine renders natively."
+        },
+        "nodes": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 24,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label"],
+            "properties": {
+              "id": { "$ref": "#/$defs/idSlug" },
+              "label": { "type": "string", "minLength": 1, "maxLength": 80 },
+              "role": { "type": "string", "maxLength": 40 },
+              "priority": { "type": "string", "enum": ["primary", "secondary", "supporting"] },
+              "detail": { "type": "string", "maxLength": 200 }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "maxItems": 40,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["from", "to"],
+            "properties": {
+              "from": { "type": "string", "minLength": 1 },
+              "to": { "type": "string", "minLength": 1 },
+              "relation": {
+                "type": "string",
+                "enum": ["causal", "sequence", "hierarchy", "dependency", "data_flow", "feedback"]
+              },
+              "label": { "type": "string", "maxLength": 80 }
+            }
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "$ref": "#/$defs/sourceRef" }
+        },
+        "matrix": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rows", "columns", "values"],
+          "properties": {
+            "rows": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": { "type": "string", "maxLength": 60 }
+            },
+            "columns": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": { "type": "string", "maxLength": 60 }
+            },
+            "values": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 12,
+                "items": { "type": "number" }
+              }
+            },
+            "value_suffix": { "type": "string", "maxLength": 10 },
+            "highlighted_cells": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": "integer", "minimum": 0 }
+              }
+            }
+          },
+          "description": "heat_matrix payload: row/column labels and a numeric grid. Only for diagram_type=heat_matrix."
+        }
+      }
+    },
+    "refine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "enum": ["split", "wheel", "contrast", "spotlight"] },
+        "left": {
+          "$ref": "#/$defs/refineSlot",
+          "description": "split/contrast: the left column's blocks (and optional visual)."
+        },
+        "right": {
+          "$ref": "#/$defs/refineSlot",
+          "description": "split/contrast: the right column's blocks (and optional visual)."
+        },
+        "hub": {
+          "$ref": "#/$defs/refineSlot",
+          "description": "wheel: the central hub block."
+        },
+        "spokes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/idSlug" },
+          "description": "wheel: block ids radiating from the hub (1..4)."
+        },
+        "spotlight": {
+          "$ref": "#/$defs/refineSlot",
+          "description": "spotlight: the single emphasized block."
+        },
+        "supporting": {
+          "$ref": "#/$defs/refineSlot",
+          "description": "spotlight: supporting blocks below the emphasized one."
+        }
+      },
+      "description": "Legacy Standard-route composition hint. Bespoke and Template delivery use the model-authored component_intent and authoring code instead."
+    },
+    "refineSlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+        },
+        "visual": {
+          "type": "object",
+          "description": "Optional visual in this slot: {chart: {...}} or {diagram_ir: {...}} (v4.1 payload shapes).",
+          "additionalProperties": false,
+          "properties": {
+            "chart": { "$ref": "#/$defs/chart" },
+            "diagram_ir": { "$ref": "#/$defs/diagramIr" }
+          }
+        }
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier"],
+      "properties": {
+        "tier": { "type": "string", "enum": ["L1", "L2"] },
+        "archetype_choice": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "L1: an archetype name the model wants. Valid only if it appears in the engine's own candidate menu for this slide (decide_deck candidates); anything else is rejected and falls back to the rule choice."
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["block_ids"],
+            "properties": {
+              "block_ids": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 4,
+                "items": { "$ref": "#/$defs/idSlug" },
+                "description": "L2: one grid row. Blocks must exist on this slide (have explicit ids), be used exactly once, and stay within 1..4 per row."
+              }
+            }
+          },
+          "description": "L2: the proposed row/column grid assignment of this slide's blocks. The engine lays out the grid and QA-gates it; a rejected proposal falls back to the rule archetype."
+        }
+      },
+      "description": "Legacy Standard-route proposal surface retained for compatibility; it is not the V4 production authoring authority."
+    },
+    "speakerNotes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["narrative", "evidence_ids", "source_refs"],
+      "properties": {
+        "narrative": {
+          "type": "string",
+          "minLength": 80,
+          "maxLength": 5000,
+          "description": "Speaker-ready explanation that expands the concise visible slide without duplicating it verbatim."
+        },
+        "talking_points": {
+          "type": "array",
+          "maxItems": 12,
+          "items": { "type": "string", "minLength": 1, "maxLength": 500 }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "items": { "$ref": "#/$defs/sourceRef" }
+        },
+        "caveats": {
+          "type": "array",
+          "maxItems": 12,
+          "items": { "type": "string", "minLength": 1, "maxLength": 500 }
+        }
+      }
+    },
+    "componentIntent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "semantic_use", "element_count", "topology", "required_slots"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["template_reuse", "template_composition", "model_authored"]
+        },
+        "semantic_use": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "element_count": { "type": "integer", "minimum": 1, "maximum": 64 },
+        "family": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "archetype": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "composition_role": {
+          "type": "string",
+          "enum": ["primary", "supporting", "context", "navigation", "decoration"]
+        },
+        "text_requirements": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 1, "maximum": 5000 }
+        },
+        "data_shape": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": {
+            "kind": { "type": "string", "enum": ["none", "chart", "table", "image", "diagram"] },
+            "chart_type": { "type": "string", "enum": ["column", "bar", "line", "pie", "doughnut", "combo", "scatter"] },
+            "series_count": { "type": "integer", "minimum": 1, "maximum": 32 },
+            "category_count": { "type": "integer", "minimum": 1, "maximum": 100 },
+            "row_count": { "type": "integer", "minimum": 1, "maximum": 1000 },
+            "column_count": { "type": "integer", "minimum": 1, "maximum": 100 }
+          }
+        },
+        "topology": {
+          "type": "string",
+          "enum": ["statement", "comparison", "trend", "sequence", "causal", "hierarchy", "matrix", "risk_mitigation", "dashboard", "method"]
+        },
+        "required_slots": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 24,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+        },
+        "candidate_component_ids": {
+          "type": "array",
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+        },
+        "selected_component_ids": {
+          "type": "array",
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+        },
+        "rejected_candidates": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["component_id", "reason"],
+            "properties": {
+              "component_id": { "type": "string", "minLength": 1, "maxLength": 160 },
+              "reason": { "type": "string", "minLength": 1, "maxLength": 500 }
+            }
+          }
+        },
+        "new_component_id": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "style_reference_component_ids": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "description": "Reviewed template components whose visual grammar the model-authored component must inherit."
+        }
+      }
+    },
+    "slide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "blocks"],
+      "properties": {
+        "id": { "$ref": "#/$defs/idSlug" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "message": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "The single takeaway of the slide. Optional enrichment; strongly improves title/anchor treatment."
+        },
+        "slide_role": {
+          "type": "string",
+          "enum": ["cover", "section", "content", "closing"],
+          "description": "Narrative position. Optional; the engine infers cover/closing from position when absent."
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": { "$ref": "#/$defs/block" }
+        },
+        "relations": {
+          "type": "array",
+          "maxItems": 12,
+          "items": { "$ref": "#/$defs/relation" }
+        },
+        "chart": {
+          "$ref": "#/$defs/chart",
+          "description": "Optional data-visualization payload. When present the engine renders a native chart instead of an inferred archetype. Numbers must come from the source (source_ref required)."
+        },
+        "charts": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 12,
+          "items": {
+            "allOf": [
+              { "$ref": "#/$defs/chart" },
+              { "required": ["id"] }
+            ]
+          },
+          "description": "Optional named multi-chart payload for reviewed native dashboards. Each id binds independently as bind:chart:<slide_id>:<chart_id>."
+        },
+        "diagram_ir": {
+          "$ref": "#/$defs/diagramIr",
+          "description": "Optional relationship/process diagram. When present the engine renders a native diagram (causal chain, roadmap, architecture, matrix…). Nodes/edges describe structure only — never positions, colors, or shapes."
+        },
+        "speaker_notes": {
+          "$ref": "#/$defs/speakerNotes",
+          "description": "Detailed evidence, interpretation, caveats, and delivery narrative kept out of visible slide copy."
+        },
+        "component_intent": {
+          "$ref": "#/$defs/componentIntent",
+          "description": "Template-route model decision describing reuse, composition, or a new native component."
+        },
+        "proposal": {
+          "$ref": "#/$defs/proposal",
+          "description": "Standard-route constrained composition proposal. Bespoke and model-authored Template components use their route-specific authoring contracts."
+        },
+        "refine": {
+          "$ref": "#/$defs/refine",
+          "description": "Optional page-level composition intent (P12-refine Level 1): a capable model may describe HOW a slide should be composed (split columns, wheel/flywheel, contrast, spotlight) and which blocks fill each slot. The engine compiles the intent into concrete geometry and QA-gates the result; an unsupported or invalid intent degrades honestly to the rule archetype. Never required."
+        },
+        "hints": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "emphasis_block_ids": {
+              "type": "array",
+              "maxItems": 3,
+              "items": { "$ref": "#/$defs/idSlug" },
+              "description": "Blocks the model considers most important. A ranking hint, not a layout instruction."
+            },
+            "tone": { "type": "string", "enum": ["professional", "editorial", "technical", "energetic", "minimal"] }
+          },
+          "description": "Bounded emphasis metadata; route-specific authoring contracts may grant the model broader composition authority."
+        },
+        "x_semantics": {
+          "type": "object",
+          "description": "Open extension slot at slide level. Engine uses known keys, ignores unknown ones."
+        }
+      }
+    }
+  }
+}

@@ -39,7 +39,9 @@ export const PAYOUT_TOKENS = {
     USDT: {
         1: { address: "0xdac17f958d2ee523a2206206994597c13d831ec7", decimals: 6 },
         42161: { address: "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9", decimals: 6 },
-        8453: { address: "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", decimals: 6 },
+        // Base (8453) intentionally absent: the Rozo API does not support USDT on
+        // Base in either direction ("Unsupported token USDT for chain 8453").
+        // Base is USDC-only.
         56: { address: "0x55d398326f99059ff775485246999027b3197955", decimals: 18 },
         137: { address: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f", decimals: 6 },
     },
@@ -53,4 +55,23 @@ export function getChainName(chainId) {
 }
 export function isPayoutSupported(chainId, token) {
     return PAYOUT_TOKENS[token]?.[chainId] !== undefined;
+}
+/**
+ * Parse a chain argument that may be either a numeric ID ("8453") or a
+ * case-insensitive chain name ("base", "stellar", "solana", "ethereum",
+ * "arbitrum", "bsc", "polygon"). Returns the numeric chain ID, or null
+ * if the input resolves to neither.
+ */
+export function parseChain(input) {
+    const trimmed = input.trim();
+    if (trimmed === "")
+        return null;
+    // Numeric path
+    if (/^\d+$/.test(trimmed)) {
+        const id = Number(trimmed);
+        return CHAINS[id] ? id : null;
+    }
+    // Name path (case-insensitive)
+    const id = CHAIN_NAME_TO_ID[trimmed.toLowerCase()];
+    return id ?? null;
 }

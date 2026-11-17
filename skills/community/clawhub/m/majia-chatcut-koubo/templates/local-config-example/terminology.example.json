@@ -1,0 +1,15 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/terminology.schema.json",
+  "$comment": "个人词表(机器读)。复制为 ~/.config/majia-chatcut-koubo/terminology.json,把你的真实品牌/产品/行业词与 ASR 误听填进来——品牌实词只放这里,不进公开仓。校验:node scripts/validate-caption-pages.mjs --profile <你的profile> --input <captions.json> --terms ~/.config/majia-chatcut-koubo/terminology.json",
+  "version": "1.1.0",
+  "maintainer": "你的名字",
+  "entries": [
+    {"termId": "term-your-brand", "correct": "你的品牌名", "wrong": ["ASR误听1", "ASR误听2"], "matchMode": "substring", "requiresAudioEvidence": true, "risk": "proper-noun"},
+    {"termId": "term-your-product-cli", "correct": "你的产品名 CLI", "wrong": ["产品名CLI"], "matchMode": "substring", "requiresAudioEvidence": true, "risk": "proper-noun"},
+    {"termId": "term-your-key-number", "correct": "你的关键数字(如 500 家门店)", "wrong": ["50 家门店"], "matchMode": "substring", "requiresAudioEvidence": true, "risk": "number"}
+  ],
+  "shortCardWhitelist": {
+    "$comment": "允许 450-800ms 短卡的英文品牌/缩写整页卡",
+    "approved": ["AI", "BI", "CLI"]
+  }
+}

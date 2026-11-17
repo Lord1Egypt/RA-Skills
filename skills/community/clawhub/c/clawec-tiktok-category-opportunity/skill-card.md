@@ -1,41 +1,55 @@
-## Description: <br>
-Uses the ClawEC API to analyze TikTok category and keyword opportunities, including opportunity scores, creator-sales trends, recent sales metrics, and radar-score breakdowns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill uses the ClawEC API to analyze TikTok category and keyword opportunities, including opportunity score, creator trend, 30-day sales metrics, and radar-style multidimensional scores.
 
-## Publisher: <br>
-[anyunzhong](https://clawhub.ai/user/anyunzhong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anyunzhong](https://clawhub.ai/user/anyunzhong)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and analysts use this skill to evaluate TikTok category or keyword opportunities by market, compare returned keyword candidates, and summarize sales, trend, and radar-score signals in Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live analysis sends TikTok research keywords, selected market codes, and the ClawEC API token to ClawEC. <br>
-Mitigation: Keep the token in CLAWEC_API_KEY, avoid hardcoding credentials, and do not submit confidential business secrets as keywords unless ClawEC's data handling is acceptable for the use case. <br>
+## Use Case:
 
+Cross-border ecommerce operators, category researchers, and agents use this skill to evaluate TikTok product category opportunities by keyword and region. It helps compare opportunity scores, creator activity trends, recent sales performance, and market radar dimensions before prioritizing categories or keywords.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anyunzhong/clawec-tiktok-category-opportunity) <br>
-- [ClawEC API base](https://www.clawec.com/api) <br>
-- [ClawEC API key page](https://www.clawec.com/api-key?source=q-clawhub) <br>
-- [Response schema](artifact/references/response-schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with tables, trend summaries, radar-score interpretation, and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs Chinese opportunity-analysis reports from ClawEC API responses; requires a CLAWEC_API_KEY for live API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Search keywords, selected TikTok region, table preference, and the ClawEC bearer token are sent to clawec.com during API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated ClawEC API key, rotate it normally, and avoid submitting sensitive private data as analysis keywords.
+
+Risk: API calls may consume ClawEC points or incur usage cost, especially when table output is enabled.
+
+Mitigation: Review API costs or point usage before enabling table output and choose table=0 unless structured table data is needed.
+
+## Reference(s):
+
+- [Response schema](references/response-schema.md)
+- [ClawHub skill page](https://clawhub.ai/anyunzhong/skills/clawec-tiktok-category-opportunity)
+- [Publisher profile](https://clawhub.ai/user/anyunzhong)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with optional tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese opportunity-analysis summaries by default; may include ranked keyword tables, trend interpretation, radar score breakdowns, and API error guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

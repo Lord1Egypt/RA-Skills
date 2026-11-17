@@ -1,48 +1,62 @@
-## Description: <br>
-Automates cross-platform social-media content generation and posting workflows for Xiaohongshu, TikTok, and YouTube, including generated posts, video composition, browser upload flows, and reposting workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+跨平台内容自动化发布工作流，支持AI原创内容生成、视频制作、自动发布到小红书、抖音等平台，支持国内视频搬运去重后发布到TikTok/YouTube。
 
-## Publisher: <br>
-[xiatian5](https://clawhub.ai/user/xiatian5) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiatian5](https://clawhub.ai/user/xiatian5)
 
-## Use Case: <br>
-External creators, operators, and developers use this skill to generate, prepare, and publish social-media content across supported platforms. It is especially oriented toward Xiaohongshu image or video posts and TikTok/YouTube video reposting workflows that require account setup and supervised publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores logged-in social-media session state for real accounts. <br>
-Mitigation: Use dedicated accounts, keep auth files out of version control, remove saved sessions when no longer needed, and supervise each publishing session. <br>
-Risk: Automated posting can affect account reputation or trigger platform enforcement. <br>
-Mitigation: Review generated content before publishing, limit posting frequency, and follow each platform's community and automation rules. <br>
-Risk: Reposting or deduplicating third-party videos can create copyright or licensing exposure. <br>
-Mitigation: Use reposting workflows only for content the operator owns or is licensed to redistribute, and retain records of permissions. <br>
+## Use Case:
 
+Content creators, social-media operators, and developers use this skill to generate social-media content, prepare images or video assets, and fill publishing workflows for Xiaohongshu, Douyin, TikTok, and YouTube. It also supports workflow scaffolding for reposting or localizing videos when the user has the right to use the source media.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiatian5/cross-platform-auto-poster) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiatian5) <br>
-- [xiaohongshu-content-automation](https://clawhub.ai/skills/xiaohongshu-content-automation) <br>
-- [playwright-browser-automation](https://clawhub.ai/skills/playwright-browser-automation) <br>
-- [remotion-video-toolkit](https://clawhub.ai/skills/remotion-video-toolkit) <br>
-- [image_generate](https://clawhub.ai/skills/image-generate) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript examples, shell commands, and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of generated media paths, account configuration, browser-upload preparation, and JSONL publish logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, server release metadata) <br>
+Risk: The skill uses browser automation with real social-media accounts and saved login sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test accounts first, keep saved auth files out of repositories and backups, restrict file permissions, and review account access before installation.
+
+Risk: Video reposting and deduplication workflows can create copyright or platform-policy exposure if source media is not owned or licensed.
+
+Mitigation: Avoid repost workflows unless the user owns or has licensed the media, and manually verify rights and platform compliance before upload.
+
+Risk: Generated uploads or automated posting can publish incorrect, low-quality, or policy-violating content.
+
+Mitigation: Review all generated titles, descriptions, images, videos, tags, and upload settings manually before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiatian5/skills/cross-platform-auto-poster)
+- [xiaohongshu-content-automation](https://clawhub.ai/skills/xiaohongshu-content-automation)
+- [playwright-browser-automation](https://clawhub.ai/skills/playwright-browser-automation)
+- [remotion-video-toolkit](https://clawhub.ai/skills/remotion-video-toolkit)
+- [image_generate](https://clawhub.ai/skills/image-generate)
+- [FFmpeg downloads](https://ffmpeg.org/download.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with JavaScript and shell snippets, JSON-style workflow results, and generated media or log file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create browser session state files, generated media assets, and JSONL publishing logs under configured auth and output directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

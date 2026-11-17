@@ -1,42 +1,60 @@
-## Description: <br>
-Ollama Ollama Herd routes requests across a local Ollama fleet through one OpenAI-compatible endpoint, with model scoring, retry, VRAM-aware fallback, image generation, speech-to-text, and embeddings support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ollama Ollama Herd helps agents set up and use Ollama Herd as a self-hosted multimodal router that exposes one OpenAI-compatible Ollama endpoint across macOS, Linux, and Windows devices.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and use a self-hosted Ollama fleet router that selects available local nodes for chat, embeddings, image generation, and speech-to-text workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The auto-pull behavior may download models and change local Ollama node state, using bandwidth, disk, or VRAM unexpectedly. <br>
-Mitigation: Review the ollama-herd package and repository before installing, prefer an isolated environment where practical, and confirm auto-pull behavior before allowing model downloads across nodes. <br>
-Risk: Router or node management commands can affect local fleet availability and data under ~/.fleet-manager/. <br>
-Mitigation: Get user confirmation before restarting router or node agents, deleting local fleet data, or pulling or deleting Ollama models. <br>
+## Use Case:
 
+Developers and engineers use this skill to install Ollama Herd, route local Ollama chat, embeddings, image, and speech-to-text requests through one fleet endpoint, and apply the stated guardrails before changing router state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/ollama-ollama-herd) <br>
-- [ollama-herd package](https://pypi.org/project/ollama-herd/) <br>
-- [Ollama Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline bash, Python, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance covers macOS, Linux, and Windows environments and references local Ollama router configuration paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Supply-chain exposure from installing and running the ollama-herd package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated environment or trusted fleet and pin or review the package before use.
+
+Risk: Prompts, audio, logs, and auto-pulled models may move through local fleet components or be stored in local router paths.
+
+Mitigation: Confirm storage and routing behavior before using sensitive data, and review the configured fleet-manager paths.
+
+Risk: Router, node, or model-management actions can change host state.
+
+Mitigation: Avoid elevated privileges and require user confirmation before restarting services, pulling models, deleting models, or modifying fleet-manager data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twinsgeeks/skills/ollama-ollama-herd)
+- [Ollama Herd package](https://pypi.org/project/ollama-herd/)
+- [Ollama Herd repository](https://github.com/geeks-accelerator/ollama-herd)
+- [Ollama Agent Setup Guide](https://github.com/geeks-accelerator/ollama-herd/blob/main/docs/guides/agent-setup-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with bash, Python, and HTTP API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local endpoints, fleet-manager state paths, and optional Python or sqlite tooling.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter says 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

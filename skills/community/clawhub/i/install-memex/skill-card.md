@@ -1,48 +1,66 @@
-## Description: <br>
-Installs memex, a local-first MCP memory server, and guides CLI agents through discovery, installation, MCP configuration, history backfill, and optional Telegram import. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make Claude, Cursor, Cline, Continue, and Zed remember every AI conversation forever by guiding installation of memex, a local-first MCP memory server backed by a shared SQLite corpus.
 
-## Publisher: <br>
-[sedelev](https://clawhub.ai/user/sedelev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sedelev](https://clawhub.ai/user/sedelev)
 
-## Use Case: <br>
-Developers and external agent users use this skill to install memex locally, connect MCP-compatible clients, and index AI conversations into a searchable SQLite memory. It is intended for users who want cross-client memory and are comfortable reviewing shell commands and local configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The fast path runs an unpinned remote installer. <br>
-Mitigation: Inspect the installer first or use the manual npm installation path before allowing execution. <br>
-Risk: The skill creates a persistent local database of AI and optional chat histories. <br>
-Mitigation: Install only when persistent local memory is desired, and review what sources are indexed before enabling backfill or imports. <br>
-Risk: Auto-capture and auto-context can expose prior local conversations to future agents. <br>
-Mitigation: Consider declining the daemon or auto-context hook, and use explicit per-chat consent for Telegram imports. <br>
-Risk: MCP client configuration changes can affect existing agent tool setup. <br>
-Mitigation: Review MCP configuration diffs and preserve existing server entries when adding memex. <br>
+## Use Case:
 
+Developers and MCP-compatible agent users use this skill to install and configure memex so AI conversation history, selected chat exports, and related local data can be indexed and searched across supported clients.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sedelev/install-memex) <br>
-- [memex homepage](https://memex.parallelclaw.ai) <br>
-- [memex GitHub repository](https://github.com/parallelclaw/memex-mvp) <br>
-- [memex npm package](https://www.npmjs.com/package/memex-mvp) <br>
-- [memex installer source](https://github.com/parallelclaw/memex-mvp/blob/main/docs/install.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are shown before execution; MCP client configuration is described as a merge rather than an overwrite.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.1 (source: frontmatter and server release metadata) <br>
+Risk: The fast install path executes a remote installer and can modify local tool configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the installer or use the documented manual path, review each command before execution, and confirm config changes before writing them.
+
+Risk: The installed memory service can index sensitive AI conversations, chat exports, and local files selected through supported capture flows.
+
+Mitigation: Confirm which sources will be watched, import sensitive chats only with explicit consent, and skip sources that should not be available to future agents.
+
+Risk: Automatic context injection can surface prior conversation content to future agent sessions.
+
+Mitigation: Decline or disable auto-context unless automatic memory injection is desired, and verify the installed hook or client behavior after setup.
+
+Risk: Using sudo for global npm installation can expand the impact of a bad or compromised package install.
+
+Mitigation: Prefer a user-level npm prefix or another non-sudo Node package management setup.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sedelev/skills/install-memex)
+- [memex homepage](https://memex.parallelclaw.ai)
+- [memex npm package](https://www.npmjs.com/package/memex-mvp)
+- [memex source repository](https://github.com/parallelclaw/memex-mvp)
+- [memex installer script](https://github.com/parallelclaw/memex-mvp/blob/main/docs/install.sh)
+- [npm EACCES guidance](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces user-facing installation steps, consent prompts, verification commands, and MCP configuration guidance.]
+
+## Skill Version(s):
+
+1.5.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

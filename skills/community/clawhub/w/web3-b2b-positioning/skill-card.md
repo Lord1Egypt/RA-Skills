@@ -1,42 +1,54 @@
-## Description: <br>
-Expert system for positioning Web3, blockchain, and crypto-native products and services for enterprise B2B buyers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert system for positioning Web3, blockchain, and crypto-native products and services for enterprise B2B buyers.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-External Web3 founders, protocol marketing leads, and blockchain solution sellers use this skill to translate crypto-native products into enterprise-ready positioning, messaging, sales collateral, objection handling, buyer personas, and trust-building proof. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafted positioning may include incorrect or overconfident regulatory, security, ROI, or compliance claims. <br>
-Mitigation: Review claims against approved legal, security, finance, and compliance sources before using the output externally. <br>
-Risk: Prompts may include confidential customer or deal information while developing enterprise sales materials. <br>
-Mitigation: Avoid entering confidential customer data unless the workspace is approved for that information. <br>
+## Use Case:
 
+External Web3 founders, protocol marketing leads, blockchain solution sellers, and security product marketers use this skill to turn crypto-native capabilities into enterprise positioning, messaging, pitch collateral, objection handling, buyer personas, and trust-building materials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renehdzgtz/web3-b2b-positioning) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output for enterprise Web3 positioning; review regulatory, security, ROI, and compliance claims before external use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may activate for generic enterprise sales or security-marketing prompts where Web3-specific framing is not intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants Web3-specific positioning before applying blockchain, crypto, or protocol-focused messaging.
+
+Risk: Generated enterprise claims could imply compliance readiness, security proof, metrics, or customer outcomes that the user has not substantiated.
+
+Mitigation: Use only user-provided proof points for claims and leave unsupported certifications, metrics, client names, or regulatory references as placeholders for review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renehdzgtz/skills/web3-b2b-positioning)
+- [Publisher profile](https://clawhub.ai/user/renehdzgtz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text sales and positioning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include positioning statements, messaging hierarchies, one-pager or pitch deck outlines, objection responses, ICP definitions, buyer personas, and credibility checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

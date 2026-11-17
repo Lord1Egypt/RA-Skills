@@ -1,41 +1,55 @@
-## Description: <br>
-获取实时微博热搜榜单，按热度排序，无需 API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取微博热搜榜单并按热度排序，无需 API Key.
 
-## Publisher: <br>
-[chenzihao0731](https://clawhub.ai/user/chenzihao0731) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenzihao0731](https://clawhub.ai/user/chenzihao0731)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current Weibo trending topics for China-focused news, social media monitoring, or command-line integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Each use contacts the disclosed v2.xxapi.cn third-party service for public Weibo trend data. <br>
-Mitigation: Deploy only where that network call is acceptable, and cache or throttle requests when frequent polling is expected. <br>
+## Use Case:
 
+External users and developers use this skill to fetch current Weibo hot topics for monitoring Chinese social-media trends or integrating trending-topic lists into agent workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chenzihao0731/weibo-hot) <br>
-- [Publisher profile](https://clawhub.ai/user/chenzihao0731) <br>
-- [API homepage](https://v2.xxapi.cn) <br>
-- [Weibo hot topics API](https://v2.xxapi.cn/api/weibohot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands] <br>
-**Output Format:** [Line-oriented text in hotness|title format, with errors written to stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; no API key is requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: The skill makes outbound requests to v2.xxapi.cn when fetching Weibo hot topics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where this external API call is acceptable.
+
+Risk: The upstream API may be unavailable, slow, or rate limited.
+
+Mitigation: Cache results when polling frequently and handle command failures in downstream workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenzihao0731/skills/weibo-hot)
+- [API service homepage](https://v2.xxapi.cn)
+- [Weibo hot topics API](https://v2.xxapi.cn/api/weibohot)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text lines in hot|title format, with optional Markdown guidance from the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; calls v2.xxapi.cn and may be subject to API availability and rate limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-抖音无水印视频下载器，支持分享链接解析、批量下载和元数据保存。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音无水印视频下载器，支持分享链接解析、批量下载和元数据保存。
 
-## Publisher: <br>
-[chall2015](https://clawhub.ai/user/chall2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chall2015](https://clawhub.ai/user/chall2015)
 
-## Use Case: <br>
-External users and developers use this skill to parse public Douyin links, download videos, and optionally save local metadata for personal media workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads public Douyin content and saves media plus optional metadata locally. <br>
-Mitigation: Set an explicit save directory, disable metadata when it is not needed, and review downloaded files before reuse or redistribution. <br>
-Risk: The skill runs Playwright/Chromium and may create debug screenshots during browser extraction. <br>
-Mitigation: Run it in a controlled environment and remove or gate debug screenshot behavior before routine use. <br>
-Risk: Large batch downloads can trigger service rate limits or unwanted local storage growth. <br>
-Mitigation: Keep concurrency low, avoid large batches, and monitor the configured output directory. <br>
-Risk: Dependency and transparency issues were noted by the security scan. <br>
-Mitigation: Update or pin dependencies and review the package contents before installing. <br>
+## Use Case:
 
+External users and developers use this skill to parse Douyin video links, download public videos singly or in batches, and optionally save metadata alongside local media files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chall2015/douyin-downloader-latest) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown status messages with file paths, JSON metadata, JavaScript APIs, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save MP4 media files and optional JSON metadata to a configured local directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The security summary says the browser is launched with browser isolation disabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in a constrained environment and enable the Chromium sandbox before routine use.
+
+Risk: The security summary says the skill silently writes a debug screenshot.
+
+Mitigation: Remove or gate debug screenshot capture and write only to an explicit, dedicated save directory.
+
+Risk: The security summary says the skill downloads remote media without clear safety limits.
+
+Mitigation: Add download size and time limits, keep concurrency bounded, and review downloaded files before reuse or redistribution.
+
+Risk: The security guidance recommends pinning dependencies before trusting routine use.
+
+Mitigation: Install from a lockfile or otherwise pin dependency versions for axios, cheerio, Playwright, and optional media tooling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chall2015/skills/douyin-downloader-latest)
+- [Publisher profile](https://clawhub.ai/user/chall2015)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, json metadata]
+
+**Output Format:** [Status text with downloaded media files and optional JSON metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes video files and optional metadata to a configured save directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

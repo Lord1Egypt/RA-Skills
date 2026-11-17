@@ -1,6 +1,6 @@
 ---
-name: seedance-cog
-description: "AI video generation powered by CellCog via Seedance. Cinematic 1080p video with smooth motion, multi-shot narratives, lipsync, voice synthesis, scoring. Complete videos from a single prompt via ByteDance's Seedance model."
+name: seedance-video-generation-cellcog
+description: "AI video generation powered by CellCog via Seedance 2.5. Complete multi-minute videos from a single prompt: scripting, voice synthesis, lipsync, scoring, editing, with locked character consistency via 50 reference files. Full productions, not just clips, via ByteDance's Seedance model."
 metadata:
   openclaw:
     emoji: "🌱"
@@ -12,11 +12,11 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Seedance Cog - Seedance × CellCog
+# Seedance Video Generation - Seedance × CellCog
 
 **Seedance × CellCog.** ByteDance's #1 video model meets the frontier of multi-agent coordination.
 
-Seedance generates the smoothest motion in AI video — cinematic 1080p with physics that look real. CellCog orchestrates it with scripting, voice synthesis, lipsync, scoring, and editing to produce complete videos from a single prompt. Not just clips — full productions.
+CellCog's core: complete multi-minute films from a single prompt. Seedance 2.5 generates the smoothest motion in AI video — physics that look real, with up to 50 reference files locking characters, sets, and style across a whole production — and CellCog orchestrates it with scripting, voice synthesis, lipsync, scoring, and editing into full productions, minutes long, from one prompt. Not just clips — finished films.
 
 ## How to Use
 
@@ -29,6 +29,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -40,6 +41,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -107,23 +109,25 @@ Script Writing → Scene Planning → Frame Generation → Voice Synthesis
 
 | Spec | Details |
 |------|---------|
-| **Resolution** | Up to 1080p |
-| **Duration** | 3 seconds to 4 minutes |
+| **Resolution** | 720p (the AI-video production standard) |
+| **Duration** | Complete multi-minute productions (4+ minutes) from a single prompt; individual generated takes up to 30 seconds |
+| **References** | Up to 50 files (30 images, 10 videos, 10 audio) for character, set, and style consistency |
 | **Styles** | Photorealistic, cinematic, anime, stylized, documentary |
-| **Audio** | Voice synthesis, background music, sound effects |
+| **Audio** | Voice synthesis, background music, sound effects, lip-synced dialogue |
 | **Output** | MP4 |
 
 ---
 
-## Chat Mode for Video
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Short clips (under 30s), simple videos | `"agent"` |
-| Full productions with scripting, multiple scenes, music | `"agent"` |
-| Grand cinematic productions, complex narratives | `"agent team"` |
+**Use `chat_mode="agent", chat_tier="max"` for video generation.** Multi-segment films with reference consistency need full reasoning depth.
 
-**Use `"agent"` for most video work.** CellCog handles full video production in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Films and multi-segment productions | `chat_mode="agent", chat_tier="max"` |
+| Single short test clips | `chat_mode="agent", chat_tier="flash"` |
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — video generation runs best on Agent max.
 
 ---
 
@@ -143,6 +147,7 @@ Script Writing → Scene Planning → Frame Generation → Voice Synthesis
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

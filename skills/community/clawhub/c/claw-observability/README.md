@@ -1,278 +1,219 @@
 # claw-observability
 
-> **See your AI agents work in real-time.** A visual observability dashboard for Claude Code multi-agent workflows — fully automatic via hooks, zero setup inside the agent, zero code changes.
+> Zero-config, real-time observability for Claude Code multi-agent workflows. See every agent light up, every task complete, every error surface — without writing a single line of reporting code.
 
-**[Try the Live Dashboard](https://claw.ia.br)** &nbsp;|&nbsp; **[Install in 2 minutes](#installation)** &nbsp;|&nbsp; **[How It Works](#how-it-works)**
+**[Live Demo](https://claw.ia.br)** &nbsp;|&nbsp; **[Dashboard Screenshots](#what-you-get)** &nbsp;|&nbsp; **[Install in 2 minutes](#installation)**
 
 ---
 
-## Why This Exists
+## The Problem
 
-If you use Claude Code's **Task tool** to orchestrate multiple agents — a backend agent, a frontend agent, a security reviewer, a database specialist, all running in parallel — you already know the problem:
+You're running Claude Code with the Task tool — orchestrating backend agents, frontend agents, security reviewers, database specialists — all working in parallel. But you have **zero visibility** into what's happening:
 
-**You have no idea what's happening.**
+- Which agents are active right now?
+- Did that security review finish or fail?
+- How long did the database migration task take?
+- Are two agents stuck waiting on each other?
 
-You send a complex prompt. Claude starts working. Maybe it spawns 5 sub-agents. Maybe one fails silently. Maybe two are stuck. Maybe everything is fine and it's just slow. You have absolutely no way to know. You sit there staring at a blinking cursor, waiting for the final response, with zero visibility into the process.
+You're flying blind. The only signal you get is the final response.
 
-This is the gap CLAW fills.
+## The Solution
 
-## What CLAW Does
-
-CLAW gives you a **real-time visual dashboard** where you can see every agent in your Claude Code session — alive, active, and updating in real-time. When you send a message, your root orchestrator lights up on the screen. When the Task tool spawns a sub-agent, that agent appears in the hierarchy, glows green, and you can see what it's working on. When it finishes, it dims. When it fails, it turns red.
-
-All of this happens **automatically**. You don't add any code. You don't modify your agents. You don't write curl commands. You install this skill, set two environment variables, and it works.
-
-Here's what happens under the hood:
+**CLAW Observability** uses Claude Code hooks to automatically intercept every agent lifecycle event and report it to a real-time visual dashboard. No curl commands. No agent instructions. No manual reporting. Just install, set two env vars, and every Task tool invocation becomes a visible, trackable, replayable event.
 
 ```
-You send a message ──→ Hook fires ──→ Dashboard shows orchestrator active
-Claude spawns Task ──→ Hook fires ──→ Sub-agent appears and lights up
-Task completes     ──→ Hook fires ──→ Agent dims, event logged in timeline
-Task fails         ──→ Hook fires ──→ Agent turns red, error captured
-Claude responds    ──→ Hook fires ──→ Orchestrator dims, session complete
+User sends message → Hook fires → Dashboard updates in real-time
+Agent spawns task  → Hook fires → Sub-agent lights up in organogram
+Task completes     → Hook fires → Agent dims, timeline records event
+Task fails         → Hook fires → Agent turns red, error logged
 ```
 
-**The agent is completely unaware CLAW exists.** Hooks operate at the shell level, outside the LLM context window. There's zero performance overhead on the AI — your agents work exactly as they did before, except now you can see everything.
+**The agent never knows CLAW exists.** Hooks operate at the shell level, outside the LLM context. Your agents keep working normally while you get full operational visibility.
 
-## What the Dashboard Looks Like
+## What You Get
 
-### Live Agent Organogram
-An interactive graph powered by React Flow that renders your entire agent hierarchy in real-time. Each agent is a node. Connections show parent-child relationships. When an agent is active, its node glows with a conic-gradient animation ring. When it completes, it dims. When it errors, it pulses red. When multiple agents run in parallel, you see them all light up simultaneously — and you can tell at a glance which ones are still working and which have finished.
-
-The organogram is rendered with **dagre auto-layout**, so agents arrange themselves neatly even as new ones appear. You can zoom, pan, and click any agent to see its details.
+### Interactive Agent Organogram
+A live React Flow graph that visualizes your entire agent hierarchy. Agents glow when active, pulse on errors, and dim on completion. Powered by SSE — updates in under 200ms.
 
 ### Real-Time Event Feed
-A streaming event feed powered by **Server-Sent Events (SSE)** that shows every status change as it happens. Each event includes the agent name, its status, the task description, and a timestamp. You can filter by agent name, by status (running, success, error), or by time range. Events appear within **200ms** of the hook firing — it feels instant.
+Every status change, every task start/stop, every error — streamed live via Server-Sent Events. Filter by agent, status, or time range.
 
 ### Execution Timeline
-A chronological trace that shows every agent activation from start to finish. Events are grouped by task, so you can see "Agent X started task Y at 10:32:05, finished at 10:32:18" in a clean, scannable format. This is invaluable for understanding how long each step takes, where bottlenecks are, and whether parallel tasks are actually running in parallel or being serialized.
+Chronological trace of every agent activation with timestamps, durations, and task grouping. Replay any session to understand exactly what happened.
 
 ### Analytics Dashboard
-Charts and visualizations that aggregate your agent data over time: error rates by agent, activity heatmaps showing when your agents are busiest, success/failure ratios, and average task durations. This is where you spot patterns — "my security review agent fails 30% of the time" or "database tasks take 3x longer than everything else."
+Error rates, agent utilization heatmaps, activity over time. Identify bottlenecks before they become problems.
 
 ### Multi-Machine Support
-Each machine (your laptop, your CI server, your teammate's workstation) gets its own API key. All events flow into the same dashboard, tagged by machine. You can monitor an entire team's agent activity from a single screen.
+Each machine gets its own API key. Monitor agents across multiple workstations, CI runners, or team members from a single dashboard.
 
 ## How It Works
 
-This skill installs **5 Claude Code hooks** — shell commands that fire automatically on agent lifecycle events. No configuration inside the agent, no prompt engineering, no "please report your status" instructions that the LLM might forget.
+This skill installs **5 Claude Code hooks** that fire on shell-level lifecycle events:
 
-| Hook Event | When It Fires | What Gets Reported |
+| Hook Event | What Gets Reported |
+|---|---|
+| `UserPromptSubmit` | Root orchestrator → `running` |
+| `PreToolUse` (Task) | Sub-agent → `running` (mapped from `subagent_type`) |
+| `PostToolUse` (Task) | Sub-agent → `success` |
+| `PostToolUseFailure` (Task) | Sub-agent → `error` |
+| `Stop` | Root orchestrator → `success` |
+
+The hook script reads `subagent_type` from the Task tool input, maps it to a named agent in your CLAW dashboard, and fires an async HTTP request. Total overhead: **< 50ms per event** (non-blocking, fire-and-forget).
+
+### Subagent Type Mapping
+
+The hook script automatically maps your Task tool `subagent_type` values to named dashboard agents:
+
+| subagent_type | Dashboard Agent | Role |
 |---|---|---|
-| `UserPromptSubmit` | You press Enter | Root orchestrator → `running` |
-| `PreToolUse` | Claude invokes the Task tool | Sub-agent → `running` (mapped from `subagent_type`) |
-| `PostToolUse` | Task tool returns successfully | Sub-agent → `success` |
-| `PostToolUseFailure` | Task tool returns with an error | Sub-agent → `error` |
-| `Stop` | Claude finishes its response | Root orchestrator → `success` |
+| `anakin` | Anakin | Orchestrator |
+| `chewie-backend` | Chewbacca | Backend |
+| `leia-frontend` | Leia Organa | Frontend |
+| `obi-wan` | Obi-Wan Kenobi | Database |
+| `han-architect` | Qui-Gon Jinn | Architect |
+| `darth-maul` | Darth Maul | Security |
+| `r2-devops-platform` | R2-D2 | DevOps |
+| `forge` | Forge | Containers |
+| `c3po-quality-guardian` | C-3PO | Quality |
+| `yoda` | Yoda | Product |
+| `luke-project-execution` | Luke Skywalker | Execution |
+| `rey-delivery-governance` | Rey | Delivery |
+| `padme-lgpd-compliance` | Padme Amidala | Compliance |
+| `Explore` / `general-purpose` | Anakin | General |
+| Any unknown type | Anakin | Fallback |
 
-Each hook reads the Task tool's `subagent_type` from the JSON input, maps it to a named agent in your dashboard, and fires an **async, non-blocking HTTP request**. The curl runs in a background subshell with a 5-second timeout. If CLAW is unreachable, the hook silently exits — no error, no retry, no delay. Your agent workflow is never affected.
-
-**Total overhead per event: < 50ms.** That's the time from hook firing to background curl launch. The actual HTTP request happens asynchronously — your agent doesn't wait for it.
-
-### Customizable Agent Mapping
-
-The hook script contains two simple bash functions that control how `subagent_type` values are translated into dashboard agents:
-
-- **`map_subagent()`** — Maps a `subagent_type` string (like `chewie-backend` or `Explore`) to an internal agent ID.
-- **`agent_meta()`** — Maps an agent ID to its display name, role, and parent agent (which determines hierarchy in the organogram).
-
-The defaults include common Claude Code agent types like `Explore`, `general-purpose`, `Plan`, and `Bash`. But you can customize them in under a minute to match your own naming conventions:
-
-```bash
-# hooks/claw-hooks.sh — edit these functions to match your agents
-
-map_subagent() {
-  case "$1" in
-    my-api-builder)     echo "api-builder" ;;
-    my-ui-designer)     echo "ui-designer" ;;
-    my-test-runner)     echo "test-runner" ;;
-    *)                  echo "general-worker" ;;
-  esac
-}
-
-agent_meta() {
-  case "$1" in
-    api-builder)    echo "API Builder|backend|root" ;;
-    ui-designer)    echo "UI Designer|frontend|root" ;;
-    test-runner)    echo "Test Runner|quality|root" ;;
-    *)              echo "$1|worker|root" ;;
-  esac
-}
-```
-
-**Important:** Any `subagent_type` that isn't in your mapping still gets captured and reported as a default agent. You never lose events — even without customization, every single Task tool invocation is tracked from day one.
+Don't use these agent names? No problem — the mapping is a simple bash `case` statement in `hooks/claw-hooks.sh`. Edit it to match your team's naming convention in under a minute.
 
 ## Installation
 
-Setup takes about 2 minutes. You need `curl` and `python3` (both come pre-installed on macOS and most Linux distros).
+### 1. Create your CLAW account
 
-### Step 1: Create your CLAW account and get an API key
+Go to **[claw.ia.br](https://claw.ia.br)**, create an account, then navigate to **Machines → Create Machine**. Copy your API key (format: `claw_xxxx...`).
 
-1. Go to **[claw.ia.br](https://claw.ia.br)** and create a free account
-2. Navigate to **Machines** and click **Create Machine**
-3. Give it a name (e.g., "My MacBook", "CI Server", "Team Workspace")
-4. Copy the API key — it looks like `claw_aBcDeFgH...` (32 characters after the prefix)
+### 2. Set environment variables
 
-Each machine gets its own key. If you have multiple workstations, create one machine per workstation.
+Add to your shell profile (`~/.zshrc`, `~/.bashrc`, or `~/.config/fish/config.fish`):
 
-### Step 2: Set two environment variables
-
-Add these to your shell profile so they persist across sessions:
-
-**For zsh (`~/.zshrc`):**
 ```bash
 export CLAW_API_KEY="claw_your_api_key_here"
 export CLAW_BASE_URL="https://claw.ia.br"
 ```
 
-**For bash (`~/.bashrc`):**
-```bash
-export CLAW_API_KEY="claw_your_api_key_here"
-export CLAW_BASE_URL="https://claw.ia.br"
-```
+Reload your shell: `source ~/.zshrc`
 
-**For fish (`~/.config/fish/config.fish`):**
-```fish
-set -gx CLAW_API_KEY "claw_your_api_key_here"
-set -gx CLAW_BASE_URL "https://claw.ia.br"
-```
-
-Then reload: `source ~/.zshrc` (or restart your terminal).
-
-### Step 3: Run the setup script
+### 3. Run setup
 
 ```bash
 bash setup.sh
 ```
 
-This does three things:
-1. **Copies the hook handler** to `~/.claude/hooks/claw/claw-hooks.sh`
-2. **Registers 5 hooks** in `~/.claude/settings.json` — it merges with your existing hooks, never overwriting them
-3. **Tests the connection** by sending a test event to your CLAW server
+This will:
+- Install the hook handler to `~/.claude/hooks/claw/`
+- Register hooks in `~/.claude/settings.json` (preserves your existing hooks)
+- Test the connection to your CLAW server
 
-You'll see output like:
-```
-  CLAW Observability — Hooks Setup
-  ==================================
+### 4. Bootstrap agents (optional)
 
-  [OK] Hook script installed: ~/.claude/hooks/claw/claw-hooks.sh
-  [OK] Added 5 hook events to ~/.claude/settings.json
-
-  Testing connection to CLAW...
-  [OK] Connection verified! CLAW is receiving events.
-```
-
-### Step 4: Bootstrap your agent hierarchy (optional)
-
-If you want your dashboard to show all agents immediately (instead of waiting for them to appear organically as Claude invokes them):
+To pre-populate your dashboard with the full 21-agent hierarchy:
 
 ```bash
 bash bootstrap.sh
 ```
 
-This sends a registration event for each agent in the hierarchy, so the organogram is fully populated before your first real session. You can edit the script to match your own agent names and structure.
+This registers every agent in the organogram so they're visible before the first real session.
 
-### Step 5: Restart Claude Code
+### 5. Restart Claude Code
 
-Claude Code loads hooks on startup. After restarting:
+Hooks are loaded on startup. Restart Claude Code, send a message, and watch your dashboard light up.
 
-1. Open your CLAW dashboard at [claw.ia.br/dashboard](https://claw.ia.br/dashboard)
-2. Send any message in Claude Code
-3. Watch the root orchestrator light up in real-time
-4. Send a complex message that triggers the Task tool and watch sub-agents appear
+## Example Flow
 
-That's it. From this point on, every session is automatically observed.
+**User:** "Implement the payment module with backend, frontend, and security review"
 
-## Real-World Example
+**What happens automatically (zero agent involvement):**
 
-Here's what a typical multi-agent session looks like in CLAW:
+1. `UserPromptSubmit` → Sheev Palpatine lights up (root orchestrator)
+2. Agent spawns 3 parallel Tasks → Chewbacca, Leia, Darth Maul all light up simultaneously
+3. Darth Maul finishes first → dims to success
+4. Chewbacca finishes → dims to success
+5. Leia finishes → dims to success
+6. Agent spawns C-3PO for tests → lights up, then dims on success
+7. `Stop` → Sheev Palpatine dims
 
-**You type:** *"Refactor the authentication module: update the backend API, redesign the login form, add rate limiting, and write integration tests"*
+**Total reporting code written by the agent: zero.** Everything flows through hooks.
 
-**What you see in the CLAW dashboard (in real-time):**
+## Requirements
 
-| Time | Event | Visual |
-|---|---|---|
-| 0.0s | Root orchestrator activates | Node glows green |
-| 0.8s | Backend agent spawns (Task tool) | New node appears, connected to root, glowing |
-| 0.9s | Frontend agent spawns (parallel) | Second node appears, also glowing |
-| 1.0s | Security agent spawns (parallel) | Third node appears — three agents running at once |
-| 4.2s | Security agent completes | Node dims to success state |
-| 7.8s | Backend agent completes | Node dims |
-| 11.3s | Frontend agent completes | Node dims |
-| 11.5s | Test runner agent spawns | New node appears, glowing |
-| 18.1s | Test runner completes | Node dims |
-| 18.4s | Root orchestrator completes | All nodes at rest |
+| Requirement | Why |
+|---|---|
+| `curl` | HTTP requests to CLAW API |
+| `python3` | JSON parsing in hook scripts (available by default on macOS/Linux) |
+| `CLAW_API_KEY` | Authenticates your machine |
+| `CLAW_BASE_URL` | Points to your CLAW server |
 
-**What you know (that you wouldn't without CLAW):**
-- Security review was the fastest (3.2s) — no issues found
-- Backend took 7s — the bulk of the work
-- Frontend took 10.4s — might be worth investigating if that seems slow
-- Tests ran for 6.6s — reasonable for integration tests
-- Everything ran in parallel where possible — no serialization bottleneck
-- **Total time: 18.4s** with full visibility into every step
+## Directory Structure
 
-Without CLAW, you would have waited 18.4 seconds staring at a blinking cursor, then received a wall of text with no idea which parts took how long or whether anything went wrong along the way.
+```
+claw-observability/
+├── SKILL.md              # Skill definition (loaded into agent context)
+├── README.md             # This file
+├── setup.sh              # One-time hook installer
+├── bootstrap.sh          # Optional: pre-populate agent hierarchy
+├── clawhub.json          # ClawHub registry metadata
+├── CHANGELOG.md          # Version history
+├── .clawhubignore        # Excluded files
+├── hooks/
+│   └── claw-hooks.sh     # Hook handler (all events)
+└── examples/
+    ├── basic-usage.md    # Single-agent flow
+    ├── multi-agent.md    # Parallel agents
+    └── error-handling.md # Error and recovery
+```
 
 ## Performance
 
-We take performance seriously. CLAW hooks are designed to be invisible:
-
-| Metric | Value | How |
-|---|---|---|
-| **Hook execution time** | < 50ms | Python3 JSON parsing + background curl |
-| **Dashboard update latency** | < 200ms | Server-Sent Events (SSE) push |
-| **Agent performance impact** | Zero | Hooks run in detached background subshells |
-| **Rate limit** | 300 events/min | Per API key, more than enough for any workflow |
-| **Failure mode** | Silent exit | If CLAW is down, hooks do nothing — no error, no retry, no block |
-
-The curl command that sends the event runs with `&` (background) inside a subshell. It's literally fire-and-forget. Your agent doesn't wait for it. If CLAW is unreachable (network issue, server down), the curl times out after 5 seconds in the background — your agent never notices.
+- **Hook execution time:** < 50ms (non-blocking `curl` with `&`)
+- **Dashboard update latency:** < 200ms (SSE push)
+- **Rate limit:** 300 events/minute per API key
+- **Zero impact on agent performance:** hooks run in background subshells
+- **Graceful degradation:** if CLAW is unreachable, hooks silently exit (no error, no retry, no block)
 
 ## Security
 
-- **API keys are scoped per machine**, not per user. Compromising one key doesn't affect other machines.
-- **All events are tenant-isolated.** Your data is only visible to your account. Multi-tenant architecture with userId-scoped queries.
-- **No sensitive data leaves your machine.** Hooks only transmit: agent name, agent type, status (running/success/error), and a task description. No code, no file contents, no user prompts.
-- **HTTPS enforced** in production. All API traffic is encrypted in transit.
-- **Rate limiting** at 300 requests/minute prevents abuse and protects the platform.
-- **Open source hook script.** You can audit exactly what data is being sent — it's a single bash file (`hooks/claw-hooks.sh`), about 170 lines, fully readable.
+- API keys are scoped per machine (not per user)
+- All events are tenant-isolated by user account
+- No sensitive data transmitted — only agent names, statuses, and task descriptions
+- HTTPS enforced in production
+- Rate limiting prevents abuse (300 req/min)
+- Webhook-level auth with API key headers
 
 ## Troubleshooting
 
-**Hooks not firing after setup?**
-1. Run `claude /hooks` inside Claude Code to verify hook configuration
-2. Check `~/.claude/settings.json` — look for entries containing `claw-hooks.sh`
-3. Make sure you **restarted Claude Code** after running setup (hooks load on startup)
+**Hooks not firing?**
+- Run `claude /hooks` to verify hook configuration
+- Check `~/.claude/settings.json` for CLAW hook entries
+- Restart Claude Code (hooks load on startup)
 
-**Setup succeeded but events don't appear in dashboard?**
-1. Check env vars are set: `echo $CLAW_API_KEY` should print your key
-2. Test the hook manually: `echo '{"hook_event_name":"Stop","session_id":"test"}' | bash ~/.claude/hooks/claw/claw-hooks.sh`
-3. Test the API directly: `curl -s "$CLAW_BASE_URL/api/health"` should return `{"status":"ok"}`
-4. Verify your API key is valid in the Machines page at claw.ia.br
+**Events not appearing?**
+- Verify env vars: `echo $CLAW_API_KEY $CLAW_BASE_URL`
+- Test manually: `echo '{"hook_event_name":"Stop","session_id":"test"}' | bash ~/.claude/hooks/claw/claw-hooks.sh`
+- Check API health: `curl -s "$CLAW_BASE_URL/api/health"`
 
-**Dashboard shows agents but they're not updating?**
-- The SSE connection may have dropped. Refresh the page — it reconnects automatically.
-- Check browser DevTools → Network tab → filter by "EventSource" to see if SSE is connected.
-
-**Want to uninstall?**
-1. Remove the hook entries from `~/.claude/settings.json` (delete any entry containing `claw-hooks.sh`)
-2. Delete the hook script: `rm -rf ~/.claude/hooks/claw`
-3. Optionally remove env vars from your shell profile
+**Dashboard shows agents but no updates?**
+- SSE connection may have dropped — refresh the page
+- Check browser DevTools → Network → EventSource for SSE connection status
 
 ## API Reference
 
-The hooks communicate with CLAW through a simple REST API. You can also use this API directly if you want to build custom integrations.
-
 ### POST /api/v1/events
-
-Send an agent status event to the dashboard.
 
 ```json
 {
-  "agent_id": "my-backend",
-  "agent_name": "Backend Agent",
+  "agent_id": "chewbacca",
+  "agent_name": "Chewbacca",
   "agent_type": "backend",
-  "parent_agent_id": "orchestrator",
+  "parent_agent_id": "anakin",
   "status": "running",
   "message": "Implementing payment module",
   "task_id": "implement-payment-module",
@@ -282,51 +223,26 @@ Send an agent status event to the dashboard.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
-| `agent_id` | string | Yes | Unique identifier for this agent (used for node matching in organogram) |
-| `agent_name` | string | Yes | Human-readable display name shown in dashboard |
-| `agent_type` | string | Yes | Agent role — `orchestrator`, `backend`, `frontend`, `security`, `database`, `devops`, `quality`, `worker`, etc. |
-| `parent_agent_id` | string | No | ID of the parent agent. This creates the hierarchy edges in the organogram. |
-| `status` | string | Yes | One of: `running`, `thinking`, `waiting`, `success`, `error`, `idle` |
-| `message` | string | Yes | Activity description (max 500 chars, auto-truncated). Shown in event feed and timeline. |
-| `task_id` | string | No | Groups related events into a single task trace |
-| `run_id` | string | No | Groups events by session — useful for replaying entire workflows |
-
-**Response:** `201 Created` on success.
+| `agent_id` | string | Yes | Agent identifier |
+| `agent_name` | string | Yes | Display name |
+| `agent_type` | string | Yes | Role (orchestrator, backend, frontend, etc.) |
+| `parent_agent_id` | string | No | Creates hierarchy in organogram |
+| `status` | string | Yes | `running` · `thinking` · `waiting` · `success` · `error` · `idle` |
+| `message` | string | Yes | Activity description (max 500 chars) |
+| `task_id` | string | No | Groups events by task |
+| `run_id` | string | No | Groups events by session |
 
 ### POST /api/v1/heartbeat
-
-Keep-alive signal for your machine.
 
 ```json
 { "hostname": "my-machine" }
 ```
 
-**Response:** `200 OK`
-
-## Directory Structure
-
-```
-claw-observability/
-├── SKILL.md              # Skill instructions (loaded into agent context)
-├── README.md             # This file
-├── clawhub.json          # ClawHub registry metadata
-├── CHANGELOG.md          # Version history
-├── setup.sh              # One-time hook installer
-├── bootstrap.sh          # Pre-populate agent hierarchy (optional)
-├── hooks/
-│   └── claw-hooks.sh     # The hook handler — single file, ~170 lines
-└── examples/
-    ├── basic-usage.md    # Single-agent task flow
-    ├── multi-agent.md    # Parallel agent activations
-    └── error-handling.md # Error capture and recovery
-```
-
 ## License
 
-MIT — use it however you want.
+MIT
 
 ## Links
 
-- **Live Dashboard:** [claw.ia.br](https://claw.ia.br)
-- **Source Code:** [github.com/rdmss/claw-observability](https://github.com/rdmss/claw-observability)
-- **Report Issues:** [GitHub Issues](https://github.com/rdmss/claw-observability/issues)
+- **Platform:** [claw.ia.br](https://claw.ia.br)
+- **Issues:** [GitHub Issues](https://github.com/rdmss/claw-observability/issues)

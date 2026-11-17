@@ -1,49 +1,65 @@
-## Description: <br>
-Checks phone numbers, email addresses, and domains through UpKuaJing's contact validity APIs and returns status, type, and related metadata for each contact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks phone numbers, WhatsApp status, email addresses, and website domains through the UpKuaJing Open Platform API.
 
-## Publisher: <br>
-[upkuajing](https://clawhub.ai/user/upkuajing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[upkuajing](https://clawhub.ai/user/upkuajing)
 
-## Use Case: <br>
-Sales teams, recruiters, traders, and data operations users can validate contact records before outreach, CRM cleanup, candidate screening, and supplier verification. The skill is intended for external API-backed contact validation workflows that may incur fees. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends phone numbers, email addresses, and domains to UpKuaJing's external API for validation. <br>
-Mitigation: Use it only when contact data may be shared with UpKuaJing and avoid submitting data that violates privacy, contractual, or regulatory requirements. <br>
-Risk: Validation and account helper actions use a paid API and may create top-up or usage charges. <br>
-Mitigation: Confirm current pricing with the provided pricing command or pricing page and obtain explicit user confirmation before fee-incurring checks or top-up actions. <br>
-Risk: The API key can be stored in ~/.upkuajing/.env and is required for authenticated requests. <br>
-Mitigation: Protect the local credentials file, restrict access to the environment variable, and rotate the key if it may have been exposed. <br>
-Risk: The skill performs a limited daily version-check request to the UpKuaJing API service. <br>
-Mitigation: Account for this outbound request in environments with strict network or telemetry policies. <br>
+## Use Case:
 
+External users, sales teams, recruiters, and export businesses use this skill to validate contact records before outreach, CRM cleansing, candidate screening, supplier checks, and buyer verification.
 
-## Reference(s): <br>
-- [Phone Validity API](references/phone-api.md) <br>
-- [Email Validity API](references/email-api.md) <br>
-- [Domain Validity API](references/domain-api.md) <br>
-- [UpKuaJing Homepage](https://www.upkuajing.com) <br>
-- [UpKuaJing Developer Platform](https://developer.upkuajing.com/) <br>
-- [UpKuaJing OpenAPI Pricing](https://www.upkuajing.com/web/openapi/price.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Validation results include totals, per-contact result objects, and fee information when returned by the API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and SKILL.md metadata) <br>
+Risk: Paid validation calls and account top-ups can incur charges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform users about paid operations and wait for explicit confirmation before running fee-incurring calls or creating top-up orders.
+
+Risk: Phone numbers, email addresses, domains, and optional error reports may contain personal or customer data sent to UpKuaJing.
+
+Mitigation: Submit only data needed for the validation task and avoid including unnecessary personal or customer data in error reports.
+
+Risk: The UpKuaJing API key is a secret that may be stored in ~/.upkuajing/.env.
+
+Mitigation: Protect the API key as a secret, restrict access to the env file, and avoid sharing it in prompts, logs, or reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/upkuajing/skills/upkuajing-contact-info-validity-check)
+- [UpKuaJing publisher profile](https://clawhub.ai/user/upkuajing)
+- [UpKuaJing homepage](https://www.upkuajing.com)
+- [UpKuaJing Open Platform](https://developer.upkuajing.com/)
+- [Detailed price description](https://www.upkuajing.com/web/openapi/price.html)
+- [Phone validity API reference](references/phone-api.md)
+- [Email validity API reference](references/email-api.md)
+- [Domain validity API reference](references/domain-api.md)
+- [Skill error report API reference](references/skill-error-report-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON validation-result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Validation results include totals, result lists, fee information, and request IDs when returned by the API.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

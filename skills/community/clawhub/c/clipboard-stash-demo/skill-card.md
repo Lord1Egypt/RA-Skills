@@ -1,38 +1,53 @@
-## Description: <br>
-Stash and recall short text snippets in a local file-backed clipboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stash and recall short text snippets in a local file-backed clipboard for later use in the same workspace without a database or external service.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Developers, agents, and other users use this skill to save short notes or quotes in a local scratch clipboard and retrieve them later in the same workspace without a database or external service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved snippets may remain in plaintext in the local cache file after the session. <br>
-Mitigation: Use only for non-sensitive notes or quotes, avoid passwords, tokens, private keys, and personal data, and clear or delete the cache file when the stash is no longer needed. <br>
+## Use Case:
 
+Agents, developers, and workspace users use this skill to save, list, recall, and clear short one-line or escaped multi-line snippets during a session-spanning workflow.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/terrycarter1985/clipboard-stash-demo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes and reads local plaintext TSV entries at ~/.cache/clipboard-stash/stash.tsv.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Snippet contents are stored unencrypted in a plaintext local cache file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill for secrets or sensitive personal data, and inspect or remove the cache file according to local data handling requirements.
+
+Risk: The clear-all command truncates the stash file and can permanently remove saved snippets.
+
+Mitigation: Back up needed snippets before clearing the stash, or confirm that the saved content is disposable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terrycarter1985/skills/clipboard-stash-demo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and plain-text snippet content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists snippets as plaintext TSV under ~/.cache/clipboard-stash/stash.tsv; no external service or database is used.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Solana Analytics Pro helps agents produce Solana technical, on-chain, sentiment, portfolio, risk, and trading-signal analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业级 Solana 综合分析工具，用于技术面分析、链上数据洞察、市场情绪监控、投资组合管理和交易信号生成.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-External users and crypto researchers use this skill to evaluate Solana tokens, portfolios, wallet activity, and market conditions before producing research reports or trading-signal style guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto research outputs could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as informational analysis only and require human review before any investment, tax, or trading decision. <br>
-Risk: Portfolio or wallet analysis can expose sensitive financial or wallet information. <br>
-Mitigation: Use only public wallet addresses or redacted portfolio data, and never provide seed phrases, private keys, exchange credentials, signing approvals, tax identifiers, or full personal financial records. <br>
-Risk: The artifact describes analysis scripts that are not included in the release evidence. <br>
-Mitigation: Do not download or run referenced scripts unless their actual source is separately reviewed. <br>
+## Use Case:
 
+External users and agents use this skill to analyze Solana tokens, wallets, market conditions, portfolios, and risk indicators, then produce decision-support reports and trading-signal guidance. It is intended for informational crypto-market analysis and should not be treated as personalized financial advice.
 
-## Reference(s): <br>
-- [技术分析完整指南](references/technical-analysis.md) <br>
-- [链上数据分析指南](references/on-chain-metrics.md) <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-solana-analytics-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured analysis, reports, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trading-signal style recommendations, portfolio observations, risk notes, and report templates; outputs are informational and not financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Generated signals or market commentary could be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational analysis only and require users to apply their own risk tolerance or consult a qualified financial professional.
+
+Risk: An agent could act on trading signals without sufficient confirmation.
+
+Mitigation: Require separate user confirmation and independent verification before any trade, transfer, or portfolio action.
+
+Risk: Crypto assets, especially newly launched Solana tokens, can be highly volatile or illiquid.
+
+Mitigation: Include liquidity, holder concentration, contract-safety, and loss-risk caveats when producing token assessments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shenmeng/skills/shenmeng-solana-analytics-pro)
+- [技术分析完整指南](references/technical-analysis.md)
+- [链上数据分析指南](references/on-chain-metrics.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown or structured text analysis reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include scores, risk ratings, trading-signal guidance, portfolio observations, and report sections; outputs require independent verification before financial action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

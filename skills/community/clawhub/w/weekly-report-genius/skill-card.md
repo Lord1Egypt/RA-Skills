@@ -1,40 +1,54 @@
-## Description: <br>
-AI-powered weekly report generator that turns simple bullet points into professional, high-EQ corporate summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Weekly Report Genius turns simple work bullet points into polished, professional weekly report summaries.
 
-## Publisher: <br>
-[yang77160](https://clawhub.ai/user/yang77160) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang77160](https://clawhub.ai/user/yang77160)
 
-## Use Case: <br>
-Employees and office workers use this skill to turn weekly bullet points into polished status reports with progress, issues, and next-step sections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workplace summaries may overstate progress or omit important context. <br>
-Mitigation: Review the report for factual accuracy, tone, and completeness before sending it. <br>
-Risk: The skill text includes donation and cross-promotion links unrelated to the core report-writing function. <br>
-Mitigation: Treat those links as optional and review them separately from the generated report content. <br>
+## Use Case:
 
+Office workers and professionals use this skill to turn short progress notes into structured Chinese-language weekly reports with sections for accomplishments, issues, and next steps.
 
-## Reference(s): <br>
-- [Weekly Report Genius on ClawHub](https://clawhub.ai/yang77160/weekly-report-genius) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style workplace report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated summaries should be reviewed for accuracy before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Visible author-support and cross-promotion links, including a trading-related skill link, are not needed for weekly report drafting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review linked content before use and remove or ignore promotional links when deploying the skill in a workplace setting.
+
+Risk: Generated reports may overstate impact or use corporate phrasing that does not match the user's actual work.
+
+Mitigation: Review and edit the generated report for factual accuracy, appropriate tone, and organization-specific expectations before sharing.
+
+## Reference(s):
+
+- [Weekly Report Genius ClawHub page](https://clawhub.ai/yang77160/skills/weekly-report-genius)
+- [Precise T Trading linked skill](https://clawhub.com/skills/precise-t-trading)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with structured weekly-report sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language report drafting guidance; no code execution or sensitive system access indicated by server security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

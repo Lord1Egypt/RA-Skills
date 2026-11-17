@@ -1,41 +1,54 @@
-## Description: <br>
-Checks JavaScript projects for risky axios versions, a plain-crypto-js indicator, and known local files associated with a suspected supply-chain incident. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a quick shell-script workflow for checking frontend projects for malicious axios versions, the plain-crypto-js backdoor dependency, and related incident cleanup steps.
 
-## Publisher: <br>
-[preciousdust](https://clawhub.ai/user/preciousdust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[preciousdust](https://clawhub.ai/user/preciousdust)
 
-## Use Case: <br>
-Developers and incident responders use this skill to rapidly inspect frontend dependency trees for specific axios and plain-crypto-js risk indicators and to run an emergency remediation script when a project appears affected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script can modify package dependencies, remove lockfiles and node_modules, reinstall packages from npm, and delete specific files without a confirmation step. <br>
-Mitigation: Review the script before running it, prefer a backed-up or disposable working tree, and use audit-only handling unless repair actions are explicitly intended. <br>
-Risk: Automatic repair can change project dependency state during an incident response workflow. <br>
-Mitigation: Capture the current dependency files first and review the resulting package and lockfile changes before continuing development or deployment. <br>
+## Use Case:
 
+Developers and security responders use this skill to inspect frontend dependency trees for flagged axios and plain-crypto-js versions and to follow an emergency remediation script when risk is detected.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/preciousdust/axios-supply-chain-attack-check) <br>
-- [Source article referenced by the skill](https://mp.weixin.qq.com/s/UP7_LLilOOgZPVW8tCsNrg?from=groupmessage&scene=1&subscene=10000&clicktime=1774932741&enterid=1774932741&sessionid=0&ascene=1&realreporttime=1774932741992&forceh5=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell script reports detected indicators and may perform dependency repair actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Running the bundled script can automatically uninstall packages, reinstall axios, remove node_modules and lockfiles, and delete host files without confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script first, run it only in a disposable or backed-up project, and prefer a read-only audit or manually controlled remediation workflow.
+
+Risk: The release security verdict is suspicious because cleanup behavior can modify dependencies and files during incident response.
+
+Mitigation: Treat execution as a privileged remediation action and require human approval before applying changes to a project or host system.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/preciousdust/skills/axios-supply-chain-attack-check)
+- [Source article referenced by the skill](https://mp.weixin.qq.com/s/UP7_LLilOOgZPVW8tCsNrg?from=groupmessage&scene=1&subscene=10000&clicktime=1774932741&enterid=1774932741&sessionid=0&ascene=1&realreporttime=1774932741992&forceh5=1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a command to run a bundled shell script that can inspect and remediate local npm dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

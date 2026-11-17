@@ -1,46 +1,61 @@
-## Description: <br>
-抖音视频自动上传 skill。当用户需要登录抖音、校验账号或上传视频时使用。基于 social-auto-upload 项目，OPclaw 自动准备运行环境，无需用户手动安装。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin login, account validation, and video or note publishing through social-auto-upload while preparing the local runtime for the agent.
 
-## Publisher: <br>
-[kukuoai](https://clawhub.ai/user/kukuoai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kukuoai](https://clawhub.ai/user/kukuoai)
 
-## Use Case: <br>
-External creators and operators use this skill to prepare Douyin automation, log in through a local terminal, verify account state, and upload videos or image posts through the social-auto-upload workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically installs and runs external social-auto-upload automation code. <br>
-Mitigation: Review the skill and the external project before installation, and use it only when that dependency chain is acceptable. <br>
-Risk: The setup flow may fall back to unofficial mirrors for dependency retrieval. <br>
-Mitigation: Use mirror fallback only when the mirror sources are trusted for the deployment environment. <br>
-Risk: Douyin login state is stored locally and the skill can publish to a live Douyin account. <br>
-Mitigation: Keep local account files protected and confirm the account, files, title, tags, and schedule before upload. <br>
+## Use Case:
 
+Developers and operators use this skill to help an agent prepare the social-auto-upload runtime, verify Douyin account state, and generate or run the appropriate commands for publishing videos or image notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kukuoai/deepsop-douyin-ai) <br>
-- [social-auto-upload](https://github.com/dreammis/social-auto-upload) <br>
-- [CLI contract](references/cli-contract.md) <br>
-- [Runtime requirements](references/runtime-requirements.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and example code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce setup commands, Douyin CLI invocations, account verification guidance, and upload parameter guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change the local environment by downloading and running third-party code through mirrors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installation; prefer a version that pins and verifies the external repository and disables untrusted mirror fallback by default.
+
+Risk: The skill can use local Douyin session data and publish content publicly.
+
+Mitigation: Require explicit confirmation before login or publish actions, and run login only in the user's real local terminal.
+
+Risk: Server security evidence reports broad authority with weak user controls.
+
+Mitigation: Review commands before execution and require explicit user approval for actions that install dependencies, access session data, or publish content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kukuoai/skills/deepsop-douyin-ai)
+- [Runtime requirements](references/runtime-requirements.md)
+- [CLI contract](references/cli-contract.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [social-auto-upload project](https://github.com/dreammis/social-auto-upload)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, PowerShell, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local runtime setup steps, Douyin account names, media file paths, titles, descriptions, tags, scheduling options, and publish-mode flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

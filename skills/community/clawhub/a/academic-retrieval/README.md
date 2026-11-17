@@ -1,6 +1,6 @@
 # academic-retrieval — ClawHub skill bundle
 
-[![ClawHub](https://img.shields.io/badge/clawhub-academic--retrieval-brightgreen)](https://clawhub.ai/academic-retrieval)
+[![ClawHub](https://img.shields.io/badge/clawhub-academic--retrieval-brightgreen)](https://clawhub.ai/sciverse/skills/academic-retrieval)
 
 ClawHub skill that gives any OpenClaw agent Sciverse academic-paper retrieval
 capabilities (English | [中文](#中文说明)).
@@ -26,7 +26,7 @@ export SCIVERSE_API_TOKEN=sv-xxx       # obtain from https://sciverse.space
 | `list_catalog` | Field introspection (call once to learn available fields + enum values) |
 | `search_papers` | Structured metadata search over papers / authors / sources (set `collection`) |
 | `semantic_search` | Natural-language semantic chunk retrieval (for RAG) |
-| `read_content` | Byte-range read of a paper's original text |
+| `read_content` | Character-range read of a paper's original text (offset/limit in Unicode code points) |
 | `get_resource` | Fetch figure / table image bytes referenced inside `read_content` Markdown |
 
 See `SKILL.md` for full agent-facing documentation.
@@ -76,7 +76,7 @@ export SCIVERSE_API_TOKEN=sv-xxx   # 从 https://sciverse.space 控制台申请
 | `list_catalog` | 字段 introspection（首次接入调一次，学习可用字段和 enum 取值） |
 | `search_papers` | 按结构化条件查 papers / authors / sources（用 `collection` 切换实体集合） |
 | `semantic_search` | 自然语言语义检索文献片段（RAG 用） |
-| `read_content` | 按字节区间读取文献原文片段 |
+| `read_content` | 按 Unicode 码点区间读取文献原文片段 |
 | `get_resource` | 取 `read_content` Markdown 中引用的图片字节流（多模态 RAG） |
 
 agent 视角的完整文档见 `SKILL.md`（英文）。

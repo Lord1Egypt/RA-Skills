@@ -1,0 +1,289 @@
+/**
+ * Universal Design System — Default Tokens
+ * ==========================================
+ * Used as fallback when no brand design system is provided.
+ * All values are CSS custom properties consumed via var(--*).
+ *
+ * When using this skill:
+ * - Copy this file to designs/<project>/tokens.css
+ * - Link it in every HTML output: <link rel="stylesheet" href="tokens.css">
+ * - Only use token names from this file in generated CSS
+ */
+
+:root {
+
+  /* ── Colors: Brand ─────────────────────────────────────────── */
+  --color-primary:          #0066FF;
+  --color-primary-dark:     #0052CC;
+  --color-primary-darker:   #003D99;
+  --color-primary-light:    #3385FF;
+  --color-primary-surface:  #EBF0FF;   /* tinted bg for primary areas */
+
+  /* ── Colors: Semantic ──────────────────────────────────────── */
+  --color-success:          #00AA55;
+  --color-success-surface:  #E6F7EE;
+  --color-warning:          #FF9900;
+  --color-warning-surface:  #FFF4E0;
+  --color-danger:           #FF3333;
+  --color-danger-surface:   #FFE8E8;
+  --color-info:             #0066FF;
+  --color-info-surface:     #EBF0FF;
+
+  /* ── Colors: Extended ──────────────────────────────────────── */
+  /* Use for e-commerce promotions, pricing, highlights — not semantic status */
+  --color-orange:           #FF6430;   /* promotional price, hot tag */
+  --color-orange-surface:   #FFF0EA;
+  --color-yellow:           #FFBA00;   /* highlight, featured, star rating */
+  --color-yellow-surface:   #FFFBE0;
+
+  /* ── Colors: Text ──────────────────────────────────────────── */
+  --color-text-primary:     #111111;
+  --color-text-secondary:   #666666;
+  --color-text-tertiary:    #999999;
+  --color-text-disabled:    #AAAAAA;
+  --color-text-inverse:     #FFFFFF;
+  --color-text-link:        #0066FF;
+
+  /* ── Colors: Surface ───────────────────────────────────────── */
+  --color-surface:          #FFFFFF;
+  --color-surface-2:        #F8F8F8;
+  --color-surface-3:        #F0F0F0;
+  --color-background:       #F5F5F5;
+  --color-overlay:          rgba(0, 0, 0, 0.50);
+
+  /* ── Colors: Border ────────────────────────────────────────── */
+  --color-border:           #E0E0E0;   /* component outlines: card, input, modal */
+  --color-border-strong:    #AAAAAA;   /* strong outlines: focused, selected */
+  --color-border-focus:     #0066FF;   /* focus ring */
+
+  /* ── Colors: Separator ─────────────────────────────────────── */
+  /* For list rows, table rows, settings rows — nearly invisible */
+  --color-separator:        rgba(0, 0, 0, 0.07);
+  --color-separator-strong: rgba(0, 0, 0, 0.12);
+
+  /* ── Colors: Interactive ───────────────────────────────────── */
+  --color-hover-bg:         rgba(0, 0, 0, 0.04);
+  --color-active-bg:        rgba(0, 0, 0, 0.08);
+  --color-selected-bg:      rgba(0, 102, 255, 0.08);
+  --color-disabled-bg:      #F0F0F0;
+  --color-disabled-text:    #AAAAAA;
+
+  /* ── Typography: Family ────────────────────────────────────── */
+  --font-family:            -apple-system, "SF Pro Text", "PingFang SC",
+                            "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-family-display:    -apple-system, "SF Pro Display", "PingFang SC",
+                            "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono:       "SF Mono", "Fira Code", "JetBrains Mono",
+                            "Noto Sans Mono CJK SC", monospace;
+
+  /* ── Typography: Size — Five-Level Hierarchy ───────────────── */
+  /*
+   *  Level 1 · DISPLAY   — hero moments, marketing headlines
+   *  Level 2 · HEADLINE  — page/section titles
+   *  Level 3 · TITLE     — component/card titles
+   *  Level 4 · BODY      — reading content
+   *  Level 5 · LABEL     — metadata, captions, UI chrome
+   *
+   *  Each level maps to concrete tokens below.
+   *  Use AT MOST 3 levels on a single screen.
+   */
+  /* Display */
+  --font-size-hero:         48px;   /* Display — one per page max */
+  /* Headline */
+  --font-size-h1:           32px;   /* Headline L */
+  --font-size-h2:           24px;   /* Headline M */
+  /* Title */
+  --font-size-h3:           20px;   /* Title L */
+  --font-size-h4:           16px;   /* Title M */
+  /* Body */
+  --font-size-body-lg:      18px;   /* Body L — long-form reading */
+  --font-size-body:         16px;   /* Body M — standard */
+  --font-size-body-sm:      14px;   /* Body S — compact UI */
+  /* Label */
+  --font-size-caption:      12px;   /* Label L — metadata, timestamps */
+  --font-size-label:        12px;   /* Label M — uppercase badges */
+  /* Micro — use sparingly */
+  --font-size-micro:        11px;   /* Label S — extreme space constraints only */
+
+  /* ── Typography: Weight ────────────────────────────────────── */
+  --font-weight-regular:    400;
+  --font-weight-medium:     500;
+  --font-weight-semibold:   600;
+  --font-weight-bold:       700;
+
+  /* ── Typography: Line Height ───────────────────────────────── */
+  --line-height-tight:      1.2;    /* headings */
+  --line-height-snug:       1.4;    /* subheadings */
+  --line-height-normal:     1.6;    /* body Latin */
+  --line-height-relaxed:    1.75;   /* body CJK */
+  --line-height-loose:      2.0;    /* spacious text */
+
+  /* ── Typography: Letter Spacing ────────────────────────────── */
+  --letter-spacing-tight:   -0.5px;
+  --letter-spacing-normal:  0;
+  --letter-spacing-wide:    0.5px;
+  --letter-spacing-label:   0.3px;  /* uppercase labels */
+
+  /* ── Spacing (4px base unit) ───────────────────────────────── */
+  --spacing-xs:             4px;
+  --spacing-sm:             8px;
+  --spacing-md:             16px;
+  --spacing-lg:             24px;
+  --spacing-xl:             32px;
+  --spacing-2xl:            48px;
+  --spacing-3xl:            64px;
+  --spacing-4xl:            96px;
+
+  /* ── Border Radius ─────────────────────────────────────────── */
+  --radius-none:            0;
+  --radius-xs:              2px;
+  --radius-sm:              4px;    /* tags, badges */
+  --radius-md:              8px;    /* buttons, inputs */
+  --radius-lg:              12px;   /* cards */
+  --radius-xl:              16px;   /* sheets, large cards */
+  --radius-2xl:             24px;   /* pills, FAB */
+  --radius-full:            9999px; /* chips, avatars, toggles */
+
+  /* ── Shadows — 7 Elevation Levels ─────────────────────────── */
+  /*
+   *  0 = flat (no depth)
+   *  1-2 = content cards, subtle lift
+   *  3-4 = floating panels, dropdowns
+   *  5-6 = overlays, modals, popovers
+   */
+  --shadow-0:               none;   /* explicitly flat — use intentionally */
+  --shadow-none:            none;   /* alias for shadow-0 */
+  --shadow-xs:              0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm:              0 1px 4px rgba(0,0,0,0.08);
+  --shadow-md:              0 2px 8px rgba(0,0,0,0.10);
+  --shadow-lg:              0 4px 16px rgba(0,0,0,0.12);
+  --shadow-xl:              0 8px 32px rgba(0,0,0,0.14);
+  --shadow-card:            0 2px 8px rgba(0,0,0,0.08);
+  --shadow-modal:           0 8px 32px rgba(0,0,0,0.20);
+  --shadow-popover:         0 4px 16px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.06);
+
+  /* ── Component Heights ─────────────────────────────────────── */
+  --btn-height-mobile:      44px;   /* minimum touch target */
+  --btn-height-desktop:     40px;
+  --btn-height-sm:          32px;
+  --input-height-mobile:    44px;
+  --input-height-desktop:   40px;
+  --input-height-sm:        32px;
+  --navbar-height-mobile:   56px;
+  --navbar-height-desktop:  64px;
+  --bottom-nav-height:      56px;
+  --tab-bar-height:         48px;
+
+  /* ── Motion: Duration ──────────────────────────────────────── */
+  --duration-50:            50ms;   /* press feedback, instant acknowledgement */
+  --duration-100:           100ms;  /* color change, icon swap */
+  --duration-150:           150ms;  /* hover state, focus ring */
+  --duration-200:           200ms;  /* small element enter/exit */
+  --duration-300:           300ms;  /* card expand, dropdown open */
+  --duration-400:           400ms;  /* modal enter, page transition */
+  --duration-500:           500ms;  /* large surface change */
+  --duration-600:           600ms;  /* emphasis, celebration */
+
+  /* Semantic aliases (prefer these in components) */
+  --duration-instant:       50ms;   /* = duration-50 */
+  --duration-fast:          150ms;  /* = duration-150, micro-interactions */
+  --duration-normal:        250ms;  /* between 200-300, standard transitions */
+  --duration-slow:          400ms;  /* = duration-400, modals */
+  --duration-slower:        600ms;  /* = duration-600, complex */
+
+  /* ── Motion: Easing ─────────────────────────────────────────── */
+  --easing-default:         cubic-bezier(0.4, 0, 0.2, 1);   /* standard, most transitions */
+  --easing-enter:           cubic-bezier(0.0, 0, 0.2, 1);   /* decelerate — elements entering */
+  --easing-exit:            cubic-bezier(0.4, 0, 1, 1);     /* accelerate — elements leaving */
+  --easing-spring:          cubic-bezier(0.175, 0.885, 0.32, 1.275); /* overshoot, toggle/switch */
+  --easing-emphasized:      cubic-bezier(0.2, 0, 0, 1.0);   /* MD3 emphasized, large surfaces */
+  --easing-bounce:          cubic-bezier(0.34, 1.56, 0.64, 1); /* playful, success states */
+
+  /* ── Motion: Transition Presets ────────────────────────────── */
+  /* Compose duration + easing into ready-to-use transition values */
+  --transition-fast:        all var(--duration-150) var(--easing-default);
+  --transition-normal:      all var(--duration-300) var(--easing-default);
+  --transition-enter:       all var(--duration-300) var(--easing-enter);
+  --transition-exit:        all var(--duration-200) var(--easing-exit);
+  --transition-spring:      all var(--duration-300) var(--easing-spring);
+
+  /* ── Icon Size ─────────────────────────────────────────────── */
+  --icon-xs:                12px;   /* inline badge indicator */
+  --icon-sm:                16px;   /* list item icon, inline icon */
+  --icon-md:                20px;   /* button icon, nav icon */
+  --icon-lg:                24px;   /* primary action icon */
+  --icon-xl:                32px;   /* empty state, section icon */
+  --icon-2xl:               48px;   /* hero illustration icon */
+
+  /* ── Breakpoints (reference only — cannot be used in @media) ─ */
+  /* Use these values as documentation and in JS (getComputedStyle) */
+  /* In CSS, write breakpoints as literal px: @media (min-width: 768px) */
+  --breakpoint-sm:          640px;  /* large mobile / small tablet */
+  --breakpoint-md:          768px;  /* tablet portrait */
+  --breakpoint-lg:          1024px; /* tablet landscape / small desktop */
+  --breakpoint-xl:          1280px; /* desktop */
+  --breakpoint-2xl:         1440px; /* wide desktop */
+
+  /* ── Z-index (Bootstrap-compatible scale) ──────────────────── */
+  --z-base:                 0;
+  --z-raised:               1;
+  --z-dropdown:             1000;
+  --z-sticky:               1020;
+  --z-overlay:              1040;
+  --z-modal:                1050;
+  --z-popover:              1060;
+  --z-toast:                1070;
+  --z-tooltip:              1080;
+}
+
+/* ── Dark Mode ─────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-primary:          #4D94FF;
+  --color-primary-dark:     #3380FF;
+  --color-primary-darker:   #1A6BFF;
+  --color-primary-light:    #66A3FF;
+  --color-primary-surface:  rgba(77, 148, 255, 0.15);
+
+  --color-text-primary:     #F2F2F7;
+  --color-text-secondary:   #C7C7CC;
+  --color-text-tertiary:    #8E8E93;
+  --color-text-disabled:    #636366;
+  --color-text-inverse:     #111111;
+  --color-text-link:        #4D94FF;
+
+  --color-surface:          #1C1C1E;
+  --color-surface-2:        #2C2C2E;
+  --color-surface-3:        #3A3A3C;
+  --color-background:       #000000;
+
+  --color-border:           rgba(255, 255, 255, 0.09);
+  --color-border-strong:    rgba(255, 255, 255, 0.18);
+  --color-border-focus:     #4D94FF;
+  --color-separator:        rgba(255, 255, 255, 0.06);
+  --color-separator-strong: rgba(255, 255, 255, 0.10);
+
+  --color-hover-bg:         rgba(255, 255, 255, 0.06);
+  --color-active-bg:        rgba(255, 255, 255, 0.10);
+  --color-selected-bg:      rgba(77, 148, 255, 0.15);
+  --color-disabled-bg:      #2C2C2E;
+
+  /* Extended colors — dark mode variants */
+  --color-orange:           #FF7849;
+  --color-orange-surface:   rgba(255, 120, 73, 0.15);
+  --color-yellow:           #FFD60A;
+  --color-yellow-surface:   rgba(255, 214, 10, 0.15);
+
+  /* Semantic colors — dark mode variants */
+  --color-success:          #30D158;   /* brighter green on dark bg */
+  --color-success-surface:  rgba(48, 209, 88, 0.15);
+  --color-warning:          #FFD60A;   /* vivid yellow on dark bg */
+  --color-warning-surface:  rgba(255, 214, 10, 0.15);
+  --color-danger:           #FF453A;   /* vivid red on dark bg */
+  --color-danger-surface:   rgba(255, 69, 58, 0.15);
+  --color-info:             #4D94FF;
+  --color-info-surface:     rgba(77, 148, 255, 0.15);
+
+  --shadow-card:            0 2px 8px rgba(0,0,0,0.40);
+  --shadow-modal:           0 8px 32px rgba(0,0,0,0.60);
+  --shadow-popover:         0 4px 16px rgba(0,0,0,0.50), 0 0 0 1px rgba(255,255,255,0.06);
+}

@@ -293,6 +293,41 @@ def fetch_live_prices(clob_token_ids):
     return fetch_live_midpoint(yes_token)
 
 
+def _book_levels_best_first(raw_levels, descending):
+    """Parse raw CLOB book levels and sort them best-price-first.
+
+    The CLOB returns bids LOW→HIGH and asks HIGH→LOW, so index [0] of the raw
+    response is the WORST price on each side — reading it as the touch inverts
+    the spread. Levels whose price won't parse are dropped rather than
+    defaulted to 0: a zero-priced ask would sort to the front and fabricate a
+    negative spread, which sails through the MAX_SPREAD_PCT gate.
+    """
+    levels = []
+    for lvl in raw_levels:
+        try:
+            levels.append((float(lvl["price"]), lvl))
+        except (KeyError, TypeError, ValueError):
+            continue
+    levels.sort(key=lambda pair: pair[0], reverse=descending)
+    return levels
+
+
+def _book_depth_usd(levels, count=5):
+    """Sum price x size over the `count` levels nearest the touch.
+
+    Sizes are parsed here rather than during the sort so one malformed level
+    deep in the book can't discard the whole summary (a None return makes the
+    caller skip the spread gate entirely).
+    """
+    total = 0.0
+    for price, lvl in levels[:count]:
+        try:
+            total += price * float(lvl.get("size", 0))
+        except (TypeError, ValueError):
+            continue
+    return total
+
+
 def fetch_orderbook_summary(clob_token_ids):
     """Fetch order book for YES token and return spread + depth summary.
 
@@ -315,26 +350,24 @@ def fetch_orderbook_summary(clob_token_ids):
     if not bids or not asks:
         return None
 
-    try:
-        best_bid = float(bids[0]["price"])
-        best_ask = float(asks[0]["price"])
-        spread = best_ask - best_bid
-        mid = (best_ask + best_bid) / 2
-        spread_pct = spread / mid if mid > 0 else 0
-
-        # Sum depth (top 5 levels)
-        bid_depth = sum(float(b.get("size", 0)) * float(b.get("price", 0)) for b in bids[:5])
-        ask_depth = sum(float(a.get("size", 0)) * float(a.get("price", 0)) for a in asks[:5])
-
-        return {
-            "best_bid": best_bid,
-            "best_ask": best_ask,
-            "spread_pct": spread_pct,
-            "bid_depth_usd": bid_depth,
-            "ask_depth_usd": ask_depth,
-        }
-    except (KeyError, ValueError, IndexError, TypeError):
+    bid_levels = _book_levels_best_first(bids, descending=True)
+    ask_levels = _book_levels_best_first(asks, descending=False)
+    if not bid_levels or not ask_levels:
         return None
+
+    best_bid = bid_levels[0][0]
+    best_ask = ask_levels[0][0]
+    spread = best_ask - best_bid
+    mid = (best_ask + best_bid) / 2
+    spread_pct = spread / mid if mid > 0 else 0
+
+    return {
+        "best_bid": best_bid,
+        "best_ask": best_ask,
+        "spread_pct": spread_pct,
+        "bid_depth_usd": _book_depth_usd(bid_levels),
+        "ask_depth_usd": _book_depth_usd(ask_levels),
+    }
 
 
 # =============================================================================
@@ -842,7 +875,7 @@ def calculate_position_size(max_size, smart_sizing=False):
     portfolio = get_portfolio()
     if not portfolio or portfolio.get("error"):
         return max_size
-    balance = portfolio.get("balance_usdc", 0)
+    balance = portfolio.get("balance_usdc") or 0
     if balance <= 0:
         return max_size
     smart_size = balance * SMART_SIZING_PCT
@@ -979,7 +1012,7 @@ def run_fast_market_strategy(dry_run=True, positions_only=False, show_config=Fal
         log("\n💰 Portfolio:")
         portfolio = get_portfolio()
         if portfolio and not portfolio.get("error"):
-            log(f"  Balance: ${portfolio.get('balance_usdc', 0):.2f}")
+            log(f"  Balance: ${portfolio.get('balance_usdc') or 0:.2f}")
 
     # Step 1: Discover fast markets
     log(f"\n🔍 Discovering {ASSET} fast markets...")
@@ -1145,16 +1178,26 @@ def run_fast_market_strategy(dry_run=True, positions_only=False, show_config=Fal
             return
     else:
         book = fetch_orderbook_summary(clob_tokens) if clob_tokens else None
-        if book:
-            log(f"  Spread: {book['spread_pct']:.1%} (bid ${book['best_bid']:.3f} / ask ${book['best_ask']:.3f})")
-            log(f"  Depth: ${book['bid_depth_usd']:.0f} bid / ${book['ask_depth_usd']:.0f} ask (top 5)")
-            if book["spread_pct"] > MAX_SPREAD_PCT:
-                log(f"  ⏸️  Spread {book['spread_pct']:.1%} > 10% — illiquid, skip")
-                if not quiet:
-                    print(f"📊 Summary: No trade (wide spread: {book['spread_pct']:.1%})")
-                skip_reasons.append("wide spread")
-                _emit_skip_report()
-                return
+        if book is None:
+            # Fail CLOSED. A missing book used to fall straight through the
+            # spread gate and trade unmeasured. Skipping costs one sprint
+            # cycle; trading blind crosses whatever spread is actually there,
+            # and on live sampling most books are wider than MAX_SPREAD_PCT.
+            log("  ⏸️  Order book unavailable — cannot verify spread, skip")
+            if not quiet:
+                print("📊 Summary: No trade (order book unavailable)")
+            skip_reasons.append("book unavailable")
+            _emit_skip_report()
+            return
+        log(f"  Spread: {book['spread_pct']:.1%} (bid ${book['best_bid']:.3f} / ask ${book['best_ask']:.3f})")
+        log(f"  Depth: ${book['bid_depth_usd']:.0f} bid / ${book['ask_depth_usd']:.0f} ask (top 5)")
+        if book["spread_pct"] > MAX_SPREAD_PCT:
+            log(f"  ⏸️  Spread {book['spread_pct']:.1%} > 10% — illiquid, skip")
+            if not quiet:
+                print(f"📊 Summary: No trade (wide spread: {book['spread_pct']:.1%})")
+            skip_reasons.append("wide spread")
+            _emit_skip_report()
+            return
 
     # Check minimum momentum (loose gate when fair-value mode is on — edge check filters there)
     _momentum_floor = 0.01 if USE_FAIR_VALUE else MIN_MOMENTUM_PCT

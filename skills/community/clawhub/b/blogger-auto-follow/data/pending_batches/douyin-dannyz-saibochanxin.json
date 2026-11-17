@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "DannyZ",
+    "category": "用户指定",
+    "reason": "用户明确指定关注"
+  },
+  {
+    "id": 2,
+    "name": "赛博禅心",
+    "category": "用户指定",
+    "reason": "用户明确指定关注"
+  }
+]

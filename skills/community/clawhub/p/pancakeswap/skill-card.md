@@ -1,41 +1,60 @@
-## Description: <br>
-Audit PancakeSwap liquidity positions before capital is deployed by evaluating depth, concentrated-liquidity setup, range risk, pool quality, and approval friction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit PancakeSwap liquidity positions before capital is deployed, evaluating depth, concentrated-liquidity setup, range risk, pool quality, and approval friction before users provide liquidity.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External DeFi users and liquidity providers use this skill to review PancakeSwap pools and LP position structures before committing capital. It supports pool-depth, range-risk, fee-tier, and structure checks for deploy, widen, reduce, monitor, or avoid decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's output could be mistaken for financial advice, guaranteed yield, or a smart-contract audit. <br>
-Mitigation: Treat the output as decision support and verify live pool data, token risk, market assumptions, and smart-contract safety before deploying capital. <br>
-Risk: Missing or stale pool context can lead to overconfident LP recommendations. <br>
-Mitigation: Require pool pair, chain, version, fee tier, intended size, intended range, and current depth or volume context before relying on the assessment. <br>
+## Use Case:
 
+External liquidity providers, DeFi users, and operators use this skill to review PancakeSwap pools and concentrated-liquidity positions before committing capital. It helps structure decisions around pool depth, range risk, fee-tier suitability, and whether to deploy, widen, reduce, monitor, or avoid a position.
 
-## Reference(s): <br>
-- [PancakeSwap Skill Release](https://clawhub.ai/Duclawbot/pancakeswap) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/Duclawbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown assessment with structured risk findings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Decision-support output only; no wallet, contract, or trade execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release metadata) <br>
+Risk: Users may treat deploy, widen, reduce, monitor, or avoid language as financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as educational DeFi risk analysis only and require independent review before committing capital.
+
+Risk: Pool assessments can be incomplete when live pool data, fee tier, intended size, or range details are missing.
+
+Mitigation: Ask for missing pool context, avoid false precision, and tell users to verify current pool data independently.
+
+Risk: The skill does not perform smart-contract, wallet-security, tax, legal, or formal underwriting review.
+
+Mitigation: Route those checks to qualified review processes and separate security tooling before liquidity deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/duclawbot/skills/pancakeswap)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/duclawbot)
+- [README](artifact/README.md)
+- [Examples](artifact/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown assessment with pool quality, risk concerns, recommendation, and next-check sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only decision support; no wallet access, smart-contract calls, trade execution, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.md frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

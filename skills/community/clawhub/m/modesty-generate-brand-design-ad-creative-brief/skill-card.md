@@ -1,39 +1,50 @@
-## Description: <br>
-Plan campaign visuals and hooks for brand design promotions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan campaign visuals and hooks for brand design promotions for paid campaign planning by designers, brand teams, and ecommerce operators.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Designers, brand teams, and ecommerce operators use this skill to draft paid campaign creative briefs, including audience context, visual direction, hooks, and review-ready marketing outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Marketing copy or generated image direction may be inaccurate, off-brand, legally sensitive, or raise copyright concerns if published without review. <br>
-Mitigation: Review all outputs for brand accuracy, legal compliance, copyright risk, sensitive information, and campaign suitability before external use. <br>
+## Use Case:
 
+Designers, brand teams, and ecommerce operators use this skill to draft concise paid campaign creative briefs with campaign visuals, hooks, audience context, constraints, and deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/modestyrichards/modesty-generate-brand-design-ad-creative-brief) <br>
-- [SkillBoss homepage](https://www.skillboss.co/skills/generate-brand-design-ad-creative-brief) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text creative brief guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include marketing copy, visual direction, campaign hooks, and image-generation guidance for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Generated ad briefs may contain inaccurate claims, unsuitable brand positioning, or generated image concepts that are not ready for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review claims, brand positioning, and generated images before publishing or automating campaign execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-generate-brand-design-ad-creative-brief)
+- [SkillBoss skill page](https://www.skillboss.co/skills/generate-brand-design-ad-creative-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text creative brief]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include campaign visual direction, creative hooks, constraints, and review guidance for external publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: "familiar-person-recognition-analysis"
 description: "Identifies acquaintances in videos or images through face photo comparison. Supports database enrollment, and the recognition results tell you who is at which location. Suitable for identity verification in homes and office areas. | 熟人识别分析技能，通过人脸图片比对识别视频/图片中的熟人，支持底库录入，识别结果告诉你哪个位置是谁，适用于家庭、办公区域身份核验"
-version: "1.0.7"
+version: "1.0.25"
 license: "MIT-0"
 ---
 

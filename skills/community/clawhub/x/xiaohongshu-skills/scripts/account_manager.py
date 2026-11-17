@@ -13,9 +13,6 @@ logger = logging.getLogger(__name__)
 _CONFIG_DIR = Path.home() / ".xhs"
 _ACCOUNTS_FILE = _CONFIG_DIR / "accounts.json"
 
-# 命名账号端口起始值（默认账号使用 9222）
-_NAMED_PORT_START = 9223
-
 
 def _load_config() -> dict:
     """加载账号配置。"""
@@ -44,25 +41,20 @@ def list_accounts() -> list[dict]:
                 "name": name,
                 "description": info.get("description", ""),
                 "is_default": name == default,
-                "profile_dir": get_profile_dir(name),
-                "port": info.get("port", _NAMED_PORT_START),
+                "profile_dir": _get_profile_dir(name),
             }
         )
     return result
 
 
 def add_account(name: str, description: str = "") -> None:
-    """添加账号，自动分配独立端口（从 _NAMED_PORT_START 递增）。"""
+    """添加账号。"""
     config = _load_config()
     accounts = config.setdefault("accounts", {})
     if name in accounts:
         raise ValueError(f"账号 '{name}' 已存在")
 
-    # 自动分配端口：取已有端口的最大值（至少 _NAMED_PORT_START - 1）加 1
-    existing_ports = {info.get("port", _NAMED_PORT_START) for info in accounts.values()}
-    port = max(existing_ports | {_NAMED_PORT_START - 1}) + 1
-
-    accounts[name] = {"description": description, "port": port}
+    accounts[name] = {"description": description}
 
     # 如果是第一个账号，设为默认
     if not config.get("default"):
@@ -71,10 +63,10 @@ def add_account(name: str, description: str = "") -> None:
     _save_config(config)
 
     # 创建 Profile 目录
-    profile_dir = get_profile_dir(name)
+    profile_dir = _get_profile_dir(name)
     os.makedirs(profile_dir, exist_ok=True)
 
-    logger.info("添加账号: %s (port=%d)", name, port)
+    logger.info("添加账号: %s", name)
 
 
 def remove_account(name: str) -> None:
@@ -106,37 +98,12 @@ def set_default_account(name: str) -> None:
     logger.info("默认账号设置为: %s", name)
 
 
-def update_account_description(name: str, description: str) -> None:
-    """更新账号描述（通常用于存储平台昵称）。"""
-    config = _load_config()
-    accounts = config.get("accounts", {})
-    if name not in accounts:
-        raise ValueError(f"账号 '{name}' 不存在")
-    accounts[name]["description"] = description
-    _save_config(config)
-    logger.info("账号 %s 描述已更新: %s", name, description)
-
-
 def get_default_account() -> str:
     """获取默认账号名称。"""
     config = _load_config()
     return config.get("default", "")
 
 
-def get_profile_dir(account: str) -> str:
+def _get_profile_dir(account: str) -> str:
     """获取账号的 Chrome Profile 目录。"""
     return str(_CONFIG_DIR / "accounts" / account / "chrome-profile")
-
-
-def _get_profile_dir(account: str) -> str:
-    """获取账号的 Chrome Profile 目录（别名，向后兼容）。"""
-    return get_profile_dir(account)
-
-
-def get_account_port(name: str) -> int:
-    """获取指定账号的 Chrome 调试端口。"""
-    config = _load_config()
-    accounts = config.get("accounts", {})
-    if name not in accounts:
-        raise ValueError(f"账号 '{name}' 不存在")
-    return accounts[name].get("port", _NAMED_PORT_START)

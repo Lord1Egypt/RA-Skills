@@ -1,0 +1,230 @@
+{
+  "card_id": "WQ-EXP-019",
+  "source_type": "clinical_experience",
+  "source_file": "王琦教授治疗气郁质失眠经验_郑璐玉.pdf",
+  "title": "王琦教授治疗气郁质失眠经验",
+  "authors": [
+    "郑璐玉"
+  ],
+  "year": 2023,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨证辨体选择方剂和药物外，同时还发挥药物特性，擅用专方专药；在服药时间上，也有独到见解。"
+  },
+  "treatment_approach": {
+    "main_formula": "逍遥散",
+    "related_formulas": [
+      "逍遥散",
+      "血府逐瘀汤",
+      "柴胡疏肝散"
+    ],
+    "principle": "活血化瘀、疏肝解郁",
+    "herbs": [
+      "白术",
+      "当归",
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "陈皮",
+      "半夏"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体病相关”和“体质可调”理论为依据，治病兼调体，调体贯穿治疗的始终。对于失眠症的治疗，不拘泥于传统的滋阴养血，安神定志之法。在临床用药上，除辨证辨体选择方剂和药物外，同时还发挥药物特性，擅用专方专药；在服药时间上，也有独到见解。 为各种原因引起入睡困难、睡眠深度或频度过短、早醒及睡眠时间不足或质量差等。 为其证候特点，并常伴有日间精神不振，反应迟钝，体倦乏力，甚则心烦懊恼，严重影响身心健康、工作、学习和生活。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "历代医家认为失眠的病因病机以七情内伤为主，其涉及的脏腑不外心、脾、肝、胆、肾，其病机总属营卫失和，阴阳失调为病之本，或阴虚不能纳阳，或阳盛不得入阴",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "method",
+      "content": "笔者课题组在临床对失眠患者中医体质类型调查显示，在《中医体质分类与判定》标准中所包括的气虚质、气郁质、血瘀质、阴虚质、阳虚质、痰湿质、 湿热质、特禀质和平和质这9种体质中，50%失眠患者皆为血瘀质和气郁质，20%为阴虚质 [1]",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "辨气郁质病证并治体质特征：气郁质者多气机郁滞",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨证辨体选择方剂和药物外，同时还发挥药物特性，擅用专方专药；在服药时间上，也有独到见解。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀、疏肝解郁。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为逍遥散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括白术、当归、柴胡、茯苓、甘草、陈皮、半夏。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体病相关”和“体质可调”理论为依据，治病兼调体，调体贯穿治疗的始终",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "平和质",
+    "气虚质",
+    "阳虚质",
+    "阴虚质",
+    "痰湿质",
+    "湿热质",
+    "血瘀质",
+    "气郁质",
+    "特禀质"
+  ],
+  "related_diseases": [
+    "失眠",
+    "抑郁症"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "历代医家认为失眠的病因病机以七情内伤为主，其涉及的脏腑不外心、脾、肝、胆、肾，其病机总属营卫失和，阴阳失调为病之本，或阴虚不能纳阳，或阳盛不得入阴",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "笔者课题组在临床对失眠患者中医体质类型调查显示，在《中医体质分类与判定》标准中所包括的气虚质、气郁质、血瘀质、阴虚质、阳虚质、痰湿质、 湿热质、特禀质和平和质这9种体质中，50%失眠患者皆为血瘀质和气郁质，20%为阴虚质 [1]",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "辨气郁质病证并治体质特征：气郁质者多气机郁滞",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "平和质",
+      "气虚质",
+      "阳虚质",
+      "阴虚质",
+      "痰湿质",
+      "湿热质",
+      "血瘀质",
+      "气郁质",
+      "特禀质"
+    ],
+    "disease": [
+      "失眠",
+      "抑郁症"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "methods": {
+        "start": 2,
+        "end": 3
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.792090",
+  "methods": {
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.555695",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.555702"
+  }
+}

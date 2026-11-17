@@ -1,42 +1,58 @@
-## Description: <br>
-Helps agents produce practical GitHub-style workflow support for bug fixing, setup hardening, reliability improvements, checklists, analysis, implementation help, and adjacent skill creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agent users and maintainers plan, implement, and verify GitHub-style developer workflows such as bug fixes, setup hardening, reliability improvements, and adjacent skill creation.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Developers, maintainers, skill authors, and agent users use this skill to turn software, GitHub, CLI, issue, pull request, and reliability requests into concrete workflows, artifacts, code changes, checklists, analysis, and verification notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording and implicit invocation may cause the skill to activate for loose developer requests where it was not intended. <br>
-Mitigation: Prefer explicit invocation when this workflow helper is intended, and avoid sharing secrets or sensitive private repository details unless the surrounding agent environment is trusted. <br>
+## Use Case:
 
+Developers, skill authors, maintainers, and AI-agent users use this skill to turn GitHub-style development requests into practical workflows, checklists, code changes, analysis, or implementation support. It is aimed at local-hardware-friendly work where the agent clarifies constraints, produces an actionable deliverable, and verifies the result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/software-data-github-interact-developer-helper-130446) <br>
-- [Requirement plan](references/requirement-plan.md) <br>
-- [Popular ClawHub skill demand: Github](https://clawhub.ai/skills/github) <br>
-- [Ask HN: Due to spam on GitHub, what platforms can I move my projects?](https://news.ycombinator.com/item?id=48611303) <br>
-- [Exercise: Integrate MCP with Copilot](https://github.com/420KanaCoin/integrate-mcp-with-copilot/issues/1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with prose, checklists, command snippets, code blocks, and verification notes as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are tailored to the user's immediate software or workflow task and should make assumptions, limits, checks, and follow-up work visible.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can activate broadly for developer and GitHub-related requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the skill is relevant to the current task before relying on its workflow or recommendations.
+
+Risk: Generated code, workflow, or repository-change guidance may affect local repository state or public GitHub content.
+
+Mitigation: Review proposed changes and run appropriate verification before applying code, configuration, or workflow updates.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/software-data-github-interact-developer-helper-130446)
+- [Requirement Plan](references/requirement-plan.md)
+- [GitHub Workflow Demand Evidence](https://clawhub.ai/skills/github)
+- [GitHub Issue Evidence](https://github.com/420KanaCoin/integrate-mcp-with-copilot/issues/1)
+- [Hacker News GitHub Platform Discussion](https://news.ycombinator.com/item?id=48611303)
+- [Hacker News GitHub CI Discussion](https://news.ycombinator.com/item?id=48624574)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text with optional code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, verification notes, reusable checklists, and follow-up risks when useful.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

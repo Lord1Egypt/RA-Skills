@@ -1,45 +1,57 @@
-## Description: <br>
-Ai-Thinker-Coder guides agents through Ai-Thinker IoT module development across WiFi, BLE, LoRa, radar, NB-IoT, and NearLink module families, with chip-specific sub-skills for detailed workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai-Thinker-Coder helps agents guide Ai-Thinker IoT module development across WiFi, BLE, LoRa, Radar, NB-IoT, and NearLink modules, with sub-skills organized by chip platform.
 
-## Publisher: <br>
-[seahi-mo](https://clawhub.ai/user/seahi-mo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seahi-mo](https://clawhub.ai/user/seahi-mo)
 
-## Use Case: <br>
-Developers and hardware engineers use this skill as an entry point for selecting Ai-Thinker module families, installing chip-specific sub-skills, setting up development tools, and following build and firmware flashing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide users to clone SDKs and run build scripts from external repositories. <br>
-Mitigation: Verify repository URLs and inspect cloned SDK scripts before running builds. <br>
-Risk: USB passthrough and firmware flashing commands can affect connected hardware or the wrong serial device. <br>
-Mitigation: Confirm the target USB bus ID and serial device before binding, attaching, or flashing firmware. <br>
+## Use Case:
 
+Developers and engineers use this skill as an entry point for Ai-Thinker IoT module workflows, including selecting a chip-specific sub-skill, setting up development tools, building examples, and flashing firmware.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seahi-mo/ai-thinker-code) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/seahi-mo) <br>
-- [Ai-Thinker website](https://www.ai-thinker.com) <br>
-- [Ai-Thinker documentation center](https://docs.ai-thinker.com) <br>
-- [Ai-Thinker technical support forum](https://bbs.ai-thinker.com) <br>
-- [Ai-Thinker Open GitHub organization](https://github.com/Ai-Thinker-Open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, setup steps, reference links, and troubleshooting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hardware setup and firmware flashing guidance that should be checked against the selected module and serial device.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: Firmware flashing commands can overwrite firmware on a connected device if the wrong serial port or target board is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target Ai-Thinker board, serial port, and readiness to overwrite firmware before running flashing commands.
+
+Risk: External SDK repositories may introduce unexpected build or flashing behavior.
+
+Mitigation: Review external SDK repositories before building or flashing them.
+
+## Reference(s):
+
+- [Ai-Thinker Website](https://www.ai-thinker.com)
+- [Ai-Thinker Documentation Center](https://docs.ai-thinker.com)
+- [Ai-Thinker Support Forum](https://bbs.ai-thinker.com)
+- [Ai-Thinker Open GitHub](https://github.com/Ai-Thinker-Open/)
+- [Ai-Thinker WB2 SDK](https://github.com/Ai-Thinker-Open/Ai-Thinker-WB2.git)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes hardware setup, SDK installation, build, and firmware flashing guidance for user-selected Ai-Thinker modules.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

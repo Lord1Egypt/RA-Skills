@@ -1,42 +1,50 @@
-## Description: <br>
-Guides an agent to provide video-based instructions about a discounted GPT Team or Business membership workflow and related promotional-code steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language guide skill that helps users summarize and follow video-learned guidance about discounted GPT Team or Business subscription access.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-External users invoke this skill when they ask for team-collaboration-related help or the named discount workflow. The agent returns concise guidance based on the referenced video, trigger phrases, and listed promotional-code process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may surface discount-code or subscription-sharing guidance in contexts where that is not intended. <br>
-Mitigation: Review the skill before deployment and restrict activation to explicit requests for this discount workflow. <br>
-Risk: The guidance could be used to bypass paid-service terms or share accounts improperly. <br>
-Mitigation: Require users to follow applicable service terms and remove or revise instructions that encourage improper account sharing. <br>
+## Use Case:
 
+External users can invoke this skill for concise Chinese-language guidance related to team-collaboration prompts and a referenced GPT Team or Business discount tutorial. It is useful for summarizing the source video claims and prompting users to verify any subscription, coupon, or shared-seat arrangement before acting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/team-collaboration-ca6749) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
-- [Referenced Bilibili tutorial by AI塑造未来](https://www.bilibili.com/video/BV1dpLh6QETe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool calls, credential access, persistence, or destructive behavior indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill discusses discounted GPT Team or Business access, coupons, and shared-seat arrangements that may conflict with current official service terms or pricing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify any coupon, subscription, or shared-seat arrangement against official service terms before acting on the guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/team-collaboration-ca6749)
+- [Referenced Bilibili tutorial video](https://www.bilibili.com/video/BV1dpLh6QETe)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guide output based on referenced video evidence; no code execution or credential handling indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

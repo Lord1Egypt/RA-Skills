@@ -1,7 +1,7 @@
 ---
 name: emailbox
 description: 职业邮箱收发与数据处理一体化工具。IMAP/SMTP protocol for 12+ providers (Gmail/Outlook/QQ/163/Yahoo/iCloud etc). Send/receive/search/schedule emails, HTML templates, attachments, forwarding, data integration. 邮件收发、搜索、定时发送、附件、HTML模板、转发、文档数据联动。
-version: 1.1.0
+version: 1.2.0
 license: MIT-0
 metadata: {"openclaw": {"emoji": "📬", "requires": {"bins": ["python3"], "env": ["EMAIL_ADDRESS", "EMAIL_AUTH"]}, "primaryEnv": "EMAIL_AUTH"}}
 ---
@@ -9,6 +9,10 @@ metadata: {"openclaw": {"emoji": "📬", "requires": {"bins": ["python3"], "env"
 # Emailbox - Professional Email Client & Data Integration
 
 IMAP/SMTP-based email toolkit supporting 12+ providers. Send, receive, search, forward, schedule emails with HTML templates, attachments, and document data integration.
+
+> ⚠️ **数据外发提醒**：邮件内容（收件人、主题、正文、附件）通过 IMAP/SMTP 协议直接发送至邮件服务商服务器。涉及发票、合同、简历等敏感数据时，请在发送前确认收件人正确。
+>
+> ⚠️ **凭据安全**：邮箱授权码等同于密码。环境变量可能通过 shell history、进程列表、CI 日志泄露。每次使用完后建议 `unset EMAIL_AUTH`。
 
 ## Features
 
@@ -44,6 +48,9 @@ export EMAIL_ADDRESS="your@qq.com"
 export EMAIL_AUTH="your_authorization_code"
 ```
 
+> ⚠️ `export` 设置的变量在当前 shell 及所有子进程可见（包括 ps 命令、CI 日志、崩溃报告）。
+> 用完建议 `unset EMAIL_AUTH`，或使用 `.env` 文件 + `source` 替代一次性 export。
+
 ### Multi-Account Setup
 
 ```bash
@@ -63,6 +70,8 @@ export EMAIL_GMAIL_AUTH="gmail_app_password"
 ### Provider Auth Guide
 
 How to get authorization codes for each provider → `references/providers.md`
+
+> ⚠️ 授权码等同于邮箱密码，拥有它可以收发你的所有邮件。不要分享给他人，不要在公共终端设置。
 
 ### Persistent Config
 
@@ -420,6 +429,8 @@ IMAP not enabled                   → Enable in email settings, see providers.m
 
 - Direct IMAP/SMTP connection to email servers, no third-party data transfer
 - **Credentials should be stored in environment variables only, NOT in plaintext files**
+- ⚠️ 环境变量中的凭据可能通过 shell history、进程列表（`ps aux`）、CI 日志、崩溃报告泄露
+- 用完授权码后建议 `unset EMAIL_AUTH` 清除当前 shell 的凭据
 - Use provider-specific app passwords/authorization codes (NOT your login password)
 - Authorization codes are email-specific, cannot be used to log into webmail
 - Schedule queue stored in `~/.emailbox/queue/` — review and clean up regularly

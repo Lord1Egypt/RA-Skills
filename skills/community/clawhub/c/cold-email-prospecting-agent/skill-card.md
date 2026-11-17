@@ -1,43 +1,55 @@
-## Description: <br>
-Find work emails, personal emails, mobile phone numbers, and verify email deliverability for cold email outreach using RevoScale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds work emails, personal emails, mobile phone numbers, and email deliverability information for authorized sales outreach using RevoScale.
 
-## Publisher: <br>
-[dotcomcj2](https://clawhub.ai/user/dotcomcj2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dotcomcj2](https://clawhub.ai/user/dotcomcj2)
 
-## Use Case: <br>
-Sales, growth, and business development users use this skill to look up and verify prospect contact information for legitimate business outreach. It supports work-email lookup by name and domain, email verification, and personal email or mobile phone lookup from LinkedIn profile URLs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive personal and business contact data for outreach. <br>
-Mitigation: Use it only for lawful business prospecting and apply consent, anti-spam, platform-terms, and privacy-law controls before processing emails or mobile numbers. <br>
-Risk: All API calls require a RevoScale API key. <br>
-Mitigation: Protect REVOSCALE_API_KEY and avoid exposing it in prompts, logs, shared files, or responses. <br>
-Risk: Outreach decisions may rely on contact data that is unavailable, uncertain, or not permitted for a given use. <br>
-Mitigation: Return only API-provided contact data, include confidence or verification status when available, and suppress outreach when processing rights are unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dotcomcj2/cold-email-prospecting-agent) <br>
-- [RevoScale](https://revoscale.io) <br>
-- [RevoScale API Key Settings](https://app.revoscale.io/settings) <br>
+## Use Case:
 
+Sales and business-development users use this skill to look up contact details from names, company domains, or LinkedIn profile URLs, and to verify whether email addresses are deliverable before outreach.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Configuration] <br>
-**Output Format:** [Markdown with API endpoint, JSON request, and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REVOSCALE_API_KEY and user-provided names, company domains, LinkedIn profile URLs, or email addresses.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may retrieve personal email addresses or mobile phone numbers from LinkedIn-profile-based lookups.
+
+Mitigation: Use it only for lawful, authorized business outreach and follow consent, privacy, anti-spam, and workplace policies before requesting or using contact results.
+
+Risk: Cold outreach results can be misused if users assume inferred contact data is appropriate to contact.
+
+Mitigation: Review each result for business purpose, consent basis, and outreach policy fit before use; verify email deliverability where available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dotcomcj2/skills/cold-email-prospecting-agent)
+- [Publisher profile](https://clawhub.ai/user/dotcomcj2)
+- [RevoScale](https://revoscale.io)
+- [RevoScale API settings](https://app.revoscale.io/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown text with contact lookup results, verification metadata, and setup commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RevoScale API key and paid subscription; results may include privacy-sensitive contact data.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

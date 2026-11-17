@@ -1,39 +1,54 @@
-## Description: <br>
-Helps frontend teams prepare backend requirements handoff notes that describe UI data needs, user actions, states, permissions, business rules, uncertainties, and backend discussion points without prescribing backend implementation details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps frontend teams document UI data, actions, states, permissions, and unresolved business rules for backend discussions without prescribing implementation.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Frontend developers and product engineers use this skill to turn screens, workflows, and interaction states into backend-facing requirements documents. It helps teams align on data needs, user actions, UI states, business rules, uncertainties, and questions before API or service design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated handoff notes may encode inaccurate business assumptions or omit unresolved backend questions. <br>
-Mitigation: Review the generated document with frontend and backend owners before treating it as agreed requirements. <br>
+## Use Case:
 
+Frontend developers and backend collaborators use this skill to turn UI requirements into a discussion-ready handoff covering data needs, user actions, UI states, permissions, business rules, and open questions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bovinphang/fec-backend-requirements-handoff) <br>
-- [Publisher profile](https://clawhub.ai/user/bovinphang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown requirements handoff document, usually written to docs/backend-requirements/<feature-name>.md or returned in chat] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on frontend-facing needs and open questions; avoids prescribing endpoints, field names, database schema, or service implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.7.0 (source: server release metadata, package.json, metadata.json, README.md) <br>
+Risk: A repository requirements file may be created when only a chat response was intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the desired delivery mode and destination before writing or committing the handoff.
+
+Risk: The handoff may present guessed product rules, permissions, or UI behavior as settled requirements.
+
+Mitigation: Keep uncertain rules under open questions and have frontend, product, and backend owners review the document before use.
+
+## Reference(s):
+
+- [Backend Requirements Handoff on ClawHub](https://clawhub.ai/bovinphang/skills/fec-backend-requirements-handoff)
+- [Frontend Craft project (linked in package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Structured Markdown handoff, either in chat or in a repository file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers context, screens, data needs, actions, UI states, business rules, uncertainties, backend questions, and decisions.]
+
+## Skill Version(s):
+
+2.9.0 (source: server release, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

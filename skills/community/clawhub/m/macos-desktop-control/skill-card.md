@@ -1,43 +1,54 @@
-## Description: <br>
-Automates macOS desktop workflows by capturing screenshots and issuing precise mouse, click, and keyboard commands through local macOS utilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates macOS desktop interactions by capturing screenshots and executing precise mouse movements, clicks, and keyboard inputs via cliclick.
 
-## Publisher: <br>
-[emptyopen](https://clawhub.ai/user/emptyopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[emptyopen](https://clawhub.ai/user/emptyopen)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs to inspect a macOS desktop, locate UI elements, and perform controlled GUI actions. It is suited to local desktop automation tasks where screen contents and input actions can be reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose the full macOS screen to an agent. <br>
-Mitigation: Close sensitive windows before use and delete /tmp/claw_view.png after the task is complete. <br>
-Risk: The skill can operate the mouse and keyboard on the local desktop. <br>
-Mitigation: Require manual approval before actions that submit data, delete content, make purchases, send messages, change settings, or affect accounts. <br>
-Risk: The click wrapper depends on a local cliclick binary. <br>
-Mitigation: Verify the cliclick binary source and installation path before enabling the skill. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent inspect a live macOS desktop, identify UI element positions, and issue mouse or keyboard actions during GUI automation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/emptyopen/macos-desktop-control) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and textual tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a PNG screenshot at /tmp/claw_view.png when the screen capture wrapper is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server-resolved release metadata) <br>
+Risk: The skill gives an agent live screen capture plus mouse and keyboard control in a macOS desktop session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted session, keep sensitive windows and credentials out of view, and review proposed actions before allowing desktop control.
+
+Risk: Screenshots are written to a fixed temporary path without documented cleanup.
+
+Mitigation: Harden screenshot storage with a private randomized temporary path, restrictive permissions, exit-status checks, and cleanup after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/emptyopen/skills/macos-desktop-control)
+- [Publisher profile](https://clawhub.ai/user/emptyopen)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The screenshot wrapper writes a PNG file to /tmp/claw_view.png, and desktop actions affect the live macOS session.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

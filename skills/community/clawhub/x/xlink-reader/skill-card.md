@@ -1,40 +1,53 @@
-## Description: <br>
-Read and summarize X/Twitter links with low-token routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and summarize X/Twitter links with low-token routing.
 
-## Publisher: <br>
-[zuolicong](https://clawhub.ai/user/zuolicong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zuolicong](https://clawhub.ai/user/zuolicong)
 
-## Use Case: <br>
-Developers and agent users use this skill to read, summarize, and inspect X/Twitter tweets, explicit threads, t.co links, and X article pages without requiring official X API access. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires local X auth_token and ct0 cookies, which can expose or reuse an authenticated X session. <br>
-Mitigation: Use a secondary X account, keep ~/.config/xreader/session.json private, and delete that file when the skill should no longer reuse the account session. <br>
-Risk: Article extraction uses browser automation and may return partial or noisy content for some X article pages. <br>
-Mitigation: Check warnings and fallback fields in the structured JSON before relying on article summaries. <br>
+## Use Case:
 
+Developers and agent users use this skill to read, summarize, extract, or inspect X/Twitter tweets, authored threads, and X article links while keeping normal tweet reads lightweight.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zuolicong/xlink-reader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured JSON with summarized text, metadata, warnings, and errors] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summary mode truncates cleaned text for lower-token responses; full mode can include complete text or markdown when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Article mode may open and extract content from non-X URLs crafted to look like X article links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted links and require strict URL validation so browser-based article extraction can load only approved X/Twitter hosts, excluding local or private-network pages.
+
+Risk: The skill consumes local X session cookies.
+
+Mitigation: Review before installing and prefer a secondary X account instead of a primary or high-value account.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zuolicong/skills/xlink-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured JSON for tweet, thread, or article content, with text or markdown fields for summaries and extracted content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summary mode limits normal response text for token efficiency; full mode can include expanded text or markdown.]
+
+## Skill Version(s):
+
+0.1.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

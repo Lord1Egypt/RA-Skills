@@ -1,37 +1,48 @@
-## Description: <br>
-Cluster JUnit failures into stable fingerprints so CI triage focuses on root causes, not noisy one-off logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cluster JUnit failures into stable fingerprints so CI triage focuses on root causes, not noisy one-off logs.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and CI maintainers use this skill to compress noisy JUnit XML failures and errors into stable text or JSON fingerprints for root-cause triage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: JUnit failure messages and stack traces may contain secrets or sensitive runtime values when included in CI logs or annotations. <br>
-Mitigation: Scope JUNIT_GLOB to intended test-result directories and review text or JSON output before uploading or sharing it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/junit-failure-fingerprint) <br>
+## Use Case:
 
+Developers and CI maintainers use this skill to group noisy JUnit failure and error records into repeatable fingerprints for faster test triage. It supports local or CI workflows that need text summaries or machine-readable JSON for annotations and reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text report or JSON object with summary, fingerprint groups, and per-case records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Controlled by JUNIT_GLOB, TOP_N, OUTPUT_FORMAT, STACK_LINES, and FAIL_ON_FAILURES.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: JUnit failure messages and stack traces may contain secrets or sensitive test data.
+
+Mitigation: Use a narrow JUNIT_GLOB such as an artifacts or test-results directory, and review text or JSON output before uploading or sharing it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/daniellummis/skills/junit-failure-fingerprint)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration]
+
+**Output Format:** [Text report or JSON output produced from JUnit XML inputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable with JUNIT_GLOB, TOP_N, OUTPUT_FORMAT, STACK_LINES, and FAIL_ON_FAILURES; requires bash and python3.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

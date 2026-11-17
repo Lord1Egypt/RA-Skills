@@ -1,41 +1,63 @@
-## Description: <br>
-Reviews prescription-audit, medical safety procedure, and medical ethics or legal questions through a command-line medical Q&A workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Answers prescription review, medical safety, and medical ethics or regulations questions using task-specific prompts for question-answer, single-choice, and multiple-choice formats.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-Developers and clinical workflow integrators use this skill to submit prescription review, medical safety, and medical ethics questions by CLI and receive structured JSON or answer text from a configured medical model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical question text is sent to the configured model API. <br>
-Mitigation: Use de-identified inputs for testing and avoid identifiable patient information unless organizational policy permits that use. <br>
-Risk: Model answers can be incomplete or inappropriate for clinical decisions. <br>
-Mitigation: Treat outputs as assistive information and require qualified review before relying on them for diagnosis, treatment, or formal policy decisions. <br>
+## Use Case:
 
+Healthcare integrators and developers use this skill to submit prescription review, medical safety, and medical ethics or regulations questions to a configured medical language model. The output is model-assisted information for review workflows, not a substitute for formal clinical decision-making.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-rx-safety-ethics) <br>
-- [Default medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files] <br>
-**Output Format:** [Structured JSON by default, optional plain answer text, and NDJSON for batch output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write UTF-8 JSON or NDJSON to --output; dry-run returns parsed input without calling the model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Medical answers may be incomplete, incorrect, or unsuitable for a specific patient.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as assistive information only and require qualified clinical review before acting on prescription, safety, ethics, or regulations guidance.
+
+Risk: Questions may contain patient data that is sent to the configured model endpoint.
+
+Mitigation: De-identify inputs and use the skill only with a model provider and endpoint approved for the data being processed.
+
+Risk: A caller-supplied API URL can route questions and credentials to an untrusted destination.
+
+Mitigation: Restrict endpoint overrides to trusted HTTPS endpoints under the operator's control.
+
+Risk: Passing API keys directly in shell commands can expose credentials through process listings or shell history.
+
+Mitigation: Use controlled invocation and a safer secret channel instead of embedding keys directly in command lines.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-rx-safety-ethics)
+- [Publisher profile](https://clawhub.ai/user/unisound-llm)
+- [Default chat completions endpoint](https://maas-api.hivoice.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, files]
+
+**Output Format:** [JSON by default, plain answer text with --text-only, or NDJSON for batch output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write UTF-8 JSON or NDJSON to --output; responses depend on the configured model, endpoint, prompt, and input question.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

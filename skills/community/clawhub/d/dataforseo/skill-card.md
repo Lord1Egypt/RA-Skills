@@ -1,43 +1,60 @@
-## Description: <br>
-Search Google and gather SEO data using the DataForSEO API for SERP results, keyword data, backlinks, on-page analysis, bulk lead generation, keyword research, rank tracking, and detailed SERP data at scale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google and gather SEO data through the DataForSEO API for SERP results, keyword data, backlinks, on-page analysis, Maps business lookup, and high-volume lead generation.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and SEO operators use this skill to have an agent prepare DataForSEO API calls for Google SERP search, batch lead generation, Maps business lookup, keyword volume, backlink summaries, and site audit workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search terms, business targets, locations, and site audit inputs are sent to DataForSEO. <br>
-Mitigation: Avoid sending secrets, regulated data, or sensitive customer data in DataForSEO queries or audit targets. <br>
-Risk: Bulk SERP and SEO workflows can incur paid DataForSEO API usage. <br>
-Mitigation: Monitor API account usage, set operational limits where available, and review batch sizes before running high-volume requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/maverick-software/dataforseo) <br>
-- [DataForSEO Google Organic Live Advanced Endpoint](https://api.dataforseo.com/v3/serp/google/organic/live/advanced) <br>
-- [DataForSEO Google Organic Task Post Endpoint](https://api.dataforseo.com/v3/serp/google/organic/task_post) <br>
-- [DataForSEO Google Locations Endpoint](https://api.dataforseo.com/v3/serp/google/locations) <br>
-- [DataForSEO Google Maps Live Advanced Endpoint](https://api.dataforseo.com/v3/serp/google/maps/live/advanced) <br>
+## Use Case:
 
+Developers and external users use this skill to query DataForSEO for Google SERP results, keyword metrics, local business data, backlink summaries, and on-page SEO analysis at scale.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with Python code examples and environment variable configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses DATAFORSEO_LOGIN and DATAFORSEO_PASSWORD credentials; search inputs and site audit targets are sent to DataForSEO.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search terms, locations, and related query parameters are sent to DataForSEO.
+
+Mitigation: Avoid using secrets, sensitive personal data, or regulated data unless external sharing with DataForSEO is approved.
+
+Risk: DataForSEO API calls may incur pay-as-you-go charges.
+
+Mitigation: Review pricing, batch sizes, and query volume before running generated requests.
+
+Risk: The skill depends on DataForSEO account credentials in environment variables.
+
+Mitigation: Store DATAFORSEO_LOGIN and DATAFORSEO_PASSWORD securely and avoid printing or committing them.
+
+## Reference(s):
+
+- [DataForSEO Google Organic Live Advanced SERP endpoint](https://api.dataforseo.com/v3/serp/google/organic/live/advanced)
+- [DataForSEO Google Organic Task Post endpoint](https://api.dataforseo.com/v3/serp/google/organic/task_post)
+- [DataForSEO Google Organic Task Get Advanced endpoint](https://api.dataforseo.com/v3/serp/google/organic/task_get/advanced/{task_id})
+- [DataForSEO Google SERP Locations endpoint](https://api.dataforseo.com/v3/serp/google/locations)
+- [DataForSEO Google Maps Live Advanced endpoint](https://api.dataforseo.com/v3/serp/google/maps/live/advanced)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python code blocks and environment variable examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DATAFORSEO_LOGIN and DATAFORSEO_PASSWORD; generated examples call external DataForSEO API endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

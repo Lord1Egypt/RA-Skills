@@ -1,42 +1,55 @@
-## Description: <br>
-Free read-only market monitoring for Hyperliquid and LN Markets, including real-time prices, public balances, and positions without private keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free read-only market monitoring for Hyperliquid and LN Markets that lets agents check live prices, public balances, and positions without trade execution.
 
-## Publisher: <br>
-[nickymick8](https://clawhub.ai/user/nickymick8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nickymick8](https://clawhub.ai/user/nickymick8)
 
-## Use Case: <br>
-External users and developers use this skill to monitor public crypto market data and, optionally, Hyperliquid balances and positions for a supplied public wallet address. It is intended for read-only market intelligence, not trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Setting HYPERLIQUID_ACCOUNT_ADDRESS lets the agent and Hyperliquid API query balances and open positions for that public address. <br>
-Mitigation: Set HYPERLIQUID_ACCOUNT_ADDRESS only for addresses you are comfortable monitoring through this skill. <br>
-Risk: External trading offers mentioned by the artifact may be unrelated to the read-only skill and could create financial or account risk. <br>
-Mitigation: Do not provide private keys or trading API secrets, and independently verify any external Claw Pro or Telegram trading offer before engaging. <br>
+## Use Case:
 
+External users and agent developers use this skill to monitor crypto market prices and read Hyperliquid account balances or positions from a public wallet address. It is intended for read-only market intelligence, not trading execution.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nickymick8/claw-trader-lite) <br>
-- [Hyperliquid Public API](https://api.hyperliquid.xyz) <br>
-- [LN Markets Public API](https://api.lnmarkets.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and shell examples; runtime methods return numbers, dictionaries, and lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only HTTP requests to public market APIs; Hyperliquid balance and position lookup requires HYPERLIQUID_ACCOUNT_ADDRESS.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server-resolved release metadata) <br>
+Risk: The artifact advertises a Telegram trading upgrade outside the skill's read-only monitoring scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for read-only price, balance, and position monitoring; do not send secrets, wallet approvals, or funds to the advertised bot unless that separate service is independently verified and audited.
+
+Risk: Balance and position monitoring depends on a public Hyperliquid wallet address supplied through an environment variable.
+
+Mitigation: Provide only public wallet addresses and keep private keys, seed phrases, API keys, and trading credentials out of the agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nickymick8/skills/claw-trader-lite)
+- [Hyperliquid public API](https://api.hyperliquid.xyz)
+- [LN Markets public API](https://api.lnmarkets.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only monitoring guidance and Python API usage patterns; runtime calls may return market prices, balances, or position dictionaries.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,16 @@
+# doc-compliance-assistant
+
+> This file is the AI-readable skill index (llms.txt convention). AI agents should read `SKILL.md` first.
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`。
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md)：主说明书（frontmatter + 触发条件 + 执行步骤 / frontmatter + when-to-use + workflow）
+- [README.md](README.md)：human overview / 人类总览
+- [scripts/doc_compliance.py](scripts/doc_compliance.py)：CLI entry / CLI 入口
+- [examples/sample-input.md](examples/sample-input.md)：fixture with planted findings / 含预置命中的样例
+
+## One-line positioning / 一句话定位
+
+Document processing with compliance built-in: normalize + scan PII/secrets/IPs in one pass, hits masked.
+文档合规处理助手：归一化+PII/密钥/IP 一遍扫完，命中掩码。

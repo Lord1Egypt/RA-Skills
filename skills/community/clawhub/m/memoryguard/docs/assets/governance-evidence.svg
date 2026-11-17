@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960">
+  <!-- Background -->
+  <rect width="1600" height="960" fill="#08121F"/>
+  
+  <!-- Four panels -->
+  <!-- Panel 1: Conflict (top-left) -->
+  <rect x="24" y="24" width="760" height="440" rx="8" fill="#0D1B2A" stroke="#1E3A52" stroke-width="1"/>
+  <rect x="24" y="24" width="760" height="48" rx="8" fill="#12243A"/>
+  <rect x="40" y="38" width="120" height="20" rx="3" fill="#F3B562"/>
+  
+  <!-- Conflict visualization -->
+  <rect x="48" y="96" width="712" height="72" rx="4" fill="#12243A"/>
+  <rect x="60" y="108" width="8" height="48" rx="2" fill="#F3B562"/>
+  <rect x="80" y="112" width="360" height="12" rx="2" fill="#3E556B"/>
+  <rect x="80" y="134" width="220" height="8" rx="2" fill="#2A3F55"/>
+  
+  <path d="M 404 140 L 440 140 L 434 134 M 440 140 L 434 146" stroke="#EA6A6A" stroke-width="2" fill="none"/>
+  
+  <rect x="460" y="96" width="300" height="72" rx="4" fill="#1A1212" stroke="#3A2020" stroke-width="1"/>
+  <rect x="472" y="108" width="8" height="48" rx="2" fill="#EA6A6A"/>
+  <rect x="492" y="112" width="200" height="12" rx="2" fill="#3E556B"/>
+  <rect x="492" y="134" width="140" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Resolve button -->
+  <rect x="48" y="190" width="140" height="36" rx="18" fill="#F3B562" opacity="0.15"/>
+  <rect x="60" y="202" width="100" height="12" rx="2" fill="#F3B562"/>
+  
+  <!-- Panel 2: Quarantine (top-right) -->
+  <rect x="816" y="24" width="760" height="440" rx="8" fill="#0D1B2A" stroke="#1E3A52" stroke-width="1"/>
+  <rect x="816" y="24" width="760" height="48" rx="8" fill="#12243A"/>
+  <rect x="832" y="38" width="120" height="20" rx="3" fill="#EA6A6A"/>
+  
+  <rect x="840" y="96" width="712" height="64" rx="4" fill="#1A1212" stroke="#3A2020" stroke-width="1"/>
+  <rect x="852" y="108" width="8" height="40" rx="2" fill="#EA6A6A"/>
+  <rect x="872" y="112" width="280" height="12" rx="2" fill="#3E556B"/>
+  <rect x="872" y="134" width="200" height="8" rx="2" fill="#2A3F55"/>
+  
+  <rect x="840" y="176" width="712" height="64" rx="4" fill="#1A1212" stroke="#3A2020" stroke-width="1"/>
+  <rect x="852" y="188" width="8" height="40" rx="2" fill="#EA6A6A"/>
+  <rect x="872" y="192" width="240" height="12" rx="2" fill="#3E556B"/>
+  <rect x="872" y="214" width="160" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Isolated badge -->
+  <rect x="840" y="264" width="120" height="28" rx="14" fill="#1A1212"/>
+  <circle cx="858" cy="278" r="5" fill="#EA6A6A"/>
+  <rect x="870" y="272" width="76" height="12" rx="2" fill="#3E556B"/>
+  
+  <!-- Panel 3: Supersede chain (bottom-left) -->
+  <rect x="24" y="496" width="760" height="440" rx="8" fill="#0D1B2A" stroke="#1E3A52" stroke-width="1"/>
+  <rect x="24" y="496" width="760" height="48" rx="8" fill="#12243A"/>
+  <rect x="40" y="510" width="140" height="20" rx="3" fill="#38D5C8"/>
+  
+  <!-- Old version (shadowed) -->
+  <rect x="48" y="568" width="712" height="60" rx="4" fill="#12243A" opacity="0.4"/>
+  <rect x="60" y="580" width="8" height="36" rx="2" fill="#3E556B"/>
+  <rect x="80" y="584" width="300" height="10" rx="2" fill="#3E556B"/>
+  <rect x="80" y="602" width="180" height="8" rx="2" fill="#2A3F55"/>
+  <rect x="660" y="588" width="80" height="20" rx="4" fill="#3E556B" opacity="0.4"/>
+  
+  <!-- Arrow down -->
+  <path d="M 404 638 L 404 668 L 398 662 M 404 668 L 410 662" stroke="#38D5C8" stroke-width="2" fill="none"/>
+  
+  <!-- New version (active) -->
+  <rect x="48" y="680" width="712" height="60" rx="4" fill="#12243A"/>
+  <rect x="60" y="692" width="8" height="36" rx="2" fill="#38D5C8"/>
+  <rect x="80" y="696" width="340" height="10" rx="2" fill="#3E556B"/>
+  <rect x="80" y="714" width="200" height="8" rx="2" fill="#2A3F55"/>
+  <rect x="660" y="700" width="80" height="20" rx="4" fill="#38D5C8" opacity="0.3"/>
+  
+  <!-- Restore button -->
+  <rect x="48" y="770" width="120" height="36" rx="18" fill="#38D5C8" opacity="0.15"/>
+  <rect x="60" y="782" width="96" height="12" rx="2" fill="#38D5C8"/>
+  
+  <!-- Panel 4: Version history (bottom-right) -->
+  <rect x="816" y="496" width="760" height="440" rx="8" fill="#0D1B2A" stroke="#1E3A52" stroke-width="1"/>
+  <rect x="816" y="496" width="760" height="48" rx="8" fill="#12243A"/>
+  <rect x="832" y="510" width="140" height="20" rx="3" fill="#38D5C8" opacity="0.8"/>
+  
+  <!-- Version timeline -->
+  <line x1="864" y1="580" x2="864" y2="880" stroke="#1E3A52" stroke-width="2"/>
+  
+  <circle cx="864" cy="600" r="8" fill="#38D5C8"/>
+  <rect x="888" y="592" width="400" height="12" rx="2" fill="#3E556B"/>
+  <rect x="888" y="612" width="240" height="8" rx="2" fill="#2A3F55"/>
+  
+  <circle cx="864" cy="660" r="8" fill="#F3B562"/>
+  <rect x="888" y="652" width="320" height="12" rx="2" fill="#3E556B"/>
+  <rect x="888" y="672" width="200" height="8" rx="2" fill="#2A3F55"/>
+  
+  <circle cx="864" cy="720" r="8" fill="#3E556B"/>
+  <rect x="888" y="712" width="360" height="12" rx="2" fill="#3E556B"/>
+  <rect x="888" y="732" width="180" height="8" rx="2" fill="#2A3F55"/>
+  
+  <circle cx="864" cy="780" r="8" fill="#3E556B"/>
+  <rect x="888" y="772" width="280" height="12" rx="2" fill="#3E556B"/>
+  <rect x="888" y="792" width="160" height="8" rx="2" fill="#2A3F55"/>
+  
+  <!-- Rollback button -->
+  <rect x="840" y="836" width="120" height="36" rx="18" fill="#38D5C8" opacity="0.15"/>
+  <rect x="852" y="848" width="96" height="12" rx="2" fill="#38D5C8"/>
+</svg>

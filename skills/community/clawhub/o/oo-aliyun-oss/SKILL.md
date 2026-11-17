@@ -5,9 +5,9 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Alibaba Cloud OSS"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.8"
   services: ["aliyun_oss"]
-  icon: "https://static.oomol.com/logo/third-party/alibabacloud.svg"
+  icon: "https://static.oomol.com/logo/third-party/aliyun_oss.svg"
 ---
 
 # Alibaba Cloud OSS
@@ -38,11 +38,12 @@ Each action is listed below with a one-line description; actions that change sta
 ## Available actions
 
 - `delete_object` — Delete one OSS object. [destructive]
+- `download_object` — Download one OSS object into connector transit storage.
 - `generate_presigned_url` — Generate a pre-signed OSS URL for reading, uploading, or deleting one object.
 - `head_object` — Fetch structured metadata for one OSS object.
 - `list_buckets` — List OSS buckets visible to the connected Alibaba Cloud credential.
 - `list_objects` — List objects in an OSS bucket with the ListObjectsV2 API.
-- `put_object` — Upload one object to OSS from a public URL, plain text, or base64-encoded content. [write]
+- `put_object` — Upload one object to OSS from a public URL, plain text, or base64-encoded content. [destructive]
 
 ## Safety
 
@@ -73,11 +74,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Alibaba Cloud OSS is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential, federated) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=aliyun_oss
+  https://console.oomol.com/connections/aliyun_oss
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Alibaba Cloud OSS homepage: https://www.alibabacloud.com
+- API documentation: https://www.alibabacloud.com/help/en/oss/developer-reference/api-reference

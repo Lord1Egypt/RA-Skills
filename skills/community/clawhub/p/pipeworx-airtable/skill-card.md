@@ -1,40 +1,54 @@
-## Description: <br>
-Integrate with the Airtable API to list bases, fetch and filter records, get record details, create records, and retrieve base schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pipeworx Airtable lets an agent use an Airtable MCP endpoint to list bases, inspect schemas, fetch or filter records, retrieve record details, and create records.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to configure access to a Pipeworx-hosted Airtable MCP server for reading Airtable bases, records, schemas, and creating new records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes Airtable read and write access through an external Pipeworx gateway that may handle record contents, schemas, workspace metadata, and record creation requests. <br>
-Mitigation: Review who operates the gateway and its data handling before installing; use dedicated least-privilege Airtable credentials limited to the intended bases. <br>
-Risk: The skill can create Airtable records and retrieve broad base and schema data. <br>
-Mitigation: Test with non-sensitive bases first, restrict connected account permissions, and avoid sensitive production workspaces unless the gateway has been approved. <br>
+## Use Case:
 
+Developers and automation users use this skill to connect an agent to Airtable data, read base structure and records, and create new records through the configured MCP endpoint.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-airtable) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON configuration snippet and tool descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote Pipeworx Airtable MCP gateway; responses depend on connected Airtable account permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can expose sensitive Airtable read and write access through an under-documented third-party gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant access only to specific Airtable bases and permissions needed for the workflow, prefer read-only access unless record creation is required, and confirm who operates the gateway and how credentials and Airtable data are handled.
+
+Risk: Record creation can modify Airtable data if the connected credentials have write permission.
+
+Mitigation: Use least-privilege Airtable credentials, review requested operations before enabling write access, and revoke access if operator or data-handling details cannot be confirmed.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/brucegutman/skills/pipeworx-airtable)
+- [Publisher Profile](https://clawhub.ai/user/brucegutman)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may include Airtable base, schema, record, and creation-result details returned by the MCP endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

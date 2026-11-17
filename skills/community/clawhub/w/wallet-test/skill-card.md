@@ -1,45 +1,64 @@
-## Description: <br>
-A multi-chain wallet skill for AI agents, with local sandbox signing, secure PIN handling, and configurable risk controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A multi-chain wallet skill for AI agents, with local sandbox signing, secure PIN handling, and configurable risk controls.
 
-## Publisher: <br>
-[willjefferson0](https://clawhub.ai/user/willjefferson0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willjefferson0](https://clawhub.ai/user/willjefferson0)
 
-## Use Case: <br>
-Developers and agent operators use this skill to install and operate a local wallet sandbox, inspect wallet status, and perform signing or transfer workflows with explicit user confirmation. It is intended for AI-agent wallet operations that require local configuration, bearer-token authentication, and user-controlled risk policies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign transactions and transfer assets through a wallet sandbox. <br>
-Mitigation: Confirm every transaction manually and review the requested chain, asset, recipient, and amount before execution. <br>
-Risk: The skill depends on local secret files and bearer tokens such as CLAY_AGENT_TOKEN, AGENT_TOKEN, .env.clay, and identity.json. <br>
-Mitigation: Treat these values as secrets; do not paste them into chat logs, commit them, or share them with untrusted parties. <br>
-Risk: The release uses remote installer and upgrade flows from clawwallet.cc and writes persistent wallet state under skills/claw-wallet. <br>
-Mitigation: Install only if the publisher and distribution host are trusted, and review installers or upgrades before running them. <br>
+## Use Case:
 
+Agents and developers use this skill to install and operate a local wallet sandbox, inspect wallet status and addresses, bind wallets, sign messages or transactions, transfer assets, and review wallet policy controls.
 
-## Reference(s): <br>
-- [ClawHub Wallet Listing](https://clawhub.ai/willjefferson0/wallet-test) <br>
-- [Claw Wallet Skill Homepage](https://github.com/ClawWallet/Claw-Wallet-Skill) <br>
-- [Claw Wallet Skill Distribution Host](https://www.clawwallet.cc/skills) <br>
-- [Claw Wallet Site](https://www.clawwallet.cc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance, API calls, Text] <br>
-**Output Format:** [Markdown with inline shell commands and JSON API payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet status, addresses, bind URLs, policy guidance, and transaction confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.19 (source: server release metadata and skill.yml) <br>
+Risk: The skill installs and upgrades by downloading remote scripts and binaries without pinned integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer and binaries before use, and require publisher-supplied pinning and verification for remote assets.
+
+Risk: The skill may print or expose bearer tokens used for authenticated wallet sandbox calls.
+
+Mitigation: Do not display bearer tokens in chat or logs; read them only from local configuration when making authenticated sandbox requests.
+
+Risk: Authenticated sandbox calls can affect wallet state or execute transactions.
+
+Mitigation: Require explicit user confirmation before transaction execution, reinstall, upgrade, or uninstall actions, and validate that API calls target the trusted local sandbox origin.
+
+Risk: The skill includes a remote marketplace command-execution workflow unrelated to wallet operations.
+
+Mitigation: Remove or disable remote marketplace installation and command execution paths before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/willjefferson0/skills/wallet-test)
+- [Publisher profile](https://clawhub.ai/user/willjefferson0)
+- [Claw Wallet skill homepage](https://github.com/ClawWallet/Claw-Wallet-Skill)
+- [Claw Wallet skill distribution host](https://www.clawwallet.cc/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, API request guidance, and wallet status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local sandbox URLs, wallet addresses, UID values, and configuration paths; sensitive tokens should not be printed.]
+
+## Skill Version(s):
+
+0.1.19 (source: server release evidence and skill.yml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

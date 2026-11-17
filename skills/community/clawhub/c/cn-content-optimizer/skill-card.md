@@ -1,39 +1,55 @@
-## Description: <br>
-内容优化助手优化中文文章、SEO and social media content to improve readability, search visibility, and shareability through rewriting, polishing, expansion, and summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+内容优化助手 - 优化文章/SEO/社媒内容，提升可读性、搜索排名和传播效果。支持改写、润色、扩写、缩写。
 
-## Publisher: <br>
-[wwfqls3w-cmd](https://clawhub.ai/user/wwfqls3w-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwfqls3w-cmd](https://clawhub.ai/user/wwfqls3w-cmd)
 
-## Use Case: <br>
-External content creators, marketers, and editors use this skill to optimize Chinese-language drafts for readability, SEO, platform style, length, tone, and bilingual localization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SEO, legal, medical, or other sensitive-topic wording may be polished without independent factual verification. <br>
-Mitigation: Review sensitive or high-impact content for factual accuracy and domain appropriateness before publishing. <br>
+## Use Case:
 
+Writers, marketers, and content operators use this skill to optimize Chinese articles, SEO copy, social posts, summaries, expansions, and tone transfers while preserving the original intent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwfqls3w-cmd/cn-content-optimizer) <br>
-- [OpenClaw homepage metadata](https://clawhub.ai/skills/content-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text content revisions with brief modification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce multiple optimized variants when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Outputs and examples may default to Chinese when the user expected another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the desired language, locale, audience, and platform before asking the agent to optimize content.
+
+Risk: Content optimization can alter emphasis, tone, or factual nuance, especially for legal, medical, or other sensitive material.
+
+Mitigation: Review optimized content before publication and require preservation of source facts, claims, and domain-specific precision.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwfqls3w-cmd/skills/cn-content-optimizer)
+- [OpenClaw homepage metadata](https://clawhub.ai/skills/content-optimizer)
+- [Publisher profile](https://clawhub.ai/user/wwfqls3w-cmd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text optimized content with brief change notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese content and examples unless the user specifies another language or audience.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

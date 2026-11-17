@@ -1,43 +1,58 @@
-## Description: <br>
-Generate high-quality images from text descriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality images from text descriptions.
 
-## Publisher: <br>
-[fchange](https://clawhub.ai/user/fchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fchange](https://clawhub.ai/user/fchange)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn text prompts into image-generation requests through Gitee AI and return the resulting image URL in Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts and generation settings are sent to Gitee AI. <br>
-Mitigation: Avoid confidential, regulated, or sensitive content in prompts and settings. <br>
-Risk: The Gitee AI API key is required for generation. <br>
-Mitigation: Set GITEEAI_API_KEY as an environment variable instead of passing the key on the command line. <br>
-Risk: The skill depends on the Python openai package to call the external provider. <br>
-Mitigation: Use an isolated Python environment when installing and running the dependency. <br>
+## Use Case:
 
+Developers and agent users use this skill to generate images from text prompts through Gitee AI models, adjusting model, size, negative prompt, guidance scale, and inference-step parameters as needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fchange/moark-image-gen) <br>
-- [Gitee AI API endpoint](https://ai.gitee.com/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with an image link and generation settings summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GITEEAI_API_KEY environment variable or an API key argument; returns the generated image URL without downloading the image by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Prompts are sent to Gitee AI and require a Gitee AI API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that external service use is acceptable for the intended prompts and environment.
+
+Risk: Passing the API key with --api-key may expose it through shell history or process listings.
+
+Mitigation: Set GITEEAI_API_KEY through the environment or a secret manager instead of passing the key on the command line.
+
+Risk: The bundled script depends on the openai package without a pinned version.
+
+Mitigation: Pin and review the openai dependency in controlled or production environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fchange/skills/moark-image-gen)
+- [Gitee AI API endpoint](https://ai.gitee.com/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown with generated image link and concise parameter summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns an image URL from the Gitee AI API; default output does not download the image.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

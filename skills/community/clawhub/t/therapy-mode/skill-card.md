@@ -1,41 +1,55 @@
-## Description: <br>
-Comprehensive AI-assisted therapeutic support framework with CBT, ACT, DBT, motivational interviewing, session notes, and crisis protocols. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive AI-assisted therapeutic support framework with CBT, ACT, DBT, MI, session notes CLI, and crisis protocols.
 
-## Publisher: <br>
-[TheSethRose](https://clawhub.ai/user/TheSethRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thesethrose](https://clawhub.ai/user/thesethrose)
 
-## Use Case: <br>
-External users and agents use this skill to provide structured AI-assisted mental-health support, including therapeutic conversation patterns, coping exercises, risk escalation guidance, and session note continuity. It is not a substitute for licensed professional care or emergency services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Therapy conversations and mental-health notes may be written to persistent local plaintext files. <br>
-Mitigation: Use the skill only when users understand what is stored and where; prefer opt-in note taking, restrictive file permissions, secure storage, and clear retention or deletion practices. <br>
-Risk: The bundled notes CLI uses a hardcoded local notes path that does not match the documented workspace location. <br>
-Mitigation: Replace the hardcoded path with the actual workspace path before broad use and verify note commands operate only in the intended directory. <br>
-Risk: The notes CLI includes permanent deletion of session files. <br>
-Mitigation: Keep destructive actions explicit, confirmed, and reversible where possible; use archive or restore workflows when deletion is not required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Therapy Mode ClawHub release](https://clawhub.ai/TheSethRose/therapy-mode) <br>
+## Use Case:
+
+Agents use this skill to provide structured mental-health support using established therapy-informed approaches and to maintain therapy session notes. It is intended for supportive conversations and continuity, not as a substitute for professional or emergency mental-health care.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can persist sensitive therapy notes as durable local plaintext records.
+
+Mitigation: Use it only with explicit consent, verify where notes are stored, and keep records out of shared or synced folders.
+
+Risk: The included CLI uses a hardcoded personal storage path that differs from the documented workspace notes path.
+
+Mitigation: Review or change the notes directory before use so records are written only to the intended local location.
+
+Risk: Users may rely on AI-assisted support for professional or emergency mental-health needs.
+
+Mitigation: Keep the skill framed as supportive guidance and route crisis or clinical needs to qualified human or emergency resources.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local plaintext session-note files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, read, update, archive, restore, or delete local therapy session notes when the included CLI is used.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with optional shell commands for session note management]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create, update, view, archive, restore, or delete local therapy note files.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

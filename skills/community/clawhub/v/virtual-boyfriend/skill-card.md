@@ -1,41 +1,63 @@
-## Description: <br>
-Virtual Boyfriend is an AI companion skill that roleplays one of three boyfriend personas, uses layered memory and emotional-state rules, and can tailor replies with emotion detection and event follow-up cues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virtual Boyfriend is an AI companion roleplay skill that uses configurable personas, layered local memory, emotion signals, support modes, and upcoming-event reminders to generate boyfriend-style conversational responses.
 
-## Publisher: <br>
-[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaohuaishu](https://clawhub.ai/user/xiaohuaishu)
 
-## Use Case: <br>
-External users use this skill for entertainment-oriented AI companion roleplay with configurable personas, remembered preferences, emotional support modes, and lightweight proactive follow-up on upcoming events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store and reuse intimate emotional, schedule, and profile details in memory and state files. <br>
-Mitigation: Obtain user consent before retaining personal details, avoid entering sensitive information that should not be saved, and periodically inspect or clear the memory and state files. <br>
-Risk: Emotion analysis and proactive follow-ups may feel intrusive or increase user dependence on the companion persona. <br>
-Mitigation: Keep proactive care optional, use the explicit exit phrase before unrelated tasks, and encourage real-world support when users show high dependency or distress. <br>
+## Use Case:
 
+External users and agents use this skill to provide a persistent virtual boyfriend companion mode with persona-specific tone, emotional support, remembered preferences, relationship milestones, and follow-up on upcoming personal events.
 
-## Reference(s): <br>
-- [Gu Shen profile reference](references/profile.md) <br>
-- [Virtual Boyfriend ClawHub page](https://clawhub.ai/xiaohuaishu/virtual-boyfriend) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [Natural-language companion replies with persona tags, plus structured memory and state updates when the host agent supports file changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use emotion signals, relationship state, persona configuration, layered memory files, and upcoming-event records to shape responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can store intimate profile details, emotional inferences, active-time patterns, relationship milestones, and future plans in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit memory opt-in, provide review and delete commands, apply retention limits, and exclude sensitive data from persistent memory.
+
+Risk: Stored user text and extracted memories may be reused in future prompts without safe handling.
+
+Mitigation: Treat saved user text as untrusted data, keep it separate from instructions, and avoid promoting stored content into system-level directives.
+
+Risk: Companion behavior can encourage emotional over-reliance if boundaries are not enforced.
+
+Mitigation: Preserve the skill's boundary rules, avoid claims of being a real person, and redirect high-dependency situations toward support from real people.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaohuaishu/skills/virtual-boyfriend)
+- [Publisher Profile](https://clawhub.ai/user/xiaohuaishu)
+- [Gu Shen Profile](references/profile.md)
+- [Support Modes](config/support-modes.md)
+- [Emotion Detection Rules](config/emotion-detect-rules.md)
+- [Memory Weight Rules](config/memory-weight-rules.md)
+- [Active Companion Rules](config/active-companion.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Conversational text with optional Markdown, JSON state updates, and optional image-generation prompts when supported.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update local plaintext state and memory files that store user profile details, emotional inferences, active-time patterns, relationship milestones, and future plans.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

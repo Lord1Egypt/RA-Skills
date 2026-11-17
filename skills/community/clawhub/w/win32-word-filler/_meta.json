@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn76tbzna5pmt1dpwmq2rnve71896r87",
-  "slug": "win32-word-filler",
-  "version": "1.0.0",
-  "publishedAt": 1782230735748
+  "name": "word-template-filler",
+  "displayName": "Word Template Filler",
+  "description": "Fill .docx templates via win32com preserving all formatting, images, underlines, and layout.",
+  "homepage": "https://clawhub.ai/skills/word-template-filler",
+  "author": "winezzz999",
+  "license": "MIT",
+  "language": "zh-CN",
+  "requirements": {
+    "python": ["pywin32"],
+    "os": ["windows"],
+    "apps": ["Microsoft Word"]
+  }
 }

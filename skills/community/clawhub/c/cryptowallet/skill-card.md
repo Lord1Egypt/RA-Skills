@@ -1,43 +1,58 @@
-## Description: <br>
-CryptoWallet helps agents create and import EVM and Solana wallets, check native and token balances, send transactions, and interact with smart contracts using encrypted local key storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete cryptocurrency wallet management for Web3, DeFi, and blockchain applications, including encrypted EVM and Solana wallet storage, balance checks, token transfers, and smart contract interactions across multiple networks.
 
-## Publisher: <br>
-[gnufoo](https://clawhub.ai/user/gnufoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gnufoo](https://clawhub.ai/user/gnufoo)
 
-## Use Case: <br>
-Developers, Web3 operators, and external users use this skill to manage local blockchain wallets, inspect balances, send native or token transfers, and perform smart-contract reads or writes across supported EVM and Solana networks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign and broadcast irreversible blockchain transactions. <br>
-Mitigation: Use testnets or small amounts first and independently verify every address, amount, network, token contract, and smart-contract call before execution. <br>
-Risk: Wallet secrets and passwords may be handled through command-line arguments. <br>
-Mitigation: Avoid passing real private keys or wallet passwords directly on the command line, and prefer isolated test wallets before using production funds. <br>
-Risk: Public or untrusted RPC endpoints can affect reliability and transaction visibility. <br>
-Mitigation: Configure trusted RPC endpoints where possible and verify network settings before balance checks, transfers, or contract writes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Network Configuration](artifact/references/networks.json) <br>
-- [Security Best Practices](artifact/references/security.md) <br>
-- [ClawHub Release Page](https://clawhub.ai/gnufoo/cryptowallet) <br>
+## Use Case:
 
+Developers and blockchain operators use this skill to create or import encrypted wallets, inspect balances, send tokens, and interact with EVM and Solana contracts from an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create encrypted wallet files, query public RPC endpoints, and submit signed blockchain transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles real private keys and irreversible blockchain transactions.
+
+Mitigation: Review before installing for real-fund use, start with a test wallet, and manually verify each recipient, network, amount, and contract.
+
+Risk: Private keys or wallet passwords can be exposed if entered directly in shell commands.
+
+Mitigation: Avoid entering private keys or wallet passwords directly in commands; use safer secret handling and prefer disposable test wallets first.
+
+Risk: Batch transfers and contract writes can approve spending or move funds without recourse.
+
+Mitigation: Do not use batch transfers or contract writes unless you fully understand the transaction and have tested the flow with small amounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gnufoo/skills/cryptowallet)
+- [Network configuration](artifact/references/networks.json)
+- [Security best practices](artifact/references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create encrypted wallet files and submit irreversible blockchain transactions when scripts are executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

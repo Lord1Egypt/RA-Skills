@@ -1,42 +1,57 @@
-## Description: <br>
-Call GET /api/amazon/get-category-products/v1 for Amazon Products By Category through JustOneAPI with categoryId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/amazon/get-category-products/v1 for Amazon Products By Category through JustOneAPI with categoryId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to call JustOneAPI's Amazon category-products endpoint with a categoryId and summarize returned product data such as title, price, and rating. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The JustOneAPI token is passed as a request URL query parameter and may be captured by logs. <br>
-Mitigation: Use a limited, rotatable token where possible, avoid sharing token values in chat or logs, and rotate the token if exposure is suspected. <br>
-Risk: The skill depends on a third-party JustOneAPI service for Amazon product lookup. <br>
-Mitigation: Install and use it only when you trust JustOneAPI and are comfortable sending lookup parameters and the API token to that service. <br>
+## Use Case:
 
+Developers and external agents use this skill to call JustOneAPI's Amazon category-products endpoint with a categoryId and optional country, page, and sort filters. It supports category-based product discovery by returning and summarizing product information such as title, price, and rating.
 
-## Reference(s): <br>
-- [JustOneAPI API Homepage](https://api.justoneapi.com) <br>
-- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_amazon_get_category_products&utm_content=project_link) <br>
-- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_amazon_get_category_products&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, API calls, JSON, guidance] <br>
-**Output Format:** [Markdown summary followed by raw JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the getProductsByCategoryV1 operation and returns endpoint-specific Amazon product fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The JustOneAPI token and lookup parameters are sent to api.justoneapi.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if this data sharing is acceptable for the intended use case.
+
+Risk: The API token may be exposed through command lines, request URLs, shared shells, or CI logs.
+
+Mitigation: Use a scoped, rotatable token, avoid shared shell and CI log exposure, and rotate the token if it may have been recorded.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/justoneapi/skills/justoneapi-amazon-get-category-products)
+- [JustOneAPI Homepage](https://api.justoneapi.com)
+- [JustOneAPI Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_amazon_get_category_products&utm_content=project_link)
+- [JustOneAPI Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_amazon_get_category_products&utm_content=project_link)
+- [Generated Operations](artifact/generated/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, json, guidance]
+
+**Output Format:** [Markdown summary followed by raw JSON when endpoint results are available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should state the operation ID and endpoint path, echo the categoryId lookup scope, and prioritize title, price, and rating fields.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Learn user preferences from conversations and personalize responses automatically. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pref0 learns user preferences from conversations and returns preference profiles that agents can use to personalize later responses.
 
-## Publisher: <br>
-[fliellerjulian](https://clawhub.ai/user/fliellerjulian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fliellerjulian](https://clawhub.ai/user/fliellerjulian)
 
-## Use Case: <br>
-Developers and AI agent operators use pref0 to track conversation-derived preferences, retrieve a user's preference profile before responding, and reset stored preferences when requested. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Conversation-derived data and persistent user identifiers are sent to and stored by a third-party service. <br>
-Mitigation: Install only when that data sharing is acceptable, use opaque internal user IDs, and avoid tracking sensitive conversations. <br>
-Risk: The returned preference prompt can influence future agent instructions. <br>
-Mitigation: Prefer structured preferences or review the prompt before use, and do not allow preferences to override safety or policy requirements. <br>
-Risk: Stored preferences may need to be reset or removed for a user. <br>
-Mitigation: Use the delete profile endpoint when a user asks to reset or remove stored preferences. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [pref0 ClawHub listing](https://clawhub.ai/fliellerjulian/pref0) <br>
-- [pref0 API](https://api.pref0.com) <br>
-- [pref0 signup](https://pref0.com/signup) <br>
+## Use Case:
 
+Developers and agent operators use pref0 to send conversation histories to the pref0 API, retrieve learned preference profiles, and apply structured preferences or validated personalization guidance across sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Text] <br>
-**Output Format:** [Markdown with HTTP endpoint examples, shell commands, and JSON response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PREF0_API_KEY; sends conversation history and persistent user identifiers to the pref0 API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Conversations and stable user identifiers may be sent to pref0, creating privacy and data-minimization risk.
+
+Mitigation: Use only with informed user opt-in, prefer pseudonymous user IDs, and avoid sending secrets or sensitive conversations.
+
+Risk: Returned prompt text may be applied as future instructions and could carry incorrect or unsafe personalization.
+
+Mitigation: Render validated structured preferences where possible and review or constrain returned prompt text before adding it to system instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fliellerjulian/skills/pref0)
+- [pref0 signup](https://pref0.com/signup)
+- [pref0 API base URL](https://api.pref0.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PREF0_API_KEY and a user identifier; API responses include structured preferences, behavioral patterns, and optional prompt text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

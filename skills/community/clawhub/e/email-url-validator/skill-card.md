@@ -1,42 +1,63 @@
-## Description: <br>
-Validate email addresses, URLs, and domains with live DNS, DNSBL, HTTP reachability, redirect-chain, WHOIS, disposable-domain, and heuristic risk checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email Url Validator validates email addresses, URLs, and domains with live DNS, HTTP reachability, DNSBL, disposable-domain, redirect-chain, and related checks.
 
-## Publisher: <br>
-[vannelier](https://clawhub.ai/user/vannelier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vannelier](https://clawhub.ai/user/vannelier)
 
-## Use Case: <br>
-External agents and developers use this skill to validate email addresses, URLs, domains, bulk lists, and uploaded contact or link files before acting on them. It is suited to workflows that need reachable-contact checks, redirect inspection, or domain qualification with an explicit quote-and-approval flow for paid validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags this hosted validation service for review because it can send emails, URLs, domains, and large contact files to the listed operator. <br>
-Mitigation: Use the quote-and-approval flow, remove unnecessary columns before upload, and avoid internal URLs or regulated personal data unless approved. <br>
-Risk: Webhook callbacks can disclose job metadata to the callback endpoint. <br>
-Mitigation: Use webhook_url only for callback endpoints you control and where job metadata disclosure is acceptable. <br>
+## Use Case:
 
+External users, developers, and agent pipelines use this skill to check whether submitted emails, URLs, domains, and contact files are usable before sending messages, importing contacts, or acting on links. It is most useful when live network validation and a concise recommended action are needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vannelier/email-url-validator) <br>
-- [Hosted service endpoint](https://deep-validator-production.up.railway.app) <br>
-- [Operator source code](https://github.com/nathanleclaire/Agent_Validator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, JSON, markdown, shell commands, files] <br>
-**Output Format:** [Markdown guidance with HTTP API examples; validation calls return JSON responses or CSV/XLSX result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses include recommended_action fields for agents to use directly; file validation can return async job IDs and downloadable results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Validation workflows can transmit email addresses, URLs, domains, and spreadsheet contents to a hosted third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require an explicit cost quote and user approval before validation, remove unrelated columns before file upload, and self-host for sensitive or regulated datasets.
+
+Risk: Paid validation calls consume Nevermined credits, especially for bulk lists or files.
+
+Mitigation: Use the free batch classification endpoints before paid validation, show the item count and total cost, and use autonomous mode only for pre-authorized pipelines.
+
+Risk: Async file workflows with arbitrary webhook URLs can disclose job status or operational data to destinations the user does not control.
+
+Mitigation: Use webhook callbacks only with user-controlled destinations, or poll job status directly when the destination cannot be verified.
+
+Risk: A self-hosted horizontally scaled deployment can weaken rate limiting because the bundled limiter is in memory per instance.
+
+Mitigation: Run a single replica or replace the limiter with a shared backend such as Redis before scaling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vannelier/skills/email-url-validator)
+- [Hosted validation API](https://deep-validator-production.up.railway.app)
+- [Declared source code](https://github.com/nathanleclaire/Agent_Validator)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Guidance]
+
+**Output Format:** [JSON responses and CSV/XLSX result files, with recommended actions suitable for Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses can include recommended_action, action_reason, risk flags, redirect chains, confidence scores, typo suggestions, and async job identifiers.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

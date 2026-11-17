@@ -1,47 +1,60 @@
-## Description: <br>
-Routes search and research requests to suitable opencli sources, using live opencli help to choose sites and commands for web, social, technical, shopping, travel, finance, jobs, and Chinese-language queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes search and research requests to suitable opencli sources, including AI, web, social, technical, shopping, travel, finance, jobs, and Chinese-language sources.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Agents use this skill to plan and summarize external searches with opencli, selecting an appropriate source before issuing live search commands. It is useful for user-facing research workflows that need targeted source choice, call limits, and a short search summary. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search requests may be routed to external sites or providers, which can expose sensitive query content outside the local agent session. <br>
-Mitigation: For sensitive searches, explicitly name the approved site or ask the agent not to use external search routing. <br>
-Risk: Live source availability, command signatures, and search results can change during use. <br>
-Mitigation: Run opencli registry and help checks before searching, and report skipped or unavailable sources in the final search summary. <br>
+## Use Case:
 
+Agents use this skill to choose appropriate opencli search sources, inspect live command help, run bounded searches, and report which sites and queries were used. It is especially useful for multilingual research workflows that need source routing across AI, social, technical, media, commerce, travel, finance, and job-search providers.
 
-## Reference(s): <br>
-- [AI default sources](references/sources-ai.md) <br>
-- [Technical and academic sources](references/sources-tech.md) <br>
-- [Social media sources](references/sources-social.md) <br>
-- [Media and entertainment sources](references/sources-media.md) <br>
-- [Information and knowledge sources](references/sources-info.md) <br>
-- [Shopping sources](references/sources-shopping.md) <br>
-- [Travel sources](references/sources-travel.md) <br>
-- [Other vertical sources](references/sources-other.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and a search summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source selection guidance, per-site call counts, skipped-source notes, and coverage gaps when search limits are reached.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Search terms may be sent to selected external providers, including social-media, shopping, travel, finance, or job-search sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the selected source before execution and avoid sensitive queries unless the provider is appropriate for that information.
+
+Risk: Broad source routing can produce incomplete, stale, or provider-biased results.
+
+Mitigation: Use the required live help checks, per-site call ledger, frequency limits, and final search summary to make source coverage and gaps visible.
+
+## Reference(s):
+
+- [AI Default Sources](references/sources-ai.md)
+- [Information and Knowledge Sources](references/sources-info.md)
+- [Media and Entertainment Sources](references/sources-media.md)
+- [Other Vertical Sources](references/sources-other.md)
+- [Shopping Sources](references/sources-shopping.md)
+- [Social Media Sources](references/sources-social.md)
+- [Technical and Academic Sources](references/sources-tech.md)
+- [Travel Sources](references/sources-travel.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and a required search summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live opencli registry and help output to select sources; the skill itself does not generate persistent files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

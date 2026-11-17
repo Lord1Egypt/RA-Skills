@@ -1,43 +1,59 @@
-## Description: <br>
-Linkhut (ln.ht) helps an agent read, create, update, and delete Linkhut bookmarks through the OOMOL oo CLI instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Linkhut bookmarks and inspect tags through the user's OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent manage Linkhut bookmarks through an OOMOL-connected account. It supports reading bookmarks and tags, plus confirmed create, update, and delete actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, or delete Linkhut bookmarks through the connected OOMOL account. <br>
-Mitigation: Require explicit user approval for write and destructive actions, including the exact payload and target bookmark. <br>
-Risk: First-time setup may require installing and authenticating the OOMOL oo CLI before the connector can access Linkhut. <br>
-Mitigation: Review the oo CLI installer before setup and connect only the intended Linkhut account. <br>
+## Use Case:
 
+External users use this skill to manage Linkhut bookmarks and inspect tags through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-linkhut) <br>
-- [Linkhut Homepage](https://ln.ht) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the live connector schema before each action and requires explicit confirmation for write or destructive bookmark changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server evidence) <br>
+Risk: Setup can execute remote code without separate approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation before allowing setup.
+
+Risk: The CLI may have broader effects on installed agent skills.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 before invocation, as described in the CLI command reference.
+
+Risk: Bookmark creation, updates, or deletion can change the user's Linkhut data.
+
+Mitigation: Confirm the exact change before write actions and explicitly approve the target before deletion.
+
+## Reference(s):
+
+- [Linkhut](https://ln.ht)
+- [Linkhut API documentation](https://docs.linkhut.org/)
+- [oo CLI command reference and environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [oo CLI commands with JSON request payloads and connector responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Connector responses are returned as JSON.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

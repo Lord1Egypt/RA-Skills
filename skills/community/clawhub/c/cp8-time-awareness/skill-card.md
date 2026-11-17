@@ -1,40 +1,53 @@
-## Description: <br>
-Ensures an agent checks the current session date before answering time-sensitive questions involving today, now, relative dates, current events, prices, rankings, or schedules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures accurate current date handling by requiring a session_status check before queries involving today, now, relative time, or current events.
 
-## Publisher: <br>
-[dbottrader](https://clawhub.ai/user/dbottrader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dbottrader](https://clawhub.ai/user/dbottrader)
 
-## Use Case: <br>
-Agents and developers configuring agents use this skill to make date-sensitive answers and searches reflect the current session date instead of stale training-time assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can add an extra status/date tool call before time-sensitive answers. <br>
-Mitigation: Apply it to queries involving relative time, current events, prices, rankings, schedules, or similar current-date dependencies. <br>
-Risk: If current-date or real-time data cannot be retrieved, answers may be inaccurate. <br>
-Mitigation: Tell the user that current-date or real-time data could not be obtained and avoid filling gaps with training-time assumptions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make assistants resolve the current date before answering time-sensitive or current-event queries. It helps reduce stale-year searches and unsupported date assumptions.
 
-## Reference(s): <br>
-- [Time Awareness on ClawHub](https://clawhub.ai/dbottrader/cp8-time-awareness) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instructional guidance for current-date checks, search query construction, and fallback messaging.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill assumes a session_status tool exists for current-date resolution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in environments that provide session_status, or adapt the guidance to the available current-date tool before release.
+
+Risk: Time-sensitive answers may become more dependent on successful current-date and real-time tool calls.
+
+Mitigation: When tools fail or return incomplete data, require the agent to disclose uncertainty instead of filling gaps from prior knowledge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dbottrader/skills/cp8-time-awareness)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text]
+
+**Output Format:** [Markdown instructions for agent behavior]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Constrains current-date retrieval, time-sensitive search construction, and uncertainty disclosure when current-date tools fail.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

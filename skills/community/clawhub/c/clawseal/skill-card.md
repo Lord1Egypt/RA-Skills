@@ -1,45 +1,65 @@
-## Description: <br>
-Cryptographic memory for AI agents with QSEAL tamper-evidence, zero-config demo mode, and scroll-native YAML storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cryptographic memory for AI agents with QSEAL tamper-evidence, zero-config demo mode, and scroll-native YAML storage.
 
-## Publisher: <br>
-[sdvegas21](https://clawhub.ai/user/sdvegas21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdvegas21](https://clawhub.ai/user/sdvegas21)
 
-## Use Case: <br>
-Developers and OpenClaw users use ClawSeal to give agents persistent, tamper-evident memory for preferences, facts, insights, decisions, and general notes across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs an always-on local memory service that stores long-term agent memories. <br>
-Mitigation: Install only when persistent local memory is acceptable, and confirm how to stop, disable, and remove the launchd or systemd service. <br>
-Risk: The local service has weak access controls and broad CORS behavior in the submitted artifact. <br>
-Mitigation: Restrict or remove broad CORS and add authentication or a local token before real use. <br>
-Risk: Stored memories may contain sensitive or regulated information. <br>
-Mitigation: Avoid storing secrets or regulated personal data, and review retained memories before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users use ClawSeal to give agents persistent local memory for preferences, facts, insights, and decisions, with QSEAL signature checks intended to detect memory tampering.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdvegas21/clawseal) <br>
-- [Skill API documentation](artifact/SKILL.md) <br>
-- [OpenClaw integration guide](artifact/OPENCLAW_INTEGRATION.md) <br>
-- [Demo conversation](artifact/demo_conversation.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with curl examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores and retrieves local YAML-backed memory records through a local HTTP service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can run a persistent local memory service that stores long-lived user or project information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the service behavior, storage location, and retention expectations; use it only for information appropriate for local persistence.
+
+Risk: The security summary reports weak access controls for the local service.
+
+Mitigation: Keep the service bound to local use, avoid exposing it on untrusted networks, and prefer a release with authentication before broader deployment.
+
+Risk: The security summary reports unreliable integrity verification.
+
+Mitigation: Treat QSEAL verification results as tamper-evidence that needs review, and prefer a release with corrected verification behavior for sensitive workflows.
+
+Risk: The install flow registers an auto-starting service and uses unpinned dependency ranges.
+
+Mitigation: Require opt-in service registration, review dependency versions before installation, and pin dependencies in controlled environments.
+
+## Reference(s):
+
+- [ClawSeal ClawHub Skill Page](https://clawhub.ai/sdvegas21/skills/clawseal)
+- [ClawSeal GitHub Project](https://github.com/mvar-security/ClawSeal)
+- [ClawSeal PyPI Package](https://pypi.org/project/clawseal/)
+- [OpenClaw Integration Guide](OPENCLAW_INTEGRATION.md)
+- [Demo Conversation](demo_conversation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with curl commands and JSON response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local service setup guidance and memory operation examples for remember, recall, verify, and health-check workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,58 @@
-## Description: <br>
-OpenClaw adaptation of @mvanhorn's last30days skill. Research any topic from the last 30 days across Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket, and web. Includes watchlists, briefing generation, and historical query mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw adaptation of @mvanhorn's last30days skill. Research any topic from the last 30 days across Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket, and web. Includes watchlists, briefing generation, and historical query mode.
 
-## Publisher: <br>
-[keylimesoda](https://clawhub.ai/user/keylimesoda) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[keylimesoda](https://clawhub.ai/user/keylimesoda)
 
-## Use Case: <br>
-External users and developers use this skill to research recent community signals, maintain watchlists, generate briefings, and query stored history across social, web, and market sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use local X browser cookies or AUTH_TOKEN/CT0 session credentials. <br>
-Mitigation: Prefer explicit API keys where possible, keep the secrets file private, and install only when this credential access is acceptable. <br>
-Risk: Research topics and URLs may be sent to third-party search or social-data services. <br>
-Mitigation: Avoid sensitive topics unless provider disclosure is acceptable, and review configured providers before running searches. <br>
-Risk: Research reports and findings may be retained locally. <br>
-Mitigation: Review and delete the local data directory periodically according to the user's retention needs. <br>
+## Use Case:
 
+External users and developers use this skill to gather recent community intelligence across social, video, prediction market, Hacker News, and web sources, then turn it into briefings, watchlist updates, historical queries, or research summaries.
 
-## Reference(s): <br>
-- [OpenClaw Skill README](artifact/README.md) <br>
-- [Attribution and Provenance](artifact/ATTRIBUTION.md) <br>
-- [Research Workflow Reference](artifact/variants/open/references/research.md) <br>
-- [Watchlist Workflow Reference](artifact/variants/open/references/watchlist.md) <br>
-- [Briefing Workflow Reference](artifact/variants/open/references/briefing.md) <br>
-- [History Workflow Reference](artifact/variants/open/references/history.md) <br>
-- [Upstream last30days-skill Repository](https://github.com/mvanhorn/last30days-skill) <br>
-- [ClawHub Skill Page](https://clawhub.ai/keylimesoda/last30days-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON from helper scripts, and shell commands for setup and execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist reports, findings, briefings, logs, and SQLite history under the configured OpenClaw workspace data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0-openclaw.1 (source: server release metadata) <br>
+Risk: The skill may reuse existing Codex/OpenAI login credentials or an X browser session during automated research.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated, revocable API keys and a separate browser profile where possible, and avoid account-backed modes for sensitive research topics unless the account and privacy implications are acceptable.
+
+Risk: Scheduled watchlists can send configured topics to external providers on a recurring timer.
+
+Mitigation: Review watchlist topics, schedules, and configured providers before enabling cron or scheduled execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keylimesoda/skills/last30days-openclaw)
+- [Upstream last30days-skill project](https://github.com/mvanhorn/last30days-skill)
+- [OpenClaw adaptation README](artifact/README.md)
+- [Attribution and provenance notes](artifact/ATTRIBUTION.md)
+- [One-shot research reference](artifact/variants/open/references/research.md)
+- [Watchlist reference](artifact/variants/open/references/watchlist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown, JSON, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce saved research artifacts, briefings, watchlist state, and SQLite-backed history when the user enables storage workflows.]
+
+## Skill Version(s):
+
+1.0.0-openclaw.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

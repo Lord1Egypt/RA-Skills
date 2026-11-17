@@ -1,43 +1,57 @@
-## Description: <br>
-order-agent 智能订单处理 helps users query goods and create WMS shipment orders from single requests or Excel/CSV order files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+智能订单处理助手，帮助用户查询商品并创建单个或批量 WMS 发货单。
 
-## Publisher: <br>
-[NeroD9408](https://clawhub.ai/user/NeroD9408) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[nerod9408](https://clawhub.ai/user/nerod9408)
 
-## Use Case: <br>
-Operations users and agents use this skill to look up book inventory by title or ISBN, collect recipient and order details, and create single or batch WMS shipment orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create real WMS shipment orders. <br>
-Mitigation: Verify the API destination and credentials, then require a final human confirmation before every single or batch submission. <br>
-Risk: Order submissions may send recipient names, phone numbers, addresses, and spreadsheet data to external APIs. <br>
-Mitigation: Use only approved endpoints and avoid uploading spreadsheets with personal data unless the backend privacy and retention practices are acceptable. <br>
-Risk: Broad purchase or order wording may lead the agent toward order creation. <br>
-Mitigation: Separate lookup and selection from submission, and confirm item, quantity, recipient, address, and endpoint before running create commands. <br>
+## Use Case:
 
+External fulfillment users and operators use this skill to look up book inventory, review recipient and order details, and submit WMS shipment orders from a conversation or spreadsheet.
 
-## Reference(s): <br>
-- [WMS API documentation](references/wms_api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/NeroD9408/order-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown/text with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external WMS APIs and produce order numbers, detail URLs, and batch result summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can submit real shipment or order data that includes recipient PII.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in controlled fulfillment workflows, require human review of recipient data and order details before submission, and treat generated outputs as sensitive records.
+
+Risk: Some scripts allow configurable API destinations and CLI-supplied tokens.
+
+Mitigation: Verify the destination URL before use and avoid passing API keys directly on the command line.
+
+Risk: Batch order creation can submit multiple shipments from spreadsheet input.
+
+Mitigation: Validate spreadsheet rows and batch size before execution, then review success and failure results after the run.
+
+## Reference(s):
+
+- [WMS API 文档](references/wms_api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write JSON result files when an output path is provided.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

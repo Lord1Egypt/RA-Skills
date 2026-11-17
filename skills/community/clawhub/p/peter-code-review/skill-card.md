@@ -1,39 +1,55 @@
-## Description: <br>
-提交前质量闸门。快速完成本地测试、静态检查和风险审查，判断“是否可提交”。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pre-commit quality gate that runs local tests, static checks, and risk review to decide whether a change is ready to commit.
 
-## Publisher: <br>
-[chinasilva](https://clawhub.ai/user/chinasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chinasilva](https://clawhub.ai/user/chinasilva)
 
-## Use Case: <br>
-Developers and engineers use this skill before committing or opening a PR to run a focused local quality gate, summarize changed files, report lint/type/test/build results, and list blocking or risky findings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may run repository-defined npm, test, build, workflow:check, and gate:db scripts that can access local services or environment variables. <br>
-Mitigation: Review the repository scripts first and run the skill only in an appropriate local development environment with expected services and credentials. <br>
-Risk: Manual UI smoke testing is required for UI changes, so automated checks alone may miss layout or interaction regressions. <br>
-Mitigation: Keep UI findings marked as not executed or risky until a human completes the smoke checks described by the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chinasilva/peter-code-review) <br>
+## Use Case:
+
+Developers use this skill before committing or opening a pull request to review workspace or HEAD changes, run relevant quality checks, summarize failures, and produce a commit readiness recommendation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to run local repository validation commands, which may execute project scripts in the current workspace.
+
+Mitigation: Install and run it only in repositories where local validation commands are trusted, and review command output before treating any check as passed.
+
+Risk: For Node and TypeScript projects, the documented typecheck command uses npx and may download or resolve tooling dynamically.
+
+Mitigation: Prefer a pinned project script or local ./node_modules/.bin/tsc invocation when adapting the workflow for a project.
+
+Risk: UI changes may still need manual smoke validation even when lint, typecheck, and tests pass.
+
+Mitigation: Record UI validation as not executed unless manual smoke checks were actually completed, and include the remaining UI risk in the final conclusion.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with command results, risk findings, and a commit readiness conclusion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports whether review covered workspace changes or the latest HEAD commit when the workspace is empty.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.5.0 (source: frontmatter and server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown code review report with command results, risk findings, remediation guidance, and a commit readiness conclusion]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report includes a fixed checklist, git change summary, command outcomes, severity-ranked issues, and one of the documented commit conclusions.]
+
+## Skill Version(s):
+
+1.5.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

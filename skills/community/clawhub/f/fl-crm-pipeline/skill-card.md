@@ -1,44 +1,54 @@
-## Description: <br>
-Manage a sales pipeline through natural language by adding leads, updating stages, logging interactions, setting follow-up reminders, and generating pipeline reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage sales pipelines through natural language: add leads, update stages, log interactions, set reminders, and generate pipeline reports without full CRM software.
 
-## Publisher: <br>
-[PhilipStark](https://clawhub.ai/user/PhilipStark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philipstark](https://clawhub.ai/user/philipstark)
 
-## Use Case: <br>
-External users such as solo founders, small sales teams, and freelancers use this skill to track leads, deals, follow-ups, revenue forecasts, and sales activity from chat instead of a full CRM system. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores prospect, outreach, and sales pipeline information in local plaintext JSON files. <br>
-Mitigation: Keep the local workspace protected, avoid committing CRM data to public repositories, and use appropriate endpoint and filesystem controls. <br>
-Risk: Generated outreach or follow-up content could be inaccurate, poorly targeted, or sent prematurely if automated. <br>
-Mitigation: Review generated emails and follow-up actions before sending, and avoid enabling auto-send or scheduled autopilot behavior until the workflow is verified. <br>
-Risk: Pipeline data may include sensitive contact details and commercial opportunity information. <br>
-Mitigation: Do not store passwords, payment card numbers, SSNs, or other unrelated secrets, and redact sensitive records before sharing exports. <br>
+## Use Case:
 
+Solo founders, small sales teams, and freelancers use this skill to maintain a local CRM pipeline from chat. It helps track leads, reminders, interactions, deal stages, pipeline reports, and revenue forecasts.
 
-## Reference(s): <br>
-- [CRM Pipeline Manager on ClawHub](https://clawhub.ai/PhilipStark/fl-crm-pipeline) <br>
-- [Publisher profile: PhilipStark](https://clawhub.ai/user/PhilipStark) <br>
-- [Creator profile referenced by artifact](https://threads.net/@felipe_bmottaa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with local JSON pipeline data and optional CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores prospect, deal, interaction, reminder, and forecast data in local plaintext files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: CRM records may contain prospect, contact, and revenue information stored in local plaintext JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the data directory out of public repositories, shared backups, and other locations where unauthorized users can read it.
+
+Risk: Natural-language CRM updates can modify deal stages, values, reminders, and notes incorrectly if the request is ambiguous.
+
+Mitigation: Review the assistant's confirmations carefully before relying on pipeline records or reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/philipstark/skills/fl-crm-pipeline)
+- [Publisher profile](https://clawhub.ai/user/philipstark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, files, guidance]
+
+**Output Format:** [Markdown responses plus local JSON CRM records and optional CSV exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains pipeline data in local plaintext JSON files and may create backups or exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

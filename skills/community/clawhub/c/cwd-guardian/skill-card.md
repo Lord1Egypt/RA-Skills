@@ -1,38 +1,52 @@
-## Description: <br>
-Monitors and restores the evolver process working directory when evolver crashes with uv_cwd ENOENT errors or loses its cwd. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors and restores the evolver process working directory. Use when evolver crashes with uv_cwd ENOENT errors or when the evolver process loses its cwd.
 
-## Publisher: <br>
-[foras910521-lab](https://clawhub.ai/user/foras910521-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[foras910521-lab](https://clawhub.ai/user/foras910521-lab)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to check an OpenClaw evolver workspace before daemon startup and stamp process/path state for watchdog workflows. It is most relevant when investigating uv_cwd ENOENT crashes or missing working-directory state.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Documentation overstates recovery behavior for restoring a missing working directory or restarting evolver.
+
+Mitigation: Treat the skill as a workspace/state verification helper until the implementation is fixed and confirm recovery behavior in a controlled environment before relying on it.
+
+Risk: The implementation writes persistent process/path state under a hardcoded OpenClaw workspace path.
+
+Mitigation: Review whether that path is appropriate for the target environment and adjust or sandbox execution before installation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to check an OpenClaw evolver workspace, record guardian state, and recover from missing-working-directory failures that can stop the evolver process. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has a filesystem recovery side effect that can recreate a missing working-directory path and allow the associated daemon workflow to continue. <br>
-Mitigation: Run it only in the intended workspace and review logs or confirmation controls around any recovery action before relying on the result. <br>
+**Output Format:** [Markdown and terminal-oriented status guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/foras910521-lab/cwd-guardian) <br>
+**Other Properties Related to Output:** [May write a JSON state file under a hardcoded OpenClaw workspace path when executed.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May also emit console status messages and write local guardian state when executed.] <br>
+1.0.0 (source: package.json and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

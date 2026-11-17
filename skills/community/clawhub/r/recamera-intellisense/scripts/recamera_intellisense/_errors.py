@@ -4,7 +4,7 @@ from __future__ import annotations
 
 
 class RecameraError(RuntimeError):
-    """Device / config / connectivity failure. Carries HTTP ``status``, device ``code``, raw ``body``."""
+    """Device / config / connectivity failure. Carries HTTP `status`, device `code`, raw `body`."""
 
     def __init__(
         self,

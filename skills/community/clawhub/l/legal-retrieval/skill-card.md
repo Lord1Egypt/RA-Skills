@@ -1,46 +1,55 @@
-## Description: <br>
-法规检索 Skill helps legal professionals and general users search Chinese laws and regulations, locate clauses, check validity, and compare regulations through the Deli Legal Open Platform API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+中国法律法规检索（得理科技） helps legal professionals, general users, and agents retrieve Chinese legal provisions, find related regulations, check validity status, and compare regulatory differences.
 
-## Publisher: <br>
-[coolalam](https://clawhub.ai/user/coolalam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolalam](https://clawhub.ai/user/coolalam)
 
-## Use Case: <br>
-External users, legal professionals, and developers use this skill to retrieve Chinese legal materials, identify relevant clauses, check regulation validity, and format search results for review. It supports retrieval and presentation only and does not provide legal opinions, contract review, or case-specific analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The search script disables HTTPS certificate verification while sending legal queries and the user's API key. <br>
-Mitigation: Do not enter a real API key or sensitive legal queries until the script uses default verified HTTPS certificate validation. <br>
-Risk: The skill requires sensitive credentials for live API access. <br>
-Mitigation: Store only the required API key in config.json, keep it out of shared artifacts, and rotate it if it may have been exposed. <br>
-Risk: Retrieved legal content may be outdated or incomplete for important decisions. <br>
-Mitigation: Verify regulation validity and official text before relying on results for legal or business decisions. <br>
+## Use Case:
 
+External users, legal professionals, and agents use this skill to retrieve Chinese laws and regulations through Delilegal, summarize retrieved provisions, check legal validity status, and compare related provisions. It is a retrieval aid and should not be treated as legal advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coolalam/legal-retrieval) <br>
-- [Deli Legal API Key Console](https://open.delilegal.com/personal/keys) <br>
-- [Deli Legal Regulation Search API](https://platform.delilegal.com/api/v1/generice/law/list) <br>
-- [Common Regulation Mapping](artifact/references/regulation-mapping.md) <br>
-- [Search Examples](artifact/references/search-examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with legal search summaries, tables, excerpts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an API key in config.json before live searches can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The API script disables TLS certificate verification while sending the configured API key and legal queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or fix TLS behavior before installation, remove disabled certificate checks, and rotate any key used with this version.
+
+Risk: Retrieved legal content may be stale or incomplete for important decisions.
+
+Mitigation: Treat outputs as retrieval aids and verify important legal conclusions against current official legal texts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coolalam/skills/legal-retrieval)
+- [Common regulation abbreviation mappings](references/regulation-mapping.md)
+- [Legal retrieval examples](references/search-examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown legal retrieval results with optional tables, quoted provisions, summaries, and shell command invocations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes validity-status labels and a reminder to verify important legal conclusions against current official texts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

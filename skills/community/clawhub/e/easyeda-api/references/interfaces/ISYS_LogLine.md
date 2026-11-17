@@ -1,11 +1,11 @@
 # ISYS\_LogLine interface
 
-日志行
+Log line
 
 ## Signature
 
 ```typescript
-interface ISYS_LogLine 
+interface ISYS_LogLine
 ```
 
 ## Properties
@@ -14,78 +14,62 @@ interface ISYS_LogLine
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [message](./ISYS_LogLine.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-日志内容
-
+Log content
 
 </td></tr>
 <tr><td>
 
 [timestamp](./ISYS_LogLine.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-时间戳
-
+Timestamp
 
 </td></tr>
 <tr><td>
 
 [type](./ISYS_LogLine.md)
 
-
 </td><td>
-
 
 </td><td>
 
 [ESYS\_LogType](../enums/ESYS_LogType.md)
 
-
 </td><td>
 
-日志类型
-
+Log type
 
 </td></tr>
 </tbody></table>
@@ -98,7 +82,7 @@ number
 
 # ISYS\_LogLine.message property
 
-日志内容
+Log content
 
 ## Signature
 
@@ -110,7 +94,7 @@ message: string;
 
 # ISYS\_LogLine.timestamp property
 
-时间戳
+Timestamp
 
 ## Signature
 
@@ -122,7 +106,7 @@ timestamp: number;
 
 # ISYS\_LogLine.type property
 
-日志类型
+Log type
 
 ## Signature
 

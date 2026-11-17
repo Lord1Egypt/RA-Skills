@@ -1,50 +1,66 @@
-## Description: <br>
-List events, find free slots, book meetings, merge multi-calendar availability, expand recurring events, and use atomic booking with Two-Phase Commit conflict prevention across Google Calendar, Outlook, and CalDAV. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+List events, find free slots, and book meetings across Google Calendar, Outlook, and CalDAV. Multi-calendar availability merging, recurring event expansion, and atomic booking with Two-Phase Commit conflict prevention.
 
-## Publisher: <br>
-[billylui](https://clawhub.ai/user/billylui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billylui](https://clawhub.ai/user/billylui)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to let an MCP-compatible agent discover calendars, inspect availability, expand recurring schedules, compose scheduling proposals, and book meetings across connected calendar providers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server needs sensitive calendar access and may optionally access contacts. <br>
-Mitigation: Review provider OAuth permissions, protect the local credential files, and prefer Local Mode unless cross-user Open Scheduling is required. <br>
-Risk: Booking tools can create calendar events and send attendee details through Temporal Links. <br>
-Mitigation: Require explicit user confirmation before calling booking tools or sending scheduling proposals, and verify attendee details before use. <br>
-Risk: Calendar conflicts or concurrent booking attempts can affect scheduling accuracy. <br>
-Mitigation: Use availability checks before booking and fall back to alternative slots when a conflict is reported. <br>
+## Use Case:
 
+Developers and agent users use this skill to inspect calendars, find open time, expand recurring schedules, compose meeting proposals, and book confirmed meetings across supported calendar providers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/billylui/temporal-cortex-scheduling) <br>
-- [Temporal Cortex homepage](https://temporal-cortex.com) <br>
-- [Temporal Cortex MCP package](https://www.npmjs.com/package/@temporal-cortex/cortex-mcp) <br>
-- [Calendar Tools Reference](references/CALENDAR-TOOLS.md) <br>
-- [Multi-Calendar Operations](references/MULTI-CALENDAR.md) <br>
-- [Booking Safety](references/BOOKING-SAFETY.md) <br>
-- [Open Scheduling Guide](references/OPEN-SCHEDULING.md) <br>
-- [RRULE Guide](references/RRULE-GUIDE.md) <br>
-- [Temporal Links](references/TEMPORAL-LINKS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands plus MCP tool outputs in TOON or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calendar and optional contact data may be sensitive; booking tools can create calendar events after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.1 (source: server evidence, release metadata, and frontmatter) <br>
+Risk: The MCP server handles OAuth tokens and can access configured calendar providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that calendar access is acceptable, treat credentials.json as sensitive secret material, and prefer Docker containment for higher assurance.
+
+Risk: Installation runs calendar-authentication code from npm and uses a downloaded native binary.
+
+Mitigation: Use the pinned package @temporal-cortex/cortex-mcp@0.9.1 and verify release checksums before first use.
+
+Risk: Booking tools can create calendar events or bookings on external calendars.
+
+Mitigation: Confirm booking details with the user before write tools run, and check availability before booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billylui/skills/temporal-cortex-scheduling)
+- [Temporal Cortex homepage](https://temporal-cortex.com)
+- [Temporal Cortex skills repository](https://github.com/temporal-cortex/skills)
+- [Temporal Cortex MCP package](https://www.npmjs.com/package/@temporal-cortex/cortex-mcp)
+- [Calendar Tools Reference](references/CALENDAR-TOOLS.md)
+- [Multi-Calendar Operations](references/MULTI-CALENDAR.md)
+- [RRULE Guide](references/RRULE-GUIDE.md)
+- [Booking Safety](references/BOOKING-SAFETY.md)
+- [Temporal Links](references/TEMPORAL-LINKS.md)
+- [Open Scheduling Guide](references/OPEN-SCHEDULING.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tool workflows, tables, JSON examples, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may guide calls to an MCP server that reads calendar data and can create calendar bookings after user confirmation.]
+
+## Skill Version(s):
+
+0.9.1 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

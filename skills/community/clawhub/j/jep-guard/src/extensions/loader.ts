@@ -9,15 +9,8 @@ export class ExtensionLoaderService {
   }
 
   async loadBuiltins(): Promise<void> {
-    const { default: crossAgent } = await import('./cross-agent');
-    const { default: aegis } = await import('./aegis');
-    const { default: cognitive } = await import('./cognitive');
-    const { default: hardware } = await import('./hardware');
+    // Optional integrations require explicit, reviewed adapters. No mutable global hooks.
 
-    for (const ext of [crossAgent, aegis, cognitive, hardware]) {
-      this.extensions.set(ext.name, ext);
-      await ext.init(this.context);
-    }
   }
 
   async evaluateAll(request: ExecutionRequest): Promise<ExtensionResult[]> {

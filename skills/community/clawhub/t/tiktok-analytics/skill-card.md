@@ -1,42 +1,56 @@
-## Description: <br>
-Track TikTok account and video performance, including views, likes, comments, shares, engagement, and publishing history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track TikTok performance and analytics, including video views, likes, comments, shares, engagement, and account-level metrics for a connected TikTok account.
 
-## Publisher: <br>
-[snoopyrain](https://clawhub.ai/user/snoopyrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snoopyrain](https://clawhub.ai/user/snoopyrain)
 
-## Use Case: <br>
-External users and social media operators use this skill to query TikTok account-level and per-video analytics through the Boring MCP connector and present the results as summaries, ranked videos, and trend reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP connector link contains an embedded authentication token. <br>
-Mitigation: Treat the connector link like a password, avoid sharing it publicly, and revoke or regenerate it if exposed. <br>
-Risk: The skill depends on a third-party connector to access TikTok analytics. <br>
-Mitigation: Install only if you are comfortable connecting TikTok analytics through Boring and confirm the connector remains read-only before use. <br>
+## Use Case:
 
+External users and social media operators use this skill to ask an agent for TikTok account and video performance metrics through the Boring MCP connector. It is intended for analytics review, ranking videos by performance, and summarizing trends from connected TikTok account data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snoopyrain/tiktok-analytics) <br>
-- [Boring MCP Documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html) <br>
-- [Boring Documentation](https://boring-doc.aiagent-me.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown summaries, tables, and MCP tool-call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results depend on the connected TikTok account, Boring MCP connector availability, and the connector's read-only analytics scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The MCP connector URL contains an embedded authentication token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the MCP link as a password, avoid sharing it in logs or screenshots, and revoke or regenerate it if exposed.
+
+Risk: The skill relies on the third-party Boring service for TikTok analytics access.
+
+Mitigation: Install only if comfortable granting Boring read access to TikTok analytics and having Boring store the token-bearing connector URL.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snoopyrain/skills/tiktok-analytics)
+- [Boring MCP setup documentation](https://boring-doc.aiagent-me.com/getting-started/mcp.html)
+- [Boring API documentation](https://boring-doc.aiagent-me.com)
+- [Publisher profile](https://clawhub.ai/user/snoopyrain)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown summaries with tables and MCP tool call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a credential-bearing MCP connector URL for read-only TikTok analytics access through Boring.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

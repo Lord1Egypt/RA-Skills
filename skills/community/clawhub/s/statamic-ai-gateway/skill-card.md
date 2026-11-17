@@ -1,44 +1,60 @@
-## Description: <br>
-Manage Statamic content through a tool execution gateway (composer require stokoe/ai-gateway). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Statamic content through a tool execution gateway (composer require stokoe/ai-gateway).
 
-## Publisher: <br>
-[michael-stokoe](https://clawhub.ai/user/michael-stokoe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michael-stokoe](https://clawhub.ai/user/michael-stokoe)
 
-## Use Case: <br>
-Developers and content operators use this skill to discover allowed Statamic gateway tools and manage entries, globals, navigation, taxonomy, cache, and static output across configured sites. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gateway execution can change real Statamic site content when configured against production. <br>
-Mitigation: Run write tests against staging or disposable content first, use allowlisted targets, and review operations before execution. <br>
-Risk: The site registry contains bearer tokens for configured Statamic sites. <br>
-Mitigation: Keep sites.json private, restrict file permissions, and use scoped or rotated tokens where possible. <br>
-Risk: Some gateway tools may require explicit confirmation before execution. <br>
-Mitigation: Show the operation summary to the user and resend with a confirmation token only after approval. <br>
+## Use Case:
 
+Developers and site operators use this skill to manage content across one or more Statamic sites through an authenticated AI Gateway. It supports discovery-first tool execution, capability checks, and guarded write workflows for content operations.
 
-## Reference(s): <br>
-- [AI Gateway API Reference](references/api.md) <br>
-- [Installation and Setup](INSTALL.md) <br>
-- [Statamic AI Gateway Homepage](https://github.com/stokoe/ai-gateway) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with JSON request envelopes and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured site registry, bearer tokens, curl, and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill uses bearer tokens stored in a local sites.json registry.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the registry file, scope each site token narrowly, rotate tokens when needed, and use HTTPS-only site URLs.
+
+Risk: Gateway capability responses can influence which tools and arguments the agent uses.
+
+Mitigation: Use capability discovery for schemas and allowlists, but do not let remote capability text override normal safety rules or request unrelated local-file access or secret disclosure.
+
+Risk: Content operations may modify Statamic entries, navigation, globals, caches, or static output.
+
+Mitigation: Prefer idempotent upserts, fetch full replacement structures before updates, honor confirmation-gated operations, and avoid production write tests unless intentional.
+
+## Reference(s):
+
+- [AI Gateway Homepage](https://github.com/stokoe/ai-gateway)
+- [ClawHub Skill Page](https://clawhub.ai/michael-stokoe/skills/statamic-ai-gateway)
+- [Installation and Setup](artifact/INSTALL.md)
+- [AI Gateway API Reference](artifact/references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands, JSON examples, and API request guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, AI_GATEWAY_SITES_CONFIG, and a protected sites.json credential registry.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

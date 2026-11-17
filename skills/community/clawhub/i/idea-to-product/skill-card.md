@@ -1,42 +1,51 @@
-## Description: <br>
-Turn product ideas into MVPs, UX flows, Playwright checks, and explicit feedback loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn product ideas into MVPs, UX flows, Playwright checks, and explicit feedback loops. Built by ClawAether.
 
-## Publisher: <br>
-[whyy9527](https://clawhub.ai/user/whyy9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whyy9527](https://clawhub.ai/user/whyy9527)
 
-## Use Case: <br>
-Developers, product builders, and small teams use this skill to turn a rough product idea into a constrained MVP, executable stories, UX flow responsibilities, browser-check plans, and feedback routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated MVP plans, story breakdowns, UX flows, or Playwright check ideas may be incomplete or misaligned with a real product context. <br>
-Mitigation: Review the generated planning artifacts and browser-check proposals before applying them to a project. <br>
-Risk: Publisher links and third-party ownership are external to NVIDIA. <br>
-Mitigation: Use the server-resolved publisher profile and decide separately whether the publisher is trusted for the intended use. <br>
+## Use Case:
 
+Developers, founders, and product teams use this skill to turn rough product ideas into a constrained MVP, executable stories, UX flows, Playwright-ready checks, and feedback routing.
 
-## Reference(s): <br>
-- [Published ClawHub Skill](https://clawhub.ai/whyy9527/idea-to-product) <br>
-- [ClawAether](https://clawaether.com) <br>
-- [ClawAether API Docs](https://clawaether.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with structured lists, story cards, UX flow outlines, Playwright-ready check descriptions, and feedback routing notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory planning artifacts and browser-check proposals; they should be reviewed before implementation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: package.json and server release metadata) <br>
+Risk: Generated planning, backlog, UX, and browser-check outputs can influence product direction even though the skill does not execute code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated outputs before applying them to project files or implementation plans.
+
+## Reference(s):
+
+- [Idea to Product on ClawHub](https://clawhub.ai/whyy9527/skills/idea-to-product)
+- [ClawAether](https://clawaether.com)
+- [ClawAether API docs](https://clawaether.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured planning artifacts such as MVP candidates, story cards, UX flow notes, browser-check lists, and feedback actions.]
+
+## Skill Version(s):
+
+0.1.1 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

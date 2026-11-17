@@ -1,42 +1,62 @@
-## Description: <br>
-Send and receive files to/from nearby devices using the LocalSend protocol with an interactive Telegram menu for device discovery, file sending, text sending, and receiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive files to and from nearby devices using the LocalSend protocol through an interactive chat menu for device discovery, file sending, text sending, and receiving.
 
-## Publisher: <br>
-[Chordlini](https://clawhub.ai/user/Chordlini) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chordlini](https://clawhub.ai/user/chordlini)
 
-## Use Case: <br>
-OpenClaw users use this skill to move files or text between nearby devices over the LocalSend protocol from a Telegram-style interactive flow. It is intended for trusted local networks where the user controls both the sending and receiving devices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can auto-accept nearby LocalSend transfers and save received files into the workspace. <br>
-Mitigation: Use receive mode only on trusted local networks and review received files before opening, extracting, installing, previewing, or deploying them. <br>
-Risk: The skill depends on an external localsend-cli script for discovery and transfers. <br>
-Mitigation: Install the CLI only from a trusted source and keep it available with openssl before using transfer flows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Chordlini/localsend) <br>
-- [localsend-cli repository and documentation](https://github.com/Chordlini/localsend-cli) <br>
-- [LocalSend protocol](references/protocol.md) <br>
-- [LocalSend protocol repository](https://github.com/localsend/protocol) <br>
+## Use Case:
 
+Developers and agent users use this skill to discover nearby LocalSend devices and guide local file or text transfers through an interactive chat menu.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, markdown] <br>
-**Output Format:** [Markdown with inline JSON button payloads and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires localsend-cli and openssl; uses local network discovery and file-transfer commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill installs unpinned external CLI code.
+
+Mitigation: Pin the CLI source to a reviewed version or digest and verify it before installation.
+
+Risk: Receive mode can auto-accept files from nearby network devices into the workspace.
+
+Mitigation: Require explicit approval for each transfer and save received files to a controlled incoming directory.
+
+Risk: Received files may be unsafe to open, extract, install, preview, or deploy.
+
+Mitigation: Treat all received files as untrusted and scan or review them before taking follow-up actions.
+
+Risk: Text payload handling may write user-provided content through temporary files.
+
+Mitigation: Use safe temporary-file handling and avoid shell interpolation of untrusted text.
+
+## Reference(s):
+
+- [LocalSend v2 Protocol Reference](artifact/references/protocol.md)
+- [localsend-cli documentation](https://github.com/Chordlini/localsend-cli)
+- [LocalSend protocol](https://github.com/localsend/protocol)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON button definitions and bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires localsend-cli and openssl; operates over the local network with LocalSend-compatible devices.]
+
+## Skill Version(s):
+
+3.4.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

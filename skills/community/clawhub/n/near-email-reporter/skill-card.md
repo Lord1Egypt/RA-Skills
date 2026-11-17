@@ -1,42 +1,55 @@
-## Description: <br>
-Send NEAR reports and alerts via email with SMTP configuration, scheduling, and automatic reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send NEAR reports and alerts via email with SMTP configuration, scheduling, and automatic reporting.
 
-## Publisher: <br>
-[shaiss](https://clawhub.ai/user/shaiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shaiss](https://clawhub.ai/user/shaiss)
 
-## Use Case: <br>
-Developers and NEAR account operators use this skill to configure SMTP delivery, generate account balance reports, and prepare email alerts or scheduled reporting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: SMTP passwords can be exposed through shell history when passed with --pass and are stored locally in ~/.near-email/config.json. <br>
-Mitigation: Use an app-specific SMTP password, verify local config file permissions, and avoid using this skill on shared machines. <br>
-Risk: Alerts, scheduled reports, and actual email delivery are only partially implemented. <br>
-Mitigation: Test reporting and delivery behavior before relying on the skill for operational notifications. <br>
+## Use Case:
 
+Developers and operators use this skill to configure SMTP settings and generate NEAR account balance reports intended for email delivery, alerts, and scheduled reporting.
 
-## Reference(s): <br>
-- [Nodemailer](https://nodemailer.com/) <br>
-- [NEAR RPC API](https://docs.near.org/api/rpc) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes SMTP configuration to a local user config file when setup is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: SMTP passwords are accepted through command-line arguments and stored in a local plaintext configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an app-specific SMTP password, avoid reusable account passwords, review shell history exposure, and rotate credentials after testing.
+
+Risk: The artifact overstates email sending, alerts, and scheduling because the shipped script prints reports and placeholder messages unless additional implementation is added.
+
+Mitigation: Treat email delivery, alerting, and scheduling as unfinished until nodemailer and a scheduler are configured and tested in the deployment environment.
+
+## Reference(s):
+
+- [Nodemailer](https://nodemailer.com/)
+- [NEAR RPC API](https://docs.near.org/api/rpc)
+- [Google App Passwords](https://myaccount.google.com/apppasswords)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes SMTP configuration to ~/.near-email/config.json and prints generated NEAR account reports to stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

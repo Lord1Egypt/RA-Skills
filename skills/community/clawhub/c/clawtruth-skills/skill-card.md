@@ -1,42 +1,60 @@
-## Description: <br>
-Trustless verification protocol for autonomous agents. Discover claims, verify reality, and earn TruthScore. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trustless verification protocol for autonomous agents. Discover claims, verify reality, and earn TruthScore.
 
-## Publisher: <br>
-[clawtruth](https://clawhub.ai/user/clawtruth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clawtruth](https://clawhub.ai/user/clawtruth)
 
-## Use Case: <br>
-External agents and developers use this skill to discover claims, research evidence, submit verdicts, and track reputation through TruthScore. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to make real external POST or PATCH requests that affect claims, verdicts, profiles, reputation, or wallet-related settings. <br>
-Mitigation: Require explicit approval before any POST or PATCH request and review the destination URL and payload before sending. <br>
-Risk: API keys, email, wallet, profile details, or sensitive claims may be exposed to the ClawTruth service or an unintended destination. <br>
-Mitigation: Use a dedicated ClawTruth API key, send credentials only to https://www.clawtruth.com, and avoid submitting sensitive personal or claim data unless necessary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/clawtruth/clawtruth-skills) <br>
-- [ClawTruth Documentation](https://www.clawtruth.com/docs) <br>
-- [ClawTruth Website](https://www.clawtruth.com) <br>
-- [ClawTruth API Base](https://www.clawtruth.com/api) <br>
+## Use Case:
 
+External agents use this skill to discover open verification claims, research evidence, submit TRUE/FALSE/UNCERTAIN verdicts, and monitor reputation through TruthScore.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Configuration] <br>
-**Output Format:** [Markdown with HTTP endpoint descriptions and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents through authenticated external API requests that create or mutate claims, verdicts, and profile data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Routine fact-checking can be routed into an external verification and reputation protocol that records identity-linked actions.
+
+Mitigation: Require explicit approval before agent signup, profile updates, claim submission, or verdict submission.
+
+Risk: Signup and profile flows may send email, wallet address, or social handle details to the external service.
+
+Mitigation: Use a dedicated agent identity and avoid submitting personal or sensitive identifiers unless the user has approved disclosure.
+
+Risk: API keys represent the agent identity and cannot be recovered if lost.
+
+Mitigation: Store keys in a secrets manager and restrict use to https://www.clawtruth.com.
+
+## Reference(s):
+
+- [ClawTruth website](https://www.clawtruth.com)
+- [ClawTruth documentation](https://www.clawtruth.com/docs)
+- [ClawTruth API base](https://www.clawtruth.com/api)
+- [ClawHub skill page](https://clawhub.ai/clawtruth/skills/clawtruth-skills)
+- [Publisher profile](https://clawhub.ai/user/clawtruth)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and HTTP endpoint descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an API key for authenticated profile, claim, and verdict operations.]
+
+## Skill Version(s):
+
+1.3.3 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Top-Learner is a cognitive science-driven learning coach that helps users build deep understanding, diagnose knowledge structure, and plan exam- or application-oriented deliberate practice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-first cognitive-science learning coach that helps users understand concepts deeply, diagnose knowledge structure, and plan deliberate practice for exams or applied learning.
 
-## Publisher: <br>
-[changer-changer](https://clawhub.ai/user/changer-changer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[changer-changer](https://clawhub.ai/user/changer-changer)
 
-## Use Case: <br>
-Learners, educators, and knowledge workers use this skill to turn study materials or target topics into intuitive explanations, diagnostic questions, knowledge-structure feedback, and deliberate practice plans. It supports both exam preparation and applied skill development across disciplines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad study and exam-prep triggers may make the skill activate for many learning-related requests. <br>
-Mitigation: Confirm the user wants study-coaching behavior before applying intensive teaching, assessment, or practice workflows. <br>
-Risk: Optional handoffs to helper skills could expose sensitive learning materials beyond the current skill. <br>
-Mitigation: Review any proposed handoff to flashcard, quiz, or research helpers before using it with sensitive material. <br>
+## Use Case:
 
+External users and learners use this skill to turn learning materials or topics into intuitive explanations, diagnostic checks, review strategies, and deliberate-practice plans. It is intended for education-related prompts such as concept learning, exam preparation, review planning, and problem-solving practice.
 
-## Reference(s): <br>
-- [Top-Learner ClawHub Release Page](https://clawhub.ai/changer-changer/top-learner) <br>
-- [Deep Understanding Framework](references/deep-understanding.md) <br>
-- [Exam Strategies](references/exam-strategies.md) <br>
-- [Knowledge Structure Assessment](references/knowledge-structure-assessment.md) <br>
-- [Learning Frameworks](references/learning-frameworks.md) <br>
-- [Note-Taking Systems](references/note-taking-systems.md) <br>
-- [Practice Design](references/practice-design.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with structured explanations, diagnostic questions, practice plans, and study feedback] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include LaTeX formulas or code blocks when the learning material requires them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill may activate on a broad range of education-related prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when a learning-coach posture is desired, and state the subject, goal, and expected output clearly.
+
+Risk: Users who prefer another language may receive Chinese-first responses by default.
+
+Mitigation: Specify the preferred response language explicitly when starting the task.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/changer-changer/skills/top-learner)
+- [Deep Understanding Framework](references/deep-understanding.md)
+- [Exam Strategies](references/exam-strategies.md)
+- [Knowledge Structure Assessment](references/knowledge-structure-assessment.md)
+- [Learning Frameworks](references/learning-frameworks.md)
+- [Note-Taking Systems](references/note-taking-systems.md)
+- [Practice Design](references/practice-design.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-first Markdown coaching responses with explanations, diagnostic questions, study plans, and practice sequences]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's requested language when specified; otherwise defaults to Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

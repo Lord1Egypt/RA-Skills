@@ -1,46 +1,60 @@
-## Description: <br>
-Security scanner for OpenClaw skills with Clawdex integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crabukit scans OpenClaw skills and related scripts for dangerous permissions, hardcoded secrets, shell injection vulnerabilities, malicious code patterns, and known-bad skills through optional Clawdex integration.
 
-## Publisher: <br>
-[tnbradley](https://clawhub.ai/user/tnbradley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tnbradley](https://clawhub.ai/user/tnbradley)
 
-## Use Case: <br>
-Developers and security reviewers use Crabukit to scan OpenClaw skill packages before installation, during development, while auditing installed skills, and in CI security checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Install workflows and shell wrappers can install a named skill after scanning. <br>
-Mitigation: Use read-only crabukit scan for review workflows, and run install commands only when installation is intended. <br>
-Risk: Optional Clawdex integration may disclose a scanned skill name during private audits. <br>
-Mitigation: Disable or avoid Clawdex-backed lookups when skill names or audit targets are confidential. <br>
-Risk: Static analysis cannot prove runtime behavior is safe. <br>
-Mitigation: Treat scan results as one review layer and manually inspect high-impact skills before deployment. <br>
+## Use Case:
 
+Developers and security reviewers use Crabukit to scan OpenClaw skills before installation, during development, while auditing installed skills, or as a CI security gate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tnbradley/crabukit) <br>
-- [Publisher profile](https://clawhub.ai/user/tnbradley) <br>
-- [README](README.md) <br>
-- [Security policy](SECURITY.md) <br>
-- [Research summary](RESEARCH_SUMMARY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text, Markdown documentation, JSON/SARIF scan reports when requested, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes severity thresholds, exit codes for CI, and optional Clawdex lookup results when that integration is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: pyproject.toml, CHANGELOG, server release evidence) <br>
+Risk: The server security verdict is suspicious because install workflows and scan-boundary handling need review before users trust the tool with untrusted skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scan-only mode in a sandbox for untrusted skills and review findings before installing or executing the scanned skill.
+
+Risk: The shell helper may run installation paths that carry higher local system risk.
+
+Mitigation: Avoid running the shell helper as root and prefer direct scan commands until symlink, file-size, temporary workspace, and scan-then-install artifact identity checks are tightened.
+
+Risk: Static analysis can miss runtime behavior or intentionally evasive code.
+
+Mitigation: Combine Crabukit results with manual review, least-privilege execution, and monitoring for critical skills.
+
+## Reference(s):
+
+- [README](README.md)
+- [Research Summary](RESEARCH_SUMMARY.md)
+- [Security Policy](SECURITY.md)
+- [Safe Install Scripts](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal output, with optional JSON or SARIF scan results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Risk scores, severity labels, findings, remediation guidance, and process exit codes for automation]
+
+## Skill Version(s):
+
+0.1.3 (source: pyproject.toml, CHANGELOG, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

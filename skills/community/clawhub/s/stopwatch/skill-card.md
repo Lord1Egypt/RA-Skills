@@ -1,41 +1,54 @@
-## Description: <br>
-Run stopwatch, timer, and lap tracking with precision in terminal. Use when timing tasks, checking durations, running countdowns, analyzing splits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advertised for stopwatch, timer, and lap tracking workflows, this release's artifacts implement a Bash-based local logging, search, stats, and export utility.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and other terminal users can use this skill to run shell-based time-entry, history, search, stats, and export workflows. Security evidence says the artifacts behave mainly as a persistent local text logbook rather than a true stopwatch or countdown timer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as a stopwatch/timer, but server security evidence says the artifacts mainly implement persistent local text logging with search and history behavior. <br>
-Mitigation: Install only when a local timestamped logbook is acceptable, and do not rely on it as a precise stopwatch or countdown timer without separate validation. <br>
-Risk: Entered text is stored locally under ~/.local/share/stopwatch and can be redisplayed, searched, or exported later. <br>
-Mitigation: Avoid entering secrets, credentials, private notes, or sensitive operational details; review and remove local log files when retention is no longer needed. <br>
+## Use Case:
 
+Developers and command-line users can use the artifacts as a local timestamped logging utility with recent-history, search, statistics, and export commands. Review it as a logging tool rather than a stopwatch, timer, lap tracker, or countdown utility.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/stopwatch) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text output and file-based logs or exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local log and export files under ~/.local/share/stopwatch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The advertised stopwatch, timer, lap, and countdown behavior does not match the persistent logging behavior described by the release security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Evaluate and deploy it only as a local logging and record-search utility; choose a different skill if stopwatch or countdown behavior is required.
+
+Risk: Command arguments are retained in local log files and can later be exported or searched.
+
+Mitigation: Do not enter secrets or sensitive notes, and review or clear ~/.local/share/stopwatch before sharing a system or exporting records.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/ckchzh/skills/stopwatch)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, JSON, configuration]
+
+**Output Format:** [Plain text CLI output, with optional JSON, CSV, or TXT export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local log and export files under ~/.local/share/stopwatch.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,57 @@
-## Description: <br>
-Call 179 professional agents on-demand from database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides on-demand access to 179 professional agent prompts from a local SQLite-backed catalog.
 
-## Publisher: <br>
-[717986230](https://clawhub.ai/user/717986230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[717986230](https://clawhub.ai/user/717986230)
 
-## Use Case: <br>
-External developers and ClawHub users use this skill to search, browse, retrieve, and apply bundled agent prompts for tasks such as code review, system architecture, growth strategy, and multi-agent collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is marked suspicious because it asks users to share a ClawHub token and carries high-authority capability tags. <br>
-Mitigation: Authenticate only through official browser or local CLI flows, never paste tokens into chat, and review the skill before installation. <br>
-Risk: Retrieved agent prompts are lower-trust content and may request sensitive actions such as posting, payments, wallet use, purchases, or signing. <br>
-Mitigation: Review each retrieved prompt before giving it tool access, and keep wallet, purchase, posting, and signing tools disabled unless explicitly approved. <br>
-Risk: The skill initializes and queries a local prompt database populated from bundled agent data. <br>
-Mitigation: Install only when a local reusable prompt library is desired, and inspect the bundled agent data before using retrieved prompts in higher-trust workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to search, browse, randomly select, and retrieve full prompts from a bundled catalog of professional agent personas for coding, business, creative, academic, and support workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/717986230/agency-agents-caller) <br>
-- [Publisher profile](https://clawhub.ai/user/717986230) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [README.md](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Python dictionaries, CLI text output, and retrieved Markdown prompt content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Retrieves local SQLite records initialized from bundled agent data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The package includes guidance that asks users to share ClawHub tokens or other secrets in an assistant conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste tokens or secrets into chat; create and manage tokens directly in ClawHub settings or other trusted credential-management surfaces.
+
+Risk: The skill stores broad third-party prompt content that can be retrieved as full_content and reused as system prompts.
+
+Mitigation: Review retrieved prompts before use, especially prompts involving payments, identity, email, infrastructure, or generated code execution.
+
+Risk: Setup writes a local SQLite database during initialization.
+
+Mitigation: Install only in an environment where creating and updating a local prompt catalog database is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/717986230/skills/agency-agents-caller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, plain text, Python data structures, and CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retrieves catalog records and full prompt text from a local SQLite database initialized from bundled JSON data.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

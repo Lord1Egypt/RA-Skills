@@ -1,40 +1,59 @@
-## Description: <br>
-Xby Smart Search helps developers route technical search requests across web, GitHub, StackOverflow, NPM, documentation, API reference, and Chinese developer platforms, returning search URLs and API-backed results for the agent to present. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Search MCP is a technical search toolkit that helps agents generate and use searches across general web, GitHub, Stack Overflow, package, API, cloud, and Chinese developer documentation platforms.
 
-## Publisher: <br>
-[cainingnk](https://clawhub.ai/user/cainingnk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cainingnk](https://clawhub.ai/user/cainingnk)
 
-## Use Case: <br>
-Developers and engineers use this skill to find technical documentation, API references, packages, code examples, and community answers across multiple search providers from one agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to the XBY MCP service and may also be sent to destination search sites. <br>
-Mitigation: Avoid searching for secrets, credentials, private repository names, customer data, or sensitive incident details. <br>
-Risk: The skill stores the XBY API key in a local .env file when configured through the provided helper. <br>
-Mitigation: Use a scoped API key where possible and remove XBY_APIKEY from the local .env file when the skill no longer needs access. <br>
+## Use Case:
 
+Developers and technical agents use this skill to route search requests to specialized XiaoBenYang MCP tools and summarize returned search data or URLs for documentation, API reference, open-source project, and technical-community lookup tasks.
 
-## Reference(s): <br>
-- [XiaoBenYang API key portal](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Markdown summaries with search URLs and JSON-derived results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY API key; returned search URLs may require follow-up web fetching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires a XiaoBenYang API key and can store it in a plaintext working-directory .env file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-privilege, revocable key; avoid shared or source-controlled working directories; remove or rotate the key if it may have been exposed.
+
+Risk: Search terms and prompts may be sent to the XiaoBenYang service.
+
+Mitigation: Avoid proprietary, confidential, or secret search terms unless the service is approved for that data.
+
+Risk: Server security evidence marked the release as suspicious due to plaintext credential storage and documentation inconsistencies.
+
+Mitigation: Review the skill before installation and confirm credential-handling expectations with the publisher.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cainingnk/skills/xby-smart-search)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API results, configuration guidance]
+
+**Output Format:** [Markdown summaries of JSON API responses and generated search URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key before use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

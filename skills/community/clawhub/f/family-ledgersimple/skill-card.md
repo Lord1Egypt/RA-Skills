@@ -1,44 +1,67 @@
-## Description: <br>
-家庭账本 - 记录和查询家庭支出 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A family ledger skill for recording, querying, summarizing, and deleting household expense entries through natural-language requests.
 
-## Publisher: <br>
-[nimil](https://clawhub.ai/user/nimil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nimil](https://clawhub.ai/user/nimil)
 
-## Use Case: <br>
-External users and household members use this skill to record, query, summarize, list roles for, and delete family expense records through natural language that is converted into local ledger CLI commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A local agent may expose or delete household expense records. <br>
-Mitigation: Use the skill only where local ledger access is acceptable, require explicit ledger intent before actions, and add confirmation plus backup or undo handling before deletion. <br>
-Risk: Bundled Claude local permissions are broad. <br>
-Mitigation: Review and narrow local command and web permissions before enabling the bundled Claude settings. <br>
+## Use Case:
 
+External users and developers use this skill to manage a local household expense ledger from an agent interface, including adding expenses, listing records, summarizing spending, deleting entries, and viewing household roles.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nimil/family-ledgersimple) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
-- [Claude Code](https://claude.ai/code) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Hermes Agent](https://hermes-agent.nousresearch.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise command results for local SQLite-backed household expense records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad command-execution permissions can allow unintended shell commands if installed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or narrow the execution rules before installation and restrict command execution to structured invocations of ledger.py.
+
+Risk: The skill can delete ledger records by ID.
+
+Mitigation: Require confirmation before deletion and keep a backup of ledger.db when records matter.
+
+Risk: Natural-language inputs are converted into command arguments for local expense operations.
+
+Mitigation: Validate role, amount, date, count, and note fields before execution and avoid shell-string templates.
+
+Risk: The local ledger can contain household financial information.
+
+Mitigation: Keep ledger.db local, limit filesystem access to trusted users, and avoid syncing or sharing the database unless intended.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nimil/skills/family-ledgersimple)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Claude Code](https://claude.ai/code)
+- [OpenClaw](https://openclaw.ai)
+- [Hermes Agent](https://hermes-agent.nousresearch.com)
+- [Codex](https://openai.com/codex)
+- [Gemini CLI](https://ai.google.dev/gemini-api/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Markdown]
+
+**Output Format:** [Natural-language response with CLI command execution and plain-text ledger tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local ledger operations for add, list, summary, delete, and roles commands backed by a SQLite database.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

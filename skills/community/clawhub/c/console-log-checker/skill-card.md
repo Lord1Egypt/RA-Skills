@@ -1,41 +1,50 @@
-## Description: <br>
-Checks specified directory for console.log statements, excluding common folders, and reports file locations and line previews of occurrences. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks a specified directory for console.log statements, excludes common build and dependency folders, and reports file locations with line previews.
 
-## Publisher: <br>
-[sy724](https://clawhub.ai/user/sy724) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sy724](https://clawhub.ai/user/sy724)
 
-## Use Case: <br>
-Developers use this skill before commit or deployment to audit a project for leftover console.log debugging statements. It reports matching file locations, line previews, total occurrences, and cleanup recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill scans project files and may surface source snippets that contain sensitive information. <br>
-Mitigation: Review findings before sharing them outside the project context, and adjust the path or exclude inputs to avoid scanning sensitive directories. <br>
-Risk: Search results can include false positives or miss logging patterns that are not literal console.log calls. <br>
-Mitigation: Use the results as a focused cleanup aid and review production-critical files manually before release. <br>
+## Use Case:
 
+Developers use this skill before commit, review, or deployment to find leftover console.log debugging statements and decide whether to remove them or replace them with proper logging.
 
-## Reference(s): <br>
-- [Console Log Checker on ClawHub](https://clawhub.ai/sy724/console-log-checker) <br>
-- [Publisher profile: sy724](https://clawhub.ai/user/sy724) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary with a findings table and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes file path, line number, content preview, total occurrence count, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A broad scan can include private or irrelevant project files in the agent's working context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill with a specific path and exclude patterns when the workspace contains sensitive or unrelated code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sy724/skills/console-log-checker)
+- [ClawHub publisher profile](https://clawhub.ai/user/sy724)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with a findings table, total occurrence count, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes file path, line number, and content preview for each reported console.log occurrence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

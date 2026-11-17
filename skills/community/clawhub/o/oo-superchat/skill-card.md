@@ -1,45 +1,55 @@
-## Description: <br>
-Superchat connector for reading, creating, updating, and messaging Superchat data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Superchat (superchat.com). Use this skill for ANY Superchat request — reading, creating, and updating data. Whenever a task involves Superchat, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Superchat workspace data, manage contacts, and send Superchat email, text, or WhatsApp template messages through the OOMOL oo CLI connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected Superchat account and uses OOMOL server-side credential handling. <br>
-Mitigation: Install only if you trust OOMOL and are comfortable connecting the Superchat account through the OOMOL CLI. <br>
-Risk: Write actions can create or update contacts and send outbound email, text, or WhatsApp template messages. <br>
-Mitigation: Confirm the exact payload and intended effect with the user before running write actions. <br>
-Risk: The first-time setup guidance includes shell commands that install the oo CLI from remote URLs. <br>
-Mitigation: Prefer a verified package or documented installer path, and review install commands before execution. <br>
+## Use Case:
 
+Superchat users use this skill to inspect channels and contacts, search contacts, create or update contacts, and send email, text, or WhatsApp template messages through a connected account.
 
-## Reference(s): <br>
-- [ClawHub Superchat skill](https://clawhub.ai/oomol/oo-superchat) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [Superchat homepage](https://www.superchat.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with oo CLI shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schema inspection before action payloads; write actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Setup directs the agent to run an unverified remote CLI installer that may automatically install and synchronize agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, including automatic skill installation and synchronization; prefer a pinned, verified release.
+
+Risk: Sending messages and changing contacts can affect external users or workspace data.
+
+Mitigation: Retain confirmation before messages or contact changes, and confirm the exact payload and effect before write actions.
+
+## Reference(s):
+
+- [oo CLI Repository](https://github.com/oomol-lab/oo-cli)
+- [Superchat](https://www.superchat.com)
+- [Superchat API Documentation](https://developers.superchat.com/docs/getting-started-send-your-first-message)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Text]
+
+**Output Format:** [oo CLI commands with JSON payloads and responses, followed by natural-language results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action schemas are checked before calls; write actions require confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

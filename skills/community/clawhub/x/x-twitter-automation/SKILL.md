@@ -1,7 +1,7 @@
 ---
 name: x-twitter-automation
-description: "X / Twitter Automation: Operate a connected X / Twitter account end-to-end from agents and workflows: compose, publish, search, engage, and DM. Use when an agent needs x / twitter automation, x twitter automation, publish posts and replies to x / twitter from agent workflows, schedule and orchestrate twitter content calendars, search recent x posts for brand monitoring, competitor tracking, create list, list name through AgentPMT-hosted remote tool calls."
-version: 1.0.0
+description: "X / Twitter Automation: Operate a connected X / Twitter account end-to-end from agents and workflows: compose, publish, search, engage, and DM. Use when an agent needs x / twitter automation, x twitter automation, publish posts and replies to x / twitter from agent workflows, schedule and orchestrate twitter content calendars, search recent x posts for brand monitoring, competitor tracking, count posts, query through AgentPMT-hosted remote tool calls."
+version: 1.0.1
 homepage: https://www.agentpmt.com/marketplace/x-twitter-automation
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/x-twitter-automation"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # X / Twitter Automation
 
 ## Freshness
-Last updated: `2026-06-23`.
+Last updated: `2026-10-08`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -19,7 +19,7 @@ X (Twitter) automation for AI agents and social media teams. Connect your X acco
 ## Product Instructions
 ### X / Twitter Automation
 
-Operate a connected X (Twitter) account end-to-end from agents and workflows: publish posts and replies, upload media, search recent posts, read timelines and DMs, engage, and manage Lists.
+Operate a connected X (Twitter) account end-to-end from agents and workflows: publish posts, replies, and polls, upload media, search and count recent posts, find users, read timelines, DMs, liked posts, trends, news, and Communities, engage, and manage Lists.
 
 #### Common workflows
 
@@ -32,6 +32,11 @@ Operate a connected X (Twitter) account end-to-end from agents and workflows: pu
 
 Use `create_post` / `create_reply` for text without a web link. When the text contains a URL (`http://`, `https://`, `www.`, or a bare domain), use `create_post_with_link` / `create_reply_with_link`.
 
+#### Post options
+
+All four create actions also accept `poll_options` (2-4 choices, 1-25 characters each), `poll_duration_minutes` (5-10080; required with `poll_options`), `reply_settings` (`following|mentionedUsers|subscribers|verified`), `community_id`, `place_id`, `made_with_ai` (boolean), and `paid_partnership` (boolean). A poll requires `text` and cannot be combined with `media_ids`.
+Example: `{"action":"create_post","text":"Which topic next?","poll_options":["API design","Testing"],"poll_duration_minutes":1440,"reply_settings":"following"}`
+
 #### Actions
 
 ##### `search_posts`
@@ -42,6 +47,10 @@ For List-specific recent search, use the X search operator in `query`, for examp
 ##### `lookup_posts`
 Required: exactly one of `post_id` (string) or `post_ids` (string[], max 100). Optional: `verbosity`.
 Example: `{"action":"lookup_posts","post_ids":["123","456"],"verbosity":"standard"}`
+
+##### `count_posts`
+Counts posts matching `query` over the last 7 days without retrieving them. Required: `query`. Optional: `granularity` (`minute|hour|day`), `start_time`, `end_time` (RFC3339, within the last 7 days), `pagination_token`.
+Example: `{"action":"count_posts","query":"AI agents lang:en","granularity":"day"}`
 
 ##### `create_post`
 Creates a top-level post. Required: `text` or `media_ids`. Optional: `media_ids` (string[], max 4). For text that contains a web link, use `create_post_with_link`.
@@ -75,6 +84,10 @@ Example: `{"action":"set_like","post_id":"123","liked":true}`
 Required: `post_id`, `reposted` (boolean).
 Example: `{"action":"set_repost","post_id":"123","reposted":true}`
 
+##### `lookup_liked_posts`
+Lists liked posts for `user_id`, or the authenticated user when omitted. Optional: `max_results`, `pagination_token`, `verbosity`.
+Example: `{"action":"lookup_liked_posts","max_results":20}`
+
 ##### `lookup_post_engagers`
 Required: `post_id`, `engagement_type` (`likes|reposts|quotes`). Optional: `max_results`, `pagination_token`, `verbosity`.
 Example: `{"action":"lookup_post_engagers","post_id":"123","engagement_type":"likes","max_results":25}`
@@ -82,6 +95,10 @@ Example: `{"action":"lookup_post_engagers","post_id":"123","engagement_type":"li
 ##### `lookup_users`
 Required: `lookup_by` (`ids|usernames|me`). For `ids`, set exactly one of `user_id` or `user_ids`. For `usernames`, set exactly one of `username` or `usernames`. Optional: `verbosity`.
 Example: `{"action":"lookup_users","lookup_by":"usernames","usernames":["XDevelopers"]}`
+
+##### `search_users`
+Required: `query` (name or username, 1-50 characters). Optional: `max_results`, `pagination_token`, `verbosity`.
+Example: `{"action":"search_users","query":"XDevelopers","max_results":10}`
 
 ##### `set_follow`
 Required: `user_id`, `following` (boolean).
@@ -103,9 +120,21 @@ Example: `{"action":"lookup_dms","scope":"participant","participant_user_id":"12
 Required: `target_type` (`participant|conversation|new_group`) and `text` or `media_id`. Set `participant_user_id`, `conversation_id`, or `participant_user_ids` for the matching target.
 Example: `{"action":"send_dm","target_type":"participant","participant_user_id":"123","text":"Here is the post: https://x.com/i/status/456"}`
 
+##### `delete_dm`
+Required: `event_id`. Deletes a DM event sent by the authenticated user.
+Example: `{"action":"delete_dm","event_id":"123"}`
+
 ##### `upload_media`
-Required: exactly one of `file_id` or `source_url`, plus `media_type` (`image|gif|video`) and `usage_context` (`post|dm`).
+Required: exactly one of `file_id` or `source_url`, plus `media_type` (`image|gif|video|subtitle`) and `usage_context` (`post|dm`). Subtitle files must be `.srt` or `.vtt` and use `usage_context:"post"`; use the returned media ID as `subtitle_media_id` in `set_media_subtitles`.
 Example: `{"action":"upload_media","file_id":"file_abc","media_type":"image","usage_context":"post"}`
+
+##### `set_media_metadata`
+Required: `media_id` and at least one of `alt_text` (up to 1000 characters) or `allow_download` (boolean). Set metadata after upload and before posting.
+Example: `{"action":"set_media_metadata","media_id":"123","alt_text":"A sunset over the city"}`
+
+##### `set_media_subtitles`
+Required: `media_id` (video), `subtitle_language_code` (two uppercase letters), `subtitles_enabled` (boolean). To attach, first upload a subtitle file with `upload_media`, then set `subtitle_media_id` to that returned media ID; optional `subtitle_display_name`. To remove, omit `subtitle_media_id`.
+Example: `{"action":"set_media_subtitles","media_id":"123","subtitle_language_code":"EN","subtitles_enabled":true,"subtitle_media_id":"456","subtitle_display_name":"English"}`
 
 ##### `create_list`
 Creates a new List for the authenticated user. Required: `list_name` (1-25 characters). Optional: `list_description` (max 100 characters), `list_private` (boolean).
@@ -139,6 +168,18 @@ Example: `{"action":"lookup_lists","list_scope":"owned","max_results":25,"verbos
 Lists members, followers, or posts for a List. Required: `list_id`, `list_view` (`members|followers|posts`). Optional: `max_results`, `pagination_token`, `verbosity`.
 Example: `{"action":"lookup_list_contents","list_id":"123","list_view":"members","max_results":50}`
 
+##### `lookup_communities`
+Required: `discovery_mode` (`id|search`) and either `community_id` or `query`. Optional for search: `max_results`, `pagination_token`.
+Example: `{"action":"lookup_communities","discovery_mode":"search","query":"Python"}`
+
+##### `lookup_trends`
+Required: `discovery_mode` (`location|personalized`). For location, set `woeid` (worldwide is 1). Optional: `max_results` (up to 50).
+Example: `{"action":"lookup_trends","discovery_mode":"location","woeid":1}`
+
+##### `lookup_news`
+Required: `discovery_mode` (`id|search`) and either `news_id` or `query`. Optional for search: `max_results`, `max_age_hours` (1-720).
+Example: `{"action":"lookup_news","discovery_mode":"search","query":"technology","max_age_hours":24}`
+
 #### Response
 
 All actions return `action`. List actions also return `data`, optional `includes`, optional `meta`, and `next_token`.
@@ -152,8 +193,8 @@ All actions return `action`. List actions also return `data`, optional `includes
 ## When To Use
 - Use this skill for `X / Twitter Automation` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
-- Search and activation keywords: x / twitter automation, x twitter automation, publish posts and replies to x / twitter from agent workflows, schedule and orchestrate twitter content calendars, search recent x posts for brand monitoring, competitor tracking, create list, list name.
-- Supported action names: `create_list`, `create_post`, `create_post_with_link`, `create_reply`, `create_reply_with_link`, `delete_list`, `delete_post`, `lookup_dms`, `lookup_follows`, `lookup_list_contents`, `lookup_lists`, `lookup_post_engagers`, `lookup_posts`, `lookup_timeline`, `lookup_users`, `search_posts`, `send_dm`, `set_follow`, `set_like`, `set_list_follow`, `set_list_membership`, `set_list_pin`, `set_reply_hidden`, `set_repost`, `update_list`, `upload_media`.
+- Search and activation keywords: x / twitter automation, x twitter automation, publish posts and replies to x / twitter from agent workflows, schedule and orchestrate twitter content calendars, search recent x posts for brand monitoring, competitor tracking, count posts, query.
+- Supported action names: `count_posts`, `create_list`, `create_post`, `create_post_with_link`, `create_reply`, `create_reply_with_link`, `delete_dm`, `delete_list`, `delete_post`, `lookup_communities`, `lookup_dms`, `lookup_follows`, `lookup_liked_posts`, `lookup_list_contents`, `lookup_lists`, `lookup_news`, `lookup_post_engagers`, `lookup_posts`, `lookup_timeline`, `lookup_trends`, `lookup_users`, `search_posts`, `search_users`, `send_dm`, `set_follow`, `set_like`, `set_list_follow`, `set_list_membership`, `set_list_pin`, `set_media_metadata`, `set_media_subtitles`, `set_reply_hidden`, `set_repost`, `update_list`, `upload_media`.
 
 ## Use Cases
 - Publish posts and replies to X / Twitter from agent workflows
@@ -181,31 +222,40 @@ No categories or industry tags are published for this tool.
 
 ## Actions And Schema
 Complete generated action schema: `./schema.md`.
-Supported action count: `26`.
+Supported action count: `35`.
 x402 availability: not enabled for this product.
 
+- `count_posts` (action slug: `count-posts`): Count posts matching a query over the last 7 days, bucketed by minute, hour, or day. Price: `5` credits. Parameters: `end_time`, `granularity`, `pagination_token`, `query`, `start_time`.
 - `create_list` (action slug: `create-list`): Create a new X List for the authenticated user. Price: `1` credits. Parameters: `list_description`, `list_name`, `list_private`.
-- `create_post` (action slug: `create-post`): Create a top-level X post without links. Use create_post_with_link for text containing web links. Quote-post creation is not supported. Price: `5` credits. Parameters: `media_ids`, `text`.
-- `create_post_with_link` (action slug: `create-post-with-link`): Create a top-level X post whose text contains at least one web link. Quote-post creation is not supported. Price: `25` credits. Parameters: `media_ids`, `text`.
-- `create_reply` (action slug: `create-reply`): Reply to another X post without links. X self-serve plans may restrict replies unless the original author has summoned the authenticated account. Price: `5` credits. Parameters: `media_ids`, `reply_to_post_id`, `text`.
-- `create_reply_with_link` (action slug: `create-reply-with-link`): Reply to another X post with text containing at least one web link. X self-serve plans may restrict replies unless the original author has summoned the authenticated account. Price: `25` credits. Parameters: `media_ids`, `reply_to_post_id`, `text`.
+- `create_post` (action slug: `create-post`): Create a top-level X post without links. Use create_post_with_link for text containing web links. Quote-post creation is not supported. Price: `5` credits. Parameters: `community_id`, `made_with_ai`, `media_ids`, `paid_partnership`, `place_id`, `poll_duration_minutes`, `poll_options`, `reply_settings`, plus 1 more.
+- `create_post_with_link` (action slug: `create-post-with-link`): Create a top-level X post whose text contains at least one web link. Quote-post creation is not supported. Price: `25` credits. Parameters: `community_id`, `made_with_ai`, `media_ids`, `paid_partnership`, `place_id`, `poll_duration_minutes`, `poll_options`, `reply_settings`, plus 1 more.
+- `create_reply` (action slug: `create-reply`): Reply to another X post without links. X self-serve plans may restrict replies unless the original author has summoned the authenticated account. Price: `5` credits. Parameters: `community_id`, `made_with_ai`, `media_ids`, `paid_partnership`, `place_id`, `poll_duration_minutes`, `poll_options`, `reply_settings`, plus 2 more.
+- `create_reply_with_link` (action slug: `create-reply-with-link`): Reply to another X post with text containing at least one web link. X self-serve plans may restrict replies unless the original author has summoned the authenticated account. Price: `25` credits. Parameters: `community_id`, `made_with_ai`, `media_ids`, `paid_partnership`, `place_id`, `poll_duration_minutes`, `poll_options`, `reply_settings`, plus 2 more.
+- `delete_dm` (action slug: `delete-dm`): Delete a direct message event sent by the authenticated user. Price: `5` credits. Parameters: `event_id`.
 - `delete_list` (action slug: `delete-list`): Delete a List owned by the authenticated user. Price: `1` credits. Parameters: `list_id`.
 - `delete_post` (action slug: `delete-post`): Delete a post by ID. Price: `5` credits. Parameters: `post_id`.
+- `lookup_communities` (action slug: `lookup-communities`): Look up a Community by ID or search Communities by keyword. Price: `5` credits. Parameters: `community_id`, `discovery_mode`, `max_results`, `pagination_token`, `query`.
 - `lookup_dms` (action slug: `lookup-dms`): Read DM events by scope: all, conversation, participant, or event_id. Price: `5` credits. Parameters: `conversation_id`, `event_id`, `max_results`, `pagination_token`, `participant_user_id`, `scope`, `verbosity`.
 - `lookup_follows` (action slug: `lookup-follows`): List followers or followed users for a user. Price: `5` credits. Parameters: `max_results`, `pagination_token`, `relationship`, `user_id`, `verbosity`.
+- `lookup_liked_posts` (action slug: `lookup-liked-posts`): List posts liked by a user; defaults to the authenticated user. Price: `5` credits. Parameters: `max_results`, `pagination_token`, `user_id`, `verbosity`.
 - `lookup_list_contents` (action slug: `lookup-list-contents`): List members, followers, or posts for a List. Price: `1` credits. Parameters: `list_id`, `list_view`, `max_results`, `pagination_token`, `verbosity`.
 - `lookup_lists` (action slug: `lookup-lists`): Look up one List or list owned, membership, followed, or pinned Lists. Price: `1` credits. Parameters: `list_id`, `list_scope`, `max_results`, `pagination_token`, `user_id`, `verbosity`.
+- `lookup_news` (action slug: `lookup-news`): Look up a news story by ID or search current news. Price: `5` credits. Parameters: `discovery_mode`, `max_age_hours`, `max_results`, `news_id`, `query`.
 - `lookup_post_engagers` (action slug: `lookup-post-engagers`): List users who liked or reposted a post, or list quote posts. Price: `5` credits. Parameters: `engagement_type`, `max_results`, `pagination_token`, `post_id`, `verbosity`.
 - `lookup_posts` (action slug: `lookup-posts`): Get one or more X posts by ID with curated field verbosity. Price: `5` credits. Parameters: `post_id`, `post_ids`, `verbosity`.
 - `lookup_timeline` (action slug: `lookup-timeline`): Read user posts, mentions, or authenticated home timeline. Price: `5` credits. Parameters: `max_results`, `pagination_token`, `timeline_type`, `user_id`, `verbosity`.
+- `lookup_trends` (action slug: `lookup-trends`): Get location trends by WOEID or personalized trends. Price: `5` credits. Parameters: `discovery_mode`, `max_results`, `woeid`.
 - `lookup_users` (action slug: `lookup-users`): Resolve users by ID, username, or the authenticated account. Price: `5` credits. Parameters: `lookup_by`, `user_id`, `user_ids`, `username`, `usernames`, `verbosity`.
 - `search_posts` (action slug: `search-posts`): Search recent X posts from the last 7 days. Price: `5` credits. Parameters: `end_time`, `max_results`, `pagination_token`, `query`, `start_time`, `verbosity`.
+- `search_users` (action slug: `search-users`): Search X users by name or username. Price: `5` credits. Parameters: `max_results`, `pagination_token`, `query`, `verbosity`.
 - `send_dm` (action slug: `send-dm`): Send a DM to a participant, existing conversation, or new group. Price: `5` credits. Parameters: `conversation_id`, `media_id`, `participant_user_id`, `participant_user_ids`, `target_type`, `text`.
 - `set_follow` (action slug: `set-follow`): Follow or unfollow a user as the authenticated user. Price: `5` credits. Parameters: `following`, `user_id`.
 - `set_like` (action slug: `set-like`): Like or unlike a post as the authenticated user. Price: `5` credits. Parameters: `liked`, `post_id`.
 - `set_list_follow` (action slug: `set-list-follow`): Follow or unfollow a List as the authenticated user. Price: `1` credits. Parameters: `following`, `list_id`.
 - `set_list_membership` (action slug: `set-list-membership`): Add or remove a user as a member of a List owned by the authenticated user. Price: `1` credits. Parameters: `is_member`, `list_id`, `user_id`.
 - `set_list_pin` (action slug: `set-list-pin`): Pin or unpin a followed or owned List for the authenticated user. Price: `1` credits. Parameters: `list_id`, `pinned`.
+- `set_media_metadata` (action slug: `set-media-metadata`): Set uploaded media alt text or video download permission. Price: `5` credits. Parameters: `allow_download`, `alt_text`, `media_id`.
+- `set_media_subtitles` (action slug: `set-media-subtitles`): Attach or remove a subtitle track from an uploaded video. Price: `5` credits. Parameters: `media_id`, `subtitle_display_name`, `subtitle_language_code`, `subtitle_media_id`, `subtitles_enabled`.
 - `set_reply_hidden` (action slug: `set-reply-hidden`): Hide or unhide a reply on your post. Price: `5` credits. Parameters: `hidden`, `reply_post_id`.
 - `set_repost` (action slug: `set-repost`): Repost or undo repost as the authenticated user. Price: `5` credits. Parameters: `post_id`, `reposted`.
 - `update_list` (action slug: `update-list`): Update a List's name, description, or privacy setting. Price: `1` credits. Parameters: `list_description`, `list_id`, `list_name`, `list_private`.
@@ -302,10 +352,12 @@ MCP call shape after the main AgentPMT MCP server is connected:
   "params": {
     "name": "X--Twitter-Automation",
     "arguments": {
-      "action": "create_list",
-      "list_description": "example list description",
-      "list_name": "example list name",
-      "list_private": true
+      "action": "count_posts",
+      "end_time": "example end time",
+      "granularity": "minute",
+      "pagination_token": "example pagination token",
+      "query": "example search query",
+      "start_time": "example start time"
     }
   }
 }
@@ -319,10 +371,12 @@ Authenticated AgentPMT REST call body:
 {
   "name": "x-twitter-automation",
   "parameters": {
-    "action": "create_list",
-    "list_description": "example list description",
-    "list_name": "example list name",
-    "list_private": true
+    "action": "count_posts",
+    "end_time": "example end time",
+    "granularity": "minute",
+    "pagination_token": "example pagination token",
+    "query": "example search query",
+    "start_time": "example start time"
   }
 }
 ```
@@ -334,7 +388,7 @@ Use the setup skill for the account connection details before making REST calls.
 - If the response includes warnings or correction targets, apply them before retrying.
 - If the response includes a `passed` or success-style boolean, use it as the workflow gate.
 - If validation fails or the response shape is unclear, call `get_schema` or `get_instructions` before retrying.
-- If `create_list` fails, preserve the request parameters and retry only after fixing schema, auth, or payment errors.
+- If `count_posts` fails, preserve the request parameters and retry only after fixing schema, auth, or payment errors.
 
 ## Security
 - Do not place account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs.

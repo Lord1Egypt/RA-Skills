@@ -1,43 +1,54 @@
-## Description: <br>
-Save, search, list, update, and delete bookmarks and text notes in Runa. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Save, search, list, update, and delete bookmarks and text notes in Runa, and upload PDF or image files to a Runa library.
 
-## Publisher: <br>
-[imprakharshukla](https://clawhub.ai/user/imprakharshukla) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imprakharshukla](https://clawhub.ai/user/imprakharshukla)
 
-## Use Case: <br>
-External users use this skill to save links, text notes, and supported files to their Runa library, then search, list, update, archive, or delete saved items through the Runa API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user-selected links, notes, and uploaded files to Runa for storage and processing. <br>
-Mitigation: Avoid saving secrets, private notes, internal links, or sensitive documents unless the user is comfortable with Runa storing and processing that content. <br>
-Risk: Delete operations can permanently remove bookmarks and tags. <br>
-Mitigation: Require explicit user confirmation before deleting bookmarks and review the target item before confirming. <br>
-Risk: API access depends on a valid Runa API key. <br>
-Mitigation: Store the API key in the configured secret location or environment variable and avoid exposing it in prompts, logs, or saved notes. <br>
+## Use Case:
 
+External users and agents use this skill to manage Runa libraries: save URLs or text notes, search and list saved items, update status or metadata, delete bookmarks after confirmation, preview URL enrichment, and upload PDFs or images.
 
-## Reference(s): <br>
-- [Runa API Reference](references/api.md) <br>
-- [Runa ClawHub listing](https://clawhub.ai/imprakharshukla/runa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown responses with API results and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a configured RUNA_API_KEY to call the Runa API; delete operations require confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Selected URLs, notes, and uploaded PDFs or images are sent to Runa and may be stored or AI-processed in the user's Runa account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for data approved for Runa, and avoid saving secrets or confidential documents unless Runa is approved for that data.
+
+Risk: Bookmark deletion is permanent.
+
+Mitigation: Confirm the target bookmark and user intent before issuing delete requests.
+
+## Reference(s):
+
+- [Runa API Reference](references/api.md)
+- [Runa Skill Page](https://clawhub.ai/imprakharshukla/skills/runa)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and API response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses RUNA_API_KEY authentication and reports saved, listed, or searched bookmark details back to the user.]
+
+## Skill Version(s):
+
+0.3.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

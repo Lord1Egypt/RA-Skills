@@ -19,7 +19,7 @@ Use this reference for Yeelight product consultation, pedia search, manuals, FAQ
 - Treat manualCandidateUrl and faqCandidateUrl as predictable candidate resources. If Runtime marks candidate status as unverified, present them as possible resources, not guaranteed files.
 - If multiple products match a broad keyword such as “青空灯”, give the most relevant few and ask whether the user wants a specific SKU, model, or manual/FAQ.
 - For “这个产品支持 Yeelight Pro/HomeKit 吗”, answer only from Runtime-returned support markers.
-- Never construct internal requests, expose credential headers, or ask the user for a token. Always call Runtime through `scripts/invoke`.
+- Never construct internal requests, expose credential headers, or ask the user for a token. Always call Runtime through `scripts/invoke.sh`.
 
 ## Product Advice Boundary
 

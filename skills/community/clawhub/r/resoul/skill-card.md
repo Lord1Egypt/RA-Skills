@@ -1,40 +1,54 @@
-## Description: <br>
-ReSoul resets an OpenClaw workspace's persona/bootstrap state by fetching the official BOOTSTRAP.md and archiving SOUL.md, USER.md, and IDENTITY.md after explicit second confirmation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ReSoul resets OpenClaw's persona and bootstrap state by fetching the official BOOTSTRAP.md after explicit second confirmation and archiving existing SOUL.md, USER.md, and IDENTITY.md files.
 
-## Publisher: <br>
-[tacitlab](https://clawhub.ai/user/tacitlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tacitlab](https://clawhub.ai/user/tacitlab)
 
-## Use Case: <br>
-OpenClaw users use this skill when they intentionally want to reset persona/bootstrap state, restore the upstream bootstrap template, and start the next fresh session from a clean identity setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the reset changes workspace bootstrap state by replacing BOOTSTRAP.md and moving existing SOUL.md, USER.md, and IDENTITY.md out of the workspace root. <br>
-Mitigation: Require explicit second confirmation, verify the workspace path before execution, and archive identity files into .trash before removing them from the root. <br>
-Risk: The fetched upstream bootstrap is intended for a fresh workspace and may not match an existing workspace's current expectations. <br>
-Mitigation: Fetch the template successfully before archiving existing files, then review the restored BOOTSTRAP.md before relying on it in an existing workspace. <br>
+## Use Case:
 
+Developers and OpenClaw users use ReSoul when they need to reinitialize a workspace identity and restore the upstream bootstrap flow while preserving previous identity files in .trash/.
 
-## Reference(s): <br>
-- [Official OpenClaw BOOTSTRAP.md template](https://raw.githubusercontent.com/openclaw/openclaw/main/docs/reference/templates/BOOTSTRAP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text] <br>
-**Output Format:** [Markdown with inline bash commands and a brief status report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write BOOTSTRAP.md and archive SOUL.md, USER.md, and IDENTITY.md when executed with explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata) <br>
+Risk: The skill replaces persistent OpenClaw bootstrap state with mutable network-fetched instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the downloaded BOOTSTRAP.md source before starting a new session with /new.
+
+Risk: The skill moves SOUL.md, USER.md, and IDENTITY.md out of the workspace root after prose-only confirmation.
+
+Mitigation: Confirm the exact workspace path and require explicit second confirmation before running the reset.
+
+## Reference(s):
+
+- [ClawHub ReSoul skill page](https://clawhub.ai/tacitlab/skills/resoul)
+- [Official OpenClaw BOOTSTRAP.md template](https://raw.githubusercontent.com/openclaw/openclaw/main/docs/reference/templates/BOOTSTRAP.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file path summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit second confirmation before destructive file moves.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

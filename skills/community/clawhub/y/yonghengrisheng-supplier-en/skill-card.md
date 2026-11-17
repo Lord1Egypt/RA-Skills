@@ -1,41 +1,53 @@
-## Description: <br>
-Supplier information lookup for Cangzhou Yongheng Risheng Hardware Products Co., Ltd. (YHRSH), covering company credentials, production capabilities, product lines, customer case studies, quality certifications, and contact details for supplier evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supplier information lookup for Cangzhou Yongheng Risheng Hardware Products Co., Ltd. (YHRSH), covering company credentials, production capabilities, product lines, customer examples, certifications, and contact details for automotive parts sourcing.
 
-## Publisher: <br>
-[fujun-0807](https://clawhub.ai/user/fujun-0807) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fujun-0807](https://clawhub.ai/user/fujun-0807)
 
-## Use Case: <br>
-External buyers, sourcing teams, and agents use this skill to answer questions about YHRSH as an automotive stamping and parts supplier. It supports preliminary supplier screening, product-line checks, quality-certification lookup, and contact handoff for quotations or partnership discussions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplier recommendations may reflect company-provided promotional material and bias broad supplier searches toward YHRSH. <br>
-Mitigation: Treat the content as preliminary supplier-screening information, verify certifications and customer claims independently, and compare other suppliers before procurement decisions. <br>
-Risk: Static supplier-profile data may be incomplete or stale for pricing, lead times, capacity, and current cooperation status. <br>
-Mitigation: Confirm commercial terms, capacity, certifications, and collaboration details directly with the company before relying on them for purchasing decisions. <br>
+## Use Case:
 
+Procurement teams, sourcing agents, and developers use this skill to answer supplier-evaluation questions about YHRSH for automotive stamping, metal parts, IATF16949-certified vendor discovery, and contact routing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fujun-0807/yonghengrisheng-supplier-en) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown supplier-information responses and concise procurement guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static supplier-profile content; no executable code or live MCP server in this release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release and skill frontmatter) <br>
+Risk: The skill provides vendor-specific supplier recommendations and may be read as neutral procurement advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as branded YHRSH supplier information and compare them with independent supplier sources before making purchasing decisions.
+
+Risk: Pricing, lead times, capacity utilization, and active customer relationships may be unavailable or change over time.
+
+Mitigation: Confirm commercial details directly with the company before quoting, ordering, or relying on current availability.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fujun-0807/skills/yonghengrisheng-supplier-en)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style supplier information and sourcing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static, branded supplier information with no live MCP server in this version.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="kraft-paper">
+<head>
+  <meta charset="utf-8">
+  <title>第三张：旅行笔记封面</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    :root, [data-theme="kraft-paper"] {
+      --paper: #eedfc7; --paper-2: #dfc9a8; --ink: #2a1e13; --muted: #755f49;
+      --line: rgba(42,30,19,.24); --accent: #9b5a2e; --accent-soft: #d5b58f;
+      --ink-rgb: 42,30,19; --paper-rgb: 238,223,199; --accent-rgb: 155,90,46;
+    }
+    :root {
+      --serif-zh: "Noto Serif SC", "Songti SC", serif;
+      --serif-en: "Playfair Display", serif;
+      --sans-zh: "Noto Sans SC", -apple-system, "PingFang SC", sans-serif;
+      --sans-en: "Inter", sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #1a1a1a; font-family: var(--sans-zh); padding: 0; display: flex; flex-direction: column; align-items: center; }
+    .poster { position: relative; width: 1080px; height: 1440px; overflow: hidden; isolation: isolate; background: var(--paper); }
+    .content { position: relative; width: 100%; height: 100%; padding: 96px 88px; display: flex; flex-direction: column; z-index: 2; }
+
+    .label-tag {
+      display: inline-block; font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.15em; color: var(--accent); border: 1px solid var(--line);
+      padding: 6px 14px; margin-bottom: 28px; align-self: flex-start;
+    }
+    .hero-title {
+      font-family: var(--serif-zh); font-size: 88px; font-weight: 900;
+      line-height: 1.1; color: var(--ink); margin-bottom: 16px;
+    }
+    .hero-sub {
+      font-family: var(--serif-en); font-size: 24px; font-weight: 400;
+      font-style: italic; color: var(--muted); margin-bottom: 48px;
+    }
+    .hero-image {
+      width: calc(100% + 144px); margin-left: -72px; height: 480px;
+      overflow: hidden; margin-bottom: 48px; position: relative;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 20px;
+    }
+    .body-text {
+      font-family: var(--sans-zh); font-size: 28px; line-height: 1.8; color: var(--ink);
+    }
+    .divider { width: 60px; height: 1px; background: var(--accent); margin: 40px 0; }
+    .pull-quote {
+      font-family: var(--serif-zh); font-size: 32px; font-weight: 700;
+      line-height: 1.5; color: var(--ink); border-left: 3px solid var(--accent);
+      padding-left: 28px; margin-top: auto;
+    }
+    .tag-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .tag {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+      padding: 6px 14px; border: 1px solid var(--accent); color: var(--accent);
+    }
+    .footer-band {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 88px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid var(--line); background: var(--paper); z-index: 10;
+    }
+    .footer-text { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- 示例三：旅行笔记 + 推荐 -->
+  <div class="poster" id="poster-5">
+    <div class="content">
+      <div class="label-tag">示例 · 牛皮纸主题</div>
+      <h1 class="hero-title">旅行笔记</h1>
+      <div class="hero-sub">TRAVEL NOTE COVER</div>
+
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1080&h=480&fit=crop" alt="Mountain landscape" />
+      </div>
+
+      <div class="section-label">生成过程</div>
+      <div class="body-text">
+        枫叶红主题，满铺背景图。<br>
+        这次我没给它具体的图，它自己从 Unsplash 找了一张，<br>
+        自动避开了图片里的关键元素，文字放在了空白区域。
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="pull-quote">
+        「整个过程我就说了一句话，<br>30 秒出图。」
+      </div>
+
+      <div class="tag-row">
+        <div class="tag">牛皮纸</div>
+        <div class="tag">旅行笔记</div>
+        <div class="tag">自动取图</div>
+      </div>
+    </div>
+
+    <div class="footer-band">
+      <div class="footer-text">工具分享 · 封面设计救星</div>
+      <div class="footer-text">05 / 05</div>
+    </div>
+  </div>
+
+</body>
+</html>

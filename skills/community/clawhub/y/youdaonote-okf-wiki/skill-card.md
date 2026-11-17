@@ -1,44 +1,65 @@
-## Description: <br>
-YoudaoNote OKF Wiki helps agents create, maintain, query, lint, export, and archive OKF v0.1 knowledge bases stored in YoudaoNote. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+YoudaoNote OKF Wiki helps agents create, maintain, query, lint, archive, and export OKF v0.1 knowledge bases in YoudaoNote using cloud-backed Markdown notes and OKF frontmatter.
 
-## Publisher: <br>
-[lephix](https://clawhub.ai/user/lephix) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lephix](https://clawhub.ai/user/lephix)
 
-## Use Case: <br>
-Developers, researchers, and knowledge workers use this skill to let an agent manage a YoudaoNote-backed OKF knowledge base, including initialization, ingestion, querying, consistency checks, export, and archival workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and update notes and folders in the configured YoudaoNote account. <br>
-Mitigation: Use it only with the intended account and review prompts before initialization, ingest, archive, or any large batch write. <br>
-Risk: The skill relies on the YoudaoNote CLI and API key configured by the user. <br>
-Mitigation: Configure credentials only through the documented YoudaoNote CLI flow and rotate the API key if it is exposed. <br>
-Risk: The skill can fetch user-provided URLs for ingest and write exported bundles to confirmed local paths. <br>
-Mitigation: Provide only trusted source URLs and confirm export destinations before allowing file writes. <br>
+## Use Case:
 
+Developers, researchers, and knowledge workers use this skill to manage portable OKF knowledge bases in YoudaoNote, including ingestion, cross-linking, conformance checks, query synthesis, conversation archiving, and local bundle export.
 
-## Reference(s): <br>
-- [YoudaoNote](https://note.youdao.com) <br>
-- [OKF v0.1 Specification](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) <br>
-- [OKF v0.1 Spec Summary](references/okf-spec-summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and structured note content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the youdaonote CLI. The agent may read and write notes in the configured YoudaoNote account, ingest user-provided URLs, and export OKF bundles to user-confirmed local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence release version and SKILL.md frontmatter) <br>
+Risk: The skill performs persistent writes to a user's YoudaoNote account and may update OKF metadata automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with an account and knowledge base the user intends the agent to modify; require explicit confirmation before bulk updates or initialization.
+
+Risk: Credential and API-key handling is under-scoped in the security evidence.
+
+Mitigation: Prefer secure credential entry when the CLI supports it, avoid shared machines for setup, and do not expose API keys in chat or saved notes.
+
+Risk: Export operations write local files and can place knowledge-base content in an unintended path.
+
+Mitigation: Confirm export destinations before writing and review generated local files before committing or sharing them.
+
+Risk: Temporary-file handling is called out as an area needing improvement.
+
+Mitigation: Use private working directories where possible and remove temporary OKF files after the CLI operation completes.
+
+## Reference(s):
+
+- [YoudaoNote homepage](https://note.youdao.com)
+- [OKF v0.1 specification](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+- [OKF spec summary](references/okf-spec-summary.md)
+- [YoudaoNote CLI install guide](https://note.youdao.com/help-center/cli-install-guide.html)
+- [ClawHub skill page](https://clawhub.ai/lephix/skills/youdaonote-okf-wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update YoudaoNote notes and local OKF bundle files after user authorization.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,63 @@
-## Description: <br>
-An interactive English reading skills coach that teaches and drills seven core reading strategies using level-appropriate texts from trusted ESL and public reading sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An interactive English reading coach that teaches and drills seven core reading strategies using level-appropriate ESL texts, guided practice, feedback, vocabulary work, and session summaries.
 
-## Publisher: <br>
-[cngvc](https://clawhub.ai/user/cngvc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cngvc](https://clawhub.ai/user/cngvc)
 
-## Use Case: <br>
-External learners and tutors use this skill to run structured English reading practice, including strategy instruction, comprehension questions, vocabulary-in-context work, and IELTS or TOEFL-style preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may trigger the skill for casual requests for something to read in English. <br>
-Mitigation: Confirm the learner wants a structured reading lesson before running a full session when the request is casual or ambiguous. <br>
-Risk: The skill may fetch public passages from external reading sites for lesson material. <br>
-Mitigation: Use public, appropriate sources, extract only relevant passage text, include the source URL, and fall back to an original passage if fetching fails. <br>
-Risk: Some scheduled drill guidance uses Vietnamese framing when helpful. <br>
-Mitigation: Ask for or honor the learner's preferred explanation language before using bilingual framing. <br>
+## Use Case:
 
+External English learners and exam-prep users use this skill to run structured reading-comprehension sessions, practice specific strategies, and receive guided feedback, vocabulary work, and follow-up challenges.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cngvc/english-reading-coach) <br>
-- [Strategy Teaching Guide](references/strategies.md) <br>
-- [Source Library](references/sources.md) <br>
-- [Linguapress](https://linguapress.com) <br>
-- [Breaking News English](https://breakingnewsenglish.com) <br>
-- [Project Gutenberg](https://gutenberg.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown lesson flow with passages, questions, feedback, vocabulary drills, and summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source URLs, CEFR level labels, exam-style prompts, timed tasks, and learner-specific feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may activate on broad English-reading prompts and start an interactive tutoring flow when the user wanted a simpler answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the learner's goal and desired depth before starting a full session.
+
+Risk: Scheduled drill framing may switch to Vietnamese when the agent thinks it is helpful.
+
+Mitigation: Ask the learner to confirm the preferred instruction language and keep framing in that language.
+
+Risk: Live source pages may be unavailable or unsuitable for the learner's level.
+
+Mitigation: Use the documented fallback source order, show source URLs when available, and label original fallback passages as generated.
+
+## Reference(s):
+
+- [Strategy Teaching Guide](references/strategies.md)
+- [Source Library](references/sources.md)
+- [Linguapress](https://linguapress.com)
+- [Breaking News English](https://breakingnewsenglish.com)
+- [Listen A Minute](https://listenaminute.com)
+- [Dream Reader](https://dreamreader.net)
+- [Project Gutenberg](https://gutenberg.org)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-structured tutoring responses with reading passages, questions, feedback, vocabulary notes, and session summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source URLs and timed reading prompts; scheduled daily drills avoid markdown tables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

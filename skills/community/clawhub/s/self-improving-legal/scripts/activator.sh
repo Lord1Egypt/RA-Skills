@@ -21,6 +21,6 @@ or confidential settlement terms. Abstract to process-level lessons only.
 If yes: Log to .learnings/ using the legal self-improvement format.
   - Clause risks/compliance/regulatory → LEARNINGS.md [LRN-YYYYMMDD-XXX]
   - Contract disputes/litigation → LEGAL_ISSUES.md [LEG-YYYYMMDD-XXX]
-If high-value (recurring, broadly applicable): Promote to clause library or compliance checklist.
+If high-value (recurring, broadly applicable): propose promotion to clause library or compliance checklist.; apply only after explicit user approval.
 </legal-improvement-reminder>
 EOF

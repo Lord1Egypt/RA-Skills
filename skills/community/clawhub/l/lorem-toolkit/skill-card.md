@@ -1,38 +1,52 @@
-## Description: <br>
-Generate placeholder text, fake data, and test content including lorem ipsum, names, contact data, dates, UUIDs, JSON templates, and custom patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate placeholder text, fake data, and test content including lorem ipsum, names, emails, phone numbers, UUIDs, dates, JSON templates, and custom patterns.
 
-## Publisher: <br>
-[darbling](https://clawhub.ai/user/darbling) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[darbling](https://clawhub.ai/user/darbling)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, designers, and QA engineers use this skill to generate placeholder text and synthetic test data for mockups, development, and testing workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated contact, finance, or identity-like values could be mistaken for real records or valid credentials.
+
+Mitigation: Use generated values only as fake placeholder data for development, testing, and mockups.
+
+Risk: The advertised feature list is broader than the behavior implemented by the included script.
+
+Mitigation: Verify required generators and output formats against the included artifact before relying on them in a workflow.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, testers, and designers use this skill to generate placeholder text, fake user/contact data, dates, UUIDs, JSON, CSV, and custom patterned values for development, testing, and mockups. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate in generic fake-data or multilingual contexts where placeholder generation was not intended. <br>
-Mitigation: Review and narrow trigger wording before deployment when accidental invocation would disrupt the agent workflow. <br>
+**Output Format:** [Plain text, JSON, and command-oriented guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/darbling/lorem-toolkit) <br>
+**Other Properties Related to Output:** [Generated values are synthetic placeholder data; the included script implements a subset of the advertised feature list.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, JSON, CSV, Markdown guidance, and shell command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated content may include random placeholder personal, contact, finance-pattern, date, UUID, and custom-pattern values.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

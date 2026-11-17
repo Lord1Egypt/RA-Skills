@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>skill-to-http Console</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/i18n.js"></script>
+  <script src="/app.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body x-data="appState">
+
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- ── API Key 引导弹窗（首次访问 / key 失效时自动弹出）──────────── -->
+  <div x-show="showAuthGuide" x-cloak class="modal-backdrop auth-guide-backdrop">
+    <div class="modal auth-guide-modal">
+      <h3>🔑 需要 API Key</h3>
+      <p>控制台已开启鉴权保护，首次访问请填入 API Key。</p>
+      <div class="auth-guide-help">
+        <div class="auth-guide-help-title">如何获取？</div>
+        <ol>
+          <li>查看配置文件 <code>config.json</code> 中的 <code>api_key</code> 字段</li>
+          <li>或在服务器执行：<br><code>cat &lt;workspace&gt;/.http/secrets/api-keys/skill-to-http.key</code></li>
+          <li>也可以直接询问部署这个服务的同学 / Agent</li>
+        </ol>
+      </div>
+      <input
+        type="password"
+        x-model="authGuideKey"
+        @keydown.enter="submitAuthGuide()"
+        :placeholder="($store.i18n.tick, t('auth.placeholder'))"
+        class="auth-guide-input"
+        x-ref="authGuideInput"
+        autocomplete="off">
+      <div class="auth-guide-error" x-show="authGuideError" x-text="authGuideError"></div>
+      <div class="modal-actions">
+        <button @click="dismissAuthGuide()" class="btn">暂不填写</button>
+        <button @click="submitAuthGuide()" :disabled="authGuideSaving" class="btn btn-primary">
+          <span x-text="authGuideSaving ? '验证中...' : '保存并刷新 →'"></span>
+        </button>
+      </div>
+      <p class="auth-guide-note">Key 只保存在你浏览器本地（localStorage），不会上传到其他地方。</p>
+    </div>
+  </div>
+
+  <!-- ── Top Status Bar ────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="/assets/logo.jpg" alt="logo" class="topbar-logo" />
+      <span class="dot" :class="status.running ? 'green' : 'red'"></span>
+      <span class="topbar-title" x-text="($store.i18n.tick, status.running ? t('top.running') : t('top.stopped'))"></span>
+      <span class="topbar-info" x-show="status.port">端口: <strong x-text="status.port"></strong></span>
+      <span class="topbar-info">执行器: <strong x-text="status.executor || '—'"></strong></span>
+      <span class="topbar-info">已运行: <strong x-text="formatUptime(status.uptime_seconds)"></strong></span>
+      <span class="topbar-info">活跃: <strong x-text="status.active_jobs || 0"></strong></span>
+    </div>
+    <div class="topbar-actions">
+      <button x-show="!status.running && !starting" @click="startService()" class="btn btn-primary">▶ 启动</button>
+      <button x-show="starting" class="btn btn-primary" disabled>⏳ 启动中...</button>
+      <button x-show="status.running" @click="stopService()" class="btn btn-warn">■ 停止</button>
+      <button x-show="status.running" @click="reloadService()" class="btn">🔄 热重载</button>
+
+      <!-- 极速模式按钮 -->
+      <div x-data="speedMode" class="speed-mode-wrap">
+        <button
+          @click="handleToggle()"
+          :disabled="initializing"
+          :title="($store.i18n.tick, btnTitle())"
+          :class="btnClass()"
+          class="btn btn-speed">
+          <span x-text="($store.i18n.tick, btnLabel())"></span>
+        </button>
+
+        <!-- 开启确认弹窗 -->
+        <div x-show="smShowConfirm" x-cloak class="modal-backdrop" @click.self="smShowConfirm=false">
+          <div class="modal">
+            <h3>⚡ 极速模式</h3>
+            <p>开启后 Skill 执行速度预计提升 <strong>2-4x</strong>（30-140s → 8-20s）</p>
+            <p style="margin-top:8px">原理：为 skill-to-http 创建专用轻量 Agent（<code>stt-runner</code>），减少每次执行注入的 system prompt（155k → ~35k tokens）。</p>
+            <div class="modal-warn">
+              ⚠️ 副作用：会在 OpenClaw 中注册一个名为 <code>stt-runner</code> 的 Agent，Gateway 会短暂重启（约 2-5s）
+            </div>
+            <div class="modal-actions">
+              <button @click="smShowConfirm=false" class="btn">取消</button>
+              <button @click="doEnable()" class="btn btn-primary">确认开启 →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 关闭确认弹窗 -->
+        <div x-show="smShowDisableConfirm" x-cloak class="modal-backdrop" @click.self="smShowDisableConfirm=false">
+          <div class="modal">
+            <h3>关闭极速模式</h3>
+            <p>将从 OpenClaw 移除 <code>stt-runner</code> Agent，Gateway 会短暂重启。</p>
+            <div class="modal-actions">
+              <button @click="smShowDisableConfirm=false" class="btn">取消</button>
+              <button @click="doDisable()" class="btn btn-warn">确认关闭</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 初始化进度弹窗 -->
+        <div x-show="initializing" x-cloak class="modal-backdrop">
+          <div class="modal">
+            <h3>⚡ 正在初始化极速模式...</h3>
+            <div class="progress-steps">
+              <template x-for="(log, i) in progressLogs" :key="i">
+                <div class="progress-step" :class="{error: log.error, warn: log.warn}">
+                  <span x-text="log.error ? '❌' : log.warn ? '⚠️' : '✅'"></span>
+                  <span x-text="'Step ' + log.step + '/' + log.total + ': ' + log.msg"></span>
+                </div>
+              </template>
+              <div x-show="!progressLogs.length" class="hint">准备中...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn btn-sm lang-toggle"
+              @click="$store.i18n.toggle()"
+              :title="$store.i18n.lang === 'zh' ? 'Switch to English' : '切换到中文'"
+              x-text="$store.i18n.lang === 'zh' ? '🌐 EN' : '🌐 中'"></button>
+      <input type="password"
+             :placeholder="($store.i18n.tick, t('top.apiKey'))"
+             :title="($store.i18n.tick, $store.i18n.lang === 'zh' ? 'API Key（保存在浏览器本地）' : 'API Key (stored locally in your browser)')"
+             x-model="apiKey" @change="saveApiKey(); window.location.reload()" class="apikey-input" name="apiKey">
+    </div>
+  </header>
+
+  <!-- ── Body: Nav + Content ───────────────────────────────────────── -->
+  <div class="layout">
+    <nav class="sidebar">
+      <a href="#" @click.prevent="page='all'; skillFilter=''" :class="{active: page==='all' && skillFilter===''}">
+        <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+        全部 Skill
+      </a>
+      <a href="#" @click.prevent="page='all'; skillFilter='exposed'" :class="{active: page==='all' && skillFilter==='exposed'}">
+        <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        已开启
+      </a>
+      <a href="#" @click.prevent="page='all'; skillFilter='hidden'" :class="{active: page==='all' && skillFilter==='hidden'}">
+        <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.9" y1="4.9" x2="19.1" y2="19.1"/></svg>
+        未开启
+      </a>
+      <a href="#" @click.prevent="page='jobs'" :class="{active: page==='jobs'}">
+        <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Job 历史
+      </a>
+      <a href="#" @click.prevent="page='tls'" :class="{active: page==='tls'}">
+        <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        HTTPS 证书
+      </a>
+      <a href="#" @click.prevent="page='logs'" :class="{active: page==='logs'}">
+        <svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        服务日志
+      </a>
+    </nav>
+
+    <main class="content">
+
+      <!-- Skill List -->
+      <div x-show="page === 'all'" x-data="skillList">
+
+        <!-- 依赖确认弹窗 -->
+        <div x-show="depConfirmSkill" class="modal-backdrop" x-cloak @click.self="depConfirmSkill=null">
+          <div class="modal">
+            <div class="modal-title">🔗 发现潜在依赖</div>
+            <p>开启 <strong x-text="depConfirmSkill"></strong> 时检测到以下依赖：</p>
+            <ul class="dep-list">
+              <template x-for="d in depConfirmDeps" :key="d">
+                <li x-text="d"></li>
+              </template>
+            </ul>
+            <template x-if="depConfirmEvidence.length > 0">
+              <details style="margin:8px 0">
+                <summary style="cursor:pointer;color:var(--text-secondary);font-size:12px">查看证据</summary>
+                <ul class="dep-evidence">
+                  <template x-for="e in depConfirmEvidence" :key="e">
+                    <li x-text="e"></li>
+                  </template>
+                </ul>
+              </details>
+            </template>
+            <div class="modal-warn">⚠️ 如确认有依赖，极速模式执行时会自动注入依赖 Skill 的描述，如仍失败则降级到完整模式。<br><small style="color:var(--text-secondary)">
+              选“无依赖”：不注入依赖描述，极速模式下可能因缺少上下文而运行失败。</small></div>
+            <div class="modal-actions">
+              <button @click="confirmDeps(depConfirmSkill, false)" class="btn">无依赖，忽略</button>
+              <button @click="confirmDeps(depConfirmSkill, true)" class="btn btn-primary">确认有依赖</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="toolbar sticky">
+          <input type="text" :placeholder="($store.i18n.tick, t('skill.search'))" x-model="search" class="search-box" name="search">
+          <span class="count-badge" x-text="($store.i18n.tick, t('skill.total', {n: filteredSkills().length}))"></span>
+        </div>
+
+        <div x-show="loading" class="loading">加载中...</div>
+
+        <div x-show="!loading" class="skill-grid">
+          <template x-for="s in filteredSkills()" :key="s.name">
+            <div class="skill-card">
+              <div class="skill-card-header" @click="toggleExpand(s.name)">
+                <div class="skill-name-row">
+                  <strong class="skill-name" x-text="s.name"></strong>
+                  <span class="tag" :class="s.exposed ? 'tag-green' : 'tag-gray'"
+                        x-text="s.exposed ? '已开启' : '未开启'"></span>
+                  <span class="tag tag-stats" x-text="($store.i18n.tick, t('skill.todayRuns', {n: (s.stats && s.stats.today || 0)}))"></span>
+                </div>
+                <div class="skill-desc" x-text="(s.description || '（无描述）').slice(0, 80)"></div>
+                <div class="skill-actions" @click.stop>
+                  <button x-show="!s.exposed" @click="exposeSkill(s.name)" class="btn btn-sm btn-primary">开启</button>
+                  <button x-show="s.exposed" @click="hideSkill(s.name)" class="btn btn-sm btn-warn">关闭</button>
+                  <button x-show="s.exposed"
+                          @click="startTest(s.name)"
+                          class="btn btn-sm"
+                          :disabled="!status.running"
+                          :title="($store.i18n.tick, status.running ? '' : ($store.i18n.lang === 'zh' ? '主服务未运行，请先点顶部「▶ 启动」' : 'Main service is not running. Please click ▶ Start at the top first.'))">
+                    测试
+                  </button>
+                </div>
+              </div>
+
+              <!-- Expanded body -->
+              <div x-show="expanded === s.name" class="skill-card-body">
+                <template x-if="s.params && s.params.properties">
+                  <table class="params-table">
+                    <thead><tr><th>参数</th><th>类型</th><th>必填</th><th>说明</th></tr></thead>
+                    <tbody>
+                      <template x-for="(prop, key) in s.params.properties" :key="key">
+                        <tr>
+                          <td x-text="key"></td>
+                          <td x-text="prop.type || 'string'"></td>
+                          <td x-text="(s.params.required || []).includes(key) ? '是' : '否'"></td>
+                          <td x-text="prop.description || ''"></td>
+                        </tr>
+                      </template>
+                    </tbody>
+                  </table>
+                </template>
+                <div x-show="!s.params || !s.params.properties" class="hint">无参数 schema</div>
+
+                <!-- Test panel -->
+                <div x-show="testing === s.name" class="test-panel">
+                  <textarea x-model="testMessage" :placeholder="($store.i18n.tick, t('sk.testPlaceholder'))" rows="3" class="test-input" name="testMessage"></textarea>
+                  <button @click="runTest(s.name)" class="btn btn-primary" :disabled="!!testingJobId">▶ 执行</button>
+                  <div x-show="testingJobId" class="test-result">
+                    <span x-show="testStatus === 'pending' || testStatus === 'running'">
+                      ⏳ 运行中... <span x-text="testPollCount * 3"></span>s / 240s max
+                    </span>
+                    <span x-show="testStatus === 'completed'" style="color:var(--green)">✅ 完成</span>
+                    <span x-show="testStatus === 'failed'" style="color:var(--red)">❌ 失败</span>
+                    <pre x-show="testResult" x-text="testResult" class="result-pre"></pre>
+                    <pre x-show="testError" x-text="testError" style="color:var(--red)" class="result-pre"></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Job History + Detail Modal（同一 x-data 实例，共享 detailJob 状态）-->
+      <div x-show="page === 'jobs'" x-data="jobHistory">
+        <div class="toolbar">
+          <input type="text" :placeholder="($store.i18n.tick, t('jb.filterPlaceholder'))" x-model="jobSkillFilter" @input="loadJobs()" class="search-box" name="jobSkillFilter">
+          <button @click="loadJobs()" class="btn btn-sm">刷新</button>
+        </div>
+        <table class="jobs-table">
+          <thead><tr><th>Job ID</th><th>Skill</th><th>状态</th><th>耗时</th><th>时间</th></tr></thead>
+          <tbody>
+            <template x-for="j in jobs" :key="j.job_id">
+              <tr @click="toggleExpand(j.job_id)" class="job-row" :class="{expanded: expandedJob === j.job_id}">
+                <td class="mono" x-text="j.job_id.slice(0, 8)"></td>
+                <td x-text="j.skill_name"></td>
+                <td>
+                  <span x-text="j.status === 'completed' ? '✅' : j.status === 'failed' ? '❌' : '⏳'"></span>
+                  <span x-text="j.status"></span>
+                </td>
+                <td x-text="j.elapsed_ms ? (j.elapsed_ms / 1000).toFixed(1) + 's' : '—'"></td>
+                <td x-text="($store.i18n.tick, fmtLocalTime(j.created_at))"></td>
+              </tr>
+            </template>
+            <tr x-show="jobs.length === 0"><td colspan="5" class="hint">暂无记录</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Job Detail Modal（与列表同一 x-data 实例，detailJob 正确共享）-->
+        <div x-show="detailJob" class="modal-backdrop" x-cloak @click.self="detailJob=null">
+          <div class="modal modal-wide">
+            <div class="modal-title">📋 Job 详情</div>
+            <template x-if="detailJob">
+              <div class="job-modal-body">
+                <div x-show="detailJob._fetch_warn" class="modal-warn" x-text="detailJob._fetch_warn"></div>
+                <div class="job-modal-row"><span class="job-modal-label">Job ID</span><span class="mono" x-text="detailJob.job_id"></span></div>
+                <div class="job-modal-row"><span class="job-modal-label">Skill</span><span x-text="detailJob.skill_name"></span></div>
+                <div class="job-modal-row"><span class="job-modal-label">状态</span><span x-text="detailJob.status"></span></div>
+                <div class="job-modal-row"><span class="job-modal-label">耗时</span><span x-text="detailJob.elapsed_ms ? (detailJob.elapsed_ms/1000).toFixed(1)+'s' : '—'"></span></div>
+                <div class="job-modal-row"><span class="job-modal-label">创建时间</span><span x-text="($store.i18n.tick, fmtLocalTime(detailJob.created_at))"></span></div>
+                <div class="job-modal-row" x-show="detailJob.finished_at"><span class="job-modal-label">完成时间</span><span x-text="($store.i18n.tick, fmtLocalTime(detailJob.finished_at))"></span></div>
+                <div class="job-modal-row" x-show="detailJob.error_type"><span class="job-modal-label">错误类型</span><span class="badge badge-error" x-text="detailJob.error_type"></span></div>
+                <div class="job-modal-row" x-show="detailJob.message"><span class="job-modal-label">Message</span><span x-text="detailJob.message"></span></div>
+                <div x-show="detailJob.result" style="margin-top:10px">
+                  <div class="job-modal-label">Result</div>
+                  <pre class="result-pre" x-text="detailJob.result"></pre>
+                </div>
+                <div x-show="detailJob.error" style="margin-top:10px">
+                  <div class="job-modal-label">错误信息</div>
+                  <pre class="result-pre" style="color:var(--red)" x-text="detailJob.error"></pre>
+                </div>
+              </div>
+            </template>
+            <div class="modal-actions">
+              <button x-show="detailJob && detailJob.result" @click="copyText(detailJob.result)" class="btn">📎 复制结果</button>
+              <button @click="detailJob=null" class="btn">关闭</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TLS / HTTPS Certificate -->
+      <div x-show="page === 'tls'" x-data="tlsPage" x-init="init()">
+
+        <!-- 续期确认模态窗口 -->
+        <div x-show="showRenewConfirm" x-cloak class="modal-backdrop" @click.self="showRenewConfirm=false">
+          <div class="modal">
+            <h3>🔁 续期 TLS 证书</h3>
+            <p x-text="($store.i18n.tick, t('tls.renewNote'))"></p>
+            <div class="modal-warn">
+              ⚠️ 旧证书会被覆盖；<strong>服务重启后新证书才生效</strong>。
+            </div>
+            <p style="margin-top:10px;font-size:13px;color:var(--text-secondary)">
+              也可以不在页面操作，把下面命令发给你的 Agent 或在服务器执行：
+            </p>
+            <div class="cmd-row">
+              <pre class="cmd-pre">python3 gen_cert.py renew --san auto</pre>
+              <button class="cmd-copy" @click="copyText(agentRenewMsg, t('cp.agentPrompt'))" :title="($store.i18n.tick, t('tls.upgrade.copyAgent'))">📋 <span x-text="($store.i18n.tick, t('cp.copy'))"></span></button>
+            </div>
+            <div class="modal-actions">
+              <button @click="showRenewConfirm=false" class="btn">取消</button>
+              <button @click="doRenew()" class="btn btn-primary">确认续期 →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button @click="refresh()" class="btn btn-sm" :disabled="loading">🔄 刷新</button>
+          <button @click="confirmRenew()" class="btn btn-sm btn-primary" :disabled="renewing">
+            <span x-show="!renewing">🔁 续期证书</span>
+            <span x-show="renewing">⏳ 续期中...</span>
+          </button>
+          <span class="count-badge" x-show="tls.tls_enabled" style="background:#22c55e">HTTPS 已启用</span>
+          <span class="count-badge" x-show="!tls.tls_enabled" style="background:#9ca3af">HTTPS 未启用</span>
+        </div>
+
+        <!-- HTTPS 未启用提示 -->
+        <div x-show="!tls.tls_enabled && !loading" class="skill-card" style="padding:20px">
+          <h3>HTTPS 未启用</h3>
+          <p style="color:var(--text-secondary)">服务正以 HTTP 模式运行。内网 IP 暴露场景建议启用 HTTPS。</p>
+
+          <p style="margin-top:14px;font-weight:600">方式一：在服务器上执行（复制命令）</p>
+          <div class="cmd-row">
+            <pre class="cmd-pre" x-text="upgradeCmd"></pre>
+            <button class="cmd-copy" @click="copyText(upgradeCmd, t('cp.command'))" :title="($store.i18n.tick, t('tls.upgrade.copyCmd'))">📋 <span x-text="($store.i18n.tick, t('cp.copy'))"></span></button>
+          </div>
+          <p style="font-size:12px;color:var(--text-secondary);margin-top:4px"
+             x-html="($store.i18n.tick, t('tls.upgradeNote'))"></p>
+
+          <p style="margin-top:14px;font-weight:600">方式二：发给你的 Agent 帮你执行（复制话术）</p>
+          <div class="cmd-row">
+            <pre class="cmd-pre" x-text="agentUpgradeMsg"></pre>
+            <button class="cmd-copy" @click="copyText(agentUpgradeMsg, t('cp.agentPrompt'))" :title="($store.i18n.tick, t('tls.upgrade.copyAgent'))">📋 <span x-text="($store.i18n.tick, t('cp.copy'))"></span></button>
+          </div>
+        </div>
+
+        <!-- 证书状态卡片 -->
+        <div x-show="tls.tls_enabled && tls.cert_status" class="skill-card" style="padding:20px;margin-bottom:16px">
+          <h3 style="margin-top:0">🔐 当前证书</h3>
+          <table style="width:100%;font-size:13px;line-height:1.8">
+            <tr><td style="color:var(--text-secondary);width:120px">证书路径</td><td><code x-text="tls.cert_status.cert_path"></code></td></tr>
+            <tr><td style="color:var(--text-secondary)">私钥路径</td><td><code x-text="tls.cert_status.key_path"></code></td></tr>
+            <tr><td style="color:var(--text-secondary)">Subject</td><td x-text="tls.cert_status.subject || '—'"></td></tr>
+            <tr>
+              <td style="color:var(--text-secondary)">SAN（绑定 IP/域名）</td>
+              <td>
+                <template x-for="san in (tls.cert_status.san || [])" :key="san">
+                  <span class="count-badge" style="margin-right:4px" x-text="san"></span>
+                </template>
+                <span x-show="!tls.cert_status.san || tls.cert_status.san.length === 0" style="color:var(--text-secondary)">（无）</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="color:var(--text-secondary)">到期时间</td>
+              <td x-text="tls.cert_status.expires_at || '—'"></td>
+            </tr>
+            <tr>
+              <td style="color:var(--text-secondary)">剩余天数</td>
+              <td>
+                <span x-show="tls.cert_status.days_until_expiry == null" style="color:var(--text-secondary)">—</span>
+                <span x-show="tls.cert_status.days_until_expiry != null && tls.cert_status.days_until_expiry > 30" style="color:#22c55e;font-weight:600">
+                  ✅ <span x-text="tls.cert_status.days_until_expiry"></span> 天
+                </span>
+                <span x-show="tls.cert_status.days_until_expiry != null && tls.cert_status.days_until_expiry > 0 && tls.cert_status.days_until_expiry <= 30" style="color:#f59e0b;font-weight:600">
+                  ⚠️ <span x-text="tls.cert_status.days_until_expiry"></span> 天（建议续期）
+                </span>
+                <span x-show="tls.cert_status.days_until_expiry != null && tls.cert_status.days_until_expiry <= 0" style="color:#ef4444;font-weight:600">
+                  ❌ 已过期 <span x-text="-tls.cert_status.days_until_expiry"></span> 天
+                </span>
+              </td>
+            </tr>
+            <tr x-show="tls.cert_status.san_mismatch">
+              <td style="color:var(--text-secondary)">SAN 匹配</td>
+              <td style="color:#f59e0b">⚠️ 本机 IP 部分不在 SAN 中，外部访问可能失败（点续期可自动嗅探本机 IP 重新生成）</td>
+            </tr>
+            <tr x-show="tls.cert_status.error">
+              <td style="color:var(--text-secondary)">错误</td>
+              <td style="color:#ef4444" x-text="tls.cert_status.error"></td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- 客户端信任指南 -->
+        <div x-show="tls.tls_enabled && tls.cert_status && tls.cert_status.exists" class="skill-card" style="padding:20px">
+          <h3 style="margin-top:0">📋 客户端如何信任此证书</h3>
+          <p style="font-weight:600;margin-bottom:6px">curl</p>
+          <pre style="background:#1e1e1e;color:#d4d4d4;padding:10px;border-radius:6px;font-size:12px;margin-bottom:12px"><span x-text="'curl --cacert ' + tls.cert_status.cert_path + ' https://&lt;host&gt;:&lt;port&gt;/health'"></span></pre>
+
+          <p style="font-weight:600;margin-bottom:6px">Python requests</p>
+          <pre style="background:#1e1e1e;color:#d4d4d4;padding:10px;border-radius:6px;font-size:12px;margin-bottom:12px"><span x-text="\"requests.get('https://<host>:<port>/health', verify='\" + tls.cert_status.cert_path + \"')\"></span></pre>
+
+          <p style="font-weight:600;margin-bottom:6px">浏览器（先信任证书）</p>
+          <ul style="font-size:13px;color:var(--text-secondary);line-height:1.8">
+            <li>macOS：双击 server.crt → 钥匙串访问 → 改为「始终信任」</li>
+            <li>Windows：双击 → 安装到「受信任的根证书颁发机构」</li>
+            <li>Linux：cp 到 /usr/local/share/ca-certificates/ &amp;&amp; update-ca-certificates</li>
+          </ul>
+        </div>
+
+        <!-- 续期结果显示 -->
+        <div x-show="renewResult" class="skill-card" style="padding:20px;margin-top:16px">
+          <h3 style="margin-top:0">续期结果</h3>
+          <pre style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-size:12px;max-height:300px;overflow:auto" x-text="renewResult"></pre>
+        </div>
+
+        <div x-show="loading" class="loading">加载中...</div>
+      </div>
+
+      <!-- Server Log -->
+      <div x-show="page === 'logs'" x-data="serverLog">
+        <div class="toolbar">
+          <button @click="refresh()" class="btn btn-sm">🔄 刷新</button>
+        </div>
+        <pre class="log-viewer" x-text="log || '无日志'"></pre>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ── Confirm Modal (inside appState scope) ─────────────────────── -->
+  <div x-show="showConfirm" x-cloak class="modal-backdrop"
+       @click.self="cancelAction()"
+       @keydown.escape.window="showConfirm && cancelAction()">
+    <div class="modal modal-sm" @click.stop>
+      <h3 class="modal-title" x-text="confirmTitle"></h3>
+      <p class="modal-body" x-text="confirmMessage"></p>
+      <div class="modal-actions">
+        <button @click="cancelAction()" class="btn">取消</button>
+        <button @click="confirmAction()" class="btn btn-danger">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Global Loading Overlay ───────────────────────────────────── -->
+  <div id="global-loading" class="global-loading">
+    <div class="global-loading-inner">
+      <div class="global-loading-spinner"></div>
+      <div class="global-loading-text">正在连接服务...</div>
+      <div class="global-loading-hint">通常 1–3 秒完成，如长时间无响应请检查服务是否启动</div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,42 +1,53 @@
-## Description: <br>
-Resize video outputs for social, ecommerce, ads, and platform uploads without stretching the subject or breaking compatibility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resize video outputs for social, ecommerce, ads, and platform uploads without stretching the subject or breaking compatibility.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External creators, marketing teams, ecommerce teams, and agents use this skill to plan video resizing for social, storefront, ad, and review outputs while preserving the important subject area. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video files may contain sensitive or unpublished content. <br>
-Mitigation: Only provide videos that are appropriate for the agent environment processing the request. <br>
-Risk: Crop or padding choices can remove important subject, product, subtitle, or framing context. <br>
-Mitigation: Review the chosen resize strategy and framing tradeoffs before using final exports. <br>
+## Use Case:
 
+External creators, marketers, ecommerce teams, and agents use this skill to plan platform-ready video resize variants, select crop, pad, or scale strategies, and document framing and compatibility tradeoffs.
 
-## Reference(s): <br>
-- [Creator Video Resizer ClawHub release](https://clawhub.ai/Leooooooow/creator-video-resizer) <br>
-- [Leooooooow publisher profile](https://clawhub.ai/user/Leooooooow) <br>
-- [Video Resizer Output Template](references/output-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a resize strategy, output dimensions, framing notes, compatibility notes, and optional additional recommended sizes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A proposed resize can crop faces, products, subtitles, or other priority visual areas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the priority visual area and review crop, pad, or scale tradeoffs before producing final outputs.
+
+Risk: A video-processing command can target the wrong input, output path, dimensions, or overwrite behavior.
+
+Mitigation: Review proposed commands before execution and verify the source file, destination path, dimensions, aspect-ratio strategy, and overwrite flags.
+
+## Reference(s):
+
+- [Video Resizer Output Template](references/output-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown guidance with optional video-processing commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes resize strategy, output dimensions, framing notes, compatibility notes, and optional additional recommended sizes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

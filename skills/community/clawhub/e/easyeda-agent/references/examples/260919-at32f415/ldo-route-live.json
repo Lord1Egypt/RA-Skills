@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "kind": "parameterized-local-route-example",
+  "exam": "260919-at32f415-learning-board",
+  "module": "ldo",
+  "status": "live-verified",
+  "verificationScope": "U2/C3-C6 的局部 +5V、+3V3 与 TOP GND 铜；不包含输入源主干、输出负载主干、整板铺铜或整板布通",
+  "project": "ceshi",
+  "documentUuid": "2e719e9419653c72",
+  "units": "mil",
+  "rulesUsed": {
+    "layer": 1,
+    "layerName": "TOP",
+    "trackWidthMil": 20,
+    "clearanceMil": 6,
+    "viaCount": 0
+  },
+  "semanticPaths": [
+    {
+      "id": "input-power",
+      "net": "+5V",
+      "orderedPads": ["C3.1", "C4.1", "U2.3"],
+      "reason": "题目要求输入侧 10uF 在前、100nF 在后，再到 VIN；两只电容仍并联"
+    },
+    {
+      "id": "output-power",
+      "net": "+3V3",
+      "orderedPads": ["U2.2", "U2.4", "C5.1", "C6.1"],
+      "reason": "先用铜连接 VOUT 与 TAB，再按本 Demo 候选依次触达 10uF、100nF；不是稳压器的通用唯一路径"
+    },
+    {
+      "id": "input-ground",
+      "net": "GND",
+      "orderedPads": ["C3.2", "C4.2", "U2.1"],
+      "reason": "输入电容在 TOP 形成可追踪回流"
+    },
+    {
+      "id": "output-ground",
+      "net": "GND",
+      "orderedPads": ["C5.2", "C6.2", "U2.1"],
+      "reason": "输出电容在 TOP 形成可追踪回流"
+    }
+  ],
+  "segments": [
+    {"role":"5V-1","primitiveId":"7bd72cc6f11aff72","net":"+5V","from":[1655,310],"to":[1744,310]},
+    {"role":"5V-2","primitiveId":"0aaa4d295313a675","net":"+5V","from":[1744,310],"to":[1838.4,310]},
+    {"role":"3V3-1","primitiveId":"65bf587acb91c574","net":"+3V3","from":[1838.4,400],"to":[2061.6,400]},
+    {"role":"3V3-2","primitiveId":"9e231bc7a3ade0df","net":"+3V3","from":[2050,470],"to":[2050,587.6]},
+    {"role":"3V3-3","primitiveId":"c732c9e439d1d599","net":"+3V3","from":[2050,587.6],"to":[1900,587.6]},
+    {"role":"GND-I1","primitiveId":"a76f0b60f508dff4","net":"GND","from":[1655,388.8],"to":[1720.4,388.8]},
+    {"role":"GND-I2","primitiveId":"75171014b835305e","net":"GND","from":[1744,365.2],"to":[1720.4,388.8]},
+    {"role":"GND-I3","primitiveId":"1a814ea8de58ebbc","net":"GND","from":[1744,365.2],"to":[1773,394.2]},
+    {"role":"GND-I4","primitiveId":"986527a04ce736f0","net":"GND","from":[1773,394.2],"to":[1773,460]},
+    {"role":"GND-I5","primitiveId":"86acbf0382cc9dd3","net":"GND","from":[1773,460],"to":[1803.6,490.6]},
+    {"role":"GND-O1","primitiveId":"369544daea524190","net":"GND","from":[2050,666.4],"to":[1923.6,666.4]},
+    {"role":"GND-O2","primitiveId":"23755f26a7632060","net":"GND","from":[1923.6,666.4],"to":[1900,642.8]},
+    {"role":"GND-O3","primitiveId":"8adfda64b67d84d4","net":"GND","from":[1900,642.8],"to":[1850,642.8]},
+    {"role":"GND-O4","primitiveId":"1b08f7dee26a2bc8","net":"GND","from":[1850,642.8],"to":[1830,622.8]},
+    {"role":"GND-O5","primitiveId":"9a97e2ffa60b9e67","net":"GND","from":[1830,622.8],"to":[1830,500]}
+  ],
+  "correctionHistory": {
+    "observedError": "第一版输入 GND 从 C3/C4 汇合点绕向 U2，产生回头/重复风险",
+    "repair": "保留 C3-C4 公共地段，删除汇合点到 U2 的四段，改为从 C4.2 以 45°-直线-45°进入 U2.1",
+    "replacementPrimitiveIds": ["1a814ea8de58ebbc", "986527a04ce736f0", "86acbf0382cc9dd3"]
+  },
+  "postReloadReadback": {
+    "trackCount": 15,
+    "allTop": true,
+    "allWidth20Mil": true,
+    "arcCount": 0,
+    "viaCount": 0,
+    "duplicateSegmentCount": 0,
+    "danglingEndCount": 0,
+    "acuteAngleCount": 0,
+    "nonOrthogonalCount": 0,
+    "trackOverForeignPadCount": 0,
+    "clearanceFindingCount": 0,
+    "layout": {
+      "components": 69,
+      "overlaps": 0,
+      "outsideOutline": 0,
+      "tightSpacing": 0
+    },
+    "officialDrc": {
+      "total": 216,
+      "counts": {"Connection Error": 216},
+      "interpretation": "整板仍未布通；本轮没有出现短路、间距、线宽等其他 DRC 类型。全局 Connection Error 不能单独证明或否定局部路径。"
+    }
+  },
+  "pathEvidence": {
+    "method": "保存并 typed reload 后，从 components/pads、tracks 和 vias 原始回读重建局部铜图；shape-aware pcb check 已在同一现场回读复测",
+    "allTargetPathsFound": true,
+    "shapeAwareCheck": "修复前 U2.1/U2.4 铜面内端点被固定30mil中心半径误报 dangling；修复后同一现场回读 dangling=0、floating-island=0，并报告235个旧连接器焊盘采用保守 legacy 几何",
+    "shapeAwareNetPath": "当前连接器缺 result.arcsAvailable 与 pad source shape，命令按 fail-closed 返回 unknown/error；加载新版连接器后仍须现场复跑"
+  },
+  "independentVerification": {
+    "status": "completed-with-findings",
+    "method": "独立 subagent 只读原题/BOM/原理图及保存重开后的 components/tracks/vias/layout-lint/check/DRC 原始输出；未读取执行者结论，未操作 EDA",
+    "conclusion": "局部电源顺序、四条 TOP GND 路径、层、线宽、转角、0 via、0重复与0异网碰撞按几何回读成立；整板三网仍是局部岛，不能外推为整板通过",
+    "findings": [
+      "U2.4 到 C5 的出线起点 (2050,470) 距矩形焊盘上缘0.85mil，20mil轨迹铜与焊盘充分相交且shape-aware check已复测为非dangling；迁移时仍应从真实焊盘端部重新计算",
+      "全局DRC的216项全部为Connection Error，说明整板未布通；没有短路、间距或线宽类型",
+      "C4位号压C3.1、LDO区域位号方向和整板丝印属于后续收尾范围，不能被本局部路线状态覆盖",
+      "通用decap-too-far按焊盘中心报告C3/C5/C6约4.7–5.0mm；本布局的封装body间隙已约12–22mil，仍须在迁移样例中结合真实封装与稳压器手册判断"
+    ]
+  },
+  "evidence": {
+    "componentsSha256": "3c9021200e3701e640a8e07d88aa2aed30cf1d1a615137f511d00c0e5d81420a",
+    "tracksSha256": "689ce80d022d4fed8966a7d16de66b2648b79b99c80a8c5e1513cab469bf3b52",
+    "viasSha256": "be8641a2be7ddb5e3264706622b701c2ffcd437598f855f52ea85779ce6fedf9",
+    "layoutLintSha256": "c14ec68582edb454d4da0b21224ed449f978233ff4c823cb6a2c7d1faef3109c",
+    "pcbCheckSha256": "0bc29dfbe4cd9ebd895032f9381ae67f64cf380729435464e07bd69a1952c274",
+    "officialDrcSha256": "731fbb50ba01818f80d349bf9f689e225c417d02bfe875a2ecfa39f6c1dbfb7d"
+  },
+  "notClaimed": [
+    "+5V 输入源到 C3 的主干尚未完成",
+    "+3V3 从 C6 到整板负载的主干尚未完成",
+    "整板双面 GND、缝合孔、泪滴、丝印和 100% 布通尚未完成",
+    "216 个全局 Connection Error 尚未清零"
+  ]
+}

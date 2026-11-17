@@ -1,38 +1,50 @@
-## Description: <br>
-System Nine Elements provides a nine-dimensional framework for analyzing any object as a system. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+System Nine Elements helps agents decompose an object, problem, or design as a system using a nine-dimension analytical framework.
 
-## Publisher: <br>
-[jack-xun](https://clawhub.ai/user/jack-xun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-xun](https://clawhub.ai/user/jack-xun)
 
-## Use Case: <br>
-Employees, external users, developers, and analysts use this skill to decompose a subject as a system, examine its internal mechanics, and produce a structured system profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation phrases may trigger the framework during unrelated system-design or deep-analysis requests. <br>
-Mitigation: Review or narrow activation phrases when installing alongside many skills. <br>
+## Use Case:
 
+External users and analysts use this skill to structure deep system analysis, system design, problem decomposition, and report writing around nine named elements.
 
-## Reference(s): <br>
-- [System Nine Elements Details](references/nine-elements.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured findings and a system profile] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only framework; no code execution, credential use, network access, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill is Chinese-language and may route broad analysis requests into the nine-element framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the activation phrases and routing behavior before installing it in workspaces where broad analytical prompts should remain general-purpose.
+
+## Reference(s):
+
+- [Nine Elements Reference](references/nine-elements.md)
+- [System Nine Elements on ClawHub](https://clawhub.ai/jack-xun/skills/system-nine-elements)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with structured findings and a system profile summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language analytical output; no code execution, network access, persistence, or privileged access is indicated by the security evidence]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

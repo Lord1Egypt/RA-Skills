@@ -1,53 +1,69 @@
-## Description: <br>
-Generate, Edit, Collaborate. Access all mainstream AI models in one toolkit. Simply describe your vision to create videos, images, and avatars-zero manual operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate, edit, and orchestrate LitMedia videos, images, talking avatars, character replacement, and audio from natural-language requests.
 
-## Publisher: <br>
-[litmedia-ai](https://clawhub.ai/user/litmedia-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[litmedia-ai](https://clawhub.ai/user/litmedia-ai)
 
-## Use Case: <br>
-External users and agent operators use Litmedia to create videos, images, talking avatars, voice outputs, and edited media through the LitMedia service. The skill helps an agent choose generation tools, authenticate the user, estimate costs, submit jobs, and return generated media results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected prompts, URLs, images, audio, and videos may be sent to external LitMedia services. <br>
-Mitigation: Use the skill only with media and prompts that the user is authorized to process externally; avoid confidential, biometric, or third-party likeness and voice material without consent. <br>
-Risk: Generation tasks can consume account credits. <br>
-Mitigation: Estimate cost and confirm task parameters before submitting paid generation work. <br>
-Risk: Credentials may remain on disk until logout succeeds. <br>
-Mitigation: Use the skill only on trusted machines, protect saved credentials, and run the logout flow when access is no longer needed. <br>
-Risk: Security evidence reports sensitive data exposure in logs. <br>
-Mitigation: Avoid sharing raw command output or logs, and review logs for credentials, personal data, prompts, or private media URLs before disclosure. <br>
+## Use Case:
 
+External creators, marketers, educators, and developers use this skill to ask an agent to create or edit LitMedia media assets, including images, videos, talking avatars, character replacement, narration, and batch creative workflows.
 
-## Reference(s): <br>
-- [Litmedia ClawHub release](https://clawhub.ai/litmedia-ai/litmedia) <br>
-- [LitMedia AI](https://www.litmedia.ai) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [Auth Module](references/auth.md) <br>
-- [AI Image Module](references/ai_image.md) <br>
-- [Video Generation Module](references/video_gen.md) <br>
-- [Avatar4 Module](references/avatar4.md) <br>
-- [Character Replace Module](references/video_mimic.md) <br>
-- [User Module](references/user.md) <br>
-- [Error Handling Guide](references/error_handling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Chat guidance with command invocations, generated media URLs, and optional downloaded media files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May consume LitMedia account credits and may send selected prompts, URLs, images, audio, or videos to external LitMedia services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill handles account credentials and stores local LitMedia credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, avoid authentication in logged or shared consoles, and treat the local credentials file as sensitive.
+
+Risk: Media generation workflows may upload identity media such as faces or voices to LitMedia.
+
+Mitigation: Use only media the user is authorized to upload and generate from, especially for face and voice inputs.
+
+Risk: Generation requests can consume paid LitMedia credits.
+
+Mitigation: Confirm task parameters and expected cost before submitting generation tasks, and check credit balance when needed.
+
+Risk: Server security review describes unsafe logging and overreaching agent instructions that need review.
+
+Mitigation: Review and scan the skill before deployment, with specific attention to authentication output and user-facing instruction scope.
+
+## Reference(s):
+
+- [LitMedia AI Website](https://www.litmedia.ai)
+- [ClawHub Skill Page](https://clawhub.ai/litmedia-ai/skills/litmedia)
+- [AI Image Module](artifact/references/ai_image.md)
+- [Auth Module](artifact/references/auth.md)
+- [Avatar4 Module](artifact/references/avatar4.md)
+- [Error Handling Guide](artifact/references/error_handling.md)
+- [User Module](artifact/references/user.md)
+- [Video Generation Module](artifact/references/video_gen.md)
+- [Character Replace Module](artifact/references/video_mimic.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown replies with generated media links, files, or concise next-step guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation can upload local media inputs, consume LitMedia credits, and return image, video, audio, or avatar outputs.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

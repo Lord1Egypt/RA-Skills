@@ -1,42 +1,53 @@
-## Description: <br>
-A Chinese-language home insurance advisor skill that guides conversations about household property risks, assesses home insurance needs, recommends suitable coverage categories, and produces a structured risk analysis and coverage suggestion report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language home insurance advisory skill that gathers household context, assesses property risks, recommends suitable coverage categories, and produces a structured risk-and-protection report.
 
-## Publisher: <br>
-[chensyrick-dev](https://clawhub.ai/user/chensyrick-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chensyrick-dev](https://clawhub.ai/user/chensyrick-dev)
 
-## Use Case: <br>
-External users use this skill to discuss home property risks in Chinese, understand likely coverage gaps, and receive practical home insurance category recommendations. The skill is intended to support planning and comparison, not to replace formal policy terms or professional insurance advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share more personal or household detail than needed for insurance planning. <br>
-Mitigation: Ask only for necessary planning details such as city or region, approximate home age/type, and broad asset categories; avoid exact addresses, identity documents, policy numbers, or detailed valuables inventories unless the user intentionally provides them. <br>
-Risk: Insurance recommendations may be incomplete if user-provided home, location, asset, or policy details are missing or imprecise. <br>
-Mitigation: Frame recommendations as planning guidance, remind users to verify policy terms, exclusions, waiting periods, deductibles, and eligibility with the insurer or a qualified professional before purchase. <br>
+## Use Case:
 
+External users use this skill in Chinese to discuss household and property risk, identify likely home insurance coverage gaps, and receive a structured risk assessment with coverage suggestions. Outputs should be treated as general guidance rather than formal policy terms or licensed insurance advice.
 
-## Reference(s): <br>
-- [Product Comparison Guide](references/product-comparison-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/chensyrick-dev/home-insurance-advisor) <br>
-- [Publisher Profile](https://clawhub.ai/user/chensyrick-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese conversational text and structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk ratings, insurance category recommendations, coverage checks, and practical cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may share household, property, asset, budget, or risk-concern details while seeking insurance guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide details the user is comfortable sharing, and avoid unnecessary sensitive identifiers.
+
+Risk: Coverage suggestions may be incomplete or differ from formal policy terms, underwriting requirements, or licensed advice.
+
+Mitigation: Treat recommendations as general guidance and verify final decisions against insurer policy documents or a licensed insurance professional.
+
+## Reference(s):
+
+- [Home insurance product comparison guide](references/product-comparison-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language conversational guidance and structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [General informational insurance guidance; no code execution or hidden data handling was found in the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

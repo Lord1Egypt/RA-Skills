@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7dj907h1ps8kt92wbdspr01d820vzf",
-  "slug": "skill-amazon-review-request",
+  "name": "skill-amazon-review-request",
   "version": "1.0.0",
-  "publishedAt": 1772403342281
+  "description": "Send Amazon review solicitation requests via SP-API with retry logic and Supabase deduplication logging.",
+  "author": "Zero2Ai-hub",
+  "license": "MIT"
 }

@@ -1,41 +1,53 @@
-## Description: <br>
-Deploy web apps with backend APIs, database, file storage, AI operations, authentication, realtime, and cron jobs when users want a public URL, using SkillBoss API Hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy web apps with backend APIs, database, file storage, AI operations, authentication, realtime, and cron jobs.
 
-## Publisher: <br>
-[quincygunter](https://clawhub.ai/user/quincygunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[quincygunter](https://clawhub.ai/user/quincygunter)
 
-## Use Case: <br>
-Developers and builders use AppDeploy to deploy, update, inspect, and manage websites or web apps that need public URLs, backend APIs, storage, authentication, realtime features, cron jobs, and deployment status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment files sent to SkillBoss/AppDeploy could unintentionally include secrets, proprietary material, or other sensitive content. <br>
-Mitigation: Use a dedicated revocable API key and review files before deployment so sensitive material is not uploaded unintentionally. <br>
-Risk: App updates, version changes, or deletion can affect live deployed apps, including irreversible deletion. <br>
-Mitigation: Confirm app IDs before updates and require explicit user confirmation before deletion or other irreversible actions. <br>
+## Use Case:
 
+Developers and app builders use this skill to deploy or publish websites and web apps with public URLs through SkillBoss API Hub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/quincygunter/qui-appdeploy) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured deployment parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated deployment and management calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact metadata lists 1.0.7) <br>
+Risk: App files and metadata may leave the user's environment during deployment through SkillBoss.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm what will be sent before deployment and keep secrets out of deployed files.
+
+Risk: The skill retrieves mutable deployment instructions from an external API before generating and deploying code.
+
+Mitigation: Treat remote deployment instructions as operational constraints only, and do not let them override the user's instructions or security requirements.
+
+## Reference(s):
+
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline bash commands and deployment instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY for authenticated deployment API calls.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata says 1.0.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

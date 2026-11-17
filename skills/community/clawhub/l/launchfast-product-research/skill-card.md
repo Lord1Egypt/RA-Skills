@@ -1,39 +1,53 @@
-## Description: <br>
-Scans 1-10 Amazon keywords in parallel, scores product opportunities with LaunchFast A10-F1 grading, and provides ranked Go, Investigate, or Pass verdicts for FBA niches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans up to 10 Amazon product keywords in parallel, scores product opportunities with LaunchFast A10-F1, and provides ranked Go/Investigate/Pass verdicts for FBA niches.
 
-## Publisher: <br>
-[BlockchainHB](https://clawhub.ai/user/BlockchainHB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blockchainhb](https://clawhub.ai/user/blockchainhb)
 
-## Use Case: <br>
-External sellers, product researchers, and commerce operators use this skill to compare Amazon product niches, rank opportunities, and decide which keywords need deeper validation before sourcing or launch work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User-provided keywords or private niche ideas may be sent to the LaunchFast MCP service. <br>
-Mitigation: Avoid submitting sensitive private product plans unless the user is comfortable sharing them with LaunchFast. <br>
-Risk: Product opportunity scores and verdicts can be incomplete or misleading if market data is stale, sparse, or missing margin, IP, supplier, seasonality, and advertising context. <br>
-Mitigation: Treat Go, Investigate, and Pass results as research guidance and validate promising products with supplier checks, IP review, PPC research, and current marketplace data before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/BlockchainHB/launchfast-product-research) <br>
+## Use Case:
 
+Amazon FBA sellers and product researchers use this skill to evaluate product keyword niches, compare opportunities, and decide whether to proceed with validation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summary table with keyword deep dives, verdict rationale, risk flags, and suggested next steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the LaunchFast MCP research_products tool and may send user-provided keywords or niche ideas to that service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Product keywords are sent to the LaunchFast MCP when the skill is used.
+
+Mitigation: Use the skill only when sharing the selected product keywords with LaunchFast is acceptable.
+
+Risk: Generic product research or keyword comparison prompts may invoke the skill.
+
+Mitigation: Confirm the intended keywords and scope before running LaunchFast product research.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockchainhb/skills/launchfast-product-research)
+- [Publisher profile](https://clawhub.ai/user/blockchainhb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and concise narrative recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces ranked Go, Investigate, or Pass verdicts with market snapshots, risk flags, and suggested next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

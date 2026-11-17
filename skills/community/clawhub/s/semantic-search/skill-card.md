@@ -1,43 +1,64 @@
-## Description: <br>
-Semantic Search provides enterprise semantic search over database tables, fields, and files, and can generate SQL from natural-language questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enterprise semantic search skill for table, field, and file search plus Text-to-SQL data generation.
 
-## Publisher: <br>
-[Sevenal](https://clawhub.ai/user/Sevenal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sevenal](https://clawhub.ai/user/sevenal)
 
-## Use Case: <br>
-Developers and data teams use this skill to let agents find relevant database schema, fields, and files, then produce SQL-backed answers from natural-language requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles live database data and may send schema or query context to model and reranking services. <br>
-Mitigation: Install only in controlled environments with read-only database credentials, approved data, approved private or model endpoints, and reviewed logging and retention settings. <br>
-Risk: Bundled examples include unsafe configuration patterns such as insecure database transport and placeholder or exposed credentials. <br>
-Mitigation: Remove or rotate any credentials shown in documentation, store secrets outside the artifact, and disable insecure transport for production use. <br>
-Risk: Text-to-SQL output can produce incorrect, overly broad, or sensitive database queries. <br>
-Mitigation: Review generated SQL before execution, restrict database privileges and resource scopes, and prefer non-production data for validation. <br>
+## Use Case:
 
+Developers and data teams use this skill to retrieve relevant database tables, fields, files, and generated SQL-backed data answers from natural-language queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sevenal/semantic-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Sevenal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration] <br>
-**Output Format:** [JSON responses containing search results, generated SQL, and data payloads.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports table_search, field_search, file_search, and data_gen actions with caller-supplied query, resource, and limit parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact metadata) <br>
+Risk: AI-generated SQL may execute against connected databases and return unintended or excessive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only least-privilege database credentials, parser-based SQL validation, row limits, audit logs, and access controls before enabling Text-to-SQL on production data.
+
+Risk: Published configuration includes internal-looking endpoints and credential-like values that require review.
+
+Mitigation: Review PROJECT_CONFIG.md before installation, remove environment-specific values from deployments, and rotate any credentials that match published examples.
+
+Risk: Schema details, sample rows, and user questions may be sent to model or embedding endpoints.
+
+Mitigation: Approve model endpoints for the data involved and avoid sending sensitive schema or sample rows to external providers unless policy allows it.
+
+Risk: Unpinned dependencies can change behavior or introduce vulnerable transitive packages.
+
+Mitigation: Pin dependencies and scan the locked runtime environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sevenal/skills/semantic-search)
+- [README](artifact/README.md)
+- [Configuration guide](artifact/CONFIG_GUIDE.md)
+- [Usage examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON]
+
+**Output Format:** [JSON response objects with Markdown guidance, Python snippets, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include retrieved resources, field names, generated SQL, query results, status codes, and error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

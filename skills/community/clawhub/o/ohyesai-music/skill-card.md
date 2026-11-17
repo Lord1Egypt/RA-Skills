@@ -1,44 +1,60 @@
-## Description: <br>
-Generate custom music tracks (vocal or instrumental) via OhYesAI asynchronously. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate custom music tracks (vocal or instrumental) via OhYesAI asynchronously.
 
-## Publisher: <br>
-[bajie-git](https://clawhub.ai/user/bajie-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bajie-git](https://clawhub.ai/user/bajie-git)
 
-## Use Case: <br>
-External users and agents use this skill to collect music requirements, submit asynchronous OhYesAI generation jobs, poll for completion, and download generated MP3 tracks for delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends the API key and user-provided prompts, styles, and song details to OhYesAI. <br>
-Mitigation: Install only if you trust OhYesAI with those inputs, store the API key in the OHEYSAI_API_KEY environment variable, and avoid sensitive prompts. <br>
-Risk: Generation uses outbound API calls and polling that may consume account quota or trigger billing. <br>
-Mitigation: Confirm account limits before use, monitor generated requests, and stop polling when the service reports a missing or failed task. <br>
-Risk: The workflow downloads generated MP3 files into the local working directory. <br>
-Mitigation: Review downloaded audio files before sharing them and only deliver the intended local file links to the user. <br>
+## Use Case:
 
+External users use this skill to generate vocal or instrumental music by collecting song parameters, submitting an OhYesAI generation task, polling for completion, and downloading the resulting MP3 audio files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bajie-git/ohyesai-music) <br>
-- [OhYesAI developer homepage](https://dev.ohyesai.com) <br>
-- [OhYesAI API key setup](https://ohyesai.com?from=https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, markdown, files, guidance] <br>
-**Output Format:** [Markdown with bash commands and local MP3 file links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OHEYSAI_API_KEY and the curl, grep, and sleep command-line tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Shell command templates include user-provided song parameters, which can enable command injection if copied directly into a shell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Build request JSON with a serializer or validated variables, quote shell values, and review commands before execution.
+
+Risk: The OhYesAI API key is passed in request URLs and may be exposed through logs, shell history, or shared command output.
+
+Mitigation: Use a restricted workspace, avoid logging commands or responses containing the key, and rotate OHEYSAI_API_KEY if exposure is suspected.
+
+Risk: Downloaded MP3 output may overwrite existing files when fixed filenames are reused.
+
+Mitigation: Download to unique, user-approved filenames in the current workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bajie-git/skills/ohyesai-music)
+- [OhYesAI developer homepage](https://dev.ohyesai.com)
+- [OhYesAI API key homepage](https://ohyesai.com?from=https://clawhub.ai)
+- [Publisher profile](https://clawhub.ai/user/bajie-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and downloaded MP3 audio files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, grep, sleep, and OHEYSAI_API_KEY; uses asynchronous task submission and polling before download.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 ---
 name: funding-rate
-description: Funding rate analysis across perps with arb opportunity scoring
+description: "Paid x402 endpoint: $0.007 USDC per call on Base. Returns funding rate analysis across perps with arb opportunity scoring."
 metadata:
   openclaw:
     requires:
@@ -13,7 +13,7 @@ metadata:
 # funding-rate
 
 ## What It Does
-Funding rate analysis across perps with arb opportunity scoring. This signal is computed in real time from APEX Runner's live autonomous trading system operating across Kraken, Coinbase Advanced Trade, and Hyperliquid — not from backtests or third-party aggregators.
+Funding rate analysis across perps with arb opportunity scoring. Computed by APEX Runner from live market data, not from backtests.
 
 ## When to Use
 - Before opening perp positions
@@ -27,16 +27,25 @@ The agent makes an x402-authenticated GET request to:
 https://apexrunner.ai/signals/funding-rate
 ```
 
-The x402 client handles payment authorisation automatically. No API key, no account, no subscription required — just an EVM wallet with USDC on Base mainnet.
+The x402 client handles payment automatically. No API key, no account, no subscription — just an EVM wallet with USDC on Base mainnet (no ETH needed).
 
 ```python
-# Example using the x402-python client
-from x402.client import x402_get
+# pip install "x402[evm,requests]"
+import os
 
-response = x402_get(
-    url="https://apexrunner.ai/signals/funding-rate",
-    private_key=os.environ["EVM_PRIVATE_KEY"]
-)
+import requests
+from eth_account import Account
+from x402 import max_amount, x402ClientSync
+from x402.http.clients import wrapRequestsWithPayment
+from x402.mechanisms.evm.exact import register_exact_evm_client
+from x402.mechanisms.evm.signers import EthAccountSigner
+
+client = x402ClientSync()
+register_exact_evm_client(client, EthAccountSigner(Account.from_key(os.environ["EVM_PRIVATE_KEY"])))
+client.register_policy(max_amount(10000))  # never sign more than the list price ($0.01 USDC)
+
+session = wrapRequestsWithPayment(requests.Session(), client)
+response = session.get("https://apexrunner.ai/signals/funding-rate")
 print(response.json())
 ```
 
@@ -50,20 +59,15 @@ print(response.json())
 ```
 
 ## Pricing
-**$1.00/call** — standard price
+**$0.01/call** — standard price
 
-Early adopters automatically receive 30% off ($0.70/call) until 2026-09-21. Discount tiers apply automatically based on wallet call history:
-- Early Adopter (0–9 calls): 30% off
-- Engaged (10–49 calls): 15% off
-- Loyal (50–199 calls): 15% permanent
-- VIP (200+ calls): 20% permanent
-
-Check your tier: `https://apexrunner.ai/signals/my-pricing`
+Every caller is charged $0.007/call until 2027-01-01 under the
+early-adopter discount (30% off the standard price). No tier, no wallet
+history, no enrolment — that is simply the price.
 
 ## Related Signals
 - [funding-rate-hl](https://apexrunner.ai/signals/funding-rate-hl)
 - [arb-spread](https://apexrunner.ai/signals/arb-spread)
-- [oi-divergence](https://apexrunner.ai/signals/oi-divergence)
 
 ---
 *APEX Runner — autonomous AI crypto trading signals. [apexrunner.ai](https://apexrunner.ai)*

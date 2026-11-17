@@ -1,41 +1,55 @@
-## Description: <br>
-Generates structured master's thesis review comments from user-provided thesis text or PDFs and outputs the review as Markdown and a formatted Word document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews academic degree theses with a structured evaluation framework for bachelor, master's, and PhD work.
 
-## Publisher: <br>
-[paudyyin](https://clawhub.ai/user/paudyyin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[paudyyin](https://clawhub.ai/user/paudyyin)
 
-## Use Case: <br>
-Students, academic reviewers, and educators use this skill to generate structured, actionable thesis review reports from thesis text or PDFs. It extracts core thesis details, reviews major sections, identifies strengths and weaknesses, suggests revisions, and produces a final defense recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes a formatted .docx review report in the working directory. <br>
-Mitigation: Confirm the intended output filename and location before use, and review the generated document before sharing it. <br>
-Risk: The skill is specialized for thesis and dissertation review and may be inappropriate for generic review requests. <br>
-Mitigation: Use it only when thesis-review behavior is intended and provide sufficient thesis text or a PDF for grounded feedback. <br>
+## Use Case:
 
+Academic reviewers, advisors, and students use this skill to extract thesis details, compare the work against evaluation criteria and recent literature context, and generate structured review comments. It supports thesis pre-review, blind-review simulation, batch review, and final review writeups.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/paudyyin/thesis-review) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/paudyyin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown review report plus a formatted Word (.docx) document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The Word document is written to the working directory using the skill's review-report naming convention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: Thesis content may be confidential, and the workflow may search the web using topic keywords.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm confidentiality requirements before use; ask the agent to avoid web search or use generalized keywords when thesis details should not leave the local context.
+
+Risk: The skill may create a Word review file in the current working directory.
+
+Mitigation: Run it from an appropriate workspace and review generated files before sharing them.
+
+## Reference(s):
+
+- [Thesis Review Skill Page](https://clawhub.ai/paudyyin/skills/thesis-review)
+- [Review Patterns](references/review-patterns.md)
+- [Review Templates](references/review-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown review comments with optional Python snippets and a generated Word document.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a .docx review file in the working directory.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata, package.json, SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

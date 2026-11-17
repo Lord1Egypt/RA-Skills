@@ -197,10 +197,10 @@ Create or edit `~/.env`:
 
 ```bash
 # Moonshot AI (Kimi K2.5)
-MOONSHOT_API_KEY="sk-your-moonshot-key-here"
+MOONSHOT_API_KEY="REDACTED-SECRET"
 
 # Kimi Code
-KIMICODE_API_KEY="sk-your-kimicode-key-here"
+KIMICODE_API_KEY="REDACTED-SECRET"
 ```
 
 ### Using shell exports
@@ -208,8 +208,8 @@ KIMICODE_API_KEY="sk-your-kimicode-key-here"
 Add to `~/.bashrc` or `~/.zshrc`:
 
 ```bash
-export MOONSHOT_API_KEY="sk-your-moonshot-key-here"
-export KIMICODE_API_KEY="sk-your-kimicode-key-here"
+export MOONSHOT_API_KEY="REDACTED-SECRET"
+export KIMICODE_API_KEY="REDACTED-SECRET"
 ```
 
 Then reload:
@@ -222,8 +222,8 @@ source ~/.bashrc  # or source ~/.zshrc
 ```json5
 {
   "env": {
-    "MOONSHOT_API_KEY": "sk-your-moonshot-key-here",
-    "KIMICODE_API_KEY": "sk-your-kimicode-key-here"
+    "MOONSHOT_API_KEY": "REDACTED-SECRET",
+    "KIMICODE_API_KEY": "REDACTED-SECRET"
   },
   "models": {
     "mode": "merge",

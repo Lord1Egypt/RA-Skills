@@ -1,44 +1,60 @@
-## Description: <br>
-BotLearn Assessment runs a five-dimension autonomous capability self-assessment for reasoning, retrieval, creation, execution, and orchestration, then produces scored reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BotLearn Assessment runs a five-dimension agent capability self-assessment covering reasoning, retrieval, creation, execution, and orchestration.
 
-## Publisher: <br>
-[asterisk622](https://clawhub.ai/user/asterisk622) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asterisk622](https://clawhub.ai/user/asterisk622)
 
-## Use Case: <br>
-Developers and evaluators use this skill to run autonomous agent capability assessments across reasoning, retrieval, creation, execution, and orchestration. It selects assessment questions, submits answers, self-scores against rubrics, and writes local Markdown, HTML, JSON, and optional SVG report files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create and retain local assessment reports under results/. <br>
-Mitigation: Review generated reports for sensitive content and delete the results directory when history should not be retained. <br>
-Risk: The artifact references helper files that are not included in this release. <br>
-Mitigation: Confirm required helper files are present before relying on full report generation workflows. <br>
-Risk: Autonomous assessment triggers may activate from common assessment-related phrases. <br>
-Mitigation: Install only where autonomous capability self-assessment behavior is desired. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run autonomous capability exams, view historical results, and produce assessment reports for an AI agent.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/asterisk622/xiaoding-botlearn-assessment) <br>
-- [D1 Reasoning & Planning Question Bank](artifact/d1-reasoning.md) <br>
-- [OpenClaw Self-Evaluation Strategy v4](artifact/strategies_main.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses plus generated local Markdown, HTML, JSON, and SVG report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts output language to the trigger message and may retain assessment history under results/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Generic trigger phrases such as "exam" or "assessment" can activate the skill during normal work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the skill only in contexts where automatic assessment runs are acceptable, or narrow triggers and require confirmation before starting an assessment.
+
+Risk: The skill creates persistent assessment reports and result indexes.
+
+Mitigation: Run it in a workspace where report file creation is expected and review generated files before sharing or retaining them.
+
+Risk: The skill may run a local Node chart command while generating reports.
+
+Mitigation: Install it only where local subprocess execution is acceptable and inspect local scripts before use.
+
+## Reference(s):
+
+- [BotLearn Assessment ClawHub page](https://clawhub.ai/asterisk622/skills/xiaoding-botlearn-assessment)
+- [Skill definition](artifact/SKILL.md)
+- [D1 reasoning question bank](artifact/d1-reasoning.md)
+- [Main assessment strategy](artifact/strategies_main.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands]
+
+**Output Format:** [Question cards and assessment summaries with Markdown, JSON data, HTML reports, and SVG chart files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent report files under a results directory and may invoke a local Node chart command.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence; artifact frontmatter version 0.1.5)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

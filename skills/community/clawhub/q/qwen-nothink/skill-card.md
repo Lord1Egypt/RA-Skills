@@ -1,43 +1,58 @@
-## Description: <br>
-Create and verify no-thinking variants of local Qwen/Qwen3-series Ollama models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and verify no-thinking variants of local Qwen/Qwen3-series Ollama models.
 
-## Publisher: <br>
-[patmenciu](https://clawhub.ai/user/patmenciu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patmenciu](https://clawhub.ai/user/patmenciu)
 
-## Use Case: <br>
-Developers and engineers use this skill to create a reversible local Ollama tag for Qwen models that defaults to direct answers without requiring --think=false on every run. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled workflow can modify the local Ollama model store for the selected target tag. <br>
-Mitigation: Use a new derived target tag, keep the target different from the source model, and review --models-dir before running. <br>
-Risk: Verification contacts the configured Ollama server and depends on the selected --host value. <br>
-Mitigation: Review --host or OLLAMA_HOST before execution and prefer the intended local Ollama endpoint. <br>
-Risk: Changing renderer/parser metadata for a derived tag can affect tool-calling or advanced renderer behavior. <br>
-Mitigation: Keep the original source model unchanged and verify vision or tool workflows separately if they are needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to create reversible no-thinking Ollama tags for local Qwen models, verify that thinking markers are absent, and avoid changing the source model.
 
-## Reference(s): <br>
-- [Manifest Patch Reference](artifact/references/manifest-patch.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/patmenciu/qwen-nothink) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated local configuration/script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create a derived local Ollama model tag and patch that target tag's local manifest/config when the bundled script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow persistently modifies local Ollama model metadata for the derived target tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first, back up relevant Ollama manifests and blobs, and verify the target tag is distinct from the source model before execution.
+
+Risk: Accidental use of an existing valuable target tag could overwrite or require repair of local model metadata.
+
+Mitigation: Prefer a new derived target name and avoid running against an existing important tag unless prepared to recreate or repair it.
+
+Risk: Untrusted custom system text may affect the generated Modelfile behavior.
+
+Mitigation: Avoid untrusted --system text and review the generated Modelfile before creating the derived tag.
+
+## Reference(s):
+
+- [Manifest Patch Reference](references/manifest-patch.md)
+- [ClawHub Skill Page](https://clawhub.ai/patmenciu/skills/qwen-nothink)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Modelfile snippets, and configuration checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run a bundled Python script that creates a derived Ollama model tag, patches local target metadata, and verifies output through the local Ollama API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

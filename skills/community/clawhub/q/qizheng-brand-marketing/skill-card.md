@@ -1,44 +1,59 @@
-## Description: <br>
-Provides a Chinese-language brand marketing workflow for positioning, brand narrative, promotion simulation, crisis response planning, KOC personas, and execution-package drafting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents produce brand positioning, brand narratives, promotion simulations, crisis-response plans, KOC personas, content calendars, and marketing execution packages using established advertising frameworks and the Qizheng OASIS simulation model.
 
-## Publisher: <br>
-[horizoncove](https://clawhub.ai/user/horizoncove) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[horizoncove](https://clawhub.ai/user/horizoncove)
 
-## Use Case: <br>
-External marketing teams, founders, and operators use this skill to plan brand positioning, launch promotions, social content, KOC outreach, and crisis-response playbooks for small and midsize businesses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled HTML includes iframe inspection behavior that can report hover and click details to a parent page. <br>
-Mitigation: Remove or restrict the iframe highlighter code before embedding the HTML, and allow it only in trusted-origin review contexts. <br>
-Risk: Marketing plans, budgets, crisis playbooks, contacts, customer data, and unpublished strategy could be exposed through permanent public links. <br>
-Mitigation: Do not place confidential business or personal data in public deliverables; redact sensitive details and use access controls for shared links. <br>
-Risk: Generated marketing and crisis-response guidance may be used in public communications where errors or overclaims could create business risk. <br>
-Mitigation: Have responsible business, legal, or communications reviewers approve plans and crisis responses before publication or execution. <br>
+## Use Case:
 
+External brand marketers, consultants, founders, and small-business teams use this skill to structure practical brand marketing work, including positioning, campaign planning, launch promotion, crisis planning, and execution packages.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/horizoncove/qizheng-brand-marketing) <br>
-- [Qizheng Brand Marketing Showcase](https://vqpuzyvvui1t.space.minimaxi.com) <br>
-- [Chengshan Farm Case Study](https://846o436d9esq.space.minimaxi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, structured marketing plans, playbooks, personas, content calendars, and optional shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include shareable webpage-link delivery concepts and business-facing Chinese-language deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Bundled HTML includes an iframe inspection/highlighting script that can expose page and form data to a framing parent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the script before deployment, or restrict it with strict origin validation, no form-value collection, and clear user disclosure.
+
+Risk: The workflow may handle client materials, public-source enrichment, emergency contacts, and permanent delivery links.
+
+Mitigation: Clarify consent, access controls, retention periods, and sharing expectations before using the skill with real client data.
+
+Risk: Marketing forecasts and crisis simulations can be mistaken for guaranteed business outcomes.
+
+Mitigation: Present outputs as planning guidance, validate assumptions with current market data, and require human review before operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/horizoncove/skills/qizheng-brand-marketing)
+- [Qizheng brand marketing package showcase](https://vqpuzyvvui1t.space.minimaxi.com)
+- [Chengshan Farm delivery case](https://846o436d9esq.space.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured reports, tables, playbooks, scripts, and implementation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include brand questionnaires, SWOT analysis, slogan systems, campaign calendars, KOC persona cards, crisis-response playbooks, and simulation command examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

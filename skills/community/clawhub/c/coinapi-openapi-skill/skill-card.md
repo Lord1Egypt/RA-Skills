@@ -1,43 +1,56 @@
-## Description: <br>
-Operate CoinAPI market data reads through UXC with a curated OpenAPI schema, API-key auth, and read-first guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate CoinAPI market data reads through UXC with a curated OpenAPI schema, API-key auth, and read-first guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to configure authenticated, read-only CoinAPI market data queries for exchange rates, quotes, OHLCV candles, trades, and order book snapshots through UXC. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CoinAPI credentials could be exposed or bound too broadly during setup. <br>
-Mitigation: Use a dedicated CoinAPI key, keep it in the COINAPI_KEY environment variable, and confirm the UXC auth binding is limited to https://rest.coinapi.io. <br>
-Risk: A mutable remote OpenAPI schema URL could change behavior over time. <br>
-Mitigation: Prefer the bundled schema or a pinned schema URL when repeatability matters. <br>
+## Use Case:
 
+Developers and agents use this skill to configure UXC and perform read-only CoinAPI REST market data lookups for exchange rates, quotes, OHLCV candles, trades, and order book snapshots. It is intended for narrow market data reads with explicit API-key binding and JSON output handling.
 
-## Reference(s): <br>
-- [CoinAPI REST docs](https://docs.coinapi.io/market-data/rest-api) <br>
-- [Usage patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI schema](references/coinapi-market.openapi.json) <br>
-- [ClawHub skill page](https://clawhub.ai/jolestar/coinapi-openapi-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands and OpenAPI operation names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only CoinAPI market data requests using JSON response envelopes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security scan reports that the default setup trusts a changeable remote API schema while using a CoinAPI key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the UXC link command before installing and prefer the bundled local OpenAPI schema or an immutable, hash-verified schema URL.
+
+Risk: CoinAPI access can consume quota or create billing impact if broad reads are automated.
+
+Mitigation: Keep CoinAPI limits narrow, monitor API quota or billing, and remove the UXC credential, binding, and CLI link when the skill is no longer used.
+
+## Reference(s):
+
+- [CoinAPI REST docs](https://docs.coinapi.io/market-data/rest-api)
+- [Usage patterns](references/usage-patterns.md)
+- [Curated OpenAPI schema](references/coinapi-market.openapi.json)
+- [ClawHub skill page](https://clawhub.ai/jolestar/skills/coinapi-openapi-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented API usage notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only CoinAPI market data operations scoped to the curated OpenAPI paths.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

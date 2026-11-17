@@ -1,44 +1,51 @@
-## Description: <br>
-Helps agents plan, implement, and review frontend dependency upgrades, including lockfile changes, major framework migrations, CVE remediation, peer dependency conflicts, ESM/CJS shifts, build-tool compatibility, and CI verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers through evidence-based diagnosis and validation of frontend build, runtime, UI, and API issues.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and execute frontend dependency upgrades with source checks, batching strategy, risk classification, verification commands, rollback notes, and review guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency or lockfile changes may introduce build, type, test, or runtime regressions. <br>
-Mitigation: Review proposed package and lockfile changes and run install, typecheck, test, build, and any relevant E2E, Storybook, or manual smoke checks before accepting changes. <br>
-Risk: Major framework, build-tool, or test-tool migrations can miss breaking changes or compatibility boundaries. <br>
-Mitigation: Use official release notes and migration guides, check peer dependencies and Node or browser support, and validate these migrations in separate batches. <br>
-Risk: CVE-driven updates can over-upgrade runtime-critical packages when the exploitable path or fix impact is unclear. <br>
-Mitigation: Assess the affected path and remediation impact first, then choose the smallest verified upgrade that resolves the relevant risk. <br>
+## Use Case:
 
+Developers and engineers use this release to diagnose frontend build failures, runtime errors, UI anomalies, and API problems, then document tested fixes. Despite the listing name, this version describes a debugging workflow rather than a dependency-upgrade workflow.
 
-## Reference(s): <br>
-- [Dependency Upgrade Workflow](references/dependency-upgrade-workflow.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/bovinphang/fec-dependency-upgrade) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/bovinphang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include package upgrade lists, risk classifications, source references, verification commands, failure triage, and rollback recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata, package.json, metadata.json, README.md) <br>
+Risk: Diagnostic reports may expose secrets, request data, internal URLs, customer information, or private screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and redact sensitive logs, headers, request bodies, environment values, and screenshots before saving or sharing reports.
+
+## Reference(s):
+
+- [Diagnostic report template](references/report-template.md)
+- [ClawHub skill listing](https://clawhub.ai/bovinphang/skills/fec-dependency-upgrade)
+- [Project homepage (listed in package metadata)](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands, Code]
+
+**Output Format:** [Markdown diagnostic report with evidence, hypotheses, fixes, and validation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report saved as reports/debug-YYYY-MM-DD-HHmmss.md]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, package.json, README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Linux Omniscient combines cognitive prompting, code and command execution, and Linux desktop, hardware, peripheral, network, serial, IoT, and GUI automation controls into an agent-operable workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linux Omniscient helps an agent route tasks across reasoning, code execution, and Linux desktop, hardware, device, network, and IoT control scripts.
 
-## Publisher: <br>
-[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangjiaocheng](https://clawhub.ai/user/wangjiaocheng)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent plan tasks, generate code or shell commands, and operate a Linux desktop and connected devices for automation and troubleshooting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a Linux desktop and connected devices with very broad authority. <br>
-Mitigation: Install only when this level of control is intentional, supervise use, and require explicit confirmation before sensitive or destructive actions. <br>
-Risk: Screen capture, OCR, camera, microphone, GUI clicking, and GUI typing can expose private information or act in sensitive sessions. <br>
-Mitigation: Confirm each capture or input action, avoid use on machines with sensitive open sessions, and monitor the desktop while the skill is active. <br>
-Risk: Process, power, network, DNS, proxy, printer, Bluetooth, serial, and Home Assistant actions can disrupt local systems or connected environments. <br>
-Mitigation: Review target devices and commands before execution, prefer query-before-action workflows, and avoid passing long-lived tokens or passwords through chat or command-line arguments. <br>
+## Use Case:
 
+Developers and operators use this skill to propose and run Linux-oriented desktop automation, hardware inspection, device-control, network, and IoT workflows through script commands and generated code.
 
-## Reference(s): <br>
-- [Linux Omniscient on ClawHub](https://clawhub.ai/wangjiaocheng/linux-omniscient) <br>
-- [Command Reference](references/command_reference.md) <br>
-- [Security Checklist](references/security_checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code snippets, and human-readable summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local scripts that return JSON or command output for the agent to summarize.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad Linux desktop, device, network, and IoT control can affect local system state or connected equipment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a contained environment where this scope is acceptable, and supervise camera, audio, serial, IoT, and power actions.
+
+Risk: Safeguards are not reliably implemented or scoped.
+
+Mitigation: Review the skill before installing and prefer narrower skills with enforced confirmations for destructive operations.
+
+Risk: Tokens or Wi-Fi passwords passed on command lines may be exposed in process history or logs.
+
+Mitigation: Do not pass real tokens or Wi-Fi passwords on command lines; use safer secret-handling patterns outside the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangjiaocheng/skills/linux-omniscient)
+- [Command reference](artifact/references/command_reference.md)
+- [Security checklist](artifact/references/security_checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run broad Linux device-control workflows; high-risk actions require review and supervision.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

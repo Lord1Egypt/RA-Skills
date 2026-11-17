@@ -1,38 +1,54 @@
-## Description: <br>
-Use when completing tasks, implementing major features, or before merging to verify work meets requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when completing tasks, implementing major features, or before merging to verify work meets requirements.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to prompt an agent to request structured code review after tasks, major feature work, complex bug fixes, or before merging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Code diffs and implementation context may be shared with the referenced review workflow. <br>
-Mitigation: Use this skill only in repositories where sharing that review context is acceptable. <br>
+## Use Case:
 
+Developers and coding agents use this skill to request a structured code review after meaningful implementation work, before merges, or when a fresh technical review is needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/timeflow-requesting-code-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and review-request placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable payload; may prompt use of a code-review subagent and git SHA commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow depends on a referenced code-reviewer subagent and template that may not exist in the user's environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the superpowers:code-reviewer subagent and code-reviewer.md template are installed before relying on the skill.
+
+Risk: Using the skill shares implementation details, requirements, and git commit ranges with the reviewer process.
+
+Mitigation: Review the code and commit range for sensitive information before dispatching the code-reviewer subagent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/timeflow-requesting-code-review)
+- [Skill homepage](https://github.com/soponcd/timeflow-skills/tree/main/teams/skills/requesting-code-review)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and review-request placeholders]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the agent to share implementation summaries, requirements, and git commit ranges with a code-reviewer subagent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

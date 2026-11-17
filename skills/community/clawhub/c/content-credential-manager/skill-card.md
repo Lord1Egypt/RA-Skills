@@ -1,45 +1,57 @@
-## Description: <br>
-内容创业凭证管理器追踪并管理内容创作技能的 API 凭证配置状态，提供状态扫描、配置引导和本地凭证写入。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks API credential configuration status for a content-creation skill matrix and guides users through configuring credentials for platforms such as WeChat, Xiaohongshu, Meitu, StepFun, and Tavily.
 
-## Publisher: <br>
-[amazinglittlefish](https://clawhub.ai/user/amazinglittlefish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amazinglittlefish](https://clawhub.ai/user/amazinglittlefish)
 
-## Use Case: <br>
-Content creators and operators use this skill to check whether content-production skills have the credentials they need, identify missing API keys or cookies, and write supported credentials into a local configuration file. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles powerful API keys and a Xiaohongshu session cookie, and artifact guidance may lead users to provide secrets in chat or command arguments. <br>
-Mitigation: Use only on a trusted local machine; avoid pasting full API keys or cookies into chat; prefer a secure local prompt or manually editing a protected credentials file. <br>
-Risk: A leaked Xiaohongshu cookie can act like a password for the related account session. <br>
-Mitigation: Treat the cookie as a secret, store it only in the protected local credentials file, and rotate or revoke any credential that may have been exposed. <br>
+## Use Case:
 
+Developers and content operators use this skill to check which content-creation skills have usable credentials, identify missing API keys or cookies, and record credential values in a local OpenClaw credentials file before running publishing or media-generation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amazinglittlefish/content-credential-manager) <br>
-- [Tavily API key portal](https://app.tavily.com) <br>
-- [StepFun developer platform](https://platform.stepfun.com) <br>
-- [Meitu Open-Claw platform](https://www.miraclevision.com/open-claw) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
-- [WeChat Official Accounts platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON credential configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes supported credential values to ~/.openclaw/credentials.json with owner-only file permissions when the set_credential.py helper is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.yml) <br>
+Risk: The skill handles high-value API keys and browser session cookies, and release security evidence classifies the package as suspicious because credential sharing and storage are exposed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enter secrets through a local secure prompt or OS keychain when possible, avoid passing secrets through chat or command-line arguments, and rotate any credential that may have been exposed.
+
+Risk: Credentials are stored in ~/.openclaw/credentials.json, so weak file permissions or shared machines could expose connected accounts.
+
+Mitigation: Verify the credentials file and containing directory are private, keep file permissions restricted to the local user, and avoid storing browser session cookies unless necessary.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amazinglittlefish/skills/content-credential-manager)
+- [Tavily API key portal](https://app.tavily.com)
+- [StepFun API platform](https://platform.stepfun.com)
+- [Meitu open platform](https://www.miraclevision.com/open-claw)
+- [WeChat public platform](https://mp.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and local JSON credential configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update ~/.openclaw/credentials.json and mask credential values in script output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.yml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

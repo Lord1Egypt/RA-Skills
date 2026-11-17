@@ -1,43 +1,60 @@
-## Description: <br>
-Extracts readable text from .doc and .docx Word documents with MinerU, returning Markdown or JSON text for reading, indexing, and processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Doc To Text helps agents extract readable text from .doc and .docx Word documents with MinerU, returning Markdown or JSON text fields for downstream reading and processing.
 
-## Publisher: <br>
-[mzlzyca](https://clawhub.ai/user/mzlzyca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzlzyca](https://clawhub.ai/user/mzlzyca)
 
-## Use Case: <br>
-Developers and agents use this skill to convert Word documents or document URLs into readable text for data pipelines, search indexing, NLP preprocessing, and document review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Token-backed MinerU extraction may expose document contents to a third-party service. <br>
-Mitigation: Use token-backed extraction only for documents approved for MinerU/OpenDataLab processing, and avoid confidential, regulated, or customer documents unless provider terms and organizational approvals allow it. <br>
-Risk: The skill depends on the third-party mineru-open-api CLI and package source. <br>
-Mitigation: Install only from trusted package sources, keep MINERU_TOKEN private, and review the CLI/package before use in sensitive environments. <br>
+## Use Case:
 
+Developers and agents use this skill to convert Word documents into readable Markdown or JSON text fields for search indexing, NLP preprocessing, data pipelines, and document review workflows.
 
-## Reference(s): <br>
-- [Doc To Text on ClawHub](https://clawhub.ai/mzlzyca/doc-to-text) <br>
-- [MinerU homepage](https://mineru.net) <br>
-- [MinerU token management](https://mineru.net/apiManage/token) <br>
-- [OpenDataLab MinerU repository](https://github.com/opendatalab/MinerU) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; extracted document output is Markdown or JSON depending on MinerU mode.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires mineru-open-api. MINERU_TOKEN is required for .doc files and full extract mode; .docx flash extraction can run without a token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release evidence) <br>
+Risk: The skill depends on a third-party CLI installed globally without a pinned version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and audit the CLI version before deployment, and install it in an isolated environment.
+
+Risk: The evidence does not clearly explain whether local documents may be sent to MinerU/OpenDataLab services.
+
+Mitigation: Avoid sensitive or confidential Word documents until the processing location and data handling terms are confirmed.
+
+Risk: The skill requires a MinerU token for .doc files and full extraction flows.
+
+Mitigation: Limit token scope and filesystem access exposed to the tool, and avoid sharing the token in prompts or logs.
+
+## Reference(s):
+
+- [Doc To Text on ClawHub](https://clawhub.ai/mzlzyca/skills/doc-to-text)
+- [MinerU](https://mineru.net)
+- [MinerU GitHub Repository](https://github.com/opendatalab/MinerU)
+- [MinerU API Token Management](https://mineru.net/apiManage/token)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Document content is emitted to stdout by default; progress and status messages are emitted to stderr.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

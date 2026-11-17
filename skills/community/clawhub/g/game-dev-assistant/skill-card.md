@@ -1,41 +1,53 @@
-## Description: <br>
-Game Dev Assistant helps game developers analyze game data, manage level and asset workflows, automate Unity builds, parse saves, and review logs across Unity, Unreal, and Godot projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Game Dev Assistant helps agents support game data analysis, level and configuration work, asset organization, project build automation, testing, save parsing, engine project assistance, shader debugging, and log analysis.
 
-## Publisher: <br>
-[xiaochunz030-spec](https://clawhub.ai/user/xiaochunz030-spec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaochunz030-spec](https://clawhub.ai/user/xiaochunz030-spec)
 
-## Use Case: <br>
-Developers and game teams use this skill to inspect game configuration data and logs, organize project assets, and prepare build or test automation for game projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unity build automation and custom build methods can run local engine commands against project files. <br>
-Mitigation: Verify the Unity executable, project path, output path, target platform, and build method before execution, and run builds in a controlled workspace. <br>
-Risk: Game logs, data files, saves, and asset reports may contain proprietary or sensitive project information. <br>
-Mitigation: Review inputs and generated reports before sharing them, and keep backups before any save, asset, or project-file modification workflow. <br>
-Risk: Generated build, test, or configuration guidance may not match a specific project's engine version or platform requirements. <br>
-Mitigation: Inspect generated commands and files before use, then validate them on a non-production branch or test project first. <br>
+## Use Case:
 
+Developers and game teams use this skill to ask an agent for help parsing game data, preparing level or configuration files, automating Unity builds, analyzing logs, and producing reports or scripts for game projects.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code, shell commands, JSON reports, and generated helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local project paths, game data files, build outputs, and log reports supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can guide local project reads and writes, save edits, and Unity builds that may affect project files or create build outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm target paths and requested actions before editing saves, changing versioned files, running builds, signing, or uploading outputs.
+
+Risk: CSV exports from untrusted game data can be risky when opened in spreadsheet software.
+
+Mitigation: Review or sanitize exported CSV content before opening it in spreadsheet tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaochunz030-spec/skills/game-dev-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with optional code blocks, shell commands, JSON, CSV, or configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct scripts that read local project files, write reports, export CSV, or run Unity command-line builds when the user permits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

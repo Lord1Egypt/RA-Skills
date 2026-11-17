@@ -1,40 +1,54 @@
-## Description: <br>
-Automatically assesses task complexity for each user message and guides the agent to adjust reasoning depth before answering complex questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically assess task complexity and adjust reasoning level before answering complex questions.
 
-## Publisher: <br>
-[cxz9909](https://clawhub.ai/user/cxz9909) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cxz9909](https://clawhub.ai/user/cxz9909)
 
-## Use Case: <br>
-Developers and agent users use this skill as an always-on pre-processing checklist to decide when deeper reasoning is warranted and when responses should stay fast. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can increase token usage and silently change reasoning posture because it is designed as an always-on reasoning preprocessor. <br>
-Mitigation: Install it only when automatic reasoning adjustment is desired, and disable it for workflows that require explicit control over reasoning state. <br>
-Risk: The skill may add reasoning markers to responses, which can interfere with strict JSON, API, or formatting-sensitive output. <br>
-Mitigation: Avoid or disable it for strict structured-output workflows and verify final responses before using them downstream. <br>
+## Use Case:
 
+Developers and agent users use this skill to have an agent score request complexity and adjust response depth before answering complex, ambiguous, architectural, mathematical, or high-stakes tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cxz9909/cxz9909-adaptive-reasoning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with optional response suffix markers and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code execution, private data access, or external service calls are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can silently change reasoning mode and append icons to ordinary responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where response-format changes are acceptable, or revise the skill to require explicit opt-in before changing behavior.
+
+Risk: Automatic icons and behavior changes can break workflows that require exact JSON, signatures, protocol text, or strict formatting.
+
+Mitigation: Disable or modify the skill for strict-format workflows so user formatting instructions take precedence.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cxz9909/skills/cxz9909-adaptive-reasoning)
+- [ClawHub publisher profile](https://clawhub.ai/user/cxz9909)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline command and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append reasoning-status icons to agent responses when higher complexity is detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

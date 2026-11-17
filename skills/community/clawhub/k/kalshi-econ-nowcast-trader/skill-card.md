@@ -1,46 +1,61 @@
-## Description: <br>
-Trades CPI bin markets on Kalshi using the Cleveland Fed CPI Nowcast to compute fair bin probabilities via a normal distribution model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades CPI bin markets on Kalshi using the Cleveland Fed CPI Nowcast to compute fair bin probabilities via a normal distribution model.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External traders and developers use this skill to evaluate CPI prediction-market bins and run a configurable Kalshi trading strategy through Simmer. It defaults to dry-run mode and only executes live trades when explicitly started with the live flag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can execute real-money Kalshi trades using USDC and a Solana private key. <br>
-Mitigation: Keep the skill in dry-run mode until the trading venue, account, credentials, and order path are reviewed. <br>
-Risk: Trading credentials and wallet keys are high-value secrets. <br>
-Mitigation: Use a dedicated low-balance wallet and API key, and rotate or revoke credentials if exposure is suspected. <br>
-Risk: Position sizing, slippage, liquidity, and trade frequency settings can materially affect losses. <br>
-Mitigation: Set conservative max position, max trades, slippage, and liquidity limits before enabling live execution. <br>
+## Use Case:
 
+External users and agent operators use this skill to analyze Kalshi CPI bin markets with a Cleveland Fed CPI nowcast model and, when explicitly enabled, place bounded trades through Simmer/DFlow.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/diagnostikon/kalshi-econ-nowcast-trader) <br>
-- [Simmer Skills](https://simmer.markets/skills) <br>
-- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [simmer-sdk PyPI package](https://pypi.org/project/simmer-sdk/) <br>
-- [Cleveland Fed Inflation Nowcasting](https://www.clevelandfed.org/indicators-and-data/inflation-nowcasting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Terminal text output with optional automaton JSON status reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May place live trades only when explicitly run with the live flag and required credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; skill frontmatter metadata lists 1.0.0) <br>
+Risk: The skill can use high-value trading credentials and a Solana private key for real-money trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance trading account or wallet, rotate credentials after testing, and avoid sharing production credentials with this skill.
+
+Risk: Live-trading safeguards are not consistently fail-closed.
+
+Mitigation: Keep the skill in dry-run mode until market selection, nowcast freshness, slippage limits, and fail-closed behavior are reviewed and controlled.
+
+Risk: Trading decisions depend on nowcast values and market parsing that may be stale or incorrect.
+
+Mitigation: Verify the current nowcast source, selected CPI markets, and configured risk limits before enabling live trading.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/kalshi-econ-nowcast-trader)
+- [Cleveland Fed Inflation Nowcasting](https://www.clevelandfed.org/indicators-and-data/inflation-nowcasting)
+- [Simmer Markets Skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk Repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON automaton status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default; live trading only when --live is explicitly passed.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

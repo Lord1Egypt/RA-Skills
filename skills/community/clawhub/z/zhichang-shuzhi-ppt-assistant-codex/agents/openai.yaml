@@ -1,0 +1,6 @@
+interface:
+  display_name: "知识库驱动的职场高价值汇报PPT智能体"
+  short_description: "从知识库与公司模板生成证据充分、排版严谨的职场汇报PPT"
+  default_prompt: "使用 $knowledge-base-high-value-report-ppt，先读取我的知识库和PPT模板，形成战略SPEC与模板页契约，经我确认后再生成PPTX。"
+policy:
+  allow_implicit_invocation: true

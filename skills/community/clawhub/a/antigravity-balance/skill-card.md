@@ -1,38 +1,51 @@
-## Description: <br>
-Checks Google Antigravity AI model quota and token balance by detecting a local Antigravity language server process and querying its local API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Google Antigravity AI model quota/token balance.
 
-## Publisher: <br>
-[finderstrategy-cyber](https://clawhub.ai/user/finderstrategy-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[finderstrategy-cyber](https://clawhub.ai/user/finderstrategy-cyber)
 
-## Use Case: <br>
-Developers and Antigravity users use this skill to check remaining model quota, token balance, reset timing, and account tier from a local Antigravity or Windsurf session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill displays account identity and quota details that may be sensitive in shared shells, recordings, CI logs, or support transcripts. <br>
-Mitigation: Avoid verbose mode and JSON output in shared or recorded environments, and treat generated terminal output as sensitive. <br>
-Risk: The script reads local Antigravity process arguments, including the local CSRF token, to query the local API. <br>
-Mitigation: Run it only on a trusted local machine where Antigravity or Windsurf is already running, and do not share verbose logs or process output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Developers and Antigravity users use this skill to check remaining AI model quota, token balance, rate-limit status, and reset timing from a running local Antigravity instance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill inspects local Antigravity process arguments and handles a CSRF token while querying the local language-server API.
+
+Mitigation: Run it only in trusted local environments, avoid verbose mode, and prefer a future version that uses an official or better-scoped API and validates the local endpoint before sending credentials.
+
+Risk: Verbose output may expose sensitive command-line data.
+
+Mitigation: Use normal or JSON output for routine checks and reserve verbose mode for controlled debugging sessions.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; script output is terminal text or JSON when --json is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and a running local Antigravity or Windsurf process.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [text, JSON, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Terminal text or JSON from a local Node.js script, with Markdown usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a running Antigravity or Windsurf language-server process.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,51 +1,59 @@
-## Description: <br>
-Permanent memory for OpenClaw agents. Lossless capture, intelligent routing, semantic recall, and disaster recovery in five tiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Permanent memory for OpenClaw agents. Lossless capture, intelligent routing, semantic recall, and disaster recovery in five tiers.
 
-## Publisher: <br>
-[shivaclaw](https://clawhub.ai/user/shivaclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shivaclaw](https://clawhub.ai/user/shivaclaw)
 
-## Use Case: <br>
-Developers and OpenClaw users use this plugin to give agents persistent memory across sessions, including searchable conversation history, curated long-term memory, semantic recall, and recovery-oriented backups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The plugin can persist broad conversation history as long-term agent memory. <br>
-Mitigation: Avoid storing secrets or sensitive content, review retention and purge procedures before enabling it, and restrict use in sensitive workspaces until the memory location and lifecycle are understood. <br>
-Risk: Background routing can process memory on a schedule. <br>
-Mitigation: Review the Layer 0.5 schedule and disable scheduled routing unless ongoing background processing is required. <br>
-Risk: Semantic recall and Git backup can use external services or remote endpoints. <br>
-Mitigation: Disable semantic recall, cloud endpoints, and Git backup unless needed; prefer local services for private workspaces and verify any configured remote destination. <br>
-Risk: The artifact describes automatic setup for Qdrant and FalkorDB binaries. <br>
-Mitigation: Verify downloaded binaries and source locations before first activation, especially in production or sensitive environments. <br>
+## Use Case:
 
+Developers and OpenClaw users use this plugin to give agents persistent memory tools for searching, expanding, updating, and recalling conversation context across sessions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shivaclaw/project-trident-plugin) <br>
-- [Project homepage](https://github.com/ShivaClaw/trident-plugin) <br>
-- [Repository](https://github.com/ShivaClaw/trident-plugin) <br>
-- [Issue tracker](https://github.com/ShivaClaw/trident-plugin/issues) <br>
-- [README](artifact/README.md) <br>
-- [Installation guide](artifact/INSTALL.md) <br>
-- [Configuration schema](artifact/config.schema.json) <br>
-- [Plugin manifest](artifact/plugin-manifest.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent-facing memory tool results may include search matches, expanded summaries, appended memory confirmations, and recalled context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence, SKILL.md frontmatter, plugin-manifest.json; package.json and openclaw.plugin.json still report 1.0.0) <br>
+Risk: The release makes broad persistence and installation claims that do not match the shipped code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the actual plugin behavior and test memory capture, recall, and recovery workflows before relying on it for production continuity.
+
+Risk: Setup guidance includes unsafe installation patterns and unsigned binary download commands.
+
+Mitigation: Do not run sudo curl pipelines or downloaded binaries until sources, checksums, and signatures are independently verified.
+
+Risk: Persistent capture, cloud embeddings, cron routing, and Git backup can expose or retain sensitive conversation memory.
+
+Mitigation: Enable these features only after confirming storage locations, access controls, retention expectations, and third-party service exposure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shivaclaw/skills/project-trident-plugin)
+- [Repository](https://github.com/ShivaClaw/trident-plugin)
+- [Issue tracker](https://github.com/ShivaClaw/trident-plugin/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown documentation with inline shell commands and JSON configuration examples; plugin tools return text responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory tools accept search, expansion, update, and recall parameters for agent context workflows.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, SKILL.md frontmatter, plugin-manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

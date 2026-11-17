@@ -1,47 +1,58 @@
-## Description: <br>
-Alipay+ Payment Integration Assistant that provides structured integration guidance for ACQPs and MPPs across user-presented, merchant-presented, online cashier, and online auto debit payment scenarios using current official Alipay+ documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides structured Alipay+ payment integration guidance for ACQP and MPP developers across UPM, MPM, Online Cashier Payment, and Online Auto Debit, fetching official Alipay+ documentation before giving API details or code examples.
 
-## Publisher: <br>
-[ant-intl](https://clawhub.ai/user/ant-intl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-intl](https://clawhub.ai/user/ant-intl)
 
-## Use Case: <br>
-Developers and payment integration engineers use this skill to plan and implement Alipay+ integrations for acquirer service providers and mobile payment providers. It helps identify the relevant role, payment scenario, official documentation, testing workflow, and implementation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports payment integration workflows where incorrect guidance or generated code could affect payment behavior. <br>
-Mitigation: Verify generated guidance and code against the fetched official Alipay+ documentation and your own security review before deployment. <br>
-Risk: Integration discussions may involve sensitive API keys, certificates, production credentials, or customer payment data. <br>
-Mitigation: Do not paste private credentials or customer payment data into chat; use placeholders and manage secrets through approved secure channels. <br>
-Risk: The skill makes live requests to docs.alipayplus.com to retrieve current documentation. <br>
-Mitigation: Install and use it only where outbound documentation access is acceptable for the agent environment. <br>
+## Use Case:
 
+External developers and integration engineers at Acquiring Service Providers and Mobile Payment Service Providers use this skill to plan, implement, and test supported Alipay+ payment scenarios with current official documentation.
 
-## Reference(s): <br>
-- [Alipay+ Documentation Index](https://docs.alipayplus.com/alipayplus/llms.txt) <br>
-- [ACQP Get Started with Alipay+ Integration](https://docs.alipayplus.com/alipayplus/alipayplus/get_started_acq/get_started_integration_acq.md) <br>
-- [MPP Get Started with Alipay+ Integration](https://docs.alipayplus.com/alipayplus/alipayplus/get_started_mpp/get_started_integration.md) <br>
-- [ACQP UAT Checklist](https://docs.alipayplus.com/alipayplus/alipayplus/get_started_acq/uat_checklist.md) <br>
-- [Alipay+ Partner Workspace Overview](https://docs.alipayplus.com/alipayplus/alipayplus/worksp_acq/overview_what_is.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ant-intl/skill-alipayplus-ai-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and structured integration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require live access to official Alipay+ documentation before giving API parameters, flow details, or code examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated API details or code examples can be wrong if the latest official Alipay+ documentation is not fetched first.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user's ACQP or MPP role and product, then fetch the relevant official Alipay+ documentation before relying on generated guidance.
+
+Risk: Users may disclose private keys or production credentials while asking for integration help.
+
+Mitigation: Avoid sharing private keys or production credentials in chat and review generated code before using it with real accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ant-intl/skills/skill-alipayplus-ai-integration)
+- [Alipay+ documentation index](https://docs.alipayplus.com/alipayplus/llms.txt)
+- [ACQP getting started guide](https://docs.alipayplus.com/alipayplus/alipayplus/get_started_acq/get_started_integration_acq.md)
+- [MPP getting started guide](https://docs.alipayplus.com/alipayplus/alipayplus/get_started_mpp/get_started_integration.md)
+- [ACQP UAT checklist](https://docs.alipayplus.com/alipayplus/alipayplus/get_started_acq/uat_checklist.md)
+- [Alipay+ Partner Workspace overview](https://docs.alipayplus.com/alipayplus/alipayplus/worksp_acq/overview_what_is.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline shell commands and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches role-specific official Alipay+ documentation before API details or examples.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

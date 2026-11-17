@@ -1,42 +1,54 @@
-## Description: <br>
-Daily lead generation for local US service businesses (HVAC, Plumbing, Dental, Med Spa, etc.). Generates qualified leads with verified contact info, ready for Ventured Brands AI automation sales outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily lead generation for local US service businesses (HVAC, Plumbing, Dental, Med Spa, etc.). Generates qualified leads with verified contact info, ready for Ventured Brands AI automation sales outreach.
 
-## Publisher: <br>
-[haughtonventures](https://clawhub.ai/user/haughtonventures) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haughtonventures](https://clawhub.ai/user/haughtonventures)
 
-## Use Case: <br>
-Sales and growth teams use this skill to produce daily batches of qualified local US service-business prospects, including contact details, pitch angle, tier, and summary notes for AI automation outreach tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow collects public business contact details for sales outreach. <br>
-Mitigation: Confirm collection and outreach comply with privacy laws, anti-spam rules, source-site terms, opt-out obligations, and internal data-retention policies. <br>
-Risk: Generated CSV files may contain business contacts, owner names, phone numbers, and email addresses. <br>
-Mitigation: Store lead files securely, minimize personal contact data when business channels are sufficient, and delete stale lead files when no longer needed. <br>
-Risk: Lead data can be incomplete or stale even when sourced from public pages. <br>
-Mitigation: Verify businesses and contact fields before outreach, honor the skill's no-fabrication rule, and flag data gaps in the notes file. <br>
+## Use Case:
 
+Sales and growth teams use this skill to generate daily, verified prospect lists for local US service businesses in rotating metro and industry segments. It supports outreach preparation by filtering leads against an ideal customer profile, scoring contact completeness, assigning a pitch angle, and saving CSV and notes files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haughtonventures/service-business-prospecting) <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [CSV lead tables and Markdown summary notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces daily-dated lead files and notes; generated leads should be verified before outreach.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Risk: The workflow collects and stores business contact details for outreach, which can create privacy, retention, marketing, and anti-spam compliance risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm output location and retention expectations before use, and use generated lead data only in ways permitted by applicable privacy, marketing, and anti-spam rules.
+
+Risk: Prospect data may be incomplete or stale if source searches do not return enough verified businesses.
+
+Mitigation: Follow the skill's data quality rules: never fabricate leads, report shortfalls, require real verifiable businesses, and include data quality caveats in notes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/haughtonventures/skills/service-business-prospecting)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/haughtonventures)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [CSV files and Markdown notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates daily-dated lead files under a daily-leads output folder, with contact completeness tiers, pitch angles, source notes, and data quality caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

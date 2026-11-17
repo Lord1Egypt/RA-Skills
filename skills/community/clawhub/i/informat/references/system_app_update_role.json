@@ -1,0 +1,50 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_update_role",
+    "description": "Update an existing custom role in the current application. Before calling, use _query_app_define_designer to get the real role identifier. Role name, remark, and permissionList can be updated. The role identifier and system administrator role cannot be changed. Before changing permissionList, read informat.app.role.md and use _app_permission_list to get custom permission definitions.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Role identifier (role key) to update. It must come from roleList returned by _query_app_define_designer and must not be fabricated. Examples: dataManager, orderViewer, workflowApprover.",
+          "minLength": 2,
+          "maxLength": 50,
+          "pattern": "^(?!admin$)[a-z][A-Za-z0-9]{1,49}$"
+        },
+        "updateFieldList": {
+          "type": "array",
+          "description": "Fields to update in this call. Only name, remark, and permissionList are supported. Fields not listed here will not be changed.",
+          "items": {
+            "type": "string",
+            "enum": ["name", "remark", "permissionList"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the role. Takes effect only when updateFieldList contains name. Must not use reserved names such as Admin.",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^(?!Admin$).+$"
+        },
+        "remark": {
+          "type": "string",
+          "description": "Role description. Takes effect only when updateFieldList contains remark.",
+          "maxLength": 200
+        },
+        "permissionList": {
+          "type": "array",
+          "description": "Role permission ID list. Takes effect only when updateFieldList contains permissionList. Must be built from real permissions: built-in app permissions such as AppAccess and AppMember; module permissions such as tableKey_TableQuery; custom permissions must be queried with _app_permission_list first. See informat.app.role.md for details.",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": ["id", "updateFieldList"]
+    }
+  }
+}

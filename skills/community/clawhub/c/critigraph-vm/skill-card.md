@@ -1,41 +1,55 @@
-## Description: <br>
-Adversarial reasoning virtual machine for pure-math MCTS game-tree search that explores rebuttal paths and identifies which path is most likely to win. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Critigraph VM helps agents frame adversarial reasoning tasks as mathematical game-tree searches that explore counterarguments, rank paths, and report estimated win probabilities.
 
-## Publisher: <br>
-[lybang972314](https://clawhub.ai/user/lybang972314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lybang972314](https://clawhub.ai/user/lybang972314)
 
-## Use Case: <br>
-Developers and technical users use this skill to reason through adversarial decision paths with MCTS-style search, including rebuttal discovery, expected win-rate estimates, and search-tree style outputs. The submitted artifact is documentation-only and describes the method rather than shipping executable code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documentation is in Chinese, which may lead to misunderstanding if the reader cannot review it directly. <br>
-Mitigation: Install or use the skill only after reviewing the Chinese documentation directly or with a trusted translation. <br>
-Risk: The linked GitHub homepage may contain code outside the submitted artifact reviewed by the security evidence. <br>
-Mitigation: Evaluate any external repository code separately before installing or executing it. <br>
+## Use Case:
 
+Developers and agents can use this skill for adversarial analysis workflows where a proposed path needs to be tested against opposing moves and ranked alternatives. It is suited to reasoning assistance in domains such as legal evidence review, quantitative signals, code review, and security audit planning when the user wants structured critique rather than a single answer.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/lybang972314/critigraph-vm) <br>
-- [Critigraph Vm on ClawHub](https://clawhub.ai/lybang972314/skills/critigraph-vm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No artifact-backed execution, data access, persistence, or exfiltration behavior was identified by the submitted security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata; artifact frontmatter says 0.2.0) <br>
+Risk: The artifact is documentation-only and points to an external project, so claimed engine, training, benchmark, or production behavior is not independently demonstrated by the packaged files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked project and any operational code separately before relying on those claims in production workflows.
+
+Risk: The skill describes adversarial reasoning outputs such as counterargument paths and win probabilities that may be mistaken for validated domain conclusions.
+
+Mitigation: Treat outputs as decision-support guidance and require domain expert review before acting on legal, financial, code review, or security audit recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lybang972314/skills/critigraph-vm)
+- [Server-resolved GitHub provenance](https://github.com/lybang972314/critigraph-vm)
+- [Publisher profile](https://clawhub.ai/user/lybang972314)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with explanatory text and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe ranked paths, expected win probabilities, and search-tree structure; the artifact itself is documentation-only.]
+
+## Skill Version(s):
+
+0.1.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

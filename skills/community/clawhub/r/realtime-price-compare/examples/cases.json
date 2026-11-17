@@ -1,0 +1,98 @@
+{
+  "skill": "realtime-price-compare",
+  "version": "1.0.0",
+  "test_cases": [
+    {
+      "id": "TC001",
+      "name": "按预算推荐",
+      "category": "happy_path",
+      "input": { "user_message": "300元以内的降噪蓝牙耳机推荐2款" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": "shop_search.py",
+        "output_contains": ["到手价", "购买"]
+      }
+    },
+    {
+      "id": "TC002",
+      "name": "具体型号比价",
+      "category": "happy_path",
+      "input": { "user_message": "iPhone 17 256G 哪里买最便宜" },
+      "expected": {
+        "trigger_skill": true,
+        "calls_tool": "shop_search.py",
+        "output_contains": ["最低", "¥"]
+      }
+    },
+    {
+      "id": "TC003",
+      "name": "缺少预算和平台时先追问",
+      "category": "happy_path",
+      "input": { "user_message": "想买个扫地机器人" },
+      "expected": {
+        "trigger_skill": true,
+        "asks_clarification": true
+      }
+    },
+    {
+      "id": "TC004",
+      "name": "无关请求不触发",
+      "category": "negative",
+      "input": { "user_message": "帮我写一份产品周报" },
+      "expected": {
+        "trigger_skill": false,
+        "does_not_call": "shop_search.py"
+      }
+    },
+    {
+      "id": "TC005",
+      "name": "天气查询不触发",
+      "category": "negative",
+      "input": { "user_message": "明天北京天气怎么样" },
+      "expected": {
+        "trigger_skill": false,
+        "does_not_call": "shop_search.py"
+      }
+    },
+    {
+      "id": "TC006",
+      "name": "售后物流不触发",
+      "category": "negative",
+      "input": { "user_message": "我昨天下的单怎么还没发货" },
+      "expected": {
+        "trigger_skill": false,
+        "does_not_call": "shop_search.py"
+      }
+    },
+    {
+      "id": "TC007",
+      "name": "服务不可用时降级为联网搜索",
+      "category": "fallback",
+      "input": {
+        "user_message": "300元以内的降噪蓝牙耳机推荐2款",
+        "connected_tools": { "shop_search.py": "SCRIPT_NETWORK_ERROR" }
+      },
+      "expected": {
+        "trigger_skill": true,
+        "uses_fallback": true,
+        "fallback_type": "degrade",
+        "output_contains": ["购物推荐服务暂时不可用", "仅供参考"]
+      }
+    },
+    {
+      "id": "TC008",
+      "name": "被限流时停止并提示稍后再问",
+      "category": "fallback",
+      "input": {
+        "user_message": "300元以内的降噪蓝牙耳机推荐2款",
+        "connected_tools": { "shop_search.py": "RATE_LIMITED" }
+      },
+      "expected": {
+        "trigger_skill": true,
+        "uses_fallback": true,
+        "fallback_type": "block",
+        "output_contains": ["请求太频繁"]
+      }
+    }
+  ]
+}

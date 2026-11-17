@@ -1,39 +1,48 @@
-## Description: <br>
-API-key-free online research via the built-in browser tool for cases where web_search fails due to missing keys and web evidence is still needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+API-key-free online research via the built-in browser tool.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and agents use this skill to perform browser-based web retrieval when API-key-backed search is unavailable. It guides source selection, cross-checking, concise fact extraction, and fallback behavior when browser access is blocked. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The browser guard reads tails of recent local OpenClaw session logs to infer browser availability. <br>
-Mitigation: Review the configured sessions directory and disclose local session-log access before installation or execution. <br>
-Risk: The skill invokes the OpenClaw CLI from PATH to check browser status. <br>
-Mitigation: Run it only in environments where the OpenClaw CLI path and browser extension setup are trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wanng-ide/browser-research-lite) <br>
+## Use Case:
 
+Developers and agents use this skill to perform browser-based online research when API-key-backed web search is unavailable, while checking source quality and falling back when browser access is blocked.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline bash commands and JSON status from the browser guard] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The browser guard reports availability status and recent browser failure signals before the agent proceeds.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The browser availability guard reads recent local OpenClaw session logs as part of its diagnostic check.
+
+Mitigation: Review before installing and use only when local diagnostic access to recent OpenClaw session logs is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanng-ide/skills/browser-research-lite)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, text]
+
+**Output Format:** [Markdown guidance with inline shell commands and concise text answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return JSON status from the browser availability guard.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

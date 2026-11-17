@@ -1,46 +1,61 @@
-## Description: <br>
-Provides guidance for using UAPI's GET /ai/translate/languages endpoint to retrieve AI translation language and configuration options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use UAPI's GET /ai/translate/languages endpoint to retrieve supported AI translation languages, translation style options, context options, and performance information.
 
-## Publisher: <br>
-[shuakami](https://clawhub.ai/user/shuakami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuakami](https://clawhub.ai/user/shuakami)
 
-## Use Case: <br>
-Developers and agents use this skill when a task calls for UAPI AI translation language or configuration lookup through the read-only GET /ai/translate/languages endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad routing language may select this skill for unrelated language or translation requests. <br>
-Mitigation: Confirm the user is asking for AI translation language or configuration lookup before using the endpoint. <br>
-Risk: Supplying a UAPI key can consume authenticated quota for this external service. <br>
-Mitigation: Provide a UAPI key only when authenticated quota is intentionally needed for GET /ai/translate/languages. <br>
-Risk: The external UAPI service may return quota or rate-limit errors. <br>
-Mitigation: Handle 429 or quota responses by explaining the quota condition and retrying only with an appropriate account key. <br>
+## Use Case:
 
+Developers and agent builders use this skill when a request specifically needs UAPI AI translation configuration or supported-language lookup through GET /ai/translate/languages.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shuakami/111xsxa) <br>
-- [Quick Start](references/quick-start.md) <br>
-- [AI Translate Languages Operation](references/operations/get-ai-translate-languages.md) <br>
-- [Translate Resource](references/resources/Translate.md) <br>
-- [UAPI](https://uapis.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown instructions with endpoint details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only endpoint guidance; no explicit request parameters are documented for the API call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger terms may cause the skill to be selected for general language or translation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user specifically needs UAPI AI translation language or configuration lookup before applying this skill.
+
+Risk: Authenticated use may rely on a UAPI key for stable or rate-limit-resilient calls.
+
+Mitigation: Only provide a UAPI key when authenticated access is intentional and needed for the request.
+
+Risk: Anonymous or public use can hit quota or rate-limit responses.
+
+Mitigation: If UAPI returns a quota or 429 response, suggest registering for a UAPI account and retrying with a free UAPI key.
+
+## Reference(s):
+
+- [Quick Start](references/quick-start.md)
+- [AI Translate Languages Operation](references/operations/get-ai-translate-languages.md)
+- [Translate Resource](references/resources/Translate.md)
+- [UAPI API Base](https://uapis.cn/api/v1)
+- [UAPI](https://uapis.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with endpoint, authentication, parameter, and response-code details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The wrapped endpoint has no explicit parameters; guidance may recommend a UAPI key for authenticated or rate-limit-resilient use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

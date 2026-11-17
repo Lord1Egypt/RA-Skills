@@ -1,45 +1,60 @@
-## Description: <br>
-Forgejo via fj and REST API for repos, issues, PRs, wiki, CI, and reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forgejo via fj and REST API for repos, issues, PRs, wiki, CI, and reviews.
 
-## Publisher: <br>
-[nerasse](https://clawhub.ai/user/nerasse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nerasse](https://clawhub.ai/user/nerasse)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to manage self-hosted Forgejo repositories, issues, pull requests, wiki pages, CI status, and structured code reviews through fj, REST API calls, and local git review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Forgejo token and can change repository data. <br>
-Mitigation: Use a least-privilege token scoped to the requested task and avoid storing it in shared shell profiles or logs. <br>
-Risk: Commands can target the wrong Forgejo instance or repository if FORGEJO_URL or repository context is incorrect. <br>
-Mitigation: Verify FORGEJO_URL and the target owner/repo before running CLI or REST operations. <br>
-Risk: Delete, merge, migration, wiki delete, label delete, and milestone delete operations can be destructive. <br>
-Mitigation: Require explicit user confirmation before those operations run. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate self-hosted Forgejo repositories, issues, pull requests, wiki pages, releases, CI status, and code review workflows through fj, REST API calls, and local git review steps.
 
-## Reference(s): <br>
-- [Forgejo Skill Homepage](https://github.com/nerasse/forgejo-skill) <br>
-- [Forgejo API Cheatsheet](references/api-cheatsheet.md) <br>
-- [Forgejo CI and Actions](references/ci-actions.md) <br>
-- [Forgejo Pull Request Review Workflow](references/code-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, REST API examples, and review text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Forgejo CLI commands, curl requests, jq filters, and pull request review comments for user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Authenticated write and delete operations can change or remove Forgejo repository data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest token scopes needed and confirm destructive repository, wiki, label, milestone, merge, and workflow dispatch actions before execution.
+
+Risk: A leaked Forgejo token can grant repository access.
+
+Mitigation: Avoid pasting or logging tokens; provide FORGEJO_TOKEN through the runtime environment or a secret store and rotate it if exposed.
+
+Risk: Using the wrong Forgejo instance or repository can affect unintended resources.
+
+Mitigation: Confirm FORGEJO_URL and owner/repo before running fj commands or REST API calls, especially outside a local clone.
+
+## Reference(s):
+
+- [Forgejo Workflow homepage](https://github.com/nerasse/forgejo-skill)
+- [Forgejo API Cheatsheet](references/api-cheatsheet.md)
+- [Forgejo CI and Actions](references/ci-actions.md)
+- [Forgejo Pull Request Review Workflow](references/code-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, HTTP examples, and JSON payload snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FORGEJO_URL, FORGEJO_TOKEN, and relevant Forgejo token scopes; uses fj, curl, jq, and git when available.]
+
+## Skill Version(s):
+
+0.1.1 (source: frontmatter, changelog, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

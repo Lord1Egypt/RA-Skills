@@ -1,0 +1,4 @@
+interface:
+  display_name: "恢复 Codex 项目会话"
+  short_description: "安全诊断、备份并修复项目存在但历史聊天仍然不显示的问题"
+  default_prompt: "Use $recover-codex-project-chats to diagnose and safely restore missing Codex Desktop project chats."

@@ -1,45 +1,61 @@
-## Description: <br>
-Plan multi-waypoint journeys with route optimization, feasibility analysis, and time budget constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan multi-waypoint journeys with route optimization, feasibility analysis, and time budget constraints.
 
-## Publisher: <br>
-[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-southendsolutions](https://clawhub.ai/user/james-southendsolutions)
 
-## Use Case: <br>
-External users and developers use this skill to plan or validate multi-stop trips, estimate travel time and distance, and assess whether an itinerary fits route and time-budget constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Waypoint and itinerary details are sent to Camino for route planning. <br>
-Mitigation: Avoid submitting private home addresses, client locations, sensitive travel-security locations, or other location data that should not leave the local environment. <br>
-Risk: The skill requires a sensitive CAMINO_API_KEY credential. <br>
-Mitigation: Use a dedicated Camino API key stored in the agent environment, limit who can access it, and rotate or revoke it if exposed. <br>
-Risk: Installing the entire companion suite expands the amount of third-party skill code in the environment. <br>
-Mitigation: Prefer scoped ClawHub or specific-skill installation unless the full suite has been reviewed for the intended use. <br>
+## Use Case:
 
+Developers and agents use Journey to plan and validate multi-stop trips, estimate travel time, and check whether waypoint itineraries fit transport and time-budget constraints.
 
-## Reference(s): <br>
-- [ClawHub Journey Skill Page](https://clawhub.ai/james-southendsolutions/camino-journey) <br>
-- [Camino API Key Activation](https://app.getcamino.ai/skills/activate) <br>
-- [Camino Journey API Endpoint](https://api.getcamino.ai/journey) <br>
-- [x402 Payment Protocol](https://x402.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands; script output is formatted JSON from the Camino journey API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, and CAMINO_API_KEY; sends waypoint and constraint JSON to the Camino journey API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence) <br>
+Risk: Waypoint coordinates and purpose notes are sent to Camino's hosted API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive itinerary details unless the user accepts the data-sharing implications.
+
+Risk: The skill depends on a Camino API key and local command-line tools.
+
+Mitigation: Store and rotate CAMINO_API_KEY as a service credential, and install curl and jq from trusted sources.
+
+Risk: Installer and helper commands can affect the local environment.
+
+Mitigation: Install only trusted publisher versions and avoid elevated privileges for installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/james-southendsolutions/skills/camino-journey)
+- [ClawHub publisher profile](https://clawhub.ai/user/james-southendsolutions)
+- [Camino API activation](https://app.getcamino.ai/skills/activate)
+- [Camino Journey API endpoint](https://api.getcamino.ai/journey)
+- [x402 payment protocol](https://x402.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script sends JSON waypoint data to Camino's hosted Journey API and formats the JSON response with jq.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

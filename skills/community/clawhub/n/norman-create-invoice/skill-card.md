@@ -1,40 +1,53 @@
-## Description: <br>
-Create and optionally send a new invoice to a client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and optionally sends a new Norman Finance invoice to a client.
 
-## Publisher: <br>
-[stanlee000](https://clawhub.ai/user/stanlee000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stanlee000](https://clawhub.ai/user/stanlee000)
 
-## Use Case: <br>
-Employees and finance operators use this skill to collect invoice details, find or create the client record, create an invoice in Norman, review the invoice summary, and optionally send it to the client. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A user may accidentally create or send a real invoice from a casual billing request. <br>
-Mitigation: Require user review of invoice details before creation, and require explicit confirmation before sending the invoice email. <br>
-Risk: Invoice details such as client, VAT rate, amount, due date, or notes may be incomplete or incorrect. <br>
-Mitigation: Ask for missing details, resolve ambiguous client matches before using a client_id, and show a summary including the total amount before sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Norman Finance](https://norman.finance) <br>
-- [ClawHub skill page](https://clawhub.ai/stanlee000/norman-create-invoice) <br>
+## Use Case:
 
+Finance operators and external users use this skill to collect client and invoice details, create an invoice in Norman Finance, review the total, and optionally send it by email.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, API Calls] <br>
-**Output Format:** [Markdown or plain text with MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates invoice records and may send invoice email after user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Incorrect client, line item, VAT, date, or amount details could create an inaccurate invoice record.
+
+Mitigation: Review the collected invoice details and generated summary before allowing the invoice workflow to proceed.
+
+Risk: Sending the invoice emails billing information to the selected client.
+
+Mitigation: Approve sending only after confirming the invoice is ready to email.
+
+## Reference(s):
+
+- [Norman Finance](https://norman.finance)
+- [ClawHub Skill Page](https://clawhub.ai/stanlee000/skills/norman-create-invoice)
+
+## Skill Output:
+
+**Output Type(s):** [Text, API Calls, Guidance]
+
+**Output Format:** [Conversational text with invoice summaries and confirmation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create invoice records and send invoice email through Norman Finance MCP tools after user review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

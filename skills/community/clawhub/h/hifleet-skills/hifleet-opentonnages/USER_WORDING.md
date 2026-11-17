@@ -22,7 +22,5 @@
 
 | User wants | Skill |
 |------------|--------|
-| My **email** | **hifleet-mytonnages** |
 | **Liner** schedule | **hifleet-schedule** |
-| **Pre-arrival** | **hifleet-mytonnages** |
 | **Public** open tonnage/cargo | **hifleet-opentonnages** (this) |

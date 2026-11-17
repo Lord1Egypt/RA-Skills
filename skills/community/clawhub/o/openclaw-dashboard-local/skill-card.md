@@ -1,37 +1,62 @@
-## Description: <br>
-OpenClaw Dashboard helps agents install, run, configure, and present a local visual operations dashboard for supervising one OpenClaw agent with live status, chat, trend monitoring, and optional recovery helpers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Dashboard helps an agent install, run, configure, and present a local visual operations dashboard for supervising one OpenClaw agent.
 
-## Publisher: <br>
-[LucasZH7](https://clawhub.ai/user/LucasZH7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucaszh7](https://clawhub.ai/user/lucaszh7)
 
-## Use Case: <br>
-Developers and solo operators use this skill to install, run, configure, and present a local dashboard for one OpenClaw agent. It supports status inspection, chat and nudge workflows, trend visibility, and cautious use of recovery helpers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports a suspicious posture because installer scripts can create persistent launchd services for helper code that is not present in the uploaded artifact. <br>
-Mitigation: Review or obtain the complete dashboard source before installation, run the foreground monitor first, avoid launchd installation unless persistent services are intended, and use the uninstall script to remove services if they were installed. <br>
+## Use Case:
 
+Developers and operators use this skill to set up and operate a local dashboard for one OpenClaw agent, with live status visibility, chat access, efficiency trends, configuration guidance, and optional recovery helpers.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest local files, launch commands, and configuration changes for a single-agent OpenClaw dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The bundled launchd installer creates persistent background services with auto-start and KeepAlive behavior and points to runtime programs that are not present in the evidence bundle.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the dashboard in foreground/manual mode unless persistent services are intentionally required; do not run install_launchd.sh until all referenced runtime files are present, reviewed, and trusted.
+
+Risk: The stop script may terminate another local process if it is listening on port 18991.
+
+Mitigation: Check the process using port 18991 before stopping the monitor, or change the configured port when another service already uses it.
+
+Risk: Recovery and auto-heal controls can create false confidence if success is assumed without confirming state.
+
+Mitigation: Confirm recovery actions through logs or visible dashboard state before reporting that a nudge, heal, or restart succeeded.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lucaszh7/skills/openclaw-dashboard-local)
+- [Publisher profile](https://clawhub.ai/user/lucaszh7)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Example configuration](artifact/config.example.json)
+- [Artifact manifest](artifact/manifest.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local foreground/background launch steps, macOS launchd guidance, dashboard configuration, release copy, and safety notes.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.json release.version; artifact manifest and release notes report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

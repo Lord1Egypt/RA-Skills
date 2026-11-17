@@ -1,41 +1,59 @@
-## Description: <br>
-Generate authentic analog-style film photographs with 35mm grain, light leaks, and faded retro color palettes for nostalgic portraits, vintage 70s/80s aesthetic photos, Instagram film looks, Kodak Portra style imagery, lomography effects, Fujifilm simulation, and retro mood boards via the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates analog-style film photographs from text prompts with 35mm grain, light leaks, and retro color palettes via the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External creators, developers, and agents use this skill to generate analog-style film photo outputs from text prompts, with optional image-reference style inheritance and size selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference image IDs, and the API token are sent to the Neta/TalesOfAI service. <br>
-Mitigation: Avoid confidential or regulated prompts and reference images, and use the skill only when the remote service is acceptable for the intended data. <br>
-Risk: Passing the API token on the command line can expose it through shell history or process listings. <br>
-Mitigation: Use a dedicated, revocable token and avoid reusing privileged credentials. <br>
+## Use Case:
 
+External users and creators use this skill to generate retro analog-style images from text prompts, optionally selecting an orientation or passing a reference image UUID for style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/film-photo-generator) <br>
-- [Neta API token page](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text image URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill submits a remote image-generation job, polls for completion, and returns one direct image URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Prompts and optional reference image IDs are sent to an external Neta/TalesOfAI service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only prompts and reference IDs that are acceptable to share with that service.
+
+Risk: The API token is passed with a command-line flag, which can expose it in shell history or process listings on shared or logged systems.
+
+Mitigation: Avoid entering real tokens directly in logged or shared shell sessions; prefer an approved secret-handling workflow when available.
+
+Risk: The security scan verdict is suspicious because external data sharing and token handling are under-disclosed.
+
+Mitigation: Review the skill and security guidance before installation, and prefer a pinned or ClawHub-managed install path.
+
+## Reference(s):
+
+- [Film Photo Generator on ClawHub](https://clawhub.ai/omactiengartelle/skills/film-photo-generator)
+- [Publisher profile: omactiengartelle](https://clawhub.ai/user/omactiengartelle)
+- [Neta API access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text direct image URL, with Markdown usage examples in the documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token and sends prompts, optional reference IDs, and size choices to the Neta/TalesOfAI service.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Isolated crons, scripts, reminders, and status checkers sent it but the agent forgot? Write deliveries into the session transcript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mirrors messages sent by OpenClaw command crons or scripts into the owning agent's session transcript so the agent retains a durable record.
 
-## Publisher: <br>
-[obuchowski](https://clawhub.ai/user/obuchowski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[obuchowski](https://clawhub.ai/user/obuchowski)
 
-## Use Case: <br>
-Developers and operators use this skill when trusted command crons, dispatcher scripts, reminders, or status checkers send OpenClaw messages and the owning agent should retain a durable session transcript entry for that delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Message text from the calling cron or script is delivered and stored verbatim in the session transcript and local helper logs/state may contain sensitive context. <br>
-Mitigation: Use only trusted message sources, avoid passing secrets, and protect or rotate the helper's local log and idempotency files when messages may be sensitive. <br>
-Risk: The helper appends transcript rows through local filesystem writes and relies on OpenClaw's current transcript row shape. <br>
-Mitigation: Use --openclaw-home for testing or containment and re-verify behavior after major OpenClaw upgrades. <br>
-Risk: Concurrent live session writes could interleave with a helper append. <br>
-Mitigation: Run it for dispatcher-style schedules when the target agent is idle and rely on the per-session advisory lock for helper-side serialization. <br>
+## Use Case:
 
+Developers and operators who run OpenClaw command crons, dispatcher jobs, reminder scripts, or status checkers use this skill to send channel messages and mirror the delivered text into the owning agent's transcript.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/obuchowski/skills/cron-to-transcript) <br>
-- [Project Homepage](https://github.com/obuchowski/openclaw-cron-to-transcript) <br>
-- [Security Policy](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell command examples and flag descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to call a local Bash helper that sends an OpenClaw message and can append one transcript-only JSONL row.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: changelog and server release metadata, released 2026-06-25) <br>
+Risk: Fallback session matching can persist delivered content in the wrong transcript when chat IDs or sessions overlap.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit session keys or exact agent, channel, target, and thread values; review or patch fallback matching before use in multi-session environments.
+
+Risk: Untrusted cron or script input is sent and stored verbatim in transcript history.
+
+Mitigation: Invoke the helper only from trusted callers and validate message sources before passing content into the skill.
+
+Risk: Concurrent transcript writes can interleave with live gateway appends.
+
+Mitigation: Use it for dispatcher schedules when the target agent is idle, keep per-session advisory locking enabled, and re-verify behavior after major OpenClaw upgrades.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/obuchowski/skills/cron-to-transcript)
+- [Project homepage](https://github.com/obuchowski/openclaw-cron-to-transcript)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local OpenClaw message-send commands and transcript-mirroring guidance; runtime helper can append JSONL transcript records and idempotency state.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and CHANGELOG, released 2026-06-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

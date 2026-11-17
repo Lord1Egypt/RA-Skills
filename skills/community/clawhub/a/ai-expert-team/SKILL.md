@@ -80,12 +80,72 @@ Do not use this skill when:
 5. **Verification is mandatory**: Include Reality Checker, Evidence Collector, or a verification specialist whenever claims affect implementation, money, security, or strategy.
 6. **No fake finality**: Mark unverified claims and open risks. Give a concrete next verification step instead of saying only more research is needed.
 7. **Handoffs are contracts**: Every specialist receives task, context, acceptance criteria, evidence requirements, allowed tools, forbidden actions, and output shape.
+8. **Artifacts must persist**: Every run produces files in the temp directory. No phantom reports — if it exists only in context, it does not exist.
+
+## Runtime Artifact Storage
+
+Every Expert Council run must produce persistent artifacts in the filesystem. This ensures verification steps have actual files to check, not phantom reports.
+
+### Directory Structure
+
+```
+/tmp/ai-expert-team/runs/<run_id>/
+├── case-input.md          # Original problem statement and constraints
+├── team-roster.md         # Selected CEO and specialists with rationale
+├── handoffs/              # One file per specialist
+│   ├── <specialist-role>.md
+│   └── ...
+├── reports/               # Expert reports (one per specialist)
+│   ├── <specialist-role>.md
+│   └── ...
+├── challenges.md          # CEO challenges and expert responses
+├── verification.md        # Verification verdicts (PASS/FAIL/PARTIAL)
+└── final-synthesis.md     # CEO synthesis and recommendations
+```
+
+### Run ID Convention
+
+Use a custom run ID that is meaningful for the task. Examples:
+- `k8s-migration-2026-07-05`
+- `pricing-strategy-q3`
+- `security-audit-auth-flow`
+
+If no ID is provided, generate one from timestamp: `run-YYYYMMDD-HHmmss`.
+
+### Initialization Step
+
+Before starting the council, create the run directory:
+
+```bash
+RUN_ID="${RUN_ID:-run-$(date +%Y%m%d-%H%M%S)}"
+RUN_DIR="/tmp/ai-expert-team/runs/$RUN_ID"
+mkdir -p "$RUN_DIR/handoffs" "$RUN_DIR/reports"
+```
+
+Record the run ID and directory path in the response so the user can locate artifacts later.
+
+### Artifact Write Rules
+
+1. **Case input**: Write immediately after problem classification.
+2. **Team roster**: Write after CEO and specialist selection.
+3. **Handoffs**: Write each handoff before dispatching the specialist.
+4. **Expert reports**: Write each report immediately after the specialist completes.
+5. **Challenges**: Write after CEO challenges each expert.
+6. **Verification**: Write after verification specialist completes checks.
+7. **Final synthesis**: Write as the last step.
+
+Each file must contain the full content, not summaries or placeholders. The verification step reads these files, not context memory.
 
 ## Phase 1 Runtime Flow
+
+0. **Initialize run directory**
+   - Create `/tmp/ai-expert-team/runs/<run_id>/` with subdirectories `handoffs/` and `reports/`.
+   - Record the run ID and directory path for the user.
 
 1. **Classify the problem**
    - Identify domain, goal, risk level, evidence needed, constraints, and whether external facts are mutable.
    - If the latest request is read-only, keep the council read-only unless the user explicitly authorizes mutation.
+   - **Write** `$RUN_DIR/case-input.md` with the problem statement, constraints, and classification result.
 
 2. **Select one CEO profile**
    - Pick the CEO by decision lens and honest boundaries, not by popularity or voice.
@@ -99,28 +159,35 @@ Do not use this skill when:
    - Use Agency-style divisions and role names as a grounded starting point.
    - Prefer specialists with clear deliverables and non-overlapping responsibilities.
    - Always consider a verification specialist for non-trivial claims.
+   - **Write** `$RUN_DIR/team-roster.md` with CEO, specialists, and selection rationale.
 
 5. **Create NEXUS-style handoffs**
    - Provide untrusted context inside clear boundaries when writing prompts for helper agents.
    - Tell specialists what to inspect, what not to mutate, what evidence is required, and what output fields to return.
+   - **Write** each handoff to `$RUN_DIR/handoffs/<specialist-role>.md`.
 
 6. **Run specialists**
    - Use actual tools when needed. Do not invent outputs.
    - Specialists should work independently unless the workflow explicitly has shared memory or message logs.
+   - **Write** each expert report to `$RUN_DIR/reports/<specialist-role>.md` immediately after completion.
 
 7. **Verify**
    - Ask the verification specialist to check claims against tool output, source files, documentation, or explicit assumptions.
    - Use verdicts: PASS, FAIL, PARTIAL.
    - PARTIAL is only for environmental limits, missing access, or intentionally scoped checks.
+   - **Read** reports from `$RUN_DIR/reports/` (not from context memory).
+   - **Write** `$RUN_DIR/verification.md` with all verdicts and evidence checked.
 
 8. **CEO challenge**
    - The CEO challenges every expert at least once.
    - Challenge weak evidence, optimistic assumptions, missing alternatives, and overreach beyond the expert role.
+   - **Read** reports from `$RUN_DIR/reports/` and **write** `$RUN_DIR/challenges.md`.
 
 9. **Synthesize**
    - Final answer starts with CEO synthesis and concrete recommendation.
    - Cite or summarize each expert contribution.
    - Separate consensus, disagreement, verified facts, assumptions, open risks, and next action.
+   - **Read** all artifacts from `$RUN_DIR/` and **write** `$RUN_DIR/final-synthesis.md`.
 
 ## Runtime Gates
 
@@ -361,13 +428,20 @@ A first-version Expert Council is not validated until it passes at least these c
 
 Before treating an Expert Council run as complete:
 
+- [ ] Run directory created at `/tmp/ai-expert-team/runs/<run_id>/`.
+- [ ] `case-input.md` written with problem statement and constraints.
+- [ ] `team-roster.md` written with CEO and specialist selection rationale.
 - [ ] One CEO profile selected with rationale and honest boundaries.
 - [ ] 3-5 specialists selected with non-overlapping scopes.
 - [ ] Tool permissions and forbidden actions stated.
-- [ ] Each specialist received a handoff contract.
+- [ ] Each handoff written to `handoffs/<specialist-role>.md`.
+- [ ] Each expert report written to `reports/<specialist-role>.md`.
 - [ ] Each expert report includes evidence and uncertainty.
 - [ ] Verification layer produced PASS / FAIL / PARTIAL where needed.
+- [ ] `verification.md` written with all verdicts and evidence checked.
+- [ ] `challenges.md` written with CEO challenges and expert responses.
 - [ ] CEO challenged every expert at least once.
 - [ ] Final synthesis cites expert evidence and verification status.
+- [ ] `final-synthesis.md` written as the last artifact.
 - [ ] Open risks and next actions are explicit.
 - [ ] No external mutation occurred without user confirmation.

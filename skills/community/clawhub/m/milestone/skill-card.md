@@ -1,40 +1,54 @@
-## Description: <br>
-Milestone is a local command-line utility for logging entries, reviewing activity, searching history, and exporting reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Milestone is a local command-line activity logger for recording entries, reviewing recent history and statistics, searching logs, and exporting reports.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and command-line users use Milestone to record local activity entries, review recent history and statistics, search logs, and export reports from the terminal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Typed inputs may be saved locally and later surfaced through history, search, statistics, or exports. <br>
-Mitigation: Do not enter passwords, API keys, private prompts, confidential filenames, or sensitive business data into Milestone commands. <br>
+## Use Case:
 
+Developers and external users use Milestone to keep local terminal-based activity notes, inspect recent activity and aggregate statistics, search entries, and export reports in JSON, CSV, or text.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ckchzh/milestone) <br>
-- [Publisher Profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command-line text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local log files under ~/.local/share/milestone and can export JSON, CSV, or plain text reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Milestone stores user-entered activity entries in plaintext under ~/.local/share/milestone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering passwords, tokens, private customer data, or sensitive prompts; review local file permissions before storing private notes.
+
+Risk: The security guidance reports unreliable command behavior, including duplicate dispatch and Bash local-scope issues.
+
+Mitigation: Review command behavior in a non-sensitive local environment before relying on logs or exports.
+
+## Reference(s):
+
+- [Milestone on ClawHub](https://clawhub.ai/ckchzh/skills/milestone)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain terminal text with optional JSON, CSV, or text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local plaintext log files under ~/.local/share/milestone.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

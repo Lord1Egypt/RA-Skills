@@ -1,42 +1,53 @@
-## Description: <br>
-Calendar synchronization skill. Sync events between Google Calendar, Outlook, and local storage. Supports CRUD operations and reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calendar synchronization skill. Sync events between Google Calendar, Outlook, and local storage. Supports CRUD operations and reminders.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers, operators, and scheduling-focused users use this skill to guide calendar event creation, listing, deletion, availability checks, reminders, recurring events, and synchronization across Google Calendar, Outlook, and local storage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OAuth client secrets and calendar permissions can expose access to personal or organizational calendar data. <br>
-Mitigation: Protect OAuth secrets, use the narrowest calendar permissions available, and avoid storing credentials where unrelated agents or users can read them. <br>
-Risk: Create, edit, and delete operations can change or remove real calendar events. <br>
-Mitigation: Manually confirm the target account, calendar, event ID, event details, and operation type before applying changes. <br>
-Risk: The referenced calendar.py provider implementation may be supplied separately from this artifact. <br>
-Mitigation: Inspect the implementation before installing or running it, especially any provider authentication, sync, and deletion logic. <br>
+## Use Case:
 
+External users and developers use this skill to synchronize calendar events across Google Calendar, Outlook, and local storage, including CRUD operations, reminders, recurring events, availability checks, and meeting scheduling.
 
-## Reference(s): <br>
-- [Calendar Sync on ClawHub](https://clawhub.ai/jpengcheng523-netizen/jpeng-calendar-sync) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with shell command snippets, environment variable configuration, and JSON result examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Calendar operations may affect connected Google Calendar or Outlook data when a provider implementation is configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: metadata, release evidence, and SKILL.md frontmatter) <br>
+Risk: Calendar provider access can expose sensitive calendar data and account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when calendar access is acceptable, review requested OAuth scopes, and store client secrets in a protected environment or secrets manager.
+
+Risk: Delete operations can remove the wrong calendar event if the event identifier is incorrect.
+
+Mitigation: Confirm delete operations against the exact event before allowing them to run.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-calendar-sync)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include calendar event identifiers and provider calendar links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

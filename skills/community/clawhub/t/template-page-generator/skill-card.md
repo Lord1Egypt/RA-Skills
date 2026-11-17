@@ -1,39 +1,53 @@
-## Description: <br>
-Helps agents design template aggregation and detail pages for template galleries, marketplaces, CMS templates, design templates, vibe coding templates, and template-plus-data workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in designing template aggregation and detail pages for user-facing template galleries, template use flows, and template-plus-data page systems.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Designers, developers, and content teams use this skill to structure template gallery, hub, marketplace, and detail pages with clear browse, preview, use, and customization flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad template-related prompts where the user wanted unrelated CMS, coding, or SEO strategy guidance. <br>
-Mitigation: Confirm the desired page-design scope and redirect the agent to a more specific skill when the request is about unrelated CMS implementation, coding, or SEO strategy. <br>
+## Use Case:
 
+External users, designers, product teams, and developers use this skill to plan template gallery and template detail pages, including page sections, CTAs, browse-to-use flows, programmatic alignment, and schema choices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/template-page-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text, Configuration instructions] <br>
-**Output Format:** [Markdown or structured text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only page-design guidance; does not execute code, access credentials, or persist data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server evidence) <br>
+Risk: The skill has broad routing for template-related requests and may activate in adjacent page-design workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the routing breadth fits the intended agent workflow before installation or release.
+
+Risk: Generated page guidance may not match a team's product, legal, accessibility, or SEO standards without review.
+
+Mitigation: Have a human reviewer check recommendations before applying them to production pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/template-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with structured page recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page type, sections, primary CTA, user flow, programmatic alignment, and schema recommendations.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-Automate PSD text replacement on Mac and Windows with Photoshop, dry-run safety, style-lock checks, rollback, and local PSD index cache. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate PSD text replacement on Mac and Windows with Photoshop, dry-run safety, style-lock checks, rollback, and local PSD index cache.
 
-## Publisher: <br>
-[dhrxy](https://clawhub.ai/user/dhrxy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dhrxy](https://clawhub.ai/user/dhrxy)
 
-## Use Case: <br>
-Designers, production artists, and workflow operators use this skill to run structured PSD edit tasks through local agents. It helps resolve PSD or PSB files by path or index hint, replace or place content in named layers, preserve style constraints, and export PNG or ZIP outputs for chat workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can index local PSD and PSB files, which may expose a broad inventory of local design assets. <br>
-Mitigation: Use explicit narrow index roots, review or delete ~/.openclaw/psd-index.json when needed, and avoid indexing unrelated directories. <br>
-Risk: Chat-driven tasks can modify PSD assets or export derived PNG and ZIP files. <br>
-Mitigation: Run dry-run first, keep backups enabled, require human approval before real writes, and restrict which users or subagents can request edits. <br>
-Risk: Ambiguous file hints could target the wrong design file if not resolved carefully. <br>
-Mitigation: Prefer exact paths for write operations and require confirmation when multiple indexed candidates match a file hint. <br>
-Risk: Photoshop automation runs local OS-specific scripts through AppleScript or PowerShell. <br>
-Mitigation: Run only on intended macOS or Windows design agents with Photoshop installed and keep agent routing allowlists narrow. <br>
+## Use Case:
 
+Developers and design operations teams use this skill to route PSD or PSB edit requests into a structured task, modify Photoshop text layers or placed images, export PNG outputs, and return normalized execution results for chat workflows such as DingTalk.
 
-## Reference(s): <br>
-- [Task Schema](artifact/references/task-schema.json) <br>
-- [PSD Automator Error Codes](artifact/references/error-codes.md) <br>
-- [OpenClaw Subagent Routing](artifact/references/openclaw-subagent-routing.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dhrxy/psd-automator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown or plain-text agent responses with JSON task payloads, shell commands, normalized execution results, and absolute file markers for generated PSD, PNG, or ZIP outputs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run previews, backup paths, audit log paths, standardized error codes, and optional DingTalk image or file markers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Dry-run mode can still write audit data and may perform file copy or path-bridge preparation before returning a preview.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review task files before execution, treat dry-run as a planning aid rather than a zero-write guarantee, and run in a constrained workspace when testing untrusted requests.
+
+Risk: The local PSD index can persist a broad inventory of design files and metadata under the user's home directory.
+
+Mitigation: Use explicit --root values for indexing, avoid broad Desktop or Documents defaults, and review or delete ~/.openclaw index and audit files when they are no longer needed.
+
+Risk: Automatically routed chat requests can modify or export sensitive design assets if sender and output paths are not constrained.
+
+Mitigation: Enforce sender allowlists, constrain task output paths, require dry-run review for untrusted input, and keep one write task per PSD at a time.
+
+Risk: Style-lock soft retry can allow edits to proceed after a font or size mismatch.
+
+Mitigation: Set styleLockSoftRetry to false when preserving text style integrity is required.
+
+## Reference(s):
+
+- [PSD Automator Task Schema](references/task-schema.json)
+- [PSD Automator Error Codes](references/error-codes.md)
+- [OpenClaw Subagent Routing](references/openclaw-subagent-routing.md)
+- [ClawHub Skill Page](https://clawhub.ai/dhrxy/skills/psd-automator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance, JSON task/result structures, shell commands, and generated PSD, PNG, ZIP, backup, index, and audit-log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit DingTalk image or file markers containing absolute output paths after successful PNG or ZIP export.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

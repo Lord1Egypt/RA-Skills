@@ -1,44 +1,55 @@
-## Description: <br>
-Build vector search with Weaviate using v4 syntax, proper module configuration, and production-ready patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build vector search with Weaviate using v4 syntax, proper module configuration, and production-ready patterns.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate and review Weaviate v4 guidance for RAG, semantic search, module setup, batch imports, hybrid search, and index tuning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated examples may target the wrong Weaviate instance or production collection. <br>
-Mitigation: Confirm the target Weaviate instance and test against non-production collections before running generated code. <br>
-Risk: External vectorizer, generative, or reranker modules may send documents or queries to third-party AI providers. <br>
-Mitigation: Enable only approved modules and avoid sending sensitive documents or queries to external AI providers without authorization. <br>
-Risk: Module or API-key configuration errors can cause generated code to fail or produce empty results. <br>
-Mitigation: Verify enabled Weaviate modules, required provider headers, and environment variables before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Weaviate skill page](https://clawhub.ai/ivangdavila/weaviate) <br>
-- [Module configuration](artifact/modules.md) <br>
-- [Operations guide](artifact/operations.md) <br>
-- [v3 to v4 migration reference](artifact/v4-syntax.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to generate or review Weaviate vector search implementations that use current v4 client syntax, module configuration, batch import patterns, hybrid search, filtering, and HNSW tuning.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Python, YAML, and shell snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Weaviate v4 client examples, module settings, query patterns, batch import guidance, and debugging steps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: API-based vectorizer, generative, or reranker examples can send indexed or queried data to external providers.
+
+Mitigation: Confirm the data is approved for the selected provider before use, and prefer local modules when external data transfer is not acceptable.
+
+Risk: Incorrect or outdated Weaviate client syntax can lead to broken vector search code or misleading implementation guidance.
+
+Mitigation: Use the documented v4 client patterns, context-managed connections, module checks, and batch error handling described in the artifact references.
+
+## Reference(s):
+
+- [Weaviate ClawHub Skill](https://clawhub.ai/ivangdavila/skills/weaviate)
+- [v3 to v4 Migration Reference](artifact/v4-syntax.md)
+- [Weaviate Module Configuration](artifact/modules.md)
+- [Weaviate Operations Guide](artifact/operations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with Python and YAML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance is scoped to Weaviate client v4 patterns and module configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

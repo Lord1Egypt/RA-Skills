@@ -1,43 +1,59 @@
-## Description: <br>
-Binance Dollar-Cost Averaging (DCA) tool for automated and manual recurring crypto purchases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Binance Dollar-Cost Averaging (DCA) tool for planning recurring crypto purchases, checking balances and trade history, and placing manual or scheduled spot buys on Binance.
 
-## Publisher: <br>
-[fpsjago](https://clawhub.ai/user/fpsjago) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fpsjago](https://clawhub.ai/user/fpsjago)
 
-## Use Case: <br>
-External users and developers use this skill to plan Binance DCA strategies, check balances and trade history, view projections, and place manual or scheduled spot buy orders. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend live Binance funds without built-in confirmation or spending limits. <br>
-Mitigation: Require explicit user confirmation before live buys, use small order amounts, and avoid unattended schedules unless they are capped and monitored. <br>
-Risk: Exchange API credentials are required for signed account and order actions. <br>
-Mitigation: Use restricted Binance API keys with withdrawals disabled, apply IP restrictions where possible, and provide credentials only through environment variables. <br>
-Risk: Live trading behavior may be difficult to reverse if the wrong symbol, amount, or endpoint is used. <br>
-Mitigation: Use Binance testnet first and verify the trading pair, amount, order type, and base URL before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fpsjago/binance-dca-tool) <br>
-- [Binance Spot API](https://api.binance.com) <br>
-- [Binance Spot Testnet](https://testnet.binance.vision) <br>
+## Use Case:
 
+External users and developers use this skill to plan Binance DCA strategies, inspect account balances and trade history, and execute or schedule recurring spot purchases.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Binance API calls through the bundled shell script when the user supplies credentials and requests live actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place real-money Binance spot buy orders when signed API credentials are available.
+
+Mitigation: Use Binance testnet first, require explicit confirmation before live buys or recurring schedules, and set clear spending limits.
+
+Risk: Binance API credentials could grant more authority than the DCA workflow needs.
+
+Mitigation: Use minimum-permission API keys with withdrawals disabled and IP allowlisting enabled.
+
+Risk: Inline cron secrets or unattended schedules could expose credentials or trigger unintended purchases.
+
+Mitigation: Avoid placing secrets directly in cron entries and review every scheduled buy configuration before enabling it.
+
+## Reference(s):
+
+- [Binance API base URL](https://api.binance.com)
+- [Binance Spot Testnet](https://testnet.binance.vision)
+- [ClawHub skill page](https://clawhub.ai/fpsjago/skills/binance-dca-tool)
+- [Publisher profile](https://clawhub.ai/user/fpsjago)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call Binance public or signed API endpoints through the bundled shell script when the user supplies credentials and chooses an action.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

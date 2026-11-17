@@ -1,46 +1,62 @@
-## Description: <br>
-Generates Douyin/TikTok-style vertical marketing videos from images and captions, with TTS voiceover, line-by-line subtitles, random background music, and automatic duration fitting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vertical Douyin/TikTok-style marketing videos from images and copy, adding Chinese TTS narration, line-by-line subtitles, optional random BGM, and adaptive duration.
 
-## Publisher: <br>
-[wanghu66](https://clawhub.ai/user/wanghu66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wanghu66](https://clawhub.ai/user/wanghu66)
 
-## Use Case: <br>
-External users and marketing operators use this skill to turn product images and Chinese promotional copy into short vertical MP4 videos with voiceover, subtitles, and background music. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Online TTS can transmit caption text to an external service. <br>
-Mitigation: Do not include confidential or regulated text in captions when using online TTS. <br>
-Risk: Internet BGM downloads require network access during generation. <br>
-Mitigation: Set audio.bgm.from_internet to false in config/default.json for offline or network-restricted use. <br>
-Risk: Generated videos may be copied outside the skill workspace by default. <br>
-Mitigation: Set output.copyToWindows to false when generated files should remain inside the skill workspace. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to turn product images and Chinese marketing copy into short vertical MP4 videos with narration, subtitles, and background music for Douyin/TikTok-style publishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanghu66/hehe-ddc) <br>
-- [README](README.md) <br>
-- [Usage guide](docs/USAGE.md) <br>
-- [Installation guide](docs/INSTALL.md) <br>
-- [Configuration template](config/config.template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, shell commands, configuration, guidance] <br>
-**Output Format:** [MP4 video files with generated MP3 audio and SRT subtitles; Markdown guidance with bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses image paths, captions, voice, duration, BGM, subtitle, and output-copy configuration] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill calls external TTS and BGM services and may download audio from the internet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment with pinned dependencies, run only where those network calls are approved, and disable internet BGM when external downloads are not needed.
+
+Risk: The default configuration may copy generated videos to a mounted Windows directory and uses weak output-path controls.
+
+Mitigation: Restrict output names to simple .mp4 filenames inside the skill output folder, review windowsPath before running, or set copyToWindows to false.
+
+Risk: Generated promotional copy can include sensitive details when supplied by the user.
+
+Mitigation: Provide prices, contact details, addresses, and promotions explicitly only when they are approved for publication, and review the final video before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wanghu66/skills/hehe-ddc)
+- [Publisher profile](https://clawhub.ai/user/wanghu66)
+- [Skill documentation](SKILL.md)
+- [Usage guide](docs/USAGE.md)
+- [Install guide](docs/INSTALL.md)
+- [Baidu TTS endpoint](https://fanyi.baidu.com/tts)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions]
+
+**Output Format:** [MP4 video, MP3 audio, SRT subtitles, and command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are written to the skill output folder; the generated MP4 may also be copied to a configured Windows-mounted directory when enabled.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and clawhub.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

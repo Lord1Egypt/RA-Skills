@@ -1,42 +1,58 @@
-## Description: <br>
-Analyzes SQL queries and EXPLAIN output to identify performance bottlenecks and provide optimization guidance for Databricks SQL, PostgreSQL, Spark SQL, and ANSI SQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Profiler helps data engineers and developers analyze SQL queries and EXPLAIN output to identify performance bottlenecks and produce concrete optimization guidance across Databricks SQL, PostgreSQL, Spark SQL, and ANSI SQL.
 
-## Publisher: <br>
-[Nerikko](https://clawhub.ai/user/Nerikko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nerikko](https://clawhub.ai/user/nerikko)
 
-## Use Case: <br>
-Developers and data engineers use this skill to analyze slow SQL queries or pasted query plans, understand the likely cause of bottlenecks, and receive concrete rewrite, indexing, partitioning, or database maintenance suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-supplied SQL queries or EXPLAIN output may contain credentials, customer data, or sensitive literal values. <br>
-Mitigation: Redact secrets, identifiers, and sensitive values before providing SQL or plan output to the skill. <br>
-Risk: Suggested indexes, rewrites, VACUUM/ANALYZE, partitioning, or OPTIMIZE changes may have unintended effects in production. <br>
-Mitigation: Test recommendations in staging, measure query plans and performance, and apply changes through normal database review and rollout processes. <br>
-Risk: Dialect-specific recommendations may not fit a particular schema, data distribution, workload, or database version. <br>
-Mitigation: Validate recommendations against the target database documentation and the team's knowledge of local data and workload behavior. <br>
+## Use Case:
 
+Developers, data engineers, and database practitioners use this skill to review slow SQL queries or query plans, understand likely causes, and get practical rewrite, indexing, partitioning, and dialect-specific tuning suggestions.
 
-## Reference(s): <br>
-- [SQL Profiler ClawHub release](https://clawhub.ai/Nerikko/sql-profiler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with plain-English analysis, SQL examples, and optimization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include qualitative performance estimates; does not execute SQL or connect to databases.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Risk: The README uses an unpinned npx installer command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted ClawHub or npm source, avoid administrator privileges, and prefer a pinned or verified installer version when available.
+
+Risk: Queries and EXPLAIN output may contain sensitive table names, schema details, customer data, or business logic.
+
+Mitigation: Review and redact SQL text and query plans before sharing them with an agent or external service.
+
+Risk: Optimization suggestions may be incomplete or incorrect for a specific schema, data distribution, or runtime environment.
+
+Mitigation: Validate changes in staging, compare real execution plans and timings, and consult database-specific documentation before applying changes in production.
+
+## Reference(s):
+
+- [ClawHub SQL Profiler skill page](https://clawhub.ai/nerikko/skills/sql-profiler)
+- [Nerikko publisher profile](https://clawhub.ai/user/nerikko)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with SQL examples, issue summaries, explanations, and optimization recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include estimated performance impact and dialect-specific tuning advice; recommendations should be tested against the target database and workload before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

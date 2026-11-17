@@ -1,43 +1,56 @@
-## Description: <br>
-A股每日简报自动生成系统。抓取东方财富实时数据，生成包含大盘指数、热门板块、资金动向等完整信息的日报报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language A-share daily market reports from public Eastmoney index and sector data.
 
-## Publisher: <br>
-[zsxink](https://clawhub.ai/user/zsxink) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zsxink](https://clawhub.ai/user/zsxink)
 
-## Use Case: <br>
-External users and developers use this skill to generate A-share market daily reports from Eastmoney data, including index summaries, sector movement, funding direction, risk notes, and optional JSON output for downstream processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The report can contain incomplete or unavailable market data when Eastmoney endpoints are unavailable, especially outside trading windows. <br>
-Mitigation: Check the generated data failure warnings and rerun during the documented post-close window before using the report operationally. <br>
-Risk: The report includes market strategy and sector attention guidance that may be unsuitable as standalone financial advice. <br>
-Mitigation: Review the generated report with independent market analysis and do not treat the output as an instruction to trade. <br>
+## Use Case:
 
+Market watchers and agents use this skill to fetch public A-share index and sector data and produce a daily Markdown or JSON report summarizing market movement, hot sectors, unavailable capital-flow fields, risks, and heuristic strategy notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zsxink/a-stock-daily-report) <br>
-- [Eastmoney quote site](http://quote.eastmoney.com/) <br>
-- [Eastmoney sector API](http://push2.eastmoney.com/api/qt/clist/get) <br>
-- [Eastmoney index API](http://push2.eastmoney.com/api/qt/stock/get) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report by default, or structured JSON when invoked with the json or --json argument.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Node.js built-in modules and writes to standard output; users may redirect output to a local report file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Market data is retrieved over unencrypted HTTP, so responses could be stale or tampered with in transit.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in a trusted network, review generated reports before use, and do not treat the output as verified real-time market data.
+
+Risk: The report includes heuristic strategy text and unavailable capital-flow fields rendered as "--".
+
+Mitigation: Present outputs as informational summaries, verify figures against authoritative financial sources, and avoid using the report as investment advice.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zsxink/skills/a-stock-daily-report)
+- [Eastmoney Quote Site](http://quote.eastmoney.com/)
+- [Eastmoney Sector Data API](http://push2.eastmoney.com/api/qt/clist/get)
+- [Eastmoney Stock Data API](http://push2.eastmoney.com/api/qt/stock/get)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, json, text, guidance]
+
+**Output Format:** [Markdown report by default; pretty-printed JSON when invoked with json or --json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Unavailable fields are emitted as "--" and failed data fetches are noted in the report.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

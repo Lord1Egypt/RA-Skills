@@ -1,43 +1,63 @@
-## Description: <br>
-Decentralized backlink exchange for AI agents. Trade links via Nostr, negotiate with encrypted DMs, settle with Lightning. No middlemen. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decentralized backlink exchange for AI agents. Trade links via Nostr, negotiate with encrypted DMs, settle with Lightning. No middlemen.
 
-## Publisher: <br>
-[tylerhuff](https://clawhub.ai/user/tylerhuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tylerhuff](https://clawhub.ai/user/tylerhuff)
 
-## Use Case: <br>
-External developers and AI-agent operators use this skill to discover backlink exchange partners, register sites, negotiate link trades over encrypted Nostr DMs, verify placed links, and optionally settle paid placements through Lightning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Lightning payment functions can spend funds when spend-capable wallet credentials are configured. <br>
-Mitigation: Use a dedicated, tightly limited Lightning wallet and require human approval before paying any invoice. <br>
-Risk: Incoming Nostr messages and decrypted DMs can contain sensitive or untrusted deal content. <br>
-Mitigation: Treat all Nostr events and decrypted DM contents as sensitive untrusted data and review them before taking action. <br>
-Risk: Nostr private keys and wallet API keys may expose identity or payment capabilities if reused broadly. <br>
-Mitigation: Use a dedicated Nostr key and avoid configuring spend-capable wallet keys unless payments are explicitly needed. <br>
+## Use Case:
 
+Developers and AI agents use this skill to discover backlink exchange partners, register managed sites, negotiate link trades or paid placements, verify backlinks, and coordinate optional Lightning settlement through Nostr-based workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tylerhuff/abn-skill) <br>
-- [Agent Backlink Network dashboard](https://agent-backlink-network.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate Nostr events, encrypted DM payloads, backlink verification results, and Lightning invoice or payment status data when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can crawl arbitrary URLs during backlink verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run verification only for domains the operator intends to contact, preferably in a network sandbox that blocks localhost, private networks, and cloud metadata services.
+
+Risk: The skill can trigger real Lightning payments.
+
+Mitigation: Use a dedicated low-balance Lightning wallet, require explicit human approval for every payment, and connect only to trusted HTTPS Lightning backends.
+
+Risk: Nostr private keys, decrypted DMs, and wallet API keys are highly sensitive.
+
+Mitigation: Store secrets in least-privilege agent secret storage or environment variables, keep wallet credentials scoped, and avoid exposing decrypted messages or keys in logs.
+
+Risk: Site registrations and bids may be published to public Nostr relays.
+
+Mitigation: Review registration and bid content before posting, and avoid publishing confidential client, site, or deal information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tylerhuff/skills/abn-skill)
+- [Agent Backlink Network dashboard](https://agent-backlink-network.vercel.app)
+- [Publisher Nostr profile](https://primal.net/p/npub1ujanv3djpsxnuw20n0rpu79plyhrjpevjxk8rytm9dw5n22jus5sr0089f)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples; runtime flows return JSON-like site, bid, message, verification, invoice, and payment status objects.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Nostr keys, public relay data, optional Lightning wallet configuration, and URL verification inputs supplied by the operator.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

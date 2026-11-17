@@ -1,11 +1,11 @@
 ---
 name: oo-opencage
-description: "OpenCage (opencagedata.com). Use this skill for ANY OpenCage request — reading, creating, and updating data. Whenever a task involves OpenCage, use this skill instead of calling the API directly."
+description: "OpenCage (opencagedata.com). Use this skill for ANY OpenCage request — searching and reading data. Whenever a task involves OpenCage, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "OpenCage"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["opencage"]
   icon: "https://static.oomol.com/logo/third-party/Opencage.svg"
 ---
@@ -37,7 +37,7 @@ Each action is listed below with a one-line description; actions that change sta
 
 ## Available actions
 
-- `geocode_forward` — Convert an address or place name into OpenCage geocoding results. [write]
+- `geocode_forward` — Convert an address or place name into OpenCage geocoding results.
 - `geocode_geojson` — Return OpenCage geocoding results in GeoJSON FeatureCollection format.
 - `geocode_reverse` — Convert a latitude and longitude pair into OpenCage reverse geocoding results.
 
@@ -70,11 +70,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — OpenCage is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=opencage
+  https://console.oomol.com/connections/opencage
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - OpenCage homepage: https://opencagedata.com
+- API documentation: https://opencagedata.com/api

@@ -111,6 +111,7 @@ errors:
   ECDSAInvalidSignature():                               0xf645eedf
   ECDSAInvalidSignatureLength(uint256):                  0xfce698f7
   ECDSAInvalidSignatureS(bytes32):                       0xd78bce0c
+  SafeCastOverflowedIntToUint(int256):                   0xa8ce4432
   SafeCastOverflowedUintToInt(uint256):                  0x24775e06
   SafeERC20FailedOperation(address):                     0x5274afe7
   SF_TOKEN_AGREEMENT_ALREADY_EXISTS():                   0xf05521f6

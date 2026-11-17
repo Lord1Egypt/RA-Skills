@@ -4,19 +4,47 @@
 import argparse
 import json
 import os
+import ssl
 import sys
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-DEFAULT_GATEWAY = "https://ucpgateway.theagenttimes.com/mcp"
-PACKAGE_VERSION = "0.2.3"
+DEFAULT_GATEWAY = "https://ucpg.ai/mcp"
+MIN_PYTHON = (3, 8)
+PACKAGE_VERSION = "0.2.4"
 PRIVATE_FIELDS = {"d", "p", "q", "dp", "dq", "qi", "k"}
+SCRIPT_NAME = "register_profile.py"
+
+
+def require_supported_python():
+    if sys.version_info >= MIN_PYTHON:
+        return
+    required = ".".join(str(part) for part in MIN_PYTHON)
+    current = ".".join(str(part) for part in sys.version_info[:3])
+    print(
+        f"{SCRIPT_NAME} requires Python {required}+; current Python is {current}. "
+        f"Run it with `uv run python scripts/{SCRIPT_NAME} ...` or a Python {required}+ interpreter.",
+        file=sys.stderr,
+    )
+    sys.exit(2)
+
+
+require_supported_python()
 
 
 class RegisterProfileError(Exception):
     """Raised for safe, user-facing registration failures."""
+
+
+def explain_url_error(reason):
+    if isinstance(reason, ssl.SSLCertVerificationError):
+        return (
+            "TLS certificate verification failed in this Python runtime. "
+            f"Try `uv run python scripts/{SCRIPT_NAME} ...` or use a Python install with current CA certificates."
+        )
+    return f"Could not reach UCP Gateway MCP endpoint: {reason}"
 
 
 def read_json(path):
@@ -25,7 +53,7 @@ def read_json(path):
             return json.load(handle)
     except FileNotFoundError as exc:
         raise RegisterProfileError(
-            "Missing ./.ucpgateway/public_key.jwk. Run python3 scripts/init_ucpgateway.py first or provide a local EC P-256 public JWK."
+            "Missing ./.ucpgateway/public_key.jwk. Run uv run python scripts/init_ucpgateway.py first or provide a local EC P-256 public JWK."
         ) from exc
     except json.JSONDecodeError as exc:
         raise RegisterProfileError(f"{path} is not valid JSON: {exc.msg}.") from exc
@@ -82,7 +110,7 @@ def post_json(url, payload, timeout=60):
             raise RegisterProfileError(f"Gateway HTTP {exc.code}: {body[:1000]}") from exc
         return parsed
     except urllib.error.URLError as exc:
-        raise RegisterProfileError(f"Could not reach UCP Gateway MCP endpoint: {exc.reason}") from exc
+        raise RegisterProfileError(explain_url_error(exc.reason)) from exc
 
     try:
         return json.loads(body)

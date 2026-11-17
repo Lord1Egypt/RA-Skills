@@ -1,44 +1,58 @@
-## Description: <br>
-Monitors large cryptocurrency wallet balances on-chain using Web3 RPC to detect potential market-moving activity and can read wallet addresses from references/wallets.md or command-line input. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors large cryptocurrency wallet balances on-chain using Web3 RPC to detect potential market-moving activity and can read wallet addresses from references/wallets.md or custom inputs.
 
-## Publisher: <br>
-[waleolapo](https://clawhub.ai/user/waleolapo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[waleolapo](https://clawhub.ai/user/waleolapo)
 
-## Use Case: <br>
-Developers, analysts, and operators use this skill to monitor configured Ethereum wallet addresses and review balance alerts for large-holder activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: Monitored wallet addresses are sent to the configured Ethereum RPC provider. <br>
-Mitigation: Use a trusted RPC provider and monitor only wallet addresses you are comfortable sharing with that provider. <br>
-Risk: RPC_URL may contain a provider API key or other sensitive endpoint value. <br>
-Mitigation: Treat RPC_URL as sensitive configuration and use a limited-purpose provider key where possible. <br>
-Risk: Scheduled execution can create ongoing background monitoring. <br>
-Mitigation: Create a cron job only when continuous monitoring is intended, and document or disable the schedule when it is no longer needed. <br>
+## Use Case:
 
+Developers, analysts, and operators use this skill to monitor configured Ethereum wallet addresses for large ETH balances and review console alerts that may indicate market-moving wallet activity.
 
-## Reference(s): <br>
-- [Known Whale Wallet Addresses](references/wallets.md) <br>
-- [Default Ethereum RPC endpoint](https://eth.llamarpc.com) <br>
-- [ClawHub skill page](https://clawhub.ai/waleolapo/crypto-whale-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text output with wallet addresses, ETH balances, and threshold alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads wallet addresses from arguments or references/wallets.md and uses RPC_URL when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Wallet addresses monitored by the skill are sent to the default or configured Ethereum RPC provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the wallet list and RPC_URL before running, and use a trusted provider when monitored addresses are sensitive.
+
+Risk: Scheduled runs can create recurring network requests to the selected RPC endpoint.
+
+Mitigation: Review cron frequency and endpoint limits before enabling automated monitoring.
+
+Risk: Balance alerts may be incomplete or misleading if the RPC endpoint is unavailable, delayed, or returns errors.
+
+Mitigation: Treat output as monitoring guidance and verify important findings against an independent chain explorer or RPC provider.
+
+## Reference(s):
+
+- [Known Whale Wallet Addresses](references/wallets.md)
+- [Default Ethereum RPC endpoint](https://eth.llamarpc.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Console text with wallet address, ETH balance, and alert status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured or default wallet lists, an RPC_URL environment override, and a fixed 100 ETH alert threshold.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Iris Pro reads a Gmail inbox, scores messages by urgency and sender importance, drafts replies for actionable emails, generates weekly inbox analytics, and produces a priority action plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iris Pro reads Gmail inbox messages, scores urgency and sender importance, drafts personalised replies for actionable messages, generates weekly inbox analytics, and produces a priority action plan.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Individuals and teams use this skill to triage Gmail messages, identify urgent or important senders, draft replies, and create local inbox reports for follow-up planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Gmail content and credentials. <br>
-Mitigation: Use a dedicated Gmail app password, keep access limited to a private working environment, and review the skill before installing or running it. <br>
-Risk: Email-derived Markdown and JSON reports are saved locally. <br>
-Mitigation: Run the skill only in a private directory and delete generated iris_pro_report files when finished. <br>
-Risk: The current privacy statement may not fully describe the privacy implications of processing inbox data. <br>
-Mitigation: Treat all generated outputs as sensitive and do not rely on the privacy statement as a complete disclosure. <br>
+## Use Case:
 
+External users with Gmail accounts use this skill to triage recent inbox messages, classify email categories, draft reply templates, and save inbox reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/iris-pro) <br>
-- [Iris Pro license key purchase](https://ko-fi.com/s/f75940a0ce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Markdown, JSON, Analysis, Guidance] <br>
-**Output Format:** [Markdown guidance with bash and Python code blocks; generated inbox reports are Markdown and JSON files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scans up to 200 Gmail messages, prints console tables and draft replies, and writes dated local report files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: frontmatter and server release evidence) <br>
+Risk: The skill requires a Gmail app password and accesses Gmail inbox contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after reviewing the access requirements, and revoke the Gmail app password when finished.
+
+Risk: Message subjects, senders, classifications, and generated reply drafts are saved as local files.
+
+Mitigation: Run it in a private directory outside synced or version-controlled folders, and protect or delete generated reports after use.
+
+Risk: The install command uses an unsafe package installation option.
+
+Mitigation: Run the skill in an isolated Python environment and review installation commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/skills/iris-pro)
+- [Skill homepage](https://clawhub.ai/occupythemilkyway/iris-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Console text plus generated Markdown and JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates local inbox reports and draft reply text based on Gmail message metadata and snippets.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

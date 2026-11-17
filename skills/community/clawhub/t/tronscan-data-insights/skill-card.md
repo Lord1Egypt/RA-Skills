@@ -1,45 +1,57 @@
-## Description: <br>
-TRON network insights for new accounts, daily transaction counts, transaction type distribution, hot tokens, hot contracts, and top accounts by transaction count or staked TRX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TRON network insights for new accounts, daily transaction count, transaction type distribution, hot tokens, hot contracts, top accounts by transaction count, and staked TRX rankings.
 
-## Publisher: <br>
-[sshnii](https://clawhub.ai/user/sshnii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sshnii](https://clawhub.ai/user/sshnii)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to route TRON network analytics questions to TronScan MCP tools for activity trends, rankings, hot tokens or contracts, TVL, resource usage, and other public chain metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Address lookup requests may be sent to the TronScan MCP provider. <br>
-Mitigation: Use address lookup only when the user intentionally asks for cross-chain address information. <br>
-Risk: Daily new-account data can be mistaken for daily active users. <br>
-Mitigation: Use getActiveStatistic for active account metrics and label getDailyNewAccounts as daily new addresses only. <br>
-Risk: TronScan API or MCP rate limits may interrupt analysis. <br>
-Mitigation: Retry with narrower time ranges or configure a TronScan API key when rate limits are encountered. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to retrieve and interpret aggregate TRON network activity, token, contract, account-ranking, resource, and DeFi TVL metrics through TronScan MCP tools.
 
-## Reference(s): <br>
-- [TronScan MCP Server](https://mcp.tronscan.org/mcp) <br>
-- [TronScan MCP Guide](https://mcpdoc.tronscan.org) <br>
-- [TronScan Developer API](https://tronscan.org/#/developer/api) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sshnii/tronscan-data-insights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Analysis] <br>
-**Output Format:** [Markdown guidance with selected TronScan MCP tool calls and summarized analytics results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public TRON analytics; results depend on TronScan MCP availability, rate limits, and requested time ranges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: Address-level cross-chain lookup may route a single TRON address to TronScan despite the skill's non-profiling scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use aggregate analytics tools by default and invoke cross-chain address lookup only when the user explicitly requests that lookup and accepts sending the address to TronScan.
+
+Risk: TronScan API rate limits or narrow time-range defaults may produce incomplete or empty analytics results.
+
+Mitigation: Check requested date ranges and retry with configured TronScan API access when rate limits or 429 errors occur.
+
+## Reference(s):
+
+- [TronScan MCP Server](https://mcp.tronscan.org/mcp)
+- [TronScan MCP Guide](https://mcpdoc.tronscan.org)
+- [TronScan Developer API](https://tronscan.org/#/developer/api)
+- [ClawHub skill page](https://clawhub.ai/sshnii/skills/tronscan-data-insights)
+- [Publisher profile](https://clawhub.ai/user/sshnii)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown or plain text summaries with TronScan MCP tool call guidance and returned analytics data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include time ranges, ranking categories, token or contract dimensions, and TronScan result fields depending on the requested metric.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

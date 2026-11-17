@@ -43,8 +43,8 @@ git clone https://github.com/jose-compu/self-improving-robotics.git ~/.openclaw/
 ### 2. Install the Hook (Optional)
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-robotics
-openclaw hooks enable self-improving-robotics
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-robotics
 ```
 
 ### 3. Create Learning Files
@@ -98,23 +98,9 @@ Is it safety-critical or risk-reducing?
 | Simulation success but real robot failure | Log learning | LEARNINGS.md (`sim_to_real_gap`) |
 | Thermal throttling, battery sag, or power brownout | Log learning | LEARNINGS.md (`power_thermal_constraint`) |
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session communication. Use only when cross-session sharing is explicitly needed.
-
-### sessions_send
-
-Share a robotics incident finding with another session:
-```
-sessions_send(sessionKey="session-id", message="Planner failed in narrow corridor at 0.35 m clearance; fallback behavior avoided collision; add to runbook.")
-```
-
-### sessions_spawn
-
-Spawn a background agent to analyze recurring robotics patterns:
-```
-sessions_spawn(task="Review .learnings/ROBOTICS_ISSUES.md for recurring localization_drift patterns and propose promotion candidates", label="robotics-pattern-review")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## Available Hook Events
 

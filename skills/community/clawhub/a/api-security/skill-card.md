@@ -1,43 +1,57 @@
-## Description: <br>
-Guides agents through secure API design patterns for authentication, authorization, input validation, rate limiting, and protection against common API vulnerabilities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers apply API security practices for authentication, authorization, input validation, rate limiting, and protection against common API vulnerabilities.
 
-## Publisher: <br>
-[brandonwise](https://clawhub.ai/user/brandonwise) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brandonwise](https://clawhub.ai/user/brandonwise)
 
-## Use Case: <br>
-Developers and engineers use this skill when designing, implementing, reviewing, or hardening REST, GraphQL, and WebSocket APIs. It helps produce practical guidance, code examples, middleware patterns, and checklists for authentication, authorization, validation, rate limiting, and OWASP API Top 10 concerns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Code snippets may be copied into production without adapting authentication, token storage, rate limits, or authorization behavior to the target system. <br>
-Mitigation: Review, test, and adapt each example before production deployment, with particular attention to secrets, token lifetimes, refresh-token storage, rate-limit keys, and object-level authorization checks. <br>
-Risk: Documentation-only security guidance can be incomplete for an application's specific threat model or regulatory requirements. <br>
-Mitigation: Pair the guidance with application-specific security review, dependency updates, vulnerability scanning, and audit preparation before relying on it for production controls. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brandonwise/api-security) <br>
-- [OWASP API Security Top 10](https://owasp.org/www-project-api-security/) <br>
-- [JWT Best Current Practices](https://tools.ietf.org/html/rfc8725) <br>
-- [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html) <br>
-- [API Security Checklist](https://github.com/shieldfy/API-Security-Checklist) <br>
+## Use Case:
 
+Developers and engineers use this skill when designing, implementing, or reviewing REST, GraphQL, or WebSocket APIs that need authentication, authorization, validation, rate limiting, secure headers, and OWASP API Top 10 coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JavaScript code examples, configuration snippets, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; examples should be reviewed and adapted before production use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The JWT example stores refresh tokens directly, which could weaken an application if copied into production.
+
+Mitigation: Store only refresh-token hashes, rotate refresh tokens, support revocation, and use secure browser cookie handling where appropriate.
+
+Risk: The skill provides security guidance and code examples that may need adaptation to the user's framework, threat model, and compliance requirements.
+
+Mitigation: Review examples with application-specific security requirements before deployment and validate implementation choices through security testing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brandonwise/skills/api-security)
+- [Publisher Profile](https://clawhub.ai/user/brandonwise)
+- [OWASP API Security Top 10](https://owasp.org/www-project-api-security/)
+- [JWT Best Practices](https://tools.ietf.org/html/rfc8725)
+- [Express Security Best Practices](https://expressjs.com/en/advanced/best-practice-security.html)
+- [API Security Checklist](https://github.com/shieldfy/API-Security-Checklist)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with JavaScript code examples, checklists, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; examples should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

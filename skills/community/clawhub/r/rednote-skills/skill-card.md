@@ -1,42 +1,57 @@
-## Description: <br>
-Comprehensive tool for interacting with the rednote (xiaohongshu,小红书) platform that enables users to search for posts by keyword, extract content from specific notes in markdown format, and perform interaction actions like liking, commenting, collecting, following, and publishing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive tool for interacting with the Rednote (Xiaohongshu) platform by searching posts, extracting note content as markdown, and performing account actions such as liking, commenting, collecting, following, and publishing.
 
-## Publisher: <br>
-[MrMao007](https://clawhub.ai/user/MrMao007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mrmao007](https://clawhub.ai/user/mrmao007)
 
-## Use Case: <br>
-Developers and agent users can use this skill to automate Rednote/Xiaohongshu workflows, including searching for notes, extracting note content, and performing account actions such as publishing, commenting, following, liking, and collecting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse saved Rednote/Xiaohongshu login cookies to act on a user's account. <br>
-Mitigation: Keep rednote_cookies.json private, delete or revoke it when work is complete, and limit access to the workspace where the cookie file is stored. <br>
-Risk: The skill can publish, comment, follow, like, collect, and upload local images without built-in confirmation checks. <br>
-Mitigation: Require explicit user approval before any visible account action or local image upload is executed. <br>
-Risk: Browser automation depends on current Xiaohongshu page structure and may fail if the site UI changes or access is restricted. <br>
-Mitigation: Validate login and test the target workflow before relying on results; inspect failures before retrying account actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/MrMao007/rednote-skills) <br>
-- [Xiaohongshu](https://www.xiaohongshu.com) <br>
+## Use Case:
 
+External users and developers use this skill to automate Rednote content discovery, note extraction, and authenticated engagement workflows through browser automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, strings, and command-line output from Playwright automation scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and reuse rednote_cookies.json for authenticated browser sessions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can use a logged-in Xiaohongshu account to like, comment, collect, follow, and publish content without strong per-action safeguards.
+
+Mitigation: Review each account action before execution and prefer adding URL allowlisting, dry-run behavior, or explicit confirmations before using the skill with a real account.
+
+Risk: The skill stores the Xiaohongshu browser session in rednote_cookies.json.
+
+Mitigation: Treat rednote_cookies.json like a password, keep it out of shared folders and source control, and use protected storage where possible.
+
+Risk: Automated public engagement may affect the user's account reputation or platform compliance posture.
+
+Mitigation: Use the skill only for intended, reviewed interactions and follow Xiaohongshu's terms, community rules, and rate limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mrmao007/skills/rednote-skills)
+- [Rednote / Xiaohongshu website](https://www.xiaohongshu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Rednote note URLs, extracted note markdown, and success or error status messages for authenticated account actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

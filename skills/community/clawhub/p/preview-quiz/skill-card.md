@@ -1,42 +1,56 @@
-## Description: <br>
-Create a shareable RooQuiz preview quiz: a right/wrong assessment where correct answers earn points and the taker gets a score, then return a browser-openable preview link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a shareable RooQuiz preview quiz: a right/wrong assessment where correct answers earn points and the taker gets a score, then get a browser-openable preview link without an account, login, or API key.
 
-## Publisher: <br>
-[rooquiz](https://clawhub.ai/user/rooquiz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloevib](https://clawhub.ai/user/chloevib)
 
-## Use Case: <br>
-Developers, educators, and content creators use this skill to build a graded quiz JSON payload, submit it to RooQuiz's preview endpoint, and share a short-lived preview link for review or testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quiz titles, questions, answers, descriptions, and links are sent to RooQuiz/Quizster to create a temporary preview. <br>
-Mitigation: Do not use the skill with secrets, private business material, student records, health data, or other sensitive content; use a self-hosted deployment or optional secret when access control matters. <br>
-Risk: Preview links are temporary and are not a permanent publishing mechanism. <br>
-Mitigation: Recreate the quiz or publish it through RooQuiz if a durable form is needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to build, preview, and share temporary graded RooQuiz quizzes, tests, trivia, or exams with correct answers and final scoring. It is intended for creating a short-lived hosted preview link that can be opened in a browser or moved into RooQuiz for publishing.
 
-## Reference(s): <br>
-- [Preview Quiz Skill Page](https://clawhub.ai/rooquiz/skills/preview-quiz) <br>
-- [RooQuiz Preview API](https://preview.rooquiz.com/api/preview-forms) <br>
-- [Quizster Preview Links](https://quizster.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with JSON examples, HTTP request examples, shell commands, and preview URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces temporary preview links that expire after about one hour; an optional secret can be used when access control matters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Quiz questions, answers, labels, and report text are sent to RooQuiz's hosted preview service when using the default endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential or regulated material in hosted previews, or use the documented endpoint overrides for a trusted self-hosted RooQuiz deployment.
+
+Risk: Preview links are temporary and expire after about one hour.
+
+Mitigation: Use preview links for short review cycles only; publish from the RooQuiz preview page when a durable quiz is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chloevib/skills/preview-quiz)
+- [RooQuiz preview API](https://preview.rooquiz.com/api/preview-forms)
+- [RooQuiz preview service](https://preview.rooquiz.com)
+- [RooQuiz browser preview base](https://quizster.app)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON examples and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces RooQuiz quiz JSON guidance and a temporary browser preview link when the preview API call succeeds.]
+
+## Skill Version(s):
+
+0.1.5 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

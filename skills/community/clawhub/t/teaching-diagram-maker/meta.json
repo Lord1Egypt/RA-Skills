@@ -1,0 +1,15 @@
+{
+  "name": "Teaching Diagram Maker",
+  "slug": "teaching-diagram-maker",
+  "version": "v1.0.0",
+  "platforms": ["claude-code", "openclaw", "codex"],
+  "entry_point": "SKILL.md",
+  "description": "Create and visually verify editable teaching diagrams for mechanisms, pathways, comparisons, timelines, and technical study notes.",
+  "triggers": [
+    "draw a diagram",
+    "explain this visually",
+    "make a pathway map",
+    "compare these models",
+    "fix this SVG"
+  ]
+}

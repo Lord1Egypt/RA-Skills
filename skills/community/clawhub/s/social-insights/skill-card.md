@@ -1,41 +1,62 @@
-## Description: <br>
-Social media analytics and performance tracking. Track engagement, optimal posting times, competitor analysis, AI-powered insights, auto-generated charts, and weekly/monthly reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social media analytics and performance tracking. Track engagement, optimal posting times, competitor analysis, AI-powered insights, auto-generated charts, and weekly/monthly reports.
 
-## Publisher: <br>
-[fly3094](https://clawhub.ai/user/fly3094) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fly3094](https://clawhub.ai/user/fly3094)
 
-## Use Case: <br>
-Content marketers, agencies, social media managers, and other external users use this skill to review social-platform performance, compare competitors, identify posting windows, and generate recurring analytics reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for multiple social-platform credentials and may handle sensitive account analytics. <br>
-Mitigation: Use read-only, least-privilege tokens where possible, avoid broad account app passwords, and rotate credentials after testing. <br>
-Risk: The security summary notes that data and report handling are unclear. <br>
-Mitigation: Review generated reports before sharing them, keep exported data in a controlled location, and treat the current implementation as a demo until live API and delivery behavior are reviewed. <br>
+## Use Case:
 
+External users such as content marketers, agencies, solopreneurs, and social media managers use this skill to review social account performance, compare competitors, identify posting windows, and generate actionable reporting from connected platforms or exported data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/fly3094/social-insights) <br>
-- [Publisher Profile](https://clawhub.ai/user/fly3094) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style analytics summaries with command examples and environment-variable configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce social analytics reports, competitor comparisons, recommendations, and demo-mode sample output; full platform data requires user-provided social-platform credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may require social-platform credentials for full analytics.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only, least-privilege tokens where possible and keep credentials in the runtime environment rather than in prompts or shared files.
+
+Risk: Generated reports can contain private business metrics, audience data, or competitor benchmarks.
+
+Mitigation: Treat generated analytics and reports as confidential and review sharing permissions before distributing them.
+
+Risk: Automatic reporting claims are not implemented by the inspected script.
+
+Mitigation: Validate reporting behavior in the target runtime before relying on scheduled or delivered PNG/PDF reports.
+
+Risk: Connecting social accounts increases exposure of account and engagement data.
+
+Mitigation: Use manual CSV or exported-data mode when account connection is not required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fly3094/skills/social-insights)
+- [Publisher profile](https://clawhub.ai/user/fly3094)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style terminal reports with tables, metrics, recommendations, and inline shell configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use social platform credentials when configured; can also operate from manually provided data or exported CSV files.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

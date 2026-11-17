@@ -1,0 +1,245 @@
+{
+  "verified_at": "2026-10-10T10:11:33.704422+08:00",
+  "system_date": "2026-10-10",
+  "timezone": "CST",
+  "execution": "actual submit_time_entry.main CLI; same pre-submit resolution; live responses",
+  "preview": {
+    "preview_only": true,
+    "fill_date": "2026-10-10",
+    "project_name": "<verified live project name; redacted>",
+    "man_hour": 0.5,
+    "job_desc": "中文选项链路验证（仅预览，不提交）",
+    "action": "提交（仅预览）",
+    "fill_type": "工作",
+    "project_phase": "研发/交付",
+    "work_type": "开发"
+  },
+  "hours_are_test_preview_only_not_confirmed_work": true,
+  "valid_chinese_exit_code": 0,
+  "valid_chinese_requests": [
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ]
+  ],
+  "valid_codes_exit_code": 0,
+  "valid_codes_same_preview": true,
+  "rejections": [
+    {
+      "field": "project",
+      "input": "不存在的项目（验证）",
+      "exit_code": 1,
+      "diagnostic": "选择或输入错误: 未知或歧义选项: project",
+      "requests": [
+        [
+          "POST",
+          "/sn/project/timeFeeDropDownPageList"
+        ],
+        [
+          "POST",
+          "/sn/system/dict/data/typeList"
+        ]
+      ]
+    },
+    {
+      "field": "fill-type",
+      "input": "不存在的类型",
+      "exit_code": 1,
+      "diagnostic": "选择或输入错误: 未知或歧义选项: fill_type",
+      "requests": [
+        [
+          "POST",
+          "/sn/project/timeFeeDropDownPageList"
+        ],
+        [
+          "POST",
+          "/sn/system/dict/data/typeList"
+        ]
+      ]
+    },
+    {
+      "field": "project-phase",
+      "input": "不存在的阶段",
+      "exit_code": 1,
+      "diagnostic": "选择或输入错误: 未知或歧义选项: project_phase",
+      "requests": [
+        [
+          "POST",
+          "/sn/project/timeFeeDropDownPageList"
+        ],
+        [
+          "POST",
+          "/sn/system/dict/data/typeList"
+        ]
+      ]
+    },
+    {
+      "field": "work-type",
+      "input": "不存在的工作类型",
+      "exit_code": 1,
+      "diagnostic": "选择或输入错误: 未知或歧义选项: work_type",
+      "requests": [
+        [
+          "POST",
+          "/sn/project/timeFeeDropDownPageList"
+        ],
+        [
+          "POST",
+          "/sn/system/dict/data/typeList"
+        ]
+      ]
+    },
+    {
+      "field": "work-type",
+      "input": "５",
+      "exit_code": 1,
+      "diagnostic": "选择或输入错误: 未知或歧义选项: work_type",
+      "requests": [
+        [
+          "POST",
+          "/sn/project/timeFeeDropDownPageList"
+        ],
+        [
+          "POST",
+          "/sn/system/dict/data/typeList"
+        ]
+      ]
+    },
+    {
+      "field": "work-type",
+      "input": "5 ",
+      "exit_code": 1,
+      "diagnostic": "选择或输入错误: 未知或歧义选项: work_type",
+      "requests": [
+        [
+          "POST",
+          "/sn/project/timeFeeDropDownPageList"
+        ],
+        [
+          "POST",
+          "/sn/system/dict/data/typeList"
+        ]
+      ]
+    },
+    {
+      "field": "fill-type",
+      "input": "事假",
+      "exit_code": 1,
+      "diagnostic": "选择或输入错误: 此入口仅支持普通工作；请假填报尚未实现，不能伪造项目提交",
+      "requests": [
+        [
+          "POST",
+          "/sn/project/timeFeeDropDownPageList"
+        ],
+        [
+          "POST",
+          "/sn/system/dict/data/typeList"
+        ]
+      ]
+    }
+  ],
+  "all_network_requests": [
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/timeEntry/findEveryDayList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/project/timeFeeDropDownPageList"
+    ],
+    [
+      "POST",
+      "/sn/system/dict/data/typeList"
+    ],
+    [
+      "POST",
+      "/sn/timeEntry/findEveryDayList"
+    ]
+  ],
+  "time_entry_write_requests": 0,
+  "date_records_unchanged": true,
+  "personal_settings_unchanged": true,
+  "project_option_count": 4,
+  "dictionary_counts": {
+    "fill_type": 3,
+    "project_phase": 2,
+    "work_type": 11
+  },
+  "true_write_verified": false
+}

@@ -1,40 +1,64 @@
-## Description: <br>
-Auto-learns to prioritize tasks by urgency, impact, and user patterns. Grows smarter with each decision. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prioritizes competing tasks into P0-P3 by cost of delay and decides what to do first, what waits, and when to interrupt current work.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to help an agent classify incoming work by urgency and importance, route P0-P3 tasks, and learn confirmed priority preferences from repeated corrections. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learned priority rules and override notes may capture sensitive client, personnel, security, or operational details if users include them in task descriptions. <br>
-Mitigation: Avoid storing sensitive details in priority notes, keep learned rules at the category level where possible, and periodically review or remove stored patterns. <br>
-Risk: Stale or overgeneralized learned rules may cause the agent to misclassify urgency or interrupt work unnecessarily. <br>
-Mitigation: Confirm durable rules only after repeated corrections, ask when priority signals conflict, and review learned rules periodically. <br>
+## Use Case:
 
+Developers, operators, and knowledge workers use this skill to classify competing work, incoming interruptions, tickets, alerts, deadlines, and backlog items by cost of delay so they can decide what to handle now, next, later, or not at all.
 
-## Reference(s): <br>
-- [Triage ClawHub release](https://clawhub.ai/ivangdavila/triage) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational text and markdown priority notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces priority labels, queue ordering guidance, and proposed learned priority rules for user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can influence task ordering and interruption decisions, including treating broad urgency language as a triage signal.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the documented P0-P3 level tests, ask a closed question at the P0/P1 boundary, and state the assigned priority so the user can correct it.
+
+Risk: Standing priority rules could overfit to a user's corrections if applied without confirmation.
+
+Mitigation: Use the observe, propose, confirm ladder and store or auto-apply a standing rule only after the user explicitly agrees.
+
+Risk: Interrupting current work can leave active work in a fragile state.
+
+Mitigation: Interrupt mid-task only for P0 by default and save a resume note before switching.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/triage)
+- [Clawic triage skill page](https://clawic.com/skills/triage)
+- [Batch triage guidance](artifact/batch.md)
+- [Bug, ticket, and alert triage guidance](artifact/bugs.md)
+- [Deadline triage guidance](artifact/deadlines.md)
+- [Interrupt handling guidance](artifact/interrupts.md)
+- [Priority learning protocol](artifact/patterns.md)
+- [Urgency signal guidance](artifact/signals.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown-style task priorities, reordered queues, concise rationale, questions, and optional local configuration or preference notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or update local priority preferences only after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

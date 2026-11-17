@@ -1,0 +1,80 @@
+{
+  "name": "pdf-invoice-stat",
+  "version": "2.4.3",
+  "patch_history": [
+    {
+      "version": "2.4.4",
+      "date": "2026-10-18",
+      "changes": [
+        "修复: PDF 损坏直接崩（加 try/except 包装）",
+        "修复: 跨页发票合并（同发票号多页时合并信息）",
+        "修复: 损坏 PDF 文件优雅返回空列表"
+      ],
+      "stable": true,
+      "release_date": "2026-10-18"
+    },
+    {
+      "version": "2.4.3",
+      "date": "2026-10-18",
+      "changes": [
+        "【稳定版】项目名杂质清理（去规格型号等列名）",
+        "【稳定版】多项目分行（按 * 标志）",
+        "【稳定版】单元测试（tests/test_extract_v243.py，4 个测试）",
+        "【稳定版】config.py 配置化 + fallback 机制",
+        "【稳定版】CHANGELOG.md 完善（已知问题/升级指南/性能历史）",
+        "【稳定版】CI 自动化（GitHub Actions + 本地脚本）"
+      ],
+      "stable": true,
+      "release_date": "2026-10-18"
+    },
+    {
+      "version": "2.4.2",
+      "date": "2026-10-16",
+      "changes": [
+        "修复: 跨行发票号识别（维达商贸漏识别）",
+        "修复: 跨行日期识别"
+      ]
+    },
+    {
+      "version": "2.4.1",
+      "date": "2026-10-16",
+      "changes": [
+        "兼容版: 增强 find_invoice_number 跨行兜底"
+      ]
+    },
+    {
+      "version": "2.4.0",
+      "date": "2025-08-13",
+      "changes": [
+        "原始 v2.4.0 发行版"
+      ]
+    }
+  ],
+  "format_support": [
+    "PDF",
+    "XML",
+    "OFD",
+    "ZIP"
+  ],
+  "output_format": "xlsx (15 列 v2.4.0 / 16 列 v3.0.0)",
+  "language": "python>=3.7",
+  "release": {
+    "current_stable": "2.4.4",
+    "release_date": "2026-10-18",
+    "tested_invoices": 48,
+    "tested_companies": [
+      "优格(海口)项目管理有限公司",
+      "伊登优格(上海)咨询管理有限公司"
+    ],
+    "tested_files": [
+      "real_batch_invoice.pdf (10 张, ¥7,478.40)",
+      "youge_batch2.pdf (38 张, ¥13,195.30)"
+    ],
+    "known_issues": 3,
+    "next_milestone": "v2.4.4 (紧急 bug 修复) 或 v2.5.0 (新功能)",
+    "released": true,
+    "release_engineer": "Kent 中传文创",
+    "full_restructure_date": "2026-10-18"
+  },
+  "structure_validated": true
+}

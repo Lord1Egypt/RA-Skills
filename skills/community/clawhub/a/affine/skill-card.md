@@ -1,43 +1,65 @@
-## Description: <br>
-Provides CLI guidance for managing AFFiNE documents, tags, folders, collections, files, databases, comments, journals, and workspaces on cloud or self-hosted deployments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line tool for managing AFFiNE documents, tags, folders, collections, files, databases, comments, journals, and workspaces on cloud or self-hosted deployments.
 
-## Publisher: <br>
-[woodcoal](https://clawhub.ai/user/woodcoal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[woodcoal](https://clawhub.ai/user/woodcoal)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent prepare AFFiNE CLI commands for workspace, document, tag, folder, collection, file, database, comment, and journal workflows. It is suited to users who intentionally want an agent-assisted CLI path for changing AFFiNE cloud or self-hosted workspace content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide changes to AFFiNE workspace content, including deletion, publishing, permanent cleanup, replacement, and bulk database operations. <br>
-Mitigation: Use a limited token where possible and require explicit user confirmation before destructive, publishing, replacement, or bulk operations. <br>
-Risk: AFFINE_API_TOKEN values and workspace identifiers may be exposed if placed directly in shared command text or logs. <br>
-Mitigation: Prefer environment variables or a secure secret store, avoid inline tokens in shared transcripts, and rotate tokens if exposure is suspected. <br>
+## Use Case:
 
+Developers and workspace operators use this skill to ask an agent for affine-cli commands and configuration guidance for managing AFFiNE workspaces. It supports cloud and self-hosted workflows for documents, folders, tags, collections, files, databases, comments, and journals.
 
-## Reference(s): <br>
-- [ClawHub AFFiNE Skill](https://clawhub.ai/woodcoal/affine) <br>
-- [affine-cli Project Page](https://github.com/woodcoal/affine-cli) <br>
-- [AFFiNE Documentation](https://deepwiki.com/toeverything/AFFiNE) <br>
-- [AFFiNE Token Settings](https://app.affine.pro/settings/tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include environment variable names, AFFiNE workspace identifiers, document IDs, database IDs, and confirmation prompts for destructive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can install or run an unpinned npm CLI that receives access to an AFFiNE workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed affine-cli package version and install only from a trusted npm source.
+
+Risk: AFFiNE API tokens may be exposed through shell history, local files, or repository commits.
+
+Mitigation: Prefer environment variables or restricted-permission config files, avoid placing tokens directly in commands, and keep credential files out of repositories.
+
+Risk: Generated commands may delete, permanently clean, bulk update, or publish AFFiNE workspace content.
+
+Mitigation: Require explicit user confirmation before destructive, bulk mutation, cleanup, publish, or unpublish actions.
+
+## Reference(s):
+
+- [AFFiNE Skill on ClawHub](https://clawhub.ai/woodcoal/skills/affine)
+- [Basic Commands](artifact/commands/basics.md)
+- [Tags and Folders](artifact/commands/tags-folders.md)
+- [Collections](artifact/commands/collections.md)
+- [File Attachments](artifact/commands/files.md)
+- [Databases](artifact/commands/databases.md)
+- [Comments](artifact/commands/comments.md)
+- [Journals](artifact/commands/journals.md)
+- [AFFiNE Documentation](https://deepwiki.com/toeverything/AFFiNE)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AFFiNE API token handling, workspace identifiers, and commands that mutate, publish, or delete workspace content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

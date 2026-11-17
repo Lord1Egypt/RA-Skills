@@ -1,39 +1,50 @@
-## Description: <br>
-Provides sunrise, sunset, dawn, dusk, solar noon, golden hour, first light, last light, and day length times for any latitude and longitude worldwide. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides precise sunrise, sunset, dawn, dusk, solar noon, golden hour, and day length times for any location and date worldwide.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agent builders use this skill to retrieve sun-event times for location-aware workflows, scheduling, travel, and planning scenarios. It supports today's solar times or a specified date for any latitude and longitude. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious and notes that an autoreview helper in the skill set can grant nested review tools full local access by default. <br>
-Mitigation: Review helper behavior before installation or use, prefer --no-yolo or AUTOREVIEW_YOLO=0 unless full local access is intended, and confirm credentials, targets, and impact before moderation or publishing workflows. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve sunrise, sunset, twilight, golden hour, solar noon, and day length information for a supplied latitude and longitude, optionally for a specific date.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-sunrisesunset) <br>
-- [Pipeworx sunrise/sunset MCP endpoint](https://gateway.pipeworx.io/sunrisesunset/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns solar-event timing guidance for the requested coordinates and optional date.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Location and date requests are sent to the disclosed PipeWorx gateway service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting precise private coordinates when location privacy matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-sunrisesunset)
+- [PipeWorx sunrise/sunset MCP gateway](https://gateway.pipeworx.io/sunrisesunset/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown with inline JSON and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns sun-time values for requested coordinates and dates through a disclosed remote service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

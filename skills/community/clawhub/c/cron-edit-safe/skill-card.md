@@ -1,41 +1,59 @@
-## Description: <br>
-cron-edit-safe helps agents edit OpenClaw cron jobs with backup, dry-run, verification, and rollback steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cron-edit-safe wraps OpenClaw cron edits with backup, dry-run, verification, and rollback steps to reduce silent cron breakage.
 
-## Publisher: <br>
-[colbertlee](https://clawhub.ai/user/colbertlee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[colbertlee](https://clawhub.ai/user/colbertlee)
 
-## Use Case: <br>
-Developers and operators use this skill when changing OpenClaw cron jobs and want a guarded command-line workflow. It backs up the current job, tests the proposed command, applies the edit, verifies the result, and rolls back on failure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default dry-run executes the proposed command once, so commands with side effects can write files, call external services, or send notifications before the cron edit is applied. <br>
-Mitigation: Review the command before running the skill, avoid untrusted commands, and use --dry-run-only or --no-dry-run deliberately based on whether side effects are acceptable. <br>
-Risk: The skill edits a selected OpenClaw cron job and can leave scheduled automation in an unintended state if backup or rollback controls are disabled. <br>
-Mitigation: Keep backup and rollback enabled for normal use, review the generated backup path, and use the printed manual recovery command if automatic rollback fails. <br>
+## Use Case:
 
+Developers and operators who maintain OpenClaw scheduled jobs use this skill to make cron edits with a backup-first workflow, a pre-edit command check, post-edit verification, and recovery guidance when an edit fails.
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/colbertlee/skills/cron-edit-safe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Terminal command invocations with status text, backup paths, and recovery guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create JSON backups under ~/.openclaw/backups and temporary execution logs under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Safety checks and rollback are reported as unreliable around persistent cron changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing it for important cron jobs, test it on non-critical entries first, keep independent backups, and manually verify cron state after edits.
+
+Risk: Dry-run is real local command execution and can have side effects or expose sensitive environment variables.
+
+Mitigation: Run dry-run commands only in a controlled environment, review command behavior first, and avoid passing sensitive environment variables.
+
+Risk: The advertised rollback should not be treated as a complete restoration mechanism until the identified temp-file handling, verification, and rollback issues are fixed.
+
+Mitigation: Retain the backup JSON and manual recovery command path, and confirm restoration with OpenClaw after any failed edit.
+
+## Reference(s):
+
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [ClawHub skill page](https://clawhub.ai/colbertlee/skills/cron-edit-safe)
+- [ClawHub publisher profile](https://clawhub.ai/user/colbertlee)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [CLI text output with OpenClaw cron edits and JSON backup files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, jq, and OpenClaw CLI; Python is optional for verification parsing.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

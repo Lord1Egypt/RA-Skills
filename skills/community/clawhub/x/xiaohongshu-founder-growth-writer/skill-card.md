@@ -1,39 +1,47 @@
-## Description: <br>
-Turn rough notes, founder insights, and English drafts into natural Xiaohongshu posts that feel human, trustworthy, and platform-native. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn rough notes, founder insights, and English drafts into natural Xiaohongshu posts that feel human, trustworthy, and platform-native.
 
-## Publisher: <br>
-[ATWatcher](https://clawhub.ai/user/ATWatcher) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atwatcher](https://clawhub.ai/user/atwatcher)
 
-## Use Case: <br>
-External founders, consultants, cross-border brands, education businesses, wellness brands, AI and tech startups, and professional services use this skill to turn rough ideas, founder insights, English messaging, or stiff Chinese drafts into Xiaohongshu-ready posts and 7-post content series. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated founder or brand posts may include inaccurate factual claims or fabricated experiences. <br>
-Mitigation: Fact-check factual claims and replace invented details with verified source material before publishing. <br>
-Risk: Marketing copy may imply impersonation or undisclosed promotional content. <br>
-Mitigation: Avoid presenting the output as another real person's lived experience and disclose promotional or AI-assisted content where appropriate. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ATWatcher/xiaohongshu-founder-growth-writer) <br>
+## Use Case:
+
+Founders, consultants, cross-border brands, educators, wellness brands, AI and tech startups, and professional services use this skill to turn rough ideas, English messaging, or stiff Chinese drafts into Xiaohongshu-ready founder marketing posts, hooks, cover text, pinned comments, and content series.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to Chinese Xiaohongshu-style founder marketing copy, which may need additional review for truthfulness, brand suitability, platform expectations, and normal safety boundaries before publication.
+
+Mitigation: Review generated copy before posting, especially claims, calls to action, audience targeting, and any regulated or sensitive-topic content.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured Chinese copy sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title options, a selected title, hook, caption, cover text, pinned comment suggestion, a short rationale, or a 7-post series depending on the user request.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-style structured copywriting output, usually in Chinese unless the user requests otherwise.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include title options, a selected title, hook, full caption, cover text, pinned comment suggestion, rationale, or a 7-post series.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

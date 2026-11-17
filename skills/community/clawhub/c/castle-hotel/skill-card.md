@@ -1,44 +1,61 @@
-## Description: <br>
-Book flights to castle hotels and heritage stay destinations. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more - powered by Fliggy (Alibaba Group). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to castle hotels and heritage stay destinations. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more - powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travel agents and end users use this skill to collect route details, run flyai travel-search commands, and format flight or travel booking options for castle hotels and heritage stay destinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and run a third-party flyai CLI package, which can change the local environment and contact an external travel service. <br>
-Mitigation: Install or review the npm package in a controlled environment before use, and confirm that sending travel details to the service is acceptable. <br>
-Risk: Travel results and booking links depend on the external CLI response and may lead to third-party booking flows. <br>
-Mitigation: Verify booking links, provider identity, route details, and prices before acting on any result. <br>
+## Use Case:
 
+External travelers and travel agents use this skill to search travel options for castle hotels and heritage stays, then receive concise Markdown comparisons with booking links. Agents use it to collect route parameters, run flyai commands, and format real-time travel results without relying on training data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/castle-hotel) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include Book links from detailUrl values, and avoid raw JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can require installing and running an unpinned global flyai CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before installation, prefer a pinned and reviewed CLI version, and run it in an isolated environment.
+
+Risk: The skill requires booking links in travel responses, which may influence purchases.
+
+Mitigation: Ask the user to review booking URLs, prices, providers, and terms before sharing personal details or completing payment.
+
+Risk: Travel results depend on external CLI and network behavior.
+
+Mitigation: Retry transient failures once, disclose unresolved failures, and do not fabricate travel data when the CLI cannot return valid results.
+
+## Reference(s):
+
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline bash commands for flyai execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CLI-derived data and detailUrl booking links; raw JSON should not be returned to the user.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

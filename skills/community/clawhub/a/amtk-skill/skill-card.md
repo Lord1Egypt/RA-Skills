@@ -1,42 +1,57 @@
-## Description: <br>
-AMtkSkill helps agents fetch A-share market data from Tushare, query local prices and valuations, and run technical analysis such as moving averages, RSI, MACD, Bollinger Bands, adjusted prices, and return statistics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A-share market data skill for fetching data from Tushare, querying market and valuation data, and running technical analysis including moving averages, RSI, MACD, and Bollinger Bands.
 
-## Publisher: <br>
-[lhkong7](https://clawhub.ai/user/lhkong7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lhkong7](https://clawhub.ai/user/lhkong7)
 
-## Use Case: <br>
-Developers, data analysts, and agent operators use this skill to maintain a local A-share market dataset, inspect securities and valuation rankings, and generate technical-indicator summaries from command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Tushare API token and makes outbound requests to Tushare. <br>
-Mitigation: Store the token in the local environment configuration, avoid exposing it in prompts or logs, and review commands before execution. <br>
-Risk: Large fetch operations can consume API quota and local disk space. <br>
-Mitigation: Review date ranges, limits, batch size, and update scope before running fetch commands. <br>
-Risk: Analyses depend on the freshness and completeness of the locally stored market data. <br>
-Mitigation: Run the overview or update commands before relying on results, and treat indicator output as analytic support rather than financial advice. <br>
+## Use Case:
 
+Developers and analysts use this skill to fetch A-share market datasets, query local stock and valuation data, and produce concise technical-analysis summaries for symbols or market slices.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lhkong7/amtk-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tabular command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths, stock symbols, date ranges, valuation metrics, and technical indicator values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill requires a Tushare token for authenticated market-data requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the token in a local .env file or pass it at runtime, avoid sharing .env, and run the skill in a constrained project directory.
+
+Risk: The skill downloads and stores market data locally.
+
+Mitigation: Review local data-directory permissions and retention before use, especially in shared workspaces.
+
+Risk: Market data and technical indicators may be incomplete, stale, or unsuitable as financial advice.
+
+Mitigation: Treat outputs as analysis aids and verify data freshness and investment conclusions independently.
+
+## Reference(s):
+
+- [AMtkSkill ClawHub Release](https://clawhub.ai/lhkong7/skills/amtk-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and tabular command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a Tushare token and local Parquet/CSV market-data files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

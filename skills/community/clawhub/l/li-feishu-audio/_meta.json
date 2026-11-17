@@ -2,5 +2,13 @@
   "ownerId": "kn70jzhmjk80051ypj2sespqy582fmfx",
   "slug": "li-feishu-audio",
   "version": "0.1.3",
-  "publishedAt": 1774018700530
+  "publishedAt": 1774085649000,
+  "requires": {
+    "env": ["FEISHU_APP_ID", "FEISHU_APP_SECRET"],
+    "optional": ["FAST_WHISPER_MODEL_DIR", "VENV_DIR", "TEMP_DIR", "OPENCLAW_CONFIG", "LOG_DIR"]
+  },
+  "install": {
+    "script": "scripts/install.sh",
+    "notes": "Requires Python 3.11+, ffmpeg, jq. Uses HuggingFace mirror (hf-mirror.com) for model downloads."
+  }
 }

@@ -1,42 +1,56 @@
-## Description: <br>
-抖音/快手短视频创作全栈专家，提供内容策划、脚本撰写、爆款拆解、算法运营、带货策略服务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音/快手短视频创作全栈专家。提供内容策划、脚本撰写、爆款拆解、算法运营、带货策略服务。
 
-## Publisher: <br>
-[yangruoqing86-stack](https://clawhub.ai/user/yangruoqing86-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangruoqing86-stack](https://clawhub.ai/user/yangruoqing86-stack)
 
-## Use Case: <br>
-External creators, social media operators, brands, and MCN teams use this skill to draft Douyin and Kuaishou short-video scripts, hooks, titles, cover concepts, publishing tactics, and livestream commerce language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sales, scarcity, health, finance, or product-performance claims may be inaccurate or noncompliant. <br>
-Mitigation: Review claims for truthfulness, platform rules, and advertising compliance before publishing. <br>
-Risk: Platform strategy advice may rely on outdated or generalized Douyin and Kuaishou trends. <br>
-Mitigation: Validate recommendations against current account analytics, platform policy, and recent campaign performance before use. <br>
+## Use Case:
 
+External creators, social media operators, brands, and MCN teams use this skill to plan Douyin and Kuaishou short videos, draft scripts, analyze popular content patterns, design titles and covers, and prepare commerce-oriented copy.
 
-## Reference(s): <br>
-- [抖音快手平台数据报告摘要](references/platform-data.md) <br>
-- [各类型脚本模板库](references/script-templates.md) <br>
-- [爆款案例拆解详细分析](references/case-studies.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text responses with scripts, checklists, tables, and content strategy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, or automatic publishing behavior is described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Platform statistics, algorithm assumptions, or publishing-time advice can become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review current platform reports and account analytics before relying on operational recommendations.
+
+Risk: Sales urgency scripts and product claims may create compliance or consumer-protection concerns if used without review.
+
+Mitigation: Have marketing or legal reviewers check claims, scarcity language, pricing, and product disclosures before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangruoqing86-stack/skills/douyin-kuaishou-expert)
+- [Platform Data](references/platform-data.md)
+- [Script Templates](references/script-templates.md)
+- [Case Studies](references/case-studies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language short-video planning, scripting, platform strategy, title, cover, tag, and commerce-copy guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Diagnose and upgrade OpenClaw conversation context limits, especially moving a chat from ~272k to 1M. Use when the user asks to enlarge context, make GPT-5.4 use 1M context, change `agents.defaults.contextTokens`, verify why a chat still shows 272k after changes, or execute the full workflow of model selection + config patch + restart + fresh session + status verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and upgrade OpenClaw conversation context limits, especially moving a chat from ~272k to 1M.
 
-## Publisher: <br>
-[juan-xin-cai](https://clawhub.ai/user/juan-xin-cai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[juan-xin-cai](https://clawhub.ai/user/juan-xin-cai)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users use this skill to diagnose current conversation context limits, request a 1M context budget, patch the relevant OpenClaw defaults, restart, start a fresh chat, and verify the effective session limit.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Applying the workflow can persistently change the OpenClaw default context budget and restart OpenClaw.
+
+Mitigation: Confirm the user's intent before applying changes, include a clear restart note, and verify the result with a fresh session after restart.
+
+Risk: A requested 1M context budget may still resolve to a lower effective limit if the selected model or provider caps the session.
+
+Mitigation: Pin or verify the high-context model, run session status after starting a fresh chat, and clearly explain any remaining provider or model cap.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to diagnose OpenClaw context capacity and guide a configuration change toward a 1M-token conversation budget. It covers model selection, context-token defaults, restart behavior, fresh-session verification, and common failure modes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Changing OpenClaw defaults can trigger a restart and persistently alter the context budget for future sessions. <br>
-Mitigation: Confirm the user wants the change before patching, include a clear restart note, and verify the setting with a fresh session. <br>
-Risk: A requested 1M-token budget may not be available if the selected model, provider, or existing chat session keeps a lower real limit. <br>
-Mitigation: Pin or verify the high-context model, start a new or reset chat, and report provider caps plainly when status still shows a lower limit. <br>
+**Output Format:** [Markdown guidance with command and configuration references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juan-xin-cai/openclaw-context-upgrade) <br>
+**Other Properties Related to Output:** [May recommend OpenClaw configuration changes, restart steps, fresh-session verification, and failure-mode diagnosis.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline command and configuration names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic steps, config patch guidance, restart notes, and verification checks.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,62 @@
-## Description: <br>
-Aggregates configured RSS and web news sources, filters them by keyword categories, generates a daily Markdown digest, and can post the digest to Feishu. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Aggregates news from configured RSS feeds and public URLs, filters items by keywords, generates a daily Markdown digest, and can push the digest to Feishu.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Individuals and developers use this skill to monitor configured news sources, group matching items by topic keywords, and prepare a concise daily briefing for review or Feishu delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configured source URLs may include private or sensitive sources, and generated digests can be sent to the configured Feishu conversation. <br>
-Mitigation: Keep private or intranet sources out of the source list unless sharing their headlines is intentional, and use a dedicated Feishu bot token with minimal chat access. <br>
-Risk: The scheduler can run recurring fetch, digest, and push operations automatically. <br>
-Mitigation: Enable the scheduler only when recurring delivery is intended, and review the configured cron expression and destination chat before running it. <br>
-Risk: The skill fetches external RSS feeds and web pages from every URL listed in config.json. <br>
-Mitigation: Use source lists that comply with each site's terms and crawling rules, and keep fetch intervals conservative. <br>
+## Use Case:
 
+Developers and individual users can configure trusted public news sources and keyword categories to collect, deduplicate, summarize, and optionally share a daily Feishu news brief.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/quannwang-news-aggregator) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown daily digest, JSON news data files, and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can post the digest to a configured Feishu conversation; local history is stored to avoid repeat daily pushes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json, and skill documentation) <br>
+Risk: Configurable network fetching can contact unintended or private URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted public HTTPS news feeds, avoid internal or private URLs, and run with restricted outbound network access where possible.
+
+Risk: Feishu sharing can disclose generated digest content to the wrong chat or with an exposed token.
+
+Mitigation: Review the configured Feishu chat destination, keep FEISHU_BOT_TOKEN in the environment, and rotate or scope the token according to local policy.
+
+Risk: Generated news data, digests, and push history remain on local disk.
+
+Mitigation: Review retention requirements and delete or protect local data files when the digest contents are sensitive.
+
+Risk: Dependency findings may require review before installation.
+
+Mitigation: Update the flagged dependencies before use and reinstall from a trusted package source.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/quannwang-news-aggregator)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON files, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown daily digest, JSON news/history files, console logs, and optional Feishu text message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Digest text sent to Feishu is truncated to 4000 characters; generated news data, digests, and 30 days of push history may remain on disk.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -213,13 +213,14 @@ function warnPartialCookies(cookieMap: Record<string, string>): void {
 async function extractViaSweetCookie(
   source: CookieSource,
   chromeProfile: string | undefined,
-  log: (msg: string) => void
+  log: (msg: string) => void,
+  cookieUrl: string
 ): Promise<XhsCookies> {
   // Explicit profile or non-Chrome browser: single try
   if (chromeProfile || source !== "chrome") {
     log(`Reading cookies from ${source}${chromeProfile ? ` (profile: ${chromeProfile})` : ""}...`);
     const result = await getCookies({
-      url: "https://www.xiaohongshu.com/",
+      url: cookieUrl,
       browsers: [source],
       timeoutMs: 30_000,
       ...(chromeProfile ? { chromeProfile } : {}),
@@ -243,7 +244,7 @@ async function extractViaSweetCookie(
   if (profiles.length === 0) {
     log("Reading cookies from Chrome (default profile)...");
     const result = await getCookies({
-      url: "https://www.xiaohongshu.com/",
+      url: cookieUrl,
       browsers: [source],
       timeoutMs: 30_000,
     });
@@ -269,7 +270,7 @@ async function extractViaSweetCookie(
   for (const profile of profiles) {
     log(`  Checking "${profile.dirName}" (${profile.displayName})...`);
     const result = await getCookies({
-      url: "https://www.xiaohongshu.com/",
+      url: cookieUrl,
       browsers: ["chrome"],
       chromeProfile: profile.dirName,
       timeoutMs: 30_000,
@@ -320,13 +321,14 @@ async function extractViaSweetCookie(
  */
 export async function extractCookies(
   source: CookieSource = "chrome",
-  chromeProfile?: string
+  chromeProfile?: string,
+  cookieUrl: string = "https://www.xiaohongshu.com/"
 ): Promise<XhsCookies> {
   const log = (msg: string) => console.error(kleur.dim(msg));
 
   // 1. Try sweet-cookie (fast path — works on macOS, some Windows/Linux)
   try {
-    return await extractViaSweetCookie(source, chromeProfile, log);
+    return await extractViaSweetCookie(source, chromeProfile, log, cookieUrl);
   } catch (sweetCookieErr) {
     // For non-Chrome sources, no CDP fallback — rethrow
     if (source !== "chrome") {
@@ -372,6 +374,27 @@ export async function extractCookies(
 
     // 3. Both failed — rethrow original sweet-cookie error (has detailed troubleshooting)
     throw sweetCookieErr;
+  }
+}
+
+/**
+ * Lightweight, non-throwing cookie probe for platform auto-detection.
+ * Reads only via sweet-cookie (no CDP fallback, no keychain retries, no logs)
+ * for a specific cookie domain (via cookieUrl). Returns null if the required
+ * cookies (a1 + web_session) are not present for that domain.
+ *
+ * Used to check both xiaohongshu.com and rednote.com and decide which one the
+ * user is actually logged into, without side effects or noise.
+ */
+export async function probeCookies(
+  source: CookieSource,
+  chromeProfile: string | undefined,
+  cookieUrl: string
+): Promise<XhsCookies | null> {
+  try {
+    return await extractViaSweetCookie(source, chromeProfile, () => {}, cookieUrl);
+  } catch {
+    return null;
   }
 }
 

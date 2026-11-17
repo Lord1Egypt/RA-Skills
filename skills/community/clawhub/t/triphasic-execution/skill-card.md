@@ -1,48 +1,65 @@
-## Description: <br>
-Provides an Execute -> Review -> Advance workflow framework for structured task planning, progress tracking, retry limits, idle-loop cutoffs, and problem or lesson recording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Triphasic Execution guides agents through an Execute, Review, Advance loop with semantic task parsing, planning, progress tracking, retry limits, idle cutoff rules, and issue/risk/lesson logging.
 
-## Publisher: <br>
-[ldxs001](https://clawhub.ai/user/ldxs001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ldxs001](https://clawhub.ai/user/ldxs001)
 
-## Use Case: <br>
-Developers and agent users use this skill to impose a structured execution loop on complex tasks, track progress across interruptions, and record problems, risks, and lessons learned. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route command execution through an execution wrapper and store command outputs in local logs. <br>
-Mitigation: Enable global mode or the execution wrapper only when that behavior is specifically needed, review commands before use, and restrict or clean local logs when commands may include sensitive data. <br>
-Risk: The local settings server is unauthenticated and can expose configuration controls while running. <br>
-Mitigation: Run the settings server only for active configuration, avoid browsing untrusted sites during that session, and stop the server when configuration is complete. <br>
-Risk: Persistent progress, problem, risk, and lesson records may capture task details that should not be retained. <br>
-Mitigation: Avoid placing secrets in task descriptions or command text, and review the configured TRIPHASIC_HOME data and log directories before sharing or archiving them. <br>
+## Use Case:
 
+Developers and agent operators use this skill to impose a structured execution discipline on complex, multi-step tasks. It is intended to reduce skipped review, repeated failed attempts, and lost task state by requiring semantic parsing, planning, progress updates, and completion records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ldxs001/skills/triphasic-execution) <br>
-- [Mandatory workflow rules](references/mandatory.md) <br>
-- [Command reference](references/reference.md) <br>
-- [Examples](references/examples.md) <br>
-- [Antipatterns](references/antipatterns.md) <br>
-- [Permissions](references/permissions.md) <br>
-- [Changelog](references/changelog.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local configuration instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local progress, log, problem, risk, and lesson files when helper scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.19.1 (source: frontmatter, _meta.json, server release evidence, changelog released 2026-06-09) <br>
+Risk: Persistent workflow control can broadly steer agent behavior across tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use on-demand mode unless global automatic behavior is explicitly required, and review configuration before enabling daemon or wrapper features.
+
+Risk: Shell-command interception and plaintext local command-output logs can expose sensitive command context.
+
+Mitigation: Avoid exec wrapper registration unless this logging is acceptable, and keep the data directory away from sensitive projects.
+
+Risk: Progress verification and cleanup behavior can read, hash, or delete local workspace artifacts.
+
+Mitigation: Run the settings UI only when needed, close it afterward, and review cleanup or uninstall targets before invoking them.
+
+## Reference(s):
+
+- [Skill overview and quick start](SKILL.md)
+- [Mandatory execution rules](references/mandatory.md)
+- [Command reference, data layout, and installation](references/reference.md)
+- [FAQ](references/faq.md)
+- [Antipatterns](references/antipatterns.md)
+- [Examples](references/examples.md)
+- [Permission summary](references/permissions.md)
+- [Machine-readable permission report](references/permission_report.json)
+- [Changelog](references/changelog.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local progress, issue, risk, lesson, log, state, and configuration files when its helper scripts are used.]
+
+## Skill Version(s):
+
+5.19.1 (source: frontmatter, _meta.json, release evidence, changelog released 2026-06-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

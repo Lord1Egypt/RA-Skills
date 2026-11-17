@@ -1,39 +1,58 @@
-## Description: <br>
-Persistent browser and Electron interaction through `js_repl` for fast iterative UI debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent browser and Electron interaction through js_repl for fast iterative UI debugging.
 
-## Publisher: <br>
-[tridefender](https://clawhub.ai/user/tridefender) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[tridefender](https://clawhub.ai/user/tridefender)
 
-## Use Case: <br>
-Developers and engineers use this skill to run persistent Playwright sessions for local web and Electron app debugging, functional QA, visual QA, viewport checks, and screenshot capture without repeatedly relaunching the toolchain. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports that the skill asks users to run with full host access without enough warning or containment. <br>
-Mitigation: Install only from a trusted publisher, run in a disposable or tightly controlled workspace, avoid exposing secrets, and prefer a documented no-full-access path when available. <br>
+## Use Case:
 
+Developers and engineers use this skill to keep Playwright browser or Electron sessions alive while debugging local user interfaces, running functional checks, and capturing visual QA evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tridefender/playwright-interactive) <br>
-- [Publisher profile](https://clawhub.ai/user/tridefender) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with JavaScript, shell, and TOML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces QA workflows, setup commands, Playwright snippets, and verification guidance for an agent to execute in a local workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The workflow asks users to disable sandbox protection for Playwright and js_repl use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in trusted local workspaces and prefer an isolated VM or container when testing unfamiliar code.
+
+Risk: The workflow installs runtime dependencies and may launch local web or Electron applications.
+
+Mitigation: Avoid unknown repositories, pull requests, downloaded Electron apps, and environments containing sensitive credentials.
+
+Risk: The server security verdict is suspicious.
+
+Mitigation: Review the skill and its dependencies before deployment, and use pinned dependencies where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tridefender/skills/playwright-interactive)
+- [ClawHub publisher profile](https://clawhub.ai/user/tridefender)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JavaScript, shell, and TOML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces workflow guidance for persistent Playwright and Electron QA sessions; it does not produce standalone application artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

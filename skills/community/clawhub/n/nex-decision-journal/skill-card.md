@@ -1,43 +1,58 @@
-## Description: <br>
-Nex Decision Journal is a local CLI skill for logging decisions, predictions, confidence, follow-up reviews, outcomes, and reflection statistics in a SQLite-backed personal decision journal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nex Decision Journal helps agents log decisions, predictions, follow-up reviews, searchable history, exports, and judgment statistics in a local decision journal.
 
-## Publisher: <br>
-[nexaiguy](https://clawhub.ai/user/nexaiguy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nexaiguy](https://clawhub.ai/user/nexaiguy)
 
-## Use Case: <br>
-External users, founders, managers, freelancers, consultants, and other decision makers use this skill to record important choices before acting, revisit outcomes later, and identify patterns such as overconfidence, underconfidence, and category-specific judgment accuracy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores sensitive personal or business decisions persistently in a local SQLite database under ~/.nex-decision-journal. <br>
-Mitigation: Require explicit user confirmation before logging, editing, reviewing, abandoning, or exporting decisions, and treat the database and exported files as confidential. <br>
-Risk: The export option can write or overwrite files outside the intended export folder when users provide unsafe output paths. <br>
-Mitigation: Avoid absolute paths and ../ path segments in --output values, and review export destinations before running export commands. <br>
+## Use Case:
 
+External users and their agents use this skill to record important business or personal decisions, capture reasoning and confidence, review outcomes, and analyze decision-making patterns over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nexaiguy/nex-decision-journal) <br>
-- [Nex AI homepage](https://nex-ai.be) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI output includes decision IDs, ISO dates, confidence scores, accuracy markers, statistics, search results, and export paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Export paths are not contained, so export commands could write outside the expected export location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review export commands before execution and use only simple filenames without slashes, backslashes, or parent-directory segments.
+
+Risk: The journal can contain sensitive business or personal reasoning in local SQLite and exported files.
+
+Mitigation: Avoid recording secrets, credentials, or regulated data, and restrict access to the journal directory and exported files.
+
+Risk: Broad triggers could cause an agent to inspect or summarize sensitive decision history unexpectedly.
+
+Mitigation: Run list, search, stats, reflect, and export commands only when the user clearly requests decision-journal access or confirms the action.
+
+## Reference(s):
+
+- [Nex Decision Journal on ClawHub](https://clawhub.ai/nexaiguy/skills/nex-decision-journal)
+- [Nex AI Homepage](https://nex-ai.be)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands and plain-text CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create local SQLite journal data and CSV or JSON exports under the user's configured decision journal directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

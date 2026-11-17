@@ -1,43 +1,57 @@
-## Description: <br>
-Control this macOS desktop via screenshots, AppleScript, mouse/keyboard automation, OCR/template matching, and verify loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control this macOS desktop via screenshots, AppleScript, mouse/keyboard automation, OCR/template matching, and verify loops.
 
-## Publisher: <br>
-[igallta](https://clawhub.ai/user/igallta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[igallta](https://clawhub.ai/user/igallta)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent must work with real macOS desktop surfaces, native dialogs, canvas apps, Electron apps, or visual workflows. It helps the agent capture the screen, choose a low-fragility control method, act once, and verify the result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose visible desktop content through screenshots and clipboard-assisted text entry. <br>
-Mitigation: Close or hide sensitive windows before use and review screenshot output paths. <br>
-Risk: Mouse and keyboard automation can trigger externally visible or irreversible actions. <br>
-Mitigation: Require explicit confirmation before submitting forms, sending messages, deleting data, making payments, posting publicly, or changing accounts. <br>
-Risk: Screen Recording and Accessibility permissions broaden what the runtime process can observe or control. <br>
-Mitigation: Grant these permissions only when needed and avoid granting them broadly. <br>
+## Use Case:
 
+Developers and agent operators use this skill to automate real macOS desktop workflows when direct APIs, shell commands, or browser automation are not enough. It supports screenshot-guided interaction, AppleScript window/app control, mouse and keyboard automation, OCR/template targeting, and verify-after-action loops.
 
-## Reference(s): <br>
-- [Source Notes](references/source-notes.md) <br>
-- [ClawHub skill page](https://clawhub.ai/igallta/mac-gui-control) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled helper emits JSON for screen capture, app activation, keyboard, mouse, and template-matching operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can receive broad Screen Recording, Accessibility, or Automation permissions that allow screen observation and input control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Grant permissions only in trusted contexts, use the skill only for tasks the user explicitly wants automated, and stop before public submissions or destructive actions unless specifically authorized.
+
+Risk: Unsafe AppleScript input handling can make untrusted app names or key-combo strings risky.
+
+Mitigation: Avoid feeding untrusted app names or key-combo strings to the helper and review commands before execution.
+
+Risk: The documented unpinned pip command can install different dependency versions over time.
+
+Mitigation: Prefer a pinned virtual environment for repeatable installation.
+
+## Reference(s):
+
+- [Source Notes](references/source-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON helper outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled helper emits JSON for screenshot capture, app/window state, mouse and keyboard actions, and template matching.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

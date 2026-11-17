@@ -1,49 +1,64 @@
-## Description: <br>
-Install and configure vLLM-Plugin-FL for multiple hardware backends including NVIDIA, Ascend, MetaX, Iluvatar, Moore Threads, and others. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and configure vLLM-Plugin-FL for multiple hardware backends, including NVIDIA, Ascend, MetaX, Iluvatar, and Moore Threads, with dependency setup, backend configuration, troubleshooting, and inference verification.
 
-## Publisher: <br>
-[wbavon](https://clawhub.ai/user/wbavon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wbavon](https://clawhub.ai/user/wbavon)
 
-## Use Case: <br>
-Developers and engineers use this skill to install vLLM-Plugin-FL, configure FlagGems and FlagCX, apply hardware-specific setup, troubleshoot runtime issues, and verify model serving with an inference test. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask an agent to clone repositories, install Python packages, build native components, and change shell environment variables. <br>
-Mitigation: Run it only in an environment where those setup actions are acceptable, and review proposed commands before execution. <br>
-Risk: The quick test can search broad filesystem paths for a model directory. <br>
-Mitigation: Provide an explicit local model path for testing instead of allowing a whole-machine search. <br>
-Risk: Proxy setup instructions may expose sensitive proxy URLs if credentials are pasted into chat. <br>
-Mitigation: Do not paste proxy URLs containing usernames, passwords, or tokens into the agent chat. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up vLLM-Plugin-FL, FlagGems, and optional FlagCX across supported accelerator backends, then verify the environment with a local inference test.
 
-## Reference(s): <br>
-- [vLLM v0.13.0](https://github.com/vllm-project/vllm/tree/v0.13.0) <br>
-- [vllm-FL](https://github.com/flagos-ai/vllm-FL) <br>
-- [vLLM-Plugin-FL](https://github.com/flagos-ai/vllm-plugin-FL) <br>
-- [FlagGems](https://github.com/flagos-ai/FlagGems) <br>
-- [FlagCX](https://github.com/flagos-ai/FlagCX) <br>
-- [Additional Steps for Ascend NPU](references/npu.md) <br>
-- [Additional Steps for Iluvatar GPU (BI-V150)](references/iluvatar_gpu.md) <br>
-- [Additional Steps for Moore Threads GPU](references/mthreads_gpu.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository cloning, package installation, native builds, shell environment changes, and local inference verification steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill downloads and builds external source repositories and changes the Python environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a disposable container or dedicated virtual environment, review cloned repositories and build files before execution, and prefer pinned commits or verified package hashes.
+
+Risk: The quick test can perform a broad filesystem search for model directories.
+
+Mitigation: Ask for explicit approval before broad searches and prefer user-provided model paths or constrained search locations.
+
+Risk: Proxy configuration can expose credential-bearing proxy URLs.
+
+Mitigation: Avoid sharing proxy URLs that contain credentials and redact secrets from terminal output and logs.
+
+## Reference(s):
+
+- [vLLM v0.13.0](https://github.com/vllm-project/vllm/tree/v0.13.0)
+- [vLLM-FL fork](https://github.com/flagos-ai/vllm-FL)
+- [vLLM-Plugin-FL GitHub](https://github.com/flagos-ai/vllm-plugin-FL)
+- [FlagGems GitHub](https://github.com/flagos-ai/FlagGems)
+- [FlagCX GitHub](https://github.com/flagos-ai/FlagCX)
+- [Additional Steps for Ascend NPU](references/npu.md)
+- [Additional Steps for Iluvatar GPU](references/iluvatar_gpu.md)
+- [Additional Steps for Moore Threads GPU](references/mthreads_gpu.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment variables, and Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may modify Python environments, clone external repositories, build native extensions, and search local filesystem paths during verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

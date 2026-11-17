@@ -1,45 +1,59 @@
-## Description: <br>
-通过 Joplin Data API（Clipper Server）查询和管理笔记、笔记本、标签。支持本地直连和 SSH 远程两种模式。包含读写删全部操作，写/删需用户确认。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过 Joplin Data API（Clipper Server）查询和管理笔记、笔记本、标签。支持本地直连和 SSH 远程两种模式。包含读写删全部操作，写/删需用户确认。触发词："查 Joplin"、"Joplin 笔记"、"joplin search"、"create note in joplin" 等。
 
-## Publisher: <br>
-[yangyangupday](https://clawhub.ai/user/yangyangupday) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangyangupday](https://clawhub.ai/user/yangyangupday)
 
-## Use Case: <br>
-Developers and agents use this skill to query, preview, create, update, and delete Joplin notes, notebooks, and tags through the Joplin Data API. It supports local Clipper Server access and optional SSH remote mode for users who keep Joplin on another host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive Joplin note content and perform read, write, and delete operations. <br>
-Mitigation: Install only where this access is intended, preview notes before modifying them, and require clear user confirmation for changes or deletions. <br>
-Risk: The Joplin API token is required for every API call and may appear in local configuration or request URLs. <br>
-Mitigation: Keep the token file private, restrict `.env` permissions, exclude it from version control, and rotate the token if exposure is suspected. <br>
-Risk: SSH remote mode sends note content and the API token over the configured remote connection. <br>
-Mitigation: Prefer local mode when possible and disclose the target SSH host before any write or delete operation in remote mode. <br>
-Risk: Permanent deletion is not recoverable through Joplin trash. <br>
-Mitigation: Use soft delete by default and require explicit confirmation before permanent deletion. <br>
+## Use Case:
 
+Chinese-speaking developers and agent users use this skill to search, inspect, create, update, and delete Joplin notes, notebooks, and tags through the Joplin Data API in local or SSH remote mode.
 
-## Reference(s): <br>
-- [Joplin Data API reference](https://joplinapp.org/help/api/references/restapi) <br>
-- [Bundled API docs](artifact/references/api-docs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration snippets, note previews, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Joplin API token and may operate through local or SSH remote Joplin access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release metadata and frontmatter) <br>
+Risk: SSH remote mode may allow crafted note arguments to execute commands on the configured remote host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer local Joplin access; use SSH remote mode only with trusted, controlled hosts and after validating IDs and fields and avoiding shell interpolation of URLs and tokens.
+
+Risk: Joplin API tokens are passed in request URLs and may appear in local, SSH, or proxy logs.
+
+Mitigation: Protect the .env file with restrictive permissions, keep it out of version control, and avoid exposing token-bearing URLs in logs or shared terminals.
+
+Risk: Create, update, and delete commands can modify or permanently remove notes.
+
+Mitigation: Require explicit user confirmation for write and delete operations, preview the target note before deletion, and use soft delete unless permanent deletion is explicitly requested.
+
+## Reference(s):
+
+- [Joplin Data API Reference](https://joplinapp.org/help/api/references/restapi)
+- [Artifact API Docs](artifact/references/api-docs.md)
+- [ClawHub Skill Page](https://clawhub.ai/yangyangupday/skills/joplin-api-china)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or text API output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JOPLIN_TOKEN and a running Joplin Clipper Server; optional SSH remote mode forwards note content and token over SSH.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

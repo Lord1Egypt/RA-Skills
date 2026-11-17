@@ -1,41 +1,55 @@
-## Description: <br>
-Queries and manages Tencent Coding DevOps workspace data on e.coding.net, including iterations, issues, requirements, defects, tasks, and team members, with support for creating requirements and defects through the Coding Open API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and operate on Tencent Coding DevOps platform data for iterations, issues, defects, requirements, tasks, and team members, including creating requirements and defects with a CODING_TOKEN.
 
-## Publisher: <br>
-[wangyin717](https://clawhub.ai/user/wangyin717) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyin717](https://clawhub.ai/user/wangyin717)
 
-## Use Case: <br>
-Developers and project teams use this skill to inspect Coding.net project iterations, issue lists, individual issue details, defect types, and team members, then create requirements or defects after confirming project-specific fields. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Coding.net bearer token and can access workspace data. <br>
-Mitigation: Set CODING_TOKEN as a secure environment variable, avoid pasting tokens into chat, and grant only the minimum token permissions needed. <br>
-Risk: Create-issue and create-defect actions can mutate project data. <br>
-Mitigation: Review issue names, assignees, dates, labels, custom fields, issue types, and defect types before sending create actions. <br>
+## Use Case:
 
+Developers and project operators use this skill to inspect Tencent Coding project iterations, issue lists, issue details, defect types, custom fields, and team members. The skill can also help create requirements or defects after validating the token, team, project identifier, and required project fields.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyin717/coding-net) <br>
-- [Coding.net Open API endpoint](https://e.coding.net/open-api/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Coding.net bearer token supplied through CODING_TOKEN or an explicit token parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: The skill uses a Tencent Coding personal access token and its instructions may lead users to expose that token in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide CODING_TOKEN through a secret or environment mechanism, avoid pasting tokens into chat, use a narrowly scoped token, and rotate any token that may have been exposed.
+
+Risk: The skill can create remote Tencent Coding requirements or defects.
+
+Mitigation: Review create-issue details with the user before sending the request and confirm project identifiers, assignees, iteration codes, dates, labels, working hours, defect type, and custom fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyin717/skills/coding-net)
+- [Publisher profile](https://clawhub.ai/user/wangyin717)
+- [Tencent Coding Open API endpoint](https://e.coding.net/open-api/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks, plus structured API result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include remote Tencent Coding API calls that read project data or create issues when supplied with a valid token.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,62 @@
-## Description: <br>
-Essential SSH commands for secure remote access, key management, tunneling, and file transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Essential SSH commands for secure remote access, key management, tunneling, and file transfers.
 
-## Publisher: <br>
-[Arnarsson](https://clawhub.ai/user/Arnarsson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arnarsson](https://clawhub.ai/user/arnarsson)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise SSH reference for secure remote access, key management, tunneling, file transfer, configuration, and troubleshooting tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Commands that disable host-key checking can make SSH connections vulnerable if the server identity is not verified another way. <br>
-Mitigation: Keep strict host-key checking enabled for normal use, or verify the server through a trusted channel before using relaxed host-key options. <br>
-Risk: Agent forwarding and background tunnels can expose credentials or network access beyond the intended session. <br>
-Mitigation: Use agent forwarding and tunnels only for trusted hosts, limit their lifetime, and close background sessions when they are no longer needed. <br>
-Risk: Destructive transfer examples such as rsync with --delete can remove remote files if paths are wrong. <br>
-Mitigation: Run rsync with --dry-run and review source, destination, and exclude rules before using --delete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenSSH](https://www.openssh.com/) <br>
-- [OpenSSH Manual Pages](https://www.openssh.com/manual.html) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Arnarsson/ssh-essentials) <br>
-- [Publisher Profile](https://clawhub.ai/user/Arnarsson) <br>
+## Use Case:
 
+Developers, engineers, and operators use this skill as a practical SSH reference for remote access, key management, tunneling, host configuration, troubleshooting, and secure file transfer workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reference with shell command and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only reference; no hidden code execution or API calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Copyable examples may encourage disabling SSH host-key checking.
+
+Mitigation: Keep strict host-key checking enabled for normal use and only relax it in tightly controlled throwaway environments.
+
+Risk: Agent forwarding examples may expose forwarded credentials on broad or untrusted host patterns.
+
+Mitigation: Avoid wildcard agent forwarding and enable it only for trusted hosts that require it.
+
+Risk: Rsync examples using --delete can remove remote files if paths or exclusions are wrong.
+
+Mitigation: Run rsync with --dry-run and review the planned changes before using --delete.
+
+Risk: Restarting SSH after configuration edits can lock out administrators if the configuration is invalid.
+
+Mitigation: Validate sshd_config before restarting the SSH service and keep an existing administrative session open during changes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arnarsson/skills/ssh-essentials)
+- [OpenSSH](https://www.openssh.com/)
+- [OpenSSH Manual Pages](https://www.openssh.com/manual.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the ssh command-line client for applying many examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

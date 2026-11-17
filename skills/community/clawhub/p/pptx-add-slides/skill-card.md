@@ -1,41 +1,57 @@
-## Description: <br>
-Adds slides to an existing PPTX by cloning a selected slide template and replacing text while preserving the deck's original styling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds new slides to an existing PPTX while preserving the source deck's layout, background, fonts, colors, and other styling.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to add content, section, or cover slides to an existing PowerPoint deck while keeping the original visual style. It is intended for extending existing presentations rather than creating new decks from scratch. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a user-provided PPTX and writes a new PPTX to the requested output path. <br>
-Mitigation: Run it only on presentations intended for processing and choose a separate output filename when the original deck should be preserved. <br>
-Risk: Inserted content can overflow, be truncated, or leave blank areas when the selected template slide does not match the supplied content structure. <br>
-Mitigation: Select a template slide with enough matching text regions and review the generated deck before sharing or publishing it. <br>
+## Use Case:
 
+Developers and file-oriented agents use this skill to add content or section slides to an existing PowerPoint deck while keeping the deck's visual style consistent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/skills/pptx-add-slides) <br>
-- [Publisher profile](https://clawhub.ai/user/tuobadaidai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [PPTX output files plus Markdown and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill writes a new PPTX to the user-selected output path and accepts slide content as JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact meta.json) <br>
+Risk: Processing untrusted or unusually large PPTX files may expose the local script to malformed input or excessive resource use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a virtual environment, process only trusted PPTX files when possible, and apply resource limits for large or untrusted decks.
+
+Risk: A template slide whose text regions do not match the requested content can cause truncation, blank regions, or awkward slide output.
+
+Mitigation: Choose a representative template slide with enough text regions and inspect the generated PPTX before sharing or publishing it.
+
+Risk: Writing a generated deck can overwrite or replace expected output if paths are chosen carelessly.
+
+Mitigation: Use a distinct output path and keep the original source PPTX unchanged until the generated deck has been reviewed.
+
+## Reference(s):
+
+- [PPTX Add Slides ClawHub Skill Page](https://clawhub.ai/tuobadaidai/skills/pptx-add-slides)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON page configuration; the script produces a PPTX file.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an existing PPTX, a template page number, an insertion position, and page content supplied as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

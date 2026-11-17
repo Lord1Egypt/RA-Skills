@@ -1,48 +1,68 @@
-## Description: <br>
-Helps agents integrate MobTech FlyVerify one-click login into existing iOS projects with minimal CocoaPods-based changes, privacy sequencing, login flow wiring, and project documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through MobTech FlyVerify one-click-login integration for iOS projects by scanning the project, preferring CocoaPods, wiring privacy and login flows, and adding project documentation.
 
-## Publisher: <br>
-[mobsupport](https://clawhub.ai/user/mobsupport) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mobsupport](https://clawhub.ai/user/mobsupport)
 
-## Use Case: <br>
-Developers and engineers maintaining iOS apps use this skill to inspect an existing project, prepare FlyVerify configuration, add SDK dependencies, wire privacy consent and one-click login flows, and document the integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may propose or apply changes to iOS project configuration and source files. <br>
-Mitigation: Review the proposed file changes before applying them, and keep changes scoped to the FlyVerify integration path. <br>
-Risk: FlyVerify appKey and appSecret are sensitive configuration values. <br>
-Mitigation: Treat appKey and appSecret as sensitive configuration, avoid exposing them in logs or public documentation, and review where they are stored. <br>
-Risk: Dependency installation and build verification can change project state. <br>
-Mitigation: Only approve pod install or build commands when ready for dependency and workspace changes, then inspect generated Podfile.lock and workspace updates. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or troubleshoot MobTech FlyVerify one-click login in existing iOS apps while preserving existing privacy-consent and login flows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mobsupport/ios-flyverify-integration) <br>
-- [MobTech documentation center](https://www.mob.com/wiki/list) <br>
-- [FlyVerify product page](https://www.mob.com/mobService/secverify) <br>
-- [FlyVerify iOS integration guide](https://www.mob.com/wiki/detailed?wiki=531&id=78) <br>
-- [FlyVerify SDK API documentation](https://www.mob.com/wiki/detailed?wiki=297&id=78) <br>
-- [FlyVerify compliance guide](https://www.mob.com/wiki/detailed?wiki=217&id=78) <br>
-- [FlyVerify iOS demo](https://github.com/MobClub/FlyVerify_For_iOS) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code snippets, shell commands, and configuration changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project files such as Podfile, Info.plist, bridging headers, login code, configuration templates, and FlyVerify_README.md after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may handle FlyVerify service credentials in project files or a generated configuration workbook.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep FlyVerify_iOS_Config.xlsx out of source control, avoid hard-coding real secrets where possible, and review where appKey and appSecret are stored before committing changes.
+
+Risk: The skill can modify an iOS project dependency graph and build settings while integrating CocoaPods and FlyVerify.
+
+Mitigation: Review the proposed file changes before execution, pin and inspect Podfile.lock changes, and run project build verification after dependency updates.
+
+Risk: Disabling Xcode user script sandboxing can weaken local build isolation.
+
+Mitigation: Avoid disabling ENABLE_USER_SCRIPT_SANDBOXING except temporarily in an isolated build environment when needed to diagnose CocoaPods resource script failures.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mobsupport/skills/ios-flyverify-integration)
+- [MobTech documentation center](https://www.mob.com/wiki/list)
+- [FlyVerify product page](https://www.mob.com/mobService/secverify)
+- [MobTech SDK download center](https://www.mob.com/download)
+- [FlyVerify integration guide](https://www.mob.com/wiki/detailed?wiki=531&id=78)
+- [FlyVerify SDK API documentation](https://www.mob.com/wiki/detailed?wiki=297&id=78)
+- [FlyVerify compliance guide](https://www.mob.com/wiki/detailed?wiki=217&id=78)
+- [FlyVerify privacy policy](https://policy.zztfly.com/sdk/verify/privacy)
+- [MobTech app creation guide](https://www.mob.com/wiki/detailed?wiki=538&id=78)
+- [FlyVerify review process](https://www.mob.com/wiki/detailed?wiki=159&id=78)
+- [FlyVerify server integration documentation](https://www.mob.com/wiki/detailed?wiki=157&id=78)
+- [FlyVerify iOS demo](https://github.com/MobClub/FlyVerify_For_iOS)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code, shell commands, configuration edits, and generated project documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a FlyVerify_iOS_Config.xlsx template and a project-level FlyVerify_README.md when used in an iOS project.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

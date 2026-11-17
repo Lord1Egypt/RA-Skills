@@ -1,40 +1,53 @@
-## Description: <br>
-Review OpenRouter usage, analytics, and troubleshooting data via API. Use when the user asks for spend/usage monitoring, activity trends, per-key management reporting, or deep investigation of specific request IDs (latency, provider fallback, finish reason, token/cost breakdown). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review OpenRouter usage, spend, analytics, per-key reporting, and request-level troubleshooting data via the OpenRouter API.
 
-## Publisher: <br>
-[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[plgonzalezrx8](https://clawhub.ai/user/plgonzalezrx8)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor OpenRouter spend, usage trends, credit consumption, and per-key activity, and to investigate specific generation IDs during latency, cost, fallback, or finish-reason incidents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles OpenRouter API and management credentials. <br>
-Mitigation: Use least-privilege keys, keep .env files private, and verify which credential source is loaded before running commands. <br>
-Risk: CSV and report outputs can contain sensitive usage, spend, key, and troubleshooting data. <br>
-Mitigation: Export reports only to deliberate non-sensitive paths and protect or remove generated files according to local data-handling policy. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Endpoint reference and field guide](references/endpoints.md) <br>
-- [OpenRouter API base URL](https://openrouter.ai/api/v1) <br>
+## Use Case:
 
+Developers and teams operating OpenRouter use this skill to monitor spending, usage trends, credit balances, per-key consumption, and detailed generation incidents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; CLI output may be text, Markdown, JSON, or CSV.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenRouter management key for account analytics or a regular OpenRouter API key for generation lookup; CSV export writes local report files when requested.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper automatically reads ~/.openclaw/.env and the current directory's .env, which can load broad OpenRouter credentials in unintended workspaces.
+
+Mitigation: Run it from a controlled directory with least-privilege OpenRouter keys and review which environment files are present before execution.
+
+Risk: Analytics, CSV, report, and raw JSON outputs can contain sensitive account, key usage, request, token, cost, and latency data.
+
+Mitigation: Treat generated reports and CSV or JSON output as sensitive account data, and avoid --raw unless the full API response is needed.
+
+## Reference(s):
+
+- [OpenRouter Usage & Troubleshooting Endpoints](references/endpoints.md)
+- [OpenRouter API](https://openrouter.ai/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text with inline shell commands; helper commands can emit JSON, CSV, or Markdown reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sensitive account, key usage, request ID, token, cost, and latency data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

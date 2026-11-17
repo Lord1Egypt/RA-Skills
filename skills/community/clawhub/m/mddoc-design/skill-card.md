@@ -1,41 +1,55 @@
-## Description: <br>
-Adds mind maps or architecture diagrams to Markdown documents when users ask for a mind map, architecture diagram, chart, mind map, or diagram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds mind maps and architecture diagrams to Markdown documents when users request a mind map, architecture diagram, or chart.
 
-## Publisher: <br>
-[drunkpig](https://clawhub.ai/user/drunkpig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drunkpig](https://clawhub.ai/user/drunkpig)
 
-## Use Case: <br>
-Developers and technical writers use this skill to create Markdown-adjacent mind map or architecture diagram source files, render PNG diagrams, and insert the resulting image links back into Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask the agent to run global dependency installation commands when mddoc or d2 are missing. <br>
-Mitigation: Review dependency installation commands first, or install mddoc and d2 through an approved local process before using the skill. <br>
-Risk: The skill creates or modifies Markdown-adjacent diagram files under .mddoc and inserts generated PNG links into Markdown. <br>
-Mitigation: Review generated source files, PNG outputs, and inserted Markdown links before committing or publishing the document. <br>
+## Use Case:
 
+Developers and technical writers use this skill to create and embed mind map or architecture diagram assets alongside Markdown documentation, with generated PNGs and source files kept in a local .mddoc directory.
 
-## Reference(s): <br>
-- [D2 installation guide](https://d2lang.com/tour/install) <br>
-- [ClawHub skill page](https://clawhub.ai/drunkpig/mddoc-design) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, D2 or markmap source files, generated PNG files, and Markdown image links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Diagram source files and generated PNG files are kept under a .mddoc directory next to the Markdown document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: The skill may install mddoc-cli globally from npm if the dependency is missing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manually installing reviewed, pinned dependencies or running the skill in a contained project environment.
+
+Risk: The skill runs local diagram rendering commands and creates .mddoc source and PNG files.
+
+Mitigation: Review proposed file paths and generated diagram sources before execution, especially in shared repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/drunkpig/skills/mddoc-design)
+- [D2 installation documentation](https://d2lang.com/tour/install)
+- [Project issue tracker](https://github.com/drunkpig/md-of-programer/issues)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and diagram source snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [.mddoc source files and PNG outputs are created alongside the target Markdown file when the agent follows the skill.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

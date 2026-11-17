@@ -1,40 +1,57 @@
-## Description: <br>
-SharpAgent Memory System defines a six-layer agent memory approach with dream processing, TF-IDF retrieval, Chinese tokenization, and persistent JSON or SQLite storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SharpAgent Layered Memory System provides a six-layer memory hierarchy with dream processing, TF-IDF semantic search, and Chinese tokenization support for agent memory retrieval and retention.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide persistent agent memory design, including retention layers, retrieval behavior, storage layout, and memory maintenance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable long-term memory may retain sensitive, stale, or unwanted user information without clear operational controls. <br>
-Mitigation: Before use, define what data may be stored, where memory files live, and how users can inspect, export, and purge stored memories. <br>
-Risk: Scheduled dream processing can automatically consolidate, archive, forget, or merge memories, changing persistent state without direct user review. <br>
-Mitigation: Disable scheduled dream processing or require explicit confirmation unless automatic memory changes are acceptable for the deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to design layered persistent memory, retrieval, consolidation, archiving, and forgetting behavior for agents that need cross-session continuity.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/sharpagent-memory-system) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with tables, architecture diagrams, storage paths, and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes memory layers, persistence locations, retrieval behavior, dream processing, and quality gates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The memory design stores durable agent history across sessions, which may include sensitive or confidential content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent, avoid storing secrets or regulated data, and add review controls before committing items to long-term memory.
+
+Risk: Archive entries are described as permanent and forget requests are handled as soft deletion, which may conflict with deletion or retention expectations.
+
+Mitigation: Add hard-delete support, retention limits, and archive access controls before using this skill with regulated personal data or confidential business records.
+
+Risk: Bulk history import can move data directly into the archive.
+
+Mitigation: Validate imported content and apply retention, sensitivity, and access checks before archival ingestion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/sharpagent-memory-system)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with architecture diagrams, tables, and inline Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes memory layer definitions, storage layout guidance, search behavior, dream-processing rules, edge cases, and quality gates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

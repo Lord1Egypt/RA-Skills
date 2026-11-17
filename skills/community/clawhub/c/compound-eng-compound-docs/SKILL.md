@@ -6,7 +6,6 @@ description: >-
   /ia-compound. Use when documenting a resolved issue, writing up
   lessons learned, capturing a post-mortem, adding to the knowledge base,
   or building searchable institutional knowledge after debugging.
-disable-model-invocation: true
 ---
 
 # compound-docs
@@ -21,15 +20,17 @@ Follow the 7-step documentation capture process. For full details, see [document
 2. **Gather context** -- Extract module, symptom, investigation attempts, root cause, solution, prevention. BLOCK if critical context missing.
 3. **Check existing docs** -- Search `docs/solutions/` for similar issues. If found, offer: new doc with cross-reference, update existing, or other.
 4. **Generate filename** -- Format: `[sanitized-symptom]-[module]-[YYYYMMDD].md`
-5. **Validate YAML** -- Run [validate-frontmatter.sh](./scripts/validate-frontmatter.sh) against the file. If invalid, fix the frontmatter and re-run until it passes.
+5. **Validate YAML** -- Save the draft to a temporary Markdown file, then run [validate-frontmatter.sh](./scripts/validate-frontmatter.sh) against it. The validator requires Python 3 and PyYAML; report a missing dependency rather than claiming validation. If invalid, fix the frontmatter and re-run until it passes.
 6. **Create documentation** -- Write file to `docs/solutions/[category]/[filename].md` using [resolution-template.md](./assets/resolution-template.md).
 7. **Cross-reference** -- Link related issues. Detect critical patterns (3+ similar issues).
+
+**Capture gate (step 1):** capture only if, without this doc, a future engineer reading the final code, tests, comments, CLAUDE.md/AGENTS.md, and existing docs or skills would still repeat the mistake or redo the investigation. Skip when any of those already carries the lesson.
 
 ---
 
 ## Decision Menu
 
-After successful documentation, present and WAIT for user response:
+After successful documentation, present the options below via `AskUserQuestion` (Claude Code; load with ToolSearch `select:AskUserQuestion` if not loaded) or `request_user_input` (Codex), falling back to the numbered menu in chat, and WAIT for the user's response:
 
 ```
 Solution documented
@@ -71,7 +72,8 @@ For detailed response handling, see [documentation-process.md](./references/docu
 - [resolution-template.md](./assets/resolution-template.md) - Template for documentation files
 - [critical-pattern-template.md](./assets/critical-pattern-template.md) - Template for critical pattern entries
 - [validate-frontmatter.sh](./scripts/validate-frontmatter.sh) - Validate YAML frontmatter against schema
+- [validate-frontmatter.py](./scripts/validate-frontmatter.py) - Safe YAML parser and field validation; install its dependency with `python3 -m pip install PyYAML` when authorized
 
 ## Integration
 
-- `/ia-compound-refresh` command -- reviews `docs/solutions/` for stale learnings
+- Stale-learning review (`/ia-compound-refresh` in Claude Code) -- reviews `docs/solutions/` for entries that have aged out

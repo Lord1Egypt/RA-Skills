@@ -74,7 +74,7 @@ The Dida365 Open API provides a RESTful interface for accessing and managing use
 
 ### [Task](#/openapi?id=task)
 
-#### [Get Task By Project ID And Task ID](#/openapi?id=get-task-by-project-id-and-task-id)
+#### [Get Task By Project ID And Task ID](#/openapi?id=get-taREDACTED-SECRET)
 
 ```
 GET /open/v1/project/{projectId}/task/{taskId}

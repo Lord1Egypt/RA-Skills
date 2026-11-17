@@ -1,37 +1,49 @@
-## Description: <br>
-Convert currencies, physical units, and encodings between formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert currencies, physical units, and encodings between formats.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-Developers and agents use this skill to generate requests for an external conversion service that handles currency, physical unit, and encoding conversions. It is suitable when an agent needs concise conversion guidance or API call examples and the user accepts sharing conversion inputs with the service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CutTheMustard/convert-units) <br>
-- [Conversion service homepage](https://convert.agentutil.net) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request examples and structured conversion response fields; no API key is required for the documented free tier.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Developers and agents use this skill to convert currencies, physical units, and common text encodings through a hosted conversion API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Conversion values and encoding inputs are sent to the hosted convert.agentutil.net service.
+
+Mitigation: Use non-sensitive inputs only; do not send secrets, private documents, tokens, or other sensitive text to the encoding endpoint.
+
+## Reference(s):
+
+- [Convert Units ClawHub Page](https://clawhub.ai/cutthemustard/skills/convert-units)
+- [Conversion Service Homepage](https://convert.agentutil.net)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples and structured conversion response fields such as result, formula, request_id, and service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

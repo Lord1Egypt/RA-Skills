@@ -10,6 +10,11 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
+TASK_RUNTIME_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dataify-task-operations", "scripts"))
+if TASK_RUNTIME_DIR not in sys.path:
+    sys.path.insert(0, TASK_RUNTIME_DIR)
+from task_runtime import complete_task
+
 
 BUILDER_URL = "https://scraperapi.dataify.com/builder?platform=1"
 DASHBOARD_URL = "https://dashboard.dataify.com?utm_source=skill"
@@ -102,7 +107,7 @@ def normalize_file_name(value):
 
 def normalize_detail_group(group):
     return {
-        "url": normalize_url(group.get("url", DEFAULT_URLS[MODE_DETAIL_URL])),
+        "url": normalize_url(group.get("url")),
     }
 
 
@@ -112,7 +117,7 @@ def normalize_list_group(group, mode):
     if start_parsed > end_parsed:
         raise ValueError("start_date must be on or before end_date")
     return {
-        "url": normalize_url(group.get("url", DEFAULT_URLS[mode])),
+        "url": normalize_url(group.get("url")),
         "num_of_posts": normalize_non_negative_integer(group.get("num_of_posts", DEFAULT_NUM_OF_POSTS), "num_of_posts"),
         "posts_to_not_include": normalize_optional_text(group.get("posts_to_not_include"), DEFAULT_POSTS_TO_NOT_INCLUDE),
         "start_date": start_date,
@@ -144,7 +149,7 @@ def load_groups_from_json(raw, mode):
 def build_groups(args, mode):
     if args.params_json:
         return load_groups_from_json(args.params_json, mode)
-    urls = args.url or [DEFAULT_URLS[mode]]
+    urls = args.url or []
     groups = []
     for url in urls:
         group = {"url": url}
@@ -210,18 +215,20 @@ def main():
     parser = argparse.ArgumentParser(description="Submit a guided Dataify Instagram Reels Builder task.")
     parser.add_argument("--mode", required=True, help="Collection mode. Allowed values: detail-url, allreel-url, listurl.")
     parser.add_argument("--url", action="append", help="Instagram URL. Repeat for multiple URLs.")
-    parser.add_argument("--num-of-posts", default=DEFAULT_NUM_OF_POSTS, help="List modes only. Integer greater than or equal to 0.")
-    parser.add_argument("--posts-to-not-include", default=DEFAULT_POSTS_TO_NOT_INCLUDE, help="List modes only. Reel post IDs or PK values to exclude.")
-    parser.add_argument("--start-date", default=DEFAULT_START_DATE, help="List modes only. Start date in mm-dd-yyyy format.")
-    parser.add_argument("--end-date", default=DEFAULT_END_DATE, help="List modes only. End date in mm-dd-yyyy format.")
+    parser.add_argument("--num-of-posts", help="List modes only. Integer greater than or equal to 0.")
+    parser.add_argument("--posts-to-not-include", help="List modes only. Reel post IDs or PK values to exclude.")
+    parser.add_argument("--start-date", help="List modes only. Start date in mm-dd-yyyy format.")
+    parser.add_argument("--end-date", help="List modes only. End date in mm-dd-yyyy format.")
     parser.add_argument("--file-name", default=DEFAULT_FILE_NAME, help="Builder file_name field. Default: {{TasksID}}.")
     parser.add_argument("--params-json", help="JSON array of parameter objects for the selected mode.")
-    parser.add_argument("--api-token", default=os.environ.get("DATAIFY_API_TOKEN"), help="Dataify token. Defaults to DATAIFY_API_TOKEN.")
+    parser.add_argument("--no-wait", action="store_true", help="Return after submission without waiting for the final result.")
+    parser.add_argument("--wait-timeout", type=float, default=600, help="Maximum final-result wait in seconds.")
     args = parser.parse_args()
+    api_token = os.environ.get("DATAIFY_API_TOKEN", "").strip()
 
-    if not args.api_token:
+    if not api_token:
         print(
-            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one.".format(LOGIN_URL),
+            "Missing Dataify API TOKEN. Enter your Dataify API TOKEN to continue. If you want to reuse it later, save it as DATAIFY_API_TOKEN. If you do not have one, log in at {} to get one. New accounts receive 50 free credits.".format(LOGIN_URL),
             file=sys.stderr,
         )
         return 2
@@ -229,13 +236,15 @@ def main():
     try:
         mode = normalize_mode(args.mode)
         groups = build_groups(args, mode)
+        if not groups:
+            raise ValueError("At least one business target is required.")
         file_name = normalize_file_name(args.file_name)
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
 
     try:
-        spider_id, task_id, status = submit_builder(args.api_token, mode, groups, file_name)
+        spider_id, task_id, status = submit_builder(api_token, mode, groups, file_name)
     except RuntimeError as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -248,12 +257,19 @@ def main():
             "status": status,
             "parameters": groups,
             "file_name": file_name,
-            "dashboard_url": DASHBOARD_URL,
-            "message": "Task submitted. Visit {} to view results.".format(DASHBOARD_URL),
+            "message": "Task submitted. Continue monitoring the returned task_id.",
         },
         ensure_ascii=False,
         indent=2,
     ))
+    if not args.no_wait:
+        try:
+            final_result = complete_task(task_id, api_token, args.wait_timeout)
+        except RuntimeError as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        print(json.dumps(final_result, ensure_ascii=False, indent=2))
+
     return 0
 
 

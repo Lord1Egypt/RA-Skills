@@ -1,38 +1,53 @@
-## Description: <br>
-Manage Nginx Proxy Manager (NPM) hosts, certificates, and access lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Nginx Proxy Manager (NPM) hosts, certificates, and access lists.
 
-## Publisher: <br>
-[weird-aftertaste](https://clawhub.ai/user/weird-aftertaste) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[weird-aftertaste](https://clawhub.ai/user/weird-aftertaste)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and administer Nginx Proxy Manager proxy hosts, certificates, and access lists, including host status checks, enable or disable actions, deletion, and SSL setup guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make live Nginx Proxy Manager changes, including disabling or deleting proxy hosts. <br>
-Mitigation: Review every API request before execution and avoid deleting production hosts unless an independent backup or rollback plan exists. <br>
-Risk: NPM administrator credentials and the cached token file can grant control over proxy configuration. <br>
-Mitigation: Run the skill only in a trusted environment, protect NPM_URL, NPM_EMAIL, NPM_PASSWORD, and /root/.npm-token.json, and remove or rotate the cached token when the skill is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Nginx Proxy Manager proxy hosts and certificates, enable or disable hosts, and manage existing proxy-host records through the NPM API.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke Nginx Proxy Manager API operations through a Python helper when the required environment variables are configured.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses live Nginx Proxy Manager admin credentials and stores an API token on disk.
+
+Mitigation: Use only with a trusted NPM instance over HTTPS, prefer a least-privilege account if available, avoid shared environments, and protect or clear /root/.npm-token.json after use.
+
+Risk: The delete command can immediately remove proxy-host configuration without a built-in confirmation or dry run.
+
+Mitigation: Review the target host ID before running destructive actions and confirm the current host details first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/weird-aftertaste/skills/npm-proxy)
+- [Publisher profile](https://clawhub.ai/user/weird-aftertaste)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print tabular host and certificate summaries or formatted JSON returned by the NPM API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -23,7 +23,7 @@ Leer `skills/community-cybersec/skills/{skill-id}/SKILL.md` y ejecutar su workfl
 
 | Skill ID | Descripcion |
 |----------|-------------|
-| `acquiring-disk-image-with-dd-and-dcfldd` |  |
+| `acquiring-diREDACTED-SECRET` |  |
 | `analyzing-browser-forensics-with-hindsight` |  |
 | `analyzing-disk-image-with-autopsy` |  |
 | `analyzing-docker-container-forensics` |  |
@@ -69,7 +69,7 @@ Leer `skills/community-cybersec/skills/{skill-id}/SKILL.md` y ejecutar su workfl
 | `performing-cloud-forensics-with-aws-cloudtrail` |  |
 | `performing-cloud-log-forensics-with-athena` | Uses AWS Athena to query CloudTrail, VPC Flow Logs, S3 access logs, and ALB logs for forensic investigation.   Covers CREATE TABLE DDL with  |
 | `performing-cloud-native-forensics-with-falco` | Uses Falco YAML rules for runtime threat detection in containers and Kubernetes, monitoring syscalls for shell   spawns, file tampering, net |
-| `performing-disk-forensics-investigation` | Conducts disk forensics investigations using forensic imaging, file system analysis, artifact recovery, and   timeline reconstruction to sup |
+| `performing-diREDACTED-SECRET` | Conducts disk forensics investigations using forensic imaging, file system analysis, artifact recovery, and   timeline reconstruction to sup |
 | `performing-endpoint-forensics-investigation` | Performs digital forensics investigation on compromised endpoints including memory acquisition, disk imaging,   artifact analysis, and timel |
 | `performing-file-carving-with-foremost` |  |
 | `performing-insider-threat-investigation` | Investigates insider threat incidents involving employees, contractors, or trusted partners who misuse authorized   access to steal data, sa |
@@ -780,7 +780,7 @@ Leer `skills/community-cybersec/skills/{skill-id}/SKILL.md` y ejecutar su workfl
 | `hardening-windows-endpoint-with-cis-benchmark` | Hardens Windows endpoints using CIS (Center for Internet Security) Benchmark recommendations to reduce attack   surface, enforce security ba |
 | `implementing-anti-ransomware-group-policy` | Configures Windows Group Policy Objects (GPO) to prevent ransomware execution and limit its spread. Implements   AppLocker rules, Software R |
 | `implementing-application-whitelisting-with-applocker` | Implements application whitelisting using Windows AppLocker to restrict unauthorized software execution on endpoints,   reducing attack surf |
-| `implementing-disk-encryption-with-bitlocker` | Implements full disk encryption using Microsoft BitLocker on Windows endpoints to protect data at rest from   unauthorized access in case of |
+| `implementing-diREDACTED-SECRET` | Implements full disk encryption using Microsoft BitLocker on Windows endpoints to protect data at rest from   unauthorized access in case of |
 | `implementing-endpoint-dlp-controls` | Implements endpoint Data Loss Prevention (DLP) controls to detect and prevent sensitive data exfiltration through   email, USB, cloud storag |
 | `implementing-usb-device-control-policy` | Implements USB device control policies to restrict unauthorized removable media access on endpoints, preventing   data exfiltration and malw |
 

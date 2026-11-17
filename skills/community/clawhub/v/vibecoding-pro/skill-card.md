@@ -1,42 +1,55 @@
-## Description: <br>
-Vibecoding Pro guides agents through a Generator-Evaluator workflow for AI-assisted coding, using independent browser, API, or content evaluation with scoring rubrics and iteration loops to improve artifacts against a spec. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vibecoding Pro helps developers run Generator-Evaluator loops that separate code generation from independent browser, API, or content evaluation for AI-assisted development workflows.
 
-## Publisher: <br>
-[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zmy1006-sudo](https://clawhub.ai/user/zmy1006-sudo)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted software work around a separate generator and evaluator, especially for interactive UI, API, and content workflows that need repeatable acceptance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Evaluator or browser automation can interact with real systems if pointed at live URLs or production accounts. <br>
-Mitigation: Only evaluate systems intended for testing, use scoped test credentials, and review generated actions before allowing agents to change code or data. <br>
-Risk: Evaluator feedback can be misleading when the spec, rubric, or calibration examples are incomplete. <br>
-Mitigation: Keep the spec as the evaluator source of truth, calibrate scoring before use, and add human review for production-critical or brand-sensitive work. <br>
+## Use Case:
 
+Developers and engineers use this skill to structure AI-assisted coding work as an iterative build-and-evaluate loop, especially for interactive UI, API, and documentation tasks that need observable acceptance checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zmy1006-sudo/vibecoding-pro) <br>
-- [VibeCoding Pro architecture reference](artifact/references/architecture.md) <br>
-- [Evaluator prompt templates](artifact/references/evaluator-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with prompt templates, JSON evaluation schemas, Python scripts, and CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scoring rubrics, evaluator calibration guidance, and iteration-loop implementation templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Evaluator loops that use browser or API tools can interact with live systems if configured with production URLs or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run browser and API evaluation only against localhost, staging, or disposable test systems with non-production credentials.
+
+Risk: Adapted generator or evaluator code may be given authority to write code, call authenticated APIs, or submit forms.
+
+Mitigation: Review adapted code and agent permissions before enabling write access, authenticated API calls, or form submission.
+
+## Reference(s):
+
+- [Architecture Reference](references/architecture.md)
+- [Evaluator Prompt Templates](references/evaluator-prompts.md)
+- [Anthropic Engineering: Harness Design for Long-Running Application Development](https://www.anthropic.com/engineering/harness-design-long-running-apps)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, JSON schemas, Python code, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes evaluator scoring rubrics, loop-control guidance, and adaptable Python templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

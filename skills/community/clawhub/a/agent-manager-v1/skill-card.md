@@ -1,46 +1,61 @@
-## Description: <br>
-Multi-Agent conversation management platform with Gemini-style UI. Manage all your OpenClaw agents in one place with image upload, chat history, and message isolation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent conversation management platform with Gemini-style UI for managing OpenClaw agents with image upload, chat history, and message isolation.
 
-## Publisher: <br>
-[szzg007](https://clawhub.ai/user/szzg007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[szzg007](https://clawhub.ai/user/szzg007)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to add, manage, delete, pair, and chat with multiple local OpenClaw agents through a web UI, CLI, and local API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unauthenticated local controls can manage agents and conversations if port 3000 is exposed. <br>
-Mitigation: Use only on a trusted local machine, keep the service bound to local access, and do not expose port 3000 until authentication and CORS are fixed. <br>
-Risk: Shell command execution and token/configuration access can affect the local OpenClaw environment. <br>
-Mitigation: Review the code before installing, rotate any token matching the examples, and avoid sensitive conversations until command execution and path validation are fixed. <br>
-Risk: Delete and management operations can remove or alter local agent data. <br>
-Mitigation: Back up important OpenClaw agent data and add delete safeguards before using the skill with important agents. <br>
+## Use Case:
 
+Developers and operators use this skill to run a local web, CLI, and API interface for creating, viewing, chatting with, pairing, and deleting OpenClaw agents. It is intended for managing multiple agent conversations and preserving browser-local chat history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/szzg007/agent-manager-v1) <br>
-- [ClawHub homepage](https://clawhub.com) <br>
-- [README](README.md) <br>
-- [Quickstart](QUICKSTART.md) <br>
-- [ClawHub release notes](CLAWHUB.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Shell commands, Configuration] <br>
-**Output Format:** [Web UI responses, JSON API responses, CLI text, and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a local Node.js service on port 3000 and may read or write OpenClaw agent configuration and workspace files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json, _meta.json) <br>
+Risk: Unauthenticated local APIs can run shell commands and delete files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication, bind the service to 127.0.0.1, validate paths and IDs, and replace shell execution and rm -rf behavior with safer Node APIs or argument-array subprocess calls before use.
+
+Risk: A plaintext OpenClaw token is present in the artifact evidence.
+
+Mitigation: Remove the token from distributed files and rotate it before installing or testing the skill.
+
+Risk: The security verdict is suspicious and recommends review before installation.
+
+Mitigation: Use only in a tightly controlled local environment, update vulnerable dependencies, and do not expose port 3000 or run it against important OpenClaw data until issues are resolved.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/szzg007/skills/agent-manager-v1)
+- [ClawHub homepage](https://clawhub.com)
+- [README](artifact/README.md)
+- [Quickstart](artifact/QUICKSTART.md)
+- [ClawHub documentation](artifact/CLAWHUB.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown documentation, JavaScript application files, JSON configuration, shell commands, API responses, and browser UI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs a local Node.js service for OpenClaw agent management and conversation workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact frontmatter, artifact _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

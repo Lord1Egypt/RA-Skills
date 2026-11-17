@@ -1,48 +1,67 @@
-## Description: <br>
-Complete guide to deploying and optimizing VidAIo SN85 video compression and upscaling miners on Bittensor, including Vast.ai setup, port configuration, NVENC optimization, monitoring, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through deploying, configuring, monitoring, and optimizing GPU-backed Bittensor Subnet 85 VidAIo video compression and upscaling miners.
 
-## Publisher: <br>
-[maxquick](https://clawhub.ai/user/maxquick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maxquick](https://clawhub.ai/user/maxquick)
 
-## Use Case: <br>
-Developers and operators use this skill to deploy, tune, and monitor GPU-backed Bittensor Subnet 85 miners for video compression and upscaling workloads. It is aimed at hands-on miner operations on rented GPU infrastructure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet material may be copied to a rented GPU host. <br>
-Mitigation: Use dedicated low-value hotkeys, avoid copying coldkeys or unnecessary wallet files, and rotate keys if the host may be compromised. <br>
-Risk: The deployment exposes unauthenticated public miner services. <br>
-Mitigation: Expose only the required ports, verify routing, monitor public services, and shut down PM2 startup entries when retiring the host. <br>
-Risk: The setup downloads and runs upstream miner code and ffmpeg binaries. <br>
-Mitigation: Pin and verify upstream code and binaries before installation, and review changes before updating a production miner. <br>
+## Use Case:
 
+Developers and operators use this skill to set up and maintain Bittensor SN85 mining instances on rented GPU infrastructure, including port routing, process supervision, video encoding optimizations, and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maxquick/bittensor-sn85-vibe-miner) <br>
-- [VidAIo subnet repository](https://github.com/Cazure8/vidaio-subnet) <br>
-- [Bittensor documentation](https://docs.bittensor.com) <br>
-- [Vast.ai](https://vast.ai) <br>
-- [VibeMiner](https://github.com/maxquick/VibeMiner) <br>
-- [Optimization history](references/optimization-history.md) <br>
-- [Vast.ai port mapping reference](references/port-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands, Python snippets, configuration examples, and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational guidance for an agent to execute or adapt; no structured API output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and artifact skill.json) <br>
+Risk: Wallet material can be exposed when copied to rented infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-value miner hotkeys only and never copy coldkeys or broad wallet directories to the rented host.
+
+Risk: Root-level deployment steps and downloaded binaries increase host compromise impact.
+
+Mitigation: Avoid running miner services as root where practical, and pin and verify downloaded code and binaries before use.
+
+Risk: Public miner and backend ports can unintentionally expose services.
+
+Mitigation: Expose only required ports and apply appropriate network controls while verifying external routing.
+
+Risk: Overwriting system DNS can break name resolution or make rollback difficult.
+
+Mitigation: Back up resolver configuration and prepare a rollback plan before changing DNS settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maxquick/skills/bittensor-sn85-vibe-miner)
+- [Optimization History](references/optimization-history.md)
+- [Vast.ai Port Mapping Reference](references/port-mapping.md)
+- [VidAIo Subnet technical repository](https://github.com/Cazure8/vidaio-subnet)
+- [Bittensor documentation](https://docs.bittensor.com)
+- [Vast.ai](https://vast.ai)
+- [VibeMiner related reference](https://github.com/maxquick/VibeMiner)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational checks, troubleshooting steps, and concrete file edits for miner services.]
+
+## Skill Version(s):
+
+2.1.0 (source: release evidence and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

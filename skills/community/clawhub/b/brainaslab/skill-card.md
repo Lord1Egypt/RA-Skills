@@ -1,40 +1,53 @@
-## Description: <br>
-Automatically analyzes FreeSurfer cortical stats files to compute asymmetry indices and generate CSV results with plots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BrainASLab analyzes FreeSurfer cortical stats files to compute cortical asymmetry indices and produce CSV results and plots.
 
-## Publisher: <br>
-[xxxx536](https://clawhub.ai/user/xxxx536) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xxxx536](https://clawhub.ai/user/xxxx536)
 
-## Use Case: <br>
-Neuroimaging researchers and developers use this skill to process paired FreeSurfer lh.aparc.stats and rh.aparc.stats files, compute cortical asymmetry indices for thickness, area, and volume, and collect CSV and plot outputs for analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Input paths are interpolated into MATLAB code and could be interpreted as code. <br>
-Mitigation: Use only trusted file paths in a contained working directory until argument handling is fixed. <br>
-Risk: The MATLAB analyzer source is not packaged for review. <br>
-Mitigation: Request the analyzer source from the publisher and review it before installing or running the skill. <br>
+## Use Case:
 
+Developers and researchers use this skill to process FreeSurfer lh.aparc.stats and rh.aparc.stats files, compute cortical asymmetry indices for thickness, area, and volume, and collect CSV and plot outputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xxxx536/brainaslab) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, CSV, Images] <br>
-**Output Format:** [Python dictionary with file paths to generated CSV and PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MATLAB available in PATH and paired FreeSurfer stats inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Crafted input paths could alter the generated MATLAB batch script and execute unintended MATLAB or system commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted FreeSurfer stats file paths until path escaping or a safer invocation strategy is implemented.
+
+Risk: MATLAB failures are not handled explicitly, so missing or failed outputs may be returned without a clear execution error.
+
+Mitigation: Check MATLAB availability and verify expected CSV and plot outputs before relying on results.
+
+## Reference(s):
+
+- [BrainASLab ClawHub skill page](https://clawhub.ai/xxxx536/skills/brainaslab)
+
+## Skill Output:
+
+**Output Type(s):** [Files]
+
+**Output Format:** [JSON-like object containing CSV and plot file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MATLAB available in PATH.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

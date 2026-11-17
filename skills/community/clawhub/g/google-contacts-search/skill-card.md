@@ -1,40 +1,49 @@
-## Description: <br>
-Atomic node skill to search google contacts. Loops internally until successful. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Atomic node skill to search google contacts. Loops internally until successful.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Agents or developers use this skill to search Google Contacts from JSON input through a configured Composio and gog connection, returning contact search results for downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on a Composio API key and an external gog tool to access Google Contacts data. <br>
-Mitigation: Confirm that the gog binary and connected Composio account are trusted, grant only the Google Contacts access needed for search, and keep COMPOSIO_API_KEY secret. <br>
-Risk: The skill loops internally until successful, which can continue longer than expected when failures persist. <br>
-Mitigation: Monitor execution and stop the workflow if retries continue after failures. <br>
+## Use Case:
 
+Agents and developers use this skill to search a Composio-connected Google Contacts account and return matching contact records as structured results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/google-contacts-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, API Calls] <br>
-**Output Format:** [JSON array] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JSON input object and returns the contact search result array.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may expose contact names, email addresses, phone numbers, or notes from a connected Google Contacts account to the agent or logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where the agent is permitted to access Google Contacts data through the configured Composio account, and avoid contexts where that data should not be visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zvirb/skills/google-contacts-search)
+
+## Skill Output:
+
+**Output Type(s):** [JSON]
+
+**Output Format:** [JSON array]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gog binary and COMPOSIO_API_KEY; results may include sensitive Google Contacts data from the connected account.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

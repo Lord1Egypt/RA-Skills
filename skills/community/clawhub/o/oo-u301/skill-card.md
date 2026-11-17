@@ -1,46 +1,60 @@
-## Description: <br>
-U301 helps agents list available short-link domains, create short links, and delete U301 links through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use U301 through an OOMOL-connected account to list short-link domains, create short links, and delete links.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to manage U301 short links from an agent session, including listing available domains, creating shortened links, and deleting existing links after explicit confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on installing and running the external OOMOL oo CLI. <br>
-Mitigation: Install only when the user trusts OOMOL and review the CLI installer before running it. <br>
-Risk: The skill can create short links or delete existing links in a connected U301 account. <br>
-Mitigation: Confirm write or destructive actions with the user after checking the exact short-link target, destination, domain, and slug. <br>
-Risk: The skill requires a connected U301 account with sensitive credentials managed through OOMOL. <br>
-Mitigation: Connect only the intended U301 account and resolve authentication, expired credential, or missing-scope errors through OOMOL connection settings. <br>
+## Use Case:
 
+Developers and other U301 users use this skill to inspect available short-link domains, create short links, and delete links through an OOMOL-connected account. It guides the agent to check each action's input schema and obtain approval before creating or deleting links.
 
-## Reference(s): <br>
-- [U301 homepage](https://u301.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [OOMOL U301 connection settings](https://console.oomol.com/app-connections?provider=u301) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include JSON data and an execution identifier when actions run successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: Setup downloads and runs an oo CLI installer whose exact contents were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing and use a verified CLI release.
+
+Risk: The oo CLI may persistently install or change other agent skills.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 before invoking the CLI if those automatic changes are not wanted.
+
+Risk: Creating or deleting U301 links changes account data.
+
+Mitigation: Keep explicit approval for the exact create or delete action and its target.
+
+## Reference(s):
+
+- [U301 API documentation](https://u301.com/docs/u301-js)
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [U301 skill listing](https://clawhub.ai/oomol/skills/oo-u301)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

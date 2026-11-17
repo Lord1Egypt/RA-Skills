@@ -1,45 +1,56 @@
-## Description: <br>
-Guides agents through installing and using skill-seekers, a Python CLI that converts websites, repositories, PDFs, and other documents into Claude AI skills and related AI skill formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Python CLI tool to convert websites, GitHub repositories, PDFs, and other documents into Claude AI skills or other supported AI skill formats.
 
-## Publisher: <br>
-[fan166](https://clawhub.ai/user/fan166) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fan166](https://clawhub.ai/user/fan166)
 
-## Use Case: <br>
-Developers and AI builders use this skill when they need concise commands for installing skill-seekers, converting source material into AI skills, and packaging generated outputs for Claude, Gemini, OpenAI, LangChain, LlamaIndex, Haystack, or Markdown workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides use of a broad third-party Python package on user-selected content. <br>
-Mitigation: Install it in a virtual environment and verify the PyPI or GitHub project before running commands. <br>
-Risk: Input websites, repositories, documents, chat exports, or local folders may become reusable AI context. <br>
-Mitigation: Only process content that is appropriate to turn into reusable AI context, and review generated skills before deployment. <br>
-Risk: Optional upload or API-key workflows may send content to external services. <br>
-Mitigation: Avoid enabling optional upload or API-key workflows unless the destination and data handling are understood. <br>
+## Use Case:
 
+Developers and agent builders use this skill to install and run skill-seekers for converting documentation websites, repositories, and local documents into Claude AI skills or supported skill formats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fan166/skill-seekers-tool) <br>
-- [skill-seekers on PyPI](https://pypi.org/project/skill-seekers/) <br>
-- [Skill Seekers website](https://skillseekersweb.com/) <br>
-- [Skill Seekers GitHub repository](https://github.com/yusufkaraaslan/Skill_Seekers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target the third-party skill-seekers Python CLI and optional package extras.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Installing broad Python extras can expand dependency exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted Python environment, preferably a virtual environment, and enable only extras needed for the conversion task.
+
+Risk: Local files, private repositories, or documents may contain secrets, personal data, or content the user is not authorized to reuse.
+
+Mitigation: Confirm authorization before conversion and review generated outputs for secrets or personal data before sharing or deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/fan166/skills/skill-seekers-tool)
+- [PyPI Project](https://pypi.org/project/skill-seekers/)
+- [Official Website](https://skillseekersweb.com/)
+- [GitHub Project](https://github.com/yusufkaraaslan/Skill_Seekers)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include package extras and target-format options selected for the user's conversion source.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

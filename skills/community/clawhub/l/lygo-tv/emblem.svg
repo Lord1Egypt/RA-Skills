@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="LYGO TV">
+  <rect width="64" height="64" rx="12" fill="#05070d"/>
+  <circle cx="24" cy="32" r="16" fill="none" stroke="#d4a017" stroke-width="2.25"/>
+  <circle cx="40" cy="32" r="16" fill="none" stroke="#e8a54b" stroke-width="2.25"/>
+  <path d="M32 16v32" stroke="#7dd3fc" stroke-width="1.15" opacity=".75"/>
+</svg>

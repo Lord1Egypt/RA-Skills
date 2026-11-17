@@ -1,38 +1,53 @@
-## Description: <br>
-Baidumap is a redirect skill that points users to the consolidated baidu-map skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidumap is an alias entry for the baidu-map skill that gives agents a quick reference for Baidu Maps Open Platform, including BD-09 coordinates, API domains, and key application guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers and agents use this skill to identify that the Baidumap entry has been consolidated and to switch to the baidu-map skill for the actual map functionality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The redirect skill does not describe or scan the behavior of the target baidu-map skill. <br>
-Mitigation: Review the baidu-map skill's permissions, install steps, credentials, and scan status before relying on its functionality. <br>
+## Use Case:
 
+Developers and agents use this skill when selecting or integrating Baidu Maps, checking Baidu Maps Open Platform basics, or diagnosing coordinate-offset issues caused by mixing BD-09, GCJ-02, and WGS-84 coordinates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/baidumap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown redirect notice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; directs users to the baidu-map skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Coordinate-system mixups can cause Baidu Maps locations to appear hundreds of meters away from the intended position.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm whether coordinates are BD-09, GCJ-02, or WGS-84, and use Baidu's official coordinate conversion service when sending external coordinates to Baidu Maps.
+
+Risk: The source skill is Chinese-first, which may make key integration caveats harder for non-Chinese readers to apply correctly.
+
+Mitigation: Use translation, consult the main baidu-map skill for fuller guidance, and verify details against Baidu Maps Open Platform documentation.
+
+## Reference(s):
+
+- [Baidu Maps Open Platform](https://lbsyun.baidu.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reference guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; provides quick-reference guidance and links.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

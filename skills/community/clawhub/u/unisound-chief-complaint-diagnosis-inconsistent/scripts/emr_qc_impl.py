@@ -18,7 +18,7 @@ import urllib.request
 # ---------------------------------------------------------------------------
 
 DEFAULT_LLM_BASE = "https://maas-api.hivoice.cn/v1"
-DEFAULT_LLM_MODEL = "u1-insuremed"
+DEFAULT_LLM_MODEL = "u2-med"
 
 
 # ---------------------------------------------------------------------------
@@ -113,8 +113,9 @@ def qc_chief_complaint_diagnosis_inconsistent(fields: Dict[str, str], llm) -> st
     dx = fields["dx"]
 
     # LLM1：主诉中是否包含身体部位
-    cc_has_loc = llm([sys_msg(
-        f"""给定门诊病历中主诉字段，请判断其中是否包含身体部位的描述，请直接回答"包含"或者"不包含"
+    cc_has_loc = llm([
+        sys_msg("你是门诊病历质控助手，请严格按用户要求输出。"),
+        user_msg(f"""给定门诊病历中主诉字段，请判断其中是否包含身体部位的描述，请直接回答"包含"或者"不包含"
 
 请注意，这里指的是"上"、"下"、"左"、"右"、"单侧"、"双侧"等具体部位的描述，以下是一些示例，用<example></example>标记，请参考
 
@@ -145,13 +146,15 @@ def qc_chief_complaint_diagnosis_inconsistent(fields: Dict[str, str], llm) -> st
 
 请对下面的主诉进行判断
 {cc}"""
-    )])
+        ),
+    ])
     if "不包含" in cc_has_loc:
         return "无缺陷"
 
     # LLM2：诊断中是否包含身体部位
-    dx_has_loc = llm([sys_msg(
-        f"""给定门诊病历中初步诊断字段，请判断其中是否包含身体部位的描述，请直接回答"包含"或者"不包含"
+    dx_has_loc = llm([
+        sys_msg("你是门诊病历质控助手，请严格按用户要求输出。"),
+        user_msg(f"""给定门诊病历中初步诊断字段，请判断其中是否包含身体部位的描述，请直接回答"包含"或者"不包含"
 
 请注意，这里指的是"上"、"下"、"左"、"右"、"单侧"、"双侧"等具体部位的描述，以下是一些示例，用<example></example>标记，请参考
 
@@ -202,7 +205,8 @@ def qc_chief_complaint_diagnosis_inconsistent(fields: Dict[str, str], llm) -> st
 
 请对下面的初步诊断进行判断
 {dx}"""
-    )])
+        ),
+    ])
     if "不包含" in dx_has_loc:
         return "无缺陷"
 

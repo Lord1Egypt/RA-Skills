@@ -1,49 +1,74 @@
-## Description: <br>
-Quant Buddy Skill helps agents query A-share, Hong Kong, and U.S. market data and A-share financial metrics, then run screening, factor calculations, backtests, industry aggregation, custom CSV uploads, and chart rendering through QuantBuddy APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quant Buddy Skill helps agents query A-share, Hong Kong, and U.S. market data, A-share financial metrics, recent trading-window statistics, screening results, factor calculations, backtests, industry aggregations, uploaded factor CSVs, and rendered charts.
 
-## Publisher: <br>
-[pseudo-longinus](https://clawhub.ai/user/pseudo-longinus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pseudo-longinus](https://clawhub.ai/user/pseudo-longinus)
 
-## Use Case: <br>
-External users and investment research agents use this skill to answer market-data and quant-research requests for A-share, Hong Kong, and U.S. equities, including snapshots, recent-window statistics, financial metrics, screening, backtesting, factor analysis, and charts. It requires a user-provided QuantBuddy API key and can optionally use a Bocha API key for event-study news search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive QuantBuddy credentials and an optional Bocha credential. <br>
-Mitigation: Configure credentials locally, avoid pasting API keys into chat, and treat config.json, config.local.json, logs, and output files as sensitive. <br>
-Risk: The skill can send user queries, uploaded CSV data, and generated analysis requests to QuantBuddy. <br>
-Mitigation: Upload only data that is intended for QuantBuddy processing and avoid confidential or licensed datasets unless the user has authorization. <br>
-Risk: The security review advises caution around the zip update flow and local generated artifacts. <br>
-Mitigation: Review archives before using update flows and inspect generated output, logs, and cached files before sharing or redeploying. <br>
+## Use Case:
 
+External users, market analysts, and agents use this skill to retrieve financial market data, compare recent performance, run quantitative finance workflows, and produce charts or exported datasets for research workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pseudo-longinus/quant-buddy-skill) <br>
-- [QuantBuddy skill API endpoint](https://www.quantbuddy.cn/skill) <br>
-- [QuantBuddy user API endpoint](https://www.quantbuddy.cn/user) <br>
-- [QuantBuddy login and API key page](https://www.quantbuddy.cn/login) <br>
-- [Bocha API key page](https://open.bochaai.com) <br>
-- [Environment requirements](references/environment.md) <br>
-- [Bundled scripts audit](references/scripts-audit.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with tables, JSON/tool parameters, shell commands, and generated chart or CSV file references when workflows request them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may depend on authenticated QuantBuddy API responses and optional locally generated PNG, CSV, JSON, or HTML artifacts under the skill output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.14.18 (source: frontmatter, release metadata) <br>
+Risk: Sensitive user queries may be sent during session setup or finance workflow execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where Quant Buddy service use is approved, and avoid entering unnecessary confidential details in prompts.
+
+Risk: API keys may be stored locally and used for outbound requests.
+
+Mitigation: Use limited-scope credentials where available, keep keys out of chat transcripts, and restrict endpoints to the intended Quant Buddy host.
+
+Risk: Local logs, cache entries, session files, charts, CSVs, and other outputs may retain queried data.
+
+Mitigation: Review retention expectations, redact or disable logs where possible, and clear local output or cache files after sensitive work.
+
+Risk: CSV uploads and optional news-search workflows may send user-provided data or requests to external services.
+
+Mitigation: Upload only approved datasets and enable the optional Bocha integration only when that service is permitted for the deployment.
+
+Risk: Zip-based skill update behavior can replace local skill files if handled without verification.
+
+Mitigation: Allow update workflows only for trusted administrators and verify package provenance and contents before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pseudo-longinus/skills/quant-buddy-skill)
+- [Publisher profile](https://clawhub.ai/user/pseudo-longinus)
+- [Quant Buddy skill API endpoint](https://www.quantbuddy.cn/skill)
+- [Quant Buddy user API endpoint](https://www.quantbuddy.cn/user)
+- [Quant Buddy API key login](https://www.quantbuddy.cn/login)
+- [Bocha optional API key service](https://open.bochaai.com)
+- [Environment](references/environment.md)
+- [RU Billing](references/ru-billing.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Scripts Audit](references/scripts-audit.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown responses with tables, formulas, tool-call parameters, and saved CSV or PNG files when download or chart workflows are used.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a required Quant Buddy API key and optional Bocha API key; workflows can retain local session, cache, chart, and data files under the skill output paths.]
+
+## Skill Version(s):
+
+4.14.18 (source: frontmatter, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

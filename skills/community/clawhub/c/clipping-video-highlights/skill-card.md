@@ -1,43 +1,57 @@
-## Description: <br>
-Creates short highlight clips from YouTube links or local videos by extracting subtitles, selecting highlight timestamps with MiniMax, generating an AI cover image, and cutting captioned clips with ffmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates short video highlight clips with burned-in subtitles and an AI-generated cover from YouTube URLs or local video inputs using yt-dlp, MiniMax, and ffmpeg.
 
-## Publisher: <br>
-[freak30](https://clawhub.ai/user/freak30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freak30](https://clawhub.ai/user/freak30)
 
-## Use Case: <br>
-Developers, creators, and agents use this skill to turn long-form YouTube or local video inputs into a requested number of short highlight clips with burned-in subtitles and an AI-generated cover image. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary reports an exposed provider credential. <br>
-Mitigation: Review before installing, remove shared credentials, and require users to provide their own secrets through a protected configuration path. <br>
-Risk: The security guidance reports that transcript and title data may be sent to external AI services without clear user consent or scoping. <br>
-Mitigation: Use only videos whose titles and subtitles are appropriate to share with MiniMax, document third-party data flows, and make LLM and cover-generation calls optional where possible. <br>
-Risk: The security guidance says Tencent COS is mentioned but its actual use is unclear. <br>
-Mitigation: Clarify whether Tencent COS is used before deployment and document any storage destinations or disable unused storage behavior. <br>
+## Use Case:
 
+Developers and content-automation users can use this skill to extract short highlight clips from long-form YouTube videos, podcasts, lectures, livestream replays, or local videos. It is intended to produce social-video-ready clips with subtitles and a generated cover image.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freak30/clipping-video-highlights) <br>
-- [Publisher profile](https://clawhub.ai/user/freak30) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Video files, image files, and command-line progress text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces cover.jpg and clip_01.mp4, clip_02.mp4, and subsequent numbered MP4 highlight clips in the requested output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: The release evidence reports a live-looking MiniMax API key in the skill materials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after the MiniMax key has been revoked and removed from the skill documentation and any distributed files.
+
+Risk: The release evidence reports that subtitle handling can send the wrong local subtitle file to an external AI service.
+
+Mitigation: Use a per-run working directory or exact downloaded subtitle path, and avoid shared output folders containing private SRT files.
+
+Risk: The release evidence states that video subtitles processed by this skill may be sent to MiniMax.
+
+Mitigation: Treat subtitles as third-party API data and avoid processing private, confidential, or restricted transcripts unless that transfer is approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freak30/skills/clipping-video-highlights)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Command-line execution that writes MP4 clips, a cover image, and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs cover.jpg and clip_XX.mp4 files in the requested output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

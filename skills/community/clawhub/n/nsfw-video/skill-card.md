@@ -1,45 +1,59 @@
-## Description: <br>
-Generates adult-only creative AI videos through Atlas Cloud video models, supporting text-to-video, image-to-video, video-to-video, model selection guidance, media upload, polling, and MP4 download workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates adult (18+) creative AI videos through Atlas Cloud models, supporting text-to-video, image-to-video, video-to-video, media upload, polling, and downloaded MP4 outputs.
 
-## Publisher: <br>
-[xixihhhh](https://clawhub.ai/user/xixihhhh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihhhh](https://clawhub.ai/user/xixihhhh)
 
-## Use Case: <br>
-Adult users, creators, and developers use this skill to generate mature creative video assets through Atlas Cloud models after confirming they are 18 or older. It is suited for legitimate adult artistic, fashion, choreography, animation, and professional media workflows that require text, image, or video conditioning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is intended for mature adult content and may be inappropriate or unlawful for underage users or restricted contexts. <br>
-Mitigation: Require explicit 18+ confirmation before use and apply local policy, consent, and legal checks before generating content. <br>
-Risk: Prompts, image URLs, audio URLs, video URLs, and uploaded files are sent to Atlas Cloud for processing. <br>
-Mitigation: Use only consented, non-sensitive media and review Atlas Cloud handling terms before uploading personal or confidential content. <br>
-Risk: The Atlas Cloud API key can incur paid generation or upload costs if misused. <br>
-Mitigation: Use a dedicated ATLASCLOUD_API_KEY, keep it in environment variables, monitor account usage, and limit account balance exposure. <br>
+## Use Case:
 
+External adult users and developers use this skill to choose Atlas Cloud video models, prepare prompts or source media, generate mature creative videos, poll job status, and save returned video files. It is intended only for lawful adult creative work with rights and consent for any uploaded media.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixihhhh/nsfw-video) <br>
-- [Publisher profile](https://clawhub.ai/user/xixihhhh) <br>
-- [Atlas Cloud](https://www.atlascloud.ai) <br>
-- [Atlas Cloud video generation API endpoint](https://api.atlascloud.ai/api/v1/model/generateVideo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown guidance with command examples and generated MP4 files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY; prompts and media URLs are sent to Atlas Cloud; generated videos are downloaded to the selected local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release evidence) <br>
+Risk: The skill generates mature adult video content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm users are 18 or older before use and refuse execution when age confirmation is not provided.
+
+Risk: Prompts, image URLs, audio URLs, video URLs, and uploaded media are sent to Atlas Cloud.
+
+Mitigation: Use only media the user has rights and consent to process, and tell users that submitted prompts and media are visible to Atlas Cloud.
+
+Risk: The Atlas Cloud API key can incur pay-as-you-go charges and is not described as scope-limited.
+
+Mitigation: Use a dedicated API key, keep the account balance limited, monitor usage, and revoke the key when it is no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xixihhhh/skills/nsfw-video)
+- [Atlas Cloud](https://www.atlascloud.ai)
+- [Atlas Cloud video generation API endpoint](https://api.atlascloud.ai/api/v1/model/generateVideo)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
+
+**Output Format:** [Markdown guidance with bash commands, JSON payload examples, Python CLI usage, and local MP4 file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ATLASCLOUD_API_KEY; prompts and media are sent to Atlas Cloud, and generated videos are downloaded locally when the script is run.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

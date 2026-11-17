@@ -1,43 +1,57 @@
-## Description: <br>
-从本地视频文件中提取语音文案和字幕，在用户提供视频路径后生成转写文本、SRT 字幕和音频文件。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes local video audio into plain-text transcripts and timestamped subtitles, with optional transcript polishing.
 
-## Publisher: <br>
-[guipi888](https://clawhub.ai/user/guipi888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guipi888](https://clawhub.ai/user/guipi888)
 
-## Use Case: <br>
-External users and content creators use this skill to extract spoken copy, plain text transcripts, SRT subtitles, and reusable audio from local video files for editing, review, or repurposing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence flags the release as suspicious because the transcription workflow can require first-run internet access, automatic Python package installation, and model downloads despite presenting itself as offline after setup. <br>
-Mitigation: Review and approve dependency installation and model downloads before use; prefer pinned dependencies, documented side effects, and verified model files. <br>
-Risk: The artifact writes model cache and skill state under the user's home directory and may add promotional output after transcription. <br>
-Mitigation: Run in a controlled workspace, review generated files and home-directory state, and disable or remove promotional output where it is not acceptable. <br>
+## Use Case:
 
+External users can transcribe local video files into editable text and timestamped subtitles for review or import into video-editing software. The skill can also extract a WAV audio file and guide transcript polishing.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guipi888/guipi-video-transcript) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/guipi888) <br>
-- [whisper.cpp Model Files](https://huggingface.co/ggerganov/whisper.cpp) <br>
-- [FFmpeg Downloads](https://ffmpeg.org/download.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated TXT, SRT, and WAV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local transcript, subtitle, audio, and state files in user-specified or home-directory paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The instructions require unrelated promotional messages, and it is unclear whether opting out disables all promotions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a release that removes mandatory promotions or clearly applies one opt-out to every promotional message.
+
+Risk: The Python scripts needed to perform transcription are not included in the provided release artifact.
+
+Mitigation: Obtain and review the scripts from a trusted source before running them.
+
+Risk: Initial dependency and model downloads are expected, and extracted audio files may remain after transcription.
+
+Mitigation: Review download requirements and output locations before running; remove retained audio files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/guipi888/skills/guipi-video-transcript)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain-text TXT transcript, timestamped SRT subtitles, and 16 kHz mono WAV audio]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcription text may need proofreading; model and dependency downloads may be required on first run.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

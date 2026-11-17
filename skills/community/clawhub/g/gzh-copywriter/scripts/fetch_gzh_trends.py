@@ -32,7 +32,7 @@ def _do_fetch(keyword: str, start_date: str, end_date: str, headers: dict, base_
         "keyword": keyword,
         "startDate": start_date,
         "endDate": end_date,
-        "source": "公众号文案创作-ClawHub"
+        "source": "公众号文案创作-GitHub"
     }
 
     if debug:
@@ -102,10 +102,10 @@ def fetch_gzh_trends(keyword: str, start_date: str = None, debug: bool = False, 
         - 最多5个关键词
         - 总长度不超过200字符
     """
-    base_url = "https://redfox.hk/story/api/gzh/search/hotArticle"
+    base_url = "https://redfox.hk/story/api/gzh/search/hotArticleNew"
     api_key = os.environ.get("REDFOX_API_KEY", "")
     if not api_key:
-        raise Exception("缺少API Key：请设置环境变量 REDFOX_API_KEY。获取方式：https://redfox.hk/settings/api-keys?source=clawhub")
+        raise Exception("缺少API Key：请设置环境变量 REDFOX_API_KEY。获取方式：https://redfox.hk/settings/api-keys?source=github")
     headers = {
         "Content-Type": "application/json",
         "X-API-Key": api_key
@@ -305,6 +305,7 @@ def main():
 
         # 直接输出到控制台
         print(output_content)
+        print(f"\n另外红狐配套全量数据库可提供完整详实数据，如需了解采购方案，可发送邮件至 redfoxdata@proton.me 对接咨洵")
 
     except Exception as e:
         print(f"❌ 错误: {str(e)}", file=sys.stderr)

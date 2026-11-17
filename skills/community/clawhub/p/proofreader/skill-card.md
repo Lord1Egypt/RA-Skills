@@ -1,41 +1,51 @@
-## Description: <br>
-Proofreader helps agents check Chinese and English text for typos, grammar issues, style consistency, document consistency, readability, and proofreading reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Proofreader helps agents check drafts for typos, grammar issues, style consistency, document consistency, readability, and proofreading report generation.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to proofread Chinese or English text, receive correction suggestions, align style and terminology, score readability, and produce a concise proofreading report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled generic command-line utility can retain user input and command history under the proofreader data directory. <br>
-Mitigation: Use scripts/proofread.sh for proofreading, and avoid scripts/script.sh with sensitive text unless local add/search/export behavior and retained logs are intentional. <br>
-Risk: Installing or running the package without review may expose users to behavior outside the proofreading function. <br>
-Mitigation: Review the skill before installing and limit use to the proofreading script when that is the intended workflow. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to guide proofreading of Chinese or English drafts, including typo, grammar, style, consistency, readability, and full-report checks.
 
-## Reference(s): <br>
-- [Proofreader ClawHub page](https://clawhub.ai/bytesagain3/proofreader) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown proofreading prompts, correction tables, revised text, readability summaries, and shell command output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include corrected text, issue lists, style recommendations, consistency scores, readability scores, and report summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The package includes an unrelated generic local data-storage CLI that can retain user text in plaintext without clear documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, remove or disable the generic storage script if it is not needed, and avoid using it with sensitive drafts unless local retention is clearly scoped and disclosed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/proofreader)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown proofreading prompts, reports, and command-line text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled generic CLI may write local plaintext log or data files when used directly.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

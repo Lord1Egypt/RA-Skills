@@ -1,41 +1,54 @@
-## Description: <br>
-Validates SaaS and product ideas before building by estimating market size, mapping competitors, assessing pricing, defining MVP scope, and producing a go/no-go score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate SaaS and product ideas before building with market size estimation, competitor mapping, pricing validation, MVP scope definition, and go/no-go scoring.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-External founders, product managers, investors, agencies, and indie hackers use this skill to evaluate SaaS ideas before committing build time or budget. It produces structured validation reports covering pain evidence, market sizing, competition, pricing, MVP scope, distribution, financial projections, risks, and a go/no-go recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market sizes, financial projections, competitor claims, and pricing recommendations may be estimates or become outdated. <br>
-Mitigation: Verify important claims against current primary sources, customer interviews, and up-to-date competitor research before making business decisions. <br>
-Risk: Idea validation prompts can include proprietary product strategy, customer information, or credentials if users provide them. <br>
-Mitigation: Share only information intended for analysis and avoid entering credentials, secrets, or sensitive proprietary data unless inclusion is deliberate and approved. <br>
+## Use Case:
 
+External founders, product managers, investors, agencies, and builders use this skill to evaluate SaaS ideas before investing build time. It produces market, competitor, pricing, MVP, distribution, financial, risk, and go/no-go analysis for a proposed product concept.
 
-## Reference(s): <br>
-- [SaaS Idea Validator on ClawHub](https://clawhub.ai/tktk-ai/saas-idea-validator) <br>
-- [Publisher profile: tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown validation reports with tables, scores, recommendations, and action lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include estimated market sizes, financial projections, competitor comparisons, MVP scope, distribution plans, risk assessments, and go/no-go scoring.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Market-size, competitor, pricing, and financial claims may be incomplete or inaccurate when based on public web evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify cited market, competitor, pricing, and financial claims before making product, investment, or launch decisions.
+
+Risk: The skill can produce confident go/no-go recommendations from limited or stale evidence.
+
+Mitigation: Use the report as a screening aid and validate the result with customer interviews, current source checks, and reviewer judgment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tktk-ai/skills/saas-idea-validator)
+- [Publisher profile](https://clawhub.ai/user/tktk-ai)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown validation report with tables, scoring, recommendations, and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market sizing, competitor comparisons, pricing suggestions, financial projections, and risk assessment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

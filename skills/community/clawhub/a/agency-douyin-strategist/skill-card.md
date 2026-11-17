@@ -1,39 +1,53 @@
-## Description: <br>
-Expert AI agent for Douyin short-video marketing, traffic operations, and livestream commerce strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in douyin strategist. From The Agency (github.com/msitarzewski/agency-agents).
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Marketing teams, agencies, creators, and commerce operators use this skill to plan Douyin content, traffic operations, advertising tactics, and livestream commerce workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Platform, advertising, and compliance guidance may be outdated or jurisdiction-specific. <br>
-Mitigation: Verify recommendations against current Douyin rules, advertising regulations, and applicable law before use. <br>
-Risk: Generated marketing or livestream copy could include unsupported claims or overpromise performance. <br>
-Mitigation: Review outputs for substantiation, restricted-category requirements, minor protection policies, and prohibitions on absolute or exaggerated claims. <br>
+## Use Case:
 
+External marketers, creators, and commerce operators use this skill for Douyin short-video planning, traffic operations, paid promotion strategy, and livestream commerce playbooks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain text recommendations, templates, checklists, and strategy notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only skill; evidence.security reports no code, installs, credentials, or privileged actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Marketing and platform-specific recommendations may become inaccurate as Douyin trends, advertising tools, or platform rules change.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify guidance against current Douyin policies, campaign data, and platform documentation before spending money or changing live campaigns.
+
+Risk: Livestream commerce or advertising advice can lead to misleading claims in regulated categories such as food, pharmaceuticals, or cosmetics.
+
+Mitigation: Review generated scripts and campaign plans for applicable advertising rules, avoid absolute performance claims, and require human approval before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-douyin-strategist)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance, strategy templates, and operational recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory marketing output; no code execution, credential access, persistence, or hidden data flows are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

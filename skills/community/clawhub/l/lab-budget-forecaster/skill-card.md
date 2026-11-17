@@ -1,42 +1,57 @@
-## Description: <br>
-Lab Budget Forecaster helps estimate grant or lab budget runway from budget, date, and expense inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Forecasts lab budget runway from available budget and expense inputs while keeping assumptions and output boundaries explicit.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, lab managers, and agents supporting grant administration use this skill to estimate remaining budget, monthly burn rate, and depletion timing from lab budget and expense inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation and actual command-line arguments differ, which can cause failed or misleading runs. <br>
-Mitigation: Check `python scripts/main.py --help` and use the implemented `--budget`, `--start`, `--end`, and `--expenses` arguments before relying on output. <br>
-Risk: Budget balances and expense CSVs may contain sensitive lab or grant planning data. <br>
-Mitigation: Run the skill locally with only intended budget inputs, avoid unnecessary sensitive fields, and review generated output before sharing. <br>
-Risk: Forecasts are simple burn-rate estimates and archived evaluation evidence notes weaker consistency for stress and boundary cases. <br>
-Mitigation: Treat results as planning aids, verify assumptions against source records, and manually review edge cases before funding or staffing decisions. <br>
+## Use Case:
 
+External users, developers, and lab administrators use this skill to estimate grant runway, review burn rates, and identify budget warnings or bridge-funding needs from supplied budget and expense inputs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/lab-budget-forecaster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and plain-text budget forecast output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read an expense CSV and print a local budget forecast; no network use is indicated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Forecast assumptions or CLI options may be misunderstood, including grant end date handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the actual command-line options with --help and manually review forecast assumptions before relying on the result.
+
+Risk: Budget or expense inputs may include sensitive lab financial data.
+
+Mitigation: Provide only intended budget or expense CSV data and keep generated outputs in approved workspace locations.
+
+Risk: The skill is scoped to local budget-runway forecasting, not general data analysis.
+
+Mitigation: Stop or switch tools when a request falls outside the documented budget forecasting workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/lab-budget-forecaster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text report with optional local CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, budget runway projections, warnings, cost-cutting scenarios, bridge-funding alerts, and validation caveats.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

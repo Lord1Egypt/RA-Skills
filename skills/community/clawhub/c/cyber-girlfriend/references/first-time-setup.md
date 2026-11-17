@@ -17,12 +17,13 @@ Follow this order. Do not skip ahead to polishing wording.
 
 1. Confirm the proactive delivery destination.
 2. Decide whether owner info should be imported from `USER.md`, customized manually, or skipped.
-3. Capture and write the companion's `character-profile.md`.
+3. Capture the companion's character-profile inputs.
 4. Ask whether the user wants any `必定发生：是` life anchors.
-5. Write and materialize `config.local.json`.
-6. Generate the first `day-schedule.md` with 3-5 ordinary events plus configured required events.
-7. Create or update `companion-build-day-schedule` and `companion-presence`.
-8. Run validation and one controlled user-visible verification.
+5. Preview the exact files, masked delivery route, public-search use, cron names/schedules/payload types, and one controlled real send; wait for explicit user confirmation.
+6. Write `character-profile.md` and materialize `config.local.json`.
+7. Generate the first `day-schedule.md` with 3-5 ordinary events plus configured required events.
+8. Create or update `companion-build-day-schedule` and `companion-presence`.
+9. Run validation and one controlled user-visible verification.
 
 ## What The User Must Decide
 
@@ -88,12 +89,25 @@ Store anchors in `life_schedule.day_schedule.required_events`. The daily builder
 
 Use these when the user says "先给我一套能跑的" or has no strong preference:
 
-- daily schedule builder: `10 7 * * *`, isolated, no delivery
-- presence cron: hourly, isolated cron session that calls `companion_presence_tick.py`; the wrapper starts the stable companion runtime session only after a matched event
+- daily schedule builder: `10 7 * * *`, isolated model turn, `lightContext: true`, no delivery
+- presence cron: every 15 minutes, isolated exact argv command payload that calls `companion_presence_tick.py`; the wrapper starts a fresh dispatch-scoped companion session only after a matched event
 - quiet hours: `01:00` to `08:00`
 - required events: none unless the user names one
 
 The old four-slot content cron setup is deprecated. If the user asks for a fixed daily habit, model it as a required event anchor first.
+
+## Authorization Preview Gate
+
+Before the first mutation, show the user one compact preview containing:
+
+- the exact local files that will be created or changed
+- both recurring job names, schedules, and payload types
+- the delivery channel/account/target with sensitive identifiers masked
+- that daily schedule generation and matched-event writing use public-web search
+- that verification includes one visible message to the confirmed owner target
+- that pausing disables the exact jobs and preserves config/state, while permanent removal requires a separate explicit request
+
+Wait for an explicit confirmation such as “确认执行” before writing files, searching the public web, creating/updating/enabling jobs, or sending the controlled verification message. The confirmation may authorize the whole previewed setup; do not silently expand beyond that scope.
 
 ## Materialized Config Gate
 
@@ -152,16 +166,17 @@ If validation fails, fix the Markdown file itself before creating cron jobs.
 Before creating cron jobs, make sure the onboarding agent has stated these rules:
 
 - proactive outbound delivery follows the local config delivery block
-- `companion-presence` runs in an isolated cron session, not the owner conversation
-- `companion_presence_tick.py` starts the stable companion runtime session only after fresh prepare returns a matched event
+- `companion-presence` runs as an isolated exact argv command automation, not the owner conversation and not an empty model turn
+- the command uses fixed installer-authored argv, bounded timeout/output, and no shell interpolation
+- `companion_presence_tick.py` starts a fresh dispatch-scoped companion session only after fresh prepare returns a matched event
 - final companion text is sent through the prepared delivery contract
 - state is committed only after visible text delivery succeeds
-- media turns commit state after visible text delivery, then start OpenClaw async media generation; the native completion returns to the same stable companion session and only sends media
+- media turns commit state after visible text delivery, then start OpenClaw async media generation; the native completion returns to the same dispatch session and only sends media
 - required events are not guaranteed sends
 
 ## First Verification Gate
 
-For a fresh install, do one controlled real run after setup:
+For a fresh install, do one controlled real run after setup and after the authorization preview was explicitly confirmed:
 
 1. Run `python3 scripts/validate_release.py --root <SKILL_DIR> --config <CONFIG> --skip-smoke`.
 2. Ensure `day-schedule.md` has a current event or create a temporary validated test schedule.

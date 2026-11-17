@@ -1,42 +1,55 @@
-## Description: <br>
-Distills a writer's fiction, non-fiction, biographical context, and user-selected passages into a source-grounded writing perspective skill with required human checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writer Perspective Distiller guides an agent through a human-confirmed process for distilling a writer's fiction, nonfiction, biographical context, and selected passages into a callable writing-perspective skill.
 
-## Publisher: <br>
-[tinadu-ai](https://clawhub.ai/user/tinadu-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tinadu-ai](https://clawhub.ai/user/tinadu-ai)
 
-## Use Case: <br>
-Writers, editors, brand teams, and agent builders use this skill to turn source-grounded analysis of a writer or organization into a callable perspective skill for drafting and rewriting. It is intended for contexts where human review can confirm belief candidates, blacklist entries, and final style fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Source material or generated perspective skills may include private correspondence, confidential brand material, or text the user is not allowed to process. <br>
-Mitigation: Use only source texts the user is allowed to process, review generated skills before installation, and keep personal or sensitive outputs local when appropriate. <br>
-Risk: A generated perspective skill can overstate or misrepresent a writer's beliefs if the analysis relies on surface style or lacks human correction. <br>
-Mitigation: Require the documented human checkpoints for belief candidates and blacklist sharpening before treating the distilled perspective as usable. <br>
-Risk: Generated style guidance may drift into copying specific sentences or patterns too closely. <br>
-Mitigation: Preserve the artifact's rule to reuse methods and structures only, not the writer's specific sentences. <br>
+## Use Case:
 
+External users, writers, editors, and brand-voice builders use this skill to create a source-grounded perspective SKILL.md for writing or rewriting in a carefully analyzed authorial posture. The workflow is intended for human-supervised style distillation, with confirmation checkpoints before finalizing beliefs and blacklist guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tinadu-ai/writer-perspective-distiller) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown skill files with conversational checkpoints and review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied fiction, non-fiction, biographical context, flagged passages, and use-case scenarios before producing a final perspective skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: Generated author-specific skills may contain private writing samples, organizational voice guidance, or copyrighted source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated SKILL.md before loading or sharing it, and remove private or copyrighted material that should not be included.
+
+Risk: The skill can produce misleading style guidance if an agent relies on surface voice instead of confirmed source evidence.
+
+Mitigation: Use the required human checkpoints for belief candidates and blacklist sharpening before finalizing the perspective skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tinadu-ai/skills/writer-perspective-distiller)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/README.md](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown SKILL.md draft with structured analysis and checkpoint prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local author-perspective skill after required human checkpoints and a user-judged quality gate.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

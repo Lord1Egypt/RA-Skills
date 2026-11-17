@@ -1,40 +1,56 @@
-## Description: <br>
-News Sum Lite generates a lightweight Chinese daily news briefing from current news searches, saves it as Markdown, and can email it as an HTML report with the Markdown attached. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+News Sum Lite generates a lightweight Chinese daily news briefing from current news searches, saves it as Markdown, and sends it by email.
 
-## Publisher: <br>
-[liliangjie91](https://clawhub.ai/user/liliangjie91) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[liliangjie91](https://clawhub.ai/user/liliangjie91)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to produce a same-day Chinese news briefing covering default or requested topics, including summaries, source links, key takeaways, and a short outlook.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill writes a local report file and sends it as an email attachment automatically.
+
+Mitigation: Require explicit confirmation showing the destination email address and attachment path before sending.
+
+Risk: The email and attachment command has weak scoping for recipient and file path values.
+
+Mitigation: Validate the recipient and attachment path and constrain output to the intended local archive directory.
+
+Risk: The Markdown renderer dependency is invoked at runtime.
+
+Mitigation: Pin or avoid the renderer dependency before installation or deployment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users or employees can use this skill to have an agent assemble a Chinese daily news digest across international affairs, economy/finance, and technology/AI. The workflow emphasizes sourced items, short Chinese summaries, daily takeaways, and an optional emailed report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create a local news archive and send the generated report through a local Gmail command without clear recipient or approval controls. <br>
-Mitigation: Before any email is sent, require the agent to show the recipient, subject, body, and attachment path and obtain explicit user confirmation. <br>
-Risk: The generated Markdown file may be attached and sent before the user has reviewed the report content. <br>
-Mitigation: Review the saved report path and generated content before allowing the email command to run. <br>
+**Output Format:** [Markdown news briefing with source links, plus shell commands for HTML conversion and email delivery]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liliangjie91/news-sum-lite) <br>
+**Other Properties Related to Output:** [Saves the briefing to archive/news/brief/brief-yyyymmdd.md and uses the Markdown file as an email attachment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown daily news briefing with source links, plus an HTML email body generated from the Markdown attachment.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese summaries are about 300 characters per news item; default topics are international affairs, economy/finance, and technology/AI.] <br>
+1.0.0 (source: release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

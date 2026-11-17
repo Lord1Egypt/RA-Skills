@@ -1,43 +1,55 @@
-## Description: <br>
-Monitors ClawHub skill metrics and alerts when download growth exceeds 30%, downloads pass 50,000, stars pass 200, or new top 10 skills appear. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors ClawHub skill metrics and alerts when download growth exceeds configured thresholds, downloads or stars cross configured totals, or new top 10 skills appear.
 
-## Publisher: <br>
-[Gabriel-Kaufman](https://clawhub.ai/user/Gabriel-Kaufman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gabriel-kaufman](https://clawhub.ai/user/gabriel-kaufman)
 
-## Use Case: <br>
-Developers and agent operators use this skill to monitor ClawHub trends, identify fast-growing skills, and surface relevance-ranked surge alerts for skills that may be worth reviewing or installing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts clawhub.ai to fetch public skill metrics. <br>
-Mitigation: Run it only in environments where outbound access to clawhub.ai is acceptable. <br>
-Risk: The skill creates local state, configuration, and profile files under ~/.skill-surge-notifier unless paths are overridden. <br>
-Mitigation: Review SURGE_DIR, STATE_PATH, and CONFIG_PATH before scheduled use, and avoid putting secrets in profile descriptions or custom paths. <br>
-Risk: The cron example appends command output to a local log file. <br>
-Mitigation: Place scheduler logs in an approved location and rotate or clear them according to local retention policy. <br>
+## Use Case:
 
+Developers and agent operators use this skill to watch ClawHub popularity signals, identify fast-moving skills, and surface relevant surge alerts through an agent with shell access.
 
-## Reference(s): <br>
-- [Trending Skill Finder release page](https://clawhub.ai/Gabriel-Kaufman/skill-surge-notifier) <br>
-- [ClawHub skills directory](https://clawhub.ai/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output with optional shell command examples and JSON-backed local configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches public ClawHub skill metrics, writes local state and profile files, and can append scheduler logs when configured by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server-resolved release metadata) <br>
+Risk: The skill contacts clawhub.ai to fetch skill popularity data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in environments where outbound requests to clawhub.ai are acceptable.
+
+Risk: The skill creates local state, configuration, profile, and optional cron log files under ~/.skill-surge-notifier by default.
+
+Mitigation: Review the configured paths before use, override them with environment variables when needed, and add a cron entry only when periodic background checks are desired.
+
+## Reference(s):
+
+- [Trending Skill Finder on ClawHub](https://clawhub.ai/gabriel-kaufman/skills/skill-surge-notifier)
+- [Publisher profile](https://clawhub.ai/user/gabriel-kaufman)
+- [ClawHub skills directory](https://clawhub.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Plain text and markdown-style CLI output with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Surge alerts include skill names, summaries, relevance scores when a profile is configured, download and star counts, trigger reasons, and install commands.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

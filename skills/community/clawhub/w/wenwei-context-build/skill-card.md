@@ -1,40 +1,53 @@
-## Description: <br>
-This skill helps agents recursively trace code from an entry file and produce structured implementation-focused documentation covering code structure, dependencies, interfaces, and core logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents trace code recursively from a selected entry file and produce structured, implementation-focused code knowledge base documentation.
 
-## Publisher: <br>
-[wed840313](https://clawhub.ai/user/wed840313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wed840313](https://clawhub.ai/user/wed840313)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze frontend, backend, or full-stack modules from a chosen entry file. It is intended to create code-first Markdown knowledge-base notes for AI-assisted understanding of implementation details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read related source files from the user-provided entry point and include implementation details or code snippets in its output. <br>
-Mitigation: Use it only on repositories where the agent is allowed to inspect and summarize the relevant code, especially for proprietary or sensitive projects. <br>
-Risk: Generated documentation can expose internal architecture, API details, or code paths when shared outside the workspace. <br>
-Mitigation: Review generated notes before distribution and remove sensitive implementation details as needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze frontend, backend, or full-stack modules from an entry file and generate structured implementation notes for AI-assisted code understanding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wed840313/wenwei-context-build) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with tables and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is conversational Markdown; a .md document is produced only when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated documentation may expose source implementation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on repositories where code inspection and summarization are acceptable, and review generated Markdown before sharing it outside the team.
+
+Risk: Cross-workspace dependencies can be incomplete or unavailable during analysis.
+
+Mitigation: Pause for user confirmation when related code is outside the current workspace and clearly mark unavailable links instead of inventing missing code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wed840313/skills/wenwei-context-build)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with tables and fenced code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes precise file paths, function names or line numbers, call chains, and concise code snippets; writes a .md file only when requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

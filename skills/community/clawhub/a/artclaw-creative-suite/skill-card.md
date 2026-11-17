@@ -1,47 +1,61 @@
-## Description: <br>
-Invoke ARTCLAW platform's AI content creation capabilities via REST API for image generation, video generation, workflow execution, multimodal analysis, and job management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Invokes ARTCLAW platform content-creation capabilities through a CLI-backed REST API workflow, including image generation, video generation, workflow execution, multimodal analysis, and job management.
 
-## Publisher: <br>
-[alanhuangyoo](https://clawhub.ai/user/alanhuangyoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alanhuangyoo](https://clawhub.ai/user/alanhuangyoo)
 
-## Use Case: <br>
-Developers and agent users use this skill to submit AI creative generation, workflow, and multimodal analysis jobs to ARTCLAW through a Python CLI and REST API bridge. The skill returns command guidance, JSON job metadata, result URLs, and platform-specific delivery instructions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The self-update command can overwrite the installed skill from an unpinned GitHub branch without integrity verification. <br>
-Mitigation: Avoid self-update unless upstream changes have been reviewed; prefer a reviewed release or pinned package source. <br>
-Risk: Prompts, media, and generated outputs may be shared with ARTCLAW and, when delivery is used, with Feishu or Telegram. <br>
-Mitigation: Confirm user intent before external delivery and avoid sending sensitive prompts, files, or generated media to third-party services. <br>
-Risk: The skill requires sensitive credentials such as ARTCLAW_API_KEY and optional chat delivery tokens. <br>
-Mitigation: Store credentials in environment variables or platform credential stores, and do not include secrets in prompts, logs, or command arguments. <br>
-Risk: Local ARTCLAW configuration and history may retain job metadata, prompts, or generated asset references. <br>
-Mitigation: Review and clean ~/.artclaw history when working with sensitive creative assets or private prompts. <br>
+## Use Case:
 
+Developers and creative operators use this skill to submit ARTCLAW image, video, workflow, and multimodal analysis jobs from an agent environment. It also guides account setup, asynchronous job handling, result delivery, and job-status follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alanhuangyoo/artclaw-creative-suite) <br>
-- [ARTCLAW API base](https://artclaw.com/api/v1) <br>
-- [ARTCLAW account settings](https://artclaw.com/settings) <br>
-- [ARTCLAW platform](https://artclaw.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ARTCLAW job IDs, result URLs, local history paths, and platform-specific delivery metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can access ARTCLAW API credentials and optional chat-delivery credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, prefer environment-provided API keys, and scope delivery credentials to the minimum channels needed.
+
+Risk: The skill can run asynchronous generation and delivery flows using user-provided prompts, URLs, and file paths.
+
+Mitigation: Do not pass untrusted prompts, URLs, or local file paths into spawn or delivery mode, and review job metadata before sharing generated media.
+
+Risk: The skill includes a self-update path that can replace installed files.
+
+Mitigation: Use dry-run or independent source verification before self-update, and review changes before continuing to use the updated skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alanhuangyoo/skills/artclaw-creative-suite)
+- [Publisher profile](https://clawhub.ai/user/alanhuangyoo)
+- [ARTCLAW platform](https://artclaw.com/)
+- [ARTCLAW API base](https://artclaw.com/api/v1)
+- [ARTCLAW API key settings](https://artclaw.com/settings)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media jobs return job metadata and result URLs; analysis commands return synchronous text or JSON responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

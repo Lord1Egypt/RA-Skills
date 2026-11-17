@@ -1,49 +1,63 @@
-## Description: <br>
-Apk Decompiler helps agents guide authorized Android APK reverse-engineering workflows, including decompilation, Smali and resource analysis, editing, rebuilding, and signing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decompiles Android APKs, analyzes permissions and components, supports Smali and resource editing, and rebuilds or signs APKs for authorized reverse-engineering workflows.
 
-## Publisher: <br>
-[tonakic](https://clawhub.ai/user/tonakic) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tonakic](https://clawhub.ai/user/tonakic)
 
-## Use Case: <br>
-Developers and security engineers use this skill to inspect APK structure, permissions, resources, and Smali code, then rebuild and sign modified APKs when they are authorized to analyze or modify the application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs third-party APK reverse-engineering tools. <br>
-Mitigation: Run setup on a trusted network, keep TOOLS_DIR under user control, and verify downloaded tools when possible. <br>
-Risk: Unknown APKs can contain untrusted or malicious content. <br>
-Mitigation: Analyze APKs in a sandbox, virtual machine, emulator, or disposable device. <br>
-Risk: APK analysis or modification may be unauthorized for some applications. <br>
-Mitigation: Use the skill only when authorized to inspect or modify the apps involved. <br>
+## Use Case:
 
+Developers, security reviewers, and Android engineers use this skill to inspect APK structure, permissions, resources, Smali code, and rebuild outputs during authorized analysis or modification work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tonakic/apk-decompiler) <br>
-- [AndroidManifest.xml modification guide](references/android-manifest.md) <br>
-- [Smali syntax quick reference](references/smali-syntax.md) <br>
-- [baksmali download used by setup script](https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.5.2.jar) <br>
-- [smali download used by setup script](https://bitbucket.org/JesusFreke/smali/downloads/smali-2.5.2.jar) <br>
-- [apktool download used by setup script](https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.10.0.jar) <br>
-- [dex2jar release used by setup script](https://github.com/pxb1988/dex2jar/releases/download/v2.4/dex-tools-v2.4.zip) <br>
-- [uber-apk-signer release used by setup script](https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code snippets, file paths, and analysis notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce commands that read, decompile, rebuild, or sign APK files and may write decompiled project files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The setup workflow downloads and runs persistent third-party APK tooling without built-in integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a sandbox or disposable workspace, pin and verify tool hashes independently, and keep TOOLS_DIR under explicit user control.
+
+Risk: APK reverse engineering and modification can create legal or policy exposure when used on apps the user is not authorized to inspect or change.
+
+Mitigation: Process only APKs the user is authorized to analyze or modify, and keep authorization and testing boundaries clear before rebuilding or sharing outputs.
+
+Risk: The signing workflow can report signing completion even when signing returns a warning or failure.
+
+Mitigation: Independently verify rebuilt APK signatures before installing, testing, distributing, or relying on the generated APK.
+
+## Reference(s):
+
+- [AndroidManifest.xml modification guide](references/android-manifest.md)
+- [Smali syntax quick reference](references/smali-syntax.md)
+- [baksmali 2.5.2 download](https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.5.2.jar)
+- [smali 2.5.2 download](https://bitbucket.org/JesusFreke/smali/downloads/smali-2.5.2.jar)
+- [apktool 2.10.0 download](https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.10.0.jar)
+- [dex2jar 2.4 download](https://github.com/pxb1988/dex2jar/releases/download/v2.4/dex-tools-v2.4.zip)
+- [uber-apk-signer 1.3.0 download](https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with command examples, file-path references, and generated APK analysis or rebuild artifacts when commands are executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce decompiled APK directories, Smali files, decoded resources, extracted APK contents, JAR files, and rebuilt or signed APK files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

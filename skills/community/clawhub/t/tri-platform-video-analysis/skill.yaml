@@ -1,0 +1,27 @@
+name: tri-platform-video-analysis
+version: 1.0.5
+description: >
+  Tri-platform video analysis (Douyin / Bilibili / Xiaohongshu).
+  Drop a video link, get an interactive capsule-card HTML report with AI analysis.
+  Fully local transcription (faster-whisper), zero external API cost.
+  Output language follows the user's language preference.
+  
+  三平台视频解析（抖音 / B站 / 小红书）。
+  丢一条链接，自动下载、离线转写、AI分析，输出交互式胶囊卡片 HTML 报告。
+  纯本地转写，零 API 费用。输出语言跟随用户偏好。
+author: zhouq2039-lang
+license: MIT
+
+tags:
+  - video
+  - analysis
+  - transcript
+  - douyin
+  - bilibili
+  - xiaohongshu
+
+files:
+  - skill.md
+  - README.md
+  - LICENSE
+  - scripts/parse.py

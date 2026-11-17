@@ -1,44 +1,56 @@
-## Description: <br>
-Goal Clarifier turns vague or solution-shaped requests into executable briefs by clarifying the real goal, constraints, success criteria, scope boundaries, and safe next step before design or execution begins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Goal Clarifier turns vague, solution-shaped requests into executable briefs by clarifying the goal, constraints, success criteria, scope, ambiguities, and next step before design or execution begins.
 
-## Publisher: <br>
-[clarkchenkai](https://clawhub.ai/user/clarkchenkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clarkchenkai](https://clawhub.ai/user/clarkchenkai)
 
-## Use Case: <br>
-External users, employees, and developers use this skill when a request names a tool, dashboard, agent, automation, or process before the desired outcome is clear. It produces a structured brief that makes goals, constraints, success criteria, scope boundaries, ambiguities, and the next safe action explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Implicit invocation may cause the agent to ask clarifying questions during ordinary planning conversations. <br>
-Mitigation: Disable implicit invocation or call the skill manually when clarification should be opt-in. <br>
-Risk: For high-stakes or irreversible workflows, an unclear goal can lead to premature automation or misplaced decision ownership. <br>
-Mitigation: Require explicit success criteria, identify the human-owned decision boundary, and keep execution planning separate from the clarified brief. <br>
+## Use Case:
 
+External users, developers, and agent operators use this skill to clarify vague requests before planning or implementation. It produces a structured brief that captures the intended outcome, constraints, success criteria, scope boundary, key ambiguities, and smallest safe next step.
 
-## Reference(s): <br>
-- [Aristotle Reference](references/aristotle.md) <br>
-- [High-Risk Signals](references/high-risk.md) <br>
-- [Question Patterns](references/patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/clarkchenkai/goal-clarifier-clarkchenkai) <br>
-- [Publisher Profile](https://clawhub.ai/user/clarkchenkai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown six-part brief] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses fixed headings for goal, constraints, success criteria, scope boundary, key ambiguities, and recommended next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Broad implicit activation can slow vague requests by asking clarifying questions before proposing a solution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrower trigger settings when users prefer explicit activation, or answer the missing goal, constraint, and success-criteria questions directly.
+
+Risk: High-stakes or irreversible requests can be mishandled if vague goals are treated as ready for execution.
+
+Mitigation: Require concrete success criteria, make the human decision boundary explicit, and keep execution planning out of the clarified brief until the purpose is clear.
+
+## Reference(s):
+
+- [Goal Clarifier Skill Page](https://clawhub.ai/clarkchenkai/skills/goal-clarifier-clarkchenkai)
+- [Aristotle Reference](references/aristotle.md)
+- [High-Risk Signals](references/high-risk.md)
+- [Question Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown brief with six fixed headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces targeted clarifying questions when required before emitting the final brief.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

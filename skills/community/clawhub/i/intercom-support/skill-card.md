@@ -1,42 +1,58 @@
-## Description: <br>
-Manage Intercom workspaces for customer support. Handle conversations, contacts, companies, tickets, and help center content. Automate replies, assign conversations to teams, manage articles, and track team performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Intercom workspaces for customer support. Handle conversations, contacts, companies, tickets, and help center content. Automate replies, assign conversations to teams, manage articles, and track team performance.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Support teams and operators use this skill to manage Intercom customer support workspaces through an agent, including conversations, contacts, companies, tickets, articles, and workspace reporting. It helps agents discover available Intercom tools, preview write actions, and execute confirmed support workflows through ClawLink. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Intercom Skill Page](https://clawhub.ai/hith3sh/intercom-support) <br>
-- [Intercom API Documentation](https://developers.intercom.com/) <br>
-- [Intercom Conversations API](https://developers.intercom.com/reference/conversations) <br>
-- [Intercom Articles API](https://developers.intercom.com/reference/list-articles) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+Support, customer success, and operations teams use this skill to manage Intercom conversations, contacts, companies, tickets, help center content, transcripts, exports, and workspace administration through an agent.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connected Intercom workspace through ClawLink; write and destructive operations should be previewed and explicitly confirmed before execution.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill relies on an external OAuth-backed ClawLink plugin with access to customer support data.
+
+Mitigation: Install and connect it only when the user trusts ClawLink and the plugin, and verify how to revoke the OAuth connection and remove the plugin before use.
+
+Risk: Intercom operations may expose conversations, contacts, tickets, help-center content, transcripts, and exports.
+
+Mitigation: Use a least-privilege Intercom account and confirm the target workspace, resource, and intended effect before any write, delete, export, or conversation state-change action.
+
+## Reference(s):
+
+- [Intercom API Documentation](https://developers.intercom.com/)
+- [Intercom Articles API](https://developers.intercom.com/reference/list-articles)
+- [Intercom Conversations API](https://developers.intercom.com/reference/conversations)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawHub skill page](https://clawhub.ai/hith3sh/skills/intercom-support)
+- [ClawHub publisher profile](https://clawhub.ai/user/hith3sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for Intercom actions and requires explicit confirmation before write, delete, export, or conversation state-change operations.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn79f1gqfxbhpak2dqp21rzgyd836qg1",
-  "slug": "qwen3-free-tts",
+  "ownerId": "community",
+  "slug": "voice-cloning-skill",
   "version": "1.0.0",
-  "publishedAt": 1773954326034
+  "publishedAt": 1773964800000,
+  "title": "免费文字转语音与克隆",
+  "title_en": "Free TTS & Voice Cloning",
+  "description": "完全免费的本地文字转语音(TTS)与声音克隆技能。基于 Qwen3-TTS 模型，支持 Apple Silicon，无需联网，保护隐私。",
+  "categories": ["audio", "tts", "voice-cloning", "generative-ai", "free"],
+  "keywords": ["免费语音合成", "免费声音克隆", "文字转语音", "TTS", "语音合成", "声音克隆", "免费TTS"]
 }

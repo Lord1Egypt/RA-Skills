@@ -1,43 +1,60 @@
-## Description: <br>
-Audits local OpenClaw configuration files for vulnerabilities in network settings, channel policies, and tool permissions, then produces safe remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans local OpenClaw configuration files for insecure network, channel-policy, and tool-permission settings, then reports findings with remediation guidance.
 
-## Publisher: <br>
-[zoowii](https://clawhub.ai/user/zoowii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoowii](https://clawhub.ai/user/zoowii)
 
-## Use Case: <br>
-Developers, operators, and security reviewers use this skill to audit OpenClaw deployments after setup, before production exposure, after configuration changes, or during periodic security checks. It analyzes local configuration and reports findings with remediation steps and rollback guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may expose hostname, configuration paths, and details about the deployment's security posture. <br>
-Mitigation: Treat reports as sensitive operational security material, store them with restricted access, and redact environment-specific details before sharing. <br>
-Risk: Remediation steps may break remote access or existing workflows when applied directly to production configuration. <br>
-Mitigation: Review recommendations before applying them, back up configuration files, verify alternate access, and use staged rollout with rollback procedures for higher-risk changes. <br>
+## Use Case:
 
+Developers and OpenClaw administrators use this skill to audit local OpenClaw deployments before production exposure, after configuration changes, or during periodic security checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zoowii/scanner-for-openclaw) <br>
-- [OpenClaw Security Scanner Homepage](https://github.com/openclaw/openclaw/tree/main/skills/openclaw-security-scanner) <br>
-- [Permission Management](references/permission-management.md) <br>
-- [Remediation Playbook](references/remediation-playbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, configuration guidance, shell commands] <br>
-**Output Format:** [Markdown audit report with findings, risk levels, remediation steps, rollback plans, and command-line status output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a Markdown report file such as security_report_*.md to the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill reads local OpenClaw configuration files that may contain sensitive deployment settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this access is acceptable, run without elevated privileges, and review generated reports before sharing them.
+
+Risk: Audit reports can expose security posture details if written outside the intended workspace.
+
+Mitigation: Keep output paths inside the workspace and use security_report_*.md names.
+
+Risk: Manual packaging on shared systems may create avoidable operational exposure.
+
+Mitigation: Use the normal ClawHub installation path and do not manually run package_skill.py on shared systems.
+
+## Reference(s):
+
+- [Config Security Scanner ClawHub Page](https://clawhub.ai/zoowii/skills/scanner-for-openclaw)
+- [Clawdis Homepage](https://github.com/openclaw/openclaw/tree/main/skills/openclaw-security-scanner)
+- [Permission Management](references/permission-management.md)
+- [Remediation Playbook](references/remediation-playbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown security audit report with concise command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write security_report_*.md in the workspace; reads local OpenClaw configuration files only.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

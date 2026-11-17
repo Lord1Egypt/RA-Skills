@@ -1,41 +1,54 @@
-## Description: <br>
-Credential Tester is a static reference helper that prints plain-text credential-security guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Credential Tester provides plain-text reference guidance for credential-tester concepts, quickstarts, patterns, debugging, performance, security, migration, and cheat sheets.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and security practitioners can use this skill to retrieve generic reference guidance for credential-security workflows and operational topics. It is a documentation helper, not an active credential testing utility. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the skill name for an active credential testing utility. <br>
-Mitigation: Present and use it as a generic static reference helper; use a separate reviewed tool for actual credential testing. <br>
-Risk: The generated guidance is broad and template-style rather than environment-specific. <br>
-Mitigation: Review recommendations against local security policy, system architecture, and compliance requirements before applying them. <br>
+## Use Case:
 
+Developers and security practitioners use this skill to retrieve concise reference documentation for credential-testing workflows, troubleshooting, and security considerations.
 
-## Reference(s): <br>
-- [Credential Tester on ClawHub](https://clawhub.ai/bytesagain3/credential-tester) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown emitted by shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credential access, network access, persistent state, or file access are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: release metadata; artifact frontmatter says 4.0.1 and script says 4.0.0) <br>
+Risk: The skill name and security-oriented examples could be mistaken for an active credential testing engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill as generic reference documentation and verify any operational credential-testing workflow with appropriate security review.
+
+Risk: Users may paste real secrets into tooling while applying generic credential guidance.
+
+Mitigation: Avoid entering real credentials unless a reviewed workflow explicitly requires it, and handle secrets according to organizational policy.
+
+## Reference(s):
+
+- [Credential Tester on ClawHub](https://clawhub.ai/bytesagain3/skills/credential-tester)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style reference documentation from shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally, prints static reference content, and does not require credentials or network access.]
+
+## Skill Version(s):
+
+4.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

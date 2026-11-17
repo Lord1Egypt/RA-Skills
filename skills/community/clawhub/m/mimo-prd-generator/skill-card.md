@@ -1,39 +1,54 @@
-## Description: <br>
-产品需求文档生成器 turns a product idea into a structured Chinese PRD covering positioning, personas, user stories, prioritized features, acceptance criteria, non-functional requirements, milestones, and risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This Chinese-language skill helps product managers turn a product idea into a structured PRD covering product positioning, personas, user stories, prioritized features, acceptance criteria, nonfunctional requirements, risks, and milestones.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Product managers, founders, and product teams use this skill to draft complete Chinese PRDs from early product ideas. It structures requirements into developer-ready sections, including market positioning, personas, user stories, RICE and MoSCoW prioritization, MVP scope, acceptance criteria, and milestone planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PRDs may include inaccurate, incomplete, confidential, or commercially unsuitable requirements. <br>
-Mitigation: Review generated requirements for accuracy, confidentiality, and business suitability before sharing them with teams or external parties. <br>
+## Use Case:
 
+External product managers, founders, and product teams use this skill to draft Chinese PRDs from early product ideas. It structures the work into positioning, user personas, user stories, feature prioritization, acceptance criteria, nonfunctional requirements, milestones, and risk planning.
 
-## Reference(s): <br>
-- [PRD Generator detailed reference](artifact/references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/mimo-prd-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown PRD with structured sections, tables, prioritization scores, and Given-When-Then acceptance criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for human review before use with engineering, design, or external stakeholders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md frontmatter and ClawHub release metadata) <br>
+Risk: The workflow asks for market sizing, competitor analysis, and prioritization scores that may be speculative when the user provides limited product context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review factual claims, assumptions, and scoring inputs against trusted product research before using the PRD for planning or execution.
+
+Risk: The skill explicitly outputs Chinese, which may not match every user's language or localization requirements.
+
+Mitigation: Review or adapt the language instruction before use when multilingual output or strict language preference handling is required.
+
+## Reference(s):
+
+- [PRD Generator Detailed Reference](references/details.md)
+- [ClawHub Skill Page](https://clawhub.ai/qqyougitcom/skills/mimo-prd-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown PRD draft with structured sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes RICE scoring, MoSCoW prioritization, Given-When-Then acceptance criteria, nonfunctional requirement templates, risks, and milestones.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

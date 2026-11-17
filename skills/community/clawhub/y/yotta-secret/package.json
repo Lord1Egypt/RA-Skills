@@ -1,0 +1,40 @@
+{
+  "name": "@yottameta/yotta-secret",
+  "version": "0.2.4",
+  "description": "Yuanyao — a zero-dependency secret & credential leak scanner for AI agents: scans source code, config files, .env and git history for cloud API keys, private keys, credential assignments, URL-embedded credentials and high-entropy tokens using regex + entropy + format validation; outputs text / JSON / CSV with secrets masked by default. Pure Python 3.8+ standard library. Triggers when the user needs to check a repo / config for leaked API keys, passwords, private keys or tokens before commit or release, scan directories or git history for hardcoded credentials, verify whether a string looks like a known key format, or redact secrets from logs / tickets before sharing. Boundaries: fully local and offline; no connectivity checks, no leak-database lookups, no data leaves the machine; results are suspected secrets only, verified by humans; authorized / own-asset / educational use only.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-secret"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "!scripts/test_*.py",
+    "!scripts/__pycache__",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-secret.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-secret": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\" && python scripts/test_yotta_secret.py"
+  }
+}

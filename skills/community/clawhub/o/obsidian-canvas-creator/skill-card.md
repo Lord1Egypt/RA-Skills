@@ -1,46 +1,54 @@
-## Description: <br>
-Create Obsidian Canvas files from text content, supporting both MindMap and freeform layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates Obsidian Canvas files from text content with MindMap and freeform layouts for interactive mind maps and spatial organization.
 
-## Publisher: <br>
-[axtonliu](https://clawhub.ai/user/axtonliu) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axtonliu](https://clawhub.ai/user/axtonliu)
 
-## Use Case: <br>
-Developers, knowledge workers, and Obsidian users use this skill to convert articles, outlines, notes, and brainstorming material into Obsidian Canvas JSON with mind map or freeform layouts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate unintentionally for broad visualization or mind map requests. <br>
-Mitigation: Use explicit prompts such as 'Obsidian Canvas' or '.canvas' when this output format is intended. <br>
-Risk: Generated canvas text may not preserve exact quotes or source wording. <br>
-Mitigation: Review generated node text against the source material before using the canvas as a factual record. <br>
-Risk: Canvas layout quality can vary with input size, structure, and model behavior. <br>
-Mitigation: Open the result in Obsidian and check node spacing, edge references, and readability before sharing or publishing. <br>
+## Use Case:
 
+Developers and Obsidian users use this skill to transform notes, outlines, articles, and other structured text into Obsidian Canvas JSON for mind maps or freeform visual organization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axtonliu/obsidian-canvas-creator) <br>
-- [JSON Canvas Specification for Obsidian](references/canvas-spec.md) <br>
-- [Canvas Layout Algorithms](references/layout-algorithms.md) <br>
-- [Obsidian](https://obsidian.md/) <br>
-- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON Canvas content with nodes and edges arrays] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed for direct import into Obsidian as a .canvas file; generated content should be reviewed for structure, spacing, and text fidelity.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence) <br>
+Risk: Broad visualization requests may activate the skill when the user did not intend to create an Obsidian Canvas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask explicitly for Obsidian Canvas or .canvas output and confirm the layout mode before generating the final JSON.
+
+Risk: Generated Canvas JSON can be hard to use if nodes overlap, edge references are invalid, or quotes are not escaped correctly.
+
+Mitigation: Validate the JSON structure, unique IDs, edge endpoints, quote escaping, and spacing before importing or sharing the canvas.
+
+## Reference(s):
+
+- [JSON Canvas Specification for Obsidian](references/canvas-spec.md)
+- [Layout Algorithms for Obsidian Canvas](references/layout-algorithms.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [JSON Canvas (.canvas) content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Directly importable into Obsidian when saved as a .canvas file; generated node IDs, edge references, quote escaping, and node spacing should be validated.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

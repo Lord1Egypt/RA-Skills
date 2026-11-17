@@ -1,39 +1,54 @@
-## Description: <br>
-Help a project manager create a structured weekly or monthly construction progress report from conversational input, producing a polished professional document. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help a project manager create a structured weekly or monthly construction progress report from conversational input, producing a polished professional document.
 
-## Publisher: <br>
-[nitevity](https://clawhub.ai/user/nitevity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nitevity](https://clawhub.ai/user/nitevity)
 
-## Use Case: <br>
-Construction project managers use this skill to turn conversational project status updates into weekly or monthly progress reports for clients, senior management, and stakeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may include sensitive project costs, payment status, client names, distribution lists, risks, or site photo details. <br>
-Mitigation: Review, redact, and approve each report before sharing it outside the project team. <br>
-Risk: Progress percentages, dates, costs, risks, or issue actions may be incomplete or inaccurate if the conversational input is incomplete. <br>
-Mitigation: Check generated metrics and commitments against project records before finalizing the report. <br>
+## Use Case:
 
+Construction project managers use this skill to turn conversational status updates into structured weekly or monthly progress reports for clients, senior management, and project stakeholders.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown report with tables and section headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes calculated progress percentages, risk and issue tables, and a monthly commercial summary when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated reports may contain inaccurate, incomplete, or inconsistent project status, progress, cost, or schedule information if the source conversation is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the finished report against project records, programme data, commercial records, and stakeholder expectations before sharing it.
+
+Risk: Reports may include sensitive commercial information, dispute details, personal contact details, or site photos that are not appropriate for all recipients.
+
+Mitigation: Remove unnecessary personal details and confirm the distribution list, commercial content, claims language, and photo suitability before external release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nitevity/skills/construction-progress-report)
+- [Publisher profile](https://clawhub.ai/user/nitevity)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report generated from a conversational interview]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes structured report sections, progress calculations, risk and issue tables, variation tracking, resource summaries, lookahead items, and photo notes when provided.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

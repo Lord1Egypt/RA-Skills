@@ -495,7 +495,7 @@ class TestInvest(unittest.TestCase):
         self.assertEqual(entries[0]["action"], "分红")
         self.assertEqual(entries[0]["amount"], 45.60)
 
-    # E-4 持仓计算 — 买入后部分卖出
+    # E-4 持仓计算 — 买入后部分卖出（净成本法：总买入 - 总卖出）
     def test_holdings_after_partial_sell(self):
         entries = self._make_entries([
             "2026-01-15,买入,沪深300ETF,510050,1000,@3.50,3500.00,银行卡",
@@ -506,7 +506,7 @@ class TestInvest(unittest.TestCase):
         self.assertGreaterEqual(len(codes), 1)
         h = holdings[codes[0]]
         self.assertEqual(h["total_shares"], 500.0)
-        self.assertEqual(h["total_cost"], 1750.00)
+        self.assertEqual(h["total_cost"], 1500.00)  # 净成本法: 3500 - 2000 = 1500
 
     # E-5 持仓计算 — 含分红
     def test_holdings_with_dividend(self):
@@ -543,7 +543,7 @@ class TestInvest(unittest.TestCase):
         holdings = inv_mod.compute_holdings(entries)
         self.assertEqual(len(holdings), 2)
 
-    # E-8 卖出实现盈亏计算
+    # E-8 净成本法下清仓计算（净成本法：总买入 - 总卖出）
     def test_realized_pnl_on_sell(self):
         entries = self._make_entries([
             "2026-01-15,买入,999999,测试ETF,1000,@2.00,2000.00,银行卡",
@@ -552,10 +552,10 @@ class TestInvest(unittest.TestCase):
         holdings = inv_mod.compute_holdings(entries)
         codes = list(holdings.keys())
         h = holdings[codes[0]]
-        # 清仓后 shares=0, cost=0, realized_pnl = 3000 - 2000 = 1000
+        # 净成本法: total_cost = 2000 - 3000 = -1000 (负数表示已实现盈利)
+        # shares=0 表示清仓
         self.assertEqual(h["total_shares"], 0.0)
-        self.assertEqual(h["total_cost"], 0.0)
-        self.assertEqual(h["realized_pnl"], 1000.00)
+        self.assertEqual(h["total_cost"], -1000.00)  # 净成本法: 2000 - 3000
 
     # E-9 fetch_realtime_price — 模拟数据验证返回结构
     def test_fetch_realtime_price_structure(self):

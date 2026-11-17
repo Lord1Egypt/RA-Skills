@@ -1,42 +1,53 @@
-## Description: <br>
-Syncs and caches per-thread context for Discord Forum channels so agents can poll active threads, list cached context, inspect a thread cache, or link a thread to a memory QMD file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync and cache per-thread context for Discord Forum channels. Use when handling /discord-context commands to poll active threads, list cached context, inspect a thread cache, or link a thread to a memory QMD file.
 
-## Publisher: <br>
-[demitrim](https://clawhub.ai/user/demitrim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[demitrim](https://clawhub.ai/user/demitrim)
 
-## Use Case: <br>
-Developers and operators use this skill to fetch Discord Forum thread metadata, match active threads to workspace memory notes, and inspect or refresh cached thread context for agent work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Discord bot tokens can grant access to server content if exposed or over-permissioned. <br>
-Mitigation: Store DISCORD_TOKEN only in the environment, use a minimally permissioned bot, and avoid hardcoding secrets in scripts or configuration. <br>
-Risk: Cached Discord context and workspace memory files may contain sensitive content. <br>
-Mitigation: Review generated memory/discord-cache files and source memory notes before sharing or using them in broader agent workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/demitrim/discord-context) <br>
-- [Publisher profile](https://clawhub.ai/user/demitrim) <br>
-- [Discord Developer Portal](https://discord.com/developers/applications) <br>
-- [Discord active threads API](https://discord.com/api/v10/guilds/{guildId}/threads/active) <br>
+## Use Case:
 
+Developers and workspace operators use this skill to poll active Discord Forum threads, cache per-thread context, inspect cached thread context, and link threads to local memory files.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [CLI text, optional JSON, and local context cache files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and DISCORD_TOKEN; reads and writes under the workspace memory tree.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a Discord bot token to poll forum threads.
+
+Mitigation: Use an environment variable for DISCORD_TOKEN, avoid hardcoding secrets, and grant the bot only the server and channel permissions needed for this workflow.
+
+Risk: The skill reads and writes cached context under the configured OpenClaw workspace memory tree.
+
+Mitigation: Run it only against the intended workspace and review cached context before sharing or reusing it outside that workspace.
+
+## Reference(s):
+
+- [Discord Developer Portal](https://discord.com/developers/applications)
+- [ClawHub Skill Page](https://clawhub.ai/demitrim/skills/discord-context)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text and optional JSON, with Markdown guidance for setup and use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and DISCORD_TOKEN for polling; reads and writes Discord cache files under the configured OpenClaw workspace memory tree.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

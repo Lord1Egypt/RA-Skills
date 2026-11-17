@@ -1,41 +1,57 @@
-## Description: <br>
-从test页面获取数据导入到test01。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+从test页面获取数据导入到test01
 
-## Publisher: <br>
-[shandongwill](https://clawhub.ai/user/shandongwill) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shandongwill](https://clawhub.ai/user/shandongwill)
 
-## Use Case: <br>
-Employees and automation developers use this skill to move tabular data from a PCS page into an EBP system by exporting Excel data and uploading it to the target application. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated scheduled imports can duplicate, overwrite, or move data into the wrong target if source and target URLs, selectors, or idempotency behavior are not verified. <br>
-Mitigation: Review before installing or operationalizing, test in a non-production environment, verify source and target URLs, confirm duplicate-import prevention, and enable cron only after rollback and idempotency behavior are clear. <br>
-Risk: Browser automation for internal systems may expose operational credentials or perform actions with broader permissions than intended. <br>
-Mitigation: Use least-privilege credentials, require logs or audit records, and keep secrets out of skill files and command history. <br>
+## Use Case:
 
+Employees or operations teams use this skill to automate transferring table data from a PCS page into an EBP system through an Excel import workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shandongwill/test-test01) <br>
-- [Publisher profile](https://clawhub.ai/user/shandongwill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces automation instructions for Playwright-based page access, Excel export, upload, and optional cron scheduling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Unattended imports over plaintext HTTP can expose or alter business data without sufficient review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved HTTPS endpoints or a trusted private network, restrict the source and destination pages, and require dry-run validation or confirmation before import.
+
+Risk: Generated Excel files may contain sensitive data after transfer.
+
+Mitigation: Store generated Excel files only in approved locations and clean them up after use.
+
+Risk: Scheduled automation may continue running after page structure changes or failed imports.
+
+Mitigation: Enable logging and rollback procedures before allowing unattended cron execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shandongwill/skills/test-test01)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide browser automation and Excel file generation when used by an agent.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

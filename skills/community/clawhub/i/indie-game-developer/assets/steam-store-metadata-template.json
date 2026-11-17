@@ -1,0 +1,46 @@
+{
+  "_comment": "Steam 商店页元数据模板 —— 配合 scripts/check_steam_metadata.py 使用。以 _ 开头的键都是注释，脚本自动跳过。复制后按真实游戏填写；脚本要求 name/short_description/about_the_game/header_image 非空，screenshots≥3、tags≥5，capsules/genres/supported_languages/release_date/pricing 齐备，否则判 error。",
+  "_usage": "python3 scripts/check_steam_metadata.py --metadata assets/steam-store-metadata-template.json",
+  "_note": "本模板已满足全部必填项，脚本自检为 0 error。真实填写时把占位值替换为你的游戏数据；release_date 用 ISO 日期或设 coming_soon=true。",
+
+  "name": "示例独立游戏 / Example Indie Game",
+  "short_description": "一款关于时间与记忆的像素风解谜冒险：你扮演钟表匠，用手中的怀表在关键瞬间回溯数秒，重新排列机关、躲避危险、拼出通往真相的路径。含多结局、原声音乐与手工关卡（全流程约 4 小时）。",
+  "about_the_game": "《示例独立游戏》是一个手绘像素风的解谜冒险。你扮演一名钟表匠，借助怀表在关键瞬间回溯数秒，重新排列机关、躲避危险、拼出通往真相的路径。游戏包含 30 个手工关卡、原声音乐与多结局。",
+
+  "header_image": "assets/store/capsule_main.png",
+  "capsules": {
+    "library": "assets/store/library_capsule.png",
+    "small": "assets/store/small_capsule.png",
+    "header": "assets/store/header_capsule.png"
+  },
+
+  "screenshots": [
+    "assets/store/screenshot_01.png",
+    "assets/store/screenshot_02.png",
+    "assets/store/screenshot_03.png"
+  ],
+
+  "tags": [
+    "puzzle",
+    "pixel graphics",
+    "singleplayer",
+    "story rich",
+    "time manipulation",
+    "indie"
+  ],
+
+  "genres": ["Indie", "Adventure", "Casual"],
+  "supported_languages": ["English", "Simplified Chinese", "Japanese"],
+
+  "release_date": { "coming_soon": false, "date": "2026-09-15" },
+
+  "pricing": {
+    "is_free": false,
+    "base_price_usd": 14.99,
+    "regions": { "US": 14.99, "CN": 9.99, "RU": 8.99 }
+  },
+
+  "privacy_policy_url": "https://example.com/privacy",
+  "developers": ["Example Studio"],
+  "publishers": ["Example Studio"]
+}

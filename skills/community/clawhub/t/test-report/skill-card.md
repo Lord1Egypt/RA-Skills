@@ -1,40 +1,49 @@
-## Description: <br>
-Generate test summary reports, quality metrics, and test execution analysis from provided test results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate test summary reports, quality metrics, and test execution analysis, aggregating test results into structured reports with pass/fail rates, coverage, trends, and recommendations.
 
-## Publisher: <br>
-[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengyi1986-afk](https://clawhub.ai/user/zhanghengyi1986-afk)
 
-## Use Case: <br>
-Developers, QA engineers, and release owners use this skill to turn test execution data into structured quality reports, trend analysis, metrics, and release decision guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Report inputs may include secrets, production credentials, or unnecessary personal data. <br>
-Mitigation: Exclude sensitive values from test-report inputs and provide only the minimum data needed for analysis. <br>
-Risk: Generated quality conclusions can be misleading when the supplied test data is incomplete or inaccurate. <br>
-Mitigation: Review the source metrics and release recommendation before using the report for sign-off decisions. <br>
+## Use Case:
 
+Developers, QA engineers, and release stakeholders use this skill to turn test execution results into structured quality reports, trend summaries, metrics, and release decision support.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhanghengyi1986-afk/test-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report templates with quality metrics, tables, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes pass-rate, execution-rate, defect-density, trend-analysis, and release-decision guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Built-in report templates are mostly Chinese, which may not match the installer's target language or reporting conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the desired report language and adapt headings, labels, and recommendations before using generated reports with stakeholders.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhanghengyi1986-afk/skills/test-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with metric tables, formulas, risk summaries, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static report templates and metric guidance; no executable behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

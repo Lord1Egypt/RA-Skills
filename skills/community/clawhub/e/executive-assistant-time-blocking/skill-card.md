@@ -1,40 +1,54 @@
-## Description: <br>
-Standard Operating Procedure (SOP) that acts as an executive assistant to block out calendar time using TS atomic plugins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standard Operating Procedure (SOP) that acts as an executive assistant to block out calendar time using TS atomic plugins.
 
-## Publisher: <br>
-[zvirb](https://clawhub.ai/user/zvirb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zvirb](https://clawhub.ai/user/zvirb)
 
-## Use Case: <br>
-Employees or assistants use this skill to collect incomplete Google Tasks, identify open calendar gaps, and schedule time blocks while auditing for overlaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create calendar events, which may place tasks at incorrect times or with unsuitable durations. <br>
-Mitigation: Require a proposed schedule preview and explicit user confirmation before creating calendar events. <br>
-Risk: The workflow includes calendar deletion during overlap resolution, which could remove events beyond the intended scheduling changes. <br>
-Mitigation: Allow deletion only for events the workflow created or events the user specifically named. <br>
+## Use Case:
 
+Employees and scheduling assistants use this skill to collect incomplete Google Tasks, estimate time needs, find calendar gaps, and create non-overlapping time blocks on the primary calendar.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zvirb/executive-assistant-time-blocking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summary with scheduling commands and calendar action confirmations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes scheduled tasks, timeline placement, and overlap-free scheduling status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can create and delete primary-calendar events without clear confirmation or rollback safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a preview and explicit confirmation before changes, and limit deletion to events the skill created.
+
+Risk: The skill needs Google Tasks and primary-calendar access through the required `gog` command.
+
+Mitigation: Install only when that account access is appropriate, and review requested permissions before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zvirb/skills/executive-assistant-time-blocking)
+- [Publisher Profile](https://clawhub.ai/user/zvirb)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with task schedule details and overlap status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a concise schedule summary after calendar event creation and overlap auditing.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Searches academic literature via arXiv, Semantic Scholar, and open-access PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches academic literature via arXiv, Semantic Scholar, and open-access PDFs.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to find academic papers, citations, formal research, and open-access paper versions for literature reviews or citation chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as "pdf" and "papers" may activate the skill for requests that are not academic literature searches. <br>
-Mitigation: Use or install the skill when requests clearly involve scholarly paper discovery, citation lookup, literature reviews, or PDF-based research extraction. <br>
-Risk: Fallback PDF extraction may preserve tables and figures less cleanly than the preferred document-conversion path. <br>
-Mitigation: Prefer the configured document-conversion capability for PDFs and note extraction limits when using fallback page reads. <br>
+## Use Case:
 
+Researchers, students, and others looking for formal research can use this skill to find academic papers, follow citation chains, and build literature reviews.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-tome-papers) <br>
-- [Tome Plugin Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include paper metadata, citation chains, PDF extraction notes, and open-access fallback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release metadata; artifact frontmatter says 1.9.8) <br>
+Risk: A benign scan does not establish that the skill suits every use case.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill instructions and decide whether it suits your needs before installing.
+
+## Reference(s):
+
+- [Tome plugin source and homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Citation information]
+
+**Output Format:** [Markdown summaries with citation details and abstracts or key findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can provide paywall fallback guidance when no open version is available.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

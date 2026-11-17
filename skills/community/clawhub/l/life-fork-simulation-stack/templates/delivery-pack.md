@@ -1,5 +1,7 @@
 # 报告交付包模板
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用于把人生岔路模拟结果整理成终端用户可保存版本。
 
 ## 1. 首页

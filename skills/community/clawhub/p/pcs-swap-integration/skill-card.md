@@ -1,43 +1,63 @@
-## Description: <br>
-Integrates PancakeSwap swaps into frontends, backends, and smart contracts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate PancakeSwap swaps into applications.
 
-## Publisher: <br>
-[pcs-bot](https://clawhub.ai/user/pcs-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcs-bot](https://clawhub.ai/user/pcs-bot)
 
-## Use Case: <br>
-Developers building PancakeSwap swap experiences use this skill for routing quotes, SDK and Universal Router integration, direct V2 router swaps, and transaction troubleshooting across supported EVM chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples include wallet signing and transaction broadcasting that can affect real funds. <br>
-Mitigation: Use testnet or low-value wallets first, and verify chain, token, amount, recipient, slippage, and deadline before broadcasting any transaction. <br>
-Risk: Approval examples include broad token allowances. <br>
-Mitigation: Review every spender address and allowance, prefer bounded approvals, and avoid approving contracts that have not been independently verified. <br>
-Risk: Prompts or generated scripts could expose private keys or run with unintended wallet authority. <br>
-Mitigation: Do not paste private keys into prompts, keep secrets in the local runtime environment, and inspect generated scripts before execution. <br>
+## Use Case:
 
+Developers and engineers use this skill to add PancakeSwap quote, routing, transaction encoding, and swap execution guidance to frontends, backends, scripts, and smart contracts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pcs-bot/pcs-swap-integration) <br>
-- [PancakeSwap AI repository](https://github.com/pancakeswap/pancakeswap-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, Solidity, JSON, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes blockchain addresses, package installation commands, API examples, approval guidance, and transaction troubleshooting notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: Generated swap examples can submit real mainnet transactions from funded wallets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code before execution and prefer testnet or simulation before using funded wallets.
+
+Risk: Example flows can grant persistent unlimited token approvals.
+
+Mitigation: Use exact-amount or short-lived approvals where possible and verify router and Permit2 addresses before approving tokens.
+
+Risk: Project tooling or agent-readable environments may expose production private keys.
+
+Mitigation: Avoid placing production private keys where the agent or project tooling can read them unnecessarily.
+
+Risk: Unpinned dependencies can change swap behavior or integration compatibility over time.
+
+Mitigation: Pin dependencies with a lockfile and review dependency changes before execution.
+
+## Reference(s):
+
+- [PancakeSwap AI repository](https://github.com/pancakeswap/pancakeswap-ai)
+- [ClawHub skill page](https://clawhub.ai/pcs-bot/skills/pcs-swap-integration)
+- [ClawHub publisher profile](https://clawhub.ai/user/pcs-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, SDK setup instructions, smart contract call patterns, and transaction safety checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

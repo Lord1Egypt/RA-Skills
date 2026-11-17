@@ -1,42 +1,54 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup documentation for Clip History concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick lookup documentation for Clip History concepts, best practices, troubleshooting, performance, security, migration, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve static Clip History reference material, including introductions, quickstarts, patterns, debugging notes, performance tips, security considerations, migration guidance, and cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill emits generic static reference guidance that may not match a user's specific environment or current operational requirements. <br>
-Mitigation: Treat the output as reference material and review it before applying recommendations to production workflows. <br>
-Risk: The security evidence indicates no current need for credentials, but future versions could add behavior that changes the risk profile. <br>
-Mitigation: Do not provide credentials to this skill unless a future version adds a clearly scoped and reviewed feature that requires them. <br>
+## Use Case:
 
+Developers and engineers use this skill to retrieve concise Clip History reference material while working in devtools contexts. It is intended for quick human-facing guidance, not for executing external integrations.
 
-## Reference(s): <br>
-- [Clip History on ClawHub](https://clawhub.ai/xueyetianya/clip-history) <br>
-- [Publisher profile](https://clawhub.ai/user/xueyetianya) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc output; no API keys, credentials, network access, data access, or system settings access are described by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.0.2 (source: server release metadata; artifact frontmatter reports 4.0.1 and script reports 4.0.0) <br>
+Risk: The quickstart text generically mentions access credentials, which could be misread as a requirement for this skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the credential mention as generic reference wording; the inspected artifact does not request, read, store, or transmit credentials.
+
+Risk: Static reference guidance can become stale or too generic for a specific devtools environment.
+
+Mitigation: Review the emitted guidance against the target environment before applying operational changes.
+
+## Reference(s):
+
+- [Clip History ClawHub page](https://clawhub.ai/xueyetianya/skills/clip-history)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by bash heredocs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections; no external API calls, credentials, networking, persistence, or system modification according to security evidence.]
+
+## Skill Version(s):
+
+4.0.2 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

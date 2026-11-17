@@ -2,6 +2,8 @@
 
 Complete endpoint reference for Campaign Management API v5.
 
+Contents: Authentication · Base URL & Headers · Apps · Campaigns · Ad Groups · Keywords · Creatives & Ads · Reports · Geolocations · Error Handling
+
 ## Authentication
 
 ### Generate Client Secret (JWT)
@@ -51,6 +53,20 @@ Response:
   "token_type": "Bearer",
   "expires_in": 3600
 }
+```
+
+Access tokens are valid 1 hour — cache and reuse across calls; minting a fresh token per request is the usual cause of auth throttling. The client secret JWT may set `exp` up to 180 days out: generate it once and store it, not per run.
+
+## Base URL & Headers
+
+All endpoints below are relative to the base URL.
+
+```
+Base URL: https://api.searchads.apple.com/api/v5
+Headers:
+  Authorization: Bearer {ACCESS_TOKEN}
+  X-AP-Context: orgId={ORG_ID}
+  Content-Type: application/json
 ```
 
 ## Apps
@@ -157,6 +173,10 @@ Request:
 }
 ```
 
+Notes:
+- `supplySources` values: `APPSTORE_SEARCH_RESULTS`, `APPSTORE_SEARCH_TAB`, `APPSTORE_TODAY_TAB`, `APPSTORE_PRODUCT_PAGES`. One per campaign — never blend placements (see `strategy.md`).
+- Prefer `dailyBudgetAmount` as the operative lever; lifetime budgets (`budgetAmount`) were phased out for new campaigns (2022). Monthly ceiling ≈ daily budget × 30.4.
+
 ### Update Campaign
 
 ```bash
@@ -227,6 +247,11 @@ Request:
 }
 ```
 
+Notes:
+- `cpaGoal` is advisory — it never caps spend (see SKILL.md Traps). Bids and daily budgets are the only hard controls.
+- `defaultBidAmount` applies only to keywords without their own bid; a keyword-level `bidAmount` always overrides it.
+- Any `age`/`gender`/location refinement restricts delivery to users with Personalized Ads enabled — reach drops silently. `appDownloaders.excluded` is the exception worth using.
+
 ### Targeting Dimensions
 
 | Dimension | Values |
@@ -264,6 +289,8 @@ Request:
   }
 ]
 ```
+
+`matchType: EXACT` also serves plurals and common misspellings (Apple-documented) — verify actual queries via the search term report, not the keyword list.
 
 ### Update Keyword
 
@@ -358,6 +385,8 @@ Request:
 }
 ```
 
+`timeZone` accepts `UTC` or `ORTZ` (org time zone) — pick one for ALL reporting and never mix (SKILL.md Traps).
+
 ### Available Metrics
 
 | Metric | Description |
@@ -374,6 +403,8 @@ Request:
 | `avgCPA` | Average cost per acquisition |
 | `avgCPT` | Average cost per tap |
 | `conversionRate` | Installs / Taps |
+
+`latOnInstalls`/`latOffInstalls` are legacy — Limit Ad Tracking predates App Tracking Transparency (iOS 14.5); ignore them in new analysis. Watch `redownloads` vs `newDownloads`: a low CPA driven by re-downloads is retention masquerading as acquisition.
 
 ### Search Term Report
 
@@ -415,6 +446,8 @@ Request:
 }
 ```
 
+Impression share comes back as a low/high band (a range, not a point value) — track the band's movement over time; comparing single days is meaningless.
+
 ## Geolocations
 
 ### Search Geolocations
@@ -455,6 +488,9 @@ Entities: `Country`, `AdminArea` (state), `Locality` (city), `DMA` (metro)
 
 ### Rate Limits
 
-- 1000 requests per minute per org
-- Batch endpoints count as 1 request
-- Use pagination for large datasets
+Apple throttles per org without publishing exact quotas; `LIMIT_EXCEEDED` / HTTP 429 is the signal.
+
+- On 429: halve request rate, retry with exponential backoff (2s, 4s, 8s...)
+- Batch (`/bulk`) endpoints count as one request — always prefer them over per-keyword calls
+- Paginate large reads (`limit` ≤ 1000 on reports) instead of one giant request
+- Cache the OAuth token for its full hour (→ Authentication); token minting is throttled separately

@@ -1,40 +1,58 @@
-## Description: <br>
-Pull daily Gumroad product/sales analytics safely (no raw PII persistence by default). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pull daily Gumroad product/sales analytics safely (no raw PII persistence by default).
 
-## Publisher: <br>
-[vladchatware](https://clawhub.ai/user/vladchatware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vladchatware](https://clawhub.ai/user/vladchatware)
 
-## Use Case: <br>
-Developers, operators, and creators use this skill to let an agent collect Gumroad sales and product metrics, produce daily revenue and count summaries, and optionally preserve redacted raw API responses for review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a Gumroad access token and uses it to fetch sales and product data. <br>
-Mitigation: Keep the credentials file private, restrict file permissions, and prefer a dedicated or revocable token. <br>
-Risk: Using --store-raw can retain detailed Gumroad API responses locally. <br>
-Mitigation: Use the default summary-only mode unless raw local records are required; review stored files before sharing or syncing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vladchatware/gumroad-analytics) <br>
-- [Gumroad API endpoint](https://api.gumroad.com/v2) <br>
+## Use Case:
 
+Developers, creators, and operators use this skill to collect daily Gumroad sales and product metrics into summary JSON for lightweight revenue tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON files, guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON metric files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes daily summary JSON by default; raw Gumroad API files are written only when explicitly requested, with sales fields redacted.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Gumroad access tokens and API payloads may be exposed locally during execution.
+
+Mitigation: Use a restricted credentials file, avoid raw export mode unless needed, and run the skill only in a trusted workspace.
+
+Risk: Output files may contain business or customer-related Gumroad data.
+
+Mitigation: Apply restrictive permissions to metrics directories and review raw exports before sharing or syncing them.
+
+Risk: Raw diagnostic exports can retain sensitive fields outside the sales redaction path.
+
+Mitigation: Prefer summary-only storage and use an allowlist for any raw export that is kept.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vladchatware/skills/gumroad-analytics)
+- [ClawHub homepage metadata](https://clawhub.ai/vladchatware/gumroad-analytics)
+- [Gumroad API endpoint](https://api.gumroad.com/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a daily summary JSON by default; raw sales and product exports are explicit opt-in.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

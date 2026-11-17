@@ -1,42 +1,53 @@
-## Description: <br>
-Schedule OpenClaw tasks using natural language with cron lifecycle management, timezone support, failure alerts, and execution logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Schedule OpenClaw tasks using natural language with cron lifecycle management, timezone support, failure alerts, and execution logs.
 
-## Publisher: <br>
-[mariusfit](https://clawhub.ai/user/mariusfit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mariusfit](https://clawhub.ai/user/mariusfit)
 
-## Use Case: <br>
-Developers and operators use this skill to schedule recurring OpenClaw tasks from plain-English recurrence expressions, inspect upcoming runs and logs, and manage the pause, resume, remove, and manual-run lifecycle for recurring automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent unattended execution through system cron can run scheduled tasks later without another prompt. <br>
-Mitigation: Review each scheduled task before enabling it, confirm the schedule and task text, and keep jobs easy to list, inspect, pause, and remove. <br>
-Risk: Broad task authority can make cleanup, deletion, or maintenance jobs affect unintended files or services. <br>
-Mitigation: Use tightly scoped paths and commands, avoid broad deletion jobs unless backups exist, and verify sensitive jobs manually before scheduling. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to schedule recurring agent tasks in plain English, inspect upcoming runs, manage job lifecycle state, and review execution logs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mariusfit/clawhub-skill-smart-cron) <br>
-- [Source Repository](https://github.com/mariusfit/smart-cron) <br>
-- [Issue Tracker](https://github.com/mariusfit/smart-cron/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell command examples and configuration JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create persistent local schedules, job configuration, and execution logs through system cron and OpenClaw orchestration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and artifact/skill.json) <br>
+Risk: Scheduled tasks run persistently through cron and may repeatedly perform actions such as reading email, calling APIs, writing memory files, deleting logs, or archiving data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each task before scheduling it, keep high-impact actions narrow, and use logs plus pause or remove commands to stop unwanted jobs.
+
+Risk: Failure alerts sent through WhatsApp or Telegram may disclose job names, timing, or error details to the configured provider or recipient.
+
+Mitigation: Enable alert channels only for acceptable recipients and avoid putting sensitive data in job names or task descriptions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mariusfit/skills/clawhub-skill-smart-cron)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local cron scheduling instructions, job lifecycle commands, alert configuration, and log review guidance for OpenClaw tasks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-A professional product image generation skill purpose-built for the Amazon e-commerce platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A professional product image generation skill purpose-built for the Amazon e-commerce platform, producing listing and A+ content images aligned with Amazon image guidelines.
 
-## Publisher: <br>
-[dlazyai](https://clawhub.ai/user/dlazyai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlazyai](https://clawhub.ai/user/dlazyai)
 
-## Use Case: <br>
-External sellers, marketplace operators, and agents use this skill to plan and generate Amazon-ready product image sets, including main images, secondary images, and A+ Brand Content modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a dLazy API key and may store credentials in local CLI configuration. <br>
-Mitigation: Protect the local dLazy configuration, prefer per-session environment variables when persistence is not desired, and rotate or revoke keys from the dLazy dashboard when needed. <br>
-Risk: Prompts and uploaded product media are sent to dLazy cloud services for generation. <br>
-Mitigation: Upload only product media approved for transfer to dLazy, and avoid including confidential or regulated content unless the user's organization has approved that use. <br>
-Risk: Generated product images can be inaccurate, non-compliant, or misleading for marketplace use. <br>
-Mitigation: Review generated images against Amazon image requirements, product facts, brand rules, and applicable advertising claims before publication. <br>
+## Use Case:
 
+External Amazon sellers and product-content teams use this skill to plan and generate main and secondary listing images, product infographics, lifestyle and detail shots, and A+ Brand Content modules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlazyai/image-amazon-product-image-suite) <br>
-- [dLazy CLI source](https://github.com/dlazyai/cli) <br>
-- [dLazy CLI npm package](https://www.npmjs.com/package/@dlazy/cli) <br>
-- [dLazy homepage](https://dlazy.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npm or npx, a dLazy API key, and access to dLazy API and file-hosting endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Risk: ClawScan reports that the CLI login command’s connection to the advertised image-generation purpose is unclear and that scanner coverage was partial; its benign verdict is not a guarantee of safety.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI authentication flow and credential handling before use, and use the documented key rotation or revocation controls if needed.
+
+Risk: The skill sends prompts and supplied media to dLazy-hosted services for processing.
+
+Mitigation: Avoid sending confidential product or customer material unless it is approved for processing by the hosted service.
+
+## Reference(s):
+
+- [dLazy CLI repository (CLI reference; skill provenance unavailable)](https://github.com/dlazy-ai/cli)
+- [dLazy CLI on npm](https://www.npmjs.com/package/@dlazy/cli)
+- [dLazy website](https://dlazy.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Shell commands, Image-generation requests]
+
+**Output Format:** [Markdown plans and prompts, CLI commands, and generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generation is guided step by step; a full suite typically contains one main image, six secondary images, and eight A+ modules.]
+
+## Skill Version(s):
+
+1.3.42 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // CCXT Exchange Trading CLI
 // Requires: npm install ccxt
-import { cli } from '../lib/cli.mjs';
+import { cli } from '../lib/aicoin-api.mjs';
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync, unlinkSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -116,20 +116,14 @@ async function getExchange(id, marketType, skipAuth = false) {
 // createOrder with OKX net-mode posSide fallback
 async function placeOrder(ex, symbol, type, side, amount, price, params, exchange, marketType) {
   const p = { ...(params || {}) };
-  const isOkxSwap = exchange === 'okx' && marketType && marketType !== 'spot';
-  if (isOkxSwap && !p.posSide) {
+  if (exchange === 'okx' && marketType && marketType !== 'spot' && !p.posSide) {
     p.posSide = p.reduceOnly ? (side === 'buy' ? 'short' : 'long') : (side === 'buy' ? 'long' : 'short');
   }
   try {
     return await ex.createOrder(symbol, type, side, amount, price, p);
   } catch (e) {
-    // OKX net mode 不接受 posSide → retry 一次。但仅限 OKX swap/futures
-    // 且 error 真是 posSide 相关。早期版本看 51000 就 retry,导致 OKX
-    // race(订单已提交但响应带 51000 警告)时重复下单(dogfood 命中过 ETH
-    // spot 限价被挂两次)。spot 不可能有 posSide 问题,绝不在 spot 上 retry。
-    const errMsg = String(e);
-    const isPosSideError = isOkxSwap && p.posSide && errMsg.includes('posSide');
-    if (isPosSideError) {
+    // OKX net mode doesn't accept posSide — retry without it
+    if (String(e).includes('posSide') || String(e).includes('51000')) {
       delete p.posSide;
       return await ex.createOrder(symbol, type, side, amount, price, p);
     }
@@ -301,20 +295,6 @@ cli({
     await ex.loadMarkets();
     const mkt = ex.markets[symbol];
 
-    // Round contract amount to market precision/min (e.g. OKX BTC swap = 0.01 contract step)
-    // Avoids the old `Math.max(1, Math.round(x))` floor that broke sub-1-contract orders.
-    const roundContracts = (raw) => {
-      const minStep = mkt.precision?.amount || mkt.limits?.amount?.min || 1;
-      const minAmt = mkt.limits?.amount?.min || minStep;
-      let v = Number(raw);
-      if (!isFinite(v) || v <= 0) return minAmt;
-      // Clamp to min first so amountToPrecision doesn't throw on values < precision step
-      if (v < minAmt) v = minAmt;
-      try { v = Number(ex.amountToPrecision(symbol, v)); } catch { v = Math.round(v / minStep) * minStep; }
-      if (v < minAmt) v = minAmt;
-      return v;
-    };
-
     // cost param: user says "用XU做多" → calculate amount from USDT margin budget
     if (cost && mkt?.contractSize && market_type && market_type !== 'spot') {
       const tick = await ex.fetchTicker(symbol);
@@ -328,12 +308,12 @@ cli({
           if (pos?.leverage) lev = Number(pos.leverage);
         } catch {}
       }
-      amount = roundContracts(Number(cost) * lev / (mkt.contractSize * curP));
+      amount = Math.max(1, Math.round(Number(cost) * lev / (mkt.contractSize * curP)));
     }
 
     // Auto-convert: non-integer amount on contract = user gave base currency (e.g. 0.01 BTC → 1 contract)
     if (!cost && mkt?.contractSize && !Number.isInteger(Number(amount))) {
-      amount = roundContracts(Number(amount) / mkt.contractSize);
+      amount = Math.max(1, Math.round(Number(amount) / mkt.contractSize));
     }
 
     const pendingOrder = { exchange, symbol, type, side, amount, price, market_type, params, timestamp: Date.now() };

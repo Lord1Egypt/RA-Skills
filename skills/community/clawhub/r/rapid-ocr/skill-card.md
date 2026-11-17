@@ -1,44 +1,55 @@
-## Description: <br>
-Rapid OCR helps agents run local OCR on receipts, invoices, train tickets, and general images, returning recognized text and structured fields for common Chinese ticket workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rapid OCR extracts text and structured fields from invoices, train tickets, travel receipts, and other document images using RapidOCR.
 
-## Publisher: <br>
-[gaojiren](https://clawhub.ai/user/gaojiren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaojiren](https://clawhub.ai/user/gaojiren)
 
-## Use Case: <br>
-External users, finance teams, travel administrators, and developers use this skill to extract OCR text and structured fields from invoices, transportation tickets, receipts, and scanned images. It is suited for local batch recognition and assisted data entry where important OCR results are reviewed before reliance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The rapidocr-onnxruntime dependency downloads OCR models on first use, which may be unsuitable for locked-down or offline environments. <br>
-Mitigation: Install only where PyPI dependency installation and first-run model download are allowed, or pre-download models on a trusted network before offline deployment. <br>
-Risk: OCR may misread important fields such as tax IDs, invoice numbers, dates, and monetary amounts. <br>
-Mitigation: Manually verify important OCR results before using them for financial, tax, reimbursement, or compliance decisions. <br>
-Risk: Unpinned dependencies can change model download behavior or runtime behavior over time. <br>
-Mitigation: Pin rapidocr-onnxruntime and validate the expected model cache behavior in controlled environments. <br>
+## Use Case:
 
+Developers, finance teams, and travel operations users can use this skill to recognize receipt and ticket images, then extract OCR text and common invoice or train-ticket fields for review and downstream entry.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gaojiren/rapid-ocr) <br>
-- [OpenClaw Rapid OCR Documentation](https://docs.openclaw.ai/skills/rapid-ocr) <br>
-- [PaddleOCR Model Source](https://github.com/PaddlePaddle/PaddleOCR) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or Python dictionaries from the CLI/API, with Markdown guidance and command examples in agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OCR output can include full recognized text, per-line confidence values, elapsed time, and structured invoice or train-ticket fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Sensitive OCR output from invoices, travel records, or receipts may appear in shared logs, terminals, or downstream records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a controlled environment and avoid sending OCR output to shared destinations unless that handling is intended.
+
+Risk: The PyPI OCR dependency downloads model files during first use, which creates network and supply-chain considerations.
+
+Mitigation: Use a sandbox or pinned dependency set, pre-download models in a trusted environment for offline use, and confirm first-run network access before deployment.
+
+## Reference(s):
+
+- [ClawHub rapid ocr release](https://clawhub.ai/gaojiren/skills/rapid-ocr)
+- [OpenClaw Rapid OCR documentation](https://docs.openclaw.ai/skills/rapid-ocr)
+- [PaddleOCR model source](https://github.com/PaddlePaddle/PaddleOCR)
+
+## Skill Output:
+
+**Output Type(s):** [text, structured data, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text with OCR text and Python dictionary-style structured fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR results may include confidence values, elapsed time, and extracted invoice or train-ticket fields.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

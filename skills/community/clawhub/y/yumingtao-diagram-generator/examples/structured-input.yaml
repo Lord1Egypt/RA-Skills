@@ -1,0 +1,47 @@
+# Structured input example — hand this file (or its content) to the
+# diagram-generator skill to render a system map without a prose brief.
+# Components become nodes, relations become edges; geometry is planned
+# from the generation rules just like a natural-language brief.
+title: Checkout Platform System Map
+lens: system
+language: en
+components:
+  - id: web_client
+    label: Web Client
+    role: actor
+    responsibility: checkout entry pages
+  - id: checkout_api
+    label: Checkout API
+    role: compute
+    responsibility: order placement and payment orchestration
+  - id: payment_service
+    label: Payment Service
+    role: compute
+    responsibility: payment provider integration
+  - id: orders_db
+    label: PostgreSQL
+    role: state
+    responsibility: orders and payment ledger
+  - id: fraud_topic
+    label: Kafka Fraud Topic
+    role: message
+    responsibility: fraud screening event stream
+relations:
+  - from: web_client
+    to: checkout_api
+    kind: sync
+    label: HTTPS
+  - from: checkout_api
+    to: payment_service
+    kind: sync
+    label: charge
+  - from: checkout_api
+    to: orders_db
+    kind: sync
+    label: write order
+  - from: payment_service
+    to: fraud_topic
+    kind: async
+    label: publish event
+notes:
+  - Payment provider timeouts fall back to a compensating transaction (assumption).

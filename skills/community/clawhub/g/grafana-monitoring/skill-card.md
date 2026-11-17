@@ -1,46 +1,57 @@
-## Description: <br>
-Grafana HTTP API integration. Inspect dashboards, folders, data sources, alert rules, and teams. Use this skill when users want to query observability data, inspect monitoring resources, or manage Grafana dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Grafana HTTP API integration. Inspect dashboards, folders, data sources, alert rules, and teams. Use this skill when users want to query observability data, inspect monitoring resources, or manage Grafana dashboards.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Developers, SREs, and operations teams use this skill to inspect and manage Grafana dashboards, folders, data sources, alert rules, teams, and organization resources from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access Grafana resources through configured ClawLink credentials. <br>
-Mitigation: Use a least-privilege Grafana API key or service account scoped to the resources the agent needs. <br>
-Risk: Write or destructive Grafana operations can create, update, or delete dashboards, folders, data sources, alert rules, teams, or permissions. <br>
-Mitigation: Review write previews carefully and require explicit user confirmation before executing create, update, or delete actions. <br>
-Risk: Admin-level Grafana credentials could expose broad organization, user, data source, team, permission, and alert-management capabilities. <br>
-Mitigation: Avoid Grafana admin credentials unless those capabilities are required for the intended deployment. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect Grafana observability resources and manage dashboards, folders, data sources, alert rules, and teams through authenticated Grafana API tools.
 
-## Reference(s): <br>
-- [Grafana HTTP API Documentation](https://grafana.com/docs/grafana/latest/developers/http_api/) <br>
-- [Grafana Dashboard API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/) <br>
-- [Grafana Alerting API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=grafana-monitoring) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live Grafana tool catalogs where available; write actions require explicit user confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server evidence) <br>
+Risk: Connected Grafana credentials can expose or change resources within the API key or service account permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Grafana API key or service account and review the connected credential scope before installation.
+
+Risk: Create, update, or delete operations can modify dashboards, folders, data sources, alert rules, teams, or permissions.
+
+Mitigation: Preview write actions and require explicit user confirmation of the target resource and intended effect before execution.
+
+## Reference(s):
+
+- [Grafana HTTP API Documentation](https://grafana.com/docs/grafana/latest/developers/http_api/)
+- [Grafana Dashboard API](https://grafana.com/docs/grafana/latest/developers/http_api/dashboard/)
+- [Grafana Alerting API](https://grafana.com/docs/grafana/latest/developers/http_api/alerting/)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/grafana-monitoring)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Grafana API tool-call guidance, connection checks, write previews, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.6 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

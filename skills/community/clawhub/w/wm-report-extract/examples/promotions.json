@@ -1,0 +1,16 @@
+{
+  "promotions": [
+    {
+      "table_file": "tables/generic_table_p036_i038.json",
+      "promote_to": "nev_sales",
+      "confidence": "high",
+      "reason": "表头为销量/产量，行标签为新能源车"
+    },
+    {
+      "table_file": "tables/generic_table_p049_i047.json",
+      "promote_to": "equity_incentive",
+      "confidence": "low",
+      "reason": "会议议程含激励字样，保持 generic"
+    }
+  ]
+}

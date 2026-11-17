@@ -1,40 +1,57 @@
-## Description: <br>
-Read, write, append, and list local files in the session's working directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, write, append, delete, create directories, and list local files in a session working directory for agents that need local file persistence.
 
-## Publisher: <br>
-[liyico](https://clawhub.ai/user/liyico) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liyico](https://clawhub.ai/user/liyico)
 
-## Use Case: <br>
-Developers and automation agents use this skill to read inputs, write generated outputs, append logs, create directories, and manage local text, JSON, CSV, Markdown, configuration, and code files in a session workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports that user-controlled file arguments can be turned into shell commands and that write or delete operations may not provide the advertised safety guarantees. <br>
-Mitigation: Review carefully before installation, use only in a disposable workspace, and require scoped filesystem APIs plus explicit confirmation before destructive actions. <br>
-Risk: The implementation references a hardcoded local script path and the artifact manifest does not align cleanly with the packaged files. <br>
-Mitigation: Verify the packaged entry points in the target runtime and replace local machine paths with package-relative paths before relying on the skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill when an agent needs to save generated output, read local input files, append logs or results, create directories, list workspace files, or remove files during a session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liyico/local-file-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Files] <br>
-**Output Format:** [Plain text responses and local file contents or filesystem changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Operates on local paths within the configured session workspace and defaults to a 10 MB maximum file size.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security review says the skill can run unsafe shell commands and may cause filesystem effects outside the intended working-directory boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, run only in a disposable tightly sandboxed environment, and prefer an implementation that uses native filesystem APIs or execFile/spawn with argument arrays.
+
+Risk: Path handling may not reliably prevent workspace escape, including symlink-based escape or insufficient canonicalization.
+
+Mitigation: Canonicalize paths against the session cwd, block symlink escapes, and enforce workspace-bound read, write, and delete permissions.
+
+Risk: The skill may log file operations outside the workspace by default.
+
+Mitigation: Make logging opt-in or direct logs to a workspace-local path before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liyico/skills/local-file-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Text or file contents returned through command output; configuration and usage guidance may be Markdown or inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports local file operations such as read, write, append, list, mkdir, and delete; maximum file size is documented as 10MB.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

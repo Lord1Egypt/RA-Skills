@@ -1,39 +1,54 @@
-## Description: <br>
-Use this skill when a special education case manager, IEP team coordinator, or LEA representative needs to draft an IDEA-aligned IEP from evaluation data, producing a draft with PLAAFP statement, measurable annual goals, services, accommodations, and LRE justification for IEP team review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a special education case manager, IEP team coordinator, or LEA representative needs to draft an IDEA-aligned IEP from evaluation data; it produces a draft IEP with a PLAAFP statement, measurable annual goals, services, accommodations, and LRE justification for IEP team review, never a final signed document.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Special education case managers, IEP team coordinators, and LEA representatives use this skill to turn supplied evaluation data and team inputs into a draft IDEA-aligned Individualized Education Program for team review. It supports PLAAFP drafting, measurable annual goals, services, accommodations, assessment participation, LRE justification, ESY consideration, transition content, compliance self-checks, and an edit log. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IEP materials can include sensitive student information. <br>
-Mitigation: Use student codes and redact names, dates of birth, addresses, photos, Social Security numbers, and other direct identifiers before providing working materials. <br>
-Risk: Draft IEP content may be incomplete or inappropriate if treated as a final education record or decision. <br>
-Mitigation: Treat all output as a draft that must be reviewed, edited, finalized, and approved by the actual IEP team. <br>
+## Use Case:
 
+Special education case managers, IEP team coordinators, and LEA representatives use this skill to turn evaluation records and team inputs into a structured draft IEP for team review. It supports PLAAFP development, measurable goals, services, accommodations, assessment participation, LRE, ESY, transition content, compliance self-checks, and an edit log.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft IEP with structured sections, tables, compliance self-check results, edit log, and draft-review banner] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a non-identifying student code, requires user-supplied evidence, and keeps the result draft-only for IEP team review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: changelog, released 2026-05-28) <br>
+Risk: The skill may process sensitive education records while drafting a working IEP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use student codes instead of direct identifiers and avoid pasting unnecessary personal data.
+
+Risk: A draft IEP could be mistaken for an official final document.
+
+Mitigation: Keep the draft-only posture, require IEP team review, and finalize or store the IEP only through the responsible team process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/iep-drafter)
+- [Publisher profile](https://clawhub.ai/user/archlab-space)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft IEP with tables, sectioned narrative, unresolved-information list, compliance self-check, edit log, and review banner]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only output for IEP team review; the skill instructs the agent to use non-identifying student codes and not to generate final signed documents, consent forms, Prior Written Notice, or eligibility determinations.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 InvAssistant — 钉钉推送脚本
 通过钉钉群机器人 Webhook 推送投资信号检查结果。

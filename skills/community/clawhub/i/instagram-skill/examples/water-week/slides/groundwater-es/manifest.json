@@ -1,0 +1,17 @@
+{
+  "slides": 1,
+  "size": "1080x1350",
+  "ratio": "4:5",
+  "files": [
+    {
+      "path": "slide-01.jpg",
+      "bytes": 95624,
+      "type": "stat",
+      "alt": "El 55% del agua bajo nuestros pies es salada, no dulce. USGS: 12,87 de 23,4 millones de km\u00b3 de agua subterr\u00e1nea son salinos.",
+      "text": "55% del agua bajo nuestros pies es salada, no dulce"
+    }
+  ],
+  "contactSheet": "contact-sheet.png",
+  "coverGrid": "cover-grid.png",
+  "warnings": []
+}

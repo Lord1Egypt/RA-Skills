@@ -1,48 +1,68 @@
-## Description: <br>
-Downloads text ebooks from Z-Library and sends them to a configured Kindle email address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads text ebooks from Z-Library mirrors and sends them to a configured Kindle email address.
 
-## Publisher: <br>
-[xiehaixin](https://clawhub.ai/user/xiehaixin) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiehaixin](https://clawhub.ai/user/xiehaixin)
 
-## Use Case: <br>
-External users or operators use this skill to search for a text ebook, resolve ambiguous author or publisher matches, download the selected file, and send it to their Kindle address when they have the legal right to do so. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to local copyright law and service availability. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Z-Library account credentials, SMTP sending credentials, and a Kindle recipient address. <br>
-Mitigation: Use dedicated or app-specific credentials, prefer environment variables, and keep any auth.json file restricted to the local user. <br>
-Risk: The skill logs into live website mirrors, downloads files, and sends email from the configured account. <br>
-Mitigation: Review the selected mirror domains, avoid untrusted proxies, and confirm the downloaded title before allowing email delivery. <br>
-Risk: Downloaded files and search screenshots are stored under /tmp/kindle_downloads. <br>
-Mitigation: Clear /tmp/kindle_downloads after use and avoid running the skill on shared systems without cleanup controls. <br>
-Risk: The skill can be used to download copyrighted ebooks. <br>
-Mitigation: Use it only for ebooks that the user is legally authorized to download under applicable local law. <br>
+## Use Case:
 
+OpenClaw users use this skill to search for text ebooks, resolve ambiguous search results, download the selected file, and send it to a Kindle address by email. It requires configured SMTP, Kindle, and Z-Library credentials.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiehaixin/kindle-download) <br>
-- [Z-Library](https://zlibrary-global.se/) <br>
-- [Amazon Kindle content and device settings](https://www.amazon.com/myk) <br>
-- [README](artifact/README.md) <br>
-- [Security notes](artifact/SECURITY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text with shell commands, status messages, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local file paths and screenshot references produced by the skill scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The workflow handles SMTP and Z-Library credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated, low-privilege accounts; prefer environment variables or a secrets manager; if auth.json is used, keep it outside the skill directory with strict local permissions.
+
+Risk: The configured Z-Library mirror list may send credentials or downloads through domains the user has not verified.
+
+Mitigation: Review and verify every mirror domain before use, and avoid entering credentials into unexpected or changed domains.
+
+Risk: Installation guidance includes curl-to-bash and sudo-style dependency installation commands.
+
+Mitigation: Install dependencies from independently verified upstream sources and review installer scripts before running privileged commands.
+
+Risk: The skill downloads files from external sites and emails them as Kindle attachments.
+
+Mitigation: Run the workflow in an isolated user account or container and use it only for content the user is legally permitted to download and send.
+
+Risk: The artifact includes agent-control instructions unrelated to the ebook workflow.
+
+Mitigation: Review the skill instructions before installation and ensure local agent policy takes precedence over skill-authored control language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiehaixin/skills/kindle-download)
+- [Publisher profile](https://clawhub.ai/user/xiehaixin)
+- [Z-Library](https://zlibrary-global.se/)
+- [Amazon Kindle personal documents settings](https://www.amazon.com/myk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration guidance]
+
+**Output Format:** [Plain text status messages with shell command execution and optional image references for search-result selection]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce local ebook file paths, progress messages, and email-send results during the workflow.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

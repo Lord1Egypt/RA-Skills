@@ -1,47 +1,66 @@
-## Description: <br>
-Sends Enterprise WeChat webhook messages in text, Markdown, Markdown V2, image, and news formats, including chunking for long text-like messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends Enterprise WeChat webhook messages in text, Markdown, Markdown V2, image, and news formats, with automatic chunking for long text-like messages.
 
-## Publisher: <br>
-[wxf8126275](https://clawhub.ai/user/wxf8126275) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wxf8126275](https://clawhub.ai/user/wxf8126275)
 
-## Use Case: <br>
-Developers and operations teams can use this skill to send status updates, deployment notices, reminders, screenshots, and article-style notifications to Enterprise WeChat group robots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook URLs can grant posting access to Enterprise WeChat groups and should be treated as secrets. <br>
-Mitigation: Store webhook URLs outside prompts and shared logs, rotate exposed URLs, and verify the destination before sending. <br>
-Risk: The skill can transmit arbitrary message text and local or remote image contents to a webhook destination. <br>
-Mitigation: Review outgoing content, avoid credentials or sensitive local files, and restrict image inputs to trusted files or approved URLs. <br>
-Risk: Text messages default to mentioning all recipients. <br>
-Mitigation: Make mass mentions opt-in or remove @all defaults before routine use. <br>
+## Use Case:
 
+Developers and operations teams use this skill to send operational notifications, status updates, deployment notices, meeting reminders, images, and linked news-style messages to Enterprise WeChat group robots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wxf8126275/qywx-send-skill) <br>
-- [Enterprise WeChat webhook API documentation](https://developer.work.weixin.qq.com/document/path/99110) <br>
-- [Webhook send message API](https://developer.work.weixin.qq.com/document/path/90236) <br>
-- [Message type documentation](https://developer.work.weixin.qq.com/document/path/90237) <br>
-- [Bundled API documentation](references/api_documentation.md) <br>
-- [Bundled usage examples](references/usage_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Enterprise WeChat webhook payloads and command or Python usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text, markdown, markdown_v2, image, and news messages; long text-like messages may be split into multiple webhook sends.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: Messages and image data can be sent to a user-specified Enterprise WeChat webhook destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved webhook URLs, preferably enforced through an allowlist or managed configuration.
+
+Risk: Image messages may read local file paths or fetch remote URLs before sending the resulting content.
+
+Mitigation: Do not pass untrusted paths or URLs; add file type and size checks plus SSRF protections before deployment.
+
+Risk: Sensitive operational data, secrets, or private images could be forwarded to chat recipients.
+
+Mitigation: Review message content before sending and prohibit secrets or private operational data in webhook payloads.
+
+Risk: Text messages include @all mention fields by default.
+
+Mitigation: Require explicit confirmation or policy approval before sending @all messages.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wxf8126275/skills/qywx-send-skill)
+- [Enterprise WeChat Developer Documentation](https://developer.work.weixin.qq.com/document/path/99110)
+- [Webhook Send Message API](https://developer.work.weixin.qq.com/document/path/90236)
+- [Enterprise WeChat Message Types](https://developer.work.weixin.qq.com/document/path/90237)
+- [API Documentation](artifact/references/api_documentation.md)
+- [Usage Examples](artifact/references/usage_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, Markdown, JSON webhook payloads, Python calls, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May split long text, markdown, and markdown_v2 messages into multiple webhook sends; image messages are converted to base64 with an MD5 digest before sending.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

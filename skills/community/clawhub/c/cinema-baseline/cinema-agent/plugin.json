@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "packageType": "cinema-baseline-skill",
+  "packageId": "bagbot.cinema-baseline",
+  "pluginId": "bagbot.cinema-baseline",
+  "version": "1.0.0",
+  "hostApiVersion": "1",
+  "mode": "cinema_baseline",
+  "businessMode": "",
+  "executionMode": "data-only",
+  "displayName": "基线影院（全国 2026-13-15）",
+  "description": "全国基线影院数据（国资编码锚定 + 哈哈预对齐），影院归一化身份基准。",
+  "gene": {
+    "file": "gene.json",
+    "sha256": "985fa8c5e752524207b5ee73ac1eaaa8f39e43f51089977c460ea28c1bb341ee"
+  },
+  "baseline": {
+    "file": "baseline-cinemas.json",
+    "sha256": "8026f59431b63fca8949f666d26a14cb88b7ab42843178bfee44ad8c81c6be27",
+    "count": 13276,
+    "dataVersion": "2026-13-15"
+  },
+  "permissions": {
+    "networkDomains": []
+  }
+}

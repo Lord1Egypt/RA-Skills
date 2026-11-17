@@ -1,43 +1,54 @@
-## Description: <br>
-Summarize URLs or files with the summarize CLI, including web pages, PDFs, images, audio files, and YouTube videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize URLs or files with the summarize CLI, including web pages, PDFs, images, audio, and YouTube videos.
 
-## Publisher: <br>
-[164149043](https://clawhub.ai/user/164149043) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[164149043](https://clawhub.ai/user/164149043)
 
-## Use Case: <br>
-Developers and agents use this skill to produce concise summaries from URLs, local documents, media files, and YouTube videos through the summarize CLI. It is useful when an agent needs repeatable command examples for summary length, output format, and saving summaries to files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: URLs and files passed to the summarize CLI may contain sensitive or private content. <br>
-Mitigation: Use the skill only with inputs that are appropriate for processing by the installed summarize CLI. <br>
-Risk: The skill depends on an external CLI installed from a Homebrew tap. <br>
-Mitigation: Verify that the Homebrew tap and summarize CLI are the intended tools before installation and use. <br>
-Risk: The --output option can save summaries to unintended locations. <br>
-Mitigation: Choose output paths deliberately and review generated files before sharing or committing them. <br>
+## Use Case:
 
+Developers and agents use this skill to invoke the summarize CLI for concise summaries of web URLs and local document or media files. It is useful when an agent needs command examples for selecting summary length, output format, or an output file path.
 
-## Reference(s): <br>
-- [Summarize CLI homepage](https://summarize.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/164149043/summarize-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, text, markdown, json] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI outputs can be text, Markdown, or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports summary length selection, output format selection, and writing summaries to a chosen file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Input files, URLs, or media may contain confidential or sensitive information processed by the external summarize CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with content appropriate for the installed CLI and verify the CLI's data-handling behavior before summarizing sensitive material.
+
+Risk: The --output option saves generated summaries to local disk.
+
+Mitigation: Choose output paths deliberately and avoid writing summaries containing sensitive information to shared or persistent locations.
+
+## Reference(s):
+
+- [Summarize homepage](https://summarize.sh)
+- [ClawHub skill page](https://clawhub.ai/164149043/skills/summarize-cli)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, configuration]
+
+**Output Format:** [Markdown with bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers summary length, text/markdown/json output formats, and optional file output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

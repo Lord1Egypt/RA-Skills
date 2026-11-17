@@ -1,0 +1,357 @@
+{
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "margins_cm": {
+      "top": 2.54,
+      "bottom": 2.54,
+      "left": 2.8,
+      "right": 2.6
+    }
+  },
+  "styles": {
+    "Normal": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "color_rgb": "#1A1A1A",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 0,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 2,
+      "alignment": "justify"
+    },
+    "Heading 1": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 16,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 17,
+      "space_after_pt": 16,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 2": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 14,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 3": {
+      "font_cn": "黑体",
+      "font_en": "Arial",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 13,
+      "space_after_pt": 13,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Note": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 10.5,
+      "bold": false,
+      "color_rgb": "#595959",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 0,
+      "first_line_indent_chars": 0,
+      "alignment": "justify"
+    },
+    "Heading 4": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#000000",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 8,
+      "space_after_pt": 6,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 5": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 6,
+      "space_after_pt": 4,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    },
+    "Heading 6": {
+      "font_cn": "宋体",
+      "font_en": "Times New Roman",
+      "size_pt": 12,
+      "bold": false,
+      "italic": true,
+      "color_rgb": "#333333",
+      "line_spacing_rule": "multiple",
+      "line_spacing": 1.5,
+      "space_before_pt": 4,
+      "space_after_pt": 2,
+      "first_line_indent_chars": 0,
+      "alignment": "left"
+    }
+  },
+  "table": {
+    "font_cn": "宋体",
+    "font_en": "Times New Roman",
+    "size_pt": 10.5,
+    "style": "three_line",
+    "header_bold": true,
+    "color_rgb": "#1A1A1A",
+    "header_color_rgb": "#000000",
+    "alignment": "center",
+    "zebra": false,
+    "fill_color": null
+  },
+  "figures": {
+    "caption_font_cn": "宋体",
+    "caption_size_pt": 9,
+    "caption_alignment": "center",
+    "width_cm": 15,
+    "max_width_cm": 17,
+    "min_width_cm": 11,
+    "alignment": "center",
+    "numbering": "per_chapter",
+    "image_spacing_before_pt": 6,
+    "image_spacing_after_pt": 12,
+    "image_border": true,
+    "image_border_color": "#C0C0C0",
+    "image_border_width_pt": 0.5,
+    "caption_spacing_before_pt": 4,
+    "caption_spacing_after_pt": 12,
+    "caption_color_rgb": "#595959"
+  },
+  "numbering_scheme": [
+    "一、",
+    "（一）",
+    "1.",
+    "（1）"
+  ],
+  "cleanup": {
+    "remove_fullwidth_spaces": true,
+    "normalize_empty_paragraphs": true
+  },
+  "design_language": {
+    "summary": "严肃、专业、简洁；仅以黑/白/灰为基调，不使用任何彩色（含深蓝、深红等均禁用），强调处一律用加粗或灰度层次区分，杜绝高饱和度与渐变。",
+    "palette": {
+      "ink": "#1A1A1A",
+      "heading": "#000000",
+      "note": "#595959"
+    },
+    "rule": "标题/正文/注释以字号与灰度层次区分；表格用三线表或全线表，表头加粗、无填色、无斑马纹、无彩色。"
+  },
+  "doc_type": "风险评估报告类（综合 / COSO 框架）",
+  "standard": "锚定 COSO ERM(2017) 五要素 + 财政部等五部委《企业内部控制基本规范》(2008)。无强制法定模板，按 COSO 风险识别→评估→应对→监控逻辑重建骨架，视觉统一为正式报告语言。",
+  "structure": [
+    "封面 / 评估范围与依据",
+    "评估说明（目标、范围、方法论）",
+    "一、风险治理与环境（控制环境 / 风险偏好）",
+    "二、风险识别（内外部风险事件清单）",
+    "三、风险评估（可能性 × 影响，风险矩阵）",
+    "四、关键风险分析与排序",
+    "五、风险应对（规避 / 降低 / 分担 / 接受 + 控制活动）",
+    "六、剩余风险与监控（持续监控机制）",
+    "七、评估结论与改进建议",
+    "附件（风险清单、风险矩阵表）"
+  ],
+  "common_diagrams": [
+    "风险评估流程（COSO 流程图）",
+    "风险矩阵热力图（以表格呈现）"
+  ],
+  "manual_checks": [
+    "配色自检：全篇仅黑/白/灰，强调处用加粗或灰度层次区分，无任何彩色，无高饱和色",
+    "表格确为三线表（仅顶线/表头下细线/底线），无竖线、无填色、无斑马纹",
+    "字体层级：标题黑体加粗、正文宋体、注释灰色小字，三者区分清晰",
+    "封面：机构标识、报告名称、委托方、出具日期、密级/保密声明齐全",
+    "目录层级不超过三级，页码正确（Word 中按 F9 刷新域）",
+    "页眉含机构名称或报告简称，页脚页码格式统一",
+    "图表编号连续，图题在下、表题在上",
+    "免责声明 / 使用限制条款完整",
+    "配色自检：全篇仅黑/白/灰，强调处用加粗或灰度层次区分，无任何彩色，无高饱和色",
+    "风险应对须对应每类关键风险给出具体控制活动与责任部门",
+    "剩余风险评估应说明已降低至可接受水平或仍需持续监控"
+  ],
+  "header_footer": {
+    "header_text": "风险评估报告",
+    "header_alignment": "right",
+    "header_font_cn": "宋体",
+    "header_font_en": "Times New Roman",
+    "header_size_pt": 9,
+    "header_color_rgb": "#595959",
+    "header_border": false,
+    "footer_mode": "page_of",
+    "footer_alignment": "center",
+    "footer_font_cn": "宋体",
+    "footer_font_en": "Times New Roman",
+    "footer_size_pt": 9,
+    "footer_color_rgb": "#595959",
+    "show_page_number": true,
+    "different_odd_even": false,
+    "header_client": "示例股份有限公司"
+  },
+  "cover": {
+    "title": "风险评估报告",
+    "subtitle": "（2025年度）",
+    "client": "示例股份有限公司",
+    "issuer": "【尽调机构名称】",
+    "date": "【报告日期】",
+    "title_font_cn": "黑体",
+    "title_font_en": "Arial",
+    "title_size_pt": 22,
+    "subtitle_size_pt": 14,
+    "client_size_pt": 16,
+    "info_size_pt": 12,
+    "color_rgb": "#000000",
+    "client_in_title": true
+  },
+  "template_text": {
+    "disclaimer": "本风险评估报告（以下简称“本报告”）系基于【公司名称】提供的经营管理资料、制度文件及访谈信息，依据《企业内部控制基本规范》及配套指引、COSO ERM 框架编制，仅供贵方内部风险管理决策参考。\n\n报告中的风险识别与评级基于评估时点的有限信息，具有时效性与局限性；我们不对未来风险事件的发生与否作出保证。\n\n本报告使用不当或超出约定范围使用所产生的后果，由使用方自行承担；因使用不当产生的责任与出具方无关。",
+    "preamble": "为全面、系统地识别、分析和评估【公司名称】（以下简称“公司”）在【评估期间】面临的风险，强化内部控制有效性，保障经营管理合法合规、资产安全与战略目标实现，特组织本次风险评估工作。本报告旨在呈现评估过程、主要发现、风险等级及相应改进建议，为管理层优化风险管理提供决策依据。",
+    "abstract_title": "摘要",
+    "abstract_guide": "摘要应一页纸说清：本次评估识别风险总数、重大/重要/一般风险数量、最需优先应对的 3 项风险，以及核心结论与行动建议方向。",
+    "abstract_placeholder": "【示例】本次评估共识别风险【X】项，其中重大风险【X】项、重要风险【X】项。最需优先应对：①核心人员流失；②数据安全风险；③现金流压力。建议于【时限】前启动相应缓释措施。",
+    "body_sections": [
+      {
+        "title": "一、评估背景与范围",
+        "guide": "说明评估目的、对象、时间边界与内容边界。",
+        "subs": [
+          {
+            "title": "（一）评估目的与背景",
+            "guide": "简述业务/项目背景与评估动因。"
+          },
+          {
+            "title": "（二）评估范围与期间",
+            "guide": "明确涵盖的业务领域、组织单元与时间区间。"
+          }
+        ]
+      },
+      {
+        "title": "二、评估依据与方法",
+        "guide": "说明所依据的法规/标准与采用的评估方法。",
+        "subs": [
+          {
+            "title": "（一）评估依据",
+            "guide": "列示《企业内部控制基本规范》及配套指引、COSO ERM 等。"
+          },
+          {
+            "title": "（二）评估方法",
+            "guide": "说明风险矩阵（可能性×影响）、访谈、穿行测试、问卷等方法。"
+          }
+        ]
+      },
+      {
+        "title": "三、风险识别结果",
+        "guide": "汇总识别出的风险清单，可按战略/运营/财务/合规分类。",
+        "subs": [
+          {
+            "title": "（一）风险分类汇总",
+            "guide": "按类别列示风险总数与分布。"
+          },
+          {
+            "title": "（二）风险清单",
+            "guide": "形成《风险识别清单》作为附件。"
+          }
+        ]
+      },
+      {
+        "title": "四、风险分析与评价",
+        "guide": "以风险矩阵对识别风险定级，形成优先级排序。",
+        "table": {
+          "caption": "表4-1 风险评价矩阵（示例）",
+          "headers": [
+            "风险编号",
+            "风险名称",
+            "可能性",
+            "影响程度",
+            "风险值",
+            "优先级"
+          ],
+          "rows": [
+            [
+              "R001",
+              "【风险一】",
+              "高",
+              "严重",
+              "高",
+              "高"
+            ],
+            [
+              "R002",
+              "【风险二】",
+              "中",
+              "中等",
+              "中",
+              "中"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "五、重大风险专项说明",
+        "guide": "对每项重大风险逐项说明：描述、可能性、影响、现有控制、剩余风险。",
+        "subs": [
+          {
+            "title": "（一）【重大风险一】",
+            "guide": "描述、成因、现有控制与剩余风险水平。"
+          },
+          {
+            "title": "（二）【重大风险二】",
+            "guide": "同上结构逐项说明。"
+          }
+        ]
+      },
+      {
+        "title": "六、风险应对建议",
+        "guide": "针对高/中风险提出规避/降低/转移/接受的策略、措施、责任人与时限。",
+        "subs": [
+          {
+            "title": "（一）高风险应对措施",
+            "guide": "具体行动、责任人、完成时限。"
+          },
+          {
+            "title": "（二）中风险应对措施",
+            "guide": "同上。"
+          },
+          {
+            "title": "（三）低风险监控计划",
+            "guide": "定期复核频率与责任人。"
+          }
+        ]
+      },
+      {
+        "title": "七、风险监控与更新机制",
+        "guide": "说明监控指标、频率与报告更新机制（重大变更即时修订）。"
+      },
+      {
+        "title": "八、结论与建议",
+        "guide": "总结核心结论，提出可落地的行动建议。"
+      }
+    ],
+    "closing": "（以下无正文）\n\n出具机构：【尽调机构名称】\n报告日期：【报告日期】"
+  }
+}

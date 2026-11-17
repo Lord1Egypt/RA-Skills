@@ -1,47 +1,62 @@
-## Description: <br>
-Personal budget management with privacy-first local storage for setting budgets, tracking spending, logging expenses, checking budget status, and managing money by category. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Budget helps users manually set budgets, log expenses, monitor category status, and receive local-only budget alerts without bank connections or external financial services.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-External users use this skill to manually manage personal budgets, log expenses, monitor category limits, generate spending reports, and recover from overages without connecting to bank accounts or external financial services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Budget, income, merchant, and expense details are stored in local files. <br>
-Mitigation: Install only if local storage of these financial details is acceptable, and manage retention and deletion of ~/.openclaw/workspace/memory/budget files deliberately. <br>
-Risk: Some helper scripts described in the documentation may be absent from the artifact. <br>
-Mitigation: Review available scripts before relying on workflows that delete, export, analyze, or change stored budget records. <br>
-Risk: Budget guidance can be mistaken for financial advice. <br>
-Mitigation: Use outputs for budget tracking and category reallocation only; consult a qualified financial advisor for financial planning, investment, or tax decisions. <br>
+## Use Case:
 
+External users and agents use Budget to maintain local personal budget records, manually log income and expenses, check spending against category limits, and plan budget reallocations without connecting to financial accounts.
 
-## Reference(s): <br>
-- [Budget Setup](references/budget-setup.md) <br>
-- [Expense Tracking](references/expense-tracking.md) <br>
-- [Budget Alerts & Thresholds](references/alerts.md) <br>
-- [Reports & Analysis](references/reports.md) <br>
-- [Overage Recovery](references/overage-recovery.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/AGIstack/budget-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-style text with inline shell commands and local JSON-backed budget records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores budget, income, merchant, and expense details in local files under ~/.openclaw/workspace/memory/budget.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: The skill can store sensitive budget, income, and expense records locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing with real financial data, keep appropriate backups, and manage retention or deletion of local records deliberately.
+
+Risk: Budget records can be changed through write operations such as setting budgets, logging expenses, and reallocating category limits.
+
+Mitigation: Preview and confirm changes where supported, especially reallocations, and avoid delete or bulk-delete workflows unless the user can inspect the affected records first.
+
+Risk: Malformed numeric inputs such as negative values, NaN, or infinity could create misleading budget records until stronger validation is added.
+
+Mitigation: Validate amount, date, and category values before running scripts or accepting generated commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agistack/skills/budget-pro)
+- [Budget Setup](references/budget-setup.md)
+- [Expense Tracking](references/expense-tracking.md)
+- [Budget Alerts and Thresholds](references/alerts.md)
+- [Reports and Analysis](references/reports.md)
+- [Overage Recovery](references/overage-recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and command output with local JSON-backed budget records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses manual user-entered budget and expense data; does not require bank credentials or external financial service access.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

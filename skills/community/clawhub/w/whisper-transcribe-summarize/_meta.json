@@ -1,6 +1,25 @@
 {
-  "ownerId": "kn78qnvaevdc7xpbeha04d94w586ghyz",
-  "slug": "whisper-transcribe-summarize",
-  "version": "1.0.3",
-  "publishedAt": 1778496716187
+  "name": "whisper-transcribe-summarize",
+  "version": "1.1.0",
+  "description": "Local Whisper speech-to-text with automatic transcript cleanup, article rewriting, and structured summary generation. Fully offline, no external APIs.",
+  "license": "MIT",
+  "author": "mi",
+  "keywords": [
+    "whisper",
+    "transcribe",
+    "speech-to-text",
+    "summarize",
+    "audio",
+    "video",
+    "offline",
+    "chinese",
+    "cleanup"
+  ],
+  "requires": {
+    "binaries": ["python3", "ffmpeg"],
+    "python_packages": ["openai-whisper"]
+  },
+  "supported_media": [
+    ".mp3", ".wav", ".m4a", ".mp4", ".mov", ".mkv", ".webm"
+  ]
 }

@@ -1,44 +1,53 @@
-## Description: <br>
-Long-term memory via ChromaDB with local Ollama embeddings. Auto-recall injects relevant context every turn. No cloud APIs required; fully self-hosted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long-term memory via ChromaDB with local Ollama embeddings. Auto-recall injects relevant context every turn. No cloud APIs required; fully self-hosted.
 
-## Publisher: <br>
-[msensintaffar](https://clawhub.ai/user/msensintaffar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[msensintaffar](https://clawhub.ai/user/msensintaffar)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve long-term semantic memory from a configured ChromaDB collection and inject relevant context into agent turns. It supports both automatic recall and manual ChromaDB search for historical context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic recall may add sensitive or unintended memories from the configured ChromaDB collection into agent context. <br>
-Mitigation: Avoid indexing secrets or sensitive documents, review collection contents, and set autoRecall to false when manual search is preferred. <br>
-Risk: Memory retrieval depends on ChromaDB and Ollama endpoints being reachable and trusted. <br>
-Mitigation: Run ChromaDB and Ollama locally or on a trusted private network and monitor surfaced availability warnings. <br>
-Risk: Using a floating ChromaDB container tag can introduce unreviewed server changes. <br>
-Mitigation: Pin the ChromaDB Docker image version before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to connect an OpenClaw agent to a ChromaDB collection and local Ollama embedding model for long-term memory recall. It supports automatic context injection before turns and manual semantic search with the `chromadb_search` tool.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/msensintaffar/chromadb-memory) <br>
-- [README.md](artifact/README.md) <br>
-- [OpenClaw plugin metadata](artifact/scripts/openclaw.plugin.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Plain text and Markdown context snippets returned to the agent, plus JSON configuration fields for setup.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manual search returns ranked text snippets; auto-recall can prepend matching ChromaDB memories or availability warnings to the agent context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Auto-recall can reuse broad or under-scoped stored memory in every turn, including prompt-injection content from the ChromaDB collection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable autoRecall until the collection is configured and trusted, isolate collections per user or project, avoid storing secrets, and tune minScore and result limits.
+
+Risk: Untrusted ChromaDB collections, OpenClaw plugin configuration, or Ollama and Chroma endpoints can influence agent context and outputs.
+
+Mitigation: Install only when those inputs are trusted, keep endpoints local or explicitly trusted, and pin the ChromaDB image version.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/msensintaffar/skills/chromadb-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May prepend retrieved ChromaDB memory snippets or ChromaDB availability warnings to an agent turn when auto-recall is enabled.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter and manifest list 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

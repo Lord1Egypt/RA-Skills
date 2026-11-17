@@ -1,0 +1,39 @@
+{
+  "name": "blogizi-agent",
+  "owner": {
+    "name": "ByteMind",
+    "url": "https://github.com/bytemindlab"
+  },
+  "metadata": {
+    "description": "Blogizi CLI plugin for drafting, updating, and publishing SEO blog posts from local markdown",
+    "version": "0.4.0"
+  },
+  "plugins": [
+    {
+      "name": "blogizi",
+      "description": "Draft, update, and publish SEO blog posts to Blogizi from local markdown. Agents write the post; the Blogizi CLI authenticates and drafts, updates, or publishes via the account API.",
+      "version": "0.4.0",
+      "source": "./",
+      "strict": false,
+      "skills": ["./"],
+      "homepage": "https://blogizi.com/docs/cli-publishing",
+      "repository": "https://github.com/bytemindlab/blogizi-agent",
+      "license": "AGPL-3.0",
+      "keywords": [
+        "blogizi",
+        "blog",
+        "markdown",
+        "seo",
+        "publishing",
+        "cli",
+        "draft",
+        "update",
+        "ai-agent"
+      ],
+      "author": {
+        "name": "ByteMind",
+        "url": "https://github.com/bytemindlab"
+      }
+    }
+  ]
+}

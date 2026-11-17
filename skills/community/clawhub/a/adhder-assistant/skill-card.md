@@ -1,43 +1,55 @@
-## Description: <br>
-ADHD-friendly life management assistant that helps users plan days, break down tasks, manage time, prioritize work, use body doubling, regulate motivation, and maintain routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ADHD-friendly life management assistant that helps with daily planning, task breakdown, time management, prioritization, body doubling, dopamine regulation, and routines.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External users and agent operators use this skill for ADHD-oriented productivity support, including daily planning, task breakdown, time blocking, prioritization, accountability check-ins, and routine review. It is productivity support only and does not diagnose ADHD, provide medical advice, prescribe medication, or replace professional care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks to remember ADHD, treatment, routine, and emotional-sensitivity details, which can be sensitive personal information. <br>
-Mitigation: Use clear memory settings, avoid saving diagnosis or medication details unless the user intentionally opts in, and periodically review or delete stored preferences. <br>
-Risk: Users may mistake productivity support for medical, psychiatric, or therapy guidance. <br>
-Mitigation: Keep responses framed as planning and executive-function support, avoid diagnosis or treatment advice, and direct crisis or care questions to appropriate professionals or regional resources. <br>
+## Use Case:
 
+External users use this skill for ADHD-friendly planning, prioritization, task breakdown, time-management support, body doubling, and routine maintenance. It is intended to provide practical productivity scaffolding, not diagnosis, medical advice, psychiatric care, or therapy.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobeyrebecca/adhder-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/tobeyrebecca) <br>
-- [CHADD](https://chadd.org) <br>
-- [ADDitude Magazine](https://additudemag.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text with plans, checklists, schedules, check-in prompts, and practical guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest reminder setup, task-file updates, and memory preferences when supported by the host agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The skill may cause sensitive mental-health, treatment, trigger, routine, and adherence details to be remembered persistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where memory can be disabled, inspected, and deleted, and avoid storing sensitive ADHD-related details unless the user has clearly agreed.
+
+Risk: Users may treat productivity support as clinical guidance.
+
+Mitigation: Keep responses framed as organization and planning support, preserve the skill's stated boundaries against diagnosis or medical advice, and route crisis or treatment questions to appropriate professionals or local resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/adhder-assistant)
+- [CHADD](https://chadd.org)
+- [ADDitude Magazine](https://www.additudemag.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown with structured plans, checklists, prompts, and reminder or scheduling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce task lists, daily plans, review prompts, dopamine menus, check-in scripts, reminder suggestions, and file or memory update guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

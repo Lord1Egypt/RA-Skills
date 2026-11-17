@@ -1,46 +1,57 @@
-## Description: <br>
-Enhances OpenClaw agents with real-time Ollama streaming, Markdown tool-call recovery, and support for additional reasoning models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enhances OpenClaw agents with real-time Ollama streaming, Markdown tool-call recovery, and support for additional reasoning model families.
 
-## Publisher: <br>
-[wd041216-bit](https://clawhub.ai/user/wd041216-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wd041216-bit](https://clawhub.ai/user/wd041216-bit)
 
-## Use Case: <br>
-Developers and agent engineers use this release to patch OpenClaw's Ollama provider for incremental streaming, fallback parsing of Markdown-embedded tool calls, and broader reasoning-model defaults. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release replaces core OpenClaw agent files rather than installing as an isolated skill. <br>
-Mitigation: Apply it only to a backed-up or separate OpenClaw checkout after reviewing the diff and confirming compatibility with the target OpenClaw version. <br>
-Risk: Markdown content from a model can be converted into executable tool calls. <br>
-Mitigation: Use trusted models and prompts, keep tool permissions least-privileged, and review the Markdown-to-tool-call behavior before enabling it in sensitive workflows. <br>
-Risk: Prompts and configured headers may be sent to the selected Ollama endpoint. <br>
-Mitigation: Verify the Ollama endpoint and header configuration before use, especially when connecting to remote or shared services. <br>
+## Use Case:
 
+Developers and engineers use Manusilized to patch OpenClaw's Ollama integration for agents that need incremental response streaming, model metadata defaults, and fallback handling for Markdown-embedded tool calls.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wd041216-bit/manusilized) <br>
-- [Artifact skill overview](SKILL.md) <br>
-- [Patch application notes](patches/README.md) <br>
-- [Artifact-declared repository](https://github.com/manusilized/manusilized) <br>
-- [Artifact-declared OpenClaw PRs link](https://github.com/openclaw/openclaw/pulls) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript patch files and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces manual patch instructions and replacement OpenClaw agent files rather than a standalone skill folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: This package patches core OpenClaw agent files rather than operating as an isolated skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a reviewed upstream PR when available, keep backups of replaced files, and test the patch in a disposable OpenClaw checkout before using it in production.
+
+Risk: Markdown-embedded JSON can be recovered as tool calls, which may turn model text into tool invocations.
+
+Mitigation: Use tool allowlisting, argument validation, and explicit approval for consequential tool calls before installing it in environments with sensitive credentials or powerful tools.
+
+Risk: The server security verdict for this release is suspicious.
+
+Mitigation: Review the TypeScript diff carefully and treat the scanner guidance as authoritative during deployment review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wd041216-bit/skills/manusilized)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with inline shell commands and TypeScript patch references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation guidance for a core OpenClaw patch; review and test before applying to a working agent environment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

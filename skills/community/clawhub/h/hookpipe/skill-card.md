@@ -1,42 +1,60 @@
-## Description: <br>
-hookpipe helps agents receive, verify, queue, and retry webhooks from services such as Stripe, GitHub, Slack, Shopify, and Vercel. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reliable webhook infrastructure for AI agents that helps receive webhooks from Stripe, GitHub, Slack, Shopify, and Vercel with signature verification, durable queuing, and automatic retries.
 
-## Publisher: <br>
-[linyiru](https://clawhub.ai/user/linyiru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linyiru](https://clawhub.ai/user/linyiru)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure hookpipe CLI workflows that deliver external webhook events to an OpenClaw gateway during local development and production operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook signing secrets and hookpipe tokens can be exposed through shared terminals, logs, screenshots, commits, or chat. <br>
-Mitigation: Treat these values as credentials; avoid sharing or committing them and rotate them if exposure is suspected. <br>
-Risk: Broad webhook subscriptions can route more event data through the queue than intended. <br>
-Mitigation: Use narrow event filters, keep only needed connections active, and remove unused connections. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure hookpipe CLI workflows that route external service webhooks into an agent gateway with durable buffering, retries, provider discovery, and event streaming.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linyiru/hookpipe) <br>
-- [hookpipe GitHub repository](https://github.com/hookpipe/hookpipe) <br>
-- [Provider Design Guide](https://github.com/hookpipe/hookpipe/blob/main/packages/providers/DESIGN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides hookpipe CLI command patterns for connecting providers, running a local tunnel, discovering providers, streaming events, and checking health.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned external hookpipe CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package provenance before installing and prefer a pinned, verified release when available.
+
+Risk: Example commands place webhook secrets and API tokens directly in shell command arguments.
+
+Mitigation: Use a secret manager, protected file, or interactive prompt where supported instead of exposing real secrets in shell history or process listings.
+
+Risk: Broad provider or event filters can route unintended webhook events to an agent.
+
+Mitigation: Keep provider and event filters narrow so only intended webhook events reach the agent.
+
+## Reference(s):
+
+- [hookpipe GitHub](https://github.com/hookpipe/hookpipe)
+- [Provider Design Guide](https://github.com/hookpipe/hookpipe/blob/main/packages/providers/DESIGN.md)
+- [Publisher profile](https://clawhub.ai/user/linyiru)
+- [ClawHub skill page](https://clawhub.ai/linyiru/skills/hookpipe)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON-output CLI options for provider discovery, event streaming, health checks, and dry-run validation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

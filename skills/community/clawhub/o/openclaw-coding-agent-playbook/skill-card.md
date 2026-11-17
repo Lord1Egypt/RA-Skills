@@ -1,42 +1,54 @@
-## Description: <br>
-Delegate coding tasks to Codex, Claude Code, Pi, or OpenCode from bash with safe launch modes, background monitoring, and repo-isolated review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegate coding tasks to Codex, Claude Code, Pi, or OpenCode from bash with safe launch modes, background monitoring, and repo-isolated review workflows.
 
-## Publisher: <br>
-[danielsinewe](https://clawhub.ai/user/danielsinewe) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielsinewe](https://clawhub.ai/user/danielsinewe)
 
-## Use Case: <br>
-Developers and engineering teams use this playbook to delegate implementation, review, issue triage, and long-running verification loops to Codex, Claude Code, Pi, or OpenCode while keeping sessions scoped and review workflows isolated. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Delegating work to other coding agents can produce changes that are incorrect, over-scoped, or hard to review. <br>
-Mitigation: Keep each delegated task narrowly scoped and review resulting changes before merging or deploying them. <br>
-Risk: Full-auto or bypass-permission modes can execute high-trust coding workflows with less interactive oversight. <br>
-Mitigation: Use these modes only in trusted repositories, avoid exposing production secrets, and inspect changes and command results afterward. <br>
-Risk: Running review workflows in a live working tree can mix review artifacts with active development state. <br>
-Mitigation: Use temporary clones or worktrees for reviews, as described by the skill. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to delegate implementation, review, refactoring, triage, and verification work to coding agents while keeping sessions scoped and observable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielsinewe/openclaw-coding-agent-playbook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and text code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes execution mode guidance, background session commands, review isolation workflow, prompt template, and failure recovery checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill recommends bypassed or highly automated permission modes for coding agents that can edit files and run commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Supervise delegated sessions, use trusted repositories, prefer disposable worktrees or containers, minimize exposed environment variables, avoid secrets, and choose safer permission modes unless full automation is intentional.
+
+Risk: Delegated coding sessions can affect the active repository when run in the wrong working directory.
+
+Mitigation: Keep each session scoped to one repository and use a temporary clone or worktree for pull request review and high-risk changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielsinewe/skills/openclaw-coding-agent-playbook)
+- [danielsinewe publisher profile](https://clawhub.ai/user/danielsinewe)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash command examples and workflow checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed before execution because delegated agents may edit files or run commands.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

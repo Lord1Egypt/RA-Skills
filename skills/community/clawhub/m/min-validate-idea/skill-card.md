@@ -1,40 +1,53 @@
-## Description: <br>
-Validate Idea helps users test a business idea before building by focusing on manual, sales-based validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate Idea helps users assess business ideas before building by applying a minimalist entrepreneurship framework focused on problem definition, manual service validation, and willingness to pay.
 
-## Publisher: <br>
-[ethan-china](https://clawhub.ai/user/ethan-china) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ethan-china](https://clawhub.ai/user/ethan-china)
 
-## Use Case: <br>
-Entrepreneurs, product builders, and agents advising them use this skill to assess whether a business idea has evidence of demand before committing to an MVP. It guides customer, pain-point, manual-service, and willingness-to-pay checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides opinionated business-validation guidance that may not fit every market or regulatory context. <br>
-Mitigation: Treat outputs as advisory and validate decisions with customer conversations, paid commitments, independent market research, and professional judgment. <br>
-Risk: The skill may activate on broad questions about whether an idea is good. <br>
-Mitigation: Review the recommendation for relevance before relying on it, especially when the user has not provided specific customer, problem, or pricing evidence. <br>
+## Use Case:
 
+Entrepreneurs, founders, and product teams use this skill to test whether a business idea has a clear customer, urgent problem, manual validation path, and payment signal before investing in product buildout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ethan-china/min-validate-idea) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown advisory response with a validation decision and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; advisory content only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may apply its business-idea validation framework broadly to idea-evaluation conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when the user is specifically evaluating a business idea and let the host agent route unrelated strategy, legal, financial, or domain-specific requests elsewhere.
+
+Risk: The artifact is written in Chinese and may produce Chinese-language coaching by default.
+
+Mitigation: Have the host agent adapt responses to the user's preferred language when needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ethan-china/skills/min-validate-idea)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with structured recommendation bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May provide Chinese-language coaching unless the host agent adapts language to the user's preference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

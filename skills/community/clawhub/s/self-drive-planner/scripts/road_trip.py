@@ -15,7 +15,7 @@ from datetime import datetime
 GAODE_PROXY = "https://1439498936-bl10af74fl.ap-guangzhou.tencentscf.com"
 PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
 
-# ===== 通用请求 =====
+
 def _post_proxy(api_type, params):
     """调用高德SCF代理"""
     body = json.dumps({

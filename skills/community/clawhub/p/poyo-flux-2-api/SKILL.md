@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-flux-2
 description: Use PoYo AI Flux 2 through the `https://api.poyo.ai/api/generate/submit` endpoint. Use when a user wants to generate or edit media with this model family, prepare PoYo-compatible payloads, submit jobs, or poll task status for `flux-2-pro`, `flux-2-pro-edit`, `flux-2-flex`, `flux-2-flex-edit`.
-metadata: {"openclaw": {"homepage": "https://docs.poyo.ai/api-manual/image-series/flux-2", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
+metadata: {"openclaw": {"homepage":"https://poyo.ai/models/flux-2", "requires": {"bins": ["curl"], "env": ["POYO_API_KEY"]}, "primaryEnv": "POYO_API_KEY"}}
 ---
 
 # PoYo Flux 2
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/flux-2>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/flux-2>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill to submit and track PoYo jobs for the Flux 2 family.
 
@@ -59,4 +65,3 @@ When helping with this model family, include:
 Notes:
 
 Needs POYO_API_KEY from https://poyo.ai
-PoYo.ai - Premium AI API Platform | Image, Video, Music & Chat APIs - 80% Cheaper

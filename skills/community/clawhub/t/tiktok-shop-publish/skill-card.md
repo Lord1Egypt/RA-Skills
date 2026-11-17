@@ -1,47 +1,63 @@
-## Description: <br>
-Automates TikTok Shop operations, including product management, order processing, sales analytics, video publishing, and marketing workflow support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates TikTok Shop operations including product management, order processing, sales analytics, video publishing, and marketing workflow support.
 
-## Publisher: <br>
-[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lvjunjie-byte](https://clawhub.ai/user/lvjunjie-byte)
 
-## Use Case: <br>
-TikTok Shop sellers, operators, and ecommerce teams use this skill to manage listings, process orders, review sales data, publish videos, and coordinate shop workflows from command-line driven automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-US, UK, Southeast Asia, and Indonesia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles TikTok Shop credentials, session cookies, and shop data. <br>
-Mitigation: Use mock mode first, avoid personal session cookies, provide least-privilege TikTok credentials, and inspect local configuration file permissions before using real accounts. <br>
-Risk: Order fulfillment, refunds, inventory changes, pricing changes, and video publishing can affect live commerce operations. <br>
-Mitigation: Enable these actions only after confirming approval controls, command scope, and expected shop impact. <br>
-Risk: Feishu synchronization can move customer, order, product, and analytics data outside the shop environment. <br>
-Mitigation: Use least-privilege Feishu credentials and confirm exactly what data leaves the local environment before enabling sync. <br>
+## Use Case:
 
+Developers and ecommerce operators can use this skill to prepare CLI-driven TikTok Shop automation for catalog updates, order synchronization, fulfillment workflows, reporting, competitor monitoring, and Feishu notifications. It is suited to sellers who need repeatable operational commands and are prepared to review credential, customer-data, and business-action controls before live use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lvjunjie-byte/tiktok-shop-publish) <br>
-- [TikTok Shop Seller Center](https://seller.tiktok.com/) <br>
-- [TikTok Shop Partner Documentation](https://partner.tiktokshop.com/) <br>
-- [TikTok Marketing API](https://business-api.tiktok.com/) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
-- [ClawHub TikTok Shop Documentation](https://docs.clawhub.com/tiktok-shop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, Markdown, Guidance] <br>
-**Output Format:** [Command-line output, configuration snippets, and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May act on shop, order, product, customer, video, analytics, and Feishu data depending on configured credentials and enabled commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, clawhub.json, README badge, and artifact changelog) <br>
+Risk: The skill can handle TikTok Shop credentials, session cookies, and Feishu tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or least-privilege credentials, avoid passing cookies or tokens on the command line, and inspect file permissions for local configuration under ~/.clawhub/tiktok-shop before use.
+
+Risk: Live order fulfillment, refunds, pricing, inventory, customer exports, and Feishu synchronization can affect customers, business records, or external systems.
+
+Mitigation: Keep mock mode enabled during evaluation and require an operator approval process before enabling live business-changing actions or customer-data sync.
+
+Risk: Order synchronization may move customer names, emails, order IDs, amounts, and logistics fields into Feishu.
+
+Mitigation: Confirm data-handling permissions, minimize synced fields, and apply access controls and retention policies in the target Feishu workspace.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/lvjunjie-byte/skills/tiktok-shop-publish)
+- [Publisher profile](https://clawhub.ai/user/lvjunjie-byte)
+- [TikTok Shop Seller Center](https://seller.tiktok.com/)
+- [TikTok Shop Partner documentation](https://partner.tiktokshop.com/)
+- [TikTok Marketing API](https://business-api.tiktok.com/)
+- [Feishu Open Platform](https://open.feishu.cn/)
+- [ClawHub TikTok Shop documentation](https://docs.clawhub.com/tiktok-shop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with CLI commands, configuration examples, JSON responses, and generated report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local configuration and report files and may call TikTok Shop or Feishu APIs when live integrations are enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

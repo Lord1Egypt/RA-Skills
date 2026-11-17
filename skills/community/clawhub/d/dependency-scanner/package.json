@@ -1,0 +1,11 @@
+{
+  "name": "dependency-scanner",
+  "version": "1.0.0",
+  "description": "Scan project dependencies for security vulnerabilities",
+  "main": "index.js",
+  "scripts": {
+    "scan": "node index.js"
+  },
+  "keywords": ["security", "dependencies", "vulnerabilities", "audit"],
+  "license": "MIT"
+}

@@ -1,48 +1,64 @@
-## Description: <br>
-Detects AI-writing patterns in Chinese MBA thesis text and provides revision guidance for more natural, source-preserving academic prose. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects AI-writing patterns in Chinese MBA thesis text and provides reports, rewrite plans, and guidance for making revisions more natural and academically grounded.
 
-## Publisher: <br>
-[stephenlzc](https://clawhub.ai/user/stephenlzc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stephenlzc](https://clawhub.ai/user/stephenlzc)
 
-## Use Case: <br>
-External users working on Chinese MBA thesis drafts can ask an agent to identify AI-like writing patterns, generate concrete revision guidance, and rewrite passages while preserving the original meaning. The skill is also useful for reviewing thesis structure, data-source expectations, citation quality, and chapter-specific MBA writing conventions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to disguise AI-generated authorship or bypass academic integrity checks. <br>
-Mitigation: Use it only for clarity, formatting, source-preserving paraphrase, and citation-quality review; require users to follow school, employer, publisher, and disclosure rules. <br>
-Risk: Rewriting academic text can introduce unsupported claims, unverifiable citations, or data without a clear source. <br>
-Mitigation: Require human review of all revised claims, citations, data sources, and examples before submission or publication. <br>
-Risk: Automated pattern detectors and style feedback are heuristic and may overstate or miss issues. <br>
-Mitigation: Treat reports and scores as advisory signals and combine them with manual thesis review against the applicable institution's standards. <br>
+## Use Case:
 
+Students, editors, and academic writing assistants use this skill to evaluate Chinese MBA thesis drafts for AI-like wording, weak evidence, formatting issues, and repetitive structure. It supports transparent revision planning, citation-quality checks, and academically appropriate polishing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stephenlzc/humanize-mba-text-skill) <br>
-- [Skill instructions](SKILL.md) <br>
-- [AI writing patterns reference](references/ai-writing-patterns.md) <br>
-- [AI reduction strategy](references/strategy_ai_reduction.md) <br>
-- [Plagiarism reduction strategy](references/strategy_plagiarism.md) <br>
-- [Academic polishing strategy](references/strategy_polishing.md) <br>
-- [MBA format standards](references/format-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown, with optional command examples for local detection scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include rewritten Chinese thesis passages, detection reports, prioritized feedback, before-and-after examples, and citation or formatting checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill is designed to reduce AI and plagiarism detection signals in MBA thesis text, which can support misrepresentation of academic work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for transparent editing, formatting, and citation-quality checks on work the user is allowed to revise; do not use it to present AI-generated or copied work as original.
+
+Risk: Optional auto-apply behavior may overwrite non-.txt files because of a reported edge case.
+
+Mitigation: Avoid --apply on non-.txt files until the overwrite issue is fixed, and keep backups before applying automated edits.
+
+Risk: Optional unpinned pip installation can introduce dependency supply-chain or environment drift risk.
+
+Mitigation: Install optional dependencies only in an isolated environment and pin or review packages before use.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/stephenlzc/skills/humanize-mba-text-skill)
+- [AI writing patterns](references/ai-writing-patterns.md)
+- [MBA rewrite checklist](references/mba_rewrite_checklist.toml)
+- [Chapter rewrite rules](references/chapter_rewrite_rules.toml)
+- [Format standards](references/format-standards.md)
+- [Strategy optimization](references/strategy_optimization.toml)
+- [thesis-optimizer technical reference](https://github.com/Haimbeau1o/thesis-optimizer)
+- [humanizer-academic-zh supplementary reference](https://github.com/cangtianhuang/humanizer-academic-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown and JSON reports, rewrite plans, comparison summaries, and targeted editing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include file-level reports, sentence-level risk annotations, and optional in-place spacing fixes.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

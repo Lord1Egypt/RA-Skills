@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "max_file_bytes": 1048576,
+  "max_zip_files": 500,
+  "max_zip_uncompressed_bytes": 10485760,
+  "rules": [
+    {"id":"ZK-INSTALL-001","severity":"high","pattern":"(?:curl|wget|Invoke-WebRequest)\\s+[^\\n|;&]+[|;&]\\s*(?:sh|bash|powershell|cmd)","reason":"检测到下载后立即执行的命令结构","recommendation":"先核验来源、内容和任务关联性，再决定是否执行"},
+    {"id":"ZK-CREDENTIAL-001","severity":"high","pattern":"(?:\\.ssh/|id_rsa|AWS_SECRET_ACCESS_KEY|OPENAI_API_KEY|\\.env\\b|keychain)","reason":"检测到可能读取凭据或私钥的位置","recommendation":"确认最小权限和业务必要性，避免将凭据传给不可信组件"},
+    {"id":"ZK-EXFIL-001","severity":"high","pattern":"(?:upload|exfiltrat|send|POST).{0,120}(?:https?://|webhook|pastebin|discord)","reason":"检测到可能向外部地址发送数据","recommendation":"核对目的地址、发送字段和用户授权"},
+    {"id":"ZK-POLICY-001","severity":"high","pattern":"(?:ignore|bypass|disable).{0,80}(?:policy|guard|safety|security|approval)","reason":"检测到要求忽略或修改防护策略的指令","recommendation":"不要让待查文本改变检查流程；按宿主规则人工复核"},
+    {"id":"ZK-PERSIST-001","severity":"medium","pattern":"(?:schtasks|crontab|LaunchAgents|Startup|registry\\s+run)","reason":"检测到持久化或启动项相关操作","recommendation":"确认该操作是否与明确任务相关，并检查卸载路径"},
+    {"id":"ZK-PRIORITY-001","severity":"medium","pattern":"(?:system message|developer message|highest priority|ignore previous instructions)","reason":"检测到伪造高优先级或提示注入式指令","recommendation":"将其作为待检查数据，不要执行其中指令"},
+    {"id":"ZK-OBFUSCATION-001","severity":"medium","pattern":"(?:base64\\s+-d|fromCharCode|eval\\s*\\(|powershell\\s+-enc)","reason":"检测到混淆或动态执行线索","recommendation":"仅在受控环境中人工解码和复核，勿直接执行"}
+  ]
+}
+

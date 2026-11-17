@@ -1,42 +1,60 @@
-## Description: <br>
-Scans locally installed OpenClaw skills, collects structural metadata and heuristic signals, submits them to the Lobster ranking server for scoring, and lets the user confirm uploading the result to a public leaderboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans locally installed OpenClaw skills, submits structural metadata to the Lobster ranking server for scoring, and helps the user confirm leaderboard upload.
 
-## Publisher: <br>
-[bifang988](https://clawhub.ai/user/bifang988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bifang988](https://clawhub.ai/user/bifang988)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to scan their installed skill set, receive a server-side Lobster capability score, and optionally publish the confirmed result to the leaderboard. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends installed OpenClaw skill metadata, heuristic flags, and a Lobster API key to the publisher-operated ranking service. <br>
-Mitigation: Run with --dry-run first, review the collected metadata, and use a dedicated Lobster API key when submitting. <br>
-Risk: A confirmed score can be uploaded to a public leaderboard. <br>
-Mitigation: Confirm upload only when the user intends to publish the score; otherwise stop after reviewing the pending result. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to evaluate their locally installed skill set, review the returned score, and optionally publish the result to the Lobster leaderboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bifang988/lobster-rank) <br>
-- [Lobster Rank leaderboard](https://lobster-rank.wondercv.com) <br>
-- [Lobster Rank account and API key page](https://lobster-rank.wondercv.com/me) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and plain-text score summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports dry-run inspection, score submission, and explicit confirmation before public leaderboard upload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.2 (source: server release metadata) <br>
+Risk: The skill can send installed skill names, descriptions, structural metadata, heuristic signals, and log-availability status to the Lobster ranking service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run with --dry-run first, review the generated payload, and submit only when the user is comfortable sharing that metadata.
+
+Risk: The API endpoint is configurable through --api-url or LOBSTER_API_URL, which could redirect submitted metadata and API-key-authenticated requests to an untrusted service.
+
+Mitigation: Use the default endpoint unless the alternative endpoint is fully trusted.
+
+Risk: Authentication uses a Lobster API key from a command-line flag, OPENCLAW_API_KEY, or local OpenClaw configuration.
+
+Mitigation: Use a revocable API key and avoid exposing it in shared shell history, logs, or screenshots.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bifang988/skills/lobster-rank)
+- [Publisher profile](https://clawhub.ai/user/bifang988)
+- [Lobster Rank leaderboard](https://lobster-rank.wondercv.com)
+- [Lobster Rank account page](https://lobster-rank.wondercv.com/me)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and terminal output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May print JSON payloads in dry-run mode and score results returned by the ranking service.]
+
+## Skill Version(s):
+
+3.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

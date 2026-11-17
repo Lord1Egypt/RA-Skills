@@ -1,0 +1,93 @@
+{
+  "name": "lygo-geodesic-sealer",
+  "displayName": "LYGO Geodesic Sealer (P6 Quantum-Attest)",
+  "version": "1.0.0",
+  "description": "Signs |ψ⟩=(Truth+iChaos)/√2, locks geodesics to dual ledgers + Merkle roots, phase-aligns lattice nodes with no collapse. Pure local; optional HTTPS GET for public dual ledgers. Fills open P6 quantum-attest gap (software). Kernel eggs primed. Δ9 ready. SkillSpector-safe. No auto-publish.",
+  "slug": "lygo-geodesic-sealer",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-geodesic-sealer",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-geodesic-sealer",
+  "signature": "Delta9Phi963-GEODESIC-SEALER-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "lattice",
+    "p6",
+    "quantum-attest",
+    "geodesic",
+    "merkle",
+    "dual-ledger",
+    "attestation",
+    "security",
+    "openclaw",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "sign": "scripts/seal_cli.py sign",
+    "lock": "scripts/seal_cli.py lock",
+    "phase_align": "scripts/seal_cli.py phase-align",
+    "attest": "scripts/seal_cli.py attest",
+    "verify": "scripts/seal_cli.py verify",
+    "status": "scripts/seal_cli.py status",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "⚛️",
+    "homepage": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/docs/skills/lygo-geodesic-sealer",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": {
+      "https_get": "opt-in --network",
+      "http_post": false,
+      "domains_hint": [
+        "deepseekoracle.github.io",
+        "raw.githubusercontent.com"
+      ]
+    },
+    "filesystem": {
+      "read_stack": "optional LYGO_STACK_ROOT dual ledgers",
+      "write_seals": "only --write or --write-default with --i-consent",
+      "shell": false,
+      "os_system": false,
+      "subprocess": false
+    },
+    "publish": {
+      "git_push": false,
+      "huggingface": false,
+      "clawhub": false,
+      "social": false,
+      "live_star_chart": false
+    }
+  },
+  "lattice": {
+    "layer": "P6",
+    "gap_filled": "quantum-attest geodesic dual-ledger merkle lock",
+    "pairs_with": [
+      "lygo-public-lattice-gate",
+      "lygo-external-lattice-anchor",
+      "lygo-kernel-egg-planter",
+      "lygo-sovereign-kernel-seeder",
+      "lygo-living-mesh",
+      "lygo-protocol-stack-operator",
+      "lygo-lattice-pulse"
+    ]
+  },
+  "security": {
+    "consent_required": true,
+    "protect_user": true,
+    "no_auto_publish": true,
+    "local_first": true,
+    "no_collapse_default": true,
+    "verify_default_zero_writes": true,
+    "no_os_system": true,
+    "no_subprocess": true,
+    "https_opt_in_only": true,
+    "version": "1.0.0"
+  }
+}

@@ -1,45 +1,61 @@
-## Description: <br>
-Analyzes a Douyin video from a shared URL by extracting page metadata, capturing audio when possible, transcribing speech, summarizing content, extracting useful information with evidence, applying critical analysis, and saving transcript and analysis notes into Obsidian. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze a Douyin video from a shared URL by extracting page metadata, capturing audio when possible, transcribing speech into readable text, summarizing content, extracting useful information plus evidence, applying critical analysis, and saving both transcript and analysis into Obsidian.
 
-## Publisher: <br>
-[zzmbobby](https://clawhub.ai/user/zzmbobby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zzmbobby](https://clawhub.ai/user/zzmbobby)
 
-## Use Case: <br>
-Researchers, creators, and content operators use this skill to turn Douyin links into structured video transcripts, evidence-aware summaries, and critical analysis notes. It is best suited for analyzing short-form video claims, hooks, persuasion tactics, AI-assisted writing likelihood, and reusable research takeaways. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use an active browser session cookie when downloading Douyin media. <br>
-Mitigation: Run it only with a browser profile you trust for this task, restrict downloads to known Douyin or ByteDance media hosts, and require manual confirmation before cookie-authenticated downloads. <br>
-Risk: The helper scripts write transcript and analysis files into a configured Obsidian vault. <br>
-Mitigation: Verify the configured vault and inbox paths before use, and add a confirmation step before persistent note writes. <br>
-Risk: Temporary audio files are saved under /tmp/douyin_transcribe. <br>
-Mitigation: Review and delete temporary media after analysis when it is no longer needed. <br>
-Risk: Machine transcripts may contain errors in names, numbers, and segmentation. <br>
-Mitigation: Label transcript quality clearly and review important claims before relying on the analysis. <br>
+## Use Case:
 
+Researchers, creators, operators, and critical readers use this skill to turn a Douyin URL into a transcript, structured notes, evidence-backed summary, and critique of the video's claims, hook, persuasion tactics, and reasoning quality.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zzmbobby/douyin-video-analysis) <br>
-- [Douyin website](https://www.douyin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown notes, chat summaries, JSON helper output, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates transcript and analysis notes in an Obsidian vault; helper scripts may save temporary audio under /tmp/douyin_transcribe.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: release evidence, CHANGELOG) <br>
+Risk: The workflow may reuse live browser cookies while attempting to download Douyin media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it from an isolated Chrome profile with no important logged-in sessions, validate Douyin/CDN destinations before download, and avoid cookie replay where possible.
+
+Risk: The workflow writes persistent transcript and analysis notes into a configured Obsidian vault.
+
+Mitigation: Ask for confirmation before writing notes, scope allowed output paths, and use private per-run temporary files for media processing.
+
+Risk: Untrusted Douyin links can trigger browser automation and local file creation.
+
+Mitigation: Use only Douyin links the user trusts and review the skill before installing or running it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zzmbobby/skills/douyin-video-analysis)
+- [Douyin](https://www.douyin.com)
+- [README](artifact/README.md)
+- [Analysis Template](artifact/analysis_template.md)
+- [Douyin Analysis Workflow](artifact/douyin_analysis_workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, guidance]
+
+**Output Format:** [Markdown notes, JSON helper results, shell commands, and chat summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates transcript and analysis notes in Obsidian when the local environment and media access path are available.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

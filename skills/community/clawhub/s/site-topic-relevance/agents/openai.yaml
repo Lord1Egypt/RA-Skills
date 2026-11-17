@@ -1,0 +1,4 @@
+interface:
+  display_name: "Site Topic Relevance"
+  short_description: "Verified site topics and animated relevance maps"
+  default_prompt: "Use $site-topic-relevance to analyze the public site or sitemap I provide and produce an interactive topic radius report."

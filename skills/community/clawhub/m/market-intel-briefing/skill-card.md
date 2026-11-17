@@ -1,50 +1,64 @@
-## Description: <br>
-Build lean, source-linked, decision-ready market intelligence briefs for a niche, competitor set, company set, jurisdiction comparison, or market theme. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build lean, source-linked, decision-ready market intelligence briefs for a niche, competitor set, company set, jurisdiction comparison, or market theme.
 
-## Publisher: <br>
-[gitcanadabrett](https://clawhub.ai/user/gitcanadabrett) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gitcanadabrett](https://clawhub.ai/user/gitcanadabrett)
 
-## Use Case: <br>
-Agency and service operators in the AI/agent ecosystem and B2B SaaS use this skill to turn public research, market updates, links, and notes into concise commercial briefs with source-linked claims, practical next actions, and a client-facing talk track. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market briefs can mislead if thin, stale, or promotional sources are treated as confirmed facts. <br>
-Mitigation: Use the skill's claim labels, source hierarchy, evidence tables, and human review before relying on a brief for client-facing decisions. <br>
-Risk: Brief inputs may include sensitive or proprietary business information. <br>
-Mitigation: Avoid providing sensitive material unless the agent environment is approved for that data and review the final brief before external sharing. <br>
-Risk: Readers may mistake a point-in-time brief for continuous monitoring. <br>
-Mitigation: Preserve the time window, source list, confidence labels, and watch-next triggers in the output. <br>
+## Use Case:
 
+External operators, agencies, and service teams use this skill to turn public market research, notes, and links into concise commercial briefs with separated facts, unverified claims, implications, next actions, and a client-facing talk track.
 
-## Reference(s): <br>
-- [Skill Instructions](SKILL.md) <br>
-- [README](README.md) <br>
-- [Brief Template Reference](references/brief-template.md) <br>
-- [Source and Claim Rubric](references/source-and-claim-rubric.md) <br>
-- [Source Triage Reference](references/source-triage.md) <br>
-- [Output Patterns](references/output-patterns.md) <br>
-- [Commercial Translation](references/commercial-translation.md) <br>
-- [Comparison Frames](references/comparison-frames.md) <br>
-- [Opportunity Ranking](references/opportunity-ranking.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown brief with source lists, confidence labels, recommended actions, and client-facing talk track] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates confirmed facts, weakly supported claims, and inferences; expects human review before external client use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.0 (source: server release evidence) <br>
+Risk: Users may treat the output as verified monitoring or private intelligence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as public-source briefing synthesis, preserve source traceability, and state that it does not provide continuous monitoring.
+
+Risk: Thin or missing source inputs can make company-specific claims look more certain than the evidence supports.
+
+Mitigation: Apply the no-source gate, label evidence basis and confidence, and require verification before client use when sources are thin or not supplied.
+
+Risk: Weak, promotional, or repeated secondary sources can distort commercial implications and recommendations.
+
+Mitigation: Use the source triage and claim rubric to prefer primary sources, separate confirmed, reported, unverified, and inferred claims, and keep recommendations proportional to evidence strength.
+
+## Reference(s):
+
+- [README](README.md)
+- [Brief Template Reference](references/brief-template.md)
+- [Source and Claim Rubric](references/source-and-claim-rubric.md)
+- [Source Triage Reference](references/source-triage.md)
+- [Output Patterns](references/output-patterns.md)
+- [Commercial Translation](references/commercial-translation.md)
+- [Comparison Frames](references/comparison-frames.md)
+- [Opportunity Ranking](references/opportunity-ranking.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown brief with source links, claim labels, commercial implications, recommended actions, and a client-facing talk track.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Source traceability and confidence labeling; no continuous monitoring implied.]
+
+## Skill Version(s):
+
+0.8.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

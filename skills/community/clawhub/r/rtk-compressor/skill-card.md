@@ -1,39 +1,55 @@
-## Description: <br>
-Rtk Compressor intelligently compresses CLI output by removing comments, blank lines, boilerplate, and redundancy while preserving key information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligently compresses CLI output by removing comments, blank lines, and redundant content to reduce token use while preserving key information.
 
-## Publisher: <br>
-[Efficiency97](https://clawhub.ai/user/Efficiency97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[efficiency97](https://clawhub.ai/user/efficiency97)
 
-## Use Case: <br>
-Developers and agent operators use this skill to reduce the token footprint of command output, logs, JSON, directory listings, and file contents before passing them to an agent or model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command output or logs provided for compression may contain secrets or sensitive operational details. <br>
-Mitigation: Review inputs before use and avoid granting credentials or allowing account or file changes unless the agent action has been explicitly reviewed. <br>
+## Use Case:
 
+Developers and agent builders use this skill to compress large command outputs, file contents, test logs, JSON, and general text before passing them into an agent context.
 
-## Reference(s): <br>
-- [Rtk Compressor on ClawHub](https://clawhub.ai/Efficiency97/rtk-compressor) <br>
-- [rtk-compressor on PyPI](https://pypi.org/project/rtk-compressor/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and concise text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compressed text intended to preserve core information while reducing token usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill directs users to install and run an external PyPI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment, avoid sudo or admin installation, and pin or verify the package version in sensitive workflows.
+
+Risk: Artifact documentation uses both rtk-compressor and rtk-compress command names.
+
+Mitigation: Confirm the installed command name before adopting the workflow in scripts or agent instructions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/efficiency97/skills/rtk-compressor)
+- [Publisher Profile](https://clawhub.ai/user/efficiency97)
+- [PyPI Package](https://pypi.org/project/rtk-compressor/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Code, Guidance]
+
+**Output Format:** [Markdown with inline shell and Python examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reduce large command outputs by 60-90% depending on input type.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

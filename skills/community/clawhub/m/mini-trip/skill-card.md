@@ -1,46 +1,61 @@
-## Description: <br>
-Plan a complete 3-day, 2-night trip with morning activities, afternoon exploration, and evening dining experiences, with support for travel booking workflows powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan a complete 3-day, 2-night trip — optimal pacing with morning activities, afternoon exploration, and evening dining experiences. Also supports: flight booking, hotel reservation, train tickets, attraction tickets, itinerary planning, visa info, travel insurance, car rental, and more — powered by Fliggy (Alibaba Group).
 
-## Publisher: <br>
-[xiejinsong](https://clawhub.ai/user/xiejinsong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejinsong](https://clawhub.ai/user/xiejinsong)
 
-## Use Case: <br>
-External users and travel-focused agents use this skill to plan concise 3-day trips, compare flights, hotels, and attractions, and produce itinerary guidance backed by flyai CLI results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install and rely on a global npm CLI. <br>
-Mitigation: Review the requested npm install and CLI commands before allowing execution. <br>
-Risk: Trip requests may be sent to flyai or Fliggy services. <br>
-Mitigation: Avoid entering highly sensitive travel details unless they are necessary for the booking search. <br>
-Risk: The skill describes hidden local logging of raw trip requests. <br>
-Mitigation: Disable, delete, or review `.flyai-execution-log.json` before and after use when privacy matters. <br>
+## Use Case:
 
+External users use this skill to plan short 3-day, 2-night trips with flights, lodging, attractions, transportation, visa, insurance, and car rental options sourced through the flyai CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejinsong/mini-trip) <br>
-- [templates.md](references/templates.md) <br>
-- [playbooks.md](references/playbooks.md) <br>
-- [fallbacks.md](references/fallbacks.md) <br>
-- [runbook.md](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be grounded in flyai CLI results and include booking links for each listed travel result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks the agent to install and run an unpinned global flyai CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a reviewed, pinned flyai CLI version in a contained environment; do not allow automatic global npm installation.
+
+Risk: The skill can persist raw travel requests, including the user_query field, in a hidden local execution log.
+
+Mitigation: Disable local log persistence or redact raw user queries before any execution log is written.
+
+Risk: Travel recommendations depend on live flyai CLI data and may be incomplete when commands fail or return partial results.
+
+Mitigation: Report failed sections clearly, retry only with documented fallback commands, and include only results with verified booking links.
+
+## Reference(s):
+
+- [Fallbacks](references/fallbacks.md)
+- [Playbooks](references/playbooks.md)
+- [Runbook](references/runbook.md)
+- [Templates](references/templates.md)
+- [Mini Trip on ClawHub](https://clawhub.ai/xiejinsong/skills/mini-trip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with booking links and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be based on flyai CLI results, include booking links, and avoid raw JSON.]
+
+## Skill Version(s):
+
+3.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

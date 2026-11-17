@@ -1,44 +1,59 @@
-## Description: <br>
-Auto-claim free games from Epic Games Store with persistent login state and checkout automation. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Auto-claims free games from Epic Games Store using agent-browser with persistent login state and an automated checkout flow.
 
-## Publisher: <br>
-[anlinxi](https://clawhub.ai/user/anlinxi) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anlinxi](https://clawhub.ai/user/anlinxi)
 
-## Use Case: <br>
-External users and developers can use this skill to automate claiming weekly free games from Epic Games Store after completing a manual login. The skill is intended for users who understand the account, checkout, and terms-of-service risks of automated store actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates Epic Games Store account checkout actions, which may create account or terms-of-service risk. <br>
-Mitigation: Use only if you accept the Epic account and terms-of-service risk, and review the order flow before relying on automation. <br>
-Risk: The login flow saves browser authentication state in epic_auth.json. <br>
-Mitigation: Protect epic_auth.json as sensitive account data, keep it out of public repositories and shared backups, and delete or regenerate it when no longer needed. <br>
-Risk: The artifact includes Cloudflare anti-detection guidance and supports unattended cron execution. <br>
-Mitigation: Avoid the anti-detection instructions and do not enable scheduled unattended claiming unless you are comfortable with automated account actions. <br>
+## Use Case:
 
+External users and developers use this skill to run or adapt an automated Epic Games Store free-game claiming workflow after completing manual login and any required human verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anlinxi/epic-free-games) <br>
-- [Epic Games Store free games page](https://store.epicgames.com/zh-CN/free-games) <br>
-- [agent-browser](https://github.com/vercel-labs/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or use a local epic_auth.json browser state file when the user runs the login flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill stores reusable Epic login state locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect or delete epic_auth.json, avoid sharing it, and add it to .gitignore before using version control.
+
+Risk: The skill can automatically complete Epic Games Store checkout actions.
+
+Mitigation: Review the source first and require explicit confirmation plus zero-price verification before any order is submitted.
+
+Risk: The skill includes guidance related to Cloudflare automation detection.
+
+Mitigation: Prefer manual verification handling and remove anti-detection guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/anlinxi/skills/epic-free-games)
+- [agent-browser](https://github.com/vercel-labs/agent-browser)
+- [Epic Games Store free games page](https://store.epicgames.com/zh-CN/free-games)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and console status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a local epic_auth.json authentication-state file when login state is saved.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

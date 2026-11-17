@@ -1,45 +1,56 @@
-## Description: <br>
-Use when querying Outlit customer data via MCP tools for customer analytics, revenue metrics, activity timelines, cohort analysis, churn risk assessment, SQL queries, and other Outlit data exploration tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when querying Outlit customer data via MCP tools for customer analytics, revenue metrics, activity timelines, cohort analysis, churn risk assessment, SQL queries, and Outlit data exploration.
 
-## Publisher: <br>
-[leo-paz](https://clawhub.ai/user/leo-paz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leo-paz](https://clawhub.ai/user/leo-paz)
 
-## Use Case: <br>
-External users and operators use this skill to connect an agent to Outlit MCP tools, query customer intelligence data, and produce account health, revenue, churn risk, and activity analyses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill connects an agent to customer, user, revenue, and activity data through Outlit MCP tools. <br>
-Mitigation: Install only when this agent should access Outlit analytics, verify the API key in Outlit MCP Integration settings, and prefer least-privilege credentials where available. <br>
-Risk: Broad queries can expose more customer, user, or revenue data than needed for the task. <br>
-Mitigation: Ask for bounded analyses, use filters, time ranges, and limits, and request only the customer include sections needed for the answer. <br>
-Risk: API keys added to MCP configuration can be copied into shared repositories or chat logs. <br>
-Mitigation: Keep the key out of shared files and logs where possible, and review configuration changes before committing or sharing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Outlit Skill Page](https://clawhub.ai/leo-paz/outlit-mcp) <br>
-- [Outlit App](https://app.outlit.ai) <br>
-- [Outlit MCP Endpoint](https://mcp.outlit.ai/mcp) <br>
-- [SQL Reference](references/sql-reference.md) <br>
-- [Common Workflows](references/workflows.md) <br>
+## Use Case:
 
+Developers and customer-facing teams use this skill to connect an agent to Outlit MCP tools, inspect customer and user records, analyze revenue and churn, and compose read-only ClickHouse SQL for customer intelligence workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SQL query guidance, MCP setup snippets, and summarized customer analytics results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks agents to persist an API key while enabling broad customer-data access.
+
+Mitigation: Install only if Outlit is trusted with the connected organization data, use a narrowly scoped and revocable API key, keep MCP configuration files out of repositories, restrict file permissions, and rotate exposed keys.
+
+Risk: Customer analytics queries can expose sensitive organization data if credentials or outputs are shared too broadly.
+
+Mitigation: Review generated queries and reports before sharing, limit access to authorized users, and prefer filtering at the source with explicit time ranges and limits.
+
+## Reference(s):
+
+- [SQL Reference](references/sql-reference.md)
+- [Common Workflows](references/workflows.md)
+- [Outlit Dashboard](https://app.outlit.ai)
+- [Outlit MCP Endpoint](https://mcp.outlit.ai/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/leo-paz/skills/outlit-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, SQL queries, guidance]
+
+**Output Format:** [Markdown guidance with JSON, bash, and SQL examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce read-only customer analytics queries and MCP client configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

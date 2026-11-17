@@ -3,7 +3,7 @@
 对应 Web / MarkAI `getPersonas()`、`addPersona()`：
 
 - 列表：`POST {csoBaseUrl}/cso/v1/platformdata/GetPersonas`，请求体 `{}`
-- 新建：`POST {csoBaseUrl}/cso/v1/platformdata/AddPersona`，请求体 `{ personaName, styleGuide, materials: [] }`
+- 新建：`POST {csoBaseUrl}/cso/v1/platformdata/AddPersona`，请求体 `{ personaName, styleGuide, materials: [] }`（可选带 `mediaType`（运营平台）、`knowledgeBaseId`（默认知识库 id），仅在传入时携带）
 
 返回人设含 **`styleGuide`**（Markdown 风格指南）、`materials`、`taskStatus` 等，供文案与三库工作流使用。
 
@@ -23,7 +23,9 @@ siluzan-cso persona list [选项]
 | `--unicode`           | 表格使用 Unicode 线框                                                                     |
 | `--verbose`           | 打印详细错误                                                                              |
 
-终端表格仅展示 `styleGuide` 摘要；需要全文时用 `--json-out` 落盘后脚本读盘（见 `references/core/tips.md`）。
+终端表格仅展示 `styleGuide` 摘要；需要全文时用 `--json-out` 落盘后脚本读盘。
+
+> **【硬规范·执行前必读】调用 `persona list` 前，必须先 Read `references/core/tips.md`（例 #3 为人设专用「`--json-out` 落盘 + `node -e` 读盘」脚本）。** `styleGuide` 通常每条数千字，一律落盘后用脚本读取需要的字段，**禁止**把全文吐到 stdout（会被宿主 bash 工具截断、丢记录、触发翻页死循环）。未读 tips.md、直接对 stdout 处理 `styleGuide` 视为违规。
 
 > **⚠️ 列全量列表用 `--json-out` 落盘即可（不再有截断风险）。** `styleGuide` 通常每条数千字，旧 `--json` 直吐到 stdout 动辄数万字符、
 > 极易被宿主 bash 工具从中间截断丢记录——这正是 `--json` 被移除、改 `--json-out` 落盘的原因。
@@ -33,7 +35,13 @@ siluzan-cso persona list [选项]
 `--no-style-guide` 模式下每条记录形如（去掉 `styleGuide`，新增 `styleGuideChars`）：
 
 ```json
-{ "id": "...", "personaName": "...", "taskStatus": 3, "materials": [], "styleGuideChars": 5837 }
+{
+  "id": "...",
+  "personaName": "...",
+  "taskStatus": 3,
+  "materials": [],
+  "styleGuideChars": 5837
+}
 ```
 
 ## 命令二：保存人设到平台
@@ -42,13 +50,19 @@ siluzan-cso persona list [选项]
 siluzan-cso persona create --name <名称> ( --style-guide <markdown> | --style-guide-file <path> ) [选项]
 ```
 
-| 选项                        | 说明                                                                             |
-| --------------------------- | -------------------------------------------------------------------------------- |
-| `--name <name>`             | **必填**。人设名称，长度上限 60 字符                                             |
-| `--style-guide <markdown>`  | 直接传入 styleGuide markdown 内容（与 `--style-guide-file` 二选一）              |
-| `--style-guide-file <path>` | 从本地 markdown 文件读取 styleGuide（长文推荐用文件，与 `--style-guide` 二选一） |
-| `-t, --token <token>`       | 凭据（可选）                                                                     |
-| `--verbose`                 | 打印详细错误                                                                     |
+| 选项                        | 说明                                                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `--name <name>`             | **必填**。人设名称，长度上限 60 字符                                                                          |
+| `--style-guide <markdown>`  | 直接传入 styleGuide markdown 内容（与 `--style-guide-file` 二选一）                                           |
+| `--style-guide-file <path>` | 从本地 markdown 文件读取 styleGuide（长文推荐用文件，与 `--style-guide` 二选一）                              |
+| `--platform <platform>`     | 可选。运营平台（如 `douyin` / `wechat_mp` 等），映射到请求体 `mediaType`，仅在传入时携带                      |
+| `--kb-id <id>`              | 可选。默认知识库 id（从知识库创建人设时传入对应知识库 comid），映射到请求体 `knowledgeBaseId`，仅在传入时携带 |
+| `-t, --token <token>`       | 凭据（可选）                                                                                                  |
+| `--verbose`                 | 打印详细错误                                                                                                  |
+
+> `--platform` → CSO `AddPersona` 的 `mediaType`（社媒平台），`--kb-id` → `knowledgeBaseId`（默认知识库 id）。二者均为可选，仅在你显式传值时才带上。
+
+> **建卡可选绑库**：非从知识库反推创建人设时，可先 `siluzan-cso rag list` 让用户选一个默认知识库绑定（用户可不绑），保存时带 `--kb-id`；从知识库合成的人设直接用合成所用库的 comid。详见 `three-lib-content-workflow/persona-onboarding.md`。
 
 > `persona create` 为写入命令，仅输出简洁人类可读确认（含新建人设 `id`），不再支持 JSON 输出。
 
@@ -73,11 +87,15 @@ siluzan-cso persona create --name <名称> ( --style-guide <markdown> | --style-
 | `personaName`         | 人设名称                                                   |
 | `styleGuide`          | 风格指南正文（Markdown）                                   |
 | `materials`           | 参考素材（文件名、URL 等），新建时固定传空数组             |
+| `mediaType`           | 运营平台 / 社媒平台（可选，仅新建时透传）                  |
+| `knowledgeBaseId`     | 默认知识库 id（可选，仅新建时透传）                        |
 | `taskStatus`          | `1` 待生成 · `2` 生成中 · `0`或`3` 生成完成 · `4` 生成失败 |
 | `createdDateTime`     | **UTC** 时间字符串                                         |
 | `lastChangedDateTime` | **UTC** 时间字符串                                         |
 
 > 时间字段展示前必须做时区转换，详见 SKILL.md 「时间字段输出约定（全局）」。
+
+> **`knowledgeBaseId` 的写稿用途**：拿到目标人设后，若其 `knowledgeBaseId` 非空、且用户本轮未另行指定知识库、上下文也无当前已选库，写稿检索默认以该 id 作 `rag query --folder-id`（它就是知识库 comid）。优先级详见 `references/core/knowledge-base-resolution.md`。
 
 ## 与 Skill 的关系
 

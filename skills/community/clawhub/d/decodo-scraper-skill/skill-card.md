@@ -1,44 +1,57 @@
-## Description: <br>
-Search Google, scrape web pages, Amazon product pages, YouTube subtitles, or Reddit (post/subreddit) using the Decodo Scraper OpenClaw Skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google, scrape web pages, Amazon product pages, YouTube subtitles, or Reddit post and subreddit content using the Decodo Scraper OpenClaw Skill.
 
-## Publisher: <br>
-[DonatasDecodo](https://clawhub.ai/user/DonatasDecodo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[donatasdecodo](https://clawhub.ai/user/donatasdecodo)
 
-## Use Case: <br>
-Developers and agent operators use this skill to retrieve web search results, public webpage content, marketplace data, video transcripts, and Reddit content through Decodo's scraping API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted URLs, search terms, video IDs, and scraping requests are sent to Decodo. <br>
-Mitigation: Use a dedicated Decodo token and avoid submitting sensitive internal URLs, regulated data, or confidential queries. <br>
-Risk: The skill requires a Decodo authentication token. <br>
-Mitigation: Keep DECODO_AUTH_TOKEN out of shared repositories and rotate it if it may have been exposed. <br>
-Risk: Unpinned dependencies can change behavior in controlled or production environments. <br>
-Mitigation: Pin and review dependencies before production deployment. <br>
+## Use Case:
 
+Developers and agent builders use this skill to give OpenClaw-compatible agents access to Decodo-backed web scraping for search results, public webpages, Amazon pages, YouTube subtitles, and Reddit content.
 
-## Reference(s): <br>
-- [Decodo](https://decodo.com) <br>
-- [Decodo Web Scraping API Google Search documentation](https://help.decodo.com/docs/web-scraping-api-google-search) <br>
-- [Decodo Web Scraping API](https://decodo.com/scraping/web) <br>
-- [ClawHub skill page](https://clawhub.ai/DonatasDecodo/decodo-scraper-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON, Markdown, plain text transcripts, and command-line setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DECODO_AUTH_TOKEN and sends submitted URLs, queries, and video IDs to Decodo.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Requested URLs, search terms, video IDs, Reddit or Amazon targets, request metadata, and the Decodo API token are sent to Decodo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid private/internal URLs and sensitive investigations unless the Decodo account, policies, and intended use allow that data sharing.
+
+Risk: Runtime dependencies are declared with minimum versions rather than pinned versions.
+
+Mitigation: Pin and review dependency versions in controlled deployments.
+
+## Reference(s):
+
+- [Decodo Web Scraping API Documentation](https://help.decodo.com/docs/web-scraping-api-introduction)
+- [Decodo Google Search API Documentation](https://help.decodo.com/docs/web-scraping-api-google-search)
+- [Decodo Web Scraping API](https://decodo.com/scraping/web)
+- [OpenClaw Getting Started](https://docs.openclaw.ai/start/getting-started)
+- [ClawHub Skill Page](https://clawhub.ai/donatasdecodo/skills/decodo-scraper-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON, Markdown, or plain text transcript depending on the selected scraping target.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DECODO_AUTH_TOKEN and sends selected targets to Decodo's Web Scraping API.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

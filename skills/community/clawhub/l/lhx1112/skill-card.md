@@ -1,39 +1,53 @@
-## Description: <br>
-Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, visualization, and formula recalculation for .xlsx, .xlsm, .csv, and .tsv files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive spreadsheet creation, editing, and analysis with support for formulas, formatting, data analysis, visualization, and formula recalculation for spreadsheet files such as .xlsx, .xlsm, .csv, and .tsv.
 
-## Publisher: <br>
-[goulonghui](https://clawhub.ai/user/goulonghui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Proprietary. LICENSE.txt has complete terms <br>
+## Publisher:
 
+[goulonghui](https://clawhub.ai/user/goulonghui)
 
-## Use Case: <br>
-Developers and spreadsheet users use this skill to create, edit, analyze, and validate workbook files while preserving formulas, formatting, financial-model conventions, and recalculated formula values. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: The recalculation helper can make persistent changes to the user's LibreOffice macro profile. <br>
-Mitigation: Review before installing, back up existing LibreOffice macros, and prefer an isolated environment or temporary LibreOffice profile. <br>
-Risk: The skill can modify local workbook files, including sensitive or important spreadsheets. <br>
-Mitigation: Back up important spreadsheets and use copies or an isolated workspace when working with sensitive or untrusted files. <br>
+## Use Case:
 
+Developers and spreadsheet users use this skill to create, edit, analyze, format, and validate spreadsheet workbooks while preserving formulas and workbook conventions. It is especially suited for Excel workflows that need formulas, financial model formatting standards, pandas or openpyxl code, and LibreOffice-based recalculation checks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Analysis, Guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, JSON recalculation results, and generated or modified spreadsheet files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Spreadsheet outputs may include formulas, formatting, charts, and recalculated formula values; recalculation returns JSON status and error summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The recalculation helper can make persistent changes to the user's LibreOffice profile by installing or updating a macro file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation or execution, and prefer running recalc.py in an isolated LibreOffice profile or disposable environment when profile integrity matters.
+
+Risk: Spreadsheet edits, formulas, and financial model assumptions can produce incorrect or misleading workbooks if references, input data, or formatting conventions are wrong.
+
+Mitigation: Validate formulas with recalc.py, inspect reported spreadsheet errors, and review key assumptions, links, and formulas before relying on the workbook.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goulonghui/skills/lhx1112)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; spreadsheet files may be produced by following the generated code or workflow.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify spreadsheet files and may return JSON-formatted recalculation or formula-error results from recalc.py.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

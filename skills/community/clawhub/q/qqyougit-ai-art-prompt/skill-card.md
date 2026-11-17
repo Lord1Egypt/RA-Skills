@@ -1,41 +1,57 @@
-## Description: <br>
-Optimizes user image ideas into structured prompts and platform parameters for Midjourney, Stable Diffusion, DALL-E, and Flux without generating images directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes image ideas into structured prompts with style, lighting, composition, platform parameters, variants, negative prompts, and iteration advice for Midjourney, Stable Diffusion, DALL-E, and Flux.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Creators, designers, and prompt engineers use this skill to turn image concepts into detailed English prompts, style variants, platform-specific parameters, negative prompts, and iteration advice for external image-generation tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts or parameter suggestions may be unsuitable if the request includes sensitive or out-of-scope image content. <br>
-Mitigation: Apply the skill's input checks, refuse sexual, violent, or political sensitive content, and review prompts before using them in an image-generation tool. <br>
-Risk: Users may expect the skill to generate or edit images directly. <br>
-Mitigation: Treat the output as prompt guidance only and use a separate image-generation tool for rendering images. <br>
+## Use Case:
 
+External users and creators use this skill to turn short image concepts into platform-ready prompts and prompt variants for major image generation systems. The skill provides prompt-writing guidance and does not generate images itself.
 
-## Reference(s): <br>
-- [Detailed prompt reference](references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/qqyougit-ai-art-prompt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with structured prompt sections and platform parameter tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes English image prompts, Midjourney and Stable Diffusion parameters, negative prompts, prompt variants, and iteration advice; it does not generate images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: Users may expect the skill to generate images directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses scoped to prompt drafting and direct image-generation requests to an appropriate image-generation tool.
+
+Risk: Generated prompts and platform parameters may not match the user's intended generator or safety requirements.
+
+Mitigation: Review the prompt, negative prompt, and platform-specific parameters before submitting them to an image-generation system.
+
+Risk: Sensitive image requests may fall outside the skill's intended boundaries.
+
+Mitigation: Apply the skill's stated refusals for erotic, violent, political, video, editing, and non-image-prompt tasks.
+
+## Reference(s):
+
+- [Detailed prompt reference](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured prompt sections and parameter tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific parameters, prompt variants, negative prompts, and iteration advice; it does not generate images.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata; artifact frontmatter reports 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

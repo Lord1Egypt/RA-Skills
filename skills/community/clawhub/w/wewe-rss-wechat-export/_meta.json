@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn744shxb743aq0cvj9gekq7ad8323ek",
+  "owner": "N1nEmAn",
   "slug": "wewe-rss-wechat-export",
-  "version": "1.0.0",
-  "publishedAt": 1774369363624
+  "displayName": "wewe-rss WeChat Export",
+  "latest": {
+    "version": "1.0.0"
+  },
+  "history": []
 }

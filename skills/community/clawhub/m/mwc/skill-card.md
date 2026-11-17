@@ -1,47 +1,68 @@
-## Description: <br>
-A macOS wallpaper assistant that changes desktop backgrounds, downloads images from Bing, Unsplash, Picsum, local files, or direct URLs, and uses ratings and preference data to recommend future wallpapers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mac-wallpaper-changer helps agents change macOS wallpapers, recommend images from Bing, Unsplash, Picsum, local files, or URLs, and manage wallpaper ratings and preferences.
 
-## Publisher: <br>
-[akayj](https://clawhub.ai/user/akayj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akayj](https://clawhub.ai/user/akayj)
 
-## Use Case: <br>
-External users and developers use this skill to manage macOS wallpapers, automate scheduled wallpaper changes, search or apply wallpapers from supported sources, rate images, and receive preference-based recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can contact remote wallpaper providers and download image files. <br>
-Mitigation: Use supported providers or trusted direct image URLs, and avoid sensitive search terms. <br>
-Risk: The skill saves downloaded wallpapers, logs, and preference data under ~/wallpaper-daily. <br>
-Mitigation: Review or delete local wallpaper history and preference files before sharing the machine or collected data. <br>
-Risk: The skill can change the macOS desktop wallpaper and can be scheduled to run automatically with cron. <br>
-Mitigation: Add recurring cron entries only when automatic wallpaper changes are desired, and remove the entry to stop scheduled changes. <br>
-Risk: Optional provider configuration may include API keys. <br>
-Mitigation: Keep API keys out of shared configuration files and use local environment-specific configuration. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent configure and run macOS wallpaper workflows, including wallpaper changes, scheduled daily updates, preference tracking, and recommendation commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/akayj/mwc) <br>
-- [Wallpaper source configuration](references/wallpaper-sources.md) <br>
-- [Embedding configuration](references/embedding-config.md) <br>
-- [Embedding configuration template](assets/embedding-config.template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces instructions and commands for macOS wallpaper changes, recommendation workflows, preference management, location setup, and scheduled automation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill can download remote images and set them as the macOS wallpaper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted image sources and avoid untrusted --url values before allowing the agent to apply a wallpaper.
+
+Risk: The skill can restart wallpaper-related UI processes and change desktop settings.
+
+Mitigation: Run it only on macOS systems where wallpaper changes are intended and review commands before execution.
+
+Risk: Cron setup can schedule recurring wallpaper changes.
+
+Mitigation: Add cron entries only when scheduled wallpaper updates are explicitly desired.
+
+Risk: The skill stores wallpaper ratings, preference data, and logs under ~/wallpaper-daily/.
+
+Mitigation: Review stored preference and log files if wallpaper history or ratings are sensitive.
+
+Risk: The scripts run through uv with Python dependencies.
+
+Mitigation: Review the uv dependency environment before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/akayj/skills/mwc)
+- [Wallpaper Sources](references/wallpaper-sources.md)
+- [Embedding Configuration](references/embedding-config.md)
+- [Embedding Configuration Template](assets/embedding-config.template.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON output from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May download wallpaper image files, change macOS desktop settings, write ratings and logs under ~/wallpaper-daily/, and optionally read embedding configuration from ~/.wallpaper_prefs.json or WALLPAPER_EMBEDDING_CONFIG.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

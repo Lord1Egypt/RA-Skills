@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn78bajnwx5thcedektczxae3182nmzk",
-  "slug": "eshop",
-  "version": "1.1.0",
-  "publishedAt": 1774329953365
+  "name": "eShop",
+  "description": "一个聚合购物与外卖服务的智能平台，帮助用户完成商品搜索、下单购买、外卖点餐、订单查询、优惠券领取等全流程购物体验。支持多平台、多商家、多品牌的统一接入与智能路由。",
+  "version": "1.0.4",
+  "envs": [
+    {
+      "name": "SHOPPING_MCP_URL",
+      "description": "电商聚合 MCP 服务地址",
+      "required": true,
+      "default": "https://yuju-mcp.wxhoutai.com/mcp"
+    },
+    {
+      "name": "DEFAULT_PLATFORM_ID",
+      "description": "默认使用的电商平台标识（如 luogang, taobao 等）",
+      "required": false,
+      "default": "luogang"
+    }
+  ]
 }

@@ -1,0 +1,65 @@
+{
+  "description": "Routing checks for comfortable-roadtrip-planner.",
+  "cases": [
+    {
+      "id": "fixed-hotels-low-stamina",
+      "prompt": "Use $comfortable-roadtrip-planner to plan a 5-day California coast road trip. Hotels are fixed and one traveler has low stamina.",
+      "shouldTrigger": true,
+      "reason": "Multi-day self-drive trip with fixed hotels and comfort constraints."
+    },
+    {
+      "id": "html-route-map",
+      "prompt": "帮我把这几天自驾整理成 HTML 旅行小地图，要地图、每天卡片、导航链接和日历导入。",
+      "shouldTrigger": true,
+      "reason": "Self-drive itinerary plus signature HTML route artifact."
+    },
+    {
+      "id": "pregnancy-friendly-route",
+      "prompt": "我们有孕妇同行，酒店不能改，请帮我安排每天 9:30 后出发、不开夜路的自驾路线。",
+      "shouldTrigger": true,
+      "reason": "Pregnancy-friendly road trip planning with fixed anchors."
+    },
+    {
+      "id": "route-tradeoffs",
+      "prompt": "这些 Big Sur 景点哪些 A 必留、B 看状态、C 可以删？我们要少走路少绕路。",
+      "shouldTrigger": true,
+      "reason": "A/B/C route tradeoff request."
+    },
+    {
+      "id": "single-attraction-history",
+      "prompt": "给我讲讲 Monterey Bay Aquarium 的历史，不需要行程。",
+      "shouldTrigger": false,
+      "reason": "Single attraction background request, not itinerary planning."
+    },
+    {
+      "id": "flight-booking",
+      "prompt": "帮我比较一下旧金山到洛杉矶下周二的机票。",
+      "shouldTrigger": false,
+      "reason": "Flight research, not self-drive trip planning."
+    },
+    {
+      "id": "translation",
+      "prompt": "把这段英文酒店说明翻译成中文。",
+      "shouldTrigger": false,
+      "reason": "Translation only."
+    },
+    {
+      "id": "city-walk",
+      "prompt": "安排一个巴黎半天 city walk，只走路不自驾。",
+      "shouldTrigger": false,
+      "reason": "Walking itinerary without self-drive or road-trip artifact."
+    },
+    {
+      "id": "chinese-lushu",
+      "prompt": "帮我做一份加州海岸舒适路书，酒店已经订好了。",
+      "shouldTrigger": true,
+      "reason": "Chinese 路书 request with fixed hotels."
+    },
+    {
+      "id": "hotel-booking",
+      "prompt": "帮我订下周二旧金山的酒店，要比价。",
+      "shouldTrigger": false,
+      "reason": "Hotel booking engine, not self-drive planning."
+    }
+  ]
+}

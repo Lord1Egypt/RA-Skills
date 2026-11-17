@@ -1,0 +1,223 @@
+{
+  "card_id": "WQ-EXP-006",
+  "source_type": "clinical_experience",
+  "source_file": "国医大师王琦辨阴虚体质论治疾病临床思路_江泽强.pdf",
+  "title": "国医大师王琦辨阴虚体质论治疾病临床思路",
+  "authors": [
+    "江泽强"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "辨阴虚体质论治疾病的临床思路做一总结，以供临床借鉴。"
+  },
+  "treatment_approach": {
+    "main_formula": "六味地黄丸",
+    "related_formulas": [
+      "六味地黄丸"
+    ],
+    "principle": "活血化瘀",
+    "herbs": [
+      "黄芪",
+      "当归",
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "熟地",
+      "山药",
+      "泽泻",
+      "丹皮"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "体质是由于体内津液精血等阴液亏少，以阴虚内热为主要特征，形体瘦长、口燥咽干、手足心热等为主要表现的体质状态。体质的形成改变与先天和后天有关。偏颇体质与疾病存在密切的联系，王琦教授临床诊治疾病时发现阴虚体质与干眼症、糖尿病、男性不育症等疾病有关。 体质论治为核心的辨体-辨病-辨证诊疗模式、阴虚体质调体原则、阴虚体质相关疾病方药应用与分析3个方面对王琦教授辨阴虚体质论治疾病的临床思路做一总结，以供临床借鉴。 体内津液精血等阴液亏少，以阴虚内热为主要特征的体质状态。根据体病相关论，阴虚体质与多种疾病存在密切的关系，从阴虚体质入手，对疾病的预防、治疗及转归有很重要的意义。本文介绍了王琦教授辨阴虚体质论治疾病的临床思路，以供临床借鉴。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "ncy constitution, application and analysis of the prescription for diseases related to yin deficiency constitution, so as to provide clinical reference",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "Key words: Experience of famous TCM experts; Yin-deficiency constitution; Treating by constitutions differentiation; Clinical thinking Funding: National Key Research and Development Program of Ministry of Science and Technology (No",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "method",
+      "content": "2019-JYB-TSXK-001) 国医大师王琦教授通过多年的文献研究、临床实践、流行病学调查等，把人的体质类型分为9种， 阴虚体质为其中的一种",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：辨阴虚体质论治疾病的临床思路做一总结，以供临床借鉴。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为六味地黄丸。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、当归、柴胡、茯苓、甘草、熟地、山药、泽泻。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "体质是由于体内津液精血等阴液亏少，以阴虚内热为主要特征，形体瘦长、口燥咽干、手足心热等为主要表现的体质状态",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "气虚质",
+    "阴虚质",
+    "痰湿质",
+    "湿热质",
+    "血瘀质"
+  ],
+  "related_diseases": [
+    "糖尿病",
+    "失眠"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "ncy constitution, application and analysis of the prescription for diseases related to yin deficiency constitution, so as to provide clinical reference",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "Key words: Experience of famous TCM experts; Yin-deficiency constitution; Treating by constitutions differentiation; Clinical thinking Funding: National Key Research and Development Program of Ministry of Science and Technology (No",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    },
+    {
+      "sentence": "2019-JYB-TSXK-001) 国医大师王琦教授通过多年的文献研究、临床实践、流行病学调查等，把人的体质类型分为9种， 阴虚体质为其中的一种",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 1
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "气虚质",
+      "阴虚质",
+      "痰湿质",
+      "湿热质",
+      "血瘀质"
+    ],
+    "disease": [
+      "糖尿病",
+      "失眠"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 3,
+    "sections": {
+      "abstract": {
+        "start": 1,
+        "end": 1
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.310954",
+  "methods": {
+    "sample_size": 116,
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.494507",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.494513"
+  }
+}

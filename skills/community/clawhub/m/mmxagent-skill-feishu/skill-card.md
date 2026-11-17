@@ -1,39 +1,57 @@
-## Description: <br>
-Helps an agent connect a Feishu bot through a direct API registration flow, return the required OpenClaw link, poll for client credentials after user confirmation, and continue with later OpenClaw setup steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill guides an agent through connecting a Feishu robot to OpenClaw by obtaining a Feishu setup link, waiting for user confirmation, polling for client credentials, and continuing the remaining OpenClaw setup.
 
-## Publisher: <br>
-[oreoandyuumi](https://clawhub.ai/user/oreoandyuumi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oreoandyuumi](https://clawhub.ai/user/oreoandyuumi)
 
-## Use Case: <br>
-Developers and operators use this skill when connecting, binding, or creating a Feishu bot for OpenClaw. It guides the agent through the direct registration link flow, waits for user confirmation, polls for credentials, and resumes the remaining OpenClaw setup and pairing steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles Feishu client credentials, including a client secret, during the integration flow. <br>
-Mitigation: Provide secrets only through environment variables or an approved secret manager, avoid pasting them into chat, and rotate the secret if exposure is suspected. <br>
+## Use Case:
 
+Developers and operators use this skill when connecting or binding a Feishu robot to OpenClaw. It replaces the initial Feishu setup step with an API-link workflow, then continues to credential polling and pairing steps after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oreoandyuumi/mmxagent-skill-feishu) <br>
-- [Feishu app registration API endpoint](https://accounts.feishu.cn/oauth/v1/app/registration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and user-facing setup instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a clickable Feishu setup link, status guidance for pending authorization, and follow-up OpenClaw pairing instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles Feishu app credentials during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the workflow before installation and ensure credential handling is acceptable in the target environment.
+
+Risk: The skill limits permission, approval, and setup guidance after user confirmation.
+
+Mitigation: Confirm required Feishu permissions, approvals, and event settings outside the skill workflow before use.
+
+Risk: The skill defers later credential use and setup steps to a referenced file that is not included in the artifact.
+
+Mitigation: Ensure the referenced Feishu/OpenClaw setup instructions are available before relying on the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oreoandyuumi/skills/mmxagent-skill-feishu)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and plain URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before polling for credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

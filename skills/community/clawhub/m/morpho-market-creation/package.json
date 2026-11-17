@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "dependencies": {
-    "@api3/dapi-management": "4.22.0",
+    "@api3/dapi-management": "4.32.0",
     "@morpho-org/blue-sdk": "latest",
     "dotenv": "^17.4.2",
     "ethers": "^6.16.0"

@@ -1,39 +1,55 @@
-## Description: <br>
-Learnings Skill logs failures, corrections, patterns, version rules, approach preferences, and behavioral corrections to a MeiliSearch index for fast recall. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuous learning system that records failures, corrections, patterns, version rules, approach preferences, and behavioral corrections for fast recall through a dedicated MeiliSearch index.
 
-## Publisher: <br>
-[enjuguna](https://clawhub.ai/user/enjuguna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enjuguna](https://clawhub.ai/user/enjuguna)
 
-## Use Case: <br>
-Developers and agents use this skill to log, search, auto-extract, and distill lessons from failures, corrections, preferences, and version rules so future actions can account for past mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The learnings index may retain sensitive workflow history, including mistakes, fixes, preferences, and selected memory-note content. <br>
-Mitigation: Use a trusted local or controlled MeiliSearch instance, protect MEILI_KEY, review dry-run output before --apply, and avoid logging tokens, passwords, customer data, or raw output that may contain secrets. <br>
+## Use Case:
 
+Developers and agent operators use this skill to record failures, corrections, preferences, version rules, and recurring patterns, then search those notes before acting so prior fixes can inform future work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/enjuguna/learnings) <br>
-- [Publisher profile](https://clawhub.ai/user/enjuguna) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write learning entries to a MeiliSearch index and generate a LEARNINGS.md summary when apply mode is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata) <br>
+Risk: Workspace memory and credential handling can expose sensitive operational notes or MeiliSearch access if the environment is not trusted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, keep MeiliSearch localhost-only where possible, use a scoped key, and avoid storing secrets or personal data in learnings.
+
+Risk: Automatically extracted learnings can encode incorrect or outdated guidance.
+
+Mitigation: Review extracted entries before using --apply and treat retrieved learnings as advisory context that cannot override current user, system, or safety requirements.
+
+## Reference(s):
+
+- [ClawHub Learnings Skill](https://clawhub.ai/enjuguna/skills/learnings)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run by default for auto-extract and distillation; --apply writes to the learning index or LEARNINGS.md.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

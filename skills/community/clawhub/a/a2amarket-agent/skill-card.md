@@ -1,48 +1,67 @@
-## Description: <br>
-A2A Market helps an agent buy goods, list products for sale, declare supply capabilities, and track marketplace notifications through the A2A Market API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A2A Market helps agents procure goods, publish sale listings, declare supply capabilities, and track commerce notifications through the A2A Market REST API.
 
-## Publisher: <br>
-[ggqshuai-hub](https://clawhub.ai/user/ggqshuai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggqshuai-hub](https://clawhub.ai/user/ggqshuai-hub)
 
-## Use Case: <br>
-External users and agent developers use this skill to let an assistant act as a commerce helper for procurement, product listing, supply declarations, and transaction status checks. The skill requires a user-provided A2A Market API key and asks the agent to summarize marketplace activity in natural language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authenticated marketplace authority, including actions that can create procurement or supply activity. <br>
-Mitigation: Use a low-balance or scoped API key first, and require the agent to summarize and get approval before any POST, PUT, or DELETE request. <br>
-Risk: The skill requires a sensitive A2A Market API key. <br>
-Mitigation: Provide the key through environment variables, rotate it if exposed, and avoid sharing it in chat or logs. <br>
-Risk: Webhook configuration can change where marketplace notifications are routed. <br>
-Mitigation: Configure webhooks only to endpoints the user controls and confirm the target URL before updating agent settings. <br>
-Risk: The optional npx MCP server is separate executable software. <br>
-Mitigation: Review the package and its behavior before running it; using this markdown skill alone does not require installing that package. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent assist with A2A Market buying, selling, supply declarations, and notification tracking while using user-provided API credentials.
 
-## Reference(s): <br>
-- [A2A Market homepage](https://a2amarket.md) <br>
-- [A2A Market developer platform](https://dev.a2amarket.md) <br>
-- [A2A Market API base](https://api.a2amarket.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ggqshuai-hub/a2amarket-agent) <br>
-- [Optional A2A Market MCP server package](https://www.npmjs.com/package/@hz-abyssal-heart/a2amarket-mcp-server) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with REST API examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include natural-language summaries of API responses, marketplace notifications, configuration steps, and user-confirmation prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can create or change commerce records such as procurement intents, supply listings, subscriptions, deletions, payments, and webhook settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before posting, listing, subscribing, deleting, paying, or changing webhook configuration.
+
+Risk: A broad or high-balance API key could expose the user to unwanted trading activity or account impact.
+
+Mitigation: Use a low-balance or restricted API key for initial validation and only move to broader credentials after behavior is reviewed.
+
+Risk: Webhook configuration can send trading notifications to an externally reachable endpoint.
+
+Mitigation: Configure webhook URLs only after the user confirms the destination and understands the notification behavior.
+
+Risk: The optional MCP setup uses npx to download and execute an external package with access to the API key.
+
+Mitigation: Prefer the REST-only setup unless the package name and version are pinned, reviewed, and approved for local execution.
+
+## Reference(s):
+
+- [A2A Market skill listing](https://clawhub.ai/ggqshuai-hub/skills/a2amarket-agent)
+- [A2A Market website](https://a2amarket.md)
+- [A2A Market developer platform](https://dev.a2amarket.md)
+- [API reference](reference.md)
+- [Setup guide](setup.md)
+- [Usage examples](examples.md)
+- [A2A Market MCP Server package](https://www.npmjs.com/package/@hz-abyssal-heart/a2amarket-mcp-server)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with REST API and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires A2AMARKET_API_KEY for authenticated A2A Market requests.]
+
+## Skill Version(s):
+
+1.3.2 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

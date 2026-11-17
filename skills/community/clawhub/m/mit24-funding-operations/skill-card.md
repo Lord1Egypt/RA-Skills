@@ -1,39 +1,52 @@
-## Description: <br>
-Guides users through MIT 24 Steps phase 6 tasks for estimating startup funding needs, planning financing strategy from angel investment through IPO, and building core operating systems. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance for MIT 24 Steps Phase 6, helping users estimate startup funding needs, plan fundraising from angel rounds through IPO, and set up core operating systems.
 
-## Publisher: <br>
-[earthwalking](https://clawhub.ai/user/earthwalking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[earthwalking](https://clawhub.ai/user/earthwalking)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External startup founders and advisors use this Chinese-language skill to create an 18-24 month funding needs table, financing strategy plan, and operating systems implementation plan.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Funding ranges and financing guidance could be mistaken for professional financial, legal, tax, or investment advice.
+
+Mitigation: Treat outputs as planning templates and validate assumptions with qualified finance, legal, tax, and investment professionals before decisions.
+
+Risk: Generic operational tool and system recommendations may not fit a startup's jurisdiction, stage, budget, or compliance obligations.
+
+Mitigation: Adapt the plan to local requirements, company stage, budget, and internal controls before implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Startup founders, operators, and advisors use this skill to create a funding and operations planning report covering funding requirements, staged fundraising strategy, and finance, HR, sales, product, and customer success systems. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: Funding, legal, tax, investment, and accounting guidance may be incomplete or unsuitable for a specific company or jurisdiction. <br>
-Mitigation: Treat outputs as planning guidance and review them with qualified legal, tax, investment, and accounting professionals before use. <br>
-Risk: Users may share credentials, bank details, or highly confidential financial data while preparing funding and operations plans. <br>
-Mitigation: Avoid entering credentials, bank details, or sensitive financial information unless the execution environment is trusted. <br>
+**Output Format:** [Markdown report with tables and planning checklists]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Chinese-language funding and operations planning report]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown planning report with funding requirement details, financing strategy, and operations setup plans.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [General business-planning guidance; no code execution or tool access.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,56 @@
-## Description: <br>
-Query public holidays for a country and year using the apipick Public Holidays API, returning sorted holiday dates and official names. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries the apipick Public Holidays API to return sorted public holiday dates and official names for 100+ countries by ISO country code and year.
 
-## Publisher: <br>
-[javainthinking](https://clawhub.ai/user/javainthinking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[javainthinking](https://clawhub.ai/user/javainthinking)
 
-## Use Case: <br>
-External users and agents use this skill to list public holidays, check whether a date is a public holiday, or plan around holidays for supported countries and years. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent sends country and year holiday lookups to apipick using the user's APIPICK_API_KEY. <br>
-Mitigation: Configure the API key through the environment or an approved secrets mechanism, and avoid pasting secrets into chat. <br>
-Risk: Successful requests may consume apipick API credits. <br>
-Mitigation: Monitor API credit usage and confirm the intended country and year before making repeated requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [apipick Public Holidays API Reference](references/api_reference.md) <br>
-- [apipick API Platform](https://www.apipick.com) <br>
-- [apipick Public Holidays](https://www.apipick.com/public-holidays) <br>
-- [ClawHub Skill Page](https://clawhub.ai/javainthinking/apipick-public-holidays) <br>
+## Use Case:
 
+External users and developers use this skill to look up national public holidays for planning, date checks, and country-specific holiday lists. It is useful when a user provides a country name or ISO country code and an optional calendar year.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with optional shell commands and JSON API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires APIPICK_API_KEY and may consume one apipick credit per successful API request.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Holiday lookups send the requested country and year to apipick with the user's API key.
+
+Mitigation: Store the key in APIPICK_API_KEY where possible and avoid including unrelated sensitive information in holiday lookup requests.
+
+Risk: The skill depends on an external API, so invalid keys, insufficient credits, or service errors can prevent successful results.
+
+Mitigation: Check that APIPICK_API_KEY is configured, account credits are available, and API error responses are reported clearly to the user.
+
+## Reference(s):
+
+- [apipick Public Holidays API Reference](references/api_reference.md)
+- [apipick API Platform](https://www.apipick.com)
+- [apipick Public Holidays Product Page](https://www.apipick.com/public-holidays)
+- [Get apipick API Key](https://www.apipick.com/dashboard/api-keys)
+- [ClawHub Skill Page](https://clawhub.ai/javainthinking/skills/apipick-public-holidays)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with optional shell commands and JSON response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires APIPICK_API_KEY and sends the requested country and year to apipick.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: "smyx-aquarium-plant-health-monitor-analysis"
 description: "AI-powered aquatic plant health monitoring from aquarium camera images. Detects leaf color changes (yellowing, bleaching, blackening), morphological anomalies (melting, curling, holes), and iron deficiency symptoms in submerged plants. Outputs health assessment and care suggestions (e.g., supplement iron fertilizer, adjust lighting, increase CO₂). Helps early detection of aquatic plant issues and maintains aquarium ecological balance. Scenarios: smart fish tanks, aquascaping tanks, aquarium shops. | 通过智能鱼缸或水下摄像头拍摄水草的图像，利用AI视觉分析技术识别水草叶片的颜色变化（黄化、白化、发黑）、形态异常（溶叶、卷曲、穿孔）以及缺铁等典型症状，输出健康评估及养护建议（如补充铁肥、调整光照、增加CO₂）。有助于及早发现水草生长问题，维持水族箱生态平衡。应用场景：智能鱼缸、水族箱、水草造景缸、水族店。"
-version: "1.0.2"
+version: "1.0.21"
 license: "MIT-0"
 ---
 

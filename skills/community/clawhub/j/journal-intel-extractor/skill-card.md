@@ -1,44 +1,54 @@
-## Description: <br>
-Fetches recent PubMed articles or reviews for a selected journal, extracts PMIDs, titles, and abstracts, and saves structured JSON for AI-assisted literature summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieves recent Article or Review records from PubMed for a named journal and saves PMIDs, titles, and abstracts as structured JSON for downstream summarization.
 
-## Publisher: <br>
-[chenghan66](https://clawhub.ai/user/chenghan66) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenghan66](https://clawhub.ai/user/chenghan66)
 
-## Use Case: <br>
-Researchers, clinicians, science communicators, and agent workflows use this skill to monitor recent PubMed-indexed journal updates and collect article abstracts for downstream review or AI-assisted summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts PubMed and may expose queried journals or research topics through network requests. <br>
-Mitigation: Use it only in environments where outbound PubMed access is acceptable and the queried topics are appropriate to disclose to that service. <br>
-Risk: Article abstracts are saved locally under ~/Documents/Journal_Intel and may reveal sensitive research interests on shared machines. <br>
-Mitigation: Review file permissions and periodically delete archived JSON files when the collected topics should not persist. <br>
-Risk: Unpinned Python dependencies can change behavior over time. <br>
-Mitigation: Pin and maintain requests, beautifulsoup4, and lxml in the deployment environment when reproducibility or parser security matters. <br>
+## Use Case:
 
+Medical and life science researchers use this skill to monitor recent Article or Review publications from a named journal and collect PMIDs, titles, and abstracts for downstream AI summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chenghan66/journal-intel-extractor) <br>
-- [Publisher Profile](https://clawhub.ai/user/chenghan66) <br>
-- [PubMed](https://pubmed.ncbi.nlm.nih.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, guidance] <br>
-**Output Format:** [Console status text and local JSON files containing article metadata and abstracts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes dated journal JSON archives under ~/Documents/Journal_Intel when results are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A crafted journal name can make the skill write outside its disclosed output folder and overwrite local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted journal names only, sanitize output filenames, and constrain the output directory before broad use.
+
+Risk: The skill performs outbound PubMed requests and writes local JSON archives.
+
+Mitigation: Install only from a trusted publisher and run it in an environment with filesystem and network access limited to the intended collection task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenghan66/skills/journal-intel-extractor)
+- [PubMed](https://pubmed.ncbi.nlm.nih.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, Text]
+
+**Output Format:** [JSON file with PMID, english_title, and abstract records, plus console status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local archives under ~/Documents/Journal_Intel/ and retrieves up to 50 PubMed results per run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

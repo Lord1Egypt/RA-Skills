@@ -1,39 +1,58 @@
-## Description: <br>
-运维后台（Python/Django）编码规范与最佳实践，适用于 ops_api 等运维系统开发。当要求写ops代码、代码审查、检查编码规范、Python Django开发规范时自动激活。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Python/Django coding standards and best practices for ops backend systems, including PEP8 style, docstrings, Celery transaction handling, log rotation, and sensitive-data handling.
 
-## Publisher: <br>
-[freepengyang](https://clawhub.ai/user/freepengyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freepengyang](https://clawhub.ai/user/freepengyang)
 
-## Use Case: <br>
-Developers and engineers use this skill as a coding-standards reference when writing, reviewing, or checking Python/Django operations backend code. It focuses on PEP8 style, docstrings, Django and Celery transaction handling, log rotation, and sensitive-information handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly in Python, Django, or operations-backend discussions and its standards may not match every project's local conventions. <br>
-Mitigation: Review the guidance against project-specific coding, security, and deployment standards before applying it. <br>
+## Use Case:
 
+Developers and reviewers use this skill when writing or reviewing Python/Django code for ops systems, especially around style consistency, Django and Celery transaction behavior, logging, and sensitive-data handling.
 
-## Reference(s): <br>
-- [PEP 8 Style Guide](https://pep8.org/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/freepengyang/ops-coding-standards) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with Python, Django, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable artifacts; advisory standards and examples only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation patterns may cause the skill to influence general Python, Django, Celery, or ops review conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and narrow triggers before publishing or installing if the skill should apply only to a smaller project scope.
+
+Risk: Coding-standard recommendations can become stale or conflict with a team's project-specific conventions.
+
+Mitigation: Have maintainers review suggested standards against current project policy and framework documentation before adopting them.
+
+Risk: Security guidance is checklist-oriented and may not catch project-specific secret handling or logging issues.
+
+Mitigation: Pair the skill's guidance with project-specific code review, secret scanning, and log-sanitization checks.
+
+## Reference(s):
+
+- [PEP 8 Style Guide](https://pep8.org/)
+- [ClawHub Skill Page](https://clawhub.ai/freepengyang/skills/ops-coding-standards)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with Python and Django code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No commands, credentials, persistence, or data access are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

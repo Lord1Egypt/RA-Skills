@@ -1,45 +1,60 @@
-## Description: <br>
-AI solution architect for consensus-tools that analyzes a project, recommends an integration pattern, scaffolds setup, and proves guard evaluation, consensus voting, persona management, workflow orchestration, and MCP integration work with auditability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI solution architect for consensus-tools that analyzes a project, recommends consensus-tools integration, scaffolds setup, and helps prove guard evaluation, consensus voting, persona management, workflow orchestration, and MCP tool integration with auditability.
 
-## Publisher: <br>
-[kaicianflone](https://clawhub.ai/user/kaicianflone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaicianflone](https://clawhub.ai/user/kaicianflone)
 
-## Use Case: <br>
-Developers and engineers use this skill to decide whether consensus-tools fits their AI governance needs, then install and configure guard, wrapper, hybrid, or MCP integrations with project-specific examples and verification output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify a project and suggest package-manager commands during setup. <br>
-Mitigation: Install it in a version-controlled project and review generated diffs and commands before allowing setup changes. <br>
-Risk: Project scanning could expose secrets if environment or key files are read. <br>
-Mitigation: Do not allow the skill to read .env or key files; use only configuration patterns and file names for environment discovery. <br>
-Risk: MCP, tracing, provider API keys, workflow automation, or cron can add tool access, network side effects, or local state changes. <br>
-Mitigation: Enable those capabilities only after reviewing the required access and confirming the intended local or external side effects. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, configure, and validate consensus-tools integrations for AI governance workflows. It maps project needs to guard domains, consensus policies, architecture patterns, configuration, starter code, MCP setup, and audit-oriented proof steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaicianflone/consensus-engineer) <br>
-- [consensus-tools homepage](https://github.com/consensus-tools/consensus-tools) <br>
-- [consensus-tools npm organization](https://www.npmjs.com/org/consensus-tools) <br>
-- [LangSmith](https://smith.langchain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, ASCII diagrams, and verification summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive AskUserQuestion gates; may create or edit project files and run package-manager or TypeScript verification commands when the user approves setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The setup flow can install or execute unpinned npm and MCP packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each command before execution, pin @consensus-tools versions, commit a lockfile, and prefer local binaries over npx-latest execution.
+
+Risk: MCP registration can persist a new consensus-tools server in Claude or related tooling.
+
+Mitigation: Require explicit approval before registering the MCP server and remove the registration if it is not needed after evaluation.
+
+Risk: Optional LangSmith or model-provider integrations may send data to external services when API keys are enabled.
+
+Mitigation: Keep optional provider and LangSmith environment variables unset unless external tracing or LLM-based evaluation is intended, and test with non-sensitive data first.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaicianflone/skills/consensus-engineer)
+- [consensus-tools homepage](https://github.com/consensus-tools/consensus-tools)
+- [consensus-tools npm organization](https://www.npmjs.com/org/consensus-tools)
+- [LangSmith](https://smith.langchain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, configuration files, and generated TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive phase-gated workflow; may write project configuration and starter code when the user approves setup steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, artifact metadata, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

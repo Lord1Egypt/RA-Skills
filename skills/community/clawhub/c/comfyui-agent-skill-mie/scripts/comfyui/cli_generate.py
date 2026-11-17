@@ -23,6 +23,44 @@ _VIDEO_LIKE_SUFFIXES = frozenset({".mp4", ".webm", ".mov", ".mkv"})
 _MEDIA_OUTPUT_SUFFIXES = _IMAGE_LIKE_SUFFIXES | _AUDIO_LIKE_SUFFIXES | _VIDEO_LIKE_SUFFIXES
 
 
+def parse_media_inputs(
+    config: WorkflowConfig,
+    *,
+    image_args: list[str],
+    video_args: list[str],
+    audio_args: list[str],
+) -> dict[str, Path]:
+    """Parse --image / --video / --audio into a single role->path dict.
+
+    Each class derives its role set from node_mapping by value_type. A bare path
+    auto-binds only when that class exposes exactly one role; otherwise the
+    'key=path' form is required. Raises FileNotFoundError for missing files.
+    """
+    inputs: dict[str, Path] = {}
+    groups = [
+        ("image", image_args, {k for k, v in config.node_mapping.items() if v.get("value_type") == "image"}),
+        ("video", video_args, {k for k, v in config.node_mapping.items() if v.get("value_type") == "video"}),
+        ("audio", audio_args, {k for k, v in config.node_mapping.items() if v.get("value_type") == "audio"}),
+    ]
+    for kind, args, roles in groups:
+        for arg in args:
+            if "=" in arg:
+                key, path_str = arg.split("=", 1)
+            elif len(roles) == 1:
+                key = next(iter(roles))
+                path_str = arg
+            else:
+                raise ValueError(
+                    f"{kind.capitalize()} argument must be 'key=path' when the workflow has "
+                    f"{len(roles)} {kind} input(s). Available roles: {sorted(roles)}"
+                )
+            p = Path(path_str)
+            if not p.exists():
+                raise FileNotFoundError(f"{kind.capitalize()} file not found: {p}")
+            inputs[key] = p
+    return inputs
+
+
 def resolve_generate_output(raw: str | None) -> tuple[Path | None, Path | None]:
     if not raw or not raw.strip():
         return (None, None)
@@ -139,6 +177,33 @@ def _cli_preflight_gate_or_exit(server_url: str, config) -> None:
     )
 
 
+def validate_dimensions(config, width: int | None, height: int | None) -> dict[str, str] | None:
+    """Return an ``INVALID_PARAM`` payload when --width/--height cannot apply.
+
+    Shared by the sync path and ``--submit`` so neither can silently drop the
+    flags. Returns None when the pair is absent or both dimensions are mapped.
+    """
+    if (width is None) != (height is None):
+        return {"code": "INVALID_PARAM", "message": "--width and --height must be used together, or both omitted."}
+    if width is None:
+        return None
+    is_audio_workflow = getattr(config, "output_kind", "image") == "audio"
+    if is_audio_workflow:
+        return {"code": "INVALID_PARAM", "message": "--width and --height apply to image/video workflows only, not audio outputs."}
+    if config.size_strategy == "workflow_managed":
+        return {
+            "code": "INVALID_PARAM",
+            "message": f"Workflow '{config.workflow_id}' manages output size internally; --width/--height are not supported.",
+        }
+    has_dim_mapping = config.node_mapping.get("width") is not None and config.node_mapping.get("height") is not None
+    if not has_dim_mapping:
+        return {
+            "code": "INVALID_PARAM",
+            "message": f"Workflow '{config.workflow_id}' derives output resolution from the workflow graph; --width/--height are not applicable.",
+        }
+    return None
+
+
 def _add_generate_arguments(p: argparse.ArgumentParser, *, default_workflow: str) -> None:
     p.add_argument(
         "prompt",
@@ -162,7 +227,8 @@ def _add_generate_arguments(p: argparse.ArgumentParser, *, default_workflow: str
         metavar="DIR",
         help=(
             "Output directory for generated media (images, audio, etc.; filenames from ComfyUI). "
-            "Default: per-run results/%%Y%%m%%d/%%H%%M%%S_{job_id}/ under the skill root. "
+            "Default: per-run %%Y%%m%%d/%%H%%M%%S_{job_id}/ under the per-user data root's "
+            "results/ directory (%%APPDATA%%\\comfyui-skill\\results on Windows). "
             "Relative path adds a segment under that job folder; absolute path overrides. "
             "If the path ends with a known media extension, its parent directory is used."
         ),
@@ -177,6 +243,9 @@ def _add_generate_arguments(p: argparse.ArgumentParser, *, default_workflow: str
     p.add_argument("--width", type=int, default=None, metavar="W", help="Output image width (optional).")
     p.add_argument("--height", type=int, default=None, metavar="H", help="Output image height (optional).")
     p.add_argument("--image", action="append", default=[], metavar="KEY=PATH", help="Input image: 'key=path' or bare path; repeat for multiple keys")
+    p.add_argument("--video", action="append", default=[], metavar="KEY=PATH", help="Input video: 'key=path' or bare path; repeat for multiple keys")
+    p.add_argument("--audio", action="append", default=[], metavar="KEY=PATH", help="Input audio: 'key=path' or bare path; repeat for multiple keys")
+    p.add_argument("--text-input", action="append", default=[], metavar="KEY=VALUE", help="Set a string node_mapping role: 'role=value' (e.g. ref_text=...). Repeat for multiple roles. Used for workflows with extra text inputs beyond 'prompt'.")
     p.add_argument("--progress", action="store_true", help="Print JSON progress lines to stderr during generation")
     p.add_argument("--submit", action="store_true", help="Submit job(s) to ComfyUI queue without waiting for completion. Returns job_id(s).")
     p.add_argument("--poll", metavar="JOB_ID", help="Poll a single job's current status.")
@@ -244,29 +313,17 @@ def run_generate_from_args(args: argparse.Namespace) -> int:
         return _cli_run_preflight_only(config, server_url)
 
     prompts = list(args.prompt) + list(args.prompt_flags)
-    is_audio_workflow = getattr(config, "output_kind", "image") == "audio"
-    is_tts_workflow = getattr(config, "capability", "") == "text_to_speech"
+    # A workflow is "TTS-style" only when it exposes the speech_text role (the
+    # qwen3_tts speech-design path). Voice-clone workflows (qwen3_tts_clone)
+    # are also capability=text_to_speech but use prompt + extra text inputs, so
+    # they must take the standard prompt path instead.
+    is_tts_workflow = getattr(config, "capability", "") == "text_to_speech" and "speech_text" in config.node_mapping
 
     aw = getattr(args, "width", None)
     ah = getattr(args, "height", None)
-    if (aw is None) != (ah is None):
-        _print_error_and_exit(code="INVALID_PARAM", message="--width and --height must be used together, or both omitted.", workflow_id=config.workflow_id)
-    if is_audio_workflow and (aw is not None or ah is not None):
-        _print_error_and_exit(code="INVALID_PARAM", message="--width and --height apply to image/video workflows only, not audio outputs.", workflow_id=config.workflow_id)
-    if (not is_audio_workflow and config.size_strategy == "workflow_managed" and (aw is not None or ah is not None)):
-        _print_error_and_exit(
-            code="INVALID_PARAM",
-            message=f"Workflow '{config.workflow_id}' manages output size internally; --width/--height are not supported.",
-            workflow_id=config.workflow_id,
-        )
-
-    has_dim_mapping = config.node_mapping.get("width") is not None and config.node_mapping.get("height") is not None
-    if (not is_audio_workflow and config.size_strategy != "workflow_managed" and not has_dim_mapping and (aw is not None or ah is not None)):
-        _print_error_and_exit(
-            code="INVALID_PARAM",
-            message=f"Workflow '{config.workflow_id}' derives output resolution from the workflow graph; --width/--height are not applicable.",
-            workflow_id=config.workflow_id,
-        )
+    dim_error = validate_dimensions(config, aw, ah)
+    if dim_error is not None:
+        _print_error_and_exit(code=dim_error["code"], message=dim_error["message"], workflow_id=config.workflow_id)
 
     if is_tts_workflow:
         speech = (getattr(args, "speech_text", None) or "").strip()
@@ -278,26 +335,32 @@ def run_generate_from_args(args: argparse.Namespace) -> int:
         if not instruct:
             _print_error_and_exit(code="EMPTY_INSTRUCT", message="--instruct is required for this workflow.", workflow_id=config.workflow_id)
     elif not prompts:
-        _print_error_and_exit(code="EMPTY_PROMPT", message='A prompt is required. Example: python -m comfyui generate -p "..."', workflow_id=config.workflow_id)
+        # A prompt is required only when the workflow actually has a prompt role.
+        # Pure-upload workflows (e.g. liveportrait: image + video, no text) need no -p.
+        if "prompt" in config.node_mapping:
+            _print_error_and_exit(code="EMPTY_PROMPT", message='A prompt is required. Example: python -m comfyui generate -p "..."', workflow_id=config.workflow_id)
 
     input_images: dict[str, Path] = {}
-    image_roles = {k for k, v in config.node_mapping.items() if v.get("value_type") == "image"}
-    for img_arg in args.image:
-        if "=" in img_arg:
-            key, path_str = img_arg.split("=", 1)
-        elif len(image_roles) == 1:
-            key = next(iter(image_roles))
-            path_str = img_arg
-        else:
-            _print_error_and_exit(
-                code="INVALID_PARAM_TYPE",
-                message=f"Image argument must be 'key=path' when workflow has multiple image inputs. Available roles: {sorted(image_roles)}",
-                workflow_id=config.workflow_id,
-            )
-        img_path = Path(path_str)
-        if not img_path.exists():
-            _print_error_and_exit(code="INPUT_IMAGE_NOT_FOUND", message=f"Image file not found: {img_path}", workflow_id=config.workflow_id)
-        input_images[key] = img_path
+    try:
+        input_images = parse_media_inputs(
+            config, image_args=args.image, video_args=args.video, audio_args=args.audio
+        )
+    except ValueError as e:
+        _print_error_and_exit(code="INVALID_PARAM_TYPE", message=str(e), workflow_id=config.workflow_id)
+    except FileNotFoundError as e:
+        _print_error_and_exit(
+            code="INPUT_IMAGE_NOT_FOUND" if "Image" in str(e) else "INPUT_MEDIA_NOT_FOUND",
+            message=str(e),
+            workflow_id=config.workflow_id,
+        )
+
+    # Parse --text-input role=value pairs into extra text_inputs (e.g. ref_text).
+    extra_text_inputs: dict[str, str] = {}
+    for ti_arg in getattr(args, "text_input", []) or []:
+        if "=" not in ti_arg:
+            _print_error_and_exit(code="INVALID_PARAM_TYPE", message=f"--text-input must be 'role=value' (missing '=' in {ti_arg!r})", workflow_id=config.workflow_id)
+        role, value = ti_arg.split("=", 1)
+        extra_text_inputs[role.strip()] = value
 
     health = check_server(server_url)
     if not health["available"]:
@@ -319,6 +382,7 @@ def run_generate_from_args(args: argparse.Namespace) -> int:
         speech = getattr(args, "speech_text", "") or ""
         instruct = getattr(args, "instruct", "") or ""
         ti = {"speech_text": speech.strip(), "instruct": instruct.strip()}
+        ti.update(extra_text_inputs)
         for _ in range(count):
             result = _run_single_generate(config, "", server_url, explicit_out, output_subdir, input_images or None, progress, text_inputs=ti, width=aw, height=ah)
             results.append(result.to_dict())
@@ -326,13 +390,16 @@ def run_generate_from_args(args: argparse.Namespace) -> int:
                 all_success = False
         total = count
     else:
-        for prompt in prompts:
+        # Workflows without a prompt role (e.g. liveportrait: image + video)
+        # still need to run once with an empty prompt so media inputs are uploaded.
+        run_prompts = prompts if prompts else [""]
+        for prompt in run_prompts:
             for _ in range(count):
-                result = _run_single_generate(config, prompt, server_url, explicit_out, output_subdir, input_images or None, progress, width=aw, height=ah)
+                result = _run_single_generate(config, prompt, server_url, explicit_out, output_subdir, input_images or None, progress, text_inputs=extra_text_inputs or None, width=aw, height=ah)
                 results.append(result.to_dict())
                 if not result.success:
                     all_success = False
-        total = len(prompts) * count
+        total = len(run_prompts) * count
 
     if total == 1:
         print(json.dumps(results[0], ensure_ascii=True, indent=2))
@@ -385,6 +452,19 @@ def cmd_generate() -> int:
         )
         return 1
 
+    explicit_workflow = "--workflow" in sys.argv or "-w" in sys.argv
+    if (not explicit_workflow) and (not getattr(args, "submit", False)) and (not getattr(args, "poll", None)) and (not getattr(args, "poll_all", False)):
+        prompts = list(args.prompt) + list(args.prompt_flags)
+        is_tts_args = bool((getattr(args, "speech_text", None) or "").strip() or (getattr(args, "instruct", None) or "").strip())
+        if prompts and (not args.image) and (not is_tts_args):
+            from comfyui.workflow_selection import select_text_to_image_workflow_id
+
+            args.workflow = select_text_to_image_workflow_id(
+                " ".join(prompts),
+                registry=WORKFLOW_REGISTRY,
+                default_workflow_id=DEFAULT_WORKFLOW,
+            )
+
     async_modes = sum(bool(getattr(args, m, False)) for m in ("submit", "poll", "poll_all"))
     if async_modes > 1:
         print(
@@ -435,10 +515,25 @@ def cmd_generate() -> int:
                 metadata={"available_workflows": sorted(WORKFLOW_REGISTRY.keys())},
             )
         config = WORKFLOW_REGISTRY[args.workflow]
+        # Same dimension rules as the sync path: reject rather than drop silently.
+        dim_error = validate_dimensions(config, args.width, args.height)
+        if dim_error is not None:
+            print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "outputs": [], "job_id": None, "error": dim_error, "metadata": {}}, ensure_ascii=True, indent=2))
+            return 1
         submit_prompt = ""
         submit_text_inputs: dict[str, str] | None = None
 
-        is_tts_submit = getattr(config, "capability", "") == "text_to_speech"
+        extra_text_inputs: dict[str, str] = {}
+        for ti_arg in getattr(args, "text_input", []) or []:
+            if "=" not in ti_arg:
+                print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": "INVALID_PARAM_TYPE", "message": f"--text-input must be 'role=value' (missing '=' in {ti_arg!r})"}}, ensure_ascii=True, indent=2))
+                return 1
+            role, value = ti_arg.split("=", 1)
+            extra_text_inputs[role.strip()] = value
+
+        # Match sync generation: VoiceDesign is the speech_text role, not every
+        # text_to_speech capability. Voice clone uses prompt + --text-input.
+        is_tts_submit = getattr(config, "capability", "") == "text_to_speech" and "speech_text" in config.node_mapping
         speech = (getattr(args, "speech_text", None) or "").strip()
         instruct = (getattr(args, "instruct", None) or "").strip()
         if is_tts_submit:
@@ -449,30 +544,32 @@ def cmd_generate() -> int:
                 print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": "EMPTY_SPEECH_TEXT" if not speech else "EMPTY_INSTRUCT", "message": "--speech-text and --instruct are required for this workflow."}}, ensure_ascii=True, indent=2))
                 return 1
             submit_text_inputs = {"speech_text": speech, "instruct": instruct}
-        elif not prompts:
-            print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": "EMPTY_PROMPT", "message": "Prompt is required for --submit."}}, ensure_ascii=True, indent=2))
-            return 1
-        else:
+            submit_text_inputs.update(extra_text_inputs)
+        elif "prompt" in config.node_mapping:
+            if not prompts:
+                print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": "EMPTY_PROMPT", "message": "Prompt is required for --submit."}}, ensure_ascii=True, indent=2))
+                return 1
             if len(prompts) > 1:
                 print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": "MULTIPLE_PROMPTS_NOT_SUPPORTED", "message": "--submit accepts a single prompt only. Submit each prompt individually."}}, ensure_ascii=True, indent=2))
                 return 1
             submit_prompt = prompts[0]
+            submit_text_inputs = extra_text_inputs or None
+        else:
+            # Pure-upload workflows (liveportrait: image + video, no text).
+            submit_prompt = ""
+            submit_text_inputs = extra_text_inputs or None
 
-        image_roles = {k for k, v in config.node_mapping.items() if v.get("value_type") == "image"}
-        for img_arg in args.image:
-            if "=" in img_arg:
-                key, path_str = img_arg.split("=", 1)
-            elif len(image_roles) == 1:
-                key = next(iter(image_roles))
-                path_str = img_arg
-            else:
-                key, path_str = None, img_arg
-            if key and path_str:
-                img_path = Path(path_str)
-                if not img_path.exists():
-                    print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": "INPUT_IMAGE_NOT_FOUND", "message": f"Image file not found: {img_path}"}}, ensure_ascii=True, indent=2))
-                    return 1
-                input_images[key] = img_path
+        try:
+            input_images = parse_media_inputs(
+                config, image_args=args.image, video_args=args.video, audio_args=args.audio
+            )
+        except ValueError as e:
+            print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": "INVALID_PARAM_TYPE", "message": str(e)}}, ensure_ascii=True, indent=2))
+            return 1
+        except FileNotFoundError as e:
+            code = "INPUT_IMAGE_NOT_FOUND" if "Image" in str(e) else "INPUT_MEDIA_NOT_FOUND"
+            print(json.dumps({"success": False, "workflow_id": args.workflow, "status": "failed", "error": {"code": code, "message": str(e)}}, ensure_ascii=True, indent=2))
+            return 1
 
         comfyui_url = get_comfyui_url()
         server_url = args.server or comfyui_url

@@ -1,43 +1,58 @@
-## Description: <br>
-Task Planner helps agents manage personal tasks and schedules with natural-language commands, reminders, recurring tasks, Markdown calendar export, and optional voice transcription. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Planner helps users manage personal tasks and schedules with natural-language commands for reminders, recurring tasks, updates, deletion, and Markdown calendar export.
 
-## Publisher: <br>
-[luzewen](https://clawhub.ai/user/luzewen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luzewen](https://clawhub.ai/user/luzewen)
 
-## Use Case: <br>
-OpenClaw users can ask an agent to add, update, summarize, complete, delete, and export personal tasks and schedules without remembering task IDs. The skill is useful for personal planning workflows that need recurring reminders, calendar-style Markdown exports, and optional audio transcription. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task data, exported calendars, and reminder logs may contain personal schedule details. <br>
-Mitigation: Store the generated files in a trusted local environment and review calendar and reminder log contents before sharing them. <br>
-Risk: Voice transcription requires an OpenAI API key and sends provided audio for transcription. <br>
-Mitigation: Use transcription only when this data flow is acceptable, protect the API key, and avoid submitting sensitive audio. <br>
-Risk: Reminder and calendar automation can surface outdated or incorrect schedule information if task data is stale. <br>
-Mitigation: Review pending tasks and exported calendars before relying on them for time-sensitive plans. <br>
+## Use Case:
 
+External users and developers use this skill to manage personal tasks, schedules, reminders, recurring commitments, and calendar exports through an OpenClaw assistant.
 
-## Reference(s): <br>
-- [Server-resolved source repository](https://github.com/luzewen/openclaw-task-planner) <br>
-- [ClawHub skill listing](https://clawhub.ai/luzewen/liuxiaoying-task-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Natural-language guidance, shell command snippets, JSON command results, and Markdown calendar files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task data locally in the user's home directory and can export a Markdown calendar document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Task details and reminder logs may be stored as plaintext files in the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid highly sensitive task titles or notes, and review generated files and permissions before relying on the skill.
+
+Risk: Voice transcription can send audio to OpenAI when transcription is used.
+
+Mitigation: Use transcription only with appropriate consent and avoid recording sensitive audio.
+
+Risk: Reminder automation may run from cron or another scheduler.
+
+Mitigation: Review scheduler entries and command paths before enabling reminders.
+
+## Reference(s):
+
+- [Server-resolved source repository](https://github.com/luzewen/openclaw-task-planner)
+- [ClawHub skill page](https://clawhub.ai/luzewen/skills/liuxiaoying-task-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Natural-language guidance, JSON command results, reminder text, and Markdown calendar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create plaintext task, reminder log, and calendar files in the user's home directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 4.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

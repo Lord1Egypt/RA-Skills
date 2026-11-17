@@ -1,40 +1,54 @@
-## Description: <br>
-Guide to publishing and sharing Hermes skills through ClawHub, including safe login practices, release hygiene, and security scan preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide to publishing and sharing Hermes skills through ClawHub, including safe login practices, release hygiene, and security scan preparation.
 
-## Publisher: <br>
-[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxuclassmate](https://clawhub.ai/user/xuxuclassmate)
 
-## Use Case: <br>
-Developers and skill publishers use this guide to prepare Hermes skills for ClawHub publication, update published versions, handle login tokens safely, and check release hygiene before security scanning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Command examples include publish, delete, and merge operations that can change ClawHub skill state if copied without review. <br>
-Mitigation: Review the target slug, source skill, and account context before running publish, delete, or merge commands. <br>
-Risk: ClawHub tokens can be exposed if pasted into shared command history or stored in files. <br>
-Mitigation: Read tokens privately, pass them through environment variables only for the login command, unset them afterward, and avoid persisting them in shell history. <br>
+## Use Case:
 
+Developers and skill publishers use this skill as a concise checklist for preparing, publishing, updating, and cleaning up Hermes skills on ClawHub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuxuclassmate/skill-publishing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plain guidance only; no executable code is included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Risk: Administrative examples include delete and merge commands that can change published skill state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target slug and intended published state before running delete or merge commands.
+
+Risk: Login examples handle a ClawHub token.
+
+Mitigation: Use the private token-reading pattern only with tokens intentionally granted to the ClawHub CLI, then unset the token variable after login.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuxuclassmate/skills/skill-publishing)
+- [ClawHub publisher profile](https://clawhub.ai/user/xuxuclassmate)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Concise publishing checklist with command examples.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

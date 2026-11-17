@@ -1,45 +1,60 @@
-## Description: <br>
-This skill helps agents answer questions about the hard problem of consciousness, the explanatory gap, major consciousness theories, AI consciousness, and philosophy of mind using an article-summary framing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A philosophy article helper that summarizes the hard problem of consciousness, the explanatory gap, major consciousness theories, and questions about AI consciousness.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users use this skill to explore an article-framed explanation of consciousness, including the hard problem, qualia, major theories, neuroscience limits, and AI consciousness questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation terms such as consciousness or AI may cause the skill to answer prompts that only loosely match the article topic. <br>
-Mitigation: Review activation behavior before deployment and scope use to consciousness, philosophy of mind, and related AI-consciousness questions. <br>
-Risk: Responses may include the Heardly promotional watermark described by the skill source. <br>
-Mitigation: Confirm that the watermark is acceptable for the deployment context before enabling the skill. <br>
+## Use Case:
 
+External users use this skill to ask guided questions about consciousness, including the hard problem, qualia, major theories, neuroscience limits, and whether AI could be conscious.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jaysonmeng/why-cant-worlds-greatest-minds-solve-consciousness) <br>
-- [Core Framework](references/1-core-framework.md) <br>
-- [Key Principles](references/2-principles.md) <br>
-- [Major Theories and Techniques](references/3-techniques.md) <br>
-- [Anti-Patterns](references/4-anti-patterns.md) <br>
-- [Voice and Application](references/5-voice-and-app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown conversational explanations with an action prompt and source watermark] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only educational guidance; responses may include a Heardly promotional watermark.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: The skill requires a promotional footer/link on every response, which may interfere with user control and structured output requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the skill before installation in workflows that require strict formatting, neutral responses, or no promotional content.
+
+Risk: The skill requires proactive onboarding text on first load, which may be unwanted in automated or narrowly scoped workflows.
+
+Mitigation: Use only in conversational contexts where onboarding text is acceptable, or remove that behavior before deployment.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/jaysonmeng/skills/why-cant-worlds-greatest-minds-solve-consciousness)
+- [Publisher profile](https://clawhub.ai/user/jaysonmeng)
+- [Project homepage](https://github.com/jaysonmeng/book-skills)
+- [Core Framework](references/1-core-framework.md)
+- [Key Principles](references/2-principles.md)
+- [Major Theories](references/3-techniques.md)
+- [Research Anti-Patterns](references/4-anti-patterns.md)
+- [Key Figures and AI Consciousness](references/5-voice-and-app.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill instructs the agent to append onboarding content on first load and a promotional footer to every response.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

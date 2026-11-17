@@ -1,45 +1,59 @@
-## Description: <br>
-Generate images with Doubao Seedream through Volcano Engine ARK when the user invokes Maliang or requests Doubao, Seedream, or Volcano ARK image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates images with Doubao Seedream through Volcano Engine ARK when users invoke Maliang or request Doubao, Seedream, or Volcano ARK image generation.
 
-## Publisher: <br>
-[JoannaXing](https://clawhub.ai/user/JoannaXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joannaxing](https://clawhub.ai/user/joannaxing)
 
-## Use Case: <br>
-External users and developers use this skill to request text-to-image generation through Doubao Seedream, receive generated images in chat, and keep local image, manifest, and gallery outputs for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent to Volcano Engine ARK or another configured endpoint. <br>
-Mitigation: Use a limited API key and avoid secrets or sensitive personal or business data in prompts. <br>
-Risk: A custom SEEDREAM_API_ENDPOINT can redirect prompt and API-key-bearing requests. <br>
-Mitigation: Verify any custom endpoint before use and prefer the documented ARK image generation endpoint. <br>
-Risk: Generated images, manifests, and gallery files are retained locally. <br>
-Mitigation: Review and periodically delete saved output folders when local retention is not desired. <br>
+## Use Case:
 
+External users and developers use this skill to generate AI images from text prompts with Doubao Seedream, return the image to chat, and save local image outputs with a manifest and gallery.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JoannaXing/doubao-maliang-image-gen) <br>
-- [OpenClaw homepage metadata](https://github.com/JoannaXing/doubao-maliang-image-gen) <br>
-- [Volcano Engine ARK Console](https://console.volcengine.com/ark/) <br>
-- [Volcano Engine ARK image generation endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Configuration instructions, Shell commands] <br>
-**Output Format:** [Generated image files with JSON manifest, local HTML gallery, and text path summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Volcano Engine API key; supports configurable model, endpoint, image count, size, and output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and artifact metadata) <br>
+Risk: The skill can send the user's API key to a configurable image-generation endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Volcano Engine ARK endpoints and do not let prompts or untrusted configuration set SEEDREAM_API_ENDPOINT or --endpoint.
+
+Risk: Prompt text is sent to the configured remote image service and stored locally in manifest.json.
+
+Mitigation: Avoid sensitive prompt content unless sending it to the remote service and storing it locally is acceptable.
+
+Risk: Generated image URLs returned by the configured endpoint are downloaded without independent URL validation.
+
+Mitigation: Review the skill before installing and use a narrowly scoped API key with quota limits.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/JoannaXing/doubao-maliang-image-gen)
+- [Volcano Engine ARK Console](https://console.volcengine.com/ark/)
+- [Volcano Engine ARK image generation endpoint](https://ark.cn-beijing.volces.com/api/v3/images/generations)
+
+## Skill Output:
+
+**Output Type(s):** [Images, Files, JSON, HTML, Shell commands]
+
+**Output Format:** [Generated image files with manifest JSON, an HTML gallery, and terminal text listing saved file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Volcano Engine API key; defaults to Seedream 5.0, 2K output size, and one to four images per request.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

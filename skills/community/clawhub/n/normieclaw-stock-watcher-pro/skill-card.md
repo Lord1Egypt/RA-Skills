@@ -1,50 +1,67 @@
-## Description: <br>
-Stock Watcher Pro helps an agent monitor a user's stock portfolio and watchlist, summarize SEC filings and market news, produce scheduled briefings, and compare new information against the user's investment thesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Watcher Pro helps an agent monitor a user's portfolio and watchlist, track SEC filings and market news, generate scheduled briefings, and compare new information against the user's investment thesis.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users and individual investors use this skill to organize portfolio monitoring, SEC filing checks, market briefings, and thesis tracking in an agent workspace. The skill is intended for information gathering and research support, not financial advice or trade execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores portfolio positions, cost basis, price targets, watchlists, filing summaries, and investment thesis notes. <br>
-Mitigation: Use it only in a private workspace, keep data directory access restricted, and avoid exposing portfolio queries in shared chats. <br>
-Risk: Local-only privacy claims conflict with dashboard materials that describe syncing financial data to Supabase. <br>
-Mitigation: Leave dashboard or Supabase sync disabled unless remote sync is intentional and configured with proper authentication and row-level security. <br>
-Risk: The package includes shell scripts for scheduling and EDGAR checks. <br>
-Mitigation: Review or fix the scripts before granting exec permission or scheduling access. <br>
-Risk: Market summaries, filing analysis, and thesis evaluations may be incomplete or inaccurate. <br>
-Mitigation: Treat outputs as information only and verify material claims against primary sources before making financial decisions. <br>
+## Use Case:
 
+Individual investors and their agents use this skill to organize portfolio intelligence, monitor public sources such as SEC EDGAR and investor-relations pages, and produce briefings and thesis updates. The skill is for information gathering and research support, not financial advice or trade execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nollio/normieclaw-stock-watcher-pro) <br>
-- [README](README.md) <br>
-- [Security audit notes](SECURITY.md) <br>
-- [Source categories](config/source-categories.md) <br>
-- [Dashboard specification](dashboard-kit/DASHBOARD-SPEC.md) <br>
-- [SEC EDGAR full-text search](https://efts.sec.gov/LATEST/search-index) <br>
-- [SEC company search](https://www.sec.gov/cgi-bin/browse-edgar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefings and analysis, JSON portfolio and source records, shell command snippets, and configuration guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local workspace data files; no trade execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill stores sensitive portfolio holdings, cost basis, thesis notes, and generated briefings locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private workspaces, restrictive file permissions, encrypted storage and backups, and avoid portfolio queries in shared chat contexts.
+
+Risk: Recurring checks can create scheduled automation that reads local portfolio data and performs web requests.
+
+Mitigation: Review or disable heartbeat, cron, or Trigger.dev scheduling before enabling recurring briefings and filing checks.
+
+Risk: Server security evidence reports conflicting local-only and dashboard cloud-sync claims.
+
+Mitigation: Keep dashboard cloud synchronization disabled unless the user explicitly wants Supabase storage and understands what data will be synced.
+
+Risk: Financial summaries and thesis classifications can be wrong or incomplete and are not financial advice.
+
+Mitigation: Verify material filings and market data from primary sources and do not treat outputs as recommendations or trade instructions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nollio/skills/normieclaw-stock-watcher-pro)
+- [README](README.md)
+- [Security audit notes](SECURITY.md)
+- [First-run setup guide](SETUP-PROMPT.md)
+- [Source categories reference](config/source-categories.md)
+- [Dashboard companion specification](dashboard-kit/DASHBOARD-SPEC.md)
+- [SEC EDGAR full-text search endpoint](https://efts.sec.gov/LATEST/search-index)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown briefings, JSON records, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write local portfolio, watchlist, briefing, filing, source, and thesis-log files when the host agent grants file access.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

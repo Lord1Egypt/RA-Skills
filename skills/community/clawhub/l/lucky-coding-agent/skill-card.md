@@ -1,41 +1,53 @@
-## Description: <br>
-Delegate coding tasks to Codex, Claude Code, OpenCode, or Pi agents through PTY-enabled bash sessions for building features, reviewing PRs, refactoring, and longer iterative coding work. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Delegates coding tasks to Codex, Claude Code, OpenCode, or Pi agents through PTY-enabled bash sessions, including background workflows for building, refactoring, and pull request review.
 
-## Publisher: <br>
-[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rmbell09-lang](https://clawhub.ai/user/rmbell09-lang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to delegate larger coding, refactoring, and pull request review tasks to local coding-agent CLIs while keeping work scoped to an explicit project directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous coding-agent CLIs may modify projects, create branches, push changes, or open pull requests using the user's existing accounts. <br>
-Mitigation: Run agents in sandboxed or temporary worktrees, keep task scope narrow, review changes before commits, and require explicit approval before any push, PR, or OpenClaw event command. <br>
-Risk: No-sandbox or auto-approval modes can reduce checkpoints around local file changes. <br>
-Mitigation: Avoid no-sandbox modes unless the workspace is disposable, set timeouts, and monitor background sessions before accepting generated changes. <br>
+## Use Case:
 
+Developers and engineers use this skill to delegate substantial coding, refactoring, and pull request review work to command-line coding agents while tracking long-running background sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rmbell09-lang/lucky-coding-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/rmbell09-lang) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a bash tool with PTY support and one of the configured coding-agent CLIs: claude, codex, opencode, or pi.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release evidence) <br>
+Risk: No-approval coding-agent execution can run broad commands and modify workspace or repository state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer sandboxed or approval-gated modes, avoid documented no-approval workflows, and require human review before dependency installs, commits, pushes, pull request creation, or host notification commands.
+
+Risk: Untrusted issue or pull request text can be copied into shell command templates.
+
+Mitigation: Treat external text as data, quote or isolate it before use, and review generated commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rmbell09-lang/skills/lucky-coding-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose background agent sessions and follow-up monitoring commands.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

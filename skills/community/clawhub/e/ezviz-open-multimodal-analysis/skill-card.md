@@ -1,47 +1,62 @@
-## Description: <br>
-Analyzes Ezviz camera snapshots by capturing device images and sending selected image URLs to Ezviz AI agent services for multimodal understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Ezviz camera snapshots by capturing device images and sending image URLs to an Ezviz AI agent for multimodal scene understanding.
 
-## Publisher: <br>
-[Ezviz-Open](https://clawhub.ai/user/Ezviz-Open) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ezviz-open](https://clawhub.ai/user/ezviz-open)
 
-## Use Case: <br>
-Developers and operators use this skill to run AI analysis over Ezviz camera views for scene understanding, object detection, behavior review, and monitoring workflows. It is intended for environments where the user has valid Ezviz credentials and permission to process the selected camera imagery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected camera snapshots, image URLs, device identifiers, prompts, and Ezviz credentials are sent to Ezviz cloud endpoints. <br>
-Mitigation: Use only with authorized cameras, verify the configured device serials, and ensure the deployment meets privacy and data handling requirements. <br>
-Risk: Ezviz credentials may be read from local OpenClaw config files when environment variables are absent. <br>
-Mitigation: Prefer explicit environment variables and keep Ezviz credentials isolated from unrelated local service credentials. <br>
-Risk: Access tokens are cached in the system temp directory by default. <br>
-Mitigation: Disable token caching with EZVIZ_TOKEN_CACHE=0 on shared or high-security machines and use least-privilege, rotated Ezviz credentials. <br>
+## Use Case:
 
+Developers and operators use this skill to analyze Ezviz camera views for scene understanding, behavior review, object detection, and safety checks across one or more devices.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ezviz-Open/ezviz-open-multimodal-analysis) <br>
-- [Ezviz API reference](references/ezviz-agent-api.md) <br>
-- [Ezviz AccessToken API](https://openai.ys7.com/help/81) <br>
-- [Ezviz device capture API](https://openai.ys7.com/help/687) <br>
-- [Ezviz intelligent agent analysis API](https://openai.ys7.com/help/5006) <br>
-- [Ezviz AI agent console](https://openai.ys7.com/console/aiAgent/aiAgent.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with JSON analysis results and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Analysis content depends on the configured Ezviz AI agent prompt and the captured camera image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles Ezviz camera credentials and access tokens that could expose camera access if stored or shared improperly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege Ezviz application, keep secrets in protected environment or secret-manager configuration, and avoid passing AppSecret on the command line.
+
+Risk: Token caching on shared systems can leave reusable access material in the system temp directory.
+
+Mitigation: Set EZVIZ_TOKEN_CACHE=0 on shared systems or review cache permissions and lifecycle before deployment.
+
+Risk: Camera images and signed image URLs can reveal sensitive visual data or temporary access links.
+
+Mitigation: Review output and logging paths before scheduled use, and remove signed image URLs from normal output and logs.
+
+## Reference(s):
+
+- [Ezviz Agent API Reference](references/ezviz-agent-api.md)
+- [ClawHub Skill Page](https://clawhub.ai/ezviz-open/skills/ezviz-open-multimodal-analysis)
+- [Ezviz Open Platform](https://openai.ys7.com/)
+- [Ezviz Access Token API](https://openai.ys7.com/help/81)
+- [Ezviz Device Capture API](https://openai.ys7.com/help/687)
+- [Ezviz Agent Analysis API](https://openai.ys7.com/help/5006)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Console text with parsed JSON analysis results and setup command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Ezviz credentials, device serials, and an agent ID; captured image URLs are short-lived and analysis shape depends on the configured Ezviz agent.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

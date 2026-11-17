@@ -1,49 +1,66 @@
-## Description: <br>
-GoldRush Foundational API helps agents produce REST API guidance, SDK examples, endpoint choices, and request patterns for historical and near-real-time blockchain data across balances, transactions, NFTs, security approvals, cross-chain activity, pricing, and block data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GoldRush Foundational API — REST API for historical and near-real-time blockchain data across 100+ chains.
 
-## Publisher: <br>
-[gane5h](https://clawhub.ai/user/gane5h) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gane5h](https://clawhub.ai/user/gane5h)
 
-## Use Case: <br>
-Developers, engineers, and agent builders use this skill to select GoldRush Foundational API endpoints and generate implementation guidance for wallet balances, transaction history, NFT holdings, approvals, portfolio tracking, block explorers, compliance checks, and other on-chain data workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can route selected wallet addresses, domains, token contracts, and potentially xpub-style identifiers to GoldRush/Covalent. <br>
-Mitigation: Direct the agent to query only the specific addresses and endpoints needed, and avoid using the skill for data the user does not want sent to the external service. <br>
-Risk: GoldRush API keys may be exposed if placed in URLs, prompts, logs, or other conversation-visible content. <br>
-Mitigation: Use a restricted API key from secure configuration, pass it through Authorization headers, and avoid including secrets in URLs or user-visible prompts. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GoldRush Foundational API Overview](references/overview.md) <br>
-- [Balance Endpoints](references/endpoints-balances.md) <br>
-- [Transaction Endpoints](references/endpoints-transactions.md) <br>
-- [NFT, Security & Cross-Chain Endpoints](references/endpoints-nft-security-crosschain.md) <br>
-- [Utility Endpoints](references/endpoints-utility.md) <br>
-- [LLM Integration Guide](references/integration-guide.md) <br>
-- [Workflows & Decision Trees](references/workflows.md) <br>
-- [GoldRush TypeScript Client SDK](https://www.npmjs.com/package/@covalenthq/client-sdk) <br>
-- [GoldRush API Documentation](https://goldrush.dev/docs/) <br>
-- [GoldRush API Reference](https://goldrush.dev/docs/api-reference/) <br>
-- [Supported Chains](https://goldrush.dev/chains/) <br>
+## Use Case:
 
+Developers and agents use this skill to select and call GoldRush Foundational API endpoints for wallet balances, transaction history, NFT holdings, token approvals, prices, cross-chain activity, block data, and portfolio tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline TypeScript, curl, JSON, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference wallet addresses, domains, token contracts, chain names, pagination settings, quote currencies, and GoldRush API authentication headers supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-3.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Example requests and integration guidance can expose GoldRush API keys if secrets are placed in URLs, prompts, logs, screenshots, or reusable shell commands.
+
+Mitigation: Keep API keys in environment variables or a secret manager and prefer the SDK or Authorization header for authenticated requests.
+
+Risk: Wallet identifiers, xPub/yPub/zPub values, token approvals, portfolio data, and transaction histories can reveal sensitive financial activity.
+
+Mitigation: Use the skill only for intended GoldRush/Covalent queries and handle wallet-derived data as sensitive user information.
+
+Risk: Mixed real-time or WebSocket guidance may be unsuitable for streaming workflows.
+
+Mitigation: Use a dedicated streaming skill for WebSocket or real-time streaming work.
+
+## Reference(s):
+
+- [GoldRush Foundational API Skill Page](https://clawhub.ai/gane5h/skills/goldrush-foundational-api)
+- [GoldRush Foundational API Overview](references/overview.md)
+- [Balance Endpoints](references/endpoints-balances.md)
+- [Transaction Endpoints](references/endpoints-transactions.md)
+- [NFT, Security & Cross-Chain Endpoints](references/endpoints-nft-security-crosschain.md)
+- [Utility Endpoints](references/endpoints-utility.md)
+- [LLM Integration Guide](references/integration-guide.md)
+- [Workflows & Decision Trees](references/workflows.md)
+- [GoldRush Supported Chains](https://goldrush.dev/chains/)
+- [GoldRush TypeScript Client SDK](https://www.npmjs.com/package/@covalenthq/client-sdk)
+- [GoldRush API Documentation](https://goldrush.dev/docs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include REST endpoint choices, SDK snippets, authentication guidance, pagination notes, and response-handling guidance.]
+
+## Skill Version(s):
+
+3.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

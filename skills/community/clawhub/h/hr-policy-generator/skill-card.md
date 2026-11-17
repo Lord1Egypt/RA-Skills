@@ -1,40 +1,53 @@
-## Description: <br>
-Comprehensive HR policy development covering attendance, time-off, overtime, remote work, and compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive HR policy development covering attendance, time-off, overtime, remote work, and compliance.
 
-## Publisher: <br>
-[1970168137](https://clawhub.ai/user/1970168137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1970168137](https://clawhub.ai/user/1970168137)
 
-## Use Case: <br>
-HR teams, people operations staff, and compliance reviewers use this skill to draft attendance, time-off, overtime, remote-work, and related employee policy materials tailored to company size, work arrangement, and jurisdiction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HR and compliance policy text may be incomplete or unsuitable for a specific jurisdiction. <br>
-Mitigation: Have jurisdiction-specific policies reviewed by qualified HR or legal counsel before relying on them. <br>
-Risk: Policy drafting inputs may include sensitive employee or workplace information. <br>
-Mitigation: Avoid entering unnecessary personal employee information when using the skill. <br>
+## Use Case:
 
+HR, people operations, and compliance teams use this skill to draft attendance, leave, overtime, remote-work, exception-handling, compliance, and employee communication materials tailored to company size, work arrangement, and jurisdiction.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1970168137/hr-policy-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text policy sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces HR policy documents, legal compliance checklists, exception handling frameworks, and employee communication plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated HR policies may be incorrect, outdated, or unsuitable for a specific jurisdiction or workforce.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against current local labor law and obtain qualified HR or legal review before adopting them.
+
+Risk: Draft policies can affect employees and operational compliance if adopted without review.
+
+Mitigation: Use the skill as a drafting aid and require human approval before publication or enforcement.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/1970168137/skills/hr-policy-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or structured text policy drafts, checklists, frameworks, and rollout plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed against current local labor law and qualified HR or legal guidance before adoption.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

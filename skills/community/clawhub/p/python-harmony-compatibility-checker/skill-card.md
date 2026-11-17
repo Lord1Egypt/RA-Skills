@@ -1,44 +1,60 @@
-## Description: <br>
-Checks Python library compatibility with HarmonyOS by downloading source from GitHub/PyPI, detecting Windows-specific dependencies, running pytest, and generating compatibility reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check Python library compatibility with HarmonyOS by downloading source from GitHub or PyPI, detecting Windows-specific dependencies, running pytest, and generating compatibility reports.
 
-## Publisher: <br>
-[terryKing1992](https://clawhub.ai/user/terryKing1992) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terryking1992](https://clawhub.ai/user/terryking1992)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess whether Python packages or requirements files are suitable for HarmonyOS deployment by checking platform-specific dependencies, running available tests, and reviewing generated compatibility reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs third-party Python package code and tests locally. <br>
-Mitigation: Run it only in a disposable, low-privilege environment with no secrets in environment variables; do not use sudo or administrator privileges. <br>
-Risk: Untrusted package names or requirements files can cause unsafe local execution paths. <br>
-Mitigation: Avoid using it on untrusted package names or requirements files, and review package sources before running compatibility checks. <br>
-Risk: Compatibility reports may be incomplete, environment-dependent, or advisory rather than authoritative. <br>
-Mitigation: Review generated reports manually, distinguish environment failures from code failures, and validate findings in the target HarmonyOS environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to check whether Python packages are suitable for HarmonyOS deployment. It reports installation status, platform-specific dependency findings, pytest results, and compatibility conclusions for one or more packages.
 
-## Reference(s): <br>
-- [Python Environment Setup on HarmonyOS](artifact/references/python-env-setup.md) <br>
-- [Python Package Compatibility Database for HarmonyOS](artifact/references/compatibility-database.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/terryKing1992/python-harmony-compatibility-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON compatibility reports with advisory text and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include per-package compatibility status, pytest results, environment issue classification, and platform dependency findings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The checker can download and execute third-party package code with broad local access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable, low-privilege container or VM with no secrets, no sensitive host directories mounted, and constrained network access.
+
+Risk: Compatibility reports may overstate or understate real HarmonyOS readiness.
+
+Mitigation: Treat reports as advisory and review failed tests, environment issues, and package-specific constraints before deployment decisions.
+
+Risk: Suggested privileged package installation commands can increase host exposure.
+
+Mitigation: Do not run suggested sudo pip commands for arbitrary packages; prefer isolated environments and least-privilege package installs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terryking1992/skills/python-harmony-compatibility-checker)
+- [Python Environment Setup on HarmonyOS](artifact/references/python-env-setup.md)
+- [Python Package Compatibility Database for HarmonyOS](artifact/references/compatibility-database.md)
+- [Example numpy Compatibility Report](artifact/compatibility_report_numpy-2.2.1_20260309_234148.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown and JSON compatibility reports, with terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include package status, pass rates, detected platform dependencies, per-test-case results, and advisory recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact manifest reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

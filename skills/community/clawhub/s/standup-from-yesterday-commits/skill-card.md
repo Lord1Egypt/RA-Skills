@@ -1,41 +1,58 @@
-## Description: <br>
-Generates a 30-second Slack-ready standup update from yesterday's GitHub commits, PR activity, reviews, and Jira tickets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a 30-second standup update from yesterday's git activity: commits, PRs opened, merged, or reviewed, and Jira tickets touched.
 
-## Publisher: <br>
-[rabgpt](https://clawhub.ai/user/rabgpt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rabgpt](https://clawhub.ai/user/rabgpt)
 
-## Use Case: <br>
-Developers use this skill before daily standup to gather their recent GitHub and Jira activity and synthesize it into concise yesterday, today, and blockers bullets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Standup drafts may expose GitHub or Jira work details if posted to the wrong Slack workspace, channel, or audience. <br>
-Mitigation: Preview the message, confirm the destination and audience, and redact sensitive repository or ticket details before posting. <br>
-Risk: Scheduled or automatic posting can share recurring updates without a fresh review. <br>
-Mitigation: Avoid auto-posting unless the workspace, channel, audience, and preview behavior have been intentionally approved. <br>
+## Use Case:
 
+Developers and engineers use this skill before daily standup to gather recent GitHub and Jira activity and turn it into a concise Slack-ready yesterday, today, and blockers update.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rabgpt/standup-from-yesterday-commits) <br>
-- [Implexa homepage](https://implexa.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance] <br>
-**Output Format:** [Slack mrkdwn with yesterday, today, and blockers sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise bullets intended for a roughly 30-second standup update; each bullet should be 12 words or fewer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires connected tools with access to GitHub and Jira activity.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable and review the generated standup before sharing it.
+
+Risk: The artifact includes optional curl-to-bash installer guidance.
+
+Mitigation: Do not run the installer unless it has been independently trusted and inspected.
+
+Risk: The artifact mentions Personal Access Token fallback for GitHub authentication.
+
+Mitigation: Prefer OAuth where possible and use only the minimum token access needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rabgpt/skills/standup-from-yesterday-commits)
+- [Implexa homepage](https://implexa.ai)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, API calls, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Slack-ready standup text with brief yesterday, today, and blockers sections.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

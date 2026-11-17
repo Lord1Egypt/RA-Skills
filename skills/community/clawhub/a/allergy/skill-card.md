@@ -1,40 +1,58 @@
-## Description: <br>
-Log allergens, track reactions, and chart symptom patterns over time. Use when identifying triggers, preparing reports, or setting reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log allergens, track reactions, and chart symptom patterns over time. Use when identifying triggers, preparing reports, or setting reminders.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users use Allergy to record allergens and symptoms, track reactions, review patterns, set reminders, and export local records for personal reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Allergy and symptom notes may include sensitive health information stored in plaintext under ~/.local/share/allergy or in exported files. <br>
-Mitigation: Use the skill only on a trusted account and device, avoid entering unrelated secrets, periodically review or delete the local data directory, and treat exports as sensitive health records. <br>
+## Use Case:
 
+External users can use this skill to keep local notes about allergens, reactions, reminders, and symptom patterns for personal tracking and report preparation. It should be treated as a simple local logger rather than a medical or allergy-analysis tool.
 
-## Reference(s): <br>
-- [ClawHub Allergy release page](https://clawhub.ai/ckchzh/allergy) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [BytesAgain feedback](https://bytesagain.com/feedback/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, files, shell commands, guidance] <br>
-**Output Format:** [Command-line text with optional JSON, CSV, or plain-text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local records under ~/.local/share/allergy and can export those records to files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0) <br>
+Risk: Allergy and wellness notes may contain sensitive health-style information and are stored as plaintext local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on a trusted local machine, review permissions on ~/.local/share/allergy, and avoid entering sensitive medical details unless plaintext storage is acceptable.
+
+Risk: The export interface is described as available but the security summary flags it as misleading or broken.
+
+Mitigation: Review export behavior before relying on it for backup or portability, and manually inspect local log files when preserving records.
+
+Risk: The skill may be mistaken for medical or allergy-analysis software.
+
+Mitigation: Use it only as a personal logging aid and rely on qualified medical guidance for diagnosis, treatment, or emergency decisions.
+
+## Reference(s):
+
+- [Allergy skill page](https://clawhub.ai/ckchzh/skills/allergy)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, files, guidance]
+
+**Output Format:** [Plain text command output and Markdown guidance; local log files with optional JSON, CSV, or TXT export behavior described by the artifact.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores entries locally under ~/.local/share/allergy.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence; artifact files declare 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

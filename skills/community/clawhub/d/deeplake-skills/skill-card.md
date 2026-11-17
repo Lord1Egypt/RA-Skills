@@ -1,50 +1,66 @@
-## Description: <br>
-SDK for ingesting data into Deeplake managed tables. Use when users want to store, ingest, or query data in Deeplake. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SDK for ingesting data into Deeplake managed tables for storing, ingesting, and querying Deeplake data.
 
-## Publisher: <br>
-[kaghni](https://clawhub.ai/user/kaghni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaghni](https://clawhub.ai/user/kaghni)
 
-## Use Case: <br>
-Developers and data engineers use this skill to help agents generate Deeplake Python and TypeScript workflows for ingesting files and structured datasets, querying managed tables, creating indexes, and opening tables for ML training or streaming. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to upload local files or datasets into a Deeplake cloud workspace. <br>
-Mitigation: Use a least-privileged Deeplake API key, start with a test workspace, and review the files or datasets selected for ingestion before approving the operation. <br>
-Risk: Table and workspace management examples include destructive or state-changing actions such as dropping tables. <br>
-Mitigation: Require explicit approval before drop_table, workspace-management, index-management, or other state-changing operations, especially in production workspaces. <br>
-Risk: Raw SQL guidance can produce mutations or broad queries against managed Deeplake tables. <br>
-Mitigation: Review SQL before execution, prefer parameterized queries, and apply stricter approval for any non-read query or query over sensitive datasets. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent install and apply Deeplake Python or TypeScript SDK workflows for ingesting local files, structured data, embeddings, and domain datasets, then querying or managing Deeplake tables.
 
-## Reference(s): <br>
-- [Deeplake ClawHub skill page](https://clawhub.ai/kaghni/deeplake-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/kaghni) <br>
-- [Deeplake skills repository](https://github.com/activeloopai/deeplake-skills) <br>
-- [Deeplake homepage](https://deeplake.ai) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Examples reference](artifact/examples.md) <br>
-- [Formats reference](artifact/formats.md) <br>
-- [SQL reference](artifact/reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python, TypeScript, SQL, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill can guide an agent to use a Deeplake API key to read selected local files and upload data or derived artifacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped token and require explicit confirmation before uploading sensitive data.
+
+Risk: The skill includes table deletion actions through drop_table and dropTable.
+
+Mitigation: Require explicit confirmation before any destructive table-management action.
+
+Risk: The skill permits configured API endpoints, including plaintext HTTP endpoints for local development.
+
+Mitigation: Use HTTPS endpoints except for trusted local development environments.
+
+Risk: Unpinned package installation may change behavior over time.
+
+Mitigation: Pin dependencies where possible before using the skill in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/kaghni/skills/deeplake-skills)
+- [Deeplake Skills Repository](https://github.com/activeloopai/deeplake-skills)
+- [Deeplake](https://deeplake.ai)
+- [Reference Guide](artifact/reference.md)
+- [Examples](artifact/examples.md)
+- [Format Classes](artifact/formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, Python, TypeScript, and SQL code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include authenticated API usage guidance requiring DEEPLAKE_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

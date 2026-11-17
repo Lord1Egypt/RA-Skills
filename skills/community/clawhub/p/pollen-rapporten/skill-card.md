@@ -1,42 +1,55 @@
-## Description: <br>
-Fetches Swedish pollen forecasts from Pollenrapporten for mapped locations, including severity levels and optional grass pollen alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches current pollen forecasts for Swedish locations from Pollenrapporten, including severity levels and optional grass pollen alert guidance.
 
-## Publisher: <br>
-[lauroBRCWB](https://clawhub.ai/user/lauroBRCWB) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laurobrcwb](https://clawhub.ai/user/laurobrcwb)
 
-## Use Case: <br>
-Users ask an agent for current pollen conditions in Sweden by city or nearby reporting region. The skill returns pollen severity levels, forecast text, and optional grass pollen alerts for allergy planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Sweden <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Forecast results depend on a disclosed external API and nearest-region mappings, so data may be unavailable, stale, or less precise for smaller towns. <br>
-Mitigation: Check the reported region and date range before relying on the forecast, and retry or consult Pollenrapporten directly if live data is unavailable. <br>
-Risk: Grass pollen alerts include medication and exposure suggestions that may be mistaken for medical advice. <br>
-Mitigation: Treat alert text as informational allergy-planning guidance and follow clinician, medication-label, or local health advice for medical decisions. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve Swedish pollen forecasts for supported cities and nearby monitoring regions. It can summarize current pollen levels and provide general grass pollen precautions, but it should not be treated as personalized medical advice.
 
-## Reference(s): <br>
-- [Pollenrapporten API](https://api.pollenrapporten.se/v1/) <br>
-- [Region mappings](references/regions.json) <br>
-- [ClawHub skill page](https://clawhub.ai/lauroBRCWB/pollen-rapporten) <br>
+### Deployment Geography for Use:
 
+Global, for Swedish pollen forecast coverage.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text forecast summary with severity labels and optional alert lines] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a city name; optional --alert mode adds grass pollen guidance. Live results depend on api.pollenrapporten.se availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Forecast lookups contact api.pollenrapporten.se and depend on that external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review network access before installation and expect output quality to depend on the API's availability and freshness.
+
+Risk: Grass pollen alerts could be mistaken for personalized medical advice.
+
+Mitigation: Present alert text as general allergy guidance only and defer medical decisions to qualified clinicians.
+
+## Reference(s):
+
+- [Pollenrapporten API](https://api.pollenrapporten.se/v1/)
+- [Region mappings](references/regions.json)
+- [ClawHub skill page](https://clawhub.ai/laurobrcwb/skills/pollen-rapporten)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text terminal output with pollen levels, forecast summaries, and optional grass pollen alert guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Calls api.pollenrapporten.se at runtime and uses bundled Swedish region mappings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

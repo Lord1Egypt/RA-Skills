@@ -1,39 +1,54 @@
-## Description: <br>
-Ichimoku reference tool. Use when working with ichimoku in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ichimoku is advertised as a finance reference skill that returns command-specific Markdown guidance, formulas, risks, instruments, strategies, glossary entries, and checklists.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Agents and finance-focused users use this skill to retrieve concise Ichimoku reference material, including formulas, regulatory notes, risk categories, instruments, strategies, glossary terms, and checklist items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could mistake generic finance, strategy, regulatory, or compliance reference text for professional financial or legal advice. <br>
-Mitigation: Treat the output as general reference material and have qualified professionals review decisions, compliance obligations, and trading or investment actions. <br>
+## Use Case:
 
+Finance practitioners and agents can use this skill to retrieve quick Ichimoku-oriented reference sections and checklists. Security evidence says the packaged content appears generic and should be reviewed before it is used for trading, compliance, or financial analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/ichimoku) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static finance reference output; no external APIs or credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill is advertised as an Ichimoku reference, but security evidence says the packaged content is mostly generic finance placeholder material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as generic placeholder guidance until a qualified reviewer corrects and verifies the Ichimoku-specific content.
+
+Risk: Generic finance references may mislead trading, compliance, or financial analysis.
+
+Mitigation: Do not rely on this skill for trading, investment, regulatory, or compliance decisions without independent domain review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/ichimoku)
+- [Publisher homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown reference text printed by Bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-specific static reference output; no external API calls or credential requirements detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Agent Core provides memory, heartbeat automation, cron patterns, safety rules, and workspace configuration guidance for building autonomous AI agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Core is a third-party ClawKits listing for an agent workspace kit covering persistent memory, heartbeat automation, cron patterns, safety rules, and drop-in workspace configurations.
 
-## Publisher: <br>
-[nogravedev](https://clawhub.ai/user/nogravedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nogravedev](https://clawhub.ai/user/nogravedev)
 
-## Use Case: <br>
-External developers and agent builders use this skill as a preview of a commercial kit for configuring agents with persistent memory, scheduled check-ins, safety rules, and workspace templates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The listing is a preview or advertisement for an external automation kit rather than a reviewed automation system. <br>
-Mitigation: Treat it as promotional until the full kit is obtained and reviewed; do not deploy downloaded materials without inspecting their contents. <br>
-Risk: The advertised kit includes persistent memory and account-facing workflows that could expose sensitive data or trigger unintended actions. <br>
-Mitigation: Inspect memory paths, cron jobs, account integrations, safety rules, approvals, logging, disable controls, and cleanup steps before granting access to email, calendar, deployment, trading, messaging, or similar accounts. <br>
+## Use Case:
 
+External developers and agent builders use this listing to evaluate and access a workspace configuration kit for agent memory, scheduled check-ins, automation patterns, and guardrails.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nogravedev/agent-core) <br>
-- [ClawKits site](https://clawkits.xyz) <br>
-- [Agent Core full kit](https://clawkits.gumroad.com/l/agent-core) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with links and configuration-oriented descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preview stub; external kit contents require separate review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: The linked paid kit or bundle is external to the reviewed artifact and may contain unreviewed automation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect all files from the paid kit before use and review any scripts, configuration, scheduled jobs, and permissions separately.
+
+Risk: Heartbeat automation, persistent memory, and cron patterns can act without repeated prompts if enabled.
+
+Mitigation: Require explicit opt-in before granting email, calendar, trading, deployment, cron, or persistent-memory access, and define retention and kill-switch behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nogravedev/skills/agent-core)
+- [ClawKits](https://clawkits.xyz)
+- [Agent Core Product Page](https://clawkits.gumroad.com/l/agent-core)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown listing with external links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The published artifact is promotional Markdown; the full paid kit is external and should be reviewed separately before use.]
+
+## Skill Version(s):
+
+1.2.0 (source: evidence.release.version and metadata.openclaw.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

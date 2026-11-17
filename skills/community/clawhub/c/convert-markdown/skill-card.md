@@ -1,45 +1,63 @@
-## Description: <br>
-基于 MarkItDown 将 PDF、Word、PowerPoint、Excel、图片和音频等文档批量转换为 Markdown，用于文档数字化、知识库构建和内容提取。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文档处理与转换技能，基于 MarkItDown 工具，支持将 PDF、Word、PowerPoint、Excel、图片、音频等多种格式文件批量转换为 Markdown。
 
-## Publisher: <br>
-[byteuser1977](https://clawhub.ai/user/byteuser1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byteuser1977](https://clawhub.ai/user/byteuser1977)
 
-## Use Case: <br>
-Developers, knowledge-base maintainers, and documentation teams use this skill to convert source documents and media-derived text into Markdown files for search, archival, and downstream content workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted documents may contain sensitive content or metadata from source files, images, or media. <br>
-Mitigation: Use narrow input and output folders, avoid sensitive files when possible, and review generated Markdown before sharing. <br>
-Risk: Optional URL, media, OCR, and transcription features may introduce network behavior or additional local tooling. <br>
-Mitigation: Install the skill in a virtual environment and enable optional dependencies only when their behavior is acceptable for the target workflow. <br>
+## Use Case:
 
+Developers, knowledge-base maintainers, and documentation teams use this skill to convert source documents and media into Markdown for indexing, extraction, and downstream editing workflows.
 
-## Reference(s): <br>
-- [MarkItDown API Reference](references/API_REFERENCE.md) <br>
-- [Supported Formats](references/FORMATS.md) <br>
-- [PDF Configuration Guide](references/PDF_CONFIG.md) <br>
-- [MarkItDown PyPI](https://pypi.org/project/markitdown/) <br>
-- [MarkItDown GitHub Repository](https://github.com/microsoft/markitdown) <br>
-- [ClawHub Skill Page](https://clawhub.ai/byteuser1977/convert-markdown) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are written as UTF-8 Markdown and may preserve directory structure during batch conversion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: Document conversion reads user-selected files and may process sensitive PDFs, spreadsheets, images, audio, or OCR output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run conversions in a limited input folder and review generated Markdown or index files before sharing them.
+
+Risk: Broad dependency installation and unpinned packages can introduce supply-chain variability.
+
+Mitigation: Install in a virtual environment and prefer exact pinned package versions or a lockfile.
+
+Risk: Overwrite options can replace existing output files.
+
+Mitigation: Confirm output paths before enabling overwrite behavior.
+
+## Reference(s):
+
+- [MarkItDown API 参考](references/API_REFERENCE.md)
+- [支持的格式详细说明](references/FORMATS.md)
+- [PDF 处理配置指南](references/PDF_CONFIG.md)
+- [MarkItDown PyPI](https://pypi.org/project/markitdown/)
+- [Microsoft MarkItDown GitHub Repository](https://github.com/microsoft/markitdown)
+- [MarkItDown MCP Server Documentation](https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp)
+- [ClawHub Skill Page](https://clawhub.ai/byteuser1977/skills/convert-markdown)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, command examples, Python snippets, and generated Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-file and recursive directory conversion, optional overwrite behavior, OCR-dependent PDF and image extraction, and optional audio transcription dependencies.]
+
+## Skill Version(s):
+
+1.0.3 (source: server evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

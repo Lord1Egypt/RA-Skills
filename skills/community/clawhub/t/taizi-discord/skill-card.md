@@ -1,40 +1,53 @@
-## Description: <br>
-Controls Discord through Clawdbot so agents can send and manage messages, reactions, stickers, emojis, polls, threads, pins, searches, server information, and moderation actions in DMs or channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Discord via Clawdbot to send messages, manage reactions, stickers, emojis, polls, threads, pins, search, information lookups, and moderation in channels or DMs.
 
-## Publisher: <br>
-[fresh3](https://clawhub.ai/user/fresh3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fresh3](https://clawhub.ai/user/fresh3)
 
-## Use Case: <br>
-Developers and workspace operators use this skill to let an agent interact with Discord bot workflows: posting updates, reacting to messages, managing polls, threads, pins, and searches, checking server context, uploading media, and performing gated role or moderation actions when enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can let an agent act through a Discord bot with broad message, search, upload, and server-state actions. <br>
-Mitigation: Limit the bot to intended servers and channels, disable unneeded discord.actions.* groups, and require explicit approval before public posts, edits, deletions, pins, searches, file uploads, or member-affecting actions. <br>
-Risk: Role and moderation actions can affect Discord members if enabled. <br>
-Mitigation: Keep roles and moderation disabled unless required, and grant only the minimum bot permissions needed for the workflow. <br>
+## Use Case:
 
+External users and developers use this skill to operate a configured Clawdbot Discord integration for routine Discord messaging, collaboration, content upload, search, information lookup, and permission-gated moderation tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fresh3/taizi-discord) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON action payloads, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples for Discord action payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Discord action groups can be disabled; role and moderation actions are disabled by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence.release.version) <br>
+Risk: The skill can guide an agent to read, post, delete, and upload content in Discord.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where the Clawdbot Discord permissions match the intended use, and disable unneeded action groups such as messages, search, uploads, roles, and moderation.
+
+Risk: Moderation, deletion, direct-message, and local-file upload actions can affect users or expose content if used without review.
+
+Mitigation: Require explicit operator review before deleting messages, moderating users, sending DMs, or uploading local files.
+
+## Reference(s):
+
+- [ClawHub Discord skill page](https://clawhub.ai/fresh3/skills/taizi-discord)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with JSON action examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance includes Discord action payloads and permission-gating notes for messages, uploads, roles, and moderation.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

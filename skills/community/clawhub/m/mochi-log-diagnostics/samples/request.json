@@ -1,0 +1,6 @@
+{
+  "action": "analyze",
+  "files": [
+    "samples/access.log"
+  ]
+}

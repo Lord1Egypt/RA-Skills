@@ -23,7 +23,7 @@ description: "Unified daily timeout entry for AK Data single job type: task time
 
 > 这是入口 Skill，不直接替代底层统计逻辑。
 >
-> - 主任务超时底层能力：`ak-data-task-timeout-created-report`
+> - 主任务超时底层能力：`ak-data-taREDACTED-SECRET`
 > - 爬虫超时底层能力：`ak-data-depart-timeout-log-report`
 >
 > 本 Skill 负责：**统一调度、统一输出、统一追问接口**。

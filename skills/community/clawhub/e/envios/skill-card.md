@@ -1,40 +1,51 @@
-## Description: <br>
-Envios helps agents answer customer shipping questions about delivery coverage, delivery timing, package tracking, address validation, and damaged or failed deliveries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Usar cuando el usuario pregunte sobre envíos, cómo enviar un pedido, tiempos de entrega, zonas de cobertura, seguimiento de paquete, código de seguimiento, moto, Andreani, OCA, King Flex, paquete demorado, paquete perdido, paquete dañado, o qué pasa si no estoy cuando llega el envío.
 
-## Publisher: <br>
-[jalfargentina](https://clawhub.ai/user/jalfargentina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jalfargentina](https://clawhub.ai/user/jalfargentina)
 
-## Use Case: <br>
-Customer-support agents use this skill to answer shipping questions for orders in Argentina, including delivery coverage, estimated delivery windows, package tracking, address validation, and escalation for damaged packages. <br>
-
-### Deployment Geography for Use: <br>
-Argentina, excluding Tierra del Fuego <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Customer delivery records, addresses, and tracking information may be exposed or mishandled. <br>
-Mitigation: Use the skill only where the operator is authorized to access the relevant carrier accounts and customer delivery records, and share the minimum necessary delivery information through approved business channels. <br>
-Risk: Unclear or incorrect address handling can cause failed deliveries, delays, or extra shipping charges. <br>
-Mitigation: Validate unclear addresses before dispatch, confirm corrected details with the customer, and escalate cases outside the documented workflow to the owner. <br>
-Risk: Damaged-package cases can be resolved inconsistently if handled without review. <br>
-Mitigation: Request photo evidence from the customer and wait for owner direction before offering a resolution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Customer-support agents and store operators use this skill to answer shipping questions for Argentina orders, including coverage, delivery times, courier routing, tracking, address validation, and damaged-package escalation.
+
+### Deployment Geography for Use:
+
+Argentina, excluding Tierra del Fuego
+
+## Known Risks and Mitigations:
+
+Risk: The skill uses customer addresses, WhatsApp, courier accounts, and Google Maps as part of shipping support workflows.
+
+Mitigation: Limit use to authorized staff or agents and verify that this Argentina shipping-support context is intended before using external courier or mapping services.
+
+Risk: Overlapping order, refund, payment, or escalation skills could produce conflicting customer guidance.
+
+Mitigation: Narrow the trigger or routing behavior when adjacent commerce-support skills are installed.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Markdown or plain-language response guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports customer-facing shipping replies and escalation instructions; does not execute carrier actions.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance and customer-facing response text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Spanish-language shipping support guidance for Argentina courier workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

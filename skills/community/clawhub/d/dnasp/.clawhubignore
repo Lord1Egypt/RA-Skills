@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+pytest-cache-files-*/
+.DS_Store
+dnasp_output*/
+new_*run/

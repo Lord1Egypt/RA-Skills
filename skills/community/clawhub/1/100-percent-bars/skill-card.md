@@ -1,39 +1,49 @@
-## Description: <br>
-Compare composition across segments using 100% stacked bars. Use for competitive analysis, cost structure comparison, and portfolio composition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare composition across segments using 100% stacked bars. Use for competitive analysis, cost structure comparison, and portfolio composition.
 
-## Publisher: <br>
-[linuszz](https://clawhub.ai/user/linuszz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linuszz](https://clawhub.ai/user/linuszz)
 
-## Use Case: <br>
-Business analysts, strategists, and consultants use this skill to structure 100% stacked bar analyses that compare category composition across segments or time periods. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive business or financial data may be included in chart inputs or generated analysis. <br>
-Mitigation: Use approved data sources, avoid adding unnecessary confidential details, and review outputs before sharing. <br>
-Risk: Incorrect segment totals, labels, or source data can make 100% comparisons misleading. <br>
-Mitigation: Verify source data, totals, percentages, and annotations before relying on the chart. <br>
+## Use Case:
 
+Business analysts, consultants, and strategy teams use this skill to structure 100% stacked bar analyses for comparing segment composition across markets, portfolios, costs, or time periods.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown with data tables, chart specifications, and insight sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or external tool calls are required by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can be invoked for broad composition or segmentation requests, which may lead to overgeneral analysis if inputs are incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the source data, totals, labels, and annotations before using the generated chart guidance in business decisions.
+
+## Reference(s):
+
+- [100 Percent Bars on ClawHub](https://clawhub.ai/linuszz/skills/100-percent-bars)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces data-table structure, chart specifications, key insights, and trend-analysis guidance for 100% stacked bar outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

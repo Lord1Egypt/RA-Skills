@@ -1,11 +1,15 @@
 ---
 name: google-stitch-workflow
-version: 1.8.0
+version: 1.9.1
 description: Use when working with Google Stitch through a disciplined MCP-first workflow. Prefer this skill for project inspection, controlled screen generation and editing, prompt structuring, and failure recovery.
 ---
 
 # Google Stitch Workflow
 
+> **v1.9.1 — field lessons.** Small text edits may not persist (verify with `download_file`), API lists lag (keep response IDs), timed-out calls can finish later (check the web UI before regenerating), and invented UI claims are review defects.
+>
+> **v1.9.0 — current official Stitch MCP surface.** Tool lists, parameters and the Claude Code adapter now match the official Stitch MCP server as checked on 2026-11-08 (`download_file`, `generate_variants` options, DESIGN.md upload, `delete_project`). Wrapper-only tools are marked unverified.
+>
 > **v1.8.0 — structure-first Stitch workflow.** This version keeps the behavior-tested MCP rules and adds stronger anti-generic design gates: structural fingerprint, honest proof, token discipline, and no decorative fake chrome.
 
 Use Google Stitch as a design exploration and screen-iteration workflow, not as a blind code generator.
@@ -59,39 +63,22 @@ This skill is written for a capability-first Stitch setup.
 The skill assumes Stitch is already available or that the user explicitly wants help validating setup.
 Do not turn every Stitch task into a setup task.
 
-Baseline MCP tools usually include:
+Official Stitch MCP tools (checked against the live schema on 2026-11-08):
 
-- `list_projects`
-- `get_project`
-- `list_screens`
-- `get_screen`
-- `create_project`
-- `list_design_systems`
-- `create_design_system`
-- `update_design_system`
-- `apply_design_system`
-- `generate_screen_from_text`
-- `edit_screens`
-- `generate_variants`
+- read: `list_projects`, `get_project`, `list_screens`, `get_screen`, `list_design_systems`, `download_file`
+- generate/edit: `create_project`, `generate_screen_from_text`, `edit_screens`, `generate_variants`
+- design system: `create_design_system`, `update_design_system`, `apply_design_system`, `upload_design_md`, `create_design_system_from_design_md`
+- destructive: `delete_project`
 
-Optional wrapper tools may include:
-
-- `fetch_screen_image`
-- `fetch_screen_code`
-- `generation_status`
-- `list_generations`
-- `get_screen_image`
-- `get_screen_code`
-- `build_site`
+Tools from older wrapper setups that the official server does not expose (treat as unverified): `fetch_screen_image`, `fetch_screen_code`, `get_screen_image`, `get_screen_code`, `generation_status`, `list_generations`, `build_site`.
 
 Do not assume the browser UI, public marketing materials, and MCP surface expose the same operations.
-Treat wrapper enhancements as optional until the active environment proves they exist.
 
 Important retrieval nuance:
 
-- `list_screens` and `get_screen` often already expose `screenshot.downloadUrl` and `htmlCode.downloadUrl`
-- wrapper code/image tools are conveniences, not the only valid handoff path
-- `build_site` and similar site generators are web-oriented helpers, not direct Flutter/React Native handoff tools
+- `list_screens` and `get_screen` return `screenshot.name` and `htmlCode.name`; pass those to `download_file` to get the image or HTML
+- do not fetch `downloadUrl` directly: it needs credentials and returns a JSON wrapper
+- site generators are web-oriented helpers, not direct Flutter/React Native handoff tools
 
 ## When to use this skill
 
@@ -131,7 +118,7 @@ Important nuance:
 - **trust screenshots over status text** — Stitch may report that constraints were satisfied even when the image still misses visible content; inspect the screenshot before accepting
 - **move to code only after one direction is clearly accepted** — confirm the visually reviewed canonical screen before export or translation; move to code only after the screen family is coherent
 - **treat exports as seeds, not finished apps** — generated code can preserve hierarchy and tokens, but production work still needs data, state, accessibility, responsiveness, and tests
-- **expect new screen IDs after edits** — MCP `edit_screens` may create a revised screen instead of mutating the original; report and continue from the new screen ID
+- **check what an edit returned** — a structural `edit_screens` change usually returns new screen IDs (continue from those); a small text edit can come back as DOM operations on the same screen and not be saved, so verify it with `download_file`
 - **stop repeating failing payloads** — do not brute-force retries with the same parameters
 - **recover from unavailable edits deliberately** — if `edit_screens` returns a transient service error, check `list_screens` for a newly created screen; if none exists, either retry once with a smaller edit or regenerate a new candidate with the failed constraints moved to the top of the prompt
 - **act as creative director** — Stitch is the designer, you provide the direction
@@ -154,47 +141,29 @@ This skill intentionally separates three concerns that are often conflated:
 can return a circular-reference error (`can't resolve reference #/$defs/ScreenInstance`) even when
 every tool call succeeds. This is a known MCP server-side issue, not an auth or connectivity failure.
 
-**The reliable handshake is a direct tool call through the active agent runtime:**
+**The reliable handshake is one direct `list_projects` call through the active agent runtime** (for example `mcp__stitch__list_projects` in Claude Code). If it returns successfully, Stitch is operational. Proceed.
+
+Its output is very large (full design theme and `designMd` per project). Summarize it with `jq` or a short script instead of reading it whole:
 
 ```bash
-# Mavis / MiniMax Agent example
-mavis mcp call stitch list_projects '{}'
-
-# mcporter-style example
-mcporter call stitch.list_projects '{}'
+jq -r '.projects[] | [.name, .title, (.screenInstances | length), .updateTime] | @tsv' list_projects.json
 ```
 
-For other agents, call the equivalent `stitch.list_projects` tool directly. If it returns successfully, Stitch is operational. Proceed.
-
-Then probe optional generation tracking tools through the same runtime adapter:
-
-```bash
-# Mavis / MiniMax Agent examples
-mavis mcp call stitch generation_status '{"operation": "last"}'  # expected to fail in some environments
-mavis mcp call stitch list_generations '{"projectId": "<your-project-id>"}'  # same
-
-# mcporter-style examples
-mcporter call stitch.generation_status '{"operation": "last"}'
-mcporter call stitch.list_generations '{"projectId": "<your-project-id>"}'
-```
-
-If both return "tool not found", add to your operating state: "No generation_status / list_generations — list_screens polling is the only tracking path".
+The official server has no generation-tracking tools; `list_screens` / `get_screen` polling is the tracking path.
 
 Calibrate latency only when useful: make one trivial generate call to observe the timeout threshold.
 
-Some wrappers auto-detect project IDs; still confirm the active project before editing or generating.
+Confirm the active project with the user before editing or generating.
 
 ## Runtime adapters
 
-This skill is agent-neutral. It requires access to a configured Stitch MCP server, not a specific agent runtime.
+This skill is agent-neutral. It requires access to a configured Stitch MCP server, not a specific agent runtime. Tool names are the same everywhere; only the call syntax differs.
 
-Use whichever adapter is available:
+- Claude Code: once the user has added the server (for example a user-scope HTTP MCP server named `stitch` at `https://stitch.googleapis.com/mcp`), tools appear as `mcp__stitch__<tool>`. Load deferred tool schemas before the first call and read the parameters from them.
+- Codex, Cursor, OpenClaw, or another agent: use that runtime's MCP tool-call interface for the same tool names.
+- CLI-style MCP clients: call `stitch.<tool>` with a JSON argument object.
 
-- Mavis / MiniMax Agent: `mavis mcp call stitch <tool> '<json>'`
-- mcporter: `mcporter call stitch.<tool> '<json>'`
-- Codex, Claude, OpenClaw, Cursor, or another agent: use that runtime's MCP tool-call interface for the same Stitch tool names
-
-Do not make `mavis`, `mcporter`, `stitch-mcp-auto`, or wrapper image/code helpers a hard requirement unless the local environment or user explicitly chooses that path.
+Credentials stay in the runtime's MCP configuration, set by the user. Never print, echo, paste, or store an API key.
 
 ## Capability-first startup handshake
 
@@ -204,42 +173,28 @@ At the start of a Stitch session, do a quick environment and capability handshak
 2. verify authentication is valid before first generation/edit call
 3. run the pre-flight probe above to confirm Stitch is responding and which tracking tools exist
 4. classify the confirmed tool surface:
-   - baseline MCP: `list_projects`, `get_project`, `list_screens`, `get_screen`, `create_project`, `generate_screen_from_text`, `edit_screens`
-   - design-system MCP: `list_design_systems`, `create_design_system`, `update_design_system`, `apply_design_system`
-   - optional tracking (often missing): `generation_status`, `list_generations`
-   - optional wrapper: `fetch_screen_image`, `fetch_screen_code`, `get_screen_image`, `get_screen_code`, `build_site`
-5. if baseline tools are missing, stop and fix environment state first
-6. if optional tracking tools are missing, record: *"use list_screens polling only"* — do not assume generation_status/list_generations will work
+   - read: `list_projects`, `get_project`, `list_screens`, `get_screen`, `list_design_systems`, `download_file`
+   - generate/edit: `create_project`, `generate_screen_from_text`, `edit_screens`, `generate_variants`
+   - design system: `create_design_system`, `update_design_system`, `apply_design_system`, `upload_design_md`, `create_design_system_from_design_md`
+   - destructive: `delete_project` (only after explicit user confirmation of the exact project)
+5. if read tools are missing, stop and fix environment state first
+6. if a wrapper-only tool (`fetch_screen_image`, `generation_status`, ...) is absent, that is expected; use `download_file` and polling
 
 If design-system tools are present, inspect them early:
 
 6. list project design systems and confirm whether one should be reused
 7. prefer applying or updating the existing design system before generating sibling screens from scratch
 
-For environments that use `mcporter`, a typical first-time setup path is:
-
-```bash
-mcporter config add stitch --command "npx" --args "-y stitch-mcp-auto"
-```
-
-Treat setup commands as environment-specific and require explicit user confirmation before changing runtime config.
+Setup is the user's job: connecting the Stitch MCP server and its credential happens in the user's own runtime configuration, following that runtime's documentation. Do not install packages, run setup commands, or edit runtime config for the user without explicit confirmation of the exact command.
 Only enter setup mode when Stitch is not configured or the user explicitly asks for setup help. If the user only wants design work, do not proactively switch into setup mode unless missing capabilities block the task.
-
-If a local Stitch proxy/CLI is installed, useful optional commands may include:
-
-- `doctor` for auth/config health checks
-- `serve -p <projectId>` for local screen preview
-- `site -p <projectId>` or `build_site` for web-oriented route generation
-
-Treat these as environment-specific helpers, not part of the guaranteed upstream Stitch MCP contract.
 
 ## Hard approval gates
 
 - do not fetch or export final code until the user has approved a visual direction
-- when `fetch_screen_image` is available, use it to force a preview-first loop before code retrieval
-- when `fetch_screen_code` is available, call it only after explicit user approval
-- when wrapper image/code tools are absent, use `get_screen` and extract `screenshot.downloadUrl` / `htmlCode.downloadUrl` from the returned screen
+- review the screenshot first (`download_file` with `screenshot.name`) to force a preview-first loop before code retrieval
+- download HTML (`download_file` with `htmlCode.name`) only after explicit user approval of the visual direction
 - treat `create_project` as a privileged action: ask before creating new cloud resources
+- treat `delete_project` as destructive and irreversible: name the project by title and ID and get an explicit yes first
 
 ## Design-to-code parity gates (critical)
 
@@ -284,19 +239,6 @@ Use this execution sequence:
    - `mismatched`: present but deviates materially
    - `intentional`: deliberate divergence with reason
 6. iterate until high-impact drift is closed
-
-## Research-backed skill upgrade loop
-
-When improving this skill from external sources:
-
-1. ingest high-signal sources (videos, docs, release notes)
-2. extract only reusable transfer rules (not source trivia)
-3. require at least two examples before promoting a new rule
-4. encode rules as objective pass/fail checks where possible
-5. write changelog entries with concrete behavioral impact
-6. revalidate dated claims about models, pricing, beta features, and browser-only behavior before turning them into operating rules
-
-Keep examples, demos, and hype in references unless they change agent behavior. The main `SKILL.md` should contain only rules the next agent can safely execute.
 
 ## Complete process order
 

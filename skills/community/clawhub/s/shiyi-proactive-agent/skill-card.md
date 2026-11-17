@@ -1,42 +1,64 @@
-## Description: <br>
-A proactive agent that anticipates needs and takes initiative by monitoring context, suggesting actions, and proposing tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shiyi Proactive Agent monitors context, suggests actions, and proposes tasks for proactive agent workflows.
 
-## Publisher: <br>
-[552134926-alt](https://clawhub.ai/user/552134926-alt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[552134926-alt](https://clawhub.ai/user/552134926-alt)
 
-## Use Case: <br>
-Developers and agents use this skill to analyze time, market, content, task, and learning context, then generate prioritized suggestions or proposed tasks for proactive workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Background monitoring may observe agent context over time. <br>
-Mitigation: Run monitoring only when needed, choose explicit daemon and interval settings, and stop the process when monitoring is no longer required. <br>
-Risk: Task and context data may be saved locally. <br>
-Mitigation: Review configured output paths before enabling auto-save or daemon mode, and avoid use in sensitive workspaces unless local persistence is acceptable. <br>
-Risk: Suggestions for trading, content, tasks, or learning may be incorrect or inappropriate. <br>
-Mitigation: Treat outputs as proposals requiring human review, especially for publishing, trading, or external API actions. <br>
+## Use Case:
 
+External users and agent developers use this skill to add proactive context analysis, reminders, and task proposals to an agent workflow. It is aimed at trading, content publishing, task management, and learning routines where suggestions should remain advisory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/552134926-alt/shiyi-proactive-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text and JSON, with local JSON task files and monitoring log lines when persistence features are used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; daemon and auto-save behavior can write task and monitoring data under memory/ paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill reads shared workspace memory, recent interaction history, planning files, and content metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in workspaces where that local context is appropriate for review by the agent.
+
+Risk: The monitor can run repeated background checks when daemon or heartbeat integration is enabled.
+
+Mitigation: Enable daemon or heartbeat use only when repeated proactive checks are intended, and configure interval and cooldown settings before use.
+
+Risk: Trading and content suggestions may be incorrect or unsuitable for the user's situation.
+
+Mitigation: Treat generated trading and content recommendations as advisory and require human confirmation before trades, publishing, or external API actions.
+
+Risk: The skill writes proactive task and monitor log files under memory by default.
+
+Mitigation: Review generated task and log files and run the skill in a workspace where those writes are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/552134926-alt/skills/shiyi-proactive-agent)
+- [Publisher profile](https://clawhub.ai/user/552134926-alt)
+- [Skill definition](artifact/SKILL.md)
+- [Proactive configuration](artifact/config/proactive_config.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance, files]
+
+**Output Format:** [Plain text or JSON command output, with optional JSON task and log files under memory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Suggestions and proposed tasks are prioritized as high, medium, or low.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

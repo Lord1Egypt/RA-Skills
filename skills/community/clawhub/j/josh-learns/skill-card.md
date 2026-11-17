@@ -1,39 +1,53 @@
-## Description: <br>
-Multi-layer memory system for LLM agents with daily memory, mesh edges, fuzzy search, auto-summarization, logging, and compliance checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MeshMorize provides a local-first, file-based memory system for AI agents on OpenClaw-like hosts, with rotating recent context, daily logs, mesh indexing, grep search, compliance checks, and crash-gap recovery.
 
-## Publisher: <br>
-[mozz0](https://clawhub.ai/user/mozz0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mozz0](https://clawhub.ai/user/mozz0)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add persistent memory workflows that record, relate, search, summarize, and check agent memory across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory workflows may record or search sensitive workspace data if connected to external project tools without review. <br>
-Mitigation: Review the referenced external project and configure memory storage, retention, and search behavior before using it with sensitive data. <br>
+## Use Case:
 
+Developers and agent operators use MeshMorize to give agents durable local memory across sessions, restarts, and crashes. It helps agents search prior work, log meaningful exchanges, maintain lightweight memory indexes, and recover missing context from approved local sources.
 
-## Reference(s): <br>
-- [MeshMorize ClawHub release](https://clawhub.ai/mozz0/josh-learns) <br>
-- [MeshMorize project link from artifact](https://github.com/mozz0/MeshMorize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in the submitted artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.2 (source: server-resolved release evidence) <br>
+Risk: Plaintext local memory can capture sensitive personal data or secrets if the agent logs too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not log credentials or unnecessary personal data; keep secrets in a separate ignored local store and scrub memory files before sharing or publishing them.
+
+Risk: Transcript database reads and automation registry changes can expose or alter user context without sufficient scope.
+
+Mitigation: Require explicit approval for the exact transcript session, time range, and automation job before reading or changing them, and remove temporary transcript copies after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mozz0/skills/josh-learns)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, file paths, and Python utility scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local filesystem memory artifacts such as Markdown logs, JSON mesh/checkpoint files, and operational command guidance.]
+
+## Skill Version(s):
+
+4.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

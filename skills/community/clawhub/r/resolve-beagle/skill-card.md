@@ -1,40 +1,58 @@
-## Description: <br>
-Resolve Beagle closes explicit open questions and latent gaps in brainstorm-beagle specs by researching answers, proposing them for approval, and rewriting the spec in place. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resolve Beagle helps agents close open questions and latent gaps in a brainstorm-beagle spec by researching issues, proposing evidence-backed answers for user approval, and rewriting the spec in place.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and technical writers use this skill after brainstorm-beagle has produced a spec that still contains open questions, placeholders, contradictions, or other latent gaps. It helps turn that draft into an implementation-ready spec by gathering evidence, presenting one decision proposal at a time, and applying accepted answers to the document. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Accepted proposals could introduce incorrect or misleading guidance into a spec. <br>
-Mitigation: Review each recommendation and its cited evidence before accepting it, then use the final self-review pass to catch contradictions or unresolved gaps. <br>
-Risk: The skill may ask the agent to perform repository searches or external research before editing a spec. <br>
-Mitigation: Install it only when its purpose matches the intended workflow and review any commands or research actions before they run. <br>
+## Use Case:
 
+Developers, product owners, and spec authors use this skill to turn a brainstorm-beagle spec with open questions, placeholders, or ambiguous requirements into an implementation-ready spec before planning starts.
 
-## Reference(s): <br>
-- [Subagent Prompt Templates](artifact/references/subagent-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown gap lists, evidence-backed proposals, and rewritten spec text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presents proposals one at a time and requires evidence before applying spec changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can read project files, use external web research, and rewrite the target spec in place.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it on specs the agent is allowed to inspect and edit, and review the proposed gap list before allowing research to proceed.
+
+Risk: Accepted proposals could introduce incorrect or misleading requirements into a planning document.
+
+Mitigation: Review each evidence-backed proposal before acceptance and re-read the rewritten spec before planning begins.
+
+Risk: The workflow may create a commit if the user approves it.
+
+Mitigation: Require explicit user approval before any commit and inspect the resulting diff when repository history matters.
+
+## Reference(s):
+
+- [Subagent Prompt Templates](references/subagent-prompts.md)
+- [Resolve Beagle ClawHub Listing](https://clawhub.ai/anderskev/skills/resolve-beagle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown spec edits with structured proposal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before research proceeds and before any commit.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

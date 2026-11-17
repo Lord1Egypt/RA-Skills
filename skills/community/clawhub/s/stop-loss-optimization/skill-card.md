@@ -1,39 +1,54 @@
-## Description: <br>
-用动态止损锁定利润，避免"小盈大亏"。用于A股风控。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+用动态止损锁定利润，避免"小盈大亏"。用于A股风控。
 
-## Publisher: <br>
-[haohanyang92](https://clawhub.ai/user/haohanyang92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haohanyang92](https://clawhub.ai/user/haohanyang92)
 
-## Use Case: <br>
-External users can ask an agent for educational A-share stop-loss guidance, including initial stop levels, trailing stop adjustments, and extreme-market exit considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stop-loss guidance may be mistaken for personalized financial advice. <br>
-Mitigation: Confirm the trading context, risk tolerance, time horizon, and that the request is for general education before applying any rule. <br>
+## Use Case:
 
+External users and trading-focused agents use this skill as an informational framework for A-share stop-loss and trailing stop decisions. It helps structure cost-line, profit-protection, and extreme-market exit guidance without authorizing account actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haohanyang92/stop-loss-optimization) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/haohanyang92) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only educational stop-loss guidance; no code execution, data access, persistence, or hidden behavior is indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may cause an agent to provide firm stop-loss or sell-order style trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as an informational framework and require explicit human review and confirmation before any trade or account action.
+
+Risk: The guidance does not define broader suitability, portfolio-risk, or financial-advice boundaries.
+
+Mitigation: Present outputs as general risk-management guidance and apply independent financial, legal, and user-specific review before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haohanyang92/skills/stop-loss-optimization)
+- [Publisher profile](https://clawhub.ai/user/haohanyang92)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational trading-risk guidance only; no account actions should be taken without explicit human review and confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

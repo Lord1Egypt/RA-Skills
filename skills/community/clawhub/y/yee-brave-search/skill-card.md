@@ -1,40 +1,54 @@
-## Description: <br>
-A custom tool for web searching using Brave Search API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A custom tool for web searching using the Brave Search API.
 
-## Publisher: <br>
-[mryee2023](https://clawhub.ai/user/mryee2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mryee2023](https://clawhub.ai/user/mryee2023)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to let an agent run Brave Search API web searches and return current search results for user queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Brave Search using the user's API key, which can expose sensitive terms. <br>
-Mitigation: Avoid using the skill for secrets, credentials, private documents, or sensitive personal information. <br>
-Risk: The release has privacy and permission-disclosure gaps around network and environment-variable requirements. <br>
-Mitigation: Confirm BRAVE_API_KEY handling and outbound access to the Brave Search API are approved before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to let an agent retrieve current web search results through the Brave Search API.
 
-## Reference(s): <br>
-- [Brave Search API web search endpoint](https://api.search.brave.com/res/v1/web/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON] <br>
-**Output Format:** [JSON array of search results or JSON error object] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAVE_API_KEY and outbound network access to Brave Search.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search queries are sent to the Brave Search API and may expose sensitive information if users include secrets, customer data, or confidential internal details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private customer data, or confidential internal details in search queries.
+
+Risk: The skill requires a Brave API key through BRAVE_API_KEY.
+
+Mitigation: Provide the key through the environment and manage it as a secret according to local credential handling practices.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mryee2023/skills/yee-brave-search)
+- [Brave Search API endpoint](https://api.search.brave.com/res/v1/web/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON]
+
+**Output Format:** [JSON search results or JSON error object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and the BRAVE_API_KEY environment variable.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

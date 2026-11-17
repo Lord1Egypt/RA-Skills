@@ -1,48 +1,58 @@
-## Description: <br>
-This skill teaches agents how to install or launch the NoteStore Lab MCP surface, prove the review flow on public-safe demo artifacts, and review one copied Apple Notes case root using derived artifacts instead of the live Notes store. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through installing NoteStore Lab's local MCP lane and reviewing one copied Apple Notes case root using demo proof, derived artifacts, and bounded case questions.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers, investigators, and MCP-aware agent users use this skill to set up a local NoteStore Lab review lane, validate it on demo artifacts, inspect one copied Apple Notes case root, ask bounded evidence-backed questions, compare case roots, and prepare public-safe exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may be pointed at a live Apple Notes store instead of copied evidence. <br>
-Mitigation: Use the public-safe demo path first, then run the MCP lane only against one explicit copied case root. <br>
-Risk: Package or repository source confusion could lead to running an unintended tool. <br>
-Mitigation: Verify the PyPI package or repository source before running commands and prefer an isolated environment. <br>
-Risk: Review output could overstate certainty or expose raw copied evidence. <br>
-Mitigation: Ask bounded questions, prefer derived artifacts, and use public-safe export when sharing results. <br>
+## Use Case:
 
+External developers, reviewers, and MCP-aware agent operators use this skill to install or launch NoteStore Lab, prove the workflow on public-safe demo artifacts, and review one copied Apple Notes case root without touching the live Notes store.
 
-## Reference(s): <br>
-- [Install And MCP Wiring](references/install-and-mcp.md) <br>
-- [Usage And Proof](references/usage-and-proof.md) <br>
-- [NoteStore Lab public demo](https://xiaojiou176-open.github.io/apple-notes-forensics/) <br>
-- [Public proof page](https://github.com/xiaojiou176-open/apple-notes-forensics/blob/main/proof.html) <br>
-- [Builder guide](https://github.com/xiaojiou176-open/apple-notes-forensics/blob/main/INTEGRATIONS.md) <br>
-- [Distribution boundary](https://github.com/xiaojiou176-open/apple-notes-forensics/blob/main/DISTRIBUTION.md) <br>
-- [Releases](https://github.com/xiaojiou176-open/apple-notes-forensics/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Analysis] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bounded to one explicit copied case root or the public-safe demo path; favors derived artifacts before raw copied evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence and manifest.yaml) <br>
+Risk: The skill launches a locally installed PyPI package, so installation depends on trusting that package supply chain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the NoteStore Lab package is trusted, prefer a virtual environment or sandbox, and avoid admin or root privileges.
+
+Risk: Reviewing live Apple Notes data could expose or affect user content outside the intended case boundary.
+
+Mitigation: Run the MCP process only against copied case data and limit it to the specific case root intended for review.
+
+## Reference(s):
+
+- [Install And MCP Wiring](references/install-and-mcp.md)
+- [Usage And Proof](references/usage-and-proof.md)
+- [NoteStore Lab public demo](https://xiaojiou176-open.github.io/apple-notes-forensics/)
+- [Public proof page](https://github.com/xiaojiou176-open/apple-notes-forensics/blob/main/proof.html)
+- [Builder guide](https://github.com/xiaojiou176-open/apple-notes-forensics/blob/main/INTEGRATIONS.md)
+- [Releases](https://github.com/xiaojiou176-open/apple-notes-forensics/releases)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local, case-root-scoped guidance; no hosted service output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence and artifact manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

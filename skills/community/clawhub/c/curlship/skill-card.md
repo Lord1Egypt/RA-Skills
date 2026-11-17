@@ -1,45 +1,61 @@
-## Description: <br>
-Submit products to CurlShip, the bot-friendly SaaS directory. One curl command to list your product with OG tag scraping, badge-based dofollow links, and tier upgrades. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through submitting and managing CurlShip directory listings, including optional paid upgrades and featured bids.
 
-## Publisher: <br>
-[MarcinDudekDev](https://clawhub.ai/user/MarcinDudekDev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcindudekdev](https://clawhub.ai/user/marcindudekdev)
 
-## Use Case: <br>
-Developers, founders, and agents use this skill to submit a product or SaaS URL to the CurlShip directory, inspect active listings, request a paid tier checkout URL, and retrieve badge HTML for a dofollow link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to submit a product URL and contact email to CurlShip for a public listing. <br>
-Mitigation: Confirm the exact URL and email with the user before submission. <br>
-Risk: The upgrade flow can return a checkout URL for a paid listing tier. <br>
-Mitigation: Confirm the requested tier with the user and leave payment completion to the user. <br>
-Risk: The skill may provide badge HTML intended for placement on the user's website. <br>
-Mitigation: Review badge HTML before making website changes. <br>
+## Use Case:
 
+Product owners and agents use this skill to publish and maintain public CurlShip directory listings and optionally purchase higher placement.
 
-## Reference(s): <br>
-- [CurlShip homepage](https://curlship.com) <br>
-- [CurlShip pricing](https://curlship.com/pricing) <br>
-- [CurlShip submit endpoint](https://curlship.com/api/submit) <br>
-- [CurlShip listings endpoint](https://curlship.com/api/listings) <br>
-- [ClawHub skill page](https://clawhub.ai/MarcinDudekDev/curlship) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for external HTTPS API calls; it does not require credentials or modify local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Submitting a listing shares the product URL, owner email, and listing details with CurlShip and makes the listing public.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before submission and confirm the URL, contact email, and public-listing impact.
+
+Risk: Upgrades and featured bids can incur charges; an agent may sign an on-chain USDC payment without a checkout page, and an outbid featured listing has no refund.
+
+Mitigation: Require explicit approval before checkout, bidding, or USDC signing; verify the quoted amount, destination, payment terms, and refund policy.
+
+Risk: Edits, URL changes, and removals can alter or take down a public listing.
+
+Mitigation: Require explicit approval and verify the target listing and intended change before applying it.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/marcindudekdev/skills/curlship)
+- [CurlShip homepage](https://curlship.com)
+- [CurlShip agent actions](https://curlship.com/agents.md)
+- [CurlShip agent tools](https://curlship.com/agents.json)
+- [CurlShip listing edits](https://curlship.com/edit)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API calls]
+
+**Output Format:** [Markdown with curl examples and JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Listings are public; paid actions may involve card checkout or USDC signing.]
+
+## Skill Version(s):
+
+1.3.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

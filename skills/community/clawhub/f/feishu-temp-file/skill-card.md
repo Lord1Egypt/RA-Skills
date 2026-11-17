@@ -1,43 +1,55 @@
-## Description: <br>
-Feishu File Sender helps stage files in a temporary directory so OpenClaw can send Feishu images or files that would otherwise be blocked by path allowlist checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu File Sender helps OpenClaw users stage local files in a temporary allowed directory so they can send files through Feishu when path allowlist checks would otherwise block access.
 
-## Publisher: <br>
-[yingyangdao](https://clawhub.ai/user/yingyangdao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yingyangdao](https://clawhub.ai/user/yingyangdao)
 
-## Use Case: <br>
-OpenClaw users and developers use this skill to configure Feishu file-sending permissions, copy a local file into an approved temporary media directory, and clean staged files after sending. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup can persistently grant broad or whole-system OpenClaw file access that is broader than the file-staging task requires. <br>
-Mitigation: Review and manually control permission changes; prefer a narrow configuration limited to the exact temporary media directory needed. <br>
-Risk: Medium and loose permission presets may expose paths beyond the intended temporary media directory, including the whole filesystem for the loose preset. <br>
-Mitigation: Avoid medium and loose presets, especially any configuration using /**, unless a reviewer has accepted that access scope. <br>
-Risk: Sensitive documents may remain staged after Feishu sending. <br>
-Mitigation: Run the cleanup flow after sending sensitive files and verify staged files have been removed. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to configure file access permissions, copy Feishu-bound files into an allowed temporary media directory, inspect staged files, and clean them up after sending.
 
-## Reference(s): <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [Feishu Developer Documentation](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands; helper scripts return JSON status and file path output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stages local files into a temporary media directory and returns file paths or file URLs for Feishu sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: package.json, _meta.json, server release evidence) <br>
+Risk: The skill can persist broad OpenClaw filesystem permissions, including presets that allow access beyond the temporary media directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest allowlist that supports the workflow, avoid medium and loose presets unless explicitly required, and review the resulting OpenClaw configuration before use.
+
+Risk: The cleanup command can delete arbitrary writable files when it is given a specific path.
+
+Mitigation: Run cleanup only on temporary files created by this skill, verify any explicit path before deletion, and prefer cleaning the managed temporary directory when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yingyangdao/skills/feishu-temp-file)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Feishu developer documentation](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance and JSON command output with local file paths and file:// URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces temporary staged file paths and status messages; cleanup is a separate command.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence, artifact _meta.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

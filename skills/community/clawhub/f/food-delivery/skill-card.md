@@ -1,40 +1,60 @@
-## Description: <br>
-Choose and order food with learned preferences, price comparison, and variety protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Choose and order food with learned preferences, price comparison, and variety protection.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users can use this skill to help an agent decide what food to order, compare delivery options, remember preferences and restrictions, and guide checkout after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate logged-in delivery apps and place real orders. <br>
-Mitigation: Require explicit user confirmation before checkout and review the cart, address, total, fees, tip, and ETA before approving payment. <br>
-Risk: The skill stores food preferences, allergies, household details, and order history in local files. <br>
-Mitigation: Keep ~/food-delivery private, and edit or delete those files when retained preference or order-history details should be removed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/food-delivery) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to help an agent choose food, compare delivery options, apply preferences and restrictions, and place food orders after explicit confirmation. It also supports household/group ordering, local preference memory, price comparison, and post-order notes.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with occasional shell commands and order-summary text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recommendations, price comparisons, cart review summaries, confirmations, and local memory setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores dietary, allergy, household, budget, restaurant, and order-history notes locally.
+
+Mitigation: Create ~/food-delivery with owner-only permissions, avoid storing unnecessary medical or religious detail, use aliases for household members, and delete stale notes.
+
+Risk: The skill can use logged-in delivery apps and place paid food orders.
+
+Mitigation: Require explicit user confirmation before checkout, review delivery address and total, and keep payment methods and credentials managed only inside the user's delivery apps.
+
+Risk: Incorrect handling of allergies or firm dietary restrictions could lead to unsafe or unacceptable orders.
+
+Mitigation: Treat critical restrictions as hard filters, add allergy notes to every relevant order, and verify restaurant accommodation before ordering.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/food-delivery)
+- [Decision Framework](artifact/decisions.md)
+- [Memory Setup](artifact/memory-template.md)
+- [Ordering Workflow](artifact/ordering.md)
+- [Common Traps](artifact/traps.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured ordering checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update local notes under ~/food-delivery/ and may guide browser-based checkout only after explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

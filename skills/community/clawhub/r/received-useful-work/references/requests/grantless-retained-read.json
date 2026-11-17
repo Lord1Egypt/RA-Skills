@@ -1,0 +1,15 @@
+{
+  "schema": "neomorphic.received-useful-work.request.v1",
+  "task": "grantless-retained-read",
+  "inputs": {
+    "grant": false,
+    "wallet": false
+  },
+  "expectedOutput": "grant-refusal",
+  "budget": {
+    "maxUsd": 0,
+    "pay": false,
+    "timeoutMs": 8000,
+    "bodyBytes": 65536
+  }
+}

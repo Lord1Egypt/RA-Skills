@@ -1,42 +1,60 @@
-## Description: <br>
-Autonomous skill optimizer inspired by Karpathy's autoresearch that evaluates skill structure and effectiveness, proposes targeted improvements, validates with test prompts, and keeps or reverts changes through a git-based ratchet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shike Darwin Optimizer helps agents evaluate and improve installed Agent Skills through an 8-dimension rubric, test prompts, git-backed hill climbing, and human review checkpoints.
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-Developers and skill maintainers use this agent skill to assess and improve other agent skills through structured scoring, test-prompt validation, human review checkpoints, and rollback of unsuccessful edits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can evaluate and modify local skill files, including git commits or reverts. <br>
-Mitigation: Use explicit targets, review proposed scope and diffs, and keep the human confirmation checkpoints before accepting changes. <br>
-Risk: Static assets may load remote fonts, which can expose network metadata. <br>
-Mitigation: Remove or block remote font loading in static assets when stricter privacy controls are required. <br>
+## Use Case:
 
+Developers and engineers use this skill to evaluate, iteratively improve, test, and report on Agent Skill quality. It is aimed at maintaining one or more SKILL.md files with measurable score changes and human approval before changes are kept.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sjj2026/shike-darwin-optimizer) <br>
-- [Andrej Karpathy autoresearch](https://github.com/karpathy/autoresearch) <br>
-- [Skill README](README_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with scoring tables, diffs, JSON test prompts, TSV result records, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to SKILL.md, create test-prompts.json, update results.tsv, and request human confirmation before keeping changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence and target metadata) <br>
+Risk: The skill can guide an agent to inspect and modify installed skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a clean repository or disposable branch, use dry-run evaluation first, and review every diff before allowing writes or commits.
+
+Risk: Generated optimization proposals may introduce incorrect or misleading instructions into a skill.
+
+Mitigation: Require human approval at evaluation, optimization-plan, and result-review checkpoints, and keep only changes that improve measured results.
+
+Risk: Live tests or package installation may execute in environments that contain secrets or unintended network access.
+
+Mitigation: Sandbox live tests with no secrets or network access and verify package or ZIP sources before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sjj2026/skills/shike-darwin-optimizer)
+- [Karpathy autoresearch](https://github.com/karpathy/autoresearch)
+- [skills.sh](https://skills.sh)
+- [Nuwa Skill](https://github.com/alchaincyf/nuwa-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline code blocks, score tables, diffs, and TSV-style result records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or apply edits to SKILL.md files, create test-prompts.json, record results.tsv entries, run sub-agent or dry-run evaluations, and use git commits or reverts when authorized.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

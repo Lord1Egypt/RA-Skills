@@ -1,48 +1,65 @@
-## Description: <br>
-Create PowerPoint presentations (PPTX) using Python and python-pptx, including timelines, charts, diagrams, slide layouts, custom colors, shapes, connectors, text formatting, transitions, and WPS compatibility guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create PowerPoint presentations (PPTX) using Python and python-pptx, including timelines, charts, diagrams, slide layouts, custom colors, shapes, connectors, text formatting, slide transitions, and WPS compatibility guidance.
 
-## Publisher: <br>
-[ScottLiu007](https://clawhub.ai/user/ScottLiu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottliu007](https://clawhub.ai/user/scottliu007)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to generate editable PowerPoint decks, diagrams, timelines, charts, and WPS-compatible progressive slide reveals with Python. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Python may be run locally in sensitive folders. <br>
-Mitigation: Review generated Python before execution and run it in a virtual environment or isolated project directory when possible. <br>
-Risk: Generated scripts may overwrite existing presentation files. <br>
-Mitigation: Choose explicit output filenames and check for existing files before running deck-generation scripts. <br>
-Risk: Template asset paths in the documentation may not exist on the user's machine. <br>
-Mitigation: Adjust user-specific template paths or ignore those assets when they are unavailable. <br>
-Risk: Bundled template assets mention third-party Slidesgo attribution requirements. <br>
-Mitigation: Keep required attribution or credits slides when using those templates. <br>
+## Use Case:
 
+Developers and content authors use this skill to generate editable PowerPoint decks from requested content, data, timelines, and presentation structures, including WPS-compatible progressive reveals.
 
-## Reference(s): <br>
-- [PPTX Patterns](references/pptx-patterns.md) <br>
-- [Charts](references/charts.md) <br>
-- [Standard Slides](references/standard-slides.md) <br>
-- [WPS Compatibility](references/wps-compat.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ScottLiu007/create-pptx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with Python and shell code blocks; generated workflows may produce PPTX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses python-pptx helpers and reference patterns for Office-compatible slide generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dependency changes in python-pptx may affect generated slide layout or XML behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the skill in a dedicated virtual environment and pin python-pptx when reproducible output matters.
+
+Risk: Generated decks may contain mixed-language defaults or labels if localization is not specified.
+
+Mitigation: Tell the agent the required presentation language and review generated slide text before sharing.
+
+Risk: Click-triggered animations may not behave reliably in WPS.
+
+Mitigation: Use multi-slide progressive reveals with fade transitions for WPS-compatible presentations.
+
+Risk: Template assets from Slidesgo may require attribution when used.
+
+Mitigation: Keep the required credits slide or attribution when using those templates.
+
+## Reference(s):
+
+- [PPTX patterns](references/pptx-patterns.md)
+- [Charts](references/charts.md)
+- [Standard slides](references/standard-slides.md)
+- [WPS compatibility](references/wps-compat.md)
+- [ClawHub skill page](https://clawhub.ai/scottliu007/skills/create-pptx)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown with Python and shell code blocks plus generated PPTX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Python scripts and .pptx files in the user's workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

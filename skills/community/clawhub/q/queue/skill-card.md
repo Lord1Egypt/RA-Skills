@@ -1,41 +1,54 @@
-## Description: <br>
-Manage message queues with priorities and retry logic. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queue helps agents manage local, timestamped task and activity logs with commands for adding, planning, tracking, prioritizing, reviewing, searching, and exporting entries.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers, operators, and external users use Queue to add, prioritize, track, review, search, and export locally stored queue items for task and workflow management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queue entries can be saved persistently on local disk and later included in exports. <br>
-Mitigation: Avoid entering secrets or sensitive operational data, and review ~/.local/share/queue plus exported files before sharing or retaining them. <br>
-Risk: The public description may understate the local activity logging and export behavior. <br>
-Mitigation: Confirm storage, deletion, and export expectations with the publisher before installing in environments that handle sensitive work. <br>
+## Use Case:
 
+Developers, operators, and external agent users can use Queue to keep a lightweight local work log for task planning, status review, prioritization, reminders, tagging, and throughput summaries.
 
-## Reference(s): <br>
-- [Queue on ClawHub](https://clawhub.ai/bytesagain-lab/queue) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files] <br>
-**Output Format:** [Plain text command output with optional JSON, CSV, or text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local logs under ~/.local/share/queue and writes exports in JSON, CSV, or text format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: release evidence and SKILL.md frontmatter; script output reports 2.0.0) <br>
+Risk: The skill may be mistaken for a durable message queue with retry or delivery guarantees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a lightweight local text-log tracker for planning, reviewing, and exporting task activity.
+
+Risk: Free-form queue entries and exported CSV, JSON, or TXT files may expose sensitive payloads or be mishandled in spreadsheet tools.
+
+Mitigation: Do not store secrets or sensitive operational data in queue entries, and review exports before sharing or opening them in external applications.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [Queue on ClawHub](https://clawhub.ai/bytesagain-lab/skills/queue)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell command examples; runtime output is local text logs and optional JSON, CSV, or TXT exports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores data under ~/.local/share/queue and writes exports from the local log data.]
+
+## Skill Version(s):
+
+2.0.1 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

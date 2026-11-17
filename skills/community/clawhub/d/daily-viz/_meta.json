@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn7abvsrhm6qeht8t9mq27pth5825xhs",
-  "slug": "daily-viz",
+  "name": "daily-viz",
   "version": "1.0.0",
-  "publishedAt": 1773083630075
+  "description": "日常记录与数据可视化 - 记录心情、运动、睡眠，生成美观图表",
+  "author": "军哥",
+  "tags": ["tracking", "visualization", "habits", "health", "productivity"],
+  "license": "MIT"
 }

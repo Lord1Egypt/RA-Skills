@@ -1,41 +1,51 @@
-## Description: <br>
-Helps users plan personal finances, create monthly budgets, track expenses, set savings goals, optimize spending habits, and reason about debt, emergency funds, and expense categories for Chinese users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when helping users plan personal finances, create monthly budgets, track expenses, set savings goals, or optimize spending habits for Chinese users.
 
-## Publisher: <br>
-[goldath](https://clawhub.ai/user/goldath) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goldath](https://clawhub.ai/user/goldath)
 
-## Use Case: <br>
-External users and agents use this skill to collect income, expenses, savings, and debt details, then produce Chinese-language budget plans, savings milestones, and debt repayment priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Budget or financial product guidance can become inaccurate as rates, product terms, or personal circumstances change. <br>
-Mitigation: Verify current rates and terms, check calculations against user-provided data, and treat outputs as planning guidance rather than professional financial advice. <br>
-Risk: The skill asks for personal financial details such as income, expenses, savings, and debts. <br>
-Mitigation: Share only information needed for the plan and avoid unnecessary account identifiers or sensitive personal data. <br>
+## Use Case:
 
+External users and agents use this skill to create Chinese-market personal budgeting plans, diagnose spending and savings ratios, prioritize debt repayment, and set short-term and annual financial goals.
 
-## Reference(s): <br>
-- [预算规划实战案例与工具](references/budget-cases.md) <br>
-- [中国主要理财工具对比参考](references/financial-tools-cn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text with budget tables, calculations, and action items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include RMB-denominated calculations, budget category tables, savings milestones, and debt repayment ordering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill includes example yields, tax notes, app comparisons, and investment product guidance that may be outdated or unsuitable for a user's circumstances.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat financial figures as general examples, verify current terms with official providers, and consult a qualified financial or tax professional before making consequential decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goldath/skills/budget-planner-cn)
+- [预算规划实战案例与工具](references/budget-cases.md)
+- [中国主要理财工具对比参考](references/financial-tools-cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with budget tables, financial diagnostics, prioritized recommendations, and goal plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include example yields, tax calculations, and product comparisons that require current-source verification before consequential use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

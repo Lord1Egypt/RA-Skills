@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "rules_ref": {
+    "path": "rules.json",
+    "profile": "main",
+    "revision": "r1"
+  },
+  "bindings": {
+    "cutoff": {
+      "value": "2030-01-15",
+      "source": "夹具参数"
+    }
+  },
+  "facts": {
+    "path": "facts.json",
+    "format": "json"
+  },
+  "actual": {
+    "path": "actual-bad-order.csv",
+    "format": "csv",
+    "null_values": {
+      "quantity": [
+        "未知"
+      ],
+      "day": [
+        "未知"
+      ]
+    }
+  }
+}

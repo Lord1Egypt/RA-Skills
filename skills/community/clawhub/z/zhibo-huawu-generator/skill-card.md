@@ -1,41 +1,54 @@
-## Description: <br>
-根据产品信息生成适用于抖音、快手和淘宝直播的完整直播带货话术脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据产品信息自动生成适用于抖音、快手、淘宝直播的完整直播带货话术脚本，包含开场、介绍、促单、互动及下播话术。
 
-## Publisher: <br>
-[jessabuivolova-sketch](https://clawhub.ai/user/jessabuivolova-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jessabuivolova-sketch](https://clawhub.ai/user/jessabuivolova-sketch)
 
-## Use Case: <br>
-直播主播、品牌自播团队、达人合作团队和新人培训者 use this skill to turn product details into structured live-commerce talking points, including opening hooks, product introduction, urgency prompts, audience Q&A, and closing copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated sales copy may include inaccurate pricing, urgency, or promotional claims if the input is incomplete or unverified. <br>
-Mitigation: Review the script for advertising accuracy, platform policy compliance, and truthful product claims before use. <br>
-Risk: Product plans or campaign details entered into the skill may be confidential. <br>
-Mitigation: Avoid entering confidential product or campaign information unless that is acceptable for the user's workflow. <br>
+## Use Case:
 
+Livestream commerce hosts, brand teams, factories, creators, and training teams use this skill to draft Chinese-language sales scripts for Douyin, Kuaishou, and Taobao Live from product details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jessabuivolova-sketch/zhibo-huawu-generator) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown live-commerce script with section headings and a Q&A table] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The generated script is tailored from user-provided product name, price, features, audience, platform, and duration when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated sales scripts may include urgency-based sales pressure or unsupported promotional claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before use and keep prices, stock limits, discounts, comparisons, and advertising claims truthful and platform-compliant.
+
+Risk: The generated script format includes a built-in generator pricing footer that may be inappropriate for every deployment.
+
+Mitigation: Remove or adapt the footer before publication when it does not match the publisher's intended customer-facing messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jessabuivolova-sketch/skills/zhibo-huawu-generator)
+- [Publisher profile](https://clawhub.ai/user/jessabuivolova-sketch)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sales-script document with section headings and an interaction Q&A table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language livestream sales copy may include urgency-based promotional wording and a generator pricing footer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

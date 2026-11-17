@@ -1,0 +1,39 @@
+'''
+55如何使用投资备注
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+如何使用投资备注
+投资备注功能是模型下单时指定的任意字符串(长度小于24)，即passorder的userOrderId参数，可以用于匹配委托或成交。有且只有passorder， algo_passorder, smart_algo_passorder下单函数支持投资备注功能。
+
+python
+
+# encoding:gbk
+
+note = 0
+
+def get_new_note():
+	global note
+	note += 1
+	return str(note)
+
+def init(ContextInfo):
+	ContextInfo.set_account(account)
+	passorder(23, 1101, account, '000001.SZ', 5 ,0, 100, '', 2, get_new_note(), ContextInfo)
+
+	orders = get_trade_detail_data(account, accountType, 'order')
+	remark = [o.m_strRemark for o in orders]
+	sysid_list = [o.m_strOrderSysID for o in orders]
+	print(remark)
+
+
+
+def handlebar(C):
+	pass
+
+
+def order_callback(C, O):
+	print(O.m_strRemark, O.m_strOrderSysID)
+
+    
+def deal_callback(C, D):
+    print(D.m_strRemark, D.m_strOrderSysID)

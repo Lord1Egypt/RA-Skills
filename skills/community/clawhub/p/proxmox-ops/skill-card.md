@@ -1,46 +1,61 @@
-## Description: <br>
-Ops-focused Proxmox VE management via REST API for monitoring, controlling, provisioning, and troubleshooting VMs and LXC containers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ops-focused Proxmox VE management via REST API for monitoring, controlling, provisioning, and troubleshooting VMs and LXC containers.
 
-## Publisher: <br>
-[eddygk](https://clawhub.ai/user/eddygk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eddygk](https://clawhub.ai/user/eddygk)
 
-## Use Case: <br>
-Developers, operators, and infrastructure administrators use this skill to manage Proxmox VE environments through REST API patterns, helper shell commands, and operational guidance for VMs, LXC containers, storage, backups, and provisioning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports powerful Proxmox operations that can stop, reboot, resize, roll back, delete, or provision VMs and containers. <br>
-Mitigation: Manually verify VMID, node, backups, and intent before high-impact actions, and require explicit confirmation for destructive or difficult-to-reverse operations. <br>
-Risk: Proxmox API tokens and ~/.proxmox-credentials can grant infrastructure access if exposed. <br>
-Mitigation: Use least-privilege API tokens, keep credential files mode 600, avoid exposing secrets in responses, and rotate tokens immediately if they are disclosed. <br>
-Risk: The helper examples use curl with TLS verification disabled for self-signed Proxmox certificates. <br>
-Mitigation: Prefer trusted TLS certificates, remove the insecure curl flag where possible, and restrict agent network access to intended Proxmox hosts. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to guide Proxmox VE administration through REST API calls, helper shell commands, provisioning references, and operational safety practices for VMs and LXC containers.
 
-## Reference(s): <br>
-- [Proxmox Ops homepage](https://github.com/eddygk/proxmox-ops-skill) <br>
-- [Proxmox Provisioning Reference](references/provisioning.md) <br>
-- [Proxmox VE API Tokens](https://pve.proxmox.com/wiki/User_Management#pveum_tokens) <br>
-- [Proxmox VE Certificate Management](https://pve.proxmox.com/wiki/Certificate_Management) <br>
-- [ClawHub skill page](https://clawhub.ai/eddygk/proxmox-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and Proxmox REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Proxmox API endpoints, jq filters, credential setup guidance, and confirmation steps for high-impact operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release metadata) <br>
+Risk: The skill can guide powerful Proxmox administration actions, including VM and container power operations, provisioning, resizing, rollback, and deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit review of VMID, node, storage, backups, and operation intent before destructive or hard-to-reverse actions.
+
+Risk: Proxmox API tokens and the optional credential file can expose infrastructure administration capability.
+
+Mitigation: Use least-privilege tokens, prefer environment injection or a secret manager, keep credential files mode 600, and rotate exposed tokens immediately.
+
+Risk: The helper commands use TLS verification disabled for self-signed Proxmox certificates.
+
+Mitigation: Install a trusted certificate or CA for Proxmox, remove insecure curl flags when possible, and restrict agent network access to approved Proxmox hosts.
+
+## Reference(s):
+
+- [Proxmox Ops ClawHub Page](https://clawhub.ai/eddygk/skills/proxmox-ops)
+- [Proxmox Ops Source Homepage](https://github.com/eddygk/proxmox-ops-skill)
+- [Proxmox Provisioning Reference](references/provisioning.md)
+- [Proxmox VE API Token Documentation](https://pve.proxmox.com/wiki/User_Management#pveum_tokens)
+- [Proxmox Certificate Management](https://pve.proxmox.com/wiki/Certificate_Management)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST API endpoint patterns, helper script usage, provisioning workflows, and operational cautions.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

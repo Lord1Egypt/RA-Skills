@@ -1,0 +1,499 @@
+{
+  "version": "1.0.0",
+  "question": "离线构造示例：比较青禾和两个竞品指定产品页的 FAQ、品牌实体和引用资料缺口，不代表真实站点评估。",
+  "page_slots": [
+    "product"
+  ],
+  "sites": [
+    {
+      "id": "qinghe",
+      "name": "青禾",
+      "role": "brand",
+      "pages": [
+        {
+          "slot": "product",
+          "acquisition": {
+            "url": "https://qinghe.example/products/crm",
+            "final_url": "https://qinghe.example/products/crm",
+            "status": "ok",
+            "http_status": 200,
+            "kind": "simulated",
+            "captured_at": "2026-10-19T12:00:00+08:00",
+            "source_ref": "pages/qinghe.html",
+            "sha256": "49e2c11a758bcf1f83fa84314218a55cb59ec8c21d664bfe7d772c3cdc18d7d1",
+            "reason": null,
+            "acquisition_status": "ok"
+          },
+          "analysis_status": "observed",
+          "signals": {
+            "metrics": {
+              "faq_visible_pairs": 0,
+              "brand_organizations": 1,
+              "brand_entity_fields": [
+                "name",
+                "url"
+              ],
+              "brand_entity_field_count": 2,
+              "explicit_source_links": 0,
+              "external_link_candidates": 1,
+              "schema_types": [
+                "Organization",
+                "WebPage"
+              ],
+              "jsonld_parsed_blocks": 1,
+              "jsonld_invalid_blocks": 0,
+              "h1_count": 1,
+              "h2_count": 2
+            },
+            "faq_evidence": [],
+            "organizations": [
+              {
+                "name": "青禾",
+                "url": "https://qinghe.example/"
+              }
+            ],
+            "external_links": [
+              {
+                "url": "https://social.example/qinghe",
+                "text": "社交账号",
+                "explicit_source": false
+              }
+            ],
+            "first_paragraph": "青禾帮助小型销售团队整理客户资料和跟进记录。",
+            "brand_in_first_paragraph": true,
+            "jsonld_errors": [],
+            "visible_blocks": [
+              {
+                "tag": "h1",
+                "text": "青禾客户资料管理"
+              },
+              {
+                "tag": "p",
+                "text": "青禾帮助小型销售团队整理客户资料和跟进记录。"
+              },
+              {
+                "tag": "h2",
+                "text": "数据导入"
+              },
+              {
+                "tag": "p",
+                "text": "支持 CSV 导入。具体字段要求由客户支持提供。"
+              },
+              {
+                "tag": "h2",
+                "text": "FAQ"
+              },
+              {
+                "tag": "p",
+                "text": "如有问题，请联系支持团队。"
+              }
+            ],
+            "warnings": [
+              "JSON-LD parsed as JSON; this is not complete Schema.org validation"
+            ]
+          },
+          "robots": {
+            "GPTBot": {
+              "state": "allowed",
+              "groups": [
+                [
+                  "gptbot",
+                  "claudebot"
+                ]
+              ],
+              "rule": "allow: /products/crm$",
+              "path": "/products/crm",
+              "kind": "simulated"
+            },
+            "ClaudeBot": {
+              "state": "allowed",
+              "groups": [
+                [
+                  "gptbot",
+                  "claudebot"
+                ]
+              ],
+              "rule": "allow: /products/crm$",
+              "path": "/products/crm",
+              "kind": "simulated"
+            },
+            "PerplexityBot": {
+              "state": "allowed",
+              "groups": [
+                [
+                  "perplexitybot"
+                ]
+              ],
+              "rule": null,
+              "path": "/products/crm",
+              "kind": "simulated"
+            },
+            "Google-Extended": {
+              "state": "blocked",
+              "groups": [
+                [
+                  "google-extended"
+                ]
+              ],
+              "rule": "disallow: /",
+              "path": "/products/crm",
+              "kind": "simulated"
+            }
+          }
+        }
+      ],
+      "robots_acquisition": {
+        "url": "https://qinghe.example/robots.txt",
+        "final_url": "https://qinghe.example/robots.txt",
+        "status": "ok",
+        "http_status": 200,
+        "kind": "simulated",
+        "captured_at": "2026-10-19T12:00:00+08:00",
+        "source_ref": "pages/robots.txt",
+        "sha256": "04992e7a8d7552debebf598baca732934c7b50f38a4388dc762d0ddf6ea514dc",
+        "reason": null,
+        "acquisition_status": "ok"
+      }
+    },
+    {
+      "id": "cedar",
+      "name": "杉木",
+      "role": "competitor",
+      "pages": [
+        {
+          "slot": "product",
+          "acquisition": {
+            "url": "https://cedar.example/products/crm",
+            "final_url": "https://cedar.example/products/crm",
+            "status": "ok",
+            "http_status": 200,
+            "kind": "simulated",
+            "captured_at": "2026-10-19T12:00:00+08:00",
+            "source_ref": "pages/cedar.html",
+            "sha256": "cc750da8379d6bd9bcc3a7b41b501fac80c9780231fcbf92946f9015273cda90",
+            "reason": null,
+            "acquisition_status": "ok"
+          },
+          "analysis_status": "observed",
+          "signals": {
+            "metrics": {
+              "faq_visible_pairs": 2,
+              "brand_organizations": 1,
+              "brand_entity_fields": [
+                "description",
+                "name",
+                "sameAs",
+                "url"
+              ],
+              "brand_entity_field_count": 4,
+              "explicit_source_links": 2,
+              "external_link_candidates": 2,
+              "schema_types": [
+                "Answer",
+                "FAQPage",
+                "Organization",
+                "Question",
+                "WebPage"
+              ],
+              "jsonld_parsed_blocks": 1,
+              "jsonld_invalid_blocks": 0,
+              "h1_count": 1,
+              "h2_count": 2
+            },
+            "faq_evidence": [
+              {
+                "question": "如何导入客户？",
+                "answer": "先下载字段表，确认姓名和联系方式等必填项后上传 CSV。"
+              },
+              {
+                "question": "导入失败后如何处理？",
+                "answer": "下载错误行文件，修正列名与日期格式后重新导入。"
+              }
+            ],
+            "organizations": [
+              {
+                "name": "杉木",
+                "url": "https://cedar.example/",
+                "description": "面向小型销售团队的客户资料工具",
+                "sameAs": [
+                  "https://social.example/cedar"
+                ]
+              }
+            ],
+            "external_links": [
+              {
+                "url": "https://www.rfc-editor.org/rfc/rfc4180",
+                "text": "CSV 格式规范 RFC 4180",
+                "explicit_source": true
+              },
+              {
+                "url": "https://www.w3.org/TR/tabular-data-model/",
+                "text": "W3C 表格数据模型",
+                "explicit_source": true
+              }
+            ],
+            "first_paragraph": "杉木为小型销售团队提供客户资料整理和数据导入功能。",
+            "brand_in_first_paragraph": true,
+            "jsonld_errors": [],
+            "visible_blocks": [
+              {
+                "tag": "h1",
+                "text": "杉木客户资料管理"
+              },
+              {
+                "tag": "p",
+                "text": "杉木为小型销售团队提供客户资料整理和数据导入功能。"
+              },
+              {
+                "tag": "h2",
+                "text": "导入常见问题"
+              },
+              {
+                "tag": "summary",
+                "text": "如何导入客户？"
+              },
+              {
+                "tag": "p",
+                "text": "先下载字段表，确认姓名和联系方式等必填项后上传 CSV。"
+              },
+              {
+                "tag": "details",
+                "text": "如何导入客户？先下载字段表，确认姓名和联系方式等必填项后上传 CSV。"
+              },
+              {
+                "tag": "summary",
+                "text": "导入失败后如何处理？"
+              },
+              {
+                "tag": "p",
+                "text": "下载错误行文件，修正列名与日期格式后重新导入。"
+              },
+              {
+                "tag": "details",
+                "text": "导入失败后如何处理？下载错误行文件，修正列名与日期格式后重新导入。"
+              },
+              {
+                "tag": "h2",
+                "text": "资料与依据"
+              },
+              {
+                "tag": "p",
+                "text": "导入文件格式参考以下公开规范；规范存在不代表本示例做过真实测试。"
+              }
+            ],
+            "warnings": [
+              "JSON-LD parsed as JSON; this is not complete Schema.org validation"
+            ]
+          },
+          "robots": {
+            "GPTBot": {
+              "state": "allowed",
+              "groups": [
+                [
+                  "gptbot",
+                  "claudebot"
+                ]
+              ],
+              "rule": "allow: /products/crm$",
+              "path": "/products/crm",
+              "kind": "simulated"
+            },
+            "ClaudeBot": {
+              "state": "allowed",
+              "groups": [
+                [
+                  "gptbot",
+                  "claudebot"
+                ]
+              ],
+              "rule": "allow: /products/crm$",
+              "path": "/products/crm",
+              "kind": "simulated"
+            },
+            "PerplexityBot": {
+              "state": "allowed",
+              "groups": [
+                [
+                  "perplexitybot"
+                ]
+              ],
+              "rule": null,
+              "path": "/products/crm",
+              "kind": "simulated"
+            },
+            "Google-Extended": {
+              "state": "blocked",
+              "groups": [
+                [
+                  "google-extended"
+                ]
+              ],
+              "rule": "disallow: /",
+              "path": "/products/crm",
+              "kind": "simulated"
+            }
+          }
+        }
+      ],
+      "robots_acquisition": {
+        "url": "https://cedar.example/robots.txt",
+        "final_url": "https://cedar.example/robots.txt",
+        "status": "ok",
+        "http_status": 200,
+        "kind": "simulated",
+        "captured_at": "2026-10-19T12:00:00+08:00",
+        "source_ref": "pages/robots.txt",
+        "sha256": "04992e7a8d7552debebf598baca732934c7b50f38a4388dc762d0ddf6ea514dc",
+        "reason": null,
+        "acquisition_status": "ok"
+      }
+    },
+    {
+      "id": "river",
+      "name": "溪流",
+      "role": "competitor",
+      "pages": [
+        {
+          "slot": "product",
+          "acquisition": {
+            "url": "https://river.example/products/crm",
+            "final_url": "https://river.example/products/crm",
+            "status": "ok",
+            "http_status": 200,
+            "kind": "simulated",
+            "captured_at": "2026-10-19T12:00:00+08:00",
+            "source_ref": "pages/river.html",
+            "sha256": "de134da055d4e3979086d2e6cf7867fe63026a9c5ff38c3b8a878b991f17ed21",
+            "reason": null,
+            "acquisition_status": "ok"
+          },
+          "analysis_status": "observed",
+          "signals": {
+            "metrics": {
+              "faq_visible_pairs": 1,
+              "brand_organizations": 1,
+              "brand_entity_fields": [
+                "description",
+                "name",
+                "url"
+              ],
+              "brand_entity_field_count": 3,
+              "explicit_source_links": 1,
+              "external_link_candidates": 1,
+              "schema_types": [
+                "Organization"
+              ],
+              "jsonld_parsed_blocks": 1,
+              "jsonld_invalid_blocks": 0,
+              "h1_count": 1,
+              "h2_count": 1
+            },
+            "faq_evidence": [
+              {
+                "question": "能导出哪些字段？",
+                "answer": "可以导出姓名、联系方式和最近跟进时间。"
+              }
+            ],
+            "organizations": [
+              {
+                "name": "溪流",
+                "url": "https://river.example/",
+                "description": "客户跟进资料管理工具"
+              }
+            ],
+            "external_links": [
+              {
+                "url": "https://www.rfc-editor.org/rfc/rfc4180",
+                "text": "导出 CSV 的格式依据",
+                "explicit_source": true
+              }
+            ],
+            "first_paragraph": "溪流用于记录客户跟进过程。",
+            "brand_in_first_paragraph": true,
+            "jsonld_errors": [],
+            "visible_blocks": [
+              {
+                "tag": "h1",
+                "text": "溪流客户跟进"
+              },
+              {
+                "tag": "p",
+                "text": "溪流用于记录客户跟进过程。"
+              },
+              {
+                "tag": "h2",
+                "text": "能导出哪些字段？"
+              },
+              {
+                "tag": "p",
+                "text": "可以导出姓名、联系方式和最近跟进时间。"
+              }
+            ],
+            "warnings": [
+              "JSON-LD parsed as JSON; this is not complete Schema.org validation"
+            ]
+          },
+          "robots": {
+            "GPTBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "ClaudeBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "PerplexityBot": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            },
+            "Google-Extended": {
+              "state": "unverified",
+              "reason": "robots_not_provided_or_unreadable"
+            }
+          }
+        }
+      ],
+      "robots_acquisition": null
+    }
+  ],
+  "comparisons": [
+    {
+      "competitor": "cedar",
+      "slot": "product",
+      "status": "comparable",
+      "kind": "simulated",
+      "competitor_minus_brand": {
+        "faq_visible_pairs": 2,
+        "brand_organizations": 0,
+        "brand_entity_field_count": 2,
+        "explicit_source_links": 2
+      }
+    },
+    {
+      "competitor": "river",
+      "slot": "product",
+      "status": "comparable",
+      "kind": "simulated",
+      "competitor_minus_brand": {
+        "faq_visible_pairs": 1,
+        "brand_organizations": 0,
+        "brand_entity_field_count": 1,
+        "explicit_source_links": 1
+      }
+    }
+  ],
+  "ai_observations": {
+    "status": "no_observed_samples",
+    "samples": [],
+    "observed_answer_denominator": 0,
+    "native_citation_denominator": 0,
+    "native_citation_total": null,
+    "note": "Mentions are literal text matches, native citations are imported source entries; no AI ranking is inferred."
+  },
+  "cache": {
+    "unique_urls": 5,
+    "cache_hits": 0,
+    "unique_snapshot_reads": 4,
+    "network_requests": 0
+  }
+}

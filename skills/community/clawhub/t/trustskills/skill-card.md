@@ -1,39 +1,55 @@
-## Description: <br>
-Use this skill when a user wants a trust decision before installing from a skill URL, marketplace, or GitHub repo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a user wants a trust decision before installing from a skill URL, marketplace, or GitHub repo.
 
-## Publisher: <br>
-[likw99](https://clawhub.ai/user/likw99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[likw99](https://clawhub.ai/user/likw99)
 
-## Use Case: <br>
-Developers and agent users use TrustSkills to make a quick source-provenance decision before installing a skill from a URL, marketplace, or GitHub repository. It helps distinguish trusted distribution roots from unsupported or unverified third-party sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A Trusted result could be mistaken for a full safety review of the specific skill artifact. <br>
-Mitigation: Treat the result as a first-pass source check only, then review the artifact, permissions, maintainer account, and update path before installing. <br>
+## Use Case:
 
+Developers, agents, and users use TrustSkills to make a quick source-provenance decision before installing a skill from a URL, marketplace, or GitHub repository. It helps distinguish vendor-owned sources, official discovery indexes, and unsupported or unverified third-party sources.
 
-## Reference(s): <br>
-- [ClawHub TrustSkills release page](https://clawhub.ai/likw99/trustskills) <br>
-- [TrustSkills hosted SKILL.md](https://trustskills.app/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown decision summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a source trust verdict, supporting root, safest known install path, and remaining risk.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: A Trusted result is a provenance signal, not proof that a specific skill version is safe, unchanged, signed, or malware-free.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and scan the artifact itself before installing anything with meaningful access.
+
+Risk: The skill uses a compact allowlist and may not cover every legitimate distribution channel.
+
+Mitigation: Treat unsupported sources as not trusted under this policy until their publisher or distribution root can be verified separately.
+
+## Reference(s):
+
+- [TrustSkills ClawHub Skill Page](https://clawhub.ai/likw99/skills/trustskills)
+- [Publisher Profile](https://clawhub.ai/user/likw99)
+- [Official Distribution](https://trustskills.app/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown decision summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a decision-oriented trust verdict with source, rationale, safest known install path, and remaining risk when useful.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

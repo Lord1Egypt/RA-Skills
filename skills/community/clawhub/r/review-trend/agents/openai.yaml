@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊评论趋势监控 · 口碑变化预警"
+  short_description: "口碑拐点预警：评论量、评分与情绪走势"
+  default_prompt: "使用 $amazon-review-trend 分析一个 Amazon ASIN 的评论趋势并预警口碑变化。"

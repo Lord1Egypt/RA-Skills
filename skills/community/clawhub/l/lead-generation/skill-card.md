@@ -1,42 +1,58 @@
-## Description: <br>
-Lead Generation finds high-intent buyers in live Twitter, Instagram, and Reddit conversations, researches a product, generates targeted search queries, and discovers people actively looking for solutions the product offers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lead Generation finds high-intent buyers in live Twitter, Instagram, and Reddit conversations, researches the user's product, generates targeted search queries, and helps discover prospects looking for relevant solutions through Xpoz MCP.
 
-## Publisher: <br>
-[atyachin](https://clawhub.ai/user/atyachin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[atyachin](https://clawhub.ai/user/atyachin)
 
-## Use Case: <br>
-Sales, growth, marketing, and customer discovery teams use this skill to identify prospects who are expressing buyer intent, competitor frustration, or active solution-seeking behavior on social platforms. The skill helps an agent research the product, generate search queries, score leads, and draft outreach for user review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Privacy exposure from product, customer, or lead data used in searches or stored in local lead-generation files. <br>
-Mitigation: Avoid confidential product plans or sensitive customer data in generated queries, and periodically review or delete data/lead-generation files. <br>
-Risk: Dependency and service trust risk from Xpoz, the OAuth setup flow, and the mcporter npm package. <br>
-Mitigation: Install only if you trust Xpoz, the xpoz-setup OAuth flow, and the mcporter npm package. <br>
-Risk: Outreach drafts could be inaccurate, misleading, or unsuitable to send as written. <br>
-Mitigation: Manually review all outreach drafts before sending and disclose affiliations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Xpoz](https://xpoz.ai) <br>
-- [Lead Generation on ClawHub](https://clawhub.ai/atyachin/lead-generation) <br>
+## Use Case:
 
+External sales, growth, marketing, and customer-discovery users use this skill to research a product, generate buyer-intent search queries, find prospects in social conversations, score leads, deduplicate prior findings, and draft outreach for human review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with lead summaries, scoring rationale, outreach drafts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON files under data/lead-generation for product profiles, generated queries, and sent-lead deduplication.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow depends on Xpoz network access, the mcporter npm package, OAuth setup through the xpoz-setup skill, and the mcp.xpoz.ai service.
+
+Mitigation: Install only after trusting Xpoz, mcporter, and xpoz-setup, then confirm access with the documented status check before use.
+
+Risk: Product research, generated queries, and sent-lead history may persist locally and could contain sensitive sales or customer-discovery information.
+
+Mitigation: Secure or delete files under data/lead-generation when they contain sensitive information.
+
+Risk: Lead scoring and outreach drafts can be incorrect, stale, or inappropriate for a prospect.
+
+Mitigation: Require user review before outreach and keep affiliation disclosures in generated messages.
+
+## Reference(s):
+
+- [Lead Generation on ClawHub](https://clawhub.ai/atyachin/skills/lead-generation)
+- [atyachin ClawHub Publisher Profile](https://clawhub.ai/user/atyachin)
+- [Xpoz](https://xpoz.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, scored lead records, outreach drafts, and JSON file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The workflow may create reusable local product profiles, generated search queries, and sent-lead history under data/lead-generation.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

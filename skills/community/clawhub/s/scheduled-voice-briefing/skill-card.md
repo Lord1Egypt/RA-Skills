@@ -1,40 +1,55 @@
-## Description: <br>
-Turns natural language requests into scheduled voice notification configurations and bounded structured briefing text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns natural language requests into scheduled voice notifications and structured briefings, with configuration guidance and examples for runtime-provided voice systems.
 
-## Publisher: <br>
-[sunxq1017-hash](https://clawhub.ai/user/sunxq1017-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunxq1017-hash](https://clawhub.ai/user/sunxq1017-hash)
 
-## Use Case: <br>
-External users and developers use this skill to create or update recurring or one-time spoken notification schedules, define modules such as environment or schedule summaries, and generate bounded briefing text for runtime voice delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted templates or object-rich contexts could expose sensitive data or produce unsafe briefing content. <br>
-Mitigation: Use trusted template files, provide only the context data needed for the briefing, and review generated configuration changes before runtime use. <br>
+## Use Case:
 
+Developers and external users use this skill to create or update scheduled spoken reminders, daily briefings, and other voice notification configurations. It helps structure timing, modules, language, voice, tone, and runtime handoff requirements without bundling a scheduler, TTS provider, or data connector.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sunxq1017-hash/scheduled-voice-briefing) <br>
-- [Config Schema](references/config-schema.md) <br>
-- [Briefing Templates](references/briefing-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON configuration examples, Python helper scripts, and generated briefing text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are bounded by configured modules; voice playback and external data are supplied by the runtime environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Users may assume the package provides a complete scheduler, TTS engine, calendar connector, weather connector, or playback runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review runtime integrations separately and provide explicit adapters, credentials, and data sources outside the skill package.
+
+Risk: Generated briefings can be incomplete or generic when optional weather, calendar, or other external inputs are unavailable.
+
+Mitigation: Configure graceful fallback behavior and verify that required data is supplied by the user or runtime environment before relying on a spoken briefing.
+
+## Reference(s):
+
+- [Config Schema](references/config-schema.md)
+- [Briefing Templates](references/briefing-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/sunxq1017-hash/skills/scheduled-voice-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, JSON configuration examples, and Python command-line examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are bounded to configured briefing modules and depend on runtime-provided voice, playback, and external data integrations.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

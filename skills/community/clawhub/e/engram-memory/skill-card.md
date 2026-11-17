@@ -1,40 +1,54 @@
-## Description: <br>
-Persistent semantic memory for AI agents -- local, fast, free. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent semantic memory for AI agents that helps them recall past decisions, store facts and preferences, search conversation history, and maintain context across sessions.
 
-## Publisher: <br>
-[Dannydvm](https://clawhub.ai/user/Dannydvm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dannydvm](https://clawhub.ai/user/dannydvm)
 
-## Use Case: <br>
-Developers and agent operators use Engram to give agents local searchable memory for prior decisions, facts, preferences, relationships, and conversation history across sessions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill enables persistent local memory, so stored secrets, credentials, regulated data, or confidential conversations may be recalled later or included in exports. <br>
-Mitigation: Avoid storing sensitive data unless the deployment owner has approved retention and export behavior; review memory contents before export or reuse. <br>
-Risk: The skill depends on the npm package engram-memory and the engram CLI being installed locally. <br>
-Mitigation: Review and install the npm dependency from a trusted source before enabling the skill for agent workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Engram on ClawHub](https://clawhub.ai/Dannydvm/engram-memory) <br>
-- [Dannydvm publisher profile](https://clawhub.ai/user/Dannydvm) <br>
+## Use Case:
 
+External developers and agent operators use Engram to give agents local, persistent memory for facts, decisions, preferences, events, relationships, and prior conversation context across sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance assumes the local engram CLI is installed and available on PATH.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent agent memory can retain sensitive raw transcripts, credentials, health, financial, client, or proprietary data across sessions.
+
+Mitigation: Store only necessary facts, decisions, and preferences; avoid sensitive raw data; review and delete memories when they are no longer needed.
+
+Risk: Broad recall across sessions can surface stale, private, or irrelevant context in later agent work.
+
+Mitigation: Use memory scoping and targeted searches, review recalled memories before relying on them, and prefer a pinned, reviewed npm package version before installation.
+
+## Reference(s):
+
+- [Engram ClawHub skill page](https://clawhub.ai/dannydvm/skills/engram-memory)
+- [dannydvm publisher profile](https://clawhub.ai/user/dannydvm)
+- [engram-memory npm package](https://www.npmjs.com/package/engram-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides an agent to use local Engram CLI commands for memory search, storage, ingestion, relationship management, import, and export.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

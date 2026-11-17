@@ -1,41 +1,48 @@
-## Description: <br>
-Lobster Autodream helps an agent periodically consolidate conversation history into concise long-term memory notes using time, volume, and quality gates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI memory consolidation system that automatically organizes conversation history, extracts important information, and updates long-term memory during heartbeat checks or session compression.
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and OpenClaw users can use this skill to consolidate conversation history into concise long-term memory entries while applying time, content-volume, and quality gates.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically persist selected conversation details into long-term memory.
+
+Mitigation: Install only when memory consolidation is desired, review or disable HEARTBEAT.md integration for automatic updates, and periodically inspect MEMORY.md for sensitive or stale entries.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to organize new conversation history, extract durable preferences or decisions, and keep local long-term memory files concise and current. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Guidance, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may change local long-term memory automatically. <br>
-Mitigation: Require a visible diff or confirmation before accepting changes to MEMORY.md. <br>
-Risk: Conversation history may contain secrets, sensitive personal data, or speculative inferences that should not become durable memory. <br>
-Mitigation: Review extracted memories and exclude secrets, sensitive personal data, and unsupported inferences before writing them. <br>
-Risk: Memory cleanup could remove or overwrite useful context if the agent misjudges what is outdated. <br>
-Mitigation: Review cleanup proposals before deletion and keep memory updates concise, sourced, and easy to revert. <br>
+**Output Format:** [Markdown guidance with configuration snippets and memory-writing procedures]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May update MEMORY.md and daily memory notes when configured with heartbeat or session-compression triggers.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with memory-update recommendations and optional configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose updates to local MEMORY.md and memory/*.md files; review file changes before relying on them.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -33,7 +33,7 @@ If the report says no background service is loaded, start one of these:
 ```bash
 clipmem setup
 # or
-brew services start clipmem
+clipmem service start
 ```
 
 ## 4. Agent integration (optional)
@@ -63,3 +63,5 @@ Expect every check to report `[OK]`. `[FAIL]` lines include remediation steps.
 | Sandboxed agent can't see the archive | PATH or file-access scope; rerun `openclaw sandbox explain` |
 
 See `scripts/check-setup.sh` for the executable version with categorised exit codes (0 healthy, 1 watcher stale, 2 binary missing, 3 doctor failed).
+
+Capture paused is reported with exit code 4 and `paused: true`; an unknown pause state reports exit code 3. Resume deliberately using `clipmem settings pause off`. The check never resumes capture itself.

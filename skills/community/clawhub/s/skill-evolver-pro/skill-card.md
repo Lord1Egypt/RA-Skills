@@ -1,45 +1,58 @@
-## Description: <br>
-Analyzes skill usage, errors, feedback, and performance signals to produce optimization plans, Markdown reports, evolution state tracking, and resumable multi-stage improvement workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Evolver Pro analyzes skill usage data, identifies improvement opportunities, generates optimization plans, and supports resumable evolution workflows with state tracking and local persistence.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to evaluate agent-skill performance, identify shortcomings, generate prioritized improvement plans, and resume long-running evolution workflows from persisted state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill persists telemetry, evolution history, and state data on disk. <br>
-Mitigation: Use a dedicated data directory with restricted permissions and review stored logs before sharing or publishing them. <br>
-Risk: Raw logs, feedback, prompts, customer content, or stack traces may contain sensitive data. <br>
-Mitigation: Redact secrets, personal data, customer content, prompts, and detailed stack traces before passing inputs into the evolution pipeline. <br>
-Risk: Generated optimization plans may be incomplete or unsuitable for a specific skill. <br>
-Mitigation: Review proposed changes, run tests, and scan updated skill files before deployment. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to evaluate agent skill performance, review usage and feedback patterns, generate prioritized optimization plans, and resume multi-stage skill evolution work after interruptions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pagoda111king/skill-evolver-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/pagoda111king) <br>
-- [Usage examples](artifact/examples/usage-examples.md) <br>
-- [Version history](artifact/VERSION_HISTORY.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON state/log data, JavaScript modules, and structured plan objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes evolution logs, version history, and resumable state data to local storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata and artifact version history, released 2026-04-13) <br>
+Risk: Local storage paths can be influenced by skill names and may escape intended data folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted skill names, validate and normalize path segments before execution, and keep the configured data directory isolated from sensitive files.
+
+Risk: The skill stores local usage, error, feedback, state, and history data.
+
+Mitigation: Avoid storing secrets or sensitive user data in evolution inputs, and review retention and backup practices for the data directory.
+
+Risk: Generated optimization plans and deployment steps may be incorrect or unsuitable for a target skill.
+
+Mitigation: Review generated plans, code changes, and deployment recommendations before applying them to production skills.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pagoda111king/skills/skill-evolver-pro)
+- [Skill Evolver Documentation](https://docs.cloud-shrimp.com/skill-evolver)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, JSON-like reports, and implementation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local evolution logs, version history, and resumable state files when its JavaScript persistence components are used.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and artifact documentation, released 2026-04-13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

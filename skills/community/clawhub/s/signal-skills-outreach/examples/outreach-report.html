@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>SpokeSlot (fictional) — Outreach Package</title>
+  <style>
+    :root {
+      --bg: #090b0f;
+      --panel: #12161d;
+      --panel2: #191f28;
+      --ink: #f5f2ea;
+      --muted: #9ca6b5;
+      --line: #2b3340;
+      --acid: #d9ff63;
+      --blue: #69b7ff;
+      --orange: #ff8f5a;
+      --cyan: #5ee8d0;
+      --purple: #c4a1ff;
+      --radius: 18px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .38);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    ul { margin: 0; padding-left: 1.2em; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 16px; z-index: 9; background: var(--acid); color: #111; padding: 10px; border-radius: 8px; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+    .shell { width: min(1180px, calc(100% - 40px)); margin: auto; }
+    .top { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .brand { font-weight: 850; display: flex; align-items: center; gap: 10px; }
+    .brand i { width: 12px; height: 12px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 22px var(--acid); }
+    .meta { display: flex; gap: 8px; align-items: center; }
+    .chip { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; color: var(--muted); font: 750 11px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .07em; }
+    button { background: var(--ink); color: #111; border: 0; border-radius: 999px; padding: 9px 14px; font: 800 13px inherit; cursor: pointer; }
+
+    .hero { padding: 72px 0 42px; }
+    .eyebrow { color: var(--acid); font: 750 11px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .11em; }
+    h1 { font-size: clamp(48px, 7vw, 80px); line-height: .92; letter-spacing: -.065em; margin: 13px 0 24px; }
+    .subtitle { font-size: clamp(18px, 2.1vw, 25px); color: #dce1e9; max-width: 820px; margin: 0; }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 42px; }
+    .stats > div { padding: 18px; background: var(--panel); }
+    .stats > div + div { border-left: 1px solid var(--line); }
+    .stats span { display: block; color: var(--muted); font: 700 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+    .stats strong { font-size: 17px; }
+
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+    .section-head h2 { font-size: clamp(34px, 5vw, 62px); line-height: .98; letter-spacing: -.055em; margin: 0; }
+    .section-head p { color: var(--muted); max-width: 470px; margin: 0; }
+
+    .sequences { display: grid; gap: 24px; margin-bottom: 76px; }
+    .sequence {
+      background: linear-gradient(135deg, var(--panel), #0f1319);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: 0 12px 38px rgba(0, 0, 0, .18);
+    }
+    .brief-segment { border-left: 4px solid var(--blue); }
+    .brief-company { border-left: 4px solid var(--orange); }
+    .seq-head { display: grid; grid-template-columns: 54px 1fr; gap: 17px; align-items: start; margin-bottom: 20px; }
+    .seq-rank { font: 850 24px ui-monospace, monospace; color: var(--acid); padding-top: 8px; }
+    .seq-identity h3 { font-size: 29px; letter-spacing: -.04em; margin: 0 0 10px; }
+    .seq-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+    .seq-score { background: var(--acid); color: #111; padding: 4px 10px; border-radius: 999px; font: 800 11px ui-monospace, monospace; }
+    .seq-channel { border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: var(--muted); font: 700 11px ui-monospace, monospace; text-transform: uppercase; }
+    .seq-channel.backup { border-color: rgba(105, 183, 255, .4); color: var(--blue); }
+    .seq-variant { border: 1px solid rgba(196, 161, 255, .4); border-radius: 999px; padding: 4px 10px; color: var(--purple); font: 700 11px ui-monospace, monospace; text-transform: uppercase; }
+
+    .touches { display: grid; gap: 12px; }
+    .touch { border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: var(--panel2); }
+    .touch-header { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .touch-step { font: 800 12px ui-monospace, monospace; color: var(--acid); }
+    .touch-day { font: 700 11px ui-monospace, monospace; color: var(--muted); }
+    .touch-channel { border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; font: 700 10px ui-monospace, monospace; color: var(--muted); text-transform: uppercase; }
+    .variant { border: 1px solid rgba(196, 161, 255, .4); border-radius: 999px; padding: 3px 8px; font: 700 10px ui-monospace, monospace; color: var(--purple); text-transform: uppercase; }
+    .subject { margin-bottom: 8px; }
+    .subject span, .touch-notes span, .response-handling > span { display: block; color: var(--muted); font: 700 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+    .touch-body p { margin: 0; font-size: 15px; white-space: pre-wrap; }
+    .touch-notes { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+    .touch-notes p { margin: 0; font-size: 13px; color: var(--muted); }
+
+    .response-handling { margin-top: 16px; padding: 16px; border: 1px dashed rgba(217, 255, 99, .35); border-radius: 12px; }
+    .response-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+    .response-grid > div { border: 1px solid var(--line); border-radius: 10px; padding: 12px; background: rgba(255, 255, 255, .018); }
+    .response-grid span { display: block; color: var(--muted); font: 700 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+    .response-grid p { margin: 0; font-size: 13px; }
+
+    .brief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .brief-grid > div { border: 1px solid var(--line); border-radius: 12px; padding: 15px; background: rgba(255, 255, 255, .018); }
+    .brief-grid span { display: block; color: var(--muted); font: 700 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .brief-grid p { margin: 0; }
+    .plan-list { list-style: none; padding: 0; }
+    .plan-list li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .plan-list li:last-child { border-bottom: 0; }
+    .plan-list li span { display: inline-block; color: var(--blue); font: 700 10px ui-monospace, monospace; text-transform: uppercase; margin-right: 8px; }
+    .plan-list li p { display: inline; margin: 0; }
+    .kw-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .kw-chip { border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font: 700 11px ui-monospace, monospace; color: var(--ink); }
+
+    .general { border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; color: var(--muted); margin-bottom: 60px; }
+    .general h2 { color: var(--ink); margin-top: 0; }
+
+    footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding: 22px 0 40px; color: var(--muted); font-size: 12px; }
+
+    .reveal { animation: rise .4s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+
+    @media (max-width: 820px) {
+      .shell { width: min(100% - 24px, 1180px); }
+      .hero { padding-top: 44px; }
+      .seq-head { grid-template-columns: 38px 1fr; }
+      .response-grid, .brief-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stats > div + div { border-left: 0; border-top: 1px solid var(--line); }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+    @media print {
+      body { background: #fff; color: #111; }
+      .top button { display: none; }
+      .shell { width: 100%; }
+      .sequence, .touch, .brief-grid > div { background: #fff; color: #111; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to report</a>
+  <div class="shell">
+    <header class="top">
+      <div class="brand"><i></i> Signal Outreach</div>
+      <div class="meta">
+        <span class="chip">Drafts only — never sent automatically</span>
+        <button type="button" onclick="window.print()">Print / Save PDF</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <span class="eyebrow">Outreach package · 2026-07-14</span>
+        <h1>SpokeSlot (fictional)</h1>
+        <p class="subtitle">The right next action per prospect type — sequences for Individuals, content briefs for Segments, BD pitches for Companies. Every item references a specific public signal.</p>
+      </section>
+
+      <section class="stats">
+        <div><span>Total items</span><strong>5</strong></div>
+        <div><span>Individuals</span><strong>3</strong></div>
+        <div><span>Segments</span><strong>1</strong></div>
+        <div><span>Companies</span><strong>1</strong></div>
+        <div><span>community</span><strong>2</strong></div><div><span>youtube</span><strong>1</strong></div><div><span>email</span><strong>1</strong></div><div><span>partnerships page</span><strong>1</strong></div>
+      </section>
+
+      
+      <section>
+        <header class="section-head">
+          <h2>Sequences ready to send.</h2>
+          <p>Each Individual gets a personalized multi-touch sequence. Open the touches to see the full outreach plan.</p>
+        </header>
+        <div class="sequences">
+          
+    <article class="sequence reveal">
+      <header class="seq-head">
+        <div class="seq-rank">01</div>
+        <div class="seq-identity">
+          <h3>Example bike-commuting YouTube channel (fictional)</h3>
+          <div class="seq-meta">
+            <span class="seq-score">Score 97</span>
+            <span class="seq-channel">YouTube reply</span>
+            <span class="seq-channel backup">Backup: Email</span>
+            <span class="seq-variant">Recommended: Variant A</span>
+          </div>
+        </div>
+      </header>
+      <div class="touches">
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 1</span>
+        <span class="touch-day">Day 0</span>
+        <span class="touch-channel">YouTube comment</span>
+        <span class="variant">A</span>
+      </div>
+      
+      <div class="touch-body"><p>Saw your video on waiting two weeks for a simple brake job — the call-every-shop-in-town routine is painfully familiar. We built a tool that shows open repair slots at nearby independent shops and books one in a few taps. Would it be useful to try it on your next tune-up?</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>References the specific video title and the phone-around routine they showed on camera.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 2</span>
+        <span class="touch-day">Day 3</span>
+        <span class="touch-channel">YouTube comment (reply to own)</span>
+        
+      </div>
+      
+      <div class="touch-body"><p>Quick follow-up — a few people in your comments mentioned phoning shops one by one to find an opening. Ours shows live slots across shops on one map, which might save that afternoon. Happy to walk you through it in 5 minutes.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Builds on the comments section discussion. Positions live slots vs calling each shop.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 3</span>
+        <span class="touch-day">Day 7</span>
+        <span class="touch-channel">YouTube comment (reply to own)</span>
+        
+      </div>
+      
+      <div class="touch-body"><p>Found this write-up comparing walk-in queues and booked repair slots at small bike shops. Thought you&#x27;d find the comparison interesting: [link]. No pitch.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Pure value-add. Social proof from a similar creator. No ask.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 4</span>
+        <span class="touch-day">Day 14</span>
+        <span class="touch-channel">YouTube comment (reply to own)</span>
+        
+      </div>
+      
+      <div class="touch-body"><p>Appreciate you reading this far. If the timing isn&#x27;t right, no worries at all. Just know the offer stands whenever it makes sense. Ride safe.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Graceful close. No guilt, no pressure.</p></div>
+    </div></div>
+      
+        <div class="response-handling">
+          <span>Response handling</span>
+          <div class="response-grid">
+            <div><span>Positive reply</span><p>Thank them. Send a booking link with a code that waives the booking fee on their first two repairs. Ask which shop they use now so you can check it is listed.</p></div>
+            <div><span>Question reply</span><p>If &#x27;what is it?&#x27;: One sentence + link to the site. If &#x27;does it cost riders anything?&#x27;: Booking is free for riders; shops pay per completed booking. If &#x27;is my shop on it?&#x27;: Check the map and answer honestly.</p></div>
+            <div><span>No reply</span><p>Do not re-engage for 90 days. During the wait, comment genuinely on 1-2 of their videos. After 90 days, one final touch — share a new feature or case study. If no reply, move on.</p></div>
+          </div>
+        </div>
+    </article>
+    <article class="sequence reveal">
+      <header class="seq-head">
+        <div class="seq-rank">02</div>
+        <div class="seq-identity">
+          <h3>Example Reddit poster (fictional)</h3>
+          <div class="seq-meta">
+            <span class="seq-score">Score 95</span>
+            <span class="seq-channel">Reddit reply</span>
+            <span class="seq-channel backup">Backup: Email</span>
+            <span class="seq-variant">Recommended: Variant B</span>
+          </div>
+        </div>
+      </header>
+      <div class="touches">
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 1</span>
+        <span class="touch-day">Day 0</span>
+        <span class="touch-channel">Reddit comment</span>
+        <span class="variant">B</span>
+      </div>
+      
+      <div class="touch-body"><p>Ten days without your commuter bike for a wheel true is rough — and unfortunately common. We built SpokeSlot for this: it shows which independent shops near you have an open repair slot this week and books it. Would love your take on whether it fits how you get repairs done.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>References the ten-day wait from their post. Asks for their opinion, not a purchase.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 2</span>
+        <span class="touch-day">Day 3</span>
+        <span class="touch-channel">Reddit comment (reply to own)</span>
+        
+      </div>
+      
+      <div class="touch-body"><p>Saw some people in the thread suggesting you learn to true the wheel yourself — that works until it&#x27;s a hub or a bent derailleur hanger. SpokeSlot lists slots by repair type so you know the shop can take the job before you ride over. Happy to send a link.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Addresses the do-it-yourself suggestion others made. Positions repair-type filtering as the fix.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 3</span>
+        <span class="touch-day">Day 7</span>
+        <span class="touch-channel">Reddit comment (reply to own)</span>
+        
+      </div>
+      
+      <div class="touch-body"><p>Quick update — we just added a same-day flag that shows shops able to finish a repair before closing. Thought that maps to exactly what you described. No strings, just try it.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>New feature directly relevant to their described pain. Zero-pressure CTA.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 4</span>
+        <span class="touch-day">Day 14</span>
+        <span class="touch-channel">Reddit comment (reply to own)</span>
+        
+      </div>
+      
+      <div class="touch-body"><p>If you end up trying it, would genuinely love to hear what works and what doesn&#x27;t. Either way, hope the commuter is back on the road soon.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Asks for feedback, not a commitment. Respects the community norm.</p></div>
+    </div></div>
+      
+        <div class="response-handling">
+          <span>Response handling</span>
+          <div class="response-grid">
+            <div><span>Positive reply</span><p>DM them only after they reply, with a booking link. Ask one question: &#x27;What repair do you need first?&#x27; to start a conversation.</p></div>
+            <div><span>Question reply</span><p>If &#x27;is this an ad?&#x27;: Be transparent — &#x27;We built this tool and I saw your post and thought it might help. No pressure.&#x27; If &#x27;does it cost money?&#x27;: &#x27;Booking is free for riders. Shops pay $3 per completed booking, and their first 25 bookings are free.&#x27;</p></div>
+            <div><span>No reply</span><p>Respect the Reddit norm. Do not DM unprompted. Move on.</p></div>
+          </div>
+        </div>
+    </article>
+    <article class="sequence reveal">
+      <header class="seq-head">
+        <div class="seq-rank">03</div>
+        <div class="seq-identity">
+          <h3>Example urban-cycling blog (fictional)</h3>
+          <div class="seq-meta">
+            <span class="seq-score">Score 79</span>
+            <span class="seq-channel">Email</span>
+            <span class="seq-channel backup">Backup: Blog comment</span>
+            <span class="seq-variant">Recommended: Variant B</span>
+          </div>
+        </div>
+      </header>
+      <div class="touches">
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 1</span>
+        <span class="touch-day">Day 0</span>
+        <span class="touch-channel">Email</span>
+        <span class="variant">B</span>
+      </div>
+      <div class="subject"><span>Subject</span><p>Your post on bike shop wait times resonated</p></div>
+      <div class="touch-body"><p>Read your post on giving up on booking repairs by phone — the voicemail-and-wait frustration is exactly why we built SpokeSlot to show open slots instead. No calls, just pick a time at a shop near you. Would love your honest take on whether it solves the gaps you outlined.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>References the specific blog post. Positions as seeking honest feedback, not endorsement.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 2</span>
+        <span class="touch-day">Day 5</span>
+        <span class="touch-channel">Email</span>
+        
+      </div>
+      <div class="subject"><span>Subject</span><p>Re: Your post on bike shop wait times resonated</p></div>
+      <div class="touch-body"><p>Quick follow-up — we read your critique of shop booking widgets that only show one shop at a time. SpokeSlot puts every listed shop&#x27;s open slots on one map, filtered by repair type. Different approach entirely. Happy to demo.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Addresses a specific critique from the blog post. Shows we actually read it.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 3</span>
+        <span class="touch-day">Day 10</span>
+        <span class="touch-channel">Email</span>
+        
+      </div>
+      <div class="subject"><span>Subject</span><p>This made me think of your post</p></div>
+      <div class="touch-body"><p>Found this interesting — a cycling writer with a similar critique tried booking repairs online for a month and wrote about the difference. Thought it&#x27;d resonate: [link].</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Pure value-add. Relevant external content. No ask.</p></div>
+    </div>
+    <div class="touch">
+      <div class="touch-header">
+        <span class="touch-step">Step 4</span>
+        <span class="touch-day">Day 14</span>
+        <span class="touch-channel">Email</span>
+        
+      </div>
+      <div class="subject"><span>Subject</span><p>Standing by</p></div>
+      <div class="touch-body"><p>If you ever want to try it or tear it apart publicly, I&#x27;m here for either. Thanks for writing honestly about what&#x27;s broken in this space.</p></div>
+      <div class="touch-notes"><span>Personalization</span><p>Acknowledges their public voice. Invites critique, not just praise.</p></div>
+    </div></div>
+      
+        <div class="response-handling">
+          <span>Response handling</span>
+          <div class="response-grid">
+            <div><span>Positive reply</span><p>Send a booking link with the fee waived. Ask: &#x27;What would you need to see to write an honest review?&#x27; Give them full control of the narrative.</p></div>
+            <div><span>Question reply</span><p>If &#x27;is this another booking site shops ignore?&#x27;: &#x27;Fair concern. Here&#x27;s a 60-second video of a shop confirming a slot — no marketing, just the product. Judge for yourself.&#x27; If &#x27;how is this different?&#x27;: &#x27;Open slots across shops on one map, filtered by repair type, not one shop&#x27;s calendar at a time.&#x27;</p></div>
+            <div><span>No reply</span><p>Respect their time. If they publish about SpokeSlot (positive or negative), engage genuinely. Do not ask for removal of negative coverage.</p></div>
+          </div>
+        </div>
+    </article>
+        </div>
+      </section>
+      
+      <section>
+        <header class="section-head">
+          <h2>Content briefs to execute.</h2>
+          <p>Each Segment gets a content/GTM plan, not a message — there's no one person to send it to.</p>
+        </header>
+        <div class="sequences">
+          
+    <article class="sequence reveal brief-segment">
+      <header class="seq-head">
+        <div class="seq-rank">01</div>
+        <div class="seq-identity">
+          <h3>Daily bike commuters whose bike breaks midweek</h3>
+          <div class="seq-meta">
+            <span class="seq-score">Score 77</span>
+            <span class="seq-channel">Searchable</span>
+          </div>
+        </div>
+      </header>
+      <div class="brief-grid">
+        <div><span>Content plan</span><ul class="plan-list"><li><span>Consideration</span><p>Use-case landing page: &#x27;Book a bike repair this week, not in two weeks&#x27; <em>(Use-case page)</em></p></li><li><span>Awareness</span><p>Blog post: &#x27;Why bike shops are booked out (and how to get a slot anyway)&#x27; <em>(Blog post)</em></p></li><li><span>Decision</span><p>Recurring, disclosed reply in the weekly r/bikecommuting help thread pointing to the landing page <em>(Community reply)</em></p></li></ul></div>
+        <div><span>Target keywords</span><div class="kw-row"><span class="kw-chip">bike repair near me this week</span><span class="kw-chip">book bike tune-up online</span><span class="kw-chip">bike shop wait time</span></div></div>
+        <div><span>Channel plan</span><ul><li>SEO/blog</li><li>r/bikecommuting help thread (disclosed affiliation)</li><li>Local search listing update highlighting same-day slots</li></ul></div>
+        <div><span>Proof points</span><ul><li>150+ comments in a single help thread describing week-long waits for basic repairs</li><li>At least 10 distinct users explicitly asking how to find a shop with an opening in one thread</li></ul></div>
+      </div>
+    </article>
+        </div>
+      </section>
+      
+      <section>
+        <header class="section-head">
+          <h2>Pitches ready to send.</h2>
+          <p>Each Company gets one specific ask through a public contact path — not a drip sequence.</p>
+        </header>
+        <div class="sequences">
+          
+    <article class="sequence reveal brief-company">
+      <header class="seq-head">
+        <div class="seq-rank">01</div>
+        <div class="seq-identity">
+          <h3>Example bike-share operator (fictional)</h3>
+          <div class="seq-meta">
+            <span class="seq-score">Score 84</span>
+            <span class="seq-channel">Potential customer account</span>
+            <span class="seq-channel">Warm BD through the company&#x27;s public partnerships page.</span>
+          </div>
+        </div>
+      </header>
+      <div class="touch" style="background:transparent">
+        <div class="touch-header"><span class="touch-step">Pitch</span></div>
+        <div class="touch-body"><p>Saw the Fleet Maintenance Lead role — the target of cutting bikes out of service by 30% is the outcome our booking layer (open slots, repair-type matching, shop confirmation) could help with. It is built for individual riders; the same layer could route overflow repairs to local shops across your 3 depots. Open to a scoped 30-day pilot at one depot, measured against that target?</p></div>
+      </div>
+      <div class="brief-grid">
+        <div><span>Contact path</span><p>Public partnerships or contact form on the company website</p></div>
+        <div><span>Fallback ask</span><p>If a pilot isn&#x27;t the right first step, offer a 20-minute walkthrough of the booking flow as a lower-commitment follow-up.</p></div>
+      </div>
+    </article>
+        </div>
+      </section>
+
+      <section class="general">
+        <h2>General notes</h2>
+        <p>Hand-written example, not produced by a run: the product, prospects and numbers are fictional. These are drafts. Every message must be reviewed and personalized further before sending. The signal-outreach skill should be re-run against any new signals discovered during research. Never send any message without explicit human approval.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Generated by signal-outreach</span>
+      <span>Outreach is never sent automatically.</span>
+    </footer>
+  </div>
+</body>
+</html>

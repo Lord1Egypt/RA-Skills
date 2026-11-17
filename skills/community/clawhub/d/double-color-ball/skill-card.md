@@ -1,46 +1,68 @@
-## Description: <br>
-Provides recent Double Color Ball lottery results, trend analysis, and entertainment-only next-draw number suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides recent China Double Color Ball lottery draw results, trend analysis, and entertainment-only number suggestions.
 
-## Publisher: <br>
-[ltap266](https://clawhub.ai/user/ltap266) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ltap266](https://clawhub.ai/user/ltap266)
 
-## Use Case: <br>
-External users can ask an agent for recent Double Color Ball draw results, basic trend summaries, and clearly labeled entertainment-only prediction suggestions. The skill is best treated as a convenience lookup and formatting tool, not as a reliable financial or gambling decision aid. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The environment check script can inspect local configuration files that may contain credentials or private workspace data. <br>
-Mitigation: Review or remove check_env.py before installation, and do not run the skill in workspaces containing secrets in .env, MEMORY.md, TOOLS.md, or OpenClaw configuration files. <br>
-Risk: Lottery results may be stale, simulated, or otherwise unverified when network retrieval fails. <br>
-Mitigation: Treat all results and predictions as entertainment-only output and independently verify draw data before relying on it. <br>
-Risk: Disabled TLS certificate verification can allow lottery data to be tampered with in transit. <br>
-Mitigation: Restore certificate verification or run the network retrieval only in a controlled environment after reviewing the code. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve recent Double Color Ball lottery results, review simple trend summaries, and generate entertainment-only number suggestions. It should not be treated as financial, gambling, or wagering advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ltap266/double-color-ball) <br>
-- [Publisher Profile](https://clawhub.ai/user/ltap266) <br>
-- [China Welfare Lottery Draw Notice API](https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice?name=ssq&issueCount=10) <br>
-- [17500 Double Color Ball Information](https://www.17500.cn/ssq/newinfo.php) <br>
-- [Baidu Search](https://www.baidu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with lottery result tables, trend summaries, prediction suggestions, and status notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include diagnostic status on data source, freshness, and fallback behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The environment checker looks for Baidu-related credentials and local configuration paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the checker or restrict diagnostics to explicit user-provided settings; avoid scanning workspace files or printing configuration lines.
+
+Risk: The network code disables TLS certificate and hostname verification.
+
+Mitigation: Restore default TLS verification and fail clearly when a source cannot be reached securely.
+
+Risk: The skill can fall back to simulated lottery records when live sources fail.
+
+Mitigation: Fail clearly or label synthetic records prominently, and do not present them as usable draw results.
+
+Risk: The artifact includes default-routing and MEMORY.md binding claims.
+
+Mitigation: Remove default-routing claims and require explicit user invocation or platform-approved routing.
+
+Risk: Entertainment predictions may be mistaken for wagering advice.
+
+Mitigation: Keep suggestions labeled as entertainment-only and avoid purchase, betting, or financial recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ltap266/skills/double-color-ball)
+- [Publisher profile](https://clawhub.ai/user/ltap266)
+- [China Welfare Lottery draw notice API](https://www.cwl.gov.cn/cwl_admin/front/cwlkj/search/kjxx/findDrawNotice?name=ssq&issueCount=10)
+- [17500 Double Color Ball information](https://www.17500.cn/ssq/newinfo.php)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with headings, tables, trend bullets, and entertainment-only suggestion sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output can include data source and freshness labels; artifact behavior shows fallback to simulated records when live sources fail.]
+
+## Skill Version(s):
+
+1.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

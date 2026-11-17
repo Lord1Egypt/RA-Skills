@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Reference Audit</title>
+<style>
+:root{--paper:#fff;--ink:#202724;--muted:#66716c;--line:#e3e8e5;--surface:#f6f8f7;--correct:#176448;--correct-soft:#edf6f0;--fixed:#315f95;--fixed-soft:#eef3fa;--risk:#9f4539;--risk-soft:#fbefec;--neutral:#62686c;--neutral-soft:#f0f2f3;font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-size:13px;line-height:1.55;-webkit-font-smoothing:antialiased}button,input,select{font:inherit;color:inherit}button,select{cursor:pointer}button{background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:5px 10px}button:hover{background:var(--surface)}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #367863;outline-offset:3px}a{color:#315f67;text-underline-offset:3px}h1,h2,p{margin:0}[hidden]{display:none!important}.shell{max-width:1600px;padding:28px 36px 32px;margin:auto}.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding-bottom:18px}.eyebrow{font-size:10px;letter-spacing:.16em;color:var(--muted);margin-bottom:4px}.masthead h1{font-size:26px;font-weight:650;letter-spacing:-.035em;line-height:1.3}.meta{font-size:11px;color:var(--muted);margin-top:7px;overflow-wrap:anywhere}.legend{font-size:11px;color:var(--muted);text-align:right;max-width:390px}.toolbar{position:sticky;top:0;z-index:2;background:rgba(255,255,255,.98);border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:10px 0;display:flex;flex-wrap:wrap;align-items:center;gap:9px}.filters{display:flex;flex-wrap:wrap;gap:5px}.filter{display:flex;gap:9px;align-items:center;font-size:12px;padding:5px 9px;border-color:transparent}.filter b{font-size:12px;font-variant-numeric:tabular-nums;font-weight:600}.filter[aria-pressed="true"]{background:var(--ink);color:white}.filter.correct:not([aria-pressed="true"]){color:var(--correct)}.filter.auto_fixed:not([aria-pressed="true"]){color:var(--fixed)}.filter.blocked:not([aria-pressed="true"]){color:var(--risk)}.search{margin-left:auto;min-width:190px;flex:1;max-width:320px}.search input{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:5px;padding:6px 9px;font-size:12px}.select{border:1px solid var(--line);border-radius:5px;background:white;padding:6px;max-width:180px;font-size:12px}.reset{font-size:12px;border:0;color:var(--muted);padding:5px}.results-head{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:11px;padding:10px 0}.actions{display:flex;gap:6px}.actions button{font-size:11px;padding:3px 8px}.reference-row{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:15px 0;border-top:1px solid var(--line);scroll-margin-top:140px}.reference-row:hover{background:#fcfdfc}.number{color:#828d87;font-size:12px;line-height:24px;font-variant-numeric:tabular-nums}.row-head{display:flex;align-items:baseline;gap:12px;justify-content:space-between}.title{font-size:15px;line-height:1.5;font-weight:600;overflow-wrap:anywhere;flex:1}.tags{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-top:5px}.tag{font-size:10px;line-height:1.5;padding:2px 6px;border:1px solid transparent;border-radius:4px;color:var(--neutral);background:var(--neutral-soft);white-space:normal;overflow-wrap:anywhere}.tag.correct{color:var(--correct);background:var(--correct-soft)}.tag.auto_fixed{color:var(--fixed);background:var(--fixed-soft)}.tag.blocked{color:var(--risk);background:var(--risk-soft)}.tag.outline{background:white;border-color:var(--line)}.metadata{font-size:11px;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}.citation-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;margin-top:9px}.citation{display:grid;grid-template-columns:62px minmax(0,1fr);gap:7px;font-size:12px;overflow-wrap:anywhere}.label{font-size:10px;color:var(--muted);padding-top:2px}.citation.output{border-left:1px solid var(--line);padding-left:14px}.canonical{display:grid;grid-template-columns:62px minmax(0,1fr);gap:7px;margin-top:6px;font-size:11px;overflow-wrap:anywhere;color:#52615a}.notes{display:grid;grid-template-columns:62px minmax(0,1fr);gap:7px;margin-top:6px;font-size:11px;overflow-wrap:anywhere}.notes ul{margin:0;padding-left:15px}.notes li+li{margin-top:2px}.diffs{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.diff{font-size:11px;border-left:2px solid #c99672;background:#faf6f0;padding:3px 7px;overflow-wrap:anywhere;max-width:100%}.diff del{color:#80665b;text-decoration-color:#bba79d}.diff ins{text-decoration:none;color:#2d5946}.evidence{display:flex;flex-wrap:wrap;gap:5px 12px;align-items:center;margin-top:7px;font-size:10px}.evidence a{overflow-wrap:anywhere}.evidence .trace{color:var(--muted)}.empty{padding:48px 20px;text-align:center;color:var(--muted);border-top:1px solid var(--line)}footer{border-top:1px solid var(--line);margin-top:12px;padding-top:10px;font-size:10px;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:1400px){.shell{padding-left:48px;padding-right:48px}.title{font-size:16px}}
+@media(max-width:800px){.shell{padding:18px 16px}.masthead{align-items:flex-start}.masthead h1{font-size:22px}.legend{display:none}.search{margin-left:0;max-width:none;min-width:160px}.toolbar{gap:6px}.filters{width:100%}.reference-row{grid-template-columns:26px minmax(0,1fr);gap:7px;padding:12px 0}.citation-grid{grid-template-columns:1fr;gap:5px}.citation.output{border:0;padding-left:0}.title{font-size:14px}.select{max-width:140px}.row-head{display:block}}
+@media print{.shell{max-width:none;padding:0}.toolbar,.actions{display:none}.reference-row{break-inside:avoid}.masthead{padding-bottom:10px}.citation-grid{grid-template-columns:1fr 1fr}a{color:inherit}.tag{border:1px solid #ddd}.reference-row:hover{background:white}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="masthead"><div><p class="eyebrow">REFERENCE AUDIT</p><h1>Reference Audit</h1><p class="meta" id="meta"></p></div><p class="legend">Use only after verification. Identifier-only, conflicting and unverified entries are not eligible.<br>All details expanded · Original order preserved</p></header>
+<section class="toolbar" aria-label="Filter references">
+<div class="filters" id="filters"></div>
+<label class="search"><span class="sr-only">Search all content</span><input id="search" type="search" placeholder="Search titles, authors, DOI, issues…" autocomplete="off"></label>
+<label><span class="sr-only">Verification status</span><select class="select" id="status"><option value="">All statuses</option></select></label>
+<label><span class="sr-only">Changed field</span><select class="select" id="field"><option value="">All differences</option></select></label>
+<button class="reset" id="reset" type="button">Reset</button>
+</section>
+<div class="results-head"><p id="caption" role="status" aria-live="polite"></p><div class="actions"><button type="button" id="copy">Copy filtered results</button><button type="button" id="print">Print</button></div></div>
+<section id="results" aria-label="Reference results"></section>
+<p id="empty" class="empty" hidden>No matching entries. Adjust the filters.</p>
+<footer>Self-contained offline report · No external fonts, scripts or tracking · Unverified entries are retained for review and are not eligible for citation.<span id="notice" role="status" aria-live="polite"></span></footer>
+</main>
+<script>/*__REFERENCE_AUDIT_DATA__*/</script>
+<script>
+(()=>{"use strict";
+const report=window.__REFERENCE_AUDIT_REPORT__||{results:[]};
+const items=Array.isArray(report.results)?report.results:[];
+const $=s=>document.querySelector(s);
+const node=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined&&text!==null)n.textContent=String(text);return n};
+const str=v=>Array.isArray(v)?v.join('; '):v===null||v===undefined?'':String(v);
+const categories=[['','All'],['correct','Verified'],['auto_fixed','Repaired'],['blocked','Not eligible'],['unchecked','Format only']];
+const labels={verified:'Metadata verified',verified_identifier_only:'Identifier only',minor_fix:'Minor correction',minor_format_error:'Format correction',formatted_only:'Authenticity not checked',partial_attribute_corruption:'Field conflict',identifier_hijacking:'Identifier mismatch',shifted_identifier:'Shifted identifier',total_fabrication:'Classified as fabricated',placeholder_generation:'Placeholder detected',parser_error:'Parsing failed',unresolved:'Unresolved'};
+const fields={title:'Title',authors:'Authors',journal:'Journal',year:'Year',doi:'DOI',pmid:'PMID',volume:'Volume',issue:'Issue',pages:'Pages'};
+const levels={metadata_verified:'Metadata checked',identifier_only:'Identifier checked only',not_checked:'Not checked',conflict:'Conflicting evidence',unresolved:'No passing evidence'};
+const repairs={repaired:'Revision generated',formatted:'Formatted',unchanged:'Original retained',retained_for_review:'Original retained for review'};
+const severity={none:'None',low:'Low',medium:'Medium',high:'High',critical:'Critical'};
+let active='';let visible=items.slice();
+const category=i=>i.report_category||(['verified'].includes(i.status)?'correct':['minor_fix','minor_format_error'].includes(i.status)?'auto_fixed':i.status==='formatted_only'?'unchecked':'blocked');
+const tag=(text,kind='')=>node('span','tag '+kind,text);
+function href(value){try{const u=new URL(String(value));return ['https:','http:'].includes(u.protocol)?u.href:''}catch{return ''}}
+function line(label,text,cls='citation'){const n=node('div',cls);n.append(node('span','label',label),node('div','',text));return n}
+function recordText(c){return [c.title,str(c.authors),c.journal,c.year,[c.volume,c.issue?`(${c.issue})`:'',c.pages||c.article_number].filter(Boolean).join(' '),c.doi?`DOI ${c.doi}`:'',c.pmid?`PMID ${c.pmid}`:''].filter(Boolean).join(' · ')}
+function render(item,pos){
+ const cat=category(item),row=node('article','reference-row');row.dataset.category=cat;row.dataset.position=pos;
+ row.append(node('div','number',String(item.index??pos+1).padStart(2,'0')));
+ const content=node('div','content'),head=node('div','row-head');
+ head.append(node('h2','title',item.parsed_title||item.canonical?.title||item.original||'Title unavailable'));content.append(head);
+ const badges=node('div','tags');
+ badges.append(tag(item.usable===true?'Eligible':cat==='unchecked'?'Not checked':'Not eligible',item.usable===true?'correct':cat==='unchecked'?'':'blocked'));
+ badges.append(tag(labels[item.status]||item.status||'Unknown status',cat));
+ if(item.verification_level)badges.append(tag(levels[item.verification_level]||item.verification_level,'outline'));
+ if(item.repair_state)badges.append(tag(repairs[item.repair_state]||item.repair_state,'outline'));
+ if(item.severity&&item.severity!=='none')badges.append(tag('Severity '+(severity[item.severity]||item.severity),'outline'));
+ const canonical=item.canonical||item.identifier_record;
+ if(canonical?.source)badges.append(tag(canonical.source,'outline'));
+ if(canonical?.pubmed_corroborated)badges.append(tag('PubMed corroborated','outline'));
+ if(canonical?.openalex_corroborated)badges.append(tag('OpenAlex corroborated','outline'));
+ content.append(badges);
+ const meta=[str(item.parsed_authors),item.parsed_journal,item.parsed_year,item.parsed_doi?`DOI ${item.parsed_doi}`:'',item.parsed_pmid?`PMID ${item.parsed_pmid}`:''].filter(Boolean).join(' · ');
+ if(meta)content.append(node('p','metadata',meta));
+ const citations=node('div','citation-grid');citations.append(line('Original',item.original||'Original unavailable'));
+ citations.append(line('Output',item.fixed_reference||'Original retained', 'citation output'));content.append(citations);
+ if(canonical)content.append(line(canonical.source==='source_record'?'Source':'Evidence',recordText(canonical),'canonical'));
+ if(item.identifier_record&&item.canonical&&JSON.stringify(item.identifier_record)!==JSON.stringify(item.canonical))content.append(line('Identifier',recordText(item.identifier_record),'canonical'));
+ if(Array.isArray(item.field_differences)&&item.field_differences.length){const ds=node('div','diffs');for(const d of item.field_differences){const diff=node('span','diff');diff.append(node('b','',(fields[d.field]||d.field)+' '),node('del','',str(d.before)),document.createTextNode(' → '),node('ins','',str(d.after)),document.createTextNode(d.source?` · ${d.source}`:''));ds.append(diff)}content.append(ds)}
+ const issues=[...new Set([...(item.input_warnings||[]),...(item.issues||[])])];
+ if(issues.length){const notes=node('div','notes'),list=node('ul');issues.forEach(x=>list.append(node('li','',x)));notes.append(node('span','label','Issues'),list);content.append(notes)}
+ if(item.suggested_action)content.append(line('Action',item.suggested_action,'notes'));
+ const evidence=node('div','evidence');
+ [...new Set(item.evidence_links||[])].forEach((value,index)=>{const safe=href(value);if(!safe)return;const url=new URL(safe),a=node('a','',url.hostname.replace(/^www\./,'')+' ↗');a.href=safe;a.title=safe;a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label',`Entry ${item.index??pos+1} Evidence ${index+1}: ${url.hostname}`);evidence.append(a)});
+ const trace=[item.status,item.parsed_title_reliable&&Number(item.title_similarity)>0?`Title similarity ${Math.round(Number(item.title_similarity)*100)}%`:'',item.checked_at?`Checked ${item.checked_at.replace('T',' ').slice(0,19)} UTC`:'',item.check_mode?`Mode ${item.check_mode}`:''].filter(Boolean).join(' · ');
+ evidence.append(node('span','trace',trace));content.append(evidence);row.append(content);return row;
+}
+const counts=Object.fromEntries(categories.map(([key])=>[key,key?items.filter(i=>category(i)===key).length:items.length]));
+for(const [key,label]of categories){const b=node('button','filter '+key);b.type='button';b.dataset.filter=key;b.append(node('span','',label),node('b','',counts[key]));b.addEventListener('click',()=>{active=active===key?'':key;apply()});$('#filters').append(b)}
+for(const status of new Set(items.map(i=>i.status).filter(Boolean))){const o=node('option','',labels[status]||status);o.value=status;$('#status').append(o)}
+for(const field of new Set(items.flatMap(i=>(i.field_differences||[]).map(d=>d.field)))){const o=node('option','',fields[field]||field);o.value=field;$('#field').append(o)}
+const fragment=document.createDocumentFragment();items.forEach((i,p)=>fragment.append(render(i,p)));$('#results').append(fragment);
+const haystacks=items.map(i=>JSON.stringify(i).toLocaleLowerCase());
+function apply(){const words=$('#search').value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean),status=$('#status').value,field=$('#field').value;visible=[];[...$('#results').children].forEach((row,p)=>{const i=items[p],show=(!active||category(i)===active)&&(!status||i.status===status)&&(!field||(i.field_differences||[]).some(d=>d.field===field))&&words.every(w=>haystacks[p].includes(w));row.hidden=!show;if(show)visible.push(i)});document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===active)));$('#caption').textContent=`Showing ${visible.length} / ${items.length} entries · original order`;$('#empty').hidden=visible.length>0;$('#copy').disabled=!visible.length}
+['search','status','field'].forEach(id=>$('#'+id).addEventListener(id==='search'?'input':'change',apply));
+$('#reset').addEventListener('click',()=>{active='';$('#search').value='';$('#status').value='';$('#field').value='';apply()});
+$('#print').addEventListener('click',()=>window.print());
+$('#copy').addEventListener('click',async()=>{const text=visible.map(i=>`[${i.index}] ${i.usable===true?'Eligible':'Authenticity not verified; not eligible for use'} · ${labels[i.status]||i.status}\n${i.fixed_reference||i.original||''}`).join('\n\n');try{if(navigator.clipboard?.writeText)await navigator.clipboard.writeText(text);else{const t=node('textarea','sr-only',text);document.body.append(t);t.select();const ok=document.execCommand('copy');t.remove();if(!ok)throw Error('copy')}$('#notice').textContent=` Copied ${visible.length} entries(including eligibility)。`}catch{$('#notice').textContent=' Copy failed. Select and copy using your browser.'}});
+const runtime=report.runtime||{};$('#meta').textContent=[`${items.length} REFERENCES`,report.input?report.input.split(/[\\/]/).pop():'',runtime.mode?`Mode ${runtime.mode}`:'',runtime.elapsed_seconds!==undefined?`${runtime.elapsed_seconds}s`:'',report.generated_at?report.generated_at.slice(0,10):''].filter(Boolean).join(' / ');
+apply();
+})();
+</script>
+</body>
+</html>

@@ -1,45 +1,63 @@
-## Description: <br>
-ClawSkill helps an agent install, verify, run, inspect, and uninstall the RTC/RustChain token miner with wallet setup and consent prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawSkill helps an agent install, verify, configure, and run RTC token mining with hardware attestation and wallet management.
 
-## Publisher: <br>
-[Scottcjn](https://clawhub.ai/user/Scottcjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scottcjn](https://clawhub.ai/user/scottcjn)
 
-## Use Case: <br>
-Agent users and developers use ClawSkill to operate an RTC miner from a CLI-oriented workflow, including installation, wallet configuration, verification, foreground mining, opt-in service mode, status checks, logs, and uninstall. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: This skill asks users to install and run token-mining software that repeatedly sends hardware fingerprint data to RustChain. <br>
-Mitigation: Install only when token mining is intentional, review the exact PyPI or npm package and linked source first, and monitor CPU, power, and network usage. <br>
-Risk: The miner can create background services outside the reviewed skill artifact. <br>
-Mitigation: Use foreground mode until trusted, avoid service mode unless persistence is intended, and use the documented uninstall command to remove files, services, and configs. <br>
+## Use Case:
 
+Developers and agent operators use ClawSkill to set up and control RTC mining workflows, including verification checks, wallet configuration, foreground mining, optional service startup, status checks, logs, and uninstall commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Scottcjn/clawskill) <br>
-- [PyPI package](https://pypi.org/project/clawskill/) <br>
-- [npm package](https://www.npmjs.com/package/clawskill) <br>
-- [RustChain homepage](https://rustchain.org) <br>
-- [RustChain block explorer](https://bulbous-bouffant.metalseed.net/explorer) <br>
-- [Linked source from artifact](https://github.com/Scottcjn/Rustchain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-oriented guidance for installing, verifying, starting, stopping, checking, logging, and uninstalling the miner.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata, package.json) <br>
+Risk: The reviewed artifact is about running a token miner, but the security evidence says the reviewed artifact does not include the miner code it asks users to install.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed release with included source files before installation; inspect the package contents and run the available dry-run and verification commands first.
+
+Risk: The miner profiles hardware, sends attestations to a network service, and creates wallet or configuration files under the user's account.
+
+Mitigation: Proceed only with explicit user consent, disclose the hardware and wallet data involved, and run it under a user account where those files and network calls are acceptable.
+
+Risk: The security evidence notes incomplete or inconsistent install and service disclosures, including auto-restart service creation when service mode is used.
+
+Mitigation: Avoid service mode unless the operator has reviewed the service creation behavior and can remove or disable the service during uninstall.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottcjn/skills/clawskill)
+- [Publisher profile](https://clawhub.ai/user/scottcjn)
+- [RustChain source code listed by skill](https://github.com/Scottcjn/Rustchain)
+- [PyPI package listed by skill](https://pypi.org/project/clawskill/)
+- [npm package listed by skill](https://www.npmjs.com/package/clawskill)
+- [RustChain homepage listed by package metadata](https://rustchain.org)
+- [Block explorer listed by skill](https://bulbous-bouffant.metalseed.net/explorer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operator-facing commands and setup guidance; no structured machine output is promised by the skill card.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

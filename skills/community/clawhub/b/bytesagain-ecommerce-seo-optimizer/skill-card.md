@@ -1,41 +1,54 @@
-## Description: <br>
-Optimize ecommerce keywords and product copy. Use when building keyword maps, rewriting titles, improving category text, auditing listings, or planning search terms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize ecommerce keywords and product copy. Use when building keyword maps, rewriting titles, improving category text, auditing listings, or planning search terms.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-External ecommerce operators, marketers, and agents use this skill to turn product facts into keyword clusters, listing copy, category text, audits, and short ecommerce content plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ecommerce copy may include unsupported claims or language that conflicts with marketplace rules. <br>
-Mitigation: Review titles, bullets, metadata, and claims against source product facts and official marketplace policies before publishing. <br>
-Risk: The skill runs a local bash helper to format supplied product facts into ecommerce SEO outputs. <br>
-Mitigation: Install only from the validated release artifact and inspect generated output before using it in store workflows. <br>
+## Use Case:
 
+External ecommerce operators, marketers, and developers use this skill to turn product facts into marketplace-ready SEO copy, keyword clusters, listing audits, category text, content plans, and launch bundles.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub listing](https://clawhub.ai/bytesagain-lab/bytesagain-ecommerce-seo-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text emitted by a local bash helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes listing briefs, titles, bullets, SEO metadata, FAQs, scripts, audits, keyword clusters, and launch planning content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated marketplace or SEO copy may include incorrect, unsupported, or non-compliant product claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims against official marketplace rules and verified product facts before publishing.
+
+Risk: Incomplete product facts can produce weak or misleading listing details.
+
+Mitigation: Provide verified dimensions, materials, certifications, compatibility, package contents, and target-market details before using the output.
+
+## Reference(s):
+
+- [BytesAgain](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/bytesagain-lab/skills/bytesagain-ecommerce-seo-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with listing briefs, keyword clusters, rewritten copy, SEO metadata, audits, scripts, calendars, and launch bundles]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated locally from user-provided product facts; does not upload products or request seller credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

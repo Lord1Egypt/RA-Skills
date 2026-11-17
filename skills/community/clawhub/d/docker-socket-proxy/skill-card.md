@@ -1,42 +1,58 @@
-## Description: <br>
-Manage a remote Docker host through a Tecnativa docker-socket-proxy instance, using proxy-side API section controls to limit the Docker operations an agent can perform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a remote Docker host through a Tecnativa docker-socket-proxy instance, with Docker API access constrained by the proxy sections the operator enables.
 
-## Publisher: <br>
-[BP602](https://clawhub.ai/user/BP602) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bp602](https://clawhub.ai/user/bp602)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent inspect and administer Docker hosts through a configured docker-socket-proxy deployment while relying on proxy-side API section controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer Docker through the configured proxy, including lifecycle and cleanup actions that may affect running workloads. <br>
-Mitigation: Enable only the minimum docker-socket-proxy sections needed and require explicit human approval before exec, restart, kill, stop, or prune commands, especially on production hosts. <br>
-Risk: Docker inspection, logs, configs, environment, mounts, and secret metadata can expose sensitive operational data. <br>
-Mitigation: Limit read-oriented proxy sections to trusted use cases and handle command output as sensitive when it comes from production or shared hosts. <br>
-Risk: A raw Docker daemon endpoint would be root-equivalent host access if used instead of a constrained proxy. <br>
-Mitigation: Route the skill only through a tightly scoped docker-socket-proxy instance and avoid exposing a raw Docker socket or unrestricted daemon TCP endpoint. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent inspect and manage Docker containers, images, networks, volumes, Swarm resources, plugins, system information, and event streams through a configured docker-socket-proxy.
 
-## Reference(s): <br>
-- [Tecnativa docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text, aligned tables, and JSON from Docker API requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output depends on the docker-socket-proxy API sections enabled by the user; disabled sections return HTTP 403.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can give an agent powerful control over the target Docker host through a plaintext remote proxy, including operations that may reveal secrets, disrupt services, or delete resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for agents intended to manage that Docker host; keep docker-socket-proxy tightly configured, expose only needed API sections, and avoid untrusted networks.
+
+Risk: High-impact modes such as exec, kill, stop, restart, and prune can change running workloads or remove Docker resources.
+
+Mitigation: Review planned high-impact operations before execution and enable only the corresponding proxy permissions needed for the operational task.
+
+Risk: Inspection, logs, stats, environment, mounts, configs, and secrets-related API calls can expose sensitive operational data when the proxy permits them.
+
+Mitigation: Scope proxy access to the minimum required Docker API sections and treat returned host, container, and log data as sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bp602/skills/docker-socket-proxy)
+- [Tecnativa docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; command results are plain text, aligned tables, or JSON from Docker API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq, plus DOCKER_PROXY_URL or DOCKER_HOST for non-local proxy targets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

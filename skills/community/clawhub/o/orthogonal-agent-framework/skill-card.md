@@ -1,39 +1,54 @@
-## Description: <br>
-Orthogonal Agent Framework helps agents organize complex work into independent planning, execution, memory, and evaluation modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orthogonal Agent Framework helps agents organize complex tasks across separate planning, execution, memory, and evaluation modules so each module can be combined, replaced, tested, or extended independently.
 
-## Publisher: <br>
-[LiXingxun](https://clawhub.ai/user/LiXingxun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lixingxun](https://clawhub.ai/user/lixingxun)
 
-## Use Case: <br>
-Developers and agent builders use this skill to structure complex, multi-step agent work into separate planning, execution, memory, and evaluation records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Memory and execution notes may capture sensitive task context if users include secrets or private information. <br>
-Mitigation: Keep sensitive information out of generated notes and review future tool actions before they modify files, accounts, or public content. <br>
+## Use Case:
 
+Developers and agent builders use this skill to structure complex, multi-step work into planning, execution, memory, and evaluation artifacts. It is most useful when tasks need persistent context, iterative assessment, or independently replaceable agent modules.
 
-## Reference(s): <br>
-- [Orthogonality Design Principles](references/design-principles.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/LiXingxun/orthogonal-agent-framework) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown templates and structured agent workflow guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates task-oriented planning, execution, memory, and evaluation notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The workflow may create task files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose the intended working directory before invoking the skill and review generated files before committing or sharing them.
+
+Risk: The memory template can preserve sensitive task context if users record it there.
+
+Mitigation: Avoid placing secrets, credentials, or private data in memory.md unless persistent storage is intentional.
+
+## Reference(s):
+
+- [Design Principles](references/design-principles.md)
+- [ClawHub Release Page](https://clawhub.ai/lixingxun/skills/orthogonal-agent-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown task plans, execution logs, memory notes, evaluation tables, and interface examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update plan.md, execution.md, memory.md, and evaluation.md in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

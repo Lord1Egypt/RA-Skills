@@ -1,50 +1,64 @@
-## Description: <br>
-中国中小学作业批改与学生学业综合评估。教师拍照扫描批改作业、生成单生/全班单科及综合学科知识掌握评估图并给出指导建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps Chinese primary and middle school teachers grade photographed or scanned homework, map results to curriculum knowledge points, generate student and class mastery assessments, and produce role-aware learning guidance.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Teachers, class advisers, grade leaders, and school administrators use this skill to review photographed or scanned homework, connect question results to knowledge points, and generate individual, class, subject, or cross-subject learning assessment guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Student homework, names, IDs, grades, and assessment reports can contain sensitive personal data. <br>
-Mitigation: Use local or private OCR where possible, limit access by role, and desensitize data before sending it to cloud services. <br>
-Risk: OCR services and provider credentials may be exposed during deployment or integration. <br>
-Mitigation: Restrict service ports, store API keys in protected secret management, and review network exposure before production use. <br>
-Risk: Automated grading and learning guidance may be inaccurate, especially for handwriting, formulas, and subjective answers. <br>
-Mitigation: Keep teacher review in the workflow for subjective items and audit generated guidance before sharing it with students or families. <br>
-Risk: Commercial deployment terms may require publisher confirmation. <br>
-Mitigation: Confirm the applicable license and any school, institutional, or commercial agreement with the publisher before deployment. <br>
+## Use Case:
 
+Teachers, school administrators, and education technology teams use this skill to design workflows for OCR-assisted homework grading, knowledge-point mastery analysis, student and class reports, and permission-scoped access to academic data.
 
-## Reference(s): <br>
-- [数据模型参考](references/data-model.md) <br>
-- [权限模型参考](references/permission-model.md) <br>
-- [评估图表规格](references/chart-spec.md) <br>
-- [OCR引擎选型与拍照批改技术方案](references/ocr-implementation.md) <br>
-- [OCR 技术选型建议](references/ocr-selection.md) <br>
-- [知识点-教材版本映射方案](references/textbook-mapping.md) <br>
-- [教材版本知识点映射方案](references/textbook-version-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON schemas, code snippets, shell commands, configuration examples, charts, and assessment report text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe OCR workflows, role-based access models, knowledge-point mappings, and homework grading outputs; no executable payload is bundled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Student homework, names, class information, and academic performance data may be exposed if the OCR service or storage layer is deployed without sufficient protection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind local OCR services to localhost or place them behind authenticated TLS, enforce role-based access controls, add upload and rate limits, and define consent, retention, deletion, and audit rules before processing student data.
+
+Risk: Unpinned OCR containers or dependencies can change behavior or introduce supply-chain risk.
+
+Mitigation: Pin and verify OCR container images and model artifacts before deployment, and review updates before using them in a school environment.
+
+Risk: OCR and AI grading may misread handwriting or produce incorrect scoring and learning advice.
+
+Mitigation: Keep teacher review in the grading workflow, especially for subjective answers, low-confidence OCR results, and student-facing feedback.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-homework-grading)
+- [Data Model Reference](references/data-model.md)
+- [Permission Model Reference](references/permission-model.md)
+- [Assessment Chart Specification](references/chart-spec.md)
+- [OCR Implementation Plan](references/ocr-implementation.md)
+- [OCR Selection Guidance](references/ocr-selection.md)
+- [Textbook Mapping Plan](references/textbook-mapping.md)
+- [Textbook Version Mapping Plan](references/textbook-version-mapping.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, TypeScript, SQL, YAML, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes education data models, OCR deployment examples, chart specifications, permission rules, and textbook mapping guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

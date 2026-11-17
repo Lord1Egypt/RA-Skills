@@ -1,0 +1,13 @@
+collection: MDCD
+sort-by: 10
+shortname: mdcd
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/genesis_plus_gx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: 拦截者
+file: 拦截者.chd
+assets.box_front: Imgs/拦截者.png
+description: 《拦截者》，世嘉 Mega-CD 平台。
+game: 蜘蛛侠对抗金并
+file: 蜘蛛侠对抗金并.chd
+assets.box_front: Imgs/蜘蛛侠对抗金并.png
+description: 《蜘蛛侠对抗金并》，世嘉 Mega-CD 平台。

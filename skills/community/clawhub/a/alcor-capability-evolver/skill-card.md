@@ -1,44 +1,63 @@
-## Description: <br>
-A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A self-evolution engine for AI agents that analyzes runtime history to identify improvements and applies protocol-constrained evolution.
 
-## Publisher: <br>
-[roamer-remote](https://clawhub.ai/user/roamer-remote) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roamer-remote](https://clawhub.ai/user/roamer-remote)
 
-## Use Case: <br>
-Developers and agent operators use this skill to inspect runtime history, identify failures or inefficiencies, and apply or review protocol-constrained improvements to agent code and memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Autonomous self-modification can introduce unwanted source or memory changes. <br>
-Mitigation: Install in a disposable, version-controlled workspace, keep review mode enabled for sensitive environments, disable self-modification unless explicitly needed, and prefer stash-style rollback controls. <br>
-Risk: Remote hub communication and automatic publishing or issue reporting can expose workspace context, logs, or sensitive credentials. <br>
-Mitigation: Disable auto-publish, auto-issue, and loop mode unless required, use least-privilege tokens, and do not run where production source trees, broad workspace memories, session logs, or GitHub tokens are available. <br>
-Risk: The security evidence flags unsafe defaults and a hardcoded A2A secret rotation requirement. <br>
-Mitigation: Rotate the A2A secret before installation and review all environment variables before granting network or shell access. <br>
+## Use Case:
 
+Developers and agent operators use this skill to inspect runtime history, identify failures or inefficiencies, and generate or apply improvements to agent code, memory, and evolution assets. It is intended for controlled workspaces where shell execution, network publishing, and rollback behavior can be reviewed.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/roamer-remote/alcor-capability-evolver) <br>
-- [EvoMap Hub](https://evomap.ai) <br>
-- [EvoMap Evolver Releases](https://github.com/EvoMap/evolver/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, JSON assets, source code changes, configuration updates, and shell command execution.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify workspace files during evolution cycles and may communicate with EvoMap or GitHub when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: High-impact automation can modify code, write memory and asset files, run shell commands, and perform rollback behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an isolated disposable workspace with no secrets or valuable uncommitted work; review changes before allowing solidification.
+
+Risk: External publishing, auto-issue reporting, proactive questions, and remote memory sync can send data to external services.
+
+Mitigation: Disable auto-publish, auto-issue reporting, proactive questions, auto-update, and remote integrations unless the outbound data and credentials have been reviewed.
+
+Risk: Hard rollback behavior can discard local workspace changes.
+
+Mitigation: Prefer stash or review modes and keep version control backups before enabling automated rollback.
+
+Risk: A2A authentication secrets and node identity are used for networked operation.
+
+Mitigation: Rotate the A2A secret before use and avoid running the skill in environments containing unrelated secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roamer-remote/skills/alcor-capability-evolver)
+- [Publisher profile](https://clawhub.ai/user/roamer-remote)
+- [EvoMap Hub](https://evomap.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples, generated code changes, JSON assets, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update workspace assets, memory files, and source files during evolution workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

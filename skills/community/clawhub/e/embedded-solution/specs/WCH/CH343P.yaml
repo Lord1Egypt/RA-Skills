@@ -1,0 +1,48 @@
+part: CH343P
+link_status: product-page-removed_2026-06-30 (no-datasheet, no-product-page)
+expected_family: WCH CH343 — USB-to-UART bridge IC (high-speed UART + I2C/SPI/JTAG)
+main_page: https://www.wch-ic.com/products/CH343P.html
+datasheet_path_expected: ../../embedded_dev/wch/datasheet/CH343P_datasheet.pdf
+datasheet_source_note: 'CH343P product page returned 404 on 2026-06-30.
+  Specs below are inferred from CH343 family documentation (newer USB
+  bridge from WCH with multiple serial interfaces + I2C/SPI/JTAG
+  bridging).'
+specs:
+  function: USB-to-multi-protocol bridge (UART + I2C + SPI + JTAG)
+  usb:
+    version: USB 2.0 Full Speed
+    device_class: Vendor-specific (needs WCH driver on Windows; libusb on Linux)
+  uart:
+    baud_rate_max: 6 Mbps (high-speed UART)
+    signals: TX, RX, RTS, CTS
+  i2c:
+    speed_max_khz: 400 (Fast Mode)
+  spi:
+    max_clock_mhz: 12
+  jtag:
+    supported: yes (for ARM SWD / JTAG programming)
+  power:
+    supply_voltage_v: 3.3
+  package: QFN-20
+unverified:
+- exact_baud_rate_max
+- exact_io_voltage_tolerance
+- operating_temperature_c
+- exact_package_dimensions
+- exact_max_current_consumption
+- spi_modes_supported
+- jtag_target_voltage_range
+notes:
+- 'Placeholder yaml created on 2026-06-30 — no dedicated product page
+  on wch-ic.com. CH343 is WCHs newer multi-protocol USB bridge (vs
+  CH340 which is UART-only).'
+- 'Use case: ARM SWD programming via USB, SPI flash programming, I2C
+  sensor debugging. Higher cost than CH340 but more flexible.'
+- 'Difference vs CH340C: supports multiple protocols (UART + I2C + SPI
+  + JTAG), higher baud rate (6 Mbps vs 2 Mbps), but needs vendor driver
+  on Windows (not driver-free like CH340 CDC-ACM).'
+- 'Open gap: needs CH343 datasheet downloaded.'
+extracted_at: '2026-06-30T00:55:00+08:00'
+extracted_from_pages: []
+extraction_method: catalog-registration (variant inference from CH343 family)
+extraction_source: None (placeholder, awaiting datasheet re-acquisition)

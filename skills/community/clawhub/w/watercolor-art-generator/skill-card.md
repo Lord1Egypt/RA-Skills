@@ -1,42 +1,59 @@
-## Description: <br>
-AI watercolor art generator that creates watercolor paintings, portraits, and illustrations from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI watercolor art generator that creates watercolor paintings, portraits, and illustrations from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate watercolor-style images from prompts for portraits, illustrations, social posts, gifts, commissions, and printable wall art. The skill supports portrait, landscape, square, and tall image sizes plus an optional reference image UUID for style inheritance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta API token are sent to api.talesofai.com. <br>
-Mitigation: Use a revocable token, avoid sensitive prompt or reference content, and review the external service before use. <br>
-Risk: Passing the token with --token can expose it through shell history or local process listings. <br>
-Mitigation: Prefer short-lived or revocable tokens, avoid shared shells, and rotate the token if it may have been exposed. <br>
+## Use Case:
 
+External users and developers use this skill to generate watercolor-style images from text prompts through the Neta API, with optional image sizing and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/watercolor-art-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/blammectrappora) <br>
-- [Neta API token page](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls] <br>
-**Output Format:** [Plain text URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct image URL after polling the Neta API; requires a Neta API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release evidence) <br>
+Risk: Prompts, reference image UUIDs, and the Neta token are sent to a remote API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential prompts or reference content, pass tokens only in trusted environments, and rotate tokens if command history or process listings may have exposed them.
+
+Risk: The documented npx install command is unpinned.
+
+Mitigation: Prefer the ClawHub install path or a pinned, verified installer before deploying the skill.
+
+Risk: Image generation depends on the external API completing successfully and returning an image URL.
+
+Mitigation: Handle timeout, moderation, and missing-result failures in the calling workflow, and retry with adjusted prompts when appropriate.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/skills/watercolor-art-generator)
+- [Neta API Token and Access](https://www.neta.art/open/)
+- [Tales of AI Image Generation API Endpoint](https://api.talesofai.com/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a direct image URL after polling the remote image-generation API.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

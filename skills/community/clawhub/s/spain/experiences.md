@@ -1,118 +1,118 @@
 # Experiences — Spain
 
-## Experiencias que Valen la Pena (Específicas)
+## Experiences Worth It (Specific)
 
-### Naturaleza
+### Nature
 
-| Experiencia | Dónde | Detalles |
+| Experience | Where | Details |
 |-------------|-------|----------|
-| Ruta del Flysch | Zumaia-Deba-Mutriku (Gipuzkoa) | 10km de acantilados erosionados. Alternativa: barco |
-| Caminito del Rey | Málaga | 8km, pasarelas a 100m de altura. Reserva 2 meses antes |
-| Bardenas Reales | Navarra | Semi-desierto tipo "Marte". 75km en bici circular |
-| Valle del Jerte | Extremadura | Cerezos en flor 15 días entre marzo-abril. MASIFICADO |
-| Islas Cíes | Galicia | Parque Nacional. Plazas limitadas en verano. Reservar |
-| Doñana en 4x4 | Huelva | Tour guiado 4h. Flamencos, ciervos, dunas |
-| Cap de Creus desde Cadaqués | Girona | Camí Antic: 14km, 4 horas. Casa Dalí en Portlligat |
+| Flysch Route | Zumaia-Deba-Mutriku (Gipuzkoa) | 10km of eroded cliffs. Alternative: by boat |
+| Caminito del Rey | Málaga | 8km, walkways 100m up. Book 2 months ahead |
+| Bardenas Reales | Navarre | Semi-desert, "Mars"-like. 75km bike loop |
+| Jerte Valley | Extremadura | Cherry blossoms for 15 days between March-April. PACKED |
+| Cíes Islands | Galicia | National park. Limited spots in summer. Book |
+| Doñana by 4x4 | Huelva | Guided 4h tour. Flamingos, deer, dunes |
+| Cap de Creus from Cadaqués | Girona | Camí Antic: 14km, 4 hours. Dalí's house in Portlligat |
 
-### Gastro
+### Food
 
-| Experiencia | Dónde | Cuándo/Cómo |
+| Experience | Where | When/How |
 |-------------|-------|-------------|
-| Espicha (fiesta sidra) | Asturias | Sidrerías tradicionales. El escanciar es arte |
-| Atún de almadraba | Cádiz (Zahara, Barbate, Conil) | Mayo-junio. Pesca tradicional, no en cualquier sitio |
-| Ruta de pintxos | San Sebastián Parte Vieja | Jueves noche local. Bar a bar, 1-2 pintxos cada uno |
-| Vermut dominical | Barcelona (Sant Antoni) | Bar Calders, Els Sortidors. Mediodía, aceitunas, anchoas |
-| Torreznos | Soria | Mesón Castellano, La Chistera. Los mejores de España |
+| Espicha (cider party) | Asturias | Traditional cider houses. Pouring (escanciar) is an art |
+| Almadraba tuna | Cádiz (Zahara, Barbate, Conil) | May-June. Traditional fishing, not just anywhere |
+| Pintxos crawl | San Sebastián Old Town | Local Thursday night. Bar to bar, 1-2 pintxos each |
+| Sunday vermouth | Barcelona (Sant Antoni) | Bar Calders, Els Sortidors. Midday, olives, anchovies |
+| Torreznos (pork crackling) | Soria | Mesón Castellano, La Chistera. The best in Spain |
 
 ### Cultural
 
-| Experiencia | Dónde | Nota |
+| Experience | Where | Note |
 |-------------|-------|------|
-| Flamenco tablao real | Sevilla, Jerez | NO Tablao en Madrid turístico. Casa de la Memoria (Sevilla) |
-| Alhambra nocturna | Granada | Menos gente, iluminada. Entradas separadas |
-| Modernisme más allá de Gaudí | Barcelona | Sant Pau, Casa Amatller, CaixaForum (fábrica Casaramona) |
-| Judería Toledo | Toledo | Perderse por callejuelas, sinagoga, acero toledano |
-| Camino de Santiago Norte | Costa Cantábrica | Menos masificado que el Francés. Más verde |
+| Real flamenco tablao | Seville, Jerez | NOT a touristy Madrid tablao. Casa de la Memoria (Seville) |
+| Alhambra at night | Granada | Fewer people, lit up. Separate tickets |
+| Modernisme beyond Gaudí | Barcelona | Sant Pau, Casa Amatller, CaixaForum (the Casaramona factory) |
+| Toledo Jewish Quarter | Toledo | Get lost in the alleys, synagogue, Toledo steel |
+| Camino de Santiago (Northern route) | Cantabrian coast | Less crowded than the French route. Greener |
 
-## Festivales de Música (Los reales)
+## Music Festivals (The Real Ones)
 
-| Festival | Cuándo | Dónde | Estilo |
+| Festival | When | Where | Style |
 |----------|--------|-------|--------|
-| Primavera Sound | Junio | Barcelona | Indie, alternativo. Internacional |
-| Sónar | Junio | Barcelona | Electrónica avanzada |
-| BBK Live | Julio | Bilbao | Rock, indie |
-| FIB | Julio | Benicàssim | Variado |
-| Mad Cool | Julio | Madrid | Mainstream grande |
-| Cruïlla | Julio | Barcelona | Ecléctico, familiar |
+| Primavera Sound | June | Barcelona | Indie, alternative. International |
+| Sónar | June | Barcelona | Cutting-edge electronic |
+| BBK Live | July | Bilbao | Rock, indie |
+| FIB | July | Benicàssim | Varied |
+| Mad Cool | July | Madrid | Big mainstream |
+| Cruïlla | July | Barcelona | Eclectic, family-friendly |
 
-**Consejo:** Primavera y Sónar se solapan semanas. Barcelona en junio = locura musical.
+**Tip:** Primavera and Sónar overlap by weeks. Barcelona in June = musical madness.
 
-## Bodegas que Merece Visitar
+## Wineries Worth Visiting
 
-| Bodega | Dónde | Por qué |
+| Winery | Where | Why |
 |--------|-------|---------|
-| Ysios | Laguardia (Rioja) | Arquitectura Calatrava |
-| Marqués de Riscal | Elciego (Rioja) | Edificio Gehry, hotel de lujo |
-| Codorníu | Sant Sadurní d'Anoia | Cavas, edificio modernista |
-| Freixenet | Sant Sadurní d'Anoia | Tour clásico, tren por las cavas |
-| González Byass (Tío Pepe) | Jerez | Solera de jerez, ratones famosos |
+| Ysios | Laguardia (Rioja) | Calatrava architecture |
+| Marqués de Riscal | Elciego (Rioja) | Gehry building, luxury hotel |
+| Codorníu | Sant Sadurní d'Anoia | Cavas, modernista building |
+| Freixenet | Sant Sadurní d'Anoia | Classic tour, train through the cellars |
+| González Byass (Tío Pepe) | Jerez | Sherry solera, the famous mice |
 
-**Rioja vs Ribera del Duero:** Rioja más turístico/fácil. Ribera más auténtico/menos preparado.
+**Rioja vs Ribera del Duero:** Rioja more touristy/easy. Ribera more authentic/less polished.
 
-## Playas (Las que no salen en guías)
+## Beaches (The Ones Not in Guidebooks)
 
-### Tranquilas
+### Quiet
 
-| Playa | Dónde | Qué tiene |
+| Beach | Where | What it has |
 |-------|-------|-----------|
-| Papagayo | Lanzarote | 6km de calas. Menos masificada |
-| Playa de las Catedrales | Galicia | Arcos naturales. Reserva entrada online |
-| Bolonia | Tarifa | Duna enorme, ruinas romanas, menos turistas |
-| Cala Macarella | Menorca | Agua turquesa, pinar. Llegar temprano |
+| Papagayo | Lanzarote | 6km of coves. Less packed |
+| Playa de las Catedrales | Galicia | Natural arches. Book entry online |
+| Bolonia | Tarifa | Huge dune, Roman ruins, fewer tourists |
+| Cala Macarella | Menorca | Turquoise water, pine forest. Arrive early |
 
-### Evitar en agosto
+### Avoid in August
 
-Cualquier playa de Barcelona ciudad, Benidorm centro, Marbella centro.
+Any beach in Barcelona city, central Benidorm, central Marbella.
 
-## Experiencias Sobrevaloradas
+## Overrated Experiences
 
-| "Must do" | Realidad |
+| "Must do" | Reality |
 |-----------|----------|
-| La Tomatina sin saber qué es | Masificación extrema, 20€ entrada, quedas destrozado |
-| Casa Batlló entrada completa | €39+. Mírala desde fuera y entra al vecino Casa Amatller (gratis) |
-| Sagrada Família interior | Impresionante pero €26+. Exterior gratis también espectacular |
-| Parque Güell zona monumental | €10. La parte de arriba (gratuita) tiene mejores vistas |
-| Bernabéu/Camp Nou tour | Solo si eres muy fan. Caro y no muy emocionante |
+| La Tomatina without knowing what it is | Extreme crowds, €20 entry, you end up wrecked |
+| Casa Batlló full entry | €39+. View it from outside and go into next-door Casa Amatller (free) |
+| Sagrada Família interior | Impressive but €26+. The exterior is free and also spectacular |
+| Park Güell monumental zone | €10. The upper (free) part has better views |
+| Bernabéu/Camp Nou tour | Only if you're a big fan. Expensive and not that exciting |
 
-## Experiencias Infravaloradas
+## Underrated Experiences
 
-| Experiencia | Por qué mola |
+| Experience | Why it's great |
 |-------------|--------------|
-| Mercados de abastos (cualquier ciudad) | Vida local real, desayuno de tenedor, tapeo barato |
-| Terrazas de azotea Madrid | Círculo Bellas Artes, Hotel Emperador. Atardeceres brutales |
-| Matadero Madrid | Centro cultural, gratis, arte alternativo, buen ambiente |
-| Barrio Gràcia Barcelona | Plazas con terrazas, tiendas locales, cero turistas |
-| San Sebastián fuera de Parte Vieja | Playa Zurriola (surf), Monte Igueldo, Gros |
+| Food markets (any city) | Real local life, fork-and-knife breakfast, cheap tapas |
+| Madrid rooftop terraces | Círculo Bellas Artes, Hotel Emperador. Killer sunsets |
+| Matadero Madrid | Cultural center, free, alternative art, good vibe |
+| Gràcia neighborhood, Barcelona | Plazas with terraces, local shops, zero tourists |
+| San Sebastián beyond the Old Town | Zurriola beach (surf), Monte Igueldo, Gros |
 
-## Cuándo NO ir
+## When NOT to Go
 
-| Destino | Evitar |
+| Destination | Avoid |
 |---------|--------|
-| Madrid | Agosto (vacío, 40°C) |
-| Barcelona | Agosto (lleno de turistas, locales huyen) |
-| Costa del Sol | Agosto (abarrotado, precios x2) |
-| Pamplona | San Fermines si no te gustan multitudes |
-| Sevilla | Julio-agosto (45°C, inaguantable) |
-| Norte (Asturias, Galicia) | Nunca malo, pero llueve mucho otoño-invierno |
+| Madrid | August (empty, 40°C) |
+| Barcelona | August (packed with tourists, locals flee) |
+| Costa del Sol | August (crowded, prices x2) |
+| Pamplona | San Fermín if you dislike crowds |
+| Seville | July-August (45°C, unbearable) |
+| North (Asturias, Galicia) | Never bad, but it rains a lot in autumn-winter |
 
-## Reservas con Antelación
+## Book in Advance
 
-| Qué | Cuánta antelación |
+| What | How far ahead |
 |-----|-------------------|
-| Alhambra | 2-3 meses |
-| Caminito del Rey | 2 meses |
-| El Celler de Can Roca | 1+ año |
-| Casa Dalí Portlligat | 1 mes |
-| Islas Cíes (verano) | Semanas |
-| San Fermín hotel | 6+ meses |
-| Cualquier cosa agosto costa | 2-3 meses |
+| Alhambra | 2-3 months |
+| Caminito del Rey | 2 months |
+| El Celler de Can Roca | 1+ year |
+| Dalí's house, Portlligat | 1 month |
+| Cíes Islands (summer) | Weeks |
+| San Fermín hotel | 6+ months |
+| Anything on the coast in August | 2-3 months |

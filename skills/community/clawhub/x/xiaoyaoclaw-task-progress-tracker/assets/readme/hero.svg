@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="hero-title hero-desc">
+  <title id="hero-title">OpenClaw Task Progress Tracker</title>
+  <desc id="hero-desc">Manage tasks/ and projects/ directories with PROGRESS.md cards: status, append-only progress log, and document index. Shows a status overview of active tasks and projects with their progress and indexed docs.</desc>
+
+  <rect width="1200" height="360" rx="20" fill="#0d1117"/>
+
+  <!-- left: title block -->
+  <g id="title-block" transform="translate(56 40)">
+    <text x="0" y="44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" letter-spacing="4" fill="#8b949e">OPENCLAW · AGENT SKILL</text>
+
+    <text x="0" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">Task Progress</text>
+    <text x="0" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="52" font-weight="800" fill="#e6edf3">Tracker</text>
+
+    <text x="0" y="226" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="22" fill="#c9d1d9">目录即容器 · PROGRESS.md 即进度</text>
+    <text x="0" y="258" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="19" fill="#8b949e">进度日志 · 文档索引 · 零依赖</text>
+
+    <text x="0" y="310" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" letter-spacing="1" fill="#8b949e">MIT LICENSE · SKILL FOR OPENCLAW · v2.0.0</text>
+  </g>
+
+  <!-- right: status overview panel -->
+  <g id="status-panel" transform="translate(700 44)">
+    <rect width="450" height="276" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.2"/>
+
+    <!-- terminal dots -->
+    <circle cx="18" cy="20" r="5" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="5" fill="#ffbd2e"/>
+    <circle cx="54" cy="20" r="5" fill="#27c93f"/>
+
+    <text x="78" y="27" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#8b949e">❯ tracker status — 2 active</text>
+
+    <!-- tasks tree -->
+    <text x="22" y="76" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#8b949e">tasks/</text>
+
+    <text x="22" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#e6edf3">├─ anime-research</text>
+    <text x="290" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">🔄 进行中 · 60%</text>
+    <text x="22" y="136" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6e7681">│  📄 FINAL_调研报告.md</text>
+
+    <!-- projects tree -->
+    <text x="22" y="172" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#8b949e">projects/</text>
+
+    <text x="22" y="206" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#e6edf3">└─ task-progress-tracker</text>
+    <text x="290" y="206" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="17" fill="#6e7681">✅ active · 90%</text>
+    <text x="22" y="228" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#6e7681">   📄 DESIGN · SKILL ×4</text>
+
+    <line x1="22" y1="246" x2="428" y2="246" stroke="#30363d" stroke-width="1"/>
+
+    <text x="22" y="272" fill="#3fb950" font-size="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif">✅ 进度可回溯 · 文档找得回</text>
+  </g>
+</svg>

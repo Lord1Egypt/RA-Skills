@@ -1,40 +1,57 @@
-## Description: <br>
-Find MP Skills helps an agent search, review, and install community mini-program AI Skills into an existing mini-program project. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches for community Mini Program AI Skills, helps users review matching options, and installs selected skills into existing Mini Program projects.
 
-## Publisher: <br>
-[binggg](https://clawhub.ai/user/binggg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[binggg](https://clawhub.ai/user/binggg)
 
-## Use Case: <br>
-Developers maintaining existing mini-program projects use this skill to discover suitable community AI Skills, compare search results, install the selected skill, and run the required setup steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing community mini-program skills can add dependencies and project files to an existing application. <br>
-Mitigation: Confirm the target project path, review the community skill and dependencies before installation, and use version control or a backup before applying changes. <br>
-Risk: Cloud setup steps may affect billing, environment configuration, or existing data. <br>
-Mitigation: Run setup against a test cloud environment first when billing or existing data could be affected. <br>
+## Use Case:
 
+Developers use this skill when adding AI capabilities to an existing Mini Program project and need help finding, comparing, and installing community skills instead of building one from scratch.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/binggg/wxa-find-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown with inline shell commands and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May result in an installed Skill directory and app.json registration entry in the target mini-program project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: Unpinned remote npm commands can install community code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, trusted mp-skills version and inspect selected remote skill content before installation.
+
+Risk: Setup can change project files, cloud functions, databases, and environment configuration.
+
+Mitigation: Run setup only in a version-controlled project with minimal cloud permissions.
+
+Risk: Installing all available skills can add more code than intended.
+
+Mitigation: Avoid add --all unless the user intentionally wants every available skill installed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/binggg/skills/wxa-find-skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May result in installed skill directories and app.json registration entries when the recommended commands are executed.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence; artifact metadata reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,69 @@
 {
-  "ownerId": "kn70ctf7xm30wgwwzbemy34ydd84xyqy",
-  "slug": "free-model-router-v1",
-  "version": "1.5.3",
-  "publishedAt": 1780674370220
+  "ownerId": "laodao-agent",
+  "slug": "free-model-router-laodao",
+  "version": "2.2.0",
+  "description": "OpenClaw 免费模型智能路由 — 本地代理，自动获取多渠道最佳免费模型，自动轮询，故障切换，兜底救援，配置零侵入",
+  "slogan": "免费模型，智能路由，实现token自由",
+  "tags": [
+    "model",
+    "free",
+    "router",
+    "proxy",
+    "failover",
+    "round-robin"
+  ],
+  "platforms": [
+    "linux",
+    "macos",
+    "win32"
+  ],
+  "license": "BSL-1.1",
+  "publishedAt": 1744243200000,
+  "homepage": "https://github.com/laodao-agent/free-model-router",
+  "security": {
+    "dataFlow": {
+      "layer1": "用户通过 OpenClaw 向 127.0.0.1:5678 发送请求到本地 Router，数据不离开本机",
+      "layer2": "本地 Router 将请求转发到用户选择的模型 Provider（如 OpenRouter、NVIDIA NIM 等），提示词和响应会经过 Provider 的服务器",
+      "layer3": "本地 Router 向 freemodel 控制服务器仅同步模型配置元数据（provider 列表、模型 ID、健康状态），不含任何对话内容",
+      "note": "你的提示词和模型响应会被转发到外部模型 Provider，请知悉"
+    },
+    "dataCollection": {
+      "what": "仅收集匿名化的模型健康状态（延迟、可用性）和设备指纹（SHA256 哈希，不可逆）。不含任何用户对话内容、提示词或响应数据。",
+      "why": "用于服务端智能路由决策、故障切换和全局模型可用性统计",
+      "optOut": "可通过 CLI 命令 `node scripts/free-model-cli.js reporting off` 完全禁用，或通过管理面板 /admin 关闭",
+      "default": "默认关闭（reportingEnabled: false），首次 setup 时用户可自主选择开启",
+      "retention": "服务端保留 30 天",
+      "servers": [
+        "https://freemodel.eu.org",
+        "https://freemodel.dpdns.org",
+        "https://model-server.codebot.workers.dev"
+      ]
+    },
+    "configModification": {
+      "what": "仅在 setup 和配置模型角色时修改 openclaw.json，添加 free-model-router provider 指向本地代理",
+      "backup": "自动创建最多 3 个备份（openclaw.json.fmr-bak-{timestamp}），写入失败或验证失败自动回滚",
+      "scope": "仅修改 models.providers['free-model-router'] 和 agents.defaults.model 字段，不触碰其他配置",
+      "idempotent": "多次 setup 不会产生副作用，不会覆盖用户手动设置的主备模型"
+    },
+    "localServer": {
+      "what": "127.0.0.1:5678 本地 HTTP 代理，接收 OpenClaw 转发的 OpenAI/Anthropic 兼容请求",
+      "bind": "仅监听 127.0.0.1（IPv4 本地回环），不监听 0.0.0.0，不暴露到公网或局域网",
+      "noIntercept": "仅转发 LLM API 请求到各 Provider，不拦截、不读取、不存储用户对话内容"
+    },
+    "externalCommunication": {
+      "what": "向 model-server 注册获取 API Key、拉取 provider 列表和模型元数据、上报健康状态",
+      "noUserData": "所有外部请求均不包含用户对话内容、提示词、API Key（除注册时生成的匿名 API Key 外）",
+      "hardcodedUrls": "所有外部 URL 均为硬编码，不支持动态注入或从服务器拉取可执行 URL 列表"
+    },
+    "referralSystem": {
+      "what": "可选的推荐码系统，用户可输入他人推荐码获得 Pro 层级模型试用额度",
+      "voluntary": "完全自愿参与，不影响免费模型功能的使用",
+      "noPayment": "不涉及任何真实货币交易或支付信息收集"
+    },
+    "uninstall": {
+      "stopCommand": "node <skill_dir>/scripts/free-model-cli.js stop",
+      "uninstallCommand": "node <skill_dir>/scripts/free-model-cli.js uninstall",
+      "note": "卸载后 OpenClaw 配置自动回滚，cron 任务在移除技能后自动清理"
+    }
+  }
 }

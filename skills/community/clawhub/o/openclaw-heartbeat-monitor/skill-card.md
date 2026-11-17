@@ -1,41 +1,54 @@
-## Description: <br>
-Monitors the freshness of routine checks such as email, calendar, weather, and todo status, raises threshold alerts, and helps generate heartbeat health reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Heartbeat Monitor tracks freshness for recurring checks such as email, calendar, weather, and tasks, alerts when checks exceed configured thresholds, and generates health reports.
 
-## Publisher: <br>
-[yangkai258](https://clawhub.ai/user/yangkai258) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangkai258](https://clawhub.ai/user/yangkai258)
 
-## Use Case: <br>
-Developers and agent operators use this skill to track when recurring checks last ran, detect stale email, calendar, weather, or todo checks, and produce a concise monitoring health report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local heartbeat history for email, calendar, weather, and todo checks can expose activity patterns or operational freshness. <br>
-Mitigation: Decide whether local heartbeat history is acceptable before installation and keep the state file limited to the checks the operator intends to monitor. <br>
-Risk: Cron reminders or automatic repair could trigger sensitive email or calendar checks unexpectedly. <br>
-Mitigation: Set clear thresholds and require confirmation before sensitive checks or repair actions are triggered. <br>
+## Use Case:
 
+Developers and operators use this skill to have an agent check whether recurring information refreshes are stale, prompt follow-up actions, and summarize heartbeat health across configured items.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yangkai258/openclaw-heartbeat-monitor) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe local heartbeat state, threshold settings, reminders, and repair prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may maintain a persistent local heartbeat state file that can become stale or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the state file location and configured thresholds, and periodically confirm that recorded check times match the agent's actual work.
+
+Risk: Scheduling, reminders, or future automatic repair behavior could trigger checks or notifications outside the user's intended workflow.
+
+Mitigation: Review any cron, reminder, or automatic repair implementation before enabling it, and keep automatic actions limited to explicitly approved check types.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangkai258/skills/openclaw-heartbeat-monitor)
+- [Artifact skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown status reports and reminder guidance with optional shell command examples and JSON configuration or state snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May refer to the heartbeat state file at ~/.openclaw/workspace/memory/heartbeat-state.json and configurable interval thresholds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, dated 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

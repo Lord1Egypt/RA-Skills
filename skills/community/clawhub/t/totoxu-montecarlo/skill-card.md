@@ -1,41 +1,61 @@
-## Description: <br>
-Monte Carlo Crypto Trading Core simulates thousands of future price paths using Geometric Brownian Motion to evaluate win probabilities, risk of ruin, and stop-loss impact for trading strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monte Carlo Crypto Trading Core. Simulates thousands of future price paths (Geometric Brownian Motion) to evaluate win probabilities, risk of ruin, and stop-loss impact for trading strategies.
 
-## Publisher: <br>
-[totoxu](https://clawhub.ai/user/totoxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[totoxu](https://clawhub.ai/user/totoxu)
 
-## Use Case: <br>
-External users and agents use this skill to run Monte Carlo simulations for crypto trading scenarios, estimate stop-loss and take-profit probabilities, and summarize risk metrics. Treat the output as educational risk analysis rather than financial advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts SkillPay during normal use and uses a user ID for billing. <br>
-Mitigation: Install only when users are comfortable with SkillPay billing behavior and clearly present any payment URL returned by the skill. <br>
-Risk: The billing setup includes unclear bundled default credentials and an unrelated default skill ID. <br>
-Mitigation: Configure SKILL_BILLING_API_KEY and SKILL_ID explicitly before use; do not rely on bundled defaults. <br>
-Risk: Trading probability outputs can be mistaken for financial advice. <br>
-Mitigation: Present results as educational risk analysis and require independent review before making trading decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/totoxu/totoxu-montecarlo) <br>
+## Use Case:
 
+External users and agents use this skill to run Monte Carlo simulations for crypto trading positions and estimate win probability, stop-loss probability, take-profit probability, and price percentiles. The results can support risk assessment, but they should not be treated as guaranteed trading outcomes.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON simulation results with agent-facing text or markdown summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user billing identifier, current price, and daily volatility; supports optional drift, simulation horizon, path count, position type, stop-loss, and take-profit levels.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automatically contacts an external paid billing service using user IDs during normal simulation execution.
+
+Mitigation: Require explicit user approval before any paid charge and document the billing flow before installation.
+
+Risk: The security summary identifies a bundled API key and the release changelog says billing keys were hardcoded as defaults.
+
+Mitigation: Require the publisher to remove embedded keys and use deployment-provided secrets only.
+
+Risk: The security guidance identifies an environment variable mismatch for billing configuration.
+
+Mitigation: Align the documented and runtime environment variables before deployment.
+
+Risk: The security guidance says user data sent to SkillPay is not fully documented.
+
+Mitigation: Document exactly what user data is sent to the billing service and obtain user consent for that transfer.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/totoxu/skills/totoxu-montecarlo)
+- [SkillPay billing API endpoint](https://skillpay.me/api/v1/billing)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, guidance, shell commands]
+
+**Output Format:** [JSON simulation results with risk metrics, optionally summarized by the agent as user-facing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Simulation limits are 20,000 paths and 365 days; normal execution requires a billed user ID unless billing is explicitly skipped for testing.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

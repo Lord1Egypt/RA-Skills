@@ -1,0 +1,4 @@
+interface:
+  display_name: "智能办公本助手"
+  short_description: "操作办公本笔记、书籍和日程，并自动连接本地 CLI。"
+  default_prompt: "Use $doxent to connect or update the local CLI, wait for a successful sync, and safely handle the requested Doxent note, book, schedule, reminder, todo, or task operation."

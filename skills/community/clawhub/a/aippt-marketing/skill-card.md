@@ -1,42 +1,59 @@
-## Description: <br>
-小方同学全球首个营销方案Agent helps an agent create structured marketing plans and export polished PPT-style deliverables from a topic, file, or link. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小方同学营销方案 Agent helps an agent turn a topic, file, or link into a structured marketing plan and generated PPT-style visuals through the AIPPT marketing API.
 
-## Publisher: <br>
-[xiaok8700](https://clawhub.ai/user/xiaok8700) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaok8700](https://clawhub.ai/user/xiaok8700)
 
-## Use Case: <br>
-External users and business teams use this skill to turn a marketing topic, source document, or web link into a staged marketing plan, then generate presentation images and downloadable report files through the AIPPT service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles AIPPT authentication and may expose account credentials or tokens during agent-driven login. <br>
-Mitigation: Avoid entering an AIPPT password through the agent; prefer QR login where possible and limit use to accounts authorized for this workflow. <br>
-Risk: Generated reports, PDFs, and QR login images may be uploaded to tmpfiles.org links accessible to anyone with the URL. <br>
-Mitigation: Do not use confidential business plans, customer data, or sensitive credentials in generated content, and share returned download links only with intended recipients. <br>
+## Use Case:
 
+External users and marketing teams use this skill with an agent to create marketing plan drafts, presentation-style visuals, and downloadable deliverables from a topic, file, or web link. It is intended for users who have an AIPPT account and the member credits required by the service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaok8700/aippt-marketing) <br>
-- [AIPPT homepage](https://www.aippt.cn) <br>
-- [API details](references/api-details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with API command examples, generated presentation images, and downloadable PDF or report links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AIPPT account, member credits, browser access for QR login, and command execution for API calls and file generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.9 (source: server release and package.json) <br>
+Risk: Marketing briefs, uploaded documents, customer data, and generated outputs may be sent to AIPPT and exposed through tmpfiles.org public links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-confidential inputs unless data sharing is approved, and review generated files and public links before sharing them.
+
+Risk: The skill can handle account credentials and bearer tokens during login.
+
+Mitigation: Prefer browser-based login over giving the assistant a password, use a low-risk account, and avoid storing tokens outside the active session.
+
+Risk: Generated marketing plans may contain inaccurate claims or brand-inappropriate recommendations.
+
+Mitigation: Have a qualified reviewer check factual claims, legal compliance, and brand suitability before publication.
+
+## Reference(s):
+
+- [小方同学营销 API 详细参考](references/api-details.md)
+- [AIPPT Homepage](https://www.aippt.cn)
+- [ClawHub Skill Page](https://clawhub.ai/xiaok8700/skills/aippt-marketing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown responses with generated marketing-plan text, page image embeds, and downloadable PDF/Markdown file links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AIPPT account, member credits, browser or API login, and review before sharing generated public links.]
+
+## Skill Version(s):
+
+1.2.9 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

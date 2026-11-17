@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hardware Inspector"
+  short_description: "Inspect local or remote compute hardware"
+  default_prompt: "Use $hardware-inspector to inspect this local or remote environment and summarize its hardware, accelerators, drivers, and resources available to the current process."

@@ -1,44 +1,59 @@
-## Description: <br>
-WAIaaS Wallet helps AI agents use a self-hosted EVM and Solana wallet daemon to send transactions, manage DeFi positions, and enforce spending limits without exposing private keys to the agent process. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-hosted crypto wallet daemon for AI agents. Send transactions, manage DeFi positions, enforce spending limits, without exposing private keys to agents.
 
-## Publisher: <br>
-[minhoyoo-iotrust](https://clawhub.ai/user/minhoyoo-iotrust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minhoyoo-iotrust](https://clawhub.ai/user/minhoyoo-iotrust)
 
-## Use Case: <br>
-External developers and agent operators use this skill to connect agents to a self-hosted WAIaaS wallet daemon, configure session-based MCP access, and perform wallet, transaction, and DeFi workflows under spending and approval policies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally gives an AI agent controlled access to a crypto wallet, which can create financial loss if policies or approvals are too permissive. <br>
-Mitigation: Start on testnet, use a dedicated low-fund wallet, configure strict spending and contract policies before connecting agents, and require human approval for meaningful transactions or signatures. <br>
-Risk: A leaked or stale WAIAAS_SESSION_TOKEN could allow unwanted wallet operations within the token's permissions. <br>
-Mitigation: Store session tokens in environment variables or a secrets manager, revoke or rotate WAIAAS_SESSION_TOKEN when not in use, and avoid hardcoding tokens in configuration files. <br>
-Risk: Installing the companion CLI or MCP packages from the wrong source could expose the wallet workflow to supply-chain risk. <br>
-Mitigation: Verify the npm packages and upstream project before installation, and install only when the agent is intended to operate a crypto wallet. <br>
+## Use Case:
 
+Developers and agent operators use this skill to connect AI agents to a self-hosted wallet daemon for balance checks, token transfers, DeFi actions, policy-controlled signing, and MCP wallet tooling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/minhoyoo-iotrust/waiaas-wallet) <br>
-- [WAIaaS homepage](https://waiaas.ai) <br>
-- [WAIaaS source repository](https://github.com/minhoyoo-iotrust/WAIaaS) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on installing WAIaaS, configuring session-token based MCP access, and using wallet tools with policy checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Agents can receive financially consequential authority over wallet and DeFi actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start on testnet, create narrowly scoped session tokens, keep default-deny allowlists and low spending caps, and require human approval for consequential transactions before using mainnet funds.
+
+Risk: Installation can use mutable npm packages that are not pinned to reviewed versions.
+
+Mitigation: Use exact pinned, verified package versions where possible and avoid runtime npx downloads.
+
+Risk: Session tokens can authorize wallet access if exposed.
+
+Mitigation: Store session tokens in environment variables or a secrets manager, use narrow scope, and revoke tokens from the Admin UI when no longer needed.
+
+## Reference(s):
+
+- [WAIaaS Wallet on ClawHub](https://clawhub.ai/minhoyoo-iotrust/skills/waiaas-wallet)
+- [WAIaaS Homepage](https://waiaas.ai)
+- [WAIaaS Source Link](https://github.com/minhoyoo-iotrust/WAIaaS)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with command, code, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide financially consequential wallet, transaction, DeFi, RPC, and MCP actions through configured WAIaaS tooling.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

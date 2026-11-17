@@ -1,44 +1,57 @@
-## Description: <br>
-Amazon review authenticity analyzer. Detect fake reviews, suspicious patterns, and rating manipulation. Includes time clustering detection, content similarity analysis, rating distribution checks, and verified purchase validation. Progressive analysis with L1-L4 depth levels. No API key required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Amazon Review Checker analyzes Amazon product reviews for authenticity signals including suspicious patterns, rating manipulation, content similarity, time clustering, and verified-purchase anomalies.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users, e-commerce sellers, and developers use this skill to assess Amazon review authenticity from pasted text or structured review data and identify suspicious review patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review text can include personal reviewer details or other unnecessary sensitive information. <br>
-Mitigation: Paste only the review fields needed for analysis and omit personal data unless it is required for the review task. <br>
-Risk: Generated HTML reports may include untrusted review text and load a remote chart library. <br>
-Mitigation: Open generated reports only from trusted inputs and review report content before sharing it. <br>
-Risk: Authenticity scores are heuristic and can be incomplete when only review text is provided. <br>
-Mitigation: Treat results as decision support and provide dates, ratings, and verified-purchase status when available. <br>
+## Use Case:
 
+Developers, ecommerce operators, and seller-support agents use this skill to review pasted or structured Amazon review data and summarize heuristic authenticity risks. It helps flag suspicious review clusters and explain which input fields would improve the analysis depth.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/amazon-review-checker) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
-- [Chart.js CDN](https://cdn.jsdelivr.net/npm/chart.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [Markdown-style authenticity report with optional JSON input and generated HTML report file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces an authenticity score, risk classification, detection dimensions, suspicious-review explanations, and suggestions for deeper analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata; artifact frontmatter and changelog mention 1.0.0) <br>
+Risk: The report generator can execute unsafe injected HTML or JavaScript when used with untrusted review data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid generating or opening HTML reports from untrusted data until report fields are escaped and unsafe DOM insertion is removed.
+
+Risk: The HTML report loads unpinned remote JavaScript.
+
+Mitigation: Pin or vendor the JavaScript dependency before using generated reports in reviewed or production workflows.
+
+Risk: Authenticity scores are heuristic and may overstate certainty.
+
+Mitigation: Treat the score as triage guidance and review the flagged evidence before taking business action.
+
+## Reference(s):
+
+- [Amazon Review Checker on ClawHub](https://clawhub.ai/phheng/skills/amazon-review-checker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style analysis summaries with optional command examples and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticity scoring is heuristic and depends on the review fields supplied by the user.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

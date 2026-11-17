@@ -1,41 +1,54 @@
-## Description: <br>
-Generate structured construction meeting minutes from rough notes or voice transcription, with separated action items, decision tracking, and contractual flagging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured construction meeting minutes from rough notes or voice transcription, with separated action items, decision tracking, and contractual flagging.
 
-## Publisher: <br>
-[nitevity](https://clawhub.ai/user/nitevity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nitevity](https://clawhub.ai/user/nitevity)
 
-## Use Case: <br>
-Construction project teams use this skill to turn rough meeting notes or voice transcriptions into professional minutes with agenda summaries, action registers, decision logs, and contractual or commercial flags. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated minutes may misstate attendees, action owners, deadlines, decisions, or contractual and commercial implications. <br>
-Mitigation: Review the minutes carefully before sharing or treating them as an official record. <br>
-Risk: Meeting notes may include confidential project, commercial, or personal information. <br>
-Mitigation: Avoid pasting unnecessary confidential information and apply the user's normal project confidentiality controls. <br>
+## Use Case:
 
+Construction project teams use this skill to convert rough notes, voice transcriptions, or conversational meeting summaries into structured meeting minutes. It helps separate agenda discussion, action items, decisions, and contractual or commercial flags for human review before finalising an official record.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nitevity/construction-meeting-minutes) <br>
-- [Publisher profile](https://clawhub.ai/user/nitevity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown meeting minutes with tables, action registers, decision logs, and review prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review before sharing, especially attendee details, action owners, deadlines, decisions, and contractual or commercial flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Generated meeting minutes may be incomplete or inaccurate if rough notes omit key facts, responsible parties, deadlines, or decision attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the minutes before treating them as an official record, with particular attention to action owners, dates, attendees, decisions, and contractual or commercial flags.
+
+Risk: Broad activation wording and the example promotional footer may make the skill appear in adjacent documentation tasks or add content unsuitable for formal minutes.
+
+Mitigation: Use the skill only for construction-project meetings and remove or ignore any promotional footer before finalising records.
+
+## Reference(s):
+
+- [Construction Meeting Minutes Generator on ClawHub](https://clawhub.ai/nitevity/skills/construction-meeting-minutes)
+- [nitevity publisher profile](https://clawhub.ai/user/nitevity)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown meeting minutes with tables, registers, decision logs, and review prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human review before minutes are treated as official records, especially for action ownership, deadlines, decisions, and contractual or commercial flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

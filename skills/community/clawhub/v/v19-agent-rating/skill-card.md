@@ -1,41 +1,55 @@
-## Description: <br>
-按Agent类型（认知运营型/行为执行型/桥接调度型）差异化评分——每个Agent类型有独立的信任分权重系数。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+V19 Agent Rating provides differentiated trust-score criteria for cognitive-operations, action-execution, and bridge-scheduling agents, with separate weighting for each agent type.
 
-## Publisher: <br>
-[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuyanfeng1234](https://clawhub.ai/user/liuyanfeng1234)
 
-## Use Case: <br>
-Developers and governance teams use this documentation skill to compare rating criteria for cognitive-operation, action-execution, and bridge-scheduling agents. It provides trust-score weighting guidance and curl examples for trying the linked governance API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The provided curl examples send governance keys and registration data to an external Cloudflare-tunnel endpoint. <br>
-Mitigation: Confirm the service is trusted before use, avoid sensitive agent names, and use only test or least-privilege governance keys. <br>
+## Use Case:
 
+Developers and agent operators use this skill to compare agent trust criteria across cognitive-operations, action-execution, and bridge-scheduling agent types. It provides scoring weights, example validation data, and curl examples for querying a third-party governance service.
 
-## Reference(s): <br>
-- [V19 Agent Rating on ClawHub](https://clawhub.ai/liuyanfeng1234/v19-agent-rating) <br>
-- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto) <br>
-- [V19 Trust Engine](https://clawhub.com/skills/v19-trust-engine) <br>
-- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with tables and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; examples require user-run curl commands against an external governance endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks users to call an opaque external tunnel with governance keys and agent identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the service before use, avoid sending sensitive agent metadata, and use only scoped per-user keys.
+
+Risk: Returned ratings may be mistaken for authoritative trust decisions.
+
+Mitigation: Treat ratings as one input and independently validate them before relying on them for real agent trust decisions.
+
+## Reference(s):
+
+- [V19 Trust Manifesto](https://clawhub.com/skills/v19-trust-manifesto)
+- [V19 Trust Engine](https://clawhub.com/skills/v19-trust-engine)
+- [V19 Certified Agent Workflow](https://clawhub.com/skills/v19-certified-agent-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with tables and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes agent-type scoring weights and example API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

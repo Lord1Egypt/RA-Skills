@@ -1,42 +1,54 @@
-## Description: <br>
-Thoth Standard -- Auto-Documentation Engine. Reads your entire project and generates README, API reference, and usage guide. Saved to .md files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Thoth Standard -- Auto-Documentation Engine. Reads your entire project and generates README, API reference, and usage guide. Saved to .md files.
 
-## Publisher: <br>
-[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[occupythemilkyway](https://clawhub.ai/user/occupythemilkyway)
 
-## Use Case: <br>
-Developers use this skill to scan a project folder and generate starter documentation from its source files, metadata, and extracted Python symbols. It is intended to produce a README, API reference, and usage guide for the selected project. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose broad project source content to the agent/model context during documentation generation. <br>
-Mitigation: Run it only on repositories you are comfortable exposing, review PROJECT_PATH first, and remove secrets or sensitive files before use. <br>
-Risk: The install step uses pip in the system Python environment. <br>
-Mitigation: Use an isolated Python environment instead of system Python when installing dependencies. <br>
-Risk: Generated documentation files may overwrite existing files in the selected output directory. <br>
-Mitigation: Choose an OUTPUT_DIR where README.md, API_REFERENCE.md, and USAGE_GUIDE.md can be safely written, then review the generated files before relying on them. <br>
+## Use Case:
 
+Developers and engineers use this skill to scan a project directory and generate project documentation, including a README, API reference, and usage guide.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/occupythemilkyway/thoth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown documents saved as README.md, API_REFERENCE.md, and USAGE_GUIDE.md, with inline shell and Python snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LICENSE_KEY and PROJECT_PATH; OUTPUT_DIR controls where generated documentation is written.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill reads substantial project source files into the agent context, which can expose secrets or sensitive implementation details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it on a copy or limited project path, remove secrets before use, and review generated documentation before sharing.
+
+Risk: The artifact includes a system-wide pip install command using --break-system-packages.
+
+Mitigation: Use a virtual environment with pinned dependencies instead of installing packages into the system Python environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/occupythemilkyway/skills/thoth)
+- [Thoth Homepage](https://clawhub.ai/occupythemilkyway/thoth)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown files: README.md, API_REFERENCE.md, and USAGE_GUIDE.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PROJECT_PATH and LICENSE_KEY; writes generated documentation to OUTPUT_DIR.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

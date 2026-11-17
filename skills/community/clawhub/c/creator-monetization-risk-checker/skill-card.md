@@ -1,40 +1,58 @@
-## Description: <br>
-Run a pre-publish monetization risk check for creator content across short-video platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a pre-publish monetization risk check for creator content across short-video platforms. Use when the user asks if a script is safe to monetize, wants policy-risk triage, needs advertiser-friendliness checks, or wants rewrite guidance to reduce demonetization and distribution risk.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, marketers, and publishing teams use this skill to triage draft scripts, hooks, captions, and claim language before posting. It returns monetization and distribution risk findings with safer rewrite guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC BY-NC-SA 4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Monetization verdicts may be incomplete or outdated because platform policies and advertiser-safety expectations can change. <br>
-Mitigation: Verify current platform rules before publishing and treat the skill's verdict as advisory guidance. <br>
-Risk: Rewrite suggestions may change meaning or soften claims in ways the creator did not intend. <br>
-Mitigation: Review the revised version before use and keep final publishing decisions under user control. <br>
+## Use Case:
 
+External creators and creator-operations teams use this skill before publishing scripts, captions, hooks, thumbnails, or product-claim language to identify monetization, distribution, advertiser-safety, originality, and misleading-claim risks. It returns a green, yellow, or red verdict with mitigation edits and safer rewrite suggestions.
 
-## Reference(s): <br>
-- [Risk Scorecard](references/risk-scorecard.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown risk audit with verdict, category scores, mitigation edits, and revised copy when possible] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory monetization guidance; final publishing decisions remain under user control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The assessment could be mistaken for a guarantee that a platform will monetize or distribute the content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the result as policy-risk guidance and recommend final review against current platform policies before publishing.
+
+Risk: Rewrite guidance could be misused to evade platform policy enforcement.
+
+Mitigation: Keep edits focused on safety, clarity, advertiser suitability, and compliance, and do not provide policy-evasion tactics.
+
+Risk: Commercial use may conflict with the artifact's stated non-commercial license terms.
+
+Mitigation: Confirm the authoritative license terms and obtain separate commercial permission before commercial deployment.
+
+## Reference(s):
+
+- [Risk Scorecard](references/risk-scorecard.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/creator-monetization-risk-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown risk audit with verdict, category scores, mitigation edits, and optional revised copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes green/yellow/red verdicts, confidence levels, top fixes, and safer rewrite suggestions when possible.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-百度地图开放平台 CLI skill that guides agents through Baidu Maps CLI setup, AK handling, map style management, documentation lookup, geospatial tasks, and runnable Baidu Maps code generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Map Cli guides agents through Baidu Maps CLI setup, account and API key handling, personalized map styles, Agent Plan map tools, and BMapGL/WebAPI code generation.
 
-## Publisher: <br>
-[baidu-maps](https://clawhub.ai/user/baidu-maps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[baidu-maps](https://clawhub.ai/user/baidu-maps)
 
-## Use Case: <br>
-Developers and agents use this skill to install and operate the Baidu Maps CLI, configure related skills or MCP access, manage Baidu Maps AK credentials and styles, complete geospatial tasks, and generate Baidu Maps JSAPI or WebAPI code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs a Baidu Maps CLI binary from a download domain. <br>
-Mitigation: Confirm the download domain before installation and use official checksum verification when available. <br>
-Risk: The skill may store Baidu Maps AK credentials in local agent or MCP configuration for reuse. <br>
-Mitigation: Review configuration paths before writing credentials, restrict file permissions where appropriate, and avoid exposing full AK values in conversation output. <br>
-Risk: The skill can create or modify Baidu Maps resources such as AKs, styles, and Agent Plans. <br>
-Mitigation: Require explicit user confirmation before resource creation or configuration changes, and prefer querying existing resources before creating new ones. <br>
+## Use Case:
 
+Developers use this skill to prepare Baidu Maps CLI environments, manage Baidu Maps API keys and styles with user approval, and generate runnable Baidu Maps integrations or perform supported map tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/baidu-maps/bmap-cli) <br>
-- [Baidu Maps CLI download domain](https://open-agent-cli.bj.bcebos.com/cli/) <br>
-- [Baidu Maps JSAPI GL endpoint](https://api.map.baidu.com/api?v=1.0&type=webgl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include masked AK references in explanations and full AK values only when writing requested runnable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: The skill may install and execute a remote Baidu-hosted CLI without a bundled checksum or signature.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Trust the download host only after confirming it matches the expected Baidu Maps source, and verify an official checksum or signature when available before use.
+
+Risk: The skill can activate additional skills or MCP configuration and persist API keys or tokens across sessions.
+
+Mitigation: Review each proposed configuration change before applying it, restrict credential file permissions, and document where credentials are stored for later rotation or removal.
+
+Risk: Wildcard browser referrer API keys can be exposed or abused outside local demos.
+
+Mitigation: Use wildcard referrers only for controlled local testing; use narrowly scoped domain allowlists for production projects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/baidu-maps/skills/bmap-cli)
+- [Baidu Maps CLI download endpoint](https://open-agent-cli.bj.bcebos.com/cli/bmap-cli-<BMAP_OS>-<BMAP_ARCH>)
+- [Baidu Maps WebGL JS API endpoint](https://api.map.baidu.com/api?v=1.0&type=webgl&...)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include masked API keys in explanatory text; generated code is expected to use complete keys selected from current CLI output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

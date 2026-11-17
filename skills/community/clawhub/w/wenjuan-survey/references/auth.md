@@ -41,13 +41,13 @@ Authorization: Bearer <access_token>
 2. 若 `open` 包或系统命令失败，终端会提示 **手动复制链接**，并把完整 URL 写入 **`~/.wenjuan/last_wenjuan_login_url.txt`**（若使用 `--token-dir` 则在该目录下），避免终端折行导致参数丢失。
 3. 无论浏览器是自动打开还是手动打开，脚本都用同一 **`device_code`** 轮询 `/login/token`，直到登录成功或超时。
 
-#### 避免同一环境反复扫码（Workerbuddy / 多步任务）
+#### 避免同一环境反复扫码（WorkBuddy / 多步任务）
 
 - 若本地已有**未过期**凭证（`token.json` / 项目 `.wenjuan/auth.json` / 纯文本 `access_token`，规则见 `token_store.js`），再次运行 **`login_auto.js`** 或工作流内嵌登录时，会**直接跳过拉新二维码**。
 - 需要**换账号**或确认令牌已作废时，请使用 **`node scripts/login_auto.js --force-login`** 强制重新走扫码流程。
-- **Workerbuddy** 等若每次任务使用**新的临时 HOME**，`~/.wenjuan` 会丢失，脚本会误以为未登录而反复出现二维码。请将凭证落在持久目录：设置 **`WENJUAN_TOKEN_DIR`**（或每次传 **`--token-dir`**）指向挂载卷上的固定路径。
+- **WorkBuddy** 等若每次任务使用**新的临时 HOME**，`~/.wenjuan` 会丢失，脚本会误以为未登录而反复出现二维码。请将凭证落在持久目录：设置 **`WENJUAN_TOKEN_DIR`**（或每次传 **`--token-dir`**）指向挂载卷上的固定路径。
 
-#### 无图形环境（Workerbuddy / CI / SSH）
+#### 无图形环境（WorkBuddy / CI / SSH）
 
 - **仍请直接运行** `node "${SKILL_DIR}/scripts/login_auto.js"`：脚本**始终会尝试**唤起浏览器；子进程在纯 SSH 里可能看似成功但无窗口，此时请用获取二维码后已写入的 **`last_wenjuan_login_url.txt`**，把**整行链接**复制到**有浏览器的本机**扫码即可。
 
@@ -214,9 +214,14 @@ rm -f "${SKILL_DIR}/.wenjuan/auth.json"
 
 ## API 接口说明
 
+### HTTPS 与环境代理
+
+Skill 的问卷网请求统一使用 `scripts/axios_secure.js`，并显式设置 `proxy: false`，不读取环境中的 `HTTP_PROXY` / `HTTPS_PROXY`。这是为了避免不兼容代理将 HTTPS 请求错误改写为明文 HTTP，导致平台返回 400。若运行环境只能通过代理访问外网，需要由平台提供保持 HTTPS 端到端安全的网络出口，不能在 Skill 内降级为 HTTP。
+
 ### 获取二维码
 - URL: `https://www.wenjuan.com/login/qrcode`
 - 方法: POST
+- JSON 参数: `{"reg_source":"<source>"}`；Agent 按 `SKILL.md` 传 `--reg-source ai_skills`，未传时 JS 兼容默认值为 `ai_skills`
 - 返回: `device_code`, `qrcode_url`
 - **必须使用默认浏览器打开** `qrcode_url`
 

@@ -1,43 +1,62 @@
-## Description: <br>
-Loads SoulPod persona packages so an agent can converse in character, with passive recreation and proactive companion modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Loads SoulPod persona packages so an agent can converse in character, with replica and companion modes.
 
-## Publisher: <br>
-[evangeliona](https://clawhub.ai/user/evangeliona) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evangeliona](https://clawhub.ai/user/evangeliona)
 
-## Use Case: <br>
-External users and agent developers use this skill to load SoulPod persona packages for fictional roleplay conversations, including local memory, story baselines, optional diary traces, and optional image or voice generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill keeps local conversation and diary-style memory for roleplay personas. <br>
-Mitigation: Use it only when comfortable with local memory retention, review persona memory files periodically, and avoid entering sensitive personal details. <br>
-Risk: Image and voice features can send prompts or text to external services and require a MiniMax API key. <br>
-Mitigation: Use a dedicated MiniMax API key and avoid including sensitive details in image or voice prompts. <br>
-Risk: Cleanup helpers can remove local chat history created by the skill. <br>
-Mitigation: Back up chat history before running cleanup or uninstall commands. <br>
+## Use Case:
 
+External users and developers use Memory Inhabit to load SoulPod persona packages and run character-based chat in replica or companion mode, including optional diary, image generation, and text-to-speech workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/evangeliona/memory-inhabit) <br>
-- [Memory Inhabit product homepage](https://memory-series.github.io/#/product/inhabit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with optional shell command snippets and generated media file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write local persona history and diary files, and may call external image or voice services when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.7 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill stores private conversation-derived history and diary data locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive conversations when using the skill, and periodically review or delete local history and diary files.
+
+Risk: Image and text-to-speech workflows may send prompts, chat text, or voice text to external media APIs.
+
+Mitigation: Use only configured providers you trust, keep API keys protected, and avoid sending sensitive text to image or TTS generation.
+
+Risk: Image reference paths can expose local files when passed to external image generation.
+
+Mitigation: Do not pass arbitrary local paths as image references; use only trusted persona assets intended for upload.
+
+Risk: Persona packages can strongly steer agent behavior and identity.
+
+Mitigation: Install and use only trusted SoulPod persona packages, and review persona prompts, memories, and configuration before use.
+
+## Reference(s):
+
+- [Memory Inhabit product homepage](https://memory-series.github.io/#/product/inhabit)
+- [ClawHub skill page](https://clawhub.ai/evangeliona/skills/memory-inhabit)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown and text responses with JSON status from helper scripts and generated local media or memory files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce persona chat content, diary traces, image URLs or files, audio files, and local conversation history.]
+
+## Skill Version(s):
+
+1.1.7 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

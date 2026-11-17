@@ -1,0 +1,106 @@
+name: tests
+
+# Until this file existed the suite ran only when someone remembered to run it, which meant the
+# gates guarding a traveller's itinerary were themselves unguarded. Every check in scripts/ is
+# there because a defect shipped once; a regression in one of them is a defect shipping twice.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The floor is what the skill promises to run on; the ceiling catches a deprecation
+        # before it becomes a broken gate on somebody's laptop.
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pytest
+        run: python -m pip install --upgrade pip pytest
+      - name: Run the suite
+        run: python -m pytest tests/ -q
+      - name: A helper name shared between scripts must mean the same thing in both
+        # This cost a real defect. _unfilled meant "contains a TODO marker" in one checker and
+        # "empty, absent, or placeholder" in the other, so a rule written against the wrong one
+        # of the pair looked present and measured nothing -- two of its tests passed while
+        # asserting a failure. _num diverged the same way, returning 0.0 on one side and None on
+        # the other, which reads a missing price as free. Names that collide are now either
+        # synonymous or renamed, and this keeps it that way.
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, "scripts")
+          import check_plan_consistency as a, check_shortlist_consistency as b, plan_visuals as c
+
+          probes = [None, "", "   ", "TODO: x", "abc", 0, 1.5, [], {}, True]
+          def behaviour(fn, values):
+              out = []
+              for v in values:
+                  try:
+                      out.append(repr(fn(v)))
+                  except Exception as exc:
+                      out.append(f"raise {type(exc).__name__}")
+              return out
+
+          shared = [(n, getattr(a, n), getattr(b, n))
+                    for n in dir(a)
+                    if n.startswith("_") and not n.startswith("__")
+                    and callable(getattr(a, n)) and hasattr(b, n) and callable(getattr(b, n))]
+          shared += [(n, getattr(a, n), getattr(c, n))
+                     for n in ("_lon_first",) if hasattr(a, n) and hasattr(c, n)]
+          bad = []
+          for name, first, second in shared:
+              if behaviour(first, probes) != behaviour(second, probes):
+                  bad.append(name)
+          if bad:
+              raise SystemExit(
+                  "these helper names are shared between scripts and behave differently, which is "
+                  "how a check gets written that measures nothing: " + ", ".join(sorted(set(bad)))
+                  + ". Rename one of each pair.")
+          print(f"{len(shared)} shared helper name(s) verified synonymous")
+          PY
+
+      - name: Every check in PLAN_CHECKS must be reachable from the save path
+        # The one invariant no individual test can state: save_trip_deliverables.py imports the
+        # tuple rather than restating it, and a check that exists but is not in the tuple does
+        # nothing at all. Asserted here so the wiring cannot rot quietly between releases.
+        run: |
+          python - <<'PY'
+          import sys
+          sys.path.insert(0, "scripts")
+          import check_plan_consistency as cpc
+          from save_trip_deliverables import CONSISTENCY_CHECKS
+
+          # Compared as function objects, not names. check_walking is a back-compat alias for
+          # check_walking_budget, so a name comparison reports it as a check that never runs --
+          # which is exactly the false positive that gets an invariant deleted instead of fixed.
+          wired = {id(check) for check in CONSISTENCY_CHECKS}
+          orphaned = sorted(
+              name for name in dir(cpc)
+              if name.startswith("check_") and name != "check_verification"
+              and callable(getattr(cpc, name))
+              and id(getattr(cpc, name)) not in wired)
+          if orphaned:
+              raise SystemExit(
+                  "these checks are defined but never run, so they protect nothing: "
+                  + ", ".join(orphaned))
+          print(f"{len(wired)} plan checks defined and all wired into the save path")
+          PY
+
+      - name: The suite still passes three years from now
+        # Two test files once failed on an unchanged tree because the calendar passed their fixture's
+        # trip date. tests/future_clock/sitecustomize.py moves date.today() and datetime.now() for
+        # pytest and every script it launches, so a test bound to the real date fails here, the day
+        # it is written. Run on one interpreter only; the date logic does not differ between them.
+        if: matrix.python-version == '3.13'
+        run: |
+          FAKE_TODAY=$(python -c "import datetime; print(datetime.date.today() + datetime.timedelta(days=1100))") \
+          PYTHONPATH=tests/future_clock python -m pytest tests/ -q

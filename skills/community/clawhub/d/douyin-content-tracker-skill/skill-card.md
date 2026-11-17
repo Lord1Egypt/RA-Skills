@@ -1,45 +1,64 @@
-## Description: <br>
-This skill helps agents scrape Douyin (TikTok China) creator content, download audio, transcribe it with Whisper, and guide setup, incremental tracking, cookie refresh, and debugging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent guide setup and operation of a Douyin creator-tracking pipeline that scrapes creator video metadata, extracts audio, and transcribes speech with Whisper.
 
-## Publisher: <br>
-[GPTtang](https://clawhub.ai/user/GPTtang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gpttang](https://clawhub.ai/user/gpttang)
 
-## Use Case: <br>
-Developers and operators use this skill to track Douyin creator accounts, collect recent video metadata, extract audio, and generate Chinese-language transcript Markdown. It also guides setup, dependency installation, cookie refresh, and troubleshooting for the scraping and transcription pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and reuses Douyin login cookies. <br>
-Mitigation: Use a dedicated Douyin account where possible, protect or delete .douyin_cookies.json after use, and avoid syncing or committing the cookie file. <br>
-Risk: The skill depends on MediaCrawler and Python packages that are installed locally. <br>
-Mitigation: Install in a trusted or isolated environment, review and pin MediaCrawler and Python dependencies, and run only the pipeline commands needed for the task. <br>
-Risk: Local file handling can be affected by untrusted account or creator names. <br>
-Mitigation: Fix or review blogger-name path handling before processing untrusted account data. <br>
+## Use Case:
 
+Developers and operators use this skill to configure and run recurring Douyin creator monitoring, including account lists, MediaCrawler setup, cookie refresh, audio extraction, and Whisper transcription. It is intended for workflows that need local CSV metadata, audio files, and Markdown transcripts from tracked Douyin profiles.
 
-## Reference(s): <br>
-- [Pipeline Reference](artifact/references/pipeline.md) <br>
-- [Troubleshooting Reference](artifact/references/troubleshooting.md) <br>
-- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) <br>
-- [ClawHub Release Page](https://clawhub.ai/GPTtang/douyin-content-tracker-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files, Markdown] <br>
-**Output Format:** [Markdown guidance with shell commands and generated CSV, audio, and transcript files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated outputs are written under OUTPUT_BASE_DIR, including cleaned CSV metadata, .m4a audio files, per-video transcript Markdown, and per-creator transcript summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires an authenticated Douyin session and stores cookies locally, which could expose the session if copied, synced, or committed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Douyin account, keep cookie files out of shared folders and source control, and refresh cookies only through the documented login flow.
+
+Risk: Downloaded media, transcripts, model files, and CSV outputs are written persistently to the configured output directory.
+
+Mitigation: Set OUTPUT_BASE_DIR to a dedicated local folder, review retention needs, and avoid storing sensitive outputs in synced or public directories.
+
+Risk: Server security guidance flags blogger-name path sanitization as needing a fix before running on untrusted creator data.
+
+Mitigation: Patch and review path sanitization before using untrusted account lists or creator names, then test output paths stay under the intended output directory.
+
+Risk: The skill depends on MediaCrawler, Playwright, ffmpeg, and Whisper, which can fail or change behavior across environments.
+
+Mitigation: Pin dependencies and MediaCrawler to reviewed versions, install browser and ffmpeg prerequisites explicitly, and follow the troubleshooting guide when scraping, audio extraction, or transcription fails.
+
+## Reference(s):
+
+- [Pipeline Reference](artifact/references/pipeline.md)
+- [Troubleshooting Reference](artifact/references/troubleshooting.md)
+- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)
+- [ClawHub Skill Page](https://clawhub.ai/gpttang/skills/douyin-content-tracker-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The pipeline can produce local CSV metadata, M4A audio files, Markdown transcript files, and per-creator transcript summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

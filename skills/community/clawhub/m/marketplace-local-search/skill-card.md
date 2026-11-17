@@ -1,40 +1,53 @@
-## Description: <br>
-Search Facebook Marketplace listings near a specified location with filters for radius, price range, limit, and pickup-only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Facebook Marketplace listings near a specified location with filters for radius, price range, limit, and pickup-only through a user-provided Marketplace-compatible service.
 
-## Publisher: <br>
-[alexanderhe88](https://clawhub.ai/user/alexanderhe88) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexanderhe88](https://clawhub.ai/user/alexanderhe88)
 
-## Use Case: <br>
-Developers and agents use this skill to query a user-provided Marketplace-compatible service for nearby listing candidates and return normalized result data for comparison or follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and location are sent to the configured Marketplace service endpoint. <br>
-Mitigation: Use only a local or trusted Marketplace-compatible service and review MARKETPLACE_API_BASE_URL or config.json before running searches. <br>
-Risk: Installing dependencies can modify the active Python environment. <br>
-Mitigation: Install requirements in a virtual environment before running the command-line script. <br>
+## Use Case:
 
+Developers and external users use this skill to query a trusted local or configured Marketplace-compatible service and receive normalized listing results for nearby Facebook Marketplace searches.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/alexanderhe88/marketplace-local-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration] <br>
-**Output Format:** [JSON from a Python command-line script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results include query, location, count, and normalized listing fields such as id, title, price, location, seller_name, image_url, and listing_url.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The configured Marketplace-compatible service receives the user's query, location, and filters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep MARKETPLACE_API_BASE_URL pointed at a local service or a trusted HTTPS endpoint.
+
+Risk: Dependencies are not pinned in the artifact requirements.
+
+Mitigation: Install in a virtual environment and pin dependency versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexanderhe88/skills/marketplace-local-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns query, location, count, and normalized listing fields when the configured service responds successfully.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

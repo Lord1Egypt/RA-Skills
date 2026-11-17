@@ -1,40 +1,48 @@
-## Description: <br>
-Provides guidance for deploying, monitoring, detecting drift, automating retraining, and governing production machine learning models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides MLOps and model governance guidance for deploying, monitoring, retraining, and governing production machine learning models.
 
-## Publisher: <br>
-[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[timbohnett-farther](https://clawhub.ai/user/timbohnett-farther)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers, ML engineers, and governance reviewers use this skill as reference guidance for model deployment patterns, data quality checks, drift monitoring, retraining workflows, observability, fairness checks, and model documentation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Deployment, retraining, monitoring, or fairness examples may be applied to production ML systems without domain-specific validation.
+
+Mitigation: Treat the skill as reference material and require ML, security, compliance, and domain review before adapting the patterns to systems that affect users or business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, ML platform engineers, and model governance reviewers use this skill to reason through production MLOps workflows, including model deployment patterns, monitoring, drift detection, retraining, rollback, fairness checks, and Model Card documentation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Production MLOps recommendations can influence deployment, retraining, rollback, fairness, or compliance decisions if applied without review. <br>
-Mitigation: Have qualified ML, platform, and governance reviewers validate generated guidance against current model behavior, organizational policy, and regulatory requirements before implementation. <br>
-Risk: Example code and thresholds may not match a user's data, model risk tier, or operating environment. <br>
-Mitigation: Treat examples as starting points and replace thresholds, metrics, and workflow steps with values validated on the target system. <br>
+**Output Format:** [Markdown with explanatory text, examples, and code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/timbohnett-farther/skill-109) <br>
+**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior in the release artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with explanatory text, structured examples, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational checklists, example metrics, model registry examples, monitoring examples, and governance documentation templates.] <br>
+1.0.0 (source: server release metadata and artifact package.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

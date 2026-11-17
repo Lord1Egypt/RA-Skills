@@ -1,0 +1,39 @@
+{
+  "name": "task-sync-pack",
+  "version": "0.1.1",
+  "description": "任务同频器：从一个任务合同生成给人和 AI 同时可读、可校验的同频任务包。",
+  "type": "module",
+  "bin": {
+    "task-sync-pack": "scripts/task-sync-pack.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/task-sync-pack.test.mjs",
+    "check": "node --check scripts/task-sync-pack.mjs && node --check scripts/verify-task-sync-pack.mjs",
+    "pack:check": "npm pack --dry-run"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "agents",
+    "schema",
+    "scripts"
+  ],
+  "keywords": [
+    "task-handoff",
+    "task-passport",
+    "ai-agent",
+    "workbuddy",
+    "clawhub",
+    "task-contract",
+    "中文"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dongsheng123132/task-sync-pack.git"
+  }
+}

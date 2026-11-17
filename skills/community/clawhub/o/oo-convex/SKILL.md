@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Convex"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["convex"]
   icon: "https://static.oomol.com/logo/third-party/Convex.svg"
 ---
@@ -50,14 +50,14 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_project_by_slug` — Get a Convex project by team identifier or slug plus project slug.
 - `get_token_details` — Return the current Convex token details so you can discover the authorized team or project context.
 - `list_custom_domains` — List custom domains configured for a Convex deployment.
-- `list_deploy_keys` — List deploy keys for a Convex deployment. [write]
+- `list_deploy_keys` — List deploy keys for a Convex deployment.
 - `list_deployment_classes` — List available deployment classes for a Convex team.
 - `list_deployment_regions` — List available deployment regions for a Convex team.
 - `list_deployments` — List deployments for a Convex project.
 - `list_projects` — List all Convex projects for a team.
-- `run_action` — Execute a Convex action through the deployment HTTP API.
-- `run_function` — Execute an arbitrary Convex function through `/api/run/{functionIdentifier}` using a slash-separated identifier.
-- `run_mutation` — Execute a Convex mutation through the deployment HTTP API.
+- `run_action` — Execute a Convex action through the deployment HTTP API. [destructive]
+- `run_function` — Execute an arbitrary Convex function through `/api/run/{functionIdentifier}` using a slash-separated identifier. [destructive]
+- `run_mutation` — Execute a Convex mutation through the deployment HTTP API. [destructive]
 - `run_query` — Execute a Convex query through the deployment HTTP API.
 - `update_deployment` — Update mutable Convex deployment properties. [write]
 
@@ -90,11 +90,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Convex is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=convex
+  https://console.oomol.com/connections/convex
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Convex homepage: https://www.convex.dev
+- API documentation: https://docs.convex.dev/http-api/

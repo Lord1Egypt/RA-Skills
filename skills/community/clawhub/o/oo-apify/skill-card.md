@@ -1,43 +1,55 @@
-## Description: <br>
-Apify (apify.com). Use this skill for Apify requests involving searching, reading data, and running supported Apify connector actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Apify to read data and start actor runs through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to access Apify actor metadata, authenticated user details, dataset items, actor run status, and to start Apify actor runs through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start Apify actor runs through a connected account, which may incur cost, consume resources, or expose resulting data. <br>
-Mitigation: Require explicit approval of the actor, input payload, expected cost or resource impact, and resulting data access before using run_actor. <br>
-Risk: The security verdict is suspicious because write-capable behavior is present while safety labeling treats untagged actions as safe reads. <br>
-Mitigation: Review the skill before installation and confirm any action that changes Apify state or accesses sensitive account data. <br>
+## Use Case:
 
+Developers using Apify through an OOMOL-connected account can retrieve actor, user, run, and dataset information, or start an actor run with a JSON input.
 
-## Reference(s): <br>
-- [ClawHub Apify skill page](https://clawhub.ai/oomol/oo-apify) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [Apify homepage](https://apify.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill frontmatter) <br>
+Risk: Automatic setup may execute an unreviewed CLI installer and can introduce additional agent skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately. If avoiding additional agent skill writes, use the documented OO_SKILLS_SYNC_DISABLED=1 setting.
+
+Risk: Starting an actor run can change Apify state and incur usage costs.
+
+Mitigation: Inspect the live action schema, review the exact input and expected effects, and confirm potential costs before starting a run.
+
+## Reference(s):
+
+- [Apify](https://apify.com)
+- [Apify API documentation](https://docs.apify.com/api/v2)
+- [OO CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API results, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON inputs and results with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Starting an actor run may incur costs; review the input and expected effects before running.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

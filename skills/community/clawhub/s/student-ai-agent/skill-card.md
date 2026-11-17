@@ -1,43 +1,57 @@
-## Description: <br>
-Student AI Agent guides an academic project workflow from assignment analysis through code, report, slide, speaker note, and Q&A preparation artifacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Student AI Agent automates an academic project workflow from assignment analysis through code, report, presentation, speaker notes, and Q&A preparation.
 
-## Publisher: <br>
-[18001469998ly-ops](https://clawhub.ai/user/18001469998ly-ops) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18001469998ly-ops](https://clawhub.ai/user/18001469998ly-ops)
 
-## Use Case: <br>
-Students, educators, and academic support agents use this skill to structure coursework deliverables, generate project scaffolding, create report and presentation materials, and prepare Q&A notes from assignment requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can prompt dependency installation or execution of generated code. <br>
-Mitigation: Review commands first, install packages only with confirmation, avoid global npm installs, and run generated code in a disposable project directory or sandbox. <br>
-Risk: Generated academic deliverables may be incomplete templates or unsuitable for direct submission. <br>
-Mitigation: Manually complete, verify, cite, and revise reports, slides, code, and Q&A material before academic use. <br>
-Risk: Broad assignment prompts can produce incorrect or misleading academic guidance. <br>
-Mitigation: Compare outputs against the assignment rubric and course requirements before relying on them. <br>
+## Use Case:
 
+External users can use this skill to turn assignment requirements into a structured academic project workflow with generated code, reports, slides, speaker notes, and Q&A preparation. Users should review outputs against applicable academic integrity policies before use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18001469998ly-ops/student-ai-agent) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and generated files including JSON, Python code, DOCX reports, PPTX slides, speaker notes, and Q&A preparation materials] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated academic deliverables require manual review before use or submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: The skill can create submission-style academic work that may be inappropriate under course or institutional rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where academic policy allows, disclose assistance when required, and review all generated work before submission.
+
+Risk: The workflow may install dependencies, write files, and run generated code without clear safety controls.
+
+Mitigation: Run dependency installs in an isolated environment, require confirmation before file writes or code execution, and inspect generated Python before running it.
+
+Risk: The bundled runner should not be treated as proof that generated work was completed, validated, or correct.
+
+Mitigation: Verify generated code, reports, slides, and Q&A materials independently before relying on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/18001469998ly-ops/skills/student-ai-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [JSON, Markdown, Python code, shell commands, .docx reports, and .pptx slides]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates project output folders and generated coursework materials when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

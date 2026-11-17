@@ -1,46 +1,62 @@
-## Description: <br>
-公众号 AI 选题与标题生成助手，支持热点调研、选题策划、标题候选、摘要候选和系列排期，面向自媒体编辑与内容运营人员。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps WeChat public-account editors and content operators research article topics, generate title candidates and summaries, plan series, and prepare topic handoff files.
 
-## Publisher: <br>
-[aiworkskills](https://clawhub.ai/user/aiworkskills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiworkskills](https://clawhub.ai/user/aiworkskills)
 
-## Use Case: <br>
-External content creators, editors, and content operations teams use this skill to research WeChat public-account article topics, generate headline and summary candidates, plan article series, and create handoff notes for drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read .aws-article configuration and product notes while preparing topics and titles. <br>
-Mitigation: Install and run it only in workspaces where the agent is allowed to access those article-planning files. <br>
-Risk: The workflow may write draft metadata and planning files such as topic-card.md, research.md, and article.yaml. <br>
-Mitigation: Review generated article metadata and draft files before using them in a publishing workflow. <br>
-Risk: The full aws-wechat-article suite may reference sibling Python helpers outside this skill artifact. <br>
-Mitigation: Review referenced sibling helpers before allowing the agent to execute them. <br>
+## Use Case:
 
+External content editors and operations teams use this skill to select WeChat article topics, research current angles, create title and outline options, and hand selected topics to a writing workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiworkskills/aws-wechat-article-topics) <br>
-- [Publisher profile](https://clawhub.ai/user/aiworkskills) <br>
-- [Output format reference](artifact/references/output-format.md) <br>
-- [Research strategy reference](artifact/references/research-strategy.md) <br>
-- [Title presets reference](artifact/references/title-presets.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with topic cards, research summaries, title and digest candidates, article metadata notes, and occasional shell command suggestions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update topic-card.md, research.md, article.yaml, and series planning files in the user's article workspace when directed by the workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.23 (source: server release metadata) <br>
+Risk: Web research may surface stale, incomplete, or misleading material for article planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited sources and factual claims before publishing topic cards, summaries, or outlines.
+
+Risk: The skill can read and update article project files such as topic-card.md, research.md, and article.yaml.
+
+Mitigation: Run it only in the intended article workspace and review proposed file changes before accepting them.
+
+Risk: Some workflows depend on companion aws-wechat-article skills and Python helper scripts.
+
+Mitigation: Install the full suite for cross-skill steps and review the helper dependency before running shell commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiworkskills/skills/aws-wechat-article-topics)
+- [AIWorkSkills homepage](https://aiworkskills.cn)
+- [wechat-article-skills repository](https://github.com/aiworkskills/wechat-article-skills)
+- [Output format](references/output-format.md)
+- [Research strategy](references/research-strategy.md)
+- [Title presets](references/title-presets.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses and Markdown/YAML project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update topic-card.md, research.md, and article.yaml after user confirmation; requires python3 for helper-script workflows.]
+
+## Skill Version(s):
+
+1.0.25 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

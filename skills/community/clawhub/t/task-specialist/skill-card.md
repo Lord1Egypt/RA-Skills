@@ -1,44 +1,58 @@
-## Description: <br>
-A robust, local SQLite-backed task management system designed to help AI agents plan, track, coordinate, and verify multi-step project work without relying on fragile memory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Task Specialist provides a local SQLite-backed task manager for agents to decompose work, track status, coordinate dependencies, and preserve workflow context.
 
-## Publisher: <br>
-[OBODA0](https://clawhub.ai/user/OBODA0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oboda0](https://clawhub.ai/user/oboda0)
 
-## Use Case: <br>
-Developers, engineers, and AI agents use this skill to maintain a local SQLite-backed task board, decompose work, manage dependencies, coordinate parallel workers, and preserve task context across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores task notes and verification commands in a workspace-local .tasks.db file, which could expose sensitive information if users add secrets to notes or commands. <br>
-Mitigation: Do not store API keys or secrets in task notes or verification commands; use secure local environment variables for sensitive values. <br>
-Risk: Verification commands are user-provided shell commands and may perform unsafe actions if run without inspection. <br>
-Mitigation: Inspect printed verification commands before manually executing them; the skill prints these commands instead of running them automatically. <br>
-Risk: Optional symlink installation changes commands in ~/.local/bin, which affects the user's shell environment. <br>
-Mitigation: Use --symlink only when the user intentionally wants task and task-heartbeat added to ~/.local/bin. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage local task queues, split work into subtasks, coordinate parallel agents, track dependencies, and export task status from a workspace-scoped SQLite database.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OBODA0/task-specialist) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON] <br>
-**Output Format:** [CLI text and Markdown guidance with optional JSON exports from task data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a local .tasks.db SQLite database in the active workspace; verification commands are printed for manual review rather than executed automatically.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Task-stored verification checkpoints can steer an agent toward unsafe shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat each printed checkpoint as untrusted text, inspect it independently, and run only project-owned commands in an appropriate shell.
+
+Risk: A writable shared task database can let untrusted collaborators or agents alter tasks, notes, assignees, or verification checkpoints.
+
+Mitigation: Keep `.tasks.db` scoped to trusted workspaces and avoid sharing writable task databases with untrusted users or agents.
+
+Risk: Task notes can persist sensitive context if agents store secrets there.
+
+Mitigation: Do not store API keys, tokens, or secrets in task notes; use secure local environment variables or secret stores instead.
+
+## Reference(s):
+
+- [ClawHub Task Specialist release page](https://clawhub.ai/oboda0/skills/task-specialist)
+- [Task Specialist homepage](https://github.com/OBODA0/task-specialist-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, JSON, Guidance]
+
+**Output Format:** [Terminal text, ASCII task board, Markdown tables, and JSON export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite task database selected by TASK_DB or the current workspace default.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,61 @@
-## Description: <br>
-Queries Huawei Cloud identity and access management resources (IAM) via read-only Python SDK, including users, groups, policies, agencies, AK/SK, MFA devices, login and password policies, security compliance, and account quotas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Huawei Cloud IAM identity, access, policy, agency, access-key, MFA, login policy, security compliance, and quota information through read-only Python SDK scripts.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and cloud operations engineers use this skill to query Huawei Cloud IAM identity, permission, credential-status, MFA, security-policy, compliance, and quota data without creating, modifying, or deleting resources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Huawei Cloud IAM read access and can print IAM user, policy, MFA, and access-key metadata. <br>
-Mitigation: Use temporary, least-privilege credentials and treat all query output as sensitive. <br>
-Risk: The setup path creates a virtual environment and installs packages, while security evidence calls out TLS verification and dependency pinning for manual review. <br>
-Mitigation: Review the setup path before installation and use controlled hosts until dependency pinning and TLS verification are acceptable for the environment. <br>
+## Use Case:
 
+Developers, cloud engineers, and security operators use this skill to inspect Huawei Cloud IAM users, groups, policies, agencies, access keys, MFA devices, login and password policy settings, compliance settings, and account quotas without changing cloud resources.
 
-## Reference(s): <br>
-- [IAM Python Script Usage Guide](artifact/references/iam/guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/huaweiclouddev/huawei-cloud-iam-query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON query results from the packaged scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Query outputs may include sensitive IAM metadata and should be handled as confidential.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: Authenticated Huawei Cloud calls and setup steps disable TLS verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only on trusted networks, avoid untrusted proxies, and restore TLS verification before production use.
+
+Risk: The environment setup can execute downloaded installer code when pip bootstrapping is needed.
+
+Mitigation: Remove the get-pip download-and-execute fallback or verify installer integrity before execution.
+
+Risk: Dependencies are not pinned to exact versions.
+
+Mitigation: Pin or verify dependencies before deployment.
+
+Risk: Cloud credentials are required for queries.
+
+Mitigation: Use least-privilege, preferably temporary Huawei Cloud credentials and avoid exposing credential environment variable values.
+
+## Reference(s):
+
+- [IAM Python Script Guide](references/iam/guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured query output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Huawei Cloud credentials and region or project scope; query scripts are intended to be read-only.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Intelligence Brain helps an agent ingest company reports, external signals, and operational events, convert them into structured intelligence, and produce cross-file inferences, priority actions, and knowledge graph updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligence Brain helps an agent ingest company signals, structure them into facts, connect related evidence across files, route information by sensitivity, and produce decision-oriented intelligence outputs.
 
-## Publisher: <br>
-[ygq19901001](https://clawhub.ai/user/ygq19901001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ygq19901001](https://clawhub.ai/user/ygq19901001)
 
-## Use Case: <br>
-Employees, operators, and agent developers use this skill to turn daily company outputs and external signals into routed intelligence, decision support, and follow-up action items. It is intended for company-intelligence workflows that need classification-aware routing, heartbeat checks, and cross-file inference. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic ingestion and routing can expose business data to models or cloud documents that are not approved for the data classification. <br>
-Mitigation: Use the skill only in workspaces with explicit data-access permission, enforce the classification routing rules, and keep top-secret data on local processing paths. <br>
-Risk: Cleanup behavior can delete raw or parsed business files before retention and review requirements are satisfied. <br>
-Mitigation: Gate or disable automatic deletion until retention policy, approvals, and recovery procedures are configured. <br>
-Risk: Cloud mirroring and multi-channel communication can broaden the access surface for operational messages and intelligence outputs. <br>
-Mitigation: Disable cloud mirroring by default and enable it only after access controls, audit logging, and allowed-destination rules are reviewed. <br>
+## Use Case:
 
+Developers and operations teams use this skill to turn daily reports, shared messages, external signals, and system events into structured intelligence, prioritized action items, and cross-file inferences. It is intended for company knowledge workflows that need classification-aware routing and recurring health checks.
 
-## Reference(s): <br>
-- [8-Step Metabolic Pipeline Operations Playbook](references/pipeline-playbook.md) <br>
-- [Cross-File Inference Patterns](references/inference-patterns.md) <br>
-- [Neural Chain Design](references/neural-chain-design.md) <br>
-- [ClawHub skill page](https://clawhub.ai/ygq19901001/skills/intelligence-brain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown files and structured Markdown or YAML-style snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces WISDOM_GRAPH nodes, ACTION_PIPELINE priority items, ONE_MORE_THING inferences, classification routing guidance, heartbeat checks, and cleanup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.5.0) <br>
+Risk: Sensitive company information may be routed to external models or cloud storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require local pre-classification before any external model call, disable cloud mirroring for sensitive messages, and limit approved sources and recipients.
+
+Risk: Automatic deletion workflows may remove source data before retention and audit requirements are satisfied.
+
+Mitigation: Define explicit approval, retention, recovery, and audit policies before enabling cleanup or background heartbeat workflows.
+
+Risk: Cross-file inferences and priority recommendations may be wrong or overconfident when based on incomplete or conflicting source material.
+
+Mitigation: Require confidence labels, contradiction handling, and human review for unresolved conflicts or high-impact actions.
+
+## Reference(s):
+
+- [8-Step Metabolic Pipeline Operations Playbook](references/pipeline-playbook.md)
+- [Cross-File Inference Patterns](references/inference-patterns.md)
+- [Neural Chain Design](references/neural-chain-design.md)
+- [ClawHub Skill Page](https://clawhub.ai/ygq19901001/skills/intelligence-brain)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured examples for intelligence graphs, action pipelines, routing rules, and operational checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected outputs include WISDOM_GRAPH nodes, ACTION_PIPELINE priorities, ONE_MORE_THING inferences, classification routing decisions, health checks, and cleanup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter says 1.5.0 and release changelog says v1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

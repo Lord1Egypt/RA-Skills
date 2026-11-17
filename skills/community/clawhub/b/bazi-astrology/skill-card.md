@@ -1,44 +1,60 @@
-## Description: <br>
-Runs bazi chart generation, dayun analysis, full-report generation, and chat context building for user-facing astrology questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs bazi chart generation, dayun analysis, full-report generation, and chat context building for user-facing astrology questions.
 
-## Publisher: <br>
-[gycdsj](https://clawhub.ai/user/gycdsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gycdsj](https://clawhub.ai/user/gycdsj)
 
-## Use Case: <br>
-External users and agent developers use this skill to generate Chinese bazi astrology reports and answer astrology questions from birth date, birth time, gender, and a user prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Birth date/time, gender, and user questions may be sent to a configured OpenClaw/OpenAI-compatible model provider. <br>
-Mitigation: Use only with trusted model configuration, avoid collecting unnecessary personal details, and tell users what information is sent for analysis. <br>
-Risk: The auxiliary convert.py script contains an unsafe shell command path. <br>
-Mitigation: Do not invoke convert.py in production; remove it or replace the shell command with a safe argument-list subprocess call before direct CLI use. <br>
-Risk: Astrology output can be mistaken for factual professional advice. <br>
-Mitigation: Present responses as cultural or entertainment-oriented guidance and avoid using them as the sole basis for medical, legal, financial, or safety decisions. <br>
+## Use Case:
 
+External users provide birth date, birth time, gender, and a Chinese-language astrology question to receive a bazi chart, full report, dayun analysis, or focused fortune-telling answer. The skill uses deterministic calendar and pillar calculations to ground the generated interpretation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gycdsj/bazi-astrology) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese text or Markdown report with a bazi detail table and analysis sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires birth date/time and gender for full reports; may request missing birth information before analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The release was flagged for review because convert.py contains unsafe shell-based helper behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove or fix convert.py before deployment, and do not run it with untrusted input.
+
+Risk: Birth details and user questions may be sent to the configured OpenAI/OpenClaw-compatible provider.
+
+Mitigation: Confirm the intended API key, base URL, model, and any ~/.openclaw/openclaw.json fallback before use.
+
+Risk: Runtime dependencies are not pinned to exact versions.
+
+Mitigation: Pin and review dependencies before installation in managed or sensitive environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gycdsj/skills/bazi-astrology)
+- [Publisher profile](https://clawhub.ai/user/gycdsj)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language markdown or plain text astrology analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes bazi chart details, dayun windows, five-element preferences, temporal ganzhi context when relevant, and conversational recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

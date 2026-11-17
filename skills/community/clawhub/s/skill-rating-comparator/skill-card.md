@@ -1,43 +1,55 @@
-## Description: <br>
-Generates multi-dimensional skill comparison reports that score similar skills across functionality, code quality, documentation, user feedback, update frequency, and installation ease. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically compares similar skills across functionality, code quality, documentation, user reviews, update frequency, and installation ease, then generates a scored report with recommendations.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to compare a target skill with similar ClawHub or GitHub skills and produce a concise scoring report with strengths, weaknesses, and recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review found that the skill may present synthetic and randomized comparison reports as real skill analysis. <br>
-Mitigation: Treat reports as preliminary guidance and require visible evidence for each score or recommendation before using them for selection, procurement, or publication. <br>
-Risk: The implementation includes placeholder discovery and scoring behavior for ClawHub and GitHub comparisons. <br>
-Mitigation: Confirm that real platform discovery, deterministic scoring, and source-backed recommendation logic are implemented before relying on output in production workflows. <br>
+## Use Case:
 
+Developers and skill evaluators use this skill to compare a target ClawHub skill against similar skills before choosing, recommending, or improving a skill. It is intended to produce an advisory comparison report across six scoring dimensions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skill-rating-comparator) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [package.json](artifact/package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, guidance] <br>
-**Output Format:** [Markdown comparison report with tables, scoring details, recommendation bullets, and radar chart data as JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scores are generated for six weighted dimensions; security evidence notes that reports may be synthetic or randomized unless backed by visible data sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json) <br>
+Risk: The inspected release presents mock and random ratings as if they came from real skill and repository analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated rankings and recommendations as advisory, and verify skill metrics against authoritative ClawHub or repository sources before making selection decisions.
+
+Risk: Users may mistake generated comparison reports for deterministic factual evaluations.
+
+Mitigation: Review report outputs before sharing or relying on them, especially when comparing third-party skills or making procurement-style decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rfdiosuao/skills/skill-rating-comparator)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with score tables, dimension details, strengths, weaknesses, recommendations, and radar chart data as JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scores and rankings should be treated as advisory because the inspected release uses mock and random rating data.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata, package.json, skill.json, README changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

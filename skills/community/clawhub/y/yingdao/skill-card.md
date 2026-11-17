@@ -1,42 +1,59 @@
-## Description: <br>
-影刀 RPA API 封装，支持鉴权/任务查询/执行/结果获取。需配置环境变量 YINGDAO_ACCESS_KEY_ID、YINGDAO_ACCESS_KEY_SECRET 作为 API 凭证。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+影刀 wraps the Yingdao RPA API for authentication, task discovery, task execution, execution log retrieval, and result queries using environment-provided API credentials.
 
-## Publisher: <br>
-[yflmq001](https://clawhub.ai/user/yflmq001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yflmq001](https://clawhub.ai/user/yflmq001)
 
-## Use Case: <br>
-Developers and automation operators use this skill to connect agents to Yingdao RPA APIs for authentication, task discovery, task execution, and execution-result retrieval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can start real remote Yingdao RPA automation jobs when valid account credentials are available. <br>
-Mitigation: Use limited-scope or test credentials, require manual approval before task starts, and restrict which task UUIDs the agent may run. <br>
-Risk: The artifact does not provide built-in execution guardrails or independently verifiable duplicate-run protection. <br>
-Mitigation: Add or verify duplicate-run protection before relying on idempotent execution behavior in production workflows. <br>
+## Use Case:
 
+Developers and automation operators use this skill to connect agents to Yingdao RPA workspaces, inspect schedules and execution logs, start scheduled automation tasks, and read task results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yflmq001/yingdao) <br>
-- [Yingdao authentication API endpoint](https://api.yingdao.com/oapi/token/v2/token/create) <br>
-- [Yingdao business API base](https://api.winrobot360.com/oapi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets, shell commands, and JSON API payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires YINGDAO_ACCESS_KEY_ID and YINGDAO_ACCESS_KEY_SECRET environment variables and the requests Python dependency.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The skill can start real Yingdao RPA automation jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit human approval before invoking task starts against production schedules and use a dedicated least-privileged Yingdao credential.
+
+Risk: The skill uses sensitive API secrets supplied through environment variables.
+
+Mitigation: Store credentials in a protected environment or secrets manager, avoid logging URLs or request parameters that may expose credentials, and rotate keys if exposure is suspected.
+
+Risk: The dependency requirement allows unpinned newer versions of requests.
+
+Mitigation: Use a pinned lockfile or vetted dependency installation process for production deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yflmq001/skills/yingdao)
+- [ClawHub Skill Homepage](https://clawhub.ai/yflmq001/yingdao)
+- [Publisher Profile](https://clawhub.ai/user/yflmq001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell snippets; runtime calls return Python dictionaries and lists from Yingdao API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires YINGDAO_ACCESS_KEY_ID and YINGDAO_ACCESS_KEY_SECRET; external requests target Yingdao and WinRobot360 API endpoints.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

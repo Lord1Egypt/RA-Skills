@@ -1,37 +1,49 @@
-## Description: <br>
-Deep release management workflow-versioning semantics, branching and tags, release checklist, communications, rollback criteria, and hotfix discipline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep release management workflow—versioning semantics, branching and tags, release checklist, communications, rollback criteria, and hotfix discipline.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers, release managers, SREs, and cross-functional software teams use this skill to plan scheduled, train-based, continuous, or hotfix releases with clear versioning, branching, checklist, communication, verification, rollback, and post-release practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Release guidance may affect real tagging, deployment, rollback, or hotfix decisions if followed without review. <br>
-Mitigation: Keep operational actions under established approval, CI/CD, change-management, and incident-response controls. <br>
+## Use Case:
 
+Developers, release managers, and engineering leads use this skill to structure scheduled, continuous, and hotfix software releases with versioning policy, branch and tag discipline, release checklists, communication, rollback criteria, and post-release follow-up.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with staged workflow steps and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only release planning aid; no executable code or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Release, rollback, tag, or hotfix guidance could affect real repositories or production environments if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed release actions against the team's repository, deployment, and rollback controls before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mike47512/skills/release-management)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with checklists and workflow stages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tool calls, credentials, or code execution are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

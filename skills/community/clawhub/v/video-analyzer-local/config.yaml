@@ -1,0 +1,510 @@
+# video-analyzer 配置文件
+# 视频分析处理 Skill v4.7.0
+
+# ==================== ASR 语音识别配置 (v3.5 新增) ====================
+asr:
+  # 引擎选择: whisper, paraformer, sensevoice, auto
+  # whisper: OpenAI Whisper（默认，多语言）
+  # paraformer: 阿里达摩院 Paraformer（中文SOTA）
+  # sensevoice: 阿里达摩院 SenseVoice（带情感识别）
+  # auto: 根据语言自动选择最优引擎
+  engine: auto
+  
+  # Paraformer 配置
+  paraformer_model: paraformer-zh
+  paraformer_device: cpu
+  
+  # SenseVoice 配置
+  sensevoice_model: SenseVoiceSmall
+  sensevoice_device: cpu
+  sensevoice_use_itn: true
+  
+  # 热词列表（提升专业术语识别准确率）
+  hotwords: []
+
+# ==================== OCR 配置 (v3.5 新增) ====================
+ocr:
+  # OCR 引擎: paddleocr, auto
+  engine: paddleocr
+  
+  # 语言: ch(中文), en(英文), multilang(多语言)
+  lang: ch
+  
+  # 使用 GPU（需安装 paddlepaddle-gpu）
+  use_gpu: false
+  
+  # 方向检测
+  use_angle_cls: true
+  
+  # 显示日志
+  show_log: false
+
+# ==================== NLP 增强配置 (v3.5 新增) ====================
+nlp:
+  # 使用 jieba 分词
+  use_jieba: true
+  
+  # 使用 NER 命名实体识别
+  use_ner: true
+  
+  # 自定义术语词典路径（JSON 格式 {"缩写": "全称/中文"}）
+  terminology_path: null
+  
+  # 自定义术语（直接写在配置里）
+  custom_terminology: {}
+
+# ==================== Whisper 语音识别配置 ====================
+whisper:
+  # 模型名称: tiny, base, small, medium, large-v3
+  # 设置为 null 则根据硬件自动选择（推荐）
+  model_name: null
+  
+  # 语言设置: auto(自动检测), zh, en, ja, ko, fr, de, es, ru 等
+  language: auto
+  
+  # 计算设备: cpu, cuda, null(自动检测)
+  device: null
+  
+  # beam_size，越大越准确但越慢
+  beam_size: 5
+  
+  # 温度参数，影响输出多样性
+  temperature: 0.0
+  
+  # ======== tiny 模型优先体验配置 (v4.1 新增) ========
+  # 是否启用 tiny 模型优先体验（首次使用推荐 tiny，体验后再决定是否需要大模型）
+  tiny_first: true
+  # 低配电脑强制使用 tiny（内存 < 此值则强制 tiny，单位 GB）
+  low_memory_threshold: 4
+
+# ==================== 场景检测配置 ====================
+scene_detection:
+  # 直方图差分阈值 (0-1)，越低越敏感（检测更多场景切换）
+  threshold: 0.5
+  
+  # 最小场景时长（秒），低于此时长的场景会被合并
+  min_scene_duration: 2.0
+  
+  # HSV 直方图 bins 数
+  hist_bins: 50
+  
+  # 使用的颜色空间: hsv, rgb, lab
+  color_space: hsv
+
+# ==================== 视觉分析配置 ====================
+visual_analysis:
+  # 启用场景分类
+  enable_scene_classification: true
+  
+  # 启用物体检测
+  enable_object_detection: true
+  
+  # 启用 OCR
+  enable_ocr: true
+  
+  # 场景分类模型路径 (null 则使用内置轻量模型)
+  scene_model_path: null
+  
+  # 物体检测模型路径 (null 则使用内置轻量模型)
+  object_model_path: null
+  
+  # OCR 语言: ch, en, multilang
+  ocr_lang: ch
+  
+  # 视觉分析采样间隔（秒），每 N 秒分析一次关键帧
+  sampling_interval: 3
+
+# ==================== 报告生成配置 ====================
+report:
+  # 输出格式: html, json, md (可同时指定多个，用逗号分隔)
+  formats: html,json,md
+  
+  # 是否生成时间轴可视化图表
+  enable_timeline_chart: true
+  
+  # 是否生成音频波形图
+  enable_waveform: true
+  
+  # HTML 报告每页显示的场景数
+  scenes_per_page: 20
+  
+  # HTML 报告配色主题: dark, light
+  theme: dark
+
+# ==================== 处理配置 ====================
+processing:
+  # 并行工作进程数 (0 = 自动检测)
+  num_workers: 0
+  
+  # 是否保留中间文件（缓存）
+  keep_cache: true
+  
+  # 缓存目录
+  cache_dir: .cache
+  
+  # 临时文件目录
+  temp_dir: .temp
+  
+  # 输出文件目录
+  output_dir: output
+  
+  # 最大视频时长（秒），超过则提示用户
+  max_duration: 7200
+  
+  # 下载超时（秒）
+  download_timeout: 300
+  
+  # ======== 性能与资源控制（v2.0 新增） ========
+  
+  # 进程优先级（Linux/macOS nice 值，0-19，越大优先级越低）
+  # 建议：高性能电脑设为 5，低配电脑设为 15
+  nice_level: 5
+  
+  # 最大内存使用（GB），防止 OOM # 默认根据内存自动计算
+  max_memory_gb: 0
+  
+  # 帧缓存数量上限（防止内存爆炸） 0 = 自动计算
+  frame_cache_limit: 0
+
+# ==================== 精华提取配置 ====================
+highlight:
+  # 高光时刻检测灵敏度 (0-1)
+  sensitivity: 0.6
+  
+  # 提取的精华片段数量
+  top_n: 10
+  
+  # 最小精华片段时长（秒）
+  min_highlight_duration: 5
+  
+  # 音频权重 (用于高光检测)
+  audio_weight: 0.5
+  
+  # 视觉权重 (用于高光检测)
+  visual_weight: 0.5
+
+# ==================== 短视频平台适配配置 (v4.0 新增) ====================
+platform_adapters:
+  # 是否启用短视频平台适配
+  enabled: true
+  
+  # 抖音配置
+  douyin:
+    # 是否启用抖音适配
+    enabled: true
+    # 下载超时（秒）
+    download_timeout: 300
+  
+  # 快手配置
+  kuaishou:
+    enabled: true
+    download_timeout: 300
+  
+  # B站配置
+  bilibili:
+    enabled: true
+    download_timeout: 300
+  
+  # 微信视频号配置
+  wechat_video:
+    enabled: true
+    download_timeout: 300
+
+# ==================== 自动剪辑建议配置 (v4.0 新增) ====================
+editing:
+  # 是否启用自动剪辑建议
+  enabled: true
+  
+  # 高光检测配置
+  highlight:
+    # 最小高光时长（秒）
+    min_duration: 2.0
+    # 最大高光时长（秒）
+    max_duration: 30.0
+    # 视觉活跃度权重
+    visual_weight: 0.3
+    # 音频能量权重
+    audio_weight: 0.3
+    # 情感分析权重
+    emotion_weight: 0.2
+    # 内容分析权重
+    content_weight: 0.2
+    # 高光阈值 (0-1)
+    threshold: 0.6
+  
+  # 冗余检测配置
+  redundancy:
+    # 静音阈值（秒），超过此时长视为冗余
+    silence_threshold: 2.0
+    # 填充词阈值（个），超过此次数视为冗余
+    filler_threshold: 3
+    # 语速过慢阈值（字/秒）
+    slow_speed_threshold: 3.0
+    # 画面静止阈值（秒）
+    static_threshold: 5.0
+  
+  # 时间线生成配置
+  timeline:
+    # 最大输出时长（秒）
+    max_output_duration: 120
+    # 最小片段时长（秒）
+    min_clip_duration: 1.0
+    # 转场时长（秒）
+    transition_duration: 0.5
+  
+  # EDL 导出配置
+  edl:
+    # 帧率
+    fps: 30
+  
+  # 字幕样式配置
+  subtitle:
+    # 默认样式模板: douyin/bilibili/movie/minimal
+    default_style: douyin
+    # 字体大小
+    font_size: 48
+    # 字体名称
+    font_name: "Microsoft YaHei"
+  
+  # ======== 剪映格式配置 (v4.1 新增) ========
+  jianying:
+    # 帧率
+    fps: 30
+    # 分辨率
+    resolution:
+      width: 1920
+      height: 1080
+
+# ==================== 说话人分离质量评分配置 (v4.1 新增) ====================
+quality_scorer:
+  # 声纹距离权重
+  distance_weight: 0.6
+  # 重叠率权重
+  overlap_weight: 0.4
+
+# ==================== 说话人分离预设配置 (v4.6 新增) ====================
+diarization_profiles:
+  # 默认预设
+  default: interview
+  # 自定义预设覆盖（可选）
+  custom:
+    interview:
+      threshold: 0.5
+      window: 1.5
+      max_speakers: 3
+      merge_gap: 1.0
+    meeting:
+      threshold: 0.6
+      window: 2.0
+      max_speakers: 6
+      merge_gap: 0.8
+    phone:
+      threshold: 0.4
+      window: 3.0
+      max_speakers: 2
+      merge_gap: 2.0
+
+# ==================== 听后简报配置 (v4.6 新增) ====================
+weekly_briefing:
+  # 队列数据库路径
+  db_path: null
+  # 输出目录
+  output_dir: .cache/briefings
+  # 金句显示数量
+  highlights_count: 10
+
+# ==================== 爆款预测配置 (v4.2 新增) ====================
+viral_predictor:
+  # 是否启用 LLM 增强建议（需安装 openai）
+  use_llm: false
+  # LLM 模型（可选）
+  llm_model: "gpt-4o-mini"
+  # 爆款特征权重
+  weights:
+    opening_hook: 0.20
+    content_density: 0.15
+    rhythm_score: 0.15
+    emotion_intensity: 0.15
+    hashtag_optimization: 0.10
+    duration_fit: 0.10
+    cta_detection: 0.10
+    quality_score: 0.05
+
+# ==================== 实时直播分析配置 (v4.2 新增) ====================
+live_analysis:
+  # 滑动窗口大小（秒）
+  window_size: 30
+  # 滑动步长（秒）
+  window_slide: 5
+  # 最大缓冲条数（防内存溢出）
+  max_buffer_length: 1000
+  # 告警阈值（窗口内敏感词数量）
+  alert_threshold: 3
+  # 敏感词列表（为空则使用默认）
+  sensitive_words: []
+
+# ==================== 纯音频输入配置 (v4.3 新增) ====================
+media_probe:
+  # 纯音频扩展名（这些扩展名直接走音频模式）
+  audio_extensions:
+    - .mp3
+    - .m4a
+    - .wav
+    - .flac
+    - .aac
+    - .ogg
+    - .wma
+    - .opus
+    - .amr
+    - .aiff
+    - .ape
+  # 音频转换参数
+  audio_output_sample_rate: 16000
+  audio_output_channels: 1
+
+# ==================== 批量队列配置 (v4.3 新增) ====================
+queue:
+  # 硬件档位对应的并发数
+  hardware_tiers:
+    low: 1
+    mid: 2
+    high: 4
+  # 默认硬件档位
+  default_tier: mid
+  # 数据库路径（默认在 cache_dir 下）
+  db_path: null
+
+# ==================== GPU 自动加速配置 (v4.3 新增) ====================
+gpu:
+  # 是否启用 GPU 加速
+  enabled: true
+  # CT2 模型下载基础路径
+  models_dir: models
+  # 自动回退到 CPU
+  fallback_to_cpu: true
+
+# ==================== 一键成片配置 (v4.4 新增) ====================
+auto_editor:
+  # ffmpeg 路径
+  ffmpeg_path: ffmpeg
+  ffprobe_path: ffprobe
+  # 临时目录
+  temp_dir: .temp/auto_editor
+  # 输出目录
+  output_dir: output
+
+# ==================== 封面帧选取配置 (v4.4 新增) ====================
+cover:
+  # ffmpeg 路径
+  ffmpeg_path: ffmpeg
+  ffprobe_path: ffprobe
+  # 输出目录
+  output_dir: output/covers
+  temp_dir: .temp/covers
+  # 评分权重
+  sharpness_weight: 0.35
+  face_weight: 0.30
+  composition_weight: 0.20
+  brightness_weight: 0.15
+  # 采样间隔（秒）
+  sample_interval: 2.0
+
+# ==================== 字幕翻译配置 (v4.4 新增) ====================
+translator:
+  # cn-llm-router 路径（null 则自动搜索）
+  router_path: null
+  # 输出目录
+  output_dir: output/subtitles
+  temp_dir: .temp/translator
+  # 术语表路径
+  glossary_path: null
+  # 批量大小
+  batch_size: 10
+  # 超时（秒）
+  timeout: 120
+  # 是否启用术语表强制校正（v4.7 新增）
+  glossary_enabled: true
+
+# ==================== 字幕样式包配置 (v4.7 新增) ====================
+subtitle_presets:
+  # 默认样式包: variety(综艺)/interview(访谈)/course(课程)/minimal(极简)/vertical(竖屏)
+  default: variety
+  # 样式包目录（null 则使用包内 templates/subtitle_styles）
+  style_dir: null
+
+# ==================== 术语表配置 (v4.7 新增) ====================
+glossary:
+  # 是否启用术语前置替换+后置校对
+  enabled: true
+  # 术语表 JSON 路径（null 则不使用；CLI --glossary 可覆盖）
+  glossary_path: null
+  # 待确认清单输出目录
+  pending_dir: .cache/glossary
+  # 术语表 JSON 格式: {"源词": "目标词"} 或 {"en": {...}, "ja": {...}}
+
+# ==================== 双语字幕工作流配置 (v4.7 新增) ====================
+subtitle_workflow:
+  bilingual: false
+  original_track: true
+  translation_track: true
+  burn: false
+
+# ==================== 字幕烧录配置 (v4.7 新增) ====================
+burn:
+  ffmpeg_path: ffmpeg
+  # 编码器与档位（低配可选 ultrafast）
+  codec: libx264
+  preset: veryfast
+  crf: 23
+  output_dir: output
+
+# ==================== BGM 识别配置 (v4.4 新增) ====================
+bgm:
+  # fpcalc/chromaprint 路径
+  fpcalc_path: fpcalc
+  chromaprint_path: fpcalc
+  # 本地参考库路径
+  library_path: null
+  temp_dir: .temp/bgm
+  # 匹配阈值
+  match_threshold: 0.7
+
+# ==================== 首跑自检配置 (v4.5 新增) ====================
+doctor:
+  # 检查项配置
+  checks:
+    ffmpeg:
+      description: "ffmpeg 可用"
+      required: true
+      hint: "请安装 ffmpeg"
+    model_cache:
+      description: "whisper 模型缓存"
+      required: true
+      hint: "模型将在首次运行时自动下载"
+    disk_space:
+      description: "磁盘剩余空间 ≥ 2GB"
+      required: true
+      hint: "请清理磁盘空间"
+    memory_available:
+      description: "可用内存 ≥ 2GB"
+      required: true
+      hint: "请关闭其他程序释放内存"
+    gpu_available:
+      description: "GPU 可用性（可选）"
+      required: false
+      hint: "无 GPU 将使用 CPU 模式"
+
+# ==================== 模型下载配置 (v4.5 新增) ====================
+download:
+  # 最大重试次数
+  max_retries: 3
+  # 下载块大小（字节）
+  chunk_size: 8192
+  # 下载超时（秒）
+  timeout: 300
+
+# ==================== 日志配置 ====================
+logging:
+  level: INFO
+  format: "[%(asctime)s] %(levelname)s: %(message)s"
+  date_format: "%H:%M:%S"

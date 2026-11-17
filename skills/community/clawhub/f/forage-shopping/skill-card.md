@@ -1,41 +1,55 @@
-## Description: <br>
-Search and compare products across merchants. Find the best deals with price comparison and shopping recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and compare products across merchants. Find the best deals with price comparison and shopping recommendations.
 
-## Publisher: <br>
-[jalexspringer](https://clawhub.ai/user/jalexspringer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jalexspringer](https://clawhub.ai/user/jalexspringer)
 
-## Use Case: <br>
-External users use this skill to search for products, compare prices across merchants, and find deals by category or budget. It helps present shopping options with product names, prices, merchants, links, and value-focused recommendations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Shopping searches and price-comparison details are sent to the Forage Shopping MCP service. <br>
-Mitigation: Avoid including sensitive personal, payment, or account information in shopping queries. <br>
-Risk: Product prices, merchant links, delivery costs, and return policies may be incomplete or change before purchase. <br>
-Mitigation: Verify merchant links, final prices, delivery costs, and return policies before buying. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jalexspringer/forage-shopping) <br>
-- [Forage Shopping homepage](https://forageshopping.com) <br>
-- [Forage Shopping MCP server](https://forageshopping.com/mcp) <br>
+## Use Case:
 
+External users and agents use this skill to search products, compare prices across retailers, and find category deals through the Forage Shopping remote MCP service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product names, prices, merchants, links, delivery costs, return-policy notes, and value-based shopping recommendations when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Shopping-related queries are sent to the Forage Shopping remote MCP service.
+
+Mitigation: Install only if the user accepts that remote service's data handling, and avoid including sensitive personal details in product searches.
+
+Risk: Shopping recommendations may be incomplete or affected by retailer data, delivery costs, or return-policy differences.
+
+Mitigation: Review product, merchant, price, delivery, and return details before purchase decisions.
+
+## Reference(s):
+
+- [Forage Shopping Homepage](https://forageshopping.com)
+- [Forage Shopping MCP Endpoint](https://forageshopping.com/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/jalexspringer/skills/forage-shopping)
+- [Publisher Profile](https://clawhub.ai/user/jalexspringer)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Markdown, Guidance]
+
+**Output Format:** [Markdown product recommendations with product names, prices, merchants, and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations should emphasize value and mention delivery costs and return policies when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,24 @@
+{
+ "content": [
+  {
+   "text": "¿El agua bajo nuestros pies es dulce? Más de la mitad del agua subterránea de la Tierra, el 55%, es salada.\n\nUSGS, Water Science School: 12,87 de 23,4 millones de km³ de agua subterránea son salinos. Mándaselo a quien bebe agua de pozo.\n\n#aguasubterránea #acuífero #aguadulce #cienciasdelatierra",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "<mediaId for slide-01.jpg>"
+    }
+   ]
+  }
+ ],
+ "socialAccounts": [
+  {
+   "platform": "INSTAGRAM",
+   "socialAccountId": "<id from social_accounts_list>",
+   "postType": "POST"
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-17T12:30:00Z"
+ }
+}

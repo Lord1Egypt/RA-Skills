@@ -1,40 +1,54 @@
-## Description: <br>
-Securely stores OpenClaw configuration and key information by backing up the default configuration file to keys.txt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Copies OpenClaw configuration and key information from its default location to a backup file path.
 
-## Publisher: <br>
-[yegou777](https://clawhub.ai/user/yegou777) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yegou777](https://clawhub.ai/user/yegou777)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to create a local backup of OpenClaw configuration data that may include API keys and endpoint settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill backs up sensitive OpenClaw credentials to a predictable plaintext file. <br>
-Mitigation: Run it only when a plaintext backup is deliberately needed, set restrictive file permissions, and prefer an encrypted secrets manager or encrypted backup. <br>
-Risk: Incorrect source or destination paths could copy credentials to an unintended location. <br>
-Mitigation: Verify the exact source and destination paths before execution and avoid elevated privileges unless strictly required. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to back up OpenClaw configuration files that may contain API keys, endpoints, and related sensitive settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yegou777/save-secure-keys) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and local file copy output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Copies the OpenClaw configuration backup to a local plaintext target path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can duplicate OpenClaw configuration and key material into plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when plaintext backup is intended, store backups under a scoped user-controlled path, and restrict file permissions manually.
+
+Risk: The helper accepts broad source and destination paths, which can copy arbitrary sensitive files if misused.
+
+Mitigation: Avoid /root/keys.txt and arbitrary source paths unless explicitly required; review the source and target paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yegou777/skills/save-secure-keys)
+- [ClawHub publisher profile](https://clawhub.ai/user/yegou777)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute a Python helper that copies sensitive configuration data to a local plaintext destination file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

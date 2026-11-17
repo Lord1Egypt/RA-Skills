@@ -1,0 +1,15 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "Domain Layer Purity Check",
+  "version": "1.0.0",
+  "description": "Tier B (agentStop): Verifies domain layer has no infrastructure dependencies. Fires after session — intermediate states may have temporary imports.",
+  "when": {
+    "type": "agentStop"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "## Package Territory Check (MANDATORY — evaluate FIRST)\nBefore performing any checks below, verify each file's path in your scan.\n\nEXCLUDED ZONES (package infrastructure — NOT compliance subjects):\n• .kiro/hooks/ — AI-GCE hook infrastructure\n• .kiro/steering/ — AI-DWG/AI-GCE steering infrastructure\n• .kiro/agents/ — AI-GCE agent infrastructure\n• .governance/ — AI-GCE governance rules/agents/logs\n• compliance-log/ — AI-GCE audit trail\n• project-initiation/ — AI-PILC output\n• architecture/ — AI-ADLC output\n• management_framework/ — Shared governance spine\n• docs/compliance-* — AI-GCE generated dashboards\n• templates/ — AI-DWG planning templates\n\nFor each file in your scan: if its path starts with ANY of the above prefixes, SKIP it silently. Only check files outside excluded zones.\n\n---\n\nCheck .compliance-state.json → currentPhase. This hook applies from Construction phase onward.\n\nReview all files modified during this session that are in domain layer paths (e.g., **/domain/**). For each:\n\n1. NO INFRASTRUCTURE IMPORTS: Scan for using/import statements referencing infrastructure concerns (ORMs, HTTP clients, external packages beyond shared kernel).\n2. NO PUBLIC SETTERS: Entities should use methods for state changes, not public property setters.\n3. NO EXTERNAL SERVICE CALLS: Domain layer must not make HTTP calls or database queries directly.\n4. SHARED KERNEL ONLY: Only references to shared kernel (Result<T>, Entity bases, Value Objects) are allowed.\n\nIf violations found, warn with DOM-005 and explain the correct DDD pattern.\nIf all rules pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks, append to `compliance-log/events/{today-date}.jsonl`:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"domain-layer-purity\", \"trigger\": \"agentStop\", \"ruleId\": \"DOM-005\", \"ruleSeverity\": \"critical\", \"result\": \"{pass|fail|warn}\", \"message\": \"{finding}\"}\nLog ONE event per file checked."
+  }
+}

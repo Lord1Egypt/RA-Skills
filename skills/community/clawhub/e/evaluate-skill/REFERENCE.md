@@ -5,23 +5,18 @@
 ### Run an evaluation
 ```bash
 caliper run path/to/spec.eval.yaml --k 3
-caliper run path/to/spec.eval.yaml --k 3 --baseline      # include no-skill delta
+caliper run path/to/spec.eval.yaml --k 3 --ablate my-skill   # same tasks, that skill removed (or an mcp: server)
+caliper run path/to/spec.eval.yaml --k 3 --ablate a --ablate b  # repeatable; name them all (+ --no-user-customizations) for the bare agent
 caliper run path/to/spec.eval.yaml --verbose             # show per-attempt reasoning
+caliper run path/to/spec.eval.yaml --no-user-customizations      # portable: only declared skills and servers
+caliper run path/to/spec.eval.yaml --user-customizations         # load your user customizations even if the spec pins user_customizations: false
 
-# Override backend and/or model at run time (no spec edit needed)
+# Choose the engine at run time — it is not stored in the spec (default: claude-code)
 caliper run path/to/spec.eval.yaml --model codex:gpt-5-codex
-caliper run path/to/spec.eval.yaml --model codex
-caliper run path/to/spec.eval.yaml --model claude-sonnet-4-6   # model only, keep spec backend
+caliper run path/to/spec.eval.yaml --model codex                # backend only, its default model
+caliper run path/to/spec.eval.yaml --model claude-sonnet-4-6    # model only, backend stays claude-code
 caliper run path/to/spec.eval.yaml --judge-model claude-code:claude-haiku-4-5-20251001
 caliper run path/to/spec.eval.yaml --model codex --judge-model claude-code:claude-haiku-4-5-20251001
-```
-
-### Create a new evaluation spec (interactive wizard)
-```bash
-caliper new my-skill-eval
-caliper new --skill ~/.claude/commands/review.md --backend claude-code
-caliper new --skill ./SKILL.md --backend codex
-caliper new --skill ./SKILL.md --backend pi
 ```
 
 ### Validate a spec file
@@ -29,10 +24,12 @@ caliper new --skill ./SKILL.md --backend pi
 caliper validate path/to/spec.eval.yaml
 ```
 
+Rejects unknown task and `sandbox:` keys (a typo like `asert:`), `forbidden_files` entries that are not valid regexes, and `assert:` script files missing from beside the spec. `caliper run` runs the same checks before its first attempt.
+
 ### Browse saved results
 ```bash
 caliper list                        # all specs with latest scores
-caliper list my-skill-eval          # all runs for one spec
+caliper list my-skill-eval          # all runs for one spec: Run id + which were ablated
 caliper report my-skill-eval        # latest run (table view)
 caliper report my-skill-eval --run 2026-05-12T14-23-01Z  # specific run
 caliper report results.json --format json
@@ -53,85 +50,168 @@ caliper compare full-eval short-eval --format json   # for a ship/no-ship gate
 
 ## Spec format (.eval.yaml)
 
-```yaml
-skill:
-  path: ./SKILL.md
-  backend: claude-code     # claude-code | codex | pi
-  model: claude-sonnet-4-6 # optional
+The spec carries no engine — no `backend`/`model` and no `judge:` block. Backend
+and model for both the skill and the judge are chosen at run time via `--model` /
+`--judge-model` (default `claude-code`); a spec that still pins these keys fails
+validation with a message pointing at the flags.
 
-judge:
-  backend: claude-code
-  model: claude-haiku-4-5-20251001  # optional; cheaper is fine for judging
+```yaml
+skills:                   # installed at the agent's own skills root, never
+  - ./SKILL.md            #   preloaded — the agent has to choose it
+  # add further entries to test that yours is the one that fires (they are
+  # assertable via `activates:`, not decoration). A bare string is a *path
+  # source*; a mapping is a *git source* caliper clones for you:
+  - repo: vercel-labs/agent-skills
+    ref: a1b2c3d          # optional — omit to track the default branch
+    path: skills/tdd/SKILL.md   # optional — defaults to SKILL.md at the root
 
 sandbox:
   forbidden_files:
     - ".*\\.eval\\.yaml$"   # agent cannot read the spec
 
+mcp:                        # optional — MCP servers the agent may use
+  weather:                  # server name → mcp__weather__<tool> in the transcript
+    command: python3        # local stdio command the harness spawns
+    args: [./servers/weather.py]
+    env:
+      API_TOKEN: ${MCP_API_TOKEN}   # resolved from your shell at run time
+  gdrive:                   # remote (hosted) server reached over HTTP/SSE
+    type: http              # http or sse
+    url: https://mcp.example.com/gdrive
+    headers:
+      Authorization: Bearer ${GDRIVE_TOKEN}   # resolved from your shell at run time
+
 tasks:
   - id: task-001
     name: Short description of what success looks like
-    setup: <shell command to prepare the environment>    # optional
+    setup: <shell command to prepare the workdir>        # optional
     cleanup: <shell command to tear down>               # optional
     prompt: <prompt sent to the AI under evaluation>
     expect: <natural language description of a successful outcome>
 
   - id: task-002
     name: Task with a deterministic assertion
-    prompt: Write hello to /tmp/out.txt
-    expect: A file is created at /tmp/out.txt
+    prompt: Write hello to out.txt
+    expect: A file is created at out.txt
     assert: |
       import os
-      assert os.path.exists("/tmp/out.txt"), "File not created"
+      assert os.path.exists("out.txt"), "File not created"
 
   - id: task-003
     name: Task with external assertion script
     prompt: Generate a report
     assert: ./assertions/check_report.py
+
+  - id: task-004
+    name: A neighbour's prompt — yours must not hijack it
+    prompt: <a prompt that belongs to a different declared skill>
+    activates: [other-skill]      # exactly these fired, and nothing else
+
+  - id: task-005
+    name: Unrelated work — silence expected
+    prompt: <a prompt no declared skill should answer>
+    activates: []                 # nothing fired
 ```
 
-For a Codex-backed eval, use:
+Each task needs at least one of `expect`, `assert` or `activates`.
 
-```yaml
-skill:
-  path: ./SKILL.md
-  backend: codex
+`activates:` asserts the **exact set** of skills the agent loaded on an attempt.
+Skills are installed where the agent looks for them and never pasted into the
+prompt, so *choosing* one is an observable. A task carrying only `activates:` is
+a **trigger probe**: it skips the judge entirely (much cheaper than an execution
+task) and reports as `trigger only`, not a zero. Activation is scored on its own
+scoreboard and never blended into the success rate — a failing `description` and
+a failing body are fixed in different places.
 
-judge:
-  backend: codex
+Identity is the frontmatter `name:`, so `activates:` names must match the
+`name:` in each declared `SKILL.md`, not its filename or directory. A skill the
+spec doesn't declare is never installed and can never activate — so if yours
+delegates to another skill, declare it and enumerate the chain.
+
+The same spec runs on any engine. To run it on Codex, pass the backend at run
+time — the spec is unchanged:
+
+```bash
+caliper run path/to/spec.eval.yaml --model codex --judge-model codex
 ```
 
-For a pi-backed eval (loads the skill natively via pi's `--skill` flag):
+For pi, the `:model` half overrides pi's configured default:
 
-```yaml
-skill:
-  path: ./SKILL.md
-  backend: pi
-  model: claude-sonnet-4-6  # optional; overrides pi's configured default
-
-judge:
-  backend: pi
+```bash
+caliper run path/to/spec.eval.yaml --model pi:claude-sonnet-4-6 --judge-model pi
 ```
+
+For hermes (Nous Research), the `:model` half is a `provider/model` value passed
+straight to hermes's `-m`; omit it to use your `~/.hermes/config.yaml` default:
+
+```bash
+caliper run path/to/spec.eval.yaml --model hermes:anthropic/claude-sonnet-4.6 --judge-model hermes
+```
+
+Hermes is a stateful agent, so Caliper normalizes it to a neutral agent per
+attempt (isolated `HERMES_HOME`, no persona/memory, `--ignore-rules`, and only
+the spec's declared skills installed) and recovers the full tool-call
+trajectory by running `hermes -z` then `hermes sessions export`.
 
 ## Key concepts
 
-- **pass@k** — probability that at least 1 of k attempts passes (default k=3), computed over the *usable* attempts only
-- **outcome** — each attempt is typed `pass`, `task_fail`, `cheat`, `infra_error`, `timeout`, or `judge_error`; the last three are *unusable* (infrastructure/judge noise) and are excluded from the pass@k denominator and reported as a separate "N unusable" count, so a throttled or judge-flaked run is not mistaken for a regression. `passed` in the JSON equals `outcome == pass`.
-- **`--fail-fast N`** — optional run control that stops scheduling new attempts for a task after N consecutive `infra_error`/`timeout` outcomes; `0` disables it. Early-stopped tasks report as `ABORTED`, and tasks with no usable attempts keep `pass_at_k: null`.
-- **baseline** — runs each task without the skill to compute a delta score
+- **success rate** — the primary score: `successes / usable` (how often a *single* run works), computed over the usable attempts only. Two secondary views (on every task in the JSON as `pass_at_k`/`pass_hat_k`, and under `--verbose`) reframe it for how the skill is used: **pass@k** = `1−(1−p)^k` = P(≥1 of k pass) — the retry / "eventual success" lens, **≥** the rate, for when a failure is cheap to retry and you keep the good run; **pass^k** = `p^k` = P(all k pass) — the strict / "must never fail" lens, **≤** the rate, for when the skill runs unattended or as one link in a chain. When in doubt use the raw rate — pass@k is the code-gen metric and flatters flaky skills (`1/3 → 70.4%`)
+- **outcome** — each attempt is typed `pass`, `task_fail`, `cheat`, `infra_error`, `timeout`, `judge_error`, or `not_checked`; `infra_error` also covers a zero-exit attempt where no model call was observed (nothing parsed, no tokens reported), which skips the judge and the activation check; `infra_error`/`timeout`/`judge_error` are *unusable* (infrastructure/judge noise) and are excluded from the score denominator and reported as a separate "N unusable" count, so a throttled or judge-flaked run is not mistaken for a regression. `not_checked` is neither: the task authored no `expect:`/`assert:` (a trigger probe), so it leaves the denominator without being reported as an error. `passed` in the JSON equals `outcome == pass`.
+- **`--fail-fast N`** — optional run control that stops scheduling new attempts for a task after N consecutive `infra_error`/`timeout` outcomes; `0` disables it. Counts **attempts**, not invocations, so with retries it can cost up to three times the spawns. Early-stopped tasks report as `ABORTED`, and tasks with no usable attempts keep `score: null`.
+- **`--workers N`** — how many **attempts** run in parallel, across all tasks (default `4`); every (task, attempt) pair is scheduled independently, so `--k 10 --workers 4` on a one-task spec runs four at a time. `--fail-fast` is the exception: it keeps each task's attempts sequential, since the streak it counts is only defined in order. Concurrent agents share one upstream rate limit, so a high `--workers` buys wall-clock time at the risk of more `infra_error` attempts.
+- **retry** — an *attempt* is one measured shot at the task, an *invocation* one spawn of the agent; they differ when the provider refuses. A throttle (429 / overloaded / 503) is retried twice with backoff and folds into **one** `AttemptRecord` with a `retries` count — the score's denominator is attempts, never spawns. A **spending cap** is not retried and not survivable: it aborts the run (saving what ran, reporting the cap), because every remaining attempt would meet the same wall. A bare crash is neither retried nor aborted on — it reproduces. The merged record takes its *output* from the last invocation, **sums** tokens across all of them, and sums only the spawn time, excluding backoff (docs/adr/0019).
+- **judge time** — `AttemptRecord.judge_seconds` is the wall-clock the judge spent grading one attempt, `null` when no judge ran (assert-only task, or an attempt that exited before reaching one). A **sibling** of `duration_seconds`, never folded into it — that field stays the harness spawn, so `Wall` means the same thing it always did. The run summary adds a `Judge` line averaged over *graded* attempts only.
+- **empty runs** — a run that stopped before any attempt finished (a spending cap on the first invocation, a Ctrl-C during skill fetching) writes no results file unless a lifecycle hook failed. Hook diagnostics are saved even when cancellation leaves no attempt record.
+- **exit codes** — `0` clean, `1` bad input (missing/invalid spec, unresolvable skills), `2` could not run cleanly (backend misconfiguration, failed `setup:`/`cleanup:`, or every attempt `infra_error`/`timeout`/`judge_error` — saved, but it measured nothing; one usable attempt keeps `0`), `3` reserved for "ran cleanly, a declared bar was not met", `130` interrupted with Ctrl-C (partial run saved). `2` vs `3` is the distinction CI needs: a broken pipeline is not the same as a skill that missed the bar. `compare` never gates — its regression flag is the any-below rule, which at small k fires on noise as often as on a real change, so gating belongs on a pre-registered bar rather than on a diff.
+- **lifecycle hooks** — a nonzero `setup:` prevents the agent and judge from running and records an unusable `infra_error` attempt. `cleanup:` is still attempted after setup failure, agent failure, timeout, or interruption. Cleanup failure leaves a completed agent outcome intact but makes `caliper run` exit `2`. `AttemptRecord.hook_failures` and `RunMeta.hook_failures` carry task ID, attempt number, phase, exit code, and captured output; the run-level list also retains cleanup failures for cancelled attempts with no record.
+- **interrupted run** — Ctrl-C stops a run *cooperatively*: the agents in flight are killed, unstarted attempts are skipped, and everything that already ran is saved as an ordinary run file with `interrupted: true` in `RunMeta` (exit code `130`; a second Ctrl-C quits without saving). Attempts the interrupt killed are dropped rather than recorded as `infra_error`. Scored over the attempts it has, exactly like a `--fail-fast` truncation — the marker is what distinguishes "stopped by a human" from "stopped on purpose". A fatal backend error mid-run saves the same way before reporting (docs/adr/0018).
+- **ablation (`--ablate NAME`)** — runs the same tasks with that declared subject *removed*: a skill from the neighbourhood, or an `mcp:` server from the harness config, so the agent never sees its tool definitions. Saved as an ordinary run; `caliper compare` gives the delta. Repeatable; naming every declared skill in an isolated run (`--no-user-customizations`) leaves the bare agent. A name both a skill and a server declare is refused rather than guessed at — qualify it `skill:<name>` or `mcp:<name>`. The ablated arm is a property of the **tasks and the surviving environment**, never of the removed skill's text — that skill is not installed, so neither its body nor its `description` can move the number — so run it **once** and re-diff against it as the skill changes. Removing a *skill* observes activation but withholds the verdict (`activates:` expectations are dropped, rendered *skipped*, never `0%`), because filtering the expectation would assert a claim the author never wrote; removing a server leaves the activation verdicts intact, since the skills it names are all still installed. `RunMeta.ablated` records what was removed (a server qualified as `mcp:<name>`) and `RunMeta.mcp_servers` the servers the run kept, which together let `compare` check and label an ablation pair instead of warning about the difference; an all-ablated `mcp:` block still isolates the attempt to zero servers. Replaces the retired `--baseline` flag (docs/adr/0015, docs/adr/0025)
+- **skill source** — how one `skills:` entry is obtained. A bare string is a **path source** (a `SKILL.md` on disk, resolved against the spec's directory); a mapping is a **git source** (`repo:`, optional `ref:`, optional `path:` defaulting to a root `SKILL.md`) that caliper clones into a commit-addressed cache. Git sources are how a spec gives a `description` real competition without vendoring someone's repo. One entry is one skill; entries sharing a repo and commit share one clone. `ref:` is optional and an omitted one tracks the default branch — allowed rather than forbidden because the resolved commit is recorded and `compare` reports drift, though a pinned commit is fully offline after its first fetch while an unpinned one costs a `git ls-remote` per run. `run` fetches before the first attempt; `validate` never touches the network (it resolves from a warm cache and reports the rest as *not cached*). An uncached, unfetchable source **refuses the run**; a cached one whose remote is unreachable runs on the cache and warns (docs/adr/0016, docs/adr/0017). A git source whose skill has a symlink pointing outside the cloned repo also **refuses**, since its bytes would come from the host rather than the commit (docs/adr/0027)
+- **skill drift** — a member of the neighbourhood whose *text* differs between two saved runs, reported by `compare` from the per-file hashes in `SkillSnapshot`. Graded by provenance, not role: a drifted **git source** warns (the spec claimed where those bytes came from, so the delta is confounded), a drifted **path source** is shown without alarm (nothing was promised about a working file, and that edit is usually what the run exists to measure). Distinct from the neighbourhood warning, which is a change in *membership* rather than text
+- **attempt workdir** — each attempt gets a fresh, empty directory that `setup:`, the agent, `assert:` and `cleanup:` all run in, deleted after the attempt. It is not the spec's directory and not a git repo; a task that needs files or a repo builds them in `setup:` (e.g. `cp -R "$CALIPER_SPEC_DIR/fixture/." .`, `git init`). Hooks and assertions get `CALIPER_WORKDIR` and `CALIPER_SPEC_DIR`; `assert: ./check.py` still resolves against the spec's directory (docs/adr/0026)
 - **judge** — the spec drives evaluation: `expect:` triggers an LLM verdict (which may generate a Python assertion script); `assert:` runs a deterministic Python script; both can be combined and both must pass
 - **cheat detection** — transcript is scanned for reads of forbidden files (spec, results)
-- **isolation** — each attempt runs in a fresh temp HOME with no session history
-- **`--model TARGET`** — override skill backend/model at run time; accepts `backend:model`, bare backend (`codex`), or bare model name
-- **`--judge-model TARGET`** — same syntax, overrides the judge backend/model independently
+- **MCP servers (`mcp:`)** — an optional top-level mapping (keyed by server name) declaring MCP servers the agent-under-test may use; they are a capability granted to the agent for the eval — part of the run environment like `sandbox:` (a sibling of it and of `skills:`, applied whether or not any skill is declared), so they live in the spec, not behind a flag. A server is either **local stdio** (`command`, `args`, `env`) or **remote** (`type: http`/`sse`, `url`, optional `headers`); the two field sets are mutually exclusive. Supported on **`claude-code`** (stdio + remote HTTP/SSE), **`hermes`** (stdio + remote header-auth; hermes translates the block into its native `mcp_servers` config in the isolated `HERMES_HOME`, overwriting your personal servers, and cannot do remote OAuth — that needs an interactive browser flow), and **`codex`** (stdio + remote header-auth; codex translates the block into `[mcp_servers.*]` tables in the isolated `~/.codex/config.toml` — stdio as `command`/`args`/`env`, remote as `url` + a static `http_headers` map, with `http`/`sse` collapsed onto codex's one url-inferred streamable-HTTP transport — replacing any personal servers from your real config, and likewise cannot do remote OAuth); a spec that declares `mcp:` on a backend that can't honor it is a hard error, not a silent no-op (`pi` has no MCP by design and will not honor `mcp:` natively — expose the capability as a CLI tool the skill drives or a pi extension, or run the eval on `claude-code`/`hermes`/`codex`). A value in a stdio `env:`, a remote `headers:`, or a remote `url:` may reference a host env var as `${VAR}` (resolved at the harness boundary from your shell at run time so secrets stay out of the committed spec; an unset var fails the run). Stdio `command`/`args` entries beginning with `./` or `../` resolve against the spec directory; bare names remain unchanged. Caliper checks each surviving stdio server after task setup and before the agent starts, in the attempt environment, stopping with a configuration error if it cannot start or respond, so a missing tool is never scored as a task failure. A tool call surfaces as a namespaced name — `mcp__<server>__<tool>` on `claude-code` and `codex`, `mcp_<server>_<tool>` on `hermes` — so an `expect:` judge can check a tool was used; word it around behaviour, not one backend's spelling, if the spec runs under more than one engine. Server names must match `[A-Za-z0-9_-]+`; `caliper validate` reports a malformed entry (bad name, unknown key/`type`, a stdio server missing `command`, or a remote server missing `url`)
+- **token & wall-clock usage** — each attempt records an optional `usage` (`input_tokens` non-cached, `output_tokens`, `cache_read_tokens`, `cache_creation_tokens`, computed `total_tokens`; the four token fields are disjoint) plus its `duration_seconds`. `report` shows per-task `Tokens`/`Wall` columns in the results table plus a per-run `Tokens … in / … out · Wall …` line (unusable spend broken out separately); an ablated run is an ordinary saved run, so the skill-vs-bare-agent view is `caliper compare` like any other diff (side-by-side table + token/wall deltas); `compare` deltas (green = cheaper) are **never** a regression — only the score is. All usage fields are optional (`null` → renders `—`); `claude-code`, `codex`, `pi`, `hermes` all report tokens. **Dollar cost is deliberately not tracked** (inconsistent across backends; tokens are the volume signal).
+- **isolation** — each attempt runs in a fresh temp HOME with no session history, working in a fresh attempt workdir beside it. Its user layer is copied according to the user-customizations setting. An *isolated* run (`--no-user-customizations` or `user_customizations: false`) sees only the spec's declared skills and `mcp:` servers — `claude-code` runs with `--strict-mcp-config`, `codex` with its `apps`/`plugins` features off. The judge keeps its existing connector isolation
+- **user customizations (the default)** — every attempt also loads user skills, rules, settings, plugins, MCP servers and account connectors its CLI loads by itself (`~/.claude.json` + claude.ai connectors; `~/.codex/config.toml` + ChatGPT apps as `codex_apps`; `~/.hermes/config.yaml`), merged with the spec's `mcp:`; a declared name (ablated or not) wins a clash, and `--ablate` can't name the user's own servers. `--no-user-customizations` / `user_customizations: false` isolate a run; the flag wins, then the spec, then the default. The judge keeps its existing connector isolation; `pi` has nothing to load. Recorded as `RunMeta.user_customizations` and `RunMeta.loaded_user_customizations` (`null` = unknown); `compare` warns when two runs loaded differently. When to isolate: "Whose setup is measured" in SKILL.md (docs/adr/0028)
+- **engine as a runtime axis** — backend + model are not spec fields; they are chosen per run and recorded in `RunMeta` (skill `backend`/`model` **and** `judge_backend`/`judge_model`), so the same spec can target any agent and never ages when a model goes stale. The skill `model` is the concrete model the agent reported running wherever the backend reports it (hermes' export), not the requested one: a default-model run records the resolved model rather than a bare "default", and a mismatch with `--model` records what ran and prints a warning, as does a run whose attempts report different models (the most common is recorded); `judge_model` likewise comes from the claude-code judge's JSON; an unknown `hermes:<model>` stops the run rather than falling back; `judge_model` is empty for an assert-only run where no LLM judge fired. When `--judge-model` is omitted, the claude-code judge still pins `claude-sonnet-5` at execution time so it does not inherit a stale model from the installed Claude CLI — that pin is not written into `RunMeta` unless you pass it explicitly or the autorater reports what it used
+- **`--model TARGET`** — select the skill engine at run time (default `claude-code`); accepts `backend:model`, bare backend (`codex`), or bare model name
+- **`--judge-model TARGET`** — same syntax, selects the judge engine independently; omit it to use the default `claude-code` backend, which pins `claude-sonnet-5` at execution time (not recorded in `RunMeta` unless the autorater reports it)
 
 ## Results storage
 
 Results are saved automatically to `.caliper/results/<spec-name>/<timestamp>.json`
-alongside the spec file. Each result includes a full skill snapshot (content + git SHA
-of the skill file and any referenced scripts) for reproducibility. Each attempt
-records its `outcome` (see above) and per-task results include an `unusable` count;
-a task with no usable attempts has `pass_at_k: null`. When `--fail-fast N` stops
-a task early, that task may contain fewer than k attempt records.
+under the project's **results root** — the nearest `.caliper/` at or above your
+working directory, bounded by the git repo. `run`, `report`, `compare` and
+`list` all resolve the same root, so a run saved from a spec's own subdirectory
+is findable by `caliper report <spec-name>` from anywhere in the project.
+
+Each result includes a full skill snapshot (content + git SHA of the skill file
+and any referenced scripts) for reproducibility. `RunMeta.ablated` records any
+subjects removed with `--ablate` (a server qualified as `mcp:<name>`) and
+`RunMeta.mcp_servers` the `mcp:` servers the run was configured with, so a saved
+run describes its own environment and `compare` can check an ablation marker
+instead of trusting it. `mcp_servers` is `null` on a run saved before the field
+existed (unknown, not "no servers"), and two runs that recorded different servers
+outside an ablation pair get the `different MCP servers configured` warning
+(`RunComparison.mcp_mismatch`). `RunMeta.user_customizations` and
+`RunMeta.loaded_user_customizations` record whether the run loaded the machine's
+MCP setup (the default) and what, apart from `mcp_servers`;
+`RunComparison.user_customizations_mismatch` flags two runs that loaded differently
+and `RunComparison.cross_backend_user_customizations` two backends compared with
+user customizations loaded. Each attempt
+records its `outcome` (see above), an optional `usage` block (token counts), an
+optional `transcript` array (ordered turns with `tool_name`/`tool_input`/`tool_output`
+when present), and per-task results include an `unusable` count; a task with no usable
+attempts has `score: null`. When `--fail-fast N` stops a task early, or a run was
+interrupted, that task may contain fewer than k attempt records; an interrupted
+run also carries `interrupted: true` in `RunMeta`, is flagged with `⊘` in
+`caliper list`, and makes `caliper compare` warn that one side is a shallower
+sample. Each attempt may also carry `judge_seconds` (`null` when no judge ran) and
+`retries` (0 unless the provider was throttling). Run-level usage totals are **derived** at
+render time, not persisted — the saved JSON holds only per-attempt `usage`, while
+`report --format json` adds a computed `usage_totals` block.
 
 ## Designing good evals — full guidance
 
@@ -174,7 +254,7 @@ Avoid:
 - only testing happy paths
 - relying only on final text when environment state matters
 - using an LLM judge for facts a script can check
-- writing tasks so easy the baseline passes consistently
+- writing tasks so easy the bare agent passes consistently (an ablated run is how you catch this — and it is a finding about the *task*, not the skill)
 - writing tasks so broad that failures are impossible to diagnose
 - changing regression tasks every time the skill changes
 
@@ -206,3 +286,29 @@ expect: |
   explains the failing path. Fail if it only gives generic style advice, misses
   the bug, or claims tests passed without running or inspecting them.
 ```
+
+## Troubleshooting
+
+**`Judge model ... is unavailable` / `Judge authentication failed` / `Judge rate limited`**
+The judge CLI reached the provider and the call was refused. Caliper classifies these at the harness boundary (from the CLI's structured output) and suggests passing `--judge-model <backend[:model]>` to pick an available judge engine or model. An unavailable judge model fails every attempt the same way, so it stops the run at the first attempt that reaches the judge (exit `2`) instead of recording `judge_error` on each one; an authentication failure or a rate limit stays a per-attempt `judge_error`. An unavailable `claude-code` skill model (`--model claude-code:<model>`) stops the run the same way, and an unknown backend name in `--model` or `--judge-model` is refused before any attempt runs.
+
+### User-layer coverage and activation
+
+Claude Code loads `~/.claude/skills`, `CLAUDE.md`, `settings.json`, and enabled
+user-scope plugins (copied with private registry paths). Codex loads
+`~/.codex/skills`, `AGENTS.md` / `AGENTS.override.md`, plugins and settings;
+its top-level model pin is still stripped. Hermes loads `~/.hermes/skills` and
+settings, while keeping `--ignore-rules` and excluding persona/memory (ADR 0005).
+Pi is unchanged. The judge keeps its existing connector isolation.
+
+Declared skill and MCP names win clashes even when ablated. User skills count
+as other activations: an extra name fails exact `activates:` matching. Require a
+dependency by declaring it in `skills:`. Hooks run within the attempt timeout,
+without a separate preflight. Isolation retains authentication/provider settings.
+There are no per-kind switches.
+
+The report header and `RunMeta.loaded_user_customizations` use kind-prefixed
+names (`mcp:`, `skill:`, `plugin:`, `rules:`, `settings:`). `null` is unknown,
+not a partial inventory. `compare` checks name sets, not contents or versions;
+legacy unprefixed records conservatively differ. See ADR 0028 and
+`docs/backends.md` for connection-setting exceptions.

@@ -1,0 +1,75 @@
+{
+  "carousel_topic": "Optional topic string",
+  "intro_slide": {
+    "elements": {
+      "heading": {
+        "type": "text",
+        "value": "Welcome"
+      },
+      "description": {
+        "type": "text",
+        "value": "Get started today"
+      },
+      "image": {
+        "type": "image",
+        "value": "https://example.com/intro.jpg"
+      },
+      "hashtags": {
+        "type": "text",
+        "value": "#personalbrand"
+      }
+    }
+  },
+  "slides": [
+    {
+      "elements": {
+        "heading": {
+          "type": "text",
+          "value": "Feature 1"
+        },
+        "description": {
+          "type": "text",
+          "value": "Amazing capability"
+        },
+        "image": {
+          "type": "image",
+          "value": "https://assets.contentdrips.com/loading_gradient.webp",
+          "via": "unsplash",
+          "image_query": "workspace desk"
+        }
+      }
+    },
+    {
+      "elements": {
+        "heading": {
+          "type": "text",
+          "value": "Feature 2"
+        },
+        "description": {
+          "type": "text",
+          "value": "Another feature"
+        },
+        "image": {
+          "type": "image",
+          "value": "https://example.com/feature2.jpg"
+        }
+      }
+    }
+  ],
+  "ending_slide": {
+    "elements": {
+      "heading": {
+        "type": "text",
+        "value": "Thank You!"
+      },
+      "description": {
+        "type": "text",
+        "value": "Contact us"
+      },
+      "image": {
+        "type": "image",
+        "value": "https://example.com/ending.jpg"
+      }
+    }
+  }
+}

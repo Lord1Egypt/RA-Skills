@@ -1,44 +1,56 @@
-## Description: <br>
-Helps create, schedule, repurpose, and optimize social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, and other platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, schedules, repurposes, and optimizes social media content for LinkedIn, Twitter/X, Instagram, TikTok, Facebook, and related platforms.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Employees, external marketers, founders, and social media operators use this skill to plan platform-specific social content, draft posts and threads, build content calendars, repurpose existing material, and improve engagement based on performance signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local product marketing or brand voice files may contain confidential details that could be reflected in draft social content. <br>
-Mitigation: Review local context files before use and remove secrets, unreleased information, or other details that should not appear in public posts. <br>
-Risk: Suggested scraping or third-party research workflows may conflict with platform rules or account-safety expectations. <br>
-Mitigation: Check platform terms and internal policy before collecting creator or post data, and prefer compliant exports or manual analysis when needed. <br>
-Risk: Generated social posts may be inaccurate, off-brand, or unsuitable for publication without review. <br>
-Mitigation: Have a human reviewer validate factual claims, brand voice, links, and calls to action before publishing or scheduling posts. <br>
+## Use Case:
 
+External users, employees, and marketing teams use this skill to generate social posts, content calendars, platform-specific strategy, engagement routines, and repurposing plans from brand, audience, and campaign context.
 
-## Reference(s): <br>
-- [Platform-Specific Strategy Guide](references/platforms.md) <br>
-- [Post Format Templates](references/post-templates.md) <br>
-- [Reverse Engineering Viral Content](references/reverse-engineering.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with platform-specific post drafts, calendars, checklists, and occasional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use local product marketing or brand voice files when present; draft social content should be reviewed before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive product marketing, customer, financial, or strategy details in local context files may be reflected in generated public social content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact confidential details from local context files and review generated posts before publishing or scheduling.
+
+Risk: Platform algorithm, timing, and format guidance may become stale or may not match a specific account's audience.
+
+Mitigation: Treat platform recommendations as starting points and validate them against current platform rules and account analytics.
+
+## Reference(s):
+
+- [Platform-Specific Strategy Guide](references/platforms.md)
+- [Post Format Templates](references/post-templates.md)
+- [Reverse Engineering Viral Content](references/reverse-engineering.md)
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-social-content)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text social posts, calendars, templates, and strategy recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor outputs from local product marketing and brand voice context when those files are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

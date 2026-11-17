@@ -1,42 +1,57 @@
-## Description: <br>
-麦当劳中国 MCP 服务集成，支持优惠券、点餐、外卖、积分商城等功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+麦当劳中国 MCP 服务集成，支持优惠券、点餐、外卖、积分商城等功能。
 
-## Publisher: <br>
-[kongdeyu](https://clawhub.ai/user/kongdeyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kongdeyu](https://clawhub.ai/user/kongdeyu)
 
-## Use Case: <br>
-麦当劳中国用户可以让代理查询优惠券、菜单、配送地址、订单、积分账户和积分商城商品，并通过 MCP 工具辅助外卖下单或积分兑换。 <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent access to a live McDonald's China account token. <br>
-Mitigation: Install only if this account access is acceptable, keep MCD_MCP_TOKEN private, and avoid exposing token values in prompts, logs, or shared output. <br>
-Risk: Order creation, point redemption, address changes, and bulk coupon claims can affect the user's account, money, delivery details, or points balance. <br>
-Mitigation: Require the assistant to show the exact items, address, store, price, fees, coupons, and points impact, then approve each sensitive action explicitly before it is executed. <br>
+## Use Case:
 
+External users can use this skill with a McDonald's China account token to query coupons, menus, account points, delivery addresses, create delivery orders, and redeem points.
 
-## Reference(s): <br>
-- [麦当劳 MCP 工具参考](artifact/references/tools.md) <br>
-- [麦当劳中国 MCP](https://open.mcd.cn/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/kongdeyu/mcdonalds) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MCD_MCP_TOKEN for live McDonald's China account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill can use an account token to place orders, redeem points, claim coupons, and manage delivery addresses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and require explicit confirmation before placing orders, redeeming points, creating addresses, or bulk claiming coupons.
+
+Risk: Delivery addresses and phone numbers may be exposed through tool calls and responses.
+
+Mitigation: Treat delivery addresses and phone numbers as sensitive personal data and avoid sharing outputs beyond the account holder's intended workflow.
+
+## Reference(s):
+
+- [McDonald's China MCP portal](https://open.mcd.cn/mcp)
+- [McDonald's China MCP endpoint](https://mcp.mcd.cn)
+- [McDonald's MCP tools reference](references/tools.md)
+- [ClawHub skill page](https://clawhub.ai/kongdeyu/skills/mcdonalds)
+- [Publisher profile](https://clawhub.ai/user/kongdeyu)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON arguments or responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MCD_MCP_TOKEN for authenticated McDonald's China MCP requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

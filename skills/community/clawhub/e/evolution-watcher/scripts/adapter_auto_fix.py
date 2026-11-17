@@ -409,7 +409,7 @@ class DiffGenerator:
     def _apply_fix_template(original_content: str, change: DetectedChange) -> str:
         """应用修复模板生成修改后的内容
         
-        第二阶段增强：支持更多变更类型
+        第一阶段简化实现：仅演示功能
         
         Args:
             original_content: 原始内容
@@ -446,86 +446,7 @@ class DiffGenerator:
                 modified_content = re.sub(pattern, replacement, original_content)
                 return modified_content
         
-        elif template.template_id == "config_key_change":
-            old_key = extraction_data.get("old_key", "")
-            new_key = extraction_data.get("new_key", "")
-            
-            if old_key and new_key:
-                # 替换配置键，支持多种格式：'key':, "key":, key:
-                patterns = [
-                    f"'{old_key}'\\s*:",
-                    f'"{old_key}"\\s*:',
-                    f"{old_key}\\s*:"
-                ]
-                modified_content = original_content
-                for pattern in patterns:
-                    replacement = pattern.replace(old_key, new_key)
-                    modified_content = re.sub(pattern, replacement, modified_content)
-                return modified_content
-        
-        elif template.template_id == "class_rename":
-            old_class = extraction_data.get("old_class", "")
-            new_class = extraction_data.get("new_class", "")
-            
-            if old_class and new_class:
-                # 替换类名，确保单词边界
-                pattern = f"\\b{old_class}\\b"
-                replacement = f"{new_class}"
-                modified_content = re.sub(pattern, replacement, original_content)
-                return modified_content
-        
-        elif template.template_id == "parameter_add":
-            param_name = extraction_data.get("param_name", "")
-            default_value = extraction_data.get("default_value", "")
-            
-            if param_name:
-                # 参数添加：在函数定义中添加参数（简化：在函数调用中添加默认值）
-                # 由于难以精确修改函数定义，暂时生成注释
-                logger.warning(f"参数添加模板暂未完全实现: {param_name}")
-                # 保留原始内容，diff 中会显示建议
-                return original_content
-        
-        elif template.template_id == "parameter_remove":
-            param_name = extraction_data.get("param_name", "")
-            
-            if param_name:
-                # 参数移除：从函数定义中移除参数（简化：从函数调用中移除）
-                logger.warning(f"参数移除模板暂未完全实现: {param_name}")
-                # 保留原始内容
-                return original_content
-        
-        elif template.template_id == "method_signature_change":
-            method_name = extraction_data.get("method_name", "")
-            
-            if method_name:
-                logger.warning(f"方法签名变更模板暂未完全实现: {method_name}")
-                return original_content
-        
-        # 新增模板：返回值类型变更
-        elif template.template_id == "return_type_change":
-            old_type = extraction_data.get("old_type", "")
-            new_type = extraction_data.get("new_type", "")
-            
-            if old_type and new_type:
-                # 替换返回值类型注解
-                pattern = f"->\\s*{old_type}\\b"
-                replacement = f"-> {new_type}"
-                modified_content = re.sub(pattern, replacement, original_content)
-                return modified_content
-        
-        # 新增模板：装饰器变更
-        elif template.template_id == "decorator_change":
-            old_decorator = extraction_data.get("old_decorator", "")
-            new_decorator = extraction_data.get("new_decorator", "")
-            
-            if old_decorator and new_decorator:
-                # 替换装饰器
-                pattern = f"@{old_decorator}"
-                replacement = f"@{new_decorator}"
-                modified_content = re.sub(pattern, replacement, original_content)
-                return modified_content
-        
-        # 未识别的模板类型
+        # 其他模板类型暂不实现
         return original_content
 
 
@@ -839,13 +760,6 @@ class FixApplier:
             "errors": []
         }
         
-        # 0. 沙盒验证
-        sandbox_result = self.sandbox_validate(proposal)
-        if not sandbox_result["success"]:
-            results["errors"].append(f"沙盒验证失败: {sandbox_result.get('error', '未知错误')}")
-            return results
-        results["sandbox_validation"] = sandbox_result
-        
         # 1. 备份文件
         backup_paths = []
         if require_backup:
@@ -942,82 +856,6 @@ class FixApplier:
                 "error": str(e)
             }
 
-    def sandbox_validate(self, proposal: FixProposal) -> Dict[str, Any]:
-        """沙盒验证：在临时目录中应用修复并运行健康检查
-        
-        Args:
-            proposal: 修复建议
-            
-        Returns:
-            验证结果
-        """
-        import tempfile
-        import shutil
-        import subprocess
-        from pathlib import Path
-        
-        sandbox_dir = None
-        try:
-            # 1. 创建沙盒目录
-            sandbox_dir = Path(tempfile.mkdtemp(prefix="sandbox_"))
-            logger.info(f"创建沙盒目录: {sandbox_dir}")
-            
-            # 2. 复制受影响文件到沙盒
-            original_files = []
-            for file_path in proposal.affected_files:
-                if file_path.exists():
-                    dest_path = sandbox_dir / file_path.name
-                    shutil.copy2(file_path, dest_path)
-                    original_files.append((file_path, dest_path))
-                    logger.info(f"复制到沙盒: {file_path} -> {dest_path}")
-            
-            # 3. 在沙盒中应用diff
-            # 创建临时patch文件
-            with tempfile.NamedTemporaryFile(mode='w', suffix='.patch', delete=False) as tmp:
-                tmp.write(proposal.diff_content)
-                tmp_path = tmp.name
-            
-            # 应用patch到沙盒文件
-            for file_path in proposal.affected_files:
-                sandbox_file = sandbox_dir / file_path.name
-                if sandbox_file.exists():
-                    cmd = ["patch", str(sandbox_file), "-i", tmp_path]
-                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-                    if result.returncode != 0:
-                        raise RuntimeError(f"沙盒应用patch失败: {result.stderr}")
-            
-            # 删除临时patch文件
-            import os
-            os.unlink(tmp_path)
-            
-            # 4. 运行健康检查（简化：调用适配器健康检查脚本）
-            # 注意：沙盒中的文件可能无法直接运行，这里仅模拟
-            # 实际应设置PYTHONPATH并运行适配器健康检查
-            health_result = self.run_health_check()  # 使用全局健康检查作为代理
-            if not health_result["success"]:
-                logger.warning("沙盒验证：健康检查失败（但可能不影响修复）")
-            
-            # 5. 如果健康检查通过，返回成功
-            return {
-                "success": True,
-                "sandbox_dir": str(sandbox_dir),
-                "health_check": health_result,
-                "message": "沙盒验证通过"
-            }
-            
-        except Exception as e:
-            logger.error(f"沙盒验证失败: {e}")
-            return {
-                "success": False,
-                "error": str(e),
-                "sandbox_dir": str(sandbox_dir) if sandbox_dir else None
-            }
-        finally:
-            # 6. 清理沙盒目录
-            if sandbox_dir and sandbox_dir.exists():
-                shutil.rmtree(sandbox_dir, ignore_errors=True)
-                logger.info(f"清理沙盒目录: {sandbox_dir}")
-
 
 # ============================================================================
 # 主接口
@@ -1069,38 +907,16 @@ class AdapterAutoFixer:
             "has_changes": len(proposals) > 0
         }
     
-    def apply_fix(self, proposal: FixProposal, require_backup: bool = True, authorized: bool = False) -> Dict[str, Any]:
+    def apply_fix(self, proposal: FixProposal, require_backup: bool = True) -> Dict[str, Any]:
         """应用修复建议（B2 修复执行引擎）
         
         Args:
             proposal: 修复建议
             require_backup: 是否要求先备份
-            authorized: 用户是否已授权（B1 用户授权流程）
             
         Returns:
-            应用结果（如果未授权则返回授权请求报告）
+            应用结果
         """
-        if not authorized:
-            logger.info(f"生成授权请求报告: {proposal.proposal_id}")
-            # 生成详细的授权报告
-            auth_report = self._generate_authorization_report(proposal)
-            
-            # 运行沙盒验证以提供验证结果
-            sandbox_result = self.fix_applier.sandbox_validate(proposal)
-            
-            return {
-                "proposal_id": proposal.proposal_id,
-                "authorized": False,
-                "message": "🔐 修复建议待授权",
-                "report": auth_report,
-                "sandbox_validation": sandbox_result,
-                "diff_content": proposal.diff_content,
-                "affected_files": [str(p) for p in proposal.affected_files],
-                "risk_level": proposal.risk_level,
-                "confidence": proposal.confidence,
-                "apply_command": f"同意修复 {proposal.proposal_id}"
-            }
-        
         logger.info(f"开始应用修复建议: {proposal.proposal_id}")
         result = self.fix_applier.apply_fix(proposal, require_backup)
         
@@ -1111,69 +927,19 @@ class AdapterAutoFixer:
         
         return result
     
-    def _generate_authorization_report(self, proposal: FixProposal) -> str:
-        """生成用户授权报告
-        
-        Args:
-            proposal: 修复建议
-            
-        Returns:
-            Markdown格式的授权报告
-        """
-        report_lines = []
-        report_lines.append("## 🔐 用户授权请求报告")
-        report_lines.append("")
-        report_lines.append(f"**修复建议 ID**: {proposal.proposal_id}")
-        report_lines.append(f"**风险等级**: {proposal.risk_level}")
-        report_lines.append(f"**置信度**: {proposal.confidence:.1%}")
-        report_lines.append(f"**受影响文件**:")
-        for file_path in proposal.affected_files:
-            report_lines.append(f"- `{file_path}`")
-        report_lines.append("")
-        report_lines.append("### 📝 变更摘要")
-        change = proposal.detected_change
-        report_lines.append(f"- **插件**: {change.plugin_name} ({change.old_version} → {change.new_version})")
-        report_lines.append(f"- **变更类型**: {change.change_type.value}")
-        if change.fix_template:
-            report_lines.append(f"- **修复模板**: {change.fix_template.name}")
-        report_lines.append("")
-        report_lines.append("### 🔍 建议修改 (Diff)")
-        report_lines.append("```diff")
-        diff_lines = proposal.diff_content.split('\n')
-        # 限制diff行数，避免报告过长
-        max_lines = 50
-        if len(diff_lines) > max_lines:
-            report_lines.extend(diff_lines[:max_lines])
-            report_lines.append(f"... (已截断，完整diff共 {len(diff_lines)} 行)")
-        else:
-            report_lines.extend(diff_lines)
-        report_lines.append("```")
-        report_lines.append("")
-        report_lines.append("### 🧪 沙盒验证结果")
-        report_lines.append("（将在实际授权请求中动态生成）")
-        report_lines.append("")
-        report_lines.append("### ✅ 授权操作")
-        report_lines.append("**同意修复**: 回复 `同意修复 {proposal.proposal_id}`")
-        report_lines.append("**拒绝修复**: 回复 `拒绝修复 {proposal.proposal_id}` 或忽略")
-        report_lines.append("")
-        report_lines.append("> ⚠️ **安全提示**: 修复将自动备份原文件，并运行健康检查验证。")
-        
-        return "\n".join(report_lines)
-    
-    def apply_fix_by_id(self, proposal_id: str, proposals: List[FixProposal], authorized: bool = False) -> Dict[str, Any]:
+    def apply_fix_by_id(self, proposal_id: str, proposals: List[FixProposal]) -> Dict[str, Any]:
         """根据ID应用修复建议
         
         Args:
             proposal_id: 修复建议ID
             proposals: 修复建议列表
-            authorized: 用户是否已授权（B1 用户授权流程）
             
         Returns:
-            应用结果（如果未授权则返回授权请求报告）
+            应用结果
         """
         for proposal in proposals:
             if proposal.proposal_id == proposal_id:
-                return self.apply_fix(proposal, authorized=authorized)
+                return self.apply_fix(proposal)
         
         return {
             "success": False,
@@ -1338,7 +1104,7 @@ def another_function():
         print("\n🔧 步骤4: 应用修复...")
         # 首先备份原始测试文件内容
         original_content = test_adapter_path.read_text(encoding='utf-8')
-        apply_result = fixer.apply_fix(first_proposal, require_backup=True, authorized=True)
+        apply_result = fixer.apply_fix(first_proposal, require_backup=True)
         
         print(f"   - 应用成功: {apply_result['success']}")
         if apply_result['success']:

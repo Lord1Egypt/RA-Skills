@@ -1,41 +1,57 @@
-## Description: <br>
-Automatically extracts sequential skill, tool, or function calls from a conversation and stitches them into a configurable, exception-handled Python workflow program. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts and stitches sequential skill and tool calls from a conversation into a configurable, exception-handled workflow saved as an automated Python program.
 
-## Publisher: <br>
-[ugpoor](https://clawhub.ai/user/ugpoor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ugpoor](https://clawhub.ai/user/ugpoor)
 
-## Use Case: <br>
-Developers and automation users use this skill to convert repeated chat-driven workflows into reusable Python programs with configurable parameters, output routing, and exception handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes conversation-derived Python and local outputs with weak review and destination controls. <br>
-Mitigation: Review generated Python, output paths, API URLs, generated .py files, and task logs before execution. <br>
-Risk: Conversation content may contain secrets or private data that could be written into generated code, files, logs, or API destinations. <br>
-Mitigation: Use the skill only on trusted conversations and avoid workflows containing secrets or private data. <br>
+## Use Case:
 
+Developers and automation builders use this skill to turn a successful chat-driven sequence of skill, tool, or function calls into a reusable Python workflow with extracted parameters, output handling, and exception handling.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ugpoor/skill-fix-workflow) <br>
-- [Skill Documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, Files, Configuration] <br>
-**Output Format:** [Python files and structured status dictionaries with human-facing instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated workflows may write local files, task logs, API output settings, or HTML based on the selected output mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Conversation content is converted into runnable Python, so malicious or malformed text could become executable workflow code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted conversation content and inspect generated Python before running it.
+
+Risk: Generated workflows can write to files, API destinations, or web/HTML outputs.
+
+Mitigation: Use file, API, and web outputs only when destinations are explicit and trusted, especially for sensitive data.
+
+Risk: Generated HTML reports may contain data from untrusted sources.
+
+Mitigation: Do not open generated HTML reports from untrusted data in an authenticated browser context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ugpoor/skills/skill-fix-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Files, Configuration]
+
+**Output Format:** [JSON status objects and generated Python files, with human-facing Markdown-style status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated workflows may write screen output, files, simulated API output, or HTML reports; generated business functions are placeholders that require review and implementation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -48,27 +48,41 @@ git clone https://github.com/wangminrui2022/audio-enhancement-engine.git
 
 ```bash
 # 修复单个音频文件
-python main.py -i input/audio.mp3
+python scripts/enhancer.py -i input/audio.mp3
 
 # 修复整个目录
-python main.py -i recordings/
+python scripts/enhancer.py -i recordings/
 
 # 使用 GPU + 递归处理子目录
-python main.py -i recordings/ --cuda -r
+python scripts/enhancer.py -i recordings/ --cuda -r
 ```
 
 #### 方式二：使用 AudioSR 高保真增强（48kHz 超分辨率）
 
 ```bash
 # 高保真增强单个文件
-python main.py -i low_quality.wav --hifi
+python scripts/enhancer.py -i low_quality.wav --hifi
 
 # 高保真增强目录，并指定输出目录
-python main.py -i music_folder/ -o enhanced_music/ --hifi
+python scripts/enhancer.py -i music_folder/ -o enhanced_music/ --hifi
 
 # 使用更高参数提升质量
-python main.py -i input.wav --hifi --ddim_steps 100 --guidance_scale 4.0
+python scripts/enhancer.py -i input.wav --hifi --ddim_steps 100 --guidance_scale 4.0
 ```
+
+#### 方式三：Resemble-Enhance 模型构建的专业级语音增强工具
+
+```bash
+# 高保真增强单个文件
+python scripts/enhancer.py -i low_quality.wav --re
+
+# 高保真增强目录，并指定输出目录
+python scripts/enhancer.py -i music_folder/ -o enhanced_music/ --re
+
+# 使用更高参数提升质量
+python scripts/enhancer.py -i input.wav --re --nfe 64 --solver "euler" --lambd 0.75 --tau 0.5
+```
+
 
 ---
 ### **在 OpenClaw 聊天中**
@@ -123,6 +137,14 @@ python main.py -i input.wav --hifi --ddim_steps 100 --guidance_scale 4.0
 | `--seed` | int | 42 | 随机种子 |
 | `--device` | str | None | 指定设备 `cuda` 或 `cpu` |
 
+### Resemble-Enhance 模型构建的专业级语音增强工具
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `--nfe` | int | 64 | 扩散推理步数（越大质量越好，速度越慢） |
+| `--solver` | str | euler | 求解器，可选 euler / midpoint / rk4 |
+| `--lambd` | float | 0.75 | 去噪强度 0~1 |
+| `--tau` | float | 0.5 | 音质保留阈值 |
+
 ---
 
 ## 📂 项目结构
@@ -132,6 +154,7 @@ audio-enhancement-engine/
 ├── enhancer.py                # 主程序入口（命令行解析 + 调度）
 ├── hifi_audio_enhance.py      # AudioSR 高保真增强模块
 ├── voice_enhance.py           # VoiceFixer 语音修复模块
+├── run_resemble_enhance.py    # Resemble-Enhance 语音增强模块
 └── ...
 ```
 

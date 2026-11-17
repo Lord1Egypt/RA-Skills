@@ -1,0 +1,159 @@
+{
+  "恶意函数执行": {
+    "plain": [
+      "eval \"$(",
+      "eval $(echo",
+      "eval `",
+      "exec /bin/bash",
+      "source /dev/stdin",
+      "trap '",
+      "trap \"",
+      "enable -f",
+      "command -v ",
+      "alias "
+    ],
+    "base64": [
+      "ZXZhbCg",
+      "ZXZhbCA"
+    ]
+  },
+  "恶意命令": {
+    "plain": [
+      "chmod u+s",
+      "chmod 4755",
+      "useradd -u 0",
+      "usermod -aG sudo",
+      "iptables -F",
+      "rm -rf /",
+      "dd if=/dev/urandom of=/dev/sda",
+      "mkfs.ext4 /dev/",
+      "systemctl stop firewalld",
+      "nc -e /bin/bash",
+      "base64 -d | bash",
+      "curl | bash",
+      "wget | sh",
+      "kill -9 ",
+      "nmap -sn",
+      "arpspoof -i",
+      "sshpass -p",
+      "StrictHostKeyChecking=no",
+      ":(){ :|:& };:",
+      ":|:&"
+    ],
+    "base64": [
+      "Y2htb2QgdStz",
+      "dXNlcmFkZCAtdSAw",
+      "aXB0YWJsZXMgLUY",
+      "cm0gLXJmIC8"
+    ]
+  },
+  "恶意变量": {
+    "plain": [
+      "LD_PRELOAD=",
+      "export LD_PRELOAD",
+      "export LD_LIBRARY_PATH=/tmp",
+      "BASH_ENV=",
+      "export BASH_ENV",
+      "export PATH=/tmp",
+      "IFS='",
+      "HISTFILE=/dev/null",
+      "PROMPT_COMMAND="
+    ],
+    "base64": [
+      "TERfUFJFTE9BRD0",
+      "QkFTSF9FTlY9"
+    ]
+  },
+  "恶意文件写入": {
+    "plain": [
+      "authorized_keys",
+      "/etc/ld.so.preload",
+      ">> ~/.ssh/authorized_keys",
+      ">> /etc/crontab",
+      "/etc/cron.d/",
+      ">> ~/.bashrc",
+      "/etc/systemd/system/",
+      ">> /etc/profile.d/"
+    ],
+    "base64": [
+      "YXV0aG9yaXplZF9rZXlz",
+      "bGRzbwucHJlbG9hZA"
+    ]
+  },
+  "自我复制": {
+    "plain": [
+      "cp $0 ",
+      "cp \"$0\"",
+      "cp $BASH_SOURCE",
+      "cat $0 >",
+      "tee $0",
+      "dd if=$0",
+      "dd if=$BASH_SOURCE"
+    ],
+    "base64": [
+      "Y3AgJDAg",
+      "Y2F0ICQwID4"
+    ]
+  },
+  "反弹Shell": {
+    "plain": [
+      "/dev/tcp/",
+      "/dev/udp/",
+      "bash -i >& /dev/tcp/",
+      "exec 5<>/dev/tcp/",
+      "nc -e /bin/bash",
+      "mkfifo /tmp/",
+      "0<&196;exec 196<>/dev/tcp/",
+      "bash -i 2>&1"
+    ],
+    "base64": [
+      "L2Rldi90Y3Av",
+      "L2Rldi91ZHAv",
+      "YmFzaCAtaSA"
+    ]
+  },
+  "代码解密/混淆还原": {
+    "plain": [
+      "base64 -d | bash",
+      "base64 -d | sh",
+      "printf '\\x",
+      "$(printf '\\x",
+      "| base64 -d",
+      "xxd -r -p",
+      "openssl enc -d -base64 -in",
+      "tr 'A-Za-z' 'N-ZA-M'",
+      "rev |"
+    ],
+    "base64": [
+      "YmFzZTY0IC1k",
+      "cHJpbnRmICde"
+    ]
+  },
+  "网络外带/SSRF": {
+    "plain": [
+      "curl -X POST -d @/etc/shadow",
+      "wget --post-file=/etc/passwd",
+      "nc -e /bin/bash attacker",
+      "/etc/shadow http://",
+      "telnet attacker",
+      "scp /etc/ user@"
+    ],
+    "base64": [
+      "Y3VybCAtWCBQT1NUIC1kIEA"
+    ]
+  },
+  "权限维持/常驻": {
+    "plain": [
+      ">> ~/.bashrc",
+      ">> /etc/crontab",
+      "crontab -e",
+      "systemctl enable malicious",
+      "nohup ",
+      "@reboot",
+      ">> /etc/profile.d/"
+    ],
+    "base64": [
+      "Y3JvbnRhYiAtZQ"
+    ]
+  }
+}

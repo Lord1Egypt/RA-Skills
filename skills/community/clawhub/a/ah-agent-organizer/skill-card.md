@@ -1,40 +1,53 @@
-## Description: <br>
-Agent Organizer helps coordinate multi-agent teams through task decomposition, agent selection, workflow design, performance monitoring, and resource optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert agent organizer specializing in multi-agent orchestration, team assembly, and workflow optimization.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to plan, assemble, and coordinate multi-agent teams for complex workflows that need clear task breakdowns, role assignment, dependency management, and progress monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rely on access to agent metadata, performance history, workload state, and cost data. <br>
-Mitigation: Confirm what coordination data the host platform exposes before installation and keep normal workspace permission boundaries in place. <br>
-Risk: Coordination guidance could assign work based on stale or incomplete agent capability and workload information. <br>
-Mitigation: Review proposed task decomposition, agent assignments, and monitoring checkpoints before using them for high-impact workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to analyze task requirements, select appropriate agents, design multi-agent workflows, and coordinate execution for complex work.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-agent-organizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and structured coordination plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task decomposition, agent selection criteria, workflow plans, monitoring checkpoints, and coordination recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may cause an agent to share task context, agent availability, performance history, or workload information while coordinating teams.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in environments where that operational context is acceptable to share among participating agents.
+
+Risk: Coordination recommendations may select unsuitable agents, task splits, or workflow patterns for a specific deployment.
+
+Mitigation: Review proposed agent assignments, task decomposition, dependencies, and recovery plans before acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-agent-organizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with structured checklists and coordination plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose agent assignments, task breakdowns, workflow patterns, monitoring checkpoints, and recovery guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

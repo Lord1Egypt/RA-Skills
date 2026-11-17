@@ -1,7 +1,7 @@
 {
-  "name": "web-data-extractor",
-  "version": "1.0.0",
-  "description": "Extract structured data from websites. Tables, lists, prices, articles, metadata.",
+  "name": "smart-scraper-web",
+  "version": "1.3.3",
+  "description": "Extract structured data from websites. Tables, lists, prices, articles, metadata. HTML parsing with caching. Zero external dependencies.",
   "capabilities": {
     "network": {
       "outbound": true,
@@ -32,7 +32,11 @@
     "file_io": {
       "read": ["cache.json"],
       "write": ["cache.json"],
-      "create_dirs": ["memory/scraper-cache"]
+      "create_dirs": ["memory/scraper-cache"],
+      "watch_snapshots": {
+        "location": "memory/scraper-cache/diffs/",
+        "format": "<url-hash>.json"
+      }
     }
   },
   "security": {
@@ -42,5 +46,9 @@
     "regex_bounded": true,
     "no_eval": true,
     "no_exec_sync": true
+  },
+  "test_suite": {
+    "runner": "test/run-tests.js",
+    "count": 36
   }
 }

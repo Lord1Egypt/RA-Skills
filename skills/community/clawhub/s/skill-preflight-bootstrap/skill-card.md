@@ -1,39 +1,56 @@
-## Description: <br>
-Initializes a repository-level skill preflight workflow so agents check available skills before starting tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bootstraps a repository-level workflow that reminds agents to check available skills before starting work and installs supporting project hooks, learning logs, and usage documentation.
 
-## Publisher: <br>
-[sysundy](https://clawhub.ai/user/sysundy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sysundy](https://clawhub.ai/user/sysundy)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to bootstrap project-level preflight scripts, hooks, learning logs, and team guidance for repositories that should check reusable skills before work begins. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bootstrap changes can affect repository-level agent behavior by adding settings, hooks, scripts, documentation, learning files, and an AGENTS.md section. <br>
-Mitigation: Run the bootstrap script with --dry-run first, then review the generated .codex/settings.json, .claude/settings.json, AGENTS.md, and hook scripts before applying changes. <br>
-Risk: Remote skill search runs an external npx command and may send the task description to that tool. <br>
-Mitigation: Avoid including secrets in task descriptions used for remote search or in .learnings notes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Examples](references/examples.md) <br>
+## Use Case:
 
+Developers and teams use this skill to initialize new repositories with a repeatable skill-preflight workflow, including local skill search scripts, project-level Codex and Claude hook settings, learning logs, and team usage guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated repository files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write project-level settings, hook scripts, learning files, documentation, and an AGENTS.md section when the bootstrap script is executed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Persistent project hooks and AGENTS.md changes can alter future agent behavior in the repository.
+
+Mitigation: Run the bootstrap script with --dry-run first and review the planned changes to AGENTS.md, .codex/settings.json, and .claude/settings.json before installing.
+
+Risk: Remote skill search can invoke an unpinned npm package through npx.
+
+Mitigation: Avoid remote search unless the npm skills package source is trusted, or replace the command with a pinned or internally approved alternative.
+
+Risk: Shared repositories may need a rollback path for generated scripts, hooks, and documentation.
+
+Mitigation: Review the generated files before committing and define an uninstall or rollback process before broad team adoption.
+
+## Reference(s):
+
+- [Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated repository files when the bootstrap script is executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes project-level scripts, hook settings, learning logs, documentation, and an AGENTS.md section; supports dry-run and force modes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

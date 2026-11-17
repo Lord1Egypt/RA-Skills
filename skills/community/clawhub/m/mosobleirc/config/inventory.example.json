@@ -1,0 +1,25 @@
+[
+  {
+    "item_id": 10001,
+    "name": "Пример объекта",
+    "address": "Тестовый адрес",
+    "meters": [
+      {
+        "meter_id": 20001,
+        "number": "TEST-COLD-001",
+        "type": "ColdWater",
+        "last_value": 123,
+        "last_value_date": "2026-01-15T10:00:00Z",
+        "verification_deadline": "2031-01-01"
+      },
+      {
+        "meter_id": 20002,
+        "number": "TEST-HOT-001",
+        "type": "HotWater",
+        "last_value": 45,
+        "last_value_date": "2026-01-15T10:00:00Z",
+        "verification_deadline": "2031-01-01"
+      }
+    ]
+  }
+]

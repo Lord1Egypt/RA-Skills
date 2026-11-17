@@ -1,47 +1,61 @@
-## Description: <br>
-Helps agents and users manage a Kite AI testnet smart wallet through Telegram commands for wallet creation, balance checks, session keys, spending limits, and transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a Kite AI smart wallet with Telegram commands for wallet creation, balance checks, session keys, spending limits, and testnet transactions.
 
-## Publisher: <br>
-[nihaovand](https://clawhub.ai/user/nihaovand) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nihaovand](https://clawhub.ai/user/nihaovand)
 
-## Use Case: <br>
-Developers and wallet operators use this skill to run a local Telegram bot that controls a Kite AI testnet wallet. It is suited for testnet wallet operations, smart wallet setup, session key management, spending-limit updates, and transaction commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local Telegram bot with a private key that can sign wallet operations. <br>
-Mitigation: Use a fresh low-value testnet-only key, keep the bot private or restrict allowed users, and never commit .env files or private keys. <br>
-Risk: Chat commands can trigger sends, permission changes, and spending-limit updates with limited access control or confirmation. <br>
-Mitigation: Add explicit confirmations and an allowlist before using the bot, and review every command path before connecting funded wallets. <br>
-Risk: Repository publishing instructions may encourage pushing local skill files. <br>
-Mitigation: Review or remove publishing instructions and confirm secrets are excluded before any repository push. <br>
+## Use Case:
 
+External users and developers use this skill to run a local Telegram bot for Kite AI testnet wallet operations, including creating smart wallets, checking balances, managing session keys, setting spending limits, and sending testnet transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nihaovand/kite-agent-smart-wallet-permissionless-protocol-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/nihaovand) <br>
-- [Kite AI website](https://gokite.ai) <br>
-- [Kite AI documentation](https://docs.gokite.ai) <br>
-- [Kite testnet explorer](https://testnet.kitescan.ai) <br>
-- [Kite testnet faucet](https://faucet.gokite.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JavaScript code, shell commands, and environment configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance and runnable local bot code that can sign Kite testnet wallet operations when configured with a private key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.5 (source: server release metadata) <br>
+Risk: The skill handles private keys for wallet operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a low-value testnet key, keep environment files out of source control, and prefer safer key storage before broader use.
+
+Risk: Telegram commands can change wallet state, including send, session, and limit actions.
+
+Mitigation: Restrict who can message the bot and require explicit confirmation, address validation, ownership verification, and rate limits before enabling those commands.
+
+Risk: The security verdict is suspicious because wallet-changing actions have weak safeguards.
+
+Mitigation: Review the skill carefully before installation and avoid running wallet-changing commands until the safeguards are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/nihaovand/skills/kite-agent-smart-wallet-permissionless-protocol-v2)
+- [Kite AI Website](https://gokite.ai)
+- [Kite AI Documentation](https://docs.gokite.ai)
+- [Kite Testnet Explorer](https://testnet.kitescan.ai)
+- [Kite Testnet Faucet](https://faucet.gokite.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, environment configuration examples, and Telegram bot text responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can initiate Kite testnet wallet-changing actions when configured with a private key and Telegram bot token.]
+
+## Skill Version(s):
+
+2.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

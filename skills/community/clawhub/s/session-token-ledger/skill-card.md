@@ -1,43 +1,59 @@
-## Description: <br>
-Analyze local OpenClaw session token usage from a generated SQLite ledger and markdown summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze local OpenClaw session token usage from a generated SQLite ledger and markdown summaries.
 
-## Publisher: <br>
-[zgjq](https://clawhub.ai/user/zgjq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zgjq](https://clawhub.ai/user/zgjq)
 
-## Use Case: <br>
-Developers and engineers use this skill to audit local OpenClaw token usage, diagnose context bloat, inspect token-efficiency trends, and generate per-session or aggregate reports from a local ledger. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads completed local OpenClaw session logs and creates local SQLite, JSON, and Markdown ledger files containing derived session metadata. <br>
-Mitigation: Install only where local session analysis is intended, keep generated assets private, and avoid sharing ledger outputs unless session metadata has been reviewed. <br>
-Risk: Optional hook setup can rebuild the ledger automatically after OpenClaw events. <br>
-Mitigation: Enable the hook only when ongoing automatic ledger refreshes are desired; otherwise rebuild manually. <br>
+## Use Case:
 
+Developers and operators use this skill to audit local OpenClaw session token usage, diagnose context bloat, review daily trends, identify large or inefficient sessions, and generate markdown reports from a local SQLite ledger.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zgjq/session-token-ledger) <br>
-- [Overview](references/overview.md) <br>
-- [Hook setup](references/hook-setup.md) <br>
-- [Query templates](references/queries.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with SQLite queries, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports separate total tokens, input tokens, output tokens, and cache-read usage; generated ledger assets remain local.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill reads completed local OpenClaw session transcripts and stores derived token ledgers, which may expose sensitive session metadata or content-derived summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local transcript analysis is intended, keep generated ledgers in a controlled workspace, and remove generated artifacts when the audit is complete.
+
+Risk: Automatic hook setup can cause ongoing scans of session transcripts after command or gateway events.
+
+Mitigation: Prefer manual rebuilds unless continuous ledger updates are needed, and disable the hook when the token audit workflow is no longer required.
+
+Risk: Security evidence reports a path-handling issue that may write outside the intended folder.
+
+Mitigation: Prefer manual rebuilds and avoid untrusted output paths until timestamp filename validation and output-path containment are fixed.
+
+## Reference(s):
+
+- [Session Token Ledger Overview](references/overview.md)
+- [Session Token Ledger Query Templates](references/queries.sql)
+- [Hook Setup](references/hook-setup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, SQLite queries, generated report files, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce a local SQLite ledger, JSON session index, aggregate token summary, anomaly notes, and per-session markdown reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

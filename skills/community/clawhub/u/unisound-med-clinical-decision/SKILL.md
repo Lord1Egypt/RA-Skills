@@ -43,7 +43,7 @@ metadata:
 
 ## 模型
 
-- 默认 `u1-insuremed`，接口 `https://maas-api.hivoice.cn/v1/chat/completions`（可通过参数覆盖）。
+- 默认 `u2-med`，接口 `https://maas-api.hivoice.cn/v1/chat/completions`（可通过参数覆盖）。
 
 ## 用法示例
 

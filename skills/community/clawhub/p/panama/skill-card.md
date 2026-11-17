@@ -1,44 +1,56 @@
-## Description: <br>
-Plan Panama trips with region-aware routing, verified entry rules, island and highland logistics, and practical tourist safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan Panama trips with region-aware routing, verified entry rules, island and highland logistics, and practical tourist safety.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to build practical Panama itineraries, compare regions, handle entry and transport constraints, and keep route-specific safety and weather considerations visible. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional local trip memory under ~/panama/ may contain personal travel preferences or constraints in plaintext. <br>
-Mitigation: Avoid storing passport numbers, medical details, or other highly sensitive information, and edit or delete ~/panama/memory.md when persistent context is no longer wanted. <br>
-Risk: Entry, safety, weather, transport, and sea-state details can change after release. <br>
-Mitigation: Verify time-sensitive details with official sources before booking or traveling. <br>
+## Use Case:
 
+External travelers and trip-planning agents use this skill to plan Panama routes, entry checks, regional choices, transport, seasonality, safety, and day-to-day logistics.
 
-## Reference(s): <br>
-- [Panama skill release page](https://clawhub.ai/ivangdavila/panama) <br>
-- [Tourism Panama travel requirements](https://www.tourismpanama.com/plan-your-vacation/travel-requirements/) <br>
-- [National Migration tourist requirements](https://www.migracion.gob.pa/turistas/) <br>
-- [Tocumen International Airport](https://www.tocumenpanama.aero/) <br>
-- [Tourism Panama official travel hub](https://www.tourismpanama.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown travel guidance with route, logistics, safety, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update a local trip memory file under ~/panama/ when the user wants persistent trip context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Trip preferences and constraints may be retained locally in ~/panama/memory.md.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive details, and edit or delete ~/panama/memory.md when the trip ends or preferences change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/panama)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Skill Homepage](https://clawic.com/skills/panama)
+- [Panama Tourism Travel Requirements](https://www.tourismpanama.com/plan-your-vacation/travel-requirements/)
+- [National Migration Tourist Requirements](https://www.migracion.gob.pa/turistas/)
+- [Tocumen International Airport](https://www.tocumenpanama.aero/)
+- [Tourism Panama](https://www.tourismpanama.com/)
+- [Panama Skill Sources](artifact/sources.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with occasional inline shell commands for local memory setup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and reuse local trip memory at ~/panama/memory.md when the user chooses to maintain trip context.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

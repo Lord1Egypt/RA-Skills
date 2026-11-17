@@ -1,40 +1,58 @@
-## Description: <br>
-Personalized daily astrological insights focused on relationships, work, personal growth, and luck. Positive framing only. Uses your natal chart + astronomy-engine transits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personalized daily astrological insights focused on relationships, work, personal growth, and luck. Positive framing only. Uses your natal chart + astronomy-engine transits.
 
-## Publisher: <br>
-[unicoleunicron](https://clawhub.ai/user/unicoleunicron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unicoleunicron](https://clawhub.ai/user/unicoleunicron)
 
-## Use Case: <br>
-External users and developers use this skill to configure a local natal chart and generate daily astrology-themed insights for relationships, work, personal growth, and luck. It can produce human-readable readings or structured JSON for dashboards and automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores birth date, birth time, and birthplace in a local JSON file at ~/.config/astro-life-insights/natal-chart.json. <br>
-Mitigation: Install only if local storage of this data is acceptable; protect the local account and backups, and remove the file when the configuration is no longer needed. <br>
-Risk: The documented upcoming.js command appears to be missing from this version. <br>
-Mitigation: Use the reviewed daily.js and daily-json.js commands, or verify that an upcoming.js file is present before relying on upcoming-transit functionality. <br>
+## Use Case:
 
+External users and developers use this skill to configure a local natal chart and generate positive daily astrology guidance for relationships, work, personal growth, and luck. Developers can also use its JSON output for dashboards or automation.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/unicoleunicron/astro-life-insights) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration] <br>
-**Output Format:** [Console text or structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local birth date, birth time, and birthplace configuration before producing personalized output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter, package.json, release evidence) <br>
+Risk: Birth date, birth time, and birthplace are stored in a local configuration file under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run setup only on a trusted machine or account and keep the local natal-chart file out of published artifacts or unintended backups.
+
+Risk: The documentation references an upcoming.js command that is not present in the artifact.
+
+Mitigation: Use the shipped daily.js and daily-json.js commands until the publisher adds the missing file or updates the documentation.
+
+Risk: The optional dashboard integration uses a shell execution pattern that can be risky if adapted for a server context.
+
+Mitigation: Use fixed command paths, avoid passing user-controlled input to shell execution, keep a timeout, and run with least privilege.
+
+## Reference(s):
+
+- [Astro Life Insights on ClawHub](https://clawhub.ai/unicoleunicron/skills/astro-life-insights)
+- [astronomy-engine npm package archive](https://registry.npmjs.org/astronomy-engine/-/astronomy-engine-2.1.19.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text or JSON from Node.js scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local birth chart configuration; daily-json.js emits date, total transits, life-area insights, actions, and exactness fields.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter, package.json, server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

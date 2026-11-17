@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/model-route-assessment-2.0.json",
+  "title": "Manual model route assessment; never a host route mutation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "request_id", "client_scope", "team_version", "task_class", "role", "host", "current_model_alias", "candidate_model_alias", "requested_by", "reason", "comparison_sha256", "policy_sha256", "status", "evidence_kind", "calibration_ready", "reasons", "cohort_summaries", "automatic_changes", "host_model_changed", "route_selection_applied", "explicit_user_or_admin_approval_required", "formal_acceptance_completed"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "model_route_assessment"},
+    "contract_name": {"const": "omni-ecom.model-route-assessment"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.model-route-assessment@1.0"], "current_quality_authority": false}},
+    "request_id": {"type": "string", "minLength": 1}, "client_scope": {"type": "string", "minLength": 1},
+    "team_version": {"type": "string", "minLength": 1}, "task_class": {"type": "string", "minLength": 1},
+    "role": {"type": "string", "minLength": 1}, "host": {"enum": ["workbuddy", "codex"]},
+    "current_model_alias": {"type": "string", "minLength": 1}, "candidate_model_alias": {"type": "string", "minLength": 1},
+    "requested_by": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 1},
+    "comparison_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "policy_file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "request_file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "status": {"enum": ["manual_route_review_ready", "live_baseline_not_ready"]},
+    "evidence_kind": {"enum": ["eligible_live_cohort_comparison", "calibration_readiness_check"]},
+    "calibration_ready": {"type": "boolean"}, "reasons": {"type": "array", "items": {"type": "string"}},
+    "cohort_summaries": {"type": "object"},
+    "automatic_changes": {"const": false}, "host_model_changed": {"const": false},
+    "route_selection_applied": {"const": false}, "explicit_user_or_admin_approval_required": {"const": true},
+    "formal_acceptance_completed": {"const": false}
+  }
+}

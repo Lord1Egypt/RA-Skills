@@ -1,44 +1,63 @@
-## Description: <br>
-Publish, edit, or configure notes on Mowen via its Open API, including rich text, images, note settings, and privacy controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish, edit, or configure rich-text Mowen notes through the Mowen Open API, including images, tags, privacy, sharing, and expiration settings.
 
-## Publisher: <br>
-[jacobluo](https://clawhub.ai/user/jacobluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jacobluo](https://clawhub.ai/user/jacobluo)
 
-## Use Case: <br>
-Developers and agents use this skill to create Mowen notes, update API-created notes, and modify note privacy or sharing settings from structured note content. It is useful when a workflow needs to publish social-media-style notes with rich text and images through Mowen. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected note text and local or remote images are sent to Mowen. <br>
-Mitigation: Use the skill only when Mowen is the intended destination and avoid confidential content unless Mowen's privacy and retention practices are acceptable. <br>
-Risk: Editing a note replaces the full note body. <br>
-Mitigation: Fetch or back up the existing note before editing, and keep the noteId returned by creation for follow-up edits or settings changes. <br>
-Risk: Auto-publish and privacy settings can expose note content beyond the intended audience. <br>
-Mitigation: Confirm autoPublish and privacyType settings before running create or settings actions. <br>
+## Use Case:
 
+Developers and content operators use this skill to create, edit, and configure Mowen notes with rich text, images, tags, privacy controls, sharing controls, and expiration settings through the Mowen Open API.
 
-## Reference(s): <br>
-- [Mowen Open API reference](artifact/references/mowen_api.md) <br>
-- [Mowen Open API endpoint](https://open.mowen.cn) <br>
-- [ClawHub skill page](https://clawhub.ai/jacobluo/mowenskill-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON payloads; the helper script returns JSON results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3 and a MOWEN_API_KEY environment variable or --api-key argument.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: API keys can be exposed if passed directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer MOWEN_API_KEY or a secret manager over the --api-key argument.
+
+Risk: Using autoPublish or public privacy can publish note content before a human has reviewed it.
+
+Mitigation: Review generated content and privacy settings before enabling autoPublish or public visibility.
+
+Risk: Editing replaces the entire note body.
+
+Mitigation: Confirm the target noteId and intended full replacement content before running edit operations.
+
+Risk: Local image paths and remote image URLs may upload content to Mowen.
+
+Mitigation: Include only images that are intended for upload and publication.
+
+## Reference(s):
+
+- [Mowen Open API Reference](references/mowen_api.md)
+- [Mowenskill Publish on ClawHub](https://clawhub.ai/jacobluo/skills/mowenskill-publish)
+- [Mowen Open API Base URL](https://open.mowen.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON payloads and bash command snippets; the bundled script returns JSON responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and a MOWEN_API_KEY or equivalent API key argument when executing Mowen API calls.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

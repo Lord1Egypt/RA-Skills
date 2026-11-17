@@ -1,0 +1,22 @@
+{
+  "slug": "wenchang-research",
+  "title": "Wenchang Research",
+  "category": "content",
+  "summary": "Gathers sources, facts, contrarian points, and confidence notes for content writing.",
+  "keywords": [
+    "evidence",
+    "sources",
+    "fact checking",
+    "content research"
+  ],
+  "user_needs": [
+    "collect reliable facts before writing",
+    "check whether a topic has enough evidence",
+    "add contrarian points and source confidence"
+  ],
+  "source_dir": "skills/content/wenchang-research",
+  "entry": "SKILL.md",
+  "package_strategy": "on-demand",
+  "package_format": "skill",
+  "status": "ready"
+}

@@ -1,40 +1,58 @@
-## Description: <br>
-Drive data strategy with governance frameworks, analytics platforms, AI/ML initiatives, and privacy compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drive data strategy with governance frameworks, analytics platforms, AI/ML initiatives, and privacy compliance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external advisors, and operators use this skill as a virtual Chief Data Officer for data strategy, governance, analytics platform planning, AI/ML initiative prioritization, and privacy compliance guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Business, privacy, compliance, and AI governance recommendations may be mistaken for legal or operational approval. <br>
-Mitigation: Treat the skill output as advisory guidance and route major platform choices, privacy incidents, data monetization strategies, restructuring, and cross-functional sharing agreements through qualified human review. <br>
-Risk: The skill may suggest ClawHub commands for related skills. <br>
-Mitigation: Review any suggested ClawHub command before running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cdo) <br>
-- [Skill homepage](https://clawic.com/skills/cdo) <br>
+## Use Case:
 
+Employees, executives, founders, and data leaders use this skill for planning data strategy, governance, analytics, AI/ML initiatives, and privacy compliance programs. It provides advisory frameworks and checklists, with human review expected for legal, regulatory, organizational, vendor, and major purchasing decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and occasional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only advisory output; no executable code or hidden permissions were found in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Privacy, compliance, vendor, and AI governance advice may be incomplete for a specific organization or jurisdiction.
+
+Mitigation: Treat the output as planning support and involve qualified humans before legal, regulatory, organizational, or major purchasing decisions.
+
+Risk: Strategic recommendations may be misapplied without business context or current operational constraints.
+
+Mitigation: Validate recommendations against business goals, data readiness, budget, governance needs, and accountable decision makers before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/cdo)
+- [Skill Homepage](https://clawic.com/skills/cdo)
+- [Data Strategy Frameworks](artifact/strategy.md)
+- [Data Governance and Quality](artifact/governance.md)
+- [Analytics and BI Platforms](artifact/analytics.md)
+- [AI/ML Initiatives](artifact/ml.md)
+- [Privacy and Compliance](artifact/privacy.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown advisory guidance, frameworks, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not request unusual access or perform actions on its own; outputs should be treated as planning support.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

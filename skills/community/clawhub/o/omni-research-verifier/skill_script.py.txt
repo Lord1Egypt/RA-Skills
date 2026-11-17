@@ -1,0 +1,119 @@
+"""
+OMNI Research Verifier - Production Grade OpenClaw Skill
+Author: OmniArchitect
+License: MIT
+"""
+
+import json
+import logging
+import requests
+from typing import List, Dict, Any
+from bs4 import BeautifulSoup
+from duckduckgo_search import DDGS
+from datetime import datetime
+
+# Configure Logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+class CredibilityEngine:
+    """Evaluates the reliability of a web source based on domain and content."""
+    
+    HIGH_TRUST = ['.gov', '.edu', '.org', 'reuters.com', 'apnews.com', 'bloomberg.com']
+    
+    @staticmethod
+    def score_source(url: str, title: str) -> float:
+        score = 0.5  # Base score
+        if any(domain in url for domain in CredibilityEngine.HIGH_TRUST):
+            score += 0.3
+        if "research" in url.lower() or "journal" in url.lower():
+            score += 0.1
+        return min(score, 1.0)
+
+class OMNIVerifier:
+    """Main verification logic."""
+
+    def __init__(self):
+        self.ddgs = DDGS()
+
+    def extract_claims(self, input_text: str) -> List[str]:
+        """Simple claim deconstruction (In production, this would be LLM-augmented)."""
+        return [input_text.strip()]
+
+    def search_evidence(self, claim: str) -> List[Dict[str, Any]]:
+        """Conducts multi-source search across web and news."""
+        evidence_pool = []
+        try:
+            results = self.ddgs.text(claim, max_results=5)
+            for r in results:
+                cred_score = CredibilityEngine.score_source(r['href'], r['title'])
+                evidence_pool.append({
+                    "source": r['href'],
+                    "title": r['title'],
+                    "snippet": r['body'],
+                    "score": cred_score,
+                    "timestamp": datetime.now().strftime("%Y-%m-%d")
+                })
+        except Exception as e:
+            logger.error(f"Search failed: {str(e)}")
+        return evidence_pool
+
+    def detect_contradictions(self, evidence: List[Dict[str, Any]]) -> List[str]:
+        """Identifies conflicting data points in snippets."""
+        contradictions = []
+        conflict_keywords = ["however", "disputed", "contrary", "false", "inaccurate", "not true"]
+        for item in evidence:
+            if any(word in item['snippet'].lower() for word in conflict_keywords):
+                contradictions.append(f"Potential conflict identified in {item['source']}")
+        return list(set(contradictions))
+
+    def generate_citation(self, item: Dict[str, Any]) -> str:
+        """Generates a pseudo-APA citation."""
+        return f"{item['title']}. ({item['timestamp']}). Retrieved from {item['source']}"
+
+    def process(self, input_text: str) -> str:
+        """Primary Skill Entry Point."""
+        if not input_text or len(input_text.strip()) < 5:
+            return json.dumps({"status": "error", "message": "Input text too short for verification."})
+
+        claims = self.extract_claims(input_text)
+        final_report = {
+            "executive_summary": "",
+            "evidence_table": [],
+            "contradictions": [],
+            "citations": [],
+            "confidence_score": 0,
+            "metadata": {"processed_at": datetime.now().isoformat()}
+        }
+
+        all_evidence = []
+        for claim in claims:
+            evidence = self.search_evidence(claim)
+            all_evidence.extend(evidence)
+
+        if not all_evidence:
+            return json.dumps({"status": "failed", "message": "No verifiable evidence found."})
+
+        final_report["evidence_table"] = all_evidence
+        final_report["contradictions"] = self.detect_contradictions(all_evidence)
+        final_report["citations"] = [self.generate_citation(e) for e in all_evidence]
+        
+        avg_cred = sum(e['score'] for e in all_evidence) / len(all_evidence)
+        final_report["confidence_score"] = int(avg_cred * 100)
+        
+        status = "Supported" if avg_cred > 0.6 else "Mixed"
+        final_report["executive_summary"] = f"Claim is {status} based on {len(all_evidence)} sources."
+
+        return json.dumps(final_report, indent=2)
+
+def process(input_text: str):
+    """OpenClaw Standard Entry Point."""
+    verifier = OMNIVerifier()
+    try:
+        return verifier.process(input_text)
+    except Exception as e:
+        return json.dumps({"status": "error", "message": str(e)})
+
+if __name__ == "__main__":
+    # Local Testing
+    print(process("The Earth's core has stopped rotating according to recent studies."))

@@ -1,42 +1,52 @@
-## Description: <br>
-Connects to a WooCommerce store via the OpenClaw Connector Lite plugin to fetch orders and products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects to a WooCommerce store via the OpenClaw Connector Lite plugin to fetch orders and products.
 
-## Publisher: <br>
-[magnum-opus-v1](https://clawhub.ai/user/magnum-opus-v1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[magnum-opus-v1](https://clawhub.ai/user/magnum-opus-v1)
 
-## Use Case: <br>
-External store operators and developers use this skill to let an agent check WooCommerce connection health, retrieve order details, and search product inventory through a configured WordPress store. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can return WooCommerce order and customer data to an agent session. <br>
-Mitigation: Install it only for agents and operators authorized to view that store data, and avoid order lookups in shared or untrusted conversations. <br>
-Risk: The store secret authorizes signed requests to the configured WordPress endpoint. <br>
-Mitigation: Protect OPENCLAW_STORE_SECRET like an API key, rotate it when access changes, and configure OPENCLAW_STORE_URL only for an HTTPS WordPress site you control. <br>
-Risk: A misconfigured store URL or inactive plugin can cause failed or misleading store lookups. <br>
-Mitigation: Use the store_status tool to verify the connection before relying on order or product results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/magnum-opus-v1/wooclaw-lite) <br>
-- [Artifact README](README.md) <br>
+## Use Case:
 
+External developers and store operators use this skill to let an agent check WooCommerce order status, search products, and verify connection health through the OpenClaw Connector Lite WordPress plugin.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text status, order, and product summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENCLAW_STORE_URL and OPENCLAW_STORE_SECRET; responses may include WooCommerce order and customer data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact package.json is 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Store secrets and customer or order data can be exposed if the skill is configured for stores where agent access is inappropriate.
+
+Mitigation: Protect OPENCLAW_STORE_SECRET like a credential and grant agents access only to stores and order data they are allowed to inspect.
+
+Risk: The security assessment says the connector does not enforce HTTPS or strong replay-resistant request signing.
+
+Mitigation: Use only HTTPS WooCommerce URLs and install from a locked, reviewed dependency set before connecting production stores.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/magnum-opus-v1/skills/wooclaw-lite)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text order, product, and connection status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WooCommerce customer, order, product, stock, and pricing details returned by the configured store.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

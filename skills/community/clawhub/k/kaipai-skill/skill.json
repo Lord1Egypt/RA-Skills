@@ -1,7 +1,7 @@
 {
   "name": "openclaw-kaipai-ai",
-  "version": "1.2.2",
-  "description": "Kaipai image/video processing: video files → videoscreenclear or hdvideoallinone via spawn-run-task + sessions_spawn (main session); images → eraser_watermark or image_restoration via blocking run-task only (never spawn-run-task for image tasks). Watermark removal and quality restoration. Paid API. Bypass spawn only if the host forbids sessions_spawn.",
+  "version": "2.0.2",
+  "description": "Kaipai image/video watermark removal and quality restoration. Discover the remote catalog before selecting any task: V2 uses returned server task metadata; legacy aliases are accepted only when remote legacy config returns them. Video tasks use spawn-run-task plus sessions_spawn; image tasks use blocking run-task. Paid API.",
   "author": "one2x-ai",
   "license": "MIT",
   "homepage": "https://github.com/openclaw/openclaw",
@@ -18,6 +18,26 @@
   "sbom": {
     "files": [
       {
+        "path": "scripts/input_media.py",
+        "required": true,
+        "description": "Ordered input validation before upload and quota consumption"
+      },
+      {
+        "path": "scripts/params_schema.py",
+        "required": true,
+        "description": "V2 user parameter contract validation before upload and quota consumption"
+      },
+      {
+        "path": "scripts/features.json",
+        "required": true,
+        "description": "Build-time optional module selection"
+      },
+      {
+        "path": "scripts/delivery.py",
+        "required": true,
+        "description": "Provider-independent capability and delivery selection"
+      },
+      {
         "path": "SKILL.md",
         "required": true,
         "description": "Agent instruction manual — how to use the Kaipai skill"
@@ -28,14 +48,14 @@
         "description": "Human-facing install, setup, and CLI examples"
       },
       {
-        "path": "scripts/kaipai_ai.py",
+        "path": "scripts/vmake_ai.py",
         "required": true,
-        "description": "Agent CLI — preflight, install-deps, run-task, query-task, spawn-run-task, last-task, history, resolve-input"
+        "description": "Agent CLI — preflight, install-deps, catalog, run-task, query-task, spawn-run-task, last-task, history, resolve-input"
       },
       {
         "path": "scripts/client.py",
         "required": false,
-        "description": "SkillClient implementation — loaded by kaipai_ai.py; agents should not need to read"
+        "description": "SkillClient implementation — loaded by vmake_ai.py; agents should not need to read"
       },
       {
         "path": "scripts/ai/api.py",
@@ -63,11 +83,6 @@
         "description": "Telegram video delivery helper (sendVideo)"
       },
       {
-        "path": "docs/说明.md",
-        "required": false,
-        "description": "Chinese overview for human readers (scope, env, CLI, doc index)"
-      },
-      {
         "path": "docs/multi-platform.md",
         "required": false,
         "description": "Multi-platform delivery setup (Feishu, Telegram, Discord)"
@@ -86,6 +101,16 @@
         "path": "docs/feishu-send-video.md",
         "required": false,
         "description": "Feishu video send — cover, duration, modes"
+      },
+      {
+        "path": "scripts/agent_info.py",
+        "required": true,
+        "description": "Optional v2 caller metadata normalization"
+      },
+      {
+        "path": "skill-card.md",
+        "required": true,
+        "description": "Kaipai release card"
       }
     ]
   },
@@ -93,15 +118,17 @@
     "emoji": "🖼️",
     "category": "image-processing",
     "requires": {
-      "bins": ["python3"],
+      "bins": [
+        "python3"
+      ],
       "env": {
         "MT_AK": {
           "required": true,
-          "description": "Kaipai API Access Key"
+          "description": "Kaipai API Access Key (MT_AK)"
         },
         "MT_SK": {
           "required": true,
-          "description": "Kaipai API Secret Key"
+          "description": "Kaipai API Secret Key (MT_SK)"
         }
       }
     },
@@ -127,5 +154,17 @@
       "whatsapp",
       "signal"
     ]
+  },
+  "features": {
+    "delivery_channels": [
+      "feishu",
+      "telegram"
+    ],
+    "sdk": false
+  },
+  "distribution": {
+    "brand": "kaipai",
+    "environment": "release",
+    "internal": false
   }
 }

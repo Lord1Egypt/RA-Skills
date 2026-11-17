@@ -1,39 +1,56 @@
-## Description: <br>
-Calculate the relative contribution of different factors to a response variable using R² decomposition. Use when you need to quantify how much each factor explains the variance of an outcome. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate the relative contribution of different factors to a response variable using R² decomposition.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, analysts, and researchers use this skill to estimate how much each factor or interpreted category explains variance in a response variable. It guides agents through global factor analysis, R² decomposition, and concise reporting of the dominant contribution.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The example writes to output.csv and may replace a file the user intended to keep.
+
+Mitigation: Choose a task-specific output path or add an existence check before writing the CSV.
+
+Risk: The sample CSV contains only the dominant factor contribution, which can omit details needed for review.
+
+Mitigation: Extend the output logic to write every factor contribution when a complete attribution table is required.
+
+Risk: R² decomposition can produce negative or non-additive contribution values when factors are correlated or suppressor effects are present.
+
+Mitigation: Check multicollinearity, inspect factor loadings, and treat contribution percentages as model diagnostics rather than causal proof.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users, data analysts, and developers use this skill to estimate how groups of factors explain variance in a response variable and identify the dominant contributor. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The example output writes only the dominant contribution row, which can make a partial result look complete. <br>
-Mitigation: Write all contribution rows and clearly label any dominant-factor summary. <br>
-Risk: The example writes to output.csv and could overwrite an existing local file. <br>
-Mitigation: Choose an explicit output path and check for existing files before writing. <br>
+**Output Format:** [Markdown guidance with Python code snippets and CSV output examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The sample output writes a CSV row for the dominant factor only unless extended.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, files] <br>
-**Output Format:** [Markdown guidance with Python code blocks and a CSV output example] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local example output.csv content; review generated code and filenames before use.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

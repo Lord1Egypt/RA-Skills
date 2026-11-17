@@ -1,45 +1,64 @@
-## Description: <br>
-View and control Wyze cameras through a bundled Node.js CLI that wraps the unofficial wyze-node client. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View and control Wyze cameras, including snapshots or thumbnails, siren, floodlight or spotlight, motion and notification toggles, recording, and power, through the unofficial wyze-node API client.
 
-## Publisher: <br>
-[noelportugal](https://clawhub.ai/user/noelportugal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noelportugal](https://clawhub.ai/user/noelportugal)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent list Wyze cameras, retrieve cached thumbnails or live snapshots, and control named camera features such as siren, lights, motion detection, notifications, recording, and power. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Camera controls can affect the physical environment, especially sirens, floodlights, power state, recording, and garage-door-associated cameras. <br>
-Mitigation: Require an explicit named-camera request before acting, confirm before enabling sirens or operating garage-related devices, and avoid applying actions to all cameras at once. <br>
-Risk: The skill relies on Wyze account API credentials and cached login tokens. <br>
-Mitigation: Keep WYZE_ENV and token directories private, preserve authenticated CLI checks, and limit use to agents trusted with the relevant Wyze account. <br>
-Risk: The underlying Wyze access is unofficial and uses reverse-engineered endpoints that may change without notice. <br>
-Mitigation: Verify behavior on the intended camera models, prefer cached thumbnails when a current frame is not required, and test live snapshots after dependency or API changes. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect named Wyze cameras, retrieve a thumbnail or live snapshot, and perform explicit camera controls such as siren, lights, motion detection, notifications, recording, and power.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noelportugal/wyze-cam) <br>
-- [wyze-node package](https://www.npmjs.com/package/wyze-node) <br>
-- [wyze-node project homepage](https://github.com/noelportugal/wyze-node) <br>
-- [Wyze API key console](https://developer-api-console.wyze.com/#/apikey/view) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce camera thumbnail URLs or local JPG snapshot paths for the agent to attach to the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can access private camera imagery and Wyze account credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only in environments where the agent is approved to use those credentials and view camera images.
+
+Risk: The skill can perform state-changing camera controls, including siren, lights, motion detection, notifications, recording, and power.
+
+Mitigation: Require explicit camera names and confirm sensitive actions before execution, especially siren activation or cameras associated with garages or doors.
+
+Risk: Dependency installation may use unpinned packages.
+
+Mitigation: Pin dependencies or install from a reviewed lockfile before deployment.
+
+Risk: Snapshot output paths can be caller-chosen.
+
+Mitigation: Prefer the default temporary snapshot path or restrict output paths to trusted locations.
+
+## Reference(s):
+
+- [Wyze Cam ClawHub Skill](https://clawhub.ai/noelportugal/skills/wyze-cam)
+- [wyze-node npm Package](https://www.npmjs.com/package/wyze-node)
+- [Wyze Developer API Console](https://developer-api-console.wyze.com/#/apikey/view)
+- [wyze-node Client Homepage](https://github.com/noelportugal/wyze-node)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Plain text command output, thumbnail URLs, status confirmations, and local JPEG snapshot paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Node.js, Wyze credentials, a cached login token, and optional WebRTC dependencies for live snapshots.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Generates and edits HTML-based presentations for general slides, summary reports, teaching courseware, and public speaking, with support for restyling, translation, text polishing, and fact checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and edits HTML-format presentations through PPTUltra for general decks, summary reports, teaching courseware, public speaking, restyling, translation, text polishing, and fact checking.
 
-## Publisher: <br>
-[yyc529](https://clawhub.ai/user/yyc529) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyc529](https://clawhub.ai/user/yyc529)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to create HTML presentation decks or edit existing HTML PPT content for reporting, education, public speaking, translation, restyling, polishing, and content checking workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation prompts, current PPT content, and related metadata may be sent to the external PPTUltra service. <br>
-Mitigation: Use the skill only with presentation content approved for external processing, and avoid confidential decks unless the deployment has reviewed the service and data handling requirements. <br>
-Risk: Edit operations can automatically reuse recent presentation history when current PPT content is not supplied explicitly. <br>
-Mitigation: Provide the exact current PPT content for edit operations and review generated output before sharing or publishing. <br>
+## Use Case:
 
+External users and developers use this skill to create HTML-format PPT presentations or edit existing HTML PPT content for reports, courseware, speeches, translation, restyling, polishing, and fact checking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yyc529/pptgenerator) <br>
-- [PPTUltra](https://pptultra.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with presentation share links and generated or edited HTML PPT results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return a PPT share URL, page count, generated content summary, or edited presentation guidance depending on the selected flow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: PPT prompts and supplied current-presentation content may be sent to PPTUltra cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with presentation content that is appropriate to share with PPTUltra, and avoid passing sensitive or unrelated files through --current-ppt.
+
+Risk: Recent prompts, generated links, and optional API key configuration may be retained locally.
+
+Mitigation: Prefer the PPT_API_KEY environment variable over --setup, and periodically delete .history.json and .config.json when local retention is not desired.
+
+Risk: Editing flows can automatically reuse the most recent presentation history when --current-ppt is omitted.
+
+Mitigation: Provide the intended --current-ppt explicitly for editing tasks and review the selected presentation context before running the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yyc529/skills/pptgenerator)
+- [PPTUltra](https://pptultra.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal output with PPT summary text, share links, page URLs, and setup commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call PPTUltra cloud services and may store recent prompts, presentation links, and optional API key configuration locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

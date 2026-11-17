@@ -1,39 +1,56 @@
-## Description: <br>
-Use when the user wants to download a YouTube or Bilibili video by URL or title, saving to local Videos folder. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to download a YouTube or Bilibili video by URL or title, saving to local Videos folder.
 
-## Publisher: <br>
-[zzlupus](https://clawhub.ai/user/zzlupus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zzlupus](https://clawhub.ai/user/zzlupus)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and agents use this skill to download YouTube or Bilibili videos by direct URL or title search into the local Videos folder.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to install yt-dlp without enough user review of the package source or installation method.
+
+Mitigation: Require explicit user confirmation before installing software, and prefer a trusted package manager or a pinned, reviewed yt-dlp release.
+
+Risk: Using browser cookies for login-required content can expose active authenticated sessions from the user's Chrome profile.
+
+Mitigation: Use browser cookies only after explicit user consent, and prefer a dedicated browser profile or scoped cookie export for the target site.
+
+Risk: The skill saves downloaded media to the local Videos folder, which can consume disk space or retrieve unintended playlist content.
+
+Mitigation: Confirm the target URL or title, expected media scope, and destination folder before running playlist or large downloads.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to prepare yt-dlp commands for downloading YouTube or Bilibili videos by URL or title into the local Videos folder. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to install and run yt-dlp downloads on the user's machine. <br>
-Mitigation: Require user approval before package installation or downloads, and confirm playlist downloads before execution. <br>
-Risk: The skill includes optional cookie-based Bilibili access that can use a browser login session. <br>
-Mitigation: Avoid --cookies-from-browser unless the user understands the login-session exposure; prefer a dedicated browser profile or limited cookies file. <br>
+**Output Format:** [Markdown with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces yt-dlp command guidance for video URLs, title search, format selection, subtitles, playlists, rate limits, and common troubleshooting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include package installation guidance and yt-dlp command options for video, audio, subtitles, playlists, and rate limits.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Jiji5188 File Manager helps agents organize files, batch rename files, find duplicates, and synchronize directories using local Python scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jiji5188 File Manager helps agents organize local files, batch rename files, detect duplicates, and synchronize directories with preview-first Python utilities.
 
-## Publisher: <br>
-[jiji5188](https://clawhub.ai/user/jiji5188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiji5188](https://clawhub.ai/user/jiji5188)
 
-## Use Case: <br>
-External users and developers use this skill to preview and run local file organization, duplicate cleanup, batch rename, and one-way sync workflows for personal or project folders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: File operations can move, rename, synchronize, or delete local data. <br>
-Mitigation: Use preview or scan-only modes first, review the operation list, keep backups, and require explicit execution before modifying files. <br>
-Risk: Duplicate deletion and sync deletion can remove files that still matter. <br>
-Mitigation: Prefer quarantine or move actions for duplicates, avoid sync deletion until differences are reviewed, and keep a backup of important folders. <br>
+## Use Case:
 
+Developers, operators, and end users can use this skill to plan and run local file organization, batch renaming, duplicate cleanup, and one-way directory synchronization workflows. It is suited to file-management tasks where previews, confirmations, and backup discipline are important.
 
-## Reference(s): <br>
-- [File management best practices](references/best_practices.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jiji5188/jiji5188-file-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Code] <br>
-**Output Format:** [Markdown with inline shell commands and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local file operations default to previews or scan-only modes; execute modes require explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.2.1) <br>
+Risk: Local file-management commands can move, rename, overwrite, or delete files outside the user's apparent intent in edge cases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution, test on disposable directories first, and keep independent backups of important data.
+
+Risk: The security guidance flags sync path-overlap and rename destination-containment issues.
+
+Mitigation: Avoid --delete, --execute, --move, --no-confirm, and scheduled automation until those issues are fixed.
+
+## Reference(s):
+
+- [File Management Best Practices](references/best_practices.md)
+- [ClawHub Skill Page](https://clawhub.ai/jiji5188/skills/jiji5188-file-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and local command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run local file operations; scripts default to previews unless execution flags are supplied.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter reports 1.2.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Publish prepared content to Naver Blog from an authenticated local browser on the buyer machine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publish prepared content to Naver Blog from an authenticated local browser on the buyer machine.
 
-## Publisher: <br>
-[y80163442-boop](https://clawhub.ai/user/y80163442-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[y80163442-boop](https://clawhub.ai/user/y80163442-boop)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to publish already-prepared posts to Naver Blog through a local macOS runner after setup, dry run, and login checks. It is intended for publishing, not drafting, SEO planning, or topic ideation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation delegates persistent local publishing authority to the external @y80163442/naver-thin-runner package, which was not included for review. <br>
-Mitigation: Install only if the publisher and runner package are trusted, verify how to stop and uninstall the service, and confirm the daemon is local-only and authenticated before use. <br>
-Risk: Live publishing can post content to a real Naver Blog account. <br>
-Mitigation: Run doctor/capabilities and publish_dry_run first, complete a final account and content check, and use publish_live only after confirming the prepared title, body, tags, and account. <br>
-Risk: Fallback setup can use a broad ACP_ADMIN_API_KEY. <br>
-Mitigation: Prefer OPENCLAW_OFFERING_EXECUTE_URL and avoid broad admin API keys where possible. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/y80163442-boop/naver-blog-writer) <br>
+## Use Case:
 
+External users and agents use this skill to publish already prepared posts to Naver Blog through a local macOS runner after setup and one-time login. It is not intended for drafting posts, SEO planning, or topic research.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with bash command examples and JSON result field names] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live publishing returns naver_publish_result; dry runs return preview data with a synthetic published_url; readiness checks return doctor/capabilities JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.6.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run an unpinned third-party npm runner that can handle login, live publishing, and persistent local services.
+
+Mitigation: Use pinned package versions and integrity verification, and run setup or daemon commands only after reviewing and trusting the package source and current release.
+
+Risk: The live publishing path can post to the user's Naver Blog account.
+
+Mitigation: Require explicit confirmation before publish_live, use dry_run for preview, and document how to stop or uninstall any local service.
+
+## Reference(s):
+
+- [Naver Blog Publisher on ClawHub](https://clawhub.ai/y80163442-boop/skills/naver-blog-writer)
+- [Publisher profile](https://clawhub.ai/user/y80163442-boop)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON result descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Live publish returns naver_publish_result; preview and readiness flows return dry_run or doctor/capabilities JSON, with structured recovery fields on failure.]
+
+## Skill Version(s):
+
+0.6.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,9 @@
+{
+  "id": "jin-yong",
+  "version": 1,
+  "kind": "narrative-engine",
+  "label": "Jin Yong narrative perspective",
+  "card_files": ["cards/models.json", "cards/techniques.json"],
+  "activation": "phase-and-state",
+  "language_imitation": false
+}

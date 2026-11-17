@@ -1,45 +1,61 @@
-## Description: <br>
-Helps founders, investors, incumbents, and product teams assess whether a market entry strategy fits disruptive innovation conditions or is merely sustaining competition or a price war. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides founders, investors, product teams, and incumbents through a structured assessment of whether a market entrant has a genuine disruptive path.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External founders, investors, incumbents, and product teams use this skill to evaluate disruptive innovation conditions, identify ignored customer segments, define a good-enough entry product, and test whether an incumbent has a rational reason not to respond. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market conclusions could be treated as financial or investment advice. <br>
-Mitigation: Treat outputs as advisory strategy analysis and verify cited business claims before relying on them for decisions. <br>
-Risk: The disruption framework can be misapplied to safety-critical markets, pure price wars, or cases without evidence of customer overserving. <br>
-Mitigation: Use the skill's not-to-use conditions and three-part stop rule before labeling a case as disruptive innovation. <br>
+## Use Case:
 
+Founders and product teams use the skill to assess a market entry strategy, identify underserved customer segments, and test whether an incumbent has a structural reason to ignore a new entrant. Investors and incumbent leaders can use it to evaluate disruption claims and response options.
 
-## Reference(s): <br>
-- [Sources - disruptive-innovation](references/sources.md) <br>
-- [The Innovator's Dilemma](https://www.hbs.edu/faculty/Pages/item.aspx?num=6771) <br>
-- [Customer Power, Strategic Investment, and the Failure of Leading Firms](https://doi.org/10.1002/smj.4250170303) <br>
-- [The Innovator's Solution](https://www.hbs.edu/faculty/Pages/item.aspx?num=19579) <br>
-- [Netflix Investor Relations](https://ir.netflix.net/) <br>
-- [SEC EDGAR Blockbuster Filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company=blockbuster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown assessment with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory business strategy analysis; does not execute code or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A disruption assessment could lead to business decisions based on unsupported market or competitor claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify factual claims with current evidence before making business decisions; treat the framework as an analytical aid rather than a prediction.
+
+Risk: Recording observed failure patterns could expose confidential business details.
+
+Mitigation: Omit confidential business details when documenting observed patterns.
+
+## Reference(s):
+
+- [Source bibliography](references/sources.md)
+- [The Innovator's Dilemma (Harvard Business School)](https://www.hbs.edu/faculty/Pages/item.aspx?num=6771)
+- [Customer Power, Strategic Investment, and the Failure of Leading Firms](https://doi.org/10.1002/smj.4250170303)
+- [The Innovator's Solution (Harvard Business School)](https://www.hbs.edu/faculty/Pages/item.aspx?num=19579)
+- [GitHub Copilot general availability](https://github.blog/2022-06-21-github-copilot-is-generally-available-to-all-developers/)
+- [Introducing Microsoft 365 Copilot](https://blogs.microsoft.com/blog/2023/03/16/introducing-microsoft-365-copilot-your-copilot-for-work/)
+- [Salesforce Agentforce announcement](https://www.salesforce.com/news/press-releases/2024/09/12/agentforce-announcement/)
+- [Netflix Investor Relations](https://ir.netflix.net/)
+- [Blockbuster filings (SEC EDGAR)](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company=blockbuster)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance]
+
+**Output Format:** [Structured Markdown assessment or conversational coaching]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Applies a six-step assessment and labels the result genuine, partial, or not disruptive when evidence warrants.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

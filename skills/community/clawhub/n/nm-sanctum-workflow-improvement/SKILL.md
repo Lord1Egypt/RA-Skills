@@ -2,7 +2,7 @@
 name: workflow-improvement
 description: |
   Evaluates and improves skills, agents, commands, and hooks after a workflow slice
-version: 1.9.8
+version: 1.10.3
 triggers:
   - workflow
   - retrospective
@@ -15,12 +15,12 @@ triggers:
   - confusing
   - repetitive
   - or fragile
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e", "requires": {"config": ["night-market.sanctum:shared"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/sanctum", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Workflow Improvement
@@ -28,13 +28,13 @@ source_plugin: sanctum
 ## When To Use
 Use this skill after running a command or completing a short session slice where execution felt slow, confusing, repetitive, or fragile.
 
-This skill focuses on improving the *workflow assets* (skills, agents, commands, hooks) that were involved, not on feature work itself.
+This skill focuses on improving the *workflow assets* (skills, agents, commands, hooks) that were involved. Feature work itself is out of scope.
 
 ## When NOT To Use
 
 - Implementing features - focus on feature work first
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `fix-workflow:context-gathered`
 2. `fix-workflow:slice-captured`
 3. `fix-workflow:workflow-recreated`
@@ -211,10 +211,13 @@ git commit -m "improve(sanctum): <component> - <specific fix>
 Addresses recurring issue: <pattern from Step 0>
 Reduces <metric> by <percentage>
 
-Evidence: stability_gap reduced from 0.35 to 0.12
-
-Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+Evidence: stability_gap reduced from 0.35 to 0.12"
 ```
+
+No AI-attribution trailer. `plugins/imbue/hooks/vow_no_ai_attribution.py`
+blocks co-authorship and generated-by trailers naming an AI model at
+PreToolUse, so a template carrying one hands the agent a commit its
+own toolchain refuses.
 
 ### 7.2: Post Tooling Learnings to Discussions (Preferred)
 
@@ -224,11 +227,17 @@ https://github.com/athola/claude-night-market/discussions,
 not local memory. Always target the night-market repo
 regardless of which repo you are currently working in.
 
-```bash
-# Post to night-market Learnings category
-# See fix-pr Step 6.7 for the full GraphQL pattern
-# targeting athola/claude-night-market explicitly
-```
+Use the GraphQL pattern in
+`plugins/sanctum/commands/fix-pr-modules/steps/6-complete.md`
+Sub-Step 6.7. It resolves the night-market repository and the
+Learnings category by ID and hardcodes `athola/claude-night-market`
+as the target, so it works from any repo.
+
+Do not reach for
+`plugins/abstract/scripts/post_learnings_to_discussions.py` here. It
+takes no arguments: it parses `LEARNINGS.md` and posts the aggregated
+daily digest, which is a different artifact from one observation
+captured mid-workflow.
 
 > Repo-specific learnings stay in the current repo. Tooling
 > learnings always go to
@@ -256,9 +265,33 @@ pensive:skill-review --skill sanctum:<component> --recommendations
 
 This creates a feedback loop where future `/fix-workflow` and `/update-plugins` runs will reference this lesson.
 
+### Record Lessons Learned (decision journal)
+
+If this work involved rework, a failed approach, or a blocker, record it to
+`docs/lessons-learned.md` so the insight survives past the session (draft and
+confirm):
+
+- If leyline is installed, invoke `Skill(leyline:decision-journal)` and append
+  a lesson entry (`what_happened`, `what_didnt_work`, `root_cause`, `action`;
+  set `phase` to `review`). Show the draft and append on confirmation.
+- Fallback (leyline absent): append to `docs/lessons-learned.md` using the
+  in-file ENTRY TEMPLATE and assign the next `LL-NNN` id.
+
 ## Supporting Modules
 
 - [Auto issue creation](modules/auto-issue-creation.md) - patterns for automatically creating GitHub issues from deferred items
+
+## Exit Criteria
+
+- [ ] The session slice is captured with a stated boundary, trigger, goal, and
+      artifacts touched
+- [ ] At least 3 distinct improvement approaches were generated and scored
+- [ ] One approach was chosen with acceptance criteria and a bounded file list
+      (<= 5 files unless justified)
+- [ ] Validation records before/after metrics (step count, tool calls, or
+      failure points), not prose
+- [ ] If the slice involved rework, a failed approach, or a blocker, the lesson
+      is recorded to `docs/lessons-learned.md` via the decision journal
 
 ## Troubleshooting
 

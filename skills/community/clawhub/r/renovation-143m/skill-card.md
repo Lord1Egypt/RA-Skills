@@ -1,40 +1,53 @@
-## Description: <br>
-Renovation 143m helps users plan renovation decisions for a fixed 143 sqm three-bedroom apartment, including inspection, style research, space planning, storage, utilities, lighting, appliances, materials, budgets, risk avoidance, and AI visual mockups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides renovation planning tailored to a fixed 143 m², three-bedroom home, including inspection, space planning, budgeting, product research, and visual concepts.
 
-## Publisher: <br>
-[z-zihan](https://clawhub.ai/user/z-zihan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z-zihan](https://clawhub.ai/user/z-zihan)
 
-## Use Case: <br>
-Homeowners and renovation planners use this skill to evaluate renovation options for one specific 143 sqm apartment layout, from handover inspection through move-in optimization. It is intended for planning guidance and visual exploration, not construction drawings, structural calculations, or site-ready specifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is scoped to one fixed 143 sqm apartment and could be misapplied to a different property. <br>
-Mitigation: Confirm that the user wants advice for this exact layout before applying its fixed room structure, orientation, and estimated dimensions. <br>
-Risk: Planning estimates, web results, budgets, and AI images could be mistaken for construction documents or final quotes. <br>
-Mitigation: Treat them as planning references and require site measurement, formal CAD drawings, load-bearing wall information, property rules, contractor confirmation, and final vendor quotes before execution. <br>
+## Use Case:
 
+Homeowners planning renovation for the specified 143 m² layout can use this skill to organize inspections, compare design and material options, plan storage, utilities, lighting, and budgets, and develop visual references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/z-zihan/skills/renovation-143m) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with structured checklists, recommendations, search summaries, and AI image prompts or tool commands when relevant.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are bound to the fixed apartment layout and should label dimensions, budgets, search results, and AI images as planning references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release evidence) <br>
+Risk: Room details shared with an image provider may expose private or identifying information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Check the image provider's privacy practices and avoid sharing addresses, identity documents, or identifying photos.
+
+Risk: Estimated dimensions and generated images may not match site conditions or be suitable as construction documents.
+
+Mitigation: Treat visuals as design references and verify measurements and construction decisions with on-site measurements and qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/z-zihan/skills/renovation-143m)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Images]
+
+**Output Format:** [Markdown planning advice, checklists, comparisons, and image prompts or visual concepts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planning estimates and generated images are visual references; dimensions and construction decisions require on-site measurement and professional confirmation.]
+
+## Skill Version(s):
+
+0.2.2 (source: frontmatter; server release 0.2.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

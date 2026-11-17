@@ -1,45 +1,51 @@
-## Description: <br>
-Ambient Weather (ambientweather.net). Use this skill for ANY Ambient Weather request -- searching and reading data. Whenever a task involves Ambient Weather, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use OOMOL's connected Ambient Weather account to search and read device data.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to list Ambient Weather devices and retrieve latest or recent historical observation data through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting an Ambient Weather account through the OOMOL connector. <br>
-Mitigation: Confirm the publisher and connector are trusted before connecting the account or authorizing API-key access. <br>
-Risk: Setup may install or authenticate external CLI tooling. <br>
-Mitigation: Run installer, login, or connection commands only when intentionally setting up the integration or recovering from a matching auth or connection failure. <br>
-Risk: Connector payloads can drift if the live action schema changes. <br>
-Mitigation: Inspect the live connector schema before constructing each action payload. <br>
+## Use Case:
 
+External users can retrieve the latest or historical observations from their linked Ambient Weather devices and list devices through their connected OOMOL account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-ambient-weather) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Ambient Weather homepage](https://ambientweather.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing action payloads; read actions return JSON data from the oo CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Setup can run a downloaded installer without clear user approval; the remote installer contents were unavailable for inspection.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup first, install a verified CLI release yourself, and require approval before the agent runs downloaded installers or changes installed skills.
+
+## Reference(s):
+
+- [Ambient Weather API documentation](https://ambientweather.docs.apiary.io/)
+- [Ambient Weather](https://ambientweather.net/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [JSON data, Natural-language summaries]
+
+**Output Format:** [Structured observation or device data with natural-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Latest observations, historical observation records, or linked device lists.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

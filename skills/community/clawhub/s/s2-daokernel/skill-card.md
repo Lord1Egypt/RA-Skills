@@ -1,46 +1,67 @@
-## Description: <br>
-Ensures AI agents uphold the Three Laws of Silicon Intelligence within the Taohuayuan physical context for safe, ethical, and identity-anchored behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ensures AI agents uphold the Three Laws of Silicon Intelligence within the Taohuayuan physical context for safe, ethical, and identity-anchored behavior.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers configuring OpenClaw or local LLM agents use this skill to generate a resident soul.md alignment block, select a Taohuayuan DAO profile, and create offline S2-DID/address identifiers for identity-anchored behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs broad, high-priority resident agent rules that can steer identity, memory, sensing, and intervention behavior beyond a narrow helper scope. <br>
-Mitigation: Review the generated soul.md block before use, keep host-platform safety and permission checks non-bypassable, and remove the injected DAO_ALIGNMENT block to opt out. <br>
-Risk: Setup prompts and generated identifiers can involve location or identity-related information. <br>
-Mitigation: Use only coarse address information, avoid precise home addresses, and retain deletion, audit, and data-control options for any saved memory or identifier data. <br>
-Risk: Sensor, smart-home, memory, or wellness intervention behaviors may create user-impacting actions if enabled without local controls. <br>
-Mitigation: Enable those behaviors only with explicit consent, local controls, deletion/audit options, and independent platform-level permission enforcement. <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate a resident DAO alignment block for OpenClaw-style soul.md prompts, select domain-specific safety rules, and create local S2-DID and physical address identifiers for embodied or companion agents.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spacesq/s2-daokernel) <br>
-- [Space Three Laws of Silicon Intelligence](docs/Space_Three_Laws_of_Silicon_Intelligence_EN.md) <br>
-- [Taohuayuan Incarnation Protocol](docs/Taohuayuan_Incarnation_Protocol_en_v1.1.md) <br>
-- [Developer Integration Guide](SKILL.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with an interactive Python wizard that prints a soul.md configuration block and local identifiers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interactive prompts collect owner, region, coarse address, agent name, category, and domain; outputs are local text for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata, manifest.json, package.json, CHANGELOG.md) <br>
+Risk: The skill installs a persistent, high-priority behavioral layer for the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this posture is intended, review the generated DAO block before adding it to soul.md, and remove the DAO_ALIGNMENT block to opt out.
+
+Risk: The interactive wizard asks for location-like inputs that could expose sensitive physical address details.
+
+Mitigation: Use only coarse location strings, avoid exact house or door numbers, and treat offline S2-DID values as local identifiers until verified through a trusted external process.
+
+Risk: Some DAO behaviors discuss sensors, memory vaults, smart-home controls, and physical-device actions.
+
+Mitigation: Do not enable those capabilities unless the host platform enforces consent, audit logs, retention limits, deletion controls, and revocation outside prompt text.
+
+Risk: The alignment layer is prompt-based and does not provide a hard security sandbox.
+
+Mitigation: Rely on platform-level API limits, permission dialogs, and operational controls for actual enforcement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-daokernel)
+- [S2-DaoKernel project homepage](https://github.com/SpaceSQ/S2-DaoKernel)
+- [Issue tracker](https://github.com/SpaceSQ/S2-DaoKernel/issues)
+- [README](README.md)
+- [Space Three Laws of Silicon Intelligence](docs/Space_Three_Laws_of_Silicon_Intelligence_EN.md)
+- [Taohuayuan Incarnation Protocol](docs/Taohuayuan_Incarnation_Protocol_en_v1.1.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with generated soul.md configuration snippets and terminal commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive Python wizard can request coarse location and agent metadata; generated identifiers are local until externally verified.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata and artifact manifest, released 2026-05-10 in changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

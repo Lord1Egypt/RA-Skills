@@ -1,47 +1,65 @@
-## Description: <br>
-Issue FGO.ro invoices through the FGO API with local automation for validating invoice payloads, issuing invoices, checking status, getting print links, cancelling or deleting invoices, creating storno reversals, and fetching nomenclature lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issue FGO.ro invoices through the FGO API with local automation for validating invoice payloads, issuing invoices, checking invoice status, getting print links, cancelling or deleting invoices, creating storno reversals, and fetching nomenclature lists.
 
-## Publisher: <br>
-[Maverick-AI-Tech](https://clawhub.ai/user/Maverick-AI-Tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-ai-tech](https://clawhub.ai/user/maverick-ai-tech)
 
-## Use Case: <br>
-External users, developers, and finance operations teams use this skill to prepare, validate, issue, inspect, cancel, delete, and reverse FGO.ro invoices through a local CLI workflow. It is intended for controlled invoice operations where final mutations require explicit human approval. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can mutate real invoice records by issuing, cancelling, deleting, or reversing invoices. <br>
-Mitigation: Require explicit human approval before any final invoice mutation and use dry-run validation before issuing invoices. <br>
-Risk: Production FGO credentials grant access to invoice operations. <br>
-Mitigation: Install only where the agent is permitted to use FGO production credentials, and prefer the UAT base URL for testing. <br>
-Risk: Debug logging can expose sensitive business data from requests or responses. <br>
-Mitigation: Avoid `FGO_DEBUG` and `--debug` when handling real customer or production invoice data. <br>
-Risk: Invoice operation calls may exceed documented rate or sequencing constraints. <br>
-Mitigation: Run FGO API calls sequentially and observe the documented one-call-per-second invoice operation limit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FGO API Notes](references/fgo-api.md) <br>
-- [Invoice Example JSON](references/invoice-example.json) <br>
-- [FGO production API base URL](https://api.fgo.ro/v1) <br>
-- [FGO UAT API base URL](https://api-testuat.fgo.ro/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/Maverick-AI-Tech/fgo-invoicing) <br>
+## Use Case:
 
+External users and developers use this skill to automate FGO.ro invoice workflows from agent-managed JSON payloads while preserving FGO-specific authentication, response, numbering, and rate-limit rules.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local validation output, dry-run payloads, and FGO API response summaries; final invoice mutations require explicit approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can issue, cancel, delete, or reverse real invoices.
+
+Mitigation: Require explicit human approval before any final invoice operation, run a dry-run first, and use the FGO UAT endpoint for testing.
+
+Risk: FGO credentials or customer invoice data may be exposed through prompts, logs, debug output, or full payload display.
+
+Mitigation: Keep FGO_COD_UNIC and FGO_CHEIE_PRIVATA out of prompts and logs, avoid FGO_DEBUG and full payload output with real customer data, and run in a constrained environment.
+
+Risk: A wrong API host or unsafe execution environment could send accounting actions to an unintended destination.
+
+Mitigation: Verify the configured FGO API host before each real operation and install only when the publisher and runtime environment are trusted.
+
+Risk: Parallel or excessive invoice operations can violate FGO operational constraints.
+
+Mitigation: Execute FGO API calls sequentially and respect the documented one-call-per-second invoice operation rate limit.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-ai-tech/skills/fgo-invoicing)
+- [FGO API Notes](references/fgo-api.md)
+- [Invoice example](references/invoice-example.json)
+- [FGO production API](https://api.fgo.ro/v1)
+- [FGO UAT API](https://api-testuat.fgo.ro/v1)
+- [FGO API testing UI](https://api.fgo.ro/v1/testing.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON payloads, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 plus FGO_COD_UNIC and FGO_CHEIE_PRIVATA environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

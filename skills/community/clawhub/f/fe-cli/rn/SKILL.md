@@ -43,9 +43,9 @@ bunx react-native init <project-name> --template react-native-template-typescrip
 
 | Selection | Packages |
 |---|---|
-| Expo Router | `npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar` |
+| Expo Router | `bunx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar` |
 | React Navigation | `@react-navigation/native @react-navigation/native-stack @react-navigation/bottom-tabs react-native-screens react-native-safe-area-context` |
-| NativeWind | `npx expo install nativewind tailwindcss` + `tailwind.config.js` |
+| NativeWind | `bunx expo install nativewind tailwindcss` + `tailwind.config.js` |
 | Tamagui | `@tamagui/core @tamagui/config` |
 | React Native Paper | `react-native-paper` |
 | Zustand | `zustand` |
@@ -57,6 +57,8 @@ bunx react-native init <project-name> --template react-native-template-typescrip
 | Storage | `@react-native-async-storage/async-storage` |
 | Image | `expo-image` |
 | Font | `expo-font` |
+
+> **Expo CLI:** use the project-local CLI via `bunx expo` (pinned through the project's `expo` dependency); avoid global or unpinned installs.
 
 ### Step 4: Project Structure
 
@@ -246,10 +248,10 @@ eas build --platform ios     # or android / all
 **Local build:**
 ```bash
 # iOS (requires macOS + Xcode)
-npx expo run:ios
+bunx expo run:ios
 
 # Android (requires Android Studio)
-npx expo run:android
+bunx expo run:android
 ```
 
 Announce: React Native project ready with Expo, navigation, and theming. Dev server at Expo Go or simulator.

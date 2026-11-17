@@ -1,8 +1,8 @@
 ---
 name: "滴滴出行"
-version: "1.0.0"
-description: "滴滴出行助手，精通出行规划、费用估算、企业用车、开放平台API"
-tags: ["transportation", "ride-hailing", "travel", "api"]
+version: "1.1.0"
+description: "滴滴出行决策助手。Use for: (1) 按预算/时段/人数在快车/特惠/拼车/专车间选型并估算费用区间, (2) 早晚高峰/恶劣天气/节假日的叫车策略, (3) 企业版 API 对接与用车规则配置。DiDi ride-hailing decision guide: product selection and fare estimation, peak-hour strategies, and Enterprise API integration."
+tags: ["didi", "ride-hailing", "transportation", "enterprise", "api"]
 author: "ClawSkills Team"
 category: "transportation"
 ---
@@ -296,6 +296,14 @@ A: 预估价基于最优路线计算，实际受影响因素：
 | 开放平台 | `https://open.didichuxing.com` |
 | 企业版控制台 | `https://es.xiaojukeji.com` |
 
+## 工作边界
+
+- 具体价格因城市/时段/动态调价实时变化，估算方法给的是**区间和
+  构成逻辑**，最终以 App 实时报价为准，不报死数字
+- 滴滴开放平台面向企业合作（企业用车/API 对接需签约开通），
+  个人开发者无公开 API，本 skill 不提供绕过方式
+- 出行建议涉及安全时（深夜、偏远地区）主动提醒行程分享与紧急联系人功能
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

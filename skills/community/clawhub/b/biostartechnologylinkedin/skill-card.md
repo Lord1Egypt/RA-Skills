@@ -1,42 +1,51 @@
-## Description: <br>
-Write persuasive LinkedIn posts across professional niches using hooks, post structures, and LinkedIn-specific formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write high-performing, persuasive, and authentic LinkedIn posts across professional niches using hook frameworks, post structures, proof-first writing, and LinkedIn-specific formatting.
 
-## Publisher: <br>
-[Claytonbernardodasilva](https://clawhub.ai/user/Claytonbernardodasilva) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[claytonbernardodasilva](https://clawhub.ai/user/claytonbernardodasilva)
 
-## Use Case: <br>
-External creators, founders, recruiters, marketers, and business teams use this skill to turn raw ideas, updates, launches, case studies, and thought-leadership topics into LinkedIn-ready post drafts. It helps shape hooks, proof points, concise body copy, calls to action, hashtags, and optional variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may contain unverified metrics, outcomes, or business claims. <br>
-Mitigation: Review drafts before publishing and verify all proof points, client references, and numerical claims. <br>
-Risk: Release metadata and artifact metadata use different package names or versions. <br>
-Mitigation: Confirm the ClawHub skill page, publisher handle, and intended release version before installation if package identity matters. <br>
+## Use Case:
 
+External creators, founders, marketers, recruiters, and professionals use this skill to turn ideas, case studies, launches, hiring updates, and thought-leadership topics into LinkedIn-ready posts with hooks, structure, CTAs, and optional variants.
 
-## Reference(s): <br>
-- [LinkedIn Post Formats](references/post-formats.md) <br>
-- [LinkedIn](https://www.linkedin.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Claytonbernardodasilva/biostartechnologylinkedin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown containing hook options, a full LinkedIn post, a spicier variant, and first-comment ideas.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include placeholders for missing proof points and optional short, long, multilingual, X/Twitter, or carousel-outline variants on request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json reports 1.0.3) <br>
+Risk: Generated LinkedIn posts may contain unsupported claims, placeholder metrics, client references, or hashtags that are not ready for publication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace claims, proof points, metrics, client references, and hashtags before publishing.
+
+## Reference(s):
+
+- [LinkedIn Post Formats](artifact/references/post-formats.md)
+- [ClawHub Skill Page](https://clawhub.ai/claytonbernardodasilva/skills/biostartechnologylinkedin)
+- [LinkedIn](https://www.linkedin.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with hook options, a full post, a spicier variant, first-comment ideas, and optional adapted formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include placeholders for missing proof points and metrics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

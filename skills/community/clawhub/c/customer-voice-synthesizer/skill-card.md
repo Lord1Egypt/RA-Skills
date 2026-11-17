@@ -1,40 +1,66 @@
-## Description: <br>
-Aggregates customer feedback from support, sales, reviews, and interviews into JTBD- and stage-organized Markdown summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregates customer feedback from support, sales, reviews, and interviews, then organizes customer voice by jobs-to-be-done and journey stage.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Customer research, product, and marketing teams use this skill to turn interviews, reviews, support conversations, and sales notes into structured customer-voice briefs with JTBD categories, stage labels, pain points, value language, and validation suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer feedback may contain personal, sensitive, or confidential information. <br>
-Mitigation: Redact sensitive customer information before using the skill and provide only the specific files needed for the analysis. <br>
-Risk: Generated summaries may omit nuance or misrepresent negative feedback if shared without review. <br>
-Mitigation: Review the generated Markdown before sharing it and keep the skill's review-first workflow for customer-facing or decision-making outputs. <br>
+## Use Case:
 
+Product, marketing, and research teams use this skill to turn interviews, reviews, support conversations, and sales notes into a reviewable customer-voice brief with JTBD categories, journey stages, pain points, value language, and validation suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/customer-voice-synthesizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown or JSON report, with optional local shell command usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads selected local input files or inline text and can write an optional report file; no external network behavior is reported in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Customer feedback may contain personal, sensitive, or confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or redact customer data before use, and choose input and output paths deliberately.
+
+Risk: Summaries can overemphasize convenient themes or omit negative customer voices.
+
+Mitigation: Keep negative feedback in scope, mark missing evidence as items to confirm, and review the draft before reuse.
+
+Risk: Generated briefs may include incorrect or misleading synthesis if the source material is sparse.
+
+Mitigation: Treat outputs as reviewable drafts, require traceability to provided input, and validate conclusions before product or marketing decisions.
+
+Risk: Dormant audit code may confuse maintainers if the skill configuration changes later.
+
+Mitigation: Remove or document inactive audit behavior before enabling alternate modes.
+
+## Reference(s):
+
+- [Customer Voice Synthesizer on ClawHub](https://clawhub.ai/52yuanchangxing/skills/customer-voice-synthesizer)
+- [Output Template](resources/template.md)
+- [Structured Specification](resources/spec.json)
+- [Example Input](examples/example-input.md)
+- [Example Output](examples/example-output.md)
+- [Smoke Test](tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Structured Markdown brief, optionally JSON containing the generated report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local input material and writes to stdout or a user-selected output path; no network access required.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

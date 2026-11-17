@@ -1,45 +1,61 @@
-## Description: <br>
-Map service address lookup and distance-query workflow for resolving addresses and POIs to coordinates, measuring travel distance and duration, and running route distance matrix queries with Tencent Location Service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Map service address lookup and distance-query workflow for converting addresses or POIs into coordinates and calculating travel distances with Tencent Location Service.
 
-## Publisher: <br>
-[scottkiss](https://clawhub.ai/user/scottkiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottkiss](https://clawhub.ai/user/scottkiss)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to set up Tencent Location Service access, geocode natural-language addresses, calculate travel distance and duration between places, and request structured route matrix results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup script downloads a third-party qq-map-cli release before map queries can run. <br>
-Mitigation: Install only when the scottkiss/qq-map-cli release source is trusted. <br>
-Risk: The Tencent Location Service API key can be stored in a persistent config file at ~/.qq_map_cli_config.json. <br>
-Mitigation: Use a restricted Tencent key and protect or delete the config file when it is no longer needed. <br>
-Risk: Address and route queries are sent to Tencent Location Service. <br>
-Mitigation: Avoid sending sensitive addresses or routes unless sharing them with Tencent is acceptable. <br>
+## Use Case:
 
+Developers, agents, and external users use this skill to geocode addresses or POIs and estimate travel distance or duration between locations through Tencent Location Service.
 
-## Reference(s): <br>
-- [Tencent Location Service Console](https://lbs.qq.com/dev/console/application/mine) <br>
-- [qq-map-cli macOS release download](https://github.com/scottkiss/qq-map-cli/releases/download/v1.0.2/qq-map-cli-darwin-arm64.zip) <br>
-- [qq-map-cli Linux release download](https://github.com/scottkiss/qq-map-cli/releases/download/v1.0.2/qq-map-cli-linux-x86_64.zip) <br>
-- [qq-map-cli Windows release download](https://github.com/scottkiss/qq-map-cli/releases/download/v1.0.2/qq-map-cli-windows-x86_64.zip) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI results may be human-readable text or JSON when --json is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a persistent Tencent API key configuration file and supports geocoder, address-distance, and distance-matrix CLI workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill asks users to run a third-party binary downloaded from GitHub under their user account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in an environment where running that binary is acceptable, and independently verify the downloaded CLI before use.
+
+Risk: The workflow can persist a Tencent Location Service API key in a global user config file.
+
+Mitigation: Prefer a restricted or throwaway Tencent key and check or lock down permissions on the global config file.
+
+Risk: Address and location queries may contain sensitive personal location information.
+
+Mitigation: Avoid submitting sensitive personal locations unless the user has accepted that exposure to Tencent Location Service.
+
+## Reference(s):
+
+- [ClawHub Map Address Query Skill Page](https://clawhub.ai/scottkiss/skills/map-address-query-skills)
+- [Tencent Location Service Console](https://lbs.qq.com/dev/console/application/mine)
+- [qq-map-cli v1.0.2 Linux binary download](https://github.com/scottkiss/qq-map-cli/releases/download/v1.0.2/qq-map-cli-linux-x86_64.zip)
+- [qq-map-cli v1.0.2 macOS binary download](https://github.com/scottkiss/qq-map-cli/releases/download/v1.0.2/qq-map-cli-darwin-arm64.zip)
+- [qq-map-cli v1.0.2 Windows binary download](https://github.com/scottkiss/qq-map-cli/releases/download/v1.0.2/qq-map-cli-windows-x86_64.zip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Tencent Location Service key; supports human-readable CLI output and raw JSON output for automation.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

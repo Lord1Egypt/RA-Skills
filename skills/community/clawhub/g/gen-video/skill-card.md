@@ -1,45 +1,62 @@
-## Description: <br>
-Build and execute skills.video video generation REST requests from OpenAPI specs for creating, debugging, or documenting video generation calls on open.skills.video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds and executes skills.video video generation REST requests from OpenAPI specs for creating, debugging, and documenting calls on open.skills.video.
 
-## Publisher: <br>
-[skills-video](https://clawhub.ai/user/skills-video) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skills-video](https://clawhub.ai/user/skills-video)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect skills.video OpenAPI contracts, construct valid video-generation payloads, execute SSE-first generation requests, and fall back to polling until a terminal result is available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A helper can send the API key to an arbitrary URL if a full URL or untrusted endpoint is supplied. <br>
-Mitigation: Restrict base URLs and endpoint overrides to documented open.skills.video paths and avoid untrusted OpenAPI specs or full URLs. <br>
-Risk: Prompts, media references, and generated task data are sent to an external paid video-generation API. <br>
-Mitigation: Do not submit sensitive, confidential, or proprietary content unless the user accepts the provider receiving that data. <br>
-Risk: Generation may consume paid credits and can fail when credits are exhausted. <br>
-Mitigation: Check billing or credits before retrying payment-related failures, and retry only after credits are recharged. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect skills.video OpenAPI definitions, prepare valid video generation payloads, execute SSE-first generation requests, and poll until a terminal result is available.
 
-## Reference(s): <br>
-- [skills.video Open Platform API Contract](references/open-platform-api.md) <br>
-- [Video Model Endpoints Snapshot](references/video-model-endpoints.md) <br>
-- [skills.video](https://skills.video) <br>
-- [skills-video skills repository](https://github.com/skills-video/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON payload templates, shell commands, and terminal API result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses SKILLS_VIDEO_API_KEY, prefers SSE results, and falls back to polling until COMPLETED, SUCCEEDED, FAILED, or CANCELED.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: A helper script can be invoked with URL options that may send SKILLS_VIDEO_API_KEY to a non-skills.video server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only the default https://open.skills.video API base and relative API paths unless strict HTTPS and host allowlisting are added and reviewed.
+
+Risk: Video generation calls require a bearer API key and may fail or expose credentials if the key is hardcoded or shared in files.
+
+Mitigation: Provide SKILLS_VIDEO_API_KEY through the OpenClaw skill environment or shell environment, and do not store the key in prompts, payload files, or committed configuration.
+
+Risk: Long-running generation workflows can return intermediate queue states or disconnect before a terminal result.
+
+Mitigation: Keep SSE open when available, use polling only as fallback, and return results only after COMPLETED, SUCCEEDED, FAILED, or CANCELED terminal states.
+
+## Reference(s):
+
+- [ai-video ClawHub Release](https://clawhub.ai/skills-video/skills/gen-video)
+- [skills-video Publisher Profile](https://clawhub.ai/user/skills-video)
+- [skills.video Homepage](https://skills.video)
+- [skills-video Repository](https://github.com/skills-video/skills)
+- [skills.video Open Platform API Contract](references/open-platform-api.md)
+- [Video Model Endpoints](references/video-model-endpoints.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payload examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce API request templates, terminal generation status summaries, and setup guidance for SKILLS_VIDEO_API_KEY.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

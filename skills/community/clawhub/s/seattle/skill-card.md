@@ -1,46 +1,53 @@
-## Description: <br>
-Navigate Seattle as visitor, resident, or tech worker with neighborhoods, transport, costs, weather, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Seattle as visitor, resident, or tech worker with neighborhoods, transport, costs, weather, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users ask an agent for practical Seattle guidance when visiting, moving, studying, working in tech, or comparing neighborhoods, transportation, costs, climate, food, and local services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Neighborhood, cost, salary, restaurant, transit, and safety details may be stale or locally variable. <br>
-Mitigation: Verify current facts with official city, transit, housing, employer, and venue sources before making housing, relocation, employment, or safety decisions. <br>
-Risk: Neighborhood demographic and safety guidance may reflect informal or biased framing. <br>
-Mitigation: Treat these claims as starting points and compare them against objective local data and current local sources. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Seattle Skill Page](https://clawhub.ai/ivangdavila/seattle) <br>
-- [Skill Homepage](https://clawic.com/skills/seattle) <br>
-- [Seattle Skill Index](SKILL.md) <br>
-- [Neighborhood Guide](neighborhoods-index.md) <br>
-- [Transport Guide](transport.md) <br>
-- [Cost of Living Guide](cost.md) <br>
-- [Safety Guide](safety.md) <br>
-- [Weather and Climate Guide](climate.md) <br>
+## Use Case:
 
+External users use this skill to get practical Seattle guidance for visits, relocation, local life, studying, remote work, and tech careers. The skill helps match user context to neighborhood, transport, cost, safety, climate, food, and activity guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance and concise text responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; responses are grounded in bundled Markdown reference files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Seattle prices, transit schedules, safety conditions, laws, and business details can become outdated.
+
+Mitigation: Use current local or official sources before relying on time-sensitive details.
+
+Risk: Neighborhood and cultural characterizations can be subjective and may not fit every user.
+
+Mitigation: Treat guidance as a starting point and compare it with user preferences, current local context, and multiple sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/seattle)
+- [Skill homepage](https://clawic.com/skills/seattle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses are static Seattle guidance assembled from Markdown reference files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

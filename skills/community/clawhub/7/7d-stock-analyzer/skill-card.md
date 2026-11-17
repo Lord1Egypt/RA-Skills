@@ -1,41 +1,55 @@
-## Description: <br>
-7d Stock Analyzer runs a seven-dimension stock analysis workflow across data collection, fundamentals, valuation, industry context, technical indicators, risk, and conclusions using efinance, AKShare, and QVeris inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+7d Stock Analyzer provides a seven-dimension stock analysis workflow that combines efinance, AKShare, and QVeris sources to produce stock-analysis reports.
 
-## Publisher: <br>
-[xuanpass](https://clawhub.ai/user/xuanpass) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuanpass](https://clawhub.ai/user/xuanpass)
 
-## Use Case: <br>
-External users and developers use this skill to run stock-specific analysis reports that combine market data, financial indicators, risk checks, and score-based conclusions. Its outputs should support review and research workflows, not replace independent investment judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a QVeris API key and third-party Python packages. <br>
-Mitigation: Install it in a controlled Python environment, review the packages before use, and protect the QVeris API key. <br>
-Risk: Generated ratings and investment conclusions may be rough or placeholder-style. <br>
-Mitigation: Treat reports as informational analysis only and verify conclusions with independent financial review before making decisions. <br>
+## Use Case:
 
+External users and developers can use this skill to run stock analysis across data collection, fundamentals, valuation, industry position, technical indicators, risk, and conclusion reporting. The generated reports are decision-support artifacts and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [7d Stock Analyzer ClawHub listing](https://clawhub.ai/xuanpass/7d-stock-analyzer) <br>
-- [xuanpass ClawHub publisher profile](https://clawhub.ai/user/xuanpass) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown report, JSON report, or brief console summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include scorecards, ratings, risk notes, and optional file output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Generated stock scores and investment conclusions may appear data-derived even when placeholder or default logic contributed to them.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as experimental scaffolding, manually verify all scores and conclusions, and do not use the output for real trading decisions.
+
+Risk: The skill depends on third-party Python packages and market data sources that may be unavailable, delayed, incomplete, or changed upstream.
+
+Mitigation: Install dependencies in an isolated environment with reviewed and pinned versions, and confirm source data quality before relying on any report.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuanpass/skills/7d-stock-analyzer)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown reports, JSON reports, brief text summaries, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; optional QVERIS_API_KEY enables the QVeris adapter when implemented.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,49 @@
-## Description: <br>
-Guide AI to create and manage NocoBase AI employees, including chatbot assistants with page integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to create and manage NocoBase AI employees, including chatbot configuration and page integration.
 
-## Publisher: <br>
-[Alexander-lq](https://clawhub.ai/user/Alexander-lq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexander-lq](https://clawhub.ai/user/alexander-lq)
 
-## Use Case: <br>
-Developers and NocoBase administrators use this skill to configure AI employees, attach tool bindings, tune model settings, and add assistant entry points to pages or blocks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide administrative create, update, delete, page integration, and tool-binding actions for NocoBase AI employees. <br>
-Mitigation: Confirm the target employee, page or block, tool bindings, and any delete or update action before applying changes. <br>
-Risk: AI employees may receive access to database, form-fill, or workflow tools. <br>
-Mitigation: Keep database, form-fill, and workflow permissions least-privilege and match each employee's tool bindings to its intended role. <br>
+## Use Case:
 
+Developers and NocoBase administrators use this skill to configure AI employee chatbots, bind tools and data scopes, and add avatar shortcuts or action bar buttons to pages.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with inline JSON and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers NocoBase AI employee settings, tool bindings, model settings, avatar IDs, shortcuts, and action buttons.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can guide create, update, delete, shortcut, and button changes in NocoBase AI employee administration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed configuration changes before applying them, and keep AI employee data scopes and tool bindings limited to required tables and workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alexander-lq/skills/aicreat)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline function-call examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example NocoBase tool calls for creating employees, shortcuts, buttons, and model settings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

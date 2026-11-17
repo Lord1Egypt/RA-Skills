@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Portfolio"
+  short_description: "Reconcile DeFi holdings, debt, flows, and exposure"
+  default_prompt: "Use $galleon-defi-portfolio to produce a sourced portfolio report with reconciled assets, debt, flows, and coverage gaps."

@@ -1,40 +1,54 @@
-## Description: <br>
-Get trending topics on X (Twitter) using the X API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get trending topics on X (Twitter) using the X API for worldwide or location-specific trend checks.
 
-## Publisher: <br>
-[terryds](https://clawhub.ai/user/terryds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terryds](https://clawhub.ai/user/terryds)
 
-## Use Case: <br>
-External users and developers use this skill to fetch current X trending topics for a WOEID location and to look up WOEID values for cities or countries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a user-provided X API bearer token. <br>
-Mitigation: Use a minimally scoped token where possible, keep it private, and revoke it from the X Developer Portal when the skill is no longer used. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch X trend data for a WOEID location, limit result counts, and look up WOEID values for cities or countries.
 
-## Reference(s): <br>
-- [X Developer Portal](https://developer.x.com) <br>
-- [X API trends endpoint](https://api.x.com/2/trends/by/woeid/1?trend.fields=trend_name,tweet_count) <br>
-- [ClawHub skill page](https://clawhub.ai/terryds/x-trends-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts emit JSON trend and WOEID lookup results.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and X_BEARER_TOKEN; trend results include names and tweet counts when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill sends the configured bearer token to api.x.com when fetching trends.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token scoped only for the X API access the skill needs and review token permissions before installation.
+
+Risk: Trend queries reveal the WOEID locations requested to the X API.
+
+Mitigation: Run the skill only for locations you are comfortable querying through api.x.com.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/terryds/skills/x-trends-api)
+- [X Developer Portal](https://developer.x.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; helper scripts emit JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and X_BEARER_TOKEN; trend output includes trend names and tweet counts when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

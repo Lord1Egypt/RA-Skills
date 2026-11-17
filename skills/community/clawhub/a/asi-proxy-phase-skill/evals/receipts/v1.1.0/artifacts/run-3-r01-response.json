@@ -1,0 +1,60 @@
+{
+  "case": "R01",
+  "variant": "onyx",
+  "query_sequence": [
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"observable-only verification phase diagnostics\" --kind all --match auto --limit 8 --pretty",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"verification ecology\" --kind all --match auto --limit 8 --pretty",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"10.5281/zenodo.21147093\" --kind paper --match auto --limit 1 --full --pretty",
+    "uv run --python 3.11 python variants/onyx/asi-proxy-phase-skill/scripts/query_sources.py --query \"verification-ecology-kit\" --kind repo --match auto --limit 1 --full --pretty"
+  ],
+  "query_before_broad_reference_reading": true,
+  "response": {
+    "explanation": "The offline index identifies 10.5281/zenodo.18436828 as the canonical observable-only verification-limited diagnostics paper. No repository edge is stored for that paper, so none is inferred. The index separately identifies 10.5281/zenodo.21147093, Verifier Ecology Theory, and stores a lineage edge to verification-ecology-kit at pinned HEAD 52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85. The repository supplies verification-auditing and verifier-packet tooling, but the stored edge is lineage, not an implementation claim.",
+    "canonical_papers": [
+      {
+        "doi": "10.5281/zenodo.18436828",
+        "role": "observable-only verification and diagnostic theory",
+        "stored_repository_relation": null
+      },
+      {
+        "doi": "10.5281/zenodo.21147093",
+        "role": "verifier ecology theory"
+      }
+    ],
+    "pinned_repository": {
+      "url": "https://github.com/kadubon/verification-ecology-kit",
+      "head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85"
+    },
+    "selected_stored_edge": {
+      "paper_doi": "10.5281/zenodo.21147093",
+      "repository_url": "https://github.com/kadubon/verification-ecology-kit",
+      "repository_head_sha": "52b579a48fe7bdd7ecb2cdfcaae19f2f7a77ee85",
+      "relation_type": "lineage",
+      "evidence": {
+        "commit_path": "README.md",
+        "section": "verification-ecology-kit",
+        "matched_text": "10.5281/zenodo.21147093",
+        "rule_id": "relation.readme-doi-context.v1",
+        "source_sha256": "46c430c30d5e2ee9ea35aafc5ba6e8c2bc57612c83053074873f8074539ab13e"
+      }
+    },
+    "relation_types_kept_separate": {
+      "implements": "means an implementation-context edge; absent for the selected paper-repository pair",
+      "companion_software": "means a companion-software-context edge; absent for the selected pair and absent from the current stored relation set",
+      "cites": "means a citation-context edge; absent for the selected pair",
+      "lineage": "the only stored relation for the selected pair"
+    },
+    "unstored_relations_inferred": []
+  },
+  "assertions": {
+    "offline_query_used_first": true,
+    "canonical_doi_cited": true,
+    "pinned_repository_sha_cited": true,
+    "four_relation_types_explicitly_separated": true,
+    "stored_typed_relation_evidence_available": true,
+    "selected_edge_named_lineage_only": true,
+    "unstored_relations_not_inferred": true,
+    "complete_lineage_explanation_supported": true,
+    "pass": true
+  }
+}

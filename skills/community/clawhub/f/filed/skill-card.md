@@ -1,44 +1,62 @@
-## Description: <br>
-Searches and retrieves US business entity data from the Filed.dev API for entity verification, registered agent lookup, officer searches, status checks, and business due diligence across supported US states. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and retrieves US business entity data from official Secretary of State records through the Filed.dev API.
 
-## Publisher: <br>
-[mgrantley](https://clawhub.ai/user/mgrantley) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mgrantley](https://clawhub.ai/user/mgrantley)
 
-## Use Case: <br>
-Developers, analysts, and business users use this skill to search Filed.dev business-entity data and retrieve company status, registered agent, officer, filing, and address details for KYB and due diligence workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted search terms can trigger local code execution in the shell helper. <br>
-Mitigation: Review or patch the URL-encoding path before use, and only run searches with trusted lookup terms until fixed. <br>
-Risk: Business lookup terms and returned entity details are sent to Filed.dev. <br>
-Mitigation: Use a dedicated Filed.dev API key and avoid submitting sensitive company, officer, agent, filing, or entity lookup terms unless that disclosure is acceptable. <br>
+## Use Case:
 
+External users, analysts, and agents use this skill to search US business registrations, verify whether an entity exists, review entity status and registered agent details, and retrieve full entity records when a Filed.dev API key is available.
 
-## Reference(s): <br>
-- [Filed API Reference](references/api-docs.md) <br>
-- [Filed.dev](https://filed.dev) <br>
-- [Filed.dev Pricing](https://filed.dev/pricing) <br>
-- [RapidAPI Filed API](https://rapidapi.com/grantley-holdings-grantley-holdings-default/api/filed2) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mgrantley/filed) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, formatted text results, or raw JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FILED_API_KEY and curl; jq is optional for formatted output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security summary reports that crafted search text can execute local code through the shell search script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the script before broad installation, especially when lookup terms may come from emails, webpages, tickets, or other untrusted sources.
+
+Risk: Passing an API key with --api-key can expose the credential through shell history or process listings.
+
+Mitigation: Prefer FILED_API_KEY in the environment and treat the key as a secret.
+
+Risk: Business names, filing numbers, officer names, and registered agent queries are sent to Filed.dev.
+
+Mitigation: Avoid submitting sensitive lookup terms unless sharing them with Filed.dev is acceptable for the use case.
+
+## Reference(s):
+
+- [Filed API Reference](references/api-docs.md)
+- [Filed.dev](https://filed.dev)
+- [Filed.dev registration](https://filed.dev/register)
+- [Filed.dev pricing](https://filed.dev/pricing)
+- [Filed API on RapidAPI](https://rapidapi.com/grantley-holdings-grantley-holdings-default/api/filed2)
+- [ClawHub skill page](https://clawhub.ai/mgrantley/skills/filed)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FILED_API_KEY or --api-key; formatted output uses jq when available and raw JSON is available with --raw.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,15 +1,15 @@
-# 浏览器存储模式
+# Browser storage mode
 
-## 选型表
+## Selection table
 
-| 存储 | 容量 | API | 是否发送服务端 | 适用场景 | 安全性 |
+| Storage | Capacity | API | Whether to send to the server | Applicable scenarios | Security |
 | --- | --- | --- | --- | --- | --- |
-| LocalStorage | ~5MB | 同步 | 否 | 用户偏好、非敏感持久数据 | XSS 可读取 |
-| SessionStorage | ~5MB | 同步 | 否 | Tab 级临时数据 | XSS 可读取 |
-| IndexedDB | 大 | 异步 | 否 | 大数据、文件、离线缓存 | XSS 可读取 |
-| Cookie | ~4KB | 同步 | 是 | 认证 Session/httpOnly token | httpOnly 可防 JS 读取 |
+| LocalStorage | ~5MB | Sync | No | User preferences, non-sensitive persistent data | XSS Readable |
+| SessionStorage | ~5MB | Sync | No | Tab-sized temporary data | XSS Readable |
+| IndexedDB | Large | Asynchronous | No | Big data, file, offline cache | XSS readable |
+| Cookie | ~4KB | Synchronization | Yes | Authentication Session/httpOnly token | httpOnly can prevent JS reading |
 
-## localStorage 封装
+## localStorage encapsulation
 
 ```ts
 const STORAGE_PREFIX = "app:";
@@ -53,13 +53,13 @@ export const db = openDB("app-offline-db", 1, {
 
 ## Cookie
 
-- httpOnly 只能由服务端设置。
-- 认证 Cookie 使用 `Secure`、`SameSite=Lax/Strict`。
-- 需要跨站点嵌入时才考虑 `SameSite=None; Secure`。
+- httpOnly can only be set by the server.
+- Authentication Cookie uses `Secure`, `SameSite=Lax/Strict`.
+- Only consider `SameSite=None; Secure` when cross-site embedding is required.
 
-## 敏感数据规则
+## Sensitive data rules
 
-- 认证 token、刷新 token、Session ID：优先 httpOnly cookie。
-- 用户偏好：localStorage。
-- 表单草稿：sessionStorage 或 IndexedDB，避免敏感字段。
-- 离线数据：IndexedDB，但不要缓存隐私或高价值敏感数据。
+- Authentication token, refresh token, Session ID: priority is given to httpOnly cookie.
+- User preference: localStorage.
+- Form draft: sessionStorage or IndexedDB, avoid sensitive fields.
+- Offline data: IndexedDB, but do not cache private or high-value sensitive data.

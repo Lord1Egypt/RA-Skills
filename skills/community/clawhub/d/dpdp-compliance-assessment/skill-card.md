@@ -1,41 +1,56 @@
-## Description: <br>
-Assesses an organization's readiness for India's Digital Personal Data Protection Act 2023 by collecting questionnaire answers and returning ToolWeb API-backed scores, checklists, remediation roadmap, and executive summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assess compliance with India's Digital Personal Data Protection (DPDP) Act 2023 across 7 domains with 41 controls.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Privacy, security, and compliance teams use this skill to assess DPDP readiness for organizations operating in India, identify gaps across seven privacy domains, and plan remediation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for organizations with India privacy obligations. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Organization details and DPDP questionnaire answers are sent to ToolWeb's third-party API. <br>
-Mitigation: Do not include secrets, customer records, or unnecessary sensitive details; protect TOOLWEB_API_KEY and review ToolWeb's billing, privacy, retention, and contractual terms before using real company data. <br>
+## Use Case:
 
+External users, developers, and compliance teams use this skill to gather DPDP assessment inputs for organizations operating in India and receive a maturity score, domain-level analysis, checklist, remediation roadmap, and executive summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/dpdp-compliance-assessment) <br>
-- [ToolWeb platform](https://toolweb.in) <br>
-- [ToolWeb API portal](https://portal.toolweb.in) <br>
-- [ToolWeb OpenClaw skills](https://toolweb.in/openclaw/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style assessment summary with scores, domain breakdowns, priority gaps, and remediation actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; successful API calls are submitted to ToolWeb for assessment and billing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata) <br>
+Risk: The skill sends organization DPDP readiness details to ToolWeb.in through a third-party, billable API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with authorization to disclose the organization's compliance posture, confirm quota or billing impact, and avoid submitting secrets, incident evidence, internal hostnames, personal data, or confidential free-text details.
+
+Risk: Assessment output may influence privacy and compliance decisions for organizations operating in India.
+
+Mitigation: Review the generated findings and roadmap with qualified privacy, legal, or security stakeholders before relying on them for formal compliance decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/dpdp-compliance-assessment)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [ToolWeb DPDP Compliance API](https://portal.toolweb.in/apis/compliance/dpdp-compliance)
+- [ToolWeb Platform](https://toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style assessment summary with scores, domain analysis, critical gaps, checklist items, remediation roadmap, and executive summary.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOOLWEB_API_KEY and curl; successful API calls may consume quota or incur billing through ToolWeb.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

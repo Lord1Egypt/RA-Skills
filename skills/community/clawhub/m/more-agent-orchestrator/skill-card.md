@@ -1,41 +1,54 @@
-## Description: <br>
-Multi-agent collaboration and task orchestration. Decompose complex tasks, spawn sub-agents, coordinate execution, and synthesize results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent collaboration and task orchestration. Decompose complex tasks, spawn sub-agents, coordinate execution, and synthesize results.
 
-## Publisher: <br>
-[lcp14262](https://clawhub.ai/user/lcp14262) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lcp14262](https://clawhub.ai/user/lcp14262)
 
-## Use Case: <br>
-Developers and agent users use this skill to break complex work into sub-tasks, coordinate multiple sub-agents, and synthesize the results into a final deliverable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Multi-agent orchestration can spread task details across delegated work, including sensitive context if provided. <br>
-Mitigation: Use explicit agent limits and timeouts, and avoid giving unnecessary sensitive context to delegated agents. <br>
-Risk: Large or vague orchestration plans can create coordination overhead and inconsistent sub-agent outputs. <br>
-Mitigation: Use clear task boundaries, explicit success criteria, output validation, and human review for conflicts. <br>
+## Use Case:
 
+Developers and agent users use this skill to break complex work into sub-tasks, coordinate parallel or sequential sub-agents, and synthesize their results into a final deliverable.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lcp14262/more-agent-orchestrator) <br>
-- [Publisher Profile](https://clawhub.ai/user/lcp14262) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and command-line text with JSON summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include decomposed task lists, sub-agent instructions, progress summaries, and synthesized final results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, package.json, release evidence) <br>
+Risk: Task content may be shared among sub-agents during orchestration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill with secrets, regulated data, private sales data, or sensitive code unless the OpenClaw environment and sub-agent sharing rules are approved for that data.
+
+Risk: Multi-agent synthesis can merge inconsistent or incomplete sub-agent results.
+
+Mitigation: Review the synthesized result, flag unresolved conflicts, and use explicit output formats and success criteria for sub-agent tasks.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lcp14262/skills/more-agent-orchestrator)
+- [Publisher Profile](https://clawhub.ai/user/lcp14262)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and structured JSON-style orchestration summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task decomposition, sub-agent status, synthesized results, and progress or error summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -43,8 +43,8 @@ cp -r self-improving-analytics ~/.openclaw/skills/
 ### 2. Install the Hook (Optional)
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-analytics
-openclaw hooks enable self-improving-analytics
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-analytics
 ```
 
 ### 3. Create Learning Files
@@ -93,23 +93,9 @@ Is the learning project-specific?
 | Visualization misleads | Log learning | LEARNINGS.md (visualization_mislead) |
 | Metric drift discovered | Log learning | LEARNINGS.md (metric_drift) |
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session communication. Use only when cross-session sharing is explicitly needed.
-
-### sessions_send
-
-Share a data quality finding with another session:
-```
-sessions_send(sessionKey="session-id", message="Data issue: NULL rate in user_id spiked to 2.3% after Oracle→PG migration, add ingestion validation")
-```
-
-### sessions_spawn
-
-Spawn a background agent to analyze data quality patterns:
-```
-sessions_spawn(task="Analyze .learnings/DATA_ISSUES.md for promotion candidates", label="dq-review")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## Available Hook Events
 

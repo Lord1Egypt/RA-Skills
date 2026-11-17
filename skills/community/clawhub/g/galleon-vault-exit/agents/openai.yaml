@@ -1,0 +1,4 @@
+interface:
+  display_name: "ERC4626 vault exit"
+  short_description: "ERC4626 vault exit workflow and evidence"
+  default_prompt: "Use $galleon-vault-exit to perform the requested protocol workflow and return its decision record."

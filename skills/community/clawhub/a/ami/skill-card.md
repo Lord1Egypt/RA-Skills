@@ -1,48 +1,61 @@
-## Description: <br>
-Ami is an IMA OpenAPI skill that helps an agent manage notes and knowledge-base content, including searching, reading, creating, appending, uploading files, and adding web links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ami helps agents manage IMA notes and knowledge bases, including note search, note creation, note updates, knowledge-base browsing, URL import, and file upload workflows.
 
-## Publisher: <br>
-[aishaoqing](https://clawhub.ai/user/aishaoqing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aishaoqing](https://clawhub.ai/user/aishaoqing)
 
-## Use Case: <br>
-External users and developers use this skill to connect an agent to IMA notes and knowledge-base APIs for personal knowledge management tasks. It is intended for user-directed operations such as note lookup, note creation, appending to existing notes, knowledge-base search, file upload, and URL import. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses user-provided IMA credentials to access notes, files, URLs, and knowledge-base content. <br>
-Mitigation: Prefer environment variables or protected local configuration, and send credentials only to the official ima.qq.com API endpoint. <br>
-Risk: The skill can create notes, append to existing notes, upload files, and import URLs, which may alter private user content. <br>
-Mitigation: Ask for confirmation when the target note, knowledge base, or operation is ambiguous, and avoid exposing private note bodies in shared contexts. <br>
-Risk: Incorrect encoding or file handling can corrupt note content or uploaded files. <br>
-Mitigation: Validate UTF-8 before note writes, preserve original file bytes for knowledge-base uploads, run preflight checks, and use UTF-8 byte request bodies on PowerShell 5.1. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent work with IMA personal notes and knowledge bases through credentialed IMA OpenAPI calls. It is useful for searching private knowledge, creating or appending notes, importing URLs, and uploading supported files after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aishaoqing/ami) <br>
-- [Publisher profile](https://clawhub.ai/user/aishaoqing) <br>
-- [IMA homepage](https://ima.qq.com) <br>
-- [IMA OpenAPI credential setup](https://ima.qq.com/agent-interface) <br>
-- [Knowledge-base API reference](knowledge-base/references/api.md) <br>
-- [Notes API reference](notes/references/api.md) <br>
-- [Tencent Cloud COS authorization reference](https://cloud.tencent.com/document/product/436/7778) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown instructions with bash, PowerShell, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provisioned IMA_OPENAPI_CLIENTID and IMA_OPENAPI_APIKEY credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles private notes, knowledge-base content, file uploads, and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use a secure credential store or tightly permissioned files, and confirm each note write, URL import, or file upload before execution.
+
+Risk: Untrusted or internal URLs could be imported into IMA or used as upload sources.
+
+Mitigation: Validate URLs, avoid untrusted or internal targets, and require explicit upload consent before importing external content.
+
+Risk: Existing notes can be modified by append operations, and incorrectly encoded text can corrupt note content.
+
+Mitigation: Confirm the target note before appending and perform UTF-8 validation before note write operations.
+
+## Reference(s):
+
+- [IMA Home](https://ima.qq.com)
+- [IMA Agent Interface](https://ima.qq.com/agent-interface)
+- [Knowledge Base API Reference](artifact/knowledge-base/references/api.md)
+- [Notes API Reference](artifact/notes/references/api.md)
+- [Tencent COS Signature Documentation](https://cloud.tencent.com/document/product/436/7778)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provisioned IMA OpenAPI Client ID and API Key; file upload workflows may send selected private content to IMA and Tencent COS.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

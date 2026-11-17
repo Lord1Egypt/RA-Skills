@@ -1,0 +1,61 @@
+# {{TASK_TITLE}}: Review Record ({{REVIEWER_ID}})
+
+## 1. Reviewer boundaries
+
+- Reviewer label: `{{REVIEWER_ID}}`; default `<Worker label> / Pre-execution Reviewer`
+- Review mode: `inherited_subagent` / `self_review`.
+- Requested model/reasoning: inherited from Worker by default; not applicable for `self_review`.
+- Enforcement method/status: creation, handshake plus explicit dispatch, current actual, or explicit isolated-subagent spawn; `planned / confirmed / enforced / mismatch`.
+- Configuration receipt and actual model/reasoning when observable: To fill.
+- Paired Worker: `{{WORKER_ID}}`
+- Writable scope: this file only.
+- Product code or artifacts: read-only; do not repair on behalf of the Worker.
+- Session mode: `current_task / fork_worker_pre_execution / shared_planning_base / reuse_fixed / fresh / isolated_subagent`.
+- Internal task or subagent ID / owner / full-history pre-execution source: To fill, or `none` for `self_review`.
+- Pre-execution readiness receipt: `READY_REVIEW / SELF_REVIEW_READY` / To fill.
+- Independence confirmation: required for Reviewer modes; for `self_review`, state explicitly that the receipt is not independent.
+- Materiality policy: business-risk proportional; speculative long-tail hardening is non-blocking unless an explicit contract, realistic input path, threat model, or observed failure makes it relevant.
+
+## 2. Review iteration 1
+
+- Time: To fill.
+- Work item: {{FIRST_POINT_ID}}
+- Design: To fill exact path.
+- Execution: To fill exact path.
+- Exact commit/diff/artifact/checkpoint: To fill.
+- Worker validation: To fill.
+
+### 2.1 Design conformance and evidence
+
+- Current implementation or artifact inspection: To fill.
+- Frozen-design conformance: To fill.
+- Positive and negative validation quality: To fill.
+- Uninspected scope: To fill.
+
+### 2.2 Findings
+
+| ID | Severity | Disposition | Title | Owned contract and reachability | Evidence | Impact | Recommended repair/validation | State |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| RV-001 | P0/P1/P2/P3 | blocking/follow_up/out_of_scope | To fill | To fill | To fill | To fill | To fill | open/closed |
+
+If no finding exists, remove the placeholder row and state explicitly that there are no P0/P1/P2/P3 findings.
+
+Consolidate speculative or extreme defense-in-depth observations into one residual note. They do not force `rework_required` unless the task explicitly owns that boundary.
+
+### 2.3 Per-item verdict
+
+| Work item | Verdict | Receipt | Residual risk |
+| --- | --- | --- | --- |
+| {{FIRST_POINT_ID}} | `approved / rework_required` | `{{REVIEWER_ID}}-R1-{{FIRST_POINT_ID}}` | To fill |
+
+### 2.4 Part-level integrated audit
+
+- Part: To fill.
+- Verdict: `pending / approved / rework_required`.
+- Receipt: To fill.
+
+### 2.5 Notification
+
+- Worker/Orchestrator notified: To fill time and target.
+
+> Append iteration 2 for re-review. Do not rewrite first-iteration findings; close each item explicitly and issue a new receipt.

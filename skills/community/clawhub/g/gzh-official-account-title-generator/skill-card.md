@@ -1,44 +1,59 @@
-## Description: <br>
-Generates WeChat Official Account title candidates and scores existing titles using RedFox trend data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于公众号热门数据生成爆款标题，或对已有标题进行多维度评分并给出优化建议。
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-Content creators, editors, account operators, MCNs, and brands use this skill to generate data-aligned WeChat Official Account titles or evaluate existing titles with scoring and optimization suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Title topics and scoring inputs are sent to RedFox. <br>
-Mitigation: Use the skill only when sharing those inputs with RedFox is acceptable, and avoid submitting confidential or sensitive draft content. <br>
-Risk: Debug logging may expose the X-API-Key credential. <br>
-Mitigation: Avoid using --debug unless the script redacts credentials, and review logs before sharing them. <br>
-Risk: Broad activation could apply the skill to generic writing requests. <br>
-Mitigation: Use it only for explicit WeChat title-generation or title-scoring tasks. <br>
+## Use Case:
 
+公众号号主、内容运营、新媒体编辑、MCN 和品牌团队可用它根据公众号热门数据生成 10 个候选标题，或对已有标题进行四维度评分并获得优化建议。
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/gzh-official-account-title-generator) <br>
-- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox WeChat trend data API](https://redfox.hk/story/api/cozeSkill/getWxCozeSkillData) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated title lists, scoring breakdowns, recommendation text, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REDFOX_API_KEY; recommendations and scores should be checked against returned trend data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill requires a RedFox API key and sends title keywords to redfox.hk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped or revocable key, confirm its source and scope before use, and avoid submitting sensitive or confidential title keywords.
+
+Risk: Debug mode can expose request details, including headers or API responses, in logs.
+
+Mitigation: Avoid --debug unless key logging is fixed, and redact credentials before sharing logs or generated output.
+
+Risk: The helper script writes Markdown files in the working directory by default.
+
+Mitigation: Run the skill in a directory where generated files cannot overwrite important documents, or pass an explicit safe output path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/gzh-official-account-title-generator)
+- [RedFoxHub](https://redfox.hk)
+- [RedFox WeChat data API endpoint](https://redfox.hk/story/api/cozeSkill/getWxCozeSkillData)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance, Files]
+
+**Output Format:** [Markdown title candidates or scoring reports, with helper-script JSON status and generated Markdown data files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY. Source data is limited to yesterday through 30 days prior and is not real time.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

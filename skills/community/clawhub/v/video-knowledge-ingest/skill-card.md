@@ -1,42 +1,59 @@
-## Description: <br>
-Ingest and summarize cross-platform videos into a local knowledge base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingest and summarize cross-platform videos into a local knowledge base by fetching subtitles when available, falling back to local media download and Whisper transcription when needed, and saving transcript, summary, and metadata files.
 
-## Publisher: <br>
-[Exsusiai](https://clawhub.ai/user/Exsusiai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[exsusiai](https://clawhub.ai/user/exsusiai)
 
-## Use Case: <br>
-Developers and agents use this skill to turn YouTube, Bilibili, Xiaohongshu, and local media or subtitle files into transcripts, summaries, metadata, and local knowledge-base records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video URLs, local media, transcripts, summaries, metadata, and downloaded artifacts can be retained in the local knowledge-base directory. <br>
-Mitigation: Use --kb-root for project-specific storage, review retained files, and delete stored artifacts when retention is no longer acceptable. <br>
-Risk: Private cookies or confidential media may be processed by the download, transcription, and summarization workflow. <br>
-Mitigation: Avoid private cookies and confidential media unless the local retention and configured summarize/Codex processing model are acceptable. <br>
+## Use Case:
 
+Developers and agents use this skill to ingest YouTube, Bilibili, Xiaohongshu, local media, and local subtitle/text sources into reusable local video notes. It supports subtitle-first extraction, Whisper fallback transcription, Codex-backed summarization, and troubleshooting for common fetch, transcription, and summarization failures.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Exsusiai/video-knowledge-ingest) <br>
-- [Toolchain Reference](references/toolchain.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON stdout plus local Markdown, text, and JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes source metadata, transcript, summary, record, downloads, Whisper outputs, and an append-only index under the configured knowledge-base root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can download remote media and store transcripts, summaries, metadata, and index entries locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for inputs whose download, processing, and local retention are acceptable; use a custom --kb-root or manually remove stored outputs when needed.
+
+Risk: Transcripts are sent to the configured Codex-backed summarizer.
+
+Mitigation: Avoid private, regulated, or confidential video content unless that summarization path is approved for the data.
+
+Risk: External platform access, local transcription dependencies, or summarizer authentication can fail.
+
+Mitigation: Follow the bundled troubleshooting guidance for YouTube, Bilibili, Xiaohongshu, ffmpeg, Whisper, yt-dlp, summarize, and Codex authentication issues.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/exsusiai/skills/video-knowledge-ingest)
+- [Toolchain Reference](references/toolchain.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON stdout plus local Markdown, text, and metadata files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists source metadata, transcript.txt, summary.md, record.json, downloaded media or subtitles when used, Whisper artifacts when used, and an append-only index entry.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

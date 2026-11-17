@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn75zfd51df61ajdyqtgvrs1hx84s4q6",
-  "slug": "semantic-split",
+  "name": "semantic-split",
   "version": "3.1.1",
-  "publishedAt": 1782920280367
+  "description": "语义拆分与智能规划。将自然语言拆分为结构化需求块，三管线协同调度（正则结构分析→bge 语义匹配→bge-reranker 重排序），5W2H提取与约束标注增强语义理解，双视角推理整合为单一执行步骤，自增强闭环自动沉淀能力级 JSON 模板，10门禁钩子系统管控流程。",
+  "author": "wUwproject",
+  "tags": [
+    "semantic-split",
+    "task-planning",
+    "json-accumulation",
+    "progressive-loading",
+    "5w2h",
+    "constraint-annotation",
+    "self-reinforcing-loop"
+  ],
+  "data_dir": ".standardization/semantic-split/data/",
+  "triggers": [
+    "帮我做",
+    "我需要",
+    "交给你了",
+    "帮我分析",
+    "需求拆分"
+  ]
 }

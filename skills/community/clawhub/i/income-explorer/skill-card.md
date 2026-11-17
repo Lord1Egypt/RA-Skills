@@ -1,40 +1,53 @@
-## Description: <br>
-AI monetization path exploration assistant that analyzes monetization opportunities, generates reports, and provides action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI monetization path exploration assistant that analyzes monetization opportunities, generates reports, and provides action recommendations.
 
-## Publisher: <br>
-[muyanshouji](https://clawhub.ai/user/muyanshouji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[muyanshouji](https://clawhub.ai/user/muyanshouji)
 
-## Use Case: <br>
-External users and developers use this skill to explore ways to earn income with AI, research market opportunities, evaluate monetization paths, and turn findings into practical action plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Market research reports and income projections may be incomplete, outdated, or overly optimistic. <br>
-Mitigation: Review generated reports before acting on or sharing them, and verify market data, revenue claims, and recommendations against current sources. <br>
-Risk: The skill may use web search, command execution, and file writing during analysis workflows. <br>
-Mitigation: Limit browsing, API use, command execution, and file writes to actions and locations the user explicitly approves. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Income Explorer ClawHub Page](https://clawhub.ai/muyanshouji/income-explorer) <br>
-- [Project Homepage](https://github.com/openclaw/openclaw) <br>
+## Use Case:
 
+External users and developers use this skill to research AI monetization options, compare market opportunities, and produce actionable plans with recommended directions, milestones, and income estimates.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and guidance with optional shell commands for analysis workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include market data, recommended monetization directions, action plans, milestones, and expected income ranges.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Market and income recommendations can be misleading if based on stale or weak evidence.
+
+Mitigation: Ask for the user's research scope, cite current sources in reports, and present income estimates as assumptions rather than guarantees.
+
+Risk: The skill may browse websites, run analysis commands, or create report files as part of the workflow.
+
+Mitigation: Confirm browsing, command execution, and the intended output path before running tools or writing files.
+
+## Reference(s):
+
+- [Income Explorer on ClawHub](https://clawhub.ai/muyanshouji/skills/income-explorer)
+- [OpenClaw homepage](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports and guidance with optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include saved report files when the user requests file output.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

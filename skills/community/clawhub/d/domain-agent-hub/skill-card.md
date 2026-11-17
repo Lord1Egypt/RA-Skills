@@ -1,40 +1,54 @@
-## Description: <br>
-DomainAgentHub routes user tasks to broad domains, recommends mature tools first, and guides specialist-agent creation or delegation when no mature option fits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+领域专家枢纽 - 智能判断任务领域，优先推荐成熟方案，无成熟方案时扩展创建
 
-## Publisher: <br>
-[yangdaowan](https://clawhub.ai/user/yangdaowan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yangdaowan](https://clawhub.ai/user/yangdaowan)
 
-## Use Case: <br>
-External users and developers use this skill to classify tasks across office, development, finance, research, creative, and reflection domains, then choose a mature tool or specialist-agent delegation path with acceptance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may route complex work to other agents or recommend external services when configured. <br>
-Mitigation: Confirm before delegating sensitive financial, business, or personal tasks, and review third-party privacy and cost terms separately. <br>
-Risk: Instruction-only task routing can produce unsuitable delegation or tool recommendations if the task context is ambiguous. <br>
-Mitigation: Ask the user to confirm acceptance criteria before delegation and review outputs before final delivery. <br>
+## Use Case:
 
+External users and agent operators use this skill to classify a user request by domain, recommend mature tools when available, and route or shape follow-up work for a specialized agent when needed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangdaowan/domain-agent-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with structured recommendations and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only task-routing guidance; may include recommended tools, agent delegation choices, and acceptance criteria.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill under-discloses effective delegation and local gateway behavior while recommending broad agent routing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and confirm local gateway use, delegation targets, inherited permissions, and any external services before routing tasks.
+
+Risk: Suggested global npm install commands may introduce package provenance or version risk.
+
+Mitigation: Verify package provenance and versions before running global install commands.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [ClawHub Skill Page](https://clawhub.ai/yangdaowan/skills/domain-agent-hub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend external tools or delegate work to specialized agents depending on the task domain.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Helps agents reduce human speech frequencies in video audio with ffmpeg while preserving mechanical and environmental sounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduces speech frequencies in video audio with ffmpeg equalizer filters while preserving mechanical and environmental sounds.
 
-## Publisher: <br>
-[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangyanbo2007](https://clawhub.ai/user/zhangyanbo2007)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, media operators, and external users use this skill to generate ffmpeg commands that reduce spoken voice in videos while retaining useful non-speech audio such as machinery or ambient sounds.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated output may not fully remove voices because frequency filtering cannot separate overlapping speech and environmental sounds.
+
+Mitigation: Review the generated '_novoice' video and tune equalizer gain or bandwidth before using the result.
+
+Risk: Replacing the original video can permanently lose the source audio if the filtered result is unsatisfactory.
+
+Mitigation: Keep backups and only replace the original after confirming the generated '_novoice' file.
+
+Risk: The installation examples include package-manager commands that can change the local system.
+
+Mitigation: Run installation commands only when ffmpeg is needed and the package manager source is trusted.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content-processing agents use this skill to produce ffmpeg commands and tuning guidance that attenuate speech in local video files while retaining non-speech machine or environmental audio. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Batch commands can process every matching video in a selected folder. <br>
-Mitigation: Review the folder path and file pattern before running batch processing, and test on a small copied subset first. <br>
-Risk: Incorrect input or output paths can overwrite or replace local media files. <br>
-Mitigation: Write to the documented _novoice output first and only replace originals after reviewing the result. <br>
-Risk: Frequency filtering may leave some speech audible or reduce desired non-speech audio when frequency ranges overlap. <br>
-Mitigation: Listen to the output before use and tune equalizer gain, bandwidth, or added frequency bands for the specific recording. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyanbo2007/video-vocal-remover) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+**Other Properties Related to Output:** [Produces commands and parameter-tuning guidance; generated media should be reviewed before replacing originals.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ffmpeg command examples and parameter tuning guidance; resulting media files are created by the user's local ffmpeg run.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

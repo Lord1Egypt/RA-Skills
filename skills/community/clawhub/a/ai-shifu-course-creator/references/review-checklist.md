@@ -1,64 +1,75 @@
-# Review Checklist
+# Course Review Checks
 
-Optimization 全面审计清单 — Optimization Optimization 必须把每条都过一遍。其他 Phase 的阶段交付检查见 SKILL.md 各 Phase 内的 Validation 段。
+Observable criteria for the artifacts and scope actually available. Use `pass`, `fail`, or `not-assessed` when useful; a complete checklist report is not required. These checks do not prescribe the authoring process or make optional teaching choices mandatory.
 
-## Coverage
+## Coverage and Fidelity
 
-- All critical source points are present.
-- No unsupported additions alter meaning.
-- Source information density preserved (no substance traded for fluency).
+- With authoritative source material, required points remain represented and generated additions do not change their meaning. Without it, do not claim external-source coverage or fidelity.
+- A focused repair retains the supplied content's intended meaning and information density. A requested rewrite respects its explicit content constraints.
+- Required exact content passes [source-preservation.md#verification](source-preservation.md#verification). Missing evidence is reported rather than invented.
 
-## Script Style
+## Prompt Boundaries
 
-- Directive / model-guiding language; no polished learner-facing manuscript prose.
-- No author-side meta labels ("Knowledge Block", "Lesson Objective", "Deliverable").
-- No internal authoring terms exposed in learner-facing text.
+- Each artifact serves its responsibility under [prompt-semantics.md#artifact-responsibilities](prompt-semantics.md#artifact-responsibilities).
+- Teaching Prompts provide executable local teaching directions, required content and relationships, and any chosen feedback or branch behavior. A Course Prompt is not relied on to invent missing lesson pedagogy.
+- Outside the [author-facing comments](teaching-prompt.md#required-comments), every part of a Teaching Prompt serves runtime delivery. No executable requirement, memory-use instruction, option, URL, command, or exact span exists only in a comment.
+- Authoring controls, selection interfaces, pipeline notes, and learner-profile data do not leak into runtime instructions. Second-person forms obey [prompt-semantics.md#prompt-semantics](prompt-semantics.md#prompt-semantics).
+- Teacher-material requests, sample-confirmation instructions, and teaching-method selection rationale or provenance remain in teacher-facing communication, unless the author explicitly requests the method itself as lesson content. Necessary learner-facing source content is retained.
 
-## Lesson Loop
+## Teaching Design and Layout
 
-- Minimum teaching loop satisfied: setup → explanation → interaction → close.
-- One core question per lesson; resolved by lesson close.
-- Action tasks executable now or explicitly linked to a downstream lesson.
-- Variable naming consistent and traceable across lessons.
-- Carryover statements only where cross-lesson dependency is allowed.
-- Lesson structure follows the content, not a forced uniform template that erases lesson specificity.
+- The lesson's chosen approach makes its intended learning result achievable with supported facts, sufficient reasoning, and useful evidence. Do not fail an artifact for omitting a recommended pattern, fixed loop, single-question structure, visual, cover, cadence, deliverable, or interaction count.
+- Available confirmed goals, representative-sample decisions, and teacher corrections are reflected in every affected artifact. Learning tasks, when included, demonstrate the intended capability with executable success criteria and response-based feedback under [teaching-design.md](teaching-design.md); recall alone does not establish application. No task or test is required in every lesson, and disabled interactions remain respected.
+- Teacher-facing explanations of a teaching method accurately identify the source used and distinguish its supported principle from the agent's local design choice. Claims about research or suitability stay within the evidence and its limits under [teaching-design.md](teaching-design.md); a named method or citation alone does not establish that the lesson implements it.
+- Where method selection is in scope, the recommendation identifies a task-relevant selection condition and accounts for a consequential alternative or resource constraint under [method tradeoffs](teaching-design.md#choosing-between-plausible-alternatives) and [practice choices](teaching-design.md#choosing-practice-for-the-intended-result). An unresolved prerequisite, retention goal, or project label is not replaced by a description of execution steps; no exhaustive comparison is required for resolved author choices.
+- Examples and analogies, when used, have meaningful conditions or correspondences, explanatory value, and necessary limits under [teaching-design.md#examples-and-analogies](teaching-design.md#examples-and-analogies). Avoid misleading comparisons and unsupported assumptions of familiarity.
+- Selected hinting, revision, round-based practice, teach-back, and open questioning enact their distinct teaching actions and ending conditions under [teaching-design.md](teaching-design.md). Inspect actual response use, feedback timing, stable task criteria and identities, and handling of a satisfactory answer; no one strategy or universal interaction loop is required.
+- Explicit author decisions about order, delivery experience, interaction restrictions, and other constraints are respected. The agent may choose or revise unspecified design elements within the task.
+- New or explicitly rewritten Teaching Prompts follow [Author-Editable Layout](teaching-prompt.md#author-editable-layout). Check the source for navigation comments and list-based ordinary instructions, honoring any explicitly requested source layout.
+- In audit-only existing content, comment and layout normalization is `not-assessed`; do not reformat or add comments. Continue checking observable syntax and runtime behavior.
+- Syntax-owned structures and immutable source content retain their required form and scope in any layout. Required runtime content remains complete outside source-only comments.
+- Pure classroom slides retain their intended instructor-paced behavior; explicit text-only constraints contain no visual instructions. Chosen visuals have a defined purpose and suitable medium or unfolding under [visual-text coordination](teaching-design.md#visual-text-coordination), rather than padding length. General slide presentation requirements belong in the Course Prompt.
 
-## Interaction Quality
+## Personalization
 
-- Interactions are concrete and answerable.
-- Learner-facing questions appear before interaction syntax, not after `%{{var}}` inside `?[%{{var}} ...]`.
-- Each `?[]` interaction appears on its own line.
-- If the pre-interaction text enumerates or describes choices, the `?[]` option labels match those choices exactly — same set, order, and wording.
-- Input interactions include a specific pre-interaction question plus a shorter `...` placeholder.
-- At least one deepening interaction per lesson (calibration, boundary check, or misconception correction).
-- Branching paths are distinct where required; `*_viewpoint_check` interactions branch by option.
-- Interaction results affect later content (visible downstream effect).
-- Repeated interaction semantics avoided across lessons unless comparison intent is explicit.
-- After every interaction, the script restates the learner's selection and uses `{{var}}` to drive downstream content.
+- Resolved directions implement exactly the effects in [prompt-semantics.md#personalization-directions](prompt-semantics.md#personalization-directions), including a neutral fallback for missing relevant context. Do not enable an unselected direction through a generic instruction.
+- Unselected directions and an explicit empty selection retain the source-, author-, and audience-based baseline without deleting needed examples, analogies, practical value, or explanation.
+- Selected adaptations are executable where needed. A generic course-wide claim does not replace a required local example or analogy instruction.
+- Selected directions have concrete effects on permitted expression using relevant, actually available learner input. Renaming a person or occupation without connecting teaching to the stated task, constraint, preference, or goal is insufficient. Missing or irrelevant context uses a neutral course-appropriate fallback without inventing learner facts or adding collection questions.
+- Runtime personalization follows the boundaries in [prompt-semantics.md#personalization-directions](prompt-semantics.md#personalization-directions). Learning support has locally executable explanation, hint, or practice choices rather than permission to redesign the course; required reasoning, standards, fixed questions, and explicit author constraints survive. Selected background adaptation does not by itself authorize new context collection.
+- New-course defaults and existing-course authorization are distinguished under that owner. Explicit subsets and empty selections retain their meaning; an empty background selection does not disable authored answer-dependent feedback.
+- [Learner evidence and responsive support](prompt-semantics.md#learner-evidence-and-responsive-support) is implemented at relevant tasks: actual correct, mistaken, and incomplete responses receive appropriate support and a useful permitted next action or close. Latest explicit background corrections are honored; occupations and preferences do not establish mastery. Missing context does not become an invented fact, learner answer, or profile write.
+- [Existing-information reuse](teaching-prompt.md#encode-existing-context-reuse) is executable where relevant: use available personal background, learning preferences, and course memory before asking. Any permitted collection targets a consequential missing detail and uses its answer; partial memory does not restart a questionnaire, and disabled interactions use a fallback. Missing author-time learner details do not become a request for every future learner's profile.
+- With no supplied selection, assess observable behavior without inferring an enum array from the Prompt. Selection alignment or absent companion alignment may be `not-assessed`; no missing intermediate plan or schema is manufactured.
+- Reusable artifacts contain no specific learner profile, platform learner-profile tags, internal profile field names, or authoring selection interface.
 
-## Variable Safety
+## Interaction and Runtime Safety
 
-- Variables are collected before use.
-- No duplicate semantic collection unless comparison intent is explicit.
-- No unresolved placeholders in learner-facing content.
-- No more than three consecutive variable collections before feedback.
-- Every variable has downstream utility (branching, depth control, deliverable variation).
+- Questions and options, or the instructions for generating them at learner time, are clear and answerable, and selected instructional interactions have a meaningful feedback or teaching effect under [teaching-design.md#interaction-design](teaching-design.md#interaction-design).
+- Every control, memory-use instruction, and branch follows [markdownflow-syntax.md](markdownflow-syntax.md) and [teaching-prompt.md#source-encoding](teaching-prompt.md#source-encoding). Controls stay recognizable and distinct from simulated visual controls.
+- Newly authored explicit controls for a question or response task carry the complete learner-facing question or response task under [Interaction Encoding](teaching-prompt.md#interaction-encoding). Do not fail a prefixed control solely because that text is not repeated before it. Preserve supplied exact controls and action-only controls within the requested repair scope; do not require backfilling them during an audit-only request.
+- Natural-language interactions retain the requested context, answer mode, option constraints, use of the actual answer, and target-capability boundary under [teaching-prompt.md#interaction-encoding](teaching-prompt.md#interaction-encoding), with runtime behavior defined by [markdownflow-syntax.md#natural-language-interactions](markdownflow-syntax.md#natural-language-interactions). A prewritten question or option list is not required for this form; dynamic generation instructions are not frozen into fixed controls. Author-fixed controls retain their wording and order. Without a learner-time run, generated options and pause/resume behavior are `not-assessed`.
+- Instructions that use earlier learner input refer naturally to relevant memory under [markdownflow-syntax.md#memory](markdownflow-syntax.md#memory) and use the learner's actual answers. They handle unavailable or irrelevant information without inventing it.
+- Branches use natural language and account for unavailable information where applicable. No learner-visible authoring placeholders remain.
+- Requested slide interactions and animation have executable instructions for the relevant controls, triggers, changing state, and observable result under [slide behavior](teaching-prompt.md#slide-interaction-and-animation). Available Course Prompt rules permit those behaviors; authored instructions alone do not establish a tested slide.
+- When a lesson uses an embedded simulation or interactive slide, its interaction and observation claims follow [Teaching Prompt integration](teaching-prompt.md#simulation-integration). A rendered control, page event, or animated result alone does not establish a submitted course answer, observed explanation, or memory update.
+- Deterministic blocks, code fences, required source spans, and image records survive preprocessing as required. Images use [image-authoring.md#image-output-validation](image-authoring.md#image-output-validation) when present; absent images do not require image work.
 
-## Visual-Text Coordination
+## Course Prompt and Description
 
-- Every core concept has visual-plus-text explanation when a visual is used.
-- Visuals described in natural language, not inlined as SVG/HTML/Mermaid markup.
-- Text adds context (background / causality / examples), not just a restatement of the image.
+- The Course Prompt keeps its six sections in order and all non-placeholder template behavior under [course-prompt.md#materialization-checks](course-prompt.md#materialization-checks), with no unresolved `XXX`.
+- Its fill values match the available topic, goals, audience, delivery experience, and resolved personalization. Its shared slide rules do not redefine lesson-specific structure or pedagogy.
+- The description clearly states audience fit, topic, and supported outcomes under [course-description.md#validation](course-description.md#validation). It contains no unsupported guarantee, authoring notes, Prompt dump, or deployment state.
 
-## Runtime Stability
+## Language and Repair Scope
 
-- MarkdownFlow syntax is valid.
-- Deterministic blocks used only where necessary; not wrapping full lessons.
-- Interaction count per lesson at most five (recommended three to four).
-- Code, image, and required source spans preserved per `markdownflow.md#preservation`.
+- Human-readable content passes [language-policy.md#language-audit](language-policy.md#language-audit), including effective build values when they are in scope.
+- Repairs respect the requested scope and retain executable requirements in their owning artifact. Consequential changes have a clear reason.
+- Unresolved correctness, source, or runtime risks and unavailable checks are visible rather than hidden by cosmetic rewriting or a claimed full pass.
 
-## Course Prompt
+## Validation Evidence
 
-- A `course_prompt` artifact is produced when input includes course material.
-- All six required sections present (`# Role`, `# Task`, `# Teaching Techniques`, `# Writing Style`, `# Format`, `# Drawing`).
-- `# Translation Rules` included when (and only when) trigger condition applies.
+- State which validation actually occurred and what it establishes, following [teaching-design.md](teaching-design.md). Static artifact inspection can establish content alignment, source support, and executable instructions; it cannot establish actual learner understanding or runtime behavior that was not exercised.
+- Label simulated learner walkthroughs as simulations, with the supplied context and observed response behavior. They can reveal design or execution problems but do not establish learning gains in real learners.
+- Claims about actual learner performance or learning outcomes require corresponding real learner evidence, with the observed task, criteria, and relevant limits. An opened preview, successful import, teacher approval, or plausible simulated answer is not that evidence. Report unavailable validation as `not-assessed` rather than claiming the course has proved effective.
+- Where relevant to the goal, distinguish completion with help, independent performance using permitted tools, transfer to a new task, and delayed retention. For applied learning, inspect the available work, execution or observation records rather than inferring them from a plan, self-report, AI role-play, or a team deliverable alone.

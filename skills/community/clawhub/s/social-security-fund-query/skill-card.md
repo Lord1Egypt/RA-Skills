@@ -1,43 +1,55 @@
-## Description: <br>
-Queries and formats China social insurance and housing fund contribution bases and rates by area; current security evidence says the implementation returns limited static mock data rather than verified nationwide current policy data. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Queries China social insurance and housing fund contribution bases and rates by region, with cached local results and structured tabular output.
 
-## Publisher: <br>
-[elysiacwy](https://clawhub.ai/user/elysiacwy) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elysiacwy](https://clawhub.ai/user/elysiacwy)
 
-## Use Case: <br>
-External users and HR or payroll staff can ask an agent for area-specific Chinese social insurance and housing fund contribution tables. Results should be treated as illustrative unless the publisher replaces mock data with verified official sources and effective dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release claims official nationwide current policy coverage, while security evidence says the implementation returns static mock data for only three cities. <br>
-Mitigation: Treat outputs as illustrative and verify every result against official local human resources, social security, housing fund, or government sources before payroll, benefits, legal, or compliance use. <br>
-Risk: Cached or stale policy data could be reused without clear source coverage or effective dates. <br>
-Mitigation: Require source citations, effective dates, supported-region coverage, and documented cache/update behavior before relying on the data. <br>
-Risk: Running the Python implementation may write a local cache file in the skill directory. <br>
-Mitigation: Run it in an appropriate workspace and review retained cache data if query contents are sensitive. <br>
+## Use Case:
 
+External users and agents can use this skill to look up regional China employee social insurance and housing fund contribution information and format the result as a readable table. It should be treated as a prototype unless the publisher verifies official-source retrieval, coverage, and update timestamps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elysiacwy/social-security-fund-query) <br>
-- [Project homepage](https://clawhub.com) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Markdown tables or JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local cache file when the Python implementation runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may present prototype or cached data as current nationwide payroll-policy guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require official source URLs, last-updated timestamps, cache age disclosure, and clear refresh controls before relying on outputs for payroll or compliance decisions.
+
+Risk: Coverage claims may exceed the implemented data source coverage.
+
+Mitigation: Limit descriptions and user-facing responses to verified supported cities or add verified official-source retrieval for each queried region.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elysiacwy/skills/social-security-fund-query)
+- [Publisher profile](https://clawhub.ai/user/elysiacwy)
+- [Skill homepage](https://clawhub.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands]
+
+**Output Format:** [Markdown tables and JSON-formatted CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and write a local cache file; Python runtime required.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

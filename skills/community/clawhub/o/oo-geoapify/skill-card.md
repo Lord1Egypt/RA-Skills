@@ -1,43 +1,55 @@
-## Description: <br>
-Geoapify helps agents use Geoapify through the OOMOL oo CLI for address autocomplete, geocoding, routing, and travel matrix workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Geoapify (geoapify.com). Use this skill for ANY Geoapify request — searching and reading data. Whenever a task involves Geoapify, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to operate Geoapify through an OOMOL-connected account for place lookup, forward and reverse geocoding, route calculation, and travel matrix generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires sensitive credentials through an OOMOL-connected Geoapify account. <br>
-Mitigation: Install and use it only when you intend to operate Geoapify through OOMOL, and run account connection steps only when an auth or connection error requires setup. <br>
-Risk: Connector actions can run with user-provided JSON payloads, and actions tagged as write may change Geoapify state. <br>
-Mitigation: Inspect the live action schema before constructing payloads, review payloads before execution, and confirm the exact effect with the user before write or destructive actions. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Geoapify address suggestions, geocoding results, routes, and travel matrices through a connected Geoapify account.
 
-## Reference(s): <br>
-- [Geoapify homepage](https://www.geoapify.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-geoapify) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live action schema inspection before running Geoapify connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The required CLI may persistently change other agents’ skills without the skill explaining those wider effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI’s installation effects, prefer a reviewed and pinned installation, and set OO_SKILLS_SYNC_DISABLED before invoking it if automatic skill changes are unwanted.
+
+Risk: Location details submitted through this skill may be processed by OOMOL and Geoapify.
+
+Mitigation: Submit only location details that you intend OOMOL and Geoapify to process.
+
+## Reference(s):
+
+- [Geoapify API documentation](https://apidocs.geoapify.com/)
+- [Geoapify](https://www.geoapify.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [JSON action inputs and Geoapify results, with text summaries as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results vary by selected geocoding, autocomplete, routing, or matrix action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

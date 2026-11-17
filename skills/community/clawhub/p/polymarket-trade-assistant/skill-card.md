@@ -1,53 +1,63 @@
-## Description: <br>
-A bilingual Polymarket prediction-market toolkit for market scanning, probability assessment, order-book analysis, live trading, position monitoring, resolution tracking, backtesting, and portfolio review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-assisted Polymarket trading toolkit that helps agents scan prediction markets, evaluate probabilities, inspect order books, execute trades, monitor positions, track resolution, and backtest recommendations.
 
-## Publisher: <br>
-[donkeylmx](https://clawhub.ai/user/donkeylmx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[donkeylmx](https://clawhub.ai/user/donkeylmx)
 
-## Use Case: <br>
-External users and developers use this skill bundle to analyze Polymarket opportunities, simulate or execute trades, review portfolio exposure, monitor positions, and track market resolution criteria. It is appropriate only when the user intentionally wants agent-assisted prediction-market trading workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The toolkit can place real-money Polymarket trades, including autonomous trading through the danger auto-trade workflow. <br>
-Mitigation: Use dry-run or paper-trading mode first, set low per-trade and total limits, and avoid unattended live trading unless explicitly intended. <br>
-Risk: Trading workflows require wallet private keys, funder addresses, and may use CLOB credentials. <br>
-Mitigation: Use a dedicated low-balance wallet, keep credentials out of shared logs and prompts, and rotate or revoke credentials if exposure is suspected. <br>
-Risk: Cancel-all and live order operations can affect existing market positions and pending orders. <br>
-Mitigation: Review order IDs, portfolio state, and cancel-all behavior before execution, especially when multiple active orders exist. <br>
-Risk: The toolkit persists trading reports, portfolio data, monitoring output, and history under local Polymarket report paths. <br>
-Mitigation: Treat generated files as sensitive financial records and remove or protect them when sharing the workspace. <br>
+## Use Case:
 
+External developers, agents, and Polymarket users use this skill to analyze prediction markets, manage paper or live trading workflows, monitor positions, and review historical recommendation performance. Live-trading features require wallet credentials and should be used only with explicit financial-risk controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/donkeylmx/polymarket-trade-assistant) <br>
-- [ClawHub package homepage](https://clawhub.ai/skills/polymarket-trade-skills) <br>
-- [CLOB trading API reference](artifact/api-trade-polymarket/references/clob-trading-api.md) <br>
-- [Environment setup reference](artifact/api-trade-polymarket/references/env-setup.md) <br>
-- [Auto-trade risk controls](artifact/danger-auto-trade-polymarket/references/risk-controls.md) <br>
-- [Market pulse analysis framework](artifact/polymarket-market-pulse/references/analysis-framework.md) <br>
-- [Position alert thresholds](artifact/poly-position-monitor/references/alert-thresholds.md) <br>
-- [Resolution trackability framework](artifact/poly-resolution-tracking/references/trackability-framework.md) <br>
-- [Paper-trading portfolio schema](artifact/polymarket-paper-trading/references/portfolio-schema.md) <br>
-- [Portfolio review framework](artifact/portfolio-review-polymarket/references/review-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON command results, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Polymarket report, portfolio, monitoring, and trading-history files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release evidence) <br>
+Risk: Wallet-enabled workflows can place real Polymarket trades and cause financial loss, especially through no-confirmation automatic trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-balance wallet, keep dry-run mode enabled until tested, set strict trade limits, and avoid no-confirmation auto-trade mode unless the user accepts the loss risk.
+
+Risk: Private keys or funding addresses may be exposed if pasted into chat or handled outside environment configuration.
+
+Mitigation: Provide credentials only through environment files or variables, never through chat messages, logs, or generated reports.
+
+Risk: Unpinned or stale dependencies in trading scripts can increase operational and supply-chain risk.
+
+Mitigation: Review, update, or pin dependencies before use, and scan the installed artifact before enabling live-trading workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/donkeylmx/skills/polymarket-trade-assistant)
+- [ClawHub Homepage Metadata](https://clawhub.ai/skills/polymarket-trade-skills)
+- [Polymarket CLOB Trading API Reference](artifact/api-trade-polymarket/references/clob-trading-api.md)
+- [Environment Configuration Guide](artifact/api-trade-polymarket/references/env-setup.md)
+- [Risk Controls Reference](artifact/danger-auto-trade-polymarket/references/risk-controls.md)
+- [Market Pulse Analysis Framework](artifact/polymarket-market-pulse/references/analysis-framework.md)
+- [Portfolio Schema](artifact/polymarket-paper-trading/references/portfolio-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, JSON command results, code snippets, shell commands, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some workflows read and write local portfolio, recommendation, and report files; trading workflows can call Polymarket APIs when configured with credentials.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

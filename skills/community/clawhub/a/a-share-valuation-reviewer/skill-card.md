@@ -1,43 +1,54 @@
-## Description: <br>
-A股估值质量审阅专家，面向IPO定价、并购重组、股权激励、私募估值等场景审阅估值报告，识别假设偏差、方法论缺陷和监管合规风险，并输出结构化审阅意见书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股估值审阅助手 helps review A-share valuation reports for IPO pricing, mergers and acquisitions, equity incentives, private placements, and related scenarios by identifying assumption bias, methodology gaps, data traceability issues, and regulatory compliance risks.
 
-## Publisher: <br>
-[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yinfeihaaaaaaaaaaa](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
 
-## Use Case: <br>
-External finance, investment, and corporate transaction reviewers use this skill to assess A-share valuation reports for methodology quality, assumption support, data traceability, and regulatory risk. It is intended to produce structured review opinions, issue lists, valuation-range comments, and risk prompts for supported A-share valuation scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides finance and valuation review guidance that may be inaccurate if the transaction type, company, exchange, jurisdiction, or source report is outside its intended A-share/PRC valuation scope. <br>
-Mitigation: Confirm the transaction type, company, exchange, jurisdiction, and valuation scenario before relying on thresholds or compliance framing. <br>
-Risk: Valuation reports may contain confidential transaction, company, or investor information. <br>
-Mitigation: Use the skill only in an agent environment approved for confidential financial data. <br>
-Risk: The artifact contains fixed review thresholds and regulatory framing that may become stale or may not apply to every transaction. <br>
-Mitigation: Validate cited thresholds and regulatory requirements against current authoritative sources before using the output for business or compliance decisions. <br>
+## Use Case:
 
+External users, financial professionals, and analysts use this skill to review A-share valuation reports and produce structured review opinions for valuation reasonableness, data support, and regulatory risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/a-share-valuation-reviewer) <br>
-- [Publisher profile](https://clawhub.ai/user/yinfeihaaaaaaaaaaa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown structured review report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces issue lists, valuation-range comments, regulatory risk prompts, and recommendations; it does not execute code or move data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Confidential, privileged, insider-restricted, or material non-public financial information may be exposed if users paste sensitive deal materials into an assistant workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized documents, follow organizational policy, and redact sensitive details where practical before submitting valuation materials.
+
+Risk: Valuation and regulatory review output may be incomplete or misleading when source data, assumptions, or cited evidence are missing.
+
+Mitigation: Verify conclusions against original filings, financial data sources, and regulatory materials; treat missing information as insufficient data and obtain qualified human review before relying on the opinion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yinfeihaaaaaaaaaaa/skills/a-share-valuation-reviewer)
+- [ClawHub publisher profile](https://clawhub.ai/user/yinfeihaaaaaaaaaaa)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown structured review opinion with checklists, findings, valuation range guidance, and regulatory risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is designed to mark missing evidence as insufficient data rather than guessing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

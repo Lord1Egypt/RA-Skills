@@ -1,39 +1,55 @@
-## Description: <br>
-分析小红书内容市场，覆盖笔记格局、博主生态、品牌竞争。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Xiaohongshu content markets for content landscape, creator collaboration, brand competition, and market-opportunity questions.
 
-## Publisher: <br>
-[sxcvicky](https://clawhub.ai/user/sxcvicky) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sxcvicky](https://clawhub.ai/user/sxcvicky)
 
-## Use Case: <br>
-External users and marketers use this skill to analyze Xiaohongshu content strategy, creator collaboration options, competitor activity, and market opportunities from API-backed sample data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a Xiaohongshu data API and submits user queries with XHS_API_KEY credentials. <br>
-Mitigation: Confirm the API operator, base URL, and query retention practices before use; use a revocable, limited API key and avoid confidential campaign plans unless sharing with the provider is acceptable. <br>
+## Use Case:
 
+Marketing strategists, brand teams, and agency analysts use this skill to analyze Xiaohongshu content strategy, creator fit, competitor activity, and market demand from API-backed sample data.
 
-## Reference(s): <br>
-- [聚合接口完整参考](references/aggregate-api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/sxcvicky/xhs-data-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Markdown, Guidance] <br>
-**Output Format:** [Markdown analysis with data findings, recommendations, coverage notes, and data-gap disclosures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XHS_API_KEY and must disclose sample coverage and data gaps from API responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release metadata; artifact frontmatter says 3.0.0) <br>
+Risk: Marketing queries, keywords, brand names, creator names, and related planning context are sent to the analytics API provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a trusted XHS_API_KEY provider and avoid confidential campaign plans or regulated personal data unless approved by the organization.
+
+Risk: Analysis is based on sample coverage and may contain data gaps.
+
+Mitigation: Require outputs to cite _coverage.coverageNote and disclose non-empty _dataGaps before making recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sxcvicky/skills/xhs-data-api)
+- [Publisher profile](https://clawhub.ai/user/sxcvicky)
+- [Aggregate API reference](references/aggregate-api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese Markdown analysis with API-backed data findings, recommendations, coverage notes, and data-gap disclosures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XHS_API_KEY and uses API responses that include _coverage and _dataGaps fields.]
+
+## Skill Version(s):
+
+0.3.0 (source: release metadata; artifact frontmatter reports 3.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

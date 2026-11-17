@@ -1,37 +1,53 @@
-## Description: <br>
-文献综述结构诊断与迭代优化，帮助文科硕士研究生检查文献综述的结构性问题。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+文献综述结构诊断与迭代优化，帮助文科硕士研究生检查文献综述的结构性问题。
 
-## Publisher: <br>
-[huanghesd](https://clawhub.ai/user/huanghesd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huanghesd](https://clawhub.ai/user/huanghesd)
 
-## Use Case: <br>
-Graduate students and academic writers use this skill to diagnose structural issues in literature reviews. It checks citation practices, topic fit, organization, transitions, critical evaluation, and research-gap framing, then returns a prioritized modification checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huanghesd/zongshu-diedai) <br>
+External academic writers, especially humanities graduate students, use this skill to diagnose structural problems in literature reviews and receive a prioritized revision checklist without delegating the author's own scholarly judgments.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown diagnostic report with a prioritized checklist] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only academic writing feedback. Users should avoid submitting confidential or unpublished research unless they are comfortable sharing it with the model, and should manually verify bibliography existence and journal-quality claims against authoritative academic databases.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may activate on broad Chinese phrasing related to literature-review checking.
+
+Mitigation: Provide only the academic text and references that are intended for analysis.
+
+Risk: Citation-existence, source-quality, and quotation-accuracy judgments can be unreliable without authoritative database or source-text verification.
+
+Mitigation: Independently verify citation and source-quality findings against authoritative databases and original documents.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huanghesd/skills/zongshu-diedai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown diagnostic report with a prioritized checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for a topic statement, literature review text, optional reference list, and optional source excerpts before completing citation-risk checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

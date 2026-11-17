@@ -1,44 +1,60 @@
-## Description: <br>
-Call the Solvea Web App chat API to get AI customer-service replies for real customer-service questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects an OpenClaw customer-service agent to the Solvea Web App chat API to produce customer-support replies.
 
-## Publisher: <br>
-[Airoucat233](https://clawhub.ai/user/Airoucat233) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airoucat233](https://clawhub.ai/user/airoucat233)
 
-## Use Case: <br>
-Customer-service operators and OpenClaw agents use Solvea Chat to route messages from configured channels to the Solvea Web App chat API and return the platform's reply. It supports session reset handling and per-user conversation continuity for customer support workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flagged review-worthy handling of API credentials used to call Solvea. <br>
-Mitigation: Use a dedicated OpenClaw agent, avoid configuring secrets in shared or recorded terminals, and restrict permissions on the skill's .env file. <br>
-Risk: Customer messages and API activity may be written to local logs while the skill handles support conversations. <br>
-Mitigation: Review, disable, or redact solvea-chat.log before processing sensitive customer messages. <br>
-Risk: Setup and uninstall flows can change local OpenClaw configuration and may delete a workspace directory when confirmed. <br>
-Mitigation: Back up openclaw.json and workspace files before setup, and review uninstall prompts carefully before confirming deletion. <br>
+## Use Case:
 
+External customer-service teams and OpenClaw operators use this skill to route channel messages, such as Feishu or DingTalk chats, to Solvea and return the resulting support response.
 
-## Reference(s): <br>
-- [Solvea Chat API Spec](references/api-spec.md) <br>
-- [Solvea](https://solvea.cx) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Plain text replies on stdout, stderr error messages, and Markdown setup guidance with shell and JSON examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local session state for peer IDs and returns nonzero exit codes for network, authentication, or configuration failures.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.7 (source: server release metadata; artifact frontmatter reports 0.5.3) <br>
+Risk: The skill stores Solvea credentials and may expose them during setup or later review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the setup script before installation, restrict permissions on .env files, and rotate any Solvea token shown by previous installer runs.
+
+Risk: Customer chat content and session identifiers are logged or stored locally while replies depend on a remote Solvea service.
+
+Mitigation: Use a dedicated OpenClaw agent and workspace, avoid sensitive customer data unless logging is reduced or disabled, and review memory files during operations.
+
+Risk: Uninstall can remove an agent workspace if the operator approves the configured path.
+
+Mitigation: Inspect the configured workspace path before approving deletion during uninstall.
+
+## Reference(s):
+
+- [Solvea Chat API Spec](references/api-spec.md)
+- [Solvea Web App](https://solvea.cx)
+- [OpenClaw](https://openclaw.ai)
+- [ClawHub Skill Page](https://clawhub.ai/airoucat233/skills/solvea-chat)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text stdout for customer replies, with Markdown documentation and shell commands for setup and operation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses per-peer session state; errors are emitted to stderr with a non-zero exit code.]
+
+## Skill Version(s):
+
+0.5.7 (source: server release metadata; artifact frontmatter reports 0.5.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

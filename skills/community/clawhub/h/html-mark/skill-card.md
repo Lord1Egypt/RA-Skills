@@ -1,44 +1,61 @@
-## Description: <br>
-Drop coral-gradient pins on any HTML page, write feedback in an inline glass note popup, and copy annotations as Markdown, plain text, or JSON for design review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adds a self-contained click-to-annotate overlay to HTML pages so reviewers can place pinned notes and export feedback as Markdown, plain text, JSON, or an AI handoff with selectors and HTML snapshots.
 
-## Publisher: <br>
-[xuxinmaxen](https://clawhub.ai/user/xuxinmaxen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuxinmaxen](https://clawhub.ai/user/xuxinmaxen)
 
-## Use Case: <br>
-Developers, designers, and product reviewers use this skill to add an annotation overlay to HTML prototypes or authorized web pages, collect point-specific feedback, and export review notes for handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running page-injected JavaScript on arbitrary, competitor, or sensitive authenticated sites may expose the reviewer to unwanted page manipulation or data-handling risk. <br>
-Mitigation: Use the skill only on local prototypes, staging pages, or sites you own or are authorized to test; avoid banking, admin, healthcare, enterprise, customer-data, and other sensitive authenticated pages. <br>
-Risk: A hosted or CDN bookmarklet can execute mutable external JavaScript if it is loaded from an unpinned or unreviewed URL. <br>
-Mitigation: Prefer the self-contained local script or bookmarklet; if hosting is required, pin to a reviewed immutable version instead of a moving branch or generic hosted URL. <br>
+## Use Case:
 
+Developers, designers, and product reviewers use this skill to add annotation overlays to HTML prototypes or pages they are authorized to review, then collect pinned feedback for review tools or coding agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuxinmaxen/html-mark) <br>
-- [README](README.md) <br>
-- [Basic HTML injection example](examples/basic.md) <br>
-- [Advanced bookmarklet example](examples/advanced.md) <br>
-- [Manual smoke test](tests/test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline HTML, JavaScript, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a self-contained script injection pattern, external script tag, or bookmarklet instructions depending on the target workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The runtime can be injected into arbitrary live sites and may capture page content in notes, selectors, or HTML snapshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it mainly on local prototypes or pages you own or are authorized to review; avoid authenticated, production, financial, healthcare, admin, or third-party pages.
+
+Risk: Clipboard exports can include captured page content and reviewer notes.
+
+Mitigation: Review and redact Markdown, JSON, and For AI exports before pasting them into AI tools or shared systems.
+
+Risk: Hosted bookmarklet variants depend on externally loaded script URLs and may be blocked by strict Content Security Policy.
+
+Mitigation: Prefer local or self-contained injection for prototypes; use hosted assets only when the hosting location and page policy are acceptable.
+
+## Reference(s):
+
+- [Html Mark on ClawHub](https://clawhub.ai/xuxinmaxen/skills/html-mark)
+- [HTML Mark README](README.md)
+- [Basic injection example](examples/basic.md)
+- [Advanced bookmarklet example](examples/advanced.md)
+- [Live demo](https://xuxinmaxen.github.io/html-mark/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell, HTML, JavaScript, JSON, and plain text export examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a self-contained html-mark runtime injection workflow or bookmarklet guidance; annotation exports may include page selectors and HTML snapshots.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

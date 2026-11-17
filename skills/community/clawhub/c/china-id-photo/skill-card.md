@@ -1,43 +1,59 @@
-## Description: <br>
-Generates China-standard ID, passport, visa, and other document photos with selected sizes and white, blue, or red backgrounds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese standard ID photos from user-provided portraits with standard sizes, white, blue, or red backgrounds, JPEG or PNG output, and OpenCV-based face detection.
 
-## Publisher: <br>
-[ToBeWin](https://clawhub.ai/user/ToBeWin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobewin](https://clawhub.ai/user/tobewin)
 
-## Use Case: <br>
-External users and developers use this skill to turn a local personal photo into a standards-sized China ID, passport, visa, or similar document photo with the requested size, background color, and output format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency installation and first-run model setup may contact external package or model sources. <br>
-Mitigation: Review the pip install command before use and install the skill in a virtual environment where possible. <br>
-Risk: The skill processes personal photos. <br>
-Mitigation: Only provide photos intended for local processing and keep generated output directories access-controlled. <br>
-Risk: Generated photos may not satisfy every destination authority's current submission rules. <br>
-Mitigation: Verify size, background, pose, and file-format requirements against the target application before submitting the result. <br>
+## Use Case:
 
+External users and developers use this skill to convert local portrait images into Chinese ID, passport, visa, and other standard document-photo formats with selected dimensions and background colors.
 
-## Reference(s): <br>
-- [China ID Photo ClawHub release](https://clawhub.ai/ToBeWin/china-id-photo) <br>
-- [China ID photo standard size reference](references/sizes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Files, Configuration] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks; generated image files are JPEG or PNG.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and installs rembg, Pillow, and opencv-python-headless when dependencies are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release evidence; artifact frontmatter says 1.2.0) <br>
+Risk: The workflow may install Python image-processing dependencies and download the rembg model at first run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted environment, consider a virtual environment, and review or pin dependencies before running the skill.
+
+Risk: The skill processes sensitive portrait or identity-photo inputs.
+
+Mitigation: Process private images only in a trusted local workspace and avoid sharing generated output directories unintentionally.
+
+Risk: Automatic face detection and background removal can produce document photos that fail official requirements.
+
+Mitigation: Review the generated photo dimensions, crop, background, and face placement before submitting it for official use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tobewin/skills/china-id-photo)
+- [Publisher Profile](https://clawhub.ai/user/tobewin)
+- [Chinese ID Photo Size Reference](artifact/references/sizes.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, files]
+
+**Output Format:** [Markdown guidance with inline bash and Python code blocks; generated image files are JPEG or PNG.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated files are written to a local id_photo timestamped output directory.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter says 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

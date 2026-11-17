@@ -1,39 +1,54 @@
-## Description: <br>
-Provides a Chinese-language engineering workflow for AI-assisted software development using five quality gates for design, planning, testing, implementation, and review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI-assisted software projects through a five-gate engineering workflow covering design, planning, test-first implementation, incremental delivery, review, CI/CD, and technical debt management.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to structure AI-assisted software projects with quality gates, TDD expectations, review checklists, technical-debt tracking, and CI/CD guidance. It is most useful when a coding task needs process discipline rather than direct code completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad coding-process requests and provide general Chinese-language workflow guidance that is not specific to the user's project. <br>
-Mitigation: Apply project-specific judgment and keep human review for design, tests, implementation, security, and release decisions. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to structure AI-assisted coding work into enforceable quality gates, with concrete outputs for design, implementation planning, test coverage, code review, CI/CD, and technical debt tracking.
 
-## Reference(s): <br>
-- [AI编程工程化 on ClawHub](https://clawhub.ai/qqyougitcom/mimo-ai-engineering-workflow) <br>
-- [Detailed workflow reference](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with templates, checklists, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language output] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill has broad activation terms around AI engineering workflows, which may cause it to influence tasks where a user only wants narrow coding help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Installers who want narrower behavior should restrict trigger terms or invoke the skill explicitly.
+
+Risk: The CI/CD example includes an audit-ci command that could be copied into a repository without dependency pinning or project-specific validation.
+
+Mitigation: Pin or lock audit-ci and test the security-scan step against controlled project dependencies before adopting the example.
+
+## Reference(s):
+
+- [AI编程工程化 detailed reference](references/details.md)
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/mimo-ai-engineering-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese Markdown guidance with checklists, tables, and inline code or configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are workflow artifacts such as design documents, execution plans, test plans, review reports, progress updates, TODO lists, and CI/CD examples.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

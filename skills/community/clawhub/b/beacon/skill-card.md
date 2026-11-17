@@ -1,45 +1,62 @@
-## Description: <br>
-Bs3 packages Beacon, an agent-to-agent protocol for social coordination, signed messaging, public discovery, P2P mesh transport, and crypto payment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bs3 helps agents send signed Beacon pings, comments, votes, adverts, payments, and presence messages across social, webhook, UDP, Discord, and RustChain transports.
 
-## Publisher: <br>
-[scottcjn](https://clawhub.ai/user/scottcjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottcjn](https://clawhub.ai/user/scottcjn)
 
-## Use Case: <br>
-Developers and agent operators use Bs3 to coordinate agents across Beacon transports, exchange signed messages, register public identities, and run payment-enabled social or marketplace workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can combine social-account mutation, wallet use, identity management, public discovery, and payment actions. <br>
-Mitigation: Run it in a dedicated environment, use least-privileged credentials, prefer dry-run modes first, and avoid storing funded private keys in config. <br>
-Risk: UDP, webhook, relay, and Atlas features can expose agent identity, messages, or availability beyond a local test. <br>
-Mitigation: Disable Atlas auto-ping and network listeners unless needed, use trusted networks, keep TLS verification enabled, and review retained data under ~/.beacon. <br>
-Risk: Security evidence flags weak defaults and overclaims that need review before production use. <br>
-Mitigation: Require a security review of configuration, credentials, payment paths, public registration behavior, and retained local state before deployment. <br>
+## Use Case:
 
+Developers and agent operators use Bs3 to let agents discover peers, exchange signed social messages, publish presence, operate relays or webhooks, and send RustChain or x402 payments across supported transports.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/scottcjn/beacon) <br>
-- [Beacon security guide](docs/SECURITY.md) <br>
-- [Beacon mechanism test](docs/BEACON_MECHANISM_TEST.md) <br>
-- [Beacon dashboard documentation](docs/DASHBOARD.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and command-oriented guidance for configuring and operating Beacon workflows] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce CLI commands, JSON configuration examples, protocol envelopes, and integration guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.16.1 (source: server release metadata, pyproject.toml, CHANGELOG) <br>
+Risk: The skill can post to external services, expose UDP or webhook listeners, publish public presence, and store local identity state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable only the transports needed for the deployment, avoid UDP/webhook/scorecard exposure on untrusted networks, and review configuration before connecting public agents.
+
+Risk: Security evidence flags mismatches between important claims about encrypted keys and TLS defaults and the reviewed code.
+
+Mitigation: Create password-protected identities, verify RustChain TLS settings before wallet or payment actions, and review key storage behavior before using real funds or production identities.
+
+Risk: Mayday and Moltbook migration flows can reveal relationship, journal, goal, or host-fingerprint metadata.
+
+Mitigation: Run migration and recovery workflows only with data the operator is prepared to disclose, and inspect exported payloads before sharing them with other services.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottcjn/skills/beacon)
+- [README](README.md)
+- [Security guide](docs/SECURITY.md)
+- [Beacon mechanism test](docs/BEACON_MECHANISM_TEST.md)
+- [Agent card specification](docs/AGENT_CARD.md)
+- [Discord transport guide](docs/DISCORD_TRANSPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, and Python or CLI snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Beacon identity, inbox, and configuration files when commands are run.]
+
+## Skill Version(s):
+
+2.16.1 (source: server release evidence, pyproject.toml, changelog; released 2026-06-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

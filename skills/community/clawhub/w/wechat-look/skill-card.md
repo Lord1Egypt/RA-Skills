@@ -1,44 +1,59 @@
-## Description: <br>
-Reads WeChat public-account articles, normalizes article URLs, extracts page text, and uses OCR to recognize Chinese and English text in article images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+读取微信公众号文章的专用工具，支持OCR文字识别。自动规范化URL并提取文章内容，识别图片中的中英文文字。
 
-## Publisher: <br>
-[2720480371](https://clawhub.ai/user/2720480371) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2720480371](https://clawhub.ai/user/2720480371)
 
-## Use Case: <br>
-External users and developers use this skill to fetch WeChat article content and return extracted text plus OCR text from article images for downstream reading, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports captcha-bypass wording in the skill documentation. <br>
-Mitigation: Remove bypass-oriented wording and document only normal URL handling and permitted access patterns. <br>
-Risk: The security review reports that the skill can fetch unvalidated remote URLs and download referenced images. <br>
-Mitigation: Restrict downloads to expected public WeChat and CDN image hosts, and enforce image count, size, and timeout limits. <br>
-Risk: The skill fetches WeChat pages, downloads article images, and runs local Node OCR scripts. <br>
-Mitigation: Review before installing, keep dependencies current, and run the skill in an environment where external network access and local process execution are acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to read WeChat public-account articles, normalize WeChat article URLs, extract article text, and run OCR over article images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2720480371/wechat-look) <br>
-- [Node.js](https://nodejs.org/) <br>
-- [Python](https://python.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON] <br>
-**Output Format:** [Structured JSON-like article extraction with title, author, text content, image count, OCR text, normalized URL, and status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OCR confidence, processing time, and per-image recognized text when the Node OCR path is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill can make outbound requests beyond its intended WeChat article-reading purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an environment where outbound requests are contained, and review URL handling before processing untrusted or attacker-provided URLs.
+
+Risk: Image fetching and OCR can be abused to consume network, CPU, memory, or runtime resources.
+
+Mitigation: Limit image count, download size, redirects, and OCR runtime before deployment.
+
+Risk: Untrusted URLs or redirects could reach private or internal addresses.
+
+Mitigation: Enforce HTTPS mp.weixin.qq.com article URLs, validate image CDN destinations, and block private or internal network addresses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/2720480371/skills/wechat-look)
+- [Node.js](https://nodejs.org/)
+- [Python](https://python.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Structured JSON with extracted article fields and OCR text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns title, author, text content, image count, OCR text, normalized URL, and status when article extraction succeeds.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

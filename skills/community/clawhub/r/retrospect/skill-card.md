@@ -1,40 +1,58 @@
-## Description: <br>
-Session retrospective that analyzes conversation history to produce structured feedback for both user and LLM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Session retrospective that analyzes conversation history to produce structured feedback for both user and LLM.
 
-## Publisher: <br>
-[zbc0315](https://clawhub.ai/user/zbc0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zbc0315](https://clawhub.ai/user/zbc0315)
 
-## Use Case: <br>
-Developers and agent users use this skill to review project conversation history, identify user prompting patterns, and critique LLM performance after one or more sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read broad local AI assistant session logs and include sensitive conversation content in generated feedback files. <br>
-Mitigation: Before running it, confirm which session files will be included, restrict analysis to the intended project or session, and redact secrets or private data. <br>
-Risk: The skill writes retrospective files in the project root that may persist sensitive feedback longer than intended. <br>
-Mitigation: Review access to FEEDBACK_TO_HUMAN.md and FEEDBACK_TO_LLM.md and delete the temporary transcript and feedback files when they are no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to review current or past assistant sessions, identify prompting patterns, and produce balanced critique for both the user and the LLM.
 
-## Reference(s): <br>
-- [Retrospect on ClawHub](https://clawhub.ai/zbc0315/retrospect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance, Shell commands] <br>
-**Output Format:** [Markdown feedback files with structured retrospective analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js; creates a temporary transcript and writes FEEDBACK_TO_HUMAN.md and FEEDBACK_TO_LLM.md in the project root.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The skill can read local assistant session logs that may contain private prompts, tool outputs, or code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit session file or project-verified sessions before running the parser, and review generated retrospective files before sharing or committing them.
+
+Risk: Automatic session discovery can collect broader Codex or OpenCode history than the current project.
+
+Mitigation: Avoid broad auto-discovery when privacy boundaries matter; restrict inputs to known project sessions.
+
+Risk: Transcript-derived Markdown files remain in the project after execution and may preserve sensitive details.
+
+Mitigation: Redact, remove, or ignore FEEDBACK_TO_HUMAN.md, FEEDBACK_TO_LLM.md, and temporary transcript files when they contain sensitive content.
+
+## Reference(s):
+
+- [Retrospect ClawHub skill page](https://clawhub.ai/zbc0315/skills/retrospect)
+- [zbc0315 ClawHub publisher profile](https://clawhub.ai/user/zbc0315)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown files and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces FEEDBACK_TO_HUMAN.md and FEEDBACK_TO_LLM.md in the project root; requires node to parse local session transcripts.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

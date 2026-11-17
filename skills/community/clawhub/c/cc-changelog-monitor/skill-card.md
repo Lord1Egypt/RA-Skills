@@ -1,44 +1,57 @@
-## Description: <br>
-Monitors Claude Code releases and sends Telegram alerts when new versions ship, using bash monitoring without AI credits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Claude Code releases and send Telegram alerts when new versions ship using Bash, curl, jq, npm, and OpenClaw scheduling.
 
-## Publisher: <br>
-[assistant-design](https://clawhub.ai/user/assistant-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[assistant-design](https://clawhub.ai/user/assistant-design)
 
-## Use Case: <br>
-Developers and operators who rely on Claude Code use this skill to check npm for new Claude Code releases and send Telegram alerts with version and change-summary details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The monitor can send Telegram messages to a built-in bot/chat destination before the user configures their own credentials. <br>
-Mitigation: Remove hardcoded Telegram defaults, require TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID from the user, and confirm the destination before enabling alerts. <br>
-Risk: The setup script runs the monitor during setup, which can trigger network calls and alerts before review. <br>
-Mitigation: Review the scripts first, avoid running setup until credentials and destinations are confirmed, and enable the cron job only after a successful manual test. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor the @anthropic-ai/claude-code npm package and receive Telegram alerts when a new release appears. It can run manually or as an OpenClaw or macOS cron job.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/assistant-design/cc-changelog-monitor) <br>
-- [npm package: @anthropic-ai/claude-code](https://www.npmjs.com/package/@anthropic-ai/claude-code) <br>
-- [npm registry latest metadata](https://registry.npmjs.org/@anthropic-ai/claude-code/latest) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Telegram BotFather](https://t.me/BotFather) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and shell-script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime monitoring writes local version/configuration files and can send Telegram API messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The release includes a built-in Telegram bot token and fixed chat destination that can be used automatically when user-provided Telegram settings are absent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user-provided Telegram credentials, confirm the destination before test or first run, and protect the credential file permissions.
+
+Risk: The monitor can download and extract npm tarballs for future diffs.
+
+Mitigation: Validate tarballs before extraction or disable package extraction when it is not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/assistant-design/skills/cc-changelog-monitor)
+- [Claude Code npm package](https://www.npmjs.com/package/@anthropic-ai/claude-code)
+- [Claude Code npm latest metadata](https://registry.npmjs.org/@anthropic-ai/claude-code/latest)
+- [OpenClaw](https://openclaw.ai)
+- [Telegram BotFather](https://t.me/BotFather)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and Telegram notification content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime scripts write local version and credential files and may create extracted package directories for diffs.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

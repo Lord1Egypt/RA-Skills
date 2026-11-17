@@ -1,44 +1,65 @@
-## Description: <br>
-Review automotive Embedded C code against MISRA C:2012 rules, flag violations with rule numbers and ASIL classification, and provide MISRA-compliant replacement code for non-compliant lines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review automotive Embedded C code against MISRA C:2012 rules, flag violations with rule numbers and ASIL classification, and provide MISRA-compliant replacement code for non-compliant lines.
 
-## Publisher: <br>
-[budhadityarano](https://clawhub.ai/user/budhadityarano) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[budhadityarano](https://clawhub.ai/user/budhadityarano)
 
-## Use Case: <br>
-Developers and engineers use this skill to review automotive embedded C snippets for MISRA C:2012 issues, ISO 26262 ASIL relevance, and candidate compliant replacements. It is intended as review assistance for code authors and reviewers, not as a substitute for certified MISRA tooling or qualified safety review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ASIL classifications and replacement code can be incomplete or incorrect for safety-critical automotive software. <br>
-Mitigation: Treat outputs as draft review guidance and verify them with certified MISRA tooling and qualified safety reviewers before use in safety-critical development. <br>
-Risk: Broad automotive and safety trigger terms may activate the skill outside a deliberate MISRA review workflow. <br>
-Mitigation: Use explicit review prompts and confirm that the output is relevant before applying any suggested code changes. <br>
+## Use Case:
 
+Developers and embedded software engineers use this skill to review automotive C snippets for MISRA C:2012 issues, ASIL relevance, and replacement code patterns before formal safety and static-analysis review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/budhadityarano/misra-automotive-c) <br>
-- [README](artifact/README.md) <br>
-- [MISRA mandatory rules reference](artifact/misra-mandatory.md) <br>
-- [MISRA required rules reference](artifact/misra-required.md) <br>
-- [ISO 26262 ASIL mapping](artifact/iso26262-mapping.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown violation reports with tables and C code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes rule numbers, categories, ASIL classifications, severity, explanations, compliant replacement code, and summary counts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may be mistaken for a certified MISRA checker or a source of production-ready safety code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as AI-assisted review only, then verify findings and replacements with qualified static analysis, platform documentation, and human safety review.
+
+Risk: Broad trigger phrases can activate safety-critical guidance in contexts where the user did not request a formal review.
+
+Mitigation: Review activation phrases before deployment and narrow them for production workspaces that handle automotive or embedded C.
+
+Risk: Generated C replacements may omit project-specific constraints such as compiler behavior, target hardware, timing, or deviation approvals.
+
+Mitigation: Treat replacements as draft patterns and require project-specific engineering review, testing, and documented MISRA deviations where needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/budhadityarano/skills/misra-automotive-c)
+- [Skill README](artifact/README.md)
+- [MISRA mandatory rules reference](artifact/misra-mandatory.md)
+- [MISRA required rules reference](artifact/misra-required.md)
+- [ISO 26262 ASIL mapping](artifact/iso26262-mapping.md)
+- [Memory and embedded-specific rules](artifact/memory-embedded.md)
+- [Control flow reference](artifact/control-flow.md)
+- [Preprocessor directives reference](artifact/preprocessor.md)
+- [Types and casting reference](artifact/types-and-casting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown reports with C code snippets and summary tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs rule numbers, violation categories, ASIL classifications, severity, locations, explanations, replacement code, and compliance summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

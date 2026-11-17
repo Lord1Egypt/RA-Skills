@@ -1,44 +1,55 @@
-## Description: <br>
-Agent-to-Agent payments on TRON. Use when an agent needs to pay another agent, escrow funds, check credit scores, or verify on-chain identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-to-Agent payments on TRON. Use when an agent needs to pay another agent, escrow funds, check credit scores, or verify on-chain identity.
 
-## Publisher: <br>
-[ypeng1620-beep](https://clawhub.ai/user/ypeng1620-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ypeng1620-beep](https://clawhub.ai/user/ypeng1620-beep)
 
-## Use Case: <br>
-Developers and agents use this skill to make TRON-based agent-to-agent payments, manage escrow, check counterparty credit, calculate protocol fees, and verify on-chain identity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move funds using a TRON private key. <br>
-Mitigation: Install only with a dedicated low-balance wallet, prefer testnet first, and require explicit human confirmation before payment, escrow release, or refund. <br>
-Risk: Incorrect network, recipient, token, amount, or transaction details can result in unintended transfers. <br>
-Mitigation: Verify the network, recipient, token, amount, and transaction details before signing. <br>
-Risk: Leaked wallet credentials can enable unauthorized fund movement. <br>
-Mitigation: Never commit, log, or share A2A_PRIVATE_KEY. <br>
+## Use Case:
 
+Developers and agents use EM-A2A to coordinate TRON-based agent payments, escrow flows, credit checks, fee previews, and on-chain identity verification between counterparties.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ypeng1620-beep/em-a2a) <br>
-- [npm Package: @poisonpyf/a2a-mcp](https://www.npmjs.com/package/@poisonpyf/a2a-mcp) <br>
-- [TRON Shasta Faucet](https://www.trongrid.io/shasta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands] <br>
-**Output Format:** [Markdown with JSON configuration and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires A2A_NETWORK and A2A_PRIVATE_KEY environment variables for the MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill configures a third-party MCP package that receives a wallet private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the MCP package version before installation, use testnet first, and keep mainnet keys separate from test or evaluation environments.
+
+Risk: Payment, escrow release, and refund actions can move funds.
+
+Mitigation: Require explicit human approval before any payment, escrow release, or refund action and avoid using high-value or primary wallets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ypeng1620-beep/skills/em-a2a)
+- [npm package: @poisonpyf/a2a-mcp](https://www.npmjs.com/package/@poisonpyf/a2a-mcp)
+- [TRON Shasta Faucet](https://www.trongrid.io/shasta)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, configuration, shell commands, code]
+
+**Output Format:** [Markdown with JSON configuration and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires A2A_NETWORK and A2A_PRIVATE_KEY environment variables for MCP tool configuration.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

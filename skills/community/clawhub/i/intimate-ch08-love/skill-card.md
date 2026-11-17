@@ -1,49 +1,62 @@
-## Description: <br>
-Chinese-language study helper for Chapter 8, Love, of Rowland S. Miller's Intimate Relationships, using progressive disclosure to explain love types, theories, terms, research evidence, examples, and common misconceptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language study helper for learning Chapter 8, "Love," of Rowland S. Miller's Intimate Relationships, 6th edition, using progressive disclosure to explain love concepts, theories, research evidence, examples, and misconceptions.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students and external learners use this skill to review and ask Chinese-language questions about Miller's Intimate Relationships Chapter 8 concepts, including romantic love, companionate love, compassionate love, Sternberg's triangular theory, love styles, and textbook research examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat textbook-derived relationship explanations as therapy, diagnosis, or guaranteed relationship advice. <br>
-Mitigation: Frame responses as educational support, avoid clinical or diagnostic claims, and clarify that the skill covers only the textbook chapter. <br>
-Risk: Bundled reference notes may not reflect live research updates or material outside Chapter 8. <br>
-Mitigation: State when requested details are outside the chapter materials and avoid inferring unsupported evidence or provenance. <br>
+## Use Case:
 
+Students, instructors, and other learners use this skill to review the Love chapter of Miller's Intimate Relationships in Chinese. It helps answer study questions, distinguish related love concepts, surface textbook examples and research evidence, and keep discussion scoped to the chapter.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/junwugit/intimate-ch08-love) <br>
-- [Key Terms](references/key-terms.md) <br>
-- [Theories And Models](references/theories.md) <br>
-- [Love Types](references/love-types.md) <br>
-- [Romantic Love](references/romantic-love.md) <br>
-- [Companionate And Compassionate Love](references/companionate-compassionate-love.md) <br>
-- [Differences And Durability](references/differences-and-durability.md) <br>
-- [Research](references/research.md) <br>
-- [Examples](references/examples.md) <br>
-- [Common Misconceptions](references/common-misconceptions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language conversational Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses progressive disclosure and bundled textbook-derived reference notes; no code execution or sensitive access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may treat textbook-framed relationship explanations as personal diagnosis, therapy, or guaranteed relationship advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses educational, distinguish textbook concepts from clinical judgment, and avoid diagnosis or guaranteed predictions.
+
+Risk: Users who need another language or do not want relationship questions mapped into textbook concepts may receive mismatched guidance.
+
+Mitigation: Clarify language preference and scope when needed, and state when a request falls outside the chapter-focused study aid.
+
+## Reference(s):
+
+- [Common Misconceptions](references/common-misconceptions.md)
+- [Companionate And Compassionate Love](references/companionate-compassionate-love.md)
+- [Differences And Durability](references/differences-and-durability.md)
+- [Examples](references/examples.md)
+- [Key Terms](references/key-terms.md)
+- [Love Types](references/love-types.md)
+- [Research](references/research.md)
+- [Romantic Love](references/romantic-love.md)
+- [Theories And Models](references/theories.md)
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/intimate-ch08-love)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Progressive-disclosure study guidance; no code execution, credential requests, persistence, or broad local access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

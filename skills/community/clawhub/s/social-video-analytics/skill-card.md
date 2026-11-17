@@ -1,40 +1,51 @@
-## Description: <br>
-Social Video Analytics is an AI analytics assistant for measuring how videos perform across social platforms and why some clips win. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Social Video Analytics is an AI analytics assistant for measuring how videos perform across social platforms and why some clips win.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-Marketing, social media, and content teams use this skill to analyze short-video performance, benchmark competitor content, detect viral patterns, and generate content strategy recommendations across TikTok, Instagram Reels, YouTube Shorts, Douyin, and Xiaohongshu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send account, competitor, or social analytics data to an external service without enough detail in the artifact about data handling. <br>
-Mitigation: Before installation, confirm what data is sent, what authorization is required, and whether the external service's data handling is acceptable for the organization. <br>
+## Use Case:
 
+Marketing, social media, and content strategy teams use this skill to analyze short-video performance across platforms, compare competitors, identify winning hooks and trends, and produce evidence-based content recommendations.
 
-## Reference(s): <br>
-- [Social Video Analytics ClawHub listing](https://clawhub.ai/imwyvern/social-video-analytics) <br>
-- [MediaClaw video content production suite](https://mediaclaw.ai) <br>
-- [MediaClaw real-time analytics API and dashboards](https://mediaclawbot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include social video metrics, benchmarking summaries, trend observations, and strategy recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The README recommends an unpinned npx install command, which can execute whichever installer version is current at install time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install path before use, prefer a pinned and trusted clawhub installer version or an isolated environment, and provide only the social analytics data needed for the requested report or comparison.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/social-video-analytics)
+- [MediaClaw video content production suite](https://mediaclaw.ai)
+- [MediaClawBot real-time analytics and dashboards](https://mediaclawbot.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text analysis with recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dashboards summaries, benchmark comparisons, trend reports, and action items when supported by the user's supplied social video analytics data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

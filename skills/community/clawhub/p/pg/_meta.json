@@ -1,6 +1,23 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "pg",
-  "version": "1.0.0",
-  "publishedAt": 1770689196480
+  "displayName": "PostgreSQL",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1784974783824
+  },
+  "history": [
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784846197539
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1784815525811
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770689196480
+    }
+  ]
 }

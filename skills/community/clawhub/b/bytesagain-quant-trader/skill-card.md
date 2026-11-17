@@ -1,40 +1,54 @@
-## Description: <br>
-Build and analyze quantitative trading strategies. Input: asset, timeframe, parameters. Output: strategy logic, backtest signals, risk metrics, position sizing recommendations. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Build and analyze quantitative trading strategies. Input: asset, timeframe, parameters. Output: strategy logic, backtest signals, risk metrics, position sizing recommendations.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers, analysts, and trading researchers use this skill to draft trading strategy logic, estimate backtest-style metrics, analyze signals, calculate position sizing, and outline portfolio or screener criteria for crypto and equity markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill generates trading signals, strategy ideas, and position sizing suggestions that could be mistaken for financial advice. <br>
-Mitigation: Treat outputs as educational analysis only, verify all market data independently, and consult qualified financial advice before making trading decisions. <br>
-Risk: The skill runs a local shell script. <br>
-Mitigation: Review the script before installation or execution and run it only in environments where local script execution is acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to generate educational quantitative trading strategy logic, signal analysis, backtest-style metrics, position sizing, portfolio allocation checks, and screening criteria for crypto and equity markets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-quant-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style command output with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces educational trading-analysis guidance, strategy logic, signal summaries, risk metrics, and position sizing suggestions; it does not execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Trading outputs may be incorrect, incomplete, stale, or unsuitable for a user's financial situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational research aids, verify market data independently, and do not rely on the skill as financial advice.
+
+Risk: The artifact runs a local Bash helper that invokes Python and prints calculated analysis.
+
+Mitigation: Review the script before installation or execution and run it only in an environment where local shell helpers are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/loutai0307-prog/skills/bytesagain-quant-trader)
+- [BytesAgain feedback](https://bytesagain.com/feedback/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Terminal text reports and Markdown command examples with trading logic, metrics, and recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational trading analysis only; users must verify market data and trading decisions independently.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

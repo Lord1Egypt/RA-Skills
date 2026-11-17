@@ -1,44 +1,55 @@
-## Description: <br>
-Analyzes litter-box video or URL inputs to track cat entry and exit events, summarize usage frequency and visit duration against historical baselines, and return behavior-based urinary health alerts without providing a diagnosis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes litter-box video to track cats’ visits, compare visit frequency and duration with historical baselines, and flag behavior changes for veterinary follow-up; it does not diagnose illness.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-External users in multi-cat homes, catteries, veterinary inpatient wards, and boarding centers use this skill to submit litter-box video for structured frequency and duration monitoring. Results support behavior monitoring and early warning workflows but do not replace veterinary diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends litter-box videos, files, or URLs to the provider cloud service for analysis. <br>
-Mitigation: Use only footage you are authorized to process and review the provider's retention, deletion, and account controls before installation. <br>
-Risk: The security summary reports local account state creation or reuse with stored tokens. <br>
-Mitigation: Run the skill in an isolated workspace, review local account state handling, and remove stored credentials when the skill is no longer needed. <br>
-Risk: The skill returns behavior-based urinary health alerts rather than medical diagnoses. <br>
-Mitigation: Treat alerts as monitoring signals and route concerning results to a veterinarian for clinical interpretation. <br>
+## Use Case:
 
+Cat owners and care teams can use litter-area video to summarize each cat’s visit frequency and duration, compare behavior with historical patterns, and identify changes to discuss with a veterinarian. The results are behavioral alerts, not a medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-litter-box-usage-monitor-analysis) <br>
-- [Pet Litter Box Usage API Documentation](artifact/references/api_doc.md) <br>
-- [Shared Analysis API Documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, files] <br>
-**Output Format:** [Structured analysis report as Markdown or JSON, with optional saved output file and report link.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [History queries return structured report lists from the provider cloud service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.3) <br>
+Risk: ClawScan marked the release suspicious, citing account and credential handling, remote account creation, and video uploads that are not clearly disclosed or aligned with the advertised analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review identity and credential handling, possible secret transmission, and what video data is processed externally before installing.
+
+Risk: The scan was partial because a referenced path was missing, so the available evidence does not establish that all behavior was covered.
+
+Mitigation: Review the missing path and complete a scan of the full release before relying on the security assessment.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-litter-box-usage-monitor-analysis)
+- [API reference](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Structured analysis report with visit statistics, behavior alerts, suggestions, and report links; historical report lists are presented as Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Behavioral indicators only; not a veterinary diagnosis.]
+
+## Skill Version(s):
+
+1.0.15 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,23 @@
+{
+  "watchlist": [
+    {
+      "category": [
+        "Home & Kitchen",
+        "Kitchen & Dining",
+        "Coffee, Tea & Espresso"
+      ],
+      "marketplace": "US",
+      "addedAt": "2026-07-27T02:08:06.366803+00:00",
+      "scanDepth": "full",
+      "pageSize": 20
+    }
+  ],
+  "alertThresholds": {
+    "demandSurgePct": 20,
+    "redOceanTopBrandRate": 0.7,
+    "newSkuRatePts": 5,
+    "brandLooseningPts": 3,
+    "priceShiftPct": 10,
+    "aPlusShiftPts": 5
+  }
+}

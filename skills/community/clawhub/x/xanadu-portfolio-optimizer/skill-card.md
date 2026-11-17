@@ -1,38 +1,55 @@
-## Description: <br>
-Optimizes investment portfolios with allocation analysis, rebalancing, risk reporting, and tax-loss harvesting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize investment portfolios through rebalancing, risk analysis, and tax-loss harvesting.
 
-## Publisher: <br>
-[saintlittlefish](https://clawhub.ai/user/saintlittlefish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[saintlittlefish](https://clawhub.ai/user/saintlittlefish)
 
-## Use Case: <br>
-External users and agents use this skill to analyze portfolio holdings, calculate rebalancing actions, identify tax-loss harvesting opportunities, and produce risk reports for investment review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Charge-capable billing code and a hardcoded SkillPay API key are present. <br>
-Mitigation: Review the billing code before installation, require explicit user approval for any charge request, and remove and rotate the embedded billing key. <br>
-Risk: Market data lookups may share portfolio symbols or related data with a third-party provider. <br>
-Mitigation: Disclose Yahoo Finance data access clearly and avoid sending sensitive holdings data unless that data sharing is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+External users and developers use this skill to analyze portfolio allocation, calculate rebalancing actions, identify tax-loss harvesting opportunities, and review risk metrics before making investment decisions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Bundled billing code includes a hardcoded SkillPay API key and can send user IDs and charge amounts to an external billing service.
+
+Mitigation: Rotate or remove the exposed credential, require explicit billing consent, and document billing data flow before installation.
+
+Risk: The security evidence flags stale Social Media Manager billing metadata and a broken --file interface.
+
+Mitigation: Remove or correct unrelated billing metadata and verify the documented file-based tax-loss harvesting path before release.
+
+Risk: Portfolio outputs may depend on live market data and simplified tax or risk assumptions.
+
+Mitigation: Treat generated analysis as decision support only and verify market data, tax rules, and proposed trades with qualified review before action.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Command-line text reports and human-readable recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use yfinance for market data lookups; review security guidance before using billing features.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text reports and Markdown-oriented guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use live market-data lookups; portfolio, tax, and trade recommendations require independent review before action.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

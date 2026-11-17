@@ -1,11 +1,11 @@
 ---
 name: oo-woocommerce
-description: "WooCommerce (woocommerce.com). Use this skill for ANY WooCommerce request — reading, creating, and updating data. Whenever a task involves WooCommerce, use this skill instead of calling the API directly."
+description: "WooCommerce (woocommerce.com). Use this skill for ANY WooCommerce request — reading, creating, updating, and deleting data. Whenever a task involves WooCommerce, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "WooCommerce"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["woocommerce"]
   icon: "https://static.oomol.com/logo/third-party/woocommerce.svg"
 ---
@@ -44,12 +44,12 @@ Each action is listed below with a one-line description; actions that change sta
 - `create_product_variation` — Create a variation for one WooCommerce variable product. [write]
 - `get_coupon` — Fetch one WooCommerce coupon by coupon ID.
 - `get_customer` — Fetch one WooCommerce customer by customer ID.
-- `get_order` — Fetch one WooCommerce order by order ID. [write]
+- `get_order` — Fetch one WooCommerce order by order ID.
 - `get_product` — Fetch one WooCommerce product by product ID.
 - `get_product_variation` — Fetch one WooCommerce product variation by product and variation ID.
 - `list_coupons` — List WooCommerce coupons with common code search and pagination metadata.
 - `list_customers` — List WooCommerce customers with common filters and pagination metadata.
-- `list_order_notes` — List notes for one WooCommerce order. [write]
+- `list_order_notes` — List notes for one WooCommerce order.
 - `list_orders` — List WooCommerce orders with common status, customer, and date filters.
 - `list_product_attribute_terms` — List terms for one WooCommerce product attribute.
 - `list_product_attributes` — List WooCommerce product attributes.
@@ -59,7 +59,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `list_products` — List WooCommerce products with common catalog filters and pagination metadata.
 - `update_coupon` — Update a WooCommerce coupon by coupon ID. [write]
 - `update_order` — Update a WooCommerce order by order ID. [write]
-- `update_order_status` — Update the status of one WooCommerce order. [write]
+- `update_order_status` — Update the status of one WooCommerce order. [destructive]
 - `update_product` — Update a WooCommerce product by product ID. [write]
 - `update_product_variation` — Update one WooCommerce product variation. [write]
 - `upload_media` — Upload one media file to the WordPress media library used by WooCommerce. [write]
@@ -93,11 +93,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — WooCommerce is not connected, or the connection expired or lacks a scope. Connect once (auth type: custom credential) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=woocommerce
+  https://console.oomol.com/connections/woocommerce
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - WooCommerce homepage: https://woocommerce.com
+- API documentation: https://developer.woocommerce.com/docs/apis/rest-api/

@@ -1,39 +1,54 @@
-## Description: <br>
-Value validation and environment detection tool for shell scripts that checks input types, ranges, file ages, variable state, and runtime environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Value validation and environment detection tool for Shell scripts that validates input types, compares file ages, detects runtime environments, and supports batch checking through shell exit codes.
 
-## Publisher: <br>
-[lunrenyi](https://clawhub.ai/user/lunrenyi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lunrenyi](https://clawhub.ai/user/lunrenyi)
 
-## Use Case: <br>
-Developers and shell script authors use this skill to generate concise guidance and command examples for validating values, checking file freshness, and detecting runtime environments with x-cmd's `x is` command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented prerequisite sources ~/.x-cmd.root/X into the shell, which depends on the local x-cmd installation being trusted. <br>
-Mitigation: Install and use this skill only when the x-cmd installation and publisher are trusted, and review the local x-cmd setup before sourcing it in a shell. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent recall and propose `x is` shell validation commands for input checks, file freshness checks, variable-state checks, environment detection, and scripting pre-flight logic.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lunrenyi/x-is) <br>
-- [Source Repository](https://github.com/x-cmd/skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-reference responses; reviewed skill contains no bundled executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Suggested shell commands may be copied into scripts without checking whether the arguments, globs, or environment assumptions match the user's system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each proposed command before execution, with particular attention to file-age checks that use globs and environment checks that control script branching.
+
+Risk: The skill describes a silent validator whose success or failure is communicated through exit codes, so misuse can make script branches behave incorrectly.
+
+Mitigation: Confirm the intended `x is` predicate and test representative passing and failing inputs before relying on the command in automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lunrenyi/skills/x-is)
+- [Skill repository](https://github.com/x-cmd/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill provides reference guidance and command examples; it does not execute commands by itself.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

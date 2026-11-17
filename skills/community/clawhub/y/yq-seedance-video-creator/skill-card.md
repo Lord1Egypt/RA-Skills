@@ -1,52 +1,70 @@
-## Description: <br>
-Helps users create Seedance 2.0 and Jimeng video prompts, storyboards, visual styles, and production guidance from text, image, video, or audio references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-language Seedance 2.0 and Jimeng video creation by producing prompts, storyboards, visual direction, and practical input guidance for text, image, video, and audio references.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to turn video concepts and reference media into copy-ready Seedance/Jimeng prompts, shot plans, and visual direction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may upload reference images, video, or audio that they do not have rights to use. <br>
-Mitigation: Only use owned or authorized media, and apply the skill's alternate-description guidance for likeness, brand, character, and music requests. <br>
-Risk: Users may provide API credentials unnecessarily when they only need prompt-writing help. <br>
-Mitigation: Use the default copy-ready prompt workflow and provide credentials only when explicitly choosing direct generation. <br>
-Risk: Platform limits may reject unsupported media, realistic human face uploads, or overlong/abstract prompts. <br>
-Mitigation: Follow the documented Jimeng/Seedance limits for file types, counts, duration, and prompt concreteness before submitting. <br>
+## Use Case:
 
+External creators, marketers, and content teams use this skill to turn video ideas and reference media plans into Seedance/Jimeng prompts, storyboard outlines, visual style direction, and production guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/yq-seedance-video-creator) <br>
-- [Jimeng official site](https://jimeng.jianying.com/) <br>
-- [Seedance 2.0 skill instructions](artifact/SKILL.md) <br>
-- [Film production overview](artifact/film-production/SKILL.md) <br>
-- [Camera guide](artifact/film-production/camera.md) <br>
-- [Cinematography guide](artifact/film-production/cinematography.md) <br>
-- [Directing guide](artifact/film-production/directing.md) <br>
-- [Lighting guide](artifact/film-production/lighting.md) <br>
-- [Storyboard quick reference](artifact/storyboard/quick-reference.md) <br>
-- [Storyboard templates](artifact/storyboard/templates/storyboard-template.md) <br>
-- [Example prompts](artifact/storyboard/examples/example-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured prompt blocks, storyboard tables, and concise usage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Designed to output copy-ready prompts by default; direct generation or credential guidance appears only when explicitly requested by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Using Jimeng or Seedance may involve separate platform terms, costs, account requirements, and service limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the third-party platform terms, pricing, account requirements, and upload limits before relying on the generated prompts in production.
+
+Risk: Reference media can contain private, sensitive, or unlicensed material.
+
+Mitigation: Use only media the user is authorized to upload and avoid private or sensitive content unless that use is intentional and approved.
+
+Risk: Video concepts can raise likeness, celebrity, copyright character, or music-rights issues.
+
+Mitigation: Favor original characters, authorized likenesses, and licensed or original music; adapt prompts toward compliant alternatives when rights are unclear.
+
+Risk: Platform capability limits may make some requested prompt details impractical.
+
+Mitigation: Keep generated prompts concrete, concise, and aligned with the documented artifact limits for media count, duration, file size, and realistic-face handling.
+
+## Reference(s):
+
+- [Yq Seedance Video Creator on ClawHub](https://clawhub.ai/tianheihei002/skills/yq-seedance-video-creator)
+- [Jimeng official site](https://jimeng.jianying.com/)
+- [Seedance 2.0 quick reference](artifact/storyboard/quick-reference.md)
+- [Storyboard template library](artifact/storyboard/templates/storyboard-template.md)
+- [Seedance 2.0 example prompts](artifact/storyboard/examples/example-prompts.md)
+- [Film production overview](artifact/film-production/SKILL.md)
+- [Camera guidance](artifact/film-production/camera.md)
+- [Cinematography guidance](artifact/film-production/cinematography.md)
+- [Directing guidance](artifact/film-production/directing.md)
+- [Lighting guidance](artifact/film-production/lighting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with reusable prompt blocks and storyboard templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance that may include platform-ready Seedance/Jimeng prompts, storyboard structures, visual style notes, and media-use suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

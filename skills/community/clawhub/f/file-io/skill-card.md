@@ -1,41 +1,53 @@
-## Description: <br>
-Uploads a user-selected local file to filebin.net and returns shareable file or bin links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Upload local files to filebin.net for quick sharing.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and developers use this skill when they want an agent to upload a specific local file to filebin.net for temporary link-based sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded files are accessible to anyone with the generated filebin.net link while the bin exists. <br>
-Mitigation: Confirm the exact file path before upload and avoid private, confidential, credential-containing, or regulated data. <br>
-Risk: Large files may be rejected by filebin.net. <br>
-Mitigation: Warn the user before uploading files larger than 100 MB and be prepared to stop or choose a different sharing method. <br>
+## Use Case:
 
+External users and developers use this skill to upload a selected local workspace file to filebin.net and return a shareable public link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/file-io) <br>
-- [filebin.net](https://filebin.net) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and filebin URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads the selected file to a public filebin.net bin and reports the resulting file and bin links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Selected files are uploaded to a public filebin.net URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact file before upload and avoid private or sensitive data.
+
+Risk: Shell upload commands can fail or behave unexpectedly when file paths or URL components are not handled carefully.
+
+Mitigation: Use safe process invocation or careful quoting and URL encoding when running the curl command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/file-io)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and shareable upload links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a public file URL and bin page when upload succeeds.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

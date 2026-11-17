@@ -1,45 +1,52 @@
-## Description: <br>
-Integrates Merso PNPL payments into games or digital goods platforms with guidance for API setup, webhooks, payment flows, Node.js configuration, database records, troubleshooting, and commercial context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Merso PNPL (Play Now, Pay Later) payments into games or digital goods platforms.
 
-## Publisher: <br>
-[dreadterror](https://clawhub.ai/user/dreadterror) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dreadterror](https://clawhub.ai/user/dreadterror)
 
-## Use Case: <br>
-Developers and commercial teams use this skill to add Merso installment payments to games, apps, and digital goods platforms, or to understand the technical and partner context for a Merso integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook handling can accept unsigned payment events. <br>
-Mitigation: Require valid webhook authentication or verify each payment event server-side before granting or revoking items. <br>
-Risk: The Merso API key is a sensitive credential required by the integration. <br>
-Mitigation: Use development credentials first and protect MERSO_API_KEY in the deployment secret store. <br>
-Risk: Commercial guidance says to omit fee discussion from pitch materials. <br>
-Mitigation: Include fees and other material tradeoffs in decision-making documents and partner reviews. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Merso installment payments to games, apps, and digital goods platforms, including API authentication, purchase initiation, webhook handling, environment configuration, and troubleshooting.
 
-## Reference(s): <br>
-- [Merso API Reference & Integration Guide](artifact/references/api.md) <br>
-- [Merso Commercial Context, Case Studies & Partner Info](artifact/references/commercial.md) <br>
-- [Merso production API](https://api2.merso.io) <br>
-- [Merso development API](https://api2.dev.merso.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code, API examples, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require MERSO_GAME_ID, MERSO_API_KEY, and MERSO_ENV for implementation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Webhook verification guidance can accept unsigned payment events, which may lead to incorrect granting or revoking of digital goods.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before production use, require valid webhook signatures when available, reject missing or malformed signatures, use a dedicated webhook secret if Merso provides one, and verify payment state independently before changing entitlements.
+
+## Reference(s):
+
+- [Merso API Reference & Integration Guide](references/api.md)
+- [Merso Commercial Context, Case Studies & Partner Info](references/commercial.md)
+- [Merso Production API Base URL](https://api2.merso.io)
+- [Merso Development API Base URL](https://api2.dev.merso.io)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with HTTP, JavaScript, SQL, environment-variable, and integration-checklist examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require MERSO_GAME_ID, MERSO_API_KEY, and MERSO_ENV for implementation guidance.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

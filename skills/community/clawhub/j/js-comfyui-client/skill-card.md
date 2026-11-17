@@ -1,43 +1,58 @@
-## Description: <br>
-ComfyUI Client helps an agent load ComfyUI workflows, update prompts and image inputs, submit image or video generation jobs, poll for results, and download generated outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ComfyUI Client helps agents use a running ComfyUI server to load image or video workflows, update prompts and image inputs, submit jobs, poll status, and download generated outputs.
 
-## Publisher: <br>
-[imjszhang](https://clawhub.ai/user/imjszhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[imjszhang](https://clawhub.ai/user/imjszhang)
 
-## Use Case: <br>
-Developers and agent operators use this skill when a user asks to generate or edit images, create image-to-video outputs, or automate ComfyUI workflows from prompts and reference images. It assumes a reachable ComfyUI server and required workflow models installed in that ComfyUI environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, workflow data, and uploaded images may be sent to a configured ComfyUI server. <br>
-Mitigation: Prefer a local ComfyUI server or a trusted remote endpoint, and avoid sending sensitive prompts or images unless the server retention and access controls are acceptable. <br>
-Risk: Generated outputs are saved to local output folders and may contain sensitive content. <br>
-Mitigation: Review and clean the ComfyUI output folders after use, especially before sharing the workspace or generated sessions. <br>
+## Use Case:
 
+Developers and agent users use this skill to automate ComfyUI image generation, image editing, and image-to-video workflows from text prompts and local or reference images. It is suited for environments where ComfyUI and the workflow-required models are already installed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imjszhang/js-comfyui-client) <br>
-- [Publisher profile](https://clawhub.ai/user/imjszhang) <br>
-- [README.md](artifact/README.md) <br>
-- [Workflow path reference](artifact/references/workflow_paths.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; ComfyUI runs produce JSON session records plus generated image or video files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates per-session output folders under work_dir/comfyui_output with session_info.json, workflow.json, result.json, generated files, and error.json when failures occur.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter, package.json, server release) <br>
+Risk: A malicious or untrusted ComfyUI server could provide output filenames that write downloaded files outside the intended output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted local ComfyUI endpoint where possible and review downloaded output paths before relying on generated files.
+
+Risk: Changing --server or COMFYUI_SERVER_URL to an untrusted host can expose workflow prompts, image inputs, and generated outputs to that host.
+
+Mitigation: Keep the server URL pointed at a trusted ComfyUI instance and avoid sending sensitive inputs to remote or unknown endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imjszhang/skills/js-comfyui-client)
+- [Publisher profile](https://clawhub.ai/user/imjszhang)
+- [Workflow path reference](artifact/references/workflow_paths.md)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- [ComfyUI subgraph documentation](https://docs.comfy.org/interface/features/subgraph)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and local file outputs from ComfyUI runs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates session folders containing workflow, result, error, image, and video files when the ComfyUI client is executed.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

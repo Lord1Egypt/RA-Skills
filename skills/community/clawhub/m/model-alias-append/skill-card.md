@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically appends the model alias to the end of every response with integrated hook functionality and configuration change detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically appends the model alias to the end of every response with integrated hook functionality and configuration change detection.
 
-## Publisher: <br>
-[Ccapton](https://clawhub.ai/user/Ccapton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ccapton](https://clawhub.ai/user/ccapton)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to show which configured model alias generated a response, especially when tracking model attribution or monitoring alias configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Model aliases are appended directly into responses and could confuse downstream readers or agents if aliases contain instruction-like text. <br>
-Mitigation: Use short, descriptive aliases from a trusted OpenClaw configuration and avoid aliases that look like commands or policy text. <br>
-Risk: The skill monitors and reads local OpenClaw configuration to resolve aliases, so untrusted configuration changes can affect response attribution. <br>
-Mitigation: Keep the OpenClaw configuration trusted and review alias changes before relying on the attribution text. <br>
-Risk: The sample configuration binds a local gateway to 0.0.0.0, which can expose services on reachable networks if reused without intent. <br>
-Mitigation: Use a local-only bind unless remote access is explicitly required and network exposure is controlled. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to make response attribution visible by appending the configured model alias to outgoing responses and noting model-alias configuration updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Ccapton/model-alias-append) <br>
-- [OpenClaw response hook documentation](https://docs.openclaw.ai/hooks#response-alias-injector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown] <br>
-**Output Format:** [Markdown text appended to an agent response, usually a bold model alias and optional configuration update notice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves supported reply tags when appending the alias.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and package.json) <br>
+Risk: The skill intercepts outgoing responses and appends model-alias text from configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted, simple aliases without Markdown or newlines, and review responses after installation.
+
+Risk: The skill can enable a persistent OpenClaw hook and change hook settings.
+
+Mitigation: Confirm how to disable or remove response-alias-injector from ~/.openclaw/openclaw.json before deployment.
+
+Risk: Installing an unpinned package can pull a later release than the reviewed artifact.
+
+Mitigation: Prefer a pinned installer version when deploying this reviewed release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ccapton/skills/model-alias-append)
+- [OpenClaw hook documentation](https://docs.openclaw.ai/hooks#response-alias-injector)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown response text with appended model alias and optional configuration update notice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads configured model aliases from OpenClaw configuration and may update hook settings through the included management script.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

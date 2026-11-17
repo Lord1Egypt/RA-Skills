@@ -10,6 +10,8 @@ import type { HookHandler } from 'openclaw/hooks';
 
 const REMINDER_CONTENT = `## Robotics Self-Improvement Reminder
 
+This reminder does not authorize edits. Do not change AGENTS.md, SOUL.md, TOOLS.md, MEMORY.md, hooks, rules, or other skills unless the user explicitly asked in this session and approved a reviewed diff.
+
 After completing robotics tasks, evaluate if any learnings should be captured:
 
 **Log robotics issues when:**

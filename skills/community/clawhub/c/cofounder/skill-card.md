@@ -1,42 +1,52 @@
-## Description: <br>
-Balance your entrepreneurial blind spots with adaptive counterweight across technical, strategic, and behavioral dimensions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Balance your entrepreneurial blind spots with adaptive counterweight across technical, strategic, and behavioral dimensions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Founders and builders use this skill as a coaching partner that diagnoses their venture, working style, strengths, and blind spots, then provides productive counterweight across business, product, strategy, and behavior. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can store business plans and personal working-style notes in a local ~/cofounder/memory.md file. <br>
-Mitigation: Confirm before saving memory, set off-limits topics, and periodically review or delete the local memory file if it becomes too sensitive. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/cofounder) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Homepage](https://clawic.com/skills/cofounder) <br>
-- [Artifact: setup.md](artifact/setup.md) <br>
-- [Artifact: dimensions.md](artifact/dimensions.md) <br>
-- [Artifact: memory-template.md](artifact/memory-template.md) <br>
+## Use Case:
 
+External founders, startup operators, and builders use this skill as a conversational counterweight that diagnoses their venture, working style, and blind spots, then pushes on complementary business, technical, strategic, or behavioral dimensions.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Conversational guidance with optional local Markdown memory updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local founder memory under ~/cofounder/ when the user accepts that workflow.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill stores sensitive business and personal profile notes persistently under ~/cofounder/ without clear upfront consent or deletion controls.
+
+Mitigation: Review the skill before installing, use it only if local profile storage is acceptable, and inspect or delete the files under ~/cofounder/ when retention is not desired.
+
+## Reference(s):
+
+- [Cofounder ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/cofounder)
+- [Cofounder Homepage](https://clawic.com/skills/cofounder)
+- [Setup](artifact/setup.md)
+- [Memory Template](artifact/memory-template.md)
+- [Balance Dimensions](artifact/dimensions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Conversational guidance and Markdown notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and update persistent local Markdown memory under ~/cofounder/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Provides a multi-agent shared memory and project collaboration framework with isolated project state, shared knowledge, cross-project search, versioned documents, milestone tracking, weekly reports, and handoff documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi Agent Memory defines a shared-memory and project-collaboration workflow for multiple agents, with isolated project state, shared knowledge bases, cross-project search, versioned records, milestones, weekly reports, and handoffs.
 
-## Publisher: <br>
-[brucey0017-cloud](https://clawhub.ai/user/brucey0017-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucey0017-cloud](https://clawhub.ai/user/brucey0017-cloud)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate multiple agents across projects by maintaining project-local state, shared knowledge, recurring status checks, weekly summaries, milestones, and handoff records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores, searches, and archives project information across projects under /root/.openclaw, which can expose secrets or private customer data if used without boundaries. <br>
-Mitigation: Do not place secrets, credentials, or customer-private data in shared knowledge or logs; add retention and redaction rules before sensitive use. <br>
-Risk: Project and phase names are used in filesystem paths by the bundled shell scripts, while evidence notes undefined path-safety controls. <br>
-Mitigation: Use simple trusted project and phase names only, and add input validation before running the scripts in shared or sensitive workspaces. <br>
-Risk: Cross-project search and shared knowledge can blur project boundaries and surface information outside the intended project context. <br>
-Mitigation: Keep sensitive projects separate from the shared knowledge base and review search results before applying them to another project. <br>
+## Use Case:
 
+Developers and agent teams use this skill to initialize and maintain OpenClaw project memory for multi-agent work, including status tracking, shared knowledge capture, weekly reporting, milestone tracking, and handoff documents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucey0017-cloud/multi-agent-memory) <br>
-- [Package repository](https://github.com/brucey0017-cloud/multi-agent-memory.git) <br>
-- [Package homepage](https://github.com/brucey0017-cloud/multi-agent-memory#readme) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and generated project-memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates files under /root/.openclaw when the bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact files declare 1.0.0) <br>
+Risk: The helper scripts create, read, search, and archive shared project-memory files under a broad OpenClaw path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill under a non-root account with a dedicated workspace and restrict permissions on the OpenClaw memory directory.
+
+Risk: Project or phase names supplied to scripts may allow writes outside intended folders or unsafe command behavior before input validation is added.
+
+Mitigation: Use only trusted project and phase names, avoid shell metacharacters and path separators, and review generated paths before execution.
+
+Risk: Shared knowledge bases, reports, and handoff documents can retain sensitive project data.
+
+Mitigation: Do not store secrets, credentials, regulated data, or confidential material in shared memory, weekly reports, archives, or handoff files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brucey0017-cloud/skills/multi-agent-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash shell commands and generated project-memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates project status, todos, milestone, weekly summary, handoff, knowledge-base, and archive files under an OpenClaw workspace.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

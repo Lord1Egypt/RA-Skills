@@ -1,41 +1,53 @@
-## Description: <br>
-Extracts the title, author, publish date, and full body text from public Weixin official account article links on mp.weixin.qq.com. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts the title, author, publish date, and full body text from public Weixin official account article links on mp.weixin.qq.com.
 
-## Publisher: <br>
-[ricknote](https://clawhub.ai/user/ricknote) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ricknote](https://clawhub.ai/user/ricknote)
 
-## Use Case: <br>
-External users and developers use this skill when they need an agent to retrieve text and basic metadata from a public Weixin article URL before returning the full article or summarizing it. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to user-provided Weixin article URLs. <br>
-Mitigation: Use genuine mp.weixin.qq.com article links and review future versions if they add broader domains, credentials, storage, or automatic publishing behavior. <br>
-Risk: Some Weixin pages may block extraction, omit publish dates, or use page structures that produce partial or empty content. <br>
-Mitigation: Confirm the extracted content is non-empty before summarizing, and do not invent missing publish dates. <br>
+## Use Case:
 
+External users and developers use this skill to fetch public Weixin article metadata and body text before returning the full article or summarizing it.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ricknote/weixin-article-reader) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ricknote) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and JSON extracted article data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled script returns title, author, publish_date, content, source_url, and status fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: A crafted URL may cause the agent to fetch non-Weixin or internal network resources because URL validation can be bypassed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only article links the user intends to fetch, and validate exact HTTPS hostnames and redirects before trusting the skill in environments with private-network access.
+
+Risk: Extracted article text is untrusted content and may be incomplete.
+
+Mitigation: Treat extracted content as user-supplied text, verify important details against the source page, and clearly report empty or partial extraction results.
+
+## Reference(s):
+
+- [Weixin Article Reader on ClawHub](https://clawhub.ai/ricknote/skills/weixin-article-reader)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [JSON from the extraction script and human-readable text or Markdown in agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Extracted article content is untrusted and may be partial or empty when pages block extraction or use unsupported structures.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

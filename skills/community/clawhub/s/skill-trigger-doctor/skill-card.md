@@ -1,42 +1,53 @@
-## Description: <br>
-Diagnose, fix, and prevent agent skill trigger failures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Sentinel helps agents diagnose, fix, and prevent skill trigger failures by auditing descriptions, YAML frontmatter, token budgets, discovery, conflicts, and remediation paths.
 
-## Publisher: <br>
-[thomaszhou22](https://clawhub.ai/user/thomaszhou22) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thomaszhou22](https://clawhub.ai/user/thomaszhou22)
 
-## Use Case: <br>
-Developers and agent operators use this skill to diagnose skill activation failures, audit skill descriptions, validate YAML frontmatter, manage trigger token budgets, and improve trigger accuracy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the included audit script with --fix can modify SKILL.md files in the selected skills directory. <br>
-Mitigation: Review the generated changes before relying on the repaired metadata or deploying the edited skills. <br>
-Risk: Trigger guidance or remediation suggestions can introduce incorrect or overly broad skill descriptions. <br>
-Mitigation: Manually test repaired skills with representative natural-language triggers and review descriptions for false-positive activation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to troubleshoot skills that fail to activate, trigger incorrectly, or are ignored after installation. It guides audits of skill descriptions, YAML frontmatter, token budgets, discovery paths, conflicts, and remediation choices.
 
-## Reference(s): <br>
-- [Failure Pattern Reference](references/failure-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/thomaszhou22/skill-trigger-doctor) <br>
-- [Publisher Profile](https://clawhub.ai/user/thomaszhou22) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and optional JSON audit reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or apply edits to skill metadata when the included audit script is run with --fix.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Automatic remediation can rewrite skill files and may affect paths beyond the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run audit mode without --fix first, pass a specific trusted --skills-dir, inspect proposed changes, and avoid elevated privileges.
+
+Risk: Incorrect remediation guidance can make skill routing less accurate or introduce misleading trigger descriptions.
+
+Mitigation: Review generated suggestions against real trigger failures and verify behavior with natural language tests after changes.
+
+## Reference(s):
+
+- [Failure Pattern Reference](references/failure-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and optional JSON audit reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose file edits when automatic remediation is requested; audit output should be reviewed before applying changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

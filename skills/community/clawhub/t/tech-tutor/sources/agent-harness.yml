@@ -1,0 +1,127 @@
+name: agent-harness
+description: Agent frameworks and harnesses authoritative sources
+
+categories:
+  official_docs:
+    - name: LangChain Docs
+      url: https://python.langchain.com/docs/
+      type: official-docs
+      description: LangChain LLM orchestration
+
+    - name: LlamaIndex Docs
+      url: https://docs.llamaindex.ai/
+      type: official-docs
+      description: LLM data framework
+
+    - name: CrewAI Docs
+      url: https://docs.crewai.com/
+      type: official-docs
+      description: Multi-agent AI framework
+
+    - name: AutoGen Docs
+      url: https://microsoft.github.io/autogen/
+      type: official-docs
+      description: Microsoft multi-agent framework
+
+    - name: LangGraph Docs
+      url: https://langchain-ai.github.io/langgraph/
+      type: official-docs
+      description: Stateful agent workflows
+
+    - name: Agentscope Docs
+      url: https://agentscope.readthedocs.io/
+      type: official-docs
+      description: Distributed agent framework
+
+    - name: Semantic Kernel Docs
+      url: https://learn.microsoft.com/en-us/semantic-kernel/
+      type: official-docs
+      description: Microsoft AI orchestration
+
+    - name: OpenAI Assistants API
+      url: https://platform.openai.com/docs/assistants/overview
+      type: official-docs
+      description: OpenAI assistant framework
+
+    - name: Claude API Docs
+      url: https://docs.anthropic.com/claude/reference/introduction
+      type: official-docs
+      description: Anthropic Claude API
+
+    - name: DeepSeek API Docs
+      url: https://platform.deepseek.com/docs/introduction
+      type: official-docs
+      description: DeepSeek API
+
+  official_blogs:
+    - name: LangChain Blog
+      url: https://blog.langchain.com/
+      type: official-blog
+      description: LangChain updates and tutorials
+
+    - name: LlamaIndex Blog
+      url: https://blog.llamaindex.ai/
+      type: official-blog
+      description: LlamaIndex updates
+
+    - name: OpenAI Blog
+      url: https://openai.com/research
+      type: official-blog
+      description: OpenAI research and updates
+
+    - name: Anthropic Blog
+      url: https://www.anthropic.com/research
+      type: official-blog
+      description: Anthropic AI safety and research
+
+    - name: DeepSeek Tech Blog
+      url: https://blog.deepseek.com/
+      type: official-blog
+      description: DeepSeek Chinese tech blog
+
+    - name: Microsoft Research
+      url: https://www.microsoft.com/en-us/research/blog/
+      type: official-blog
+      description: Microsoft AI research
+
+  conferences:
+    - name: NeurIPS
+      url: https://neurips.cc/
+      type: top-conference
+      description: Neural Information Processing Systems
+
+    - name: ICML
+      url: https://icml.cc/
+      type: top-conference
+      description: International Conference on Machine Learning
+
+    - name: ICLR
+      url: https://iclr.cc/
+      type: top-conference
+      description: International Conference on Learning Representations
+
+    - name: ACL
+      url: https://www.aclweb.org/portal/
+      type: top-conference
+      description: Association for Computational Linguistics
+
+    - name: EMNLP
+      url: https://2024.emnlp.org/
+      type: top-conference
+      description: Conference on Empirical Methods in NLP
+
+  papers:
+    - name: arXiv cs.CL
+      url: https://arxiv.org/list/cs.CL/recent
+      type: preprint
+      description: Computation and Language papers
+
+    - name: arXiv cs.AI
+      url: https://arxiv.org/list/cs.AI/recent
+      type: preprint
+      description: AI general papers
+
+    - name: LLM Papers Collection
+      url: https://github.com/Hannibal046/Awesome-LLM
+      type: aggregator
+      description: Curated LLM papers list

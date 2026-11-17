@@ -1,45 +1,64 @@
-## Description: <br>
-Measures compositional structure in AI-generated images with the Visual Thinking Lens framework, detects default-mode bias, and generates targeted re-prompts through configurable operators. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Measure compositional structure in AI-generated images with the Visual Thinking Lens framework, flag default-mode patterns, and generate targeted re-prompts through configurable operators.
 
-## Publisher: <br>
-[rusparrish](https://clawhub.ai/user/rusparrish) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Creative Commons Attribution 4.0 International (CC BY 4.0) <br>
+## Publisher:
 
+[rusparrish](https://clawhub.ai/user/rusparrish)
 
-## Use Case: <br>
-Developers, designers, and image-generation workflows use this skill to diagnose composition in AI-generated images and generate rule-based re-prompt variants when default-mode patterns are detected. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-## Known Risks and Mitigations: <br>
-Risk: Low-confidence or failed image measurements could lead to misleading composition guidance. <br>
-Mitigation: Honor the skill's measurement gate: stop on failed measurements and clearly caveat low-confidence results. <br>
-Risk: Untrusted operator files could change the generated re-prompt guidance. <br>
-Mitigation: Use the bundled or otherwise trusted operators.yaml, and review operator changes before relying on generated prompt variants. <br>
-Risk: Python dependencies are installed from pip for local image analysis. <br>
-Mitigation: Install and run the skill in an isolated Python environment appropriate for local files you choose to analyze. <br>
+## Use Case:
 
+Developers, creators, and image-generation users use this skill to diagnose generated-image composition, report VTL coordinates, and produce rule-based re-prompt suggestions when default-mode patterns are detected.
 
-## Reference(s): <br>
-- [VTL Image Analysis on ClawHub](https://clawhub.ai/rusparrish/vtl-image-analysis) <br>
-- [VTL Metric Reference](references/vtl-metrics.md) <br>
-- [Visual Thinking Lens Framework](https://github.com/rusparrish/Visual-Thinking-Lens) <br>
-- [Russell Parrish](https://artistinfluencer.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with JSON metrics and prompt-variant guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports low-confidence or failed measurements before producing coordinates or re-prompt guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill processes image files or folders selected by the user and can create or overwrite metrics.jsonl or prompts.json outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on intended local paths, choose explicit output locations for prompt generation, and review existing output files before batch analysis.
+
+Risk: Python dependencies are declared as package names without pinned versions.
+
+Mitigation: Pin and review dependency versions before production use.
+
+Risk: Custom operator trigger expressions are evaluated by the regeneration script.
+
+Mitigation: Review changes to operators.yaml before use and keep trigger logic limited to the supported numeric expressions.
+
+Risk: Low-confidence or failed measurements can produce misleading composition guidance if the gate is ignored.
+
+Mitigation: Honor the valid and mask_status fields: stop on FAIL and treat WARN results as indicative rather than definitive.
+
+## Reference(s):
+
+- [VTL Metric Reference](references/vtl-metrics.md)
+- [Visual Thinking Lens framework](https://github.com/rusparrish/Visual-Thinking-Lens)
+- [Russell Parrish](https://artistinfluencer.com)
+- [ClawHub skill page](https://clawhub.ai/rusparrish/skills/vtl-image-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON metrics or prompt-variant outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill analyzes local image files or folders, reports PASS/WARN/FAIL measurement status, and may write metrics.jsonl or prompts.json outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

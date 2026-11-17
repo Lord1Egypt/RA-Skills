@@ -1,0 +1,20 @@
+{
+  "api_url": "http://api.narodmon.ru",
+  "api_key": "YOUR_NARODMON_API_KEY",
+  "uuid": "YOUR_MD5_UUID",
+  "login": "your_narodmon_login",
+  "password": "your_narodmon_password",
+  "lang": "ru",
+  "utc_offset": 3,
+  "output_path": "/tmp/narodmon_daily.png",
+  "telegram": {
+    "token": "YOUR_TELEGRAM_BOT_TOKEN",
+    "chat_id": "YOUR_TELEGRAM_CHAT_ID"
+  },
+  "sensors": [
+    {"id": 12345, "label": "Улица", "color": "#2196F3"},
+    {"id": 12346, "label": "Дом", "color": "#FF5722"},
+    {"id": 12347, "label": "Баня", "color": "#4CAF50"},
+    {"id": 12348, "label": "Давление", "color": "#9C27B0", "secondary": true}
+  ]
+}

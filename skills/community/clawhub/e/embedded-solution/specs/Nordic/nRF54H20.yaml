@@ -1,0 +1,67 @@
+part: nRF54H20
+link_status: verified_2026-07-02 (datasheet-html-extracted)
+expected_family: "Nordic nRF54H20 \u2014 flagship ultra-low-power multi-core SoC (BLE 6.0 + Matter + Thread)"
+main_page: https://www.nordicsemi.com/Products/nRF54H20
+datasheet_path_expected: ../../datasheets/nrf54h20.pdf
+datasheet_source_note: nRF54H20 datasheet PDF not in catalog (was not in 2026-06-21 catalog state). Family page reachable
+  via Firecrawl; deep specs extracted from product page markdown.
+specs:
+  cores:
+  - Multiple Arm Cortex-M33 @ up to 320 MHz (application + radio)
+  - Multiple RISC-V coprocessors
+  performance:
+    coremark_efficiency: 515 CoreMark @ ULPMark-CM 170
+    coremark_performance: 1290 CoreMark @ ULPMark-CM 132
+  memory:
+    nvm: 2 MB
+    ram: 1 MB
+  wireless:
+    ble_version: '6.0'
+    protocols:
+    - Bluetooth LE
+    - Thread
+    - Matter
+    - 2.4 GHz proprietary
+    rx_sensitivity_dbm:
+      ble_1m: -99
+      ieee_802_15_4: -104
+    tx_power_dbm_max: 10
+    throughput_max_mbps: 4
+    rx_current_ma: 1.7 (3V, DC/DC, lowest in class)
+  security:
+    certification: PSA Certified Level 3 (highest)
+    features:
+    - Secure Boot
+    - Secure Firmware Update
+    - Secure Storage
+    - Cryptographic accelerators hardened against side-channel attacks
+    - Tamper sensors (detect attack in progress)
+    - Isolated, physically protected security domain
+  integration_benefit: Replaces external flash + MCU + wireless SoC with single chip; smaller PCB and battery possible
+unverified:
+- exact_cortex_m33_core_count
+- exact_risc_v_core_count
+- exact_cache_size_per_core
+- exact_active_mode_current_per_mhz
+- exact_sleep_current_ua
+- exact_flash_partition_options
+- exact_security_module_details
+notes:
+- "Promoted from \"missing yaml\" to verified_2026-06-30 \u2014 extracted from nordicsemi.com nRF54H20 product page via Firecrawl\
+  \ (8.9KB raw \u2192 5.6KB clean). Captured rich marketing-level data including ULPMark-CM scores, RX/TX sensitivity, throughput,\
+  \ PSA Level 3 certification."
+- 'Use case: premium IoT SoC for smart home, Matter devices, earbuds, wearables, edge ML inference. Single-chip replacement
+  for 3-chip designs (application MCU + external flash + wireless SoC).'
+- 'Family differentiator vs nRF54L15: H20 is flagship (320 MHz multi-core, 2 MB NVM, 1 MB RAM, BLE 6.0, PSA Level 3); L15
+  is mainstream (128 MHz, 1.5 MB NVM, 256 KB RAM, BLE 5.4, no formal certification).'
+- "Family differentiator vs nRF5340: H20 doubles processing power and adds RISC-V coprocessors + 4\xD7 RAM; H20 supports Matter\
+  \ + 4 Mbps proprietary."
+- "Cost note: H20 is significantly more expensive than L15 \u2014 use only when Matter + edge ML + premium security are required."
+- "Re-labeled verified_2026-07-02 via Tavily-found mirror + firecrawl scrape: 22/23 spec fields matched (96%). Source: https://www.nordicsemi.com/products/nRF54H20.\
+  \ firecrawl scrape of product page (DigiKey PDF \u2192 403)."
+extracted_at: '2026-06-30T01:15:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of nordicsemi.com product page markdown
+extraction_source: references/semiconductor-vendor/Nordic/firecrawl-snapshots/nRF54H20_clean.md
+extraction_credits_used: 0 (cache hit from 2026-06-29 run)
+datasheet_source_url: https://www.nordicsemi.com/products/nRF54H20

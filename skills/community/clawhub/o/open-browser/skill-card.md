@@ -1,45 +1,73 @@
-## Description: <br>
-Automates complex multi-step browser tasks by visually interacting with pages using screenshots for clicks, typing, scrolling, and verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenBrowser automates complex multi-step browser tasks by visually interacting with pages using screenshots for clicks, typing, scrolling, and verification.
 
-## Publisher: <br>
-[softpudding](https://clawhub.ai/user/softpudding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[softpudding](https://clawhub.ai/user/softpudding)
 
-## Use Case: <br>
-Developers and automation users use this skill to drive Chrome through the OpenBrowser local agent for multi-step page navigation, form filling, web scraping, UI testing, and browser task verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent high-impact browser and account authority. <br>
-Mitigation: Use only with a browser profile the user is comfortable automating, and require explicit user confirmation before purchases, submissions, deletions, account changes, public posts, or other state-changing actions. <br>
-Risk: The Chrome UUID functions as a capability token for controlling the browser. <br>
-Mitigation: Keep the UUID private, avoid exposing it in shared logs or prompts, and refresh or rotate it when browser access should no longer be trusted. <br>
-Risk: Long-running browser tasks can continue through background execution and may act on logged-in sessions. <br>
-Mitigation: Monitor task logs and the browser window during execution, prefer non-sensitive sessions, and stop or delete stuck conversations before retrying. <br>
+## Use Case:
 
+Developers and automation-focused users use this skill to control a Chrome session for multi-step browsing workflows such as form filling, scraping, UI testing, navigation, and page verification.
 
-## Reference(s): <br>
-- [OpenBrowser ClawHub page](https://clawhub.ai/softpudding/open-browser) <br>
-- [OpenBrowser API Reference](references/api_reference.md) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands plus text or JSON status output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local OpenBrowser server, Chrome extension connection, DashScope API configuration, and a Chrome UUID capability token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill grants an external browser automation agent broad control over a live Chrome session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on sessions and sites where automated interaction is acceptable, and avoid financial, healthcare, internal, credential, and account-management pages without explicit safeguards.
+
+Risk: Browser UUIDs act as capability tokens for controlling a registered browser.
+
+Mitigation: Keep the browser UUID private, rotate or recopy it when exposure is suspected, and validate the UUID before submitting tasks.
+
+Risk: Task text, screenshots, page contents, and typed data may be sent through the configured OpenBrowser and LLM stack.
+
+Mitigation: Do not enter sensitive data unless the configured stack is approved for that data, and review the selected LLM endpoint and API-key configuration before use.
+
+Risk: Mutable remote setup commands can install changing upstream code.
+
+Mitigation: Pin and review the upstream repository before running setup commands in a trusted browser environment.
+
+Risk: Background execution can continue browser automation with reduced operator visibility.
+
+Mitigation: Prefer foreground runs for sensitive tasks, monitor logs when background mode is necessary, and stop unexpected or stuck conversations promptly.
+
+Risk: The artifact includes a GitHub star test that changes account state.
+
+Mitigation: Avoid account-changing tests and use neutral verification tasks instead.
+
+## Reference(s):
+
+- [API Reference](references/api_reference.md)
+- [Setup Guide](references/setup.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [ClawHub Skill Page](https://clawhub.ai/softpudding/skills/open-browser)
+- [uv Documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May stream browser-agent progress, status, errors, usage metrics, and completion messages through SSE-backed command output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

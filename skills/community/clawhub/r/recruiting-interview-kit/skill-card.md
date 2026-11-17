@@ -1,47 +1,55 @@
-## Description: <br>
-Generates interview questions, scoring dimensions, red flags, and interview record templates from job descriptions for recruiting, interview, and hiring workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates interview questions, scoring dimensions, red flags, and interview record templates from job descriptions for recruiting and structured interview workflows.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Recruiters, hiring managers, and interview coordinators use this skill to turn job descriptions, role level, and key competencies into structured interview kits with question banks, scoring dimensions, red flags, interview notes templates, and candidate experience reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recruiting drafts can include biased or legally inappropriate interview questions or scoring criteria if the input is flawed or incomplete. <br>
-Mitigation: Use the skill as a drafting aid, review outputs for bias and legal appropriateness, and do not use it to make final hiring decisions. <br>
-Risk: Job descriptions and candidate materials may contain personal or sensitive information. <br>
-Mitigation: Redact unnecessary candidate personal data before use and keep inputs limited to information needed for interview preparation. <br>
-Risk: The optional local script reads input paths and can write an output file selected by the user. <br>
-Mitigation: Run the script only on trusted input and output paths, and review generated Markdown or JSON before sharing or using it operationally. <br>
+## Use Case:
 
+Recruiters, hiring managers, and interview coordinators use this skill to turn job descriptions, levels, and key competencies into review-ready interview kits. It supports structured recruiting preparation without generating discriminatory questions or replacing final hiring decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/recruiting-interview-kit) <br>
-- [Publisher profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Structured spec](artifact/resources/spec.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Structured Markdown by default, with optional JSON output from the local script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are review-ready drafts based on local input, with explicit missing-information prompts and boundaries against discriminatory questions or final hiring decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release is local and non-networked, but security evidence reports broader file-audit and secret-pattern scanning code that is not clearly part of interview preparation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script modes and path scope before installation, and use it with recruiting inputs or explicit dry-run review unless broader audit behavior is intended.
+
+Risk: Recruiting materials can contain personal or sensitive candidate data.
+
+Mitigation: Redact sensitive personal data where possible and review generated questions for legal, privacy, and anti-discrimination requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/recruiting-interview-kit)
+- [Output template](artifact/resources/template.md)
+- [Structured specification](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON recruiting interview kit with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write output to a chosen local file; otherwise returns stdout.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

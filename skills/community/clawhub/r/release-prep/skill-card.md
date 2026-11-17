@@ -1,42 +1,51 @@
-## Description: <br>
-Deep code audit + documentation sync + release preparation for Python packages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep code audit, documentation sync, and release preparation for Python packages before publishing to PyPI.
 
-## Publisher: <br>
-[morozsm](https://clawhub.ai/user/morozsm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[morozsm](https://clawhub.ai/user/morozsm)
 
-## Use Case: <br>
-Developers and maintainers of Python packages use this skill to audit tests, lint, dead code, documentation, version consistency, and release readiness, then optionally prepare fixes, changelogs, version bumps, tags, builds, and PyPI publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify repository files during fix and release workflows. <br>
-Mitigation: Run audit mode first, work on a clean branch, and review diffs before applying fixes. <br>
-Risk: Release mode can bump versions, create commits and tags, publish packages to PyPI, and push tags. <br>
-Mitigation: Require explicit approval before version bumps, commits, tags, PyPI uploads, or pushing tags, and use scoped PyPI tokens. <br>
-Risk: The security review notes broader triggers and incomplete confirmation safeguards. <br>
-Mitigation: Install only when an agent should help prepare Python package releases, and avoid running it on untrusted repositories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Release Prep ClawHub page](https://clawhub.ai/morozsm/release-prep) <br>
-- [Publisher profile](https://clawhub.ai/user/morozsm) <br>
+## Use Case:
+
+Developers and maintainers use this skill to audit Python packages before release, align documentation with code, prepare changelog and version updates, and publish to PyPI when explicitly requested.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Fix and release modes can make repository edits, update changelog or version files, and create commits or tags.
+
+Mitigation: Use audit mode for read-only review, and request fix or release mode only after reviewing the proposed changes.
+
+Risk: Release mode includes a PyPI publishing step.
+
+Mitigation: Require explicit user confirmation before publishing and review the release summary before upload.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown release-readiness report with shell commands, changelog text, and proposed code or documentation changes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports audit, fix, and release modes; release mode may propose or perform version updates, commits, tags, package builds, PyPI uploads, and tag pushes after confirmation.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown reports and release guidance, with optional repository file changes and shell commands for fix or release modes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default audit mode is read-only; fix and release modes may modify files, create commits or tags, and prepare package publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

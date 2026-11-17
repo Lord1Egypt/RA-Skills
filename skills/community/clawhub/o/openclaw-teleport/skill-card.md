@@ -1,42 +1,58 @@
-## Description: <br>
-Migrate, back up, inspect, or restore an OpenClaw agent workspace using a single .soul archive, wrapping @kagura-agent/openclaw-teleport. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Migrate, back up, or restore an OpenClaw agent workspace to or from a single .soul archive.
 
-## Publisher: <br>
-[kagura-agent](https://clawhub.ai/user/kagura-agent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kagura-agent](https://clawhub.ai/user/kagura-agent)
 
-## Use Case: <br>
-Developers and operators use this skill to move, back up, inspect, or recover an OpenClaw agent workspace. It is suited for migrations between machines, periodic backup, disaster recovery, and controlled cloning of an agent setup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: .soul archives may contain plaintext credentials, API tokens, bot tokens, and app secrets. <br>
-Mitigation: Treat .soul files like password exports: encrypt them, transfer them over trusted channels, avoid committing or sharing them, and delete them when no longer needed. <br>
-Risk: Unpacking can restore files, credentials, cron jobs, repositories, and services into an OpenClaw workspace. <br>
-Mitigation: Inspect archives before unpacking, restore into a controlled workspace first, and review restored credentials, scheduled jobs, repositories, and gateway behavior before relying on them. <br>
-Risk: The release wraps an npm package and may process archives from external sources. <br>
-Mitigation: Install only if you trust the npm package publisher and the source of any .soul archive. <br>
+## Use Case:
 
+External developers and OpenClaw operators use this skill to move an agent workspace to a new machine, create backups, restore from a .soul archive, or clone an agent setup. It is intended for full workspace migration workflows that may include identity files, memory, configuration, credentials, cron jobs, repositories, and services.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kagura-agent/openclaw-teleport) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may create or unpack .soul archives and restore workspace state when executed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.2 (source: server release metadata) <br>
+Risk: .soul archives can contain plaintext credentials such as API tokens, bot tokens, app secrets, and channel credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat .soul files like password files: keep them out of git and public cloud sync, transfer them through encrypted channels, and encrypt backups before storage or transfer.
+
+Risk: Restoring an archive can write configuration and credentials, restore cron jobs, clone repositories, install OpenClaw if missing, and start services.
+
+Mitigation: Inspect archives before unpacking, restore only archives from trusted sources, and prefer an isolated account or sandbox when evaluating a package version.
+
+Risk: The server security verdict is suspicious because the skill handles plaintext credentials and restores scheduled jobs or services through mutable npm code.
+
+Mitigation: Review the package and archive contents before installation or restore, and use a pinned, verified package version when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kagura-agent/skills/openclaw-teleport)
+- [Publisher profile](https://clawhub.ai/user/kagura-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance covers pack, unpack, inspect, and security handling for .soul archives.]
+
+## Skill Version(s):
+
+0.3.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

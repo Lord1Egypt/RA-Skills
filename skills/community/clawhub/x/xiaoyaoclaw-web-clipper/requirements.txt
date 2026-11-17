@@ -1,0 +1,13 @@
+# 硬依赖 —— **精确钉版**（可复现安装；升级须显式改动本文件并复查）
+# 说明：本技能会解析任意远端 HTML，解析类库的版本必须确定，
+#       避免不同环境装到不同版本导致行为不一致或引入已知有问题版本。
+requests==2.34.2
+beautifulsoup4==4.15.0
+lxml==6.1.1
+
+# 可选增强提取引擎（缺了自动降级到 bs4 容器选择器；如需启用请一并钉版）
+# readability-lxml==0.9
+# trafilatura==2.2.0
+
+# 可复现安装（生成锁定清单，便于审计与实际部署一致）：
+#   python -m pip install -r requirements.txt && python -m pip freeze > constraints.txt

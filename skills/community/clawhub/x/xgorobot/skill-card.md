@@ -1,43 +1,61 @@
-## Description: <br>
-Controls XGO Mini, Lite, Mini3W, and Rider robots with scripts and library APIs for motion, actions, vision, AI features, sensors, display, and audio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Xgorobot helps agents control XGO Mini, Lite, Mini3W, and Rider robots using bundled scripts and Python APIs for motion, preset actions, vision, AI features, sensors, display, and audio.
 
-## Publisher: <br>
-[mingyangbj](https://clawhub.ai/user/mingyangbj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mingyangbj](https://clawhub.ai/user/mingyangbj)
 
-## Use Case: <br>
-Developers and robot operators use this skill to control XGO robot hardware, run packaged robot-control scripts, and draft custom Python workflows against the included XGO libraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue physical robot motion and maintenance commands, including firmware, calibration, motor unload, and long-running motion workflows. <br>
-Mitigation: Use it only with trusted operators, supervised hardware, and explicit approval for maintenance or motion commands. <br>
-Risk: Camera, audio, and DashScope-backed AI features may capture local data or send data to a cloud service. <br>
-Mitigation: Treat camera and audio workflows as privacy-sensitive, review prompts and inputs before execution, and configure DASHSCOPE_API_KEY only in approved environments. <br>
-Risk: The security summary identifies unsafe command-execution paths and risky handling of filenames, URLs, prompts, or generated speech text. <br>
-Mitigation: Review every generated command before execution and avoid untrusted filenames, URLs, prompts, and generated speech text. <br>
+## Use Case:
 
+Developers and robot operators use this skill to run prepared XGO robot-control scripts or create custom Python control flows for movement, perception, speech, display, and sensor tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mingyangbj/xgorobot) <br>
-- [Publisher profile](https://clawhub.ai/user/mingyangbj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include robot-control commands that require a Raspberry Pi runtime, XGO hardware, serial access, and DASHSCOPE_API_KEY for AI features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unsafe shell execution and privileged hardware helper calls may run unintended commands or alter device state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and remediate shell=True, os.system, and sudo-backed helper calls before installation; constrain command inputs and execute only trusted scripts.
+
+Risk: Untrusted URLs, filenames, and target text can influence downloads, media playback, generated commands, or AI-driven robot actions.
+
+Mitigation: Accept only trusted inputs, validate URLs and file paths, and add allowlists or sanitization before using the skill on hardware.
+
+Risk: Camera and audio data may be sent to DashScope for AI features.
+
+Mitigation: Use the AI features only with informed consent, avoid sensitive scenes or conversations, and manage DASHSCOPE_API_KEY as a secret.
+
+Risk: Robot movement, servos, wheels, and arm controls can create physical safety risks in real environments.
+
+Mitigation: Operate under supervision in a clear area, test low-risk commands first, and keep a stop or power-off path available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingyangbj/skills/xgorobot)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke robot hardware, camera, audio, display, serial, and DashScope-backed AI features.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

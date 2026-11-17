@@ -1,42 +1,52 @@
-## Description: <br>
-Provides a local Chinese joke library with multiple joke types, including puns, programmer jokes, everyday humor, riddles, and short stories, without relying on external APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供多类型中文笑话，包括谐音梗、程序员笑话、生活趣事和脑筋急转弯，无需外部接口。
 
-## Publisher: <br>
-[Djttt](https://clawhub.ai/user/Djttt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djttt](https://clawhub.ai/user/djttt)
 
-## Use Case: <br>
-Developers and agent users can use this skill to retrieve one or more Chinese jokes from a bundled local JSON database, optionally filtering by joke type. It is useful when an agent needs lightweight Chinese humor text without network calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled joke content may be unsuitable for some audiences or contexts. <br>
-Mitigation: Review and edit artifact/jokes.json before deployment if content standards matter. <br>
-Risk: The helper scripts execute local Bash and Python code. <br>
-Mitigation: Review the small helper scripts before installation and run them in the intended skill directory. <br>
+## Use Case:
 
+Agents can use this skill to retrieve Chinese-language jokes by type or at random for conversational, entertainment, or content drafting tasks without calling an external service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Djttt/chinese-joke) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [jokes.json](artifact/jokes.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text jokes and Markdown usage guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads bundled local JSON content and supports type and count filters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Invalid joke types can fail noisily instead of returning a clean user-facing error.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the listed joke types from the artifact documentation or add input validation before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djttt/skills/chinese-joke)
+- [Publisher profile](https://clawhub.ai/user/djttt)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Local joke database](artifact/jokes.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text jokes with category labels; Markdown command guidance when explaining use.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local JSON-backed content with optional type and count filters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

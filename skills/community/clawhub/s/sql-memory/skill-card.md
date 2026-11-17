@@ -1,45 +1,65 @@
-## Description: <br>
-SQL Memory gives OpenClaw agents durable SQL-backed memory, task queues, activity logs, todos, and knowledge search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQL Memory provides a SQL Server-backed semantic memory layer for OpenClaw agents, including memory recall, search, task queues, activity logs, todos, knowledge indexing, and hierarchical rollups.
 
-## Publisher: <br>
-[oblio-falootin](https://clawhub.ai/user/oblio-falootin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oblio-falootin](https://clawhub.ai/user/oblio-falootin)
 
-## Use Case: <br>
-Developers and OpenClaw agent operators use this skill to persist agent memories, coordinate queued work, record audit activity, manage todos, and search stored knowledge in a SQL Server-backed memory database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents durable access to SQL-backed memory, which can retain sensitive, stale, or unnecessary data. <br>
-Mitigation: Use a dedicated memory database, avoid storing secrets or unnecessary personal data, and define retention and deletion rules before deployment. <br>
-Risk: Broad database mutation behavior can affect stored memories, queues, logs, knowledge records, and todos. <br>
-Mitigation: Use least-privilege SQL credentials, avoid production or shared databases, and review the configured schema and permissions before enabling autonomous use. <br>
-Risk: Legacy raw SQL passthrough increases the impact of agent mistakes in autonomous or multi-agent workflows. <br>
-Mitigation: Restrict or remove raw SQL passthrough and prefer the parameterized memory APIs for normal agent operations. <br>
+## Use Case:
 
+Developers building OpenClaw agents use SQL Memory to persist and recall structured memories, queue work, log activity, manage todos, and index knowledge in a SQL Server database.
 
-## Reference(s): <br>
-- [ClawHub SQL Memory release page](https://clawhub.ai/oblio-falootin/sql-memory) <br>
-- [Getting Started](GETTING_STARTED.md) <br>
-- [Skill Reference](SKILL_REFERENCE.md) <br>
-- [SQL Connector dependency](https://github.com/High-Falootin/clawbot-sql-connector) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, shell commands, guidance] <br>
-**Output Format:** [Python API results, SQL-backed records, and Markdown setup guidance with inline commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires sql-connector, SQL Server schema setup, and configured SQL credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence) <br>
+Risk: The skill requires SQL database credentials and can access persisted memory, task, todo, and activity data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, least-privileged database account and avoid production or shared credentials.
+
+Risk: Broad database escape hatches and scheduled workflows may perform actions outside the intended high-level memory API.
+
+Mitigation: Expose only reviewed high-level APIs to agents; restrict raw SQL methods and cron workflows unless separately reviewed.
+
+Risk: Configuration behavior may load credentials from an unintended .env path.
+
+Mitigation: Control the install path and exact .env location, then verify the active backend before use.
+
+Risk: The skill depends on sql-connector for database transport.
+
+Mitigation: Install, pin, and verify sql-connector before enabling SQL Memory.
+
+## Reference(s):
+
+- [SQL Memory ClawHub page](https://clawhub.ai/oblio-falootin/skills/sql-memory)
+- [README](artifact/README.md)
+- [Getting Started](artifact/GETTING_STARTED.md)
+- [Skill Reference](artifact/SKILL_REFERENCE.md)
+- [SQL Connector dependency](https://github.com/High-Falootin/clawbot-sql-connector)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell examples; runtime API methods return strings, booleans, task IDs, and lists of records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires sql-connector and a configured least-privileged SQL Server database.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

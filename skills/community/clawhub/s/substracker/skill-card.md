@@ -1,41 +1,56 @@
-## Description: <br>
-SubsTracker manages subscriptions and configuration through CLI scripts for login, subscription CRUD, payment history, notifications, and dashboard queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage SubsTracker subscriptions and configuration through Bun CLI scripts that authenticate to a SubsTracker REST API and return JSON results.
 
-## Publisher: <br>
-[ianchenx](https://clawhub.ai/user/ianchenx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ianchenx](https://clawhub.ai/user/ianchenx)
 
-## Use Case: <br>
-Developers and operators use this skill to manage a SubsTracker instance from an agent session, including subscription records, renewals, payment history, dashboard summaries, and notification settings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses SubsTracker account credentials and notification secrets. <br>
-Mitigation: Store SUBSTRACKER_* and notification values only in a protected configuration source and avoid passing secrets through casual prompts or untrusted directories. <br>
-Risk: The skill persists a session cookie and can connect to whichever SubsTracker URL is configured. <br>
-Mitigation: Use the skill only with trusted SubsTracker servers and clear the saved cookie when changing servers or rotating credentials. <br>
-Risk: The skill can delete subscriptions or payments and update account, password, and notification configuration. <br>
-Mitigation: Require explicit user confirmation before destructive actions, password changes, configuration updates, or notification tests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ianchenx/substracker) <br>
+## Use Case:
 
+External users and agents use this skill to inspect and manage a SubsTracker instance, including subscriptions, renewals, payment history, dashboard totals, notification tests, and application configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries and shell commands, with JSON returned by the SubsTracker CLI scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include subscription, payment, dashboard, and configuration data returned from the user's configured SubsTracker server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles credentials and session data for a SubsTracker instance.
+
+Mitigation: Use an HTTPS SUBSTRACKER_URL, protect ~/.substracker-skills with private permissions, and run the skill only from trusted working directories.
+
+Risk: The skill can perform destructive or sensitive account changes, including deletes, password updates, webhook changes, and notification-token changes.
+
+Mitigation: Manually confirm delete, password, webhook, and notification-token changes before allowing the agent to run them.
+
+Risk: Secrets may be exposed if passwords or API tokens are passed directly as command-line flags.
+
+Mitigation: Avoid putting passwords or API tokens in command-line flags; prefer protected environment variables or a private .env file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ianchenx/skills/substracker)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Configuration instructions, Guidance]
+
+**Output Format:** [Bun CLI commands with JSON stdout and human-readable Markdown summaries or tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SUBSTRACKER_URL, SUBSTRACKER_USER, and SUBSTRACKER_PASS through environment variables or a .substracker-skills/.env file; stores a session cookie under ~/.substracker-skills/.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{PROPOSAL_TITLE}}</title>
+<style>
+  :root {
+    --accent: {{ACCENT}};
+    --accent-soft: color-mix(in srgb, var(--accent) 12%, white);
+    --ink: #1a1a2e;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    color: var(--ink);
+    background: #f4f5f7;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 820px; margin: 32px auto; background: var(--bg);
+    padding: 56px 64px; box-shadow: 0 10px 40px rgba(0,0,0,.08); border-radius: 4px; }
+  .cover { border-left: 6px solid var(--accent); padding-left: 24px; margin-bottom: 40px; }
+  .cover h1 { font-size: 32px; line-height: 1.25; letter-spacing: -.5px; }
+  .cover .sub { color: var(--muted); font-size: 16px; margin-top: 10px; }
+  .meta { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .meta b { color: var(--ink); font-weight: 600; }
+  section { margin-bottom: 34px; }
+  h2 { font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 12px; }
+  .intro { color: var(--muted); margin-bottom: 14px; }
+  ul.pain, ul.deliv { list-style: none; }
+  ul.pain li, ul.deliv li { position: relative; padding-left: 26px; margin-bottom: 10px; }
+  ul.pain li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  ul.deliv li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  .block { margin-bottom: 16px; }
+  .block h3 { font-size: 17px; margin-bottom: 6px; }
+  .block p { color: #374151; }
+  table.price { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px; }
+  table.price th { text-align: left; font-size: 12px; letter-spacing: 1px;
+    color: var(--muted); padding: 10px 12px; border-bottom: 2px solid var(--line); }
+  table.price td { padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.price .pkg { font-weight: 700; font-size: 15px; }
+  table.price .pkg-note { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  table.price .price { font-weight: 700; color: var(--accent); white-space: nowrap; }
+  tr.recommended { background: var(--accent-soft); }
+  tr.recommended td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+  .cases { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .case { border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .case .metric { font-size: 22px; font-weight: 800; color: var(--accent); }
+  .case .desc { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .cta { background: var(--accent-soft); border-radius: 10px; padding: 22px 24px; }
+  .cta p { font-size: 16px; }
+  .cta .contact { margin-top: 10px; font-weight: 600; }
+  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+  .watermark { position: fixed; right: 16px; bottom: 16px; z-index: 40;
+    display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted);
+    background: rgba(255,255,255,.82); border: 1px solid var(--line);
+    border-radius: 999px; padding: 5px 12px; box-shadow: 0 2px 10px rgba(0,0,0,.07);
+    pointer-events: none; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+  .watermark .wm-emoji { font-size: 12px; }
+  @media (max-width: 640px) { .page { padding: 32px 22px; } .cases { grid-template-columns: 1fr; } }
+  @media print {
+    body { background: #fff; } .page { box-shadow: none; margin: 0; max-width: none; }
+    .watermark { display: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="cover">
+      <h1>{{PROPOSAL_TITLE}}</h1>
+      <div class="sub">{{PROPOSAL_SUBTITLE}}</div>
+      <div class="meta">
+        为 <b>{{PREPARED_FOR}}</b> 定制 &nbsp;·&nbsp; 出具日期 <b>{{DATE}}</b><br/>
+        提案人：<b>{{YOUR_NAME}}</b> &nbsp;·&nbsp; {{YOUR_TITLE}}
+      </div>
+    </div>
+
+    <section>
+      <h2>当前挑战</h2>
+      <p class="intro">{{PAIN_INTRO}}</p>
+      <ul class="pain">{{PAIN_POINTS}}</ul>
+    </section>
+
+    <section>
+      <h2>我们的方案</h2>
+      <p class="intro">{{SOLUTION_INTRO}}</p>
+      {{SOLUTION_BLOCKS}}
+    </section>
+
+    <section>
+      <h2>交付内容</h2>
+      <ul class="deliv">{{DELIVERABLES}}</ul>
+    </section>
+
+    <section>
+      <h2>合作方案与报价</h2>
+      <table class="price">
+        <thead><tr><th>方案</th><th>范围</th><th>报价</th></tr></thead>
+        <tbody>{{PRICING_TABLE}}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>合作案例</h2>
+      <p class="intro">{{CASE_INTRO}}</p>
+      <div class="cases">{{CASES}}</div>
+    </section>
+
+    <section class="cta">
+      <p>{{CTA_TEXT}}</p>
+      <div class="contact">{{CONTACT_LINE}}</div>
+    </section>
+
+    <footer>
+      <span>{{YOUR_NAME}} · {{YOUR_TITLE}}</span>
+      <span>{{DATE}}</span>
+    </footer>
+  </div>
+  {{CONTACT_WATERMARK}}
+</body>
+</html>

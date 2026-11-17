@@ -1,45 +1,64 @@
-## Description: <br>
-BSC Dev Wallet Monitor watches specified BSC addresses for token-transfer activity and returns alerts, webhook notification payloads, history, and monitor-management responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bsc Dev Monitor Skill monitors specified BSC addresses for token-transfer activity, with optional webhook notifications, history lookup, and claimed safety checks.
 
-## Publisher: <br>
-[mybusd](https://clawhub.ai/user/mybusd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mybusd](https://clawhub.ai/user/mybusd)
 
-## Use Case: <br>
-External users and developers use this skill to monitor BSC wallet addresses associated with token launches or trading signals, receive webhook alerts, query monitor history, and stop active monitors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The release exposes payment and platform credentials and includes deployment or publishing actions that are not necessary for normal monitoring use. <br>
-Mitigation: Do not install or run deployment scripts until the publisher removes and rotates exposed credentials and separates deployment actions from end-user monitoring. <br>
-Risk: Long-running wallet monitoring and webhook delivery can continue beyond the user's intended scope if duration and webhook ownership are not controlled. <br>
-Mitigation: Use finite monitor durations and provide only webhook URLs you control. <br>
-Risk: The documentation and implementation need clearer alignment on price, billing mode, and implemented safety checks. <br>
-Mitigation: Confirm price, billing mode, and safety-check behavior before relying on alerts or payments. <br>
+## Use Case:
 
+External crypto traders, alpha researchers, and risk monitors use this skill to watch selected BSC developer or project addresses and receive token-transfer notifications before deciding whether to investigate or act.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mybusd/bsc-dev-monitor-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/mybusd) <br>
-- [SkillPay](https://skillpay.me) <br>
-- [BNB Smart Chain](https://www.binance.org/en/smart-chain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [JSON responses and Markdown documentation with JavaScript and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes monitor setup, history, stop, webhook notification, billing, and deployment-related examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter and package.json state 1.0.0) <br>
+Risk: The artifact ships live-looking payment and platform login secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Revoke and rotate exposed credentials, remove secrets from distributed files, and load any required credentials through a controlled runtime secret store.
+
+Risk: Billing and deployment controls are unsafe for direct installation.
+
+Mitigation: Move payment operations behind a trusted server-side flow and require real payment verification before monitoring actions run.
+
+Risk: Monitor operations and webhook destinations may lack sufficient user or tenant controls.
+
+Mitigation: Add user and tenant authorization checks for monitor actions and validate webhook destinations before sending notifications.
+
+Risk: Safety-check behavior may be unsupported or overstated.
+
+Mitigation: Correct or remove unsupported safety-check claims before release.
+
+## Reference(s):
+
+- [Bsc Dev Monitor Skill on ClawHub](https://clawhub.ai/mybusd/skills/bsc-dev-monitor-v2)
+- [BNB Smart Chain](https://www.binance.org/en/smart-chain)
+- [SkillPay](https://skillpay.me)
+- [BscScan API Endpoint](https://api.bscscan.com/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON-like examples with JavaScript and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate monitoring results, webhook payload examples, payment links, deployment commands, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

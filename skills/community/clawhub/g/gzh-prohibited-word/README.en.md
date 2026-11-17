@@ -44,7 +44,7 @@ Scan WeChat Official Account copy, files, or web pages for prohibited and sensit
 
 - This skill requires the environment variable: `REDFOX_API_KEY`.
 - `REDFOX_API_KEY` is provided by [RedFoxHub](https://redfox.hk/settings/api-keys?source=clawhub) (`https://redfox.hk`).
-- Register at [RedFoxHub](https://redfox.hk?source=github) to obtain your `REDFOX_API_KEY`.
+- Register at [RedFoxHub](https://redfox.hk?source=clawhub) to obtain your `REDFOX_API_KEY`.
 - Configure the `REDFOX_API_KEY` environment variable on your device before using this skill.
 - Before providing a key, confirm its source, scope, validity period, and whether reset/revocation is supported.
 - Do not hard-code or expose keys in plain text in code, prompts, logs, or output files.

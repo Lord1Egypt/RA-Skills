@@ -1,0 +1,100 @@
+'''
+14获取行情数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+ContextInfo.get_market_data() - 获取行情数据【不推荐】
+提示
+
+推荐使用ContextInfo.get_market_data_ex()
+
+原型
+
+内置python
+
+ContextInfo.get_market_data(
+    fields, 
+    stock_code = [], 
+    start_time = '', 
+    end_time = '',
+    skip_paused = True, 
+    period = 'follow', 
+    dividend_type = 'follow', 
+    count = -1)
+释义
+
+获取行情数据
+
+参数
+
+字段名	数据类型	解释
+fields	字段列表	可选值包括：
+'open': 开
+'high': 高
+'low': 低
+'close': 收
+'volume': 成交量
+'amount': 成交额
+'settle': 结算价
+'quoter': 分笔数据（包括历史）
+stock_code	默认参数，合约代码列表	合约格式为 code.market，例如 '600000.SH'，不指定时为当前图合约
+start_time	默认参数，时间戳	开始时间，格式为 '20171209' 或 '20171209010101'
+end_time	默认参数，时间戳	结束时间，格式为 '20171209' 或 '20171209010101'
+skip_paused	默认参数，布尔值	如何处理停牌数据：
+true：如果是停牌股，会自动填充未停牌前的价格作为停牌日的价格
+false：停牌数据为 NaN
+period	string	需获取的历史数据周期，可选值包括：
+'tick'：分笔线、 '1d'：日线、 '1m'：1分钟线
+'3m'：3分钟线、 '5m'：5分钟线、 '15m'：15分钟线
+'30m'：30分钟线、 '1h'：小时线、 '1w'：周线
+'1mon'：月线、 '1q'：季线、 '1hy'：半年线
+'1y'：年线
+dividend_type	默认参数，字符串	缺省值为 'none'，除复权，可选值包括：
+'none'：不复权
+'front'：向前复权
+'back'：向后复权
+'front_ratio'：等比向前复权
+'back_ratio'：等比向后复权
+count	默认参数，整数	缺省值为 -1。当大于等于 0 时，效果与 get_history_data 保持一致
+count参数设置的几种情况
+count 取值	时间设置是否生效	开始时间和结束时间设置效果
+count >= 0	生效	返回数量取决于开始时间与结束时间和count与结束时间的交集
+count = -1	生效	同时设置开始时间和结束时间，在所设置的时间段内取值
+count = -1	生效	开始时间结束时间都不设置，取当前最新bar的值
+count = -1	生效	只设置开始时间，取所设开始时间到当前时间的值
+count = -1	生效	只设置结束时间，取股票上市第一根 bar 到所设结束时间的值
+返回值
+
+返回值根据传入的参数情况，会返回不同类型的结果
+count	字段数量	股票数量	时间点	返回类型
+=-1	=1	=1	=1	float
+=-1	>1	=1	默认值	pandas.Series
+>=-1	>=1	=1	>=1	pandas.DataFrame(字段数量和时间点不同时为1)
+=-1	>=1	>1	默认值	pandas.DataFrame
+>1	=1	=1	=1	pandas.DataFrame
+>=-1	>=1	>1	>=1	pandas.Panel
+示例
+
+示例data1返回值data2返回值data3返回值data4返回值
+
+# coding = gbk
+def init(C):
+    C.stock_list = ["000001.SZ","600519.SH", "510050.SH"]
+	
+def handlebar(C):
+    data1 = C.get_market_data(["close"],["000001.SZ"],start_time = "20231106",end_time = "20231106", count = -1) # 返回float值
+    data2 = C.get_market_data(["close","open"],["000001.SZ"], count = -1) # 返回pandas.Series
+    data3 = C.get_market_data(["close","open"],C.stock_list, count = -1) # 返回pandas.DataFrame
+    data4 = C.get_market_data(["open","high", "low", "close"],C.stock_list,count = 20) # 返回pandas.Panel
+
+    print(data1)
+    print(data2)
+    print(data3)
+    print(data4)
+'''
+运行结果
+              close      open
+000001.SZ    10.590    10.660
+600519.SH  1794.000  1805.000
+510050.SH     2.522     2.528
+
+'''

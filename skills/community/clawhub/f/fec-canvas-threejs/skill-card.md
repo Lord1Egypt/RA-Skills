@@ -1,43 +1,59 @@
-## Description: <br>
-Use when building or reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, GLSL shaders, ShaderToy-to-WebGL adaptation, 2D/3D visualization, game rendering, animation loops, GPU resource cleanup, or rendering performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers building and reviewing Canvas 2D, Three.js/WebGL, React Three Fiber, and shader-based browser visuals.
 
-## Publisher: <br>
-[bovinphang](https://clawhub.ai/user/bovinphang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bovinphang](https://clawhub.ai/user/bovinphang)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement or review browser-based 2D and 3D rendering work with Canvas, Three.js/WebGL, React Three Fiber, GLSL shaders, animation loops, responsive rendering, accessibility fallbacks, and GPU resource cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Canvas and WebGL content may be inaccessible to screen readers or keyboard-only users. <br>
-Mitigation: Provide aria labels, alternative text or DOM summaries, and keyboard-accessible paths for interactive graphics. <br>
-Risk: Unbounded DPR, large textures, complex shaders, or undisposed Three.js resources can overload devices or leak GPU memory. <br>
-Mitigation: Cap pixel ratio, geometry, texture sizes, shader steps, and particle counts; pause unused animation loops and dispose geometry, materials, textures, controls, and renderers on cleanup. <br>
-Risk: Shader or resize mistakes can leave the canvas blank, stretched, or failing only in specific viewports. <br>
-Mitigation: Verify desktop and mobile rendering, update draw buffers, viewports, cameras, and uniforms on resize, and check that shader compile and link logs are clean. <br>
+## Use Case:
 
+Developers use this skill to build and review accessible, responsive browser graphics, including 2D/3D scenes, shaders, animation loops, and rendering performance.
 
-## Reference(s): <br>
-- [Canvas, Three.js, and R3F patterns](references/rendering-patterns.md) <br>
-- [Shader and WebGL patterns](references/shader-webgl-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, markdown] <br>
-**Output Format:** [Markdown guidance with TypeScript, TSX, WebGL, and GLSL code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on responsive canvas sizing, animation loops, shader adaptation, accessibility alternatives, performance budgets, and cleanup checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release evidence, README.md, metadata.json, package.json) <br>
+Risk: Canvas and WebGL visuals may not be accessible to screen readers or keyboard users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide alternative text or a DOM summary and keyboard paths for interactive content.
+
+Risk: Unbounded render loops or unreleased GPU resources can degrade performance.
+
+Mitigation: Limit pixel ratio and rendering complexity, pause or cancel unused loops, and dispose of graphics resources.
+
+Risk: Shader or resize mistakes may produce blank or distorted visuals.
+
+Mitigation: Check shader compilation logs and visually verify canvas size and output across device sizes.
+
+## Reference(s):
+
+- [Canvas, Three.js and R3F patterns](references/rendering-patterns.md)
+- [Shader and WebGL patterns](references/shader-webgl-patterns.md)
+- [Frontend Craft project homepage](https://github.com/bovinphang/frontend-craft)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions]
+
+**Output Format:** [Markdown with TypeScript and GLSL guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rendering and visual verification recommendations]
+
+## Skill Version(s):
+
+2.9.0 (source: ClawHub release, README.md, metadata.json, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

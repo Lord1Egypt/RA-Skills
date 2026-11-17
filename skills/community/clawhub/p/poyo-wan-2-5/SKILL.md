@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-wan-2-5
 description: Wan 2.5 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `wan2.5-text-to-video`, `wan2.5-image-to-video`, text-to-video, image-to-video, 5s or 10s clips, size presets, resolution, audio string, negative prompt, seed control, task submission, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/wan2.5-text-to-video","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/wan-2-5","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Wan 2.5 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/wan-2-5>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/wan2.5-text-to-video>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Wan 2.5 video jobs on PoYo. It helps agents prepare text-to-video and image-to-video payloads, submit async tasks, and explain polling or webhook follow-up.
 

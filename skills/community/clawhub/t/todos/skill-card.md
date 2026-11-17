@@ -1,40 +1,57 @@
-## Description: <br>
-Todos manages local to-do items by adding, completing, listing, and deleting tasks stored in a local JSON file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Todos is a local to-do management skill for adding, completing, viewing, and deleting tasks stored in a local JSON file.
 
-## Publisher: <br>
-[radiantbk](https://clawhub.ai/user/radiantbk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[radiantbk](https://clawhub.ai/user/radiantbk)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to maintain a simple local task list, including adding tasks, marking them complete, viewing current or historical tasks, and deleting entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Todo titles and task details are saved on disk until deleted. <br>
-Mitigation: Avoid storing passwords, tokens, or highly sensitive information in todo entries. <br>
-Risk: Delete commands remove local todo entries from the JSON data file. <br>
-Mitigation: Review destructive delete commands before running them. <br>
+## Use Case:
 
+Developers and agent users can use this skill to manage personal to-do items through concise natural-language commands and a bundled Python command-line helper.
 
-## Reference(s): <br>
-- [Todos ClawHub release page](https://clawhub.ai/radiantbk/todos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text CLI output with local JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores todo data in ~/.openclaw/workspace/memory/todos.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill creates and modifies a local todo data file under ~/.openclaw/workspace/memory/todos.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this local storage location is acceptable before installation and review the file if todo data needs to be audited or removed.
+
+Risk: Completion and deletion commands change task state in the local todo file.
+
+Mitigation: Use explicit task IDs for completion and deletion, and inspect the list output before making irreversible todo edits.
+
+Risk: The user-facing skill documentation and script output are written primarily in Chinese.
+
+Mitigation: Deploy it for users who can operate the Chinese interface or provide localized wrapper guidance before use.
+
+## Reference(s):
+
+- [ClawHub Todos Skill Page](https://clawhub.ai/radiantbk/skills/todos)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [Text responses and command-line invocations; task data is persisted as JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and modifies ~/.openclaw/workspace/memory/todos.json when used.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,65 +1,43 @@
 ---
 name: research-memory
-description: Build a persistent, searchable knowledge base from articles, papers, documents, and notes using BlueColumn. Use when a user wants to save research for later retrieval, store articles or PDFs, build a second brain, or ask questions across their saved content. Triggers on phrases like "save this article", "store this paper", "add to my knowledge base", "what do I know about", "search my research", "recall what I saved about". Requires a BlueColumn API key (bc_live_*).
+description: Give AI agents Everything you read becomes knowledge. using BlueColumn persistent memory. Use when an agent researches and needs to keep findings; when the user wants to store, recall, or search research memory context. Requires a BlueColumn API key (bc_live_*).
 ---
 
-# Research Memory Skill
+# Research Memory — BlueColumn Skill
 
-Turn articles, papers, and notes into a searchable knowledge base backed by BlueColumn.
+Everything you read becomes knowledge.. Powered by BlueColumn (bluecolumn.ai) persistent vector memory.
 
 ## Setup
-Read `TOOLS.md` for the BlueColumn API key (`bc_live_*`). Keys are generated at bluecolumn.ai/dashboard. Store securely — never log or expose them.
+Read `TOOLS.md` or the platform secret store for the BlueColumn API key (`bc_live_*`). Base URL: `https://xkjkwqbfvkswwdmbtndo.supabase.co/functions/v1`
 
-Base URL: `https://xkjkwqbfvkswwdmbtndo.supabase.co/functions/v1` (BlueColumn's official backend — bluecolumn.ai runs on Supabase Edge Functions)
-
-## Save Research
-
-**From URL (PDF or document):**
+## Store
 ```bash
 curl -X POST .../agent-remember \
   -H "Authorization: Bearer <key>" \
-  -d '{"file_url": "https://arxiv.org/pdf/...", "title": "Attention Is All You Need"}'
+  -H "Content-Type: application/json" \
+  -d '{"text": "Research: pgvector vs pinecone — pgvector wins for BYO DB story. Source: docs comparison.", "title": "research-memory - note"}'
 ```
 
-**From text/paste:**
-```bash
-curl -X POST .../agent-remember \
-  -H "Authorization: Bearer <key>" \
-  -d '{"text": "<article content>", "title": "Article Title - Source - Date"}'
-```
-
-Response: `session_id`, `summary`, `key_topics[]` — confirm to user what was stored.
-
-## Query Knowledge Base
-
-```bash
-curl -X POST .../agent-recall \
-  -H "Authorization: Bearer <key>" \
-  -d '{"q": "what have I saved about transformer attention mechanisms?"}'
-```
-
-Returns synthesized answer across all stored research + source citations.
-
-## Save a Quick Note
-
+## Quick note
 ```bash
 curl -X POST .../agent-note \
   -H "Authorization: Bearer <key>" \
-  -d '{"text": "Interesting idea from paper: sparse attention reduces complexity to O(n sqrt(n))", "tags": ["transformers", "attention", "efficiency"]}'
+  -H "Content-Type: application/json" \
+  -d '{"text": "Research: pgvector vs pinecone — pgvector wins for BYO DB story. Source: docs comparison.", "tags": ["research-memory"]}'
+```
+
+## Recall
+```bash
+curl -X POST .../agent-recall \
+  -H "Authorization: Bearer <key>" \
+  -H "Content-Type: application/json" \
+  -d '{"q": "What did our research conclude about vector stores?"}'
 ```
 
 ## Workflow
+1. On new context, first recall: `What did our research conclude about vector stores?`
+2. Use the answer to personalize the response
+3. After the interaction, store the summary via `/agent-remember`
 
-1. User shares article URL, PDF URL, or pastes content
-2. Store via `/agent-remember` with descriptive title (include source + date)
-3. Confirm: show summary + key topics extracted
-4. For queries → `/agent-recall` with natural language question
-5. For quick observations → `/agent-note` with relevant tags
-
-## Title Naming Convention
-`"<Topic> - <Source> - <YYYY-MM-DD>"`
-Example: `"Sparse Attention - Arxiv - 2026-04-14"`
-
-Consistent naming improves recall accuracy over time.
-
-See [references/api.md](references/api.md) for full API reference.
+## Docs
+Full API reference: https://bluecolumn.ai/docs — fields are `text`, `q`, `tags` (not `content`/`query`/`note`).

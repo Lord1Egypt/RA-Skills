@@ -1,12 +1,14 @@
 ---
 name: liuyao
 description: 六爻铜钱卦占卜技能。核心理念："解一卦就是传一道，说一言就是传一智"。支持真实/虚拟起卦，集成儒道哲学。
-version: 2.1.1
+version: 2.2.1
 author: imagor
 tags: [六爻, 易经, 占卜, 命理]
 ---
 
 # 🔮 六爻占卜技能
+
+> ⚠️ **免责声明**：本技能仅供学习、娱乐与文化研究之用，不构成任何决策建议、健康预测或专业命理服务。占卜结果无法被客观验证，请勿作为重大事项的唯一决策依据。
 
 ## 📜 贫道人设
 
@@ -22,9 +24,9 @@ tags: [六爻, 易经, 占卜, 命理]
 ### 第一步：启动确认
 "居士，贫道来为居士解这一卦。请问居士所问何事？"
 
-### 第二步：起卦（参考 references/divination_method.md）
-- 虚拟起卦：直接调用 `scripts/liuyao.py` 生成六次掷币结果
-- 真实起卦：指导用户用三枚硬币掷六次，从下往上记录
+### 第二步：起卦
+- **虚拟起卦**：执行 `python3 scripts/liuyao_v2.py`，读取完整排盘结果（卦名、宫位、世应、六亲、变卦自动生成）
+- **真实起卦**：指导用户用三枚硬币掷六次，从下往上记录爻象，手工输入
 
 ### 第三步：按需读取 references/
 - **必读**：`references/64gua.md`（查卦辞）、当前卦象对应的 references
@@ -103,7 +105,7 @@ tags: [六爻, 易经, 占卜, 命理]
 liuyao/
 ├── SKILL.md              # 主文件
 ├── references/           # 按需加载
-│   ├── 64gua.md          # 六十四卦
+│   ├── 64gua.md          # 六十四卦（已勘误）
 │   ├── bagua.md          # 八卦六亲
 │   ├── zengshanbuyiyi.md # 增删卜易
 │   ├── confucian.md      # 论语
@@ -111,12 +113,12 @@ liuyao/
 │   ├── history_wisdom.md # 历史典故+孙子兵法
 │   ├── five_elements.md  # 五行详解
 │   ├── divination_method.md # 起卦详细方法
-│   └── cases.md          # 卦例
+│   └── cases.md          # 卦例（已补推演过程）
 ├── scripts/
-│   ├── liuyao.py         # 命令行起卦工具
-│   └── weekly_evolution.py  # 每周手动检查脚本（需手动运行，非定时任务）
+│   ├── liuyao_v2.py      # 自动排盘脚本（真随机 + 世应六亲自动推算）
+│   └── weekly_evolution.py  # 手动质量检查脚本
 └── logs/
-    └── evolution_log.md   # weekly_evolution.py 运行时写入
+    └── evolution_log.md   # evolution 记录
 ```
 
 ---
@@ -126,6 +128,16 @@ liuyao/
 - "教我学六爻" → 入门教程（见 references/tutorial.md）
 - "帮我起一卦" → 直接起卦解卦
 - "推荐六爻书籍" → 见 references/zengshanbuyiyi.md 末尾书单
+
+---
+
+## 🧬 进化记录
+
+- **v2.1.1→v2.2**（2026-09-25）
+  - 修复 64gua.md：离宫八卦补全（风水涣、风火家人），火天大有归位乾宫；"水电革"→"水火革"
+  - 案例库全部补完推演过程（六步法）
+  - SKILL.md 顶部加免责声明
+  - 新增 `liuyao_v2.py`：真随机（/dev/urandom）+ 自动卦名检索 + 世应定位 + 六亲自动推算
 
 ---
 

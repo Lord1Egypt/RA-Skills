@@ -1,42 +1,58 @@
-## Description: <br>
-Add JSON-LD structured data to a website to improve SEO, qualify pages for richer search result previews, and help crawlers identify and cite the site. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add JSON-LD structured data to a website to improve SEO, qualify pages for richer search result previews, and help LLM crawlers correctly identify and cite the site.
 
-## Publisher: <br>
-[jrrembert](https://clawhub.ai/user/jrrembert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jrrembert](https://clawhub.ai/user/jrrembert)
 
-## Use Case: <br>
-Developers, site owners, and content authors use this skill to add accurate Schema.org JSON-LD to personal sites, blogs, portfolios, and project pages. It helps select page-appropriate nodes, connect them with stable @id references, and prepare markup for validation before publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated JSON-LD can misrepresent page entities, authorship, dates, software metadata, or profile links if placeholders or inferred values are published without review. <br>
-Mitigation: Compare generated markup against the visible page content, replace placeholders with accurate canonical values, and validate with the Google Rich Results Test or Schema.org Validator before publishing. <br>
+## Use Case:
 
+Developers and site maintainers use this skill to add Schema.org JSON-LD to personal sites, blogs, portfolios, and software showcase pages so crawlers can understand page entities and relationships.
 
-## Reference(s): <br>
-- [Server-resolved GitHub provenance](https://github.com/jrrembert/skills/tree/main/add-json-ld) <br>
-- [Schema.org](https://schema.org) <br>
-- [Google Rich Results Test](https://search.google.com/test/rich-results) <br>
-- [Schema.org Validator](https://validator.schema.org/) <br>
-- [Google structured data search gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown guidance with JSON-LD and HTML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include per-page Schema.org node recommendations, JSON-LD graph examples, placement guidance, and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Generated JSON-LD may expose public site metadata, including Person.sameAs profile links or knowledge-graph identifiers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated JSON-LD before publishing, especially profile links and identifiers that become public metadata.
+
+Risk: The skill may be invoked for broad SEO or site-discoverability requests.
+
+Mitigation: Confirm the target pages, canonical domain, and intended structured data before applying generated markup.
+
+## Reference(s):
+
+- [Server-resolved GitHub provenance](https://github.com/jrrembert/skills/tree/main/add-json-ld)
+- [ClawHub skill page](https://clawhub.ai/jrrembert/skills/add-json-ld)
+- [Schema.org vocabulary](https://schema.org)
+- [Google structured data documentation](https://developers.google.com/search/docs/appearance/structured-data/search-gallery)
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Schema.org Validator](https://validator.schema.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON-LD and HTML code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include page-specific JSON-LD graphs, placement guidance, and validation links.]
+
+## Skill Version(s):
+
+0.1.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

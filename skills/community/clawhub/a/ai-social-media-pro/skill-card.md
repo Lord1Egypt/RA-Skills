@@ -1,42 +1,53 @@
-## Description: <br>
-Comprehensive social media management platform with AI-powered content creation, multi-platform scheduling, hashtag optimization, performance analytics, and support for WeChat, Weibo, Xiaohongshu, Douyin, and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive social media management platform with AI-powered content creation, multi-platform scheduling, hashtag optimization, and performance analytics.
 
-## Publisher: <br>
-[banxian87](https://clawhub.ai/user/banxian87) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[banxian87](https://clawhub.ai/user/banxian87)
 
-## Use Case: <br>
-External social media managers, marketers, and content teams use this skill to draft platform-specific posts, plan publishing calendars, optimize hashtags, and review campaign performance across multiple social platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Auto-publishing and cross-posting could publish incorrect, unauthorized, or off-brand content. <br>
-Mitigation: Require explicit human approval for every publish and cross-post action, and connect only accounts with narrowly scoped posting permissions. <br>
-Risk: Comment handling and DM automation could send inappropriate or unauthorized responses. <br>
-Mitigation: Use the skill as a drafting assistant for replies unless reviewed response queues, approval gates, and account permission limits are in place. <br>
-Risk: Analytics, audience insights, and competitor analysis may process sensitive social account or campaign data. <br>
-Mitigation: Limit connected data sources to the minimum required scope and review generated insights before using them for campaign decisions. <br>
+## Use Case:
 
+External creators, marketers, and social media operators use this skill to draft platform-specific posts, plan publishing calendars, optimize hashtags, and review audience or campaign performance across supported social platforms.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/banxian87/ai-social-media-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with example JavaScript, shell commands, and reusable content templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific captions, hashtags, calendar plans, analytics summaries, and publishing workflow guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release metadata; artifact package.json lists 1.0.0) <br>
+Risk: The skill advertises automated publishing, cross-posting, comment replies, and DM automation without clear approval or account-scope guardrails.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit human confirmation before publishing, cross-posting, replying to comments, or sending DMs, and restrict connected account permissions to the minimum needed.
+
+Risk: The skill may process platform data, audience analytics, and message content without documented storage or sharing controls.
+
+Mitigation: Review how social account data, analytics, and private messages are stored or shared before connecting real accounts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/banxian87/skills/ai-social-media-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated social copy, hashtag lists, publishing plans, analytics summaries, and implementation snippets.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md Version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

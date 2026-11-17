@@ -1,43 +1,56 @@
-## Description: <br>
-自动监控深交所、上交所、北交所、股转系统、中国结算和证券业协会等证券监管页面，检测页面变化并生成通知。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors 21 Chinese securities-regulation pages across SZSE, SSE, BSE, NEEQ, ChinaClear, and SAC, then detects changes and prepares notification content.
 
-## Publisher: <br>
-[huifeideyua1231](https://clawhub.ai/user/huifeideyua1231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huifeideyua1231](https://clawhub.ai/user/huifeideyua1231)
 
-## Use Case: <br>
-Developers and operations users can use this skill to check monitored Chinese securities-regulation pages, run the batch crawler, inspect generated change notifications, and prepare Enterprise WeChat updates when changes are found. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed skill delegates core monitoring work to pre-existing root-level scripts and a persistent cron setup outside the packaged artifact. <br>
-Mitigation: Install or run it only where the /root/monitoring/securities system is controlled and reviewed, and confirm the cron entry is intended before use. <br>
-Risk: The workflow can use an XCrawl API key, write temporary and log files, and prepare Enterprise WeChat notifications to a configured recipient. <br>
-Mitigation: Verify API key handling, /tmp and /var/log outputs, and the Enterprise WeChat destination before sending notifications. <br>
+## Use Case:
 
+Agents use this skill to check or run an existing securities monitoring deployment, review pending update notifications, and prepare WeCom notifications about regulatory page changes.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huifeideyua1231/securities-monitor) <br>
-- [API 说明](references/api.md) <br>
-- [配置说明](references/config.md) <br>
-- [XCrawl Scrape API](https://run.xcrawl.com/v1/scrape) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated text or diff notification files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read monitored page snapshots, generate notification and diff files under /tmp, and write execution logs under /var/log/securities when the external monitoring system is present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The release relies on recurring scripts under /root/monitoring/securities outside the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the deployment path, cron entry, script ownership, permissions, cleanup policy, and run account before enabling the skill.
+
+Risk: WeCom notification instructions are under-scoped and could send updates to the wrong recipient.
+
+Mitigation: Verify the WeCom recipient and notification content before any message is sent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huifeideyua1231/skills/securities-monitor)
+- [API 说明](references/api.md)
+- [配置说明](references/config.md)
+- [XCrawl Scrape API endpoint](https://run.xcrawl.com/v1/scrape)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and configuration paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference generated notification and diff files from the managed monitoring deployment.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

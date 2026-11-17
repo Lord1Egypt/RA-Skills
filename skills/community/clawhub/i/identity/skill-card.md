@@ -1,47 +1,63 @@
-## Description: <br>
-Know Your Agent (KYA). Billions decentralized identity for agents. Link agents to human identities using Billions ERC-8004 and Attestation Registries. Verify and generate authentication proofs. Based on iden3 self-sovereign identity protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Know Your Agent (KYA). Billions decentralized identity for agents. Link agents to human identities using Billions ERC-8004 and Attestation Registries. Verify and generate authentication proofs. Based on iden3 self-sovereign identity protocol.
 
-## Publisher: <br>
-[billionsnetwork](https://clawhub.ai/user/billionsnetwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billionsnetwork](https://clawhub.ai/user/billionsnetwork)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create and manage a persistent decentralized identity for an AI agent, link it to a human owner, sign or verify identity challenges, and complete confirmed x402 payment flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Long-lived agent private keys may be stored in plaintext when BILLIONS_NETWORK_MASTER_KMS_KEY is not configured. <br>
-Mitigation: Set BILLIONS_NETWORK_MASTER_KMS_KEY before creating or importing identities, use a dedicated no-funds identity key, and restrict ~/.openclaw/billions with chmod 700. <br>
-Risk: The skill can sign x402 payments from the agent identity. <br>
-Mitigation: Require explicit user confirmation before phase-2 payment execution and present the resource, amount, asset, network, and attestation status before signing. <br>
-Risk: Payment challenges and signatures are time-sensitive and should not be reused. <br>
-Mitigation: Run the payment discovery flow for each request and use only the fresh paymentRequiredFilePath and selected paymentHash returned by the script. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create, manage, link, prove, and verify decentralized identities for AI agents. It also helps agents handle x402 payment-required responses by presenting payment options for explicit user confirmation and generating signed payment requests.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/billionsnetwork/identity) <br>
-- [Billions Network](https://billions.network/) <br>
-- [README](README.md) <br>
-- [Security Policy](SECURITY.md) <br>
-- [Identity Reference](reference/identity/SKILL.md) <br>
-- [x402 Payment Reference](reference/x402/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce verification links, DID strings, signed challenge results, payment-option summaries, and protected-resource response data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence) <br>
+Risk: Private identity keys may be stored insecurely when the master key environment variable is not configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set BILLIONS_NETWORK_MASTER_KMS_KEY before creating or importing an identity and restrict ~/.openclaw/billions permissions to the local operator.
+
+Risk: Reusing an asset-holding Ethereum wallet key could expand the impact of key disclosure beyond agent identity impersonation.
+
+Mitigation: Use only a dedicated no-funds identity key for this skill.
+
+Risk: The x402 payment flow can sign payment requests after user selection, so a misleading destination, recipient, asset contract, network, or amount could cause unintended payment.
+
+Mitigation: Use the payment flow only after independently verifying the destination, recipient, asset contract, network, amount, and user consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/billionsnetwork/skills/identity)
+- [Billions Network](https://billions.network/)
+- [Artifact README](artifact/README.md)
+- [Security Policy](artifact/SECURITY.md)
+- [Identity Reference](artifact/reference/identity/SKILL.md)
+- [x402 Payment Reference](artifact/reference/x402/SKILL.md)
+- [OpenClaw environment documentation](https://docs.openclaw.ai/help/environment)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text guidance with inline shell commands, JSON script output, DID strings, verification URLs, and payment-signature flow data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include local identity records, authentication proofs, signed challenge results, and x402 payment option data that requires explicit user confirmation before payment execution.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

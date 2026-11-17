@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-kling-o3
 description: Kling O3 video generation on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `kling-o3/standard`, `kling-o3/pro`, text-to-video, image-to-video, reference-to-video, multi_shots, multi_prompt, sound, aspect ratio control, element references, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/video-series/kling-o3","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/kling-o3-api","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Kling O3 Video Generation
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/kling-o3-api>
+- API docs: <https://docs.poyo.ai/api-manual/video-series/kling-o3>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Kling O3 video jobs on PoYo. It helps agents prepare text-to-video, image-to-video, reference-to-video, and multi-shot payloads, submit async tasks, and explain polling or webhook follow-up.
 

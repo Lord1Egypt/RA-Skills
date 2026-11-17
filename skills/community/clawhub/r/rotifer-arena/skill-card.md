@@ -1,47 +1,56 @@
-## Description: <br>
-One-click Gene comparison and evaluation for Rotifer Protocol that can import from ClawHub Skills, local files, or new scenarios, then compile, match opponents, run Arena battles, and generate structured Markdown reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers compare Rotifer Genes through Arena evaluations and produce a Markdown report with fitness and security grades.
 
-## Publisher: <br>
-[xiaoba-dev](https://clawhub.ai/user/xiaoba-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoba-dev](https://clawhub.ai/user/xiaoba-dev)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare Rotifer Genes, imported Skills, or custom implementations with Arena scoring, rankings, and reproducible evaluation reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes Rotifer CLI or MCP workflows and may submit, import, or evaluate local Skills and Genes. <br>
-Mitigation: Confirm the exact local paths or ClawHub slugs being evaluated before execution, and avoid sensitive code unless the user understands what the Rotifer tooling submits or imports. <br>
-Risk: Rotifer CLI and MCP packages are external tools executed through npx. <br>
-Mitigation: Treat the Rotifer packages as external code, review the package source or provenance as needed, and run them only in intended Rotifer Gene or Arena workflows. <br>
-Risk: Cross-fidelity comparisons can reflect scoring-model differences rather than direct capability differences. <br>
-Mitigation: Include the skill's cross-fidelity disclaimer in reports and prefer same-fidelity opponents when comparing Wrapped, Hybrid, or Native Genes. <br>
+## Use Case:
 
+Developers use this skill to import, compile, and compare Rotifer Genes or Agents in the Arena, then review a Markdown evaluation report. It requires the Rotifer CLI and keeps opponent selection and report saving under user control.
 
-## Reference(s): <br>
-- [Rotifer Protocol](https://rotifer.dev) <br>
-- [Rotifer Documentation](https://rotifer.dev/docs) <br>
-- [Rotifer Protocol Specification](https://github.com/rotifer-protocol/rotifer-spec) <br>
-- [Rotifer Playground](https://github.com/rotifer-protocol/rotifer-playground) <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoba-dev/rotifer-arena) <br>
-- [Publisher Profile](https://clawhub.ai/user/xiaoba-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports with tables, fixed-width ranking visualizations, and bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write saved reports to arena-reports/ after explicit user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and clawhub.json) <br>
+Risk: The described workflow writes project and CLI state and makes public API queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed commands, write locations, and API use before approving execution.
+
+Risk: The security assessment is partial: a local path-like reference was unresolved, and a purpose mismatch was reported.
+
+Mitigation: Review the unresolved reference and confirm that the popularity and download commands fit the benchmarking task before installation or use.
+
+## Reference(s):
+
+- [Rotifer Protocol](https://rotifer.dev)
+- [Rotifer documentation](https://rotifer.dev/docs)
+- [Protocol specification](https://github.com/rotifer-protocol/rotifer-spec)
+- [ClawHub release page](https://clawhub.ai/xiaoba-dev/skills/rotifer-arena)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown evaluation report with comparison tables and reproduction commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports F(g) fitness and V(g) security grades when the corresponding CLI evaluations are run.]
+
+## Skill Version(s):
+
+1.2.11 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

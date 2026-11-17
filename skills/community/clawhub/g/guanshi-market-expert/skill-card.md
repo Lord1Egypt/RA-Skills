@@ -1,39 +1,53 @@
-## Description: <br>
-观势专家集群 — 市场洞察专家。Use when 被观势 Chief 调度执行用户研究、需求分析、市场细分、定价策略、市场进入策略、客户旅程分析、品牌定位. 不适用于市场调研数据查询或独立调用. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GuanShi Market Expert supports market insight work for user research, demand analysis, market segmentation, pricing strategy, go-to-market strategy, customer journey analysis, and brand positioning.
 
-## Publisher: <br>
-[tuobadaidai](https://clawhub.ai/user/tuobadaidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tuobadaidai](https://clawhub.ai/user/tuobadaidai)
 
-## Use Case: <br>
-Strategy teams and market analysts use this skill to structure user research, demand analysis, market segmentation, pricing, go-to-market planning, customer journey analysis, and brand positioning. It is intended as an advisory market-analysis prompt framework, especially when coordinated by the broader GuanShi expert workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market estimates, benchmark claims, and customer metrics may be inaccurate or incomplete when first-party research data is unavailable. <br>
-Mitigation: Treat the skill's analysis as advisory, validate important conclusions against current first-party research and reliable market sources, and keep inferred assumptions visibly labeled. <br>
+## Use Case:
 
+External strategy teams, founders, product marketers, and business analysts use this skill through GuanShi Chief to frame markets, prioritize segments, choose pricing approaches, analyze customer journeys, and draft brand positioning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tuobadaidai/guanshi-market-expert) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/tuobadaidai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown strategy analysis with scoring tables, prioritized recommendations, and concise positioning statements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include market segment scores, pricing ranges, customer journey pain points, growth opportunities, and assumptions labeled as inferred when first-party data is unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Market estimates and customer profiles may be advisory when based on secondary sources rather than first-party research data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Label inferred estimates, state the data basis where possible, and validate recommendations with current market research before business decisions.
+
+Risk: Cross-market recommendations may miss local cultural or regional behavior differences.
+
+Mitigation: Flag cultural-difference risk for cross-border market entry and review outputs with local market expertise.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tuobadaidai/skills/guanshi-market-expert)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with segment prioritization, scoring tables, recommended price ranges, customer journey pain points, and positioning statements.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May label estimates as inferred when first-party research data is unavailable.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

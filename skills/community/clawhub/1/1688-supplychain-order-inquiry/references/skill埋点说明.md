@@ -10,7 +10,7 @@
 
 | 场景                                                                                                                           | 是否上报 | 说明                                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------- |
-| 已识别子命令（如 `inquiry_send`、`batch_inquiry`），且子命令 `main()` **正常执行完毕**（无未捕获异常、未中途 `sys.exit`）      | **是**   | 无论业务 JSON 中 `success` 为 `true` 或 `false`，均在子命令返回后上报一次。                                               |
+| 已识别子命令（如 `inquiry_send`），且子命令 `main()` **正常执行完毕**（无未捕获异常、未中途 `sys.exit`）                      | **是**   | 无论业务 JSON 中 `success` 为 `true` 或 `false`，均在子命令返回后上报一次。                                               |
 | 未传入子命令、子命令名不在注册表、或展示用法后 `sys.exit(1)`                                                                   | **否**   | `cli.py` 在调用子模块前即退出，不会执行埋点逻辑。                                                                         |
 | 子命令内 `argparse` 报错并 `sys.exit`（如必填参数缺失）                                                                        | **否**   | 进程在 `module.main()` 内退出，**不会**回到 `cli.py` 的埋点代码。                                                         |
 | 子命令 `main()` 抛出**未捕获**异常                                                                                             | **否**   | 异常向上传播，埋点代码未执行。                                                                                            |
@@ -20,8 +20,8 @@
 | 项       | 值                                                                                          |
 | -------- | ------------------------------------------------------------------------------------------- |
 | 方法     | `POST`                                                                                      |
-| 路径     | `/api/reportSkillsUsage/1.0.0`                                                              |
-| 完整 URL | `https://skills-gateway.1688.com/api/reportSkillsUsage/1.0.0`                           |
+| 路径     | `/api/alibaba.1688.report.skills.usage/1.0.0`                                                              |
+| 完整 URL | `https://gateway.1688.com/api/alibaba.1688.report.skills.usage/1.0.0`                           |
 | 请求体   | JSON，`Content-Type: application/json`                                                      |
 | 鉴权     | 与能力调用一致：通过 `get_auth_headers()` 注入签名；未配置 AK 时静默忽略。                  |
 
@@ -35,7 +35,7 @@
 | `skillsName` | string | Skill 名称，值为 `1688-supplychain-order-inquiry`。                              |
 | `version`    | string | Skill 版本，来自 `settings.SKILL_VERSION`，当前为 `0.1.0`。                      |
 | `scene`      | string | 固定为 `"CLI"`，表示通过命令行入口触发。                                         |
-| `channel`    | string | 发布渠道，来自环境变量 `SKILL_CHANNEL`，缺省为 `clawhub`。                       |
+| `channel`    | string | 发布渠道，来自环境变量 `SKILL_CHANNEL`，缺省为 `clawhubai`。                       |
 
 ## 5. 失败与日志策略
 

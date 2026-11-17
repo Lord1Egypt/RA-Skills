@@ -1,45 +1,60 @@
-## Description: <br>
-Verifies identity documents via the Didit standalone API for passports, ID cards, driver's licenses, and residence permits, including OCR extraction, MRZ parsing, authenticity checks, and KYC document validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies identity documents via the Didit standalone API for passports, ID cards, driver's licenses, and residence permits, including OCR extraction, MRZ parsing, document authenticity checks, and KYC document validation.
 
-## Publisher: <br>
-[rosasalberto](https://clawhub.ai/user/rosasalberto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rosasalberto](https://clawhub.ai/user/rosasalberto)
 
-## Use Case: <br>
-Developers and identity-verification teams use this skill to submit user-provided identity document images to Didit and interpret verification status, extracted document fields, and warnings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-selected identity document images to Didit for verification. <br>
-Mitigation: Use it only when authorized to process the document holder's ID images and when the user understands the data will be sent to Didit. <br>
-Risk: The Didit API key is required for requests. <br>
-Mitigation: Store DIDIT_API_KEY as a secret environment variable and avoid placing it in source files, command history, logs, or shared transcripts. <br>
-Risk: Returned JSON can include highly sensitive identity data such as document numbers, birth dates, addresses, portraits, and document images. <br>
-Mitigation: Protect the response as sensitive personal data, minimize retention, avoid unnecessary vendor_data, and use --no-save when provider-side saving is not needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rosasalberto/didit-id-document-verification) <br>
-- [Didit Documentation](https://docs.didit.me) <br>
-- [Didit ID Verification API Reference](https://docs.didit.me/standalone-apis/id-verification) <br>
-- [Didit ID Verification Feature Guide](https://docs.didit.me/core-technology/id-verification/overview) <br>
-- [Didit Supported Documents](https://docs.didit.me/core-technology/id-verification/supported-documents-id-verification) <br>
+## Use Case:
 
+Developers and identity/KYC teams use this skill to submit passport, ID card, driver's license, or residence permit images to Didit's standalone API and interpret OCR, MRZ, authenticity, liveness, warning, and verification status results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code examples, and JSON API responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DIDIT_API_KEY and a front document image; may use an optional back image, vendor_data, and --no-save.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Government ID images and verification responses can expose sensitive personal information.
+
+Mitigation: Use the skill only with informed consent, redact sensitive response fields before sharing logs or transcripts, and avoid running the helper script in shared terminals or CI logs.
+
+Risk: The helper script saves API requests by default, which may retain document data in the vendor console.
+
+Mitigation: Use --no-save unless retention is explicitly required and approved for the workflow.
+
+Risk: vendor_data may become a persistent identifier associated with a verification session.
+
+Mitigation: Use a non-sensitive opaque identifier for vendor_data and avoid names, document numbers, addresses, or other personal data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rosasalberto/skills/didit-id-document-verification)
+- [Didit documentation](https://docs.didit.me)
+- [Didit ID Verification API reference](https://docs.didit.me/standalone-apis/id-verification)
+- [Didit ID Verification feature guide](https://docs.didit.me/core-technology/id-verification/overview)
+- [Didit supported documents](https://docs.didit.me/core-technology/id-verification/supported-documents-id-verification)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with API examples, shell commands, and JSON response interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include helper-script output from the Didit API; responses can contain sensitive personal data from identity documents.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

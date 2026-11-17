@@ -1,40 +1,53 @@
-## Description: <br>
-Build and analyze financial models from diverse data, produce variance reports, and create multi-scenario forecasts for strategic FP&A decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and analyze financial models from diverse data, produce variance reports, and create multi-scenario forecasts for strategic FP&A decisions.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Startup founders, CEOs, FP&A analysts, and finance operators use this skill to create financial models, budget reviews, variance analysis, cash forecasts, unit economics checks, fundraising preparation, and board-ready financial packages. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive company financial data, including payroll, banking, customer, or account-level records. <br>
-Mitigation: Use only data that can be shared with the agent environment, and redact bank account numbers, employee-identifying payroll details, customer personal data, and unnecessary account-level records. <br>
-Risk: Generated financial analysis may be incomplete or inaccurate if used directly for board, investor, tax, or operational decisions. <br>
-Mitigation: Review and verify generated outputs against authoritative financial records before using them for material decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [FP&A Engine on ClawHub](https://clawhub.ai/1kalin/afrexai-fpa-engine) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Startup founders, CEOs, FP&A analysts, and finance operators use this skill to structure financial data intake, build forecasts and budgets, analyze variance, manage cash flow, and prepare board or fundraising materials.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, tables, YAML-style templates, and narrative recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include financial model structures, scenario assumptions, variance explanations, forecasts, and board-report outlines.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may process sensitive company financial data, including cash balances, payroll data, bank statements, fundraising details, and board materials.
+
+Mitigation: Provide only the minimum data needed, redact account numbers and employee identifiers where possible, and share sensitive records only with agents and environments approved for that data.
+
+Risk: Generated forecasts, valuations, tax notes, and board materials can be incomplete or misleading if source data is stale, sparse, or inaccurate.
+
+Mitigation: Treat outputs as drafts, review assumptions and calculations with finance leadership, and involve qualified accounting, tax, or legal advisors for material decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/1kalin/skills/afrexai-fpa-engine)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with structured tables, YAML-style templates, formulas, and plain-language recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include financial model structures, scenario forecasts, variance reports, board package outlines, cash-flow templates, and fundraising preparation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

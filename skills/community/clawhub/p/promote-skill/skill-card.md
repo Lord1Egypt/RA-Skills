@@ -1,40 +1,50 @@
-## Description: <br>
-Use when publishing a SKILL.md-style agent skill across uGig, sh1pt, GitHub/gists, and follow-on skill marketplaces such as ClawHub, Goose, LobeHub, Kilo, Skillstore, FreeMyGent, ClawMart, Manus, VS Code Agent Skills, and Moltbook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when publishing a SKILL.md-style agent skill across uGig, sh1pt, GitHub/gists, and follow-on skill marketplaces such as ClawHub, Goose, LobeHub, Kilo, Skillstore, FreeMyGent, ClawMart, Manus, VS Code Agent Skills, and Moltbook.
 
-## Publisher: <br>
-[ralyodio](https://clawhub.ai/user/ralyodio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ralyodio](https://clawhub.ai/user/ralyodio)
 
-## Use Case: <br>
-Developers and agent users use this skill to prepare a public-safe SKILL.md, create a source URL, publish to ClawHub and related marketplaces, and track follow-on promotion steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing workflows can expose credentials, cookies, private environment values, or personal secrets if a skill file is uploaded without review. <br>
-Mitigation: Run a secret scan from the intended skill directory, manually inspect any hits, and keep real secrets out of SKILL.md and marketplace listings. <br>
-Risk: Marketplace commands, wallet access, and credentialed submissions may affect public listings or paid releases if run against the wrong account or artifact. <br>
-Mitigation: Review every generated command, confirm authentication and target account state, use dry-run flows where available, and provide marketplace credentials or wallet access only to trusted services. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to package, publish, and promote SKILL.md-style agent skills across ClawHub, uGig, sh1pt, GitHub or gists, and related marketplaces. It helps prepare public-safe metadata, publishing commands, marketplace checklists, and final status reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ralyodio/promote-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and marketplace checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewable publication steps and command examples; users should inspect commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The recommended pre-publish secret scan can inspect and print sensitive data from the whole working directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the scan only against the target SKILL.md or in a clean staging directory, then review every public upload command before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ralyodio/skills/promote-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/ralyodio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, marketplace checklists, configuration guidance, and status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include marketplace URLs, dry-run publishing commands, public source recommendations, and security review notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

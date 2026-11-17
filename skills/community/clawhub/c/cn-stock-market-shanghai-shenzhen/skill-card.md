@@ -1,41 +1,54 @@
-## Description: <br>
-Get China A-share market data (Shanghai/SH and Shenzhen/SZ) via FinanceAgent on OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get China A-share market data (Shanghai/SH and Shenzhen/SZ) via FinanceAgent on OneKey Gateway.
 
-## Publisher: <br>
-[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and analysts use this skill to query China A-share quotes for Shanghai and Shenzhen symbols through OneKey Gateway from CLI or HTTP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends stock query requests through OneKey Gateway and an external FinanceAgent service. <br>
-Mitigation: Confirm that the gateway service and @aiagenta2z/onekey-gateway npm package are trusted for the intended environment before use. <br>
-Risk: The OneKey API key can be exposed through shared terminals, shell history, verbose command output, or logs. <br>
-Mitigation: Keep the API key out of shared logs, prefer local or npx execution where practical, and rotate the key if it is exposed. <br>
+## Use Case:
 
+Developers and agents use this skill to query China A-share quote data for Shanghai and Shenzhen symbols through FinanceAgent on OneKey Gateway.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ai-hub-admin/cn-stock-market-shanghai-shenzhen) <br>
-- [OneKey Gateway agent router endpoint](https://agent.deepnlp.org/agent_router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with shell snippets and JSON request and response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a OneKey Gateway API key; response fields depend on the upstream data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to install and run an unpinned npm gateway package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the @aiagenta2z/onekey-gateway package and DeepNLP OneKey Gateway service are trusted, and pin or verify the package version where possible.
+
+Risk: Credential-handling examples could expose the OneKey Gateway API key in logs or terminal output.
+
+Mitigation: Avoid running verbose curl examples with a real key, avoid global installation where possible, and rotate the key if it appears in logs or terminal output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-hub-admin/skills/cn-stock-market-shanghai-shenzhen)
+- [DeepNLP OneKey Agent Router endpoint](https://agent.deepnlp.org/agent_router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command examples and JSON response descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a OneKey Gateway API key and returns stock quote data from the upstream service as JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

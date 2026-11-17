@@ -1,12 +1,18 @@
 # dev-backup
 
-Crea snapshot dei progetti in sviluppo per avere un punto di rollback sicuro.
+Crea snapshot dei progetti in sviluppo per avere un punto di rollback.
+
+## ⚠️ AVVERTENZE IMPORTANTI
+
+- **Il restore è DISTRUTTIVO**: sovrascrive i file esistenti nel progetto target senza preavviso.
+- **Prima del restore, esegui SEMPRE `--dry-run`** per verificare cosa verrà modificato.
+- Gli snapshot vecchi vengono eliminati dalla retention senza conferma aggiuntiva.
 
 ## A cosa serve
 
 - Backup prima di cambiamenti rischiosi o refactoring
-- Snapshot "salva lo stato attuale" del progetto
-- Ripristino rapido in caso di problemi
+- Snapshot dello stato attuale del progetto (solo con comando esplicito)
+- Ripristino rapido in caso di problemi (con conferma esplicita)
 - Ogni progetto ha la sua numerazione indipendente
 
 ## Come funziona
@@ -28,12 +34,17 @@ Un symlink `.latest` nella cartella backups punta sempre allo snapshot più rece
 
 ## Comandi per l'agente
 
-Chiedi all'agente con frasi naturali:
+⚠️ **ATTIVAZIONE SOLO CON COMANDI ESPPLICITI.** Non attivare per frasi casuali dove "backup" appare nella conversazione.
 
-- **"Fai un backup di [nome-progetto]"** → l'agente esegue lo snapshot
-- **"Salva lo stato attuale di [nome-progetto]"** → stesso risultato
-- **"Fai un backup dello sviluppo"** → l'agente identifica il progetto attivo
-- **"Ripristina il backup di [nome-progetto]"** → l'agente copia lo snapshot
+**Trigger validi (solo questi):**
+- **"Fai un backup manuale di [nome-progetto]"** → crea snapshot
+- **"Esegui backup di [nome-progetto]"** → crea snapshot
+- **"Backup di [nome-progetto]"** → crea snapshot
+
+**NON attivare con:**
+- `"Salva lo stato attuale"` (troppo ambiguo)
+- `"Fai un backup dello sviluppo"` (non specifica il progetto)
+- Frasi dove "backup" appare casualmente nella conversazione
 
 ## Comandi manuali
 
@@ -50,15 +61,24 @@ bash /path/to/skills/dev-backup/scripts/dev-backup.sh my-app --project-dir /home
 bash /path/to/skills/dev-backup/scripts/dev-backup.sh another-project --project-dir /home/user/projects/another-project
 ```
 
-### Ripristinare un backup
+### Ripristinare un backup (🔴 DISTRUTTIVO)
+
+> **⛔ ATTENZIONE:** Il restore sovrascrive TUTTI i file nel progetto target.
+> Qualsiasi modifica non salvata verrà **PERDUTA DEFINITIVAMENTE**.
+
+**STEP 1 — Dry-run OBBLIGATORIO:** Verifica cosa verrà sovrascritto senza eseguire:
 
 ```bash
-# Dallo snapshot specifico:
-cp -r <backups-dir>/<nome-progetto>-snapshot-2/ <percorso-app>/
-
-# O dallo snapshot più recente (.latest):
-cp -r <backups-dir>/.latest/ <percorso-app>/
+bash /path/to/skills/dev-backup/scripts/dev-backup.sh my-app --restore --dry-run --project-dir /home/user/projects/my-app
 ```
+
+**STEP 2 — Eseguire il restore (solo dopo aver verificato con dry-run):**
+
+```bash
+bash /path/to/skills/dev-backup/scripts/dev-backup.sh my-app --restore --project-dir /home/user/projects/my-app
+```
+
+> **Non usare `cp -r` direttamente per il restore.** Usa sempre lo script che gestisce la conferma interattiva e l'integrità dello snapshot.
 
 ### Verificare gli snapshot
 
@@ -73,5 +93,5 @@ skills/dev-backup/
 ├── SKILL.md          # Istruzioni per OpenClaw
 ├── README.md         # Questo file
 └── scripts/
-    └── dev-backup.sh # Script di snapshot
+    └── dev-backup.sh # Script di snapshot (v1.2.2)
 ```

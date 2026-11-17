@@ -1,7 +1,7 @@
 
 # SynthClaw: OpenClaw Agent for Blender Procedural Data Render Skill
 
-This project transforms static Blender files into **agentic tools**. By bridging OpenClaw with Blender’s Python API (`bpy`), an LLM can autonomously manipulate procedural nodes (like noise scale, roughness, or color intensity) and trigger high-quality renders based on natural language prompts.
+SynthClaw is aimed at lowering the barriers of procedural image and ground truth generation using pre-prepared Blender files by turining command line tools into agentic operation attainable through natural language. In other words, this project transforms static Blender files into **agentic tools**. By bridging OpenClaw (or other agentic harnesses) with Blender’s Python API (`bpy`), an LLM can autonomously manipulate procedural nodes (like noise scale, roughness, or color intensity) and trigger high-quality renders based on natural language prompts.
 
 A core feature of this skill is the generation of **dynamic quality metrics (Naturalness and LPIPS)** upon rendering. This provides a closed-loop feedback mechanism, enabling the agent to evaluate the quality of its output and iteratively optimize parameters guided directly by the metric results.
 

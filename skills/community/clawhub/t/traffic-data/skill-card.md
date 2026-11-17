@@ -1,41 +1,60 @@
-## Description: <br>
-Query traffic data - real-time road conditions, traffic incidents, SCATS intersection data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query traffic data, including real-time road conditions, traffic incidents, and SCATS intersection data.
 
-## Publisher: <br>
-[TEweitao](https://clawhub.ai/user/TEweitao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[teweitao](https://clawhub.ai/user/teweitao)
 
-## Use Case: <br>
-Developers and operators use this skill to query road conditions, traffic incidents, and SCATS intersection data from configured traffic data providers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Traffic lookups require map-provider or SCATS API keys. <br>
-Mitigation: Use restricted API keys with quotas and avoid exposing keys in logs, shared files, or public environments. <br>
-Risk: The package documentation references helper scripts that are not present in the artifact. <br>
-Mitigation: Verify the installed entry command and prefer the included index.js command interface before operational use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TEweitao/traffic-data) <br>
-- [Baidu Maps Open Platform](https://lbsyun.baidu.com/) <br>
-- [Gaode Maps Open Platform](https://lbs.amap.com/) <br>
+## Use Case:
 
+Developers and traffic operations users can use this skill to query road conditions, traffic incidents, and SCATS intersection status through configured map and SCATS API credentials.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Console text with JSON API responses and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and provider API keys via BAIDU_MAP_KEY, GAODE_MAP_KEY, or SCATS_API_KEY.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses named map and SCATS API keys and can make outbound requests to external traffic data providers.
+
+Mitigation: Install only where use of those credentials and provider requests is acceptable; use scoped keys and review provider access before production use.
+
+Risk: The security guidance notes missing or incorrect command documentation and dependency cleanup needs.
+
+Mitigation: Review and correct the command documentation, document the config command, and audit or pin HTTP dependencies before production use.
+
+Risk: SCATS querying is documented, but artifact behavior reports that the SCATS API call is not implemented yet.
+
+Mitigation: Treat SCATS output as unavailable until the implementation is completed and tested against the intended SCATS provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/teweitao/skills/traffic-data)
+- [Baidu Map Open Platform](https://lbsyun.baidu.com/)
+- [Gaode Map Open Platform](https://lbs.amap.com/)
+- [Gaode traffic road status endpoint](https://restapi.amap.com/v3/trafficstatus/road)
+- [Gaode traffic status endpoint](https://restapi.amap.com/v3/trafficstatus/status)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text CLI output with JSON API responses when provider calls succeed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node and relevant BAIDU_MAP_KEY, GAODE_MAP_KEY, or SCATS_API_KEY environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

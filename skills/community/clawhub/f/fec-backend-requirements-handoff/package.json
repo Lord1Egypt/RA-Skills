@@ -1,7 +1,7 @@
 {
   "name": "@bovinphang/fec-backend-requirements-handoff",
-  "version": "2.7.0",
-  "description": "Use when frontend work needs to communicate data, action, state, permission, validation, or business-rule needs to backend teams without dictating endpoint design, field names, database shape, or implementation details; Chinese triggers include 前后端需求交接, 后端需求, API 需求澄清, 数据需求说明.",
+  "version": "2.9.0",
+  "description": "Use when frontend work needs to communicate data, action, state, permission, validation, or business-rule needs to backend teams without dictating endpoint design, field names, database shape, or implementation details; Chinese triggers include front-end and back-end requirements handover, back-end requirements, API requirements clarification, data requirements description.",
   "type": "module",
   "license": "MIT",
   "author": {

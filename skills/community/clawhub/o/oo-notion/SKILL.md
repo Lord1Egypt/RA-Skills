@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Notion"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.7"
   services: ["notion"]
   icon: "https://static.oomol.com/logo/third-party/Notion.svg"
 ---
@@ -39,29 +39,34 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `append_block` — Append a single paragraph block to a Notion page. This is a simplified compatibility helper over `append_block_children`. [write]
 - `append_block_children` — Append raw Notion child blocks to an existing parent block, using the official block-children append API. [write]
+- `create_comment` — Create a comment on a page or block through parent, or reply through discussion_id. Requires insert comments; without read comments, only object and id are returned. [write]
 - `create_data_source` — Create a Notion data source under a parent database with a properties schema. [write]
 - `create_database` — Create a Notion database container under a parent page or workspace, optionally with an initial data source. [write]
 - `create_page` — Create a Notion page under a parent page, data source, or workspace-level private area. Use parentId + title for a simple child page under an existing page. Use parent with an official Notion parent payload for advanced cases: { page_id: "..." }, { data_source_id: "..." }, or { workspace: true } for OAuth public integrations. When parent is provided, do not use the top-level title field; provide the page title through properties.title instead. Internal integration secrets usually cannot create workspace-level private pages and should use a parent page or data source. [write]
 - `delete_block` — Archive a Notion block through the official delete endpoint. [destructive]
 - `get_page` — Get a Notion page together with its first-level child blocks. This is a repo-level aggregate helper over page retrieval plus block-children listing.
-- `list_block_children` — List the direct child blocks under a Notion block with pagination. [write]
+- `list_block_children` — List the direct child blocks under a Notion block with pagination.
+- `list_comments` — List unresolved comments on a Notion page or block. Requires the read comments capability.
 - `list_data_source_templates` — List templates available on a Notion data source.
 - `list_users` — List users in the Notion workspace with pagination.
+- `list_views` — List saved Notion view references with pagination. Supply databaseId for views in one database, or dataSourceId to include accessible linked views across the workspace. Retrieve each view to inspect its filters, sorts, and layout settings.
 - `move_page` — Move a Notion page under another page or under a data source through the official page move API. [write]
 - `query_data_source` — Query a Notion data source with filters, sorts, pagination, and optional property filtering.
-- `retrieve_block` — Retrieve a Notion block by block ID. [write]
+- `retrieve_block` — Retrieve a Notion block by block ID.
 - `retrieve_data_source` — Retrieve a Notion data source by data source ID.
 - `retrieve_database` — Retrieve a Notion database's metadata and schema by database ID.
 - `retrieve_page` — Retrieve a Notion page's properties and metadata by page ID. This does not include child block content.
 - `retrieve_page_markdown` — Retrieve a Notion page or block subtree rendered as enhanced Markdown through the official page markdown API.
 - `retrieve_page_property` — Retrieve a specific property item from a Notion page by page ID and property ID. Title, rich_text, relation, and people properties return the paginated list response with type property_item.
 - `retrieve_user` — Retrieve a Notion user by user ID.
+- `retrieve_view` — Retrieve a saved Notion view's name, layout configuration, filters, sorts, and displayed properties.
 - `search` — Search Notion pages and data sources with optional filter, sort, and pagination controls.
-- `update_block` — Update a Notion block using raw block fields, including block-type payloads and optional trash state. [write]
-- `update_data_source` — Update a Notion data source's title, icon, properties schema, parent, or trash status. [write]
-- `update_database` — Update a Notion database container's parent, title, description, icon, cover, inline display, trash status, or locked state. [write]
-- `update_page` — Update a Notion page's properties, title, icon, cover, trash status, or locked state. [write]
+- `update_block` — Update a Notion block using raw block fields, including block-type payloads and optional trash state. [destructive]
+- `update_data_source` — Update a Notion data source's title, icon, properties schema, parent, or trash status. [destructive]
+- `update_database` — Update a Notion database container's parent, title, description, icon, cover, inline display, trash status, or locked state. [destructive]
+- `update_page` — Update a Notion page's properties, title, icon, cover, trash status, or locked state. [destructive]
 - `update_page_markdown` — Update a Notion page's content as enhanced Markdown through the official page markdown API. [write]
+- `update_view` — Update a saved Notion view's name, filters, sorts, quick filters, or presentation settings. Omitted fields stay unchanged. Pass null to clear filters or sorts. Configuration type must match the existing view; this action does not change the layout type. [destructive]
 
 ## Safety
 
@@ -92,11 +97,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Notion is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2, API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=notion
+  https://console.oomol.com/connections/notion
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Notion homepage: https://www.notion.so
+- API documentation: https://developers.notion.com/

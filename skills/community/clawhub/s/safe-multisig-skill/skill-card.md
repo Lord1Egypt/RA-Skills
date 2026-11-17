@@ -1,43 +1,61 @@
-## Description: <br>
-Propose, confirm, and execute Safe multisig transactions using the Safe{Core} SDK (protocol-kit v6 / api-kit v4). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Propose, confirm, and execute Safe multisig transactions using the Safe{Core} SDK (protocol-kit v6 / api-kit v4).
 
-## Publisher: <br>
-[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot)
 
-## Use Case: <br>
-Developers and agents use this skill to operate Safe smart accounts from a local TypeScript CLI, including creating or predicting Safes, reading Safe state, listing pending transactions, proposing transactions, adding confirmations, executing fully confirmed transactions onchain, and troubleshooting nonce or signature issues across supported chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can sign, propose, approve, deploy, and execute Safe transactions when provided with an owner signer. <br>
-Mitigation: Use a dedicated low-privilege signer when possible and keep private keys out of chat, logs, screenshots, and shared shells. <br>
-Risk: A transaction may target the wrong chain, RPC endpoint, Safe address, nonce, recipient, value, calldata, or safeTxHash. <br>
-Mitigation: Verify the chain, RPC URL, Safe address, nonce, recipient, value, calldata, confirmations, and safeTxHash before approving or executing. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Safe smart accounts from an agent-assisted CLI, including Safe creation or prediction, Safe state lookup, pending transaction review, proposal, confirmation, execution, and nonce or signature troubleshooting across supported EVM chains.
 
-## Reference(s): <br>
-- [Safe Multisig Skill on ClawHub](https://clawhub.ai/openclaw-consensus-bot/safe-multisig-skill) <br>
-- [examples.md](references/examples.md) <br>
-- [tx_request.schema.json](references/tx_request.schema.json) <br>
-- [tx_service_slugs.md](references/tx_service_slugs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime scripts output JSON for Safe state, transaction proposal, approval, and execution workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata and package.json) <br>
+Risk: The skill can sign or execute high-impact blockchain actions with weak review safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only low-value test Safes or low-privilege signers until signing and execution require explicit human review of chain, Safe, nonce, recipient, value, calldata, and service host.
+
+Risk: Custom or unexpected transaction service and RPC endpoints can affect transaction review, signing, and execution.
+
+Mitigation: Add endpoint validation and require operators to verify the transaction service host and RPC endpoint before proposing, approving, or executing transactions.
+
+Risk: Signer private keys are required for proposal, approval, execution, and deployment flows.
+
+Mitigation: Keep private keys out of chat, use environment variables or managed secret storage, and prefer low-privilege signers with spending limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openclaw-consensus-bot/skills/safe-multisig-skill)
+- [Examples](references/examples.md)
+- [SafeTxRequest JSON Schema](references/tx_request.schema.json)
+- [Safe Transaction Service Chain Slugs](references/tx_service_slugs.md)
+- [Safe Transaction Service API Pattern](https://api.safe.global/tx-service/${SLUG}/api)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples; bundled TypeScript scripts emit JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, Safe Transaction Service access, and signer credentials for propose, approve, execute, or deploy operations.]
+
+## Skill Version(s):
+
+2.1.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

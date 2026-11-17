@@ -1,44 +1,57 @@
-## Description: <br>
-Professional backtesting framework for trading strategies that tests SMA crossover, RSI, MACD, Bollinger Bands, and custom strategies on historical data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Backtester helps agents run local trading strategy backtests for SMA crossover, RSI, MACD, and Bollinger Bands strategies and report performance metrics.
 
-## Publisher: <br>
-[cry779](https://clawhub.ai/user/cry779) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cry779](https://clawhub.ai/user/cry779)
 
-## Use Case: <br>
-Developers, analysts, and trading researchers use this skill to run local historical backtests, compare common technical strategies, and review performance metrics before considering live trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backtest results and trading metrics may be misleading if users treat them as predictions or investment advice. <br>
-Mitigation: Use results as local analysis only, validate against independent data, and paper trade before risking real capital. <br>
-Risk: The artifact depends on a local A-share SQLite database and trusted Python dependencies. <br>
-Mitigation: Confirm the local database path and install dependencies only from trusted package sources before running the script. <br>
-Risk: Some advertised advanced features are unconfirmed by the security evidence. <br>
-Mitigation: Verify required behavior in the artifact before relying on advanced strategy comparison or optimization claims. <br>
+## Use Case:
 
+Developers and quantitative trading practitioners use this skill to validate and compare trading strategy ideas against historical local OHLCV data before considering live deployment.
 
-## Reference(s): <br>
-- [OpenClaw Backtester release page](https://clawhub.ai/cry779/openclaw-backtester) <br>
-- [cry779 publisher profile](https://clawhub.ai/user/cry779) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with bash examples and local command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Backtest output depends on local Python dependencies and a local OHLCV SQLite database.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Backtest results may be inaccurate or misleading if calculations, dependencies, or input data quality are not independently checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the strategy logic, performance calculations, installed dependencies, and source data before using results to make trading decisions.
+
+Risk: The skill depends on a disclosed local OpenClaw SQLite trading database and may fail or produce incomplete results when that database is missing or sparse.
+
+Mitigation: Confirm the local database path exists, contains the requested symbol and date range, and has clean OHLCV records before running comparisons.
+
+Risk: The documentation overstates some features relative to the scanner summary, which can create false confidence in strategy validation.
+
+Mitigation: Treat outputs as advisory analysis, paper trade separately, and verify any advertised feature before relying on it in a workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cry779/skills/openclaw-backtester)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain-text backtest results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a local OpenClaw trading SQLite database; backtest results should be independently validated before use in trading decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

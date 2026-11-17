@@ -1,41 +1,60 @@
-## Description: <br>
-Control mobile robots via instant messaging platforms, including Unitree quadruped and humanoid robots with optional Insight9 camera and navigation support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control mobile robots via instant messaging platforms, with support for Unitree robots and the Insight9 AI stereo camera.
 
-## Publisher: <br>
-[Qinrui-dm](https://clawhub.ai/user/Qinrui-dm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qinrui-dm](https://clawhub.ai/user/qinrui-dm)
 
-## Use Case: <br>
-Developers, robotics operators, educators, and researchers use this skill to connect OpenClaw-style agents to mobile robots and issue movement, posture, status, SLAM, and navigation commands through supported messaging platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill controls physical robots through messaging commands without enough built-in safety, authorization, or movement-limit evidence. <br>
-Mitigation: Use simulation or a cleared supervised area first, add authentication and confirmation before accepting commands, enforce movement limits, and verify an emergency stop before connecting real hardware. <br>
+## Use Case:
 
+Developers, robotics teams, researchers, educators, and hobbyists use this skill to connect OpenClaw agents to supported robots through IM platforms and issue movement, posture, navigation, and status commands.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Qinrui-dm/openclaw-robotics) <br>
-- [Publisher Profile](https://clawhub.ai/user/Qinrui-dm) <br>
-- [README](README.md) <br>
-- [Contributing Guide](CONTRIBUTING.md) <br>
+### Deployment Geography for Use:
 
+Global, with supported IM platform availability varying by region.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python snippets and robot command strings; runtime functions return JSON-like dictionaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Robot actions may affect physical hardware and require operator safety controls outside the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: pyproject.toml and server release metadata) <br>
+Risk: Live robot movement through IM commands can create physical safety hazards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a supervised test area, keep an emergency stop available, and add confirmation steps plus motion limits before connecting live hardware.
+
+Risk: Unrestricted IM access or exposed bot credentials could allow unauthorized robot control.
+
+Mitigation: Restrict who can send commands, protect IM credentials, and review authorization behavior before deployment.
+
+Risk: Installer or release integrity uncertainty can increase supply-chain risk.
+
+Mitigation: Install only after reviewing the code and preferably from a pinned release or verified commit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qinrui-dm/skills/openclaw-robotics)
+- [README](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [Publisher Profile](https://clawhub.ai/user/qinrui-dm)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with Python examples and JSON-like command result dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Robot control should be reviewed and constrained before connection to live hardware.]
+
+## Skill Version(s):
+
+2.1.0 (source: ClawHub release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

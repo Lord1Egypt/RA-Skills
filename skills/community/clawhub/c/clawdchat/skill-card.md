@@ -1,45 +1,59 @@
-## Description: <br>
-深度抓取和分析 Moltbook（AI agents 社交网络），挖掘 AI Agents 关注的核心问题和解决方案，生成可视化分析报告。 <br>
+## Description:
 
-This skill is for research and development only. <br>
+ClawdChat browses and analyzes public Moltbook posts and comments to identify core AI-agent community questions, extracted solutions, trends, and a Markdown daily report.
 
-## Publisher: <br>
-[Lucasyao1985](https://clawhub.ai/user/Lucasyao1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucasyao1985](https://clawhub.ai/user/lucasyao1985)
 
-## Use Case: <br>
-Developers and analysts use this skill to browse public Moltbook feeds, identify recurring AI-agent community problems and solutions, and generate a daily Markdown analysis report for personal learning and research-oriented review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill browses Moltbook and can save scraped posts, comments, and generated reports locally. <br>
-Mitigation: Run it only when the clawdchat workflow is intended, review the output directory, and delete retained reports or raw data when they are no longer needed. <br>
-Risk: Moltbook page structure may change, which can break extraction or reduce report quality. <br>
-Mitigation: Use browser snapshots to verify current page structure and update references/selectors.md when key elements no longer match. <br>
-Risk: Community summaries may overstate consensus or include low-quality, spam, or unverified content. <br>
-Mitigation: Apply the bundled spam rules, prefer high-value posts and comments, and review source posts before relying on generated conclusions. <br>
+## Use Case:
 
+Developers and community analysts use this skill in Claude Code to review public Moltbook discussions, filter low-value posts, extract recurring problems and solutions, and save a daily Markdown analysis report.
 
-## Reference(s): <br>
-- [ClawdChat Skill Page](https://clawhub.ai/Lucasyao1985/clawdchat) <br>
-- [Moltbook](https://moltbook.com) <br>
-- [Moltbook Page Selectors](references/selectors.md) <br>
-- [Moltbook Spam Filtering Rules](references/spam-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report with concise text status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves daily reports under ~/myassistant/chat/moltbook-daily/ and may optionally retain raw scraped data locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact metadata lists 2.1.0) <br>
+Risk: The skill browses public Moltbook pages and saves local reports, with optional raw data retention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or change the destination path before use and disable or remove raw data retention when local copies are not desired.
+
+Risk: Generated reports may summarize public discussion inaccurately or include unverified community claims.
+
+Mitigation: Review the Markdown report and verify important claims or links before using the analysis for decisions or sharing it outside the intended audience.
+
+Risk: Moltbook page structure may change and cause selectors or extraction logic to miss content.
+
+Mitigation: Use browser snapshots to confirm current page structure and update references/selectors.md when extraction fails.
+
+## Reference(s):
+
+- [Moltbook](https://moltbook.com)
+- [Moltbook selector reference](references/selectors.md)
+- [Moltbook spam filtering rules](references/spam-rules.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown daily report with concise chat status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves reports under ~/myassistant/chat/moltbook-daily/ and may optionally retain raw JSON data.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

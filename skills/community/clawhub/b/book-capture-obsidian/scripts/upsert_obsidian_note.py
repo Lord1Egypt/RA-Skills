@@ -16,15 +16,42 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from common_config import get_env_str
+from common_config import get_env_csv, get_env_str
 from common_isbn import isbn13_to_isbn10, normalize_isbn
 from common_json import fail_and_print, make_result, print_json, read_json_file
+from common_markdown import inert_markdown
 
 STAGE = "upsert_obsidian_note"
 BEGIN_MARKER = "<!-- BOOK_CAPTURE:BEGIN AUTO -->"
 END_MARKER = "<!-- BOOK_CAPTURE:END AUTO -->"
 
 MetadataDict = Dict[str, Any]
+
+# Generated headings and fallback text. Set BOOK_CAPTURE_NOTE_LANGUAGE=pt for
+# Portuguese notes; anything else uses English.
+NOTE_LABELS: Dict[str, Dict[str, str]] = {
+    "en": {
+        "summary": "Summary",
+        "related": "Related",
+        "fallback": "Book by {authors}, published by {publisher} ({year}).",
+        "unknown_author": "unknown author",
+        "unknown_publisher": "unknown publisher",
+        "unknown_year": "unknown year",
+    },
+    "pt": {
+        "summary": "Sinopse",
+        "related": "Relacionados",
+        "fallback": "Obra de {authors}, publicada por {publisher} ({year}).",
+        "unknown_author": "autor desconhecido",
+        "unknown_publisher": "editora desconhecida",
+        "unknown_year": "ano desconhecido",
+    },
+}
+
+
+def _note_labels() -> Dict[str, str]:
+    language = get_env_str("BOOK_CAPTURE_NOTE_LANGUAGE", "en").lower()
+    return NOTE_LABELS.get(language[:2], NOTE_LABELS["en"])
 
 SHELF_BASE_TAGS: Dict[str, List[str]] = {
     "bios": ["biography"],
@@ -357,17 +384,18 @@ def _render_managed_block(
     extras: MetadataDict,
     related_links: Optional[List[str]] = None,
 ) -> str:
-    _ = goodreads_book_id  # legacy compatibility; no longer written to frontmatter
     isbn10 = isbn13_to_isbn10(isbn13) if isbn13 else None
     authors = metadata.get("authors") or []
     published_year = metadata.get("year") or _parse_year_from_date(metadata.get("published_date"))
     tags = extras.get("tags") or []
+    labels = _note_labels()
     summary = _clean_summary(metadata.get("description"))
     if not summary:
-        author_text = ", ".join(authors) if authors else "Unknown author"
-        publisher_text = metadata.get("publisher") or "Unknown publisher"
-        year_text = str(published_year) if published_year else "unknown year"
-        summary = f"Obra de {author_text}, publicada por {publisher_text} ({year_text})."
+        summary = labels["fallback"].format(
+            authors=", ".join(authors) if authors else labels["unknown_author"],
+            publisher=metadata.get("publisher") or labels["unknown_publisher"],
+            year=str(published_year) if published_year else labels["unknown_year"],
+        )
 
     frontmatter_lines = [
         "---",
@@ -385,23 +413,26 @@ def _render_managed_block(
         "tags:",
         _yaml_list(tags),
     ]
+    if not isbn13 and goodreads_book_id:
+        # Without an ISBN this is the only stable identity for re-runs.
+        frontmatter_lines.append(f"goodreads_book_id: {_yaml_scalar(goodreads_book_id)}")
 
     frontmatter_lines.append("---")
 
     body_lines = [
         *frontmatter_lines,
         "",
-        f"# {metadata['title']}",
+        f"# {inert_markdown(metadata['title'])}",
         "",
-        "## Sinopse",
-        summary,
+        f"## {labels['summary']}",
+        inert_markdown(summary),
     ]
 
     links = [link for link in (related_links or []) if link]
     if links:
         body_lines.extend([
             "",
-            "## Related",
+            f"## {labels['related']}",
             *[f"- {link}" for link in links],
         ])
 
@@ -439,11 +470,30 @@ def _extract_user_notes(existing: str) -> str:
     return "## User Notes\n"
 
 
-def _frontmatter_lookup(path: Path, key: str) -> Optional[str]:
+_TEXT_CACHE: Dict[str, Tuple[Tuple[int, int], str]] = {}
+
+
+def _read_note_cached(path: Path) -> Optional[str]:
+    """Read a note once per change; bulk migrations rescan the library per row."""
     try:
-        lines = path.read_text(encoding="utf-8").splitlines()
+        stat = path.stat()
+        signature = (stat.st_mtime_ns, stat.st_size)
+        key = str(path)
+        cached = _TEXT_CACHE.get(key)
+        if cached and cached[0] == signature:
+            return cached[1]
+        text = path.read_text(encoding="utf-8", errors="ignore")
     except Exception:
         return None
+    _TEXT_CACHE[key] = (signature, text)
+    return text
+
+
+def _frontmatter_lookup(path: Path, key: str) -> Optional[str]:
+    text = _read_note_cached(path)
+    if text is None:
+        return None
+    lines = text.splitlines()
     if not lines:
         return None
     start = None
@@ -558,15 +608,14 @@ def _is_within_vault(note_path: Path, vault_path: str) -> bool:
 
 def _wiki_link(path: Path, vault_root: Path) -> str:
     rel = path.resolve().relative_to(vault_root.resolve())
-    no_ext = str(rel.with_suffix(""))
+    no_ext = rel.with_suffix("").as_posix()
     return f"[[{no_ext}]]"
 
 
 def _parse_frontmatter_quick(path: Path) -> MetadataDict:
     data: MetadataDict = {"title": None, "author": [], "tags": []}
-    try:
-        text = path.read_text(encoding="utf-8", errors="ignore")
-    except Exception:
+    text = _read_note_cached(path)
+    if text is None:
         return data
     if not text.startswith("---\n"):
         return data
@@ -602,6 +651,30 @@ def _parse_frontmatter_quick(path: Path) -> MetadataDict:
     return data
 
 
+_PROFILE_CACHE: Dict[str, Tuple[Tuple[int, int], Tuple[str, List[str], set]]] = {}
+
+
+def _note_profile(path: Path) -> Optional[Tuple[str, List[str], set]]:
+    """Normalized (title, authors, tags) of a note, cached until the file changes."""
+    try:
+        stat = path.stat()
+    except Exception:
+        return None
+    signature = (stat.st_mtime_ns, stat.st_size)
+    key = str(path)
+    cached = _PROFILE_CACHE.get(key)
+    if cached and cached[0] == signature:
+        return cached[1]
+    parsed = _parse_frontmatter_quick(path)
+    profile = (
+        _normalize_text(parsed.get("title") or path.stem),
+        [_normalize_text(a) for a in (parsed.get("author") or []) if _normalize_text(a)],
+        {_normalize_tag(t) for t in (parsed.get("tags") or []) if _normalize_tag(t)},
+    )
+    _PROFILE_CACHE[key] = (signature, profile)
+    return profile
+
+
 def _collect_related_links(
     note_path: Path,
     vault_path: str,
@@ -613,24 +686,25 @@ def _collect_related_links(
 ) -> List[str]:
     vault_root = Path(vault_path).expanduser().resolve()
     library_root = (vault_root / notes_dir).resolve()
-    learn_root = (vault_root / "5. Learnings").resolve()
+    related_roots = [
+        (vault_root / folder).resolve()
+        for folder in get_env_csv("BOOK_CAPTURE_RELATED_DIRS", [])
+    ]
 
     current_title = _normalize_text(metadata.get("title") or "")
     current_authors = [_normalize_text(a) for a in (metadata.get("authors") or []) if _normalize_text(a)]
     current_tags = {_normalize_tag(t) for t in tags if _normalize_tag(t) and _normalize_tag(t) != "book"}
 
     library_scored: List[Tuple[float, Path]] = []
+    current_path = str(note_path.resolve())
     if library_root.exists():
         for candidate in library_root.rglob("*.md"):
-            try:
-                if candidate.resolve() == note_path.resolve():
-                    continue
-            except Exception:
+            if str(candidate) == current_path:
                 continue
-            parsed = _parse_frontmatter_quick(candidate)
-            cand_title = _normalize_text(parsed.get("title") or candidate.stem)
-            cand_authors = [_normalize_text(a) for a in (parsed.get("author") or []) if _normalize_text(a)]
-            cand_tags = {_normalize_tag(t) for t in (parsed.get("tags") or []) if _normalize_tag(t)}
+            profile = _note_profile(candidate)
+            if profile is None:
+                continue
+            cand_title, cand_authors, cand_tags = profile
 
             score = 0.0
             if current_authors and cand_authors:
@@ -649,12 +723,18 @@ def _collect_related_links(
     library_links = [_wiki_link(path, vault_root) for _, path in library_scored[:limit_library]]
 
     learning_links: List[str] = []
-    if learn_root.exists() and current_tags:
+    if related_roots and current_tags:
         learning_scored: List[Tuple[float, Path]] = []
         tag_tokens = set()
         for tag in current_tags:
             tag_tokens.update(_normalize_text(tag).split())
-        for candidate in learn_root.rglob("*.md"):
+        candidates = [
+            path
+            for root in related_roots
+            if root.exists() and (root == vault_root or vault_root in root.parents)
+            for path in root.rglob("*.md")
+        ]
+        for candidate in candidates:
             name_tokens = set(_normalize_text(candidate.stem).split())
             overlap = len(tag_tokens & name_tokens)
             if overlap:
@@ -667,6 +747,13 @@ def _collect_related_links(
 
 
 def _upsert_note_core(payload: MetadataDict, vault_path: str, notes_dir: str, target_note: Optional[str]) -> dict:
+    if not vault_path.strip() or not Path(vault_path).expanduser().is_dir():
+        return make_result(
+            STAGE,
+            ok=False,
+            error="an existing vault directory is required (--vault-path or BOOK_CAPTURE_VAULT_PATH)",
+            note_path=None,
+        )
     isbn13, goodreads_book_id, metadata, extras, error = _prepare_metadata(payload)
     if error or metadata is None or extras is None:
         return make_result(STAGE, ok=False, error=error or "invalid metadata payload", note_path=None)
@@ -752,11 +839,13 @@ def _upsert_note_core(payload: MetadataDict, vault_path: str, notes_dir: str, ta
         preserved_user_content = bool(user_notes.strip())
 
     new_content = managed.rstrip() + "\n\n" + user_notes.strip() + "\n"
+    new_content = new_content.replace("\r\n", "\n").replace("\r", "\n")
 
     existing_content = note_path.read_text(encoding="utf-8") if note_path.exists() else None
     updated = existing_content != new_content
     if updated:
-        note_path.write_text(new_content, encoding="utf-8")
+        with note_path.open("w", encoding="utf-8", newline="\n") as note_file:
+            note_file.write(new_content)
 
     return make_result(
         STAGE,
@@ -780,7 +869,7 @@ def _resolve_upsert_args(*args: Any, **kwargs: Any) -> Tuple[Optional[MetadataDi
     """Support both canonical and legacy/test call patterns."""
     payload = kwargs.get("payload") or kwargs.get("book")
     target_note = kwargs.get("target_note") or kwargs.get("note_path") or kwargs.get("path") or kwargs.get("file_path")
-    vault_path = kwargs.get("vault_path") or get_env_str("BOOK_CAPTURE_VAULT_PATH", ".")
+    vault_path = kwargs.get("vault_path") or get_env_str("BOOK_CAPTURE_VAULT_PATH", "")
     notes_dir = kwargs.get("notes_dir") or get_env_str("BOOK_CAPTURE_NOTES_DIR", "Books")
 
     if len(args) == 4 and isinstance(args[0], dict):
@@ -865,7 +954,7 @@ def _self_check() -> dict:
 def main(argv: List[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--metadata-json", help="Path to metadata JSON (resolve_metadata output)")
-    parser.add_argument("--vault-path", default=get_env_str("BOOK_CAPTURE_VAULT_PATH", "."), help="Obsidian vault root")
+    parser.add_argument("--vault-path", default=get_env_str("BOOK_CAPTURE_VAULT_PATH", ""), help="Obsidian vault root (required)")
     parser.add_argument("--notes-dir", default=get_env_str("BOOK_CAPTURE_NOTES_DIR", "Books"), help="Notes directory inside vault")
     parser.add_argument("--target-note", default=get_env_str("BOOK_CAPTURE_TARGET_NOTE", ""), help="Optional explicit note path")
     parser.add_argument("--self-check", action="store_true", help="Run internal quick checks")

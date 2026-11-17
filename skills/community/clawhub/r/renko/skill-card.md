@@ -1,41 +1,50 @@
-## Description: <br>
-Renko reference tool. Use when working with renko in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Renko reference tool. Use when working with renko in finance contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers, analysts, and finance practitioners use this skill to retrieve concise Renko reference material, formulas, regulatory prompts, risk notes, strategy summaries, glossary terms, and due diligence checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finance and regulatory reference text could be mistaken for financial, legal, or compliance advice. <br>
-Mitigation: Treat the content as general educational reference material and consult qualified professionals or authoritative rules before making financial, legal, or compliance decisions. <br>
-Risk: The skill runs a local Bash helper script. <br>
-Mitigation: Review the script before installation or execution; the release evidence reports that it only prints bundled reference text. <br>
+## Use Case:
 
+External users and developers use this skill as a quick local reference for Renko-related finance concepts, formulas, regulatory topics, risks, instruments, strategies, glossary terms, and checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/renko) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text printed by Bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local script prints bundled reference material; no external API or credential use is indicated by the release evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Finance and regulatory reference text may be generic or outdated for a specific market, jurisdiction, or trading decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the content as educational material and verify decisions against current financial, legal, and compliance sources before relying on it.
+
+## Reference(s):
+
+- [Renko ClawHub release](https://clawhub.ai/xueyetianya/skills/renko)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text emitted by local shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference content; security evidence reports no evident data access, network activity, persistence, or destructive behavior.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

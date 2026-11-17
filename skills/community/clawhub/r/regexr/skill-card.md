@@ -1,42 +1,59 @@
-## Description: <br>
-Create, test, and learn regular expressions with live matching. Use when validating patterns, checking groups, generating regex, linting syntax. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, test, and learn regular expressions with live matching. Use when validating patterns, checking groups, generating regex, linting syntax.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers can use this skill as a local command-line helper for recording regex checks, examples, explanations, previews, reports, and exports during pattern work. Security evidence notes that it should not be treated as reliable regex validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the skill for a reliable regex validation or analysis tool. <br>
-Mitigation: Use it as a local history and logging utility, and verify regex behavior with a trusted regex engine or test suite before relying on the result. <br>
-Risk: Inputs, sample text, and exported data are stored locally and may include sensitive content. <br>
-Mitigation: Do not paste secrets or private sample data; review ~/.local/share/regexr and any exported JSON, CSV, or TXT files before sharing or syncing them. <br>
+## Use Case:
 
+Developers and engineers use Regexr as a command-line helper for creating, checking, explaining, converting, previewing, and documenting regular-expression work. Security evidence indicates the shipped script primarily records local input history and exports rather than implementing the full advertised regex functionality.
 
-## Reference(s): <br>
-- [Regexr ClawHub page](https://clawhub.ai/bytesagain-lab/regexr) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [Regexr documentation](https://bytesagain.com/skills/regexr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text stdout with local JSON, CSV, or TXT export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes command logs and exported files under ~/.local/share/regexr/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Regex inputs, samples, and exports may contain sensitive text because the script stores local command entries under ~/.local/share/regexr.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill with secrets, customer data, production samples, tokens, or proprietary snippets unless logging is disabled or protected with owner-only permissions.
+
+Risk: The package is advertised as a regex helper, but security evidence says the shipped script mainly provides local history, search, and export behavior with weak controls.
+
+Mitigation: Review the script before installation and verify that required regex checking, generation, linting, and preview behavior is implemented before relying on outputs.
+
+Risk: Exports from ~/.local/share/regexr may preserve sensitive regex patterns or sample data.
+
+Mitigation: Treat exported JSON, CSV, and text files as sensitive artifacts and review or delete them after use.
+
+## Reference(s):
+
+- [Regexr ClawHub page](https://clawhub.ai/bytesagain-lab/skills/regexr)
+- [BytesAgain homepage](https://bytesagain.com)
+- [Regexr documentation](https://bytesagain.com/skills/regexr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell examples and stdout text from the local CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local logs and exports under ~/.local/share/regexr.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

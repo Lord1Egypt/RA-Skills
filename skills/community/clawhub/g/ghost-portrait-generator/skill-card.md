@@ -1,41 +1,55 @@
-## Description: <br>
-Generates ghost portrait and spectral apparition images from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate haunting ghost portraits and inner demon shadow photos from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to request ghost portraits, spectral apparition images, gothic horror portraits, and related social media or Halloween imagery from text prompts and optional reference image UUIDs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference UUIDs, and the Neta API token are sent to api.talesofai.com. <br>
-Mitigation: Avoid sensitive personal or confidential prompts and use a scoped or disposable API token where possible. <br>
-Risk: Passing tokens on the command line can expose them through shell history or runtime process inspection. <br>
-Mitigation: Treat command-line tokens as sensitive and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to create ghost portrait, gothic horror, Halloween, and spectral apparition images from prompts, with optional size selection and reference image input.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/ghost-portrait-generator) <br>
-- [Neta AI Open](https://www.neta.art/open/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Text] <br>
-**Output Format:** [Plain text image URL printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token and optionally accepts a size preset and reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: The skill sends prompts and a user-provided Neta API token to an external image generation service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a revocable token and avoid submitting sensitive personal, proprietary, or confidential details in prompts.
+
+Risk: Examples pass the token on the command line, where it may be captured in shell history or process logs.
+
+Mitigation: Handle tokens cautiously, rotate them if exposed, and prefer safer secret handling when adapting the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/blammectrappora/skills/ghost-portrait-generator)
+- [Neta AI Token Access](https://www.neta.art/open/)
+- [Neta Image Generation API](https://api.talesofai.com/v3/make_image)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands]
+
+**Output Format:** [Plain text URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a direct image URL after polling the image generation task; requires a Neta API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

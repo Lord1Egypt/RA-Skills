@@ -1,46 +1,56 @@
-## Description: <br>
-Comprehensive prompt engineering framework for designing, optimizing, and iterating LLM prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive prompt engineering framework for designing, optimizing, and iterating LLM prompts.
 
-## Publisher: <br>
-[kongyo2](https://clawhub.ai/user/kongyo2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kongyo2](https://clawhub.ai/user/kongyo2)
 
-## Use Case: <br>
-Developers, writers, and agent users use this skill to turn vague prompt requests into clear, testable prompts and to improve existing prompts through analysis, iteration, and validation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts may be unsuitable for high-stakes use without domain review. <br>
-Mitigation: Review generated prompts before use in high-stakes contexts and add explicit validation criteria. <br>
-Risk: Prompt examples may include secrets or unnecessary personal data if supplied by the user. <br>
-Mitigation: Avoid including secrets or unnecessary personal data in prompt examples. <br>
-Risk: Requests for hidden internal reasoning can produce inappropriate disclosure patterns. <br>
-Mitigation: Prefer prompts that ask for concise explanations or verifiable rationale. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kongyo2/prompt-engineering-2) <br>
-- [Prompt Engineering Techniques Catalog](references/techniques.md) <br>
-- [Common Prompt Patterns Library](references/patterns.md) <br>
-- [Prompt Engineering Anti-Patterns and Quality Standards](references/antipatterns.md) <br>
-- [Comprehensive Quality Evaluation Framework](references/evaluation.md) <br>
-- [Prompt Improvement Examples Library](references/examples.md) <br>
+## Use Case:
 
+Developers, employees, and external users use this skill to create, optimize, and evaluate LLM prompts through structured exploration, analysis, iterative implementation, and validation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text prompts with concise rationale and validation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompt versions, examples, known limitations, and usage notes when relevant.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad prompt-help requests and produce guidance that users treat as final.
+
+Mitigation: Review generated prompts against the intended task, audience, constraints, and failure modes before use.
+
+Risk: Prompt examples or saved prompt files may contain secrets or sensitive project details.
+
+Mitigation: Remove secrets from examples and store any prompt documentation only in appropriate project locations.
+
+## Reference(s):
+
+- [Prompt Engineering Techniques Catalog](artifact/references/techniques.md)
+- [Common Prompt Patterns Library](artifact/references/patterns.md)
+- [Prompt Engineering Anti-Patterns and Quality Standards](artifact/references/antipatterns.md)
+- [Comprehensive Quality Evaluation Framework](artifact/references/evaluation.md)
+- [Prompt Improvement Examples Library](artifact/references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and prompt drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompt versions, rationale, evaluation notes, and usage examples.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

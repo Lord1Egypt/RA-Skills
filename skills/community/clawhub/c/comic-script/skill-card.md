@@ -1,41 +1,55 @@
-## Description: <br>
-Draft comic storyboards with panels, dialogue, and scene pacing. Use when designing panels, writing dialogue, structuring comic chapters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Draft comic storyboards with panels, dialogue, and scene pacing.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Writers, creators, and content teams use this skill to generate comic storyboard scaffolds, character sheets, dialogue tips, layout templates, and content-marketing drafts or planning prompts from local shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill branding and artifact behavior are inconsistent: one script provides comic storyboard utilities while the main documented command set focuses on content marketing. <br>
-Mitigation: Review the installed command entrypoint and expected commands before use, and install only if the mixed comic and content-marketing behavior is acceptable. <br>
-Risk: Some commands log topics and command activity to a local history file, which may capture sensitive client, campaign, or story details. <br>
-Mitigation: Avoid entering confidential topics, or set COMIC_SCRIPT_DIR to an approved local directory and clear the history log according to your data-handling policy. <br>
+## Use Case:
 
+External users and developers use this terminal skill to generate comic storyboard templates, character sheets, dialogue guidance, and page layout ideas. Reviewers should note that the package evidence also identifies content-marketing commands and local command history behavior.
 
-## Reference(s): <br>
-- [Comic Script on ClawHub](https://clawhub.ai/bytesagain1/comic-script) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-style command output from local shell scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally without external API keys; some commands write timestamped command history to the configured local data directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The package does not consistently match its comic-script description and includes content-marketing behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installed commands before use and limit deployment to workflows where the documented content-marketing outputs are acceptable.
+
+Risk: Command arguments may be stored in a local history log.
+
+Mitigation: Avoid sensitive or proprietary prompts, or set COMIC_SCRIPT_DIR to an approved temporary or restricted directory before running the tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/comic-script)
+- [Publisher profile](https://clawhub.ai/user/bytesagain1)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Some commands write a local command history under COMIC_SCRIPT_DIR.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

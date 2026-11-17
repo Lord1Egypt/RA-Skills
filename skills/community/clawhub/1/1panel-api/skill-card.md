@@ -1,48 +1,57 @@
-## Description: <br>
-Documents 1Panel server administration APIs for website, container, database, file, backup, host, and system management workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1Panel API Skills provides API reference guidance for managing websites, containers, databases, files, backups, jobs, hosts, settings, and related modules on a 1Panel server.
 
-## Publisher: <br>
-[breadbot86](https://clawhub.ai/user/breadbot86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[breadbot86](https://clawhub.ai/user/breadbot86)
 
-## Use Case: <br>
-Developers and operators use this skill to look up 1Panel API endpoints and compose authenticated requests for server administration tasks across websites, containers, databases, backups, files, hosts, and settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill documents broad 1Panel administration APIs that can affect websites, containers, databases, files, backups, hosts, SSH settings, scripts, and system settings. <br>
-Mitigation: Install it only for agents that are expected to work with a privileged 1Panel server API, and require explicit human approval before any high-impact operation is executed. <br>
-Risk: API key exposure could allow unauthorized access to the managed 1Panel server. <br>
-Mitigation: Store the API key as a secret, avoid placing it in prompts or logs, rotate it if exposed, and prefer least-privilege access where 1Panel configuration allows it. <br>
-Risk: Network transport or endpoint mistakes could send administrative requests to an unsafe or unintended server. <br>
-Mitigation: Use HTTPS or a trusted private network and verify the target 1Panel address before composing or approving requests. <br>
-Risk: Documented destructive actions include deletes, overwrites, restores, reboot/shutdown, SSH access, shell or script execution, private-key handling, and broad file or database operations. <br>
-Mitigation: Require confirmation of target IDs, paths, hostnames, and payloads before running these operations, and keep backups available before changes that affect persistent data. <br>
+## Use Case:
 
+Developers and server operators use this skill to look up 1Panel API endpoints and prepare authenticated requests for routine Linux server administration tasks. It is intended for work with trusted 1Panel instances where the agent may help manage infrastructure resources.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/breadbot86/1panel-api) <br>
-- [1Panel website](https://1panel.cn/) <br>
-- [1Panel documentation](https://1panel.cn/docs/) <br>
-- [1Panel GitHub repository](https://github.com/1Panel-dev/1Panel) <br>
-- [1Panel Docker Hub image](https://hub.docker.com/r/1panel/1panel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with API endpoint descriptions, request parameters, JSON examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; generated requests may target privileged 1Panel administration APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill supports broad server administration workflows, including destructive or host-level changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before deleting files or databases, changing SSH, firewall, Docker, or Nginx settings, partitioning disks, running scripts, or creating persistent services.
+
+Risk: 1Panel API keys and generated tokens grant administrative access to the managed server.
+
+Mitigation: Use HTTPS or WSS connections, treat API keys and tokens as administrator credentials, and avoid sharing production secrets unless required for the task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/breadbot86/skills/1panel-api)
+- [1Panel official website](https://1panel.cn/)
+- [1Panel documentation](https://1panel.cn/docs/)
+- [1Panel GitHub repository](https://github.com/1Panel-dev/1Panel)
+- [1Panel Docker Hub image](https://hub.docker.com/r/1panel/1panel)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with API endpoint descriptions, JSON examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for authenticated 1Panel API operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

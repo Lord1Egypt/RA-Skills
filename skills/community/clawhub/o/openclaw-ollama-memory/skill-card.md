@@ -1,45 +1,56 @@
-## Description: <br>
-Set up local semantic memory search in OpenClaw using Ollama and nomic-embed-text, replacing cloud embedding APIs with a locally running model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up local semantic memory search in OpenClaw using Ollama and nomic-embed-text as a free, private, offline-capable replacement for cloud embedding APIs.
 
-## Publisher: <br>
-[djc00p](https://clawhub.ai/user/djc00p) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djc00p](https://clawhub.ai/user/djc00p)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure local, offline-capable semantic memory search with Ollama embeddings and no external API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Indexing additional paths may include private directories in local memory search. <br>
-Mitigation: Review every extraPaths entry before enabling it and limit indexing to intended markdown directories. <br>
-Risk: The OpenClaw configuration change and downloaded Ollama model persist after setup. <br>
-Mitigation: Remove the memorySearch configuration and downloaded model when local embedding search is no longer wanted. <br>
-Risk: Pointing the base URL away from localhost can route embedding requests outside the intended local Ollama service. <br>
-Mitigation: Keep remote.baseUrl set to http://127.0.0.1:11434 unless an explicitly trusted local service is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure OpenClaw memory search with a locally running Ollama embedding model, including model selection, base URL settings, search tuning, and restart steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djc00p/openclaw-ollama-memory) <br>
-- [Ollama](https://ollama.ai) <br>
-- [Configuration Reference](references/config-reference.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces configuration steps for OpenClaw memorySearch, Ollama model setup commands, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Adding extra memory paths can index private notes or shared Markdown documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only add directories that are intentionally approved for OpenClaw memory search, and review absolute and recursive paths before enabling extraPaths.
+
+Risk: Misconfigured provider or base URL settings can route requests incorrectly or prevent local Ollama search from working.
+
+Mitigation: Use provider "ollama" with baseUrl "http://127.0.0.1:11434" and verify Ollama is running before restarting OpenClaw.
+
+## Reference(s):
+
+- [Configuration Reference](references/config-reference.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Ollama](https://ollama.ai)
+- [ClawHub Skill Page](https://clawhub.ai/djc00p/skills/openclaw-ollama-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON configuration snippets and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local setup and troubleshooting guidance; it does not require cloud embedding API keys.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

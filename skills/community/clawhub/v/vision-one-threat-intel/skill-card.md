@@ -1,45 +1,63 @@
-## Description: <br>
-Query TrendAI Vision One threat intelligence for IOC lookups, threat feeds, intelligence reports, suspicious objects, and threat hunting by industry, campaign, actor, or CVE. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query TrendAI Vision One threat intelligence for IOC lookup, threat feed review, intelligence reports, suspicious object management, and threat hunting by industry, campaign, actor, or CVE.
 
-## Publisher: <br>
-[andresark](https://clawhub.ai/user/andresark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andresark](https://clawhub.ai/user/andresark)
 
-## Use Case: <br>
-Security analysts and incident response teams use this skill to ask an agent for TrendAI Vision One threat intelligence, including IOC lookups, feed review, report search, suspicious-object review, and threat hunting. It can also add suspicious objects when the user intentionally grants write-capable Vision One permissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A write-capable Vision One API key can let the skill add suspicious objects that block or log production traffic. <br>
-Mitigation: Use a view-only Threat Intelligence API key for lookup, feed, report, and hunt workflows; grant configure/write permission only when suspicious-object additions are intended. <br>
-Risk: Incorrect or overly broad indicators may be added to the suspicious objects list. <br>
-Mitigation: Require user confirmation before running suspicious add, specify action and risk explicitly, and prefer expirations for temporary response actions. <br>
+## Use Case:
 
+Security analysts, incident responders, and security automation developers use this skill to query TrendAI Vision One threat intelligence, inspect IOC context, review reports, and manage suspicious objects from an agent workflow.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/andresark/vision-one-threat-intel) <br>
-- [Project homepage](https://github.com/andresark/agentic-threat-intel) <br>
-- [TrendAI Vision One](https://www.trendmicro.com/en_us/business/products/one-platform.html) <br>
-- [API Reference](references/api-reference.md) <br>
-- [OData Filter Examples](references/filter-examples.md) <br>
-- [Response Schemas](references/response-schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured plain text with section headers, key-value details, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VISION_ONE_API_KEY and supports optional VISION_ONE_REGION.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: A high-privilege Vision One API key could allow an agent workflow to change suspicious-object blocking or logging state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged API key that supports the intended workflow, preferably View-only for read operations and a separate Configure-capable key only for intentional suspicious-object additions.
+
+Risk: Suspicious-object additions can affect security controls for domains, URLs, IP addresses, hashes, or email senders.
+
+Mitigation: Require user confirmation before write operations and review the indicator, action, risk level, description, and expiry before execution.
+
+Risk: The security scan notes that redirect destinations are not checked by the HTTP client.
+
+Mitigation: Avoid high-privilege tokens until redirect validation is reviewed or remediated.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/andresark/skills/vision-one-threat-intel)
+- [Publisher Profile](https://clawhub.ai/user/andresark)
+- [Project Homepage](https://github.com/andresark/agentic-threat-intel)
+- [TrendAI Vision One](https://www.trendmicro.com/en_us/business/products/one-platform.html)
+- [TrendAI Vision One Threat Intelligence API Reference](references/api-reference.md)
+- [OData Filter Examples for Vision One Threat Intelligence](references/filter-examples.md)
+- [Response Schemas](references/response-schemas.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Structured plain text with command examples and key-value sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a Vision One API key and optional region setting; GET workflows are read-only, while suspicious object additions modify blocking or logging state.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

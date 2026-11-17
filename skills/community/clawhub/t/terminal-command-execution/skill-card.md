@@ -1,39 +1,53 @@
-## Description: <br>
-Execute terminal commands safely and reliably with clear pre-checks, output validation, and recovery steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute terminal commands safely and reliably with clear pre-checks, output validation, and recovery steps.
 
-## Publisher: <br>
-[big-fox](https://clawhub.ai/user/big-fox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[big-fox](https://clawhub.ai/user/big-fox)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent inspect terminal state, run shell commands incrementally, diagnose failures, and verify results while minimizing risk. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Terminal commands can change files, install software, or affect services. <br>
-Mitigation: Review proposed commands before execution and prefer scoped, incremental commands with explicit outcome verification. <br>
-Risk: Privileged, destructive, or broad filesystem commands can cause unintended changes. <br>
-Mitigation: Require explicit user approval for deletion, force flags, chmod/chown, sudo, package installation, service changes, networking, or broad filesystem changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/big-fox/terminal-command-execution) <br>
+## Use Case:
 
+Developers, operators, and automation agents use this skill to inspect system state, run shell or CLI commands, manage files or services, and recover from command failures with verification after state-changing steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include command summaries, validation steps, and recovery instructions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Terminal commands can modify files, install packages, start services, or require elevated privileges.
+
+Mitigation: Review state-changing or privileged commands before execution, keep operations scoped, and verify observable outcomes afterward.
+
+Risk: Terminal output can expose sensitive values if secrets are pasted into commands, logs, or diagnostics.
+
+Mitigation: Avoid including secrets in terminal output unless necessary and redact sensitive values before sharing logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/big-fox/skills/terminal-command-execution)
+- [Publisher Profile](https://clawhub.ai/user/big-fox)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command output summaries, validation steps, and next commands when action is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

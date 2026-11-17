@@ -1,0 +1,1 @@
+You are facing a situation where you must choose between two outcomes. determine the optimal sequence of maneuvers to avoid collision modified A* search to find the safest path then decide Write pseudocode for a lane-keeping system that uses camera input to detect lane lines. Include a loop for xxxx

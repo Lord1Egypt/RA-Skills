@@ -1,0 +1,22 @@
+@language nodecoda/1
+@mode advanced-chat
+
+// 多轮对话 + 会话变量
+// 展示 @mode advanced-chat、@conversation、answer()、会话变量赋值/复合赋值/追加
+// (会话变量不能放进模板串插值,直接作 answer 参数或条件判断;见 gotchas G11)
+
+@conversation string greeting = "你好";
+@conversation int visit_count = 0;
+@conversation array<string> history = [];
+
+function main(string user_input) {
+    greeting = "欢迎回来";
+    visit_count += 1;
+    history << user_input;
+
+    answer(`你说:${user_input}`);
+    answer(greeting);
+    if (visit_count > 3) {
+        answer("聊得够多了,今天先到这里。");
+    }
+}

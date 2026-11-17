@@ -1,7 +1,7 @@
 ---
 name: commit-messages
 description: Generates conventional commit messages from staged changes
-version: 1.9.8
+version: 1.10.3
 triggers:
   - git
   - commit
@@ -12,7 +12,7 @@ source: claude-night-market
 source_plugin: sanctum
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/sanctum](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Conventional Commit Workflow
@@ -50,7 +50,32 @@ source_plugin: sanctum
 3. **Draft the message**:
    - **Subject**: `<type>(<scope>): <imperative summary>` (50 chars max)
    - **Body**: What and why, wrapped at 72 chars
-   - **Footer**: BREAKING CHANGE or issue refs
+   - **Footer**: BREAKING CHANGE, issue refs, and the
+     discussion trailer below
+
+3a. **Discussion trailer**: when the change resolves a finding
+   from the Discussions board, add a trailer on its own line:
+
+   ```
+   Addresses-Discussion: #654
+   Addresses-Discussion: #604, #610
+   ```
+
+   This is the only signal `scripts/reconcile_discussions.py`
+   accepts as proof a finding is done. It posts the resolution
+   comment and closes the discussion, so the board stops
+   carrying work that is already finished.
+
+   **Only add it when this commit resolves the finding.** Prose
+   that merely names a discussion is read as a mention and is
+   never written back. That distinction is load-bearing:
+   `6b28aa1a` says "posted 13 insights to discussions
+   #424-#436", which is the commit that *opened* those
+   discussions. A trailer there would have announced
+   "Addressed" on findings nobody had looked at yet.
+
+   Cite a discussion in the body for context as often as it
+   helps. Reserve the trailer for resolution.
 
 4. **Slop check**: reject these words and replace with plain
    alternatives:
@@ -72,6 +97,27 @@ source_plugin: sanctum
    Also reject: "it's worth noting", "at its core",
    "in essence", "a testament to"
 
+4a. **Character-level slop check**: load `shared/output-hygiene.md`
+   (Contract A) and strip these markers. Inline fallback if that
+   module is absent:
+
+   | Marker | Replace with |
+   |--------|--------------|
+   | `"+"` as a prose conjunction | `and` (keep `+` in versions/code) |
+   | em-dash `—` | colon, period, comma, or rewrite |
+   | `--` as prose punctuation | colon or rewrite |
+   | arrows `->` / `→` as connectors | `to` / `into` |
+   | smart quotes `“ ” ‘ ’` | straight `"` and `'` |
+   | a `, so` tail after fact after fact | delete a consequence the reader can infer, else its own sentence |
+
+4b. **Subject-matter check** (Contract B): describe the change by its
+   reader-facing effect. Name neither the AI origin nor the specific
+   marker removed. Do NOT write `remove AI slop`, `de-slop`,
+   `AI-generated content`, `AI phrasing`, `replace em-dashes`, or
+   `remove smart quotes`. Test: if the subject only makes sense as "I
+   cleaned up AI output", rewrite it. For example `docs: clarify the
+   setup section`, not `style: replace em-dashes with colons`.
+
 5. **Write** to `./commit_msg.txt` and preview.
 
 ## Rules
@@ -79,3 +125,24 @@ source_plugin: sanctum
 - NEVER use `git commit --no-verify` or `-n`
 - Write for humans, not to impress
 - If pre-commit hooks fail, fix the issues
+- This skill drafts a message, it does not commit. Whoever commits
+  confirms HEAD advanced (`git rev-parse HEAD` before and after)
+  before reporting the commit as landed. An auto-fixing hook aborts
+  the commit while printing a tail that reads like success, so hook
+  output is not evidence. See discussion #614.
+
+## Exit Criteria
+
+- [ ] `commit_msg.txt` written to the working directory containing
+      the drafted conventional commit message
+- [ ] Subject line follows `<type>(<scope>): <summary>` format and
+      is at most 50 characters
+- [ ] Slop word check passes: none of the banned words (leverage,
+      utilize, seamless, comprehensive, robust, etc.) appear in the
+      message
+- [ ] Character-level check passes: no em-dashes, no `+` as prose
+      conjunction, no smart quotes, no `->` as prose connector
+- [ ] Body carries at most one `, so` consequence tail
+      (`scripts/slop_score.py --audit` lists each as `so_connective`)
+- [ ] If nothing is staged, skill halts immediately and reports
+      "nothing staged" without producing a commit message

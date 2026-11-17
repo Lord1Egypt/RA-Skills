@@ -1,41 +1,56 @@
-## Description: <br>
-Merges multiple images into a single PDF, supports Excel-based PDF renaming, and provides OCR guidance for scanned PDFs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Merge multiple images into a single PDF document, with guidance for Excel-based PDF renaming, scanned-PDF OCR, and optional Telegram delivery.
 
-## Publisher: <br>
-[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[meowlegemy-sudo](https://clawhub.ai/user/meowlegemy-sudo)
 
-## Use Case: <br>
-People processing accounting vouchers or scanned documents use this skill to merge and rotate image pages into PDFs, rename PDFs from an Excel voucher list, and extract text from scanned PDFs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can send sensitive document outputs and metadata to Telegram automatically without clear per-use confirmation. <br>
-Mitigation: Keep processing local unless Telegram delivery is explicitly intended, and verify the recipient before each send. <br>
-Risk: Voucher, company, or ship details may appear in filenames or outbound messages. <br>
-Mitigation: Avoid placing sensitive details in filenames or messages unless they are required and approved for the workflow. <br>
-Risk: OCR workflows can leave temporary files containing document images or extracted text. <br>
-Mitigation: Delete OCR temporary files after processing, especially when handling confidential documents. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/meowlegemy-sudo/image-to-pdf) <br>
+## Use Case:
 
+Developers and operations users can use this skill to guide image-to-PDF merging, voucher-style PDF naming from Excel indexes, and OCR extraction from scanned PDFs for accounting or document workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local PDF and OCR workflow guidance; Telegram delivery should be used only when explicitly intended.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, created 2026-03-06) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sensitive accounting documents may be sent through Telegram without a clear per-run confirmation step.
+
+Mitigation: Require visible confirmation of the recipient, filenames, and message text before sending any generated PDF or summary.
+
+Risk: Spreadsheet-derived filenames may contain unsafe or invalid characters.
+
+Mitigation: Sanitize generated filenames and validate Excel index-to-row mappings before copying or renaming files.
+
+Risk: Unpinned dependencies and local OCR tooling can behave differently across environments.
+
+Mitigation: Pin Python and system dependencies and verify OCR/PDF behavior in a controlled workspace before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/meowlegemy-sudo/skills/image-to-pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dependency installation commands, file naming patterns, OCR extraction steps, and Telegram send guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

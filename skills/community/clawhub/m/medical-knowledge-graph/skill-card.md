@@ -1,43 +1,59 @@
-## Description: <br>
-Medical Knowledge Graph helps agents query a medical graph covering diseases, drugs, symptoms, diagnoses, complications, diet, and their relationships. <br>
+## Description:
 
-This skill is for research and development only. <br>
+围绕疾病，药品，症状，诊断，并发症，饮食及其关系的知识图谱。仅限初步研究，具体应用需根据实际情况调整。
 
-## Publisher: <br>
-[alinklab](https://clawhub.ai/user/alinklab) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alinklab](https://clawhub.ai/user/alinklab)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect the medical graph schema and run read-only Cypher queries against a third-party knowledge graph API. It is best suited for preliminary research workflows where results are reviewed before practical use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Graph queries are sent to xiaobenyang's external API. <br>
-Mitigation: Avoid submitting sensitive patient information unless the service's privacy terms and deployment context meet the user's requirements. <br>
-Risk: The API key is stored in a local .env file. <br>
-Mitigation: Protect the local environment file, rotate exposed keys, and avoid committing credentials. <br>
-Risk: The artifact contains mismatched school-search template references. <br>
-Mitigation: Treat those references as quality issues and rely on the documented medical graph tools for actual use. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect a hosted medical knowledge graph schema and run read-only Cypher queries for preliminary research about diseases, drugs, symptoms, diagnoses, complications, diet, and their relationships. Outputs should be treated as research support, not clinical guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alinklab/medical-knowledge-graph) <br>
-- [Xiaobenyang API provider](https://xiaobenyang.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown summaries of JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XBY_APIKEY before API-backed graph queries can run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Queries are sent to the XiaoBenYang MCP API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending sensitive health or personal data unless the user has reviewed and accepted the external service terms and data-handling expectations.
+
+Risk: The skill stores the XiaoBenYang API key in a local plaintext .env file.
+
+Mitigation: Use a disposable or scoped API key, restrict local file access, and ensure .env is not committed or shared.
+
+Risk: The artifact includes inconsistent references to an unrelated gaokao/admissions skill.
+
+Mitigation: Confirm the package contents and intended medical knowledge graph behavior with the publisher before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alinklab/skills/medical-knowledge-graph)
+- [XiaoBenYang API key site](https://xiaobenyang.com)
+- [XiaoBenYang MCP API endpoint](https://mcp.xiaobenyang.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, API Calls, Guidance]
+
+**Output Format:** [Markdown summaries of JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a XiaoBenYang API key before tool calls can be made.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

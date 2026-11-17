@@ -1,45 +1,58 @@
-## Description: <br>
-诊断修复 Windows 下 PowerShell/cmd/Git Bash 的乱码、引号转义、路径空格与 CRLF 等问题。当用户说：PowerShell 里跑 bash 命令报错、中文乱码怎么修、JSON 怎么安全传给命令行，或类似 Windows 终端编码问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents diagnose and repair Windows PowerShell, cmd, and Git Bash issues involving mojibake, quoting, path spaces, JSON/stdin handling, and CRLF line endings.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose and repair Windows PowerShell, cmd.exe, Git Bash, encoding, quoting, path, JSON, stdin, and line-ending issues. It helps translate shell-specific commands into safer Windows-native patterns and explains the likely root cause. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested repair commands may write files, change encodings, or normalize line endings. <br>
-Mitigation: Review commands before running them, keep backups for important files, and prefer reversible file-based fixes when working with user data. <br>
-Risk: Shell translation advice can be misapplied if the user is running a different Windows shell than assumed. <br>
-Mitigation: Identify whether the current shell is PowerShell, cmd.exe, Git Bash, MSYS, or WSL before applying translated commands. <br>
+## Use Case:
 
+Developers and technical users use this skill to help an agent diagnose Windows shell failures and produce safer PowerShell, cmd, and Git Bash commands for encoding, JSON/stdin, path, quoting, and line-ending issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/windows-shell-encoding-doctor) <br>
-- [Common Windows shell failures](references/common-failures.md) <br>
-- [Encoding checklist for Windows shell problems](references/encoding-checklist.md) <br>
-- [JSON and stdin patterns on Windows](references/json-and-stdin-patterns.md) <br>
-- [PowerShell vs Bash quick translation guide](references/powershell-vs-bash.md) <br>
-- [Repair playbooks](references/repair-playbooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline PowerShell, cmd, bash, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include copy-pasteable commands, file-based repair patterns, and concise root-cause explanations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Suggested troubleshooting commands may write local UTF-8 files, change encodings, or normalize line endings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated commands before running them, confirm target paths, and back up important files before modifying encodings or line endings.
+
+Risk: Shell-specific repairs can fail or behave differently if the current shell is misidentified.
+
+Mitigation: Confirm whether the user is using PowerShell, cmd, Git Bash, MSYS, or WSL before translating commands.
+
+## Reference(s):
+
+- [Common Windows shell failures](references/common-failures.md)
+- [Encoding checklist for Windows shell problems](references/encoding-checklist.md)
+- [JSON and stdin patterns on Windows](references/json-and-stdin-patterns.md)
+- [PowerShell vs Bash quick translation guide](references/powershell-vs-bash.md)
+- [Repair playbooks](references/repair-playbooks.md)
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/windows-shell-encoding-doctor)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline PowerShell, cmd, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May recommend UTF-8 file writes or line-ending normalization when needed; review generated commands before execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

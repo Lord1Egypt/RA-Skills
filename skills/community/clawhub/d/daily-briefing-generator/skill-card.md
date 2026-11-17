@@ -1,40 +1,57 @@
-## Description: <br>
-每日简报生成器聚合多源资讯，并以结构化 Markdown 格式生成每日简报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese daily briefing Markdown from Tavily keyword searches and can print the briefing or save it to a local file.
 
-## Publisher: <br>
-[xuyongliang-eccom](https://clawhub.ai/user/xuyongliang-eccom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuyongliang-eccom](https://clawhub.ai/user/xuyongliang-eccom)
 
-## Use Case: <br>
-Teams and developers use this skill to generate concise daily briefings from topic keywords using Tavily search results. It is best suited for manual briefing generation until the advertised RSS and scheduled push workflows are supplied and reviewed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search topics and queries are sent to Tavily when the generator runs. <br>
-Mitigation: Use a scoped Tavily API key and avoid confidential search topics unless sending them to Tavily is acceptable. <br>
-Risk: The documentation advertises RSS ingestion and scheduled team push features that are not present in the reviewed artifact. <br>
-Mitigation: Rely on the reviewed manual Tavily-based briefing workflow only; do not deploy RSS or scheduled push workflows until the missing files and credential handling are provided and reviewed. <br>
+## Use Case:
 
+External users and teams use this skill to create concise Chinese daily industry or topic briefings from search keywords, then review the generated Markdown or save it as a local briefing file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xuyongliang-eccom/daily-briefing-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown briefing with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses TAVILY_API_KEY when Tavily search is available; can write the generated briefing to a file path supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The package advertises RSS ingestion, scheduled delivery, and enterprise messaging push behavior that is not implemented in the shipped artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the shipped Tavily keyword briefing script as the supported behavior unless RSS, scheduling, or push features are added, documented, and reviewed separately.
+
+Risk: Search topics are sent to Tavily and require a TAVILY_API_KEY.
+
+Mitigation: Use scoped credentials, avoid sensitive query terms, and review generated links and summaries before sharing the briefing.
+
+Risk: The script writes to the user-supplied output path when --output is provided.
+
+Mitigation: Choose an intended local Markdown path and review existing files before running commands that save output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xuyongliang-eccom/skills/daily-briefing-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown briefing text, optionally written to a local .md file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses TAVILY_API_KEY for live Tavily search; --sources selects comma-separated topics and --max-items limits briefing entries.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

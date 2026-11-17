@@ -1,44 +1,51 @@
-## Description: <br>
-Serply enables an agent to search Google web, news, video, and Scholar results through the OOMOL oo CLI and a connected Serply account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and read data through Serply for web, news, scholar, and video queries.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to run Serply-backed search actions from an agent after connecting their OOMOL account. It is suited for web, news, video, and academic search workflows that need JSON results and execution metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and connector activity may be processed through OOMOL and Serply. <br>
-Mitigation: Confirm the user trusts OOMOL and Serply with the submitted queries before installing or using the connector. <br>
-Risk: Installer, login, or connection flows can change local setup or account state if run unnecessarily. <br>
-Mitigation: Run setup commands only after a command fails with a matching CLI, authentication, connection, scope, credential, or billing error. <br>
-Risk: Connector action payloads may become invalid if the live contract changes. <br>
-Mitigation: Inspect the live action schema before constructing each action payload. <br>
+## Use Case:
 
+Agents and users with an OOMOL-connected Serply account can search the web, news, scholarly literature, and video, then use the returned search data in their task.
 
-## Reference(s): <br>
-- [Serply homepage](https://serply.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Serply on ClawHub](https://clawhub.ai/oomol/oo-serply) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and execution metadata when actions are run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Setup and CLI use can make persistent agent changes through startup skill synchronization, which the skill does not explain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review CLI setup and use a reviewed, pinned release. Decide whether additional agent skills should be installed; set OO_SKILLS_SYNC_DISABLED=1 to disable startup synchronization.
+
+## Reference(s):
+
+- [Serply](https://serply.io)
+- [Serply API documentation](https://serply.io/docs)
+- [oo CLI environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, JSON]
+
+**Output Format:** [JSON search results, including article and academic result entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results vary by action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

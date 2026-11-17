@@ -1,45 +1,57 @@
-## Description: <br>
-Install and run Aperture, the L402 Lightning reverse proxy from Lightning Labs, for creating L402 paywalls, configuring paid API endpoints, hosting paid content for other agents, or testing L402 authentication flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install and run Aperture, the L402 Lightning reverse proxy from Lightning Labs.
 
-## Publisher: <br>
-[Roasbeef](https://clawhub.ai/user/Roasbeef) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[roasbeef](https://clawhub.ai/user/roasbeef)
 
-## Use Case: <br>
-Developers and operators use this skill to install Aperture, generate local configuration, and run an L402-aware reverse proxy in front of backend APIs or paid content services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Aperture configuration can expose paid endpoints without intended payment enforcement if authentication is disabled or TLS is disabled on public or shared networks. <br>
-Mitigation: Review ~/.aperture/aperture.yaml before starting Aperture, avoid --insecure and --no-auth outside local development, and use explicit production TLS settings. <br>
-Risk: Overbroad host matching can route unintended requests through the proxy. <br>
-Mitigation: Replace hostregexp ".*" with explicit hostnames for production services. <br>
-Risk: Using overly powerful LND credentials increases blast radius if local configuration or mounted credentials are exposed. <br>
-Mitigation: Use an invoice-only macaroon rather than admin credentials and confirm the configured macdir before launch. <br>
-Risk: The start script can leave Aperture running as a background service. <br>
-Mitigation: Stop the service with scripts/stop.sh when finished and check the configured log file if startup fails. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Roasbeef/aperture) <br>
-- [Aperture source and documentation](https://github.com/lightninglabs/aperture) <br>
-- [Go downloads](https://go.dev/dl/) <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, start, and stop an L402-aware reverse proxy for payment-gated API endpoints, paid content, and L402 authentication testing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local Aperture configuration under ~/.aperture when its setup script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install flow uses a mutable upstream Aperture version.
+
+Mitigation: Prefer a pinned Aperture version before installation.
+
+Risk: Aperture runs with access to Lightning invoice credentials.
+
+Mitigation: Run Aperture as an unprivileged user and keep the macaroon limited to invoice-only permissions.
+
+Risk: Development options can disable TLS or L402 authentication.
+
+Mitigation: Use --insecure or --no-auth only in isolated local development.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roasbeef/skills/aperture)
+- [Aperture project documentation](https://github.com/lightninglabs/aperture)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scripts that can install upstream Aperture, generate local configuration, and manage a background Aperture process.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,54 @@
-## Description: <br>
-Use when checking an agent Skill against a local or enterprise policy before installation, publication, CI approval, marketplace review, or repository merge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when checking an agent Skill against a local or enterprise policy before installation, publication, CI approval, marketplace review, or repository merge.
 
-## Publisher: <br>
-[debtvc2022](https://clawhub.ai/user/debtvc2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[debtvc2022](https://clawhub.ai/user/debtvc2022)
 
-## Use Case: <br>
-Developers, platform teams, and marketplace reviewers use this skill to run repeatable policy checks over agent Skill folders before installation, publication, CI approval, marketplace review, or repository merge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The policy checker reads files under the folder it is asked to scan, which could include unrelated private data if pointed at a broad directory. <br>
-Mitigation: Run it against the intended skill folder or another deliberately scoped directory, and avoid broad directories containing unrelated private data unless that scan is intentional. <br>
-Risk: Policy findings can block installation, release, CI, marketplace review, or repository merge workflows. <br>
-Mitigation: Use an explicit local policy file for approved exceptions and review deny or warn results by their reported rule IDs. <br>
+## Use Case:
 
+Developers and review teams use this skill to check agent Skill folders against local or enterprise policy before installation, publication, CI approval, marketplace review, or repository merge. It turns policy violations into repeatable pass, warning, or fail outcomes with rule identifiers.
 
-## Reference(s): <br>
-- [Policy schema](references/policy-schema.md) <br>
-- [Default policy](references/default-policy.yaml) <br>
-- [ClawHub release page](https://clawhub.ai/debtvc2022/skill-policy-enforcer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown or JSON policy-check results with rule IDs and pass/fail/warning status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can apply a caller-supplied JSON or simple YAML policy, or the bundled default conservative policy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security review reports scanner bypass and unsafe file-reading weaknesses that make it unsuitable as the sole approval gate for untrusted skill packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it in a constrained workspace and pair results with independent review until symlink handling, pre-read size enforcement, policy regex validation, and broad line-skipping behavior are addressed.
+
+Risk: The skill reads candidate skill folders and evaluates policy-controlled patterns, so weak or overly broad policy settings can miss relevant issues.
+
+Mitigation: Keep policies explicit, review deny and warning rule IDs, and require policy changes instead of prose exceptions when findings are inconvenient.
+
+## Reference(s):
+
+- [Default Conservative Skill Policy](references/default-policy.yaml)
+- [Policy Schema](references/policy-schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON policy results with pass, warning, or fail status and rule-specific findings.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit CI-friendly JSON when invoked with --json; deny findings block release or installation decisions.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

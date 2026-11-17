@@ -1,51 +1,62 @@
-## Description: <br>
-Html To Pdf converts local HTML files into image-based PDFs by rendering them with a locally installed Chrome or Chromium browser through Puppeteer, expanding hidden content, waiting for charts, and validating the resulting page count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts local HTML pages into PDF files with Puppeteer and an installed Chrome or Chromium browser, including support for Chinese text, ECharts rendering waits, hidden content expansion, content-height measurement, whitespace reduction, and page-break avoidance.
 
-## Publisher: <br>
-[ronie-shi](https://clawhub.ai/user/ronie-shi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ronie-shi](https://clawhub.ai/user/ronie-shi)
 
-## Use Case: <br>
-Developers and engineers use this skill to convert local dashboards, reports, web pages, Chinese-language HTML, and chart-heavy HTML into PDF files. It is best suited for one-page, rendered-page PDF capture rather than searchable text PDFs or print-layout pagination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local HTML is rendered through Chromium, so untrusted HTML or remote resources referenced by that HTML can introduce browser-side security and privacy risk. <br>
-Mitigation: Use trusted local HTML, review external resource references before conversion, and run the skill in an environment appropriate for browser execution. <br>
-Risk: The script launches Chromium with --no-sandbox, which is not appropriate for shared or multi-tenant environments. <br>
-Mitigation: Avoid --no-sandbox in shared deployments and restrict use to trusted single-user environments unless the Chromium sandbox configuration is reviewed and changed. <br>
-Risk: The skill depends on local npm packages, a local Chrome or Chromium installation, and local fonts for correct rendering. <br>
-Mitigation: Install dependencies from trusted registries, set CHROME_PATH when needed, and install required Chinese and emoji fonts before relying on generated PDFs. <br>
-Risk: Generated PDFs are image-based captures, so text selection, searchability, and formal print pagination may not meet document workflow requirements. <br>
-Mitigation: Use the skill for rendered-page capture workflows and choose a text-native or print-layout PDF tool when searchable text or A4-style pagination is required. <br>
+## Use Case:
 
+Developers and engineers use this skill to guide agents in converting dashboard, report, or web-page HTML into PDF output from a local environment. It is especially oriented to Chinese-language reports and pages with rendered charts, tabs, animations, or collapsible sections.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ronie-shi/fanzhi-html-to-pdf) <br>
-- [Chromium and Chrome platform paths](references/platforms.md) <br>
-- [Sources and license references](references/sources.md) <br>
-- [HTML to PDF technical details](references/tech-details.md) <br>
-- [Puppeteer](https://github.com/puppeteer/puppeteer) <br>
-- [pdf-lib](https://github.com/Hopding/pdf-lib) <br>
-- [Noto Sans CJK font](https://github.com/notofonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf) <br>
-- [Noto Emoji font](https://github.com/googlefonts/noto-emoji/raw/main/fonts/NotoEmoji-Regular.ttf) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and generated PDF file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces image-based PDF output from local .html or .htm input; PDF text is not expected to be selectable or searchable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Caller-supplied HTML is rendered in Chromium with the browser sandbox disabled by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted HTML only, or run the conversion inside a disposable or containerized environment and remove or explicitly opt in to --no-sandbox.
+
+Risk: Output-path controls are weak and an existing file may be overwritten.
+
+Mitigation: Choose output paths deliberately, review the resolved destination before running, and avoid running the converter with elevated privileges.
+
+Risk: Dependencies are not pinned by a lockfile in the supplied artifact.
+
+Mitigation: Pin npm dependencies before deployment and review dependency updates before reinstalling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ronie-shi/skills/fanzhi-html-to-pdf)
+- [Chromium and Chrome platform paths](references/platforms.md)
+- [Sources and dependency licenses](references/sources.md)
+- [HTML to PDF technical details](references/tech-details.md)
+- [Puppeteer](https://github.com/puppeteer/puppeteer)
+- [pdf-lib](https://github.com/Hopding/pdf-lib)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and generated PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated PDF is expected to be a single-page, image-like rendering of the HTML rather than searchable or selectable text.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

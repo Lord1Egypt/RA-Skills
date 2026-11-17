@@ -1,42 +1,60 @@
-## Description: <br>
-Interact with FlowDeck Project Management API (projects, cycles, tasks). Use for CRUD + archive/unarchive operations via the FlowDeck REST API through Supabase Edge Functions. Trigger when user asks about project status, cycle progress, task management, or implementing work from a Flow task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with FlowDeck Project Management API (projects, cycles, tasks) for CRUD and archive/unarchive operations via the FlowDeck REST API through Supabase Edge Functions.
 
-## Publisher: <br>
-[araujodgdev](https://clawhub.ai/user/araujodgdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[araujodgdev](https://clawhub.ai/user/araujodgdev)
 
-## Use Case: <br>
-Developers and project operators use this skill to inspect FlowDeck project status, summarize active cycles and task progress, and create or update project-management records through the FlowDeck REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify live FlowDeck workspace data using a bearer API key. <br>
-Mitigation: Use a scoped, revocable API key through FLOWBOARD_API_KEY when possible, verify the base URL, and review intended operations before execution. <br>
-Risk: Delete, archive, broad update, or task-driven implementation actions can affect project records or downstream work. <br>
-Mitigation: Confirm ambiguous or destructive targets, double-check IDs and payloads, and prefer narrow updates over broad changes. <br>
+## Use Case:
 
+Developers and project teams use this skill to inspect FlowDeck project status, cycle progress, tasks, comments, and to perform project-management mutations through the FlowDeck REST API.
 
-## Reference(s): <br>
-- [Flow PMS on ClawHub](https://clawhub.ai/araujodgdev/flow-pms) <br>
-- [FlowBoard API summary](references/openapi-summary.md) <br>
-- [Fluxos praticos em PT-BR](references/workflows-ptbr.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API response summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce live FlowDeck API mutations when the user authorizes create, update, delete, archive, or unarchive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill can use a bearer API key for broad remote FlowDeck changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped, revocable API key stored in the protected FLOWBOARD_API_KEY environment variable.
+
+Risk: The API key can be sent to a configurable base URL.
+
+Mitigation: Do not set FLOWBOARD_BASE_URL or --base-url to untrusted hosts; use only the expected FlowDeck API gateway.
+
+Risk: Create, update, archive, unarchive, and delete actions can change remote project-management records.
+
+Mitigation: Require explicit confirmation before any mutation and verify the target resource is unambiguous.
+
+## Reference(s):
+
+- [FlowBoard API Summary](references/openapi-summary.md)
+- [Practical Workflows in PT-BR](references/workflows-ptbr.md)
+- [ClawHub Skill Page](https://clawhub.ai/araujodgdev/skills/flow-pms)
+- [Publisher Profile](https://clawhub.ai/user/araujodgdev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read or mutate remote FlowDeck project-management records when supplied with a bearer API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

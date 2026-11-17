@@ -1,44 +1,57 @@
-## Description: <br>
-Super File Manager helps agents scan cleanup candidates, preview file organization, detect duplicate files, run folder backups, move files with logs, and roll back logged operations across macOS, Linux, and Windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电脑文件管理技能。当用户要求清理垃圾文件、整理文档、检测重复文件、备份文件夹，或提到文件管理、磁盘清理、文件整理、重复文件、文件备份等相关操作时使用此技能。原生支持 macOS、Linux 和 Windows。
 
-## Publisher: <br>
-[yy756127197](https://clawhub.ai/user/yy756127197) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yy756127197](https://clawhub.ai/user/yy756127197)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to clean up local files, organize directories, identify duplicates, create backups, move files with an audit log, and restore logged operations after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move, trash, back up, and restore local files. <br>
-Mitigation: Run scan and preview commands first, and require explicit user confirmation before any move, trash, backup, or rollback action. <br>
-Risk: Skipping backup verification can leave important backups unchecked. <br>
-Mitigation: Avoid using --no-verify for important backups unless the user accepts the tradeoff. <br>
-Risk: Restoring trashed files with common filenames may match by filename rather than exact trash metadata. <br>
-Mitigation: Review the operation log and target path before restoring files from trash. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to inspect local folders, identify cleanup candidates or duplicate files, organize files, create backups, and roll back logged file moves or trash operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yy756127197/super-file-manager) <br>
-- [README](README.md) <br>
-- [CHANGELOG](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with command snippets and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include file paths, scan summaries, backup reports, operation logs, and rollback guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: ClawHub release evidence) <br>
+Risk: The skill can move, trash, copy, and restore files within the current user's permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on explicitly chosen folders and review every planned change before allowing write operations.
+
+Risk: Broad targets such as Home, system directories, app configuration folders, and cache roots may expose more files than intended.
+
+Mitigation: Prefer narrow project or download subfolders and avoid broad roots unless the file list has been carefully reviewed.
+
+Risk: Rollback can act on operation logs and may restore or move files based on log contents.
+
+Mitigation: Run rollback only against log files you created or inspected, and verify the target paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yy756127197/skills/super-file-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured file-operation reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSONL operation logs when move, trash, or rollback workflows are used.]
+
+## Skill Version(s):
+
+2.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

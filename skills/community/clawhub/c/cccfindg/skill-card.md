@@ -1,39 +1,59 @@
-## Description: <br>
-Searches a corporate address book by organization path and job title after the user provides explicit query details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps an agent query an authenticated address book by organization path and job title, then return matching personnel contact details.
 
-## Publisher: <br>
-[blockcloud](https://clawhub.ai/user/blockcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blockcloud](https://clawhub.ai/user/blockcloud)
 
-## Use Case: <br>
-Authorized employees use this skill to look up address-book personnel records by organization path and job title, including employee identifiers and phone numbers when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose employee identifiers and phone numbers from an internal address book. <br>
-Mitigation: Install and run it only when authorized for the address book, and do not share or retain returned employee details outside approved channels. <br>
-Risk: Repeated, paginated, or multi-line searches can become bulk employee-data collection. <br>
-Mitigation: Use narrow, business-justified queries and avoid broad or repeated lookups beyond the approved task. <br>
+## Use Case:
 
+Employees or authorized operators use this skill to locate personnel in an internal directory by organization and position when they are permitted to access and disclose the resulting contact information.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown or plain text rows with organization, title, employee ID, name, desk phone, and mobile phone fields.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided organization and title details, user confirmation, and logged-in access before lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can return employee identifiers and phone numbers from an authenticated internal directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where users are authorized to access and disclose this data, and limit lookups to approved business purposes.
+
+Risk: The public description and authorization boundaries are unclear for automatic approval.
+
+Mitigation: Revise the skill description and manifest to disclose authenticated directory access and clarify authorization boundaries before deployment.
+
+Risk: Returned mobile numbers or employee IDs may be unnecessary for some requests.
+
+Mitigation: Avoid returning mobile numbers or employee IDs unless they are necessary for the approved use case.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blockcloud/skills/cccfindg)
+- [ClawHub publisher profile](https://clawhub.ai/user/blockcloud)
+- [Authenticated address book login](https://222.222china.com/address-book/login)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Plain text or Markdown with one result per matching person.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include organization, position, employee ID, 222ID, name, landline, and mobile phone for each match.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

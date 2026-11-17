@@ -21,7 +21,7 @@ def check_domain_validity(domains: list) -> dict:
         API 响应数据
     """
     params = {"domains": domains}
-    response = make_request('/validation/domain', params)
+    response = make_request('/agent/validation/domain', params)
     return response
 
 
@@ -66,6 +66,8 @@ def main():
 
     # 检查错误
     if response.get('code') != 0:
+        if response.get('requestId'):
+            print(f"requestId：{response.get('requestId')}", file=sys.stderr)
         handle_api_error(response)
         return
 
@@ -76,7 +78,8 @@ def main():
     result = {
         'total': data.get('total', 0),
         'results': data.get('list', []),
-        'fee': cover_fee_info(fee)
+        'fee': cover_fee_info(fee),
+        'requestId': response.get('requestId')
     }
 
     print_json_output(result)

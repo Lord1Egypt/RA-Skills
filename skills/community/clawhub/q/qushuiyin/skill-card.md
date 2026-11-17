@@ -1,43 +1,53 @@
-## Description: <br>
-短视频去水印下载。检测到抖音、快手、小红书、B站、微博、西瓜视频等平台链接时，自动解析并下载无水印视频，直接发送文件给用户。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+检测到抖音、快手、小红书、B站、微博、西瓜视频等平台链接时，自动解析并下载无水印视频，直接发送文件给用户。
 
-## Publisher: <br>
-[sjzai](https://clawhub.ai/user/sjzai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjzai](https://clawhub.ai/user/sjzai)
 
-## Use Case: <br>
-External users and agents use this skill to detect supported short-video platform links in messages, resolve watermark-free media through a third-party parsing service, and return the resulting video file or download link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video links are processed automatically and sent to a third-party parsing service. <br>
-Mitigation: Require explicit user confirmation before processing links, disclose the third-party service, and validate that links belong to supported domains. <br>
-Risk: Downloaded videos are stored in a publicly served directory and may be exposed through public HTTP links. <br>
-Mitigation: Use private or expiring delivery links, limit file size and type, and clean up old media after delivery. <br>
-Risk: Service credentials and deployment settings appear in source-level constants. <br>
-Mitigation: Move credentials and deployment-specific paths or hosts into protected runtime configuration. <br>
+## Use Case:
 
+External users and agents use this skill to detect supported short-video platform links in chat, parse them through a third-party service, and return a downloaded watermark-free video file or link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sjzai/qushuiyin) <br>
-- [Third-party video parsing API endpoint](https://qyapi.ipaybuy.cn/api/video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files] <br>
-**Output Format:** [Plain text status strings, local video files, and public download URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns SUCCESS or FAIL-prefixed status text; successful runs include a local media path, file size, and public URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Supported video links are sent to an external parsing API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit user confirmation and scoped network permissions before sending private or sensitive links to the parser.
+
+Risk: Downloaded files are stored on a publicly reachable HTTP server.
+
+Mitigation: Use HTTPS, random or signed download URLs, quotas, cleanup, and host and size validation before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sjzai/skills/qushuiyin)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, shell commands]
+
+**Output Format:** [Status text plus a video file or public download link]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns SUCCESS or FAIL status from the download script; successful runs include a file path, file size, and public video URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

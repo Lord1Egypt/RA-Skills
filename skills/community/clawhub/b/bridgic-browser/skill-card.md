@@ -1,51 +1,57 @@
-## Description: <br>
-Browser Automation helps agents drive real browser sessions for dynamic pages, authenticated workflows, web UI interaction, scraping, form filling, end-to-end checks, and CLI-to-SDK browser automation code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables agents to automate real browser sessions through a CLI or Python SDK for JS-rendered, authenticated, and interactive web workflows, including snapshots, form filling, scraping, CDP sessions, and CLI-to-SDK code generation.
 
-## Publisher: <br>
-[tielei](https://clawhub.ai/user/tielei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tielei](https://clawhub.ai/user/tielei)
 
-## Use Case: <br>
-Developers and automation agents use this skill to browse JavaScript-rendered pages, operate web interfaces, preserve or isolate login state, connect to existing Chrome sessions, and generate browser automation commands or Python SDK code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can reuse authenticated browser sessions and persistent profile data. <br>
-Mitigation: Use a dedicated or ephemeral browser profile unless the task explicitly requires access to an existing logged-in session. <br>
-Risk: CDP mode can attach automation to an existing Chrome instance. <br>
-Mitigation: Prefer a separate Chrome profile or explicit CDP target, and confirm that the intended browser session is being automated before running sensitive tasks. <br>
-Risk: Storage-state files, downloads, network captures, screenshots, videos, and logs can contain sensitive data. <br>
-Mitigation: Treat generated browser artifacts as secrets and delete or store them according to the user's data handling requirements. <br>
-Risk: The install script modifies project dependency files and installs browser automation dependencies. <br>
-Mitigation: Review the install script and dependency configuration before execution, then validate the environment after installation. <br>
-Risk: Stealth and scraping capabilities can be misused or violate site terms. <br>
-Mitigation: Use the skill only for authorized browsing and automation, and follow applicable website terms, rate limits, and legal requirements. <br>
+## Use Case:
 
+Developers and agent users use this skill to control websites that require JavaScript execution, login state, UI interaction, screenshots, browser storage, or CLI-to-SDK automation guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tielei/bridgic-browser) <br>
-- [CLI Guide](references/cli-guide.md) <br>
-- [SDK Guide](references/sdk-guide.md) <br>
-- [CLI and SDK API Mapping Guide](references/cli-sdk-api-mapping.md) <br>
-- [CDP Mode](references/cdp-mode.md) <br>
-- [Environment Variables and Login State](references/env-vars.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, Python code, configuration snippets, and browser automation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include browser workflow steps, CLI-to-SDK mappings, environment settings, and validation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.5 (source: server release evidence) <br>
+Risk: The installer can execute mutable remote code through dependency setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install script before running it, preinstall uv through a trusted package manager, pin bridgic-browser to a reviewed version, and run it in an isolated project, user account, or container.
+
+Risk: Browser automation can retain or access sensitive session data, screenshots, storage files, and network captures.
+
+Mitigation: Use --clear-user-data or a separate BRIDGIC_HOME for sensitive browsing, avoid CDP against an everyday Chrome profile unless needed, and treat captured browser artifacts as sensitive.
+
+## Reference(s):
+
+- [CDP Mode](artifact/references/cdp-mode.md)
+- [CLI Guide](artifact/references/cli-guide.md)
+- [CLI and SDK API Mapping Guide](artifact/references/cli-sdk-api-mapping.md)
+- [Environment Variables and Login State](artifact/references/env-vars.md)
+- [SDK Guide](artifact/references/sdk-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include browser automation steps, SDK snippets, environment configuration, screenshots or file paths when requested by the user.]
+
+## Skill Version(s):
+
+0.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

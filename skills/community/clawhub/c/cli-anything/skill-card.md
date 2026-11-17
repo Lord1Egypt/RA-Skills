@@ -1,42 +1,56 @@
-## Description: <br>
-Generate or refine agent-usable CLIs for existing software/codebases using the CLI-Anything methodology. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate or refine agent-usable CLIs for existing software/codebases using the CLI-Anything methodology.
 
-## Publisher: <br>
-[JasonChenJC](https://clawhub.ai/user/JasonChenJC) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonchenjc](https://clawhub.ai/user/jasonchenjc)
 
-## Use Case: <br>
-Developers and engineers use this skill to assess whether existing software can be exposed through agent-usable CLIs, inspect CLI-Anything harnesses, and adapt validated harness workflows into OpenClaw-compatible skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect a local CLI-Anything workspace through helper scripts and hardcoded workspace paths. <br>
-Mitigation: Use it in a sandbox or with a reviewed project workspace when local code or private files may be present. <br>
-Risk: Generated or adapted CLI harnesses may not match their claimed backend behavior until individually validated. <br>
-Mitigation: Verify dependencies, CLI entry points, and minimal real-backend commands before treating a harness as usable. <br>
+## Use Case:
 
+Developers and engineers use this skill to assess whether CLI-Anything fits a target app or repository, inspect existing CLI-Anything harnesses, and package generated harness workflows for OpenClaw.
 
-## Reference(s): <br>
-- [Bundled Harnesses](references/bundled-harnesses.md) <br>
-- [OpenClaw Adaptation Notes](references/openclaw-adaptation-notes.md) <br>
-- [Validated Example: GIMP Harness](references/validated-example-gimp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; helper scripts may print JSON summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is grounded in local CLI-Anything workspace inspection and bundled reference files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: Installing mutable local packages into a shared Python environment or PATH can affect other projects and make later behavior harder to reproduce.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local CLI-Anything checkout and harness setup files first, then use a disposable workspace or virtual environment and pin dependencies where possible.
+
+Risk: Generated or third-party harness code may not match its stated backend behavior until inspected and tested.
+
+Mitigation: Treat generated and third-party harness code as untrusted until reviewed, and verify real entry points and minimal backend execution before claiming a harness works.
+
+## Reference(s):
+
+- [CLI Anything on ClawHub](https://clawhub.ai/jasonchenjc/skills/cli-anything)
+- [Bundled harnesses in CLI-Anything](references/bundled-harnesses.md)
+- [Adapting CLI-Anything into OpenClaw](references/openclaw-adaptation-notes.md)
+- [Validated example: gimp harness](references/validated-example-gimp.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and code-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may direct agents to inspect local repositories, verify harness prerequisites, and produce or refine OpenClaw-compatible workflow files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Extract public WeChat Official Account articles from mp.weixin.qq.com links or saved HTML into clean Markdown or structured JSON, including title, account name, publish time, article text, tables, image markers, and image URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract public WeChat Official Account articles from mp.weixin.qq.com links or saved HTML into clean Markdown or structured JSON, including title, account name, publish time, article text, tables, image markers, and image URLs.
 
-## Publisher: <br>
-[joannaxing](https://clawhub.ai/user/joannaxing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joannaxing](https://clawhub.ai/user/joannaxing)
 
-## Use Case: <br>
-Developers and agents use this skill to extract public WeChat Official Account articles into portable Markdown or structured JSON for reading, archiving, summarization, or downstream import workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches public WeChat pages and can write extracted output or downloaded images to local paths. <br>
-Mitigation: Review the source URL and output destination before running, and use image downloading only for trusted articles and directories. <br>
-Risk: Extracted article content may be subject to third-party copyright or reuse restrictions. <br>
-Mitigation: Summarize or transform content when sharing externally, and do not republish full articles unless the user has the rights to do so. <br>
+## Use Case:
 
+Developers, researchers, and content operations users use this skill to extract public WeChat Official Account articles from a public article URL or saved HTML into Markdown archives or JSON records for downstream processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joannaxing/wechat-article-extract) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, files] <br>
-**Output Format:** [Markdown or JSON article extraction output, with optional downloaded image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown includes article metadata, text, table conversions, image markers, and image URLs; JSON includes structured article metadata, content fields, image entries, image URLs, and optional downloaded image paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The optional image download mode can fetch arbitrary image URLs from article HTML and save unbounded responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use --download-images only with trusted public WeChat articles or saved HTML, review extracted image URLs before downloading, and run downloads in a disposable output directory until host, redirect, and response size restrictions are added.
+
+Risk: Extracted article content may include third-party material that the user does not have rights to republish.
+
+Mitigation: Use extracted content for private analysis, summaries, transformations, or authorized archives; do not republish full articles unless the user has the necessary rights.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joannaxing/skills/wechat-article-extract)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown or JSON, optionally written to stdout or a user-provided file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves image positions with markers; local image downloads are optional and should be requested explicitly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

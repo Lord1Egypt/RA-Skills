@@ -1,44 +1,59 @@
-## Description: <br>
-Runs a consent-gated Python scanner that reports S2-native and legacy IoT sensor inventory for a target subnet. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+S2-SP-OS Universal Spatial Sensor Sniffer scans LAN environments for S2-native Zero-Knowledge Heartbeats, legacy sensor protocols such as Modbus and MQTT, and Gateway API registry entries.
 
-## Publisher: <br>
-[spacesq](https://clawhub.ai/user/spacesq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and home or building automation operators can use this skill as a demonstration aid for S2-style sensor discovery workflows. Treat reported inventory as mock or unverified data until separately validated before onboarding devices or changing automations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scanner may present mock or unreliable sensor inventory as if it were real discovery data. <br>
-Mitigation: Validate any reported devices with independent network or gateway tooling before using the inventory for decisions. <br>
-Risk: Broad subnet scans or gateway tokens can expose network or home automation information. <br>
-Mitigation: Limit scan scope, require explicit consent, and provide gateway credentials only when necessary. <br>
-Risk: Agent examples could encourage onboarding devices or changing automation behavior from unverified output. <br>
-Mitigation: Require separate human approval and validation before onboarding devices or modifying home or building automation. <br>
+## Use Case:
 
+Developers and operators use this skill to ask an agent to run a Python-based spatial sensor discovery workflow and summarize detected S2-native, legacy, and gateway-listed devices. Review is required before using its findings for inventory, security, onboarding, or automation decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/spacesq/s2-universal-scanner) <br>
-- [S2-SP-OS product page](https://space2.world/s2-sp-os) <br>
-- [Space2 developer page](https://space2.world/developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, S2_PRIVACY_CONSENT, and optionally S2_HA_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The security review says the skill claims real IoT discovery while inspected code returns hardcoded device results and tells agents to present them as real findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as review-required until the publisher replaces hardcoded demo output with verifiable discovery and clearly labels any simulations.
+
+Risk: The skill can influence inventory, onboarding, security, or automation decisions using scan-like output.
+
+Mitigation: Require explicit authorization, human review, and independent verification before acting on discovered devices or onboarding recommendations.
+
+Risk: The skill accepts an optional Home Assistant token environment variable.
+
+Mitigation: Use least-privilege credentials, avoid logging tokens, and run only in environments where credential handling has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-universal-scanner)
+- [S2-SP-OS homepage](https://space2.world/s2-sp-os)
+- [Space2 developer reference](https://space2.world/developer)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON from a Python CLI, with Markdown usage examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and requests; uses S2_PRIVACY_CONSENT and optionally S2_HA_TOKEN.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

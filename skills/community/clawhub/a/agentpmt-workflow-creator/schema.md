@@ -18,13 +18,15 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `showcase_example` | `object` | no | Single showcase example to add (for add_showcase_example action) |
-| `skill_id` | `string` | no | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
+| `showcase_example` | `object` | yes | Single showcase example to add (for add_showcase_example action) |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 
 Sample parameters:
 
 ```json
 {
+  "expected_draft_revision": null,
   "showcase_example": null,
   "skill_id": null
 }
@@ -34,16 +36,23 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
   "showcase_example": {
     "default": null,
     "description": "Single showcase example to add (for add_showcase_example action)",
-    "required": false,
+    "required": true,
     "type": "object"
   },
   "skill_id": {
     "default": null,
     "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
-    "required": false,
+    "required": true,
     "type": "string"
   }
 }
@@ -62,6 +71,7 @@ Parameters:
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `context_document_id` | `string` | yes | Agent Context document ObjectId for attach_context/detach_context. |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
 | `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 
 Sample parameters:
@@ -69,6 +79,7 @@ Sample parameters:
 ```json
 {
   "context_document_id": null,
+  "expected_draft_revision": null,
   "skill_id": null
 }
 ```
@@ -82,6 +93,70 @@ Generated JSON parameter schema:
     "description": "Agent Context document ObjectId for attach_context/detach_context.",
     "required": true,
     "type": "string"
+  },
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
+  "skill_id": {
+    "default": null,
+    "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `checkpoint`
+
+Action slug: `checkpoint`
+
+Price: `0` credits
+
+Append an autosave checkpoint if the current draft differs from the newest retained checkpoint.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `checkpoint_reason` | `string` | yes | Autosave checkpoint reason. |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+
+Sample parameters:
+
+```json
+{
+  "checkpoint_reason": null,
+  "expected_draft_revision": null,
+  "skill_id": null
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "checkpoint_reason": {
+    "default": null,
+    "description": "Autosave checkpoint reason.",
+    "enum": [
+      "idle",
+      "window_blur",
+      "visibility_hidden"
+    ],
+    "required": true,
+    "type": "string"
+  },
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
   },
   "skill_id": {
     "default": null,
@@ -107,11 +182,11 @@ Parameters:
 | `chat_model` | `string` | no | Override the workflow's chat model identifier. Must reference chat_model_config.available_models; null or blank clears the override on update. |
 | `context_document_ids` | `array` | no | Agent Context document ObjectIds to attach to the workflow (max enforced by the agent_context domain). Replaces the existing set when provided. |
 | `default_export_target` | `string` | no | Default export target: mcp or rest |
-| `description` | `string` | no | Workflow skill description |
+| `description` | `string` | yes | Workflow skill description |
 | `edges` | `array` | no | Workflow graph edges - array with {id, from, to, condition, sourceHandle?, targetHandle?} |
 | `industry_tags` | `array` | no | List of industry tag names to associate with this workflow |
 | `mcp_server_name` | `string` | no | MCP server name (default: agentpmt) |
-| `name` | `string` | no | Workflow skill name |
+| `name` | `string` | yes | Workflow skill name |
 | `nodes` | `array` | no | Workflow graph nodes - array of SkillChainNode objects |
 | `remixed_from_skill_id` | `string` | no | Source skill ID when creating a remix |
 | `remixed_from_skill_name` | `string` | no | Source skill name when creating a remix |
@@ -162,7 +237,7 @@ Generated JSON parameter schema:
   "description": {
     "default": null,
     "description": "Workflow skill description",
-    "required": false,
+    "required": true,
     "type": "string"
   },
   "edges": {
@@ -194,7 +269,7 @@ Generated JSON parameter schema:
   "name": {
     "default": null,
     "description": "Workflow skill name",
-    "required": false,
+    "required": true,
     "type": "string"
   },
   "nodes": {
@@ -247,12 +322,14 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `skill_id` | `string` | no | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 
 Sample parameters:
 
 ```json
 {
+  "expected_draft_revision": null,
   "skill_id": null
 }
 ```
@@ -261,10 +338,17 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
   "skill_id": {
     "default": null,
     "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
-    "required": false,
+    "required": true,
     "type": "string"
   }
 }
@@ -283,6 +367,7 @@ Parameters:
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `context_document_id` | `string` | yes | Agent Context document ObjectId for attach_context/detach_context. |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
 | `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 
 Sample parameters:
@@ -290,6 +375,7 @@ Sample parameters:
 ```json
 {
   "context_document_id": null,
+  "expected_draft_revision": null,
   "skill_id": null
 }
 ```
@@ -303,6 +389,13 @@ Generated JSON parameter schema:
     "description": "Agent Context document ObjectId for attach_context/detach_context.",
     "required": true,
     "type": "string"
+  },
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
   },
   "skill_id": {
     "default": null,
@@ -500,6 +593,84 @@ Generated JSON parameter schema:
 {}
 ```
 
+## `get_version`
+
+Action slug: `get-version`
+
+Price: `0` credits
+
+Fetch a retained workflow checkpoint detail.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `version_id` | `string` | yes | Workflow version ObjectId for get_version and restore_version. |
+
+Sample parameters:
+
+```json
+{
+  "skill_id": null,
+  "version_id": null
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "skill_id": {
+    "default": null,
+    "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
+    "required": true,
+    "type": "string"
+  },
+  "version_id": {
+    "default": null,
+    "description": "Workflow version ObjectId for get_version and restore_version.",
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `list_versions`
+
+Action slug: `list-versions`
+
+Price: `0` credits
+
+List retained workflow history checkpoints.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+
+Sample parameters:
+
+```json
+{
+  "skill_id": null
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "skill_id": {
+    "default": null,
+    "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
 ## `publish`
 
 Action slug: `publish`
@@ -512,13 +683,15 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `skill_id` | `string` | no | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 | `version_bump` | `string` | no | Version bump type for publish: major, minor, patch, or auto |
 
 Sample parameters:
 
 ```json
 {
+  "expected_draft_revision": null,
   "skill_id": null,
   "version_bump": null
 }
@@ -528,10 +701,17 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
   "skill_id": {
     "default": null,
     "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
-    "required": false,
+    "required": true,
     "type": "string"
   },
   "version_bump": {
@@ -555,7 +735,7 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `skill_id` | `string` | no | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 
 Sample parameters:
 
@@ -572,7 +752,7 @@ Generated JSON parameter schema:
   "skill_id": {
     "default": null,
     "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
-    "required": false,
+    "required": true,
     "type": "string"
   }
 }
@@ -590,13 +770,15 @@ Parameters:
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `showcase_example_id` | `string` | no | Showcase example id to remove (for remove_showcase_example action) |
-| `skill_id` | `string` | no | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
+| `showcase_example_id` | `string` | yes | Showcase example id to remove (for remove_showcase_example action) |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 
 Sample parameters:
 
 ```json
 {
+  "expected_draft_revision": null,
   "showcase_example_id": null,
   "skill_id": null
 }
@@ -606,16 +788,119 @@ Generated JSON parameter schema:
 
 ```json
 {
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
   "showcase_example_id": {
     "default": null,
     "description": "Showcase example id to remove (for remove_showcase_example action)",
-    "required": false,
+    "required": true,
     "type": "string"
   },
   "skill_id": {
     "default": null,
     "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
-    "required": false,
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `restore_published`
+
+Action slug: `restore-published`
+
+Price: `0` credits
+
+Restore the server-authoritative published snapshot into the current draft.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+
+Sample parameters:
+
+```json
+{
+  "expected_draft_revision": null,
+  "skill_id": null
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
+  "skill_id": {
+    "default": null,
+    "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
+    "required": true,
+    "type": "string"
+  }
+}
+```
+
+## `restore_version`
+
+Action slug: `restore-version`
+
+Price: `0` credits
+
+Restore a retained checkpoint into the current draft.
+
+Parameters:
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `version_id` | `string` | yes | Workflow version ObjectId for get_version and restore_version. |
+
+Sample parameters:
+
+```json
+{
+  "expected_draft_revision": null,
+  "skill_id": null,
+  "version_id": null
+}
+```
+
+Generated JSON parameter schema:
+
+```json
+{
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
+  "skill_id": {
+    "default": null,
+    "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
+    "required": true,
+    "type": "string"
+  },
+  "version_id": {
+    "default": null,
+    "description": "Workflow version ObjectId for get_version and restore_version.",
+    "required": true,
     "type": "string"
   }
 }
@@ -716,11 +1001,12 @@ Parameters:
 | `default_export_target` | `string` | no | Default export target: mcp or rest |
 | `description` | `string` | no | Workflow skill description |
 | `edges` | `array` | no | Workflow graph edges - array with {id, from, to, condition, sourceHandle?, targetHandle?} |
+| `expected_draft_revision` | `integer` | yes | Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions. |
 | `industry_tags` | `array` | no | List of industry tag names to associate with this workflow |
 | `mcp_server_name` | `string` | no | MCP server name (default: agentpmt) |
 | `name` | `string` | no | Workflow skill name |
 | `nodes` | `array` | no | Workflow graph nodes - array of SkillChainNode objects |
-| `skill_id` | `string` | no | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
+| `skill_id` | `string` | yes | Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch) |
 | `time_saved_minutes` | `number` | no | Estimated minutes saved (>= 0) |
 | `visibility` | `string` | no | Visibility: private or public |
 
@@ -733,9 +1019,9 @@ Sample parameters:
   "default_export_target": null,
   "description": null,
   "edges": null,
+  "expected_draft_revision": null,
   "industry_tags": null,
-  "mcp_server_name": null,
-  "name": null
+  "mcp_server_name": null
 }
 ```
 
@@ -781,6 +1067,13 @@ Generated JSON parameter schema:
     "required": false,
     "type": "array"
   },
+  "expected_draft_revision": {
+    "default": null,
+    "description": "Required optimistic concurrency token for update, publish, delete, attach/detach, showcase, and restore actions.",
+    "minimum": 1,
+    "required": true,
+    "type": "integer"
+  },
   "industry_tags": {
     "default": null,
     "description": "List of industry tag names to associate with this workflow",
@@ -816,7 +1109,7 @@ Generated JSON parameter schema:
   "skill_id": {
     "default": null,
     "description": "Skill chain ObjectId or slug (required for update, publish, remix, delete; optional for fetch)",
-    "required": false,
+    "required": true,
     "type": "string"
   },
   "time_saved_minutes": {

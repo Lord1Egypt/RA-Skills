@@ -1,44 +1,62 @@
-## Description: <br>
-Provides setup and operating guidance for using Chrome DevTools MCP to automate, inspect, debug, and audit web pages through a local Chrome browser. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chrome DevTools MCP (Standard) helps agents automate and inspect local Chrome sessions for navigation, screenshots, form interaction, debugging, performance traces, Lighthouse audits, network inspection, and emulation.
 
-## Publisher: <br>
-[lac5q](https://clawhub.ai/user/lac5q) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lac5q](https://clawhub.ai/user/lac5q)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure Chrome DevTools MCP and guide browser automation workflows such as navigation, form interaction, screenshots, console and network inspection, performance tracing, Lighthouse audits, and mobile emulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables agents to control and inspect a real Chrome browser, including logged-in sites and sensitive page, console, or network content. <br>
-Mitigation: Use a separate or isolated Chrome profile and require explicit approval before using logged-in sites, submitting forms, uploading files, changing account or business data, making purchases, or inspecting sensitive content. <br>
-Risk: The artifact installs or runs the MCP server through npm commands that may resolve the latest package at execution time. <br>
-Mitigation: Pin the npm package version during installation or npx execution when repeatability or supply-chain control matters. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure Chrome DevTools MCP and decide when to use local browser automation, debugging, audit, network, and emulation tools.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lac5q/chrome-devtools-mcp-standard) <br>
-- [Chrome DevTools MCP GitHub Repository](https://github.com/ChromeDevTools/chrome-devtools-mcp) <br>
-- [Chrome DevTools MCP Tool Reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/tool-reference.md) <br>
-- [Chrome DevTools MCP Slim Mode Reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/slim-tool-reference.md) <br>
-- [Chrome DevTools MCP Troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with bash, JSON, and YAML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes MCP server setup snippets, tool-selection guidance, workflow examples, and troubleshooting steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to give an agent broad local Chrome control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated browser profile without sensitive sessions and only enable the MCP server for workflows that require browser control.
+
+Risk: The artifact recommends mutable package startup through chrome-devtools-mcp@latest.
+
+Mitigation: Pin exact package versions for repeatable deployments and review MCP startup commands before use.
+
+Risk: The install and troubleshooting guidance includes npm, npx, sudo, package-manager, and plugin commands.
+
+Mitigation: Review commands before running them and apply normal local software installation controls.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lac5q/skills/chrome-devtools-mcp-standard)
+- [Publisher Profile](https://clawhub.ai/user/lac5q)
+- [Chrome DevTools MCP GitHub Repository](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+- [Chrome DevTools MCP Tool Reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/tool-reference.md)
+- [Chrome DevTools MCP Slim Tool Reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/slim-tool-reference.md)
+- [Chrome DevTools MCP Troubleshooting](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON, YAML, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MCP configuration snippets, installation commands, tool-selection guidance, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

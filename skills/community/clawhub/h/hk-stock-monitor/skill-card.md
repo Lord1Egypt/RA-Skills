@@ -1,46 +1,62 @@
-## Description: <br>
-港股+A股实时盯盘系统，支持技术分析、涨跌幅告警、飞书推送。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks Hong Kong and A-share equities with realtime quotes, technical analysis, price-move alerts, and Feishu notifications.
 
-## Publisher: <br>
-[merlini0116](https://clawhub.ai/user/merlini0116) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[merlini0116](https://clawhub.ai/user/merlini0116)
 
-## Use Case: <br>
-External users and developers use this skill to monitor selected Hong Kong and A-share equities, generate technical-analysis reports, and send threshold-based market alerts through Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an embedded QVeris key and a fallback path that can pass it to an external data-source helper. <br>
-Mitigation: Remove the embedded key, rotate it if it was usable, and require installers to provide their own QVERIS_API_KEY before enabling QVeris fallback. <br>
-Risk: The artifact includes a preset Feishu chat ID, so alerts may be sent to a destination the installer did not choose. <br>
-Mitigation: Replace the Feishu chat ID with the installer's own destination or disable Feishu messaging before running monitor or alert scripts. <br>
-Risk: Cron examples and generated data/report directories can keep monitoring and storing market data after the user expects it to stop. <br>
-Mitigation: Review cron entries, generated data paths, report paths, and retention settings during installation and removal. <br>
-Risk: Custom stock codes and generated trading guidance may be incorrect or stale. <br>
-Mitigation: Validate stock symbols and treat generated analysis as monitoring support, not financial advice. <br>
+## Use Case:
 
+External investors, traders, and developers use this skill to monitor configured Hong Kong and A-share stocks, generate concise technical-analysis reports, and send threshold-based alerts during trading hours.
 
-## Reference(s): <br>
-- [股票配置参考](references/stocks.md) <br>
-- [ClawHub skill page](https://clawhub.ai/merlini0116/hk-stock-monitor) <br>
-- [Sina Finance](https://finance.sina.com.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text, Markdown reports, Feishu alert messages, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads market data from Sina Finance with QVeris fallback, writes local JSON history and Markdown reports, and can send Feishu alerts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Hardcoded Feishu destinations and an embedded QVeris API key may send data to an unintended chat or expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace the Feishu chat ID in every script, remove and rotate the embedded API key, and require secrets through environment variables before installation or use.
+
+Risk: Cron-based monitoring can repeatedly send stock data or alerts to external services before destinations are verified.
+
+Mitigation: Disable scheduled jobs until message targets, data handling expectations, and account permissions have been reviewed.
+
+Risk: Generated stock analysis and buy/sell suggestions can be incorrect or misleading.
+
+Mitigation: Treat reports and alerts as informational signals only and require human review before making investment decisions.
+
+Risk: Shell subprocess calls are used for external messaging.
+
+Mitigation: Prefer direct APIs or hardened subprocess invocation before use in accounts that hold private investment or business data.
+
+## Reference(s):
+
+- [Stock configuration reference](references/stocks.md)
+- [Sina Finance](https://finance.sina.com.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style terminal reports, alert messages, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local monitoring state, history, and report files when scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

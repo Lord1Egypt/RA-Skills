@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn75jkm49zm12gvyzpnm7n94d587jdbg",
-  "slug": "sipoon-codegraph-index",
+  "name": "codegraph-index",
+  "ownerId": "local-workspace-agent",
+  "slug": "codegraph-index",
   "version": "0.1.0",
-  "publishedAt": 1779977116912
+  "publishedAt": 1779879293895
 }

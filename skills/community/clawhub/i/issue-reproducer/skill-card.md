@@ -1,46 +1,61 @@
-## Description: <br>
-Organizes bug descriptions into reproducible steps, environment details, expected and actual results, and minimum reproduction criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes bug descriptions into reproducible steps, environment details, expected and actual results, and minimum reproduction criteria.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, QA engineers, and support teams use this skill to turn bug reports and reproduction clues into structured, reviewable Markdown issue-reproduction drafts and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional script can write or overwrite a report file when an output path is provided. <br>
-Mitigation: Choose the output path deliberately, use dry-run or stdout when reviewing behavior, and pass only the specific bug material intended for processing. <br>
-Risk: Bug reports can contain sensitive environment details or personal information. <br>
-Mitigation: Review and redact sensitive inputs before processing whenever possible. <br>
-Risk: Incomplete inputs may lead to overconfident reproduction drafts. <br>
-Mitigation: Keep missing facts explicit as pending confirmation items and do not fabricate logs, root causes, or results. <br>
+## Use Case:
 
+Developers, QA engineers, and support teams use this skill to turn raw bug reports into structured, reviewable reproduction drafts and checklists while calling out missing information.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/52YuanChangXing/issue-reproducer) <br>
-- [Publisher Profile](https://clawhub.ai/user/52YuanChangXing) <br>
-- [Output Template](artifact/resources/template.md) <br>
-- [Structured Specification](artifact/resources/spec.json) <br>
-- [Smoke Test](artifact/tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or JSON, with optional local shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write a user-directed report file when the optional Python script is run with an output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The bundled Python helper can inspect local files when directory, CSV, pattern, or skill-audit modes are enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep resources/spec.json in structured_brief mode for normal use, run it only on narrow non-sensitive inputs, and review the script before enabling audit modes.
+
+Risk: Bug reports and logs may contain sensitive environment details or personal information.
+
+Mitigation: Redact sensitive material before using the skill or writing generated output files.
+
+Risk: A formatted reproduction draft can be misleading if source details are incomplete.
+
+Mitigation: Review the generated draft before filing or sharing it, and preserve explicit missing-information sections instead of filling gaps with assumptions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/issue-reproducer)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+- [Output Specification](artifact/resources/spec.json)
+- [Output Template](artifact/resources/template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown, with optional JSON output from the local helper script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write an output file when the helper script is run with --output; otherwise returns reviewable text.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

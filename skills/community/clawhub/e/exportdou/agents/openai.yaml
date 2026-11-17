@@ -1,0 +1,4 @@
+interface:
+  display_name: "抖音评论导出 · 抖评岛"
+  short_description: "粘贴抖音链接，导出评论和回复为 CSV 或 Excel，也可先看样本"
+  default_prompt: "使用 $exportdou 提取这个抖音视频的 100 条评论，先预览样本，再给我 CSV 文件。"

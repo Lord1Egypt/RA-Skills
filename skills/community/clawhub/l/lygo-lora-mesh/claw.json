@@ -1,0 +1,61 @@
+{
+  "name": "lygo-lora-mesh",
+  "displayName": "LYGO LoRa mesh",
+  "version": "1.0.0",
+  "description": "Compact Layer D roots pulse on stock Meshtastic. Scripts encode/decode only. No board = NAMED_SHADOW.",
+  "slug": "lygo-lora-mesh",
+  "publisher": "deepseekoracle",
+  "license": "MIT-0",
+  "homepage": "https://meshtastic.org/docs/",
+  "clawhub": "https://clawhub.ai/deepseekoracle/skills/lygo-lora-mesh",
+  "repository": "https://github.com/DeepSeekOracle/lygo-protocol-stack/tree/main/clawhub/mirrors/lygo-lora-mesh",
+  "signature": "Delta9Phi963-LYGO-LORA-MESH-v1.0.0",
+  "tags": [
+    "latest",
+    "lygo",
+    "lora",
+    "mesh",
+    "meshtastic",
+    "off-grid",
+    "delta9"
+  ],
+  "entry": "SKILL.md",
+  "scripts": {
+    "plain": "scripts/lygo_lora.py plain",
+    "urls": "scripts/lygo_lora.py urls",
+    "map": "scripts/lygo_lora.py map",
+    "demo": "scripts/lygo_lora.py demo",
+    "hardware": "scripts/lygo_lora.py hardware",
+    "encode": "scripts/lygo_lora.py encode",
+    "decode": "scripts/lygo_lora.py decode",
+    "probe": "scripts/lygo_lora.py probe",
+    "self_check": "scripts/self_check.py"
+  },
+  "openclaw": {
+    "emoji": "📡",
+    "homepage": "https://meshtastic.org/docs/",
+    "requires": {
+      "anyBins": ["python", "python3"]
+    },
+    "os": ["windows", "macos", "linux"]
+  },
+  "permissions": {
+    "network": false,
+    "subprocess": false,
+    "shell": false,
+    "filesystem": {
+      "read": "optional local files",
+      "write": false
+    },
+    "publish": false
+  },
+  "security": {
+    "local_first": true,
+    "no_auto_publish": true,
+    "no_subprocess": true,
+    "no_network": true,
+    "listed_urls_are_documentation": true,
+    "public_tentacle": true,
+    "version": "1.0.0"
+  }
+}

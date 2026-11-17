@@ -1,8 +1,44 @@
 # EVE ESI Character Endpoints Reference
 
-Base URL: `https://esi.evetech.net/latest`
+Base URL: `https://esi.evetech.net` — no version segment. Send
+`X-Compatibility-Date: 2026-08-04` on every request; a request without it is
+served the oldest behaviour ESI still supports, not the newest. The old
+`/latest/` and `/v5/` prefixes are deprecated. See
+<https://esi.evetech.net/meta/compatibility-dates> for valid dates.
 
 All authenticated endpoints require `Authorization: Bearer <TOKEN>` header. Replace `{character_id}` with the numeric character ID from SSO verify.
+
+Also send a `User-Agent` that names the application and a way to reach its
+author — CCP uses it to identify traffic and may throttle callers it cannot
+place.
+
+## Before you use this list: data sensitivity
+
+Many endpoints below return data that the character owner would consider private.
+Treat them accordingly.
+
+| Sensitivity | Endpoints | Why it matters |
+|---|---|---|
+| **High** | Wallet balance, journal and transactions; mail headers and bodies; contacts; assets; contracts | Financial history and private correspondence. Mail in particular may contain third parties who never consented to being read. |
+| **Medium** | Current location and online status; clones and implants; planetary installations; industry jobs; market orders | Reveals activity patterns and holdings; useful to an adversary in-game. |
+| **Low** | Public character info, corporation history, portraits, skill points | Visible to anyone in game anyway. |
+
+Rules of thumb when building on this reference:
+
+- **Request the narrowest scope set that answers the question.** A skill that only
+  reports skill points does not need `esi-wallet.read_character_wallet.v1`.
+  Scopes are granted once at login and persist until the token is revoked.
+- **Fetch on demand, do not stockpile.** Caching wallet or mail contents to disk
+  turns a short-lived query into a lasting data store you then have to protect.
+- **Be explicit when forwarding.** Sending balances or mail into Telegram, Discord
+  or a dashboard moves private data into a third-party system in clear text.
+  Say so before doing it, not afterwards.
+- **Owner-visible does not mean agent-visible.** The user authorised *the skill*
+  to read this data; that is not blanket permission to quote it into a shared
+  channel or a log file.
+
+Access can be withdrawn at any time at
+<https://community.eveonline.com/support/third-party/>.
 
 ## Table of Contents
 

@@ -1,41 +1,55 @@
-## Description: <br>
-Paste your SOUL.md or SKILL.md and get a structured expert review -- clarity, gaps, conflicts, guardrails, token efficiency -- with specific rewrites and explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Paste an agent instruction file and get a structured expert review of clarity, gaps, conflicts, guardrails, token efficiency, and concrete rewrites.
 
-## Publisher: <br>
-[victorosondu](https://clawhub.ai/user/victorosondu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[victorosondu](https://clawhub.ai/user/victorosondu)
 
-## Use Case: <br>
-Developers, agent builders, and prompt authors use this skill to review SOUL.md, SKILL.md, AGENTS.md, and system prompt files for clarity, completeness, conflicts, voice, guardrails, token efficiency, and structure. It also supports comparing versions, stress testing instructions, answering design questions, and drafting a first instruction file from a stated agent goal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste API keys, passwords, customer data, proprietary strategy, or other sensitive content into files they ask the skill to review. <br>
-Mitigation: Remove secrets and sensitive data from SOUL.md, SKILL.md, system prompt, or AGENTS.md content before submitting it to a model session for review. <br>
+## Use Case:
 
+Developers and agent builders use this skill to review AI agent instruction files, compare versions, stress test weak areas, and draft or rewrite agent instructions with concrete explanations.
 
-## Reference(s): <br>
-- [Review my skill on ClawHub](https://clawhub.ai/victorosondu/review-my-agent) <br>
-- [AI Tutorium](https://aitutorium.com) <br>
-- [Instruction Patterns](references/instruction-patterns.md) <br>
-- [Anti-Patterns](references/anti-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance, Code] <br>
-**Output Format:** [Markdown review with score tables, issue diagnoses, suggested rewrites, stress-test prompts, and follow-up guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate SKILL.md, SOUL.md, or raw system prompt drafts when the user asks to start from scratch.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may paste secrets, private system prompts, or proprietary agent files into the active AI conversation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove secrets and only submit content approved for review in that environment.
+
+Risk: Suggested rewrites can change agent behavior or introduce misleading guidance if adopted without review.
+
+Mitigation: Review and test revised instructions before deploying them.
+
+## Reference(s):
+
+- [Instruction Patterns](references/instruction-patterns.md)
+- [Anti-Patterns](references/anti-patterns.md)
+- [AI Tutorium](https://aitutorium.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown review with scored tables, quoted findings, suggested rewrites, and stress-test prompts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are recommendations based on user-pasted instruction text; the skill does not execute code or persist data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

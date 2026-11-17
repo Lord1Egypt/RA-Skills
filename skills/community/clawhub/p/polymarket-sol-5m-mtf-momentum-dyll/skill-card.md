@@ -1,44 +1,67 @@
-## Description: <br>
-Runs a SOL 5-minute multi-timeframe momentum trading workflow that uses Binance SOL/USDT returns to identify Simmer/Polymarket fast-market trade opportunities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a configurable multi-timeframe momentum trading automation for SOL 5-minute fast markets using Binance SOL/USDT returns and Simmer market access.
 
-## Publisher: <br>
-[djdyll](https://clawhub.ai/user/djdyll) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[djdyll](https://clawhub.ai/user/djdyll)
 
-## Use Case: <br>
-External traders and agent operators use this skill to configure, dry-run, and optionally execute an automated SOL 5-minute momentum strategy. It is intended for users who can review trading logic, tune thresholds, and control live execution risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live trading can spend real funds or simulated balances when --live or managed automation is enabled. <br>
-Mitigation: Run in dry-run mode first, keep trade size constrained, and only enable --live after reviewing the strategy, venue, API key scope, and current configuration. <br>
-Risk: The release mixes SOL, BTC, Polymarket, and Simmer wording, which could cause confusion about the intended asset or execution venue. <br>
-Mitigation: Confirm the intended asset, market venue, and API environment before enabling cron automation or live execution. <br>
-Risk: Automated minute-by-minute execution can repeatedly evaluate markets and place trades if thresholds are met. <br>
-Mitigation: Keep automation disabled until reviewed, retain conservative max-trades and trade-size settings, and monitor positions with the provided status command. <br>
+## Use Case:
 
+External developers and traders use this skill to run, tune, and monitor a SOL 5-minute momentum strategy that can operate in dry-run or live trading modes through Simmer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/djdyll/polymarket-sol-5m-mtf-momentum-dyll) <br>
-- [Simmer API endpoint](https://api.simmer.markets) <br>
-- [Binance Klines API endpoint](https://api.binance.com/api/v3/klines) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell commands; runtime output is plain text with optional JSON automaton status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; default command mode is dry run, while --live can execute trades.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill can place real trades when live mode or scheduled automation is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep dry-run mode enabled until the strategy is tested, and enable cron or live trading only with explicit position sizing and risk limits.
+
+Risk: A SIMMER_API_KEY is required for portfolio access and trading.
+
+Mitigation: Use a minimally scoped key and avoid sharing logs or configuration that could expose credentials.
+
+Risk: SIMMER_API_URL can redirect requests to a different endpoint.
+
+Mitigation: Do not set SIMMER_API_URL unless the destination is fully trusted.
+
+Risk: Dependency behavior depends on the installed simmer-sdk package.
+
+Mitigation: Pin and review simmer-sdk before installation or deployment.
+
+Risk: The release evidence flags a possible mismatch between SOL 5-minute trading through Simmer and references to BTC/Polymarket markets.
+
+Mitigation: Confirm the intended market scope before enabling trading.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/djdyll/skills/polymarket-sol-5m-mtf-momentum-dyll)
+- [Simmer API endpoint used by the skill](https://api.simmer.markets)
+- [Binance kline API endpoint used by the skill](https://api.binance.com/api/v3/klines)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with Python scripts, JSON configuration, shell commands, status text, and optional automaton JSON reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; can be configured with SIMMER_MTF_* environment variables.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

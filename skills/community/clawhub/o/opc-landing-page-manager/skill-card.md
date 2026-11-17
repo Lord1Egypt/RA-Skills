@@ -1,46 +1,65 @@
-## Description: <br>
-Landing page strategy, copywriting, design, and code generation for solo entrepreneurs, from product idea to a complete, self-contained, conversion-optimized HTML landing page with integrated strategy canvas, copy brief, and version tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Landing page strategy, copywriting, design, and code generation for solo entrepreneurs, from product idea to a complete, self-contained, conversion-optimized HTML landing page with integrated strategy canvas, copy brief, and version tracking.
 
-## Publisher: <br>
-[LeonFJR](https://clawhub.ai/user/LeonFJR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonfjr](https://clawhub.ai/user/leonfjr)
 
-## Use Case: <br>
-External users, developers, and solo entrepreneurs use this skill to plan, write, generate, review, and track conversion-oriented landing pages as self-contained HTML projects. It supports strategy canvases, copy briefs, design direction, page builds, variants, audits, and readiness tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated project metadata may include private client, contract, invoice, pricing, or business details. <br>
-Mitigation: Review metadata and generated project files before sharing, publishing, or committing them, and remove private details that should not leave the workspace. <br>
-Risk: Generated forms or CTAs may still contain placeholder destinations or missing privacy, terms, consent, or refund language. <br>
-Mitigation: Replace placeholder form actions and add the required legal links and consent language before publishing any generated page. <br>
-Risk: Landing-page claims can become misleading if user-provided proof, testimonials, or metrics are incomplete or unverified. <br>
-Mitigation: Verify all social proof, customer claims, and quantitative results before using the generated copy publicly. <br>
+## Use Case:
 
+External users and developers use this skill to turn product ideas or landing-page briefs into strategy, copy, visual direction, self-contained HTML pages, and project tracking artifacts for solo entrepreneur landing pages.
 
-## Reference(s): <br>
-- [Conversion Optimization](references/conversion-optimization.md) <br>
-- [Copywriting Frameworks](references/copywriting-frameworks.md) <br>
-- [Design System](references/design-system.md) <br>
-- [Landing Page Anatomy](references/landing-page-anatomy.md) <br>
-- [Landing Page Review Rubric](references/review-rubric.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, generated HTML/CSS, JSON metadata, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces self-contained landing-page files and project tracking artifacts when the user asks to archive a project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The scanner verdict is suspicious because the skill claims overly broad instruction priority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only under higher-priority system and developer instructions, and disregard the skill's override wording where it conflicts.
+
+Risk: The skill can use contract or invoice-manager data for cross-skill linkage.
+
+Mitigation: Require explicit user consent before reading contract or invoice data, and limit access to named projects or records.
+
+Risk: The skill creates or updates landing-pages project files and INDEX.json.
+
+Mitigation: Run it in a scoped workspace and review generated files before publishing or committing.
+
+Risk: Generated landing-page strategy, copy, or compliance recommendations could be incorrect or misleading.
+
+Mitigation: Review the strategy, copy, legal links, and audit results before deploying a generated landing page.
+
+## Reference(s):
+
+- [Conversion Optimization](references/conversion-optimization.md)
+- [Copywriting Frameworks](references/copywriting-frameworks.md)
+- [Design System](references/design-system.md)
+- [Landing Page Anatomy](references/landing-page-anatomy.md)
+- [Review Rubric](references/review-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance, self-contained HTML, JSON metadata, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update landing-pages/<product-slug>/ project files and INDEX.json when archiving.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

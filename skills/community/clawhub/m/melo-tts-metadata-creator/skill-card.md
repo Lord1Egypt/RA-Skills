@@ -1,43 +1,58 @@
-## Description: <br>
-Generates MeloTTS metadata.list files from .wav audio and matching .txt transcripts, with optional Whisper transcription for missing text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates MeloTTS metadata.list files from WAV audio folders and matching transcript text, with support for single-speaker, multi-speaker, and optional Whisper transcription workflows.
 
-## Publisher: <br>
-[wangminrui2022](https://clawhub.ai/user/wangminrui2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangminrui2022](https://clawhub.ai/user/wangminrui2022)
 
-## Use Case: <br>
-Developers and voice dataset maintainers use this skill to prepare MeloTTS training or fine-tuning datasets by pairing audio files with transcripts and generating the required metadata.list format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make broad Python environment changes and download packages or models at runtime. <br>
-Mitigation: Run it in an isolated environment and review package installation behavior before use, especially on shared or production systems. <br>
-Risk: The skill reads local audio and transcript directories and writes metadata, generated transcripts, logs, and model files. <br>
-Mitigation: Use only approved input and output directories, avoid sensitive transcript content, and inspect generated files before using them for training. <br>
-Risk: Whisper and ML package downloads can be large and persistent. <br>
-Mitigation: Confirm network, disk, and cache expectations before enabling transcription or first-run dependency setup. <br>
+## Use Case:
 
+Developers and voice dataset maintainers use this skill to prepare MeloTTS training or fine-tuning datasets by pairing .wav files with transcripts, assigning speakers, and generating a MeloTTS metadata.list file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangminrui2022/melo-tts-metadata-creator) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [MeloTTS metadata.list text file plus concise command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Each metadata line uses the audio path, speaker, language code, and transcript separated by pipe characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill may modify Python environments and install large unpinned dependencies when run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependencies first, pin acceptable versions, and run the skill in an isolated disposable environment.
+
+Risk: Optional Whisper transcription can process local audio and transcript folders and write generated transcripts and metadata.
+
+Mitigation: Use only approved datasets, avoid sensitive audio unless local processing is acceptable, and review generated transcript files.
+
+Risk: Generated metadata records may be malformed if transcripts contain delimiter characters or mismatched text.
+
+Mitigation: Inspect metadata.list for malformed or injected records before using it for MeloTTS training or fine-tuning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangminrui2022/skills/melo-tts-metadata-creator)
+- [ClawHub publisher profile](https://clawhub.ai/user/wangminrui2022)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Pipe-delimited UTF-8 metadata.list text file, with command-line usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Rows use audio_path|speaker|language|text; output is documented as UTF-8 without BOM.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

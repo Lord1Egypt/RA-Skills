@@ -1,0 +1,4 @@
+interface:
+  display_name: "DuoPlus AI"
+  short_description: "Manage and automate DuoPlus cloud phones"
+  default_prompt: "Use $duoplus-ai to manage and automate a cloud phone; ask me directly for the API key if I have not provided it."

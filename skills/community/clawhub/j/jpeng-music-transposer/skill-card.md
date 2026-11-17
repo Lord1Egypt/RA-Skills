@@ -1,41 +1,58 @@
-## Description: <br>
-Transpose music keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transpose music keys.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and music workflow users use this skill to transpose music keys and automate transpose tasks from input files to JSON output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced script scripts/music_transposer.py is not included in the artifact for review. <br>
-Mitigation: Confirm the script source and review it separately before installation or execution. <br>
-Risk: The workflow uses TRANSPOSE_API_KEY and writes to a user-provided output path. <br>
-Mitigation: Use a scoped API key only for a known service and review the output path before running the command. <br>
+## Use Case:
 
+Developers and musicians use this skill to transpose music keys through an agent-guided command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-music-transposer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON result shape] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRANSPOSE_API_KEY for the referenced command-line workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The artifact references a script that is not included, so the executable behavior cannot be confirmed from the artifact alone.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the missing implementation from a trusted source before installation or execution.
+
+Risk: The skill requests an API key for transposition tasks.
+
+Mitigation: Use a limited-purpose API key and avoid sensitive music inputs.
+
+Risk: The workflow writes to an output path selected by the user.
+
+Mitigation: Choose an explicit output path that will not overwrite important files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-music-transposer)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced workflow reports JSON results with success and data fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

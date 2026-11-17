@@ -1,42 +1,53 @@
-## Description: <br>
-Run QGIS geospatial processing with qgis_process for repeatable vector and raster workflows, including reprojection, clipping, dissolving, buffering, merging, and raster warping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run QGIS geospatial processing with qgis_process for repeatable vector and raster workflows, including reprojection, clipping, dissolving, buffering, merging, and raster warping.
 
-## Publisher: <br>
-[jvy](https://clawhub.ai/user/jvy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jvy](https://clawhub.ai/user/jvy)
 
-## Use Case: <br>
-Developers, GIS analysts, and operators use this skill to plan and run repeatable local QGIS CLI workflows for geospatial data transformation, coordinate system conversion, and batch map data processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QGIS CLI workflows can write or overwrite local geospatial output files. <br>
-Mitigation: Confirm input files, output paths, output formats, and overwrite policy before allowing execution. <br>
-Risk: Incorrect CRS, units, or distance assumptions can produce misleading geospatial results. <br>
-Mitigation: Verify CRS settings and units before processing, and stop for user clarification when CRS is missing or invalid. <br>
-Risk: Batch geospatial jobs can amplify an incorrect command across many files. <br>
-Mitigation: Review a dry-run plan and process one representative file before scaling to the full batch. <br>
+## Use Case:
 
+Developers, analysts, and GIS practitioners use this skill to inspect QGIS processing algorithms and run reproducible local geospatial transformations on vector and raster files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jvy/qgis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose qgis_process commands that read and write local GIS files; users should verify inputs, outputs, CRS, units, formats, and overwrite policy before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: QGIS processing commands can transform or overwrite local geospatial datasets when paths or parameters are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input paths, output paths, CRS settings, output formats, and overwrite policy before approving commands; prefer new output paths and dry-run plans for batch work.
+
+Risk: Distance, area, or raster operations can produce misleading results when CRS units are misunderstood or missing.
+
+Mitigation: Confirm the intended CRS and whether units are degrees or projected units before running processing algorithms.
+
+## Reference(s):
+
+- [QGIS Geospatial on ClawHub](https://clawhub.ai/jvy/skills/qgis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run plans, explicit qgis_process commands, output path summaries, CRS notes, and verification guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

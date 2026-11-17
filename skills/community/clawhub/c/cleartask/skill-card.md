@@ -1,44 +1,57 @@
-## Description: <br>
-Transform broad, ambiguous, or early-stage user requirements into executable work through Stage1 requirement understanding, Stage2 clarification, a required user confirmation gate, and Stage3 internal expert-guided task packaging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transform broad, ambiguous, or early-stage user requirements into executable work through Stage1 requirement understanding, Stage2 clarification, a required user confirmation gate, and Stage3 internal expert-guided task packaging.
 
-## Publisher: <br>
-[zhanghengjing2](https://clawhub.ai/user/zhanghengjing2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghengjing2](https://clawhub.ai/user/zhanghengjing2)
 
-## Use Case: <br>
-Developers, coding agents, writing agents, product agents, design agents, testing agents, and workflow-building agents use this skill to clarify ambiguous requests, confirm requirements with the user, and then execute with an internal expert-guided task package. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may guide downstream work that changes files or interacts with external systems after confirmation. <br>
-Mitigation: Review the confirmation summary before approving execution, and ask to inspect the internal package when more visibility is needed. <br>
-Risk: Ambiguous requirements can lead to incorrect downstream execution if the confirmation handoff is approved too quickly. <br>
-Mitigation: Revise the requirement description or details at the confirmation gate until scope, deliverables, constraints, defaults, and assumptions are clear. <br>
+## Use Case:
 
+Developers, writers, product, design, testing, workflow, and general agent users use this skill to turn underspecified requests into confirmed requirements before downstream execution. It helps an agent ask targeted clarification questions, capture accepted defaults, pause for explicit confirmation, and then use expert-guided criteria to perform the confirmed task.
 
-## Reference(s): <br>
-- [Clear Task ClawHub Page](https://clawhub.ai/zhanghengjing2/cleartask) <br>
-- [Expert Roles and Acceptance Criteria](references/expert-roles-and-acceptance.md) <br>
-- [Stage1 Universal Process Model](references/stage1-universal-process-model.md) <br>
-- [Stage2 Clarification Handoff](references/stage2-clarification-handoff.md) <br>
-- [Stage3 Agent Task Guidance Package](references/stage3-agent-task-guidance-package.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with structured requirement summaries, internal guidance packages, and downstream execution artifacts as needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation before Stage3 packaging and execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: After explicit confirmation, the workflow may proceed to execute the confirmed task using the agent's normal tool access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requirement summary before confirming and rely on the skill's pause points for credentials, paid services, network actions, destructive operations, or unexpectedly broad changes.
+
+Risk: Incorrect or incomplete clarification can lead the downstream agent to act on the wrong scope.
+
+Mitigation: Use the confirmation gate to revise the requirement description or requirement details before allowing Stage3 and execution.
+
+## Reference(s):
+
+- [Clear Task Skill Page](https://clawhub.ai/zhanghengjing2/skills/cleartask)
+- [Expert Roles and Acceptance Criteria](references/expert-roles-and-acceptance.md)
+- [Stage1 Universal Process Model](references/stage1-universal-process-model.md)
+- [Stage2 Clarification Handoff](references/stage2-clarification-handoff.md)
+- [Stage3 Agent Task Guidance Package](references/stage3-agent-task-guidance-package.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown text with structured requirement summaries, clarification questions, and internal task guidance packages when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit confirmation before Stage3 execution and pauses before credentials, paid services, network actions, destructive operations, or unexpectedly broad changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

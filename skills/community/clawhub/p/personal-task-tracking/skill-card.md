@@ -1,43 +1,59 @@
-## Description: <br>
-Query and manage ClickUp via REST API and the local `scripts/query.sh` helper. Use when listing open or completed tasks, counting due work, looking up spaces or lists, checking assignee workload, fetching task details, creating tasks, or closing tasks in ClickUp. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage ClickUp via REST API and the local `scripts/query.sh` helper. Use when listing open or completed tasks, counting due work, looking up spaces or lists, checking assignee workload, fetching task details, creating tasks, or closing tasks in ClickUp.
 
-## Publisher: <br>
-[mmaggiezhou](https://clawhub.ai/user/mmaggiezhou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmaggiezhou](https://clawhub.ai/user/mmaggiezhou)
 
-## Use Case: <br>
-Developers, operators, and personal productivity users use this skill to query ClickUp task status, report due or completed work, inspect spaces and lists, and create or close ClickUp tasks through a configured API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or close live ClickUp tasks in the connected workspace. <br>
-Mitigation: Require the agent to show the exact list ID, task ID, title, and due date before creating or closing a task. <br>
-Risk: The ClickUp API token could be mishandled or exposed during setup or execution. <br>
-Mitigation: Use the least-privileged ClickUp token available and avoid printing the API key with echo or logs. <br>
-Risk: The security scan verdict is suspicious because the skill can modify workspace state and lacks enough guardrails. <br>
-Mitigation: Review the skill before installation and scan it before deployment. <br>
+## Use Case:
 
+Employees, external users, developers, and agents use this skill to query ClickUp task status, count due work, inspect spaces and lists, review assignee workload, and create or close tasks in a configured ClickUp workspace.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mmaggiezhou/personal-task-tracking) <br>
-- [ClickUp REST API task endpoint used by the skill](https://api.clickup.com/api/v2/team/{team_id}/task?include_closed=false&subtasks=true) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, jq, CLICKUP_API_KEY, CLICKUP_TEAM_ID, and CLICKUP_ASSIGNEE_ID; helper commands can create or close live ClickUp tasks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill documentation includes API-token checking instructions that could expose CLICKUP_API_KEY in terminal output or agent transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privileged ClickUp token, avoid echoing the token, and prevent tokens from being logged in terminal or transcript output.
+
+Risk: The helper supports state-changing ClickUp actions, including creating tasks and closing tasks in a live workspace.
+
+Mitigation: Require explicit user approval before running create-task or close-task, and confirm the target list, task ID, title, assignee, and due date before execution.
+
+Risk: Task queries may return workspace task descriptions, assignee information, task URLs, and other sensitive work data.
+
+Mitigation: Limit use to the intended ClickUp team or list, review returned task data before sharing it, and avoid storing sensitive task output unnecessarily.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mmaggiezhou/skills/personal-task-tracking)
+- [Publisher profile](https://clawhub.ai/user/mmaggiezhou)
+- [ClickUp API v2](https://api.clickup.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, jq, and configured ClickUp environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

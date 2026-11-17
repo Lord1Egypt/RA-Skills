@@ -1,50 +1,68 @@
-## Description: <br>
-Safely merges upstream OpenClaw updates into a fork while preserving custom plugin, UI, workspace, controller, and state extensions through a two-phase merge and user-confirmed promotion workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safely merges upstream OpenClaw updates into a fork while preserving custom UI, plugin, skill, workspace, session, and gateway changes through a two-phase merge, build, restart, and user-confirmed promotion workflow.
 
-## Publisher: <br>
-[maverick-software](https://clawhub.ai/user/maverick-software) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[maverick-software](https://clawhub.ai/user/maverick-software)
 
-## Use Case: <br>
-Developers and operators maintaining customized OpenClaw forks use this skill to inspect upstream divergence, run dry-run or branch-based merges, preserve local customizations, validate builds, restart the gateway, and promote the result only after verification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can merge code, build dependencies, restart the gateway, and force-push during promotion. <br>
-Mitigation: Run dry-run first, use a disposable clone or isolated environment for review, and run promotion only after confirming the gateway is healthy. <br>
-Risk: Conflict resolution can send redacted conflicted file content to Claude through the optional Claude CLI. <br>
-Mitigation: Use manual conflict resolution with no auto-resolve when model transmission is not acceptable, and review redaction behavior before use. <br>
-Risk: The bundled background sessions panel can read transcripts and send messages to cron or background sessions. <br>
-Mitigation: Review or remove the background sessions panel before installation if transcript viewing or background-session messaging is outside the deployment's policy. <br>
-Risk: Dependency install and build steps may pull packages or execute project build behavior in the target repository. <br>
-Mitigation: Review upstream package changes from the preflight report and run the merge in an isolated environment before applying it to a live fork. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/maverick-software/safe-update-merge) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Merge manifest](artifact/MERGE_MANIFEST.json) <br>
-- [Safe merge update script](artifact/scripts/safe-merge-update.sh) <br>
-- [Preflight script](artifact/scripts/preflight.sh) <br>
-- [Validation script](artifact/scripts/validate.sh) <br>
-- [Update modal reference](artifact/update-modal.ts) <br>
-- [Background sessions backend reference](artifact/references/bg-sessions-backend.ts) <br>
+## Use Case:
 
+Developers and operators maintaining a customized OpenClaw fork use this skill to check upstream divergence, merge on a temporary branch, resolve conflicts with optional Claude assistance, validate builds and protected patterns, and promote only after manual verification.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, code edits, configuration steps, and merge status reporting] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires REPO_DIR and git; may use npm or pnpm, optional Claude CLI, optional systemctl, and fork-specific remote and branch settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can perform high-impact repository operations, restart the OpenClaw gateway, and force-push to the target branch during promotion.
+
+Mitigation: Run in a disposable clone or VM first, use --dry-run, verify remotes and branches before --promote, and promote only after manually confirming the gateway is healthy.
+
+Risk: Optional automated conflict resolution sends redacted conflicted file content to the Claude CLI and depends on the quality of the generated merge resolution.
+
+Mitigation: Use --no-auto-resolve for sensitive repositories, inspect resolved diffs, and confirm protected patterns and validation reports before promotion.
+
+Risk: The background-session panel can let operators view and message cron or isolated agent sessions.
+
+Mitigation: Install that UI only when this operator access is intended, and restrict access to trusted users.
+
+Risk: Dependency installation and upstream fetches introduce network activity during validation and merge checks.
+
+Mitigation: Review upstream package changes first and run package installation with lifecycle scripts disabled as provided by the validation workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maverick-software/skills/safe-update-merge)
+- [Publisher profile](https://clawhub.ai/user/maverick-software)
+- [OpenClaw upstream repository](https://github.com/openclaw/openclaw)
+- [Skill instructions](artifact/SKILL.md)
+- [Merge manifest](artifact/MERGE_MANIFEST.json)
+- [Safe merge update script](artifact/scripts/safe-merge-update.sh)
+- [Preflight script](artifact/scripts/preflight.sh)
+- [Validation script](artifact/scripts/validate.sh)
+- [Secret redaction script](artifact/scripts/redact-secrets.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update Git branches, build artifacts, validation reports, redacted conflict files, and a pending promotion state file during execution.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

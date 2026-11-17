@@ -5,15 +5,27 @@ LLM-Wiki 核心逻辑
 """
 
 import hashlib
-import os
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import List, Optional, Set, Dict, Tuple
+from typing import Any
+
 import yaml
 
 from .agent_logger import get_logger
+from .claims import validate_claims
+from .depth_lint import DepthLintConfig, analyze_depth
+from .sanitizer import sanitize_title_stem
+
+# 笔记生命周期(成熟度递进):seed -> developing -> mature -> evergreen
+# draft 是未审视的初始态,active 是 legacy 写法(约等于 developing),
+# archived 是退役终态。
+HOT_CONTEXT_LIMIT = 20  # hot.md 最多保留的最近活动条数
+
+LIFECYCLE_STATES = ("seed", "developing", "mature", "evergreen")
+KNOWN_STATUSES = LIFECYCLE_STATES + ("draft", "active", "archived")
 
 LOG = get_logger("core")
 
@@ -21,41 +33,42 @@ LOG = get_logger("core")
 @dataclass
 class WikiPage:
     """Wiki 页面结构"""
+
     title: str
     content: str
-    frontmatter: Dict
+    frontmatter: dict
     path: Path
+    _link_occurrences: list[tuple[str, str]] | None = field(
+        default=None, repr=False, compare=False
+    )
 
     @property
-    def links(self) -> Set[str]:
+    def links(self) -> set[str]:
         """提取页面中的所有 [[Link]]，alias 链接只取目标页。"""
-        pattern = r'\[\[([^\]]+)\]\]'
-        links = set()
-        for target, _ in self.link_occurrences:
-            if target:
-                links.add(target)
-        return links
+        return {target for target, _ in self.link_occurrences if target}
 
     @property
-    def link_occurrences(self) -> List[Tuple[str, str]]:
+    def link_occurrences(self) -> list[tuple[str, str]]:
         """Return all wiki links as (target, display_text)."""
-        pattern = r'\[\[([^\]]+)\]\]'
-        links: List[Tuple[str, str]] = []
-        for raw in re.findall(pattern, self.content):
-            parts = raw.split('|', 1)
-            target = parts[0].strip()
-            display = parts[1].strip() if len(parts) > 1 else target
-            if target:
-                links.append((target, display))
-        return links
+        if self._link_occurrences is None:
+            pattern = r"\[\[([^\]]+)\]\]"
+            links: list[tuple[str, str]] = []
+            for raw in re.findall(pattern, self.content):
+                parts = raw.split("|", 1)
+                target = parts[0].strip()
+                display = parts[1].strip() if len(parts) > 1 else target
+                if target:
+                    links.append((target, display))
+            self._link_occurrences = links
+        return self._link_occurrences
 
     @property
     def status(self) -> str:
-        return self.frontmatter.get('status', 'draft')
+        return self.frontmatter.get("status", "draft")
 
     @property
-    def tags(self) -> List[str]:
-        return self.frontmatter.get('tags', [])
+    def tags(self) -> list[str]:
+        return self.frontmatter.get("tags", [])
 
     @property
     def is_empty(self) -> bool:
@@ -63,23 +76,26 @@ class WikiPage:
         lines = [line.strip() for line in self.content.splitlines() if line.strip()]
         if not lines:
             return True
-        non_heading_lines = [line for line in lines if not re.fullmatch(r'#{1,6}\s+.+', line)]
+        non_heading_lines = [
+            line for line in lines if not re.fullmatch(r"#{1,6}\s+.+", line)
+        ]
         return not non_heading_lines
 
     @property
     def content_hash(self) -> str:
         """计算页面内容哈希，用于增量更新"""
         text = f"{self.title}\n{'\n'.join(self.tags)}\n{self.content}"
-        return hashlib.sha256(text.encode('utf-8')).hexdigest()
+        return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 @dataclass
 class IngestResult:
     """Ingest 操作结果"""
+
     source: str
-    new_pages: List[str] = field(default_factory=list)
-    updated_pages: List[str] = field(default_factory=list)
-    insights: List[str] = field(default_factory=list)
+    new_pages: list[str] = field(default_factory=list)
+    updated_pages: list[str] = field(default_factory=list)
+    insights: list[str] = field(default_factory=list)
 
 
 class WikiManager:
@@ -90,12 +106,13 @@ class WikiManager:
         self.log_file = wiki_dir.parent / "log.md"
         self.index_file = wiki_dir / "index.md"
 
-    def list_pages(self) -> List[WikiPage]:
+    def list_pages(self) -> list[WikiPage]:
         """列出所有 wiki 页面"""
         LOG.debug("Listing pages in %s", self.wiki_dir)
         pages = []
         for md_file in self.wiki_dir.glob("*.md"):
-            if md_file.name == "index.md":
+            # index.md 是索引,hot.md 是活动上下文,都不是知识页面
+            if md_file.name in ("index.md", "hot.md"):
                 continue
             page = self._load_page(md_file)
             if page:
@@ -103,47 +120,65 @@ class WikiManager:
         LOG.info("Listed %d pages", len(pages))
         return pages
 
-    def get_page(self, title: str) -> Optional[WikiPage]:
+    def get_page(self, title: str) -> WikiPage | None:
         """获取指定页面"""
         LOG.debug("Getting page: %s", title)
         # Prefer the canonical file name generated by create_page().
         # This prevents empty Obsidian-style shells such as
         # "AI Coding Workflow.md" from shadowing "AI-Coding-Workflow.md".
+        # 兼容顺序:sanitize 后的规范名在前,历史命名形式在后(只读,不改名)。
         variations = [
-            title.replace(' ', '-'),
+            sanitize_title_stem(title),
+            title.replace(" ", "-"),
             title,
-            title.replace(' ', '_'),
+            title.replace(" ", "_"),
         ]
-        for var in variations:
+        for var in dict.fromkeys(variations):
             path = self.wiki_dir / f"{var}.md"
             if path.exists():
                 return self._load_page(path)
         return None
 
-    def create_page(self, title: str, content: str, frontmatter: Dict) -> Path:
-        """创建新页面"""
-        filename = f"{title.replace(' ', '-').replace('/', '-')}.md"
-        path = self.wiki_dir / filename
+    def _resolve_new_page_path(self, title: str) -> Path:
+        """为新页面解析不冲突的文件名:不同标题清洗撞名时追加 -1/-2 后缀。"""
+        stem = sanitize_title_stem(title)
+        for suffix in range(100):
+            candidate = self.wiki_dir / (
+                f"{stem}.md" if suffix == 0 else f"{stem}-{suffix}.md"
+            )
+            if not candidate.exists():
+                return candidate
+            existing = self._load_page(candidate)
+            if existing is None or existing.title == title:
+                # 同一标题的既有页面:原地覆盖(等价于更新)
+                return candidate
+            LOG.info(
+                "Name collision: %s held by %r; trying suffix",
+                candidate.name,
+                existing.title,
+            )
+        raise ValueError(f"Cannot allocate a unique page filename for title: {title!r}")
+
+    def create_page(
+        self, title: str, content: str, frontmatter: dict, path: Path | None = None
+    ) -> Path:
+        """创建新页面;path 仅供 update_page 回写既有文件,避免更新时改名。"""
+        if path is None:
+            path = self._resolve_new_page_path(title)
         LOG.info("Creating page: %s -> %s", title, path)
 
-        # 构建 frontmatter
-        fm_lines = ["---"]
-        for key, value in frontmatter.items():
-            if isinstance(value, list):
-                fm_lines.append(f"{key}:")
-                for v in value:
-                    fm_lines.append(f"  - \"{v}\"")
-            else:
-                fm_lines.append(f"{key}: \"{value}\"")
-        fm_lines.append("---")
-
-        full_content = "\n".join(fm_lines) + "\n\n" + content
-        path.write_text(full_content, encoding='utf-8')
+        # 构建 frontmatter(safe_dump 支持嵌套结构,如 sources_meta / claims)
+        fm_yaml = yaml.safe_dump(
+            frontmatter, allow_unicode=True, sort_keys=False
+        ).rstrip()
+        full_content = f"---\n{fm_yaml}\n---\n\n" + content
+        path.write_text(full_content, encoding="utf-8")
         LOG.debug("Page written: %s (%d bytes)", path, len(full_content))
         return path
 
-    def update_page(self, title: str, new_content: str,
-                    merge_strategy: str = "append") -> Path:
+    def update_page(
+        self, title: str, new_content: str, merge_strategy: str = "append"
+    ) -> Path:
         """更新现有页面"""
         LOG.info("Updating page: %s (strategy=%s)", title, merge_strategy)
         page = self.get_page(title)
@@ -151,19 +186,20 @@ class WikiManager:
             raise ValueError(f"Page not found: {title}")
 
         # 更新 frontmatter
-        page.frontmatter['updated'] = datetime.now().strftime('%Y-%m-%d')
+        page.frontmatter["updated"] = datetime.now(UTC).strftime("%Y-%m-%d")
 
         if merge_strategy == "replace":
             final_content = new_content
         else:  # append or smart merge
             final_content = self._merge_content(page.content, new_content)
 
-        return self.create_page(title, final_content, page.frontmatter)
+        return self.create_page(title, final_content, page.frontmatter, path=page.path)
 
-    def append_log(self, action: str, description: str,
-                   details: List[str] = None):
+    def append_log(
+        self, action: str, description: str, details: list[str] | None = None
+    ):
         """追加日志条目"""
-        date_str = datetime.now().strftime('%Y-%m-%d')
+        date_str = datetime.now(UTC).strftime("%Y-%m-%d")
         log_entry = f"\n## [{date_str}] {action} | {description}\n"
         if details:
             for detail in details:
@@ -171,46 +207,99 @@ class WikiManager:
 
         LOG.info("Appending log: %s | %s", action, description)
         # 追加到文件
-        with open(self.log_file, 'a', encoding='utf-8') as f:
+        with open(self.log_file, "a", encoding="utf-8") as f:
             f.write(log_entry)
 
-    def read_log(self, n: int = 10) -> List[str]:
+    def record_activity(self, action: str, changed: list) -> Path:
+        """在 wiki/hot.md 顶部记录一条最近活动(新条目在前,有界保留)。
+
+        hot.md 是有界的最近上下文,供会话恢复时快速定位最近变更;
+        它不是完整历史(完整历史见 log.md)。
+        """
+        hot_file = self.wiki_dir / "hot.md"
+        header = (
+            "# Hot Context\n\n"
+            "> 最近的知识库变更,新条目在前,最多保留 "
+            f"{HOT_CONTEXT_LIMIT} 条。完整历史见 log.md。\n"
+        )
+        timestamp = datetime.now(UTC).strftime("%Y-%m-%d %H:%M")
+        files = ", ".join(
+            c.as_posix() if isinstance(c, Path) else str(c).replace("\\", "/")
+            for c in changed
+        )
+        entry = f"- [{timestamp}] {action} — {files}"
+
+        head = header.rstrip()
+        entries: list[str] = []
+        if hot_file.exists():
+            lines = hot_file.read_text(encoding="utf-8").splitlines()
+            first_entry = next(
+                (i for i, line in enumerate(lines) if line.startswith("- [")),
+                len(lines),
+            )
+            # 保留条目区之前的头部(允许用户自定义说明)
+            existing_head = "\n".join(lines[:first_entry]).rstrip()
+            if existing_head:
+                head = existing_head
+            entries = [line for line in lines[first_entry:] if line.startswith("- [")]
+
+        entries.insert(0, entry)
+        entries = entries[:HOT_CONTEXT_LIMIT]
+        hot_file.write_text(head + "\n\n" + "\n".join(entries) + "\n", encoding="utf-8")
+        LOG.debug("hot.md updated: %s", entry)
+        return hot_file
+
+    def read_log(self, n: int = 10) -> list[str]:
         """读取最近 n 条日志"""
         if not self.log_file.exists():
             return []
 
-        content = self.log_file.read_text(encoding='utf-8')
-        entries = re.findall(r'##\s*\[.*?\].*?(?=\n##|\Z)', content, re.DOTALL)
+        content = self.log_file.read_text(encoding="utf-8")
+        entries = re.findall(r"##\s*\[.*?\].*?(?=\n##|\Z)", content, re.DOTALL)
         LOG.debug("Read %d log entries", len(entries))
         return entries[-n:] if entries else []
 
-    def lint(self) -> Dict[str, List[str]]:
-        """运行健康检查"""
+    def lint(
+        self,
+        depth_config: Mapping[str, Any] | None = None,
+        *,
+        include_depth_details: bool = False,
+    ) -> dict[str, list[Any]]:
+        """运行健康检查，包括默认仅告警的内容深度检测。"""
         LOG.info("Running lint...")
         issues = {
-            'orphans': [],
-            'dead_links': [],
-            'stale': [],
-            'empty_pages': [],
-            'duplicate_titles': [],
-            'noncanonical_links': [],
-            'drafts': [],
+            "orphans": [],
+            "dead_links": [],
+            "stale": [],
+            "empty_pages": [],
+            "duplicate_titles": [],
+            "noncanonical_links": [],
+            "drafts": [],
+            "shallow_pages": [],
+            "invalid_status": [],
+            "lifecycle_mismatch": [],
+            "claim_issues": [],
         }
+        if include_depth_details:
+            issues["shallow_page_details"] = []
+        resolved_depth_config = DepthLintConfig.from_mapping(depth_config)
 
         pages = self.list_pages()
-        title_to_paths: Dict[str, List[Path]] = {}
+        title_to_paths: dict[str, list[Path]] = {}
         for page in pages:
             title_to_paths.setdefault(page.title, []).append(page.path)
         for paths in title_to_paths.values():
-            paths.sort(key=lambda p: (0 if '-' in p.stem else 1, p.name))
+            paths.sort(key=lambda p: (0 if "-" in p.stem else 1, p.name))
 
         for title, paths in title_to_paths.items():
             if len(paths) > 1:
-                path_list = ', '.join(p.name for p in sorted(paths, key=lambda p: p.name))
-                issues['duplicate_titles'].append(f"{title}: {path_list}")
+                path_list = ", ".join(
+                    p.name for p in sorted(paths, key=lambda p: p.name)
+                )
+                issues["duplicate_titles"].append(f"{title}: {path_list}")
 
         wiki_file_stems = {p.path.stem for p in pages}
-        all_links: Set[str] = set()
+        all_links: set[str] = set()
 
         for page in pages:
             # 收集所有链接
@@ -221,34 +310,66 @@ class WikiManager:
                 if canonical:
                     canonical_stem = canonical[0].stem
                     if target != canonical_stem:
-                        issues['noncanonical_links'].append(
+                        issues["noncanonical_links"].append(
                             f"{page.path.name}: [[{target}]] -> [[{canonical_stem}|{display}]]"
                         )
 
             # 检查空页面
             if page.is_empty:
-                issues['empty_pages'].append(page.title)
+                issues["empty_pages"].append(page.title)
 
             # 检查草稿
-            if page.status == 'draft':
-                issues['drafts'].append(page.title)
+            if page.status == "draft":
+                issues["drafts"].append(page.title)
+
+            # 状态词表校验(抓拼写错误,如 "publised")
+            raw_status = page.frontmatter.get("status")
+            if raw_status is not None and raw_status not in KNOWN_STATUSES:
+                issues["invalid_status"].append(
+                    f"{page.title}: status={raw_status!r} (expected one of {', '.join(KNOWN_STATUSES)})"
+                )
+
+            depth_issue = analyze_depth(
+                page_title=page.title,
+                page_stem=page.path.stem,
+                content=page.content,
+                frontmatter=page.frontmatter,
+                project_root=self.wiki_dir.parent,
+                config=resolved_depth_config,
+            )
+            if depth_issue:
+                issues["shallow_pages"].append(depth_issue.render())
+                if include_depth_details:
+                    issues["shallow_page_details"].append(depth_issue.to_dict())
+                # mature/evergreen 声明"内容完整",与 shallow 判定矛盾
+                if page.status in ("mature", "evergreen"):
+                    issues["lifecycle_mismatch"].append(
+                        f"{page.title}: status={page.status} but content is shallow "
+                        f"({', '.join(depth_issue.reasons)})"
+                    )
+
+            # 论断级溯源校验(advisory)
+            for claim_issue in validate_claims(page, self.wiki_dir.parent):
+                issues["claim_issues"].append(claim_issue)
 
             # 检查陈旧页面（90天未更新）
-            updated = page.frontmatter.get('updated')
+            updated = page.frontmatter.get("updated")
             if updated:
                 try:
-                    upd_date = datetime.strptime(updated, '%Y-%m-%d')
-                    if (datetime.now() - upd_date).days > 90:
-                        issues['stale'].append(page.title)
-                except:
+                    upd_date = datetime.strptime(updated, "%Y-%m-%d").replace(
+                        tzinfo=UTC
+                    )
+                    if (datetime.now(UTC) - upd_date).days > 90:
+                        issues["stale"].append(page.title)
+                except (ValueError, TypeError):
                     pass
 
         # 检查孤儿页面（没有被引用的页面）
         # 排除 index.md 和明显是入口的页面
         for page in pages:
             link_keys = {page.title, page.path.stem}
-            if not (link_keys & all_links) and page.title != 'index':
-                issues['orphans'].append(page.title)
+            if not (link_keys & all_links) and page.title != "index":
+                issues["orphans"].append(page.title)
 
         # Check every wiki-link target against actual wiki file stems.
         # This is intentionally stricter than title matching:
@@ -256,59 +377,73 @@ class WikiManager:
         # AI-Coding-Workflow.md; use [[AI-Coding-Workflow|AI Coding Workflow]].
         for link in all_links:
             if link not in wiki_file_stems:
-                issues['dead_links'].append(link)
+                issues["dead_links"].append(link)
 
-        LOG.info("Lint complete: orphans=%d dead_links=%d stale=%d empty_pages=%d duplicate_titles=%d noncanonical_links=%d drafts=%d",
-                 len(issues['orphans']), len(issues['dead_links']),
-                 len(issues['stale']), len(issues['empty_pages']),
-                 len(issues['duplicate_titles']), len(issues['noncanonical_links']),
-                 len(issues['drafts']))
+        LOG.info(
+            "Lint complete: orphans=%d dead_links=%d stale=%d empty_pages=%d "
+            "duplicate_titles=%d noncanonical_links=%d drafts=%d shallow_pages=%d "
+            "invalid_status=%d lifecycle_mismatch=%d claim_issues=%d",
+            len(issues["orphans"]),
+            len(issues["dead_links"]),
+            len(issues["stale"]),
+            len(issues["empty_pages"]),
+            len(issues["duplicate_titles"]),
+            len(issues["noncanonical_links"]),
+            len(issues["drafts"]),
+            len(issues["shallow_pages"]),
+            len(issues["invalid_status"]),
+            len(issues["lifecycle_mismatch"]),
+            len(issues["claim_issues"]),
+        )
         return issues
 
-    def _load_page(self, path: Path) -> Optional[WikiPage]:
+    def _load_page(self, path: Path) -> WikiPage | None:
         """从文件加载页面"""
         try:
-            content = path.read_text(encoding='utf-8')
+            content = path.read_text(encoding="utf-8")
 
             # 解析 frontmatter
             frontmatter = {}
-            if content.startswith('---'):
-                parts = content.split('---', 2)
+            if content.startswith("---"):
+                parts = content.split("---", 2)
                 if len(parts) >= 3:
                     try:
                         frontmatter = yaml.safe_load(parts[1]) or {}
                         content = parts[2].strip()
-                    except:
+                    except (yaml.YAMLError, ValueError):
                         pass
 
             # 提取标题（第一个 # 行）
             title = path.stem
-            for line in content.split('\n'):
-                if line.startswith('# '):
+            for line in content.split("\n"):
+                if line.startswith("# "):
                     title = line[2:].strip()
                     break
 
-            LOG.debug("Loaded page: %s (title=%s, tags=%s)", path, title, frontmatter.get('tags', []))
-            return WikiPage(
-                title=title,
-                content=content,
-                frontmatter=frontmatter,
-                path=path
+            LOG.debug(
+                "Loaded page: %s (title=%s, tags=%s)",
+                path,
+                title,
+                frontmatter.get("tags", []),
             )
-        except Exception as e:
-            LOG.error("Error loading page %s: %s", path, e)
+            return WikiPage(
+                title=title, content=content, frontmatter=frontmatter, path=path
+            )
+        except (OSError, TypeError, UnicodeError, ValueError, yaml.YAMLError) as exc:
+            LOG.error("Error loading page %s: %s", path, exc)
             return None
 
     def _merge_content(self, old: str, new: str) -> str:
         """智能合并内容"""
         # 延迟导入避免循环依赖
-        from .merge import ContentMerger, MergeStrategy
+        from .merge import ContentMerger
+
         merger = ContentMerger(self)
         # 构造一个临时页面对象用于合并
-        temp_page = WikiPage(
+        WikiPage(
             title="temp",
             content=old,
-            frontmatter={"updated": datetime.now().strftime('%Y-%m-%d')},
+            frontmatter={"updated": datetime.now(UTC).strftime("%Y-%m-%d")},
             path=self.wiki_dir / "temp.md",
         )
         # 尝试 APPEND_SECTION 策略，追加为"补充说明"章节
@@ -320,14 +455,14 @@ class WikiManager:
         return result
 
 
-def find_wiki_root(start_path: Path = None) -> Optional[Path]:
-    """向上查找 wiki 根目录（包含 CLAUDE.md 的目录）"""
+def find_wiki_root(start_path: Path | None = None) -> Path | None:
+    """向上查找 wiki 根目录（包含 AGENTS.md 或 CLAUDE.md 的目录）"""
     if start_path is None:
         start_path = Path.cwd()
 
     current = start_path.resolve()
     while current != current.parent:
-        if (current / "CLAUDE.md").exists():
+        if (current / "AGENTS.md").exists() or (current / "CLAUDE.md").exists():
             return current
         current = current.parent
 
@@ -338,7 +473,9 @@ def find_wiki_root(start_path: Path = None) -> Optional[Path]:
         Path.cwd() / "llm-wiki",
     ]
     for cand in candidates:
-        if cand.exists() and (cand / "CLAUDE.md").exists():
+        if cand.exists() and (
+            (cand / "AGENTS.md").exists() or (cand / "CLAUDE.md").exists()
+        ):
             return cand
 
     return None

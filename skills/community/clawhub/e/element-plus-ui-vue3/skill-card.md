@@ -1,41 +1,60 @@
-## Description: <br>
-Element Plus Vue3 desktop component library. Invoke when developing Vue 3.x pages, using Element Plus components (el-button, el-input, el-form, el-table, etc.), or needing UI elements like forms, tables, dialogs, navigation for desktop web applications with Composition API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Element Plus Vue3 desktop component library. Invoke when developing Vue 3.x pages, using Element Plus components (el-button, el-input, el-form, el-table, etc.), or needing UI elements like forms, tables, dialogs, navigation for desktop web applications with Composition API.
 
-## Publisher: <br>
-[wufengsheng](https://clawhub.ai/user/wufengsheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wufengsheng](https://clawhub.ai/user/wufengsheng)
 
-## Use Case: <br>
-Developers and engineers use this skill when building Vue 3 desktop web interfaces with Element Plus components, Composition API examples, theming, internationalization, and component API references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Copied frontend examples can introduce unsafe rendering, file upload behavior, remote image loading, CDN use, or package-manager changes if applied without review. <br>
-Mitigation: Review generated Vue and Element Plus examples before use, keep the requested UI library and language in control, and inspect package-manager commands before running them. <br>
+## Use Case:
 
+Developers use this skill to build Vue 3 desktop web interfaces with Element Plus components, Composition API examples, theming, internationalization, and component API references.
 
-## Reference(s): <br>
-- [Element Plus official documentation](https://element-plus.org/zh-CN/) <br>
-- [Element Plus design guide](https://element-plus.org/zh-CN/guide/design.html) <br>
-- [Element Plus installation guide](https://element-plus.org/zh-CN/guide/installation.html) <br>
-- [ClawHub skill page](https://clawhub.ai/wufengsheng/skills/element-plus-ui-vue3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with Vue 3 component snippets and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Element Plus component usage, Vue single-file component snippets, theme and internationalization configuration, and package-manager commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Dependency examples may install packages without a lockfile or version pin.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use package-manager lockfiles and review resolved versions before adopting generated install commands.
+
+Risk: Browser import examples may rely on mutable CDN URLs.
+
+Mitigation: Pin CDN package versions and use integrity controls when importing Element Plus or Vue directly in the browser.
+
+Risk: Registry mirror examples can persistently change npm registry configuration.
+
+Mitigation: Prefer per-command registry overrides unless an organization has approved a persistent registry mirror.
+
+## Reference(s):
+
+- [Element Plus Chinese documentation](https://element-plus.org/zh-CN/)
+- [Element Plus design guide](https://element-plus.org/zh-CN/guide/design.html)
+- [Element Plus installation guide](https://element-plus.org/zh-CN/guide/installation.html)
+- [Element Plus npm package](https://www.npmjs.org/package/element-plus)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with Vue, TypeScript, shell, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; outputs should be reviewed against the target Vue and Element Plus versions.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

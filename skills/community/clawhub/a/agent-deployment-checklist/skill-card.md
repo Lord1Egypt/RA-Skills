@@ -1,42 +1,57 @@
-## Description: <br>
-Production deployment checklist for AI agent infrastructure covering dedicated Mac Mini and server deployments with base installation, IAM configuration, client software setup, security hardening, memory scaffolding, starter crons, and day-1 onboarding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Deployment Checklist provides production deployment guidance for AI agent infrastructure on dedicated Mac Mini or Linux server hardware.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers, operators, and deployment engineers use this skill to plan and check production AI agent deployments on dedicated client hardware. It is intended for client onboarding, infrastructure setup, security hardening, monitoring, backup planning, and day-1 validation, not for cloud/serverless or containerized deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credential and secret handling is sensitive for production client agent systems. <br>
-Mitigation: Use one defined secret-management approach, keep credentials out of git, restrict .env permissions, scope tokens to each client, and document rotation. <br>
-Risk: Backups may copy client memory, secrets, logs, or cron metadata into less-protected storage. <br>
-Mitigation: Narrow backup scope, exclude secrets where possible, encrypt backups, restrict access, and verify restores only in protected environments. <br>
-Risk: Installer and API-check snippets can perform network downloads or live service calls. <br>
-Mitigation: Review commands before execution, use pinned and verified installers where possible, and run validation calls with least-privilege credentials. <br>
+## Use Case:
 
+Developers and deployment engineers use this skill to plan and review dedicated-hardware deployments for client AI agents, including credentials, security hardening, monitoring, backups, memory scaffolding, and day-one onboarding.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/samledger67-dotcom/agent-deployment-checklist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown checklists with bash snippets, cron templates, and markdown file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-reviewed deployment checklist material; it does not automatically install or configure infrastructure.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server release evidence) <br>
+Risk: Unverified remote installers can execute code that has not been pinned or reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace curl-to-bash installation with pinned, checksummed installers or a reviewed local installation procedure.
+
+Risk: Firewall commands and cron jobs can make persistent changes to client infrastructure.
+
+Mitigation: Require explicit approval before applying sudo firewall changes or installing scheduled jobs, and record the accepted configuration.
+
+Risk: Backups and workspaces can accidentally include client credentials or sensitive data.
+
+Mitigation: Keep credentials out of repository and workspace files, enforce restricted permissions, exclude secrets from backups, and encrypt backup storage.
+
+## Reference(s):
+
+- [Agent Deployment Checklist on ClawHub](https://clawhub.ai/samledger67-dotcom/skills/agent-deployment-checklist)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with checklists, templates, and inline shell/code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes layer gates, memory-file templates, starter cron examples, hardware requirements, network allowlists, monitoring cadence, and deployment anti-patterns.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

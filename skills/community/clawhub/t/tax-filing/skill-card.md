@@ -1,46 +1,61 @@
-## Description: <br>
-United States federal income tax filing assistant for US citizens, resident aliens, and nonresident aliens that guides filer classification, form routing, amount calculations, IRS PDF form filling, and cross-form validation for federal returns only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+United States federal income tax filing assistant for US citizens, resident aliens, and nonresident aliens that guides users through filer-type routing, form selection, amount calculations, IRS PDF form filling, and validation for federal returns.
 
-## Publisher: <br>
-[Irreel](https://clawhub.ai/user/Irreel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[irreel](https://clawhub.ai/user/irreel)
 
-## Use Case: <br>
-External users and tax-preparation agents use this skill to prepare US federal income tax returns, determine resident or nonresident filing workflows, identify required IRS forms and schedules, fill IRS PDFs with pypdf, and validate totals across forms. <br>
-
-### Deployment Geography for Use: <br>
-Global access for United States federal tax filing workflows only. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for highly sensitive tax, residency, travel-history, and immigration information. <br>
-Mitigation: Use it only for explicit tax-preparation tasks, redact full identifiers where possible, and share only the minimum documents or fields needed for the workflow. <br>
-Risk: The security review notes that the skill may activate too broadly for general tax-related mentions. <br>
-Mitigation: Confirm the user wants US federal tax-preparation help before collecting documents or applying filing workflows. <br>
-Risk: Incorrect tax routing, calculations, treaty handling, or PDF field updates can produce inaccurate returns or corrupted PDFs. <br>
-Mitigation: Cross-check generated forms against source documents, review treaty and filing-status decisions with a qualified professional when uncertain, and use the bundled safe PDF updater without overwriting the input file. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Irreel/tax-filing) <br>
-- [Filing status decision tree](references/filing-status.md) <br>
-- [Form routing tables](references/form-routing.md) <br>
-- [Common schedules reference](references/common-schedules.md) <br>
-- [Form field mappings](references/form-field-maps.md) <br>
-- [pypdf recovery guidance](references/pypdf-recovery.md) <br>
+## Use Case:
 
+External users use this skill to prepare US federal income tax returns across citizen, resident alien, and nonresident alien workflows. It helps gather source-document facts, route income to federal forms and schedules, fill IRS PDFs with pypdf, and cross-check completed returns before filing.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files] <br>
-**Output Format:** [Markdown with tables, checklists, inline Python and bash snippets, and PDF form update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce or modify IRS PDF files through the bundled pypdf script; no API keys or credential environment variables were detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.0 (source: frontmatter and server release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive tax information, and the security summary advises avoiding unnecessary identifiers.
+
+Mitigation: Collect only the tax facts needed for the requested workflow, avoid full SSNs or unnecessary personal identifiers, and confirm with the user before processing tax documents.
+
+Risk: Generated tax calculations or filled forms may be incorrect or incomplete.
+
+Mitigation: Manually verify all generated forms and cross-form totals against source documents before filing or submitting them.
+
+Risk: The security summary notes a recommendation to install Python packages at the system level.
+
+Mitigation: Install dependencies only in an isolated virtual environment with pinned versions before using PDF tooling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/irreel/skills/tax-filing)
+- [Common Schedules](references/common-schedules.md)
+- [Filing Status Decision Tree](references/filing-status.md)
+- [IRS Form Field-to-Line Mappings](references/form-field-maps.md)
+- [Form Routing](references/form-routing.md)
+- [pypdf PDF Recovery Procedures](references/pypdf-recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce filled IRS PDF update instructions and validation checklists; generated tax forms require manual verification before filing.]
+
+## Skill Version(s):
+
+0.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

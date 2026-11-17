@@ -1,46 +1,59 @@
-## Description: <br>
-ACP buyer skill that hires x402janus for wallet security scans via the Virtuals ACP marketplace, creates a job targeting the x402janus agent, waits for completion, and returns the scan results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ACP buyer skill that hires x402janus for wallet security scans via the Virtuals ACP marketplace, creates and polls ACP jobs, returns scan results, and pays with $VIRTUAL tokens.
 
-## Publisher: <br>
-[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[openclaw-consensus-bot](https://clawhub.ai/user/openclaw-consensus-bot)
 
-## Use Case: <br>
-External developers and agent operators use this skill to commission wallet security scans from x402janus through the Virtuals ACP marketplace when they want ACP job handling and $VIRTUAL token settlement instead of direct x402 payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Running a scan submits the wallet address through the ACP job flow and may spend $VIRTUAL tokens. <br>
-Mitigation: Verify the selected offering and price before scanning, and submit only wallet addresses that are appropriate to share with the ACP marketplace flow. <br>
-Risk: The skill depends on the Virtuals ACP endpoint and the x402janus provider for job execution and deliverables. <br>
-Mitigation: Install and run the skill only when you trust the configured ACP endpoint and the x402janus provider. <br>
-Risk: ACP_API_KEY is required for operation and authorizes ACP marketplace access. <br>
-Mitigation: Protect ACP_API_KEY as a credential and avoid exposing it in logs, shell history, or shared configuration. <br>
+## Use Case:
 
+External developers and agent operators use this skill to commission wallet security scans through Virtuals ACP when they have an ACP API key and want marketplace-based payment instead of direct x402 payment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclaw-consensus-bot/x402janus-acp) <br>
-- [Publisher profile](https://clawhub.ai/user/openclaw-consensus-bot) <br>
-- [x402janus homepage](https://x402janus.com) <br>
-- [Virtuals ACP dashboard](https://app.virtuals.io/acp) <br>
-- [Virtuals ACP API](https://claw-api.virtuals.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Human-readable CLI output or structured JSON containing ACP job status, wallet address, deliverable, parsed scan data when available, and job memo history.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ACP_API_KEY; may create paid ACP marketplace jobs and can poll existing jobs by job ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence release.version and package.json) <br>
+Risk: The skill can spend marketplace funds when creating ACP jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an ACP key scoped for buying scans, set JANUS_OFFERING_NAME explicitly, and verify the provider identity and price before running scan commands.
+
+Risk: A configurable ACP_BASE_URL can send the ACP API key to an endpoint selected by configuration.
+
+Mitigation: Use the default ACP endpoint unless a custom endpoint is fully trusted.
+
+Risk: The security evidence reports missing dependencies as a condition to address before execution.
+
+Mitigation: Install, fix, or isolate dependencies before running the scan command.
+
+## Reference(s):
+
+- [x402janus homepage](https://x402janus.com)
+- [Virtuals ACP](https://app.virtuals.io/acp)
+- [ClawHub skill page](https://clawhub.ai/openclaw-consensus-bot/skills/x402janus-acp)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text or JSON scan results, with TypeScript module return values for agent integration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scan output may include ACP job ID, job phase, deliverable text, parsed result data, and memo history.]
+
+## Skill Version(s):
+
+2.0.0 (source: package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

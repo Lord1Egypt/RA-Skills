@@ -93,7 +93,7 @@ nano config.json
 ```json
 {
   "openrouter": {
-    "apiKey": "sk-or-v1-YOUR_OPENROUTER_API_KEY_HERE"
+    "apiKey": "REDACTED-SECRET"
   },
   "sessionsPath": "/path/to/your/openclaw/sessions"
 }

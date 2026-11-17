@@ -1,42 +1,57 @@
-## Description: <br>
-Data Synthesis chunks CSV corpus text, uses one LLM interface to generate questions and answers, and writes JSONL training data for QA or fine-tuning workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates JSONL question-answer training data by chunking CSV text and using a shared LLM interface to create questions and answers for each chunk.
 
-## Publisher: <br>
-[erxiong0](https://clawhub.ai/user/erxiong0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erxiong0](https://clawhub.ai/user/erxiong0)
 
-## Use Case: <br>
-Developers and data engineers use this skill to inspect CSV corpora and synthesize QA pairs from document or table text for dataset preparation. It supports dry-run validation and optional OpenAI-compatible LLM endpoints when approved for the input data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: CSV content may contain personal, regulated, confidential, or proprietary text that could be sent to a configured LLM endpoint when API mode is enabled. <br>
-Mitigation: Run dry-run mode first and enable DATA_SYNTHESIS_USE_API=1 only after confirming the CSV is approved for the chosen endpoint. <br>
-Risk: Generated JSONL records may retain original text chunks, source fields, and model-generated answers that require handling as derived training data. <br>
-Mitigation: Store outputs securely and review or clean the records before using them for downstream training or sharing. <br>
-Risk: Question generation depends on model output that can fail JSON parsing or produce low-quality records. <br>
-Mitigation: Review the reported errors and sample the JSONL output before treating the dataset as production-ready. <br>
+## Use Case:
 
+Developers and data engineers use this skill to inspect CSV corpora and synthesize structured QA examples for document, table, or fine-tuning data preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/erxiong0/data-synthesis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSONL] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON/JSONL file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CSV inspection JSON, synthesis statistics JSON, and JSONL QA records with chunk, question, answer, and source metadata fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: API mode can transmit CSV text and an API bearer token to a configurable endpoint that may use plain HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run for local testing, prefer HTTPS endpoints, and avoid sending API keys or sensitive data to HTTP URLs.
+
+Risk: Generated JSONL stores source chunks and source fields, which may contain private, regulated, or proprietary data.
+
+Mitigation: Review input data before processing and handle generated JSONL as a derivative copy of the source corpus.
+
+Risk: Question generation depends on model output that may not parse cleanly as JSON.
+
+Mitigation: Review the run statistics and errors field, then sample or validate generated QA pairs before using them for training.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/erxiong0/skills/data-synthesis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated artifacts are JSON, JSONL, and CSV inspection summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run mode avoids API calls; API mode may send CSV text and bearer credentials to the configured OpenAI-compatible endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

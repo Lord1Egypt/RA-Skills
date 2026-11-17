@@ -1,50 +1,64 @@
-## Description: <br>
-Tracks meals, sleep quality, workouts, and recovery signals with automated Feishu/Lark persistence, summaries, and dashboards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track meals, sleep quality, and workouts with automated Feishu persistence and reporting.
 
-## Publisher: <br>
-[neverwarm](https://clawhub.ai/user/neverwarm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverwarm](https://clawhub.ai/user/neverwarm)
 
-## Use Case: <br>
-External users use this skill to log and analyze meals, sleep, recovery, and workout data, then persist records and refresh health summaries in Feishu/Lark. Developers and operators can also use it to bootstrap the configured health tables and run weekly or monthly reporting scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store sensitive meal, sleep, recovery, and workout records in Feishu/Lark. <br>
-Mitigation: Use a dedicated Feishu/Lark base with limited sharing, keep the base token narrowly scoped, and avoid adding unrelated personal data. <br>
-Risk: Upsert, rebuild, backfill, bootstrap, and dashboard refresh actions can write or rewrite health records. <br>
-Mitigation: Run available dry-run commands first and require the agent to show the exact target table and fields before allowing write operations. <br>
-Risk: Consumer health and wearable data can be mistaken for clinical evidence. <br>
-Mitigation: Keep outputs non-diagnostic, separate observed data from suggestions, and state uncertainty when values are estimated or missing. <br>
+## Use Case:
 
+Individuals and agents use this skill to extract nutrition, sleep, and exercise signals from photos, screenshots, and summaries, then log them to Feishu and rebuild weekly or monthly health reports. It supports personal tracking and operational reporting, not medical diagnosis.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/neverwarm/personal-health-router) <br>
-- [README](README.md) <br>
-- [Config Template](references/config-template.md) <br>
-- [Public Data Model](references/data-model.md) <br>
-- [Nutrition Branch](references/nutrition.md) <br>
-- [Sleep Branch](references/sleep.md) <br>
-- [Exercise Branch](references/exercise.md) <br>
-- [Cross-Domain Branch](references/cross-domain.md) <br>
-- [Weekly Health Review](references/weekly-review.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with structured health observations, uncertainty notes, configuration guidance, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run Node.js, Python, and lark-cli commands against a user-configured Feishu/Lark base.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill writes sensitive health records to Feishu, a third-party store.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Feishu identity, keep configuration files private, and avoid this skill when local-only storage or strict consent and retention controls are required.
+
+Risk: Backfill and rebuild commands can update many health summary records.
+
+Mitigation: Use available dry-run options first and review every write or backfill command before execution.
+
+Risk: Nutrition estimates and wearable-derived sleep or recovery metrics may be imprecise.
+
+Mitigation: Extract only visible data, state uncertainty, and keep practical suggestions separate from medical diagnosis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/neverwarm/skills/personal-health-router)
+- [Config Template](references/config-template.md)
+- [Cross-Domain Branch](references/cross-domain.md)
+- [Public Data Model](references/data-model.md)
+- [Exercise Branch](references/exercise.md)
+- [Nutrition Branch](references/nutrition.md)
+- [Sleep Branch](references/sleep.md)
+- [Weekly Health Review](references/weekly-review.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and optional JSON output from maintenance scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configurable Feishu table schemas and thresholds; outputs should separate observed evidence, uncertainty, and suggested next steps.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

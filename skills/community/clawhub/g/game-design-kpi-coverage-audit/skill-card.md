@@ -1,43 +1,51 @@
-## Description: <br>
-Audit a game feature, roadmap candidate, UX improvement, support system, connective-tissue feature, or quality-of-life change for KPI coverage bias and measurement blind spots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit a game feature, roadmap candidate, UX improvement, support system, connective-tissue feature, or quality-of-life change for KPI coverage bias and measurement blind spots.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game design, product, and live-ops teams use this skill to evaluate whether feature proposals are being judged by KPIs that cover their real direct, connective, enabling, UX, or sustainability value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Roadmap plans, dashboards, or financial metrics used as inputs may be confidential. <br>
-Mitigation: Limit prompts to information approved for the agent environment, or summarize sensitive metrics before use. <br>
-Risk: The skill provides advisory analysis and may miss context-specific business constraints. <br>
-Mitigation: Review recommendations with design, product, analytics, and live-ops owners before changing roadmap priorities. <br>
+## Use Case:
 
+Game designers, product managers, and roadmap reviewers use this skill to evaluate whether a feature's KPI framing captures direct, connective, UX, enabling, and sustainability value. It helps teams identify measurement blind spots and justify hard-to-measure work without inventing false precision.
 
-## Reference(s): <br>
-- [Blind Spot Patterns](references/blind-spot-patterns.md) <br>
-- [Recommendation Patterns](references/recommendation-patterns.md) <br>
-- [Value Types](references/value-types.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/stanestane/game-design-kpi-coverage-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisory output; no code execution, installs, credential use, or hidden data movement found in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat the audit as a final roadmap decision instead of a framing aid for KPI and prioritization review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output as guidance for human product, design, and analytics review before changing roadmap priorities.
+
+## Reference(s):
+
+- [Value Types](references/value-types.md)
+- [Blind Spot Patterns](references/blind-spot-patterns.md)
+- [Recommendation Patterns](references/recommendation-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces qualitative KPI-coverage diagnosis, blind-spot analysis, prioritization-risk framing, and evaluation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

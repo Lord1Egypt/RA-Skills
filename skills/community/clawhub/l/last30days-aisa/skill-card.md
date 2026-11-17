@@ -1,44 +1,57 @@
-## Description: <br>
-Researches the last 30 days across Reddit, X/Twitter, YouTube, TikTok, Instagram, Hacker News, Polymarket, GitHub, and web search for recent social research, company updates, comparisons, launch reactions, and trend scans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches the last 30 days across Reddit, X/Twitter, YouTube, TikTok, Instagram, Hacker News, Polymarket, GitHub, and web search, then synthesizes the results into a recent-evidence brief.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-External users and developers use this skill to gather a recent research brief on a person, company, product, market, tool, or trend. It is suited for competitor comparisons, launch-reaction summaries, creator or community sentiment scans, and recent shipping updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research topics and retrieved public-content snippets may be sent to external AISA services. <br>
-Mitigation: Use only with topics whose data handling is acceptable, and avoid sensitive or regulated topics unless the AISA service has been reviewed. <br>
-Risk: Optional watchlist, local storage, briefing archives, and webhook delivery can persist research history or send outbound notifications. <br>
-Mitigation: Enable those features only when persistent history and notifications are intended, and review local storage and webhook configuration before use. <br>
-Risk: Evaluation tooling can execute checked-out code with the user's API-key environment. <br>
-Mitigation: Run evaluation only against trusted revisions and isolate credentials when comparing or testing changes. <br>
+## Use Case:
 
+Developers, analysts, and researchers use this skill to gather and summarize recent social, community, market, GitHub, and web signals about a person, company, product, competitor, launch, or trend.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/bibaofeng/last30days-aisa) <br>
-- [Publisher profile](https://clawhub.ai/user/bibaofeng) <br>
-- [Declared repository](https://github.com/AIsa-team/agent-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown brief or structured JSON with query plans, ranked candidates, clusters, and items by source] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include saved local report files when the user selects a save mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Research queries and retrieved snippets may be sent through AISA-hosted services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved AISA credentials and avoid submitting sensitive or restricted topics unless that data sharing is acceptable.
+
+Risk: GitHub API reads may use a configured GH_TOKEN or GITHUB_TOKEN.
+
+Mitigation: Use least-privilege tokens and review local configuration files before enabling GitHub-backed searches.
+
+Risk: Optional Xiaohongshu/local API and watchlist webhook paths can connect to logged-in services or outbound endpoints.
+
+Mitigation: Enable those paths only when intended, verify local service configuration, and send webhooks only to endpoints you control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bibaofeng/skills/last30days-aisa)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or JSON research brief with provider runtime, query plan, ranked candidates, clusters, and items grouped by source when JSON is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can optionally save Markdown or JSON artifacts when a save directory is provided.]
+
+## Skill Version(s):
+
+1.0.4 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

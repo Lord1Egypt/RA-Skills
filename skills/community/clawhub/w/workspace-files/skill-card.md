@@ -1,37 +1,53 @@
-## Description: <br>
-Work safely with files inside the OpenClaw workspace sandbox for listing directories, reading text files, writing text files, and searching files by name inside ~/.openclaw/workspace only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work safely with files inside the OpenClaw workspace sandbox. Use for listing directories, reading text files, writing text files, and searching files by name inside ~/.openclaw/workspace only.
 
-## Publisher: <br>
-[EcosincronIA](https://clawhub.ai/user/EcosincronIA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecosincronia](https://clawhub.ai/user/ecosincronia)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect, search, read, and write text files within a declared workspace sandbox. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The write-file command can replace file contents inside the configured workspace sandbox. <br>
-Mitigation: Confirm that /home/cmart/.openclaw/workspace is the intended sandbox and review write-file uses before execution. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect, search, read, and write text files inside a fixed OpenClaw workspace sandbox.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs and commands are scoped to paths under the configured OpenClaw workspace sandbox.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The write command can create directories and overwrite existing workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed write paths and content before execution, and keep write operations limited to intended text files inside the OpenClaw workspace.
+
+Risk: The skill exposes file listing, search, and read operations within the configured workspace.
+
+Mitigation: Install it only for agents that should inspect files in that workspace, and avoid placing sensitive material there unless the agent is allowed to read it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ecosincronia/skills/workspace-files)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create directories and write or overwrite text files inside the configured OpenClaw workspace sandbox.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

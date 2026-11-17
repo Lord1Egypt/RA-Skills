@@ -1,41 +1,58 @@
-## Description: <br>
-No more agentic amnesia. Gives your agent short-term + long-term memory: hot survivable context + knowledge graph for permanent recall. Semantic search, graph relations, no server required. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+VyasaGraph gives agents persistent short-term and long-term memory through local session state, an embedded knowledge graph, semantic search, and graph relations.
 
-## Publisher: <br>
-[minopop](https://clawhub.ai/user/minopop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[minopop](https://clawhub.ai/user/minopop)
 
-## Use Case: <br>
-Developers and agent users use VyasaGraph to add local short-term session state and long-term knowledge graph memory to an agent, including semantic recall, relationships, project tracking, and error history across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local memory can retain sensitive or unnecessary user information if agents record broad categories of facts automatically. <br>
-Mitigation: Define what may be remembered before enabling the skill, avoid secrets and sensitive personal data, and regularly review or delete memory.db. <br>
-Risk: When OPENAI_API_KEY is configured, stored facts used for embeddings may be sent to OpenAI. <br>
-Mitigation: Leave OPENAI_API_KEY unset when stored facts should remain fully local; VyasaGraph can fall back to keyword search. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent memory to agents, including current-session state, permanent entities, relationships, and searchable project or error history.
 
-## Reference(s): <br>
-- [VyasaGraph project homepage](https://github.com/minopop/vyasagraph) <br>
-- [VyasaGraph npm package](https://www.npmjs.com/package/vyasagraph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local files for session state and an embedded local database for long-term memory; OpenAI embeddings are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: ClawHub release evidence) <br>
+Risk: Broad persistent memory can store sensitive or unwanted personal, project, or conversation details across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval for long-term writes, narrow the auto-recording rules, and avoid credentials, financial details, health records, and other sensitive data.
+
+Risk: Optional semantic embeddings can send stored observations to OpenAI when OPENAI_API_KEY is configured.
+
+Mitigation: Leave OPENAI_API_KEY unset for keyword search unless users accept embedding requests for stored observations.
+
+Risk: Local memory files persist until they are cleared or deleted.
+
+Mitigation: Document retention expectations and periodically clear SESSION-STATE.md or delete memory.db when durable memory is no longer needed.
+
+## Reference(s):
+
+- [VyasaGraph GitHub Repository](https://github.com/minopop/vyasagraph)
+- [VyasaGraph npm Package](https://www.npmjs.com/package/vyasagraph)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update local memory files and optionally use OPENAI_API_KEY for semantic embeddings.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

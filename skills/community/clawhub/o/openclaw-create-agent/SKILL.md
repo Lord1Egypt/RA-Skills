@@ -29,7 +29,7 @@ metadata:
 | **USER.md** | ✅ 需要，积累用户个人知识 | ❌ 不需要（最多记录调用方偏好） |
 | **AGENTS.md 重点** | 场景触发规则 + 记忆规则 | 任务接口规范（输入/输出/边界） |
 | **MEMORY.md 方向** | 个人偏好 + 业务判断模式 | 领域知识 + 任务经验 |
-| **进化路径** | 了解他 → 理解他的工作 → 在稳定场景内提供预判（长期方向：逐步替代机械性工作） | 更实用 → 更专业 → 更好解决需求 |
+| **进化路径** | 了解他 → 预判他 → 替代他 | 更实用 → 更专业 → 更好解决需求 |
 | **脚本参数** | `--type human` | `--type functional` |
 
 ---
@@ -46,7 +46,6 @@ metadata:
 - `references/file-formats.md` — 每个文件"写好"的标准
 - `references/soul-writing-guide.md` — SOUL.md 专项写作指南
 - `references/evolve-rules.md` — workspace 持续生长规则
-- `references/memory-rules.md` — 记忆规则精简模板（独立于 AGENTS.md）
 - `references/bootstrap-protocol.md` — BOOTSTRAP.md 动态对话协议
 
 ---
@@ -130,11 +129,6 @@ metadata:
 □ agentId        staff-<open_id前几位>
 □ open_id        用于 --notify-open-id（HEARTBEAT.md 闲置通知）
 □ 基础工具权限    默认：feishu_get_user feishu_im_user_message feishu_search_user
-```
-
-可选收集（传入后 SOUL.md 骨架会有岗位相关倾向，不传则使用通用表述）：
-```
-○ 岗位类型（一句话，如"内容运营""客户经理""视频剪辑"）
 ```
 
 其余全部自动处理：
@@ -344,22 +338,6 @@ Agent [名字] 已创建完成：
 
 ---
 
-## Agent 进化里程碑
-
-> 里程碑是可观测、可验证的状态，不是抽象承诺。
-> 对应 HEARTBEAT 中 Workspace 成熟度评分（I1）。
-
-| 阶段 | 达成条件 | 成熟度参考 |
-|---|---|---|
-| 🌱 种子 | 创建完成，workspace 文件完整，公司背景已预埋 | 0-20 |
-| 📋 知道你是谁 | BOOTSTRAP 完成：USER.md 有称呼+岗位+核心工作，SOUL.md 有具体性格，≥3 条偏好 | 20-40 |
-| 🔍 理解你的工作 | 使用 2-4 周：MEMORY.md 有 ≥3 条业务背景，memory/ 有 ≥2 条业务判断，USER.md 有 ≥5 条偏好 | 40-70 |
-| 🎯 不用你说就知道 | 使用 1-3 月：Agent 在用户开口前主动提供相关信息，用户不再重复解释背景 | 70+ |
-
-创建者可通过读取 Agent 的 memory/.health 文件中的 maturity 值来判断当前阶段。
-
----
-
 ## 注意事项
 
 - **每个 Agent 必须有独立 workspace**，不能多个 Agent 共用
@@ -367,4 +345,4 @@ Agent [名字] 已创建完成：
 - **TOOLS.md 不进 BOOTSTRAP 对话**：由 skill 根据 alsoAllow 自动生成
 - **MEMORY.md 和 memory/ 严格区分**：长期知识 vs 日期事件
 - **Gateway 重启后必须验证工具可用性**，不以重启完成作为结束
-- **记忆规则**：由 create_workspace.sh 自动生成独立文件 `memory-rules.md`，AGENTS.md 只保留引用
+- **记忆规则从 `references/evolve-rules.md` 读取后写入 AGENTS.md**，不手写

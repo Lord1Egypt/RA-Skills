@@ -1,39 +1,53 @@
-## Description: <br>
-每日财经推送专家版：当用户请求今日财经、财经日报、每日金融推送、设置财经推送或取消财经推送时，生成精简财经摘要、市场情绪指标，并可设置定时推送到飞书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily Finance Pro generates concise Chinese daily finance summaries with market sentiment indicators and optional scheduled delivery to Feishu.
 
-## Publisher: <br>
-[foxxc](https://clawhub.ai/user/foxxc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[foxxc](https://clawhub.ai/user/foxxc)
 
-## Use Case: <br>
-External users use this skill to generate concise daily finance digests from selected market-news sources and optionally schedule recurring Feishu delivery. It supports manual finance-news queries and cron-based push setup, preview, and cancellation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A recurring Feishu finance digest could be sent to the wrong channel, account, or local time if the schedule is not checked. <br>
-Mitigation: Confirm the Feishu target and UTC-adjusted cron schedule before enabling delivery, then run the documented preview command. <br>
-Risk: A scheduled finance digest can continue running after the user no longer wants it. <br>
-Mitigation: Keep the documented cron removal command available and use it to stop the recurring push. <br>
+## Use Case:
 
+External users and finance-focused teams use this skill to request daily market briefings or configure recurring Feishu pushes that summarize top finance news, market mood, and key data points.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and concise finance digest text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Digest output is intended to be concise for Feishu reading, with scheduled delivery controlled through OpenClaw cron commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scheduled Feishu summaries may be visible to channel members or workspace administrators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the Feishu destination and audience before enabling or changing a recurring push.
+
+Risk: The artifact has minor documentation ambiguity around summary length and item count.
+
+Mitigation: Confirm the desired report length and item count when configuring production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foxxc/skills/daily-finance-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style Chinese finance briefings with optional OpenClaw cron commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual reports include selected finance news and platform hot lists; scheduled Feishu pushes are concise summaries with market sentiment and a short item list.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

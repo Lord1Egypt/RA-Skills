@@ -1,40 +1,55 @@
-## Description: <br>
-Optimizes OpenClaw 4.2 memory-search settings to improve memory retrieval accuracy, diversity, freshness, and session synchronization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes OpenClaw 4.2 memory-search settings for retrieval quality, result count, MMR, temporal decay, and session sync thresholds.
 
-## Publisher: <br>
-[nicshliu](https://clawhub.ai/user/nicshliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicshliu](https://clawhub.ai/user/nicshliu)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect and tune local OpenClaw memory-search configuration when recall, freshness, MMR diversity, or session synchronization behavior needs adjustment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent OpenClaw memory-search configuration changes may affect local agent recall, freshness, and relevance behavior. <br>
-Mitigation: Back up ~/.openclaw/openclaw.json and review the exact diff or openclaw config commands before applying changes. <br>
-Risk: Restarting the OpenClaw gateway can interrupt active work. <br>
-Mitigation: Approve gateway restarts only when an interruption is acceptable. <br>
+## Use Case:
 
+Developers and engineers use this skill to review and tune OpenClaw memory-search configuration when memory retrieval is inaccurate, sparse, stale, or slow to sync.
 
-## Reference(s): <br>
-- [OpenClaw Memory Search default parameters](references/defaults.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose persistent local OpenClaw configuration changes for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent OpenClaw memory-search configuration changes can alter default agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up ~/.openclaw/openclaw.json and review any proposed configuration diff before applying changes.
+
+Risk: Gateway restart commands can interrupt active or shared sessions.
+
+Mitigation: Run restart commands only during a planned maintenance window or when no active work will be disrupted.
+
+## Reference(s):
+
+- [OpenClaw Memory Search default parameters](references/defaults.md)
+- [ClawHub skill page](https://clawhub.ai/nicshliu/skills/openclaw-memory-optimizer)
+- [Publisher profile](https://clawhub.ai/user/nicshliu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose persistent OpenClaw memory-search configuration changes and gateway restart commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Validate .browserslistrc files and browserslist config in package.json for syntax errors, deprecated browsers, redundant queries, and best practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate .browserslistrc files and browserslist config in package.json for syntax errors, deprecated browsers, redundant queries, and best practices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and frontend engineers use this skill to validate Browserslist configuration, check browser targeting, audit frontend build configs, and lint .browserslistrc or package.json browserslist entries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Coverage estimates use embedded browser usage data and may be stale or approximate.
+
+Mitigation: Treat coverage output as heuristic and confirm production browser targeting with current Browserslist data before changing support policy.
+
+Risk: The coverage command suggests an external npx command for more accurate results.
+
+Mitigation: Review the command and package behavior before running it in the target environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and frontend engineers use this skill to validate browserslist configuration files, package.json browserslist entries, browser coverage, deprecated targets, redundant queries, and syntax issues before relying on frontend build targets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports a suspicious release because a review helper may launch a nested agent with sandbox-bypass privileges. <br>
-Mitigation: Install only if you trust the publisher, disable YOLO-style review mode when available, and review targets and commands before allowing writes to GitHub or ClawHub accounts. <br>
+**Output Format:** [Plain text, JSON, or one-line summary output with shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Includes error, warning, and informational findings; strict mode can treat warnings as errors.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, plus validator text, JSON, or summary output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports text, json, and summary CLI output formats; strict mode can promote warnings to errors.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

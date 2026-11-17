@@ -1,0 +1,1 @@
+Pass the ticket-bound Remote Control thread from the hosted relay to the daemon during E2EE setup. This gives the daemon an authoritative route scope for rejecting cross-thread attach, send, interrupt, and close commands without exposing decrypted payloads to the relay.

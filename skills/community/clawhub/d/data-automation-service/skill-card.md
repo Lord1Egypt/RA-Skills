@@ -1,37 +1,48 @@
-## Description: <br>
-Helps an agent scope data cleaning, automation workflows, reporting, API integrations, implementation plans, and pricing for data automation service requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides data cleaning, automation workflow design, reporting, and API integration support for data automation services.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-External users and service providers use this skill to clarify data sources and requirements, design a data automation workflow, and prepare implementation pricing for data cleaning, reporting, and API integration work. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Future scripts, data-source connections, API keys, or integrations could expose sensitive business data if added without review. <br>
-Mitigation: Review any future executable code, data connections, API keys, and integrations separately before sharing real business data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Katrina-jpg/data-automation-service) <br>
+## Use Case:
 
+Developers, operators, and business users use this skill to scope data cleaning, report automation, data pipeline design, API integrations, and implementation plans for data automation work.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include clarifying questions, implementation plans, and pricing ranges.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The install command uses a mutable latest npm package without pinning or integrity checks.
+
+Mitigation: Review the install path, prefer a pinned and reviewed clawhub version or official trusted installation method, and avoid running the command in a privileged shell or sensitive environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katrina-jpg/skills/data-automation-service)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and short conversational prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include clarifying questions, implementation plans, and pricing ranges.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

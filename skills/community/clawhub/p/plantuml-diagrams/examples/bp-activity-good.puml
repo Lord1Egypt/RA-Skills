@@ -1,0 +1,17 @@
+@startuml
+title 订单创建流程 · 好实践示范
+start
+partition "校验阶段" {
+  :用户提交订单;
+  :校验库存;
+  :扣减库存;
+}
+partition "落库阶段" {
+  :创建订单;
+}
+partition "通知阶段" {
+  :发送消息;
+  :通知物流;
+}
+stop
+@enduml

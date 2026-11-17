@@ -1,42 +1,57 @@
-## Description: <br>
-IceCube Auto Content helps generate daily content drafts for AI diary posts, technical shares, industry updates, member-community posts, and local daily reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+IceCube Auto Content generates daily draft content templates for AI diary posts, technical shares, AI industry updates, Knowledge Planet posts, and related daily reports.
 
-## Publisher: <br>
-[ares521521-design](https://clawhub.ai/user/ares521521-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ares521521-design](https://clawhub.ai/user/ares521521-design)
 
-## Use Case: <br>
-Content operators, founders, and developers use this skill to create reusable daily marketing and community-content drafts for social platforms and member communities. It also provides shell scripts that write local Markdown drafts and status reports into an OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated marketing, news, and community-content drafts may be inaccurate, outdated, or unsuitable for posting without review. <br>
-Mitigation: Review and edit all generated content before publishing it to social or member-community platforms. <br>
-Risk: The included scripts write drafts and reports into local OpenClaw workspace memory and read local workspace status for reports. <br>
-Mitigation: Install only in workspaces where local draft creation and status reads are acceptable, and review workspace retention practices. <br>
-Risk: Automating social posting or replies would increase credential, approval, logging, and deletion-risk concerns. <br>
-Mitigation: Do not provide social-platform credentials or automate publishing unless explicit approval, audit logging, and retention controls are added. <br>
+## Use Case:
 
+Content operators, community builders, and developers use this skill to draft recurring social and community content, including AI diary entries, technical tutorials, industry updates, and member-only posts. It also provides local shell scripts for generating dated Markdown drafts, a daily report, and workspace health summaries.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ares521521-design/icecube-auto-content) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown drafts and shell-script console output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated drafts and reports to local OpenClaw workspace memory paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Drafts may reuse real work, user interactions, or private context in public-facing content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review and approval before publishing posts or replying to comments.
+
+Risk: Generated reports may include workspace status metadata.
+
+Mitigation: Review report contents before sharing and run the scripts only in workspaces where this metadata can be written locally.
+
+Risk: Local diagnostic scripts are under-disclosed in the public skill description.
+
+Mitigation: Inspect the bundled scripts before installation and execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ares521521-design/skills/icecube-auto-content)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown draft files and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates dated local Markdown drafts for content templates and reports when the bundled shell scripts are run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

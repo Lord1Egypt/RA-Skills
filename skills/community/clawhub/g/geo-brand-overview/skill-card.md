@@ -1,38 +1,54 @@
-## Description: <br>
-Monitor brand visibility across ChatGPT, Perplexity, Gemini, Grok, and Google AI by using GEOly AI to return AIGVR scores, mention counts, citations, and platform distribution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor your brand's AI visibility across ChatGPT, Perplexity, Gemini, Grok, and Google AI with AIGVR scores, mention counts, citations, and platform distribution from GEOly AI.
 
-## Publisher: <br>
-[geoly-geo](https://clawhub.ai/user/geoly-geo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[geoly-geo](https://clawhub.ai/user/geoly-geo)
 
-## Use Case: <br>
-Brand, marketing, and growth teams use this skill to request an AI visibility overview for a brand, including current AIGVR score, mentions, citations, platform distribution, and notable changes over a selected time range. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Brand visibility requests and related business context are sent to GEOly AI. <br>
-Mitigation: Avoid confidential unreleased brand, campaign, or competitive strategy details unless sharing them with GEOly AI is acceptable under the user's organization rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/geoly-geo/geo-brand-overview) <br>
-- [GEOly AI MCP server](https://app.geoly.ai/api/mcp) <br>
+## Use Case:
 
+External brand, marketing, and communications teams use this skill to request a current overview of brand visibility across AI answer platforms, including AIGVR score, mentions, citations, and platform distribution.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown summary with platform breakdown and alerts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes AIGVR score, brand mention counts, cited URLs, platform distribution, and alerts for changes greater than 10% when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Brand names, requested time ranges, and related analytics queries may be sent to GEOly AI's external MCP service.
+
+Mitigation: Use the skill only with brand and analytics data that is approved for sharing with GEOly AI.
+
+Risk: The skill depends on an external GEOly AI MCP service to fetch and display analytics results.
+
+Mitigation: Review returned summaries and cited URLs before using them in business decisions or external reporting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/geoly-geo/skills/geo-brand-overview)
+- [GEOly AI Publisher Profile](https://clawhub.ai/user/geoly-geo)
+- [GEOly AI MCP Endpoint](https://app.geoly.ai/api/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown summary with platform breakdown and alert callouts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AIGVR score, brand mention counts, cited URLs, platform distribution, and significant change alerts.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

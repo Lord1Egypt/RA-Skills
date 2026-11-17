@@ -1,41 +1,58 @@
-## Description: <br>
-智能申报表填写工具。将申报报告内容智能填入申请表对应位置，保持原文档格式，新内容格式统一。适用于各类 Word 表格申请表自动填写。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically fills Word table-based application forms by mapping report content into corresponding form sections while preserving the original document structure and applying uniform formatting to inserted text.
 
-## Publisher: <br>
-[fanqing203](https://clawhub.ai/user/fanqing203) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanqing203](https://clawhub.ai/user/fanqing203)
 
-## Use Case: <br>
-Users who prepare Word-based application forms can use this skill to transfer report content into matching form sections while preserving the original table layout and applying consistent formatting to inserted text. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit and save local Word documents through pywin32 automation. <br>
-Mitigation: Use copies of blank forms, choose a distinct output path, and manually review the generated document before relying on it. <br>
-Risk: Word automation depends on a compatible local Windows Office or WPS environment and may fail when files, table indexes, or ranges do not match the expected form structure. <br>
-Mitigation: Confirm the document paths, table structure, and generated formatting on a small test form before using the output in a workflow. <br>
+## Use Case:
 
+External users and document automation practitioners use this skill to fill structured Word application forms, especially medical, research, and project declaration forms, from prepared report content. It is intended for local Windows workflows that can run Python and Word automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanqing203/sanxin) <br>
-- [Publisher profile](https://clawhub.ai/user/fanqing203) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with Python usage examples and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance and Python-driven Word document updates; users choose source, form, output path, table index, and content mapping.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Opening user-supplied Word documents through local Office automation can expose users to unsafe or unexpected document behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only trusted documents, avoid unknown .doc and macro-enabled files, and review the generated output before using it.
+
+Risk: Automated form filling may overwrite or distort important application content if the form structure or row mapping is wrong.
+
+Mitigation: Keep backups of original documents, write to a distinct output path, and manually inspect filled forms for content and formatting accuracy.
+
+Risk: The runtime dependency on pywin32 and local Word automation can vary across Windows and Office environments.
+
+Mitigation: Pin and test pywin32 in the target environment before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fanqing203/skills/sanxin)
+- [fanqing203 publisher profile](https://clawhub.ai/user/fanqing203)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Python code and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce or update local Word document files when the Python automation script is executed by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

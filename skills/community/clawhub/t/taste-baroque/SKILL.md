@@ -1,17 +1,9 @@
----
-name: taste-baroque
-description: "Aesthetic skill for AI agents — Baroque visual language. Style tokens, anti-tokens, and creative direction distilled from 6,034 works spanning Caravaggio, Re..."
-source: ClawHub
-version: 1.0.1
-tags: []
-compatible: [claude-code, openai-agents, hermes-agent, any-llm]
----
-
-# Taste Baroque
-
 # Baroque — Aesthetic Movement
 
 > Light and shadow in their most dramatic form — Baroque art commands attention through emotional intensity, theatrical staging, and the interplay of darkness and illumination that makes the sacred feel physically present.
+
+> **Try it first →** [Live Demo — no account needed](https://inspiredhub.ai/demo?skill=baroque)
+
 
 ## Overview
 | Property | Value |
@@ -78,3 +70,23 @@ Luxurious, commanding presence — the Baroque brand does not whisper. Deep reds
 
 ---
 *Distilled by InspiredHub Taste Engine from 6034 works in the collection, spanning Caravaggio, Rembrandt, Rubens, Velázquez, and their contemporaries.*
+
+---
+
+---
+
+## Explore on InspiredHub
+
+- **[See this public Taste Skill in practice](https://inspiredhub.ai/demo?skill=baroque)** — a source-aware comparison using the public Skill.
+- **[Use this public Skill as an optional Personal Taste Brief reference](https://inspiredhub.ai/personal-taste-brief#clawhub/taste-baroque)** — add it only if you choose, then edit or remove it in your own working Brief.
+
+A public cultural Skill is not a diagnosis of your taste. Opening the Brief does not create a profile, save a draft, synchronize an agent, or send ClawHub account, installation, or download data to InspiredHub.
+
+*Powered by [InspiredHub](https://inspiredhub.ai/) — public cultural references and private, user-controlled working Briefs.*
+
+
+---
+
+Using this in a real project?
+We'd love to see what you're building.
+Drop us a note: contact@inspiredhub.ai

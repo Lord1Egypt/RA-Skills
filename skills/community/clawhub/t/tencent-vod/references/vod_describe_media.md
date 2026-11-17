@@ -191,32 +191,32 @@
 
 #### 查询单个媒体的所有信息
 ```bash
-python scripts/vod_describe_media.py --file-id 5285485487985271487
+python3 scripts/vod_describe_media.py --file-id 5285485487985271487
 ```
 
 #### 查询多个媒体（批量）
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 5285485487985271488 5285485487985271489
 ```
 
 #### 查询单个媒体的基础信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo
 ```
 
 #### JSON 格式输出
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --json
 ```
 
 #### dry-run 预览参数
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo \
     --dry-run
@@ -228,105 +228,105 @@ python scripts/vod_describe_media.py \
 
 #### 查询基础信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo
 ```
 
 #### 查询元信息（码率、分辨率、时长等）
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters metaData
 ```
 
 #### 查询转码信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters transcodeInfo
 ```
 
 #### 查询转动图信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters animatedGraphicsInfo
 ```
 
 #### 查询雪碧图信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters imageSpriteInfo
 ```
 
 #### 查询指定时间点截图信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters snapshotByTimeOffsetInfo
 ```
 
 #### 查询采样截图信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters sampleSnapshotInfo
 ```
 
 #### 查询打点信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters keyFrameDescInfo
 ```
 
 #### 查询自适应码流信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters adaptiveDynamicStreamingInfo
 ```
 
 #### 查询小程序审核信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters miniProgramReviewInfo
 ```
 
 #### 查询字幕信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters subtitleInfo
 ```
 
 #### 查询审核信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters reviewInfo
 ```
 
 #### 查询 MPS 智能媒资信息（智能分类、标签、高光等）
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters mpsAiMediaInfo
 ```
 
 #### 查询图片理解信息（物体检测、人脸识别、OCR 等）
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters imageUnderstandingInfo
 ```
 
 #### 查询所有智能信息（智能媒资+图片理解）
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters mpsAiMediaInfo imageUnderstandingInfo
 ```
@@ -337,28 +337,28 @@ python scripts/vod_describe_media.py \
 
 #### 查询基础信息和元信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo metaData
 ```
 
 #### 查询转码信息和自适应码流信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters transcodeInfo adaptiveDynamicStreamingInfo
 ```
 
 #### 查询所有截图相关信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters imageSpriteInfo snapshotByTimeOffsetInfo sampleSnapshotInfo
 ```
 
 #### 查询媒体基础信息、转码信息和审核信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo transcodeInfo reviewInfo
 ```
@@ -369,7 +369,7 @@ python scripts/vod_describe_media.py \
 
 #### 查询指定子应用的媒体信息
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --sub-app-id 1500000001
 ```
@@ -380,28 +380,28 @@ python scripts/vod_describe_media.py \
 
 #### 批量查询多个媒体并保存结果
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 5285485487985271488 \
     --json > media_infos.json
 ```
 
 #### 查询并提取播放地址
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters basicInfo --json | jq -r '.MediaInfoSet[0].BasicInfo.MediaUrl'
 ```
 
 #### 查询并提取转码输出地址列表
 ```bash
-python scripts/vod_describe_media.py \
+python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --filters transcodeInfo --json | jq -r '.MediaInfoSet[0].TranscodeInfo.TranscodeSet[].Url'
 ```
 
 #### 查询并判断媒体是否存在
 ```bash
-RESULT=$(python scripts/vod_describe_media.py \
+RESULT=$(python3 scripts/vod_describe_media.py \
     --file-id 5285485487985271487 \
     --json)
 NOT_EXIST=$(echo "$RESULT" | jq -r '.NotExistFileIdSet | length')

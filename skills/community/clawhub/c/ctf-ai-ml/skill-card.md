@@ -1,45 +1,57 @@
-## Description: <br>
-Provides AI and machine learning techniques for CTF challenges, including model analysis, adversarial examples, model extraction, prompt injection, membership inference, data poisoning, fine-tuning manipulation, neural network analysis, LoRA adapter exploitation, and LLM jailbreaking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides AI and machine learning techniques for CTF challenges, including model analysis, adversarial examples, model extraction, prompt injection, membership inference, training data poisoning, fine-tuning manipulation, neural network analysis, LoRA adapter exploitation, and LLM jailbreaking.
 
-## Publisher: <br>
-[gandli](https://clawhub.ai/user/gandli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gandli](https://clawhub.ai/user/gandli)
 
-## Use Case: <br>
-Developers, security learners, and authorized CTF or red-team participants use this skill as a quick reference for AI and machine learning challenge techniques. It helps agents generate command examples, Python snippets, and tactical guidance for analyzing or attacking ML models in lab environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives operational exploit guidance for AI and machine learning attack techniques. <br>
-Mitigation: Use it only for authorized CTF, lab, or internal red-team work, and do not apply the techniques to third-party systems without explicit permission. <br>
-Risk: Examples may target network services or external model APIs. <br>
-Mitigation: Review every network target before running examples and restrict testing to disposable, isolated environments. <br>
-Risk: Loading untrusted PyTorch model files can execute unsafe deserialization paths. <br>
-Mitigation: Avoid loading untrusted .pt files with torch.load; prefer safer formats such as safetensors when possible. <br>
+## Use Case:
 
+Developers and security practitioners use this skill in authorized CTF or lab settings to identify applicable AI/ML attack techniques, inspect challenge artifacts, and draft commands or code for model and LLM challenge workflows.
 
-## Reference(s): <br>
-- [CTF AI/ML skill source](artifact/SKILL.md) <br>
-- [Model attacks reference](artifact/model-attacks.md) <br>
-- [Adversarial ML reference](artifact/adversarial-ml.md) <br>
-- [LLM attacks reference](artifact/llm-attacks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown with inline shell commands and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include operational examples for authorized CTF, lab, or internal red-team use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes directly runnable offensive prompt-injection, jailbreak, filter-evasion, file-access, SSRF, unsafe model-loading, adversarial ML, and model extraction workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in authorized, disposable CTF or lab environments with no real secrets, no cloud credentials, constrained filesystem access, restricted network egress, and human review before running commands.
+
+Risk: Untrusted model files and broad package installation commands can expose the agent host to unsafe deserialization, supply-chain, or environment-contamination risks.
+
+Mitigation: Avoid loading untrusted .pt files on a normal agent host, and pin or install dependencies inside an isolated virtual environment or container.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gandli/skills/ctf-ai-ml)
+- [SKILL.md](artifact/SKILL.md)
+- [CTF AI/ML - Model Attacks](artifact/model-attacks.md)
+- [CTF AI/ML - Adversarial ML](artifact/adversarial-ml.md)
+- [CTF AI/ML - LLM Attacks](artifact/llm-attacks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose offensive AI/ML testing workflows that require human authorization, isolation, and review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

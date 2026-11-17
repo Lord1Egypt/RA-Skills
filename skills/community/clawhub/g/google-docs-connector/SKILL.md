@@ -1,7 +1,7 @@
 ---
 name: google-docs-connector
-description: "Google Docs Connector: Google Docs: create, edit, format documents. Tables, images, headers, page breaks. Export to PDF/DOCX/HTML. Share and manage permissions. Use when an agent needs google docs connector, document automation, report generation, template creation, collaborative editing, batch update, document id, requests through AgentPMT-hosted remote tool calls. Discovery terms: google docs connector, document automation, report generation, template creation, collaborative editing."
-version: 1.0.0
+description: "Google Docs Connector: Google Docs: create, edit, format documents. Tables, images, headers, page breaks. Export to PDF/DOCX/HTML. Share and manage permissions. Supports file renaming. Use when an agent needs google docs connector, document automation, report generation, template creation, collaborative editing, batch update, document id, requests through AgentPMT-hosted remote tool calls. Discovery terms: google docs connector, document automation, report generation, template creation."
+version: 1.0.3
 homepage: https://www.agentpmt.com/marketplace/google-docs-connector
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/google-docs-connector"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Google Docs Connector
 
 ## Freshness
-Last updated: `2026-06-24`.
+Last updated: `2026-11-08`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -17,240 +17,224 @@ If the current date is more than 7 days after the last updated date, reinstall t
 Comprehensive Google Docs management tool enabling AI agents to create edit format and share documents through OAuth authentication. Supports rich text formatting with bold italic underline strikethrough and custom fonts paragraph styling with alignment spacing and indentation table creation and manipulation image insertion from URLs headers footers and page breaks named ranges for bookmarking document export to multiple formats including PDF DOCX HTML and EPUB sharing and permission management and natural language document creation. Perfect for document automation report generation collaborative editing template creation and content management workflows.
 
 ## Product Instructions
-### Google Docs Connector
+### Google Docs
 
-Create, edit, format, and share Google Docs programmatically. Search for documents, insert text and images, build tables, apply formatting, export to multiple formats, and manage sharing permissions.
+Create, edit, format, and share Google Docs. Search for documents by name.
+
+#### Parameters
+
+- `action` (string, required): Action to perform. Use get_instructions for full details.
+- `document_id` (string): Google Docs document ID (from the document URL). Required for most actions except create_document, search_documents, quick_create.
+- `tab_id` (string): Target tab for tab-scoped updates. Get this from `get_document` → `tabs[].tab_id`. Indexed updates default to the first tab when omitted. `replace_text` applies to all tabs when omitted.
+- `title` (string): Document title. Required for: create_document
+- `query` (string): Search term for search_documents. Matches document names (contains match).
+- `max_results` (integer, default 20, range 1-100): Maximum results for search_documents
+- `text` (string): Text content for insert_text, create_document (initial content), replace_text, quick_create
+- `location` (integer): Zero-based UTF-16 code-unit index for insertions. Defaults to `1`, normally the beginning of a tab body.
+- `range_start` (integer): Zero-based, inclusive UTF-16 code-unit start index for format_text and create_named_range.
+- `range_end` (integer): Zero-based, exclusive UTF-16 code-unit end index for format_text and create_named_range.
+- `search_text` (string): Text to find. Required for: replace_text
+- `replace_with` (string): Replacement text. Required for: replace_text
+- `match_case` (boolean, default false): Case-sensitive search for replace_text
+- `requests` (array of objects): Raw batch update requests for batch_update
+- `text_style` (object): Styling: bold, italic, underline, strikethrough, font_family, font_size, foreground_color, background_color, link
+- `paragraph_style` (object): Styling: named_style_type (NORMAL_TEXT, TITLE, SUBTITLE, HEADING_1 through HEADING_6), alignment (START/CENTER/END/JUSTIFIED), line_spacing (100/150/200), indents
+- `rows` (integer, 1-100): Table rows for create_table
+- `columns` (integer, 1-20): Table columns for create_table
+- `table_data` (array of arrays): 2D string array of cell data for create_table
+- `image_url` (string): Publicly accessible image URL for insert_image
+- `width` (integer): Image width in pixels
+- `height` (integer): Image height in pixels
+- `export_format` (string): One of: pdf, docx, odt, rtf, txt, html, epub, zip
+- `share_with` (array of objects): Each with `email`, `role` (reader/writer/commenter), `type` (user/group/domain/anyone)
+- `send_notification` (boolean, default true): Send email when sharing
+- `email_message` (string): Custom sharing notification message
 
 #### Actions
 
-##### create_document
-Create a new Google Doc.
+##### `get_instructions`
+Returns this documentation.
 
-**Required:** `title`
-**Optional:** `text` (initial body content)
+##### `create_document`
+Creates a new Google Doc.
 
-```json
-{"action": "create_document", "title": "Meeting Notes", "text": "Agenda:\n1. Review\n2. Planning"}
-```
+Required: `title`
+Optional: `text` (initial content)
 
-##### get_document
-Retrieve a document's full content, text, word count, and structure.
+##### `get_document`
+Retrieves content and indexed structure from every document tab, including nested child tabs.
 
-**Required:** `document_id`
+Required: `document_id`
 
-```json
-{"action": "get_document", "document_id": "1a2b3c4d5e"}
-```
+The response includes a flattened `tabs` array in UI order. Each item contains `tab_id`, title/hierarchy metadata, extracted `text_content`, and the complete `document_tab` structure with Google-provided `startIndex` and `endIndex` values. Use those returned indices and the matching `tab_id` for subsequent updates.
 
-##### search_documents
-Search for Google Docs by name. Returns documents sorted by most recently modified. Omit `query` to list recent documents.
+Indices are zero-based UTF-16 code-unit offsets; `startIndex` is inclusive and `endIndex` is exclusive. Refetch the document after edits that can shift indices.
 
-**Optional:** `query` (name contains match), `max_results` (1-100, default 20)
+##### `search_documents`
+Searches for Google Docs by name. Returns documents sorted by most recently modified.
 
-```json
-{"action": "search_documents", "query": "Q1 report", "max_results": 5}
-```
+Optional: `query` (name contains match), `max_results`
 
-##### insert_text
-Insert text at a specific character position in a document.
+If `query` is omitted, lists recent Google Docs.
 
-**Required:** `document_id`, `text`
-**Optional:** `location` (1-based character index; default: 1)
+##### `insert_text`
+Inserts text at a specific position.
 
-```json
-{"action": "insert_text", "document_id": "1a2b3c4d5e", "text": "New paragraph\n", "location": 1}
-```
+Required: `document_id`, `text`
+Optional: `location` (default: 1), `tab_id`
 
-##### replace_text
-Find and replace all occurrences of text in a document.
+##### `replace_text`
+Finds and replaces all occurrences of text.
 
-**Required:** `document_id`, `search_text`, `replace_with`
-**Optional:** `match_case` (default: false)
+Required: `document_id`, `search_text`, `replace_with`
+Optional: `match_case`, `tab_id`. If `tab_id` is omitted, replacement applies to all tabs.
 
-```json
-{"action": "replace_text", "document_id": "1a2b3c4d5e", "search_text": "draft", "replace_with": "final", "match_case": true}
-```
+##### `format_text`
+Applies text and paragraph styling to a range.
 
-##### format_text
-Apply text and/or paragraph styling to a character range.
+Required: `document_id`, `range_start`, `range_end`, and at least one of `text_style` or `paragraph_style`
+Optional: `tab_id`
 
-**Required:** `document_id`, `range_start`, `range_end`, `text_style`
-**Optional:** `paragraph_style`
+##### `update_style`
+Alias for format_text.
 
-`text_style` options: `bold`, `italic`, `underline`, `strikethrough` (booleans), `font_family` (string), `font_size` (object with `magnitude` and `unit`), `foreground_color`, `background_color` (RGB objects with values 0-1), `link` (URL string)
+##### `insert_image`
+Inserts an inline image.
 
-`paragraph_style` options: `alignment` (START, CENTER, END, JUSTIFIED), `line_spacing` (100=single, 150=1.5x, 200=double), `indent_start`, `indent_end`, `indent_first_line` (objects with `magnitude` and `unit`)
+Required: `document_id`, `image_url`
+Optional: `location`, `width`, `height`, `tab_id`
 
-```json
-{"action": "format_text", "document_id": "1a2b3c4d5e", "range_start": 1, "range_end": 15, "text_style": {"bold": true, "font_size": {"magnitude": 18, "unit": "PT"}}, "paragraph_style": {"alignment": "CENTER"}}
-```
+##### `create_table`
+Inserts a table, optionally populated with data.
 
-##### update_style
-Alias for `format_text`. Accepts the same parameters.
+Required: `document_id`
+Optional: `rows`, `columns`, `table_data`, `location`, `tab_id`
 
-```json
-{"action": "update_style", "document_id": "1a2b3c4d5e", "range_start": 1, "range_end": 10, "text_style": {"italic": true}}
-```
+If `table_data` is provided, dimensions are inferred from it.
 
-##### insert_image
-Insert an inline image from a publicly accessible URL.
+##### `insert_page_break`
+Required: `document_id`
+Optional: `location`, `tab_id`
 
-**Required:** `document_id`, `image_url`
-**Optional:** `location` (1-based index; default: 1), `width` (pixels), `height` (pixels)
+##### `insert_section_break`
+Required: `document_id`
+Optional: `location`, `tab_id`
 
-```json
-{"action": "insert_image", "document_id": "1a2b3c4d5e", "image_url": "https://example.com/logo.png", "width": 200, "height": 100, "location": 1}
-```
+##### `create_header`
+Required: `document_id`
+Optional: `header_type` (DEFAULT, FIRST_PAGE, EVEN_PAGE, ODD_PAGE), `text`
 
-##### create_table
-Insert a table into a document. If `table_data` is provided, dimensions are inferred from it and cells are populated.
+##### `create_footer`
+Required: `document_id`
+Optional: `footer_type` (DEFAULT, FIRST_PAGE, EVEN_PAGE, ODD_PAGE)
 
-**Required:** `document_id`
-**Optional:** `rows` (1-100), `columns` (1-20), `table_data` (2D array of strings), `location` (1-based index; default: 1)
+##### `create_named_range`
+Required: `document_id`, `range_name`, `range_start`, `range_end`
+Optional: `tab_id`
 
-```json
-{"action": "create_table", "document_id": "1a2b3c4d5e", "table_data": [["Name", "Role"], ["Alice", "Engineer"], ["Bob", "Designer"]]}
-```
+##### `export_document`
+Exports to another format. Text formats return content directly; binary formats return base64.
 
-```json
-{"action": "create_table", "document_id": "1a2b3c4d5e", "rows": 3, "columns": 4, "location": 1}
-```
+Required: `document_id`, `export_format`
 
-##### insert_page_break
-Insert a page break at a specific position.
+##### `share_document`
+Sets sharing permissions via Google Drive.
 
-**Required:** `document_id`
-**Optional:** `location` (1-based index; default: 1)
+Required: `document_id`, `share_with`
+Optional: `send_notification`, `email_message`
 
-```json
-{"action": "insert_page_break", "document_id": "1a2b3c4d5e", "location": 50}
-```
+##### `get_permissions`
+Lists current sharing settings.
 
-##### insert_section_break
-Insert a section break at a specific position.
+Required: `document_id`
 
-**Required:** `document_id`
-**Optional:** `location` (1-based index; default: 1)
+##### `batch_update`
+Executes raw Google Docs API batch update requests for advanced operations.
 
-```json
-{"action": "insert_section_break", "document_id": "1a2b3c4d5e", "location": 100}
-```
+Required: `document_id`, `requests`
 
-##### create_header
-Add a header to the document.
+For a request containing a `range` or `location`, put `tabId` inside that raw range/location. The top-level `tab_id` parameter is not injected into raw requests.
 
-**Required:** `document_id`
-**Optional:** `header_type` (DEFAULT, FIRST_PAGE, EVEN_PAGE, ODD_PAGE; default: DEFAULT), `text` (header content)
+##### `quick_create`
+Creates a document from a natural language description.
+
+Required: `text`
+Optional: `title`
+
+#### Examples
 
 ```json
-{"action": "create_header", "document_id": "1a2b3c4d5e", "header_type": "DEFAULT", "text": "Company Report"}
+{"action":"search_documents","query":"meeting notes"}
 ```
-
-##### create_footer
-Add a footer to the document.
-
-**Required:** `document_id`
-**Optional:** `footer_type` (DEFAULT, FIRST_PAGE, EVEN_PAGE, ODD_PAGE; default: DEFAULT)
 
 ```json
-{"action": "create_footer", "document_id": "1a2b3c4d5e", "footer_type": "DEFAULT"}
+{"action":"search_documents","query":"Q1 report","max_results":5}
 ```
-
-##### create_named_range
-Create a named range (bookmark) spanning a character range in the document.
-
-**Required:** `document_id`, `range_name`, `range_start`, `range_end`
 
 ```json
-{"action": "create_named_range", "document_id": "1a2b3c4d5e", "range_name": "introduction", "range_start": 1, "range_end": 50}
+{"action":"create_document","title":"Meeting Notes","text":"Agenda:\n1. Review\n2. Planning"}
 ```
-
-##### export_document
-Export a document to another format. Text formats (txt, html) return content directly; binary formats (pdf, docx, etc.) return base64-encoded content.
-
-**Required:** `document_id`, `export_format`
-
-Supported formats: `pdf`, `docx`, `odt`, `rtf`, `txt`, `html`, `epub`, `zip`
 
 ```json
-{"action": "export_document", "document_id": "1a2b3c4d5e", "export_format": "pdf"}
+{"action":"get_document","document_id":"1a2b3c4d5e"}
 ```
-
-##### share_document
-Set sharing permissions on a document.
-
-**Required:** `document_id`, `share_with` (array of permission objects)
-
-Each permission object: `email` (for user/group), `role` (reader, writer, commenter), `type` (user, group, domain, anyone), `domain` (for domain-wide sharing)
-
-**Optional:** `send_notification` (default: true), `email_message` (custom notification text)
 
 ```json
-{"action": "share_document", "document_id": "1a2b3c4d5e", "share_with": [{"email": "colleague@example.com", "role": "writer", "type": "user"}], "send_notification": true, "email_message": "Please review this document."}
+{"action":"insert_text","document_id":"1a2b3c4d5e","tab_id":"t.abc123","text":"New paragraph\n","location":1}
 ```
-
-##### get_permissions
-List the current sharing permissions on a document.
-
-**Required:** `document_id`
 
 ```json
-{"action": "get_permissions", "document_id": "1a2b3c4d5e"}
+{"action":"replace_text","document_id":"1a2b3c4d5e","search_text":"draft","replace_with":"final"}
 ```
-
-##### batch_update
-Execute raw Google Docs API batch update requests for advanced operations not covered by other actions.
-
-**Required:** `document_id`, `requests` (array of Google Docs API request objects)
 
 ```json
-{"action": "batch_update", "document_id": "1a2b3c4d5e", "requests": [{"insertText": {"location": {"index": 1}, "text": "Hello World\n"}}]}
+{"action":"format_text","document_id":"1a2b3c4d5e","tab_id":"t.abc123","range_start":1,"range_end":10,"text_style":{"bold":true,"font_size":{"magnitude":14,"unit":"PT"}}}
 ```
 
-##### quick_create
-Create a document from a natural language description. If the description contains a phrase like `titled "..."` or `called "..."`, the title is extracted automatically.
-
-**Required:** `text` (description or content)
-**Optional:** `title`
+Apply a real heading style in a specific tab:
 
 ```json
-{"action": "quick_create", "text": "Create a project plan titled \"Q2 Launch Plan\" with sections for goals, timeline, and team assignments."}
+{"action":"format_text","document_id":"1a2b3c4d5e","tab_id":"t.abc123","range_start":1,"range_end":18,"paragraph_style":{"named_style_type":"HEADING_1"}}
 ```
 
-#### Common Workflows
+Create a real numbered list in a specific tab using indices returned by `get_document`:
 
-**Create and populate a document:**
-1. `create_document` with title and initial text
-2. `insert_text` to add more content at specific positions
-3. `format_text` to style headings, bold key terms, etc.
-4. `share_document` to distribute
+```json
+{"action":"batch_update","document_id":"1a2b3c4d5e","requests":[{"createParagraphBullets":{"range":{"tabId":"t.abc123","startIndex":20,"endIndex":58},"bulletPreset":"NUMBERED_DECIMAL_ALPHA_ROMAN"}}]}
+```
 
-**Build a report with a table:**
-1. `create_document` with the report title
-2. `insert_text` for the report body
-3. `create_table` with `table_data` for structured data
-4. `export_document` as PDF for distribution
+```json
+{"action":"export_document","document_id":"1a2b3c4d5e","export_format":"pdf"}
+```
 
-**Find and update a document:**
-1. `search_documents` to locate the document by name
-2. `get_document` to read current content
-3. `replace_text` or `insert_text` to make changes
-4. `format_text` to adjust styling
+```json
+{"action":"share_document","document_id":"1a2b3c4d5e","share_with":[{"email":"user@example.com","role":"writer","type":"user"}]}
+```
 
-#### Important Notes
-- The `document_id` is the alphanumeric string found in the Google Docs URL between `/d/` and `/edit`.
-- Character indices are 1-based. Use `get_document` to inspect the document structure and find the correct indices for insertions and formatting.
-- When using `format_text`, you must provide at least `text_style`. The `paragraph_style` is optional and applied to the same range.
-- The `update_style` action is identical to `format_text`.
-- For `create_table` with `table_data`, the number of rows and columns is inferred from the data array. You do not need to specify `rows` or `columns` separately.
-- Export formats `txt` and `html` return plain text content. All other formats return base64-encoded binary data.
-- Sharing uses Google Drive permissions. The `anyone` type makes the document publicly accessible with the specified role.
+#### Response
+
+All responses return `{"success": true, "output": { ... }}`. Output varies by action:
+
+- `search_documents` → `{"query": "...", "result_count": N, "documents": [{"document_id", "name", "modified_time", "web_view_link", ...}]}`
+- `create_document` → `{"document_id", "title", "revision_id"}`
+- `get_document` → `{"document_id", "title", "text_content", "word_count", "tab_count", "tabs", "index_semantics", "raw_document"}`
+- `replace_text` → `{"occurrences_changed": N}`
+- `export_document` → `{"content": "..."}` (text) or `{"content_base64": "..."}` (binary)
+- `share_document` → `{"permissions_added": N, "permissions": [...]}`
+- `get_permissions` → `{"permissions": [...]}`
+
+
+##### `rename_document`
+Renames the Google Doc file, not a document tab. Required: `document_id`, nonblank `new_title`. No optional fields. The document ID and URL remain unchanged.
+```json
+{"action":"rename_document","document_id":"DOC_ID","new_title":"Q4 Report"}
+```
 
 ## When To Use
 - Use this skill for `Google Docs Connector` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
 - Search and activation keywords: google docs connector, document automation, report generation, template creation, collaborative editing, batch update, document id, requests.
-- Supported action names: `batch_update`, `create_document`, `create_footer`, `create_header`, `create_named_range`, `create_table`, `export_document`, `format_text`, `get_document`, `get_permissions`, `insert_image`, `insert_page_break`, `insert_section_break`, `insert_text`, `quick_create`, `replace_text`, `search_documents`, `share_document`, `update_style`.
+- Supported action names: `batch_update`, `create_document`, `create_footer`, `create_from_markdown`, `create_header`, `create_named_range`, `create_tab`, `create_table`, `export_document`, `format_text`, `get_document`, `get_permissions`, `insert_image`, `insert_page_break`, `insert_section_break`, `insert_text`, `quick_create`, `rename_document`, `render_markdown`, `replace_text`, `replace_with_markdown`, `search_documents`, `share_document`, `update_style`.
 
 ## Use Cases
 - document automation
@@ -269,28 +253,33 @@ No categories or industry tags are published for this tool.
 
 ## Actions And Schema
 Complete generated action schema: `./schema.md`.
-Supported action count: `19`.
+Supported action count: `24`.
 x402 availability: not enabled for this product.
 
-- `batch_update` (action slug: `batch-update`): Execute raw Google Docs API batch update requests for advanced operations not covered by other actions. Price: `5` credits. Parameters: `document_id`, `requests`.
-- `create_document` (action slug: `create-document`): Create a new Google Doc. Price: `5` credits. Parameters: `text`, `title`.
+- `batch_update` (action slug: `batch-update`): Execute raw Google Docs API batch update requests. Put tabId inside each raw range or location when targeting a non-first tab. Price: `5` credits. Parameters: `document_id`, `requests`.
+- `create_document` (action slug: `create-document`): Create a new, empty Google Doc. Prefer create_from_markdown when the content has any structure. Price: `5` credits. Parameters: `text`, `title`.
 - `create_footer` (action slug: `create-footer`): Add a footer to the document. Price: `5` credits. Parameters: `document_id`, `footer_type`.
+- `create_from_markdown` (action slug: `create-from-markdown`): Create a new Google Doc from markdown. Drive converts the markdown into real Google Docs formatting (headings, lists, tables, bold/italic), so no index arithmetic is needed. Preferred way to author a new document. Price: `5` credits. Parameters: `markdown`, `parent_folder_id`, `title`.
 - `create_header` (action slug: `create-header`): Add a header to the document. Price: `5` credits. Parameters: `document_id`, `header_type`, `text`.
-- `create_named_range` (action slug: `create-named-range`): Create a named range (bookmark) spanning a character range in the document. Price: `5` credits. Parameters: `document_id`, `range_end`, `range_name`, `range_start`.
-- `create_table` (action slug: `create-table`): Insert a table into a document, optionally populated with data. If table_data is provided, dimensions are inferred from it. Price: `5` credits. Parameters: `columns`, `document_id`, `location`, `rows`, `table_data`.
-- `export_document` (action slug: `export-document`): Export a document to another format. Text formats (txt, html) return content directly; binary formats return base64-encoded content. Price: `5` credits. Parameters: `document_id`, `export_format`.
-- `format_text` (action slug: `format-text`): Apply text and/or paragraph styling to a character range in a document. Price: `5` credits. Parameters: `document_id`, `paragraph_style`, `range_end`, `range_start`, `text_style`.
-- `get_document` (action slug: `get-document`): Retrieve a document's full content, text, word count, and structure. Price: `5` credits. Parameters: `document_id`.
+- `create_named_range` (action slug: `create-named-range`): Create a named range (bookmark) spanning a character range in the document. Price: `5` credits. Parameters: `document_id`, `range_end`, `range_name`, `range_start`, `tab_id`.
+- `create_tab` (action slug: `create-tab`): Add a document tab and return its new tab ID, ready to pass to render_markdown or any indexed update. Uses the Docs addDocumentTab request. Price: `5` credits. Parameters: `document_id`, `icon_emoji`, `index`, `parent_tab_id`, `title`.
+- `create_table` (action slug: `create-table`): Insert a table into a document, optionally populated with data. If table_data is provided, dimensions are inferred from it. A markdown pipe table through render_markdown is usually simpler. Price: `5` credits. Parameters: `columns`, `document_id`, `location`, `rows`, `tab_id`, `table_data`.
+- `export_document` (action slug: `export-document`): Export a document to another format. Text formats (txt, html, md) return content directly; binary formats return base64-encoded content. Use md to read a document as markdown, revise it, and send it back through render_markdown or replace_with_markdown. Price: `5` credits. Parameters: `document_id`, `export_format`.
+- `format_text` (action slug: `format-text`): Apply text and/or paragraph styling to a zero-based UTF-16 range in a specific document tab. Provide at least one non-empty style object. Price: `5` credits. Parameters: `document_id`, `paragraph_style`, `range_end`, `range_start`, `tab_id`, `text_style`.
+- `get_document` (action slug: `get-document`): Retrieve content and indexed structure from every document tab, including nested child tabs. Price: `5` credits. Parameters: `document_id`.
 - `get_permissions` (action slug: `get-permissions`): List the current sharing permissions on a document. Price: `5` credits. Parameters: `document_id`.
-- `insert_image` (action slug: `insert-image`): Insert an inline image from a publicly accessible URL. Price: `5` credits. Parameters: `document_id`, `height`, `image_url`, `location`, `width`.
-- `insert_page_break` (action slug: `insert-page-break`): Insert a page break at a specific position. Price: `5` credits. Parameters: `document_id`, `location`.
-- `insert_section_break` (action slug: `insert-section-break`): Insert a section break at a specific position. Price: `5` credits. Parameters: `document_id`, `location`.
-- `insert_text` (action slug: `insert-text`): Insert text at a specific character position in a document. Price: `5` credits. Parameters: `document_id`, `location`, `text`.
-- `quick_create` (action slug: `quick-create`): Create a document from a natural language description. If the text contains 'titled "..."' or 'called "..."', the title is extracted automatically. Price: `5` credits. Parameters: `text`, `title`.
-- `replace_text` (action slug: `replace-text`): Find and replace all occurrences of text in a document. Price: `5` credits. Parameters: `document_id`, `match_case`, `replace_with`, `search_text`.
+- `insert_image` (action slug: `insert-image`): Insert an inline image from a publicly accessible URL. Price: `5` credits. Parameters: `document_id`, `height`, `image_url`, `location`, `tab_id`, `width`.
+- `insert_page_break` (action slug: `insert-page-break`): Insert a page break at a specific position. Price: `5` credits. Parameters: `document_id`, `location`, `tab_id`.
+- `insert_section_break` (action slug: `insert-section-break`): Insert a section break at a specific position. Price: `5` credits. Parameters: `document_id`, `location`, `tab_id`.
+- `insert_text` (action slug: `insert-text`): Insert text at a specific character position in a document. Price: `5` credits. Parameters: `document_id`, `location`, `tab_id`, `text`.
+- `quick_create` (action slug: `quick-create`): Create a document from a natural language description. Any markdown in the description becomes real formatting. If the text contains 'titled "..."' or 'called "..."', the title is extracted automatically. Price: `5` credits. Parameters: `text`, `title`.
+- `rename_document` (action slug: `rename-document`): Rename an existing Google Doc file without changing its document tabs or ID. Price: `5` credits. Parameters: `document_id`, `new_title`.
+- `render_markdown` (action slug: `render-markdown`): Render markdown into an existing document without destroying the rest of it. The tool computes every UTF-16 index, so the caller supplies only markdown and an insertion point. Preferred way to add formatted content to an existing document. Price: `5` credits. Parameters: `document_id`, `location`, `markdown`, `range_end`, `range_start`, `tab_id`.
+- `replace_text` (action slug: `replace-text`): Find and replace text in one tab, or in all tabs when tab_id is omitted. Price: `5` credits. Parameters: `document_id`, `match_case`, `replace_with`, `search_text`, `tab_id`.
+- `replace_with_markdown` (action slug: `replace-with-markdown`): Replace an existing document's entire body from markdown, keeping its document ID, URL and sharing. Destructive: prefer render_markdown unless a full-body rewrite is intended. Price: `5` credits. Parameters: `confirm_replace`, `document_id`, `markdown`, `new_title`.
 - `search_documents` (action slug: `search-documents`): Search for Google Docs by name. Returns documents sorted by most recently modified. Omit query to list recent documents. Price: `5` credits. Parameters: `max_results`, `query`.
 - `share_document` (action slug: `share-document`): Set sharing permissions on a document via Google Drive. Price: `5` credits. Parameters: `document_id`, `email_message`, `send_notification`, `share_with`.
-- `update_style` (action slug: `update-style`): Alias for format_text. Apply text and/or paragraph styling to a character range. Price: `5` credits. Parameters: `document_id`, `paragraph_style`, `range_end`, `range_start`, `text_style`.
+- `update_style` (action slug: `update-style`): Alias for format_text. Apply text and/or paragraph styling to a zero-based UTF-16 range in a specific tab. Price: `5` credits. Parameters: `document_id`, `paragraph_style`, `range_end`, `range_start`, `tab_id`, `text_style`.
 
 ## Live Schema And Examples
 Use the compact schema above for ordinary calls. Before a new production integration, or whenever parameters, enum values, nested objects, outputs, or examples are unclear, fetch live details first.

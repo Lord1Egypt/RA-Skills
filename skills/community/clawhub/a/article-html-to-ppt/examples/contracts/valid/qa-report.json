@@ -1,0 +1,22 @@
+{
+  "schema_version": "2.0",
+  "deck_id": "deck-001",
+  "ppt_ir_ref": "ppt-ir.json",
+  "profile": "standard",
+  "status": "warning",
+  "issues": [
+    {
+      "issue_code": "READBACK_UNAVAILABLE",
+      "slide_id": "S02",
+      "object_id": "obj-1",
+      "severity": "warning",
+      "category": "verification",
+      "evidence": {"renderer": "none"},
+      "message": "No renderer was available.",
+      "repair_action": "Run render/readback before claiming final.",
+      "repair_status": "pending",
+      "recheck_status": "not_run"
+    }
+  ],
+  "metrics": {"qa_warning_count": 1, "qa_error_count": 0}
+}

@@ -1,40 +1,56 @@
-## Description: <br>
-mp3-list-to-video helps an agent combine MP3 files from a playlist folder into an MP4 video, with either a black background or a track-list menu that highlights the current song and can include a rotating vinyl animation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+mp3-list-to-video helps agents merge MP3 files from a folder into an MP4 playlist video with either a black background or a tracklist menu with current-track highlighting and optional rotating vinyl visual effects.
 
-## Publisher: <br>
-[ecojust](https://clawhub.ai/user/ecojust) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ecojust](https://clawhub.ai/user/ecojust)
 
-## Use Case: <br>
-External users, creators, and developers use this skill to turn ordered local MP3 playlists into shareable MP4 compilation videos and menu-highlight variants for review or publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create or overwrite media and temporary files in configured output locations. <br>
-Mitigation: Run it in a dedicated workspace and set explicit playlist, output, and temp paths before execution. <br>
-Risk: The skill invokes local Python scripts and ffmpeg/ffprobe to process local MP3 files. <br>
-Mitigation: Use trusted local audio files and a trusted FFmpeg installation, then review the generated preview frames and output paths. <br>
+## Use Case:
 
+Developers and creators use this skill to batch-convert ordered MP3 playlists into MP4 files, optionally adding a readable song menu, current-track highlighting, preview frames, and vinyl-style motion for music compilation videos.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ecojust/mp3-list-to-video) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python script usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts can create local MP4 videos, preview PNGs, ASS subtitle layers, timeline JSON, and temporary rendering files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: FFmpeg commands may overwrite existing output or temporary files when paths are reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose output and temp paths deliberately and review generated file locations before execution.
+
+Risk: Local processing can consume CPU, disk space, and create timeline files containing playlist filenames.
+
+Mitigation: Run the skill only on media files intended for local processing and avoid sensitive filenames when generated artifacts may be shared.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ecojust/skills/mp3-list-to-video)
+- [Skill instructions](artifact/SKILL.md)
+- [MP3 merge script](artifact/scripts/merge_playlist.py)
+- [Playlist menu script](artifact/scripts/add_playlist_menu.py)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Files, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated local media files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces MP4 playlist videos plus optional ASS subtitles, timeline JSON, PNG preview frames, frame plans, and intermediate visual assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

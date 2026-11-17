@@ -1,40 +1,54 @@
-## Description: <br>
-Analyzes user-provided images with the Minimax Coding Plan VLM API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes images with the Minimax Coding Plan VLM API using an API key provided in MINIMAX_API_KEY.
 
-## Publisher: <br>
-[xbos1314](https://clawhub.ai/user/xbos1314) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbos1314](https://clawhub.ai/user/xbos1314)
 
-## Use Case: <br>
-Developers and agents use this skill to ask questions about image URLs, local image files, or base64 image data and receive natural-language visual analysis from Minimax. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image URLs, local image contents, base64 image data, and prompts are sent to the Minimax vision API. <br>
-Mitigation: Use the skill only with data approved for Minimax processing, avoid confidential or personal images unless the data handling terms are acceptable, and prefer a dedicated Minimax API key. <br>
-Risk: Local image paths are read from disk and converted to base64 before API submission. <br>
-Mitigation: Review the image path before execution and pass only the intended file. <br>
+## Use Case:
 
+Developers and external users can use this skill to ask questions about images supplied as URLs, local files, or Base64 data and receive a text answer from Minimax.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xbos1314/understand-image-minimax) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text analysis printed to stdout, with errors printed to stderr] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and the MINIMAX_API_KEY environment variable; supports JPEG, PNG, GIF, WebP, HTTP(S) URLs, local paths, and data URL base64 inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can fetch arbitrary image URLs or read local paths and send the resulting image data to Minimax without explicit upload confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images approved for third-party processing, avoid sensitive local paths and untrusted URLs, and run it in a restricted environment with a dedicated MINIMAX_API_KEY.
+
+Risk: The security summary notes missing image validation, URL/IP protections, and file or response size limits.
+
+Mitigation: Review inputs before execution and add validation, URL/IP protections, and size limits before broader deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xbos1314/skills/understand-image-minimax)
+- [Minimax API host](https://api.minimaxi.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Analysis, Shell commands]
+
+**Output Format:** [Plain text response with command-line status and errors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and MINIMAX_API_KEY; supports JPEG, PNG, GIF, WebP, URL, local file path, and Base64 data URL inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Shared persistent memory for AI agents, available hosted or self-deployed, with Space-based sharing across agents and teams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ourmem gives AI agents shared persistent memory across sessions, devices, agents, and teams, available as a hosted or self-deployed service.
 
-## Publisher: <br>
-[yhyyz](https://clawhub.ai/user/yhyyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhyyz](https://clawhub.ai/user/yhyyz)
 
-## Use Case: <br>
-External users, developers, and teams use Ourmem to install and operate persistent memory for agents, store and search durable facts, import memory files, and share selected memories across Spaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory can retain sensitive user, project, or organizational information. <br>
-Mitigation: Avoid storing secrets, regulated data, or short-lived debugging context; review memories before import or sharing. <br>
-Risk: Long-lived OMEM_API_KEY or apiKey values can grant access to the associated memory space. <br>
-Mitigation: Keep keys out of source control, store configuration files with tight local permissions, and rotate exposed keys. <br>
-Risk: Hosted or shared Spaces may expose memories beyond the original agent or session. <br>
-Mitigation: Prefer self-hosting for sensitive work and confirm recipients before sharing memories or adding members to Spaces. <br>
+## Use Case:
 
+Developers and external users use this skill to set up and operate persistent agent memory, including hosted or self-hosted deployment, memory storage and search, imports, sharing through Spaces, analytics, and platform-specific plugin configuration.
 
-## Reference(s): <br>
-- [Ourmem ClawHub listing](https://clawhub.ai/yhyyz/ourmem) <br>
-- [ourmem API Quick Reference](references/api-quick-ref.md) <br>
-- [ourmem Hosted Setup Guide](references/hosted-setup.md) <br>
-- [ourmem Self-Hosted Setup Guide](references/selfhost-setup.md) <br>
-- [Hosted ourmem API](https://api.ourmem.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration snippets, and curl/API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API key handling, platform-specific setup steps, and verification commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill handles credentials for hosted or self-hosted memory services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted endpoints, treat API keys as secrets, avoid showing full keys in chat, and verify authentication before storing memories.
+
+Risk: Memory import and sharing workflows can expose or propagate user data with too much automatic authority.
+
+Mitigation: Preview files before import, confirm the intended recipient or Space before sharing, and avoid using another user's API key as a sharing identifier.
+
+Risk: Installation paths may run packages, Docker images, release binaries, or workspace configuration edits.
+
+Mitigation: Pin or verify packages, Docker images, and release binaries before execution, and review configuration changes before restart.
+
+## Reference(s):
+
+- [ourmem API Quick Reference](references/api-quick-ref.md)
+- [ourmem Hosted Setup Guide](references/hosted-setup.md)
+- [ourmem Self-Hosted Setup Guide](references/selfhost-setup.md)
+- [ourmem ClawHub skill page](https://clawhub.ai/yhyyz/skills/ourmem)
+- [ourmem hosted API](https://api.ourmem.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Markdown]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose installing packages, editing agent configuration files, calling hosted or self-hosted APIs, importing local files, and verifying memory round trips.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,36 +1,47 @@
-## Description: <br>
-Fix AI writing patterns that create repetitive and robotic content <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fix AI writing patterns that create repetitive and robotic content.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users, employees, and developers use this skill to revise AI-generated prose for more varied paragraph openings, sentence rhythm, evidence-backed claims, concise wording, and consistent voice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated edits may introduce inaccurate numbers, evidence, or claims if the source material does not support them. <br>
-Mitigation: Review revised text against the user's actual source material before publishing or replacing original content. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+Writers, editors, and agent users use this skill to review drafts for repetitive AI writing patterns, weak rhythm, vague claims, overused transitions, and inconsistent voice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The writing checklist may steer content toward stylistic preferences that do not match every brand voice or document purpose.
+
+Mitigation: Review recommendations against the intended audience, tone, and editorial standards before applying them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text editing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides writing revision heuristics and does not request tool use, credentials, network access, or code execution.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text writing feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, external tools, or persistent changes are requested by the artifact.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

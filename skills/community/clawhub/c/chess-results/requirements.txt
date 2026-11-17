@@ -1,0 +1,4 @@
+mcp>=1.10
+requests>=2.31
+beautifulsoup4>=4.12
+keyring>=24; sys_platform != "darwin"

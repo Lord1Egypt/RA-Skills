@@ -1,46 +1,60 @@
-## Description: <br>
-Automatically collects financial-news inputs, classifies industry trends, analyzes related stocks, and generates stock and industry analysis reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes financial news, industry trends, selected stocks, technical indicators, and sentiment to produce stock-industry analysis reports.
 
-## Publisher: <br>
-[ligo-gao](https://clawhub.ai/user/ligo-gao) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ligo-gao](https://clawhub.ai/user/ligo-gao)
 
-## Use Case: <br>
-External users and developers use this skill to run local stock and industry analysis workflows that summarize financial news, identify hot industries and companies, calculate simple technical indicators, and produce report files for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports can present mock or randomized financial data as real-looking stock analysis. <br>
-Mitigation: Verify each data source before relying on a report, and clearly label or replace mock/static news and randomized indicators before use. <br>
-Risk: Reports include stock scores and buy, watch, or avoid guidance that could be mistaken for investment advice. <br>
-Mitigation: Treat reports as informational drafts only and require human financial review before making trading or investment decisions. <br>
-Risk: Recurring execution can accumulate SQLite records and report files locally. <br>
-Mitigation: Enable scheduled runs only when recurring local analysis is intended, and periodically review the retained database and report files. <br>
+## Use Case:
 
+Developers and analysts can use this skill to generate research-oriented summaries of financial news, industry heat, sentiment, technical indicators, stock scores, and watchlist-style suggestions. Its output should be treated as informational analysis, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ligo-gao/stock-industry-analyzer) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
-- [Configuration](artifact/config.json) <br>
-- [Requirements](artifact/requirements.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain-text financial analysis reports with command examples and local configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write SQLite records and report text files under the local data directory when run in persistent mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and config.json) <br>
+Risk: Reports may include fabricated or randomized market data while presenting trading-style suggestions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after verifying live data provenance, clearly label simulated data, and do not rely on generated reports for trading decisions.
+
+Risk: Automated or scheduled runs can repeatedly persist unverified analysis and reports.
+
+Mitigation: Avoid cron automation until outputs are trustworthy, and review generated reports before distribution or downstream use.
+
+Risk: The skill stores news, stock records, logs, and reports locally for extended periods.
+
+Mitigation: Review local retention settings and disable or shorten long-term storage when report history or source data should not be retained.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ligo-gao/skills/stock-industry-analyzer)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Configuration reference](artifact/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-text and Markdown-style reports with tables, scores, links, and inline command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write reports and analysis history to local SQLite tables and report files when run in persistent mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact README, artifact config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Build a LinkedIn content system for thought leadership. Use when someone needs to establish authority, attract inbound leads, or build a consistent content presence. Covers positioning, content pillars, formats, and posting rhythm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds a LinkedIn content system for thought leadership, including positioning, content pillars, formats, and posting rhythm for people seeking authority, inbound leads, or a consistent content presence.
 
-## Publisher: <br>
-[rezcarbon](https://clawhub.ai/user/rezcarbon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rezcarbon](https://clawhub.ai/user/rezcarbon)
 
-## Use Case: <br>
-External users and professionals use this skill to build a LinkedIn authority strategy, including positioning, content pillars, post formats, posting rhythm, and engagement planning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated LinkedIn strategy or posts may be inaccurate, unsuitable for the user's brand, or misleading if published without review. <br>
-Mitigation: Review and edit generated strategy and post content before publishing. <br>
-Risk: The skill contains an optional promotional strategy-call link. <br>
-Mitigation: Treat the brianrwagner.com link as optional promotion rather than required skill behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/rezcarbon/brw-linkedin-authority-builder-1-0-0) <br>
-- [Author website linked by the skill](https://brianrwagner.com) <br>
+## Use Case:
 
+External professionals, founders, and marketers use this skill to create a LinkedIn authority-building strategy with clear positioning, content pillars, post formats, publishing rhythm, and engagement guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown strategy document with templates and structured planning sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces positioning, content pillars, a weekly schedule, post ideas, and an engagement plan.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/_meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may provide confidential business details while developing positioning, audience, or lead-generation strategy.
+
+Mitigation: Share only the business context needed for the content strategy and avoid unnecessary confidential details.
+
+Risk: The skill includes an external booking link that is promotional rather than required for operation.
+
+Mitigation: Treat the booking link as optional and review it separately before engaging with the publisher.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rezcarbon/skills/brw-linkedin-authority-builder-1-0-0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown strategy document with headings, bullets, and reusable content templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include positioning, content pillars, a weekly schedule, initial post ideas, and an engagement plan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

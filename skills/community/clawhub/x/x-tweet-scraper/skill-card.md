@@ -1,44 +1,63 @@
-## Description: <br>
-X.com (Twitter) 全量推文采集技能。支持三种采集方案：自动搜索模式、GraphQL API 模式、DOM 滚动模式。Complete X.com tweet scraping skill with three strategies: auto-search, GraphQL API, and DOM scrolling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes public X.com (Twitter) tweet history using three Playwright-based strategies: auto-search, browser-session GraphQL access, and DOM scrolling.
 
-## Publisher: <br>
-[kooui](https://clawhub.ai/user/kooui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kooui](https://clawhub.ai/user/kooui)
 
-## Use Case: <br>
-Developers and social media analysts use this skill to collect public tweet history from X.com accounts through Playwright-based auto-search, GraphQL, or DOM scrolling workflows for archiving and analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported live X.com cookies can expose account access if stored or shared carelessly. <br>
-Mitigation: Use a dedicated low-privilege account, keep cookie files out of version control and shared folders, and delete or rotate cookies after use. <br>
-Risk: Authenticated X.com scraping may trigger platform enforcement, rate limits, or account restrictions. <br>
-Mitigation: Install and run the skill only when account-backed X.com scraping is intentional, expect rate limits, and stop or reduce activity if X.com applies limits. <br>
-Risk: Collected tweet JSON can contain sensitive or valuable datasets depending on the target and seed files. <br>
-Mitigation: Review the scripts and target accounts before execution, and avoid pointing the skill at valuable accounts or sensitive datasets without an appropriate review. <br>
+## Use Case:
 
+Developers and analysts use this skill to configure and run Playwright-based X.com collection workflows for public tweet archives. It supports local JSON collection for analysis, backup, or migration workflows.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/kooui/skills/x-tweet-scraper) <br>
-- [Workflow reference](references/workflow.md) <br>
-- [English README](README_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON files] <br>
-**Output Format:** [Markdown instructions with Python and PowerShell command examples, plus JSON tweet output files from the bundled scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.10+, Playwright with Chromium, exported X.com cookies, and a target username.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The workflow requires exporting live X.com login cookies, which can expose an authenticated session if mishandled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the cookie file like a password: keep it out of source control, restrict local file access, delete it after use, and consider revoking the browser session afterward.
+
+Risk: Authenticated scraping can affect the account used for collection and may not be appropriate for a primary account.
+
+Mitigation: Use a dedicated low-risk account or isolated browser profile for collection.
+
+Risk: The scripts can overwrite or merge into seed JSON files during collection.
+
+Mitigation: Back up seed JSON files before running the scripts or using auto-merge behavior.
+
+Risk: The workflow installs and runs browser automation dependencies locally.
+
+Mitigation: Install dependencies in an isolated environment and pin versions where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kooui/skills/x-tweet-scraper)
+- [Workflow reference](references/workflow.md)
+- [X.com](https://x.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with Python scripts and local JSON output files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces tweet datasets, ID lists, cursor/checkpoint state, and optional merged seed JSON files under a username-specific data directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

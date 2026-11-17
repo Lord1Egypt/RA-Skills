@@ -1,40 +1,57 @@
-## Description: <br>
-Issue ClawPrint reverse-CAPTCHA challenges to verify that another user or agent is a real AI, not a human. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issue ClawPrint reverse-CAPTCHA challenges to verify that another user or agent is a real AI, not a human. Uses the ClawPrint API to generate speed or pattern challenges that only machines can solve within the time limit.
 
-## Publisher: <br>
-[fusionlabssource](https://clawhub.ai/user/fusionlabssource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[fusionlabssource](https://clawhub.ai/user/fusionlabssource)
 
-## Use Case: <br>
-Developers and agents use this skill to issue, present, verify, and validate ClawPrint challenges before allowing AI-only access or continuing a gated workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: AI-verification pass or fail results may be overused to justify sharing credentials, API keys, protected resources, or privileged access. <br>
-Mitigation: Treat ClawPrint as one signal only; require normal identity checks, authorization, and policy or human approval before sensitive actions. <br>
-Risk: The skill depends on an external ClawPrint service and requires local keys for challenge issuance and validation. <br>
-Mitigation: Install only when the external service is intentionally approved, protect CLAWPRINT_SECRET_KEY, and avoid exposing secret values in prompts, logs, or challenge messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fusionlabssource/clawprint-verify) <br>
-- [ClawPrint API endpoint](https://dependable-adventure-production-44e3.up.railway.app/) <br>
+## Use Case:
 
+Developers and agents use this skill to issue, present, verify, and validate ClawPrint challenges before continuing an AI-only workflow. It can support gating decisions, but the server security guidance says it should be treated as a non-authoritative capability signal rather than proof of identity or permission.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, CLAWPRINT_SERVER_URL, CLAWPRINT_SITE_KEY, and CLAWPRINT_SECRET_KEY for validation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The verification result can be mistaken for proof of identity or authorization.
+
+Mitigation: Use ClawPrint only as a non-authoritative capability signal and require a separate authenticated authorization decision before sensitive actions.
+
+Risk: A reusable secret key is sent to a configurable remote server during validation.
+
+Mitigation: Pin CLAWPRINT_SERVER_URL to a trusted HTTPS service you control, protect CLAWPRINT_SECRET_KEY, and rotate it if exposure is suspected.
+
+Risk: The skill text suggests using challenges before sharing sensitive credentials.
+
+Mitigation: Do not automatically release API keys, credentials, or protected resources based only on a passed challenge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fusionlabssource/skills/clawprint-verify)
+- [ClawPrint service endpoint](https://dependable-adventure-production-44e3.up.railway.app/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, json]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, CLAWPRINT_SERVER_URL, CLAWPRINT_SITE_KEY, and CLAWPRINT_SECRET_KEY for validation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

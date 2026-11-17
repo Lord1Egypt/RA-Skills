@@ -1,43 +1,61 @@
-## Description: <br>
-Generates Chinese AI, technology, and global expansion briefings from broad web research with source filtering, ranking, and publishable summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality Chinese information briefings for AI, technology, and global expansion topics.
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Content operators, founders, investors, and internal teams use this skill to turn current AI, technology, and overseas expansion research into Chinese daily digests, weekly deep briefings, and platform-ready copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [No-key fallback sources](artifact/references-no-key-sources.md) <br>
-- [Query patterns for AI, technology, and global expansion briefings](artifact/references-query-patterns.md) <br>
-- [Scoring, de-duplication, and publishable formatting](artifact/references-scoring-and-format.md) <br>
-- [arXiv recent AI papers](https://arxiv.org/list/cs.AI/recent) <br>
-- [GitHub Trending](https://github.com/trending) <br>
-- [Hacker News](https://news.ycombinator.com/) <br>
-- [Hugging Face trending models](https://huggingface.co/models?sort=trending) <br>
+External users, developers, operators, founders, investors, and content teams use this skill to produce Chinese daily news digests, weekly deep briefings, trend tracking, internal notes, and publishable summaries for AI, technology, and global expansion topics.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown briefing with source links and optional publishable copy variants] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May note when output is based on curated public sources instead of broad web search.] <br>
+Global
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence release.version) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill may inspect logged-in, private, internal, or subscription pages when browser snapshots are used for research.
+
+Mitigation: Prefer public web_search and web_fetch sources; use non-public pages only when the user explicitly chooses the exact page and is comfortable with its contents being summarized or reused.
+
+Risk: Recurring reminders could repeatedly run broad research and summarization with more access or scope than intended.
+
+Mitigation: Disable recurring reminders by default, or tightly scope them to public sources, a clear topic, cadence, and output format.
+
+## Reference(s):
+
+- [Skill source](artifact/SKILL.md)
+- [Query patterns](artifact/references-query-patterns.md)
+- [Scoring, de-duplication, and publishable formatting](artifact/references-scoring-and-format.md)
+- [No-key fallback sources](artifact/references-no-key-sources.md)
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/ai-high-quality-briefing)
+- [arXiv AI recent papers](https://arxiv.org/list/cs.AI/recent)
+- [GitHub Trending](https://github.com/trending)
+- [Hugging Face trending models](https://huggingface.co/models?sort=trending)
+- [Hacker News](https://news.ycombinator.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Chinese Markdown briefing with source links and optional publishable copy variants]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include social, public-account, or internal-briefing variants; may note limited source coverage when broad search is unavailable.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

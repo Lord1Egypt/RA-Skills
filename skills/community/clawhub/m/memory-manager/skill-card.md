@@ -1,42 +1,61 @@
-## Description: <br>
-Local memory management for agents with compression detection, snapshots, semantic search, historical memory search, and memory usage tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Memory Manager provides local memory management for agents, including compression detection, snapshots, typed memory organization, semantic search, and usage statistics.
 
-## Publisher: <br>
-[marmikcfc](https://clawhub.ai/user/marmikcfc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[marmikcfc](https://clawhub.ai/user/marmikcfc)
 
-## Use Case: <br>
-Developers and agent operators use Memory Manager to create a local three-tier memory workspace, detect compression risk, snapshot important context, organize memory files, and retrieve prior work by memory type. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Memory organization and categorization can move, copy, or append local memory content. <br>
-Mitigation: Review target memory files before running organize.sh, snapshot.sh, or categorize.sh, and keep backups for content that should not be changed automatically. <br>
-Risk: Snapshots and memory files may preserve sensitive local context if secrets are stored in the workspace memory directory. <br>
-Mitigation: Avoid storing secrets in memory files, and periodically review snapshots and legacy folders for sensitive or obsolete content. <br>
+## Use Case:
 
+Developers and agent operators use this skill to organize local agent memory into episodic, semantic, and procedural files, monitor compression risk, create recovery snapshots, and search prior context.
 
-## Reference(s): <br>
-- [Memory Manager ClawHub Page](https://clawhub.ai/marmikcfc/memory-manager) <br>
-- [README](artifact/README.md) <br>
-- [Moltbook Agent Skills Community](https://www.moltbook.com/m/agentskills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Shell command output and Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates, moves, copies, appends, searches, and summarizes local memory files under the configured OpenClaw workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Shell scripts can move, copy, or rewrite local memory files under the configured OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Back up the memory directory before use and confirm OPENCLAW_WORKSPACE points to the intended workspace before running organize.sh, categorize.sh, or snapshot.sh.
+
+Risk: Weak path controls make untrusted file paths or category names risky when using categorize.sh.
+
+Mitigation: Use only trusted local source files and simple expected names when categorizing memory content.
+
+Risk: Snapshots may contain sensitive memory content copied from episodic, semantic, and procedural files.
+
+Mitigation: Treat snapshot Markdown files as sensitive, review them before sharing, and keep them out of public repositories or automated uploads.
+
+Risk: Automatic heartbeat execution can repeatedly run file-changing memory operations before the skill is reviewed.
+
+Mitigation: Review the scripts and run them manually first; add them to an automated heartbeat only after confirming the behavior is acceptable.
+
+## Reference(s):
+
+- [ClawHub Memory Manager listing](https://clawhub.ai/marmikcfc/skills/memory-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Terminal text and Markdown files with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local memory directories, state files, and snapshot Markdown files under the configured OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

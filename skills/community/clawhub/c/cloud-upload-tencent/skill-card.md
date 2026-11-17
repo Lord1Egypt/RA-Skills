@@ -1,40 +1,57 @@
-## Description: <br>
-腾讯云对象存储（COS）上传工具。将本地文件上传至腾讯云 COS，生成下载链接和图片预览。适用于备份文件、生成公开分享链接、存储静态资源。跨平台支持（macOS/Linux/Windows），支持 CLI 和 Python 两种方式。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through uploading local files to Tencent Cloud Object Storage (COS), generating download links, and preparing image or document preview links across macOS, Linux, and Windows.
 
-## Publisher: <br>
-[realorange1994](https://clawhub.ai/user/realorange1994) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realorange1994](https://clawhub.ai/user/realorange1994)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Tencent Cloud Object Storage uploads, choose CLI or Python upload paths across macOS, Linux, and Windows, and produce download or preview links for uploaded files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A generic request to share or back up content could cause an unintended Tencent COS upload. <br>
-Mitigation: Require explicit confirmation of Tencent COS use, local file or folder, bucket, region, object key, and sharing behavior before running upload commands. <br>
-Risk: Tencent COS credentials or public bucket settings could expose sensitive files. <br>
-Mitigation: Use least-privileged COS credentials, avoid public-read buckets for sensitive files, and prefer short-lived presigned links for private content. <br>
+## Use Case:
 
+Developers and operators use this skill when they need an agent to provide Tencent COS upload commands, credential setup guidance, sharing-link options, and result formatting for file backup, public sharing, or static asset storage.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/realorange1994/cloud-upload-tencent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, Python, and PowerShell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include upload result summaries, COS paths, bucket and region details, and download or preview link formats.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Upload or sharing guidance can expose local files unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for files intended for Tencent COS and prefer private buckets with short-lived presigned URLs.
+
+Risk: Cloud credentials can be exposed if entered directly into commands or reused broadly.
+
+Mitigation: Use narrowly scoped temporary credentials, keep SecretKey values out of command lines, and review environment handling before execution.
+
+Risk: Installing upload dependencies without review can introduce supply-chain risk.
+
+Mitigation: Install dependencies in an isolated environment and prefer reviewed pinned versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realorange1994/skills/cloud-upload-tencent)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with bash, PowerShell, and Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes environment variable guidance, COS bucket and region fields, upload result summaries, and public or presigned link options.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

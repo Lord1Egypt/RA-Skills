@@ -1,39 +1,50 @@
-## Description: <br>
-Provides positive motivation prompts and lightweight task progress tracking for agents using start, progress, milestone, focus, completion, and encouragement modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language motivation and task-progress management skill that helps agents generate positive encouragement, track tasks, celebrate milestones, enter focus mode, and summarize completed work.
 
-## Publisher: <br>
-[Linux2010](https://clawhub.ai/user/Linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers and agent operators use this skill to generate supportive motivation text, track task progress, mark milestones, and summarize lightweight task status during agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task names and milestones are saved locally and may include sensitive project details if users enter them. <br>
-Mitigation: Avoid putting secrets, customer data, or sensitive project details into task names or milestones. <br>
+## Use Case:
 
+Developers and agents use this skill to generate positive Chinese-language encouragement, manage task progress, record milestones, and review completion status during work sessions.
 
-## Reference(s): <br>
-- [Motivation Principles](references/motivation_principles.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Linux2010/agent-motivator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text prompts and JSON task records from command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores task progress locally under ~/.openclaw/agent-motivator/task_state.json when task tracking commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The task tracker stores task names, milestones, progress, and timestamps locally at ~/.openclaw/agent-motivator/task_state.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive task details unless local storage in that path is acceptable.
+
+## Reference(s):
+
+- [Positive Motivation Principles](references/motivation_principles.md)
+- [ClawHub Skill Page](https://clawhub.ai/linux2010/skills/agent-motivator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON task records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Chinese-language motivational text and local task-tracking records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

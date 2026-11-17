@@ -1,41 +1,58 @@
-## Description: <br>
-Deploy a customer support triage system with three agents that classify, auto-resolve, and escalate support tickets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a three-agent customer support triage system that classifies tickets, routes routine issues for automated resolution, and escalates complex cases to human support.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Support and operations teams use this skill to set up a three-agent workflow that classifies incoming tickets, routes routine issues for automated resolution, and escalates complex cases to human support channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Escalations can send customer ticket details to Slack or helpdesk webhooks. <br>
-Mitigation: Use least-privilege Slack channels and webhook endpoints, and avoid sending raw customer emails or sensitive incident details unless required. <br>
-Risk: Generated Pilot manifests and handshakes define inter-agent trust and ticket routing. <br>
-Mitigation: Review the generated ~/.pilot manifest and handshake targets before enabling external escalation or agent communication. <br>
+## Use Case:
 
+Developers and support operations teams use this skill to configure three cooperating Pilot Protocol agents for support ticket classification, automated resolution, and escalation to human support channels.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Release Page](https://clawhub.ai/teoslayer/pilot-customer-support-triage-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with shell commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-specific setup steps for triage-bot, resolver, and escalator agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The setup configures agent trust relationships for support-ticket flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate deployment prefixes against a strict hostname-safe pattern and verify peer identities before handshakes.
+
+Risk: Escalation paths can forward customer ticket data to Slack, webhooks, or helpdesk systems.
+
+Mitigation: Restrict forwarding to approved destinations and send only the minimum redacted ticket fields needed for escalation.
+
+Risk: The setup installs referenced ClawHub skills without pinned versions.
+
+Mitigation: Use approved and pinned skill versions before deploying in a real support environment.
+
+## Reference(s):
+
+- [Pilot Protocol Homepage](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-customer-support-triage-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces role-specific setup steps and manifests; requires pilotctl, clawhub, the pilot-protocol skill, and a running daemon.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

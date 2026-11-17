@@ -5,7 +5,7 @@
 ## What this directory is
 
 This directory contains **adapter guides grouped by capability**, not by vendor. The
-underlying protocol contract (12 tools, billing, errors, the canonical source of truth) is defined once in
+underlying protocol contract (14 tools, billing, errors, the canonical source of truth) is defined once in
 [`../SKILL.md`](../SKILL.md) and must **not** be duplicated here.
 
 | File | Capability family | Protocol | When to use |
@@ -42,11 +42,11 @@ underlying protocol contract (12 tools, billing, errors, the canonical source of
 
 Keep the verified/unverified split honest: a row belongs under **Verified members**
 only when it is backed by a runnable snippet below. No family file should duplicate the
-12-tool contract inline — link to [`../SKILL.md`](../SKILL.md) instead.
+14-tool contract inline — link to [`../SKILL.md`](../SKILL.md) instead.
 
 ## See also
 
-- [`../SKILL.md`](../SKILL.md) — protocol canonical source (12 tools, errors, billing, protocol version rules)
+- [`../SKILL.md`](../SKILL.md) — protocol canonical source (14 tools, errors, billing, protocol version rules)
 - [`../skill.yaml`](../skill.yaml) — marketplace manifest (name / version / transport / tools[])
 - [`../usage/instructions.md`](../usage/instructions.md) — paste-ready system-prompt block
 

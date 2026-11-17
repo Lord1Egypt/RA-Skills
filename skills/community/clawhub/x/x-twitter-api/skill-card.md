@@ -1,42 +1,55 @@
-## Description: <br>
-X (Twitter) API client for searching tweets, retrieving article content, and fetching trending topics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+X (Twitter) API client for searching tweets, retrieving article content, and fetching trending topics.
 
-## Publisher: <br>
-[Zaaachary](https://clawhub.ai/user/Zaaachary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zaaachary](https://clawhub.ai/user/zaaachary)
 
-## Use Case: <br>
-Developers and operators use this skill to query X API v2 for recent posts, tweet or article details, and trending topics from an agent workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an X/Twitter bearer token and sends search queries, tweet IDs, and trend requests to X. <br>
-Mitigation: Use a limited or read-only token where possible, avoid sharing sensitive queries, and rotate the token if it may have been exposed. <br>
-Risk: Saved API responses may include content or metadata that the user did not intend to persist. <br>
-Mitigation: Use --save only with explicit, intended output paths and review saved files before sharing or syncing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [X Developer Portal](https://developer.x.com) <br>
-- [X API Documentation](https://docs.x.com) <br>
-- [WOEID Lookup](https://woeid.rosselliot.co.nz/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Zaaachary/x-twitter-api) <br>
+## Use Case:
 
+Developers and operators use this skill to query X API v2 for recent posts, article or tweet details, and trending topics from an agent workflow. It requires Python 3 and an X API bearer token.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Pretty text, JSON, Markdown, and optional saved files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the X_BEARER_TOKEN environment variable and may write user-selected output files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires an X API bearer token.
+
+Mitigation: Use a temporary or secret-manager-provided least-privileged token, avoid storing it in shell startup files, and rotate or revoke it after use.
+
+Risk: The optional save feature can overwrite arbitrary local files.
+
+Mitigation: Use a dedicated output directory and review any --save path before running the scripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zaaachary/skills/x-twitter-api)
+- [Publisher profile](https://clawhub.ai/user/zaaachary)
+- [X Developer Platform](https://developer.x.com)
+- [X API documentation](https://docs.x.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with optional JSON or Markdown file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May issue X API calls and optionally save retrieved tweet, article, or trends data to a user-provided local path.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

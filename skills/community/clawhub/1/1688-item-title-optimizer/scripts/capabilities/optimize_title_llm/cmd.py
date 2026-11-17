@@ -19,10 +19,12 @@ def main():
     parser.add_argument('--item_id', type=int, required=True, help='商品ID')
     parser.add_argument('--preference', type=str, default=None,
                         help='用户偏好，如"加入防潮单词"')
+    parser.add_argument('--NEWTON_SHOP_LOGIN_ID', default=None, help='可选，目标店铺的 loginId，用于多店铺场景')
     args = parser.parse_args()
 
     try:
-        result = optimize_title_llm(args.item_id, args.preference)
+        login_id = getattr(args, 'NEWTON_SHOP_LOGIN_ID', None)
+        result = optimize_title_llm(args.item_id, args.preference, login_id=login_id)
         print_output(True, "✅ 标题优化完成（LLM深度重写）", result)
     except Exception as e:
         print_error(e)

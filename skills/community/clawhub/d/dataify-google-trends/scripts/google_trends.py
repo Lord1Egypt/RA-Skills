@@ -15,7 +15,7 @@ from typing import Any
 
 
 API_URL = "https://scraperapi.dataify.com/request"
-TOKEN_MISSING_MESSAGE = "缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取。"
+TOKEN_MISSING_MESSAGE = "缺少 Dataify API token，请提供 token，或前往 https://dashboard.dataify.com/login?utm_source=skill 注册获取；新账号注册即得 50 免费积分。"
 
 FIELDS = (
     "q",
@@ -54,7 +54,7 @@ FIELD_DEFAULTS = {
 }
 
 FIELD_DESCRIPTIONS = {
-    "Authorization": "Dataify API token 请求头；没有 token 时提示用户提供或去 https://dashboard.dataify.com/login?utm_source=skill 注册；展示时隐藏实际值。",
+    "Authorization": "Dataify API token 请求头；没有 token 时提示用户提供或去 https://dashboard.dataify.com/login?utm_source=skill 注册（新账号注册即得 50 免费积分）；展示时隐藏实际值。",
     "engine": "固定值：google_trends。",
     "q": "搜索查询内容；必须从用户要求中解析或向用户确认，不要使用示例值作为默认值。",
     "json": "输出格式：1=JSON，2=JSON+HTML，3=HTML，4=Light JSON。",

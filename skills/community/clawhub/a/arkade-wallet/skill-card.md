@@ -1,44 +1,58 @@
-## Description: <br>
-Send and receive Bitcoin over Arkade (offchain), onchain (via onboard/offboard), and Lightning. Swap USDC/USDT stablecoins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send and receive Bitcoin over Arkade (offchain), onchain (via onboard/offboard), and Lightning. Swap USDC/USDT stablecoins.
 
-## Publisher: <br>
-[tiero](https://clawhub.ai/user/tiero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tiero](https://clawhub.ai/user/tiero)
 
-## Use Case: <br>
-External users and developers use this skill to let agents operate an Arkade wallet for Bitcoin payments across Arkade, onchain, and Lightning, and to request stablecoin swap quotes or swaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give agents direct ability to create wallets and move cryptocurrency funds. <br>
-Mitigation: Treat it as a hot-wallet integration: keep only small balances available and require explicit human approval for every payment, offboard, Lightning payment, or swap. <br>
-Risk: Payment destinations and amounts may be irreversible or difficult to recover once executed. <br>
-Mitigation: Verify the destination, chain, token, and amount out of band before authorizing any fund movement. <br>
-Risk: Wallet data and private keys are stored locally and stale examples may still show private-key command usage. <br>
-Mitigation: Back up wallet data carefully and do not paste existing private keys into command lines. <br>
+## Use Case:
 
+External developers and agent users use this skill to operate an Arkade wallet, send and receive Bitcoin across Arkade, onchain, and Lightning flows, and request USDC or USDT swap operations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tiero/arkade-wallet) <br>
-- [Arkade documentation](https://docs.arkadeos.com) <br>
-- [Arkade skill source reference](https://github.com/arkade-os/skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and TypeScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce wallet addresses, balances, invoices, transaction identifiers, swap quotes, and payment status when the described commands or SDK calls are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; package.json reports 0.1.2) <br>
+Risk: The security evidence identifies this as a real cryptocurrency wallet and swap integration with irreversible payment actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only small test amounts and require explicit human approval before send, offboard, Lightning pay, or swap actions.
+
+Risk: The security evidence flags review-worthy private-key handling because the wallet uses a local hot-wallet configuration file.
+
+Mitigation: Protect or avoid the ~/.arkade-wallet/config.json file and do not paste real private keys into shell commands.
+
+Risk: The security evidence notes mutable package execution as a safety gap.
+
+Mitigation: Pin exact package versions before installation or execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tiero/skills/arkade-wallet)
+- [Arkade Documentation](https://docs.arkadeos.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and TypeScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local wallet configuration at ~/.arkade-wallet/config.json when the CLI is used.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

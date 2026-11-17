@@ -1,42 +1,58 @@
-## Description: <br>
-Converts input text to a Chinese female-voice MP3 using edge-tts and installs required Linux tools on first run. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically installs edge-tts and converts input text into Chinese female-voice MP3 audio.
 
-## Publisher: <br>
-[iiawhite-sir](https://clawhub.ai/user/iiawhite-sir) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iiawhite-sir](https://clawhub.ai/user/iiawhite-sir)
 
-## Use Case: <br>
-OpenClaw users can convert supplied text into an MP3 voice file, especially Chinese narration, from natural-language or command-line skill calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First run can change the Linux environment through sudo apt and pipx installation steps. <br>
-Mitigation: Review the script before installing and run it only in an environment where those package changes are acceptable. <br>
-Risk: The skill writes to a user-supplied output path and may overwrite an existing file. <br>
-Mitigation: Choose a fresh, noncritical MP3 output path and verify the target directory before execution. <br>
-Risk: Text-to-speech conversion may use an online service, which can expose submitted text outside the local machine. <br>
-Mitigation: Avoid converting sensitive, confidential, or regulated text unless the service behavior and data handling are acceptable. <br>
+## Use Case:
 
+Developers and OpenClaw users can use this skill to turn supplied text into an MP3 speech file, especially for Chinese narration workflows that use the zh-CN-XiaoxiaoNeural voice.
 
-## Reference(s): <br>
-- [ClawHub listing for edge-tts-auto](https://clawhub.ai/iiawhite-sir/edge-tts-auto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON] <br>
-**Output Format:** [MP3 audio file with JSON status response] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires text and output_path inputs; writes media to the supplied path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: A normal run can make privileged system package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation and prefer manually installing required dependencies in a controlled environment.
+
+Risk: The skill installs unpinned Python tooling.
+
+Mitigation: Preinstall and manage edge-tts through an approved dependency process where possible.
+
+Risk: The skill writes to a caller-supplied output path.
+
+Mitigation: Restrict output paths to a dedicated audio directory and validate paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iiawhite-sir/skills/edge-tts-auto)
+- [Skill documentation](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON]
+
+**Output Format:** [MP3 audio file with JSON success status]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses caller-provided text and output path; the voice is fixed to zh-CN-XiaoxiaoNeural.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Analyze physician academic influence and collaboration networks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze physician academic influence and collaboration networks.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers use this skill to analyze physician publication impact, collaboration networks, and KOL profiles for identification, collaboration mapping, advisory board planning, and speaker selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: KOL profiling outputs may be sensitive business or healthcare-related analysis. <br>
-Mitigation: Use publication data you are authorized to process, keep generated files in an appropriate workspace, and delete outputs when they are no longer needed. <br>
-Risk: The skill runs a local Python script and may read input files or write outputs in the workspace. <br>
-Mitigation: Review inputs and output paths before execution and run the script in a controlled workspace. <br>
+## Use Case:
 
+Agents can help medical-affairs, pharmaceutical, and research analysts run a local profiler for named physicians, summarize publication metrics, and inspect collaboration signals from supplied publication data.
 
-## Reference(s): <br>
-- [KOL Profiler on ClawHub](https://clawhub.ai/aipoch-ai/kol-profiler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Plain text profile output and JSON-compatible analysis data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can read local publication data and write generated outputs to the workspace when an output path is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The documentation describes therapeutic-area, geography, metrics, output, and format parameters, while the script accepts a named author, optional JSON data, and a demo mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI behavior before operational use and run the script with the documented implementation arguments until the documentation and code are aligned.
+
+Risk: Publication datasets supplied to the local script may contain sensitive or proprietary information.
+
+Mitigation: Use only non-sensitive publication data files that are intended for local analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/kol-profiler)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands]
+
+**Output Format:** [Plain text CLI profile printed to stdout, with JSON publication data accepted as input.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally without external network access; use only non-sensitive publication data files intended for analysis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

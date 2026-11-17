@@ -1,46 +1,63 @@
-## Description: <br>
-Searches and organizes academic literature on a given topic or research question using PubMed and Semantic Scholar, then produces structured literature tables with abstracts, bilingual keywords, citation information, publication types, and research-variable definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches PubMed and Semantic Scholar for academic literature, then organizes results into bilingual Markdown tables with abstracts, links, citation counts, publication types, variable definitions, and measurement instruments.
 
-## Publisher: <br>
-[agjvsxgm](https://clawhub.ai/user/agjvsxgm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agjvsxgm](https://clawhub.ai/user/agjvsxgm)
 
-## Use Case: <br>
-Researchers, students, and knowledge workers use this skill to search PubMed and Semantic Scholar for literature on a topic and organize results into review-ready Markdown tables. It supports literature reviews by collecting metadata, abstracts, citation counts, publication types, bilingual keywords, variable definitions, operational definitions, and APA-style references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documentation inconsistently mentions optional Web of Science and Springer credentials even though the current implementation evidence centers on PubMed and Semantic Scholar. <br>
-Mitigation: Use the no-key PubMed and Semantic Scholar workflow unless the publisher updates the documentation and scripts to clearly explain how any optional provider credentials are handled. <br>
-Risk: Literature queries and retrieved metadata are sent to external public research APIs, and abstracts may be translated or formatted by an AI system. <br>
-Mitigation: Avoid sensitive or private search topics when that disclosure is unacceptable, and review translated abstracts and extracted variable definitions against source records before relying on them. <br>
+## Use Case:
 
+External researchers, students, and analysts use this skill to search scholarly literature on a topic, deduplicate and sort results, and produce bilingual literature review tables with variable definitions and APA references.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agjvsxgm/psych-literature-search) <br>
-- [API reference](references/api_reference.md) <br>
-- [Output templates](references/output_templates.md) <br>
-- [PubMed E-utilities esearch endpoint](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi) <br>
-- [Semantic Scholar paper search endpoint](https://api.semanticscholar.org/graph/v1/paper/search) <br>
-- [JCR journal browser](https://jcr.clarivate.com/jcr/browse-journals) <br>
-- [SCImago Journal Rank](https://www.scimagojr.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown tables and narrative report sections; helper scripts return JSON search results for agent processing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include literature metadata, DOI or source links, abstracts, Chinese abstract translations, citation counts, publication types, research-variable definitions, operational definitions, journal-level notes, synthesis bullets, and APA 7 references.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: API keys or other credentials could be exposed if users follow insecure configuration guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with non-confidential research topics, provide optional keys through environment variables or a managed secret store, and do not paste API keys into chat or store them in SKILL.md.
+
+Risk: Documentation is inconsistent about whether Web of Science and Springer are supported by the current artifact.
+
+Mitigation: Treat PubMed and Semantic Scholar as the implemented primary sources, and verify any Web of Science or Springer workflow before relying on it.
+
+Risk: Journal metrics and journal-level claims are partially documented and may be stale.
+
+Mitigation: Confirm quartiles, impact factors, and indexing status against JCR, SCImago, or institutional sources before using them for evaluation decisions.
+
+## Reference(s):
+
+- [API Reference](artifact/references/api_reference.md)
+- [Output Templates](artifact/references/output_templates.md)
+- [PubMed E-utilities esearch](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi)
+- [PubMed E-utilities efetch](https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi)
+- [Semantic Scholar Paper Search API](https://api.semanticscholar.org/graph/v1/paper/search)
+- [JCR Journal Browse](https://jcr.clarivate.com/jcr/browse-journals)
+- [SCImago Journal Rank](https://www.scimagojr.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports and tables, with JSON returned from helper scripts when executed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a Markdown report file on request; helper scripts query external scholarly APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

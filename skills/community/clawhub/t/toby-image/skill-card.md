@@ -1,46 +1,63 @@
-## Description: <br>
-Run local ComfyUI workflows via the HTTP API. Use when the user asks to run ComfyUI, execute a workflow by file path/name, or supply raw API-format JSON; supports the default workflow bundled in assets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run local ComfyUI workflows via the HTTP API, including default, file-based, or raw JSON workflows.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-Developers and image-generation users use this skill to edit and run local ComfyUI workflow JSON, queue jobs through the local HTTP API, download model weights, and return generated images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The downloader can install and run an unverified helper program. <br>
-Mitigation: Review before installing; prefer --no-pget or install pget yourself through a trusted channel. <br>
-Risk: Downloaded files may be written outside the intended model folder. <br>
-Mitigation: Use only trusted model URLs, avoid --overwrite with untrusted URLs, and review resolved download paths before use. <br>
-Risk: Temporary workflow files may contain private prompts. <br>
-Mitigation: Clear temporary workflow files after use and avoid storing sensitive prompts in reusable workflow assets. <br>
-Risk: Exposing the ComfyUI HTTP API beyond localhost can increase local service exposure. <br>
-Mitigation: Keep ComfyUI bound to 127.0.0.1 unless a reviewed deployment requires otherwise. <br>
+## Use Case:
 
+Developers and creative operators use this skill to have an agent edit ComfyUI workflow JSON, queue local image-generation jobs, download model weights when requested, and return generated image outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tobeyrebecca/toby-image) <br>
-- [ComfyUI repository](https://github.com/comfyanonymous/ComfyUI.git) <br>
-- [pget downloader](https://github.com/replicate/pget) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Images] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output; generated image files are returned after successful runs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may write edited workflow JSON, downloaded model files, and generated image files under the local ComfyUI installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can let an agent modify and execute local ComfyUI workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review workflow JSON before execution and run only workflows from trusted sources.
+
+Risk: The model downloader can contact arbitrary model URLs and write files under ~/ComfyUI.
+
+Mitigation: Use trusted HTTPS model sources, verify destination paths, and avoid --overwrite unless replacement is intentional.
+
+Risk: The downloader may install and execute pget from an external release path.
+
+Mitigation: Prefer --no-pget when reviewing or operating in restricted environments.
+
+Risk: Bundled workflow assets may contain unexpected sensitive prompts.
+
+Mitigation: Inspect bundled workflow prompts before use and remove or replace prompts that are not appropriate for the deployment context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/skills/toby-image)
+- [ComfyUI project](https://github.com/comfyanonymous/ComfyUI.git)
+- [pget downloader](https://github.com/replicate/pget)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, edited workflow JSON, helper-script JSON status, and generated image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local ComfyUI server and Python 3; workflow outputs are saved under the local ComfyUI output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

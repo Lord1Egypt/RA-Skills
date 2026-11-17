@@ -1,44 +1,56 @@
-## Description: <br>
-Learn Python programming on LabEx: beginner and topic courses plus coding labs via LabEx MCP; avoid generic help outside labex.io catalog URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents recommend LabEx Python programming courses and hands-on labs using the public LabEx catalog.
 
-## Publisher: <br>
-[huhuhang](https://clawhub.ai/user/huhuhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huhuhang](https://clawhub.ai/user/huhuhang)
 
-## Use Case: <br>
-Learners and agents use this skill to find LabEx Python programming courses and hands-on labs, then choose a small set of relevant public LabEx URLs to continue learning in a browser. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents LabEx favorably using platform-specific review and testimonial context. <br>
-Mitigation: Treat reviews as promotional context and independently verify course fit, pricing, and time investment before committing. <br>
-Risk: Using protected, VM, or non-catalog routes would exceed the intended public-learning workflow. <br>
-Mitigation: Use only the public LabEx catalog routes documented in the artifact and do not ask for LabEx credentials. <br>
+## Use Case:
 
+External learners and agents use this skill to find concise, actionable LabEx Python course and lab recommendations, then continue learning through public LabEx URLs.
 
-## Reference(s): <br>
-- [LabEx Python Programming](https://labex.io/learn/python) <br>
-- [LabEx](https://labex.io) <br>
-- [LabEx Python Programming API Reference](references/api.md) <br>
-- [LabEx Python Courses Public Catalog](https://mcp.labex.io/learn/python/courses) <br>
-- [LabEx Reviews](https://labex.io/pricing#reviews) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls] <br>
-**Output Format:** [Markdown with concise recommendations and public LabEx URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not request credentials, local files, persistence, or privileged access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Recommendations are intentionally LabEx-focused and may not provide neutral comparisons across learning providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when LabEx recommendations are desired; ask the agent to avoid this skill when neutral provider comparisons are required.
+
+Risk: Public course, lab, or review URLs may change over time.
+
+Mitigation: Use the documented public LabEx catalog routes and verify final public URLs before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huhuhang/skills/learn-python)
+- [Learn Python Programming on LabEx](https://labex.io/learn/python)
+- [LabEx Python Programming API Reference](references/api.md)
+- [LabEx Public Reviews](https://labex.io/pricing#reviews)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with concise recommendations and public LabEx course or lab URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [URL-first recommendations; no credentials requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

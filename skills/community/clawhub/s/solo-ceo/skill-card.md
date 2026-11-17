@@ -1,42 +1,59 @@
-## Description: <br>
-Coordinates a primary CEO agent that plans work, delegates tasks to worker agents, waits for their results, and summarizes final deliverables for the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solo CEO coordinates multiple worker agents by planning work, delegating tasks, collecting results, and summarizing the final outcome for the user.
 
-## Publisher: <br>
-[Moistenxx](https://clawhub.ai/user/Moistenxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moistenxx](https://clawhub.ai/user/moistenxx)
 
-## Use Case: <br>
-Developers and operators use this skill when they want a coordinating agent to decompose a request, choose long-running worker agents or one-off subagents, delegate work, and produce a consolidated report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Worker agents may receive task context through delegated prompts. <br>
-Mitigation: Use trusted worker agents and avoid sharing secrets unless they are necessary for the task. <br>
-Risk: Worker MEMORY.md files can retain stable preferences or methods beyond a single task. <br>
-Mitigation: Periodically review worker MEMORY.md files and keep task data, client details, and credentials out of long-term memory. <br>
+## Use Case:
 
+Developers, operators, and solo builders use this skill to have a main CEO agent break multi-step work into parallel or sequential tasks, delegate to persistent or temporary worker agents, and consolidate worker reports into a final response.
 
-## Reference(s): <br>
-- [Solo CEO ClawHub page](https://clawhub.ai/Moistenxx/solo-ceo) <br>
-- [Employee SOUL template](references/employee_soul_template.md) <br>
-- [Task plan template](references/plan_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with task plans, worker prompts, JSON configuration snippets, and final summary reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update worker MEMORY.md files when the agent records stable preferences or methods.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+Risk: Worker MEMORY.md files may retain sensitive task, customer, or project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where persistent worker memory is acceptable, and periodically inspect or clear worker MEMORY.md files.
+
+Risk: Delegating work to spawned agents can spread confidential context beyond the main agent conversation.
+
+Mitigation: Review tasks before delegation and avoid using the skill with regulated or confidential information unless the worker environments are approved for that data.
+
+Risk: Persistent plan files may preserve task details after completion.
+
+Mitigation: Store plans only in approved workspaces and remove plan files when the task no longer requires them.
+
+## Reference(s):
+
+- [Employee SOUL template](artifact/references/employee_soul_template.md)
+- [Task plan template](artifact/references/plan_template.md)
+- [ClawHub skill page](https://clawhub.ai/moistenxx/skills/solo-ceo)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown with configuration snippets and agent delegation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create persistent plan files and instruct worker agents to read or update MEMORY.md files.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

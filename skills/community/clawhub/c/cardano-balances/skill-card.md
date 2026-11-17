@@ -1,43 +1,61 @@
-## Description: <br>
-Query wallet balances, addresses, and UTxOs on the Cardano blockchain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query wallet balances, addresses, and UTxOs on the Cardano blockchain.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to inspect a Cardano wallet's ADA balance, native token balances, addresses, and UTxOs through the configured MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a full Cardano wallet seed phrase for the configured wallet server, which can create wallet-compromise risk if exposed or used with an untrusted runtime. <br>
-Mitigation: Use a watch-only setup or a dedicated low-value wallet when possible, audit and pin the MCP package before use, and keep the seed phrase out of prompts, logs, and project files. <br>
-Risk: Wallet balances, addresses, and UTxOs may reveal sensitive financial information. <br>
-Mitigation: Require explicit confirmation before displaying or using wallet data, and avoid sharing returned wallet details in untrusted contexts. <br>
+## Use Case:
 
+External users and developers use this skill to inspect Cardano wallet balances, addresses, native assets, and UTxOs through a configured Cardano MCP server.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/adacapo21/cardano-balances) <br>
-- [Wallet Balances Concepts](references/concepts.md) <br>
-- [Balances MCP Tools Reference](references/mcp-tools.md) <br>
-- [Check Wallet Balances](sub-skills/check-balances.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown balance summary with converted ADA values and native asset lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet addresses and UTxO identifiers returned by the MCP server.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requires a SEED_PHRASE environment variable, which can expose wallet recovery material to the MCP process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a watch-only address or public-key based method when possible, and do not provide a recovery phrase for a wallet holding meaningful funds unless the dependency and runtime isolation have been independently reviewed.
+
+Risk: The release installs the external @indigoprotocol/cardano-mcp package without a pinned version in the available evidence.
+
+Mitigation: Pin and review the package version before installation, and run it in an isolated environment appropriate for wallet-related tooling.
+
+Risk: Cardano ADA balances are returned in lovelace and can be misread if displayed without conversion.
+
+Mitigation: Convert lovelace to ADA for user-facing summaries and label native asset amounts clearly.
+
+## Reference(s):
+
+- [Cardano Balances ClawHub page](https://clawhub.ai/adacapo21/skills/cardano-balances)
+- [adacapo21 publisher profile](https://clawhub.ai/user/adacapo21)
+- [Cardano MCP npm package](https://www.npmjs.com/package/@indigoprotocol/cardano-mcp)
+- [Wallet Balances Concepts](references/concepts.md)
+- [Balances MCP Tools Reference](references/mcp-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary of balances, addresses, native assets, or UTxO details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Converts lovelace to ADA for display and lists native assets with names and amounts when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

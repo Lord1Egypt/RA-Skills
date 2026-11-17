@@ -1,42 +1,53 @@
-## Description: <br>
-Stock Watcher is a Chinese stock monitoring and alert skill that documents configurable alerts for cost thresholds, moving-average crosses, RSI levels, volume changes, gap moves, intraday movement, and trailing profit protection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Watcher is a stock monitoring and alerting skill for watchlists, using cost, price-change, volume, moving-average, RSI, gap, and trailing-stop rules.
 
-## Publisher: <br>
-[dandelion80231](https://clawhub.ai/user/dandelion80231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dandelion80231](https://clawhub.ai/user/dandelion80231)
 
-## Use Case: <br>
-Developers and investors can use this skill as agent guidance for setting up stock watchlists, portfolio thresholds, and alerting workflows for China-market stocks, ETFs, and gold instruments. The skill focuses on monitoring and alert explanation, not financial decision automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced daemon-mode monitor scripts are not bundled in this documentation-only release. <br>
-Mitigation: Review any separately obtained scripts before execution, especially before enabling continuous background monitoring. <br>
-Risk: Continuous stock monitoring may store watchlist or portfolio details locally and contact market-data services. <br>
-Mitigation: Review local configuration and data files before use, and avoid storing sensitive portfolio information where other users or services can access it. <br>
-Risk: Financial alerts and technical indicators can be stale, incomplete, or misleading. <br>
-Mitigation: Treat generated alerts as informational guidance and review market context before making investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to configure and run stock, ETF, and gold watchlist monitoring, generate alerts from technical and position-based rules, and review supporting market summaries. Outputs should be treated as monitoring aids rather than professional investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dandelion80231/skills/stock-watcher-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python configuration examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact; referenced monitor scripts are not bundled in this release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Users may treat monitoring alerts or generated market suggestions as professional investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use outputs as informational signals, verify them against independent market data, and consult a qualified professional before trading.
+
+Risk: Long-lived monitoring may use locally stored watchlists, cost basis, and portfolio configuration.
+
+Mitigation: Store only portfolio data you are comfortable keeping locally, protect configuration files, and review data-source integrations before daemon use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dandelion80231/skills/stock-watcher-2)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash and Python configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include alert messages, technical indicator summaries, and risk guidance; not investment advice.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

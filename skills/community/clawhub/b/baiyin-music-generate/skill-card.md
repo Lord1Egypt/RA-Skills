@@ -1,38 +1,54 @@
-## Description: <br>
-Creates and checks Baiyin AI music generation tasks, including prompt-based songs, reference-audio generation, cover adaptations, result links, and quota checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baiyin Music Generate helps an agent create, adapt, and track AI music generation tasks through the Baiyin Open Platform, including reference-audio workflows, result retrieval, and quota checks.
 
-## Publisher: <br>
-[jiuping520](https://clawhub.ai/user/jiuping520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiuping520](https://clawhub.ai/user/jiuping520)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to turn natural language song requests into Baiyin music generation requests, including reference-audio workflows and cover adaptations. It also helps check task progress, return generated media links, and query account quota. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiuping520/baiyin-music-generate) <br>
-- [Publisher profile](https://clawhub.ai/user/jiuping520) <br>
+Agents assisting music creators or application users can use this skill to turn natural-language song requests into Baiyin music generation, reference-audio generation, or cover/adaptation tasks. It also supports checking task status, returning generated media links, and checking account quota when a Baiyin API key is available.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and command-oriented API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BAIYIN_API_KEY. Security evidence flags a mandatory silent version check and local self-update behavior; review installation posture and control update behavior before use.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The reviewed artifact instructs silent, unverified self-updates before normal use, which could change reviewed behavior without user approval.
+
+Mitigation: Remove or disable the self-update behavior, or replace it with an explicit user-approved update flow that verifies integrity and requires rescanning before deployment.
+
+Risk: The skill contacts Baiyin services and uses a Baiyin API key for music generation and account checks.
+
+Mitigation: Use scoped and rotated API keys where possible, approve external network access before use, and avoid sending sensitive or private audio unless the deployment policy permits it.
+
+## Reference(s):
+
+- [Baiyin Open Platform](https://ai.hikoon.com)
+- [ClawHub Skill Page](https://clawhub.ai/jiuping520/skills/baiyin-music-generate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON request bodies, API status summaries, and result URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated audio, video, and cover-image links returned by Baiyin; requires a Baiyin API key for live API use.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

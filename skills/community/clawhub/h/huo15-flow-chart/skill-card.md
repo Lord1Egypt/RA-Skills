@@ -1,43 +1,55 @@
-## Description: <br>
-Huo15 Flow Chart generates modern flowcharts, swimlanes, architecture diagrams, C4 diagrams, sequence diagrams, state diagrams, ER diagrams, and Gantt charts from YAML/JSON specifications or Mermaid/PlantUML/DOT source, with SVG, PNG, PDF, draw.io, and source-code outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates modern flowcharts, swimlane diagrams, architecture diagrams, C4 diagrams, sequence diagrams, state diagrams, ER diagrams, and Gantt charts from YAML, JSON, Mermaid, PlantUML, or DOT inputs.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers, engineers, product teams, and technical writers use this skill to turn structured diagram specifications or existing diagram source into polished diagrams for documentation, presentations, architecture reviews, and planning materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The server security summary flags automatic execution of local renderers and unpinned Docker fallbacks. <br>
-Mitigation: Install trusted Mermaid CLI, PlantUML, and Graphviz versions explicitly, pin them where possible, and avoid Docker or npx fallbacks in sensitive environments. <br>
-Risk: Mermaid rendering uses Chromium with sandbox-disabling flags. <br>
-Mitigation: Render diagrams in a contained workspace, container, or virtual machine when inputs are untrusted or when running on shared systems. <br>
-Risk: YAML, Mermaid, PlantUML, and DOT diagrams from external sources can become untrusted renderer input. <br>
-Mitigation: Review and scan external diagram sources before rendering, and keep generated files isolated from privileged project directories. <br>
+## Use Case:
 
+Developers, architects, and technical writers use this skill to turn structured diagram specifications or diagram source code into presentation-ready diagrams and editable diagram source files. It is useful for documenting software flows, systems, timelines, and architecture views.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhaobod1/huo15-flow-chart) <br>
-- [Mermaid Live Editor](https://mermaid.live) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands plus generated diagram files or diagram source files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce SVG, PNG, PDF, draw.io, Mermaid, PlantUML, and DOT outputs; PNG scaling defaults to 3x.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The security review says the skill can automatically run unpinned external renderers and Docker or Chromium with weak sandboxing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted publisher releases, prefer preinstalled pinned renderer binaries, and avoid the automatic npx and Docker fallbacks.
+
+Risk: Rendering untrusted diagram source or writing outputs to user-supplied paths can affect a sensitive machine or working directory.
+
+Mitigation: Render only trusted diagram inputs and run the skill in a dedicated working directory with controlled output paths.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-flow-chart)
+- [Mermaid Live Editor](https://mermaid.live)
+- [Flowchart core implementation](scripts/flowchart_core.py)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus generated SVG, PNG, PDF, Mermaid, PlantUML, DOT, and draw.io files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [PNG output supports adjustable high-DPI scaling; PDF output defaults to a single fitted page.]
+
+## Skill Version(s):
+
+1.4.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

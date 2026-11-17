@@ -1,41 +1,54 @@
-## Description: <br>
-Generates legally oriented response wording, warning-message templates, and complaint plans for debt-collection harassment, credit-card negotiation, online-loan overdue, and credit-report dispute scenarios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese-language response scripts, warning-message templates, and complaint plans for debt-collection harassment, overdue credit-card negotiation, online-loan delinquency, and credit-report dispute scenarios.
 
-## Publisher: <br>
-[hjfl888](https://clawhub.ai/user/hjfl888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjfl888](https://clawhub.ai/user/hjfl888)
 
-## Use Case: <br>
-External users can describe a debt-collection harassment or related debt-resolution scenario and receive practical response scripts, warning messages, complaint steps, and evidence-collection guidance. The skill is intended to support compliant communication, not to replace qualified legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives legal- and debt-related communication guidance that may not match the user's jurisdiction or facts. <br>
-Mitigation: Users should verify local law, review outputs before use, and consult qualified legal or financial professionals for high-stakes situations. <br>
-Risk: Users may include unnecessary personal, financial, or account details when describing harassment scenarios. <br>
-Mitigation: Users should minimize sensitive details in prompts and redact identifiers that are not needed to generate a response. <br>
+## Use Case:
 
+External Chinese-language users and agents use this skill to draft response templates, warning messages, complaint materials, and evidence-preparation guidance for China-specific debt-collection and credit-report dispute scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjfl888/personal-info-protection-response) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/hjfl888) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text response scripts and complaint-plan guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no shell commands, code execution, credential access, persistence, or data exfiltration behavior was reported in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release evidence) <br>
+Risk: Legal or credit-report guidance may be jurisdiction-specific or become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify advice against current local rules or a qualified professional before relying on generated templates.
+
+Risk: Debt-collection scenarios can involve sensitive personal or financial information.
+
+Mitigation: Avoid sharing unnecessary details, and redact identifiers that are not needed to draft the response.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjfl888/skills/personal-info-protection-response)
+- [ClawHub publisher profile](https://clawhub.ai/user/hjfl888)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured Chinese-language templates and action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+3.0.0 (source: server release evidence; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

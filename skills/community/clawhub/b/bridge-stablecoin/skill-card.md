@@ -1,47 +1,58 @@
-## Description: <br>
-Builds USDC bridging workflows with Circle Bridge Kit SDK and Crosschain Transfer Protocol (CCTP) across EVM chains, Solana, and Circle Wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build USDC bridging workflows with Circle Bridge Kit SDK and Crosschain Transfer Protocol across EVM chains, Solana, and Circle Wallets.
 
-## Publisher: <br>
-[mscandlen3](https://clawhub.ai/user/mscandlen3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mscandlen3](https://clawhub.ai/user/mscandlen3)
 
-## Use Case: <br>
-Developers and engineers use this skill to add USDC bridge flows with Circle Bridge Kit, including adapter setup, transfer execution, event handling, error recovery, retry behavior, and forwarding-service configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet private keys, Circle API keys, and entity secrets are required for some bridge flows and could expose funds if stored or logged unsafely. <br>
-Mitigation: Keep secrets out of source control and logs, use environment variables or a secrets manager, and start with isolated low-balance test wallets. <br>
-Risk: Bridge transactions can move real funds across chains and may be difficult or impossible to reverse after submission. <br>
-Mitigation: Require explicit confirmation of source chain, destination chain, recipient, token, and amount before any production transfer. <br>
-Risk: Dependency or configuration drift can affect bridge behavior in applications that integrate the SDK. <br>
-Mitigation: Pin dependencies in the integrating project and review bridge configuration before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold and reason through USDC bridge integrations, including Circle Bridge Kit adapters, CCTP lifecycle handling, event handling, retries, and mainnet safety checks.
 
-## Reference(s): <br>
-- [Private Key Adapter](references/adapter-private-key.md) <br>
-- [Circle Wallets Adapter](references/adapter-circle-wallets.md) <br>
-- [Wagmi Adapter](references/adapter-wagmi.md) <br>
-- [Circle Bridge Kit SDK](https://developers.circle.com/bridge-kit) <br>
-- [CCTP Documentation](https://developers.circle.com/cctp) <br>
-- [Circle Developer Docs](https://developers.circle.com/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include wallet, chain, recipient, amount, fee, retry, and environment-variable guidance for bridge implementations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill examples involve signing credentials and transaction code for USDC bridge operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use testnets and low-balance test wallets first, keep private keys and Circle secrets out of logs and source control, and use reviewed dependency versions.
+
+Risk: Mainnet bridge transactions can move funds irreversibly if the chain, recipient, token, or amount is wrong.
+
+Mitigation: Require explicit confirmation of source chain, destination chain, recipient, amount, and token before any mainnet bridge transaction.
+
+## Reference(s):
+
+- [Private Key Adapter (Viem + Solana Kit)](references/adapter-private-key.md)
+- [Circle Wallets Adapter (Developer-Controlled Wallets)](references/adapter-circle-wallets.md)
+- [Wagmi Adapter (Browser Wallets)](references/adapter-wagmi.md)
+- [Circle Bridge Kit SDK](https://developers.circle.com/bridge-kit)
+- [CCTP Documentation](https://developers.circle.com/cctp)
+- [Circle Developer Docs](https://developers.circle.com/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, JSON, environment variable, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transaction confirmation steps, security warnings, and retry guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

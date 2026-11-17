@@ -1,38 +1,49 @@
-## Description: <br>
-Convert 电力交易/电网边界条件 96点数据 into 24点小时数据 by averaging each consecutive 4 quarter-hour rows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts 电力交易/电网边界条件 96-point Excel data into 24 hourly averages by averaging each consecutive set of four 15-minute rows.
 
-## Publisher: <br>
-[mecyalika](https://clawhub.ai/user/mecyalika) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mecyalika](https://clawhub.ai/user/mecyalika)
 
-## Use Case: <br>
-Developers and analysts use this skill to convert electricity-trading Excel workbooks from 96 quarter-hour rows into 24 hourly averages, and to repair templates whose 24-point formulas reference the wrong source columns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overwrite or alter an existing business-critical workbook if used carelessly. <br>
-Mitigation: Work on a copy, keep backups of important templates, and avoid overwriting the only version of a spreadsheet. <br>
+## Use Case:
 
+Developers, analysts, and power-trading operations users use this skill to convert 96-point Excel workbooks into auditable 24-point hourly result and formula sheets, or to repair existing templates with incorrect 24-point formula mappings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mecyalika/power-trading-96-to-24) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and generated Excel workbooks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create source96, result24, and formula24 sheets or minimally update an existing xlsx template.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Converted spreadsheets or formulas from untrusted workbooks can carry spreadsheet-safety risk or incorrect formulas into downstream Excel workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted source workbooks when possible, review generated formulas and numeric results before sharing outputs, and be cautious opening converted files from attacker-supplied spreadsheets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mecyalika/skills/power-trading-96-to-24)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline Excel formulas, shell commands, and optional generated Excel workbook files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce source96, result24, and formula24 workbook sheets for auditability.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

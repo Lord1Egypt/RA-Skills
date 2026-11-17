@@ -1,43 +1,60 @@
-## Description: <br>
-See where your AI money goes by tracking AI spending across OpenAI, Anthropic, Google, and other providers with breakdowns, budget tracking, and waste detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+See where your AI money goes across OpenAI, Anthropic, Google, and other providers with per-provider breakdowns, per-model costs, budget tracking, and waste detection.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers, teams, and AI tool users can import exported provider billing data, analyze cross-provider spend, track budgets, detect costly model usage, and generate local reports for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Billing exports and generated JSON or HTML reports can contain sensitive spending and usage information. <br>
-Mitigation: Use trusted billing exports only, keep generated reports out of shared folders and repositories, and review dashboards before sharing. <br>
-Risk: The security evidence reports that generated HTML includes imported fields before the project escapes them. <br>
-Mitigation: Treat HTML dashboards as sensitive local files and avoid opening or sharing dashboards generated from untrusted billing exports. <br>
+## Use Case:
 
+Developers, operators, and small teams use this skill to import exported AI billing data, analyze local spend across providers, track budgets, and generate dashboard reports for cost review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/token-books) <br>
-- [README](artifact/README.md) <br>
-- [Limitations](artifact/LIMITATIONS.md) <br>
-- [Configuration example](artifact/config_example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration examples, generated JSON analysis, and local HTML dashboard files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes user-supplied billing exports locally and may produce sensitive JSON or HTML reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and skill frontmatter) <br>
+Risk: Unsafe HTML report generation can allow malicious or tampered billing data to run browser code when a generated dashboard is opened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only billing exports you created or trust, and avoid opening generated dashboards from untrusted data until the HTML escaping issue is fixed.
+
+Risk: Billing exports, imported JSON, and generated dashboards can expose sensitive financial and operational usage information.
+
+Mitigation: Keep input and output files local and access-controlled, and review dashboards before sharing them outside the intended team.
+
+Risk: Spend analysis can be inaccurate when imports are duplicated, costs are missing, timestamps differ by timezone, or model pricing is stale.
+
+Mitigation: Spot-check imported data against provider dashboards, avoid overlapping imports, prefer provider-calculated costs, and update pricing configuration before relying on estimates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/theshadowrose/skills/token-books)
+- [README](artifact/README.md)
+- [Limitations](artifact/LIMITATIONS.md)
+- [License](artifact/LICENSE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python CLI commands, configuration examples, JSON analysis output, and optional local HTML dashboard files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local exported billing data; no network access is described by the artifact documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

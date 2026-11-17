@@ -1,40 +1,56 @@
-## Description: <br>
-电商客服退换货标准化应答提示词模板。当买家发起退货、换货、仅退款等售后咨询时，自动生成符合平台售后规则、语气友好且信息准确的客服应答。适用于淘宝/天猫/京东/拼多多等国内电商平台及跨境平台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+电商客服退换货标准化应答提示词模板，用于在买家发起退货、换货、仅退款等售后咨询时，生成符合平台售后规则、语气友好且信息准确的客服应答，适用于淘宝/天猫/京东/拼多多等国内电商平台及跨境平台。
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External e-commerce customer support teams and agent workflows use this skill to draft Chinese-language replies for returns, exchanges, refund-only requests, and reshipment cases while keeping tone, required order details, and escalation rules consistent.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Return and refund policy text may become inaccurate when platform rules, shop policies, or case facts differ from the template.
+
+Mitigation: Review the policy snippets against the current platform and merchant rules before using generated replies.
+
+Risk: Legal disputes, high-value orders, bulk after-sales cases, or hostile buyer messages may require judgment beyond a template response.
+
+Mitigation: Route those cases to a human agent using the skill's escalation rules.
+
+Risk: Incorrect order number, item name, receipt timing, or supporting-evidence status could produce a misleading customer response.
+
+Mitigation: Verify required order fields and supporting evidence before sending the drafted reply.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External e-commerce customer-service teams use this skill to draft return, exchange, refund-only, and reshipment responses that match the buyer intent, order details, receipt timing, and platform policy context. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated refund or return language may not match the store's active policies or the platform's current rules. <br>
-Mitigation: Review and adapt policy paragraphs before use, and confirm they align with current store and platform requirements. <br>
-Risk: Legal threats, high-value orders, batch returns, or unclear policy conflicts can require case-specific judgment. <br>
-Mitigation: Route those cases to a human reviewer as directed by the skill's escalation rules. <br>
+**Output Format:** [Markdown template text with fillable fields and response guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/ecom-return-refund-responder) <br>
+**Other Properties Related to Output:** [Requires current order details, customer intent, return reason, receipt timing, and relevant platform policy context.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown customer-service response template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses buyer intent, order details, product name, return reason, receipt timing, platform, evidence-photo status, and exchange SKU fields to shape the response.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

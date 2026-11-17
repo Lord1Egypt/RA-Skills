@@ -1,41 +1,53 @@
-## Description: <br>
-Tracks a user's cognitive state from daily journals, work logs, and retrospectives, then maintains ten-dimensional state snapshots for adaptive responses and proactive warnings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill analyzes a user's journals or work logs to maintain a ten-dimensional cognitive-state profile, adapt future replies, and provide proactive warnings.
 
-## Publisher: <br>
-[justlikeeth](https://clawhub.ai/user/justlikeeth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justlikeeth](https://clawhub.ai/user/justlikeeth)
 
-## Use Case: <br>
-Knowledge workers, creators, entrepreneurs, project managers, researchers, and other long-term AI collaborators use this skill to analyze journals or work logs, maintain a persistent cognitive-state profile, adapt AI responses, and surface burnout or loss-of-agency warnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates a persistent psychological profile from journals or work logs and can reuse that profile across future replies. <br>
-Mitigation: Install only for intentional long-term cognitive tracking, choose exactly which files or conversations may be analyzed, and review saved state snapshots. <br>
-Risk: Broad triggers may analyze personal diary or work-log content beyond the user's intended scope. <br>
-Mitigation: Avoid broad automatic triggers, keep user configuration narrow, and ensure the user can pause, delete, or reset the stored profile. <br>
+## Use Case:
 
+External users and knowledge workers use this skill with a cognitive partner to analyze daily journals, work logs, or retrospectives, maintain cognitive-state snapshots, and adapt future assistant responses based on tracked state changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justlikeeth/cognitive-state-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/justlikeeth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON state snapshots with configuration guidance and warning text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains persistent cognitive-state files when the agent has access to the configured memory path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill stores sensitive psychological and cognitive-state profiles.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for intentional self-tracking, restrict which journals or logs it may analyze, and keep a clear review, correction, export, and deletion process for stored records.
+
+Risk: Broad automatic triggers and stored state can influence future assistant replies.
+
+Mitigation: Disable or clarify automatic triggers before use and require user confirmation before applying stored cognitive-state context to unrelated conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/justlikeeth/skills/cognitive-state-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [Natural-language guidance, JSON state snapshots, and Markdown arc summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates cognitive-state records after user onboarding; no shell commands or API calls are described.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

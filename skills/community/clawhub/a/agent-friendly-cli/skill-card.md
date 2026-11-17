@@ -1,38 +1,48 @@
-## Description: <br>
-Design and audit command-line interfaces for agent usability, including non-interactive operation, progressive help, pipeline support, idempotency, actionable errors, and structured output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and audit CLIs for agent usability, covering non-interactive design, progressive help discovery, pipeline support, idempotency, error handling, and structured output.
 
-## Publisher: <br>
-[g9pedro](https://clawhub.ai/user/g9pedro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[g9pedro](https://clawhub.ai/user/g9pedro)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to design new command-line tools or audit existing CLIs for agent compatibility, including non-interactive flags, pipeline support, idempotent behavior, actionable errors, structured output, and safer destructive actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Applying agent-facing CLI guidance to production or destructive commands can reduce human confirmation checkpoints.
+
+Mitigation: Keep dry-run support, clear command scoping, audit logs, and safe defaults even when --yes or --force options are available.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design new CLIs or audit existing CLIs for patterns that make them easier for AI agents to invoke, recover from errors, retry safely, and parse. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: Automation-friendly flags such as --yes or --force can make destructive CLI actions easier to run unattended if a command is poorly designed. <br>
-Mitigation: Keep safe defaults, require explicit bypass flags for destructive actions, provide --dry-run previews, and review proposed CLI behavior before release. <br>
+**Output Format:** [Markdown guidance with CLI examples and checklist items]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/g9pedro/agent-friendly-cli) <br>
+**Other Properties Related to Output:** [Guidance-only; no executable code, hidden behavior, or persistence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with checklists and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external tools or credentials are required.] <br>
+1.0.1 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

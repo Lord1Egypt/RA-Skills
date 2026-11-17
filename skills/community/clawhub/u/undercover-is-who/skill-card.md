@@ -1,42 +1,54 @@
-## Description: <br>
-Acts as a Chinese-language judge for the Who Is Undercover party game, using local scripts to assign words, run description and voting rounds, tally eliminations, and produce an end-of-game recap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Undercover Is Who helps an agent act as the judge for the Chinese "Who Is Undercover" party game by assigning words, hosting description and voting phases, tallying votes, deciding wins, and producing a final recap.
 
-## Publisher: <br>
-[loongfay](https://clawhub.ai/user/loongfay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loongfay](https://clawhub.ai/user/loongfay)
 
-## Use Case: <br>
-External users and group-game hosts use this skill to run a structured Who Is Undercover session in Chinese, with the agent serving as judge, record keeper, vote collector, and final reviewer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores party-game records and message-sender IDs in a local SQLite database. <br>
-Mitigation: Install only where this local storage is acceptable, treat the database as private game data, and delete old records when no longer needed. <br>
-Risk: The skill relies on direct-message and sender-ID access to validate players and collect votes. <br>
-Mitigation: Grant the agent only the DM and sender-ID access needed to run the game. <br>
+## Use Case:
 
+External users and game hosts use this skill to run a structured "Who Is Undercover" game in Chinese-speaking groups, with the agent managing hidden roles, player descriptions, private voting, eliminations, and end-of-game review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loongfay/undercover-is-who) <br>
-- [Publisher profile](https://clawhub.ai/user/loongfay) <br>
-- [Word pair reference](references/word_pairs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Chinese game prompts, JSON command results, Markdown game exports, and shell commands for local Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores local SQLite game records and player sender IDs during gameplay.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill stores player names, message-sender IDs, roles, words, descriptions, votes, and game reviews in a local SQLite game record.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with groups that consent to local game records, avoid exporting records before the game ends, and delete the generated database when records are no longer needed.
+
+Risk: Premature disclosure of roles, secret words, or vote details can compromise game integrity.
+
+Mitigation: Follow the scripted status checks, generated private messages, and public progress messages so hidden role and vote information is revealed only at the intended game stage.
+
+## Reference(s):
+
+- [Word Pair Library](references/word_pairs.md)
+- [ClawHub Skill Page](https://clawhub.ai/loongfay/skills/undercover-is-who)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown and text with JSON command outputs and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local game state and can export a Markdown game record.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

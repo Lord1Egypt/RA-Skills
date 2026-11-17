@@ -1,42 +1,59 @@
-## Description: <br>
-Full-featured Confluence Cloud REST API v2 skill for managing pages, spaces, blog posts, attachments, comments, labels, and related Confluence resources through direct API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full-featured Confluence Cloud REST API v2 skill for managing pages, spaces, blog posts, attachments, comments, labels, and other Confluence content through direct API calls.
 
-## Publisher: <br>
-[jeffersonling1217-png](https://clawhub.ai/user/jeffersonling1217-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jeffersonling1217-png](https://clawhub.ai/user/jeffersonling1217-png)
 
-## Use Case: <br>
-Developers and Confluence administrators use this skill to guide agent-assisted Confluence Cloud REST API work, including creating, reading, updating, deleting, and searching content across spaces, pages, attachments, comments, labels, users, and version history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes examples for tenant-changing Confluence operations such as admin-key, invitation, delete, purge, and redact actions. <br>
-Mitigation: Use least-privilege Atlassian API tokens and require explicit human approval before executing admin, invitation, delete, purge, redact, or other tenant-changing operations. <br>
-Risk: The skill relies on direct Confluence Cloud API credentials in environment variables. <br>
-Mitigation: Store CONFLUENCE_EMAIL, CONFLUENCE_API_TOKEN, and CONFLUENCE_DOMAIN in the agent runtime secret manager and avoid exposing tokens in prompts, logs, or generated command output. <br>
+## Use Case:
 
+Developers and operations teams use this skill to have an agent prepare Confluence Cloud REST API v2 requests for creating, reading, updating, deleting, searching, and organizing Confluence content. It is suited to authenticated Confluence administration and content-management workflows that require direct API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeffersonling1217-png/confluence-atlassian) <br>
-- [Publisher profile](https://clawhub.ai/user/jeffersonling1217-png) <br>
-- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline curl commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CONFLUENCE_EMAIL, CONFLUENCE_API_TOKEN, and CONFLUENCE_DOMAIN environment variables for authenticated examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can guide powerful Confluence operations such as admin-key changes, invites, deletion, purge, redaction, and space modification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any admin-key, invite, delete, purge, redaction, or space-modifying action.
+
+Risk: Authenticated API calls depend on an Atlassian API token that could expose Confluence access if pasted into commands, logs, or shared transcripts.
+
+Mitigation: Use a least-privilege Atlassian API token stored in environment variables, and avoid emitting secrets in command text or logs.
+
+Risk: The security verdict is suspicious because the artifact documents high-impact actions without enough built-in guardrails.
+
+Mitigation: Install only for workflows that require direct Confluence Cloud API calls, and review generated requests before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeffersonling1217-png/skills/confluence-atlassian)
+- [ClawHub release homepage](https://clawhub.ai/jeffersonling1217-png/confluence-atlassian)
+- [Atlassian API token management](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CONFLUENCE_EMAIL, CONFLUENCE_API_TOKEN, and CONFLUENCE_DOMAIN environment variables for authenticated Confluence Cloud API use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

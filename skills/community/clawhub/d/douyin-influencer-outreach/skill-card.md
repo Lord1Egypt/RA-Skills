@@ -1,45 +1,64 @@
-## Description: <br>
-Search for Douyin influencers matching criteria, review their content, avoid duplicate contacts, and draft or send personalized direct messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Douyin for influencers matching follower and engagement criteria, reviews their profiles and recent content, sends personalized direct messages, and tracks contacted accounts to avoid duplicates.
 
-## Publisher: <br>
-[wangtao19911111](https://clawhub.ai/user/wangtao19911111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangtao19911111](https://clawhub.ai/user/wangtao19911111)
 
-## Use Case: <br>
-External marketing and business operators use this skill to find small or mid-sized Douyin creators, check fit against follower and engagement criteria, and conduct personalized outreach while tracking prior contacts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automates outbound promotional direct messages and broad recipient targeting. <br>
-Mitigation: Review every generated message before sending, keep recipient counts low, and confirm that outreach complies with Douyin policies and applicable marketing rules. <br>
-Risk: The workflow stores contacted creator information and message content in a local CSV file. <br>
-Mitigation: Limit the logged fields to what is necessary, protect the workspace, and periodically purge recipient records that are no longer needed. <br>
-Risk: The dependency declaration allows any OpenClaw version. <br>
-Mitigation: Pin or update the OpenClaw dependency to a reviewed version before using the skill in a production workflow. <br>
+## Use Case:
 
+External growth and marketing operators use this skill to find small Douyin creators, evaluate recent content and engagement, draft personalized outreach, send DMs from a logged-in account, and keep a contact log.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangtao19911111/douyin-influencer-outreach) <br>
-- [Publisher Profile](https://clawhub.ai/user/wangtao19911111) <br>
-- [Douyin Search URL Pattern](https://www.douyin.com/jingxuan/search/{keyword}?type=general) <br>
-- [Douyin Creator Profile URL Pattern](https://www.douyin.com/user/{sec_uid}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with browser actions, JavaScript snippets, shell commands, and CSV records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces personalized outreach message text and local contact-tracking entries; user confirmation is required before sending messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill can send real outbound Douyin direct messages from a logged-in account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual review and approval of each recipient and message before sending, and set strict per-run and daily send limits.
+
+Risk: Contact records may contain profile details, message text, and outreach status with weak safeguards.
+
+Mitigation: Store the CSV in a protected location, limit access, and define retention and deletion rules before use.
+
+Risk: Scraped profile text or generated message content may be used in shell commands or scripts.
+
+Mitigation: Avoid passing scraped text into shell commands or generated scripts; when recording data, quote and escape fields carefully.
+
+Risk: Automated outreach can create privacy, platform-policy, or marketing-compliance risk.
+
+Mitigation: Use the skill only within Douyin rules and applicable local privacy and marketing requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangtao19911111/skills/douyin-influencer-outreach)
+- [Usage examples](artifact/examples.md)
+- [Douyin search URL pattern](https://www.douyin.com/jingxuan/search/{keyword}?type=general)
+- [Douyin profile URL pattern](https://www.douyin.com/user/{sec_uid})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser actions, shell commands, JavaScript snippets, message templates, and CSV contact records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation before outreach and produces personalized DM text plus contact-tracking records.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

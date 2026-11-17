@@ -1,46 +1,65 @@
-## Description: <br>
-Sleep records unfinished OpenClaw session work to a preview file, resets the current session through the Gateway API, and restores pending items through a bootstrap hook in the next session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sleep helps an OpenClaw agent pause a session by saving unfinished work to a preview file, resetting the session, and restoring that context when the agent resumes.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and OpenClaw agents use Sleep to pause a session, preserve unfinished work with actionable next steps, reset the session, and resume from the saved context after bootstrap. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A persistent workspace hook can restore saved preview content into later sessions after reset. <br>
-Mitigation: Install the hook only when automatic context restoration is desired, review preview files before reset, and disable the hook when it is no longer needed. <br>
-Risk: Preview files can contain sensitive task details or credentials if an agent records them. <br>
-Mitigation: Do not store secrets or tokens in preview files, and review preview contents before invoking the reset flow. <br>
-Risk: The skill can reset the current OpenClaw session through the Gateway API. <br>
-Mitigation: Require explicit confirmation before running /sleep and verify the current session key so the reset targets the intended session. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to preserve unresolved tasks across session resets. It is intended for sessions where an agent needs to stop, record pending work, and continue from that saved context later.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/axelhu/openclaw-sleep) <br>
-- [OpenClaw Hooks Documentation](https://docs.openclaw.ai/automation/hooks) <br>
-- [Implementation Instructions](references/implementation.md) <br>
-- [Session Sleep-Wake Hook](references/hook-template/HOOK.md) <br>
-- [Hook Handler Template](references/hook-template/handler.ts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Code, Guidance] <br>
-**Output Format:** [Markdown instructions with bash snippets and a TypeScript hook template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a per-session preview file and uses a bootstrap hook to inject pending context when status is pending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill installs a shared persistent hook that can affect session bootstrap behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and enable the hook only when session sleep/resume behavior is intentionally desired, and remove or disable it when no longer needed.
+
+Risk: The workflow resets sessions and can interrupt the wrong session if the session key is mishandled.
+
+Mitigation: Confirm the current session key before reset and scope use to the intended agent session.
+
+Risk: Preview files may contain detailed task context in plaintext.
+
+Mitigation: Avoid storing secrets or personal data in previews and restrict file permissions for the preview directory.
+
+Risk: The reset flow reads and uses a local gateway token.
+
+Mitigation: Limit installation to trusted environments and review token handling before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/openclaw-sleep)
+- [Publisher profile](https://clawhub.ai/user/axelhu)
+- [OpenClaw hook documentation](https://docs.openclaw.ai/automation/hooks)
+- [Implementation guide](references/implementation.md)
+- [Hook template](references/hook-template/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown preview and recovery text with inline shell commands and hook configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates per-session plaintext preview files and injects pending-work recovery text during agent bootstrap.]
+
+## Skill Version(s):
+
+1.7.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

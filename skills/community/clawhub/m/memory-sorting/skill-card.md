@@ -1,42 +1,53 @@
-## Description: <br>
-Organizes local agent memory by detecting duplicate, outdated, conflicting, orphaned, fragmented, or oversized entries and producing an approval-gated cleanup proposal. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes an agent memory store by scanning MEMORY.md, topics, and daily notes for duplicate, outdated, conflicting, orphaned, fragmented, or oversized content, then producing reviewable cleanup proposals.
 
-## Publisher: <br>
-[jofiction918](https://clawhub.ai/user/jofiction918) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jofiction918](https://clawhub.ai/user/jofiction918)
 
-## Use Case: <br>
-Developers and agent users who maintain local MEMORY.md, topics, and daily memory notes use this skill to audit memory hygiene and apply approved cleanup changes. It helps keep long-term memory concise, current, internally consistent, and backed by existing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local memory and journal files that may contain sensitive personal or project information. <br>
-Mitigation: Grant access only to the intended memory directories and review what the agent scans before sharing outputs. <br>
-Risk: Cleanup proposals or approved edits could remove useful memories or encode an incorrect interpretation of current files. <br>
-Mitigation: Review proposed changes before approval and keep normal backups or version control for memory files. <br>
-Risk: Daily-journal write access broadens the files the agent can modify. <br>
-Mitigation: Avoid granting daily-journal write access unless that broader permission is necessary and acceptable. <br>
+## Use Case:
 
+External users and developers use this skill to audit and reorganize persistent agent memory files. It produces a structured cleanup proposal for human approval before modifying memory content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jofiction918/memory-sorting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown checklist, cleanup proposal, and execution report; approved actions may edit local memory files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user approval before making cleanup edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.7 (source: server release metadata) <br>
+Risk: The skill asks the agent to inspect broad persistent memory files and may propose edits or deletions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every proposed change before approval, especially deletions, and make backups before execution.
+
+Risk: Incorrect cleanup proposals could remove useful context or preserve misleading memory content.
+
+Mitigation: Approve only specific numbered changes after checking the affected files and review the execution report after edits are applied.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jofiction918/skills/memory-sorting)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown proposal and execution report with optional shell commands for duplicate or conflict searches]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human approval before executing proposed memory edits or deletions.]
+
+## Skill Version(s):
+
+3.0.7 (source: server release metadata; artifact frontmatter says 3.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

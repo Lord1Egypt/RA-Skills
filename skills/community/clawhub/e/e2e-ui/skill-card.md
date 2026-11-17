@@ -1,40 +1,54 @@
-## Description: <br>
-E2E automation engineer skill for route smoke checks, HTTP reachability, and lightweight UI confidence validation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+E2E automation engineer skill for route smoke checks, HTTP reachability, and lightweight UI confidence validation.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly verify that changed routes, pages, APIs, or UI surfaces still load, route correctly, and avoid obvious 404, 405, authentication, or rendering failures. It is intended for focused smoke validation before deeper acceptance or end-to-end testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A passing smoke check may be mistaken for full authentication, security, business-logic, or end-to-end coverage. <br>
-Mitigation: Use the result only as scoped reachability and rendering confidence, then run deeper tests for auth, security, and business-critical flows when those areas are affected. <br>
-Risk: Route-refresh or runtime validation commands can affect a development environment if run without confirming scope. <br>
-Mitigation: Confirm the affected route or UI surface and run the narrow command in the appropriate development or test environment before reporting results. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly confirm that changed routes, pages, or API surfaces are registered, reachable, and rendering at a basic level before deeper acceptance testing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/e2e-ui) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise command and validation-result details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports the route path or browser path checked, the command or minimal smoke action used, and a pass, failure, or follow-up result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may lead an agent to run route refresh or HTTP request commands in a project environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed commands before execution, especially in production or shared environments.
+
+Risk: A passing smoke check only proves basic reachability or rendering and may miss deeper business logic issues.
+
+Mitigation: Use the result as quick confidence and run deeper scenario or acceptance tests when the change affects core behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/e2e-ui)
+- [Publisher profile](https://clawhub.ai/user/aiweline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise validation results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes the checked route or UI path, command or browser path used, observed pass/fail result, and any follow-up required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Control Windows PowerShell from WSL by executing commands and scripts on the Windows host using mounted Windows executables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Windows PowerShell from WSL by executing commands and scripts on the Windows host using mounted Windows executables.
 
-## Publisher: <br>
-[TYzzt](https://clawhub.ai/user/TYzzt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tyzzt](https://clawhub.ai/user/tyzzt)
 
-## Use Case: <br>
-Developers and agents working inside WSL use this skill to run Windows PowerShell commands, execute PowerShell script files, inspect Windows system state, and manage Windows files, processes, services, and network information from a Linux agent session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over Windows PowerShell on the host from WSL. <br>
-Mitigation: Install only when host-level Windows control is intended, review commands before execution, and require explicit approval for file changes, process control, program launches, execution-policy bypasses, or administrator prompts. <br>
-Risk: PowerShell scripts or commands from untrusted sources can alter system files or run unwanted programs. <br>
-Mitigation: Avoid untrusted scripts, prefer the reviewed ClawHub package over live downloads, and test commands before production use. <br>
+## Use Case:
 
+Developers and agents running inside WSL use this skill to check PowerShell availability, execute Windows PowerShell commands or scripts, and coordinate tasks on the Windows host.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/TYzzt/wsl-powershell) <br>
-- [Windows Subsystem for Linux documentation](https://docs.microsoft.com/en-us/windows/wsl/) <br>
-- [PowerShell project](https://github.com/PowerShell/PowerShell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and PowerShell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Windows command results, process or service listings, filesystem changes, and command diagnostics from PowerShell.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill enables broad Windows PowerShell control from WSL, including commands that can alter files, manage processes, run scripts, or request elevated privileges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for file writes, process killing, privilege elevation, script execution, and execution-policy bypass.
+
+Risk: Installing from a mutable branch can make the reviewed behavior differ from the installed behavior.
+
+Mitigation: Prefer a pinned, verified release before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tyzzt/skills/wsl-powershell)
+- [Windows Subsystem for Linux documentation](https://docs.microsoft.com/en-us/windows/wsl/)
+- [PowerShell project](https://github.com/PowerShell/PowerShell)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and PowerShell command strings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WSL with Windows PowerShell or PowerShell Core mounted and available.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

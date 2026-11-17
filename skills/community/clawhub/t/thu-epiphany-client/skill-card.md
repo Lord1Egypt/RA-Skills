@@ -1,43 +1,57 @@
-## Description: <br>
-Submit learning insights to an organization's shared Feishu learning circle through a token-authenticated API configured by the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submit learning insights to an organization's shared Feishu learning circle via a token-authenticated API.
 
-## Publisher: <br>
-[qyc314159](https://clawhub.ai/user/qyc314159) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qyc314159](https://clawhub.ai/user/qyc314159)
 
-## Use Case: <br>
-Employees, external collaborators, and agents use this skill to turn learning insights into structured entries and submit them to a shared learning-circle server. It is intended for user-provided epiphanies, problem-solving notes, and research questions rather than private or sensitive content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided learning content to a configured shared server where content may be stored and removable only by an administrator. <br>
-Mitigation: Submit only content appropriate for the shared system, avoid private or sensitive material, and confirm the server operator's retention and deletion practices. <br>
-Risk: The bearer token in scripts/config.js grants access to the learning-circle API. <br>
-Mitigation: Keep scripts/config.js private, do not publish the configured skill folder, and rotate the token through the administrator if it may have been exposed. <br>
-Risk: Network requests depend on the configured api_base endpoint and token trust boundary. <br>
-Mitigation: Use a trusted HTTPS api_base supplied by the administrator and install the skill only when the learning-circle server is trusted. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn learning insights into structured notes and publish them to a configured organization learning-circle server. It supports submission and server status checks through the included Node.js script.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qyc314159/thu-epiphany-client) <br>
-- [Publisher profile](https://clawhub.ai/user/qyc314159) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with command-line examples and JSON API submissions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Submissions include a title, thoughts, optional URL, and optional source name.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can publish learning notes to a configured server using a bearer token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before each submission unless the user has made a clear publish request.
+
+Risk: Submissions may be visible to the organization learning circle.
+
+Mitigation: Do not submit secrets, customer data, private reflections, internal debugging details, or other sensitive material.
+
+Risk: The configured endpoint may not enforce HTTPS.
+
+Mitigation: Use an HTTPS API endpoint and protect the local token configuration file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qyc314159/skills/thu-epiphany-client)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API submissions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Submissions include title, thoughts, optional URL, and optional source display name.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

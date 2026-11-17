@@ -1,38 +1,48 @@
-## Description: <br>
-You are a mobile developer specializing in native and cross-platform mobile applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are a mobile developer specializing in native and cross-platform mobile applications. Use when: ios development, android development, cross-platform frameworks, design patterns, state management.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for guidance on native iOS, native Android, and cross-platform mobile application development, including architecture, state management, testing, performance, and store deployment preparation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated mobile guidance may affect sensitive app capabilities such as payments, health data, biometrics, analytics, platform permissions, or store deployment.
+
+Mitigation: Review generated code, permission declarations, data handling, and store configuration against project security, privacy, and platform policy requirements before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on iOS, Android, and cross-platform mobile application development, including architecture, state management, testing, performance, and deployment preparation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated mobile code or guidance may be incorrect for authentication, payments, analytics, privacy policies, or app store compliance. <br>
-Mitigation: Review generated code and release guidance before production use, with particular attention to security, privacy, payment flows, analytics, and store requirements. <br>
+**Output Format:** [Markdown with Swift and Kotlin code examples, checklists, and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-mobile-developer) <br>
+**Other Properties Related to Output:** [May include platform-specific recommendations for iOS, Android, and cross-platform frameworks.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, markdown, configuration] <br>
-**Output Format:** [Markdown with mobile code examples and deployment checklist items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only advisor; generated mobile code and release guidance should be reviewed before production use.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

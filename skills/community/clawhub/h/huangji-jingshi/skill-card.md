@@ -1,40 +1,53 @@
-## Description: <br>
-皇极经世 - 北宋邵雍的历史周期推演体系，基于《周易》的元会运世周期理论，用于历史大势判断、时代定位、长期预测 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+皇极经世 - 北宋邵雍的历史周期推演体系，基于《周易》的元会运世周期理论，用于历史大势判断、时代定位、长期预测
 
-## Publisher: <br>
-[taro291](https://clawhub.ai/user/taro291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taro291](https://clawhub.ai/user/taro291)
 
-## Use Case: <br>
-External users and developers can use this skill as a cultural and philosophical reference for Shao Yong's 皇极经世 historical-cycle framework, including era positioning, long-range trend interpretation, and reflective decision support. Its predictions and cycle guidance should not be used as the basis for consequential financial, medical, legal, or safety decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat historical-cycle predictions as factual forecasts for consequential financial, medical, legal, safety, or other high-impact decisions. <br>
-Mitigation: Present outputs as cultural or reflective interpretation and require independent expert review before any consequential use. <br>
+## Use Case:
 
+External users use this skill to help an agent explain Shao Yong's Huangji Jingshi framework, map eras through the Yuan-Hui-Yun-Shi cycle, and provide reflective historical-cycle guidance. Its outputs should be treated as interpretive Chinese-classics guidance rather than factual forecasting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taro291/huangji-jingshi) <br>
-- [Publisher profile](https://clawhub.ai/user/taro291) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reference guidance with tables and concise interpretive text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference skill; no code execution, credentials, or persistent changes requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 1.1) <br>
+Risk: Users may mistake interpretive or divinatory historical-cycle guidance for factual forecasting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as cultural, philosophical, or reflective interpretation and encourage independent verification before consequential decisions.
+
+Risk: The skill may activate during Shao Yong or Chinese-classics discussions where predictive language could be over-applied.
+
+Mitigation: Keep responses scoped to the user's request and avoid asserting certainty about future events.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taro291/skills/huangji-jingshi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with explanatory text, lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interpretive and divinatory content; no shell commands, code execution, credentials, or sensitive permissions are requested by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

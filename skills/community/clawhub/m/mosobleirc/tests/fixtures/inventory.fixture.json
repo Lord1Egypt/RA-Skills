@@ -1,0 +1,141 @@
+[
+  {
+    "item_id": 9001,
+    "name": "Fixture A",
+    "address": "Synthetic test address",
+    "meters": [
+      {
+        "meter_id": 1001,
+        "number": "TESTCW01",
+        "type": "ColdWater",
+        "last_value": 715,
+        "last_value_date": "2026-04-22T18:06:02Z",
+        "verification_deadline": "2029-08-20"
+      },
+      {
+        "meter_id": 1002,
+        "number": "TESTHW01",
+        "type": "HotWater",
+        "last_value": 3,
+        "last_value_date": "2026-04-22T18:05:51Z",
+        "verification_deadline": "2032-01-01"
+      }
+    ]
+  },
+  {
+    "item_id": 9002,
+    "name": "Fixture B",
+    "address": "Synthetic test address",
+    "meters": [
+      {
+        "meter_id": 1003,
+        "number": "TESTCW02",
+        "type": "ColdWater",
+        "last_value": 865,
+        "last_value_date": "2026-04-22T18:06:26Z",
+        "verification_deadline": "2029-12-27"
+      },
+      {
+        "meter_id": 1004,
+        "number": "TESTHW02",
+        "type": "HotWater",
+        "last_value": 430,
+        "last_value_date": "2026-04-22T18:06:37Z",
+        "verification_deadline": "2029-12-27"
+      }
+    ]
+  },
+  {
+    "item_id": 9003,
+    "name": "Fixture C",
+    "address": "Synthetic test address",
+    "meters": [
+      {
+        "meter_id": 1005,
+        "number": "TESTCW03",
+        "type": "ColdWater",
+        "last_value": 1846,
+        "last_value_date": "2026-02-23T18:04:09Z",
+        "verification_deadline": "2032-04-17"
+      },
+      {
+        "meter_id": 1006,
+        "number": "TESTCW04",
+        "type": "ColdWater",
+        "last_value": 603,
+        "last_value_date": "2026-02-23T18:04:48Z",
+        "verification_deadline": "2032-04-17"
+      },
+      {
+        "meter_id": 1007,
+        "number": "TESTHW03",
+        "type": "HotWater",
+        "last_value": 616,
+        "last_value_date": "2026-02-23T18:04:25Z",
+        "verification_deadline": "2028-03-24"
+      },
+      {
+        "meter_id": 1008,
+        "number": "TESTHW04",
+        "type": "HotWater",
+        "last_value": 43.5,
+        "last_value_date": "2025-11-20T21:00:00Z",
+        "verification_deadline": "2032-04-17"
+      }
+    ]
+  },
+  {
+    "item_id": 9004,
+    "name": "Fixture D",
+    "address": "Synthetic test address",
+    "meters": [
+      {
+        "meter_id": 1009,
+        "number": "TESTCW05",
+        "type": "ColdWater",
+        "last_value": 189,
+        "last_value_date": "2026-04-22T18:07:14Z",
+        "verification_deadline": "2029-11-29"
+      },
+      {
+        "meter_id": 1010,
+        "number": "TESTCW06",
+        "type": "ColdWater",
+        "last_value": 1006,
+        "last_value_date": "2026-04-22T18:07:36Z",
+        "verification_deadline": "2029-11-29"
+      },
+      {
+        "meter_id": 1011,
+        "number": "TESTHW05",
+        "type": "HotWater",
+        "last_value": 513,
+        "last_value_date": "2026-04-22T18:07:47Z",
+        "verification_deadline": "2029-11-29"
+      },
+      {
+        "meter_id": 1012,
+        "number": "TESTHW06",
+        "type": "HotWater",
+        "last_value": 144,
+        "last_value_date": "2026-04-22T18:07:26Z",
+        "verification_deadline": "2029-11-29"
+      }
+    ]
+  },
+  {
+    "item_id": 9005,
+    "name": "Fixture E",
+    "address": "Synthetic test address",
+    "meters": [
+      {
+        "meter_id": 1013,
+        "number": "TESTCW07",
+        "type": "ColdWater",
+        "last_value": 250,
+        "last_value_date": "2026-01-15T10:00:00Z",
+        "verification_deadline": "2031-01-01"
+      }
+    ]
+  }
+]

@@ -1,40 +1,49 @@
-## Description: <br>
-COO Commander is a prompt-only agent persona for coordinating missions across one or more worker agents by planning tasks, assigning work, checking status, handling blockers, and closing the mission. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Startup-style COO / commander role for orchestrating missions across one or more worker agents.
 
-## Publisher: <br>
-[Kiril-Shturman](https://clawhub.ai/user/Kiril-Shturman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kiril-shturman](https://clawhub.ai/user/kiril-shturman)
 
-## Use Case: <br>
-Operators, founders, and agent teams use this skill to turn a business goal into ordered tasks, delegate work to worker agents, monitor progress, resolve blockers, and summarize completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The commander persona may assign or decide next steps that are inappropriate for sensitive projects if the mission boundaries are unclear. <br>
-Mitigation: Set clear boundaries for what it may assign or decide, and review outputs before acting on important systems or documents. <br>
-Risk: Coordination outputs may be incomplete or misleading if progress, blockers, or ETA are not checked with workers. <br>
-Mitigation: Use the skill's status-check pattern to request progress, blocker, and ETA before issuing the next order. <br>
+## Use Case:
 
+Operators and agent developers use this skill to coordinate business goals across worker agents, turning a mission into ordered tasks, status checks, blocker decisions, and a concise completion summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Kiril-Shturman/coo-commander) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Compact Markdown with structured operational headings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces short mission, task, status, blocker, next-order, and completion updates; does not perform heavy execution itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad management or status-check phrasing may activate commander-style delegation when the user expected direct execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Clarify whether the user wants coordination or direct execution, and disable or bypass the skill when normal execution is preferred.
+
+## Reference(s):
+
+- [COO Commander ClawHub listing](https://clawhub.ai/kiril-shturman/skills/coo-commander)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Compact structured Markdown with operational headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

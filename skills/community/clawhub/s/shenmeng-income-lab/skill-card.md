@@ -1,44 +1,60 @@
-## Description: <br>
-Income Lab 收入实验室 helps users systematically test legal earning methods, record experiment data, analyze results, and refine income strategies over time. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Income Lab helps users design, track, review, and improve income experiments across legal earning methods.
 
-## Publisher: <br>
-[shenmeng](https://clawhub.ai/user/shenmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shenmeng](https://clawhub.ai/user/shenmeng)
 
-## Use Case: <br>
-Individuals and external users use this skill to plan income experiments, compare possible earning methods, track time and income, and produce periodic retrospectives that guide what to continue, adjust, or stop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports external SkillPay billing behavior that can attempt a 0.01 USDT charge for the environment-selected user when the payment path runs. <br>
-Mitigation: Review before installing, confirm the intended SKILLPAY_USER_ID, and require explicit user consent before any billing path is executed. <br>
-Risk: The security guidance flags a hardcoded billing API key and recommends separating balance checks from charge execution. <br>
-Mitigation: Remove hardcoded credentials, rely on environment-scoped secrets, and keep balance checks separate from charge requests. <br>
-Risk: Income notes and experiment records may contain sensitive personal financial details stored locally under ~/.income-lab. <br>
-Mitigation: Avoid recording sensitive financial notes unless local storage is acceptable, and protect or delete the local data directory according to the user's privacy needs. <br>
+## Use Case:
 
+External users use this skill to assess their time, skills, capital, and risk tolerance; choose income experiments; track income and hours; and decide which strategies to continue, adjust, or stop.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shenmeng/shenmeng-income-lab) <br>
-- [income-methods.md](references/income-methods.md) <br>
-- [retrospective-framework.md](references/retrospective-framework.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local JSON/CSV files produced by helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Helper scripts store experiment and report data locally under ~/.income-lab and can export CSV reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2025.4.15 (source: server-resolved release metadata) <br>
+Risk: Automatic external charging is part of the packaged billing flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after confirming the 0.01 USDT per-call model, the billing provider, and the user identity used for charges.
+
+Risk: A reusable payment API key appears in source.
+
+Mitigation: Require key rotation or environment-based secret handling before trusted deployment.
+
+Risk: The bundled scripts can store income experiment records locally.
+
+Mitigation: Avoid entering sensitive financial details unless local storage under ~/.income-lab is acceptable.
+
+## Reference(s):
+
+- [Income Methods Reference](references/income-methods.md)
+- [Retrospective Framework](references/retrospective-framework.md)
+- [ClawHub Skill Page](https://clawhub.ai/shenmeng/skills/shenmeng-income-lab)
+- [Publisher Profile](https://clawhub.ai/user/shenmeng)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with command examples; bundled scripts can write JSON records and CSV reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local income experiment records under ~/.income-lab when the bundled scripts are run.]
+
+## Skill Version(s):
+
+2025.4.15 (source: server release evidence; artifact _meta.json lists 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

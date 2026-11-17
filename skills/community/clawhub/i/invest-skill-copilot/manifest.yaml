@@ -1,0 +1,32 @@
+skill_id: invest_skill_copilot
+skill_name: 仓库驱动的全场景投研分析
+category: subject_analysis
+description: "运行时读取 invest-skill 项目（Gitee 主源，GitHub 镜像可降级）的方法论与数据纪律并内化，由一个统一入口完成全场景股票投研分析，功能目录随仓库更新自动同步。"
+calls_gateway: false
+author: Warwick
+version: "1.1.0"
+spec: SKILL.md
+runtime: llm_prompt
+input:
+  - name: query
+    type: string
+    required: true
+    description: "自然语言投研需求，如『分析宁德时代』『对比茅台和五粮液』『行业机会』『更新功能目录』"
+  - name: scene
+    type: string
+    required: false
+    description: "显式指定场景（sell_side/compare/pick/industry/chain/policy/sentiment/bottom/macro/hotspot/review/overnight）；缺省自动路由"
+  - name: sync_catalog
+    type: string
+    required: false
+    description: "是否强制刷新功能目录，true/false；缺省自动按 commit 判断"
+output:
+  - name: report_md
+    type: file
+    description: "files/report/{主题}_{YYYYMMDD}_投研分析.md"
+  - name: report_html
+    type: file
+    description: "files/report/{主题}_{YYYYMMDD}_投研分析.html（自包含，可离线打开）"
+  - name: data
+    type: object
+    description: "结构化结果，含 data_source / gateway_trace / catalog_commit"

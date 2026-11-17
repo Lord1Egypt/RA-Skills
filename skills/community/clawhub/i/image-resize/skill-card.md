@@ -1,40 +1,48 @@
-## Description: <br>
-Resize images using ImageMagick from a Bash command-line entrypoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resize images using ImageMagick (CLI). Entrypoint is a Bash script.
 
-## Publisher: <br>
-[pr1vateer](https://clawhub.ai/user/pr1vateer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pr1vateer](https://clawhub.ai/user/pr1vateer)
 
-## Use Case: <br>
-Developers and agents use this skill to resize local image files with ImageMagick, including fixed-width, exact-geometry, percentage, and conditional resizing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Processing images from untrusted sources can expose ImageMagick parsing vulnerabilities if ImageMagick is outdated. <br>
-Mitigation: Keep ImageMagick updated and avoid processing untrusted images unless the execution environment is appropriately isolated. <br>
-Risk: The skill writes resized images to an explicit or default local output path. <br>
-Mitigation: Review the input and output paths before execution and run the skill with filesystem permissions appropriate for the working directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release: Image Magic resizer](https://clawhub.ai/pr1vateer/image-resize) <br>
-- [Publisher profile: pr1vateer](https://clawhub.ai/user/pr1vateer) <br>
+## Use Case:
 
+Developers and agents use this skill to resize local image files from the command line with ImageMagick, including fixed geometry, percent scaling, and default output-path generation.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, files, guidance] <br>
-**Output Format:** [Shell command execution with text status output and resized image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and either magick or convert from ImageMagick.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create output directories and write image files at user-provided paths, which can replace an existing file if paths collide.
+
+Mitigation: Use a distinct output directory or filename and review input, geometry, and output arguments before running the resize command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pr1vateer/skills/image-resize)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Text]
+
+**Output Format:** [Image files plus command-line status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the resized image to a requested or inferred output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter says 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

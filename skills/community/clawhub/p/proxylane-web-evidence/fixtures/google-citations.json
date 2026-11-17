@@ -1,0 +1,15 @@
+{
+  "fixture_notice": "Synthetic selected-DOM input. It is not a Google response or evidence of regional visibility.",
+  "url": "https://www.google.com/search?q=synthetic+fixture+query&hl=en&gl=us",
+  "query": "synthetic fixture query",
+  "surface": "ai-overview",
+  "marker": "AI Overview",
+  "answer_text": "Synthetic fixture: a captured AI answer needs source citations and a declared observation context.",
+  "citations": [
+    {"url": "https://example.org/fixture-source-a", "title": "Synthetic citation A"},
+    {"url": "https://www.google.com/url?q=https%3A%2F%2Fexample.org%2Ffixture-source-b", "title": "Synthetic citation B"}
+  ],
+  "location_text": "Synthetic location footer: not verified",
+  "requested_country": "us",
+  "requested_language": "en"
+}

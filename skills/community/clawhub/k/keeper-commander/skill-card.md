@@ -1,45 +1,63 @@
-## Description: <br>
-Use Keeper Commander CLI and Keeper Secrets Manager workflows when installing Keeper tooling, setting up profiles, signing in, running Keeper interactively, searching vault or admin data, retrieving a specific secret or field, injecting secrets into commands, creating or updating Keeper records, or troubleshooting Keeper terminal sessions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Keeper Commander CLI and Keeper Secrets Manager workflows when installing Keeper tooling, setting up profiles, signing in, running Keeper interactively, searching vault or admin data, retrieving a specific secret or field, injecting secrets into commands, creating or updating Keeper records, or troubleshooting Keeper terminal sessions.
 
-## Publisher: <br>
-[keeper-security](https://clawhub.ai/user/keeper-security) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keeper-security](https://clawhub.ai/user/keeper-security)
 
-## Use Case: <br>
-Developers, operators, and administrators use this skill to work with Keeper Commander and Keeper Secrets Manager for setup, interactive sessions, secret injection, targeted field retrieval, record updates, and troubleshooting while minimizing secret exposure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Keeper workflows can touch vault metadata, secrets, sessions, and record updates. <br>
-Mitigation: Supervise secret reads and record changes, retrieve only the exact requested field, prefer Keeper notation or injection over displaying secrets, and close tmux sessions when work is complete. <br>
-Risk: Delete, clear, or remove operations can change Keeper records or administrative state. <br>
-Mitigation: Require explicit user confirmation before destructive commands and verify command syntax with installed CLI help or Keeper documentation. <br>
+## Use Case:
 
+Developers, operators, and administrators use this skill to work with Keeper Commander CLI and Keeper Secrets Manager tasks such as setup, authentication, vault or admin lookup, field retrieval, secret injection, record updates, and troubleshooting terminal sessions.
 
-## Reference(s): <br>
-- [Keeper Commander on ClawHub](https://clawhub.ai/keeper-security/keeper-commander) <br>
-- [Keeper Agent Kit](https://github.com/Keeper-Security/keeper-agent-kit) <br>
-- [Keeper Docs](https://docs.keeper.io) <br>
-- [Keeper Secrets Manager Overview](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) <br>
-- [Commander CLI Command Reference](https://docs.keeper.io/en/keeperpam/commander-cli/command-reference) <br>
-- [Keeper Notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include tmux session commands and Keeper CLI checks; avoids displaying secrets unless explicitly required and appropriate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Keeper workflows can expose sensitive vault data or raw secrets if broad records are dumped or command output is pasted without filtering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect metadata first, retrieve only the exact requested fields, summarize outputs that may contain sensitive values, and prefer Keeper Secrets Manager injection over displaying secrets.
+
+Risk: Destructive Keeper operations can delete, clear, or remove data from a vault or admin context.
+
+Mitigation: Require explicit user confirmation before delete, clear, or remove operations.
+
+Risk: Interactive login, MFA, and device approval can lose session state across isolated shell calls.
+
+Mitigation: Use a fresh tmux session for interactive Keeper work and hand control to the user for manual authentication steps when needed.
+
+## Reference(s):
+
+- [Keeper Agent Kit reference](references/keeper-agent-kit.md)
+- [Keeper documentation entry points](references/keeper-docs.md)
+- [Keeper Agent Kit repository](https://github.com/Keeper-Security/keeper-agent-kit)
+- [Keeper Docs home](https://docs.keeper.io)
+- [Keeper Secrets Manager overview](https://docs.keeper.io/en/keeperpam/secrets-manager/overview)
+- [Commander CLI command reference](https://docs.keeper.io/en/keeperpam/commander-cli/command-reference)
+- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tmux session commands, Keeper CLI or KSM command suggestions, and secret-handling cautions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

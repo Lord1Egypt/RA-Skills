@@ -1,40 +1,56 @@
-## Description: <br>
-Password Generator helps an agent generate passwords, passphrases, PINs, API-style tokens, usernames, and password-strength feedback while keeping settings local and not storing actual passwords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Password Generator helps an agent generate passwords, PINs, passphrases, API-style tokens, username ideas, and password-strength guidance while keeping settings local and avoiding storage of generated passwords.
 
-## Publisher: <br>
-[mkpareek0315](https://clawhub.ai/user/mkpareek0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkpareek0315](https://clawhub.ai/user/mkpareek0315)
 
-## Use Case: <br>
-External users and developers use this skill as a local prompt helper for password ideas, passphrases, PINs, API-style token examples, usernames, password-strength feedback, and security tips. It is not a replacement for a trusted password manager or operating-system-backed cryptographic generator for important account passwords, API keys, or production tokens. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Chat-generated passwords, tokens, and strength estimates may not provide the assurance of a dedicated password manager or cryptographic key generator. <br>
-Mitigation: Use this skill for password ideas and feedback; use a trusted password manager or OS-backed generator for important account passwords, API keys, and production tokens. <br>
-Risk: Strength-checking real current passwords in chat can expose sensitive secrets to the assistant context. <br>
-Mitigation: Do not paste real current passwords into chat; test representative examples or use an offline password-audit tool for live credentials. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mkpareek0315/password-gen-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/mkpareek0315) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for password, PIN, passphrase, username, token-generation, and password-strength assistance. It is best suited for local guidance and credential ideas rather than production credential issuance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with generated secret examples, strength analysis, security guidance, and optional local setup commands or settings JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read and write settings and usage counts under ~/.openclaw/password-generator; does not store generated passwords.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan notes that the skill asks the agent to invent passwords and tokens without evidence of a real cryptographic random generator.
+
+Mitigation: Use generated credentials as ideas only; for production credentials, use a password manager or CSPRNG-backed utility and rotate any credential exposed in chat.
+
+Risk: The skill is designed to analyze credential text, which may lead users to paste real passwords into chat.
+
+Mitigation: Avoid entering real credentials; test representative examples or use a trusted local password-manager audit feature for real accounts.
+
+Risk: The skill requests local read and write access for settings and generation statistics.
+
+Mitigation: Review the skill before installing and keep file access limited to the documented local settings path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mkpareek0315/skills/password-gen-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses with occasional JSON settings snippets and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated passwords and tokens are displayed to the user and are not intended to be stored by the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

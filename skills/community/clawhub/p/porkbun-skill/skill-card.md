@@ -1,43 +1,54 @@
-## Description: <br>
-Manage Porkbun DNS records and domains via API v3, including creating, reading, updating, and deleting DNS records, listing domains, configuring API access, and working with common record types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Porkbun DNS records and domains via API v3. Use when Codex needs to create, read, update, or delete DNS records on Porkbun; list domains; configure API access; work with common record types (A, AAAA, CNAME, MX, TXT, etc.). The skill includes a CLI tool `scripts/porkbun-dns.js` for executing DNS operations reliably.
 
-## Publisher: <br>
-[wmantly](https://clawhub.ai/user/wmantly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wmantly](https://clawhub.ai/user/wmantly)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Porkbun-hosted DNS records and domains through an agent using the bundled CLI. It supports API credential setup, domain and record listing, and controlled creation, editing, or deletion of common DNS record types. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Porkbun API credentials are sensitive and can authorize DNS changes. <br>
-Mitigation: Restrict access to environment variables or config files containing API keys, and prefer revocable credentials. <br>
-Risk: Incorrect DNS edit or delete operations can disrupt websites, email delivery, or domain verification. <br>
-Mitigation: Before edit-by or delete-by commands, list affected records and confirm the exact domain, record type, and record name. <br>
+## Use Case:
 
+Developers and operators use this skill to manage DNS records and domain data for Porkbun-managed domains from an agent workflow. It supports API credential setup, domain listing, DNS record lookup, and create, edit, or delete operations for common DNS record types.
 
-## Reference(s): <br>
-- [DNS Record Types Reference](references/dns-record-types.md) <br>
-- [Porkbun API v3 Documentation](https://porkbun.com/api/json/v3/documentation) <br>
-- [Porkbun API Key Setup](https://porkbun.com/account/api) <br>
-- [ClawHub Porkbun Skill Release](https://clawhub.ai/wmantly/porkbun-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke a Node.js CLI that sends authenticated requests to the Porkbun API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Porkbun API credentials can change live DNS records if exposed or misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use environment variables or a local config file with restrictive permissions, and rotate credentials when access no longer needs to be granted.
+
+Risk: Create, edit, edit-by, delete, or delete-by commands can disrupt domain, website, or email behavior.
+
+Mitigation: Review the target domain, record type, name, content, TTL, and priority before running mutating DNS commands.
+
+## Reference(s):
+
+- [DNS Record Types Reference](references/dns-record-types.md)
+- [Porkbun API v3 Documentation](https://porkbun.com/api/json/v3/documentation)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute Porkbun DNS API operations when the user provides valid API credentials.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,66 +1,37 @@
 # Bangkok Food Overview
 
-## Why Bangkok is a Food Capital
+Bangkok inverts the usual capital-city logic: the cheapest food is often the best, and eating out beats cooking on price. ฿40 ($1.15) stall plates and Michelin stars coexist on the same block. Bad restaurants don't survive the density of competition — the quality floor is high; your job is picking, not vetting.
 
-Bangkok consistently ranks among the world's best food cities. Unlike many capitals where you seek out good restaurants, in Bangkok you're surrounded by excellent food at every corner — from ฿40 street stalls to Michelin-starred restaurants.
+## Stall Selection Heuristics
 
-### What Makes It Special
-- **Street food culture**: Eating out is cheaper than cooking. Most Thais eat street food daily.
-- **Regional diversity**: All Thai regional cuisines represented (Isaan, Southern, Northern, Central)
-- **International options**: Large expat population means excellent Japanese, Indian, Middle Eastern, Western
-- **Price range**: ฿40 ($1.15) street meal to ฿5,000+ ($145) fine dining
-- **Quality floor**: Even cheap food is good. Bad restaurants don't survive.
+1. **Busy at the right hour = safe and good.** A queue of office workers at 12:30 outranks any review site. An empty stall at peak hour is a no.
+2. **One-dish specialists beat menus.** A cart that has made only khao man gai for 20 years beats a 40-item tourist menu every time.
+3. **Watch it cooked to order.** Fresh wok-fire kills most food-safety risk; pre-cooked trays sitting in heat are the actual hazard.
+4. **Follow the Michelin Bib Gourmand stickers** on street stalls — the guide covers street food here, and the stickers are reliable.
+5. Default when unsure: any crowded food court (below) — same dishes, air-conditioned, near-zero risk.
 
-## The Eating Day in Bangkok
+## The Eating Day
 
-### Breakfast (7-10 AM)
-**Thai style**:
-- Jok (rice porridge) — ฿40-60
-- Pa-tong-go (fried dough) + coffee — ฿30-50
-- Khao tom (rice soup) — ฿50-80
+| Window | Thai default | Price |
+|--------|-------------|-------|
+| Breakfast (7-10 AM) | Jok (rice porridge), pa-tong-go + coffee, moo ping + sticky rice | ฿30-80 |
+| Lunch (11 AM-2 PM) | Peak street-food hour — pad krapao, khao man gai, noodle soups | ฿40-80 stall, ฿50-100 food court |
+| Dinner (6-10 PM) | Night markets and grilled seafood appear | ฿50-100 stall, ฿300-600 mid-range |
+| Late night (10 PM-3 AM) | Chinatown until midnight+, Pratunam 24/7, post-drinking khao tom | ฿50-150 |
 
-**Expat style**:
-- Café breakfast (eggs, toast, coffee) — ฿150-300
-- Hotel breakfast buffet — ฿400-800
-
-### Lunch (11 AM - 2 PM)
-Peak eating time. Office workers flood street stalls.
-- **Street food**: ฿40-80
-- **Food courts**: ฿50-100
-- **Restaurants**: ฿100-300
-- **Expat lunch spots**: ฿200-500
-
-### Dinner (6-10 PM)
-- **Street food**: ฿50-100
-- **Local restaurants**: ฿100-200
-- **Mid-range**: ฿300-600
-- **Fine dining**: ฿1,500-5,000+
-
-### Late Night (10 PM - 3 AM)
-Bangkok never sleeps. Find:
-- Chinatown stalls (until midnight+)
-- Pratunam area (24/7)
-- Night markets
-- After-party spots
+Lunch timing matters: the best stalls sell out — arrive 11:30-13:00, not 15:00.
 
 ## Food Court Culture
 
-Thai mall food courts are exceptional:
+Thai mall food courts are genuinely excellent, not a compromise. Mechanics: buy a prepaid card at the counter (load ฿100-300), pay stalls with it, refund the balance at exit.
 
-### Top Food Courts
 | Location | Vibe | Price |
 |----------|------|-------|
-| **Terminal 21** (Asok, 5th floor) | Best value, diverse | ฿40-80 |
+| **Terminal 21** (Asok, 5th floor) | Best value in central Bangkok, diverse | ฿40-80 |
 | **MBK** (6th floor) | Classic, touristy | ฿50-100 |
 | **Siam Paragon** (basement) | Upscale | ฿100-200 |
 | **EmQuartier** (Helix) | Premium | ฿150-300 |
-| **Icon Siam** (Sook Siam) | Stunning, floating market theme | ฿60-150 |
-
-### How They Work
-1. Buy a prepaid card at the counter
-2. Load ฿100-300
-3. Use card at any stall
-4. Refund unused balance at exit
+| **Icon Siam** (Sook Siam) | Floating-market theme, stunning | ฿60-150 |
 
 ## Price Guide
 
@@ -69,78 +40,46 @@ Thai mall food courts are exceptional:
 | **Street stall** | ฿40-80 | Pad thai, rice dishes, noodles |
 | **Food court** | ฿50-100 | Same dishes, air-conditioned |
 | **Local restaurant** | ฿80-150 | Sit-down, menu ordering |
-| **Casual dining** | ฿150-350 | Chain restaurants, cafés |
+| **Casual dining** | ฿150-350 | Chains, cafés |
 | **Mid-range** | ฿350-800 | Good restaurants |
 | **Upscale** | ฿800-2,000 | Fine dining, hotel restaurants |
-| **Top-tier** | ฿2,000-5,000+ | Michelin, celebrity chefs |
+| **Top-tier** | ฿2,000-5,000+ | Michelin, tasting menus |
 
-## Michelin Guide Bangkok
+Tourist-area markup signal: pad thai over ฿100 or som tam over ฿80 means you're paying for the location, not the food.
 
-Bangkok has its own Michelin Guide. Notable stars:
+## Fine Dining
 
-### Michelin-Starred Restaurants
-- **Gaggan Anand** (2 stars) — Progressive Indian
-- **Le Normandie** (2 stars) — French, Mandarin Oriental
-- **Sühring** (2 stars) — German fine dining
-- **R-Haan** (2 stars) — Royal Thai cuisine
-- **Jay Fai** (1 star) — Street food legend, crab omelette
-
-### Bib Gourmand (Great Value)
-Dozens of street stalls and small restaurants — look for the designation.
+Bangkok has its own Michelin Guide with a deep bench: progressive Indian (Gaggan), royal Thai (R-Haan), German (Sühring), French (Le Normandie), plus the street-food star Jay Fai (crab omelette, hours-long queue — decide if the queue is the experience the user wants). Tasting menus run ฿3,000-8,000 — half of what equivalent tables cost in Singapore or Hong Kong. Book 2-4 weeks ahead for starred rooms; same-week works for Bib Gourmand restaurants. Details in `food-international.md`.
 
 ## Dietary Considerations
 
-### Vegetarian/Vegan
-- **"Jay" food**: Buddhist vegetarian, widely available
-- **Look for**: ธ symbol (yellow flag) at jay stalls
-- **Challenge**: Many "vegetable" dishes have fish sauce or oyster sauce
-- **Say**: "Gin jay" (กินเจ) — I eat vegetarian
-- **Or**: "Mai sai nam pla" — No fish sauce
+### Vegetarian/Vegan — know the two words
+- **"Jay" (เจ)**: Buddhist vegan — no meat, fish sauce, egg, dairy, and also no garlic/onion. Marked by a yellow flag with red ธ/เจ symbol. Strictest and easiest to trust.
+- **"Mangsawirat" (มังสวิรัติ)**: vegetarian — no meat, but egg/dairy possible and fish sauce often slips in.
+- The trap: "vegetable" dishes routinely contain fish sauce (nam pla) or oyster sauce. Say **"gin jay"** (I eat jay) or **"mai sai nam pla"** (no fish sauce).
+- **Jay Festival** (9 days, usually October): yellow flags everywhere, the best vegan eating week of the year.
 
 ### Halal
-- Large Muslim population = many halal options
-- **Sukhumvit Soi 3/3/1**: Arab Quarter, halal everywhere
-- **Look for**: Arabic signage, halal certificates
-- **Areas**: Nana, Ramkhamhaeng, some food courts label halal stalls
+Large Muslim population = real options: Sukhumvit Soi 3/3-1 (Arab quarter), Ramkhamhaeng, labeled stalls in major food courts. Look for certificates, not just Arabic signage.
 
 ### Allergies
-- **Peanuts**: Common in pad thai, satay, som tam
-- **Shellfish**: Shrimp paste (gapi) is in many curry pastes
-- **Gluten**: Rice-based cuisine is mostly safe, but soy sauce is common
-- **Communication**: Google Translate allergy cards help
+- **Peanuts**: in pad thai, satay sauce, som tam — assume present unless confirmed absent.
+- **Shellfish**: shrimp paste (gapi) hides inside most curry pastes — "no shrimp" doesn't remove it; you must avoid the curry.
+- **Gluten**: rice-based cuisine is mostly safe, but soy and oyster sauces contain wheat.
+- Carry a translated allergy card (Google Translate screenshot works); verbal English explanations fail at stalls.
 
-## Spice Levels
+## Spice Calibration
 
-Thai food is spicy. Really spicy.
-
-### Ordering Guide
-- **Mai phet** (ไม่เผ็ด): Not spicy — safest for beginners
-- **Phet nit noi** (เผ็ดนิดหน่อย): A little spicy — still has kick
-- **Phet** (เผ็ด): Spicy — Thai normal, foreigner pain
-- **Phet mak** (เผ็ดมาก): Very spicy — local level
-
-### Reality Check
-- "A little spicy" by Thai standards can be intense for Westerners
-- Start with "mai phet" and add chili yourself
-- Chili flakes, fish sauce, and sugar on every table
+- **Mai phet** (not spicy) → still mildly hot; the beginner default.
+- **Phet nit noi** (a little) → Western "medium-hot".
+- **Phet** (spicy) → Thai normal, foreigner pain.
+- **Phet mak** → local hero level.
+Rule: order mai phet and season up from the table caddy (chili flakes, fish sauce, vinegar, sugar — on every table). You can add heat; you can't remove it. Som tam and anything Isaan runs 2× hotter than the same request elsewhere.
 
 ## Food Safety
 
-Bangkok street food is generally safe. Millions eat it daily.
-
-### Rules
-1. **Busy stalls = safe stalls** — High turnover means fresh
-2. **Watch them cook it** — Fresh preparation
-3. **If in doubt, eat cooked** — Avoid raw in early days
-4. **Ice is usually safe** — Machine-made, cylindrical with holes
-
-### If You Get Sick
-- **Charcoal pills**: Thai cure-all, pharmacies everywhere
-- **Rehydration salts**: Essential
-- **Imodium**: Short-term fix
-- **Pharmacies**: Speak English, well-stocked
-
-### Water
-- **Tap water**: Don't drink it
-- **Ice**: Usually safe (commercial machine-made)
-- **Bottled water**: ฿10-20 everywhere
+Millions eat street food daily; the base rate of trouble is low if you follow the stall heuristics above. Specifics:
+- **Ice is safe when cylindrical with a hole** — machine-made commercial ice. Crushed/chipped ice from a block is the one to skip.
+- **Tap water**: don't drink; bottled is ฿10-20 everywhere; restaurant table water from sealed bottles is fine.
+- **First 48 hours**: cooked-only is a reasonable ramp; raw som tam poo (fermented crab) is the classic early mistake.
+- **If sick**: pharmacies are everywhere, staff speak English — rehydration salts + Imodium for transit days; see a hospital if fever or >48 hours (`healthcare.md`).

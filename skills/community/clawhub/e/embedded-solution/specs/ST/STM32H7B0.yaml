@@ -1,0 +1,79 @@
+part: STM32H7B0
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ST STM32H7B0 \u2014 Cortex-M7 280 MHz Value Line (128 KB Flash)"
+main_page: https://www.st.com/en/microcontrollers-microprocessors/stm32h7b0-value-line.html
+datasheet_path_expected: ../../datasheets/stm32h7b0ab.pdf
+created_at: '2026-06-30T23:08:00+08:00'
+specs:
+  family: "STM32H7 (Value line \u2014 cost-efficient)"
+  cores:
+  - Arm Cortex-M7 @ 280 MHz with double-precision FPU
+  performance:
+    coremark: 1414
+    dmips: 599
+    flash_exec: yes (0-wait-state from L1 cache)
+    l1_cache:
+      i_cache_kb: 16
+      d_cache_kb: 16
+  memory:
+    flash_kb: 128
+    sram_total_mb: 1.4
+    tcm_ram_kb: 192
+    user_sram_mb: 1.18
+    backup_sram_kb: 4
+    sram_total_summary: 1.4 MB scattered architecture (TCM 192 + user 1.18 MB + backup 4 KB)
+  power:
+    run_ua_per_mhz: 120
+    dual_power_domain: true
+    embedded_smps: yes (can supply external circuitry + LDO combo)
+  graphics:
+    lcd_tft: yes (dual-layer)
+    chrom_art: yes (graphical content accelerator)
+    chrom_grc: yes (RAM use optimization)
+    jpeg_codec: yes (hardware-accelerated)
+  connectivity:
+    up_to_35_communication_interfaces: true
+    fdc_can: true
+    usb_2_0_hs_fs: true
+    camera_interface: true
+    pssi: true
+    flexible_memory_controller_32bit: true
+  analog:
+    adcs: 2x 16-bit
+    timers: multi (16 and 32-bit, up to 280 MHz)
+  packages:
+  - LQFP64/100/144/176
+  - BGA 100/176
+  security:
+  - Crypto / hash hardware acceleration
+  - On-the-fly decryption on Octo-SPI flash
+  - SFI (Secure Firmware Install)
+  - SBSFU (Secure Boot + Secure Firmware Update)
+  use_cases:
+  - Cost-efficient high-performance MCU (vs full STM32H7 line)
+  - Smart home / IoT secure devices
+  - Industrial HMI with TFT-LCD
+  - Audio processing
+  - Real-time control with secure boot
+unverified:
+- exact ADC sample rate
+- exact supply voltage range
+- exact operating temperature range
+- exact package pin count per variant
+- exact Ethernet support (likely absent or 1x MII only)
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from st.com STM32H7B0 value-line page via Firecrawl (23,203 bytes raw)."
+- 'Family differentiator vs STM32H7 (existing yaml): H7 has full dual-core Cortex-M7 + M4 options + 1.4 MB SRAM + more peripherals;
+  H7B0 is single-core Cortex-M7 + 128 KB Flash + Value line cost-efficient positioning.'
+- 'Family differentiator vs STM32H7RS (recently added): H7RS is bootflash-based 64 KB Flash + 620 KB SRAM external-memory-first;
+  H7B0 is 128 KB Flash on-chip + 1.4 MB SRAM (more traditional).'
+- 'Use case: pick H7B0 over H7 when cost-efficient + Cortex-M7 single core + 128 KB Flash + 1.4 MB SRAM is sufficient. Pick
+  H7RS over H7B0 when external memory scalability is critical.'
+extracted_at: '2026-06-30T23:08:00+08:00'
+extraction_method: firecrawl-extract (keyed) of st.com product page
+extraction_source: references/semiconductor-vendor/ST/firecrawl-snapshots/STM32H7B0-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://www.st.com/resource/en/datasheet/stm32h7b0ab.pdf
+datasheet_source_note: STM32H7B0AB datasheet (PDF, 7.1MB). 10/32 nested-spec fields matched via pdfplumber scan. Key chips
+  metrics (Cortex-M7 280 MHz, 128KB Flash, 1.4MB SRAM, Chrom-ART, JPEG codec) matched; performance.coremark 1414 / power.run_ua_per_mhz
+  120 not in first 15 pages (likely in detailed spec table).

@@ -1,42 +1,58 @@
-## Description: <br>
-Provides monitoring and alerting for agent abnormal behavior metrics with Prometheus and Grafana support, including P99 latency, error rates, anomaly detection, and custom alert rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides monitoring and alerting for agent abnormal behavior metrics with Prometheus and Grafana support, including P99 latency, error rates, anomaly detection, and custom alert rules.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and agent operators use this skill to instrument agent behavior, track latency percentiles and error rates, generate Prometheus metrics, create Grafana dashboard configuration, and define alerts for abnormal behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Metric labels or error types can expose sensitive tokens, raw prompts, or personal data if callers pass them into monitoring fields. <br>
-Mitigation: Use stable low-cardinality labels and scrub secrets, personal data, and raw prompts before recording metrics. <br>
-Risk: The Grafana dashboard example writes a local JSON file and could overwrite or place files in an unintended location if copied without review. <br>
-Mitigation: Choose and review the output path before writing dashboard files, especially in shared or automated environments. <br>
-Risk: Publisher provenance is unavailable for this release. <br>
-Mitigation: Review the source artifact and publisher profile if provenance or supply-chain assurance is required before installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to instrument agents with latency, error-rate, success-rate, alerting, and anomaly-detection metrics. It can export Prometheus-compatible metrics and generate Grafana dashboard configuration for monitoring agent behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-agent-metrics-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, code, configuration, guidance] <br>
-**Output Format:** [JavaScript API objects, Prometheus exposition text, Grafana dashboard JSON, and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps metrics in local in-memory collectors and can export dashboard configuration for external provisioning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Untrusted metric names or label values can create malformed or misleading monitoring output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted or pre-normalized metric names and labels before exporting Prometheus metrics.
+
+Risk: High-cardinality labels can make monitoring systems noisy or expensive to operate.
+
+Mitigation: Avoid labels such as request IDs, raw URLs, and other unbounded values.
+
+Risk: Rate helpers report lifetime ratios rather than true rolling-window rates.
+
+Mitigation: Document this behavior for users and rely on Prometheus or another time-series system for rolling-window rate calculations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-agent-metrics-monitor)
+- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration]
+
+**Output Format:** [JavaScript API results, Prometheus exposition text, and Grafana dashboard JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [In-memory metrics collection with configurable retention and alert history limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

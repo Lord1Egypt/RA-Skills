@@ -1,40 +1,56 @@
-## Description: <br>
-AI sales meeting summarization tool that turns meeting audio or transcripts into structured minutes, action items, and customer insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pans Meeting Summarizer generates structured sales meeting notes, action items, customer insights, and follow-up suggestions from meeting audio or transcript text.
 
-## Publisher: <br>
-[dashiming](https://clawhub.ai/user/dashiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dashiming](https://clawhub.ai/user/dashiming)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Sales teams and account teams use this skill to turn customer meeting audio or transcripts into follow-up notes, decisions, action items, and sales-oriented customer insights.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Meeting audio and transcripts may contain confidential customer or sales information that is processed through OpenAI-backed tooling.
+
+Mitigation: Use only when organizational data-handling policy permits that flow, and avoid highly confidential customer calls unless approved.
+
+Risk: Generated meeting summaries, action items, and customer insights may be incomplete or inaccurate.
+
+Mitigation: Review generated summaries before relying on them, sharing them, or using them for CRM follow-up.
+
+Risk: The documented CRM synchronization path is not implemented in the artifact script.
+
+Mitigation: Treat CRM sync output as unavailable until the integration is implemented and tested.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Sales teams and account managers use this skill after customer calls to generate follow-up notes, action items, and sales-oriented customer insights from audio recordings or text transcripts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting audio or transcripts may be processed through OpenAI services. <br>
-Mitigation: Use only recordings and transcripts approved for OpenAI processing, avoid regulated or highly confidential meetings without review, and use a dedicated OpenAI API key with spending controls. <br>
-Risk: CRM synchronization is advertised but not implemented in this release. <br>
-Mitigation: Treat CRM sync as unavailable and manually verify follow-up records until a future version documents a working CRM integration. <br>
+**Output Format:** [Markdown or JSON meeting summary content]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dashiming/pans-meeting-summarizer) <br>
+**Other Properties Related to Output:** [May include meeting summaries, action item tables, customer insights, follow-up suggestions, and fallback metadata when API-backed summarization is unavailable.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON meeting summaries written to stdout or an output file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs structured meeting minutes, action items, customer insights, and follow-up suggestions.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

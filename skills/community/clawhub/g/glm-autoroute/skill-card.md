@@ -1,42 +1,50 @@
-## Description: <br>
-Routes tasks between GLM-4.7-FlashX for simple queries and GLM-5 for coding, analysis, reasoning, and complex tasks, switching automatically as needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes tasks between GLM-4.7-FlashX for simple queries and GLM-5 for coding, analysis, reasoning, and complex tasks, switching automatically as needed.
 
-## Publisher: <br>
-[raufimusaddiq](https://clawhub.ai/user/raufimusaddiq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[raufimusaddiq](https://clawhub.ai/user/raufimusaddiq)
 
-## Use Case: <br>
-Developers and agent operators use GLM Autoroute to route lightweight prompts to GLM-4.7 and delegate coding, analysis, research, planning, and other complex work to GLM-5. The skill also guides GLM-5 sub-agents to return concise task summaries for code work while saving full code to files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and context may be forwarded to a delegated GLM-5 session. <br>
-Mitigation: Avoid including secrets or sensitive data in prompts that may be delegated. <br>
-Risk: Delegated work may create local MEMORY.md, research, report, or code files. <br>
-Mitigation: Review created file paths and contents before relying on them or sharing them. <br>
-Risk: Generated code may be saved to files for later use. <br>
-Mitigation: Inspect and test generated code before running it in a trusted environment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to route lightweight requests to GLM-4.7 and heavier coding, analysis, research, or planning work to GLM-5. It also gives spawned GLM-5 sessions output and persistence rules for code, reports, and selected memory.
 
-## Reference(s): <br>
-- [GLM Autoroute ClawHub release page](https://clawhub.ai/raufimusaddiq/glm-autoroute) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with sessions_spawn command examples and file-writing rules] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct delegated GLM-5 sessions to save code in files, create research or analysis reports, and update MEMORY.md with key insights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Spawned sub-agents may write long-term memory, task reports, or project files without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and consider requiring explicit approval before writing persistent memory or reports.
+
+## Reference(s):
+
+- [GLM Autoroute on ClawHub](https://clawhub.ai/raufimusaddiq/skills/glm-autoroute)
+- [Publisher profile](https://clawhub.ai/user/raufimusaddiq)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with task-routing instructions and optional file outputs from spawned coding or research work]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create task reports, code files, and MEMORY.md entries when GLM-5 sessions are spawned.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

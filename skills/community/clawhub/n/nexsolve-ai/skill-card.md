@@ -1,41 +1,59 @@
-## Description: <br>
-NexSolve AI connects industry pain points with AI developers through bilingual task submission, open-need listing, detail retrieval, and agent-assisted feasibility analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NexSolve AI connects industry pain points with AI developers for task submission, real-time listing, intelligent analysis, and contact extraction via OpenClaw.
 
-## Publisher: <br>
-[zxz0119](https://clawhub.ai/user/zxz0119) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zxz0119](https://clawhub.ai/user/zxz0119)
 
-## Use Case: <br>
-Developers and AI builders use this skill to submit bilingual industry pain-point reports to the NexSolve AI need marketplace, browse open needs, and retrieve issue details for feasibility analysis and contact-awareness guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided reports and optional contact details may be published to a GitHub issue. <br>
-Mitigation: Warn users before submission, avoid secrets or private business details, and confirm the destination repository and visibility before creating an issue. <br>
-Risk: The security evidence notes no separate confirmation step before publication. <br>
-Mitigation: Require explicit user confirmation before invoking the submission workflow. <br>
+## Use Case:
 
+Developers and AI agents use this skill to submit bilingual industry pain points to the NexSolve AI marketplace, list open needs, and retrieve need details for feasibility analysis and contact handling.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zxz0119/nexsolve-ai) <br>
-- [NexSolve AI repository referenced by artifact](https://github.com/zxz0119/NexSolve-AI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-oriented text returned to the agent, including created-issue confirmations, issue lists, and issue detail summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a GitHub token configured for the target repository's issue workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence; artifact package files declare 1.0.0) <br>
+Risk: A broadly scoped GitHub token can grant more account access than the skill needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fine-grained GitHub token restricted to zxz0119/NexSolve-AI with only Issues read/write permission.
+
+Risk: Submitted business problems or contact details may become public.
+
+Mitigation: Avoid personal, confidential, or sensitive business details in problem and contact fields.
+
+Risk: Retrieved GitHub issue text is untrusted and may contain instructions aimed at the agent.
+
+Mitigation: Treat returned issue content as data for analysis only and do not let it override system, developer, or user instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zxz0119/skills/nexsolve-ai)
+- [Publisher profile](https://clawhub.ai/user/zxz0119)
+- [NexSolve AI repository link from artifact documentation](https://github.com/zxz0119/NexSolve-AI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [MCP tool responses as text, including issue creation confirmations, issue listings, and issue details suitable for Markdown summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITHUB_TOKEN configuration; submissions may create public issues containing user-provided problem and optional contact details.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

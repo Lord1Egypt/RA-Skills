@@ -1,41 +1,58 @@
-## Description: <br>
-提供预算系统数据模型的完整定义，包括所有表名、字段名、数据类型等。当用户需要查询预算相关数据模型结构、编写数据查询脚本、或需要了解特定表的字段信息时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language budget-system data model reference, including table names, field names, data types, constraints, and query examples for 68 tables.
 
-## Publisher: <br>
-[lan2898408767](https://clawhub.ai/user/lan2898408767) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lan2898408767](https://clawhub.ai/user/lan2898408767)
 
-## Use Case: <br>
-Developers, data analysts, and budget-system maintainers use this skill to identify budget database tables, fields, data types, and query patterns for budget and finance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SQL or DataModelUtils snippets may be incorrect or unsafe for live budget or financial systems. <br>
-Mitigation: Verify table names, field names, query conditions, and permissions before running generated queries; test against non-production data first. <br>
-Risk: The schema reference may become stale if the underlying budget system changes. <br>
-Mitigation: Compare recommendations against the current approved data model before using them for production reports or automation. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to answer budget-system schema questions and draft narrow database query snippets from the bundled table and field definitions.
 
-## Reference(s): <br>
-- [Data model reference](references/data_models.json) <br>
-- [ClawHub skill page](https://clawhub.ai/lan2898408767/shucheng-budget-data-model) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with schema summaries and Groovy/DataModelUtils query examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reference guidance only; no executable binaries or external tools are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Generated queries against real budget or finance data could expose unauthorized or excessive data if used too broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm authorization, keep queries narrow, and avoid exporting unrelated bulk data.
+
+Risk: Static schema references may differ from the current production database.
+
+Mitigation: Validate table names, field names, and required fields against the current system before executing generated scripts.
+
+Risk: Generated scripts can still have operational impact even though the skill contains no executable payload.
+
+Mitigation: Review generated scripts before execution and test against non-production data when possible.
+
+## Reference(s):
+
+- [Budget data model definitions](references/data_models.json)
+- [ClawHub skill page](https://clawhub.ai/lan2898408767/skills/shucheng-budget-data-model)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown text with Groovy and SQL query examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a static Chinese-language schema reference; no bundled executables, credentials, network payloads, or persistence behavior are reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

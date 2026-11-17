@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents choose fal.ai models for video generation, image generation and editing, background removal, upscaling, text-to-speech, and 3D before making API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps choose the right fal.ai model before API calls, with decision matrices for video generation, image editing, image generation, background removal, upscaling, TTS, and 3D tasks.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and agents use this skill to select an appropriate fal.ai media model and apply basic Python API call patterns before making generation or editing requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: fal.ai model IDs, pricing, and availability may change after the guide is published. <br>
-Mitigation: Verify current fal.ai model IDs, pricing, and parameters before using the snippets in a real project. <br>
-Risk: Using the referenced fal.ai workflows can send images, videos, URLs, prompts, or other project data to a third-party service. <br>
-Mitigation: Only send data that is approved for fal.ai processing, and avoid private media or URLs unless that third-party use is intended and permitted. <br>
+## Use Case:
 
+Developers and agents use this skill to select fal.ai models for media generation and editing workflows before making API calls. It supports tasks such as text-to-video, image-to-video, image editing, background removal, upscaling, TTS, and image-to-3D selection.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-fal-model-selector) <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with decision tables and Python code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only guidance; no executable files or install steps are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: The broad trigger description may invoke the skill for general image or video generation requests where fal.ai recommendations are not desired.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review routing behavior before installation and narrow triggers if recommendations should be limited to explicit fal.ai requests.
+
+Risk: The model tables include pricing and availability details that may become stale.
+
+Mitigation: Verify current fal.ai model documentation and pricing before relying on recommendations for production or budget decisions.
+
+## Reference(s):
+
+- [Canlah AI homepage](https://canlah.ai)
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-fal-model-selector)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown with decision matrices and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces model recommendations, pricing notes, and fal_client usage examples; it does not execute code.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

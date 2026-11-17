@@ -12,7 +12,7 @@
 #### 检查方法：
 ```bash
 # 在技能目录中运行
-cd gdpr-compliance-1.0.3
+cd gdpr-compliance-1.0.4
 
 # 搜索网络库导入
 grep -r "import requests\|import urllib\|import http\|import socket\|import ftplib\|import aiohttp\|import paramiko" scripts/
@@ -299,7 +299,7 @@ python scripts/data-subject-rights.py --right access --scenario sample
 
 ## ✅ 最终确认
 
-### 当前版本(1.0.3)评估结果：
+### 当前版本(1.1.0)评估结果：
 - ✅ **网络调用检查**：通过
 - ✅ **依赖包检查**：通过
 - ✅ **代码审计**：通过
@@ -312,6 +312,6 @@ python scripts/data-subject-rights.py --right access --scenario sample
 ---
 
 **最后更新**: 2026-03-28  
-**版本**: 1.0.3  
+**版本**: 1.1.0  
 **评估时间**: 2026-03-28 20:15  
 **对齐标准**: PIPL Compliance v1.1.8

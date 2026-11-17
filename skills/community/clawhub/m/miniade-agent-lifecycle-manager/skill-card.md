@@ -1,43 +1,62 @@
-## Description: <br>
-Agent Lifecycle Manager helps agents manage local OpenClaw agent lifecycle operations, including agent creation, channel binding, pairing approval, archiving, deletion, dashboard refreshes, and lifecycle logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OpenClaw agent lifecycle operations on a node, including agent creation, Telegram channel binding and pairing, archiving, deletion, dashboard refreshes, and lifecycle logs.
 
-## Publisher: <br>
-[miniade](https://clawhub.ai/user/miniade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miniade](https://clawhub.ai/user/miniade)
 
-## Use Case: <br>
-Developers and operators use this skill to onboard, reconfigure, pair, archive, delete, and audit local OpenClaw agents. It is intended for agent administration workflows that require explicit confirmation around credential inheritance and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer local OpenClaw agents, including deletion flows. <br>
-Mitigation: Verify the target agent ID and intended lifecycle action before running helpers, and use deletion only after archive creation and explicit confirmation. <br>
-Risk: Generated archives and state files may contain credentials, configuration, chat history, or workspace data. <br>
-Mitigation: Store archives and state outputs in private locations with appropriate access controls, and review archive paths before execution. <br>
-Risk: Credential inheritance, Telegram tokens, pairing codes, and deletion bypass flags can change access or remove runtime assets. <br>
-Mitigation: Require explicit user approval for --inherit-auth and --yes, and verify Telegram tokens and pairing codes before use. <br>
+## Use Case:
 
+Developers and operators managing OpenClaw nodes use this skill to create or reconfigure Telegram-connected agents, approve pairing, archive before deletion, refresh status dashboards, and maintain lifecycle audit logs.
 
-## Reference(s): <br>
-- [OpenClaw Agent Lifecycle Playbook](references/openclaw-agent-lifecycle-playbook.md) <br>
-- [Agent Lifecycle Manager on ClawHub](https://clawhub.ai/miniade/miniade-agent-lifecycle-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local OpenClaw state, archives, dashboard files, and lifecycle logs when executed by an agent with the required tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Helper scripts handle sensitive local agent files and credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with trusted operators and trusted agent IDs; avoid credential inheritance unless the user explicitly approves it.
+
+Risk: Telegram tokens may be exposed when passed on the command line.
+
+Mitigation: Avoid passing real Telegram tokens on the command line; prefer a more private secret-handling path before production use.
+
+Risk: Archive outputs can contain workspace data, status snapshots, or other sensitive operational records.
+
+Mitigation: Restrict archive locations and permissions, and redact or minimize archived status and workspace data.
+
+Risk: Unsafe path and temporary-file practices can affect local files when untrusted identifiers are used.
+
+Mitigation: Patch scripts to validate agent IDs and use private temporary paths created with mktemp before broad deployment.
+
+## Reference(s):
+
+- [OpenClaw Agent Lifecycle Playbook](references/openclaw-agent-lifecycle-playbook.md)
+- [ClawHub skill page](https://clawhub.ai/miniade/skills/miniade-agent-lifecycle-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and helper script usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May instruct use of the local OpenClaw CLI and produce archive, dashboard, status, and lifecycle log files.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

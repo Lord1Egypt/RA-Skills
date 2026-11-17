@@ -1,40 +1,53 @@
-## Description: <br>
-Analyze group-buy and bargain campaigns, estimate success probability, and suggest participation strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze group-buy and bargain campaigns, estimate success probability, and suggest participation strategies.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External shoppers and social-commerce users use this skill to assess group-buy or bargain campaigns, estimate whether participation is worthwhile, choose next actions, and draft share copy for recruiting participants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Success probabilities may be mistaken for platform-official or guaranteed outcomes. <br>
-Mitigation: Present estimates as informal advice, state uncertainty clearly, and avoid implying access to official platform data. <br>
-Risk: Generated share copy may be too persuasive or unsuitable for a recipient or social context. <br>
-Mitigation: Review and edit share messages before sending, and avoid spammy or misleading claims. <br>
+## Use Case:
 
+External users use this skill to evaluate social-commerce group-buy and bargain campaigns, estimate whether a deal is likely to succeed, decide whether continued recruiting is worthwhile, and draft concise share text.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/group-buy-helper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with probability estimates, action recommendations, and optional share-copy examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces informal estimates and persuasive text only; no code, credential use, network access, or persistence was found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated campaign estimates may be mistaken for official platform probabilities or financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present estimates as rough shopping-strategy guidance and ask for key campaign details before making recommendations.
+
+Risk: Generated share text could become overly persuasive or spam-like if sent without review.
+
+Mitigation: Review and tailor share copy before sending, keeping calls to action clear and non-deceptive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/group-buy-helper)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with probability estimates, recommended actions, and ready-to-copy share text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Estimates are shopping-strategy guidance and should not be presented as official platform probabilities.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

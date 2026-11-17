@@ -1,49 +1,67 @@
-## Description: <br>
-Execute irreversible on-chain DeFi operations via CLI and MCP tools, including swaps, token launches, transaction signing, broadcasting, and trading workflows that require explicit user confirmation before destructive actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Execute irreversible on-chain DeFi operations through ChainStream CLI and MCP tools, including token swaps, launchpad token creation, transaction signing, broadcasting, and trading workflows with explicit user confirmation.
 
-## Publisher: <br>
-[harry5556](https://clawhub.ai/user/harry5556) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harry5556](https://clawhub.ai/user/harry5556)
 
-## Use Case: <br>
-External developers and agent users use this skill to route, prepare, sign, and broadcast DeFi transactions across supported chains while preserving a human review step before irreversible wallet actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real wallet signing, broadcasting, token creation, swaps, bridges, or paid plan purchases that may be irreversible. <br>
-Mitigation: Use a dedicated low-balance wallet and approve any signing, broadcast, token creation, swap, bridge, or paid plan only after reviewing chain, token, amount, recipient, fees, slippage, and route. <br>
-Risk: A wallet or sensitive credential may be required for destructive DeFi actions. <br>
-Mitigation: Avoid importing a main private key; verify CLI, MCP, SDK, and payment tooling before granting wallet authority. <br>
-Risk: Market execution can produce unfavorable outcomes from slippage, price impact, gas costs, stale quotes, or failed transactions. <br>
-Mitigation: Follow the quote, confirm, sign, broadcast, and status-check flow; do not auto-retry failed or stale transactions without rebuilding the route and getting fresh confirmation. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through wallet-backed DeFi execution on supported chains, including route building, token creation, transaction signing, broadcast, and post-transaction status reporting. It is intended for workflows where the user can review every transaction and explicitly confirm before funds move.
 
-## Reference(s): <br>
-- [Swap protocol](references/swap-protocol.md) <br>
-- [Launchpad](references/launchpad.md) <br>
-- [Currency resolution](references/currency-resolution.md) <br>
-- [Safety protocol](rules/safety-protocol.md) <br>
-- [Execution checklist](rules/execution-checklist.md) <br>
-- [Authentication](shared/authentication.md) <br>
-- [x402 payment](shared/x402-payment.md) <br>
-- [ChainStream MCP server](https://mcp.chainstream.io/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, transaction summaries, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should surface chain, token, amount, route, slippage, fees, confirmation status, transaction hash, and explorer links when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.8 (source: server release evidence) <br>
+Risk: The skill supports real, irreversible DeFi transactions and signing workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated low-balance wallets, show transaction details before signing, and require explicit user confirmation for every destructive action.
+
+Risk: The release relies on mutable or unpinned external tools and setup paths.
+
+Mitigation: Prefer pinned, reviewed CLI and wallet tooling before operational use, and review external setup commands before running them.
+
+Risk: Raw private-key import paths can expose valuable wallets if misused.
+
+Mitigation: Avoid importing valuable raw private keys; use isolated test or low-balance wallets for agent-driven workflows.
+
+## Reference(s):
+
+- [Swap Protocol Reference](artifact/references/swap-protocol.md)
+- [Launchpad Reference](artifact/references/launchpad.md)
+- [Currency Resolution](artifact/references/currency-resolution.md)
+- [Authentication](artifact/shared/authentication.md)
+- [Payment Protocols](artifact/shared/x402-payment.md)
+- [Supported Chains](artifact/shared/chains.md)
+- [ClawHub skill page](https://clawhub.ai/harry5556/skills/chainstream-defi)
+- [ChainStream MCP server](https://mcp.chainstream.io/mcp)
+- [ChainStream documentation](https://docs.chainstream.io)
+- [ChainStream API reference](https://docs.chainstream.io/api-reference)
+- [ChainStream CLI README](https://github.com/chainstream-io/cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands, transaction summaries, confirmations, JSON snippets, and explorer links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before destructive on-chain signing or broadcast; outputs may include transaction hashes, job IDs, and block explorer links.]
+
+## Skill Version(s):
+
+1.1.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

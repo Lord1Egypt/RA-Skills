@@ -1,46 +1,58 @@
-## Description: <br>
-Runs a thin long-term memory workflow on top of the echo-fade-memory service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a thin long-term memory workflow on top of the echo-fade-memory service for recalling, storing, and forgetting durable text and image context.
 
-## Publisher: <br>
-[hiparker](https://clawhub.ai/user/hiparker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hiparker](https://clawhub.ai/user/hiparker)
 
-## Use Case: <br>
-Developers and agent users use EchoFadeMemory to recall, store, and forget durable preferences, project decisions, corrections, unresolved work, and image or screenshot context through a configured echo-fade-memory service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and recalls long-term user, project, text, image, and screenshot context, which can include privacy-sensitive material. <br>
-Mitigation: Enable it intentionally, point EFM_BASE_URL only at a trusted service, avoid storing secrets or third-party personal data unless retention is deliberate, and use the forget workflow for obsolete or unwanted memories. <br>
-Risk: Embedding backends may be local or external depending on deployment configuration. <br>
-Mitigation: Confirm whether the configured embedding provider is Ollama, OpenAI, or Gemini before storing sensitive content. <br>
+## Use Case:
 
+Developers and agent users use this skill to add a durable memory layer that can recall prior context, store preferences, project decisions, screenshots, OCR text, and forget obsolete entries through a local or configured echo-fade-memory service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hiparker/echo-fade-memory) <br>
-- [Examples](artifact/references/examples.md) <br>
-- [OpenClaw Integration](artifact/references/openclaw-integration.md) <br>
-- [OpenClaw Natural Trigger](artifact/references/openclaw-natural-trigger.md) <br>
-- [Hook Setup](artifact/references/hooks-setup.md) <br>
-- [Memory Templates](artifact/assets/memory-templates.md) <br>
-- [Echo Fade Memory for OpenClaw](artifact/bootstrap/EFM_OPENCLAW.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON service responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a reachable echo-fade-memory service and an embedding backend configured outside the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill encourages broad automatic recall and durable storage of personal, project, screenshot, and OCR data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the always-on hook only when needed, narrow hook matchers, review memory contents before storing, and avoid storing secrets, precise personal data, regulated data, screenshots, or OCR text unless the user clearly opts in.
+
+Risk: Memory data is sent to the configured echo-fade-memory service endpoint.
+
+Mitigation: Use a trusted local endpoint or authenticated HTTPS endpoint and verify EFM_BASE_URL before running store, recall, or forget commands.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hiparker/skills/echo-fade-memory)
+- [Examples](references/examples.md)
+- [Hooks Setup](references/hooks-setup.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [OpenClaw Natural Trigger](references/openclaw-natural-trigger.md)
+- [Memory Templates](assets/memory-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON service responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an echo-fade-memory service endpoint and an embedding backend such as Ollama, OpenAI, or Gemini.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence; artifact frontmatter lists 1.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

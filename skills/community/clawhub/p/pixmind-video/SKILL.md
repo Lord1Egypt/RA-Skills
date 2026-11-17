@@ -1,7 +1,6 @@
 ---
 name: pixmind-video
 description: Generate AI videos via Pixmind API (text-to-video and image-to-video)
-homepage: https://www.pixmind.io
 metadata: {"openclaw": {"requires": {"env": ["PIXMIND_API_KEY"]}, "primaryEnv": "PIXMIND_API_KEY"}}
 ---
 
@@ -20,98 +19,108 @@ Generate AI videos using [Pixmind](https://www.pixmind.io). Supports text-to-vid
 ## Prerequisites
 
 1. Register at [pixmind.io](https://www.pixmind.io/) — 注册即送 200 积分免费试用
-2. Create an API key at [pixmind.io/api-keys](https://www.pixmind.io/api-keys)
+2. Create an API key in the [API Platform dashboard](https://www.pixmind.io/api-platform/dashboard/keys)
 3. Set env `PIXMIND_API_KEY` with your key
 
 ## API Details
 
-**Endpoint**: `POST https://aihub-admin.aimix.pro/open-api/v1/video/generate`
-**Auth**: Header `X-API-Key: {API_KEY}` (from env `PIXMIND_API_KEY`)
+**Endpoint**: `POST https://aihub-admin.aimix.pro/api-platform/v1/generations`
+**Auth**: Header `Authorization: Bearer {API_KEY}` (from env `PIXMIND_API_KEY`)
 
 ## Request Body (JSON)
 
 | Parameter | Required | Type | Description |
 |-----------|----------|------|-------------|
+| `type` | Yes | string | Fixed value: `video` |
 | `prompt` | Yes | string | Video description / prompt |
-| `model` | No | string | Model ID (default varies) |
-| `duration` | No | number | Video duration in seconds |
-| `aspectRatio` | No | string | Aspect ratio: `16:9`, `9:16`, `1:1` |
-| `resolution` | No | string | Resolution: `1080p`, `720p` |
+| `model` | No | string | Model ID (default: `seedance-2.0-pro`) |
+| `duration` | No | number | Video duration in seconds (allowed values vary by model) |
+| `aspectRatio` | No | string | Aspect ratio (allowed values vary by model) |
+| `resolution` | No | string | Resolution: `480p`, `720p`, `1080p` (required for Seedance models) |
 | `generateType` | No | string | `text2video` (default) or `img2video` |
 | `imageUrl` | No | string | Reference image URL (required for `img2video`) |
 
 ### Available Models
 
-| Model ID | Name | Text-to-Video | Image-to-Video | Notes |
-|----------|------|:---:|:---:|-------|
-| `seedance-1.5-pro` | Seedance 1.5 Pro | ✓ | ✓ | Latest ByteDance flagship video model |
-| `seedance-1.5` | Seedance 1.5 | ✓ | ✓ | ByteDance Seedance 1.5 standard |
-| `seedance-1.5-lite` | Seedance 1.5 Lite | ✓ | ✓ | Lightweight variant |
-| `seedance-1.5-turbo` | Seedance 1.5 Turbo | ✓ | ✓ | Fast generation variant |
-| `seedance-1.0-pro` | Seedance 1.0 Pro | ✓ | ✓ | Previous generation, high quality |
-| `seedance-1.0` | Seedance 1.0 | ✓ | ✓ | Previous generation standard |
-| `seedance-1.0-lite` | Seedance 1.0 Lite | ✓ | ✓ | Economy variant |
-| `veo-3.0` | Veo 3.0 | ✓ | ✓ | Google Veo 3.0 |
-| `veo-3` | Veo 3 | ✓ | ✓ | Google Veo 3 |
-| `veo-3.0-fast` | Veo 3.0 Fast | ✓ | ✓ | Fast variant of Veo 3.0 |
-| `veo-2` | Veo 2 | ✓ | ✓ | Google Veo 2 |
-| `sora-2` | Sora 2 | ✓ | ✓ | OpenAI Sora 2 |
-| `pixverse-4.0` | Pixverse 4.0 | ✓ | ✓ | Latest Pixverse model |
-| `pixverse-3.0` | Pixverse 3.0 | ✓ | ✓ | Pixverse 3.0 |
-| `pixverse-2.0` | Pixverse 2.0 | ✓ | ✓ | Pixverse 2.0 |
-| `pixverse-1.0` | Pixverse 1.0 | ✓ | ✓ | Pixverse 1.0 |
-| `pixverse-video` | Pixverse Video | ✓ | ✓ | Pixverse default |
-| `kling-v1.6` | Kling 1.6 | ✓ | ✓ | Kuaishou Kling v1.6 |
-| `kling-v1.5` | Kling 1.5 | ✓ | ✓ | Kuaishou Kling v1.5 |
-| `kling-std-1.6` | Kling 1.6 Standard | ✓ | ✓ | Standard quality |
-| `minimax-t2v-01` | MiniMax T2V 01 | ✓ | ✗ | MiniMax text-to-video |
-| `minimax-t2v-01-live` | MiniMax T2V 01 Live | ✓ | ✗ | MiniMax live mode |
-| `wan2.1-t2v` | Wan 2.1 T2V | ✓ | ✗ | Alibaba Wan 2.1 text-to-video |
+Fetch the current model catalog from `GET /api-platform/v1/models`. The list below was verified against the API Platform generation service on 2026-08-10.
+
+| Model ID | Text-to-Video | Image-to-Video | Aspect Ratios | Duration (s) | Resolution | Notes |
+|----------|:---:|:---:|---------------|--------------|------------|-------|
+| `seedance-2.0-pro` | ✓ | ✓ | (see Seedance) | 3–10 | 480p / 720p / 1080p | ByteDance flagship. **Default model.** Maps to `doubao-seedance-2-0` upstream. |
+| `seedance-2.0-fast` | ✓ | ✓ | (see Seedance) | 3–10 | 480p / 720p / 1080p | Fast variant. Maps to `doubao-seedance-2-0-fast`. |
+| `seedance-1.5-pro` | ✓ | ✓ | (see Seedance) | 3–10 | 480p / 720p / 1080p | Previous flagship. Maps to `doubao-seedance-1-5-pro`. |
+| `veo-3.1` | ✓ | ✓ | `16:9`, `9:16` | (see Veo) | — | Google Veo 3.1, latest. |
+| `veo-3.1-eco` | ✓ | ✓ | `16:9`, `9:16` | (see Veo) | — | Cheaper Veo 3.1 variant. |
+| `veo-3.0` | ✓ | ✓ | `16:9`, `9:16` | (see Veo) | — | Google Veo 3.0. |
+| `veo-3` | ✓ | ✓ | `16:9`, `9:16` | (see Veo) | — | Alias of `veo-3.0`. |
+| `veo-3.0-fast` | ✓ | ✓ | `16:9`, `9:16` | (see Veo) | — | Fast variant of Veo 3.0. |
+| `sora-2` | ✓ | ✓ | (see Sora) | `4`, `8`, `12` only | — | OpenAI Sora 2. Only accepts durations 4, 8, or 12. |
+| `sora-2-eco` | ✓ | ✓ | (see Sora) | `4`, `8`, `12` only | — | Cheaper Sora 2. Provider availability varies. |
+| `sora-2-pro` | ✓ | ✓ | (see Sora) | `4`, `8`, `12` only | — | Pro variant. Currently paused upstream — may error. |
+| `wan2.6-t2v` | ✓ | ✗ | `16:9`, `9:16`, `1:1`, `4:3`, `3:4` | 3–10 | — | Alibaba Wan 2.6 text-to-video. |
+| `wan2.6-i2v` | ✗ | ✓ | `16:9`, `9:16`, `1:1`, `4:3`, `3:4` | 3–10 | — | Alibaba Wan 2.6 image-to-video. |
+| `wan2.6-i2v-flash` | ✗ | ✓ | `16:9`, `9:16`, `1:1`, `4:3`, `3:4` | 3–10 | — | Faster Wan 2.6 image-to-video. |
+
+### Unsupported Models (removed or never published in API)
+
+The following slugs are **rejected** by the API with `不支持的模型`. Do not use:
+
+- All `seedance-1.0*` (1.0, 1.0-pro, 1.0-lite) — removed
+- `seedance-1.5`, `seedance-1.5-lite`, `seedance-1.5-turbo` — only `seedance-1.5-pro` survives
+- `seedance-2.0`, `seedance-2.0-lite`, `seedance-2.0-mini`, `seedance-2.0-turbo`, `seedance-2.0-eco`
+- All `kling-*` (kling-v1.5, v1.6, std-1.6, v2, v2-master, v2-pro, v3, v3-motion-control, etc.) — Kling no longer exposed via this API
+- All `pixverse-*` (1.0, 2.0, 3.0, 4.0, video, v5) — slugs partially recognized but route is broken (500 error: `Cannot read properties of undefined (reading 'internalModel')`)
+- `wan2.1-t2v`, `wan2.5-t2v`, `wan2.7-video`, `wan2.7-t2v`, `wan2.7-i2v`
+- All `minimax-*`, `hailuo`, `hidream-*`
+- `veo`, `veo-2`, `veo-3.2`, `veo-3.1-fast`, `veo-3.1-pro`, `veo-3.1-ultra`, `veo-3.0-pro`, `veo-3.0-ultra`
+- `sora`, `sora-1`, `sora-3`, `sora-2.5`, `sora-2-fast`, `sora-2-mini`, `sora-2-ultra`
 
 ### Model Introductions
 
-**Seedance (ByteDance)** — Flagship video generation series. Known for smooth motion, realistic physics, and high visual fidelity.
-- `seedance-1.5-pro` — Latest and highest quality. Best for professional-grade video production.
-- `seedance-1.5` / `seedance-1.5-lite` / `seedance-1.5-turbo` — Quality, cost, and speed tradeoffs within the 1.5 generation.
-- `seedance-1.0` series — Previous generation, still capable for general use.
+**Seedance (ByteDance Doubao)** — Flagship video generation series with smooth motion and realistic physics. **Resolution parameter required.**
+- `seedance-2.0-pro` — Latest flagship. Best for professional-grade video.
+- `seedance-2.0-fast` — Faster, lower cost variant of 2.0.
+- `seedance-1.5-pro` — Previous flagship, still high quality.
 
-**Google Veo** — Google's state-of-the-art video generation models.
-- `veo-3.0` / `veo-3` — Latest Veo 3 series with highest realism and instruction following.
-- `veo-3.0-fast` — Faster generation with slightly reduced quality.
-- `veo-2` — Previous generation, reliable quality.
+**Google Veo** — Cinematic video generation with native audio support. **Only `16:9` and `9:16` aspect ratios.**
+- `veo-3.1` / `veo-3.1-eco` — Latest Veo 3.1 generation.
+- `veo-3.0` / `veo-3` / `veo-3.0-fast` — Veo 3.0 generation.
 
-**OpenAI Sora** — OpenAI's video generation model.
-- `sora-2` — Latest Sora version, strong at complex scenes and physical accuracy.
+**OpenAI Sora** — Strong at complex scenes and physical accuracy. **Only durations `4`, `8`, or `12` seconds accepted.**
+- `sora-2` — Latest stable Sora.
+- `sora-2-eco` — Cheaper variant (provider availability varies).
+- `sora-2-pro` — Pro tier (currently paused upstream).
 
-**Pixverse** — Specialized creative video model with strong artistic style.
-- `pixverse-4.0` — Latest version with best quality and style control.
-- `pixverse-3.0` / `2.0` / `1.0` — Previous generations.
-
-**Kling (Kuaishou)** — Chinese video generation platform with strong performance.
-- `kling-v1.6` — Latest version with improved motion and consistency.
-- `kling-v1.5` — Previous stable version.
-- `kling-std-1.6` — Standard quality variant for cost efficiency.
-
-**MiniMax** — Efficient text-to-video generation.
-- `minimax-t2v-01` — Base model, text-to-video only.
-- `minimax-t2v-01-live` — Optimized for real-time or near-real-time generation.
-
-**Wan (Alibaba)** — Alibaba's video generation diffusion model.
-- `wan2.1-t2v` — Text-to-video model with good visual quality.
+**Wan 2.6 (Alibaba)** — Alibaba's video diffusion model. Supports all common aspect ratios.
+- `wan2.6-t2v` — Text-to-video.
+- `wan2.6-i2v` — Image-to-video.
+- `wan2.6-i2v-flash` — Faster image-to-video variant.
 
 ## Usage
 
 Use `curl` or the included helper script:
 
 ```bash
-# Text to video (via curl)
-curl -X POST https://aihub-admin.aimix.pro/open-api/v1/video/generate \
+# Text to video (via curl) — Seedance requires resolution
+curl -X POST https://aihub-admin.aimix.pro/api-platform/v1/generations \
   -H "Content-Type: application/json" \
-  -H "X-API-Key: $PIXMIND_API_KEY" \
-  -d '{"prompt": "ocean waves", "duration": 5, "aspectRatio": "16:9"}'
+  -H "Authorization: Bearer $PIXMIND_API_KEY" \
+  -d '{"type": "video", "prompt": "ocean waves", "model": "seedance-2.0-pro", "duration": 5, "resolution": "1080p", "aspectRatio": "16:9"}'
+
+# Sora 2 — duration MUST be 4, 8, or 12
+curl -X POST https://aihub-admin.aimix.pro/api-platform/v1/generations \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $PIXMIND_API_KEY" \
+  -d '{"type": "video", "prompt": "city night drive", "model": "sora-2", "duration": 8, "aspectRatio": "16:9"}'
+
+# Veo 3.1 — only 16:9 or 9:16
+curl -X POST https://aihub-admin.aimix.pro/api-platform/v1/generations \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $PIXMIND_API_KEY" \
+  -d '{"type": "video", "prompt": "timelapse", "model": "veo-3.1", "duration": 8, "aspectRatio": "16:9"}'
 
 # Or use the helper script
-node {baseDir}/video-generate.js --prompt "描述文字" --duration 5 --aspect-ratio 16:9
+node {baseDir}/video-generate.js --prompt "描述文字" --model seedance-2.0-pro --duration 5 --resolution 1080p
 ```
 
 ## Task Status Polling
@@ -120,8 +129,8 @@ After generation, poll for results:
 
 ```bash
 # Via curl
-curl https://aihub-admin.aimix.pro/open-api/v1/task/<TASK_ID> \
-  -H "X-API-Key: $PIXMIND_API_KEY"
+curl https://aihub-admin.aimix.pro/api-platform/v1/tasks/<TASK_ID> \
+  -H "Authorization: Bearer $PIXMIND_API_KEY"
 
 # Or use the helper script
 node {baseDir}/task-status.js --task-id <TASK_ID> --poll
@@ -152,12 +161,24 @@ Task status response:
 - Status values: `processing` → `ready` (success)
 - On success: `data.videoUrl` contains the video URL, `data.coverUrl` has the cover image
 
+## Error Responses
+
+- `code: 400` with `不支持的模型: <model>` — Unsupported model slug.
+- `code: 500` with `the parameter resolution specified in the request is not valid for model <X>` — Seedance models require an explicit `resolution` of `480p`, `720p`, or `1080p`.
+- `code: 500` with `Invalid aspect ratio: <X>` — Aspect ratio not supported by this model. Veo only accepts `16:9` / `9:16`.
+- `code: 500` with `invalid duration: <N>s (model sora-2-preview only supports duration=[4 8 12])` — Sora only accepts durations of 4, 8, or 12 seconds.
+- `code: 1001` with `请输入提示词` — Empty prompt.
+- `code: 1001` with `速率限制：每minute最多60次请求` — Rate limited; back off.
+
 ## Guidelines
 
-1. Always confirm the prompt and duration with the user before generating
-2. Default to `seedance-1.5` or `sora-2` unless user specifies otherwise
-3. Use `16:9` aspect ratio by default for video content
-4. If user provides a reference image, automatically use `img2video` mode
-5. Video generation takes longer than images — use `--poll` with appropriate interval (recommend 5–10s)
-6. After getting the task ID, poll until completion and return video URL
-7. For longer videos, consider `seedance-1.5-lite` or `kling-std-1.6` for faster results
+1. Always confirm the prompt, duration, and model with the user before generating
+2. Default to `seedance-2.0-pro` with `resolution: 1080p` and `aspectRatio: 16:9` unless user specifies otherwise
+3. **Seedance models** require `resolution` (`480p` / `720p` / `1080p`) — requests without it fail
+4. **Veo models** only accept `16:9` or `9:16` aspect ratios
+5. **Sora 2 models** only accept `duration` of `4`, `8`, or `12` seconds — pick one of these explicitly
+6. If user provides a reference image, automatically use `img2video` mode and pick an image-to-video capable model (`wan2.6-i2v`, `wan2.6-i2v-flash`, or any Veo / Sora / Seedance model)
+7. Video generation takes longer than images — use `--poll` with appropriate interval (recommend 5–10s)
+8. After getting the task ID, poll until completion and return video URL
+9. For faster results on a budget, prefer `seedance-2.0-fast`, `wan2.6-i2v-flash`, or `veo-3.0-fast`
+10. Avoid probing the API by sending requests with arbitrary model names — many slugs that appear in the marketing site are not actually exposed by the API. Stick to the table above.

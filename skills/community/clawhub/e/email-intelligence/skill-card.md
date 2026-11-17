@@ -1,37 +1,52 @@
-## Description: <br>
-Analyze email inbox health with weather metaphors, spam and signal classification, email debt scoring, and ghost detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes email inbox health with weather metaphors, spam/signal classification, email debt scoring, ghost detection, and time-cost estimates using the himalaya CLI over configured IMAP email.
 
-## Publisher: <br>
-[pfrederiksen](https://clawhub.ai/user/pfrederiksen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pfrederiksen](https://clawhub.ai/user/pfrederiksen)
 
-## Use Case: <br>
-Individuals and agents with a configured Himalaya IMAP account use this skill to summarize inbox health, prioritize human replies, estimate email processing time, and produce text or JSON reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Inbox reports may expose private sender details, email addresses, subjects, and reply status. <br>
-Mitigation: Run only against email accounts intended for analysis and redact terminal logs or JSON output before sharing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/pfrederiksen/email-intelligence) <br>
+## Use Case:
 
+External users and developers use this skill to assess inbox status, email backlog, signal versus noise, and people waiting for replies from a configured IMAP mailbox.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [Plain text report or structured JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a locally configured Himalaya CLI with IMAP access; analysis may include sender names, email addresses, subjects, and reply-waiting status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reports can expose sender names, subject lines, contacts, and communication patterns from configured email accounts.
+
+Mitigation: Run the skill only intentionally for mailbox analysis and treat text or JSON outputs as sensitive.
+
+Risk: The skill reads email metadata from the configured email account through himalaya.
+
+Mitigation: Install only when comfortable granting local mailbox metadata access and avoid automatic routing of casual email questions to this skill.
+
+## Reference(s):
+
+- [Email Intelligence on ClawHub](https://clawhub.ai/pfrederiksen/skills/email-intelligence)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Plain-text report or structured JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include sender names, subject lines, contacts, and communication patterns from the configured email account.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

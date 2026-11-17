@@ -1,49 +1,70 @@
-## Description: <br>
-Guides agents in using beautiful-mermaid to render Mermaid diagrams as ASCII or Unicode text, including supported diagram types, layout behavior, APIs, troubleshooting, and extension guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides guidance for rendering Mermaid diagrams as ASCII or Unicode art with the beautiful-mermaid package, including API usage, layout internals, supported diagram types, troubleshooting, and extension guidance.
 
-## Publisher: <br>
-[Joe-rq](https://clawhub.ai/user/Joe-rq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joe-rq](https://clawhub.ai/user/joe-rq)
 
-## Use Case: <br>
-Developers and engineers use this skill to understand or apply beautiful-mermaid ASCII rendering in terminal, console, documentation, or debugging workflows. It helps agents produce usage guidance, TypeScript examples, configuration suggestions, and troubleshooting steps for Mermaid-to-text rendering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Following examples may require installing or loading the external beautiful-mermaid package. <br>
-Mitigation: Use a trusted source, pin an exact package version when appropriate, and review the external dependency separately for sensitive projects. <br>
-Risk: ASCII or Unicode diagram output can be affected by unsupported Mermaid diagram types, dense layouts, long labels, terminal encoding, or font width behavior. <br>
-Mitigation: Check the documented supported diagram types and adjust rendering options such as padding, ASCII mode, and label length before relying on output in production documentation or tooling. <br>
+## Use Case:
 
+Developers and engineers use this skill to understand, use, debug, or extend beautiful-mermaid's ASCII renderer for terminal-safe Mermaid diagram output.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Joe-rq/mermaid-ascii-renderer) <br>
-- [Core Systems](references/core-systems.md) <br>
-- [Diagram Implementations](references/diagrams.md) <br>
-- [Usage and API](references/usage.md) <br>
-- [Examples](references/examples.md) <br>
-- [Troubleshooting and Optimization](references/troubleshooting.md) <br>
-- [External References](references/resources.md) <br>
-- [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid) <br>
-- [mermaid-ascii Go reference](https://github.com/AlexanderGrooff/mermaid-ascii) <br>
-- [Mermaid documentation](https://mermaid.js.org/intro/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript, shell, and text examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ASCII or Unicode diagram output and concise troubleshooting recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: Unpinned package installs or unversioned CDN examples can pull changing beautiful-mermaid contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer pinned beautiful-mermaid versions and avoid the unversioned CDN example unless the package contents and integrity are trusted.
+
+Risk: ASCII or Unicode rendering may degrade for long labels, dense diagrams, complex routing, nested subgraphs, or terminals without UTF-8 support.
+
+Mitigation: Use the documented padding, ASCII mode, simplified diagrams, supported diagram types, and troubleshooting guidance before relying on rendered output.
+
+Risk: The main documentation is primarily Chinese, which can make review harder for non-Chinese users.
+
+Mitigation: Use translation or bilingual review before adopting guidance in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joe-rq/skills/mermaid-ascii-renderer)
+- [Core Systems](references/core-systems.md)
+- [Diagram Implementations](references/diagrams.md)
+- [Usage and API](references/usage.md)
+- [Examples](references/examples.md)
+- [Theming](references/theming.md)
+- [Unicode and ASCII Characters](references/characters.md)
+- [Troubleshooting and Optimization](references/troubleshooting.md)
+- [External References](references/resources.md)
+- [beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid)
+- [mermaid-ascii](https://github.com/AlexanderGrooff/mermaid-ascii)
+- [Mermaid documentation](https://mermaid.js.org/intro/)
+- [Box-drawing characters](https://en.wikipedia.org/wiki/Box-drawing_characters)
+- [ASCII rendering research](https://alexharri.com/blog/ascii-rendering)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript, shell, Mermaid, and ASCII/Unicode text examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include terminal-oriented diagram output and implementation guidance; no hidden execution behavior was found in the skill.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

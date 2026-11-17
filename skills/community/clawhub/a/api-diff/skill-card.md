@@ -1,40 +1,52 @@
-## Description: <br>
-Compares OpenAPI 3.x or Swagger 2.0 specs and generates changelogs that distinguish breaking and non-breaking changes across endpoints, parameters, schemas, responses, security, server URLs, and deprecations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares two OpenAPI 3.x or Swagger 2.0 specifications and generates a changelog of breaking and non-breaking API changes.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and API platform teams use this skill to compare API versions, identify breaking changes, and produce changelogs for release review or CI workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Crafted or untrusted API specification content may affect how Markdown reports render when published.
+
+Mitigation: Prefer JSON output for automated pipelines or sanitize generated Markdown before sharing it externally.
+
+Risk: Diff classifications may influence API release decisions.
+
+Mitigation: Review generated changelogs before using them to approve or block a release.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and API platform teams use this skill to compare API versions, review OpenAPI or Swagger spec changes, generate changelogs, and gate CI builds on breaking changes. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The command reads local API specification files supplied by the user and includes detected differences in its output. <br>
-Mitigation: Run it only on specification files intended for comparison and share generated changelogs through approved channels. <br>
-Risk: The CI option can intentionally fail a build when breaking changes are detected. <br>
-Mitigation: Enable fail-on-breaking only in workflows where API compatibility failures are expected and documented. <br>
+**Output Format:** [Text, JSON, or Markdown changelog output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [API Diff on ClawHub](https://clawhub.ai/charlie-morrison/api-diff) <br>
+**Other Properties Related to Output:** [Can show only breaking changes or return a nonzero CI exit status when breaking changes are found.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands] <br>
-**Output Format:** [Text, JSON, or Markdown changelog with breaking-change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can filter to breaking changes and can exit with code 1 when breaking changes are detected.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

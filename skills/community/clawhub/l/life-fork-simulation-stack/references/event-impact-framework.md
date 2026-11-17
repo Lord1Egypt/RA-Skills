@@ -1,5 +1,7 @@
 # 外部事件冲击框架
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 用于把国内、全球、行业和个人冲击加入人生岔路复盘。目标是区分个人选择、时代环境和随机运气。
 
 先读取 `era-event-timeline-2008-2026.md`，根据用户年份、行业、城市、海外经历和资产状态筛选事件，再用本框架分析影响机制。

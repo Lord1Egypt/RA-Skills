@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "OwlCodaRunKitVerifyPlanRequestV1",
+  "planId": "replace-with-plan-id",
+  "deliveryPacketPath": ".owlcoda/runkit/executions/replace-with-run-id/delivery-packets/replace-with-packet.json",
+  "statusMode": "porcelain-v1-z-untracked-all-runkit-excluded",
+  "dependencies": [
+    {
+      "id": "root-lockfile",
+      "path": "package-lock.json",
+      "baselineSha256": "replace-with-lowercase-sha256"
+    }
+  ],
+  "verificationContext": {
+    "schemaVersion": "OwlCodaRunKitVerificationContextV1",
+    "reusePolicy": "portable",
+    "platform": null,
+    "toolchains": [
+      {
+        "name": "node",
+        "version": "replace-with-exact-version"
+      }
+    ],
+    "lockfiles": [],
+    "fixtures": [],
+    "services": [],
+    "environment": []
+  },
+  "coverageIndexPath": ".owlcoda/runkit/executions/replace-with-run-id/coverage-indexes/replace-with-coverage-id.json",
+  "coverageIndexSha256": "replace-with-lowercase-sha256",
+  "globalGates": []
+}

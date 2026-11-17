@@ -1,43 +1,54 @@
-## Description: <br>
-Get US stock market data (NYSE, NASDAQ, and major indices) via FinanceAgent on OneKey Gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get US stock market data (NYSE, NASDAQ, and major indices) via FinanceAgent on OneKey Gateway.
 
-## Publisher: <br>
-[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ai-hub-admin](https://clawhub.ai/user/ai-hub-admin)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve US stock market data for NYSE, NASDAQ, DOW, and standard ticker symbols through the OneKey Gateway FinanceAgent API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external OneKey Gateway package and DeepNLP agent router. <br>
-Mitigation: Install only from trusted package sources and verify the gateway and router are acceptable for the deployment environment. <br>
-Risk: The skill requires an API key and examples include verbose command-line invocation. <br>
-Mitigation: Use a dedicated or revocable API key and avoid exposing verbose curl output in shared terminals, logs, or CI systems. <br>
-Risk: Ticker symbols are sent to an external service. <br>
-Mitigation: Submit only symbol lists that are appropriate to disclose to the external service. <br>
+## Use Case:
 
+Developers and external users use this skill to query US stock market symbols through the OneKey Gateway and receive stock quote responses for NYSE, NASDAQ, DOW, and major-index workflows.
 
-## Reference(s): <br>
-- [US Stock Market NYSE NASDAQ DOW ClawHub page](https://clawhub.ai/ai-hub-admin/us-stock-market-nyse-nasdaq-dow) <br>
-- [DeepNLP OneKey Agent Router endpoint](https://agent.deepnlp.org/agent_router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON stock-market quote responses with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS and a symbol_list array of US ticker strings] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing an unpinned npm gateway package, especially globally, can introduce unexpected package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider and npm package before installing, prefer a pinned project-local package version, and avoid global installation when possible.
+
+Risk: Verbose curl examples that include X-OneKey can expose DEEPNLP_ONEKEY_ROUTER_ACCESS in logs or screenshots.
+
+Mitigation: Remove curl -v when using the access key, keep the key out of logs and screenshots, and rotate the key if it was ever captured.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ai-hub-admin/skills/us-stock-market-nyse-nasdaq-dow)
+- [DeepNLP OneKey Agent Router endpoint](https://agent.deepnlp.org/agent_router)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON responses with Markdown usage examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPNLP_ONEKEY_ROUTER_ACCESS and a symbol_list array of US stock tickers.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

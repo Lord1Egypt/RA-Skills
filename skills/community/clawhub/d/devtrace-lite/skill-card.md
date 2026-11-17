@@ -1,38 +1,48 @@
-## Description: <br>
-DevTrace-Lite helps agents evaluate small-project technical decisions through topology, abstraction, maintainability, constraints, and dependency checks before recommending concrete next steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+基于小型项目快速迭代，评估技术改动系统影响、风险及依赖，提供可落地方案和行动清单。
 
-## Publisher: <br>
-[kings0527](https://clawhub.ai/user/kings0527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kings0527](https://clawhub.ai/user/kings0527)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to structure small-project technical decisions, code reviews, refactoring choices, and incident follow-ups around topology, abstraction boundaries, maintainability, constraints, and dependencies.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for routine engineering questions and make answers follow a fixed four-part template.
+
+Mitigation: Use it when structured technical-decision review is useful, and relax the template for simple factual or implementation-only tasks.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill during technical selection, lightweight architecture changes, code review, refactoring, and incident review to produce bounded decisions with impact analysis and action lists. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a broad decision-making trigger that can shape many engineering conversations. <br>
-Mitigation: Review important production or architecture recommendations before acting on them. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [DevTrace-Lite ClawHub listing](https://clawhub.ai/kings0527/devtrace-lite) <br>
+**Other Properties Related to Output:** [Produces concise four-part decision guidance with a text topology map, entropy assessment, dependency list, conclusion, and up to five next steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown decision analysis with text topology, qualitative maintainability assessment, dependency table, conclusion, and next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default responses are concise and structured around four required sections.] <br>
+1.0.0 (source: server release metadata and artifact/skill.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

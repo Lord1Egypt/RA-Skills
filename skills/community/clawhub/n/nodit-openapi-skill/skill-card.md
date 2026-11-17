@@ -1,48 +1,66 @@
-## Description: <br>
-Operate Nodit Web3 Data API reads through UXC with a curated OpenAPI schema, API-key auth, and overlap-aware guardrails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate Nodit Web3 Data API reads through UXC with a curated OpenAPI schema, API-key auth, and overlap-aware guardrails.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to configure UXC access to Nodit's read-only Web3 Data API and perform multichain entity, balance, transaction, token metadata, and token price lookups. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Nodit API keys may expose quota or account access if reused broadly. <br>
-Mitigation: Use a dedicated Nodit API key with quota limits and configure it through the NODIT_API_KEY secret environment variable. <br>
-Risk: Blockchain identifiers supplied in lookups are sent to Nodit. <br>
-Mitigation: Avoid querying sensitive identifiers unless external API disclosure is acceptable for the task. <br>
-Risk: A mutable hosted OpenAPI schema can change behavior over time. <br>
-Mitigation: Use the packaged schema or a pinned schema URL when reproducible behavior is required. <br>
-Risk: Entity lookup can hit plan or tier rate limits. <br>
-Mitigation: Back off on HTTP 429 responses and prefer chain-specific reads when the target chain is already known. <br>
+## Use Case:
 
+Developers and agents use this skill to configure UXC access to Nodit and perform read-only multichain entity, account, native balance, transaction history, token metadata, and token price lookups.
 
-## Reference(s): <br>
-- [Usage patterns](references/usage-patterns.md) <br>
-- [Curated OpenAPI schema](references/nodit-web3.openapi.json) <br>
-- [Nodit introduction](https://developer.nodit.io/en/guides/overview/introduction) <br>
-- [Nodit entity lookup docs](https://developer.nodit.io/reference/multichain_lookupentities) <br>
-- [Nodit Web3 Data docs](https://developer.nodit.io/reference/gettransactionsbyaccount) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON-oriented API guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Nodit API operations through UXC; responses should stay on the JSON output envelope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenAPI schema) <br>
+Risk: The skill sends wallet addresses, contract addresses, chain and network names, and lookup inputs to the third-party Nodit API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when sharing those lookup inputs with Nodit is acceptable for the task and environment.
+
+Risk: Local UXC authentication or host binding mistakes can cause failed or unintended API requests.
+
+Mitigation: Configure the Nodit API key through the documented X-API-KEY credential flow and validate the active binding before use.
+
+Risk: Hosted schema changes can reduce reproducibility.
+
+Mitigation: Prefer the packaged curated OpenAPI schema or a pinned schema source for reproducible operation coverage.
+
+Risk: Nodit plan limits can return HTTP 429 responses, especially for lookupEntities.
+
+Mitigation: Back off on rate-limit responses, avoid hot-loop retries, and use chain-specific reads when the target network is already known.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Curated OpenAPI Schema](references/nodit-web3.openapi.json)
+- [Nodit Introduction](https://developer.nodit.io/en/guides/overview/introduction)
+- [Nodit Entity Lookup Docs](https://developer.nodit.io/reference/multichain_lookupentities)
+- [Nodit Web3 Data Docs](https://developer.nodit.io/reference/gettransactionsbyaccount)
+- [ClawHub Skill Page](https://clawhub.ai/jolestar/skills/nodit-openapi-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only Nodit Web3 Data API operations through UXC using X-API-KEY authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,7 @@
 # linkfox-shopee-store-media-space — 参数与字段参考
 
-Shopee **MediaSpace 模块**全部 6 个 API，经 **`POST /shopee/developerProxy`** 转发。
+> 单接口入参/响应说明已拆到 **`apis/`**（按 API 一份）；本文件保留模块总览与 Feedback。
+Shopee **MediaSpace 模块**共 6 个 API。`upload_image` 经专用端点 **`POST /shopee/uploadMediaSpaceImage`** 上传；其余 API 经 **`POST /shopee/developerProxy`** 转发。
 
 授权见 **`linkfox-shopee-store-auth`**。官方索引：[v2.media_space.init_video_upload](https://open.shopee.com/documents/v2/v2.media_space.init_video_upload?module=91&type=1)
 
@@ -8,9 +9,10 @@ Shopee **MediaSpace 模块**全部 6 个 API，经 **`POST /shopee/developerProx
 
 - **Base URL**：`https://tool-gateway.linkfox.com`
 - **Method**：POST（网关），上游 Method 见各接口
-- **Auth**：Header `Authorization: <api_key>`（`LINKFOXAGENT_API_KEY`）
-- **流程**：`POST /shopee/storeTokens` → `POST /shopee/developerProxy`
-- **path**：须 `api/v2/media_space/...`
+- **Auth**：Header `Authorization: <api_key>`（`LINKFOXAGENT_API_KEY`）（如未配置 按 SKILL.md 的 **## 解决认证和算力问题** 处理）
+- **流程**：授权选店后，图片调用 `/shopee/uploadMediaSpaceImage`；其余接口调用 `/shopee/developerProxy`。业务脚本不读取或传递 access token
+- **图片上传**：`POST /shopee/uploadMediaSpaceImage`，传 `shopId`、`filePath`（脚本侧）
+- **其余 API path**：经 developerProxy，须 `api/v2/media_space/...`
 - **标识**：通常传 **`shopId`**
 - **官方文档 URL 规则**：`https://open.shopee.com/documents/v2/v2.media_space.{api}?module=91&type=1`
 - **上传类接口**：视频分片上传需按顺序 `init_video_upload` → `upload_video_part`(多次) → `complete_video_upload` → `get_video_upload_result`
@@ -21,12 +23,12 @@ Shopee **MediaSpace 模块**全部 6 个 API，经 **`POST /shopee/developerProx
 
 | # | API | Method | path | 脚本 | 官方文档 |
 |---|-----|--------|------|------|----------|
-| 1 | cancel_video_upload | POST | `api/v2/media_space/cancel_video_upload` | `cancel_video_upload.py` | [doc](https://open.shopee.com/documents/v2/v2.media_space.cancel_video_upload?module=91&type=1) |
-| 2 | complete_video_upload | POST | `api/v2/media_space/complete_video_upload` | `complete_video_upload.py` | [doc](https://open.shopee.com/documents/v2/v2.media_space.complete_video_upload?module=91&type=1) |
-| 3 | get_video_upload_result | GET | `api/v2/media_space/get_video_upload_result` | `get_video_upload_result.py` | [doc](https://open.shopee.com/documents/v2/v2.media_space.get_video_upload_result?module=91&type=1) |
-| 4 | init_video_upload | POST | `api/v2/media_space/init_video_upload` | `init_video_upload.py` | [doc](https://open.shopee.com/documents/v2/v2.media_space.init_video_upload?module=91&type=1) |
-| 5 | upload_image | POST | `api/v2/media_space/upload_image` | `upload_image.py` | [doc](https://open.shopee.com/documents/v2/v2.media_space.upload_image?module=91&type=1) |
-| 6 | upload_video_part | POST | `api/v2/media_space/upload_video_part` | `upload_video_part.py` | [doc](https://open.shopee.com/documents/v2/v2.media_space.upload_video_part?module=91&type=1) |
+| 1 | cancel_video_upload | POST | `api/v2/media_space/cancel_video_upload` | `cancel_video_upload.py` | [apis/cancel-video-upload.md](./apis/cancel-video-upload.md) |
+| 2 | complete_video_upload | POST | `api/v2/media_space/complete_video_upload` | `complete_video_upload.py` | [apis/complete-video-upload.md](./apis/complete-video-upload.md) |
+| 3 | get_video_upload_result | GET | `api/v2/media_space/get_video_upload_result` | `get_video_upload_result.py` | [apis/get-video-upload-result.md](./apis/get-video-upload-result.md) |
+| 4 | init_video_upload | POST | `api/v2/media_space/init_video_upload` | `init_video_upload.py` | [apis/init-video-upload.md](./apis/init-video-upload.md) |
+| 5 | upload_image | POST | `/shopee/uploadMediaSpaceImage` → `api/v2/media_space/upload_image` | `upload_image.py` | [apis/upload-image.md](./apis/upload-image.md) |
+| 6 | upload_video_part | POST | `api/v2/media_space/upload_video_part` | `upload_video_part.py` | [apis/upload-video-part.md](./apis/upload-video-part.md) |
 通用入口：`media_space_api.py`（JSON 含 `"api": "<上表 API 名>"`）。
 
 ---
@@ -47,7 +49,7 @@ Shopee **MediaSpace 模块**全部 6 个 API，经 **`POST /shopee/developerProx
 
 | API | 说明 |
 |-----|------|
-| `upload_image` | 上传图片，返回 Shopee 图片 URL（可用于 add_item 等） |
+| `upload_image` | 上传图片，返回 Shopee 图片 ID/URL（`imageId` 可用于 add_item）— [apis/upload-image.md](./apis/upload-image.md) |
 
 ---
 

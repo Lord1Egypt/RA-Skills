@@ -2,6 +2,8 @@
 
 hearth is a bash + standard-tooling skill. There is nothing to compile, no daemon to install. You clone the repo, set credentials in env vars, and run.
 
+> **About the install commands below.** The package-manager commands (`apt-get`, `pacman`, `dnf`, `pkg`, `brew`) are standard dependency installs that **you** run once, by hand, on the bridgehead — hearth itself never installs packages, never calls a package manager, and never runs `sudo`. They're listed here only so you can get the prerequisites in place.
+
 ## Prerequisites
 
 All platforms need:
@@ -19,10 +21,18 @@ All platforms need:
 
 ## Linux (Debian/Ubuntu)
 
+Install the prerequisites (run by you, once):
+
 ```bash
 sudo apt-get install -y bash openssh-client sshpass curl python3 jq
+```
+
+Then clone and configure:
+
+```bash
 git clone https://github.com/nj070574-gif/hearth.git ~/hearth
 cd ~/hearth
+mkdir -p ~/.hearth
 cp examples/devices.example.yaml ~/.hearth/devices.yaml
 $EDITOR ~/.hearth/devices.yaml
 # set env vars for your devices (see CONFIG.md)
@@ -126,6 +136,21 @@ In short:
    ```
 5. Add the env-var exports to your shell profile (`~/.bashrc`, `~/.zshrc`) so they persist.
 
+## SSH host-key verification
+
+hearth verifies SSH host keys by default — it does **not** disable host-key checking. On the first sweep, each host's key is pinned (trust-on-first-use) to a dedicated file, `~/.hearth/known_hosts`, kept separate from your personal `~/.ssh/known_hosts`. After that, a changed host key aborts that device's probe (the man-in-the-middle guard).
+
+Control it with `HEARTH_SSH_STRICT`:
+
+```bash
+export HEARTH_SSH_STRICT=accept-new   # default: trust-on-first-use, reject changed keys
+export HEARTH_SSH_STRICT=yes          # strictest: key must already be in known_hosts
+export HEARTH_SSH_STRICT=no           # disabled (MITM risk) — only for throwaway labs; warns each run
+export HEARTH_KNOWN_HOSTS=~/.hearth/known_hosts   # change the known_hosts location if you want
+```
+
+For the hardest posture, set `HEARTH_SSH_STRICT=yes` and pre-populate `~/.hearth/known_hosts` with `ssh-keyscan` for your trusted hosts. Prefer `auth: ssh-key` over `ssh-pass` wherever a device supports it.
+
 ## Verifying the install
 
 ```bash
@@ -146,7 +171,7 @@ cp SKILL.md ~/.openclaw/workspace/skills/hearth/
 cp -r scripts/ ~/.openclaw/workspace/skills/hearth/
 ```
 
-Then trigger from your OpenClaw agent with phrases like *"server status"*, *"check all servers"*, *"how is the lab"*.
+Then trigger from your OpenClaw agent with homelab phrases like *"homelab status"*, *"check all my servers"*, *"how is the lab"*.
 
 ## Updating
 
@@ -160,7 +185,13 @@ Your `~/.hearth/devices.yaml` is outside the repo so `git pull` will not touch i
 
 ## Uninstalling
 
+hearth installs nothing outside its own clone and `~/.hearth`, so removing it is just deleting those two directories:
+
 ```bash
-rm -rf ~/hearth
-rm -rf ~/.hearth   # this removes your local config — back it up first if you want to reinstall later
+# Remove the hearth install directory
+rm -r ~/hearth
+
+# Remove your local config and pinned host keys
+# (back this up first if you may reinstall later)
+rm -r ~/.hearth
 ```

@@ -1,40 +1,54 @@
-## Description: <br>
-Repo Explorer helps an agent inspect Gitee repositories through a configured Gitee MCP server and produce concise repository overview reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explores a user-specified Gitee repository through the Gitee MCP Server and produces a concise overview of its documentation, structure, core modules, technologies, and targeted areas of interest.
 
-## Publisher: <br>
-[oschina](https://clawhub.ai/user/oschina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oschina](https://clawhub.ai/user/oschina)
 
-## Use Case: <br>
-Developers, maintainers, and reviewers use this skill to get oriented in a Gitee repository, inspect its structure and key documentation, and generate a focused overview report. It can also support targeted investigation of areas such as authentication, database access, configuration, or core modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured Gitee account may allow repository files, including private repository content, to be read into the assistant context. <br>
-Mitigation: Use a trusted Gitee MCP server and account, and only ask the skill to inspect private or sensitive repositories when that disclosure is intended. <br>
-Risk: The skill can optionally use a local mcporter binary when present. <br>
-Mitigation: Verify any optional mcporter binary independently before relying on it for repository access. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly understand an unfamiliar Gitee repository, including its purpose, technology stack, directory structure, core modules, setup guidance, and optional topic-specific areas such as authentication or database behavior.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/oschina/gitee-repo-explorer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown repository overview report with optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Gitee MCP server plus repository owner and name; accepts an optional area of interest for deeper exploration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Repository contents supplied to the configured Gitee MCP server may include private or sensitive code or documentation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide repositories whose contents are appropriate for the configured Gitee MCP server to read and search.
+
+Risk: Generated repository summaries can omit context or mischaracterize project behavior when based on partial files.
+
+Mitigation: Review the report against the repository's source files before relying on it for implementation, security, or architecture decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oschina/skills/gitee-repo-explorer)
+- [Publisher profile](https://clawhub.ai/user/oschina)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown repository overview report with optional inline shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a configured Gitee MCP Server and user-provided repository owner and repository name.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

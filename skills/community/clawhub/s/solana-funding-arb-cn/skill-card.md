@@ -1,47 +1,64 @@
-## Description: <br>
-Monitors Solana perpetual DEX funding rates, compares cross-exchange spreads, and helps identify or run funding-rate arbitrage workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Solana perpetual DEX funding rates and helps agents identify, simulate, and optionally run funding-rate arbitrage workflows.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-External users and developers use this skill to scan Solana perpetual DEX funding rates, compare arbitrage spreads, and configure dry-run or live trading workflows. It is intended for users who understand crypto trading, wallet custody, and automated execution risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet keys, live mode, and cron execution can enable automated fund movement. <br>
-Mitigation: Use dry-run mode first, do not provide wallet or private key material unless you accept live trading risk, and avoid cron/live mode until the code and configuration are reviewed. <br>
-Risk: Trading decisions may rely on unsafe mock or fallback data. <br>
-Mitigation: Confirm live market data sources and rate freshness before executing trades or increasing position size. <br>
-Risk: Advertised returns and Ultra Safe wording may be read as guarantees. <br>
-Mitigation: Treat return estimates as hypothetical, verify assumptions independently, and size positions conservatively. <br>
+## Use Case:
 
+External users and developers use this skill to scan Solana perpetual DEX funding rates, compare cross-exchange opportunities, run dry-run simulations, and configure cautious execution workflows.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Strategy Guide](references/strategies.md) <br>
-- [Drift Protocol Docs](https://docs.drift.trade) <br>
-- [Flash Trade](https://flash.trade) <br>
-- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/solana-funding-arb-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, TypeScript code references, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate command plans for scanning, dashboard use, dry runs, live trading, and cron setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Live-trading and scheduled execution paths could put wallet funds at risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in scan or dry-run mode unless live-trading paths have been audited and fixed.
+
+Risk: Wallet secrets used with unattended cron execution can increase loss or exposure risk.
+
+Mitigation: Use a dedicated low-balance wallet and avoid unattended cron jobs that have access to wallet secrets.
+
+Risk: Advertised risk controls may not fully protect against trading losses.
+
+Mitigation: Do not rely on built-in controls as complete protection; review behavior carefully before any funded use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/skills/solana-funding-arb-cn)
+- [Publisher Profile](https://clawhub.ai/user/guohongbin-git)
+- [OpenClaw Metadata Link](https://clawhub.ai)
+- [API Reference](references/api.md)
+- [Setup Guide](references/setup.md)
+- [Strategy Guide](references/strategies.md)
+- [Drift Protocol Docs](https://docs.drift.trade)
+- [Flash Trade](https://flash.trade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and TypeScript code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scanner output, dashboard instructions, dry-run workflows, and live-trading configuration guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,60 @@
-## Description: <br>
-Trades F1 Drivers Championship markets on Kalshi using constructor (team) car performance ratings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades F1 Drivers Championship markets on Kalshi using constructor (team) car performance ratings. Drivers in faster cars have structurally higher championship probabilities. Requires SIMMER_API_KEY and simmer-sdk.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate Kalshi F1 Drivers Championship markets, identify constructor-rating edges, and optionally execute trades after explicit live-mode activation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real-money Kalshi trades using wallet and API credentials. <br>
-Mitigation: Run in dry-run mode first, use dedicated low-value credentials, and pass --live only after accepting the trading risk. <br>
-Risk: Exit logic may sell broader F1 positions rather than only positions opened by this skill. <br>
-Mitigation: Review or modify the exit logic to sell only positions tagged with this skill before using it with existing F1 holdings. <br>
-Risk: The strategy relies on static constructor ratings and tunable thresholds. <br>
-Mitigation: Review the model assumptions and tune position size, edge, slippage, liquidity, and trade-count limits before live use. <br>
+## Use Case:
 
+External developers and trading agents use this skill to analyze Kalshi F1 Drivers Championship markets with a constructor-performance model and to surface or execute position decisions under configured limits.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/kalshi-f1-constructor-trader) <br>
-- [Simmer Markets Skills](https://simmer.markets/skills) <br>
-- [simmer-sdk Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [simmer-sdk PyPI Package](https://pypi.org/project/simmer-sdk/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text logs, JSON automaton status, and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run by default; live trading requires the explicit --live flag and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Live financial orders can be placed when the skill is run with live execution enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start in paper mode, review the live-trading risk before enabling --live, keep position and trade limits low, and monitor each run.
+
+Risk: The skill depends on high-value trading and wallet credentials.
+
+Mitigation: Use a limited API key and a dedicated low-balance wallet, and avoid providing SOLANA_PRIVATE_KEY unless live trading is intended.
+
+Risk: The server security summary notes that live orders can proceed when safety context checks fail.
+
+Mitigation: Review safety context results before execution and isolate or pin simmer-sdk before running with --live.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-f1-constructor-trader)
+- [Simmer Markets skills](https://simmer.markets/skills)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, guidance]
+
+**Output Format:** [Console text with optional automaton JSON status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May place paper or live market orders through configured Simmer/Kalshi credentials when run with the selected execution mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

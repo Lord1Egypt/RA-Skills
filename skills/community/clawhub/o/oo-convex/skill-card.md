@@ -1,45 +1,55 @@
-## Description: <br>
-Convex helps agents manage Convex projects, deployments, keys, domains, and functions through the OOMOL convex connector and oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convex (convex.dev). Use this skill for ANY Convex request — reading, creating, updating, and deleting data. Whenever a task involves Convex, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect and administer Convex cloud resources, execute Convex functions, and manage projects, deployments, deploy keys, custom domains, regions, and deployment classes through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, or delete Convex projects, deployments, deploy keys, and custom domains, and can run Convex functions, actions, and mutations. <br>
-Mitigation: Require explicit user approval for write and destructive operations, and inspect the live action schema before constructing payloads. <br>
-Risk: The skill requires trusting OOMOL with Convex access and relies on the oo CLI for authenticated operations. <br>
-Mitigation: Use it only with trusted OOMOL-connected accounts, verify CLI installation paths, and avoid automatic pipe-to-shell installation. <br>
-Risk: Security evidence says some mutation or execution actions may be understated by the skill's safety labels. <br>
-Mitigation: Treat run_function, run_mutation, run_action, deploy-key operations, and deletion actions as sensitive even when labels are absent or incomplete. <br>
+## Use Case:
 
+Developers use this skill to inspect Convex projects and deployments, run queries, and manage Convex resources through the connected account. It provides action schemas and requires approval for operations that change or delete data.
 
-## Reference(s): <br>
-- [ClawHub Convex Skill](https://clawhub.ai/oomol/oo-convex) <br>
-- [Convex Homepage](https://www.convex.dev) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL Convex Connection](https://console.oomol.com/app-connections?provider=convex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may produce JSON responses from the oo CLI; state-changing actions require user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence release and skill frontmatter) <br>
+Risk: Setup involves unverified downloads, and automatic skill synchronization may change installed agent skills without clear disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately, verify the downloaded release, and consider setting OO_SKILLS_SYNC_DISABLED=1 before running oo.
+
+Risk: Convex write and destructive actions can change or remove project data.
+
+Mitigation: Connect only the Convex permissions needed and retain approval for mutations and destructive actions.
+
+## Reference(s):
+
+- [Convex](https://www.convex.dev)
+- [Convex HTTP API documentation](https://docs.convex.dev/http-api/)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Guidance]
+
+**Output Format:** [JSON results and shell commands with Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the connected Convex account and the selected action.]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,26 @@
+name: bilibili-video-chapter-notes-free
+slug: bilibili-video-chapter-notes-free
+display_name: B站单视频章节笔记
+description: 使用用户给定的 B 站视频 URL、学习目标和 Easy WebBridge browserId，基于当前可见标题、章节、字幕或摘要生成带时间与页面证据的章节笔记。适用于学习复盘和资料归档；无可见字幕或摘要时如实交付标题、来源与缺项，不声称已读完视频。
+version: 1.0.3
+license: MIT-0
+repository: https://github.com/xxjrq/bilibili-video-chapter-notes-free
+icon: icon-512.png
+tags:
+  - bilibili
+  - video-notes
+  - learning
+  - browser-automation
+trigger_words:
+  - B站视频章节笔记
+  - 整理B站字幕
+  - 视频学习笔记
+interface:
+  display_name: B站单视频章节笔记
+  short_description: 从B站页面可见章节与字幕生成带证据的结构化学习笔记
+  default_prompt: 请用我指定的 browserId 读取此 B 站视频页面的可见章节或字幕，并围绕学习目标整理证据化笔记；看不到字幕时如实报告缺项。
+  icon_small: icon-512.png
+  icon_large: icon-512.png
+policy:
+  allow_implicit_invocation: false
+self_test: bash scripts/self-test.sh

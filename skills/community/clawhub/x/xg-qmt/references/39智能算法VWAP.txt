@@ -1,0 +1,92 @@
+#encoding:gbk
+'''
+39智能算法VWAP
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+import pandas as pd
+import numpy as np
+from datetime import timedelta
+import datetime
+
+def init(ContextInfo):
+	ContextInfo.accountid= 'test'
+	ContextInfo.start_time ='1400'
+	ContextInfo.end_time ='1450'
+	ContextInfo.code ='000001.SZ'
+	ContextInfo.shares =50000
+	ContextInfo.buy_sell ='Buy'
+	ContextInfo.per_share = 0
+	ContextInfo.number= 0
+	ContextInfo.W= pd.Series()
+	ContextInfo.progress= 0
+
+def handlebar(ContextInfo):
+	index = ContextInfo.barpos
+	realtime= ContextInfo.get_bar_timetag(index)
+	now = timetag_to_datetime(realtime,'%Y%m%d %H:%M:%S')
+
+	if ContextInfo.number == 0:
+		#由字符串格式转化为日期格式
+		now_strp = datetime.datetime.strptime(now,'%Y%m%d %H:%M:%S')
+		#由日期格式转化为字符串格式，计算得到前一周每天的开始和结束时间
+		start_1= datetime.datetime.strftime(now_strp-datetime.timedelta(days=1),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.start_time+'00'
+		start_2= datetime.datetime.strftime(now_strp-datetime.timedelta(days=2),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.start_time+'00'
+		start_3= datetime.datetime.strftime(now_strp-datetime.timedelta(days=3),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.start_time+'00'
+		start_4= datetime.datetime.strftime(now_strp-datetime.timedelta(days=4),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.start_time+'00'
+		start_5= datetime.datetime.strftime(now_strp-datetime.timedelta(days=5),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.start_time+'00'
+		start_6= datetime.datetime.strftime(now_strp-datetime.timedelta(days=6),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.start_time+'00'
+		start_7= datetime.datetime.strftime(now_strp-datetime.timedelta(days=7),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.start_time+'00'
+		end_1= datetime.datetime.strftime(now_strp-datetime.timedelta(days=1),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.end_time+'00'
+		end_2= datetime.datetime.strftime(now_strp-datetime.timedelta(days=2),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.end_time+'00'
+		end_3= datetime.datetime.strftime(now_strp-datetime.timedelta(days=3),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.end_time+'00'
+		end_4= datetime.datetime.strftime(now_strp-datetime.timedelta(days=4),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.end_time+'00'
+		end_5= datetime.datetime.strftime(now_strp-datetime.timedelta(days=5),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.end_time+'00'
+		end_6= datetime.datetime.strftime(now_strp-datetime.timedelta(days=6),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.end_time+'00'
+		end_7= datetime.datetime.strftime(now_strp-datetime.timedelta(days=7),'%Y%m%d %H:%M:%S')[0:8]+ContextInfo.end_time+'00'
+
+		#获取前一周，设定的算法交易时间区间内历史交易量数据
+		volume_1 = ContextInfo.get_market_data(['volume'],stock_code=[ContextInfo.code],start_time=start_1,end_time=end_1,skip_paused=True,period='1m',dividend_type=ContextInfo.dividend_type,count= -1)
+		volume_2 = ContextInfo.get_market_data(['volume'],stock_code=[ContextInfo.code],start_time=start_2,end_time=end_2,skip_paused=True,period='1m',dividend_type=ContextInfo.dividend_type,count= -1)
+		volume_3 = ContextInfo.get_market_data(['volume'],stock_code=[ContextInfo.code],start_time=start_3,end_time=end_3,skip_paused=True,period='1m',dividend_type=ContextInfo.dividend_type,count= -1)
+		volume_4 = ContextInfo.get_market_data(['volume'],stock_code=[ContextInfo.code],start_time=start_4,end_time=end_4,skip_paused=True,period='1m',dividend_type=ContextInfo.dividend_type,count= -1)
+		volume_5 = ContextInfo.get_market_data(['volume'],stock_code=[ContextInfo.code],start_time=start_5,end_time=end_5,skip_paused=True,period='1m',dividend_type=ContextInfo.dividend_type,count= -1)
+		volume_6 = ContextInfo.get_market_data(['volume'],stock_code=[ContextInfo.code],start_time=start_6,end_time=end_6,skip_paused=True,period='1m',dividend_type=ContextInfo.dividend_type,count= -1)
+		volume_7 = ContextInfo.get_market_data(['volume'],stock_code=[ContextInfo.code],start_time=start_7,end_time=end_7,skip_paused=True,period='1m',dividend_type=ContextInfo.dividend_type,count= -1)
+		history = pd.DataFrame()
+		history['volume_1']=np.array(volume_1['volume'])
+		history['volume_2']=np.array(volume_2['volume'])
+		history['volume_3']=np.array(volume_3['volume'])
+		history['volume_4']=np.array(volume_4['volume'])
+		history['volume_5']=np.array(volume_5['volume'])
+		history['volume_6']=np.array(volume_6['volume'])
+		history['volume_7']=np.array(volume_7['volume'])
+		history.fillna(0)
+		#print(volume_3['volume'],history)
+		#设定交易权重
+		ContextInfo.W= pd.Series(index=history.index)
+		#计算历史交易量平均值
+		history=history.mean(axis=1)
+		for i in range(len(history)):
+			#计算每个时间段成交量的占比
+			ContextInfo.W[i] = history[i]/history.sum()
+		print(ContextInfo.W)
+		
+	ContextInfo.number +=1
+	#当前K线时间的分钟值
+	time=now[9:11]+now[12:14]
+	#判断买卖方向
+	if ContextInfo.buy_sell == 'Buy' and ContextInfo.progress<len(ContextInfo.W):
+		#在指定的算法交易时间区间，进行算法交易
+		if int(time) >= int(ContextInfo.start_time) and int(time) < int(ContextInfo.end_time):
+			#根据该时间段成交量的占比，确定买入数量
+			share = int(ContextInfo.W[ContextInfo.progress]*ContextInfo.shares/100)*100
+			order_shares(ContextInfo.code,share,ContextInfo,ContextInfo.accountid)
+			ContextInfo.progress+= 1
+			print(now,ContextInfo.buy_sell,share)
+	if ContextInfo.buy_sell == 'Sell' and ContextInfo.progress<len(ContextInfo.W):
+		if int(time) >= int(ContextInfo.start_time) and int(time) < int(ContextInfo.end_time):
+			share = int(ContextInfo.W[ContextInfo.progress]*ContextInfo.shares/100)*100
+			order_shares(ContextInfo.code,share,ContextInfo,ContextInfo.accountid)
+			ContextInfo.progress+= 1
+	
+	

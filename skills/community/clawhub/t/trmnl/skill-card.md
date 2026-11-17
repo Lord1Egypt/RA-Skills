@@ -1,47 +1,62 @@
-## Description: <br>
-Generate content for TRMNL e-ink display devices using the TRMNL CSS framework and send it via the trmnl CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates TRMNL e-ink display content with TRMNL CSS framework layouts and sends it through the trmnl CLI.
 
-## Publisher: <br>
-[peetzweg](https://clawhub.ai/user/peetzweg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peetzweg](https://clawhub.ai/user/peetzweg)
 
-## Use Case: <br>
-Developers and TRMNL users use this skill to create HTML display content, dashboard views, notifications, and messages for TRMNL e-ink devices and send them through configured custom plugin webhooks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Custom plugin webhook URLs can expose access to a TRMNL display workflow if shared. <br>
-Mitigation: Treat webhook URLs as sensitive and avoid including them in public prompts, logs, or generated display content. <br>
-Risk: Installing trmnl-cli with @latest can change behavior between releases. <br>
-Mitigation: Pin the npm CLI version when reproducible behavior is required. <br>
-Risk: Generated content may include private or important information before it is sent to a display. <br>
-Mitigation: Preview or validate content with trmnl validate before sending sensitive or important updates. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [TRMNL Display release page](https://clawhub.ai/peetzweg/trmnl) <br>
-- [TRMNL framework overview](references/framework-overview.md) <br>
-- [TRMNL CSS utilities](references/css-utilities.md) <br>
-- [TRMNL layout systems](references/layout-systems.md) <br>
-- [TRMNL components](references/components.md) <br>
-- [TRMNL display patterns](references/patterns.md) <br>
-- [TRMNL webhook API](references/webhook-api.md) <br>
+## Use Case:
 
+Developers and TRMNL users use this skill to generate e-ink optimized HTML dashboards, messages, notifications, and status displays, then send them to configured TRMNL display plugins through the trmnl CLI.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTML snippets and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces TRMNL framework HTML intended for validation and delivery through the trmnl CLI.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can install or update a mutable global trmnl CLI package.
+
+Mitigation: Pin the CLI version or install it locally, and avoid elevated installation with sudo.
+
+Risk: Generated content may be sent to a configured TRMNL webhook target.
+
+Mitigation: Verify the plugin URL and require explicit confirmation of the target and content before each send.
+
+Risk: Private, personal, or confidential content could be displayed or transmitted to TRMNL.
+
+Mitigation: Avoid sending secrets, personal data, or confidential summaries unless the user explicitly intends that content to be sent.
+
+## Reference(s):
+
+- [TRMNL Design Patterns](references/patterns.md)
+- [TRMNL Framework Overview](references/framework-overview.md)
+- [CSS Utilities Reference](references/css-utilities.md)
+- [Layout Systems Reference](references/layout-systems.md)
+- [Components Reference](references/components.md)
+- [Webhook API Reference](references/webhook-api.md)
+- [Anti-Patterns to Avoid](assets/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTML snippets and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write temporary HTML content for validation and sending through a configured TRMNL plugin.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

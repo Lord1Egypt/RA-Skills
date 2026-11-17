@@ -1,44 +1,56 @@
-## Description: <br>
-Email, calendar and contacts access via the Nylas API with typed tools for Gmail, Outlook, Exchange, Yahoo, iCloud, and IMAP accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Email, calendar, and contacts via the Nylas API across Gmail, Outlook, Exchange, Yahoo, iCloud, and IMAP.
 
-## Publisher: <br>
-[mqasimca](https://clawhub.ai/user/mqasimca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mqasimca](https://clawhub.ai/user/mqasimca)
 
-## Use Case: <br>
-Developers and agent users use this skill to connect an agent to Nylas-backed email, calendar, and contacts workflows across supported mail providers. It supports account discovery, message lookup and sending, calendar event management, availability checks, and contact lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read sensitive email, calendar, and contact data through accounts connected to the Nylas API key. <br>
-Mitigation: Install only after trusting the Nylas plugin package, use the narrowest practical Nylas grants and scopes, and avoid broad multi-account keys when they are not needed. <br>
-Risk: The skill can perform real send, attendee change, event update, and deletion actions without documented confirmation guardrails. <br>
-Mitigation: Manually confirm email sends, attendee changes, event updates, and deletions before allowing the action. <br>
+## Use Case:
 
+External users and developers use this skill to configure and operate Nylas-powered email, calendar, and contact workflows from an agent, including message search, email sending, scheduling, and contact lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mqasimca/nylas-email-calendar) <br>
-- [Nylas Dashboard](https://dashboard-v3.nylas.com) <br>
-- [Installation Guide](https://cli.nylas.com/guides/install-openclaw-nylas-plugin) <br>
-- [npm Package](https://www.npmjs.com/package/@nylas/openclaw-nylas-plugin) <br>
-- [Nylas CLI](https://cli.nylas.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline shell commands and natural-language tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NYLAS_API_KEY and connected Nylas grants; actions may read account data or send, update, and delete account resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Connected Nylas grants may allow the agent to read email, contacts, and calendars.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use appropriately scoped Nylas grants and limit connected accounts to the workflows the agent needs.
+
+Risk: Email sending, event updates, and calendar deletion can perform real external actions.
+
+Mitigation: Confirm sensitive send, update, or delete requests before running them.
+
+## Reference(s):
+
+- [Nylas Dashboard](https://dashboard-v3.nylas.com)
+- [Installation Guide](https://cli.nylas.com/guides/install-openclaw-nylas-plugin)
+- [npm Package](https://www.npmjs.com/package/@nylas/openclaw-nylas-plugin)
+- [Nylas CLI](https://cli.nylas.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and tool usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NYLAS_API_KEY and connected Nylas grants; actions may read account data or modify email and calendar state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

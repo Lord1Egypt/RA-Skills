@@ -1,43 +1,58 @@
-## Description: <br>
-Turns a trend, news item, creator signal, review pattern, or market observation into sharper ecommerce content angles that are timely, useful, and commercially relevant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn trends, news items, creator signals, review patterns, or market observations into timely, useful, and commercially relevant ecommerce content angles.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce, brand, and marketing teams use this skill to turn trends, headlines, creator signals, review patterns, or market observations into commercially relevant content angles, hooks, channel fits, and execution notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include confidential launch plans, sensitive customer data, or unreleased strategy in trend or brand context. <br>
-Mitigation: Use sanitized or generalized context unless the team is comfortable using that information in an AI-assisted workflow. <br>
-Risk: Generated hooks or content angles may imply regulated or unsupported product claims. <br>
-Mitigation: Provide claims and compliance boundaries up front, then review generated angles before publication. <br>
-Risk: Trend-driven content may become stale, generic, or overused if the source signal is weak. <br>
-Mitigation: Prioritize angles that connect the signal to a specific audience tension, freshness window, and commercial bridge. <br>
+## Use Case:
 
+Ecommerce marketers, operators, and content teams use this skill to turn a real trend, headline, creator signal, review pattern, or market observation into sharper content angles, hooks, channel fits, and execution notes.
 
-## Reference(s): <br>
-- [Output Template - Trend to Content Angle](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/ecommerce-trend-to-content-angle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured sections and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a signal interpretation, 3-7 content angles, hook ideas, best-fit channels or formats, execution risks, freshness notes, and a priority recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated angles or hooks may include inaccurate, unsupported, or compliance-sensitive claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims for accuracy, brand policy, and applicable compliance boundaries before publishing.
+
+Risk: Users may provide confidential product, customer, or campaign information while asking for content angles.
+
+Mitigation: Avoid pasting confidential business data unless it is intended for agent use in the generated output.
+
+Risk: Trend-based content can become generic, overused, or disconnected from the product.
+
+Mitigation: Anchor each angle to a real audience tension, commercial relevance, freshness window, and clear product bridge.
+
+## Reference(s):
+
+- [Output Template - Trend to Content Angle](references/output-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/ecommerce-trend-to-content-angle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown with sections, bullet lists, and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes signal interpretation, 3-7 content angles, hook ideas, best-fit channels or formats, risk and freshness notes, and a priority recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

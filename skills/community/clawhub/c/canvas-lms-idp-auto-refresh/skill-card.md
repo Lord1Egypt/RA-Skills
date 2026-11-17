@@ -1,46 +1,58 @@
-## Description: <br>
-Automatically refreshes Canvas LMS API tokens by replaying institutional CAS/IDP login with RSA-encrypted credentials, SSO ticket exchange, token creation, and optional old-token cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically refreshes Canvas LMS API tokens through institutional CAS/SAML IDP login with RSA-encrypted credentials and optional old-token cleanup.
 
-## Publisher: <br>
-[summers-tars](https://clawhub.ai/user/summers-tars) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[summers-tars](https://clawhub.ai/user/summers-tars)
 
-## Use Case: <br>
-Developers and engineers use this skill to restore Canvas API access when tokens expire behind an institutional SSO layer. It is intended for agent workflows that need to create, store, validate, and rotate Canvas API tokens with user-provided institutional credentials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles institutional SSO passwords and Canvas API tokens. <br>
-Mitigation: Install and run it only when token creation through institutional credentials is intended, keep .env and token files outside repositories, and restrict local file permissions. <br>
-Risk: Debug output may include sensitive token or session artifacts. <br>
-Mitigation: Delete or protect debug_output after each run and sanitize artifacts before sharing troubleshooting data. <br>
-Risk: Token cleanup can delete existing Canvas tokens that match the configured purpose. <br>
-Mitigation: Use cleanup-dry-run before deleting old tokens and set a distinct token purpose for agent-created tokens. <br>
-Risk: Institutional SSO automation may conflict with local policy or be less appropriate than official authorization flows. <br>
-Mitigation: Prefer institution-approved OAuth or scoped service-account flows when available. <br>
+## Use Case:
 
+Developers and agents that integrate with Canvas LMS use this skill to recover from expired API tokens by running an institutional SSO login flow, creating a fresh token, and optionally cleaning up older purpose-matched tokens.
 
-## Reference(s): <br>
-- [IDP Adaptation Guide](references/idp-adaptation.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/summers-tars/canvas-lms-idp-auto-refresh) <br>
-- [Publisher Profile](https://clawhub.ai/user/summers-tars) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python scripts, configuration variables, and token output as NEW_TOKEN=<token_value>] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local .env, token, cookie, cleanup summary, and debug_output artifacts depending on user configuration and CLI flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles institutional login credentials and Canvas API tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an isolated local environment and avoid storing institutional passwords in plaintext where possible.
+
+Risk: Debug artifacts may contain sensitive session data or diagnostic material.
+
+Mitigation: Keep debug output opt-in, redacted, owner-only, and cleaned up; do not share debug_output.
+
+Risk: Old-token cleanup can delete Canvas tokens that match the configured purpose.
+
+Mitigation: Use cleanup dry-run or avoid cleanup until deletion behavior and token-purpose matching are confirmed.
+
+## Reference(s):
+
+- [IDP Adaptation Guide](artifact/references/idp-adaptation.md)
+- [ClawHub Skill Page](https://clawhub.ai/summers-tars/skills/canvas-lms-idp-auto-refresh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit a NEW_TOKEN value when the bundled token refresh script succeeds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

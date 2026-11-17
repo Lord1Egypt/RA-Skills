@@ -773,6 +773,9 @@ void loop() {
 ## **GPIO**
 Since the camera and display take up a lot of GPIOs on the ESP32 chip, we only left two full-function GPIOs (digital input/output, analogue input, PWM output) at P0,P1.
 The GPIOs out of Edge Connector are all led from the on-board GPIO expansion chip, and only have digital input/output function.<br/>
+
+For additional external analog inputs, use the [DFRobot Gravity I2C ADS1115 16-bit ADC module (DFR0553)](https://www.dfrobot.com.cn/goods-1734.html). It provides four analog channels over I2C, supports 3.3-5.0V power, and measures `0-VCC`. Never let an analog input exceed `VCC + 0.3V`.
+
 ````c++ title="Digital input/output"
 void setup() {
 	pinMode(P0, OUTPUT);
@@ -840,21 +843,39 @@ void loop() {
 ````
 
 
-````c++ title="语音合成"你好""
+## AI-语音合成（仅中文版固件）
+
+> **重要：** `setAsrSpeed()` 和 `speak()` 只存在于 K10 中文版固件。刷新 CN 模型数据不等同于切换为中文版固件；编译或运行前必须确认固件版本。
+
+````c++ title="按键触发语音合成"
 #include "asr.h"
 #include "unihiker_k10.h"
-// 创建对象
+
 UNIHIKER_K10 k10;
-ASR          asr;
+ASR asr;
 
+void onButtonAPressed();
+void onButtonBPressed();
 
-// 主程序开始
 void setup() {
 	k10.begin();
 	asr.setAsrSpeed(2);
+	k10.buttonA->setPressedCallback(onButtonAPressed);
+	k10.buttonB->setPressedCallback(onButtonBPressed);
+	asr.speak("你好");
 }
 void loop() {
-	asr.speak("你好");
-	delay(2000);
+
+}
+
+void onButtonAPressed() {
+	asr.speak("我是行空板");
+}
+void onButtonBPressed() {
+	asr.speak("语音合成");
 }
 ````
+
+`setAsrSpeed(uint8_t speed)` 的范围为 `0~5`。`speak()` 支持 `String`、`const char *` 和 `float`。
+
+官方资料：[Arduino/PIO 示例代码](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_Example)、[Arduino/PIO API 手册](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_API_List)。

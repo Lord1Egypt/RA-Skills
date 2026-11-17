@@ -1,41 +1,54 @@
-## Description: <br>
-Generate thumbnails from videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate thumbnails from videos.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and automation users use this skill to generate video thumbnails through a command-line workflow and receive JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced scripts/video_thumbnail.py file is not included in the artifact, so its behavior cannot be reviewed from the provided release files. <br>
-Mitigation: Review the script source separately before installing or running the skill. <br>
-Risk: The skill requires THUMBNAIL_API_KEY, but the service and handling requirements are under-documented. <br>
-Mitigation: Set the key only for a known service, keep it out of commits and logs, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+Developers and content automation users can use this skill to generate video thumbnails and automate thumbnail-related video processing tasks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-video-thumbnail) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown with bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires THUMBNAIL_API_KEY and references an external video_thumbnail.py script that is not included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The artifact references a video_thumbnail.py command, but the implementation is not included in the provided files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the source and integrity of the script or service implementation before installing or running the skill.
+
+Risk: The skill requires THUMBNAIL_API_KEY for operation.
+
+Mitigation: Provide the key only through protected environment or secrets management, and avoid committing, logging, or pasting it in shared places.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-video-thumbnail)
+- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described command requires THUMBNAIL_API_KEY and returns JSON results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

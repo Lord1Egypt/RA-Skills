@@ -1,41 +1,55 @@
-## Description: <br>
-Sub Agent Factory rapidly spawns and configures specialized sub-agents with templates for research, coding, and analysis plus workspace setup and instruction delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rapidly spawn and configure specialized sub-agents using templates for research, coding, and analysis workflows.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to create role-specific sub-agent workspaces for coding, research, and analysis tasks. It provides setup guidance and a helper script that provisions inbox, outbox, workspace, and SKILL.md files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script can write files outside the intended agents folder when given a crafted agent name. <br>
-Mitigation: Use simple agent names containing only letters, numbers, hyphens, or underscores, and avoid slashes or '..'. <br>
-Risk: Generated role text and inbox contents become trusted instructions for the provisioned agent. <br>
-Mitigation: Review role descriptions and inbox contents before using the generated agent. <br>
-Risk: Running the helper script creates local directories and a SKILL.md file. <br>
-Mitigation: Check the target path before provisioning and review the generated SKILL.md before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/balkanblbn/sub-agent-factory) <br>
+## Use Case:
+
+Developers and agent operators use this skill to provision specialized sub-agent workspaces and generate starter SKILL.md instructions for delegated coding, research, or analysis tasks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Unsafe agent names can cause the provisioning script to write outside the intended agents directory.
+
+Mitigation: Run the script only with trusted, simple agent names until path validation confines output to the agents directory.
+
+Risk: Unsafe role text can be injected into generated agent instructions.
+
+Mitigation: Use trusted, single-line role descriptions until generated YAML and instruction text are escaped or validated.
+
+Risk: Repeated runs may overwrite an existing generated SKILL.md.
+
+Mitigation: Check the target agent directory before provisioning until the script refuses accidental overwrites.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration] <br>
-**Output Format:** [Markdown instructions with shell command usage and generated SKILL.md files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script creates an agent directory with inbox, outbox, workspace, and SKILL.md files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline shell commands and generated SKILL.md files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local agent folders and inbox/outbox/workspace directories when its provisioning script is run.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

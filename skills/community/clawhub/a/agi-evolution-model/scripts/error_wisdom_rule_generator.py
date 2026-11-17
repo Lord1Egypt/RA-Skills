@@ -10,6 +10,8 @@
 
 基于：error_wisdom_spec.md 规范
 """
+__version__ = "1.0.0"
+
 
 import os
 import json
@@ -19,6 +21,8 @@ from typing import Dict, List, Optional, Any, Tuple
 from dataclasses import dataclass, asdict
 from collections import defaultdict
 import logging
+from interfaces import TraceContext, create_trace_context
+from validation_framework import ValidationError, validate_params, validate_params
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)

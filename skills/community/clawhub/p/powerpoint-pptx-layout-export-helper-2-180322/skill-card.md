@@ -1,41 +1,59 @@
-## Description: <br>
-Repair and maintain PowerPoint PPTX templates with slide masters, placeholders, theme fonts, theme colors, chart links, and branded layouts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repairs and maintains PowerPoint PPTX templates with slide masters, placeholders, theme fonts, theme colors, chart links, and branded layouts.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Brand teams, consultants, presentation operations teams, and developers use this skill to diagnose and repair PowerPoint template failures involving slide masters, layouts, placeholders, themes, charts, media relationships, and branded deck generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate automatically for general PowerPoint repair requests. <br>
-Mitigation: Invoke the skill explicitly when tighter control is needed, or review the manifest wording before deployment. <br>
-Risk: Template repair can damage brand fidelity or break linked PowerPoint parts if edits are made at the wrong layer. <br>
-Mitigation: Preserve the original PPTX, work from a copy, map issues to the correct master, layout, slide, theme, chart, media, or relationship layer, and validate structurally and visually. <br>
+## Use Case:
 
+External users, brand teams, consultants, presentation operations teams, and developers use this skill to diagnose and repair PPTX template failures caused by slide masters, layouts, placeholders, themes, chart links, media relationships, or automated deck generation.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/powerpoint-pptx-layout-export-helper-2-180322) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with diagnoses, repair plans, code or OOXML snippets, and validation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PowerPoint part paths, placeholder mappings, relationship checks, and visual or structural validation results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Template repair can corrupt or overwrite valuable PPTX files if changes are applied directly to originals.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Work from a copy, keep original templates backed up, and review generated file changes before replacing production assets.
+
+Risk: Direct OOXML changes to unsupported master, theme, chart-link, or relationship structures can break template fidelity.
+
+Mitigation: Inspect the exact PowerPoint part or relationship before patching, then validate slide count, layout assignments, placeholders, theme values, fonts, charts, linked media, and rendered appearance.
+
+Risk: Generated repair guidance may bind content to the wrong placeholder or introduce brand-inconsistent overrides.
+
+Mitigation: Map each visible issue to the master, layout, slide, theme, or relationship layer and prefer existing layouts, placeholders, theme references, and brand rules over manual shapes or hard-coded values.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/powerpoint-pptx-layout-export-helper-2-180322)
+- [kyro-ma Publisher Profile](https://clawhub.ai/user/kyro-ma)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with diagnostic prose, implementation snippets, and validation steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PowerPoint part paths, OOXML changes, python-pptx guidance, and visual or structural validation notes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

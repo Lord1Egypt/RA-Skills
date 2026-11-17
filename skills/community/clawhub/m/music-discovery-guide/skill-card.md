@@ -1,38 +1,54 @@
-## Description: <br>
-Generates personalized music recommendations based on mood, genre, artist, or activity, including artist context, specific entry points, listening pathways, and availability notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalised music recommendations based on mood, genre, artist, or activity, including mainstream and underground discovery with artist context, entry points, and listening locations.
 
-## Publisher: <br>
-[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tetsuakira-vk](https://clawhub.ai/user/tetsuakira-vk)
 
-## Use Case: <br>
-External music listeners use this skill to get curated music discovery guides from a mood, activity, artist, genre, scene, or era. It is especially useful when the user wants contextual recommendations, underground or niche discoveries, and specific albums or tracks to start with. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations or availability notes may be inaccurate or outdated, especially for obscure artists or hard-to-find releases. <br>
-Mitigation: Treat the output as guidance, ask the agent to state uncertainty for niche scenes, and verify artists, albums, tracks, and availability before relying on them. <br>
+## Use Case:
 
+External users use this skill to turn a mood, artist, genre, era, or activity into contextual music recommendations with specific albums or tracks, listening pathways, and availability notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/music-discovery-guide) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown recommendation guide] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recommendation context, entry-point albums or tracks, mood notes, availability guidance, and suggested listening pathways.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Changing installer versions can affect reproducibility.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and trusted ClawHub installer version when the platform supports it.
+
+Risk: Very niche music requests may exceed the model's reliable knowledge.
+
+Mitigation: State uncertainty, avoid fabricating artists, albums, tracks, or availability, and provide only recommendations that can be described reliably.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tetsuakira-vk/skills/music-discovery-guide)
+- [Publisher profile](https://clawhub.ai/user/tetsuakira-vk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Curated recommendations with artist context, specific entry points, listening order, and availability notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

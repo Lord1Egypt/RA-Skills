@@ -1,41 +1,57 @@
-## Description: <br>
-Fetches WeChat public account articles, extracts the title and body, and outputs the result as Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches WeChat public-account articles, extracts titles and content, and outputs the result as Markdown using multiple extraction methods.
 
-## Publisher: <br>
-[haweiYu](https://clawhub.ai/user/haweiYu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[haweiyu](https://clawhub.ai/user/haweiyu)
 
-## Use Case: <br>
-Developers and content operators use this skill to turn public WeChat article links into clean Markdown for analysis, archiving, or reuse in agent workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The default extraction method sends the supplied WeChat article URL to r.jina.ai. <br>
-Mitigation: Use only public or non-sensitive article URLs, and avoid confidential, access-controlled, tokenized, or internal links. <br>
-Risk: Some WeChat articles may be blocked by anti-crawling controls or captcha challenges. <br>
-Mitigation: Expect extraction failures for protected articles and review errors before relying on the Markdown output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haweiYu/wechat-article) <br>
-- [Publisher profile](https://clawhub.ai/user/haweiYu) <br>
-- [r.jina.ai extraction service](https://r.jina.ai/) <br>
+## Use Case:
 
+Developers, content operators, and external users use this skill to convert public WeChat article links into Markdown for review, archiving, or downstream editing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown document written to standard output, with status and error messages on standard error.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes article title, original link, optional publication metadata when available, and body content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weak URL checks can allow crafted inputs to trigger requests to unintended internal or private addresses.
+
+Mitigation: Review before use in environments with private networks, cloud metadata services, intranet applications, or sensitive URLs; use only trusted WeChat article URLs.
+
+Risk: URL handling does not prove that the final request target is the exact public WeChat article host.
+
+Mitigation: Prefer an update that parses URLs, allowlists the exact mp.weixin.qq.com hostname, and blocks redirects to private addresses.
+
+Risk: The extraction flow may send article URLs through r.jina.ai.
+
+Mitigation: Clearly disclose r.jina.ai data sharing and use the skill only with URLs approved for that processing path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haweiyu/skills/wechat-article)
+- [r.jina.ai reader endpoint](https://r.jina.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown article content or concise error text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and network access; no credential environment variables are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Guide building a minimum viable product the minimalist entrepreneur way -- manual first, then processized, then productized. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide building a minimum viable product the minimalist entrepreneur way - manual first, then processized, then productized.
 
-## Publisher: <br>
-[carollili](https://clawhub.ai/user/carollili) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[carollili](https://clawhub.ai/user/carollili)
 
-## Use Case: <br>
-External founders, makers, and small product teams use this skill to reduce an MVP to one customer problem, choose a manual, no-code, or minimal-code launch path, set an initial price, and plan fast feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest buying domains, setting up payment processors, or charging customers as part of an MVP launch. <br>
-Mitigation: Require explicit user approval before purchases, account creation, payment setup, or any action involving money. <br>
-Risk: Business guidance may be mistaken for legal, tax, financial, or payment-security advice. <br>
-Mitigation: Treat outputs as planning guidance and route legal, tax, financial, payment-security, and customer-data decisions through qualified reviewers. <br>
-Risk: Prompts or outputs could expose sensitive payment credentials or customer data if users paste them into the agent conversation. <br>
-Mitigation: Do not include sensitive payment credentials or unnecessary customer personal data in prompts; use secure first-party systems for operational records. <br>
+## Use Case:
 
+External founders, builders, and startup advisors use this skill to narrow an MVP to one valuable outcome, choose the simplest manual or no-code implementation, set an initial price, and plan fast feedback collection.
 
-## Reference(s): <br>
-- [Mvp on ClawHub](https://clawhub.ai/carollili/me-mvp) <br>
-- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with structured recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggestions involving domains, payment processors, no-code tools, and customer feedback collection; spending and account actions should remain under explicit user control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may suggest third-party tools such as payment, form, database, or website services without accessing accounts or performing setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations before acting and configure any external services directly in trusted provider interfaces.
+
+Risk: Business and MVP advice may be context-dependent and can affect pricing, scope, or launch decisions.
+
+Mitigation: Treat outputs as advisory, validate assumptions with real customers, and review business decisions before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/carollili/skills/me-mvp)
+- [The Minimalist Entrepreneur](https://minimalistentrepreneur.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory text focused on MVP scope, manual implementation, pricing, and feedback collection; no executable code is included in the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

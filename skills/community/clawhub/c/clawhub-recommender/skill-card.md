@@ -1,40 +1,55 @@
-## Description: <br>
-Recommends popular and highly-rated skills from ClawHub based on user intent and conversation context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends popular and highly-rated skills from ClawHub based on user intent and conversation context.
 
-## Publisher: <br>
-[brandon-zhanghaodong](https://clawhub.ai/user/brandon-zhanghaodong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brandon-zhanghaodong](https://clawhub.ai/user/brandon-zhanghaodong)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to match a user's stated task or conversation context to relevant ClawHub skills and receive concise recommendation and installation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendation claims about popularity, reliability, or official status may be stale or may not prove that a separately recommended skill is safe. <br>
-Mitigation: Treat recommendations as discovery context, then review the target skill page, security summary, permissions, and install command before installation. <br>
+## Use Case:
 
+Developers and agent users use this skill to discover ClawHub skills that match their current task, such as development, productivity, communication, search, or automation needs. It helps compare options and returns concise recommendations with links and install commands.
 
-## Reference(s): <br>
-- [ClawHub Recommender Skill Page](https://clawhub.ai/brandon-zhanghaodong/clawhub-recommender) <br>
-- [Popular ClawHub Skills](references/popular_skills.md) <br>
-- [Recommendation Logic for ClawHub Skills](references/recommendation_logic.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline installation commands and links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations may include popularity metrics, rationale, links, and a clawhub install command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A recommended skill could be treated as trusted solely because this recommender surfaced it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, review the recommended skill's publisher, permissions, install hooks, persistence behavior, communication access, and agent-behavior changes.
+
+Risk: Recommendation data can become stale as skill popularity, ratings, publishers, or security posture change.
+
+Mitigation: Confirm current ClawHub metadata and security status before relying on a recommendation for production use.
+
+## Reference(s):
+
+- [ClawHub Recommender release page](https://clawhub.ai/brandon-zhanghaodong/skills/clawhub-recommender)
+- [Popular ClawHub Skills](references/popular_skills.md)
+- [Recommendation Logic for ClawHub Skills](references/recommendation_logic.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline install commands and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recommendations are generated from user intent, conversation context, and bundled ClawHub skill reference material.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

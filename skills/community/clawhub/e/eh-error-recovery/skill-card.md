@@ -1,50 +1,69 @@
-## Description: <br>
-Error Recovery helps agents recover from rate limits, crashes, stale sessions, MCP disconnects, and model failures while avoiding generic retry loops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent recovery patterns for rate limits, crash state, stale sessions, MCP disconnections, tool degradation, model fallback, and anti-stampede retry handling.
 
-## Publisher: <br>
-[lanyasheng](https://clawhub.ai/user/lanyasheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lanyasheng](https://clawhub.ai/user/lanyasheng)
 
-## Use Case: <br>
-Developers and agent operators use this skill to detect common agent failure modes and choose bounded recovery actions for rate limits, crash residue, MCP disconnects, stale sessions, and model failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic recovery steps can send Enter to tmux panes after detecting rate-limit text. <br>
-Mitigation: Restrict recovery to known agent panes and re-capture the pane before sending Enter; block destructive confirmations such as delete, overwrite, force push, or yes/no prompts. <br>
-Risk: Crash recovery and cleanup steps can delete lock files or roll back state incorrectly. <br>
-Mitigation: Use dry-run or confirmation for lock cleanup and rollback, scope cleanup paths tightly, and log each recovery action. <br>
-Risk: Transcript scavenging can persist sensitive session content. <br>
-Mitigation: Enable scavenging only with explicit opt-in, redaction, and retention limits. <br>
+## Use Case:
 
+Developers and agent operators use this skill to recover long-running agent sessions when rate limits, crashes, stale tmux sessions, MCP disconnects, tool failures, or model failures interrupt work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lanyasheng/eh-error-recovery) <br>
-- [Rate Limit Detection and Recovery](artifact/references/rate-limit.md) <br>
-- [Crash Recovery](artifact/references/crash-recovery.md) <br>
-- [Stale Session Daemon](artifact/references/stale-session.md) <br>
-- [MCP Reconnection](artifact/references/mcp-reconnection.md) <br>
-- [Graceful Degradation](artifact/references/graceful-degradation.md) <br>
-- [Model Fallback](artifact/references/model-fallback.md) <br>
-- [Anti-Stampede Retry Asymmetry](artifact/references/anti-stampede.md) <br>
-- [Extended Error Recovery Patterns](artifact/references/extended-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell snippets, JSON hook examples, and supporting script files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe recovery log entries, restored session state, cleaned lock files, and additionalContext guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.0 (source: server-resolved release metadata; artifact frontmatter and metadata.json list 2.0.0) <br>
+Risk: Automation can press Enter in tmux panes that are not confirmed agent rate-limit prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow scanning to known agent panes, recapture pane text immediately before sending input, and refuse to act on confirmation or destructive prompts.
+
+Risk: Recovery routines can write session state and delete stale lock files.
+
+Mitigation: Limit recovery paths to intended session directories, log each mutation, and require manual review when lock ownership or session activity is ambiguous.
+
+Risk: Background retry automation can amplify overload or waste resources.
+
+Mitigation: Use short timeouts, avoid retries in async background hooks, and keep foreground retries bounded while honoring Retry-After guidance.
+
+Risk: Fallback tool or model guidance can reduce capability or change task behavior.
+
+Mitigation: Document capability differences for fallback tools, cap reconnect and model-fallback attempts, and report unresolved failures to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lanyasheng/skills/eh-error-recovery)
+- [Rate Limit Recovery](references/rate-limit.md)
+- [Crash Recovery](references/crash-recovery.md)
+- [Stale Session Daemon](references/stale-session.md)
+- [MCP Reconnection](references/mcp-reconnection.md)
+- [Graceful Degradation](references/graceful-degradation.md)
+- [Model Fallback Advisory](references/model-fallback.md)
+- [Anti-Stampede Retry Asymmetry](references/anti-stampede.md)
+- [Extended Recovery Patterns](references/extended-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce recovery log entries, restored state descriptions, and lock-cleanup actions when implemented through hooks or scripts.]
+
+## Skill Version(s):
+
+2.4.0 (source: server release metadata; artifact frontmatter and metadata declare 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

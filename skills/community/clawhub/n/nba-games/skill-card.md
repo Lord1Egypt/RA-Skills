@@ -1,40 +1,51 @@
-## Description: <br>
-Gets upcoming and/or recent NBA game results for a specified team. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gets upcoming and/or recent NBA game results for a specified team. Use this skill when asked about scheduled, upcoming, or past games for any NBA team.
 
-## Publisher: <br>
-[highdeserthacker](https://clawhub.ai/user/highdeserthacker) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[highdeserthacker](https://clawhub.ai/user/highdeserthacker)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve upcoming or recent NBA games for a selected team, including opponents, home/away status, tip-off times, and final scores when available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup downloads an unpinned third-party Python script. <br>
-Mitigation: Review the downloaded Python file, pin it to a specific commit, and add checksum or signature verification before relying on it. <br>
+## Use Case:
 
+External users and agents use this skill to answer questions about upcoming or recently completed NBA games for a specified team. It can look up team IDs, fetch schedule windows, and present opponents, home or away status, tip-off times, scores, and win or loss results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/highdeserthacker/nba-games) <br>
-- [nba-schedule source repository](https://github.com/highdeserthacker/nba-schedule) <br>
-- [nba-schedule.py helper script](https://raw.githubusercontent.com/highdeserthacker/nba-schedule/main/nba-schedule.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON array from the helper script, typically summarized as conversational text by the agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and an ESPN team ID; optional arguments control past and future day windows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The skill installs and runs a Python script downloaded from the current GitHub main branch without integrity checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted sources; prefer pinning and verifying the downloaded script or bundling a reviewed copy before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/highdeserthacker/skills/nba-games)
+- [nba-schedule source repository](https://github.com/highdeserthacker/nba-schedule)
+- [nba-schedule.py download URL](https://raw.githubusercontent.com/highdeserthacker/nba-schedule/main/nba-schedule.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON array from the script, typically summarized as conversational text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a local downloaded nba-schedule.py script.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

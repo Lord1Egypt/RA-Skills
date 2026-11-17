@@ -85,3 +85,7 @@ See `references/profiles.md` for all current profiles:
 - Stripe API
 - HuggingFace Inference API
 - Firecrawl
+
+---
+
+Built by Joseph Voelbel / High Noon Office. Questions or want to build on this? josephvoelbel.com/contact

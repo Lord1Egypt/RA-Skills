@@ -1,44 +1,63 @@
-## Description: <br>
-监控指定高校的研究生招生通知，自动爬取最新信息并生成报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+监控指定高校的研究生招生通知，自动爬取最新信息并生成报告。
 
-## Publisher: <br>
-[sixadd1](https://clawhub.ai/user/sixadd1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sixadd1](https://clawhub.ai/user/sixadd1)
 
-## Use Case: <br>
-External students, applicants, and developers use this skill to query configured university admissions pages, collect recent graduate admissions notices, and optionally save the results as Markdown or Word reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent cron scheduling is under-explained. <br>
-Mitigation: Require the exact cron command and the matching removal command before enabling scheduled monitoring. <br>
-Risk: QQ report sending is under-explained and may transmit generated reports outside the local environment. <br>
-Mitigation: Keep reports local unless the user explicitly chooses a QQ recipient and approves sending. <br>
-Risk: Admissions scraping can return incomplete or stale results when sites use dynamic pages, change structure, block requests, or omit dates. <br>
-Mitigation: Manually verify important admissions notices against the linked university source pages before acting on them. <br>
+## Use Case:
 
+External users and agents use this skill to check configured Chinese university graduate admissions pages for recent notices, summarize matching announcements, and produce Markdown or Word reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sixadd1/higher-education-admissions-monitoring) <br>
-- [常见问题 FAQ](artifact/references/常见问题FAQ.md) <br>
-- [运行效果示例](artifact/examples/运行效果示例.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration guidance] <br>
-**Output Format:** [Console text, Markdown reports, and Word .docx files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write Markdown reports to artifact/output/ when --save is used and Word reports to /tmp through to_word.py.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill may be used to create persistent cron jobs for automated monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation for any cron schedule, command, and persistence behavior before making changes.
+
+Risk: Generated reports may be sent externally through QQ or other user-facing transfer flows.
+
+Mitigation: Confirm the recipient, file path, and transfer method before sending any generated report outside the local workspace.
+
+Risk: The school configuration can be edited to fetch arbitrary configured websites.
+
+Mitigation: Review schools.json edits and prefer trusted HTTPS university pages before running the monitor.
+
+Risk: The skill may delete generated files after sending them.
+
+Mitigation: Ask for confirmation before deleting any generated report and preserve files when the user needs an audit trail.
+
+## Reference(s):
+
+- [常见问题 FAQ](references/常见问题FAQ.md)
+- [运行效果示例](examples/运行效果示例.md)
+- [ClawHub skill page](https://clawhub.ai/sixadd1/skills/higher-education-admissions-monitoring)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Console text, Markdown reports, Word documents, and configuration instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write Markdown reports under the skill output directory or Word documents under /tmp when requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

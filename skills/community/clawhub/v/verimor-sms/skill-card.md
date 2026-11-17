@@ -1,41 +1,54 @@
-## Description: <br>
-Send SMS through the Verimor API, check balance, retrieve delivery reports, list sender headers, and manage blacklists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verimor API uzerinden SMS gonder, bakiye sorgula, rapor al, basliklari listele ve kara liste yonet.
 
-## Publisher: <br>
-[mirzakarahan-verimor](https://clawhub.ai/user/mirzakarahan-verimor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirzakarahan-verimor](https://clawhub.ai/user/mirzakarahan-verimor)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare Verimor SMS API calls for sending individual or bulk SMS messages, checking account balance, retrieving campaign status, listing sender headers, canceling scheduled campaigns, and managing blacklist entries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send paid SMS messages, including bulk, commercial, or scheduled campaigns. <br>
-Mitigation: Use restricted or dedicated Verimor credentials and require manual confirmation before every send, especially for bulk recipients, commercial messages, or scheduled campaigns. <br>
-Risk: The skill can change campaign or blacklist state, including canceling scheduled campaigns and adding phone numbers to blacklists. <br>
-Mitigation: Require explicit confirmation of the campaign ID or phone number before cancellation or blacklist changes, then review the API response with the user. <br>
+## Use Case:
 
+External developers and business operators use this skill to let an agent send Verimor SMS messages, check SMS credit balance, inspect delivery status, list sender headers, cancel scheduled campaigns, and manage blacklist entries.
 
-## Reference(s): <br>
-- [Verimor SMS API base endpoint](https://sms.verimor.com.tr/v2) <br>
-- [ClawHub skill page](https://clawhub.ai/mirzakarahan-verimor/verimor-sms) <br>
+### Deployment Geography for Use:
 
+Global, with workflows documented for Turkish-format phone numbers.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Configuration guidance, Text] <br>
-**Output Format:** [Markdown with shell commands and JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, VERIMOR_USERNAME, VERIMOR_PASSWORD, and VERIMOR_SOURCE.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill gives an agent direct authority to send paid SMS messages and change campaign or blacklist state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator confirmation before every send, campaign cancellation, and blacklist change.
+
+Risk: Several documented commands place account credentials in URL query strings, which may expose them in logs or shared environments.
+
+Mitigation: Prefer safer credential handling if Verimor supports it, and rotate credentials if URL-based commands may already have been logged.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirzakarahan-verimor/skills/verimor-sms)
+- [Verimor SMS API endpoint](https://sms.verimor.com.tr/v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, API calls, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash curl and jq command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, VERIMOR_USERNAME, VERIMOR_PASSWORD, and VERIMOR_SOURCE.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

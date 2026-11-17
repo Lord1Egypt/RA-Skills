@@ -1,45 +1,61 @@
-## Description: <br>
-Whisper Piper Voice helps agents set up a local HTTP voice pipeline that transcribes audio with Whisper and generates speech with Piper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and run a fully local voice pipeline that combines Whisper STT and Piper TTS behind a single HTTP server.
 
-## Publisher: <br>
-[danielgrobelny](https://clawhub.ai/user/danielgrobelny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielgrobelny](https://clawhub.ai/user/danielgrobelny)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure an offline speech-to-text and text-to-speech service for local voice assistants and integrations. It provides setup guidance, model choices, API examples, and a Python server for transcription and OGG speech output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The voice server is unauthenticated and listens on all network interfaces by default. <br>
-Mitigation: Bind it to localhost or firewall port 9998 unless LAN access is required, and add authentication before exposing it to other machines. <br>
-Risk: The setup guide documents a persistent systemd service. <br>
-Mitigation: Enable the service only after reviewing how to stop or disable it in the target environment. <br>
-Risk: The setup downloads Piper binaries and voice models before execution. <br>
-Mitigation: Verify downloaded Piper binaries and models before running them. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, configure, and run a local speech-to-text and text-to-speech service for voice assistants or audio workflows. It provides setup guidance, server commands, API examples, and model selection guidance for CPU or CUDA deployments.
 
-## Reference(s): <br>
-- [Voice Pipeline Setup Guide](references/setup-guide.md) <br>
-- [Piper voice samples](https://rhasspy.github.io/piper-samples/) <br>
-- [Piper Linux release archive](https://github.com/rhasspy/piper/releases/latest/download/piper_linux_x86_64.tar.gz) <br>
-- [Thorsten Emotional Piper voice model](https://huggingface.co/rhasspy/piper-voices/resolve/main/de/de_DE/thorsten_emotional/medium/de_DE-thorsten_emotional-medium.onnx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands, API examples, configuration snippets, and Python code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces guidance for a local HTTP service with /transcribe and /speak endpoints; no API credentials are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An unauthenticated local HTTP service can be exposed beyond the intended host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the service to localhost unless authentication and TLS are added, and run it as a dedicated unprivileged user.
+
+Risk: Downloaded Piper executables and model files may be used without verification.
+
+Mitigation: Pin and verify downloaded executables and model artifacts before running them.
+
+Risk: Persistent systemd autostart can keep an insufficiently hardened service running.
+
+Mitigation: Avoid enabling autostart until binding, authentication, TLS, user isolation, and request limits are in place.
+
+## Reference(s):
+
+- [Voice Pipeline Setup Guide](references/setup-guide.md)
+- [Piper Linux release archive](https://github.com/rhasspy/piper/releases/latest/download/piper_linux_x86_64.tar.gz)
+- [Piper voice samples](https://rhasspy.github.io/piper-samples/)
+- [Thorsten Emotional Piper voice model](https://huggingface.co/rhasspy/piper-voices/resolve/main/de/de_DE/thorsten_emotional/medium/de_DE-thorsten_emotional-medium.onnx)
+- [Thorsten Emotional Piper voice model config](https://huggingface.co/rhasspy/piper-voices/resolve/main/de/de_DE/thorsten_emotional/medium/de_DE-thorsten_emotional-medium.onnx.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, configuration snippets, and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides a local HTTP voice server that accepts audio transcription requests and text-to-speech requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

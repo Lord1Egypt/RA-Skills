@@ -1,36 +1,58 @@
-## Description: <br>
-Explain concepts clearly, adapt to learner levels, and guide understanding with effective teaching patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Teacher helps educators plan lessons, units, syllabi, assessments, rubrics, feedback workflows, classroom routines, interventions, guardian communications, and teaching adjustments across K-12, higher education, bootcamps, and adult training.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to shape agent responses into clearer teaching interactions that adapt explanations, feedback, pacing, and questions to the learner. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill changes teaching style and could produce guidance that does not match a user's instructional preferences. <br>
-Mitigation: Review SKILL.md before installation to confirm the teaching patterns fit the intended interaction style. <br>
+## Use Case:
 
+Educators and trainers use this skill when they are designing or running instruction: planning lessons and courses, creating checks, assessments, rubrics and comment banks, diagnosing participation or behavior issues, supporting struggling students, and drafting communications. It is for teaching others, not for being tutored or planning personal study.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown or plain text teaching guidance embedded in agent responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, persistence, or hidden behavior indicated by the supplied security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store student, guardian, class, and teaching records in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use institution-approved systems for official student records where required, avoid entering identifiable or sensitive student or guardian details, review written notes, and restrict access to local data folders and backups.
+
+Risk: Local teaching notes may include sensitive context about minors, accommodations, interventions, or guardian communications.
+
+Mitigation: Record only the practical adjustment or action needed for teaching, keep disclosures, diagnoses, minor contact details, identity numbers, and credentials out of local notes, and use the institution's designated channels for safeguarding or medical information.
+
+## Reference(s):
+
+- [ClawHub Teacher skill page](https://clawhub.ai/ivangdavila/skills/teacher)
+- [Clawic Teacher homepage](https://clawic.com/skills/teacher)
+- [Teacher source instructions](artifact/SKILL.md)
+- [Teacher working file templates](artifact/memory-template.md)
+- [Integrity guidance](artifact/integrity.md)
+- [Differentiation and accommodations guidance](artifact/differentiation.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and plain text guidance, with optional local Markdown or YAML notes when durable teaching records are updated.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and update local Clawic teaching, contact, project, profile, or legacy teacher files under configured paths.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

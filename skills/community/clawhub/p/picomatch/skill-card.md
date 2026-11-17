@@ -1,39 +1,54 @@
-## Description: <br>
-Picomatch — A fast and accurate glob pattern matching library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Picomatch — A fast and accurate glob pattern matching library.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill for concise Picomatch guidance when matching file paths, writing glob filters, configuring ignore rules, or comparing glob behavior in JavaScript tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes examples that install Picomatch from npm, so users may add a third-party package to a project. <br>
-Mitigation: Review the npm package through normal dependency-management, license, and supply-chain checks before adding it to a project. <br>
+## Use Case:
 
+Developers and engineers use this skill for guidance on Picomatch glob pattern matching, including file filtering, ignore rules, file watcher allow and deny lists, CLI path filtering, and build artifact matching.
 
-## Reference(s): <br>
-- [Picomatch API Reference](references/api_reference.md) <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/picomatch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution or sensitive access was identified in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill includes an npm install command that could add a dependency to a project where Picomatch is not appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm Picomatch fits the project before running the install command.
+
+Risk: The skill provides reference guidance and examples rather than executing validation against a project.
+
+Mitigation: Review generated patterns and examples against the target project's expected path-matching behavior before using them.
+
+## Reference(s):
+
+- [Picomatch API Reference](references/api_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/picomatch)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with JavaScript examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled executable code; responses are reference guidance for using Picomatch.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

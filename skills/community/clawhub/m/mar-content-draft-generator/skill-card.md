@@ -1,46 +1,58 @@
-## Description: <br>
-Generates new content drafts by analyzing reference content, extracting reusable patterns, gathering user context, and producing multiple draft variations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates content draft variations by analyzing reference content, extracting reusable writing patterns, gathering user context, and producing markdown outputs.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External creators, marketers, and content teams use this skill to analyze supplied reference URLs, derive content structure and audience patterns, interview the user for context, and generate three draft variations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference URL fetching can disclose URLs, page metadata, or request context to external sites, including the FxTwitter service used for Twitter/X links. <br>
-Mitigation: Use only public, non-sensitive reference URLs unless the skill is updated to clearly disclose outbound requests and ask for approval before fetching. <br>
-Risk: Generated breakdowns, anatomy guides, context notes, meta-prompts, and drafts are saved locally and may preserve user-provided business context. <br>
-Mitigation: Avoid entering private campaign details or confidential source material unless local file retention is acceptable for the workspace. <br>
-Risk: Drafts are modeled from supplied references and may reproduce unsuitable structure, claims, tone, or audience assumptions. <br>
-Mitigation: Review generated drafts for factual accuracy, originality, brand fit, and compliance before publishing. <br>
+## Use Case:
 
+Content creators, marketers, and writing-focused agents use this skill to model new articles, posts, or social content on supplied reference examples while preserving a structured drafting workflow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marjoriebroad/mar-content-draft-generator) <br>
-- [Content Deconstructor](references/content-deconstructor.md) <br>
-- [Content Anatomy Generator](references/content-anatomy-generator.md) <br>
-- [Content Context Generator](references/content-context-generator.md) <br>
-- [Meta Prompt Generator](references/meta-prompt-generator.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown files and conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped content breakdowns, anatomy guides, context requirements, meta-prompts, and draft files; generates exactly three draft variations per run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter reports 1.0.2) <br>
+Risk: Supplied URLs may be fetched and X/Twitter links may be routed through a third-party API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use public reference material, prefer pasted content or direct non-X/Twitter URLs when privacy matters, and avoid sensitive or private links.
+
+Risk: Fetched web content is reused in generated prompts and drafts without clearly defined safety boundaries.
+
+Mitigation: Review generated meta-prompts and drafts before reuse, especially when source material could be copyrighted, misleading, private, or brand-sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/mar-content-draft-generator)
+- [Publisher profile](https://clawhub.ai/user/marjoriebroad)
+- [Content Deconstructor](references/content-deconstructor.md)
+- [Content Anatomy Generator](references/content-anatomy-generator.md)
+- [Content Context Generator](references/content-context-generator.md)
+- [Meta Prompt Generator](references/meta-prompt-generator.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Conversational text and timestamped markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces content breakdowns, anatomy guides, context questions, meta-prompts, and final draft variations as separate markdown artifacts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

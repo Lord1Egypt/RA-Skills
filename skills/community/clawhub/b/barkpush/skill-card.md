@@ -1,46 +1,60 @@
-## Description: <br>
-Sends Bark notifications with multi-user targeting, content-type detection, history tracking, and message update support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bark notification assistant for sending text, links, images, and mixed content to one or more Bark users with configuration, history, update, and delete support.
 
-## Publisher: <br>
-[liberalchang](https://clawhub.ai/user/liberalchang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[liberalchang](https://clawhub.ai/user/liberalchang)
 
-## Use Case: <br>
-Developers, operators, and automation users use barkpush to send text, link, image, and alert notifications through a configured Bark server to one or more users. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Notification content and Bark device identifiers may be sent to the configured Bark server. <br>
-Mitigation: Use only trusted Bark server endpoints and avoid sending sensitive content unless that delivery path is acceptable. <br>
-Risk: Device keys, ciphertext, and push history can be stored in local configuration or state files. <br>
-Mitigation: Keep secrets out of shared repositories, prefer environment variables for sensitive values, and protect the .bark-push state directory. <br>
-Risk: All-user pushes and delete commands can affect multiple recipients or prior notifications. <br>
-Mitigation: Review target users and command mode before running broad delivery, update, or delete actions. <br>
+## Use Case:
 
+External users and developers use this skill to send, update, delete, and review Bark push notifications across configured users or groups from an agent workflow.
 
-## Reference(s): <br>
-- [Bark Official Website](https://bark.day.app) <br>
-- [Bark API Documentation](https://bark.day.app/#/tutorial) <br>
-- [ClawHub Skill Page](https://clawhub.ai/liberalchang/barkpush) <br>
-- [Usage Guide](artifact/docs/usage.md) <br>
-- [Architecture Notes](artifact/docs/architecture.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Plain text status messages with command-line arguments and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send notification payloads to the configured Bark server and store local push history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: Device keys, notification bodies, clipboard values, and local history may expose sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat device keys as credentials, avoid sensitive notification or clipboard content, and restrict permissions on the .bark-push state directory.
+
+Risk: A custom or untrusted Bark server can receive notification content and device keys.
+
+Mitigation: Use a trusted HTTPS Bark endpoint for default_push_url and avoid HTTP or unknown custom endpoints.
+
+Risk: Broadcast, update, and delete commands can affect unintended recipients or messages.
+
+Mitigation: Manually confirm recipients and push IDs before using --user all, --update, or --delete; disable update/history when not needed.
+
+## Reference(s):
+
+- [Bark Official Website](https://bark.day.app)
+- [Bark API Documentation](https://bark.day.app/#/tutorial)
+- [ClawHub Skill Page](https://clawhub.ai/liberalchang/skills/barkpush)
+- [Publisher Profile](https://clawhub.ai/user/liberalchang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON configuration snippets; runtime output is plain text status summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send Bark API requests and may write local configuration and notification history under the configured state directory.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

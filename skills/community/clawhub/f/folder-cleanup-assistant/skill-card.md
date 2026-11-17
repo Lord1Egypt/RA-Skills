@@ -1,42 +1,54 @@
-## Description: <br>
-专业的文件夹整理助手，帮助用户安全地整理和清理文件夹，在清理前自动创建压缩备份，使用移动命令代替删除命令确保数据安全，并支持需在桌面端使用的 Mac/Linux 和 Windows 系统。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Folder Cleanup Assistant helps users safely organize local folders by analyzing contents, requiring a compressed backup, and moving selected files instead of deleting them.
 
-## Publisher: <br>
-[tianheihei002](https://clawhub.ai/user/tianheihei002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianheihei002](https://clawhub.ai/user/tianheihei002)
 
-## Use Case: <br>
-External users use this skill to safely analyze, organize, and clean selected local folders with backups, confirmation steps, and recovery reporting. It is intended for desktop environments where the agent can access the user-selected filesystem path. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and move files in folders selected by the user. <br>
-Mitigation: Confirm the exact target folder and review the proposed file list before allowing cleanup actions. <br>
-Risk: Moved files and backup archives may retain sensitive data. <br>
-Mitigation: Verify the backup destination, protect the backup archive, and remove retained copies when they are no longer needed. <br>
-Risk: Filesystem changes may be difficult to review after execution. <br>
-Mitigation: Require a backup before cleanup and provide a report with moved file counts, trash location, and restoration instructions. <br>
+## Use Case:
 
+External users and developers use this skill in a desktop agent to inspect a chosen local folder, choose cleanup options, back up contents, move selected files, and receive a recovery-oriented cleanup report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianheihei002/folder-cleanup-assistant) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with inline bash or PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes folder analysis, proposed cleanup actions, backup location, moved-file report, trash location, and recovery guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Unintended file movement or loss of access during cleanup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed file list, create a compressed backup first, move files instead of deleting them, and keep the backup until recovery is no longer needed.
+
+Risk: Running cleanup against the wrong folder.
+
+Mitigation: Confirm the target directory before scanning or moving files, and limit the skill to a specific user-selected folder.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianheihei002/skills/folder-cleanup-assistant)
+- [Publisher profile](https://clawhub.ai/user/tianheihei002)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell command examples and cleanup reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-selected target folder, desktop filesystem access, backup confirmation, and review of proposed file moves before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

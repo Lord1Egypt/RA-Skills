@@ -1,39 +1,49 @@
-## Description: <br>
-Write Galician that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Galician that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and writing assistants use this skill to produce more natural, casual Galician with native-sounding register, vocabulary, fillers, reactions, and consistent spelling choices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated Galician may still sound too formal, too literary, Spanish-influenced, or inconsistent with the chosen spelling convention. <br>
-Mitigation: Review outputs for native-sounding register, Galician vocabulary, and consistency with normative or reintegrationist spelling before publication. <br>
-Risk: Readers, institutions, or platforms may expect disclosure when AI assistance shapes writing. <br>
-Mitigation: Disclose AI assistance where transparency is expected, as recommended by the security guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/galician) <br>
+## Use Case:
 
+External users and agents use this skill to draft or revise Galician in a casual, native-sounding register while avoiding Spanish mixing and overly formal phrasing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text guidance for Galician phrasing and tone] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, permissions, persistence, or data access are described in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to casual Galician, which may be unsuitable for formal conversations or contexts that require another language.
+
+Mitigation: Invoke it only for Galician output and explicitly override the register when formal Galician, reintegrationist spelling, or another language is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/galician)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Natural-language prose or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No tools, code execution, persistence, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,11 @@
+{
+  "schema": "cad-contract/v0",
+  "provenance": "reader",
+  "contract_id": "cad-20261109-v0",
+  "coordinate_unit": "mm",
+  "source": {
+    "file": "demo-plan.dwg",
+    "sha256": "3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f3f"
+  },
+  "contract": {"entities": []}
+}

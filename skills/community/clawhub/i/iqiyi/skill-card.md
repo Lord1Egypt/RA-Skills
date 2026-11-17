@@ -1,40 +1,57 @@
-## Description: <br>
-Provides guidance for finding and using iQIYI original dramas, movies, variety shows, and related on-demand features. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides on-demand guidance for iQIYI original dramas, films, and variety shows.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users can ask an agent for concise iQIYI viewing and feature guidance, including content access paths, device or scenario filters, VIP or free status, interaction flows, and privacy cautions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live iQIYI pricing, VIP offers, and feature availability can change after the skill is published. <br>
-Mitigation: Verify time-sensitive product details against current iQIYI sources before acting on them. <br>
-Risk: Some workflows may involve account permissions, sensitive authorization, or third-party interfaces. <br>
-Mitigation: Avoid sharing sensitive personal data, review authorization prompts carefully, and treat third-party interface availability as potentially unstable. <br>
+## Use Case:
 
+External users use this skill to get concise iQIYI viewing and feature guidance, including content categories, device scenarios, VIP or free status, interaction flows, feature highlights, and privacy cautions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mike47512/iqiyi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; live pricing, VIP offers, and feature availability may require fresh verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: Advice about VIP benefits, discounts, authorization, or account-sensitive actions may be outdated or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those responses as informational and confirm sensitive account actions directly in official iQIYI interfaces.
+
+Risk: Some referenced features may rely on third-party interfaces whose availability or behavior can change.
+
+Mitigation: Verify current availability in the relevant iQIYI product surface before relying on third-party integration guidance.
+
+Risk: Users may expose personal information while following authorization or data synchronization guidance.
+
+Mitigation: Avoid sharing credentials or sensitive personal data with the agent, and perform authorization only through official iQIYI flows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/iqiyi)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown or plain-text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational summaries, interaction steps, feature notes, status tracking, data synchronization notes, reminders, and security cautions.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

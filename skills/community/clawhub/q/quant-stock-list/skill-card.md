@@ -1,39 +1,52 @@
-## Description: <br>
-从图片自动识别股票并加入股票池，使用 RapidOCR 提取股票代码，去重后按 FIFO 管理 30 只股票上限并保存到 manual_stock_list.json。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recognizes six-digit stock codes in stock screenshots with RapidOCR, deduplicates them, keeps a 30-stock FIFO list, and saves entries to manual_stock_list.json.
 
-## Publisher: <br>
-[wy859](https://clawhub.ai/user/wy859) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wy859](https://clawhub.ai/user/wy859)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to convert stock screenshots into a maintained local stock-list file for quant workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill writes stock-list state to a hardcoded local path by default.
+
+Mitigation: Review the target path before use and run with a disposable or backed-up stock-list file until the path is configured for the intended environment.
+
+Risk: The image identifier can cause the OCR script to read unintended JPG files from the inbound media directory.
+
+Mitigation: Validate image identifiers and prefer explicit trusted image paths when processing untrusted inputs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and trading workflow operators use this skill to turn stock screenshots into a maintained local stock pool. It is intended to identify six-digit stock codes, avoid duplicates, and keep the list within a 30-stock limit. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite and prune a local stock-list file used in trading workflows. <br>
-Mitigation: Review the configured file path, back up manual_stock_list.json, and use dry-run or manual review before allowing saves or FIFO removals. <br>
-Risk: OCR results may misread or miss stock codes from screenshots. <br>
-Mitigation: Manually review recognized stock codes before relying on the updated stock pool in a trading process. <br>
+**Output Format:** [Console text with JSON file updates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Updates manual_stock_list.json with deduplicated stock entries and a 30-stock FIFO limit.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration] <br>
-**Output Format:** [Terminal text plus JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local stock-list JSON and may remove older entries when the configured 30-stock limit is exceeded.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

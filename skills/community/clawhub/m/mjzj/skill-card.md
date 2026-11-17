@@ -1,44 +1,56 @@
-## Description: <br>
-卖家之家(跨境电商)平台一体化服务助手（服务商、物流、服务产品、技能商城、货盘、资讯、问答、供需、私信、全球开店、活动） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+卖家之家(跨境电商)平台一体化服务助手，帮助代理查询并操作服务商、物流、服务产品、技能商城、货盘、资讯、问答、供需、私信、全球开店和活动相关 MJZJ API。
 
-## Publisher: <br>
-[mjzj-tec](https://clawhub.ai/user/mjzj-tec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mjzj-tec](https://clawhub.ai/user/mjzj-tec)
 
-## Use Case: <br>
-External cross-border e-commerce sellers and service providers use this skill to query MJZJ providers, logistics, service products, skills, pallets, articles, Q&A, supply-demand posts, messages, global shop-opening platforms, and events, and to prepare authenticated MJZJ account actions when the user authorizes them. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires MJZJ_API_KEY and can let an agent act through the user's MJZJ account. <br>
-Mitigation: Install only when account access is intended, keep the key scoped and private, and rotate or revoke it when the skill is no longer needed. <br>
-Risk: Authenticated actions can publish, upload, send private messages, refresh posts, or delete content without built-in confirmation safeguards. <br>
-Mitigation: Before any account-changing action, require the agent to show the exact target, content, and consequence, then wait for explicit user approval. <br>
+## Use Case:
 
+External users and developers use this skill to guide agents through MJZJ platform API workflows for cross-border ecommerce discovery, publishing, messaging, uploads, and account-specific management actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mjzj-tec/mjzj) <br>
-- [Publisher profile](https://clawhub.ai/user/mjzj-tec) <br>
-- [MJZJ homepage](https://mjzj.com) <br>
-- [MJZJ API endpoint](https://data.mjzj.com) <br>
-- [MJZJ agent API key page](https://mjzj.com/user/agentapikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration] <br>
-**Output Format:** [Markdown guidance with HTTP API endpoint details and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MJZJ_API_KEY for account-specific publish, upload, messaging, refresh, delete, and private-data actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Authenticated access can send private messages, publish content, upload files, refresh posts, and delete supply-demand items.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before authenticated write actions, and show the recipient, content, file path, or item id before calling the API.
+
+Risk: Use of MJZJ_API_KEY may expose account data and account-scoped actions to the agent.
+
+Mitigation: Install only with an API key the user is comfortable granting to the agent, and rotate or revoke the key if unintended access is suspected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mjzj-tec/skills/mjzj)
+- [MJZJ homepage](https://mjzj.com)
+- [MJZJ API key page](https://mjzj.com/user/agentapikey)
+- [MJZJ API base URL](https://data.mjzj.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration]
+
+**Output Format:** [Markdown with API endpoint references, JSON request bodies, and command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MJZJ_API_KEY for authenticated account data and write actions.]
+
+## Skill Version(s):
+
+1.0.4 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

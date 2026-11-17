@@ -1,43 +1,61 @@
-## Description: <br>
-Bring Rezepte helps an agent search recipe ideas, parse recipe URLs for ingredients, and add confirmed ingredients to a Bring shopping list. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when running the OpenClaw/ClawHub Bring! skill to search recipes on the web, parse recipe URLs for ingredients, and add ingredients to a Bring shopping list.
 
-## Publisher: <br>
-[Dolverin](https://clawhub.ai/user/Dolverin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dolverin](https://clawhub.ai/user/dolverin)
 
-## Use Case: <br>
-External users and household shoppers use this skill to find German-language recipe ideas, inspect ingredients, and update Bring shopping lists after explicit confirmation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill receives access to a Bring account and shopping lists. <br>
-Mitigation: Provide Bring credentials through secure environment or secret storage, and install only when that account access is acceptable. <br>
-Risk: A user-supplied content URL can receive Bring authorization headers. <br>
-Mitigation: Use only trusted official Bring API content URLs with --content-url. <br>
-Risk: A custom BRING_NODE_API_PATH can load local code in the agent runtime. <br>
-Mitigation: Leave BRING_NODE_API_PATH unset unless it points to reviewed local code. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bring Inspirations API Reference](references/bring-inspirations.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Dolverin/bring-rezepte) <br>
-- [Publisher profile](https://clawhub.ai/user/Dolverin) <br>
+## Use Case:
 
+External users use this agent skill to find German recipe ideas, inspect recipe ingredients, manage Bring shopping lists, and add selected recipe ingredients after explicit confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and Bring credentials; writes to Bring lists only after explicit user confirmation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Bring account credentials or account tokens could be exposed through weaker credential handling.
+
+Mitigation: Provide Bring credentials through protected environment variables or a secret manager and avoid passing passwords as command-line arguments.
+
+Risk: The content URL workflow can fetch arbitrary URLs supplied to --content-url.
+
+Mitigation: Only use official Bring template-content URLs and review or restrict the --content-url behavior before installation.
+
+Risk: Shopping-list modification commands can add items to a user's Bring account.
+
+Mitigation: Require explicit user confirmation before adding recipe ingredients or other items to a list.
+
+Risk: Runtime dependency changes could affect security or behavior.
+
+Mitigation: Install with the committed package-lock.json lockfile.
+
+## Reference(s):
+
+- [Bring Inspirations API Reference](references/bring-inspirations.md)
+- [ClawHub Skill Page](https://clawhub.ai/dolverin/skills/bring-rezepte)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with concise text, JSON summaries, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [German user-facing recipe and shopping-list guidance by default; list changes require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

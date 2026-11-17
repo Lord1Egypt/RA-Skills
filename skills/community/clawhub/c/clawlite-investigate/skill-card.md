@@ -1,41 +1,52 @@
-## Description: <br>
-ClawLite Investigate guides agents through a disciplined root-cause debugging workflow that investigates symptoms, analyzes failure patterns, validates hypotheses, applies targeted fixes, and reports verifiable results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawLite Investigate is a multilingual debugging workflow that guides agents through root-cause investigation, pattern analysis, hypothesis validation, focused implementation, and verification reporting.
 
-## Publisher: <br>
-[x-rayluan](https://clawhub.ai/user/x-rayluan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to investigate bugs, verify root-cause hypotheses, make narrowly scoped fixes, and report reproducible evidence before closing a debugging task.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may read relevant project files, run tests, and make code fixes during debugging.
+
+Mitigation: Review the proposed diff, keep fixes narrowly scoped, and require test evidence before deploying changes.
+
+Risk: The workflow is primarily written in Chinese, which can reduce reviewer clarity for non-Chinese users.
+
+Mitigation: Translate or review the instructions before relying on the workflow in multilingual teams.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill to debug bugs, abnormal behavior, and service errors by collecting evidence, forming testable root-cause hypotheses, validating fixes, and producing a structured debug report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can lead an agent to inspect code, run git and test commands, and make targeted code or test changes. <br>
-Mitigation: Review proposed commands and diffs before execution, and require the workflow's root-cause hypothesis and validation evidence before accepting changes. <br>
-Risk: Incorrect root-cause analysis can produce misleading fixes or incomplete remediation. <br>
-Mitigation: Use the skill's hypothesis validation, regression-test requirement, full test run, and structured debug report to confirm the fix addresses the original failure. <br>
+**Output Format:** [Markdown debug reports with inline shell commands and code references]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/x-rayluan/clawlite-investigate) <br>
-- [Publisher profile](https://clawhub.ai/user/x-rayluan) <br>
+**Other Properties Related to Output:** [May include root-cause hypotheses, verification evidence, regression test notes, and DONE/DONE_WITH_CONCERNS/BLOCKED status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with structured debug reports and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include root-cause hypotheses, validation evidence, file and line references for fixes, regression-test status, and completion state.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

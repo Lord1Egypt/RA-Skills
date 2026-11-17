@@ -1,42 +1,58 @@
-## Description: <br>
-Deploy a four-agent knowledge base RAG pipeline for document ingestion, embedding, vector indexing, and query serving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a four-agent RAG pipeline for document ingestion, embedding, vector indexing, and query serving.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to set up a multi-host retrieval-augmented generation pipeline that ingests documents, creates embeddings, stores vectors, and serves search queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup exchanges document chunks, embeddings, search queries, and ranked results across multiple hosts. <br>
-Mitigation: Restrict network access to trusted hosts and verify peer identities before completing handshakes. <br>
-Risk: Ingested documents may contain sensitive or regulated data. <br>
-Mitigation: Use the skill only where permissions, encryption, access control, audit logging, and retention rules are already defined. <br>
-Risk: The pipeline depends on multiple Pilot skills and local binaries. <br>
-Mitigation: Review dependent skills and confirm `pilotctl`, `clawhub`, and the Pilot daemon are installed before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up a knowledge base RAG deployment across ingest, embedding, indexing, and query agents. It provides role-specific setup guidance, dependency installation commands, handshakes, manifests, and example data-flow commands.
 
-## Reference(s): <br>
-- [Pilot Protocol homepage](https://pilotprotocol.network) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON manifest snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces per-role setup instructions for ingest, embedder, indexer, and query agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup installs multiple integration skills without pinned versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify every dependent skill before deployment.
+
+Risk: The pipeline auto-establishes trust between agents that handle documents, embeddings, queries, and results.
+
+Mitigation: Validate the deployment prefix, confirm peer identities before handshakes, and restrict each role's credentials to only what it needs.
+
+Risk: Deployments may process private documents, production S3 buckets, vector databases, or public query endpoints.
+
+Mitigation: Set retention, audit, and access controls for documents, embeddings, queries, and results.
+
+## Reference(s):
+
+- [Pilot Protocol](https://pilotprotocol.network)
+- [ClawHub Skill Page](https://clawhub.ai/teoslayer/skills/pilot-knowledge-base-rag-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes role-specific hostnames, skill installation commands, handshake steps, manifest templates, and workflow examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

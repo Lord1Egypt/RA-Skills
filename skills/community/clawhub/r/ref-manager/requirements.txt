@@ -1,0 +1,4 @@
+requests>=2.28
+beautifulsoup4>=4.11
+pypdf>=3.9
+openpyxl>=3.1

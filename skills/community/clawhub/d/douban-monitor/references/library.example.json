@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-21T10:00:00+08:00",
+  "items": {
+    "1292052": {
+      "douban_id": "1292052",
+      "tmdb_id": 278,
+      "imdb_id": "tt0111161",
+      "title": "示例标题",
+      "original_title": "Example Original Title",
+      "category": "movie",
+      "year": 2025,
+      "url": "https://movie.douban.com/subject/1292052/",
+      "sources": [
+        "douban_weekly",
+        "tmdb_trending"
+      ],
+      "watch_status": "active",
+      "watch_tier": "high",
+      "admission_reason": "appeared_on_douban_weekly",
+      "first_discovered_at": "2026-03-18T10:00:00+08:00",
+      "last_discovered_at": "2026-03-21T10:00:00+08:00",
+      "last_seen_in_sources_at": "2026-03-21T10:00:00+08:00",
+      "watch_started_at": "2026-03-18T10:00:00+08:00",
+      "watch_expires_at": "2026-04-17T10:00:00+08:00",
+      "resolution_failures": 0,
+      "last_rating": 8.4,
+      "last_rating_count": 12532,
+      "last_checked_at": "2026-03-21T10:00:00+08:00",
+      "qualified": true,
+      "qualified_at": "2026-03-21T10:00:00+08:00",
+      "archived_at": null,
+      "archive_reason": null
+    }
+  }
+}

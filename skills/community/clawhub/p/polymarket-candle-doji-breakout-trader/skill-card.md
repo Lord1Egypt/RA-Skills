@@ -1,44 +1,59 @@
-## Description: <br>
-Detects doji patterns in crypto 5-minute interval markets on Polymarket and trades the post-doji breakout in the direction of the pre-doji trend for BTC, ETH, SOL, and XRP Up or Down markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects doji patterns (48-52% probability) in crypto 5-minute interval markets on Polymarket and trades the post-doji breakout in the direction of the pre-doji trend.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and developers use this skill to run or adapt a Polymarket crypto interval trading strategy that detects doji breakout setups, defaults to paper trading, and can place live trades only when explicitly enabled. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades and lose funds. <br>
-Mitigation: Start in paper mode, enable live trading only deliberately, and confirm trade-size and position-limit tunables before use. <br>
-Risk: The skill requires a sensitive SIMMER_API_KEY credential for trading authority. <br>
-Mitigation: Keep the API key narrowly scoped where possible and protect it as a high-value credential. <br>
-Risk: The skill depends on simmer-sdk for market access and trade execution. <br>
-Mitigation: Review the simmer-sdk dependency before deployment. <br>
+## Use Case:
 
+Developers and trading agents use this skill to scan Polymarket crypto interval markets for doji-after-trend breakout setups and place paper or explicitly enabled live trades with configurable risk parameters.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/polymarket-candle-doji-breakout-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with Python code and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces trading guidance and executable agent behavior that requires SIMMER_API_KEY and defaults to paper trading unless live mode is explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The skill can place live Polymarket trades when run with --live.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in paper mode first, require an explicit --live invocation for real trades, and use a least-privilege or low-balance API key.
+
+Risk: Automated financial safeguards are reported as under-enforced.
+
+Mitigation: Independently enforce position, volume, spread, and open-position limits before relying on live execution.
+
+Risk: The trading SDK dependency is unpinned.
+
+Mitigation: Pin and review simmer-sdk before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/skills/polymarket-candle-doji-breakout-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and terminal output from the trading script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless run with --live.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

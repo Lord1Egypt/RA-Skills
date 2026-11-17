@@ -1,0 +1,24 @@
+name: list-responsiveness-comparer
+display_name: 清单响应性比对助手
+version: 1.0.0
+author: 一线评标专家&ChesaraM
+description: 招标/采购清单与投标响应清单的逐项、逐量、逐参数刚性比对工具。7原则比对引擎（完整性/数量/单位/规格/结构/算术/附加条件）、红黄蓝三级警告、招投标与政采双知识库联动。仅标注异常、不做评审判定，最终裁量权归评标委员会。
+tags:
+  - 清单比对
+  - 响应性
+  - 符合性审查
+  - 招投标
+  - 政府采购
+connectorIds:
+  - ima-mcp
+knowledge_bases:
+  - name: 招投标实务与合规
+    id: "7463402595160740"
+  - name: 政府采购实务与合规
+    id: "7463496212028405"
+  - name: 招标文件、采购文件汇集
+    id: "7439473860155957"
+feedback:
+  channel: 微信公众号
+  account: 一线评标专家
+  note: 使用问题、误报反馈、实务建议，欢迎关注公众号「一线评标专家」留言交流

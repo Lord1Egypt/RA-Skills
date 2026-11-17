@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skillmelody.dev/schemas/component-registry.schema.json",
+  "title": "Article HTML to PPT Component Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "components"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/component"}
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component_type",
+        "display_name",
+        "category",
+        "supported_primary_expressions",
+        "supported_slide_roles",
+        "semantic_capabilities",
+        "native_capability",
+        "builder_support",
+        "editable_core",
+        "allowed_delivery_routes",
+        "preferred_delivery_route",
+        "fallback_chain",
+        "raster_policy",
+        "complexity_limits",
+        "required_qa_checks",
+        "style_dependencies"
+      ],
+      "properties": {
+        "component_type": {"type": "string", "pattern": "^[a-z0-9_:-]+$"},
+        "display_name": {"type": "string", "minLength": 1},
+        "category": {"enum": ["text", "card", "table", "chart", "diagram", "image", "scene", "decoration", "metadata"]},
+        "supported_primary_expressions": {"type": "array", "items": {"enum": ["textual_argument", "structured_cards", "table_matrix", "data_visual", "relationship_visual", "conceptual_scene"]}},
+        "supported_slide_roles": {"type": "array", "items": {"type": "string"}},
+        "semantic_capabilities": {"type": "array", "items": {"type": "string"}},
+        "native_capability": {"enum": ["full", "partial", "none", "builder_dependent"]},
+        "builder_support": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["level"],
+            "properties": {
+              "level": {"enum": ["full", "partial", "visual_only", "unsupported", "unknown"]},
+              "notes": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "builder_adapter_requirements": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "required_features": {"type": "array", "items": {"type": "string"}},
+              "minimum_support": {"enum": ["full", "partial", "visual_only", "unsupported", "unknown"]},
+              "notes": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "editable_core": {"type": "array", "items": {"type": "string"}},
+        "allowed_delivery_routes": {"type": "array", "items": {"$ref": "#/$defs/deliveryRoute"}},
+        "preferred_delivery_route": {"$ref": "#/$defs/deliveryRoute"},
+        "fallback_chain": {"type": "array", "items": {"$ref": "#/$defs/deliveryRoute"}},
+        "raster_policy": {
+          "type": "object",
+          "required": ["allowed", "max_area_ratio", "whole_slide_forbidden", "requires_disclosure", "requires_native_overlay"],
+          "properties": {
+            "allowed": {"type": "boolean"},
+            "max_area_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+            "whole_slide_forbidden": {"type": "boolean"},
+            "requires_disclosure": {"type": "boolean"},
+            "requires_native_overlay": {"type": "boolean"}
+          }
+        },
+        "complexity_limits": {"type": "object"},
+        "required_qa_checks": {"type": "array", "items": {"type": "string"}},
+        "style_dependencies": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "deliveryRoute": {
+      "enum": ["native_ppt", "native_chart", "native_table", "native_diagram", "svg_component", "raster_component", "generated_image", "background_image", "hybrid_overlay", "unsupported"]
+    }
+  }
+}

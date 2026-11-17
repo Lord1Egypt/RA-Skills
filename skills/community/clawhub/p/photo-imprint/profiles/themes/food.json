@@ -1,0 +1,15 @@
+{
+  "profile_type": "theme",
+  "id": "food",
+  "version": "1.0.0",
+  "subject_priority": ["food", "drink", "serving vessel", "identity-critical utensil"],
+  "preserve": [
+    "dish identity and ingredient relationships",
+    "vessel shape, rim, handles, and orientation",
+    "relative placement of multiple dishes",
+    "distinctive garnish only when present in the source"
+  ],
+  "deemphasize": ["table clutter", "unrelated packaging", "background people", "incidental signage"],
+  "forbid_invention": ["ingredients", "garnishes", "brand marks", "location text"],
+  "prompt_fragment": "Extract the photographed food or drink as the primary subject, preserving the serving vessel and all identity-critical relationships. Keep only context that explains the dish."
+}

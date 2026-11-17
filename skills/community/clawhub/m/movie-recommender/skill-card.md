@@ -1,41 +1,58 @@
-## Description: <br>
-Recommends movies from mood, genre, cast, director, or year preferences, checks Douban ratings, and helps manage watched and want-to-watch lists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends movies from user mood, genre, actor, director, or year preferences, queries Douban ratings, and helps manage watched and want-to-watch lists.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-People using an agent for movie discovery can ask for recommendations by mood or genre, look up movie ratings and details, view a Top250 list, and maintain simple watched or want-to-watch records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Movie searches are sent to Douban during live lookup. <br>
-Mitigation: Use the skill only when sharing movie queries with Douban is acceptable. <br>
-Risk: Watched and want-to-watch preferences are saved as local JSON files. <br>
-Mitigation: Delete the generated JSON files when movie preferences are sensitive on the device. <br>
+## Use Case:
 
+End users and agents use this skill to choose movies based on mood or genre, retrieve Douban movie information, and maintain local watched and want-to-watch lists. It is most useful for Chinese-language movie discovery workflows that can tolerate fallback recommendations when Douban lookup fails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/movie-recommender) <br>
-- [Douban Developers](https://developers.douban.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted conversational responses with movie recommendations, ratings, lists, and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses may reflect live Douban lookups, cached Douban data, or bundled fallback movie data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Movie searches may be sent to Douban during recommendation and rating lookups.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive viewing preferences or private titles when network lookup is enabled.
+
+Risk: Cache, watched-history, and wishlist JSON files may retain local viewing preferences.
+
+Mitigation: Review or delete generated JSON files on shared machines or when retained movie history is not desired.
+
+Risk: Watched and wishlist command parsing is incomplete and may save placeholder entries.
+
+Mitigation: Review saved records after use and correct or remove placeholder entries before relying on the lists.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/movie-recommender)
+- [Douban Developers](https://developers.douban.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown-style Chinese text responses with movie lists, ratings, summaries, and locally stored JSON lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform network lookups to Douban, cache lookup results locally, and write watched or want-to-watch JSON records.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

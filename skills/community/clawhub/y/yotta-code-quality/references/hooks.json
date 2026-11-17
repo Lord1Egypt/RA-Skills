@@ -1,0 +1,10 @@
+{
+  "comment": "PreToolUse safety hooks for yotta-code-quality. Blocks obviously dangerous commands before they run. Compatible with Claude Code / Codex hook schema (PreToolUse on Bash). Adapt the matcher to your agent's hook format if needed.",
+  "hooks": [
+    {
+      "matcher": "Bash",
+      "type": "PreToolUse",
+      "command": "node -e \"const c=process.env.BASH_COMMAND||(process.argv[2]||'');const deny=[/rm\\s+-rf?\\s+\\//,/rm\\s+-rf?\\s+[A-Za-z]:\\\\?\\\\?/,/git\\s+push\\s+--force/,/git\\s+push\\s+-f\\b/,/git\\s+reset\\s+--hard/,/git\\s+clean\\s+-[a-z]*[fdx]/,/mkfs/,/:\\(\\)\\s*\\{\\s*:\\|:\\|/,/dd\\s+if=/,/chmod\\s+-R\\s+777\\s+\\//];if(deny.some(r=>r.test(c))){console.error('[yotta-code-quality] BLOCKED dangerous command by policy: '+c);process.exit(1);}process.exit(0);\""
+    }
+  ]
+}

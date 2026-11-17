@@ -1,40 +1,57 @@
-## Description: <br>
-Multimodal YouTube video analysis through transcript extraction, frame extraction, and synchronized audio-visual analysis for summaries, tutorials, demos, and step-by-step guides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multimodal YouTube video analysis through audio transcripts and visual frame extraction, intended for summarizing, analyzing, and creating step-by-step guides from YouTube videos.
 
-## Publisher: <br>
-[sdrabent](https://clawhub.ai/user/sdrabent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sdrabent](https://clawhub.ai/user/sdrabent)
 
-## Use Case: <br>
-External users, developers, and knowledge workers use this skill to analyze YouTube videos, extract transcripts and frames, and produce summaries, technical analyses, or step-by-step guides that combine what is said with what is shown. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may download YouTube transcripts, video data, and frame images to the local machine. <br>
-Mitigation: Use the skill only for videos the user is authorized to analyze, keep work in temporary directories, and remove temporary files after the analysis. <br>
-Risk: Browser-cookie access can expose an authenticated YouTube session to the agent workflow. <br>
-Mitigation: Use browser cookies only when explicitly needed for a video the user is authorized to view, and avoid cookie access for public videos. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdrabent/youtube-knowledge-extractor) <br>
-- [Artifact SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+External users, developers, and knowledge workers use this skill to extract synchronized transcript and visual context from YouTube videos, especially tutorials, demos, explainers, and HowTo content.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with timestamped sections, visual anchors, and inline shell commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transcript-derived summaries, frame observations, synchronized audio-visual notes, and visual-only findings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill contacts YouTube and downloads metadata, captions, video, and frames, which can create network activity and temporary local files.
+
+Mitigation: Run it from an unprivileged account, use a temporary working directory, and remove temporary files after analysis.
+
+Risk: The optional browser-cookie workflow can expose logged-in YouTube session access to yt-dlp.
+
+Mitigation: Use browser cookies only when necessary for videos you are authorized to access, and avoid sharing or persisting cookie-derived files.
+
+Risk: The yt-dlp dependency is installed without a pinned version.
+
+Mitigation: Install from a trusted package source and review dependency updates before use in controlled environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sdrabent/skills/youtube-knowledge-extractor)
+- [Publisher Profile](https://clawhub.ai/user/sdrabent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with timestamped analysis, visual anchors, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include step-by-step guides, comprehensive summaries, technical analyses, transcript excerpts, frame observations, and cleanup guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

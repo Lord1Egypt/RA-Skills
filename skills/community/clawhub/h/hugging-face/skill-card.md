@@ -1,46 +1,61 @@
-## Description: <br>
-Discover, evaluate, and run Hugging Face models, datasets, and spaces with license checks, benchmark prompts, and reproducible integration plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover, evaluate, and run Hugging Face models, datasets, and spaces with license checks, benchmark prompts, and reproducible integration plans.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and AI practitioners use this skill to shortlist Hugging Face models, datasets, or Spaces, verify license and access constraints, benchmark finalists, and prepare reproducible inference or integration plans. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Selected search terms, prompts, and inference inputs may be sent to Hugging Face services. <br>
-Mitigation: Send only the minimum task data needed, avoid secrets or sensitive private content, and use local-only alternatives when external processing is not acceptable. <br>
-Risk: A Hugging Face token may be required for gated models or hosted inference. <br>
-Mitigation: Use a scoped HF_TOKEN, avoid printing tokens in logs or transcripts, and rotate credentials if exposure is suspected. <br>
-Risk: Local notes under ~/hugging-face/ may persist preferences, shortlists, endpoint notes, and evaluation context. <br>
-Mitigation: Review local memory before relying on it, keep durable notes minimal, and do not store raw secrets or private keys. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/hugging-face) <br>
-- [Skill homepage](https://clawic.com/skills/hugging-face) <br>
-- [Hugging Face model API](https://huggingface.co/api/models) <br>
-- [Hugging Face dataset API](https://huggingface.co/api/datasets) <br>
-- [Hugging Face Spaces API](https://huggingface.co/api/spaces) <br>
-- [Hugging Face Inference API](https://api-inference.huggingface.co/models/{model_id}) <br>
+## Use Case:
 
+Developers and engineers use this skill to discover, compare, evaluate, and run Hugging Face models, datasets, and Spaces for a concrete task. It helps move from catalog browsing to license-aware shortlist selection, repeatable benchmarking, and integration-ready inference plans.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API request examples, evaluation notes, and local memory templates.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference curl, jq, HF_TOKEN, and local files under ~/hugging-face/ when the user approves setup or execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search command placeholders can execute unintended local shell syntax if untrusted search text is pasted directly into command templates.
+
+Mitigation: URL-encode search terms or use structured HTTP tooling before running discovery commands.
+
+Risk: Selected search terms, filter inputs, model IDs, and inference payloads may be sent to Hugging Face services.
+
+Mitigation: Send only task-relevant inputs and avoid private, unrelated, or regulated data unless the user has approved that transfer.
+
+Risk: HF_TOKEN may be exposed through logs, notes, or transcripts during hosted inference setup.
+
+Mitigation: Keep tokens in environment variables or secret storage and never copy full token values into memory files or conversation logs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/hugging-face)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Hugging Face Models API](https://huggingface.co/api/models)
+- [Hugging Face Datasets API](https://huggingface.co/api/datasets)
+- [Hugging Face Spaces API](https://huggingface.co/api/spaces)
+- [Hugging Face Inference API](https://api-inference.huggingface.co/models/{model_id})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, scoring rubrics, setup steps, and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local memory files under ~/hugging-face/ and Hugging Face API calls that require HF_TOKEN for hosted inference.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

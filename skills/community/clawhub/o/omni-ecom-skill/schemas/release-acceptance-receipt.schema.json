@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://omni-ecom.local/schemas/release-acceptance-receipt.schema.json",
+  "title": "Omni Ecom v2 release acceptance receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifact_type", "status", "target_version", "verified_at", "ledger_sha256", "domains", "optional_capabilities", "evidence_fingerprints", "errors"],
+  "properties": {
+    "artifact_type": {"const": "omni-ecom.release-acceptance-receipt@2.0"},
+    "status": {"const": "release_acceptance_verified"},
+    "target_version": {"const": "2.0.3"},
+    "verified_at": {"type": "string", "format": "date-time"},
+    "ledger_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "domains": {"type": "array", "uniqueItems": true, "minItems": 2, "maxItems": 2, "items": {"enum": ["workbuddy_native_multi_agent_pdf", "codex_native_multi_agent_pdf"]}},
+    "optional_capabilities": {
+      "type": "object", "additionalProperties": false,
+      "required": ["platform_api_read", "controlled_action_readback", "live_model_route_baseline"],
+      "properties": {
+        "platform_api_read": {"enum": ["enabled", "not_enabled"]},
+        "controlled_action_readback": {"enum": ["enabled", "not_enabled"]},
+        "live_model_route_baseline": {"enum": ["enabled", "not_enabled"]}
+      }
+    },
+    "evidence_fingerprints": {
+      "type": "array", "minItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["domain", "sha256"],
+        "properties": {"domain": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+      }
+    },
+    "errors": {"const": []}
+  }
+}

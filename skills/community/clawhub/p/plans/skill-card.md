@@ -1,37 +1,53 @@
-## Description: <br>
-Manages long-term plans and short-term todos by decomposing goals into actionable items stored in a local plans-todos markdown file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+管理长期规划与短期待办事项。当用户提到目标、任务、计划、路线图，或需要将复杂目标拆解为存储在 memory/plans-todos.md 中的可执行项时使用。
 
-## Publisher: <br>
-[DawnLck](https://clawhub.ai/user/DawnLck) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dawnlck](https://clawhub.ai/user/dawnlck)
 
-## Use Case: <br>
-Users and agents use this skill to maintain a persistent local plans-and-todos file, break broad goals into actionable tasks, update completion status, and query active plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [Plans & Todos on ClawHub](https://clawhub.ai/DawnLck/plans) <br>
+External users use this skill to have an agent decompose goals into plans, maintain actionable todos, and update task status in a disclosed local Markdown planning file.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown task entries and conversational status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists plan and todo state in ~/.openclaw/workspace/memory/plans-todos.md when the agent follows the skill; avoid storing secrets or highly sensitive personal information.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Plans and todos may contain sensitive personal details if the user asks the agent to save them.
+
+Mitigation: Do not store passwords, keys, or highly sensitive personal details in the planning file.
+
+Risk: Persistent task updates may save new plans or mark tasks complete before the user has reviewed the change.
+
+Mitigation: Ask the agent to confirm before saving new plans or marking tasks complete when tighter control is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dawnlck/skills/plans)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown planning records and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains plans and todos in ~/.openclaw/workspace/memory/plans-todos.md when used by an agent with file access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Create a thread-based recovery summary when an agent loses the thread. Read the relevant conversation and canonical files, summarize what was done, where it is documented, and what the real next step is, then write a compressed reorientation snapshot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a thread-based recovery summary when an agent loses the thread by reading the relevant conversation and canonical files, summarizing what was done, where it is documented, and what the real next step is, then writing a compressed reorientation snapshot.
 
-## Publisher: <br>
-[wroadd](https://clawhub.ai/user/wroadd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wroadd](https://clawhub.ai/user/wroadd)
 
-## Use Case: <br>
-Agents and developers use this skill to recover orientation in long, fragmented, or resumed work threads. It reads the relevant conversation and canonical project-state files, produces a focused reorientation summary, writes a `state/ORIENT.md` snapshot, and stops before implementation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads current thread and project-state files that may contain sensitive work context. <br>
-Mitigation: Install it only in workspaces where the agent may read those materials, as recommended by the security guidance. <br>
-Risk: The skill creates or updates `state/ORIENT.md`, which may replace prior orientation notes. <br>
-Mitigation: Check `state/ORIENT.md` before use when preserving previous orientation notes matters. <br>
-Risk: A recovery summary can become misleading when thread memory and canonical files disagree. <br>
-Mitigation: Follow the skill rule to prefer file truth and explicitly call out conflicts. <br>
+## Use Case:
 
+Agents and developers use this skill to recover orientation during long, fragmented, or resumed tasks by summarizing completed work, source-of-truth documentation, and the actual next step before further action.
 
-## Reference(s): <br>
-- [Context Rescue on ClawHub](https://clawhub.ai/wroadd/context-rescue) <br>
-- [CHANGELOG.md](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Markdown summary and `state/ORIENT.md` snapshot] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill writes one disclosed orientation snapshot and instructs the agent to stop before executing the next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, changelog, server release) <br>
+Risk: The skill may read prior conversation context or state files that contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid invoking it on threads or files containing secrets unless the agent is instructed to redact sensitive content.
+
+Risk: The skill writes a reorientation snapshot to state/ORIENT.md.
+
+Mitigation: Review the generated snapshot before sharing or committing it, especially when task history includes private details.
+
+## Reference(s):
+
+- [Context Rescue on ClawHub](https://clawhub.ai/wroadd/skills/context-rescue)
+- [Publisher profile](https://clawhub.ai/user/wroadd)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reorientation summary and snapshot]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a compressed reorientation snapshot to state/ORIENT.md when used as directed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

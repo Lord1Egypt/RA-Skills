@@ -11,7 +11,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 GATEWAY_BASE = (os.environ.get("LINKFOX_TOOL_GATEWAY") or "https://tool-gateway.linkfox.com").rstrip("/") + "/xiyou"
-TIMEOUT_SEC = 60
+TIMEOUT_SEC = 150
 
 LINKFOX_KEY_DOC = (
     "https://skill.linkfox.com/linkfoxskills/guide.htm"

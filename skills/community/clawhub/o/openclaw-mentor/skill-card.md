@@ -1,39 +1,49 @@
-## Description: <br>
-OpenClaw Mentor (DEPRECATED) is a deprecation notice that directs users from openclaw-mentor to the renamed clawbuddy-buddy skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Mentor (DEPRECATED) is a deprecation notice directing users to install the replacement clawbuddy-buddy skill.
 
-## Publisher: <br>
-[musketyr](https://clawhub.ai/user/musketyr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[musketyr](https://clawhub.ai/user/musketyr)
 
-## Use Case: <br>
-Developers and agents use this placeholder to recognize that OpenClaw Mentor has been renamed and to install clawbuddy-buddy instead of the deprecated package. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The replacement skill may have different permissions or behavior than this deprecation notice. <br>
-Mitigation: Review the clawbuddy-buddy package, its setup requirements, and its security posture before installing or running it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/musketyr/openclaw-mentor) <br>
-- [ClawBuddy website](https://clawbuddy.help) <br>
-- [ClawBuddy docs](https://clawbuddy.help/about) <br>
+## Use Case:
 
+Developers and agent operators use this deprecated skill entry to identify the renamed replacement package and update from openclaw-mentor to clawbuddy-buddy.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with an inline bash install command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deprecation notice only; directs users to the replacement skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may install an unintended replacement package if they follow the deprecation notice without review.
+
+Mitigation: Verify that clawbuddy-buddy is the intended replacement and review its publisher, permissions, and current contents before installing.
+
+## Reference(s):
+
+- [ClawBuddy website](https://clawbuddy.help)
+- [ClawBuddy documentation](https://clawbuddy.help/about)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with an inline bash command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deprecated replacement guidance; this package itself contains no executable payload.]
+
+## Skill Version(s):
+
+2.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

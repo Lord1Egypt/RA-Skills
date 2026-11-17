@@ -1,41 +1,58 @@
-## Description: <br>
-Solve CAPTCHAs (reCAPTCHA v2/v3, hCaptcha, Cloudflare Turnstile, image CAPTCHAs) using CapMonster Cloud API. Use when browser automation encounters CAPTCHA challenges. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solve CAPTCHAs (reCAPTCHA v2/v3, hCaptcha, Cloudflare Turnstile, image CAPTCHAs) using CapMonster Cloud API. Use when browser automation encounters CAPTCHA challenges.
 
-## Publisher: <br>
-[EasonC13](https://clawhub.ai/user/EasonC13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[easonc13](https://clawhub.ai/user/easonc13)
 
-## Use Case: <br>
-Developers and automation operators use this skill to detect CAPTCHA challenges, submit them to CapMonster Cloud, and apply returned tokens during browser automation on systems they own, administer, or have explicit permission to test. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill automates CAPTCHA solving and token injection on live websites. <br>
-Mitigation: Use it only for sites you own, administer, or have explicit permission to test, and require manual approval before sending challenge data externally, injecting tokens, invoking callbacks, or submitting live forms. <br>
-Risk: The skill sends challenge data and target URLs to an external CapMonster Cloud API. <br>
-Mitigation: Avoid sensitive or internal URLs and use a dedicated CapMonster API key with spending limits. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CapMonster Cloud API](https://api.capmonster.cloud) <br>
-- [CapMonster Cloud Documentation](https://docs.capmonster.cloud/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/EasonC13/capmonster) <br>
+## Use Case:
 
+Developers and automation operators use this skill to detect CAPTCHA challenges, submit CAPTCHA tasks to CapMonster Cloud, poll for a solution token, and inject the token into a browser workflow when they are authorized to automate the target site.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with inline JavaScript, Python, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API calls to CapMonster Cloud and browser-token injection steps requiring manual approval.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can be used to bypass anti-abuse checks on arbitrary websites.
+
+Mitigation: Use it only for sites and workflows where CAPTCHA solving and automation are explicitly authorized.
+
+Risk: Target URLs, sitekeys, and the CapMonster API key are sent to CapMonster Cloud.
+
+Mitigation: Review data-sharing requirements before use and store CAPMONSTER_API_KEY as a managed secret.
+
+Risk: Automated solves may incur usage charges.
+
+Mitigation: Set account spending limits, monitor balance, and scope automation volume before running at scale.
+
+## Reference(s):
+
+- [CapMonster Cloud documentation](https://docs.capmonster.cloud/)
+- [CapMonster Cloud API endpoint](https://api.capmonster.cloud)
+- [ClawHub skill page](https://clawhub.ai/easonc13/skills/capmonster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript, Python, and shell command snippets; helper scripts return status text, JSON-formatted detection results, CAPTCHA tokens, and shell exit codes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires CAPMONSTER_API_KEY and sends target URLs and sitekeys to CapMonster Cloud.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

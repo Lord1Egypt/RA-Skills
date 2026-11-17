@@ -1,41 +1,54 @@
-## Description: <br>
-Helps users discover suitable skills, recommend skill combinations by task type, and receive guided usage instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Discoverer helps users find suitable skills, recommend skill combinations by task type, and provide usage guidance and tutorials.
 
-## Publisher: <br>
-[pagoda111king](https://clawhub.ai/user/pagoda111king) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[pagoda111king](https://clawhub.ai/user/pagoda111king)
 
-## Use Case: <br>
-External users and developers use this skill to search for relevant ClawHub skills, choose task-oriented skill combinations, and generate basic usage guidance for unfamiliar skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan flags the release as suspicious because requested Write, Bash, and Exec permissions are broader than the visible helper behavior justifies. <br>
-Mitigation: Review before installing, prefer a least-privilege version, and require explicit user approval before file writes or command execution. <br>
-Risk: The artifact advertises vector search and automatic optimization, while the implementation uses simple keyword and rule-based matching. <br>
-Mitigation: Treat recommendations as advisory, manually validate selected skills, and avoid relying on claimed semantic ranking until implemented evidence is provided. <br>
+## Use Case:
 
+Developers and ClawHub users use this skill to discover relevant skills, compare recommendations for a task, assemble skill combinations, and receive onboarding guidance for selected skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pagoda111king/skill-discoverer-pro) <br>
-- [Skill Discoverer documentation](https://docs.cloud-shrimp.com/skill-discoverer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown, Code] <br>
-**Output Format:** [Markdown and structured JavaScript objects describing search results, recommendations, combinations, and usage guides] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are based on simple keyword and rule-based matching in the submitted artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata, SKILL.md frontmatter, and package.json) <br>
+Risk: The skill requests command execution and file-write permissions beyond the needs described by its recommendation behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and reducing requested permissions to the minimum needed for search, recommendation, and guidance workflows.
+
+Risk: The security guidance flags the dev dependency lockfile for attention before tests or CI are run.
+
+Mitigation: Update and review the development dependency lockfile before using this package in automated test or CI environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pagoda111king/skills/skill-discoverer-pro)
+- [Skill Discoverer documentation](https://docs.cloud-shrimp.com/skill-discoverer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or structured text with recommendation lists, usage guides, and JavaScript helper outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked skill matches, task-type recommendations, skill-combination workflows, and onboarding steps.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Analyzes legal documents such as leases, contracts, NDAs, terms of service, and employment agreements into plain-English clause summaries with risk ratings, jurisdiction-aware enforceability notes, and pushback language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes any legal document — leases, contracts, NDAs, terms of service, employment agreements — and breaks every clause into plain English with risk ratings, enforceability flags for your jurisdiction, and ready-to-send pushback language.
 
-## Publisher: <br>
-[dglassman12](https://clawhub.ai/user/dglassman12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dglassman12](https://clawhub.ai/user/dglassman12)
 
-## Use Case: <br>
-External users can use Clausebreaker to understand legal documents clause by clause, identify higher-risk terms, and draft negotiation language without treating the output as legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive personal, financial, medical, or confidential business information into the hosting AI platform. <br>
-Mitigation: Redact sensitive identifiers before analysis and review the hosting platform privacy policy before sharing contract text. <br>
-Risk: Capability tags indicate wallet and purchase behavior even though the artifact says it performs text analysis only. <br>
-Mitigation: Do not grant wallet, purchase, transaction, external API, or external service permissions during installation or use. <br>
-Risk: Legal document explanations and enforceability notes can be incomplete or wrong for a user's jurisdiction. <br>
-Mitigation: Treat the output as educational guidance, confirm jurisdiction-specific issues independently, and consult a qualified lawyer for high-consequence documents. <br>
+## Use Case:
 
+External users use Clausebreaker to understand legal documents in plain English, identify clause-level risk, and draft professional negotiation language. It supports document classification, jurisdiction-aware flags when available, translation-based analysis, and optional redline suggestions.
 
-## Reference(s): <br>
-- [Clausebreaker on ClawHub](https://clawhub.ai/dglassman12/clausebreaker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with clause breakdowns, risk ratings, summary tables, disclaimers, and optional redline text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OCR-derived text analysis, translation notes, jurisdiction prompts, and suggested negotiation language.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Sensitive legal documents may contain personal, financial, medical, or other private details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact identifiers and private details before use, and review the AI platform's privacy policy before submitting documents.
+
+Risk: The output may be incorrect or incomplete legal guidance, especially when laws vary by jurisdiction or change over time.
+
+Mitigation: Use the analysis to understand clauses and prepare questions, and consult a qualified lawyer for documents with significant legal or personal consequences.
+
+Risk: Non-English documents are analyzed after translation, which may affect legal meaning.
+
+Mitigation: Treat translated analysis cautiously and verify important language with a qualified professional.
+
+## Reference(s):
+
+- [Clausebreaker ClawHub skill page](https://clawhub.ai/dglassman12/skills/clausebreaker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown legal-document analysis with clause breakdowns, risk ratings, pushback language, a verdict summary, disclaimer, and optional redline markup.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Text-only analysis; does not make purchases, access wallets, execute transactions, call external APIs, or interact with external services.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

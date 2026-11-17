@@ -1,47 +1,57 @@
-## Description: <br>
-Personal AI Infrastructure is a broad agent framework that provides the PAI Algorithm, response formats, documentation routing, workflow orchestration, and local tooling for general problem-solving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal AI Infrastructure core system using the PAI Algorithm for advanced general problem-solving and capability amplification.
 
-## Publisher: <br>
-[DurtyDhiana](https://clawhub.ai/user/DurtyDhiana) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[durtydhiana](https://clawhub.ai/user/durtydhiana)
 
-## Use Case: <br>
-Developers and agent operators use PAI as an always-on personal-agent framework for structured task handling, progressive response formatting, documentation routing, PRD workflows, and local automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a broad personal-agent framework that can govern many interactions and run local commands with limited scoping. <br>
-Mitigation: Review the installed files and enable only the workflows and command paths needed for the intended environment before use. <br>
-Risk: The security guidance flags memory/logging behavior and USER directory handling as areas that may expose sensitive local context. <br>
-Mitigation: Keep secrets out of PRDs, USER templates, and logs; review retained files before sharing or syncing the workspace. <br>
-Risk: The security guidance calls out voice notification curls, MCP profile changes, spawned Claude sessions, and autonomous loop commands. <br>
-Mitigation: Audit external callbacks, MCP configuration changes, spawned-agent behavior, and loop-mode commands before allowing autonomous execution. <br>
+## Use Case:
 
+Developers and advanced agent users use PAI to route agent work through a structured problem-solving workflow, choose response depth, manage task phases, and access supporting documentation, tools, actions, pipelines, and memory conventions.
 
-## Reference(s): <br>
-- [PAI ClawHub Listing](https://clawhub.ai/DurtyDhiana/pai) <br>
-- [DurtyDhiana Publisher Profile](https://clawhub.ai/user/DurtyDhiana) <br>
-- [PAI Skill Definition](artifact/SKILL.md) <br>
-- [PAI README](artifact/README.md) <br>
-- [PAI CLI Reference](artifact/CLI.md) <br>
-- [PAI Security System](artifact/PAISECURITYSYSTEM/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Progressive, phase-structured agent responses with optional generated files and local command suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can exert broad control over agent behavior, response format, memory conventions, and local tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where this level of agent orchestration is intended, and review the generated actions before allowing them to affect sensitive projects.
+
+Risk: The security summary flags credential persistence, transcript harvesting, curl-to-shell installers, and unrestricted action capabilities as areas needing review.
+
+Mitigation: Disable or restrict those capabilities before use on machines that contain real secrets, private transcripts, or production access.
+
+Risk: Local notification commands and shell-oriented workflows may cause unintended local execution if followed without review.
+
+Mitigation: Require human approval for shell commands and run the skill in a constrained workspace until its behavior is understood.
+
+## Reference(s):
+
+- [PAI ClawHub release](https://clawhub.ai/durtydhiana/skills/pai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured phase sections, inline code, command examples, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local command suggestions, workflow artifacts, and persistent memory guidance; review before execution in sensitive environments.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

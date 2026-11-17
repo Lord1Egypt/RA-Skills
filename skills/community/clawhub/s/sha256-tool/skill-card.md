@@ -1,40 +1,50 @@
-## Description: <br>
-Compute SHA-256 cryptographic hash values for files and text. Use for secure data verification and integrity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compute SHA-256 cryptographic hash values for files and text. Use for secure data verification and integrity checks.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and engineers use this skill to calculate SHA-256 digests for local files when verifying downloads, checksums, and data integrity. It can guide an agent to run a minimal local hashing helper and return the resulting digest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation shows a stdin usage example, but the included script reads a file path and falls back to a.txt when no argument is provided. <br>
-Mitigation: Run the tool with an explicit file path and verify command mapping in the OpenClaw environment before relying on the result. <br>
-Risk: Skill quality is marked low and quarantined for moderation review in the server evidence. <br>
-Mitigation: Review the short implementation and documentation gaps before listing or deploying the skill. <br>
+## Use Case:
 
+Developers, release engineers, and operators use this skill to compute SHA-256 checksums for file integrity verification, software distribution checks, and related data authentication workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dinghaibin/sha256-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text hash digest and Markdown with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a SHA-256 hexadecimal digest for a local file path; the current script defaults to a.txt when no argument is provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The documented stdin example may not work with the inspected bundled script, which hashes a file argument and otherwise defaults to a local file named a.txt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an explicit file argument when invoking the helper, and verify command wiring before publishing stdin-based examples.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/sha256-tool)
+- [Publisher profile](https://clawhub.ai/user/dinghaibin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with bash command examples and hexadecimal SHA-256 checksum text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled script emits a single SHA-256 digest for a file argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

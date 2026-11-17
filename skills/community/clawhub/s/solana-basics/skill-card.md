@@ -1,45 +1,62 @@
-## Description: <br>
-Interact with Solana blockchain via Helius APIs. Create/manage wallets, check balances (SOL + tokens), send transactions, swap tokens via Jupiter, and monitor addresses. Use for any Solana blockchain operation, crypto wallet management, token transfers, DeFi swaps, or portfolio tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Solana blockchain via Helius APIs. Create/manage wallets, check balances (SOL + tokens), send transactions, swap tokens via Jupiter, and monitor addresses. Use for any Solana blockchain operation, crypto wallet management, token transfers, DeFi swaps, or portfolio tracking.
 
-## Publisher: <br>
-[chattyClaw](https://clawhub.ai/user/chattyClaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chattyclaw](https://clawhub.ai/user/chattyclaw)
 
-## Use Case: <br>
-Developers and agents use this skill to manage Solana wallets, inspect balances and assets, send SOL or SPL tokens, execute Jupiter swaps, and monitor wallet activity through Helius-backed APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move funds through Solana sends and Jupiter swaps. <br>
-Mitigation: Use a test or low-value wallet, require manual approval for every send or swap, and verify recipient addresses, mints, amounts, slippage, fees, and network before signing. <br>
-Risk: The security review flags weak safeguards around locally stored wallet keys. <br>
-Mitigation: Replace default key storage with passphrase-protected storage, an OS keychain, or a hardware wallet before funding any wallet managed by this skill. <br>
-Risk: API keys can be exposed if real keys are placed in URLs or logs. <br>
-Mitigation: Keep API keys in local configuration, avoid logging request URLs that contain keys, and rotate any key that may have been exposed. <br>
-Risk: Unpinned or unaudited dependencies can increase operational risk for funded wallets. <br>
-Mitigation: Pin and audit dependencies before using this skill with wallets that hold real value. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Helius API Reference](references/helius-api.md) <br>
-- [Jupiter Swap Integration](references/jupiter.md) <br>
-- [Wallet Security Best Practices](references/security.md) <br>
+## Use Case:
 
+Developers and agents use this skill to manage Solana wallets, query balances and assets, send SOL or SPL tokens, request swap quotes, and execute token swaps through Helius and Jupiter integrations.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with TypeScript examples and CLI command patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Helius API key and local wallet/configuration files for operational use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles real wallet keys and on-chain transactions with weak key protection.
+
+Mitigation: Do not use wallets holding meaningful funds unless key storage is changed to a user passphrase, hardware wallet, OS keychain, or another strong secret store.
+
+Risk: Transaction safety controls are insufficient for irreversible blockchain transfers.
+
+Mitigation: Decode transaction details, validate recipients, amounts, fees, and token mints, and require explicit user confirmation before signing or sending transactions.
+
+Risk: Swap execution signs a transaction returned by a remote API without independent instruction verification.
+
+Mitigation: Treat swaps as high risk; verify the route, decoded instructions, slippage, and expected token amounts before signing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chattyclaw/skills/solana-basics)
+- [Helius API Reference](references/helius-api.md)
+- [Jupiter Swap Integration](references/jupiter.md)
+- [Wallet Security Best Practices](references/security.md)
+- [Helius Dashboard](https://dashboard.helius.dev/signup)
+- [Jupiter Quote API](https://api.jup.ag/swap/v1/quote)
+- [Jupiter Swap API](https://api.jup.ag/swap/v1/swap)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with TypeScript examples, JSON configuration, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce commands that interact with live Solana wallets, Helius APIs, and Jupiter swap APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,76 @@
+{
+ "schema": "cad-site-geometry/v1",
+ "source_file": "synthetic-site.dxf",
+ "contract": {
+  "schema": "cad-file-reader/v0",
+  "contract_version": "cad-contract/v1",
+  "contract_id": "CONTRACT-SYNTH-001",
+  "reader_version": "0.41.0"
+ },
+ "scale_unit_audit": [
+  {
+   "file": "synthetic-site.dxf",
+   "scales": [
+    "1:500"
+   ],
+   "units": [
+    "cm"
+   ],
+   "status": "candidate",
+   "review_reason": ""
+  }
+ ],
+ "site_geometry": [
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "geometry": [
+    0,
+    0,
+    100,
+    0
+   ]
+  },
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "geometry": [
+    100,
+    0,
+    100,
+    60
+   ]
+  },
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "geometry": [
+    100,
+    60,
+    0,
+    60
+   ]
+  },
+  {
+   "category": "site_boundary",
+   "layer": "红线",
+   "geometry": [
+    0,
+    60,
+    0,
+    0
+   ]
+  },
+  {
+   "category": "road",
+   "layer": "道路",
+   "geometry": [
+    0,
+    30,
+    100,
+    30
+   ]
+  }
+ ],
+ "review": []
+}

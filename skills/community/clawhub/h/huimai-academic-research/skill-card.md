@@ -1,43 +1,54 @@
-## Description: <br>
-研究方法论、数据分析策略、论文选题、学术规范——提升研究能力的专业助手。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+研究方法论、数据分析策略、论文选题、学术规范——提升研究能力的专业助手。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Students, early-career researchers, and educators use this skill for research design guidance, data analysis strategy, topic selection, academic integrity practices, and publication planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The install command in the artifact does not match the server listing slug. <br>
-Mitigation: Verify the ClawHub listing slug before installing. <br>
-Risk: Academic methodology and data analysis advice may be incomplete or unsuitable for a specific discipline, institution, or study design. <br>
-Mitigation: Treat outputs as general guidance and confirm final research design, ethics review, statistical methods, and publication decisions with qualified advisors or specialists. <br>
-Risk: Users may disclose confidential unpublished research while seeking guidance. <br>
-Mitigation: Avoid sharing sensitive, confidential, or unpublished research details unless necessary. <br>
+## Use Case:
 
+Students, early-career researchers, and faculty use this skill to plan research designs, choose data analysis strategies, refine paper topics, and follow academic norms. It provides Chinese-language guidance for methodology decisions from topic selection through publication planning.
 
-## Reference(s): <br>
-- [ClawHub skill page: huimai-academic-research](https://clawhub.ai/yezhaowang888-stack/huimai-academic-research) <br>
-- [Publisher profile: yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown text with research-method guidance, decision frameworks, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Non-executable academic research guidance; paid consultation options are described in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact changelog, released 2026-05-08) <br>
+Risk: Academic methodology and data analysis guidance may be incomplete or inappropriate for a specific discipline, institution, or study design.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the skill's recommendations as advisory and confirm research design, statistical methods, ethics review, and publication decisions with qualified supervisors or specialists.
+
+Risk: The artifact discloses a paid consultation and contact model.
+
+Mitigation: Install and use the skill only when the user is comfortable with the disclosed paid-consultation workflow and contact channels.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-academic-research)
+- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Chinese-language Markdown guidance with structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; paid consultation and contact channels are disclosed by the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact changelog, released 2026-05-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

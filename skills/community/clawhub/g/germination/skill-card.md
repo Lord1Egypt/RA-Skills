@@ -1,41 +1,50 @@
-## Description: <br>
-Seed germination reference covering imbibition, dormancy breaking, temperature and moisture requirements, testing protocols, crop data, and troubleshooting poor emergence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Seed germination reference — imbibition, dormancy breaking, temperature/moisture requirements, testing protocols. Use when planning seed starting, evaluating germination rates, or troubleshooting poor emergence.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-External growers, gardeners, agricultural staff, and agents use this skill to plan seed starting, evaluate germination rates, break dormancy, run seed viability checks, and troubleshoot poor emergence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a local shell script. <br>
-Mitigation: Review the script before installation or execution and run only from a trusted local artifact. <br>
-Risk: Some guidance covers safety-sensitive agricultural practices such as acid scarification, hot-water treatment, bleach use, and pesticide or fungicide treatments. <br>
-Mitigation: Verify those practices against trusted local extension or institutional guidance before applying them. <br>
+## Use Case:
 
+External users, growers, and agriculture-focused agents use this skill as a quick reference for seed starting, germination testing, dormancy breaking, crop germination conditions, and troubleshooting poor emergence.
 
-## Reference(s): <br>
-- [Germination on ClawHub](https://clawhub.ai/xueyetianya/germination) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text guidance printed by shell commands, with command examples documented in Markdown.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static seed germination reference output organized by command topic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill frontmatter) <br>
+Risk: Agricultural recommendations may be incomplete or unsuitable for a specific crop, region, seed lot, or growing environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the guidance against local agronomic sources and seed supplier instructions before relying on it for planting or treatment decisions.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub Germination skill page](https://clawhub.ai/xueyetianya/skills/germination)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style text from local shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational agriculture reference; no data access, network activity, persistence, or system modification behavior was reported by the authoritative security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

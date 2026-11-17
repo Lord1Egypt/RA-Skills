@@ -1,38 +1,49 @@
-## Description: <br>
-TCL Eagle Lab is a research and innovation platform under TCL Industries, focusing on technological development and ecosystem building in artificial intelligence, the Internet of Things, and full-scenario smart life solutions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TCL Eagle Lab is a research and innovation platform under TCL Industries, focusing on technological development and ecosystem building in artificial intelligence, the Internet of Things, and full-scenario smart life solutions.
 
-## Publisher: <br>
-[wushengju](https://clawhub.ai/user/wushengju) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wushengju](https://clawhub.ai/user/wushengju)
 
-## Use Case: <br>
-Employees, external presenters, and technology partners use this skill to answer questions about TCL Eagle Lab's organization, technology platforms, AI and IoT capabilities, products, standards work, and innovation projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides publisher-supplied TCL business, product, standards, and performance claims that may become outdated or require independent confirmation. <br>
-Mitigation: Verify factual claims against current TCL or standards-body sources before using them in external, legal, commercial, or strategic communications. <br>
+## Use Case:
 
+Employees, external partners, and FAQ users can use this skill to answer Chinese-language questions about TCL Eagle Lab's organization, technology platforms, AIxIoT capabilities, product scenarios, robotics work, innovation centers, standards participation, and reported business metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wushengju/tcl-eagle-lab-intro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language FAQ answers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Answers are based on publisher-provided informational content in the skill artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: The skill contains static business metrics and product claims that may become outdated or need independent confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify embedded metrics and product claims against authoritative TCL sources before using them for decisions, external communications, or commercial claims.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wushengju/skills/tcl-eagle-lab-intro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language FAQ-style text or Markdown answers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference content; verify embedded product claims and metrics separately when accuracy matters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

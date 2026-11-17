@@ -1,44 +1,60 @@
-## Description: <br>
-A ClawHub skill installer that helps agents search for skills, install single skills, and batch install multiple skills with retry logic and version management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A ClawHub skill installer that helps agents search for skills, install a single skill, or batch install multiple skills with retry and version-management behavior.
 
-## Publisher: <br>
-[sunnyhot](https://clawhub.ai/user/sunnyhot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunnyhot](https://clawhub.ai/user/sunnyhot)
 
-## Use Case: <br>
-Developers and agent operators use this skill to search ClawHub and install one or more skills into a local skills directory. It is intended for normal ClawHub release usage, but installation should be reviewed because it modifies local skill files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer can overwrite local skills. <br>
-Mitigation: Use it only in a disposable or backed-up skills environment and confirm the hard-coded skills path before execution. <br>
-Risk: The installer can run unsafe shell commands from user-provided input. <br>
-Mitigation: Pass only simple, trusted skill names and review commands before executing them. <br>
-Risk: Downloaded skill archives are not safely verified by this package. <br>
-Mitigation: Prefer an official scoped installer flow when possible, and review and scan installed skills before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to search ClawHub and install one or more skills into a local OpenClaw skill directory. It is intended for workflow automation around skill discovery, download, extraction, retry handling, and local installation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunnyhot/sunnyhot-skill-installer) <br>
-- [Publisher profile](https://clawhub.ai/user/sunnyhot) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with inline shell commands and command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download, extract, overwrite, and install skill files when the generated shell commands are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The installer can modify an active local skill directory and replace existing skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a disposable or backed-up environment and require explicit confirmation before replacing any installed skill.
+
+Risk: The installer may fetch unverified GitHub ZIP archives or use unpinned external CLI code.
+
+Mitigation: Use trusted skill names only, remove the GitHub fallback, pin external tooling, and add checksum or signature verification before installation.
+
+Risk: Installation paths and downloaded archive contents can affect local files.
+
+Mitigation: Add path validation and review extracted archive paths before moving content into the active skill directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunnyhot/skills/sunnyhot-skill-installer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/sunnyhot)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include command sequences for searching, installing, batch installing, retrying, and managing local skill directories.]
+
+## Skill Version(s):
+
+1.2.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

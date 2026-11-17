@@ -1,39 +1,51 @@
-## Description: <br>
-Helps an agent keep local long-term memory, review work against the user's original requirements, and reflect on prior interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill gives an agent a long-term memory workflow for recording interactions, checking deliverables against user requirements, and reflecting on past corrections.
 
-## Publisher: <br>
-[webray1983](https://clawhub.ai/user/webray1983) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webray1983](https://clawhub.ai/user/webray1983)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an agent to record interaction summaries, double-check deliverables against stated requirements, and preserve lessons learned for future work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically saves and reuses conversation history in local plain-text memory files. <br>
-Mitigation: Use it only when local memory is intended, inspect or clear the memory directory regularly, and avoid using it around secrets, credentials, personal data, financial details, or confidential work. <br>
-Risk: Stored memory can influence future agent behavior even when the current task no longer needs that context. <br>
-Mitigation: Review memory content before relying on follow-up outputs and remove stale or sensitive records from the memory directory. <br>
+## Use Case:
 
+Developers and agents use this skill to keep task memory, compare deliverables to original requests before responding, and run on-demand double-check reviews when a user asks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown memory records and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and reads local plain-text memory files for diary entries, documents, experience summaries, and an index.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may store conversation summaries, requirements, corrections, preferences, and sensitive details in shared plaintext memory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when persistent memory is intended, and add consent, review, deletion, redaction, and per-project storage controls before using it with confidential or regulated data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webray1983/skills/double-check-it)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plaintext memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [When the shell script is used, it writes memory records, indexes, and reflections as plaintext files in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

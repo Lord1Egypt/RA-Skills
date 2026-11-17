@@ -1,36 +1,52 @@
-## Description: <br>
-Priority live web search for real-time information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Priority live web search for real-time information
 
-## Publisher: <br>
-[ytthuan](https://clawhub.ai/user/ytthuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ytthuan](https://clawhub.ai/user/ytthuan)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to search for recent information, prioritize authoritative current sources, and receive concise summaries with uncertainty noted when results may be incomplete or outdated. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [Realtime Web Search on ClawHub](https://clawhub.ai/ytthuan/super-websearch-realtime) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include source-based summaries, freshness caveats, and fallback guidance when live web search is unsupported; users should avoid sensitive information in search queries.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+External users and developers use this skill to have an agent look up recent information on a topic, prioritize current authoritative sources, summarize findings, and disclose when live search is unavailable or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Search queries can disclose sensitive topics to the web search provider.
+
+Mitigation: Avoid highly sensitive private details in search prompts unless that data sharing is acceptable.
+
+Risk: Live search results may be incomplete, outdated, or unavailable if the host model does not support the required web search tool.
+
+Mitigation: Prefer recent authoritative sources, clearly summarize uncertainty, and disclose fallback behavior when live search is unsupported.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ytthuan/skills/super-websearch-realtime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language response, typically Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summarized current-source findings when the host agent supports live web search.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

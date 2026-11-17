@@ -1,44 +1,59 @@
-## Description: <br>
-Generate comprehensive daily health reports from Garmin Connect data with professional running analysis including heart rate zones, TRIMP, and Jack Daniels VDOT. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate comprehensive daily health reports from Garmin Connect data with professional running analysis (Heart Rate Zones, TRIMP, Jack Daniels VDOT).
 
-## Publisher: <br>
-[GZZZJ](https://clawhub.ai/user/GZZZJ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[gzzzj](https://clawhub.ai/user/gzzzj)
 
-## Use Case: <br>
-External Garmin Connect users and developers use this skill to authenticate locally, fetch personal Garmin data, and generate daily text health reports with sleep, heart-rate, activity, running-load, and trend analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Garmin login tokens and sessions may remain available after use. <br>
-Mitigation: Install only on a trusted machine, inspect ~/.garmin-health-report for oauth1_token.json and oauth2_token.json, and revoke Garmin sessions when needed. <br>
-Risk: Local health metrics may be retained after report generation. <br>
-Mitigation: Review or delete ~/.garmin_health_report/history.json if local health-history retention is not desired. <br>
-Risk: Using the wrong Garmin region can affect authentication behavior. <br>
-Mitigation: Confirm whether the account uses garmin.com or garmin.cn before entering Garmin credentials. <br>
+## Use Case:
 
+External users and developers use this skill to authenticate with Garmin Connect, retrieve personal health and activity data, and generate daily reports with sleep, heart-rate, steps, running-load, VDOT, recovery, and seven-day trend analysis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GZZZJ/garmin-health-report) <br>
-- [Homepage from skill metadata](https://github.com/yourusername/garmin-health-report) <br>
-- [garth Garmin Connect library](https://github.com/matin/garth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text health report with Markdown usage guidance and inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+, garth, local Garmin authentication tokens, and optional user age/resting heart rate configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Garmin authentication tokens and local health history can expose sensitive account and health data if the host or data directories are shared or compromised.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on a trusted machine, treat token and history files as sensitive, and protect ~/.garmin-health-report and ~/.garmin_health_report with owner-only permissions.
+
+Risk: Logout may not remove all garth OAuth token files used by the skill.
+
+Mitigation: Before relying on logout, verify and remove oauth1_token.json and oauth2_token.json under ~/.garmin-health-report.
+
+Risk: The garth dependency is declared as a lower-bound version instead of a reviewed pinned release.
+
+Mitigation: Pin garth to a reviewed version before deployment and review dependency updates before installing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gzzzj/skills/garmin-health-report)
+- [Project Homepage](https://github.com/yourusername/garmin-health-report)
+- [garth Garmin Connect library](https://github.com/matin/garth)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Formatted plain text report with command-line setup and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports may include personal health metrics, running analysis, recommendations, and seven-day trend summaries when Garmin data is available.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

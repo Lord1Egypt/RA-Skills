@@ -1,45 +1,55 @@
-## Description: <br>
-欧路词典生词本管理与每日测试技能。支持自动从欧路词典收藏夹出题、管理单词、删除已掌握词汇。适合每日背单词使用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages an Eudic vocabulary notebook by generating daily vocabulary quizzes, listing saved words, and deleting mastered vocabulary.
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-External users and developers use this skill to automate Eudic vocabulary-list review, generate daily multiple-choice quizzes, list saved words, and delete words they have mastered. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an Eudic API token for account access. <br>
-Mitigation: Store the token privately, prefer environment variables or protected local configuration, and avoid putting the token in shell history or shared cron files. <br>
-Risk: Delete commands can remove words from the user's Eudic vocabulary list. <br>
-Mitigation: Double-check word IDs before running delete actions and review generated delete commands before execution. <br>
-Risk: Generated quiz and answer files can expose vocabulary data and correct answers. <br>
-Mitigation: Write quiz output to a private directory and avoid sharing generated answer files. <br>
+## Use Case:
 
+External users and developers use this skill to create daily Eudic vocabulary quizzes from their saved word list and manage words or categories through command-line workflows.
 
-## Reference(s): <br>
-- [Eudic OpenAPI Authorization](https://my.eudic.net/OpenAPI/Authorization) <br>
-- [Eudic Open API Base URL](https://api.frdic.com/api/open/v1) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dadaniya99/xiaolongxia-eudic-vocab) <br>
-- [Publisher Profile](https://clawhub.ai/user/dadaniya99) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with JSON quiz and answer files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Eudic API token and can write quiz output files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata and artifact skill.json) <br>
+Risk: The skill requires an Eudic API token and the security review notes unsafe token-handling guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Eudic token with the minimum permissions available and store it outside command lines or crontab entries.
+
+Risk: The skill can delete vocabulary from a user's remote Eudic account.
+
+Mitigation: Manually confirm word identifiers before deletion and store quiz output in a private directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dadaniya99/skills/xiaolongxia-eudic-vocab)
+- [Eudic OpenAPI authorization](https://my.eudic.net/OpenAPI/Authorization)
+- [Eudic OpenAPI base endpoint](https://api.frdic.com/api/open/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON files, shell commands, configuration guidance]
+
+**Output Format:** [Markdown-style usage guidance with shell command examples; generated quizzes and answer keys may be written as JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an Eudic API token and command-line options for quiz count, output path, category, language, action, and word ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

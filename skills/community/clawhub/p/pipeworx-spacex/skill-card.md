@@ -1,42 +1,51 @@
-## Description: <br>
-Access real-time and historical SpaceX data on launches, rockets, crew, and Starlink satellites with detailed status and media links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access real-time and historical SpaceX data on launches, rockets, crew, and Starlink satellites with detailed status and media links.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query a disclosed Pipeworx MCP gateway for SpaceX launch, rocket, crew, and Starlink information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SpaceX data queries are sent to a disclosed third-party Pipeworx MCP gateway. <br>
-Mitigation: Use the skill only when sending those queries to the gateway is acceptable for the deployment context. <br>
-Risk: External SpaceX data can be incomplete, stale, or unavailable depending on the upstream service. <br>
-Mitigation: Verify time-sensitive launch, crew, rocket, or satellite details against authoritative sources before operational use. <br>
+## Use Case:
 
+Developers and agents use this skill to configure and call a Pipeworx-hosted MCP endpoint for SpaceX launch, rocket, crew, and Starlink data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-spacex) <br>
-- [Publisher profile](https://clawhub.ai/user/brucegutman) <br>
-- [Pipeworx SpaceX MCP gateway](https://gateway.pipeworx.io/spacex/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return SpaceX launch, rocket, crew, and Starlink data from the configured MCP gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: SpaceX tool requests are sent to the disclosed Pipeworx-hosted MCP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not pass sensitive personal, account, or confidential data into this connector unless the service is trusted for that data.
+
+## Reference(s):
+
+- [Pipeworx SpaceX skill page](https://clawhub.ai/brucegutman/skills/pipeworx-spacex)
+- [SpaceX MCP endpoint](https://gateway.pipeworx.io/spacex/mcp)
+- [Source skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with JSON configuration and bash examples; MCP tool calls return JSON data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote MCP connector for SpaceX launch, rocket, crew, and Starlink data.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

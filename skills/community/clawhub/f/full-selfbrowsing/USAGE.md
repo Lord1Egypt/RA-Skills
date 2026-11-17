@@ -25,7 +25,7 @@ The goal of this page: get a new user from a clean machine to a green doctor in 
    Fallback path -- GitHub Releases. If the Web Store listing is unavailable in your region, download the latest `.zip` from the releases page, unzip it, then load it unpacked at `chrome://extensions` with `Developer mode` toggled on:
 
    ```
-   https://github.com/LakshmanTurlapati/FSB/releases
+   https://github.com/fullselfbrowsing/FSB/releases
    ```
 
    This skill prints the URL for the user to click. It does NOT auto-launch the browser to that URL.
@@ -95,7 +95,7 @@ Three rules govern the bundle:
 - **`client`** -- allowlisted badge label. Required on every action tool call. The shared v0.9.36 allowlist accepts: `Claude`, `Codex`, `ChatGPT`, `Perplexity`, `Windsurf`, `Cursor`, `Antigravity`, `OpenCode`, `OpenClaw`, `Grok`, `Gemini`. Freeform strings reject with `BADGE_NOT_ALLOWED`. The skill ships as part of OpenClaw, so the canonical `client` value for this surface is `OpenClaw`.
 - **`is_final`** -- optional boolean. Set `true` on the LAST action of a task to clear the overlay immediately after that action's `change_report` resolves. Default `false`.
 
-Read-only tools (`read_page`, `get_dom_snapshot`, `get_text`, `get_attribute`, `read_sheet`, `get_page_snapshot`, `list_tabs`, `get_site_guide`, `search_memory`, `report_progress`, `complete_task`, `partial_task`, `fail_task`, `wait_for_element`, `wait_for_stable`) do NOT carry the bundle and do NOT re-arm the sliding window. Reads stay silent by design.
+Read-only tools (`read_page`, `get_dom_snapshot`, `get_text`, `get_attribute`, `read_sheet`, `get_page_snapshot`, `list_tabs`, `get_site_guide`, `search_memory`, `report_progress`, `complete_task`, `partial_task`, `fail_task`, `wait_for_element`, `wait_for_stable`) do NOT carry the bundle and do NOT re-arm the sliding window. Reads stay silent by design. The newer `stop_trigger`, `get_trigger_status`, and `list_triggers` tools are also read-only and bundle-exempt, but are a separate family from this pinned 15-tool list -- see the Addendum in `.planning/v0.9.62-CONTRACT.md`.
 
 ### Example 1 -- action call with the implicit visual session
 
@@ -125,7 +125,7 @@ Three typed errors guard the contract; match on the name, not the human-readable
 
 If `run_task` (autopilot) is being used, autopilot manages its own internal visual-session lifecycle and is NOT affected by the v0.9.0 implicit-contract change. Do NOT wrap a `run_task` call in your own field-bundle plumbing.
 
-For lifecycle details, the sliding-window mechanics, the read-tool vs action-tool split, and the `NO_OWNED_TAB` bootstrap, see `references/visual-session-lifecycle.md`. The canonical action-tool list (36 tools), the read-only list (15 tools), and the typed-error catalogue live in `.planning/v0.9.62-CONTRACT.md`.
+For lifecycle details, the sliding-window mechanics, the read-tool vs action-tool split, and the `NO_OWNED_TAB` bootstrap, see `references/visual-session-lifecycle.md`. The canonical action-tool list (37 tools as of the 2026-06-17 `upload_file` addendum), the read-only list (15 tools), and the typed-error catalogue live in `.planning/v0.9.62-CONTRACT.md`. Trigger watchers (`trigger`, `stop_trigger`, `get_trigger_status`, `list_triggers`) and capability tools (`search_capabilities`, `invoke_capability`) are separate tool families entirely outside this field-bundle contract -- see `references/tool-decision-tree.md` for when to reach for them.
 
 ## Recover when the doctor fails
 
@@ -135,9 +135,9 @@ Each `[FAIL]` from `node scripts/doctor.mjs` maps to one of six layers. Find you
 | --- | --- | --- |
 | package | npm cannot fetch `fsb-mcp-server`. | Run `npx -y fsb-mcp-server --version` to confirm npm can reach the package. If that fails, check Node 18+ is installed and on PATH. |
 | bridge | The extension is not running, or `ws://localhost:7225` is not reachable. | Start the FSB extension (open Chrome with the extension installed) and run `npx -y fsb-mcp-server status --watch` to confirm `ws://localhost:7225` is reachable. |
-| extension | The FSB Chrome extension is not installed. | Install from `https://chromewebstore.google.com/detail/badgafnfchcihdfnjneklogedcdkmjfk` (fallback: GitHub Releases at `https://github.com/LakshmanTurlapati/FSB/releases`), then reopen this session. |
+| extension | The FSB Chrome extension is not installed. | Install from `https://chromewebstore.google.com/detail/badgafnfchcihdfnjneklogedcdkmjfk` (fallback: GitHub Releases at `https://github.com/fullselfbrowsing/FSB/releases`), then reopen this session. |
 | active-tab | The active tab is restricted (`chrome://`, `edge://`, the Web Store) or no tab is owned by the agent. | Open a normal `http(s)` tab (not `chrome://`, `edge://`, or the Web Store) and run `npx -y fsb-mcp-server status --watch` to re-attach. See `references/restricted-tab-recovery.md` for the recovery toolset. |
 | content-script | The content script did not attach (extension installed after the tab loaded). | Reload the active tab. The FSB content script attaches on page load; reloads after extension install are required. |
 | config | The MCP host config does not include the FSB stdio block. | Re-run `npx -y fsb-mcp-server install --<host>` for your MCP host (replace `<host>` with `claude-desktop`, `cursor`, etc.). Or paste the block printed by `node scripts/print-stdio.mjs` into your host config. |
 
-Re-run `node scripts/doctor.mjs` after each fix. If a layer keeps flipping or you see `[WARN]`, capture the raw output and file an issue at `https://github.com/LakshmanTurlapati/FSB/issues`.
+Re-run `node scripts/doctor.mjs` after each fix. If a layer keeps flipping or you see `[WARN]`, capture the raw output and file an issue at `https://github.com/fullselfbrowsing/FSB/issues`.

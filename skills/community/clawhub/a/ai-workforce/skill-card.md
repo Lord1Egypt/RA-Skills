@@ -1,46 +1,65 @@
-## Description: <br>
-Turn an OpenClaw agent into an autonomous AI Chief that runs a business, with trust-based autonomy, structured knowledge management, worker delegation patterns, and reflection cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Workforce turns an OpenClaw agent into an autonomous business operator with progressive trust, structured knowledge management, worker delegation patterns, and reflection cycles.
 
-## Publisher: <br>
-[km2411](https://clawhub.ai/user/km2411) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[km2411](https://clawhub.ai/user/km2411)
 
-## Use Case: <br>
-Business operators and agent builders use this skill to configure an OpenClaw agent as a semi-autonomous business operator that maintains memory, delegates work, manages trust levels, and runs daily, weekly, and monthly reflection routines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill establishes a persistent semi-autonomous business operator with broad operational scope. <br>
-Mitigation: Require visible human consent before memory writes, cron jobs, worker spawning, git commits, and any git push. <br>
-Risk: Persistent markdown memory and shared worker context can expose sensitive business or personal information. <br>
-Mitigation: Keep secrets out of markdown files and review shared worker context before delegating tasks. <br>
-Risk: External communications, spending, account changes, public posts, and destructive cleanup can create business impact if automated too quickly. <br>
-Mitigation: Keep those categories at explicit approval unless server-reviewed policy and the human's instructions clearly authorize a narrower workflow. <br>
+## Use Case:
 
+Developers and business operators use this skill to configure an OpenClaw agent as an AI Chief for onboarding, persistent business memory, worker delegation, trust management, and scheduled reflection.
 
-## Reference(s): <br>
-- [ClawHub Ai Workforce release page](https://clawhub.ai/km2411/ai-workforce) <br>
-- [Bootstrap first meeting guide](references/bootstrap.md) <br>
-- [Worker delegation patterns](references/delegation.md) <br>
-- [Operational patterns](references/operational.md) <br>
-- [Reflection cycle prompts](references/reflection-prompts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions, templates, and operational prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent memory structures, worker delegation prompts, trust records, and reflection routines for an agent to maintain.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Broad autonomous authority can cause workspace changes, worker activity, or business actions beyond user expectations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start action categories at propose and require explicit confirmation for onboarding writes, cron jobs, worker spawning, spending, external communications, public posts, deleting data, commitments, and sensitive systems.
+
+Risk: Persistent business memory can store personal context, credentials, or sensitive operational data.
+
+Mitigation: Do not store passwords, API keys, payment data, SSNs, auth tokens, or raw PII in workspace files; review memory, bank, USER, and shared files before reuse or backup.
+
+Risk: Automated Git backup and scheduled reflection behavior can persist or publish private context.
+
+Mitigation: Enable remote backup only after review, keep the repository private, exclude sensitive memory files, and require explicit confirmation before Git commits, pushes, or remote backup setup.
+
+Risk: Delegated workers may receive excess context or follow injected instructions from user-provided content.
+
+Mitigation: Share only curated org-level context with workers, wrap user content, give narrow task constraints, and review worker outputs before delivery.
+
+## Reference(s):
+
+- [ClawHub Ai Workforce page](https://clawhub.ai/km2411/skills/ai-workforce)
+- [Bootstrap first meeting guide](references/bootstrap.md)
+- [Worker delegation patterns](references/delegation.md)
+- [Operational patterns](references/operational.md)
+- [Reflection cycle prompts](references/reflection-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline command and prompt templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes templates for persistent workspace memory, shared worker context, scheduled reflection prompts, and optional Git backup behavior.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact/_meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

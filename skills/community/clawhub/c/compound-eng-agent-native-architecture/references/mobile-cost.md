@@ -11,108 +11,158 @@ Mobile users may be on cellular data or concerned about API costs. Design agents
 
 Use the cheapest model that achieves the outcome:
 
-```swift
-enum ModelTier {
-    case fast      // claude-3-haiku: ~$0.25/1M tokens
-    case balanced  // claude-3-sonnet: ~$3/1M tokens
-    case powerful  // claude-3-opus: ~$15/1M tokens
+```typescript
+type ModelTier = "fast" | "balanced" | "powerful";
+type ModelChoice = {
+  id: string;
+  inputUSDPerMillion: number;
+  outputUSDPerMillion: number;
+};
 
-    var modelId: String {
-        switch self {
-        case .fast: return "claude-3-haiku-20240307"
-        case .balanced: return "claude-3-sonnet-20240229"
-        case .powerful: return "claude-3-opus-20240229"
-        }
-    }
+function configuredModel(
+  tier: ModelTier,
+  settings: Record<string, string | undefined>,
+): ModelChoice {
+  const prefix = `AGENT_${tier.toUpperCase()}`;
+  const id = settings[`${prefix}_MODEL`]?.trim();
+  const input = Number(settings[`${prefix}_INPUT_USD_PER_MILLION`]);
+  const output = Number(settings[`${prefix}_OUTPUT_USD_PER_MILLION`]);
+  if (!id || !Number.isFinite(input) || input <= 0 ||
+      !Number.isFinite(output) || output <= 0) {
+    throw new Error(`Configure an active model and both token rates for ${tier}`);
+  }
+  return { id, inputUSDPerMillion: input, outputUSDPerMillion: output };
 }
 
-// Match model to task complexity
-let agentConfigs: [AgentType: ModelTier] = [
-    .quickLookup: .fast,        // "What's in my library?"
-    .chatAssistant: .balanced,  // General conversation
-    .researchAgent: .balanced,  // Web search + synthesis
-    .profileGenerator: .powerful, // Complex photo analysis
-    .introductionWriter: .balanced,
-]
+const taskTiers: Record<string, ModelTier> = {
+  quickLookup: "fast",
+  chatAssistant: "balanced",
+  researchAgent: "balanced",
+  profileGenerator: "powerful",
+  introductionWriter: "balanced",
+};
 ```
+
+Configure provider-specific IDs and prices from the [model overview](https://platform.claude.com/docs/en/models/overview), [pricing](https://platform.claude.com/docs/en/about-claude/pricing), and [deprecation table](https://platform.claude.com/docs/en/about-claude/model-deprecations). Active direct-API examples verified on 2026-10-03 include `claude-haiku-4-5-20251001`, `claude-sonnet-5-5`, and `claude-opus-5-5`; account availability and partner IDs still require verification. Configuration has no obsolete fallback or zero-price placeholder. Track input, output, and any provider-specific caching charges separately.
 
 ### Token Budgets
 
-Limit tokens per agent session:
+Separate the per-request output cap from the session budget. Use the prompt to request concise answers. Leave enough output capacity for a complete attempt; for providers that count reasoning toward the output limit, include reasoning headroom. Treat a `max_tokens` stop as an incomplete attempt, never a successful answer or a reason to retry at the same cap.
 
-```swift
-struct AgentConfig {
-    let modelTier: ModelTier
-    let maxInputTokens: Int
-    let maxOutputTokens: Int
-    let maxTurns: Int
+Reserve a conservative input, output, and currency bound before every paid attempt. The following TypeScript uses app-defined provider adapters; `bound` must cover the exact request and configured output cap, including applicable caching and other charges.
 
-    static let research = AgentConfig(
-        modelTier: .balanced,
-        maxInputTokens: 50_000,
-        maxOutputTokens: 4_000,
-        maxTurns: 20
-    )
+```typescript
+type Usage = { inputTokens: number; outputTokens: number; usd: number };
+type Limits = {
+  outputTokenCap: number;
+  maxSessionTokens: number;
+  maxSessionUSD: number;
+  maxAttempts: number;
+  maxRetries: number;
+};
+type BudgetSession = { charged: Usage; attempts: number; stopped: boolean };
+type AttemptResult = {
+  status: "complete" | "retryable-failure" | "failed" | "truncated";
+  text: string;
+  usage?: Usage;
+};
+type PaidAttempt = {
+  bound: Usage;
+  call(outputTokenCap: number): Promise<AttemptResult>;
+};
 
-    static let quickChat = AgentConfig(
-        modelTier: .fast,
-        maxInputTokens: 10_000,
-        maxOutputTokens: 1_000,
-        maxTurns: 5
-    )
+function validUsage(usage: Usage): boolean {
+  return [usage.inputTokens, usage.outputTokens].every(
+    value => Number.isSafeInteger(value) && value >= 0,
+  ) && Number.isFinite(usage.usd) && usage.usd >= 0;
 }
 
-class AgentSession {
-    var totalTokensUsed: Int = 0
+async function runWithFallback(
+  limits: Limits,
+  session: BudgetSession,
+  candidates: PaidAttempt[],
+): Promise<string> {
+  if (![limits.outputTokenCap, limits.maxSessionTokens, limits.maxAttempts]
+      .every(value => Number.isSafeInteger(value) && value > 0) ||
+      !Number.isSafeInteger(limits.maxRetries) || limits.maxRetries < 0 ||
+      !Number.isFinite(limits.maxSessionUSD) || limits.maxSessionUSD <= 0 ||
+      !validUsage(session.charged) ||
+      !Number.isSafeInteger(session.attempts) || session.attempts < 0) {
+    throw new Error("Invalid budget configuration or session ledger");
+  }
 
-    func checkBudget() -> Bool {
-        if totalTokensUsed > config.maxInputTokens {
-            transition(to: .failed(AgentError.budgetExceeded))
-            return false
-        }
-        return true
+  for (const attempt of candidates.slice(0, limits.maxRetries + 1)) {
+    const bound = attempt.bound;
+    const charged = session.charged;
+    if (session.stopped || !validUsage(bound) ||
+        bound.outputTokens < limits.outputTokenCap ||
+        session.attempts >= limits.maxAttempts ||
+        charged.inputTokens + charged.outputTokens +
+          bound.inputTokens + bound.outputTokens > limits.maxSessionTokens ||
+        charged.usd + bound.usd > limits.maxSessionUSD) {
+      session.stopped = true;
+      throw new Error("No budget for another paid attempt");
     }
+
+    session.charged = {
+      inputTokens: charged.inputTokens + bound.inputTokens,
+      outputTokens: charged.outputTokens + bound.outputTokens,
+      usd: charged.usd + bound.usd,
+    };
+    session.attempts += 1;
+    let result: AttemptResult;
+    try {
+      result = await attempt.call(limits.outputTokenCap);
+    } catch (error) {
+      session.stopped = true;
+      throw error;
+    }
+    const actual = result.usage;
+    if (!actual || !validUsage(actual)) {
+      session.stopped = true;
+      throw new Error("Unknown billing; retain the reservation and reconcile");
+    }
+    session.charged = {
+      inputTokens: charged.inputTokens + actual.inputTokens,
+      outputTokens: charged.outputTokens + actual.outputTokens,
+      usd: charged.usd + actual.usd,
+    };
+    if (actual.inputTokens > bound.inputTokens ||
+        actual.outputTokens > bound.outputTokens || actual.usd > bound.usd) {
+      session.stopped = true;
+      throw new Error("Attempt exceeded its reserved bound");
+    }
+    if (result.status === "complete") return result.text;
+    if (result.status !== "retryable-failure") {
+      throw new Error(`Attempt ${result.status}; revise the request before retrying`);
+    }
+  }
+  throw new Error("No successful attempt within the retry limit");
 }
 ```
+
+Keep the same session ledger across turns and provider fallbacks. Count actual input and output tokens and charges for failed attempts too. Serialize access to the ledger; persist reservations before dispatch and settlements before another attempt. A client timeout leaves remote billing unresolved, so retain the reservation and stop until reconciliation. Unknown or non-finite charges must never trigger provider fallback. A truncated attempt needs a revised plan or larger cap and a fresh budget check before retrying. Give optional shadow evaluations a separate budget and await or cancel them before returning the production result.
 
 ### Network-Aware Execution
 
 Defer heavy operations to WiFi:
 
-```swift
-class NetworkMonitor: ObservableObject {
-    @Published var isOnWiFi: Bool = false
-    @Published var isExpensive: Bool = false  // Cellular or hotspot
+Use an app-defined adapter for native connectivity state; TypeScript has no portable API for determining whether a mobile connection is metered.
 
-    private let monitor = NWPathMonitor()
+```typescript
+type NetworkState = { connected: boolean; metered: boolean | null };
+type NetworkMonitor = { current(): NetworkState };
 
-    func startMonitoring() {
-        monitor.pathUpdateHandler = { [weak self] path in
-            DispatchQueue.main.async {
-                self?.isOnWiFi = path.usesInterfaceType(.wifi)
-                self?.isExpensive = path.isExpensive
-            }
-        }
-        monitor.start(queue: .global())
-    }
-}
-
-class AgentOrchestrator {
-    @ObservedObject var network = NetworkMonitor()
-
-    func startResearchAgent(for book: Book) async {
-        if network.isExpensive {
-            // Warn user or defer
-            let proceed = await showAlert(
-                "Research uses data",
-                message: "This will use approximately 1-2 MB of cellular data. Continue?"
-            )
-            if !proceed { return }
-        }
-
-        // Proceed with research
-        await runAgent(ResearchAgent.create(book: book))
-    }
+async function startResearch(
+  network: NetworkMonitor,
+  confirmDataUse: () => Promise<boolean>,
+  runResearch: () => Promise<void>,
+): Promise<"completed" | "deferred"> {
+  const state = network.current();
+  if (!state.connected) return "deferred";
+  if (state.metered !== false && !await confirmDataUse()) return "deferred";
+  await runResearch();
+  return "completed";
 }
 ```
 
@@ -120,86 +170,105 @@ class AgentOrchestrator {
 
 Combine multiple small requests:
 
-```swift
+```typescript
 // BAD: Many small API calls
-for book in books {
-    await agent.chat("Summarize \(book.title)")
+for (const book of books) {
+  await agent.chat(`Summarize ${book.title}`);
 }
 
 // GOOD: Batch into one request
-let bookList = books.map { $0.title }.joined(separator: ", ")
-await agent.chat("Summarize each of these books briefly: \(bookList)")
+const bookList = books.map(book => book.title).join(", ");
+await agent.chat(`Summarize each of these books briefly: ${bookList}`);
 ```
 
 ### Caching
 
 Cache expensive operations:
 
-```swift
+```typescript
+type SearchRequest = {
+  userId: string;
+  workspaceId: string;
+  bookId: string;
+  query: string;
+  limit: number;
+  source: string;
+};
+type Research = { summary: string };
+
 class ResearchCache {
-    private var cache: [String: CachedResearch] = [:]
+  private entries = new Map<string, { research: Research; timestamp: number }>();
 
-    func getCachedResearch(for bookId: String) -> CachedResearch? {
-        guard let cached = cache[bookId] else { return nil }
+  private key(request: SearchRequest): string {
+    return JSON.stringify([
+      request.userId, request.workspaceId, request.bookId,
+      request.query, request.limit, request.source,
+    ]);
+  }
 
-        // Expire after 24 hours
-        if Date().timeIntervalSince(cached.timestamp) > 86400 {
-            cache.removeValue(forKey: bookId)
-            return nil
-        }
-
-        return cached
+  get(request: SearchRequest, now = Date.now()): Research | undefined {
+    const key = this.key(request);
+    const cached = this.entries.get(key);
+    if (!cached) return undefined;
+    if (now - cached.timestamp >= 86400_000) {
+      this.entries.delete(key);
+      return undefined;
     }
+    return structuredClone(cached.research);
+  }
 
-    func cacheResearch(_ research: Research, for bookId: String) {
-        cache[bookId] = CachedResearch(
-            research: research,
-            timestamp: Date()
-        )
-    }
+  set(request: SearchRequest, research: Research, now = Date.now()): void {
+    this.entries.set(this.key(request), {
+      research: structuredClone(research), timestamp: now,
+    });
+  }
 }
 
-// In research tool
-tool("web_search", async ({ query, bookId }) => {
-    // Check cache first
-    if let cached = cache.getCachedResearch(for: bookId) {
-        return ToolResult(text: cached.research.summary, cached: true)
-    }
-
-    // Otherwise, perform search
-    let results = await webSearch(query)
-    cache.cacheResearch(results, for: bookId)
-    return ToolResult(text: results.summary)
-})
+async function cachedSearch(
+  request: SearchRequest,
+  cache: ResearchCache,
+  webSearch: (request: SearchRequest) => Promise<Research>,
+): Promise<Research> {
+  const cached = cache.get(request);
+  if (cached !== undefined) return cached;
+  const research = await webSearch(request);
+  cache.set(request, research);
+  return research;
+}
 ```
+
+Authorize the current user and workspace before looking up cached results. Include every option that changes search results in the cache key; invalidate cached content when its access grant changes.
 
 ### Cost Visibility
 
 Show users what they're spending:
 
-```swift
-struct AgentCostView: View {
-    @ObservedObject var session: AgentSession
+Build a framework-independent view model, then render it with the app's UI components. Keep unresolved reservations distinct from confirmed usage.
 
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Session Stats")
-                .font(.headline)
+```typescript
+type SessionStats = {
+  turns: number;
+  inputTokens: number;
+  outputTokens: number;
+  estimatedUSD: number | null;
+  billingPending: boolean;
+};
 
-            HStack {
-                Label("\(session.turnCount) turns", systemImage: "arrow.2.squarepath")
-                Spacer()
-                Label(formatTokens(session.totalTokensUsed), systemImage: "text.word.spacing")
-            }
-
-            if let estimatedCost = session.estimatedCost {
-                Text("Est. cost: \(estimatedCost, format: .currency(code: "USD"))")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-        }
-    }
+function costLabels(stats: SessionStats, locale: string): string[] {
+  const count = new Intl.NumberFormat(locale);
+  const currency = new Intl.NumberFormat(locale, {
+    style: "currency", currency: "USD",
+  });
+  const labels = [
+    `${count.format(stats.turns)} turns`,
+    `${count.format(stats.inputTokens)} input tokens`,
+    `${count.format(stats.outputTokens)} output tokens`,
+  ];
+  if (stats.estimatedUSD !== null) {
+    labels.push(`Est. cost: ${currency.format(stats.estimatedUSD)}`);
+  }
+  if (stats.billingPending) labels.push("Billing reconciliation pending");
+  return labels;
 }
 ```
 </cost_awareness>
-

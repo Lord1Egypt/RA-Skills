@@ -1,44 +1,57 @@
-## Description: <br>
-Provides Chinese-language guidance for installing and using Tailscale, a WireGuard-based VPN for secure remote access, device networking, subnet routing, exit nodes, and ACLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and users through Tailscale setup and secure virtual networking for remote access, home office use, server management, and encrypted device-to-device connectivity.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers, IT administrators, and remote workers use this skill to set up Tailscale clients and configure secure access to devices, servers, and private networks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tailscale installation and setup changes system networking, can require administrator privileges, and may run a background service. <br>
-Mitigation: Verify official Tailscale sources before installing and prefer a trusted package manager when available. <br>
-Risk: Subnet routes, sharing, and exit nodes can expose or route network access if configured too broadly. <br>
-Mitigation: Review ACLs, route approvals, sharing settings, and exit-node configuration before enabling broad network access. <br>
+## Use Case:
 
+Developers, administrators, and technical users use this skill to install Tailscale clients, connect devices into a private WireGuard-based network, configure ACLs, and apply subnet routing or exit-node patterns for remote access.
 
-## Reference(s): <br>
-- [Tailscale official site](https://tailscale.com) <br>
-- [Tailscale Windows download](https://tailscale.com/download/windows) <br>
-- [Tailscale Linux install script](https://tailscale.com/install.sh) <br>
-- [Tailscale ACL admin page](https://login.tailscale.com/admin/acls) <br>
-- [ClawHub skill page](https://clawhub.ai/smseow001/tailscale-vpn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with command snippets and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language setup and troubleshooting guidance for Tailscale VPN usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Installer and privileged networking commands can change software or network state on a real workstation or server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer official signed package-manager installation steps, review commands before execution, and run sudo commands only on the intended host.
+
+Risk: Broad ACLs, subnet routes, exit nodes, or shared access can unintentionally expose devices or networks.
+
+Mitigation: Scope ACLs, advertised routes, exit nodes, and shared access narrowly, and verify access in the Tailscale admin console.
+
+## Reference(s):
+
+- [Tailscale](https://tailscale.com)
+- [Tailscale Login](https://login.tailscale.com)
+- [Tailscale for Windows](https://tailscale.com/download/windows)
+- [Tailscale Linux Install Script](https://tailscale.com/install.sh)
+- [Tailscale ACL Admin](https://login.tailscale.com/admin/acls)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell, PowerShell, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes privileged networking and installer commands that require local review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

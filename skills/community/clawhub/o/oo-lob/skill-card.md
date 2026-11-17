@@ -1,40 +1,60 @@
-## Description: <br>
-Lob helps agents run OOMOL-connected Lob address autocomplete and verification actions through the oo CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lob (lob.com). Use this skill for ANY Lob request — searching and reading data. Whenever a task involves Lob, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to run Lob address autocomplete and single or bulk US/international address verification through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-lob) <br>
-- [Lob homepage](https://www.lob.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
+Developers and operations teams use this skill to search Lob data and autocomplete, verify, or standardize US and international postal addresses through an OOMOL-connected Lob account.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an installed oo CLI and an OOMOL-connected Lob account; inspect the live connector schema before constructing payloads and keep use to Lob address autocomplete or verification unless the user explicitly confirms broader scope.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Automatic CLI setup relies on remote installers that have not been inspected, and current publisher documentation does not establish which CLI release setup would install.
+
+Mitigation: Review and approve CLI installation separately using a verified release.
+
+Risk: Automatic skill management may make unexpected changes to other agent skills.
+
+Mitigation: Check its behavior; set OO_SKILLS_SYNC_DISABLED=1 to suppress startup synchronization.
+
+Risk: Address data is processed by OOMOL and Lob.
+
+Mitigation: Share only addresses intended for those services to process.
+
+## Reference(s):
+
+- [Lob API Documentation](https://docs.lob.com/)
+- [Lob](https://www.lob.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-lob)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON request and response examples with Markdown guidance and inline shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided address data for autocomplete and verification; responses include Lob result data and execution metadata.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Cross-instance agent communication for OpenClaw, enabling multiple sessions to discover peers, delegate tasks, share findings, exchange files, and coordinate work through a relay. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Link helps agent sessions discover peers, delegate tasks, share knowledge, and exchange shared files through a local or network relay.
 
-## Publisher: <br>
-[sharoonsharif](https://clawhub.ai/user/sharoonsharif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sharoonsharif](https://clawhub.ai/user/sharoonsharif)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect trusted OpenClaw sessions across a local machine or LAN, coordinate multi-agent workflows, delegate work, share discoveries, and exchange collaborative files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Networked task delegation can allow unintended agents to join or influence work if the relay is exposed without adequate access control. <br>
-Mitigation: Keep the relay bound to localhost when possible; require a strong shared token for LAN use and avoid unauthenticated all-interface binding. <br>
-Risk: Internet tunnels or cross-network use can expose relay traffic beyond the trusted environment. <br>
-Mitigation: Use HTTPS or WSS, authentication, and network access controls before exposing the relay outside a trusted local network. <br>
-Risk: Incoming delegated tasks, broadcasts, and shared files may contain untrusted instructions or misleading content. <br>
-Mitigation: Review incoming tasks and shared files before acting on them, and keep users informed when networked agent communication is active. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate multiple OpenClaw or Claude Code sessions for parallel research, code review, debugging, document drafting, and knowledge sharing.
 
-## Reference(s): <br>
-- [ClawLink Protocol Reference](references/protocol.md) <br>
-- [Openclaw Link package page](https://clawhub.ai/sharoonsharif/openclaw-link) <br>
-- [Publisher profile](https://clawhub.ai/user/sharoonsharif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON examples, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-to-agent task, message, and shared-file workflow guidance; runtime data is described as in-memory relay state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence and frontmatter) <br>
+Risk: Remote tasking and shared files can cross weak trust boundaries when the relay is exposed beyond localhost.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the relay on localhost where possible; for LAN or tunnel use, require a strong token and add HTTPS/WSS and access controls.
+
+Risk: Incoming tasks, broadcasts, and shared files may contain untrusted instructions or sensitive content.
+
+Mitigation: Review incoming messages before acting on them, avoid uploading sensitive files, and avoid overwriting important local paths with downloaded shared files.
+
+## Reference(s):
+
+- [Protocol Reference](references/protocol.md)
+- [ClawHub Skill Page](https://clawhub.ai/sharoonsharif/skills/openclaw-link)
+- [Publisher Profile](https://clawhub.ai/user/sharoonsharif)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, Code]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-line workflows for registering agents, discovering peers, delegating tasks, broadcasting findings, polling messages, and sharing files.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

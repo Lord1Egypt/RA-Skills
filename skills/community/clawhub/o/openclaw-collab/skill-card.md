@@ -1,38 +1,52 @@
-## Description: <br>
-Hermes 与本地 OpenClaw 协同工作 — 模型互调、记忆共享、任务分工 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates Hermes with a local OpenClaw setup for model calls, shared memory, direct task dispatch, and release handoff.
 
-## Publisher: <br>
-[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fish1981bimmer](https://clawhub.ai/user/fish1981bimmer)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to coordinate Hermes and OpenClaw on a trusted local machine, including model queries, memory handoff through memory/collab, task routing, and ClawHub release requests.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill describes broad cross-agent memory access and persistent task dispatch.
+
+Mitigation: Install only in a trusted local Hermes/OpenClaw setup, limit use to explicit user-approved collaboration tasks, and keep messages inside memory/collab where possible.
+
+Risk: Diagnostic JSON output or delegated publishing could expose sensitive context or publish unintended release details.
+
+Mitigation: Avoid exposing --json diagnostic output and review the exact skill path, release metadata, and publishing request before delegating release work.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate Hermes with a local OpenClaw workspace for model calls, shared memory, task delegation, and ClawHub publishing handoff. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables broad persistent workspace state sharing and delegated publishing authority between Hermes and OpenClaw. <br>
-Mitigation: Install only for intentional collaboration workflows, inspect referenced local scripts first, restrict writes to a dedicated collaboration folder, and require explicit human approval before publishing or sending tasks that can change accounts, files, or public content. <br>
+**Output Format:** [Markdown with inline shell command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fish1981bimmer/openclaw-collab) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local command examples for OpenClaw and Hermes collaboration workflows.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

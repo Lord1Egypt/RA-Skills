@@ -1,41 +1,56 @@
-## Description: <br>
-Operate Langbase through an OOMOL-connected account with schema-first oo CLI connector commands for memory actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Langbase to read, create, update, and delete data through the connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Langbase memories through an OOMOL-connected oo CLI account, including schema inspection and create, list, retrieve, and delete actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a Langbase account through OOMOL using sensitive credentials managed outside the prompt. <br>
-Mitigation: Install it only for the intended Langbase account, verify the oo CLI before use, and confirm the active OOMOL connection before running account operations. <br>
-Risk: Write and destructive connector actions can create or delete Langbase memories. <br>
-Mitigation: Require explicit user confirmation of the exact action, target, payload, and expected effect before running write or destructive actions. <br>
+## Use Case:
 
+Developers and agent operators use this skill to manage Langbase memories through their connected account, including retrieving information and creating or deleting memories.
 
-## Reference(s): <br>
-- [Langbase homepage](https://langbase.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON payload or response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may execute Langbase connector actions through the user's OOMOL-connected account.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and skill frontmatter) <br>
+Risk: Automatic setup can execute changing remote code and introduce broader changes to agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review dependency setup, prefer a reviewed CLI release, and set OO_SKILLS_SYNC_DISABLED=1 if startup skill synchronization is unwanted.
+
+Risk: The connected account can be used to change or delete Langbase data.
+
+Mitigation: Use appropriately scoped credentials and retain the skill's user approval requirements for writes and explicit approval for deletions.
+
+## Reference(s):
+
+- [Langbase API documentation](https://langbase.com/docs/api-reference)
+- [Langbase](https://langbase.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON action results with concise task guidance and oo CLI shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action inputs follow the live connector schema; writes require user confirmation and deletions require explicit approval.]
+
+## Skill Version(s):
+
+1.0.5 (source: release evidence, frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

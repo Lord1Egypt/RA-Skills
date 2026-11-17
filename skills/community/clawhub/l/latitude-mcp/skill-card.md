@@ -1,42 +1,51 @@
-## Description: <br>
-Connect OpenClaw to the Latitude MCP server so the agent can read and manage your Latitude workspace, including projects, traces, spans, issues, annotations, scores, saved searches, datasets, monitors, and members. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to the Latitude MCP server so the agent can read and manage Latitude workspace resources such as projects, traces, spans, issues, annotations, scores, saved searches, datasets, monitors, and members.
 
-## Publisher: <br>
-[latitude](https://clawhub.ai/user/latitude) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[latitude](https://clawhub.ai/user/latitude)
 
-## Use Case: <br>
-Developers and teams using OpenClaw use this skill to connect an agent to a Latitude workspace through Latitude's OAuth-authenticated remote MCP server. It helps the agent query and manage observability and evaluation resources such as traces, spans, issues, annotations, scores, datasets, monitors, and members. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected agent can access sensitive Latitude workspace resources, including projects, traces, spans, issues, annotations, scores, datasets, monitors, members, and API keys. <br>
-Mitigation: Authorize only the intended Latitude organization, revoke OAuth access when it is no longer needed, and apply least-privilege access where Latitude supports it. <br>
-Risk: The remote MCP server can expose high-impact management tools to the agent. <br>
-Mitigation: Review the exposed tools before use, apply OpenClaw tool filters, and require explicit approval for member management, API key access, and other high-impact actions. <br>
+## Use Case:
 
+Developers and teams using Latitude use this skill to add Latitude as an OAuth-authenticated remote MCP server in OpenClaw. It helps agents query and manage observability and evaluation resources in an authorized Latitude workspace.
 
-## Reference(s): <br>
-- [Latitude MCP documentation](https://docs.latitude.so/getting-started/mcp) <br>
-- [Latitude](https://latitude.so) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides OpenClaw MCP setup, OAuth login, verification, logout, self-hosting, and tool-filter guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: OAuth-backed access may allow an agent to read or manage sensitive Latitude workspace resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the least-privileged Latitude account or organization available, inspect exposed tools with the probe command, add a toolFilter for routine use, and revoke or logout when access is no longer needed.
+
+## Reference(s):
+
+- [Latitude MCP documentation](https://docs.latitude.so/getting-started/mcp)
+- [Latitude](https://latitude.so)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes OAuth setup, connection probing, logout, self-hosted URL, and tool filtering guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact/SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

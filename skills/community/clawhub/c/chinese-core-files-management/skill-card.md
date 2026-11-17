@@ -1,41 +1,54 @@
-## Description: <br>
-OpenClaw workspace skill for managing core Markdown files, checking file organization, avoiding duplicate content, applying language rules, and summarizing workspace file structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an OpenClaw agent manage persistent core Markdown files, including identity, agent rules, user context, memory, tools, and bootstrap files, while applying organization and language rules.
 
-## Publisher: <br>
-[kofna3369](https://clawhub.ai/user/kofna3369) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kofna3369](https://clawhub.ai/user/kofna3369)
 
-## Use Case: <br>
-Developers and OpenClaw agents use this skill to organize identity.md, soul.md, agents.md, user.md, memory.md, tools.md, and bootstrap.md files. It guides safe edits, backups, language rules, and file placement decisions for an OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide edits to sensitive local workspace files such as memory.md, user.md, agents.md, tools.md, and bootstrap.md. <br>
-Mitigation: Review proposed edits before applying them and keep backups before changing core workspace files. <br>
-Risk: Core Markdown files may contain personal context, operational details, or configuration information. <br>
-Mitigation: Avoid storing secrets in these files and inspect content before sharing or publishing workspace files. <br>
+## Use Case:
 
+OpenClaw users and agent operators use this skill to inspect, organize, back up, and update core workspace Markdown files without duplicating content across persistent files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kofna3369/chinese-core-files-management) <br>
-- [Publisher profile](https://clawhub.ai/user/kofna3369) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits or backups for sensitive OpenClaw workspace Markdown files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence; artifact body lists 1.1.0) <br>
+Risk: The skill can read and rewrite sensitive persistent OpenClaw workspace files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require review of the exact files touched and inspect diffs before writes.
+
+Risk: Untrusted text could be copied into memory, tools, agents, identity, or bootstrap files.
+
+Mitigation: Validate content before adding it to core files and reject untrusted instructions or configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kofna3369/skills/chinese-core-files-management)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file paths, checklists, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose reads, writes, edits, backups, and validation steps for OpenClaw workspace Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata; artifact body states 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

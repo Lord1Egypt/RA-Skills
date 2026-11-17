@@ -1,42 +1,60 @@
-## Description: <br>
-Query verified phone numbers and email addresses from LinkedIn profile URLs using LeadContact API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query verified phone numbers and email addresses from LinkedIn profile URLs using the LeadContact API.
 
-## Publisher: <br>
-[zhyswan](https://clawhub.ai/user/zhyswan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhyswan](https://clawhub.ai/user/zhyswan)
 
-## Use Case: <br>
-Sales, recruiting, and CRM operators can use this skill to enrich LinkedIn profile URLs with phone and email data through the LeadContact API when they have a legitimate, compliant basis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can look up people's phone numbers and email addresses from LinkedIn profiles without clear consent or lawful-use guardrails. <br>
-Mitigation: Use it only for legitimate, compliant enrichment workflows, avoid bulk or automated lookup without a clear legal basis, and verify outreach complies with privacy, anti-spam, and platform rules. <br>
-Risk: LeadContact API tokens and returned contact data are sensitive. <br>
-Mitigation: Store the API token in the platform credential store, never expose it in client-side code, and restrict access to returned contact data. <br>
+## Use Case:
 
+External users and developers use this skill to enrich sales, recruiting, or CRM workflows by requesting phone numbers or email addresses for LinkedIn profile URLs through LeadContact.
 
-## Reference(s): <br>
-- [ClawHub LeadContact Listing](https://clawhub.ai/zhyswan/leadcontact) <br>
-- [LeadContact Website](https://leadcontact.ai) <br>
-- [LeadContact Privacy Policy](https://leadcontact.ai/zh-CN/privacy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with API request examples and code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a LeadContact API token and LinkedIn profile URLs as inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: LinkedIn profile URLs and returned phone or email data are privacy-sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with authorization and a lawful basis, and protect returned contact data.
+
+Risk: The LeadContact API token could be exposed if embedded in client-side code or logs.
+
+Mitigation: Store LEADCONTACT_API_TOKEN securely and avoid printing or committing it.
+
+Risk: Automated lookup workflows can exceed expected service use or policy limits.
+
+Mitigation: Validate LinkedIn profile URLs before requests and respect the documented rate limit.
+
+## Reference(s):
+
+- [LeadContact homepage](https://leadcontact.ai)
+- [LeadContact privacy policy](https://leadcontact.ai/zh-CN/privacy)
+- [ClawHub skill page](https://clawhub.ai/zhyswan/skills/leadcontact)
+- [Publisher profile](https://clawhub.ai/user/zhyswan)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JavaScript, Python, and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LEADCONTACT_API_TOKEN; API responses may include personal phone numbers or email addresses.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,14 @@
+name: govproc-policy-enactor
+slug: govproc-policy-enactor
+display_name: 政采政策红利落实引擎（采购人版）
+emoji: "🎯"
+version: 1.1.1
+version_stage: GA
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: '采购人/采购代理机构编制政府采购文件时，合法落实中小企业扶持、绿色采购、特殊群体视同等政策红利，输出可直接粘贴的条款模板与合规红线。'
+changelog:
+  - "1.0.0 初版：政策红利落实引擎 + 联合体分包 + 行业绑定(GB/T 4754-2017) + 19号时效性校验 + 强制节能(财库〔2019〕9号) + 审查三原则 + 决策树 + 双法交叉显式判定 + 降级策略"
+  - "1.1.0 迭代：①新增文档完整性预检（需求书缺政策章节≠项目无政策）②专门面向显式标注「不触发价格扣除」与价格扣除路径互斥③KB随机三文件回归测试6/6通过"
+  - "1.1.1 合规：移除 manifest feedback 块与 README/SKILL 中外部渠道引流表述（SkillHub 审核拦截），改为平台内通用反馈渠道，保留署名"

@@ -2,7 +2,7 @@
 name: code-communities
 description: |
   Detects architectural clusters and coupling boundaries via community detection on the code graph
-version: 1.9.8
+version: 1.10.3
 triggers:
   - identifying module groupings or refactoring targets
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/cartograph", "emoji": "\ud83e\udd9e"}}
@@ -10,13 +10,19 @@ source: claude-night-market
 source_plugin: cartograph
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/cartograph](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Code Community Detection
 
 Identify architectural clusters and module boundaries
 in the codebase.
+
+## When NOT To Use
+
+- One module's imports (use `cartograph:dependency-graph`)
+- Rendering an architecture already decided (use
+  `cartograph:architecture-diagram`)
 
 ## Prerequisites
 
@@ -111,3 +117,16 @@ file-based grouping otherwise.
 | IMPORTS_FROM | 0.5 |
 | TESTED_BY | 0.4 |
 | CONTAINS | 0.3 |
+
+## Exit Criteria
+
+- [ ] Community table rendered with columns Community, Nodes, Cohesion,
+      and Description for each detected cluster
+- [ ] Coupling warning surfaced for any pair of communities with more
+      than 10 cross-boundary edges, labelled with severity
+- [ ] Mermaid `flowchart TB` generated with one `subgraph` per community
+      showing cohesion score in the subgraph label
+- [ ] Improvement suggestions provided for any community with cohesion
+      < 0.5 or coupling > 20 cross-community edges
+- [ ] If gauntlet is not installed, directory-structure fallback runs and
+      absence of graph data is stated to the user

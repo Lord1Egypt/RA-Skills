@@ -1,0 +1,47 @@
+{
+  "video": "water.mp4",
+  "bytes": 144693398,
+  "duration": 223.833,
+  "size": "1920x1080",
+  "is_short": false,
+  "title": "How Much Water Is on Earth? Only 0.01% Is in Lakes and Rivers",
+  "title_chars": 61,
+  "description_bytes": 739,
+  "tags_chars": 187,
+  "chapters": [
+    [
+      "0:00",
+      "How much water is on Earth"
+    ],
+    [
+      "0:48",
+      "Oceans hold 96.5%"
+    ],
+    [
+      "1:11",
+      "Fresh water, half of it frozen"
+    ],
+    [
+      "1:29",
+      "Groundwater and aquifers"
+    ],
+    [
+      "1:58",
+      "The last 0.1%"
+    ],
+    [
+      "2:33",
+      "How the water cycle moves it"
+    ],
+    [
+      "3:04",
+      "Satellites tracking Earth's water"
+    ]
+  ],
+  "category_id": 27,
+  "captions": "captions.srt",
+  "warnings": [],
+  "notes": [
+    "Captions came from an existing subtitle file; word timing is estimated."
+  ]
+}

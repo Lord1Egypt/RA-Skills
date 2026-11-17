@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "OwlCodaRunKitProfilesV1",
+  "profiles": [
+    {
+      "id": "focused",
+      "paths": ["src/**"]
+    }
+  ]
+}

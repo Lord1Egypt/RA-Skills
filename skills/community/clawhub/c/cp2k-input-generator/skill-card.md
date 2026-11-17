@@ -1,42 +1,58 @@
-## Description: <br>
-Generates CP2K input files (.inp) for quantum chemistry calculations from structure files or CP2K outputs, covering calculation types such as energy, geometry optimization, molecular dynamics, frequency analysis, NEB, and methods including DFT, QMMM, and MM. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates CP2K input files (.inp) for quantum chemistry calculations from structural files or CP2K outputs, covering workflows such as energy calculations, geometry optimization, molecular dynamics, frequency analysis, NEB, DFT, QMMM, and MM.
 
-## Publisher: <br>
-[sirutong](https://clawhub.ai/user/sirutong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sirutong](https://clawhub.ai/user/sirutong)
 
-## Use Case: <br>
-Developers, computational chemists, and materials researchers use this skill to create CP2K input files from molecular or crystal structures and requested simulation settings. It helps select CP2K sections and parameters for supported workflows such as single-point energy, optimization, molecular dynamics, frequency analysis, NEB, DOS, band structure, and QMMM. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary and guidance appear inconsistent with the CP2K skill content. <br>
-Mitigation: Use evidence.security as the authoritative scan result, but verify the publisher, version, and release package before deployment when provenance matters. <br>
-Risk: Generated CP2K inputs may contain unsuitable simulation parameters for a specific system. <br>
-Mitigation: Review generated input files against CP2K documentation and validate parameters such as charge, multiplicity, cutoff, basis set, periodicity, and k-points before running calculations. <br>
+## Use Case:
 
+Developers and computational chemistry researchers use this skill to generate and review CP2K .inp files from structure files, CP2K outputs, and calculation requirements.
 
-## Reference(s): <br>
-- [CP2K Input Reference](references/cp2k_input_reference.md) <br>
-- [CP2K Official Documentation](https://www.cp2k.org/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/sirutong/cp2k-input-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CP2K input code blocks, optional shell commands, and generated .inp file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a CP2K input file such as function.inp when the agent has file-write access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: An existing .inp file could be overwritten when the skill or bundled script writes to the requested output path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the output path before writing and preserve original structure and input files.
+
+Risk: Advanced workflows such as NEB, frequency analysis, QMMM, MM, or CP2K-output reuse may need manual completion or correction.
+
+Mitigation: Review generated sections and parameters against CP2K documentation and trusted examples before running production calculations.
+
+Risk: Automatically selected basis sets, cutoffs, k-points, and SCF settings may not match the desired scientific accuracy or resource budget.
+
+Mitigation: Validate parameter choices and resource estimates for the specific system before submitting the CP2K job.
+
+## Reference(s):
+
+- [CP2K Input Reference](references/cp2k_input_reference.md)
+- [CP2K Official Documentation](https://www.cp2k.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Files, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [CP2K .inp configuration text, often presented in Markdown with shell commands or written as an .inp file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a CP2K .inp file when an output path is specified; generated inputs should be reviewed before running CP2K.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, README changelog dated 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

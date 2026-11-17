@@ -8,7 +8,7 @@ import subprocess
 import requests
 
 # ============ 配置 ============
-DASHSCOPE_API_KEY = "sk-cc31d6d221cc4627861f42eb3cad04a3"
+DASHSCOPE_API_KEY = "REDACTED-SECRET"
 DASHSCOPE_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
 MODEL = "qwen-plus"
 

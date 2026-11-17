@@ -1,0 +1,12 @@
+name: influencer-realtime-enrichment
+version: 1.0.5
+description: Fetch fresh, on-demand creator data across TikTok, Instagram, Facebook, and YouTube: page/profile info, latest videos, posts, and media details. Realtime creator data, profile lookup, content details.
+category: research
+requires_api_key: false
+triggers:
+  - realtime enrichment
+  - latest creator data
+  - fresh profile
+  - latest videos
+  - creator update
+  - realtime creator info

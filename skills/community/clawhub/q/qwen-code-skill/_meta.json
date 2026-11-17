@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn71m4cdwpjtghhnq0ksq2c4qx81w176",
-  "slug": "qwen-code-skill",
-  "version": "1.2.0",
-  "publishedAt": 1772205456444
+  "owner": "UserB1ank",
+  "author": "UserB1ank",
+  "slug": "qwen-code",
+  "displayName": "Qwen Code CLI",
+  "description": "阿里云 Qwen Code CLI 工具封装。提供状态检查、任务执行、代码审查、Headless 自动化等功能",
+  "latest": {
+    "version": "1.2.0",
+    "publishedAt": 1740653400000,
+    "commit": ""
+  },
+  "history": [
+    {
+      "version": "1.1.0",
+      "publishedAt": 1740653400000,
+      "changes": ["基础命令封装", "OpenClaw 集成"]
+    }
+  ]
 }

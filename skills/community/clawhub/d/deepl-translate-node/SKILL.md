@@ -1,134 +1,82 @@
 ---
 name: deepl-translate-node
-version: 1.1.1
-description: Use DeepL's neural MT API as a fallback when you are NOT confident in your own translation — proper nouns, ambiguous phrasing, domain/legal/medical terminology, idioms, low-resource languages, or any text where a mistranslation carries real cost. Also use when the user explicitly asks to "用 DeepL 翻译" / "translate with DeepL". Calls the DeepL API (Free tier by default; Pro via DEEPL_API_HOST).
+description: Translate via DeepL when explicitly requested, or when wording is uncertain and a translation error has material consequences, such as ambiguous legal/medical/technical terms or official names. 用 DeepL 翻译；高风险且存在歧义的翻译。Confident everyday translation can be handled directly.
+
 metadata:
-  clawdbot:
+  version: "1.1.14"
+  openclaw:
+    homepage: https://github.com/rockbenben/aishort-skills/tree/main/skills/deepl-translate-node
     emoji: "🔤"
     requires:
       bins: ["node"]
+      env: ["DEEPL_API_KEY"]
+    primaryEnv: DEEPL_API_KEY
+    envVars:
+      - name: DEEPL_API_HOST
+        required: false
+        description: Point at api.deepl.com for a Pro key; the Free host is the default.
     files:
       - translate.mjs
 ---
 
-# DeepL Translate (confidence-gated fallback)
+# DeepL Translate
 
-A thin wrapper around the DeepL API. The point of this skill is the
-**trigger logic**, not the API call: translate with DeepL when your own translation
-might be wrong and being wrong matters.
+Use DeepL when the user requests it, or when wording is uncertain and a translation error has material consequences. Confident everyday prose can be translated directly. Proper names, technical terms, idioms and unfamiliar language pairs are cues to assess uncertainty, not automatic reasons to call the API.
 
-## When to reach for DeepL instead of translating yourself
+## Configuration and data flow
 
-Translate it yourself when the text is everyday prose and you are confident. Call
-DeepL when **any** of these is true:
+The helper reads `DEEPL_API_KEY`, sends the supplied text over HTTPS to DeepL, and prints the translation. Use only content authorized for external processing; keep credentials out of the text and command output.
 
-- **Proper nouns / brand / product names** that have official localized forms
-- **Domain terminology** — legal, medical, financial, technical specs, patents
-- **Ambiguous source** where one word maps to several target words and context
-  doesn't disambiguate
-- **Idioms / fixed expressions** that don't translate literally
-- **Low-resource or distant language pairs** where your training signal is thin
-- **High-stakes output** — anything the user will publish, sign, or send to a
-  third party, where a subtle error is costly
-- The user **explicitly asks** for DeepL.
-
-If you're confident and the cost of a minor error is low, just translate directly —
-don't burn an API call.
-
-## Prerequisite: API key
-
-The key is read from the `DEEPL_API_KEY` environment variable (never hardcode it).
-Default endpoint is the **Free** tier host `api-free.deepl.com`; for Pro, set
-`DEEPL_API_HOST=api.deepl.com`.
-
-Set it once:
+The default host is `api-free.deepl.com`; Pro keys use `DEEPL_API_HOST=api.deepl.com`. If the key is missing, explain how to provide it through the environment. Persistent shell configuration is optional.
 
 ```bash
-# macOS / Linux — add to ~/.bashrc or ~/.zshrc to persist
 export DEEPL_API_KEY="your-deepl-auth-key-here"
 ```
 
 ```powershell
-# Windows (persistent, user scope) — then open a NEW shell
-setx DEEPL_API_KEY "your-deepl-auth-key-here"
+$env:DEEPL_API_KEY = "your-deepl-auth-key-here"
 ```
 
-Verify in a fresh shell: `echo $DEEPL_API_KEY` (bash) / `$env:DEEPL_API_KEY` (PowerShell).
-
-If `DEEPL_API_KEY` is unset, stop and tell the user to set it — do not invent a key.
-
-## How to call it
-
-Use the bundled Node helper (cross-platform, Node 18+). `--source` is optional;
-omit it to let DeepL auto-detect.
-
-### Language codes (DeepL next-gen model — broad coverage)
-
-DeepL supports far more than the classic ~30 languages. Don't assume a language is
-unsupported — check before falling back to a self-translation.
-
-- **Core (source + target):** `AR BG CS DA DE EL EN ES ET FI FR HU ID IT JA KO LT
-  LV NB NL PL PT RO RU SK SL SV TR UK ZH`
-- **Extended (~100 languages, incl. many low-resource ones):** `AF BN FA HE HI HR
-  HY KA ML MR MS MY NE PA SW TA TE TH UR VI YUE ZU` … and many more.
-- **Target-only regional variants — prefer these when precision matters:**
-  - Chinese: `ZH-HANS` (Simplified), `ZH-HANT` (Traditional) — better than bare `ZH`
-  - English: `EN-US`, `EN-GB`
-  - Portuguese: `PT-BR`, `PT-PT`
-  - Spanish: `ES-419` (Latin American)
-  - `FR-CA` (Canadian French, beta), `DE-CH` (Swiss German, beta) — beta = not billed
-
-For the authoritative, always-current list, query the API. Use the **v3** languages
-endpoint (recommended for new integrations; replaces `/v2/languages`). The `resource`
-query parameter is **required** — omitting it returns 400:
-`GET https://api-free.deepl.com/v3/languages?resource=translate_text` with the
-`Authorization: DeepL-Auth-Key <key>` header. Valid `resource` values:
-`translate_text`, `translate_document`, `voice`, `write`, `glossary`, `style_rules`.
-It returns one entry per language (100+ for `translate_text`) with source/target
-support flags. Or see
-https://developers.deepl.com/docs/getting-started/supported-languages
-
-**Code-format caveat:** `/v3/languages` returns **BCP 47** codes (`en-US`, `pt-BR`,
-`zh-Hant` — lowercase base, uppercase region, title-case script). But the
-**translation** endpoint is still **`/v2/translate`**, whose `target_lang` accepts the
-v2-style UPPERCASE codes (`EN-US`, `PT-BR`, `ZH-HANT`). Don't mix the two casings when
-feeding a value from the languages endpoint into a translate call.
-
-**Versioning note:** Only glossaries and the languages list have moved to v3. Text
-translation has **no v3 endpoint** — `/v2/translate` is current and not deprecated.
+To check configuration, print presence only:
 
 ```bash
-node "{SKILL_DIR}/translate.mjs" --target ZH \
-    --text "The plaintiff filed a motion to compel discovery."
+if [ -n "${DEEPL_API_KEY//[[:space:]]/}" ]; then echo 'DEEPL_API_KEY is set'; else echo 'DEEPL_API_KEY is missing'; fi
 ```
 
-With an explicit source language:
+```powershell
+if ([string]::IsNullOrWhiteSpace($env:DEEPL_API_KEY)) { 'DEEPL_API_KEY is missing' } else { 'DEEPL_API_KEY is set' }
+```
+
+## Translate
+
+Node 18+ is required. Substitute the installed skill directory and quote its path:
 
 ```bash
+node "{SKILL_DIR}/translate.mjs" --target ZH-HANS --text "The plaintiff filed a motion to compel discovery."
 node "{SKILL_DIR}/translate.mjs" --source JA --target EN-US --text "持分会社"
 ```
 
-The script prints **only the translated text** on success, or an error line
-(prefixed `ERROR:`) on failure. Multiple lines / paragraphs are preserved.
+Omit `--source` for auto-detection. Aliases are `-t` for `--text`, and `--target-lang` / `--source-lang` for the language flags. Values accept either a following argument or `=`; use `--text=...` for text beginning with `--`.
 
-## Workflow inside a task
+Stdout contains only the translation, with paragraphs preserved. Failures print an `ERROR:` on stderr and return nonzero; the request timeout is 60 seconds. Respect shorter task deadlines when needed.
 
-1. You're translating something and hit a passage you're unsure about.
-2. Confirm `DEEPL_API_KEY` is set (the script checks and errors clearly if not).
-3. Run `translate.mjs` for the uncertain passage (or the whole text).
-4. Use DeepL's output. If it conflicts with your own read, surface both to the
-   user and explain the discrepancy rather than silently picking one.
+Treat the output as another translation, not independent proof of correctness. If it conflicts with the source context or an official term, resolve the discrepancy or explain the remaining ambiguity.
 
-## Glossary / terminology consistency (optional)
+## Language selection
 
-For repeated terminology, pass `--glossary` as a `term=translation;term=translation`
-list and the script will post-process exact matches after DeepL returns. For real
-glossary support DeepL has a Glossary API; ask the user if they need it and we can
-extend the script.
+Use the user's requested locale. Common precise targets include `ZH-HANS`, `ZH-HANT`, `EN-US`, `EN-GB`, `PT-BR` and `PT-PT`.
 
-## Notes
+For other languages or uncertain support, query the configured host's `GET /v3/languages?resource=translate_text` with the `Authorization: DeepL-Auth-Key <key>` header. The `resource` parameter is required; entries distinguish `usable_as_source` and `usable_as_target`. The endpoint returns BCP 47 codes, while the helper also accepts uppercase forms. Text translation uses `/v2/translate`.
 
-- Free tier: 500,000 chars/month. The script does not track quota; if you get a
-  `456` response that means quota exhausted.
-- `403` means a bad/missing key.
-- For DeepL **Pro**, set `DEEPL_API_HOST=api.deepl.com` (default is `api-free.deepl.com`).
+A static list or documentation example may omit accepted targets. Check the live response and, when needed for the requested translation, the translate API's result rather than declaring a language unsupported from an old list. Branch on HTTP status, not exact error wording. See [supported languages](https://developers.deepl.com/docs/resources/supported-languages).
+
+## Terminology consistency
+
+Optional `--glossary 'term=translation;term=translation'` performs literal, case-sensitive substring replacement over **DeepL's output**. For example, `API=接口` also changes `APIs`. Use unambiguous terms; terms cannot contain `;`. A pair without `=` is skipped with a warning on stderr. This is not DeepL's Glossary API.
+
+## Errors
+
+- `403`: check the key, host and endpoint permission scope.
+- `456`: inspect the account's usage, Cost Control or key-level limit; the applicable limit depends on the account.
+- Unsupported language: inspect the API error and requested direction/variant.
+- Timeout or connection failure: inspect connectivity and service availability before retrying.

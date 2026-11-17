@@ -1,0 +1,95 @@
+{
+  "meta": {
+    "name": "双轨异界",
+    "tone_family": "isekai",
+    "tone_variant": "双时空博弈",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_yuan",
+      "name": "原轨大陆",
+      "summary": "原时空所在的世界：现代科技社会，东岸总署、浔海集团、和泓家属会在此运作。"
+    },
+    {
+      "id": "continent_xin",
+      "name": "新轨大陆",
+      "summary": "新时空所在的灵气世界：宗门与皇朝并立，两界渡在灵墟一侧开启，幽冥皇朝与之世仇。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_dongan",
+      "name": "东岸总署",
+      "continent": "continent_yuan",
+      "summary": "原时空追查并管控'非自然位移者'的国家安全机构，内部分裂为收容派与研究派。",
+      "tension_seeds": [
+        "总署内收容派与研究派争夺首位回归穿越者的处置权",
+        "总署对时空裂隙的保密令正被浔海集团渗透"
+      ]
+    },
+    {
+      "id": "nation_xunhai",
+      "name": "浔海集团",
+      "continent": "continent_yuan",
+      "summary": "原时空跨国技术集团，穿越者林深的旧雇主；表面配合总署，实则想独占穿越红利。",
+      "tension_seeds": [
+        "集团高层对是否激活林深穿越前留下的密钥意见分裂",
+        "浔海影子账户被总署研究派盯上，资本与体制的对赌濒临曝光"
+      ]
+    },
+    {
+      "id": "nation_hehong",
+      "name": "和泓家属会",
+      "continent": "continent_yuan",
+      "summary": "由穿越者林深的家人与挚友组成的民间网络，握有关键情感锚点，是林深两边都想回去的理由。",
+      "tension_seeds": [
+        "家属会内部对是否该劝林深彻底留在原时空出现分歧",
+        "和泓掌握的林深旧物中，一件在穿越后仍持续发热"
+      ]
+    },
+    {
+      "id": "nation_lingxu",
+      "name": "灵墟宗盟",
+      "continent": "continent_xin",
+      "summary": "新时空以灵气修炼立身的宗门联盟，宗主欲借'异界来客'林深打通两界、扩张影响力。",
+      "tension_seeds": [
+        "宗盟内护桥派与夺桥派就林深的处置权内斗",
+        "灵墟灵脉近年枯竭，宗盟急需外部灵气补给"
+      ]
+    },
+    {
+      "id": "nation_youming",
+      "name": "幽冥皇朝",
+      "continent": "continent_xin",
+      "summary": "新时空与灵墟世仇的皇朝，欲夺取两界渡以倾覆宗盟，并染指原时空。",
+      "tension_seeds": [
+        "幽冥皇子与宗主之女秘恋，两国世仇下暗流汹涌",
+        "幽冥灵潮暴涨，皇朝急需裂隙灵机镇压内乱"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_liangjie",
+    "name": "两界渡",
+    "continent": "continent_xin",
+    "summary": "横亘两时空的裂隙中转站：原时空追查者、资本、家属于此交汇，新时空两派亦在此角力，是两边都想控制又都不敢独占的真空地带。"
+  },
+  "faction_matrix": {
+    "nation_dongan|nation_xunhai": { "relation": -42, "note": "浔海想独占穿越红利，总署视其为保密令的最大漏洞，双方明面协作暗地防备。" },
+    "nation_hehong|nation_xunhai": { "relation": 12, "note": "浔海欲借家属会情感牌接近林深，家属会则警惕资本把亲人当作筹码。" },
+    "nation_lingxu|nation_xunhai": { "relation": 35, "note": "浔海通过两界渡探得灵墟存在，双方试探性接触，各怀交易算计。" },
+    "nation_xunhai|nation_youming": { "relation": -15, "note": "幽冥细作尚未真正进入原时空，浔海对其仅有模糊情报，敌意尚浅。" },
+    "nation_xunhai|port_liangjie": { "relation": 40, "note": "浔海是裂隙观测站的主要金主，渡口运转依赖其资金。" },
+    "nation_dongan|nation_hehong": { "relation": -28, "note": "总署以'保护'为名监控家属会，温知等人感到被当作人质。" },
+    "nation_dongan|nation_lingxu": { "relation": 3, "note": "总署对灵墟毫无认知，目前尚未直接接触，关系接近空值。" },
+    "nation_dongan|nation_youming": { "relation": -5, "note": "同理，总署尚不知幽冥存在，跨时空敌意暂未成形。" },
+    "nation_dongan|port_liangjie": { "relation": -18, "note": "总署把两界渡视为泄密源头，外勤在此高度戒备却无权封锁。" },
+    "nation_hehong|nation_lingxu": { "relation": 58, "note": "家属会通过旧物发热逆连灵墟，表面同盟共谋'兄可归'；裂缝在于灵墟要林深永作两界桥，温知并不知情。" },
+    "nation_hehong|nation_youming": { "relation": -22, "note": "幽冥将知晓林深存在的家属会标记为隐患，暗中介入其旧物调查。" },
+    "nation_hehong|port_liangjie": { "relation": 22, "note": "家属会借渡口向新时空递送家书与旧物，是少数能稳定用渡口的原时空民间力量。" },
+    "nation_lingxu|nation_youming": { "relation": -68, "note": "灵墟与幽冥世代为仇，两界渡的归属是两国不死不休的焦点。" },
+    "nation_lingxu|port_liangjie": { "relation": 15, "note": "渡口灵墟侧由宗盟守关，裂隙稳定与否系于宗盟一手。" },
+    "nation_youming|port_liangjie": { "relation": -55, "note": "幽冥视两界渡为必夺之地，细作长期潜伏渡口，与灵墟守军摩擦不断。" }
+  }
+}

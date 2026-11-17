@@ -1,47 +1,62 @@
-## Description: <br>
-Create CompleteTech LLC agentic development proposals, statements of work, discovery recaps, pilot recommendations, evaluation plans, risk/control plans, implementation roadmaps, acceptance criteria, change orders, retainer proposals, and procurement-ready scope summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create CompleteTech LLC agentic development proposals, statements of work, discovery recaps, pilot recommendations, evaluation plans, risk/control plans, implementation roadmaps, acceptance criteria, change orders, retainer proposals, and procurement-ready scope summaries.
 
-## Publisher: <br>
-[completetech](https://clawhub.ai/user/completetech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[completetech](https://clawhub.ai/user/completetech)
 
-## Use Case: <br>
-Employees, external consultants, and developers use this skill to turn verified discovery facts into buyer-facing proposal, SOW, roadmap, evaluation, risk-control, and procurement-ready scope documents for bounded agentic workflow services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated proposal, SOW, and commercial-scope documents may contain incorrect assumptions, pricing, legal terms, or client facts if inputs are incomplete. <br>
-Mitigation: Review each generated business document, replace placeholders with verified facts, and confirm scope, approvals, pricing, and legal terms before sending. <br>
-Risk: Local PDF and image rendering depends on Python packages such as reportlab, pypdfium2, and pillow. <br>
-Mitigation: Use a locked or reviewed Python environment when reproducibility or dependency hygiene matters. <br>
+## Use Case:
 
+External consultants, sales engineers, and delivery teams use this skill to turn verified discovery facts into buyer-facing proposals, SOW attachments, pilot recommendations, evaluation plans, risk/control plans, and procurement-ready scope summaries for bounded agentic workflow services.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/completetech/agentic-proposal-skill) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/completetech) <br>
-- [Project Homepage](https://github.com/CompleteTech-LLC/agentic-proposal-skill) <br>
-- [Proposal Catalog](references/proposal-catalog.md) <br>
-- [Proposal Lifecycle](references/proposal-lifecycle.md) <br>
-- [Proposal Positioning](references/proposal-positioning.md) <br>
-- [Use Case Decision Table](references/use-case-decision-table.md) <br>
-- [Template Index](references/template-index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown proposal drafts, PDF rendering commands, and structured drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated business documents should be reviewed and populated with verified client facts before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated proposals and SOW drafts may include placeholders, assumptions, pricing, acceptance criteria, or commercial terms that are incomplete or incorrect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and replace placeholders with verified client, scope, timeline, pricing, risk, approval, and acceptance details before sending or using the output as contract or invoice input.
+
+Risk: The local PDF/PNG renderer and quality validator rely on Python dependencies.
+
+Mitigation: Use a locked environment or pinned dependencies before running the renderer or validator for release-quality artifacts.
+
+Risk: Proposal language could overstate autonomy, regulated-use readiness, savings, legal claims, or client facts if the user supplies insufficient evidence.
+
+Mitigation: Keep humans in the loop for external communications, production changes, purchases, data export, and material business decisions, and use TBD or ask for facts instead of inventing proof or regulated-use assurances.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/completetech/skills/agentic-proposal-skill)
+- [Project Homepage](https://github.com/CompleteTech-LLC/agentic-proposal-skill)
+- [Proposal Positioning](artifact/references/proposal-positioning.md)
+- [Use-Case Decision Table](artifact/references/use-case-decision-table.md)
+- [Proposal Lifecycle](artifact/references/proposal-lifecycle.md)
+- [Template Index](artifact/references/template-index.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown proposal drafts with optional branded PDF or PNG rendering through local shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts may contain placeholders and commercial terms, and should be reviewed before they are sent or used as contract or invoice inputs.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

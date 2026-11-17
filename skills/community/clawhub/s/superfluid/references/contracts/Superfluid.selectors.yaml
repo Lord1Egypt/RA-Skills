@@ -1,63 +1,63 @@
 # Superfluid selectors — computed from @sfpro/sdk ABI
 
 functions:
-  ACL_SUPERAPP_REGISTRATION_ROLE():                      0x2368335a
-  addToAgreementClassesBitmap(uint256,bytes32):          0xbced3ddc
-  allowCompositeApp(address):                            0x57121e0c
-  APP_WHITE_LISTING_ENABLED():                           0x9d297e30
-  appCallbackPop(bytes,int256):                          0x989b0c3e
-  appCallbackPush(bytes,address,uint256,int256,address): 0x768fabb0
-  batchCall((uint32,address,bytes)[]):                   0x6ad3ca7d
-  callAgreement(address,bytes,bytes):                    0x39255d5b
-  callAgreementWithContext(address,bytes,bytes,bytes):   0x4329d293
-  callAppAction(address,bytes):                          0x1e855cf3
-  callAppActionWithContext(address,bytes,bytes):         0xba48b5f8
-  callAppAfterCallback(address,bytes,bool,bytes):        0x1e6d0a84
-  callAppBeforeCallback(address,bytes,bool,bytes):       0x74041e02
-  CALLBACK_GAS_LIMIT():                                  0x33d608f1
-  castrate():                                            0x9903ad38
-  changeSuperTokenAdmin(address,address):                0x0c565075
-  ctxUseCredit(bytes,int256):                            0x59a29141
-  decodeCtx(bytes):                                      0x3f6c923a
-  forwardBatchCall((uint32,address,bytes)[]):            0x670e77e3
-  getAgreementClass(bytes32):                            0xb6d200de
-  getAppCallbackLevel(address):                          0x9378fa13
-  getAppManifest(address):                               0xf9f522f4
-  getCodeAddress():                                      0x50d75d25
-  getERC2771Forwarder():                                 0x2ecfbda2
-  getGovernance():                                       0x289b3c0d
-  getNow():                                              0xbbe4fd50
-  getSimpleACL():                                        0x36b3e52d
-  getSuperTokenFactory():                                0x731aed6e
-  getSuperTokenFactoryLogic():                           0xf2e55caf
-  initialize(address):                                   0xc4d66de8
-  isAgreementClassListed(address):                       0x8ca48484
-  isAgreementTypeListed(bytes32):                        0xe8dccb7d
-  isApp(address):                                        0x3ca3ad4e
-  isAppJailed(address):                                  0x6b4f3335
-  isCompositeAppAllowed(address,address):                0xbb84cfa1
-  isCtxValid(bytes):                                     0xbf428734
-  isTrustedForwarder(address):                           0x572b6c05
-  jailApp(bytes,address,uint256):                        0xb724211e
-  mapAgreementClasses(uint256):                          0xc56a069d
-  MAX_APP_CALLBACK_LEVEL():                              0xbd3252c8
-  MAX_NUM_AGREEMENTS():                                  0x8ceddd7a
-  NON_UPGRADABLE_DEPLOYMENT():                           0xcd312ec4
-  proxiableUUID():                                       0x52d1902d
-  registerAgreementClass(address):                       0x15a024e1
-  registerApp(uint256):                                  0xad3915c8
-  registerApp(address,uint256):                          0xc60944a6
-  registerAppByFactory(address,uint256):                 0xf3733052
-  registerAppWithKey(uint256,string):                    0xbd1c448b
-  removeFromAgreementClassesBitmap(uint256,bytes32):     0xa5dbbbcd
-  replaceGovernance(address):                            0x7283100c
-  SIMPLE_FORWARDER():                                    0xf85263b9
-  updateAgreementClass(address):                         0x06cecba8
-  updateCode(address):                                   0x46951954
-  updatePoolBeaconLogic(address):                        0x2f89bf89
-  updateSuperTokenFactory(address):                      0x54fbc493
-  updateSuperTokenLogic(address,address):                0xfa6e0cfe
-  versionRecipient():                                    0x486ff0cd
+  ACL_SUPERAPP_REGISTRATION_ROLE():                        0x2368335a
+  addToAgreementClassesBitmap(uint256,bytes32):            0xbced3ddc
+  allowCompositeApp(address):                              0x57121e0c
+  APP_WHITE_LISTING_ENABLED():                             0x9d297e30
+  appCallbackPop(bytes,int256):                            0x989b0c3e
+  appCallbackPush(bytes,address,uint256,int256,address):   0x768fabb0
+  batchCall((uint32,address,bytes)[]):                     0x6ad3ca7d
+  callAgreement(address,bytes,bytes):                      0x39255d5b
+  callAgreementWithContext(address,bytes,bytes,bytes):     0x4329d293
+  callAppAction(address,bytes):                            0x1e855cf3
+  callAppActionWithContext(address,bytes,bytes):           0xba48b5f8
+  callAppAfterCallback(address,bytes,bool,bytes,uint256):  0xdb93aa53
+  callAppBeforeCallback(address,bytes,bool,bytes,uint256): 0x9444db93
+  CALLBACK_GAS_LIMIT():                                    0x33d608f1
+  castrate():                                              0x9903ad38
+  changeSuperTokenAdmin(address,address):                  0x0c565075
+  ctxUseCredit(bytes,int256):                              0x59a29141
+  decodeCtx(bytes):                                        0x3f6c923a
+  forwardBatchCall((uint32,address,bytes)[]):              0x670e77e3
+  getAgreementClass(bytes32):                              0xb6d200de
+  getAppCallbackLevel(address):                            0x9378fa13
+  getAppManifest(address):                                 0xf9f522f4
+  getCodeAddress():                                        0x50d75d25
+  getERC2771Forwarder():                                   0x2ecfbda2
+  getGovernance():                                         0x289b3c0d
+  getNow():                                                0xbbe4fd50
+  getSimpleACL():                                          0x36b3e52d
+  getSuperTokenFactory():                                  0x731aed6e
+  getSuperTokenFactoryLogic():                             0xf2e55caf
+  initialize(address):                                     0xc4d66de8
+  isAgreementClassListed(address):                         0x8ca48484
+  isAgreementTypeListed(bytes32):                          0xe8dccb7d
+  isApp(address):                                          0x3ca3ad4e
+  isAppJailed(address):                                    0x6b4f3335
+  isCompositeAppAllowed(address,address):                  0xbb84cfa1
+  isCtxValid(bytes):                                       0xbf428734
+  isTrustedForwarder(address):                             0x572b6c05
+  jailApp(bytes,address,uint256):                          0xb724211e
+  mapAgreementClasses(uint256):                            0xc56a069d
+  MAX_APP_CALLBACK_LEVEL():                                0xbd3252c8
+  MAX_NUM_AGREEMENTS():                                    0x8ceddd7a
+  NON_UPGRADABLE_DEPLOYMENT():                             0xcd312ec4
+  proxiableUUID():                                         0x52d1902d
+  registerAgreementClass(address):                         0x15a024e1
+  registerApp(uint256):                                    0xad3915c8
+  registerApp(address,uint256):                            0xc60944a6
+  registerAppByFactory(address,uint256):                   0xf3733052
+  registerAppWithKey(uint256,string):                      0xbd1c448b
+  removeFromAgreementClassesBitmap(uint256,bytes32):       0xa5dbbbcd
+  replaceGovernance(address):                              0x7283100c
+  SIMPLE_FORWARDER():                                      0xf85263b9
+  updateAgreementClass(address):                           0x06cecba8
+  updateCode(address):                                     0x46951954
+  updatePoolBeaconLogic(address):                          0x2f89bf89
+  updateSuperTokenFactory(address):                        0x54fbc493
+  updateSuperTokenLogic(address,address):                  0xfa6e0cfe
+  versionRecipient():                                      0x486ff0cd
 
 events:
   AgreementClassRegistered(bytes32,address): 0x878135063a6cfb3bc333e534b1fdc83f4f12221cad6705c31c0567048a8bd3d1
@@ -113,6 +113,7 @@ errors:
   HOST_AGREEMENT_IS_NOT_REGISTERED():                    0x1c9e9bea
   HOST_CALL_AGREEMENT_WITH_CTX_FROM_WRONG_ADDRESS():     0x0cd0ebc2
   HOST_CALL_APP_ACTION_WITH_CTX_FROM_WRONG_ADDRESS():    0x473f7bd4
+  HOST_CALLBACK_CONTEXT_TOO_LARGE():                     0x62a06f45
   HOST_CANNOT_DOWNGRADE_TO_NON_UPGRADEABLE():            0x474e7641
   HOST_INVALID_CONFIG_WORD():                            0xf4c802a4
   HOST_MAX_256_AGREEMENTS():                             0x7c281a78
@@ -134,10 +135,13 @@ errors:
   IDA_INDEX_DOES_NOT_EXIST():                            0xedeaa63b
   IDA_INDEX_SHOULD_GROW():                               0xcfdca725
   IDA_INSUFFICIENT_BALANCE():                            0x16e759bb
+  IDA_INVALID_MAX_NUM_SUBSCRIPTIONS():                   0xd88c9dfa
+  IDA_NEW_ACTIVITY_FROZEN():                             0xace0382a
   IDA_OPERATION_NOT_ALLOWED():                           0x92da6d17
   IDA_SUBSCRIPTION_ALREADY_APPROVED():                   0x3eb2f849
   IDA_SUBSCRIPTION_DOES_NOT_EXIST():                     0xb6c8c980
   IDA_SUBSCRIPTION_IS_NOT_APPROVED():                    0x37412573
+  IDA_TOO_MANY_SUBSCRIPTIONS():                          0x6db410ea
   IDA_ZERO_ADDRESS_SUBSCRIBER():                         0xc90a4674
   SafeCastOverflowedIntDowncast(uint8,int256):           0x327269a7
   SafeCastOverflowedIntToUint(int256):                   0xa8ce4432

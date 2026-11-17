@@ -1,41 +1,55 @@
-## Description: <br>
-Generates PowerPoint presentations from a title and body text, with optional HTML slide deck export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates PPTX slide decks, with an optional HTML presentation export, from a title and body text using python-pptx.
 
-## Publisher: <br>
-[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openclawzhangchong](https://clawhub.ai/user/openclawzhangchong)
 
-## Use Case: <br>
-Developers, employees, and external users can use this skill to turn plain text into simple .pptx presentations or browser-viewable HTML slide decks for personal, internal, or general presentation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may contact third-party font or CDN providers when opened. <br>
-Mitigation: Use the skill only when remote asset loading is acceptable, or prefer an offline/local-assets mode when available. <br>
-Risk: Choosing an existing output path may overwrite an important presentation or HTML file. <br>
-Mitigation: Use a fresh output filename or back up important files before generation. <br>
+## Use Case:
 
+Developers and content creators use this skill to turn structured title and paragraph text into PPTX slide decks for reports, briefings, or presentations. It can also produce browser-viewable HTML presentations when that output path is appropriate.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/html-ppt-zc) <br>
-- [jsDelivr SRI guidance](https://www.jsdelivr.com/using-sri-with-dynamic-files) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Presentation, HTML, Shell commands] <br>
-**Output Format:** [.pptx or HTML files generated from command-line arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and python-pptx; jinja2 is documented as optional for HTML export.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML presentations may be unsafe when built from untrusted text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer PPTX output for ordinary use and avoid opening or sharing generated HTML until input escaping is reviewed.
+
+Risk: HTML output may rely on remote font or CDN resources.
+
+Mitigation: Remove remote dependencies or explicitly accept them before using HTML output in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openclawzhangchong/skills/html-ppt-zc)
+- [Publisher profile](https://clawhub.ai/user/openclawzhangchong)
+- [jsDelivr SRI guidance](https://www.jsdelivr.com/using-sri-with-dynamic-files)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated PPTX or HTML files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python; python-pptx is required for PPTX output and jinja2 is optional for HTML export.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

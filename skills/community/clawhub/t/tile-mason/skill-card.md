@@ -1,47 +1,57 @@
-## Description: <br>
-Provides Chinese-language tile and masonry guidance for renovation questions, including tile installation, waterproofing, leveling, material selection, construction steps, acceptance checks, troubleshooting, and cost estimates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+瓦匠 is a Chinese-language tile masonry assistant that answers renovation questions about tile installation, waterproofing, leveling, materials, workmanship, acceptance checks, issue diagnosis, and cost estimates.
 
-## Publisher: <br>
-[zhangmeihaoaiya](https://clawhub.ai/user/zhangmeihaoaiya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangmeihaoaiya](https://clawhub.ai/user/zhangmeihaoaiya)
 
-## Use Case: <br>
-Home renovators and tile or masonry workers use this skill to get practical Chinese-language guidance for tile work, waterproofing, material choices, quality checks, issue diagnosis, and rough cost estimation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad renovation wording and provide tile-specific guidance when the task is not actually tile or masonry related. <br>
-Mitigation: Confirm that the user request is tile or masonry related before following specialized recommendations. <br>
-Risk: Waterproofing, drainage, or structural recommendations can be sensitive to site conditions and local requirements. <br>
-Mitigation: Use the guidance as planning or inspection support and confirm irreversible work with a qualified professional or applicable local standard. <br>
-Risk: Cost estimates are approximate and depend on assumed labor rates, material prices, waste factors, and city tier. <br>
-Mitigation: Replace defaults with current local quotes and measured dimensions before using estimates for budgeting or contracting. <br>
+## Use Case:
 
+External users, homeowners, and entry-level tile workers use this skill to get Chinese-language guidance for tile masonry planning, material selection, construction checks, defect diagnosis, and local cost estimates.
 
-## Reference(s): <br>
-- [瓦匠常见问题与避坑指南](references/常见问题与避坑.md) <br>
-- [瓦匠成本估算参考](references/成本估算参考.md) <br>
-- [瓦匠施工工序参考](references/施工工序.md) <br>
-- [瓦匠常用材料对比参考](references/材料对比.md) <br>
-- [瓦匠验收标准参考](references/验收标准.md) <br>
-- [Tile cost estimation script](scripts/calc_tile.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, JSON] <br>
-**Output Format:** [Markdown guidance with optional shell command examples and JSON cost-estimate output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Cost estimates depend on user-supplied dimensions, tile specifications, tile price, city tier, and space type.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cost estimates and construction standards may vary by city, site conditions, contractor practices, and local regulations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat estimates and standards as planning guidance and verify final decisions with local professionals or applicable regulations.
+
+Risk: The skill may trigger on broad renovation terms that are adjacent to, but not specifically about, tile masonry.
+
+Mitigation: Confirm the user question is about tile, masonry, waterproofing, leveling, or related cost estimation before relying on the response.
+
+## Reference(s):
+
+- [瓦匠常用材料对比参考](references/材料对比.md)
+- [瓦匠工程验收标准参考](references/验收标准.md)
+- [瓦匠施工工序参考](references/施工工序.md)
+- [瓦匠成本估算参考](references/成本估算参考.md)
+- [瓦匠常见问题与避坑指南](references/常见问题与避坑.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown responses with optional shell command examples and JSON cost-estimate output from the bundled calculator.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Cost-estimate outputs depend on user-provided room dimensions, tile specifications, price inputs, and city tier.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

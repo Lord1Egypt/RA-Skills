@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 转化表达优化"
+  short_description: "依据评论信号改善页面转化表达"
+  default_prompt: "使用 $amazon-conversion-copywriter 根据商品详情和评论信号改善 Amazon 页面转化表达。"

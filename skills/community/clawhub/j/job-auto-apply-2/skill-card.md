@@ -1,46 +1,67 @@
-## Description: <br>
-Automates job search and application workflows across major job platforms, including match analysis, cover-letter generation, form filling, and application tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job Auto Apply helps agents search job boards, evaluate job matches, generate tailored cover letters, fill application forms, and track application status.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-Users and agents use this skill to search job boards, evaluate role fit, generate tailored application materials, and optionally submit applications from a configured applicant profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automate real job applications while handling sensitive applicant profile, resume, and credential data. <br>
-Mitigation: Keep dry-run and per-application confirmation enabled, store credentials securely, and review each application before submission. <br>
-Risk: Applicant and job details may be shared with external AI services for compatibility analysis, resume tailoring, and cover-letter generation. <br>
-Mitigation: Confirm data-sharing expectations before use and avoid sending unnecessary personal or confidential information. <br>
-Risk: Automation against job platforms may conflict with platform limits or anti-bot controls. <br>
-Mitigation: Prefer official APIs, respect platform terms and rate limits, and avoid CAPTCHA or proxy bypass workflows. <br>
+## Use Case:
 
+External users and job seekers use this skill to search for relevant roles, prepare application materials, and optionally submit applications with dry-run or confirmation controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marjoriebroad/job-auto-apply-2) <br>
-- [SkillBoss Job Auto Apply](https://skillboss.co/skills/job-auto-apply) <br>
-- [LinkedIn Jobs API documentation](https://developer.linkedin.com/docs/v2/jobs) <br>
-- [Indeed API documentation](https://opensource.indeedeng.io/api-documentation/) <br>
-- [Wellfound documentation](https://docs.wellfound.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON application results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write application tracking JSON and sends applicant and job data to external services when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive job-seeker information such as resumes, contact details, profile data, and application preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run mode until reviewed, avoid real resumes or profile data unless the user accepts external API transmission, and store credentials and profile files with restricted access.
+
+Risk: Non-dry-run automation may submit applications or create records that are not reliable proof of successful filing.
+
+Mitigation: Require explicit review before real application activity and verify submitted applications directly on the relevant job platform.
+
+Risk: Automation, scraping, CAPTCHA handling, or proxy guidance may conflict with platform terms or expected user behavior.
+
+Mitigation: Prefer official APIs, respect platform terms and rate limits, and avoid CAPTCHA or proxy workarounds.
+
+Risk: Generated cover letters, screening answers, or match analyses may be inaccurate or misrepresent the applicant.
+
+Mitigation: Require human review of generated application materials and only submit truthful, user-approved information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/job-auto-apply-2)
+- [SkillBoss skill page](https://skillboss.co/skills/job-auto-apply)
+- [Job Platform Integration Reference](artifact/platform_integration.md)
+- [LinkedIn Jobs API documentation](https://developer.linkedin.com/docs/v2/jobs)
+- [Indeed API documentation](https://opensource.indeedeng.io/api-documentation/)
+- [Glassdoor developer documentation](https://www.glassdoor.com/developer/index.htm)
+- [Wellfound documentation](https://docs.wellfound.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON profile and application result files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY; may send job descriptions and applicant profile details to named external AI APIs and job platforms.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,10 @@
+{
+  "version": "1.3.6",
+  "required_binaries": [
+    {
+      "name": "python",
+      "min_version": "3.8",
+      "reason": "运行编码安全的本地 API 客户端、CLI 唤醒和 skill 资源校验"
+    }
+  ]
+}

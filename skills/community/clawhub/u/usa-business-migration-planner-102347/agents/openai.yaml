@@ -1,0 +1,7 @@
+interface:
+  display_name: "USA Business Migration Planner"
+  short_description: "Helps with People repeatedly need a practical, repeatable way..."
+  default_prompt: "Use $usa-business-migration-planner to help me People repeatedly need a practical, repeatable way to handle 做了个用自然语言创建和修改 Dify 应用的小工具： chat2dify."
+
+policy:
+  allow_implicit_invocation: true

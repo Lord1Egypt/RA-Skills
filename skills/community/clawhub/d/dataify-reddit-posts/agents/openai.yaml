@@ -1,9 +1,9 @@
 interface:
   display_name: "Dataify Reddit Posts"
-  short_description: "Submit Dataify Reddit post tasks by post URL, keyword, or subreddit URL"
+  short_description: "Collect Reddit Posts data and return results"
   icon_small: "./assets/dataify-reddit-posts-small.svg"
   icon_large: "./assets/dataify-reddit-posts-large.svg"
-  default_prompt: "Use $dataify-reddit-posts to submit Reddit post Builder tasks by post URL, keyword, or subreddit URL through Dataify and return the task_id and status."
+  default_prompt: "Use $dataify-reddit-posts to complete the requested Dataify collection, wait for the asynchronous task, and return the final collected result. Stop at task submission only when I explicitly request no-wait behavior."
 
 policy:
   allow_implicit_invocation: true

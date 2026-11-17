@@ -1,0 +1,7 @@
+interface:
+  display_name: "Humanizer Text Revision Helper"
+  short_description: "Revise AI-looking or over-polished text into clear, audience-appropriate writing while preserving truth, au..."
+  default_prompt: "Use $work-productivity-humanizer-remove-workflow-helper to make this draft sound more specific and natural."
+
+policy:
+  allow_implicit_invocation: true

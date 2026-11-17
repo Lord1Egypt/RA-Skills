@@ -1,51 +1,70 @@
-## Description: <br>
-Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task.
 
-## Publisher: <br>
-[shahaamirbader](https://clawhub.ai/user/shahaamirbader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shahaamirbader](https://clawhub.ai/user/shahaamirbader)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to automate browser workflows such as navigation, form filling, screenshots, data extraction, login flows, and web application testing through the agent-browser CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over browser sessions, including logged-in sessions. <br>
-Mitigation: Use test accounts or dedicated browser profiles, enable domain allowlists and action policies, and confirm before login, payment, posting, or other state-changing actions. <br>
-Risk: Saved state, screenshots, recordings, traces, HAR files, and proxy credentials can contain sensitive data. <br>
-Mitigation: Treat these artifacts as secrets, avoid importing an everyday browser session, and delete or protect saved browser state when no longer needed. <br>
-Risk: Page-sourced content can influence an agent during browsing tasks. <br>
-Mitigation: Enable content boundaries and review extracted page content before using it to drive important decisions. <br>
-Risk: Proxy rotation can be misused for rate-limit or ban avoidance. <br>
-Mitigation: Use proxies only for legitimate testing or corporate access needs and avoid proxy rotation for evasion. <br>
+## Use Case:
 
+Developers and agents use this skill to control a browser for navigation, form interaction, data extraction, screenshots, PDFs, authenticated sessions, and web application testing.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/shahaamirbader/agent-browser-openclaw) <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Profiling](references/profiling.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Snapshot and Refs](references/snapshot-refs.md) <br>
-- [Video Recording](references/video-recording.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and reusable shell script templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to create screenshots, PDFs, recordings, HAR files, traces, saved session state, and downloaded files through the external CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Broad live-browser control can navigate, click, submit forms, and extract page content with weak default scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review planned actions before execution and enable content boundaries, a domain allowlist, and a restrictive action policy for agent use.
+
+Risk: Authentication state, screenshots, HARs, traces, PDFs, and recordings can contain sensitive data.
+
+Mitigation: Use dedicated browser profiles and test accounts, encrypt saved state with AGENT_BROWSER_ENCRYPTION_KEY when available, and delete captured artifacts when no longer needed.
+
+Risk: Installing or invoking latest executable packages can run unreviewed browser-control code.
+
+Mitigation: Prefer a pinned, reviewed local agent-browser binary instead of npx/latest installs.
+
+Risk: Attaching to an everyday Chrome session can expose personal cookies and logged-in accounts.
+
+Mitigation: Avoid auto-connecting to the user's daily browser; use isolated sessions or profiles for automation work.
+
+## Reference(s):
+
+- [Authentication Patterns](references/authentication.md)
+- [Command Reference](references/commands.md)
+- [Profiling](references/profiling.md)
+- [Proxy Support](references/proxy-support.md)
+- [Session Management](references/session-management.md)
+- [Snapshot and Refs](references/snapshot-refs.md)
+- [Video Recording](references/video-recording.md)
+- [Authenticated Session Template](templates/authenticated-session.sh)
+- [Capture Workflow Template](templates/capture-workflow.sh)
+- [Form Automation Template](templates/form-automation.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, code snippets, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run browser automation commands and may produce captured files such as screenshots, PDFs, HARs, traces, recordings, and saved session state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

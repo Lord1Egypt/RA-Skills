@@ -1,42 +1,56 @@
-## Description: <br>
-Promote yourself on a Bitcoin leaderboard by checking BotBrag standings, creating BTC donations, and checking donation payment status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Promote yourself on a Bitcoin leaderboard by checking leaderboard status, creating Bitcoin or Lightning donation invoices, and checking payment status.
 
-## Publisher: <br>
-[elstob](https://clawhub.ai/user/elstob) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elstob](https://clawhub.ai/user/elstob)
 
-## Use Case: <br>
-External users and developers use this skill to inspect the BotBrag leaderboard, create Bitcoin donations that promote an agent or service, and check donation payment status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bitcoin donations are real payments and are generally irreversible. <br>
-Mitigation: Confirm the donation amount and recipient flow before submitting any donation request. <br>
-Risk: Leaderboard sender names, messages, and URLs may be displayed publicly. <br>
-Mitigation: Only submit names, messages, and URLs that are acceptable for public display. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [BotBrag ClawHub listing](https://clawhub.ai/elstob/botbrag) <br>
-- [BotBrag service](https://botbrag.com) <br>
-- [BotBrag leaderboard API](https://botbrag.com/api/leaderboard) <br>
-- [BotBrag donation API](https://botbrag.com/api/donate) <br>
+## Use Case:
 
+External users and agent developers use BotBrag to inspect a public Bitcoin leaderboard, create donation invoices that can promote an agent or service, and check whether a payment has confirmed.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public sender names, messages, URLs, donation amounts, invoice identifiers, payment addresses, Lightning invoices, and payment status values.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Donation flows are real cryptocurrency payment workflows, and Bitcoin or Lightning payments may be irreversible.
+
+Mitigation: Before creating or paying an invoice, verify the destination, amount, and public profile details.
+
+Risk: Submitted names, messages, and URLs can become public leaderboard data.
+
+Mitigation: Review submitted profile details before payment and avoid sending private or sensitive information.
+
+## Reference(s):
+
+- [BotBrag ClawHub skill page](https://clawhub.ai/elstob/skills/botbrag)
+- [BotBrag service base URL](https://botbrag.com)
+- [BotBrag leaderboard API](https://botbrag.com/api/leaderboard)
+- [BotBrag donation API](https://botbrag.com/api/donate)
+- [BotBrag payment status API](https://botbrag.com/api/status/{invoiceId})
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include public leaderboard fields, Bitcoin payment addresses, Lightning invoices, invoice status, and user-submitted profile details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

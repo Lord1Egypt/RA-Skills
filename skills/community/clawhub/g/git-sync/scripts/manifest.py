@@ -74,13 +74,15 @@ def save_manifest(data):
 def expand_path(p):
     return os.path.expanduser(p)
 
+from _paths import WORK_REPO
+
 def get_repo_path(repo_name, data):
-    """从 manifest.json 获取仓库路径，支持 ~ 展开"""
+    """从 manifest.json 获取仓库路径，回退到 _paths.WORK_REPO"""
     repos = data.get("repos", {})
     if repo_name not in repos:
-        return None
+        return str(WORK_REPO)
     p = repos[repo_name].get("path", "")
-    return expand_path(p) if p else None
+    return expand_path(p) if p else str(WORK_REPO)
 
 def get_uploaded_items(data, repo_name):
     """获取清单中 uploaded=True 的条目名称集合"""
@@ -149,8 +151,19 @@ def cmd_add(args):
 
     gitee_ok = args.gitee_ok or args.uploaded
     github_ok = args.github_ok or args.uploaded
+    # 自动填充默认路径（用户可改）
+    default_source = {
+        "skill": os.path.expanduser(f"~/.workbuddy/skills/{args.name}"),
+        "agent": os.path.expanduser(f"~/.workbuddy/agent/{args.name}"),
+    }
+    default_repo = {
+        "skill": f"skills/{args.name}",
+        "agent": f"agent/{args.name}",
+    }
     items[args.name] = {
         "type": args.type,
+        "source_path": args.source_path or default_source.get(args.type, ""),
+        "repo_path": args.repo_path or default_repo.get(args.type, ""),
         "added_at": date.today().isoformat(),
         "uploaded": gitee_ok and github_ok,
         "gitee_ok": gitee_ok,
@@ -540,6 +553,8 @@ def main():
     p_add.add_argument("--gitee-ok", action="store_true", help="标记为码云已推送")
     p_add.add_argument("--github-ok", action="store_true", help="标记为 GitHub 已推送")
     p_add.add_argument("--note", help="备注")
+    p_add.add_argument("--source-path", help="源路径（源文件所在目录）")
+    p_add.add_argument("--repo-path", help="仓库内相对路径，如 agent/rag-assistant")
 
     # remove
     p_remove = sub.add_parser("remove", help="从清单移除")

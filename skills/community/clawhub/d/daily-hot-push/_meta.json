@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn793md79p7hf5f98k45wmxp1s81ynbj",
-  "slug": "daily-hot-push",
+  "name": "daily-hot-push",
   "version": "1.0.0",
-  "publishedAt": 1772367210650
+  "description": "每日推送中国热榜TOP10到飞书。从微博、知乎、百度、36氪筛选最重要的新闻，智能排除明星八卦和主观评论。",
+  "author": "gaolei",
+  "tags": ["news", "daily", "china", "feishu", "trending", "hot"],
+  "license": "MIT",
+  "homepage": "https://github.com/openclaw/daily-hot-push",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/daily-hot-push"
+  }
 }

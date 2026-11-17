@@ -1,0 +1,63 @@
+{
+  "profile_type": "style",
+  "id": "watercolor-journal",
+  "version": "1.0.0",
+  "reference_status": "pending-selection",
+  "references": [],
+  "positive_prompt": "Loose fine-line observational drawing with subtle natural wobble; transparent restrained low-saturation watercolor; warm matte off-white paper influence; preserved object relationships; quiet editorial travel-journal character; soft edges that merge naturally into paper.",
+  "negative_prompt": "No stamp, linocut, woodcut, vector icon, spot-color print, heavy black outline, distressed ink, generated typography, decorative border, route line, marker, watermark, collage seam, rectangular crop edge, white fringe, or pasted-photo artifact.",
+  "line": {
+    "weight": "fine",
+    "character": "observational, slightly irregular",
+    "color": "soft charcoal-brown"
+  },
+  "color": {
+    "saturation": "low",
+    "transparency": "high",
+    "temperature": "warm-neutral"
+  },
+  "edges": {
+    "subject": "soft-natural",
+    "crop_marks": false
+  },
+  "finishing_notes": [
+    "protect delicate linework",
+    "avoid crushing pale washes",
+    "retain paper breathing room"
+  ],
+  "sample_style_contract_defaults": {
+    "mark_edge_quality": [
+      "fine observational line with natural wobble",
+      "soft watercolor edges that merge into paper"
+    ],
+    "negative_space_rules": [
+      "preserve generous unpainted breathing room",
+      "do not paint a full-page background"
+    ],
+    "fill_tonal_rules": [
+      "use transparent restrained washes",
+      "protect pale washes and avoid crushed shadows"
+    ],
+    "background_cleanliness": [
+      "empty areas match the shared paper master",
+      "no generated haze, speckle field, or rectangular plate patch"
+    ],
+    "frame_border_policy": "forbid generated frames, borders, crop edges, and plate seams",
+    "abstraction_level": "selective observational simplification; preserve source identity and object relationships",
+    "generated_page_is_style_reference": false
+  },
+  "plate_normalization": {
+    "mode": "paper-key-soft",
+    "enabled": true,
+    "corner_sample_ratio": 0.04,
+    "background_distance_threshold": 10,
+    "alpha_feather_distance": 30,
+    "preserve_luminance_below": 225,
+    "preserve_saturation_above": 28,
+    "minimum_component_area_px": 3,
+    "border_clear_px": 2,
+    "frame_policy": "forbid",
+    "max_empty_area_noise_ratio": 0.004,
+    "max_corner_alpha_mean": 10
+  }
+}

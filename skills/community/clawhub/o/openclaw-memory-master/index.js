@@ -92,8 +92,8 @@ async function detectSensitiveData(content) {
 async function runFilterTests() {
     const tests = [
         { input: '我的密码是 123456', expected: true },
-        { input: 'GitHub Token: ghp_abcdefghijklmnopqrstuvwxyz0123456789', expected: true },
-        { input: 'OpenAI Key: sk-abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnop', expected: true },
+        { input: 'GitHub Token: REDACTED-SECRET', expected: true },
+        { input: 'OpenAI Key: REDACTED-SECRET', expected: true },
         { input: '手机号：13812345678', expected: true },
         { input: '邮箱：test@example.com', expected: true },
         { input: '我喜欢吃川菜', expected: false },

@@ -1,43 +1,62 @@
-## Description: <br>
-Git Log Tracker records Git commit metadata into a local SQLite index through a post-commit hook and provides CLI commands to query, list, summarize, update, and delete records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Git Log Tracker records Git commit metadata to a local SQLite index through post-commit hooks and provides CLI commands to query, list, summarize, label, update, and delete records.
 
-## Publisher: <br>
-[leeshunee](https://clawhub.ai/user/leeshunee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GNU General Public License v3.0 <br>
+## Publisher:
 
+[leeshunee](https://clawhub.ai/user/leeshunee)
 
-## Use Case: <br>
-Developers and engineers use this skill to install and manage Git post-commit hooks, maintain a local commit-history index across repositories, and query commit records by hash, repository, author, date, branch, or label. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GNU General Public License v3.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent Git hook and global Git configuration changes. <br>
-Mitigation: Confirm the exact repositories before using scan, batch install, or global mode, and review hook status after installation. <br>
-Risk: The local SQLite index can contain sensitive repository paths, author emails, commit subjects, and commit bodies. <br>
-Mitigation: Avoid indexing sensitive repositories and use exclude rules before enabling hooks broadly. <br>
-Risk: Reset and delete operations can remove local commit-index data. <br>
-Mitigation: Back up ~/.commit-logs before using reinstall or destructive record-management commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to install and manage a Git post-commit tracking CLI, persist commit metadata locally, and query commit history across repositories.
 
-## Reference(s): <br>
-- [Git Log Tracker Onboarding](references/ONBOARDING.md) <br>
-- [ClawHub skill page](https://clawhub.ai/leeshunee/git-log-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local Git hooks, Git global template settings, and files under ~/.commit-logs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Persistent Git hooks and global mode can affect future commits across repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit scope before setup, prefer current-repository installation when appropriate, and verify or remove hooks with status and uninstall commands.
+
+Risk: The local index stores commit metadata such as author emails, branch names, repository paths, and commit subjects under ~/.commit-logs.
+
+Mitigation: Restrict permissions on ~/.commit-logs, avoid recording sensitive repositories, and use delete or reinstall controls deliberately.
+
+Risk: Bulk scan installation, delete or update operations, reinstall actions, and remote installer commands can change many repositories or remove stored data.
+
+Mitigation: Require explicit confirmation before broad or destructive commands, avoid curl-to-shell installation when a local or package-manager install is available, and back up important records before reset operations.
+
+Risk: The artifact includes unrelated AGENTS.md and CLAUDE.md policy files.
+
+Mitigation: Review and remove unrelated policy files before deploying the skill package.
+
+## Reference(s):
+
+- [Git Log Tracker Onboarding](references/ONBOARDING.md)
+- [ClawHub Skill Page](https://clawhub.ai/leeshunee/skills/git-log-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and CLI output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, repository names, commit hashes, and SQLite-backed query results.]
+
+## Skill Version(s):
+
+0.7.0 (source: SKILL.md frontmatter, pyproject.toml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

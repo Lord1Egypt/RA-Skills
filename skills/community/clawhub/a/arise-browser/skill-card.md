@@ -1,41 +1,64 @@
-## Description: <br>
-Arise Browser lets AI agents control a local Chromium browser through CLI commands, persistent element references, YAML accessibility snapshots, and WebRTC live view. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation for AI agents that controls Chrome through CLI commands with persistent element refs, YAML accessibility snapshots, and WebRTC live view.
 
-## Publisher: <br>
-[Yourens](https://clawhub.ai/user/Yourens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yourens](https://clawhub.ai/user/yourens)
 
-## Use Case: <br>
-Developers and agents use Arise Browser to automate browser navigation, page inspection, form interactions, screenshots, and tab workflows through a local browser service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill exposes powerful local controls over a browser session. <br>
-Mitigation: Use a dedicated fresh profile, keep API and live-view ports local and unforwarded, set ARISE_BROWSER_TOKEN, and stop the daemon when finished. <br>
-Risk: Profile, cookie, and JavaScript evaluation features can expose sensitive logged-in sessions or page data. <br>
-Mitigation: Avoid sensitive logged-in accounts, do not use a daily browser profile, and review any cookie or /evaluate use before running it. <br>
+## Use Case:
 
+Developers and agents use Arise Browser to operate a local Chromium browser, inspect page state through snapshots, and interact with web pages through stable element references and CLI commands.
 
-## Reference(s): <br>
-- [Arise Browser on ClawHub](https://clawhub.ai/Yourens/arise-browser) <br>
-- [AriseBrowser API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, YAML, JSON, images] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime commands return YAML snapshots, JSON responses, screenshots, PDFs, or exported browser workflow data.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires npx and Docker. Browser state is session-scoped by default; profile mode and file-export commands can access or write local browser data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.1 (source: server-resolved release evidence) <br>
+Risk: The local browser-control service can drive a Chromium session and interact with arbitrary pages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where local browser automation is acceptable, bind it to localhost, and avoid exposing the control or viewing ports through containers, tunnels, or public interfaces.
+
+Risk: Authentication may be optional or weak for local control and viewing interfaces.
+
+Mitigation: Set ARISE_BROWSER_TOKEN before use and avoid running the service where untrusted local processes can access it.
+
+Risk: Using a daily browser profile can expose saved logins, cookies, history, or other personal data.
+
+Mitigation: Use a fresh or dedicated browser profile and do not run profile mode against a personal daily browser profile.
+
+Risk: The evaluate endpoint can execute arbitrary JavaScript in the page context.
+
+Mitigation: Review any use of evaluate before execution and prefer snapshot, click, type, select, press, and scroll commands when they are sufficient.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yourens/skills/arise-browser)
+- [AriseBrowser API Reference](references/api.md)
+- [AriseBrowser Trust & Security Model](TRUST.md)
+- [Project Homepage](https://github.com/AriseOS/arise-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and browser snapshot examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser-control commands, page snapshots, screenshots, and API request guidance during use.]
+
+## Skill Version(s):
+
+0.4.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

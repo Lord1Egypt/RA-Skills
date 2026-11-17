@@ -1,46 +1,60 @@
-## Description: <br>
-育儿助手技能。提供 0-6 岁宝宝的喂养、睡眠、健康、安全、早期教育等全方位育儿支持。当用户提到宝宝、婴儿、幼儿、育儿、喂养、断奶、睡眠、疫苗、体检、发育、辅食、早教等关键词时触发。当用户提到已接种某疫苗时，自动计算下一针时间并添加到日历和提醒。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+育儿助手为 0-6 岁儿童照护场景提供中文育儿指导，覆盖喂养、睡眠、健康、安全、早期教育、疫苗时间表和发育里程碑。
 
-## Publisher: <br>
-[jjlew](https://clawhub.ai/user/jjlew) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjlew](https://clawhub.ai/user/jjlew)
 
-## Use Case: <br>
-Parents, caregivers, and agents use this skill in Chinese to get practical guidance for feeding, sleep, common health questions, safety, early education, growth milestones, and vaccine schedules for children from birth through age 6. It can also help calculate a follow-up vaccine date and prepare local calendar and reminder actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The vaccine feature can change a calendar and create scheduled reminders, which may surprise users if handled without clear consent. <br>
-Mitigation: Before writing anything, require the agent to show the next-dose calculation, calendar title, date, notes, and reminder time, then ask for explicit approval. <br>
-Risk: Follow-up vaccine dates may be wrong when dose history, vaccine type, or local schedule details are uncertain. <br>
-Mitigation: Have the agent explain the calculation and advise confirming uncertain or uncommon vaccine schedules with the vaccination clinic. <br>
-Risk: The calendar flow depends on an external apple-calendar skill and local scheduled reminders. <br>
-Mitigation: Verify that the external calendar skill is installed and trusted, and document where reminders are created so users can remove them. <br>
+## Use Case:
 
+Parents and caregivers use this skill in Chinese to ask age-specific questions about feeding, sleep, common symptoms, home safety, early education, vaccines, and developmental milestones. It can also calculate follow-up vaccine timing and prepare local calendar and reminder actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jjlew/baby-care) <br>
-- [Vaccine Schedule](references/vaccine_schedule.md) <br>
-- [Growth Milestones](references/growth_milestones.md) <br>
-- [Common Illnesses](references/common_illnesses.md) <br>
-- [Feeding Recipes](references/feeding_recipes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Chinese prose and markdown, with shell commands when creating calendar events or reminders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or execute local calendar and scheduled reminder actions for vaccine follow-up when the surrounding agent environment permits it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can automatically create vaccine calendar entries and persistent reminders containing child health details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before creating any calendar event or reminder, and show the exact title, date, notes, and reminder text before execution.
+
+Risk: Vaccine names, doses, or dates may be incomplete or ambiguous.
+
+Mitigation: Validate vaccine fields against the referenced schedule and ask the user to confirm uncertain or uncommon vaccine timing with a vaccination clinic.
+
+Risk: Health guidance may be mistaken for professional medical advice.
+
+Mitigation: Keep responses informational, preserve the medical disclaimer, and direct urgent symptoms or uncertain cases to qualified medical care.
+
+## Reference(s):
+
+- [宝宝常见疾病护理](references/common_illnesses.md)
+- [辅食食谱参考](references/feeding_recipes.md)
+- [0-6岁发育里程碑](references/growth_milestones.md)
+- [0-6岁疫苗接种时间表](references/vaccine_schedule.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese Markdown or plain text, with shell commands when preparing calendar and reminder actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Health-related guidance should remain informational and should not replace professional medical advice.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

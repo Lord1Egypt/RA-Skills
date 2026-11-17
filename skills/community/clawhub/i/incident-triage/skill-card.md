@@ -1,45 +1,61 @@
-## Description: <br>
-Structured incident triage for alerts from any monitoring source, using a five-step framework to classify severity, scope blast radius, correlate recent changes, investigate by alert type, and act. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured incident triage for alerts from common monitoring sources, using a five-step workflow to classify severity, scope impact, correlate recent changes, investigate by alert type, and decide the next action.
 
-## Publisher: <br>
-[ggettert](https://clawhub.ai/user/ggettert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ggettert](https://clawhub.ai/user/ggettert)
 
-## Use Case: <br>
-Developers and site reliability engineers use this skill to triage operational alerts, correlate incidents with recent GitHub activity, summarize findings, create incident tickets, and decide whether to escalate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: GitHub CLI usage may rely on credentials with access to repositories, CI history, and issue creation. <br>
-Mitigation: Use least-privilege GitHub CLI credentials scoped to the repositories and actions needed for incident triage. <br>
-Risk: The runbook template contains placeholders and may be unreliable until customized for the user's infrastructure. <br>
-Mitigation: Fill in services, endpoints, dashboards, log locations, deployment paths, and on-call contacts before relying on the skill during an incident. <br>
-Risk: Incident issue creation can notify teams or publish sensitive incident details to a repository. <br>
-Mitigation: Require human confirmation before creating incident issues unless automatic ticket creation is explicitly desired. <br>
+## Use Case:
 
+Developers, SREs, and on-call engineers use this skill to turn raw alerts or incident descriptions into structured triage, investigation, escalation, and ticket-creation steps.
 
-## Reference(s): <br>
-- [Triage Framework](references/triage-framework.md) <br>
-- [Alert Patterns](references/alert-patterns.md) <br>
-- [Escalation Guide](references/escalation-guide.md) <br>
-- [Runbook Template](references/runbook-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with incident summaries, checklists, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use GitHub CLI helper scripts when available; requires user-provided alert details and appropriate credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: The bundled runbook is a template and may contain placeholder services, dashboards, endpoints, and contacts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Populate the runbook with approved infrastructure details before relying on the skill during a real incident.
+
+Risk: The GitHub issue creation helper can publish an incident issue body to the target repository.
+
+Mitigation: Review the issue body, severity, title, repository, and labels before running the issue creation script.
+
+Risk: Deeper investigation for monitoring tools may require access to external dashboards or APIs.
+
+Mitigation: Use organization-approved credentials and verify alert details in the source monitoring system before taking operational action.
+
+## Reference(s):
+
+- [Triage Framework](references/triage-framework.md)
+- [Alert Patterns](references/alert-patterns.md)
+- [Escalation Guide](references/escalation-guide.md)
+- [Runbook Template](references/runbook-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/ggettert/skills/incident-triage)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with checklists, incident summaries, escalation text, and inline bash commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use GitHub CLI helper scripts for deploy correlation, merge correlation, and incident issue creation when the user supplies repository context.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

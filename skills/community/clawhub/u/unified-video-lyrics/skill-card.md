@@ -1,46 +1,64 @@
-## Description: <br>
-短视频创作全能工具，帮助基于首个参考视频分析角色、画风和色调，生成统一风格的短视频脚本、歌词、视频提示词、配乐建议和合并命令。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language short-video creation skill for drafting scripts and lyrics, preserving character and visual style across generated video scenes, and planning music, platform formatting, and FFmpeg-based assembly.
 
-## Publisher: <br>
-[jean5773](https://clawhub.ai/user/jean5773) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jean5773](https://clawhub.ai/user/jean5773)
 
-## Use Case: <br>
-Creators, marketers, and video producers use this skill to plan short-form videos, write lyrics, craft style-consistent video prompts from a reference video, select music direction, and prepare simple FFmpeg merge commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide private, sensitive, copyrighted, or third-party reference videos without permission. <br>
-Mitigation: Use only media the user owns or has permission to process, and avoid uploading private or sensitive content. <br>
-Risk: FFmpeg examples may alter or combine media files the user did not intend to process. <br>
-Mitigation: Run FFmpeg commands only on intended media files, preferably on copies, and review inputs and outputs before sharing. <br>
+## Use Case:
 
+External creators and developers use this skill to produce short-video concepts, six-shot scripts, structured lyrics, style-consistent video prompts, music direction, and assembly commands for social platforms.
 
-## Reference(s): <br>
-- [角色模板库](artifact/references/characters.md) <br>
-- [歌词创作技巧](artifact/references/lyrics.md) <br>
-- [配乐指南](artifact/references/music.md) <br>
-- [多平台脚本指南](artifact/references/platforms.md) <br>
-- [角色一致性指南](artifact/references/character-consistency.md) <br>
-- [二次元萌系动画风格指南](artifact/references/anime-style.md) <br>
-- [视频提示词指南](artifact/references/prompt-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with prompt templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include structured script sections, lyric sections, video prompt templates, music guidance, and FFmpeg examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill may lead an agent to upload or analyze reference videos or call external music and video services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before uploading media or using external services, and avoid private, sensitive, or unlicensed content unless the user confirms they have the rights to use it.
+
+Risk: The skill includes FFmpeg command examples for merging videos and adding audio.
+
+Mitigation: Review generated shell commands, inputs, outputs, and working directory before execution.
+
+Risk: Broad trigger phrases can overlap with other creative-writing or video-generation skills.
+
+Mitigation: Confirm the intended workflow when multiple installed skills match script, lyrics, short-video, or anime-style creation requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jean5773/skills/unified-video-lyrics)
+- [Character templates](artifact/references/characters.md)
+- [Lyrics writing techniques](artifact/references/lyrics.md)
+- [Music guide](artifact/references/music.md)
+- [Platform script guide](artifact/references/platforms.md)
+- [Character consistency guide](artifact/references/character-consistency.md)
+- [Anime style guide](artifact/references/anime-style.md)
+- [Video prompt guide](artifact/references/prompt-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with structured scripts, lyrics, prompts, checklists, and inline bash command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language creative guidance with optional video-analysis, external media-service, and FFmpeg execution steps that should require user confirmation.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,55 @@
-## Description: <br>
-Captures agent learnings, errors, corrections, and feature requests in structured Markdown logs so future agent sessions can review, promote, or extract reusable guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures an agent's learnings, errors, corrections, and feature requests in structured markdown logs so future agents can review and promote reusable guidance.
 
-## Publisher: <br>
-[seepine](https://clawhub.ai/user/seepine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[seepine](https://clawhub.ai/user/seepine)
 
-## Use Case: <br>
-Developers and coding agents use this skill to record non-obvious fixes, user corrections, tool failures, and requested capabilities as durable workspace notes. The notes can later be reviewed, promoted into agent guidance, or used as source material for reusable skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Workspace learning logs may capture sensitive conversation details, command output, paths, or customer data. <br>
-Mitigation: Require review before writing learning entries and redact secrets, tokens, customer data, internal URLs, sensitive paths, and full command output unless the user explicitly approves. <br>
-Risk: Promoting entries into agent guidance can alter future agent behavior without clear consent. <br>
-Mitigation: Require explicit review before changing AGENTS.md, CLAUDE.md, SOUL.md, TOOLS.md, copilot instructions, or .agents/skills. <br>
+## Use Case:
 
+Developers and agent operators use this skill to capture operational lessons, errors, corrections, and feature requests as durable markdown records. It supports later review and controlled promotion of broadly useful lessons into project or agent guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seepine/self-improving-x) <br>
-- [Skill instructions](SKILL.md) <br>
-- [README](README.md) <br>
-- [Learning log template](assets/LEARNINGS.md) <br>
-- [Error log template](assets/ERRORS.md) <br>
-- [Feature request log template](assets/FEATURE_REQUESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with structured log templates and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workspace-local learning, error, and feature-request records for later human or agent review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Durable learning logs may capture sensitive conversation details, private URLs, tokens, personal data, or raw command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings local by default and redact secrets, private URLs, tokens, personal data, and raw command output before saving entries.
+
+Risk: Promoting log entries into future-agent instruction files may change future agent behavior without enough user control.
+
+Mitigation: Review every proposed promotion into AGENTS.md, CLAUDE.md, TOOLS.md, SOUL.md, or .github/copilot-instructions.md before accepting it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seepine/skills/self-improving-x)
+- [Artifact README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown log entries and concise instruction updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update .learnings markdown files and propose promotions into agent instruction files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

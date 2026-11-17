@@ -326,7 +326,7 @@ ChatGPT's MCP implementation supports tool listing, tool calling, and structured
 
 **Sources:**
 - [Configuring background execution modes (Apple Developer)](https://developer.apple.com/documentation/xcode/configuring-background-execution-modes)
-- [WWDC 2025: iOS 26 Background APIs Explained (DEV Community)](https://dev.to/arshtechpro/wwdc-2025-ios-26-background-apis-explained-bgcontinuedprocessingtask-changes-everything-9b5)
+- [WWDC 2025: iOS 26 Background APIs Explained (DEV Community)](https://dev.to/arshtechpro/wwdc-2025-ios-26-background-apis-explained-bgcontinuedprocessingtaREDACTED-SECRET)
 - [BGContinuedProcessingTask (Apple Developer Documentation)](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtask)
 - [How to keep a socket server in an iOS app alive (Apple Developer Forums)](https://developer.apple.com/forums/thread/750136)
 

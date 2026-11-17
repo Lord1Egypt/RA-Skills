@@ -1,43 +1,54 @@
-## Description: <br>
-Simplifies existing informed consent documents into patient-friendly language while preserving required consent elements and surfacing readability and review notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Simplify informed consent documents into patient-friendly language while maintaining regulatory compliance (FDA 21CFR50, ICH-GCP, HIPAA) and required legal elements.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Healthcare, clinical research, and patient-facing communication teams use this skill to simplify existing consent documents or consent-related summaries for readability while keeping required consent elements visible for qualified review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may overstate regulatory compliance for medical consent handling. <br>
-Mitigation: Treat output as a readability draft that requires qualified clinical, legal, IRB, or regulatory review before use. <br>
-Risk: Consent documents may contain PII or PHI. <br>
-Mitigation: Use only de-identified or properly authorized documents and follow the skill's sensitive-data warning before processing. <br>
-Risk: Generated output files may expose sensitive consent content if written to an inappropriate path. <br>
-Mitigation: Choose approved storage locations and avoid shared, public, or untrusted output paths. <br>
+## Use Case:
 
+Clinical research, patient advocacy, and medical operations teams use this skill to simplify existing informed consent documents for patient readability while preserving required consent elements. It is not a substitute for IRB, legal, regulatory, or clinical review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/patient-consent-simplifier) <br>
-- [Publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a simplified consent draft, readability report, compliance-status notes, assumptions, risks, limits, and next checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill promises PHI/PII warnings and compliance checks that its included script does not enforce.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review, do not process identifiable patient documents unless authorized, and treat script output as an aid rather than an enforced privacy or compliance control.
+
+Risk: Simplified consent language could omit, weaken, or misstate required legal or clinical information.
+
+Mitigation: Treat outputs as drafts for qualified IRB, legal, regulatory, and clinical review before use with patients or research participants.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/patient-consent-simplifier)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or plain text with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, simplification notes, readability reporting, compliance status, risks and limits, and next checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

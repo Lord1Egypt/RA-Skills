@@ -1,6 +1,18 @@
 {
-  "ownerId": "kn7axvk96pr75dba6h6hqj6xgx80d12z",
-  "slug": "xclaw02",
-  "version": "0.1.0",
-  "publishedAt": 1770076825409
+  "name": "xclaw02",
+  "version": "0.5.0",
+  "description": "The OpenClaw entry point for x402 payments. Pay for APIs, sell your services, handle 402 responses.",
+  "author": "Primer Systems",
+  "homepage": "https://primer.systems/x402",
+  "repository": "https://github.com/primer-systems/x402",
+  "keywords": [
+    "x402",
+    "payments",
+    "openclaw",
+    "agents",
+    "usdc",
+    "micropayments",
+    "base"
+  ],
+  "license": "MIT"
 }

@@ -1,0 +1,19 @@
+{
+  "skill": "lgd-evo",
+  "scanned_at": "2026-11-02T22:48:17+08:00",
+  "skills_root": "skills/ (local install root)",
+  "total": 1,
+  "live": 0,
+  "ecosystem": 0,
+  "error": 0,
+  "nodes": [
+    {
+      "slug": "agent-evolution",
+      "status": "PRESENT",
+      "rc": null,
+      "when": "部署后让智能体记录发现、演化并精炼自身操作手册",
+      "out": "演化日志 + 精炼后的操作程序",
+      "note": "目录在但无可运行脚本（spec/doc-only，未实跑拦截）"
+    }
+  ]
+}

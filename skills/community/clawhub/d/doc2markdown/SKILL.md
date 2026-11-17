@@ -24,7 +24,7 @@ node scripts/doc2markdown.js check <doc_id> <original_file_path> --md  # Downloa
 
 - Supported formats: docx, doc, pdf, ppt, pptx, xls, xlsx, jpg, jpeg, png, ceb, teb, caj, odt, ofd, cebx, odp, ott, wps, ods, et, dps, epub, chm, sdc, sdd, sdw, mobi, etc.
 - Preserves document structure, tables, and images
-- No API Key or account required, zero external dependencies
+- API Key is **optional**, zero external dependencies. Without an API Key doc2markdown works exactly as before (anonymous upload); with one configured, the convert request is authenticated. See [API Key (Optional)](#api-key-optional)
 - Downloaded ZIP files are extracted to `{doc_id}_{filename}/` under the source file's parent directory; single MD files are saved directly there
 
 ## When to Use
@@ -60,6 +60,21 @@ This tool supports two download modes:
 1. Provide the previously returned doc ID
 2. Download if complete, otherwise continue polling for 60 seconds
 3. Prompt to retry later if still not complete
+
+## API Key (Optional)
+
+An API Key is **optional** — without one, doc2markdown works normally as before.
+
+### Configuring an API Key
+
+| Source | Location |
+|---|---|
+| Environment variable | `DOCCHAIN_SKILLS_API_KEY` |
+| Skill config | `doc2markdown/scripts/config.json` (field `docchain_api_key`) |
+
+### With an API Key configured
+
+Conversions are processed with **priority** (fast lane).
 
 ## Data & Privacy
 

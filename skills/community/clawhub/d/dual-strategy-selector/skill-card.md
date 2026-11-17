@@ -1,44 +1,58 @@
-## Description: <br>
-基于仙人指路B和老鸭头B两种技术形态筛选符合条件的A股股票，支持指定日期选股和信号检测。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screens A-share stocks from user-provided CSV data using the Xianren Zhilu B and Laoyatou B technical-analysis strategies.
 
-## Publisher: <br>
-[chen6896qqwee](https://clawhub.ai/user/chen6896qqwee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chen6896qqwee](https://clawhub.ai/user/chen6896qqwee)
 
-## Use Case: <br>
-Traders, analysts, and developers can use this skill to run a local CSV-based screen for A-share stocks matching the 仙人指路B and 老鸭头B technical patterns. It reports matching symbols for a target date and can save the selected results for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stock-selection output may be mistaken for investment advice or guaranteed performance. <br>
-Mitigation: Treat results as informational screening output only; users should review signals, market context, and risk controls before making trading decisions. <br>
-Risk: Incorrect, stale, or malformed CSV market data can produce misleading selections. <br>
-Mitigation: Validate the required input columns and data freshness before running the selector, and review generated results before relying on them. <br>
-Risk: The artifact writes a results CSV in the working directory when matching signals are found. <br>
-Mitigation: Run it in an intended workspace and review generated files before sharing or importing them elsewhere. <br>
+## Use Case:
 
+Traders, analysts, and agents use this skill to identify A-share stocks that match two configured technical-analysis patterns for a selected trading date. It is intended to produce informational screening results from data the user supplies, not investment advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chen6896qqwee/dual-strategy-selector) <br>
-- [README.md](artifact/README.md) <br>
-- [dual_strategy_selector.py](artifact/dual_strategy_selector.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, csv files, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime output is console text and an optional CSV file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided market data in the documented CSV schema; writes selection_YYYYMMDD.csv when matches are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Package metadata declares dependencies for a Python tool in npm-style metadata, which may create avoidable supply-chain exposure during installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package metadata before installing and replace unnecessary npm dependency declarations with pinned Python requirements.
+
+Risk: Generated stock picks may be interpreted as investment recommendations.
+
+Mitigation: Treat outputs as informational screening results, verify the input data, and apply independent financial review before acting on any result.
+
+Risk: The script may write a dated CSV results file in the current directory.
+
+Mitigation: Run it in a controlled working directory and review generated CSV files before sharing or reusing them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chen6896qqwee/skills/dual-strategy-selector)
+- [Publisher Profile](https://clawhub.ai/user/chen6896qqwee)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, command examples, console text, and optional CSV file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided CSV with stock prices, turnover, moving averages, volume ratio, percent change, and limit-up fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

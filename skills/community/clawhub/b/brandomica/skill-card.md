@@ -1,42 +1,60 @@
-## Description: <br>
-Check brand name safety across domains, social handles, trademarks, app stores, and SaaS channels. Get availability scores, safety assessments, and filing readiness decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check brand name safety across domains, social handles, trademarks, app stores, and SaaS channels.
 
-## Publisher: <br>
-[BRNDMK](https://clawhub.ai/user/BRNDMK) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brndmk](https://clawhub.ai/user/brndmk)
 
-## Use Case: <br>
-External users, developers, and brand teams use this skill to check candidate brand names before launch across domains, social handles, trademarks, app stores, search presence, and software or SaaS channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The advertised service and npm install target may be closed or stale. <br>
-Mitigation: Confirm the current package, service ownership, and service availability before installing or relying on results. <br>
-Risk: Brand launch names can be commercially sensitive. <br>
-Mitigation: Avoid submitting confidential candidate names until data handling and service ownership have been verified. <br>
+## Use Case:
 
+External users and developers use this skill to check proposed brand names before launch across domains, social handles, trademarks, app stores, search presence, package registries, and SaaS channels. It helps compare candidates, assess safety risk, and produce JSON evidence reports for brand-review workflows.
 
-## Reference(s): <br>
-- [Brandomica MCP Server](https://www.brandomica.com/mcp-server) <br>
-- [Brandomica Homepage](https://www.brandomica.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/BRNDMK/brandomica) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Tool responses with availability scores, risk assessments, filing readiness summaries, comparisons, and optional JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Brand names must be lowercase alphanumeric strings with optional hyphens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill installs an unpinned npm MCP server, so reviewed behavior may change when the package changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin `brandomica-mcp-server` to a reviewed version and use package integrity or provenance checks before installation.
+
+Risk: The MCP server may run with the user agent's local permissions during brand checks.
+
+Mitigation: Run it with only the workspace, network access, and credentials required for the specific brand-checking task.
+
+Risk: Trademark, filing readiness, and conflict results can affect launch or legal decisions.
+
+Mitigation: Treat outputs as decision-support evidence and have qualified reviewers confirm high-impact trademark or filing actions.
+
+## Reference(s):
+
+- [Brandomica homepage](https://www.brandomica.com)
+- [Brandomica MCP server page](https://www.brandomica.com/mcp-server)
+- [ClawHub skill page](https://clawhub.ai/brndmk/skills/brandomica)
+- [Publisher profile](https://clawhub.ai/user/brndmk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown or JSON summaries from MCP tool calls, including scores, verdicts, comparisons, availability data, and evidence reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Brand names must be lowercase alphanumeric with optional hyphens. Batch checks support 2-50 names according to the artifact documentation.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter, clawhub.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

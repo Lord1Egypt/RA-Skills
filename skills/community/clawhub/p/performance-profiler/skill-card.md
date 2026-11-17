@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes code performance to identify bottlenecks, redundant calculations, synchronous blocking operations, and memory-leak risks, then provides optimization recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze code performance to identify bottlenecks, detect redundant computations and blocking operations, and provide optimization recommendations.
 
-## Publisher: <br>
-[HonestQiao](https://clawhub.ai/user/HonestQiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[honestqiao](https://clawhub.ai/user/honestqiao)
 
-## Use Case: <br>
-Developers and engineers use this skill to review code for common performance issues and receive concise optimization guidance before changing implementation details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as 'performance' or '优化建议' may invoke the skill during unrelated requests. <br>
-Mitigation: Narrow trigger configuration before broad deployment so invocation is limited to explicit code performance review tasks. <br>
-Risk: Performance findings are heuristic and may be incomplete or unsuitable for a specific codebase. <br>
-Mitigation: Treat recommendations as review guidance and validate them with maintainers, tests, and benchmarks before implementation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HonestQiao/performance-profiler) <br>
-- [Publisher Profile](https://clawhub.ai/user/HonestQiao) <br>
+## Use Case:
 
+Developers and engineers use this skill to review code for common performance issues, complexity concerns, synchronous blocking operations, repeated calculations, and memory leak risks before optimizing implementation details.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [Markdown or JSON-style findings with issue type, location when available, recommendation, complexity, and score.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before code changes are applied.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Performance findings may be heuristic and can miss context-specific bottlenecks or suggest optimizations that do not improve real workloads.
+
+Mitigation: Review recommendations manually and confirm material changes with benchmarks or profiling in the target runtime.
+
+Risk: Non-Chinese users may find the documentation and generated suggestions unclear.
+
+Mitigation: Use this skill where Chinese-language output is acceptable, or translate and review recommendations before sharing them broadly.
+
+## Reference(s):
+
+- [Performance Profiler on ClawHub](https://clawhub.ai/honestqiao/skills/performance-profiler)
+- [honestqiao Publisher Profile](https://clawhub.ai/user/honestqiao)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON-style analysis with issue types, locations, optimization suggestions, complexity, and a score.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Suggestions may include Chinese text because the skill documentation and examples are primarily Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

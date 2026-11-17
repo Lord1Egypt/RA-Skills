@@ -1,43 +1,55 @@
-## Description: <br>
-A comprehensive AI agent skill for acquiring, onboarding, retaining, and growing customers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for acquiring, onboarding, retaining, and growing customers across health scoring, churn prevention, renewals, expansion, advocacy, and exit analysis.
 
-## Publisher: <br>
-[AGIstack](https://clawhub.ai/user/AGIstack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agistack](https://clawhub.ai/user/agistack)
 
-## Use Case: <br>
-Customer success teams, account managers, sales teams, and founders use this skill to manage customer onboarding, health scoring, churn prevention, renewals, expansion opportunities, advocacy programs, and churn analysis for B2B and SaaS accounts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share sensitive customer, contract, renewal, usage, support, NPS, or revenue information with the agent. <br>
-Mitigation: Confirm authorization before sharing customer data and prefer redacted or aggregated examples when possible. <br>
-Risk: Account plans, churn interpretations, renewal strategies, and expansion recommendations may be incomplete or misleading if the user provides partial account context. <br>
-Mitigation: Review recommendations against current customer records, contractual obligations, and internal account strategy before acting. <br>
+## Use Case:
 
+Customer success managers, customer success leaders, account managers, sales teams, and founders use this skill to design onboarding, monitor account health, prevent churn, run renewals, identify expansion opportunities, develop advocates, and analyze customer exits.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/AGIstack/customer) <br>
-- [Customer Skill Source](artifact/skill.md) <br>
-- [Customer Skill Heartbeat](artifact/heartbeat.md) <br>
-- [Customer Skill Examples](artifact/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Text] <br>
-**Output Format:** [Markdown or plain text responses with account plans, playbooks, review narratives, outreach drafts, and analysis summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompt-only skill; users may provide customer account details, renewal context, usage metrics, support history, NPS comments, and revenue information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: Users may paste sensitive customer, account, usage, renewal, or feedback data into the agent while using the skill.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Follow company data handling rules and prefer anonymized account labels, aggregated metrics, and redacted customer comments unless the agent environment is approved for sensitive customer data.
+
+Risk: Customer success recommendations can affect renewal, pricing, escalation, expansion, or churn conversations.
+
+Mitigation: Have an accountable team member review the generated plan before acting on high-impact customer decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agistack/skills/customer)
+- [Customer usage examples](artifact/examples.md)
+- [Customer heartbeat playbook](artifact/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance and structured coaching responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, tool use, or external service requirements are described in the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,146 +1,214 @@
 ---
 name: zhheo-blog-tools
 description: >-
-  与张洪Heo的智能体（洪墨AI）进行聊天或搜索文章。支持文章搜索、今日热门、标签/分类获取、装备与项目查询。
-  触发词：张洪Heo、博客、博主、张洪、Heo。
+  通过 HTTP API 访问张洪Heo博客：全文搜索、热门文章、归档浏览、标签分类、
+  页面发现、友链查询、读文摘要。触发词：张洪Heo、博客、博主、张洪、Heo。
 ---
 # Skill: zhheo-blog-tools
 
-与张洪Heo的智能体（洪墨AI）进行聊天或搜索文章。
+通过 HTTP API 访问张洪Heo博客（https://blog.zhheo.com），无需打开浏览器。
 
 **触发词**：张洪Heo、博客、博主、张洪、Heo
 
-## 数据源
+**基础 URL**：`https://blog.zhheo.com`
 
-- **文章列表**：可通过 https://blog.zhheo.com/zhheo/post_info.json 获取张洪Heo博客所有文章的 URL 与标题对应数据
-- 格式：`[{ "title": "文章标题", "url": "/p/xxx.html" }, ...]`
-- **RSS 订阅**：如需订阅张洪Heo博客的最新文章，可通过 RSS 获取。RSS 地址：https://blog.zhheo.com/rss.xml 。推荐一天检查一次。
-- **标签页**：https://blog.zhheo.com/tags/ 可按标签浏览文章，适合做文章推荐。
-- **装备页**：https://blog.zhheo.com/equipment/ 博主使用的装备/设备/外设/实物设备清单。
-- **我的项目**：https://blog.zhheo.com/categories/我的项目/ 博主开发过的项目列表。
-- **API 接口**（JSON 格式，适合程序化获取）：
-  - **所有标签**：https://blog.zhheo.com/api/tags.json
-  - 格式：`[{ "name": "标签名", "path": "tags/标签名/", "count": 数量 }, ...]`
-  - **所有分类**：https://blog.zhheo.com/api/categories.json
-  - 格式：`[{ "name": "分类名", "path": "categories/分类名/", "count": 数量, "parent": "父分类名" }, ...]`（有父级时含 parent 字段）
-  - **今日热门**（HeoBlogAPI）：https://api.zhheo.com/HeoBlogAPI/umami/hot.php
-  - 格式：`[{ "title": "文章标题", "url": "/p/xxx.html", "visitors": 访问量 }, ...]`，按当日访问量排序
+## 场景路由
 
-## 使用方式
+| 用户意图 | 调用方式 |
+|----------|----------|
+| 搜索文章 | `GET /api/search/search.php?q=关键词` |
+| 今日/本月/年度热门 | `GET /api/umami/hot.php?period=day\|month\|year`（需 Referer） |
+| 某年文章 / 最新文章 | `GET /api/archives/posts.php` |
+| 按分类/标签推荐 | `tags.json` / `categories.json` + `search.php` 或 archives 筛选 |
+| 博主装备 | `web_fetch /equipment/` |
+| 博主项目 | `search.php?q=我的项目` 或 archives 筛选分类 |
+| 友链查询 | `GET /api/friendlink/friendlink.json` 本地搜索 |
+| 站点页面（关于/订阅/友链） | `GET /api/pages.json` |
+| 读某篇文章 | search → `web_fetch` 正文 |
+| 订阅更新 | `GET /rss.xml` |
 
-1. 用户要求与智能体聊天或搜索文章时使用此 skill
-2. 搜索文章时优先在 post_info.json 中检索，找不到结果再使用浏览器搜索
-3. 聊天时自动打开 https://blog.zhheo.com 并执行聊天操作
-4. **文章推荐**：若用户需要文章推荐，可打开 https://blog.zhheo.com/tags/ ，根据用户偏好和感兴趣的内容，在对应标签下挑选几篇文章推荐给用户
-5. **今日热门**：若用户想查看今日热门文章，直接 fetch https://api.zhheo.com/HeoBlogAPI/umami/hot.php 获取热门文章列表（含 title、url、visitors），无需打开页面
-6. **获取标签/分类列表**：若需程序化获取博客所有标签或分类，可直接 fetch `/api/tags.json` 或 `/api/categories.json`，无需打开页面
-7. **装备/设备/外设**：若用户问博主用什么装备、设备、外设、实物设备等，打开 https://blog.zhheo.com/equipment/ 获取信息
-8. **开发项目**：若用户问博主开发过什么东西、做过什么项目等，打开 https://blog.zhheo.com/categories/我的项目/ 获取信息
+---
 
-## 实现原理
+## API 参考
 
-- **搜索**：优先从 post_info.json 本地检索，未命中时再通过浏览器调用 `postChatUser.sendSearchMsg(content)`
-- **聊天**：通过浏览器执行 `postChatUser.sendChatMsg(content)`，回复出现后从 `div.message.ai-message` 气泡内提取全部内容（含参考来源）转发给用户
+### 1. 全文搜索（主路径）
 
-## 实现步骤
-
-### 步骤1：打开博客页面
-
-使用 browser 工具打开 https://blog.zhheo.com/
-
-```javascript
-browser.open(url="https://blog.zhheo.com/")
+```
+GET /api/search/search.php?q=关键词&limit=10&page=1
 ```
 
-### 步骤2：等待页面加载
+- 搜索范围：标题 + 正文 + 标签 + 分类
+- 多关键词用空格分隔，**AND 逻辑**（所有词都必须命中）
+- `limit`：1–50，默认 10；`page`：页码，默认 1
+- 无需认证，服务端已做分级排序，直接调用即可
 
-等待页面加载完成，可能需要等待几秒钟。
+**分级相关度**（服务端内置）：
+- 每个关键词命中：+10
+- 标题命中：+50
+- 正文/标签/分类命中：+5
 
-### 步骤3：执行聊天或搜索
-
-根据用户需求选择：
-
-**聊天模式**：
-```javascript
-// 发送聊天消息
-postChatUser.sendChatMsg('用户的消息内容')
+**响应示例：**
+```json
+{
+  "success": true,
+  "hits": [
+    { "title": "文章标题", "path": "p/xxx.html", "cover": "https://...", "score": 65 }
+  ],
+  "total": 42,
+  "query": "关键词",
+  "page": 1,
+  "limit": 10
+}
 ```
 
-**搜索模式**（优先本地检索）：
-1. 先 fetch https://blog.zhheo.com/zhheo/post_info.json 获取文章列表
-2. 在返回的 `[{ title, url }]` 中按关键词匹配 title
-3. 若找到匹配结果，直接返回对应文章链接和标题
-4. 若未找到，再打开博客页面并执行 `postChatUser.sendSearchMsg('搜索关键词')`
+**完整 URL 拼接**：`https://blog.zhheo.com/` + `path`
+
+**curl 示例：**
+```bash
+curl -s 'https://blog.zhheo.com/api/search/search.php?q=OpenClaw&limit=5'
+```
+
+---
+
+### 2. 归档浏览
+
+```
+GET /api/archives/posts.php?year=2026&limit=10&page=1
+GET /api/archives/posts.php?meta=years
+```
+
+| 参数 | 说明 |
+|------|------|
+| `year` | `all` 或具体年份如 `2026`，默认 `all` |
+| `limit` | 1–60，默认 24 |
+| `page` | 页码，默认 1 |
+| `meta=years` | 返回年份统计，不含文章列表 |
+
+**文章列表响应：**
+```json
+{
+  "success": true,
+  "year": "2026",
+  "page": 1,
+  "limit": 10,
+  "total": 150,
+  "items": [
+    {
+      "title": "...",
+      "url": "https://blog.zhheo.com/p/xxx.html",
+      "cover": "https://...",
+      "year": "2026",
+      "date": "2026-07-28",
+      "dateLabel": "2026年7月28日",
+      "categories": ["设计"],
+      "primaryCategory": "设计"
+    }
+  ]
+}
+```
+
+---
+
+### 3. 热门文章
+
+```
+GET /api/umami/hot.php?period=day&limit=10
+```
+
+| 参数 | 说明 |
+|------|------|
+| `period` | `day`（当日）、`month`（最近一个月）、`year`（最近一年），默认 `day` |
+| `limit` | 1–60，默认 60 |
+
+**必须携带 Referer 头**，否则返回 403：
+```
+Referer: https://blog.zhheo.com/
+```
+
+**curl 示例：**
+```bash
+curl -s -H 'Referer: https://blog.zhheo.com/' \
+  'https://blog.zhheo.com/api/umami/hot.php?period=day&limit=5'
+```
+
+---
+
+### 4. 标签 / 分类 / 页面
+
+**标签：** `GET /api/tags.json`  
+**分类：** `GET /api/categories.json`  
+**非文章页面：** `GET /api/pages.json`
+
+常用页面：`/about/`、`/link/`、`/equipment/`、`/rss/`、`/skill/`、`/hot/`、`/must-read/`
+
+---
+
+### 5. 友链搜索
+
+```
+GET /api/friendlink/friendlink.json
+```
+
+在返回数据的 `link_list[].name` 中按关键词本地过滤。
+
+---
+
+### 6. 读取文章正文
+
+1. 通过 `search.php` 或 `archives/posts.php` 获取文章 path / url
+2. `web_fetch` 或 `curl` 获取页面 HTML
+3. 提取正文：`#article-container` → `#post-body` → `#content-inner` → `article`
+4. 超过 6000 字截断并注明
+
+---
+
+### 7. RSS 订阅
+
+```
+GET /rss.xml
+```
+
+建议每日检查一次，监控最新文章。
+
+---
 
 ## 完整流程示例
 
-**搜索流程**：
-1. 使用 fetch 获取 https://blog.zhheo.com/zhheo/post_info.json
-2. 在 JSON 数据中搜索 title 包含关键词的文章
-3. 若有结果：直接返回匹配的文章列表（含 title、url）
-4. 若无结果：调用 browser.open 打开 https://blog.zhheo.com/，执行 `postChatUser.sendSearchMsg('关键词')`，等待智能体回复
+### 搜索文章
+1. `GET /api/search/search.php?q=关键词&limit=5`
+2. 返回 `hits` 中的 `title` 和完整 URL（`https://blog.zhheo.com/` + `path`）
+3. 若用户需要正文，继续 `web_fetch` 文章页面
 
-**聊天流程**：
-1. 调用 browser.open 打开 https://blog.zhheo.com/
-2. 等待页面加载（snapshot 检查加载完成）
-3. 使用 browser.action 执行 `postChatUser.sendChatMsg('你好')`
-4. 等待回复后，从聊天气泡中提取**全部内容**并转发给用户（见下方聊天气泡 DOM 说明）
+### 今日热门
+1. `GET /api/umami/hot.php?period=day&limit=10`，携带 `Referer: https://blog.zhheo.com/`
+2. 返回 `items`（含 title、url、visitors、cover）
 
-**PostChat 整体 DOM 结构**（聊天模式下需将 AI 气泡内所有内容转发给用户）：
+### 按标签/分类推荐
+1. `GET /api/tags.json` 或 `/api/categories.json`
+2. `GET /api/search/search.php?q=标签名&limit=5`
 
-```
-div#postChatMagic
-├── div.postChatMagic-overlay           # 遮罩层
-├── div.postChatMagic-messages         # 消息列表
-│   ├── div.message.user-message       # 用户消息气泡
-│   │   ├── div.message-content        # 用户输入内容
-│   │   └── div.message-tools          # 复制、编辑按钮
-│   └── div.message.ai-message         # AI 回复气泡 ← 提取目标
-│       ├── div.message-content       # AI 回复内容
-│       │   ├── p                     # 主回复文本
-│       │   └── div.reference-container
-│       │       ├── div.reference-toggle   # "参考来源" + 数量
-│       │       └── div.reference-list     # 可能 display:none
-│       │           └── div.reference-item × N
-│       │               └── a.reference-link  # href + 标题
-│       └── div.message-tools         # 复制按钮
-├── div.postChatMagic-Tools            # 清空、聊天/搜索切换、关闭
-├── div.postChatMagic-container        # 输入框 + 发送按钮
-├── div.postChatMagic-Info             # 洪墨AI 介绍
-├── div.postChatMagic-default-questions # 默认问题按钮
-└── div.postChatMagic-Tips             # 提示文案
-```
+### 最新文章
+1. `GET /api/archives/posts.php?year=all&limit=10&page=1`
 
-- **提取路径**：`#postChatMagic` → `.postChatMagic-messages` → `.message.ai-message` → `.message-content`
-- **提取内容**：主回复文本（`p`）+ 所有参考来源（`.reference-list` 内每个 `a.reference-link` 的 `href` 与文本），完整转发给用户
+### 读某篇文章
+1. `search.php` 或 archives 定位 URL
+2. `web_fetch` 提取正文后回答
 
-**文章推荐流程**：
-1. 了解用户偏好和感兴趣的内容（如设计、Mac、教程、软件等）
-2. 打开 https://blog.zhheo.com/tags/ 浏览标签与文章
-3. 在匹配用户兴趣的标签下挑选几篇优质文章
-4. 将文章标题和链接推荐给用户
+### 博主装备
+1. `web_fetch https://blog.zhheo.com/equipment/`
 
-**今日热门流程**（直接调用 API，无需打开页面）：
-1. fetch https://api.zhheo.com/HeoBlogAPI/umami/hot.php
-2. 返回的 JSON 为 `[{ "title": "文章标题", "url": "/p/xxx.html", "visitors": 访问量 }, ...]`，按访问量排序
-3. 将热门文章列表返回给用户
+### 博主项目
+1. `GET /api/search/search.php?q=我的项目&limit=10`
+2. 或 archives 筛选 `categories` 含「我的项目」
 
-**获取标签/分类流程**（程序化，无需打开页面）：
-1. fetch https://blog.zhheo.com/api/tags.json 获取所有标签（含 name、path、count）
-2. fetch https://blog.zhheo.com/api/categories.json 获取所有分类（含 name、path、count、parent）
-3. 可用于构建导航、筛选、统计等能力
+### 友链查询
+1. `GET /api/friendlink/friendlink.json`，按 name 过滤
 
-**装备/设备流程**（用户问装备、设备、外设、实物设备时）：
-1. 打开 https://blog.zhheo.com/equipment/
-2. 从页面提取博主的装备清单并返回给用户
-
-**开发项目流程**（用户问开发过什么、做过什么项目时）：
-1. 打开 https://blog.zhheo.com/categories/我的项目/
-2. 从页面提取博主开发的项目列表并返回给用户
+---
 
 ## 注意事项
 
-- 搜索文章时**优先**使用 post_info.json 本地检索，可快速返回结果且无需打开浏览器
-- 需要确保页面完全加载后再执行 JS API（聊天或 fallback 搜索时）
-- 聊天和搜索是两种不同的模式，根据用户需求选择
-- 聊天模式下，需从 `div.message.ai-message` 聊天气泡中提取全部内容（主回复 + 参考来源链接）并转发给用户
+- **搜索主路径**：优先 `search.php`
+- **Referer 要求**：`/api/umami/hot.php` 必须带 `Referer: https://blog.zhheo.com/`
+- **URL 规范**：使用 API 返回的原始 path，禁止自行编造 slug
+- **不在 skill 范围内**：音乐控制、截图、评论填入等浏览器专属能力，引导用户访问 https://blog.zhheo.com

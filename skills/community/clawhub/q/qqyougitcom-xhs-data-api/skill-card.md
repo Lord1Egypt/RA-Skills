@@ -1,39 +1,59 @@
-## Description: <br>
-Analyzes Xiaohongshu public marketing data, competitor activity, creator profiles, content patterns, CES scoring signals, tags, titles, and category benchmarks to guide content and campaign decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+深度解读小红书CES算法和流量池机制，分析爆款笔记规律、竞品策略、标题公式、标签组合和运营提升计划。
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-Marketing operators, brand teams, and creator-collaboration analysts use this skill to answer Xiaohongshu strategy questions about content opportunities, competitor behavior, creator fit, category demand, and post optimization. It is intended for analysis of public or provider-authorized data, with Chinese-language output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [聚合接口完整参考](references/aggregate-api.md) <br>
-- [xhs-data-api 详细参考 v1.3.0](references/details.md) <br>
-- [ClawHub skill page](https://clawhub.ai/qqyougitcom/qqyougitcom-xhs-data-api) <br>
+External marketers, brand operators, and social-commerce analysts use this skill to analyze public Xiaohongshu notes, creators, competitors, market topics, and performance benchmarks. It supports data-informed content strategy, collaboration screening, competitive review, and 30-day operations planning.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Chinese Markdown analysis and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an XHS_API_KEY supplied by the publisher. The security review found no evidence of malicious behavior, but users should avoid submitting confidential business plans, private customer data, credentials, or account-only data unless the publisher documents how that data is sent and retained.] <br>
+Global
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Analysis prompts and related marketing context may be sent to the skill provider's Xiaohongshu data API using XHS_API_KEY.
+
+Mitigation: Avoid submitting confidential campaign plans, private account data, or sensitive competitor research unless the provider's data handling is acceptable.
+
+Risk: Xiaohongshu algorithm behavior and category benchmarks can change over time.
+
+Mitigation: Treat recommendations as current guidance, refresh benchmarks regularly, and review outputs against recent public platform data.
+
+Risk: Provider API responses may include coverage limits or data gaps.
+
+Mitigation: Surface coverage notes and data-gap fields in user-facing analysis before making operational decisions.
+
+## Reference(s):
+
+- [小红书数据分析 Skill](https://clawhub.ai/qqyougitcom/skills/qqyougitcom-xhs-data-api)
+- [聚合接口完整参考](references/aggregate-api.md)
+- [xhs-data-api 详细参考 v1.3.0](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Chinese Markdown analysis with API-backed findings and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires XHS_API_KEY for provider API access; API-backed outputs should include coverage notes and data gaps when present.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

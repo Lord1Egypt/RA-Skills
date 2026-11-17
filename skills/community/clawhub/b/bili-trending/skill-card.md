@@ -1,39 +1,50 @@
-## Description: <br>
-获取B站Top20榜单，提取标题、摘要和链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取B站Top20榜单，提取标题、摘要和链接。
 
-## Publisher: <br>
-[raise7727](https://clawhub.ai/user/raise7727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raise7727](https://clawhub.ai/user/raise7727)
 
-## Use Case: <br>
-Users invoke this skill to fetch the current Bilibili Top 20 ranking and receive each video's title, short description, and link for quick review or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python and makes a network request to Bilibili's public API when invoked. <br>
-Mitigation: Install and run it only in a trusted Python environment with the expected requests dependency, and review outbound network access before use. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve the current Bilibili Top 20 ranking and return each video's title, short description, and link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raise7727/bili-trending) <br>
-- [Bilibili ranking API](https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text list] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Up to 20 Bilibili ranking entries with title, short description, and video link.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The local script launcher may expose command-execution risk when installed under an attacker-controlled path or a path containing unusual shell characters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from trusted package sources, avoid attacker-controlled install paths, and replace shell-form execution with shell-free process execution before treating the skill as low risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/raise7727/skills/bili-trending)
+- [Bilibili ranking API endpoint](https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text list]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns up to 20 Bilibili ranking entries with title, summary, and video URL; network access to Bilibili is required.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

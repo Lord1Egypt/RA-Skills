@@ -1,43 +1,58 @@
-## Description: <br>
-Lottery Predictor V3 8 generates entertainment-only Double Color Ball lottery recommendations and backtest summaries using local historical draw data, machine-learning models, and rule-based scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides machine-learning-assisted Double Color Ball lottery recommendations and backtesting using Random Forest, Gradient Boosting, feature engineering, and rule-based scoring.
 
-## Publisher: <br>
-[mumuli2021](https://clawhub.ai/user/mumuli2021) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mumuli2021](https://clawhub.ai/user/mumuli2021)
 
-## Use Case: <br>
-External users and developers use this skill to run local lottery analysis, generate entertainment-only number recommendations, and produce backtest summaries from a local SQLite history database. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lottery prediction output and advertised accuracy can be mistaken for gambling or financial advice. <br>
-Mitigation: Treat predictions and backtests as entertainment-only analysis and do not rely on them for purchasing or financial decisions. <br>
-Risk: Backtest runs can create or overwrite local Markdown report files. <br>
-Mitigation: Verify the intended report location before running backtests and preserve any reports that should not be replaced. <br>
-Risk: The model depends on the selected local SQLite lottery database. <br>
-Mitigation: Confirm the database path and data source before running predictions or evaluating claimed accuracy. <br>
+## Use Case:
 
+External users and agents use this skill to generate lottery number recommendations from a local OpenClaw SQLite lottery database and to run historical backtests. Outputs should be treated as entertainment-oriented analysis rather than reliable financial guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mumuli2021/lottery-predictor-v3-8) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Terminal text with optional Markdown backtest report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local Python, SQLite, and lottery history data; backtests may write a local Markdown report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.8.0 (source: package.json, server release metadata) <br>
+Risk: Lottery recommendations can be mistaken for reliable financial guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present predictions as entertainment only and avoid using them as the basis for financial decisions.
+
+Risk: The skill reads a local OpenClaw lottery SQLite database and backtests may write reports in the OpenClaw workspace.
+
+Mitigation: Run in a controlled workspace with the intended database path and review generated reports before sharing them.
+
+Risk: Python dependency hygiene issues may affect reproducibility or local environment safety.
+
+Mitigation: Use a virtual environment and pinned versions for scikit-learn, numpy, and pandas.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mumuli2021/skills/lottery-predictor-v3-8)
+- [Publisher profile](https://clawhub.ai/user/mumuli2021)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Terminal text with lottery recommendations and optional Markdown backtest reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local lottery history from SQLite and may write Markdown backtest reports in the OpenClaw workspace.]
+
+## Skill Version(s):
+
+3.8.0 (source: evidence.release and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

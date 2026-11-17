@@ -1,44 +1,56 @@
-## Description: <br>
-Generates and edits images, videos, upscaled media, and talking-avatar outputs through a Kandinsky API service using text, image, and audio inputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Kandinsky helps agents generate and edit images, create or animate video, upscale images, and create talking avatars through the Kandinsky API.
 
-## Publisher: <br>
-[nikolay-gerasimenko](https://clawhub.ai/user/nikolay-gerasimenko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nikolay-gerasimenko](https://clawhub.ai/user/nikolay-gerasimenko)
 
-## Use Case: <br>
-External users, developers, and creative operators use this skill to ask an agent to generate images, edit images, upscale media, create short videos from text or images, and produce talking-avatar video through a configured Kandinsky API endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documented default API endpoint uses plain HTTP and can receive an API key plus user prompts, images, audio, and generated media. <br>
-Mitigation: Use an HTTPS endpoint or a trusted private/VPN endpoint, and avoid sending sensitive prompts, media, or API keys through the default plain-HTTP public IP. <br>
-Risk: The skill depends on an external Kandinsky API operator for request handling and media retention practices. <br>
-Mitigation: Install and use the skill only when the operator is trusted, and confirm endpoint ownership before submitting valuable or sensitive inputs. <br>
+## Use Case:
 
+Developers and content-creation agents use this skill to turn user requests for images, video, animation, upscaling, and talking avatars into Kandinsky API calls, then poll tasks and save the generated media.
 
-## Reference(s): <br>
-- [Kandinsky API Swagger](http://87.242.117.37:5051/docs) <br>
-- [Kandinsky API cheatsheet](references/api-cheatsheet.md) <br>
-- [Kandinsky prompting guide](references/prompting.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nikolay-gerasimenko/kandinsky) <br>
-- [Publisher profile](https://clawhub.ai/user/nikolay-gerasimenko) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples for producing image, video, audio-avatar, or status/result files from the Kandinsky API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires KANDINSKY_API_KEY and optionally KANDINSKY_API_BASE; generated media is saved as files by the bundled Python client or API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.4) <br>
+Risk: The default public plain-HTTP API endpoint can expose API keys and uploaded media.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure a trusted HTTPS, private, or loopback endpoint before using real API keys, photos, or voice recordings.
+
+Risk: Uploaded images and audio are sent to the configured remote Kandinsky service.
+
+Mitigation: Use scoped, revocable API keys and avoid sending sensitive media unless the endpoint and operator are trusted.
+
+## Reference(s):
+
+- [Kandinsky API documentation](http://87.242.117.37:5051/docs)
+- [Kandinsky API cheatsheet](references/api-cheatsheet.md)
+- [Kandinsky prompting guide](references/prompting.md)
+- [ClawHub skill page](https://clawhub.ai/nikolay-gerasimenko/skills/kandinsky)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated media is saved as image, video, or binary files by the API client.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires KANDINSKY_API_KEY and optionally KANDINSKY_API_BASE; outputs depend on the selected Kandinsky task type.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

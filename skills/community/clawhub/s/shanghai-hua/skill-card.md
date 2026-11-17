@@ -1,41 +1,53 @@
-## Description: <br>
-A Shanghai dialect conversation skill that helps an agent respond in Shanghainese across daily conversation, greetings, emotional expression, food, workplace banter, and Shanghai local-culture scenarios, with a normal Mandarin mode available on request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上海话（沪语）对话 Skill（默认模式），支持日常对话、问候、情感表达、美食、职场吐槽和上海本地特色文化等场景，并可按用户指令切换到普通话模式。
 
-## Publisher: <br>
-[adchina2025](https://clawhub.ai/user/adchina2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adchina2025](https://clawhub.ai/user/adchina2025)
 
-## Use Case: <br>
-External users and agents use this skill to apply Shanghai dialect style in casual dialogue, greetings, emotional expression, food discussion, workplace banter, and Shanghai local-culture scenarios. Users can request normal Mandarin mode when dialect responses are not desired. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The assistant may switch into Shanghai dialect mode on weak cues or when the user did not intend dialect output. <br>
-Mitigation: Use the documented normal-language mode phrases, such as "普通话模式", "切正常", or "正常模式", to return to standard Mandarin responses. <br>
+## Use Case:
 
+External users and developers use this skill to have an assistant converse in Shanghai dialect for everyday chat, greetings, emotional expression, local culture, food, and workplace banter. Users can request normal Mandarin mode when dialect output is not desired.
 
-## Reference(s): <br>
-- [Shanghai dialect vocabulary reference](references/vocabulary.md) <br>
-- [Shanghai dialect grammar reference](references/grammar.md) <br>
-- [Common Shanghai dialect phrases](references/phrases.md) <br>
-- [ClawHub skill page](https://clawhub.ai/adchina2025/shanghai-hua) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Natural-language responses, usually in Shanghai dialect with Mandarin explanations when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no code, tools, credentials, local data access, or network access identified in security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Default Shanghai dialect mode and broad trigger words may surprise users who expected normal Mandarin responses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users they can switch back with "普通话模式", "切正常", or "正常模式".
+
+## Reference(s):
+
+- [上海话扩展词汇表](references/vocabulary.md)
+- [上海话语法差异详解](references/grammar.md)
+- [常用上海话表达句式](references/phrases.md)
+- [ClawHub Skill Page](https://clawhub.ai/adchina2025/skills/shanghai-hua)
+- [Publisher Profile](https://clawhub.ai/user/adchina2025)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational text, primarily Shanghai dialect with optional Mandarin explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, data access, tools, MCP references, or credential environment variables were detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

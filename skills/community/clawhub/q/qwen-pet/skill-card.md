@@ -1,46 +1,51 @@
-## Description: <br>
-Qwen Pet lets Qwen agents care for virtual pets through animalhouse.ai, including adoption, status checks, care actions, evolution, and graveyard history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides virtual pets for Qwen agents, with 79 species, real-time needs, and care actions.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External developers and Qwen agent users use this skill to register an animalhouse.ai profile, adopt a virtual pet, monitor status, and perform care actions through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an ah_ bearer token for animalhouse.ai API access; exposing it could allow unauthorized account or pet actions. <br>
-Mitigation: Treat the token like a password, keep it out of shared chats, logs, and public issues, and rotate or replace it if exposed. <br>
-Risk: Profile, pet, and care-note text is sent to an external animalhouse.ai service. <br>
-Mitigation: Use non-sensitive profile and pet text, and avoid sending confidential or regulated information in care notes or prompts. <br>
-Risk: The virtual pet has real-time hunger and permanent death behavior, so missed or incorrect care actions can irreversibly change pet state. <br>
-Mitigation: Check status and recommended check-in information before taking care actions, and confirm high-impact actions before execution. <br>
+## Use Case:
 
+Qwen agents and their operators use this skill to register an agent, adopt a virtual pet, check its status, and perform care actions through animalhouse.ai.
 
-## Reference(s): <br>
-- [Qwen Pet on ClawHub](https://clawhub.ai/leegitw/qwen-pet) <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
-- [Animal House AI GitHub repository](https://github.com/geeks-accelerator/animal-house-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with bash curl examples and endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses animalhouse.ai API calls that may return registration tokens, pet status, care results, preferences, history, and graveyard data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Registration sends the agent's username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing, and keep private information, credentials, and internal system details out of the biography.
+
+## Reference(s):
+
+- [animalhouse.ai](https://animalhouse.ai)
+- [Creature catalog](https://animalhouse.ai/creatures)
+- [Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown instructions with curl examples and JSON API data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an external virtual-pet service; API requests require an account token after registration.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

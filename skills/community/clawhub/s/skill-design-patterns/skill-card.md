@@ -1,40 +1,54 @@
-## Description: <br>
-Guides the design of effective agent skills. Use when creating a new skill, improving an existing skill, reviewing a skill's structure, or establishing skill-writing conventions for a project. Covers anti-rationalization tables, red flags, verification checklists, core operating behaviors, and progressive disclosure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides the design of effective agent skills for creating, improving, reviewing, or establishing skill-writing conventions, including anti-rationalization tables, red flags, verification checklists, core operating behaviors, and progressive disclosure.
 
-## Publisher: <br>
-[javastarboy](https://clawhub.ai/user/javastarboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[javastarboy](https://clawhub.ai/user/javastarboy)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to create, improve, and review agent skill structure. It focuses on repeatable design patterns such as anti-rationalization tables, red flags, verification checklists, and progressive disclosure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested platform-level behaviors could be copied into persistent agent configuration too broadly or without review. <br>
-Mitigation: Review any copied guidance first and keep persistent configuration changes limited to the intended project or team. <br>
+## Use Case:
 
+Developers and teams use this skill to create, improve, review, and audit agent skills. It helps agents produce skill guidance with explicit non-use cases, anti-rationalization checks, red flags, verification checklists, and progressive disclosure practices.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/javastarboy/skill-design-patterns) <br>
-- [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) <br>
-- [javastarboy/open-skills](https://github.com/javastarboy/open-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, tables, and structured recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution, shell commands, or credential access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: The skill may influence future skill-writing workflows by encouraging conventions in project guidance files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed guidance changes before adoption and scan resulting skills before deployment.
+
+Risk: Guidance-only skills can still lead agents to introduce incorrect or misleading conventions into other skills.
+
+Mitigation: Require evidence-backed verification checklists and human review for new or revised skill guidance.
+
+## Reference(s):
+
+- [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
+- [javastarboy/open-skills](https://github.com/javastarboy/open-skills)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, and examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable guidance skill; no credential, MCP, or API tool references detected.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

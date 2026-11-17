@@ -1,43 +1,58 @@
-## Description: <br>
-Generates short vertical video clips from storyboard key frames using Volcengine Ark Seedance 2.0 image-to-video, with 5-second scenes, up to three concurrent jobs, and last-frame outputs for scene continuity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates short vertical comic-video clips from storyboard keyframes using Volcengine Ark Seedance 2.0, with 5-second scenes, up to 3 concurrent jobs, and returned last frames for continuity.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Creators, developers, and production agents use this skill to turn prepared comic storyboard frames and scene metadata into short MP4 video clips for vertical comic-drama workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Volcengine Ark API key and sends storyboard frames and prompts to the provider. <br>
-Mitigation: Use a scoped API key, review the selected frames and prompts before execution, and avoid processing sensitive material unless the provider terms and data handling are acceptable. <br>
-Risk: Video generation can incur paid provider charges, and local cost tracking records charges after jobs complete. <br>
-Mitigation: Set provider-side spending limits, review the requested scene count and resolution, and keep the skill's lower-resolution or fast-mode options in mind when controlling cost. <br>
-Risk: Incorrect input or output paths could upload unintended frames or overwrite expected generated media. <br>
-Mitigation: Review the script path, frame directory, and output directory before running the command. <br>
+## Use Case:
 
+Developers and content automation agents use this skill to turn storyboard JSON and matching keyframe images into short vertical comic-video clips. It is intended for ClawHub users who can provide a Volcengine Ark API key and review generated media outputs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zhaobod1/huo15-comic-video) <br>
-- [Volcengine Seedance documentation](https://www.volcengine.com/docs/82379/1520757) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [MP4 video files, PNG last-frame files, checkpoint metadata, and console status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces one MP4 per scene plus optional last-frame PNGs for continuity; uses ARK_API_KEY and paid provider API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Scene IDs and paths may cause reads, uploads, or writes outside the intended project folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review script JSON and storyboard filenames before running, and use a dedicated project directory containing only intended input frames and output paths.
+
+Risk: Frames and prompts are sent to Volcengine Ark using ARK_API_KEY.
+
+Mitigation: Use only content approved for that provider, protect the API key, and avoid sensitive or regulated inputs unless provider terms allow it.
+
+Risk: The bundled cost cap should not be treated as a hard spending guard.
+
+Mitigation: Set provider-side budgets or quotas and check scene count, duration, resolution, and fast-mode settings before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-comic-video)
+- [Volcengine Seedance video generation documentation](https://www.volcengine.com/docs/82379/1520757)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown instructions with command-line examples; generated MP4 clips and last-frame PNG files when executed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses storyboard JSON, keyframe images, ARK_API_KEY, scene duration, resolution, and fast-mode settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

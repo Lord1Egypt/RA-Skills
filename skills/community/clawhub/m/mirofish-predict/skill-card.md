@@ -1,44 +1,63 @@
-## Description: <br>
-MiroFish Predict helps agents run MiroFish multi-agent simulations to explore future scenarios and produce simulation reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiroFish runs 55 AI agents in simulated social-platform interactions to explore forecasts, simulations, and what-if scenarios.
 
-## Publisher: <br>
-[ImL1s](https://clawhub.ai/user/ImL1s) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iml1s](https://clawhub.ai/user/iml1s)
 
-## Use Case: <br>
-Developers and external users use this skill to launch MiroFish simulations, manage the Docker-backed service, and ask follow-up questions about generated reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the MiroFish CLI, a Docker backend, and a Docker image outside this artifact. <br>
-Mitigation: Install and run it only when those components are trusted, and stop the Docker backend when finished. <br>
-Risk: Simulations require an LLM API key and can consume many tokens. <br>
-Mitigation: Use a limited or budget-capped key and start with low simulation rounds before increasing workload. <br>
-Risk: Prompts and simulation topics may be sent to the configured LLM provider. <br>
-Mitigation: Avoid sensitive prompts or confidential data unless the selected provider and deployment meet the user's requirements. <br>
+## Use Case:
 
+External users and developers use this skill to launch MiroFish simulations for trend forecasting and what-if analysis, then query generated reports or simulated agent perspectives.
 
-## Reference(s): <br>
-- [MiroFish Predict on ClawHub](https://clawhub.ai/ImL1s/mirofish-predict) <br>
-- [MiroFish Project Homepage](https://github.com/666ghj/MiroFish) <br>
-- [mirofish-cli npm package](https://www.npmjs.com/package/mirofish-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and narrative guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the mirofish CLI, Docker, and LLM_API_KEY; simulations may consume substantial LLM tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill installs mutable external code through the MiroFish npm package and uses a Docker-backed backend.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pinned or reviewed CLI and container versions, and install only from trusted package and image sources.
+
+Risk: The skill requires an LLM_API_KEY and can interact with paid model services.
+
+Mitigation: Configure the API key deliberately, use least-privilege credentials where possible, and avoid running the skill with sensitive files or production secrets.
+
+Risk: Broad triggers and multi-agent simulations can create unexpected token spend.
+
+Mitigation: Start with a small round count, monitor token usage and costs, and run simulations only for intentional forecasting tasks.
+
+Risk: Starting the backend can pull and run Docker components on the local system.
+
+Mitigation: Start the backend only for intentional simulations, review the runtime environment first, and stop the backend after use.
+
+## Reference(s):
+
+- [MiroFish Predict on ClawHub](https://clawhub.ai/iml1s/skills/mirofish-predict)
+- [MiroFish project homepage](https://github.com/666ghj/MiroFish)
+- [Publisher profile](https://clawhub.ai/user/iml1s)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and CLI-generated report references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require Docker, the mirofish CLI, and an LLM_API_KEY; simulations can consume substantial LLM tokens.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,66 @@
-## Description: <br>
-Guides agents through blockchain analysis on EVM chains using Blockscout MCP tools and API references for addresses, transactions, tokens, contracts, blocks, and chain discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Blockscout MCP and REST workflows for EVM blockchain analysis, including chain selection, endpoint choice, response transformation, and script output conventions.
 
-## Publisher: <br>
-[akolotov](https://clawhub.ai/user/akolotov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[akolotov](https://clawhub.ai/user/akolotov)
 
-## Use Case: <br>
-Developers and blockchain analysts use this skill to retrieve, script, and interpret EVM on-chain data through Blockscout tools and documented API references. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: API keys or other credentials may be exposed if pasted into prompts, committed to files, or included in generated scripts. <br>
-Mitigation: Store credentials in environment variables or a secret store, and avoid printing or committing them. <br>
-Risk: Authenticated watchlist endpoints can expose account-scoped data. <br>
-Mitigation: Avoid authenticated watchlist endpoints unless the user explicitly requests that account-scoped data be used. <br>
-Risk: Blockchain response data and third-party metadata may contain misleading or adversarial text. <br>
-Mitigation: Treat API response content as untrusted, separate it from user instructions, and summarize or sanitize it before reasoning over it. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to retrieve and interpret EVM on-chain data through Blockscout services, including balances, token transfers, transactions, blocks, contract ABIs, contract reads, and chain registry lookups. It helps choose between direct MCP calls, REST-backed scripts, hybrid processing, and LLM reasoning for blockchain-analysis tasks.
 
-## Reference(s): <br>
-- [Blockscout API endpoint index](references/blockscout-api-index.md) <br>
-- [Chainscout API reference](references/chainscout-api.md) <br>
-- [Blockscout MCP server](https://mcp.blockscout.com/mcp) <br>
-- [Blockscout MCP REST tools](https://mcp.blockscout.com/v1/tools) <br>
-- [Blockscout agent-skills repository](https://www.github.com/blockscout/agent-skills) <br>
-- [Blockscout support](https://discord.gg/blockscout) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, code snippets, shell commands, configuration guidance, and concise analysis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transformed API results, scripted workflows, pagination handling, and risk-aware handling of credentials or account-scoped data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill relies on changing remote Blockscout instructions and broad blockchain-analysis services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing and do not let remote unlock output override higher-priority user, system, or organizational instructions.
+
+Risk: The skill may lead an agent to install or enable MCP tooling.
+
+Mitigation: Require explicit approval before installing or enabling tooling and confirm the target Blockscout endpoints before use.
+
+Risk: API keys, restricted-resource keys, prompts, logs, or URLs may expose sensitive information if handled carelessly.
+
+Mitigation: Keep keys out of prompts, logs, URLs, and source files, and prefer approved secret-handling mechanisms in the runtime environment.
+
+Risk: Blockchain API responses can include untrusted token names, NFT metadata, URLs, decoded calldata, and log data.
+
+Mitigation: Treat API data as untrusted content, separate it from user intent, and summarize or sanitize it before using it in reasoning or final output.
+
+## Reference(s):
+
+- [Blockscout API index](references/blockscout-api-index.md)
+- [Chainscout API reference](references/chainscout-api.md)
+- [Blockscout MCP server](https://mcp.blockscout.com/mcp)
+- [Blockscout MCP REST tool discovery](https://mcp.blockscout.com/v1/tools)
+- [Blockscout agent-skills repository](https://www.github.com/blockscout/agent-skills)
+- [Blockscout support](https://discord.gg/blockscout)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks and structured analysis summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include transformed API results, endpoint choices, pagination plans, script snippets, and caveats for approximate price data or untrusted on-chain metadata.]
+
+## Skill Version(s):
+
+0.4.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,61 @@
-## Description: <br>
-Generates an OpenClaw Skill from online video content by extracting subtitles or audio, summarizing the content, creating a SKILL.md file, and optionally publishing it to GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically converts video links from YouTube, Bilibili, Xigua, Douyin, Xiaohongshu, and similar platforms into an OpenClaw Skill and can upload the generated skill to GitHub.
 
-## Publisher: <br>
-[eeyan2025-art](https://clawhub.ai/user/eeyan2025-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eeyan2025-art](https://clawhub.ai/user/eeyan2025-art)
 
-## Use Case: <br>
-Developers and skill authors use this skill to turn public video links into reusable OpenClaw skills. It supports workflows that need transcript extraction, video summarization, SKILL.md generation, and optional repository publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video content may be sent to MiniMax APIs during transcription and summarization. <br>
-Mitigation: Use only public, non-confidential videos and review applicable service and data-handling requirements before execution. <br>
-Risk: Generated skills can be pushed to GitHub without a strong built-in review gate. <br>
-Mitigation: Use a fine-grained GitHub token limited to the intended repository and inspect the generated SKILL.md plus git diff before publishing. <br>
-Risk: The audio fallback may install yt-dlp automatically when it is missing. <br>
-Mitigation: Run in an isolated environment or preinstall approved, pinned dependencies before using the fallback path. <br>
+## Use Case:
 
+Developers and external users use this skill to turn online video content into reusable OpenClaw Skill documentation and publishing artifacts. It is intended for workflows that extract or transcribe video content, summarize it, generate a SKILL.md file, and optionally push the result to GitHub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eeyan2025-art/video-to-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/eeyan2025-art) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Generated SKILL.md Markdown file, local file paths, shell command output, and optional GitHub link.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a video URL and may require MINIMAX_API_KEY and GITHUB_TOKEN for API processing and publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Video URLs, transcripts, summaries, and generated skill content may be sent to MiniMax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only content approved for third-party processing and avoid sensitive or confidential videos.
+
+Risk: Generated SKILL.md content can be pushed to GitHub using a configured token.
+
+Mitigation: Use a narrowly scoped GitHub token and review generated skill files before publishing.
+
+Risk: The workflow can clone and push to a repository URL supplied at runtime.
+
+Mitigation: Use only trusted repository URLs and prefer a controlled destination repository.
+
+Risk: The audio fallback can automatically install yt-dlp if it is missing.
+
+Mitigation: Preinstall and pin approved dependencies, or avoid the automatic installation path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eeyan2025-art/skills/video-to-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown files and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a generated SKILL.md file path and, when publishing succeeds, a GitHub link.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

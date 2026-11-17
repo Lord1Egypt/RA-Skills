@@ -1,42 +1,60 @@
-## Description: <br>
-Claw Config helps OpenClaw agents identify their own configuration scope, inspect schema and docs, diagnose setup issues, and plan or apply scoped configuration changes without guessing field names or paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Config helps OpenClaw agents identify their own configuration slice, inspect schema and documentation, diagnose setup issues, and plan or apply guarded configuration changes.
 
-## Publisher: <br>
-[zhili1004](https://clawhub.ai/user/zhili1004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhili1004](https://clawhub.ai/user/zhili1004)
 
-## Use Case: <br>
-Developers, operators, and OpenClaw agents use this skill to inspect an agent's own OpenClaw configuration, diagnose setup problems, and make schema-validated configuration changes after reviewing a dry-run plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives agents persistent power to change OpenClaw configuration. <br>
-Mitigation: Require a human-reviewed plan diff before apply, and use apply only for intentional operator-approved changes. <br>
-Risk: Shared configuration changes can affect more than the calling agent. <br>
-Mitigation: Do not allow --force-shared except under direct operator control. <br>
-Risk: Documentation lookups can be stale or unsafe if pointed away from OpenClaw documentation. <br>
-Mitigation: Use the docs command for OpenClaw documentation and avoid non-OpenClaw URLs. <br>
+## Use Case:
 
+Developers and operators use this skill to let an OpenClaw agent inspect its own identity, schema, documentation, diagnostics, and configuration patch plan before making agent-scoped changes.
 
-## Reference(s): <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text or JSON command output, with markdown reports where supported] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some commands can change local OpenClaw configuration; apply is intended to follow a reviewed dry-run plan and is blocked in cron context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence, package.json, CHANGELOG) <br>
+Risk: The skill can inspect and modify persistent OpenClaw configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review of the dry-run plan before using apply, and rely on the skill's backup and rollback behavior for failed writes.
+
+Risk: Documentation fetching and cache behavior may expose users to under-scoped URL or stale-documentation issues.
+
+Mitigation: Use known OpenClaw documentation slugs, avoid full URLs, and refresh documentation only from trusted interactive contexts.
+
+Risk: Shared-section or array-replacement changes can affect more configuration than the caller intended.
+
+Mitigation: Avoid --force-shared unless an operator explicitly approves it, and inspect dry-run diffs for whole-array or shared-section replacement before applying.
+
+## Reference(s):
+
+- [Claw Config skill page](https://clawhub.ai/zhili1004/skills/claw-config)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [Artifact README](README.md)
+- [Examples README](examples/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, shell commands]
+
+**Output Format:** [Plain text or JSON command output, Markdown reports, and JSON5 configuration patch files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only and diagnostic commands are cron-safe; apply performs configuration writes and is blocked in cron context.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, package.json, CHANGELOG)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

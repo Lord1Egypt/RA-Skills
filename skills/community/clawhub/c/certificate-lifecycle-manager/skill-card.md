@@ -1,39 +1,56 @@
-## Description: <br>
-Manage TLS/SSL certificate lifecycle through discovery, monitoring, renewal planning, rotation, ACME automation, and post-rotation verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage TLS/SSL certificate lifecycle - discovery, monitoring, renewal planning, and rotation.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, platform engineers, and SRE teams use this skill to inventory TLS/SSL certificates, monitor expiry, plan renewals, automate ACME or manual renewal steps, and verify certificate rotation across services.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad Kubernetes certificate discovery can expose sensitive TLS secret metadata across namespaces.
+
+Mitigation: Run discovery only against approved namespaces and labels with least-privilege read access.
+
+Risk: Host-wide certificate file searches can touch sensitive or high-volume production paths.
+
+Mitigation: Restrict searches to approved paths and permissions before running them on production systems.
+
+Risk: Generated renewal or verification commands may be too broad for the target environment.
+
+Mitigation: Review and narrow commands before execution, especially for certificate rotation and service restart steps.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, platform engineers, and operations teams use this skill to inventory certificates, monitor expiry, plan renewals, automate ACME/Let's Encrypt workflows, and verify certificate deployment after rotation. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Certificate discovery and renewal-hook inspection can expose sensitive host, namespace, path, and script details. <br>
-Mitigation: Restrict host lists, Kubernetes namespaces, and local paths before use, and review or redact hook script contents before sharing output. <br>
-Risk: Live renewal commands and service deployment steps can change production certificate state. <br>
-Mitigation: Run renewal dry-runs first and require backups, change approval, verification, and rollback steps before production changes or restarts. <br>
+**Output Format:** [Markdown with shell command blocks, configuration snippets, and inventory tables]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Commands should be reviewed and scoped before execution in Kubernetes or production host environments.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, configuration snippets, inventory tables, and operational runbook steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes certificate inventory summaries, renewal and verification commands, alerting configuration, and manual renewal steps.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,51 @@
-## Description: <br>
-Suggests emoji reactions for text messages using lightweight rule-based sentiment mapping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Suggests emoji reactions for text messages based on sentiment analysis across positive, negative, funny, curious, excited, and neutral categories.
 
-## Publisher: <br>
-[wanng-ide](https://clawhub.ai/user/wanng-ide) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wanng-ide](https://clawhub.ai/user/wanng-ide)
 
-## Use Case: <br>
-Developers and agents use this skill to suggest quick emoji reactions for message text in messaging or social-engagement workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Rule-based keyword matching can misread tone, sarcasm, or sensitive context. <br>
-Mitigation: Review suggested reactions before using them in real conversations or customer-facing workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wanng-ide/emoji-reaction-automator) <br>
-- [Publisher profile](https://clawhub.ai/user/wanng-ide) <br>
+## Use Case:
+
+Developers and external users can use this skill to suggest lightweight emoji reactions for messaging or social engagement workflows. It is best suited to simple local reaction suggestions rather than nuanced sentiment analysis or moderation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Keyword matching may misclassify tone, sarcasm, multilingual text, or sensitive message content.
+
+Mitigation: Use the suggestion as a convenience hint and review reactions before posting in sensitive or customer-facing contexts.
+
+Risk: The skill is not designed for nuanced moderation or privacy-sensitive message handling.
+
+Mitigation: Avoid relying on it for safety decisions, policy enforcement, or processing messages that require privacy or compliance controls.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, guidance] <br>
-**Output Format:** [JavaScript object or JSON with category, emoji, and confidence fields; Markdown guidance for agent use.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Suggestions are generated locally from keyword matches and may choose randomly among emojis in the matched category.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and package.json) <br>
+**Output Type(s):** [Code, JSON, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [JavaScript API output or CLI JSON containing category, emoji, and confidence fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local keyword matching with randomized emoji selection within the selected category.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

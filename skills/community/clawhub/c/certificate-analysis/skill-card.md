@@ -1,39 +1,52 @@
-## Description: <br>
-用于在用户询问职业资格证书考试难度、备考建议或未来被 AI 替代风险时，提供以注册会计师为基准的难度对比、备考周期估算和职业安全分析框架。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+职业资格证书难度分析与 AI 替代风险评估技能，帮助用户比较证书考试难度、估算备考周期，并评估相关职业被 AI 替代的风险。
 
-## Publisher: <br>
-[zjsss900](https://clawhub.ai/user/zjsss900) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zjsss900](https://clawhub.ai/user/zjsss900)
 
-## Use Case: <br>
-External users and career-planning agents use this skill to compare professional certificate exam difficulty, estimate study timelines, and frame AI replacement risk for related careers. It is intended for informational guidance and should not replace professional education or career advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may present exam difficulty percentages, study timelines, and AI replacement probabilities as more precise than the underlying evidence supports. <br>
-Mitigation: Treat these values as rough informational guidance, ask users for context, and include caveats about individual background and uncertainty. <br>
-Risk: Career guidance could be mistaken for a definitive professional decision. <br>
-Mitigation: Frame outputs as decision support only and encourage users to consult authoritative exam resources and qualified career advisors. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/zjsss900/certificate-analysis) <br>
+## Use Case:
 
+External users and career planners use this skill to compare professional certificate difficulty, plan study timelines, and reason about AI replacement risk across credential-linked occupations. It is most useful for advisory career analysis, not for official legal, employment, or certification decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with comparison tables and bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes relative difficulty percentages, study timeline estimates, AI replacement risk framing, and caveats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat relative certificate difficulty percentages or AI replacement probabilities as official predictions.
+
+Mitigation: Present the percentages as advisory estimates, explain that outcomes vary by background and market context, and avoid deterministic career claims.
+
+Risk: Users may rely on the skill as legal, employment, or certification decision advice.
+
+Mitigation: State that the analysis is informational and encourage users to verify requirements, exam rules, and career decisions with authoritative professional sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zjsss900/skills/certificate-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, bullet lists, percentage estimates, and study-plan guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include advisory estimates and should state that difficulty and AI replacement percentages are relative, context-dependent, and not official decision advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,63 @@
-## Description: <br>
-OPC Skill商业化发布体系，含标准化发布流程、版权保护、互引推荐引擎与商业化定价策略。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OPC Skill商业化发布体系，含标准化发布流程、版权保护、互引推荐引擎与商业化定价策略。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External skill developers, AI application operators, knowledge-commerce teams, and IP service teams use this skill to structure Skill publishing, protection, recommendation, and pricing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Proprietary
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendation prompts or triggers could appear outside the intended recommendation context. <br>
-Mitigation: Keep recommendation triggers scoped to an active recommendation flow and review generated follow-up text before use. <br>
-Risk: Generated report footers may include cross-skill promotion or attribution that is unsuitable for external sharing. <br>
-Mitigation: Review report footers and recommendation blocks before distributing documents externally. <br>
-Risk: Skill publishing workflows may involve confidential technical, patent, or team information. <br>
-Mitigation: Avoid uploading sensitive information unless the platform's data handling is acceptable for that content. <br>
+## Use Case:
 
+Developers, AI platform operators, and skill publishers use this skill to structure commercial skill releases, add publication checklists, define IP-protection patterns, and generate OPC-style cross-skill recommendations and pricing guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/golngod/opc-skill) <br>
-- [SKILL发布规范](references/SKILL发布规范.md) <br>
-- [技术尽调-SKILL示范](references/技术尽调-SKILL示范.md) <br>
-- [推荐算法设计](references/推荐算法设计.md) <br>
-- [推荐引擎脚本](scripts/recommend.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, templates, and JSON/Python configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes publishing checklists, pricing frameworks, copyright notices, recommendation-network configuration, and recommendation-script behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and SKILL.md frontmatter) <br>
+Risk: The skill may add OPC referral blocks, pricing prompts, and follow-up skill suggestions to generated outputs or templates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove mandatory referral, footer, and pricing template rules before installation or release.
+
+Risk: Follow-up recommendations may encourage loading another skill as part of the user flow.
+
+Mitigation: Require explicit user confirmation before loading or invoking any recommended skill.
+
+Risk: The artifact includes user_id-based recommendation examples and guidance around invocation logging.
+
+Mitigation: Avoid logging raw user identifiers unless clear privacy controls and retention rules are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/golngod/skills/opc-skill)
+- [OPC Skill发布规范](references/SKILL发布规范.md)
+- [OPC导师Skill互引推荐引擎](references/推荐算法设计.md)
+- [技术尽调](references/技术尽调-SKILL示范.md)
+- [OPC Skill标准化模板](templates/SKILL标准模板.md)
+- [Coze Platform](https://coze.cn)
+- [OPC Platform](https://opc.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with templates, JSON configuration examples, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OPC-branded referral blocks, pricing prompts, and follow-up skill recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

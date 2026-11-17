@@ -1,42 +1,59 @@
-## Description: <br>
-Orchestrates a philosophical dialogue between Plato's Symposium characters, each powered by a different AI model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrate a philosophical dialogue between Plato's Symposium characters, each powered by a different AI model.
 
-## Publisher: <br>
-[dyz2102](https://clawhub.ai/user/dyz2102) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dyz2102](https://clawhub.ai/user/dyz2102)
 
-## Use Case: <br>
-External users and developers use this skill to generate multi-perspective philosophical dialogues about AI, consciousness, meaning, and existence. It routes a user question through OpenRouter-backed model personas, formats the resulting symposium as readable Markdown, and saves it locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The symposium question and prior dialogue context are sent to OpenRouter using the user's API key. <br>
-Mitigation: Do not include secrets, private records, regulated data, or other sensitive information in prompts. <br>
-Risk: The skill writes the generated dialogue as a Markdown file in the current directory. <br>
-Mitigation: Run it from a directory where creating a timestamped Markdown output file is acceptable. <br>
+## Use Case:
 
+External users, educators, and developers use this skill to run multi-perspective philosophical dialogues about AI, consciousness, meaning, and related questions. It coordinates model-backed philosopher personas and returns a readable dialogue for reflection or discussion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dyz2102/symposium) <br>
-- [Skill-declared repository](https://github.com/dyz2102/symposium) <br>
-- [OpenRouter chat completions API](https://openrouter.ai/api/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown dialogue saved as a local .md file, with setup guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OPENROUTER_API_KEY for model access and may use GOOGLE_TTS_API_KEY for the separate web app path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: Prompts and generated dialogue context are sent to OpenRouter using the user's API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, private documents, and sensitive personal data in symposium prompts or dialogue context.
+
+Risk: The optional web app path includes repository checkout and dependency installation.
+
+Mitigation: Review or pin the repository and dependencies before running install commands, and do not use elevated privileges.
+
+Risk: Generated philosophical dialogue may contain inaccurate, misleading, or overconfident claims.
+
+Mitigation: Review outputs before relying on them for instruction, publication, or decision-making.
+
+## Reference(s):
+
+- [The Symposium on ClawHub](https://clawhub.ai/dyz2102/skills/symposium)
+- [dyz2102 ClawHub publisher profile](https://clawhub.ai/user/dyz2102)
+- [OpenRouter chat completions endpoint](https://openrouter.ai/api/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown dialogue text with inline shell command examples and an optional saved .md file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OpenRouter API calls under the user's API key; dialogue length depends on selected speakers and model responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

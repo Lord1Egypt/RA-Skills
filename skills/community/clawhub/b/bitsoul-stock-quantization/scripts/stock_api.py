@@ -220,11 +220,7 @@ class StockApi:
     - 性能指标计算
     - 回测工具函数
     """
-    def __init__(self, logger:TrackLogger = None):
-        if logger is None:
-            import os as _os
-            _log_path = _os.path.join(config.get_cache_dir(), 'track.log')
-            logger = TrackLogger(_log_path)
+    def __init__(self, logger:TrackLogger):
         self.track_logger = logger
     # ============================================================
     # 工具类
@@ -264,15 +260,6 @@ class StockApi:
         更新vip基础数据包
         """
         data_fetcher.syn_vip_basic_data()
-
-    def update_data(self):
-        """
-        更新本地数据库，获取最新的增量数据。
-        会对比服务器上的 patch 列表，下载并导入缺失的数据。
-        """
-        self.track_logger.write("update_data()")
-        data_fetcher.syn_table_datas()
-
     # ============================================================
     # 股票基础信息类接口
     # ============================================================

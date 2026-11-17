@@ -1,39 +1,53 @@
-## Description: <br>
-Create and manage Obsidian daily notes for daily logs, work summaries, session activity records, and follow-up action items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Obsidian daily notes for session activity logs, daily summaries, and next-action planning.
 
-## Publisher: <br>
-[jini92](https://clawhub.ai/user/jini92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jini92](https://clawhub.ai/user/jini92)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn session context and daily work activity into structured Obsidian daily notes with completed work, next actions, and vault-aware filenames. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Daily notes can persist sensitive session or work details into an Obsidian vault, including vaults synced to cloud services. <br>
-Mitigation: Review generated filenames and note content before saving, and avoid recording sensitive details in synced vaults unless that storage is approved. <br>
-Risk: Misconfigured daily-note paths can place generated Markdown in the wrong vault folder. <br>
-Mitigation: Configure the daily-note folder explicitly and confirm the target path before writing the note. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jini92/obsidian-daily-mai) <br>
+## Use Case:
 
+External users and developers use this skill to turn the current agent session into an Obsidian daily note with completed work, categorized details, and tomorrow's actions.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown daily-note content with filename guidance and optional UTF-8 file-writing commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local vault paths and daily work details supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Daily notes may persist sensitive session details, personal data, customer information, or secrets in a local or cloud-synced Obsidian vault.
+
+Mitigation: Confirm the vault path before writing and review proposed note content before it is saved.
+
+Risk: The skill may create or update files in the user's selected daily-note location.
+
+Mitigation: Use a user-approved vault path and keep file writes limited to the intended daily-note folder.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jini92/skills/obsidian-daily-mai)
+- [Publisher Profile](https://clawhub.ai/user/jini92)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown daily-note content with file naming and UTF-8 writing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write or update user-selected Obsidian daily-note files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

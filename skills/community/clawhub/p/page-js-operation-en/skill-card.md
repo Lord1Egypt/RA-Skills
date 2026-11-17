@@ -1,45 +1,59 @@
-## Description: <br>
-Operate web page elements via CDP and Page JS Extension, save 95% Token (for UI automation testing ONLY, NOT a web browsing tool). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate web page elements via CDP and Page JS Extension to reduce token use for UI automation testing, not general web browsing.
 
-## Publisher: <br>
-[TangJing](https://clawhub.ai/user/TangJing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tangjing](https://clawhub.ai/user/tangjing)
 
-## Use Case: <br>
-Developers and test engineers use this skill to operate public or non-sensitive web page elements through CDP and a reviewed Page JS Extension for UI automation testing, regression checks, and page behavior validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can interact with browser pages and should not be used on sensitive pages or pages containing private, financial, login, payment, medical, government, or business-sensitive information. <br>
-Mitigation: Use it only for browser UI automation testing on public or non-sensitive test pages, with a separate browser profile and test accounts. <br>
-Risk: The skill depends on an external Chrome extension. <br>
-Mitigation: Review the extension source before installation and load it only when needed for testing. <br>
-Risk: Element keys may contain page text that could be sent to LLM services by the agent configuration. <br>
-Mitigation: Confirm the agent and LLM configuration meets privacy requirements before using the skill. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to drive browser page elements through CDP for UI test development, regression testing, and public-page automation. It is intended for non-sensitive testing environments rather than personal browsing, credential handling, or production data workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/TangJing/page-js-operation-en) <br>
-- [Chrome Extension Source](https://github.com/TangJing/openclaw_access_web_page_js) <br>
-- [Chrome Extension Documentation](https://developer.chrome.com/docs/extensions/) <br>
-- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces CDP Runtime.evaluate JavaScript snippets and operational guidance for non-sensitive browser UI automation testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The release evidence reports an unpinned browser extension dependency and CDP-based page mutation powers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the exact extension source before installation, use a dedicated Chrome profile, and restrict extension access to test domains.
+
+Risk: Element keys may include page text that an agent could send to LLM services.
+
+Mitigation: Use the skill only on public or non-sensitive test pages and avoid financial, medical, government, login, payment, and production-data pages.
+
+Risk: Form submissions, deletions, and sensitive-field writes can change page state.
+
+Mitigation: Require explicit user confirmation for form submission, deletion, and any credential-field write operation.
+
+## Reference(s):
+
+- [Chrome Extension Documentation](https://developer.chrome.com/docs/extensions/)
+- [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/)
+- [Page JS Extension Source Repository](https://github.com/TangJing/openclaw_access_web_page_js)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces CDP Runtime.evaluate snippets and browser-extension setup guidance for page element indexing, clicking, input filling, and dropdown selection.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

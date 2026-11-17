@@ -1,0 +1,13 @@
+[
+  {"role": "user", "content": "Привет", "timestamp": "2026-08-29T10:20:00+03:00"},
+  {"role": "assistant", "content": "Привет! Как дела?", "timestamp": "2026-08-29T10:20:05+03:00"},
+  {"role": "user", "content": "Посмотри vibe.egetech.ru упал", "timestamp": "2026-08-29T10:22:00+03:00"},
+  {"role": "assistant", "content": "Сейчас проверю.", "timestamp": "2026-08-29T10:22:10+03:00", "tool_calls": true},
+  {"role": "assistant", "content": "Сайт отдаёт 502. Проверяю VPS.", "timestamp": "2026-08-29T10:23:00+03:00"},
+  {"role": "user", "content": "Настрой ротацию бэкапов", "timestamp": "2026-08-29T10:28:00+03:00"},
+  {"role": "assistant", "content": "Готово. Ротация настроена.", "timestamp": "2026-08-29T10:30:00+03:00", "tool_calls": true},
+  {"role": "user", "content": "smart-charts проанализируй", "timestamp": "2026-08-29T10:36:00+03:00"},
+  {"role": "assistant", "content": "Начинаю анализ.", "timestamp": "2026-08-29T10:36:30+03:00", "tool_calls": true},
+  {"role": "assistant", "content": "Вот что можно внедрить.", "timestamp": "2026-08-29T10:38:00+03:00"},
+  {"role": "user", "content": "Делай эту задачу и тестируем", "timestamp": "2026-08-29T10:44:00+03:00"}
+]

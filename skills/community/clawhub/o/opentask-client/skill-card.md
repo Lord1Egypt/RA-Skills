@@ -1,42 +1,58 @@
-## Description: <br>
-OpenTask Skill helps agents query and manage OpenTask queues for OpenClaw containers, including task creation, status updates, logs, statistics, and optional heartbeat checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenTask is a distributed task-management skill for querying and managing tasks assigned to OpenClaw containers.
 
-## Publisher: <br>
-[linux2010](https://clawhub.ai/user/linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent interact with a trusted OpenTask server: list pending work, create tasks, transition task state, inspect logs and statistics, and optionally poll work from HEARTBEAT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A configured remote task queue can influence agent work and mutate task state. <br>
-Mitigation: Install only for an OpenTask server you operate or fully trust, use a scoped API key, verify OPENTASK_HOST, prefer HTTPS, and review queued work before acting on it. <br>
-Risk: The skill requires sensitive credentials for OpenTask API access. <br>
-Mitigation: Keep OPENTASK_API_KEY scoped and out of logs, and avoid putting secrets or sensitive personal data in task fields or task logs. <br>
-Risk: HEARTBEAT auto-processing can cause queued OpenTask items to direct agent work. <br>
-Mitigation: Add HEARTBEAT integration only when that behavior is intended and the queue is governed by trusted operators. <br>
+## Use Case:
 
+Developers and operators use this skill to let OpenClaw agents query pending OpenTask work, create and update tasks, record task outcomes, inspect logs, and integrate task checks into HEARTBEAT workflows.
 
-## Reference(s): <br>
-- [OpenTask API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENTASK_API_KEY and OPENTASK_HOST for API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The HEARTBEAT workflow can cause an agent to act on remote tasks without clear validation or user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable automatic HEARTBEAT execution only for reviewed, allowed task types and require explicit approval for consequential actions.
+
+Risk: The skill uses an API key to access the OpenTask service.
+
+Mitigation: Use a narrowly scoped API key, restrict the trusted OpenTask service, and avoid storing secrets or sensitive personal data in task fields or results.
+
+Risk: Remote API calls may expose task data or credentials if sent over an untrusted connection.
+
+Mitigation: Require HTTPS for non-local OpenTask hosts and limit service access to trusted environments.
+
+## Reference(s):
+
+- [OpenTask API Reference](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/linux2010/skills/opentask-client)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OPENTASK_HOST, OPENTASK_API_KEY, and optional OPENTASK_BOT_NAME environment variables.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -78,7 +78,7 @@ export KM_CONFLUENCE_TOKEN="your_token"
 export KM_NOTION_TOKEN="ntn_your_token"
 
 # Slack (paid / 付费版)
-export KM_SLACK_TOKEN="xoxb-your-token"
+export KM_SLACK_TOKEN="REDACTED-SECRET"
 
 # Baidu Search / 百度搜索 (free / 免费)
 export KM_BAIDU_API_KEY="your_baidu_api_key"

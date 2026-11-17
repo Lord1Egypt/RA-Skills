@@ -1,41 +1,54 @@
-## Description: <br>
-Runs structured day-by-day execution for AI agent side hustles by tracking experiment state, enforcing approval gates, and logging outcomes across a 28-day workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs structured day-by-day execution for AI agent side hustles, tracking experiment progress and persistent state across a 28-day hustle cycle.
 
-## Publisher: <br>
-[asimons81](https://clawhub.ai/user/asimons81) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asimons81](https://clawhub.ai/user/asimons81)
 
-## Use Case: <br>
-External users and developers use this skill to run the 28-day Agent Side Hustle School workflow, resume from saved state, and maintain daily experiment logs and summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and updates local workflow state and progress files. <br>
-Mitigation: Install it only in a workspace intended for this 28-day workflow and review any existing course-state.json before use. <br>
-Risk: Experiment choices, pricing, lock-in, or spending decisions could be acted on before the operator agrees. <br>
-Mitigation: Require operator approval for experiment selection, Day 5 lock-in, offer definition and pricing, and any spend above $0. <br>
+## Use Case:
 
+External users and developers use this skill to run a structured 28-day AI agent side-hustle workflow, maintain local execution state, log outcomes, and enforce approval gates for key business decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/asimons81/side-hustle-analyst) <br>
-- [Publisher profile](https://clawhub.ai/user/asimons81) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown daily summaries and experiment logs with local workflow state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads state/course-state.json and writes output/experiment-log/ and output/daily-summaries/ when used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Generated state and output files may contain business ideas, pricing notes, scores, and experiment outcomes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated state, daily summaries, and experiment logs before sharing or using them for business decisions.
+
+Risk: The skill supports consequential business steps such as experiment lock-in, offer pricing, and spend decisions.
+
+Mitigation: Keep the documented approval gates in place, including explicit approval before pricing decisions and any spend above $0.
+
+## Reference(s):
+
+- [Side Hustle Analyst on ClawHub](https://clawhub.ai/asimons81/skills/side-hustle-analyst)
+- [Publisher profile: asimons81](https://clawhub.ai/user/asimons81)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown summaries, experiment logs, state updates, and approval-gated guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Maintains local course state and writes daily summaries and experiment logs.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

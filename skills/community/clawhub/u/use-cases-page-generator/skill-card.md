@@ -1,38 +1,52 @@
-## Description: <br>
-Helps agents create, optimize, or audit scenario-, persona-, business-goal-, ICP-, and audience-specific use case pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps create, optimize, and audit SaaS/B2B use case pages organized by scenario, persona, or business goal.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kostja94](https://clawhub.ai/user/kostja94)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Marketing, product, and growth teams use this skill to plan or audit SaaS/B2B use case pages that explain when a customer would use a product and how it helps them. The skill guides scenario-first page structure, messaging, internal linking, and SEO metadata.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad role, persona, scenario, or business-goal wording.
+
+Mitigation: Confirm the request is about use case page planning, creation, optimization, or audit before applying the skill's recommendations.
+
+Risk: The skill may read existing project context files to tailor product, ICP, and proof-point guidance.
+
+Mitigation: Use project context only for the requested page guidance and avoid restating sensitive details unless they are necessary for the output.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Content strategists, product marketers, and site teams use this skill to plan use case pages that connect product capabilities to customer scenarios, personas, business goals, proof, calls to action, internal links, and SEO metadata. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Optional project context files can contain secrets or sensitive business details that should not be reused in generated recommendations. <br>
-Mitigation: Review .claude/project-context.md and .cursor/project-context.md before use, and remove secrets or sensitive business details that should not inform generated content. <br>
+**Output Format:** [Markdown]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/use-cases-page-generator) <br>
+**Other Properties Related to Output:** [May include use case lists, per-page structures, headline options, internal-linking plans, and SEO metadata.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with use case lists, page structures, headline options, internal linking plans, and SEO metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional project context files for product, ICP, and proof points when present.] <br>
+1.2.1 (source: release evidence and skill frontmatter metadata)
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

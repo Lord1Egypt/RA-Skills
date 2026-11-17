@@ -1,41 +1,54 @@
-## Description: <br>
-OKX DEX aggregator (v6). Get swap quotes, swap/approve tx data, tokens, and chains. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OKX DEX aggregator (v6). Get swap quotes, swap/approve tx data, tokens, and chains.
 
-## Publisher: <br>
-[ricky321u](https://clawhub.ai/user/ricky321u) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ricky321u](https://clawhub.ai/user/ricky321u)
 
-## Use Case: <br>
-Developers and agents use this skill to work with the OKX DEX API for chain discovery, token lists, swap quotes, approval transaction data, and swap transaction data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses OKX API credentials for DEX quote and transaction-data requests. <br>
-Mitigation: Keep OKX secrets out of chat and logs, use least-privilege credentials, and rotate credentials if exposure is suspected. <br>
-Risk: Generated swap or approval transaction data may be unsafe if token addresses, chain, spender, amount, route, price impact, or slippage are wrong. <br>
-Mitigation: Independently verify transaction details in the wallet and require explicit user confirmation before signing any approval or swap. <br>
+## Use Case:
 
+Developers and trading automation agents use this skill to query OKX DEX aggregator v6 for supported chains, token lists, swap quotes, and approval or swap transaction payloads. Users should independently review transaction details before signing or broadcasting anything.
 
-## Reference(s): <br>
-- [OKX DEX API Reference (v6)](https://web3.okx.com/build/dev-docs/wallet-api/dex-api-reference) <br>
-- [ClawHub okx-dex Skill Page](https://clawhub.ai/ricky321u/okx-dex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with bash and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces API request examples and transaction-data guidance; users must verify generated approval and swap details before signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json lists 2.0.0) <br>
+Risk: The skill can generate financial transaction data and includes a script with a hardcoded wallet address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or edit scripts/test_okx.sh before use, verify wallet address, token, amount, slippage, approval target, and decoded calldata, and require independent wallet confirmation before signing.
+
+Risk: The skill requires OKX API credentials.
+
+Mitigation: Use only OKX API credentials intended for this skill and avoid exposing broader account permissions than needed.
+
+## Reference(s):
+
+- [OKX DEX API Reference (v6)](https://web3.okx.com/build/dev-docs/wallet-api/dex-api-reference)
+- [ClawHub Skill Page](https://clawhub.ai/ricky321u/skills/okx-dex)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, Python, curl, and jq examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OKX API credentials and local curl, jq, and python3 binaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

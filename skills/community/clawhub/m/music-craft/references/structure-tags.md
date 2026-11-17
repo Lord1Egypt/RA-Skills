@@ -146,7 +146,7 @@ If lyrics are extracted from audio with Whisper or another ASR system, treat the
 - Normalize unclear section markers to the canonical tag set unless a more
   specific tag is musically necessary.
 - Flag language mismatches, very short looping transcripts, and transcript themes that conflict with the known song/user context.
-- Do not build final prompts around suspicious lyrics without asking the user or rerunning extraction with a stronger model.
+- Before building final prompts around suspicious lyrics, ask the user or rerun extraction with a stronger model.
 
 Full cleanup recipe: [`lyrics-cleanup.md`](lyrics-cleanup.md).
 

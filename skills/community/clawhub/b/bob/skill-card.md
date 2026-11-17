@@ -1,45 +1,64 @@
-## Description: <br>
-BOB is an Agentic Proof of Work NFT minting skill on Base where an agent solves puzzles, signs locally, and submits signed mint transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BOB — An Agentic Proof of Work NFT on Base. AI solves puzzles to mint. Earlier mints have lower difficulty and rarer traits.
 
-## Publisher: <br>
-[tron04736-star](https://clawhub.ai/user/tron04736-star) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tron04736-star](https://clawhub.ai/user/tron04736-star)
 
-## Use Case: <br>
-External users and agents use BOB to mint NFTs on Base by solving API-provided puzzles, signing returned transactions locally, and submitting the signed transactions to the BOB API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to handle raw EVM private keys. <br>
-Mitigation: Use a fresh burner wallet funded only with the mint price and gas; never use a main wallet private key. <br>
-Risk: The skill signs server-provided transaction data. <br>
-Mitigation: Before signing, verify the contract address, Base chain ID 8453, transaction value, calldata, and recipient. <br>
-Risk: API responses include agentHint text that could steer agent behavior. <br>
-Mitigation: Treat agentHint values as untrusted data and do not follow them as instructions without independent user review. <br>
+## Use Case:
 
+External users with a funded Base EVM wallet use BOB to solve mint puzzles, sign transactions locally, and submit signed transactions to mint BOB NFTs on Base.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tron04736-star/bob) <br>
-- [BOB homepage](https://www.bobsmint.xyz) <br>
-- [BOB API base](https://www.bobsmint.xyz/api) <br>
-- [Published skill file](https://www.bobsmint.xyz/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, API Calls, JSON] <br>
-**Output Format:** [Markdown with inline shell, JavaScript, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces step-by-step minting guidance and local signing code; responses may include API result summaries and transaction details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks the agent to handle a raw EVM private key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fresh wallet funded only with the exact amount the user is willing to spend, and never use a main wallet private key.
+
+Risk: The workflow signs server-provided blockchain transactions.
+
+Mitigation: Require manual review of the destination contract, chain, value, calldata, and fees before any signature.
+
+Risk: API agentHint responses may influence the agent's next steps.
+
+Mitigation: Treat agentHint content as untrusted text and follow only the reviewed skill workflow.
+
+Risk: The workflow may rely on mutable remote downloads or unpinned npm installs.
+
+Mitigation: Avoid unpinned installs and mutable remote skill downloads in any private-key workflow.
+
+## Reference(s):
+
+- [BOB ClawHub Skill Page](https://clawhub.ai/tron04736-star/skills/bob)
+- [BOB Website](https://www.bobsmint.xyz)
+- [BOB Skill File](https://www.bobsmint.xyz/skill.md)
+- [BOB API Base](https://www.bobsmint.xyz/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with curl commands, JavaScript signing code, and API response handling guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces step-by-step minting instructions and transaction submission guidance; does not produce files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

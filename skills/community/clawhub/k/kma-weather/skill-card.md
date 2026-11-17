@@ -1,48 +1,68 @@
-## Description: <br>
-Korea Weather helps agents retrieve current conditions, short and mid-term forecasts, and weather warnings from the Korea Meteorological Administration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Get weather from Korea Meteorological Administration (KMA), including current conditions, 3-10 day forecasts, and weather warnings or advisories for South Korea.
 
-## Publisher: <br>
-[steamb23](https://clawhub.ai/user/steamb23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[steamb23](https://clawhub.ai/user/steamb23)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to query South Korea weather by coordinates or region, including 5 km grid forecasts, mid-term outlooks, and weather warnings. <br>
-
-### Deployment Geography for Use: <br>
-South Korea <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a KMA/data.go.kr service key. <br>
-Mitigation: Use a dedicated API key, avoid sharing configurations that contain it, and rotate or revoke the key if exposure is suspected. <br>
-Risk: Weather query parameters are sent to KMA/data.go.kr APIs. <br>
-Mitigation: Limit queries to necessary location and forecast parameters and avoid including unrelated sensitive context. <br>
-Risk: Weather results can be unavailable or stale around KMA release schedules or service timeouts. <br>
-Mitigation: Retry after the documented KMA release windows and present source timing or freshness when using results in decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/steamb23/kma-weather) <br>
-- [KMA short-term forecast API](https://www.data.go.kr/data/15084084/openapi.do) <br>
-- [KMA weather warnings API](https://www.data.go.kr/data/15000415/openapi.do) <br>
-- [KMA mid-term forecast API](https://www.data.go.kr/data/15059468/openapi.do) <br>
-- [Short-term forecast reference](references/api-forecast.md) <br>
-- [Weather warnings reference](references/api-warnings.md) <br>
-- [Mid-term forecast reference](references/api-midterm.md) <br>
-- [KMA category codes reference](references/category-codes.md) <br>
+## Use Case:
 
+Developers and agent users use this skill to fetch official South Korea weather observations, short-term forecasts, mid-term outlooks, and nationwide weather warning summaries through KMA public APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration guidance] <br>
-**Output Format:** [Plain text weather summaries and optional JSON API responses, with Markdown usage guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and KMA_SERVICE_KEY; sends Korean weather query parameters to KMA/data.go.kr APIs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+South Korea
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: KMA_SERVICE_KEY is a credential and may appear in request URLs if users capture or share raw API requests.
+
+Mitigation: Store the key only in the configured environment variable and redact service keys or full request URLs from logs, screenshots, and shared transcripts.
+
+Risk: The skill is limited to South Korea weather data and may return no data or misleadingly broad results for unsupported coordinates or regions.
+
+Mitigation: Confirm that latitude, longitude, or region inputs are within South Korea and prefer the short-term grid forecast for precise local conditions.
+
+Risk: Forecasts and warning summaries may be returned in Korean, which can lead to interpretation errors for non-Korean readers.
+
+Mitigation: Preserve official Korean terms where safety-relevant and translate or summarize them carefully when presenting results to users.
+
+Risk: Several KMA endpoints are intentionally not implemented, including detailed warning messages and some mid-term land, temperature, and sea forecasts.
+
+Mitigation: Use the implemented endpoint list to set expectations and consult official KMA services directly when unsupported detail is required.
+
+## Reference(s):
+
+- [Korea Weather ClawHub Page](https://clawhub.ai/steamb23/skills/kma-weather)
+- [KMA Short-term Forecast API](https://www.data.go.kr/data/15084084/openapi.do)
+- [KMA Weather Warnings API](https://www.data.go.kr/data/15000415/openapi.do)
+- [KMA Mid-term Forecast API](https://www.data.go.kr/data/15059468/openapi.do)
+- [Short-term Forecast API Reference](references/api-forecast.md)
+- [Weather Warnings API Reference](references/api-warnings.md)
+- [Mid-term Forecast API Reference](references/api-midterm.md)
+- [Category Codes Reference](references/category-codes.md)
+- [Implementation Status](implement-status.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text or JSON from Python CLI commands, usually embedded in agent guidance or Markdown responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and KMA_SERVICE_KEY; outputs may include Korean weather terminology and official KMA warning text.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

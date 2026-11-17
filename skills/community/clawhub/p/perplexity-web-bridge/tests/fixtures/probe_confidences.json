@@ -1,0 +1,152 @@
+[
+ {
+  "id": 0,
+  "conf": 0.62,
+  "good": true
+ },
+ {
+  "id": 1,
+  "conf": 0.21,
+  "good": true
+ },
+ {
+  "id": 2,
+  "conf": 0.33,
+  "good": true
+ },
+ {
+  "id": 3,
+  "conf": 0.71,
+  "good": true
+ },
+ {
+  "id": 4,
+  "conf": 0.93,
+  "good": true
+ },
+ {
+  "id": 5,
+  "conf": 0.99,
+  "good": true
+ },
+ {
+  "id": 6,
+  "conf": 0.86,
+  "good": true
+ },
+ {
+  "id": 7,
+  "conf": 0.49,
+  "good": true
+ },
+ {
+  "id": 8,
+  "conf": 0.41,
+  "good": true
+ },
+ {
+  "id": 9,
+  "conf": 0.43,
+  "good": true
+ },
+ {
+  "id": 10,
+  "conf": 0.42,
+  "good": false
+ },
+ {
+  "id": 11,
+  "conf": 0.3,
+  "good": true
+ },
+ {
+  "id": 12,
+  "conf": 0.7,
+  "good": true
+ },
+ {
+  "id": 13,
+  "conf": 0.95,
+  "good": true
+ },
+ {
+  "id": 14,
+  "conf": 0.4,
+  "good": true
+ },
+ {
+  "id": 15,
+  "conf": 0.47,
+  "good": true
+ },
+ {
+  "id": 16,
+  "conf": 0.52,
+  "good": true
+ },
+ {
+  "id": 17,
+  "conf": 0.41,
+  "good": true
+ },
+ {
+  "id": 18,
+  "conf": 0.93,
+  "good": true
+ },
+ {
+  "id": 19,
+  "conf": 0.95,
+  "good": true
+ },
+ {
+  "id": 20,
+  "conf": 0.38,
+  "good": true
+ },
+ {
+  "id": 21,
+  "conf": 0.94,
+  "good": true
+ },
+ {
+  "id": 22,
+  "conf": 0.96,
+  "good": true
+ },
+ {
+  "id": 23,
+  "conf": 0.96,
+  "good": true
+ },
+ {
+  "id": 24,
+  "conf": 0.95,
+  "good": true
+ },
+ {
+  "id": 25,
+  "conf": 0.94,
+  "good": true
+ },
+ {
+  "id": 26,
+  "conf": 0.28,
+  "good": true
+ },
+ {
+  "id": 27,
+  "conf": 0.76,
+  "good": true
+ },
+ {
+  "id": 28,
+  "conf": 0.19,
+  "good": true
+ },
+ {
+  "id": 29,
+  "conf": 0.44,
+  "good": true
+ }
+]

@@ -97,6 +97,8 @@ Promote proven learnings to durable assets:
 
 ### Optional: Enable Hook
 
+Opt-in and project-scoped. Enabling a hook persists across future sessions; skip this unless you need reminders.
+
 For reminder injection during session bootstrap:
 
 ```bash
@@ -393,8 +395,9 @@ Promote only when learning is verified, repeatable, and broadly useful.
 ### How to Promote
 
 1. Distill the learning into concise, reusable rule language
-2. Add it to the best promotion target
-3. Update original entry:
+2. Prepare a minimal patch for the best promotion target
+3. Show a reviewed diff and apply only after explicit user approval
+4. Update original entry:
    - `**Status**: promoted`
    - `**Promoted**: home automation playbook` (or matrix/library/safety automation)
 
@@ -472,6 +475,8 @@ This skill does not directly control physical devices. It captures and structure
 
 Hooks are optional and reminder-only. They must not perform direct actuator actions.
 
+Hooks persist across sessions once installed. Keep them **project-scoped**. Do **not** install user-level or global hooks. Never use an empty `matcher`. `PostToolUse` inspects command output in-process; do not log raw output, secrets, or transcripts.
+
 ### Quick Setup (Claude Code / Codex)
 
 Create `.claude/settings.json` (or equivalent):
@@ -480,7 +485,7 @@ Create `.claude/settings.json` (or equivalent):
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "sensor|actuator|automation|iot|scene|device|home.?assistant",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-domotics/scripts/activator.sh"
@@ -496,7 +501,7 @@ Create `.claude/settings.json` (or equivalent):
 {
   "hooks": {
     "UserPromptSubmit": [{
-      "matcher": "",
+      "matcher": "sensor|actuator|automation|iot|scene|device|home.?assistant",
       "hooks": [{
         "type": "command",
         "command": "./skills/self-improving-domotics/scripts/activator.sh"
@@ -525,6 +530,8 @@ Enable `PostToolUse` only if signal detection on tool output is desired.
 See `references/hooks-setup.md` for troubleshooting.
 
 ## Automatic Skill Extraction
+
+Extracted skills are untrusted until a human reviews the generated `SKILL.md`. Do not keep or publish an extracted skill without explicit user approval.
 
 When a domotics learning is stable and reusable, extract it into a standalone skill.
 
@@ -638,3 +645,7 @@ When guidance conflicts, apply:
 ### Ownership Rules
 - This skill writes only to `.learnings/domotics/` in stackable mode.
 - It may read other skill folders for cross-linking, but should not rewrite their entries.
+- Standalone mode writes to this project's `.learnings/*.md` log files only.
+- Stackable mode writes only to the namespaced folder above and must not rewrite other skills' log entries.
+- Promotion into `AGENTS.md`, `SOUL.md`, `TOOLS.md`, `MEMORY.md`, rules, hooks, or generated skills is not a logging write. Show a reviewed diff and apply only after explicit user approval.
+

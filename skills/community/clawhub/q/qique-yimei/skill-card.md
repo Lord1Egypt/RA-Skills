@@ -1,41 +1,59 @@
-## Description: <br>
-Helps agents answer or plan QiQue medical beauty system operations in text-only protocol mode, including customer lookup, appointments, orders, wallet changes, SMS/card sending, delivery, verification, and create/update/cancel workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when an agent needs to answer or plan operations for QiQue business requests in pure text protocol mode for customer lookup, wallet records, appointments, orders, goods, messaging, delivery, verification, and create/update/cancel workflows.
 
-## Publisher: <br>
-[edmon](https://clawhub.ai/user/edmon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[edmon](https://clawhub.ai/user/edmon)
 
-## Use Case: <br>
-Business operators and support agents use this skill to route Chinese-language QiQue medical beauty system requests into a method, normalized parameters, missing required fields, a read/write safety decision, and the next user-facing action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive QiQue API credentials may be exposed or retained insecurely. <br>
-Mitigation: Use least-privilege, revocable credentials, avoid pasting production secrets into normal chat, rotate any exposed values, and prefer a vault or scoped configuration mechanism. <br>
-Risk: Write-operation plans could affect customer or business records if executed without clear authorization. <br>
-Mitigation: Require explicit confirmation before write operations and review the planned method and parameters before execution. <br>
+## Use Case:
 
+External QiQue medical aesthetics operators and support agents use this skill to route Chinese business requests into structured method, parameter, missing-field, safety, and next-action text plans. It supports read workflows and write workflows that require explicit user confirmation before execution planning.
 
-## Reference(s): <br>
-- [QiQue SDK Methods](references/methods.md) <br>
-- [Intent Routing Notes](references/intent-routing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Configuration, Guidance] <br>
-**Output Format:** [Structured text with a JSON frame] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit confirmation before write-operation plans and must not expose stored credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The artifact includes a credential-like distribution secret.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the bundled value as exposed, rotate it before production use, and distribute replacement credentials through a protected secret manager or platform credential binding.
+
+Risk: The skill asks agents to collect and retain QiQue API secrets.
+
+Mitigation: Do not paste app secrets into chat or store them in generic agent memory; bind app_id and app_secret through the deployment platform's protected credential mechanism.
+
+Risk: Write workflows can affect customer, wallet, appointment, delivery, messaging, and coupon records.
+
+Mitigation: Limit write plans to explicitly confirmed user requests and echo the final method and parameters before execution.
+
+## Reference(s):
+
+- [Intent Routing Notes](references/intent-routing.md)
+- [QiQue SDK Methods](references/methods.md)
+- [ClawHub Skill Release](https://clawhub.ai/edmon/skills/qique-yimei)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [Structured JSON text with a short user-facing next action]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write-operation plans require explicit confirmation; credentials must not be exposed in user-facing text.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

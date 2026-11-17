@@ -1,43 +1,57 @@
-## Description: <br>
-Provides a local proxy service that helps accelerate GitHub access for clone, push, and release-download workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FastGithub provides guidance and shell commands for running a local proxy that can accelerate GitHub clone, push, release download, and browsing workflows.
 
-## Publisher: <br>
-[yantianlong-01](https://clawhub.ai/user/yantianlong-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yantianlong-01](https://clawhub.ai/user/yantianlong-01)
 
-## Use Case: <br>
-Developers and engineers use this skill to install, start, stop, and troubleshoot FastGithub as a local proxy for slow GitHub access. It is intended for environments where users can review and manage proxy settings, background processes, and certificate trust changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to make broad system and network trust changes, including proxy configuration and optional custom root CA installation. <br>
-Mitigation: Install only when the publisher and binary can be independently trusted, and avoid installing the custom root CA unless the TLS interception implications are understood. <br>
-Risk: Proxy environment variables, certificates, and background FastGithub processes may persist beyond the intended session. <br>
-Mitigation: Remove proxy settings, trusted certificates, and running background processes when GitHub acceleration is no longer needed. <br>
-Risk: The artifact includes troubleshooting guidance that can disable Git SSL verification. <br>
-Mitigation: Avoid disabling Git SSL verification except for short-lived diagnostics, and restore normal SSL verification immediately afterward. <br>
+## Use Case:
 
+Developers and engineers use this skill to install, start, stop, restart, and troubleshoot a local FastGithub proxy for slow GitHub access, Git operations, and release downloads.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yantianlong-01/fastgithub) <br>
-- [Publisher profile](https://clawhub.ai/user/yantianlong-01) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes commands for install, start, stop, restart, proxy setup, status checks, and troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to run a FastGithub binary from an installation archive whose origin and integrity are not established in the provided evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the binary and certificate source are trusted and independently verified before installation.
+
+Risk: The skill configures a local proxy and recommends CA certificate installation, which can affect HTTPS behavior beyond the immediate GitHub workflow.
+
+Mitigation: Keep proxy and certificate changes scoped and reversible, and remove them after use when they are no longer needed.
+
+Risk: The documentation suggests disabling Git TLS verification as a temporary workaround.
+
+Mitigation: Avoid disabling TLS verification globally; if it is unavoidable for diagnosis, limit the scope and restore verification immediately afterward.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yantianlong-01/skills/fastgithub)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with inline bash code blocks and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes proxy environment variables, service-management commands, certificate guidance, and troubleshooting checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Log Collector is a permanent log collection agent that collects logs and history from cluster nodes over SSH/VPN every 3 hours and stores them in logs.db with 30-day retention. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Permanent log collection agent. Collects logs and history from all nodes via SSH/VPN every 3 hours. Stores in logs.db with 30-day retention. Multi-node capable with fallback logic.
 
-## Publisher: <br>
-[kikikari](https://clawhub.ai/user/kikikari) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[kikikari](https://clawhub.ai/user/kikikari)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to collect system, application, VPN, and SSH status logs from multi-node OpenClaw clusters on a recurring schedule. It is intended for controlled environments where centralized log collection and retention are approved.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recurring SSH collection can centralize sensitive system and application logs.
+
+Mitigation: Run only in approved clusters, minimize or redact collected logs, and confirm retention controls before production use.
+
+Risk: Unsafe SSH host-key verification and weak credential scoping can expose collection jobs to unauthorized hosts or broad credential use.
+
+Mitigation: Require SSH host-key verification, dedicated least-privilege keys, and a node allowlist before enabling recurring collection.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to configure and run recurring collection of system, OpenClaw, VPN, and connection logs across multi-node clusters for troubleshooting and retention-managed audit history. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, Files]
 
-## Known Risks and Mitigations: <br>
-Risk: Continuous cluster-wide log collection can capture sensitive logs from every configured node. <br>
-Mitigation: Restrict the nodes database to approved systems, add redaction or exclusions for secrets, and protect logs.db. <br>
-Risk: SSH collection relies on credentials and the artifact disables SSH host key verification. <br>
-Mitigation: Use dedicated least-privilege SSH credentials and remove StrictHostKeyChecking=no before enabling collection. <br>
-Risk: A cron deployment can keep collecting logs every 3 hours after installation. <br>
-Mitigation: Document how to disable the cron job and review the schedule before production use. <br>
+**Output Format:** [Markdown documentation with inline code blocks, shell commands, JSON configuration examples, and a Python log-collection script]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [The runtime script writes collected log records to logs.db with 30-day retention and writes collection status logs under logs/log-collector.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline code blocks and a Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes recurring log collection behavior, SQLite storage in logs.db, and 30-day retention when configured.] <br>
+1.0.0 (source: package.json and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, package.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Provides furniture sourcing guidance for international buyers covering China's manufacturing clusters, supply chain structure, subsectors, supplier evaluation practices, and industry trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive furniture industry suppliers guide for international buyers - provides detailed information about China's residential, office, hotel, outdoor, and custom furniture manufacturing clusters, supply chain structure, regional specializations, and industry trends.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[findhappy7](https://clawhub.ai/user/findhappy7)
 
-## Use Case: <br>
-External buyers and sourcing teams use this skill to understand China's furniture manufacturing landscape before contacting, comparing, or vetting manufacturers. It helps agents answer questions about regional clusters, subsectors, supply chain structure, and supplier evaluation criteria. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplier examples, statistics, and 2026 market claims may be inaccurate or outdated for purchasing decisions. <br>
-Mitigation: Independently verify business claims, supplier qualifications, certifications, lead times, and payment terms before procurement. <br>
+## Use Case:
 
+International buyers, sourcing teams, and agents use this skill to understand China's furniture manufacturing clusters, supply chain structure, subsector coverage, and supplier evaluation considerations. It supports informational sourcing research for residential, office, hotel, outdoor, custom, children's furniture, and mattresses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/findhappy7/china-furniture-suppliers) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Bundled furniture sourcing data](artifact/data.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown responses and Python dictionary/list data from helper functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only bundled data; no network calls, credential use, private-data access, persistence, or system-changing behavior identified in evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Business, supplier, certification, or market claims may be incomplete, outdated, or unsuitable for a purchasing decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the data as informational and independently verify suppliers, certifications, and market claims before procurement or contracting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/findhappy7/skills/china-furniture-suppliers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or structured Python dictionary responses from local JSON data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference data; no external API calls or credential requirements are indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

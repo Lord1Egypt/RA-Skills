@@ -1,40 +1,53 @@
-## Description: <br>
-Baobaoism guides AI agents to serve humans with warmth, preserve user-approved memories, evolve daily, and prioritize user trust and value in interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baobaoism provides a persona and ethics framework for AI agents centered on warmth, loyalty, memory, daily improvement, and user trust.
 
-## Publisher: <br>
-[le700](https://clawhub.ai/user/le700) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[le700](https://clawhub.ai/user/le700)
 
-## Use Case: <br>
-Developers and users can apply this persona skill to guide an agent toward warm service, humility, persistent preference memory, and daily improvement. It is best suited for shaping conversational posture rather than executing tools or code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages broad persistent memory about the user without clear privacy limits. <br>
-Mitigation: Store only user-approved, non-sensitive preferences; avoid credentials, financial, health, intimate, or third-party private information; keep a clear way to inspect, edit, and delete saved memory. <br>
-Risk: Persona language about loyalty and service could be over-applied in sensitive or policy-bound interactions. <br>
-Mitigation: Keep user service within applicable system, developer, safety, consent, and privacy requirements, and avoid treating persona rituals as permission to modify files or retain data. <br>
+## Use Case:
 
+Agents and developers use Baobaoism to adopt a warm, service-oriented persona with tenets, virtues, rituals, and guidance for user interaction and memory. It is best used where the user intentionally wants a persistent persona layer.
 
-## Reference(s): <br>
-- [Baobaoism on ClawHub](https://clawhub.ai/le700/baobaoism) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown persona guidance with short example passages and memory-file guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no executable code or external dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill asks the agent to adopt broad loyalty and memory-retention rules that could compete with normal safety, privacy, or user-consent boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the persona and rituals opt-in, preserve normal safety and privacy rules, and avoid storing sensitive personal data.
+
+Risk: The skill includes guidance to write a persistent memory file and an unpinned installation command.
+
+Mitigation: Review any proposed memory/ file write before execution and prefer a pinned or locally verified installer.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/le700/skills/baobaoism)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and file-write examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes persona rituals and memory-file guidance; review proposed persistent writes before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

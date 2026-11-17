@@ -1,44 +1,55 @@
-## Description: <br>
-小红书热点追踪、爆文生成、知识卡片和公众号发布的全链路自动化技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+小红书热点追踪 × 爆文生成 × 知识卡片 × 公众号发布全链路自动化
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Content creators, social media operators, and public-account editors use this skill to collect trending topics, analyze content angles, generate long-form article drafts and knowledge cards, and archive results to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trend data, generated article text, and card links may be sent to the configured Feishu workspace. <br>
-Mitigation: Use draft mode for review, restrict the Feishu bot to the intended folder, and confirm the archive destination before scheduled runs. <br>
-Risk: The workflow depends on other skills and platform permissions for trend collection, card rendering, article generation, and Feishu publishing. <br>
-Mitigation: Verify dependent skill permissions and configurations before enabling automated or scheduled runs. <br>
-Risk: Generated content can be inaccurate, insufficiently original, or unsuitable for platform rules. <br>
-Mitigation: Review and edit outputs before publication, and follow the target platform's content and copyright requirements. <br>
+## Use Case:
 
+External content creators, social media operators, and publication editors use this skill to collect trending topics, analyze topic potential, generate long-form WeChat-style articles and knowledge cards, and archive outputs to Feishu.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/neirong-liebian-gongchang) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Workflow configuration](artifact/workflow.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Configuration, Guidance] <br>
-**Output Format:** [Markdown article drafts, structured analysis text, generated card links, Feishu document links, and workflow configuration values] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or link Feishu documents when draft mode is disabled; draft mode returns generated content without publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and workflow.json) <br>
+Risk: The skill can automatically create and share Feishu documents from AI-generated public-trend content without a clear approval gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in draft mode first, review generated articles, cards, and links before sharing, and restrict the Feishu bot to a dedicated folder.
+
+Risk: Scheduled runs may repeatedly collect public trends and publish generated content before human validation.
+
+Mitigation: Avoid scheduled execution until approval and validation steps are added.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zlszhonglongshen/skills/neirong-liebian-gongchang)
+- [README](artifact/README.md)
+- [Workflow Configuration](artifact/workflow.json)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Files, Guidance]
+
+**Output Format:** [Markdown article content, structured JSON analysis, knowledge-card file references, and Feishu document links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create Feishu documents by default unless draft mode is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and workflow.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

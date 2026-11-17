@@ -3,6 +3,125 @@
 Roadmap item ③. Turns "pick a part" from an arbitrary `library.search` first-match
 into a **data-driven choice**: the cheapest, in-stock, JLC-**basic**, spec-matching
 part — so the BOM is manufacturable without surprise feeder fees or stockouts.
+排名只提供候选；是否满足电气要求仍须按下面的来源核验流程确认。
+
+## 选型前先查块
+
+**标准外围(RS-485 / buck / USB 串口 / GNSS / 充电 / microSD…)先 `easyeda blocks search <关键词>`** ——
+命中后块的 `parts` map 直接给出 `standard-parts.json` 的 role，可复用候选身份；仍须核对
+当前需求与器件参数，不能省略下面的参数核验。只有块里没有、或板级专有件才重新搜索候选。
+
+**ESP32 自动下载块的电平语义**：`block.esp32_autodownload` 的交叉耦合拓扑按
+`DTR,RTS → EN,IO0` 引脚电平核对：`11→11`、`00→11`、`10→01`（复位）、
+`01→10`（BOOT 拉低）。旧版 notes 曾将后两行写反；不能据旧说明反接电路。
+这里的 0/1 是引脚电平，串口 API 的 DTR/RTS asserted 为低电平；双低不持续复位。
+进入下载还需要复位释放时采样 GPIO0，结合 EN 上拉、电容与控制时序核对，静态表不证明实板烧录。
+来源：[Espressif DevKitC V4 原理图](https://dl.espressif.com/dl/schematics/esp32_devkitc_v4-sch.pdf)
+与 [启动模式说明](https://docs.espressif.com/projects/esptool/en/latest/esp32/advanced-topics/boot-mode-selection.html)。
+
+## 数据手册优先
+
+标准器件条目应同时保存 `datasheetUrl`（立创型号页）和可直接读取的
+`datasheetPdfUrl`。确定外围电路、引脚功能、典型应用、去耦值和布局约束时，先读取对应
+数据手册；块库中的 `source`/`note` 只作为已验证摘要，不能替代型号手册。若页面型号、
+PDF 或封装与当前库器件不一致，停止自动绘图并重新核对器件身份。
+
+### 参数核验：保留原始单位，不从料号猜数值
+
+1. 先锁定厂商、完整 MPN、LCSC C 号和封装。已有图面上的 value 是待核对的标注，
+   搜索排名、料号中的数字和先前模型回答均不能单独证明电气参数。
+2. 读取该 C 号目录中的具名参数（例如 `Resistance`）与对应手册。保留来源 URL、
+   原始参数文字及手册页码/表名，再另列换算值；`330mΩ = 0.33Ω`，`33Ω` 相差 100 倍。
+   SI 前缀区分大小写：`mΩ` 为毫欧、`MΩ` 为兆欧。不能先 lowercase、删除小数点或做
+   数字子串匹配后判断数值相等。
+3. 只有读到**该厂商、该系列、该编码位置**的规则，才解释料号。不要把完整 MPN 中的
+   `330` 当成独立三位电阻标记，也不能把不同系列的 R 小数点记法、EIA 标记混用。
+4. 目录、手册、库 value 不一致时，记录冲突并继续查证；来源无法读取或参数缺失时标为
+   “未核实”。不得填入猜测值、写回标准库或用它完成选型/修改电路。
+5. 交付时给出“器件身份 → 来源原文 → 单位换算 → 图面/BOM 对账”。阻值会影响采样、
+   分压和功耗计算，原参数被纠正后须重新计算受影响部分；只改显示文字不足以完成验收。
+
+**#202 回归事实**：UNI-ROYAL `0805W8F330LT5E` / **C52548** 的目录 Resistance 是
+**330mΩ（0.33Ω），±1%**。对应厂家手册《Thick Film Chip Resistors》Version 3，
+第 2 页（Page 2/9）§2.4.2–2.4.3 / §3 说明：≤2% 系列以前三位为有效数字，末位为倍率，
+`L = 10⁻³`，故 `330L = 330 × 10⁻³ Ω = 0.33Ω`。该编码解释仅用于这份手册覆盖的系列。
+来源：[LCSC 型号页](https://item.szlcsc.com/53562.html)、
+[对应 PDF](https://datasheet.lcsc.com/datasheet/pdf/0a975aaa49b7c97f38a963127be4a823.pdf?productCode=C52548)。
+
+**同名型号不是同一厂商**：`esd.usblc6_2sc6` 的 C2687116 是 UMW USBLC6-2SC6，
+不能用 ST 同名器件的 DS4260 为它背书。对应 UMW 手册 Nov.2024 第 3 页给出
+25°C、0Vdc、1MHz 下 I/O-GND 电容 typ 0.8/max 1pF、I/O-I/O typ 0.35/max 0.4pF，
+不能把典型值或“<1pF”当所有条件下的上限。确切身份与手册链接保存在标准库条目中。
+
+**颜色和厂家按当前身份核对**：C2296 的 KENTO `KT-0805Y` 是黄色 LED，原厂 A.0 手册 p3 在 25°C、IF=10mA 列 Vf 为 1.8–2.4V；
+封装/3D 名称中的 RD 不能证明红色。新设计使用 `led.yellow_0805`，旧 `led.red_0805` 仅为同器件兼容键，
+不满足指定红色的要求。C474881 的 `KF301-5.0-2P` 当前官方库制造商为 KEFA（科发），
+不沿用旧厂家文字；原 C 号、device UUID 与引脚拓扑未换。型号页链接保存在标准库条目中。
+
+**电感后缀不可混用**：C36409 `SWPA4030S2R2MT` 的库精度为 ±20%，但本轮从其资料入口
+获取的顺络 2025/5/8 表仅列 `SWPA4030S2R2NT`（±30%）。不能因资料入口或文件名含 MT 就将
+NT 电流参数套给 MT。本轮按完整型号另核 C279948 并补测 L1，公开条目为 `ind.2u2_swpa4030_nt`；
+旧 MT 身份保留且参数缺口明确标记。换容差还须重算最小电感量与纹波，不是只改 BOM 文本。
+
+## Common-library devices (常用库)
+
+The editor's Common Library is a configured set of device shortcuts with grouped models;
+it is not the result set of `lib search`. A name in that panel, an empty search, or a
+successful `lib libraries` response does not establish the selected model's library identity.
+The official [schematic guide](https://prodocs.easyeda.com/en/schematic/side-panel-left-commonly-library/)
+describes model groups; the [PCB guide](https://prodocs.easyeda.com/en/pcb/side-panel-left-commonly-library/)
+also allows their use without a schematic.
+
+**M3 verification boundary:** Web EasyEDA Pro 4.1.60 with connector 1.8.2 returned an
+M3 rectifier diode (C2993494) first for `lib search --query M3`; `螺丝孔` returned a
+USB-C connector, and `安装孔` returned no candidates. `M3螺丝孔` and `m3螺丝` searches
+failed with the host error `Cannot read properties of undefined (reading 'lists')`.
+These are failures of the ordinary search path, not a test of Common Library usage.
+They do not show that Common Library lacks screw holes or that its devices cannot be placed.
+
+Use the separate read-only System catalogue adapter:
+
+```bash
+easyeda lib common list --window <window-id> --category "安装器件"
+easyeda lib common list --window <window-id> --category "安装器件" --query M3
+easyeda lib device get --window <window-id> --library <libraryUuid> --uuid <deviceUuid>
+```
+
+`lib common list` fetches only the editor's public `/api/system/preference` source through
+the official `sys_ClientUrl.request` API. It preserves category/group/model references,
+including `devicePath`, and never falls back to LCSC search or another site's catalogue.
+The source schema is based on the official bundled editor; HTTP refusal, missing catalogue,
+or unsupported schema is an error, not an empty library. This source adapter is
+`offline-verified`; compatibility with the current Web source is still `incomplete`.
+It requires a connector containing `library.common.list`; `UNKNOWN_ACTION` means that the
+running connector needs updating. Personal shortcuts and the panel's current selected model
+remain `unsupported`; listing order does not select a model.
+
+Returned `deviceUuid`/`symbolUuid`/`footprintUuid` values are configured references with
+`identityVerified:false`. Resolve the chosen device with `lib device get`, inspect its actual
+symbol/footprint binding, then use existing typed placement. Do not substitute the catalogue
+thumbnail, a same-name search hit, or a stale bundled UUID for that readback.
+If configured model names are absent, `--query` refuses rather than report false absence;
+list the category without `--query` and resolve each explicit device reference.
+The Common Library M3 placement and save/reload chain remains `incomplete`.
+
+The official 3.2.149 distribution's bundled `lceda-std.elib` contains M2/M3/M4 screw
+devices bound to the `螺丝孔` symbol. Their source geometry is `offline-verified` only.
+The M3 record has a 126mil round hole (3.2004mm) whose center is offset (-2.5,+2.5)mil
+from the footprint origin; do not assume the instance anchor is the hole center.
+Its device UUID `659127e4dead4bc0abbb368bcde868b6` was not found by the current Web
+`lib device get` using the default System-library lookup, and that default footprint read
+failed. This does not test a current Common Library model's explicit source path.
+Do not promote that bundled identity
+to `standard-parts.json`, replay it into Web V4, or infer plating from the name.
+
+To resume, obtain the selected model's current device and footprint identities from a
+readable current source, then verify them with `lib device get` / `lib footprint get`.
+Only then test typed placement in a disposable document, check the actual hole, copper,
+anchor, designator and BOM flags, and save → reload → fresh readback. A blocked source
+or missing typed interface leaves this chain incomplete; a different named device or
+a board cutout cannot count as the Common Library M3 test. Mechanical placement follows
+[the screw-hole workflow](pcb-layout.md#螺丝孔与安装孔先选现有库器件).
 
 ## Data sources (live, no API key, browser User-Agent)
 
@@ -18,16 +137,20 @@ top page, so the selector queries base + general and merges.
 
 ## Where it lives
 
-Tool-side (`skills/easyeda-agent/scripts/parts-select.py`) or daemon-side — **NOT the connector**: the
+Tool-side (`.agents/skills/easyeda-agent/scripts/parts-select.py`) or daemon-side — **NOT the connector**: the
 EasyEDA webview can't make these cross-origin fetches; the daemon/tool can.
 
-## Ranking (`skills/easyeda-agent/scripts/parts-select.py`)
+## Ranking (`.agents/skills/easyeda-agent/scripts/parts-select.py`)
 
 Tuple sort — each tier breaks ties of the one above:
 
-1. **Relevance gate** — normalize value text (`10kohm`/`10kΩ`/`10k` → `10k`,
-   `µ`→`u`) and require the candidate to match the query's value, so a cheap basic
-   220pF can't win when you asked for 10k. Keep only the top-relevance candidates.
+1. **Resistance gate** — for a query with an explicit `Ω`/`ohm` unit, require a numerically
+   equal resistance from a named catalog attribute or an explicit value. Keep SI
+   prefix case and units; `330mΩ` matches `0.33Ω`, never `33Ω` or `330MΩ`. MPNs,
+   C-numbers and incidental prose numbers cannot supply the resistance. Missing,
+   ambiguous or conflicting values are not a match. Remaining text relevance
+   only ranks candidates that pass this gate; other specifications still require
+   manual source verification.
 2. **Buildable** — `stockCount ≥ build qty`, so the pick can actually be ordered. A
    basic part with too little stock yields to an in-stock one (marked `!` in the
    table); the build qty makes this stock-aware (10k basic wins at qty 100, yields at
@@ -37,9 +160,18 @@ Tuple sort — each tier breaks ties of the one above:
 5. **Cheapest** unit price at the build qty — final tiebreaker.
 
 ```
-parts-select.py "100nF 0402 X7R" --qty 100        # → recommends C1525 (BASIC, 22M stock)
+parts-select.py "100nF 0402 X7R" --qty 100        # → offline hit in standard-parts.json (default; zero network)
 parts-select.py "10uF 0805" --json                 # → C440198 ; machine-readable for the agent
+parts-select.py "esd array usb" --online           # explicit opt-in: JLC catalog compare, then converge via `easyeda lib by-lcsc`
+parts-select.py "0.33Ω 0805" --online --json       # explicit resistance gate; may match a catalog Resistance of 330mΩ
 ```
+
+阻值门禁支持 `Ω`/`Ω`/`ohm`/`ohms` 与 `m`、`k`/`K`、`M` 前缀；不能解析的带单位
+表达式保留为无精确候选，不猜倍率。`10k` 等不带显式单位的查询仍为模糊搜索，严格核对
+阻值时写 `10kΩ`。JSON 的 `resistance` 保留 `raw`、`ohms`、`source`，文本推荐也显示
+该阻值证据；按 MPN/C号搜索时同样尽量保留该字段，但字段缺失不等于已核实。
+显式阻值查询没有精确候选时退出码为 1（`--json` 输出 `[]`），不能当作成功选型继续放置。
+普通模糊查询沿用原来的空结果行为。
 
 ## Integration — closes the standardization loop
 
@@ -55,16 +187,152 @@ This makes [`standard-parts.json`](./standard-parts.json) selections justified
 by live stock/price/basic data instead of a guess. Validated: 100nF→C1525,
 10µF→C440198, AMS1117→C6186 — all matched the curated standard library.
 
+**Already-placed parts** (standardizing an existing schematic — the 器件标准化
+panel's use case): don't delete+re-place by hand. `easyeda sch replace --id
+<primitiveId> --lcsc <C#>` swaps the placed component for the recommended device
+in one call — keeps designator/uniqueId/pose, drops the OLD part's identity
+fields (they follow the new device), rolls back on failure, and reports a
+`pinDiff`; a non-empty pinDiff means re-wire, then `sch drc`/`sch check`.
+Property-only assignment (writing a C# onto a part without changing the device)
+stays `easyeda sch modify --patch '{"supplierId":"C…"}'`.
+
+## 站点差异：deviceUuid 必须按当前版本重解析
+
+**已验证事实**（Windows 11 + EasyEDA Pro 桌面版 3.2.149 **国际版**（easyeda.com）+
+easyeda-agent v1.5.1）：国际版与国内版（lceda.cn）的系统库 **libraryUuid 相同**
+（`0819f05c4eef4c71ace90d822a990e87`），但**器件 uuid 不同**。
+[`standard-parts.json`](./standard-parts.json) 的 `deviceUuid` 采自国内版，在国际版上
+**143 件全部对不上（0/143）**。
+
+症状：`easyeda sch block-apply <block>` 在**第一个** place 就失败，报
+
+```
+schematic.component.place failed: connector did not respond
+```
+
+平台对未知器件 uuid 不给任何回执，所以表现成超时，不是 “not found”。证据：同一台机器上
+`easyeda lib by-lcsc --lcsc C8678` 返回 `804240ef97df427480be2a5281ccea31`，而文件里写的是
+`009407eaaa604eb9b6f73cc3868f316d`。`lib by-lcsc` 是按当前连接的编辑器解析的，是本地事实源。
+
+### 工作流
+
+```bash
+# 1. 按当前连接的编辑器重解析，写到副本；--out 必填，绝不就地覆盖源文件
+python3 scripts/parts-relocalize.py --out /tmp/parts.intl.json --project <project>
+# 2. 用这份副本 apply
+easyeda sch block-apply <block> --parts /tmp/parts.intl.json --project <project>
+```
+
+在 Skill 根目录运行（Windows 用 `python`）。脚本把所有 LCSC C 号按 ≤20 个一批送
+`easyeda lib by-lcsc`，逐件比对：uuid 相同 → 原样；不同 → 写入解析到的 `deviceUuid`，
+原值保留在 `deviceUuidOrigin`；没解析到 → 条目一个字段不动、加标记
+`"_relocalize": "unresolved"`。返回的 `libraryUuid` 与文件不一致时只告警、**不改写**
+（标 `"_relocalize": "libraryUuid-mismatch"`）。`--dry-run` 只查询不落盘，`--json` 输出
+机器可读摘要，`--easyeda` / `--window` 分别指定二进制与目标窗口。需要已连接的编辑器。
+
+### 限制
+
+- **结果是该站点/该账号局部的**：不要提交回 `standard-parts.json`，仓库里的 canonical
+  值仍是国内版身份；每台机器各自生成副本，换版本或换站点重跑。
+- **会有未解析项**：实测 143 件解析出 140 件，3 件未解析（含 `lcsc` 写成占位符
+  `(onboard)` 的 `ic.pc817_sop4`）。未解析件保留原 uuid，apply 到该件仍可能失败；按
+  summary 打印的 key 逐个人工处理，不要让脚本猜。
+- **同一 C 号解析到多个器件时不选**，标 unresolved 交人判定。
+- **块的 `schematic_layout` 模板仍可能与国际版符号的引脚几何对不上** —— 那是另一个已知
+  问题，重定位 uuid 不解决它；apply 成功后仍须 `sch layout-lint` / `sch check` 回读。
+
 ## Known limitations / refinements
 
 - **Basic-search page depth** — *fixed*: the base-filtered query fetches a generous
   page (50), so a wanted basic that JLC ranks low (e.g. 10k C25744) still surfaces and
   the relevance gate picks it. A category filter would harden this further.
-- **Spec-attribute matching** — currently value-token overlap; could compare the
-  `attributes` array (voltage / tolerance / temperature) against an explicit spec.
+- **Other spec-attribute matching** — voltage / tolerance / temperature and other
+  non-resistance specifications still use text relevance, not numerical gates.
+  The selector does not read datasheets or validate a manufacturer's MPN encoding.
 - **Caching & rate limits** — cache JLC responses; the APIs are unofficial and may
   change headers/shape.
 - **Promote to a typed action** — `schematic.library.select` (daemon-side) so the
   agent gets a ranked pick directly instead of running a tool.
 - **LCSC mall breadth** — JLC SMT covers assembly-stocked parts; for non-assembly
   catalog parts, add the LCSC wmsc search path.
+
+## 原生复用块库（CBB）只读检索
+
+`lib search` 搜的是器件，`sch block-apply` 是工具电路块，都不是原生复用块库。
+用 `easyeda lib cbb search --query <keyword> --limit 20 --page 1` 搜索原生 CBB，
+可用 `--library <fresh-library-uuid>` 限定库；默认由官方 SDK 搜系统库。
+再用 `easyeda lib cbb get --uuid <cbb-uuid> --library <library-uuid>` 读取确切身份、
+`boards` 与 `schematic.cbbSymbol`。搜索候选通过 `lib_Cbb.get` 逐项确认库身份，
+不猜缺失的搜索字段。宿主若只返回原理图 UUID，`schematicDetails` 会通过官方只读
+`getSchematicInfo` 查询；`available:false` 不能用作块符号选择依据。多板或多符号须明确目标，不能默认取第一项。
+
+这两个命令只读，调用官方 beta `lib_Cbb.search/get`，不打开工程、不创建库、不放置实例。
+宿主接口缺失、读失败或响应结构异常均失败，不能当成“没有样件”；空结果只说明当前
+查询、库、页的结果，不能证明所有库都没有复用块。不得调用会丢弃未保存工程的
+`lib_Cbb.openProjectInEditor` 作为探测或验证兜底。
+
+#244 的引脚网解析已有导线几何兜底；库检索成功仍不等于真实块实例的网络与保存重载验证通过。
+
+若原理图详情不可读，可用 `lib cbb export-source --uuid <cbb-uuid> --library <library-uuid>
+--out <new-file.epro2>` 通过官方 beta `getCbbFileByCbbUuid` 获取原生归档，不打开工程。
+导出要求模块下载权限；不修改权限，失败保留错误。归档限定 16 MiB，CLI 校验 ZIP/CRC
+与原生项目数据并以不覆盖方式写入，返回 SHA-256；归档读取不等于真实实例验收。
+
+## 受控复用块样件的创建与清理
+
+为验证原生 `block_symbol`，可自行创建最小 CBB，无须下载第三方工程。
+`lib cbb create --name <name>` 只在当前账号个人可写库创建 `EA_AGENT__` 命名空间资产；
+返回的 `uuid/libraryUuid/name` 必须留作本轮所有权凭据。创建只调用一次，部分结果或超时
+先读取，不重复创建。`lib cbb delete --uuid ... --library ... --expected-name ...` 仅精确
+删除同一命名空间、同一库且名称匹配的资产；仍在编辑该 CBB 时拒绝删除。
+
+`lib cbb open --uuid ... --library ... --expected-name ... --from-project ... --allow-project-switch`
+会切换整个工程，调用前必须保存所有打开文档；官方接口可能丢弃未保存内容。它核对原工程
+与本轮 CBB 身份，并要求显式切换标志；不在失败后重开或自动重试。
+`lib cbb symbol-open --symbol <uuid>` 必须先进入该 CBB 工程，依据原理图
+`cbbSymbol.uuid` 的明确关联，以工程库别名 `project` 打开指定符号并回读类型 17 和 UUID。
+Web 4.1.78 的记录可能不带库 UUID 或 cbbUuid，不能靠这两个缺字段猜归属，也不默认选第一项。
+`lib cbb symbol-build --symbol <uuid> --spec <pins-outline.json> --dry-run` 先检查库存；
+去掉 dry-run 只允许空目标单次构建，逐脚/边框核对并要求 saved:true，失败保留创建 ID。所有创建、打开与放置仍需新鲜 health 中的专用连接；离线测试不能替代现场验收。
+
+原生 CBB 可能已带宿主默认矩形。空目标检查必须包含矩形、圆弧、自由文本和图片，不能
+只看 pin/polygon/circle。`symbol-open` / `symbol-build --dry-run` 返回额外图形库存；
+只有明确属于本轮且精确 ID/几何已核对的默认图形才可经 typed 删除，不自动清空或覆盖。
+导入副本的符号打开必须同时给 `symbol-open --target-project ... --imported-schematic ...`，
+核对原库所有权、导入原理图、工程目录本地符号与源 CBB UUID 后才导航；不把原库 UUID 当本地 UUID。
+
+样件至少覆盖已命名导线连接与未接线端口；保存 → 真实关闭重开 → fresh 引脚网对账后
+才能判断 #244。默认普通器件符号、工具 `block-apply` 或最近 netflag 不能充当真实 CBB。
+
+外部工程无法直接读取 CBB 内部符号时，`sch cbb-place --allow-source-project-probe` 明确允许
+保存当前页后进入源 CBB 工程核对指定符号与原理图关联，再回到原项目/页面并核对旧组件几何。
+调用前须保存所有其他打开文档；没有显式标志不切工程，源证明缺失或返回页变化时零实例创建。
+源探针与返回核对成功后才执行一次 createCbbSymbol，保留 sourceProbe 和已知 primitiveId。
+
+Web 4.1.78 的专用 `createCbbSymbol` 调用曾返回新 primitiveId，
+但目标页组件库存和原生源码均无实例，保存重开后仍不存在；因此返回 ID 不能证明放置成功。
+该调用还会隐式导入模块 Board、原理图及 PCB，失败也可能留下这些文档。
+恢复前须对照调用前工程库存，仅精确清理本轮导入资产，不能仅检查或清理目标页。
+这条专用 API 路径仍未通过，不能把导入成功或返回 ID 当作实例落地。
+
+已有明确导入记录时，可用 `sch cbb-project-place --project-uuid ... --page ...
+--schematic <已导入CBB原理图UUID> --expected-name EA_AGENT__... --x ... --y ... --dry-run`
+只读核对当前项目内的原生 CBB 关联和工程库符号。执行时去掉 dry-run，明确指定回读得到的
+`--symbol`。默认使用官方通用符号创建接口，传入当前项目 UUID 与 type 17 符号索引，
+不再跨工程导入；必须新回读为真实 `block_symbol`，普通器件不能冒充。
+`--via-symbol-api=false` 仅用于诊断专用 CBB 接口，不自动失败回退或重试。
+这里只证明当前工程变体，不以同名推断原库来源；来源仍需调用前后导入库存与源电路对账。
+返回 ID 仍不算落地，必须新库存核对实例、本地 Symbol UUID 和几何，然后保存重开验证。
+Type-C、双 5.1kΩ 下拉和按钮受控样件已验证该通用路径：实际块实例、原库/工程库 UUID
+区分、绝对引脚坐标、已接端口网名和未接端口 `no-touching-wire` 均经保存重开回读。
+KEY 接线后的平台展开网表也关联到内部按钮；内部全局电源旗的网名仍具有全局语义，
+不能据外部别名推断内部电源网已改名。这是定向接口验收，不是 PCB/硬件或完整 E2E 签字。
+`sch check` 对已从展开网表中证实缺席的原生块实例按真实导线判断连接，不再误报
+`geom-net-mismatch`；未接端口仍报 floating，裸标记重叠不构成 CBB 接线。
+普通器件的几何/网表不一致检查保持有效。
+
+源 CBB 符号的默认 Rectangle 可用 `lib cbb symbol-rectangle-delete --symbol <uuid>
+--spec <rectangle.json> --dry-run` 精确预检；spec 必须逐字段采用新回读的
+`{id,x,y,width,height,rotation}`。去掉 `--dry-run` 仅删除该矩形，校验引脚与 polygon
+保持不变并显式保存。只支持已证明归属的个人库源符号，无重试/回退；其他图形类存在时拒绝。
+之后仍须关闭重开符号、新回读与导图，不能把删除成功替代持久化或视觉验收。

@@ -1,44 +1,59 @@
-## Description: <br>
-Secret redaction MCP server for OpenClaw agents that helps prevent API keys, database credentials, SSH keys, emails, IPs, JWTs, and other sensitive values from leaking to LLM providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secret redaction MCP server for OpenClaw agents. Prevents API keys, DB credentials, SSH keys, emails, IPs, JWTs, and 30+ other secret types from leaking to LLM providers. Includes guard command, API proxy, canary tokens, encrypted vault, git history scanning, org posture scanning, file watcher, and dashboard. Use when reading/writing files that may contain secrets, setting up agent security, or auditing for credential exposure.
 
-## Publisher: <br>
-[ppiankov](https://clawhub.ai/user/ppiankov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ppiankov](https://clawhub.ai/user/ppiankov)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add a local secret-redaction layer when reading, writing, scanning, or proxying content that may contain credentials. It supports MCP setup, command guarding, file and directory scanning, audit reporting, canary tokens, and optional outbound LLM API proxying. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect sensitive local files while scanning or redacting credentials. <br>
-Mitigation: Limit scans to intended directories and review the Pastewatch upstream project before use. <br>
-Risk: The optional persistent proxy can continuously inspect outbound LLM API traffic. <br>
-Mitigation: Enable the proxy only when continuous inspection is intended and configure upstream routing and audit logging deliberately. <br>
-Risk: Vault keys and audit logs may expose sensitive operational metadata if poorly protected. <br>
-Mitigation: Protect vault keys and audit logs with appropriate file permissions, access controls, and retention practices. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Pastewatch MCP and CLI workflows that redact secrets from file reads and writes, scan code or command output, and add a proxy guard before outbound LLM API traffic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ppiankov/pastewatch-mcp) <br>
-- [Pastewatch project](https://github.com/ppiankov/pastewatch) <br>
-- [Agent-Native CLI Convention](https://ancc.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires pastewatch-cli and mcporter binaries; can produce redacted text, scan results, audit reports, and setup guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: ClawHub release evidence) <br>
+Risk: The release recommends installing an external binary that may not be pinned to an immutable artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and release process; prefer pinned, signed, checksum-verified, or package-manager-verifiable builds.
+
+Risk: The proxy can inspect sensitive prompts, headers, and provider traffic that pass through it.
+
+Mitigation: Run the proxy with the least privilege practical, limit it to required providers and ports, and review audit logging and retention settings before use.
+
+Risk: The documented system-wide systemd setup creates a persistent service in the request path.
+
+Mitigation: Use the system-wide service only when needed, document rollback steps, and prefer project-scoped or user-scoped operation for narrower deployments.
+
+## Reference(s):
+
+- [ClawHub Pastewatch MCP Release](https://clawhub.ai/ppiankov/skills/pastewatch-mcp)
+- [Pastewatch Canonical Source](https://github.com/ppiankov/pastewatch)
+- [Agent-Native CLI Convention](https://ancc.dev)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands, configuration snippets, MCP tool descriptions, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires pastewatch-cli and mcporter binaries; proxy mode can inspect outbound LLM API traffic.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

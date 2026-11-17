@@ -1,41 +1,53 @@
-## Description: <br>
-Backs up an OpenClaw system, including configuration, memory, selected user files, and system metadata, then uploads the archive to a configured cloud remote. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up OpenClaw system data, configuration, memory, and selected local system files, then uploads the archive to cloud storage with rclone.
 
-## Publisher: <br>
-[Jaskies](https://clawhub.ai/user/Jaskies) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaskies](https://clawhub.ai/user/jaskies)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw environments use this skill to configure and run full-system backups to cloud storage. It is appropriate only where broad local and system data collection and upload are explicitly authorized. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The backup can collect sensitive local, user, and system data and upload it to the configured Google Drive remote. <br>
-Mitigation: Review and narrow the backup paths, add secret exclusions, encrypt the archive, and confirm the rclone destination before running. <br>
-Risk: Recurring execution can repeatedly export broad system snapshots without additional review. <br>
-Mitigation: Avoid cron scheduling unless recurring uploads are intentionally required and monitored. <br>
+## Use Case:
 
+Developers and operators use this skill to prepare and run a full OpenClaw backup workflow, including dependency setup, rclone configuration, archive creation, and cloud upload.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jaskies/backup-full-system-jaskies) <br>
-- [Publisher profile](https://clawhub.ai/user/Jaskies) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance, Files] <br>
-**Output Format:** [Markdown guidance with bash commands and a shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [When executed, creates compressed tar.gz backup archives and uploads them with rclone.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The backup process can collect broad local and privileged system data, including user configuration, shell profiles, crontab, Tailscale, systemd files, and unrelated home-directory files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict collection to explicit OpenClaw paths and require separate approval for any user, network, service, or unrelated home-directory files.
+
+Risk: The archive is uploaded to Google Drive without clear confirmation of the destination or encryption before upload.
+
+Mitigation: Confirm the rclone remote and destination before running the upload, and encrypt the backup archive before it leaves the machine.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jaskies/skills/backup-full-system-jaskies)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational guidance for creating compressed backup archives and uploading them with rclone.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Generates structured finance interview questions and expected-answer points based on role, competency dimensions, interview level, and industry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured finance-role interview questions and expected answer points based on capabilities, role level, and industry.
 
-## Publisher: <br>
-[7679457979](https://clawhub.ai/user/7679457979) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[7679457979](https://clawhub.ai/user/7679457979)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Interviewers, HR teams, and finance hiring managers use this skill to draft structured Chinese-language interview question sets for finance roles, including BEI, scenario, professional-skill, and pressure-test questions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad interview-related trigger phrases may activate the skill outside finance interview workflows.
+
+Mitigation: Confirm the intended finance role, target capabilities, interview level, and industry before relying on generated questions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Interviewers, HR partners, and finance hiring teams use this skill to draft competency-based questions, expected answer points, and follow-up prompts for finance role interviews or interviewer training. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Generated interview questions may be unfair, irrelevant, or unsuitable for employment-law requirements if used directly in hiring. <br>
-Mitigation: Review generated questions for fairness, job relevance, and employment-law compliance before using them in real candidate evaluation. <br>
+**Output Format:** [Markdown table with concise question and answer-point text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/7679457979/finance-interview-generator) <br>
+**Other Properties Related to Output:** [Outputs are customized from the requested role, assessment capabilities, interview level, and optional industry.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown table with interview questions, expected answer points, and follow-up suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Customized from position, competency dimensions, interview level, and optional industry.] <br>
+1.0.0 (source: server release metadata and artifact SKILL.md)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact SKILL.md) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

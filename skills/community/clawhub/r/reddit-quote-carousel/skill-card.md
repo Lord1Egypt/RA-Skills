@@ -1,39 +1,56 @@
-## Description: <br>
-Create an Instagram carousel from a popular-picks list with Reddit quotes, using a clean cover slide and quote-style attraction slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create an Instagram carousel from a popular-picks list with Reddit quotes, including a clean cover slide and quote-style attraction slides.
 
-## Publisher: <br>
-[psyduckler](https://clawhub.ai/user/psyduckler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[psyduckler](https://clawhub.ai/user/psyduckler)
 
-## Use Case: <br>
-Content creators and social media operators use this skill to turn a destination, category, and popular-picks URL into an Instagram carousel with sourced Reddit quotes, image overlays, and a caption for publication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish to Instagram and modify hosted repository content without a clear approval step. <br>
-Mitigation: Require human preview and approval of all slides and caption text before posting or changing hosted assets. <br>
-Risk: The skill depends on the correct Instagram account, tabiji repository access, and helper skills or scripts. <br>
-Mitigation: Confirm account and repository permissions are scoped to the intended destination, and verify referenced helper skills and scripts before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/psyduckler/reddit-quote-carousel) <br>
+## Use Case:
 
+Content creators and social media operators use this skill to turn tabiji.ai popular-picks pages into Instagram carousel posts with destination photos, Reddit quotes, captions, and publishing steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown instructions with JSON manifest examples, shell command examples, image file outputs, and caption text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces carousel slide image files, a manifest, and Instagram caption content; publication should be previewed and approved before posting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can publish content publicly to Instagram.
+
+Mitigation: Require explicit manual confirmation before uploading, creating carousel containers, or publishing a post.
+
+Risk: The workflow temporarily hosts generated images in the tabiji repository.
+
+Mitigation: Use the skill only when temporary repository hosting is intended, and verify cleanup of hosted images and local temporary files after publishing.
+
+Risk: Shell commands may include web-sourced text such as quotes, attraction names, and slugs.
+
+Mitigation: Pass dynamic values through safe subprocess argument arrays, or strictly validate and escape web-sourced text before command execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/psyduckler/skills/reddit-quote-carousel)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, API calls]
+
+**Output Format:** [Markdown guidance with JSON manifest examples, shell command examples, image file outputs, caption text, and publishing workflow steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local carousel slide images and may publish a carousel post after user review and confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

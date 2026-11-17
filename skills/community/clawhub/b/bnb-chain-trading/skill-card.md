@@ -1,51 +1,66 @@
-## Description: <br>
-Agent trading on BNB Chain. Limit, DCA, stop-loss & take-profit. Non-custodial, zero fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent trading on BNB Chain for limit, DCA, stop-loss, and take-profit orders with non-custodial, zero-fee workflows.
 
-## Publisher: <br>
-[shawn-orbs](https://clawhub.ai/user/shawn-orbs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shawn-orbs](https://clawhub.ai/user/shawn-orbs)
 
-## Use Case: <br>
-External users and agent developers use this skill to translate trading intent into Spot advanced swap order parameters, EIP-712 typed data, wallet approval guidance, signed relay payloads, query flows, and cancellation steps for supported EVM chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The BNB-focused presentation may understate that the skill supports multiple EVM chains and can guide wallet approvals beyond BNB Chain. <br>
-Mitigation: Before signing, verify the intended chain ID, adapter, token addresses, spender or verifying contract, and recipient against the supported-chain list. <br>
-Risk: Approvals and signed orders can authorize token movement according to max amount, slippage, deadline, recurrence, and output constraints. <br>
-Mitigation: Use wallet confirmations carefully, prefer exact approvals for the intended max amount, and review max amount, slippage, deadline, epoch, and trigger fields before signing. <br>
-Risk: Relay submission shares signed trading instructions with an external service. <br>
-Mitigation: Submit only the final intended signed payload, preserve the exact typed data and signature for retries or cancellation, and use onchain cancellation or approval revocation tools when needed. <br>
+## Use Case:
 
+External users and developers use this skill to turn trading intent into signed Spot order payloads for non-custodial swaps, including limit, TWAP, stop-loss, take-profit, delayed-start, query, and cancellation workflows on BNB Chain and other listed EVM chains.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shawn-orbs/bnb-chain-trading) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Parameter Reference](references/params.md) <br>
-- [Template, Sign, And Submit](references/sign.md) <br>
-- [Lifecycle](references/lifecycle.md) <br>
-- [Examples](references/examples.md) <br>
-- [Token Addressbook](assets/token-addressbook.md) <br>
-- [RePermit Typed Data Template](assets/repermit.template.json) <br>
-- [Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf) <br>
-- [Spot Chain Configuration](https://github.com/orbs-network/spot/blob/master/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads, code snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces locally assembled order parameters, typed-data payloads, approval guidance, signed relay submission payloads, query instructions, and cancellation instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; package.json reports 2.5.5) <br>
+Risk: The release advertises BNB Chain trading while the artifact supports signed orders across several EVM chains.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before approval or signing, confirm the exact chain ID, adapter, verifying contract, relay destination, and intended token pair.
+
+Risk: Wallet approvals and EIP-712 signatures can authorize token movement if order details are wrong.
+
+Mitigation: Prefer exact per-order approvals, verify spender, input token, maximum amount, recipient, deadline, and slippage, and avoid standing approvals unless explicitly needed.
+
+Risk: Mock examples include placeholder payloads and signatures that are not suitable for live orders.
+
+Mitigation: Use examples only as shape references and regenerate all addresses, amounts, timing fields, typed data, and signatures from the user's actual order intent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shawn-orbs/skills/bnb-chain-trading)
+- [Quickstart](references/quickstart.md)
+- [Parameter reference](references/params.md)
+- [Template, signing, and submission](references/sign.md)
+- [Lifecycle](references/lifecycle.md)
+- [Examples](references/examples.md)
+- [Token addressbook](assets/token-addressbook.md)
+- [RePermit typed-data template](assets/repermit.template.json)
+- [Spot chain configuration](https://github.com/orbs-network/spot/blob/master/config.json)
+- [Security Audit Report](https://github.com/orbs-network/spot/blob/master/Audit-AstraSec.pdf)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads and shell or JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces locally assembled EIP-712 typed data and relay payloads; does not execute external helper code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

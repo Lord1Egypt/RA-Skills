@@ -1,40 +1,53 @@
-## Description: <br>
-Automates WeChat on macOS for auto-replies, keyword alerts, message summaries, forwarding, export, and analysis by controlling the desktop app. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate WeChat on macOS for auto-replies, keyword alerts, message summaries, forwarding, export, and analysis by controlling the desktop app.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Customer support operators, group managers, and users who need important-message reminders use this skill to automate WeChat desktop workflows on macOS. It supports common replies, daily summaries, keyword monitoring, forwarding, and message export or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive WeChat messages may be monitored, exported, forwarded, or summarized without enough stated boundaries. <br>
-Mitigation: Restrict which chats are monitored, inspect the full scripts before use, and verify where exported or forwarded messages are stored and who can access them. <br>
-Risk: Automation may send replies or forward messages through the user's WeChat account. <br>
-Mitigation: Require confirmation before replies or forwarding and limit use to chats and accounts approved for automation. <br>
+## Use Case:
 
+External users and operators use this skill to automate WeChat Desktop on macOS for customer-service replies, group-message management, summaries, alerts, message forwarding, and export or analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yang1002378395-cmyk/wechat-automation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with commands, rules, summaries, alerts, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce WeChat reply drafts, summaries, alerts, forwarding instructions, and export or analysis guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can read, export, forward, and reply to WeChat messages, which may expose private chat content or affect people who have not agreed to automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, define which chats are in scope, where forwarded data may go, how exports are stored and deleted, and whether affected participants have appropriate notice or consent.
+
+Risk: Automatic replies and forwarding can send unintended content if rules, keywords, or summaries are configured too broadly.
+
+Mitigation: Review automation rules before enabling them, limit them to intended chats, and keep a human review path for sensitive or high-impact conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/wechat-automation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [macOS-only; requires WeChat Desktop running.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Creates draft task files in .specs/tasks/draft/ that preserve the user's original task intent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates a draft task file in .specs/tasks/draft/ that preserves the original user intent.
 
-## Publisher: <br>
-[hahamumu08](https://clawhub.ai/user/hahamumu08) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hahamumu08](https://clawhub.ai/user/hahamumu08)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to turn a brief task request into a structured draft task markdown file for an SDD-style workflow, including title, issue type, dependencies, and the original prompt. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contains a folder-target inconsistency that could place task files outside the intended draft directory. <br>
-Mitigation: Before use, verify that generated task files are written only under .specs/tasks/draft/ and correct any path that points to .specs/tasks/todo/. <br>
-Risk: The skill preserves the original user prompt in generated markdown, so sensitive prompt content may be stored in the workspace. <br>
-Mitigation: Do not include secrets or confidential data in task prompts, and review generated task files before committing them. <br>
-Risk: The skill references a create-folders.sh helper that is not present in the artifact evidence. <br>
-Mitigation: Confirm the installed package includes the helper or create the expected .specs/tasks directories before running the skill. <br>
+## Use Case:
 
+Developers maintaining an SDD task workflow use this skill to convert a short user request into a uniquely named draft task Markdown file with a title, issue type, optional dependencies, and the original prompt preserved.
 
-## Reference(s): <br>
-- [ClawHub Add Task release page](https://clawhub.ai/hahamumu08/add-task) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown task file plus concise text summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated task files preserve the original user prompt and use a placeholder description for later analyst completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill writes persistent workflow files from user-supplied prompts, titles, and dependency names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated task files before downstream processing and treat stored prompt, title, and dependency content as untrusted input.
+
+Risk: The skill evidence notes inconsistent placement rules between draft and todo task paths.
+
+Mitigation: Confirm the intended task directory before use and prefer .specs/tasks/draft/ to match the stated goal and constraints.
+
+Risk: The skill calls a folder-creation script that is not bundled in the artifact.
+
+Mitigation: Verify the expected script exists in the installed environment or create the required .specs task directories manually before running the skill.
+
+## Reference(s):
+
+- [Add Task on ClawHub](https://clawhub.ai/hahamumu08/skills/add-task)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown task file plus concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a new task file under .specs/tasks/draft/ and should avoid modifying existing task files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,58 @@
-## Description: <br>
-Ingest Document saves a single document, uploaded file, meeting note, experiment record, link, or chat-provided material into a personal or team knowledge base with summaries, source archiving, duplicate checks, and aggregation updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ingest a single document, uploaded file, meeting note, experiment record, or chat-provided material into a personal or team knowledge base, including summaries, source archiving, duplicate checks, and project/person aggregation updates.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and agent users can use this skill to ingest one item of source material into a Gitea-backed personal or team knowledge base. It is intended for workflows that need a generated summary, preserved source context, duplicate handling, and project or people page updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write summaries and archived source files into Gitea knowledge-base repositories using broad repository credentials. <br>
-Mitigation: Use a dedicated low-privilege Gitea token scoped only to the intended repositories, avoid site-admin tokens, and verify the target personal or team repository before saving. <br>
-Risk: Full source files and user-provided material may be archived into repositories where other users could have access. <br>
-Mitigation: Tell users when source files will be archived, avoid ingesting sensitive material unless the repository access model is appropriate, and review repository permissions regularly. <br>
+## Use Case:
 
+External users and teams use this skill to ingest a single uploaded file, link, meeting note, experiment record, or chat-provided item into a personal or team knowledge base. It guides target selection, duplicate handling, summary generation, source archiving, and related project or people page updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/skills/ingest-document) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-oriented command output with shell commands and Gitea page links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include generated summaries, save status, duplicate-resolution prompts, interactive card payloads, and links returned from Gitea.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill uses a Gitea admin token and default Gitea endpoint settings, which could expose credentials or documents if deployed broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in a controlled environment, replace the default endpoint with an administered HTTPS Gitea URL, and use a narrowly scoped service token.
+
+Risk: The skill can ingest and archive uploaded source files into a knowledge-base repository.
+
+Mitigation: Constrain file inputs and archived outputs to a per-request attachment directory and review repository visibility before enabling source archiving.
+
+Risk: Dependencies are listed without pinned versions.
+
+Mitigation: Pin and review Python dependencies before installation.
+
+## Reference(s):
+
+- [Ingest Document ClawHub skill page](https://clawhub.ai/myd2002/skills/ingest-document)
+- [myd2002 publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration]
+
+**Output Format:** [Markdown summaries, JSON command responses, interactive card payloads, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May archive original source files and return generated Gitea page URLs when configured.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

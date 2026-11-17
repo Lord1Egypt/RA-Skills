@@ -1,41 +1,57 @@
-## Description: <br>
-Converts PDF documents into editable PowerPoint presentations with intelligent content extraction and formatting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts PDF documents into editable PowerPoint presentations with intelligent content extraction and formatting.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Business analysts, consultants, educators, content teams, and developers use this skill to upload PDFs to a conversion API and receive editable PPTX files for document automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded PDFs and converted PPTX files are handled by an external conversion service. <br>
-Mitigation: Avoid confidential, regulated, legal, financial, medical, or personal documents unless the provider's privacy, retention, deletion, and download-link security practices are acceptable for that data. <br>
+## Use Case:
 
+External developers, business analysts, consultants, educators, and content teams use this skill to convert PDF documents into editable PPTX presentations through a file-upload API.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/pdf-to-pptx) <br>
-- [API Docs](https://api.mkkpro.com:8001/docs) <br>
-- [Kong Route](https://api.mkkpro.com/creative/pdf-to-pptx) <br>
-- [OpenAPI Specification](artifact/openapi.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, JSON, Guidance] <br>
-**Output Format:** [Multipart file upload with a JSON response containing conversion status and a PPTX download URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uploads PDF content to api.mkkpro.com; usage is subject to the provider's limits, pricing, and file handling practices.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Uploaded PDFs leave the user's device for third-party processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or legally sensitive documents unless the provider's privacy, retention, deletion, and download-link access controls have been separately verified.
+
+Risk: Converted presentation files are returned through a service-generated file URL.
+
+Mitigation: Treat download links as sensitive and review access controls before sharing or automating retrieval.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/pdf-to-pptx)
+- [API Docs](https://api.mkkpro.com:8001/docs)
+- [Kong Route](https://api.mkkpro.com/creative/pdf-to-pptx)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Files, JSON, Guidance]
+
+**Output Format:** [Multipart file upload request with JSON status metadata and a PPTX download URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces an editable PowerPoint file from an uploaded PDF; the response may include processing metrics and a file URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

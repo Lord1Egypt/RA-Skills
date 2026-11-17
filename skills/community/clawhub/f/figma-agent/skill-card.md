@@ -1,47 +1,70 @@
-## Description: <br>
-Figma MCP integration for OpenClaw. Use when the user wants to read Figma designs, inspect design tokens/variables, work with Code Connect, or create/edit Figma designs. Requires one-time bootstrap setup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Figma MCP integration for OpenClaw that helps agents read Figma designs, inspect variables and Code Connect context, and create or edit Figma designs through structured workflows.
 
-## Publisher: <br>
-[rasimme](https://clawhub.ai/user/rasimme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rasimme](https://clawhub.ai/user/rasimme)
 
-## Use Case: <br>
-Developers and design teams use Figma Agent to inspect Figma files, review design systems and variables, and create or edit screens through routed Figma MCP workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Setup reuses credentials from local agent applications and stores a Figma bearer token for OpenClaw use. <br>
-Mitigation: Review the bootstrap script before running it, use a dedicated or least-privileged Figma account, and install only if this credential reuse is acceptable. <br>
-Risk: Write workflows can change Figma files and may produce incorrect edits if not validated. <br>
-Mitigation: Back up OpenClaw configuration, manually save Figma version history before important edits, and validate each write with metadata or screenshots before reporting completion. <br>
+## Use Case:
 
+Developers, designers, and agent operators use this skill to inspect Figma files, discover design-system variables, review screens, and perform controlled create or edit workflows with validation after writes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rasimme/figma-agent) <br>
-- [Project homepage](https://github.com/rasimme/figma-agent) <br>
-- [Figma Remote MCP server documentation](https://help.figma.com/hc/en-us/articles/32132100833559) <br>
-- [Figma API reference](references/figma-api.md) <br>
-- [Workflow selection](references/workflow-selection.md) <br>
-- [Core rules](references/core-rules.md) <br>
-- [Plugin API gotchas](references/plugin-api-gotchas.md) <br>
-- [Prompting patterns](references/prompting-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Figma MCP call patterns, and validation instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require an OAuth-derived Figma bearer token and validation screenshots after write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: package.json, CHANGELOG, server release metadata) <br>
+Risk: The setup flow reads tokens from other local MCP clients and stores a bearer token in OpenClaw configuration with limited scoping and disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the bootstrap script with --dry-run first, verify the selected credential file, review ~/.openclaw/openclaw.json permissions, and remove or rotate the copied token when it is no longer needed.
+
+Risk: Write workflows can modify Figma files and require access to an account with a Figma Full Seat.
+
+Mitigation: Prefer a duplicate or branch for write workflows and validate every write with Figma metadata or screenshots before reporting completion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rasimme/skills/figma-agent)
+- [Publisher Profile](https://clawhub.ai/user/rasimme)
+- [Project Homepage](https://github.com/rasimme/figma-agent)
+- [Figma Remote MCP Server](https://help.figma.com/hc/en-us/articles/32132100833559)
+- [Figma MCP Endpoint](https://mcp.figma.com/mcp)
+- [Workflow Selection](references/workflow-selection.md)
+- [Core Rules](references/core-rules.md)
+- [Prompting Patterns](references/prompting-patterns.md)
+- [Figma API Reference](references/figma-api.md)
+- [Plugin API Gotchas](references/plugin-api-gotchas.md)
+- [Variable Discovery Playbook](references/playbooks/variable-discovery.md)
+- [Design Audit Review Playbook](references/playbooks/design-audit-review.md)
+- [Design System Cleanup Playbook](references/playbooks/design-system-cleanup.md)
+- [Native Screen Generation Playbook](references/playbooks/native-screen-generation.md)
+- [Screen Review Loop Playbook](references/playbooks/screen-review-loop.md)
+- [Color Tokenization Playbook](references/playbooks/color-tokenization.md)
+- [HTML-to-Figma Prototyping Playbook](references/playbooks/html-to-figma-prototyping.md)
+- [Stitch Import Cleanup Playbook](references/playbooks/stitch-import-cleanup.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, code snippets, file paths, and optional screenshot attachment references.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write workflows require validation with Figma metadata or screenshots before reporting success.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release evidence, package.json, CHANGELOG released 2026-04-09)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

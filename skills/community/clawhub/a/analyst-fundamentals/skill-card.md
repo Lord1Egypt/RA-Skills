@@ -1,44 +1,63 @@
-## Description: <br>
-Provides a Chinese A-share fundamental analysis workflow when a user supplies a stock code or asks for company fundamentals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes A-share company fundamentals from a stock code by gathering Eastmoney F10 data and synthesizing structured research reports.
 
-## Publisher: <br>
-[vbdspd](https://clawhub.ai/user/vbdspd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vbdspd](https://clawhub.ai/user/vbdspd)
 
-## Use Case: <br>
-External users and analysts use this skill to gather Eastmoney F10 data for Chinese A-share stocks, run staged fundamental analyses, and assemble a Markdown research report. The output is generated research context and is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can be resource-heavy because it opens Eastmoney pages and coordinates many concurrent research tasks. <br>
-Mitigation: Run it only in an environment where that load is acceptable, use bounded run-mode workers, and avoid persistent no-timeout workers. <br>
-Risk: The skill writes many local research artifacts. <br>
-Mitigation: Confirm the output path before execution and review generated files before sharing or relying on them. <br>
-Risk: The output may contain investment-style recommendations or position-sizing language even though the skill states it is not investment advice. <br>
-Mitigation: Treat outputs as generated research, independently verify financial facts, and remove or review recommendation language before use. <br>
+## Use Case:
 
+External users and analysts use this skill to produce structured fundamental-analysis research for Chinese A-share companies from a supplied stock code. It is intended for informational analysis, not personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vbdspd/analyst-fundamentals) <br>
-- [Publisher profile](https://clawhub.ai/user/vbdspd) <br>
-- [Eastmoney F10 data page template](https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html?type=web&code={market}{code}&color=b#/{module}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown files with concise status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local data/{stock code}/ Markdown artifacts and a final report.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow performs broad scraping and contacts Eastmoney.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only where external access to Eastmoney is expected and allowed.
+
+Risk: The skill creates many local analysis files.
+
+Mitigation: Use it only in a workspace where creating and retaining those files is acceptable.
+
+Risk: Generated analysis may include recommendation-like or position-sizing language despite the no-advice purpose.
+
+Mitigation: Treat outputs as informational research and review them before relying on them.
+
+Risk: Unvalidated stock-code input could drive unexpected requests or file paths.
+
+Mitigation: Validate stock codes to a strict six-digit format before running the workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vbdspd/skills/analyst-fundamentals)
+- [Publisher profile](https://clawhub.ai/user/vbdspd)
+- [Eastmoney F10 data source](https://emweb.securities.eastmoney.com/pc_hsf10/pages/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown reports and structured analysis files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces multiple intermediate Markdown analysis files and a final report for the requested stock code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

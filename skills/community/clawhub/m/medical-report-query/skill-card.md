@@ -1,43 +1,52 @@
-## Description: <br>
-A medical reporting query skill for Oracle and SQL Server healthcare databases, covering outpatient, inpatient, pharmacy, insurance, and operational reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Medical Report Query helps agents query and summarize Oracle and SQL Server medical database reports for outpatient, inpatient, pharmacy, insurance, revenue, and operations reporting in clinics and community hospitals.
 
-## Publisher: <br>
-[a85012712](https://clawhub.ai/user/a85012712) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[a85012712](https://clawhub.ai/user/a85012712)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Healthcare operations staff and authorized analysts use this skill to request routine clinic and community-hospital reports from medical databases, including outpatient volume, inpatient occupancy, pharmacy inventory, insurance reconciliation, and fee analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent toward querying sensitive patient, billing, insurance, and pharmacy data.
+
+Mitigation: Install it only where the agent has authorized, least-privilege access to the relevant medical databases, and require confirmation before database queries.
+
+Risk: Generated reports or exports may expose protected identifiers or billing details.
+
+Mitigation: Mask patient and billing identifiers by default, restrict exports, and apply healthcare privacy, audit, and recipient controls.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Clinic and community hospital staff use this skill to request routine healthcare operations reports, such as outpatient volume, inpatient occupancy, pharmacy inventory, insurance reconciliation, and revenue analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may expose patient, insurance, or other sensitive healthcare data. <br>
-Mitigation: Install only in an approved healthcare reporting environment, de-identify sensitive data before display or export, and limit access to authorized users. <br>
-Risk: Broad report triggers could lead to unintended database queries or exports. <br>
-Mitigation: Use a dedicated read-only database account, restrict schemas and tables, and require explicit user confirmation before any query or export. <br>
-Risk: Generated report figures may be incomplete or inconsistent with source systems. <br>
-Mitigation: Treat report outputs as reference material and reconcile figures with HIS, ERP, or other authoritative systems before operational use. <br>
+**Output Format:** [Markdown or structured report guidance, with optional SQL-oriented query assistance and report export guidance.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/a85012712/medical-report-query) <br>
-- [Publisher Profile](https://clawhub.ai/user/a85012712) <br>
+**Other Properties Related to Output:** [Reports may be tailored for Markdown, Excel, or HTML; sensitive data should be masked by default.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports, with possible Excel or HTML report formats when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive healthcare data; de-identification and source-system reconciliation are required before displaying, saving, or sharing reports.] <br>
+1.0.0 (source: frontmatter, release evidence, artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

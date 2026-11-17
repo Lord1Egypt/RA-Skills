@@ -10,13 +10,20 @@ import math
 import os
 import re
 import sqlite3
-import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 from urllib import error, request
-from config import load_effective_config, resolve_state_dir, resolve_user_paths, write_user_config
+from config import (
+    load_effective_config,
+    open_relay_request,
+    resolve_state_dir,
+    resolve_user_paths,
+    secure_private_file,
+    secure_state_directory,
+    write_user_config,
+)
 from sync_cryptography import (
     decrypt_legacy_rsa_chunked_payload,
     decrypt_v5_payload,
@@ -31,7 +38,11 @@ MAX_VALIDATION_DEPTH = 12
 MAX_VALIDATION_NODES = 20000
 MAX_DICT_KEYS = 256
 MAX_LIST_ITEMS = 512
-MAX_SERIALIZED_DAY_BYTES = 1_000_000
+MAX_HEART_RATE_SAMPLES_PER_WORKOUT = 65_536
+MAX_WORKOUT_TIME_SERIES_ITEMS = 65_536
+MAX_WORKOUT_EVENTS_PER_WORKOUT = 4_096
+MAX_WORKOUT_ROUTE_POINTS_PER_WORKOUT = 65_536
+MAX_SERIALIZED_DAY_BYTES = 4_000_000
 DATE_KEY_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 SAFE_METRIC_KEY_PATTERN = re.compile(r"^[A-Za-z0-9_.:-]{1,64}$")
 SAFE_WORKOUT_TYPE_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9 &'()/+-]{0,63}$")
@@ -60,11 +71,77 @@ WORKOUT_DEVICE_IDENTIFIER_FIELDS = {
     "local_identifier",
     "udi_device_identifier",
 }
+WORKOUT_EVENT_TYPES = {
+    "pause",
+    "resume",
+    "lap",
+    "marker",
+    "motion_paused",
+    "motion_resumed",
+    "segment",
+    "pause_or_resume_request",
+}
+WORKOUT_SPEED_SOURCES = {
+    "cross_country_skiing",
+    "cycling",
+    "paddle_sports",
+    "rowing",
+    "running",
+    "stair_ascent",
+    "stair_descent",
+    "walking",
+}
+WORKOUT_DISTANCE_SOURCES = {
+    "cross_country_skiing",
+    "cycling",
+    "downhill_snow_sports",
+    "paddle_sports",
+    "rowing",
+    "skating_sports",
+    "swimming",
+    "walking_running",
+    "wheelchair",
+}
 DROP_VALUE = object()
 
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def record_fetch_success(
+    user_config: Dict[str, Any],
+    attempted_at: str,
+    succeeded_at: str,
+    row_count: int,
+    validation_metrics: Dict[str, int],
+) -> None:
+    user_config["last_fetch_attempt_at"] = attempted_at
+    user_config["last_fetch_success_at"] = succeeded_at
+    user_config["last_fetch_at"] = succeeded_at
+    user_config["last_fetch_status"] = "ok"
+    user_config.pop("last_fetch_error", None)
+    user_config["last_fetch_row_count"] = row_count
+    user_config["last_validation_raw_days"] = validation_metrics["raw_days"]
+    user_config["last_validation_stored_days"] = validation_metrics["stored_days"]
+    user_config["last_validation_dropped_days"] = validation_metrics["dropped_days"]
+
+
+def migrate_legacy_fetch_timestamp(user_config: Dict[str, Any]) -> None:
+    if "last_fetch_success_at" in user_config:
+        return
+    legacy_timestamp = user_config.get("last_fetch_at")
+    if user_config.get("last_fetch_status") == "ok" and legacy_timestamp:
+        user_config["last_fetch_success_at"] = legacy_timestamp
+    else:
+        user_config.pop("last_fetch_at", None)
+
+
+def record_fetch_failure(user_config: Dict[str, Any], attempted_at: str, error_message: str) -> None:
+    migrate_legacy_fetch_timestamp(user_config)
+    user_config["last_fetch_attempt_at"] = attempted_at
+    user_config["last_fetch_status"] = "error"
+    user_config["last_fetch_error"] = error_message
 
 
 def normalize_public_key_base64(value: str) -> str:
@@ -84,7 +161,7 @@ def http_post_json(url: str, payload: Dict[str, Any], timeout: int, apikey: str,
         method="POST",
     )
     try:
-        with request.urlopen(req, timeout=timeout) as response:
+        with open_relay_request(req, timeout=timeout) as response:
             raw = response.read()
             return json.loads(raw.decode("utf-8"))
     except error.HTTPError as http_error:
@@ -92,6 +169,30 @@ def http_post_json(url: str, payload: Dict[str, Any], timeout: int, apikey: str,
         raise RuntimeError(f"HTTP {http_error.code} from function: {detail}") from http_error
     except error.URLError as url_error:
         raise RuntimeError(f"Cannot reach function: {url_error}") from url_error
+
+
+def merge_day_payload(base: Any, overlay: Any) -> Any:
+    """Merge complete day snapshots with the newer scope winning per category."""
+    if not isinstance(base, dict) or not isinstance(overlay, dict):
+        return overlay
+    merged = dict(base)
+    merged.update(overlay)
+    return merged
+
+
+def merge_scope_payloads(
+    legacy_payload: Dict[str, Any],
+    history_payload: Dict[str, Any],
+    recent_payload: Dict[str, Any],
+) -> Dict[str, Any]:
+    merged = dict(legacy_payload)
+    for scope_payload in (history_payload, recent_payload):
+        for date_key, day_payload in scope_payload.items():
+            if date_key in merged:
+                merged[date_key] = merge_day_payload(merged[date_key], day_payload)
+            else:
+                merged[date_key] = day_payload
+    return merged
 
 def decrypt_rows(
     rows: List[Dict[str, Any]],
@@ -104,7 +205,11 @@ def decrypt_rows(
     v5_history_max_ciphertext_bytes: int,
     v5_history_max_plaintext_bytes: int,
 ) -> Dict[str, Any]:
-    decrypted: Dict[str, Any] = {}
+    legacy_decrypted: Dict[str, Any] = {}
+    scoped_decrypted: Dict[str, Dict[str, Any]] = {
+        "history": {},
+        "recent": {},
+    }
     rsa_block_size = (
         read_legacy_rsa_block_size(legacy_private_key_path)
         if legacy_private_key_path and legacy_private_key_path.exists()
@@ -142,7 +247,7 @@ def decrypt_rows(
             for date_key, day_payload in scope_payload.items():
                 if not isinstance(date_key, str):
                     continue
-                decrypted[date_key] = day_payload
+                scoped_decrypted[scope][date_key] = day_payload
             continue
 
         date = row.get("date")
@@ -156,9 +261,13 @@ def decrypt_rows(
             raise RuntimeError("Missing RSA private key required to decrypt legacy rows.")
 
         plaintext = decrypt_legacy_rsa_chunked_payload(legacy_private_key_path, encrypted_data, rsa_block_size)
-        decrypted[date] = json.loads(plaintext.decode("utf-8"))
+        legacy_decrypted[date] = json.loads(plaintext.decode("utf-8"))
 
-    return decrypted
+    return merge_scope_payloads(
+        legacy_decrypted,
+        scoped_decrypted["history"],
+        scoped_decrypted["recent"],
+    )
 
 
 def path_matches(path: Tuple[str, ...], pattern: Tuple[str, ...]) -> bool:
@@ -221,9 +330,232 @@ def should_keep_string(path: Tuple[str, ...], value: str) -> bool:
     return False
 
 
+def sanitize_workout_heart_rate_samples(value: Any) -> Any:
+    if not isinstance(value, list) or len(value) > MAX_HEART_RATE_SAMPLES_PER_WORKOUT:
+        return DROP_VALUE
+
+    required_keys = {"start_offset_ms", "end_offset_ms", "bpm"}
+    sanitized_samples: List[Dict[str, Any]] = []
+    for sample in value:
+        if not isinstance(sample, dict) or set(sample.keys()) != required_keys:
+            return DROP_VALUE
+
+        start_offset = sample.get("start_offset_ms")
+        end_offset = sample.get("end_offset_ms")
+        bpm = sample.get("bpm")
+        if (
+            isinstance(start_offset, bool)
+            or not isinstance(start_offset, int)
+            or isinstance(end_offset, bool)
+            or not isinstance(end_offset, int)
+            or end_offset < start_offset
+            or isinstance(bpm, bool)
+            or not isinstance(bpm, (int, float))
+            or not math.isfinite(float(bpm))
+            or float(bpm) <= 0
+        ):
+            return DROP_VALUE
+
+        sanitized_samples.append(
+            {
+                "start_offset_ms": start_offset,
+                "end_offset_ms": end_offset,
+                "bpm": bpm,
+            }
+        )
+    return sanitized_samples
+
+
+def is_exact_int(value: Any) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def is_finite_number(value: Any) -> bool:
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(float(value))
+    )
+
+
+def has_valid_offset_range(item: Dict[str, Any]) -> bool:
+    start_offset = item.get("start_offset_ms")
+    end_offset = item.get("end_offset_ms")
+    return (
+        is_exact_int(start_offset)
+        and is_exact_int(end_offset)
+        and end_offset >= start_offset
+    )
+
+
+def sanitize_workout_timing(value: Any) -> Any:
+    required_keys = {
+        "elapsed_duration_ms",
+        "active_duration_ms",
+        "paused_duration_ms",
+    }
+    if not isinstance(value, dict) or set(value.keys()) != required_keys:
+        return DROP_VALUE
+    if any(not is_exact_int(value[key]) or value[key] < 0 for key in required_keys):
+        return DROP_VALUE
+    if value["active_duration_ms"] + value["paused_duration_ms"] != value["elapsed_duration_ms"]:
+        return DROP_VALUE
+    return {key: value[key] for key in required_keys}
+
+
+def sanitize_workout_events(value: Any) -> Any:
+    if not isinstance(value, list) or len(value) > MAX_WORKOUT_EVENTS_PER_WORKOUT:
+        return DROP_VALUE
+
+    required_keys = {"type", "start_offset_ms", "end_offset_ms"}
+    sanitized: List[Dict[str, Any]] = []
+    for event in value:
+        if (
+            not isinstance(event, dict)
+            or set(event.keys()) != required_keys
+            or event.get("type") not in WORKOUT_EVENT_TYPES
+            or not has_valid_offset_range(event)
+        ):
+            return DROP_VALUE
+        sanitized.append({key: event[key] for key in required_keys})
+    return sanitized
+
+
+def sanitize_workout_speed_samples(value: Any) -> Any:
+    if not isinstance(value, list) or len(value) > MAX_WORKOUT_TIME_SERIES_ITEMS:
+        return DROP_VALUE
+
+    required_keys = {
+        "source",
+        "start_offset_ms",
+        "end_offset_ms",
+        "speed_meters_per_second",
+        "pace_seconds_per_kilometer",
+    }
+    sanitized: List[Dict[str, Any]] = []
+    for sample in value:
+        if (
+            not isinstance(sample, dict)
+            or set(sample.keys()) != required_keys
+            or sample.get("source") not in WORKOUT_SPEED_SOURCES
+            or not has_valid_offset_range(sample)
+            or not is_finite_number(sample.get("speed_meters_per_second"))
+            or float(sample["speed_meters_per_second"]) <= 0
+            or not is_finite_number(sample.get("pace_seconds_per_kilometer"))
+            or float(sample["pace_seconds_per_kilometer"]) <= 0
+        ):
+            return DROP_VALUE
+        sanitized.append({key: sample[key] for key in required_keys})
+    return sanitized
+
+
+def sanitize_workout_distance_intervals(value: Any) -> Any:
+    if not isinstance(value, list) or len(value) > MAX_WORKOUT_TIME_SERIES_ITEMS:
+        return DROP_VALUE
+
+    required_keys = {
+        "source",
+        "start_offset_ms",
+        "end_offset_ms",
+        "duration_ms",
+        "distance_meters",
+    }
+    derived_keys = {"speed_meters_per_second", "pace_seconds_per_kilometer"}
+    allowed_keys = required_keys | derived_keys
+    sanitized: List[Dict[str, Any]] = []
+    for interval in value:
+        if not isinstance(interval, dict):
+            return DROP_VALUE
+        keys = set(interval.keys())
+        has_all_derived_values = derived_keys.issubset(keys)
+        if (
+            not required_keys.issubset(keys)
+            or not keys.issubset(allowed_keys)
+            or bool(keys & derived_keys) != has_all_derived_values
+            or interval.get("source") not in WORKOUT_DISTANCE_SOURCES
+            or not has_valid_offset_range(interval)
+            or not is_exact_int(interval.get("duration_ms"))
+            or interval["duration_ms"] < 0
+            or not is_finite_number(interval.get("distance_meters"))
+            or float(interval["distance_meters"]) < 0
+        ):
+            return DROP_VALUE
+        if has_all_derived_values and (
+            not is_finite_number(interval.get("speed_meters_per_second"))
+            or float(interval["speed_meters_per_second"]) <= 0
+            or not is_finite_number(interval.get("pace_seconds_per_kilometer"))
+            or float(interval["pace_seconds_per_kilometer"]) <= 0
+        ):
+            return DROP_VALUE
+        sanitized.append({key: interval[key] for key in keys})
+    return sanitized
+
+
+def sanitize_workout_route_points(value: Any) -> Any:
+    if not isinstance(value, list) or len(value) > MAX_WORKOUT_ROUTE_POINTS_PER_WORKOUT:
+        return DROP_VALUE
+
+    required_keys = {"timestamp_offset_ms", "latitude", "longitude"}
+    optional_keys = {
+        "altitude_meters",
+        "horizontal_accuracy_meters",
+        "vertical_accuracy_meters",
+        "speed_meters_per_second",
+        "speed_accuracy_meters_per_second",
+        "course_degrees",
+        "course_accuracy_degrees",
+    }
+    nonnegative_keys = {
+        "horizontal_accuracy_meters",
+        "vertical_accuracy_meters",
+        "speed_meters_per_second",
+        "speed_accuracy_meters_per_second",
+        "course_accuracy_degrees",
+    }
+    sanitized: List[Dict[str, Any]] = []
+    for point in value:
+        if not isinstance(point, dict):
+            return DROP_VALUE
+        keys = set(point.keys())
+        if (
+            not required_keys.issubset(keys)
+            or not keys.issubset(required_keys | optional_keys)
+            or not is_exact_int(point.get("timestamp_offset_ms"))
+            or not is_finite_number(point.get("latitude"))
+            or not -90 <= float(point["latitude"]) <= 90
+            or not is_finite_number(point.get("longitude"))
+            or not -180 <= float(point["longitude"]) <= 180
+        ):
+            return DROP_VALUE
+        for key in keys & optional_keys:
+            if not is_finite_number(point[key]):
+                return DROP_VALUE
+            if key in nonnegative_keys and float(point[key]) < 0:
+                return DROP_VALUE
+        if "course_degrees" in point and not 0 <= float(point["course_degrees"]) <= 360:
+            return DROP_VALUE
+        sanitized.append({key: point[key] for key in keys})
+    return sanitized
+
+
 def sanitize_value(value: Any, depth: int, counter: List[int], path: Tuple[str, ...] = ()) -> Any:
     if depth > MAX_VALIDATION_DEPTH:
         return DROP_VALUE
+
+    if path_matches(path, ("workouts", "*", "heart_rate_samples")):
+        return sanitize_workout_heart_rate_samples(value)
+    if path_matches(path, ("workouts", "*", "workout_timing")):
+        return sanitize_workout_timing(value)
+    if path_matches(path, ("workouts", "*", "workout_events")):
+        return sanitize_workout_events(value)
+    if path_matches(path, ("workouts", "*", "workout_activities")):
+        return DROP_VALUE
+    if path_matches(path, ("workouts", "*", "speed_samples")):
+        return sanitize_workout_speed_samples(value)
+    if path_matches(path, ("workouts", "*", "distance_intervals")):
+        return sanitize_workout_distance_intervals(value)
+    if path_matches(path, ("workouts", "*", "route_points")):
+        return sanitize_workout_route_points(value)
 
     counter[0] += 1
     if counter[0] > MAX_VALIDATION_NODES:
@@ -363,7 +695,9 @@ def migrate_legacy_health_samples(conn: sqlite3.Connection) -> None:
 
 
 def write_sqlite(sqlite_path: Path, user_id: str, fetched_at: str, data: Dict[str, Any]) -> None:
-    sqlite_path.parent.mkdir(parents=True, exist_ok=True)
+    sqlite_path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if sqlite_path.exists() or sqlite_path.is_symlink():
+        secure_private_file(sqlite_path)
     conn = sqlite3.connect(sqlite_path)
     try:
         ensure_sqlite_schema(conn)
@@ -384,11 +718,19 @@ def write_sqlite(sqlite_path: Path, user_id: str, fetched_at: str, data: Dict[st
         conn.commit()
     finally:
         conn.close()
+    secure_private_file(sqlite_path)
 
 
 def write_ndjson(json_path: Path, envelope: Dict[str, Any]) -> None:
-    json_path.parent.mkdir(parents=True, exist_ok=True)
-    with json_path.open("a", encoding="utf-8") as file_handle:
+    json_path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if json_path.exists() or json_path.is_symlink():
+        secure_private_file(json_path)
+    flags = os.O_WRONLY | os.O_CREAT | os.O_APPEND
+    if hasattr(os, "O_NOFOLLOW"):
+        flags |= os.O_NOFOLLOW
+    file_descriptor = os.open(json_path, flags, 0o600)
+    os.fchmod(file_descriptor, 0o600)
+    with os.fdopen(file_descriptor, "a", encoding="utf-8") as file_handle:
         file_handle.write(json.dumps(envelope, separators=(",", ":")) + "\n")
 
 
@@ -504,14 +846,20 @@ def resolve_runtime(
 
 
 def main() -> int:
+    os.umask(0o077)
     args = parse_args()
     state_dir = resolve_state_dir(args.state_dir)
     paths = resolve_user_paths(state_dir)
+    for private_dir in (state_dir, paths["config_dir"], paths["secrets_dir"]):
+        if private_dir.exists():
+            secure_state_directory(private_dir)
     user_config: Dict[str, Any] = {}
     config: Dict[str, Any] = {}
+    fetch_attempted_at = ""
 
     try:
         user_config, config = load_effective_config(state_dir)
+        fetch_attempted_at = now_iso()
         runtime = resolve_runtime(args, config, paths)
         publishable_key = args.apikey or str(config.get("supabase_publishable_key", "")).strip()
         region = str(config.get("supabase_region", "")).strip()
@@ -603,12 +951,13 @@ def main() -> int:
         else:
             raise RuntimeError(f"Unsupported storage backend: {storage}")
 
-        user_config["last_fetch_at"] = fetched_at
-        user_config["last_fetch_status"] = "ok"
-        user_config["last_fetch_row_count"] = len(encrypted_rows)
-        user_config["last_validation_raw_days"] = validation_metrics["raw_days"]
-        user_config["last_validation_stored_days"] = validation_metrics["stored_days"]
-        user_config["last_validation_dropped_days"] = validation_metrics["dropped_days"]
+        record_fetch_success(
+            user_config,
+            fetch_attempted_at,
+            fetched_at,
+            len(encrypted_rows),
+            validation_metrics,
+        )
         write_user_config(user_config, state_dir)
 
         print(
@@ -621,9 +970,11 @@ def main() -> int:
         print(f"Error: {runtime_error}", file=sys.stderr)
         try:
             if user_config:
-                user_config["last_fetch_at"] = now_iso()
-                user_config["last_fetch_status"] = "error"
-                user_config["last_fetch_error"] = str(runtime_error)
+                record_fetch_failure(
+                    user_config,
+                    fetch_attempted_at or now_iso(),
+                    str(runtime_error),
+                )
                 write_user_config(user_config, state_dir)
         except Exception:
             pass

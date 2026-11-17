@@ -1,42 +1,59 @@
-## Description: <br>
-Universal image and poster generator with Chinese/English text support for posters, social media images, cover images, infographics, comparison charts, tutorial cards, and other visual content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal image and poster generator with Chinese and English text support, using AI generation, HTML screenshots, or PIL text rendering.
 
-## Publisher: <br>
-[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huuuwnnn-droid](https://clawhub.ai/user/huuuwnnn-droid)
 
-## Use Case: <br>
-Developers, creators, and agent users use this skill to generate poster and social image assets from titles, prompts, template choices, and size presets. It can produce AI-backed image backgrounds, HTML-rendered layouts, or simple PIL text posters with Chinese and English text support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Default AI mode can send prompts and poster text to a third-party image service. <br>
-Mitigation: Use only non-sensitive content with AI mode; choose local text mode for private content. <br>
-Risk: HTML mode renders user-supplied text into templates and uses Chromium without sandboxing. <br>
-Mitigation: Avoid HTML mode with untrusted text unless the skill is updated to escape HTML input and run the browser with appropriate isolation. <br>
+## Use Case:
 
+Developers and agents use this skill to create posters, social media images, cover images, infographics, comparison charts, and tutorial cards from concise content and style instructions.
 
-## Reference(s): <br>
-- [Poster Forge on ClawHub](https://clawhub.ai/huuuwnnn-droid/poster-forge) <br>
-- [Pollinations image endpoint](https://image.pollinations.ai/) <br>
-- [Noto CJK fonts](https://github.com/googlefonts/noto-cjk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command examples and generated image file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces image files through local Python execution; auto mode may call a third-party image service before falling back to local rendering.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Prompts may be sent to Pollinations.ai when AI mode or auto mode uses the AI engine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or proprietary prompt text unless external service use is acceptable, or choose local-only text or HTML modes where possible.
+
+Risk: HTML rendering uses unescaped user text in unsandboxed Chromium.
+
+Mitigation: Avoid untrusted HTML-like content and run HTML rendering in a restricted environment.
+
+Risk: The security verdict requires review before installation.
+
+Mitigation: Review and scan the skill before deployment, following the clawscan guidance in this context.
+
+## Reference(s):
+
+- [Poster Forge ClawHub skill page](https://clawhub.ai/huuuwnnn-droid/skills/poster-forge)
+- [Noto Sans CJK SC Bold font asset](https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Bold.otf)
+- [Noto Sans CJK SC Regular font asset](https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Guidance]
+
+**Output Format:** [Image files generated through command-line execution, with concise Markdown guidance for agent use]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports AI, HTML, text, and auto-fallback rendering modes with social and print size presets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

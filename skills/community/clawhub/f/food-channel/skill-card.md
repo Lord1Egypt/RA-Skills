@@ -1,43 +1,58 @@
-## Description: <br>
-Handle messages in a food-tracking channel by routing food intake events through a deterministic food tracker. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handle messages in a food-tracking channel by routing food intake events through a deterministic food tracker.
 
-## Publisher: <br>
-[cdmichaelb](https://clawhub.ai/user/cdmichaelb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cdmichaelb](https://clawhub.ai/user/cdmichaelb)
 
-## Use Case: <br>
-OpenClaw users use this skill in a dedicated food-tracking channel to log barcode lookups, estimate meals from images, and request daily nutrition summaries with configurable limit checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Food intake logs are persisted in the workspace and may contain sensitive personal nutrition data. <br>
-Mitigation: Install only where persistent food logs are acceptable, and set FOOD_LOG and FOOD_PROFILE_PATH to locations controlled by the user. <br>
-Risk: Barcode lookups send product codes to the Open Food Facts public API. <br>
-Mitigation: Use barcode logging only when querying Open Food Facts is acceptable for the user's privacy posture. <br>
-Risk: Photo estimates may send meal images to a remote vision model. <br>
-Mitigation: Avoid photo estimates for private images unless remote image processing is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill in a dedicated food-tracking channel to log barcode-based food entries, estimate nutrition from meal photos, and produce daily nutrition summaries with configurable limit checks.
 
-## Reference(s): <br>
-- [Food Channel on ClawHub](https://clawhub.ai/cdmichaelb/food-channel) <br>
-- [Open Food Facts API](https://world.openfoodfacts.org/api/v2/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown replies with inline shell commands and JSON-backed nutrition summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent CSV food logs and may process food images through a remote vision tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The photo-estimate workflow may pass model-generated JSON through shell interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the estimate command so structured JSON is passed directly through stdin without shell interpolation before installation.
+
+Risk: Meal photos may be processed by the platform vision model during photo estimates.
+
+Mitigation: Use photo estimates only when users accept that image-processing path and avoid submitting sensitive or unnecessary image content.
+
+Risk: Nutrition entries are stored persistently and FOOD_LOG can redirect where those entries are written.
+
+Mitigation: Set FOOD_LOG only to a trusted workspace path and review local access controls for the food log.
+
+## Reference(s):
+
+- [ClawHub Food Channel skill page](https://clawhub.ai/cdmichaelb/skills/food-channel)
+- [Open Food Facts API](https://world.openfoodfacts.org/api/v2/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown replies with inline shell commands, JSON command output, and CSV food-log entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes persistent nutrition logs to a workspace CSV and may process resized meal photos through the platform vision model.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

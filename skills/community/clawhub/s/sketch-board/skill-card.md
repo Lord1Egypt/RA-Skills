@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools that provides quick lookup for Sketch Board concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sketch Board is a devtools reference skill that provides quick guidance on concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and agents use this skill as a local command-line reference for Sketch Board concepts, quickstart steps, implementation patterns, debugging, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes a local shell script, which is only appropriate where command-line documentation helpers are expected. <br>
-Mitigation: Review the script before installation and run it in an environment intended for local reference commands. <br>
-Risk: The generated guidance is static reference material and may not reflect project-specific requirements. <br>
-Mitigation: Treat the output as reference guidance and verify recommendations against the target project before applying them. <br>
+## Use Case:
 
+Developers and engineers use this skill as local reference documentation for Sketch Board concepts, setup, patterns, troubleshooting, performance, security, migration, and command cheatsheets in devtools workflows.
 
-## Reference(s): <br>
-- [Sketch Board on ClawHub](https://clawhub.ai/xueyetianya/sketch-board) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local heredoc output; no credentials, network access, or file modifications expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release and SKILL.md frontmatter) <br>
+Risk: The release includes an executable shell wrapper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the wrapper before installation or execution; the provided security evidence says it prints documentation only and does not request secrets or make external connections.
+
+## Reference(s):
+
+- [Sketch Board on ClawHub](https://clawhub.ai/xueyetianya/skills/sketch-board)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, network access, or persistent settings are required according to the provided evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7f144qh2nhgaqthrsb4wfyzs88wbmv",
+  "owner": "ALPS9999",
   "slug": "website-cloner",
-  "version": "1.0.0",
-  "publishedAt": 1781768785682
+  "displayName": "Website Cloner — 网站1:1本地复刻",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1781717539129,
+    "commit": null
+  },
+  "history": [],
+  "createdAt": "2026-06-18"
 }

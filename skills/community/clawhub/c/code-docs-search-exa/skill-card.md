@@ -1,41 +1,50 @@
-## Description: <br>
-Searches real code snippets and documentation from GitHub, documentation sites, and Stack Overflow for syntax, setup guidance, and usage examples. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches real code snippets and documentation from GitHub, documentation sites, and Stack Overflow for accurate syntax and usage examples.
 
-## Publisher: <br>
-[theishangoswami](https://clawhub.ai/user/theishangoswami) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[theishangoswami](https://clawhub.ai/user/theishangoswami)
 
-## Use Case: <br>
-Developers use this skill to ask an agent for current code snippets, API syntax, setup guidance, and library usage examples sourced through Exa's MCP docs search. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Exa's external MCP service. <br>
-Mitigation: Avoid including secrets, private source code, credentials, customer data, or sensitive internal debugging details in queries. <br>
-Risk: Search results may be incomplete, version-mismatched, or unsuitable for direct use without review. <br>
-Mitigation: Ask for specific library or framework versions and validate returned examples against authoritative project documentation before applying them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/theishangoswami/code-docs-search-exa) <br>
-- [Exa MCP](https://exa.ai/docs/reference/exa-mcp) <br>
-- [Exa Code Context API](https://docs.exa.ai/reference/context) <br>
+## Use Case:
 
+Developers and engineers use this skill to find current code examples, setup guidance, API usage, and library documentation while working in an agent environment.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown or plain text search results with code snippets and documentation context] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports optional tokensNum length control; queries are sent to Exa's external MCP service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Queries are sent to a remote MCP service.
+
+Mitigation: Use the skill for public library, SDK, and documentation questions; do not include secrets, credentials, private source code, internal URLs, customer data, or proprietary prompts in queries.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theishangoswami/skills/code-docs-search-exa)
+- [Exa MCP](https://exa.ai/docs/reference/exa-mcp)
+- [Exa Code Context API](https://docs.exa.ai/reference/context)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text with code snippets and documentation excerpts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output length can be adjusted with the tokensNum parameter.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

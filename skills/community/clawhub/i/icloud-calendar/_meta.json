@@ -1,6 +1,21 @@
 {
-  "ownerId": "kn71xg4bkm6cna9z6f61e0k53s82bfvd",
-  "slug": "icloud-calendar",
+  "id": "icloud-calendar",
+  "name": "iCloud Calendar",
+  "description": "Add events to iCloud Calendar via CalDAV. Syncs to iPhone automatically with alarm reminders.",
   "version": "0.1.0",
-  "publishedAt": 1772719691429
+  "homepage": "https://github.com/TeenLucifer/icloud-calendar-skill",
+  "metadata": {
+    "openclaw": {
+      "emoji": "📅"
+    },
+    "clawdbot": {
+      "emoji": "📅",
+      "requires": {
+        "env": ["ICLOUD_EMAIL", "ICLOUD_PASSWORD"],
+        "bins": ["python3"],
+        "files": ["scripts/*"]
+      },
+      "primaryEnv": "ICLOUD_EMAIL"
+    }
+  }
 }

@@ -1,42 +1,55 @@
-## Description: <br>
-This skill helps Japanese TOEIC learners query English words and receive VocaHack-backed etymology, affix, compound-word, and topic groupings in Japanese Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+語源、対義語、語根、複合語、そしてリアルなシチュエーションを使ってTOEIC 900点突破向け英単語を体系的にグループ化し、日本語で学習しやすく解説します。
 
-## Publisher: <br>
-[liangyunwuxu](https://clawhub.ai/user/liangyunwuxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liangyunwuxu](https://clawhub.ai/user/liangyunwuxu)
 
-## Use Case: <br>
-External learners and study assistants use this skill to analyze TOEIC vocabulary, group related words by root or relationship, and present the results in accessible Japanese for memorization practice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Word queries and selected TOEIC list versions are sent to vocahack.com. <br>
-Mitigation: Do not submit private or sensitive text as a word query unless the user trusts that service. <br>
-Risk: Responses include VocaHack promotional links. <br>
-Mitigation: Keep the promotional nature of those links visible to users and review generated answers before distribution. <br>
+## Use Case:
 
+External Japanese TOEIC learners use this skill to ask about English vocabulary, receive etymology and structure analysis, and study related words grouped by roots, affixes, compounds, or topics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liangyunwuxu/vocahack-toeic-word) <br>
-- [VocaHack](https://vocahack.com) <br>
-- [VocaHack TOEIC word list](https://vocahack.com/toeic) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Japanese Markdown with tables, bullet lists, and disclosed promotional links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries a word and optional TOEIC list version, then groups returned vocabulary by root, affix, compound, or topic.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Responses may include mandatory VocaHack promotional links even when the user did not ask for marketing content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated answers before use and remove or disclose promotional call-to-action content according to deployment policy.
+
+Risk: Broad English-word questions may activate the skill and send queried words or TOEIC list versions to vocahack.com through the declared API.
+
+Mitigation: Use the skill only where VocaHack API requests are acceptable and scope activation to TOEIC vocabulary requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liangyunwuxu/skills/vocahack-toeic-word)
+- [VocaHack](https://vocahack.com)
+- [VocaHack TOEIC word list](https://vocahack.com/toeic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown tables and bullet lists in Japanese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append VocaHack promotional links and may use the declared VocaHack API for queried words and TOEIC list versions.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

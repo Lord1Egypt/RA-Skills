@@ -1,43 +1,59 @@
-## Description: <br>
-Converts PPT screenshots or infographics into editable PPTX files using VLM-based region understanding, coordinate mapping, and PNG fallback for complex shapes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PPT Vision Replica turns PPT screenshots or infographics into editable PPTX files using VLM region analysis, coordinate mapping, and PNG fallback rendering for complex shapes.
 
-## Publisher: <br>
-[allergro](https://clawhub.ai/user/allergro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allergro](https://clawhub.ai/user/allergro)
 
-## Use Case: <br>
-Developers and presentation authors use this skill to analyze slide screenshots, map detected regions into PPT coordinates, and generate editable PPTX output. It is also useful when a source PPTX is available and text replacement should preserve original slide structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Slide screenshots may be sent to the configured VLM provider during image analysis. <br>
-Mitigation: Use only with slides approved for that provider and avoid confidential, sensitive, or unauthorized decks. <br>
-Risk: The workflow reads and writes local temporary PNG files and generated PPTX files. <br>
-Mitigation: Keep input and output paths inside the project folder and review generated files before sharing or deploying them. <br>
-Risk: Runtime dependencies are installed outside the skill package. <br>
-Mitigation: Install pptxgenjs and Pillow from trusted sources and keep the runtime environment constrained to the intended project. <br>
+## Use Case:
 
+Developers and content creators use this skill to reconstruct editable PowerPoint decks from static slide screenshots or infographics. It can also guide slide-region analysis, pixel-to-PPT coordinate mapping, complex-shape fallback rendering, and PPTX generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allergro/ppt-vision-replica) <br>
-- [Region schema](references/region_schema.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with JSON region structures, JavaScript and Python snippets, shell commands, and generated PPTX/PNG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call a configured VLM provider for image analysis and may read or write local temporary PNG and PPTX files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence; artifact frontmatter states 1.5.0) <br>
+Risk: Screenshots are sent to a configured VLM service, which can expose sensitive slide content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not process confidential slides; confirm the configured VLM endpoint and data-handling expectations before use.
+
+Risk: Untrusted model output can cause local image file paths to be embedded in generated presentations.
+
+Mitigation: Run the skill in an isolated working directory, validate image paths before PPTX generation, and avoid sharing PPTX files generated from adversarial or untrusted images until image-path validation is added.
+
+Risk: The workflow reads and writes local PPTX and image files.
+
+Mitigation: Use a dedicated workspace for inputs, temporary PNG files, and generated PPTX output, then review files before distribution.
+
+## Reference(s):
+
+- [PPT Vision Replica on ClawHub](https://clawhub.ai/allergro/skills/ppt-vision-replica)
+- [Region schema](references/region_schema.json)
+- [Images2Slides paper (arXiv:2602.07645)](https://arxiv.org/abs/2602.07645)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON region data, JavaScript and Python snippets, shell commands, and generated PPTX or PNG files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js with pptxgenjs; complex-shape fallback uses Python with Pillow and may write temporary PNG files and output PPTX files.]
+
+## Skill Version(s):
+
+1.4.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

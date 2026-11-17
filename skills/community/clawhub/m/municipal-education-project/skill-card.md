@@ -1,40 +1,53 @@
-## Description: <br>
-Assists teachers with drafting practical, locally grounded municipal education project proposals tailored to city and school context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists teachers in preparing practical, locally grounded municipal education research project applications.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Teachers and education researchers use this skill to draft municipal education research proposals, analyze local education context, and refine practical implementation plans before official submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include student-identifiable data, confidential school records, or non-public policy documents in prompts or drafts. <br>
-Mitigation: Avoid sensitive or non-public information; anonymize school and student details before using the skill. <br>
-Risk: Generated proposal text may contain inaccurate facts, unrealistic budgets, or recommendations that do not fit local policy. <br>
-Mitigation: Review all generated content for factual accuracy, local policy alignment, feasibility, and budget realism before submission. <br>
+## Use Case:
 
+Teachers, school research leads, and education researchers use this skill to draft municipal education project proposals, analyze local education context, and refine practical implementation plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/municipal-education-project) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with structured JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces draft proposal content, local context analysis, and implementation planning guidance for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, and artifact version history) <br>
+Risk: Proposal drafting may involve student, teacher, classroom, survey, grade, or performance data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use anonymized or aggregate examples unless proper authorization and storage controls are in place.
+
+Risk: Generated proposal content may include generic or inaccurate local policy, budget, or school-context details.
+
+Mitigation: Have the responsible educator verify local requirements, funding limits, and implementation details before submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daigxok/skills/municipal-education-project)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, guidance]
+
+**Output Format:** [Chinese-language Markdown and JSON-style structured content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include proposal sections, local context analysis, implementation plans, templates, budgets, and risk response guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

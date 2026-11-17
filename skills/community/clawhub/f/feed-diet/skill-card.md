@@ -1,42 +1,54 @@
-## Description: <br>
-Audit your information diet across HN and RSS feeds with category breakdowns, ASCII charts, and personalized recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Hacker News activity or RSS subscriptions, classifies reading items, and generates reports with category breakdowns and recommendations.
 
-## Publisher: <br>
-[tkuehnl](https://clawhub.ai/user/tkuehnl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tkuehnl](https://clawhub.ai/user/tkuehnl)
 
-## Use Case: <br>
-Developers and technical readers use this skill to audit Hacker News or RSS reading habits, classify consumed items, and generate a report or goal-focused weekly digest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches HN or RSS data and may send feed item titles and URLs to a configured LLM provider. <br>
-Mitigation: Use the keyword fallback or avoid setting provider API keys when feed privacy matters. <br>
-Risk: Feed data is cached locally during audits. <br>
-Mitigation: Clear the local feed-diet cache after sensitive audits. <br>
+## Use Case:
 
+Developers and individual readers use this skill to analyze Hacker News or OPML/RSS reading patterns, classify content, and generate Markdown audit or digest reports with recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tkuehnl/feed-diet) <br>
-- [README](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Main feed-diet script](artifact/scripts/feed-diet.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report or digest, with shell commands used by the agent to fetch, classify, and summarize feed items] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can use optional LLM classification when ANTHROPIC_API_KEY or OPENAI_API_KEY is configured; otherwise falls back to keyword matching.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release metadata) <br>
+Risk: The skill can fetch URLs from OPML feed files, including private or internal feed URLs supplied by a user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted OPML files and avoid internal or private feed URLs unless they are intended to be fetched.
+
+Risk: Reading item titles and URLs may be sent to an LLM provider when an LLM tool or API key is available.
+
+Mitigation: Use local keyword classification or unset LLM API keys when analyzing sensitive subscriptions or work-related links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tkuehnl/skills/feed-diet)
+- [Publisher profile](https://clawhub.ai/user/tkuehnl)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, shell commands, guidance]
+
+**Output Format:** [Markdown reports with category tables, ASCII charts, recommendations, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write reports to stdout or a file; classification may use an LLM provider when configured or keyword fallback otherwise.]
+
+## Skill Version(s):
+
+0.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

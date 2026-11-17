@@ -1,40 +1,57 @@
-## Description: <br>
-Plans CPC/MPQC competence tracking with reminders, evidence lists, and compliance reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans CPC/MPQC competence tracking with reminders, evidence lists, and compliance reporting.
 
-## Publisher: <br>
-[KOwl64](https://clawhub.ai/user/KOwl64) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kowl64](https://clawhub.ai/user/kowl64)
 
-## Use Case: <br>
-Fleet, depot, and compliance teams use this skill to maintain CPC/MPQC training matrices, reminder plans, and audit-ready compliance reports for UK driver competence evidence. <br>
-
-### Deployment Geography for Use: <br>
-United Kingdom <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain employee identifiers, certificate details, and internal evidence locations. <br>
-Mitigation: Use only authorized training data and store generated outputs according to organizational data-handling and HR compliance policies. <br>
-Risk: Incomplete or invented dates, certificate numbers, or site-specific requirements could make the compliance view misleading. <br>
-Mitigation: Mark unknowns clearly, ask for missing required training inputs, and capture customer or site differences before relying on the report. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Competence evidence standard](references/competence-evidence-standard.md) <br>
-- [ClawHub skill page](https://clawhub.ai/KOwl64/cpc-mpqc-competence-tracker-compliance-uk) <br>
+## Use Case:
 
+Fleet, depot, and compliance teams use this skill to maintain CPC/MPQC training matrices, reminder plans, and audit-ready compliance reports for UK driver competence evidence.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown files with Excel-ready tables and report sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a training matrix, reminder plan, and compliance training report; unknown certificate details should be marked clearly.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+United Kingdom
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated reports may be mistaken for authoritative compliance advice.
+
+Mitigation: Verify each report against internal policy and current CPC/MPQC requirements before relying on it.
+
+Risk: Training records can contain driver competence and compliance data.
+
+Mitigation: Use the skill only with data you are comfortable processing in the agent environment and follow internal data handling rules.
+
+Risk: Missing certificate numbers, completion dates, or customer/site-specific requirements can make outputs incomplete.
+
+Mitigation: Provide required training inputs, mark unknowns clearly, and add customer/site-specific deltas when requirements vary.
+
+## Reference(s):
+
+- [Competence evidence standard](references/competence-evidence-standard.md)
+- [ClawHub skill page](https://clawhub.ai/kowl64/skills/cpc-mpqc-competence-tracker-compliance-uk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown files and tabular templates for training matrices, reminder plans, and compliance reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Excel-ready tables with evidence, expiry, owner, and status fields]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

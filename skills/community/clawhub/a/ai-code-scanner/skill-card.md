@@ -1,41 +1,54 @@
-## Description: <br>
-ai-code-scanner helps agents review code by combining an external API scan for security and quality patterns with deeper AI analysis and a Markdown review report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered code review skill that scans source code for security vulnerabilities, quality issues, and best-practice violations using a remote API backend.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers and engineers use this skill during code review, security audits, PR checks, and code quality assessments for Python, JavaScript, TypeScript, Go, Java, and Rust. It is most appropriate when the reviewed source code and filenames may be sent to the external review service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reviewed source code and filenames can be uploaded to an external API without a clear consent step. <br>
-Mitigation: Use only when the service operator, retention policy, and consent controls are acceptable; avoid private repositories, customer data, regulated code, and files that may contain secrets. <br>
-Risk: API scan findings may be incomplete or may miss context-specific security and quality issues. <br>
-Mitigation: Treat API results as a first-pass review and require human review before accepting, rejecting, or merging code. <br>
+## Use Case:
 
+Developers and engineers use this skill to review code for security and quality issues before merging, shipping, or auditing changes. It combines automated API scan results with agent-written recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/ai-code-scanner) <br>
-- [External code review API endpoint](https://1341839497-kvq7g9wk8p.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include score, approval status, issue counts, severity buckets, and prioritized recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Reviewed source code and filenames are uploaded to an external API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with code that may be shared with the external service; avoid proprietary code, secrets, credentials, private keys, and environment files.
+
+Risk: The security assessment reports an unsafe script bug that can execute attacker-controlled code locally.
+
+Mitigation: Inspect and fix the script's JSON construction before running it on untrusted input or sample files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/ai-code-scanner)
+- [Code scanner API base](https://1341839497-kvq7g9wk8p.ap-guangzhou.tencentscf.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown code review report with CLI scan output and prioritized recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a numeric score, approve or reject recommendation, issue counts, severity groups, and line-level findings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Guides structured help for Asset Pack Description Writer using clear templates, checks, and safe defaults for art and asset workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides structured help for Asset Pack Description Writer using clear templates, checks, and safe defaults (category: Art & Assets).
 
-## Publisher: <br>
-[abdullah944](https://clawhub.ai/user/abdullah944) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abdullah944](https://clawhub.ai/user/abdullah944)
 
-## Use Case: <br>
-Creators, artists, and asset publishers use this skill to turn owned notes and constraints into concise asset-pack description plans, checklists, next actions, and editable draft copy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, confidential client material, unnecessary personal information, or other sensitive data into prompts. <br>
-Mitigation: Keep prompts limited to non-secret goals, constraints, and notes the user owns the rights to use. <br>
-Risk: The artifact includes an external PayPal donation link that is not required for skill operation. <br>
-Mitigation: Use the donation link only when intentionally choosing to support the publisher. <br>
+## Use Case:
 
+External creators and asset publishers use this skill to structure asset pack description work into concise plans, reusable checklists, next actions, and editable draft copy without requesting secrets or unnecessary personal data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdullah944/asset-pack-description-writer-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with concise plans, numbered checklists, next-action lists, and optional draft copy blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, credential access, persistence, or hidden behavior found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and metadata.json) <br>
+Risk: The skill may be invoked for broader Art & Assets writing tasks because its trigger wording is not tightly limited.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants asset pack description guidance before applying the template to adjacent writing requests.
+
+Risk: Prompts could include secrets, sensitive personal data, or proprietary notes beyond what is needed for a description draft.
+
+Mitigation: Ask users to omit passwords, keys, wallets, session secrets, and unnecessary personal data, and work only from notes they have rights to use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdullah944/skills/asset-pack-description-writer-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown text with concise plans, numbered checklists, next-action lists, and optional draft copy blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts should avoid secrets and keep personally identifiable information minimal.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter, metadata, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

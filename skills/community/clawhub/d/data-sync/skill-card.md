@@ -1,42 +1,62 @@
-## Description: <br>
-Data Sync helps agents synchronize Claude Code configuration, skills, hooks, memory, and related work repositories across machines through a relay server, with GitHub used for milestone archives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Data Sync helps agents coordinate Git and SSH synchronization of Claude Code configuration and knowledge repositories across devices through a relay server, with GitHub used for milestone archives.
 
-## Publisher: <br>
-[mwangxiang](https://clawhub.ai/user/mwangxiang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mwangxiang](https://clawhub.ai/user/mwangxiang)
 
-## Use Case: <br>
-Developers and Claude Code users use this skill to coordinate initialization, pull, push, backup, and status workflows for Claude configuration and knowledge repositories across multiple computers. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can move Claude configuration and memory through a hardcoded root SSH server and GitHub account. <br>
-Mitigation: Change the server, paths, and repositories to destinations you control, and prefer a restricted git-only SSH user instead of root. <br>
-Risk: The artifact documents unsafe token handling patterns for GitHub credentials. <br>
-Mitigation: Avoid PATs in URLs or shell commands; use deploy keys or a credential manager with least-privilege access. <br>
-Risk: Syncing Claude skills, hooks, settings, or memory can propagate sensitive or unintended local state. <br>
-Mitigation: Inspect diffs before syncing and scan changes before installing or pushing them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [sync-registry.md](sync-registry.md) <br>
-- [ClawHub Data Sync listing](https://clawhub.ai/mwangxiang/data-sync) <br>
+## Use Case:
 
+Developers and Claude Code users use this skill to initialize, pull, push, back up, and inspect synchronized configuration, skill, hook, memory, and knowledge-base repositories across multiple computers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with inline shell commands and git/SSH command sequences] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces init, pull, push, backup, and status reports; commands should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow syncs sensitive Claude configuration, hooks, skills, and memory through a fixed relay server.
+
+Mitigation: Use the skill only with a relay server and GitHub account you own or explicitly trust, and review every file before pushing.
+
+Risk: Root SSH access and copied private keys can broaden compromise if a device or relay is exposed.
+
+Mitigation: Replace root SSH access with a restricted Git user and generate a unique SSH key for each device.
+
+Risk: Personal access tokens in remote URLs or plaintext credential stores may expose GitHub credentials.
+
+Mitigation: Avoid PATs in URLs or plaintext stores; use safer credential management and rotate any token that may have been exposed.
+
+Risk: Basic secret scanning may miss credentials in configuration, hooks, skills, or memory files.
+
+Mitigation: Run stronger secret scanning before synchronization and exclude sensitive files from tracked repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mwangxiang/skills/data-sync)
+- [Publisher profile](https://clawhub.ai/user/mwangxiang)
+- [Sync registry](sync-registry.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and operational status reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces command-oriented synchronization guidance and requires user confirmation for push and backup operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

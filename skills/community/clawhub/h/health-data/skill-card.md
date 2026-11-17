@@ -1,41 +1,59 @@
-## Description: <br>
-Analyze Apple Health exports with local shell tooling to summarize activity, steps, sleep, record types, and source counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes Apple Health exports from an export.zip or exported folder to summarize activity, steps, sleep, and source counts with local shell tooling.
 
-## Publisher: <br>
-[ppopen](https://clawhub.ai/user/ppopen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ppopen](https://clawhub.ai/user/ppopen)
 
-## Use Case: <br>
-Developers, analysts, and technically capable users can use this skill to inspect Apple Health exports locally, summarize common health records, and extract bounded JSON slices for further analysis. It is intended for workflows where sensitive health data should remain on the user's machine. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Apple Health exports and derived summaries can contain PHI/PII such as biometric, sleep, heart-rate, location, and activity data. <br>
-Mitigation: Keep exports and derived files local, avoid sharing raw values without explicit consent and appropriate review, and delete copies after analysis. <br>
-Risk: Unbounded JSON export can produce very large sensitive outputs. <br>
-Mitigation: Use --limit for exploratory exports and prefer --out so JSON is written to a restricted local file. <br>
-Risk: The security evidence reports a clean verdict but also describes a low-confidence pass. <br>
-Mitigation: Review the skill files and commands before installing or running the skill in a sensitive environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Health Data on ClawHub](https://clawhub.ai/ppopen/health-data) <br>
+## Use Case:
+
+Developers, analysts, and users working with their own Apple Health exports use this skill to inspect record types, generate activity and sleep summaries, and extract bounded JSON records for local analysis.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Apple Health exports and derived outputs can contain sensitive PHI/PII.
+
+Mitigation: Process exports locally, avoid uploading or sharing raw values without explicit consent and review, and delete exports or derivative JSON when no longer needed.
+
+Risk: Untrusted or shared export ZIP files can expose sensitive data or place extracted temporary data outside the user's control.
+
+Mitigation: Use exports from the user's own device, avoid untrusted ZIP files, keep files on private local storage, and avoid shared folders unless privacy controls are in place.
+
+Risk: Large JSON exports can create broad derived datasets that are easy to overshare.
+
+Mitigation: Prefer --limit for JSON extraction and use --out for a private output path created with 600 permissions.
+
+Risk: Running the helper with unnecessary privileges increases the impact of shell execution or file handling mistakes.
+
+Mitigation: Do not run the helper with elevated privileges.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text, JSON] <br>
-**Output Format:** [Markdown guidance with bash command examples; script output is plain text summaries or JSON records.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may contain PHI/PII and should be treated as sensitive derived health data.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Plain text summaries, JSON arrays, and restricted local files when --out is used]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local xmlstarlet, jq, and unzip; --limit bounds JSON output and --out creates 600-permission files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

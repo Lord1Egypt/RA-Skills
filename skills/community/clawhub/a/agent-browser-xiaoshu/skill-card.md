@@ -1,42 +1,55 @@
-## Description: <br>
-A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A fast Rust-based headless browser automation CLI with Node.js fallback that enables AI agents to navigate, click, type, and snapshot pages via structured commands.
 
-## Publisher: <br>
-[xiaomaju-888](https://clawhub.ai/user/xiaomaju-888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaomaju-888](https://clawhub.ai/user/xiaomaju-888)
 
-## Use Case: <br>
-Developers and agents use this skill to automate browser workflows such as navigation, form filling, structured page inspection, UI testing, screenshots, PDFs, recordings, session state, and network interactions through the agent-browser CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved browser sessions and captured page artifacts may contain cookies, tokens, passwords, or private page content. <br>
-Mitigation: Use dedicated low-privilege browser sessions when possible, avoid saving state for highly sensitive accounts, and treat auth.json, screenshots, PDFs, traces, and recordings as sensitive files. <br>
-Risk: Browser automation can act on live websites and authenticated accounts. <br>
-Mitigation: Review target URLs and actions before execution, and use isolated sessions or test accounts for sensitive workflows. <br>
+## Use Case:
 
+Developers and agents use this skill to automate web navigation, page inspection, form filling, data extraction, UI testing, and browser debugging through concise agent-browser CLI commands.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/xiaomaju-888/agent-browser-xiaoshu) <br>
-- [agent-browser upstream CLI](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional JSON CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce browser snapshots, screenshots, PDFs, traces, recordings, cookies, storage state, and session files when the documented CLI commands are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Browser automation can expose sensitive cookies, local storage, screenshots, recordings, traces, uploaded files, or saved session state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use disposable test accounts for login workflows, treat saved state such as auth.json as a secret, and avoid committing or sharing browser state, screenshots, recordings, or traces.
+
+Risk: The documented installation flow uses an unpinned global npm install, which may install a newer or unexpected agent-browser version.
+
+Mitigation: Review before installing, prefer pinned trusted versions of agent-browser, and avoid running installation with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaomaju-888/skills/agent-browser-xiaoshu)
+- [agent-browser upstream CLI](https://github.com/vercel-labs/agent-browser)
+- [Agent Browser skill issue repository](https://github.com/TheSethRose/Agent-Browser-CLI)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; command results may be text, JSON, screenshots, PDFs, videos, traces, or saved browser state files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and npm; uses the agent-browser CLI and may create browser state, media, trace, and document files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

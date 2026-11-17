@@ -1,38 +1,52 @@
-## Description: <br>
-Applies Baoyu's Chinese methodology writing style, using a sustained core metaphor, problem-then-solution structure, numbered progression, contrastive examples, and concrete closing actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent to write Chinese methodology, how-to, opinion, and framework content in a Baoyu-style voice built around a core metaphor, numbered progression, contrastive examples, and action-oriented conclusions.
 
-## Publisher: <br>
-[shing19](https://clawhub.ai/user/shing19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shing19](https://clawhub.ai/user/shing19)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and writing-focused agents use this skill to draft Chinese methodology, tutorial, opinion, or framework pieces with a consistent Baoyu-style structure and voice. It is best suited for AI, writing, productivity, and tools topics where metaphor-driven teaching and iterative style guidance are desired.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally changes the agent's writing voice and may be unsuitable when a neutral tone, another language, or another house style is required.
+
+Mitigation: Enable it only for methodology, how-to, opinion, or framework writing tasks that need Baoyu-style Chinese prose.
+
+Risk: The style rules encourage clear positions and strong conclusions, which can make generated content sound more opinionated than intended.
+
+Mitigation: Review generated drafts for audience fit, factual accuracy, and brand or editorial tone before publication.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Writers and agents use this skill to draft or revise Chinese methodology, how-to, opinion, and framework articles in Baoyu's metaphor-driven style. It is best suited for persuasive instructional writing rather than neutral summaries or regulated advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The style is opinionated and may be inappropriate for neutral summaries, legal, medical, compliance, or sensitive private drafts. <br>
-Mitigation: Use it only as an opt-in writing preset for Chinese methodology or opinion-style drafts, and review outputs before relying on them. <br>
+**Output Format:** [Markdown or plain text prose in Chinese]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shing19/writing-style-baoyu) <br>
+**Other Properties Related to Output:** [Applies style constraints for metaphor continuity, numbered progression, contrastive examples, banned phrases, and action-oriented endings.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text prose following the requested writing style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential use, network access, or hidden installation behavior is described in the security evidence.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

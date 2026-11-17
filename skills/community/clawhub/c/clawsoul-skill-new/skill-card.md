@@ -1,46 +1,58 @@
-## Description: <br>
-ClawSoul gives an OpenClaw agent an MBTI-based personality, learns communication preferences locally, offers recommendations, and can accept Pro token based personality injection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawSoul gives an OpenClaw agent an MBTI-based personality, learns local interaction preferences, adjusts response style, and accepts Pro token-based personality injection.
 
-## Publisher: <br>
-[Fanyur-Wang](https://clawhub.ai/user/Fanyur-Wang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanyur-wang](https://clawhub.ai/user/fanyur-wang)
 
-## Use Case: <br>
-OpenClaw users and skill developers use this skill to add an adaptive MBTI-style persona to an agent, persist local communication preferences, and manage personality status or injection commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local personality profiling can store user preferences, interaction patterns, and injected token data. <br>
-Mitigation: Review local storage and deletion controls before enabling the skill; clear local state when the profile is no longer needed. <br>
-Risk: The skill can change the assistant persona through prompt modification. <br>
-Mitigation: Enable it only in contexts where behavior-changing prompts are acceptable, and inspect status plus prompt templates after personality changes. <br>
-Risk: Optional LLM provider paths can send conversation excerpts to configured local or remote endpoints. <br>
-Mitigation: Keep remote providers disabled or local-only when privacy matters, and confirm provider settings before use. <br>
-Risk: Pro token injection accepts Base64 or JSON input and can overwrite personality state. <br>
-Mitigation: Use tokens only from trusted sources and inspect token contents before injection. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to add an MBTI-style persona layer, local preference learning, status reporting, recommendation controls, and optional Pro personality injection to an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Fanyur-Wang/clawsoul-skill-new) <br>
-- [Publisher profile](https://clawhub.ai/user/Fanyur-Wang) <br>
-- [Configured Pro recommendation endpoint](https://clawsoul.neural-sync.center) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text command responses with local JSON state updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists MBTI, preferences, interaction patterns, adaptation level, and injected token data in local state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill reads chat history, modifies prompts, and stores local behavioral profile or token-derived data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those permissions are acceptable, review stored state handling, and avoid use in conversations containing secrets or confidential data.
+
+Risk: Recent conversation text may be sent to configured LLM endpoints when network-backed analysis is enabled.
+
+Mitigation: Disable network analysis or configure trusted endpoints before using the skill with sensitive conversations.
+
+Risk: Untrusted Pro injection tokens can overwrite personality and preference state.
+
+Mitigation: Accept Pro tokens only from trusted sources and review resulting persona and preference changes after injection.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/fanyur-wang/skills/clawsoul-skill-new)
+- [ClawHub publisher profile](https://clawhub.ai/user/fanyur-wang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text responses with command examples and local configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify the active agent persona prompt and persist local profile, preference, and token-derived state.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

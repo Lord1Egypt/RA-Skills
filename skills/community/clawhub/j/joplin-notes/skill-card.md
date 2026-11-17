@@ -1,40 +1,53 @@
-## Description: <br>
-Interface for managing Joplin notes via WebDAV, including listing notebooks and notes, reading note content, and creating or updating notes and notebooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interface for managing Joplin notes via WebDAV. Allows listing notebooks and notes, reading content (first line = title), and creating or updating notes and notebooks. Use this skill when the user wants to access or modify their Joplin database programmatically.
 
-## Publisher: <br>
-[Martin004](https://clawhub.ai/user/Martin004) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[martin004](https://clawhub.ai/user/martin004)
 
-## Use Case: <br>
-Developers and agent users use this skill to inspect and manage a Joplin database synchronized through WebDAV, including listing notebooks, reading note content, and creating or updating notes or notebooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and overwrite synced Joplin notes using stored WebDAV credentials. <br>
-Mitigation: Use a dedicated, least-privilege WebDAV account, verify note and notebook IDs before writes, and keep backups before enabling write operations. <br>
-Risk: An agent could run write scripts against sensitive notes with limited safeguards. <br>
-Mitigation: Review proposed write operations before execution and avoid automatic writes to sensitive notebooks. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect and update a Joplin note database synchronized through WebDAV, including listing notebooks, reading note content, and creating or updating notes and notebooks.
 
-## Reference(s): <br>
-- [Joplin Notebook IDs Reference](references/notebooks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and text output from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JOPLIN_PASSWORD, JOPLIN_ACCOUNT, and JOPLIN_WEBDAV_PATH environment variables for WebDAV access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill accesses WebDAV credentials and can modify remote Joplin notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the publisher is trusted, use an HTTPS-only WebDAV URL, restrict the WebDAV account to the Joplin directory, and keep backups before write operations.
+
+Risk: The security scan recommends review before installation because note paths, credential handling, temporary files, and bundled script resolution need hardening.
+
+Mitigation: Review the scripts before deployment and consider validating IDs, avoiding curl password arguments, using secure temporary files, and resolving bundled scripts relative to the skill directory.
+
+## Reference(s):
+
+- [Joplin Notebook IDs Reference](references/notebooks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal text with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WebDAV connection settings and can read or write remote Joplin Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

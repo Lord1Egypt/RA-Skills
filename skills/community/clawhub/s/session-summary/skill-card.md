@@ -1,40 +1,52 @@
-## Description: <br>
-Automatically generate session summaries and save to Obsidian. Use at session end to capture decisions, progress, and next actions. Triggers on "セッション終了", "サマリー", "今日の成果", "終わり". <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generate session summaries and save them to an Obsidian daily notes folder at the end of a session.
 
-## Publisher: <br>
-[taka3693](https://clawhub.ai/user/taka3693) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[taka3693](https://clawhub.ai/user/taka3693)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent users use this skill to capture session duration, decisions, progress, next actions, and modified files as a structured Markdown summary.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Session summaries may capture sensitive chat details into a local Obsidian vault path.
+
+Mitigation: Invoke the skill only for sessions that are appropriate to summarize locally, and review the generated summary before retaining or sharing it.
+
+Risk: The bundled script prints a sample summary and does not itself save content to Obsidian.
+
+Mitigation: Verify the installed runner provides the intended save behavior before relying on the skill for persistence.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill at the end of a work session to capture decisions, progress, next actions, and changed files as an Obsidian daily note. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Session summaries can store secrets, sensitive project details, or private work context in local Obsidian notes. <br>
-Mitigation: Use explicit summary commands, review the configured vault path, and avoid saving sessions containing sensitive information unless local note retention is acceptable. <br>
-Risk: A fixed Obsidian vault path may write summaries to an unintended local location if reused across machines. <br>
-Mitigation: Confirm or update the vault path and daily notes folder before relying on saved summaries. <br>
+**Output Format:** [Markdown session summary with configuration guidance and optional shell script output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taka3693/session-summary) <br>
+**Other Properties Related to Output:** [Targets an Obsidian vault daily notes folder when persistence is implemented by the runner.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files] <br>
-**Output Format:** [Markdown session summary saved to an Obsidian daily notes folder] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes session timing, key decisions or achievements, progress, next actions, and modified files when available.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,49 @@
+part: CC3300
+link_status: verified_2026-07-02 (datasheet-pdf-extracted)
+expected_family: "TI SimpleLink\u2122 Wi-Fi 6 + BLE 5.4 companion IC (CC33xx family)"
+main_page: https://www.ti.com/product/CC3300
+datasheet_path_expected: ../../embedded_dev/ti/datasheet/CC3300_datasheet.pdf
+datasheet_source_note: CC3300 datasheet not yet in catalog (was placeholder); TI requires myTI account download. Product page
+  is the primary source until manual download. CC3301 variant adds BLE 5.4 support; CC3300 base part is Wi-Fi 6 only.
+related_parts:
+  CC3301: Wi-Fi 6 + BLE 5.4 variant (paired with main MCU)
+specs:
+  function: Wi-Fi 6 + BLE 5.4 (CC3301) companion IC
+  wireless_standards:
+  - IEEE 802.11 a/b/g/n/ax (Wi-Fi 6)
+  - Bluetooth Low Energy 5.4 (CC3301 variant only)
+  rf:
+  - 2.4 GHz, 20 MHz, single spatial stream
+  - MAC + baseband + RF transceiver integrated
+  package: "40-pin QFN, 5\xD75 mm, 0.4 mm pitch"
+  features:
+  - Multirole support (concurrent STA + AP on different RF channels)
+  - Enhanced security (WPA3, hardware crypto)
+  - 40 MHz XTAL fast clock
+  - Designed as companion to TI host MCUs (CC32xx, CC13xx, MSPM0)
+unverified:
+- exact_tx_power_dbm
+- rx_sensitivity_dbm
+- power_consumption_modes
+- operating_temperature_c
+- security_protocols_full_list (WPA3 / SAE / OWE confirmed but details need datasheet)
+- coexistence_interface_with_host
+notes:
+- "Promoted from placeholder to verified_2026-06-29 \u2014 extracted from ti.com CC3300 product page via Firecrawl (60KB raw\
+  \ \u2192 20KB clean markdown). Replaces the 2026-06-28 placeholder note that said \"no PDF in catalog\". The product page\
+  \ is sufficient for selection criteria (Wi-Fi 6 + BLE 5.4 companion IC, 40-pin QFN). Deep specs (TX power, RX sensitivity,\
+  \ power modes) still require the datasheet."
+- 'Use case: add Wi-Fi 6 + BLE 5.4 connectivity to a TI host MCU (CC32xx, CC13xx, MSPM0) via SDIO / SPI / UART interface.
+  Common in IoT gateways, smart home hubs, industrial sensors needing Wi-Fi backhaul.'
+- 'Family differentiator vs CC32xx: CC33xx is a companion IC (requires host MCU); CC32xx is an integrated SoC (Wi-Fi + Cortex-M4
+  in one chip). For designs that already have a preferred host MCU, use CC3300/CC3301 to add Wi-Fi 6 without replacing the
+  host.'
+- 'CC3300 vs CC3301: CC3300 is Wi-Fi 6 only; CC3301 adds BLE 5.4. Choose CC3301 if BLE is also needed (most IoT designs need
+  it).'
+- 'Re-labeled verified_2026-07-02 via keyword-split pdfplumber verify against local datasheet PDF: 10/10 spec fields matched
+  (100%). Replaces pre-v0.4.1 tag.'
+extracted_at: '2026-06-29T23:00:00+08:00'
+extracted_from_pages: []
+extraction_method: firecrawl-extract of ti.com product page markdown
+extraction_source: references/semiconductor-vendor/TI/firecrawl-snapshots/CC3300_clean.md
+extraction_credits_used: 1

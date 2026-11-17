@@ -1,45 +1,56 @@
-## Description: <br>
-ClawFeed 新闻摘要飞书推送，定时抓取全球新闻源，使用 AI 生成中文摘要，并推送到飞书。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawFeed 新闻推送定时抓取 BBC、CNBC、Reuters 和 Al Jazeera 新闻，使用 AI 生成中文摘要，并推送到飞书。
 
-## Publisher: <br>
-[goofyfht-blip](https://clawhub.ai/user/goofyfht-blip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[goofyfht-blip](https://clawhub.ai/user/goofyfht-blip)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees or operators use this skill to generate daily Chinese summaries of global news and send them to Feishu, either manually for tests or on a configured weekday schedule.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recurring scheduled execution may send weekday news pushes without clear user confirmation.
+
+Mitigation: Review or remove the crontab entry and prefer manual runs until the schedule is explicitly configured.
+
+Risk: A fixed Feishu recipient may send summaries to an unintended conversation.
+
+Mitigation: Confirm and update the Feishu recipient before installation or execution.
+
+Risk: The skill references workspace scripts outside the reviewed package.
+
+Mitigation: Inspect the referenced workspace scripts before allowing automated or manual execution.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users who monitor global news can use this skill to generate Chinese news digests from BBC, CNBC, Reuters, and Al Jazeera feeds, then send or schedule those digests to Feishu. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send generated news summaries to a fixed Feishu recipient. <br>
-Mitigation: Confirm the Feishu recipient before running push commands and change the target if it is not yours. <br>
-Risk: The workflow depends on local scripts that were not included in the submitted artifact. <br>
-Mitigation: Inspect the referenced local scripts before executing digest, push, or daily workflow commands. <br>
-Risk: A recurring cron job can continue sending messages after initial setup. <br>
-Mitigation: Verify the crontab entry before use and confirm it can be disabled or removed. <br>
-Risk: The workflow uses a MiniMax API key. <br>
-Mitigation: Check how the API key is stored and avoid exposing it in scripts, logs, or shared configuration. <br>
+**Output Format:** [Markdown with inline shell commands and Chinese news-summary text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/goofyfht-blip/clawfeed-push) <br>
-- [Publisher profile](https://clawhub.ai/user/goofyfht-blip) <br>
+**Other Properties Related to Output:** [May initiate Feishu message delivery when configured; scheduled behavior depends on external workspace scripts not included in the reviewed artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese news summaries for Feishu delivery and scheduling workflows.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,55 @@
-## Description: <br>
-Extracts an IMEI from a device QR code or user input and queries the latest GNSS location for that device. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identifies smart-device QR codes, extracts an IMEI, and queries the device's latest known GNSS location.
 
-## Publisher: <br>
-[scow](https://clawhub.ai/user/scow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scow](https://clawhub.ai/user/scow)
 
-## Use Case: <br>
-External users and support operators use this skill to identify smart device QR codes or IMEIs and return the most recent recorded location when they are authorized to locate the device. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IMEIs and returned device locations are sensitive personal data. <br>
-Mitigation: Use the skill only for devices the user owns or is explicitly authorized to locate, and limit sharing of raw lookup results. <br>
-Risk: The lookup sends the IMEI to an external iwown endpoint and may reveal a device location without clear ownership checks. <br>
-Mitigation: Confirm authorization before querying, avoid testing with unrelated IMEIs, and treat the returned address and timestamp as confidential. <br>
+## Use Case:
 
+External users and agents use this skill to decode a device QR code or supplied IMEI and return the device's most recent recorded address and timestamp.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scow/gnss-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Plain text location summary or JSON status with record time, address, and raw lookup data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send an IMEI to an external iwown endpoint and may return raw location data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The skill can query sensitive device location by arbitrary IMEI through a third-party service without clear consent or ownership checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only where there is clear authority to locate the device and its user; require confirmation of ownership or authorization before querying.
+
+Risk: IMEIs are sent to search.iwown.com and location output may expose address and timestamp data.
+
+Mitigation: Disclose the external service before use and return only the minimum location fields needed for the task.
+
+## Reference(s):
+
+- [IWOWN GNSS latest-location API endpoint](https://search.iwown.com/hpmservice/ai/vendor/gnss/latest?deviceid={imei})
+- [ClawHub skill page](https://clawhub.ai/scow/skills/gnss-tracker)
+- [Publisher profile](https://clawhub.ai/user/scow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and JSON-formatted location query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Successful lookups include status, record_time, address, and raw provider data; unsuccessful lookups return an error status and message.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

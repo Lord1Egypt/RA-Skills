@@ -1,46 +1,61 @@
-## Description: <br>
-抖音每日点赞飙升榜 returns daily Douyin works ranked by new likes, with category filters, clickable video links, and up to 30 days of historical lookback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Douyin daily like-surge rankings, returning top works by new likes with category filtering and up to 30 days of historical lookup.
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-External content operators, short-video creators, MCN agencies, and data analysts use this skill to query Douyin daily like-surge rankings, filter results by content category, and review recent historical trends. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires REDFOX_API_KEY and sends that key to redfox.hk when ranking queries run. <br>
-Mitigation: Install only after verifying trust in RedFoxHub, keep the key in environment or agent configuration, and avoid placing keys in prompts, logs, code, or output files. <br>
-Risk: Broad surge-ranking requests may activate the skill unexpectedly. <br>
-Mitigation: Use explicit Douyin ranking wording when invoking the skill and review the selected category and date before relying on results. <br>
-Risk: Ranking data is constrained to yesterday-or-earlier updates and a 30-day lookback window. <br>
-Mitigation: Tell users when a requested date is unavailable and return the closest supported date range rather than presenting unavailable data as current. <br>
+## Use Case:
 
+External users such as content operators, short-video creators, MCN agencies, and data analysts use this skill to monitor Douyin works with fast single-day like growth, compare categories, and review recent ranking history.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/douyin-content-surge-redfox) <br>
-- [API configuration](references/api-config.md) <br>
-- [Interaction guide](references/interaction-guide.md) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
-- [RedFox Douyin ranking endpoint](https://redfox.hk/story/api/dy/search/hotContentRank) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown table with clickable Douyin video links, brief status text, and optional subscription guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to TOP20 results; supports full TOP50 output, category filtering, and 30-day historical date queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill requires a RedFox API key and sends Douyin ranking queries to redfox.hk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped and revocable RedFox key when available, provide it through the environment instead of hardcoding it, and install only if sharing those queries with RedFox is acceptable.
+
+Risk: The skill advertises scheduled subscription pushes without clear evidence for storage, opt-out, or retention controls.
+
+Mitigation: Enable subscription behavior only after the publisher documents scheduling, stored preferences, opt-out controls, and retention.
+
+Risk: Returned video links are rendered as clickable Markdown links and are not strongly validated by the script.
+
+Mitigation: Review links before opening them and treat unexpected Douyin or third-party URLs cautiously.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuanyi-github/skills/douyin-content-surge-redfox)
+- [API configuration](references/api-config.md)
+- [Interaction guide](references/interaction-guide.md)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+- [RedFox Douyin ranking API endpoint](https://redfox.hk/story/api/dy/search/hotContentRank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown ranking tables with clickable work links, plus concise text guidance and configuration snippets when setup is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to top 20 ranking rows and can return up to 50 rows per category; historical queries are limited to the past 30 days.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Comprehensive guide for Telegram Rich UI features including inline buttons, formatting, media, reactions, and message management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive guide for Telegram Rich UI features (Inline buttons, formatting, media, reactions, and message management). Use this skill to provide a low-friction, interactive experience for Telegram users, prioritizing buttons over typing.
 
-## Publisher: <br>
-[shingo0620](https://clawhub.ai/user/shingo0620) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[shingo0620](https://clawhub.ai/user/shingo0620)
 
-## Use Case: <br>
-Developers and agents use this skill to make Telegram conversations more interactive with inline buttons, copy-friendly formatting, media sends, reactions, and message management patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Telegram file, credential, or destructive message actions could affect unintended chats or expose sensitive data if used without confirmation. <br>
-Mitigation: Configure the Telegram plugin for the intended bot and chats, treat example chat IDs as placeholders, and require confirmation before sending non-generated files, tokens, credentials, or destructive message actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Telegram Rich Messages on ClawHub](https://clawhub.ai/shingo0620/telegram-rich-messages) <br>
-- [Telegram UI Decision Matrix](references/decision-matrix.md) <br>
-- [Telegram Formatting Guide](references/formatting.md) <br>
-- [Telegram Interactive UI](references/interactive-ui.md) <br>
-- [Telegram Media & Message Actions](references/media-and-actions.md) <br>
+## Use Case:
 
+Developers and agent builders use this skill to help OpenClaw agents compose Telegram messages with inline buttons, formatting, reactions, media uploads, and message management patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON examples for Telegram message actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the OpenClaw Telegram plugin.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Reusable examples include a fixed Telegram recipient and could send content to the wrong chat if copied directly.
+
+Mitigation: Replace fixed Telegram targets with the authenticated active chat before sending messages or media.
+
+Risk: The skill includes local file upload patterns that could expose unintended or sensitive files.
+
+Mitigation: Send only files intentionally created or selected for the current task, and require confirmation before uploads or deletions involving sensitive content.
+
+## Reference(s):
+
+- [Telegram UI Decision Matrix](references/decision-matrix.md)
+- [Telegram Formatting Guide](references/formatting.md)
+- [Telegram Interactive UI](references/interactive-ui.md)
+- [Telegram Media & Message Actions](references/media-and-actions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and Telegram message patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Telegram plugin declared in OpenClaw metadata.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

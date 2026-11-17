@@ -18,7 +18,7 @@
  * 4. 配置热加载，不需要重启
  */
 
-const fs = require('fs');
+const fs = require('../utils/safe-fs');
 const path = require('path');
 
 // ============================================================================
@@ -97,7 +97,10 @@ class HermesAdapter extends PlatformAdapter {
   }
 
   async readFile(filePath) {
-    // Hermes 使用 read_file 工具
+    // [v5.17.24 M-4] 目录白名单 — 防止任意文件读取
+    if (!this._isPathAllowed(filePath)) {
+      return { success: false, error: 'path_not_allowed', path: filePath };
+    }
     try {
       const content = fs.readFileSync(filePath, 'utf-8');
       return { success: true, content, path: filePath };
@@ -107,7 +110,10 @@ class HermesAdapter extends PlatformAdapter {
   }
 
   async writeFile(filePath, content) {
-    // Hermes 使用 write_file 工具
+    // [v5.17.24 M-4] 目录白名单
+    if (!this._isPathAllowed(filePath)) {
+      return { success: false, error: 'path_not_allowed', path: filePath };
+    }
     try {
       fs.writeFileSync(filePath, content, 'utf-8');
       return { success: true, path: filePath };
@@ -126,10 +132,20 @@ class CrossPlatformMemoryRelay {
     this.localMemory = new Map();  // 本地缓存
     this.remoteMemory = new Map(); // 远程同步
     this.syncEnabled = true;
+    this.MAX_MEMORY_SIZE = 10000; // [AUDIT-FIX] 防止无上限内存泄漏
+  }
+
+  // [AUDIT-FIX] FIFO 淘汰最旧条目
+  _evictIfNeeded(map) {
+    if (map.size >= this.MAX_MEMORY_SIZE) {
+      const oldestKey = map.keys().next().value;
+      if (oldestKey !== undefined) map.delete(oldestKey);
+    }
   }
 
   // 本地记忆写入（立即）
   writeLocal(key, value, tags = []) {
+    this._evictIfNeeded(this.localMemory);
     this.localMemory.set(key, { value, tags, timestamp: Date.now(), synced: false });
     if (this.syncEnabled) {
       this._scheduleSync(key);
@@ -145,6 +161,7 @@ class CrossPlatformMemoryRelay {
     const remote = this.remoteMemory.get(key);
     if (remote) {
       // 回写本地缓存
+      this._evictIfNeeded(this.localMemory);
       this.localMemory.set(key, { ...remote, synced: true });
       return remote.value;
     }
@@ -168,6 +185,7 @@ class CrossPlatformMemoryRelay {
     };
 
     // 存储到远程（模拟）
+    this._evictIfNeeded(this.remoteMemory);
     this.remoteMemory.set(key, payload);
     return { success: true, key, targetPlatform };
   }
@@ -192,6 +210,24 @@ class CrossPlatformMemoryRelay {
     const unsynced = [...this.localMemory.values()].filter(v => !v.synced).length;
     return { local, remote, unsynced, syncEnabled: this.syncEnabled };
   }
+  // [LOW FIX] 销毁适配器（清理 timer 和资源）
+  destroy() {
+    if (this._syncTimer) {
+      clearTimeout(this._syncTimer);
+      this._syncTimer = null;
+    }
+    this.localMemory.clear();
+    this.remoteMemory.clear();
+    this.syncEnabled = false;
+  }
+
+  // [v5.17.24 M-4] 路径白名单 — 防止任意文件读写
+  _isPathAllowed(filePath) {
+    if (!this.rootPath) return false;
+    const resolved = require('path').resolve(filePath);
+    const sep = require('path').sep;
+    return resolved === this.rootPath || resolved.startsWith(this.rootPath + sep);
+  }
 }
 
 // ============================================================================
@@ -202,10 +238,10 @@ function createAdapter(platform = 'hermes', config = {}) {
     case 'hermes':
       return new HermesAdapter(config);
     case 'openclaw':
-      // TODO: OpenClaw 适配器
+      console.warn('[PlatformAdapter] OpenClaw 适配器尚未实现，使用通用适配器');
       return new PlatformAdapter({ ...config, platform: 'openclaw' });
     case 'claude-code':
-      // TODO: Claude Code 适配器
+      console.warn('[PlatformAdapter] Claude Code 适配器尚未实现，使用通用适配器');
       return new PlatformAdapter({ ...config, platform: 'claude-code' });
     default:
       throw new Error(`Unknown platform: ${platform}. Supported: hermes, openclaw, claude-code`);

@@ -1,0 +1,401 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "diagnosis-output.schema.json",
+  "title": "EnterpriseAiDiagnosisOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "executive_summary",
+    "analysis_boundary",
+    "top_three_applications",
+    "main_obstacles",
+    "not_recommended_now",
+    "other_candidates",
+    "detailed_evidence",
+    "consultation_cta"
+  ],
+  "properties": {
+    "executive_summary": {
+      "type": "string"
+    },
+    "analysis_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "confirmed_facts",
+        "assumptions",
+        "unknowns",
+        "overall_confidence"
+      ],
+      "properties": {
+        "confirmed_facts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "overall_confidence": {
+          "enum": [
+            "高",
+            "中等",
+            "较低"
+          ]
+        }
+      }
+    },
+    "top_three_applications": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rank",
+          "name",
+          "summary",
+          "department",
+          "role",
+          "task",
+          "why_now",
+          "solution_type",
+          "ai_can_do",
+          "human_must_do",
+          "implementation_difficulty",
+          "internal_coordination",
+          "data_readiness",
+          "confidentiality",
+          "deployment",
+          "confidence",
+          "largest_uncertainty",
+          "minimum_pilot",
+          "next_action"
+        ],
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+          },
+          "name": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "task": {
+            "type": "string"
+          },
+          "why_now": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "items": {
+              "type": "string"
+            }
+          },
+          "solution_type": {
+            "enum": [
+              "流程优化",
+              "现有系统配置",
+              "传统自动化",
+              "BI / 数据分析",
+              "规则引擎",
+              "OCR / 文档智能",
+              "企业知识库 / RAG",
+              "大模型 Copilot",
+              "AI Agent",
+              "视觉 AI",
+              "语音 AI",
+              "规则 + AI",
+              "当前不建议实施"
+            ]
+          },
+          "ai_can_do": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "human_must_do": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "implementation_difficulty": {
+            "$ref": "#/$defs/levelWithReasonDifficulty"
+          },
+          "internal_coordination": {
+            "$ref": "#/$defs/levelWithReasonCoordination"
+          },
+          "data_readiness": {
+            "$ref": "#/$defs/dataReadiness"
+          },
+          "confidentiality": {
+            "$ref": "#/$defs/confidentiality"
+          },
+          "deployment": {
+            "$ref": "#/$defs/deployment"
+          },
+          "confidence": {
+            "enum": [
+              "高",
+              "中等",
+              "较低"
+            ]
+          },
+          "largest_uncertainty": {
+            "type": "string"
+          },
+          "minimum_pilot": {
+            "type": "string"
+          },
+          "next_action": {
+            "type": "string"
+          },
+          "roi_status": {
+            "enum": [
+              "可测算",
+              "待测算"
+            ]
+          },
+          "missing_roi_data": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "main_obstacles": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "string"
+      }
+    },
+    "not_recommended_now": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "reason",
+          "reconsider_when"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "reconsider_when": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "other_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "department",
+          "priority"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "priority": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3",
+              "暂缓",
+              "不建议"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "detailed_evidence": {
+      "type": "object"
+    },
+    "consultation_cta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recommended",
+        "placements",
+        "message"
+      ],
+      "properties": {
+        "recommended": {
+          "type": "boolean"
+        },
+        "placements": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "top_three_after",
+              "uncertain_application",
+              "report_end"
+            ]
+          }
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "levelWithReasonDifficulty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "reason"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "较低",
+            "中等",
+            "较高"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "levelWithReasonCoordination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "reason",
+        "required_roles"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "较低",
+            "中等",
+            "较高"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "required_roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "dataReadiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "reason"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "可直接开始",
+            "需要少量整理",
+            "需要重新采集",
+            "当前无法判断"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "confidentiality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "data_types",
+        "reason"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "低",
+            "中",
+            "高",
+            "极高"
+          ]
+        },
+        "data_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "reason"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "普通 SaaS / 模型 API",
+            "企业私有应用 + 模型 API",
+            "混合部署",
+            "完全本地部署",
+            "暂时无法判断"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chat Order OCR｜聊天訂單整理工具</title>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#5b6578; --brand:#2457d6; --panel:#ffffff; --bg:#f4f7fb; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,"Noto Sans TC","PingFang TC",sans-serif; color:var(--ink); background:var(--bg); line-height:1.7; }
+    main { max-width:960px; margin:0 auto; padding:72px 24px; }
+    .hero { background:linear-gradient(135deg,#e8efff,#fff); border:1px solid #d8e2fb; border-radius:24px; padding:48px; }
+    h1 { margin:0 0 16px; font-size:clamp(2rem,5vw,3.5rem); line-height:1.2; }
+    h2 { margin-top:40px; }
+    .lead { color:var(--muted); font-size:1.15rem; max-width:720px; }
+    .button { display:inline-block; margin-top:16px; padding:10px 18px; border-radius:10px; background:var(--brand); color:#fff; text-decoration:none; font-weight:700; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:24px; }
+    .card { background:var(--panel); border:1px solid #e0e6f0; border-radius:16px; padding:22px; }
+    .card strong { display:block; margin-bottom:6px; }
+    code { background:#edf1f7; border-radius:5px; padding:2px 6px; }
+    pre { overflow:auto; background:#172033; color:#edf2ff; padding:20px; border-radius:12px; }
+    footer { margin-top:48px; color:var(--muted); font-size:.95rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Chat Order OCR</h1>
+      <p class="lead">把聊天視窗中的訂單文字，快速整理成按姓名分組、可人工覆核的訂單名單。</p>
+      <a class="button" href="https://github.com/qpooqp777/chat-order-ocr">前往 GitHub 專案</a>
+    </section>
+    <h2>工具特色</h2>
+    <div class="grid">
+      <div class="card"><strong>保守解析</strong><span>支援 +1、＋2、一份、兩盒、3個等常見數量格式。</span></div>
+      <div class="card"><strong>姓名分組</strong><span>依訂購人整理，保留原始品項與規格文字。</span></div>
+      <div class="card"><strong>人工覆核</strong><span>OCR 或不明確內容會標示為需要確認，不自行猜測。</span></div>
+    </div>
+    <h2>快速使用</h2>
+    <p>將聊天內容保存成 <code>messages.txt</code>，在專案目錄執行：</p>
+    <pre><code>python3 scripts/order_ocr_cli.py \
+  --input messages.txt \
+  --source text \
+  --group-by person \
+  --format json \
+  --output orders.json</code></pre>
+    <h2>適用情境</h2>
+    <p>適合水果團購、社群預購、LINE 或 Facebook 訊息整理等情境。出貨前請逐筆確認姓名、品項、價格、重量與數量。</p>
+    <footer>以繁體中文整理與說明。詳細規則、輸出欄位與測試方式請參閱 GitHub 上的 README。</footer>
+  </main>
+</body>
+</html>

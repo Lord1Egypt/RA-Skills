@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # This repo doesn't ship code — just markdown/json/sh files.
+  # We pin the recommended ceki-sdk version in manifest.json by hand.
+  # Keep dependabot light: only check GitHub Actions weekly.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

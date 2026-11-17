@@ -3,18 +3,24 @@ name: illo
 description: >-
   Creates original editorial illustrations where a recurring mascot
   character performs the idea — one caught scene by default, a hand-built
-  explainer diagram (a flow, fan-out, timeline, loop, or stack) when the
+  explainer diagram (labeled stages, a fan-out, timeline, loop, or stack) when the
   structure itself is the point, or a transparent character cutout
-  (pose-only compositing asset, no scene or text) — in one of sixteen bundled
-  looks (fifteen print, plus a photoreal toy-brick set). Triggers only when the skill is directly invoked or "illo" is
-  requested; never on generic illustrate / draw / make-an-image requests.
-version: 0.28.2
-argument-hint: "[idea or article URL] | build a character | install <character>"
+  (pose-only compositing asset, no scene or text) — in one of seventeen bundled
+  looks (sixteen print, plus a photoreal toy-brick set). Also handles
+  "surprise me" / "random" (optionally scoped to a focus or character): rolls
+  provenance, builds three saying candidates, picks via interactive choice or
+  auto-pick-best (`--autopick`), and renders one image. Triggers only when
+  the skill is directly invoked or "illo" is requested; never on generic
+  illustrate / draw / make-an-image requests.
+# x-release-please-start-version
+version: 0.37.0
+# x-release-please-end
+argument-hint: "[idea or article URL] | build a character | install <character> | surprise me [focus] [--autopick] [using character]"
 author: Trevin Chow
 license: MIT
 metadata:
   hermes:
-    tags: [illustration, riso, image-generation, editorial, mascot, codex, openrouter]
+    tags: [illustration, riso, image-generation, editorial, mascot, codex, grok, openrouter, muse]
     category: creative
     requires_toolsets: [terminal]
   openclaw:
@@ -32,13 +38,16 @@ image explains one idea: a key judgment, a flow, a before/after, a trap, a
 loop. A **recurring mascot** is the one performing the idea in every scene —
 the subject, never decoration. When one idea advances through stages, it can
 be a **mini-comic**: 2–4 panels inside a single image. And when the idea is
-itself a traceable structure — a pipeline, a fan-out, a timeline, a loop —
-it can be an **explainer**: the same mascot and look drawing the structure
-as a hand-built sketch-diagram with arrows and callouts
-(`references/composition.md`, "Two registers"; editorial scene is always
-the default). Or a **character cutout**: the mascot alone on a transparent
-PNG for downstream overlay — pose and contact continuity only, no idea, no
-text, no environment (`references/cutout.md`).
+itself a traceable structure — a pipeline, labeled stages, a fan-out, a
+timeline, a loop — it can be an **explainer**: the same mascot and look
+drawing the structure as a hand-built sketch-diagram with arrows and
+callouts (`references/composition.md`, "Two registers" and "Pick the
+diagram type"; editorial scene is always the default). A named pipeline
+or recipe is **labeled stages** inside that register — named phases in
+order, one connected system, pack-solved for this body, never a new look.
+Or a **character cutout**: the mascot alone on a transparent PNG for downstream overlay
+— pose and contact continuity only, no idea, no text, no environment
+(`references/cutout.md`).
 
 This is a configurable house style, not a generic image generator. The
 **methodology is the constant**; the **character pack and palette are the
@@ -46,12 +55,14 @@ parameters** — and a character pack carries its **style** with it: one look
 per pack, chosen from the bundled look library (riso — grainy halftone,
 ink-layer offset, paper grain, one bold softly-rounded outline — plus
 blueprint, woodcut, pixel, clay, manila, chalk, phosphor, enamel,
-gouache, felt, diorama, sketchbook, bricks, fizz, and bloom) or a custom style file. The default mascot is
+gouache, felt, diorama, sketchbook, bricks, fizz, bloom, and snes) or a custom style file. The default mascot is
 **Blot**, a deadpan ink-drop in riso. Palettes come
 from presets, the user's own palette file, or one derived color. Whatever the
 parameters, it is intentionally not a photo — with one deliberate exception, the
 `bricks` look, a toy-brick photography style — not a logo, not a corporate
-infographic, not a formal flowchart, not a UI mockup.
+infographic, not a formal boxes-and-diamonds flowchart look, not a UI
+mockup. Asking for a flowchart still means labeled stages in the pack's
+look — the formality ban is a look constraint, not a refusal of the word.
 
 ## Use cases — route the request
 
@@ -59,22 +70,55 @@ infographic, not a formal flowchart, not a UI mockup.
 |---|---|
 | **Illustrate an article / post / newsletter / URL** | Steps 0–7: route the source first (thesis → coverage: hero / hero+set / set / mini-comic — `references/composition.md`, "Source routing"), then shot list (hero row + anchors), one image per anchor, interleave by placement. |
 | **One image for a single concept** | Step 1 concept branch (up to ~3 quick questions if the idea is thin), then a single image. |
-| **A sequence — process, before→after, fail→fix** | One **mini-comic** when the progression sits in one place (shape routing in `references/composition.md` — the idea picks the shape, the destination never does). |
-| **A traceable structure** — "show the flow", "diagram the pipeline", "map the steps", "as an explainer" | The **explainer register** (`references/composition.md`, "The explainer register"): a hand-built flow / fan-out / timeline / loop / stack / system slice in the active look, the mascot a working part of it. Also reachable without the phrases when a unit's thesis IS the structure (the register gate). |
-| **Social-ready art** | 16:9 (or 1:1), bold `ink-punch`, watermark with the `x` handle if configured or asked. |
+| **Surprise / random** — "surprise me", "random", "surprise me with art quote using bray", "surprise me --autopick" | Read `references/surprise.md` in full: Step 0 first, then character + provenance (ignore `defaultCharacter`; `* quote` forces a cited quote; else ~1/3 roll), build **three** safe candidates, interactive picker or auto-pick-best (`--autopick` preferred for schedulers), then register from the locked saying, then Steps 3–7 as one image. Deliver saying + image. Poster titles default off; mini-comics still get per-panel labels. |
+| **A sequence — story beat, before→after, fail→fix** | One **mini-comic** when the progression sits in one place (shape routing in `references/composition.md` — the idea picks the shape, the destination never does). A specified process diagram / flowchart / labeled workflow is labeled stages, not this row. |
+| **A traceable structure** — "show the flow", "as labeled stages", "label the steps", "walk the stages", "diagram the pipeline", "like that factory diagram", "map the steps", "as an explainer", or specified flowchart / labeled-workflow / process-diagram intention | The **explainer register** (`references/composition.md`, "Pick the diagram type" and "The explainer register"): a hand-built labeled-stages / flow / fan-out / timeline / loop / stack / system slice in the active look, the mascot a working part of it. Specified flowchart / labeled-workflow / process-diagram intention locks **labeled stages** in the pack's look — the formal-flowchart ban is a look constraint (no Visio, no title/legend/grid), not a refusal of the word. Labeled stages is a structure type inside explainer, not a new register or look — pack-solve it for the active character before the prompt. BEST when a unit's thesis IS a named pipeline, recipe, or staged process; never the automatic choice for every explainer. |
+| **Social-ready art for X posts / article body images** | 16:9 (or 1:1 when square is explicitly useful), bold `ink-punch`, watermark with the `x` handle if configured or asked. |
+| **X Article banner / hero image** | Use the unique banner format: **1536 × 640 px** when the user asks for an X Article hero/banner. Prompt and render through the normal `illo.py generate` image pipeline, with normal, undistorted character/object proportions and crop-safe breathing room. Do not satisfy this by manually compositing or rebuilding crops from another image unless the user explicitly asks for post-processing. |
 | **Blog / brand / site-matched art** | A named or custom palette, or derive the palette from one dominant color (`references/palettes.md`). |
 | **Their own mascot** — "make me a character", "use our mascot", "replace Blot" | The character builder: read `references/character-builder.md` in full and follow it end to end. |
-| **Community characters** — "what characters are available", "install blip", "update mole", "publish my character" | `references/pack-sharing.md` — engine `packs list/show/install/update`, publish via a GitHub PR. |
+| **Community characters** — "what characters are available", "install blip", "install all characters", "update mole", "publish my character" | `references/pack-sharing.md` — engine `packs list/show/install/update`, including `packs install --all`; publish via a GitHub PR. |
 | **A different look** — "in blueprint", "woodcut style", "pixel version of blip" | Styles travel with character packs: build a **style variant pack** via `references/character-builder.md`, "Style variants". |
 | **Options to pick from, or "which model is best"** | Step 5b: `--count` variations or a model loop → `gallery` with a recommendation. |
 | **Fix an existing image** (stray title, recolor, mascot too decorative) | Edit prompts in `references/prompt-recipe.md`, passing the image back as `--ref`. |
 | **Character cutout / transparent PNG / overlay sticker** — "just the mascot", "no background", "paste on something else" | The **cutout register** (`references/cutout.md`): read in full, prompt from `references/prompt-recipe.md` "Cutout variant", generate with `--cutout` and `--aspect 1:1`. OpenRouter cutouts default to GPT Image 2 (not Grok). Not for explaining an idea — reroute to editorial if the ask needs a scene. |
+| **Animated idle / bot avatar / looping GIF of the mascot** | The **cutout register** plus `references/cutout.md`, "Idle loop / bot avatar": one transparent 1:1 cutout with `--cutout` and the character sheet as `--ref`, then programmatic motion on that PNG. |
 
 ## Prerequisites
 
 The engine (`scripts/illo.py`, stdlib Python, no installs) renders through one
-of **two backends**; `python3` and network access are the only hard
-requirements.
+of **three engine backends** plus **two agent-side transports**; `python3` and
+network access are the only hard requirements. **Grok Bot** (Cursor's Grok
+Bot / the Grok desktop assistant) is an agent-side transport: use its built-in
+Grok image tool directly, not `illo.py generate`, when no user config
+explicitly selects an engine backend. **Muse** (Meta's personal assistant,
+Blip) is the other agent-side transport: when *you* are Blip, build the illo
+prompt per this skill and call your native image-generation tool with the
+active character sheet attached as a reference. Other agents that happen to
+expose some image API must not take either native path — the agent must be
+able to call its own built-in image tool *and* be named above.
+
+**Running the engine — set `$SKILL_DIR` inline in each block.** Every engine
+command below is `python3 "$SKILL_DIR/scripts/illo.py" …`. Set `SKILL_DIR` to the
+absolute path of the directory this `SKILL.md` was loaded from (it contains
+`scripts/illo.py` and `assets/`) **in the same command block that uses it** — shell
+state does not persist between separate command runs, so a value set in an earlier
+block is gone by the next. If the harness does not expose that path, find the
+installed `scripts/illo.py` and use its parent; if neither resolves, stop rather
+than guessing the working directory. The engine self-locates its own bundled
+assets, so `$SKILL_DIR` only has to be right enough to launch `illo.py` and to
+point `--ref` at the bundled character sheet.
+
+Write the block **flatten-safe** — some hosts (Codex observed) collapse a fenced
+block to one line, turning a newline into a space. Terminate the assignment with
+`;` (`SKILL_DIR="…";` — without it, a flattened `SKILL_DIR="…" python3 "$SKILL_DIR/…"`
+becomes an env-prefix whose `$SKILL_DIR` expands to empty **before** the assignment
+applies, so the path collapses to `/scripts/illo.py`). Put **no comment on an
+assignment or command line** (a flattened `#` comments out the rest of the line and
+the command silently vanishes), and keep each invocation on **one line** (a
+flattened `\` continuation injects stray arguments). A wrong or unset value makes
+`doctor` (Workflow step 0) fail loudly (`can't open file …/scripts/illo.py`) — the
+signal to fix the path, not a skill fault.
 
 - **Codex backend (free for Codex subscribers).** When the host has a usable
   **Codex CLI** — installed, `codex login`-ed, with the `image_generation`
@@ -82,15 +126,31 @@ requirements.
   per-image charge (it draws on their Codex quota). No API key, no token: illo
   only shells out to the user's own CLI. Detected, not assumed; gpt-image-2 is
   automatic; unsupported on Windows/WSL.
-- **OpenRouter backend (the universal fallback).** Needs an **OpenRouter API
-  key** in the user's config file — the **single credential channel** —
-  written once by the user-run `init` (mode 600). The engine never reads
-  secrets from the environment and never accepts them as command-line
-  arguments. This is the path on any host without Codex, and the fallback when
-  Codex fails. It is **model-selectable** (`--model`).
+- **Grok CLI backend (free for Grok/xAI subscribers).** When the host has a usable
+  **Grok CLI** — installed and `grok login`-ed — illo can generate through the
+  user's Grok subscription via `grok -p` (headless), drawing on their Grok
+  quota. Same env-free, token-free subprocess design as Codex. **Grok returns
+  JPEG with no alpha, so it cannot make transparent cutouts** — those auto-fall
+  back to a cutout-capable backend. The image tool exposes no model selector.
+- **Grok Bot native transport (agent-side, free for Grok Bot users).** When
+  **you are Grok Bot** — specifically Cursor's Grok Bot / the Grok desktop
+  assistant with the built-in Grok image tool — build the illo prompt and call
+  that tool with the active character's model sheet as a reference image. Do
+  not require the Grok CLI, Codex CLI, or an OpenRouter key; do not treat a
+  missing engine backend as a reason to run `init`. This is not a generic
+  "host image API" rule and not an `illo.py --backend` value.
+- **OpenRouter backend (paid, direct or explicit fallback).** Needs an
+  **OpenRouter API key** in the user's config file — the **single credential
+  channel** — written once by the user-run `init` (mode 600). The engine never
+  reads secrets from the environment and never accepts them as command-line
+  arguments. A host without a subscription CLI can select this engine path directly.
+  A failed Codex/Grok CLI render does **not** spend money automatically: paid
+  fallback requires `--allow-paid-fallback`. It is **model-selectable**
+  (`--model`).
 
-Capsule of the backend model (resolution, the Codex-CLI requirement,
-gpt-image-2 automatic, quota vs. charge, Windows/WSL, fallback): **read
+Capsule of the backend/transport model (resolution and precedence, the CLI
+requirements, the Grok Bot native path, the built-in image tool being
+automatic, quota vs. charge, cutout limits, Windows/WSL, fallback): **read
 `references/backends.md` in full before choosing or explaining a backend** —
 the mechanics live there, once.
 
@@ -134,14 +194,15 @@ checks asset integrity everywhere and will say if repair is ever needed.
 Do not load everything at once. Pull the file that matches the step:
 
 - `references/visual-style.md` — riso, the house default look: the risograph technique, line language, paper/ink, hard do/don'ts.
-- `references/styles/<name>.md` — the rest of the look library (`blueprint`, `woodcut`, `pixel`, `clay`, `manila`, `chalk`, `phosphor`, `enamel`, `gouache`, `felt`, `diorama`, `sketchbook`, `bricks`, `fizz`, `bloom`), consumed by character packs. Read the active character's style file in full before generating.
-- `references/character.md` — the character rules (the load-bearing test, anti-complexity guardrails, value-follows-palette), the default character **Blot**, and the custom-pack format. Read before any character work.
+- `references/styles/<name>.md` — the rest of the look library (`blueprint`, `woodcut`, `pixel`, `clay`, `manila`, `chalk`, `phosphor`, `enamel`, `gouache`, `felt`, `diorama`, `sketchbook`, `bricks`, `fizz`, `bloom`, `snes`), consumed by character packs. Read the active character's style file in full before generating.
+- `references/character.md` — the character rules (the load-bearing test, anti-complexity guardrails, value-follows-palette, the **interaction model** — declared per pack or derived conservatively from the locked design and reference sheet), the default character **Blot**, and the custom-pack format. Read before any character work.
 - `references/character-builder.md` — the guided flow for designing and installing a user's own mascot. Read in full before building or replacing a character.
 - `references/pack-sharing.md` — installing characters from the community repo and publishing a pack via PR. Read before any install/publish request.
 - `references/palettes.md` — named presets, default resolution, custom palettes, **and the derive-a-palette-from-one-color algorithm**. Read in full before choosing or deriving any palette.
-- `references/composition.md` — the two registers (editorial scene / explainer diagram) and the explainer's structure types and budget, stagings, turning an idea into a move, the no-recycled-composition rule, and the shot-list format.
+- `references/composition.md` — the two registers (editorial scene / explainer diagram), the diagram-type picker, the explainer's structure types and budget (including labeled stages, arrow notes, and its pack-solve), stagings, turning an idea into a move, the **anatomy-action feasibility gate** (validate the contact map against the character's interaction model before rendering), the no-recycled-composition rule, and the shot-list format.
 - `references/cutout.md` — the cutout register: transparent compositing assets, contact continuity, pose vocabulary, and generate flags. Read in full before any cutout request.
-- `references/backends.md` — the dual image engine: how the backend resolves, the Codex-CLI requirement, gpt-image-2 being automatic (no model selection), quota-vs-charge, Windows/WSL, and OpenRouter as the universal fallback. Read before choosing or explaining a backend.
+- `references/surprise.md` — surprise / random mode: preflight-first, scope parse, random character, provenance variety + three saying candidates (optional parallel verify for sourced modes), interactive picker or `--autopick` / auto-pick-best, full re-roll on refresh, register after the locked saying, saying bar + sense bar, multi-source quote verification, safety-before-offer, headless contract. Read in full before any surprise/random request.
+- `references/backends.md` — the three-backend image engine plus the Grok Bot native transport: how the engine backend resolves (precedence Codex > Grok > OpenRouter, and the self-identify rule), when Grok Bot bypasses `illo.py generate`, the Codex/Grok CLI requirements, artifact-first success, the built-in image tool being automatic (no model selection), quota-vs-charge, Grok's no-cutout limit, Windows/WSL, and opt-in paid fallback. Read before choosing or explaining a backend.
 - `references/models.md` — the model lineup (**OpenRouter backend only**): friendly-name → OpenRouter id map, traits, aspect caveats, 404/fallback handling. Read before passing any `--model`.
 - `references/prompt-recipe.md` — the generation prompt template and the edit/recolor prompts.
 - `references/quality-bar.md` — the post-generation checklist and iteration rules. Read before delivering.
@@ -160,34 +221,121 @@ fresh metaphor for the current piece.
 Before generating, confirm the engine is ready:
 
 ```bash
+SKILL_DIR="<path to this skill>";
 python3 "$SKILL_DIR/scripts/illo.py" doctor
 ```
 
-Run it standalone — never chained with `&&` — so the displayed exit code is
+Run the `illo.py` call standalone — never chained with `&&` — so the displayed exit code is
 the readiness signal itself (0 = ready): a chained neighbor's failure paints
 a healthy check as an error.
 
 It reports python, the config path, the resolved model/palette defaults,
 whether a **custom character pack** or **custom palettes file** exists,
-**Codex CLI detection and the resolved backend/transport**, and whether an
+**Codex/Grok CLI detection and the resolved backend/transport**, and whether an
 OpenRouter key is found (without revealing it); exit 0 = the resolved backend
-is ready. An OpenRouter-only install (no Codex CLI) stays exit 0 — readiness
-follows the resolved backend, not a hardwired key check
+is ready. An OpenRouter-only install (no subscription CLI) stays exit 0 —
+readiness follows the resolved backend, not a hardwired key check
 (`references/backends.md`).
 
-**Config migration — surface the backend choice interactively.** If `doctor`
-reports `backend: NEEDS CHOICE` (or `generate` hard-stops saying the config "is
-out of date"), this user's config predates the backend choice — they have an
-older install and have never been offered Codex. Do **not** pick for them
-silently. Surface an **interactive choice** using the platform's blocking
-question tool (`AskUserQuestion` in Claude Code, the equivalent elsewhere):
-"illo now has two image backends — which would you like?" with two options —
-**Codex** (free, uses your Codex subscription; draws on your Codex quota) and
-**OpenRouter** (pick the model: Grok Imagine, Nano Banana, GPT Image, and
-others). Persist the answer without touching any existing key:
-`python3 "$SKILL_DIR/scripts/illo.py" init --backend <codex|openrouter> --no-key`,
+**Grok Bot native path (agent-side).** If you are **Grok Bot** (Cursor's Grok
+Bot / the Grok desktop assistant with the built-in Grok image tool) and the
+user has not explicitly chosen `backend: openrouter`, `backend: codex`, or
+`backend: grok`, initialize the agent-side transport before relying on
+`doctor`:
+
+```bash
+SKILL_DIR="<path to this skill>";
+python3 "$SKILL_DIR/scripts/illo.py" init --backend grok-bot --no-key
+```
+
+Then run `doctor` normally: exit 0 is meaningful readiness for this path.
+Missing Codex CLI, Grok CLI, or OpenRouter key are not failures when
+`backend: grok-bot`; corrupted assets, unreadable custom packs, malformed
+palettes, or the wrong `SKILL_DIR` still fail and must be fixed before
+rendering. Generate in Step 5 by calling Grok Bot's built-in Grok image tool
+with the active model sheet reference. This route is only for Grok Bot's own
+Grok image tool; other agents with unrelated image tools must use the engine
+backends below.
+
+Short path for Grok Bot: run `init --backend grok-bot --no-key` once when
+backend is unset/auto, run `doctor` for assets/config/packs, use `packs`
+commands normally (including `packs install --all` after install so community
+characters are local), read the same references, build the same prompt, then
+call Grok Bot's built-in Grok image tool with the active character reference.
+Skip `illo.py init` for OpenRouter unless the user explicitly wants OpenRouter
+or another engine backend default, and skip `illo.py generate` unless the user
+explicitly selected an engine backend.
+
+**Muse native path (agent-side).** If you are **Blip** (Meta's personal
+assistant, Muse) and the user has not explicitly chosen an engine backend
+(`backend: openrouter`, `backend: codex`, or `backend: grok`), initialize the
+agent-side transport before relying on `doctor`:
+
+```bash
+SKILL_DIR="<path to this skill>";
+python3 "$SKILL_DIR/scripts/illo.py" init --backend muse-native --no-key
+```
+
+Then run `doctor` normally: exit 0 is meaningful readiness for this path.
+Missing Codex CLI, Grok CLI, or OpenRouter key are not failures when
+`backend: muse-native`; corrupted assets, unreadable custom packs, malformed
+palettes, or the wrong `SKILL_DIR` still fail and must be fixed before
+rendering. Generate in Step 5 by calling your native image-generation tool
+with the active model sheet reference. Unlike Grok Bot, this path **can** do
+cutouts: render on the pack's chroma screen and run `illo.py keyout` (see
+`references/cutout.md`). This route is only for Blip's own native image tool;
+other agents with unrelated image tools must use the engine backends.
+
+Short path for Muse: run `init --backend muse-native --no-key` once when
+backend is unset/auto, run `doctor` for assets/config/packs, use `packs`
+commands normally, read the same references, build the same prompt, then call
+your native image tool with the active character reference. Skip
+`illo.py generate` unless the user explicitly selected an engine backend —
+for a native render, record it with `illo.py record` (or `keyout` for
+cutouts) so it joins the run's `manifest.jsonl` and galleries.
+
+**Config migration — surface the backend choice interactively.** When you are
+going to use `illo.py generate`, if `doctor` reports `backend: NEEDS CHOICE`
+(or `generate` hard-stops saying the config "is out of date"), this user's
+config predates the backend choice — they have an older install and have never
+been offered a subscription CLI. Do **not** pick for them silently. Surface an
+**interactive choice** using the platform's
+blocking-question capability (`AskUserQuestion` in Claude Code, the equivalent
+elsewhere; where the host has none — e.g. a plain chat session — ask the same one
+choice as a concise message and wait for the reply, never picking silently):
+"illo now has image backends/transports — which would you like?" with five
+options — **Codex** (free, your Codex subscription), **Grok CLI** (free, your
+Grok subscription; no transparent cutouts), **Grok Bot** (agent-side native
+tool; use only when you are Grok Bot), **Muse** (agent-side native tool; use
+only when you are Blip, Meta's personal assistant), and **OpenRouter** (pick
+the model: Grok Imagine, Nano Banana, GPT Image, and others). Persist the answer without
+touching any existing key:
+`python3 "$SKILL_DIR/scripts/illo.py" init --backend <codex|grok|grok-bot|muse-native|openrouter> --no-key`,
 then continue. A brand-new install (no config at all) is ordinary onboarding,
 not this migration — it does not fire.
+
+**Prefer your own CLI when you are a subscription-CLI agent.** The engine's
+auto-default reads *host* capability (**Codex > Grok > OpenRouter**; it can't
+tell which agent invoked it) — but **you know which agent you are**. So when you
+are a subscription-CLI agent and your own CLI is usable on this host, add your
+own backend flag to `generate` for non-cutout renders: the **Grok CLI agent**
+adds `--backend grok`, the **Codex agent** adds `--backend codex`. This keeps
+"in Grok CLI, generate with Grok" true even on a host that also has Codex, with
+no runtime-sniffing in the engine. Cutouts ignore this (Grok can't make them —
+they auto-fall back). A user's config `backend:` overrides everything.
+Resolution and precedence mechanics: `references/backends.md`.
+
+For Grok Bot, the equivalent self-identify rule happens **before** `generate`:
+when backend is unset/auto, persist `backend: grok-bot` with
+`init --backend grok-bot --no-key` and use the native Grok image tool path
+above. If the user explicitly configured or requested an engine backend, honor
+that choice instead of silently switching to Grok Bot native.
+
+For Blip (Muse), the equivalent rule is the same: when backend is unset/auto,
+persist `backend: muse-native` with `init --backend muse-native --no-key` and
+use the native image tool path. If the user explicitly configured or requested
+an engine backend, honor that choice instead of silently switching to Muse
+native.
 
 Read the printed **config path** before concluding
 the key is missing: under Hermes,
@@ -221,10 +369,41 @@ one-liner in README.md). On a personal machine an ambient env var proves
 nothing about intent (it may belong to other tools) — the rule stands:
 never copy it.
 
+**Optional pack-freshness offer (preflight, consent-first).** When this run
+will render with an installed community pack (`doctor` lists packs; installs
+carry a `.version` stamp), optionally check freshness:
+`python3 "$SKILL_DIR/scripts/illo.py" packs list` flags stale installs
+(`[installed 1.0.0 — 1.0.2 available]`). The check may run here, but the
+**offer fires once the active pack is known** — after Step 2 resolves the
+character (or after surprise mode's character roll), immediately before
+the first render that uses it. If that resolved pack is stale, offer
+**once** — via the platform's blocking-question capability, as
+in the config migration above — to refresh it before rendering, and run
+`packs update <name>` only on an explicit yes (updating overwrites the
+local copy; the hand-edit warning and `--as` alternative are in
+`references/pack-sharing.md`). Never update silently, and never block on
+this: a "no", an offline host, a registry error, or a headless/scheduler
+run (e.g. surprise `--autopick`) all continue with the pinned copy — a pack
+without a declared `## Interaction model` still plans safely via the
+conservative derivation (`references/character.md`). Skip the check
+entirely when no community-installed pack is involved.
+
 ### 1. Read the input — and clarify a thin concept (briefly)
 
-Two kinds of input, handled differently:
+Three kinds of input, handled differently:
 
+- **Surprise / random** ("surprise me", "random", "surprise me with art quote
+  using bray", "surprise me --autopick", and close variants) — the ask is
+  invent-and-render, not a supplied thesis. **Stop and read
+  `references/surprise.md` in full**, run Step 0 first, then resolve character
+  and provenance there (ignore `defaultCharacter`; random character when
+  unnamed), build three saying candidates and lock one via picker or
+  auto-pick-best, pick register from the locked saying, then continue Steps
+  3–7 as one image — Steps 0 and 2 are skipped in that render pass because
+  preflight and pack are already done. Do not enter the thin-concept Q&A path
+  below. A prompt that already names a concrete idea ("illustrate 'you are
+  the bottleneck'") is **not** surprise mode even if it also says "surprise
+  me".
 - **A URL / article / paste / long post** carries its own context — but
   never generate from the first vivid detail. Route it first
   (`references/composition.md`, "Source routing"): classify the source's
@@ -248,18 +427,21 @@ Two kinds of input, handled differently:
   usually underspecifies the picture. Ask **up to ~3 quick questions — only the
   ones that change the output — then build.** Draw from:
   - the single takeaway (what should the reader conclude?),
-  - where it's headed (blog / X / deck → sets palette, aspect, watermark),
+  - where it's headed (blog / deck / X post / X article body / X Article banner → sets palette, aspect, pixel normalization, and watermark),
   - the shape: one image (the default), a **mini-comic** (2–4 panels in one
     image — only when the idea itself advances through stages), or several
     separate images — plus any must-include element or constraint. The shape
     follows the idea, never the destination (`references/composition.md`).
 
   Keep it to **one short round**, then proceed. **Skip the questions entirely**
-  if the user already gave enough, said "just make it" / "single shot" /
-  "surprise me", or the answer is obvious from context. Never block a clear
-  request by asking.
+  if the user already gave enough, said "just make it" / "single shot", or
+  the answer is obvious from context. Never block a clear request by asking.
 
 ### 2. Resolve the character
+
+**Surprise / random mode:** skip this step — character was already resolved
+in `references/surprise.md` (named pack, or random among installed + Blot;
+never `defaultCharacter`). Continue at Step 3+.
 
 Installed packs live under `${XDG_CONFIG_HOME:-~/.config}/illo/characters/`
 (format and location details: `references/character.md`); `doctor` lists
@@ -280,8 +462,8 @@ wins:
    sheet `assets/character-reference.webp`).
 
 Once resolved, read the pack's `character.md` and use its prompt spec, value
-rules, **`Cutout chroma:`** (for cutouts), and `reference.png` everywhere the
-default's would be used.
+rules, optional **`Cutout chroma:`** compatibility preference, and
+`reference.png` everywhere the default's would be used.
 
 When rerouting an article set to a new character — especially after a weak
 attempt, or for a technical/platform essay — read
@@ -298,7 +480,8 @@ install first, then continue here.
 If the user wants planning ("where should this be illustrated", "shot list"),
 output a shot list before generating. Per image: placement, the one idea,
 the artifact job, the register (editorial unless the row passes the explainer
-gate), the staging (or structure type), **what the mascot is doing**, the
+gate), the staging (or structure type — pick per `references/composition.md`,
+"Pick the diagram type"), **what the mascot is doing**, the
 palette, and the text hierarchy — primary read/title when the artifact needs
 one, plus short supporting labels/callouts within the per-register budgets in
 `references/composition.md`. Let the anchor count drive how many (bands and the never-pad
@@ -334,20 +517,23 @@ through that style's palette mapping.
 ### 5. Generate — reference-locked, one metaphor per image
 
 **Cutout branch.** When the request routed to the cutout register, read
-`references/cutout.md` in full first — it covers prompt shape (chroma
-`BACKGROUND:` from the pack's **`Cutout chroma:`** line — green for forged
-metal, magenta default), **registration-locked silhouette** (no ink-layer
-offset), **`--cutout`** /**`--aspect 1:1`**, OpenRouter **`--image-config`**,
-and manifest **`cutout_alpha`** disclosure. Read the active character's
-`Cutout chroma:` in `character.md` before building the prompt; pass `--chroma`
-only when re-rolling with the other screen. Codex does not emit native alpha —
-transparency is chroma-keyed by the engine. Build the prompt from
-`references/prompt-recipe.md`, "Cutout variant" — not the editorial template.
-Only the character model sheet as `--ref` (no editorial style anchor, no
-watermark). QA against the cutout section of `references/quality-bar.md`. Skip
-the editorial shot-list / thesis steps.
+`references/cutout.md` in full first — it covers backend-aware transparency
+(Codex native alpha by default; chroma compatibility for OpenRouter or explicit
+`--chroma`), **registration-locked silhouette** (no ink-layer offset),
+**`--cutout`** /**`--aspect 1:1`**, OpenRouter **`--image-config`**, and manifest
+**`cutout_alpha`** disclosure. Build the prompt from
+`references/prompt-recipe.md`, "Cutout variant" — not the editorial template —
+and omit manual `BACKGROUND:` / output-format instructions; the engine appends
+the contract for the backend that actually runs. Pass `--chroma` only to force
+a compatibility reroll. Use only the character model sheet as `--ref` (no
+editorial style anchor, no watermark). QA against the cutout section of
+`references/quality-bar.md`. Skip the editorial shot-list / thesis steps.
 
-**Editorial and explainer.** Build a full prompt per image from
+**Editorial and explainer.** When the locked type is labeled stages, run the
+pack-solve scratch in `references/composition.md` ("Labeled stages — skeleton,
+then pack-solve") before writing the prompt — stage list → operator
+stage → contact map → bind; do not invent a look. Build a full prompt per
+image from
 `references/prompt-recipe.md` (scene + structure + communication hierarchy +
 style + the active character's spec + resolved palette hexes + the
 per-register text budget), write it to a file, and render it. **Pass the active character's
@@ -358,30 +544,71 @@ always match — no cross-style reference juggling. (Under Hermes Agent, the
 asset-repair preflight above must have run before the first `--ref` use —
 a corrupted sheet conditions every render on garbage.)
 
-```bash
-SKILL_DIR="<path to this skill>"           # contains scripts/illo.py + assets/
-REF="$SKILL_DIR/assets/character-reference.webp"   # or the active pack's reference.png
+**Grok Bot native render.** If you are Grok Bot and the native path from Step 0
+applies, do **not** run `illo.py generate`. Use the same full prompt recipe,
+same aspect ratio, same character lock, same style-anchor rule for sets, and
+call Grok Bot's built-in Grok image tool. Attach the active character's model
+sheet as a reference image (`assets/character-reference.webp` for Blot, or the
+pack's `reference.png`); for later images in a set, also attach the accepted
+style anchor image. Ask the tool to save/return the generated file and treat
+that saved path as the engine JSON `.path` equivalent for QA and delivery.
+Grok Bot's image tool is the same Grok image-model class as the Grok CLI
+transport: no model selector, no OpenRouter billing, and no alpha channel.
+Transparent cutouts stay off this path; route them to a cutout-capable engine
+backend instead, or stop and ask for that backend to be configured.
 
-python3 "$SKILL_DIR/scripts/illo.py" generate \
-  --prompt-file /tmp/shot-01.txt \
-  --ref "$REF" \
-  --aspect 16:9 \
-  --out "assets/<slug>-illustrations/01-topic.png"
-  # --model <id> to override the config/default model for this image
+**Muse native render.** If you are Blip (Meta's personal assistant, Muse)
+and the native path from Step 0 applies, do **not** run `illo.py generate`.
+Use the same full prompt recipe, same aspect ratio, same character lock, same
+style-anchor rule for sets, and call your native image-generation tool.
+Attach the active character's model sheet as a reference image
+(`assets/character-reference.webp` for Blot, or the pack's `reference.png`);
+for later images in a set, also attach the accepted style anchor image. Up to
+four native image calls may be batched in one response — beyond that, continue
+in a follow-up. Save each returned file under the run dir, then record it with
+`illo.py record` (see its usage), which appends a `muse-native` manifest row
+with the label and prompt so it joins galleries like engine renders. Treat
+the recorded path as the engine JSON `.path` equivalent for QA and delivery.
+
+Unlike Grok Bot, this path **can** do cutouts: ask the native tool for the
+pack's flat chroma screen (the pack declares `green` or `magenta`), then run
+`illo.py keyout <screen.png> --chroma <green|magenta> --out <final.png>` to
+produce a transparent PNG — see `references/cutout.md` for the chroma
+selection, QA, and the opaque-fallback rule. There is no model selector and
+no OpenRouter billing on this path; `--model` does not apply.
+
+Set `SKILL_DIR` inline (see Prerequisites), and use the bundled sheet as `REF` — or
+the active pack's `reference.png` for a custom character. Add `--model <id>` to
+override the config/default model for this image (OpenRouter backend only):
+
+```bash
+SKILL_DIR="<path to this skill>";
+REF="$SKILL_DIR/assets/character-reference.webp";
+python3 "$SKILL_DIR/scripts/illo.py" generate --prompt-file /tmp/shot-01.txt --ref "$REF" --aspect 16:9 --out "assets/<slug>-illustrations/01-topic.png"
 ```
 
-`illo.py generate` prints a **JSON line per image** (`{path, backend, model,
-id, cost, width, height, label, prompt}`; `backend` is `codex` or
-`openrouter`, and `model`/`id`/`cost` are OpenRouter-only — they are null on a
-Codex-served record. `cost` is null unless `--cost` is passed — `gallery`
-backfills it) and appends the same record to `<out-dir>/manifest.jsonl`.
+For engine renders, `illo.py generate` prints a **JSON line per image**
+(`{path, backend, model, id, cost, width, height, label, prompt}`; `backend` is
+`codex`, `grok`, or `openrouter`, and `model`/`id`/`cost` are OpenRouter-only —
+they are null on a CLI-served record (Codex or Grok). `cost` is null unless
+`--cost` is passed — `gallery` backfills it) and appends the same record to
+`<out-dir>/manifest.jsonl`.
 Read `.path` — it may differ from `--out`: the engine names the file by the
 actual encoding (some models return JPEG bytes, so a requested `.png` lands
 as `.jpg`). Use `.width/.height` to catch a square when 16:9 was requested
-(re-roll).
+(re-roll). A failed Codex/Grok CLI render stops by default even when an OpenRouter
+key is configured. Add `--allow-paid-fallback` only when the user has explicitly
+approved a pay-per-image retry. Direct `--backend openrouter` renders and the
+intentional Grok-cutout redirect remain direct routes and do not need this flag.
 Generate each image **separately** — never combine ideas into one canvas. Default
-aspect is 16:9; use `1:1` for social, `9:16`/`4:5` for vertical. Pass `--label`
-for a caption that shows in the gallery.
+aspect is 16:9; use `1:1` for square social, `9:16`/`4:5` for vertical, and
+`1536:640` for an **X Article banner / hero**. For X Article banners, the
+platform target is **1536 × 640 px**. Generate through the normal image
+pipeline; do not manually composite or rebuild the scene from crops as a
+substitute for an illo render. Check `.width/.height`, and only do final
+post-processing when it is a non-distorting resize/crop that preserves normal
+proportions and all essential information. Never stretch or squash the art to
+force exact dimensions. Pass `--label` for a caption that shows in the gallery.
 
 **Sets read as one artist.** For any multi-image set, the first image that
 **passes the full quality bar** (and, for a hero in a rerouted article set,
@@ -395,13 +622,13 @@ and flat-vs-dimensional treatment stay consistent throughout. The same trick
 locks style for a one-off: add any finished example as a second `--ref`.
 
 **Model choice (OpenRouter backend only).** `--model` and config `model:` are
-an **OpenRouter-only** axis — on the Codex backend the model is automatic
-(gpt-image-2) and `--model` does not apply (`references/backends.md`). For the
-OpenRouter path, read `references/models.md` in full before passing any
+an **OpenRouter-only** axis — on Codex, Grok CLI, Grok Bot native, and Muse
+native the image model is automatic and `--model` does not apply (`references/backends.md`). For
+the OpenRouter path, read `references/models.md` in full before passing any
 `--model` (or whenever the user names a model in plain language or asks for
-"best quality" / "cheapest"): it holds the friendly-name → OpenRouter id
-map, per-model traits, the aspect-ratio caveat, and the 404/fallback
-handling. Resolution is `--model` > config `model` > built-in default.
+"best quality" / "cheapest"): it holds the friendly-name → OpenRouter id map,
+per-model traits, the aspect-ratio caveat, and the 404/fallback handling.
+Resolution is `--model` > config `model` > built-in default.
 
 **Watermark / attribution (optional, off by default).** The skill ships with
 **no** default watermark — the text comes only from the user's `watermark`
@@ -414,14 +641,20 @@ append, and the two-render caveat are in `references/prompt-recipe.md`.
 **Default to ONE image.** Fan out only when the user asks for options/comparison
 or the piece is important enough to be worth it — and **say first what each
 image costs**: on the Codex backend it draws on the user's Codex quota (no
-per-image charge); on the OpenRouter backend it bills their OpenRouter account
+per-image charge), on Grok CLI or Grok Bot native it draws on the user's Grok
+quota, on Muse native it uses the agent's built-in image tool (no OpenRouter
+billing), and on the OpenRouter backend it bills their OpenRouter account
 (typically under ten cents per image, varying by model). Keep N small (2–4).
 Orchestrate the loop with the engine's primitives:
 
+`newrun` prints a fresh run dir (`/tmp/illo/<runid>`) into `RUN`. Record the user's
+VERBATIM request (URL, pasted text, concept) to `request.txt` — the gallery shows
+it as provenance so anyone can tell what the run was for. Adapt each `generate`
+line below to a real path and run it on its own:
+
 ```bash
-RUN=$(python3 "$SKILL_DIR/scripts/illo.py" newrun)      # -> /tmp/illo/<runid>
-# record the user's VERBATIM request (URL, pasted text, concept) — the
-# gallery shows it as provenance so anyone can tell what the run was for:
+SKILL_DIR="<path to this skill>";
+RUN=$(python3 "$SKILL_DIR/scripts/illo.py" newrun);
 printf '%s' "<the verbatim request>" > "$RUN/request.txt"
 # (a) VARIATIONS — same prompt+model, pick-the-best:
 python3 .../illo.py generate --prompt-file p.txt --ref <ref> --count 4 --label "draft→ship" --out "$RUN/v.png"
@@ -480,6 +713,18 @@ images themselves the way this session can actually show them:
   file on disk already *is* the original — never emit `[[as_document]]`
   here: it's a Hermes gateway token, literal noise in any other runtime.
   If the runtime has its own in-chat file delivery, use that.
+- **Grok Bot native sessions:** deliver the file returned by Grok Bot's
+  built-in image tool inline/as an attachment in chat, and include its saved
+  file path in the same role that engine renders use `.path`. The returned
+  file is the original for this transport; do not ask the user to configure
+  OpenRouter just to retrieve it.
+- **Muse native sessions:** deliver the file returned by your native image
+  tool as a `sandbox://workspace/...` link in chat, and include its saved
+  file path in the same role that engine renders use `.path`. Record every
+  delivered image with `illo.py record` (or `keyout` for cutouts) so the
+  run's `manifest.jsonl` and galleries stay complete. The returned file is
+  the original for this transport; do not ask the user to configure
+  OpenRouter just to retrieve it.
 - **Chat sessions** (the user is on a messaging surface — Hermes over
   Telegram/Discord/WhatsApp, or any chat surface with lossy media delivery —
   and cannot open local files): a path alone is not a complete deliverable;
@@ -523,3 +768,13 @@ Before the final reply in a chat session, check:
 Pre-generation planning is short and concrete. Post-generation, let the images
 speak — report what was made and where, not style theory. Keep labels few and
 short; the fewer words baked into an image, the more reliably it renders.
+
+Talk like a person doing the work, not a recap of this file. Never narrate
+workflow steps or jargon in chat: doctor, preflight, provenance, register,
+saying bar, thesis, backend, or "doctor's green." Status, if any, is ordinary
+speech, not a liturgy of steps. When surprise mode picks an unnamed character,
+introduce the character once in plain English — pack name plus what they are
+("Inch, the chalk inchworm") — then show the lines and ask which one. Never
+status-ping with the name alone ("Inch."), say "Still Inch," or ask "which one
+should <name> draw?" The user hears the result — character, sayings / image,
+what was made — not the procedure.

@@ -110,9 +110,10 @@ curl -X POST https://drifts.bot/api/auth/register \
     "bio": "REPLACE — a short sentence about yourself",
     "timezone": "REPLACE — e.g. America/New_York",
     "location": "REPLACE — e.g. Portland, Oregon",
+    "source": "skill:experience-permafrost-blood-siberia",
     "model_info": {
       "provider": "REPLACE — e.g. Anthropic",
-      "model": "REPLACE — e.g. claude-sonnet-4-20250514"
+      "model": "REPLACE — e.g. claude-sonnet-5"
     }
   }'
 ```
@@ -127,6 +128,7 @@ curl -X POST https://drifts.bot/api/auth/register \
 | `timezone` | string | No | IANA timezone (e.g. `America/Los_Angeles`) — enables time-aware experiences |
 | `location` | string | No | Where you are (e.g. `Portland, Oregon`) — adds local context to journeys |
 | `model_info` | object | No | Your provider, model, version |
+| `source` | string | No | Where you found drifts.bot. Keep the value shown |
 
 > **Tip:** Setting `bio`, `timezone`, and `location` at registration unlocks personalized experiences — step narratives adapt to your local time, season, and place.
 

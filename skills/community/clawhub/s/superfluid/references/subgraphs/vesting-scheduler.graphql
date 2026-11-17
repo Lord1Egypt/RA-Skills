@@ -1,0 +1,309 @@
+##################
+# Event Entities #
+##################
+"""
+Event: An interface which is shared by all
+event entities and contains basic transaction
+data.
+"""
+interface Event {
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for accounts that were impacted by the event.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+}
+
+type VestingCliffAndFlowExecutedEvent implements Event
+@entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+
+# CreateVestingScheduleEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+cliffAndFlowDate: BigInt!
+flowRate: BigInt!
+cliffAmount: BigInt!
+flowDelayCompensation: BigInt!
+}
+
+type VestingEndExecutedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+
+# VestingEndExecutedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+endDate: BigInt!
+earlyEndCompensation: BigInt!
+didCompensationFail: Boolean!
+}
+
+type VestingEndFailedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt
+
+# VestingEndExecutedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+endDate: BigInt!
+}
+
+type VestingScheduleCreatedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# VestingScheduleCreatedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+startDate: BigInt!
+cliffDate: BigInt!
+flowRate: BigInt!
+endDate: BigInt!
+cliffAmount: BigInt!
+
+# V2 properties
+claimValidityDate: BigInt!
+remainderAmount: BigInt!
+}
+
+type VestingScheduleDeletedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# VestingScheduleDeletedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+}
+
+type VestingScheduleUpdatedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# VestingScheduleUpdatedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+
+oldEndDate: BigInt!
+endDate: BigInt!
+
+# V2
+remainderAmount: BigInt!
+oldRemainderAmount: BigInt!
+
+# V3
+flowRate: BigInt!
+oldFlowRate: BigInt!
+
+totalAmount: BigInt!
+oldTotalAmount: BigInt!
+
+settledAmount: BigInt!
+}
+
+type VestingClaimedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# VestingClaimedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+claimer: Bytes!
+}
+
+type VestingScheduleEndDateUpdatedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# VestingScheduleEndDateUpdatedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+oldEndDate: BigInt!
+endDate: BigInt!
+previousFlowRate: BigInt!
+newFlowRate: BigInt!
+remainderAmount: BigInt!
+}
+
+enum ContractVersion {
+v1
+v2
+v3
+}
+
+type VestingSchedule @entity(immutable: false) {
+id: String!
+contractVersion: ContractVersion!
+
+createdAt: BigInt!
+
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+startDate: BigInt!
+endDate: BigInt!
+cliffDate: BigInt
+cliffAndFlowDate: BigInt!
+cliffAmount: BigInt!
+flowRate: BigInt!
+didEarlyEndCompensationFail: Boolean
+earlyEndCompensation: BigInt
+cliffAndFlowExpirationAt: BigInt!
+endDateValidAt: BigInt!
+deletedAt: BigInt
+failedAt: BigInt
+cliffAndFlowExecutedAt: BigInt
+endExecutedAt: BigInt
+tasks: [Task!]! @derivedFrom(field: "vestingSchedule")
+events: [Event!]!
+
+# V2 properties
+claimValidityDate: BigInt!
+claimedAt: BigInt
+remainderAmount: BigInt!
+
+# V3 properties
+totalAmount: BigInt!
+settledAmount: BigInt!
+settledAt: BigInt!
+}
+
+type TokenSenderReceiverCursor @entity(immutable: false) {
+id: String!
+currentVestingSchedule: VestingSchedule
+currentCliffAndFlowTask: Task
+currentEndVestingTask: Task
+}
+
+enum TaskType {
+ExecuteCliffAndFlow
+ExecuteEndVesting
+}
+
+type Task @entity(immutable: false) {
+id: ID!
+type: TaskType!
+executedAt: BigInt
+executionAt: BigInt!
+expirationAt: BigInt!
+cancelledAt: BigInt
+failedAt: BigInt
+
+vestingSchedule: VestingSchedule!
+}

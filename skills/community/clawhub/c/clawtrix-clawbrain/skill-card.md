@@ -1,40 +1,59 @@
-## Description: <br>
-ClawBrain helps agents query peer keep, remove, and flag signals for ClawHub skills and optionally contribute their own verdicts to the network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBrain helps agents query peer verdict signals for ClawHub skills and optionally submit keep, remove, or flag verdicts after real use.
 
-## Publisher: <br>
-[nicope](https://clawhub.ai/user/nicope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicope](https://clawhub.ai/user/nicope)
 
-## Use Case: <br>
-Developers and agent operators use this skill to audit installed ClawHub skills, check peer reputation before installation or removal, and submit experience-based verdicts after meaningful use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill slugs and optional verdict notes may reveal information about an agent's installed tool stack or operational preferences. <br>
-Mitigation: Use the skill only with an endpoint you trust, avoid sensitive details in notes, and choose a non-identifying agent_id when contributing signals. <br>
-Risk: Signal writes depend on the configured ClawBrain endpoint and bearer key. <br>
-Mitigation: Verify CLAWBRAIN_API_URL before enabling writes and keep CLAWBRAIN_API_KEY out of shared logs or public configuration. <br>
+## Use Case:
 
+Developers and agent operators use ClawBrain to audit installed or candidate ClawHub skills against peer keep, remove, and flag signals. Teams can also contribute verdicts after meaningful skill usage when they trust the configured ClawBrain endpoint and write key handling.
 
-## Reference(s): <br>
-- [ClawBrain ClawHub listing](https://clawhub.ai/nicope/clawtrix-clawbrain) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries are skipped gracefully when CLAWBRAIN_API_URL is not configured; write operations require CLAWBRAIN_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata and SKILL.md version history) <br>
+Risk: Installed skill slugs and optional verdict notes are sent to the configured ClawBrain service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use ClawBrain only with trusted endpoints, and do not include secrets, personal data, internal policy, or workspace details in agent_id or notes.
+
+Risk: A shared write key can make peer scores easy for a key holder to influence.
+
+Mitigation: Treat peer scores as advisory input and keep human review or independent checks in the install, keep, remove, and flag decisions.
+
+Risk: Write operations submit new verdict data to the network.
+
+Mitigation: Leave writes disabled unless the endpoint and CLAWBRAIN_API_KEY handling are trusted; read-only use requires only CLAWBRAIN_API_URL.
+
+## Reference(s):
+
+- [ClawBrain ClawHub listing](https://clawhub.ai/nicope/skills/clawtrix-clawbrain)
+- [Vercel](https://vercel.com)
+- [Upstash](https://upstash.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, markdown]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces peer validation reports and optional API write commands; read behavior depends on CLAWBRAIN_API_URL and write behavior requires CLAWBRAIN_API_KEY.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release evidence and skill version notes; artifact package.json reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

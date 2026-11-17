@@ -1,46 +1,62 @@
-## Description: <br>
-Operate OpenClaw multi-agent governance with openclaw-gov: read-only audit, material change documentation, staged discovery, registry and runbook validation, and governance PR shipping. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate OpenClaw multi-agent governance with openclaw-gov for read-only audits, material change documentation, staged discovery, registry and runbook validation, and governance PR shipping.
 
-## Publisher: <br>
-[pawlsclick](https://clawhub.ai/user/pawlsclick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pawlsclick](https://clawhub.ai/user/pawlsclick)
 
-## Use Case: <br>
-Developers and operators use this skill to maintain OpenClaw governance roots, run read-only audits, document material workflow changes, validate registry and runbook consistency, and prepare governance pull requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents toward file writes, branch creation, commits, pushes, PR creation, and AGENTS.md governance injection. <br>
-Mitigation: Use the read-only audit workflow by default; allow mutating workflows only when the operator explicitly intends governance state changes. <br>
-Risk: Auto-installing the pinned CLI source may introduce supply-chain risk if the source is not reviewed. <br>
-Mitigation: Verify the pinned openclaw-governance GitHub source before allowing auto-install. <br>
+## Use Case:
 
+Developers, operators, and governance maintainers use this skill to audit and maintain OpenClaw governance roots, document material system changes, validate registry and runbook drift, and prepare governance pull requests.
 
-## Reference(s): <br>
-- [OpenClaw Governance repository](https://github.com/pawlsclick/openclaw-governance) <br>
-- [Pinned openclaw-governance source](https://github.com/pawlsclick/openclaw-governance@v0.5.5) <br>
-- [Migrating Existing Governance](https://github.com/pawlsclick/openclaw-governance/blob/main/docs/migrating-existing-governance.md) <br>
-- [Brownfield discover flow](references/brownfield-flow.md) <br>
-- [openclaw-gov command reference](references/commands.md) <br>
-- [Safe discovery JSON slices](references/discovery-json-slices.md) <br>
-- [What counts as material?](references/material-change-threshold.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents through read-only audit, material change, and governance PR workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill relies on executable third-party code installed from a mutable Git tag.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream openclaw-governance source before installing and prefer a full commit SHA or hashed registry release where possible.
+
+Risk: Governance workflows can enable high-impact changes to registry, runbook, CI, and PR processes.
+
+Mitigation: Run with only the repository and GitHub permissions needed for governance work, and keep review gates before mutating or shipping changes.
+
+Risk: Discovery JSON can expose repository remote URLs or unusual embedded credentials.
+
+Mitigation: Share only targeted discovery slices and review outputs for private infrastructure or credential-like values before disclosure.
+
+## Reference(s):
+
+- [OpenClaw Governance repository](https://github.com/pawlsclick/openclaw-governance)
+- [Migrating existing governance](https://github.com/pawlsclick/openclaw-governance/blob/main/docs/migrating-existing-governance.md)
+- [Brownfield discover flow](references/brownfield-flow.md)
+- [openclaw-gov command reference](references/commands.md)
+- [Safe discovery JSON slices](references/discovery-json-slices.md)
+- [Material change threshold](references/material-change-threshold.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include governance change plans, validation commands, and PR handoff text.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

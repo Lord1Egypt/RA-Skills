@@ -1,42 +1,60 @@
-## Description: <br>
-Research and discover trending content sources for any topic using web search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Researches recent articles, news, blog posts, and other content sources for a topic using Brave Search and Tavily.
 
-## Publisher: <br>
-[mcbaivn](https://clawhub.ai/user/mcbaivn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcbaivn](https://clawhub.ai/user/mcbaivn)
 
-## Use Case: <br>
-Content creators, marketers, and social media teams use this skill to gather recent articles, news, videos, and social sources before drafting posts or curated content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries are sent to Brave and Tavily, which can expose sensitive topics if users include confidential information. <br>
-Mitigation: Avoid confidential topics or secrets in search prompts and review query text before running searches. <br>
-Risk: The skill uses a Tavily API key from the OpenClaw environment. <br>
-Mitigation: Use a revocable Tavily key and keep shell/API execution limited to the documented Tavily search request. <br>
+## Use Case:
 
+External users and content creators use this skill to gather recent source material for LinkedIn, social media, case study, and content curation workflows before drafting posts.
 
-## Reference(s): <br>
-- [Source Filters Reference](references/source-filters.md) <br>
-- [Tavily](https://tavily.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcbaivn/content-research-mcbai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown research brief with numbered source lists and article metadata.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes source URL, date, summary, auto-detected tag, and search engine label for each result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The security evidence reports an unsafe shell-based Tavily workflow that reads a shared secret file and interpolates user input into PowerShell.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a structured API call that passes the research topic as data, validates or quotes user-controlled values, and avoids executable shell interpolation.
+
+Risk: Research queries are sent to Brave and Tavily, which can expose sensitive topics to external search providers.
+
+Mitigation: Use approved provider accounts and avoid sending confidential, regulated, or unreleased business topics unless that use is authorized.
+
+Risk: The documented Tavily workflow depends on a shared local secret file for TAVILY_API_KEY.
+
+Mitigation: Use a managed, least-privilege Tavily secret and avoid logging, displaying, or copying the API key into command history.
+
+## Reference(s):
+
+- [Source Filters Reference](references/source-filters.md)
+- [Tavily Search API Endpoint](https://api.tavily.com/search)
+- [Tavily](https://tavily.com)
+- [ClawHub Skill Page](https://clawhub.ai/mcbaivn/skills/content-research-mcbai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown research result lists with source URLs, summaries, dates, tags, and search-engine labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns numbered, deduplicated research results and may include follow-on article selections for content writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

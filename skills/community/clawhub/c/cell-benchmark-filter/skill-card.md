@@ -1,46 +1,61 @@
-## Description: <br>
-Benchmark filtering for Chinese creator, OPC, and one-person-business work. Use when Codex needs to judge whether a person, creator, or business is actually worth studying; separate business signal from vanity signal; decide what layer is worth copying; and recommend whether to stop at a shortlist or hand the target to $opc-case-research for deeper study. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent evaluate Chinese creator, OPC, and one-person-business benchmarks by separating business signal from surface appeal, identifying copyable layers, and deciding whether deeper case research is worthwhile.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-External users and developers use this skill to screen Chinese creator, OPC, and one-person-business benchmarks before investing in deeper case research. It helps identify the copyable layer, separate business signal from vanity signal, and choose a concrete next move. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed for quick benchmark filtering rather than full case research. <br>
-Mitigation: Use its output as an initial screen and escalate strong benchmarks to deeper case research when the decision requires more evidence. <br>
-Risk: The skill may answer in Chinese by default. <br>
-Mitigation: Set the desired response language explicitly when a non-Chinese output is required. <br>
-Risk: Benchmark judgments can be misleading if based on private or unsupported data. <br>
-Mitigation: Base decisions on public, reviewable signals and avoid relying on private data unless the user has permission to use it. <br>
+## Use Case:
 
+Creators, operators, and advisors use this skill to decide whether a creator, OPC, or one-person-business benchmark is worth studying, what layer is worth copying, and whether to move into deeper case research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cellinlab/cell-benchmark-filter) <br>
-- [Project homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/benchmark-filter) <br>
-- [五层筛选框架](references/filter-framework.md) <br>
-- [模仿颗粒度检查](references/copy-granularity.md) <br>
-- [对标筛选卡](assets/benchmark-card-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown benchmark-filter card, usually in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a one-line judgment, five-filter result, worth-learning layers, do-not-copy layers, first move, and escalation recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The Chinese-first default may produce output in the wrong language for users expecting another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for the desired response language when it is unclear, and override the default when the user requests another language.
+
+Risk: Broad activation wording may apply the workflow to unrelated general research tasks.
+
+Mitigation: Confirm the task is about evaluating a creator, OPC, one-person business, or content-led business benchmark before applying the filter.
+
+Risk: The skill can overstate benchmark value if public attention is mistaken for business strength.
+
+Mitigation: Require economic signal, model legibility, and copyable mechanism checks before recommending deeper research or imitation.
+
+## Reference(s):
+
+- [五层筛选框架](references/filter-framework.md)
+- [模仿颗粒度检查](references/copy-granularity.md)
+- [对标筛选卡](assets/benchmark-card-template.md)
+- [ClawHub skill page](https://clawhub.ai/cellinlab/skills/cell-benchmark-filter)
+- [Server metadata homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/benchmark-filter)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown benchmark-filter card in Chinese]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a one-line judgment, five-filter results, worth-learning layers, do-not-copy layers, a first move, and an escalation recommendation.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

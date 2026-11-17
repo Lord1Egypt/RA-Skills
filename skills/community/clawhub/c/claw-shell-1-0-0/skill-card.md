@@ -1,42 +1,57 @@
-## Description: <br>
-Runs shell commands inside a dedicated tmux session named "claw", captures pane output, and blocks some potentially destructive commands until the user gives explicit approval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs shell commands inside a dedicated tmux session named claw, captures pane output, and asks for confirmation before potentially destructive commands.
 
-## Publisher: <br>
-[zlshiny](https://clawhub.ai/user/zlshiny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zlshiny](https://clawhub.ai/user/zlshiny)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run shell commands through an agent while keeping execution in a named tmux session and returning captured command output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent local shell access, so allowed commands can affect local files, data, and the surrounding workspace. <br>
-Mitigation: Install and run it only in a sandbox or trusted workspace with data and permissions appropriate for agent-driven command execution. <br>
-Risk: The documented and implemented denylist is not a complete safety boundary for destructive or sensitive shell behavior. <br>
-Mitigation: Require human review for risky command patterns and do not rely on the denylist as the sole approval or policy control. <br>
-Risk: The tmux session boundary keeps execution in a named session but does not isolate the underlying host environment. <br>
-Mitigation: Use operating-system, container, or workspace-level isolation when command execution must be constrained. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zlshiny/claw-shell-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/zlshiny) <br>
+## Use Case:
 
+Developers and operators use this skill to run shell commands through a dedicated tmux session and return captured terminal output to the agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [JSON object containing the submitted command, captured tmux pane output, or an error message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands execute in the local tmux session named "claw"; blocked dangerous-command matches return an approval message instead of executing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides broad shell access through a persistent tmux session.
+
+Mitigation: Install only in a tightly sandboxed environment with a runtime account that cannot access sensitive files, credentials, or important system state.
+
+Risk: Dangerous-command detection is a weak safety boundary.
+
+Mitigation: Require explicit human approval for destructive or privileged commands and do not rely on the warning as the sole control.
+
+Risk: Captured tmux output and long-lived sessions can expose or retain sensitive terminal state.
+
+Mitigation: Avoid use in environments with long-lived sensitive sessions and clear or isolate the tmux session after use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlshiny/skills/claw-shell-1-0-0)
+- [ClawHub publisher profile](https://clawhub.ai/user/zlshiny)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [JSON object containing the command and captured terminal output, or an error object for blocked dangerous commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a tmux session named claw; dangerous-command checks are advisory and require explicit user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,49 @@
-## Description: <br>
-Helps content creators optimize social media content for platforms such as WeChat, Xiaohongshu, Zhihu, Bilibili, Douyin/Kuaishou, and Weibo with platform-specific recommendations to improve reach and engagement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+为内容创作者优化社交媒体内容。针对不同平台（微信、小红书、知乎、B站、抖音）提供定制化的优化建议，提高内容的曝光率和互动率。
 
-## Publisher: <br>
-[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[limingdev-tech-2024](https://clawhub.ai/user/limingdev-tech-2024)
 
-## Use Case: <br>
-External content creators and marketing teams use this skill to review draft posts or video concepts, score their fit for specific Chinese social platforms, and get prioritized optimization actions before publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides social media algorithm and engagement advice that may be inaccurate, become outdated, or encourage over-optimization. <br>
-Mitigation: Treat recommendations as marketing guidance, review them against current platform rules, and keep optimization tactics honest, non-spammy, and compliant before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/limingdev-tech-2024/social-media-optimizer) <br>
+## Use Case:
 
+Content creators, marketers, and social media operators use this skill to adapt posts for WeChat, Xiaohongshu, Zhihu, Bilibili, Douyin, Kuaishou, and Weibo. It provides platform-specific optimization advice, scoring, action plans, and expected engagement effects.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown optimization report with scoring, findings, recommendations, action plan, and expected effects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no code, credentials, persistence, or account access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may include sensitive unpublished business plans or campaign strategy when requesting optimization.
+
+Mitigation: Provide only the content needed for review and remove confidential plans, account details, and unreleased business-sensitive information when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/limingdev-tech-2024/skills/social-media-optimizer)
+- [Publisher profile](https://clawhub.ai/user/limingdev-tech-2024)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with scores, findings, recommendations, action plan, and expected effects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language social media optimization guidance; no automated posting or account access indicated.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

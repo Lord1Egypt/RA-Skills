@@ -1,41 +1,57 @@
-## Description: <br>
-Build beautiful interactive Node.js command-line apps with @clack/prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build interactive Node.js command-line apps with @clack/prompts, covering prompt flows, spinners, progress bars, task runners, and styled logging.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to design Node.js command-line apps, setup wizards, and terminal prompt flows with @clack/prompts components, examples, and API guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CLI code may request passwords, tokens, filesystem paths, or display subprocess logs. <br>
-Mitigation: Review generated code before use and ensure sensitive values and logs are not printed, stored, or transmitted unless the user explicitly intends that behavior. <br>
-Risk: The skill provides reference guidance for @clack/prompts rather than executing or validating generated applications. <br>
-Mitigation: Review the @clack/prompts package behavior and test generated CLI flows, especially cancellation handling and validation, before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to design Node.js CLI prompt flows with @clack/prompts and apply API patterns for inputs, selections, cancellation handling, spinners, progress bars, tasks, and logs.
 
-## Reference(s): <br>
-- [@clack/prompts API Reference](references/api.md) <br>
-- [ClawHub release page](https://clawhub.ai/openlark/clack-prompts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated Node.js CLI prompt flows, validation logic, cancellation handling, task runners, logging patterns, and package installation commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Prompt flows may collect sensitive input such as passwords or API keys.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use masked inputs for secrets, avoid logging sensitive values, and review generated handling for storage or transmission before use.
+
+Risk: Generated CLI app logic may run package installs, subprocesses, or file changes.
+
+Mitigation: Review commands, task runner steps, subprocess arguments, and filesystem paths before execution.
+
+Risk: Prompt cancellation can leave partially completed setup work.
+
+Mitigation: Use isCancel and onCancel guards with explicit cleanup before exiting a prompt flow.
+
+## Reference(s):
+
+- [@clack/prompts API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for building interactive Node.js command-line apps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

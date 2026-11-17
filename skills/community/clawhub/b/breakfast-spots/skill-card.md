@@ -1,37 +1,54 @@
-## Description: <br>
-Find nearby breakfast spots when a user asks for breakfast near their current location or another specified place. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby breakfast spots when a user asks for breakfast near them.
 
-## Publisher: <br>
-[clawkk](https://clawhub.ai/user/clawkk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawkk](https://clawhub.ai/user/clawkk)
 
-## Use Case: <br>
-Users invoke this skill to find nearby breakfast, brunch, coffee, or bakery options using a permitted location, radius, limit, and optional filters such as open-now, rating, price, or keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Finding nearby breakfast spots can require sharing location data, which may be sensitive if precise coordinates are used or retained too long. <br>
-Mitigation: Ask for location permission, prefer approximate or obfuscated coordinates where possible, and keep any location cache short-lived. <br>
+## Use Case:
 
+External users and agents use this skill to request user-authorized nearby breakfast, brunch, coffee, and bakery spot recommendations from a supplied location or city.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, configuration] <br>
-**Output Format:** [Structured POI recommendation guidance with standardized fields and error codes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include location, radius, result limit, optional filters, standardized breakfast-spots category, and provider error handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Precise location or city data can expose sensitive personal context if collected without consent or retained longer than necessary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request user authorization before querying, avoid retaining precise coordinates, and obfuscate coordinates or use short-term caching only when needed.
+
+Risk: Provider outages or rate limits can prevent complete nearby-place results.
+
+Mitigation: Surface provider and rate-limit errors clearly instead of presenting unavailable data as current or complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clawkk/skills/breakfast-spots)
+- [ClawHub publisher profile](https://clawhub.ai/user/clawkk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Structured POI list with category breakfast-spots and optional explanatory text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-authorized location or city input; supports radius, limit, and optional filters.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

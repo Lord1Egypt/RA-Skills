@@ -1,42 +1,55 @@
-## Description: <br>
-Legal Risk Shield provides Chinese-language enterprise legal risk and compliance guidance spanning company formation, governance, financing, contracts, market exit, and entrepreneur personal risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language legal-risk reference for company formation, governance, financing, contracts, market exit, entrepreneur personal risk, and criminal compliance topics.
 
-## Publisher: <br>
-[yjkj999999](https://clawhub.ai/user/yjkj999999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjkj999999](https://clawhub.ai/user/yjkj999999)
 
-## Use Case: <br>
-Business operators, founders, compliance teams, and advisors use this skill to structure legal-risk reviews and compliance checklists for Chinese enterprise lifecycle, governance, financing, contract, exit, and entrepreneur personal-risk scenarios. Outputs should support issue spotting and preparation, not replace qualified legal advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal and compliance guidance can be jurisdiction-specific, time-sensitive, or incomplete for a particular matter. <br>
-Mitigation: Verify current law and have qualified counsel review outputs before relying on them for business, legal, or compliance decisions. <br>
-Risk: The security evidence advises use only in trusted ClawHub/Convex maintainer contexts and careful review of workflows that can affect real users, production data, or public state. <br>
-Mitigation: Install and operate the skill only in trusted maintainer environments, and review high-impact actions before execution. <br>
+## Use Case:
 
+Business operators, entrepreneurs, compliance staff, and advisors use this skill as a Chinese-language reference aid for identifying legal-risk topics, checklists, and compliance considerations across a company's lifecycle. It is not a substitute for legal advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjkj999999/legal-risk-shield) <br>
-- [Skill source](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance, checklists, tables, and structured legal-risk summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Legal and compliance outputs require jurisdiction-aware human review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Users may treat the legal-risk reference as legal advice or apply it outside the relevant jurisdiction or language context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present it as a reference aid and have users verify applicability with qualified counsel and current law.
+
+Risk: The artifact summarizes time-sensitive legal and compliance topics that may change after release.
+
+Mitigation: Review against current law and authoritative legal sources before relying on the guidance for business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjkj999999/skills/legal-risk-shield)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured checklist-style prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only reference guidance; no executable behavior or hidden system access was identified by the provided security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,50 @@
-## Description: <br>
-Create Word documents with properly formatted tables using the docx npm library, with table behavior that works consistently across Word and Google Docs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create Word documents with properly formatted tables using docx npm library. Tables work consistently across Word and Google Docs. Use when creating DOCX files with tables, especially itineraries, schedules, or data tables.
 
-## Publisher: <br>
-[happytreees](https://clawhub.ai/user/happytreees) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happytreees](https://clawhub.ai/user/happytreees)
 
-## Use Case: <br>
-Developers and agents use this skill when creating DOCX files with tables, especially itineraries, schedules, and data tables that need reliable rendering in Word and Google Docs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Running the sample JavaScript can install dependencies from an untrusted source or overwrite an existing document if the output filename is chosen carelessly. <br>
-Mitigation: Install dependencies from trusted package sources and choose the output filename deliberately before executing the sample code. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate DOCX files with tables that render consistently across Microsoft Word and Google Docs. It is especially useful for itineraries, schedules, and data tables that need fixed column widths, cell padding, and predictable shading.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/happytreees/docx-tables) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with JavaScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides DOCX table sizing rules, JavaScript examples, width references, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: evidence release and SKILL.md frontmatter) <br>
+Risk: Generated examples may write a local DOCX file and overwrite an existing document if the same filename is reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run examples in the intended directory and choose output filenames deliberately before writing files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/happytreees/skills/docx-tables)
+- [Publisher profile](https://clawhub.ai/user/happytreees)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance for DOCX table sizing, shading, cell padding, and troubleshooting.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

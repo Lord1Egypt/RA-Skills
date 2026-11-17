@@ -1,40 +1,52 @@
-## Description: <br>
-Check USDC balance across supported Base and Solana networks, including balance checks, available USDC, funds views, and wallet balance verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check USDC balance across supported Base and Solana networks when a user wants to view funds, verify wallet balance, or see how much USDC is available.
 
-## Publisher: <br>
-[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[agnicpay-prog](https://clawhub.ai/user/agnicpay-prog)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and external users use this skill to check USDC balances across Base and Solana networks through the Agnic CLI. It helps verify available funds before wallet or x402 payment workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill runs a mutable npm package while handling wallet credentials and financial balance data.
+
+Mitigation: Install only after reviewing the agnic npm package and its update process, prefer a version-pinned command, and run balance checks in a restricted environment.
+
+Risk: Authentication may rely on AGNIC_TOKEN or an explicit token argument.
+
+Mitigation: Use a narrow, revocable token and avoid exposing broader environment secrets to the command environment.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to check USDC wallet balances across Base and Solana networks through the Agnic CLI. It is useful when a user needs to confirm available funds, inspect balances by network, or verify wallet status before another wallet-related action. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, balances, and authentication status are private financial information. <br>
-Mitigation: Treat CLI output and tokens as sensitive, avoid pasting tokens into chat or shell history, and prefer environment variables for AGNIC_TOKEN. <br>
-Risk: The skill depends on the Agnic CLI/package and the wallet account it connects to. <br>
-Mitigation: Install and run it only when the Agnic CLI/package and connected wallet account are trusted. <br>
+**Output Format:** [Markdown with inline bash commands and optional JSON command output]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/agnicpay-prog/agnic-check-balance) <br>
+**Other Properties Related to Output:** [Requires Agnic CLI authentication through browser login, AGNIC_TOKEN, or an explicit token argument.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May expose wallet addresses, balances, network names, and authentication status from Agnic CLI output.] <br>
+2.0.2 (source: server evidence release version)
 
-## Skill Version(s): <br>
-2.0.2 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

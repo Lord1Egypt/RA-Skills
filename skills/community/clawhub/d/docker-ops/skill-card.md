@@ -1,42 +1,58 @@
-## Description: <br>
-Manages Docker container status reports, log analysis, and controlled restarts through docker-socket-proxy with whitelist-based safeguards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Docker containers securely via docker-socket-proxy by checking status, logs, resource usage, and restarting only explicitly whitelisted containers.
 
-## Publisher: <br>
-[elston](https://clawhub.ai/user/elston) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[elston](https://clawhub.ai/user/elston)
 
-## Use Case: <br>
-Developers and operators use this skill to check container health, inspect recent logs, summarize resource usage, and restart explicitly whitelisted Docker containers through docker-socket-proxy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Docker access can affect running services if container scope or restart permission is too broad. <br>
-Mitigation: Keep the whitelist minimal, configure docker-socket-proxy with least privilege, and set can_restart only for services where disruption is acceptable. <br>
-Risk: Container logs may include secrets or credentials. <br>
-Mitigation: Sanitize log excerpts before displaying or sharing them, and review output for tokens, passwords, connection strings, and authorization headers. <br>
-Risk: Repeated restarts can interrupt service availability. <br>
-Mitigation: Require an explicit restart request, enforce the per-container cooldown, emit an audit line, and verify container status after restart. <br>
+## Use Case:
 
+Developers and operations engineers use this skill to inspect Docker container status, summarize recent logs, review resource usage, and perform controlled restarts through docker-socket-proxy.
 
-## Reference(s): <br>
-- [Docker Commands Reference](references/docker-commands.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and structured status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Docker command execution is constrained to whitelisted container names, capped log windows, and timeout-wrapped operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.4.0 (source: server evidence and changelog, released 2026-03-20) <br>
+Risk: The included report script can print unsanitized container log excerpts that may expose secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for agents authorized to inspect Docker operational data; avoid or fix scripts/container-report.sh until log excerpts are redacted before display.
+
+Risk: Docker restart authority can disrupt running services if the whitelist is too broad.
+
+Mitigation: Review the whitelist before deployment and keep can_restart=false unless restart authority is intended for that container.
+
+Risk: Large log retrieval can increase load or expose more operational data than needed.
+
+Mitigation: Enforce the documented log limits and 7-day maximum period before using the reporting workflow.
+
+## Reference(s):
+
+- [Docker Commands Reference](references/docker-commands.md)
+- [ClawHub Skill Page](https://clawhub.ai/elston/skills/docker-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with inline shell commands and operational summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include status summaries, log analysis, restart audit messages, and remediation guidance.]
+
+## Skill Version(s):
+
+0.4.0 (source: server release evidence and changelog, released 2026-03-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

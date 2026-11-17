@@ -1,49 +1,63 @@
-## Description: <br>
-Control PowerPoint app sessions, slides, notes, export, and presentation state with osascript workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control PowerPoint app sessions, slides, notes, export, and presentation state with osascript workflows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Employees and developers on macOS use this skill to control live Microsoft PowerPoint sessions through osascript when presentation state, notes, slideshow mode, or PowerPoint-rendered export must be preserved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automation may affect the wrong live presentation or slide if the active PowerPoint state is ambiguous. <br>
-Mitigation: Confirm the exact deck, slide, view, and slideshow state before edits, then read the final state back after each change. <br>
-Risk: Slide deletion, bulk reordering, note replacement, overwrite exports, or close-without-save can remove or disrupt user work. <br>
-Mitigation: Require explicit confirmation for destructive actions and prefer copies, Save As paths, or one-slide tests before broad changes. <br>
-Risk: Local memory files may accidentally retain sensitive presentation content if used carelessly. <br>
-Mitigation: Keep ~/powerpoint notes limited to non-sensitive environment facts, paths, preferences, and reusable troubleshooting notes. <br>
-Risk: Attaching to an existing user-owned PowerPoint session can interrupt unrelated decks or presenter flow. <br>
-Mitigation: Do not close unrelated decks or quit PowerPoint after attaching unless the user explicitly approves that action. <br>
+## Use Case:
 
+Developers and agents use this skill to control a live Microsoft PowerPoint session on macOS when the task depends on the current open deck, slide state, notes, slideshow state, or PowerPoint's own export behavior.
 
-## Reference(s): <br>
-- [ClawHub PowerPoint skill page](https://clawhub.ai/ivangdavila/powerpoint) <br>
-- [PowerPoint skill homepage](https://clawic.com/skills/powerpoint) <br>
-- [Execution Matrix](execution-matrix.md) <br>
-- [Live Control Patterns](live-control-patterns.md) <br>
-- [Safety Checklist](safety-checklist.md) <br>
-- [Troubleshooting](troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
-**Output Format:** [Markdown with bash and AppleScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local ~/powerpoint notes and PowerPoint exports when the user requests those actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill enables local automation of Microsoft PowerPoint through osascript, including actions that can alter open presentations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where local PowerPoint automation is intended, identify the exact presentation before changes, and require explicit confirmation for destructive actions.
+
+Risk: Persistent workspace routing or memory notes could affect future agent behavior beyond the immediate task.
+
+Mitigation: Approve any persistent routing text before adding it and keep ~/powerpoint/ memory limited to non-sensitive environment facts, safety defaults, and reusable recovery notes.
+
+Risk: The PDF export example can be unsafe with untrusted filenames or paths.
+
+Mitigation: Use trusted absolute export paths, avoid overwrites without confirmation, and harden path handling before using the export pattern with untrusted input.
+
+## Reference(s):
+
+- [ClawHub PowerPoint Skill](https://clawhub.ai/ivangdavila/skills/powerpoint)
+- [PowerPoint Skill Homepage](https://clawic.com/skills/powerpoint)
+- [Setup Guide](artifact/setup.md)
+- [Execution Matrix](artifact/execution-matrix.md)
+- [Live Control Patterns](artifact/live-control-patterns.md)
+- [Safety Checklist](artifact/safety-checklist.md)
+- [Troubleshooting](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and AppleScript command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Microsoft PowerPoint, and osascript; may create or use local memory under ~/powerpoint/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

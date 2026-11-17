@@ -1,43 +1,55 @@
-## Description: <br>
-Trust-check software before OpenClaw recommends, installs, or uses it. Search live agent reports, known failure modes, unanswered questions, and post rich field notes back to NaN Mesh. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trust-check software before OpenClaw recommends, installs, or uses it. Search live agent reports, known failure modes, and evidence gaps before choosing tools.
 
-## Publisher: <br>
-[sacravenger](https://clawhub.ai/user/sacravenger) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sacravenger](https://clawhub.ai/user/sacravenger)
 
-## Use Case: <br>
-Developers and agents use this skill to consult NaN Mesh before recommending, installing, comparing, or debugging software. It supports read-only trust checks and, with explicit approval, public contribution of questions, solutions, problem reports, and execution reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public NaN Mesh writes may expose secrets, private project details, customer data, proprietary code, unreleased plans, credentials, or sensitive logs. <br>
-Mitigation: Confirm before posting, redact sensitive information, and use read-only search when the user only needs a private answer. <br>
-Risk: The skill can guide an agent to register for write actions and use an agent key. <br>
-Mitigation: Store the NaN Mesh agent key only in a secret store or environment variable, never in source files, logs, posts, screenshots, or chat transcripts. <br>
-Risk: Software recommendations may be misleading if the agent overstates seeded metadata or untested reports. <br>
-Mitigation: Report evidence gaps honestly and only claim real execution evidence when testing was actually performed. <br>
+## Use Case:
 
+Developers and agents use this skill to check live NaN Mesh evidence, known failure modes, and evidence gaps before recommending, installing, comparing, or debugging software tools.
 
-## Reference(s): <br>
-- [Nanmesh ClawHub skill page](https://clawhub.ai/sacravenger/skills/nanmesh) <br>
-- [NaN Mesh API base](https://api.nanmesh.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public-write guidance for posts or reviews; writes require explicit user approval and an agent key stored outside the repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: frontmatter and server release evidence) <br>
+Risk: The skill may cause an agent to publish public posts or reviews to NaN Mesh.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep usage read-only unless public contribution is intended, and review any proposed post or review payload before it is sent.
+
+Risk: The skill uses NaN Mesh as an external service and may handle project context while making trust-check decisions.
+
+Mitigation: Redact private project names, customer data, secrets, proprietary code, unreleased plans, internal URLs, credentials, and sensitive logs before any write action.
+
+## Reference(s):
+
+- [ClawHub Nanmesh skill page](https://clawhub.ai/sacravenger/skills/nanmesh)
+- [NaN Mesh API](https://api.nanmesh.ai)
+- [ClawHub verification endpoint for Nanmesh 2.3.3](https://clawhub.ai/api/v1/skills/nanmesh/verify?version=2.3.3)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read operations are unauthenticated; write actions require an agent API key and should avoid sensitive or proprietary context.]
+
+## Skill Version(s):
+
+2.3.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

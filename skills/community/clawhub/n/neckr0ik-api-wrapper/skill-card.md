@@ -1,40 +1,57 @@
-## Description: <br>
-Convert any REST API into an OpenClaw skill automatically. Generates SKILL.md, scripts, and claw.json from OpenAPI spec or URL. Use when you want to quickly create a skill for any API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts REST APIs into OpenClaw skills by generating SKILL.md documentation, claw.json metadata, and Python API client scripts from OpenAPI specifications.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate OpenClaw skill packages from OpenAPI specifications or discoverable REST API URLs. It helps create initial SKILL.md documentation, package metadata, API client code, and endpoint references for review and integration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/neckr0ik-api-wrapper) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Generator script](artifact/scripts/generator.py) <br>
-- [Package metadata](artifact/claw.json) <br>
+Developers and API providers use this skill to turn OpenAPI-described REST APIs into reusable OpenClaw skills with generated documentation, package metadata, and API client code.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Generated skill directory with Markdown documentation, JSON configuration, and Python code; CLI output is plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated code, target base URLs, and credentials should be reviewed before running; use trusted OpenAPI specifications, scoped credentials, and a dedicated output directory.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, claw.json, server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Untrusted OpenAPI specifications can influence generated files and code.
+
+Mitigation: Use trusted local specs or known public HTTPS hosts, then review generated SKILL.md and scripts/api.py before installing or running the generated skill.
+
+Risk: The generator writes files to an output directory and may create unintended artifacts if inputs are not controlled.
+
+Mitigation: Provide a safe skill name and a controlled output directory when generating a wrapper.
+
+Risk: Generated API clients may handle credentials or call live network APIs.
+
+Mitigation: Use sandbox or read-only API credentials rather than production tokens.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neckr0ik/skills/neckr0ik-api-wrapper)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown documentation, JSON configuration, and Python code files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated skills and scripts should be reviewed and scanned before installation or execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

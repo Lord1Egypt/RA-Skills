@@ -1,44 +1,63 @@
-## Description: <br>
-A lightweight knowledge base and task-management skill that uses mixed JSON and Markdown storage for user profiling, task rhythm management, knowledge indexing, and daily knowledge-base evolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight Knowledge Base provides a Chinese-language local knowledge base and task-management system using hybrid JSON and Markdown storage for user profiles, task rhythms, knowledge indexing, and daily evolution.
 
-## Publisher: <br>
-[WilliamTie](https://clawhub.ai/user/WilliamTie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[williamtie](https://clawhub.ai/user/williamtie)
 
-## Use Case: <br>
-External users and developers use this skill to maintain a small to midsize local memory system with structured user-profile data, recurring task schedules, and indexed knowledge notes. It supports querying profile and task data, initializing a local workspace structure, and running a daily maintenance script. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes persistent local memory and user-profile data. <br>
-Mitigation: Review, edit, or reset data/user_profile.json before use, and avoid storing API keys or sensitive personal data in indexed memory files. <br>
-Risk: The task rhythm configuration includes enabled recurring daily, weekly, and automated maintenance entries. <br>
-Mitigation: Disable or adjust enabled entries in data/task_rhythm.json before use if recurring updates or deep-dialogue tasks are not desired. <br>
-Risk: The maintenance script can update local knowledge-index and profile timestamps and create memory node directories in the configured workspace. <br>
-Mitigation: Run the initialization and daily maintenance scripts only in an intended local workspace after reviewing their target paths. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/WilliamTie/lightweight-kb) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Communication Guide](artifact/references/communication.md) <br>
-- [Task Execution Guide](artifact/references/task_guidelines.md) <br>
+## Use Case:
 
+External users and agents use this skill to maintain a local personal knowledge base, query user-profile and task-rhythm data, and run recurring review or daily-evolution workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON configuration, and shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local JSON profile, task rhythm, and knowledge-index files; query output may be plain text or formatted JSON when jq is available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill persists user profile, preferences, task rhythm, and knowledge-index files locally.
+
+Mitigation: Install only where local profile persistence is expected, review stored JSON files before sharing a workspace, and delete or redact sensitive profile fields when they are no longer needed.
+
+Risk: The documented source <(jq ...) shell template can execute values derived from modified JSON as shell code.
+
+Mitigation: Do not use that template with untrusted or user-editable JSON; inspect task data first and prefer explicit jq reads into ordinary variables.
+
+Risk: Query commands without keywords can display the full profile or task schedule on screen.
+
+Mitigation: Use specific query terms when possible and avoid running full-profile or full-task queries in shared logs, demos, or screen-sharing sessions.
+
+Risk: Automated and deep-dialogue tasks can collect or refresh profile information over time.
+
+Mitigation: Review the enabled tasks before use and disable scheduled profile-collection tasks unless the user has explicitly opted in.
+
+## Reference(s):
+
+- [Communication Guide](artifact/references/communication.md)
+- [Task Execution Guide](artifact/references/task_guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/williamtie/skills/lightweight-kb)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/williamtie)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell-command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local file outputs may include profile, task-rhythm, knowledge-index, memory-node, report, and temporary-cache files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

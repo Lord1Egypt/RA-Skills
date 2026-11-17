@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Netwatch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools: covers intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics for quick Netwatch lookup.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and operations engineers use this skill to retrieve concise Netwatch reference guidance for setup, common patterns, debugging, performance, security, migration, and quick-reference workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The available scanner context did not include a full artifact-level security review. <br>
-Mitigation: Review the skill files and install prompts before granting credentials, filesystem access, or long-running permissions. <br>
-Risk: Reference guidance may be incomplete or stale for a specific Netwatch deployment. <br>
-Mitigation: Review the emitted guidance against local operational requirements before applying it in production workflows. <br>
+## Use Case:
 
+Developers and operations engineers use Netwatch as a quick local reference for Netwatch concepts, common workflows, troubleshooting, performance, security, and migration guidance.
 
-## Reference(s): <br>
-- [Netwatch on ClawHub](https://clawhub.ai/bytesagain3/netwatch) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference topics; no external API calls, credentials, or network access described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: A documentation/version mismatch may cause users to see an unexpected command version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm command names and the displayed version during packaging or before deployment.
+
+Risk: Static operational guidance can become stale or too generic for a specific environment.
+
+Mitigation: Review the generated reference guidance against current operational requirements before applying it.
+
+## Reference(s):
+
+- [ClawHub Netwatch listing](https://clawhub.ai/bytesagain3/skills/netwatch)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; no API keys, credentials, or network access required]
+
+## Skill Version(s):
+
+2.0.2 (source: server release and SKILL.md frontmatter; script variable reports 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

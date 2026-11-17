@@ -1,40 +1,52 @@
-## Description: <br>
-A local command-line toolkit for planning machine learning study paths, drafting educational content, scheduling learning sessions, and searching or exporting saved roadmap entries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A roadmap connecting many of the most important concepts in machine learning, how to learn them and machine learning roadmap, python, data, data-science.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ckchzh](https://clawhub.ai/user/ckchzh)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers, learners, and technical writers use this skill to plan machine learning study roadmaps, draft educational content, schedule learning sessions, and review prior notes from the command line.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Saved ML notes, drafts, schedules, and exports may contain sensitive information because the tool stores entries as plain-text local files.
+
+Mitigation: Avoid entering secrets or confidential material, choose an appropriate ML_ROADMAP_DIR for local storage, and delete ~/.local/share/ml-roadmap/ when saved history should be removed.
+
+Risk: CSV exports may carry spreadsheet-handling risk when opened in office software.
+
+Mitigation: Inspect exported CSV content before opening it in spreadsheet tools and treat exported entries as potentially sensitive.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Learners, educators, and technical writers use this skill to plan ML learning paths, draft and refine ML educational content, schedule study sessions, and review prior roadmap activity. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The CLI stores user-entered roadmap notes and content drafts as plaintext on disk. <br>
-Mitigation: Do not enter passwords, API keys, private personal data, or confidential drafts unless they are intended to remain in local plaintext storage. <br>
-Risk: The install or invocation path for the ml-roadmap command is not clearly documented by the artifact. <br>
-Mitigation: Verify the installed command path and script wiring before relying on the CLI in a shared or production environment. <br>
+**Output Format:** [Command-line text output with optional JSON, CSV, or TXT exports]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/ml-roadmap) <br>
+**Other Properties Related to Output:** [Stores plain-text logs under ~/.local/share/ml-roadmap/ by default; ML_ROADMAP_DIR can override the storage location.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line output with optional JSON, CSV, or TXT exports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Entries are stored as plaintext local log files in the skill data directory.] <br>
+2.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

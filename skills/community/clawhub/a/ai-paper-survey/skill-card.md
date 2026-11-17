@@ -1,43 +1,53 @@
-## Description: <br>
-Conducts structured AI paper surveys using alphaXiv MCP tools by reading research interests, searching recent papers, classifying innovation tiers, running impact analysis, and producing a Markdown report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conducts structured AI paper surveys using alphaXiv MCP tools, user research interests, recent-paper search, innovation-tier classification, impact analysis, and Markdown report generation.
 
-## Publisher: <br>
-[haataa](https://clawhub.ai/user/haataa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haataa](https://clawhub.ai/user/haataa)
 
-## Use Case: <br>
-Developers, researchers, and technical reviewers use this skill to survey recent AI papers, run literature-review style searches, assess paper impact, and synthesize ranked findings for a research topic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local research keyword files that match configured filename patterns. <br>
-Mitigation: Run it only in a workspace where those research-topic files are intended for use. <br>
-Risk: The workflow depends on a separate paper-impact-analyzer for impact assessment. <br>
-Mitigation: Review and trust the installed paper-impact-analyzer before using this skill. <br>
-Risk: The workflow writes a generated Markdown report to the working directory. <br>
-Mitigation: Confirm the working directory and expected report destination before running the survey. <br>
+## Use Case:
 
+Developers, researchers, and research-focused agent users use this skill to survey recent AI papers, screen candidate papers by relevance and innovation tier, assess top candidates, and produce a structured literature-review report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haataa/ai-paper-survey) <br>
-- [Publisher profile](https://clawhub.ai/user/haataa) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown report with ranked paper recommendations, tiered tables, trend observations, and optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves a topic/date-stamped Markdown report in the working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill may read matching research-keyword files from the current working directory and create a report file there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in workspaces where those files are intended for the assistant, and check the generated report filename when overwrite behavior matters.
+
+Risk: Paper screening, tier classification, and impact summaries can be incomplete or misleading if search results, abstracts, full-text retrieval, or impact analysis are incomplete.
+
+Mitigation: Review the selected papers, source links, and final recommendations before using the report for research or business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haataa/skills/ai-paper-survey)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with paper classifications, summaries, impact notes, recommendations, and trend observations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a topic- and date-named Markdown report in the current working directory.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

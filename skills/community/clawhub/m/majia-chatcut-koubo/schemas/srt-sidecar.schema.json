@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/srt-sidecar.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "bridgeId",
+    "projectId",
+    "timelineId",
+    "timelineRevision",
+    "transcriptId",
+    "transcriptRevision",
+    "captionPlanHash",
+    "rate",
+    "cues"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "bridgeId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "projectId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "timelineRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/revision"
+    },
+    "transcriptId": {
+      "$ref": "creator-os-common.schema.json#/$defs/identifier"
+    },
+    "transcriptRevision": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "captionPlanHash": {
+      "$ref": "creator-os-common.schema.json#/$defs/sha256"
+    },
+    "rate": {
+      "$ref": "creator-os-common.schema.json#/$defs/rate"
+    },
+    "cues": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cueId",
+          "pageId",
+          "ordinal",
+          "range",
+          "emitted",
+          "quantization",
+          "sourceWordIds",
+          "sourceText",
+          "displayText",
+          "evidenceRefs"
+        ],
+        "properties": {
+          "cueId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "pageId": {
+            "$ref": "creator-os-common.schema.json#/$defs/identifier"
+          },
+          "ordinal": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "range": {
+            "$ref": "creator-os-common.schema.json#/$defs/timeRange"
+          },
+          "emitted": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "startMs",
+              "endMs"
+            ],
+            "properties": {
+              "startMs": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "endMs": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "quantization": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "startResidual",
+              "endResidual",
+              "denominator"
+            ],
+            "properties": {
+              "startResidual": {
+                "type": "integer"
+              },
+              "endResidual": {
+                "type": "integer"
+              },
+              "denominator": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "sourceWordIds": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          },
+          "sourceText": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\r\\n]+$"
+          },
+          "displayText": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^[^\\r\\n]+$"
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "creator-os-common.schema.json#/$defs/identifier"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Humanize Bahasa Indonesia ecommerce copy to sound more natural, local, and conversion-ready without obvious AI tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Humanize Bahasa Indonesia ecommerce copy so it sounds more natural, local, and conversion-ready without an obvious AI tone.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External sellers, ecommerce operators, and marketers use this skill to rewrite Bahasa Indonesia product pages, ad copy, seller replies, captions, and live selling scripts so they sound more natural while preserving the offer, call to action, and safer wording. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated ecommerce copy could overstate product effects, discounts, testimonials, health or beauty claims, finance wording, or marketplace policy-sensitive statements. <br>
-Mitigation: Review generated copy before publishing and replace risky phrases with safer wording swaps provided by the skill. <br>
-Risk: The skill is scoped to Bahasa Indonesia ecommerce copy and may be misapplied to translation, regulated compliance review, or claim invention. <br>
-Mitigation: Use it only for Bahasa Indonesia ecommerce rewriting and keep compliance boundaries or banned wording explicit in the input. <br>
+## Use Case:
 
+External ecommerce sellers, marketers, and support teams use this skill to rewrite Bahasa Indonesia product pages, ad captions, live-selling scripts, and customer replies so they sound more natural while preserving selling intent and safer wording.
 
-## Reference(s): <br>
-- [Output Template](references/output-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/ecommerce-copy-humanizer-id) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections with issue notes, rewritten copy, an alternative version, risk-safe wording swaps, and context usage notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bahasa Indonesia output only; generated copy should be reviewed before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Rewritten ecommerce copy could preserve or sharpen claims that are inaccurate, exaggerated, or unsupported by product evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated copy against the original product facts and remove unsupported claims before publishing.
+
+Risk: Users may apply the skill outside its intended scope, such as translation or legal, medical, or regulated compliance review.
+
+Mitigation: Use it only for Bahasa Indonesia ecommerce copywriting and route regulated or compliance-sensitive claims to qualified review.
+
+## Reference(s):
+
+- [Output Template](references/output-template.md)
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/ecommerce-copy-humanizer-id)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown sections with rewritten Bahasa Indonesia copy and bullet-point notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes AI-tone issues, a main rewrite, an alternative version, risk-safe wording swaps, and a usage note by context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

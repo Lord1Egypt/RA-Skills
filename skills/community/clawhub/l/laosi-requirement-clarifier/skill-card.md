@@ -1,40 +1,57 @@
-## Description: <br>
-需求澄清器 - 原创技能。自动追问模糊需求，减少返工和误解。适用于AI编程、需求分析、任务交接等场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+需求澄清器 - 原创技能。自动追问模糊需求，减少返工和误解。适用于AI编程、需求分析、任务交接等场景。
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers, analysts, product managers, and agents use this skill to identify ambiguous requirements and ask targeted follow-up questions before implementation or handoff. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may include secrets or unrelated private information while answering clarification prompts. <br>
-Mitigation: Ask only for details needed to clarify the requirement and remind users not to paste secrets or sensitive unrelated information. <br>
-Risk: Clarification questions can still miss domain-specific constraints or acceptance criteria. <br>
-Mitigation: Review the final requirement understanding with the requester before implementation or handoff. <br>
+## Use Case:
 
+Developers, analysts, and task owners use this Chinese-language skill to identify ambiguous requirements, ask prioritized follow-up questions, and confirm scope, constraints, and success criteria before work begins.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-requirement-clarifier) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured clarification questions and confirmation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only conversational helper; no install steps, code execution, credential use, network access, or persistence reported by security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The Chinese-language requirements helper may not match every workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended language and audience before enabling it for a team or project.
+
+Risk: Broad activation phrases may trigger clarification prompts more often than intended.
+
+Mitigation: Review the activation phrases and use the skill when requirements are genuinely ambiguous.
+
+Risk: Clarification questions can still miss unstated constraints or produce misleading assumptions.
+
+Mitigation: Have a human requester confirm the summarized scope, constraints, and success criteria before implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-requirement-clarifier)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with prioritized clarification questions and confirmation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language prompts and templates; no tool calls, install steps, or privileged actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

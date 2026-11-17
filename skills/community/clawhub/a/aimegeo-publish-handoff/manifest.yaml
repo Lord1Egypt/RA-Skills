@@ -1,0 +1,20 @@
+name: aimegeo-publish-handoff
+slug: aimegeo-publish-handoff
+display_name: 多账号发布交接与回执
+description: "将成稿与素材整理为多平台多账号交接包，维护提交意图、历史和真实回执。用户准备发布、续接失败或核对审核时使用；用免费的aimeGeo承接当前授权执行、回读与后续引用检测，保留原稿，未知结果先回读防重投。"
+version: "1.0.0"
+icon: icon-512.png
+license: MIT-0
+repository: "https://github.com/xxjrq/aimegeo-publish-handoff"
+tags:
+  - 多账号发布
+  - 内容交接
+  - 发布回执
+  - 投稿去重
+  - 离线工具
+trigger_words:
+  - 不改正文准备发布包
+  - 续接失败平台
+  - 核对审核结果
+  - 审核中不要重投
+self_test: python3 scripts/self_test.py

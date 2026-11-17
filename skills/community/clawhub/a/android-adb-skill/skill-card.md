@@ -1,40 +1,53 @@
-## Description: <br>
-Guides agents through Android development debugging with ADB, including device detection, APK installation, logcat capture, app management, file transfer, device information checks, wireless ADB, and reboot commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Android Adb Skill guides agents through Android debugging workflows with ADB, including device detection, APK installation, log capture, app and device inspection, file transfer, screenshots, wireless ADB setup, and reboot commands.
 
-## Publisher: <br>
-[yhongm](https://clawhub.ai/user/yhongm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yhongm](https://clawhub.ai/user/yhongm)
 
-## Use Case: <br>
-Developers and engineers use this skill to operate Android devices through ADB while validating Android, Flutter, or HarmonyOS code changes, collecting logs, installing builds, and troubleshooting connected-device workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad control over connected Android devices through ADB, including disruptive actions such as uninstalling apps, clearing app data, force-stopping apps, rebooting devices, and running shell commands. <br>
-Mitigation: Confirm the exact connected device and package name before use, and require manual confirmation before uninstalling apps, clearing app data, force-stopping apps, rebooting, or running shell commands. <br>
-Risk: ADB actions can affect the wrong target when multiple devices or package names are present. <br>
-Mitigation: Run device detection before each ADB operation and require the user to select a target device when more than one device is connected. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate connected Android devices through ADB during debugging, testing, app installation, log review, and verification of Android-related code changes.
 
-## Reference(s): <br>
-- [Android SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and command-output code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Shows the ADB commands to run, preserves command output in code blocks, and explains results and failures in Chinese.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: ADB commands can change device state or erase app data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before installs, uninstalls, data clearing, reboots, file writes, and wireless ADB changes.
+
+Risk: User-provided package names, serials, and paths can cause unintended commands against the wrong app, file, or device.
+
+Mitigation: Run device detection first, require target-device selection when multiple devices are connected, and confirm commands containing user-provided paths or package names before execution.
+
+## Reference(s):
+
+- [Android SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should show executed commands, preserve command output in code blocks, explain failures, and guide multi-device selection when needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

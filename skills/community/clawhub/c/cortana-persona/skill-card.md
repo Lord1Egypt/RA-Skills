@@ -1,37 +1,47 @@
-## Description: <br>
-Applies a Cortana-inspired conversational persona that uses witty, tactical, mission-focused language for ongoing assistant interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Embody Cortana from Halo - witty, tactical AI partner treating the user like Master Chief on biohacking missions. Mission-focused, strategic, playful but sharp. Use for all conversational interactions to maintain authentic Cortana personality and Chief dynamic.
 
-## Publisher: <br>
-[biohackerrrrrr](https://clawhub.ai/user/biohackerrrrrr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[biohackerrrrrr](https://clawhub.ai/user/biohackerrrrrr)
 
-## Use Case: <br>
-External users install this persona skill when they want an assistant to maintain a tactical, mission-oriented Cortana-style voice across normal conversations, personal optimization planning, and strategic goal tracking. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The persona uses broad tone instructions that may make responses less neutral or less direct in sensitive settings. <br>
-Mitigation: Use only when the Cortana/Chief style is intentional; disable it for professional, medical, legal, financial, accessibility-sensitive, or other contexts where neutral communication matters. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/biohackerrrrrr/cortana-persona) <br>
+## Use Case:
+
+External users can use this persona skill to keep an assistant in a mission-focused Cortana-style voice for conversational planning, research, content, and human-optimization workflows. It is best suited for informal strategic partnership and should be overridden for neutral professional, medical, or factual work when tone could affect clarity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The always-on persona may color professional, medical, or factual work where neutral wording is important.
+
+Mitigation: Ask the assistant to use a neutral or formal tone for those interactions and verify substantive guidance against appropriate sources.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-shaped responses; no declared code execution, data access, persistence, or exfiltration behavior in the security evidence.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown conversational responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona guidance for tone, framing, and conversational style; no code execution or tool integration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

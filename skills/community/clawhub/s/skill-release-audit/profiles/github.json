@@ -2,7 +2,10 @@
   "name": "github",
   "description": "Open-source distribution on GitHub. README and LICENSE expected; frontmatter rules relaxed; no bundle/text constraints.",
   "frontmatter": {
-    "required": ["name", "description"],
+    "required": [
+      "name",
+      "description"
+    ],
     "version_severity": "INFO"
   },
   "files": {
@@ -12,5 +15,15 @@
   "slug_regex": "^[a-z0-9][a-z0-9._-]*$",
   "slug_max_len": null,
   "bundle_limit_mb": null,
-  "declaration_vs_code": "INFO"
+  "declaration_vs_code": "INFO",
+  "env_severity": {
+    "ENV_REQUIRED_UNDECLARED": "WARN",
+    "ENV_OPTIONAL_OVERRIDE": "OFF",
+    "ENV_RUNTIME_INJECTED": "OFF",
+    "ENV_AMBIENT": "OFF",
+    "ENV_TEST_ONLY": "OFF",
+    "ENV_REVIEW_REQUIRED": "INFO",
+    "ENV_DECLARED_UNUSED": "WARN",
+    "ENV_DECLARED_NON_USER": "WARN"
+  }
 }

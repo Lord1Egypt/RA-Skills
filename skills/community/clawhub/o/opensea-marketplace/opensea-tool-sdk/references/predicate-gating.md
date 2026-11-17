@@ -1,6 +1,6 @@
-# Predicate-Gated Tools (402 Challenge + 403 Access Control)
+# Predicate-gated tools (402 challenge + 403 access control)
 
-Predicate gating restricts tool access based on onchain state (NFT ownership, subscriptions, composite logic). When `operatorAddress` is configured, the gate uses the same 402 challenge flow as x402: the server returns `HTTP 402` with `PaymentRequirements` (`maxAmountRequired: "0"`), and the caller replays with a zero-value `X-Payment` header. The server recovers the caller's address from the `X-Payment` signature and checks the configured `IAccessPredicate` contract via the ToolRegistry.
+Predicate gating restricts a tool by onchain state (NFT ownership, subscriptions, composite logic). It uses the same 402 challenge as x402: the server returns `HTTP 402` with `PaymentRequirements` (`maxAmountRequired: "0"`), and the caller retries with a zero-value `X-Payment` header. The signed `to` address is derived from the endpoint URL, tool ID, and operator, so an authorization captured by another endpoint cannot be replayed here. The server recovers the caller's address from the signature and checks the configured `IAccessPredicate` contract through the ToolRegistry.
 
 ## How predicate gating works
 
@@ -10,11 +10,12 @@ Agent                        Tool Server                   ToolRegistry (onchain
   |    (no auth headers)       |                                |
   |                            |  (no X-Payment → 402)          |
   |<-- 402 + PaymentReqs ------|                                |
-  |    {payTo: operator,       |                                |
+  |    {payTo: boundRecipient, |                                |
   |     maxAmountRequired: "0"}|                                |
   |                            |                                |
   |  (sign X-Payment with      |                                |
-  |   to=operator, value=0)    |                                |
+  |   to=boundRecipient,       |                                |
+  |   value=0)                 |                                |
   |                            |                                |
   |--- POST /api ------------->|                                |
   |    X-Payment: <base64>     |                                |
@@ -28,16 +29,15 @@ Agent                        Tool Server                   ToolRegistry (onchain
   |<-- 200 + result -----------|                                |
 ```
 
-1. Agent sends a bare request (no auth headers)
-2. Server returns `402` with `PaymentRequirements` (`payTo`=operator, `maxAmountRequired`=`"0"`, `scheme`=`"exact"`)
-3. Agent signs a zero-value `X-Payment` (EIP-3009 `TransferWithAuthorization` with `to`=operator, `value`=0)
-4. Agent retries the request with the `X-Payment` header
-5. Server recovers the caller's address via `ecrecover` on the EIP-712 typed data (no RPC call needed)
-6. Server calls `ToolRegistry.tryHasAccess(toolId, callerAddress, data)` which delegates to the tool's configured `IAccessPredicate`
-7. If access is granted: execute handler, return 200
-8. If access is denied: return 403 with predicate address for self-diagnosis
-9. If predicate misbehaved: return 502
-
+1. Agent sends a bare request (no auth headers).
+2. Server returns `402` with `PaymentRequirements` whose `payTo` is derived from the endpoint URL, tool ID, and operator.
+3. Agent verifies that binding, then signs a zero-value `X-Payment` (EIP-3009 `TransferWithAuthorization` with `to`=bound recipient, `value`=0).
+4. Agent retries with the `X-Payment` header.
+5. Server recovers the caller's address with `ecrecover` on the EIP-712 typed data (no RPC call).
+6. Server calls `ToolRegistry.tryHasAccess(toolId, callerAddress, data)`, which delegates to the tool's `IAccessPredicate`.
+7. Granted: run the handler, return 200.
+8. Denied: return 403 with the predicate address, so the caller can see what is required.
+9. Predicate misbehaved: return 502.
 
 ## Build a predicate-gated tool (server side)
 
@@ -73,7 +73,8 @@ export const toolHandler = createToolHandler({
   gates: [
     predicateGate({
       toolId: 1n,  // your onchain tool ID from registration
-      operatorAddress: "0xYOUR_OPERATOR_ADDRESS",  // receives the zero-value authorization
+      operatorAddress: "0xYOUR_OPERATOR_ADDRESS",  // included in the signed audience binding
+      // audience: "https://my-tool.example.com/api", // set only if a proxy rewrites request.url
       // chain: base,
       // rpcUrl: "https://mainnet.base.org",
     }),
@@ -84,6 +85,8 @@ export const toolHandler = createToolHandler({
   },
 })
 ```
+
+For single-use identity proofs, configure `replayGuard` with an atomic shared store. The paid gates use the same interface; see [x402.md](x402.md#enforce-single-use-authorizations-with-replayguard) for a Redis example. Without a replay guard, the endpoint binding stops cross-tool replay, but the same header can be reused against the intended endpoint until it expires.
 
 ## Call a predicate-gated tool (agent/client side)
 
@@ -98,7 +101,7 @@ PRIVATE_KEY=0x... RPC_URL=https://mainnet.base.org \
 
 ### Via SDK: `eip3009AuthenticatedFetch`
 
-`eip3009AuthenticatedFetch` handles the 402 challenge automatically: it sends a bare request, reads the `PaymentRequirements` from the 402 response, signs a zero-value `X-Payment`, and retries.
+`eip3009AuthenticatedFetch` handles the 402 challenge: it sends a bare request, reads the `PaymentRequirements` from the 402, signs a zero-value `X-Payment`, and retries.
 
 ```typescript
 import { eip3009AuthenticatedFetch, createWalletFromEnv, walletAdapterToClient } from "@opensea/tool-sdk"
@@ -112,11 +115,12 @@ const res = await eip3009AuthenticatedFetch("https://my-tool.example.com/api", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ query: "hello" }),
-  allowedRecipients: ["0xOPERATOR_ADDRESS"],  // optional: restrict which payTo addresses to sign for
 })
 
 const data = await res.json()
 ```
+
+The client verifies the challenge's endpoint, tool ID, and operator binding before it signs. Same-origin redirects are allowed; cross-origin redirects fail before signing. A zero-value challenge from an older server without this metadata is rejected.
 
 ### Check access before calling (preview)
 
@@ -147,7 +151,7 @@ When the predicate denies access, the server returns:
 }
 ```
 
-The `predicate` address tells the agent which predicate contract to inspect. Agents can call `IAccessPredicate.getRequirements(toolId)` to discover what's needed:
+The `predicate` address tells the agent which contract to inspect. Call `IAccessPredicate.getRequirements(toolId)` on it to see what is required:
 
 ```typescript
 import { IAccessPredicateABI } from "@opensea/tool-sdk"
@@ -169,7 +173,7 @@ const [requirements, logic] = await client.readContract({
 
 ## Combined gates (predicate + x402)
 
-Tools that require both identity verification (predicate) and x402 payment should use `paidPredicateGate` — a single gate that resolves both in **one 402 round trip** instead of two.
+Tools that need both a predicate check and x402 payment should use `paidPredicateGate`, a single gate that resolves both in **one 402 round trip** instead of two.
 
 ### Flow (2 requests instead of 3)
 
@@ -191,11 +195,13 @@ Agent                        Tool Server                   ToolRegistry + Facili
   |                            |--- /verify (facilitator) ----->|
   |                            |<-- isValid=true ---------------|
   |                            |  (execute handler)             |
+  |                            |--- /settle (facilitator) ----->|
   |<-- 200 + result -----------|                                |
-  |                            |--- /settle (facilitator) ----->|  (post-response)
 ```
 
-The caller's real-value `X-Payment` signature simultaneously proves identity (`from` = caller) AND authorizes payment. The predicate is checked BEFORE the facilitator settles — if the caller doesn't meet the access requirement, a 403 is returned and no funds move.
+The caller's real-value `X-Payment` signature both proves identity (`from` = caller) and authorizes payment. The predicate is checked before the facilitator verifies or settles, so a caller who fails it gets a 403 and no funds move.
+
+Because settlement happens after the handler runs, `paidPredicateGate` carries the same two caveats as any paid gate: a failed settlement costs you the handler's work (and returns the output anyway if you opt into `settlement: "best-effort"`), and one authorization replayed concurrently passes verification every time unless you configure a `replayGuard`. See [x402.md](x402.md#a-failed-settlement-withholds-the-output).
 
 ### Server side: `paidPredicateGate`
 
@@ -245,7 +251,7 @@ export const toolHandler = createToolHandler({
 
 ### Client side: `paidAuthenticatedFetch`
 
-`paidAuthenticatedFetch` handles the 402 challenge automatically. For a `paidPredicateGate` tool, only one 402 is issued (with the real amount), so the client signs once and the call completes.
+`paidAuthenticatedFetch` handles the 402 challenge. A `paidPredicateGate` tool issues one 402 with the real amount, so the client signs once.
 
 ```typescript
 import { paidAuthenticatedFetch, createWalletFromEnv, walletAdapterToClient } from "@opensea/tool-sdk"
@@ -276,7 +282,7 @@ PRIVATE_KEY=0x... RPC_URL=https://mainnet.base.org \
 
 ### Legacy: separate gates (3 requests)
 
-For backward compatibility, tools can still chain `predicateGate` + `paywall.gate` as separate gates. The client handles both 402 challenges in a retry loop. However, `paidPredicateGate` is preferred for new tools since it eliminates one round trip.
+Tools can still chain `predicateGate` and `paywall.gate` as separate gates, and the client answers both 402 challenges in a retry loop. New tools should use `paidPredicateGate`, which saves a round trip.
 
 ```typescript
 gates: [

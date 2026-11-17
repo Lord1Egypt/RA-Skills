@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn73r1pgs3nvvbhbn461rddhq182pc2g",
   "slug": "feifei-parent-child-comm",
   "version": "3.5.1",
-  "publishedAt": 1776309452663
+  "name": "菲菲老师亲子沟通专家",
+  "description": "【已合并】请安装 feifei-learning-commander v3.5.1 完整版获取亲子沟通+学科辅导全功能",
+  "author": "学来学去学习社",
+  "tags": ["菲菲老师", "亲子沟通", "家庭教育"],
+  "repository": "https://github.com/SimonsTang/feifei-learning-commander"
 }

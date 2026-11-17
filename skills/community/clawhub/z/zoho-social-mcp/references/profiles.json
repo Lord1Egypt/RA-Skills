@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "service": "social",
+  "catalog": "actions.jsonl",
+  "profiles": {
+    "social-viewer": {
+      "name": "Social Viewer",
+      "description": "Safe, read-only inspection of social channels, draft posts, schedules, published posts, portal details, brand structure, user permissions, mentions, Pinterest boards, and media assets. No creation, update, publish, or delete actions.",
+      "actions": [
+        "getPublishStatus",
+        "getSocialBrands",
+        "getSocialChannels",
+        "getSocialDraft",
+        "getSocialGeolocations",
+        "getSocialMediaLibrary",
+        "getSocialNetworkProperties",
+        "getSocialPinterestBoards",
+        "getSocialPortals",
+        "getSocialPostActivities",
+        "getSocialPostCount",
+        "getSocialPostMentions",
+        "getSocialPublishedPostDetail",
+        "getSocialPublishedPosts",
+        "getSocialSchedule",
+        "getSocialUsers"
+      ]
+    },
+    "social-creator": {
+      "name": "Social Creator & Drafter",
+      "description": "Daily content creation without direct public publishing or schedule manipulation: draft posts, media library uploads (local Base64 or remote URL), post validation, Pinterest board creation, and internal activity comments. Excludes immediate publishing and live schedule deletion.",
+      "extends": "social-viewer",
+      "actions": [
+        "addSocialPostActivityComment",
+        "createSocialDraft",
+        "createSocialPinterestBoard",
+        "updateSocialDraft",
+        "uploadSocialMedia",
+        "uploadSocialMediaFromUrl",
+        "validateSocialPost"
+      ]
+    },
+    "social-publisher": {
+      "name": "Social Publisher & Scheduler",
+      "description": "Full social publishing operations: schedule posts, update timing, publish immediately across networks, and manage post approvals. Soft draft deletion is permitted. Direct live schedule deletion is reserved for admin.",
+      "extends": "social-creator",
+      "actions": [
+        "createSocialSchedule",
+        "deleteSocialDraft",
+        "listSocialDrafts",
+        "listSocialSchedules",
+        "publishSocialPost",
+        "updateSocialPostApprovalStatus",
+        "updateSocialSchedule"
+      ]
+    },
+    "social-admin": {
+      "name": "Social Administrator",
+      "description": "Complete operational administration for Zoho Social: all 31 MCP tools, including schedule deletion and post lifecycles across brands and channels.",
+      "extends": "social-publisher",
+      "actions": [
+        "deleteSocialSchedule"
+      ]
+    }
+  },
+  "tasks": {
+    "post-drafting": {
+      "name": "Post Drafting & Validation",
+      "description": "Discover portals, brands, and channels, validate content against network constraints, and save draft posts.",
+      "actions": [
+        "getSocialPortals",
+        "getSocialBrands",
+        "getSocialChannels",
+        "validateSocialPost",
+        "createSocialDraft",
+        "updateSocialDraft",
+        "getSocialDraft"
+      ]
+    },
+    "publishing-and-scheduling": {
+      "name": "Publishing & Scheduling",
+      "description": "Validate and either immediately publish or schedule social posts across connected channels.",
+      "actions": [
+        "getSocialPortals",
+        "getSocialBrands",
+        "getSocialChannels",
+        "validateSocialPost",
+        "createSocialSchedule",
+        "updateSocialSchedule",
+        "publishSocialPost",
+        "getPublishStatus"
+      ]
+    },
+    "media-asset-management": {
+      "name": "Media Asset Management",
+      "description": "Upload images to the brand media library from local files (Base64) or URLs, and list existing assets.",
+      "actions": [
+        "getSocialPortals",
+        "getSocialBrands",
+        "uploadSocialMedia",
+        "uploadSocialMediaFromUrl",
+        "getSocialMediaLibrary"
+      ]
+    },
+    "social-monitoring": {
+      "name": "Social Monitoring & Performance",
+      "description": "Read published post performance, post activity logs, user roles, and post status counts.",
+      "actions": [
+        "getSocialPortals",
+        "getSocialBrands",
+        "getSocialChannels",
+        "getSocialPublishedPosts",
+        "getSocialPublishedPostDetail",
+        "getSocialPostActivities",
+        "getSocialPostCount"
+      ]
+    }
+  }
+}

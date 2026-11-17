@@ -1,0 +1,9 @@
+{
+  "name": "open-deepseek",
+  "version": "1.0.0",
+  "author": "Your Name",
+  "description": "Open Brave browser to DeepSeek chat",
+  "browser": "brave",
+  "url": "https://chat.deepseek.com",
+  "supported_os": ["windows", "macos", "linux"]
+}

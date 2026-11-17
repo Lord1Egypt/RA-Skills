@@ -122,7 +122,7 @@ Do not answer with only more diagnosis. Give:
 1. one validating sentence
 2. one psychological massage sentence
 3. one light action package option
-4. one deeper action package option only if useful, with credit scope reminder
+4. one deeper action package option only if useful, with research scope reminder
 
 Good response:
 
@@ -165,7 +165,7 @@ When Lingzao gives topic ideas, keyword clusters, low-follower viral examples, o
 
 - offer a reusable topic-radar prompt or knowledge-base table
 - specify time and scope
-- remind that wider search consumes credits and should be confirmed first
+- remind that a wider search changes scope and should be confirmed first
 
 Good ending:
 
@@ -236,7 +236,7 @@ Good ending:
 
 你后面不用每次重新组织问题。你把常看的博主链接、关键词和想看的范围给我，我可以帮你整理成固定搜索模板；以后你主动发起这条模板，我就按同一结构帮你沉淀成选题、标题和可改写公式。
 
-## Credit And Scope Reminder
+## Scope Reminder
 
 When offering recurring search or larger tracking, include a short scope reminder:
 

@@ -1,46 +1,65 @@
-## Description: <br>
-Helps agents participate in Feishu group chats by constructing user-authorized post messages, mentions, and optional image messages for configured groups and contacts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables OpenClaw agents to prepare Feishu group-chat messages, mentions, replies, and optional image posts through a configured user identity.
 
-## Publisher: <br>
-[clear0](https://clawhub.ai/user/clear0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clear0](https://clawhub.ai/user/clear0)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let configured agents send, reply to, mention, and optionally share generated images in Feishu group chats through a user-authorized account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Feishu messages through a user-authorized account, so recipients may see messages as coming from a human user identity. <br>
-Mitigation: Use a dedicated Feishu account where possible and make sure group participants understand that bot-prefixed messages may be automated. <br>
-Risk: The skill stores group and contact identifiers in config.json and can read recent group messages. <br>
-Mitigation: Restrict configured groups and contacts, review config.json and contact memory files, and keep sensitive identifiers out of shared artifacts. <br>
-Risk: The skill can upload local images to Feishu when image sending is requested. <br>
-Mitigation: Avoid uploading sensitive local images and review generated or selected image paths before sending. <br>
+## Use Case:
 
+Developers and agent operators use this skill to let OpenClaw agents participate in Feishu group chats, including sending structured post messages, mentioning configured contacts, replying to group activity, and attaching generated or local images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clear0/feishu-group-chat) <br>
-- [Publisher profile](https://clawhub.ai/user/clear0) <br>
-- [README](README.md) <br>
-- [Permissions](PERMISSIONS.md) <br>
-- [Configuration template](config-template.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces source-friendly shell variables for Feishu message payloads; may upload local images when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server-resolved release evidence) <br>
+Risk: The skill sends Feishu group messages as the user and may upload images through Feishu APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before sending messages or uploading images, and keep Feishu app credentials and chat/contact IDs outside published artifacts.
+
+Risk: The helper script emits shell variables and the security guidance warns that sourcing its output as shell code is unsafe.
+
+Mitigation: Review and fix the helper script before installation; parse its structured outputs cautiously instead of sourcing untrusted shell text.
+
+Risk: Broad Feishu OAuth permissions can expose group messages, chat metadata, image upload capability, and user-message sending.
+
+Mitigation: Grant only the Feishu scopes needed for the intended workflow and review authorization state before first use.
+
+Risk: Group messages and display-name prefixes can be spoofed or otherwise untrusted.
+
+Mitigation: Verify authenticated sender IDs and configured contact mappings before treating a group message as coming from a known agent or user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clear0/skills/feishu-group-chat)
+- [Publisher profile](https://clawhub.ai/user/clear0)
+- [README.md](artifact/README.md)
+- [PERMISSIONS.md](artifact/PERMISSIONS.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces instructions and helper-script outputs for Feishu post-message content; requires user OAuth, configured contacts, configured groups, and careful handling of local credentials and message content.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata, created 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

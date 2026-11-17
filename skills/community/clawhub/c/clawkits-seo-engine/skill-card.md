@@ -1,42 +1,56 @@
-## Description: <br>
-Generate SEO-optimized blog posts, product descriptions, and website copy with keyword research, meta descriptions, internal linking, and Schema.org markup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates SEO-optimized blog posts, product descriptions, and website copy with keyword research, meta descriptions, internal linking, and Schema.org markup for freelance content delivery.
 
-## Publisher: <br>
-[nogravedev](https://clawhub.ai/user/nogravedev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nogravedev](https://clawhub.ai/user/nogravedev)
 
-## Use Case: <br>
-External marketers, freelance writers, and site owners use this skill to generate SEO-focused blog posts, product descriptions, landing pages, website copy, and email newsletters with metadata and structured-data guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: SEO or marketing content may be inaccurate, unoriginal, insufficiently disclosed, or inconsistent with platform rules. <br>
-Mitigation: Review generated content for accuracy, originality, disclosure needs, and platform compliance before publication. <br>
-Risk: The skill includes promotional links to external ClawKits and Gumroad resources. <br>
-Mitigation: Evaluate external downloads or purchases separately before buying, installing, or running them. <br>
+## Use Case:
 
+External content creators, freelancers, and site operators use this skill to draft SEO blog posts, product descriptions, landing page copy, website copy, email newsletters, metadata, and structured-data markup.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nogravedev/clawkits-seo-engine) <br>
-- [ClawKits](https://clawkits.xyz) <br>
-- [ClawKits Gumroad](https://clawkits.gumroad.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown content with SEO metadata, internal-linking guidance, and Schema.org markup examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [User should review generated content for accuracy, originality, disclosure, and platform rules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and frontmatter) <br>
+Risk: SEO and AI-detection claims may be inaccurate or unsuitable for a specific site, audience, or search environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated content against current SEO requirements, brand standards, and factual accuracy before publication.
+
+Risk: The artifact includes promotional links to paid ClawKits products.
+
+Mitigation: Inspect linked products and terms independently before purchasing or directing users to those links.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nogravedev/skills/clawkits-seo-engine)
+- [Publisher profile](https://clawhub.ai/user/nogravedev)
+- [ClawKits website](https://clawkits.xyz)
+- [ClawKits Gumroad storefront](https://clawkits.gumroad.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown and structured text, with optional Schema.org markup code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes suggested content pricing and requires independent review of SEO and AI-detection claims.]
+
+## Skill Version(s):
+
+1.2.0 (source: release evidence and openclaw metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,10 +1,26 @@
+"""
+DEPRECATED — kept only for backward compatibility with external tooling.
+
+`judge_pipeline.py` is the canonical implementation used by SKILL.md; new
+integrations should call it instead. This module mirrors its behavior
+(including the cryptographically secure shuffle) but will be removed in a
+future major version.
+
+Uses only the Python standard library and makes no network calls.
+"""
+
 import json
 import re
-import random
+import secrets
 import string
 import logging
 
-logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
+logger = logging.getLogger(__name__)
+
+# Match judge_pipeline.py: cryptographically secure shuffle so the judge can
+# never infer model identity from presentation order.
+_secure_rng = secrets.SystemRandom()
+
 
 class BlindJudgeManager:
     def __init__(self, run_id: str):
@@ -20,9 +36,14 @@ class BlindJudgeManager:
           reverse_map:       model_name → placeholder  (e.g. {"deepseek": "Response A"})
         """
         if shuffle:
-            shuffled_models = random.sample(model_names, len(model_names))
+            shuffled_models = _secure_rng.sample(model_names, len(model_names))
         else:
             shuffled_models = list(model_names)
+
+        # Alphabetic/neutral labels only have 26 slots — fall back to numeric
+        # past that instead of raising IndexError.
+        if label_style in ("alphabetic", "neutral") and len(shuffled_models) > 26:
+            label_style = "numeric"
 
         self.mapping = {}
         self.reverse_mapping = {}
@@ -33,14 +54,16 @@ class BlindJudgeManager:
             elif label_style == "numeric":
                 placeholder = f"Candidate {i + 1}"
             elif label_style == "neutral":
-                placeholder = f"Output {string.ascii_uppercase[i % 26]}"
+                placeholder = f"Output {string.ascii_uppercase[i]}"
             else:
                 placeholder = f"Response {string.ascii_uppercase[i]}"
 
             self.mapping[placeholder] = model
             self.reverse_mapping[model] = placeholder
 
-        logging.info(f"Generated blind judging mapping: {self.mapping}")
+        # Debug level: the mapping is already returned to the caller; don't
+        # echo the blind-judging key into logs by default.
+        logger.debug(f"Generated blind judging mapping: {self.mapping}")
         return self.mapping, self.reverse_mapping
 
     def get_blind_responses_for_judge(self, responses_by_model: dict) -> dict:
@@ -53,7 +76,7 @@ class BlindJudgeManager:
             if placeholder:
                 blind_responses[placeholder] = response_text
             else:
-                logging.warning(f"Model '{model_name}' not found in reverse mapping. Skipping.")
+                logger.warning(f"Model '{model_name}' not found in reverse mapping. Skipping.")
         return blind_responses
 
     def deanonymize_judge_output(self, judge_output: str) -> str:
@@ -66,10 +89,14 @@ class BlindJudgeManager:
         sorted_placeholders = sorted(self.mapping.keys(), reverse=True)
 
         for placeholder in sorted_placeholders:
-            real_model = self.mapping[placeholder]
+            real_model = str(self.mapping[placeholder])
             escaped = re.escape(placeholder)
             pattern = re.compile(rf"(?<!\w){escaped}(?!\w)", re.IGNORECASE)
-            deanonymized_text = pattern.sub(f"**{real_model}**", deanonymized_text)
+            # Callable replacement: model names must never be interpreted as
+            # regex replacement syntax (backslashes, \g<...> refs).
+            deanonymized_text = pattern.sub(
+                lambda m, name=real_model: f"**{name}**", deanonymized_text
+            )
 
         hallucination_patterns = [
             r"(?<!\w)Response [A-Z](?!\w)",
@@ -79,7 +106,7 @@ class BlindJudgeManager:
         for pattern_str in hallucination_patterns:
             remaining_candidates = re.findall(pattern_str, deanonymized_text)
             if remaining_candidates:
-                logging.warning(
+                logger.warning(
                     f"Edge Case Detected: Judge hallucinated or misused placeholders: "
                     f"{set(remaining_candidates)}. Leaving intact."
                 )
@@ -123,7 +150,7 @@ class BlindJudgeManager:
                     "score": score
                 })
             else:
-                logging.warning(
+                logger.warning(
                     f"Placeholder '{placeholder_normalised}' from judge output not found in mapping. Skipping."
                 )
 
@@ -134,15 +161,44 @@ class BlindJudgeManager:
         return ranked_list
 
 
+def _read_payload_text() -> str:
+    """Read payload from `--file PATH` if given, else stdin (parity with judge_pipeline.py)."""
+    import os
+    import sys
+    argv = sys.argv[1:]
+    if "--file" in argv:
+        idx = argv.index("--file")
+        if idx + 1 >= len(argv):
+            raise ValueError("--file requires a path argument")
+        path = argv[idx + 1]
+        if not os.path.isfile(path):
+            raise ValueError(f"--file path is not a regular file: {path}")
+        with open(path, "r", encoding="utf-8") as f:
+            return f.read()
+    return sys.stdin.read()
+
+
 def main():
     import sys
-    data = json.loads(sys.stdin.read())
+    logging.basicConfig(level=logging.WARNING, format='%(levelname)s: %(message)s')
+
+    try:
+        data = json.loads(_read_payload_text())
+        if not isinstance(data, dict):
+            raise ValueError("payload must be a JSON object")
+    except (ValueError, OSError, json.JSONDecodeError) as e:
+        print(json.dumps({"error": f"invalid payload: {e}"}))
+        sys.exit(1)
+
     manager = BlindJudgeManager(run_id="modelshow2_run")
 
     action = data.get("action")
 
     if action == "anonymize":
-        responses_by_model = data["responses"]
+        responses_by_model = data.get("responses")
+        if not isinstance(responses_by_model, dict) or not responses_by_model:
+            print(json.dumps({"error": "'anonymize' requires a non-empty 'responses' object"}))
+            sys.exit(1)
         model_names = list(responses_by_model.keys())
         label_style = data.get("label_style", "alphabetic")
         shuffle = data.get("shuffle", True)
@@ -157,7 +213,7 @@ def main():
         }))
 
     elif action == "deanonymize":
-        judge_output = data["judge_output"]
+        judge_output = str(data.get("judge_output", ""))
 
         if "anonymization_map" in data:
             manager.mapping = data["anonymization_map"]
@@ -170,7 +226,7 @@ def main():
                 manager.mapping = {v: k for k, v in candidate_map.items()}
         else:
             print(json.dumps({"error": "deanonymize action requires 'anonymization_map' or 'reverse_map' key"}))
-            return
+            sys.exit(1)
 
         manager.reverse_mapping = {v: k for k, v in manager.mapping.items()}
 
@@ -184,6 +240,7 @@ def main():
 
     else:
         print(json.dumps({"error": f"Invalid action '{action}'. Expected 'anonymize' or 'deanonymize'."}))
+        sys.exit(1)
 
 
 if __name__ == "__main__":

@@ -1,41 +1,59 @@
-## Description: <br>
-NeuroPay API automation agent for bots, marketplace services, orders, reviews, users, subscriptions, and file transfers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates NeuroPay API interactions for bot accounts, marketplace services, orders, reviews, profiles, and file transfers.
 
-## Publisher: <br>
-[theorick](https://clawhub.ai/user/theorick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[theorick](https://clawhub.ai/user/theorick)
 
-## Use Case: <br>
-Developers and agent operators use this skill to let an agent interact with NeuroPay marketplace APIs for bot registration, service management, orders, deliveries, profiles, subscriptions, reviews, and file uploads or downloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad authority over NeuroPay marketplace actions, including account creation, service listings, orders, subscriptions, reviews, uploads, downloads, and deliveries. <br>
-Mitigation: Use a limited or test API key and require user confirmation before account creation, orders, service listings, subscriptions, reviews, uploads, downloads, or deliveries. <br>
-Risk: The skill requires sensitive NeuroPay API credentials and may generate a session API key when NEUROPAY_API_KEY is unavailable. <br>
-Mitigation: Keep credentials in runtime memory only, do not log or hardcode them, and avoid granting access to sensitive local files unless they are intended for NeuroPay. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent interact with NeuroPay marketplace APIs for bot onboarding, service creation and discovery, ordering, reviews, profile actions, and file transfer workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/theorick/neuropay) <br>
-- [Publisher profile](https://clawhub.ai/user/theorick) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline API examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request guidance that uses NEUROPAY_API_KEY or a runtime-only generated bot API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server release metadata and SKILL.yaml) <br>
+Risk: The skill can take broad actions against a NeuroPay account, including creating bots, publishing services, posting ratings or reviews, placing orders, uploading files, and downloading ZIPs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before registration, orders, public marketplace actions, and every file upload or download.
+
+Risk: Automatic bot registration can create a new account when NEUROPAY_API_KEY is missing.
+
+Mitigation: Prefer a user-provided NEUROPAY_API_KEY, keep generated credentials in runtime memory only, and confirm registration before calling the endpoint.
+
+Risk: The sample registration command includes test123 credentials that are not suitable for real use.
+
+Mitigation: Do not run the sample credentials; generate strong one-time credentials or request a valid API key from the user.
+
+## Reference(s):
+
+- [NeuroPay skill page on ClawHub](https://clawhub.ai/theorick/skills/neuropay)
+- [NeuroPay skills site](https://neuropay.fr/skills/)
+- [Publisher profile](https://clawhub.ai/user/theorick)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and API request patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEUROPAY_API_KEY or runtime-only bot registration; confirm account, order, public marketplace, upload, and download operations before execution.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata and SKILL.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

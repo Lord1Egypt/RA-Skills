@@ -159,6 +159,25 @@ Gather ALL available context before acting. Concurrent reads are cheap; sequenti
 - Call file-exploration tools in parallel where possible
 - If context is insufficient, ask questions (see Asking Questions below)
 
+### 1.5 — Image Pre-flight Checkpoint
+
+Before entering Planning, answer one question: **Is imagery content-essential for this design?**
+
+| Content type | Images essential? | Action |
+|---|---|---|
+| Content-driven (history, nature, products, people, places, art) | **Yes** — a parrot site without parrot photos is a failure | Fetch real images **before** designing. Sources: Wikimedia Commons (public domain), Unsplash/Pexels (royalty-free), official brand assets via [Brand Asset Protocol](./brand-asset-protocol.md) |
+| Tool/data/documentation/pure-opinion | Likely no | Proceed without images; use intentional whitespace and typography |
+| Uncertain | Treat as content-essential | Fetch images first —宁可取真图不用, not "add later with color blocks" |
+
+**Hard rule:** Content-essential images must never be replaced with CSS color blocks, SVG geometric shapes, or placeholder gradients. If the design is about parrots, it needs real parrot photos — not orange rectangles labeled "parrot image here."
+
+**Fetch strategy:**
+1. Identify all image needs from the content outline
+2. Search public-domain / royalty-free sources first (Wikimedia, Unsplash)
+3. For brand-specific products, use the [Brand Asset Protocol](./brand-asset-protocol.md)
+4. Embed as base64 or local file paths — never hotlink to external URLs that may break
+5. Run the "honesty test": if removing this image degrades the information, it belongs; if it's purely decorative stock filler, drop it
+
 ### 2. Planning — Decide what to do
 
 A plan that lives only in the agent's head is a plan that drifts. Make it concrete:
@@ -310,6 +329,97 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{...}/*EDITMODE-END*/;
 ```
 
 Add a couple of tweaks by default even if the user didn't ask — exposing interesting possibilities is part of the value.
+
+### Tweaks implementation template
+
+Every Mode 2 hi-fi prototype should include a reusable Tweaks panel. Use this pattern:
+
+```html
+<!-- Tweaks Panel — floats bottom-right, collapsible -->
+<div id="tweaks-panel" style="position:fixed;bottom:16px;right:16px;z-index:9999;
+     background:var(--color-surface);border:1px solid var(--color-border);
+     border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);
+     font-size:13px;max-width:260px;">
+  <div style="font-weight:600;margin-bottom:12px;">Tweaks</div>
+
+  <!-- Color picker: swaps --color-accent -->
+  <label style="display:block;margin-bottom:8px;">
+    Accent color
+    <input type="color" id="tweak-accent"
+           value="#3b5bff"
+           oninput="document.documentElement.style.setProperty('--color-accent', this.value)"
+           style="display:block;margin-top:4px;width:100%;height:32px;">
+  </label>
+
+  <!-- Density slider: adjusts --space-* scale -->
+  <label style="display:block;margin-bottom:8px;">
+    Spacing density: <span id="density-val">1.0</span>×
+    <input type="range" id="tweak-density" min="0.75" max="1.5" step="0.05" value="1.0"
+           oninput="applyDensity(this.value)"
+           style="display:block;width:100%;">
+  </label>
+
+  <!-- Layout toggle: switches grid columns -->
+  <label style="display:block;margin-bottom:8px;">
+    Layout
+    <select id="tweak-layout" onchange="applyLayout(this.value)" style="display:block;width:100%;">
+      <option value="grid-3">3-column grid</option>
+      <option value="grid-2">2-column grid</option>
+      <option value="list">Single column list</option>
+    </select>
+  </label>
+
+  <button onclick="resetTweaks()" style="margin-top:8px;">Reset</button>
+</div>
+
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  accent: '#3b5bff', density: 1.0, layout: 'grid-3'
+}/*EDITMODE-END*/;
+
+function applyDensity(scale) {
+  document.getElementById('density-val').textContent = parseFloat(scale).toFixed(2);
+  const base = [4, 8, 12, 16, 24, 32, 48, 64];
+  base.forEach((px, i) => {
+    document.documentElement.style.setProperty(`--space-${[1,2,3,4,6,8,12,16][i]}`, `${Math.round(px * scale)}px`);
+  });
+  localStorage.setItem('tweak-density', scale);
+}
+
+function applyLayout(mode) {
+  const main = document.querySelector('[data-main-content]');
+  if (main) main.dataset.layout = mode;
+  localStorage.setItem('tweak-layout', mode);
+}
+
+function resetTweaks() {
+  Object.entries(TWEAK_DEFAULTS).forEach(([k, v]) => {
+    if (k === 'accent') {
+      document.documentElement.style.setProperty('--color-accent', v);
+      document.getElementById('tweak-accent').value = v;
+    }
+    if (k === 'density') { applyDensity(v); document.getElementById('tweak-density').value = v; }
+    if (k === 'layout') { applyLayout(v); document.getElementById('tweak-layout').value = v; }
+  });
+  localStorage.removeItem('tweak-state');
+}
+
+// Restore persisted state on load
+(function restore() {
+  const d = localStorage.getItem('tweak-density');
+  const l = localStorage.getItem('tweak-layout');
+  if (d) { applyDensity(d); document.getElementById('tweak-density').value = d; }
+  if (l) { applyLayout(l); document.getElementById('tweak-layout').value = l; }
+})();
+</script>
+```
+
+**Default tweaks to include (even if user didn't ask):**
+1. **Accent color** — lets the user test brand color variations instantly
+2. **Spacing density** — compact vs comfortable, affects perceived professionalism
+3. **Layout mode** — grid columns or list view, reveals structural alternatives
+
+**Why persist to localStorage:** the user refreshes the page or comes back later — their explorations should survive. The HTML file is the source of truth, but tweak state is ephemeral exploration.
 
 ## Design Variations
 

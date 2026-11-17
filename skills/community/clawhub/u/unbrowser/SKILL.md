@@ -1,7 +1,7 @@
 ---
 name: unbrowser
 description: Cheap first-pass web discovery without launching Chrome — fetch SSR pages, run bounded JS, find routes/forms/API endpoints, extract structured data, and detect bot-wall or browser-only escalation points.
-version: 0.0.15
+version: 0.0.21
 tags:
   - browser
   - web-search
@@ -79,6 +79,17 @@ Do not retry `unbrowser` on these. Hand off to the managed browser:
 - **Multipart uploads.** `submit` supports GET and `application/x-www-form-urlencoded` POST only; multipart upload forms require escalation.
 - **Heavy JIT-bound JS** (Google Sheets, Figma, Notion editor). QuickJS is 20–50× slower than V8 — the page may technically run but settle times will be unworkable.
 - **Login flows that require interactive auth.** Use the managed browser to log in once. Cookies exported from that session can be replayed via `cookies_set` **for the same site only** — see [Operational safety](#operational-safety) for the rules around cookie reuse.
+
+## Escalation accountability
+
+The default workflow is **unbrowser first**, not **unbrowser only**. If the user explicitly says `unbrowser only`, do not use the managed browser/CDP; return the `unbrowser` failure signal and ask before escalating.
+
+- Escalate only after a concrete signal, such as: non-null `challenge`, `likely_js_filled` with no usable JSON store, a visual/browser-only requirement, interactive auth, or explicit user approval.
+- Do not escalate just because selectors need iteration. Use `query_debug`, `discover`, `page_model`, `network_extract`, `extract`, or site-specific cheap endpoints first.
+- For Reddit tasks, try `old.reddit.com` and `.json` endpoints with `unbrowser` before escalating. HTTP 403/429, missing JSON data, or bot-wall signals are valid escalation reasons, but they must be reported.
+- Keep managed-browser/CDP usage read-only on public pages unless the user explicitly authorizes login, cookies, posting, messaging, purchases, or other account actions.
+- In the final answer, disclose tool routing: state `Escalation: none` or `Escalated to managed browser/CDP because ...`. If managed browser/CDP was used, also summarize the page categories visited and whether cookies, login, posting, DMs, or other account actions were used.
+- If coordinating subagents, require each subagent summary to include its own escalation reason or `Escalation: none`; do not hide managed-browser/CDP fallback inside a final aggregate answer.
 
 ## Install
 
@@ -227,6 +238,7 @@ These are the methods the agent will use on every task:
 `navigate` also returns `tool_likelihoods` and `tool_recommendations`. Use them as a ranking, not a mandate:
 
 - Start with the highest-ranked suggestion that still matches the task.
+- Results may carry `micro_hint` (one concrete next step), `next_tools` (ranked candidates), `avoid` (tools with nothing to act on), and `escalation` (stable reason + options). Follow `micro_hint`; never call a tool listed in `avoid`; treat `escalation.reason: challenge` or `unsupported_js_feature` as the browser-only signal.
 - Prefer `discover` when the task is exploratory: find pricing/docs/search/status/API routes, identify forms, inspect captured API surfaces, or decide whether Chrome is needed before doing extraction.
 - Prefer `route_discover` when you are already on the page and only need page-owned routes/forms/query previews.
 - Prefer `page_model` when the page is noisy but has recognizable cards, forms, tables, or answer blocks.

@@ -1,42 +1,55 @@
-## Description: <br>
-Make outbound phone calls via ElevenLabs voice agent and Twilio. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make outbound phone calls via ElevenLabs voice agent and Twilio.
 
-## Publisher: <br>
-[humanjesse](https://clawhub.ai/user/humanjesse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[humanjesse](https://clawhub.ai/user/humanjesse)
 
-## Use Case: <br>
-Agents use this skill to place outbound phone calls when a user asks to call, dial, or ring a phone number. It supports a custom first message and optional call context for the voice agent. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The agent may place an outbound call to the wrong or unapproved recipient. <br>
-Mitigation: Require the agent to restate the destination number and receive clear user consent immediately before every call. <br>
-Risk: Outbound calls may create charges or expose ElevenLabs calling credentials. <br>
-Mitigation: Install only for agents that need outbound calling and scope ELEVENLABS_API_KEY, ELEVENLABS_AGENT_ID, and ELEVENLABS_PHONE_NUMBER_ID to this use. <br>
-Risk: Calls are limited to the supported E.164 phone number format used by the script. <br>
-Mitigation: Normalize user-provided US phone numbers to +1XXXXXXXXXX and confirm the formatted number before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/humanjesse/outbound-call) <br>
-- [Publisher profile](https://clawhub.ai/user/humanjesse) <br>
+## Use Case:
 
+External users or agents use this skill to place explicitly approved outbound US phone calls through an ElevenLabs voice agent backed by Twilio. It is intended for call, dial, ring, or phone-call requests after confirming the normalized recipient number.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON response from the call script, with success metadata or error details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ELEVENLABS_API_KEY, ELEVENLABS_AGENT_ID, and ELEVENLABS_PHONE_NUMBER_ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global, with current artifact behavior limited to US E.164 phone numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Outbound calls are real third-party actions that can contact recipients and transmit optional message or context data.
+
+Mitigation: Require explicit user confirmation of the normalized phone number before every call and avoid passing secrets or unnecessary personal data in message or context fields.
+
+Risk: The skill depends on ElevenLabs credentials and phone configuration.
+
+Mitigation: Use a limited ElevenLabs key where possible and configure ELEVENLABS_API_KEY, ELEVENLABS_AGENT_ID, and ELEVENLABS_PHONE_NUMBER_ID only in the execution environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/humanjesse/skills/outbound-call)
+- [Publisher profile](https://clawhub.ai/user/humanjesse)
+- [Source code and setup guide](https://github.com/humanjesse/hostinger-openclaw-guides)
+- [ElevenLabs outbound call API endpoint](https://api.elevenlabs.io/v1/convai/twilio/outbound-call)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; the call script returns JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ELEVENLABS_API_KEY, ELEVENLABS_AGENT_ID, and ELEVENLABS_PHONE_NUMBER_ID; requires explicit user confirmation before calls.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

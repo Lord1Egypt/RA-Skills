@@ -1,44 +1,54 @@
-## Description: <br>
-Your personal movie assistant. Track what you watch, check your lists, and get movie info from Letterboxd instantly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Your personal movie assistant. Track what you watch, check your lists, and get movie info from Letterboxd instantly.
 
-## Publisher: <br>
-[tamil-9421](https://clawhub.ai/user/tamil-9421) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[tamil-9421](https://clawhub.ai/user/tamil-9421)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve public Letterboxd profile statistics, recent diary entries, watchlists, and movie details for supplied usernames or movie slugs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can display public Letterboxd activity for any supplied username. <br>
-Mitigation: Confirm the intended Letterboxd username and account context before requesting or sharing profile, diary, or watchlist output. <br>
-Risk: The Python dependency is declared without a pinned version. <br>
-Mitigation: Review and pin an approved `letterboxdpy` version before installing or deploying the skill in a controlled environment. <br>
-Risk: Recent diary output hardcodes the year in returned dates. <br>
-Mitigation: Treat diary dates as approximate and confirm against Letterboxd before using them for records or decisions. <br>
+## Use Case:
 
+External users and agents use this skill to look up public Letterboxd profile statistics, diary entries, watchlists, and movie details from a supplied username or movie slug.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tamil-9421/letterboxd-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/tamil-9421) <br>
-- [Letterboxd](https://letterboxd.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON or plain text returned from Python command-line helpers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only public Letterboxd lookups for a supplied username, diary limit, watchlist limit, or movie slug.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and README report 1.1.0) <br>
+Risk: The skill depends on the unpinned third-party Python package `letterboxdpy`.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin or review the package before deployment.
+
+Risk: The skill fetches public Letterboxd data for supplied usernames and movie slugs.
+
+Mitigation: Use only public identifiers that the user intends to query; do not treat the skill as a private account-data manager.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tamil-9421/skills/letterboxd-tracker)
+- [Publisher Profile](https://clawhub.ai/user/tamil-9421)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON-formatted lookup results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only public Letterboxd lookups; result size can be limited for diary and watchlist commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and README state 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

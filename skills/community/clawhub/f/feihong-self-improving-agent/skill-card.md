@@ -1,43 +1,59 @@
-## Description: <br>
-Captures learnings, errors, user corrections, and feature requests so agents can improve future project work and promote reusable knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Captures agent learnings, command errors, user corrections, and feature requests in markdown logs for later review, promotion, or skill extraction.
 
-## Publisher: <br>
-[sunyue1977](https://clawhub.ai/user/sunyue1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunyue1977](https://clawhub.ai/user/sunyue1977)
 
-## Use Case: <br>
-Developers and agent operators use this skill to record failures, corrections, feature requests, and reusable lessons in structured markdown logs. It supports reviewing and promoting high-value learnings into project or agent memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Durable learning logs may capture secrets, customer data, private URLs, raw prompts, or full command outputs. <br>
-Mitigation: Require agents to summarize and redact sensitive content before writing .learnings entries, and keep .learnings out of version control unless each entry is intentionally shareable. <br>
-Risk: Optional hooks can automatically remind or react during agent sessions, increasing the chance that broad task context is logged. <br>
-Mitigation: Enable hooks only after reviewing their behavior and scoping logging rules for the workspace. <br>
+## Use Case:
 
+Developers and agent operators use this skill to record errors, corrections, knowledge gaps, and feature requests so future sessions can reuse the learning. It also provides optional hook guidance and a helper script for extracting durable learnings into reusable skills.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sunyue1977/feihong-self-improving-agent) <br>
-- [Hook Setup Guide](references/hooks-setup.md) <br>
-- [Entry Examples](references/examples.md) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates local learning, error, feature-request, and optional skill-template files when followed by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent learning logs can retain conversation details, errors, and corrections longer than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep .learnings local by default and redact secrets, personal data, and business-sensitive details before logging.
+
+Risk: Promoting unreviewed learnings into agent instruction files can introduce incorrect or misleading guidance.
+
+Mitigation: Require explicit human approval before promoting any learning into CLAUDE.md, AGENTS.md, SOUL.md, TOOLS.md, or Copilot instruction files.
+
+Risk: Broad or global hook activation can create unwanted persistent memory behavior.
+
+Mitigation: Use minimal, project-scoped hooks unless the scripts and configuration have been fully reviewed and trusted.
+
+## Reference(s):
+
+- [Hook Setup Guide](artifact/references/hooks-setup.md)
+- [Entry Examples](artifact/references/examples.md)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and markdown templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May lead the agent to create or update persistent .learnings markdown files and optional skill scaffolds.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

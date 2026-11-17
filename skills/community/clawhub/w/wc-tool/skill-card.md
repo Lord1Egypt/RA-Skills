@@ -1,40 +1,49 @@
-## Description: <br>
-Count lines, words, characters, and bytes in one or more files with per-file and total summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count lines, words, characters, and bytes in one or more files with per-file and total summary.
 
-## Publisher: <br>
-[dinghaibin](https://clawhub.ai/user/dinghaibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dinghaibin](https://clawhub.ai/user/dinghaibin)
 
-## Use Case: <br>
-Developers and technical users use this skill to get local word-count style statistics for documents, code, piped text, and simple data volume checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation advertises byte counts, multiple files, JSON output, null-separated file lists, totals, and longest-line reporting that the included script does not implement. <br>
-Mitigation: Verify required counting behavior before relying on advertised options, and treat unsupported options as documentation mismatch until the implementation is updated. <br>
-Risk: The script reads local files supplied by the user and emits local count results. <br>
-Mitigation: Run it only on files intended for local analysis and avoid using sensitive inputs where command output logs are retained. <br>
+## Use Case:
 
+Developers, analysts, and automation agents use this skill to get basic line, word, and character counts for standard input or a single local file.
 
-## Reference(s): <br>
-- [Wc Tool ClawHub page](https://clawhub.ai/dinghaibin/wc-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included script supports one file or standard input and reports lines, words, and characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The documentation advertises byte counts, multi-file totals, JSON output, and longest-line options that the current artifact does not fully implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for basic stdin or single-file line, word, and character counts unless the implementation is updated and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dinghaibin/skills/wc-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text counts and Markdown usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports stdin or a single input file in the current artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

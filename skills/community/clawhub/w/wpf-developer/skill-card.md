@@ -1,40 +1,58 @@
-## Description: <br>
-Provides advanced WPF desktop application development support for architecture design, MVVM implementation, XAML UI work, performance optimization, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language guidance and examples for building, modernizing, and troubleshooting WPF desktop applications using MVVM, XAML, and UI component libraries.
 
-## Publisher: <br>
-[WesLon1987](https://clawhub.ai/user/WesLon1987) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[weslon1987](https://clawhub.ai/user/weslon1987)
 
-## Use Case: <br>
-Developers and engineers use this skill to design, implement, optimize, and troubleshoot Windows desktop applications built with WPF. It is especially relevant for MVVM architecture, reusable XAML and C# examples, custom controls, data binding, styling, templates, and performance tuning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated WPF code or architectural guidance may be incomplete or unsuitable for a production application without review. <br>
-Mitigation: Review generated XAML, C# code, threading behavior, data binding, and deployment assumptions before using the output in production. <br>
-Risk: The skill instructions are written in Chinese, which may reduce auditability for users who do not read Chinese. <br>
-Mitigation: Use a translated or language-adaptive version when reviewers or operators need English-language instructions. <br>
+## Use Case:
 
+Developers use this skill to plan and implement WPF applications, choose MVVM and UI libraries, build XAML interfaces, and diagnose performance or migration issues.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WesLon1987/wpf-developer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown with WPF guidance and XAML or C# code blocks when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable artifact is included; generated WPF code should be reviewed before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Chinese-language guidance may be unsuitable for workflows requiring English-language output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm language requirements before using the skill.
+
+Risk: Referenced package versions and library recommendations may become outdated.
+
+Mitigation: Verify current NuGet versions and compatibility before applying examples to a project.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/weslon1987/skills/wpf-developer)
+- [Architecture and project setup](artifact/references/architecture-and-project-setup.md)
+- [MVVM frameworks](artifact/references/mvvm-frameworks.md)
+- [Performance and troubleshooting](artifact/references/performance-and-troubleshooting.md)
+- [UI component libraries](artifact/references/ui-component-libraries.md)
+- [XAML recipes](artifact/references/xaml-recipes.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Configuration instructions, Shell commands]
+
+**Output Format:** [Text or Markdown with XAML, C#, and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance; package versions are snapshots.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata; bundled frontmatter states 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

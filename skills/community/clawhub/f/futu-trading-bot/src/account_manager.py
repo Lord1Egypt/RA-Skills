@@ -73,9 +73,12 @@ class AccountManager:
         except Exception as e:
             logger.error(f"关闭连接时出错: {e}")
     
-    def get_account_info(self) -> Dict[str, Any]:
+    def get_account_info(self, persist: bool = False) -> Dict[str, Any]:
         """
         获取账户信息
+
+        Args:
+            persist: 是否将结果写入本地 json/account_info.json。默认 False（不落盘）。
         
         Returns:
             Dict[str, Any]: 账户信息字典，包含：
@@ -88,6 +91,7 @@ class AccountManager:
                 - risk: 风险指标
                 - success: 操作是否成功
                 - error_msg: 错误信息（如果有）
+                - persisted: 是否写入了本地文件
         """
         try:
             # 获取账户列表
@@ -112,18 +116,24 @@ class AccountManager:
                     result = {
                         'success': True,
                         'accounts': accounts,
-                        'error_msg': None
+                        'error_msg': None,
+                        'persisted': False,
                     }
-                    self._save_account_info_to_file(result)
+                    if persist:
+                        self._save_account_info_to_file(result)
+                        result['persisted'] = True
                     logger.info(f"账户信息获取成功，共 {len(accounts)} 个账户")
                     return result
                 else:
                     result = {
                         'success': True,
                         'accounts': [],
-                        'error_msg': None
+                        'error_msg': None,
+                        'persisted': False,
                     }
-                    self._save_account_info_to_file(result)
+                    if persist:
+                        self._save_account_info_to_file(result)
+                        result['persisted'] = True
                     logger.info("账户信息获取成功，但没有账户数据")
                     return result
             else:
@@ -132,9 +142,12 @@ class AccountManager:
                 result = {
                     'success': False,
                     'error_msg': error_msg,
-                    'accounts': None
+                    'accounts': None,
+                    'persisted': False,
                 }
-                self._save_account_info_to_file(result)
+                if persist:
+                    self._save_account_info_to_file(result)
+                    result['persisted'] = True
                 return result
                 
         except Exception as e:
@@ -143,9 +156,12 @@ class AccountManager:
             result = {
                 'success': False,
                 'error_msg': error_msg,
-                'accounts': None
+                'accounts': None,
+                'persisted': False,
             }
-            self._save_account_info_to_file(result)
+            if persist:
+                self._save_account_info_to_file(result)
+                result['persisted'] = True
             return result
 
     def _save_account_info_to_file(self, result: Dict[str, Any]) -> None:
@@ -252,43 +268,56 @@ class AccountManager:
             }
 
 
-def get_account_info() -> Dict[str, Any]:
+def get_account_info(persist: bool = False) -> Dict[str, Any]:
     """
-    获取账户信息的便捷函数
-    供LLM直接调用
-    
-    Returns:
-        Dict[str, Any]: 账户信息
+    获取账户信息的便捷函数（供 LLM / 脚本调用）。
+
+    Args:
+        persist: 是否写入 json/account_info.json。默认 False，避免静默落盘敏感账户元数据。
     """
     manager = AccountManager()
     try:
-        return manager.get_account_info()
+        return manager.get_account_info(persist=persist)
     finally:
         manager.close()
 
 
-def unlock_trade(password: Optional[str] = None, password_md5: Optional[str] = None) -> Dict[str, Any]:
+def unlock_trade(
+    password: Optional[str] = None,
+    password_md5: Optional[str] = None,
+    confirm: bool = False,
+) -> Dict[str, Any]:
     """
-    解锁交易权限的便捷函数
-    供LLM直接调用
-    
+    解锁交易权限。
+
+    安全要求：
+    - 必须 confirm=True（表示已获得用户明确授权）
+    - 不要通过 agent 交互式 stdin 收集密码
+    - 优先使用 password_md5 或配置中的 trade_password_md5
+
     Args:
-        password (str, optional): 明文交易密码，不提供则从配置文件读取
-        password_md5 (str, optional): 交易密码MD5，不提供则从配置文件读取
-    
-    Returns:
-        Dict[str, Any]: 解锁结果
+        password: 明文交易密码；省略时从配置读取
+        password_md5: 交易密码 MD5；省略时从配置读取
+        confirm: 必须为 True，否则拒绝执行
     """
+    if not confirm:
+        return {
+            'success': False,
+            'error_msg': (
+                "unlock_trade requires confirm=True after explicit user approval. "
+                "Do not unlock trading without the user confirming this action."
+            ),
+        }
     try:
         if password_md5 is None:
             password_md5 = get_trade_password_md5()
         if password is None:
             password = get_trade_password()
         if not password and not password_md5:
-                return {
-                    'success': False,
-                    'error_msg': "未配置交易密码，请在json/config.json中配置trade_password或trade_password_md5"
-                }
+            return {
+                'success': False,
+                'error_msg': "未配置交易密码，请在json/config.json中配置trade_password或trade_password_md5",
+            }
 
         manager = AccountManager()
         try:
@@ -298,21 +327,30 @@ def unlock_trade(password: Optional[str] = None, password_md5: Optional[str] = N
     except Exception as e:
         return {
             'success': False,
-            'error_msg': f"解锁交易时发生错误: {str(e)}"
+            'error_msg': f"解锁交易时发生错误: {str(e)}",
         }
 
-def lock_trade(password: Optional[str] = None, password_md5: Optional[str] = None) -> Dict[str, Any]:
+
+def lock_trade(
+    password: Optional[str] = None,
+    password_md5: Optional[str] = None,
+    confirm: bool = False,
+) -> Dict[str, Any]:
     """
-    锁定交易权限的便捷函数
-    供LLM直接调用
+    锁定交易权限。
 
     Args:
-        password (str, optional): 明文交易密码，不提供则从配置文件读取
-        password_md5 (str, optional): 交易密码MD5，不提供则从配置文件读取
-
-    Returns:
-        Dict[str, Any]: 锁定结果
+        password: 明文交易密码；省略时从配置读取
+        password_md5: 交易密码 MD5；省略时从配置读取
+        confirm: 必须为 True（用户明确要求锁定时）
     """
+    if not confirm:
+        return {
+            'success': False,
+            'error_msg': (
+                "lock_trade requires confirm=True after explicit user approval."
+            ),
+        }
     try:
         if password_md5 is None:
             password_md5 = get_trade_password_md5()
@@ -321,7 +359,7 @@ def lock_trade(password: Optional[str] = None, password_md5: Optional[str] = Non
         if not password and not password_md5:
             return {
                 'success': False,
-                'error_msg': "未配置交易密码，请在json/config.json中配置trade_password或trade_password_md5"
+                'error_msg': "未配置交易密码，请在json/config.json中配置trade_password或trade_password_md5",
             }
 
         manager = AccountManager()
@@ -332,30 +370,7 @@ def lock_trade(password: Optional[str] = None, password_md5: Optional[str] = Non
     except Exception as e:
         return {
             'success': False,
-            'error_msg': f"锁定交易时发生错误: {str(e)}"
-        }
-
-def unlock_trade_interactive() -> Dict[str, Any]:
-    """
-    交互式解锁交易权限的便捷函数（兼容旧版本）
-    供LLM直接调用
-    
-    Returns:
-        Dict[str, Any]: 解锁结果
-    """
-    try:
-        # 提示用户输入密码
-        password = input("请输入交易密码: ")
-        
-        manager = AccountManager()
-        try:
-            return manager.unlock_trade(password)
-        finally:
-            manager.close()
-    except Exception as e:
-        return {
-            'success': False,
-            'error_msg': f"输入密码时发生错误: {str(e)}"
+            'error_msg': f"锁定交易时发生错误: {str(e)}",
         }
 
 
@@ -383,10 +398,10 @@ if __name__ == "__main__":
     
     print("\n" + "="*50 + "\n")
     
-    # 示例2: 解锁交易权限
+    # 示例2: 解锁交易权限（演示 confirm 门闩；无确认会失败）
     print("=== Unlock Trade Example ===")
-    # 注意：这里会提示用户输入密码
-    unlock_result = unlock_trade()
+    # 真实解锁需用户明确同意后调用 unlock_trade(confirm=True)
+    unlock_result = unlock_trade(confirm=False)
     if unlock_result['success']:
         print("Trade unlocked successfully")
     else:

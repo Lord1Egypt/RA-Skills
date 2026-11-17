@@ -1,238 +1,158 @@
-# X API Setup Guide
+# X API v2 Setup
 
 ## Prerequisites
 
-- Python 3 (stdlib only, no pip dependencies)
-- X Developer account: <https://developer.x.com>
-- 5 minutes
+- Python 3.8 or later (standard library only, no pip dependencies)
+- An X developer account with an app: <https://developer.x.com/en/portal/projects-and-apps>
+- Credits for X's pay-per-use API (see [Billing](#billing))
 
----
+## Install
 
-## Option 1: Bearer Token Only (Recommended)
+The skill is a single folder. Name it `x-api-v2`, the skill's `name`, wherever it goes:
 
-**For:** User profiles, timelines, search, tweet lookup  
-**Setup time:** 2 minutes  
-**Cost:** Free tier available, then pay-per-usage
+| Agent | Where the folder goes |
+|---|---|
+| OpenClaw | `openclaw skills install @odrobnik/x-api-v2` (from ClawHub, into `<workspace>/skills/x-api-v2`) |
+| Claude Code | `~/.claude/skills/x-api-v2/`, or `.claude/skills/` inside a project |
+| Codex | `~/.agents/skills/x-api-v2/`, or `.agents/skills/` inside a repository (OpenClaw reads these folders too) |
+| Other agents | their skills folder, under the same name |
 
-### Steps
-
-1. **Go to Developer Portal**  
-   <https://developer.x.com/en/portal/projects-and-apps>
-
-2. **Create or select an app**  
-   - Click "Create App" or select existing
-   - Fill in required fields (name, description)
-
-3. **Get Bearer Token**  
-   - Navigate to: **Keys and tokens**
-   - Under "Bearer Token" → Click **Generate** or **Regenerate**
-   - Copy the token (starts with `AAAAAAAAAA...`)
-
-4. **Save credentials**
-
-   ```bash
-   mkdir -p ~/.openclaw/x
-   cat > ~/.openclaw/x/credentials.json <<EOF
-   {
-     "bearer_token": "YOUR_BEARER_TOKEN_HERE",
-     "consumer_key": "OPTIONAL",
-     "consumer_secret": "OPTIONAL"
-   }
-   EOF
-   ```
-
-   Replace `YOUR_BEARER_TOKEN_HERE` with the token you copied.
-
-5. **Test**
-
-   ```bash
-   python3 scripts/x.py user steipete
-   ```
-
-   Should display Peter Steinberger's profile.
-
-### What Works
-
-✅ User info (`user`)  
-✅ Timelines (`timeline`)  
-✅ Search (`search`)  
-✅ Threads (`thread`)  
-✅ Tweet lookup (`tweet`, `tweets`)
-
-❌ Bookmarks (need OAuth)  
-❌ Likes (need OAuth)  
-❌ Posting (need OAuth)
-
----
-
-## Option 2: OAuth 2.0 (Advanced)
-
-**For:** Bookmarks, likes, posting  
-**Setup time:** 10 minutes  
-**Requires:** Client ID + Client Secret
-
-### Steps
-
-1. **Go to Developer Portal**  
-   <https://developer.x.com/en/portal/projects-and-apps>
-
-2. **Select your app → User authentication settings**
-
-3. **Click "Set up"** and configure:
-
-   | Field | Value |
-   |-------|-------|
-   | **App permissions** | Read and Write |
-   | **Type of App** | Web App |
-   | **Callback URI** | `http://localhost:8080/callback` |
-   | **Website URL** | Any valid URL (e.g., `https://example.com`) |
-
-4. **Save and copy credentials**  
-   After saving, you'll see **Client ID** and **Client Secret**.
-
-5. **Create OAuth credentials file**
-
-   ```bash
-   cat > ~/.openclaw/x/oauth2.json <<EOF
-   {
-     "client_id": "YOUR_CLIENT_ID_HERE",
-     "client_secret": "YOUR_CLIENT_SECRET_HERE"
-   }
-   EOF
-   ```
-
-6. **Authenticate**
-
-   ```bash
-   python3 scripts/x.py auth
-   ```
-
-   This will:
-   - Open your browser
-   - Ask you to authorize the app
-   - Redirect to `localhost:8080/callback`
-   - Save tokens to `~/.openclaw/x/tokens.json`
-
-   **Scopes granted:** `tweet.read`, `users.read`, `bookmark.read`, `tweet.write`, `offline.access`
-
-7. **Test**
-
-   ```bash
-   python3 scripts/x.py bookmarks --max 10
-   python3 scripts/x.py post "Hello from OpenClaw! 🦞"
-   ```
-
-### What Works
-
-✅ Everything from bearer token  
-✅ Bookmarks (`bookmarks`)  
-✅ Likes (`likes`)  
-✅ Posting (`post`)
-
----
-
-## Billing Setup
-
-X API uses **pay-per-usage** pricing (credit-based).
-
-### 1. Buy Credits
-
-1. Go to: <https://developer.x.com/en/portal/billing>
-2. Purchase credits (start with $10-25)
-3. Credits are deducted per API call
-
-### 2. Set Spending Limit (Recommended)
-
-- In billing settings: Set **Monthly spending limit** (e.g., $50)
-- Prevents runaway costs
-- API requests blocked when limit hit
-
-### 3. Enable Auto-Recharge (Optional)
-
-- Trigger: When balance < $5
-- Recharge: Add $25
-- Prevents downtime
-
-### 4. Monitor Usage
+From GitHub, for example for Claude Code:
 
 ```bash
-# Via API
-curl "https://api.x.com/2/usage/tweets" \
-  -H "Authorization: Bearer $BEARER_TOKEN"
-
-# Via console
-https://developer.x.com/en/portal/dashboard
+git clone https://github.com/odrobnik/x-skill ~/.claude/skills/x-api-v2
 ```
 
-**Cost example (pay-per-usage):**
-- Fetching 100 tweets: ~$0.10-0.50 (varies by endpoint)
-- Deduplication: Same tweet twice in 24h UTC window = charged once
-- Failed requests: Free (4xx/5xx errors not billed)
+The commands in SKILL.md start with `{baseDir}/`, meaning this folder; agents put in its full path. The examples below run from inside the folder.
 
-See [references/pricing.md](references/pricing.md) for detailed pricing.
+## Where Credentials Live
 
----
+Nothing is stored inside the skill folder. Config and the sign-in share one config folder:
 
-## File Structure
+1. `$X_SKILL_CONFIG_DIR`, if set
+2. otherwise `$OPENCLAW_STATE_DIR/x`, if OpenClaw's state folder has been moved. An existing `~/.openclaw/x/` keeps being used until you move its files there.
+3. otherwise `~/.openclaw/x/`
 
-After setup, you'll have:
+The default works with every agent, not only OpenClaw. On OpenClaw, keep it: OpenClaw's backups and its Docker setup preserve `~/.openclaw`.
 
+Put your credentials in `config.json` in that folder (by default `~/.openclaw/x/config.json`):
+
+```json
+{
+  "bearer_token": "YOUR_BEARER_TOKEN",
+  "client_id": "YOUR_OAUTH_CLIENT_ID",
+  "client_secret": "YOUR_OAUTH_CLIENT_SECRET"
+}
 ```
-~/.openclaw/x/
-├── credentials.json    # Bearer token (required)
-├── oauth2.json         # OAuth client creds (optional)
-└── tokens.json         # OAuth user tokens (auto-generated)
+
+Keep the file private to your account (file mode 600); the script warns when other users can read it.
+
+| What | File in the config folder |
+|---|---|
+| Bearer token, OAuth client ID and secret | `config.json`, or env vars (env vars win) |
+| The sign-in, saved by `auth` | `tokens.json` (mode 600) |
+| A sign-in in progress, deleted when done | `pending-auth.json` (mode 600) |
+
+### Environment Variables
+
+Env vars override the values in `config.json`.
+
+| Variable | Needed for | Description |
+|---|---|---|
+| `X_BEARER_TOKEN` | Profiles, posts, search | App bearer token. Without it, these use your sign-in. |
+| `X_CLIENT_ID` | Signing in | OAuth 2.0 client ID |
+| `X_CLIENT_SECRET` | Signing in | OAuth 2.0 client secret (confidential clients only) |
+| `X_SKILL_CONFIG_DIR` | Optional | A different config folder |
+| `OPENCLAW_STATE_DIR` | Optional | OpenClaw's state folder, if moved; the default config folder follows it |
+
+### OpenClaw Only
+
+- You can set the bearer token as `skills.entries.x-api-v2.apiKey` in `openclaw.json`; OpenClaw passes it to the script as `X_BEARER_TOKEN`.
+- OpenClaw's secret filter blocks `X_CLIENT_SECRET` in `skills.entries.*.env`, so keep the OAuth client in `config.json`.
+- In OpenClaw's Docker sandbox, commands run with `HOME` set to the sandbox workspace and don't receive `skills.entries` keys. Put `config.json` in `.openclaw/x/` inside that workspace, or point `X_SKILL_CONFIG_DIR` somewhere else.
+
+## Upgrading from 1.0
+
+- **The skill's name changed** from `x` to `x-api-v2`, its name on ClawHub. If your `openclaw.json` has settings under `skills.entries.x`, move them to `skills.entries.x-api-v2`.
+- **Your setup keeps working.** The script still reads the two settings files 1.0 used in the config folder, and your sign-in stays valid. When convenient, move `bearer_token`, `client_id` and `client_secret` into `config.json` there and delete the old files.
+- **The sign-in is now stored owner-only** (mode 600). The script converts the stored sign-in the first time it reads it.
+- **`likes` needs one more permission** (like.read), which 1.0 didn't ask for. Run `python3 scripts/x.py auth` once more to grant it.
+- **`post` previews first** and posts only when run again with `--yes`.
+
+## 1. Bearer Token (Profiles, Posts, Search)
+
+1. Open the X Developer Console: <https://developer.x.com/en/portal/projects-and-apps>
+2. Set up a project with an app, or pick an existing app.
+3. Under **Keys and tokens**, generate the **Bearer Token** and copy it.
+4. Add it to `config.json` as `bearer_token`, or export `X_BEARER_TOKEN`.
+5. Test it:
+
+   ```bash
+   python3 scripts/x.py user XDevelopers
+   ```
+
+## 2. OAuth 2.0 Client (Bookmarks, Likes, Posting)
+
+1. In the app's settings, open **User authentication settings** and click **Set up**.
+2. Fill in:
+
+   | Field | Value |
+   |---|---|
+   | App permissions | Read and write |
+   | Type of App | Web App, Automated App or Bot (a confidential client, with a client secret), or Native App (a public client, without one) |
+   | Callback URI | `http://localhost:8080/callback`, exactly (http, no trailing slash) |
+   | Website URL | any valid URL, e.g. your GitHub profile |
+
+3. Save, then copy the **Client ID** (and the **Client Secret**, if there is one) into `config.json` as `client_id` and `client_secret`.
+
+## 3. Sign In
+
+```bash
+python3 scripts/x.py auth
 ```
 
-**Security:** These files contain secrets. Keep them private.
+This opens the X consent page in the browser; a short-lived server on port 8080 catches the redirect to `http://localhost:8080/callback`. The sign-in is saved to `tokens.json` in the config folder and renewed automatically: X ends each sign-in after 2 hours, and the stored refresh token renews it.
 
----
+The script asks X for these permissions: tweet.read, users.read, like.read, bookmark.read, tweet.write and offline.access (to stay signed in).
+
+### Headless Machines and Cloud Agents
+
+Agents in the cloud, in containers or on machines without a browser should use this flow:
+
+```bash
+python3 scripts/x.py auth --manual
+```
+
+Open the printed URL on any device and approve access. The browser then tries to load `http://localhost:8080/callback?state=…&code=…`, which fails on another device; that's expected. Copy the whole address and finish with:
+
+```bash
+python3 scripts/x.py auth --code "http://localhost:8080/callback?state=...&code=..."
+```
+
+If port 8080 is taken on your own computer, use the same flow.
+
+## Signing Out
+
+```bash
+python3 scripts/x.py logout
+```
+
+This revokes the sign-in at X and deletes `tokens.json` from the config folder. You can also revoke the app in X's settings under **Security and account access → Apps and sessions → Connected apps**.
+
+## Billing
+
+X's API is paid per use:
+
+1. Buy credits in the Developer Console (<https://developer.x.com/en/portal/billing>); $10 to $25 is plenty to start.
+2. Set a monthly spending limit there, so a runaway loop can't run up costs. Requests stop when the limit is reached.
+3. Optionally turn on auto-recharge (e.g. add $25 when the balance drops below $5).
+
+A post or user fetched again within the same UTC day is charged once, and failed requests are free. The console's dashboard shows the usage per day. See [references/pricing.md](references/pricing.md) for details.
 
 ## Troubleshooting
 
-### Bearer Token Not Working
-
-**Error:** `401 Unauthorized`
-
-**Fix:**
-- Verify bearer token is correct (copy-paste from Developer Portal)
-- Check credentials.json syntax (valid JSON)
-- Ensure token starts with `AAAAAAAAAA...`
-
-### OAuth Callback Fails
-
-**Error:** `Invalid redirect URI`
-
-**Fix:**
-- Callback URI must exactly match: `http://localhost:8080/callback`
-- Check for typos (http not https, no trailing slash)
-- Ensure port 8080 is free
-
-### Rate Limit Hit
-
-**Error:** `429 Too Many Requests`
-
-**Fix:**
-- Wait 15 minutes (rate limits reset every 15 min)
-- Check `x-rate-limit-reset` header for exact reset time
-- Reduce `--max` values in commands
-- Add delays between requests
-
-### No OAuth Credentials
-
-**Error:** `OAuth 2.0 credentials not found`
-
-**Fix:**
-- Create `~/.openclaw/x/oauth2.json` with client_id and client_secret
-- Follow "Option 2: OAuth 2.0" steps above
-
----
-
-## Next Steps
-
-1. ✅ **Set up bearer token** (2 min) — enables most features
-2. ⚙️ **Buy credits** ($10 to start) — enables API usage
-3. 🔒 **Set spending limit** — prevents surprises
-4. 🔐 **OAuth setup** (optional) — for bookmarks/posting
-
-Then explore: [SKILL.md](SKILL.md) or [references/quickstart.md](references/quickstart.md)
+- **401 Unauthorized** when reading: check the bearer token; copy it again from **Keys and tokens**.
+- **403 Forbidden**: the app's permissions don't cover the request, e.g. posting needs "Read and write" in the user authentication settings. Change them, then run `auth` again.
+- **429 Too Many Requests**: a rate limit (per 15 minutes); the error says when it resets.
+- **Callback mismatch or invalid redirect URI** when signing in: the app's callback URI must be exactly `http://localhost:8080/callback`.
+- **The sign-in expired or was revoked**: run `python3 scripts/x.py auth` again.

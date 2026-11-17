@@ -1,42 +1,61 @@
-## Description: <br>
-Guides an agent through TikHub MCP and fallback Python SDK workflows for collecting multi-platform social video data, download links, comments, user information, and transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides TikHub-powered workflows for retrieving multi-platform video data, comments, creator information, download links, and Douyin transcription outputs across Douyin, TikTok, Bilibili, YouTube, Xiaohongshu, Weibo, and Kuaishou.
 
-## Publisher: <br>
-[kk-kingkong](https://clawhub.ai/user/kk-kingkong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kk-kingkong](https://clawhub.ai/user/kk-kingkong)
 
-## Use Case: <br>
-Developers and agent operators use this skill to query TikHub-backed MCP tools and optional Python helpers for Douyin, TikTok, Bilibili, YouTube, Xiaohongshu, Weibo, and Kuaishou content workflows. It is intended for retrieving video metadata, comments, user data, download URLs, captions, and transcript outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill implicitly uses a local TikHub API key and can call paid TikHub endpoints. <br>
-Mitigation: Use a dedicated TikHub API key, monitor paid usage and balance, and avoid exposing local environment files or credentials. <br>
-Risk: The Python fallback can run background shell commands for ffmpeg and Whisper processing. <br>
-Mitigation: Prefer the MCP workflow when available, run fallback scripts only on trusted filenames and directories, and review generated shell activity before use. <br>
-Risk: Fallback dependencies and transcription tooling may change behavior or introduce supply-chain risk. <br>
-Mitigation: Pin or review Python dependencies before installing them in production or shared environments. <br>
+## Use Case:
 
+Developers and content workflow operators use this skill to call TikHub MCP or SDK flows for collecting social-video metadata, comments, subtitles, download URLs, and transcripts. It is intended for workflows that require explicit TikHub credentials and attention to provider costs.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/kk-kingkong/tikhub-api-skill-kk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [Markdown guidance with shell and Python snippets, API call examples, and JSON or text file outputs from helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded media, extracted audio, transcript text files, comments JSON, user-video JSON, and pipeline result JSON when the Python fallback scripts are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and package.json) <br>
+Risk: The skill can use local TikHub credentials automatically.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure credentials explicitly in a dedicated environment and avoid relying on local .env scraping.
+
+Risk: Media downloads and arbitrary video URLs cross the TikHub provider trust boundary.
+
+Mitigation: Review the TikHub provider before use, validate or constrain input URLs, and restrict outputs to a chosen download directory.
+
+Risk: TikHub API calls may incur provider costs.
+
+Mitigation: Monitor account balance, reuse cached results when available, and set request limits for batch workflows.
+
+Risk: The CPU background Whisper path has unsafe shell and nohup handling in the scanned evidence.
+
+Mitigation: Do not use the CPU background transcription path until command handling is fixed; prefer reviewed synchronous execution or the GPU path in a controlled environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kk-kingkong/skills/tikhub-api-skill-kk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, Python snippets, JSON data, and local media or transcript files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call TikHub APIs, download media files, create JSON result files, and write transcript text files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

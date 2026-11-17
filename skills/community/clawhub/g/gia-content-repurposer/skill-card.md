@@ -1,41 +1,58 @@
-## Description: <br>
-Repurposes long-form content such as blog posts, articles, and YouTube transcripts into Twitter/X threads, LinkedIn posts, newsletters, Instagram captions, and short summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Repurposes long-form content such as blog posts, articles, and transcripts into Twitter/X threads, LinkedIn posts, email newsletters, Instagram captions, and short-form summaries.
 
-## Publisher: <br>
-[merjua14](https://clawhub.ai/user/merjua14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[merjua14](https://clawhub.ai/user/merjua14)
 
-## Use Case: <br>
-Content creators, marketers, founders, and developers use this skill to turn one source article, blog post, or transcript into platform-ready drafts for social, email, and summary channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Drafts, articles, transcripts, or pasted content may be sent to OpenAI or Anthropic when API keys are configured. <br>
-Mitigation: Do not use confidential, regulated, customer, or proprietary content unless organizational policy permits those providers. <br>
-Risk: Generated platform posts may be inaccurate, misleading, or unsuitable for publication without editorial review. <br>
-Mitigation: Review generated posts, summaries, hashtags, calls to action, and claims before publishing or sending them. <br>
+## Use Case:
 
+Content creators, marketers, founders, and developers use this skill to turn long-form articles, blog posts, transcripts, files, or pasted text into platform-specific social posts, newsletters, captions, and summaries.
 
-## Reference(s): <br>
-- [Platform Character Limits & Best Practices](references/platform-guides.md) <br>
-- [ClawHub skill page](https://clawhub.ai/merjua14/gia-content-repurposer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files and console text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one output per requested format and depends on configured OpenAI or Anthropic API credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can fetch arbitrary URLs, including internal or private-network URLs if supplied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, intended URLs and avoid internal, private-network, or confidential sources.
+
+Risk: Fetched, local, or pasted content may be sent to OpenAI or Anthropic for generation.
+
+Mitigation: Process only public or non-confidential material and confirm provider data-handling requirements before use.
+
+Risk: Generated content is saved locally under an output directory.
+
+Mitigation: Choose an appropriate output location and review generated files before sharing or publishing them.
+
+## Reference(s):
+
+- [Platform Character Limits & Best Practices](artifact/references/platform-guides.md)
+- [Content Repurposer Pro on ClawHub](https://clawhub.ai/merjua14/skills/gia-content-repurposer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown files and console text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates one output per selected format, including Twitter/X threads, LinkedIn posts, newsletters, Instagram captions, and summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

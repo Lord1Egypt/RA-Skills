@@ -1,41 +1,50 @@
-## Description: <br>
-You are a business analyst specialist with expertise in process optimization, workflow design, business transformation, and strategic analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business Analyst supports process optimization, workflow design, gap analysis, cost-benefit analysis, risk assessment, and implementation planning.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Employees, business teams, and consultants use this skill to analyze business processes, design optimized workflows, perform gap and cost-benefit analysis, assess risks, and create implementation roadmaps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business recommendations, ROI estimates, automation plans, or staffing implications may be incorrect or incomplete if the input data is stale, biased, or missing operational context. <br>
-Mitigation: Review outputs with responsible business, finance, operations, compliance, and change-management stakeholders before acting. <br>
-Risk: Risk assessments and process-change plans may affect budgets, staffing, compliance obligations, or operational controls. <br>
-Mitigation: Validate assumptions, calculations, and compliance impacts against authoritative source data and internal policies. <br>
+## Use Case:
 
+Business analysts, operations teams, and transformation leads use this skill to assess current-state processes, identify gaps and risks, design future-state workflows, and produce roadmaps, ROI calculations, and change plans.
 
-## Reference(s): <br>
-- [Business Analyst examples](references/examples.md) <br>
-- [ClawHub release page](https://clawhub.ai/mtsatryan/ah-business-analyst) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with analysis frameworks, process models, recommendations, roadmaps, ROI calculations, and change management plans] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include TypeScript example code and business-analysis artifacts for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Outputs could be treated as approval authority for financial decisions, compliance signoff, or live business-system changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for analysis and drafting only; require qualified human review before approval, compliance, or operational changes.
+
+## Reference(s):
+
+- [Business Analyst Examples](references/examples.md)
+- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/skills/ah-business-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured recommendations, frameworks, roadmaps, ROI calculations, and optional code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Human review is recommended before using outputs for financial approvals, compliance decisions, or live business-system changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Manage family todo lists with multi-user support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage family todo lists with multi-user support.
 
-## Publisher: <br>
-[thurendous](https://clawhub.ai/user/thurendous) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[thurendous](https://clawhub.ai/user/thurendous)
 
-## Use Case: <br>
-Household users and agents use this skill to add, list, complete, delete, and review family todo tasks from a local Node.js command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Todo items and household identifiers are stored as plain local JSON data. <br>
-Mitigation: Avoid putting highly sensitive information in tasks and protect or back up memory/todo.json according to the household's needs. <br>
-Risk: The configured user ID fields help route tasks but are not real access controls. <br>
-Mitigation: Do not rely on user IDs for security boundaries; use the skill only in trusted local or agent environments. <br>
+## Use Case:
 
+Family members and household automation agents use this skill to add, list, complete, delete, and review shared or per-person todo tasks from a local Node.js command line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thurendous/family-todo-management) <br>
-- [Publisher profile](https://clawhub.ai/user/thurendous) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Command-line text with Markdown-style todo summaries and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes todo data to a local JSON file at memory/todo.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Any invoker in a shared chat or automation context can view, add, complete, or delete tasks across users.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only for a single trusted user or behind an outer authentication and authorization layer that enforces task access by caller.
+
+Risk: Todo contents are stored as plaintext local JSON.
+
+Mitigation: Keep the working directory private, restrict filesystem permissions, and avoid storing sensitive household or personal information in tasks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thurendous/skills/family-todo-management)
+- [Publisher profile](https://clawhub.ai/user/thurendous)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown-formatted CLI text with configuration and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes todo data to local plaintext JSON storage under memory/todo.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

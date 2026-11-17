@@ -1,37 +1,54 @@
-## Description: <br>
-食品产销双主体极简操盘工作体系，覆盖季度战略规划、周度执行管控、电商店铺核心指标管控、视觉包装标准、直播间标准化参数、高频问题终极解决方案。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language operating guidance for food e-commerce teams covering quarterly planning, weekly execution, KPI management, visual and packaging standards, livestream setup, and common issue response.
 
-## Publisher: <br>
-[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ccynthia5098-wq](https://clawhub.ai/user/ccynthia5098-wq)
 
-## Use Case: <br>
-Food e-commerce operations teams use this skill to structure quarterly planning, weekly execution controls, KPI review, visual and packaging standards, livestream parameters, and recurring issue response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill declares broad tool access even though the artifact is an advisory playbook with no executable code. <br>
-Mitigation: Invoke it manually or with narrowed trigger phrases, and grant file or terminal access only when the host agent actually requires those tools for the task. <br>
+## Use Case:
 
+External food e-commerce operators and production-sales teams use this skill to structure planning, weekly execution, store KPI review, livestream operations, packaging checks, and recurring issue response.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown and structured operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; may reference web, terminal, file, and calculator tools when the host agent grants them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill declares broad terminal and file tool availability even though the release contains no executable code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before using local files or terminal commands with this skill.
+
+Risk: The operational guidance may be applied to food labeling, advertising, logistics, or platform policy decisions that vary by jurisdiction and marketplace.
+
+Mitigation: Review recommendations against current local regulations, marketplace rules, and business requirements before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ccynthia5098-wq/skills/food-production-sales-operation)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/ccynthia5098-wq)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Text]
+
+**Output Format:** [Markdown and plain-language operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language food e-commerce operations guidance; may reference web, terminal, file, and calculator tool use when explicitly needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,59 @@
-## Description: <br>
-Structured process for identifying personal values and life purpose. Use when someone feels directionless, is making a major life decision, suspects their life is misaligned with what they actually want, or is rebuilding after a crisis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured process for identifying personal values and life purpose. Use when someone feels directionless, is making a major life decision, suspects their life is misaligned with what they actually want, or is rebuilding after a crisis.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External users and assisting agents use this skill to clarify personal values, compare those values against daily life, and define concrete alignment actions during major decisions, periods of dissatisfaction, or post-crisis rebuilding. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can surface sensitive personal information in notes or reflections. <br>
-Mitigation: Treat outputs as sensitive personal data and only grant filesystem access when the user deliberately wants to save or revisit notes. <br>
-Risk: Users may treat guided self-reflection as a substitute for professional or emergency support. <br>
-Mitigation: Use the skill for reflection, not as professional, clinical, or emergency support. <br>
+## Use Case:
 
+External users can use this skill to clarify personal values, examine whether daily life aligns with those values, and turn the results into concrete daily, weekly, quarterly, and annual actions.
 
-## Reference(s): <br>
-- [VIA Character Strengths](https://www.viacharacter.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational guidance with structured reflection exercises] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve sensitive personal notes; use filesystem access only when the user deliberately wants to save or revisit them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may prompt users to share sensitive personal reflections about values, family, work, budget, calendar, and life direction.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users not to share information they do not want retained by the agent environment, especially if state or follow-up reminders are enabled.
+
+Risk: The installer command depends on the `clawhub` package supply chain.
+
+Mitigation: Pin or otherwise verify the `clawhub` installer package before installing.
+
+Risk: State-tracking fields and follow-up reminders could retain personal values-work details longer than the user expects.
+
+Mitigation: Use state retention only when needed and review stored values, actions, scores, and reminder dates with the user.
+
+## Reference(s):
+
+- [Values Clarification skill page](https://clawhub.ai/howtousehumans/skills/values-clarification)
+- [Publisher profile: howtousehumans](https://clawhub.ai/user/howtousehumans)
+- [VIA Character Strengths](https://www.viacharacter.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and conversational text with structured exercises, prompts, action plans, and optional state-tracking fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user for sensitive personal reflections about values, family, work, budget, calendar, and life direction.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

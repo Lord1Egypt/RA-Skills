@@ -1,41 +1,49 @@
-## Description: <br>
-Bumps versions, updates changelogs, and coordinates version changes across files for releases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bumps versions, updates changelogs, and coordinates version changes across files for releases.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and release maintainers use this skill when preparing releases, bumping project versions, updating changelogs, and checking related documentation and configuration files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as version, release, changelog, semver, and bump may activate the skill for adjacent maintenance requests. <br>
-Mitigation: Phrase requests explicitly and confirm that release or version maintenance is intended before applying suggested changes. <br>
-Risk: Version bumps and changelog updates can affect multiple files and may introduce incorrect release metadata. <br>
-Mitigation: Review the planned file changes and diff before allowing edits, then run the relevant tests or build checks for the changed project. <br>
+## Use Case:
 
+Developers use this skill to prepare project releases by coordinating semantic version changes across package manifests, changelogs, and README or other version references, then reviewing the updates. It expects repository changes to be captured first with the Sanctum git workspace review skill.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-version-updates) <br>
-- [Source homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets and change summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file edits, version updates, changelog entries, verification commands, and release follow-up steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub server release evidence) <br>
+Risk: The partial security review could not resolve local references, leaving some referenced behavior unassessed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill's local references and assess whether its version, release, and changelog triggers overlap with your workflows before installing.
+
+## Reference(s):
+
+- [Night Market Sanctum plugin page](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+
+## Skill Output:
+
+**Output Type(s):** [Configuration, Markdown, Shell commands]
+
+**Output Format:** [Updated project configuration and Markdown documentation, with shell commands for verification.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Five ordered progress checkpoints for release preparation.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

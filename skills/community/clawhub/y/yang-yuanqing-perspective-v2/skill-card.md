@@ -1,40 +1,53 @@
-## Description: <br>
-Provides a synthetic Yang Yuanqing-style business strategy perspective for strategic execution, globalization, dual-track growth, efficiency, and pragmatic enterprise management decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language strategic-management perspective based on Yang Yuanqing and Lenovo-style examples for reasoning about execution, global integration, dual-track growth, and pragmatic efficiency.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Business strategists, managers, and agents use this skill to frame strategic planning, cross-border acquisition integration, organizational management, efficiency improvement, and technology commercialization through a structured synthetic executive perspective. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents a synthetic business perspective and could be mistaken for real statements or advice from Yang Yuanqing. <br>
-Mitigation: Treat outputs as generated analysis and independently verify facts, quotations, and high-stakes business decisions. <br>
-Risk: Broad trigger phrases may activate the skill during general strategy discussions. <br>
-Mitigation: Use explicit invocation when the persona is intended and review responses for unwanted perspective framing. <br>
+## Use Case:
 
+Business users, strategists, and agents use this skill to frame planning, management, globalization, efficiency, risk, and execution questions through a Yang Yuanqing-inspired Lenovo business lens.
 
-## Reference(s): <br>
-- [ClawHub skill release page](https://clawhub.ai/xiejianjun000/yang-yuanqing-perspective-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Markdown text with structured mental models, decision heuristics, case examples, reading lists, and self-check questions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only output; no code execution or data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad business trigger phrases may cause the perspective to appear in general strategy conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit invocation or narrow/remove broad triggers when deploying the skill for contexts that should not automatically apply this viewpoint.
+
+Risk: The skill provides a stylized leadership perspective and may not be appropriate as the sole basis for business decisions.
+
+Mitigation: Treat outputs as decision-support framing and review recommendations against current business facts, stakeholder requirements, and domain expertise.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/yang-yuanqing-perspective-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business-perspective responses; no code, tools, persistence, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

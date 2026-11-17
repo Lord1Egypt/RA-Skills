@@ -1,51 +1,63 @@
-## Description: <br>
-Gives an agent access to the NeuBird CLI for production operations investigations across infrastructure health, cloud cost, incidents, latency, error rates, deployment risk, silent failures, and blast radius analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NeuBird AI Production Ops Agent helps agents use the authenticated neubird CLI to investigate production health, incidents, cloud cost, performance, deployment risk, silent failures, and blast radius.
 
-## Publisher: <br>
-[neubird](https://clawhub.ai/user/neubird) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neubird](https://clawhub.ai/user/neubird)
 
-## Use Case: <br>
-SREs, platform engineers, and operations teams use this skill to run NeuBird-powered production investigations and summarize findings with scope, evidence, and recommended next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The NeuBird CLI can access production project data according to the local account's permissions. <br>
-Mitigation: Use least-privilege NeuBird project access and install the skill only when the publisher and account access are trusted. <br>
-Risk: Investigation prompts or outputs may include secrets or unnecessary customer data. <br>
-Mitigation: Avoid sending secrets or unnecessary customer data in prompts and review findings before sharing them. <br>
-Risk: Temporary NeuBird session files may remain under /tmp after investigations. <br>
-Mitigation: Run the documented cleanup command and remove session files when the investigation is complete. <br>
-Risk: Running against the wrong production project could produce misleading findings or expose unrelated operational data. <br>
-Mitigation: Confirm the target project before starting an investigation, especially when the user's request is ambiguous. <br>
+## Use Case:
 
+SREs, platform engineers, and incident responders use this skill to run NeuBird production-ops investigations and turn CLI findings into concise incident guidance, recommended next steps, and escalation artifacts.
 
-## Reference(s): <br>
-- [NeuBird homepage](https://neubird.ai) <br>
-- [NeuBird product site](https://neubird.com) <br>
-- [ClawHub skill page](https://clawhub.ai/neubird/production-operations-agent) <br>
-- [Application & APM Investigation Reference](references/application.md) <br>
-- [Cloud Infrastructure Investigation Reference](references/cloud.md) <br>
-- [Database & Storage Investigation Reference](references/database.md) <br>
-- [Escalation & Incident Communications Reference](references/escalation.md) <br>
-- [Kubernetes Investigation Reference](references/kubernetes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and summarized investigation findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [NeuBird CLI runs may stream for 60-180 seconds and use temporary session files under /tmp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: The skill uses an authenticated production CLI that can access sensitive operational data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where NeuBird is authorized for the relevant environments, and avoid including secrets or customer data in prompts.
+
+Risk: Sensitive investigations may affect production operations or expose operational context.
+
+Mitigation: Confirm sensitive investigations with the user and summarize the scope before recommending action.
+
+Risk: Free-form prompts can become unsafe if converted into shell command strings.
+
+Mitigation: Invoke the CLI with separate arguments rather than constructing shell command strings from user input.
+
+## Reference(s):
+
+- [NeuBird AI Production Ops Agent on ClawHub](https://clawhub.ai/neubird/skills/production-operations-agent)
+- [NeuBird Homepage](https://neubird.ai)
+- [Application & APM Investigation Reference](references/application.md)
+- [Cloud Infrastructure Investigation Reference](references/cloud.md)
+- [Database & Storage Investigation Reference](references/database.md)
+- [Escalation & Incident Communications Reference](references/escalation.md)
+- [Kubernetes Investigation Reference](references/kubernetes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summaries with inline shell commands and incident-response templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes CLI findings from stdout, ignores progress output on stderr, and recommends cleanup of session files after use.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

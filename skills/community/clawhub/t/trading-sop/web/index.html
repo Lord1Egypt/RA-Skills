@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMTickerLab 投研与决策看板 | Financial Research Terminal</title>
+  <style>
+    /* =========================================================================
+       1. Color Tokens & Design System (Neutral Modern Dual Theme)
+       ========================================================================= */
+    :root {
+      /* Dark mode (Default Native) */
+      --bg-canvas: #09090b;
+      --bg-surface: #18181b;
+      --bg-surface-warm: #27272a;
+      --fg-primary: #fafafa;
+      --fg-secondary: #e4e4e7;
+      --fg-muted: #a1a1aa;
+      --fg-meta: #71717a;
+
+      --border-base: rgba(255, 255, 255, 0.1);
+      --border-soft: rgba(255, 255, 255, 0.05);
+      --shadow-base: 0 4px 16px rgba(0, 0, 0, 0.14);
+      --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.14);
+
+      --accent-main: #3b82f6;
+      --accent-on: #ffffff;
+      --accent-hover: #60a5fa;
+      --accent-active: #2563eb;
+      --accent-tint: rgba(59, 130, 246, 0.15);
+
+      /* A-Share Financial Semantic Indicators */
+      --up-red: #ef4444;
+      --up-red-tint: rgba(239, 68, 68, 0.15);
+      --down-green: #10b981;
+      --down-green-tint: rgba(16, 185, 129, 0.15);
+      --warn-amber: #f59e0b;
+      --warn-amber-tint: rgba(245, 158, 11, 0.15);
+      --info-cyan: #0ea5e9;
+
+      /* Chart MA lines */
+      --chart-ma5: #fbbf24;
+      --chart-ma10: #38bdf8;
+      --chart-ma20: #c084fc;
+
+      /* Typography & Layout Spacings */
+      --font-ui: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-mono: "Segoe UI Mono", "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --sidebar-width: 384px;
+      --header-height: 48px;
+    }
+
+    /* Manual Light Mode Toggle */
+    [data-theme="light"] {
+      --bg-canvas: #f4f4f5;
+      --bg-surface: #ffffff;
+      --bg-surface-warm: #fafafa;
+      --fg-primary: #09090b;
+      --fg-secondary: #3f3f46;
+      --fg-muted: #71717a;
+      --fg-meta: #a1a1aa;
+
+      --border-base: #e4e4e7;
+      --border-soft: #f4f4f5;
+      --shadow-base: 0 4px 16px rgba(0, 0, 0, 0.06);
+      --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+      --accent-main: #2563eb;
+      --accent-on: #ffffff;
+      --accent-hover: #1d4ed8;
+      --accent-active: #1e40af;
+      --accent-tint: rgba(37, 99, 235, 0.1);
+
+      --up-red: #dc2626;
+      --up-red-tint: rgba(220, 38, 38, 0.1);
+      --down-green: #059669;
+      --down-green-tint: rgba(5, 150, 105, 0.1);
+      --warn-amber: #d97706;
+      --warn-amber-tint: rgba(217, 119, 6, 0.1);
+      --info-cyan: #0284c7;
+
+      /* Chart MA lines */
+      --chart-ma5: #d97706;
+      --chart-ma10: #0284c7;
+      --chart-ma20: #9333ea;
+    }
+
+    /* =========================================================================
+       2. Base Reset & Typography
+       ========================================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: calc(100%);
+      width: calc(100%);
+      background-color: var(--bg-canvas);
+      color: var(--fg-primary);
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Focus & Accessibility Standards (Microsoft Fluent & HIG) */
+    :focus-visible {
+      outline: 2px solid var(--accent-main);
+      outline-offset: 2px;
+    }
+
+    :disabled, [disabled] {
+      opacity: 0.5;
+      cursor: not-allowed !important;
+      pointer-events: none;
+    }
+
+    /* =========================================================================
+       3. Header Navigation Bar (Fluent App Bar)
+       ========================================================================= */
+    header[role="banner"] {
+      height: var(--header-height);
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-base);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: relative;
+      z-index: 20;
+      flex-shrink: 0;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--accent-tint);
+      color: var(--accent-main);
+      font-weight: 700;
+      font-size: 16px;
+      border: 1px solid var(--border-base);
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: var(--fg-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--fg-muted);
+      font-weight: 400;
+      padding-left: 8px;
+      border-left: 1px solid var(--border-base);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Input Component (Fluent SearchBox) */
+    .search-box-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      background: var(--bg-surface-warm);
+      border: 1px solid var(--border-base);
+      color: var(--fg-primary);
+      height: 32px;
+      padding: 0 32px 0 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      width: 200px;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-main);
+      background: var(--bg-surface);
+      outline: 1px solid var(--accent-main);
+      width: 240px;
+    }
+
+    .search-shortcut-kbd {
+      position: absolute;
+      right: 8px;
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      font-size: 10px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      color: var(--fg-muted);
+      padding: 2px 4px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Button Components (Fluent Button standards) */
+    .btn {
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1), background 0.15s ease, color 0.15s ease;
+      user-select: none;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary {
+      background: var(--accent-main);
+      color: var(--accent-on);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-primary:active {
+      background: var(--accent-active);
+    }
+
+    .btn-subtle {
+      background: transparent;
+      color: var(--fg-secondary);
+      border: 1px solid var(--border-base);
+    }
+
+    .btn-subtle:hover {
+      background: var(--bg-surface-warm);
+      color: var(--fg-primary);
+    }
+
+    .btn-icon {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1px solid var(--border-base);
+      color: var(--fg-secondary);
+      cursor: pointer;
+      transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1), background 0.15s ease, color 0.15s ease;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .btn-icon:hover {
+      background: var(--bg-surface-warm);
+      color: var(--fg-primary);
+    }
+
+    .btn-icon:active {
+      transform: scale(0.92);
+    }
+
+    /* Button Loading State */
+    .btn.is-loading {
+      pointer-events: none;
+      opacity: 0.8;
+    }
+    .btn.is-loading::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* =========================================================================
+       4. App Workspace Layout (Split Pane)
+       ========================================================================= */
+    .app-workspace {
+      display: flex;
+      height: calc(100% - var(--header-height));
+      width: calc(100%);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Sidebar Navigation (Fluent NavigationView) */
+    aside.sidebar-region {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-base);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: margin-left 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      position: relative;
+      z-index: 10;
+    }
+
+    aside.sidebar-region.collapsed {
+      margin-left: calc(-1 * var(--sidebar-width));
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar-header {
+      padding: 12px 12px 8px 12px;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Quick Filter Input */
+    .filter-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .filter-input {
+      width: calc(100%);
+      height: 32px;
+      padding: 0 12px;
+      background: var(--bg-surface-warm);
+      border: 1px solid var(--border-base);
+      border-radius: 6px;
+      color: var(--fg-primary);
+      font-size: 12px;
+      font-family: "Segoe UI", sans-serif;
+      transition: border-color 0.15s;
+    }
+
+    .filter-input:focus {
+      border-color: var(--accent-main);
+      background: var(--bg-surface);
+    }
+
+    /* Segmented Category Filter (Fluent Pivot / Tabs) */
+    .filter-segment-list {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .filter-segment-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .segment-tab {
+      height: 32px;
+      padding: 0 8px;
+      border-radius: 6px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--fg-muted);
+      font-size: 11px;
+      font-weight: 500;
+      font-family: "Segoe UI", sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform 0.1s ease, background 0.15s, color 0.15s;
+    }
+
+    .segment-tab:hover {
+      background: var(--bg-surface-warm);
+      color: var(--fg-primary);
+    }
+
+    .segment-tab:active {
+      transform: scale(0.96);
+    }
+
+    .segment-tab.active {
+      background: var(--bg-surface-warm);
+      border-color: var(--border-base);
+      color: var(--fg-primary);
+      font-weight: 600;
+    }
+
+    .segment-badge {
+      font-size: 10px;
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      background: var(--border-base);
+      color: var(--fg-secondary);
+      padding: 0 4px;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .segment-tab.active .segment-badge {
+      background: var(--accent-tint);
+      color: var(--accent-main);
+    }
+
+    /* Report Card List Container */
+    .report-card-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Report Card Component (Fluent Card) */
+    .report-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      border-radius: 6px;
+      padding: 12px;
+      cursor: pointer;
+      transition: transform 0.1s cubic-bezier(0, 0, 0.2, 1), background 0.15s ease, border-color 0.15s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+    }
+
+    .report-card:hover {
+      background: var(--bg-surface-warm);
+      border-color: var(--accent-main);
+    }
+
+    .report-card:active {
+      transform: scale(0.98);
+    }
+
+    .report-card.selected {
+      background: var(--accent-tint);
+      border-color: var(--accent-main);
+      border-left: 3px solid var(--accent-main);
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--fg-muted);
+    }
+
+    .card-date {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      letter-spacing: -0.2px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--fg-primary);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    /* Semantic Tag Badges */
+    .tag-pill {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: "Segoe UI", sans-serif;
+      border: 1px solid transparent;
+      transition: transform 0.1s ease, filter 0.15s ease;
+    }
+    
+    button.tag-pill:hover {
+      filter: brightness(1.1);
+    }
+    
+    button.tag-pill:active {
+      transform: scale(0.95);
+    }
+
+    .tag-code {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      background: var(--bg-surface-warm);
+      border-color: var(--border-base);
+      color: var(--fg-secondary);
+    }
+
+    .tag-rating {
+      background: var(--accent-tint);
+      color: var(--accent-main);
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+
+    .tag-passed {
+      background: var(--down-green-tint);
+      color: var(--down-green);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .tag-blocked {
+      background: var(--up-red-tint);
+      color: var(--up-red);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .tag-halted {
+      background: var(--warn-amber-tint);
+      color: var(--warn-amber);
+      border-color: rgba(245, 158, 11, 0.2);
+    }
+
+    .tag-category {
+      background: transparent;
+      color: var(--fg-muted);
+      border-color: var(--border-base);
+    }
+
+    /* =========================================================================
+       5. Main Reading & Chart Workspace
+       ========================================================================= */
+    main.reading-area {
+      flex: 1;
+      height: calc(100%);
+      overflow: hidden; /* Do not scroll main */
+      background: var(--bg-canvas);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Top Panel: Chart */
+    section.chart-panel {
+      width: 100%;
+      height: 45vh;
+      min-height: 360px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-base);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: relative;
+      transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      z-index: 10;
+      overflow: hidden;
+    }
+    
+    section.chart-panel.collapsed {
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+      border-bottom-color: transparent;
+    }
+
+    .ticker-ribbon {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-soft);
+      gap: 12px;
+    }
+    
+    .ticker-ribbon-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ticker-profile {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .ticker-symbol {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--fg-primary);
+      letter-spacing: 0.5px;
+    }
+
+    .ticker-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg-secondary);
+    }
+
+    .ticker-price-tag {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      font-size: 18px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .price-change-pct {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .ticker-metrics-grid {
+      display: flex;
+      gap: 24px;
+    }
+
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .metric-label {
+      font-size: 10px;
+      color: var(--fg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-val {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--fg-secondary);
+    }
+
+    .chart-viewport {
+      flex: 1;
+      width: calc(100%);
+      background: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .chart-viewport svg {
+      width: calc(100%);
+      height: auto;
+      max-height: calc(100%);
+      display: block;
+    }
+
+    /* Report Detail Viewport */
+    .report-viewport {
+      flex: 1; /* Take up remaining height */
+      overflow-y: auto; /* Scroll independently */
+      padding: 24px 40px 64px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .report-viewport > * {
+      width: 100%;
+      max-width: 1440px;
+    }
+
+    /* Structured Metadata Card */
+    .metadata-hero-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+    }
+
+    .metadata-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--fg-primary);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .metadata-field-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .meta-item-label {
+      font-size: 11px;
+      color: var(--fg-muted);
+    }
+
+    .meta-item-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--fg-primary);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .meta-item-value.mono {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+    }
+
+    /* =========================================================================
+       6. Enhanced Markdown Styling (Literary Readability & Financial Structure)
+       ========================================================================= */
+    .markdown-surface {
+      color: var(--fg-secondary);
+      line-height: 1.7;
+      font-size: 14px;
+      word-break: break-word;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .markdown-surface h1,
+    .markdown-surface h2,
+    .markdown-surface h3,
+    .markdown-surface h4 {
+      color: var(--fg-primary);
+      font-weight: 600;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .markdown-surface h1 { font-size: 22px; border-bottom: 1px solid var(--border-base); padding-bottom: 8px; }
+    .markdown-surface h2 { font-size: 18px; border-bottom: 1px solid var(--border-soft); padding-bottom: 8px; }
+    .markdown-surface h3 { font-size: 15px; }
+    .markdown-surface h4 { font-size: 13px; color: var(--fg-muted); }
+
+    .markdown-surface p {
+      margin-bottom: 12px;
+    }
+
+    .markdown-surface ul,
+    .markdown-surface ol {
+      margin: 0 0 16px 20px;
+    }
+
+    .markdown-surface li {
+      margin-bottom: 4px;
+    }
+
+    /* Financial Tables */
+    .table-scroll-wrapper {
+      width: calc(100%);
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 6px;
+      border: 1px solid var(--border-base);
+    }
+
+    .markdown-surface table {
+      width: calc(100%);
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+      background: var(--bg-surface);
+    }
+
+    .markdown-surface th {
+      background: var(--bg-surface-warm);
+      color: var(--fg-muted);
+      font-weight: 600;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-base);
+      white-space: nowrap;
+    }
+
+    .markdown-surface td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-soft);
+      color: var(--fg-secondary);
+    }
+
+    .markdown-surface tr:last-child td {
+      border-bottom: none;
+    }
+
+    .markdown-surface tr:hover td {
+      background: var(--bg-surface-warm);
+    }
+
+    /* Code Blocks */
+    .code-block-wrapper {
+      position: relative;
+      margin: 16px 0;
+      background: var(--bg-surface-warm);
+      border: 1px solid var(--border-base);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 12px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-soft);
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      font-size: 11px;
+      color: var(--fg-muted);
+    }
+
+    .code-copy-btn {
+      background: transparent;
+      border: none;
+      color: var(--fg-muted);
+      font-size: 11px;
+      cursor: pointer;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .code-copy-btn:hover {
+      background: var(--border-base);
+      color: var(--fg-primary);
+    }
+
+    .markdown-surface pre {
+      padding: 12px;
+      overflow-x: auto;
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .markdown-surface code {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      background: var(--bg-surface-warm);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--accent-main);
+      border: 1px solid var(--border-soft);
+    }
+
+    .markdown-surface pre code {
+      background: transparent;
+      padding: 0;
+      border: none;
+      color: var(--fg-primary);
+    }
+
+    /* GitHub Style Callout Cards */
+    .callout-card {
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 6px;
+      border-left: 4px solid var(--accent-main);
+      background: var(--bg-surface-warm);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .callout-header {
+      font-weight: 600;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .callout-card.note { border-left-color: var(--accent-main); }
+    .callout-card.note .callout-header { color: var(--accent-main); }
+
+    .callout-card.tip { border-left-color: var(--down-green); }
+    .callout-card.tip .callout-header { color: var(--down-green); }
+
+    .callout-card.warning { border-left-color: var(--warn-amber); }
+    .callout-card.warning .callout-header { color: var(--warn-amber); }
+
+    .callout-card.important,
+    .callout-card.caution { border-left-color: var(--up-red); }
+    .callout-card.important .callout-header,
+    .callout-card.caution .callout-header { color: var(--up-red); }
+
+    /* =========================================================================
+       7. Resilience States (Skeleton, Empty, Error)
+       ========================================================================= */
+    /* Skeleton Shimmer Animation */
+    @keyframes shimmer {
+      0% { opacity: 0.4; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0.4; }
+    }
+
+    .skeleton-box {
+      background: var(--bg-surface-warm);
+      border-radius: 4px;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    .skeleton-card {
+      height: 48px;
+      border-radius: 6px;
+      background: var(--bg-surface-warm);
+      animation: shimmer 1.5s ease-in-out infinite;
+      border: 1px solid var(--border-soft);
+    }
+
+    .empty-state-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--fg-muted);
+      gap: 12px;
+    }
+
+    .empty-state-icon {
+      font-size: 32px;
+      opacity: 0.7;
+    }
+
+    .empty-state-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg-primary);
+    }
+
+    .empty-state-desc {
+      font-size: 12px;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    /* =========================================================================
+       8. Modals & Notifications
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-dialog {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+      width: 480px;
+      max-width: calc(90vw);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--fg-primary);
+    }
+
+    .shortcut-table {
+      width: calc(100%);
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .shortcut-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .shortcut-key {
+      font-family: "Segoe UI Mono", "Segoe UI", monospace;
+      background: var(--bg-surface-warm);
+      border: 1px solid var(--border-base);
+      color: var(--accent-main);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-msg {
+      background: var(--bg-surface-warm);
+      color: var(--fg-primary);
+      border: 1px solid var(--border-base);
+      padding: 8px 16px;
+      border-radius: 6px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+      animation: toastIn 0.2s ease forwards;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================================
+       Header Navigation Bar
+       ======================================================================= -->
+  <header role="banner">
+    <div class="brand-group">
+      <button class="btn-icon" id="btnToggleSidebar" aria-label="切换侧边栏折叠" title="折叠/展开侧边栏 (b)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <div class="brand-logo" aria-hidden="true">📈</div>
+      <div class="brand-title">
+        MMTickerLab
+        <span class="brand-subtitle">投研看板</span>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <!-- Search Box -->
+      <div class="search-box-wrapper">
+        <input type="text" id="tickerSearchInput" class="search-input" placeholder="代码/拼音 (如 600176)" aria-label="输入股票代码查询K线">
+        <span class="search-shortcut-kbd">/</span>
+      </div>
+      <button class="btn btn-primary" id="btnSearchChart" aria-label="查询行情与K线" onclick="loadTickerChartFromInput()">
+        查K线
+      </button>
+
+      <button class="btn btn-subtle" id="btnToggleChart" aria-label="切换K线图表显隐" onclick="toggleChartSection()">
+        图表
+      </button>
+
+      <button class="btn btn-subtle" id="btnRefresh" aria-label="刷新所有研报" onclick="refreshReports()">
+        刷新
+      </button>
+
+      <!-- Theme Switcher -->
+      <button class="btn-icon" id="btnToggleTheme" aria-label="切换深浅主题" title="切换深浅模式 (t)" onclick="toggleTheme()">
+        <svg id="themeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+
+      <!-- Shortcut Help -->
+      <button class="btn-icon" id="btnShortcutsHelp" aria-label="快捷键指南" title="快捷键帮助 (?)" onclick="toggleShortcutModal(true)">
+        <span style="font-weight:700;font-size:12px;">?</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =======================================================================
+       Workspace Layout
+       ======================================================================= -->
+  <div class="app-workspace">
+    <!-- Left Sidebar: Report Explorer -->
+    <aside id="sidebarRegion" role="region" aria-label="研报列表导航">
+      <div class="sidebar-header">
+        <!-- Live Filter Box -->
+        <div class="filter-input-wrap">
+          <input type="text" id="reportFilterInput" class="filter-input" placeholder="筛选当前研报标题或代码..." aria-label="筛选研报标题或代码" oninput="handleReportFilter()">
+        </div>
+
+        <!-- Segmented Category Tabs -->
+        <div class="filter-segment-list" role="tablist">
+          <button class="segment-tab active" role="tab" aria-label="全部分类" aria-selected="true" data-category="all" onclick="selectCategory('all')">
+            全部 <span class="segment-badge" id="count-all">0</span>
+          </button>
+          <button class="segment-tab" role="tab" aria-label="日内复盘分类" aria-selected="false" data-category="daily" onclick="selectCategory('daily')">
+            日内复盘 <span class="segment-badge" id="count-daily">0</span>
+          </button>
+          <button class="segment-tab" role="tab" aria-label="个股投研分类" aria-selected="false" data-category="ticker" onclick="selectCategory('ticker')">
+          <input type="text" id="reportFilterInput" class="filter-input" placeholder="输入代码 / 标题 / 评级过滤..." oninput="handleReportFilter()">
+        </div>
+        <div class="filter-segment-list" role="tablist" aria-label="研报分类">
+          <button class="segment-tab active" role="tab" aria-selected="true" data-category="all" onclick="selectCategory('all')">全部</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-category="daily" onclick="selectCategory('daily')">日内复盘</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-category="ticker" onclick="selectCategory('ticker')">个股投研</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-category="strategy" onclick="selectCategory('strategy')">策略决策</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-category="industry" onclick="selectCategory('industry')">行业研报</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-category="sop" onclick="selectCategory('sop')">SOP</button>
+        </div>
+      </div>
+      <div class="report-card-list" id="reportListContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </aside>
+
+    <!-- Main Reading Workspace -->
+    <main role="main" class="reading-area" id="mainContent">
+      <!-- Top Panel: Chart (Collapsible) -->
+      <section class="chart-panel collapsed" id="chartSection" aria-label="K线图表">
+        <div class="ticker-ribbon">
+          <div class="ticker-ribbon-header">
+            <div class="ticker-profile">
+              <span class="ticker-symbol" id="chartTickerCode">--</span>
+              <span class="ticker-name" id="chartTickerName">--</span>
+            </div>
+            <div class="ticker-price-tag">
+              <span id="chartLatestClose" style="color: var(--up-red);">--</span>
+            </div>
+          </div>
+          <div class="ticker-metrics-grid" id="chartMetricsRibbon">
+            <!-- Populated from API -->
+          </div>
+          <div style="display: flex; align-items: center;">
+            <button class="btn btn-subtle" style="height:24px;padding:0 8px;font-size:11px;" aria-label="收起K线图表" onclick="toggleChartSection(false)">
+              收起面板 ✕
+            </button>
+          </div>
+        </div>
+        <div class="chart-viewport" id="chartContainer">
+          <!-- SVG Injected Here -->
+        </div>
+      </section>
+
+      <!-- Bottom Panel: Report Reading Viewport -->
+      <section class="report-viewport" id="reportViewport">
+        <div id="reportEmptyState" class="empty-state-card" style="margin-top: 10vh;">
+          <div class="empty-state-icon">📄</div>
+          <div class="empty-state-title">未选择研报</div>
+          <div class="empty-state-desc">请从左侧列表选择一份研报阅读。</div>
+        </div>
+
+        <div id="reportLoadingState" class="skeleton-wrapper" style="display:none;">
+          <div class="skeleton-shimmer"></div>
+          <div class="skeleton-box" style="height:48px; width:60%; border-radius:6px;"></div>
+          <div class="skeleton-box" style="height:24px; width:100%; border-radius:4px; margin-top:24px;"></div>
+          <div class="skeleton-box" style="height:24px; width:90%; border-radius:4px;"></div>
+          <div class="skeleton-box" style="height:24px; width:95%; border-radius:4px;"></div>
+        </div>
+
+        <!-- Populated Content Area -->
+        <div id="reportActiveContent" style="display:none;">
+          <div class="metadata-hero-card" id="metadataHeroCard">
+            <!-- Rendered Metadata Hero -->
+          </div>
+          <article class="markdown-surface" id="reportMarkdownBody">
+            <!-- Rendered Markdown -->
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- =======================================================================
+       Modals & Toast Containers
+       ======================================================================= -->
+  <!-- Keyboard Shortcut Modal -->
+  <div class="modal-backdrop" id="shortcutModal" onclick="handleBackdropClick(event)">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="键盘快捷键指南">
+      <div class="modal-header">
+        <h3 class="modal-title">键盘快捷键指南</h3>
+        <button class="btn-icon" aria-label="关闭模态框" onclick="toggleShortcutModal(false)">✕</button>
+      </div>
+      <table class="shortcut-table">
+        <tr><td><span class="shortcut-key">j</span> / <span class="shortcut-key">↓</span></td><td>选中并阅读下一篇研报</td></tr>
+        <tr><td><span class="shortcut-key">k</span> / <span class="shortcut-key">↑</span></td><td>选中并阅读上一篇研报</td></tr>
+        <tr><td><span class="shortcut-key">/</span></td><td>快速聚焦股票代码查询框</td></tr>
+        <tr><td><span class="shortcut-key">b</span></td><td>展开 / 收起左侧研报导航栏</td></tr>
+        <tr><td><span class="shortcut-key">m</span></td><td>展开 / 折叠顶部 K 线行情图表</td></tr>
+        <tr><td><span class="shortcut-key">t</span></td><td>切换深色 / 浅色高对比度主题</td></tr>
+        <tr><td><span class="shortcut-key">?</span></td><td>打开 / 关闭本快捷键帮助窗口</td></tr>
+        <tr><td><span class="shortcut-key">Esc</span></td><td>退出搜索聚焦或关闭弹出窗口</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- =======================================================================
+       JavaScript Application Logic
+       ======================================================================= -->
+  <script>
+    // State Management
+    let allReports = [];
+    let currentCategory = 'all';
+    let currentReport = null;
+    let filterQuery = '';
+    let isChartVisible = false;
+    let activeStockCode = null;
+
+    // Initialization Flow
+    async function init() {
+      initTheme();
+      initKeyboardShortcuts();
+      renderSkeletons();
+      await refreshReports();
+
+      // Check URL parameters for direct link to ticker
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialCode = urlParams.get('code') || '600176';
+      loadChart(initialCode);
+    }
+
+    // Theme Management (color-system compliance)
+    function initTheme() {
+      const savedTheme = localStorage.getItem('mmtickerlab_theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('mmtickerlab_theme', next);
+      showToast(`已切换至 ${next === 'dark' ? '深色' : '浅色'} 模式`);
+    }
+
+    // Keyboard Shortcuts (ux-architect-sop step 5)
+    function initKeyboardShortcuts() {
+      window.addEventListener('keydown', (e) => {
+        // If user is typing in an input field, only listen for Esc
+        const inInput = ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
+        if (inInput) {
+          if (e.key === 'Escape') {
+            document.activeElement.blur();
+          } else if (e.key === 'Enter' && document.activeElement.id === 'tickerSearchInput') {
+            loadTickerChartFromInput();
+          }
+          return;
+        }
+
+        if (e.key === '/') {
+          e.preventDefault();
+          const inp = document.getElementById('tickerSearchInput');
+          inp.focus();
+          inp.select();
+        } else if (e.key === 'b' || e.key === 'B') {
+          toggleSidebar();
+        } else if (e.key === 'm' || e.key === 'M') {
+          toggleChartSection();
+        } else if (e.key === 't' || e.key === 'T') {
+          toggleTheme();
+        } else if (e.key === '?') {
+          toggleShortcutModal();
+        } else if (e.key === 'Escape') {
+          toggleShortcutModal(false);
+        } else if (e.key === 'j' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          navigateReport(1);
+        } else if (e.key === 'k' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          navigateReport(-1);
+        }
+      });
+
+      document.getElementById('btnToggleSidebar').addEventListener('click', toggleSidebar);
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebarRegion');
+      sidebar.classList.toggle('collapsed');
+    }
+
+    function toggleChartSection(forceState) {
+      const section = document.getElementById('chartSection');
+      if (typeof forceState === 'boolean') {
+        isChartVisible = forceState;
+      } else {
+        isChartVisible = !isChartVisible;
+      }
+      
+      if (isChartVisible) {
+        section.classList.remove('collapsed');
+        if (activeStockCode) {
+          loadChart(activeStockCode);
+        } else {
+          document.getElementById('chartContainer').innerHTML = `
+            <div class="empty-state-card">
+              <div class="empty-state-icon">📊</div>
+              <div class="empty-state-title">请输入代码查询 K 线</div>
+              <div class="empty-state-desc">在右上角输入股票代码并点击"查K线"，或在左侧选择关联个股的研报。</div>
+            </div>
+          `;
+          document.getElementById('chartTickerCode').innerText = '--';
+          document.getElementById('chartTickerName').innerText = '';
+          document.getElementById('chartLatestClose').innerText = '--';
+          document.getElementById('chartMetricsRibbon').innerHTML = '';
+        }
+      } else {
+        section.classList.add('collapsed');
+      }
+    }
+
+    function toggleShortcutModal(show) {
+      const modal = document.getElementById('shortcutModal');
+      const shouldShow = typeof show === 'boolean' ? show : !modal.classList.contains('active');
+      modal.classList.toggle('active', shouldShow);
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.id === 'shortcutModal') {
+        toggleShortcutModal(false);
+      }
+    }
+
+    // Reports Data & Rendering
+    async function refreshReports() {
+      const btn = document.getElementById('btnRefresh');
+      if (btn) btn.classList.add('is-loading');
+      try {
+        const res = await fetch('/api/reports');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        allReports = await res.json();
+        updateCategoryCounts();
+        renderReportList();
+        showToast('研报列表已更新');
+
+        // If no report selected yet, auto-select first report
+        if (!currentReport && allReports.length > 0) {
+          selectReport(allReports[0].relative_path);
+        }
+      } catch (err) {
+        document.getElementById('reportListContainer').innerHTML = `
+          <div class="empty-state-card">
+            <div class="empty-state-icon">⚠️</div>
+            <div class="empty-state-title">获取报告失败</div>
+            <div class="empty-state-desc">${escapeHtml(err.message)}</div>
+            <button class="btn btn-subtle" aria-label="重试获取报告" onclick="refreshReports()">重试连接</button>
+          </div>
+        `;
+      } finally {
+        if (btn) btn.classList.remove('is-loading');
+      }
+    }
+
+    function updateCategoryCounts() {
+      const counts = { all: allReports.length, daily: 0, ticker: 0, strategy: 0, industry: 0, sop: 0 };
+      allReports.forEach(r => {
+        if (counts[r.category] !== undefined) {
+          counts[r.category]++;
+        }
+      });
+      Object.keys(counts).forEach(k => {
+        const el = document.getElementById(`count-${k}`);
+        if (el) el.innerText = counts[k];
+      });
+    }
+
+    function selectCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.segment-tab').forEach(tab => {
+        const active = tab.dataset.category === cat;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      renderReportList();
+    }
+
+    function handleReportFilter() {
+      filterQuery = document.getElementById('reportFilterInput').value.trim().toLowerCase();
+      renderReportList();
+    }
+
+    function getFilteredReports() {
+      return allReports.filter(r => {
+        const matchesCategory = currentCategory === 'all' || r.category === currentCategory;
+        if (!matchesCategory) return false;
+        if (!filterQuery) return true;
+        const titleMatch = (r.title || '').toLowerCase().includes(filterQuery);
+        const codeMatch = (r.code || '').toLowerCase().includes(filterQuery);
+        const nameMatch = (r.ticker_name || '').toLowerCase().includes(filterQuery);
+        return titleMatch || codeMatch || nameMatch;
+      });
+    }
+
+    function renderReportList() {
+      const container = document.getElementById('reportListContainer');
+      const filtered = getFilteredReports();
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state-card">
+            <div class="empty-state-icon">🔍</div>
+            <div class="empty-state-title">未找到相关研报</div>
+            <div class="empty-state-desc">可尝试切换分类或清空过滤关键词</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(r => {
+        const isSelected = currentReport && currentReport.id === r.id;
+
+        // VETO Tag Pill
+        let vetoTag = '';
+        if (r.veto_status === 'PASSED') {
+          vetoTag = '<span class="tag-pill tag-passed">VETO PASSED</span>';
+        } else if (r.veto_status === 'BLOCKED') {
+          vetoTag = '<span class="tag-pill tag-blocked">VETO BLOCKED</span>';
+        } else if (r.veto_status === 'WAITING_DATA') {
+          vetoTag = '<span class="tag-pill tag-halted">DATA SAFE HALTED</span>';
+        }
+
+        const codeTag = r.code ? `<button class="tag-pill tag-code" onclick="event.stopPropagation(); document.getElementById('reportFilterInput').value='${r.code}'; handleReportFilter();" style="cursor:pointer;" title="筛选此代码">${r.code}</button>` : '';
+        const ratingTag = r.rating ? `<button class="tag-pill tag-rating" onclick="event.stopPropagation(); document.getElementById('reportFilterInput').value='${r.rating}'; handleReportFilter();" style="cursor:pointer;" title="筛选此评级">${r.rating}</button>` : '';
+        const categoryTag = `<button class="tag-pill tag-category" onclick="event.stopPropagation(); selectCategory('${r.category}');" style="cursor:pointer;" title="查看此分类">${r.category_label || r.category}</button>`;
+
+        return `
+          <div class="report-card ${isSelected ? 'selected' : ''}"
+               role="button"
+               tabindex="0"
+               onclick="selectReport('${escapeHtml(r.relative_path)}')"
+               aria-label="查看研报: ${escapeHtml(r.title)}">
+            <div class="card-top-row">
+              <span class="card-date">${r.date || '--'}</span>
+              ${categoryTag}
+            </div>
+            <div class="card-title">${escapeHtml(r.title)}</div>
+            <div class="card-tags">
+              ${codeTag}
+              ${ratingTag}
+              ${vetoTag}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderSkeletons() {
+      const container = document.getElementById('reportListContainer');
+      container.innerHTML = `
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      `;
+    }
+
+    function navigateReport(direction) {
+      const filtered = getFilteredReports();
+      if (!filtered.length) return;
+      let currentIndex = -1;
+      if (currentReport) {
+        currentIndex = filtered.findIndex(r => r.id === currentReport.id);
+      }
+      let nextIndex = currentIndex + direction;
+      if (nextIndex < 0) nextIndex = 0;
+      if (nextIndex >= filtered.length) nextIndex = filtered.length - 1;
+      if (nextIndex !== currentIndex && filtered[nextIndex]) {
+        selectReport(filtered[nextIndex].relative_path);
+      }
+    }
+
+    // Select & Read Single Report
+    async function selectReport(relPath) {
+      document.getElementById('reportEmptyState').style.display = 'none';
+      document.getElementById('reportActiveContent').style.display = 'none';
+      document.getElementById('reportLoadingState').style.display = 'block';
+      
+      try {
+        const res = await fetch(`/api/report?path=${encodeURIComponent(relPath)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        currentReport = data;
+
+        // Render Report Detail View
+        document.getElementById('reportLoadingState').style.display = 'none';
+        document.getElementById('reportActiveContent').style.display = 'block';
+
+        const meta = data.metadata || {};
+        const title = meta.title || data.filename;
+
+        // Render Hero Metadata Card
+        const heroCard = document.getElementById('metadataHeroCard');
+        heroCard.innerHTML = `
+          <h1 class="metadata-title">${escapeHtml(title)}</h1>
+          <div class="metadata-field-grid">
+            <div class="meta-item">
+              <span class="meta-item-label">基准日期</span>
+              <span class="meta-item-value mono">${meta.date || '--'}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-item-label">研报分类</span>
+              <span class="meta-item-value">${escapeHtml(data.relative_path.split('/')[0])}</span>
+            </div>
+            ${meta.code ? `
+              <div class="meta-item">
+                <span class="meta-item-label">关联标的</span>
+                <span class="meta-item-value mono" style="color:var(--accent-main);">${meta.code} ${escapeHtml(meta.ticker_name || '')}</span>
+              </div>
+            ` : ''}
+            ${meta.rating ? `
+              <div class="meta-item">
+                <span class="meta-item-label">决策评级</span>
+                <span class="meta-item-value" style="color:var(--accent-main);font-weight:700;">${meta.rating}</span>
+              </div>
+            ` : ''}
+            ${meta.veto_status ? `
+              <div class="meta-item">
+                <span class="meta-item-label">风控门禁状态</span>
+                <span class="meta-item-value">${meta.veto_status}</span>
+              </div>
+            ` : ''}
+            ${meta.target_price ? `
+              <div class="meta-item">
+                <span class="meta-item-label">目标预期价</span>
+                <span class="meta-item-value mono" style="color:var(--up-red);">${meta.target_price} 元</span>
+              </div>
+            ` : ''}
+            ${meta.stop_loss ? `
+              <div class="meta-item">
+                <span class="meta-item-label">硬止损基线</span>
+                <span class="meta-item-value mono" style="color:var(--down-green);">${meta.stop_loss} 元</span>
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        // Render Markdown content
+        const mdSurface = document.getElementById('reportMarkdownBody');
+        mdSurface.innerHTML = parseAdvancedMarkdown(data.body_markdown || data.raw_content);
+
+        // Highlight selected card in list
+        renderReportList();
+
+        // Stock Linkage: If report contains a ticker code, automatically load chart!
+        if (meta.code) {
+          activeStockCode = meta.code;
+          loadChart(meta.code, meta.ticker_name);
+        }
+      } catch (err) {
+        document.getElementById('reportLoadingState').style.display = 'none';
+        document.getElementById('reportEmptyState').style.display = 'block';
+        showToast(`读取报告详情失败: ${err.message}`);
+      }
+    }
+
+    // Chart & Market Indicator Loader
+    function loadTickerChartFromInput() {
+      const code = document.getElementById('tickerSearchInput').value.trim();
+      const btn = document.getElementById('btnSearchChart');
+      if (code) {
+        if (btn) btn.classList.add('is-loading');
+        loadChart(code).finally(() => {
+          if (btn) btn.classList.remove('is-loading');
+        });
+      } else {
+        showToast('请输入股票代码或拼音');
+        document.getElementById('tickerSearchInput').focus();
+      }
+    }
+
+    async function loadChart(code, name = '') {
+      activeStockCode = code;
+      const section = document.getElementById('chartSection');
+      section.classList.remove('collapsed');
+      isChartVisible = true;
+
+      document.getElementById('chartTickerCode').innerText = code;
+      document.getElementById('chartTickerName').innerText = name || '';
+
+      const chartContainer = document.getElementById('chartContainer');
+      chartContainer.innerHTML = `
+        <div class="empty-state-card">
+          <div class="empty-state-icon">⏳</div>
+          <div class="empty-state-title">正在加载 ${code} 走势图...</div>
+        </div>
+      `;
+
+      try {
+        // Fetch SVG chart
+        const res = await fetch(`/api/chart/svg?code=${encodeURIComponent(code)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const svg = await res.text();
+        chartContainer.innerHTML = svg;
+
+        // Fetch latest metrics
+        const klineRes = await fetch(`/api/kline?code=${encodeURIComponent(code)}&count=5`);
+        if (klineRes.ok) {
+          const klines = await klineRes.json();
+          if (klines && klines.length > 0) {
+            const last = klines[klines.length - 1];
+            const isUp = (last.change_pct || 0) >= 0;
+            const color = isUp ? 'var(--up-red)' : 'var(--down-green)';
+            const sign = isUp ? '+' : '';
+
+            document.getElementById('chartLatestClose').innerHTML = `
+              <span style="color:${color};">${last.close}</span>
+              <span class="price-change-pct" style="color:${color};">(${sign}${last.change_pct}%)</span>
+            `;
+
+            document.getElementById('chartMetricsRibbon').innerHTML = `
+              <div class="metric-cell">
+                <span class="metric-label">成交额</span>
+                <span class="metric-val">${formatMoney(last.turnover)}</span>
+              </div>
+              <div class="metric-cell">
+                <span class="metric-label">换手率</span>
+                <span class="metric-val">${last.turnover_rate ? last.turnover_rate + '%' : '--'}</span>
+              </div>
+              <div class="metric-cell">
+                <span class="metric-label">MA5</span>
+                <span class="metric-val">${last.sma5 || '--'}</span>
+              </div>
+              <div class="metric-cell">
+                <span class="metric-label">MA20</span>
+                <span class="metric-val">${last.sma20 || '--'}</span>
+              </div>
+              <div class="metric-cell">
+                <span class="metric-label">MACD</span>
+                <span class="metric-val">${last.macd || '--'}</span>
+              </div>
+              <div class="metric-cell">
+                <span class="metric-label">RSI6</span>
+                <span class="metric-val">${last.rsi6 || '--'}</span>
+              </div>
+            `;
+          }
+        }
+      } catch (err) {
+        chartContainer.innerHTML = `
+          <div class="empty-state-card">
+            <div class="empty-state-icon">📊</div>
+            <div class="empty-state-title">标的 ${code} 暂无本地行情数据</div>
+            <div class="empty-state-desc">可通过 market 技能先拉取该标的历史行情后再进行 K 线观察。</div>
+          </div>
+        `;
+      }
+    }
+
+    // Markdown Parser with GitHub Callouts & Tables Support
+    function parseAdvancedMarkdown(md) {
+      if (!md) return '';
+      let text = md;
+
+      // 1. Code blocks with copy button
+      text = text.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/gm, (match, lang, code) => {
+        const escaped = escapeHtml(code);
+        return `
+          <div class="code-block-wrapper">
+            <div class="code-block-header">
+              <span>${lang || 'text'}</span>
+              <button class="code-copy-btn" aria-label="复制代码块" onclick="copySnippet(this)" data-code="${encodeURIComponent(code)}">复制</button>
+            </div>
+            <pre><code class="lang-${lang}">${escaped}</code></pre>
+          </div>
+        `;
+      });
+
+      // 2. Callout Cards (> [!NOTE], > [!WARNING], > [!TIP], > [!IMPORTANT], > [!CAUTION])
+      text = text.replace(/^\>\s+\[!(NOTE|TIP|WARNING|IMPORTANT|CAUTION)\]\s*\n((?:\>.*(?:\n|$))*)/gim, (m, type, body) => {
+        const cleanBody = body.replace(/^\>\s?/gm, '').trim();
+        const typeLower = type.toLowerCase();
+        let icon = 'ℹ️';
+        if (typeLower === 'tip') icon = '💡';
+        else if (typeLower === 'warning') icon = '⚠️';
+        else if (typeLower === 'important') icon = '⚡';
+        else if (typeLower === 'caution') icon = '🛑';
+
+        return `
+          <div class="callout-card ${typeLower}">
+            <div class="callout-header">
+              <span>${icon}</span>
+              <span>${type}</span>
+            </div>
+            <div>${parseInlineMarkdown(cleanBody)}</div>
+          </div>
+        `;
+      });
+
+      // 3. Regular Blockquotes
+      text = text.replace(/^\>\s+(.*$)/gim, '<blockquote>$1</blockquote>');
+
+      // 4. Headers
+      text = text.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+      text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+      text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+      // 5. Horizontal Rules
+      text = text.replace(/^---$/gim, '<hr style="border:none;border-top:1px solid var(--border-base);margin:20px 0;">');
+
+      // 6. Markdown Tables
+      text = text.replace(/((?:\|(?:[^\r\n\|]*)\|(?:\r?\n|$))+)/g, (match) => {
+        const lines = match.trim().split('\n');
+        if (lines.length < 2) return match;
+        let table = '<div class="table-scroll-wrapper"><table>';
+        lines.forEach((line, idx) => {
+          if (line.includes('---')) return; // separator row
+          const cols = line.split('|').slice(1, -1);
+          const tag = idx === 0 ? 'th' : 'td';
+          table += '<tr>' + cols.map(c => `<${tag}>${parseInlineMarkdown(c.trim())}</${tag}>`).join('') + '</tr>';
+        });
+        table += '</table></div>';
+        return table;
+      });
+
+      // 7. Inline Formatting & Lists
+      text = parseInlineMarkdown(text);
+      text = text.replace(/^- (.*$)/gim, '<li>$1</li>');
+      text = text.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+      text = text.replace(/\n\n/g, '<p></p>');
+
+      return text;
+    }
+
+    function parseInlineMarkdown(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>');
+    }
+
+    // Utility Helpers
+    function copySnippet(btn) {
+      const raw = decodeURIComponent(btn.dataset.code || '');
+      navigator.clipboard.writeText(raw).then(() => {
+        const prev = btn.innerText;
+        btn.innerText = '已复制!';
+        setTimeout(() => { btn.innerText = prev; }, 1500);
+      });
+    }
+
+    function formatMoney(val) {
+      if (!val) return '--';
+      const n = Number(val);
+      if (n >= 1e8) return (n / 1e8).toFixed(2) + ' 亿';
+      if (n >= 1e4) return (n / 1e4).toFixed(2) + ' 万';
+      return n.toFixed(0);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function showToast(msg) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast-msg';
+      toast.innerHTML = `<span>✓</span><span>${escapeHtml(msg)}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>

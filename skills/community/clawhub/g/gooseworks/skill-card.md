@@ -1,43 +1,54 @@
-## Description: <br>
-GooseWorks is a data toolkit for searching and scraping web, social, people, company, lead generation, and enrichment data through authenticated GooseWorks APIs and runtime skill scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GooseWorks is a data toolkit for searching, scraping, lead generation, prospect research, enrichment, and related go-to-market research tasks.
 
-## Publisher: <br>
-[akhilathina](https://clawhub.ai/user/akhilathina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akhilathina](https://clawhub.ai/user/akhilathina)
 
-## Use Case: <br>
-Sales, growth, research, and data operations users can use this skill to find leads, research companies and competitors, scrape supported sites, enrich contacts, and produce structured results through GooseWorks-managed services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch and run remote GooseWorks scripts, which increases execution risk if fetched content is not reviewed. <br>
-Mitigation: Review or sandbox fetched scripts before execution and require explicit approval before installing dependencies or running them. <br>
-Risk: The skill routes scraping, enrichment, and API proxy tasks through external services that may process personal, proprietary, or paid-call data. <br>
-Mitigation: Avoid sending sensitive data unless approved, confirm expected credit cost before paid operations, and follow data handling requirements for downstream providers. <br>
-Risk: The GooseWorks API key grants access to account services and credit-backed calls. <br>
-Mitigation: Store the key only in the expected local credential file or environment, restrict access, and rotate it if trust changes. <br>
+## Use Case:
 
+Developers, operators, and go-to-market teams use this skill to find and enrich people, company, social, website, and market data through GooseWorks-hosted catalog skills and APIs.
 
-## Reference(s): <br>
-- [ClawHub GooseWorks listing](https://clawhub.ai/akhilathina/gooseworks) <br>
-- [Publisher profile](https://clawhub.ai/user/akhilathina) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash and API examples; downstream task results may include JSON, CSV, or reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GOOSEWORKS_API_KEY; may fetch runtime scripts and call GooseWorks or proxied third-party APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and frontmatter) <br>
+Risk: GooseWorks can download catalog-provided scripts and files and run them locally while credentials are available.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill in a sandbox or disposable environment, inspect fetched content, and require explicit approval before downloading code, installing dependencies, or running scripts.
+
+Risk: Data tasks and API calls may send prompts, query parameters, and other task data through GooseWorks services and can trigger billed API usage.
+
+Mitigation: Avoid sensitive prompts or private datasets, verify the API base before authenticating, and require user approval before billed API calls.
+
+## Reference(s):
+
+- [GooseWorks ClawHub Skill Page](https://clawhub.ai/akhilathina/skills/gooseworks)
+- [GooseWorks Homepage](https://github.com/gooseworks-ai/gooseworks)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, API request examples, and structured data summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local scripts, configuration files, CSVs, reports, and data exports when a fetched GooseWorks catalog skill requires them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

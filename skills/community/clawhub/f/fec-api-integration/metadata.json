@@ -1,6 +1,6 @@
 {
   "id": "fec-api-integration",
-  "name": "API 集成",
+  "name": "API integration",
   "category": "implementation-capability",
   "tags": [
     "api",
@@ -10,7 +10,7 @@
     "realtime"
   ],
   "summary": "Frontend API integration boundaries, typed clients, error mapping, auth refresh, uploads, and realtime choices.",
-  "version": "2.5.0",
+  "version": "2.9.0",
   "license": "MIT",
   "homepage": "https://github.com/bovinphang/frontend-craft",
   "repository": "https://github.com/bovinphang/frontend-craft",
@@ -32,7 +32,7 @@
     "openclaw",
     "generic-skill-runtime"
   ],
-  "description": "Use when designing, implementing, or reviewing frontend-to-backend API integration, typed API clients, REST/tRPC/OpenAPI client choices, auth refresh, API error mapping, upload flows, SSE/WebSocket/polling choices, CORS-facing frontend behavior, or cross-boundary loading/error states. Do not use for backend-only service architecture or TanStack Query cache policy alone; Chinese triggers include API 集成, 前后端联调, typed API client, 接口错误处理, SSE, WebSocket.",
+  "description": "Use when designing, implementing, or reviewing frontend-to-backend API integration, typed API clients, REST/tRPC/OpenAPI client choices, auth refresh, API error mapping, upload flows, SSE/WebSocket/polling choices, CORS-facing frontend behavior, or cross-boundary loading/error states. Do not use for backend-only service architecture or TanStack Query cache policy alone; Chinese triggers include API integration, front-end and back-end joint debugging, typed API client, Interface error handling, SSE, WebSocket.",
   "source": "skills/fec-api-integration",
   "references": [
     "references/integration-patterns.md"
@@ -43,7 +43,7 @@
       "fec-security-review",
       "fec-route-protection",
       "fec-form-handling",
-      "fec-typescript-type-safety",
+      "fec-typescript-project-standard",
       "fec-source-driven-development"
     ],
     "boundaryWorkflows": [

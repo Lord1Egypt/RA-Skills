@@ -1,17 +1,29 @@
-# 🧠 ClawSouls Skill for OpenClaw
+# 🧠 ClawSouls Skill — AI Persona Manager
 
-An [OpenClaw](https://github.com/openclaw/openclaw) skill that lets your AI agent manage personas (Souls) — install, switch, create, publish, and validate AI personalities.
+An [Agent Skill](https://agentskills.io) that lets your AI agent manage personas (Souls) — install, switch, create, publish, and validate AI personalities. Works with any agentskills.io-compatible agent: [OpenClaw](https://github.com/openclaw/openclaw), [Hermes Agent](https://hermes-agent.nousresearch.com/), ZeroClaw, Claude Code, and more.
 
 ## Installation
 
-Add this skill to your OpenClaw workspace:
+**OpenClaw:**
 
 ```bash
-# Via ClaWHub (coming soon)
+# Via ClawHub
 openclaw skill install clawsouls
 
 # Or manually
 git clone https://github.com/clawsouls/clawsouls-skill.git ~/.openclaw/skills/clawsouls
+```
+
+**Hermes Agent** (see [HERMES_ADAPTER.md](./HERMES_ADAPTER.md)):
+
+```bash
+git clone https://github.com/clawsouls/clawsouls-skill.git ~/.hermes/skills/clawsouls
+```
+
+**skills.sh / other agentskills.io clients:**
+
+```bash
+npx skills add clawsouls/clawsouls-skill
 ```
 
 ## What It Does

@@ -1,0 +1,45 @@
+{
+  "wsl_host_status": {
+    "platform": "WSL 2",
+    "kernel_version": "5.15.153.1",
+    "status": "activo"
+  },
+  "distros": [
+    {
+      "name": "OpenClawGateway",
+      "state": "Running",
+      "version": "2"
+    },
+    {
+      "name": "ArchLinux",
+      "state": "Stopped",
+      "version": "2"
+    }
+  ],
+  "distro_inspect": {
+    "OpenClawGateway": {
+      "os_id": "ubuntu",
+      "os_version": "24.04",
+      "pkg_manager": "apt",
+      "reboot_pending": false,
+      "upgrades": [
+        {
+          "name": "openssl",
+          "id": "openssl",
+          "installed_version": "3.0.13-0ubuntu3",
+          "target_version": "3.0.13-0ubuntu3.4",
+          "source": "security.ubuntu.com",
+          "is_security": true
+        },
+        {
+          "name": "tmux",
+          "id": "tmux",
+          "installed_version": "3.4-1",
+          "target_version": "3.4-1ubuntu0.1",
+          "source": "archive.ubuntu.com",
+          "is_security": false
+        }
+      ]
+    }
+  }
+}

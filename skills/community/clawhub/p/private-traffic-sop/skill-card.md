@@ -1,43 +1,53 @@
-## Description: <br>
-Generates a private-traffic operations SOP from product type, user profile, and conversion goals, covering acquisition, nurturing, conversion, repurchase, scripts, cadence, and KPIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据产品类型、用户画像和转化目标，生成中文私域运营 SOP，覆盖引流、培育、转化、复购、KPI 和执行时间轴。
 
-## Publisher: <br>
-[amaxclaw](https://clawhub.ai/user/amaxclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amaxclaw](https://clawhub.ai/user/amaxclaw)
 
-## Use Case: <br>
-External operators, brands, and growth teams use this skill to draft private-domain traffic SOPs for community operations, conversion paths, retention programs, and 30-day execution plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Commercial
 
-## Known Risks and Mitigations: <br>
-Risk: Generated SOPs may be too generic or unsuitable for a specific business, audience, platform, or campaign. <br>
-Mitigation: Review the SOP before use and adapt channels, scripts, KPIs, timing, and offers to the actual business context and platform rules. <br>
-Risk: Private-traffic operations can involve customer contact data and privacy-sensitive outreach. <br>
-Mitigation: Apply applicable privacy, consent, and user communication requirements before executing the generated plan. <br>
-Risk: Broad invocation wording may select this skill for general business strategy requests outside its specific domain. <br>
-Mitigation: Confirm the task is about private-domain traffic operations SOP planning before relying on the output. <br>
+## Use Case:
 
+External marketing operators, brand teams, and user operations teams use this skill to draft Chinese-language private-traffic operating SOPs for customer acquisition, community nurturing, conversion, repeat purchase, and referral workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/amaxclaw/private-traffic-sop) <br>
-- [Publisher profile](https://clawhub.ai/user/amaxclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text SOP document with channel plans, message scripts, KPI targets, and execution timeline] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated plans should be reviewed and adapted to the user's business context, platform rules, and privacy obligations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, manifest, frontmatter, README) <br>
+Risk: Generated KPI targets and marketing scripts are generic and may not match the user's business rules, platform rules, or privacy obligations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and adapt the SOP before use, especially messaging, incentives, KPI targets, and any handling of customer data.
+
+Risk: Pricing and terms evidence varies between monthly, one-time, and commercial descriptions.
+
+Mitigation: Confirm the current ClawHub listing terms and license or purchase conditions before commercial deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/amaxclaw/skills/private-traffic-sop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-language structured SOP document with plan sections, scripts, KPI targets, and a Day 0-30 timeline.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Covers acquisition, nurture, conversion, retention, KPI benchmarks, execution timeline, and implementation recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence, manifest, README, and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-Summarizes Enterprise WeChat group or direct messages, extracting key points, action items, risks, and decisions into readable daily reports, weekly reports, or meeting notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarizes Enterprise WeChat group or direct chat messages into concise daily reports, weekly reports, meeting notes, action items, risks, and decisions.
 
-## Publisher: <br>
-[dymdsunp-dot](https://clawhub.ai/user/dymdsunp-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[dymdsunp-dot](https://clawhub.ai/user/dymdsunp-dot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Employees and teams use this skill to turn supplied Enterprise WeChat chat text or OCR output into traceable summaries for daily reports, weekly reports, meeting minutes, and task follow-up.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Enterprise WeChat content may contain sensitive business or personal data.
+
+Mitigation: Review pasted text or OCR output before use, and ask the assistant to anonymize names or limit disclosure when needed.
+
+Risk: Incomplete or unclear chat input can lead to unsupported conclusions or ambiguous action items.
+
+Mitigation: Treat the output as a summary of supplied evidence, keep traceable facts, and mark missing or unclear information for confirmation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and teams use this skill to turn Enterprise WeChat conversation text, OCR text from screenshots, or selected message excerpts into concise workplace summaries with progress, risks, decisions, action items, and missing information. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste sensitive workplace messages, secrets, or unnecessary personal details into the summarization prompt. <br>
-Mitigation: Use the smallest necessary message range, remove secrets and unnecessary personal details before sharing content or OCR text, and review the summary before forwarding it. <br>
-Risk: The summary may overstate conclusions when the supplied conversation excerpt is incomplete or ambiguous. <br>
-Mitigation: Preserve the skill behavior of marking unsupported conclusions as insufficient information and listing important missing details for confirmation. <br>
+**Output Format:** [Structured Markdown summary with sections for overview, progress, risks, decisions, action items, and missing information.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include named owners and deadlines when they are present in the user-provided input.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown structured summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include a one-sentence overview, key progress, risks, decisions, action items with owners and due dates when available, and up to three items needing confirmation.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

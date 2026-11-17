@@ -1,44 +1,56 @@
-## Description: <br>
-Discover and analyze Pinterest users, pins, boards, followers, and following through KeyAPI MCP calls for profile lookup, content inventory, board review, and social graph analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover and analyze Pinterest users, pins, boards, followers, and following by searching users, retrieving profile information, exploring pin libraries and board collections, and traversing follower and following networks.
 
-## Publisher: <br>
-[lycici](https://clawhub.ai/user/lycici) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lycici](https://clawhub.ai/user/lycici)
 
-## Use Case: <br>
-Developers, analysts, and agents use this skill to query Pinterest user, pin, board, follower, and following data and synthesize structured Pinterest intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included runner is broader than a locked-down Pinterest helper and can call KeyAPI MCP tools based on command options. <br>
-Mitigation: Use commands with --platform pinterest and review requested tool names and parameters before execution. <br>
-Risk: Credentials and API results can be stored locally through the .env loader and .keyapi-cache directory. <br>
-Mitigation: Protect or delete the .env file and clear .keyapi-cache when cached Pinterest results should not remain on disk. <br>
-Risk: An untrusted KEYAPI_SERVER_URL value can redirect MCP traffic away from the default KeyAPI service. <br>
-Mitigation: Use the default https://mcp.keyapi.ai endpoint unless a trusted operator has approved a different server URL. <br>
+## Use Case:
 
+External developers, analysts, and operators use this skill to collect Pinterest profile, content, board, follower, and following data through KeyAPI and synthesize it into Pinterest intelligence reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lycici/keyapi-pinterest-analysis) <br>
-- [KeyAPI](https://keyapi.ai/) <br>
-- [KeyAPI Pinterest MCP endpoint](https://mcp.keyapi.ai/pinterest/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May cache API responses locally under .keyapi-cache and may write requested JSON output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The runner is broader than the Pinterest-focused description and can use a configurable KeyAPI server URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the requested platform and leave KEYAPI_SERVER_URL unset unless the alternate destination is trusted.
+
+Risk: KEYAPI_TOKEN and Pinterest profile or social graph data may be exposed through local environment, .env, output, or cache files.
+
+Mitigation: Prefer setting KEYAPI_TOKEN only for the process, avoid interactive token entry, restrict output locations, and periodically delete .keyapi-cache when retained data is not needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lycici/skills/keyapi-pinterest-analysis)
+- [KeyAPI](https://keyapi.ai/)
+- [KeyAPI Pinterest MCP endpoint](https://mcp.keyapi.ai/pinterest/mcp)
+- [Artifact-declared repository](https://github.com/EchoSell/keyapi-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18 or higher and a KEYAPI_TOKEN; the runner can cache API responses locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

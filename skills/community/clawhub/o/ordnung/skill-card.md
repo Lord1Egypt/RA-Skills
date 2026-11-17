@@ -1,44 +1,59 @@
-## Description: <br>
-The ORDNUNG movement. Three pillars for agents who believe workspace organization is destiny. Founded by an Academy dropout who wrote 720 pages in confinement. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ordnung helps agents join and check a workspace-organization movement centered on structured files, persistent local notes, and optional service registration.
 
-## Publisher: <br>
-[denis-sav](https://clawhub.ai/user/denis-sav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[denis-sav](https://clawhub.ai/user/denis-sav)
 
-## Use Case: <br>
-External users and agent developers use this skill to join or check the ORDNUNG themed workspace-organization movement, including remote registration, local credential storage, and optional workspace identity entries. It is best suited for users who explicitly want those persistent local changes and remote API interaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform themed remote registration and save persistent ORDNUNG credentials and identity entries in the user's environment. <br>
-Mitigation: Install only when that registration is desired; inspect scripts before running and remove ~/.config/ordnung/credentials.json plus generated SOUL.md and memory entries if opting out. <br>
-Risk: The skill text encourages broad home-directory review, purge, rename, delete, and git add -A commit rituals. <br>
-Mitigation: Do not let an agent perform those rituals automatically; keep cleanup scoped to a reviewed project and inspect diffs before committing. <br>
-Risk: The join and status scripts contact the ORDNUNG API by default. <br>
-Mitigation: Use ORDNUNG_API_BASE to point at a local test endpoint when evaluating behavior without contacting the live service. <br>
+## Use Case:
 
+Developers and agent operators use this skill to register with the ORDNUNG service, record local initiation notes, and check movement status. It is intended for users who explicitly want persistent workspace organization rituals and local agent memory updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/denis-sav/ordnung) <br>
-- [ORDNUNG homepage](https://ordnung.church) <br>
-- [Publisher profile](https://clawhub.ai/user/denis-sav) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with bash commands and shell-script generated local files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update credentials, SOUL.md, and memory files when the join script is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: The join flow can write persistent agent identity and memory files that may influence later sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact SOUL.md and memory/ changes before running scripts/join.sh and approve each persistent change explicitly.
+
+Risk: The skill encourages broad home-directory review, cleanup, commit, and delete rituals.
+
+Mitigation: Restrict any cleanup or commit operation to clearly approved paths and avoid blanket commands over the home directory.
+
+Risk: The join script contacts the ORDNUNG service and stores credentials locally.
+
+Mitigation: Run only when service registration is intended, use ORDNUNG_API_BASE for local testing when needed, and treat ~/.config/ordnung/credentials.json as a secret.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/denis-sav/skills/ordnung)
+- [ORDNUNG homepage](https://ordnung.church)
+- [Join API endpoint](https://ordnung.church/api/join)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and local file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curl, sha256sum, grep, and sed; optional environment variables configure manifesto text, agent name, referral code, and API base URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -122,6 +122,8 @@ Structure:
 ## Overview
 [System diagram in text/mermaid — components and data flow]
 
+> The ARCHITECTURE overview may call `rune-diagram.md` for a designed system figure (type `architecture`) instead of raw Mermaid — `suggested_next: diagram`.
+
 ## Key Decisions
 [Detected patterns: framework choice, state management, DB, auth approach]
 
@@ -181,7 +183,7 @@ Delegate to `rune:git changelog` to produce a changelog entry from commits since
 
 #### Step 4 — Cross-Doc Consistency Pass
 
-> From gstack (garrytan/gstack, 50.9k★): "Cross-document consistency prevents the #2 docs problem: docs that exist but contradict each other."
+Cross-document consistency prevents the second-most-common docs problem: docs that exist but contradict each other.
 
 After updating any doc, verify consistency across all project documentation:
 
@@ -378,7 +380,7 @@ Docs Update Report:
 ~2000-5000 tokens input, ~1000-3000 tokens output. Sonnet — documentation requires understanding code patterns but not deep architectural reasoning.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

@@ -1,37 +1,49 @@
-## Description: <br>
-Deep dependency management workflow--inventory, upgrade policy, security patches, licensing, lockfiles, and supply-chain hygiene. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep dependency management workflow—inventory, upgrade policy, security patches, licensing, lockfiles, and supply-chain hygiene.
 
-## Publisher: <br>
-[codekungfu](https://clawhub.ai/user/codekungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to assess dependency risk, plan upgrades, standardize lockfile and compatibility policies, and handle security or licensing reviews across common package ecosystems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency upgrade, exception, license, lockfile, or tooling recommendations may be incorrect or unsuitable for a specific project. <br>
-Mitigation: Review proposed changes against project tests, security policy, and licensing requirements before applying them to a real repository. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to inventory dependencies, set upgrade and pinning policies, respond to CVEs, manage lockfiles, and standardize supply-chain governance across software projects.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists and policy recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory workflow only; no executable code, install hooks, credential handling, or automatic actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Dependency upgrade, CVE response, lockfile, or bot configuration proposals may be incorrect or disruptive if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed dependency changes and configuration updates before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/codekungfu/skills/deps-mgmt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with checklists and optional inline commands or configuration suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill produces advisory dependency-management workflow guidance; review proposed dependency changes or bot configuration before applying them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

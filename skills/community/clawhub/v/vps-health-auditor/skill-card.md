@@ -1,41 +1,57 @@
-## Description: <br>
-Performs VPS health checks for CPU, memory, disk, network, uptime, and services, then helps generate Ollama-powered operational recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs VPS and Linux server health diagnostics for CPU, memory, disk, network, services, uptime, and logs, then supports Ollama-powered reporting with recommendations.
 
-## Publisher: <br>
-[GBlockChainNetwork](https://clawhub.ai/user/GBlockChainNetwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gblockchainnetwork](https://clawhub.ai/user/gblockchainnetwork)
 
-## Use Case: <br>
-Developers and system operators use this skill to audit Linux VPS health over SSH or local execution and review concise findings before taking maintenance action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses SSH-level access to inspect target servers, which can expose sensitive operational data or affect high-impact systems if used with broad privileges. <br>
-Mitigation: Use a non-root account with limited sudo rights, confirm the target host and key path before each run, and treat generated reports as sensitive operational data. <br>
-Risk: The included SSH command disables strict host-key checking, weakening protection against connecting to an unexpected host. <br>
-Mitigation: Verify host keys before execution and remove disabled host-key checking before using the script in a trusted environment. <br>
-Risk: SSH parameters are accepted directly by the script, so incorrect or unsafe host, user, or key values can lead to unintended remote execution. <br>
-Mitigation: Validate and quote SSH parameters and require explicit confirmation before running remote checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBlockChainNetwork/vps-health-auditor) <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to audit VPS or Linux server health and produce a concise report of operational issues and recommended follow-up actions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented diagnostic output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sensitive operational details from the target server.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill encourages root SSH access for infrastructure auditing.
+
+Mitigation: Use a dedicated low-privilege audit account and dedicated SSH key with only the permissions required for health checks.
+
+Risk: The bundled SSH script can bypass host-key verification and mishandle user-supplied host, user, or key values.
+
+Mitigation: Keep normal SSH host-key verification enabled, pass only trusted connection values, and harden the script with validation and shell quoting before use on real infrastructure.
+
+Risk: Health reports may contain sensitive infrastructure details from service status, network, disk, or log output.
+
+Mitigation: Review and redact generated reports before sharing them outside the operational team.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gblockchainnetwork/skills/vps-health-auditor)
+- [Publisher profile](https://clawhub.ai/user/gblockchainnetwork)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and diagnostic summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include VPS health findings, service status, log observations, and Ollama-generated recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

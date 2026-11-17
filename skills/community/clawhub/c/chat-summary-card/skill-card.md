@@ -1,45 +1,60 @@
-## Description: <br>
-Turns conversations into polished visual summary cards by extracting key ideas, action items, and next steps with Mew.Design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An AI-powered tool that turns conversations into polished, structured summary cards by extracting key ideas, action items, and next steps.
 
-## Publisher: <br>
-[shuminliu026](https://clawhub.ai/user/shuminliu026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuminliu026](https://clawhub.ai/user/shuminliu026)
 
-## Use Case: <br>
-External users and developers use this skill to condense user-agent conversations into readable visual recap cards for status updates, decisions, takeaways, and next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a Mew.Design API key. <br>
-Mitigation: Use a dedicated revocable key and replace it if validation or generation behavior looks unexpected. <br>
-Risk: Summarized conversation content is sent to Mew.Design for image generation. <br>
-Mitigation: Avoid confidential chats unless Mew.Design's data handling is acceptable for the intended use. <br>
-Risk: Temporary request JSON may contain summary text. <br>
-Mitigation: Keep generated request files in temporary paths and remove them when the workflow is complete. <br>
+## Use Case:
 
+External users and agent operators use this skill to convert chat conversations into concise visual recap cards with key ideas, decisions, and next steps. It is intended for conversation summarization workflows where an image card is preferred over a plain-text summary.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shuminliu026/chat-summary-card) <br>
-- [Chat Summary Image Patterns](references/patterns.md) <br>
-- [Mew.Design login](https://mew.design/login) <br>
-- [Mew.Design design generation API](https://api.mew.design/open/api/design/generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown image link with one-sentence summary; helper scripts also produce JSON request bodies.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Mew.Design API key, validates the key before generation, and sends summarized conversation content to Mew.Design.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: The skill asks users to provide a mew.design API key in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a short-lived or low-scope key where possible, avoid retaining the key beyond the active conversation, and rotate it if exposure is suspected.
+
+Risk: Chat-derived content is sent to an external Mew API for image generation.
+
+Mitigation: Avoid using the skill with confidential, regulated, or sensitive conversations unless external processing is approved.
+
+Risk: Changing the validation or generation base URL away from api.mew.design could send credentials or content to an unintended service.
+
+Mitigation: Review commands before execution and keep API validation and generation endpoints on the expected Mew domain unless the user explicitly authorizes a change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/shuminliu026/skills/chat-summary-card)
+- [Chat Summary Image Patterns](references/patterns.md)
+- [Mew API Key Setup](https://mew.design/login)
+- [Mew Design Generation API](https://api.mew.design/open/api/design/generate)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown image link with a one-sentence summary, plus command guidance for key validation and image generation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a conversation-derived visual summary card through the Mew design API after API key validation.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

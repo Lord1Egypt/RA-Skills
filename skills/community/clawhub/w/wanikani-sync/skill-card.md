@@ -1,45 +1,56 @@
-## Description: <br>
-Sync WaniKani Japanese learning progress data from the API to local SQLite storage for backup, offline analysis, statistics, review-pattern analysis, and level tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync WaniKani Japanese learning progress data from the API to local storage for analysis and insights.
 
-## Publisher: <br>
-[mart1n-xyz](https://clawhub.ai/user/mart1n-xyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mart1n-xyz](https://clawhub.ai/user/mart1n-xyz)
 
-## Use Case: <br>
-External WaniKani users and developers use this skill to sync their own WaniKani API data into a local SQLite database, then query progress, review statistics, level history, and problem items offline. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The sync script needs a WaniKani API token. <br>
-Mitigation: Provide the token through WANIKANI_API_TOKEN rather than a command-line argument, and do not commit or share the token. <br>
-Risk: The local SQLite database contains a copy of the user's WaniKani learning progress data. <br>
-Mitigation: Store wanikani.db in a private directory and keep it out of source control or shared folders. <br>
-Risk: The skill runs local Python scripts and depends on the local Python environment. <br>
-Mitigation: Install and run dependencies from a trusted environment before syncing data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WaniKani API Structure Reference](references/api-structure.md) <br>
-- [WaniKani Example Queries](references/example-queries.sql) <br>
-- [WaniKani](https://www.wanikani.com) <br>
-- [WaniKani API](https://api.wanikani.com/v2) <br>
-- [WaniKani API Tokens](https://www.wanikani.com/settings/personal_access_tokens) <br>
+## Use Case:
 
+External WaniKani users and developers use this skill to back up learning progress, sync API data into SQLite, and analyze reviews, assignments, levels, SRS stages, accuracy, and difficult items offline.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Code, Files, Guidance] <br>
-**Output Format:** [Markdown with bash and SQL examples; Python scripts create and query a local SQLite database.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a WANIKANI_API_TOKEN; writes wanikani.db in the selected data directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A WaniKani API token can be exposed if passed directly on the command line or stored in shell history.
+
+Mitigation: Use WANIKANI_API_TOKEN instead of --token and keep the token private.
+
+Risk: The local wanikani.db database may contain sensitive account and learning history.
+
+Mitigation: Store the database in a private data directory and protect or delete it when it is no longer needed.
+
+## Reference(s):
+
+- [WaniKani homepage](https://www.wanikani.com)
+- [WaniKani API token settings](https://www.wanikani.com/settings/personal_access_tokens)
+- [WaniKani API v2](https://api.wanikani.com/v2)
+- [WaniKani API Structure Reference](references/api-structure.md)
+- [WaniKani Example Queries](references/example-queries.sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with shell commands, SQL examples, CLI text output, and a local SQLite database file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and WANIKANI_API_TOKEN; writes wanikani.db in the current directory or the configured data directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

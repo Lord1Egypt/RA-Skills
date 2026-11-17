@@ -1,44 +1,58 @@
-## Description: <br>
-Quick sentiment check for any stock, crypto, or index, delivering a bullish, bearish, or neutral read with headline drivers and a basic fear/greed assessment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick sentiment check for any stock, crypto, or index, delivering a bullish, bearish, or neutral read with a headline summary and basic fear/greed assessment.
 
-## Publisher: <br>
-[jseale](https://clawhub.ai/user/jseale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jseale](https://clawhub.ai/user/jseale)
 
-## Use Case: <br>
-External users use this skill to run a fast public-news sentiment check on stocks, crypto assets, or indexes before considering a trade or market view. It summarizes recent headlines, crowd tone, analyst direction, and basic fear/greed signals without providing personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bullish or bearish framing could be mistaken for personalized investment advice. <br>
-Mitigation: Treat outputs as a public-news sentiment summary only, verify sources independently, and combine with professional, technical, and fundamental analysis before trading. <br>
-Risk: Recent headline searches may surface stale, incomplete, or promotional market narratives. <br>
-Mitigation: Check publication dates, flag items older than the stated 48-72 hour window, and prefer multiple reliable sources for each major claim. <br>
-Risk: The artifact includes promotional links to a paid version. <br>
-Mitigation: Disclose that the lite report is limited to headline and crowd-temperature checks and avoid treating upgrade claims as independent evidence. <br>
+## Use Case:
 
+External users and market-focused agents use this skill to run a quick sentiment check on a stock, cryptocurrency, or index before deeper analysis. It summarizes recent headlines, analyst direction, and basic crowd fear or greed signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jseale/market-sentiment-pulse-lite) <br>
-- [Publisher profile](https://clawhub.ai/user/jseale) <br>
-- [Agent of Alpha](https://agentofalpha.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, guidance] <br>
-**Output Format:** [Markdown report with sentiment rating, signal table, headline summary, fear/greed check, and trading frame] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web research focused on the last 48-72 hours and asks users to verify sources before trading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Market sentiment summaries can be incomplete, stale, or misleading when based on a small set of recent headlines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited sources and combine the result with independent technical, fundamental, and risk analysis before making decisions.
+
+Risk: The skill output includes promotional text for a third-party full version.
+
+Mitigation: Treat upsell language as non-analytical content and evaluate any linked service separately before use.
+
+Risk: Users could mistake the generated sentiment read for investment advice.
+
+Mitigation: Use the output as a quick headline sentiment check only and preserve clear not-financial-advice framing.
+
+## Reference(s):
+
+- [Market Sentiment Pulse Lite on ClawHub](https://clawhub.ai/jseale/skills/market-sentiment-pulse-lite)
+- [Agent of Alpha](https://agentofalpha.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown sentiment report with summary tables and short narrative guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses recent web search and fetch results; output is a lightweight sentiment read, not financial advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

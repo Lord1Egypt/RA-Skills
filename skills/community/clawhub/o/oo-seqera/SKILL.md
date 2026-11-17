@@ -1,11 +1,11 @@
 ---
 name: oo-seqera
-description: "Seqera (seqera.io). Use this skill for ANY Seqera request — searching and reading data. Whenever a task involves Seqera, use this skill instead of calling the API directly."
+description: "Seqera (seqera.io). Use this skill for ANY Seqera request — reading, creating, and updating data. Whenever a task involves Seqera, use this skill instead of calling the API directly."
 allowed-tools: [Bash(oo *)]
 metadata:
   title: "Seqera"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["seqera"]
   icon: "https://static.oomol.com/logo/third-party/Seqera.svg"
 ---
@@ -41,7 +41,7 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_pipeline` — Retrieve one Seqera pipeline by pipeline ID.
 - `get_workflow` — Retrieve one Seqera workflow run by workflow ID.
 - `get_workspace` — Retrieve one Seqera workspace by organization ID and workspace ID.
-- `launch_workflow` — Launch a Seqera workflow from a pipeline repository or registered pipeline.
+- `launch_workflow` — Launch a Seqera workflow from a pipeline repository or registered pipeline. [write]
 - `list_pipelines` — List Seqera pipelines in the current user context or a specific workspace.
 - `list_user_workspaces` — List the workspaces and organizations visible to the current Seqera user.
 - `list_workflows` — List Seqera workflow runs in the current user context or a specific workspace.
@@ -75,11 +75,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Seqera is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=seqera
+  https://console.oomol.com/connections/seqera
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Seqera homepage: https://seqera.io
+- API documentation: https://docs.seqera.io/platform-api

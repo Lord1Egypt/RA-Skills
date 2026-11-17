@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>原型样张 · 图表主角</title>
+<link rel="stylesheet" href="../assets/theme.css">
+</head>
+<body>
+<div class="slide-container" style="background:var(--off-white);">
+
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:100px;top:120px;width:1720px;z-index:10;">
+    <div style="font-size:56px;font-weight:700;line-height:1.2;color:var(--charcoal);">
+      检索耗时逐月下降,拐点在第二个月
+    </div>
+  </div>
+
+  <!-- 原型 18:图表主角(原生图表 + 右侧解读栏) -->
+  <div data-object="true" data-chart='{"type":"line","labels":["4月","5月","6月","7月"],"series":[{"name":"平均检索耗时(分钟)","values":[11.0,10.2,7.1,6.4]}]}'
+       style="position:absolute;left:100px;top:320px;width:1080px;height:580px;"></div>
+  <!-- 解读栏:浅底色块承载(结构色面;2026-08-06 P5 补,原页色面 0%) -->
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1240px;top:320px;width:580px;height:580px;background:#EEF2F7;z-index:1;"></div>
+  <div data-object="true" data-object-type="shape" style="position:absolute;left:1240px;top:320px;width:580px;height:8px;background:var(--lenovo-red);z-index:2;"></div>
+  <div data-object="true" data-object-type="textbox" style="position:absolute;left:1280px;top:364px;width:500px;z-index:10;">
+    <div style="font-size:24px;font-weight:700;line-height:1.4;color:var(--charcoal);">怎么读这张图</div>
+    <div style="font-size:22px;line-height:1.65;color:var(--text-primary);margin-top:20px;">
+      · 5 月几乎平走:机制上线初期,大家还在观望
+      <br><br>
+      · 拐点在 6 月:保质期标注覆盖率跨过 50%,检索开始提速
+      <br><br>
+      · 7 月趋缓:剩余耗时主要是跨部门文档,归下一阶段的共享机制管
+    </div>
+    <div style="font-size:16px;line-height:1.5;color:var(--text-tertiary);margin-top:32px;">来源:工单系统日志,周均值</div>
+  </div>
+
+</div>
+
+<template data-slide-notes>
+【核心逻辑】趋势图证明机制有效,拐点解释为什么有效(覆盖率阈值)。
+</template>
+</body>
+</html>

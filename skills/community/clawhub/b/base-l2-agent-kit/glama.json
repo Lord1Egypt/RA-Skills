@@ -1,0 +1,14 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/server.json",
+  "maintainers": ["manteclaw"],
+  "name": "Base L2 Agent Kit",
+  "description": "MCP server providing Base L2 DeFi tools for AI agents: wallet management, token swaps, liquidity provision, price feeds, contract interaction, and flash loan arbitrage.",
+  "categories": ["Finance", "Blockchain", "Developer Tools"],
+  "tags": ["base", "l2", "defi", "wallet", "ethereum", "smart-contracts", "token-swaps", "liquidity", "flash-loans"],
+  "website": "https://github.com/manteclaw/base-l2-agent-kit-mcp",
+  "license": "MIT",
+  "transport": {
+    "type": "stdio",
+    "command": "python server.py"
+  }
+}

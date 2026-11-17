@@ -1,44 +1,51 @@
-## Description: <br>
-Convert comic or anime character images into high-quality, realistic portraits while preserving key facial features and expressions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert comic or anime character images into high-quality, realistic portraits while preserving key facial features and expressions.
 
-## Publisher: <br>
-[maweis1981](https://clawhub.ai/user/maweis1981) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maweis1981](https://clawhub.ai/user/maweis1981)
 
-## Use Case: <br>
-Developers, creators, and content teams use this skill to turn comic, anime, or illustration-style character images into realistic human portraits for avatars, game character previews, marketing, and social content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image URLs and prompts are sent to the external NGMob API service. <br>
-Mitigation: Use the skill only when you trust that provider and are comfortable with its handling of submitted image and prompt data. <br>
-Risk: Submitted images may contain private, sensitive, copyrighted, or identifying content. <br>
-Mitigation: Avoid submitting such images unless you have permission and accept the provider's data handling. <br>
-Risk: The skill requires an API key and may incur provider usage costs. <br>
-Mitigation: Use a service-specific API key and monitor usage and billing. <br>
+## Use Case:
 
+Developers, creators, and content teams use this skill to transform public comic, anime, or illustration-style character image URLs into realistic human portrait outputs for avatars, game concepts, marketing, or social media visuals.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maweis1981/comic-to-realistic) <br>
-- [NGMob product console](https://ai.ngmob.com) <br>
-- [NGMob API base URL](https://api.ngmob.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text] <br>
-**Output Format:** [JSON result containing a generated realistic image URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a public image URL, prompt text, an NGMob API key, and polling for task completion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The provided public image URL and prompt are sent to ngmob.com for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive, consensual image URLs and prompts unless the user has reviewed the provider's privacy and retention practices.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/maweis1981/skills/comic-to-realistic)
+- [NGMob product website](https://ai.ngmob.com)
+- [NGMob API base](https://api.ngmob.com)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, text, guidance]
+
+**Output Format:** [JSON response containing a generated realistic image URL, with human-readable prompt and input guidance in Markdown documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a publicly accessible input image URL and a text prompt; workflow execution may be asynchronous.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

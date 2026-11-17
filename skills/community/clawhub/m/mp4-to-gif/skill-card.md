@@ -1,39 +1,56 @@
-## Description: <br>
-Use when the user wants to convert MP4 video files to GIF format, or asks about video-to-GIF conversion with quality/size control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts MP4 video files to GIF format with ffmpeg using a two-pass palette method and quality/size controls.
 
-## Publisher: <br>
-[zzlupus](https://clawhub.ai/user/zzlupus) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zzlupus](https://clawhub.ai/user/zzlupus)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, documentation authors, and content creators use this skill to convert local MP4 or other video clips into GIFs. It helps tune frame rate and width to balance image quality, motion smoothness, and output file size.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Untrusted local video inputs can exercise ffmpeg parsing paths during conversion.
+
+Mitigation: Use the skill with trusted local video files and keep ffmpeg current.
+
+Risk: Unvalidated width or FPS values can produce failed conversions or unexpectedly large GIF files.
+
+Mitigation: Use normal numeric width and FPS values, and prefer adding explicit numeric validation before broad deployment.
+
+Risk: Temporary palette files are created during conversion, which may be less appropriate in shared hostile temporary-directory environments.
+
+Mitigation: Avoid shared hostile temp directories and prefer private temporary directories for hardened deployments.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, documentation authors, and release engineers use this skill to convert local MP4 videos into GIFs for documentation, demos, and sharing while controlling size and quality. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The conversion scripts use ffmpeg with overwrite behavior, so an existing GIF at the output path can be replaced. <br>
-Mitigation: Choose a deliberate output filename, check whether the destination already exists, and keep a backup when converting important media. <br>
-Risk: The skill depends on a local ffmpeg installation. <br>
-Mitigation: Install ffmpeg from a trusted source and keep it updated before running the generated commands or bundled scripts. <br>
+**Output Format:** [Markdown with inline Bash, PowerShell, and ffmpeg command examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires ffmpeg installed on the local system; bundled Bash and PowerShell scripts accept input file, output file, width, and FPS parameters.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Code] <br>
-**Output Format:** [Markdown guidance with inline Bash and PowerShell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled scripts can produce local GIF files from local video inputs when ffmpeg is installed.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

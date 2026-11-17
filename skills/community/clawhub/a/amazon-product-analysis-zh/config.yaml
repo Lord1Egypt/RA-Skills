@@ -1,0 +1,10 @@
+name: amazon-product-analysis-zh
+version: 1.0.0
+description: 把一个亚马逊商品链接变成可执行的社媒短视频脚本——提炼 Listing 卖点、挖掘评论区真实用户语言，按选定方向产出带依据的分镜脚本（中文版）。
+category: marketing
+requires_api_key: false
+triggers:
+  - amazon 商品视频脚本
+  - 亚马逊带货视频脚本
+  - 用户评论转视频脚本
+  - amazon product video script (zh)

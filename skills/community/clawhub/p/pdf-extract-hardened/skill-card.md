@@ -1,44 +1,62 @@
-## Description: <br>
-Extract text from PDF files for LLM processing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extract text from PDF files for LLM processing.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and agents use this skill to extract plain text from local PDF documents for LLM processing, including full-document extraction or specified page ranges. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted PDF text may contain confidential, personal, or internal information. <br>
-Mitigation: Treat extracted content as sensitive and avoid sending it to webhooks, shared logs, or group channels unless the user intentionally chooses an appropriate sharing path. <br>
-Risk: Autonomous file creation can persist sensitive extracted content on disk. <br>
-Mitigation: Return extracted text in the conversation by default and write to disk only when the user explicitly names an output file. <br>
-Risk: The skill depends on the local pdftotext binary from poppler-utils. <br>
-Mitigation: Confirm pdftotext is installed locally before use and install poppler-utils through the system package manager when needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to extract plain text from PDF documents for local review or LLM processing, including optional page-range extraction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/pdf-extract-hardened) <br>
-- [Faberlens PDF Extract Safety Evaluation](https://faberlens.ai/explore/pdf-extract) <br>
-- [Faberlens](https://faberlens.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text or Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns extracted text by default; writes to a named output file only when explicitly requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Extracted PDF text may contain sensitive or regulated information that should not be persisted unintentionally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Return extracted text in the conversation by default and write to a named output file only when the user explicitly requests that destination.
+
+Risk: Extracted PDF text could be sent to network endpoints through pipes, redirects, webhooks, or scripts.
+
+Mitigation: Extract locally and avoid piping or redirecting pdftotext output to network-transmitting commands.
+
+Risk: Internal, confidential, or PII-containing PDF content could be exposed through shared logs, group chats, or build systems.
+
+Mitigation: Match the output location to the content sensitivity and avoid shared channels for sensitive extracted text.
+
+Risk: Installing the required PDF extraction tool may require sudo and trust in OS package repositories.
+
+Mitigation: Confirm the user is comfortable installing poppler-utils from their operating system package repositories before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/skills/pdf-extract-hardened)
+- [Faberlens safety evaluation](https://faberlens.ai/explore/pdf-extract)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash command examples and extracted text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the local pdftotext binary from poppler-utils.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

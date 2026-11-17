@@ -1,38 +1,50 @@
-## Description: <br>
-Provides a Chinese-language Elliott Wave technical-analysis reference for wave counting, impulse and corrective patterns, Fibonacci levels, and RSI divergence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elliott Wave provides a Chinese-language technical-analysis reference for wave counting, Elliott Wave rules, Fibonacci retracement and extension levels, corrective patterns, and RSI divergence cues.
 
-## Publisher: <br>
-[danpian1](https://clawhub.ai/user/danpian1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danpian1](https://clawhub.ai/user/danpian1)
 
-## Use Case: <br>
-External users and analysts use this skill as a Chinese-language quick reference for Elliott Wave chart discussions, wave-count checks, Fibonacci retracement and extension levels, and RSI divergence signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad charting terms such as Fibonacci and influence trading interpretations. <br>
-Mitigation: Use it as a reference only, and independently verify any market analysis before acting on it. <br>
+## Use Case:
 
+External users and agents use this skill as an educational Elliott Wave technical-analysis quick reference for identifying wave structures, Fibonacci retracement areas, and RSI divergence signals.
 
-## Reference(s): <br>
-- [波浪理论速查](references/elliott-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only reference output; no tool calls, credentials, persistence, or install hooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Trading concepts may be mistaken for reliable financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational technical-analysis guidance and require human financial judgment before acting on market decisions.
+
+## Reference(s):
+
+- [Elliott Wave Rules](artifact/references/elliott-rules.md)
+- [ClawHub Skill Page](https://clawhub.ai/danpian1/skills/elliott-wave)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational technical-analysis guidance; no commands, network access, persistence, credential use, or hidden behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

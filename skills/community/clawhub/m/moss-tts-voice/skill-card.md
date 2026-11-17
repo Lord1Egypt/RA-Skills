@@ -1,47 +1,65 @@
-## Description: <br>
-MOSS-TTS Voice helps agents generate MOSS Studio text-to-speech audio, clone voices from reference audio, and convert outputs for messaging channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MOSS-TTS Voice helps agents generate text-to-speech audio, clone voices from reference audio, use preregistered voices, and convert outputs for messaging channels.
 
-## Publisher: <br>
-[luogao2333](https://clawhub.ai/user/luogao2333) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luogao2333](https://clawhub.ai/user/luogao2333)
 
-## Use Case: <br>
-External users and developers use this skill to generate speech audio from text, clone authorized voices, and create channel-ready audio files for tools such as Feishu, Telegram, WhatsApp, Discord, Signal, and Slack. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected text and reference voice recordings are sent to MOSS Studio for speech generation or cloning. <br>
-Mitigation: Use only non-sensitive text and recordings, and clone only voices the user has permission to use. <br>
-Risk: The MOSS_API_KEY grants access to the external speech service. <br>
-Mitigation: Keep the key in environment variables, avoid logs and repositories, and rotate it if exposure is suspected. <br>
-Risk: Reference-audio and clone commands upload the file path provided by the user. <br>
-Mitigation: Verify the exact audio file path before running clone or reference-audio commands. <br>
+## Use Case:
 
+Developers and agents use this skill to create MOSS Studio speech audio from text, optionally using a cloned or preregistered voice, and save the result in a channel-appropriate audio format.
 
-## Reference(s): <br>
-- [MOSS Studio](https://studio.mosi.cn) <br>
-- [MOSS-TTS API Technical Guide](references/api-guide.md) <br>
-- [Channel Format Guide](references/channel-formats.md) <br>
-- [Troubleshooting Guide](references/troubleshooting.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/luogao2333/moss-tts-voice) <br>
-- [Publisher Profile](https://clawhub.ai/user/luogao2333) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files, guidance] <br>
-**Output Format:** [Markdown guidance, shell command examples, JSON status output, and generated audio files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Audio files are written as WAV, OGG/Opus, or MP3 depending on the requested channel or format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.2 (source: server release metadata) <br>
+Risk: Voice cloning and realtime synthesis upload text and voice samples to MOSS Studio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only voices you own or have explicit permission to clone, avoid sensitive recordings, and install only if you trust MOSS Studio with the provided data.
+
+Risk: The skill depends on MOSS_API_KEY for authenticated API access.
+
+Mitigation: Store the API key in a secret manager or environment variable, avoid printing or committing it, and rotate it regularly.
+
+Risk: Generated audio is written to temporary local files and converted with ffmpeg.
+
+Mitigation: Review temporary-file handling, clean up generated files when no longer needed, and confirm ffmpeg is installed from a trusted source.
+
+Risk: The Python dependency is specified as a broad requests version range.
+
+Mitigation: Review and pin dependencies before production deployment.
+
+## Reference(s):
+
+- [MOSS Studio](https://studio.mosi.cn)
+- [ClawHub Skill Page](https://clawhub.ai/luogao2333/skills/moss-tts-voice)
+- [API Technical Guide](references/api-guide.md)
+- [Channel Format Guide](references/channel-formats.md)
+- [Troubleshooting Guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Shell commands, Guidance]
+
+**Output Format:** [Audio files with optional JSON status output and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated audio is saved as WAV, OGG, or MP3; OGG Opus is used for Feishu, Telegram, and WhatsApp voice-message workflows, while MP3 is used for Discord, Signal, and Slack file workflows.]
+
+## Skill Version(s):
+
+1.2.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

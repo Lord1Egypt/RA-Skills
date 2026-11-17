@@ -1,40 +1,54 @@
-## Description: <br>
-After file changes, this skill guides an agent to run two consecutive verification checks, such as tests, builds, runtime checks, or documentation/configuration checks, before considering the task complete. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Double Check guides agents to run the same appropriate verification twice after file edits, fixing failures and restarting the checks until both consecutive runs pass.
 
-## Publisher: <br>
-[BelugaRex](https://clawhub.ai/user/BelugaRex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[belugarex](https://clawhub.ai/user/belugarex)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to add a repeatable verification routine after code, documentation, configuration, or resource file edits. It is intended to reduce accidental regressions by requiring two passing checks before the agent reports completion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verification commands may run project code or start processes with side effects in unfamiliar repositories. <br>
-Mitigation: Require confirmation before commands that start services, touch production data, use the network, take a long time, or have unclear side effects. <br>
-Risk: A repeated runtime, build, or documentation check may not prove the edited logic is correct. <br>
-Mitigation: Prefer existing test, build, lint, or documentation validation commands, and disclose limitations when only a basic runtime check is available. <br>
+## Use Case:
 
+Developers and engineers use this skill when agents modify code, documentation, configuration, or other project files and need stricter verification before completion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BelugaRex/double-check) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown guidance with inline verification command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs agents to report verification outcomes and rerun the same selected check after corrections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Verification commands may execute project scripts twice and can consume extra time or resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted project commands and consider timeouts or resource limits for large or sensitive projects.
+
+Risk: Fallback runtime or build checks may not prove full logical correctness.
+
+Mitigation: When no standard test or build command exists, agree on an executable check and report its limitations clearly.
+
+## Reference(s):
+
+- [Double Check on ClawHub](https://clawhub.ai/belugarex/skills/double-check)
+- [belugarex publisher profile](https://clawhub.ai/user/belugarex)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown, text]
+
+**Output Format:** [Markdown guidance with shell command examples and verification status reporting]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code or external services; the agent selects project-appropriate verification commands.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

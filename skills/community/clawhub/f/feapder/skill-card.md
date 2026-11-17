@@ -1,53 +1,62 @@
-## Description: <br>
-Build, modify, and debug feapder 1.9.2 spiders and projects with the framework's native patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, modify, and debug feapder 1.9.2 spiders and projects with the framework's native patterns.
 
-## Publisher: <br>
-[fqxue](https://clawhub.ai/user/fqxue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fqxue](https://clawhub.ai/user/fqxue)
 
-## Use Case: <br>
-Developers and engineers use this skill to create, modify, and debug feapder 1.9.2 crawlers, including AirSpider, Spider, TaskSpider, BatchSpider, request parsing, persistence, render settings, and project scaffolding workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Vendored upstream reference files include unsafe Redis parsing examples. <br>
-Mitigation: Treat Redis task and cache data as untrusted, validate or sanitize inputs before use, and isolate debug Redis keys from production systems. <br>
-Risk: Examples may show credential-handling patterns that could expose real cookies, passwords, or database credentials if copied directly. <br>
-Mitigation: Use placeholder secrets in examples, keep real credentials in environment-specific configuration or secret storage, and avoid pasting production credentials into generated code or prompts. <br>
-Risk: Generated crawler debugging or persistence guidance can write test data to shared Redis or database resources. <br>
-Mitigation: Run debugging workflows against isolated development resources and review database writes before enabling production pipelines. <br>
+## Use Case:
 
+Developers use this skill to write, modify, and debug feapder 1.9.2 crawler projects, including AirSpider, Spider, TaskSpider, BatchSpider, request parsing, persistence, settings, and CLI workflows. It is especially tailored for Chinese feapder requests and defaults to Chinese logs and comments where helpful.
 
-## Reference(s): <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Spider Types and Scaffolding](artifact/references/spider-types-and-scaffolding.md) <br>
-- [Code Patterns](artifact/references/code-patterns.md) <br>
-- [Settings, Debugging, and Source Anchors](artifact/references/settings-debugging-and-sources.md) <br>
-- [feapder 1.9.2 README](artifact/references/vendor/feapder-1.9.2/README.md) <br>
-- [feapder CLI documentation](artifact/references/vendor/feapder-1.9.2/docs/command/cmdline.md) <br>
-- [AirSpider usage](artifact/references/vendor/feapder-1.9.2/docs/usage/AirSpider.md) <br>
-- [Spider usage](artifact/references/vendor/feapder-1.9.2/docs/usage/Spider.md) <br>
-- [TaskSpider usage](artifact/references/vendor/feapder-1.9.2/docs/usage/TaskSpider.md) <br>
-- [BatchSpider usage](artifact/references/vendor/feapder-1.9.2/docs/usage/BatchSpider.md) <br>
-- [ClawHub skill page](https://clawhub.ai/fqxue/feapder) <br>
-- [Publisher profile](https://clawhub.ai/user/fqxue) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with code blocks and inline commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include feapder spider files, project scaffolding instructions, settings guidance, and debugging steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill relies on an older feapder 1.9.2 crawler snapshot with unsafe Redis parsing paths noted by the security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for feapder 1.9.2 work, avoid shared or untrusted Redis for task queues and response caches, and patch or disable eval-based paths before sensitive use.
+
+Risk: Crawler examples and debugging workflows can expose live session cookies or database credentials.
+
+Mitigation: Do not paste live cookies into shell examples, keep database credentials out of shell history and source files, and prefer environment-managed secrets.
+
+Risk: Generated guidance may include database or task-state updates that affect crawler persistence.
+
+Mitigation: Test DB and task updates against non-production systems before using the resulting crawler code in production.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/fqxue/skills/feapder)
+- [Spider types and scaffolding](references/spider-types-and-scaffolding.md)
+- [Code patterns](references/code-patterns.md)
+- [Settings, debugging, and source anchors](references/settings-debugging-and-sources.md)
+- [Vendored feapder 1.9.2 README](references/vendor/feapder-1.9.2/README.md)
+- [feapder upstream project](https://github.com/Boris-code/feapder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code blocks, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Chinese log messages and comments by default for feapder examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

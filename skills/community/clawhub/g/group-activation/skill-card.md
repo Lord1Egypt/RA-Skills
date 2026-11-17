@@ -1,42 +1,52 @@
-## Description: <br>
-Handles joining and leaving group conversations on messaging platforms (WhatsApp, Signal, Telegram, etc.). Use when the owner tags the agent into a group chat to participate for a time-limited window, and when the agent needs to open or close the participation gate for a specific group. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Handles time-limited joining and leaving of group conversations on messaging platforms such as WhatsApp, Signal, and Telegram when the owner tags the agent into a group chat.
 
-## Publisher: <br>
-[seanblanchfield](https://clawhub.ai/user/seanblanchfield) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seanblanchfield](https://clawhub.ai/user/seanblanchfield)
 
-## Use Case: <br>
-External users and agent operators use this skill to let an agent participate in an owner-approved group chat for a limited time, then return that group to mention-required mode automatically. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A group participation window could be opened for the wrong group or platform if message metadata is not trustworthy. <br>
-Mitigation: Review the platform, group identifier, and requested duration before allowing the agent to patch live configuration. <br>
-Risk: A failed scheduled cleanup could leave the agent responding in a group longer than intended. <br>
-Mitigation: Monitor active group windows and verify that the closing job restores mention-required mode at the expected time. <br>
-Risk: Unauthorized group activation could occur if owner-only wake controls are misconfigured. <br>
-Mitigation: Confirm that OpenClaw restricts group activation to the owner before installing or using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/seanblanchfield/group-activation) <br>
-- [Publisher profile](https://clawhub.ai/user/seanblanchfield) <br>
+## Use Case:
 
+Developers and agent operators use this skill to let an owner-invited agent participate in a specific messaging-platform group for a bounded time window, then return the group to mention-required mode.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with configuration patch and scheduled job instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces time-limited group participation instructions for supported messaging platforms.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Group chat access could remain open longer than intended if owner or group policies are misconfigured or the scheduled close action fails.
+
+Mitigation: Confirm OpenClaw owner and group policies before use, keep activation windows short, and verify mention-required mode is restored when the window closes.
+
+Risk: Temporarily disabling mention requirements makes the agent eligible to participate in the selected group without every message mentioning it.
+
+Mitigation: Open access only for the owner-approved group ID, and close early or replace the scheduled close action when the owner requests a change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/seanblanchfield/skills/group-activation)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, shell commands, guidance]
+
+**Output Format:** [Natural-language responses with configuration changes and scheduled close actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Time-limited group access; default duration is 30 minutes if unspecified.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

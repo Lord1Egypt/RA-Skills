@@ -1,17 +1,17 @@
-# 前端安全审查
+# Front-end security review
 
-Frontend Craft skill for 前端安全审查.
+Review browser-side XSS, CSRF, token exposure, unsafe DOM usage, and third-party risks.
 
 ## Skill
 
 - ID: `fec-security-review`
 - Category: `review-quality`
-- Version: `2.6.0`
+- Version: `2.9.0`
 - Source: `skills/fec-security-review/SKILL.md`
 
 ## Description
 
-Use when reviewing frontend security risks such as XSS, CSRF, sensitive data exposure, unsafe DOM APIs, untrusted user input, authentication/token handling, payment flows, file upload, CSP, dependency risk, or third-party scripts; Chinese triggers include 安全审查, 安全检查.
+Use when reviewing frontend security risks such as XSS, CSRF, sensitive data exposure, unsafe DOM APIs, untrusted user input, authentication/token handling, payment flows, file upload, CSP, dependency risk, or third-party scripts; Chinese triggers include security review, security check.
 
 ## Usage
 

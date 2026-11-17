@@ -1,41 +1,59 @@
-## Description: <br>
-Control Tidal music streaming from the terminal for catalog search, playlist and library management, playback, recommendations, and profile lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Tidal music streaming from the terminal for catalog search, playlist management, library and favorites changes, playback, recommendations, and user profile lookup.
 
-## Publisher: <br>
-[lucaperret](https://clawhub.ai/user/lucaperret) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucaperret](https://clawhub.ai/user/lucaperret)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent operate tidal-cli for Tidal search, playback, playlist, library, recommendation, and account profile workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete Tidal account content, including playlists, tracks, and library favorites. <br>
-Mitigation: Require explicit user confirmation before delete, rename, remove, favorite, or unfavorite actions, and present the exact target item before execution. <br>
-Risk: Ambiguous music requests could cause the agent to act on the wrong track, artist, album, or playlist. <br>
-Mitigation: Resolve ambiguous requests with a clarification step or show candidate matches before taking account-changing actions. <br>
+## Use Case:
 
+Developers and external users use this skill to let an agent operate Tidal through the tidal-cli command line tool, including searching music, managing playlists and library items, and retrieving playback or recommendation data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lucaperret/skills/tidal-cli) <br>
-- [npm package @lucaperret/tidal-cli](https://www.npmjs.com/package/@lucaperret/tidal-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends --json for programmatic CLI output; underlying command results may include Tidal account and catalog data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.5 (source: server release metadata) <br>
+Risk: The skill installs an unpinned third-party CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the npm package source before installation and pin or verify the package version in controlled environments.
+
+Risk: The CLI stores a persistent Tidal session at ~/.tidal-cli/session.json.
+
+Mitigation: Treat the session file as sensitive account material and protect access on shared machines.
+
+Risk: Playlist and library commands can delete, remove, rename, or otherwise change user content.
+
+Mitigation: Confirm exact playlist, track, album, artist, or library targets before running destructive or mutating commands.
+
+## Reference(s):
+
+- [Tidal CLI npm package](https://www.npmjs.com/package/@lucaperret/tidal-cli)
+- [ClawHub skill page](https://clawhub.ai/lucaperret/skills/tidal-cli)
+- [Publisher profile](https://clawhub.ai/user/lucaperret)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses tidal-cli with --json for programmatic responses when available.]
+
+## Skill Version(s):
+
+1.2.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,1 +1,2 @@
-- Enhance route save default syntax, auto-augment first-leg transit lines, and clean up stop name extraction
+- Merge pull request #2 from patello/fix/site-departures-filtered-truncation
+- fix: filter line/direction locally to bypass API response cap

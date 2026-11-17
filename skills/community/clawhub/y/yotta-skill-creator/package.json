@@ -1,0 +1,43 @@
+{
+  "name": "@yottameta/yotta-skill-creator",
+  "version": "0.1.7",
+  "description": "YuanZao (元造) — a zero-dependency Python 3.8+ skill scaffold generator: validates naming (yotta- prefix / lowercase-hyphen / YuanX Chinese name / non-overwrite), renders a full release-compliant scaffold from an embedded template (SKILL.md, bilingual four-way-install README, package.json, CHANGELOG, LICENSE, NOTICE, install.sh + bin/install.js, .gitignore, .npmignore, publish.yml, references, assets), replaces placeholders and runs a structure self-check; --self-use mode generates only the skill body (SKILL.md / references / optional CLI) without any release artifacts. Triggers: creating a new yotta- skill, scaffolding a skill from scratch, or fixing release-standard pitfalls into a reusable template; or when the user says 元造 / 造技能 / 脚手架 / scaffold / 新建技能. Boundaries: it does not write skill content or script logic (SKILL.md body / scripts need manual development), does not pre-publish validate or release (that is yotta-publish-guard), and does not batch-migrate existing skill directories.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-skill-creator",
+    "skill-scaffold",
+    "scaffold",
+    "yottaskills"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "template",
+    "assets",
+    "bin",
+    "!scripts/test_*.py",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-skill-creator.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-skill-creator": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_skill_creator.py"
+  }
+}

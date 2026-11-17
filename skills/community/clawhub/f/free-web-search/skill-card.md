@@ -1,40 +1,57 @@
-## Description: <br>
-Free Web Search is a Playwright-based web search skill that routes explicit search requests to Bing CN or DuckDuckGo, returns structured results, and can optionally fetch page text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free Web Search lets an agent run Bing China or DuckDuckGo searches with optional page-text fetching and returns structured search results.
 
-## Publisher: <br>
-[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[ucsdzehualiu](https://clawhub.ai/user/ucsdzehualiu)
 
-## Use Case: <br>
-Developers and agent users use this skill when they explicitly need live web search results, especially Chinese-language queries, with optional full-page text retrieval for selected results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search and routing send the user's IP address, user agent, and query text to external IP-location and search providers. <br>
-Mitigation: Use the skill only in environments where those outbound requests are acceptable, and avoid submitting sensitive query text. <br>
-Risk: Optional full-page fetching visits result pages and may disclose the user's IP address, user agent, and referer to those sites. <br>
-Mitigation: Keep full-page fetching disabled unless page retrieval is needed; use the default full=0 posture for ordinary searches. <br>
+## Use Case:
 
+Developers and agents use this skill to perform explicit web searches, route between Bing China and DuckDuckGo, and optionally fetch page text for the first results. It is suited to search-assisted answers where outbound search and geolocation probes are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ucsdzehualiu/free-web-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, guidance] <br>
-**Output Format:** [JSON search results with title, URL, snippet, and optional page text; documentation examples use Markdown with shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are capped at 20 items; optional full-page fetching is capped at 5 results with page text truncated to 8000 characters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Search queries and IP metadata are sent to external search and geolocation services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when outbound search is approved and avoid sensitive queries.
+
+Risk: Optional full-page fetch loads arbitrary search results in an unsandboxed browser.
+
+Mitigation: Keep --full at 0 unless page text is needed, and run the skill in an isolated low-privilege environment.
+
+Risk: Dependency setup installs Playwright and Chromium and can use custom package mirrors.
+
+Mitigation: Avoid running setup as root, prefer a virtual environment with pinned dependencies, and use only trusted package mirrors.
+
+## Reference(s):
+
+- [Free Web Search on ClawHub](https://clawhub.ai/ucsdzehualiu/skills/free-web-search)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [JSON array of search results with title, URL, snippet, and optional page text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search result count is capped at 20; optional full-page fetching is capped at 5 results and truncates each page to 8000 characters.]
+
+## Skill Version(s):
+
+8.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

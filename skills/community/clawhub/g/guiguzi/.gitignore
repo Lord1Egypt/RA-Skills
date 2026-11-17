@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Obsidian (if used)
+.obsidian/
+
+# Claude (local only)
+.claude/sessions/
+.claude/projects/
+.claude/worktrees/
+.claude/settings*.json
+
+# Logs
+*.log

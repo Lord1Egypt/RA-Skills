@@ -1,40 +1,49 @@
-## Description: <br>
-Creates professional invoices in markdown and HTML. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates professional invoices in markdown and HTML.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Employees, freelancers, and small business operators use this skill to create invoice records, calculate line-item totals and taxes, generate markdown or printable HTML invoices, and review outstanding invoices. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may save and reread local invoice records that can contain business, client, tax, and payment details. <br>
-Mitigation: Keep the invoices directory in a controlled location and avoid storing unnecessary banking or sensitive client information. <br>
-Risk: Generated invoice amounts, taxes, terms, or legally required fields may be incorrect for a specific jurisdiction. <br>
-Mitigation: Review generated invoices before sending them and confirm jurisdiction-specific invoice requirements when unsure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/ai-invoice-generator) <br>
-- [Context packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+External users, freelancers, and small businesses use this skill to create professional invoices, calculate totals and taxes, manage recurring invoices, and produce markdown or printable HTML outputs.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown invoices and printable HTML invoice files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save and reread local invoice records in an invoices/ directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved invoice files may contain client names, addresses, amounts, payment terms, and payment-method details.
+
+Mitigation: Keep the invoices directory private, avoid storing full bank credentials or sensitive payment tokens, and ask the agent to confirm before saving or reusing business details in shared environments.
+
+## Reference(s):
+
+- [Invoice Generator ClawHub listing](https://clawhub.ai/1kalin/skills/ai-invoice-generator)
+- [Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, HTML, files, guidance]
+
+**Output Format:** [Markdown invoices and printable HTML invoice files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save invoices to a local invoices/ directory and reuse saved business or client details when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

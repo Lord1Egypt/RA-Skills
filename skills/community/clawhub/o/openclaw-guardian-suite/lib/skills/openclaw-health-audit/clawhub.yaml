@@ -1,0 +1,90 @@
+name: openclaw-health-audit
+version: 1.4.0
+description: |
+  OpenClaw 系统健康审计与自动修复 Skill（v1.4.0）。
+  三层 7 分类监控：System Prompt 体积漂移(A)、Cron Job 合规(B)、孤儿Session(C)、
+  Token 消耗趋势(D)、LLM 缓存配置完整性(E)、Session 状态完整性(F)、
+  代码完整性 FIX-0~4 合规检查 G1-G8(G)。
+  首次运行向导自动测量基线并生成个性化配置，注册 48h 定期检查任务。
+author: halfmoon82
+tags:
+  - health
+  - monitoring
+  - audit
+  - cost-optimization
+  - cron
+  - maintenance
+  - token-cost
+category: tooling
+license: MIT
+
+metadata:
+  title: "OpenClaw Health Audit"
+  description: "System health monitoring and auto-repair for OpenClaw"
+  author: halfmoon82
+  homepage: https://clawhub.ai/halfmoon82/openclaw-health-audit
+  tags:
+    - health-monitoring
+    - cost-optimization
+    - cron-compliance
+    - session-management
+  categories:
+    - AI Agent
+    - Development Tools
+    - Monitoring
+
+requirements:
+  openclaw:
+    minimum: "0.12.0"
+  system:
+    python: "3.9+"
+    disk_space_mb: 5
+
+permissions:
+  - read
+  - write
+  - exec
+
+files:
+  - path: SKILL.md
+    type: documentation
+  - path: scripts/health_monitor.py
+    type: script
+    description: 主监控脚本（配置驱动）
+  - path: scripts/audit_wizard.py
+    type: script
+    description: 安装向导
+  - path: config/config.template.json
+    type: config
+    description: 配置模板
+
+clawhub:
+  category: tooling
+  featured: false
+  verified: false
+
+install: |
+  1. 安装至 ~/.openclaw/workspace/skills/openclaw-health-audit/
+  2. 运行向导：python3 scripts/audit_wizard.py
+  3. 向导将自动配置阈值并可选注册 Cron Job
+
+examples:
+  - command: python3 scripts/audit_wizard.py
+    description: 首次安装配置（交互式）
+  - command: python3 scripts/health_monitor.py --report
+    description: 生成健康报告（供 agent 推送 Telegram）
+  - command: python3 scripts/health_monitor.py --dry-run
+    description: 预览报告（不修改任何文件）
+  - command: python3 scripts/health_monitor.py --fix all
+    description: 执行全部自动修复
+
+changelog:
+  "1.0.0":
+    date: 2026-03-05
+    new_features:
+      - "5 类健康检查（A: Prompt 体积 / B: Cron 合规 / C: Session / D: Token / E: 缓存配置）"
+      - "交互式安装向导（audit_wizard.py）：自动基线测量 + 个性化阈值"
+      - "配置驱动：所有阈值、检查项均可通过 config.json 控制"
+      - "自动修复：B 类 Cron Job 违规、C 类孤儿 Session"
+      - "可选 Category E：semantic-router M1/M3 缓存配置完整性监控"
+      - "48h Cron Job 模板 + 向导一键注册"

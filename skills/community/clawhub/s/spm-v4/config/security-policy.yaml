@@ -1,0 +1,75 @@
+# SPM Security Gate Policy
+#
+# Each rule is matched (as a regex) against the raw shell command string.
+# The first matching rule wins.  If no rule matches, the command is
+# classified as "safe".
+#
+# Fields:
+#   pattern  - Regular expression (RegExp source).
+#   level    - One of: safe, risky, dangerous.
+#   action   - One of: allow (no intervention), warn (prompt user),
+#              block (prevent execution).
+#   reason   - Human-readable explanation shown to the user.
+
+rules:
+  # ── Dangerous (blocked) ──────────────────────────────────────────────
+  - pattern: "^rm -rf /"
+    level: dangerous
+    action: block
+    reason: "Destructive filesystem operation"
+
+  - pattern: "^dd if="
+    level: dangerous
+    action: block
+    reason: "Potential disk overwrite"
+
+  - pattern: "^mkfs\\..+ /dev/"
+    level: dangerous
+    action: block
+    reason: "Filesystem creation may destroy data"
+
+  - pattern: "^:(){ :\\|:& };:"
+    level: dangerous
+    action: block
+    reason: "Fork bomb denial-of-service"
+
+  - pattern: "^> /dev/sda"
+    level: dangerous
+    action: block
+    reason: "Direct block device write"
+
+  # ── Risky (warn user) ───────────────────────────────────────────────
+  - pattern: "^curl .*\\| sh$"
+    level: risky
+    action: warn
+    reason: "Remote code execution via pipe to shell"
+
+  - pattern: "^bash <\\(curl "
+    level: risky
+    action: warn
+    reason: "Remote code execution via process substitution"
+
+  - pattern: "^git push --force"
+    level: risky
+    action: warn
+    reason: "Force push may overwrite remote history"
+
+  - pattern: "^chmod -R 777"
+    level: risky
+    action: warn
+    reason: "Overly permissive file permissions"
+
+  - pattern: "^wget .* -O - \\| sh$"
+    level: risky
+    action: warn
+    reason: "Remote code execution via pipe to shell"
+
+  - pattern: "^sudo rm"
+    level: risky
+    action: warn
+    reason: "Sudo delete may remove protected system files"
+
+  - pattern: "^eval \\$\\("
+    level: risky
+    action: warn
+    reason: "Dynamic command evaluation may be unsafe"

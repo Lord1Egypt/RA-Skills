@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://humanizer.aiclub.ai.id/</loc><lastmod>2026-10-31</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://humanizer.aiclub.ai.id/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://humanizer.aiclub.ai.id/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://humanizer.aiclub.ai.id/?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://humanizer.aiclub.ai.id/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://humanizer.aiclub.ai.id/?lang=ms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://humanizer.aiclub.ai.id/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://humanizer.aiclub.ai.id/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://humanizer.aiclub.ai.id/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://humanizer.aiclub.ai.id/?lang=zh"/>
+  </url>
+  <url><loc>https://humanizer.aiclub.ai.id/llms.txt</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://humanizer.aiclub.ai.id/llms-full.txt</loc><lastmod>2026-10-31</lastmod></url>
+</urlset>

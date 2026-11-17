@@ -1,43 +1,58 @@
-## Description: <br>
-Generates handmade plush toy and stuffed animal images from text prompts, with optional size and reference-image settings, using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn any subject into an adorable handmade plush toy or stuffed animal image with fluffy fabric textures, visible stitching, and button eyes via the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-External users and developers use this skill to generate plush toy concept images, stuffed animal references, merch mockups, gift ideas, and character or pet plush designs from text prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the Neta API token are sent to api.talesofai.com. <br>
-Mitigation: Avoid sensitive personal or proprietary prompts and use a limited token where possible. <br>
-Risk: Passing the API token on the command line can expose it through shell history, process listings, logs, or shared automation. <br>
-Mitigation: Run token-bearing commands only in trusted environments, avoid logging commands that include tokens, and rotate the token if exposure is suspected. <br>
+## Use Case:
 
+External users and creators use this skill to generate plush toy and stuffed animal image concepts from text prompts, including commission references, merch mockups, gift ideas, and character or pet plush designs.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/omactiengartelle/plush-toy-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/omactiengartelle) <br>
-- [Neta API token setup](https://www.neta.art/open/) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Plain text URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a direct generated image URL after polling the Neta API; supports size selection and an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json) <br>
+Risk: The skill sends the user's prompt and API token to an external image service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that api.talesofai.com is the intended provider before use, avoid sending sensitive prompts, and use a token appropriate for the task.
+
+Risk: Passing an API token on the command line can expose it through shell history or process listings.
+
+Mitigation: Avoid using real tokens on shared machines or in logged command histories, and rotate the token if exposure is suspected.
+
+Risk: Unpinned npx installation can install a changed package after review.
+
+Mitigation: Prefer a pinned version or ClawHub-managed installation path for reviewed deployments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/skills/plush-toy-generator)
+- [Neta API Token Setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns a direct image URL after polling the external image generation service; requires a user-provided Neta API token.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

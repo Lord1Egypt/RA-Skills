@@ -1,50 +1,64 @@
-## Description: <br>
-Warren Buffett's cognitive operating system - a practical investment framework built from shareholder letters, annual meetings, and interviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Warren Buffett's cognitive operating system: a practical investment framework built from shareholder letters, annual meetings, interviews, and related reference material.
 
-## Publisher: <br>
-[talentedleo](https://clawhub.ai/user/talentedleo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[talentedleo](https://clawhub.ai/user/talentedleo)
 
-## Use Case: <br>
-External users and agents use this skill as an educational investing aid for Buffett-style reasoning, business-quality analysis, moat evaluation, and long-term portfolio questions. It should not be treated as a financial adviser or allowed to take investment actions without human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can provide concrete investment suggestions and is tagged with crypto and purchase-related capabilities. <br>
-Mitigation: Use it only as an educational aid, keep brokerage, payment, crypto, and purchase tools behind explicit human approval, and do not allow autonomous trades or purchases. <br>
-Risk: The security summary says the skill overstates how verified its references are. <br>
-Mitigation: Independently verify historical claims, quotes, and investment recommendations against primary sources before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to answer investing questions in a Warren Buffett-style educational framework, including moats, intrinsic value, crisis investing, communication style, and decision checklists. It should support learning and analysis, not personalized financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/talentedleo/warren-buffett-investing) <br>
-- [Buffett's Writings & Core Ideas](references/01-writings.md) <br>
-- [Buffett's Conversations & Interviews](references/02-conversations.md) <br>
-- [Buffett's Expression DNA](references/03-expression-dna.md) <br>
-- [External Views on Buffett](references/04-external-views.md) <br>
-- [Investment Decisions](references/05-decisions.md) <br>
-- [Buffett's Life & Career Timeline](references/06-timeline.md) <br>
-- [Berkshire Hathaway shareholder letters](https://www.berkshirehathaway.com/letters/letters.html) <br>
-- [Buffett annual meeting archive](https://www.buffett.com) <br>
-- [CNBC Warren Buffett coverage](https://www.cnbc.com/warren-buffett/) <br>
-- [Fortune Warren Buffett archive](https://fortune.com/author/warren-buffett) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with examples, checklists, and investment reasoning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational guidance only; independently verify claims, quotes, and investment suggestions before acting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may mistake sample allocations, stock comments, or buy-more language for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as general education, verify current facts, and consult qualified financial advice before making real investment decisions.
+
+Risk: The artifact includes time-sensitive market and company examples that may become stale.
+
+Mitigation: Check current company fundamentals, prices, filings, and suitability before relying on any example in practice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/talentedleo/skills/warren-buffett-investing)
+- [Publisher profile](https://clawhub.ai/user/talentedleo)
+- [Buffett's Writings and Core Ideas](artifact/references/01-writings.md)
+- [Buffett's Conversations and Interviews](artifact/references/02-conversations.md)
+- [Buffett's Expression DNA](artifact/references/03-expression-dna.md)
+- [External Views on Buffett](artifact/references/04-external-views.md)
+- [Investment Decisions](artifact/references/05-decisions.md)
+- [Buffett's Life and Career Timeline](artifact/references/06-timeline.md)
+- [Berkshire Hathaway shareholder letters](https://www.berkshirehathaway.com/letters/letters.html)
+- [Buffett archive](https://www.buffett.com)
+- [CNBC Warren Buffett coverage](https://www.cnbc.com/warren-buffett/)
+- [Fortune Warren Buffett archive](https://fortune.com/author/warren-buffett)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses with structured examples, checklists, and educational investing guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior; outputs may include sample allocations, stock comments, and buy or hold framing that require user review before real-world use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

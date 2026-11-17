@@ -13,23 +13,25 @@
 
 | 参数 | 说明 |
 |------|------|
-| `--model-url` | 模特图 URL（与 `--model-cos-key` **二选一**） |
-| `--model-cos-key` | 模特图 COS 对象 Key（如 `/input/model.jpg`），与 `--model-url` 二选一 |
+| `--model-url` | 模特图 URL（与 `--model-cos-key` / `--model-local` **三选一**） |
+| `--model-cos-key` | 模特图 COS 对象 Key（如 `/input/model.jpg`），与 `--model-url` / `--model-local` 三选一 |
+| `--model-local` | 模特图本地文件路径，脚本自动上传 COS 后传入 API（需配置 `TENCENTCLOUD_COS_BUCKET`） |
 | `--model-cos-bucket` | 模特图 COS Bucket（默认读取 `TENCENTCLOUD_COS_BUCKET`） |
 | `--model-cos-region` | 模特图 COS Region（默认读取 `TENCENTCLOUD_COS_REGION`） |
-| `--cloth-url` | 服装图 URL，可重复传入 1-4 次；与 `--cloth-cos-key` 可混用 |
-| `--cloth-cos-key` | 服装图 COS 对象 Key，可重复传入 1-4 次；与 `--cloth-url` 可混用 |
+| `--cloth-url` | 服装图 URL，可重复传入 1-4 次；与 `--cloth-cos-key` / `--cloth-local` 可混用 |
+| `--cloth-cos-key` | 服装图 COS 对象 Key，可重复传入 1-4 次；与 `--cloth-url` / `--cloth-local` 可混用 |
+| `--cloth-local` | 服装图本地文件路径，可重复传入 1-4 次，脚本自动上传 COS 后传入 API |
 | `--cloth-cos-bucket` | 服装图 COS Bucket（默认读取 `TENCENTCLOUD_COS_BUCKET`） |
 | `--cloth-cos-region` | 服装图 COS Region（默认读取 `TENCENTCLOUD_COS_REGION`） |
 
-> **说明**：模特图必须指定 `--model-url` 或 `--model-cos-key` 之一；服装图 1-4 张（`--cloth-url` 或 `--cloth-cos-key`）。两者可混用，如模特图用 URL、服装图用 COS。
+> **说明**：模特图必须指定 `--model-url` / `--model-cos-key` / `--model-local` 之一；服装图 1-4 张（`--cloth-url` / `--cloth-cos-key` / `--cloth-local`）。三者可自由混用，如模特图用本地文件、服装图用 URL。使用本地文件时脚本会先上传到 COS（默认 `/input/<文件名>`），再以 COS 输入调用 API。
 
 ### 换装参数
 
 | 参数 | 默认值 | 说明 |
 |------|--------|------|
 | `--model` | `WAND-tryon-1.0-flash` | 换装模型：`WAND-tryon-1.0-lite`（轻量）/ `WAND-tryon-1.0-flash`（快速）/ `WAND-tryon-1.0-pro`（专业） |
-| `--prompt` | — | 换装指令（可选，为空时使用内置默认指令） |
+| `--prompt` | — | 换装指令（可选，为空时使用内置默认指令）。**内衣/情趣内衣等特殊品类须通过本参数说明场景**，见「强制规则」第 7 条 |
 | `--resource-id` | — | 可选资源 ID（业务侧专属资源） |
 
 ### 输出参数
@@ -62,12 +64,21 @@
 4. 脚本默认等待任务完成；若只需提交获取 TaskId，加 `--no-wait`。
 5. 手动查询换装任务状态使用 `mps_get_image_task.py`，不要用 `mps_get_video_task.py`。
 6. 新 API 使用 `ImageTask.AiTryOnConfig`，不再使用 `ScheduleId` 区分场景。
+7. **内衣场景**：用户提到内衣、情趣内衣、文胸、上装内衣等品类时，须用 `--prompt` 描述该场景
+   （例如 `--prompt "内衣换装"`），并且**只传 1 张服装图**。场景差异由 `--prompt` 表达，没有
+   专门的场景开关参数。
 
 ---
 
 ## 示例命令
 
 ```bash
+# 内衣场景：仅 1 张服装图，用 --prompt 说明品类
+python3 scripts/mps_image_tryon.py \
+    --model-url https://example.com/model.jpg \
+    --cloth-url https://example.com/lingerie.jpg \
+    --prompt "内衣换装"
+
 # 最简用法：模特图 + 1 张服装图（URL，默认 COS 输出）
 python3 scripts/mps_image_tryon.py \
     --model-url "https://example.com/model.jpg" \
@@ -133,7 +144,7 @@ python3 scripts/mps_get_image_task.py --task-id <TaskId>
 
 ```json
 {
-  "TaskId": "2600007696-WorkflowTask-b8dac8f326214464acef88afef9002d4",
+  "TaskId": "2600007696-WorkflowTaREDACTED-SECRET",
   "Status": "FINISH",
   "CreateTime": "2025-05-21T01:02:51Z",
   "FinishTime": "2025-05-21T01:02:52Z",

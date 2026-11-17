@@ -1,38 +1,53 @@
-## Description: <br>
-Checks generated content for hallucinations, fabricated details, inaccurate claims, statistics, named references, code examples, and external-action results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fact-checking and hallucination-detection guidance that prompts an agent to verify generated technical content, statistics, named references, code examples, and completed external actions.
 
-## Publisher: <br>
-[Jack123255829](https://clawhub.ai/user/Jack123255829) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack123255829](https://clawhub.ai/user/jack123255829)
 
-## Use Case: <br>
-Developers and agent users use this skill to add stricter fact-checking and uncertainty reporting after generated technical content, statistics, references, code examples, or external actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may encourage code execution, API checks, or file checks while verifying generated work. <br>
-Mitigation: Allow those checks only in safe, scoped environments under the user's control. <br>
+## Use Case:
 
+Developers, technical writers, and agent operators use this skill to make an assistant more deliberate about checking facts, numbers, references, code runnability, and external-operation results before presenting work as complete.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Jack123255829/uncertainty-verification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with verification labels] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include VERIFIED, LIKELY, or UNCERTAIN confidence labels.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can add extra verification steps or confidence labels during routine technical work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where deliberate fact-checking is desired and allow the agent time to validate important claims, code, and completed actions.
+
+Risk: The source instructions are written primarily in Chinese, which may be harder for users who do not read Chinese to review.
+
+Mitigation: Have a qualified reviewer translate or review the instructions before deployment in teams that do not read Chinese.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jack123255829/skills/uncertainty-verification)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown, code, shell commands]
+
+**Output Format:** [Markdown guidance and confidence labels]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May add verification labels such as VERIFIED, LIKELY, or UNCERTAIN to generated responses.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

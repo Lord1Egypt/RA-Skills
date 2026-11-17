@@ -1,49 +1,65 @@
-## Description: <br>
-Manage ecommerce store backends in real time through APIs for inventory, orders, products, and customer workflows across major ecommerce platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage ecommerce store backends in real time via their APIs across Shopify, WooCommerce, BigCommerce, Wix, PrestaShop, Adobe Commerce (Magento), Amazon SP-API, Etsy, and Shopware.
 
-## Publisher: <br>
-[Abhishekj9621](https://clawhub.ai/user/Abhishekj9621) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abhishekj9621](https://clawhub.ai/user/abhishekj9621)
 
-## Use Case: <br>
-Store operators and ecommerce teams use this skill to retrieve store data and manage stock, orders, products, and customer records through supported platform APIs. The skill is intended for live ecommerce administration, including read operations and approved write actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide powerful ecommerce store credentials. <br>
-Mitigation: Use narrowly scoped, temporary credentials where possible; avoid long-lived admin secrets; and revoke or rotate credentials after use. <br>
-Risk: The skill can change live store data, including orders, products, inventory, fulfillment, and customer records. <br>
-Mitigation: Require explicit user approval before every write, delete, fulfillment, cancellation, or customer update and review the intended change before execution. <br>
+## Use Case:
 
+External users and store operators use this skill to inspect and manage ecommerce inventory, orders, products, and customer records through supported platform APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Abhishekj9621/ecommerce-manager-claw) <br>
-- [Credential Guides](artifact/references/credential-guides.md) <br>
-- [Shopify API Reference](artifact/references/shopify.md) <br>
-- [WooCommerce API Reference](artifact/references/woocommerce.md) <br>
-- [BigCommerce API Reference](artifact/references/bigcommerce.md) <br>
-- [Wix API Reference](artifact/references/wix.md) <br>
-- [PrestaShop API Reference](artifact/references/prestashop.md) <br>
-- [Adobe Commerce Magento API Reference](artifact/references/magento.md) <br>
-- [Amazon SP-API and Shopware API Reference](artifact/references/amazon-shopware.md) <br>
-- [Etsy API Reference](artifact/references/etsy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with API request details and structured summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed store changes, credential setup steps, API endpoint details, and tabular summaries of store data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks users to provide powerful ecommerce credentials in chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only stores you control, prefer read-only or narrowly scoped tokens, avoid pasting admin secrets or refresh tokens into normal chat, and revoke or rotate temporary credentials after use.
+
+Risk: The skill can change live ecommerce data such as inventory, products, orders, fulfillment status, and customer records.
+
+Mitigation: Test on a sandbox store first and require explicit confirmation before any write, fulfillment, cancellation, deletion, or customer update action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abhishekj9621/skills/ecommerce-manager-claw)
+- [Amazon SP-API getting started](https://developer-docs.amazon.com/sp-api/docs/getting-started)
+- [Wix API keys](https://manage.wix.com)
+- [Etsy developer portal](https://www.etsy.com/developers)
+- [Credential Guides](references/credential-guides.md)
+- [Shopify API Reference](references/shopify.md)
+- [WooCommerce API Reference](references/woocommerce.md)
+- [BigCommerce API Reference](references/bigcommerce.md)
+- [Wix API Reference](references/wix.md)
+- [PrestaShop API Reference](references/prestashop.md)
+- [Adobe Commerce (Magento) API Reference](references/magento.md)
+- [Amazon SP-API and Shopware API Reference](references/amazon-shopware.md)
+- [Etsy API Reference](references/etsy.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request examples and structured summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or execute ecommerce API calls after collecting platform credentials and user confirmation for write or destructive actions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-SPF Test provides a unified AI coding workflow with persistent memory, test-driven execution, planning, debugging, and code-review guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Unified AI workflow with persistent memory, TDD execution, and 15 productivity skills for planning, execution, debugging, and code review in coding projects.
 
-## Publisher: <br>
-[mok888](https://clawhub.ai/user/mok888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mok888](https://clawhub.ai/user/mok888)
 
-## Use Case: <br>
-Developers and coding agents use this skill to plan, execute, debug, and review software work while retaining task context through project-local notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The submitted scan covered the SKILL.md artifact only, while the skill points to an external repository for setup. <br>
-Mitigation: Review the linked repository before installing or following setup steps. <br>
-Risk: Persistent memory or log files can retain sensitive project context if secrets or private details are written into them. <br>
-Mitigation: Keep notes and logs inside the intended project, review them before sharing, and avoid storing secrets in persistent files. <br>
-Risk: Multi-agent workflows can share project context beyond a single agent session. <br>
-Mitigation: Use multi-agent features only when sharing the relevant project context is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill-declared source repository](https://github.com/mok888/superpower-with-files) <br>
+## Use Case:
 
+Developers and engineers use this skill to guide coding projects with persistent planning notes, test-driven execution, debugging workflows, review practices, and related productivity skills.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown and plain-text workflow guidance with command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update project-local planning, memory, or log files when the workflow is followed.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The submitted package references persistent-memory and subagent workflows, but does not include the actual workflow files.
+
+Mitigation: Inspect the linked repository and review any external workflow files before deploying or relying on the skill.
+
+Risk: Persistent notes and delegated agent workflows can broaden what project context is logged or shared during development.
+
+Mitigation: Review workspace logging locations and delegation behavior before using the skill with sensitive code or data.
+
+## Reference(s):
+
+- [Superpower with Files GitHub repository](https://github.com/mok888/superpower-with-files)
+- [ClawHub skill page](https://clawhub.ai/mok888/skills/spf-test-skill)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with workflow steps, checklists, and command suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference external workflow files that are not included in the submitted package.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

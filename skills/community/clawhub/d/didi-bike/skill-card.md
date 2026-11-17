@@ -1,41 +1,53 @@
-## Description: <br>
-青桔单车出行助手，精通骑行路线、站点推荐、费用优化、出行建议 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Qingju Bike assistant for choosing between bikes and e-bikes, comparing pricing and ride passes, planning DiDi-connected trips, and avoiding parking, out-of-zone, and fee issues.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External users use this skill for Didi Qingju bike and e-bike trip advice, including route planning, station recommendations, fare optimization, parking-area reminders, and multimodal short-distance travel guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing, availability, parking-zone, and operating-area details may be outdated or vary by location. <br>
-Mitigation: Confirm current trip details and fees in the official Didi app before relying on them. <br>
-Risk: Bike and e-bike route advice may not reflect local traffic conditions or safety requirements. <br>
-Mitigation: Follow local traffic rules, wear required safety equipment, and treat the skill's route guidance as advisory. <br>
+## Use Case:
 
+External users and travel assistants use this skill to evaluate Qingju bike and e-bike trip options in China, compare commute cost and time tradeoffs, estimate ride-pass value, troubleshoot fee issues, and remind riders to check live app pricing, operating zones, and local helmet or parking rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/didi-bike) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or credential handling; pricing, availability, parking zones, and operating areas are advisory and should be confirmed in the official Didi app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Pricing, service areas, parking rules, and helmet requirements can vary by city and change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current fares, operating zones, parking restrictions, and local requirements in the live DiDi or Qingju app before acting.
+
+Risk: Advice based on outdated or incomplete local conditions could lead to extra fees or inconvenient trip plans.
+
+Mitigation: Use the skill for planning and troubleshooting support, then verify route, vehicle availability, lock status, and fee details in the app.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/didi-bike)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown or conversational text with trip-planning comparisons, cost checks, and rider guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational guidance only; users should verify current pricing, service areas, and local rules in the DiDi or Qingju app.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

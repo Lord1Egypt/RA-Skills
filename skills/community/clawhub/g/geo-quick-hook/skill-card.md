@@ -1,46 +1,59 @@
-## Description: <br>
-Geo Quick Hook collects a client brand, competitors, and target keywords, then generates an HTML pre-sales comparison report that ranks the client against competitors across configured AI-answer endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GEO Quickhook helps sales and marketing users compare a target brand against competitors across configured AI engines and produce a visibility comparison report for pre-sales conversations.
 
-## Publisher: <br>
-[hanwenyolo-dot](https://clawhub.ai/user/hanwenyolo-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hanwenyolo-dot](https://clawhub.ai/user/hanwenyolo-dot)
 
-## Use Case: <br>
-Sales teams, marketing consultants, and brand managers use this skill to create quick GEO pre-sales reports that compare a target brand with competitors for one or two sales keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Customer brand, competitor, and keyword data may be sent to external LLM-compatible endpoints. <br>
-Mitigation: Use an approved, scoped LLM API key and avoid confidential customer data unless external processing is permitted. <br>
-Risk: The workflow describes serving the Desktop directory over a local HTTP server and delivering a screenshot through Feishu. <br>
-Mitigation: Disable or replace the Desktop-wide server flow and require explicit user confirmation before any Feishu delivery. <br>
-Risk: The release presents a five-engine comparison, but the artifact uses the same LLM API configuration for all named engines unless separate providers are configured. <br>
-Mitigation: Configure independent provider credentials per engine or clearly label the report as using a shared configured endpoint. <br>
-Risk: Security evidence flags the release as suspicious because of overbroad sharing and potentially misleading report claims. <br>
-Mitigation: Review the workflow before installation and scan the skill before deployment. <br>
+## Use Case:
 
+Sales teams, marketing consultants, and brand managers use this skill to gather brand, competitor, and keyword inputs, query a configured OpenAI-compatible LLM endpoint, and generate a competitive AI visibility report for pre-sales outreach.
 
-## Reference(s): <br>
-- [ClawHub release: geo-quick-hook](https://clawhub.ai/hanwenyolo-dot/geo-quick-hook) <br>
-- [Publisher profile: hanwenyolo-dot](https://clawhub.ai/user/hanwenyolo-dot) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, HTML file, Guidance] <br>
-**Output Format:** [Interactive prompts, bash command examples, configuration instructions, and generated HTML report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The report is written as a local HTML file and may be shared through a screenshot delivery flow when explicitly approved.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and user changelog) <br>
+Risk: Brand, competitor, and keyword inputs may be sent to the configured external LLM provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a vetted endpoint and avoid confidential customer data unless the data sharing path is approved.
+
+Risk: Generated reports may be shared externally through Feishu.
+
+Mitigation: Review the generated HTML report before sending it outside the organization.
+
+Risk: The report can overstate five-engine coverage or present misleading competitive rankings.
+
+Mitigation: Treat results as directional sales material and configure separate engine credentials and provenance when independent engine evidence is required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hanwenyolo-dot/skills/geo-quick-hook)
+- [Publisher Profile](https://clawhub.ai/user/hanwenyolo-dot)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, HTML, Files, Shell commands, Configuration guidance]
+
+**Output Format:** [HTML report file with console summaries and setup/run commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a dated GEO_QuickHook report to the user's Desktop and may be paired with screenshot delivery through Feishu.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

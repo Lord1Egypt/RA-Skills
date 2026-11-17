@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500">
+  <!--
+    思维导图模板
+    中心节点 + 贝塞尔曲线分支放射
+    占位符说明：
+      {{BG_COLOR}} {{TEXT_COLOR}} {{TITLE_COLOR}} {{SUBTITLE_COLOR}}
+      {{ACCENT_COLOR}} {{ACCENT2_COLOR}} {{ACCENT3_COLOR}} {{BORDER_COLOR}}
+      {{NODE_FILL}} {{NODE_STROKE}} {{ARROW_COLOR}} {{FONT_FAMILY}}
+
+    LLM 生成时参考此结构，自由增减分支和子节点。
+    使用贝塞尔曲线（cubic bezier）连接分支，避免直线。
+  -->
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="500" fill="{{BG_COLOR}}" rx="6"/>
+
+  <!-- 标题 -->
+  <text x="450" y="30" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" font-weight="bold" fill="{{TITLE_COLOR}}">{{TITLE}}</text>
+
+  <!-- ====== 中心节点 ====== -->
+  <ellipse cx="450" cy="250" rx="80" ry="40"
+           fill="{{ACCENT_COLOR}}" fill-opacity="0.2" stroke="{{ACCENT_COLOR}}" stroke-width="3" filter="url(#shadow)"/>
+  <text x="450" y="247" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="16" font-weight="bold" fill="{{TEXT_COLOR}}">{{CENTER}}</text>
+  <text x="450" y="267" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{SUBTITLE_COLOR}}">{{CENTER_DESC}}</text>
+
+  <!-- ====== 右上分支 1 ====== -->
+  <path d="M 530 235 C 590 220, 620 140, 680 110" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="680" y="90" width="170" height="40" rx="20"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="765" y="115" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{BRANCH_1}}</text>
+
+  <!-- 子节点 1a -->
+  <path d="M 850 105 C 865 95, 870 78, 850 60" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="770" y="44" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.2"/>
+  <text x="828" y="63" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_1_SUB_1}}</text>
+
+  <!-- 子节点 1b -->
+  <path d="M 850 115 C 870 120, 875 135, 860 150" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="780" y="140" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.2"/>
+  <text x="838" y="159" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_1_SUB_2}}</text>
+
+  <!-- ====== 右下分支 2 ====== -->
+  <path d="M 530 260 C 600 280, 630 330, 680 350" fill="none"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="680" y="330" width="170" height="40" rx="20"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="765" y="355" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{BRANCH_2}}</text>
+
+  <!-- 子节点 2a -->
+  <path d="M 850 345 C 870 335, 875 315, 860 300" fill="none"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="780" y="282" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.2"/>
+  <text x="838" y="301" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_2_SUB_1}}</text>
+
+  <!-- 子节点 2b -->
+  <path d="M 850 356 C 870 365, 875 385, 860 400" fill="none"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="780" y="390" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT2_COLOR}}" stroke-width="1.2"/>
+  <text x="838" y="409" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_2_SUB_2}}</text>
+
+  <!-- ====== 左上分支 3 ====== -->
+  <path d="M 370 235 C 310 215, 280 150, 220 120" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="50" y="100" width="170" height="40" rx="20"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="135" y="125" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{BRANCH_3}}</text>
+
+  <!-- 子节点 3a -->
+  <path d="M 50 112 C 30 100, 25 80, 40 65" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="5" y="48" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1.2"/>
+  <text x="63" y="67" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_3_SUB_1}}</text>
+
+  <!-- 子节点 3b -->
+  <path d="M 50 128 C 30 140, 25 160, 40 175" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="5" y="165" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT3_COLOR}}" stroke-width="1.2"/>
+  <text x="63" y="184" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_3_SUB_2}}</text>
+
+  <!-- ====== 左下分支 4 ====== -->
+  <path d="M 370 265 C 300 290, 270 340, 220 360" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.7"/>
+  <rect x="50" y="340" width="170" height="40" rx="20"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.08" stroke="{{ACCENT_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="135" y="365" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{BRANCH_4}}</text>
+
+  <!-- 子节点 4a -->
+  <path d="M 50 352 C 30 340, 25 320, 40 305" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.7"/>
+  <rect x="5" y="288" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.2" stroke-opacity="0.7"/>
+  <text x="63" y="307" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_4_SUB_1}}</text>
+
+  <!-- 子节点 4b -->
+  <path d="M 50 368 C 30 380, 25 400, 40 415" fill="none"
+        stroke="{{ACCENT_COLOR}}" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.7"/>
+  <rect x="5" y="405" width="115" height="28" rx="14"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="1.2" stroke-opacity="0.7"/>
+  <text x="63" y="424" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="10" fill="{{TEXT_COLOR}}">{{BRANCH_4_SUB_2}}</text>
+
+  <!-- ====== 正上分支 5 ====== -->
+  <path d="M 450 210 C 450 170, 450 130, 450 90" fill="none"
+        stroke="{{ACCENT2_COLOR}}" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.8"/>
+  <rect x="365" y="50" width="170" height="40" rx="20"
+        fill="{{ACCENT2_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT2_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="450" y="75" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{BRANCH_5}}</text>
+
+  <!-- ====== 正下分支 6 ====== -->
+  <path d="M 450 290 C 450 330, 450 370, 450 410" fill="none"
+        stroke="{{ACCENT3_COLOR}}" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.8"/>
+  <rect x="365" y="410" width="170" height="40" rx="20"
+        fill="{{ACCENT3_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT3_COLOR}}" stroke-width="2" filter="url(#shadow)"/>
+  <text x="450" y="435" text-anchor="middle" font-family="{{FONT_FAMILY}}"
+        font-size="13" font-weight="bold" fill="{{TEXT_COLOR}}">{{BRANCH_6}}</text>
+
+  <!-- ====== 图例 ====== -->
+  <rect x="20" y="465" width="280" height="28" rx="6"
+        fill="{{BG_COLOR}}" stroke="{{BORDER_COLOR}}" stroke-width="1"/>
+  <text x="35" y="483" font-family="{{FONT_FAMILY}}"
+        font-size="9" font-weight="bold" fill="{{TITLE_COLOR}}">图例:</text>
+
+  <ellipse cx="85" cy="480" rx="12" ry="6"
+           fill="{{ACCENT_COLOR}}" fill-opacity="0.2" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="105" y="484" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">中心主题</text>
+
+  <rect x="150" y="475" width="24" height="10" rx="5"
+        fill="{{ACCENT_COLOR}}" fill-opacity="0.12" stroke="{{ACCENT_COLOR}}" stroke-width="1"/>
+  <text x="182" y="484" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">一级分支</text>
+
+  <rect x="225" y="475" width="20" height="10" rx="5"
+        fill="{{NODE_FILL}}" stroke="{{ACCENT_COLOR}}" stroke-width="0.8"/>
+  <text x="253" y="484" font-family="{{FONT_FAMILY}}" font-size="8" fill="{{TEXT_COLOR}}">子节点</text>
+</svg>

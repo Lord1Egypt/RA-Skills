@@ -1,47 +1,67 @@
-## Description: <br>
-Integrate GigaChat (Sber AI) with OpenClaw via gpt2giga proxy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate GigaChat (Sber AI) with OpenClaw via gpt2giga proxy.
 
-## Publisher: <br>
-[smvlx](https://clawhub.ai/user/smvlx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[smvlx](https://clawhub.ai/user/smvlx)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to run a local gpt2giga proxy that exposes Sber GigaChat models through an OpenAI-compatible endpoint and updates OpenClaw configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: TLS verification may be disabled when the Sber CA is not installed. <br>
-Mitigation: Install or configure the Sber CA before startup so TLS verification remains enabled. <br>
-Risk: Startup can terminate processes using port 8443. <br>
-Mitigation: Check port 8443 ownership before running the startup script. <br>
-Risk: The configuration patch can overwrite OpenClaw settings. <br>
-Mitigation: Review the generated backup and configuration changes before using the patched OpenClaw config. <br>
-Risk: GigaChat credentials are loaded from a local environment file. <br>
-Mitigation: Protect the credential environment file with restrictive file permissions and avoid sharing logs or config backups that may expose secrets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smvlx/sber-gigachat) <br>
-- [OpenClaw Russian skills homepage](https://github.com/smvlx/openclaw-ru-skills) <br>
-- [GigaChat documentation](https://developers.sber.ru/docs/ru/gigachat/overview) <br>
-- [gpt2giga package](https://pypi.org/project/gpt2giga/) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+## Use Case:
 
+Developers and engineers use this skill to run a local OpenAI-compatible proxy that lets OpenClaw agents call Sber GigaChat models with credentials supplied through environment variables.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides local proxy startup, process management, credential environment setup, and OpenClaw provider configuration.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The proxy uses sensitive GigaChat credentials from a local environment file.
+
+Mitigation: Protect the environment file with restrictive permissions and avoid exposing credentials in logs, shell history, or shared workspaces.
+
+Risk: TLS certificate verification can be disabled when the Sber CA is not installed.
+
+Mitigation: Install and verify the Sber root CA before use, and require certificate verification for production or sensitive workflows.
+
+Risk: The startup script can terminate any process already using local port 8443.
+
+Mitigation: Check port 8443 before startup and change the port or stop only the intended process.
+
+Risk: The setup flow installs the gpt2giga dependency from a package registry.
+
+Mitigation: Pin and verify the dependency version before installation.
+
+Risk: The configuration patch modifies the OpenClaw configuration file.
+
+Mitigation: Review the generated backup and patch before continuing with agent use.
+
+## Reference(s):
+
+- [GigaChat documentation](https://developers.sber.ru/docs/ru/gigachat/overview)
+- [gpt2giga package](https://pypi.org/project/gpt2giga/)
+- [OpenClaw](https://openclaw.ai)
+- [OpenClaw Russian skills repository](https://github.com/smvlx/openclaw-ru-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup, proxy lifecycle, status, stop, and OpenClaw configuration guidance for a local GigaChat proxy.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

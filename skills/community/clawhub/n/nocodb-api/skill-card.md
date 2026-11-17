@@ -1,45 +1,56 @@
-## Description: <br>
-Connects agents to NocoDB databases through REST API v3 for querying records, managing tables and views, handling linked records, filtering, sorting, and uploading attachments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to NocoDB databases via REST API v3 to query records, manage database structure, handle linked records, apply filters and sorts, and upload attachments.
 
-## Publisher: <br>
-[dofbi](https://clawhub.ai/user/dofbi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dofbi](https://clawhub.ai/user/dofbi)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent work with NocoDB Cloud or self-hosted NocoDB instances, including record CRUD, schema management, attachments, collaboration resources, and API tokens where permitted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A NocoDB API token may authorize broad database, schema, collaboration, token, script, or file-upload actions. <br>
-Mitigation: Use a dedicated least-privilege token and avoid broad production or admin tokens unless the workflow requires them. <br>
-Risk: Destructive, bulk, schema, member, team, script, token, and upload operations can materially change data or access. <br>
-Mitigation: Require explicit approval before deletes, bulk updates, schema changes, member or team changes, script actions, token actions, or file uploads. <br>
-Risk: An incorrect NOCODB_URL could send authenticated requests to the wrong NocoDB endpoint. <br>
-Mitigation: Verify NOCODB_URL before use and do not print, log, or share NOCODB_TOKEN. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent work with NocoDB Cloud or self-hosted NocoDB instances through the REST API. It supports database record workflows, schema changes, linked records, attachments, collaboration administration, and token-related operations according to the user's NocoDB plan and token permissions.
 
-## Reference(s): <br>
-- [ClawHub NocoDB API release](https://clawhub.ai/dofbi/nocodb-api) <br>
-- [NocoDB documentation](https://docs.nocodb.com/) <br>
-- [NocoDB REST API documentation](https://docs.nocodb.com/developer-resources/rest-APIs/) <br>
-- [NocoDB project](https://github.com/nocodb/nocodb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, text] <br>
-**Output Format:** [Markdown guidance with shell command examples; command results are JSON or tab-separated text depending on the operation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NOCODB_TOKEN, NOCODB_URL, curl, and jq; some workspace, view, script, team, collaboration, and token operations require NocoDB Enterprise.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can perform broad NocoDB data, schema, membership, token, script, deletion, and file-upload actions when given a powerful API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token, test in a non-production workspace first, and require explicit human approval before delete, schema, token, team, membership, script, or file-upload actions.
+
+Risk: The required NOCODB_TOKEN can expose database access if printed, logged, or shared.
+
+Mitigation: Store the token as an environment secret, avoid echoing it, and rotate it if it appears in logs or chat history.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dofbi/skills/nocodb-api)
+- [NocoDB Documentation](https://docs.nocodb.com/)
+- [NocoDB REST API Reference](https://docs.nocodb.com/developer-resources/rest-APIs/)
+- [NocoDB Website](https://nocodb.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON API responses from NocoDB commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NOCODB_TOKEN, optionally NOCODB_URL, and local curl and jq binaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

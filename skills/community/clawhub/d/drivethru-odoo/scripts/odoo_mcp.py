@@ -28,14 +28,49 @@ Every command prints a single JSON object on stdout. On failure it prints
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import os
 import sys
+from contextlib import asynccontextmanager
 
 import anyio
 
 from mcp import ClientSession
-from mcp.client.streamable_http import streamablehttp_client
+
+# The streamable-HTTP client API has drifted across mcp SDK generations
+# (mirrors drivethru-payable-matching/scripts/paymatch.py):
+#   - 1.9-era: streamablehttp_client(url, headers=...) yields
+#     (read, write, get_session_id)
+#   - newer:   streamable_http_client(url, http_client=...) yields
+#     (read, write); headers ride on an httpx client built by
+#     create_mcp_http_client(headers=...)
+# Import whichever spelling exists, then adapt the CALL by SIGNATURE, not by
+# name — a spelling proves nothing about the parameters.
+try:
+    from mcp.client.streamable_http import streamablehttp_client as _shttp
+except ImportError:  # pragma: no cover - depends on installed mcp version
+    from mcp.client.streamable_http import (  # type: ignore
+        streamable_http_client as _shttp,
+    )
+
+_SHTTP_TAKES_HEADERS = "headers" in inspect.signature(_shttp).parameters
+if not _SHTTP_TAKES_HEADERS:  # pragma: no cover - new API only
+    from mcp.client.streamable_http import (  # type: ignore
+        create_mcp_http_client as _mcp_http_client,
+    )
+
+
+@asynccontextmanager
+async def _mcp_streams(url, headers):
+    """Yield (read, write) MCP streams for `url`, whichever SDK generation."""
+    if _SHTTP_TAKES_HEADERS:
+        async with _shttp(url, headers=headers) as streams:
+            yield streams[0], streams[1]
+    else:
+        async with _mcp_http_client(headers=headers) as client:
+            async with _shttp(url, http_client=client) as streams:
+                yield streams[0], streams[1]
 
 
 def _fail(error_type: str, message: str, code: int = 1) -> int:
@@ -51,7 +86,7 @@ def _config():
 
 
 async def _with_session(url: str, headers: dict, fn):
-    async with streamablehttp_client(url, headers=headers) as (read, write, _):
+    async with _mcp_streams(url, headers) as (read, write):
         async with ClientSession(read, write) as session:
             await session.initialize()
             return await fn(session)
@@ -119,7 +154,11 @@ async def cmd_call(args) -> int:
         result = await session.call_tool(args.tool, arguments)
         payload = result.model_dump(mode="json", exclude_none=True)
         print(json.dumps(payload, indent=2))
-        return 1 if result.isError else 0
+        # 1.x exposes camelCase `isError`; 2.x snake_case `is_error`.
+        is_error = getattr(result, "isError", None)
+        if is_error is None:
+            is_error = getattr(result, "is_error", False)
+        return 1 if is_error else 0
 
     return await _run(fn)
 

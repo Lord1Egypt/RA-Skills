@@ -1,38 +1,52 @@
-## Description: <br>
-Shared engineering skill for i18n-compliant user text, translation files, and framework-safe user notification patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shared engineering skill for i18n-compliant user text, translation files, and framework-safe user notification patterns.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[aiweline](https://clawhub.ai/user/aiweline)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill when adding or changing visible text, translation files, templates, admin UI, frontend components, or notification behavior in Weline-style projects. It helps keep user-facing copy translatable, actionable, and aligned with framework-safe notification patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill is repository-specific to Weline i18n and notification conventions, so use outside that workflow may produce unsuitable guidance.
+
+Mitigation: Use it only where the referenced Weline shared docs, agent roster, and Chinese-language role names make sense.
+
+Risk: The skill can guide edits to visible text, translation files, templates, and notification behavior.
+
+Mitigation: Review proposed changes and validate affected UI paths, translation coverage, custom-tag attributes, and prompt behavior before release.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill when introducing or modifying visible text, translation files, and user notification flows in Weline backend, frontend, admin, template, JavaScript, API-facing, or module code. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill references local Weline standards and notifying @Weline-技术主管, which may be inappropriate outside the intended project or team. <br>
-Mitigation: Before use, confirm those local standards and notification expectations fit the deployment project and do not expose sensitive task details beyond the intended team. <br>
+**Output Format:** [Markdown guidance with code and configuration changes when applied]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aiweline/common-i18n-notification) <br>
+**Other Properties Related to Output:** [May include validation notes for translation coverage, UI prompt behavior, and collaboration status.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code, translation, template, and notification recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no executable code or hidden high-risk behavior was found in server security evidence.] <br>
+1.1.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

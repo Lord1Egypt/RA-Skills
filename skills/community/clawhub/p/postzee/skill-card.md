@@ -1,42 +1,57 @@
-## Description: <br>
-Generate AI images/videos and post to 30+ social media platforms with Postzee. Use when the user wants to create AI media, generate images or videos, optimize prompts, create HeyGen avatar videos, or schedule social media posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate AI images and videos, optimize prompts, create HeyGen avatar videos, and post or schedule content across 30+ social media platforms with Postzee.
 
-## Publisher: <br>
-[lucasfreitas](https://clawhub.ai/user/lucasfreitas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lucasfreitas](https://clawhub.ai/user/lucasfreitas)
 
-## Use Case: <br>
-External users and social media operators use this skill to generate AI images or videos, optimize creative prompts, create avatar videos, and draft, schedule, or publish posts through connected Postzee channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish live posts to connected social accounts without consistently requiring final confirmation. <br>
-Mitigation: Require the agent to show the exact content, media, target channels, timing, and credit cost before any live publish; use draft mode for uncertain posts. <br>
-Risk: The skill requires credentials and access to connected Postzee social accounts. <br>
-Mitigation: Configure credentials through a secret or MCP configuration mechanism rather than pasting raw keys into normal chat. <br>
+## Use Case:
 
+External users, creators, and social media teams use this skill to generate AI media, prepare platform-aware social content, and create or schedule posts through Postzee-connected channels.
 
-## Reference(s): <br>
-- [Postzee documentation](https://docs.postzee.app) <br>
-- [Postzee app](https://postzee.app) <br>
-- [ClawHub release page](https://clawhub.ai/lucasfreitas/postzee) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Text] <br>
-**Output Format:** [Markdown guidance with inline shell commands and MCP tool actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or schedule social media posts and generated media through Postzee MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: Credential exposure or overbroad account access when configuring Postzee.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Postzee credential when available, avoid sharing long-lived secrets in chat, and rotate any key that was already shared.
+
+Risk: Unintended immediate or bulk public posting across connected social channels.
+
+Mitigation: Require explicit review of the channel list, post content, media, schedule, and publish mode before any live or all-channel post.
+
+## Reference(s):
+
+- [Postzee Skill on ClawHub](https://clawhub.ai/lucasfreitas/skills/postzee)
+- [Postzee Documentation](https://docs.postzee.app)
+- [Postzee App](https://postzee.app)
+- [Postzee Dashboard Settings](https://dashboard.postzee.app/settings)
+- [Postzee Channel Connections](https://dashboard.postzee.app/channels)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands, configuration steps, and MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger asynchronous media generation jobs and social posting through Postzee tools; review channel, content, media, schedule, and publish mode before publishing.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

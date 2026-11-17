@@ -1,41 +1,59 @@
-## Description: <br>
-Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown. Use when extracting content from Word documents, PowerPoint presentations, or Excel spreadsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Document to Markdown converter - convert DOCX, PPTX, Excel files to Markdown.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to extract readable Markdown from Word, PowerPoint, and Excel documents for review, summarization, or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents are uploaded to MinerU's cloud service for conversion. <br>
-Mitigation: Do not use the skill for confidential, regulated, or private Office documents unless uploading them to MinerU is acceptable. <br>
-Risk: Larger-file or precision extraction workflows may require MinerU authentication. <br>
-Mitigation: Use unauthenticated flash extraction for supported files, and authenticate only when the larger-file workflow is needed and acceptable. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to extract readable Markdown from Word, PowerPoint, and Excel documents supplied as local files or URLs.
 
-## Reference(s): <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Markdown output from DOCX, PPTX, XLS, and XLSX inputs; unauthenticated flash extraction is limited to 10MB or 20 pages per document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Documents processed with flash-extract are uploaded to MinerU's cloud API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for documents the user is comfortable sending to MinerU, and avoid sensitive or restricted files unless that transfer is approved.
+
+Risk: The skill depends on installing and running the mineru-open-api CLI from package sources.
+
+Mitigation: Prefer pinned or trusted installation sources and review the generated command before execution.
+
+Risk: The converter may replace embedded images with placeholders or omit detail from larger documents.
+
+Mitigation: Review the returned Markdown against the source document when completeness matters, and use authenticated precision extraction for larger files.
+
+## Reference(s):
+
+- [Xlsx To Markdown on ClawHub](https://clawhub.ai/tanis90/skills/xlsx-to-markdown)
+- [MinerU](https://mineru.net)
+- [MinerU CLI downloads](https://mineru.net/ecosystem?tab=cli)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports DOCX, PPTX, XLS, and XLSX inputs; flash extraction is limited to 10MB or 20 pages per document.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

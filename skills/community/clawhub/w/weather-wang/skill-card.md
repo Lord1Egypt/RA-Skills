@@ -1,39 +1,48 @@
-## Description: <br>
-Queries weather forecasts for a specified city or region, including temperature, conditions, precipitation probability, wind, air quality, ultraviolet index, alerts, and multi-day outlooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries current weather and multi-day forecasts for a specified city or region, including temperature, conditions, precipitation probability, wind, alerts, and practical suggestions.
 
-## Publisher: <br>
-[congwupiece](https://clawhub.ai/user/congwupiece) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[congwupiece](https://clawhub.ai/user/congwupiece)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current and upcoming weather information for planning travel, outdoor activity, daily preparation, and weather-sensitive decisions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Location queries may be sent to the configured weather service. <br>
-Mitigation: Avoid sending sensitive or unnecessary location detail, and use only weather providers approved for the deployment environment. <br>
-Risk: Weather information can be incomplete, delayed, or insufficient for severe-weather and safety-critical decisions. <br>
-Mitigation: Verify severe-weather alerts and safety-critical travel decisions with an official weather source before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/congwupiece/weather-wang) <br>
+## Use Case:
 
+External users can use this skill to ask an agent for current weather and 1-7 day forecasts for a specified city or region. The agent returns Chinese-language summaries, alerts, highlights, and travel or activity suggestions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown weather report with optional structured JSON summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include current weather, forecast highlights, alerts, and travel or safety suggestions based on returned weather data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weather requests can reveal location and timing details about travel or activities.
+
+Mitigation: Avoid entering sensitive travel plans unless comfortable sharing the queried location and timing with the configured weather tool/provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/congwupiece/skills/weather-wang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Chinese-language Markdown reports and structured JSON weather summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include current conditions, forecast trends, highlights, alerts, and practical suggestions based on the queried location and time range.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

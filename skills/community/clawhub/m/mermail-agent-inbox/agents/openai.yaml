@@ -1,0 +1,11 @@
+interface:
+  display_name: "Use a Mermail Agent Inbox"
+  short_description: "Create or reuse an inbox for OTP, sign-in, or verification mail"
+  default_prompt: "Use $mermail-agent-inbox when this task needs a mailbox identity, OTP, magic link, sign-in email, or expected verification message, not generic inbox cleanup."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mermail"
+      description: "Mermail workspace and mailbox MCP server"
+      transport: "streamable_http"
+      url: "https://console.mermail.app/mcp"

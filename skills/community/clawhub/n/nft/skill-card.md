@@ -1,41 +1,59 @@
-## Description: <br>
-NFT reference tool for blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nft reference tool. Use when working with nft in blockchain contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and blockchain practitioners use this skill to retrieve static NFT reference guidance, including standards, troubleshooting, security, migration, and quick command examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: NFT, blockchain, finance, and regulatory reference content may be mistaken for financial, legal, or transaction advice. <br>
-Mitigation: Treat the content as informational guidance only and verify decisions with qualified sources before taking financial, legal, or on-chain action. <br>
-Risk: SKILL.md lists some commands that are not implemented by the shell script. <br>
-Mitigation: Use the script help output as the source of truth and verify command availability before relying on a workflow. <br>
+## Use Case:
 
+Developers and external users use this skill as concise NFT reference material for blockchain standards, minting flows, troubleshooting, security concerns, migration planning, and command examples.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/nft) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference output; use the script help output as the source of truth for implemented commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: Command examples may encourage users to paste real wallet private keys into command-line arguments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a keystore, hardware wallet, or dedicated signer for deployments, and never paste real private keys into shell commands.
+
+Risk: Mutable npm and Hardhat dependency commands can pull unreviewed package versions.
+
+Mitigation: Pin dependency versions and review blockchain tooling dependencies before use.
+
+Risk: Static NFT reference material can become outdated or misleading as standards, marketplaces, and tooling change.
+
+Mitigation: Review the guidance and commands against current project requirements before operational use.
+
+## Reference(s):
+
+- [ClawHub Nft skill page](https://clawhub.ai/xueyetianya/skills/nft)
+- [BytesAgain homepage](https://bytesagain.com)
+- [OpenZeppelin Contracts Wizard](https://wizard.openzeppelin.com/#erc721)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with command examples and reference sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output selected by command name.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

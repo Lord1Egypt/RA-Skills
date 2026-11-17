@@ -1,41 +1,54 @@
-## Description: <br>
-Deep Planner is a meta-skill that helps an agent plan, execute, and reflect on complex multi-step tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Planner helps agents handle complex tasks by creating a visible step-by-step plan, persisting progress locally, coordinating domain skills, and prompting for confirmation at critical decision points.
 
-## Publisher: <br>
-[jzw6](https://clawhub.ai/user/jzw6) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jzw6](https://clawhub.ai/user/jzw6)
 
-## Use Case: <br>
-Agent users use Deep Planner to turn complex requests into visible step-by-step plans, coordinate other tools or skills, and pause for user confirmation when critical information is missing. It is useful for research, analysis, content creation, technical design, data processing, and multi-skill workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task descriptions and completed plans may persist locally under .todolist/ and could contain sensitive information if users include it. <br>
-Mitigation: Avoid placing secrets or highly sensitive details in task descriptions, and periodically review or delete retained .todolist/ files. <br>
-Risk: Planning output for unfamiliar or time-sensitive work may rely on assumptions or stale information. <br>
-Mitigation: Flag uncertain steps, verify current claims with live sources when needed, and pause for user confirmation when missing information would change the execution path. <br>
+## Use Case:
 
+Developers and agent users use this skill to structure complex, multi-step work into visible plans, persisted progress records, and checkpointed execution before delegating to domain-specific tools or skills.
 
-## Reference(s): <br>
-- [Task Type Templates](references/task-types.md) <br>
-- [Deep Planner on ClawHub](https://clawhub.ai/jzw6/deep-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown task plans, status updates, and local .todolist Markdown files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists task state locally under .todolist/; completed plans are intentionally retained.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Plans, assumptions, filenames, and progress notes may be saved under .todolist/, which can expose sensitive prompt details on the local filesystem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local persistence is acceptable, and avoid including sensitive details in persisted plans.
+
+Risk: Structured plans can carry incorrect assumptions or outdated claims into downstream work if critical details are not checked.
+
+Mitigation: Review assumptions at decision points and verify time-sensitive or sourced claims before relying on the plan.
+
+## Reference(s):
+
+- [Task Type Templates](references/task-types.md)
+- [Deep Planner ClawHub Page](https://clawhub.ai/jzw6/skills/deep-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown task plans, progress updates, and persisted .todolist Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Plans and progress notes may be persisted locally under .todolist/.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

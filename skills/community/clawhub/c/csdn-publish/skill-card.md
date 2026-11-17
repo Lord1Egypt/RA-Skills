@@ -1,41 +1,54 @@
-## Description: <br>
-自动化发布文章到 CSDN 博客平台，支持打开编辑器、填写标题和内容、发布文章并返回文章链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates publishing Markdown articles to CSDN by opening the editor, checking login state, filling the title and content, submitting the post, and returning the article link.
 
-## Publisher: <br>
-[echome123](https://clawhub.ai/user/echome123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[echome123](https://clawhub.ai/user/echome123)
 
-## Use Case: <br>
-Developers, technical writers, and content publishers use this skill to have an agent publish Markdown articles through an already logged-in CSDN browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish content through the user's logged-in CSDN account. <br>
-Mitigation: Confirm the intended account, article title, and article body before allowing the final publish action. <br>
-Risk: CSDN publication may enter platform review before becoming publicly visible. <br>
-Mitigation: Check the publish result and share the returned article link or review status with the user. <br>
+## Use Case:
 
+Developers and content authors use this skill to publish technical articles to CSDN from an agent workflow after they have logged in to their CSDN browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/echome123/csdn-publish) <br>
-- [CSDN blog editor](https://mp.csdn.net/mp_blog/creation/editor?spm=1010.2135.3001.4503) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Markdown] <br>
-**Output Format:** [Markdown guidance with browser automation steps and returned article links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a logged-in CSDN browser profile and user-reviewed article title and content before publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can publish posts under the user's logged-in CSDN account without a built-in final confirmation checkpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to show the final title and full article content and wait for explicit user confirmation before clicking publish.
+
+Risk: Publishing may expose unintended or unreviewed content publicly or submit it for CSDN review.
+
+Mitigation: Review the final article content, title length, target account, and article link before treating the publication as complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/echome123/skills/csdn-publish)
+- [CSDN Blog Editor](https://mp.csdn.net/mp_blog/creation/editor?spm=1010.2135.3001.4503)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API Calls]
+
+**Output Format:** [Markdown guidance with browser automation commands and returned article links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated CSDN browser session and user-provided article title and content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

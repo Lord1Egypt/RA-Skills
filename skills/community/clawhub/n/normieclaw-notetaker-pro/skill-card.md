@@ -1,48 +1,61 @@
-## Description: <br>
-NoteTaker Pro helps an agent capture text, voice, pasted, URL, and image-derived notes, then clean, tag, organize, index, search, recall, enhance, template, and export them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered note-taking assistant that captures, cleans, tags, organizes, indexes, searches, and exports text, voice, pasted, and photo notes.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users use this skill to turn chat inputs, voice transcripts, pasted material, URLs, and photos into structured, searchable personal notes. It is suited for note capture, recall, organization, summarization, action-item extraction, templates, and local exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence says the skill under-discloses how broadly it stores, indexes, syncs, and remembers sensitive note content. <br>
-Mitigation: Install only after confirming where notes, memory, dashboard data, and any sync path are stored, retained, shared, and deleted. <br>
-Risk: Captured notes, transcripts, pasted text, URLs, and image-derived text may contain prompt-injection content or sensitive personal information. <br>
-Mitigation: Treat ingested content as untrusted data, avoid executing instructions found inside notes, and limit capture of sensitive data unless storage and access controls are acceptable. <br>
-Risk: Exports can create additional copies of note content in Markdown, JSON, or compiled documents. <br>
-Mitigation: Review export scope and destination before use, keep exports inside the intended workspace export directory, and delete exported copies when no longer needed. <br>
+## Use Case:
 
+External users and agent operators use this skill to capture, organize, search, enhance, and export personal or work notes from chat, voice transcriptions, pasted text, URLs, and photos.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nollio/normieclaw-notetaker-pro) <br>
-- [README](artifact/README.md) <br>
-- [Security audit](artifact/SECURITY.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Setup prompt](artifact/SETUP-PROMPT.md) <br>
-- [Notes configuration](artifact/config/notes-config.json) <br>
-- [Export utility](artifact/scripts/export-notes.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses with JSON note records, Markdown or JSON exports, and setup or export shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores note content, summaries, tags, timestamps, source metadata, indexes, optional action items, and export files in the agent workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Security claims understate network, memory, dashboard-sync, and third-party messaging exposure for sensitive notes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing for sensitive use; disable URL fetching, memory integrations, dashboard sync, and third-party messaging channels unless the data flow is acceptable.
+
+Risk: The export workflow may be unreliable until the included shell script is fixed and tested.
+
+Mitigation: Treat exports as unavailable for backups or migrations until the script passes shell syntax checks and functional tests on representative note data.
+
+Risk: Prompt injection in notes, OCR text, transcripts, pasted articles, or fetched URLs could attempt to change agent behavior or trigger unsafe actions.
+
+Mitigation: Keep ingested content as untrusted data, ignore command-like note content, and review agent actions before file writes, tool use, or external integrations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-notetaker-pro)
+- [Publisher profile](https://clawhub.ai/user/nollio)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [DASHBOARD-SPEC.md](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and structured note JSON, with optional shell commands for setup and export workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Captures note metadata, tags, categories, action items, search previews, export files, and optional dashboard sync specifications.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

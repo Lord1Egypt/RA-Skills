@@ -1,40 +1,53 @@
-## Description: <br>
-Search products across 8 Chinese e-commerce platforms, retrieve product details by URL or ID, and compare prices using the Shopme unified product database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search products across Taobao, Tmall, JD, PDD, 1688, AliExpress, Douyin, and XHS with no API keys required for product lookup, supplier search, and price comparison.
 
-## Publisher: <br>
-[gaoyuji12138](https://clawhub.ai/user/gaoyuji12138) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaoyuji12138](https://clawhub.ai/user/gaoyuji12138)
 
-## Use Case: <br>
-External users and agents use this skill to search Chinese e-commerce platforms, inspect product details from links or IDs, compare prices, and find Chinese suppliers across Taobao, Tmall, JD, PDD, 1688, AliExpress, Douyin, and XHS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product keywords and product links may be sent to Shopme's external service. <br>
-Mitigation: Avoid submitting sensitive product queries or private supplier URLs unless that external service use is acceptable. <br>
-Risk: The executable MCP server is fetched from npm through npx. <br>
-Mitigation: Review or pin the @shopmeagent/cn-ecommerce-search-mcp package version before installation in higher-assurance environments. <br>
+## Use Case:
 
+External users, developers, and sourcing teams use this skill to search Chinese e-commerce marketplaces, parse product URLs, retrieve product details, and compare prices or suppliers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaoyuji12138/gaoyuji) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP configuration snippets and structured product-search results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the @shopmeagent/cn-ecommerce-search-mcp server via npx; no API keys are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installing the skill runs an unpinned third-party npm MCP package whose reviewed code is not included.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the MCP server in a restricted environment and prefer a pinned reviewed package version.
+
+Risk: Shopping-search queries or product URLs may contain confidential procurement information.
+
+Mitigation: Avoid confidential procurement searches or internal-only product URLs unless approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gaoyuji12138/skills/gaoyuji)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with product search results, product details, parsed product identifiers, and MCP setup configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys are required by default; SHOPME_API_BASE can override the API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; skill frontmatter metadata lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

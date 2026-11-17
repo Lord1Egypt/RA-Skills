@@ -1,0 +1,31 @@
+{
+  "skill_name": "mx-xuangu",
+  "positive": [
+    {
+      "prompt": "筛选市盈率小于20且ROE大于15%的A股",
+      "assertions": [
+        "uses mx-xuangu",
+        "includes universe and constraints in query",
+        "reports count and CSV path"
+      ]
+    },
+    {
+      "prompt": "列出创业板里近一年涨幅最高的10只股票",
+      "assertions": [
+        "uses screening or ranking workflow",
+        "limits result to top 10 if supported",
+        "does not treat output as investment advice"
+      ]
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "东方财富最新价是多少",
+      "expected_route": "mx-data"
+    },
+    {
+      "prompt": "商业航天板块近期新闻",
+      "expected_route": "mx-search"
+    }
+  ]
+}

@@ -1,46 +1,60 @@
-## Description: <br>
-Manage OneNote notebooks, sections, pages, and page content via Microsoft Graph API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage OneNote notebooks, sections, pages, and page content via Microsoft Graph API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect OpenClaw to a Microsoft OneNote account through ClawLink, then inspect notebooks, sections, pages, and page HTML. It also supports confirmed create, update, copy, and delete workflows for OneNote content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires connecting a Microsoft OneNote account through ClawLink and can access notebook, section, page, and page-content data within that account. <br>
-Mitigation: Review the Microsoft permission prompt before connecting, use the intended Microsoft account, and disconnect the integration when access is no longer needed. <br>
-Risk: Write and delete operations can change or remove OneNote content. <br>
-Mitigation: Confirm the exact target resource and intended effect before any create, update, copy, or delete action, and preview write operations where supported. <br>
+## Use Case:
 
+External users and developers use this skill to connect a Microsoft account through ClawLink and manage OneNote notebooks, sections, pages, and HTML page content from an agent chat.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hith3sh/onenote-notes) <br>
-- [Publisher profile](https://clawhub.ai/user/hith3sh) <br>
-- [Microsoft Graph OneNote API overview](https://learn.microsoft.com/en-us/graph/api/resources/onenote) <br>
-- [OneNote notebook resource](https://learn.microsoft.com/en-us/graph/api/resources/notebook) <br>
-- [OneNote page resource](https://learn.microsoft.com/en-us/graph/api/resources/page) <br>
-- [OneNote section resource](https://learn.microsoft.com/en-us/graph/api/resources/section) <br>
-- [ClawLink OpenClaw docs](https://docs.claw-link.dev/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include HTML page content or Microsoft Graph tool-call parameters when the user requests OneNote operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release evidence) <br>
+Risk: The skill asks users to install and allowlist an unpinned external ClawLink plugin that handles Microsoft OAuth tokens and OneNote data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the user trusts ClawLink and the ClawHub plugin distribution, review Microsoft OAuth consent permissions before connecting, and revoke the Microsoft connection or remove the plugin when it is no longer needed.
+
+Risk: The skill can create, update, copy, or delete OneNote notebooks, sections, pages, and page content.
+
+Mitigation: Confirm the target resource and intended effect before every write or delete operation, and use preview or describe steps for unfamiliar or ambiguous tools.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/onenote)
+- [ClawLink](https://claw-link.dev/?utm_source=clawhub&utm_medium=referral&utm_content=onenote-notes)
+- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [Microsoft Graph OneNote API Overview](https://learn.microsoft.com/en-us/graph/api/resources/onenote)
+- [Microsoft Graph Notebook Resource](https://learn.microsoft.com/en-us/graph/api/resources/notebook)
+- [Microsoft Graph Page Resource](https://learn.microsoft.com/en-us/graph/api/resources/page)
+- [Microsoft Graph Section Resource](https://learn.microsoft.com/en-us/graph/api/resources/section)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown, HTML]
+
+**Output Format:** [Markdown with inline shell commands and JSON tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OneNote page creation and updates require valid HTML content.]
+
+## Skill Version(s):
+
+1.0.5 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

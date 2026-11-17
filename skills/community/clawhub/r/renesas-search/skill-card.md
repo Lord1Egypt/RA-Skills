@@ -1,45 +1,60 @@
-## Description: <br>
-Searches and recommends Renesas semiconductor solutions for embedded system design using official Renesas product pages and datasheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches official Renesas product pages and datasheets to recommend semiconductor parts and report verified parameters for embedded system design.
 
-## Publisher: <br>
-[wangp-gh](https://clawhub.ai/user/wangp-gh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wangp-gh](https://clawhub.ai/user/wangp-gh)
 
-## Use Case: <br>
-Developers and embedded-system engineers use this skill to identify Renesas parts for applications such as BLE devices, MCUs, power management, sensors, and NFC, then verify parameters from official Renesas sources before making recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can download Renesas datasheet PDFs into the current workspace. <br>
-Mitigation: Use it in a workspace where local PDF files under embedded_dev/renesas/datasheet/ are acceptable, and remove old downloads when storage or workspace cleanliness matters. <br>
-Risk: Datasheet recommendations could be wrong if values are copied from memory, product-page descriptions, or similar parts instead of official specification tables. <br>
-Mitigation: Require each numerical parameter to come from an official Renesas product page or downloaded datasheet table, include source page or table citations, and mark unavailable values as not verified. <br>
+## Use Case:
 
+Developers and hardware engineers use this skill to find Renesas semiconductor candidates, download official datasheets, and compare verified table-sourced parameters for embedded product design.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangp-gh/renesas-search) <br>
-- [Server-resolved GitHub source](https://github.com/wangp-gh/renesas-search) <br>
-- [Renesas product catalog](https://www.renesas.com/en/products) <br>
-- [Renesas product families reference](references/product_families.md) <br>
-- [Hermes install notes](HERMES_INSTALL.md) <br>
-- [Test scenarios](TEST_SCENARIOS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Files] <br>
-**Output Format:** [Markdown with tables, citations, local datasheet paths, and occasional bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May download official Renesas datasheet PDFs to embedded_dev/renesas/datasheet/ in the current workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.6 (source: server release metadata) <br>
+Risk: The skill makes web requests to Renesas-related pages and downloads datasheet PDFs into the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm downloaded URLs are official renesas.com links and verify saved PDFs before relying on extracted specifications.
+
+Risk: Part pages, datasheet links, and example output paths may become stale.
+
+Mitigation: Confirm each product page is reachable before use and save datasheets under embedded_dev/renesas/datasheet as the current skill behavior specifies.
+
+Risk: Incorrect semiconductor recommendations can result if numerical parameters are inferred from summaries or stale references.
+
+Mitigation: Use only official datasheet tables for numerical values, cite page and table numbers, and mark missing values as not verified.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/wangp-gh/skills/renesas-search)
+- [Server-Resolved GitHub Provenance](https://github.com/wangp-gh/renesas-search)
+- [Renesas Products](https://www.renesas.com/en/products)
+- [Renesas Product Families Reference](references/product_families.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance, files]
+
+**Output Format:** [Markdown recommendations with tables, source citations, local datasheet paths, and inline shell commands when downloads are needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save official Renesas datasheet PDFs under embedded_dev/renesas/datasheet in the current workspace.]
+
+## Skill Version(s):
+
+3.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

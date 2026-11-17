@@ -1,41 +1,51 @@
-## Description: <br>
-Monitor Instagram DMs for reels, extract reel links from unread messages, and append the sender ID and reel link to instagram_reels.csv. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Instagram DMs for reels, extract reel or post links from unread conversations, and append sender/link pairs to instagram_reels.csv.
 
-## Publisher: <br>
-[thejas775](https://clawhub.ai/user/thejas775) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thejas775](https://clawhub.ai/user/thejas775)
 
-## Use Case: <br>
-Developers and external users can use this skill to inspect an already-open Instagram Direct Messages tab, find unread conversations containing reels, and collect sender IDs with reel links into a local CSV for follow-up tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects a logged-in Instagram Direct Messages tab, so private conversation data may be exposed to the agent while it searches for reel links. <br>
-Mitigation: Run it only on conversations you are comfortable processing and keep the browser attached only for the intended session. <br>
-Risk: Extracted sender IDs and reel links are written to instagram_reels.csv, creating a local record of message-derived data. <br>
-Mitigation: Confirm the CSV location before use, restrict access to the file, and delete it when it is no longer needed. <br>
+## Use Case:
 
+External users and developers use this skill to monitor an authenticated Instagram Direct Messages tab for unread messages that contain reels or posts and record the sender ID with the extracted link in a local CSV file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thejas775/insta-reel-extractor) <br>
-- [Instagram Direct Inbox](https://www.instagram.com/direct/inbox/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, files] <br>
-**Output Format:** [Markdown guidance with JavaScript browser-evaluation snippets and CSV rows written as userid,reel_link] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an active Instagram DM browser tab and writes findings to instagram_reels.csv.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill inspects an authenticated Instagram Direct Messages tab and can record sender IDs and reel or post links from private conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on conversations you are comfortable recording, keep the browser tab under user control, and review where instagram_reels.csv will be created before use.
+
+## Reference(s):
+
+- [Instagram Direct Inbox](https://www.instagram.com/direct/inbox/)
+- [ClawHub skill page](https://clawhub.ai/thejas775/skills/insta-reel-extractor)
+- [Publisher profile](https://clawhub.ai/user/thejas775)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Files]
+
+**Output Format:** [Markdown instructions with JavaScript snippets and CSV output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or appends instagram_reels.csv rows in userid,reel_link format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

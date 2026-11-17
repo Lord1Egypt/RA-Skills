@@ -1,45 +1,62 @@
-## Description: <br>
-军政采招投标商机管理专用工具。负责项目登记/标书采购/封标/开标/结果录入/中标统计/胜算评估，不处理合同履约、发票、报销或其他非招投标事务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages military and government procurement bid opportunities, including project registration, document purchase tracking, sealing and opening milestones, results entry, statistics, and win-probability evaluation.
 
-## Publisher: <br>
-[zhangpengle](https://clawhub.ai/user/zhangpengle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangpengle](https://clawhub.ai/user/zhangpengle)
 
-## Use Case: <br>
-Employees and external procurement teams use this skill to track military and government bidding opportunities across registration, document purchase, sealing, opening, result recording, win-rate statistics, and tender-document evaluation. It is scoped to bidding workflows and excludes contract fulfillment, invoicing, reimbursement, and other non-bidding operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive military, government, or commercial procurement records. <br>
-Mitigation: Install and run it only in a controlled workspace, and keep DB_PATH and ATTACHMENTS_DIR fixed to approved locations. <br>
-Risk: The skill has broad local file access when evaluating tender documents. <br>
-Mitigation: Do not pass arbitrary local files to the evaluate command; use only trusted PDF, Word, or text tender documents. <br>
-Risk: Some query and script paths have weak access boundaries. <br>
-Mitigation: Review role and query controls before using the skill with sensitive procurement records. <br>
+## Use Case:
 
+Procurement teams and agent operators use this skill to track military and government bid projects across registration, document purchase, bid sealing, opening results, team access, statistics, and tender-document evaluation. It is scoped to bid-opportunity management and does not cover contract fulfillment, invoicing, reimbursement, or non-bidding procurement consulting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangpengle/bidding-tracker) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhangpengle) <br>
-- [README](README.md) <br>
-- [Skill usage guide](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command responses and Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Successful CLI commands return JSON on stdout; failures return JSON error details and a nonzero exit code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: evidence.release.version) <br>
+Risk: Document evaluation can read local files available to the skill process.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in trusted directories and restrict who can provide file paths or attachments for evaluation.
+
+Risk: Local bid data, attachments, and role-scoped records may be exposed if the database or attachment directory is shared too broadly.
+
+Mitigation: Restrict filesystem permissions for the SQLite database and attachment directories, and deploy in a trusted single-user or tightly controlled OpenClaw/WeCom environment.
+
+Risk: CLI identity handling can create role-access risk if the command surface is exposed to untrusted users.
+
+Mitigation: Do not expose the CLI to untrusted users; mediate access through a controlled agent environment with known user context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangpengle/skills/bidding-tracker)
+- [Publisher profile](https://clawhub.ai/user/zhangpengle)
+- [README](artifact/README.md)
+- [Skill usage guide](artifact/SKILL.md)
+- [Evaluation prompt](artifact/bidding_tracker/prompts/evaluate_prompt.md)
+- [Strategic entity profiles](artifact/bidding_tracker/prompts/profiles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON command responses, Markdown analysis prompts, and concise CLI guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Evaluation output can include extracted tender text, the analysis prompt, profile context, status messages, and local project-tracking data.]
+
+## Skill Version(s):
+
+0.1.3 (source: ClawHub release metadata; artifact pyproject.toml reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

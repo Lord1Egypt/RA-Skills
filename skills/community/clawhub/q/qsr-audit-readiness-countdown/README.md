@@ -10,6 +10,14 @@ It is designed for:
 
 Instead of treating audit prep like a last-minute scramble, this skill guides operators through a milestone-based countdown that spreads the work across 30 days. The goal is simple: make audit readiness the normal state of operations.
 
+## Building with AI agents? Get started with Observa
+
+Observa shows supported OpenClaw and n8n runtime activity, what governance WOULD have done in SHADOW mode, and the evidence behind it.
+
+[**Get started with Observa →**](https://mcphersonai.com/observa/getting-started?utm_source=github&utm_medium=skill-readme&utm_campaign=observa-getting-started&utm_content=qsr-audit-readiness-countdown)
+
+*SHADOW ONLY · AUTHORITY NONE · ENFORCEMENT OFF. This publisher notice does not change the QSR skill itself.*
+
 ## What It Does
 
 This skill acts like an audit preparation coach.
@@ -92,6 +100,15 @@ San Diego, CA
 Built by a franchise GM with 16 years in QSR operations and multiple consecutive years of 100% EcoSure compliance.
 
 ## Status
+
+**Version:** 1.0.3
+Publisher-notice refresh: Observa CTA updated to the current Getting Started flow. No functional changes.
+
+**Version:** 1.0.2
+Publisher-note release; the Observa private beta is now open. No functional changes.
+
+**Version:** 1.0.1
+Publisher-note release; operational behavior and license unchanged.
 
 **Version:** 1.0.0  
 Initial release

@@ -1,44 +1,59 @@
-## Description: <br>
-Booking.com international hotel booking assistant for global hotel search, room availability, price comparison, and reservation-management workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Booking.com hotel assistant for international hotel search, room availability checks, price comparison, and reservation-management workflows using Booking.com partner APIs.
 
-## Publisher: <br>
-[ryan-zry](https://clawhub.ai/user/ryan-zry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryan-zry](https://clawhub.ai/user/ryan-zry)
 
-## Use Case: <br>
-Travel agents, assistants, and end users can use this skill to search international hotels, inspect room options, compare prices and cancellation terms, and manage Booking.com-style reservations. Reviewers should treat booking and cancellation flows cautiously because the security evidence says the release appears unfinished and may present fake prices or terms as Booking.com results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the release appears unfinished and may show fake hotel prices or cancellation terms as Booking.com results. <br>
-Mitigation: Use only after replacing mock responses with verified Booking.com API responses and clearly labeling any non-live or sample data. <br>
-Risk: Booking and cancellation actions can affect real travel plans or payments if connected to production APIs. <br>
-Mitigation: Require explicit user confirmation before creating or cancelling reservations and display authoritative price, tax, fee, and cancellation-policy details from the live provider. <br>
-Risk: Network and credential handling are not documented in the release evidence. <br>
-Mitigation: Document required API credentials, storage expectations, network endpoints, and operational limits before production use. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search international hotels, compare room details and prices, and manage Booking.com reservation workflows. Developers can use the included Python API wrapper and OpenAI function-call adapter as integration scaffolding.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryan-zry/travel-booking-assistant) <br>
-- [Booking.com Affiliate API endpoint referenced by the skill](https://distribution-xml.booking.com/json/bookings.getHotels) <br>
-- [Booking.com distribution XML JSON base URL referenced by the artifact](https://distribution-xml.booking.com/json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown responses, JSON-like API payloads, Python function-call schemas, and formatted hotel or room tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and Booking.com API credentials before real API-backed use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: target metadata, release evidence, and SKILL.md frontmatter) <br>
+Risk: Hotel availability, prices, cancellation terms, and reviews may be fixed sample data rather than live Booking.com results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require tested live API calls and clearly label or block sample data before using the skill for traveler-facing decisions.
+
+Risk: Reservation creation, lookup, or cancellation may be advertised before the booking workflow is fully implemented.
+
+Mitigation: Do not create, change, or cancel reservations unless a live partner API confirms the action and the confirmation is shown to the user.
+
+Risk: Currency and cancellation information can create user harm if stale or transformed incorrectly.
+
+Mitigation: Display prices, currencies, taxes, fees, and cancellation terms exactly as returned by the API, with timestamped exchange-rate context when conversion is shown.
+
+## Reference(s):
+
+- [Booking.com Distribution API endpoint](https://distribution-xml.booking.com/json/bookings.getHotels)
+- [Booking.com Distribution API base URL](https://distribution-xml.booking.com/json)
+- [ClawHub skill page](https://clawhub.ai/ryan-zry/skills/travel-booking-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance, JSON function-call schemas, and Python integration code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Booking.com API credentials before live use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

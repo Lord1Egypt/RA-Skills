@@ -1,0 +1,16 @@
+{
+  "name": "chatgpt-ads-landing",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "description": "ChatGPT Ads 纯静态落地页(多客户、多页面),零依赖构建",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "build": "node scripts/build.js",
+    "check": "node scripts/check.js",
+    "package": "node scripts/package.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,41 +1,54 @@
-## Description: <br>
-Manage personal podcast feeds through the fixed user-scoped huisheng.fm API from an installed skill package. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage personal podcast feeds through the fixed user-scoped huisheng.fm API from an installed skill package.
 
-## Publisher: <br>
-[quentinzhang](https://clawhub.ai/user/quentinzhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[quentinzhang](https://clawhub.ai/user/quentinzhang)
 
-## Use Case: <br>
-External users and agents use this skill to inspect and manage their own huisheng.fm podcast feeds and episodes through a user-scoped API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent could expose the user's HUISHENG_API_TOKEN if credentials are pasted into chat or printed in output. <br>
-Mitigation: Provide HUISHENG_API_TOKEN through a trusted environment and avoid showing the full token in user-facing output. <br>
-Risk: Create, update, and delete commands can modify user-owned podcast feeds and episodes. <br>
-Mitigation: Review requested API actions and JSON payloads before authorizing changes. <br>
+## Use Case:
 
+Developers and external agent users use this skill to inspect and manage their user-scoped huisheng.fm podcast feeds and episodes from an agent sandbox.
 
-## Reference(s): <br>
-- [huisheng.fm API Skill Reference](references/api.md) <br>
-- [Podcast Feed Manager on ClawHub](https://clawhub.ai/quentinzhang/podcast-feed-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and HUISHENG_API_TOKEN for API requests; create, update, and delete operations act on user-scoped feeds and episodes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill requires a huisheng.fm Agent token that can read and modify podcast feeds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide HUISHENG_API_TOKEN only in an isolated sandbox and avoid exposing command lines or logs to other local processes.
+
+Risk: The CLI exposes update and delete operations without built-in confirmation.
+
+Mitigation: Require explicit user confirmation before running update-feed, delete-feed, update-episode, or delete-episode commands.
+
+## Reference(s):
+
+- [huisheng.fm API Skill Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/quentinzhang/skills/podcast-feed-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; CLI responses are JSON]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HUISHENG_API_TOKEN and curl; feed and episode operations are scoped to the authenticated user.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

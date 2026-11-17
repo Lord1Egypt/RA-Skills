@@ -26,7 +26,7 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from scripts.lib import create_script, execute_script, get_script_detail, list_scripts, get_script_job_batch
+from scripts.lib import create_script, execute_script, get_script_detail, list_scripts, get_script_job_batch, delete_script
 
 # Huawei Cloud global region mapping (for target instance region selection)
 REGIONS = {
@@ -126,6 +126,21 @@ def print_coc_service_region_list():
     print("-" * 40)
 
 
+def safe_input(display_prompt):
+    """
+    Read a line from stdin.
+
+    In non-interactive environments (CI/CD, pipelines) with empty stdin,
+    input() raises EOFError and would crash with a traceback. Catch it and
+    exit gracefully with a clear error instead.
+    """
+    try:
+        return input(display_prompt).strip()
+    except EOFError:
+        print("Error: Required parameter not provided in non-interactive mode.")
+        sys.exit(1)
+
+
 def prompt_for_region(prompt, required=False, default="cn-north-4", is_coc_service=False):
     """
     Interactive prompt for user to select region, displays region list
@@ -154,7 +169,7 @@ def prompt_for_region(prompt, required=False, default="cn-north-4", is_coc_servi
         else:
             display_prompt = f"\n{prompt} (enter 'list' to view list): "
         
-        user_input = input(display_prompt).strip()
+        user_input = safe_input(display_prompt)
         
         if user_input.lower() == 'list':
             continue
@@ -194,9 +209,12 @@ def prompt_for_input(prompt, required=True, default=None, choices=None, hide_inp
                 from getpass import getpass
                 user_input = getpass(display_prompt).strip()
             except ImportError:
-                user_input = input(display_prompt).strip()
+                user_input = safe_input(display_prompt)
+            except EOFError:
+                print("Error: Required parameter not provided in non-interactive mode.")
+                sys.exit(1)
         else:
-            user_input = input(display_prompt).strip()
+            user_input = safe_input(display_prompt)
 
         if user_input:
             if choices and user_input not in choices:
@@ -588,6 +606,45 @@ def do_query_execution(args):
         print(f"\n[FAIL] Error occurred: {str(e)}")
 
 
+def do_delete_script(args):
+    """
+    Standalone flow for deleting a script
+    """
+    print("=" * 60)
+    print("Delete Script")
+    print("=" * 60)
+
+    # Get credential parameters
+    ak = args.ak
+    sk = args.sk
+    security_token = args.security_token
+    region = args.region or "cn-north-4"
+
+    # If credentials not provided, prompt interactively
+    if not ak or not sk:
+        print("\nPlease provide Huawei Cloud credentials:")
+        ak, sk, security_token, region = setup_credentials_interactive()
+
+    print("\nPlease provide script information:")
+
+    script_uuid = args.script_uuid or prompt_for_input("Script UUID", required=True)
+
+    print("\n" + "=" * 60)
+    print("Deleting script...")
+
+    try:
+        result = delete_script(script_uuid, ak, sk, security_token, region)
+
+        if result.get("ok"):
+            print("\n[OK] Script deleted successfully!")
+            print(f"  {result['text']}")
+        else:
+            print(f"\n[FAIL] Deletion failed: {result.get('error', {}).get('message')}")
+
+    except Exception as e:
+        print(f"\n[FAIL] Error occurred: {str(e)}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Huawei Cloud COC Script Management Tool",
@@ -653,7 +710,21 @@ Configuration:
     query_parser = subparsers.add_parser('query', help='Query script execution result')
     query_parser.add_argument('--execute-uuid', help='Execute UUID')
 
+    # delete command
+    delete_parser = subparsers.add_parser('delete', help='Delete script')
+    delete_parser.add_argument('--script-uuid', help='Script UUID')
+
     args = parser.parse_args()
+
+    # Env-var credential fallback
+    if not args.ak:
+        args.ak = os.environ.get("HW_ACCESS_KEY")
+    if not args.sk:
+        args.sk = os.environ.get("HW_SECRET_KEY")
+    if not args.security_token:
+        args.security_token = os.environ.get("HW_SECURITY_TOKEN")
+    if args.region == "cn-north-4" and os.environ.get("HW_REGION"):
+        args.region = os.environ.get("HW_REGION")
 
     if not args.command:
         parser.print_help()
@@ -670,6 +741,8 @@ Configuration:
             do_list_scripts(args)
         elif args.command == 'query':
             do_query_execution(args)
+        elif args.command == 'delete':
+            do_delete_script(args)
 
     except KeyboardInterrupt:
         print("\n\nOperation interrupted by user")

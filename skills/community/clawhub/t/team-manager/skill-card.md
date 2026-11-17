@@ -1,39 +1,52 @@
-## Description: <br>
-Manages a team's daily routine with morning briefings, evening reports, hourly report reminders, and day-off status handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates a Russian-language team workflow with morning briefings, evening reports, hourly reminders for missing reports, and day-off status handling.
 
-## Publisher: <br>
-[mirra87654321](https://clawhub.ai/user/mirra87654321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mirra87654321](https://clawhub.ai/user/mirra87654321)
 
-## Use Case: <br>
-Team leads and operational teams use this skill to coordinate daily check-ins, collect evening reports, remind members about missing reports, and track day-off status. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill records team response status locally in state.json. <br>
-Mitigation: Decide what data may be stored, who can access it, and when it should be cleared before installation. <br>
-Risk: Team status records may include sensitive HR, performance, medical, or private personnel details if users enter them. <br>
-Mitigation: Use an explicit team policy for acceptable status content and avoid collecting sensitive details unless the organization has approved that use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Team Manager ClawHub page](https://clawhub.ai/mirra87654321/team-manager) <br>
+## Use Case:
 
+Team leads and operations coordinators use this skill to run a daily reporting workflow on Moscow time, including morning briefings, evening report collection, hourly reminders for missing reports, and day-off status handling.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text with team status prompts, reminders, and report guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May refer to local state in state.json for team response status.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Local status tracking may retain team response or day-off status in state.json.
+
+Mitigation: Confirm where state.json is stored, what status data it contains, and how to delete or rotate that local state before relying on it for real team tracking.
+
+Risk: The workflow assumes Russian-language communications and Moscow time.
+
+Mitigation: Install it only when that language and schedule fit the team, or adapt the reminders before deployment.
+
+## Reference(s):
+
+- [Team Manager on ClawHub](https://clawhub.ai/mirra87654321/skills/team-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Text or Markdown messages with team status updates and reminder prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Moscow time scheduling and may track response status in state.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,52 @@
-## Description: <br>
-Run autonomous multi-agent OKX trading competitions where five AI agents use real-time market data, evolutionary selection, and exchange-level stop-losses to compare algorithmic trading strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run autonomous multi-agent trading competitions on OKX. 5 AI agents compete with real-time market data, evolutionary selection replaces losers daily, exchange-level stop-losses protect capital. Battle-tested framework for algorithmic trading research.
 
-## Publisher: <br>
-[peti0402](https://clawhub.ai/user/peti0402) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[peti0402](https://clawhub.ai/user/peti0402)
 
-## Use Case: <br>
-Developers and trading researchers use this skill to set up autonomous multi-agent OKX trading competitions with real-time market data, strategy rotation, position sizing controls, and exchange-side stop-losses. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run trading code with exchange credentials. <br>
-Mitigation: Inspect the full trading code before installation, start in OKX demo mode, and use restricted API keys with withdrawals disabled. <br>
-Risk: Autonomous trading and restart automation can continue placing or managing orders after an unexpected failure. <br>
-Mitigation: Set exchange-side limits, verify stop-loss behavior, and define a clear monitoring and stop procedure before enabling any restart task. <br>
-Risk: Telegram alerts may expose sensitive trading details. <br>
-Mitigation: Avoid sending sensitive trading or credential-adjacent information through Telegram. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/peti0402/trading-tournament) <br>
+## Use Case:
 
+Developers and trading-system operators use this skill to configure and run autonomous OKX trading competitions where multiple AI strategies analyze market data, execute trades, and rotate strategies based on performance.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with setup steps, checklists, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied OKX API credentials and local trading code review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an autonomous trading system that may use live OKX funds.
+
+Mitigation: Start with OKX demo credentials, keep withdrawal permissions disabled, and set strict account and exchange limits before any live use.
+
+Risk: The recommended Guardian cron or Windows Task can persistently restart live trading without clear operational controls.
+
+Mitigation: Review the actual code, restart command, permissions, disable procedure, and failure limits before enabling persistent restart behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/peti0402/skills/trading-tournament)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces setup steps, trading configuration guidance, operational checklists, and safety guidance for OKX demo or live trading.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

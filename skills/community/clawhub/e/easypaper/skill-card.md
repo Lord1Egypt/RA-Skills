@@ -1,46 +1,60 @@
-## Description: <br>
-Generate structured academic papers from metadata using the EasyPaper Python SDK and related repository workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate academic papers from metadata using the EasyPaper Python SDK.
 
-## Publisher: <br>
-[PinkGranite](https://clawhub.ai/user/PinkGranite) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinkgranite](https://clawhub.ai/user/pinkgranite)
 
-## Use Case: <br>
-Developers and research authors use this skill to set up EasyPaper, prepare paper metadata, invoke SDK generation, and locate the final PDF artifact. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Processing confidential research may use an HTTP Typesetter endpoint if local compilation is unavailable. <br>
-Mitigation: Confirm whether EasyPaper runs locally or through an endpoint you control before processing confidential material. <br>
-Risk: The workflow depends on third-party Python, LaTeX, and PDF tooling installed in the agent environment. <br>
-Mitigation: Install EasyPaper in an isolated Python environment and review the EasyPaper package and linked repository before use. <br>
+## Use Case:
 
+Developers and researchers use this skill to generate structured LaTeX academic papers from metadata and to follow EasyPaper SDK workflows for setup, generation, venue formatting, and final PDF selection.
 
-## Reference(s): <br>
-- [EasyPaper Repository](https://github.com/PinkGranite/EasyPaper) <br>
-- [EasyPaper Agent Plugin](https://github.com/PinkGranite/EasyPaper/tree/master/plugins/easypaper) <br>
-- [End-to-End EasyPaper Command](https://github.com/PinkGranite/EasyPaper/blob/master/plugins/easypaper/commands/easypaper.md) <br>
-- [Paper From Metadata Workflow](https://github.com/PinkGranite/EasyPaper/blob/master/plugins/easypaper/skills/paper-from-metadata/SKILL.md) <br>
-- [Metadata Example](https://github.com/PinkGranite/EasyPaper/blob/master/examples/meta.json) <br>
-- [Configuration Template](https://github.com/PinkGranite/EasyPaper/blob/master/configs/example.yaml) <br>
-- [EasyPaper README](https://github.com/PinkGranite/EasyPaper/blob/master/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May report generated PDF paths, status details, word counts, or compile errors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Mutable or unverified package and toolchain installation sources can introduce supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the EasyPaper package and use trusted package managers or HTTPS sources for supporting tools.
+
+Risk: The HTTP Typesetter fallback may expose draft paper metadata or document content off-host.
+
+Mitigation: Prefer local PDF compilation or configure an explicitly trusted HTTPS Typesetter endpoint before processing confidential or unpublished drafts.
+
+Risk: Generated academic content may contain incorrect claims, citations, or formatting.
+
+Mitigation: Review generated papers, references, and final PDFs before submission or publication.
+
+## Reference(s):
+
+- [EasyPaper ClawHub Skill Page](https://clawhub.ai/pinkgranite/skills/easypaper)
+- [EasyPaper Repository](https://github.com/PinkGranite/EasyPaper)
+- [EasyPaper Plugin Reference](https://github.com/PinkGranite/EasyPaper/tree/master/plugins/easypaper)
+- [Example Metadata](https://github.com/PinkGranite/EasyPaper/blob/master/examples/meta.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide creation of LaTeX source and PDF outputs through the EasyPaper SDK and local toolchain.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

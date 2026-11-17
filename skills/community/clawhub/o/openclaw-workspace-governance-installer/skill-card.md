@@ -1,45 +1,60 @@
-## Description: <br>
-Install OpenClaw WORKSPACE_GOVERNANCE in minutes. Get guided setup, upgrade checks, migration, and audit for long-running workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Install OpenClaw WORKSPACE_GOVERNANCE in minutes. Get guided setup, upgrade checks, migration, and audit for long-running workspaces.
 
-## Publisher: <br>
-[Adamchanadam](https://clawhub.ai/user/Adamchanadam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamchanadam](https://clawhub.ai/user/adamchanadam)
 
-## Use Case: <br>
-Developers, workspace operators, and teams using OpenClaw use this skill to install, upgrade, migrate, audit, and uninstall workspace governance flows with reviewable configuration changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installer and governance commands can make impactful workspace configuration changes. <br>
-Mitigation: Back up important workspace configuration and review proposed openclaw.json, Brain Docs, migration, and uninstall changes before approving them. <br>
-Risk: Using @latest can reduce reproducibility in production installs. <br>
-Mitigation: Pin the package version for production workflows that require repeatable installation. <br>
-Risk: The artifact includes an experimental gov_apply flow for controlled UAT only. <br>
-Mitigation: Use the GA setup, migration, audit, uninstall, config, and diagnostic flows for production rollout; keep gov_apply behind explicit human approval. <br>
+## Use Case:
 
+External users, developers, and workspace operators use this skill to install and maintain OpenClaw workspace governance, including setup, migration, audit, safe configuration edits, and upgrade checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Adamchanadam/openclaw-workspace-governance-installer) <br>
-- [Project homepage](https://github.com/Adamchanadam/OpenClaw-WORKSPACE-GOVERNANCE) <br>
-- [English README](https://github.com/Adamchanadam/OpenClaw-WORKSPACE-GOVERNANCE/blob/main/README.md) <br>
-- [Governance handbook](https://github.com/Adamchanadam/OpenClaw-WORKSPACE-GOVERNANCE/blob/main/WORKSPACE_GOVERNANCE_README.en.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and OpenClaw chat commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the openclaw binary and review of proposed workspace configuration changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.9 (source: server release evidence) <br>
+Risk: The quick-start install command uses an unpinned external plugin version, which can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the linked plugin source and prefer a pinned, reviewed version instead of @latest before installation.
+
+Risk: The governance plugin can modify OpenClaw workspace configuration and related governance files.
+
+Mitigation: Install only when the publisher is trusted and the workspace owner is comfortable granting that authority; use the documented audit and rollback-oriented flows to review changes.
+
+Risk: The skill includes an experimental controlled-UAT flow for applying BOOT upgrade proposals.
+
+Mitigation: Use proposal application only with explicit human approval and review generated proposals before applying them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adamchanadam/skills/openclaw-workspace-governance-installer)
+- [OpenClaw WORKSPACE_GOVERNANCE](https://github.com/Adamchanadam/OpenClaw-WORKSPACE-GOVERNANCE)
+- [English README](https://github.com/Adamchanadam/OpenClaw-WORKSPACE-GOVERNANCE/blob/main/README.md)
+- [Governance Handbook (EN)](https://github.com/Adamchanadam/OpenClaw-WORKSPACE-GOVERNANCE/blob/main/WORKSPACE_GOVERNANCE_README.en.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash and OpenClaw command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes command sequences and chat commands for installation, upgrade, migration, audit, configuration edits, uninstall, and controlled upgrade proposal workflows.]
+
+## Skill Version(s):
+
+0.2.9 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

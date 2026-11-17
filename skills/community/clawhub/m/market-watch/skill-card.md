@@ -1,41 +1,63 @@
-## Description: <br>
-Market monitoring and alert system for prices and news. Use when the user asks to watch a price, monitor market conditions, get notified when an asset hits a target, or keep an eye on breaking news. Covers any USDT-paired crypto and A-shares (real-time via TongDaXin). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Market monitoring and alert system for prices and news. Use when the user asks to watch a price, monitor market conditions, get notified when an asset hits a target, or keep an eye on breaking news. Covers any USDT-paired crypto and A-shares (real-time via TongDaXin).
 
-## Publisher: <br>
-[hchen13](https://clawhub.ai/user/hchen13) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hchen13](https://clawhub.ai/user/hchen13)
 
-## Use Case: <br>
-External OpenClaw users and agent operators use Market Watch to register crypto, A-share, and market-news alerts that notify an agent when configured price or keyword conditions are met. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alert context and session routing metadata are stored locally for monitor and notification delivery. <br>
-Mitigation: Avoid putting secrets in alert summaries, review session keys and reply targets before registering alerts, and cancel stale alerts when monitoring is no longer needed. <br>
-Risk: Background monitors and the optional macOS watchdog can continue running after registration. <br>
-Mitigation: Install the watchdog only when recurring launchd persistence is intended, and use the provided cancel and daemon management commands to stop old alerts and monitors. <br>
+## Use Case:
 
+External OpenClaw users and agents use this skill to register crypto, A-share, and market-news alerts, run background monitors, and notify the agent when alert conditions are met so it can follow up with the user.
 
-## Reference(s): <br>
-- [Market Watch ClawHub Release](https://clawhub.ai/hchen13/market-watch) <br>
-- [Exchange HTTP API Reference](references/exchange-api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and alert configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can register local JSON alert records, manage background monitor processes, and trigger OpenClaw delivery commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Background monitors can continue polling market and news sources and can proactively message the agent after registration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start monitors only for intended alerts, cancel alerts that are no longer needed, and stop the daemon when monitoring is complete.
+
+Risk: Alert records may store context summaries plus session and transcript references in local OpenClaw private state.
+
+Mitigation: Provide explicit session and transcript parameters only when needed, keep alert summaries minimal, and review local private alert files before sharing logs or state.
+
+Risk: The skill makes outbound calls to exchange, market-data, and news APIs, including unofficial Jin10 and Wallstreetcn interfaces that may change behavior.
+
+Mitigation: Use a virtual environment with pinned dependencies, review the listed API endpoints, and expect graceful degradation or missed alerts when upstream formats change.
+
+Risk: The optional macOS launchd watchdog can restart monitors automatically after a crash.
+
+Mitigation: Avoid installing the watchdog unless restart persistence is required, and uninstall it when persistent monitoring is no longer desired.
+
+## Reference(s):
+
+- [Exchange HTTP API Reference](references/exchange-api.md)
+- [OpenClaw](https://github.com/openclaw)
+- [Market Watch ClawHub Skill Page](https://clawhub.ai/hchen13/skills/market-watch)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and text alert messages; alert state is JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs local background monitors and sends proactive agent-delivered alerts when configured price or news conditions match.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

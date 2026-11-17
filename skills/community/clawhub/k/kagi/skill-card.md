@@ -1,42 +1,54 @@
-## Description: <br>
-Use Kagi Search API and FastGPT for web research when you want higher-quality results than Brave or Google, or when Brave Search is rate-limited. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform web searches and generate summarized answers with citations using the Kagi API and FastGPT for higher-quality results or rate-limit fallback.
 
-## Publisher: <br>
-[michaelasper](https://clawhub.ai/user/michaelasper) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[michaelasper](https://clawhub.ai/user/michaelasper)
 
-## Use Case: <br>
-Developers and agents use this skill to run Kagi Search queries and FastGPT prompts for web research, ranked result retrieval, and summarized answers with citations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries and FastGPT prompts are sent to Kagi and may include sensitive information if entered by the user. <br>
-Mitigation: Avoid putting secrets, personal data, or regulated information in queries or prompts. <br>
-Risk: The skill reads a Kagi API token from the environment and API calls may consume account quota. <br>
-Mitigation: Provide the token through normal secret-handling practices and expect Kagi API usage to count against available quota. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kagi API quick reference](references/kagi-api.md) <br>
-- [Kagi API documentation](https://help.kagi.com/kagi/api/) <br>
-- [Kagi API token settings](https://kagi.com/settings/api) <br>
-- [ClawHub skill page](https://clawhub.ai/michaelasper/kagi) <br>
+## Use Case:
 
+Developers and agents use this skill to run Kagi Search API queries or FastGPT prompts for web research, ranked results, and summarized answers with citations when Kagi credentials are available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Kagi API token supplied through the environment; API use may consume Kagi quota.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Search and FastGPT queries are sent to Kagi using a user-supplied API token.
+
+Mitigation: Do not include secrets or highly sensitive personal data in queries, and use Kagi credentials only in environments where this data sharing is acceptable.
+
+Risk: Unexpected redirects could expose valuable API credentials if the client is not hardened.
+
+Mitigation: Review and harden redirect handling before using the skill with valuable API credentials.
+
+## Reference(s):
+
+- [Kagi API quick reference](references/kagi-api.md)
+- [Kagi API documentation](https://help.kagi.com/kagi/api/)
+- [Kagi ClawHub skill page](https://clawhub.ai/michaelasper/skills/kagi)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration guidance]
+
+**Output Format:** [Readable terminal text or JSON returned from Kagi API wrappers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied Kagi API token in KAGI_API_TOKEN or KAGI_API_KEY.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

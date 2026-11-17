@@ -1,48 +1,64 @@
-## Description: <br>
-Golden Claw helps OpenClaw agents manage GoldenClaw (GCLAW) on Solana, including wallet creation, faucet claims, balance checks, token transfers, and transaction history. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage GoldenClaw (GCLAW) on Solana. Create wallet, claim from faucet, check balance, send tokens, view history. For OpenClaw AI agents.
 
-## Publisher: <br>
-[GoldenClawOrg](https://clawhub.ai/user/GoldenClawOrg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[goldenclaworg](https://clawhub.ai/user/goldenclaworg)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to operate a GCLAW wallet, claim tokens from the GoldenClaw faucet, inspect balances and history, and send GCLAW or SOL through Solana transactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can move real Solana assets and was flagged by ClawHub security as requiring review. <br>
-Mitigation: Install only if the GoldenClawOrg publisher is trusted, use a low-value dedicated wallet, and review transaction details before sending GCLAW or SOL. <br>
-Risk: The skill auto-runs npm install at startup when dependencies are missing. <br>
-Mitigation: Install dependencies in a controlled environment before use instead of relying on runtime installation. <br>
-Risk: Wallet recovery and setup involve a BIP39 seed phrase. <br>
-Mitigation: Avoid pasting valuable seed phrases into agent or shell contexts; prefer a dedicated wallet and keep backups outside the agent session. <br>
-Risk: The donation command sends SOL to a configured project treasury address. <br>
-Mitigation: Verify the donation address and amount before confirming any SOL transfer. <br>
+## Use Case:
 
+External OpenClaw users and agents use Golden Claw to create or recover an encrypted Solana wallet, claim GCLAW from the GoldenClaw faucet, inspect balances and history, and send GCLAW or SOL donation transactions.
 
-## Reference(s): <br>
-- [GoldenClaw Skill Page](https://clawhub.ai/GoldenClawOrg/goldenclaw) <br>
-- [GoldenClaw Website and Faucet](https://goldenclaw.org) <br>
-- [GCLAW Token on Solscan](https://solscan.io/token/8fUqKCgQ2PHcYRnce9EPCeMKSaxd14t7323qbXnSJr4z) <br>
-- [GoldenClaw X Profile](https://x.com/GClaw68175) <br>
-- [GoldenClaw Community](https://moltbook.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown-style command responses and status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Solana addresses, balances, transaction signatures, faucet status, wallet recovery guidance, and spending-limit messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact metadata reports 1.1.0) <br>
+Risk: The skill creates and stores an encrypted crypto wallet and can sign GCLAW or SOL transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated OPENCLAW_DATA_DIR, set conservative GCLAW_TX_LIMIT and GCLAW_DAILY_LIMIT values, verify recipient and donation addresses before signing, and avoid meaningful funds until the skill and dependencies are reviewed.
+
+Risk: The skill can auto-install mutable npm dependencies at runtime.
+
+Mitigation: Pin and review dependencies before deployment, then install from a controlled environment rather than relying on runtime installation.
+
+Risk: Wallet recovery accepts a seed phrase through command arguments.
+
+Mitigation: Do not pass a real seed phrase through shell or chat command arguments; use a fresh low-value wallet for testing and handle recovery secrets outside shared logs or transcripts.
+
+Risk: The skill contacts Solana RPC endpoints and goldenclaw.org for balances, history, faucet claims, and transactions.
+
+Mitigation: Run only in environments where those network calls are expected, and review configured endpoints such as SOLANA_RPC_URL and GCLAW_FAUCET_URL before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/goldenclaworg/skills/goldenclaw)
+- [GoldenClaw Website and Faucet](https://goldenclaw.org)
+- [GCLAW Token on Solscan](https://solscan.io/token/8fUqKCgQ2PHcYRnce9EPCeMKSaxd14t7323qbXnSJr4z)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown command responses with wallet addresses, balances, transaction status, configuration hints, and links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initiate Solana RPC and faucet API calls and sign GCLAW or SOL transactions when used with wallet credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata; artifact SKILL.md and package.json report 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

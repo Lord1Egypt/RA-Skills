@@ -1,0 +1,4 @@
+interface:
+  display_name: "MentorForge.skill"
+  short_description: "Distill papers into evidence-grounded research mentors"
+  default_prompt: "Use $research-mentor-distiller to distill a scholar into an evidence-grounded cyber research mentor skill with publication crawling and full-text methodology synthesis."

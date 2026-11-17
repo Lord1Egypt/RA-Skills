@@ -1,0 +1,313 @@
+{
+  "date": "2026-08-18",
+  "title": "今日体育赛事总览（联网核实样例 · 非实时）",
+  "updated_at": "2026-08-27 20:45",
+  "_is_live": true,
+  "_feed": "verified_sample",
+  "_source": "websearch-public-schedule+wnba-com",
+  "_live_error": null,
+  "_sports_live": [
+    "basketball",
+    "football"
+  ],
+  "_note": "本数据集为 2026-08-18 当日真实赛事，由智能体 WebSearch 从公开赛程源+WNBA官网逐场联网核对而成；实证零 key 也能做到当日真实全量。周二赛程小日，已核实真实对阵共 9 场（5 足球+4 篮球）。",
+  "matches": [
+    {
+      "sport": "football",
+      "sport_cn": "足球",
+      "match": "拉科鲁尼亚 vs 埃尔切",
+      "league": "西甲",
+      "country": "西班牙",
+      "kickoff_local": "2026-08-17 21:00",
+      "kickoff_actual": "2026-08-18 03:00",
+      "status": "",
+      "teams": [
+        {
+          "name": "拉科鲁尼亚"
+        },
+        {
+          "name": "埃尔切"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.lottery.gov.cn",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "football",
+      "sport_cn": "足球",
+      "match": "上海申花 vs 北京国安",
+      "league": "中超",
+      "country": "中国",
+      "kickoff_local": "2026-08-18 19:35",
+      "kickoff_actual": "2026-08-18 19:35",
+      "status": "",
+      "teams": [
+        {
+          "name": "上海申花"
+        },
+        {
+          "name": "北京国安"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.lottery.gov.cn",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "football",
+      "sport_cn": "足球",
+      "match": "富川FC vs 全北现代",
+      "league": "韩K联",
+      "country": "韩国",
+      "kickoff_local": "2026-08-18 19:30",
+      "kickoff_actual": "2026-08-18 18:30",
+      "status": "",
+      "teams": [
+        {
+          "name": "富川FC"
+        },
+        {
+          "name": "全北现代"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.lottery.gov.cn",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "football",
+      "sport_cn": "足球",
+      "match": "仁川联队 vs 金泉尚武",
+      "league": "韩K联",
+      "country": "韩国",
+      "kickoff_local": "2026-08-18 19:30",
+      "kickoff_actual": "2026-08-18 18:30",
+      "status": "",
+      "teams": [
+        {
+          "name": "仁川联队"
+        },
+        {
+          "name": "金泉尚武"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.lottery.gov.cn",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "football",
+      "sport_cn": "足球",
+      "match": "蔚山HD vs 江原FC",
+      "league": "韩K联",
+      "country": "韩国",
+      "kickoff_local": "2026-08-18 19:30",
+      "kickoff_actual": "2026-08-18 18:30",
+      "status": "",
+      "teams": [
+        {
+          "name": "蔚山HD"
+        },
+        {
+          "name": "江原FC"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.lottery.gov.cn",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "match": "印第安纳狂热 vs 多伦多节奏",
+      "league": "美职女篮",
+      "country": "美国",
+      "kickoff_local": "2026-08-18 19:00",
+      "kickoff_actual": "2026-08-19 07:00",
+      "status": "",
+      "teams": [
+        {
+          "name": "印第安纳狂热"
+        },
+        {
+          "name": "多伦多节奏"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.wnba.com/schedule",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "match": "洛杉矶火花 vs 康涅狄格太阳",
+      "league": "美职女篮",
+      "country": "美国",
+      "kickoff_local": "2026-08-18 19:00",
+      "kickoff_actual": "2026-08-19 07:00",
+      "status": "",
+      "teams": [
+        {
+          "name": "洛杉矶火花"
+        },
+        {
+          "name": "康涅狄格太阳"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.wnba.com/schedule",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "match": "亚特兰大梦想 vs 拉斯维加斯王牌",
+      "league": "美职女篮",
+      "country": "美国",
+      "kickoff_local": "2026-08-18 21:00",
+      "kickoff_actual": "2026-08-19 09:00",
+      "status": "",
+      "teams": [
+        {
+          "name": "亚特兰大梦想"
+        },
+        {
+          "name": "拉斯维加斯王牌"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.wnba.com/schedule",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    },
+    {
+      "sport": "basketball",
+      "sport_cn": "篮球",
+      "match": "纽约自由 vs 芝加哥天空",
+      "league": "美职女篮",
+      "country": "美国",
+      "kickoff_local": "2026-08-18 21:00",
+      "kickoff_actual": "2026-08-19 09:00",
+      "status": "",
+      "teams": [
+        {
+          "name": "纽约自由"
+        },
+        {
+          "name": "芝加哥天空"
+        }
+      ],
+      "info_points": [
+        "赛程来自公开赛事数据聚合（中文赛程站 / WNBA 官网逐场交叉核对），仅含对阵与开赛时间，不含任何敏感衍生字段。",
+        "战术风格 / 伤停 / 近期状态 / 专家观点等维度，可在生成报告时由智能体按需联网补充。"
+      ],
+      "live": true,
+      "experts_static": true,
+      "experts": [
+        {
+          "name": "公开情报聚合",
+          "source": "https://www.wnba.com/schedule",
+          "tier": "数据方分析师",
+          "view": "本场为公开赛程真实对阵；深度情报（伤停、状态、交锋）由智能体在出报告时按需联网核实补充。"
+        }
+      ],
+      "experts_refreshed_at": "2026-08-27 20:45"
+    }
+  ]
+}

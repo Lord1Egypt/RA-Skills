@@ -1,40 +1,50 @@
-## Description: <br>
-Solve game design problems by adapting, extending, recombining, or retuning what already exists instead of inventing from scratch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Solve game design problems by adapting, extending, recombining, or retuning what already exists instead of inventing from scratch.
 
-## Publisher: <br>
-[stanestane](https://clawhub.ai/user/stanestane) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stanestane](https://clawhub.ai/user/stanestane)
 
-## Use Case: <br>
-Game designers, product teams, and developers use this skill to identify lower-risk ways to achieve new feature goals by adapting existing mechanics, UX, progression structures, content pipelines, or reward systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recommendations are design advice and may not fit the team's product goals, production constraints, or live-game context. <br>
-Mitigation: Review recommendations for product fit before acting on them, as advised by the security guidance. <br>
-Risk: A reuse path could feel derivative or forced if existing systems are adapted without enough player-facing value. <br>
-Mitigation: Compare candidate paths for freshness, implementation effort, systemic fit, long-term flexibility, and derivative feel before choosing a recommendation. <br>
+## Use Case:
 
+Game designers, product teams, and developers use this skill to find lower-risk ways to achieve new game design goals by adapting existing mechanics, UX patterns, progression systems, content pipelines, or assets. It produces decision-oriented reuse candidates, transformation paths, and a recommendation.
 
-## Reference(s): <br>
-- [GROW-Derived Family Conventions](references/family-conventions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured sections for the target goal, reuse candidates, transformation paths, and recommendation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can influence game design recommendations that may be incomplete, derivative, or poorly matched to a live product if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against player value, implementation effort, systemic fit, and product strategy before use.
+
+## Reference(s):
+
+- [GROW-Derived Family Conventions](artifact/references/family-conventions.md)
+- [ClawHub Skill Page](https://clawhub.ai/stanestane/skills/game-design-transformative-reuse)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a target goal, reuse candidates, transformation paths, and a recommendation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

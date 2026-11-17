@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn75q5p7wpr68hmqar9ywtejsx84cw1x",
+  "name": "🤖 GitHub自动管家",
   "slug": "github-auto",
+  "description": "自动化管理GitHub仓库、PR、Issue、CI/CD。无需API Key。",
   "version": "1.1.0",
-  "publishedAt": 1777617312664
+  "author": "Huimai AI",
+  "license": "MIT",
+  "tags": [
+    "automation",
+    "github-auto",
+    "huimai",
+    "calibration"
+  ],
+  "lastUpdated": "2026-05-01",
+  "calibration": {
+    "levels": [
+      "quick",
+      "standard"
+    ],
+    "interval": 1800000,
+    "trustedMode": true
+  },
+  "warmMode": "default"
 }

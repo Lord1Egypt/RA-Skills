@@ -1,41 +1,55 @@
-## Description: <br>
-Backs up and restores OpenClaw data by guiding users through archive creation, restore steps, backup scheduling, and backup rotation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backup and restore OpenClaw data, including creating backups, setting up automatic backup schedules, restoring from backup, and managing backup rotation for the ~/.openclaw directory.
 
-## Publisher: <br>
-[phenixstar](https://clawhub.ai/user/phenixstar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phenixstar](https://clawhub.ai/user/phenixstar)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to create local backups of OpenClaw configuration, credentials, agent state, workspace files, sessions, and scheduled tasks, then restore or rotate those backups when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup archives can contain API keys, tokens, session data, private workspace files, and scheduled tasks. <br>
-Mitigation: Store backup archives encrypted or in a restricted location, and treat them as highly sensitive. <br>
-Risk: Restore commands can interrupt OpenClaw and replace current local state. <br>
-Mitigation: Verify the archive before restoring, stop OpenClaw during restore, and keep a rollback copy of the existing state. <br>
+## Use Case:
 
+OpenClaw users and operators use this skill to create, rotate, schedule, and restore backups of local OpenClaw configuration, credentials, workspace data, sessions, and scheduled tasks.
 
-## Reference(s): <br>
-- [Restore OpenClaw from Backup](artifact/references/restore.md) <br>
-- [Project homepage](https://github.com/PhenixStar/openclaw-skills-collection) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference local backup archives and restore steps that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact frontmatter) <br>
+Risk: Backups may contain credentials, session tokens, private workspace memory, and scheduled tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store backup archives in an owner-only directory, encrypt them, and avoid shared or synced destinations unless encryption is in place.
+
+Risk: Restore and rollback commands can overwrite or remove the active ~/.openclaw directory.
+
+Mitigation: Make a fresh safety copy before restoring, verify archive contents and target paths, and avoid destructive removal commands unless the target path has been independently checked.
+
+## Reference(s):
+
+- [Restore OpenClaw from Backup](references/restore.md)
+- [Project homepage](https://github.com/PhenixStar/openclaw-skills-collection)
+- [ClawHub skill page](https://clawhub.ai/phenixstar/skills/phenixstar-openclaw-backup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct creation of compressed local backup archives and backup rotation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

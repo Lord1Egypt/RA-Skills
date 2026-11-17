@@ -1,38 +1,53 @@
-## Description: <br>
-Comprehensive Elixir/Phoenix code review with optional parallel agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Elixir/Phoenix code review with optional parallel agents.
 
-## Publisher: <br>
-[anderskev](https://clawhub.ai/user/anderskev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[anderskev](https://clawhub.ai/user/anderskev)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Elixir and Phoenix code changes, run expected Mix checks, load applicable review skills, and consolidate file-line findings into a single review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow may run normal project development commands such as Mix formatting, Credo, Dialyzer, grep, git diff, and tests in the target repository. <br>
-Mitigation: Use it in repositories where executing the project's normal development commands is acceptable, and review commands before running them in untrusted projects. <br>
+## Use Case:
 
+Developers and engineering reviewers use this skill to review Elixir and Phoenix code changes, run normal Mix project checks, load applicable companion review skills, and produce a structured review with issues, fixes, good patterns, and a verdict.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/anderskev/review-elixir) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown review report with issue sections and inline shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May dispatch specialized subagents when --parallel is supported; otherwise produces the same review structure sequentially.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill guides an agent to run normal Elixir project review commands in the target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on codebases where running Mix tasks and optional tests is acceptable.
+
+Risk: The full review workflow can depend on referenced companion review skills.
+
+Mitigation: Confirm the companion review skills are available when the full Elixir, Phoenix, LiveView, performance, security, or ExUnit workflow is needed.
+
+## Reference(s):
+
+- [Review Elixir skill page](https://clawhub.ai/anderskev/skills/review-elixir)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown review with issue severity sections, FILE:LINE references, recommended fixes, good patterns, and a verdict.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May run Mix formatter, Credo, Dialyzer, and tests where present; the --parallel flag can use specialized subagents when the host agent supports them.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

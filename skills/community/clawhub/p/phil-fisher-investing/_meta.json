@@ -1,6 +1,43 @@
 {
-  "ownerId": "kn73rjsd61kjdxp8s6k7ryn8x184h9xs",
-  "slug": "phil-fisher-investing",
+  "name": "phil-fisher",
   "version": "1.0.0",
-  "publishedAt": 1776482507427
+  "description": "Phil Fisher's growth investing philosophy — pioneer of growth investing, creator of the scuttlebutt method, author of Common Stocks and Uncommon Profits",
+  "author": "Leo Li",
+  "tags": [
+    "investing",
+    "phil-fisher",
+    "growth-investing",
+    "scuttlebutt",
+    "common-stocks-uncommon-profits",
+    "motorola",
+    "fisher-co",
+    "growth-at-reasonable-price"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Talentedleo/celebrity_skills",
+  "issues": "https://github.com/Talentedleo/celebrity_skills/issues",
+  "minimumOpenClawVersion": "1.0.0",
+  "skillSpecVersion": "1.0.0",
+  "triggers": [
+    "Phil Fisher",
+    "Fisher",
+    "growth investing",
+    "scuttlebutt",
+    "Common Stocks and Uncommon Profits",
+    "Motorola",
+    "Fisher & Co.",
+    "growth at reasonable price"
+  ],
+  "sources": [
+    {
+      "name": "Wikipedia - Philip Arthur Fisher",
+      "url": "https://en.wikipedia.org/wiki/Philip_Arthur_Fisher"
+    },
+    {
+      "name": "Common Stocks and Uncommon Profits",
+      "url": "https://www.amazon.com/Common-Stocks-Uncommon-Profits-Written/dp/0471648699"
+    }
+  ],
+  "lastUpdated": "2026-04-17",
+  "language": "en"
 }

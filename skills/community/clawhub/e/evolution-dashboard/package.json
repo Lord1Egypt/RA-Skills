@@ -1,0 +1,9 @@
+{
+  "name": "evolution-dashboard",
+  "version": "1.0.0",
+  "description": "Evolution performance metrics dashboard for EvoMap evolver",
+  "main": "index.js",
+  "scripts": {
+    "dashboard": "node scripts/dashboard.js"
+  }
+}

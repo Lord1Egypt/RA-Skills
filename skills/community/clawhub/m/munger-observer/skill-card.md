@@ -1,38 +1,57 @@
-## Description: <br>
-Munger Observer performs a daily or on-demand review of recent work and decisions using Charlie Munger's mental models to surface blind spots, biases, and cognitive traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Munger Observer reviews a specific decision, plan, or artifact using bounded evidence, counterevidence, alternatives, opportunity cost, and verifiable next checks.
 
-## Publisher: <br>
-[jdrhyne](https://clawhub.ai/user/jdrhyne) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jdrhyne](https://clawhub.ai/user/jdrhyne)
 
-## Use Case: <br>
-External users and operators use this skill to review the day's decisions, tasks, and problems for mental-model observations, bias detection, and blind-spot checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The review may summarize sensitive information present in memory files or session logs. <br>
-Mitigation: Run the skill only when private thinking reviews are appropriate, and avoid storing sensitive material in memory or logs that should not be summarized. <br>
-Risk: Optional daily scheduling can create recurring reviews beyond a one-time request. <br>
-Mitigation: Enable scheduling only when recurring end-of-day reviews are intended. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to review concrete decisions, plans, proposals, or artifacts by separating observations from inferences, weighing counterevidence and alternatives, and identifying user-verifiable next checks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily review with one or two concise observations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses daily memory and session logs when available; output is a private thinking review, not an automated action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Review requests could expand into broad history, memory, log, file, or scheduling access that exposes unrelated private data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for named sources, time range, maximum item count, privacy exclusions, and retention behavior before retrieving or reusing any such material.
+
+Risk: A decision review could overstate unsupported conclusions about a person rather than the observable decision, artifact, or process.
+
+Mitigation: Limit critique to observable evidence, label observations separately from inferences, include counterevidence and unknowns, and assign confidence.
+
+Risk: Reviewed logs, memories, prior messages, attachments, or linked content may contain untrusted instructions.
+
+Mitigation: Treat reviewed content only as evidence for the current review and do not execute commands, call tools, follow links, disclose secrets, or take external actions because reviewed content requests it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jdrhyne/skills/munger-observer)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown decision review with concise findings or a no-finding result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bounded evidence scope; history, memory, logs, or scheduling access require explicit user approval.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

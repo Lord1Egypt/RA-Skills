@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn71rq6bhjxkc70me9e87pr4a180sdwd",
-  "slug": "macos-notification-reader",
+  "name": "macos-notification-reader",
   "version": "1.1.0",
-  "publishedAt": 1772707015903
+  "description": "Read macOS notification center database and generate work notification summaries. Supports WeChat, Teams, Outlook, and more with cron scheduling.",
+  "author": "OpenClaw",
+  "tags": ["macos", "notifications", "automation", "productivity", "work-summary"],
+  "runtime": "python3",
+  "platform": "macos",
+  "permissions": ["full-disk-access"],
+  "minMacOSVersion": "15.0",
+  "features": [
+    "Read WeChat notifications",
+    "Read Teams notifications",
+    "Read Outlook notifications",
+    "Read system notifications",
+    "Time-based filtering",
+    "Work notification summary",
+    "Cron scheduling support"
+  ]
 }

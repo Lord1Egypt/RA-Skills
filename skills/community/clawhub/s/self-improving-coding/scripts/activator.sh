@@ -15,7 +15,7 @@ After completing this coding task, evaluate if extractable knowledge emerged:
 - Debugging breakthrough? → LEARNINGS.md (debugging_insight)
 - Tooling issue blocked progress? → LEARNINGS.md (tooling_issue)
 
-If recurring pattern (3+ occurrences): promote to lint rule or style guide.
+If a recurring pattern (3+ occurrences): propose promotion to lint rule or style guide.; apply only after explicit user approval.
 If broadly applicable: consider skill extraction.
 </coding-self-improvement-reminder>
 EOF

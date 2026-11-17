@@ -1,0 +1,692 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GKN-Phantom Tool Contracts",
+  "description": "Machine-readable JSON Schema contracts for all scripts and tools. v3.0",
+  "version": "3.0.0",
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error": { "type": "string", "description": "Error type identifier" },
+        "detail": { "type": "string", "description": "Human-readable error detail" },
+        "exit_code": { "type": "integer", "description": "Process exit code (0=success, 1=failure, 2=input error)" }
+      },
+      "required": ["error"]
+    },
+    "HttpRequestInput": {
+      "type": "object",
+      "required": ["method", "url"],
+      "properties": {
+        "method": { "type": "string", "enum": ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH"] },
+        "url": { "type": "string", "format": "uri" },
+        "headers": { "type": "object", "additionalProperties": { "type": "string" } },
+        "body": { "type": "string" },
+        "timeout_ms": { "type": "integer", "default": 10000 },
+        "follow_redirects": { "type": "boolean", "default": false },
+        "verify_tls": { "type": "boolean", "default": true }
+      }
+    },
+    "HttpRequestOutput": {
+      "type": "object",
+      "required": ["status_code", "body", "error"],
+      "properties": {
+        "status_code": { "type": ["integer", "null"] },
+        "status_text": { "type": "string" },
+        "headers": { "type": "object", "additionalProperties": { "type": "string" } },
+        "body": { "type": "string" },
+        "body_size": { "type": "integer" },
+        "response_time_ms": { "type": "integer" },
+        "redirected": { "type": "boolean" },
+        "final_url": { "type": "string" },
+        "error": { "type": ["string", "null"] }
+      }
+    },
+    "RunShellInput": {
+      "type": "object",
+      "required": ["command"],
+      "properties": {
+        "command": { "type": "string" },
+        "timeout_ms": { "type": "integer", "default": 30000 },
+        "cwd": { "type": "string" },
+        "env": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+    "RunShellOutput": {
+      "type": "object",
+      "required": ["exit_code", "error"],
+      "properties": {
+        "exit_code": { "type": ["integer", "null"] },
+        "stdout": { "type": "string" },
+        "stderr": { "type": "string" },
+        "duration_ms": { "type": "integer" },
+        "error": { "type": ["string", "null"] }
+      }
+    },
+    "BrowserInput": {
+      "type": "object",
+      "required": ["action"],
+      "properties": {
+        "action": { "type": "string", "enum": ["navigate", "click", "fill", "screenshot", "evaluate", "wait"] },
+        "url": { "type": "string" },
+        "selector": { "type": "string" },
+        "value": { "type": "string" },
+        "script": { "type": "string" },
+        "wait_ms": { "type": "integer" }
+      }
+    },
+    "BrowserOutput": {
+      "type": "object",
+      "required": ["success", "error"],
+      "properties": {
+        "success": { "type": "boolean" },
+        "result": { "type": "string" },
+        "url": { "type": "string" },
+        "error": { "type": ["string", "null"] }
+      }
+    },
+    "LoggerInput": {
+      "type": "object",
+      "required": ["level", "message"],
+      "properties": {
+        "level": { "type": "string", "enum": ["debug", "info", "warn", "error", "critical"] },
+        "message": { "type": "string" },
+        "state": { "type": "string" },
+        "extra": { "type": "object" }
+      }
+    },
+    "LoggerOutput": {
+      "type": "object",
+      "required": ["logged"],
+      "properties": {
+        "logged": { "type": "boolean" },
+        "entry_id": { "type": "string" }
+      }
+    },
+    "Finding": {
+      "type": "object",
+      "required": ["id", "type", "severity", "target", "status", "confidence", "evidence", "reproducible", "safe_poc"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^finding-\\d{3}$" },
+        "type": {
+          "type": "string",
+          "enum": ["xss", "sqli", "ssrf", "idor", "misconfig", "info_leak", "open_redirect",
+                   "path_traversal", "csrf", "xxe", "ssti", "deserialization", "command_injection",
+                   "rce", "auth_bypass", "priv_esc", "data_exposure", "weak_credential",
+                   "component_exposure", "captcha_bypass", "file_upload", "logic_flaw",
+                   "nosql_injection", "ldap_injection", "crlf_injection", "graphql_injection",
+                   "graphql_introspection", "cors_misconfig", "prototype_pollution",
+                   "cache_poisoning", "race_condition", "http_smuggling", "subdomain_takeover",
+                   "host_header_injection", "jwt_deep_analysis", "oauth_misconfig",
+                   "mass_assignment", "dependency_confusion", "session_fixation",
+                   "email_injection", "websocket_hijacking", "directory_listing"]
+        },
+        "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "tier": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "target": { "type": "string" },
+        "status": { "type": "string", "enum": ["detected", "validated", "false_positive"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "confidence_breakdown": {
+          "type": "object",
+          "properties": {
+            "evidence_strength": { "type": "number", "minimum": 0, "maximum": 1 },
+            "reproducibility_score": { "type": "number", "minimum": 0, "maximum": 1 },
+            "signal_clarity": { "type": "number", "minimum": 0, "maximum": 1 },
+            "corroboration": { "type": "number", "minimum": 0, "maximum": 1 },
+            "method": { "type": "string" }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "required": ["request", "response", "timestamp", "tool"],
+          "properties": {
+            "request": { "type": "string" },
+            "response": { "type": "string" },
+            "timestamp": { "type": "string", "format": "date-time" },
+            "tool": { "type": "string" },
+            "status_code": { "type": "integer" },
+            "response_time_ms": { "type": "integer" },
+            "headers": { "type": "object" }
+          }
+        },
+        "reproducible": { "type": "boolean" },
+        "reproducibility_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "replay_count": { "type": "integer" },
+        "replay_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "attempt": { "type": "integer" },
+              "signal_matched": { "type": "boolean" },
+              "delta_ms": { "type": "number" }
+            }
+          }
+        },
+        "safe_poc": { "type": "boolean" },
+        "risk_level": { "type": "string", "enum": ["L1", "L2", "L3", "L4"] },
+        "requires_human_approval": { "type": "boolean" },
+        "blocked_in_safe_mode": { "type": "boolean" },
+        "detection_signal": { "type": "string" },
+        "adaptive_metadata": {
+          "type": "object",
+          "properties": {
+            "waf_detected": { "type": "boolean" },
+            "waf_type": { "type": ["string", "null"] },
+            "mutations_tried": { "type": "integer" },
+            "fallback_strategy": { "type": ["string", "null"] },
+            "retry_count": { "type": "integer" }
+          }
+        },
+        "fingerprint": { "type": "string" },
+        "remediation": { "type": "string" },
+        "reproduction_steps": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "Asset": {
+      "type": "object",
+      "properties": {
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "domain": { "type": "string" },
+              "source": { "type": "string" },
+              "first_seen": { "type": "string", "format": "date-time" },
+              "resolved_ips": { "type": "array", "items": { "type": "string" } },
+              "in_scope": { "type": "boolean" }
+            }
+          }
+        },
+        "ips": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ip": { "type": "string" },
+              "hostname": { "type": "string" },
+              "in_scope": { "type": "boolean" },
+              "reverse_dns": { "type": "string" }
+            }
+          }
+        },
+        "endpoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" },
+              "methods": { "type": "array", "items": { "type": "string" } },
+              "params": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "type": { "type": "string" },
+                    "reflected": { "type": "boolean" },
+                    "sample_value": { "type": "string" }
+                  }
+                }
+              },
+              "auth_required": { "type": "boolean" },
+              "technologies": { "type": "array", "items": { "type": "string" } },
+              "status_code": { "type": "integer" },
+              "response_time_ms": { "type": "integer" },
+              "discovered_via": { "type": "string" }
+            }
+          }
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "source": { "type": "string" },
+              "cpe": { "type": "string" }
+            }
+          }
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ip": { "type": "string" },
+              "port": { "type": "integer" },
+              "protocol": { "type": "string" },
+              "service": { "type": "string" },
+              "state": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "AttackPath": {
+      "type": "object",
+      "required": ["id", "name", "nodes", "edges", "impact", "confidence"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^path-\\d{3}$" },
+        "name": { "type": "string" },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "ref"],
+            "properties": {
+              "id": { "type": "string" },
+              "type": { "type": "string", "enum": ["finding", "asset"] },
+              "ref": { "type": "string" }
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "relation", "confirmed"],
+            "properties": {
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "relation": { "type": "string", "enum": ["enables", "enables_recon", "escalates_to", "exposes", "co_located_weakness"] },
+              "confirmed": { "type": "boolean" },
+              "evidence_ref": { "type": "string" }
+            }
+          }
+        },
+        "impact": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "chain_type": { "type": "string" },
+        "estimated_severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "attack_steps": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "scripts": {
+    "scope_guard.py": {
+      "functions": {
+        "check_target": {
+          "input": { "target": "string", "scope": "object" },
+          "output": { "in_scope": "boolean", "reason": "string" },
+          "errors": [
+            { "condition": "domain mismatch", "output": [false, "host 'X' does not match any scope domain"] },
+            { "condition": "DNS failure", "output": [false, "could not resolve host 'X'"] },
+            { "condition": "IP out of range", "output": [false, "host 'X' (IP) not in any scope ip range"] },
+            { "condition": "path violation", "output": [false, "path 'X' rejected by allowed/blocked path lists"] }
+          ]
+        },
+        "run": {
+          "input": { "targets": "array[string]", "scope": "object" },
+          "output": { "all_ok": "boolean", "offenders": "array[string]" },
+          "errors": []
+        }
+      },
+      "cli": {
+        "args": ["--context <path|->", "[--url <url>]"],
+        "exit_codes": { "0": "all in scope", "1": "out of scope", "2": "input error" }
+      }
+    },
+    "vuln_detector.py": {
+      "functions": {
+        "build_plan": {
+          "input": { "assets": "object", "tiers": "array[string]", "safe_mode": "boolean", "include_l4": "boolean" },
+          "output": "array[Finding]",
+          "errors": [{ "condition": "no endpoints", "output": [] }]
+        },
+        "classify_data_exposure": {
+          "input": { "response_body": "string" },
+          "output": { "triggered": "boolean", "score": "integer" },
+          "errors": [{ "condition": "empty input", "output": [false, 0] }]
+        }
+      },
+      "cli": {
+        "args": ["--assets <path|->", "--tier <all|low,medium,...>", "[--safe-mode|--no-safe-mode]", "[--include-l4]"],
+        "exit_codes": { "0": "plan generated", "2": "invalid tier" }
+      }
+    },
+    "finding_validator.py": {
+      "functions": {
+        "validate": {
+          "input": { "finding": "Finding", "replay_result": "object" },
+          "output": "Finding (updated status)",
+          "errors": [
+            { "condition": "evidence incomplete", "output": "status=false_positive, validation_note='evidence incomplete; auto-FP'" },
+            { "condition": "signal not matched", "output": "status=false_positive, validation_note='signal not matched on replay'" },
+            { "condition": "confidence < 0.8", "output": "status=false_positive, validation_note='confidence X < 0.8'" }
+          ]
+        }
+      },
+      "cli": {
+        "args": ["--finding <path|->", "--replay <path|->"],
+        "exit_codes": { "0": "validated (TP)", "1": "false positive (FP)" }
+      }
+    },
+    "attack_path.py": {
+      "functions": {
+        "build_paths": {
+          "input": { "findings": "array[Finding]", "assets": "object" },
+          "output": "array[AttackPath]",
+          "errors": [{ "condition": "no validated findings", "output": [] }]
+        }
+      },
+      "cli": {
+        "args": ["--findings <path|->", "--assets <path|->"],
+        "exit_codes": { "0": "paths built" }
+      }
+    },
+    "report_generator.py": {
+      "functions": {
+        "build_report": {
+          "input": { "findings": "array", "assets": "object", "paths": "array", "execution_log": "array", "blocked_l4": "boolean" },
+          "output": "FinalOutput object",
+          "errors": [{ "condition": "empty inputs", "output": "empty report" }]
+        }
+      },
+      "cli": {
+        "args": ["--findings <path>", "--assets <path>", "--paths <path>", "--log <path>", "[--blocked-l4]"],
+        "exit_codes": { "0": "report generated" }
+      }
+    },
+    "adaptive_engine.py": {
+      "functions": {
+        "detect_waf": {
+          "input": { "result": "HttpRequestOutput" },
+          "output": { "waf_detected": "boolean", "waf_type": "string|null" },
+          "errors": [{ "condition": "empty result", "output": [false, null] }]
+        },
+        "generate_mutations": {
+          "input": { "vuln_type": "string", "original_payload": "string", "max_variants": "integer" },
+          "output": "array[string]",
+          "errors": [{ "condition": "no strategy for type", "output": [] }]
+        },
+        "build_adaptive_plan": {
+          "input": { "probe": "object", "result": "object", "vuln_type": "string", "original_payload": "string", "attempt": "integer", "max_retries": "integer" },
+          "output": { "action": "string", "reason": "string", "waf_detected": "boolean", "mutated_payloads": "array", "retry_schedule": "array", "alternative_signals": "array", "fallback_strategy": "string|null" },
+          "errors": [{ "condition": "unclassifiable failure", "output": "action=abort" }]
+        }
+      },
+      "cli": {
+        "args": ["--probe <path|->", "--result <path|->", "--vuln-type <type>", "[--payload <str>]", "[--attempt N]", "[--max-retries N]"],
+        "exit_codes": { "0": "plan generated (action!=abort)", "1": "action=abort" }
+      }
+    },
+    "safety_simulator.py": {
+      "functions": {
+        "score_target": {
+          "input": { "target": "string", "recon_data": "object", "config": "object" },
+          "output": { "score": "integer(0-100)", "risk_level": "string", "factors": "array", "recommendation": "string" },
+          "errors": [{ "condition": "missing data", "output": "defaults to low risk" }]
+        },
+        "narrow_scope": {
+          "input": { "scope": "object", "risk_scores": "array" },
+          "output": "scope object (with augmented blocked_paths)",
+          "errors": [{ "condition": "no critical targets", "output": "original scope" }]
+        },
+        "dry_run": {
+          "input": { "ctx": "AgentContext", "plan": "array[Finding]" },
+          "output": { "total_probes": "integer", "active_probes": "integer", "blocked_probes": "integer", "safety_verdict": "string", "network_calls_made": 0 },
+          "errors": [{ "condition": "empty plan", "output": "zero-probe report" }]
+        }
+      },
+      "cli": {
+        "args": ["--context <path|->", "--mode <dry-run|risk-score|narrow-scope>", "[--plan <path>]", "[--recon <path>]"],
+        "exit_codes": { "0": "simulation complete", "2": "missing required argument" }
+      }
+    },
+    "confidence_scoring.py": {
+      "functions": {
+        "compute_confidence": {
+          "input": { "finding": "Finding" },
+          "output": { "evidence_strength": "number", "reproducibility_score": "number", "signal_clarity": "number", "corroboration": "number", "confidence": "number", "meets_threshold": "boolean" },
+          "errors": [{ "condition": "missing fields", "output": "defaults to 0.0 scores" }]
+        },
+        "apply_confidence": {
+          "input": { "finding": "Finding" },
+          "output": "Finding (with confidence fields populated)",
+          "errors": [{ "condition": "any error", "output": "original finding" }]
+        }
+      },
+      "cli": {
+        "args": ["--finding <path|->"],
+        "exit_codes": { "0": "confidence computed" }
+      }
+    },
+    "decision_engine.py": {
+      "description": "Heuristic decision engine (OPTIONAL PLUGIN). v2.2 deterministic refactor replacing v2.1 sigmoid/Bayesian.",
+      "optional": true,
+      "functions": {
+        "decide_probe_continuation": {
+          "input": { "findings": "array[Finding]", "probes_executed": "integer", "probe_budget": "integer" },
+          "output": { "decision": "continue|stop", "score": "number", "threshold": 0.05, "reasoning": "string", "factors": "object", "rule_path": "string", "deterministic": true },
+          "errors": []
+        },
+        "decide_severity_upgrade": {
+          "input": { "finding": "Finding" },
+          "output": { "decision": "upgrade|keep_severity", "score": "number", "threshold": 2.5, "reasoning": "string", "factors": "object", "rule_path": "string", "deterministic": true },
+          "errors": []
+        },
+        "decide_scope_expansion": {
+          "input": { "findings": "array[Finding]", "candidate_target": "object", "current_scope": "object" },
+          "output": { "decision": "expand|keep_scope", "score": "number", "threshold": 0.5, "reasoning": "string", "factors": "object", "rule_path": "string", "deterministic": true },
+          "errors": [{ "condition": "production environment", "output": "decision=keep_scope, rule_path=Gate1: production_blocked" }]
+        },
+        "heuristic_confidence": {
+          "input": { "finding": "Finding" },
+          "output": { "vuln_type": "string", "confidence": "number", "meets_threshold": "boolean", "threshold": 0.80, "method": "heuristic_v1", "breakdown": "object", "deterministic": true },
+          "errors": []
+        }
+      },
+      "cli": {
+        "args": ["--decision <continue|upgrade|expand|confidence>", "[--findings <path>]", "[--finding <path>]", "[--candidate <path>]", "[--scope <path>]", "[--probes N]", "[--budget N]"],
+        "exit_codes": { "0": "decision computed" }
+      }
+    },
+    "state_recovery.py": {
+      "functions": {
+        "validate_checkpoint": {
+          "input": { "checkpoint": "object" },
+          "output": { "valid": "boolean", "current_state": "string" },
+          "errors": [{ "condition": "invalid state", "output": [false, "invalid state 'X'"] }, { "condition": "completed", "output": [false, "run already completed"] }, { "condition": "empty history", "output": [false, "history is empty"] }]
+        },
+        "recover": {
+          "input": { "checkpoint": "object", "failure_reason": "string|null", "attempt": "integer" },
+          "output": { "action": "resume|retry|rollback|abort", "target_state": "string", "partial_results": "object", "retry_schedule": "array", "skipped_items": "array" },
+          "errors": [{ "condition": "exhausted retries", "output": "action=rollback or abort" }]
+        },
+        "execute_rollback": {
+          "input": { "checkpoint": "object", "rollback_to": "string" },
+          "output": "checkpoint object (rolled back)",
+          "errors": [{ "condition": "no safe previous state", "output": "action=abort" }]
+        },
+        "save_partial_progress": {
+          "input": { "checkpoint": "object", "state": "string", "probed_targets": "array", "probed_endpoints": "array", "validated_findings": "array", "candidate_count": "integer" },
+          "output": "checkpoint object (with partial_results)",
+          "errors": []
+        }
+      },
+      "cli": {
+        "args": ["--checkpoint <path|->", "--mode <check|resume|rollback|retry>", "[--failure-reason <str>]", "[--attempt N]"],
+        "exit_codes": { "0": "recovery plan generated", "1": "abort (cannot recover)" }
+      }
+    },
+    "execution_trace.py": {
+      "description": "Fixed decision trace + replayable execution. v2.2 NEW.",
+      "functions": {
+        "create_trace": {
+          "input": { "run_id": "string" },
+          "output": "ExecutionTrace object",
+          "errors": []
+        },
+        "record_decision": {
+          "input": { "trace": "ExecutionTrace", "state": "string", "decision_type": "string", "input_data": "object", "result": "object" },
+          "output": "TraceEntry (appended to trace)",
+          "errors": []
+        },
+        "finalize_trace": {
+          "input": { "trace": "ExecutionTrace" },
+          "output": "ExecutionTrace (with summary populated)",
+          "errors": []
+        },
+        "replay_trace": {
+          "input": { "trace": "ExecutionTrace" },
+          "output": { "run_id": "string", "total_entries": "integer", "deterministic": "boolean", "rule_paths_used": "object", "states_covered": "array", "decision_types": "array" },
+          "errors": []
+        },
+        "verify_determinism": {
+          "input": { "trace_a": "ExecutionTrace", "trace_b": "ExecutionTrace" },
+          "output": { "match": "boolean", "total_compared": "integer", "divergence_count": "integer", "divergences": "array" },
+          "errors": [{ "condition": "entry count mismatch", "output": "match=false" }]
+        },
+        "diff_traces": {
+          "input": { "trace_a": "ExecutionTrace", "trace_b": "ExecutionTrace" },
+          "output": { "match": "boolean", "total_compared": "integer", "divergence_count": "integer", "divergences": "array", "summary": "string" },
+          "errors": []
+        }
+      },
+      "cli": {
+        "args": ["<record|finalize|replay|verify|diff>", "[--trace <path>]", "[--run-id <id>]", "[--state <state>]", "[--decision-type <type>]", "[--input <path>]", "[--result <path>]", "[--trace-a <path>]", "[--trace-b <path>]"],
+        "exit_codes": { "0": "success", "1": "verify/diff mismatch", "2": "input error" }
+      }
+    },
+    "state.py": {
+      "functions": {
+        "StateSerializer.checkpoint": {
+          "input": { "current": "string", "history": "array", "context": "object" },
+          "output": "None (writes file atomically)",
+          "errors": [{ "condition": "unknown state", "output": "ValueError" }, { "condition": "write failure", "output": "OSError (fallback to shutil.move)" }]
+        },
+        "StateSerializer.load": {
+          "input": {},
+          "output": "checkpoint object",
+          "errors": [{ "condition": "file not found", "output": "FileNotFoundError" }]
+        },
+        "next_state": {
+          "input": { "current": "string" },
+          "output": "string|null",
+          "errors": [{ "condition": "unknown state", "output": "ValueError" }, { "condition": "DONE", "output": "None" }]
+        },
+        "can_resume": {
+          "input": { "checkpoint": "object" },
+          "output": { "resumable": "boolean", "current_state": "string" },
+          "errors": [{ "condition": "invalid state", "output": [false, "invalid state 'X'"] }, { "condition": "completed", "output": [false, "run already completed"] }]
+        }
+      }
+    },
+    "utils.py": {
+      "functions": {
+        "load_json": {
+          "input": { "source": "string (path or '-')" },
+          "output": "any (parsed JSON)",
+          "errors": [{ "condition": "file not found", "output": "FileNotFoundError" }, { "condition": "invalid JSON", "output": "json.JSONDecodeError" }]
+        },
+        "dump_json": {
+          "input": { "obj": "any", "indent": "integer" },
+          "output": "string (UTF-8 JSON)",
+          "errors": [{ "condition": "not serializable", "output": "TypeError" }]
+        },
+        "resolve_ips": {
+          "input": { "host": "string", "timeout": "number" },
+          "output": "array[string] (IP addresses)",
+          "errors": [{ "condition": "DNS failure", "output": [] }]
+        },
+        "finding_fingerprint": {
+          "input": { "finding": "object" },
+          "output": "string (16-char hex)",
+          "errors": []
+        },
+        "dedup_against_memory": {
+          "input": { "findings": "array", "prior": "array" },
+          "output": { "new_findings": "array", "known_findings": "array" },
+          "errors": []
+        }
+      }
+    },
+    "js_analyzer.py": {
+      "description": "JS static analysis for client-side vulnerability mining. v3.0 NEW.",
+      "functions": {
+        "analyze": {
+          "input": { "source": "string", "source_url": "string", "source_file": "string" },
+          "output": { "findings": "array[JSFinding]", "summary": { "total_findings": "integer", "by_type": "object", "by_severity": "object", "files_analyzed": "integer", "total_lines": "integer" } },
+          "errors": [{ "condition": "empty source", "output": "empty report" }]
+        },
+        "analyze_secrets": {
+          "input": { "source": "string", "source_url": "string", "source_file": "string" },
+          "output": "array[JSFinding]",
+          "errors": []
+        },
+        "analyze_dangerous_sinks": {
+          "input": { "source": "string", "source_url": "string", "source_file": "string" },
+          "output": "array[JSFinding]",
+          "errors": []
+        }
+      },
+      "cli": {
+        "args": ["--source <path|->", "[--source-url <url>]", "[--source-file <path>]"],
+        "exit_codes": { "0": "analysis complete" }
+      }
+    },
+    "cve_correlator.py": {
+      "description": "CVE correlation engine for threat intelligence. v3.0 NEW.",
+      "functions": {
+        "correlate_technologies": {
+          "input": { "technologies": "array[object]" },
+          "output": { "total_cves": "integer", "by_severity": "object", "exploits_available": "integer", "cves": "array", "risk_score": "integer", "top_priority": "array" },
+          "errors": [{ "condition": "empty technologies", "output": "zero-CVE report" }]
+        },
+        "correlate_technology": {
+          "input": { "tech": "object" },
+          "output": "array[CVE entry]",
+          "errors": [{ "condition": "unknown technology", "output": [] }]
+        }
+      },
+      "cli": {
+        "args": ["--technologies <path|->"],
+        "exit_codes": { "0": "correlation complete" }
+      }
+    },
+    "advanced_injection.py": {
+      "description": "Advanced injection engine for NoSQL/LDAP/CRLF/smuggling/poisoning/race. v3.0 NEW.",
+      "functions": {
+        "build_plan": {
+          "input": { "vuln_type": "string", "target": "object" },
+          "output": { "vuln_type": "string", "target": "object", "strategy": "string", "payload_count": "integer", "payloads": "array" },
+          "errors": [{ "condition": "unknown vuln_type", "output": "error with supported types" }]
+        }
+      },
+      "cli": {
+        "args": ["--vuln-type <type>", "--target <path|->"],
+        "exit_codes": { "0": "plan built", "2": "unknown vuln type" }
+      }
+    },
+    "api_auditor.py": {
+      "description": "API security auditor for GraphQL/REST/WebSocket. v3.0 NEW.",
+      "functions": {
+        "audit": {
+          "input": { "endpoints": "array[object]", "mode": "string" },
+          "output": { "graphql|rest|websocket": "object", "summary": { "total_endpoints": "integer", "total_tests": "integer", "modes_audited": "array" } },
+          "errors": [{ "condition": "unknown mode", "output": "error with supported modes" }]
+        }
+      },
+      "cli": {
+        "args": ["--endpoints <path|->", "--mode <graphql|rest|websocket|all>"],
+        "exit_codes": { "0": "audit complete", "2": "unknown mode" }
+      }
+    },
+    "cloud_security.py": {
+      "description": "Cloud security scanner for AWS/K8s/Docker/CDN. v3.0 NEW.",
+      "functions": {
+        "audit": {
+          "input": { "targets": "array[string]", "mode": "string", "extra": "object" },
+          "output": { "aws_s3|cloud_metadata|kubernetes|docker|cdn_origin|container_registry": "object", "summary": { "total_tests": "integer", "modes_audited": "array", "targets": "array" } },
+          "errors": [{ "condition": "no checks for mode", "output": "error with supported modes" }]
+        }
+      },
+      "cli": {
+        "args": ["--targets <path|->", "--mode <aws|azure|gcp|metadata|k8s|docker|cdn|registry|all>", "[--extra <path>]"],
+        "exit_codes": { "0": "audit complete", "2": "unknown mode" }
+      }
+    }
+  }
+}

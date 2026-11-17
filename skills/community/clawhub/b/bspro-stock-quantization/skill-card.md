@@ -1,48 +1,64 @@
-## Description: <br>
-BSpro Stock Quantization helps agents query and analyze A-share market data, screen stocks, compute common quantitative indicators, run backtests, assess stock risk, and generate MOE factor-based buy and sell signal reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BSpro Stock Quantization helps agents query and analyze China A-share market data, run technical indicators and backtests, and produce MOE-factor stock signal reports.
 
-## Publisher: <br>
-[eventaumjohn](https://clawhub.ai/user/eventaumjohn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eventaumjohn](https://clawhub.ai/user/eventaumjohn)
 
-## Use Case: <br>
-External users and agent developers use this skill to answer Chinese A-share stock research questions, fetch market and fundamentals data, calculate technical and quantitative indicators, run strategy backtests, and present structured investment-analysis reports. It is intended to support analysis workflows, not to replace professional financial judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads, decrypts, unzips, and imports market-data updates from the publisher backend into a local database. <br>
-Mitigation: Install only if the publisher backend is trusted, review update behavior before use, and run the skill in an isolated environment when handling sensitive work. <br>
-Risk: The skill uses BITSOUL_TOKEN for remote data access and may read it from an explicitly configured env file. <br>
-Mitigation: Use a token dedicated to this service, keep it out of shared logs and prompts, and restrict BITSOUL_TOKEN_ENV_FILE to a file that contains only the intended token. <br>
-Risk: Optional performance or positions submission can upload strategy results to a remote service. <br>
-Mitigation: Invoke submission or leaderboard-related APIs only when remote sharing is intended, and review submitted fields before sending. <br>
-Risk: Generated trading analysis and buy or sell signals can be incomplete, stale, or misleading. <br>
-Mitigation: Treat outputs as analytical support, verify results against independent market data, and include financial-risk disclaimers in user-facing reports. <br>
+## Use Case:
 
+External users and developers use this skill to answer A-share stock research questions, retrieve price and sector data, generate buy/sell signal reports, and run factor-mining or backtest workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eventaumjohn/bspro-stock-quantization) <br>
-- [Publisher profile](https://clawhub.ai/user/eventaumjohn) <br>
-- [AICodingYard homepage](https://www.aicodingyard.com) <br>
-- [API_FOR_LLM.md](references/API_FOR_LLM.md) <br>
-- [Sina Finance](https://finance.sina.com.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Simplified Chinese markdown reports with tables, structured JSON from API calls, and occasional shell configuration snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include stock codes with names, model scores, backtest summaries, risk notes, and supporting market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Token-bearing remote update requests may expose credentials when sent over HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the BitSoul service is trusted, use a scoped token, and require token-bearing endpoints to use HTTPS before production deployment.
+
+Risk: Remote data patches are imported in unsafe ways and could execute code or corrupt local data if compromised.
+
+Mitigation: Accept patches only from signed or digest-verified manifests, remove pickle-based patch loading, and extract archives with path validation.
+
+Risk: Verbose logs or embedded sample credentials can disclose sensitive access material.
+
+Mitigation: Remove hard-coded tokens and redact detailed logs by default before use.
+
+Risk: Retraining and cache-clearing workflows can change local analysis state in ways users may not expect.
+
+Mitigation: Make retraining and cache-clearing actions explicit, reversible, and documented for operators.
+
+## Reference(s):
+
+- [StockApi interface documentation](references/API_FOR_LLM.md)
+- [BSpro Stock Quantization on ClawHub](https://clawhub.ai/eventaumjohn/skills/bspro-stock-quantization)
+- [BitSoul homepage](https://www.aicodingyard.com)
+- [Sina Finance](https://finance.sina.com.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Simplified Chinese Markdown reports with structured JSON data when returned by the skill APIs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BITSOUL_TOKEN for data access; optional BITSOUL_TOKEN_ENV_FILE and BITSOUL_CACHE_DIR control token loading and cache location.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

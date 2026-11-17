@@ -1,46 +1,65 @@
-## Description: <br>
-ClawBrain Pro configures OpenClaw with memory, data fidelity checks, automatic error recovery, and output validation for more reliable agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawBrain Pro adds ClawBrain model routing, persistent memory, recall, diagnostics, benchmarking, smart retry, and output verification guidance for OpenClaw agents.
 
-## Publisher: <br>
-[michaelfeng](https://clawhub.ai/user/michaelfeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaelfeng](https://clawhub.ai/user/michaelfeng)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to configure ClawBrain models, manage persistent memory and recall, diagnose configuration health, and benchmark agent behavior across realistic workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenClaw prompts, images, and diagnostic requests may be sent to the ClawBrain/FactorHub service. <br>
-Mitigation: Install only when third-party processing is acceptable, use a dedicated API key, and avoid sending secrets or regulated data. <br>
-Risk: Conversation-derived facts may be remembered across sessions through the long-term memory features. <br>
-Mitigation: Review memory management and deletion options before use, and avoid storing sensitive personal, customer, or regulated information. <br>
-Risk: Benchmark and doctor workflows may involve commands, file changes, package installs, network calls, or messages without clearly documented limits. <br>
-Mitigation: Run these workflows in a test workspace and require explicit approval before executing commands, changing files, installing packages, making network calls, or sending messages. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to configure ClawBrain-backed model routing and memory features, and to invoke diagnostics, recall, retry guidance, and benchmarks for agent workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/michaelfeng/clawbrain-pro) <br>
-- [ClawBrain homepage from ClawHub metadata](https://github.com/michaelfeng/clawbrain) <br>
-- [ClawBrain dashboard](https://clawbrain.dev/dashboard) <br>
-- [OpenClaw model comparison report](https://clawbrain.dev/blog/openclaw-model-comparison) <br>
-- [ClawBrain product site](https://clawbrain.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON configuration snippets and shell/API command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include OpenClaw model configuration, API-key setup guidance, benchmark instructions, and diagnostic command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.1 (source: server release metadata) <br>
+Risk: Prompts, possible memory content, and diagnostic metadata may be sent to the third-party ClawBrain or factorhub service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key, avoid sensitive conversations unless retention controls are clear, and review the provider's handling of stored memory and diagnostics before deployment.
+
+Risk: Benchmark, doctor, and retry flows can guide shell command use, dependency installation, and broad automation.
+
+Mitigation: Require review of exact commands and dependency changes before execution, especially in production or privileged environments.
+
+Risk: Persistent memory can retain user, project, preference, and decision information across sessions.
+
+Mitigation: Avoid storing secrets or regulated data in memory and periodically review, correct, or delete retained memory records.
+
+Risk: The authoritative security verdict is suspicious because the release combines third-party model and memory services with broad automation and limited consent scoping evidence.
+
+Mitigation: Pilot in a sandboxed workspace, restrict credentials and tool permissions, and approve use only after organizational review of data exposure and automation controls.
+
+## Reference(s):
+
+- [ClawBrain Pro ClawHub listing](https://clawhub.ai/michaelfeng/skills/clawbrain-pro)
+- [ClawBrain homepage from ClawHub metadata](https://github.com/michaelfeng/clawbrain)
+- [ClawBrain dashboard](https://clawbrain.dev/dashboard)
+- [OpenClaw model comparison report](https://clawbrain.dev/blog/openclaw-model-comparison)
+- [ClawBrain service homepage](https://clawbrain.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration snippets and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to use third-party ClawBrain or factorhub services when configured by the user.]
+
+## Skill Version(s):
+
+1.6.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

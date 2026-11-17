@@ -1,45 +1,53 @@
-## Description: <br>
-Navigate Mumbai as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, local trains, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Mumbai as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, local trains, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and agents use this skill to answer practical questions about visiting, relocating to, working in, studying in, or starting a business in Mumbai. It helps tailor guidance across neighborhoods, transport, food, costs, climate, safety, visas, healthcare, education, and local services. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mumbai guidance may become stale or too broad for decisions involving emergencies, visas, laws, healthcare, prices, or business requirements. <br>
-Mitigation: Verify emergency numbers, visa rules, legal restrictions, healthcare decisions, prices, and business requirements with official or current local sources before acting. <br>
-Risk: Location, transport, safety, and cost advice may vary by neighborhood, season, monsoon conditions, and user circumstances. <br>
-Mitigation: Ask for the user's role, timeline, budget, commute, and neighborhood context before applying recommendations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/mumbai) <br>
-- [Skill Homepage](https://clawic.com/skills/mumbai) <br>
-- [Publisher Profile](https://clawhub.ai/user/ivangdavila) <br>
-- [Mumbai Skill Index](artifact/SKILL.md) <br>
-- [Mumbai Safety Guide](artifact/safety.md) <br>
-- [Mumbai Visa Guide](artifact/visas.md) <br>
-- [Mumbai Business Setup Guide](artifact/business.md) <br>
+## Use Case:
 
+External users and agents use this skill to answer practical Mumbai questions for travel, relocation, study, technology work, business setup, and local life. It routes the response through topic-specific guidance on neighborhoods, transport, costs, visas, safety, food, healthcare, education, and culture.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text with practical recommendations and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only guidance; no required binaries or operating-system-specific execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes healthcare, visa, tax, housing, school, business, and safety guidance where rules, prices, and local conditions may change.
+
+Mitigation: Use the skill as a starting point and confirm decisions with official sources or qualified local professionals.
+
+Risk: Mumbai-specific travel and relocation advice can become stale during monsoon disruptions, regulatory changes, or market shifts.
+
+Mitigation: Check current weather, transport, housing, visa, and business information before acting on time-sensitive recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/mumbai)
+- [Skill homepage](https://clawic.com/skills/mumbai)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown prose with tables and concise recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference guidance; no tool calls, shell commands, credential access, persistence, or network behavior were identified by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

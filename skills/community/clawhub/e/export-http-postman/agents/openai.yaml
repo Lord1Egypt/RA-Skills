@@ -1,0 +1,4 @@
+interface:
+  display_name: "导出接口Postman文件"
+  short_description: "从项目接口代码导出可导入 Postman 的集合文件"
+  default_prompt: "Use $export-http-postman to export this HTTP interface as a Postman collection file."

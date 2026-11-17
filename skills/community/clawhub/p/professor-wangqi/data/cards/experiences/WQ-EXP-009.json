@@ -1,0 +1,234 @@
+{
+  "card_id": "WQ-EXP-009",
+  "source_type": "clinical_experience",
+  "source_file": "基于国医大师王琦体质分类学说论治慢性咳嗽_王佳美.pdf",
+  "title": "2022 年5 月第39 卷第5 期",
+  "authors": [
+    "王佳美"
+  ],
+  "year": 2022,
+  "language": "zh",
+  "experience_type": "treatment_method",
+  "clinical_focus": {
+    "disease": "",
+    "syndrome": "",
+    "constitution": []
+  },
+  "diagnostic_approach": {
+    "key_points": "证候特点各异，采用“辨体-辨病-辨证”结合的诊疗模式可以更加有效地防治本病。"
+  },
+  "treatment_approach": {
+    "main_formula": "玉屏风散",
+    "related_formulas": [
+      "玉屏风散",
+      "二陈汤",
+      "血府逐瘀汤",
+      "过敏煎",
+      "四君子汤"
+    ],
+    "principle": "活血化瘀",
+    "herbs": [
+      "黄芪",
+      "防风",
+      "人参",
+      "当归",
+      "柴胡",
+      "茯苓",
+      "甘草",
+      "半夏"
+    ]
+  },
+  "case_studies": [],
+  "clinical_insights": "认为本病在病因病机上具有复杂性，虽为肺系病，却常涉及他脏，且多见虚实夹杂、内外合邪。体质是脏腑关系、阴阳平衡的综合体现，决定了本病在内伤、外感两方面的病机走向，使得其证候特点各异，采用“辨体-辨病-辨证”结合的诊疗模式可以更加有效地防治本病。文章以国医大师王琦院士体质分类学说为基础，借鉴古今多位医家诊疗思路，结合导师崔红生教授临床经验，探讨该病的中医治疗策略。 为唯一症状，持续时间≥8 周，X 光片无异常[1]，目前在诊断和治疗上均较为棘手，而中医治疗往往取得较为显著的效果。 为复杂，常见虚实夹杂或内外合邪，可涉及多个脏腑，体质在阴阳盛衰、脏腑关系及易生病邪等多个方面对本病产生了影响。",
+  "knowledge_points": [
+    {
+      "category": "insight",
+      "content": "4 湿热质主要特征为湿热内蕴，在当今气候与社会因素的影响下，此类体质患者越来越多见",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "5 痰湿质主要特征为痰湿凝聚而形成黏滞重浊的体质状态，即《黄帝内经》诸篇中论及的“肥人” “肥贵人” “脂人”，成因主要是过食肥甘或肺脾肾虚损",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "二陈汤一身之痰都管，治痰之要药也”，正可调理痰湿体质",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "diagnosis",
+      "content": "辨证要点：证候特点各异，采用“辨体-辨病-辨证”结合的诊疗模式可以更加有效地防治本病。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "治疗原则为活血化瘀。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "核心方药为玉屏风散。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "treatment",
+      "content": "常用药物包括黄芪、防风、人参、当归、柴胡、茯苓、甘草、半夏。",
+      "importance": "high",
+      "evidence_level": "C"
+    },
+    {
+      "category": "insight",
+      "content": "认为本病在病因病机上具有复杂性，虽为肺系病，却常涉及他脏，且多见虚实夹杂、内外合邪",
+      "importance": "high",
+      "evidence_level": "C"
+    }
+  ],
+  "related_constitutions": [
+    "平和质",
+    "气虚质",
+    "阳虚质",
+    "阴虚质",
+    "痰湿质",
+    "湿热质",
+    "血瘀质",
+    "气郁质",
+    "特禀质"
+  ],
+  "related_diseases": [
+    "过敏性鼻炎",
+    "哮喘"
+  ],
+  "evidence_sentences": [
+    {
+      "sentence": "4 湿热质主要特征为湿热内蕴，在当今气候与社会因素的影响下，此类体质患者越来越多见",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    },
+    {
+      "sentence": "5 痰湿质主要特征为痰湿凝聚而形成黏滞重浊的体质状态，即《黄帝内经》诸篇中论及的“肥人” “肥贵人” “脂人”，成因主要是过食肥甘或肺脾肾虚损",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    },
+    {
+      "sentence": "二陈汤一身之痰都管，治痰之要药也”，正可调理痰湿体质",
+      "section": "main_text",
+      "claim_type": "statement",
+      "page_num": 3
+    }
+  ],
+  "research_focus": {
+    "constitution_type": [
+      "平和质",
+      "气虚质",
+      "阳虚质",
+      "阴虚质",
+      "痰湿质",
+      "湿热质",
+      "血瘀质",
+      "气郁质",
+      "特禀质"
+    ],
+    "disease": [
+      "过敏性鼻炎",
+      "哮喘"
+    ],
+    "topic": []
+  },
+  "page_info": {
+    "total_pages": 6,
+    "sections": {
+      "discussion": {
+        "start": 1,
+        "end": 6
+      }
+    }
+  },
+  "created_at": "2026-04-22T15:38:13.456436",
+  "methods": {
+    "sample_size": 237,
+    "study_design": "横断面研究"
+  },
+  "_field_meta": {
+    "title": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "authors": {
+      "confidence": 0.8,
+      "source": "migrated",
+      "level": "medium",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "year": {
+      "confidence": 0.85,
+      "source": "migrated",
+      "level": "high",
+      "reasoning": "Confidence estimated during migration from legacy cards"
+    },
+    "journal": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "doi": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "keywords": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "abstract": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    },
+    "conclusions": {
+      "confidence": 0.0,
+      "source": "none",
+      "level": "none",
+      "reasoning": "Field not populated in original extraction"
+    }
+  },
+  "_review": {
+    "status": "needs_review",
+    "priority": 2,
+    "fields": [
+      "doi",
+      "title",
+      "journal",
+      "keywords",
+      "abstract",
+      "conclusions"
+    ],
+    "thresholds_used": {
+      "doi": 0.95,
+      "title": 0.85,
+      "journal": 0.8,
+      "keywords": 0.8,
+      "abstract": 0.7,
+      "conclusions": 0.7
+    },
+    "auto_reviewed_at": "2026-04-25T15:10:31.508836",
+    "manual_reviewed_at": null,
+    "reviewer_notes": "Confidence data backfilled by migration script",
+    "migrated_at": "2026-04-25T15:10:31.508842"
+  }
+}

@@ -1,0 +1,13 @@
+name: chain-restaurant-analytics
+version: 1.0.0
+summary: "连锁餐饮经营数据分析——假设驱动的六步闭环，绑定IMA知识库100+餐饮经营指标"
+description: "连锁餐饮经营数据分析技能。基于 ima 知识库中 100+ 餐饮经营指标与专业分析方法，为餐饮老板和运营管理者提供假设驱动的全链路数据分析服务。"
+category: data-analysis
+author: 何子
+tags:
+  - 餐饮
+  - 经营分析
+  - 数据分析
+  - 连锁餐饮
+  - 门店诊断
+  - ima知识库

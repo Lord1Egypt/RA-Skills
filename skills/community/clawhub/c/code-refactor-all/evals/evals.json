@@ -1,0 +1,185 @@
+{
+  "skill_name": "code-refactor",
+  "evals": [
+    {
+      "id": 1,
+      "name": "refactor-py-split-god-module",
+      "mode": "refactor",
+      "prompt": "billing.py has grown into a grab-bag of pricing, invoice rendering and email delivery. Split it into a proper billing package with separate modules. app.py and other services import from billing directly, and the tests in tests/ must keep passing.",
+      "files": [
+        "evals/files/01-py-split-module/billing.py",
+        "evals/files/01-py-split-module/app.py",
+        "evals/files/01-py-split-module/tests/test_billing.py"
+      ],
+      "harness": "cd <impl> && python3 -m pytest -q tests",
+      "expected_output": "billing/ package (e.g. pricing.py, rendering.py, delivery.py) with billing/__init__.py re-exporting the old public names so `from billing import ...` and app.py keep working; behavior identical; the mock.patch('billing.smtp_send') coupling handled consciously.",
+      "expectations": [
+        "States mode = refactor and records the contract (public names TAX_RATES, compute_total, format_invoice, invoice_json, send_invoice_email, smtp_send) before editing",
+        "Runs the existing tests before and after and reports both results",
+        "`from billing import TAX_RATES, compute_total, format_invoice, invoice_json, send_invoice_email` still works without editing app.py",
+        "Notices that tests patch `billing.smtp_send` and keeps that patch effective (e.g. delivery code looks up smtp_send via the package, or the test change is explicitly called out) instead of silently breaking the mock",
+        "No behavior changes: rounding, error message 'unknown country: XX', invoice text format all unchanged",
+        "Steps are small (create package + re-exports, move one responsibility at a time) and the report lists them"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "refactor-plan-only-callback-to-async",
+      "mode": "refactor",
+      "prompt": "Our Node service has an internal db.query(sql, params, cb) callback API that's called from about 40 files under src/ (routes, jobs, migrations). I want to move everything to async/await. Don't touch any code yet - give me a migration plan I can review with the team.",
+      "files": [],
+      "expected_output": "A plan only, no edits: parallel change (promise-based core + callback adapter), batches of callers, ordering/error-semantics risks, verification per phase, rollback, and a stop for confirmation.",
+      "expectations": [
+        "Makes no file edits and says so",
+        "Uses an expand-migrate-contract / parallel-change sequence: add a promise API, keep the callback form as an adapter over it, migrate callers in batches, remove the adapter last",
+        "Flags behavior risks: sequential vs concurrent execution (no blanket Promise.all), error propagation and unhandled rejections, transactions/connection scope in migrations",
+        "Includes a safety-net step (characterization or integration tests for representative callers) and verification commands between phases",
+        "Includes rollback and an explicit 'out of scope' list, and asks for confirmation before Phase 1"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "rewrite-legacy-js-price-formatter",
+      "mode": "rewrite",
+      "prompt": "priceFormat.js is unreadable legacy code. Rewrite it from scratch in modern JavaScript. Invoices and the CSV export both use fmt() and formatPrice().",
+      "files": [
+        "evals/files/03-js-rewrite-legacy/priceFormat.js"
+      ],
+      "harness": "node -e \"const a=require('<orig>/priceFormat.js'),b=require('<impl>/priceFormat.js'); /* differential over a corpus */\"",
+      "expected_output": "Characterization tests recorded from the old implementation first (including quirks), a modern rewrite exporting the same fmt/formatPrice API, a differential comparison with counts, and quirks preserved or listed under Needs approval.",
+      "expectations": [
+        "States mode = rewrite and why (user asked; small surface)",
+        "Writes characterization/golden tests by running the OLD code before writing new code",
+        "Preserves or explicitly flags the quirks: 1.005 -> '$1.00' (toFixed rounding), '12abc' -> parsed as 12, -0.001 -> '-$0.00', unknown currency code used as prefix without space ('JPY0'), EUR suffix with a space, accounting parentheses, empty option",
+        "Reports the 1e21 output ('$1e,+21') as a found bug rather than silently fixing it",
+        "Keeps the exports fmt(v, c, o) and formatPrice(v, c) with the same signatures",
+        "Reports a differential result with a denominator (N inputs, M differences)"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "port-python-to-go-stats-cli",
+      "mode": "port",
+      "prompt": "Port stats.py to Go as a small CLI (reads JSON on stdin, prints JSON). The nightly report diffs its output, so the output must stay byte-identical. Fixtures with expected outputs are in fixtures/ and compare.py runs any command against them.",
+      "files": [
+        "evals/files/04-py-to-go-port/stats.py",
+        "evals/files/04-py-to-go-port/compare.py",
+        "evals/files/04-py-to-go-port/fixtures/case1.json",
+        "evals/files/04-py-to-go-port/fixtures/case1.expected.txt",
+        "evals/files/04-py-to-go-port/fixtures/case2.json",
+        "evals/files/04-py-to-go-port/fixtures/case2.expected.txt",
+        "evals/files/04-py-to-go-port/fixtures/case3.json",
+        "evals/files/04-py-to-go-port/fixtures/case3.expected.txt",
+        "evals/files/04-py-to-go-port/fixtures/case4.json",
+        "evals/files/04-py-to-go-port/fixtures/case4.expected.txt"
+      ],
+      "harness": "python3 evals/files/04-py-to-go-port/compare.py \"go run <impl>\"",
+      "expected_output": "Idiomatic Go CLI whose stdout matches all fixtures, with explicit handling of Python-vs-Go semantic differences and a parity report (4 inputs / 0 differences, or honest 'not run').",
+      "expectations": [
+        "Writes a parity contract: unit = one invocation (stdin JSON -> stdout), byte-identical output required",
+        "Floor division and modulo for negatives match Python (-7 // 4 == -2, -7 % 4 == 1)",
+        "Rounding matches Python's banker's rounding (12.5 -> 12), e.g. via math.RoundToEven",
+        "Output formatting matches json.dumps: ', ' and ': ' separators, non-ASCII escaped as \\uXXXX, key order as in Python (not Go's sorted map keys), 3.0 printed as 3.0 and null for empty mean",
+        "top_words ties keep first-occurrence order like Counter.most_common; word filter matches str.isalpha on Unicode; label width counts code points not bytes",
+        "Runs compare.py (or states precisely why it could not) and reports N inputs / M differences"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "port-java-to-kotlin-interop",
+      "mode": "port",
+      "prompt": "Convert User.java and UserIndex.java to Kotlin. ReportJob.java stays in Java for now and has to compile and behave exactly as before.",
+      "files": [
+        "evals/files/05-java-to-kotlin/src/main/java/com/acme/users/User.java",
+        "evals/files/05-java-to-kotlin/src/main/java/com/acme/users/UserIndex.java",
+        "evals/files/05-java-to-kotlin/src/main/java/com/acme/users/ReportJob.java",
+        "evals/files/05-java-to-kotlin/users_ok.csv",
+        "evals/files/05-java-to-kotlin/users_dup.csv"
+      ],
+      "expected_output": "Kotlin User and UserIndex that keep the Java-facing API (static calls, getters, checked IOException, nullable returns, duplicate-email exception) so ReportJob.java is unchanged.",
+      "expectations": [
+        "UserIndex functions remain callable as static methods from Java (object/companion with @JvmStatic, or top-level with @file:JvmName('UserIndex'))",
+        "load() is annotated @Throws(IOException::class) so ReportJob's catch (IOException) still compiles",
+        "byEmail keeps throwing IllegalStateException on duplicate emails (does not silently switch to associateBy, which keeps the last value)",
+        "findName returns String? and displayName is nullable; no !! on input-dependent values",
+        "User keeps equals/hashCode on id+email only and toString 'User#<id>' (a plain data class would change both) and getters getId/getEmail/getDisplayName",
+        "Report includes verification (compile + run ReportJob on users_ok.csv and users_dup.csv with exit codes) or states it was not run"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "port-c-to-rust-ffi-zh",
+      "mode": "port",
+      "prompt": "把 ringbuf.c 移植到 Rust。C 侧的调用方代码不能改，ringbuf.h 里的 API 和行为要保持一致，现有的 test_ringbuf.c 也要能继续跑通。",
+      "files": [
+        "evals/files/06-c-to-rust-ringbuf/ringbuf.h",
+        "evals/files/06-c-to-rust-ringbuf/ringbuf.c",
+        "evals/files/06-c-to-rust-ringbuf/test_ringbuf.c"
+      ],
+      "expected_output": "A Rust crate exposing the same C ABI (opaque handle, extern \"C\" functions) built as a static/dynamic library, with the C test linking against it; report in Chinese.",
+      "expectations": [
+        "Report is in Chinese and names the end state (Rust implementation behind the unchanged C header, C callers untouched)",
+        "Exports extern \"C\" functions with no_mangle matching ringbuf.h exactly; ringbuf stays opaque (Box pointer handle); rb_free(NULL) is a no-op and rb_new(0) returns NULL",
+        "Preserves free-running u32 head/tail with wrapping arithmetic (wrapping_add/wrapping_sub) and power-of-two masking instead of panicking on overflow",
+        "No panic can cross the FFI boundary (no unwrap on inputs; null pointers checked); every unsafe block has a SAFETY comment",
+        "Flags (does not silently fix) the source edge case where next_pow2 overflows for capacity > 2^31",
+        "Builds and runs test_ringbuf.c against the Rust library, or states exactly which step was not run and why"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "port-python-to-rust-stats-cli",
+      "mode": "port",
+      "prompt": "Rewrite stats.py in Rust as a standalone CLI (cargo project). Same contract: JSON on stdin, JSON on stdout, and the output has to be byte-identical to the Python version because a nightly job diffs it. Fixtures and compare.py are next to the script.",
+      "files": [
+        "evals/files/04-py-to-go-port/stats.py",
+        "evals/files/04-py-to-go-port/compare.py",
+        "evals/files/04-py-to-go-port/fixtures/case1.json",
+        "evals/files/04-py-to-go-port/fixtures/case1.expected.txt",
+        "evals/files/04-py-to-go-port/fixtures/case2.json",
+        "evals/files/04-py-to-go-port/fixtures/case2.expected.txt",
+        "evals/files/04-py-to-go-port/fixtures/case3.json",
+        "evals/files/04-py-to-go-port/fixtures/case3.expected.txt",
+        "evals/files/04-py-to-go-port/fixtures/case4.json",
+        "evals/files/04-py-to-go-port/fixtures/case4.expected.txt"
+      ],
+      "harness": "python3 evals/files/04-py-to-go-port/compare.py \"<impl>/target/release/<bin>\"",
+      "expected_output": "Cargo project producing output identical to Python on all fixtures, handling floor division, banker's rounding, json.dumps formatting (separators, ASCII escaping, insertion order, 3.0), Counter tie order and code-point lengths; parity report.",
+      "expectations": [
+        "Writes a parity contract (end state A replacement; unit = one invocation; byte-identical stdout)",
+        "Floor division/modulo match Python for negatives (div_euclid/rem_euclid or a floor helper): bucket(-7,4) == -2, offset == 1",
+        "Rounding matches banker's rounding (round_ties_even or equivalent): 12.5 -> 12",
+        "Output matches json.dumps byte-for-byte: ', ' and ': ' separators, \\uXXXX escapes for non-ASCII, insertion-ordered widths keys, 3.0 and -0.875 formatting, null for empty mean",
+        "top_words tie order equals Counter.most_common (first occurrence) and isalpha filter drops '42' and 'x-ray'; widths count code points",
+        "No unwrap/expect on input-dependent values without a stated reason; errors on bad JSON reported, not panicking silently",
+        "Runs compare.py against the built binary (or states precisely why not) and reports N inputs / M differences"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "port-ts-to-go-report-cli",
+      "mode": "port",
+      "prompt": "We're moving the ops tooling from Node to Go. Port report.ts to a Go CLI with the same stdin/stdout JSON behaviour — the dashboard diffs the output so it has to match exactly. Expected outputs from the current TS build are in fixtures/, and compare.py checks any command against them.",
+      "files": [
+        "evals/files/08-ts-to-go-port/report.ts",
+        "evals/files/08-ts-to-go-port/compare.py",
+        "evals/files/08-ts-to-go-port/fixtures/case1.json",
+        "evals/files/08-ts-to-go-port/fixtures/case1.expected.txt",
+        "evals/files/08-ts-to-go-port/fixtures/case2.json",
+        "evals/files/08-ts-to-go-port/fixtures/case2.expected.txt",
+        "evals/files/08-ts-to-go-port/fixtures/case3.json",
+        "evals/files/08-ts-to-go-port/fixtures/case3.expected.txt"
+      ],
+      "harness": "python3 evals/files/08-ts-to-go-port/compare.py \"go run <impl>\"",
+      "expected_output": "Go CLI matching all fixtures exactly, reproducing JS semantics: integer-like keys first in object order, default string sort, Math.round half-up, UTF-16 length, no HTML escaping, number formatting.",
+      "expectations": [
+        "Writes a parity contract (unit = one invocation; exact stdout match)",
+        "Reproduces JS object key order: integer-like keys ascending first, then insertion order (\"2\",\"10\",\"zoe\",\"<b>al</b>\")",
+        "Reproduces Array.prototype.sort default string comparison ([-3,1.5,10,100,9]) instead of numeric sort",
+        "Reproduces Math.round semantics (half toward +infinity: -1.5 -> -1, 2.5 -> 3) and note length in UTF-16 code units (\"👍👍\" -> 4)",
+        "JSON output matches JSON.stringify: no HTML escaping of < > (SetEscapeHTML(false)), integral floats without .0, compact separators, empty arrays as [] not null",
+        "Runs compare.py (or states precisely why not) and reports N inputs / M differences"
+      ]
+    }
+  ]
+}

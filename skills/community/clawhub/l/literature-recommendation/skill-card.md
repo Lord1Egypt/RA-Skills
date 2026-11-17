@@ -1,41 +1,62 @@
-## Description: <br>
-Reads team research profiles from PostgreSQL, fetches candidate arXiv papers, ranks them with rule-based matching, and outputs OpenClaw personal-card recommendation payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Recommends arXiv papers for team members by reading research profiles from PostgreSQL, applying rule-based matching, and producing OpenClaw reranking and personal-card payloads.
 
-## Publisher: <br>
-[zhcolin0313](https://clawhub.ai/user/zhcolin0313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhcolin0313](https://clawhub.ai/user/zhcolin0313)
 
-## Use Case: <br>
-OpenClaw operators and team workflow maintainers use this skill to generate literature recommendations from member research preferences. It prepares rule-scored arXiv candidate sets, stored recommendation history, and personal-card JSON for downstream delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow requires access to a PostgreSQL database containing member research profiles and Feishu user IDs. <br>
-Mitigation: Use a dedicated low-privilege database account and grant only the access needed for profile loading and recommendation storage. <br>
-Risk: Generated JSON reports and stored recommendation history can contain research preferences, Feishu identifiers, paper abstracts, and recommendation reasons. <br>
-Mitigation: Restrict the output directory and define retention or cleanup rules for generated reports and stored history. <br>
+## Use Case:
 
+Developers and research operations teams use this skill to generate per-member literature recommendation candidates from stored research preferences and recent arXiv papers. The skill returns structured payloads that OpenClaw can rerank and deliver as personal recommendation cards.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/zhcolin0313/literature-recommendation) <br>
-- [arXiv API Query Endpoint](https://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration] <br>
-**Output Format:** [CLI output and generated JSON reports containing rerank payloads, member reports, and personal-card delivery payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENCLAW_DB_DSN; optional output directory and recall-pool settings control generated report storage and candidate count.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill.yaml) <br>
+Risk: Member profile data may be included in downstream reports and reranking payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit reranking payloads to the profile fields needed for matching and avoid printing full reports to orchestration logs.
+
+Risk: External paper content from arXiv may influence downstream LLM reranking.
+
+Mitigation: Treat paper titles and abstracts as untrusted content and isolate them from system or developer instructions during reranking.
+
+Risk: Runtime dependencies are specified as version ranges rather than a reviewed lock file.
+
+Mitigation: Pin dependencies in a reviewed lock file before installing in production or sensitive environments.
+
+Risk: Database access and saved output reports may expose member preference data.
+
+Mitigation: Use a least-privilege PostgreSQL account scoped to this skill's tables and apply retention controls to the output directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhcolin0313/skills/literature-recommendation)
+- [arXiv API](https://export.arxiv.org/api/query)
+
+## Skill Output:
+
+**Output Type(s):** [json, markdown, guidance]
+
+**Output Format:** [JSON reports containing OpenClaw reranking payloads and Feishu personal-card objects with Markdown card text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PostgreSQL profile data and writes run reports to the configured output directory.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and skill.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

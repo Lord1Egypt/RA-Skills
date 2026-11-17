@@ -1,40 +1,53 @@
-## Description: <br>
-Trigger workflows, list runs, and get status for Gitea/Forgejo Actions workflows using repository and workflow details through the configured API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trigger workflows, list runs, and get status for Gitea/Forgejo Actions workflows using owner, repo, and workflow details via API.
 
-## Publisher: <br>
-[Qizhou-Guo](https://clawhub.ai/user/Qizhou-Guo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qizhou-guo](https://clawhub.ai/user/qizhou-guo)
 
-## Use Case: <br>
-Developers and release engineers use this skill to trigger Gitea or Forgejo Actions workflows, inspect workflow runs, and check the status of a specific run from an agent session. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can trigger real Gitea or Forgejo automation with an API token, and workflows may deploy code, modify repositories, use secrets, or call external systems. <br>
-Mitigation: Install only for intended Gitea or Forgejo instances, use HTTPS, and provide a short-lived least-privilege token limited to the required repositories and workflows. <br>
-Risk: A workflow dispatch request can start automation without enough warning or confirmation guidance. <br>
-Mitigation: Review each dispatch request, including owner, repository, workflow file, and ref, before allowing the action to run. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Qizhou-Guo/gitea-actions) <br>
-- [Publisher profile](https://clawhub.ai/user/Qizhou-Guo) <br>
+## Use Case:
 
+Developers and release engineers use this skill to trigger Gitea or Forgejo Actions workflows and inspect workflow run status from an agent session.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JavaScript object or parsed JSON data describing workflow dispatch, workflow runs, or a single run status.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires GITEA_URL and GITEA_TOKEN environment variables and repository owner, repository name, and action-specific workflow or run identifiers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A Gitea API token can trigger workflows and read workflow-run information, so an overly broad or exposed token could affect repositories beyond the intended scope.
+
+Mitigation: Use a least-privilege token limited to the target repositories and actions needed for this skill.
+
+Risk: Insecure endpoint configuration or logged process details can expose token-bearing requests.
+
+Mitigation: Set GITEA_URL to an HTTPS endpoint you control, avoid broad account tokens, and rotate any token previously used with HTTP or in environments where process arguments are visible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qizhou-guo/skills/gitea-actions)
+- [Publisher profile](https://clawhub.ai/user/qizhou-guo)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, API calls, Shell commands, Configuration]
+
+**Output Format:** [JSON-compatible status and workflow-run data, with environment-variable configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires GITEA_URL and GITEA_TOKEN environment variables.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

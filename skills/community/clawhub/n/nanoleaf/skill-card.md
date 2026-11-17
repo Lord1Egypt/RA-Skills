@@ -1,43 +1,54 @@
-## Description: <br>
-Control Nanoleaf light panels via the Picoleaf CLI. Use for turning Nanoleaf on/off, adjusting brightness, setting colors (RGB/HSL), changing color temperature, or any Nanoleaf lighting control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control Nanoleaf light panels via the Picoleaf CLI for power, brightness, RGB/HSL color, and color temperature changes.
 
-## Publisher: <br>
-[rstierli](https://clawhub.ai/user/rstierli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rstierli](https://clawhub.ai/user/rstierli)
 
-## Use Case: <br>
-External users and developers use this skill to control Nanoleaf light panels through the Picoleaf CLI, including power, brightness, color, and color temperature changes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup stores a Nanoleaf access token in ~/.picoleafrc. <br>
-Mitigation: Keep ~/.picoleafrc private, preferably mode 600, and revoke or regenerate the token if the file is shared, backed up insecurely, or exposed. <br>
-Risk: The skill depends on installing and trusting the Picoleaf CLI package source. <br>
-Mitigation: Install only from package sources the user trusts and review the CLI source or release before deployment when required by local policy. <br>
-Risk: Token generation requires physical access to the Nanoleaf controller. <br>
-Mitigation: Only generate tokens when authorized to access the target device and complete pairing while physically present. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Picoleaf GitHub Project](https://github.com/tessro/picoleaf) <br>
-- [Picoleaf Linux AMD64 Release Download](https://github.com/tessro/picoleaf/releases/latest/download/picoleaf_1.4.0_linux_amd64.tar.gz) <br>
-- [Nanoleaf (Picoleaf) on ClawHub](https://clawhub.ai/rstierli/nanoleaf) <br>
+## Use Case:
 
+External users and developers use this skill to configure Picoleaf and issue local CLI commands that control Nanoleaf light panels.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command guidance for a local Picoleaf CLI connected to a Nanoleaf controller.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Install options can place an unverified third-party executable on the user's machine.
+
+Mitigation: Review the install path before installing, prefer a verified and pinned Picoleaf source when available, and inspect the Homebrew formula or downloaded archive before use.
+
+Risk: The local Picoleaf configuration stores a reusable Nanoleaf device access token in plaintext.
+
+Mitigation: Create ~/.picoleafrc with owner-only permissions, such as mode 600, and protect it like a credential.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rstierli/skills/nanoleaf)
+- [Picoleaf GitHub repository](https://github.com/tessro/picoleaf)
+- [Picoleaf Linux binary release archive](https://github.com/tessro/picoleaf/releases/latest/download/picoleaf_1.4.0_linux_amd64.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Picoleaf CLI, a reachable Nanoleaf controller, and a local access token.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

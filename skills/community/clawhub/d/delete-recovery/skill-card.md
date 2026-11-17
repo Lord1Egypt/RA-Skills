@@ -1,43 +1,58 @@
-## Description: <br>
-Automatically backs up files before deletion, restores deleted files, lists and searches backups, verifies backup integrity, and cleans expired backups and logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically backs up files before deletion, restores deleted files from timestamped backups, searches backup manifests, and cleans expired backups and logs.
 
-## Publisher: <br>
-[cloudcode-hans](https://clawhub.ai/user/cloudcode-hans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudcode-hans](https://clawhub.ai/user/cloudcode-hans)
 
-## Use Case: <br>
-Developers and agent operators use this skill to reduce accidental file-deletion loss by creating recoverable backups before deletion, restoring deleted files, searching backup records, and managing opt-in workspace cleanup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has deletion and cleanup capabilities that can remove workspace files when invoked. <br>
-Mitigation: Use the workspace cleaner dry-run and token confirmation flow before enabling cleanup, review the previewed file list, and keep important paths whitelisted. <br>
-Risk: Backups and logs remain in .delete_recovery after skill use and may contain recoverable copies or operational records. <br>
-Mitigation: Clean expired backups and logs when retention is no longer needed, and treat .delete_recovery as workspace data requiring normal access controls. <br>
-Risk: Disabling workspace confinement with empty allowed_roots can restore files outside the workspace. <br>
-Mitigation: Keep the default workspace-root confinement unless a deliberate legacy restore requires broader access. <br>
+## Use Case:
 
+Developers and workspace users use this skill to back up files before deletion, recover accidentally deleted files, verify backup integrity, and manage opt-in cleanup of temporary workspace files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cloudcode-hans/delete-recovery) <br>
-- [Publisher Profile](https://clawhub.ai/user/cloudcode-hans) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Text, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates workspace-local backup, manifest, configuration, and log files under .delete_recovery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.11.1 (source: server release evidence) <br>
+Risk: Deletion and cleanup workflows can cause data loss or out-of-scope deletion if executed without careful review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review deletion paths before installation and use dry-run, explicit opt-in, and backup verification before allowing cleanup actions.
+
+Risk: Backup deletion can remove recovery data when backup folder names are not strictly validated.
+
+Mitigation: Restrict delete_backup usage to validated backup folder names and review the selected backup target before removal.
+
+Risk: Workspace cleaner fallback backups may not be reliable enough for recovery in the current release.
+
+Mitigation: Do not rely on workspace_cleaner fallback backups for recoverability until directory restore and metadata format handling are fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cloudcode-hans/skills/delete-recovery)
+- [ClawHub publisher profile](https://clawhub.ai/user/cloudcode-hans)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces file-operation guidance for backup, restore, verification, manifest search, backup cleanup, and opt-in workspace cleanup workflows.]
+
+## Skill Version(s):
+
+0.11.1 (source: server release metadata; artifact content describes v0.11.0 behavior with no code changes in this release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

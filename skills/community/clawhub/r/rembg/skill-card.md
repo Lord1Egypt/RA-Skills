@@ -1,41 +1,58 @@
-## Description: <br>
-Uses the rembg AI model to remove image backgrounds and produce transparent-background PNG files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses the rembg AI model to remove image backgrounds and generate transparent PNG files.
 
-## Publisher: <br>
-[JustZeroX](https://clawhub.ai/user/JustZeroX) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justzerox](https://clawhub.ai/user/justzerox)
 
-## Use Case: <br>
-Developers and content creators use this skill to remove backgrounds from single images or batches of images and save transparent PNG outputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has avoidable code-execution risks when processing image paths. <br>
-Mitigation: Review or patch path handling before processing images from untrusted sources or archives. <br>
-Risk: Installation creates a persistent virtual environment, downloads rembg models, installs Python packages, and may modify PATH or shell startup files. <br>
-Mitigation: Install only after reviewing those persistent environment changes, and check shell configuration or Windows PATH afterward. <br>
+## Use Case:
 
+Developers and end users can use this skill to remove backgrounds from single images or batches of images and save the results as transparent PNG files.
 
-## Reference(s): <br>
-- [rembg detailed guide](references/rembg-guide.md) <br>
-- [u2net model download used by rembg](https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with shell and Python command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill creates transparent PNG image files as runtime artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: ClawHub release metadata) <br>
+Risk: The security evidence reports unsafe script behavior and persistent environment changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the publisher and confirming that a home-directory virtual environment, model downloads, and PATH edits are acceptable.
+
+Risk: The security guidance warns against processing untrusted filenames or output paths until dynamic Python command path handling is fixed.
+
+Mitigation: Use trusted local image paths and explicit output locations, and avoid untrusted path inputs before deployment.
+
+Risk: The security guidance recommends upgrading the rembg dependency and preferring explicit setup over automatic installation during image processing.
+
+Mitigation: Run setup intentionally, review dependency versions before installation, and update rembg when a vetted release is available.
+
+## Reference(s):
+
+- [rembg detailed guide](references/rembg-guide.md)
+- [ClawHub skill page](https://clawhub.ai/justzerox/skills/rembg)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces commands and guidance for creating transparent-background PNG image files.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

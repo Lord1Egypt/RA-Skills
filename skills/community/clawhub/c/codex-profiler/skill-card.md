@@ -1,43 +1,58 @@
-## Description: <br>
-Maintained Codex operations skill: unified /codex_usage + /codex_auth path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codex Profiler helps agents manage OpenAI Codex profiles, usage checks, and OAuth token refresh through unified /codex_usage and /codex_auth workflows.
 
-## Publisher: <br>
-[DeadlySilent](https://clawhub.ai/user/DeadlySilent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deadlysilent](https://clawhub.ai/user/deadlysilent)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect Codex profile usage, guide OAuth refresh or setup, and manage OpenClaw Codex profile ordering with a verify-after-apply workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can interact with local OpenClaw Codex OAuth profiles and auth-store state. <br>
-Mitigation: Use it only on trusted machines and prefer the documented gateway-native openclaw models auth commands for profile mutations. <br>
-Risk: Auth workflows may leave token-bearing payloads or staged auth files under /tmp/openclaw. <br>
-Mitigation: Check /tmp/openclaw after use and remove leftover sensitive temporary files once verification succeeds. <br>
-Risk: Queued auth-store changes can restart or affect the local gateway. <br>
-Mitigation: Run read-only preflight first, apply changes explicitly, and verify status and auth order after the apply step. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect Codex profile usage, refresh OAuth-backed profiles, and manage auth routing through gateway-native commands. It is intended for environments where Codex/OpenAI profile state is deliberately administered by the agent.
 
-## Reference(s): <br>
-- [Codex Multi-Account Rotation Guide](references/multi-account-rotation.md) <br>
-- [Codex Profiler on ClawHub](https://clawhub.ai/DeadlySilent/codex-profiler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce concise usage summaries, auth workflow guidance, and gateway-native OpenClaw command sequences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.27 (source: server release evidence) <br>
+Risk: The skill can access OAuth-backed Codex profile data and alter OpenClaw auth state.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in environments where the publisher and profile names are trusted, and prefer gateway-native auth commands with explicit preflight and verification.
+
+Risk: Temporary token or staged-auth artifacts may remain after auth workflows.
+
+Mitigation: Clean up /tmp/openclaw token and staged-auth artifacts after verification succeeds.
+
+Risk: Auth apply operations may restart the gateway or change active profile routing.
+
+Mitigation: Use the documented preflight, apply, and verify sequence, and rely on provided backups or revert commands before restart-capable operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deadlysilent/skills/codex-profiler)
+- [Codex Multi-Account Rotation Guide](references/multi-account-rotation.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and JSON or text status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [User-facing output should avoid exposing sensitive tokens or full callback URLs.]
+
+## Skill Version(s):
+
+1.0.27 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

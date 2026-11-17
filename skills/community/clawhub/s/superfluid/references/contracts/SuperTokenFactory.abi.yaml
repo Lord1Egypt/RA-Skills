@@ -1,7 +1,6 @@
 # SuperTokenFactory — deploys and initializes Super Token proxy contracts
-# The factory creates wrapper Super Tokens (backed by an ERC-20), canonical
-# wrapper Super Tokens (deterministic CREATE2 addresses), and custom Super
-# Token proxies (SETH, Pure, etc.).
+# The factory creates wrapper Super Tokens (backed by an ERC-20) and custom
+# Super Token proxies (SETH, Pure, etc.).
 #
 # SuperTokenFactory is a UUPS-upgradable singleton deployed once per network.
 # It holds immutable references to the canonical SuperToken logic contract and
@@ -18,14 +17,14 @@ meta:
     - https://raw.githubusercontent.com/superfluid-org/protocol-monorepo/refs/heads/dev/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperTokenFactory.sol
   implements: [ISuperTokenFactory, UUPSProxiable]
   note: >
-    Deploys Super Token proxies in three modes: (1) custom wrapper via
-    createERC20Wrapper with caller-chosen name/symbol/upgradability,
-    (2) canonical wrapper via createCanonicalERC20Wrapper with deterministic
-    CREATE2 address and auto-derived name/symbol, and (3) custom super token
-    via initializeCustomSuperToken for pre-deployed proxies like SETH or
-    PureSuperToken.  The Upgradability enum controls proxy type:
+    Deploys Super Token proxies in two modes: (1) wrapper via
+    createERC20Wrapper with caller-chosen name/symbol/upgradability, and
+    (2) custom super token via initializeCustomSuperToken for pre-deployed
+    proxies like SETH or PureSuperToken.  The Upgradability enum controls proxy type:
     NON_UPGRADABLE (deprecated, reverts), SEMI_UPGRADABLE (UUPSProxy),
     FULL_UPGRADABLE (FullUpgradableSuperTokenProxy).
+  notes:
+    - "Canonical wrapper API (createCanonicalERC20Wrapper and 3 related functions) is gone: absent from the npm ethereum-contracts 1.15.2 ABI and @sfpro/sdk 0.2.3+, removed on-chain with v1.15.3 (calls revert). Storage slot kept for upgrade safety."
   upgradability_enum:
     NON_UPGRADABLE: 0   # deprecated — createERC20Wrapper reverts
     SEMI_UPGRADABLE: 1  # UUPSProxy — upgradable via host.updateSuperTokenLogic
@@ -42,13 +41,13 @@ meta:
       celo-mainnet: "0x36be86dEe6BC726Ed0Cbd170ccD2F21760BC73D9"
       base-mainnet: "0xe20B9a38E0c96F61d1bA6b42a61512D56Fea1Eb3"
       scroll-mainnet: "0xacFBED2bC9344C158DD3dC229b84Bd7220e7c673"
-      degenchain: "0x184D999ea60e9b16fE4cCC1f756422114E9B663f"
+      arc-mainnet: "0x583C78b9c93538FEfc56E49371A0dcc844027325"
     testnet:
       avalanche-fuji: "0x1C92042426B6bAAe497bEf461B6d8342D03aEc92"
       eth-sepolia: "0x254C2e152E8602839D288A7bccdf3d0974597193"
       optimism-sepolia: "0xfcF0489488397332579f35b0F711BE570Da0E8f5"
-      scroll-sepolia: "0x87560833d59Be057aFc63cFFa3fc531589Ba428F"
       base-sepolia: "0x7447E94Dfe3d804a9f46Bf12838d467c912C8F6C"
+      arc-testnet: "0x8d1a3F66275F33209F3E823dE31537E4DdeE44Ce"
 
 # == Protocol Info ==
 
@@ -172,54 +171,6 @@ POOL_MEMBER_NFT_LOGIC:
   emits: [SuperTokenCreated]
   errors: [SUPER_TOKEN_FACTORY_ZERO_ADDRESS, SUPER_TOKEN_FACTORY_NON_UPGRADEABLE_IS_DEPRECATED]
 
-# == Canonical Wrapper Management ==
-
-createCanonicalERC20Wrapper:
-  # Deploys a canonical wrapper Super Token for the given underlying ERC-20
-  # using CREATE2 for a deterministic address.  The salt is
-  # keccak256(abi.encode(address(underlyingToken))).
-  #
-  # Automatically derives name ("Super " + underlying name) and symbol
-  # (underlying symbol + "x").  Always SEMI_UPGRADABLE.  No admin.
-  #
-  # Reverts if a canonical wrapper already exists for this underlying token
-  # or if the canonical mapping has not been initialized.
-  mutability: nonpayable
-  access: anyone
-  inputs:
-    - _underlyingToken: IERC20Metadata
-  outputs:
-    - "": ISuperToken
-  emits: [SuperTokenCreated]
-  errors: [SUPER_TOKEN_FACTORY_UNINITIALIZED, SUPER_TOKEN_FACTORY_ALREADY_EXISTS]
-
-computeCanonicalERC20WrapperAddress:
-  # Returns the address of the canonical wrapper for the given underlying
-  # token.  If already deployed and registered, returns the stored address
-  # with isDeployed=true.  Otherwise computes the CREATE2 address with
-  # isDeployed=false.
-  #
-  # Note: only computes addresses for SEMI_UPGRADABLE Super Tokens.
-  mutability: view
-  access: anyone
-  inputs:
-    - _underlyingToken: address
-  outputs:
-    - superTokenAddress: address
-    - isDeployed: bool
-
-getCanonicalERC20Wrapper:
-  # Looks up the canonical wrapper Super Token for the given underlying
-  # token address.  Returns address(0) if no canonical wrapper is registered.
-  #
-  # Note: address(0) key maps to the NativeAssetSuperToken on the network.
-  mutability: view
-  access: anyone
-  inputs:
-    - _underlyingTokenAddress: address
-  outputs:
-    - superTokenAddress: address
-
 # == Custom Super Token ==
 
 initializeCustomSuperToken:
@@ -235,30 +186,13 @@ initializeCustomSuperToken:
     - customSuperTokenProxy: address
   emits: [CustomSuperTokenCreated]
 
-# == Canonical Initialization ==
-
-initializeCanonicalWrapperSuperTokens:
-  # One-time governance function to seed the canonical wrapper mapping with
-  # existing wrapper Super Tokens.  Once called (the address(0) entry is
-  # set), it cannot be called again.
-  #
-  # The address(0) key must be included in the data — it maps to the
-  # NativeAssetSuperToken on the network.
-  #
-  # Each entry is a struct { underlyingToken: address, superToken: address }.
-  mutability: nonpayable
-  access: governance-owner
-  inputs:
-    - _data: InitializeData[]   # array of (underlyingToken, superToken) pairs
-  errors: [SUPER_TOKEN_FACTORY_ONLY_GOVERNANCE_OWNER, SUPER_TOKEN_FACTORY_ALREADY_EXISTS]
-
 # == Events ==
 
 events:
 
   SuperTokenCreated:
     # Emitted when a new wrapper Super Token is deployed via
-    # createERC20Wrapper or createCanonicalERC20Wrapper.
+    # createERC20Wrapper.
     indexed:
       - token: ISuperToken
     data: []
@@ -285,12 +219,6 @@ errors:
 
   # -- Access Control --
   - SUPER_TOKEN_FACTORY_ONLY_HOST                       # only the Host can call updateCode
-  - SUPER_TOKEN_FACTORY_ONLY_GOVERNANCE_OWNER           # only governance owner (defined in base, not interface)
-
-  # -- State Validation --
-  - SUPER_TOKEN_FACTORY_UNINITIALIZED                   # canonical mapping not yet initialized
-  - SUPER_TOKEN_FACTORY_ALREADY_EXISTS                  # canonical wrapper exists or mapping already seeded
-  - SUPER_TOKEN_FACTORY_DOES_NOT_EXIST                  # requested canonical wrapper not found
 
   # -- Input Validation --
   - SUPER_TOKEN_FACTORY_ZERO_ADDRESS                    # underlying token is address(0)

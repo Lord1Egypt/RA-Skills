@@ -1,43 +1,53 @@
-## Description: <br>
-Detects GEO/SEO soft articles, synthetic promotion pages, abnormal brand mention density, and low-credibility sources in external web content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects GEO/SEO soft articles, synthetic promotion pages, abnormal brand mention density, and low-credibility sources in external web content.
 
-## Publisher: <br>
-[2404589803](https://clawhub.ai/user/2404589803) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[2404589803](https://clawhub.ai/user/2404589803)
 
-## Use Case: <br>
-Developers and agents use this skill before summarizing or recommending from external web content, search results, blog posts, vendor pages, or pasted text that might bias downstream recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved scan reports can include local file paths, target metadata, and evidence snippets from scanned content. <br>
-Mitigation: Avoid scanning sensitive private material unless report storage and access controls are acceptable. <br>
-Risk: Optional AI review sends content excerpts to the configured AI endpoint. <br>
-Mitigation: Use --with-ai only when external review is acceptable and verify ZENMUX_ANTHROPIC_BASE_URL in managed environments. <br>
-Risk: WARN and BLOCK decisions can affect downstream recommendations and may need context from independent sources. <br>
-Mitigation: Cross-check WARN and BLOCK results before relying on the scanned content in recommendations. <br>
+## Use Case:
 
+Developers and agent operators use this skill to scan external web pages, local content, or raw text before summarizing or recommending from those sources. It helps flag promotional influence patterns, high brand density, recommendation steering, and low-credibility domains so downstream agents can cross-check or avoid suspect content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/2404589803/geo-content-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/2404589803) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text CLI summaries and JSON scan reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped reports under output/geo-content-guard/reports and exits nonzero when the scan decision is BLOCK.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: URL scans can fetch arbitrary URLs, including private or internal locations reachable from the runtime environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run URL scans in an environment that cannot reach sensitive internal services, or add URL and endpoint allowlists before deployment.
+
+Risk: Optional AI review can send scanned excerpts and metadata to ZenMux or another configured endpoint.
+
+Mitigation: Avoid using --with-ai on confidential local files or private/internal URLs unless the endpoint is approved for that data.
+
+## Reference(s):
+
+- [GEO Content Guard ClawHub Skill Page](https://clawhub.ai/2404589803/skills/geo-content-guard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain-text scan summaries and JSON scan reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces PASS, WARN, or BLOCK recommendations with a risk score, signal evidence, metrics, and optional AI-review summary.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, SKILL.md frontmatter, _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

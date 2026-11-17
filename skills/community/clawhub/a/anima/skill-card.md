@@ -1,47 +1,56 @@
-## Description: <br>
-Anima generates 16:9 avatar videos with dynamic character sprites, Fish Audio speech, text overlays, and optional Feishu delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Anima generates 16:9 interactive avatar videos with character sprites, synthesized speech, emotion-based scene rendering, text overlays, and optional Feishu delivery.
 
-## Publisher: <br>
-[HMyaoyuan](https://clawhub.ai/user/HMyaoyuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[hmyaoyuan](https://clawhub.ai/user/hmyaoyuan)
 
-## Use Case: <br>
-Developers and content creators use Anima to generate short avatar-led videos from scripted scenes, matching text to emotion-tagged sprites and synthesized speech. Agents can run it in preview mode for local video generation or provide Feishu credentials to upload and send the finished video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The security review reports suspicious command execution paths where user-controlled script text, recipient IDs, and file paths can reach shell commands. <br>
-Mitigation: Use preview mode for sensitive content, avoid untrusted script text, recipient IDs, and file paths, and replace shell-string execution with argument-array process calls or direct HTTP-client calls before broad deployment. <br>
-Risk: Feishu delivery uses supplied credentials and recipient identifiers to upload and send generated videos. <br>
-Mitigation: Provide Feishu credentials only when upload and delivery are intended, scope credentials narrowly, and validate recipient IDs before sending. <br>
-Risk: The published package does not include sprite PNG assets, so video frames may fall back to a blank white background until assets are prepared. <br>
-Mitigation: Generate or install the expected sprite assets, verify the production plan and manifest, and run preview mode before sending videos externally. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn structured dialogue scripts into avatar video clips, optionally generate sprite variants, and deliver finished videos through Feishu/Lark.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/HMyaoyuan/anima) <br>
-- [SKILL.md](SKILL.md) <br>
-- [ASSETS_PLAN.md](ASSETS_PLAN.md) <br>
-- [Sprite manifest](assets/manifest.json) <br>
-- [Fish Audio API dashboard](https://fish.audio/dashboard/api) <br>
-- [Google AI Studio API keys](https://aistudio.google.com/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON scene scripts and generated MP4, PNG, WAV, and CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg, Node dependencies, Fish Audio credentials for speech, optional Gemini credentials for sprite generation, and optional Feishu credentials for delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.3.2 (source: server release metadata and package.json) <br>
+Risk: Crafted script text, target IDs, paths, or CSV entries can reach shell commands and may execute local commands or overwrite files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only with scripts, CSV files, target IDs, and paths you fully trust; prefer a sandboxed account and review inputs before execution.
+
+Risk: Feishu delivery and Gemini batch generation use shell calls with externally influenced values.
+
+Mitigation: Avoid those paths until shell calls are replaced with safe argument-array subprocess calls or native HTTP APIs and filenames and recipient IDs are validated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hmyaoyuan/skills/anima)
+- [Publisher profile](https://clawhub.ai/user/hmyaoyuan)
+- [Fish Audio API dashboard](https://fish.audio/dashboard/api)
+- [Google AI Studio API keys](https://aistudio.google.com/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [Files, API Calls, Shell commands, Configuration instructions]
+
+**Output Format:** [MP4 video files, PNG sprite assets, temporary audio/frame files, console output, and optional Feishu media messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ffmpeg, Node dependencies, and user-provided API credentials for Fish Audio, optional Gemini sprite generation, and optional Feishu delivery.]
+
+## Skill Version(s):
+
+3.3.2 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-SQLite database operations. Use this skill when users need to create, read, query, or modify SQLite databases (.db files). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SQLite database operations. Use this skill when users need to create, read, query, or modify SQLite databases (.db files).
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect SQLite database structure, run SQL queries, create or update tables and rows, and apply migration patterns for .db files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can display or change data in SQLite files the user points it at. <br>
-Mitigation: Use copies or backups for important databases, verify the database path before commands run, and avoid querying tables that contain secrets or personal data unless that data is intended to appear in output or logs. <br>
+## Use Case:
 
+Developers and engineers use this skill to inspect, query, create, and modify SQLite database files from agent workflows. It supports common sqlite/sqlite3 patterns including table creation, reads, writes, prepared statements, migrations, and database inspection.
 
-## Reference(s): <br>
-- [SQLite Client API Reference](references/api.md) <br>
-- [ClawHub release page](https://clawhub.ai/openlark/sqlite-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JavaScript, SQL, and shell command examples; helper scripts may emit plain text tables or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can inspect database schemas, show sample rows, execute read and write SQL, and return query results from user-selected SQLite files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Write-capable SQLite operations can alter or delete records, especially during migrations or UPDATE/DELETE queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only copies for inspection, review write and migration SQL before execution, and back up databases before allowing write-capable operations.
+
+Risk: Database inspection can expose sample rows from production or sensitive databases in agent output or logs.
+
+Mitigation: Avoid running row-preview inspection on sensitive databases unless those records are acceptable to disclose; use sanitized copies when possible.
+
+## Reference(s):
+
+- [SQLite Client API Reference](references/api.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JavaScript and shell command examples; helper scripts can emit plain text tables or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include SQLite query results, schema summaries, row counts, sample rows, migration patterns, and sqlite/sqlite3 configuration guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

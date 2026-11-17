@@ -1,40 +1,49 @@
-## Description: <br>
-Fixes JSON serialization of pandas Timestamps and ensures fresh fixture ingestion for accurate Nexus2 sports predictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through applying a Nexus2 sports prediction pipeline fix for pandas Timestamp JSON serialization failures and stale fixture ingestion.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-Developers maintaining Nexus2 sports prediction pipelines use this skill to apply and verify fixes for pandas Timestamp serialization failures and stale fixture ingestion that can cause phantom predictions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Applying patched pipeline files directly to a production Nexus2 installation could introduce incompatible behavior or replace local changes. <br>
-Mitigation: Obtain the patched files from a trusted source, review the diff against the installed Nexus2 version, back up the originals, and test the prediction pipeline in staging before production use. <br>
-Risk: Prediction output may still be misleading if fixture data or bookmaker sources are stale, malformed, or unavailable. <br>
-Mitigation: Verify prediction output against live SportyBet or SofaScore fixtures after applying the fix. <br>
+## Use Case:
 
+Developers and operators maintaining Nexus2 sports prediction deployments use this skill to understand and apply fixes for JSON serialization crashes and stale fixture ingestion that can cause phantom predictions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tktk-ai/nexus2-pipeline-fix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions with inline file paths and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No bundled code or automatic execution; users must obtain and review the referenced patched files before applying them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The package describes the intended Nexus2 fixes but does not include the actual patched `publishing/publisher.py` and `nexus.py` files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the publisher's actual patched files before copying them into a Nexus2 installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tktk-ai/skills/nexus2-pipeline-fix)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown with inline file paths and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Descriptive guidance only; the release evidence does not include the patched source files.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-A skill dedicated to Antom payment integration, helping merchants select the right product and integration approach based on business needs, and build code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A skill dedicated to Antom payment integration, helping merchants select the right product and integration approach based on business needs, and build code.
 
-## Publisher: <br>
-[ant-intl](https://clawhub.ai/user/ant-intl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ant-intl](https://clawhub.ai/user/ant-intl)
 
-## Use Case: <br>
-Developers and merchants use this skill to choose Antom payment products and integration modes, then gather current Antom documentation before implementing payment flows. It supports product selection, SDK selection, validation checks, and security guidance for one-time, tokenized recurring, subscription, checkout, payment element, and API-only integrations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payment integrations are high-impact and outdated or unofficial documentation can lead to incorrect implementation choices. <br>
-Mitigation: Verify that linked CDN documentation and SDK references are genuinely from Antom or Alipay, and check the latest Antom Open Platform documentation before production use. <br>
-Risk: Private keys or other sensitive payment credentials could be exposed in client code, prompts, logs, or public repositories. <br>
-Mitigation: Keep private keys server-side only, never paste secrets into prompts or logs, and do not commit keys to public repositories. <br>
-Risk: Client-side payment results can be spoofed or misread before final settlement is confirmed. <br>
-Mitigation: Verify asynchronous notification signatures and confirm payment status through Antom notification or transaction query flows before fulfillment, retries, or repayment prompts. <br>
+## Use Case:
 
+Developers and engineers use this skill to choose an Antom payment product and integration mode, then implement and validate merchant payment flows for one-time, tokenized, or subscription payments.
 
-## Reference(s): <br>
-- [SDK Description](https://cdn.marmot-cloud.com/page/antom-integration-doc/references/select-sdk.md) <br>
-- [Product Decision](https://cdn.marmot-cloud.com/page/antom-integration-doc/references/product-decision.md) <br>
-- [Integration Checklist](https://cdn.marmot-cloud.com/page/antom-integration-doc/references/checklist.md) <br>
-- [Antom Official Website](https://www.antom.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with links, checklists, shell commands, and code suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be checked against the latest Antom documentation and should avoid exposing private keys, credentials, or payment secrets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Payment integration mistakes can expose private keys or trust unverified client-side payment results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep private keys on the server, never log or commit them, and confirm payment status through verified asynchronous notifications or transaction query APIs.
+
+Risk: Generated integration code may use stale API parameters or examples from dynamic remote documentation.
+
+Mitigation: Fetch the relevant Antom product documentation and SDK guidance before coding, then verify SDK packages, endpoints, signatures, notification handling, and credential storage against current official documentation before production use.
+
+## Reference(s):
+
+- [SDK Description](https://cdn.marmot-cloud.com/page/antom-integration-doc/references/select-sdk.md)
+- [Product Decision](https://cdn.marmot-cloud.com/page/antom-integration-doc/references/product-decision.md)
+- [Integration Checklist](https://cdn.marmot-cloud.com/page/antom-integration-doc/references/checklist.md)
+- [Antom Official Website](https://www.antom.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference current remote Antom documentation that should be reviewed before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

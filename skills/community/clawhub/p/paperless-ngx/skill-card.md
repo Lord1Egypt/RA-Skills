@@ -1,39 +1,53 @@
-## Description: <br>
-Interact with Paperless-ngx document management system via REST API. Use when users want to search, upload, download, organize documents, manage tags, correspondents, or document types in their Paperless-ngx instance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with Paperless-ngx document management system via REST API. Use when users want to search, upload, download, organize documents, manage tags, correspondents, or document types in their Paperless-ngx instance.
 
-## Publisher: <br>
-[OskarStark](https://clawhub.ai/user/OskarStark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oskarstark](https://clawhub.ai/user/oskarstark)
 
-## Use Case: <br>
-External users, developers, and operators use this skill to manage documents in a Paperless-ngx instance through REST API requests, including search, upload, download, metadata updates, and organization resources. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access and change sensitive Paperless-ngx documents when configured with a powerful API token. <br>
-Mitigation: Use a dedicated least-privilege API token and install the skill only for a Paperless-ngx instance the agent is intended to manage. <br>
-Risk: Download, delete, bulk edit, and reprocess operations can expose sensitive files or make broad document changes. <br>
-Mitigation: Manually confirm destructive, bulk, reprocess, and unnecessary download requests before allowing execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/OskarStark/paperless-ngx) <br>
+## Use Case:
 
+External users and developers use this skill to manage documents in a Paperless-ngx instance through REST API requests, including search, upload, download, metadata organization, task status checks, and pagination-aware response handling.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PAPERLESS_URL and PAPERLESS_TOKEN environment variables for Paperless-ngx API requests.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes document deletion and bulk edit operations that can delete, reprocess, or change metadata for multiple documents.
+
+Mitigation: Require the agent to show exact document IDs and obtain explicit confirmation before deletion, reprocessing, or bulk metadata changes.
+
+Risk: A broad Paperless-ngx API token could expose sensitive or business-critical documents.
+
+Mitigation: Use the narrowest available API token and review the skill before installing it for sensitive document repositories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oskarstark/skills/paperless-ngx)
+- [Publisher profile](https://clawhub.ai/user/oskarstark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and REST API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PAPERLESS_URL and PAPERLESS_TOKEN environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

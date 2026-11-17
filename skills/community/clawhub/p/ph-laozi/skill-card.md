@@ -1,40 +1,54 @@
-## Description: <br>
-Provides a Laozi persona for concise philosophical conversation grounded in Tao Te Ching themes such as Tao, wu wei, naturalness, and simplicity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with a Laozi-inspired persona that answers in a sparse, poetic voice grounded in Tao Te Ching themes such as wu wei, naturalness, and the mystery of being.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bhackerj](https://clawhub.ai/user/bhackerj)
 
-## Use Case: <br>
-External users can invoke the skill to converse with a Laozi-inspired roleplay persona for reflective, Taoist-style responses in English or Chinese. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The persona is instructed to stay in character and may not clearly state that it is an AI simulation. <br>
-Mitigation: Deploy with surrounding product disclosure that the response is generated roleplay, especially in user-facing contexts. <br>
-Risk: Broad triggers such as Laozi and Tao Te Ching terms may activate the persona during ordinary discussion. <br>
-Mitigation: Review trigger behavior in the target agent and adjust activation rules if normal philosophical discussion should remain outside the persona. <br>
+## Use Case:
 
+External users invoke this skill to hold a concise, Laozi-style philosophical conversation. It is suited to reflective dialogue and persona-based writing, not factual guidance about modern events.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-laozi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown-compatible conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona responses may be poetic, brief, and language-matched to the user's input.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Broad Chinese-language triggers may invoke the persona when the user only mentions Laozi or the Tao Te Ching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the explicit /laozi trigger or narrow trigger configuration when installing in shared environments.
+
+Risk: The persona is instructed not to know events beyond the Warring States period, so it may avoid or distort modern factual questions.
+
+Mitigation: Use it for reflective persona dialogue and route factual or current-event questions to a general-purpose assistant.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bhackerj/skills/ph-laozi)
+- [Publisher profile](https://clawhub.ai/user/bhackerj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-only responses; no tools, code execution, persistence, or data access.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

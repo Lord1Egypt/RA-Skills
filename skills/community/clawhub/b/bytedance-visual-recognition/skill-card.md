@@ -1,45 +1,59 @@
-## Description: <br>
-ByteDance Visual Recognition uses Doubao-Seed multimodal models through Volcengine Ark to recognize images and videos, produce text descriptions, and generate code from visual inputs with automatic model fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multimodal visual recognition via Doubao-Seed and Zhipu GLM for image or video analysis, image or video to code, batch processing, follow-up questions, provider fallback, local media caching, persistent history, and optional IAM usage sync.
 
-## Publisher: <br>
-[etmnb](https://clawhub.ai/user/etmnb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[etmnb](https://clawhub.ai/user/etmnb)
 
-## Use Case: <br>
-Developers and agents use this skill to send selected image or video files to Volcengine/Doubao for visual understanding, OCR-style description, UI-to-code conversion, video-to-text analysis, and follow-up questions on the last recognition result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, videos, and prompts are sent to Volcengine/Doubao for recognition. <br>
-Mitigation: Use the skill only with media you are permitted to share with that cloud service, and avoid confidential, regulated, or sensitive files unless that transfer is approved. <br>
-Risk: Batch mode can process broad directories and upload many local media files. <br>
-Mitigation: Run batch mode only on a reviewed, narrow folder that contains intended files, and avoid broad or sensitive directories. <br>
-Risk: The script keeps local temporary copies, recognition history, token counters, and last-response metadata. <br>
-Mitigation: Clear Temp, vision_history.json, and .last_response after sensitive use, or configure storage paths to controlled locations. <br>
-Risk: The skill requires Ark API credentials and optional Volcengine IAM credentials. <br>
-Mitigation: Use least-privilege credentials, keep them out of shared repositories and logs, and rotate them if exposure is suspected. <br>
+## Use Case:
 
+Developers and external users can use this skill to send selected images or videos to configured Doubao or GLM vision models and receive scene descriptions, extracted text, structured Markdown analysis, or generated code. It also supports batch directory processing and follow-up questions over prior recognition context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/etmnb/bytedance-visual-recognition) <br>
-- [Volcengine Ark Doubao API documentation](https://www.volcengine.com/docs/82379/1569618) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text, with generated code when code mode is selected] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include model name, token usage, remaining daily quota, recognition text or generated code, and status/history summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.6 (source: server release evidence) <br>
+Risk: Selected images, videos, screenshots, documents, and prompts may contain private or sensitive information and are sent to third-party cloud vision APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review media before use, avoid sending regulated or confidential content unless approved, and configure only providers whose data handling terms are acceptable for the deployment.
+
+Risk: API keys and optional IAM credentials are stored in plaintext config.json.
+
+Mitigation: Use least-privileged provider keys, avoid shared or synced folders, rotate exposed keys, and remove unused credentials from config.json.
+
+Risk: Local files such as Temp/, vision_history.json, and .last_response can retain media context or model responses after recognition.
+
+Mitigation: Set the shortest practical retention period, manually delete Temp/, vision_history.json, and .last_response after sensitive sessions, and do not rely on automatic cleanup for GLM follow-up context.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/etmnb/skills/bytedance-visual-recognition)
+- [Volcengine Doubao visual understanding documentation](https://www.volcengine.com/docs/82379/1569618)
+- [Zhipu Open Platform](https://open.bigmodel.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [CLI text and Markdown-style analysis, with generated code when code output is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports image files up to 15 MB, video files up to 50 MB, batch directory processing, follow-up context, local cache files, and persistent history.]
+
+## Skill Version(s):
+
+5.0.1 (source: server release metadata; artifact script and skill tags agree)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

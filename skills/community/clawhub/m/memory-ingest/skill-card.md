@@ -1,42 +1,56 @@
-## Description: <br>
-Process unstructured external input (meeting transcripts, conversation logs, pasted documents) into structured Basic Memory entities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process unstructured external input (meeting transcripts, conversation logs, pasted documents) into structured Basic Memory entities.
 
-## Publisher: <br>
-[phernandez](https://clawhub.ai/user/phernandez) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[phernandez](https://clawhub.ai/user/phernandez)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to turn pasted transcripts, conversation logs, documents, articles, and email threads into structured Basic Memory notes, entities, observations, relations, and action items.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can retain pasted transcripts, emails, and documents verbatim in Basic Memory.
+
+Mitigation: Use it only for material intended to be saved, and redact secrets, regulated data, confidential email, or sensitive transcripts before ingestion.
+
+Risk: Optional web research on extracted entities can send entity details outside the local memory workflow.
+
+Mitigation: Require explicit user opt-in before web research and skip research when the source material already provides sufficient context.
+
+Risk: Extracted entities and observations may introduce incorrect structured knowledge if created without review.
+
+Mitigation: Review proposed entities and approve, skip, or edit them before any new Basic Memory notes are created.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users use this skill to convert pasted meetings, conversations, documents, articles, and email threads into structured Basic Memory notes. It helps preserve source material, identify entities, propose new knowledge graph entries for approval, and capture follow-up actions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Pasted source material may contain secrets, regulated data, or private meeting details that would be retained in Basic Memory. <br>
-Mitigation: Redact sensitive content before ingestion and install the skill only when persistent Basic Memory storage is intended. <br>
-Risk: Optional web research could expose private context if used for confidential meetings, emails, projects, or relationships. <br>
-Mitigation: Skip optional web research for private material and rely on the provided source content unless the user explicitly approves external research. <br>
-Risk: Automatically created entities could add inaccurate or unwanted knowledge graph entries. <br>
-Mitigation: Review proposed notes and entity proposals before approval, and keep the skill's approval step for new entities. <br>
+**Output Format:** [Markdown guidance with Basic Memory note templates and Python-style tool call examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Memory Ingest on ClawHub](https://clawhub.ai/phernandez/memory-ingest) <br>
+**Other Properties Related to Output:** [May preserve source material verbatim and may propose entity creation before writing memory notes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured note examples and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed Basic Memory note content, entity proposals, observations, relations, and action item summaries; new entities require user approval before creation.] <br>
+0.1.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

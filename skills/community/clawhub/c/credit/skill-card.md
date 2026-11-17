@@ -1,41 +1,60 @@
-## Description: <br>
-A credit guidance skill that explains credit-score mechanics, supports credit-building plans, helps prepare disputes for report errors, and guides major borrowing decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive AI agent skill for understanding and managing credit. Explains how credit scores work and what actually moves them, helps you build credit from any starting point, guides you through disputing errors, prepares you for major credit decisions, and helps you use credit as a financial tool rather than a financial trap.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-Consumers use this skill to understand credit reports and scores, plan safe credit-building or rebuilding steps, prepare for mortgage or loan applications, and structure disputes for suspected report errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may share unnecessary personal financial information while asking for credit guidance. <br>
-Mitigation: Share approximate balances, utilization percentages, dates, and generalized facts where possible; redact SSNs, full account numbers, report IDs, addresses, lender-specific identifiers, and legal or fraud documents. <br>
-Risk: Users may rely on advice-only credit guidance for disputes, identity theft, freezes, or major borrowing decisions. <br>
-Mitigation: Confirm actions with official bureaus, lenders, a nonprofit credit counselor, financial advisor, or other qualified professional before acting on high-impact decisions. <br>
+## Use Case:
 
+External users use this skill for credit education, score improvement planning, credit report error disputes, preparation for major borrowing decisions, and ongoing credit health monitoring.
 
-## Reference(s): <br>
-- [Credit skill page on ClawHub](https://clawhub.ai/Duclawbot/credit) <br>
-- [Publisher profile](https://clawhub.ai/user/Duclawbot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text, configuration] <br>
-**Output Format:** [Markdown and conversational text with checklists, plans, prompts, and letter-drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advice-only output; users should redact sensitive personal and financial details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: artifact/skill.json and server release metadata) <br>
+Risk: Users may share sensitive financial or identity information while asking for credit help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use rounded balances, utilization percentages, dates, and non-identifying summaries; do not paste SSNs, account numbers, addresses, login details, full credit reports, or unredacted documents.
+
+Risk: Credit guidance may be mistaken for professional financial, legal, or dispute advice.
+
+Mitigation: Treat output as educational planning support and consult a nonprofit credit counselor, fiduciary financial advisor, or qualified professional before major borrowing or dispute decisions.
+
+Risk: Credit scoring models and lender requirements can change and may vary by individual credit profile.
+
+Mitigation: Verify time-sensitive score, bureau, lender, and reporting requirements with authoritative current sources before acting.
+
+## Reference(s):
+
+- [Credit Skill Page](https://clawhub.ai/duclawbot/skills/credit)
+- [Credit Skill Definition](artifact/skill.md)
+- [Credit Usage Examples](artifact/examples.md)
+- [Credit Heartbeat](artifact/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and conversational text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; output is educational credit guidance based on user-provided non-identifying summaries.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

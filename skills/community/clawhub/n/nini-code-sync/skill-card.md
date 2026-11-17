@@ -1,43 +1,59 @@
-## Description: <br>
-Use this skill to batch-sync Git repositories across machines by pushing end-of-day changes or pulling latest updates at start of day. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Code Sync helps an agent batch-sync Git repositories under a configured base directory by scanning repository status and pushing or pulling changes across multiple projects.
 
-## Publisher: <br>
-[niracler](https://clawhub.ai/user/niracler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[niracler](https://clawhub.ai/user/niracler)
 
-## Use Case: <br>
-Developers and engineers use Code Sync to scan a configured code directory, categorize local Git repositories, batch push clean repositories that are ahead of upstream, batch pull clean repositories that are behind upstream, and handle dirty or divergent repositories interactively. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically push or pull many repositories under the configured code directory. <br>
-Mitigation: Keep the configured base directory narrow, review repository remotes first, and ask for a scan or preview before invoking push mode when bulk publishing would be risky. <br>
-Risk: Remote URLs may expose sensitive credentials if they are embedded directly in repository configuration. <br>
-Mitigation: Review repository remotes and avoid storing secrets in remote URLs before using the skill across a directory tree. <br>
+## Use Case:
 
+Developers and engineers use this skill to keep many local Git repositories synchronized across machines, typically by pushing work at the end of a session or pulling updates at the start of one.
 
-## Reference(s): <br>
-- [ClawHub Code Sync skill page](https://clawhub.ai/niracler/nini-code-sync) <br>
-- [Publisher profile: niracler](https://clawhub.ai/user/niracler) <br>
-- [Release v0.3.0 changelog](https://github.com/niracler/skill/releases/tag/v0.3.0) <br>
-- [Git documentation](https://git-scm.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce repository status summaries, configuration instructions, and interactive prompts for dirty, divergent, or no-upstream repositories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server evidence release.version) <br>
+Risk: Bulk sync actions can push or pull changes across many repositories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the configured base directory and review the repositories to be touched before allowing batch operations.
+
+Risk: Automatic push or pull behavior can affect repositories without per-repository confirmation.
+
+Mitigation: Prefer adding an explicit confirmation step before bulk push or pull operations, especially in shared or production repositories.
+
+Risk: Repository scan output may expose credential-bearing remote URLs.
+
+Mitigation: Avoid Git remote URLs that contain credentials and review summaries before sharing logs or output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niracler/skills/nini-code-sync)
+- [Release v0.3.0 changelog](https://github.com/niracler/skill/releases/tag/v0.3.0)
+- [Git documentation](https://git-scm.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and repository status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The scan helper emits JSON repository status fields including paths, branch names, remotes, dirty counts, upstream status, ahead/behind counts, and fetch errors.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

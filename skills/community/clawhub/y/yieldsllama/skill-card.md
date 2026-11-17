@@ -1,42 +1,58 @@
-## Description: <br>
-Query DeFi yield opportunities across chains using the yieldsllama CLI, powered by the DeFi Llama API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query DeFi yield opportunities across chains using the yieldsllama CLI, powered by the DeFi Llama API.
 
-## Publisher: <br>
-[lolieatapple](https://clawhub.ai/user/lolieatapple) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lolieatapple](https://clawhub.ai/user/lolieatapple)
 
-## Use Case: <br>
-External users and developers use this skill to install and run a third-party CLI that compares DeFi yield pools by chain, asset, APY, TVL, and exposure type, then summarize the results with yield-risk context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow asks users to build and run a third-party Rust CLI. <br>
-Mitigation: Review the repository before installation, pin a known commit, and install to a user-local path when possible. <br>
-Risk: The CLI uses local .env and data.json files in the current working directory. <br>
-Mitigation: Run commands from a dedicated directory so generated configuration and cached data do not affect another project. <br>
+## Use Case:
 
+External users and developers use this skill to query, filter, sort, and compare DeFi yield pools by token, chain, APY, TVL, and asset exposure. It helps an agent present yield comparisons with context about APY sustainability, liquidity, chain risk, and protocol risk.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lolieatapple/yieldsllama) <br>
-- [Rust installation tools](https://www.rust-lang.org/tools/install) <br>
-- [DeFi Llama yields API endpoint](https://yields.llama.fi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or refresh local .env and data.json files when following the documented CLI workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Setup guidance asks users to execute mutable remote code before installing dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the installer and source first, use a pinned reviewed release or commit, and verify checksums or signatures before building.
+
+Risk: The documented install path copies an unverified built binary into a system-wide PATH location.
+
+Mitigation: Prefer a user-local install path such as $HOME/.local/bin and install only after reviewing the source and dependencies.
+
+Risk: Yield data can be volatile and high APY pools may reflect low liquidity, temporary incentives, or elevated protocol and chain risk.
+
+Mitigation: Present APY with TVL, base-versus-reward APY, chain, and protocol context, and avoid treating query results as investment advice.
+
+## Reference(s):
+
+- [Rust Toolchain Installation](https://www.rust-lang.org/tools/install)
+- [DeFi Llama Yields API Endpoint](https://yields.llama.fi)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Markdown, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and comparison tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use a local data.json cache for up to 12 hours and depends on DeFi Llama API availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

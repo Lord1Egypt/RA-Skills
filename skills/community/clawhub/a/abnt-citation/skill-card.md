@@ -1,40 +1,49 @@
-## Description: <br>
-Gera referencias bibliograficas no padrao ABNT NBR 6023 a partir de dados informados, com suporte para livros, artigos, sites, teses, leis e outros tipos de fonte. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gera referências bibliográficas no padrão ABNT NBR 6023 a partir de dados informados. Suporta livros, artigos, sites, teses, leis, e mais.
 
-## Publisher: <br>
-[andreataide86](https://clawhub.ai/user/andreataide86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andreataide86](https://clawhub.ai/user/andreataide86)
 
-## Use Case: <br>
-Students, researchers, professors, librarians, and other external users use this skill to generate or check ABNT-formatted references and author-date citations from bibliographic details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incomplete or incorrect bibliographic inputs can produce incorrect ABNT references or citations. <br>
-Mitigation: Ask for missing required fields, especially access dates for web sources, and review generated references before academic or professional submission. <br>
-Risk: The skill may respond in Brazilian Portuguese and may activate on broad formatting or citation requests. <br>
-Mitigation: Use it for ABNT citation tasks and confirm the desired citation standard when a request is ambiguous. <br>
+## Use Case:
 
+Students, researchers, professors, librarians, and other academic users use this skill to generate or validate ABNT-formatted bibliography entries and author-date citations in Brazilian Portuguese.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andreataide86/abnt-citation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and plain text in Brazilian Portuguese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces formatted ABNT references, author-date citations, and validation feedback; no executable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Generated references or citation validations may be inaccurate or incomplete for the applicable ABNT standard.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated references against the applicable ABNT standard before use in academic or professional work.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andreataide86/skills/abnt-citation)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text, Guidance]
+
+**Output Format:** [Brazilian Portuguese Markdown with formatted references, citations, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs ABNT NBR 6023 references, ABNT NBR 10520 author-date citations, and concise correction guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

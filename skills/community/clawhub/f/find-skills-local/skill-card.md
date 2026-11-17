@@ -1,41 +1,54 @@
-## Description: <br>
-Find Skills Local helps agents discover, compare, and offer to install relevant skills, preferring skillhub for Chinese users and falling back to clawhub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Highest-priority skill discovery flow for finding, comparing, and installing skills, with a Chinese-user search order that prefers skillhub and falls back to clawhub.
 
-## Publisher: <br>
-[morrison230](https://clawhub.ai/user/morrison230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[morrison230](https://clawhub.ai/user/morrison230)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want an agent to find relevant reusable skills, compare options, present install commands, and guide installation decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing skills found through registries can introduce third-party supply-chain risk. <br>
-Mitigation: Review the registry source, publisher, version, and risk notes before installing any recommended skill. <br>
-Risk: Locale-based registry preference may select skillhub before clawhub for Chinese users. <br>
-Mitigation: Specify the desired registry explicitly when a fixed registry source is required. <br>
+## Use Case:
 
+Developers and agents use this skill to identify likely relevant skills, present install options, and guide installation from skillhub or clawhub while exposing source and risk signals.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/morrison230/find-skills-local) <br>
-- [Publisher profile](https://clawhub.ai/user/morrison230) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Presents skill options, registry source, install commands, and risk notes before installation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Skill discovery and fallback behavior can lead users toward third-party packages whose source, publisher, or version they have not reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installation, confirm the exact registry, package slug, publisher, version, verification signals, and install command.
+
+Risk: Installing a suggested skill without reviewing its contents can introduce incorrect guidance or unsafe workflow behavior into an agent.
+
+Mitigation: Review the package contents and security signals before allowing an agent to install or use the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/morrison230/skills/find-skills-local)
+- [Publisher profile](https://clawhub.ai/user/morrison230)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and install recommendations should include source, version, publisher, and notable risk signals when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

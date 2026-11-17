@@ -60,7 +60,13 @@ On consume failure, stdout JSON includes **`skill_status`: `"failed"`**, **`fail
 |------------|---------|------------------------|
 | **60001** | `membership_required` | User needs membership/subscription — not fixable by changing `--task` / **`--params`** alone. If the API **`detail`** / `msg` contains an `https` link, stdout may include **`pricing_url`** (parsed from that text); the agent **must** surface that link or the full **`detail`** to the user. |
 | **60002** | `credit_required` | User needs more credits or a subscription. Same as 60001: follow server **`detail`**; use JSON **`pricing_url`** when present (extracted from **`detail`**), otherwise paste/quote **`detail`** so links in the API message are visible. |
-| **Other** (including **-1** if the server sent a non-numeric code) | `consume_param_error` | Treat as invocation/parameters: check **`--task`**, **`--input`**, **`--params`** against SKILL.md and remote config. **Do not** instruct recharge unless **`api_code`** is 60002. |
+| **10103** + exact `This media URL is not supported. Please upload the image or video file directly and try again.` message | `input_unavailable` | The server rejected the media URL domain. Ask the user to upload the image or video file directly and do not retry the same URL. Other 10103 messages are not matched by this rule. |
+| **Other with `notices`** | `consume_denied` | The non-zero API code already makes the operation fail. Surface every notice message and action link even when its notice code is unknown, and follow the server-provided next action without retrying unchanged. No dedicated numeric API code is required just to display a notice. |
+| **Other without `notices`** (including **-1** if the server sent a non-numeric code) | `consume_param_error` | Treat as invocation/parameters: check **`--task`**, **`--input`**, **`--params`** against SKILL.md and remote config. **Do not** instruct recharge unless **`api_code`** is 60002. |
+
+## Server notices
+
+Config, consume, and task responses may add a top-level **`notices`** array. The CLI carries valid notices into its final stdout JSON without requiring the Skill to recognize their codes. Include every non-empty **`message`** in the user-facing reply, preserve a completed result when a notice is only a warning, and use **`skill_status`** / **`api_code`** as the failure source of truth. Deduplicate repeated notices by **`dedupe_key`** within one reply and expose **`action_url`** when present.
 
 ## SIGKILL / host timeout
 

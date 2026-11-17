@@ -1,39 +1,53 @@
-## Description: <br>
-Generate elevator pitch for conference posters. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate elevator pitch for conference posters.
 
-## Publisher: <br>
-[googolme](https://clawhub.ai/user/googolme) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googolme](https://clawhub.ai/user/googolme)
 
-## Use Case: <br>
-Researchers, students, and presenters use this skill to draft short, ready-to-practice elevator pitches for academic poster sessions from a poster title and selected duration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Poster titles may contain sensitive or unpublished research information that is printed in terminal output. <br>
-Mitigation: Use non-sensitive titles or placeholders when drafting pitches for confidential work. <br>
-Risk: The generated pitch text is template-based and may be incomplete or misleading without presenter review. <br>
-Mitigation: Review and edit the generated script before practicing, sharing, or presenting it. <br>
+## Use Case:
 
+Researchers, students, and conference presenters use this skill to draft short practice scripts for academic poster sessions at 30, 60, or 180 seconds.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text pitch script printed to the terminal] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 30-second, 60-second, and 180-second pitch durations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill runs a local Python script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the command and run it in a sandboxed workspace before relying on generated pitch text.
+
+Risk: The documentation mentions saved output files, but the inspected implementation only prints pitch text.
+
+Mitigation: Do not rely on file persistence unless the implementation is updated and rescanned.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googolme/skills/conference-poster-pitch)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text pitch script with a short heading]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports 30, 60, and 180 second pitch lengths.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

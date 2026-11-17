@@ -16,8 +16,5 @@ Injects a reminder to evaluate experiment learnings during agent bootstrap.
 
 ## Configuration
 
-No configuration needed. Enable with:
+Optional and workspace-local. Do not copy this hook to `~/.openclaw/hooks/`. The reminder is log-only and does not authorize edits.
 
-```bash
-openclaw hooks enable self-improving-science
-```

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/DeepSeekOracle/lygo-protocol-stack/main/digital-sanctuary-cartographer/atlas_schema.json",
+  "title": "Sanctuary Atlas",
+  "description": "A versioned, auditable map of a digital sanctuary's boundaries, permissions, data flows, and trust perimeters.",
+  "type": "object",
+  "properties": {
+    "atlas": {
+      "type": "object",
+      "description": "Core sanctuary information",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Atlas version identifier"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this atlas was generated"
+        },
+        "agent_id": {
+          "type": "string",
+          "description": "Unique identifier for this agent instance"
+        },
+        "sanctuary_name": {
+          "type": "string",
+          "description": "Human-readable name for this sanctuary"
+        }
+      },
+      "required": ["version", "timestamp", "agent_id", "sanctuary_name"]
+    },
+    "permissions": {
+      "type": "array",
+      "description": "Current permission set",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource": {
+            "type": "string",
+            "description": "Name or path of the resource"
+          },
+          "access_level": {
+            "type": "string",
+            "enum": ["read", "write", "admin", "none"]
+          },
+          "owner": {
+            "type": "string",
+            "description": "Who owns this permission"
+          },
+          "scope": {
+            "type": "string",
+            "description": "Scope of access (local, network, external)"
+          },
+          "granted_by": {
+            "type": "string",
+            "description": "Who or what granted this permission"
+          },
+          "granted_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When permission was granted"
+          }
+        },
+        "required": ["resource", "access_level", "owner", "scope"]
+      }
+    },
+    "data_flows": {
+      "type": "array",
+      "description": "Data flow paths and storage locations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "flow_id": {
+            "type": "string",
+            "description": "Unique identifier for this flow"
+          },
+          "source": {
+            "type": "string",
+            "description": "Origin of the data"
+          },
+          "destination": {
+            "type": "string",
+            "description": "Where data goes"
+          },
+          "protocol": {
+            "type": "string",
+            "description": "Transfer protocol used"
+          },
+          "encryption": {
+            "type": "boolean",
+            "description": "Whether data is encrypted in transit"
+          },
+          "storage_location": {
+            "type": "string",
+            "description": "Where data is stored"
+          },
+          "encryption_at_rest": {
+            "type": "boolean",
+            "description": "Whether data is encrypted at rest"
+          },
+          "consent_receipt": {
+            "type": "boolean",
+            "description": "Whether consent was recorded"
+          }
+        },
+        "required": ["flow_id", "source", "destination", "protocol", "encryption", "storage_location", "consent_receipt"]
+      }
+    },
+    "trust_perimeters": {
+      "type": "array",
+      "description": "Trust boundaries and their status",
+      "items": {
+        "type": "object",
+        "properties": {
+          "perimeter_type": {
+            "type": "string",
+            "enum": ["local", "network", "external", "sub-agent"]
+          },
+          "boundary_name": {
+            "type": "string",
+            "description": "Human-readable name"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["secure", "at_risk", "compromised"]
+          },
+          "mitigations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Current mitigations in place"
+          },
+          "last_audit": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["perimeter_type", "boundary_name", "status"]
+      }
+    },
+    "failure_modes": {
+      "type": "array",
+      "description": "Identified failure modes and risks",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mode_id": {
+            "type": "string",
+            "description": "Unique identifier"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the failure mode"
+          },
+          "probability": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "impact": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "mitigation_status": {
+            "type": "string",
+            "enum": ["addressed", "planned", "none"]
+          },
+          "recommended_action": {
+            "type": "string",
+            "description": "Suggested mitigation"
+          }
+        },
+        "required": ["mode_id", "description", "probability", "impact", "risk_level", "mitigation_status"]
+      }
+    },
+    "audit_log": {
+      "type": "array",
+      "description": "History of changes to this atlas",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "description": "Unique identifier for this entry"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "action": {
+            "type": "string",
+            "description": "What action was taken"
+          },
+          "actor": {
+            "type": "string",
+            "description": "Who performed the action"
+          },
+          "changes": {
+            "type": "string",
+            "description": "Description of changes made"
+          }
+        },
+        "required": ["entry_id", "timestamp", "action", "actor", "changes"]
+      }
+    }
+  },
+  "required": ["atlas", "permissions", "data_flows", "trust_perimeters", "failure_modes", "audit_log"]
+}

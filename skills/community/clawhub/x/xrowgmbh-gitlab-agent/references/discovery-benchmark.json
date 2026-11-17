@@ -1,0 +1,84 @@
+{
+  "method": "offline full-main replay with fixed latency per GitLab API request; not live GitLab throughput",
+  "python": "3.12.15",
+  "platform": "Linux-6.12.0-174.el10.x86_64-x86_64-with-glibc2.39",
+  "fixture": {
+    "projects": 10,
+    "assigned_items": 75,
+    "latency_ms": 25,
+    "runs": 5,
+    "includes": [
+      "denied membership",
+      "paginated endpoints",
+      "collaborator scans",
+      "dependency links"
+    ]
+  },
+  "output_equivalent": true,
+  "logical_read_coverage_equivalent": true,
+  "returned_items": 68,
+  "logical_reads_per_run": 176,
+  "requests_per_run": {
+    "baseline": [
+      176,
+      176,
+      176,
+      176,
+      176
+    ],
+    "candidate": [
+      142,
+      142,
+      142,
+      142,
+      142
+    ]
+  },
+  "measurements": {
+    "baseline": {
+      "seconds": [
+        4.487670871894807,
+        4.478032469749451,
+        4.482424155343324,
+        5.021548334974796,
+        4.526444429066032
+      ],
+      "median_seconds": 4.487670871894807,
+      "peak_concurrent_reads": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    "candidate": {
+      "seconds": [
+        1.271823053713888,
+        1.2661810768768191,
+        1.2693880097940564,
+        1.2667634366080165,
+        1.2684280690737069
+      ],
+      "median_seconds": 1.2684280690737069,
+      "peak_concurrent_reads": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    }
+  },
+  "speedup": 3.5379782120179755,
+  "sources": {
+    "baseline": {
+      "file": "baseline.py",
+      "sha256": "8247f5c260df355519ca123c2d1cf66cbcff61d1a0f36bf99e877d18bc9e510e"
+    },
+    "candidate": {
+      "file": "list-active-items.py",
+      "sha256": "4ecb9f4b516c7d7e8893c41869756cf981861739ad33f8ae9c07ed045af4f9b5"
+    }
+  }
+}

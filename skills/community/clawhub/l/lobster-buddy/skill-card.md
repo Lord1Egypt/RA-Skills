@@ -1,41 +1,54 @@
-## Description: <br>
-Lobster Buddy adds a deterministic RPG-style virtual pet based on the user's ID, including species, rarity, stats, shiny variants, naming, and occasional pet-style comments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+麻薯的电子宠物系统。基于用户ID确定性生成的RPG风格宠物，有物种、稀有度、属性和闪光机制。当用户问"我的宠物"、"看看我的buddy"、"抽宠物"时触发。
 
-## Publisher: <br>
-[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangxiaofei860208-source](https://clawhub.ai/user/wangxiaofei860208-source)
 
-## Use Case: <br>
-Agent users use this skill to view and personalize a lightweight virtual pet, including pet attributes, a custom name, and occasional buddy-style comments during conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store a local buddy state file containing the user ID and pet details. <br>
-Mitigation: Install only when local buddy-state storage is acceptable, and review or remove that state according to the user's data-retention preferences. <br>
-Risk: The skill may add occasional pet-style comments to agent replies. <br>
-Mitigation: Disable or avoid the skill in workflows where extra conversational comments would be distracting or inappropriate. <br>
+## Use Case:
 
+External users use this skill to add a persistent RPG-style electronic pet to agent conversations, including pet display, custom naming, and occasional pet comments.
 
-## Reference(s): <br>
-- [Lobster Buddy on ClawHub](https://clawhub.ai/wangxiaofei860208-source/lobster-buddy) <br>
-- [Publisher profile](https://clawhub.ai/user/wangxiaofei860208-source) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown text with optional local JSON-style buddy state] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist a local buddy-state file containing the user ID and pet details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill keeps a small persistent pet profile tied to the user ID.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the local memory behavior before deployment and allow users or operators to review or remove the stored pet profile.
+
+Risk: The pet may occasionally add comments to replies.
+
+Mitigation: Keep trigger and participation behavior clear so users understand when the pet persona may appear.
+
+## Reference(s):
+
+- [Lobster Buddy ClawHub release](https://clawhub.ai/wangxiaofei860208-source/skills/lobster-buddy)
+- [Publisher profile](https://clawhub.ai/user/wangxiaofei860208-source)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text with pet status panels and conversational comments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May keep a small local pet profile tied to the user ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

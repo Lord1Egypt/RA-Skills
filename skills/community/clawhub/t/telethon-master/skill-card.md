@@ -1,42 +1,58 @@
-## Description: <br>
-Telethon Master helps an agent operate a Telegram user account through a Telethon bridge for messaging, chat history, media transfer, channel actions, statistics, and ElevenLabs voice notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Telethon Master helps an agent operate a Telegram account through Telethon MCP tools for messaging, chat history, media handling, channel management, and voice note generation.
 
-## Publisher: <br>
-[producedbysavant](https://clawhub.ai/user/producedbysavant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[producedbysavant](https://clawhub.ai/user/producedbysavant)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they intentionally want an agent to read from and act through a real Telegram user account, including messages, files, reactions, channel management, and voice-note generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private Telegram messages and downloaded media. <br>
-Mitigation: Require explicit user confirmation for reads and downloads, and avoid enabling it for private chats unless necessary. <br>
-Risk: The skill can perform write and destructive Telegram actions such as sends, edits, deletes, forwards, joins, button clicks, and channel changes. <br>
-Mitigation: Configure TG_ALLOWED_CHAT_IDS before use and require confirmation before write, join, click, forward, delete, and channel-management actions. <br>
-Risk: The skill depends on sensitive local services, sessions, credentials, and a network tunnel. <br>
-Mitigation: Verify that the local bridge, session, VPS tunnel, and .env credentials are owned by the operator and are properly secured before installation. <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent interact with Telegram through a Telethon bridge, including sending messages, reading and searching chats, forwarding or deleting messages, managing channels, downloading media, and generating ElevenLabs voice notes. It is best suited for authorized account workflows where broad Telegram access is acceptable and scoped by allowlists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/producedbysavant/telethon-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool-call examples, configuration snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct an agent to perform Telegram reads, writes, media downloads, channel changes, and local bridge maintenance through configured MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server evidence) <br>
+Risk: The skill can expose broad Telegram account access, including private chats and account-changing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated Telegram account where possible, restrict allowed chat IDs, and verify that read and write allowlists are enforced before deployment.
+
+Risk: Destructive or state-changing operations such as deletes, joins, forwards, media downloads, channel changes, and marking messages read can affect real conversations.
+
+Mitigation: Require explicit user confirmation before executing destructive or account-changing Telegram operations.
+
+Risk: Private message content, downloaded media, session credentials, and ElevenLabs TTS inputs may contain sensitive data.
+
+Mitigation: Do not print environment files or session secrets, avoid logging message contents, and do not send private or sensitive text to ElevenLabs unless the account owner authorizes it.
+
+## Reference(s):
+
+- [Telethon Master on ClawHub](https://clawhub.ai/producedbysavant/skills/telethon-master)
+- [ElevenLabs Voices API](https://api.elevenlabs.io/v1/voices)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with tool names, JSON snippets, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Telegram MCP tool calls, configuration values, operational commands, and safety guidance for account-scoped workflows.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

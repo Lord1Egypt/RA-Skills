@@ -1,40 +1,52 @@
-## Description: <br>
-Final quality validation gate for artifacts before human review, covering factual accuracy, tone, completeness, structure, operational soundness, and sensitive data handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Final quality validation gate for any artifact before human review.
 
-## Publisher: <br>
-[corbin-breton](https://clawhub.ai/user/corbin-breton) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[corbin-breton](https://clawhub.ai/user/corbin-breton)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and content authors use this skill as a final QA gate before human review or publication of documents, PRDs, skills, blog posts, and code artifacts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill describes itself as read-only but also directs agents to fix critical and major issues when a gate fails.
+
+Mitigation: Require explicit user approval before modifying reviewed artifacts; otherwise limit use to reporting findings.
+
+Risk: The skill may create QA report files in the workspace or evidence directory.
+
+Mitigation: Run it in an appropriate workspace and review generated reports for sensitive content before sharing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, writers, and release reviewers use this skill to validate documents, code artifacts, skills, PRDs, and publication drafts before human review or release. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance, files]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may push the agent beyond read-only review by asking it to fix failed artifacts or write QA reports. <br>
-Mitigation: Ask the agent to produce findings and proposed edits first, and review any diff before allowing changes or saved reports. <br>
-Risk: QA reports may include sensitive content copied or summarized from reviewed artifacts. <br>
-Mitigation: Review report contents before sharing or publishing, and avoid saving confidential details unless they are required for the review. <br>
+**Output Format:** [Markdown QA gate report with a PASS, PASS WITH FIXES, or FAIL verdict and severity findings.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/corbin-breton/qa-gate) <br>
+**Other Properties Related to Output:** [May write a qa-gate/YYYY-MM-DD-<artifact-slug>.md report relative to the workspace or evidence directory.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown validation report with PASS, PASS WITH FIXES, or FAIL verdict and severity-tagged findings.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the agent to write a QA report and to fix or propose fixes for critical and major findings.] <br>
+1.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

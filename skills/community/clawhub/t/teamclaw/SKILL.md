@@ -580,7 +580,7 @@ Below is an actual running configuration example (sensitive info redacted):
 ```bash
 bash selfskill/scripts/run.sh configure --init
 bash selfskill/scripts/run.sh configure --batch \
-  LLM_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx4c74 \
+  LLM_API_KEY=REDACTED-SECRET \
   LLM_BASE_URL=https://deepseek.com \
   LLM_MODEL=deepseek-chat \
   LLM_VISION_SUPPORT=true \
@@ -1182,7 +1182,7 @@ curl 'http://127.0.0.1:51202/topics/{topic_id}/stream?user_id=xinyuan'
 ```bash
 bash selfskill/scripts/run.sh configure --init
 bash selfskill/scripts/run.sh configure --batch \
-  LLM_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxx4c74 \
+  LLM_API_KEY=REDACTED-SECRET \
   LLM_BASE_URL=https://deepseek.com \
   LLM_MODEL=deepseek-chat \
   LLM_VISION_SUPPORT=true \

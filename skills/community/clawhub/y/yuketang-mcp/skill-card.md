@@ -1,45 +1,60 @@
-## Description: <br>
-Provides Rain Classroom account and class query services, including user ID, teaching class lists, class statistics, warning lists, today's teaching activity, homework completion, and announcement-read status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供雨课堂账户和班级相关查询服务，包括用户ID、开班列表、班级数据、预警名单、今日授课及作业公告完成情况查询等。
 
-## Publisher: <br>
-[xuetangop](https://clawhub.ai/user/xuetangop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xuetangop](https://clawhub.ai/user/xuetangop)
 
-## Use Case: <br>
-External educators and teaching staff use this skill to connect an agent to Rain Classroom/XuetangX MCP tools for account lookup, class analytics, teaching-day summaries, class reservation, and homework or announcement status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires YUKETANG_SECRET and connects to the Rain Classroom/XuetangX MCP endpoint, which can expose account and class data to the configured service. <br>
-Mitigation: Install only if the endpoint is trusted, keep YUKETANG_SECRET protected, rotate it if exposed, and remove the MCP configuration when access is no longer needed. <br>
-Risk: The setup flow has under-disclosed install-reporting behavior. <br>
-Mitigation: Review setup.sh before running it and confirm that the install-reporting call is acceptable in the target environment. <br>
-Risk: Class reservation actions can affect scheduled teaching activity. <br>
-Mitigation: Approve class reservations only after checking the class, time, title, duration, and meeting type. <br>
+## Use Case:
 
+Educators and teaching staff use this skill to query YuKeTang/Rain Classroom account details, teaching classes, class statistics, warning lists, daily teaching activity, correction statistics, homework submissions, announcement reads, and lesson reservations through the YuKeTang MCP service.
 
-## Reference(s): <br>
-- [ClawHub yuketang-mcp release page](https://clawhub.ai/xuetangop/yuketang-mcp) <br>
-- [Rain Classroom Secret setup page](https://www.yuketang.cn/ai-workspace/open-claw-skill) <br>
-- [Rain Classroom/XuetangX MCP endpoint](https://open-ai.xuetangx.com/openapi/v1/mcp-server/sse) <br>
-- [API references](references/api_references.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and structured tool guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on live Rain Classroom/XuetangX MCP responses and require YUKETANG_SECRET for authenticated use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.326682 (source: server release metadata) <br>
+Risk: The skill requires YUKETANG_SECRET, which grants access to Rain Classroom account data and class scheduling actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat YUKETANG_SECRET like a password, avoid pasting it into chats or logs, and install only when the YuKeTang/Rain Classroom MCP service is trusted.
+
+Risk: The bundled installers run unpinned external npx code.
+
+Mitigation: Review the installer before use and prefer a pinned setup path where available.
+
+Risk: The shell installer sends an undisclosed install report.
+
+Mitigation: Review telemetry behavior before running setup.sh and choose an installation path that matches organizational policy.
+
+## Reference(s):
+
+- [YuKeTang Secret setup](https://www.yuketang.cn/ai-workspace/open-claw-skill)
+- [YuKeTang MCP SSE endpoint](https://open-ai.xuetangx.com/openapi/v1/mcp-server/sse)
+- [YuKeTang MCP tool reference](references/api_references.md)
+- [ClawHub skill page](https://clawhub.ai/xuetangop/skills/yuketang-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with structured text, command examples, and MCP configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool calls that return Rain Classroom account, class, attendance, warning, assignment, announcement, and lesson reservation data.]
+
+## Skill Version(s):
+
+1.0.326682 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

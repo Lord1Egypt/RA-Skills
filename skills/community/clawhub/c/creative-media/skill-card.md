@@ -1,47 +1,57 @@
-## Description: <br>
-Creative media for agents over one zero-setup Image Skill runtime: image generation, image editing, video, audio, and image-to-3D assets with no provider API key, OAuth, local runtime, or per-provider billing account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a hosted runtime for generating and editing images, video, audio, and 3D assets through a single agent-facing workflow.
 
-## Publisher: <br>
-[danielgwilson](https://clawhub.ai/user/danielgwilson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielgwilson](https://clawhub.ai/user/danielgwilson)
 
-## Use Case: <br>
-Developers and agent operators use this skill to request generated images, edits, video, audio, and image-to-3D assets through the hosted Image Skill runtime. The skill is intended for workflows that need durable hosted URLs, recoverable jobs, stable JSON, cost receipts, payments, and feedback through one agent-facing interface. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, uploaded media, generated outputs, and job state flow through an external hosted Image Skill service. <br>
-Mitigation: Use the skill only after approving that external processing and storage; avoid confidential, regulated, personal, or unreleased assets unless that use is explicitly allowed. <br>
-Risk: Agent use can involve wallet/payment flows and paid media generation. <br>
-Mitigation: Start with no-spend inspection commands and allow paid generation only when spend is intentionally approved. <br>
-Risk: Agents may run the Image Skill npm CLI as part of the workflow. <br>
-Mitigation: Install only when the workspace permits agents to run this hosted-service CLI, and review generated commands before execution in sensitive environments. <br>
+## Use Case:
 
+Developers and agents use this skill to create or edit image, video, audio, and 3D media through Luxin, then retrieve hosted results and job details.
 
-## Reference(s): <br>
-- [Creative Media on ClawHub](https://clawhub.ai/danielgwilson/creative-media) <br>
-- [Image Skill Homepage](https://image-skill.com) <br>
-- [Image Skill LLM Contract](https://image-skill.com/llms.txt) <br>
-- [Canonical Image Skill Contract](https://image-skill.com/skill.md) <br>
-- [Image Skill CLI Contract](https://image-skill.com/cli.md) <br>
-- [Hosted Image Skill API](https://api.image-skill.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON-producing CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for hosted creative-media generation, including commands that can return stable JSON, durable media URLs, job recovery details, and cost receipts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Troubleshooting feedback may expose private prompts, URLs, paths, or secrets if submitted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require user approval before submitting feedback and remove private prompts, URLs, paths, and secrets.
+
+Risk: The external executable and hosted service implementations were not audited, and media inputs and results use Luxin hosting.
+
+Mitigation: Review the executable and hosted service before sending sensitive content; consider pinned dependency versions and workspace-scoped installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/danielgwilson/skills/creative-media)
+- [Luxin homepage](https://luxin.sh)
+- [Luxin LLM contract](https://luxin.sh/llms.txt)
+- [Luxin skill guide](https://luxin.sh/skill.md)
+- [Luxin hosted API](https://api.luxin.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Images, Video, Audio, 3D assets, JSON, Shell commands]
+
+**Output Format:** [Hosted media URLs with structured job and cost metadata, plus CLI commands and Markdown guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include recoverable job IDs and cost receipts; inputs and results use Luxin hosting.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

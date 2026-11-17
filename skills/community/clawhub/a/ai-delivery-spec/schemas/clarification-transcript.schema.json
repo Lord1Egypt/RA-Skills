@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/franklinxkk/ai-delivery-spec/schemas/clarification-transcript.schema.json",
+  "title": "AI Delivery Spec Clarification Transcript",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "transcript_id", "project_id", "turns"],
+  "properties": {
+    "schema_version": { "enum": ["5.0.0", "5.3.1", "5.3.2", "5.3.3", "5.4.0"] },
+    "transcript_id": { "type": "string", "pattern": "^TRN-[A-Z0-9-]+$" },
+    "project_id": { "type": "string", "minLength": 1 },
+    "turns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["turn_id", "unknown_id", "question", "answer", "decision_owner", "status"],
+        "properties": {
+          "turn_id": { "type": "string", "pattern": "^TURN-[A-Z0-9-]+$" },
+          "unknown_id": { "type": "string", "pattern": "^UNK-[A-Z0-9-]+$" },
+          "question": { "type": "string", "minLength": 1 },
+          "answer": { "type": "string", "minLength": 1 },
+          "decision_owner": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["answered", "accepted_risk"] },
+          "evidence_refs": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "question_kind": { "enum": ["fact", "direction"] },
+          "recommendation": { "type": "string", "minLength": 1 },
+          "recommendation_evidence_refs": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "tradeoff": { "type": "string", "minLength": 1 },
+          "affected_refs": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "blocks_stage": { "enum": ["clarify", "specify", "review", "baseline", "implementation", "acceptance"] },
+          "reversal_path": { "type": "string", "minLength": 1 },
+          "branch_ref": { "type": "string", "pattern": "^TURN-[A-Z0-9-]+$" }
+        }
+      }
+    }
+  }
+}

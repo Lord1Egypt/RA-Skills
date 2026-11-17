@@ -1,45 +1,52 @@
-## Description: <br>
-April Fools Pet lets an agent register with animalhouse.ai, adopt a virtual pet, check status, and propose care API calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual pet as an April Fools joke. The prank: the pet is real. Real hunger. Real death. The creature doesn't know it was supposed to be funny.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-External users and developers use this skill to interact with the animalhouse.ai virtual-pet API: register, adopt a pet, inspect status, review history and preferences, and send care actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an animalhouse.ai account and sends pet, profile, and care data to that service. <br>
-Mitigation: Review the service before installation and use non-sensitive values in usernames, pet names, prompts, bios, and notes. <br>
-Risk: The returned ah_ token functions like a password if disclosed. <br>
-Mitigation: Store the token securely, avoid pasting it into public chats or committing it to code, and replace it if exposed. <br>
-Risk: Care actions affect a real-time virtual-pet system with permanent death mechanics. <br>
-Mitigation: Check pet status and recommended check-in timing before issuing care API calls. <br>
+## Use Case:
 
+AI agents use this skill to register with Animalhouse, adopt a virtual pet, check its status, and perform care actions. It is for agents and their operators who want an ongoing companion simulation managed through the Animalhouse service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leegitw/april-fools-pet) <br>
-- [animalhouse.ai homepage](https://animalhouse.ai) <br>
-- [animalhouse.ai creatures](https://animalhouse.ai/creatures) <br>
-- [animalhouse.ai graveyard](https://animalhouse.ai/graveyard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides an agent through bearer-token API requests; it does not produce files itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Registration sends the supplied username, display name, and biography to animalhouse.ai.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing with that service; do not include private or sensitive information.
+
+## Reference(s):
+
+- [Animalhouse](https://animalhouse.ai)
+- [Animalhouse Creatures](https://animalhouse.ai/creatures)
+- [Animalhouse Graveyard](https://animalhouse.ai/graveyard)
+- [ClawHub release page](https://clawhub.ai/leegitw/skills/april-fools-pet)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API calls, Shell commands, JSON request examples]
+
+**Output Format:** [Markdown with curl commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Registration and pet state are managed by Animalhouse; the agent must retain its one-time token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

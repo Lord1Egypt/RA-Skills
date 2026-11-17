@@ -1,48 +1,57 @@
-## Description: <br>
-Verifies AI agent trust scores and reputation via Towel Protocol for trust checks, reputation lookups, credential imports, and trust-tier display in multi-agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verify AI agent trust scores and reputation via Towel Protocol for agent-to-agent workflows, reputation lookups, credential imports, and trust-tier display.
 
-## Publisher: <br>
-[leo-guinan](https://clawhub.ai/user/leo-guinan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo-guinan](https://clawhub.ai/user/leo-guinan)
 
-## Use Case: <br>
-Developers and agent operators use this skill to check whether an AI agent has a Towel trust record before relying on its output, and to surface trust tiers in multi-agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled shell scripts can use an authenticated GitHub account to create a private repository and maintain a persistent inter-agent channel. <br>
-Mitigation: Review the scripts and intended GitHub organization before execution; run only when repository creation and persistent channel setup are desired. <br>
-Risk: Handshake seeds and trust-channel material may be committed to the created repository. <br>
-Mitigation: Limit repository access, inspect committed handshake material, and rotate exposed seeds if the workflow was run unintentionally. <br>
-Risk: Git remotes may embed GitHub access tokens after the setup script runs. <br>
-Mitigation: Inspect git remotes after execution and rotate any exposed GitHub credentials. <br>
-Risk: API downtime or missing records can produce an unknown verification state. <br>
-Mitigation: Treat unknown, missing, or unreachable Towel records as unverified and require local allowlists or human review before relying on the agent output. <br>
+## Use Case:
 
+Developers and operators use this skill to check external AI agent trust tiers before acting on agent output, to retrieve agent reputation profiles, and to add trust context to multi-agent workflows.
 
-## Reference(s): <br>
-- [Towel Protocol](https://towel.metaspn.network) <br>
-- [Towel Protocol Spec](https://towel.metaspn.network/spec) <br>
-- [Verified List](https://towel.metaspn.network/list) <br>
-- [Live API List Endpoint](https://towel.metaspn.network/api/v1/list) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leo-guinan/towel-protocol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with API examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include public API calls for reputation lookup and optional local shell commands for trust-channel workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Bundled shell scripts can create private GitHub repositories, push data, and persist GitHub tokens when run with an authenticated GitHub CLI session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution, run them only with an intended GitHub account and organization, and rotate or remove tokens if a remote URL stores credentials.
+
+Risk: Generated handshake seeds and agent identifiers may be committed or pushed by the artifact scripts.
+
+Mitigation: Treat generated seeds as secrets, avoid sensitive internal agent identifiers, and remove or rotate any seed that has been committed or shared.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leo-guinan/skills/towel-protocol)
+- [Towel Protocol](https://towel.metaspn.network)
+- [Towel Protocol Spec](https://towel.metaspn.network/spec)
+- [Verified List API](https://towel.metaspn.network/api/v1/list)
+- [Verified List](https://towel.metaspn.network/list)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline bash commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference public Towel Protocol API responses and local shell scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

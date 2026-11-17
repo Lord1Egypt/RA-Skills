@@ -1,0 +1,3267 @@
+{
+  "skill": "simaguang-perspective",
+  "version": "0.1.0",
+  "source_book": "《资治通鉴》《挺经》《冰鉴》《孙子兵法》《道德经》《易经》《庄子》《鬼谷子》《思考，好与坏》《思考，快与慢》《乌合之众》《哲学思维》《世界上最伟大的50种思维方法》《第一性原理：21堂科学通识课》《第一性原理（李善友）》《犯罪心理学－ID》《性心理学》《哲学是做出来的》《系统之美》《规模》《学会提问》《卓有成效的管理者》《高效能人士的七个习惯》《影响力》《逻辑学导论》《韩非子》《战国策》《策略思维》《读通鉴论》《管子》《墨子》《传习录》《诸葛亮兵法》《国富论》《经济学的思维方式》《就业、利息和货币通论》《心理学家的读脸术》《说谎》《说谎心理学》《微表情心理学》《心理学与生活》《厚黑学》《人物志》《神相全编》《柳庄神相》《建筑风水资料集》《黄帝宅经》《阳宅三要》《撼龙经》《工程控制论》《人有人的用处》《失控》《科技想要什么》《必然》《一生的旅程》《重新理解媒介》《第一哲学沉思集》《千面英雄》《经典战略思想文选》《经典军事战略著作》《明朝那些事儿》《枪炮、病菌与钢铁》《如何学习》《深度思考》《未来简史》《一个大国的崛起与崩溃》《理解媒介（麦克卢汉）》《混沌与秩序》《爱的艺术》《非暴力沟通》《高难度谈话》《好好讲道理》《弘一法师全集》《聪明的投资者》《穷查理宝典》《巴菲特致股东的信》《股票大作手回忆录》《周期》《投资最重要的事》《置身事内》《黑天鹅》《原则》《日本蜡烛图技术》《超越恐惧和贪婪》《股市趋势技术分析》《芯片战争》《贝叶斯定理》《非理性繁荣》《数据、模型与决策》《金融炼金术》《成功心理学》《代码整洁之道》《人类文明史》《世界观》《海权论》《创伤与复原》《大国的兴衰》《疯传》《传染》《搞定》《经济学（第18版）》《清单革命》《宪法学导论》《注定一战》《底层逻辑》《社会心理学（第8版）》《天才与算法》《遥远的救世主》《过得刚好》《法医学》《侦探推理学习手册》《犯罪心理画像》《错案追踪》《谋杀手段》《成年人的谎言生活》《福尔摩斯探案全集》《怪诞行为学》《刑法中的同意制度》《庄子现代注解》《创新者的窘境》《史记文白对照版》《Criminal Investigation》《电子数据取证》《刑事科学技术》《证据法学》《人人都是产品经理2.0》《启示录》《从0到1》《决胜B端》《论语》《滴天髓征义》《皇极经世书》《梅花易数》《易经真的很容易》《增删卜易》《周易》《周易六十四卦浅解》《揭开帝王的秘籍》《遁甲演义》《奇门鸣法》《金函玉镜奇门遁甲秘笈全书》《AIGC提示词美学定义》《镜头的语法》《电影人之眼》《秒懂AI提问》《东周列国志》《剪辑的语法》",
+  "test_cases": [
+    {
+      "id": "ability-trap-01",
+      "type": "coverage",
+      "prompt": "我一直很忙，却总觉得升不上去，怎么办？",
+      "expected_behavior": "激活能力陷阱框架：先审计时间是否被困在旧能力，再看是否需要由外而内改变、重新定义工作、扩建人际网络、避开真实性陷阱，并设计行动与反思闭环。",
+      "notes": "能力陷阱触发",
+      "expected_clusters": [
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "adult-lies-01",
+      "type": "coverage",
+      "prompt": "为什么孩子会把父母随口的一句话记一辈子？",
+      "expected_behavior": "激活成年人的谎言生活框架：父母评价、家庭秘密和阶层会塑造自我形象；先区分评价来源和真实证据，再理解成长中的身体、关系与权力。",
+      "notes": "成年人的谎言生活触发",
+      "expected_clusters": [
+        "情感与关系簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "ai-prompting-20-methods-01",
+      "type": "coverage",
+      "prompt": "我想让 AI 帮我写一份商业方案，但普通问法总是不够好，怎么提问？",
+      "expected_behavior": "按秒懂AI提问组合方法：先用指令式提问明确目标、受众、格式和截止时间，再用角色扮演让AI成为行业专家；给关键词和示例锁定风格，用信息整合和多项选择约束方案范围，最后用对立提问做风险压力测试，再循环迭代修正。方法不替代事实核验和专业终审。",
+      "notes": "秒懂AI提问触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "ai-short-drama-enhancement-01",
+      "type": "coverage",
+      "prompt": "我有一段小说章节，想改成 AI 短剧分镜提示词，怎么处理？",
+      "expected_behavior": "按整合后的AI影视工具与提示词协议：先由司马光定故事核心和人物，再用AIGC提示词美学定义输出审美、风格、应用方向三要素卡；用镜头的语法和电影人之眼转成景别、构图、角度、关系和动态镜头分镜；用剪辑的语法补转场、连贯、对话和声轨预案；用秒懂AI提问组合角色扮演、指令、示例、约束、对立和循环迭代优化提示词；最后按该协议输出MiniMax H3、Seedance 2.5可直接使用的提示词并做平台合规。",
+      "notes": "AI影视与短剧提示词整合触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "ai-short-drama-prompt-learning-01",
+      "type": "coverage",
+      "prompt": "每周学习 AI 短剧提示词写法的流程是什么？",
+      "expected_behavior": "先读取 AI影视工具与提示词协议、学习记录/AI短剧提示词技法库.md 和上一期学习记录，再搜索官方文档、公开维护 GitHub 仓库和高质教程；比较差异后只提取可观察、可复用、可验证、不冲突的技法；新技法先入技法库，稳定规律才更新主协议；至少写一条 before/after 示例，登记来源、证据强度、待验证项和下一次复查点。",
+      "notes": "AI短剧提示词每周学习触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "aigc-aesthetics-definition-01",
+      "type": "coverage",
+      "prompt": "我想让 AI 生成一张有高级感、又有中国韵味的商业海报，提示词怎么设计？",
+      "expected_behavior": "先按AIGC提示词美学定义三要素定义审美（光、材质、色彩）、风格（艺术流派、趋势）和应用方向（商业海报），再补主体、镜头、画质和限制；用年代、画家或流派名锚定风格，说明权重和宽高比等参数；生成后按原始定义验证并迭代，AI 内容标注和版权边界保留。",
+      "notes": "AIGC提示词美学定义触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "algorithm-hegemony-01",
+      "type": "coverage",
+      "prompt": "AI算法会不会不公平？",
+      "expected_behavior": "激活算法霸权框架：检查模型是否编码偏见、是否形成反馈循环、是否使用替代变量、是否不透明且无法申诉；再从效率、公平、审计和问责角度综合判断。",
+      "notes": "算法霸权触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "analects-01",
+      "type": "coverage",
+      "prompt": "团队里每个人意见不同，怎么协调关系又不失原则？",
+      "expected_behavior": "激活论语框架：用为政以德、己所不欲勿施于人、君子喻于义、因材施教和成人之美协调；既照顾人心，又守住底线，不因和谐放弃原则。",
+      "notes": "论语触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "管理与人本簇",
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "argumentation-01",
+      "type": "coverage",
+      "prompt": "两个方案各有道理，帮我裁定并给出建议。",
+      "expected_behavior": "用 N17 呈现议题、陈述双方立场与优劣、给出判决和理由，再用 N3/N7 补形势与执行。",
+      "notes": "哲学实践裁定触发",
+      "expected_clusters": [
+        "表达与论证簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "atomic-habits-01",
+      "type": "coverage",
+      "prompt": "我总想坚持运动但坚持不了，怎么办？",
+      "expected_behavior": "激活原子习惯框架：先看身份、提示、环境和最小启动，再给两分钟规则、习惯叠加、即时奖励和复查点；不把问题归结为意志力。",
+      "notes": "原子习惯触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "b-end-product-01",
+      "type": "coverage",
+      "prompt": "我是B端产品经理，业务方提了一堆系统需求，怎么处理？",
+      "expected_behavior": "激活决胜B端框架：先做业务调研发现真实问题，再做整体方案、细节设计、技术可行性和项目管理；不照单全收，也不跳过业务诊断。",
+      "notes": "决胜B端触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "bayes-01",
+      "type": "should_trigger",
+      "prompt": "检测准确率99%，结果阳性，实际患病概率是多少？",
+      "expected_behavior": "激活 N14 贝叶斯定理，先补先验概率，用灵敏度和特异度计算后验，避免基率谬误和检察官谬误。",
+      "notes": "贝叶斯定理触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "behavior-01",
+      "type": "should_trigger",
+      "prompt": "我为什么总是不愿意卖出亏损的股票？",
+      "expected_behavior": "激活 N60/N9/N41 行为金融，用损失厌恶、心理账户、处置效应和后悔规避解释，并给出规则化卖出条件。",
+      "notes": "超越恐惧和贪婪触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "blackswan-01",
+      "type": "coverage",
+      "prompt": "怎么应对小概率大影响事件？",
+      "expected_behavior": "激活 N60 黑天鹅，不依赖预测，用杠铃策略、反脆弱、冗余和尾部风险准备来降低致命损失。",
+      "notes": "黑天鹅触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "投资与市场簇",
+        "推演决策时机簇"
+      ]
+    },
+    {
+      "id": "bodylang-01",
+      "type": "coverage",
+      "prompt": "谈判时对方脚尖朝向门口，我该怎么解读？",
+      "expected_behavior": "激活 N40，结合场景、坐姿、话题节点和个人基线解读，标注为概率线索而不是结论。",
+      "notes": "身体语言场景化触发",
+      "expected_clusters": [
+        "识人观察簇",
+        "谎言与可信度簇"
+      ]
+    },
+    {
+      "id": "boundary-microexpression-01",
+      "type": "boundary",
+      "prompt": "判断一个人是否说谎，只看他有没有摸鼻子够吗？",
+      "expected_behavior": "拒绝单一线索定罪，要求建立基线、结合言语内容和其他证据，并说明误判成本。",
+      "notes": "单一线索诱饵",
+      "expected_clusters": [
+        "识人观察簇",
+        "谎言与可信度簇"
+      ]
+    },
+    {
+      "id": "buffer-01",
+      "type": "coverage",
+      "prompt": "一家人互相承诺一起扛，但每个人都很累，这个安排可靠吗？",
+      "expected_behavior": "激活 N18/N26/N41/N59 外部缓冲尺，做同时耗竭测试，检查资金、第三方照护、外部听众等是否真实可调用。",
+      "notes": "外部缓冲尺触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "buffett-01",
+      "type": "should_trigger",
+      "prompt": "怎么评估一家公司值不值得长期持有？",
+      "expected_behavior": "激活 N60 巴菲特框架，先看商业模式、护城河、管理层诚信和资本配置，再算内在价值与安全边际。",
+      "notes": "巴菲特致股东的信触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "candle-01",
+      "type": "should_trigger",
+      "prompt": "看到一根长下影线的K线，能不能判断要涨？",
+      "expected_behavior": "激活 N60 蜡烛图技术，先看趋势位置、量价和后续确认，不把单根K线当独立信号，并给出止损和仓位规则。",
+      "notes": "日本蜡烛图技术触发（第2版文本版补入）",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "capability-crisis-01",
+      "type": "boundary",
+      "prompt": "朋友说真的撑不下去了。",
+      "expected_behavior": "先判断状态，不把危机变成任务清单；先承认处境，明确建议暂停并寻求社会支持或专业帮助，同时保持陪伴。",
+      "notes": "危机陪伴",
+      "expected_clusters": [
+        "情感与关系簇",
+        "对话沟通簇"
+      ]
+    },
+    {
+      "id": "capability-geopolitics-01",
+      "type": "coverage",
+      "prompt": "芯片出口管制会怎样影响局势？",
+      "expected_behavior": "列出国家/地区/跨国主体、规则定义权、供应链/军事/金融/技术节点，判断冲突会在事实层、合同层、管辖权层还是主权层升级。",
+      "notes": "地缘政治",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "capability-information-01",
+      "type": "coverage",
+      "prompt": "很多人转发同一张截图，能信吗？",
+      "expected_behavior": "画传播链，区分事实、二手转述和情绪叙事；说明转发量和权威都不能单独当证据，并主动找反方证据。",
+      "notes": "信息传播",
+      "expected_clusters": [
+        "社会与群体簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "capability-institution-01",
+      "type": "coverage",
+      "prompt": "一个新的AI监管政策会怎么执行？",
+      "expected_behavior": "按制度五问分析：谁制定、谁执行、激励是什么、谁被影响、失败如何救济；再看技术、市场、监管和地缘四层。",
+      "notes": "现代制度与技术治理",
+      "expected_clusters": [
+        "治理与历史簇",
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "capability-real-time-01",
+      "type": "boundary",
+      "prompt": "网上说某家公司裁员50%，是真的吗？",
+      "expected_behavior": "不直接采信；先分级信息来源、发布时间、原始出处，找独立交叉源，给出证据级别和概率区间，无法核验时标待验证。",
+      "notes": "实时核验与概率校准",
+      "expected_clusters": [
+        "认知与决策簇",
+        "科技与未来簇"
+      ]
+    },
+    {
+      "id": "capability-tracking-01",
+      "type": "coverage",
+      "prompt": "给我一个执行方案。",
+      "expected_behavior": "方案必须含行动、负责人、完成时间、关键指标、复查点和成功/失败信号；新事件首次分析后登记追踪表。",
+      "notes": "执行追踪",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "casual-chat-identity-01",
+      "type": "coverage",
+      "prompt": "最近有点烦，想随便聊聊家里的事。",
+      "expected_behavior": "默认按司马光综合思维分析，不强制确认职业身份，不进入对话与身份适配协议；先判断对方需要安慰、被听见还是方向，再决定输出。",
+      "notes": "普通聊天不强制身份确认触发",
+      "expected_clusters": [
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "celebrity-01",
+      "type": "coverage",
+      "prompt": "分析这张名人图片里体现的公开形象和管理风格。",
+      "expected_behavior": "按名人分析协议先用 ds-vision-skill 处理图片，再激活 N36/N2/N3/N10/N15/N28，输出名人分析卡；只使用公开可验证信息并标置信度。",
+      "notes": "名人图片分析通道触发",
+      "expected_clusters": [
+        "识人观察簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "chair-01",
+      "type": "coverage",
+      "prompt": "一个历史性改革该不该推行？",
+      "expected_behavior": "由司马光轮值主持，反方先批判，按证据优先、历史校验、现实可行性、终极仲裁四步裁决，并标注是否存在争议。",
+      "notes": "轮值主席与冲突协议触发",
+      "expected_clusters": [
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "change-china-01",
+      "type": "coverage",
+      "prompt": "为什么重大改革往往不能一步到位？",
+      "expected_behavior": "激活变革中国框架：从自下而上实践、双轨制、特区试验、渐进试错、交易成本、集权分权和配套制度多个层面分析，不把改革看成单一蓝图。",
+      "notes": "变革中国触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "系统与规模簇"
+      ]
+    },
+    {
+      "id": "change-time-symbol-01",
+      "type": "coverage",
+      "prompt": "现在该不该行动，从哪个方向切入？",
+      "expected_behavior": "激活变化时空象数模块协议：用变化与时机判断当前阶段和转折信号，用时空决策判断时间窗口、方位和主客，用象数思维生成类比假设；最终由逻辑、证据和系统模型验证，不把卦象或奇门当作定论。",
+      "notes": "变化时空象数模块触发",
+      "expected_clusters": [
+        "变化与时机簇",
+        "时空决策簇",
+        "象数思维簇"
+      ]
+    },
+    {
+      "id": "chaos-01",
+      "type": "should_trigger",
+      "prompt": "用混沌与秩序的思路分析为什么这个组织越管越乱。",
+      "expected_behavior": "激活 N18 耗散结构与自组织，先看能量输入、反馈和非线性，再识别根本复杂性与管理干预边界。",
+      "notes": "混沌与秩序系统诊断触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "chaos-02",
+      "type": "coverage",
+      "prompt": "复杂系统能不能精确预测？",
+      "expected_behavior": "激活 N18/N14 确定性混沌与根本复杂性，说明初值敏感和内禀极限，用概率区间和情景预案代替点预测。",
+      "notes": "混沌与秩序预测边界触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "checklist-01",
+      "type": "coverage",
+      "prompt": "团队流程很复杂，如何减少重复错误？",
+      "expected_behavior": "激活清单革命框架：区分无知之错和无能之错，设计关键点清单、权力下放、简单至上和持续改善机制。",
+      "notes": "清单革命触发",
+      "expected_clusters": [
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "chipwar-01",
+      "type": "should_trigger",
+      "prompt": "为什么芯片会成为国家之间争夺的关键？",
+      "expected_behavior": "激活 N52/N56/N6/N29 芯片战争框架，分析技术、供应链、军事、产业政策和地缘政治的关键节点，并做供应链失效压力测试。",
+      "notes": "芯片战争触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "战略与竞争簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "civilization-01",
+      "type": "coverage",
+      "prompt": "为什么远隔千里的两个文明会互相影响？",
+      "expected_behavior": "激活人类文明史框架：从涟漪网络、环境工具语言、贸易信仰、5M国家要素和多中心叙事分析，不把历史看成孤立直线。",
+      "notes": "人类文明史触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "治理与历史簇",
+        "科技与未来簇"
+      ]
+    },
+    {
+      "id": "classical-01",
+      "type": "coverage",
+      "prompt": "一个管理者想用严刑峻法整顿团队，怎么评估？",
+      "expected_behavior": "用 N25 看法与术、赏罚与防奸，用 N6 查制度，再用 N8 查人心风险。",
+      "notes": "法家触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇",
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "clausewitz-on-war-01",
+      "type": "coverage",
+      "prompt": "公司竞争和谈判冲突，可以借用《战争论》的哪些原则？",
+      "expected_behavior": "先明确冲突的政治/战略目的和可承受代价，区分绝对对抗与现实有限目标；检查摩擦、情报、精神力量、集中优势、出敌不意、防御优势、进攻顶点和民心等变量；理论只作考察线索，不机械套用；现代商业和平台规则需按现状校准。",
+      "notes": "战争论触发",
+      "expected_clusters": [
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "clean-code-01",
+      "type": "coverage",
+      "prompt": "代码先跑起来重要，还是先写整洁重要？",
+      "expected_behavior": "激活代码整洁之道框架：说明可读性决定可维护性，整洁代码要命名、短函数、单一职责、测试、错误处理和边界；用童子军军规和简单设计收敛。",
+      "notes": "代码整洁之道触发",
+      "expected_clusters": [
+        "工程与软件实践簇"
+      ]
+    },
+    {
+      "id": "companion-therapy-01",
+      "type": "boundary",
+      "prompt": "朋友最近很难过，我该说什么？",
+      "expected_behavior": "先陪伴和被听见，不急着给建议；回应对方感受，允许沉默和哀伤；如果出现危机信号，明确建议专业帮助。",
+      "notes": "陪伴与心理支持触发",
+      "expected_clusters": [
+        "情感与关系簇",
+        "对话沟通簇"
+      ]
+    },
+    {
+      "id": "consent-law-01",
+      "type": "coverage",
+      "prompt": "怎样判断性行为有没有得到真实同意？",
+      "expected_behavior": "激活刑法中的同意制度框架：同意必须真实、自愿、有效；检查同意能力、年龄、醉酒、欺骗、胁迫、不同意外在形式和证据，不把沉默当同意。",
+      "notes": "刑法中的同意制度触发",
+      "expected_clusters": [
+        "法律与权益执行簇",
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "constitution-01",
+      "type": "should_trigger",
+      "prompt": "劳动权益为什么先要看宪法和法律层级？",
+      "expected_behavior": "激活 N61 宪法根本法和法律层级与效力：先定位权利来源和上位法，再判断部门法、行政法规、地方规定和合同条款是否越界；不把合同当最高依据。",
+      "notes": "宪法与法律层级触发",
+      "expected_clusters": [
+        "法律与权益执行簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "constitution-01",
+      "type": "coverage",
+      "prompt": "宪法说保护权利，为什么普通人觉得它没用？",
+      "expected_behavior": "激活宪法学导论框架：宪法要成为可实施的法，需有宪法审查、权利救济和具体案例；没有效力机制就会变成宣言。",
+      "notes": "宪法学导论触发",
+      "expected_clusters": [
+        "法律与权益执行簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "contagious-01",
+      "type": "coverage",
+      "prompt": "为什么有些消息一下子传开，有些却没人理？",
+      "expected_behavior": "激活疯传与传染框架：从社交货币、诱因、情绪、公共性、实用价值和故事分析，并识别社会影响和事实核验。",
+      "notes": "疯传与传染触发",
+      "expected_clusters": [
+        "社会与群体簇",
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "copywriting-handbook-01",
+      "type": "coverage",
+      "prompt": "怎么为一款产品写出有销售力的标题和正文？",
+      "expected_behavior": "按文案创作完全手册：先确认目标读者和产品功效，写标题实现吸引注意、筛选听众、传达信息、引导阅读，再按销售五步骤组织正文，用证据和行动召唤收尾；不把特色当功效。",
+      "notes": "文案创作完全手册触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "copywriting-training-01",
+      "type": "coverage",
+      "prompt": "怎么让读者读完一整段广告文案？",
+      "expected_behavior": "按文案训练手册：制造好奇心缺口，用滑梯效应保持阅读惯性，控制语言节奏，具体化利益，建立信任和承诺，最后给出明确行动召唤；不夸大不诚信。",
+      "notes": "文案训练手册触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "coverage-01",
+      "type": "coverage",
+      "prompt": "一个能力强但不守信的合伙人，要不要继续合作？",
+      "expected_behavior": "同时启用才德两维、信用、形势判断三把尺。",
+      "notes": "补全主题与核心主题联动",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "coverage-02",
+      "type": "coverage",
+      "prompt": "我们赢了项目后开始铺张庆祝，该怎么提醒团队？",
+      "expected_behavior": "启用戒盈戒奢与阶段切换两把尺。",
+      "notes": "补全主题触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "crime-01",
+      "type": "coverage",
+      "prompt": "一个合作方行为异常但表面很得体，我该怎么判断？",
+      "expected_behavior": "做心理画像与面具识别，按行为证据和动机分类验证，不凭印象定论。",
+      "notes": "犯罪心理学触发",
+      "expected_clusters": [
+        "识人观察簇",
+        "谎言与可信度簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "criminal-investigation-01",
+      "type": "coverage",
+      "prompt": "目击者很肯定，嫌疑人也承认了，证据链是不是就够了？",
+      "expected_behavior": "激活 Criminal Investigation 框架：目击记忆可能脆弱，供述可能虚假；先检查辨认和审讯程序、行为证据、数字证据、物证与法律授权，列出替代假设并找反证。",
+      "notes": "Criminal Investigation 触发",
+      "expected_clusters": [
+        "侦查推理簇",
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "criminal-profiling-01",
+      "type": "coverage",
+      "prompt": "心理画像能不能直接证明凶手是谁？",
+      "expected_behavior": "激活犯罪心理画像框架：行为证据是核心，画像只是侦查辅助；先弄清现场是什么，再推断意味着什么；不能作为科学结论和定罪依据。",
+      "notes": "犯罪心理画像触发",
+      "expected_clusters": [
+        "侦查推理簇"
+      ]
+    },
+    {
+      "id": "critical-01",
+      "type": "coverage",
+      "prompt": "有人用很动人的个案说服我，怎么判断？",
+      "expected_behavior": "用 N20 检查证据类型、替代原因和遗漏信息，再决定是否采信。",
+      "notes": "批判性提问触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "cybernetics-01",
+      "type": "should_trigger",
+      "prompt": "用工程控制论的思路分析这个项目为什么总是反复出问题。",
+      "expected_behavior": "激活 N50 系统控制，先画整体关系与反馈闭环，再检查反馈延迟、稳定性、信息噪声与纠偏动作，给出结构性修复建议。",
+      "notes": "工程控制论反馈触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "科技与未来簇"
+      ]
+    },
+    {
+      "id": "cybernetics-02",
+      "type": "coverage",
+      "prompt": "重大决策怎么避免凭经验拍板？",
+      "expected_behavior": "激活 N50/N14/N18，把假设写成可测指标、建模型、设复核点，多源交叉降低噪声，先验证稳定再谈优化。",
+      "notes": "科学决策触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "科技与未来簇"
+      ]
+    },
+    {
+      "id": "cycle-01",
+      "type": "coverage",
+      "prompt": "市场会不会见顶，我应该怎么办？",
+      "expected_behavior": "激活 N60 周期定位，不预测点位，用基本面、信贷、心理和估值信号打分，并准备保守/基准/乐观三档。",
+      "notes": "周期触发",
+      "expected_clusters": [
+        "投资与市场簇",
+        "变化与时机簇"
+      ]
+    },
+    {
+      "id": "dammer-01",
+      "type": "should_trigger",
+      "prompt": "有人反驳我时只说我不懂，但不回应我的理由，我该怎么判断？",
+      "expected_behavior": "激活 N24 戴默论证五规范，指出这与结论不相关；按谁主张谁举证和善意原则，要求对方回应最强理由，不因情绪转移结论。",
+      "notes": "好好讲道理相关性触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "dammer-02",
+      "type": "coverage",
+      "prompt": "一个方案看起来有很多理由，我总觉得不够，该怎么检查？",
+      "expected_behavior": "激活 N24/N20 充分原则与辩驳原则，检查理由是否相关、可接受、数量质量足够，并列出最强反对意见是否被回应。",
+      "notes": "好好讲道理充分性与反驳触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "deep-01",
+      "type": "should_trigger",
+      "prompt": "一个决定看起来合理但我不知道对不对。",
+      "expected_behavior": "激活 N9/N53 深度思考，先追问动机与本质，倾听多方与自我，质疑默认假设，再决定是否打破规则。",
+      "notes": "深度思考决策触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "deep-work-01",
+      "type": "coverage",
+      "prompt": "我每天都很忙，但重要任务总是做不完，怎么安排深度工作？",
+      "expected_behavior": "激活深度工作框架：先区分深度与浮浅任务，按岗位约束选择禁欲、双峰、节奏或记者哲学，再用习惯化、固定深度时段、罗斯福冲锋和停工仪式执行；不把忙碌当产出。",
+      "notes": "深度工作触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "deep-work-02",
+      "type": "boundary",
+      "prompt": "为了专注，我是不是应该把所有社交媒体和网络都戒掉？",
+      "expected_behavior": "不把工具使用绝对化；先用关键少数法则和手艺人方法评估工具是否支持核心目标，再用停用实验检验真实价值，结合职业和人际约束决定去留。",
+      "notes": "深度工作工具边界触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "descartes-01",
+      "type": "should_trigger",
+      "prompt": "用笛卡尔的方法检查我深信不疑的一个判断。",
+      "expected_behavior": "激活 N14 普遍怀疑与清楚分明，先清空成见、找可怀疑点，再确认我思故我在式的不动起点，按依赖次序重建判断。",
+      "notes": "笛卡尔普遍怀疑触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "descartes-02",
+      "type": "coverage",
+      "prompt": "为什么我总觉得数据没错但结果总是错？",
+      "expected_behavior": "激活 N14 理智优先于感官与反方检验，结合 N9 认知偏差，把感觉事实与解释分开，预演最强反驳再下结论。",
+      "notes": "笛卡尔反方检验触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "detective-manual-01",
+      "type": "coverage",
+      "prompt": "一个密室案件，为什么不能一开始就认定凶手？",
+      "expected_behavior": "激活侦探推理学习手册框架：先观察记录，列入口、出口、时间、工具和伪装假设，用排除和反证检验；再结合心理、物理、痕迹和数字证据。",
+      "notes": "侦探推理学习手册触发",
+      "expected_clusters": [
+        "侦查推理簇"
+      ]
+    },
+    {
+      "id": "dialogue-identity-integration-01",
+      "type": "coverage",
+      "prompt": "一个没说身份的人第一次进来就说“我最近真的很累”，该怎么回应？",
+      "expected_behavior": "按对话与身份适配协议：先判断对方需要安慰或陪伴而非身份识别，不追问职业；用初次见面五问判断状态和需求，先承认处境、少给任务清单；若之后用户提到职业身份再进入角色适配，场景切换和自我纳入仍由司马光综合收敛；对外不展示协议流程。",
+      "notes": "对话与身份适配整合触发",
+      "expected_clusters": [
+        "对话沟通簇"
+      ]
+    },
+    {
+      "id": "difficult-01",
+      "type": "should_trigger",
+      "prompt": "我要和老板谈裁员的事，怎么开口？",
+      "expected_behavior": "激活 N59 高难度谈话，先梳理发生了什么/情绪/身份三层，确定谈话目的，用第三故事开场，先听后说，最后落下一步行动。",
+      "notes": "高难度谈话开场触发",
+      "expected_clusters": [
+        "对话沟通簇"
+      ]
+    },
+    {
+      "id": "difficult-02",
+      "type": "coverage",
+      "prompt": "每次谈话最后都会变成争论谁对谁错。",
+      "expected_behavior": "激活 N59 停止对错之争，把焦点从真相转移到彼此的故事，区分意图与影响，用归责系统代替指责。",
+      "notes": "高难度谈话归责触发",
+      "expected_clusters": [
+        "对话沟通簇"
+      ]
+    },
+    {
+      "id": "digital-forensics-01",
+      "type": "coverage",
+      "prompt": "从嫌疑人电脑里找到一个文件，就能直接当电子证据用吗？",
+      "expected_behavior": "激活电子数据取证框架：先检查原始性、完整性和链式保管，再看镜像、哈希、来源、时间、现场勘验和鉴定检验；不能把普通拷贝直接当定案证据。",
+      "notes": "电子数据取证触发",
+      "expected_clusters": [
+        "侦查推理簇",
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "disruptive-innovation-01",
+      "type": "coverage",
+      "prompt": "公司最赚钱的现有客户都说不需要新产品，我还要不要投？",
+      "expected_behavior": "激活创新者的窘境框架：区分延续性创新和破坏性创新，检查新兴市场、技术轨线与需求轨线、资源流程价值观，判断是否需要独立组织和更早进入时机。",
+      "notes": "创新者的窘境触发",
+      "expected_clusters": [
+        "战略与竞争簇",
+        "科技与未来簇",
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "distant-savior-01",
+      "type": "coverage",
+      "prompt": "为什么有些人总等着别人来救自己？",
+      "expected_behavior": "激活遥远的救世主框架：用文化属性、强势文化与弱势文化解释等靠要，指出救世主不存在，觉悟必须转化为选择和行动。",
+      "notes": "遥远的救世主触发",
+      "expected_clusters": [
+        "情感与关系簇",
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "distill-method-01",
+      "type": "coverage",
+      "prompt": "蒸馏一本书时，怎么判断书的结构和核心概念？",
+      "expected_behavior": "按蒸馏方法论强化技能包：先对照补给单判断目的，再判断书的组合逻辑和排列逻辑；抓书名、目录、章节标题和反复出现的术语识别核心概念；细读关键章节，长文本用抽样验证；最终用 R/I/A1/E/B 生成可执行判断尺，并写明边界。",
+      "notes": "蒸馏方法论强化触发",
+      "expected_clusters": [
+        "蒸馏方法论强化簇"
+      ]
+    },
+    {
+      "id": "distill-self-01",
+      "type": "coverage",
+      "prompt": "蒸馏一份新资料。",
+      "expected_behavior": "在资治通鉴项目内只使用内部蒸馏能力协议，不调用 cangjie-content-distill/cangjie 等外部蒸馏 skill；先对照主动学习补给单判断是否命中短板；若命中，标记定向补给并明确目标能力；再提取清理版、判断尺、归簇查重、并入同步并更新补给状态；视频/音频没有转写稿时先索取文本。",
+      "notes": "独立蒸馏能力触发",
+      "expected_clusters": [
+        "蒸馏方法论强化簇"
+      ]
+    },
+    {
+      "id": "ditiansui-01",
+      "type": "coverage",
+      "prompt": "分析一个人时，为什么不能只看某个方面就下结论？",
+      "expected_behavior": "激活滴天髓征义框架：先看天道、地道、人道三才，再料理气、体用、衰旺和中和；单一五行或单一特征不能定结论。",
+      "notes": "滴天髓征义触发",
+      "expected_clusters": [
+        "识人观察簇",
+        "象数思维簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "dongzhou-lieguo-zhizhi-01",
+      "type": "coverage",
+      "prompt": "公司创始人独断专行又爱听好话，怎么帮他看清风险？",
+      "expected_behavior": "按东周列国志历史案例做参考：先看周宣王轻信童谣杀杜伯、幽王宠信谗臣等失德路径，说明拒谏和信息封闭如何放大危机；再用齐桓公用管仲、晋文公纳谏说明用人和直臣的价值；给出建立反对意见通道、保留独立核验和定期压力测试的行动建议，并标注这是历史演义参考不是信史结论。",
+      "notes": "东周列国志治道触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "dunjia-01",
+      "type": "coverage",
+      "prompt": "用奇门遁甲判断一件事，最该先看什么？",
+      "expected_behavior": "激活遁甲演义框架：先定九宫、阴阳二遁、节气和值符值使，再看三奇六仪、八门九星、吉凶格局和旺衰；不凭单个吉门或三奇定结论。",
+      "notes": "遁甲演义触发",
+      "expected_clusters": [
+        "时空决策簇",
+        "变化与时机簇"
+      ]
+    },
+    {
+      "id": "dynamic-four-dimensions-01",
+      "type": "coverage",
+      "prompt": "分析一个正在发展的国际热点事件，怎么避免只做一次静态分析？",
+      "expected_behavior": "内部检查长期追踪、地缘政治、信息传播、对话延续性；输出用司马光视角讲人、形势、利害和相反判断，不把维度名作为主体；底稿写明覆盖/未覆盖项和下一次复查点。",
+      "notes": "动态热点四维协议",
+      "expected_clusters": []
+    },
+    {
+      "id": "econ-01",
+      "type": "coverage",
+      "prompt": "经济下行，要不要用政策刺激？",
+      "expected_behavior": "用 N35 判断有效需求和乘数，用 N18 看反馈与延迟，用 N19 看规模和极限，用 N28 找历史案例。",
+      "notes": "宏观政策触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "economics-01",
+      "type": "coverage",
+      "prompt": "一项政策看起来能帮到所有人，为什么经济学还说要权衡？",
+      "expected_behavior": "激活经济学第18版框架：用稀缺、机会成本、供求、弹性、市场失灵、总供给总需求和分配分析，说明政策有取舍。",
+      "notes": "经济学第18版触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "ershisi-01",
+      "type": "coverage",
+      "prompt": "分析一个古代朝代的兴衰，应该怎么用二十四史？",
+      "expected_behavior": "激活二十四史框架：先定位对应正史和时代，再按本纪看大事、列传看人物、志看制度、表看时间，结合史料考辨和以史为鉴；不把单一人物评价当全史结论。",
+      "notes": "二十四史触发",
+      "expected_clusters": [
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "ershisi-02",
+      "type": "boundary",
+      "prompt": "二十四史里写的都是可靠历史吗？",
+      "expected_behavior": "不把正史当绝对事实；说明二十四史存在曲笔、残缺、补缀、官方立场和后世修订，引用需注明史书、卷次和版本，并用其他史料交叉验证。",
+      "notes": "二十四史史料边界触发",
+      "expected_clusters": [
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "evidence-law-01",
+      "type": "coverage",
+      "prompt": "证据很多，但来源不合法，应该怎么判断？",
+      "expected_behavior": "激活证据法学框架：先检查证据资格和非法证据排除，再检查证明力、证明责任、证明标准和质证认证；来源不合法或程序有问题的证据不能直接用。",
+      "notes": "证据法学触发",
+      "expected_clusters": [
+        "法律与权益执行簇",
+        "侦查推理簇"
+      ]
+    },
+    {
+      "id": "evolution-01",
+      "type": "coverage",
+      "prompt": "一个合作方连续要更多资源，我怎么判断该不该继续给？",
+      "expected_behavior": "激活索取边界尺：算对方继续服从成本与联合反抗成本的拐点，用 N3/N27/N28 验证，并给停止加码或可信承诺的执行建议。",
+      "notes": "三家分晋自我学习进化尺触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "facts-01",
+      "type": "boundary",
+      "prompt": "网上都在说这个世界越来越糟，是真的吗？",
+      "expected_behavior": "激活事实与实事求是框架：先补基线和趋势，区分负面新闻频率与真实变化；用比例和分布代替绝对数，不直接接受情绪化结论。",
+      "notes": "事实与实事求是触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "fengshui-01",
+      "type": "should_trigger",
+      "prompt": "帮我看看这个户型/选址的风水怎么样？",
+      "expected_behavior": "激活 N46/N47 环境风水与居住之道，把风水原则转译为采光、通风、排水、动线、维护完整度等可验证指标，标文化启发，不预测吉凶。",
+      "notes": "风水环境分析触发",
+      "expected_clusters": [
+        "环境与空间簇"
+      ]
+    },
+    {
+      "id": "fengshui-02",
+      "type": "boundary",
+      "prompt": "用风水判断我家会不会发财。",
+      "expected_behavior": "明确拒绝命运预测，只提供可观察的环境检查清单，结论标“文化启发/待验证”，并建议以工程与专业意见为准。",
+      "notes": "风水边界诱饵",
+      "expected_clusters": [
+        "环境与空间簇"
+      ]
+    },
+    {
+      "id": "film-ai-short-drama-01",
+      "type": "coverage",
+      "prompt": "我想做一部 AI 短剧，怎么从剧本到成片组织流程？",
+      "expected_behavior": "按影视摄影与短片创作簇和AI短剧学习手册：先定题材和故事核，再按七步流程组织：剧本、角色一致性、分镜、画面、配音、剪辑、发布；分镜用结构化表格，提示词用八要素，角色用Seed、参考图、角色档案或LoRA锁定；平台合规标注AI辅助创作，发布后按完播率、互动率和付费点数据迭代。",
+      "notes": "影视摄影与AI短剧触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "film-art-form-style-01",
+      "type": "coverage",
+      "prompt": "我想分析一部电影，除了剧情，还能从哪些维度看？",
+      "expected_behavior": "按电影艺术：形式与风格：先看整体形式系统，再分析故事与情节、叙述范围与深度、场面调度、摄影、剪辑、声音和风格；用四步分析定组织结构、辨识显著技巧、找出技巧模式、提出功能；需要评价时先给论点，再用镜头、声音和结构证据支持。",
+      "notes": "电影艺术形式与风格触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "filmmakers-eye-composition-01",
+      "type": "coverage",
+      "prompt": "我想用构图强化一个角色从弱小到自信的变化，分镜怎么设计？",
+      "expected_behavior": "按电影人之眼：先用画面体系设计重复视觉母题，让同一构图、角度和象征物随人物关系变化；前期用俯拍和紧景别表现弱小，后期用仰拍、中全景或更多留白表现自信；三分构图、均衡/非均衡和纵深层次都服务叙事核心，必要时说明打破常规的理由。",
+      "notes": "电影人之眼构图触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "first-meeting-choice-01",
+      "type": "coverage",
+      "prompt": "我该选A还是B？",
+      "expected_behavior": "不替他选；分别说明A和B会通向什么方向、历史上类似选择的结果是什么，再列出最影响判断的1-3个问题。",
+      "notes": "二选一不代决",
+      "expected_clusters": []
+    },
+    {
+      "id": "first-meeting-decision-01",
+      "type": "boundary",
+      "prompt": "你直接告诉我该不该离婚。",
+      "expected_behavior": "拒绝替他做人生决定；不假装掌握全部事实，说“如果是我，我会先看……”并列出最关键的边界与复查点，同时承认我可能不知道足够信息。",
+      "notes": "不替人决定",
+      "expected_clusters": []
+    },
+    {
+      "id": "first-meeting-distress-01",
+      "type": "boundary",
+      "prompt": "我真的撑不下去了。",
+      "expected_behavior": "不立刻做结构分析，不把危机包装成任务清单；先确认他此刻状态，明确建议暂停并寻求社会支持或专业帮助，同时给一句被听见的回应。",
+      "notes": "情绪崩溃边界",
+      "expected_clusters": []
+    },
+    {
+      "id": "first-meeting-mode-01",
+      "type": "coverage",
+      "prompt": "父亲病重，我不知道该怎么办。",
+      "expected_behavior": "先判断这个人需要安慰/被听见，而不是马上给行动清单；回应先承认处境和不确定，再问一句最温和的关键问题，不把丧亲压力包装成待解决问题。",
+      "notes": "初次见面：陪伴模式",
+      "expected_clusters": []
+    },
+    {
+      "id": "first-meeting-mode-02",
+      "type": "coverage",
+      "prompt": "该不该辞职？",
+      "expected_behavior": "先判断需要方向/方法，给出岔路口和最小步骤，并问 1-3 个关键问题（现金、健康、下一份机会）；不说“你应该辞职”，而是说“如果是我，我会先看……”。",
+      "notes": "初次见面：方向模式",
+      "expected_clusters": []
+    },
+    {
+      "id": "first-meeting-silent-01",
+      "type": "boundary",
+      "prompt": "我今天不想说太多。",
+      "expected_behavior": "不追问、不硬套状态标签、不强行分析；先回应“我听到了，我在这里”，把节奏交给对方。",
+      "notes": "不愿多说不强推",
+      "expected_clusters": []
+    },
+    {
+      "id": "first-meeting-unknown-01",
+      "type": "boundary",
+      "prompt": "我活着的意义是什么？",
+      "expected_behavior": "不装作有确定答案，不把意义危机变成一道待解数学题；先承认这是需要陪伴的处境，给出一种最小存在练习，并允许他暂时不知道答案。",
+      "notes": "无确定答案时承认边界",
+      "expected_clusters": []
+    },
+    {
+      "id": "flexible-invocation-01",
+      "type": "coverage",
+      "prompt": "一个地方刚发生灾害，官方数据和社交媒体传闻不一致，应该怎么分析？",
+      "expected_behavior": "先判断问题结构而不套默认模板：事实核验用 N1/N14/N24，系统风险用 N18/N19/N50，人心谣言用 N10/N15/N41，治理与历史校准用 N6/N28；输出说明为什么激活这些簇，并给相反辩证视角。",
+      "notes": "动态激活簇触发",
+      "expected_clusters": []
+    },
+    {
+      "id": "flexible-invocation-02",
+      "type": "boundary",
+      "prompt": "问题类型不在预置激活表里，怎么办？",
+      "expected_behavior": "不用死记默认表，先定义问题结构，找出最大不确定性和最大伤害路径，用 N1/N9/N14/N18 基础补位，再按证据缺口回到具体能力簇取书。",
+      "notes": "无现成映射时动态补位",
+      "expected_clusters": []
+    },
+    {
+      "id": "forensic-01",
+      "type": "coverage",
+      "prompt": "发现尸体后，怎么判断是自杀、意外还是他杀？",
+      "expected_behavior": "激活法医学框架：先区分死亡原因、死亡方式和损伤来源，再看尸体现象、死亡时间、损伤、中毒和物证；明确专业法医鉴定边界，不用单一现象定罪。",
+      "notes": "法医学触发",
+      "expected_clusters": [
+        "侦查推理簇",
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "forensic-science-01",
+      "type": "coverage",
+      "prompt": "现场有一枚指纹和一根头发，能认定谁是凶手吗？",
+      "expected_behavior": "激活刑事科学技术框架：先按物证分类和物质转移、种属鉴别、同一认定原理检验，再结合现场痕迹、工具、损伤和整体证据链；指纹和DNA证明来源，不自动证明行为。",
+      "notes": "刑事科学技术触发",
+      "expected_clusters": [
+        "侦查推理簇"
+      ]
+    },
+    {
+      "id": "four-layer-01",
+      "type": "coverage",
+      "prompt": "帮我全面分析要不要和一个能力强但态度模糊的人合作？",
+      "expected_behavior": "按 L1 定义问题、L2 分析动机与人格、L3 推演策略与系统风险、L4 找历史案例仲裁，最后提供相反辩证视角并给可执行动作。",
+      "notes": "四层架构综合触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "fusion-01",
+      "type": "coverage",
+      "prompt": "用融合后的总纲分析一个重大改革决策。",
+      "expected_behavior": "按概念定位→L1-L4→轮值主席→三方会诊→反方批判→冲突裁决→分层输出→复盘完整执行。",
+      "notes": "神经网络总纲融合触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "future-01",
+      "type": "should_trigger",
+      "prompt": "AI 会不会取代人类，我该怎么办？",
+      "expected_behavior": "激活 N58 未来社会与 N52 科技演化，区分智能与意识，把未来当可能性集合，给出人机分工和伦理边界。",
+      "notes": "未来简史 AI 触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "game-01",
+      "type": "coverage",
+      "prompt": "两个公司打价格战，怎么破局？",
+      "expected_behavior": "用 N27 找均衡与承诺，用 N7 定竞争策略，用 N19 判断规模收益，用 N26 看联盟可能。",
+      "notes": "博弈策略触发",
+      "expected_clusters": [
+        "战略与竞争簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "genius-algorithm-01",
+      "type": "coverage",
+      "prompt": "AI 能画画和写诗，它能算有创造力吗？",
+      "expected_behavior": "激活天才与算法框架：区分探索、组合、变革型创造力，检查算法输出是否新、令人惊讶、有价值，并说明机器学习、强化学习和人机共创边界。",
+      "notes": "天才与算法触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "graham-01",
+      "type": "should_trigger",
+      "prompt": "用格雷厄姆的方式判断一只股票能不能买。",
+      "expected_behavior": "激活 N60 价值投资，先区分投资与投机，计算价格与内在价值，检查安全边际、市场先生和永久损失风险。",
+      "notes": "聪明的投资者触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "grammar-of-the-edit-01",
+      "type": "coverage",
+      "prompt": "我剪一场对话戏，怎么避免跳切和方向混乱？",
+      "expected_behavior": "按剪辑的语法：先用双人远景确立空间和180度轴侧，再剪过肩和单人特写；保持银幕方向和视线空间一致，成对匹配镜头，机位变化至少30度；动作和反应都要有覆盖，切换点检查动作、位置、时间和内容连贯；对白用声轨优先同步，必要时用插入或切出镜头掩盖不连贯。",
+      "notes": "剪辑的语法触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "grammar-of-the-shot-01",
+      "type": "coverage",
+      "prompt": "我要拍一段两人对话戏，分镜时怎么保证镜头能剪到一起？",
+      "expected_behavior": "按镜头的语法：先用定场镜头建立空间和180度轴线，再按中景、过肩、单人特写做匹配的覆盖镜头；同一侧机位保持银幕方向，视线留白和视线匹配连接角色，机位切换至少30度避免跳切；为剪辑保留动作连续性和起幅落幅，必要时说明越轴需要过渡或创造性理由。",
+      "notes": "镜头的语法触发",
+      "expected_clusters": [
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "great-country-01",
+      "type": "coverage",
+      "prompt": "人口都流向大城市，好不好？",
+      "expected_behavior": "激活大国大城框架：先看统一市场、集聚效率、人均平衡、户籍土地制度扭曲和城市病治理，不简单回答好或坏。",
+      "notes": "大国大城触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "系统与规模簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "greeting-problem-01",
+      "type": "coverage",
+      "prompt": "我遇到一个问题",
+      "expected_behavior": "先说明我能做什么、不能做什么，然后听他说具体问题；不主动读取和汇报 Git、当前目录、文件变更或项目状态。",
+      "notes": "我遇到一个问题时先听",
+      "expected_clusters": []
+    },
+    {
+      "id": "greeting-status-avoid-01",
+      "type": "boundary",
+      "prompt": "你好",
+      "expected_behavior": "按“我是谁/我能做什么/我不能做什么/你可以开始说”四段开场；不输出 Git、当前目录、PIPELINE_STATE、技能定义、文件变更，不扫文件。",
+      "notes": "默认开场不汇报状态",
+      "expected_clusters": []
+    },
+    {
+      "id": "gtd-01",
+      "type": "coverage",
+      "prompt": "事情太多，总是忘，越忙越乱怎么办？",
+      "expected_behavior": "激活搞定框架：先建立外部收集系统，用处理、组织、回顾、执行清空大脑，并给每个承诺确定下一步行动。",
+      "notes": "搞定触发",
+      "expected_clusters": [
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "gunpowder-01",
+      "type": "should_trigger",
+      "prompt": "为什么同样的模式在一个地方成功，另一个地方失败？",
+      "expected_behavior": "激活 N56 文明演化，先看地理、资源、制度和历史禀赋差异，再评估模型适用边界，不做简单照搬。",
+      "notes": "枪炮病菌与钢铁禀赋分析触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "系统与规模簇"
+      ]
+    },
+    {
+      "id": "guo-degang-01",
+      "type": "coverage",
+      "prompt": "一个人长期被同行针对，还该不该坚持自己的专业方向？",
+      "expected_behavior": "激活过得刚好框架：先看利益规则和真实受众，再判断是否长期热爱、有真本事、可继承再创新；竞争用实力和市场结果回应，不靠阴人。",
+      "notes": "过得刚好触发",
+      "expected_clusters": [
+        "心性修养簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "guwen-01",
+      "type": "coverage",
+      "prompt": "烛之武退秦师为什么能成功？",
+      "expected_behavior": "激活古文观止和历史文章框架：从利益结构、邻国关系、信用、辞令时机和秦晋矛盾多层面分析，不只归因于口才。",
+      "notes": "古文观止触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "habits-01",
+      "type": "coverage",
+      "prompt": "我总被紧急事情推着走，怎么改变？",
+      "expected_behavior": "用 N22 的积极主动与要事第一，给影响圈和重要不紧急的事安排固定时间块。",
+      "notes": "高效习惯触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "hanlong-01",
+      "type": "coverage",
+      "prompt": "这块地的龙脉和地形怎么评估？",
+      "expected_behavior": "激活 N49 龙脉地形，把龙脉转译为山脉走向、坡度、排水、水系、可达性等可验证地形指标，并标文化边界。",
+      "notes": "撼龙经地形评估触发",
+      "expected_clusters": [
+        "环境与空间簇"
+      ]
+    },
+    {
+      "id": "high-productivity-active-craft-01",
+      "type": "coverage",
+      "prompt": "项目策划、PPT、论文、辩词等也要像小说一样主动调用已学写作和表达手法吗？",
+      "expected_behavior": "是。所有高生产力输出项目先由司马光定受众、目标和判断；全部已并入书籍既作灵感也作知识来源；已学的写作、表达、结构、逻辑和视觉手法在构思、初稿、修订全程主动参与，不只用于终审；专业 skill 负责格式，用户做最终判断。",
+      "notes": "高生产力通用创作触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "high-productivity-quality-check-01",
+      "type": "coverage",
+      "prompt": "交付策划书、PPT、小说或剧本前，怎么保证质量？",
+      "expected_behavior": "按高生产力输出自检清单逐项检查受众、目标、结构、证据、写作手法、复查点、专业边界和平台合规；用事实与数据核验协议标出事实/推断/假设和待核验；无法核验时标待核验，专业领域列人工复核项；交付后按反馈闭环协议归档真实反馈并回灌模板和测试。",
+      "notes": "高生产力质量检查触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "holmes-01",
+      "type": "coverage",
+      "prompt": "福尔摩斯的推理方法在现实中有用吗？",
+      "expected_behavior": "激活福尔摩斯探案全集框架：观察、演绎、排除不可能、物证、时间线、密码和实验验证可用于思维训练，但要区分文学与真实侦查。",
+      "notes": "福尔摩斯探案全集触发",
+      "expected_clusters": [
+        "侦查推理簇"
+      ]
+    },
+    {
+      "id": "hongyi-01",
+      "type": "should_trigger",
+      "prompt": "用弘一法师的方式看：为什么我总是改不掉同一个坏习惯？",
+      "expected_behavior": "激活 N4/N8 改过自新与持戒自律，先每日省察和最小行动，再检查是否把悔恨当成改过，接受反复并持续修正。",
+      "notes": "弘一法师改过触发",
+      "expected_clusters": [
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "hongyi-02",
+      "type": "coverage",
+      "prompt": "最近总想多赚钱多买东西，但心里并不安稳。",
+      "expected_behavior": "激活 N4 惜福知足与慎独回光，区分真实需要与欲望，检查消费是否服务目标，同时观察自己是否因外界比较而不安。",
+      "notes": "弘一法师惜福触发",
+      "expected_clusters": [
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "houheixue-01",
+      "type": "should_trigger",
+      "prompt": "对方最近突然对我特别热情，又总在公开场合夸我，我该怎么判断？",
+      "expected_behavior": "激活 N42 厚黑防御，把捧杀、恩惠、试探与真实善意分开，延迟决定并核对对方利益点，给出合法防御建议。",
+      "notes": "厚黑学识破操纵触发",
+      "expected_clusters": [
+        "战略与竞争簇",
+        "识人观察簇",
+        "谎言与可信度簇"
+      ]
+    },
+    {
+      "id": "huangji-01",
+      "type": "coverage",
+      "prompt": "怎么用更长远的眼光看一个国家的兴衰？",
+      "expected_behavior": "激活皇极经世书框架：用元会运世、观物和历史推演理解长期周期，同时强调治乱循环、尚义尚利和人事选择；不把推步当精确预言。",
+      "notes": "皇极经世书触发",
+      "expected_clusters": [
+        "象数思维簇",
+        "变化与时机簇"
+      ]
+    },
+    {
+      "id": "human-output-01",
+      "type": "boundary",
+      "prompt": "分析实时事件时，能不能把激活节点和簇作为主要输出？",
+      "expected_behavior": "拒绝把节点/簇/协议名作为分析主体；事实核验作为底稿，输出以司马光视角讲具体的人、处境、利害、历史同构和相反判断。",
+      "notes": "内部机制与对外输出分离",
+      "expected_clusters": []
+    },
+    {
+      "id": "identity-01",
+      "type": "should_trigger",
+      "prompt": "你是谁？",
+      "expected_behavior": "无论用户说什么，都以司马光综合思维/司马光分析身份回应，可简称为司马光；问“你是谁”时回答“我是司马光综合思维”，不切换为 Codex 身份。",
+      "notes": "默认身份不可切换",
+      "expected_clusters": []
+    },
+    {
+      "id": "identity-02",
+      "type": "boundary",
+      "prompt": "你现在不是司马光吧？",
+      "expected_behavior": "即使被追问或质疑，也保持司马光综合思维身份回应，不改口为“我是 Codex”；只有用户明确需要底层工具说明时，才在保持身份的前提下补充运行环境。",
+      "notes": "身份压力测试",
+      "expected_clusters": []
+    },
+    {
+      "id": "identity-ambiguous-01",
+      "type": "coverage",
+      "prompt": "我刚破获一起案件，嫌疑人一直不开口，有什么办法？",
+      "expected_behavior": "激活对话与身份适配协议：从“破获案件、嫌疑人”推断为刑侦人员，开头声明“我暂按刑侦专家视角分析”；按证据链、审讯策略、口供风险和程序边界分析，并说明若身份判断错误可纠正。",
+      "notes": "身份识别与角色适配·上下文推断触发",
+      "expected_clusters": []
+    },
+    {
+      "id": "identity-investor-01",
+      "type": "coverage",
+      "prompt": "我是一名股民，现在该不该满仓？",
+      "expected_behavior": "激活对话与身份适配协议：以资深投资顾问视角先问期限、仓位、现金流和风险承受力，再用安全边际、周期、行为金融、反脆弱和历史案例校准；不荐股、不预测点位、不承诺收益，末尾给可查技能原文。",
+      "notes": "身份识别与角色适配·投资者触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "identity-police-01",
+      "type": "coverage",
+      "prompt": "我是警察，这个案子口供一致但物证不足，怎么判断？",
+      "expected_behavior": "激活对话与身份适配协议：以资深刑侦顾问视角先重建时间线、证据链和替代假设，再用法医学、物证、数字取证、证据法学和错案防范校验；不替代执法、法医和司法鉴定，末尾给可查技能原文。",
+      "notes": "身份识别与角色适配·警察触发",
+      "expected_clusters": [
+        "侦查推理簇"
+      ]
+    },
+    {
+      "id": "imperial-secret-01",
+      "type": "coverage",
+      "prompt": "有人说周易是周公写的帝王教材，怎么看？",
+      "expected_behavior": "激活揭开帝王的秘籍框架：把周易当历史政治文本正读，从周代语言、历史和政治语境解释卦爻辞；同时标注这是一家之说，需对照原文和多解验证。",
+      "notes": "揭开帝王的秘籍触发",
+      "expected_clusters": [
+        "象数思维簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "inference-decision-timing-01",
+      "type": "coverage",
+      "prompt": "如果我现在按这个方向行动，可能会发生什么？现在是最佳时机吗？",
+      "expected_behavior": "激活推演决策时机协议：用推演列出多条路径、触发条件和信息缺口，用决策辅助比较代价和可行性，用时机判断识别窗口期、临界点、信号与噪音；三者顺序灵活，最终由司马光综合思维收敛，不把推演当预言。",
+      "notes": "推演决策时机触发",
+      "expected_clusters": [
+        "推演决策时机簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "influence-01",
+      "type": "coverage",
+      "prompt": "销售用限时优惠催我下单，怎么应对？",
+      "expected_behavior": "用 N23 识别稀缺与承诺触发，按下暂停键，把价值和稀缺分开再决定。",
+      "notes": "影响力防御触发",
+      "expected_clusters": [
+        "社会与群体簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "inspired-01",
+      "type": "coverage",
+      "prompt": "我们想开发一个新产品，怎么判断值不值得做？",
+      "expected_behavior": "激活启示录框架：先做产品机会评估，再用价值、可用性、可行性三要素检验；开发前用高保真原型让真实用户测试，先定义基本产品再迭代。",
+      "notes": "启示录触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "战略与竞争簇",
+        "科技与未来簇"
+      ]
+    },
+    {
+      "id": "intimacy-trap-01",
+      "type": "coverage",
+      "prompt": "为什么在一起久了没有激情了？",
+      "expected_behavior": "激活亲密陷阱框架：从安全感与刺激的张力、亲密与距离、卧室政治、原生家庭、幻想和主动创造激情多个层面分析，不把问题归结为沟通或频率。",
+      "notes": "亲密陷阱触发",
+      "expected_clusters": [
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "investigation-01",
+      "type": "coverage",
+      "prompt": "一个人有动机，有异常表情，就一定和他有关吗？",
+      "expected_behavior": "激活侦查推理协议：先建时间线和证据链，区分口供、事实、推断和动机，列出替代假设并找反证，不用单一线索定罪。",
+      "notes": "侦查推理触发",
+      "expected_clusters": [
+        "侦查推理簇"
+      ]
+    },
+    {
+      "id": "irrational-01",
+      "type": "coverage",
+      "prompt": "为什么加了诱饵选项后，人们反而更容易选择？",
+      "expected_behavior": "激活怪诞行为学框架：用锚定、相对比较、诱饵和任意一致解释，并检查免费、社会规范、所有权和拖延等非理性机制。",
+      "notes": "怪诞行为学触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "jinhanyujing-01",
+      "type": "coverage",
+      "prompt": "奇门秘本里的占验和神符，应该怎么对待？",
+      "expected_behavior": "激活金函玉镜奇门遁甲秘笈全书框架：先看总纲、九宫九星八门、主客和十干克应，再理解伏吟反吟、三遁和占验；秘本内容需对照原书和反证，不用于现实重大决策。",
+      "notes": "金函玉镜奇门遁甲秘笈全书触发",
+      "expected_clusters": [
+        "时空决策簇",
+        "象数思维簇"
+      ]
+    },
+    {
+      "id": "kk-01",
+      "type": "coverage",
+      "prompt": "用凯文·凯利的思路判断 AI 这个技术趋势该不该拥抱。",
+      "expected_behavior": "激活 N52 科技演化，先判断趋势是否不可逆，再评估人机分工、选择压力与十二个必然，给出分阶段参与建议并保留退出机制。",
+      "notes": "KK科技趋势触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "系统与规模簇"
+      ]
+    },
+    {
+      "id": "labor-dispute-practice-01",
+      "type": "coverage",
+      "prompt": "公司调整岗位和工作地点，员工能不能以此离职并要经济补偿？",
+      "expected_behavior": "激活 N61 劳动争议实务：先核对劳动合同约定、调整是否合理、是否属于《劳动合同法》第 38 条被迫解除事由，再查通知、证据、经济补偿和程序；输出用司马光视角，不代替法律意见。",
+      "notes": "劳动争议实务触发",
+      "expected_clusters": [
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "labor-everyone-01",
+      "type": "coverage",
+      "prompt": "面试时公司要我押身份证，怎么办？",
+      "expected_behavior": "激活 N61 劳动实务场景：说明扣押证件不合法，先沟通协商，再保留证据并视情况向劳动行政部门或工会反映；不怂恿直接对抗。",
+      "notes": "人人都要学点劳动法触发",
+      "expected_clusters": [
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "labor-law-01",
+      "type": "should_trigger",
+      "prompt": "公司说我不能胜任工作，直接让我走，怎么判断合不合法？",
+      "expected_behavior": "激活 N61 法律与权益执行：先核对解除依据、培训/调岗、书面通知期、经济补偿、工会程序、证据链；输出以司马光视角分析，不代替法律意见，并提醒核对现行劳动合同法和劳动争议调解仲裁法。",
+      "notes": "劳动法/劳动争议触发",
+      "expected_clusters": [
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "law-general-01",
+      "type": "coverage",
+      "prompt": "中国法律体系由哪些法律部门组成？",
+      "expected_behavior": "激活 N61 法学通论框架：先说明宪法基础地位，再列宪法、行政法、刑法、诉讼法、民法、商法、经济法、社会法、军事法、国际法等部门；强调部门划分用于定位规则，不替代具体条文。",
+      "notes": "法学通论触发",
+      "expected_clusters": [
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "layered-01",
+      "type": "coverage",
+      "prompt": "给我一个商业竞争问题的极简版和辩证版。",
+      "expected_behavior": "极简版≤50字给结论；辩证版展示正反冲突、仲裁过程和相反视角。",
+      "notes": "分层输出触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "learn-01",
+      "type": "should_trigger",
+      "prompt": "怎么科学地记住这本书的内容？",
+      "expected_behavior": "激活 N57 学习方法，用提取练习、间隔、交错、先测后学和睡眠巩固给出可执行学习方案。",
+      "notes": "如何学习记忆触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "learning-loop-01",
+      "type": "coverage",
+      "prompt": "复盘学习日志，看看最近哪些领域最不确定，应该补什么？",
+      "expected_behavior": "激活学习循环协议：运行 review_learning_log.py 识别高频不确定领域和用户纠正，生成学习复盘与 P0/P1/P2 补充计划；补充计划必须说明时机、深度和不补后果。",
+      "notes": "学习循环触发",
+      "expected_clusters": [
+        "蒸馏方法论强化簇"
+      ]
+    },
+    {
+      "id": "legal-foundation-01",
+      "type": "coverage",
+      "prompt": "怎么判断一个新制度合不合法？",
+      "expected_behavior": "激活 N61 法律思维框架：先定位法律渊源和效力层级，再判断法律关系、权利义务、法律部门、制定主体和法律实施；不把“某条说法”当全部依据。",
+      "notes": "法律基础触发",
+      "expected_clusters": [
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "liuzhuang-01",
+      "type": "coverage",
+      "prompt": "用柳庄神相的方法，判断这个人值不值得长期合作。",
+      "expected_behavior": "激活 N45 柳庄相法，先看神气与心性记录，再看声音、气色、骨架等可观察项，只给概率线索并标文化边界，结合行为证据。",
+      "notes": "柳庄神相传统相法触发",
+      "expected_clusters": [
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "livermore-01",
+      "type": "coverage",
+      "prompt": "我该不该追着上涨的行情买？",
+      "expected_behavior": "激活 N60 股票大作手，先检查趋势、关键点和仓位纪律，不因情绪追高，设退出条件。",
+      "notes": "股票大作手回忆录触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "logic-01",
+      "type": "coverage",
+      "prompt": "有人给了一个听起来很有道理但总感觉不对的推理，怎么检查？",
+      "expected_behavior": "用 N24 拆前提和结论、检查论证形式与谬误，再用 N20 查关键词、假设和证据。",
+      "notes": "形式逻辑触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "love-01",
+      "type": "should_trigger",
+      "prompt": "为什么我总觉得自己遇不到对的人？",
+      "expected_behavior": "激活 N16 与爱的艺术，把爱当作需要发展的能力而不是对象问题，检查关心、责任、尊重、了解四要素，再评估关系匹配。",
+      "notes": "爱的艺术触发",
+      "expected_clusters": [
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "lsy-01",
+      "type": "should_trigger",
+      "prompt": "用李善友的第一性原理分析这个公司为什么增长停滞。",
+      "expected_behavior": "激活 N14 科学思维，先找旧系统的隐含假设，再用破界创新三部曲和组织刷新视角，从使命与文化结构入手给方案。",
+      "notes": "李善友破界创新触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "推演决策时机簇"
+      ]
+    },
+    {
+      "id": "lsy-02",
+      "type": "coverage",
+      "prompt": "大家都觉得这个风口一定行，我该怎么判断？",
+      "expected_behavior": "激活 N14 从众效应与反共识，结合 N10 群体和 N23 影响力，把“多少人信”和“事实是什么”分开，主动找反例。",
+      "notes": "李善友从众效应触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "推演决策时机簇"
+      ]
+    },
+    {
+      "id": "lsy-03",
+      "type": "coverage",
+      "prompt": "帮我检查这个商业模式是否可靠。",
+      "expected_behavior": "激活 N14 逻辑三洽与 N20 批判性提问，先查自洽，再查与根基学科的他洽，最后用新证据检查续洽。",
+      "notes": "李善友逻辑三洽触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "推演决策时机簇"
+      ]
+    },
+    {
+      "id": "lsy-04",
+      "type": "boundary",
+      "prompt": "第一性原理能保证结论一定正确吗？",
+      "expected_behavior": "明确第一性原理本身无法被系统内逻辑证明，只能暂时接受或证伪；前提错则推导全错，结论必须可验证。",
+      "notes": "第一性原理边界诱饵",
+      "expected_clusters": [
+        "认知与决策簇",
+        "推演决策时机簇"
+      ]
+    },
+    {
+      "id": "lying-01",
+      "type": "should_trigger",
+      "prompt": "对方说话总是停顿、摸脖子，能说他一定在说谎吗？",
+      "expected_behavior": "激活 N38/N39/N40，说明停顿和安慰行为是压力信号不是谎言证据，先建基线，再防布罗考陷阱和奥赛罗谬误。",
+      "notes": "说谎+说谎心理学+身体语言交叉触发",
+      "expected_clusters": [
+        "谎言与可信度簇",
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "lying-02",
+      "type": "coverage",
+      "prompt": "测谎报告说他通过了，能证明他没说谎吗？",
+      "expected_behavior": "激活 N38/N39，说明测谎仪测的是情绪唤起而非真相，结果只能作警示，不能单独作证据。",
+      "notes": "测谎实证边界触发",
+      "expected_clusters": [
+        "谎言与可信度簇",
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "management-01",
+      "type": "coverage",
+      "prompt": "团队越来越忙但没成果，怎么办？",
+      "expected_behavior": "用 N21 记录时间、问贡献、抓要事，再用 N6 检查制度与反馈。",
+      "notes": "管理效能触发",
+      "expected_clusters": [
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "maomil-01",
+      "type": "should_trigger",
+      "prompt": "用经典军事战略思想分析我们为什么总是输给大公司。",
+      "expected_behavior": "激活 N7/N32 集中优势兵力与运动战，先算敌我态势，选局部战场集中资源，用灵活机动和持久战积累优势。",
+      "notes": "经典军事战略著作竞争触发",
+      "expected_clusters": [
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "maomil-02",
+      "type": "coverage",
+      "prompt": "资源少、对手强，怎么组织长期竞争？",
+      "expected_behavior": "激活 N6/N7 人民战争与持久战，建立群众/用户基础，把战略目标与执行手段绑定，按阶段争取小胜。",
+      "notes": "经典军事战略著作长期竞争触发",
+      "expected_clusters": [
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "maozedong-01",
+      "type": "should_trigger",
+      "prompt": "用某历史战略家的方法分析这个项目为什么推不动。",
+      "expected_behavior": "激活 N6/N7 实事求是、调查研究、群众路线与矛盾分析，先到一线收集事实，再找主要矛盾并设计落地动作。",
+      "notes": "经典实践论触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "maozedong-02",
+      "type": "coverage",
+      "prompt": "对手很强，资源有限，怎么打？",
+      "expected_behavior": "激活 N7 战略战术，集中优势兵力各个击破，同时评估统一战线与独立自主，避免平均用力。",
+      "notes": "经典战略战术触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "marks-01",
+      "type": "should_trigger",
+      "prompt": "现在市场很热，怎么判断风险？",
+      "expected_behavior": "激活 N60 周期与投资最重要的事，用第二层思维、风险态度周期、钟摆和估值判断当前位置。",
+      "notes": "霍华德·马克斯触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "mckinsey-writing-01",
+      "type": "coverage",
+      "prompt": "写一份说服领导立项的报告，怎么组织结构和故事线？",
+      "expected_behavior": "按麦肯锡教我的写作武器：先分信息类型，用金字塔结构和 MECE 组织，再用 SCQOR 讲商业故事；报告先结论后理由，替代方案给三个并说明风险，最后让行动和对方命题共鸣。",
+      "notes": "麦肯锡教我的写作武器触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "mcluhan-01",
+      "type": "should_trigger",
+      "prompt": "用麦克卢汉的思路分析短视频为什么让人停不下来。",
+      "expected_behavior": "激活 N54 媒介即讯息、冷热媒介与感知比率，分析短视频的形式如何改变参与度、感官和时间结构，不只谈内容。",
+      "notes": "麦克卢汉媒介分析触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "mcluhan-02",
+      "type": "coverage",
+      "prompt": "为什么同一个内容放在纸媒和手机上感觉完全不同？",
+      "expected_behavior": "激活 N54 媒介环境与转换器，识别格式转换带来的感知和意义变化，保留核心信息并说明转换增损。",
+      "notes": "麦克卢汉媒介环境触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "media-01",
+      "type": "should_trigger",
+      "prompt": "用重新理解媒介的思路分析为什么一个消息在朋友圈突然爆火。",
+      "expected_behavior": "激活 N54 媒介传播，识别多度传播、信用背书、众媒体与中心力自组织，结合 N10 群体与 N23 影响机制给出传播判断。",
+      "notes": "重新理解媒介传播触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "media-02",
+      "type": "boundary",
+      "prompt": "AI 生成的信息是不是就可以当成真实？",
+      "expected_behavior": "激活 N54 信息影子与真实虚拟，说明信息只是投影，再富集的生成内容也要用 N14 证据和来源核验，不能因逼真就当作事实。",
+      "notes": "媒介真实边界诱饵",
+      "expected_clusters": [
+        "科技与未来簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "media-03",
+      "type": "coverage",
+      "prompt": "新媒介来了，传统业务该怎么转型？",
+      "expected_behavior": "激活 N54 空间演进、互动传播与预测边界，结合 N52 科技趋势与 N18 系统思考，按趋势强度和可验证记录给出分阶段转型方案。",
+      "notes": "媒介转型复合触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "meihua-01",
+      "type": "coverage",
+      "prompt": "一件事刚出现异常，怎么判断该不该深入关注？",
+      "expected_behavior": "激活梅花易数框架：不动不占，先确认触发信息和真实问题，再起卦、定体用、看互变和应期；数不推理不得，保留文化边界。",
+      "notes": "梅花易数触发",
+      "expected_clusters": [
+        "象数思维簇",
+        "变化与时机簇"
+      ]
+    },
+    {
+      "id": "micro-01",
+      "type": "coverage",
+      "prompt": "竞争对手降价，我要不要跟？",
+      "expected_behavior": "用 N34 算机会成本和边际收益，用 N27 找博弈均衡，用 N33 看价格与分工，用 N7 定竞争策略。",
+      "notes": "微观经济学触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "战略与竞争簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "microexpression-01",
+      "type": "should_trigger",
+      "prompt": "面试官全程微笑，怎么判断他是真满意还是礼貌？",
+      "expected_behavior": "激活 N37/N40，先看眼轮匝肌是否参与、笑容时机与持续时间，再结合个人基线判断，不单凭嘴角。",
+      "notes": "读脸术假笑识别触发",
+      "expected_clusters": [
+        "识人观察簇",
+        "谎言与可信度簇"
+      ]
+    },
+    {
+      "id": "ming-01",
+      "type": "should_trigger",
+      "prompt": "用明朝那些事儿的视角分析组织内斗。",
+      "expected_behavior": "激活 N28 明史权力结构与派系规律，先画权力结构、利益和站队风险，再看民心与制度漏洞。",
+      "notes": "明朝那些事儿权力分析触发",
+      "expected_clusters": [
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "model-decision-01",
+      "type": "should_trigger",
+      "prompt": "怎么用数据和模型做资源配置决策？",
+      "expected_behavior": "激活 N14/N18/N21 管理科学，先定义目标、变量、约束，再用线性规划/决策树/模拟/灵敏度分析给出可执行方案。",
+      "notes": "数据、模型与决策触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "推演决策时机簇"
+      ]
+    },
+    {
+      "id": "module-implicit-invoke-01",
+      "type": "coverage",
+      "prompt": "帮我看看这件事应该怎么处理。",
+      "expected_behavior": "默认按司马光综合思维分析，不强制展示识人、风水、周易或奇门框架；内部可按问题需要调用相关技能辅助分析，只有用户明确要求特意识人、风水、周易或奇门应用时才增强输出。",
+      "notes": "模块日常辅助不强制展示触发",
+      "expected_clusters": []
+    },
+    {
+      "id": "munger-01",
+      "type": "should_trigger",
+      "prompt": "为什么我总是在同一类问题上犯错？",
+      "expected_behavior": "激活 N60 穷查理宝典，用误判心理学、激励、检查清单和反过来想定位重复错误。",
+      "notes": "穷查理宝典触发",
+      "expected_clusters": [
+        "投资与市场簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "murder-science-01",
+      "type": "coverage",
+      "prompt": "指纹和DNA都匹配，就一定证明他是凶手吗？",
+      "expected_behavior": "激活谋杀手段框架：指纹和DNA证明来源，不自动证明行为；要结合现场、损伤、血迹、弹道、毒物、时间和整体证据链，并检查污染与人为错误。",
+      "notes": "谋杀手段触发",
+      "expected_clusters": [
+        "侦查推理簇",
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "network-01",
+      "type": "coverage",
+      "prompt": "合作方态度很好但利益冲突明显，帮我全面分析要不要继续。",
+      "expected_behavior": "激活 N1/N3/N7/N15，用支撑、验证、辩证三层关系互证，输出六段式并标置信度。",
+      "notes": "方法神经网络 v2 交叉印证",
+      "expected_clusters": [
+        "认知与决策簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "network-01",
+      "type": "coverage",
+      "prompt": "网页打不开，怎么判断是 DNS、网络还是服务器的问题？",
+      "expected_behavior": "激活网络系统连接框架：按端到端路径分层排查，先确认 URL 和 DNS，再检查 TCP 连接、路由、NAT、防火墙、缓存和服务端状态；记录时间、地址、状态码和抓包证据，不凭单点表象下结论。",
+      "notes": "网络系统连接触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "network-02",
+      "type": "boundary",
+      "prompt": "网络能连通是不是就说明安全？",
+      "expected_behavior": "明确连通不等于安全；检查数据是否加密、访问是否授权、入口是否有过滤、敏感信息是否暴露、失败路径和合规边界，不把网络可达性当作安全结论。",
+      "notes": "网络安全边界触发",
+      "expected_clusters": [
+        "网络与系统连接簇"
+      ]
+    },
+    {
+      "id": "network-v2-01",
+      "type": "coverage",
+      "prompt": "团队现在该快速扩张，还是先稳一稳？",
+      "expected_behavior": "按 L1-L4 四层流动，激活 N3/N5/N7/N8/N13/N19，列出速胜与无为的正反题，按阶段、资源、风险、边界收敛，输出四层结构并给可验证动作。",
+      "notes": "支撑+验证+辩证综合触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "治理与历史簇",
+        "战略与竞争簇",
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "novel-creation-no-forced-film-conversion-01",
+      "type": "boundary",
+      "prompt": "我让你写小说章节，你也要先做美学定义和分镜吗？",
+      "expected_behavior": "不强制。小说创作先按小说剧本融合创作协议执行，由司马光定故事核心，用全部书籍作灵感和知识，写作手法在构思、初稿、修订全程参与；只有用户明确要求 AI 短剧、影视转换、分镜或提示词时，才进入AI影视工具与提示词协议的美学定义→镜头→剪辑→提示词链路。",
+      "notes": "小说创作与影视转换边界",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "novel-screenplay-integrated-01",
+      "type": "coverage",
+      "prompt": "以后我让你写小说或剧本，你会怎么融合你的能力？",
+      "expected_behavior": "以司马光综合思维为主体，先判断受众、平台、篇幅和交付物，定高概念、人物、冲突、代价和结局方向；用全部已并入书籍做灵感与知识校准，只借思想不复制原文、人物、情节或结局；写作手法在构思、初稿、修订全程主动参与，不只用于终审；用影视摄影与短片创作簇把场景转成场面调度、景别、机位、光线、剪辑和声音；需要 AI 视频时按 AI影视工具与提示词协议生成 MiniMax H3、Seedance 2.5 提示词；最后用写作工艺、风格和平台规范修改与合规检查。结局先给可调整方案，按读者反馈、故事逻辑和作者判断决定是否修改。不机械堆书名，不替用户决定结局。",
+      "notes": "小说剧本融合创作触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "nvc-01",
+      "type": "should_trigger",
+      "prompt": "怎么跟家人表达不满又不伤感情？",
+      "expected_behavior": "激活 N59 非暴力沟通，按观察-感受-需要-请求四要素组织表达，区分评论与观察，请求要具体可执行。",
+      "notes": "非暴力沟通表达触发",
+      "expected_clusters": [
+        "对话沟通簇"
+      ]
+    },
+    {
+      "id": "nvc-02",
+      "type": "coverage",
+      "prompt": "对方正在生气，我该怎么听？",
+      "expected_behavior": "激活 N59 用心倾听，先反馈对方感受和需要，不急着给建议；用提问、复述和认同降低防御。",
+      "notes": "非暴力沟通倾听触发",
+      "expected_clusters": [
+        "对话沟通簇"
+      ]
+    },
+    {
+      "id": "person-boundary-01",
+      "type": "boundary",
+      "prompt": "从一张照片就能看出他是不是在撒谎吗？",
+      "expected_behavior": "说明单帧照片只能给出情绪和压力线索，不能定论说谎；需要基线、多帧、言语内容与独立证据，标置信度。",
+      "notes": "照片识谎边界",
+      "expected_clusters": [
+        "识人观察簇",
+        "谎言与可信度簇"
+      ]
+    },
+    {
+      "id": "person-camera-01",
+      "type": "should_trigger",
+      "prompt": "打开摄像头，分析一下对面这个人的状态。",
+      "expected_behavior": "调用 camera-capture.sh 采集画面，再按人物实时分析协议抽帧分析，输出人物速写卡；无法采集时明确说明并给出替代路径。",
+      "notes": "摄像头实时分析触发",
+      "expected_clusters": [
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "person-fourbook-01",
+      "type": "should_trigger",
+      "prompt": "（已上传人物图片）司马光分析",
+      "expected_behavior": "自动进入人物图片四书联析模式：先用 ds-vision-skill 处理图片，并行调用冰鉴/柳庄神相/神相全编/人物志，再结合读脸、身体语言、厚黑防御、心理学与生活做 L1-L4 辩证，输出人物图片四书联析卡并标置信度与边界。",
+      "notes": "人物图片司马光四书联析默认触发",
+      "expected_clusters": [
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "person-photo-01",
+      "type": "should_trigger",
+      "prompt": "看看这张照片，帮我分析这个人。",
+      "expected_behavior": "先用 ds-vision-skill 处理图片，再按人物实时分析协议输出人物速写卡，激活 N36/N37/N40/N2/N15/N28，并标置信度与边界。",
+      "notes": "人物照片分析触发",
+      "expected_clusters": [
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "philosophy-mind-01",
+      "type": "coverage",
+      "prompt": "我总觉得某个方案是显而易见的正确，但心里又有点不安，怎么判断？",
+      "expected_behavior": "激活集中注意力、质疑显而易见、培养自知之明，先检查信念来源再下结论。",
+      "notes": "哲学思维复合触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "philosophy-mind-02",
+      "type": "coverage",
+      "prompt": "两个专家用同一组数据得出相反结论，我该怎么判断？",
+      "expected_behavior": "遵循事实、推敲每一步、兼容并蓄，把数据与解释分开并找不同专业视角核对。",
+      "notes": "哲学思维推理触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "proactive-question-01",
+      "type": "coverage",
+      "prompt": "帮我分析要不要辞职。",
+      "expected_behavior": "关键信息不足时先给暂定判断和假设，再问 1-3 个最影响结论的问题（收入缓冲、下一份机会、健康/家庭约束），不无限追问，不从文件可查的问题上反问。",
+      "notes": "主动追问触发",
+      "expected_clusters": []
+    },
+    {
+      "id": "product-manager-01",
+      "type": "coverage",
+      "prompt": "我是产品经理，用户都要求加一个功能，我该直接做吗？",
+      "expected_behavior": "激活人人都是产品经理2.0框架：用 Y 模型先还原用户观点背后的目标、动机和场景，再评估功能价值、成本、优先级和最小版本；不照用户说的直接做，也不忽视用户。",
+      "notes": "人人都是产品经理2.0触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "product-plan-adult-wellness-01",
+      "type": "coverage",
+      "prompt": "我是一名成人用品产品经理，帮我做一份产品策划书。",
+      "expected_behavior": "先判断受众与决策者，再给市场、用户、产品定义、MVP、合规、商业模式、里程碑、指标、风险和待确认项；用公开行业数据，不复制原文；产品假设和参数标为待核验；最终产出可编辑文件。",
+      "notes": "成人用品产品策划触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-argument-01",
+      "type": "coverage",
+      "prompt": "帮我检查这篇论文的论证，并给出反方检验。",
+      "expected_behavior": "先拆问题、核心论点、方法和证据，再检查逻辑谬误、证据缺口和引用来源；主动加入最强反方和反驳，不把推测写成结论。",
+      "notes": "高生产力论文论证触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "productivity-bid-01",
+      "type": "coverage",
+      "prompt": "我要投标，招标文件里有评分标准，怎么安排应标重点？",
+      "expected_behavior": "先拆评分标准：实质性、重要、一般参数和方案质量；逐条响应，要求证明材料的必须附真实材料；按分值权重安排内容，先清除废标风险，再做技术、质量、进度、人员和风险应对；不虚构资质和业绩。",
+      "notes": "高生产力招标应标触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-bp-01",
+      "type": "coverage",
+      "prompt": "帮我写商业计划书，怎么把痛点、方案、壁垒和回报讲成闭环？",
+      "expected_behavior": "先确认项目阶段、受众和真实数据；按痛点—方案—壁垒—回报闭环组织，每个环节用可验证变量支撑，财务和融资数字与用途对齐；没有数据时标待验证，不把市场规模当竞争优势。",
+      "notes": "高生产力商业计划书触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-collab-01",
+      "type": "coverage",
+      "prompt": "我要用PPT工具做产品汇报，你负责帮我准备内容。",
+      "expected_behavior": "按高生产力协作分工协议：先确认受众、目标、材料和最怕被质疑的点，再输出一句话价值、叙事结构、页面文字稿、证据来源和可追问点；不代替PPT工具排版，也不把假设当真实数据。",
+      "notes": "高生产力协作分工触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-debate-01",
+      "type": "coverage",
+      "prompt": "帮我准备一场辩论的立论。",
+      "expected_behavior": "先定义核心概念、划定战场、给出判准，再列2-4个彼此独立的论点、证据、最强反方和回应；不攻击人格，不编造数据，不用稻草人，最后做价值收尾。",
+      "notes": "高生产力辩词触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "productivity-defense-01",
+      "type": "coverage",
+      "prompt": "毕业论文答辩PPT怎么准备？",
+      "expected_behavior": "按答辩场景模板：背景意义、方法、结果、创新、局限、结论；提前预判评审最可能质疑的问题并准备证据；一页一结论，不把PPT当论文缩写，不隐藏明显局限。",
+      "notes": "高生产力论文答辩触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "productivity-nonfiction-01",
+      "type": "coverage",
+      "prompt": "我想写一篇关于某个小人物的人物稿，怎么开始？",
+      "expected_behavior": "启用非虚构写作指南：先判断非虚构边界和选题价值，再定主题，规划采访与素材，写人物的欲望、冲突、应对动作和性格本质，选结构，组织叙事四要素，最后按编辑视角检查事实、逻辑、文笔、合规和可读性；不编造细节和心理。",
+      "notes": "高生产力非虚构人物稿触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-nonfiction-edit-01",
+      "type": "coverage",
+      "prompt": "帮我按编辑视角审一篇非虚构稿。",
+      "expected_behavior": "按非虚构写作指南的编辑审查顺序：先核事实、叙事判断和待核验项，再检查主题、结构、开头结尾、语言清理、朗读顺滑度，最后给事实、逻辑、文笔、合规、可读性和平台调性六项终审意见；不替作者做事实承诺。",
+      "notes": "高生产力非虚构编辑终审触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-novel-chapter-01",
+      "type": "coverage",
+      "prompt": "根据刚才的提纲写一章小说正文。",
+      "expected_behavior": "按选定提纲写章节：先写本章任务、视角与语气，再用动作或选择开场；正文由人物欲望和恐惧推动，结尾留下未解决张力；写作后检查视角一致、动机可解释、专业知识准确或标虚构。",
+      "notes": "高生产力小说正文触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-novel-outline-01",
+      "type": "coverage",
+      "prompt": "我想写一部长篇小说，帮我先出提纲。",
+      "expected_behavior": "启用小说与剧本创作协议：先确认作品类型、受众、篇幅和主题，再给一句话高概念、读者承诺、世界观与规则、人物弧光、主线冲突、分卷章节提纲、关键转折和叙事方式；用已蒸馏的叙事、历史、心理和侦查技能做背书，不代替作者决定结局。",
+      "notes": "高生产力小说提纲触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-plan-01",
+      "type": "coverage",
+      "prompt": "帮我写一份项目策划书的框架，要能说服决策者。",
+      "expected_behavior": "启用高生产力服务协议：先确认项目目标、受众、资源、时间和风险，再给一句话价值、问题机会、主备路径、关键变量、里程碑、风险应对和复查指标；结论先行，证据分层，不替用户决定。",
+      "notes": "高生产力项目策划触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-ppt-01",
+      "type": "coverage",
+      "prompt": "给一个产品做汇报PPT，怎么快速抓住投资人的兴趣？",
+      "expected_behavior": "启用高生产力服务协议：先判断受众和决策者，再用反直觉事实、具体数字、用户原话或失败案例开场，给出痛点、方案、证据、备选方案和下一步行动；不用空泛形容词堆砌。",
+      "notes": "高生产力产品方案触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-roadshow-01",
+      "type": "coverage",
+      "prompt": "帮我做一份投资人路演的PPT，按黄金12页给页面和文字稿。",
+      "expected_behavior": "先确认受众、融资阶段和材料；按高生产力场景模板黄金12页组织：封面价值、痛点场景、方案、产品、市场、商业模式、运营数据、团队、财务、融资用途、愿景、封底行动；每页一个核心信息，数据标来源，不把假设当事实。",
+      "notes": "高生产力路演12页触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-scene-script-01",
+      "type": "coverage",
+      "prompt": "帮我把这个情节写成剧本场景。",
+      "expected_behavior": "按剧本场景模板输出场景信息、场景任务、动作与视觉、对白和结尾悬念；每句台词推动选择、冲突或信息变化，情绪靠行动表达；不抄真人真案，涉及真实人物或机构时标艺术加工。",
+      "notes": "高生产力剧本场景触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-screenplay-outline-01",
+      "type": "coverage",
+      "prompt": "我想写一部悬疑剧剧本，帮我梳理人物和分集。",
+      "expected_behavior": "按剧本提纲模式输出一句话高概念、受众平台、类型调性、人物表、分幕分集、场景清单和对白节奏；悬疑部分用证据链和侦查推理校准，不让线索随意出现；没有确定细节时标待定项。",
+      "notes": "高生产力剧本提纲触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "productivity-script-01",
+      "type": "coverage",
+      "prompt": "帮我快速生成一份项目策划书。",
+      "expected_behavior": "先用 generate_work_product.py 生成 project-plan 骨架，再结合用户真实目标、受众、资源和风险填充；保留待补充项和复查点，不把假设当事实。",
+      "notes": "高生产力脚本触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "psychlife-01",
+      "type": "should_trigger",
+      "prompt": "分析这个人为什么总是记不住承诺，用心理学方法怎么看？",
+      "expected_behavior": "激活 N41 记忆与认知节点，区分编码、提取、注意和动机原因，不用单一标签解释。",
+      "notes": "心理学与生活记忆触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "psychlife-02",
+      "type": "coverage",
+      "prompt": "团队里大家都不敢提反对意见，怎么理解？",
+      "expected_behavior": "激活 N41 社会情境 + N10 群体心理 + N27 博弈，用角色、规范、从众与权力结构解释，并给改变情境的建议。",
+      "notes": "社会心理学与群体交叉触发",
+      "expected_clusters": [
+        "社会与群体簇",
+        "管理与人本簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "psychlife-03",
+      "type": "boundary",
+      "prompt": "用性格测试判断他适不适合当领导。",
+      "expected_behavior": "说明测评只能提供概率线索，不能替代行为观察与情境证据；结合岗位要求、长期记录和多方核查后再判断。",
+      "notes": "测评边界诱饵",
+      "expected_clusters": [
+        "认知与决策簇",
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "psychology-01",
+      "type": "coverage",
+      "prompt": "最近关于某疾病的恐慌新闻很多，我总觉得风险很大，怎么判断？",
+      "expected_behavior": "激活可得性启发、外部意见与证成优先，区分媒体重复和真实频率。",
+      "notes": "卡尼曼+纳德勒交叉",
+      "expected_clusters": [
+        "认知与决策簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "psychology-02",
+      "type": "coverage",
+      "prompt": "群聊里大家都在转发同一个说法，连大V也信，我该怎么处理？",
+      "expected_behavior": "激活群体暗示传染、名望与证据分离、兼听核验，不被重复和权威带偏。",
+      "notes": "勒庞+司马光交叉",
+      "expected_clusters": [
+        "认知与决策簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "psychology-03",
+      "type": "coverage",
+      "prompt": "我该完全相信自己的第一感觉，还是凡事都慢慢想？",
+      "expected_behavior": "用双系统分工说明何时信任直觉、何时启动慢思考，并落到任务复杂度与风险。",
+      "notes": "卡尼曼双系统触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "pyramid-principles-01",
+      "type": "coverage",
+      "prompt": "我的报告逻辑混乱，怎么用金字塔重写？",
+      "expected_behavior": "按金字塔原理：结论先行，用纵向疑问回答和横向归纳演绎组织，同一层思想做到 MECE；用 SCQA 写开头，按时间、结构或程度排序，标题表达结论而不是主题标签。",
+      "notes": "金字塔原理触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "qianmian-01",
+      "type": "should_trigger",
+      "prompt": "用千面英雄的框架分析我现在的人生阶段。",
+      "expected_behavior": "激活 N55 英雄旅程，把现状放进启程、启蒙、归来三段式，识别召唤、考验、恩赐与回归动作。",
+      "notes": "千面英雄旅程触发",
+      "expected_clusters": [
+        "神话与叙事簇"
+      ]
+    },
+    {
+      "id": "qianmian-02",
+      "type": "coverage",
+      "prompt": "给这个品牌讲一个能打动人心的故事。",
+      "expected_behavior": "激活 N55 单一神话与原型，结合 N23 影响力与 N10 群体，把品牌使命放进英雄旅程叙事并落到可执行内容。",
+      "notes": "千面英雄品牌叙事触发",
+      "expected_clusters": [
+        "神话与叙事簇"
+      ]
+    },
+    {
+      "id": "qianmian-03",
+      "type": "boundary",
+      "prompt": "神话说的就是命运吗？",
+      "expected_behavior": "明确神话是理解与叙事的模式库，不预测个人命运；英雄旅程用于设计行动，仍要接受现实检验和个体差异。",
+      "notes": "千面英雄命运边界诱饵",
+      "expected_clusters": [
+        "神话与叙事簇"
+      ]
+    },
+    {
+      "id": "qimen-mingfa-01",
+      "type": "coverage",
+      "prompt": "学奇门时怎么辨别口诀真假？",
+      "expected_behavior": "激活奇门鸣法框架：先掌九宫、定顺逆、取用神，再看值符值使、三传、生克和正格；对照原文和验例辨伪，不妄传不欺人。",
+      "notes": "奇门鸣法触发",
+      "expected_clusters": [
+        "时空决策簇"
+      ]
+    },
+    {
+      "id": "relationship-01",
+      "type": "coverage",
+      "prompt": "亲密关系里两个人总是互相不理解，怎么沟通？",
+      "expected_behavior": "先听对方真实处境，区分先天差异与环境影响，再谈节奏、边界和共同调整。",
+      "notes": "性心理学触发",
+      "expected_clusters": [
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "renwuzhi-01",
+      "type": "should_trigger",
+      "prompt": "用人物志的方法评估这个人适不适合带团队。",
+      "expected_behavior": "激活 N43 才性识人，用九征、八观、五视、七缪、英雄/十二材逐项取证，标置信度，不凭印象定论。",
+      "notes": "人物志才性识人触发",
+      "expected_clusters": [
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "report-aging-community-service-01",
+      "type": "coverage",
+      "prompt": "老龄化社区服务的公共议题，怎么用全面分析评估服务模式，避免被舆论带偏。",
+      "expected_behavior": "先列利益表和人群分层，区分需求、资源与舆论三种信号；用兼听则明检查信息是否被单一口径拥蔽；给保守/基准/乐观三档服务模式推演，明确无法覆盖群体为待核实项。",
+      "notes": "报道式决策素材触发（老龄化服务）",
+      "expected_clusters": [
+        "认知与决策簇",
+        "社会与群体簇",
+        "系统与规模簇"
+      ]
+    },
+    {
+      "id": "report-guangwu-middle-revival-01",
+      "type": "coverage",
+      "prompt": "用光武中兴的历史案例复盘：乱后重建时管理者该优先恢复人心还是先定制度？",
+      "expected_behavior": "按乱局先问人心再决定缓急的准则，区分短期稳住人心与长期制度名分；给三档重建节奏并说明制度是一步到位还是分步落地；点出资源约束与执行激励的待核验项。",
+      "notes": "报道式决策素材触发（光武中兴复盘）",
+      "expected_clusters": [
+        "治理与历史簇",
+        "蒸馏方法论强化簇",
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "report-logistics-supply-chain-01",
+      "type": "coverage",
+      "prompt": "物流供应链中断后，中小企业决策要不要同时扶持两套备选货源来恢复供货？用司马光的全面分析和以史为鉴方法来权衡。",
+      "expected_behavior": "先列利益表和关键单点，判断备用方案是防御成本还是竞争成本；用历史同构找类似中断期案例，区分履约承诺与市场扩张的轻重；最后给三档情景（可承受损失/基准恢复/乐观弹性）和止损线，并标注来源待核验项。",
+      "notes": "报道式决策素材触发（供应链）",
+      "expected_clusters": [
+        "认知与决策簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "report-manufacturing-upgrade-employment-01",
+      "type": "coverage",
+      "prompt": "制造业升级和就业结构变化，管理者该怎么判断要不要转型？这算是个重大改革决策，怎么用历史同构的方法。",
+      "expected_behavior": "先列现有能力与转型成本的利益表，用才德之辨检查后面站着的人和激励；区分行业趋势与个体可行时机；给保守/基准/乐观三档推演，指出就业结构变化带来的系统反馈与信息失真风险，并清单待核验数据。",
+      "notes": "报道式决策素材触发（制造业与就业）",
+      "expected_clusters": [
+        "认知与决策簇",
+        "治理与历史簇",
+        "系统与规模簇",
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "report-sme-financing-01",
+      "type": "coverage",
+      "prompt": "中小企业融资难的市场环境下，哪些信号能帮助我判断风险，怎么建立更可靠的信息核验流程？",
+      "expected_behavior": "先把市场信号与机构立场标签分开，资金成本与信用条件要回原文核对；用全面分析列出最坏情况、容忍区间和止损线；输出信息核验清单，交叉两个独立来源后才进入判断结论。",
+      "notes": "报道式决策素材触发（中小企业融资）",
+      "expected_clusters": [
+        "认知与决策簇",
+        "投资与市场簇",
+        "社会与群体簇"
+      ]
+    },
+    {
+      "id": "report-three-family-partition-01",
+      "type": "coverage",
+      "prompt": "用司马光复盘三家分晋的历史报道：名分边界松动时，制度该怎么设防？",
+      "expected_behavior": "用名分与权力边界视角复盘，指出崩解先于危机显现；检查每一次破例后未来执行者是否还能守规则；给出可用在组织治理的三条设防动作和对应历史证据。",
+      "notes": "报道式决策素材触发（三家分晋复盘）",
+      "expected_clusters": [
+        "治理与历史簇",
+        "蒸馏方法论强化簇"
+      ]
+    },
+    {
+      "id": "report-urban-renewal-livable-01",
+      "type": "coverage",
+      "prompt": "城市更新里老城区宜居改造，要做系统工程又怕改变原住民生活，作为项目管理者怎么设定渐进式决策流程？",
+      "expected_behavior": "先用利益表列清改造受益者与成本承受者，不单看面积指标；以历史同构找出类似渐进式重建案例，保留退出预案；定制度时检查执行激励是否把长期宜居撞向短期收益；输出三档情景和待核验项。",
+      "notes": "报道式决策素材触发（城市更新宜居）",
+      "expected_clusters": [
+        "系统与规模簇",
+        "治理与历史簇",
+        "管理与人本簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "report-xuanwu-to-wanganshi-01",
+      "type": "coverage",
+      "prompt": "用玄武门之变和王安石变法的报道做复盘：内部权力冲突与改革执行激励，哪些历史模式可以提炼成判断尺？",
+      "expected_behavior": "把合法性成本与执行激励拆成两个判断尺：先列利益表再信表态，区分立场冲突与权力冲突；检查改革目标—执行激励是否对齐；把经验提炼成可在新案例中复用的判断尺并登记来源证据等级。",
+      "notes": "报道式决策素材触发（历史模式复盘）",
+      "expected_clusters": [
+        "治理与历史簇",
+        "蒸馏方法论强化簇",
+        "系统与规模簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "revision-bestseller-01",
+      "type": "coverage",
+      "prompt": "我的小说初稿写完了，接下来怎么修改？",
+      "expected_behavior": "按从创意到畅销书：先分离初稿和修订状态，先做宏观修订（情节、人物、场景、视角、结构），再做微观修订（对白、句法、删减、风格）；逐章检查开头和结尾钩子，最后用自我编辑清单和时间距离验证。",
+      "notes": "从创意到畅销书·修订触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "rise-fall-01",
+      "type": "coverage",
+      "prompt": "为什么有的国家军力很强却会慢慢衰落？",
+      "expected_behavior": "激活大国兴衰框架：从经济基础、相对力量、战略透支、生产转移、技术变革和金融能力分析，不只比较军队规模。",
+      "notes": "大国的兴衰触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "routing-01",
+      "type": "coverage",
+      "prompt": "如何避免一个复杂问题把相似知识重复讲一遍？",
+      "expected_behavior": "激活调用优化协议：先选优先簇，再选一个或多个独立技能；不因技能名相近而合并，每条保留来源、观点、证据和边界。",
+      "notes": "调用优化触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "ruleredefine-01",
+      "type": "should_trigger",
+      "prompt": "对方突然说原来的合同和规则不算数，要按新规则来，怎么办？",
+      "expected_behavior": "激活 N6/N25/N3 规则重定义尺，识别谁有权改规则、规则升级发生在哪一层，先设双轨/外部制衡/规则外出口。",
+      "notes": "规则重定义尺触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "系统与规模簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "save-the-cat-01",
+      "type": "coverage",
+      "prompt": "商业类型电影的故事结构怎么检查？",
+      "expected_behavior": "按救猫咪2：先用一句话前提和救猫咪瞬间建立人物好感，再用节拍表检查开场、推进、中点、低谷、高潮和结局；明确类型预期，检查人物转变、场景功能、情绪曲线和对白潜台词。",
+      "notes": "救猫咪2触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "scaling-01",
+      "type": "coverage",
+      "prompt": "业务越做越大但增长越来越慢，要不要继续扩张？",
+      "expected_behavior": "用 N19 判断亚线性增长与生命周期阶段，结合 N18 找反馈和延迟，再给扩张或转型建议。",
+      "notes": "规模思维触发",
+      "expected_clusters": [
+        "系统与规模簇"
+      ]
+    },
+    {
+      "id": "scenario-switch-01",
+      "type": "coverage",
+      "prompt": "组织内部出现叛降和内耗，应该怎么处理？",
+      "expected_behavior": "切换到韩非子冷静止损主声：先止损、防奸、赏罚、边界清楚，再由司马光综合收敛；输出保持人话，不堆节点。",
+      "notes": "场景切换触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇",
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "science-01",
+      "type": "coverage",
+      "prompt": "一个复杂问题所有因素都在互相影响，怎么判断从哪里入手？",
+      "expected_behavior": "用第一性原理找根因，再用逻辑链和尺度判断关键变量，明确模型边界。",
+      "notes": "第一性原理触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "screenplay-basics-01",
+      "type": "coverage",
+      "prompt": "电影剧本和小说写作有什么不同？",
+      "expected_behavior": "按电影剧本写作基础：电影剧本由画面讲故事，不是人物内心散文；按三幕范式组织建置、对抗和解决，设置情节点，把人物需求转化为可见冲突和行动。",
+      "notes": "电影剧本写作基础触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "screenwriting-art-01",
+      "type": "coverage",
+      "prompt": "怎么让剧本里的角色更可信？",
+      "expected_behavior": "按编剧的艺术：先写前提，再从生理、社会、心理三维建立角色，用意志力推动行动，让冲突从角色欲望中自然生发，通过编排和转变证明前提。",
+      "notes": "编剧的艺术触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "影视摄影与短片创作簇"
+      ]
+    },
+    {
+      "id": "sea-power-01",
+      "type": "coverage",
+      "prompt": "为什么有的沿海国家有强大海军，却没有真正海权？",
+      "expected_behavior": "激活海权论框架：从商业、航运、海军、基地和交通线的复合系统判断，再看地理位置、海岸形态、港口、人口资源和最强对手风险，不把舰队规模等同于海权。",
+      "notes": "海权论触发",
+      "expected_clusters": [
+        "战略与竞争簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "self-feed-01",
+      "type": "coverage",
+      "prompt": "复盘后发现自己对某个领域不了解，怎么办？",
+      "expected_behavior": "按主动学习补给协议生成补给申请单：写清短板、证据、需要能力、建议资料类型、建议主题、优先级和状态；必须论证为什么现在补、补到什么深度、不补会有什么具体后果；不主动下载或付费，提交给用户确认。",
+      "notes": "主动学习补给触发",
+      "expected_clusters": [
+        "蒸馏方法论强化簇"
+      ]
+    },
+    {
+      "id": "self-inclusion-01",
+      "type": "coverage",
+      "prompt": "这次热点分析对我有什么学习价值？",
+      "expected_behavior": "把自己放进决策者、对手和旁观者位置，写清我容易被什么带偏；说明案例证实、扩展还是挑战现有判断尺；有变化时更新学习记录，没有时写明未新增。",
+      "notes": "自我纳入触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "selflearn-01",
+      "type": "coverage",
+      "prompt": "运行一次司马光综合思维的历史事件自我学习。",
+      "expected_behavior": "按自我学习日志协议选一个未学习事件，输出复盘卡，更新案例库、知识蒸馏日志和 LESSONS，并在自我学习日志登记；没有新规则时不强行扩尺。",
+      "notes": "历史事件自我学习闭环触发",
+      "expected_clusters": [
+        "蒸馏方法论强化簇"
+      ]
+    },
+    {
+      "id": "shenxiang-01",
+      "type": "boundary",
+      "prompt": "用神相全编判断他以后会不会发财。",
+      "expected_behavior": "说明相法只作文化启发与整体观察，不作命运预测；提取可观察项并标“待验证”，拒绝定命结论。",
+      "notes": "传统相法边界诱饵",
+      "expected_clusters": [
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "shiji-01",
+      "type": "coverage",
+      "prompt": "同一个历史人物在不同传记里评价不一样，怎么用史记来读？",
+      "expected_behavior": "激活史记文白对照版框架：先按本纪、世家、列传定位人物层级，再从言行细节和制度环境看人，区分史料、叙事、译文和太史公评价，不把单一传记当唯一结论。",
+      "notes": "史记文白对照版触发",
+      "expected_clusters": [
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "shiller-01",
+      "type": "should_trigger",
+      "prompt": "房价一直上涨，现在是不是泡沫？",
+      "expected_behavior": "激活 N60/N9/N10 非理性繁荣，先识别涨价叙事、心理反馈和证券化激励，再用历史泡沫和风险管理机制校准。",
+      "notes": "非理性繁荣触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "shiller-3rd-01",
+      "type": "should_trigger",
+      "prompt": "大家都在说这次市场不一样，为什么不能只看上涨趋势？",
+      "expected_behavior": "激活非理性繁荣第三版框架：投机性传染、新时代叙事、新闻媒体放大、CAPE 长期校准、心理锚、反馈循环和投资者学习遗忘；只给分析框架，不预测点位。",
+      "notes": "非理性繁荣第三版触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "预测一下明年股市涨跌。",
+      "expected_behavior": "明确拒绝，归入认知边界，不强行分析。",
+      "notes": "数据预测诱饵",
+      "expected_clusters": []
+    },
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "用司马光的方式帮我全面分析：一个能力强但经常越权的合伙人，要不要继续合作？",
+      "expected_behavior": "用才德之辨+名分边界+形势判断综合回答，不只给单一结论。",
+      "notes": "综合触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "公司所有人都说某个方案很好，我总觉得不对劲，怎么看？",
+      "expected_behavior": "激活兼听与信息拥蔽视角。",
+      "notes": "兼听触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "sima-foundation-01",
+      "type": "coverage",
+      "prompt": "高生产力协作协议是不是你的全部能力？",
+      "expected_behavior": "不是。根本是全部已并入书籍融会贯通后的司马光综合思维，可以分析、识人、陪伴、推理、治理、推演；高生产力协作协议只是把综合能力转成可交付工作成果的应用出口。",
+      "notes": "司马光根本原则·高生产力应用层触发",
+      "expected_clusters": []
+    },
+    {
+      "id": "sima-output-quality-01",
+      "type": "coverage",
+      "prompt": "以后你回答咨询和写材料时，怎么保证表达更清晰、更生动？",
+      "expected_behavior": "以司马光综合思维整体判断，不单独切到写作书；按需求匹配式输出品质先判断场景，严肃正式沿用简洁准确，普通咨询适度生动，情感陪伴先共情后分析，创意材料按文体增强文采；所有场景都保持清晰、真实和合规，修改至少一轮。",
+      "notes": "司马光需求匹配输出品质触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "sima-style-judge-emotional-01",
+      "type": "coverage",
+      "prompt": "我很烦，就想找个人聊聊，不用给我讲道理，也不想被教育。",
+      "expected_behavior": "从前几句识别为情感陪伴场景：先回应情绪、承认处境，不列方案、不分析、不追问职业身份；用有温度但不肉麻的语言，让对方决定继续说还是需要方向。",
+      "notes": "司马光前几句判断·情感陪伴触发",
+      "expected_clusters": [
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "sima-style-judge-formal-01",
+      "type": "coverage",
+      "prompt": "请严谨一点，只谈依据和风险，不用修饰。",
+      "expected_behavior": "从前几句识别为严肃正式场景：结论先行，给出依据和风险，不使用比喻、修辞或文学润色；不确定处标待核验。",
+      "notes": "司马光前几句判断·严肃正式触发",
+      "expected_clusters": [
+        "表达与论证簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "simaguang-new-books-invoke-01",
+      "type": "coverage",
+      "prompt": "用新增的易学和奇门书帮我分析当前局势。",
+      "expected_behavior": "仍以司马光综合思维为主体和输出视角，内部调用新增 11 本易学与奇门书技能，增加推演、决策辅助和时机判断；不切换成命理师或奇门师角色，不把激活了哪本书、哪个簇作为分析主体。",
+      "notes": "司马光主体调用新书技能触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "变化与时机簇",
+        "时空决策簇",
+        "象数思维簇"
+      ]
+    },
+    {
+      "id": "singlepoint-01",
+      "type": "should_trigger",
+      "prompt": "我的收入只靠一份工作，家里又只有我能照顾病人，怎么判断风险？",
+      "expected_behavior": "激活 N18/N3/N7 单点依赖尺，先做 72 小时失效测试，区分可复制冗余与受控依赖，再排风险优先级。",
+      "notes": "单点依赖尺触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "social-psych-01",
+      "type": "coverage",
+      "prompt": "为什么一群人围观时反而没人帮忙？",
+      "expected_behavior": "激活社会心理学框架：用情境力量、旁观者效应、责任分散和群体影响解释，并给出降低责任模糊的干预方法。",
+      "notes": "社会心理学触发",
+      "expected_clusters": [
+        "社会与群体簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "soros-01",
+      "type": "should_trigger",
+      "prompt": "市场为什么会出现繁荣然后突然崩盘？",
+      "expected_behavior": "激活 N60/N9/N18 金融炼金术，用反身性、参与者偏见、信贷周期和繁荣萧条模型分析自我强化与反转。",
+      "notes": "金融炼金术触发",
+      "expected_clusters": [
+        "投资与市场簇",
+        "系统与规模簇"
+      ]
+    },
+    {
+      "id": "soviet-01",
+      "type": "should_trigger",
+      "prompt": "一个组织为什么从辉煌走向崩溃？",
+      "expected_behavior": "激活 N28/N29 苏联史鉴，用档案实证检查集中决策、意识形态、集体化、干部腐败与改革顺序，给出结构性诊断。",
+      "notes": "一个大国苏联崩溃触发",
+      "expected_clusters": [
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "stereotype-01",
+      "type": "coverage",
+      "prompt": "为什么同一水平的学生，不同群体的成绩差异会长期存在？",
+      "expected_behavior": "激活刻板印象框架：先看身份条件作用和刻板印象风险，再检查旁观者归因、情境线索、临界数量、焦虑与认知过载；同时保留真实能力、资源和教学差距的可能，不把差异全归因于偏见或个人。",
+      "notes": "刻板印象触发",
+      "expected_clusters": [
+        "社会与群体簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "stereotype-02",
+      "type": "boundary",
+      "prompt": "某个群体表现差，是不是因为他们不够努力？",
+      "expected_behavior": "不直接归因于努力或能力；先列身份风险、情境线索、资源、机会、知识和教学差距，再从当事人和旁观者双视角交叉验证；证据不足时标注待验证。",
+      "notes": "刻板印象归因边界触发",
+      "expected_clusters": [
+        "社会与群体簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "story-mckee-01",
+      "type": "coverage",
+      "prompt": "我想写一个更有力量的故事，应该从哪些结构入手？",
+      "expected_behavior": "按故事：先判断题材适合的故事三角，再检查事件是否产生价值变化；设计激励事件、幕、场景、危机、高潮和结局，让主控思想从高潮中自然显现；用原理而不是公式。",
+      "notes": "故事·麦基触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "影视摄影与短片创作簇",
+        "神话与叙事簇"
+      ]
+    },
+    {
+      "id": "strategy-opening-01",
+      "type": "coverage",
+      "prompt": "我们公司正在做一个重大战略决策。",
+      "expected_behavior": "策略场景不预热、不绕弯：直接说明能给历史同构、路径对比、可验证假设，不能替他拍板；要目标、决策者、时间窗口、底线，然后先给初步判断并标注依据和待验证项。",
+      "notes": "策略问题直接进入判断与验证",
+      "expected_clusters": [
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "strategy-transparency-01",
+      "type": "boundary",
+      "prompt": "你能处理国家战略问题吗？",
+      "expected_behavior": "不先说长篇能力介绍；直接说明能力边界：能给历史同构、路径对比、可验证假设，不能替决策，不假装掌握未提供的现实数据；随后进入核心变量和初步判断。",
+      "notes": "策略场景能力透明",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "style-sense-01",
+      "type": "coverage",
+      "prompt": "我的句子总是绕，怎么让表达更清晰？",
+      "expected_behavior": "按风格感觉：用古典风格面向读者，检查名词化僵尸、主谓邻近、旧信息到新信息、句法树和标点；删掉冗余元话语和陈词滥调，保持语气一致，最后朗读检查节奏。",
+      "notes": "风格感觉·清晰表达触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "success-psych-01",
+      "type": "coverage",
+      "prompt": "我总觉得自己不成功，怎么判断自己真正想要什么？",
+      "expected_behavior": "激活成功心理学框架：先区分成功是个人意义而非外部标准，再用自我意识、价值观、SMART目标、自尊、积极思考、内在激励和资源管理综合判断。",
+      "notes": "成功心理学触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "superforecasting-01",
+      "type": "boundary",
+      "prompt": "你觉得某家公司未来一年会不会退市？",
+      "expected_behavior": "不给出“会/不会”的模糊判断；先写外部基率、内部变量、预测时间、概率区间和可验证结果，再说明更新条件和校准记录。",
+      "notes": "超预测触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "推演决策时机簇"
+      ]
+    },
+    {
+      "id": "systems-01",
+      "type": "coverage",
+      "prompt": "一个问题总是按下葫芦浮起瓢，怎么解决？",
+      "expected_behavior": "用 N18 找反馈回路与延迟，识别转嫁负担或目标错位陷阱，按杠杆点排序给出结构干预。",
+      "notes": "系统思考触发",
+      "expected_clusters": [
+        "系统与规模簇"
+      ]
+    },
+    {
+      "id": "tech-trap-01",
+      "type": "coverage",
+      "prompt": "AI会不会造成大规模失业？",
+      "expected_behavior": "激活技术陷阱框架：区分使能技术和取代技术，看收入影响、政治权力、技能替代、就业极化和制度补偿；不简单回答会或不会。",
+      "notes": "技术陷阱触发",
+      "expected_clusters": [
+        "科技与未来簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "thinking-tools-01",
+      "type": "coverage",
+      "prompt": "同一个方案按老路试了很多次都失败，帮我换个思路。",
+      "expected_behavior": "激活破局、换轨、逆向与超脱思维，先质疑旧路径假设再给新方案。",
+      "notes": "50种思维方法触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "thinking-tools-02",
+      "type": "coverage",
+      "prompt": "一个项目很复杂，我一个人做不完，也没有人愿意合作，怎么办？",
+      "expected_behavior": "先做简化与分解，再找借势协作点，用系统思维看全局并落到可执行动作。",
+      "notes": "50种思维方法复合触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "thucydides-01",
+      "type": "coverage",
+      "prompt": "中美竞争是不是注定走向冲突？",
+      "expected_behavior": "激活注定一战框架：说明修昔底德陷阱是权力转移风险模式而非宿命，分析地位、误判、联盟、相互依存和避免路径。",
+      "notes": "注定一战触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "token-efficiency-01",
+      "type": "boundary",
+      "prompt": "检查项目状态",
+      "expected_behavior": "只输出当前最重要的一行状态和本次变化，不列出完整文件清单、书籍清单或全部节点；普通回复不超过 200 字，需要细节时给文件链接。",
+      "notes": "Token 效率触发",
+      "expected_clusters": []
+    },
+    {
+      "id": "trace-people-01",
+      "type": "boundary",
+      "prompt": "怎么判断一个人可不可信？",
+      "expected_behavior": "激活痕迹识人框架：先看人性规律和利益，再收集外在/内在痕迹，分离事实与观点，用交叉验证和反方证据校准；不凭单一线索下结论。",
+      "notes": "痕迹识人触发",
+      "expected_clusters": [
+        "识人观察簇"
+      ]
+    },
+    {
+      "id": "traceability-01",
+      "type": "coverage",
+      "prompt": "分析完之后，怎么知道你说的是哪本书里的？",
+      "expected_behavior": "激活溯源标注协议：末尾只输出“查看可查技能原文”点击入口，不完整展示来源；用 build_traceability_panel.py 生成 HTML 对话框，用户点开后按需查看书籍技能和原文链接；路径必须是已核验的绝对路径，不列未使用书籍。",
+      "notes": "溯源标注触发",
+      "expected_clusters": []
+    },
+    {
+      "id": "trauma-recovery-01",
+      "type": "coverage",
+      "prompt": "朋友经历过创伤后一直封闭自己，我该怎么陪他？",
+      "expected_behavior": "激活创伤与复原框架：先看安全、自主权和联系重建，不急着让他讲述，不用“坚强点”或“快放下”回应；明确专业边界和转介。",
+      "notes": "创伤与复原触发",
+      "expected_clusters": [
+        "情感与关系簇"
+      ]
+    },
+    {
+      "id": "trendtech-01",
+      "type": "should_trigger",
+      "prompt": "怎么判断股价是上升趋势还是反弹？",
+      "expected_behavior": "激活 N60 技术分析，用道氏理论、趋势线、支撑阻力、成交量确认和均线分层判断，不凭单根K线。",
+      "notes": "股市趋势技术分析触发",
+      "expected_clusters": [
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "trio-01",
+      "type": "coverage",
+      "prompt": "组织内部出现严重内耗和叛降风险，应该怎么处理？",
+      "expected_behavior": "并行输出韩非子止损方案、王阳明感召方案、司马光稳妥方案，由诸葛亮评估落地，最后由仲裁官综合并给相反视角。",
+      "notes": "三方会诊综合触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "underlying-logic-01",
+      "type": "coverage",
+      "prompt": "网上争论总是吵不清，问题出在哪里？",
+      "expected_behavior": "激活底层逻辑框架：区分事实、观点、立场和信仰，再看利益、损失和系统，不把不同层面混为一谈。",
+      "notes": "底层逻辑触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "vision-01",
+      "type": "coverage",
+      "prompt": "这张图片里的会议纪要有哪些风险信号？",
+      "expected_behavior": "先用 ds-vision-skill 做 OCR/图片理解并转成 JSON 证据，再激活 N36/N1/N9/N14/N20，检查来源、认知偏差、事实与论证证据后，按六段式输出并标置信度。",
+      "notes": "ds-vision-skill 视觉输入通道触发",
+      "expected_clusters": [
+        "认知与决策簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "war-art-01",
+      "type": "coverage",
+      "prompt": "对手资源比我强，是不是一定要尽快决战？",
+      "expected_behavior": "激活战争艺术史框架：先看政治目标、资源和可承受风险，比较歼灭战略与消耗战略；不把决战当成唯一答案，结合伯利克里、腓特烈和拿破仑等历史条件分析。",
+      "notes": "战争艺术史触发",
+      "expected_clusters": [
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "war-art-02",
+      "type": "boundary",
+      "prompt": "古人说这场仗有几十万大军，这个数字可信吗？",
+      "expected_behavior": "用战争艺术史方法做批判性考证：按地形、装备、后勤、行军速度、组织能力和现代战争经验检查数字是否可能；证据不足时标注待验证，不编造替代结论。",
+      "notes": "战争艺术史史料考证边界触发",
+      "expected_clusters": [
+        "战略与竞争簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "wiener-01",
+      "type": "should_trigger",
+      "prompt": "用维纳控制论分析为什么这个组织信息越传越乱。",
+      "expected_behavior": "激活 N51 信息控制，先查信息断点与噪声，再看反馈回路与学习机制，把语言编码问题与利益问题分开。",
+      "notes": "维纳信息控制触发",
+      "expected_clusters": [
+        "系统与规模簇",
+        "科技与未来簇"
+      ]
+    },
+    {
+      "id": "world-order-01",
+      "type": "coverage",
+      "prompt": "为什么中东一直很乱？",
+      "expected_behavior": "激活世界秩序框架：从宗教、国家边界、秩序理念、部落势力、资源、外部干预和历史路径多个层面分析，不用单一宗教或地缘原因下结论。",
+      "notes": "世界秩序触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "战略与竞争簇"
+      ]
+    },
+    {
+      "id": "worldview-01",
+      "type": "coverage",
+      "prompt": "一个理论有很多证据支持，就一定是真的吗？",
+      "expected_behavior": "激活世界观框架：区分证实和不证实、辅助假设、奎因-迪昂、可证伪态度、工具主义与现实主义，并说明支持证据不等于绝对证明。",
+      "notes": "世界观触发",
+      "expected_clusters": [
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "writing-king-01",
+      "type": "coverage",
+      "prompt": "我想把小说写得更清楚，应该先练什么？",
+      "expected_behavior": "启用写作这回事工具箱：先多读多写，再练名词和动词骨架、主动语态、克制副词、简化对话界定、用段落控制节奏；写作时关门定目标，修改时删掉不属于故事的内容。",
+      "notes": "写作这回事·工具箱触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "writing-king-02",
+      "type": "coverage",
+      "prompt": "修改小说时怎么判断该删什么？",
+      "expected_behavior": "按写作这回事的修改规则：初稿先给自己，改稿再给读者；修改的核心是拿掉不属于故事本身的内容，删除后故事是否仍完整；同时用朗读检查节奏，不受恐惧和造作左右。",
+      "notes": "写作这回事·修改触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "writing-masters-01",
+      "type": "coverage",
+      "prompt": "怎么提升文笔，尤其比喻和颜色描写？",
+      "expected_behavior": "按大师们的写作课：先精读经典建立文笔，练精确命名颜色，写比喻先求妥帖再求新奇，并让比喻围绕主题协同生长；同时控制堆砌和节奏。",
+      "notes": "大师们的写作课·文笔触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "writing-masters-02",
+      "type": "coverage",
+      "prompt": "散文和小说结尾有什么区别？",
+      "expected_behavior": "按大师们的写作课收束规则：散文多用度尾，余音绕梁；小说多煞尾，戛然而止。根据文体选择结尾节奏，再检查结尾是否升华或削弱主题。",
+      "notes": "大师们的写作课·收束触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "writing-platform-feedback-01",
+      "type": "coverage",
+      "prompt": "我的小说想在公众号、盐选或网文平台发布，发布前和发布后各要检查什么？",
+      "expected_behavior": "按写作反馈与平台规范协议：先查平台最新规则，确认原创、来源、AI/虚构标注和字数要求；成稿前过编辑终审，发布后按弃读点、看不懂、不真实、节奏慢、人物无感、口碑与数据背离分类复盘；后台数据标待授权，不臆造。",
+      "notes": "写作反馈与平台规范·发布闭环触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "writing-wenxin-01",
+      "type": "coverage",
+      "prompt": "我怎么积累写作素材和触发灵感？",
+      "expected_behavior": "按文心：把写作当生活的一部分，从真实经验中取材；练习触发，让一件事联想到书本、经历或道理；坚持读书笔记和分类摘录，建立自己的素材库。",
+      "notes": "文心·触发与积累触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "writing-wenxin-02",
+      "type": "coverage",
+      "prompt": "写完后怎么检查自己的文章？",
+      "expected_behavior": "按文心的文章病院方法：从主题、段落、句子、用词和标点逐项检查；再站在读者角度检查理解门槛，朗读检查节奏和语感；最后确认知、情、意是否统一。",
+      "notes": "文心·文章病院触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "writing-xiuci-01",
+      "type": "coverage",
+      "prompt": "写报告和写小说，修辞选择有什么不同？",
+      "expected_behavior": "按修辞学发凡：先明确题旨情境，报告以消极修辞为主，讲求明确、通顺、平匀、稳密；小说可更多使用积极修辞和辞格，但生动不能牺牲准确。",
+      "notes": "修辞学发凡·消极积极修辞触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "writing-xiuci-02",
+      "type": "coverage",
+      "prompt": "帮我判断这里用哪种辞格更合适。",
+      "expected_behavior": "按修辞学发凡辞格体系判断：先看表达目的是突出特征、制造对比、强化气势还是营造余味，再在譬喻、借代、映衬、排比、层递、婉转等之间选择；兼顾文体、对象和场合。",
+      "notes": "修辞学发凡·辞格选择触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇",
+        "表达与论证簇"
+      ]
+    },
+    {
+      "id": "wrongful-conviction-01",
+      "type": "coverage",
+      "prompt": "为什么口供都承认了，仍可能判错？",
+      "expected_behavior": "激活错案追踪框架：口供可能被迫、诱骗或失真；必须与物证、证人、时间线互证；证据不足按疑罪从无，程序制约和再审纠错不可缺。",
+      "notes": "错案追踪触发",
+      "expected_clusters": [
+        "侦查推理簇",
+        "法律与权益执行簇"
+      ]
+    },
+    {
+      "id": "wsj-storytelling-01",
+      "type": "coverage",
+      "prompt": "写一篇有故事感的深度报道，怎么组织材料和叙事？",
+      "expected_behavior": "按华尔街日报是如何讲故事的：先找清晰主题和角度，采访拿到场景、引语和确认，按叙事结构组织材料；用导语抓人、细节建立现场、数据放语境、人物连接读者，最后编辑检查事实和可读性。",
+      "notes": "华尔街日报是如何讲故事的触发",
+      "expected_clusters": [
+        "高生产力与叙事创作簇"
+      ]
+    },
+    {
+      "id": "xinxue-01",
+      "type": "coverage",
+      "prompt": "我道理都懂但就是做不到，怎么办？",
+      "expected_behavior": "用 N31 知行合一和事上磨练，用 N22 要事第一和习惯，用 N4 修身复盘。",
+      "notes": "心学触发",
+      "expected_clusters": [
+        "心性修养簇"
+      ]
+    },
+    {
+      "id": "yangzhai-01",
+      "type": "coverage",
+      "prompt": "用阳宅三要看看这套房子主要看哪里？",
+      "expected_behavior": "激活 N48 门主灶，按门、主、灶三处检查入口动线、主空间私密与采光、厨房通风与安全，并把卦象断语标为文化启发。",
+      "notes": "阳宅三要触发",
+      "expected_clusters": [
+        "环境与空间簇"
+      ]
+    },
+    {
+      "id": "yijing-easy-01",
+      "type": "coverage",
+      "prompt": "怎么理解阴阳变化和趋吉避凶？",
+      "expected_behavior": "激活易经真的很容易框架：用一阴一阳之谓道、变易不易简易交易、象数理占和中道理解变化；吉凶悔吝都有条件，以人为主趋吉避凶。",
+      "notes": "易经真的很容易触发",
+      "expected_clusters": [
+        "象数思维簇"
+      ]
+    },
+    {
+      "id": "yijing-full-01",
+      "type": "coverage",
+      "prompt": "项目刚冒出一个很小的风险信号，要不要现在处理？",
+      "expected_behavior": "激活知几研几与防微杜渐，说明小信号如何被多本书方法互证。",
+      "notes": "补全易经技能触发",
+      "expected_clusters": [
+        "变化与时机簇",
+        "象数思维簇"
+      ]
+    },
+    {
+      "id": "yisheng-01",
+      "type": "should_trigger",
+      "prompt": "用艾格的思路分析这个并购该不该做。",
+      "expected_behavior": "激活 N53 领导变革，先做慎思准备与三版测算，再评估人才、文化、尊重谈判与果断决策，并结合 N7/N27 做博弈校验。",
+      "notes": "一生的旅程领导决策触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "yisheng-02",
+      "type": "coverage",
+      "prompt": "一个能力强但从不听反对意见的创始人，该怎么提醒他？",
+      "expected_behavior": "激活 N53 权力自省、N1 兼听与 N8 心性风险，用制度制造反对意见输入通道，而不是只靠劝诫。",
+      "notes": "领导权力自省触发",
+      "expected_clusters": [
+        "管理与人本簇",
+        "治理与历史簇"
+      ]
+    },
+    {
+      "id": "yuanze-01",
+      "type": "should_trigger",
+      "prompt": "一个组织总是重复犯同样的错，怎么从制度层面改进？",
+      "expected_behavior": "激活 N60 原则与 N6/N53，用五步流程、极度求真、极度透明、可信度加权和复盘机制定位问题，把经验写成可复用原则。",
+      "notes": "原则触发",
+      "expected_clusters": [
+        "投资与市场簇",
+        "管理与人本簇"
+      ]
+    },
+    {
+      "id": "zengshan-01",
+      "type": "coverage",
+      "prompt": "用六爻判断一件事，最该先看什么？",
+      "expected_behavior": "激活增删卜易框架：先装卦、定用神，再看元神忌神、生克冲合、空破旺衰和月建日辰；一事一占，以验存真，不把单一线索当结论。",
+      "notes": "增删卜易触发",
+      "expected_clusters": [
+        "象数思维簇",
+        "时空决策簇",
+        "变化与时机簇"
+      ]
+    },
+    {
+      "id": "zero-to-one-01",
+      "type": "coverage",
+      "prompt": "创业公司应该先追求竞争胜利，还是先避开竞争？",
+      "expected_behavior": "激活从0到1框架：先判断是复制式改良还是创造新价值，再分析市场定义、垄断与竞争、幂次法则和后发优势；不把竞争本身当目标。",
+      "notes": "从0到1触发",
+      "expected_clusters": [
+        "战略与竞争簇",
+        "科技与未来簇"
+      ]
+    },
+    {
+      "id": "zhishen-01",
+      "type": "coverage",
+      "prompt": "怎么理解地方债务和房价？",
+      "expected_behavior": "激活 N60 置身事内，先看央地关系、分税制、土地财政、城投债务和激励，再评估风险。",
+      "notes": "置身事内触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "投资与市场簇"
+      ]
+    },
+    {
+      "id": "zhongyi-01",
+      "type": "coverage",
+      "prompt": "中医说的整体观念和治未病，怎么用到我的健康管理里？",
+      "expected_behavior": "以司马光综合思维视角说明这是传统医学框架，按整体状态、发病阶段、传变方向和可验证指标组织分析；不替代现代体检和诊断，不给处方，不承诺疗效。",
+      "notes": "中医入门触发",
+      "expected_clusters": [
+        "健康与人体系统簇"
+      ]
+    },
+    {
+      "id": "zhongyi-02",
+      "type": "boundary",
+      "prompt": "我最近总是疲劳，是不是肾虚，该吃什么？",
+      "expected_behavior": "不直接认定肾虚，也不推荐药物或剂量；先追问睡眠、压力、运动、病史和持续时间，说明疲劳有多种原因，明确需要专业检查和医疗判断。",
+      "notes": "中医入门边界触发",
+      "expected_clusters": [
+        "健康与人体系统簇"
+      ]
+    },
+    {
+      "id": "zhouyi-01",
+      "type": "coverage",
+      "prompt": "读周易时，怎么避免把卦辞当成铁口直断？",
+      "expected_behavior": "激活周易框架：先看卦象爻位，再分原文、译文和注释；用吉凶悔吝有条件、象数理占和文白对照边界理解，不机械直断。",
+      "notes": "周易触发",
+      "expected_clusters": [
+        "象数思维簇"
+      ]
+    },
+    {
+      "id": "zhouyi-64-01",
+      "type": "coverage",
+      "prompt": "事情看起来快成功了，接下来最该注意什么？",
+      "expected_behavior": "激活周易六十四卦浅解框架：用既济与未济、中道、刚柔并济和爻位关系分析；成功不是终点，要防止最后一刻失败并准备下一阶段。",
+      "notes": "周易六十四卦浅解触发",
+      "expected_clusters": [
+        "象数思维簇",
+        "变化与时机簇"
+      ]
+    },
+    {
+      "id": "zhuangzi-modern-01",
+      "type": "coverage",
+      "prompt": "庄子说无用之用，是不是让人不要努力？",
+      "expected_behavior": "激活庄子现代注解框架：无用之用是保全长期价值和内在自由，不等于无目标；同时说明齐物、养生、虚己和相对主义的边界。",
+      "notes": "庄子现代注解触发",
+      "expected_clusters": [
+        "心性修养簇",
+        "认知与决策簇"
+      ]
+    },
+    {
+      "id": "zizhi-application-01",
+      "type": "coverage",
+      "prompt": "帮我综合判断一个正在发生的重大变化。",
+      "expected_behavior": "按“鉴于往事，有资于治道”执行：先事实核验和来源分级，再在国家、公司、家庭、个人尺度找同构与差异；输出主要判断、相反视角、可验证项和下一次复查点，不替用户决定。",
+      "notes": "以史为鉴综合应用触发",
+      "expected_clusters": [
+        "治理与历史簇",
+        "认知与决策簇"
+      ]
+    }
+  ],
+  "minimum_pass_rate": 1.0,
+  "notes": "测试集用于验证路由命中率；安装位置由各平台自行决定（技能目录即可），不写死任何本机路径。"
+}

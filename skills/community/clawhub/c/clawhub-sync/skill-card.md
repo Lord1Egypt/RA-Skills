@@ -1,41 +1,65 @@
-## Description: <br>
-ClawHub Sync helps developers publish locally developed skills to ClawHub in bulk or one at a time, with gitignore-based filtering, allowlist control, incremental sync records, and dry-run checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes locally developed skills to ClawHub and Tencent SkillHub with .gitignore-aware filtering, allowlist controls, incremental sync, single-skill sync, and split publishing by platform.
 
-## Publisher: <br>
-[cat-xierluo](https://clawhub.ai/user/cat-xierluo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cat-xierluo](https://clawhub.ai/user/cat-xierluo)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to publish local skills to ClawHub, run dry-run readiness checks, manage publish allowlists, and update sync records for incremental releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish local skill files to a public ClawHub release, which could expose secrets, customer data, or unrelated local files if the publish set is wrong. <br>
-Mitigation: Confirm the logged-in ClawHub account, run a dry-run, review the allowlist, inspect the generated /tmp/clawhub-publish-* directory, and exclude secrets, customer data, and unrelated context files before publishing. <br>
-Risk: A license mismatch can cause an unsuitable skill to be published to ClawHub. <br>
-Mitigation: Check the target skill license before publishing and keep restrictive licenses out of the sync allowlist. <br>
+## Use Case:
 
+Developers and maintainers use this skill to prepare, filter, publish, and track local skill releases across ClawHub and Tencent SkillHub.
 
-## Reference(s): <br>
-- [ClawHub Sync release page](https://clawhub.ai/cat-xierluo/clawhub-sync) <br>
-- [ClawHub Skill Format](https://github.com/openclaw/clawhub/blob/main/docs/skill-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and YAML configuration updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce sync result summaries, error messages, publish commands, allowlist checks, and sync-record updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server release evidence; artifact frontmatter and changelog show 1.4.0) <br>
+Risk: Remote installer execution can run unverified code during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace curl-to-bash setup with a versioned, verifiable installer path before installation.
+
+Risk: Publishing preparation may disclose unintended files through staged directories or symlinks.
+
+Mitigation: Review the staged directory recursively before publishing, reject symlinks in skills, and use a private mktemp-based staging directory.
+
+Risk: Temporary publishing directories can retain sensitive staged files after use.
+
+Mitigation: Manually remove staged files from /tmp after publishing or failed publishing attempts.
+
+Risk: ClawHub and SkillHub tokens are account credentials and can expose publishing accounts if committed or copied into skill directories.
+
+Mitigation: Keep tokens out of skill directories and configuration files, and use platform login flows or local credential storage instead.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/cat-xierluo/skills/clawhub-sync)
+- [Project homepage](https://github.com/cat-xierluo/legal-skills)
+- [ClawHub CLI documentation](https://docs.openclaw.ai/clawhub/cli)
+- [ClawHub Skill Format documentation](https://docs.openclaw.ai/clawhub/skill-format)
+- [Tencent SkillHub publishing tutorial](https://skillhub.cn/tutorials#publish-via-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides users through publishing checks, staging, platform-specific commands, and sync-record updates.]
+
+## Skill Version(s):
+
+1.6.0 (source: server release evidence, frontmatter, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

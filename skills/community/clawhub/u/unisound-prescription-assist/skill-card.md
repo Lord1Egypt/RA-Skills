@@ -1,44 +1,57 @@
-## Description: <br>
-Assists primary care clinicians by taking diagnoses and patient medication context, recommending drug plans, checking interactions and contraindications, and returning dosage guidance as JSON plus a natural language summary. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists community clinic clinicians by drafting medication recommendations, checking interactions and contraindications, and suggesting dose adjustments from diagnosis and patient medication context.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External primary care clinicians use this skill to prepare prescription assistance notes from diagnosis, renal function, allergy history, and concurrent medication details. The output is decision support and does not replace physician or pharmacist review before a prescription is issued. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to local healthcare practice, prescription, consent, and data protection requirements. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive prescription and patient details are sent to a configured remote medical model service. <br>
-Mitigation: Use only the minimum necessary patient information, remove direct identifiers before use, and require documented consent, retention, and approved endpoint controls before processing protected health information. <br>
-Risk: The artifact claims de-identification, but the security evidence says the code does not perform it. <br>
-Mitigation: Perform de-identification outside the skill or add verified de-identification controls before relying on privacy claims. <br>
-Risk: Prescription recommendations may be incorrect, incomplete, or unsuitable for a specific patient. <br>
-Mitigation: Require review and approval by a licensed clinician or pharmacist before issuing any prescription. <br>
+## Use Case:
 
+External clinicians in community clinics and primary-care settings use this skill as prescription decision support. It produces medication options, interaction and contraindication checks, dosing considerations, monitoring suggestions, and patient education points for clinician review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-prescription-assist) <br>
-- [Publisher profile: unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
-- [Configured medical model API endpoint](https://maas-api.hivoice.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON followed by a natural language summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print to stdout or write an output file; uses a remote medical model API and an app key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact _meta.json) <br>
+Risk: The skill may process sensitive patient information through a remote model service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit names, IDs, phone numbers, addresses, record numbers, or other identifiers unless the remote service and legal/privacy arrangements explicitly allow it.
+
+Risk: Prescription recommendations may be incomplete, incorrect, or inappropriate for a specific patient.
+
+Mitigation: Treat outputs as decision support only; a qualified clinician must review the recommendations and sign any final prescription.
+
+Risk: Changing the model endpoint or using a broadly scoped AppKey could expose protected clinical data.
+
+Mitigation: Use only an approved HTTPS endpoint, avoid overriding the base URL, and use a narrowly scoped AppKey that can be rotated.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-prescription-assist)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [JSON plus natural-language summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can print to stdout or write the same output to a file when an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

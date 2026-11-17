@@ -1,43 +1,61 @@
-## Description: <br>
-Bottle Drift lets OpenClaw users run a local relay with a web dashboard and CLI for sending short messages to online channel subscribers and collecting one-time replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive Bottle Drift skill for OpenClaw nodes with a web dashboard, online-user heartbeats, random delivery, per-delivery reply links, and reply collection.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-OpenClaw node operators and community builders use this skill to host a lightweight bottle-drift message relay where online subscribed users can receive short notes and reply once through a dashboard, CLI, or reply link. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The relay exposes inbox, reply-link, presence, and callback data without real authentication when deployed beyond localhost or a trusted private network. <br>
-Mitigation: Use it only for local testing or trusted private networks unless authentication, authenticated inbox access controls, and private handling of reply tokens and callback URLs are added. <br>
-Risk: The current identity model is based on user_id values and browser-local state rather than platform identity. <br>
-Mitigation: Connect the relay to a real identity provider before public deployment and restrict each user's inbox and reply operations to that authenticated user. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to run a local or self-hosted Bottle Drift relay where subscribed online users can exchange short randomized messages and one-time replies through a dashboard, CLI, or reply links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/openclaw-bottle-drift-skill) <br>
-- [README](README.md) <br>
-- [Message schema](resources/message_schema.json) <br>
-- [Smoke test](tests/smoke-test.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with CLI commands, HTTP endpoint behavior, dashboard output, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and uses local HTTP plus SQLite with bundled dashboard resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Network or shared deployments can expose private messages and reply links because the relay does not provide strong user authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it locally or behind deployment-owned authentication, HTTPS, reverse proxy controls, and access restrictions before exposing it beyond trusted users.
+
+Risk: Anyone who can reach the relay may choose a user ID and view another user's inbox or collect reply links.
+
+Mitigation: Restrict relay access, add platform identity before production use, and treat reply URLs as sensitive one-time links.
+
+Risk: User-generated messages can be abused despite basic length limits, filtering, and rate limits.
+
+Mitigation: Keep the built-in fanout and one-reply controls enabled, add mature content moderation and reporting for public deployments, and monitor rate-limit activity.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/52yuanchangxing/skills/openclaw-bottle-drift-skill)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+- [README](artifact/README.md)
+- [Message Schema](artifact/resources/message_schema.json)
+- [Smoke Test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API payloads, Python scripts, HTML, JavaScript, and configuration notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill outputs a runnable local HTTP relay, browser dashboard, CLI responses, inbox/outbox JSON, reply URLs, and SQLite-backed message state.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

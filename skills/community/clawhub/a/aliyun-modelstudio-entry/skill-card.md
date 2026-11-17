@@ -1,47 +1,62 @@
-## Description: <br>
-Routes Alibaba Cloud Model Studio requests to the appropriate local skill for Qwen text, coding, deep research, image, video, audio, search, and multimodal workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Routes Alibaba Cloud Model Studio requests to the appropriate local skill for Qwen text, code, research, image, video, audio, search, and multimodal tasks.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and engineers use this skill to route ambiguous Alibaba Cloud Model Studio requests to the right local capability-specific skill, clarify missing modality or operation details, and produce SDK, API, parameter, polling, or troubleshooting guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider API calls can consume Alibaba Cloud resources or incur costs. <br>
-Mitigation: Confirm intent, region, identifiers, and operation scope before execution; start with a minimal read-only request when possible. <br>
-Risk: DashScope API keys and saved outputs may expose credentials, prompts, task IDs, result URLs, or account details. <br>
-Mitigation: Use scoped credentials, store the API key outside shared files, and review output artifacts before sharing them. <br>
-Risk: Routing to a capability-specific sub-skill may lead to high-impact or mutating actions through provider APIs. <br>
-Mitigation: Review the selected destination sub-skill and require explicit approval for high-impact or mutating operations. <br>
+## Use Case:
 
+Developers and operators use this entry skill to route broad Alibaba Cloud Model Studio requests to a matching local sub-skill and receive focused guidance for text, code, research, image, video, audio, search, or multimodal work.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cinience/aliyun-modelstudio-entry) <br>
-- [Alibaba Cloud Model Studio Models](https://help.aliyun.com/zh/model-studio/models) <br>
-- [Alibaba Cloud Model Studio Newly Released Models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
-- [Alibaba Cloud Model Studio OpenAI-Compatible API](https://help.aliyun.com/zh/model-studio/openai-compatible) <br>
-- [DashScope Async Tasks API](https://dashscope.aliyuncs.com/api/v1/tasks/) <br>
-- [Artifact Source Links](references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with routing tables, clarifying questions, API examples, and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference provider API calls, async task polling, local sub-skill paths, and saved evidence files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: A broadly triggered entry skill may perform authenticated Alibaba Cloud Model Studio API operations, not only route requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the intended capability and operation scope before use, review the selected target sub-skill, and run a minimal read-only connectivity check before any broader operation.
+
+Risk: Authenticated calls require DASHSCOPE_API_KEY and may expose or overuse privileges if the key is too broad.
+
+Mitigation: Use a narrowly scoped key where possible, keep it in environment or credential storage, and avoid elevated installs.
+
+Risk: Unpinned installation of the dashscope dependency can reduce reproducibility.
+
+Mitigation: Pin the dashscope dependency version when reproducible installation behavior is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cinience/skills/aliyun-modelstudio-entry)
+- [Official source list](references/sources.md)
+- [Alibaba Cloud Model Studio models](https://help.aliyun.com/zh/model-studio/models)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+- [Alibaba Cloud Model Studio OpenAI-compatible API](https://help.aliyun.com/zh/model-studio/openai-compatible)
+- [DashScope task API](https://dashscope.aliyuncs.com/api/v1/tasks/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May route users to local Alibaba Cloud sub-skills and summarize saved evidence paths for reproducibility.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

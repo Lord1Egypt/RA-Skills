@@ -1,42 +1,50 @@
-## Description: <br>
-Conference and trade show GTM playbook that helps founders plan pre-event outreach, on-site networking, lead capture, follow-up, and ROI tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conference and trade show GTM playbook for founders planning CES, Web Summit, TechCrunch Disrupt, or other major conference attendance.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Founders and go-to-market teams use this skill to prepare for conferences and trade shows, prioritize meetings, draft investor or customer outreach, capture leads, and plan timely follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Contact capture and lead notes can include personal or sensitive information from event attendees. <br>
-Mitigation: Use consent-aware contact capture, avoid recording sensitive information without permission, and store notes only in approved systems. <br>
-Risk: Outreach templates and event follow-up can create privacy, consent, or event-rule compliance issues if used without review. <br>
-Mitigation: Review outreach against event rules, privacy laws, and internal policies before sending. <br>
+## Use Case:
 
+External founders and go-to-market teams use this skill to plan conference attendance, prepare investor and customer outreach, structure meetings, capture leads, and draft follow-up communications.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-event-gtm) <br>
-- [Publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI](https://canlah.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with email templates, planning checklists, tables, and follow-up prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Generated outreach may include sales claims, investor targeting, or public social post wording that is inaccurate or inappropriate for the user's situation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit generated outreach before sending or publishing, especially claims about traction, customers, revenue, or investor fit.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-event-gtm)
+- [Canlah AI](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with tables, checklists, and outreach templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning guidance and draft communications for human review.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

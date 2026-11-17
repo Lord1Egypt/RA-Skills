@@ -1,45 +1,63 @@
-## Description: <br>
-Supabase integration for Hakke Studio projects, covering auth, database, storage, edge functions, and Vercel-backed full-stack deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supabase integration for Hakke Studio projects covering authentication, database operations, storage, edge functions, and Vercel deployment support.
 
-## Publisher: <br>
-[studio-hakke](https://clawhub.ai/user/studio-hakke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[studio-hakke](https://clawhub.ai/user/studio-hakke)
 
-## Use Case: <br>
-Developers and engineers working on Hakke Studio Supabase projects use this skill for setup and operational guidance around auth, database migrations, RLS policies, storage, edge functions, environment variables, and Vercel deployment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Supabase admin commands can affect the wrong project if the active project is not checked first. <br>
-Mitigation: Verify the active Supabase project before running migrations or administrative commands. <br>
-Risk: Database reset commands can destroy production data. <br>
-Mitigation: Never run `supabase db reset` on production. <br>
-Risk: The Supabase service role key grants elevated access if exposed to clients or logs. <br>
-Mitigation: Keep `SUPABASE_SERVICE_ROLE_KEY` server-side in protected secrets. <br>
-Risk: The example server client is not sufficient for authenticated RLS behavior in production. <br>
-Mitigation: Replace the example with a cookie-aware Supabase SSR client before relying on authenticated RLS behavior. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Supabase Docs](https://supabase.com/docs) <br>
-- [Supabase CLI Reference](https://supabase.com/docs/reference/cli) <br>
-- [Supabase Dashboard](https://supabase.com/dashboard) <br>
+## Use Case:
 
+Developers and engineers use this skill to configure Supabase for Hakke Studio and multi-tenant Next.js SaaS projects, including auth, RLS policies, storage, edge functions, environment variables, and deployment setup.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash, SQL, and TypeScript code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes project-specific Supabase and Vercel operational examples; commands require human review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server evidence release and SKILL.md metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes an example admin-user SQL statement with a hardcoded password.
+
+Mitigation: Do not copy the sample password into any real Supabase project; use a secure user-provisioning flow and project-specific credentials.
+
+Risk: The skill references SUPABASE_SERVICE_ROLE_KEY, which is privileged secret material.
+
+Mitigation: Keep the service role key backend-only, store it in managed secret storage, and never expose it to browsers or committed files.
+
+Risk: Database reset and SECURITY DEFINER SQL examples can affect tenant isolation or production data if used without review.
+
+Mitigation: Restrict reset commands to development environments and review SECURITY DEFINER functions, permissions, and tenant checks before deployment.
+
+Risk: The Supabase CLI installation example does not pin or verify the installed package.
+
+Mitigation: Pin or verify CLI installation before use in production or CI workflows.
+
+## Reference(s):
+
+- [Supabase Docs](https://supabase.com/docs)
+- [Supabase Dashboard](https://supabase.com/dashboard)
+- [Supabase CLI Reference](https://supabase.com/docs/reference/cli)
+- [ClawHub Skill Page](https://clawhub.ai/studio-hakke/skills/supabase-hakke)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with SQL, TypeScript, environment variable, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes operational guidance for Supabase CLI, RLS policies, storage, edge functions, and Vercel environment configuration.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

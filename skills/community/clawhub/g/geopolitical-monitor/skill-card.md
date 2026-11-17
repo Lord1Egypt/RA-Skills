@@ -1,43 +1,57 @@
-## Description: <br>
-Generates local demonstration reports that map geopolitical news keywords to sector impact summaries and stock watchlists. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Monitors geopolitical news themes and generates stock-sector impact analysis with investment recommendation reports.
 
-## Publisher: <br>
-[zrisingz-crypto](https://clawhub.ai/user/zrisingz-crypto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zrisingz-crypto](https://clawhub.ai/user/zrisingz-crypto)
 
-## Use Case: <br>
-Developers and analysts can run this skill locally to prototype geopolitical-news-to-sector-impact reporting with configurable keywords and mock news data. Its reports should be treated as demonstration content, not live market intelligence or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script creates local report files under ~/shared_memory/geopolitical. <br>
-Mitigation: Run it only where that output path is acceptable, or modify DATA_DIR before execution. <br>
-Risk: The included analysis uses mock/demo content and can be mistaken for live geopolitical or market intelligence. <br>
-Mitigation: Label outputs as demonstration reports unless the script is updated to use validated real data sources and reviewed analytical logic. <br>
-Risk: The artifact declares a requests dependency that the current script does not use. <br>
-Mitigation: Avoid installing unnecessary dependencies, or remove the unused dependency declaration when packaging. <br>
+## Use Case:
 
+External users and analysts can use this skill to review simulated geopolitical event monitoring, assess potential impacts on sectors such as energy, gold, defense, shipping, consumer, technology, and finance, and produce local report artifacts for follow-up review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zrisingz-crypto/geopolitical-monitor) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON report files, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the local script writes JSON reports and console summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes report files under ~/shared_memory/geopolitical by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The generated sector analysis and investment recommendations may be based on simulated or incomplete news data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the report against current trusted news and market sources before using it for investment or operational decisions.
+
+Risk: The bundled script may need maintenance before execution because security guidance reports escaped comparison and arrow characters that can cause a Python syntax error.
+
+Mitigation: Review and fix the script syntax in a controlled environment before deployment or scheduled use.
+
+Risk: The skill writes local JSON reports to the user's home directory.
+
+Mitigation: Run it only where local report creation under ~/shared_memory/geopolitical is acceptable and review generated files for sensitive content before sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zrisingz-crypto/skills/geopolitical-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Console text plus saved JSON report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes reports under ~/shared_memory/geopolitical and currently uses bundled simulated news unless extended with real RSS or news API sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

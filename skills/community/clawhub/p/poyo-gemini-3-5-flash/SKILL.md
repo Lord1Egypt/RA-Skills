@@ -1,10 +1,16 @@
 ---
 name: poyo-gemini-3-5-flash
 description: Gemini 3.5 Flash chat on PoYo / poyo.ai via `https://api.poyo.ai/v1/chat/completions` and Gemini Native Format; use for `gemini-3.5-flash`, chat completions, native generateContent, streaming, system prompts, multimodal prompt structure, generation config, and server-side integration.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/chat-series/gemini-native-format","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/gemini-3-5-flash","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Gemini 3.5 Flash Chat
+
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/gemini-3-5-flash>
+- API docs: <https://docs.poyo.ai/api-manual/chat-series/gemini-native-format>
+- API key page: <https://poyo.ai/dashboard/api-key>
 
 Use this skill for Gemini 3.5 Flash chat requests on PoYo. It helps agents prepare OpenAI-compatible chat payloads, Gemini Native Format payloads, streaming calls, and server-side integration notes.
 

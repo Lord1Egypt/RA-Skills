@@ -1,38 +1,50 @@
-## Description: <br>
-High-EQ Communication (高情商沟通) is a multilingual educational toolkit that helps agents explain communication and ethical influence frameworks such as NVC, Guiguzi strategy, Sun Tzu principles, Cialdini's principles, and cognitive bias awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+High-EQ Communication is an educational multilingual toolkit for learning Nonviolent Communication, Guiguzi strategy, Sun Tzu principles, ethical influence, and cognitive bias awareness for personal growth and communication understanding.
 
-## Publisher: <br>
-[ikplpeter](https://clawhub.ai/user/ikplpeter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ikplpeter](https://clawhub.ai/user/ikplpeter)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to learn, explain, and apply communication frameworks for personal growth, self-awareness, and ethical communication support. It is not intended for covert persuasion or manipulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Influence and persuasion examples could be misused for covert or manipulative communication. <br>
-Mitigation: Use the toolkit transparently, confirm the user's intent to learn ethical influence, and avoid deception, pressure, false scarcity, or fabricated social proof. <br>
+## Use Case:
 
+External users and agent builders use this skill to generate ethical communication guidance, multilingual framework explanations, and scenario scripts for personal growth, self-awareness, and communication learning. It is intended to support transparent, consent-based communication rather than pressure, deception, or manipulation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ikplpeter/high-eq-communication) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text, with optional JSON output from the bundled CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports 11 output languages and includes ethics guidelines for influence-related examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: evidence.release.version, SKILL.md frontmatter, package.json) <br>
+Risk: Ethical influence, negotiation, and sales-style examples could be misused to pressure, deceive, or manipulate others.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Apply the toolkit transparently, confirm informed consent before persuasion-oriented use, respect autonomy, avoid fabricated urgency or false social proof, and use the included ethics guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ikplpeter/skills/high-eq-communication)
+- [Skill source documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown prose, CLI text, or JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports 11 languages and optional local CLI output.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter, package.json, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

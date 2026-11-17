@@ -1,14 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * Flight Price Watcher v2.2.2 - 任务管理脚本
+ * Flight Price Watcher v2.1 - 任务管理脚本
  * 
- * v2.2.2 新增：
- * 1. 输入验证（防止命令注入）
- * 2. 环境变量配置
- * 3. 创建成功发送确认消息
- * 
- * v2.1 新增：
+ * 新增：
  * 1. 用户自定义选择航班
  * 2. 完整航班信息（起飞/到达/机场）
  * 3. 智能推荐标识（⭐早班/🌙晚班/💰低价/⏱️短时）
@@ -19,32 +14,6 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 
 const execAsync = promisify(exec);
-
-/**
- * 清理和验证用户输入（防止命令注入）
- * 只允许字母、数字、中文、连字符、空格
- */
-function sanitizeInput(input, maxLength = 50) {
-  if (typeof input !== 'string') return '';
-  // 移除所有非安全字符（只保留字母、数字、中文、连字符、空格、点）
-  const sanitized = input.replace(/[^\u4e00-\u9fa5a-zA-Z0-9\-.\s]/g, '');
-  // 限制长度
-  return sanitized.substring(0, maxLength);
-}
-
-/**
- * 验证日期格式（YYYY-MM-DD）
- */
-function isValidDate(dateStr) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(dateStr);
-}
-
-/**
- * 验证城市名（只允许字母、数字、中文）
- */
-function isValidCity(city) {
-  return /^[\u4e00-\u9fa5a-zA-Z]+$/.test(city);
-}
 
 // 配置
 const CONFIG = {
@@ -78,22 +47,12 @@ function saveTasks(data) {
 }
 
 /**
- * 调用 FlyAI CLI 获取航班列表（带输入验证）
+ * 调用 FlyAI CLI 获取航班列表
  */
 async function fetchFlights(from, to, date, flightType = 'all') {
   try {
-    // 清理和验证用户输入（防止命令注入）
-    const safeFrom = sanitizeInput(from, 20);
-    const safeTo = sanitizeInput(to, 20);
-    const safeDate = isValidDate(date) ? date : '2026-01-01';
-    
-    if (!isValidCity(safeFrom) || !isValidCity(safeTo)) {
-      throw new Error('Invalid city name');
-    }
-    
     const typeFlag = flightType === 'direct' ? '--journey-type 1' : '';
-    // 使用清理后的安全输入构建命令
-    const cmd = `flyai search-flight --origin "${safeFrom}" --destination "${safeTo}" --dep-date ${safeDate} ${typeFlag}`;
+    const cmd = `flyai search-flight --origin "${from}" --destination "${to}" --dep-date ${date} ${typeFlag}`;
     
     const { stdout } = await execAsync(cmd);
     const result = JSON.parse(stdout);
@@ -432,7 +391,7 @@ function main() {
     case 'delete': deleteTask(args[1]); break;
     case 'extend': extendTask(args[1], parseInt(args[2]) || 7); break;
     default:
-      console.log('Flight Price Watcher v2.2.2 - 任务管理器');
+      console.log('Flight Price Watcher v2.1 - 任务管理器');
       console.log('\n用法:');
       console.log('  list [all|active|paused|expired]  - 查看任务');
       console.log('  pause <taskId>                    - 暂停任务');

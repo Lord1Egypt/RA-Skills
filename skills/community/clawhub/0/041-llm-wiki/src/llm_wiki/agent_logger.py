@@ -9,7 +9,6 @@ stderr so stdout remains clean for structured markdown output.
 import logging
 import sys
 from pathlib import Path
-from typing import Optional
 
 _AGENT_LOG_LEVEL = logging.DEBUG
 _AGENT_LOG_FORMAT = (
@@ -20,7 +19,7 @@ _AGENT_LOG_FORMAT = (
 class _AgentLogFilter(logging.Filter):
     """Filter that stamps log records with project-relative pathname for clarity."""
 
-    def __init__(self, project_root: Optional[Path] = None):
+    def __init__(self, project_root: Path | None = None):
         super().__init__()
         self.project_root = project_root
 
@@ -34,7 +33,7 @@ class _AgentLogFilter(logging.Filter):
         return True
 
 
-def setup_agent_logging(project_root: Optional[Path] = None) -> None:
+def setup_agent_logging(project_root: Path | None = None) -> None:
     """
     Configure root logger for agent-visible output.
     Safe to call multiple times; idempotent.
@@ -51,6 +50,14 @@ def setup_agent_logging(project_root: Optional[Path] = None) -> None:
 
     root.addHandler(handler)
     root.setLevel(_AGENT_LOG_LEVEL)
+
+
+def set_agent_log_level(level: int) -> None:
+    """Update the llm_wiki logger and all configured handlers."""
+    root = logging.getLogger("llm_wiki")
+    root.setLevel(level)
+    for handler in root.handlers:
+        handler.setLevel(level)
 
 
 def get_logger(name: str) -> logging.Logger:

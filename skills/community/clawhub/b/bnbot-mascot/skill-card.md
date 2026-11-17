@@ -1,43 +1,57 @@
-## Description: <br>
-Generate BNBOT lobster-bot mascot images in a consistent style using reference images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate BNBOT lobster-bot mascot images in a consistent style using reference images.
 
-## Publisher: <br>
-[jackleeio](https://clawhub.ai/user/jackleeio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackleeio](https://clawhub.ai/user/jackleeio)
 
-## Use Case: <br>
-Developers, marketers, and brand operators use this skill to generate BNBOT mascot illustrations, social posts, stickers, and transparent PNG assets from approved reference poses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mascot prompts and reference images are sent to Google Gemini during image generation. <br>
-Mitigation: Install only when that data flow is acceptable, and avoid submitting sensitive prompts or private reference images. <br>
-Risk: The skill uses local credentials and includes a hard-coded developer .env fallback path. <br>
-Mitigation: Provide GOOGLE_AI_API_KEY through the intended environment and prefer a revised release that removes the developer-specific fallback. <br>
-Risk: The image cleanup step depends on neighboring transparent-image-gen code that is not explicitly bundled or declared in the release. <br>
-Mitigation: Verify that dependency before use, or use a revised release that vendors or declares the helper dependency. <br>
+## Use Case:
 
+External users and developers use this skill to generate BNBOT-branded mascot artwork, stickers, social images, and character poses from approved style references.
 
-## Reference(s): <br>
-- [BNBOT Mascot on ClawHub](https://clawhub.ai/jackleeio/bnbot-mascot) <br>
-- [BNBOT Mascot README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files, images] <br>
-**Output Format:** [Markdown guidance with CLI and Python examples; generated output is PNG image files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports named reference poses and transparent, black, or white backgrounds for mascot assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The skill may upload prompts and reference images to Gemini using a Google AI API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key, review prompts and reference images before generation, and avoid sending confidential or unapproved brand assets.
+
+Risk: The script includes a hard-coded local .env fallback for API-key loading.
+
+Mitigation: Remove the local path fallback and require credentials from the runtime environment or a managed secret store.
+
+Risk: The script imports chromakey code from a neighboring skill outside this package.
+
+Mitigation: Vendor, package, or pin that dependency so execution does not depend on mutable adjacent files.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jackleeio/skills/bnbot-mascot)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Shell commands, Guidance]
+
+**Output Format:** [PNG image files with Markdown and Python or shell usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports transparent, black, or white backgrounds and named BNBOT reference poses.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

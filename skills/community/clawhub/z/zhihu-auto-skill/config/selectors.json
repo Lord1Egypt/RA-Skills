@@ -14,7 +14,7 @@
       "primary": ".SignContainer-accountLogin",
       "fallbacks": [
         ".SignFlow-accountInput",
-        "button:contains('登录')"
+        "button:has-text('登录')"
       ]
     }
   },
@@ -86,7 +86,7 @@
     "submit": {
       "primary": ".AnswerForm-submit",
       "fallbacks": [
-        "button:contains('提交回答')"
+        "button:has-text('提交回答')"
       ]
     }
   },
@@ -106,7 +106,7 @@
     "submitButton": {
       "primary": ".QuestionForm-submit",
       "fallbacks": [
-        "button:contains('提交问题')"
+        "button:has-text('提交问题')"
       ]
     }
   },
@@ -114,7 +114,7 @@
     "likeButton": {
       "primary": ".VoteButton",
       "fallbacks": [
-        "button:contains('赞同')",
+        "button:has-text('赞同')",
         ".LikeButton"
       ]
     },
@@ -127,13 +127,13 @@
     "commentSubmit": {
       "primary": ".CommentEditor-submit",
       "fallbacks": [
-        "button:contains('发布评论')"
+        "button:has-text('发布评论')"
       ]
     },
     "followButton": {
       "primary": ".FollowButton",
       "fallbacks": [
-        "button:contains('关注')"
+        "button:has-text('关注')"
       ]
     }
   }

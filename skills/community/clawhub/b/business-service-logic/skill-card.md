@@ -1,39 +1,53 @@
-## Description: <br>
-Business module engineer skill for service-layer design, business logic extraction, and module-safe orchestration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Business module engineer skill for service-layer design, business logic extraction, and module-safe orchestration.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers and engineers use this skill to place business rules in services, keep controllers and models focused, and validate service-layer behavior in Weline modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Service-layer refactors can change controller, API, or model behavior if boundaries are misunderstood. <br>
-Mitigation: Review proposed code changes, confirm affected contracts, and run targeted unit tests plus the relevant route, command, or API path. <br>
-Risk: The skill depends on Weline project conventions and the referenced technical-lead collaboration process. <br>
-Mitigation: Confirm those project documents and escalation conventions apply to the workspace before relying on the skill's recommendations. <br>
+## Use Case:
 
+Developers and engineers use this skill to implement or refactor service-layer business logic while keeping controllers thin, models persistence-focused, and module boundaries stable.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with code changes, validation notes, and shell commands when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include service boundary notes, contract assumptions, and unit-test or focused validation evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Referenced local Weline engineering standards may be unavailable or different in the target repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the referenced local standards before applying the skill and confirm which module, contracts, and validation path govern the work.
+
+Risk: Service-layer refactors can unintentionally change controller, API, or model behavior.
+
+Mitigation: Keep changes within the owning module, document any service contract assumptions, and run targeted unit tests plus an entry-point validation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/business-service-logic)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with code changes, shell commands, and validation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

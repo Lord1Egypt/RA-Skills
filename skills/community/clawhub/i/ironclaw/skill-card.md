@@ -1,47 +1,65 @@
-## Description: <br>
-Safety for AI agents. Real-time threat classification to detect malicious content before it causes agents harm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ironclaw provides real-time threat classification for AI agents to screen skill files, messages, outbound data, and shell commands for risky content.
 
-## Publisher: <br>
-[samidh](https://clawhub.ai/user/samidh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[samidh](https://clawhub.ai/user/samidh)
 
-## Use Case: <br>
-External agents and developers use Ironclaw to classify skill files, direct messages, outbound data, and shell commands before taking higher-risk actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Content submitted for classification is sent to Ironclaw's remote API. <br>
-Mitigation: Redact secrets, private conversations, proprietary data, and account details before submitting content. <br>
-Risk: Ironclaw API keys may grant higher request limits if exposed. <br>
-Mitigation: Protect any Ironclaw API key and avoid sharing it in prompts, logs, or skill files. <br>
-Risk: Classifier results may be uncertain or incomplete. <br>
-Mitigation: Use Ironclaw as an additional safety layer and manually review low-confidence or high-impact decisions. <br>
-Risk: Future skill updates could change behavior. <br>
-Mitigation: Review changelogs and scan new versions before replacing local skill files. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ironclaw homepage](https://ironclaw.io) <br>
-- [Ironclaw API base](https://ironclaw.io/api/v1) <br>
-- [Ironclaw label endpoint](https://ironclaw.io/api/v1/label) <br>
-- [Ironclaw documentation](https://ironclaw.io/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/samidh/ironclaw) <br>
+## Use Case:
 
+Developers and agent operators use Ironclaw as an additional safety check before installing skills, responding to messages, sending outbound data, or running shell commands.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with HTTP request examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Classification API responses include a label and confidence score; anonymous and registered usage have different rate limits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs users to send messages, commands, skill files, and possible secrets to a third-party API.
+
+Mitigation: Submit only authorized, redacted content and do not send API keys, passwords, private keys, session cookies, proprietary code, private messages, or regulated data unless approved.
+
+Risk: API keys used with the service could be exposed through prompts, logs, or copied examples.
+
+Mitigation: Keep service API keys out of prompts and logs, use placeholders in examples, and store credentials only in approved secret-handling locations.
+
+Risk: Heartbeat update checks involve network calls and could lead users to update skill files without enough review.
+
+Mitigation: Treat update checks as manual, user-approved network actions and review changelogs before replacing any installed skill file.
+
+Risk: The classifier may be uncertain or incorrect, especially on ambiguous content.
+
+Mitigation: Use Ironclaw as an extra safety layer and manually review low-confidence or high-impact decisions before acting.
+
+## Reference(s):
+
+- [Ironclaw ClawHub listing](https://clawhub.ai/samidh/skills/ironclaw)
+- [Ironclaw homepage](https://ironclaw.io)
+- [Ironclaw API base](https://ironclaw.io/api/v1)
+- [Ironclaw documentation](https://ironclaw.io/docs)
+- [Ironclaw skill file](https://ironclaw.io/skill.md)
+- [Ironclaw heartbeat file](https://ironclaw.io/heartbeat.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown guidance with JSON request examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides users to submit content_text and criteria_text to Ironclaw's label API and interpret label and confidence values.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

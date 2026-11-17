@@ -1,40 +1,53 @@
-## Description: <br>
-Analyzes rough product requirement inputs and structures them into a Chinese requirements analysis document covering business value, product logic, acceptance criteria, sizing, and assumptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes raw product requirement notes and turns them into a structured Chinese requirement-analysis document covering background, product logic, acceptance metrics, sizing, and open assumptions.
 
-## Publisher: <br>
-[ysredcity](https://clawhub.ai/user/ysredcity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysredcity](https://clawhub.ai/user/ysredcity)
 
-## Use Case: <br>
-Product managers, business stakeholders, and requirement owners use this skill to turn rough background notes, pain points, meeting notes, or feature ideas into a review-ready Chinese requirements analysis document before PRD drafting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording may cause the skill to run on general business-planning text where a full requirements analysis is not intended. <br>
-Mitigation: Review the user request before applying the skill and proceed only when a structured requirements analysis is useful. <br>
-Risk: Requirement inputs can contain confidential business context, customer details, or product plans. <br>
-Mitigation: Avoid providing sensitive business details unless they are appropriate to use in the agent session, and review generated assumptions before sharing the output. <br>
+## Use Case:
 
+Product managers, business stakeholders, and requirement owners use this skill to turn vague background notes, pain points, meeting notes, or feature ideas into review-ready requirement analysis before PRD drafting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ysredcity/requirement-analyzer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese Markdown requirements analysis document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a fixed five-section structure with product context, functional logic, acceptance criteria, sizing, and open questions or assumptions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill may activate on broad business-background or feature-idea discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it when requirement analysis is intended, or confirm intent before applying it to unrelated business conversations.
+
+Risk: The skill defaults to Chinese output.
+
+Mitigation: Set an explicit language preference when a non-Chinese requirement analysis document is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysredcity/skills/requirement-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language document with five fixed sections.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

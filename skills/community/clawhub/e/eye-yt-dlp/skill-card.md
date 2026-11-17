@@ -1,40 +1,57 @@
-## Description: <br>
-Uses yt-dlp to help an agent download videos from YouTube, Bilibili, and other supported sites as high-quality MP4 files saved to ~/Movies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent use yt-dlp to download videos from YouTube, Bilibili, Twitter, Instagram, and other supported sites, using high-quality MP4 output by default.
 
-## Publisher: <br>
-[frank-gith](https://clawhub.ai/user/frank-gith) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frank-gith](https://clawhub.ai/user/frank-gith)
 
-## Use Case: <br>
-People using an agent to save online videos can ask it to download a linked video or playlist with yt-dlp, using high-quality MP4 output and reporting the saved file location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review found no artifact-backed concern, but the evidence says target-specific artifact content was not available for a full coherence review. <br>
-Mitigation: Install only when the public skill page and source match the intended purpose, and review the skill before relying on it. <br>
-Risk: Downloading media from third-party sites may involve restricted content, large files, or login cookies. <br>
-Mitigation: Use the skill only for content the user is authorized to download, confirm available disk space, and avoid providing sensitive cookies unless the execution environment is trusted. <br>
+## Use Case:
 
+External users and agents use this skill to turn a user-provided video URL into a concrete yt-dlp download command. It is intended for downloading requested media, with optional thumbnails or subtitles when the user asks for them.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/frank-gith/eye-yt-dlp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target yt-dlp downloads to ~/Movies with MP4 merge settings; responses should report errors and saved file locations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Downloads write media files to ~/Movies by default and may consume significant disk space.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the destination path and available disk space before running the generated yt-dlp command.
+
+Risk: Playlist URLs can download more media than the user intended.
+
+Mitigation: Confirm playlist downloads explicitly before using playlist-oriented options such as --yes-playlist.
+
+Risk: Some sites may require cookies or account credentials, which can expose private session data.
+
+Mitigation: Avoid using site cookies or account credentials unless necessary, and explain the privacy implications before doing so.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/frank-gith/skills/eye-yt-dlp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create downloaded media files in ~/Movies by default when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

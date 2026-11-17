@@ -1,38 +1,58 @@
-## Description: <br>
-Compresses PDFs and supported image formats to reduce storage and transfer size using Python-first workflows with Node.js fallbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses PDFs and images to reduce storage and transfer size using Python-first workflows with Node.js fallback utilities.
 
-## Publisher: <br>
-[hexavi8](https://clawhub.ai/user/hexavi8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hexavi8](https://clawhub.ai/user/hexavi8)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to shrink PDFs and supported image formats for uploads, sharing, transfer, or storage while balancing output size and quality. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may run local compression scripts and may require Ghostscript, Python, Node.js, or package-manager dependency installation. <br>
-Mitigation: Review each install or execution command before approval, avoid unreviewed sudo or package-manager operations, and use current patched dependency versions when processing files from untrusted sources. <br>
+## Use Case:
 
+Developers and external users use this skill to shrink PDF and image files for upload, sharing, or storage while balancing quality and size.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hexavi8/file-compression) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces compressed PDF or image files and reports output path, before and after sizes, saved ratio, and backend used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Installing compression dependencies can introduce normal supply-chain risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve pip, npm, brew, or apt commands before execution, preferably in an isolated environment with pinned dependency versions.
+
+Risk: Compression can increase file size or reduce quality for already optimized or unsuitable inputs.
+
+Mitigation: Compare before and after sizes, keep the original input file, and retry with an alternate preset, quality, format, resize setting, or backend when the result is poor.
+
+Risk: Sensitive documents may be processed by local third-party compression libraries and tools.
+
+Mitigation: Process sensitive files only in trusted local environments and avoid installing unreviewed dependencies while handling confidential content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hexavi8/skills/file-compression)
+- [Publisher profile](https://clawhub.ai/user/hexavi8)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and compression result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports output path, before and after sizes, saved percentage, and backend used.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

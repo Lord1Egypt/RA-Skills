@@ -1,41 +1,58 @@
-## Description: <br>
-Guides developers through publishing ClawHub skills, including metadata, environment-variable declarations, license-term acceptance, and post-publish checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language guide that helps developers publish ClawHub Skills, make them searchable after release, and avoid security scan issues that can hide a release.
 
-## Publisher: <br>
-[tudoubudou](https://clawhub.ai/user/tudoubudou) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tudoubudou](https://clawhub.ai/user/tudoubudou)
 
-## Use Case: <br>
-Developers and maintainers use this skill for guidance when preparing, publishing, updating, and validating ClawHub skill releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing examples include commands that read a local ClawHub token or submit files. <br>
-Mitigation: Review commands and file paths before allowing an agent to run them. <br>
-Risk: Generic triggers such as publish or update may activate the skill unintentionally. <br>
-Mitigation: Narrow triggers before release if accidental activation would disrupt the user's workflow. <br>
+## Use Case:
 
+Developers publishing or updating ClawHub Skills use this guide to prepare required metadata, declare environment variables, accept developer terms, publish through the ClawHub CLI or curl, and verify release visibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tudoubudou/clawhub-skill-publishing-guide) <br>
-- [ClawHub skill publish API](https://clawhub.ai/api/v1/skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, YAML, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes publishing checklists, command examples, and FAQ-style troubleshooting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata; artifact frontmatter says 1.2.0) <br>
+Risk: The skill may activate on generic publish or update requests because it declares broad triggers such as 发布 and 更新.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking about ClawHub skill publishing before applying the guide.
+
+Risk: The curl publishing example reads the local ClawHub token and publishes to the user's account.
+
+Mitigation: Review the developer terms, token source, request payload, and target account before running the example command.
+
+Risk: The guide is written mostly in Chinese, which may make important publishing and security details unclear to non-Chinese readers.
+
+Mitigation: Translate or review the guidance before using it in a release workflow.
+
+## Reference(s):
+
+- [ClawHub Skill page](https://clawhub.ai/tudoubudou/skills/clawhub-skill-publishing-guide)
+- [ClawHub publishing API endpoint](https://clawhub.ai/api/v1/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline YAML, Python, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language publishing checklist and troubleshooting guide]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata; artifact frontmatter reports 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

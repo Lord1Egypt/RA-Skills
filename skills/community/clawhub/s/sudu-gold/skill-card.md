@@ -1,42 +1,56 @@
-## Description: <br>
-sudu-gold helps an agent use Tavily search to retrieve gold-market information and summarize price, technical, fundamental, and risk context. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses Tavily-powered search to retrieve and summarize gold market information across Chinese and international venues, including spot prices, technical indicators, fundamentals, and risk notes.
 
-## Publisher: <br>
-[FMouseBoy](https://clawhub.ai/user/FMouseBoy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fmouseboy](https://clawhub.ai/user/fmouseboy)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent for current gold-market summaries, including prices, technical indicators, fundamentals, and risk notes. It is informational and should not be treated as personalized financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gold-market queries and prompt context are sent to Tavily using the user's API key. <br>
-Mitigation: Avoid including private financial details, account information, or sensitive personal context in prompts. <br>
-Risk: Generated buy/sell commentary may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as general market information and review them against the user's own risk tolerance and qualified advice before acting. <br>
+## Use Case:
 
+External users and agents use this skill to gather current gold-market search results and produce a concise analysis report covering price overview, technical signals, fundamentals, and investment-risk notes.
 
-## Reference(s): <br>
-- [sudu-gold ClawHub release page](https://clawhub.ai/FMouseBoy/sudu-gold) <br>
-- [Gold technical indicators reference](references/technical-indicators.md) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and console text with source links when search results are returned] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; Tavily answers are truncated in the bundled script before display.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Gold-market searches are sent to Tavily using the user's TAVILY_API_KEY.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid including secrets, account details, private trading plans, or other sensitive information in queries.
+
+Risk: Investment analysis may be incomplete, stale, or unsuitable for a user's financial situation.
+
+Mitigation: Treat output as informational only and review it with current market data and appropriate financial judgment before acting.
+
+## Reference(s):
+
+- [Sudu Gold ClawHub page](https://clawhub.ai/fmouseboy/skills/sudu-gold)
+- [Publisher profile](https://clawhub.ai/user/fmouseboy)
+- [Gold Technical Indicators Reference](references/technical-indicators.md)
+- [Tavily Search API endpoint](https://api.tavily.com/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style analysis report with sourced search results and console text from the Node.js script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and TAVILY_API_KEY; sends search queries to Tavily.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

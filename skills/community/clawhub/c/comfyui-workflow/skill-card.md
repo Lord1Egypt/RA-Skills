@@ -1,47 +1,70 @@
-## Description: <br>
-Comfyui Workflow helps agents inspect and run ComfyUI image and video workflows, configure prompts and media inputs, and save generated outputs from a running ComfyUI server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Universal ComfyUI workflow executor with 33+ workflow templates that lets agents inspect inputs and outputs automatically and run workflows against local ComfyUI, Windows Portable via WSL, or remote servers.
 
-## Publisher: <br>
-[yiqiliu2](https://clawhub.ai/user/yiqiliu2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yiqiliu2](https://clawhub.ai/user/yiqiliu2)
 
-## Use Case: <br>
-Developers, creators, and external users use this skill to inspect, configure, and execute ComfyUI workflow templates for image generation, image editing, and video synthesis. It is intended for environments where the user controls the ComfyUI server, model files, input media, and output directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can interact with a configured ComfyUI server and upload user-provided media files for workflow execution. <br>
-Mitigation: Use a trusted ComfyUI instance that you start and configure yourself, require authentication when appropriate, and avoid sending sensitive media to untrusted remote hosts. <br>
-Risk: The skill can save generated images, video, audio, and related output metadata to local directories. <br>
-Mitigation: Write outputs to approved directories and review generated files and metadata before sharing them outside the environment. <br>
-Risk: Model inventory and workflow maintenance behavior can expose local model paths or stale example entries if used without review. <br>
-Mitigation: Limit inventory scans and documentation updates to directories you approve, and replace example inventory data with the user's actual reviewed setup before relying on it. <br>
+## Use Case:
 
+Developers and creative workflow operators use this skill to inspect, configure, and run ComfyUI image, video, audio, and editing workflows through a consistent command-line interface. It helps agents translate user requests into workflow parameters, submit jobs to a running ComfyUI server, and collect generated outputs.
 
-## Reference(s): <br>
-- [README](artifact/README.md) <br>
-- [Practical Guide](artifact/PRACTICAL_GUIDE.md) <br>
-- [Workflow Summary](artifact/WORKFLOWS_SUMMARY.md) <br>
-- [Architecture](artifact/references/architecture.md) <br>
-- [Maintenance](artifact/references/maintenance.md) <br>
-- [Prompting Guide](artifact/references/prompting-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python examples, and JSON configuration snippets; executed workflows save generated media files locally.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Interacts with a user-configured ComfyUI server and writes generated outputs to the selected local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Remote ComfyUI use can send prompts, media, and authentication tokens over plaintext HTTP or WebSocket connections.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer loopback-only ComfyUI or a TLS-protected remote endpoint, and avoid sending tokens over remote plaintext connections.
+
+Risk: Persistent workflow and model cache files can record local setup details such as model names, paths, and workflow capabilities.
+
+Mitigation: Review or disable persistent caches before allowing an agent to scan local model directories or store environment-specific details.
+
+Risk: The skill can read selected local media files and write generated outputs through the configured ComfyUI workflow.
+
+Mitigation: Run the skill in a dedicated environment with limited file access and review selected input and output directories before execution.
+
+Risk: Voice-cloning or identity-like generation capabilities may be misused without consent.
+
+Mitigation: Use voice-cloning and identity-preserving generation only with clear consent and appropriate review of the requested use.
+
+## Reference(s):
+
+- [ComfyUI Workflow Skill on ClawHub](https://clawhub.ai/yiqiliu2/skills/comfyui-workflow)
+- [README](README.md)
+- [Practical Guide](PRACTICAL_GUIDE.md)
+- [Workflows Summary](WORKFLOWS_SUMMARY.md)
+- [Models Inventory](MODELS_INVENTORY.md)
+- [Architecture](references/architecture.md)
+- [Maintenance](references/maintenance.md)
+- [Prompting Guide](references/prompting-guide.md)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+- [ComfyUI-Easy-Use](https://github.com/yolain/ComfyUI-Easy-Use)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell and Python code blocks; workflow execution saves generated media files to the configured output directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a running ComfyUI server and configured workflow paths; may read selected input media and write generated image, video, or audio outputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

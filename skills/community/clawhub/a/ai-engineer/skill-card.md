@@ -1,42 +1,59 @@
-## Description: <br>
-AI/ML engineering specialist for building intelligent features, RAG systems, LLM integrations, data pipelines, vector search, and AI-powered applications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI/ML engineering specialist for building intelligent features, RAG systems, LLM integrations, data pipelines, vector search, and AI-powered applications.
 
-## Publisher: <br>
-[Bullkis1](https://clawhub.ai/user/Bullkis1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bullkis1](https://clawhub.ai/user/bullkis1)
 
-## Use Case: <br>
-Developers and engineers use this skill for practical AI engineering work, including RAG systems, LLM integrations, vector search, agent tool-calling, ML pipelines, and production evaluation practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Examples or guidance may send confidential documents or user queries to hosted AI services. <br>
-Mitigation: Get approval for hosted AI providers before production use and avoid sending confidential data unless approved. <br>
-Risk: Raw prompts, completions, vector-store data, memories, or logs may retain secrets or personal data. <br>
-Mitigation: Redact secrets and personal data, avoid unnecessary raw prompt or completion storage, and configure retention and deletion controls for vector stores, memories, and logs. <br>
+## Use Case:
 
+Developers and engineers use this skill as a practical reference for designing and implementing AI features, RAG systems, LLM integrations, vector search, agent tool-calling, data pipelines, and production ML workflows.
 
-## Reference(s): <br>
-- [AI Engineer release page](https://clawhub.ai/Bullkis1/ai-engineer) <br>
-- [RAG Patterns](references/rag-patterns.md) <br>
-- [Agent Patterns](references/agent-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline code examples and configuration recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, vector database, evaluation, logging, and deployment recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Simplified AI engineering examples may be incomplete for production systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use them as starting points and add evaluation, monitoring, and security review before release.
+
+Risk: Tool-calling examples can be adapted without authorization checks or schema validation.
+
+Mitigation: Add explicit authorization and validate tool inputs and outputs before execution.
+
+Risk: Retrieved documents or persistent memory can introduce untrusted or sensitive content.
+
+Mitigation: Treat retrieved documents as untrusted evidence and define consent, retention, deletion, and redaction rules before implementing long-term memory.
+
+## Reference(s):
+
+- [RAG Patterns](references/rag-patterns.md)
+- [Agent Patterns](references/agent-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/bullkis1/skills/ai-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance and example snippets; outputs require adaptation and security review before production use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

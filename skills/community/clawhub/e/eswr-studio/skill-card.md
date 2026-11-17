@@ -1,44 +1,59 @@
-## Description: <br>
-Elsewhere creator studio - register a new account with an invite code, publish articles, import WeChat articles, and manage an Elsewhere creator profile. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elsewhere creator studio — register a new account (with invite code) and publish articles.
 
-## Publisher: <br>
-[pitayak](https://clawhub.ai/user/pitayak) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pitayak](https://clawhub.ai/user/pitayak)
 
-## Use Case: <br>
-External creators and their agents use this skill to register for Elsewhere, publish Markdown articles, import WeChat articles, upload images, and update profile metadata through Elsewhere APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use a non-expiring Elsewhere API token to publish articles and update a creator profile. <br>
-Mitigation: Provide the token through a user-controlled environment variable or secure secret manager, avoid storing it in long-term memory, and rotate it from the Elsewhere dashboard if exposure is suspected. <br>
-Risk: The skill asks agents to refresh instructions from a remote file before use. <br>
-Mitigation: Review any fetched update before following it and prefer a known, reviewed release when operating on a production account. <br>
-Risk: Publishing and profile-update commands can change public Elsewhere content. <br>
-Mitigation: Confirm article payloads, imported content, image replacements, and profile fields before executing authenticated API calls. <br>
+## Use Case:
 
+External creators and their agents use this skill to register with Elsewhere, publish or import articles, upload images, and update creator profile metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pitayak/eswr-studio) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/pitayak) <br>
-- [Elsewhere creator dashboard](https://elsewhere.news/dashboard/login) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with curl commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary JSON files and call Elsewhere APIs with a bearer token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.9.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill asks agents to store a non-expiring Elsewhere API token in .env.local or long-term memory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped secret manager entry instead, avoid persistent memory storage, and rotate any token already saved in unsafe locations.
+
+Risk: The skill encourages checking and replacing instructions from a mutable remote source.
+
+Mitigation: Review any remote instruction update manually before allowing an agent to follow or install it.
+
+Risk: The skill can publish articles and update profile data directly through authenticated API calls.
+
+Mitigation: Confirm the final article payload, target account, and profile changes with the user before executing authenticated write actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pitayak/skills/eswr-studio)
+- [ClawHub publisher profile](https://clawhub.ai/user/pitayak)
+- [Elsewhere creator dashboard](https://elsewhere.news/dashboard/login)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash and JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes article metadata, profile fields, API request payloads, and short status confirmations.]
+
+## Skill Version(s):
+
+2.9.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

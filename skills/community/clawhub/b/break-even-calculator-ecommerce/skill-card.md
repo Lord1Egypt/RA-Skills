@@ -1,46 +1,61 @@
-## Description: <br>
-Calculates ecommerce break-even thresholds from price, variable costs, acquisition costs, returns, and fixed overhead so operators can make launch, hold, scale, or optimize decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate ecommerce break-even thresholds from price, cost, shipping, advertising, returns, and overhead assumptions so operators can make launch, hold, scale, or optimization decisions.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Ecommerce operators, marketers, and finance-aware founders use this skill to model unit economics, break-even units, break-even CPA, break-even ROAS, and sensitivity scenarios before launching products, discounting, changing shipping policy, or scaling paid acquisition. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide incomplete or low-confidence business inputs, which can make break-even results misleading. <br>
-Mitigation: Label every input by source and confidence level, verify the math, and run sensitivity analysis on uncertain assumptions before using the recommendation. <br>
-Risk: The analysis may be mistaken for formal accounting, tax, legal, compliance, valuation, or cash-flow advice. <br>
-Mitigation: Use the output as a calculation aid and decision baseline only; route regulated or formal financial questions to qualified professionals. <br>
-Risk: Break-even modeling may involve confidential product costs, ad performance, or margin data. <br>
-Mitigation: Share only the business details necessary for the calculation and avoid unnecessary confidential or sensitive information. <br>
+## Use Case:
 
+Ecommerce operators, marketers, and finance-adjacent teams use this skill to model contribution margin, break-even units, break-even CPA, break-even ROAS, discount impact, and sensitivity scenarios before launching or scaling products.
 
-## Reference(s): <br>
-- [Break-even Output Template](artifact/references/output-template.md) <br>
-- [Ecommerce Cost Breakdown Guide](artifact/references/cost-breakdown-guide.md) <br>
-- [Sensitivity Analysis Template](artifact/references/sensitivity-template.md) <br>
-- [Break-even Model Quality Checklist](artifact/assets/model-checklist.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/break-even-calculator-ecommerce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, analysis, guidance] <br>
-**Output Format:** [Structured Markdown with tables, calculation blocks, sensitivity scenarios, and a decision recommendation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes assumption confidence labels, explicit contribution-margin math, break-even CPA and ROAS, risk flags, and launch/hold/scale/optimize guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill uses sensitive ecommerce cost, margin, return, and advertising-performance inputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved agent environments for business data, minimize sensitive detail where possible, and avoid including credentials, customer personal data, or confidential source documents unless authorized.
+
+Risk: Break-even output can be mistaken for formal accounting, tax, legal, valuation, cash-flow, or board-level finance work.
+
+Mitigation: Treat results as decision-support analysis, and route formal finance, tax, legal, compliance, valuation, or board-reporting uses to qualified reviewers and authoritative systems.
+
+Risk: Missing or low-confidence inputs can produce misleading launch, hold, scale, or optimization recommendations.
+
+Mitigation: Label every assumption by confidence, run sensitivity analysis on uncertain inputs, and use the included model checklist before relying on the recommendation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/break-even-calculator-ecommerce)
+- [Cost Breakdown Guide](artifact/references/cost-breakdown-guide.md)
+- [Output Template](artifact/references/output-template.md)
+- [Sensitivity Analysis Template](artifact/references/sensitivity-template.md)
+- [Break-even Model Quality Checklist](artifact/assets/model-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown structured analysis with assumptions tables, unit-economics calculations, break-even results, sensitivity scenarios, and decision recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should show math explicitly, separate variable and fixed costs, label assumptions by confidence, and flag decision risks such as thin margins or uncertain inputs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata, created 2026-03-30)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

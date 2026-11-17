@@ -1,38 +1,50 @@
-## Description: <br>
-Assesses decision reversibility and risk at critical checkpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses decision reversibility and risk at critical checkpoints
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and agent workflow authors use this embedded checkpoint skill to assess reversibility, risk, and escalation needs before continuing high-stakes implementation or review decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local checkpoint and decision records may include project details. <br>
-Mitigation: Use the skill in a protected workspace, review configured storage paths, and periodically delete or redact audit records that should not be retained. <br>
+## Use Case:
 
+Developers use this skill within commands such as issue implementation, pull request review, and architecture review to assess a decision’s reversibility and decide whether to proceed with a quick recommendation or escalate to full War Room deliberation.
 
-## Reference(s): <br>
-- [Attune plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured checkpoint fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a reversibility score, selected escalation mode, recommendation or orders, confidence, and user confirmation flag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: The security assessment reports a mismatch between the skill’s stated purpose and its described audit-session lookup behavior; the scan was partial and confidence was medium.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the stated purpose and reported audit-session lookup behavior meet your needs before installing.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-attune-war-room-checkpoint)
+- [Attune project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Text]
+
+**Output Format:** [Markdown with structured checkpoint fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Context-dependent reversibility score, escalation decision, recommendation or orders, rationale, and confidence.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

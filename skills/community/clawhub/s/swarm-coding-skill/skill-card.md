@@ -1,43 +1,58 @@
-## Description: <br>
-Autonomous multi-agent code generation that plans, implements, tests, and packages complete software projects from plain-English prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous multi-agent code generation. Planner creates manifest, specialized roles execute tasks. Generates complete projects with tests, Docker, CI, and decision logs.
 
-## Publisher: <br>
-[arunnadarasa](https://clawhub.ai/user/arunnadarasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[arunnadarasa](https://clawhub.ai/user/arunnadarasa)
 
-## Use Case: <br>
-Developers use this skill to generate full project scaffolds and implementation files from a prompt, including coordinated backend, frontend, QA, and DevOps outputs. It is suited for hackathon-style prototyping and should be reviewed before deployment. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Model-generated file paths may write outside the intended project directory. <br>
-Mitigation: Run the skill only in an isolated workspace and add strict path containment before routine use. <br>
-Risk: Prompts, agent reasoning, and generated outputs may contain secrets or confidential project details. <br>
-Mitigation: Use a scoped OpenRouter key, avoid sensitive prompts, and review and clean DECISIONS.md, .learnings, raw.txt, and generated files. <br>
-Risk: Generated application code may include unsafe or unsuitable auth, blockchain, Docker, or CI behavior. <br>
-Mitigation: Inspect generated code and configuration before running, publishing, or deploying it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arunnadarasa/swarm-coding-skill) <br>
-- [OpenRouter API Keys](https://openrouter.ai/keys) <br>
-- [Privy Integration Skill](https://clawhub.ai/tedim52/privy) <br>
+## Use Case:
 
+Developers use this skill to turn a plain-English software request into a complete generated project with coordinated planning, implementation, tests, Docker/CI assets, decision logs, and run summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Project files, Markdown decision logs, shell commands, and configuration files written under the generated project workspace.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create swarm.yaml, tasks.json, README files, tests, Docker assets, CI configuration, DECISIONS.md, SWARM_SUMMARY.md, and .learnings logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated output can write files outside the intended project folder.
+
+Mitigation: Install and run only in a throwaway or tightly isolated workspace with no valuable files nearby until the path traversal issue is fixed.
+
+Risk: Prompts, generated decisions, and agent reasoning may be retained in DECISIONS.md and .learnings/.
+
+Mitigation: Do not include secrets or sensitive data in prompts; review generated logs before committing or sharing.
+
+Risk: Generated code, including blockchain or authentication integrations, may be incorrect or unsafe for deployment.
+
+Mitigation: Review, test, and scan generated code before deploying or connecting real credentials, wallets, or production data.
+
+## Reference(s):
+
+- [Hackathon Swarm Coding on ClawHub](https://clawhub.ai/arunnadarasa/skills/swarm-coding-skill)
+- [OpenRouter API Keys](https://openrouter.ai/keys)
+- [Privy Agentic Wallets Skill](https://clawhub.ai/tedim52/privy)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Project files with Markdown decision logs, summaries, configuration files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated projects under swarm-projects/{timestamp}/ and records decision and learning logs for review.]
+
+## Skill Version(s):
+
+0.1.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

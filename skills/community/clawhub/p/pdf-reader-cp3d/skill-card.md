@@ -1,41 +1,58 @@
-## Description: <br>
-PDF reading assistant for converting PDFs to Markdown, summarizing content, extracting key points, and answering questions from PDF content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PDF reading assistant for converting PDFs to Markdown, generating summaries, extracting key points, and answering questions from document content.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-External users and developers use this skill to process PDFs into readable text outputs, summaries, key points, and document-grounded answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says this is an incomplete PDF-reader prototype that may return sample content instead of reliably parsed PDF text. <br>
-Mitigation: Use it only after confirming real PDF parsing is implemented and validate generated summaries or answers against the source PDF. <br>
-Risk: The security guidance notes local file output and history logging behavior that may expose sensitive document metadata or content. <br>
-Mitigation: Confirm the output location with the user and review, redirect, or disable history logging before using private, regulated, or decision-critical PDFs. <br>
+## Use Case:
 
+External users and developers can use this skill to process PDF documents into Markdown, summaries, key points, and document-grounded answers.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/pdf-reader-cp3d) <br>
-- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, HTML, JSON, guidance] <br>
-**Output Format:** [Markdown, plain text, HTML, or JSON with human-facing summaries and answers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write converted Markdown output and processing history to local files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Document-derived output and processing history may be saved to fixed local locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive PDFs unless output locations and history logging are explicit, configurable, and acceptable for the deployment environment.
+
+Risk: The implementation is unfinished and does not yet perform real PDF parsing.
+
+Mitigation: Validate behavior with representative PDFs before relying on extracted content, summaries, or question answering.
+
+Risk: Optional remote API usage and unpinned dependencies can introduce data exposure or supply-chain risk.
+
+Mitigation: Keep remote API use opt-in, isolate the runtime, and pin or review dependencies before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/pdf-reader-cp3d)
+- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown, text, HTML, JSON, and Python result objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save generated Markdown output and processing history to local files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

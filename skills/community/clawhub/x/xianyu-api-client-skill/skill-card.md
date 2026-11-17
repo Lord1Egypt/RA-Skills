@@ -1,44 +1,60 @@
-## Description: <br>
-Secure Xianyu Guanjia API client with endpoint allowlisting, enforced confirmation for high-risk actions, dry-run mode, and unsafe methods for automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Secure Xianyu Guanjia API client with endpoint allowlisting, enforced confirmation for high-risk actions, dry-run mode, and unsafe methods for automation.
 
-## Publisher: <br>
-[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[crab-xieyujin](https://clawhub.ai/user/crab-xieyujin)
 
-## Use Case: <br>
-Developers and automation agents use this skill to call the Xianyu Guanjia Open Platform for shop, product, order, category, logistics, and location workflows while retaining endpoint allowlisting, dry-run previews, and confirmation prompts for account-changing actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make account-changing product, order price, shelf-status, and logistics API calls on a Xianyu shop. <br>
-Mitigation: Install it only for Xianyu shop automation, use least-privilege dedicated credentials, and prefer the confirmed methods with dry-run review before execution. <br>
-Risk: Explicit _unsafe methods can skip interactive confirmation in automation workflows. <br>
-Mitigation: Allow _unsafe methods only in controlled and audited automation after the exact request payload has been reviewed with dry_run=True. <br>
-Risk: Xianyu API credentials are required and could grant access to marketplace operations if exposed. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid hardcoding them, rotate them periodically, and revoke them when the skill is no longer trusted. <br>
+## Use Case:
 
+Developers and external marketplace operators use this skill to let an agent configure and call the Xianyu Guanjia Open Platform for product, order, shop, category, logistics, and area-data workflows. The skill is intended for Xianyu shop automation where API credentials and write permissions are available.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/crab-xieyujin/xianyu-api-client-skill) <br>
-- [Xianyu Guanjia Open Platform](https://www.goofish.pro) <br>
-- [OpenClaw source metadata](https://clawhub.com/skills/xianyu-api-client) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Python client methods, JSON API responses, and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XIAN_YU_APP_KEY, XIAN_YU_APP_SECRET, and Python; supports dry-run previews and confirmation-gated write operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata; artifact frontmatter reports 1.0.5) <br>
+Risk: The skill can perform write operations against Xianyu shop products and orders when valid credentials are provided.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for Xianyu shop automation, use dedicated low-permission credentials, and review write requests before execution.
+
+Risk: The artifact includes credential-like example values.
+
+Mitigation: Do not use the bundled example values; rotate or revoke any real credentials that match the published examples.
+
+Risk: Unsafe methods bypass the normal confirmation prompt for automation.
+
+Mitigation: Use unsafe methods only in controlled automation after dry-run review and with minimum-necessary API permissions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/crab-xieyujin/skills/xianyu-api-client-skill)
+- [OpenClaw source listing](https://clawhub.com/skills/xianyu-api-client)
+- [Xianyu Guanjia Open Platform](https://www.goofish.pro)
+- [Xianyu Open API endpoint host](https://open.goofish.pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Python and shell code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request payloads, dry-run previews, and credential configuration guidance.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

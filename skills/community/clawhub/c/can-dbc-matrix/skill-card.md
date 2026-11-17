@@ -1,41 +1,58 @@
-## Description: <br>
-Parse and analyze CAN DBC matrix JSON files exported by canmatrix. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse and analyze CAN DBC matrix JSON files exported by canmatrix for CAN messages, signals, ECUs, value tables, and decoding workflows.
 
-## Publisher: <br>
-[frankie-zeng](https://clawhub.ai/user/frankie-zeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[frankie-zeng](https://clawhub.ai/user/frankie-zeng)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect canmatrix-exported CAN database JSON, find messages and signals, decode raw CAN frames, and summarize ECU transmitter or receiver relationships. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional canmatrix installation and conversion commands may introduce normal third-party package and CLI execution risk. <br>
-Mitigation: Review the package source and commands before running them in the target environment. <br>
-Risk: DBC and CAN database files may contain proprietary vehicle or product details. <br>
-Mitigation: Avoid sharing sensitive CAN database content outside approved environments. <br>
+## Use Case:
 
+Developers and automotive engineers use this skill to inspect canmatrix-exported CAN database JSON, locate messages and signals, summarize ECU transmitter or receiver relationships, and draft decoding or conversion snippets.
 
-## Reference(s): <br>
-- [Canmatrix JSON Schema Reference](json-schema.md) <br>
-- [ClawHub release page](https://clawhub.ai/frankie-zeng/can-dbc-matrix) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on JSON structures exported by canmatrix with --jsonExportAll.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The conversion example depends on the external canmatrix package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install canmatrix in a virtual environment and pin or review the package version for sensitive workflows.
+
+Risk: Incorrect bit-numbering assumptions can produce wrong decoded signal values.
+
+Mitigation: Verify Motorola and LSB bit-numbering behavior against the canmatrix export settings before relying on decoded results.
+
+Risk: CAN database outputs may contain local engineering data.
+
+Mitigation: Handle generated summaries and decoded values as local engineering data and review them before sharing.
+
+## Reference(s):
+
+- [Canmatrix JSON Schema Reference](artifact/json-schema.md)
+- [ClawHub Skill Page](https://clawhub.ai/frankie-zeng/skills/can-dbc-matrix)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown prose with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local data-handling guidance for CAN database JSON and canmatrix conversion workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: "diet-analysis"
 description: "Analyzes videos to evaluate human eating behaviors, habits, and dietary patterns. It identifies tendencies towards unhealthy eating and provides structured analysis reports along with nutritional improvement recommendations. | 饮食行为健康分析工具，针对人的饮食行为、进食习惯、饮食结构进行视频分析，识别不良饮食行为倾向，提供结构化分析报告和营养改善建议"
-version: "1.0.5"
+version: "1.0.20"
 license: "MIT-0"
 ---
 

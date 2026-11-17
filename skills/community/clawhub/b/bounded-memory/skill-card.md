@@ -1,41 +1,59 @@
-## Description: <br>
-Searches OpenClaw session histories locally with SQLite FTS5 so an agent can recall prior conversations, decisions, preferences, and context; optional LLM summarization is disabled by default and only runs with --llm. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides full-text search over OpenClaw session history with optional LLM summarization to help recall past conversations, decisions, and context.
 
-## Publisher: <br>
-[canmaxfire](https://clawhub.ai/user/canmaxfire) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canmaxfire](https://clawhub.ai/user/canmaxfire)
 
-## Use Case: <br>
-External users and developers use this skill to index and search their OpenClaw conversation history when they need to recall prior discussions, decisions, or project context. It is most useful for local session search, with optional LLM summarization only when enabled by the user. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated sessions.db can contain private prompts, client data, decisions, or secrets from indexed OpenClaw sessions. <br>
-Mitigation: Treat sessions.db as sensitive local data, restrict file access, and delete it when it is no longer needed. <br>
-Risk: Using --llm can send matched session snippets to MiniMax and can use API keys from OpenClaw config or environment variables. <br>
-Mitigation: Keep --llm disabled unless external summarization is acceptable, and verify which API key and provider will be used before enabling it. <br>
+## Use Case:
 
+Developers and OpenClaw users use Bounded Memory to index local session histories, search prior conversations, and recover past decisions or context. Optional LLM summarization can synthesize matching excerpts when explicitly enabled.
 
-## Reference(s): <br>
-- [Bounded Memory on ClawHub](https://clawhub.ai/canmaxfire/bounded-memory) <br>
-- [Hermes Agent bounded memory inspiration](https://github.com/NousResearch/hermes-agent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown/text guidance with shell commands and search result excerpts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search is offline by default; --llm can send matched snippets to the MiniMax API for summarization.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release evidence) <br>
+Risk: The skill creates a local searchable database from private conversation history.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use offline search only on trusted machines and delete the generated database when it is no longer needed.
+
+Risk: Using --llm can send conversation excerpts and an API credential to a hard-coded external LLM provider.
+
+Mitigation: Enable --llm only when that data transfer is intended and use a dedicated API key with limited scope.
+
+Risk: Manual installation instructions reference repository ownership that does not match the server-resolved publisher.
+
+Mitigation: Prefer ClawHub installation and verify source provenance before manual clone installation.
+
+## Reference(s):
+
+- [Bounded Memory on ClawHub](https://clawhub.ai/canmaxfire/skills/bounded-memory)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Offline SQLite search by default; optional LLM summarization sends selected excerpts when --llm is used.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata; artifact README changelog agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

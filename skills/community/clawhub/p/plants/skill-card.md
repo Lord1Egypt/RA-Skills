@@ -1,40 +1,53 @@
-## Description: <br>
-Build a personal plant care system with watering schedules, care logs, and seasonal reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a personal plant care system with watering schedules, care logs, and seasonal reminders.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to build and maintain a personal plant-care system with plant profiles, watering logs, reminders, seasonal care prompts, and care history in local Markdown files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may create ~/plants/ and store local notes, schedules, locations, and optional photos there. <br>
-Mitigation: Ask the agent to confirm before creating the folder or adding records, and avoid storing sensitive locations or photos unless intended. <br>
-Risk: Plant-care reminders and schedules can be too precise for changing plant conditions. <br>
-Mitigation: Treat reminders as editable guidance and adjust care logs based on observed plant health, season, light, and humidity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/plants) <br>
-- [Publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+External users use this skill to maintain local plant-care records, watering logs, seasonal reminders, and troubleshooting notes for household plants.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown files and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create and update local files under ~/plants/ for plant profiles, logs, schedules, and optional photo links.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create and maintain local plant-care files under ~/plants/.
+
+Mitigation: Ask the agent to confirm before creating new plant entries or writing plant-care files.
+
+Risk: Plant records may include personal details such as room locations and photo references.
+
+Mitigation: Avoid storing sensitive location details or private photo paths in plant files unless they are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/plants)
+- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown plant files and conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create and maintain local files under ~/plants/ for plant profiles, care logs, reminders, and photo references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -10,7 +10,8 @@ export class JEPCrypto {
 
   constructor(seed?: Uint8Array) {
     if (seed) {
-      this.keyPair = nacl.sign.keyPair.fromSeed(seed.slice(0, 32));
+      if(seed.length!==32) throw new Error("Seed must be exactly 32 bytes");
+      this.keyPair = nacl.sign.keyPair.fromSeed(seed);
     } else {
       this.keyPair = nacl.sign.keyPair();
     }
@@ -27,10 +28,12 @@ export class JEPCrypto {
   }
 
   static verify(message: string, signature: string, publicKey: string): boolean {
+    try {
     const msgBytes = Buffer.from(message, 'utf-8');
     const sigBytes = Buffer.from(signature, 'base64');
     const pubBytes = Buffer.from(publicKey, 'base64');
-    return nacl.sign.detached.verify(msgBytes, sigBytes, pubBytes);
+    return sigBytes.length === 64 && pubBytes.length === 32 && nacl.sign.detached.verify(msgBytes, sigBytes, pubBytes);
+    } catch { return false; }
   }
 
   static sha256(input: string): string {

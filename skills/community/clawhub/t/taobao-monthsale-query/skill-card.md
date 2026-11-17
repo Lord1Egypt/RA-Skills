@@ -1,41 +1,54 @@
-## Description: <br>
-查询阿里平台（淘宝/天猫）商品月销量，支持商品ID或链接输入，返回月销量数据 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询阿里平台（淘宝/天猫）商品月销量，支持商品ID或链接输入，返回月销量数据
 
-## Publisher: <br>
-[yjcia](https://clawhub.ai/user/yjcia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yjcia](https://clawhub.ai/user/yjcia)
 
-## Use Case: <br>
-External users provide a Taobao or Tmall item ID or product URL to retrieve the item's reported sales for the past 30 days. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Taobao or Tmall item IDs are sent to EarlyData for sales lookup. <br>
-Mitigation: Use the skill only when sending item IDs to EarlyData is acceptable for the user's workflow. <br>
-Risk: Lookup results depend on a third-party API and network availability. <br>
-Mitigation: Surface timeout, rate-limit, invalid-link, and unavailable-item failures clearly and retry later when appropriate. <br>
+## Use Case:
 
+External users use this skill to check Taobao or Tmall item sales over the past 30 days by providing a product ID or product link.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yjcia/taobao-monthsale-query) <br>
-- [EarlyData month-sale API endpoint](https://mi.earlydata.com/monthsale) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text response with the month-sales value or a concise failure reason.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Taobao or Tmall item ID or URL; sends the item ID to the EarlyData API for lookup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Product IDs submitted for lookup are sent to EarlyData to retrieve sales data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for product IDs or links that can be shared with EarlyData; avoid sending unrelated private information.
+
+Risk: The skill is mainly documented and surfaced in Chinese, so non-Chinese users may see Chinese status and error messages.
+
+Mitigation: Translate or summarize responses for non-Chinese users before using the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yjcia/skills/taobao-monthsale-query)
+- [EarlyData month sale API endpoint](https://mi.earlydata.com/monthsale)
+
+## Skill Output:
+
+**Output Type(s):** [text, API calls, guidance]
+
+**Output Format:** [Plain text response with the monthly sales result or a failure reason]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese status and error messages may be returned.]
+
+## Skill Version(s):
+
+1.1.5 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

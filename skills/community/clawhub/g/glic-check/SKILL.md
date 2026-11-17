@@ -1,5 +1,6 @@
 ---
 name: glic-check
+version: 1.1.0
 description: >
   Systematic quality check for code, skills, configs, and documents. Two
   modes — GLIC for internal quality (4 dimensions: Grammar / Logic /
@@ -17,7 +18,7 @@ description: >
 
 Systematic quality review for code, skills, configs, and documents.
 
-- **Version**: 1.0.4
+- **Version**: 1.1.0
 - **License**: MIT
 - **Author**: Evan Song · [github.com/Songhonglei](https://github.com/Songhonglei)
 - **Repository**: https://github.com/Songhonglei/build-better-skills
@@ -78,6 +79,12 @@ For each active dimension, go through the checklist in `references/dimensions.md
 **UGLIC mode**: Run U → G → L → I → C.
 
 Key rule: **Each finding must cite a specific location** (file:line or section heading).
+
+**Checker-finding citation discipline** (when consuming machine-readable findings from a checker like skill-release-audit JSON):
+- Quote findings with `code` + location + classification reason intact — never re-summarize into a bare variable list and never drop the classification.
+- `ENV_OPTIONAL_OVERRIDE` / `ENV_RUNTIME_INJECTED` / `ENV_AMBIENT` / `ENV_TEST_ONLY` findings must NOT be escalated to WARN/ERR unless you find an independent real failure path (document it when escalating).
+- Never recommend adding env metadata just because code reads an env var — see the four-item evidence rule in dimensions.md (I-skill: Env metadata consumption).
+- Report confirmed false-positives / non-user-config separately; do not count them into the WARN total.
 
 ### 4. Assign Severity
 

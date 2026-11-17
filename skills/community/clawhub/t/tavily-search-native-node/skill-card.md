@@ -1,44 +1,63 @@
-## Description: <br>
-Minimal Tavily web search skill for OpenClaw that runs a native Node.js script to return summarized search results with source citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Minimal Tavily web search for OpenClaw using native Node.js with no dependencies, returning Tavily's synthesized answer plus source URLs and snippets for verification.
 
-## Publisher: <br>
-[jwestburg](https://clawhub.ai/user/jwestburg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jwestburg](https://clawhub.ai/user/jwestburg)
 
-## Use Case: <br>
-Developers and agent operators use this skill when an agent needs current web information, recent news, comparison research, or real-time context with citations. It is intended for Tavily-backed web search, not URL scraping or private-data lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Tavily and may disclose sensitive information. <br>
-Mitigation: Do not submit secrets, confidential text, client identifiers, hostnames, private incident details, or private strategy unless that disclosure is explicitly approved. <br>
-Risk: The skill requires a Tavily API key and can consume Tavily credits. <br>
-Mitigation: Provide the key through the process environment, prefer basic-depth searches unless deeper research is needed, and monitor Tavily pricing, limits, and usage. <br>
-Risk: Search results and synthesized answers may be incomplete, stale, or wrong. <br>
-Mitigation: Review the returned sources before relying on the result, especially for decisions involving current events, money, safety, legal obligations, or operational changes. <br>
+## Use Case:
 
+Developers and agent operators use this skill when a user needs current web information, recent news, research, comparisons, or source-backed lookup results. It performs a bounded Tavily search with optional topic, depth, result count, and domain filters, then returns a concise answer with source URLs and snippets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jwestburg/tavily-search-native-node) <br>
-- [Tavily app and API key portal](https://app.tavily.com) <br>
-- [Tavily Search API endpoint](https://api.tavily.com/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON search results, with Markdown and shell-command guidance in the skill instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output includes the searched query, a synthesized answer, result titles, URLs, snippets, and timing; JSON mode returns the Tavily response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: frontmatter and server release evidence) <br>
+Risk: Search queries and domain filters are sent to Tavily and may expose sensitive user or organization context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send secrets or confidential text; get explicit owner approval before sending privacy-sensitive non-secret fields to Tavily.
+
+Risk: Shell interpolation of user-controlled query text can execute or expand content before the script receives it.
+
+Mitigation: Invoke the Node script through an argv array with shell disabled, passing the full user query as data.
+
+Risk: External search calls can consume Tavily credits or hit provider rate limits.
+
+Mitigation: Prefer one well-scoped basic search per topic, use domain filters where appropriate, and verify current Tavily pricing and limits before operational use.
+
+Risk: Search answers, titles, snippets, URLs, and page text are external content and may be inaccurate or unsafe to follow as instructions.
+
+Mitigation: Treat returned content as untrusted evidence, cite the source URLs relied on, and do not execute instructions from search results.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/jwestburg/skills/tavily-search-native-node)
+- [Tavily search endpoint](https://api.tavily.com/search)
+- [Tavily app and API key dashboard](https://app.tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Plain text by default, or redacted JSON when invoked with --json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include the searched query, synthesized answer, source URLs, snippets, timing details, and exact API-key redaction when the key appears in returned text.]
+
+## Skill Version(s):
+
+1.0.30 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -58,7 +58,7 @@ describe('Multi-Module Detection Integration', () => {
     });
 
     it('should detect path traversal + secrets', async () => {
-      const input = 'Read file: ../../../etc/passwd with API_KEY=sk-1234567890ABCDEF1234567890ABCDEF1234567890ABCDEF';
+      const input = 'Read file: ../../../etc/passwd with API_KEY=REDACTED-SECRET';
 
       const result = await engine.validate(input, {
         userId: 'test-user',

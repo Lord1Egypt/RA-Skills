@@ -13,7 +13,7 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 DEFAULT_API_URL = "https://maas-api.hivoice.cn/v1/chat/completions"
-DEFAULT_MODEL = "u1-insuremed"
+DEFAULT_MODEL = "u2-med"
 BASE_SYSTEM_PROMPT = '你是专业医学大模型。请严格按用户消息中的题目与输出格式要求作答，不要输出与解题无关的寒暄；不要编造题干未给出的检验数值、量表结果或隐私信息。'
 
 TASKS: Dict[str, Dict[str, str]] = {'sm-doc': {'title': '病历实体抽取与结构化', 'hint': '从病历文本中抽取实体并按要求结构化输出。'}, 'chart-qc': {'title': '病历内涵质控', 'hint': '发现病历内涵缺陷并说明依据。'}, 'path-qc': {'title': '临床路径质控', 'hint': '对照临床路径要求完成质控判断。'}, 'report-qc': {'title': '医学影像报告文本质控', 'hint': '对影像报告文本进行规范性、完整性质控。'}}

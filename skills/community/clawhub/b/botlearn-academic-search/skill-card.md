@@ -1,45 +1,62 @@
-## Description: <br>
-Discovers academic papers across arXiv, Google Scholar, and Semantic Scholar with abstract screening, citation analysis, and research synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic paper discovery across arXiv, Google Scholar, and Semantic Scholar with abstract screening, citation analysis, and research synthesis for OpenClaw Agent.
 
-## Publisher: <br>
-[calvinxhk](https://clawhub.ai/user/calvinxhk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[calvinxhk](https://clawhub.ai/user/calvinxhk)
 
-## Use Case: <br>
-Developers, researchers, and research assistants use this skill to run systematic literature searches, rank the top five relevant papers, verify bibliographic metadata, and synthesize findings across academic databases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries may be sent to arXiv, Semantic Scholar, Google Scholar, and the google-search helper dependency. <br>
-Mitigation: Avoid entering confidential or unpublished research details unless sharing them with those external services is acceptable. <br>
-Risk: Academic search results can include preprints, paywalled papers, duplicate records, or misleading citation signals. <br>
-Mitigation: Verify publication status, include DOI or arXiv identifiers, check open-access alternatives, deduplicate records, and rank papers by relevance, recency, venue quality, methodology, and impact. <br>
+## Use Case:
 
+Researchers, students, and developers use this skill to find and evaluate academic papers across arXiv, Google Scholar, and Semantic Scholar, then receive a ranked top-five bibliography with publication status, citation context, key findings, and synthesis.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/calvinxhk/botlearn-academic-search) <br>
-- [Publisher profile](https://clawhub.ai/user/calvinxhk) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/skill.md) <br>
-- [Academic search strategy](artifact/strategies/main.md) <br>
-- [Academic database API reference](artifact/knowledge/domain.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research summaries with ranked bibliographic entries and synthesis narrative] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Top five ranked papers with authors, year, venue, DOI or arXiv ID, publication status, citation signals, open-access status, key findings, methodology, relevance, thematic synthesis, and research gaps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.md frontmatter) <br>
+Risk: Academic search queries may be sent to arXiv, Semantic Scholar, and Google Scholar-related services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential research questions or unpublished sensitive project details through the skill unless the deployment's data-sharing policy permits those external searches.
+
+Risk: Broad triggers such as research or cite may activate the skill for general research requests.
+
+Mitigation: Review activation behavior during installation and narrow trigger routing if the agent should only use the skill for explicit academic literature requests.
+
+Risk: The artifact references an insecure arXiv HTTP endpoint.
+
+Mitigation: Prefer an HTTPS arXiv endpoint where supported before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/calvinxhk/skills/botlearn-academic-search)
+- [README](artifact/README.md)
+- [Academic Search Strategy](artifact/strategies/main.md)
+- [Academic Search Best Practices](artifact/knowledge/best-practices.md)
+- [Academic Search Domain Knowledge](artifact/knowledge/domain.md)
+- [Academic Search Anti-Patterns](artifact/knowledge/anti-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research summaries with ranked paper entries, bibliographic metadata, citation context, and synthesis.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Expected output is a top-five paper set with publication status, open-access notes, identifiers, relevance rationale, and thematic synthesis.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.md frontmatter; package metadata lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

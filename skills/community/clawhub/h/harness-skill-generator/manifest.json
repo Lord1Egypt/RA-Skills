@@ -1,0 +1,7 @@
+{
+  "name": "harness-skill-generator",
+  "version": "0.1.0",
+  "category": "Meta-Skill · Harness Engineering",
+  "description": "引导用户从 0 构建一个基于 Harness 工程的 Skill。适用于有一定复杂度的任务场景（多阶段、多分支、需要质检、需要状态持久化）。核心创新：人类方案→Agent 优化方案的转化、分支路由、先小后大的试运行机制。触发词：'创建 Skill'、'新建 Skill'、'做一个 Skill'、'构建 Skill'、'skill generator'、'harness skill'。",
+  "compat": ["openclaw"]
+}

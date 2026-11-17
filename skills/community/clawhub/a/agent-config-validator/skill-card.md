@@ -1,43 +1,59 @@
-## Description: <br>
-Validates OpenClaw agent configuration consistency, detects stale references, generates diagnostic reports, and supports guarded automatic repairs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validates OpenClaw agent configuration against agent directories and core documentation, detects stale references, and can generate reports or apply scoped configuration fixes.
 
-## Publisher: <br>
-[StarAI-2026](https://clawhub.ai/user/StarAI-2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[starai-2026](https://clawhub.ai/user/starai-2026)
 
-## Use Case: <br>
-Developers and maintainers use this skill to check OpenClaw multi-agent configurations after adding, removing, or changing agents. It reports configuration drift, stale documentation references, and safe repair suggestions before optional fixes are applied. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fix mode can modify local OpenClaw configuration files. <br>
-Mitigation: Start in read-only or dry-run mode, review the report, confirm backups, and use fix mode only in a trusted workspace. <br>
-Risk: Diagnostic reports may include local configuration details, agent names, or file paths. <br>
-Mitigation: Review generated reports before sharing them outside the workspace. <br>
-Risk: The test wrapper can be unsafe if run with untrusted environment variables or paths. <br>
-Mitigation: Avoid running test-skill.js with untrusted inputs; use the validator directly in the intended OpenClaw workspace. <br>
+## Use Case:
 
+Developers and engineers maintaining OpenClaw multi-agent systems use this skill to verify that openclaw.json, agent directories, and core documents remain consistent after adding, deleting, merging, or modifying agents.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/StarAI-2026/agent-config-validator) <br>
-- [Publisher profile](https://clawhub.ai/user/StarAI-2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [CLI text and Markdown diagnostic reports, with optional configuration edits when fix mode is enabled] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default behavior is read-only; fix mode can modify OpenClaw configuration files after checks and backups.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Fix mode can persistently edit .openclaw/openclaw.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run read-only or dry-run mode first, keep safe mode enabled, and review backups and configuration diffs before accepting changes.
+
+Risk: The packaged test runner can execute a validator path derived from OPENCLAW_ROOT.
+
+Mitigation: Do not run test-skill.js with an untrusted OPENCLAW_ROOT value; invoke the main validator only from trusted OpenClaw workspaces.
+
+Risk: Full repair mode may affect sensitive configuration such as agents, models, channels, or authentication settings.
+
+Mitigation: Use interactive confirmation for sensitive changes and avoid unattended full repair runs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/starai-2026/skills/agent-config-validator)
+- [README-en.md](artifact/README-en.md)
+- [SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown diagnostic reports with command examples and optional configuration updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only by default; fix mode can create backups and update openclaw.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

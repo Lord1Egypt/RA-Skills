@@ -1,40 +1,52 @@
-## Description: <br>
-Scans specified network targets and ports using nmap with options for speed, timeout, host limits, and exclusions, returning detailed JSON results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans specified network targets and ports using nmap with options for speed, timeout, host limits, and exclusions, returning detailed JSON results.
 
-## Publisher: <br>
-[ApacheUA](https://clawhub.ai/user/ApacheUA) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[apacheua](https://clawhub.ai/user/apacheua)
 
-## Use Case: <br>
-Developers, operators, and security engineers use this skill to run nmap-based scans against network hosts and port ranges they are authorized to assess. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Active network scans may be unauthorized, trigger monitoring, or affect fragile services. <br>
-Mitigation: Run scans only against owned or explicitly authorized networks, keep targets and ports narrow, and use host limits and timeouts. <br>
-Risk: Broad CIDR or port scans can expand beyond the intended assessment scope. <br>
-Mitigation: Use explicit target ranges, exclusions, top-port limits, and host limits before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Network Scan on ClawHub](https://clawhub.ai/ApacheUA/network-scan) <br>
-- [ApacheUA publisher profile](https://clawhub.ai/user/ApacheUA) <br>
+## Use Case:
 
+Developers and security engineers use this skill to run authorized nmap scans against specified IP addresses, IP ranges, or CIDR targets and receive structured scan results.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Analysis] <br>
-**Output Format:** [JSON object containing scan results, the nmap command used, and scan information.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires nmap and network access to the specified authorized targets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can probe broad networks or run aggressive scans.
+
+Mitigation: Use only for authorized targets in a controlled environment, and avoid broad CIDR or aggressive scans unless explicitly approved.
+
+Risk: Weak input validation can allow requests to change nmap behavior beyond the documented options.
+
+Mitigation: Restrict use to trusted users or agents, and add strict validation for targets, ports, and scan options before exposing it to untrusted input.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/apacheua/skills/network-scan)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scan results, the nmap command used, and scan information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

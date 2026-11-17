@@ -1,43 +1,60 @@
-## Description: <br>
-Converts Markdown official-document content into Word documents formatted to GB/T 9704-2012 for notices, requests, reports, replies, opinions, and related document types. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+公文排版工具。将Markdown格式内容转换为符合GB/T 9704-2012标准的Word文档。当用户需要制作通知、请示、报告、批复、意见等公文时触发。
 
-## Publisher: <br>
-[hunkguo](https://clawhub.ai/user/hunkguo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hunkguo](https://clawhub.ai/user/hunkguo)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to draft or convert Chinese official-document Markdown into consistently formatted Word documents. It is intended for document preparation workflows that need GB/T 9704-2012 layout, fonts, margins, line spacing, and title hierarchy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The converter writes a DOCX file to the selected output path. <br>
-Mitigation: Choose the output path deliberately and avoid paths that would overwrite an existing document. <br>
-Risk: Document appearance depends on local Python dependencies and Chinese fonts being installed. <br>
-Mitigation: Install python-docx and the required fonts before conversion, then review the generated DOCX in Word or WPS. <br>
+## Use Case:
 
+External users and document authors use this skill to draft and format Chinese official documents from Markdown or plain text into Word documents aligned with GB/T 9704-2012 conventions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/hunkguo/official-document-template) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [Official document formatting specification notes](artifact/公文排版规范.md) <br>
-- [Template usage guide](artifact/模板使用指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; the converter produces DOCX files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Markdown input and an output path selected by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: The Python dependency is installed without a pinned version in the skill guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a virtual environment and pin `python-docx` before installation or deployment.
+
+Risk: Generated DOCX layout can vary when required Chinese fonts are unavailable or office software renders styles differently.
+
+Mitigation: Review generated documents in Word or WPS and install required fonts before relying on final formatting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hunkguo/skills/official-document-template)
+- [公文排版规范](artifact/公文排版规范.md)
+- [模板使用指南](artifact/模板使用指南.md)
+- [通知模板](artifact/通知模板.md)
+- [请示模板](artifact/请示模板.md)
+- [报告模板](artifact/报告模板.md)
+- [批复模板](artifact/批复模板.md)
+- [意见模板](artifact/意见模板.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance and generated DOCX files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated documents may require final review in Word or WPS for fonts and layout.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

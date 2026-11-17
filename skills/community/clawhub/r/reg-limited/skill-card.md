@@ -1,43 +1,57 @@
-## Description: <br>
-Vehicle restriction query and reminder tool for Chinese cities. Query daily restrictions and set scheduled reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vehicle restriction query and reminder tool for Chinese cities. Query daily restrictions and set scheduled reminders.
 
-## Publisher: <br>
-[chandler0714](https://clawhub.ai/user/chandler0714) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chandler0714](https://clawhub.ai/user/chandler0714)
 
-## Use Case: <br>
-Drivers and automation agents use this skill to query Chinese city vehicle restriction rules, check whether a plate is restricted today, and manage local restriction reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved reminders may include vehicle plate numbers in a local plaintext configuration file. <br>
-Mitigation: Protect or delete ~/.reg-limited/config.json when plate numbers are sensitive. <br>
-Risk: The CLI fetches Beijing restriction data online and may fall back to local rules if the request or parsing fails. <br>
-Mitigation: Verify important restriction results against official traffic sources before relying on them. <br>
-Risk: The artifact describes Feishu or Telegram-style notification channels, but the current script only stores local reminder records. <br>
-Mitigation: Treat reminder commands as local configuration management unless a future version implements external notifications. <br>
+## Use Case:
 
+External users and developers use this skill to query Chinese vehicle restriction rules by city and plate number, and to manage local reminder entries for restriction checks.
 
-## Reference(s): <br>
-- [Reg Limited ClawHub Release](https://clawhub.ai/chandler0714/reg-limited) <br>
-- [Beijing Traffic Management Bureau Restriction Page](https://jtgl.beijing.gov.cn/jgj/lszt/659722/660341/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [JSON responses and CLI command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May store reminder entries, including plate numbers, in ~/.reg-limited/config.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Vehicle plate, city, and reminder time can be stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing sensitive vehicle data on shared machines and review local file permissions before using reminders.
+
+Risk: City and reminder support may be broader in documentation than in observed behavior.
+
+Mitigation: Treat the skill as mainly a Beijing restriction query tool unless the target city and reminder workflow are independently tested.
+
+Risk: Restriction results can rely on fallback data when online retrieval fails.
+
+Mitigation: Verify important restriction decisions against the official traffic source before acting on them.
+
+## Reference(s):
+
+- [Beijing Traffic Management Bureau restriction page](https://jtgl.beijing.gov.cn/jgj/lszt/659722/660341/index.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [JSON CLI output and Markdown guidance with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read online Beijing restriction data and may create local reminder configuration under the user's home directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

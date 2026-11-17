@@ -1,42 +1,59 @@
-## Description: <br>
-Manage Stability Pool positions on the Indigo Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Stability Pool positions on the Indigo Protocol.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-External users and developers use this skill to query Indigo Stability Pool state, manage deposits and withdrawals, close positions, and process or cancel pending Stability Pool requests through an Indigo MCP server. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fund-moving Stability Pool actions can create unsigned transactions that close, withdraw from, process, or cancel positions. <br>
-Mitigation: Before signing, verify the address, asset, amount, UTxO, action type, and expected position effect. <br>
-Risk: The skill depends on the configured Indigo MCP server for pool data and transaction construction. <br>
-Mitigation: Use only a trusted MCP server and compare returned transaction details with the intended action before signing. <br>
+## Use Case:
 
+External Cardano and Indigo Protocol users use this skill to inspect stability pools, manage pool accounts, and prepare unsigned transactions for deposits, withdrawals, account closure, and pending request processing.
 
-## Reference(s): <br>
-- [Indigo Stability ClawHub release](https://clawhub.ai/adacapo21/indigo-stability) <br>
-- [Stability Pool MCP Tools Reference](references/mcp-tools.md) <br>
-- [Stability Pool Concepts](references/concepts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API Calls, configuration] <br>
-**Output Format:** [Markdown guidance with MCP tool calls and unsigned transaction data references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations return unsigned transaction CBOR for client-side review and signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prepared transactions can move funds or change Indigo Stability Pool positions if the user signs them without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the asset, amount, address, UTxO, and expected effect in the wallet before signing any transaction.
+
+Risk: The skill depends on the @indigoprotocol/indigo-mcp server for protocol data and unsigned transaction construction.
+
+Mitigation: Use a trusted or audited MCP server and verify pool, account, and pending request details before submitting transactions.
+
+Risk: iAsset amounts must be provided in smallest units, which can cause incorrect deposit or withdrawal amounts if decimal precision is misapplied.
+
+Mitigation: Confirm decimal conversion for iUSD, iBTC, iETH, and iSOL before creating or adjusting a stability pool account.
+
+## Reference(s):
+
+- [Stability Pool Concepts](references/concepts.md)
+- [MCP Tools Reference](references/mcp-tools.md)
+- [ClawHub Skill Page](https://clawhub.ai/adacapo21/skills/indigo-stability)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, API calls, configuration]
+
+**Output Format:** [Markdown or text with structured MCP tool-call parameters; write operations return unsigned Cardano transaction CBOR for wallet review and signing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the @indigoprotocol/indigo-mcp server; amounts use each iAsset's smallest unit.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

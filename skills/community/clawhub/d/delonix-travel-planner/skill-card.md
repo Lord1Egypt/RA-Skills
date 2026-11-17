@@ -1,42 +1,61 @@
-## Description: <br>
-Plans business travel by comparing rail, flight, hotel, map, weather, itinerary, budget, and booking-link options, then can generate an HTML travel report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps business travelers plan trips by comparing transport and hotel options, estimating budgets, gathering destination context, and generating HTML travel reports with booking links.
 
-## Publisher: <br>
-[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chaoliuzhu](https://clawhub.ai/user/chaoliuzhu)
 
-## Use Case: <br>
-Employees, external business travelers, and travel coordinators use this skill to gather trip requirements, compare transportation and hotel options, estimate budgets, and prepare a shareable itinerary report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; strongest practical support is for China-focused rail, map, hotel, and travel-search providers described by the artifact. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip dates, destinations, meeting locations, budgets, and preferences may be shared with external map, search, travel, and booking providers. <br>
-Mitigation: Install only when this sharing is acceptable, use scoped Amap API keys, and avoid entering unnecessary sensitive trip details. <br>
-Risk: Generated HTML reports and booking links may contain private travel details or outdated prices and availability. <br>
-Mitigation: Keep reports private and verify booking links, prices, and availability directly with providers before acting. <br>
-Risk: Optional MCP packages can extend the execution surface of the agent environment. <br>
-Mitigation: Review optional MCP packages before enabling them and deploy only the integrations needed for the travel-planning workflow. <br>
+## Use Case:
 
+Business travelers and assistants use this skill to gather trip requirements, compare trains, flights, routes, hotels, budgets, weather, and destination details, then produce a practical itinerary and HTML travel report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/delonix-travel-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, HTML, files, configuration, guidance] <br>
-**Output Format:** [Conversational planning guidance with optional generated HTML travel report, booking links, budget tables, and itinerary details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May rely on external travel, map, search, and booking providers; prices, availability, and booking links should be verified before action.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-9.9.9 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Sensitive itinerary, location, identity, budget, and booking preferences may be shared with travel, map, hotel, search, and optional MCP services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the minimum necessary trip details, disclose external services to users, and restrict environment variables to the AMap keys needed for the selected workflow.
+
+Risk: The skill describes unpinned npx execution for MCP packages.
+
+Mitigation: Pin and review MCP package versions before use, avoid latest-style npx execution in privileged environments, and run the skill in a restricted sandbox.
+
+Risk: Travel prices, availability, routing, weather, and booking links may become stale or inaccurate.
+
+Mitigation: Treat generated options as planning guidance and require users to verify final availability, price, and terms on the relevant official booking or service page before purchase.
+
+Risk: Generated HTML reports can contain private trip details and external links.
+
+Mitigation: Review report content and links before sharing, and avoid publishing previews or filenames that expose private travel information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chaoliuzhu/skills/delonix-travel-planner)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance and generated HTML report content with tables, timelines, budgets, maps, and booking links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external travel-service links, MCP configuration snippets, itinerary attachments, and preview metadata.]
+
+## Skill Version(s):
+
+9.9.9 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

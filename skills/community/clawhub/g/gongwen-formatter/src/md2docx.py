@@ -7,6 +7,25 @@ v1.1.0 升级内容：
   - # 标题智能判断：单个视为大标题（居中不加序号），多个视为一级标题（加序号）
   - 首行缩进修正为 640 twips（精确对应国标2个三号汉字宽度）
   - 新增表格、图片、超链接、代码块支持
+
+v1.1.5 升级内容：
+  - 标题层级重定义：# = 大标题（小标宋居中，一律不加序号）；
+    ## = 文章真实一级标题（黑体三号）；### = 楷体_GB2312 加粗；#### = 仿宋_GB2312 加粗
+  - 序号去重：标题原文已带序号（一、/（一）/1./第一部分…）时不再自动加序号
+
+v1.1.6 升级内容：
+  - 段落按源码行拆分：Markdown 中连续的非空行（softbreak）还原为独立段落，
+    每段独立首行缩进2字（如"甲方：/住所：/法定代表人："三行各成一段）
+
+v1.1.7 升级内容：
+  - 序号去重模式扩展：覆盖「一 · 源头」间隔号体例（涌现写作交付成稿常用）、
+    数字+间隔号「1 · 」，以及「结语 · / 引言 · / 附一 · / 附录」等结构性标题，
+    避免自动编号与原文序号重复（如"二、一·源头"）
+
+v1.1.8 升级内容：
+  - 间隔号序号规范化：识别到「一 · 源头」「2 · 源头」间隔号体例时，
+    改写为公文标准序号——h2 →「一、源头」（阿拉伯数字自动转中文数字），
+    h3 →「（五）专章」；不再保留间隔号原样
 """
 
 from docx import Document
@@ -23,7 +42,10 @@ import tempfile
 import urllib.request
 import urllib.error
 
-__version__ = "1.1.0"
+__version__ = "1.1.8"
+
+# 允许的 URL scheme 白名单（防止 SSRF）
+ALLOWED_URL_SCHEMES = ('http://', 'https://', 'data:image')
 
 # ── 国标常量 ──
 FIRST_LINE_INDENT_TWIPS = 640  # 首行缩进 640 twips = 2个三号汉字宽度
@@ -91,6 +113,54 @@ def clean_text(text):
     return text
 
 
+# 标题已带序号的匹配模式（中文序号/括号序号/阿拉伯序号/间隔号序号/第X部分/结构性标题等）
+HEADING_NUMBER_PATTERNS = [
+    r'^[一二三四五六七八九十]{1,3}、',           # 一、
+    r'^[一二三四五六七八九十]{1,3}\s*[·・•.]\s*',  # 一 · 源头（间隔号体例）
+    r'^[（(][一二三四五六七八九十]{1,3}[）)]',     # （一）
+    r'^[（(]\d{1,2}[）)]',                         # （1）
+    r'^\d{1,2}[、.．]',                            # 1、 1. 1．
+    r'^\d{1,2}\s*[·・•]\s*',                       # 1 · 源头（数字+间隔号）
+    r'^第[一二三四五六七八九十\d]+[部篇章节]',      # 第一部分/第一章
+    r'^(结语|引言|前言|序言|后记|尾声|跋|附录)(?=[\s：:·、，—-]|$)',  # 结语 · 一句口号（结构性标题）
+    r'^附[一二三四五六七八九十\d]{0,2}(?=[\s：:·、，—-]|$)',          # 附一 · 史料溯源
+]
+
+
+def has_heading_number(text):
+    """检测标题文本是否已带序号前缀或为结构性标题，避免自动编号与原文序号重复"""
+    return any(re.match(p, text) for p in HEADING_NUMBER_PATTERNS)
+
+
+# 间隔号序号匹配（「一 · 源头」「1 · 源头」），用于规范化为公文标准序号
+INTERPUNCT_NUMBER_RE = re.compile(r'^([一二三四五六七八九十]{1,3}|\d{1,2})\s*[·・•]\s*')
+
+
+def normalize_heading_number(heading_children, tag):
+    """
+    将间隔号序号体例规范化为公文标准序号（原地修改第一个 text token）：
+      h2: 「一 · 源头」→「一、源头」   「2 · 源头」→「二、源头」（阿拉伯转中文数字）
+      h3: 「五 · 专章」→「（五）专章」
+    结构性标题（结语 · / 附一 ·）不在此列，保持原样。
+    返回是否发生了规范化。
+    """
+    if not heading_children:
+        return False
+    first = heading_children[0]
+    if first.type != 'text':
+        return False
+    m = INTERPUNCT_NUMBER_RE.match(first.content)
+    if not m:
+        return False
+    num = m.group(1)
+    # 阿拉伯数字转中文数字（GB/T 9704 一级标题用中文数字）
+    if num.isdigit() and 1 <= int(num) <= len(CHINESE_NUMS):
+        num = CHINESE_NUMS[int(num) - 1]
+    prefix = f"{num}、" if tag == 'h2' else f"（{num}）"
+    first.content = prefix + first.content[m.end():]
+    return True
+
+
 def add_page_number(doc):
     """添加页码 — 居中显示，样式：— 1 —"""
     for section in doc.sections:
@@ -124,8 +194,14 @@ def add_page_number(doc):
 
 
 def download_image(url, timeout=10):
-    """下载图片到临时文件，返回本地路径；失败返回 None"""
+    """下载图片到临时文件，返回本地路径；失败返回 None。
+    仅允许 http/https/data:image scheme，防止 SSRF。
+    """
     try:
+        # URL scheme 白名单校验
+        if not url.lower().startswith(ALLOWED_URL_SCHEMES):
+            return None
+
         if url.startswith('data:image'):
             # base64 内嵌图片
             match = re.match(r'data:image/(\w+);base64,(.*)', url)
@@ -204,10 +280,43 @@ def render_inline_content(paragraph, inline_tokens, font_name='仿宋_GB2312', f
                     set_font(run, font_name, font_size)
 
 
-def render_inline_with_formatting(paragraph, tokens, font_name='仿宋_GB2312', font_size=16):
+def split_inline_on_linebreaks(tokens):
+    """
+    将 inline children 按 softbreak / hardbreak 拆分为多个段。
+
+    Markdown 中连续的非空行会被解析为同一个段落（行间为 softbreak），
+    公文/合同类文本常以"一行一要素"书写（如 甲方：/住所：/法定代表人：），
+    需按源码行边界还原为独立段落，避免各行挤在同一段落内。
+    """
+    segments = []
+    current = []
+    for token in tokens:
+        if token.type in ('softbreak', 'hardbreak'):
+            segments.append(current)
+            current = []
+        else:
+            current.append(token)
+    segments.append(current)
+    return segments
+
+
+def _has_renderable_content(segment):
+    """判断拆分后的段是否含有可渲染内容（过滤空行产生的空段）"""
+    for token in segment:
+        if token.type == 'image':
+            return True
+        if (getattr(token, 'content', '') or '').strip():
+            return True
+    return False
+
+
+def render_inline_with_formatting(paragraph, tokens, font_name='仿宋_GB2312', font_size=16, bold=False):
     """
     渲染 inline tokens，支持加粗/斜体/链接的格式切换。
     使用状态机跟踪当前是否在 strong/em/link 内部。
+
+    bold 参数：对普通文本整体应用加粗（用于标题等需要整体加粗的场景）。
+    加粗句（**text**）按公文规范渲染为楷体_GB2312 加粗（段首"一是/二是"句式标准）。
     """
     in_strong = False
     in_em = False
@@ -237,11 +346,12 @@ def render_inline_with_formatting(paragraph, tokens, font_name='仿宋_GB2312', 
                 run = paragraph.add_run(text)
                 # 根据加粗/斜体切换字体
                 if in_strong:
-                    set_font(run, '黑体', font_size)
+                    # 加粗句 → 楷体加粗（公文段首"一是/二是"句式规范）
+                    set_font(run, '楷体_GB2312', font_size, bold=True)
                 elif in_em:
                     set_font(run, '楷体_GB2312', font_size)
                 else:
-                    set_font(run, font_name, font_size)
+                    set_font(run, font_name, font_size, bold=bold)
                 # 链接加蓝色下划线
                 if in_link:
                     set_font(run, run.font.name or font_name, font_size,
@@ -270,13 +380,16 @@ def render_inline_with_formatting(paragraph, tokens, font_name='仿宋_GB2312', 
 #  核心转换引擎
 # ══════════════════════════════════════════════════════════════
 
-def md_to_docx(md_content, output_path):
+def md_to_docx(md_content, output_path, download_images=True):
     """
     将 Markdown 内容转换为符合 GB/T 9704-2012 标准的 Word 文档
 
     参数:
         md_content (str): Markdown 格式的文本内容
         output_path (str): 输出 Word 文件路径（.docx）
+        download_images (bool): 是否下载远程图片并嵌入Word。
+            True（默认）：下载 http/https 图片并嵌入
+            False：跳过图片下载，用文字替代 [图片: alt]
 
     返回:
         bool: 转换是否成功
@@ -295,16 +408,10 @@ def md_to_docx(md_content, output_path):
         md = MarkdownIt("commonmark", {"html": False}).enable("table")
         tokens = md.parse(md_content)
 
-        # ── 第一遍扫描：统计 # 标题数量 ──
-        h1_count = 0
-        for token in tokens:
-            if token.type == 'heading_open' and token.tag == 'h1':
-                h1_count += 1
-
-        # ── 第二遍渲染 ──
-        level1_counter = 0  # ## 对应的一级标题计数
-        level2_counter = 0  # ### 对应的二级标题计数
-        level3_counter = 0  # #### 对应的三级标题计数
+        # ── 渲染 ──
+        # 层级计数器：h2 是文章真实的一级标题（一、二、三…），h3 是二级标题（（一）（二）…）
+        level2_counter = 0  # ## 计数（序号"一、"）
+        level3_counter = 0  # ### 计数（序号"（一）"）
 
         i = 0
         while i < len(tokens):
@@ -321,56 +428,52 @@ def md_to_docx(md_content, output_path):
                 heading_children = content_token.children or []
 
                 if tag == 'h1':
-                    if h1_count == 1:
-                        # 单个 # → 大标题：居中，小标宋二号，不加序号
-                        paragraph = doc.add_paragraph()
-                        paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                        set_line_spacing(paragraph)
-                        render_inline_with_formatting(paragraph, heading_children,
-                                                      '方正小标宋简体', 22)
-                    else:
-                        # 多个 # → 一级标题：加序号，黑体三号
-                        level1_counter += 1
-                        level2_counter = 0
-                        level3_counter = 0
-                        prefix = f"{CHINESE_NUMS[level1_counter - 1]}、" if level1_counter <= len(CHINESE_NUMS) else f"{level1_counter}、"
-                        paragraph = doc.add_paragraph()
-                        paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
-                        set_line_spacing(paragraph)
-                        set_first_line_indent(paragraph)
-                        run = paragraph.add_run(prefix)
-                        set_font(run, '黑体', 16)
-                        render_inline_with_formatting(paragraph, heading_children, '黑体', 16)
+                    # 一级标题 = 大标题：居中，方正小标宋二号，不加序号
+                    paragraph = doc.add_paragraph()
+                    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                    set_line_spacing(paragraph)
+                    render_inline_with_formatting(paragraph, heading_children,
+                                                  '方正小标宋简体', 22)
 
                 elif tag == 'h2':
+                    # 二级标题 = 文章真实的一级标题：黑体三号
+                    # 间隔号体例「一 · 源头」先规范化为「一、源头」
+                    # 原文已带序号（一、/1、/第一部分…）则直接使用，避免重复编号
+                    normalize_heading_number(heading_children, tag)
                     level2_counter += 1
                     level3_counter = 0
-                    prefix = f"{CHINESE_NUMS[level2_counter - 1]}、" if level2_counter <= len(CHINESE_NUMS) else f"{level2_counter}、"
                     paragraph = doc.add_paragraph()
                     paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     set_line_spacing(paragraph)
                     set_first_line_indent(paragraph)
-                    run = paragraph.add_run(prefix)
-                    set_font(run, '黑体', 16)
+                    if not has_heading_number(heading_text):
+                        prefix = f"{CHINESE_NUMS[level2_counter - 1]}、" if level2_counter <= len(CHINESE_NUMS) else f"{level2_counter}、"
+                        run = paragraph.add_run(prefix)
+                        set_font(run, '黑体', 16)
                     render_inline_with_formatting(paragraph, heading_children, '黑体', 16)
 
                 elif tag == 'h3':
+                    # 三级标题：楷体_GB2312 加粗（GB/T 9704 二级标题规范）
+                    # 间隔号体例「五 · 专章」先规范化为「（五）专章」
+                    normalize_heading_number(heading_children, tag)
                     level3_counter += 1
-                    prefix = f"（{CHINESE_NUMS[level3_counter - 1]}）" if level3_counter <= len(CHINESE_NUMS) else f"（{level3_counter}）"
                     paragraph = doc.add_paragraph()
                     paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     set_line_spacing(paragraph)
                     set_first_line_indent(paragraph)
-                    run = paragraph.add_run(prefix)
-                    set_font(run, '楷体_GB2312', 16)
-                    render_inline_with_formatting(paragraph, heading_children, '楷体_GB2312', 16)
+                    if not has_heading_number(heading_text):
+                        prefix = f"（{CHINESE_NUMS[level3_counter - 1]}）" if level3_counter <= len(CHINESE_NUMS) else f"（{level3_counter}）"
+                        run = paragraph.add_run(prefix)
+                        set_font(run, '楷体_GB2312', 16, bold=True)
+                    render_inline_with_formatting(paragraph, heading_children, '楷体_GB2312', 16, bold=True)
 
                 elif tag == 'h4':
+                    # 四级标题：仿宋_GB2312 加粗
                     paragraph = doc.add_paragraph()
                     paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     set_line_spacing(paragraph)
                     set_first_line_indent(paragraph)
-                    render_inline_with_formatting(paragraph, heading_children, '仿宋_GB2312', 16)
+                    render_inline_with_formatting(paragraph, heading_children, '仿宋_GB2312', 16, bold=True)
 
                 # 跳过 heading_close
                 i += 1
@@ -387,13 +490,18 @@ def md_to_docx(md_content, output_path):
                         img_token = children[0]
                         img_url = img_token.attrGet('src') or ''
                         img_alt = img_token.attrGet('alt') or ''
-                        _handle_standalone_image(doc, img_url, img_alt)
+                        _handle_standalone_image(doc, img_url, img_alt, download_images)
                     else:
-                        paragraph = doc.add_paragraph()
-                        paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-                        set_line_spacing(paragraph)
-                        set_first_line_indent(paragraph)
-                        render_inline_with_formatting(paragraph, children, '仿宋_GB2312', 16)
+                        segments = split_inline_on_linebreaks(children)
+                        segments = [seg for seg in segments if _has_renderable_content(seg)]
+                        if not segments:
+                            segments = [[]]
+                        for seg in segments:
+                            paragraph = doc.add_paragraph()
+                            paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+                            set_line_spacing(paragraph)
+                            set_first_line_indent(paragraph)
+                            render_inline_with_formatting(paragraph, seg, '仿宋_GB2312', 16)
                 # 跳过 paragraph_close
                 i += 1
 
@@ -594,8 +702,19 @@ def _collect_table(tokens, start_idx):
 #  独立图片段落处理（在主循环外补充）
 # ══════════════════════════════════════════════════════════════
 
-def _handle_standalone_image(doc, url, alt_text=''):
-    """处理独立图片段落：下载图片并嵌入 Word，居中显示"""
+def _handle_standalone_image(doc, url, alt_text='', download_images=True):
+    """处理独立图片段落：下载图片并嵌入 Word，居中显示。
+    download_images=False 时跳过网络请求，用文字替代。
+    """
+    if not download_images:
+        # 跳过图片下载，用文字替代
+        paragraph = doc.add_paragraph()
+        paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        set_line_spacing(paragraph)
+        run = paragraph.add_run(f'[图片: {alt_text or url}]')
+        set_font(run, '仿宋_GB2312', 16)
+        return
+
     local_path = download_image(url)
     if local_path and os.path.exists(local_path):
         try:

@@ -1,45 +1,57 @@
-## Description: <br>
-Guides agents through Blue Ocean Strategy analysis to identify uncontested market opportunities using a strategy canvas, non-customer research, Six Paths, and an ERRC grid. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps teams find new market space by identifying buyer value factors to eliminate, reduce, raise, and create.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Strategy teams, founders, product leaders, and advisors use this skill to evaluate whether an industry is trapped in head-to-head competition and to draft a value innovation path that lowers cost while raising buyer value. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Strategic recommendations may be misleading if generated without current market evidence or non-customer validation. <br>
-Mitigation: Treat outputs as a strategy audit draft and validate them against customer research, competitor data, and the skill's verification checklist before acting. <br>
+## Use Case:
 
+Business strategists, product teams, and founders use the skill to explore ways to avoid head-to-head competition. It guides them through competitor canvases, non-customer research, Six Paths, an ERRC grid, and buyer-utility validation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/blue-ocean-strategy) <br>
-- [Sources](references/sources.md) <br>
-- [Cirque du Soleil example](examples/cirque-du-soleil-1984.md) <br>
-- [Blue Ocean Strategy](https://hbr.org/product/blue-ocean-strategy-expanded-edition/10102E-KND-ENG) <br>
-- [Creating New Market Space](https://hbr.org/1999/01/creating-new-market-space) <br>
-- [Value Innovation: The Strategic Logic of High Growth](https://hbr.org/2004/07/value-innovation-the-strategic-logic-of-high-growth) <br>
-- [Blue Ocean Shift](https://www.blueoceanstrategy.com/bos-book/blue-ocean-shift/) <br>
-- [Wine Institute](https://www.wineinstitute.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with structured strategy canvas, non-customer map, Six Paths, ERRC grid, target canvas, and buyer utility sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May stop after a single coaching question when the user is in novice coach mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Strategic recommendations may rely on unverified market assumptions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the analysis as a planning aid and validate market assumptions with current buyer and competitor research.
+
+## Reference(s):
+
+- [Blue Ocean Strategy skill page](https://clawhub.ai/deciqai/skills/blue-ocean-strategy)
+- [Blue Ocean Strategy companion guide](https://www.deciqai.com/c/blue-ocean-strategy)
+- [Primary and supporting sources](references/sources.md)
+- [Creating New Market Space (Harvard Business Review, 1999)](https://hbr.org/1999/01/creating-new-market-space)
+- [Value Innovation: The Strategic Logic of High Growth (Harvard Business Review, 1997)](https://hbr.org/1997/01/value-innovation-the-strategic-logic-of-high-growth)
+- [Blue Ocean Shift](https://www.blueoceanstrategy.com/bos-book/blue-ocean-shift/)
+- [Cirque du Soleil case example](examples/cirque-du-soleil-1984.md)
+- [Yellow Tail Wine case example](examples/yellow-tail-wine-2001.md)
+- [Vertical and agentic AI case example](examples/vertical-agentic-ai-2024-2026.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Structured Markdown with strategy canvases, tables, ERRC grids, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stepwise coaching for users exploring fit; tailored analysis for a defined strategic question.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

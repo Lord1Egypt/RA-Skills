@@ -1,43 +1,59 @@
-## Description: <br>
-Scaffolds a runnable RustChain agent with an Ed25519 RTC wallet, agent code, MCP wiring, node checks, and First-Light bounty guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffolds a runnable RustChain agent with an Ed25519 wallet, MCP wiring, node health checks, and a First-Light bounty claim path in one command.
 
-## Publisher: <br>
-[scottcjn](https://clawhub.ai/user/scottcjn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[scottcjn](https://clawhub.ai/user/scottcjn)
 
-## Use Case: <br>
-Developers and agent builders use this skill to create a local RustChain starter project with wallet, runnable agent script, MCP configuration, and next-step guidance for funding and use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated wallet.json contains a real private key. <br>
-Mitigation: Store it securely, keep it out of version control, and back it up before relying on the generated wallet. <br>
-Risk: The generated MCP configuration gives rustchain-mcp access to the wallet path. <br>
-Mitigation: Enable the MCP configuration only in trusted editor projects where that wallet access is intended. <br>
-Risk: Using --register performs a network write. <br>
-Mitigation: Use --register only when ready to register a Beacon identity, and use --node to target an intended testnet or node. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold a local RustChain-participating agent project with wallet material, a runnable agent script, editor MCP configuration, and onboarding notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/scottcjn/create-rustchain-agent) <br>
-- [RustChain](https://rustchain.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, markdown, guidance] <br>
-**Output Format:** [Generated project files and terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates wallet.json, agent.py, .mcp.json, README.md, and .gitignore; network writes occur only when --register is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and pyproject.toml) <br>
+Risk: The scaffold creates a plaintext wallet containing private key material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect the generated wallet file, keep it out of version control, and use the scaffold only in environments where local wallet generation is acceptable.
+
+Risk: Generated MCP wiring points tooling at the wallet path and may execute unpinned package versions.
+
+Mitigation: Review .mcp.json before enabling it and pin exact versions of create-rustchain-agent and rustchain-mcp where possible.
+
+Risk: The --register option and custom --node values can perform network operations against a selected RustChain node.
+
+Mitigation: Use trusted node URLs, prefer testnet endpoints during evaluation, and avoid running scaffold commands copied from untrusted sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scottcjn/skills/create-rustchain-agent)
+- [RustChain](https://rustchain.org)
+- [Project repository](https://github.com/Scottcjn/create-rustchain-agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and inline shell commands describing generated files and next steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local scaffold files including wallet.json, agent.py, .mcp.json, README.md, and .gitignore; optional registration performs a network write.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

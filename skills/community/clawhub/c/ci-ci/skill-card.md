@@ -1,37 +1,57 @@
-## Description: <br>
-CI release engineer skill for validation gating, release-readiness checks, and automation-safe delivery criteria. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CI release engineer skill for validation gating, release-readiness checks, and automation-safe delivery criteria.
 
-## Publisher: <br>
-[aiweline](https://clawhub.ai/user/aiweline) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aiweline](https://clawhub.ai/user/aiweline)
 
-## Use Case: <br>
-Developers, QA engineers, and release owners use this skill to assess CI coverage, release gates, automation readiness, and pre-merge validation before delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides advisory release-readiness guidance and could be mistaken for automatic approval. <br>
-Mitigation: Treat its output as a structured review aid and confirm project-specific CI requirements before relying on its recommendation. <br>
+## Use Case:
 
+Developers and release engineers use this skill to assess CI gates, release readiness, automation-safe validation evidence, and blockers before merge or release.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces release-gate decisions, satisfied and missing check lists, blockers, environment risks, and follow-up actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: The skill may activate on broad CI or pipeline discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user is asking for release gating, CI readiness, or pre-merge validation before applying the checklist.
+
+Risk: Referenced source-material paths may not exist in every project.
+
+Mitigation: Verify the project has equivalent CI, testing, planning, and documentation guidance before treating missing local files as blockers.
+
+Risk: Release-readiness recommendations can be misleading when validation evidence is incomplete.
+
+Mitigation: Require repeatable unit, E2E or HTTP, documentation, and environment evidence where relevant, and report missing evidence as a blocker or explicit risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aiweline/skills/ci-ci)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown release-readiness recommendation with validation checks, missing gates, blockers, and follow-up actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code is produced by the skill itself; outputs should be grounded in repeatable validation evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

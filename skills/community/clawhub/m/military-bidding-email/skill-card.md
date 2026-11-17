@@ -1,43 +1,54 @@
-## Description: <br>
-Military Bidding Email fetches military procurement opportunities from three sources, generates Excel reports, and sends the report by SMTP email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A military procurement opportunity reporting skill that gathers data from three military procurement channels, generates an Excel report, and sends the report by SMTP email.
 
-## Publisher: <br>
-[zhangpengle](https://clawhub.ai/user/zhangpengle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangpengle](https://clawhub.ai/user/zhangpengle)
 
-## Use Case: <br>
-Teams tracking military procurement opportunities use this skill to generate dated email reports, optionally filtered by keywords or sent to a test recipient. It is intended for the military procurement reporting workflow described by the skill, not as a general email client. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends email using local SMTP credentials and configured recipients. <br>
-Mitigation: Use a dedicated SMTP account and verify EMAIL_TO, EMAIL_CC, and test recipient overrides before each run. <br>
-Risk: The skill depends on a missing or unreviewed milb_fetcher component for data collection. <br>
-Mitigation: Install only when that dependency is trusted and review fetched report content before relying on or forwarding it. <br>
-Risk: Configuration is loaded from local .env files and may be picked up from the current working directory. <br>
-Mitigation: Run the skill from a controlled directory and avoid directories containing unrelated .env files. <br>
+## Use Case:
 
+External users and operators use this skill to collect Chinese military procurement opportunities, filter them by date or keywords, and send a summarized email report with an Excel attachment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangpengle/military-bidding-email) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhangpengle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Text] <br>
-**Output Format:** [CLI-driven report generation with an Excel attachment and SMTP email content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local EMAIL_* SMTP and recipient configuration; depends on milb-email and milb-fetcher command availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.8 (source: server release metadata) <br>
+Risk: The skill can send outbound email without an interactive confirmation step, which may cause unintended reports to reach configured recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated SMTP account or app password, keep EMAIL_TO and EMAIL_CC limited to intended recipients, and test with the --to option before routine use.
+
+Risk: Broad trigger phrases may invoke the reporting workflow when the user intended a different email-related action.
+
+Mitigation: Review the command and selected date, keywords, and recipient settings before execution, and prefer adding a preview or confirmation step in production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangpengle/skills/military-bidding-email)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhangpengle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files, Shell commands, Configuration]
+
+**Output Format:** [Plain-text email summary with an Excel report attachment and CLI status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SMTP and recipient configuration before sending reports.]
+
+## Skill Version(s):
+
+0.2.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

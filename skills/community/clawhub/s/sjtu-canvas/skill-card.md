@@ -1,43 +1,65 @@
-## Description: <br>
-Helps agents manage Canvas LMS course data for SJTU or other Canvas instances, including course files, assignments, deadlines, grades, discussions, and study material extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SJTU Canvas 课程助手 helps users manage Canvas LMS courses, files, assignments, deadlines, grades, discussions, submissions, and course-material extraction for AI-assisted study workflows.
 
-## Publisher: <br>
-[xhh678876](https://clawhub.ai/user/xhh678876) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xhh678876](https://clawhub.ai/user/xhh678876)
 
-## Use Case: <br>
-Students, instructors, and agent users working with Canvas LMS use this skill to retrieve course materials, inspect assignments, deadlines, grades, and discussions, extract PPT/PDF/DOCX content to Markdown, and optionally submit assignments or sync deadlines to Apple Calendar. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses private Canvas course data through a user-provided Canvas API token. <br>
-Mitigation: Use the least-privilege Canvas token available, store it only in the local config file, and rotate or revoke it when it is no longer needed. <br>
-Risk: Calendar sync and assignment submission can change user-visible external state. <br>
-Mitigation: Review changes before execution, avoid untrusted course or assignment names for calendar sync, and require explicit user confirmation before submitting assignments. <br>
-Risk: Security evidence flags unresolved assignment-submission issues, including syntax, confirmation, file-scope, and destination-validation gaps. <br>
-Mitigation: Do not use assignment submission until those gaps are fixed and reviewed. <br>
+## Use Case:
 
+External Canvas LMS users, especially SJTU students, use this skill to query course data, download and summarize course materials, track assignment deadlines, sync Apple Calendar events, review grades, and prepare study or assignment-support notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xhh678876/sjtu-canvas) <br>
-- [SJTU Canvas instance](https://oc.sjtu.edu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal-oriented text with Python/API results, file paths, and extracted course-material content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce downloaded course files, extracted Markdown, Apple Calendar events, and Canvas assignment submissions when the user configures credentials and invokes those workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Canvas API token or course data exposure during configuration or local execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a limited-scope Canvas token where possible, keep config.json out of source control, and run the skill in a dedicated environment.
+
+Risk: Bulk downloads or extracted course materials could overwrite local files or place files outside the intended workspace if paths are not reviewed.
+
+Mitigation: Use a dedicated save directory, preview download targets, and review filenames and output paths before running bulk file workflows.
+
+Risk: Apple Calendar synchronization runs local AppleScript and writes calendar events on macOS.
+
+Mitigation: Run calendar sync only in a trusted macOS session and review calendar names, event titles, and event descriptions before syncing.
+
+Risk: Assignment submission can affect a user's Canvas course record.
+
+Mitigation: Require explicit user confirmation of course ID, assignment ID, and file paths before any submission action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xhh678876/skills/sjtu-canvas)
+- [Source repository](https://github.com/xhh678876/sjtu-canvas.git)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [SJTU Canvas](https://oc.sjtu.edu.cn)
+- [SJTU-Canvas-Helper inspiration project](https://github.com/Okabe-Rintarou-0/SJTU-Canvas-Helper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown and plain text responses with inline shell commands, configuration examples, Canvas API summaries, and locally generated or downloaded files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Canvas API token and may read or write local course-material and calendar data depending on the selected workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

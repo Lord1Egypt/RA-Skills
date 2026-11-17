@@ -1,41 +1,57 @@
-## Description: <br>
-Helps agents organize public Hulu pages, content entry points, membership details, support information, and creator guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents organize public Hulu homepage, membership, support, creator, and program-page information.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-Developers and agents use this skill to summarize public Hulu information, compare membership benefits and package differences, collect device-support notes, and outline creator or support guidance without using account-specific data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with outputs noting market or regional differences where applicable. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prices, plan availability, device support, and regional content can change after the agent summarizes public Hulu pages. <br>
-Mitigation: Verify current details against official Hulu pages before relying on the output. <br>
-Risk: The skill is intended for public information only and could be misapplied to account-specific or non-public Hulu data. <br>
-Mitigation: Use it only with publicly available pages and avoid credentials, watch history, account assets, or other private user data. <br>
+## Use Case:
 
+External users and agents use this skill to summarize public Hulu membership details, content entry points, device support, creator guidance, copyright notes, and help links. It is scoped to publicly visible information and excludes logged-in account data, private viewing history, payment details, and access-bypass workflows.
 
-## Reference(s): <br>
-- [ClawHub Hulu skill page](https://clawhub.ai/mike47512/hulu) <br>
-- [Hulu official homepage](https://www.hulu.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, comparison tables, and structured lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No account access, credential handling, or private user-data processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release evidence) <br>
+Risk: The skill could be applied to logged-in account data, private viewing history, payment details, or non-public account assets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for publicly visible Hulu pages and exclude private or account-specific information from prompts and outputs.
+
+Risk: Outputs could imply support for account sharing, copyright bypass, access circumvention, or restriction evasion.
+
+Mitigation: Keep outputs limited to public membership, support, content, and creator guidance, and preserve the artifact's stated exclusions for bypass and private-data workflows.
+
+Risk: Hulu package details and content availability can vary by region or change over time.
+
+Mitigation: Include the relevant market or page context in generated summaries and avoid presenting region-specific information as globally applicable.
+
+## Reference(s):
+
+- [Hulu homepage](https://www.hulu.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summaries, comparison tables, and structured lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should identify the applicable market when Hulu content libraries or membership details vary by region.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

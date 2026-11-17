@@ -1,38 +1,49 @@
-## Description: <br>
-Cn Line Counter counts total lines, non-empty lines, words, and characters in Chinese text provided as a string or file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Count total lines, non-empty lines, words, and characters in Chinese text from an input string or user-specified file using a Python script.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Developers and agents use this skill to count line, non-empty line, word, and character totals in Chinese text from direct input or UTF-8 file content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The server security verdict is suspicious and advises reviewing the artifact scope before installation. <br>
-Mitigation: Install only if the publisher is trusted and review the included SKILL.md and Python script before running it on local files. <br>
+## Use Case:
 
+Developers and agents use this skill to count lines, non-empty lines, words, and characters in Chinese text supplied directly or read from a chosen file.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freedompixels/cn-line-counter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text metrics and Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Counts are produced by a Python standard-library script for either --text input or a UTF-8 file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The --file option opens and reads the path provided by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only pass files intended for counting, and review file paths before running the command.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-line-counter)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text counts printed by a Python command]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads either inline text or a user-provided UTF-8 file path.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

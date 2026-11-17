@@ -1,41 +1,54 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[qinthqod](https://clawhub.ai/user/qinthqod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qinthqod](https://clawhub.ai/user/qinthqod)
 
-## Use Case: <br>
-Developers and agents use this skill to review third-party skills before installation, checking source reputation, permission scope, suspicious patterns, and documenting a risk-based verdict. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A vetting report can be incomplete or mistaken if treated as a guarantee. <br>
-Mitigation: Use the report as guidance and have a human review high-risk or ambiguous findings before installation. <br>
-Risk: File or GitHub review actions could inspect sources the user did not intend to evaluate. <br>
-Mitigation: Limit review commands and file reads to explicitly requested sources and verify repository identifiers before running optional commands. <br>
+## Use Case:
 
+Developers, security reviewers, and agents use this skill to review skills before installation by checking source reputation, code red flags, permission scope, and risk level.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qinthqod/fox-skill-vetter) <br>
-- [Publisher profile](https://clawhub.ai/user/qinthqod) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown checklist and vetting report with optional inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a human-readable risk classification, verdict, red-flag summary, and notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Users may treat the checklist as an automated sandbox or security scanner.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a review aid and still rely on platform permissions, scanner results, and human approval for high-risk skills.
+
+Risk: GitHub lookup commands can disclose private repository names or sensitive paths if copied with private targets.
+
+Mitigation: Use the example commands only for intended public repositories or when disclosure of the repository identifier is acceptable.
+
+## Reference(s):
+
+- [Fox Skill Vetter ClawHub Listing](https://clawhub.ai/qinthqod/skills/fox-skill-vetter)
+- [qinthqod ClawHub Publisher Profile](https://clawhub.ai/user/qinthqod)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a structured skill vetting report with findings, permissions, risk level, verdict, and notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

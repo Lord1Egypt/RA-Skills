@@ -1,46 +1,57 @@
-## Description: <br>
-Provides a Musk-inspired thinking framework for cost breakdowns, first-principles analysis, technical feasibility review, and aggressive execution planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a Chinese-language Elon Musk-inspired perspective for analyzing problems, questioning assumptions, decomposing costs, and proposing aggressive execution paths.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-Developers, operators, and decision makers use this skill to frame problems through a Musk-style persona, especially for challenging assumptions, decomposing costs, and pressure-testing execution plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outputs may be mistaken for factual predictions, professional advice, or actual statements from Elon Musk. <br>
-Mitigation: Treat responses as roleplay-based analytical framing and verify factual, financial, legal, technical, or operational claims independently. <br>
-Risk: Broad references to first-principles or Musk-style analysis may trigger the persona when a neutral response is expected. <br>
-Mitigation: Use explicit instructions when a neutral analysis is preferred, and reserve trigger phrases for requests that should use this perspective. <br>
-Risk: The skill states that it cannot predict the person's real reactions and that public expression may differ from private thinking. <br>
-Mitigation: Use the skill for structured perspective-taking, not for claims about the person's actual intent, future behavior, or private views. <br>
+## Use Case:
 
+External users and agent builders use this skill when they want Chinese-language analysis framed through a Musk-inspired persona and thinking framework. It is suited for cost-structure analysis, challenging industry assumptions, technical feasibility review, vertical-integration decisions, and high-tempo execution planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/elon-musk-perspective-v2) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md) <br>
-- [CONNECTIONS.md](artifact/CONNECTIONS.md) <br>
-- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text in a first-person Musk-inspired analytical style] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or hidden data handling is described in the evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The first-person persona style can be mistaken for Elon Musk's real views.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as a simulation based on public information and avoid presenting them as statements from Elon Musk.
+
+Risk: Broad activation phrases such as first principles can trigger the style unintentionally.
+
+Mitigation: Confirm that the user wants the Musk-inspired perspective before relying on persona-framed output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/elon-musk-perspective-v2)
+- [SKILL.md](artifact/SKILL.md)
+- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md)
+- [CONNECTIONS.md](artifact/CONNECTIONS.md)
+- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text Chinese-language responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-framed analytical guidance; no code execution, credential access, network use, or persistence indicated by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

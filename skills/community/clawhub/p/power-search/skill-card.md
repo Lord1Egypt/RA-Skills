@@ -1,49 +1,61 @@
-## Description: <br>
-Power Search is a self-hosted research tool that combines Brave Search API with Browserless content fetching for web search, optional full-page extraction, and HTML parsing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-hosted research tool combining Brave Search API + Browserless content fetching. Search the web with optional full-page content extraction and HTML parsing.
 
-## Publisher: <br>
-[churchtg7](https://clawhub.ai/user/churchtg7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[churchtg7](https://clawhub.ai/user/churchtg7)
 
-## Use Case: <br>
-Developers, researchers, and external users use Power Search to run web searches through Brave and optionally fetch and parse page content through Browserless from a CLI or OpenClaw Telegram route. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Brave Search. <br>
-Mitigation: Use a dedicated Brave API key and avoid submitting sensitive queries unless that disclosure is acceptable. <br>
-Risk: Fetch mode sends result URLs and retrieved page content through the configured Browserless service. <br>
-Mitigation: Bind or firewall Browserless to trusted hosts and avoid sensitive or internal-only targets. <br>
-Risk: Telegram usage can expose search results or fetched content to shared chats. <br>
-Mitigation: Use private or trusted channels for sensitive searches and review chat membership before enabling the route. <br>
-Risk: A persistent Browserless container may keep a network-fetching service available longer than intended. <br>
-Mitigation: Stop the container when it is not needed and restrict network access to trusted clients. <br>
+## Use Case:
 
+Developers and agent operators use Power Search to run web searches, optionally fetch page content through Browserless, and return concise search results through a CLI or Telegram/OpenClaw command flow.
 
-## Reference(s): <br>
-- [Power Search ClawHub Page](https://clawhub.ai/churchtg7/power-search) <br>
-- [Power Search Skill Documentation](artifact/SKILL.md) <br>
-- [Power Search README](artifact/README.md) <br>
-- [Security and Transparency Report](artifact/SECURITY.md) <br>
-- [OpenClaw Manifest](artifact/openclaw.json) <br>
-- [Brave Search API](https://api.search.brave.com/res/v1/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; runtime search output is plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional fetch mode retrieves page content previews through the configured Browserless service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release metadata; artifact files report 2.0.0 and SECURITY.md reports 2.1.1) <br>
+Risk: Browserless setup and fetch behavior can create network exposure and private-network fetching risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind Browserless to 127.0.0.1, enable a token, add firewall or container limits, and block private, loopback, link-local, and metadata destinations before using --fetch or Telegram integration.
+
+Risk: Search queries are sent to Brave and fetched snippets may be relayed through Telegram/OpenClaw infrastructure.
+
+Mitigation: Avoid sensitive searches unless the deployment owner accepts those data flows.
+
+Risk: Using an unpinned Browserless image can change runtime behavior across installs.
+
+Mitigation: Pin the Browserless container image version during deployment.
+
+## Reference(s):
+
+- [Power Search ClawHub page](https://clawhub.ai/churchtg7/skills/power-search)
+- [Publisher profile](https://clawhub.ai/user/churchtg7)
+- [Power Search documentation](artifact/SKILL.md)
+- [Security and transparency report](artifact/SECURITY.md)
+- [Brave Search API](https://api.search.brave.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Plain text search results, JSON runner output, and Telegram-formatted Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results include rank, title, URL, description, and optional fetched page preview text.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

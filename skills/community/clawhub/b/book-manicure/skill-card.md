@@ -1,40 +1,49 @@
-## Description: <br>
-Book manicure services through Lokuli MCP. Use when user needs to find and book manicure. Triggers on requests like "book a manicure", "find manicure near me", or any manicure service request. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Manicure helps agents find manicure providers, check availability, and create bookings through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to search for manicure providers, check appointment availability, and create manicure bookings through Lokuli's service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bookings use Lokuli's external MCP service and may share customer name, email, and phone details. <br>
-Mitigation: Confirm consent to share contact details before creating a booking. <br>
-Risk: Appointment details such as provider, service, time, price, and cancellation terms may be incorrect or unsuitable if not reviewed. <br>
-Mitigation: Confirm the provider, service, date, time, price, and cancellation terms before finalizing any booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Book Manicure ClawHub listing](https://clawhub.ai/edwardrodriguez703-design/book-manicure) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
+## Use Case:
 
+External users can use this skill to search for manicure services, check appointment availability, and create a booking through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC tool call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include provider, availability, booking, and customer contact fields for Lokuli MCP calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Creating a booking may send the user's name, email, phone number, selected service, provider, and time slot to Lokuli.
+
+Mitigation: Confirm the provider, appointment time, service, and contact details with the user before allowing a booking call.
+
+## Reference(s):
+
+- [Book Manicure ClawHub page](https://clawhub.ai/edwardrodriguez703-design/skills/book-manicure)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [Markdown and JSON-RPC tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce booking requests that include customer contact details and selected appointment information.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

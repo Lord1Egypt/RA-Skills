@@ -1,54 +1,70 @@
-## Description: <br>
-Browser automation CLI for AI agents using Google Chrome via CDP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Browser automation CLI for AI agents that connects to a running Google Chrome instance over CDP for website navigation, form interaction, screenshots, data extraction, and other browser tasks.
 
-## Publisher: <br>
-[joustonhuang](https://clawhub.ai/user/joustonhuang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joustonhuang](https://clawhub.ai/user/joustonhuang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to connect OpenClaw workflows to an existing Chrome session for web navigation, form filling, screenshots, data extraction, authenticated browsing, and browser task automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can run an unpinned remote script and perform system setup. <br>
-Mitigation: Review and pin the setup script before running it, and run installation only in an environment where sudo-level Chrome, XRDP, and XFCE changes are acceptable. <br>
-Risk: A CDP-enabled Chrome session can expose logged-in accounts, cookies, local storage, and page control to local automation. <br>
-Mitigation: Use a separate Chrome profile or VM for automation, restrict navigation to trusted domains where possible, and close the CDP-enabled browser when work is complete. <br>
-Risk: Saved browser state can contain authentication tokens and session cookies. <br>
-Mitigation: Avoid saving auth state unless necessary; when saved, encrypt it, restrict file access, keep it out of source control, and delete it after use. <br>
-Risk: The browser automation can perform account-changing actions such as purchases, emails, uploads, cookie access, payment entry, or form submissions. <br>
-Mitigation: Require explicit user confirmation before high-impact or account-changing actions and use an action policy for destructive operations. <br>
+## Use Case:
 
+Developers and external users use this skill to control an existing Chrome session from an agent, including authenticated browsing, page inspection, form filling, screenshots, and browser workflow automation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joustonhuang/chrome-for-openclaw) <br>
-- [Chrome CDP for OpenClaw Homepage](https://github.com/joustonhuang/chrome_for_openclaw) <br>
-- [Compatible Agent Browser Skill](https://clawhub.ai/hsyhph/openclaw-agent-browser-clawdbot) <br>
-- [agent-browser CLI](https://github.com/vercel-labs/agent-browser) <br>
-- [Authentication Patterns](references/authentication.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Profiling](references/profiling.md) <br>
-- [Proxy Support](references/proxy-support.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Snapshot and Refs](references/snapshot-refs.md) <br>
-- [Video Recording](references/video-recording.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides browser automation through agent-browser commands connected to a Chrome CDP session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chrome CDP control can expose logged-in sessions, cookies, local storage, and page content to any process that can reach the debugging endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted isolated environment, a dedicated Chrome profile, a low-privilege OS account, domain and action restrictions, and close the debugging session when work is complete.
+
+Risk: The setup flow uses mutable install commands and can require privileged system changes.
+
+Mitigation: Pin and inspect the setup script and npm package before running them, and avoid sudo unless the exact commands have been reviewed.
+
+Risk: Saved auth state, recordings, screenshots, PDFs, and traces may contain secrets or private data.
+
+Mitigation: Treat generated browser artifacts as secrets, keep them out of source control, encrypt or restrict access where possible, and delete them when no longer needed.
+
+Risk: Web page content can contain prompt-injection text that attempts to steer the agent into unsafe browser actions.
+
+Mitigation: Enable content boundaries, restrict allowed domains, gate destructive actions with policy, and review high-impact actions before execution.
+
+## Reference(s):
+
+- [Chrome for OpenClaw Homepage](https://github.com/joustonhuang/chrome_for_openclaw)
+- [Chrome CDP for OpenClaw on ClawHub](https://clawhub.ai/joustonhuang/skills/chrome-for-openclaw)
+- [Command Reference](references/commands.md)
+- [Authentication Patterns](references/authentication.md)
+- [Session Management](references/session-management.md)
+- [Snapshot and Refs](references/snapshot-refs.md)
+- [Video Recording](references/video-recording.md)
+- [Profiling](references/profiling.md)
+- [Proxy Support](references/proxy-support.md)
+- [agent-browser CLI](https://github.com/vercel-labs/agent-browser)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated browser artifacts such as screenshots, PDFs, videos, traces, and auth-state files when agent-browser commands are used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

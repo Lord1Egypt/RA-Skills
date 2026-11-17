@@ -1,6 +1,6 @@
 ---
-name: avatar-cog
-description: "AI avatar and digital persona creation powered by CellCog. Character.ai for agents — create characters, clone voices, generate images, build personalities. Persistent avatars reusable across all chats. Brand mascots, digital twins, creative characters, AI spokespersons, podcast hosts. Describe your character in plain language and CellCog builds it."
+name: avatar-creation-cellcog
+description: "AI avatar creation and digital persona design powered by CellCog. Character.ai for agents — create characters, clone voices, generate images, build personalities. Persistent avatars reusable across all chats. Brand mascots, digital twins, creative characters, AI spokespersons, podcast hosts. Describe your character in plain language and CellCog builds it."
 metadata:
   openclaw:
     emoji: "🎭"
@@ -12,7 +12,7 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Avatar Cog - Character.ai for Agents
+# Avatar Creation - Character.ai for Agents
 
 Create persistent digital personas with images, cloned voices, and personalities — then use them across every CellCog chat. Describe a character in plain language and CellCog builds it.
 
@@ -39,6 +39,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -50,6 +51,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -191,11 +193,16 @@ Grumbleton is skeptical, Luna is optimistic. Both stay in character.
 
 ---
 
-## Chat Mode
+## Choosing Mode & Tier
 
-**Use `chat_mode="agent"`** for all avatar tasks. Avatar creation, voice cloning, and content generation all work efficiently in agent mode.
+**Use `chat_mode="agent", chat_tier="max"` for avatar video production.** Avatar consistency across scenes and lip-synced dialogue need full reasoning depth.
 
-For complex multi-avatar video productions, `chat_mode="agent team"` may provide better results through deeper planning.
+| Scenario | Recommended |
+|----------|-------------|
+| Avatar videos, multi-avatar scenes | `chat_mode="agent", chat_tier="max"` |
+| Single avatar stills | `chat_mode="agent", chat_tier="flash"` |
+
+Agent Team (`chat_mode="team"`) is reserved for deep research — avatar video production runs best on Agent max.
 
 ---
 
@@ -211,6 +218,7 @@ For complex multi-avatar video productions, `chat_mode="agent team"` may provide
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

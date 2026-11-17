@@ -1,43 +1,54 @@
-## Description: <br>
-Helps agents polish and rewrite Chinese writing by diagnosing structure, removing vague language, preserving author voice, and delivering revised text with brief notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent polish, rewrite, and translate Chinese prose with concrete details, clearer structure, and a natural voice.
 
-## Publisher: <br>
-[liujuntao123](https://clawhub.ai/user/liujuntao123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liujuntao123](https://clawhub.ai/user/liujuntao123)
 
-## Use Case: <br>
-Writers, editors, and agents use this skill to improve Chinese drafts, rewrite paragraphs, translate English into natural Chinese, or produce new Chinese copy with concrete detail and restrained Markdown formatting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The broad trigger wording may activate the skill whenever Chinese text improvement is implied. <br>
-Mitigation: Confirm the user wants polishing or rewriting before substantially changing provided Chinese text. <br>
-Risk: Drafts submitted for polishing may contain confidential or sensitive content. <br>
-Mitigation: Avoid sending confidential drafts unless the user has approved agent processing for that content. <br>
-Risk: Polishing and rewriting can unintentionally change the author's meaning or personal voice. <br>
-Mitigation: Preserve distinctive wording where possible and call out major structural or wording changes for user review. <br>
+## Use Case:
 
+External users and writers use this skill to revise Chinese drafts, improve wording, reduce vague or preachy passages, preserve the author's voice, and produce smoother finished prose.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/liujuntao123/writing-polish) <br>
-- [Publisher profile](https://clawhub.ai/user/liujuntao123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text with revised Chinese prose, concise diagnosis, and brief change notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include comparison markers or strikethroughs when showing major edits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad trigger language may cause the skill to rewrite or translate text when the user wanted a narrower response.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for or honor explicit scope before polishing, especially when the user does not want Chinese output, translation, or stylistic rewriting.
+
+Risk: Polished prose may change the author's intended tone, emphasis, or factual nuance.
+
+Mitigation: Keep revision notes concise and flag uncertain edits so the user can approve meaning-sensitive changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liujuntao123/skills/writing-polish)
+- [Publisher profile](https://clawhub.ai/user/liujuntao123)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with rewritten prose, brief diagnostics, and concise revision notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include complete revised text, marked changes, and short questions when author intent is unclear.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

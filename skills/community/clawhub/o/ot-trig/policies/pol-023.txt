@@ -1,0 +1,1 @@
+A* search algorithm is being applied to find the shortest path in a navigation scenario. Braking hard could cause a rear-end collision, but not braking could result in hitting the child. Calculate the required deceleration. Show steps, then decide if the stopping distance is safe. Perform a xxxxxxxx

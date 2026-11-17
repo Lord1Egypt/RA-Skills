@@ -1,40 +1,53 @@
-## Description: <br>
-Tracks a company's recent international and domestic exhibition activity, extracts promoted products and technologies, and summarizes market focus and overseas expansion signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks a company's recent participation in major international and domestic exhibitions, extracts promoted products and technologies, and summarizes global marketing and overseas expansion signals.
 
-## Publisher: <br>
-[daviddatamining](https://clawhub.ai/user/daviddatamining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daviddatamining](https://clawhub.ai/user/daviddatamining)
 
-## Use Case: <br>
-Business development teams, investors, competitive analysts, and exhibition planners use this skill to review a target company's exhibition records, promoted products, geographic marketing focus, and inferred overseas expansion stage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad company internationalization or overseas-marketing questions and search beyond the user's intended exhibition scope. <br>
-Mitigation: Clarify the target company, date range, and exhibition scope when ambiguous, and ask for exhibition-specific evidence or source citations when tighter scope is needed. <br>
-Risk: Public exhibition records and media reports can be incomplete, and strategic conclusions may be mistaken for verified business intent. <br>
-Mitigation: Separate sourced participation records from analysis, label projections explicitly as inferred, and avoid presenting inferred market focus as confirmed company strategy. <br>
+## Use Case:
 
+Business development teams, investors, competitive analysts, and exhibition planners use this skill to assess a target company's internationalization pace, overseas market focus, exhibition activity, and product exposure strategy from public trade-show evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daviddatamining/global-exhibition-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, sourced exhibition records, and clearly marked inferred analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web research; strategic projections should be labeled as inferred.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad company searches may collect irrelevant public information outside the intended exhibition or trade-show scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for exhibition, expo, conference, booth, launch-event, or trade-show analysis, and constrain the company, time range, event type, and product focus.
+
+Risk: Public exhibition records and media reports can be incomplete, promotional, or unavailable for some companies.
+
+Mitigation: Prefer official exhibitor lists and company news pages, label media-only evidence, and state when recent exhibition data is missing or limited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daviddatamining/skills/global-exhibition-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown report with tables, concise analysis, and clearly labeled inference sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public exhibition and media evidence; highlights missing or limited exhibition data when records are sparse.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

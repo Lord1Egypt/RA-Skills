@@ -1,37 +1,49 @@
-## Description: <br>
-Helps create, optimize, and structure legal pages such as privacy policies, terms of service, cookie policies, and related compliance pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create, optimize, and structure legal website pages such as privacy policies, terms of service, cookie policies, and related legal sections.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, site owners, and content teams use this skill to plan legal page structure, key content sections, SEO indexing posture, footer placement, and legal-review disclaimers for websites or applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kostja94/legal-page-generator) <br>
+Website operators, marketers, and developers use this skill to outline legal pages, choose SEO indexing posture, plan footer placement, and identify where qualified legal review is needed.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes legal page outlines, section guidance, SEO recommendations, footer placement guidance, and a legal review disclaimer.] <br>
+Global
 
-## Skill Version(s): <br>
-1.1.0 (source: frontmatter and server evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated legal-page guidance can be incomplete or unsuitable for a specific jurisdiction or business model.
+
+Mitigation: Treat the output as a drafting aid and have qualified legal counsel review final legal text before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/legal-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with outlines, section recommendations, SEO notes, placement guidance, and legal-review disclaimers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces drafting guidance only; final legal text should be reviewed by qualified counsel before publication.]
+
+## Skill Version(s):
+
+1.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

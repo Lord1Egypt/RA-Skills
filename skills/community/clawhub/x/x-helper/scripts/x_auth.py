@@ -195,50 +195,6 @@ def _fetch_user_info(access_token):
         return None
 
 
-def refresh_token():
-    """Refresh the access token using the stored refresh token."""
-    auth = _load_auth()
-    if not auth:
-        return {"error": True, "detail": "Not authenticated. Run 'auth authorize' first."}
-
-    if not auth.get("refresh_token"):
-        return {"error": True, "detail": "No refresh token available. Re-authorize with offline.access scope."}
-
-    data = {
-        "refresh_token": auth["refresh_token"],
-        "grant_type": "refresh_token",
-        "client_id": auth["client_id"],
-    }
-
-    result = _token_post(data, auth["client_id"], auth.get("client_secret"))
-    if result.get("error"):
-        return result
-
-    auth["access_token"] = result["access_token"]
-    auth["expires_at"] = int(time.time()) + result.get("expires_in", 7200)
-    if result.get("refresh_token"):
-        auth["refresh_token"] = result["refresh_token"]
-
-    _save_auth(auth)
-    return {"ok": True}
-
-
-def get_valid_token():
-    """Get a valid access token, refreshing if needed."""
-    auth = _load_auth()
-    if not auth:
-        return None
-
-    # Refresh if expired or about to expire (within 60 seconds)
-    if auth.get("expires_at", 0) < int(time.time()) + 60:
-        result = refresh_token()
-        if not result.get("ok"):
-            return None
-        auth = _load_auth()
-
-    return auth.get("access_token")
-
-
 def status():
     """Print current auth status as JSON."""
     auth = _load_auth()
@@ -271,7 +227,7 @@ def logout():
 
 def main():
     if len(sys.argv) < 2:
-        print(json.dumps({"error": True, "detail": "Usage: x_auth.py <authorize|status|logout|refresh>"}))
+        print(json.dumps({"error": True, "detail": "Usage: x_auth.py <authorize|status|logout>"}))
         sys.exit(1)
 
     cmd = sys.argv[1]
@@ -293,16 +249,6 @@ def main():
         status()
     elif cmd == "logout":
         logout()
-    elif cmd == "refresh":
-        result = refresh_token()
-        print(json.dumps(result))
-    elif cmd == "get-token":
-        token = get_valid_token()
-        if token:
-            print(token)
-        else:
-            print(json.dumps({"error": True, "detail": "Not authenticated"}), file=sys.stderr)
-            sys.exit(1)
     else:
         print(json.dumps({"error": True, "detail": f"Unknown command: {cmd}"}))
         sys.exit(1)

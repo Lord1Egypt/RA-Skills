@@ -1,40 +1,54 @@
-## Description: <br>
-Use when the user wants to create, inspect, update, or run scheduled remote agents in the cloud rather than local cron jobs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to create, inspect, update, or run scheduled remote agents in the cloud rather than local cron jobs.
 
-## Publisher: <br>
-[wimi321](https://clawhub.ai/user/wimi321) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wimi321](https://clawhub.ai/user/wimi321)
 
-## Use Case: <br>
-Developers and operators use this skill to create, inspect, update, or run scheduled remote agent jobs in isolated cloud environments while keeping repository, environment, connector, cron, and prompt details explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A scheduled remote trigger can persist and run with cloud account, repository, environment, connector, schedule, and prompt settings. <br>
-Mitigation: Confirm the final trigger details and expected side effects before creating, updating, or running the trigger. <br>
-Risk: Missing authentication, repository access, or connector assumptions can cause failed or unintended remote runs. <br>
-Mitigation: Verify authentication, repository access, environment, and connector assumptions before scheduling or executing a run. <br>
+## Use Case:
 
+Developers and operators use this skill to create, inspect, update, or run scheduled remote agent jobs in isolated cloud environments while keeping repo source, environment, connectors, cron schedule, and prompt payload explicit.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/wimi321/remote-agent-scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include trigger definitions, run or update confirmations, and operational notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Scheduled remote agent runs may continue operating after setup and can act on configured repositories, environments, connectors, schedules, and prompt payloads.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing or running the skill, confirm the intended remote-agent schedule and review the repo, environment, connectors, cron schedule, and prompt payload.
+
+Risk: Missing authentication, environment access, or repository access can block trigger creation or updates.
+
+Mitigation: Confirm authentication, environment, connector, and repository-access assumptions before returning trigger details or next management steps.
+
+## Reference(s):
+
+- [Remote Agent Scheduler on ClawHub](https://clawhub.ai/wimi321/skills/remote-agent-scheduler)
+- [Publisher profile](https://clawhub.ai/user/wimi321)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with trigger details, confirmations, and operational notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include scheduled trigger definitions, run or update confirmations, setup blockers, and next management steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

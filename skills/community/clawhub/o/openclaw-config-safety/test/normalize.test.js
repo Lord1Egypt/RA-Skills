@@ -312,11 +312,11 @@ assertEqual(result.normalized.env, undefined, "env subtree stripped from output 
 console.log("=== Security: no value exposure ===");
 
 result = normalizeOpenClawConfig({
-  agents: { defaults: { timeoutSeconds: "sk-very-secret-key-12345" } },
+  agents: { defaults: { timeoutSeconds: "REDACTED-SECRET" } },
   models: { providers: {} },
   plugins: { entries: {} },
 });
-// The string "sk-very-secret-key-12345" is not a valid number, so it won't be coerced
+// The string "REDACTED-SECRET" is not a valid number, so it won't be coerced
 // But we should check that any warnings don't contain the raw secret
 for (const warning of result.warnings) {
   assert(!warning.includes("sk-very-secret"), "warnings do not expose API key values");

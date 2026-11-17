@@ -1,40 +1,48 @@
-## Description: <br>
-You are an AI engineer specializing in machine learning and artificial intelligence systems. Use when: machine learning, large language models, computer vision, natural language processing, deep learning frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+You are an AI engineer specializing in machine learning and artificial intelligence systems.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill for AI and ML engineering guidance across machine learning, large language models, computer vision, natural language processing, deep learning frameworks, MLOps, and production ML systems.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad AI and ML engineering advice may be incomplete or unsuitable for a specific project's privacy, security, compliance, or production requirements.
+
+Mitigation: Review generated recommendations and implementation examples against project-specific privacy, security, compliance, and model governance requirements before use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill for guidance on machine learning, LLM, computer vision, NLP, MLOps, and production AI system work. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, code, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: AI-generated ML or API integration code may be incorrect, unsafe to run as-is, or unsuitable for a target environment. <br>
-Mitigation: Review generated code before execution and validate it against the intended data, model, infrastructure, and deployment requirements. <br>
-Risk: Generated examples may involve service credentials for model providers, cloud platforms, or MLOps tools. <br>
-Mitigation: Provide credentials only for a separate task you explicitly request and keep secrets out of generated code, logs, and shared configuration. <br>
+**Output Format:** [Markdown with optional code and configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-ai-engineer) <br>
+**Other Properties Related to Output:** [May include AI/ML implementation guidance, training or deployment snippets, evaluation metrics, and operational recommendations.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include model implementation sketches, training pipeline guidance, deployment configuration, and evaluation metrics.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

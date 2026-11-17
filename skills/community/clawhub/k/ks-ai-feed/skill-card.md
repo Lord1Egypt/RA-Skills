@@ -1,48 +1,63 @@
-## Description: <br>
-Generates daily Kuaishou AI-content reports by scanning RedFox data, clustering viral videos, and summarizing trends, creators, growth signals, and investigation directions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Kuaishou AI content reports by scanning RedFox data, clustering viral videos, and summarizing trends, creators, growth signals, and investigation directions.
 
-## Publisher: <br>
-[redfox-data](https://clawhub.ai/user/redfox-data) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[redfox-data](https://clawhub.ai/user/redfox-data)
 
-## Use Case: <br>
-Content operators, creators, MCNs, brands, and industry researchers use this skill to monitor Kuaishou AI content trends, find viral videos and creators, and generate structured daily intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a RedFox API key and supports command-line or local-file key configuration. <br>
-Mitigation: Prefer the REDFOX_API_KEY environment variable, avoid plaintext config or command history exposure, and rotate the key if it may have been written to local files. <br>
-Risk: The skill can run a localhost preview server with API and image proxy endpoints. <br>
-Mitigation: Run the preview server only when needed and keep it bound to localhost. <br>
-Risk: The subscription option can create a scheduled task that persists after the initial run. <br>
-Mitigation: Review the LaunchAgent or crontab entry before using --subscribe and remove it with --unsubscribe when no longer needed. <br>
+## Use Case:
 
+External content operators, creators, MCNs, brands, and industry researchers use this skill to generate structured Kuaishou AI trend reports, identify viral topics and creators, and guide follow-up investigations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/redfox-data/ks-ai-feed) <br>
-- [Publisher profile](https://clawhub.ai/user/redfox-data) <br>
-- [RedFox API keys](https://redfox.hk/settings/api-keys?souce=github) <br>
-- [RedFox login](https://www.redfox.hk/login) <br>
-- [Engine strategy](references/engine-strategy.md) <br>
-- [Investigation modes](references/investigation-modes.md) <br>
-- [Investigation templates](references/investigation-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, structured terminal tables, and generated HTML report files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a RedFox API key. Can start a localhost preview server and can optionally create a scheduled daily report task.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts RedFox and may use locally stored API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped REDFOX_API_KEY from a verified RedFox account, prefer environment variables over plaintext config files, and rotate any shared or exposed keys.
+
+Risk: The subscription feature can install a daily scheduled task.
+
+Mitigation: Avoid --subscribe until the scheduled-task behavior and command construction have been reviewed; use manual runs when persistence is not required.
+
+Risk: Generated reports and the localhost preview server can render upstream content and proxy requests.
+
+Mitigation: Treat generated reports as untrusted HTML, keep the preview server bound to localhost, and stop it when review is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/redfox-data/skills/ks-ai-feed)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?souce=github)
+- [RedFox Kuaishou AI batch API](https://redfox.hk/story/api/parseWork/queryKsAiMsgs/batch)
+- [engine-strategy.md](references/engine-strategy.md)
+- [investigation-modes.md](references/investigation-modes.md)
+- [investigation-templates.md](references/investigation-templates.md)
+- [investigator-config.json](references/investigator-config.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, HTML, files, shell commands, configuration, guidance]
+
+**Output Format:** [Structured Markdown summary, local HTML report file, and localhost preview URL.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saves reports under ~/Downloads/QoderReports by default, requires REDFOX_API_KEY for RedFox access, and can optionally install a daily scheduled run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

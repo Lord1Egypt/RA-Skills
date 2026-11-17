@@ -1,41 +1,58 @@
-## Description: <br>
-Verifies math-heavy code for algorithmic correctness and numerical stability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies math-heavy code for algorithmic correctness and numerical stability
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to review mathematical, scientific, statistical, numerical, and ML code for correctness, stability, reproducibility, and standards alignment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may ask an agent to run tests, benchmarks, or notebooks from an unfamiliar repository. <br>
-Mitigation: Run those commands only in a sandboxed environment after reviewing the tests, benchmark setup, and notebooks. <br>
-Risk: Mathematical review output can be incomplete or wrong if source requirements, formulas, or standards are missing. <br>
-Mitigation: Require cited evidence, documented assumptions, and human review before relying on the recommendation for safety-critical, financial, or regulatory decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill to review mathematical, scientific, statistical, and machine learning code. It checks requirements, derivations, numerical stability, and test evidence, then produces grounded findings and a review recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-math-review) <br>
-- [Pensive plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review with summary, context, requirements analysis, derivation review, stability analysis, issue entries, and a recommendation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include verification commands and a recommendation of Approve, Approve with actions, or Block.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: ClawHub release evidence; artifact frontmatter lists 1.9.8) <br>
+Risk: Running tests or notebook cells from an unfamiliar project may have side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the commands and notebook cells first, and run them only in a trusted, appropriately isolated environment.
+
+Risk: Four local references were unresolved, so the scanner could not establish that all referenced material was reviewed.
+
+Mitigation: Check that referenced guidance is available and review it before relying on the complete workflow.
+
+## Reference(s):
+
+- [math-review release on ClawHub](https://clawhub.ai/athola/skills/nm-pensive-math-review)
+- [Pensive plugin documentation](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+- [Requirements Mapping](artifact/modules/requirements-mapping.md)
+- [Derivation Verification](artifact/modules/derivation-verification.md)
+- [Numerical Stability Analysis](artifact/modules/numerical-stability.md)
+- [Testing Strategies for Mathematical Code](artifact/modules/testing-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown review report with findings, evidence references, and a recommendation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should include source locations and supporting evidence; unverified findings are labeled or omitted.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

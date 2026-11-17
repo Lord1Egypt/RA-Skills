@@ -1,45 +1,60 @@
-## Description: <br>
-Pinecone Memory syncs selected local Markdown memory files into Pinecone, supports semantic search, and provides health check, statistics, cleanup, backup, and restore commands through a Node.js CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pinecone Memory uses Pinecone as an OpenClaw semantic memory backend for syncing local memory, semantic querying, index statistics, heartbeat checks, cleanup, backup, and restore.
 
-## Publisher: <br>
-[chenni666](https://clawhub.ai/user/chenni666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenni666](https://clawhub.ai/user/chenni666)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to persist selected local memory or Markdown content in Pinecone, retrieve it semantically, and run operational maintenance such as stats, heartbeat checks, cleanup, backup, and restore. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected local memory or Markdown files may be uploaded to a Pinecone account, including private notes or secrets. <br>
-Mitigation: Review paths before sync or restore, avoid uploading secrets or private notes, and use a scoped Pinecone API key. <br>
-Risk: Scheduled heartbeat or sync commands can create ongoing remote writes and API usage. <br>
-Mitigation: Use separate test and production namespaces, confirm schedule frequency before enabling cron or Task Scheduler, and monitor write verification output. <br>
-Risk: Cleanup can delete data from a Pinecone namespace. <br>
-Mitigation: Confirm the target index and namespace, keep backups, and run cleanup only when deletion is intended. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to connect local markdown memory to a Pinecone Integrated Embedding index, then run synchronization, semantic search, health checks, statistics, backup, restore, and namespace cleanup workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenni666/pinecone-memory) <br>
-- [OpenClaw Skills documentation](https://docs.openclaw.ai/tools/skills) <br>
-- [OpenClaw Creating Skills documentation](https://docs.openclaw.ai/tools/creating-skills) <br>
-- [OpenClaw ClawHub documentation](https://docs.openclaw.ai/tools/clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with bash examples and CLI JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, PINECONE_API_KEY, and a Pinecone Integrated Embedding index configured with chunk_text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence; artifact package.json reports 1.1.0) <br>
+Risk: Synchronization can upload local MEMORY.md or memory directory contents to Pinecone more broadly than a user may expect.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every sync path, use dry-run first, keep production and test data in separate namespaces, and avoid scheduled sync unless continuous upload is intended.
+
+Risk: Sensitive-data filtering is limited and may not remove all secrets or private notes.
+
+Mitigation: Do not rely on built-in redaction; review or pre-scan memory files, remove sensitive content before sync, and use a least-privilege Pinecone API key.
+
+Risk: Cleanup can remove records from a selected Pinecone namespace.
+
+Mitigation: Confirm the target index and namespace, create a backup first when data should be retained, and require explicit cleanup confirmation.
+
+## Reference(s):
+
+- [Pinecone Memory on ClawHub](https://clawhub.ai/chenni666/skills/pinecone-memory)
+- [OpenClaw Skills](https://docs.openclaw.ai/tools/skills)
+- [Creating OpenClaw Skills](https://docs.openclaw.ai/tools/creating-skills)
+- [ClawHub](https://docs.openclaw.ai/tools/clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance, json]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, PINECONE_API_KEY, and a Pinecone Integrated Embedding index whose field map uses chunk_text.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact package.json reports 1.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

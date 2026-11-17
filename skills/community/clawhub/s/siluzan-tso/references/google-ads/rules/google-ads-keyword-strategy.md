@@ -1,7 +1,5 @@
-# Google 广告关键词策略与优化技巧
+﻿# Google 广告关键词策略与优化技巧
 
-> 所属 skill：`siluzan-tso`。
->
 > 适用场景：执行 `keyword`、`ad keyword-create`、`ad campaign-create` 时，用本文指导关键词选择、分组、出价和持续优化。
 > 合规规则见 `references/google-ads-compliance.md`，本文聚焦**策略与效果优化**。
 
@@ -405,15 +403,15 @@ Broad Match + 受众信号 = 伪装成广泛定向的精准投放。
 
 ## 十四、CLI 命令联动速查
 
-| 策略场景     | 命令                                                         | 要点                                                                    |
-| ------------ | ------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| 关键词调研   | `keyword -k "词" [--url]`                                    | 结果按意图分层后再添加                                                  |
-| 添加关键词   | `ad keyword-create --keywords "词1,词2"`                     | 格式：`词→BROAD`、`"词"→PHRASE`、`[词]→EXACT`                           |
-| 添加否定词   | `ad keyword-negative-create`                                 | 每周从 `ad search-terms` 挖掘                                           |
-| 创建广告系列 | `ad campaign-create --config-file`（先 `campaign-validate`） | 按本文第三章架构设计系列结构；匹配块见 `google-ads-keyword-taxonomy.md` |
-| 搜索词分析   | `ad search-terms`                                            | 每周导出，按第八章流程处理                                              |
-| 竞品监控     | `ad auction-insights`（如有）                                | 按第九章分析竞争态势                                                    |
-| 出价调整     | 广告系列级 Smart Bidding 设置                                | 新账户用 Manual/ECPC → 有数据后切 tCPA/tROAS                            |
+| 策略场景     | 命令                                                         | 要点                                                                                                                                                                            |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 关键词调研   | `keyword -k "词" [--url]`                                    | 结果按意图分层后再添加                                                                                                                                                          |
+| 添加关键词   | `ad keyword-create --keywords "词1,词2"`                     | 格式：`词→BROAD`、`"词"→PHRASE`、`[词]→EXACT`                                                                                                                                   |
+| 添加否定词   | `ad keyword-negative-create`                                 | **支持空格多词**（`how to make`）；多词用 `--keywords` 或 `--keywords-file`，**禁止**因多词改让用户后台手补；`--level Account` 可直接建账户级否词（详见 `google-ads-write.md`） |
+| 创建广告系列 | `ad campaign-create --config-file`（先 `campaign-validate`） | `KeywordText` 为 JSON 数组，**空格多词合法**；否词写 `NegativeKeywordsForBatchJob`，勿因多词省略                                                                                |
+| 搜索词分析   | `ad search-terms`                                            | 每周导出，按第八章流程处理                                                                                                                                                      |
+| 竞品监控     | `ad auction-insights`（如有）                                | 按第九章分析竞争态势                                                                                                                                                            |
+| 出价调整     | 广告系列级 Smart Bidding 设置                                | 新账户用 Manual/ECPC → 有数据后切 tCPA/tROAS                                                                                                                                    |
 
 ---
 

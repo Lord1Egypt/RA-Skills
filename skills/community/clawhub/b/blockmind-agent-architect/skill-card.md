@@ -1,48 +1,62 @@
-## Description: <br>
-Interactive consultant that helps developers design agent systems by walking through structured intake questions about surfaces, tools, memory, deployment, and complexity, then synthesizing architecture recommendations grounded in curated external references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interactive consultant that helps developers design agent systems by walking through structured intake questions about surfaces, tools, memory, deployment, and complexity, then synthesizing architecture recommendations grounded in curated external references.
 
-## Publisher: <br>
-[philitician](https://clawhub.ai/user/philitician) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[philitician](https://clawhub.ai/user/philitician)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan agent systems, AI assistants, chatbots, automation workflows, or personal agent setups. It gathers requirements across user surfaces, agent topology, memory, tools, deployment, knowledge bases, and complexity tolerance, then returns a grounded architecture recommendation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture recommendations may lead users toward downstream systems that handle private data, such as memory stores, local sync, API integrations, or cloud storage. <br>
-Mitigation: Review recommendations before implementation and apply project-specific privacy, access-control, and data-handling requirements to any downstream system. <br>
-Risk: The skill provides planning guidance from curated references but does not execute code or validate the resulting implementation. <br>
-Mitigation: Treat outputs as design guidance and verify implementation choices, security controls, and operational assumptions before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan agent systems, AI assistants, chatbots, automation workflows, and personal agent setups. It gathers requirements and returns architecture recommendations, component guidance, reading order, and open implementation questions grounded in the bundled references.
 
-## Reference(s): <br>
-- [AgentSearch Manifesto](references/agentsearch-manifesto.md) <br>
-- [Claude Code Memory & CLAUDE.md](references/claude-code-memory-docs.md) <br>
-- [OpenAI Codex Customization](references/codex-customization-docs.md) <br>
-- [Fly/Tigris Object Storage Documentation](references/fly-tigris-docs.md) <br>
-- [Fumadocs](references/fumadocs-docs.md) <br>
-- [Karpathy LLM Wiki](references/karpathy-llm-wiki.md) <br>
-- [Nia Documentation](references/nia-docs.md) <br>
-- [OpenClaw Documentation](references/openclaw-docs.md) <br>
-- [Source Map](references/source-map.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Architecture overview, component recommendations, suggested reading order, and open questions grounded in bundled reference files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Architecture recommendations may be incomplete or mismatched if the user's requirements extend beyond the bundled references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations before implementation and independently verify gaps the skill identifies as outside its curated sources.
+
+Risk: Third-party setup commands referenced by source material may install unreviewed packages if executed directly.
+
+Mitigation: Verify the package and publisher, and pin a reviewed version before allowing an agent to run `npx nia-wizard@latest` or similar setup commands.
+
+## Reference(s):
+
+- [AgentSearch Manifesto](references/agentsearch-manifesto.md)
+- [Claude Code Memory & CLAUDE.md](references/claude-code-memory-docs.md)
+- [OpenAI Codex Customization](references/codex-customization-docs.md)
+- [Fly/Tigris Object Storage Documentation](references/fly-tigris-docs.md)
+- [Fumadocs](references/fumadocs-docs.md)
+- [Karpathy LLM Wiki](references/karpathy-llm-wiki.md)
+- [Nia Documentation](references/nia-docs.md)
+- [OpenClaw Documentation](references/openclaw-docs.md)
+- [Source Map](references/source-map.md)
+- [ClawHub skill page](https://clawhub.ai/philitician/skills/blockmind-agent-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Analysis, Configuration]
+
+**Output Format:** [Markdown prose with headings, bullet lists, inline file references, and optional code or command snippets when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory recommendations should cite bundled reference files and flag gaps when the curated sources do not cover a requirement.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

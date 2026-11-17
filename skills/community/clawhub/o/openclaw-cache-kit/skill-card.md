@@ -1,40 +1,57 @@
-## Description: <br>
-Automatically apply Claude prompt caching optimizations to OpenClaw using cacheRetention long, a 59-minute heartbeat, cache-ttl pruning, and CRON.md separation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically apply Claude prompt caching optimizations to OpenClaw. Reduces API costs by up to 89% via cacheRetention long, 59-minute heartbeat, cache-ttl pruning, and CRON.md separation strategy.
 
-## Publisher: <br>
-[lifeissea](https://clawhub.ai/user/lifeissea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lifeissea](https://clawhub.ai/user/lifeissea)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to apply and verify local caching settings intended to reduce Claude API input-token costs. It is suited for users who want scripted configuration changes plus a savings report based on OpenClaw cache trace logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The apply script changes the user's global OpenClaw defaults and attempts to restart the OpenClaw gateway. <br>
-Mitigation: Review the configuration changes before running the script, keep the generated backup path, and restore from backup if the new defaults are not suitable. <br>
-Risk: Enabling cache diagnostics can create local cache-trace logs that may contain sensitive operational details. <br>
-Mitigation: Inspect ~/.openclaw/logs/cache-trace.jsonl after diagnostics are enabled and apply local retention, access-control, or deletion practices appropriate for the environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Cache Kit on ClawHub](https://clawhub.ai/lifeissea/openclaw-cache-kit) <br>
-- [OpenClaw prompt caching optimization guide](https://slashpage.com/thomasjeong/36nj8v2wq5zqj25ykq9z) <br>
+## Use Case:
 
+Developers and operators use this skill to configure OpenClaw prompt caching, cache trace logging, and short CRON.md patterns for lower recurring Claude API input-token costs. It also provides shell-based reporting for estimated daily cache savings from local trace logs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands and local script output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw configuration edits, a timestamped backup path, gateway restart status, and cache savings summaries when its scripts are run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release and frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The apply script persistently edits the local OpenClaw configuration and changes the Claude Sonnet model alias and cache-related defaults.
+
+Mitigation: Review the generated configuration diff before relying on it in an important OpenClaw installation, and keep the generated backup available for rollback.
+
+Risk: The apply script attempts to restart the OpenClaw gateway and may leave the operator needing manual recovery if restart behavior differs from expectations.
+
+Mitigation: Run it during a maintenance window or non-critical session, then verify gateway health and restore the backup manually if needed.
+
+Risk: Cache trace logging is enabled locally and may record operational metadata about cache hits, misses, and token usage.
+
+Mitigation: Review the cache trace settings and log retention expectations before enabling the skill on systems with sensitive operational data.
+
+## Reference(s):
+
+- [OpenClaw Cache Kit on ClawHub](https://clawhub.ai/lifeissea/skills/openclaw-cache-kit)
+- [OpenClaw prompt caching optimization guide](https://slashpage.com/thomasjeong/36nj8v2wq5zqj25ykq9z)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and local configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes scripts that edit the local OpenClaw configuration, create a backup, restart the gateway, and calculate estimated cache savings from JSONL trace logs.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

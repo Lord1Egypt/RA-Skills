@@ -1,40 +1,56 @@
-## Description: <br>
-Free local speech-to-text transcription using OpenAI Whisper for converting audio and video files into text or subtitle formats without cloud API costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Free local speech-to-text transcription using OpenAI Whisper for audio and video files without cloud API costs.
 
-## Publisher: <br>
-[nickylin](https://clawhub.ai/user/nickylin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nickylin](https://clawhub.ai/user/nickylin)
 
-## Use Case: <br>
-Developers, creators, and other external users use this skill to run local speech-to-text transcription, convert voice recordings to text, and generate SRT or VTT subtitles from audio or video files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Transcripts can expose sensitive audio contents in terminal output or generated text and subtitle files. <br>
-Mitigation: Only transcribe files the user is comfortable processing locally, and review or delete generated transcript files according to the user's data handling needs. <br>
-Risk: Whisper models may require downloads and significant disk, RAM, or GPU resources. <br>
-Mitigation: Install dependencies in a virtual environment, choose a model size appropriate for the machine, and expect local model storage and compute usage. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenAI Whisper](https://github.com/openai/whisper) <br>
-- [Whisper STT ClawHub page](https://clawhub.ai/nickylin/whisper-stt) <br>
+## Use Case:
 
+Developers, engineers, and agent users use this skill to transcribe local audio or video into text, JSON, SRT, or VTT outputs. It is useful for voice memos, subtitles, multilingual transcription, and local STT workflows that avoid cloud API costs.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown guidance with inline shell commands; generated transcripts may be JSON, plain text, SRT, or VTT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports selectable Whisper model size, optional language code, and output format selection.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency and Whisper model setup may download packages or model files during installation or first use.
+
+Mitigation: Install in an isolated Python environment, pin dependency versions where practical, and review downloads according to local policy.
+
+Risk: System-wide package installation or demo execution with elevated privileges can expand local execution risk.
+
+Mitigation: Avoid elevated privileges unless system-wide ffmpeg installation is intentionally required.
+
+Risk: Transcription outputs can contain sensitive content from local audio or video files.
+
+Mitigation: Use trusted local inputs and review generated text, JSON, SRT, or VTT before sharing or publishing.
+
+## Reference(s):
+
+- [OpenAI Whisper](https://github.com/openai/whisper)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; transcription outputs may be JSON, plain text, SRT, or VTT.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports selectable Whisper model size, optional language code, and local file input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

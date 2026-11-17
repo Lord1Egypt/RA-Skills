@@ -1,45 +1,66 @@
-## Description: <br>
-This skill should be used when the user asks for daily backup, scheduled backup, restore, rollback, recovery, or routine protection of core OpenClaw workspace identity/config files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Daily Backup helps create, list, validate, and restore backups for OpenClaw workspace identity and configuration files.
 
-## Publisher: <br>
-[X-RayLuan](https://clawhub.ai/user/X-RayLuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[x-rayluan](https://clawhub.ai/user/x-rayluan)
 
-## Use Case: <br>
-External users and developers use this skill to create, list, validate, and restore local backups for OpenClaw workspace identity and configuration files. It is intended for routine protection before configuration changes, scheduled backups, and recovery from accidental deletion or bad restores. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled backup contents could overwrite a user's OpenClaw identity and configuration with unrelated high-impact behavior. <br>
-Mitigation: Review and remove bundled backups before installation, especially AGENTS.md, SOUL.md, BOOTSTRAP.md, TOOLS.md, USER.md, and openclaw.sanitized.json. <br>
-Risk: Restore operations can change agent identity, messaging integrations, execution permissions, and persistent behavior. <br>
-Mitigation: Create a fresh local backup first, use dry-run restore previews, and restore only backups confirmed to belong to the target workspace. <br>
-Risk: Backup files may contain sensitive workspace configuration. <br>
-Mitigation: Keep backup directories protected with workspace-equivalent permissions, avoid publishing backups, and encrypt backups when they may contain secrets. <br>
+## Use Case:
 
+OpenClaw users and developers use this skill to make scheduled or named backups, verify backup integrity, preview restores, and recover workspace identity and configuration files after deletion or bad changes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/X-RayLuan/openclaw-daily-backup) <br>
-- [Project Homepage](https://github.com/X-RayLuan/soul-backup-skill) <br>
-- [OpenClaw Daily Backup README](artifact/README.md) <br>
-- [OpenClaw Daily Backup Runbook](artifact/RUNBOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and Node.js script references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill may guide creation, validation, listing, and restore of local backup files; restore actions can modify workspace identity and configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and package.json) <br>
+Risk: Restore operations can overwrite active OpenClaw identity and instruction files, including from bundled third-party backup files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove bundled backups before installation, explicitly select the intended backup source, run restore in dry-run mode first, and inspect diffs before applying changes.
+
+Risk: Generated backups can contain user profiles, agent instructions, service configuration, and possibly credentials.
+
+Mitigation: Store backups with workspace-equivalent access controls and avoid committing or sharing backup directories.
+
+Risk: The skill backs up more local OpenClaw data than the short description conveys.
+
+Mitigation: Review the backup script and manifest contents so users know exactly which workspace, agent, and configuration files are collected.
+
+Risk: Scheduled backups can preserve sensitive or unintended data over time.
+
+Mitigation: Enable cron only after confirming retained data, retention behavior, and cleanup commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/x-rayluan/skills/openclaw-daily-backup)
+- [Project homepage](https://github.com/X-RayLuan/soul-backup-skill)
+- [README](README.md)
+- [Runbook](RUNBOOK.md)
+- [Examples](EXAMPLES.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON manifest examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js scripts and local filesystem backups; restore operations can modify workspace files.]
+
+## Skill Version(s):
+
+1.3.1 (source: package.json and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

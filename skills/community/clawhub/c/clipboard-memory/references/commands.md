@@ -79,9 +79,9 @@ user has not explicitly asked to proceed.
 | `ocr get` | text (`json` supported) | — | One OCR result by raw representation hash |
 | `ocr clear` | text (`json` supported) | — | Delete one OCR result and rebuild affected OCR cache |
 | `ocr run` | text (`json` supported) | — | Backfill OCR for stored image snapshots |
-| `capture-once` | — | — | Single clipboard capture (setup / ad-hoc) |
+| `capture-once` | — | — | Explicitly capture the current clipboard once |
 | `watch` | — | — | Background daemon; usually a LaunchAgent |
-| `setup` | — | — | Seed one capture and start background capture |
+| `setup` | — | — | Initialize the database and start background capture |
 | `service status` | text (or `--json`) | — | Background provider state + capture freshness |
 | `service providers` | text (`json` supported) | — | Service provider availability without mutation |
 | `service revision` | text (`json` supported) | — | Archive revision counters without provider probes |
@@ -267,7 +267,7 @@ clipmem ocr run [--limit N] [--snapshot ID] [--retry-failed] [--format json]
 
 `purge` computes age from `snapshot_stats.last_observed_at`, not `snapshots.created_at`. Duration grammar is a single integer plus one unit: `Nd`, `Nh`, or `Nm`.
 
-`storage compact` checkpoints WAL state and vacuums SQLite pages back to the filesystem. It never changes clipboard content. `storage image-candidates` lists the same eligible image rows that `storage optimize-images` would scan, without rewriting bytes or marking rows. `storage optimize-images` rewrites eligible image representations to lossless WebP only when doing so saves meaningful space, then compacts SQLite storage by default; already compressed or skipped rows are not retried by normal runs. Use `--progress jsonl` for streamed `started`, `scanning`, `compacting`, and `complete` progress events. Use `--no-compact` only when batching optimization runs and compacting once at the end.
+`storage compact` checkpoints WAL state and vacuums SQLite pages back to the filesystem. It never changes clipboard content. `storage image-candidates` lists eligible image rows without rewriting bytes or marking rows (defaults to 25, while `optimize-images` scans all candidates when `--limit` is omitted). `storage optimize-images` rewrites eligible image representations to lossless WebP only when doing so saves meaningful space, then compacts SQLite storage by default; already compressed or skipped rows are not retried by normal runs. Use `--progress jsonl` for streamed `started`, `scanning`, `compacting`, and `complete` progress events. Use `--no-compact` only when batching optimization runs and compacting once at the end.
 
 `ocr candidates` lists pending OCR hashes and affected snapshot counts without invoking Apple Vision. Use it before `ocr run` when an agent needs to inspect queue work.
 

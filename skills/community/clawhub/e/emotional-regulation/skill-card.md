@@ -1,41 +1,54 @@
-## Description: <br>
-Daily emotional regulation practices and anger management techniques for users who overreact, experience emotional flooding, regret anger episodes, or want steadier responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily emotional regulation practices and anger management techniques for situations involving overreaction, emotional flooding, regretted anger episodes, or a desire to develop steadier emotional responses.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-Employees, external users, and agents use this skill to provide practical self-help guidance for emotional flooding, anger management, and everyday emotional resilience. It supports daily check-ins, affect labeling, de-escalation scripts, journaling prompts, and safety-aware recommendations for anger in work or driving contexts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This self-help skill can be mistaken for professional mental health care. <br>
-Mitigation: Use it as supportive guidance only and seek qualified professional help for persistent dysregulation, violence, threats, or escalating anger. <br>
-Risk: Crisis resources in the skill are US-specific. <br>
-Mitigation: Users outside the US should use local emergency services or region-appropriate crisis support in urgent self-harm situations. <br>
+## Use Case:
 
+External users and agents use this skill to provide self-help guidance for emotional flooding, anger management, daily emotional awareness, and safer responses during high-intensity moments. It also helps identify cases where crisis resources or professional support should be recommended.
 
-## Reference(s): <br>
-- [UCLA affect labeling research](https://www.scn.ucla.edu) <br>
-- [APA anger resources](https://www.apa.org/topics/anger) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with scripts, checklists, and structured self-reflection prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code; recommendations are self-help guidance and should not replace professional care.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The security review reports that the skill requests filesystem access even though its self-help content does not appear to require broad filesystem authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it in a low-privilege or isolated environment, and avoid granting filesystem access unless the publisher explains why it is needed.
+
+Risk: The security review reports an unpinned executable install path.
+
+Mitigation: Review the package before installing and prefer pinned tooling or integrity verification where available.
+
+## Reference(s):
+
+- [UCLA Social Cognitive Neuroscience Lab](https://www.scn.ucla.edu)
+- [APA Anger Resources](https://www.apa.org/topics/anger)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown guidance with structured steps, scripts, rules, and agent state configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include crisis-resource guidance, professional-help recommendations, and safety-oriented responses for violence, self-harm, workplace equipment, or driving contexts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Local text-to-speech via sherpa-onnx (offline, no cloud). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local text-to-speech via sherpa-onnx (offline, no cloud).
 
-## Publisher: <br>
-[andy27725](https://clawhub.ai/user/andy27725) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andy27725](https://clawhub.ai/user/andy27725)
 
-## Use Case: <br>
-Developers and agent users use this skill to install and run offline local text-to-speech with sherpa-onnx, producing speech audio files from text without a cloud service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads third-party sherpa-onnx runtime and model archives before use. <br>
-Mitigation: Install only if you trust the referenced GitHub project, and verify downloaded archives when upstream checksums are available before adding the wrapper to PATH or running commands. <br>
+## Use Case:
 
+Developers and agent users use this skill to configure and run local, offline text-to-speech generation with sherpa-onnx, producing speech audio files from text prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andy27725/sherpa-onnx-tts-andy27725) <br>
-- [sherpa-onnx macOS runtime archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/v1.12.23/sherpa-onnx-v1.12.23-osx-universal2-shared.tar.bz2) <br>
-- [sherpa-onnx Linux x64 runtime archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/v1.12.23/sherpa-onnx-v1.12.23-linux-x64-shared.tar.bz2) <br>
-- [sherpa-onnx Windows x64 runtime archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/v1.12.23/sherpa-onnx-v1.12.23-win-x64-shared.tar.bz2) <br>
-- [Piper en_US lessac high TTS model archive](https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-high.tar.bz2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated WAV audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHERPA_ONNX_RUNTIME_DIR and SHERPA_ONNX_MODEL_DIR to point to local runtime and model directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill downloads native sherpa-onnx runtime archives without declared checksum verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify upstream release provenance before installation or run the tool in a constrained environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andy27725/skills/sherpa-onnx-tts-andy27725)
+- [sherpa-onnx runtime for macOS](https://github.com/k2-fsa/sherpa-onnx/releases/download/v1.12.23/sherpa-onnx-v1.12.23-osx-universal2-shared.tar.bz2)
+- [sherpa-onnx runtime for Linux x64](https://github.com/k2-fsa/sherpa-onnx/releases/download/v1.12.23/sherpa-onnx-v1.12.23-linux-x64-shared.tar.bz2)
+- [sherpa-onnx runtime for Windows x64](https://github.com/k2-fsa/sherpa-onnx/releases/download/v1.12.23/sherpa-onnx-v1.12.23-win-x64-shared.tar.bz2)
+- [Piper en_US lessac high TTS model](https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-en_US-lessac-high.tar.bz2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance targets local audio generation and environment setup for sherpa-onnx.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

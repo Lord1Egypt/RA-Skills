@@ -1,47 +1,58 @@
-## Description: <br>
-创建新的 OpenClaw Agent，并指导配置工作区、基础记忆文件、模型认证文件和 OpenClaw 全局配置。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+创建新的 OpenClaw Agent。用于当用户要求创建新 agent、添加新机器人、配置新模型测试环境时触发。
 
-## Publisher: <br>
-[AxelHu](https://clawhub.ai/user/AxelHu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[axelhu](https://clawhub.ai/user/axelhu)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill when they need to create a new OpenClaw agent, add a bot, or configure a new model test environment. It provides checklist-style guidance for required files, directory layout, openclaw.json updates, optional Feishu binding, and post-creation validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead an agent to make persistent global OpenClaw configuration changes. <br>
-Mitigation: Review every openclaw.json change before applying it and install the skill only when persistent OpenClaw agent creation is intended. <br>
-Risk: The skill handles auth.json and optional Feishu appSecret values, which may expose credentials if copied into chat, logs, or version-controlled files. <br>
-Mitigation: Use a fresh per-agent auth.json unless credential sharing is intentional, and do not paste or store Feishu appSecret in chat, logs, or version-controlled files. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to scaffold a new OpenClaw agent workspace, copy required Markdown templates, create model and authentication configuration files, and update openclaw.json for agent routing and optional Feishu bindings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AxelHu/openclaw-agent-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/AxelHu) <br>
-- [artifact/SKILL.md](artifact/SKILL.md) <br>
-- [artifact/templates/AGENTS.md](artifact/templates/AGENTS.md) <br>
-- [artifact/templates/IDENTITY.md](artifact/templates/IDENTITY.md) <br>
-- [artifact/templates/MEMORY.md](artifact/templates/MEMORY.md) <br>
-- [artifact/templates/SOUL.md](artifact/templates/SOUL.md) <br>
-- [artifact/templates/USER.md](artifact/templates/USER.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON snippets, tables, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes reusable Markdown templates for OpenClaw agent identity, behavior, memory, and user context files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: New agents may inherit or expose credentials if auth.json is copied from a main agent or if Feishu appSecret values are pasted into chat or stored directly in configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer an empty auth.json for new agents, use separate scoped credentials per agent, and store secrets through a secure secret mechanism or environment reference.
+
+Risk: Bundled memory templates may seed generated agents with personal or project-specific context.
+
+Mitigation: Replace MEMORY.md personal and project data with neutral placeholders before generating agents.
+
+Risk: The skill modifies OpenClaw agent routing and optional channel bindings, which can affect how agents receive work.
+
+Mitigation: Review the generated openclaw.json changes before installing or using the new agent configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/axelhu/skills/openclaw-agent-creator)
+- [Publisher profile](https://clawhub.ai/user/axelhu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces checklist-style setup steps and file/configuration templates for creating OpenClaw agents.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Business Operations Tavily Search Business Planner"
+  short_description: "Helps with Agent users show strong demand for Tavily Search-s..."
+  default_prompt: "Use $business-operations-tavily-search-business-planner to help me Agent users show strong demand for Tavily Search-style workflows on Clawhub. They need practical help fixing bugs, harde."
+
+policy:
+  allow_implicit_invocation: true

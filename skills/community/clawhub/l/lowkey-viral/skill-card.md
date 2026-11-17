@@ -1,45 +1,60 @@
-## Description: <br>
-Create short-form social media videos and photo carousel slideshows using the Lowkey Viral API for TikTok, Instagram Reels, carousel posts, and other vertical social formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create short-form social media videos and photo carousel slideshows using the lowkey viral API for TikTok, Instagram Reels, carousel posts, and other vertical social formats.
 
-## Publisher: <br>
-[tiotdev](https://clawhub.ai/user/tiotdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tiotdev](https://clawhub.ai/user/tiotdev)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to generate briefs, images, 2x2 grid videos, and photo slideshow assets through the Lowkey Viral API. It helps agents prepare authenticated API calls, polling steps, and output handling guidance for short-form social content workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Lowkey Viral account API key. <br>
-Mitigation: Store LOWKEY_VIRAL_API_KEY in the environment, avoid pasting it into prompts or files, and install the skill only when account access is intended. <br>
-Risk: Prompts and images are sent to Lowkey Viral for media generation. <br>
-Mitigation: Use only content that is appropriate for processing by the service and avoid submitting sensitive or unauthorized media. <br>
-Risk: Generation and rendering operations consume account credits and are subject to rate limits. <br>
-Mitigation: Monitor credit usage, observe documented rate limits and Retry-After responses, and confirm generation scope before running calls. <br>
-Risk: The skill documents a delete action for briefs. <br>
-Mitigation: Require explicit confirmation of the target brief ID before issuing any DELETE request. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tiotdev/lowkey-viral) <br>
-- [Configured skill homepage](https://github.com/tiotdev/lowkey-viral) <br>
-- [Lowkey Viral API key dashboard](https://lowkeyviral.com/dashboard/api-keys) <br>
+## Use Case:
 
+Developers, creators, and social media teams use this skill to generate API calls and workflow guidance for creating short-form videos, grid videos, and slideshow carousel assets through lowkeyviral.com.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with curl command examples and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LOWKEY_VIRAL_API_KEY and curl; API calls may upload media, generate assets, render videos or slides, poll progress, list account data, and delete briefs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, uploaded images, and generated media are sent to lowkeyviral.com.
+
+Mitigation: Use only content approved for that service and avoid sending sensitive or restricted material.
+
+Risk: API requests can consume paid credits on the connected account.
+
+Mitigation: Review generated commands and credit-cost steps before execution, especially image generation and render calls.
+
+Risk: Brief deletion commands remove server-side resources.
+
+Mitigation: Confirm the target brief ID and user intent before running delete requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tiotdev/skills/lowkey-viral)
+- [Publisher profile](https://clawhub.ai/user/tiotdev)
+- [lowkey viral homepage](https://github.com/tiotdev/lowkey-viral)
+- [lowkey viral API keys](https://lowkeyviral.com/dashboard/api-keys)
+- [lowkey viral API base](https://lowkeyviral.com/api/v1/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires LOWKEY_VIRAL_API_KEY and curl; API calls may upload prompts, images, and generated assets to lowkeyviral.com and consume paid credits.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

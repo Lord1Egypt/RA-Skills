@@ -1,47 +1,65 @@
-## Description: <br>
-yyWorldCup helps agents predict World Cup match outcomes and generate China Sports Lottery strategy analysis using Elo factors, injury and weather signals, Polymarket calibration, and Beijing-time schedule handling. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Predicts World Cup match outcomes and generates China Sports Lottery strategy analysis using Elo ratings, injury and weather factors, Polymarket calibration, and Beijing Time schedule handling.
 
-## Publisher: <br>
-[deloyong](https://clawhub.ai/user/deloyong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deloyong](https://clawhub.ai/user/deloyong)
 
-## Use Case: <br>
-External users and developers use this skill to analyze World Cup matches, compare model probabilities with market signals, and draft lottery strategy reports for review. Outputs are informational and should not be treated as betting advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; includes China Sports Lottery context and Beijing Time handling. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release includes maintenance code that can rewrite source files or create broad ZIP archives. <br>
-Mitigation: Review the skill before installing and avoid auto_evolution modules, tune commands, or apply modes unless code modification and archive creation are intended. <br>
-Risk: Normal prediction features require internet access and local caching. <br>
-Mitigation: Run in an environment where outbound network access and cache locations are understood, and review cached data before relying on generated analysis. <br>
-Risk: The skill produces lottery and market strategy analysis that could be mistaken for betting advice. <br>
-Mitigation: Treat outputs as informational analysis for human review and keep the artifact's gambling-risk disclaimer visible in downstream use. <br>
-Risk: The scanner guidance identifies an embedded API key and recommends removing or isolating risky maintenance functionality. <br>
-Mitigation: Remove or rotate embedded credentials and separate auto-evolution, scheduler, and ZIP-generation code from the user-facing prediction workflow before deployment. <br>
+## Use Case:
 
+External users and developers use this skill to analyze World Cup matches, compare model probabilities with market odds, and produce lottery strategy guidance for lawful China Sports Lottery analysis. Outputs should be treated as decision-support analysis, not guaranteed predictions or betting advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deloyong/yy-world-cup) <br>
-- [Publisher profile](https://clawhub.ai/user/deloyong) <br>
-- [Comprehensive data model v3.1](docs/MODEL_v3.1.md) <br>
-- [balldontlie FIFA World Cup API](https://api.balldontlie.io/fifa/worldcup/v1/) <br>
+### Deployment Geography for Use:
 
+Global, with China Sports Lottery features intended only where lawful.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain-text analysis with Python examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include probability estimates, market comparisons, expected-value calculations, and strategy notes for human review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The ClawHub security summary flags under-disclosed self-modification and broad packaging behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or remove the auto_evolution modules before installation, and run evolve, tune, or apply commands only in an isolated worktree that does not contain secrets or unrelated files.
+
+Risk: The security guidance calls out an exposed API key.
+
+Mitigation: Treat the key as compromised if it belongs to you, rotate it, and replace embedded credentials with user-supplied secrets.
+
+Risk: The skill can load local .pkl model files.
+
+Mitigation: Load model files only from trusted sources and avoid accepting model artifacts from untrusted users.
+
+Risk: Lottery and expected-value outputs may be mistaken for guaranteed betting outcomes.
+
+Mitigation: Present outputs as analytical estimates, preserve the skill's gambling-risk disclaimers, and confirm local legal requirements before use.
+
+## Reference(s):
+
+- [yyWorldCup ClawHub Skill Page](https://clawhub.ai/deloyong/skills/yy-world-cup)
+- [Comprehensive Data Model v3.1](docs/MODEL_v3.1.md)
+- [Polymarket API Documentation](https://docs.polymarket.com/cn/api-reference/introduction)
+- [balldontlie FIFA World Cup API](https://api.balldontlie.io/fifa/worldcup/v1/)
+- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command snippets; generated prediction and strategy reports may be returned as plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call external sports, weather, and market data APIs and may write local cache, model, or auto-evolution files when those modules are used.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

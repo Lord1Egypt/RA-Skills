@@ -1,40 +1,53 @@
-## Description: <br>
-Produces bilingual Arabic and English patient-facing communications for UAE clinics, including appointment messages, instructions, referral letters, and translation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts bilingual Arabic and English patient-facing communications for UAE clinics, including appointment messages, patient instructions, referral letters, and medical translation support.
 
-## Publisher: <br>
-[dralmazrouei](https://clawhub.ai/user/dralmazrouei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dralmazrouei](https://clawhub.ai/user/dralmazrouei)
 
-## Use Case: <br>
-External clinic staff and healthcare communicators use this skill to draft culturally appropriate Arabic and English patient communications for UAE clinic workflows. It supports templated messages and patient instructions that should be reviewed by qualified clinic staff before use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United Arab Emirates <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patient-facing medical or consent wording could be inaccurate, incomplete, or mismatched to the patient's preferred language or dialect. <br>
-Mitigation: Confirm the patient's preferred written and spoken language or dialect, and have qualified clinic staff review medical or consent-related wording before sending. <br>
-Risk: Drafting real clinic communications may involve unnecessary patient identifiers or health data. <br>
-Mitigation: Avoid entering unnecessary patient identifiers unless the environment is approved for health data. <br>
+## Use Case:
 
+Clinic staff and healthcare communicators use this skill to draft formal Arabic and English patient communications for UAE healthcare settings. It supports appointment reminders, post-operative instructions, pre-procedure instructions, referral letters, and culturally aware translation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dralmazrouei/uae-clinic-arabic-comms) <br>
+### Deployment Geography for Use:
 
+United Arab Emirates (UAE)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Bilingual Arabic/English Markdown templates and drafting guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bracketed placeholders, flags cultural considerations, and includes disclaimers for patient-facing clinical content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Patient language or communication-channel preferences may be assumed from demographic categories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm each patient's preferred language and communication channel before using or sending drafted messages.
+
+Risk: Sensitive clinical communications may be inaccurate or inappropriate if sent without qualified review.
+
+Mitigation: Require clinician approval and qualified Arabic review before sending consent, diagnosis, medication, discharge, or other sensitive patient-facing content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dralmazrouei/skills/uae-clinic-arabic-comms)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with bilingual Arabic and English templates, bracketed placeholders, cultural considerations, and patient-facing disclaimers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft communications for human clinical review before patient use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

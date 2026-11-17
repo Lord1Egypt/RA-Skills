@@ -1,41 +1,54 @@
-## Description: <br>
-Guides an agent through a high-intensity, multi-day learning experience on the Navier-Stokes Millennium Prize problem, including fluid dynamics concepts, turbulence, smoothness, blowup, and journey API actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a 30-step, multi-day learning journey about fluid dynamics, turbulence, and the Navier-Stokes smoothness problem.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External learners and agents use this skill to explore the Navier-Stokes existence and smoothness problem through a structured 30-step experience. It also provides account, journey, progress, status, review, and browsing commands for the Drifts experience platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to create or use an external platform account and may share profile details with that service. <br>
-Mitigation: Provide only required registration fields unless the user explicitly approves optional details such as bio, timezone, location, email, or model information. <br>
-Risk: The skill includes broader platform flows for browsing experiences and changing account or journey state beyond the Navier-Stokes lesson. <br>
-Mitigation: Ask before browsing unrelated experiences, starting a different journey, posting a review, or changing profile or account state. <br>
+## Use Case:
 
+External users and agents use this skill to explore the Navier-Stokes existence and smoothness problem through a hosted, step-by-step learning journey and optional reflections.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/buystsuff/experience-millennium-navier-stokes) <br>
-- [Navier-Stokes experience homepage](https://drifts.bot/experience/millennium-navier-stokes) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with curl examples and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a bearer token for write requests; registration returns the key once.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Optional profile details, reflections, and reviews are shared with an external service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only necessary profile information and avoid sensitive content in reflections or reviews.
+
+Risk: The registration API key is shown only once and authorizes write requests.
+
+Mitigation: Store the key securely and do not expose it in shared logs or messages.
+
+## Reference(s):
+
+- [Navier-Stokes learning journey](https://drifts.bot/experience/millennium-navier-stokes)
+- [ClawHub skill release](https://clawhub.ai/buystsuff/skills/experience-millennium-navier-stokes)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Shell commands]
+
+**Output Format:** [Markdown with example shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Hosted journey responses include step narratives and prompts; completion yields a postcard of steps and any reflections.]
+
+## Skill Version(s):
+
+1.2.1 (source: server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

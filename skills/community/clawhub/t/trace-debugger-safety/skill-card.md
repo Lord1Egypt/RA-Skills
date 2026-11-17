@@ -1,40 +1,58 @@
-## Description: <br>
-Generates Markdown trace debugging reports from Jaeger and Elasticsearch data with Codex-assisted analysis and documented safeguards for untrusted logs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Safer end-to-end trace debugging from trace_id using Jaeger and Elasticsearch with guarded Codex analysis.
 
-## Publisher: <br>
-[gakkiismywife](https://clawhub.ai/user/gakkiismywife) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gakkiismywife](https://clawhub.ai/user/gakkiismywife)
 
-## Use Case: <br>
-Developers and site reliability engineers use this skill to investigate a trace_id by collecting Jaeger spans, Elasticsearch logs, and optional repository context into a trace debugging report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence flags that the skill may read observability logs, inspect a local repository, write reports, and invoke Codex from that repository context using log-derived prompts. <br>
-Mitigation: Use only trusted or redacted logs, confirm Codex execution is explicitly opt-in, provide repository paths deliberately, and review generated analysis before acting on it. <br>
-Risk: Trace and log data can include sensitive operational details. <br>
-Mitigation: Redact sensitive log fields before analysis and limit report sharing to the intended debugging audience. <br>
+## Use Case:
 
+Developers and reliability engineers use this skill to generate trace debug reports from Jaeger spans and Elasticsearch logs, with optional repository context for suspected bug areas. It is intended for controlled troubleshooting workflows where logs and generated reports may contain sensitive operational data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gakkiismywife/trace-debugger-safety) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown report with command-line status summary] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a local Markdown trace report; the skill documentation asks the agent to deliver the report as an attachment and delete the local file after delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The implementation contradicts its safety claims and may expose logs, repository content, or attacker-selected local file lines during analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing, use only in a tightly controlled environment, and run against a trusted or disposable repository path.
+
+Risk: Untrusted logs can influence Codex analysis and generated troubleshooting guidance.
+
+Mitigation: Use trusted logs, a sandboxed Codex configuration, and do not rely on the documented no-Codex or no-hardcoded-repository behavior until the implementation is fixed.
+
+Risk: Generated reports may contain sensitive logs, filesystem paths, source snippets, and Codex output.
+
+Mitigation: Treat reports as sensitive artifacts and review or redact them before sharing outside the troubleshooting team.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gakkiismywife/skills/trace-debugger-safety)
+- [Publisher profile](https://clawhub.ai/user/gakkiismywife)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown trace debug report plus a concise text summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The report may include Jaeger span tables, Elasticsearch log excerpts, bug hypotheses, repair suggestions, repository file matches, and Codex analysis output when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-Helps users define, document, and maintain a comprehensive brand voice and style guide for consistent content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Brand Voice helps users define, document, and enforce a comprehensive brand voice and style guide for consistent content across channels.
 
-## Publisher: <br>
-[mariokarras](https://clawhub.ai/user/mariokarras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mariokarras](https://clawhub.ai/user/mariokarras)
 
-## Use Case: <br>
-Marketing teams, founders, content teams, and agents use this skill to build or update a brand voice guide that covers personality, voice attributes, messaging pillars, tone adaptations, style rules, terminology, and audience-specific notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated brand voice guide may contain inaccurate brand guidance or sensitive customer details if users provide them during setup. <br>
-Mitigation: Review `.agents/brand-voice-guide.md` for accuracy before relying on it, and avoid including secrets, credentials, or sensitive customer information. <br>
+## Use Case:
 
+Brand, marketing, and content teams use this skill to build or update a brand voice guide covering personality, voice attributes, messaging pillars, tone adaptations, style rules, terminology, and audience-specific notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mariokarras/abm-brand-voice) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Files] <br>
-**Output Format:** [Conversational guidance and a Markdown brand voice guide] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates or updates `.agents/brand-voice-guide.md` after gathering and confirming brand voice details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The generated brand guide may contain sensitive brand strategy, customer language, personas, terminology, or style preferences.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review `.agents/brand-voice-guide.md` before sharing, committing, or allowing downstream skills to use it.
+
+Risk: Outdated or incorrect voice guidance can influence future content workflows.
+
+Mitigation: Have brand or content owners validate the guide after creation and update it when positioning, audiences, or terminology change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mariokarras/skills/abm-brand-voice)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown brand voice guide]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates `.agents/brand-voice-guide.md` after gathering and confirming brand guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -27,13 +27,13 @@ echo ""
 echo "📤 推送代码到 GitHub..."
 echo "💡 提示：首次推送需要输入 GitHub 凭证"
 echo "   用户名：465367@qq.com"
-echo "   密码/令牌：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"
+echo "   密码/令牌：REDACTED-SECRET"
 echo ""
 
 # 使用 GIT_ASKPASS 自动提供凭证
 export GIT_ASKPASS=/bin/echo
 export GIT_USERNAME="465367@qq.com"
-export GIT_PASSWORD="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"
+export GIT_PASSWORD="REDACTED-SECRET"
 
 git push -u origin main --force 2>&1 || {
     echo ""
@@ -45,7 +45,7 @@ git push -u origin main --force 2>&1 || {
     echo ""
     echo "然后输入："
     echo "   Username: 465367@qq.com"
-    echo "   Password: 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"
+    echo "   Password: REDACTED-SECRET"
     exit 1
 }
 

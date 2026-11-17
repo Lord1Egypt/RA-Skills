@@ -1,41 +1,59 @@
-## Description: <br>
-Configures ClawHub CLI to use the cn.clawhub-mirror.com domestic mirror for faster skill search, download, and install operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents configure ClawHub CLI to use a domestic mirror for faster skill downloads, including persistent shell environment variables, temporary registry use, and verification commands.
 
-## Publisher: <br>
-[roger0808](https://clawhub.ai/user/roger0808) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roger0808](https://clawhub.ai/user/roger0808)
 
-## Use Case: <br>
-Developers and operators use this skill when ClawHub installs, searches, or updates are slow or timing out and they want persistent shell configuration for a domestic mirror plus verification commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with practical applicability for environments that intentionally route ClawHub CLI traffic through cn.clawhub-mirror.com. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill and bundled script can permanently change shell startup configuration so ClawHub CLI traffic uses cn.clawhub-mirror.com. <br>
-Mitigation: Install only when that routing is intentional; review the script first, back up the shell profile, and remove the CLAWHUB_REGISTRY and CLAWHUB_SITE lines to revert. <br>
-Risk: The security summary notes unrelated cron, repository, learning-archive, and workspace-sync content in the artifact. <br>
-Mitigation: Treat the release as scoped to mirror configuration and ignore unrelated operational notes unless those separate actions were explicitly requested. <br>
+## Use Case:
 
+Developers and engineers who use ClawHub in China or constrained network environments use this skill to route ClawHub downloads and API requests through a domestic mirror and verify connectivity before installs or updates.
 
-## Reference(s): <br>
-- [ClawHub mirror verification record](references/clawhub-mirror-verification.md) <br>
-- [ClawHub skill listing](https://clawhub.ai/roger0808/configure-clawhub-domestic-mirror) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest persistent edits to shell startup files such as ~/.bashrc or ~/.zshrc and optional one-shot registry flags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can persistently route ClawHub registry and site traffic through a specific mirror.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that routing is intentional, and verify the configured CLAWHUB_REGISTRY and CLAWHUB_SITE values before relying on the setup.
+
+Risk: The shipped script appends environment variables to shell startup files, which affects future terminal sessions.
+
+Mitigation: Prefer a temporary export for evaluation, review the exact shell file changes, and keep an undo step for removing CLAWHUB_REGISTRY and CLAWHUB_SITE.
+
+Risk: The artifact contains unrelated persistent agent and workspace task-record content.
+
+Mitigation: Review and remove unrelated task-record material before deploying or adapting the skill.
+
+## Reference(s):
+
+- [ClawHub Mirror Verification](references/clawhub-mirror-verification.md)
+- [ClawHub Skill Page](https://clawhub.ai/roger0808/skills/configure-clawhub-domestic-mirror)
+- [Publisher Profile](https://clawhub.ai/user/roger0808)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and environment variable snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include persistent shell startup configuration and verification commands for ClawHub CLI.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

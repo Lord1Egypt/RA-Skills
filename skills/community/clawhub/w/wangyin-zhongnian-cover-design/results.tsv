@@ -1,0 +1,6 @@
+﻿timestamp	commit	skill	old_score	new_score	status	dimension	note	eval_mode
+2026-07-26T15:55	baseline	wangyin-zhongnian-cover-design	-	73.4	baseline	-	初始评估，dim3/dim4/dim9 偏低	dry_run
+2026-07-26T15:58	opt1	wangyin-zhongnian-cover-design	73.4	84.0	keep	dim4+dim3+dim9	加🔴CHECKPOINT两处+if-then失败表+反例黑名单章节	full_test
+2026-07-26T16:02	opt2	wangyin-zhongnian-cover-design	84.0	94.0	keep	runtime+P0	README安装改runtime中立三层结构，清Claude Code硬编码路径	full_test
+2026-07-26T16:06	opt3	wangyin-zhongnian-cover-design	94.0	97.2	keep	dim2+dim1/dim5/dim7	加流程输入输出表(dim2)，sub-agent full_test 验证dim8=10，其余近满分维度确认	full_test
+

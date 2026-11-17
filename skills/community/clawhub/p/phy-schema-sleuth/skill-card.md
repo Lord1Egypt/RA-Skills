@@ -1,43 +1,58 @@
-## Description: <br>
-Infer clean, production-ready schemas from messy sample data and return Pydantic, Zod, TypeScript, JSON Schema, or Go schema artifacts with inferred types, nullability, optional fields, and validation rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Infer clean, production-ready schemas from messy sample data and generate Pydantic, Zod, TypeScript, JSON Schema, or Go representations with inferred types, nullability, optional fields, validation hints, and confidence notes.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and engineers use this skill to turn representative samples of JSON, CSV, API responses, plain text, or LLM output into schema definitions and typed models for application development and validation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste secrets, customer records, internal URLs, or other confidential data as schema samples. <br>
-Mitigation: Redact sensitive values before using the skill and prefer synthetic or minimized examples. <br>
-Risk: Schema inference from a small number of samples can produce incomplete types, optionality, enum values, or validation rules. <br>
-Mitigation: Review generated schemas against the real domain model before production use. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn pasted sample data from APIs, CSVs, JSON, plain text, or LLM outputs into reviewed schema definitions and type models across common Python, TypeScript, JSON Schema, and Go formats.
 
-## Reference(s): <br>
-- [Phy Schema Sleuth on ClawHub](https://clawhub.ai/PHY041/phy-schema-sleuth) <br>
-- [PHY041 publisher profile](https://clawhub.ai/user/PHY041) <br>
-- [Canlah AI](https://canlah.ai) <br>
-- [JSON Schema Draft 7](http://json-schema.org/draft-07/schema#) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown report with field analysis and fenced code blocks for generated schemas] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Pydantic v2 models, Zod schemas, TypeScript interfaces, JSON Schema Draft 7, Go structs, parser snippets, and confidence notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and skill metadata) <br>
+Risk: Broad trigger phrases may activate the skill for general schema or type-generation requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants schema inference before analyzing unrelated data or code.
+
+Risk: Sample data may contain secrets, regulated data, or sensitive business information.
+
+Mitigation: Use sanitized examples and avoid pasting credentials or regulated records unless analysis of that content is explicitly approved.
+
+Risk: Generated schemas can overfit limited samples or misclassify ambiguous fields.
+
+Mitigation: Review the confidence notes, optionality, nullability, enum choices, and semantic type assumptions before adopting generated schemas.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phy041/skills/phy-schema-sleuth)
+- [Canlah AI Homepage](https://canlah.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown report with tables, confidence notes, and generated code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated Pydantic v2 models, Zod schemas, TypeScript interfaces, JSON Schema Draft 7 documents, Go structs, and optional parser code.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

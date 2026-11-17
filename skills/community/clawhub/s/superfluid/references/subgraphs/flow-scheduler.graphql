@@ -1,0 +1,189 @@
+##################
+# Event Entities #
+##################
+"""
+Event: An interface which is shared by all
+event entities and contains basic transaction
+data.
+"""
+interface Event {
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for accounts that were impacted by the event.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+}
+
+type FlowScheduleCreatedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# FlowScheduleCreatedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+
+startDate: BigInt!
+startDateMaxDelay: BigInt!
+flowRate: BigInt!
+endDate: BigInt!
+startAmount: BigInt!
+userData: Bytes!
+}
+
+type FlowScheduleDeletedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+
+# FlowSchduleDeletedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+}
+
+type CreateFlowExecutedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt!
+
+# CreateFlowExecutedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+
+startDate: BigInt!
+startDateMaxDelay: BigInt!
+flowRate: BigInt!
+startAmount: BigInt!
+userData: Bytes!
+}
+
+type DeleteFlowExecutedEvent implements Event @entity(immutable: true) {
+# Base Event Properties #
+id: ID!
+blockNumber: BigInt!
+logIndex: BigInt!
+order: BigInt!
+name: String!
+
+"""
+Holds the addresses for sender and receiver.
+"""
+addresses: [Bytes!]!
+timestamp: BigInt!
+transactionHash: Bytes!
+gasPrice: BigInt!
+gasUsed: BigInt!
+
+# DeleteFlowExecutedEvent Specific Properties #
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+
+endDate: BigInt!
+userData: Bytes!
+}
+
+type TokenSenderReceiverCursor @entity(immutable: false) {
+id: String!
+currentCreateFlowTask: CreateTask
+currentDeleteFlowTask: DeleteTask
+}
+
+enum TaskType {
+CREATE_FLOW
+DELETE_FLOW
+}
+
+interface Task {
+id: ID!
+type: TaskType!
+createdAt: BigInt!
+executedAt: BigInt
+executionAt: BigInt!
+expirationAt: BigInt!
+cancelledAt: BigInt
+
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+}
+
+type CreateTask implements Task @entity(immutable: false) {
+id: ID!
+type: TaskType!
+
+createdAt: BigInt!
+executedAt: BigInt
+executionAt: BigInt!
+expirationAt: BigInt!
+cancelledAt: BigInt
+
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+
+startDate: BigInt!
+startDateMaxDelay: BigInt!
+startAmount: BigInt!
+flowRate: BigInt!
+}
+
+type DeleteTask implements Task @entity(immutable: false) {
+id: ID!
+type: TaskType!
+
+createdAt: BigInt!
+executedAt: BigInt
+executionAt: BigInt!
+expirationAt: BigInt!
+cancelledAt: BigInt
+
+superToken: Bytes!
+sender: Bytes!
+receiver: Bytes!
+}

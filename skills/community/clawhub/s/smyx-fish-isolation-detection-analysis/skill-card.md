@@ -1,46 +1,55 @@
-## Description: <br>
-Analyzes fixed-camera aquarium or aquaculture video to track individual fish positions, estimate school centroids, measure body-length-normalized distance from the school, and report prolonged isolation behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes aquarium footage for schooling and prolonged fish isolation, returning structured findings, alerts, and report links.
 
-## Publisher: <br>
-[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smyx-sunjinhui](https://clawhub.ai/user/smyx-sunjinhui)
 
-## Use Case: <br>
-Aquarists, aquarium operators, aquaculture staff, and smart-camera developers use this skill to review fixed-camera fish video for prolonged isolation or abnormal schooling patterns and to generate alerts, reports, and suggested inspection actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud analysis can expose aquarium video, report history, and an open-id or phone-like identifier to the publisher's backend. <br>
-Mitigation: Install only when the publisher and backend are trusted, obtain clear consent before uploading files or submitting video URLs, and avoid using sensitive personal identifiers when a less sensitive open-id is available. <br>
-Risk: Under-documented token handling, broad remote API helpers, arbitrary video URL forwarding, and a mismatched human-health API reference increase review burden before deployment. <br>
-Mitigation: Review the code and configuration before installation; prefer a release that documents account and token storage, removes unrelated health references and generic mutation helpers, and narrows remote API behavior. <br>
-Risk: Poor camera coverage, occlusion, low tracking reliability, or missing species baselines can produce misleading isolation alerts. <br>
-Mitigation: Require stable full-tank video coverage, species and body-length calibration, and ReID tracking reliability checks; return an unreliable signal rather than an alert when tracking quality is insufficient. <br>
-Risk: Behavior alerts may be mistaken for disease diagnosis or treatment instructions. <br>
-Mitigation: Present outputs as position-based behavior signals only, avoid disease diagnosis and medication guidance, and direct users to inspect water quality and consult a qualified aquarium professional when needed. <br>
+## Use Case:
 
+Aquarists and aquarium or aquaculture operators use the skill to review camera footage for fish separating from a school and to retrieve historical behavior reports. Its alerts support observation and professional follow-up, not disease diagnosis or treatment.
 
-## Reference(s): <br>
-- [Fish Isolation API Documentation](artifact/references/api_doc.md) <br>
-- [SMYX Analysis API Documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/smyx-fish-isolation-detection-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON analysis report with command-line invocation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include fish isolation metrics, alert levels, recommended inspection actions, disclaimers, and optional output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Aquarium images or video are sent to external cloud services, potentially exposing sensitive footage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only authorized, nonsensitive footage after checking the service's retention and account controls.
+
+Risk: The skill creates or reuses a service identity and stores access tokens locally.
+
+Mitigation: Protect workspace data/smyx-api-key.txt and the local SQLite database with restricted access; review these files before installation.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/smyx-sunjinhui/skills/smyx-fish-isolation-detection-analysis)
+- [Fish isolation API reference](references/api_doc.md)
+- [Skill demonstration](https://lifeemergence.com/sample.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Markdown, Guidance]
+
+**Output Format:** [Structured text or JSON analysis results; Markdown historical report tables and report links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save results to a local file; provides isolation findings, alert levels, suggested checks, and report links.]
+
+## Skill Version(s):
+
+1.0.11 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

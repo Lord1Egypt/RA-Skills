@@ -1,0 +1,5 @@
+interface:
+  display_name: Post-Purchase Upsell Flow
+  short_description: Design and implement one-click post-purchase upsells and downsells that raise average order value without hurting the main conversion rate.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg

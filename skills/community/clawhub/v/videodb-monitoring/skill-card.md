@@ -1,46 +1,63 @@
-## Description: <br>
-Screen recording capabilities. Generate stream URLs, search recordings, get transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Screen recording capabilities. Generate stream URLs, search recordings, get transcripts.
 
-## Publisher: <br>
-[omgate234](https://clawhub.ai/user/omgate234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omgate234](https://clawhub.ai/user/omgate234)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to record task execution, generate playable VideoDB stream URLs, and query indexed screen or audio activity for summaries, search results, and transcripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent screen and possible system-audio monitoring can capture sensitive activity. <br>
-Mitigation: Install and run only when that monitoring is intentional, confirm capture status before use, and stop the monitor when recording is no longer needed. <br>
-Risk: Indexed recordings, summaries, and transcripts may expose private data. <br>
-Mitigation: Start indexing only for requested search, summary, or transcript tasks, stop indexing afterward, and delete recordings or transcripts according to VideoDB controls when retention is not needed. <br>
-Risk: Generated recording or player URLs may disclose captured private content if shared broadly. <br>
-Mitigation: Share stream and player URLs only with intended recipients and avoid generating share links for sensitive time ranges. <br>
-Risk: VideoDB API keys are required for operation and could be exposed if mishandled. <br>
-Mitigation: Store API keys in OpenClaw configuration or environment variables, do not paste them into shared outputs, and rotate them if exposure is suspected. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to record agent work sessions, generate playable VideoDB stream URLs, and optionally search recordings or retrieve summaries and transcripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omgate234/videodb-monitoring) <br>
-- [Publisher profile](https://clawhub.ai/user/omgate234) <br>
-- [VideoDB console](https://console.videodb.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with shell commands, stream URLs, summaries, search results, and transcripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VIDEODB_API_KEY and a VideoDB capture session; indexing is started explicitly for search, summaries, and transcripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can record the user's screen and possible system audio and send captured content to VideoDB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when screen recording is intentional, avoid sensitive sessions, and confirm VideoDB storage, deletion, and access controls before use.
+
+Risk: The monitor can run as a detached background recorder without a clear per-task stop or consent workflow.
+
+Mitigation: Confirm how to stop the monitor process before starting it and check the running state after each recording task.
+
+Risk: Generated stream or player URLs may expose recorded activity to anyone with access to the link.
+
+Mitigation: Share recording links only with intended recipients and avoid generating links for private, regulated, or confidential work without consent and retention controls.
+
+Risk: The VideoDB API key is required for operation and is stored in OpenClaw configuration or environment variables.
+
+Mitigation: Store the API key only in approved configuration, avoid exposing it in transcripts or logs, and rotate it if it may have been shared.
+
+## Reference(s):
+
+- [VideoDB Console](https://console.videodb.io)
+- [VideoDB Monitoring on ClawHub](https://clawhub.ai/omgate234/skills/videodb-monitoring)
+- [Publisher profile](https://clawhub.ai/user/omgate234)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and generated recording or player URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return VideoDB stream URLs, player page URLs, search results, activity summaries, or audio transcripts depending on the requested command.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and target metadata; artifact/package.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

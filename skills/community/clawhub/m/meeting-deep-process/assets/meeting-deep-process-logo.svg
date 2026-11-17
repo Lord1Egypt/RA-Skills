@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f0f1a"/>
+      <stop offset="50%" stop-color="#131122"/>
+      <stop offset="100%" stop-color="#1a1030"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- D01 执行域 — 齿轮断环 (Green, r=216, 大齿距)           -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g>
+    <circle cx="256" cy="256" r="224" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.25"/>
+    <circle cx="256" cy="256" r="216" fill="none" stroke="#10b981" stroke-width="16"
+            stroke-dasharray="160 9.6" stroke-linecap="butt" opacity="0.85"/>
+    <circle cx="256" cy="256" r="208" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.25"/>
+    <!-- 8 process markers at gap positions -->
+    <circle cx="386.7" cy="256"   r="6" fill="#6ee7b7" filter="url(#glow)"/>
+    <circle cx="348.4" cy="348.4" r="5" fill="#34d399"/>
+    <circle cx="256"   cy="386.7" r="5" fill="#34d399"/>
+    <circle cx="163.6" cy="348.4" r="5" fill="#34d399"/>
+    <circle cx="125.3" cy="256"   r="5" fill="#34d399"/>
+    <circle cx="163.6" cy="163.6" r="5" fill="#34d399"/>
+    <circle cx="256"   cy="125.3" r="5" fill="#34d399"/>
+    <circle cx="348.4" cy="163.6" r="6" fill="#6ee7b7" filter="url(#glow)"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- D02 分析域 — 节点网络 (Blue, r=172)                    -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g>
+    <!-- Guide ring -->
+    <circle cx="256" cy="256" r="172" fill="none" stroke="#3b82f6" stroke-width="2"
+            stroke-dasharray="10 14" opacity="0.4"/>
+    <!-- Cross mesh -->
+    <line x1="428" y1="256" x2="84" y2="256" stroke="#3b82f6" stroke-width="1.2" opacity="0.18"/>
+    <line x1="256" y1="428" x2="256" y2="84" stroke="#3b82f6" stroke-width="1.2" opacity="0.18"/>
+    <line x1="377.6" y1="377.6" x2="134.4" y2="134.4" stroke="#3b82f6" stroke-width="1" opacity="0.12"/>
+    <line x1="134.4" y1="377.6" x2="377.6" y2="134.4" stroke="#3b82f6" stroke-width="1" opacity="0.12"/>
+    <!-- 8 nodes -->
+    <circle cx="428"   cy="256"   r="8" fill="#60a5fa" stroke="#93c5fd" stroke-width="2" filter="url(#glow)"/>
+    <circle cx="377.6" cy="377.6" r="7" fill="#60a5fa" stroke="#93c5fd" stroke-width="1.5"/>
+    <circle cx="256"   cy="428"   r="7" fill="#60a5fa" stroke="#93c5fd" stroke-width="1.5"/>
+    <circle cx="134.4" cy="377.6" r="7" fill="#60a5fa" stroke="#93c5fd" stroke-width="1.5"/>
+    <circle cx="84"    cy="256"   r="7" fill="#60a5fa" stroke="#93c5fd" stroke-width="1.5"/>
+    <circle cx="134.4" cy="134.4" r="7" fill="#60a5fa" stroke="#93c5fd" stroke-width="1.5"/>
+    <circle cx="256"   cy="84"    r="7" fill="#60a5fa" stroke="#93c5fd" stroke-width="1.5"/>
+    <circle cx="377.6" cy="134.4" r="8" fill="#60a5fa" stroke="#93c5fd" stroke-width="2" filter="url(#glow)"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- D03 知识域 — 菱形结晶环 (Amber, r=128)                 -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g>
+    <circle cx="256" cy="256" r="128" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.3"/>
+    <!-- 8 large diamonds -->
+    <rect x="372" y="244"  width="24" height="24" rx="2" fill="#fbbf24" stroke="#fcd34d" stroke-width="1.5" transform="rotate(45 384 256)" opacity="0.9"/>
+    <rect x="336.5" y="336.5" width="22" height="22" rx="2" fill="#f59e0b" stroke="#fbbf24" stroke-width="1" transform="rotate(45 347.5 347.5)" opacity="0.8"/>
+    <rect x="244" y="372"  width="24" height="24" rx="2" fill="#fbbf24" stroke="#fcd34d" stroke-width="1.5" transform="rotate(45 256 384)" opacity="0.85"/>
+    <rect x="153.5" y="336.5" width="22" height="22" rx="2" fill="#f59e0b" stroke="#fbbf24" stroke-width="1" transform="rotate(45 164.5 347.5)" opacity="0.8"/>
+    <rect x="116" y="244"  width="24" height="24" rx="2" fill="#fbbf24" stroke="#fcd34d" stroke-width="1.5" transform="rotate(45 128 256)" opacity="0.85"/>
+    <rect x="153.5" y="153.5" width="22" height="22" rx="2" fill="#f59e0b" stroke="#fbbf24" stroke-width="1" transform="rotate(45 164.5 164.5)" opacity="0.8"/>
+    <rect x="244" y="116"  width="24" height="24" rx="2" fill="#fbbf24" stroke="#fcd34d" stroke-width="1.5" transform="rotate(45 256 128)" opacity="0.85"/>
+    <rect x="336.5" y="153.5" width="22" height="22" rx="2" fill="#f59e0b" stroke="#fbbf24" stroke-width="1" transform="rotate(45 347.5 164.5)" opacity="0.8"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- D04 剖面域 — 12维星形 (Purple, r=84)                   -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g>
+    <!-- 12 radial axis lines -->
+    <line x1="340" y1="256" x2="298" y2="256" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="328.7" y1="298.7" x2="292.4" y2="271.2" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="298.7" y1="328.7" x2="271.2" y2="292.4" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="256"   y1="340"   x2="256"   y2="298" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="213.3" y1="328.7" x2="240.8" y2="292.4" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="183.3" y1="298.7" x2="219.6" y2="271.2" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="172"   y1="256"   x2="214"   y2="256" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="183.3" y1="213.3" x2="219.6" y2="240.8" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="213.3" y1="183.3" x2="240.8" y2="219.6" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="256"   y1="172"   x2="256"   y2="214" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="298.7" y1="183.3" x2="271.2" y2="219.6" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <line x1="328.7" y1="213.3" x2="292.4" y2="240.8" stroke="#a78bfa" stroke-width="1.2" opacity="0.45"/>
+    <!-- 12-point star -->
+    <polygon points="
+      340,256 308,272 328.7,298.7 298.7,288 298.7,328.7 272,308 256,340 240,308 213.3,328.7 213.3,288 183.3,298.7 204,272 172,256 204,240 183.3,213.3 213.3,224 213.3,183.3 240,204 256,172 272,204 298.7,183.3 298.7,224 328.7,213.3 308,240"
+      fill="#8b5cf6" opacity="0.45" stroke="#c4b5fd" stroke-width="2.5"/>
+    <!-- Profile registry ring -->
+    <circle cx="256" cy="256" r="66" fill="none" stroke="#a78bfa" stroke-width="2.5" opacity="0.5"
+            stroke-dasharray="6 8"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- D05 增强域 — 中心爆发星芒 (Rose, Center)               -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g filter="url(#glowStrong)">
+    <circle cx="256" cy="256" r="42" fill="#f43f5e" opacity="0.1"/>
+    <circle cx="256" cy="256" r="28" fill="#ec4899" opacity="0.18"/>
+    <!-- Outer 4-point -->
+    <polygon points="256,216 232,240 216,256 232,272 256,296 280,272 296,256 280,240"
+             fill="#fb7185" opacity="0.85" stroke="#fda4af" stroke-width="1"/>
+    <!-- Inner 4-point -->
+    <polygon points="256,228 240,244 228,256 240,268 256,284 272,268 284,256 272,244"
+             fill="#fda4af" opacity="0.7"/>
+    <!-- Core -->
+    <circle cx="256" cy="256" r="7" fill="#fff" opacity="0.95"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- 域间数据流连接线                                         -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <g opacity="0.25">
+    <line x1="256" y1="36" x2="256" y2="172" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 8"/>
+    <line x1="256" y1="340" x2="256" y2="476" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 8"/>
+    <line x1="36" y1="256" x2="172" y2="256" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 8"/>
+    <line x1="340" y1="256" x2="476" y2="256" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 8"/>
+    <!-- Cross flow -->
+    <line x1="148" y1="148" x2="100" y2="100" stroke="#fff" stroke-width="1" stroke-dasharray="3 6" opacity="0.6"/>
+    <line x1="364" y1="148" x2="412" y2="100" stroke="#fff" stroke-width="1" stroke-dasharray="3 6" opacity="0.6"/>
+    <line x1="148" y1="364" x2="100" y2="412" stroke="#fff" stroke-width="1" stroke-dasharray="3 6" opacity="0.6"/>
+    <line x1="364" y1="364" x2="412" y2="412" stroke="#fff" stroke-width="1" stroke-dasharray="3 6" opacity="0.6"/>
+  </g>
+</svg>

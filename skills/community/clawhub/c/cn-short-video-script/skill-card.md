@@ -1,41 +1,55 @@
-## Description: <br>
-Generates Chinese short-video scripts for platforms such as Douyin, Xiaohongshu, and WeChat Channels, including hooks, shot-by-shot scenes, dialogue, sound cues, and filming suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese short-video scripts for Douyin, Xiaohongshu, and WeChat Channels with opening hooks, shot-by-shot scenes, dialogue, music cues, and filming tips.
 
-## Publisher: <br>
-[freedompixels](https://clawhub.ai/user/freedompixels) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freedompixels](https://clawhub.ai/user/freedompixels)
 
-## Use Case: <br>
-Content creators, marketers, and agent users use this skill to draft Chinese short-video scripts from a topic, product, target platform, and script style. It can produce local template-based output or optionally use an OpenAI API key for AI-assisted generation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional AI mode can send the topic and generation prompt to OpenAI when OPENAI_API_KEY is set. <br>
-Mitigation: Unset OPENAI_API_KEY or avoid the AI mode when fully local template output is required. <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to draft Chinese short-video scripts for product promotion, knowledge sharing, tutorials, story formats, and direct-to-camera videos.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/freedompixels/cn-short-video-script) <br>
-- [Publisher Profile](https://clawhub.ai/user/freedompixels) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [AISoBrand](https://aisobrand.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Chinese plain text or Markdown-style script sections with shot descriptions, dialogue, sound cues, timing, and filming tips] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Optional OpenAI-powered mode may call OpenAI when OPENAI_API_KEY is set; otherwise the helper falls back to local templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.6 (source: server-resolved release metadata) <br>
+Risk: The helper script may send user topics and script parameters to OpenAI automatically when OPENAI_API_KEY is present.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or modify scripts/video_script.py before execution, run without OPENAI_API_KEY, or remove the AI generation path unless external API use is intended.
+
+Risk: The skill and outputs are designed for Chinese-language short-video scripting.
+
+Mitigation: Use only when reviewers can evaluate Chinese content and platform-specific marketing claims before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freedompixels/skills/cn-short-video-script)
+- [AISoBrand website](https://aisobrand.com)
+- [AISoBrand free diagnosis](https://aisobrand.com/free-diagnosis.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Chinese markdown-style script text with structured sections and optional CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate through templates locally or use OpenAI when the optional helper script detects OPENAI_API_KEY.]
+
+## Skill Version(s):
+
+1.2.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

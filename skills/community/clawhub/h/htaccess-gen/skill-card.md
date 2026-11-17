@@ -1,39 +1,53 @@
-## Description: <br>
-Generate .htaccess files for Apache web servers, including redirect rules, URL rewrites, security headers, HTTPS enforcement, IP blocking, caching rules, custom error pages, hotlink protection, and nginx-to-Apache conversions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Apache .htaccess configurations for redirects, rewrites, security headers, HTTPS enforcement, IP blocking, caching, custom error pages, hotlink protection, and nginx-to-Apache translation.
 
-## Publisher: <br>
-[Johnnywang2001](https://clawhub.ai/user/Johnnywang2001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnywang2001](https://clawhub.ai/user/johnnywang2001)
 
-## Use Case: <br>
-Developers and site operators use this skill to generate Apache .htaccess configuration for redirects, rewrites, security headers, HTTPS enforcement, caching, compression, CORS, IP blocking, error pages, directory indexes, and hotlink protection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated web-server configuration could accidentally overwrite an existing .htaccess file or change live-site behavior. <br>
-Mitigation: Generate to stdout or a temporary file first, review the rules, and back up any existing .htaccess before using --output against a production path. <br>
-Risk: Incorrect redirects, rewrites, CORS, caching, or security header choices can cause site outages, unexpected access changes, or misleading protection. <br>
-Mitigation: Review generated directives against the target Apache modules and test them in a staging environment before production deployment. <br>
+## Use Case:
 
+Developers and site operators use this skill to generate Apache .htaccess directives for common web server tasks, including redirects, URL rewrites, security headers, HTTPS enforcement, caching, compression, CORS, IP blocking, custom error pages, and hotlink protection.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text Apache .htaccess configuration and command-line guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can print generated configuration to stdout or write it to a specified output file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Untrusted or malformed domains, origins, IPs, paths, and rewrite expressions can lead to unsafe or incorrect Apache directives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted, simple input values and review generated .htaccess content before deployment.
+
+Risk: The --output option writes to the named file and may overwrite existing content.
+
+Mitigation: Choose output paths deliberately and keep a backup or review the destination before writing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnnywang2001/skills/htaccess-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration]
+
+**Output Format:** [Plain text Apache .htaccess directives, optionally written to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes generated configuration to stdout by default; the --output option writes to the named file.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

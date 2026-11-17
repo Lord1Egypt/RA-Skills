@@ -1,43 +1,58 @@
-## Description: <br>
-Security, performance, and quality auditing for AgentSkills, including checks for dangerous operations, credential leaks, token bloat, and quality issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security, performance, and quality auditing for AgentSkills before installation or during development, including pattern scans for dangerous operations, credential leaks, token bloat, and quality issues.
 
-## Publisher: <br>
-[caleb-niu007](https://clawhub.ai/user/caleb-niu007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caleb-niu007](https://clawhub.ai/user/caleb-niu007)
 
-## Use Case: <br>
-Developers and engineers use this skill to review AgentSkills before installation or during development by running audits for security risks, token and performance issues, and quality best practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit scripts inspect local skill files and may include file paths, matched text, and context snippets in their reports. <br>
-Mitigation: Run audits only on intended skill directories and review generated reports before sharing them outside the working environment. <br>
-Risk: The security scanner is pattern-based and can produce false positives or miss risks that are outside its rules. <br>
-Mitigation: Use the findings as review prompts, then manually inspect high-impact behavior before installing or publishing a skill. <br>
-Risk: The release is tagged with a sensitive-credentials capability, but the server security guidance says not to grant credentials unless clearly needed. <br>
-Mitigation: Avoid granting credentials, broad file access, or mutation authority unless the specific audit task requires those permissions. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to audit AgentSkill packages before installation, during development, or in batches for security, performance, and quality issues. It helps identify risky patterns, exposed credentials, token bloat, and skill-structure problems with actionable remediation guidance.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/caleb-niu007/skill-auditor-plus) <br>
-- [AgentSkill best practices](references/best-practices.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON audit report examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces severity-ranked findings, metrics, and remediation guidance for local skill directories.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Audit output may expose sensitive local data such as full secret values when scanning skill directories.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat audit reports as sensitive, avoid sharing raw findings publicly, and redact secrets before storing or transmitting results.
+
+Risk: Running the auditor on untrusted directories may process attacker-controlled files or symlinks.
+
+Mitigation: Run the auditor only on trusted or isolated skill directories and review file paths before acting on results.
+
+Risk: Pattern-based scanning is not a complete security review and may miss vulnerabilities or produce false positives.
+
+Mitigation: Use findings as triage input, manually review high and medium severity results, and supplement with human review before deployment.
+
+## Reference(s):
+
+- [AgentSkill Best Practices](references/best-practices.md)
+- [ClawHub Skill Page](https://clawhub.ai/caleb-niu007/skills/skill-auditor-plus)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON audit-report examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Audit scripts produce JSON reports with issue counts, severity labels, file locations, matched patterns, and remediation suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

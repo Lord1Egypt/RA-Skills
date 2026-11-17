@@ -1,46 +1,61 @@
-## Description: <br>
-Create and execute Reddit posting, commenting, and upvoting workflows using browser accessibility-tree semantics instead of brittle DOM ids or CSS selectors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through drafting, confirming, and executing Reddit posts, comments, and upvotes using Reddit interaction playbooks.
 
-## Publisher: <br>
-[Alvinperson](https://clawhub.ai/user/Alvinperson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alvinperson](https://clawhub.ai/user/alvinperson)
 
-## Use Case: <br>
-External users and developers use this skill to draft, review, and perform Reddit posts, comments, and upvotes through an authenticated browser. It is intended for semantic UI targeting, subreddit-aware content preparation, and status reporting after each Reddit action. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make AI-written public Reddit posts and comments through a logged-in account. <br>
-Mitigation: Keep immediate posting disabled unless explicitly authorized, preview every generated post or comment, and verify the target, account, and content before submission. <br>
-Risk: The skill reuses local persona data, which could expose sensitive facts or create inconsistent public identity claims. <br>
-Mitigation: Keep PERSONA.md free of sensitive facts, use only documented non-sensitive facts, and log used content to avoid contradictions. <br>
-Risk: AI-assisted or automated engagement may violate Reddit or subreddit rules. <br>
-Mitigation: Check Reddit and subreddit rules before use, avoid communities that prohibit AI-generated or automated engagement, and stop when rules or moderation signals are unclear. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Post Strategy](artifact/references/post-strategy.md) <br>
-- [Comment Strategy](artifact/references/comment-strategy.md) <br>
-- [Interaction Patterns](artifact/references/interaction-patterns.md) <br>
-- [Subreddit Archives](artifact/references/sub-archives.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Alvinperson/reddit-engagement) <br>
+## Use Case:
 
+External users and developers use this skill to prepare Reddit-ready post or comment text, confirm high-visibility actions, and guide browser-based posting, commenting, or upvoting workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown status report with generated Reddit content previews when applicable] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns action performed, target, result status, UI evidence, and recovery guidance when actions fail; may create or submit public Reddit content when explicitly authorized.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can publish posts, comments, and votes from a Reddit account.
+
+Mitigation: Verify every post, comment, target, and vote before submission, and avoid pre-authorized immediate sending unless the user explicitly accepts the risk.
+
+Risk: The skill includes guidance for making AI-generated Reddit content appear human-authored.
+
+Mitigation: Use the skill only where automated Reddit activity is acceptable, disclose automation when required, and reject deceptive or policy-violating engagement requests.
+
+Risk: The skill may store persona usage history in PERSONA.md.
+
+Mitigation: Keep persona logging explicit, minimal, and deletable, and do not record unnecessary personal information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvinperson/skills/reddit-engagement)
+- [Publisher profile](https://clawhub.ai/user/alvinperson)
+- [Post Strategy](references/post-strategy.md)
+- [Comment Strategy](references/comment-strategy.md)
+- [Reddit Interaction Patterns](references/interaction-patterns.md)
+- [Subreddit Archives](references/sub-archives.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text with action summaries and user-confirmed Reddit content drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Reddit post or comment text, target summaries, UI outcome evidence, diagnostics, and recovery guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

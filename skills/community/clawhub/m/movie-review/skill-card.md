@@ -1,41 +1,58 @@
-## Description: <br>
-Write film reviews, get recommendations, and manage watchlists with spoiler control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write film reviews, get recommendations, and manage watchlists with spoiler control.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and creators use this skill to draft, revise, optimize, search, and export movie-review content from a local command-line workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review drafts and related notes are saved locally in plaintext under ~/.local/share/movie-review. <br>
-Mitigation: Avoid entering sensitive, private, or embargoed material unless the local data directory is managed and protected appropriately. <br>
-Risk: Advertised recommendation and watchlist capabilities do not appear to be implemented in the reviewed script. <br>
-Mitigation: Confirm required recommendation or watchlist behavior before relying on this skill for those workflows. <br>
+## Use Case:
 
+External users and content creators use this skill to draft, revise, optimize, schedule, search, and export movie-review content and related social posts through a local command-line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/movie-review) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output with optional JSON, CSV, or plain text exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores timestamped local log files and export files under ~/.local/share/movie-review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Review text and command inputs are saved locally and may be included in exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets, embargoed drafts, or private material unless you are prepared to manage or delete the files under ~/.local/share/movie-review.
+
+Risk: CSV and JSON exports may contain unescaped special characters from saved entries.
+
+Mitigation: Review and sanitize exported files before sharing them or loading them into downstream tools.
+
+Risk: The advertised scope is broader than the implemented local logging behavior.
+
+Mitigation: Validate that the command output meets the intended review-writing workflow before relying on it for recommendations, spoiler handling, or publishing decisions.
+
+## Reference(s):
+
+- [Movie Review Skill Page](https://clawhub.ai/bytesagain3/skills/movie-review)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text output with optional JSON, CSV, or plain text export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores timestamped local logs under ~/.local/share/movie-review and can export accumulated entries.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

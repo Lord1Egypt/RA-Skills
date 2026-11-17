@@ -1,41 +1,53 @@
-## Description: <br>
-Iteratively improves AI prompts by analyzing, rewriting, comparing, and refining them for clarity, structure, constraints, examples, and output format compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Iteratively improves AI prompts by analyzing weaknesses, rewriting prompts, comparing changes, and refining outputs for clarity, consistency, and format compliance.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, writers, and prompt authors use this skill to improve underperforming prompts, design A/B prompt variants, and tune prompts for specific goals or models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompt content may include secrets, customer data, or proprietary internal instructions. <br>
-Mitigation: Review and redact sensitive content before using the skill in an agent session. <br>
-Risk: An optimized prompt may change task intent or add constraints that do not fit the user's environment. <br>
-Mitigation: Review generated prompts and test them against representative inputs before deployment. <br>
+## Use Case:
 
+Developers, prompt authors, and AI application teams use this skill to improve underperforming prompts, produce structured rewrites, and design prompt comparisons or A/B tests for a target task or model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/charlie-morrison/prompt-evolution-engine) <br>
-- [Skill source](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sections containing analysis, an optimized prompt, changes made, and expected impact.] <br>
-**Output Parameters:** [Prompt content, goal, target model, max_tokens, style, and iterations when provided.] <br>
-**Other Properties Related to Output:** [May generate A/B test variants, comparison notes, and test inputs for prompt evaluation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User prompts may contain secrets, private data, or sensitive business context that would be processed by the agent or model workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove secrets and private data before asking the skill to analyze or rewrite a prompt.
+
+Risk: Prompt rewrites may change task intent, constraints, tone, or output expectations in ways that are not appropriate for the target use case.
+
+Mitigation: Review the optimized prompt and test it against representative inputs before adopting it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/charlie-morrison/skills/prompt-evolution-engine)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured analysis, optimized prompt, changes, and expected impact sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompt rewrites, comparison notes, A/B variants, and test inputs depending on the user's request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

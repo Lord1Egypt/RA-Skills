@@ -1,43 +1,60 @@
-## Description: <br>
-This skill helps agents extract structured Google Maps review data through BrowserAct's Google Maps Reviews API workflow for local business, reputation, competitor, market, and venue research tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents extract structured Google Maps review data for local businesses, brands, venues, competitors, and other place-based research tasks through BrowserAct's Google Maps Reviews API template.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-External users and agents use this skill to collect Google Maps reviews for local businesses, venues, brands, chains, and competitors. It supports reputation monitoring, sentiment analysis, market research, service quality audits, and review-based customer insight workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends Google Maps review lookup requests through BrowserAct and may return reviewer-identifying fields. <br>
-Mitigation: Use the skill only for explicit review-collection tasks, minimize unnecessary profile or avatar fields in downstream use, and consider applicable Google Maps, BrowserAct, privacy, and data-use obligations. <br>
-Risk: The skill depends on a BrowserAct API key and a third-party workflow service. <br>
-Mitigation: Confirm BROWSERACT_API_KEY is configured before use, do not retry invalid credentials, and report service errors to the user after the documented single retry. <br>
+## Use Case:
 
+Developers and agents use this skill to collect public Google Maps review fields for local business analysis, reputation monitoring, competitive benchmarking, sentiment analysis, market research, and service quality audits.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/phheng/google-maps-reviews-api-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/phheng) <br>
-- [BrowserAct Console](https://www.browseract.com/reception/integrations) <br>
-- [BrowserAct workflow API endpoint](https://api.browseract.com/v2/workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Terminal status logs followed by structured review data or JSON returned by the BrowserAct workflow] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python and BROWSERACT_API_KEY. The review payload may include reviewer names, profile URLs, avatar URLs, ratings, text, dates, and likes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill documentation may lead users to share BROWSERACT_API_KEY conversationally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure BROWSERACT_API_KEY through a protected environment or secret manager and rotate the key if it has already been shared in chat.
+
+Risk: Review search terms are sent to BrowserAct and results may include public reviewer profile data.
+
+Mitigation: Use the skill only when the user accepts sending business or review queries to BrowserAct and receiving public reviewer profile fields.
+
+Risk: The security verdict is suspicious despite no listed risk findings.
+
+Mitigation: Review before installing and scan the skill before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/google-maps-reviews-api-skill)
+- [Publisher Profile](https://clawhub.ai/user/phheng)
+- [BrowserAct API Key Console](https://www.browseract.com/reception/integrations)
+- [BrowserAct Workflow API Endpoint](https://api.browseract.com/v2/workflow)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, Text, JSON, Guidance]
+
+**Output Format:** [Terminal status logs followed by structured review data or JSON returned by the BrowserAct workflow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python and BROWSERACT_API_KEY; accepts keywords, language, and country arguments; automatic retry is limited to one retry for non-authorization failures.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,60 @@
-## Description: <br>
-Screen Vision lets an OpenClaw agent inspect screenshots, analyze desktop UI state with an OpenAI-compatible vision API, and perform mouse and keyboard actions in a controlled loop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI screen vision and desktop control skill for OpenClaw that uses screenshot analysis to understand UI elements and perform mouse and keyboard actions across Linux, macOS, and Windows.
 
-## Publisher: <br>
-[guitu917](https://clawhub.ai/user/guitu917) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guitu917](https://clawhub.ai/user/guitu917)
 
-## Use Case: <br>
-Developers and OpenClaw users can use this skill to let an agent view a desktop, understand UI elements, and carry out GUI tasks such as opening applications, browsing websites, filling forms, taking screenshots, and operating files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can view and operate a live desktop, including mouse and keyboard control. <br>
-Mitigation: Install and run it only in an isolated desktop or VM, and avoid using it with sensitive accounts, private screens, payment sessions, or production systems. <br>
-Risk: Default remote desktop setup and screenshot logging can expose screen contents. <br>
-Mitigation: Change or disable the VNC setup before use and disable screenshot logging when persistent logs are not needed. <br>
-Risk: The advertised confirmation safeguards may not be sufficient for destructive or financial actions. <br>
-Mitigation: Require manual review outside the skill before any destructive, privileged, purchase, payment, or transfer action. <br>
-Risk: Screenshots and task context may be sent to a configured vision provider. <br>
-Mitigation: Use a local or otherwise trusted vision provider and verify API endpoint, model, and credential settings before running tasks. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let an agent inspect the current desktop, reason about visible UI state, and execute bounded GUI tasks such as clicking, typing, scrolling, form filling, web browsing, and screenshot capture.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/guitu917/ai-screen-vision) <br>
-- [API Configuration](references/API_CONFIG.md) <br>
-- [Platform Setup Guide](references/PLATFORM_GUIDE.md) <br>
-- [Usage Examples](references/EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON configuration snippets, and shell or Python commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce desktop automation actions, screenshots, logs, and vision API requests during use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and README badge) <br>
+Risk: The skill can view and operate the user's desktop, so screenshots and actions may expose credentials, private documents, financial accounts, or authenticated business tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a disposable or tightly controlled environment and avoid use on sensitive screens unless the configured vision provider and network exposure are fully trusted.
+
+Risk: The server security summary flags unsafe safeguards and headless remote-desktop setup for a tool that can see and operate the screen.
+
+Mitigation: Review VNC password and listener configuration, endpoint validation, confirmation enforcement, screenshot logging, and installer secret handling before deployment.
+
+Risk: Screenshots are logged by default, creating persistent records of visible desktop content.
+
+Mitigation: Disable or tightly restrict screenshot logging, protect log storage, and clear logs after task completion when screen contents may be sensitive.
+
+## Reference(s):
+
+- [Platform Setup Guide](references/PLATFORM_GUIDE.md)
+- [Vision API Configuration](references/API_CONFIG.md)
+- [Usage Examples](references/EXAMPLES.md)
+- [ClawHub Skill Page](https://clawhub.ai/guitu917/skills/ai-screen-vision)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON configuration and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return structured task results, action histories, screenshot paths, and setup or configuration guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and README badge)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Compare patient pre-admission medication lists with inpatient orders to automatically identify omitted or duplicated medications and improve medication safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compare patient pre-admission medication lists with inpatient orders to automatically identify omitted or duplicated medications and improve medication safety.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinical staff, pharmacists, and care-team reviewers use this skill to compare structured pre-admission medication lists against inpatient orders and produce reconciliation reports that flag omissions, duplicates, dose changes, and critical medication warnings. It supports review workflows and does not replace qualified clinical judgment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive medication and patient-context data that may be PHI. <br>
-Mitigation: Use only de-identified or authorized inputs, follow organizational privacy rules, and treat generated reports as sensitive clinical data. <br>
-Risk: Generated reconciliation findings can be incomplete or clinically inappropriate if used as final care decisions. <br>
-Mitigation: Require qualified pharmacist, physician, or clinical staff review before any medication decision. <br>
-Risk: Reports written to shared or insecure folders could expose sensitive medication information. <br>
-Mitigation: Write outputs only to approved local or controlled storage locations. <br>
-Risk: Critical drug-class matching uses a hardcoded list and may not fit every clinical context. <br>
-Mitigation: Review critical warnings manually and adapt the workflow or configuration before use in specialized settings. <br>
+## Use Case:
 
+Clinical, pharmacy, and care-team users can use this skill to compare structured pre-admission medication lists with inpatient orders for a single patient encounter. It flags omissions, duplicates, dose changes, and critical-drug warnings for manual pharmacist or physician review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/medication-reconciliation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and JSON reconciliation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured report sections include continued, discontinued, new medications, duplicates, warnings, and documented dose-change handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The executable can produce misleading clinical reports if its reconciliation output is treated as a clinical decision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the report only as a review aid and require pharmacist or physician confirmation before medication decisions.
+
+Risk: The skill may expose identifiable patient data through input files, terminal output, or saved reports.
+
+Mitigation: Use only de-identified or authorized patient data, and avoid printing full reports in shared or logged terminals.
+
+Risk: Unnecessary or unpinned requirements can add installation uncertainty.
+
+Mitigation: Remove unnecessary requirements or pin dependencies before installing in a real clinical or PHI-handling environment.
+
+## Reference(s):
+
+- [Medication Reconciliation ClawHub Page](https://clawhub.ai/aipoch-ai/skills/medication-reconciliation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown or text guidance with optional JSON reconciliation reports and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a JSON report file when an output path is provided; reports include continued, discontinued, new, duplicate, dose_changed, warning, and recommendation sections.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, released 2026-03-27)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

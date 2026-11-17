@@ -1,47 +1,59 @@
-## Description: <br>
-研发经理助手 helps R&D managers generate standup and weekly reports, Git activity summaries, code review checklists, project progress notes, and task allocation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+研发经理助手帮助研发经理生成晨会和周报、汇总代码活动、创建代码审查清单，并基于项目配置跟踪进度和任务分配建议。
 
-## Publisher: <br>
-[wangminjun](https://clawhub.ai/user/wangminjun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangminjun](https://clawhub.ai/user/wangminjun)
 
-## Use Case: <br>
-R&D managers and engineering leads use this skill to prepare recurring project reports, summarize repository activity, create code review checklists, monitor project status, and draft task allocation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run local scripts against selected repositories and team configuration files. <br>
-Mitigation: Confirm the target repository, configuration file, and command arguments before execution. <br>
-Risk: Git statistics collection may change the selected repository's checked-out branch. <br>
-Mitigation: Run the tool only on an intended working copy and confirm there is no uncommitted work before collecting statistics. <br>
-Risk: Report and checklist tools can overwrite files at chosen output paths. <br>
-Mitigation: Use explicit output paths and review existing files before generating reports. <br>
-Risk: Generated reports may contain sensitive internal project, repository, or team information. <br>
-Mitigation: Treat generated reports as internal documents and review content before sharing. <br>
+## Use Case:
 
+External development managers and engineering leads use this skill to prepare recurring project reports, inspect Git activity, structure code reviews, monitor project progress, and draft task allocation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wangminjun/rdm-assistant) <br>
-- [README.md](README.md) <br>
-- [代码审查检查清单](docs/代码审查检查清单.md) <br>
-- [晨会报告模板](templates/晨会报告模板.md) <br>
-- [项目周报模板](templates/项目周报模板.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, shell command output, configuration guidance, and checklist text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports may include repository activity, team information, project risks, and review notes supplied through local configuration and command inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The Git statistics tool can unexpectedly change a repository's active branch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and update the Git statistics workflow before use so it inspects the requested branch without changing the user's working branch.
+
+Risk: Report and checklist tools may overwrite existing local output files.
+
+Mitigation: Require explicit confirmation or unique output paths before writing generated reports or review checklists.
+
+Risk: The skill reads configured local repositories and project configuration.
+
+Mitigation: Install and run it only in workspaces where the operator is comfortable exposing repository metadata to the agent workflow.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/wangminjun/skills/rdm-assistant)
+- [README](README.md)
+- [Code review checklist](docs/代码审查检查清单.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, checklist files, shell command output, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read configured local Git repositories and write Markdown reports or review checklists to local output paths.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-A Chinese-language self-media writing assistant that guides article, Xiaohongshu, and video-script work from brief creation through research, topic selection, drafting, review, formatting, draft publishing, and archiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+自媒体写作助手，提供完整的10步创作流程：需求分析→知识搜索→选题讨论→风格学习→创作初稿→三遍审校(降AI味)→封面配图→HTML排版→发布草稿箱→归档，支持公众号、小红书、视频逐字稿多平台内容创作。
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Content creators and marketing teams use this skill to plan, draft, revise, format, and prepare Chinese self-media content for platforms such as WeChat public accounts, Xiaohongshu, and video scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local content and may process private writing materials or workspace files. <br>
-Mitigation: Use it only in a dedicated content workspace and keep unrelated private files outside the default folders it reads. <br>
-Risk: The skill may store Google or WeChat credentials in local configuration files or shell profiles. <br>
-Mitigation: Provide credentials only in a trusted environment, protect local credential files, and rotate keys if they are exposed. <br>
-Risk: The skill can install packages or run helper scripts as part of formatting and initialization workflows. <br>
-Mitigation: Install dependencies manually in a trusted environment and review shell commands before execution. <br>
-Risk: The workflow may prepare upload or publishing actions for platform drafts with limited user control. <br>
-Mitigation: Require explicit approval before any draft upload, publishing, or external platform action. <br>
+## Use Case:
 
+Chinese self-media creators and marketing teams use this skill to plan, draft, revise, format, and archive articles or scripts for WeChat Official Accounts, Xiaohongshu, and video transcripts. It also supports brief creation, topic selection, style adaptation, cover-image workflow guidance, HTML conversion, and optional publishing preparation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kelcey2023/zeelin-writing-v2) <br>
-- [Publisher profile](https://clawhub.ai/user/kelcey2023) <br>
-- [Reference documentation index](references/README.md) <br>
-- [Brief template](references/brief-template.md) <br>
-- [User persona](references/用户人设.md) <br>
-- [Google AI Studio API key page](https://aistudio.google.com/app/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown content, brief files, HTML files, JSON manifests, shell commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project folders and draft content files; may prepare platform publishing drafts when credentials are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The workflow can over-automate local reading, draft creation, and publishing preparation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review requested file access and require a separate confirmation before publishing drafts or using platform credentials.
+
+Risk: Setup instructions may store API keys persistently in shell startup files or local configuration.
+
+Mitigation: Use restricted, manually managed API keys and avoid storing secrets in shell startup files.
+
+Risk: The bundled brand persona may steer content toward a specific commercial voice and call to action.
+
+Mitigation: Use the persona only when that voice is intended, and review drafts for brand, accuracy, and platform-policy fit before publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/zeelin-writing-v2)
+- [Reference document index](references/README.md)
+- [Brief template](references/brief-template.md)
+- [Brand persona](references/用户人设.md)
+- [Google AI Studio API keys](https://aistudio.google.com/app/apikey)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown prose with file paths, shell commands, generated article drafts, brief documents, HTML conversion output, and JSON manifests from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project folders, Markdown files, HTML files, image assets, and draft publishing artifacts when the user authorizes those workflows.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

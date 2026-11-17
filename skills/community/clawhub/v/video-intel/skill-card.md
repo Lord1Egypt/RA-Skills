@@ -1,41 +1,58 @@
-## Description: <br>
-Download videos and get transcripts, summaries, or metadata from YouTube, TikTok, Instagram, and X (Twitter). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads videos and extracts transcripts, summaries, or metadata from YouTube, TikTok, Instagram, and X when a user shares a video URL.
 
-## Publisher: <br>
-[nogara](https://clawhub.ai/user/nogara) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nogara](https://clawhub.ai/user/nogara)
 
-## Use Case: <br>
-External users and developers use this skill when they have a video URL and need captions, transcript text, a summary, key points, quotes, metadata, or a downloaded video file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A crafted video title could trigger unintended local shell command execution. <br>
-Mitigation: Review the script before installation and avoid processing untrusted or adversarial video URLs until filename handling is fixed. <br>
-Risk: Fallback transcription can upload audio content to OpenAI. <br>
-Mitigation: Do not use the skill on private or sensitive videos unless this upload is acceptable; keep OPENAI_API_KEY unset or use a local transcription model when external upload is not acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Video Intelligence on ClawHub](https://clawhub.ai/nogara/video-intel) <br>
-- [yt-dlp release download](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp) <br>
-- [OpenAI audio transcription API](https://api.openai.com/v1/audio/transcriptions) <br>
+## Use Case:
 
+External users, developers, and agents use this skill to fetch captions, transcribe audio when captions are unavailable, inspect video metadata, or download video and audio from supported platforms.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown-oriented command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create downloaded video, audio, and caption files under /tmp/video-intel by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security scan reports that a crafted video title can reach unsafe shell execution in the bundled script.
+
+Mitigation: Review before installing, use only trusted video URLs until shell filename handling is fixed, and avoid running the skill in privileged environments.
+
+Risk: When captions are unavailable, downloaded audio may be sent to OpenAI for transcription if OPENAI_API_KEY is set.
+
+Mitigation: Unset OPENAI_API_KEY or use a local transcription path when external audio transmission is not acceptable.
+
+Risk: The setup guidance downloads yt-dlp from a latest-release URL.
+
+Mitigation: Prefer a pinned and checksum-verified yt-dlp installation for repeatable deployments.
+
+## Reference(s):
+
+- [OpenAI Audio Transcriptions API](https://api.openai.com/v1/audio/transcriptions)
+- [yt-dlp release download](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp)
+- [ClawHub skill page](https://clawhub.ai/nogara/skills/video-intel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create cached caption, audio, or video files under /tmp/video-intel during execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

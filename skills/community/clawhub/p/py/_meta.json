@@ -1,6 +1,27 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "py",
-  "version": "1.0.1",
-  "publishedAt": 1771103241009
+  "displayName": "Python",
+  "latest": {
+    "version": "1.0.4",
+    "publishedAt": 1784974787175
+  },
+  "history": [
+    {
+      "version": "1.0.3",
+      "publishedAt": 1784845199540
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1784812542583
+    },
+    {
+      "version": "1.0.1",
+      "publishedAt": 1771103241009
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770678828973
+    }
+  ]
 }

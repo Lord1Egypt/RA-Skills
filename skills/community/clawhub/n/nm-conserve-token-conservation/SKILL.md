@@ -2,13 +2,13 @@
 name: token-conservation
 description: |
   Enforces token quota management at session start with conservation and compression checks. Use at the start of every session or before large context loads
-version: 1.9.8
+version: 1.10.3
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/conserve", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: conserve
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Token Conservation Workflow
@@ -22,7 +22,7 @@ source_plugin: conserve
 - Context-optimization already handles the scenario
 - Simple queries with minimal context
 
-## Required TodoWrite Items
+## Required Progress Items
 1. `token-conservation:quota-check`
 2. `token-conservation:context-plan`
 3. `token-conservation:delegation-check`
@@ -46,15 +46,20 @@ source_plugin: conserve
 - **When budget is spent**: ask the user if more context is needed. Do NOT
   self-authorize additional reads. Only explicit user approval overrides the budget.
 - Prefer `Read` with `offset`/`limit` params or `Grep` tool over loading whole files.
-  A `Read` targeting <50 lines counts as 0.5 reads. Avoid `cat`/`sed`/`awk` via Bash
-  — Claude Code 2.1.21+ steers toward native file tools (Read, Edit, Write, Grep, Glob).
+  A `Read` targeting <50 lines counts as 0.5 reads. Avoid `cat`/`sed`/`awk` via Bash:
+  Claude Code 2.1.21+ steers toward native file tools (Read, Edit, Write, Grep, Glob).
 - **PDFs (Claude Code 2.1.30+)**: Use `Read` with `pages: "1-5"` for targeted PDF reading
   instead of loading entire documents. Large PDFs (>10 pages) return a lightweight
-  reference when @-mentioned — use the `pages` parameter to read specific sections.
+  reference when @-mentioned, so use the `pages` parameter to read specific sections.
   Hard limits: **100 pages max, 20MB max per PDF**. Exceeding these previously locked
   sessions permanently (fixed in 2.1.31).
 - Convert prose instructions into bullet lists before prompting so only essential
   info hits the model.
+
+- Before a web search or fetch, decide whether the claim needs a
+  source at all. `modules/source-selection.md` sorts claims into those
+  worth citing (versions, performance, security, APIs, pricing) and
+  those that are not, with the token cost of each approach.
 
 ## Step 3 – Delegation Check (`delegation-check`)
 - Evaluate whether compute-intensive tasks can go to Qwen MCP or other external
@@ -69,7 +74,7 @@ source_plugin: conserve
   when the model has already processed the information (cite snippet IDs).
 - Decide whether the current thread should be compacted:
   - If only recent context is stale, use **"Summarize from here"** (Claude Code 2.1.32+)
-    via the message selector to partially summarize the conversation — this preserves
+    via the message selector to partially summarize the conversation. This preserves
     recent context while compressing older portions
   - If the active workflow is finished and earlier context will not be reused,
     instruct the user to run `/new`
@@ -77,7 +82,7 @@ source_plugin: conserve
     prompt them to run `/compact` before continuing
 - **Automatic memory** (Claude Code 2.1.32+): Claude now records and recalls session
   memories automatically. This adds minor token overhead but improves cross-session
-  continuity. No action needed — be aware it contributes to baseline context usage.
+  continuity. No action needed: be aware it contributes to baseline context usage.
 
 ## Step 5 – Logging (`logging`)
 
@@ -92,3 +97,20 @@ or justify why neither was necessary, to inform future context-handling decision
   - "next turn: provide only failing test output lines 40-60"
 - Explicit reminder about `/new` or `/compact` whenever you determine it would save
   tokens (otherwise state that no reset/compaction is needed yet).
+
+## Exit Criteria
+
+- [ ] All 5 progress items created and checked off in order:
+  `quota-check`, `context-plan`, `delegation-check`,
+  `compression-review`, `logging`
+- [ ] Discovery read budget set before the first `Read` call, with
+  the task type (spec/bug/refactor/exploration) and max-reads
+  limit recorded
+- [ ] Output summary states the remaining token runway (or warns
+  "budget low") and includes an explicit `/new` or `/compact`
+  recommendation, or a justification for why neither is needed
+- [ ] No additional file reads taken after the read budget is
+  exhausted without explicit user approval in the same session
+- [ ] Every version, performance, security, API or pricing claim in
+  the output carries a citation or an uncertainty marker, per
+  `modules/source-selection.md`

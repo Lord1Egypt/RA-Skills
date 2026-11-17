@@ -1,47 +1,63 @@
-## Description: <br>
-Chinese Search helps agents produce curl-based Chinese web search commands for Bing China, Sogou WeChat, and related Chinese search workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese Search helps agents construct Chinese-language web searches and curl commands for Bing China and Sogou WeChat.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users and developers use this skill to search Chinese-language web content, WeChat public articles, market research, content ideas, and technical documentation using direct search-engine queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to third-party public search engines and may be logged by those providers. <br>
-Mitigation: Avoid using secrets, internal project names, regulated data, or sensitive personal information as search queries. <br>
-Risk: Public search endpoints can apply rate limits, scraping restrictions, bot detection, or provider-specific access policies. <br>
-Mitigation: Use conservative request rates, respect provider terms, and prefer official APIs for commercial or high-volume usage. <br>
-Risk: Search responses are HTML pages that can change structure or require additional headers, cookies, JavaScript rendering, or manual parsing. <br>
-Mitigation: Validate returned results before relying on them and update parsing or request headers when providers change behavior. <br>
+## Use Case:
 
+Developers, researchers, content teams, and external users use this skill to prepare Chinese web searches for market research, content discovery, self-media research, and technical lookup. Users should review outbound search terms and parse returned HTML before relying on results.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/chinese-search) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Quickstart Guide](artifact/QUICKSTART.md) <br>
-- [Test Results](artifact/TEST-RESULTS.md) <br>
-- [Bing China Search](https://cn.bing.com/search) <br>
-- [Sogou WeChat Search](https://weixin.sogou.com/weixin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash and curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and returns third-party search engine HTML that may need parsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search terms are sent to third-party search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider list before use and avoid entering secrets, credentials, private customer data, or sensitive project names as search terms.
+
+Risk: Install examples use an unpinned ClawHub CLI version.
+
+Mitigation: Use a reviewed and pinned ClawHub CLI version instead of @latest when installing in controlled environments.
+
+Risk: The artifact includes an unrelated wttr.in example that may mislead users or send data to an unexpected endpoint.
+
+Mitigation: Treat the wttr.in example as unsafe or remove it before relying on the skill.
+
+Risk: Provider responses are raw HTML and may be incomplete, rate-limited, blocked, or difficult to parse reliably.
+
+Mitigation: Add request throttling, review provider terms, and validate parsed results before using them for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/skills/chinese-search)
+- [Bing China search endpoint](https://cn.bing.com/search)
+- [Sogou WeChat search endpoint](https://weixin.sogou.com/weixin)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and URL patterns]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search requests require curl and may return provider HTML that needs separate parsing.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

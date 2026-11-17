@@ -1,43 +1,59 @@
-## Description: <br>
-ARC-style multi-agent collaboration for planning, execution, review, summarization, research, criticism, and iterative peer review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ARC multi-agent collaboration for planning, execution, review, summarization, research, criticism, and iterative peer review.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Developers and agents use this skill to decompose complex work into role-based tasks, execute dependency-ordered collaboration, review outputs, and synthesize structured reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad automatic capability execution could affect files, accounts, services, or private data when powerful tools are registered. <br>
-Mitigation: Use the skill only in environments where capability execution requires explicit approval and registered tools are scoped to the task. <br>
-Risk: Skill-evolution behavior may log failures or change behavior in ways that are not clear to the user. <br>
-Mitigation: Review SkillEvolver logging and behavior-change settings before installation, and keep them controllable during use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate complex work through role-based task decomposition, dependency-ordered execution, peer review, and synthesis into a structured report.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/534422530/collaborative-agent) <br>
-- [Bilibili: Agent tracing and observability](https://www.bilibili.com/video/BV1BwVd6xEd8) <br>
-- [Bilibili: Caveman agent token efficiency](https://www.bilibili.com/video/BV1hdV96rEiV) <br>
-- [Bilibili: MUSE-Autoskill skill evolution](https://www.bilibili.com/video/BV1QPVf6QEF1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance, configuration] <br>
-**Output Format:** [Markdown or structured text, with code snippets when implementation tasks require them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate role-based task results into a final report.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill relies on an unreviewed local Python module under D:\coze-local\db.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after separately reviewing and controlling that local module.
+
+Risk: Delegated capabilities may run automatically through broad triggers.
+
+Mitigation: Require explicit user confirmation before running delegated capabilities.
+
+Risk: SkillEvolver may persist behavior or storage changes.
+
+Mitigation: Review and approve persistent evolution behavior before enabling it.
+
+## Reference(s):
+
+- [Agent tracing and observability learning reference](https://www.bilibili.com/video/BV1BwVd6xEd8)
+- [Caveman agent efficiency learning reference](https://www.bilibili.com/video/BV1hdV96rEiV)
+- [MUSE-Autoskill skill evolution learning reference](https://www.bilibili.com/video/BV1QPVf6QEF1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce structured reports after coordinating delegated agent roles.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,54 @@
+name: sop-dev-003-docker-workaround-host-commands
+description: 'SOP Canónico: sop-dev-003-docker-workaround-host-commands'
+userFacing: true
+sop_id: SOP-DEV-003
+title: Workaround para limitación Docker (host-commands.sh)
+agent: dev
+status: approved
+version: 1.0
+created: 2026-07-10
+updated: 2026-08-07
+reviewed_by: skill-manager
+approved_by: change-manager
+promoted_to_skill: sop-dev-003-docker-workaround
+body: "## Propósito\nDefine el procedimiento estándar para ejecutar comandos Docker\
+  \ (`docker exec`, `docker run`, `docker build`, etc.) cuando el agente `dev` no\
+  \ tiene acceso directo al daemon Docker del host. Usa el mecanismo de host-commands.sh\
+  \ como puente seguro.\n\n## Disparador\nCuando una tarea asignada a `dev` requiere\
+  \ operaciones Docker que no se pueden ejecutar dentro del sandbox (ej: levantar\
+  \ contenedores, ejecutar en contenedores existentes, builds multi-stage, acceso\
+  \ a volúmenes host).\n\n## Procedimiento\n1. **Validar necesidad** — Confirmar que\
+  \ la operación NO puede hacerse en sandbox (ej: necesita daemon Docker real, red\
+  \ host, volúmenes host, GPU, puertos privilegiados). Documentar justificación en\
+  \ COMMS.\n2. **Escribir comandos en host-commands.sh** — Crear/añadir a `/workspace/host-commands.sh`:\n\
+  \   ```bash\n   #!/bin/bash\n   # TASK: <card_id> — <descripción breve>\n   # AGENT:\
+  \ dev\n   # TIMESTAMP: $(date -Iseconds)\n   \n   # Comandos Docker a ejecutar en\
+  \ host (uno por línea, con set -e)\n   docker exec <container> <comando>\n   docker\
+  \ run --rm <imagen> <comando>\n   # ... más comandos\n   ```\n   - Un comando por\
+  \ línea, con `set -e` implícito (fallo detiene ejecución)\n   - Incluir solo comandos\
+  \ Docker; NO comandos arbitrarios de host\n   - Comentar cada bloque con propósito\n\
+  3. **Hacer ejecutable** — `chmod +x /workspace/host-commands.sh`\n4. **Registrar\
+  \ en COMMS** — Escribir bloque `WORKBOARD_BLOCK` con:\n   - REASON: \"Docker operation\
+  \ required — host-commands.sh ready\"\n   - COMMANDS_FILE: `/workspace/host-commands.sh`\n\
+  \   - STATUS: WAITING_HOST_EXEC\n   - CARD_ID: <card_id>\n5. **Bloquear workboard\
+  \ card** — Ejecutar `workboard_block` en la card actual con reason: \"Waiting for\
+  \ host Docker execution via host-commands.sh\"\n6. **Esperar ejecución host** —\
+  \ Main/operator ejecuta `/workspace/host-commands.sh` en host. Output se captura\
+  \ en `/workspace/host-commands-output.log`\n7. **Verificar resultado** — Leer `/workspace/host-commands-output.log`.\
+  \ Confirmar éxito (exit code 0, output esperado).\n8. **Limpiar** — Borrar `/workspace/host-commands.sh`\
+  \ y `/workspace/host-commands-output.log` tras confirmar.\n9. **Desbloquear y continuar**\
+  \ — `workboard_unblock` card, continuar con SOP-DEV-001 validación en sandbox con\
+  \ resultado de host.\n\n## Validación\n- ✅ Justificación documentada en COMMS (por\
+  \ qué sandbox no basta)\n- ✅ host-commands.sh solo contiene comandos Docker (auditable)\n\
+  - ✅ WORKBOARD_BLOCK escrito con CARD_ID y COMMANDS_FILE\n- ✅ Card bloqueada en workboard\n\
+  - ✅ Output verificado tras ejecución host\n- ✅ Archivos temporales limpiados tras\
+  \ confirmación\n- ✅ Continuación en sandbox validada\n\n## Escalado\n- Si host-commands.sh\
+  \ falla (exit code ≠ 0) → STATUS: BLOCKED en COMMS → notificar a main con output\
+  \ log\n- Si operación Docker requiere privilegios no permitidos → STATUS: DECISION_RECORDED\
+  \ → escalar a main para decisión de arquitectura\n- Si timeout > 5 min en ejecución\
+  \ host → STATUS: BLOCKED → investigar hang\n- Si main/operator no ejecuta en 30\
+  \ min → STATUS: ESCALATED → notificar en COMMS_main.md\n\n## Seguridad\n- **NUNCA**\
+  \ escribir comandos no-Docker en host-commands.sh (rm -rf, chmod 777, curl | bash,\
+  \ etc.)\n- **NUNCA** usar host-commands.sh para operaciones que sandbox puede hacer\n\
+  - Auditoría: main/operator revisa host-commands.sh ANTES de ejecutar\n- Log de ejecuciones\
+  \ se mantiene en COMMS_main.md con timestamp y resultado\n\n---\n*Ref: ~/.openclaw/workspace/gobierno/SOP_STANDARD.md*"

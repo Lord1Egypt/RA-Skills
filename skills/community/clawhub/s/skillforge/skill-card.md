@@ -1,42 +1,51 @@
-## Description: <br>
-skillforge generates production-grade Agent Skill packages through a structured 7-step pipeline for creating new skills, upgrading low-quality skills, or batch-producing skills for a domain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillForge generates production-grade Agent Skill packages through a structured 7-step pipeline for creating new skills, improving low-quality skills, or batch-producing skills for a domain.
 
-## Publisher: <br>
-[mmlong818](https://clawhub.ai/user/mmlong818) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mmlong818](https://clawhub.ai/user/mmlong818)
 
-## Use Case: <br>
-Developers and skill authors use this skill to design and generate complete Agent Skill packages from requirements, including SKILL.md content, resource files, quality checks, and usage documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated skill packages may create or overwrite files in an unintended output folder. <br>
-Mitigation: Specify a new output folder, review the planned file tree before writing, and avoid overwriting existing skills. <br>
-Risk: Generated scripts or instructions may be installed or shared before they are reviewed. <br>
-Mitigation: Inspect generated files, scripts, and instructions before installing, publishing, or sharing the skill package. <br>
+## Use Case:
 
+Developers and agent builders use SkillForge to turn skill requirements into complete Agent Skill directories with frontmatter, workflow instructions, references, scripts, templates, and usage documentation.
 
-## Reference(s): <br>
-- [SkillForge step prompts](references/step-prompts.md) <br>
-- [ClawHub skill page](https://clawhub.ai/mmlong818/skillforge) <br>
-- [Publisher profile](https://clawhub.ai/user/mmlong818) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with file paths, structured checklists, and code or shell snippets when generated skills require them] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a complete skill directory plan and files such as SKILL.md, scripts, references, and templates when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill can guide an agent to write generated skill directories and supporting files in the workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Specify the target directory before use and require approval before overwriting existing files.
+
+## Reference(s):
+
+- [SkillForge release page](https://clawhub.ai/mmlong818/skills/skillforge)
+- [Publisher profile](https://clawhub.ai/user/mmlong818)
+- [Step Prompts](references/step-prompts.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown instructions plus generated skill files and supporting resource content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs a complete skill directory containing SKILL.md and planned scripts, references, and templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

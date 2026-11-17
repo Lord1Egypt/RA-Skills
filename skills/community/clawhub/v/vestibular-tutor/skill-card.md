@@ -1,40 +1,48 @@
-## Description: <br>
-A Portuguese Socratic tutoring skill for Antonio's FUVEST Computer Science entrance exam preparation across vestibular subjects, adapted for active, curiosity-driven learning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portuguese-language Socratic tutoring skill for FUVEST entrance-exam preparation across school subjects, adapted for Antonio's high-functioning ADHD study style.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External learners and agents use this skill to guide Antonio through Portuguese-language vestibular study with Socratic questions, layered explanations, interdisciplinary connections, and optional flashcard prompts.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad activation wording may cause the skill to take over general explanation requests beyond explicit FUVEST or school-study contexts.
+
+Mitigation: Narrow the trigger wording when deployment should be limited to explicit vestibular, FUVEST, or school-study requests.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students and educators use this skill as a conversational Portuguese tutor for FUVEST vestibular preparation. It guides learning through Socratic questions, Feynman-style explanations, interdisciplinary connections, ADHD-aware pacing, and optional flashcard prompts. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is personalized to Antonio's FUVEST study routine and includes ADHD-related assumptions that may not fit other learners. <br>
-Mitigation: Review and adapt the personalization before reuse, especially the audience assumptions, tutoring style, and study-routing behavior. <br>
-Risk: The skill can route broad study questions across many vestibular subjects, which may make it overactive in general tutoring contexts. <br>
-Mitigation: Install it only where broad Portuguese vestibular tutoring is desired, or narrow activation criteria before deployment. <br>
+**Output Format:** [Markdown conversational tutoring responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/AntonioVFranco/vestibular-tutor) <br>
+**Other Properties Related to Output:** [Portuguese-language responses with Socratic prompts, layered explanations, interdisciplinary analogies, and optional flashcard suggestions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown conversational tutoring responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include questions, analogies, step-by-step explanations, and optional flashcard prompts.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,11 +1,11 @@
 # IDMT\_SchematicPageItem interface
 
-原理图图页属性
+Schematic sheet property
 
 ## Signature
 
 ```typescript
-interface IDMT_SchematicPageItem 
+interface IDMT_SchematicPageItem
 ```
 
 ## Properties
@@ -14,137 +14,109 @@ interface IDMT_SchematicPageItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [itemType](./IDMT_SchematicPageItem.md)
 
-
 </td><td>
 
 `readonly`
-
 
 </td><td>
 
 [EDMT\_ItemType.SCHEMATIC\_PAGE](../enums/EDMT_ItemType.md)
 
-
 </td><td>
 
-项目类型
-
+Project type
 
 </td></tr>
 <tr><td>
 
 [name](./IDMT_SchematicPageItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图图页名称
-
+Schematic sheet name
 
 </td></tr>
 <tr><td>
 
 [parentSchematicUuid](./IDMT_SchematicPageItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-所属原理图 UUID
-
+UUID of the schematic it belongs to
 
 </td></tr>
 <tr><td>
 
 [showTitleBlock](./IDMT_SchematicPageItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 boolean
 
-
 </td><td>
 
-是否显示明细表
-
+Whether to show the title block
 
 </td></tr>
 <tr><td>
 
 [titleBlockData](./IDMT_SchematicPageItem.md)
 
+</td><td>
 
 </td><td>
 
+Record&lt;string, { showTitle: boolean; showValue: boolean; value: any }&gt;
 
 </td><td>
 
-\{ \[key: string\]: \{ showTitle: boolean; showValue: boolean; value: any; \}; \}
-
-
-</td><td>
-
-明细表数据
-
+Title block data
 
 </td></tr>
 <tr><td>
 
 [uuid](./IDMT_SchematicPageItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-原理图图页 UUID
-
+Schematic sheet UUID
 
 </td></tr>
 </tbody></table>
@@ -157,7 +129,7 @@ string
 
 # IDMT\_SchematicPageItem.itemType property
 
-项目类型
+Project type
 
 ## Signature
 
@@ -169,7 +141,7 @@ readonly itemType: EDMT_ItemType.SCHEMATIC_PAGE;
 
 # IDMT\_SchematicPageItem.name property
 
-原理图图页名称
+Schematic sheet name
 
 ## Signature
 
@@ -181,7 +153,7 @@ name: string;
 
 # IDMT\_SchematicPageItem.parentSchematicUuid property
 
-所属原理图 UUID
+UUID of the schematic it belongs to
 
 ## Signature
 
@@ -193,7 +165,7 @@ parentSchematicUuid: string;
 
 # IDMT\_SchematicPageItem.showTitleBlock property
 
-是否显示明细表
+Whether to show the title block
 
 ## Signature
 
@@ -205,25 +177,19 @@ showTitleBlock: boolean;
 
 # IDMT\_SchematicPageItem.titleBlockData property
 
-明细表数据
+Title block data
 
 ## Signature
 
 ```typescript
-titleBlockData: {
-        [key: string]: {
-            showTitle: boolean;
-            showValue: boolean;
-            value: any;
-        };
-    };
+titleBlockData: Record<string, { showTitle: boolean; showValue: boolean; value: any }>;
 ```
 
 ### uuid
 
 # IDMT\_SchematicPageItem.uuid property
 
-原理图图页 UUID
+Schematic sheet UUID
 
 ## Signature
 

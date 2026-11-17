@@ -1,51 +1,61 @@
-## Description: <br>
-Add AI voice assistants to your website. Engage visitors with natural voice conversations, capture leads, automate support, and boost conversions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add AI voice assistants to your website. Engage visitors with natural voice conversations, capture leads, automate support, and boost conversions.
 
-## Publisher: <br>
-[ANVEAI](https://clawhub.ai/user/ANVEAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[anveai](https://clawhub.ai/user/anveai)
 
-## Use Case: <br>
-Developers, website owners, support teams, and marketing teams use this skill to create, configure, deploy, and analyze AnveVoice website voice assistants for customer support, lead capture, engagement, and visitor analytics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive visitor voice data, transcripts, contact leads, analytics, recordings, billing information, and credential-management data. <br>
-Mitigation: Install only when the publisher and remote service are trusted, use the narrowest API-key scope available, and avoid billing or credential tools unless they are needed. <br>
-Risk: Embedding a voice widget can collect website visitor voice recordings, transcripts, browser metadata, and contact information. <br>
-Mitigation: Confirm user consent, privacy-policy disclosure, retention settings, and applicable GDPR, CCPA, HIPAA, or other compliance requirements before deployment. <br>
-Risk: Delete and revoke actions can change or remove bots, knowledge sources, or credentials. <br>
-Mitigation: Require manual confirmation before delete, revoke, or broad account-administration actions. <br>
-Risk: Over-broad API keys increase the impact of misuse or accidental disclosure. <br>
-Mitigation: Use scoped keys for the intended task, keep keys in environment variables, rotate keys regularly, and revoke unused keys. <br>
+## Use Case:
 
+Website operators, support teams, marketers, and developers use AnveVoice to create and manage voice assistants that answer visitor questions, capture leads, deploy website widgets, and analyze conversations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ANVEAI/anvevoice) <br>
-- [AnveVoice Website](https://anvevoice.com) <br>
-- [AnveVoice Documentation](https://anvevoice.com/help) <br>
-- [AnveVoice Developer/API Keys](https://anvevoice.com/developer) <br>
-- [Security Policy](artifact/SECURITY.md) <br>
-- [Create Bot Example](artifact/examples/create-bot.md) <br>
-- [Analytics Example](artifact/examples/analytics.md) <br>
-- [List Bots Example](artifact/examples/list-bots.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with JSON tool-call examples, shell commands, and HTML embed snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANVEVOICE_API_KEY and may return sensitive account, visitor, conversation, analytics, recording, billing, and credential-management data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can access sensitive visitor data, including conversation transcripts, recordings, profiles, leads, billing, and credentials when the API key permits it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped AnveVoice API keys, avoid Full Access unless administration is required, and require confirmation before accessing sensitive account or visitor data.
+
+Risk: Website voice widgets may collect microphone input, recordings, transcripts, browser metadata, and contact details from visitors.
+
+Mitigation: Add privacy notices, consent flows, retention controls, and browser security controls before deploying the embed script.
+
+Risk: The skill exposes destructive account actions, including deleting knowledge sources, deleting or pausing bots, and revoking credentials.
+
+Mitigation: Require explicit user confirmation before destructive actions and use separate keys for development, staging, and production.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/anveai/skills/anvevoice)
+- [AnveVoice Website](https://anvevoice.com)
+- [AnveVoice Developer Portal](https://anvevoice.com/developer)
+- [AnveVoice Help Documentation](https://anvevoice.com/help)
+- [AnveVoice Dashboard](https://anvevoice.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls]
+
+**Output Format:** [Markdown guidance with JSON tool-call arguments, shell commands, and embeddable HTML snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ANVEVOICE_API_KEY; responses may include bot configuration, analytics, leads, visitor profiles, recordings, billing, and credential data based on API key scope.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata); source frontmatter reports 1.0.0
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

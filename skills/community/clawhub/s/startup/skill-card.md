@@ -1,39 +1,55 @@
-## Description: <br>
-Orchestrate startup work by spawning specialized agents and applying stage-appropriate priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates startup work: routes tasks to specialized agents and applies stage-appropriate priorities for advising founders on product-market fit, growth, hiring, fundraising, runway, and burn decisions.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Founders, operators, and startup advisors use this skill to route startup questions to appropriate specialist roles and apply priorities based on whether the company is before or after product-market fit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Complex requests may be routed across specialist agent roles, increasing exposure of confidential legal, financial, hiring, or fundraising details. <br>
-Mitigation: Share only necessary context, redact sensitive details, or request a single-agent response for confidential work. <br>
-Risk: Startup strategy guidance can be misapplied if the company's stage is unclear. <br>
-Mitigation: Confirm whether the company is pre-PMF or post-PMF before acting on recommendations. <br>
+## Use Case:
 
+External founders and startup operators use this skill to get stage-aware advice, coordinate specialist agent work, and prioritize decisions around PMF, growth, runway, fundraising, hiring, sales, and product strategy.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/startup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend multi-agent task routing and stage-specific startup priorities.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may retain startup context such as stage, business model, runway, and preferences under ~/Clawic/data/startup/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only provide business-sensitive details that are appropriate to store locally for future advice, and review the local startup data directory when privacy requirements change.
+
+Risk: Startup advice can be stage-sensitive and may be misleading if the founder's current stage, runway, or business model is wrong or missing.
+
+Mitigation: State the assumed stage and key constraints before acting on recommendations, and update the stored configuration when those assumptions change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/startup)
+- [Clawic Skill Page](https://clawic.com/skills/startup)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or concise natural-language guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include stage assumptions, prioritized recommendations, agent-routing briefs, decision gates, and local configuration guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

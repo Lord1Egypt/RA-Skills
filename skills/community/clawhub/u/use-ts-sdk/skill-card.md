@@ -1,43 +1,57 @@
-## Description: <br>
-Orchestrates Aptos TypeScript SDK integration for fullstack dApps and routes agents to setup, account, transaction, view, type, and wallet-adapter guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates Aptos TypeScript SDK integration for fullstack dApps and routes agents to client setup, account, transaction, view function, type, and wallet adapter guidance.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers and engineers use this skill to integrate the Aptos TypeScript SDK into frontend or fullstack dApps, especially when tasks span client setup, account handling, transaction submission, view functions, types, and wallet connection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Aptos transaction payloads, addresses, networks, or gas settings may be incorrect for the user's target deployment. <br>
-Mitigation: Review payloads, addresses, network selection, and gas settings before signing or submitting transactions. <br>
-Risk: Private keys or sensitive account material could be exposed if copied into frontend code, browser-exposed environment variables, committed files, or logs. <br>
-Mitigation: Keep private keys server-only, load them from protected server-side environment variables, and exclude them from browser bundles, logs, and source control. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate @aptos-labs/ts-sdk into Aptos dApps, including client setup, wallet connection, transactions, view functions, and TypeScript typing. It is most useful when a fullstack task spans multiple Aptos SDK concerns.
 
-## Reference(s): <br>
-- [Aptos TypeScript SDK documentation](https://aptos.dev/build/sdks/ts-sdk) <br>
-- [Aptos TypeScript SDK API reference](https://aptos-labs.github.io/aptos-ts-sdk/) <br>
-- [Aptos wallet adapter documentation](https://aptos.dev/build/sdks/wallet-adapter/dapp) <br>
-- [Aptos TypeScript SDK GitHub repository](https://github.com/aptos-labs/aptos-ts-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with TypeScript code examples, links, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route the agent to companion Aptos SDK skills when a task needs narrower guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad frontend or fullstack trigger wording may activate this skill outside Aptos TypeScript SDK tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user task involves Aptos TypeScript SDK integration before applying the skill guidance.
+
+Risk: Wallet, API key, and private-key handling guidance can affect application security if adapted incorrectly.
+
+Mitigation: Keep private keys out of frontend bundles and logs, and use server-side environment variables only for sensitive keys.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/iskysun96/skills/use-ts-sdk)
+- [Aptos TypeScript SDK documentation](https://aptos.dev/build/sdks/ts-sdk)
+- [Aptos TypeScript SDK API reference](https://aptos-labs.github.io/aptos-ts-sdk/)
+- [Aptos wallet adapter documentation](https://aptos.dev/build/sdks/wallet-adapter/dapp)
+- [aptos-ts-sdk GitHub repository](https://github.com/aptos-labs/aptos-ts-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript code examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only orchestration guidance; may route the agent to granular Aptos SDK skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

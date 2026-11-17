@@ -1,42 +1,55 @@
-## Description: <br>
-WebSocket connection management with exponential backoff + jitter retry, heartbeat detection, and circuit breaker pattern. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WebSocket connection management with exponential backoff + jitter retry, heartbeat detection, and circuit breaker pattern.
 
-## Publisher: <br>
-[qwe123sddfsdfs](https://clawhub.ai/user/qwe123sddfsdfs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qwe123sddfsdfs](https://clawhub.ai/user/qwe123sddfsdfs)
 
-## Use Case: <br>
-Developers and engineers use this skill to add reliable WebSocket client behavior, including reconnect retry, heartbeat detection, circuit breaker handling, and connection status monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: WebSocket traffic may expose messages or credentials if the skill is configured with untrusted endpoints. <br>
-Mitigation: Use only trusted WebSocket endpoints and avoid sending secrets to servers you do not control or trust. <br>
-Risk: The skill depends on the ws package from the npm ecosystem. <br>
-Mitigation: Install dependencies from a trusted npm registry or mirror and review lockfile integrity before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to add resilient WebSocket clients that reconnect after network failures, detect stale connections with heartbeats, and limit repeated failures with a circuit breaker.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/qwe123sddfsdfs/websocket-reconnect) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with JavaScript examples and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces WebSocket client implementation guidance for Node.js and browser-style usage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Security evidence reports a suspicious verdict because the central WebSocket dependency setup includes a reported-vulnerable ws version and a third-party package mirror.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production use, regenerate the lockfile from the official npm registry, upgrade ws to a patched reviewed version, and enforce installation with npm ci or equivalent lockfile controls.
+
+Risk: WebSocket peers can be untrusted connection targets, and examples show configurable headers that could carry sensitive tokens.
+
+Mitigation: Treat peers as untrusted unless controlled, validate connection targets, and avoid passing sensitive headers or tokens unless the target is trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qwe123sddfsdfs/skills/websocket-reconnect)
+- [Publisher Profile](https://clawhub.ai/user/qwe123sddfsdfs)
+- [ws package tarball from resolved package lock](https://registry.npmmirror.com/ws/-/ws-8.19.0.tgz)
+
+## Skill Output:
+
+**Output Type(s):** [code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the ws package for Node.js usage.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

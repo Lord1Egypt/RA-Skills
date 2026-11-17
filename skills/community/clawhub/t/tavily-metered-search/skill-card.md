@@ -1,41 +1,54 @@
-## Description: <br>
-Web search via Tavily API with built-in monthly usage tracking and quota management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web search via Tavily API with built-in monthly usage tracking and quota management for agents that need sourced search results.
 
-## Publisher: <br>
-[neverland83](https://clawhub.ai/user/neverland83) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neverland83](https://clawhub.ai/user/neverland83)
 
-## Use Case: <br>
-Developers and agents use this skill to run Tavily web searches, return sourced results in Markdown or JSON, and keep monthly usage within a configured quota. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Tavily using the configured TAVILY_API_KEY. <br>
-Mitigation: Use only for queries appropriate to send to Tavily, keep the API key secret, and follow the account's Tavily terms and access controls. <br>
-Risk: The local monthly usage counter may not match Tavily account usage if searches run with --no-count or outside this skill. <br>
-Mitigation: Monitor Tavily account usage directly and keep the configured monthly limit below the account quota. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily-backed web searches, return Markdown or JSON results, and track monthly search usage against a configurable quota.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/neverland83/tavily-metered-search) <br>
-- [Tavily](https://tavily.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown search results or JSON search result objects] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can include a Tavily short answer and local quota warning; result count is clamped to 1-10.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search queries and the Tavily API key are sent to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep sensitive or private content out of search queries and protect the Tavily API key.
+
+Risk: The local usage counter may not match Tavily service-side usage in every situation.
+
+Mitigation: Review the local usage counter and Tavily account usage when quota tracking matters.
+
+## Reference(s):
+
+- [Tavily Metered Search on ClawHub](https://clawhub.ai/neverland83/skills/tavily-metered-search)
+- [Tavily](https://tavily.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, configuration]
+
+**Output Format:** [Markdown search results or JSON objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include an optional short answer and monthly usage warnings; max results is capped at 10.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

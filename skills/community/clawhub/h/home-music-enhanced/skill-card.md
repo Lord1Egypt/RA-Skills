@@ -1,47 +1,59 @@
-## Description: <br>
-Control whole-house music scenes combining Spotify playback with Airfoil speaker routing, with presets for morning, party, chill, focus, dinner, sleep, off, and status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control whole-house music scenes combining Spotify playback with Airfoil speaker routing. Quick presets for morning, party, chill modes.
 
-## Publisher: <br>
-[terrycarter1985](https://clawhub.ai/user/terrycarter1985) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[terrycarter1985](https://clawhub.ai/user/terrycarter1985)
 
-## Use Case: <br>
-Users and automation agents use this skill on macOS to start, stop, and inspect predefined home audio scenes that combine Spotify playback with Airfoil speaker routing. It is intended for local whole-house music control where the user has already configured Spotify, Airfoil, speaker names, and playlist URIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can immediately play, pause, route, and change volume on local speakers. <br>
-Mitigation: Install and run it only on machines where local music and speaker control is intended. <br>
-Risk: The bundled script contains machine-specific Spotify helper paths and Airfoil speaker names. <br>
-Mitigation: Update the Spotify helper path, speaker names, and playlist URIs before use. <br>
-Risk: Broad voice-style triggers may start or stop music unintentionally. <br>
-Mitigation: Prefer explicit commands such as home-music party or home-music off when binding this skill to an agent. <br>
-Risk: The installation instructions suggest a sudo symlink for global command access. <br>
-Mitigation: Create the global symlink only if the command should be available from any shell session. <br>
+## Use Case:
 
+External users and developers use this skill to operate predefined whole-house music scenes on macOS by controlling local Spotify playback and Airfoil speaker routing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/terrycarter1985/home-music-enhanced) <br>
-- [Publisher profile](https://clawhub.ai/user/terrycarter1985) <br>
-- [Spotify](https://spotify.com) <br>
-- [Airfoil](https://rogueamoeba.com/airfoil/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can propose or run local commands that control Spotify playback, Airfoil speaker routing, and speaker volume.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can start, stop, route, and change volume for local Spotify and Airfoil playback.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only on macOS systems where local music and speaker control is intended, and review the configured playlists, speaker names, and helper script path before use.
+
+Risk: Broad music-related triggers may activate a scene when the user intended a different music action.
+
+Mitigation: Review trigger phrases and keep scene names explicit for deployments where accidental playback or speaker routing would be disruptive.
+
+Risk: The documented global symlink installation uses sudo and makes the command available system-wide.
+
+Mitigation: Skip the sudo symlink unless global terminal access is needed, or install the command in a user-owned path.
+
+## Reference(s):
+
+- [Home Music Enhanced ClawHub Page](https://clawhub.ai/terrycarter1985/skills/home-music-enhanced)
+- [Spotify](https://spotify.com)
+- [Airfoil](https://rogueamoeba.com/airfoil/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash commands and local configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS, Spotify Desktop, Airfoil, and a configured spotify-applescript helper path.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

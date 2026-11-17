@@ -1,39 +1,53 @@
-## Description: <br>
-Complete freelance billing workflow: generate professional invoices, track payment status, send automated reminders, and reconcile payments for freelance billing records and tax preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete freelance billing workflow - generate professional invoices, track payment status, send automated reminders, and reconcile payments.
 
-## Publisher: <br>
-[kambrosgroup](https://clawhub.ai/user/kambrosgroup) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kambrosgroup](https://clawhub.ai/user/kambrosgroup)
 
-## Use Case: <br>
-Freelancers and small service businesses use this skill to create invoices, manage recurring billing, follow up on overdue payments, reconcile client payments, and organize billing information for reporting and tax documentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Billing outputs can contain incorrect invoice amounts, late fees, payment links, tax summaries, or recipient details. <br>
-Mitigation: Review every invoice, reminder email, late fee, payment link, tax summary, and client recipient before sending or acting. <br>
-Risk: The workflow may involve sensitive billing, tax, banking, or client personal information. <br>
-Mitigation: Avoid providing unnecessary bank details, tax IDs, or client personal information. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kambrosgroup/invoice-tracker-pro) <br>
+## Use Case:
 
+Freelancers and small service businesses use this skill to draft invoices, track payment status, prepare reminder messages, reconcile payments, and organize billing records for reporting or tax preparation.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with invoice, reminder email, payment tracking, and financial report templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include client billing details, payment links, tax summaries, late fee calculations, and reminder email drafts that require human review before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Billing prompts may include sensitive financial, tax, client, or payment information.
+
+Mitigation: Do not paste raw bank credentials, tax IDs, processor secrets, or other sensitive identifiers into prompts.
+
+Risk: Drafted invoices, payment links, reminders, or late-fee language may be inaccurate or sent without proper consent.
+
+Mitigation: Verify client identities, invoice amounts, payment links, contractual payment terms, and consent before sending reminders or initiating payment-related actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kambrosgroup/skills/invoice-tracker-pro)
+- [ClawHub publisher profile](https://clawhub.ai/user/kambrosgroup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown and plain text billing templates, reports, reminders, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, or hidden tooling was identified in the provided security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-This skill helps agents work with Adobe Experience Manager API endpoints for system operations, content management, asset handling, and platform automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance for working with Adobe Experience Manager API endpoints, including setup, authentication, system operations, content management, asset handling, and platform automation.
 
-## Publisher: <br>
-[subaru0573](https://clawhub.ai/user/subaru0573) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[subaru0573](https://clawhub.ai/user/subaru0573)
 
-## Use Case: <br>
-Developers and AEM administrators use this skill to map requests to Adobe Experience Manager API endpoints and receive setup, authentication, content management, asset handling, and platform automation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can help administer AEM and may surface powerful administrative actions. <br>
-Mitigation: Install only for AEM administration use cases and use least-privilege credentials. <br>
-Risk: Sensitive operations such as POST, DELETE, password, truststore, SSL, package, replication, or system configuration actions can change an AEM environment. <br>
-Mitigation: Prefer non-production environments and require explicit human confirmation before executing sensitive or destructive actions. <br>
+## Use Case:
 
+Developers and engineers use this skill to map AEM administration and content-management requests to the appropriate API endpoints, authentication setup, and request patterns.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/subaru0573/skills/super-lap-adobe-experience-manager-aem-api) <br>
-- [LAP](https://lap.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with endpoint mappings and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Adobe Experience Manager API credential in ADOBE_EXPERIENCE_MANAGER_AEM_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release, SKILL.md frontmatter, artifact _meta.json) <br>
+Risk: The skill covers privileged AEM administration and destructive POST or DELETE operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege tokens, verify the target AEM host, and require explicit confirmation before mutating or deleting resources.
+
+Risk: The bundled CLI examples use npx to run lapsh commands.
+
+Mitigation: Pin or review the lapsh package before running generated npx commands.
+
+Risk: The security evidence reports insufficient scoping, confirmation, and safe-use guidance for powerful AEM actions.
+
+Mitigation: Test outside production first and review generated requests before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/subaru0573/skills/super-lap-adobe-experience-manager-aem-api)
+- [LAP](https://lap.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with endpoint mappings, setup guidance, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require an Adobe Experience Manager API credential supplied as ADOBE_EXPERIENCE_MANAGER_AEM_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

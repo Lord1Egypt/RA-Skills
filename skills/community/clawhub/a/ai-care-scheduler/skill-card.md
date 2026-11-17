@@ -1,42 +1,61 @@
-## Description: <br>
-通过对话即可完成养老机构护理排班，简单快捷。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过对话即可完成养老机构护理排班，简单快捷
 
-## Publisher: <br>
-[cnspica](https://clawhub.ai/user/cnspica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnspica](https://clawhub.ai/user/cnspica)
 
-## Use Case: <br>
-Care-facility operators and scheduling staff use this skill to collect staff names, shift limits, cycle length, and start date through conversation, then generate a nursing schedule. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional AI mode can send staff names and scheduling rules to DashScope when a user provides an API key. <br>
-Mitigation: Use local mode by leaving the API key blank unless third-party processing is approved for the staff data being scheduled. <br>
-Risk: CSV exports contain personnel and shift information. <br>
-Mitigation: Treat exported CSV files as sensitive staffing data and store or share them only in approved locations. <br>
-Risk: Generated schedules may not reflect every real-world staffing constraint or labor policy. <br>
-Mitigation: Review generated rosters before operational use and adjust assignments for local policy, coverage, and worker availability. <br>
+## Use Case:
 
+External care-facility staff and schedulers use this skill to collect staff names and shift parameters through conversation, then generate elder-care duty schedules. It returns a Markdown schedule table and can support CSV export when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cnspica/ai-care-scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, code, guidance] <br>
-**Output Format:** [Markdown schedule table with optional CSV file export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include dates, shifts, shift times, assigned staff names, and optional local CSV exports; optional AI mode may use DashScope when the user provides an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Risk: Staff roster data may be sensitive and the security evidence reports under-disclosed external AI data transmission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive or pseudonymized staff identifiers unless disclosure and consent for DashScope AI use are clear.
+
+Risk: Generated schedules may be incorrect or incomplete for care operations.
+
+Mitigation: Manually review schedule coverage, rest periods, night-shift recovery, and weekly limits before operational use.
+
+Risk: CSV export can persist staff schedule data locally and may create spreadsheet handling risk.
+
+Mitigation: Export CSV only on explicit user request, store it according to facility data-handling policy, and review values before opening in spreadsheet tools.
+
+Risk: Browser-side rendering issues involving staff roster data are reported in the security evidence.
+
+Mitigation: Use the browser interface only with trusted inputs in a controlled environment until the publisher fixes the rendering issues.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnspica/skills/ai-care-scheduler)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Markdown table with optional CSV export]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses default elder-care shifts for morning, afternoon, and night coverage unless the user provides different scheduling parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

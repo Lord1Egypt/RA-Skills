@@ -1,47 +1,60 @@
-## Description: <br>
-Control and query SwitchBot devices through the official OpenAPI v1.1, including device listing, status checks, device commands, family and room information, and scene management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and query SwitchBot devices with OpenAPI v1.1, including device status, device commands, scenes, family and room grouping, and AI MindClip recordings, summaries, todos, daily memories, and weekly summaries.
 
-## Publisher: <br>
-[switchbot-dev](https://clawhub.ai/user/switchbot-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[switchbot-dev](https://clawhub.ai/user/switchbot-dev)
 
-## Use Case: <br>
-Developers and smart-home operators use this skill to let an agent inspect and operate SwitchBot devices, rooms, homes, and scenes through authenticated OpenAPI calls. It is intended for accounts where the user is comfortable granting the agent control over connected devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can issue high-impact smart-home commands, including unlocking doors, opening garages, executing scenes, and managing entry passcodes. <br>
-Mitigation: Require explicit human confirmation before unlock, open, scene execution, or passcode create/delete actions, and use it only with SwitchBot accounts where this level of agent control is acceptable. <br>
-Risk: SwitchBot API tokens and secrets grant account-level access if exposed. <br>
-Mitigation: Store SWITCHBOT_TOKEN and SWITCHBOT_SECRET in protected environment variables, do not hard-code them, and avoid logging them in command output or troubleshooting notes. <br>
-Risk: Image upload commands can send private image URLs or Base64 image data to SwitchBot. <br>
-Mitigation: Upload image URLs or image data only when the user intends to share that content with SwitchBot. <br>
-Risk: Some direct commands are not supported by all device models and may fail or require scenes. <br>
-Mitigation: Check device support and command responses, use the CLI preflight behavior for Bluetooth devices, and fall back to SwitchBot scenes when direct OpenAPI commands are unavailable. <br>
+## Use Case:
 
+External developers and agents use this skill to manage SwitchBot smart-home devices, run scenes, and retrieve AI MindClip transcript, summary, todo, and memory data through authenticated OpenAPI calls.
 
-## Reference(s): <br>
-- [SwitchBot OpenAPI Skill Page](https://clawhub.ai/switchbot-dev/switchbot-cloudapi) <br>
-- [SwitchBot OpenAPI endpoint](https://api.switch-bot.com) <br>
-- [Commands reference](references/commands.md) <br>
-- [Usage examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON API payloads, and command output interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces commands and API-call guidance that require SWITCHBOT_TOKEN and SWITCHBOT_SECRET, and may return JSON from SwitchBot OpenAPI endpoints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The skill can unlock doors, open garages, create or delete keypad codes, and execute scenes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with a SwitchBot account intended for agent control and require explicit confirmation outside the skill before those actions.
+
+Risk: The skill can expose AI MindClip transcripts, summaries, todos, and location memories.
+
+Mitigation: Confirm user intent before displaying recording-derived content and avoid broad shared tokens.
+
+Risk: Shared or overly broad credentials could let an agent affect more devices or data than intended.
+
+Mitigation: Provision narrowly scoped account access where possible and store SwitchBot token and secret values outside logs or hardcoded files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/switchbot-dev/skills/switchbot-cloudapi)
+- [SwitchBot OpenAPI Endpoint](https://api.switch-bot.com)
+- [Commands Reference](references/commands.md)
+- [API Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SwitchBot token and secret environment variables; outputs may include device state and recording-derived personal data.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-该技能介绍如何通过跨境电商实现变现；当你计划从事或优化跨境电商时调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+该技能介绍如何通过跨境电商实现变现；当你计划从事或优化跨境电商时调用。
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-External operators, creators, and small teams use this skill to plan and evaluate a cross-border e-commerce monetization workflow, including positioning, MVP validation, channel execution, fulfillment, metrics, and compliance checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business guidance may omit jurisdiction-specific legal, tax, customs, advertising, intellectual-property, or platform-policy requirements. <br>
-Mitigation: Independently verify those requirements before using the guidance commercially. <br>
-Risk: The skill provides planning advice but does not execute actions or validate business outcomes. <br>
-Mitigation: Review recommendations manually and validate assumptions with current market, platform, and compliance data before acting. <br>
+## Use Case:
 
+External operators, founders, and ecommerce teams use this skill to plan and review a cross-border ecommerce monetization path, including channel selection, MVP validation, metrics, fulfillment workflow, and a 30-day execution checklist.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with checklists and execution steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business planning guidance only; it does not request credentials, call tools, or perform actions on its own.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: Cross-border ecommerce guidance can become outdated or vary by platform, jurisdiction, tax treatment, and advertising rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Independently verify current platform policies, legal requirements, taxes, and advertising rules before acting on the guidance.
+
+Risk: Execution plans may encourage business activity without enough review of false advertising, traffic manipulation, infringement, contract, invoice, or fulfillment obligations.
+
+Mitigation: Review planned campaigns and operations for policy compliance, accurate claims, intellectual-property rights, written delivery terms, invoices, and customer support processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/cross-border-ecommerce)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only planning output; no code execution or credential handling is described.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

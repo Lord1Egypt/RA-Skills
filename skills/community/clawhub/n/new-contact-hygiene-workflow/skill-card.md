@@ -1,40 +1,58 @@
-## Description: <br>
-Build a HubSpot workflow that auto-enriches and stages new contacts upon creation, sets lifecycle stage, copies company name and industry from the associated company, and branches on completeness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build a HubSpot workflow that auto-enriches and stages new contacts upon creation, sets lifecycle stage, copies company name and industry from the associated company, and branches on completeness.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomgranot](https://clawhub.ai/user/tomgranot)
 
-## Use Case: <br>
-CRM administrators and revenue operations teams use this skill to build and verify a HubSpot workflow that stages and enriches every newly created contact before manual follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow changes HubSpot contact lifecycle, company, and industry fields, and copy actions can overwrite imported or existing values. <br>
-Mitigation: Test with sample contacts, confirm overwrite behavior before activation, consider excluding imports, and review workflow history during the first 24 hours. <br>
-Risk: AI-assisted setup can misconfigure triggers, branch conditions, copy actions, or re-enrollment settings. <br>
-Mitigation: Prefer the manual UI build for production use, and verify trigger logic, copy-from-associated-company actions, branch conditions, and re-enrollment settings before enabling the workflow. <br>
+## Use Case:
 
+CRM operations teams and HubSpot administrators use this skill to build and verify a manual HubSpot workflow that standardizes newly created contacts, copies associated company data, and flags contacts still missing company information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomgranot/new-contact-hygiene-workflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration] <br>
-**Output Format:** [Markdown instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes manual workflow setup steps, verification checks, rollback guidance, and caveats for optional AI-assisted setup.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow runs on all newly created contacts and may overwrite contact company and industry fields from the primary associated company.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review enrollment criteria before activation, test with representative contacts, and add exclusions such as import lists when those contacts should not be overwritten.
+
+Risk: The optional Chrome extension route interacts with an authenticated HubSpot UI session.
+
+Mitigation: Use that route only in a trusted HubSpot account and browser profile, and review every workflow change before saving or turning it on.
+
+Risk: AI-generated workflow drafts may use incorrect HubSpot trigger logic or omit unsupported branch and copy actions.
+
+Mitigation: Manually verify trigger conditions, branch checks, copy-from-associated-company actions, and re-enrollment settings in the HubSpot UI before enabling the workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomgranot/skills/new-contact-hygiene-workflow)
+- [Publisher Profile](https://clawhub.ai/user/tomgranot)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration]
+
+**Output Format:** [Markdown workflow instructions with verification and rollback steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual HubSpot UI workflow guidance; no automatic local execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

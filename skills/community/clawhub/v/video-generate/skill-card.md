@@ -1,44 +1,58 @@
-## Description: <br>
-Generate videos using Seedance models from text prompts, images, videos, audio, or reference materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos using Seedance models. Invoke when user wants to create videos from text prompts, images, or reference materials.
 
-## Publisher: <br>
-[warm-wm](https://clawhub.ai/user/warm-wm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[warm-wm](https://clawhub.ai/user/warm-wm)
 
-## Use Case: <br>
-Developers and creators use this skill to request Seedance video generation from text prompts or multimodal reference materials and receive generated video URLs and optional local file paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may persist API keys in a workspace environment file. <br>
-Mitigation: Use a dedicated, low-privilege API key, provide credentials only with explicit approval, and remove workspace environment entries after use. <br>
-Risk: Prompts and referenced media URLs are sent to the video generation provider. <br>
-Mitigation: Avoid private prompts or sensitive media URLs unless the provider and data handling are acceptable for the use case. <br>
-Risk: Automatic retry after credential setup can repeat a generation request. <br>
-Mitigation: Confirm the prompt, media inputs, and output expectations before retrying after credentials are added. <br>
+## Use Case:
 
+Developers and content-generation agents use this skill to create short videos from text prompts, first or last frame images, and reference images, videos, or audio through Seedance models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/warm-wm/video-generate) <br>
-- [Skill documentation](SKILL.md) <br>
-- [Video generation implementation](scripts/video_generate.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with generated video URLs, optional local file paths, and JSON status details.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is returned by URL; long-running tasks may return pending task IDs for follow-up polling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: API keys may be persisted in plaintext workspace files if credential setup guidance is followed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege video API key and configure it through a secret manager or protected runtime environment.
+
+Risk: Prompts, private media, signed URLs, or internal URLs are sent to the configured external video generation API.
+
+Mitigation: Avoid submitting sensitive prompts, private media, signed URLs, or internal URLs unless the deployment has approved that data flow.
+
+Risk: Generated video tasks can remain pending after polling timeout.
+
+Mitigation: Use the returned task ID to query status later and report pending jobs clearly to the user.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/warm-wm/skills/video-generate)
+- [Implementation script](scripts/video_generate.py)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown with video URLs, optional local file paths, and JSON status objects]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated video URLs, task IDs for pending jobs, and error details.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

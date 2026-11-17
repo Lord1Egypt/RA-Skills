@@ -1,45 +1,59 @@
-## Description: <br>
-Theta EdgeCloud runtime for OpenClaw cost optimization: route eligible AI, media, inference, and GPU workloads through Theta EdgeCloud with secure command-scoped auth, dry-run safety, and on-demand Qwen3/chat support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents discover Theta EdgeCloud services, run on-demand inference, and manage GPU, RAG, video, and game-character resources with approval gates and cost checks.
 
-## Publisher: <br>
-[zeuslabsllc](https://clawhub.ai/user/zeuslabsllc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zeuslabsllc](https://clawhub.ai/user/zeuslabsllc)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw workflows to Theta EdgeCloud for AI inference, media, video, GPU deployment, chatbot/RAG, billing, and readiness operations while keeping authentication scoped to invoked commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Theta credentials are required for live API operations. <br>
-Mitigation: Use user-supplied credentials through the runtime secret provider or environment variables, and do not bundle or commit API keys. <br>
-Risk: Deployment, video, wallet, and on-demand operations can mutate Theta resources or spend credits. <br>
-Mitigation: Start with THETA_DRY_RUN=1, use budget caps for smoke tests, and require explicit approval before live paid or mutating operations. <br>
-Risk: Private prompts, documents, media, or paid workloads may be sent to Theta services. <br>
-Mitigation: Confirm the data and workload are appropriate for Theta EdgeCloud before routing them through this skill. <br>
+## Use Case:
 
+Developers and operators use this skill to discover Theta EdgeCloud services, run AI inference, and administer approved GPU, RAG, video, and game-character workflows while checking pricing and billing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/zeuslabsllc/theta-edgecloud-skill) <br>
-- [Theta EdgeCloud on-demand endpoint](https://ondemand.thetaedgecloud.com) <br>
-- [Theta EdgeCloud controller endpoint](https://controller.thetaedgecloud.com) <br>
-- [Theta EdgeCloud API endpoint](https://api.thetaedgecloud.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance, shell command examples, and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runtime commands may return dry-run previews, readiness status, inference responses, deployment state, balance snapshots, or redacted validation summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.26 (source: server release evidence and package.json) <br>
+Risk: Resource changes and inference can incur charges or disrupt running services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege keys and provider quotas, rehearse with dry-run, check prices, and get explicit approval before each billable or destructive action.
+
+Risk: Prompts, files, character messages, outputs, and presigned URLs may contain private data.
+
+Mitigation: Treat these inputs and outputs as private and share only data authorized for Theta processing.
+
+Risk: Dry-run can still make authenticated read requests, and a confirmation flag cannot itself establish user consent.
+
+Mitigation: Use dry-run only as a rehearsal, and obtain the user's approval before setting confirmation for a live action.
+
+## Reference(s):
+
+- [Theta EdgeCloud](https://www.thetaedgecloud.com)
+- [Capability map](references/capabilities.md)
+- [Security scope](references/security.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [Text summaries and structured API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include model outputs, resource status and cost details; secret-bearing values are redacted.]
+
+## Skill Version(s):
+
+0.2.0 (source: server-resolved release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

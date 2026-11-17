@@ -1,44 +1,59 @@
-## Description: <br>
-A powerful OpenClaw skill for managing and automating GPU container instances on the CFGPU cloud platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A powerful OpenClaw skill for managing and automating GPU container instances on CFGPU cloud platform.
 
-## Publisher: <br>
-[r600a-code](https://clawhub.ai/user/r600a-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[r600a-code](https://clawhub.ai/user/r600a-code)
 
-## Use Case: <br>
-Developers, researchers, and content creators use this skill to discover CFGPU regions, GPU types, and images, then create, inspect, start, stop, release, or reimage GPU cloud instances through guided shell workflows and API examples. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist a CFGPU API token locally in a token file or shell startup file. <br>
-Mitigation: Use a limited or short-lived token, avoid setup-env.sh unless plaintext local persistence is acceptable, and remove CFGPU_API_TOKEN entries from shell startup files when no longer needed. <br>
-Risk: The skill can perform high-impact instance actions, including create, stop, release, and change-image operations that may affect cost, availability, or data. <br>
-Mitigation: Manually verify instance IDs, billing implications, image choices, and backups before running release or change-image operations. <br>
+## Use Case:
 
+Developers, AI/ML teams, researchers, and content creators use this skill to discover CFGPU resources and manage GPU container instance lifecycle operations through guided shell commands and API examples.
 
-## Reference(s): <br>
-- [CFGPU API Reference](references/api-reference.md) <br>
-- [CFGPU Platform](https://cfgpu.com) <br>
-- [CFGPU API Base](https://api.cfgpu.com) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [ClawHub Release Page](https://clawhub.ai/r600a-code/cfgpu-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, curl examples, and JSON request or response snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that call CFGPU APIs with a user-provided CFGPU_API_TOKEN.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Credentials may be exposed or persisted insecurely during setup and API use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden the shell scripts before deployment, avoid running setup-env.sh as-is, avoid storing real tokens in shell startup files, and rotate any token entered into this skill.
+
+Risk: Create, stop, release, and change-image operations can affect billable GPU resources.
+
+Mitigation: Require explicit confirmation before executing resource-changing operations, and review target instance IDs, image IDs, duration, and pricing before approving commands.
+
+Risk: Unsafe shell command handling can increase risk when untrusted values are passed into scripts.
+
+Mitigation: Review script command construction before use and avoid passing untrusted input into helper script arguments or configuration.
+
+## Reference(s):
+
+- [CFGPU API Reference](references/api-reference.md)
+- [CFGPU Platform](https://cfgpu.com)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose commands that call CFGPU APIs and change billable cloud resources.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

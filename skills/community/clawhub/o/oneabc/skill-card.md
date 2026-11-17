@@ -1,41 +1,54 @@
-## Description: <br>
-OneABC lets agents call OneABC-compatible chat, image, video, music, and model-listing endpoints through a local Node.js wrapper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access OpenAI-, Claude-, DeepSeek-, Sora-, Midjourney-, and Suno-compatible models through the oneabc.io API.
 
-## Publisher: <br>
-[xingfan0828](https://clawhub.ai/user/xingfan0828) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xingfan0828](https://clawhub.ai/user/xingfan0828)
 
-## Use Case: <br>
-Developers and agents use this skill to list OneABC models or send prompts to chat, image, video, and music model endpoints from a local command-line wrapper. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and an API key are sent to the configured OneABC-compatible endpoint. <br>
-Mitigation: Install only when the publisher and configured ONEABC_BASE_URL are trusted, and verify the endpoint before running commands. <br>
-Risk: Using OPENAI_API_KEY as a fallback can unintentionally send an unrelated key to the configured endpoint. <br>
-Mitigation: Prefer a dedicated ONEABC_API_KEY and avoid relying on OPENAI_API_KEY for this wrapper. <br>
+## Use Case:
 
+Developers and external users use this skill to call OneABC-compatible chat, image, video, music, and model-listing endpoints from a local Node wrapper.
 
-## Reference(s): <br>
-- [ClawHub OneABC listing](https://clawhub.ai/xingfan0828/oneabc) <br>
-- [Default OneABC API endpoint](https://api.oneabc.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Plain text command output with Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and ONEABC_API_KEY or OPENAI_API_KEY; sends prompts to the configured ONEABC_BASE_URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can transmit prompts and API credentials to the configured OneABC-compatible API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated OneABC-scoped API key, avoid sending sensitive prompts, and only configure ONEABC_BASE_URL for endpoints you fully trust.
+
+Risk: The script automatically falls back to OPENAI_API_KEY when ONEABC_API_KEY is not set.
+
+Mitigation: Set ONEABC_API_KEY explicitly for this skill and avoid relying on the OPENAI_API_KEY fallback.
+
+## Reference(s):
+
+- [OneABC API endpoint](https://api.oneabc.org)
+- [ClawHub skill page](https://clawhub.ai/xingfan0828/skills/oneabc)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plain text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and a configured ONEABC_API_KEY or intentional OPENAI_API_KEY fallback.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

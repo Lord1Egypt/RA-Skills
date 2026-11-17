@@ -1,44 +1,59 @@
-## Description: <br>
-Use Birdeye MCP through UXC for token market data, trending and discovery workflows, price monitoring, and DEX-related reads with help-first live tool discovery and API-key auth. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use Birdeye MCP through UXC for token market data, trending and discovery workflows, price monitoring, and DEX-related reads with help-first live tool discovery and API-key auth.
 
-## Publisher: <br>
-[jolestar](https://clawhub.ai/user/jolestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jolestar](https://clawhub.ai/user/jolestar)
 
-## Use Case: <br>
-Developers and agents use this skill to configure authenticated Birdeye MCP access through UXC, inspect live tool help, and run read-heavy token market, discovery, price monitoring, and DEX context workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on a local UXC command and an API-key credential binding for a remote MCP endpoint. <br>
-Mitigation: Verify the UXC command in PATH is trusted, use a minimally scoped Birdeye API key, and confirm the binding targets only mcp.birdeye.so/mcp before running operations. <br>
-Risk: Birdeye MCP is described as beta, so the live tool list and argument names may change. <br>
-Mitigation: Inspect host help and operation help before each new workflow, keep initial scopes narrow, and avoid hardcoding live tool assumptions. <br>
-Risk: Market and discovery queries can return broad datasets that may be misread or overused in automation. <br>
-Mitigation: Start with focused token, pair, chain, or market-slice scopes and parse the stable JSON envelope before using data fields downstream. <br>
+## Use Case:
 
+Developers and analysts use this skill to configure and query Birdeye MCP via UXC for token market data, trending discovery, price monitoring, and DEX-related read workflows.
 
-## Reference(s): <br>
-- [Usage Patterns](references/usage-patterns.md) <br>
-- [Birdeye MCP endpoint](https://mcp.birdeye.so/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/jolestar/birdeye-mcp-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON-field guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses help-first live tool discovery and expects callers to parse the JSON envelope fields ok, kind, protocol, data, and error.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requires a Birdeye API key and a persistent credential binding for the Birdeye MCP host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented X-API-KEY binding only for mcp.birdeye.so/mcp, store the secret in an environment variable or secret manager, and review the binding before use.
+
+Risk: The Birdeye MCP tool surface is described as beta and may change over time.
+
+Mitigation: Run host help and operation help before execution, avoid hardcoded tool or argument assumptions, and keep automation focused on stable JSON envelope fields.
+
+Risk: Market-data and discovery workflows could be misused as trading or transaction execution guidance.
+
+Mitigation: Treat the skill as read-only market and discovery access, use narrow queries, and do not treat live MCP output as a trading executor.
+
+## Reference(s):
+
+- [Usage Patterns](references/usage-patterns.md)
+- [Birdeye MCP Endpoint](https://mcp.birdeye.so/mcp)
+- [ClawHub Skill Page](https://clawhub.ai/jolestar/skills/birdeye-mcp-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON response parsing guidance for MCP reads; not a trading or transaction execution surface.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

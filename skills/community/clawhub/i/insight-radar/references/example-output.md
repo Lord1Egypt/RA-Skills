@@ -27,7 +27,7 @@
 ### 2️⃣ Tesla/SpaceX 宣布 Terafab 自建芯片厂 【AI/Tech】
 
 📅 2026-03-22
-🔗 [TechCrunch](https://techcrunch.com/2026/03/22/elon-musk-unveils-chip-manufacturing-plans-for-spacex-and-tesla/)
+🔗 [TechCrunch](https://techcrunch.com/2026/03/22/elon-muREDACTED-SECRET/)
 
 **[C] 本质**: Musk 不是在做"又一个芯片厂"，而是在做极端垂直整合——从设计到制造到部署全闭环，80% 产能用于太空计算。核心逻辑："芯片厂不够快，我们自己建。"
 

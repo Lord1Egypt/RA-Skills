@@ -1,43 +1,60 @@
-## Description: <br>
-Production token thresholds, circuit breaker, and compaction sequence guidance for OpenClaw context management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides production-oriented token thresholds, circuit breaker guidance, and compaction sequencing for OpenClaw agent context management.
 
-## Publisher: <br>
-[thebrierfox](https://clawhub.ai/user/thebrierfox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thebrierfox](https://clawhub.ai/user/thebrierfox)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure OpenClaw context compaction thresholds, circuit breaker behavior, and post-compaction validation for long-running agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Configuration values or model names may not be supported by the user's OpenClaw installation. <br>
-Mitigation: Confirm the OpenClaw version and available model names before changing openclaw.json. <br>
-Risk: Production-validation and Anthropic-related claims may be vendor claims rather than independently verified guarantees. <br>
-Mitigation: Treat those claims as vendor assertions and validate behavior in logs after installation. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure OpenClaw compaction thresholds, circuit breaker behavior, cleanup checks, and summary expectations for long-running agent sessions.
 
-## Reference(s): <br>
-- [Paid Compaction V1.1 on ClawHub](https://clawhub.ai/thebrierfox/paid-compaction-v1-1) <br>
-- [Publisher profile: thebrierfox](https://clawhub.ai/user/thebrierfox) <br>
-- [Context Death Spiral Prevention](https://clawhub.ai/skills/free-compaction-primer) <br>
-- [Production Agent Ops - Battle-Tested Architecture Pack](https://clawhub.ai/skills/production-agent-ops-battle-tested-architecture-pack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides OpenClaw setup steps, compaction configuration values, and log-verification guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server evidence and frontmatter) <br>
+Risk: The artifact references COMPACTION_ARCHITECTURE.md, but that file was not present in the inspected package, so exact behavioral details behind the threshold recommendations are not fully evidenced here.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the missing architecture specification before relying on exact gate logic, circuit breaker behavior, or self-audit trigger details.
+
+Risk: Incorrect manual threshold or model configuration could reduce compaction reliability or cause behavior different from the documented intent.
+
+Mitigation: Apply the guidance only to compatible OpenClaw versions, preserve the documented threshold relationships, and verify compaction logs after initial sessions.
+
+Risk: Production-performance claims are publisher-supplied and not independently supported by server-resolved provenance for this version.
+
+Mitigation: Confirm the publisher's production evidence before treating the thresholds as validated for critical workloads.
+
+## Reference(s):
+
+- [Paid Compaction V1.1 release page](https://clawhub.ai/thebrierfox/skills/paid-compaction-v1-1)
+- [thebrierfox publisher profile](https://clawhub.ai/user/thebrierfox)
+- [Context Death Spiral Prevention](https://clawhub.ai/skills/free-compaction-primer)
+- [Production Agent Ops - Battle-Tested Architecture Pack](https://clawhub.ai/skills/production-agent-ops-battle-tested-architecture-pack)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Manual installation and OpenClaw compaction configuration guidance; no executable payload was present in the inspected artifact.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

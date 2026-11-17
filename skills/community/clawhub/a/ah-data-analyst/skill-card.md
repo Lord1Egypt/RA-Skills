@@ -1,39 +1,53 @@
-## Description: <br>
-Expert data analyst specializing in business intelligence, data visualization, and statistical analysis. Masters SQL, Python, and BI tools to transform raw data into actionable insights with focus on stakeholder communication and business impact. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert data analyst specializing in business intelligence, data visualization, and statistical analysis, using SQL, Python, and BI tools to transform raw data into actionable insights with stakeholder-focused communication.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Employees, analysts, and business intelligence teams use this skill to define metrics, analyze data quality, optimize SQL, build dashboards, and communicate actionable business insights. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may work with sensitive business metrics, reports, and source data. <br>
-Mitigation: Limit the agent to approved datasets and require confirmation before sharing reports, emailing results, scheduling jobs, changing dashboards, or passing sensitive business data to other agents. <br>
-Risk: Analytical recommendations may be inaccurate if inputs, definitions, or statistical assumptions are wrong. <br>
-Mitigation: Require stakeholder review of KPI definitions, source data, statistical significance, and business rules before using outputs for decisions. <br>
+## Use Case:
 
+Business stakeholders, analysts, and developers use this skill to plan and execute BI analysis, dashboard development, statistical analysis, report automation, and data storytelling. It helps turn business requirements and raw data into validated metrics, clear visualizations, and actionable recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with analysis narratives, SQL or Python examples, dashboard guidance, and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report outlines, KPI definitions, query optimization advice, visualization recommendations, and stakeholder-facing summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated analysis narratives or delivery messages may include unsupported metrics, savings figures, or performance claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated claims against source data, calculation logic, and stakeholder-approved definitions before sharing or acting on them.
+
+Risk: A broad analytics workflow could lead an agent to request or use unintended business data sources.
+
+Mitigation: Connect only approved data sources and scope credentials, dashboards, reports, and automation to the intended analysis task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-data-analyst)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with SQL, Python, BI workflow, dashboard, and reporting recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include analysis plans, metric definitions, dashboard requirements, validation checklists, automation recommendations, and stakeholder-facing summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

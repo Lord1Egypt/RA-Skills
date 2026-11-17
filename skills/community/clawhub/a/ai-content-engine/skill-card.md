@@ -1,46 +1,61 @@
-## Description: <br>
-AI Content Engine lets agents generate video scripts, images, and short-form or long-form videos through an MCP server with public quote tools, API-key brand access, and paid USDC or prepaid-token operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Content Engine connects agents to an MCP service that generates video scripts, images, videos, and social publishing workflows with public quoting, API-key brand access, and paid x402 or prepaid-token calls.
 
-## Publisher: <br>
-[jimitd-ai](https://clawhub.ai/user/jimitd-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimitd-ai](https://clawhub.ai/user/jimitd-ai)
 
-## Use Case: <br>
-External creators, developers, and agent operators use this skill to quote, generate, retrieve, and publish AI-assisted scripts, images, and videos. It supports anonymous pricing checks, brand-scoped content lookup with an API key, and paid creation or publishing flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid tools and token purchases can spend USDC or prepaid content tokens. <br>
-Mitigation: Use sandbox mode first, call pricing or quote tools before paid operations, and require explicit approval before signing payments or purchasing tokens. <br>
-Risk: The skill can use sensitive credentials, including an API key and wallet private key. <br>
-Mitigation: Keep credentials out of prompts and logs, use a dedicated low-balance Base wallet for payment signing, and scope API keys to the intended brand. <br>
-Risk: Publishing tools can post generated content to connected social platforms. <br>
-Mitigation: Manually review generated content and publishing targets before approving social publishing requests. <br>
+## Use Case:
 
+External creators, brands, and developers use this skill to quote, generate, track, retrieve, and publish AI-assisted scripts, images, and videos through MCP-compatible agents.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jimitd-ai/ai-content-engine) <br>
-- [Content Engine Homepage](https://content-engine-app.fly.dev) <br>
-- [MCP Endpoint](https://content-engine-x402.fly.dev/mcp) <br>
-- [MCP Server Discovery](https://content-engine-x402.fly.dev/.well-known/mcp.json) <br>
-- [x402 Payment Protocol](https://www.x402.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls] <br>
-**Output Format:** [MCP tool responses, Markdown guidance, JSON-like content metadata, and generated media URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Paid operations may require explicit USDC payment approval or prepaid-token authorization; brand-scoped reads require an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: ClawHub release metadata) <br>
+Risk: A wallet private key configured for x402 payments can authorize USDC transfers if the agent signs payment requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox mode or prepaid API-key tokens when possible, and use a dedicated low-balance wallet with no unrelated assets or approvals for per-call payments.
+
+Risk: Paid generation and publishing actions can spend funds or publish content if an agent proceeds without sufficient review.
+
+Mitigation: Call pricing and quote tools before paid actions, require explicit review of exact payment details, and review generated content before publication.
+
+Risk: Brand-scoped reads and token spending depend on a CONTENT_ENGINE_API_KEY.
+
+Mitigation: Store API keys securely, scope them to the intended brand, and rotate or revoke keys that are no longer needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jimitd-ai/skills/ai-content-engine)
+- [Content Engine Homepage](https://content-engine-app.fly.dev)
+- [MCP Endpoint](https://content-engine-x402.fly.dev/mcp)
+- [MCP Server Discovery](https://content-engine-x402.fly.dev/.well-known/mcp.json)
+- [x402 Protocol](https://www.x402.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance and MCP tool-call results, including scripts, content identifiers, status data, generated media URLs, and payment or quote details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Paid calls may require API-key prepaid tokens or explicit x402 USDC payment authorization from a dedicated low-balance agent wallet.]
+
+## Skill Version(s):
+
+1.0.9 (source: server release metadata; artifact frontmatter lists 1.5.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

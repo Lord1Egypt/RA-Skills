@@ -1,41 +1,59 @@
-## Description: <br>
-A股多智能体投研-15 AI 分析师 submits China A-share symbols to the TradingAgents API and returns multi-agent technical, fundamental, sentiment, capital-flow, macro, and risk analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A股多智能体 AI 投研分析工具 uses 15 AI analysts to analyze China A-share stocks across technical, fundamental, sentiment, smart-money, macroeconomic, and game-theory perspectives, producing structured buy, sell, or hold recommendations with risk assessment.
 
-## Publisher: <br>
-[kylinmountain](https://clawhub.ai/user/kylinmountain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kylinmountain](https://clawhub.ai/user/kylinmountain)
 
-## Use Case: <br>
-External users and analysts use this skill to request China A-share stock research from a hosted or self-hosted TradingAgents backend. It is intended to provide structured buy, sell, or hold research support with risk assessment, not guaranteed financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends requested A-share symbols and analysis parameters to a TradingAgents backend using a bearer token. <br>
-Mitigation: Install only when the user trusts the hosted backend or has configured a trusted self-hosted TRADINGAGENTS_API_URL, and protect TRADINGAGENTS_TOKEN as an API credential. <br>
-Risk: Analysis output may include buy, sell, or hold recommendations that could be mistaken for guaranteed financial advice. <br>
-Mitigation: Treat results as research support, review assumptions independently, and avoid including account details or exact private holdings in prompts. <br>
+## Use Case:
 
+External users and investment researchers use this skill to request deep analysis of Shanghai and Shenzhen A-share stocks by symbol or Chinese company name. The skill submits stock-analysis jobs to the TradingAgents API and returns structured decisions, confidence, target and stop-loss prices, key metrics, and risk items.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kylinmountain/tradingagents-analysis) <br>
-- [TradingAgents app homepage](https://app.510168.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with JSON analysis results from shell/API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires TRADINGAGENTS_TOKEN and supports TRADINGAGENTS_API_URL for a trusted self-hosted backend.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.2 (source: server release metadata; artifact frontmatter reports 0.6.1) <br>
+Risk: The skill can send stock-analysis requests and a bearer token to a configurable backend API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default HTTPS endpoint or an HTTPS self-hosted endpoint, avoid plain HTTP except loopback-only local testing with disposable credentials, and rotate the TradingAgents token if exposed.
+
+Risk: The skill produces investment-analysis recommendations that may be incorrect, stale, or unsuitable for a user's financial situation.
+
+Mitigation: Treat outputs as decision support, require user confirmation before submitting jobs, and review recommendations with independent financial judgment before acting.
+
+Risk: Users may include personal account details, actual positions, or other sensitive financial information in prompts even though the skill only needs stock-analysis parameters.
+
+Mitigation: Ask users to provide only stock symbols, trade dates, and analysis horizons; do not include account data, holdings, or other sensitive personal information.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/kylinmountain/skills/tradingagents-analysis)
+- [TradingAgents application homepage](https://app.510168.xyz)
+- [TradingAgents-AShare self-hosting documentation](https://github.com/KylinMountain/TradingAgents-AShare)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Analysis jobs usually take 1 to 5 minutes; batch mode submits multiple symbols and returns a JSON result summary for completed jobs.]
+
+## Skill Version(s):
+
+0.6.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Scrape employee data from a logged-in SAP SuccessFactors browser session using browser automation when a user provides an employee ID and needs employee details from the SuccessFactors UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrape employee data from a logged-in SAP SuccessFactors browser session using browser automation.
 
-## Publisher: <br>
-[VenkataLokesh-dot](https://clawhub.ai/user/VenkataLokesh-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[venkatalokesh-dot](https://clawhub.ai/user/venkatalokesh-dot)
 
-## Use Case: <br>
-Employees and business operators use this skill to retrieve visible employee profile details from an authorized, logged-in SAP SuccessFactors browser session. It is intended for browser-based lookup workflows where the user already has access to the relevant SuccessFactors records. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive employee records from a logged-in SuccessFactors session. <br>
-Mitigation: Install and use it only for users authorized to retrieve the requested employee records through their existing SuccessFactors permissions. <br>
-Risk: Broad or batch employee lookups can disclose more HR data than needed. <br>
-Mitigation: Limit batch processing to approved business workflows and return only the employee fields needed for the stated purpose. <br>
-Risk: Browser Relay access could act on the wrong browser context. <br>
-Mitigation: Keep Browser Relay scoped to the intended SuccessFactors tab before scraping profile data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/VenkataLokesh-dot/sf-scrapper) <br>
-- [Publisher profile](https://clawhub.ai/user/VenkataLokesh-dot) <br>
+## Use Case:
 
+Employees and authorized operators use this skill to retrieve visible employee profile details from a logged-in SAP SuccessFactors session when an employee ID is provided. It supports single-employee lookup and sequential batch lookup from the browser UI.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text with extracted employee fields and error guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Only fields actually visible in the SuccessFactors UI should be returned.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a live authenticated SuccessFactors browser session to collect sensitive employee HR data with limited safeguards.
+
+Mitigation: Install and use it only when authorized to view the requested employee records; request only necessary fields, avoid broad batch use unless approved, and treat returned HR data as sensitive.
+
+Risk: Browser scraping may return incomplete or stale fields when SuccessFactors pages, permissions, or tabs differ.
+
+Mitigation: Review the returned fields before use and do not treat the skill as an auditable or least-privilege HR integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/venkatalokesh-dot/skills/sf-scrapper)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text employee profile fields, with tables for batch results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes only fields found in the rendered SuccessFactors page; not all fields may be visible.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

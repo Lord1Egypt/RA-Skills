@@ -1,0 +1,4 @@
+interface:
+  display_name: "心理学研究设计助手"
+  short_description: "将心理学研究想法转化为可检验且可实施的完整研究设计"
+  default_prompt: "请将我的心理学研究想法转化为可实施的研究设计方案，并明确假设、测量、样本与分析。"

@@ -1,0 +1,7 @@
+interface:
+  display_name: "钟馗卫士"
+  short_description: "检查中转风险、脱敏本地资料，并评估模型 API"
+  default_prompt: "使用 $zhongkui-guard 检查我指定的 Skill、文件或模型 API，并给出有证据的风险与能力报告。"
+policy:
+  allow_implicit_invocation: true
+

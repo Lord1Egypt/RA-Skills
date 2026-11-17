@@ -1,45 +1,52 @@
-## Description: <br>
-A requirements iteration workflow for OpenClaw that guides an agent through structured requirements discussion, implementation planning, and single-task iterative execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+需求迭代工作流 guides an agent through requirements interviewing, gap-based planning, and one-task iterative execution for OpenClaw projects.
 
-## Publisher: <br>
-[cloudyli](https://clawhub.ai/user/cloudyli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cloudyli](https://clawhub.ai/user/cloudyli)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and product collaborators use this skill to turn unclear requirements into testable specs, implementation plans, and focused execution cycles.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The execution phase can automatically edit project files and create Git commits.
+
+Mitigation: Use the skill only in repositories where automated edits and commits are acceptable, and require review of changes before each commit.
+
+Risk: The build prompt uses broad Git staging that may include unrelated files.
+
+Mitigation: Replace broad staging with explicit file paths for the current task and inspect git status plus staged diffs before committing.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and product or engineering teams use this skill to turn unclear requirements into topic specs, convert those specs into an implementation plan, and execute the plan one task at a time with validation and commits. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The execution template can stage broad repository changes with git add ., which may include unintended files. <br>
-Mitigation: Use a clean branch, review diffs before commits, and narrow staged files when generated or unrelated files appear. <br>
-Risk: Generated specs or implementation plans may misunderstand requirements and drive incorrect implementation work. <br>
-Mitigation: Review and approve specs and IMPLEMENTATION_PLAN.md before beginning iterative execution. <br>
+**Output Format:** [Markdown specs, implementation plans, code changes, shell command guidance, and progress notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cloudyli/iterate-planning) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Operator guide](artifact/AGENTS.md) <br>
-- [Requirements interview template](artifact/templates/requirements-interview.md) <br>
-- [Planning prompt template](artifact/templates/planning-prompt.md) <br>
-- [Build prompt template](artifact/templates/build-prompt.md) <br>
+**Other Properties Related to Output:** [May create or update project files and Git commits during the execution phase.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with templates, checklists, file paths, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces specs/*.md, IMPLEMENTATION_PLAN.md, repository changes, validation output, and git commits when used for execution.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

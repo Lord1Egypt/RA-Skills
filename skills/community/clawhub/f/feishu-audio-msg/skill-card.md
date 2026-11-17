@@ -1,44 +1,59 @@
-## Description: <br>
-Sends text-to-speech or existing audio files as playable Feishu audio messages, with optional transcript replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send TTS audio or an existing audio file as a playable Feishu audio message, with optional transcript replies.
 
-## Publisher: <br>
-[Kylinr](https://clawhub.ai/user/Kylinr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kylinr](https://clawhub.ai/user/kylinr)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send voice announcements, TTS messages, or existing audio files into Feishu chats while preserving Feishu's playable audio-message UI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses configured Feishu app credentials to upload audio and send messages. <br>
-Mitigation: Install only where that credential use is acceptable, and keep Feishu app credentials scoped and protected. <br>
-Risk: Audio could be sent to the wrong Feishu chat or user if the receive identifier is incorrect. <br>
-Mitigation: Verify the target chat ID or open ID before execution, and test direct-message behavior before relying on it. <br>
-Risk: Transcript mode can persist the spoken text as an additional Feishu thread reply. <br>
-Mitigation: Use transcript mode only when the text is appropriate to store in chat history. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Kylinr/feishu-audio-msg) <br>
-- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files) <br>
-- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id) <br>
-- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate text-to-speech audio or send an existing audio file to a Feishu chat as a playable audio message. It is useful for voice announcements, voice roll calls, and Feishu messaging workflows that need audio bubbles rather than file attachments.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May send generated or supplied audio and optional transcript text through Feishu when executed with configured credentials.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Stored Feishu bot credentials can be used to send content externally.
+
+Mitigation: Install only for trusted agents and users, and limit credential access to Feishu chats where this behavior is expected.
+
+Risk: The file mode can upload a local audio file to Feishu.
+
+Mitigation: Expose file mode only when it is explicitly needed, and constrain acceptable file paths and recipients.
+
+Risk: Transcript mode can post message text as a Feishu thread reply.
+
+Mitigation: Avoid transcript mode for sensitive text unless posting the transcript is explicitly intended.
+
+## Reference(s):
+
+- [Feishu Audio Message on ClawHub](https://clawhub.ai/kylinr/skills/feishu-audio-msg)
+- [Feishu file upload API](https://open.feishu.cn/open-apis/im/v1/files)
+- [Feishu message send API](https://open.feishu.cn/open-apis/im/v1/messages?receive_id_type=chat_id)
+- [Feishu tenant access token API](https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with bash commands and command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send audio files and optional transcript text to Feishu through configured bot credentials.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

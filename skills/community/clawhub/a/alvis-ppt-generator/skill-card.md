@@ -1,43 +1,58 @@
-## Description: <br>
-Generate PPT with SkillBoss API Hub. Smart template selection based on content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate PPT with SkillBoss API Hub. Smart template selection based on content.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and external users use this skill to generate PowerPoint presentations from a topic, either by choosing a template style or by allowing the skill to select an appropriate template automatically. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a SkillBoss API key, which could be exposed or misused if handled carelessly. <br>
-Mitigation: Use a dedicated, revocable key stored in the environment, avoid pasting it into prompts or files, and rotate it if exposure is suspected. <br>
-Risk: Presentation topics and content may be sent to SkillBoss during generation. <br>
-Mitigation: Do not submit confidential, regulated, personal, or secret business content unless SkillBoss is approved for that data. <br>
-Risk: The artifact references Python scripts that are not included in the reviewed artifact. <br>
-Mitigation: Install only from a source that provides the scripts, then review them before running the skill. <br>
+## Use Case:
 
+External users and developers use this skill to generate PowerPoint presentations from a topic, either by choosing a template style or by letting the skill select a suitable template automatically.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis-ppt-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands, streaming JSON status, and a final PowerPoint URL] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and SkillBoss_API_KEY; generation may take 2-5 minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Presentation topics and supplied content may be sent to SkillBoss API Hub for generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting confidential business, personal, or regulated information unless organizational policy permits that external processing.
+
+Risk: The release evidence references scripts, but the packaged artifact evidence only contains SKILL.md.
+
+Mitigation: Verify that the package includes the referenced scripts before relying on the skill for end-to-end PPT generation.
+
+Risk: PowerPoint generation can take several minutes and depends on the external API returning completion status.
+
+Mitigation: Use a sufficient timeout and wait for the final status with is_end set to true before treating the output URL as complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alvisdunlop/skills/alvis-ppt-generator)
+- [Publisher Profile](https://clawhub.ai/user/alvisdunlop)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON status examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the SkillBoss_API_KEY environment variable; final generation returns a PowerPoint URL when complete.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

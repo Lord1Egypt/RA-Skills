@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclaw.local/article-html-to-ppt/qa-report.schema.json",
+  "title": "article-html-to-ppt QA Report v2.1",
+  "type": "object",
+  "required": ["schema_version", "deck_id", "ppt_ir_ref", "profile", "status", "issues", "metrics"],
+  "properties": {
+    "schema_version": {"enum": ["2.0", "2.1"]},
+    "generated_at": {"type": "string"},
+    "deck_id": {"type": "string"},
+    "benchmark_case_id": {"type": "string"},
+    "pptx": {"type": "string"},
+    "ppt_ir_ref": {"type": "string"},
+    "style_ref": {"type": ["string", "null"]},
+    "delivery_ref": {"type": ["string", "null"]},
+    "build_ref": {"type": ["string", "null"]},
+    "profile": {"enum": ["fast", "standard", "premium"]},
+    "status": {"enum": ["pass", "warning", "fail", "blocked", "created"]},
+    "build_status_cap": {"enum": ["created", "rendered", "read_back", "verified", "final", "failed"]},
+    "trusted_delivery_status": {"enum": ["planned", "created", "rendered", "read_back", "verified", "final", "failed"]},
+    "render_required": {"type": "boolean"},
+    "compatibility": {"type": "object"},
+    "inputs": {"type": "object"},
+    "evidence": {"type": "object"},
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["issue_code", "severity", "category", "evidence", "message", "repair_action", "repair_status"],
+        "properties": {
+          "issue_id": {"type": ["string", "null"]},
+          "issue_code": {"type": "string"},
+          "slide_id": {"type": ["string", "null"]},
+          "object_id": {"type": ["string", "null"]},
+          "ppt_shape_id": {"type": ["integer", "null"]},
+          "severity": {"enum": ["info", "warning", "error", "fatal", "review", "fail", "blocked"]},
+          "compatibility_severity": {"enum": ["review", "fail", "blocked"]},
+          "category": {"type": "string"},
+          "detector": {"type": "string"},
+          "evidence": {"type": "object"},
+          "message": {"type": "string"},
+          "repair_action": {"type": ["object", "string", "null"]},
+          "repair_status": {"enum": ["pending", "repaired", "waived", "not_applicable", "skipped", "failed"]},
+          "recheck_status": {"enum": ["not_run", "pass", "fail", "blocked"]},
+          "source_report": {"type": "string"}
+        }
+      }
+    },
+    "metrics": {"type": "object"}
+  }
+}

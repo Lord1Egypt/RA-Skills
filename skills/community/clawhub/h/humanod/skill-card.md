@@ -1,44 +1,64 @@
-## Description: <br>
-Give your AI agent hands in the real world. Hire verified humans for physical tasks, data collection, and physical verification via the Humanod network. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give your AI agent hands in the real world. Hire verified humans for physical tasks, data collection, and physical verification via the Humanod network.
 
-## Publisher: <br>
-[Armandobrazil](https://clawhub.ai/user/Armandobrazil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[armandobrazil](https://clawhub.ai/user/armandobrazil)
 
-## Use Case: <br>
-External users and developers use Humanod to create, monitor, assign, cancel, and validate paid real-world tasks performed by humans. Typical tasks include local photo collection, physical location checks, and submitted-proof review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can spend money by creating paid tasks and can release or reject payment for human work. <br>
-Mitigation: Require the agent to summarize the task, worker choice, budget, location, and payment or rejection effect, then obtain explicit user confirmation before every modifying action. <br>
-Risk: The API key is handled through an exposed query-parameter pattern. <br>
-Mitigation: Use a dedicated, revocable Humanod API key with the least permissions available, rotate it if exposed, and verify the Humanod service and API endpoint before funding the account. <br>
-Risk: Real-world task requests and proof review may expose private addresses, sensitive locations, personal data, or confidential business details. <br>
-Mitigation: Avoid including sensitive details unless necessary, provide precise validation criteria, and review submitted proof before approving payment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Humanod ClawHub release](https://clawhub.ai/Armandobrazil/humanod) <br>
-- [Humanod documentation](https://docs.humanod.app) <br>
-- [Humanod application](https://www.humanod.app) <br>
-- [Humanod API endpoint](https://humanod-api.onrender.com) <br>
+## Use Case:
 
+External users and developers use Humanod to delegate paid real-world verification, photography, inspection, and local data-collection tasks through the Humanod API. The skill helps create tasks, review applicants and submitted proof, approve or reject work, cancel tasks, and check wallet balance.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, Guidance] <br>
-**Output Format:** [API requests and responses with concise natural-language task summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a HUMANOD_API_KEY and user confirmation before actions that create, assign, cancel, or validate paid tasks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can create paid real-world tasks, hire workers, approve submissions, change task details, and cancel tasks.
+
+Mitigation: Require explicit user confirmation before creating tasks, hiring workers, approving or rejecting submissions, changing prices, or canceling tasks; confirm budget and wallet impact before action.
+
+Risk: The security evidence flags API-key handling in URLs as a concern.
+
+Mitigation: Use a restricted, rotatable Humanod API key where available, avoid sharing keys in chat or URLs where possible, and rotate any key that may have been exposed.
+
+Risk: Physical-world tasking can be misused for surveillance, trespass, harassment, or unauthorized collection of personal or sensitive data.
+
+Mitigation: Decline tasks involving private people, restricted property, harassment, or sensitive data collection unless the user demonstrates authorization, consent, and lawful purpose.
+
+Risk: Approving a submission may release payment for incomplete or incorrect work.
+
+Mitigation: Compare submitted proof against the stated validation criteria before approval; provide specific feedback and request revision or rejection when proof is insufficient.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/armandobrazil/skills/humanod)
+- [Humanod App](https://www.humanod.app)
+- [Humanod Documentation](https://docs.humanod.app)
+- [Humanod Developer Keys](https://www.humanod.app/developer/keys)
+- [Humanod API Server](https://humanod-api.onrender.com)
+
+## Skill Output:
+
+**Output Type(s):** [API calls, Text, Configuration, Guidance]
+
+**Output Format:** [API requests and JSON responses with concise Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HUMANOD_API_KEY and explicit user confirmation before paid or state-changing actions.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,17 @@
+{
+  "skill": "ocas-voyage",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for ocas-voyage",
+  "evals": [
+    {
+      "input": "Plan a 3-day trip to Tokyo in October",
+      "expected_output": "Returns a detailed itinerary with flights, hotels, and activities",
+      "description": "Trip planning"
+    },
+    {
+      "input": "Add a restaurant reservation to my existing trip",
+      "expected_output": "Updates itinerary with new reservation details",
+      "description": "Itinerary update"
+    }
+  ]
+}

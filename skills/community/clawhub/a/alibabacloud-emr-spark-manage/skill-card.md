@@ -1,49 +1,73 @@
-## Description: <br>
-Manage the full lifecycle of Alibaba Cloud EMR Serverless Spark workspaces, including workspace creation, Spark job submission, Kyuubi interactive queries, resource queue scaling, and status queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Alibaba Cloud EMR Serverless Spark workspaces, Spark jobs, Kyuubi interactive queries, resource queue scaling, and status and log queries.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Developers and data engineers use this skill to manage Alibaba Cloud EMR Serverless Spark resources, run Spark jobs, inspect logs and status, operate Kyuubi services, and adjust resource queues through guided CLI/API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide access-control, role-grant, public endpoint, token, queue scaling, and paid resource creation operations. <br>
-Mitigation: Use a dedicated least-privilege RAM user or role, avoid FullAccess for normal job/query work, and manually approve member additions, role grants, public endpoints, token changes, queue scaling, and paid resource creation. <br>
-Risk: Kyuubi tokens can be exposed through prompts, logs, shell history, or command-line arguments. <br>
-Mitigation: Do not place real Kyuubi tokens in prompts, logs, shell history, or command-line arguments; use secret-handling practices outside the agent conversation. <br>
-Risk: Workspace deletion is irreversible and is intentionally outside this skill's supported operations. <br>
-Mitigation: Reject DeleteWorkspace requests in the agent workflow and direct users to the EMR Serverless Spark console for any workspace deletion decision. <br>
+## Use Case:
 
+Developers and data engineers use this skill to operate Alibaba Cloud EMR Serverless Spark environments, including workspace setup, Spark job submission, Kyuubi SQL access, queue scaling, monitoring, and troubleshooting.
 
-## Reference(s): <br>
-- [Getting Started: Create Your First Spark Workspace from Scratch and Submit a Job](references/getting-started.md) <br>
-- [Workspace Lifecycle: Create, Query, Manage](references/workspace-lifecycle.md) <br>
-- [Job Management: Submit, Monitor, Diagnose Spark Jobs](references/job-management.md) <br>
-- [Kyuubi Service: Interactive SQL Gateway Management](references/kyuubi-service.md) <br>
-- [Scaling: Resource Queue Management](references/scaling.md) <br>
-- [RAM Permission Policies](references/ram-policies.md) <br>
-- [API Parameter Reference](references/api-reference.md) <br>
-- [Alibaba Cloud CLI Credential Management](https://help.aliyun.com/document_detail/110341.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with inline bash commands, CLI examples, API parameters, and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Alibaba Cloud CLI aliyun >= 3.3.3 or Python SDK, Alibaba Cloud credentials, required EMR Serverless Spark RAM roles, explicit User-Agent, and manual confirmation for destructive or sensitive operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release metadata) <br>
+Risk: The skill can guide an agent operating Alibaba Cloud EMR Serverless Spark with cloud credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege RAM roles, scope credentials to the required workspace and operations, and avoid FullAccess policies for routine workflows.
+
+Risk: Installer and plugin-update steps can introduce supply-chain exposure.
+
+Mitigation: Verify the Alibaba Cloud CLI installer independently, review plugin sources, and keep CLI auto-plugin installation disabled unless that risk has been explicitly accepted.
+
+Risk: Public Kyuubi endpoints and Kyuubi tokens can expose interactive SQL access.
+
+Mitigation: Prefer private endpoints, restrict allowed networks, rotate tokens, and avoid pasting real tokens into command examples or chat transcripts.
+
+Risk: Some supported operations can interrupt or delete running jobs, sessions, tokens, or Kyuubi services.
+
+Mitigation: Perform the documented status checks and require explicit user confirmation before cancellation, stop, or delete operations.
+
+Risk: Workspace deletion is explicitly outside this skill's supported risk posture.
+
+Mitigation: Reject workspace deletion through the agent path and direct users to the EMR Serverless Spark Console for that operation.
+
+## Reference(s):
+
+- [Getting Started](references/getting-started.md)
+- [Workspace Lifecycle](references/workspace-lifecycle.md)
+- [Job Management](references/job-management.md)
+- [Kyuubi Service](references/kyuubi-service.md)
+- [Scaling Guide](references/scaling.md)
+- [RAM Permission Policies](references/ram-policies.md)
+- [API Parameter Reference](references/api-reference.md)
+- [Alibaba Cloud CLI Credential Management](https://help.aliyun.com/document_detail/110341.html)
+- [EMR Serverless Spark Console](https://emr-next.console.aliyun.com/#/region/cn-hangzhou/resource/all/serverless/spark/list)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Alibaba Cloud CLI commands and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Alibaba Cloud credentials and aliyun CLI >= 3.3.3; includes mandatory user-agent usage and explicit confirmation guidance for destructive operations.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

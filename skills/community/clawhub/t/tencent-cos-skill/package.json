@@ -1,0 +1,13 @@
+{
+  "name": "tencentcloud-cos",
+  "version": "1.0.0",
+  "description": "腾讯云 COS 与数据万象统一 Skill，支持公开模式和严格模式",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test scripts/lib/*.test.mjs"
+  },
+  "dependencies": {
+    "cos-nodejs-sdk-v5": "^2.14.0"
+  }
+}

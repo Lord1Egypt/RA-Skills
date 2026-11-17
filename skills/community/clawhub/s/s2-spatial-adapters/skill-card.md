@@ -1,44 +1,58 @@
-## Description: <br>
-Provides a unified interface for agents to control Home Assistant, Xiaomi Mijia, and Tuya IoT devices through S2 spatial intent commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a unified interface for agents to issue smart-home commands to Home Assistant, Xiaomi Mijia, and Tuya devices.
 
-## Publisher: <br>
-[SpaceSQ](https://clawhub.ai/user/SpaceSQ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spacesq](https://clawhub.ai/user/spacesq)
 
-## Use Case: <br>
-Developers and smart-home automation operators use this skill to let agents translate user intent into Home Assistant, Xiaomi Mijia, or Tuya device commands. It should be used in monitored environments because real actuation can affect lights, HVAC, locks, alarms, and feeders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad authority over physical smart-home devices, including sensitive actions such as door-lock control. <br>
-Mitigation: Use explicit device allowlists, keep locks, alarms, and other high-risk devices out of scope unless each action requires human confirmation, and avoid autonomous authority over safety-critical systems. <br>
-Risk: Incorrect or stale device mappings could cause an agent to actuate the wrong physical device. <br>
-Mitigation: Review protocol, device ID, and room mappings before use and re-check mappings after smart-home topology changes. <br>
-Risk: Real actuation depends on environment-provided credentials and endpoint configuration. <br>
-Mitigation: Inject credentials only through a managed runtime or secrets vault, avoid local plaintext credential files, and constrain runtime access to the minimum required devices and endpoints. <br>
+## Use Case:
 
+Developers and smart-home automation builders use this skill to let an agent translate intents into constrained CLI calls for lighting, HVAC, locks, alarms, and feeders across supported integrations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/SpaceSQ/s2-spatial-adapters) <br>
-- [Publisher profile](https://clawhub.ai/user/SpaceSQ) <br>
-- [Project homepage](https://space2.world) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash commands, JSON intent payloads, and runtime status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires environment variables for real device actuation; defaults to dry-run behavior when the actuation valve is not enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.7 (source: server release evidence and manifest.json) <br>
+Risk: The skill can perform high-impact physical actions involving locks, feeders, HVAC, and other smart-home devices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run by default and require explicit human confirmation before enabling real actuation for locks, feeders, and HVAC.
+
+Risk: Network credentials and device endpoints are sensitive and can increase exposure if over-privileged or transmitted insecurely.
+
+Mitigation: Use least-privileged environment-injected credentials, avoid HTTP Home Assistant endpoints, and rotate secrets used for Home Assistant, Mijia, and Tuya integrations.
+
+Risk: Device-specific command values may produce unsafe or unintended behavior if mappings and limits are wrong.
+
+Mitigation: Verify each device mapping and value limit before setting S2_ENABLE_REAL_ACTUATION=True.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spacesq/skills/s2-spatial-adapters)
+- [Publisher profile](https://clawhub.ai/user/spacesq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command blocks and JSON command arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to dry-run unless S2_ENABLE_REAL_ACTUATION is enabled; real actuation depends on configured device endpoints and credentials.]
+
+## Skill Version(s):
+
+2.0.7 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

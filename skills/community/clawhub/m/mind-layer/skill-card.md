@@ -1,42 +1,64 @@
-## Description: <br>
-我的脑子 provides a six-layer AI memory framework for OpenClaw agents, with rules and templates for long-term memory, user preferences, daily reflection, and archival review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mind Layer helps an AI assistant organize identity, rules, user preferences, long-term memory, daily reflections, and archive routines into a six-layer memory framework.
 
-## Publisher: <br>
-[z44264677](https://clawhub.ai/user/z44264677) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[z44264677](https://clawhub.ai/user/z44264677)
 
-## Use Case: <br>
-OpenClaw users and agent developers can use this skill to structure persistent local memory, prioritize what should be remembered, and maintain profile, experience, and daily reflection files. It is intended for assistants that need personalized recall and memory hygiene across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to create and maintain persistent local memory, including user profiles, preferences, decisions, and experience records. <br>
-Mitigation: Review USER.md, MEMORY.md, and memory/ regularly; avoid saving secrets or highly sensitive personal data; delete or redact entries that should no longer be retained. <br>
-Risk: The artifact includes memory and communication rules that may influence how an agent stores and recalls user information. <br>
-Mitigation: Review the rules and templates before installation, and adapt them to the user's privacy, retention, and compliance expectations. <br>
+## Use Case:
 
+Developers and agent users use this skill to set up persistent memory files, communication rules, and reflection templates for an OpenClaw assistant. It is intended for agents that need structured recall of user preferences, decisions, lessons, and daily activity summaries.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/z44264677/mind-layer) <br>
-- [README.md](README.md) <br>
-- [Rules](rules/RULES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown rules, templates, and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persistent local memory files should be reviewed as sensitive user data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill encourages persistent cross-session memory and broad behavioral instructions that can affect future agent behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep memory files in a dedicated, reviewable namespace and confirm each persistent write before it becomes authoritative.
+
+Risk: Persistent memory files could retain sensitive personal information or secrets if users store them there.
+
+Mitigation: Do not store secrets, credentials, health, financial, or highly sensitive personal information; periodically delete stale records.
+
+Risk: Installing with a moving latest tag can change the skill content between installs.
+
+Mitigation: Prefer a pinned installer version instead of clawhub@latest when deploying the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/z44264677/skills/mind-layer)
+- [README](artifact/README.md)
+- [Skill Overview](artifact/SKILL.md)
+- [Communication Rules](artifact/rules/RULES.md)
+- [Core Principles](artifact/rules/principles.md)
+- [Identity Template](artifact/templates/identity.md)
+- [Memory Template](artifact/templates/memory.md)
+- [Daily Reflection Template](artifact/templates/daily.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance, Shell commands]
+
+**Output Format:** [Markdown instructions, templates, file layout guidance, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces persistent memory and rule-file guidance for an agent workspace; users should review writes before making them authoritative.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

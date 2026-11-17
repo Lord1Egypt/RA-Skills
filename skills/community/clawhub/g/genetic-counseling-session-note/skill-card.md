@@ -1,43 +1,53 @@
-## Description: <br>
-Drafts structured pre-test and post-test genetic counseling session notes covering pedigree narrative, risk assessment, informed consent, result disclosure, psychosocial assessment, patient understanding, and plan for licensed CGC review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts pre-test or post-test genetic counseling session notes for CGC review, including pedigree narrative, risk assessment, testing rationale, consent or result disclosure, psychosocial assessment, patient understanding, and care plan.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Genetic counseling professionals use this skill to convert session intake details into a structured draft note for pre-test, post-test, follow-up, supervisory review, EMR preparation, or billing workflows. The output is intended for licensed CGC review before clinical use. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft counseling notes could be mistaken for final clinical documentation. <br>
-Mitigation: Keep the draft-only label, CGC review block, and requirement for licensed CGC approval before EMR entry, billing use, patient release, or patient communication. <br>
-Risk: Patient identifiers or family member names could be entered into an AI tool or included in generated notes. <br>
-Mitigation: Use initials plus case number only, omit full names, dates of birth, MRNs, and family member names, and verify institutional HIPAA and BAA requirements before external-system use. <br>
-Risk: Preliminary risk estimates, VUS handling, or result interpretation could be used without appropriate clinical judgment. <br>
-Mitigation: Label all risk estimates as preliminary, never classify or reclassify VUS results, document lab-reported classifications only, and require licensed CGC or supervising clinical geneticist verification. <br>
+## Use Case:
 
+External genetic counseling professionals use this skill to turn session intake details into a structured draft note for licensed CGC review before EMR entry, billing, patient communication, or patient release.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/genetic-counseling-session-note) <br>
-- [Feedback and contributions](https://github.com/archlab-space/Open-Skill-Hub/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Structured draft session note in Markdown-style sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes flagged review callouts and a CGC review block; draft-only clinical content requires licensed CGC approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and changelog, released 2026-05-31) <br>
+Risk: Clinical notes, risk estimates, consent language, or genetic-result wording could be incorrect or incomplete if used without professional review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as a draft and require licensed CGC review before EMR entry, billing, patient communication, or patient release.
+
+Risk: Unnecessary patient identifiers could be entered into an AI tool during note drafting.
+
+Mitigation: Use initials and case numbers only, avoid full names, DOBs, MRNs, and other unnecessary identifiers, and follow institutional HIPAA and BAA requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/archlab-space/skills/genetic-counseling-session-note)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown draft session note with labeled sections, clinical flags, open items, and a CGC review block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft clinical documentation only; generated notes, risk estimates, consent language, and genetic-result wording require licensed CGC review before clinical use.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence and changelog, released 2026-05-31)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

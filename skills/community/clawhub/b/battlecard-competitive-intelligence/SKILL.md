@@ -1,8 +1,8 @@
 ---
 name: battlecard-competitive-intelligence
-title: "Battlecard: Competitive Intelligence"
-description: "Know your competitor's weaknesses before the call. Practice your pitch against an AI buyer. Capture intel after every deal. 11 tools for sales teams. Free tier, no signup needed."
-version: 1.5.0
+title: "Battlecard: Competitive Intelligence and Sales Practice"
+description: "Battle cards for any competitor, then a practice call against an AI buyer who uses them, scored when you finish. From Battlecard: score every call, rehearse every gap. 11 tools, free tier, no signup needed."
+version: 1.8.0
 author: northr-ai
 tags:
   - sales
@@ -27,9 +27,9 @@ openclaw:
   primaryEnv: BATTLECARD_API_KEY
 ---
 
-# Battlecard - Competitive Intelligence
+# Battlecard: Competitive Intelligence and Sales Practice
 
-Add competitive intelligence to your OpenClaw agent. Get battle cards, objection handlers, pricing comparisons, pre-call briefings, and AI sales simulations (text and voice) for any company vs any competitor.
+Add competitive intelligence and sales practice to your OpenClaw agent: battle cards, objection handlers, pricing comparisons, pre-call briefings, and practice calls (text and voice) against an AI buyer, for any company vs any competitor. Part of Battlecard, conversation readiness for B2B sales teams: score every call, rehearse every gap.
 
 ## First Use
 

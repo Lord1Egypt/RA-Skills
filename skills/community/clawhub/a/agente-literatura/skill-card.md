@@ -1,39 +1,54 @@
-## Description: <br>
-Agente Literatura is a Portuguese-first conversational study aid for Brazilian and Portuguese literature, focused on the FUVEST 2026 required works and literary movements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agente Literatura provides conversational guidance for Brazilian and Portuguese literature study for FUVEST 2026, focusing on required works, authors, literary movements, and interpretive connections.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-External learners and study agents use this skill to discuss FUVEST literature through conversational prompts, character analysis, historical context, and cross-disciplinary connections instead of rote summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate broadly around literature, authors, reading, or related study discussions. <br>
-Mitigation: Use explicit routing preferences when multiple specialist skills are installed, and review generated study guidance for fit before relying on it. <br>
+## Use Case:
 
+External learners and study assistants use this skill to discuss the FUVEST 2026 literature reading list through character, historical, philosophical, and sociological connections instead of traditional summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/agente-literatura) <br>
-- [Publisher profile](https://clawhub.ai/user/AntonioVFranco) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Portuguese conversational guidance and study prompts in Markdown-style text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, code execution, credential access, persistence, or sensitive data handling are described in the release security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad activation wording may steer adjacent study conversations into literature analysis when the user did not explicitly ask for it.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow the activation wording if deployment should be limited to explicit literature questions.
+
+Risk: Conversational literary analysis may be vivid but still inaccurate or overconfident about works, authors, dates, or exam expectations.
+
+Mitigation: Review study guidance against authoritative FUVEST materials and primary texts before relying on it for exam preparation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/antoniovfranco/skills/agente-literatura)
+- [ClawHub publisher profile](https://clawhub.ai/user/antoniovfranco)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational tutoring guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conversation-only literature study responses; no code, shell commands, credentials, or external tools are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

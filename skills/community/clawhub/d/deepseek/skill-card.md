@@ -1,43 +1,53 @@
-## Description: <br>
-Provides a DeepSeek-named OpenClaw tool scaffold that currently accepts prompts and returns placeholder responses for chat, code generation, planning, and analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an OpenClaw agent tool interface intended for DeepSeek-assisted code generation, problem solving, planning, and analysis.
 
-## Publisher: <br>
-[barisoezcan1905](https://clawhub.ai/user/barisoezcan1905) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[barisoezcan1905](https://clawhub.ai/user/barisoezcan1905)
 
-## Use Case: <br>
-Developers can use this skill as a placeholder interface while preparing an OpenClaw agent integration for DeepSeek-style prompt handling, code generation, problem solving, planning, and analysis. Verify functionality before relying on it for real DeepSeek API responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The current release is a placeholder and does not perform real DeepSeek API calls. <br>
-Mitigation: Verify the implementation before using it in workflows that require actual DeepSeek model responses. <br>
-Risk: A future version that adds real API calls may send prompts, code, and related context to DeepSeek. <br>
-Mitigation: Avoid sending secrets or sensitive material unless that external processing is acceptable for the workflow. <br>
+## Use Case:
 
+Developers and agent operators can use this skill to expose a DeepSeek-oriented prompt tool for code generation, problem solving, planning, and analysis workflows. The current release behaves as a stub and should be validated before relying on it for external API-backed results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/barisoezcan1905/deepseek) <br>
-- [Publisher profile](https://clawhub.ai/user/barisoezcan1905) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
-- [Artifact skill manifest](artifact/skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON result object with status, message, and prompt data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Current implementation echoes the prompt instead of performing a live DeepSeek API call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact/skill.json) <br>
+Risk: Users may mistake the current stub behavior for a working DeepSeek API integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test the tool in the target agent environment and confirm it performs real API calls before depending on generated responses.
+
+Risk: A future API-backed version could send prompts, code, secrets, credentials, or regulated data to an external service.
+
+Mitigation: Avoid submitting sensitive or regulated data unless organizational policy permits it and the implementation's external data flow has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/barisoezcan1905/skills/deepseek)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, configuration, guidance]
+
+**Output Format:** [JSON tool result with success, message, and optional data fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DEEPSEEK_API_KEY for future API-backed use; this release returns stub responses rather than calling DeepSeek.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

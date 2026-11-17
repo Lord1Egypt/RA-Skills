@@ -1,0 +1,21 @@
+{
+  "cap": 20,
+  "items": [
+    {
+      "id": "pp_example",
+      "source": "starter",
+      "title": "Manual invoicing reminders",
+      "url": "https://www.nichestarter.ai/insights/pain-points/example",
+      "ask": "build | later | not_us",
+      "asked_at": "2026-09-14"
+    },
+    {
+      "id": "lead_example",
+      "source": "reach",
+      "title": "Anyone else hate chasing invoices?",
+      "url": "https://www.reddit.com/r/SaaS/comments/example",
+      "ask": "open in extension | save | skip",
+      "asked_at": "2026-09-14"
+    }
+  ]
+}

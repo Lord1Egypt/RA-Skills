@@ -1,41 +1,58 @@
-## Description: <br>
-Reconcile payroll processor reports from Gusto, ADP, Paychex, or Rippling to general ledger journal entries in QuickBooks Online, Xero, or other accounting software, with account mapping, variance detection, and audit-ready workpapers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reconcile payroll processor exports from Gusto, ADP, Paychex, and Rippling to general ledger journal entries, detect variances, and produce audit-ready reconciliation workpapers.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Accounting and finance teams use this skill during month-end close to reconcile payroll processor exports against general ledger payroll accounts, prepare journal entry proposals, identify variances, and assemble review workpapers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Payroll exports and generated workpapers can contain sensitive employee compensation, withholding, benefit, and bank-related data. <br>
-Mitigation: Use only in approved agent workspaces for payroll data, keep files in encrypted access-controlled storage, and avoid sharing employee-level registers unless necessary. <br>
-Risk: Generated journal entries or variance explanations may be incorrect if account mappings, payroll exports, GL extracts, or tax assumptions are incomplete or stale. <br>
-Mitigation: Require an authorized accounting reviewer to approve reconciliations and journal entries before posting to any accounting system. <br>
+## Use Case:
 
+Accounting and finance teams use this skill during monthly payroll close to map payroll processor exports to the chart of accounts, build draft payroll journal entries, compare expected entries to GL activity, and document variances.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/payroll-gl-reconciliation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, reconciliation tables, journal entry structures, and workpaper templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed reconciliations and journal-entry workpapers for authorized review before posting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles highly sensitive payroll data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in an approved secure workspace and avoid placing raw employee payroll data in logs or unnecessary prompts.
+
+Risk: Generated workpapers may include a default preparer name.
+
+Mitigation: Remove or replace the preparer name before sharing or filing client workpapers.
+
+Risk: Generated journal entries may be incomplete or incorrect for the client's books.
+
+Mitigation: Treat all journal entries as drafts and review account mapping, balances, and variances before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/payroll-gl-reconciliation)
+- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, account mapping tables, reconciliation checks, and workpaper templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft journal entries, variance summaries, and audit workpapers that require human review before posting.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "亚马逊评论情感分析 · 好评差评倾向"
+  short_description: "逐维度情感倾向，而不是只给一个总分"
+  default_prompt: "使用 $amazon-review-sentiment 分析一个 Amazon ASIN 评论的情感倾向。"

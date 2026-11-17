@@ -1,45 +1,60 @@
-## Description: <br>
-Orchestrates software development by coordinating with Cursor Agent, managing git workflows, and ensuring quality delivery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Orchestrates software development by coordinating with Cursor Agent, managing git workflows, and ensuring quality delivery.
 
-## Publisher: <br>
-[47vigen](https://clawhub.ai/user/47vigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[47vigen](https://clawhub.ai/user/47vigen)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate feature work, bug fixes, refactors, git workflow steps, build verification, deployment pipeline monitoring, and final delivery reporting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can coordinate real git changes, including staging, committing, pushing, merging, and deployment-related steps. <br>
-Mitigation: Use only in repositories where the user is authorized to make changes; require the agent to stop before git write operations or deployment actions; prefer pull requests, branch protections, and human review of the final diff. <br>
-Risk: The workflow forwards user-provided links and attachments to Cursor. <br>
-Mitigation: Filter links and attachments before forwarding, and do not provide secrets, customer data, private configuration, credentials, or sensitive internal material. <br>
-Risk: Build and deployment monitoring may affect release workflows if the agent is allowed to continue without review. <br>
-Mitigation: Keep deployment credentials and pipeline triggers permissioned, run work on controlled branches, verify builds before merge, and require explicit approval for release-impacting steps. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Workflow Details](references/workflow-details.md) <br>
-- [Model Selection Matrix](references/model-selection.md) <br>
-- [Cursor Interaction Guidelines](references/cursor-guidelines.md) <br>
-- [Final Report Template](references/report-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/47vigen/developer-agent) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to manage implementation work from requirement analysis through git branching, optional Cursor-assisted planning or implementation, build verification, staging merge, pipeline monitoring, and final reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, code/configuration snippets, implementation plans, and final reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate Cursor prompts, git commands, build and deployment checks, and structured delivery reports.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to send all user-provided links and attachments to Cursor, which can expose sensitive information if users include secrets, customer data, private URLs, or credentials.
+
+Mitigation: Review links and attachments before forwarding them, and do not provide secrets, private URLs, customer data, credentials, or broad attachments unless they are approved for Cursor.
+
+Risk: The skill includes git push, staging merge, and deployment pipeline actions, which can publish unwanted changes if performed without strong review gates.
+
+Mitigation: Require a staged diff, explicit file list, secret scan, and separate approval before any commit, push, merge, or deployment-triggering action.
+
+Risk: The server security verdict is suspicious because the workflow gives agents broad repository and deployment authority with too little safety gating.
+
+Mitigation: Install only in repositories where the agent is allowed to push and merge to staging, and keep human approval boundaries around source changes and deployments.
+
+## Reference(s):
+
+- [Developer Agent Skill Page](https://clawhub.ai/47vigen/skills/developer-agent)
+- [Workflow Details](artifact/references/workflow-details.md)
+- [Model Selection Matrix](artifact/references/model-selection.md)
+- [Cursor Interaction Guidelines](artifact/references/cursor-guidelines.md)
+- [Final Report Template](artifact/references/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured task reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation plans, changed-file summaries, branch status, build results, deployment status, and final release notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

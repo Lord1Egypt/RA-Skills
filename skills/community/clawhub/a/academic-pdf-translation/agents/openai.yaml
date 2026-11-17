@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF 翻译"
+  short_description: "PDF 全文翻译、重排与可检索交付"
+  default_prompt: "请用 $academic-pdf-translation 把这篇 PDF 翻译成中文。"

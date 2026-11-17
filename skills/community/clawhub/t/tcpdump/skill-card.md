@@ -1,39 +1,50 @@
-## Description: <br>
-Tcpdump reference tool. Use when working with tcpdump in devtools contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tcpdump reference tool. Use when working with tcpdump in devtools contexts.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick tcpdump reference for command-oriented devtools work, troubleshooting, security considerations, migration checklists, and cheat sheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Future releases could change from static guidance to actions such as running packet captures, requiring sudo, installing packages, reading network or system data, or sending data externally. <br>
-Mitigation: Re-review and scan future updates before deployment, especially if the script changes from printing reference text to executing system or network operations. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick tcpdump-oriented reference for overview material, starter guidance, common patterns, troubleshooting, performance notes, security considerations, migration checklists, and cheatsheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/tcpdump) <br>
-- [Publisher homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown text printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference sections; security evidence says the artifact prints guidance and does not capture traffic, read data, install software, or persist data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and frontmatter) <br>
+Risk: The tcpdump reference content is generic placeholder-style guidance and may be inaccurate or incomplete for real packet-capture work.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify tcpdump commands, filters, privileges, and security guidance against official documentation or other trusted references before acting.
+
+## Reference(s):
+
+- [Tcpdump ClawHub skill page](https://clawhub.ai/ckchzh/skills/tcpdump)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference output; users should verify tcpdump commands and security guidance against trusted documentation before acting.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

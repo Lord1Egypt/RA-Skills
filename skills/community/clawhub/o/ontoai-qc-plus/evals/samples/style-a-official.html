@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ontoAI 质检官 · 质检报告</title>
+<style>
+/* ============ 预览外壳（不属于报告本体） ============ */
+*{box-sizing:border-box}
+body{margin:0;background:#EDEDF2;color:#16161D;
+  font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif}
+.shell{max-width:1120px;margin:0 auto;padding:20px 16px 60px}
+.pv-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.pv-title{font-size:16px;font-weight:700}
+.pv-sub{font-size:12px;color:#73737F;margin-top:2px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{border:1px solid #D5D5E0;background:#fff;border-radius:10px;padding:8px 14px;font-size:13px;cursor:pointer;
+  font-family:inherit;color:#5B5B68;line-height:1.3}
+.tab b{display:block;font-size:13px;color:#16161D}
+.tab small{font-size:11px;color:#8A8A96}
+.tab.on{border-color:#6E56CF;background:#F0ECFF;box-shadow:0 0 0 3px rgba(110,86,207,.12)}
+.tab.on b{color:#4B39B8}
+/* 快捷切换条：双击打开 HTML 即见（左上角悬浮），点击即换款；收起后进入正式外观 */
+.qbar{position:fixed;top:14px;left:14px;z-index:9999;display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  background:#fff;border:1px solid #C9C4E8;border-radius:12px;padding:6px 8px;
+  box-shadow:0 8px 28px rgba(20,20,40,.18)}
+.qbar .qtag{font-size:11px;font-weight:700;color:#6E56CF;padding:0 4px}
+.qbar .tab{padding:5px 10px;border-radius:8px;font-size:12px}
+.qbar .qhide{border:1px solid transparent;background:transparent;border-radius:8px;padding:5px 8px;
+  font-size:12px;cursor:pointer;color:#8A8A96;font-family:inherit;line-height:1.3}
+.qbar .qhide:hover{color:#16161D;border-color:#D5D5E0}
+body.formal .qbar{display:none!important}
+.stage{background:#fff;border-radius:14px;padding:18px;box-shadow:0 6px 24px rgba(20,20,40,.08)}
+.skin{display:none}
+.skin.on{display:block}
+.pv-tip{font-size:12px;color:#73737F;margin:14px 2px 0;line-height:1.8}
+/* 正式报告模式：去掉预览外壳的灰底、边距与卡片阴影 */
+body.formal{background:#fff}
+body.formal .shell{padding:0;max-width:none}
+body.formal .stage{box-shadow:none;border-radius:0;padding:0;background:transparent}
+
+/* ============ 通用：打印 ============ */
+@page{size:A4;margin:14mm 14mm 16mm}
+@media print{
+  body{background:#fff}
+  .shell{padding:0;max-width:none}
+  .pv-head,.tabs,.pv-tip,.qbar{display:none!important}
+  .stage{box-shadow:none;border-radius:0;padding:0}
+  .skin{display:none!important}
+  .skin.on{display:block!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* =========================================================
+   A 款 · 官方检验报告（公文风）
+   ========================================================= */
+.sk-a{background:#fff;color:#111;font-family:"SimSun","Songti SC","Source Han Serif SC",serif;font-size:14px;line-height:1.85}
+.sk-a .paper{width:176mm;min-height:250mm;margin:0 auto;padding:14mm 15mm;background:#fff;
+  box-shadow:0 2px 14px rgba(0,0,0,.10)}
+.sk-a .org{text-align:center;font-size:12px;letter-spacing:3px;color:#333}
+.sk-a .ttl{text-align:center;font-family:"SimHei","Heiti SC","Microsoft YaHei",sans-serif;
+  font-size:26px;letter-spacing:6px;margin:6px 0 2px}
+.sk-a .sub{text-align:center;font-size:12px;color:#555;letter-spacing:2px}
+.sk-a .redline{height:2.5px;background:#9E1B1B;margin:10px 0 14px}
+.sk-a .kv{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:14px}
+.sk-a .kv td{border:1px solid #888;padding:5px 8px;vertical-align:top}
+.sk-a .kv td.k{background:#F2F2F2;width:78px;color:#333;white-space:nowrap;font-family:"SimHei","Microsoft YaHei",sans-serif;font-weight:400}
+.sk-a h2{font-family:"SimHei","Heiti SC",sans-serif;font-size:14.5px;margin:16px 0 7px;letter-spacing:1px;
+  border-left:4px solid #9E1B1B;padding-left:7px}
+.sk-a table.d{border-collapse:collapse;width:100%;font-size:12px;margin-bottom:6px}
+.sk-a table.d th,.sk-a table.d td{border:1px solid #777;padding:5px 6px;vertical-align:top;text-align:left}
+.sk-a table.d th{background:#EFEFEF;font-family:"SimHei","Microsoft YaHei",sans-serif;font-weight:400;font-size:11.5px;text-align:center}
+.sk-a .concl{border:2px solid #111;padding:10px 12px;font-size:13px;margin-bottom:4px;position:relative;background:#FAFAFA}
+.sk-a .concl.has-seal{padding-right:106px}
+.sk-a .concl .lb{font-family:"SimHei","Microsoft YaHei",sans-serif;font-weight:400}
+.sk-a .seal{position:absolute;right:16px;bottom:8px;width:88px;height:88px;border:2.5px dashed #C0392B;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:#C0392B;font-size:11px;text-align:center;
+  transform:rotate(-12deg);opacity:.85;letter-spacing:1px;line-height:1.4;font-family:"SimHei",sans-serif}
+.sk-a .rcode{font-family:"SimHei",sans-serif}
+.sk-a .note{font-size:11.5px;color:#444;line-height:1.7;margin:4px 0 0}
+.sk-a .sign{display:flex;gap:0;margin-top:18px;border:1px solid #888;border-right:none}
+.sk-a .sign div{flex:1;border-right:1px solid #888;padding:6px 10px;font-size:12px;min-height:52px}
+.sk-a .sign span{color:#666;font-size:11px}
+.sk-a .decl{margin-top:12px;font-size:11px;color:#555;line-height:1.75;border-top:1px solid #999;padding-top:6px}
+.sk-a .pg{text-align:center;font-size:11px;color:#666;margin-top:10px}
+.sk-a .c-must{color:#9E1B1B;font-family:"SimHei","Microsoft YaHei",sans-serif;font-weight:400}
+.sk-a .bar{display:inline-block;width:118px;height:10px;background:#EFE7E7;border-radius:2px;overflow:hidden;vertical-align:middle}
+.sk-a .bar i{display:block;height:100%;background:#9E1B1B}
+.sk-a b{font-family:"SimHei","Microsoft YaHei",sans-serif;font-weight:400}
+@media print{.sk-a .paper{width:auto;min-height:0;box-shadow:none;padding:0}}
+
+/* =========================================================
+   B 款 · 第三方检测机构（实验室风）
+   ========================================================= */
+.sk-b{background:#fff;font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;font-size:13px;line-height:1.7;color:#1B2430}
+.sk-b .paper{width:180mm;margin:0 auto;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.10)}
+.sk-b .top{background:#12386B;color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.sk-b .top .t1{font-size:19px;font-weight:700;letter-spacing:1px}
+.sk-b .top .t2{font-size:11.5px;opacity:.85;margin-top:3px;letter-spacing:.5px}
+.sk-b .top .no{text-align:right;font-size:11.5px;line-height:1.65;opacity:.95}
+.sk-b .top .no b{font-size:13px;letter-spacing:.5px}
+.sk-b .body{padding:18px 22px 22px}
+.sk-b .kv{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12.5px}
+.sk-b .kv td{border:1px solid #D6DEE8;padding:6px 9px}
+.sk-b .kv td.k{background:#EEF3F9;width:96px;color:#37506E;font-weight:700;white-space:nowrap}
+.sk-b .verdict{border:1px solid #C9D6E4;border-left:5px solid var(--vc,#12386B);background:#F7FAFD;
+  padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:16px}
+.sk-b .vbadge{background:var(--vc,#12386B);color:#fff;font-size:15px;font-weight:700;padding:7px 16px;border-radius:4px;letter-spacing:1px;white-space:nowrap}
+.sk-b .vn{font-size:12.5px;color:#40556E}
+.sk-b h2{font-size:13.5px;color:#12386B;margin:18px 0 8px;padding-bottom:5px;border-bottom:2px solid #12386B;letter-spacing:.5px}
+.sk-b h2 em{font-style:normal;font-size:11.5px;color:#7A8CA1;font-weight:400;margin-left:8px}
+.sk-b table.d{width:100%;border-collapse:collapse;font-size:12px}
+.sk-b table.d th{background:#12386B;color:#fff;font-weight:600;padding:6px 8px;text-align:left;font-size:11.5px}
+.sk-b table.d td{border-bottom:1px solid #E3E9F0;padding:6px 8px;vertical-align:top}
+.sk-b table.d tbody tr:nth-child(even){background:#F7FAFD}
+.sk-b .tag{display:inline-block;background:#EEF3F9;color:#12386B;border:1px solid #C9D6E4;border-radius:3px;
+  font-size:10.5px;padding:1px 6px;font-weight:700}
+.sk-b .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.sk-b .barm{height:9px;background:#EEF2F7;border-radius:2px;overflow:hidden}
+.sk-b .barm i{display:block;height:100%}
+.sk-b .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:4px}
+.sk-b .card{border:1px solid #D6DEE8;border-top:3px solid var(--cc,#12386B);padding:10px 8px;text-align:center;border-radius:3px}
+.sk-b .card .n{font-size:24px;font-weight:700;color:var(--cc,#12386B);line-height:1.1}
+.sk-b .card .l{font-size:11px;color:#5A6B80;margin-top:2px}
+.sk-b .decl{margin-top:16px;border:1px solid #D6DEE8;background:#FBFCFE;padding:10px 14px;font-size:10.5px;color:#5A6B80;line-height:1.8}
+.sk-b .sign{margin-top:14px;display:flex;gap:14px;font-size:12px}
+.sk-b .sign div{flex:1;border-bottom:1px solid #9AAABB;padding-bottom:22px;color:#37506E}
+.sk-b .ft{margin-top:10px;text-align:center;font-size:10.5px;color:#8A99AB;border-top:1px solid #E3E9F0;padding-top:8px}
+@media print{.sk-b .paper{width:auto;box-shadow:none}}
+
+/* =========================================================
+   C 款 · 现代图表（SaaS 风）
+   ========================================================= */
+.sk-c{background:#F6F6F9;padding:24px 0 40px;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:#16161D}
+.sk-c .paper{max-width:920px;margin:0 auto;padding:0 20px}
+.sk-c .hd{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.sk-c .brand{font-size:21px;font-weight:700;letter-spacing:.5px}
+.sk-c .brand span{color:#6E56CF}
+.sk-c .tagline{font-size:12px;color:#8A8A96;margin-top:2px}
+.sk-c .meta{font-size:12px;color:#5B5B68;text-align:right;line-height:1.9}
+.sk-c .meta b{color:#16161D}
+.sk-c .verdict{background:#fff;border:1px solid #E6E6EE;border-radius:14px;padding:20px 22px;margin-bottom:14px;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;border-left:6px solid var(--vc,#6E56CF)}
+.sk-c .vlab{font-size:25px;font-weight:700;color:var(--vc,#6E56CF)}
+.sk-c .vnote{font-size:13px;color:#5B5B68}
+.sk-c .vkick{font-size:11px;color:#8A8A96;letter-spacing:2px}
+.sk-c .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:14px}
+.sk-c .stat{background:#fff;border:1px solid #E6E6EE;border-radius:11px;padding:14px 12px;text-align:center}
+.sk-c .stat .n{font-size:29px;font-weight:700;line-height:1.1;color:var(--cc,#6E56CF)}
+.sk-c .stat .l{font-size:11.5px;color:#5B5B68;margin-top:3px}
+.sk-c .panel{background:#fff;border:1px solid #E6E6EE;border-radius:14px;padding:18px 20px;margin-bottom:13px}
+.sk-c .panel h3{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sk-c .panel h3 i{width:7px;height:7px;border-radius:50%;background:#6E56CF}
+.sk-c .barrow{display:grid;grid-template-columns:92px 1fr 30px;gap:10px;align-items:center;margin-bottom:8px}
+.sk-c .blab{font-size:12px;color:#5B5B68;text-align:right}
+.sk-c .btrk{background:#F0F0F5;border-radius:999px;height:15px;overflow:hidden}
+.sk-c .bfill{height:100%;border-radius:999px}
+.sk-c .bval{font-size:12px;font-weight:600}
+.sk-c .stack{display:flex;height:15px;border-radius:999px;overflow:hidden;background:#F0F0F5}
+.sk-c .stack i{display:block;height:100%}
+.sk-c .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:#5B5B68;margin-bottom:12px}
+.sk-c .legend em{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+.sk-c table.d{width:100%;border-collapse:collapse;font-size:12.5px}
+.sk-c table.d th{text-align:left;font-weight:600;color:#5B5B68;font-size:11px;padding:8px 9px;border-bottom:1.5px solid #E6E6EE;background:#FAFAFD;white-space:nowrap}
+.sk-c table.d td{padding:10px 9px;border-bottom:1px solid #F0F0F5;vertical-align:top}
+.sk-c .rule{display:inline-block;background:#F0ECFF;color:#5B45C9;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;white-space:nowrap}
+.sk-c .quote{color:#5B5B68;font-size:12px}
+.sk-c .cons{color:#C0392B;font-size:12px}
+.sk-c .next{background:#F0ECFF;border:1px solid #DDD4FB;border-radius:12px;padding:15px 20px;font-size:13px;color:#3B2A82}
+.sk-c .next b{display:block;font-size:11px;letter-spacing:1px;margin-bottom:4px;color:#6E56CF}
+.sk-c .foot{text-align:center;font-size:11px;color:#8A8A96;margin-top:20px;line-height:1.9}
+@media print{.sk-c{background:#fff;padding:0}.sk-c .panel,.sk-c .verdict,.sk-c .stat{break-inside:avoid}}
+
+/* =========================================================
+   D 款 · 学术 / 出版（期刊风）
+   ========================================================= */
+.sk-d{background:#fff;color:#1A1A1A;font-family:"Songti SC","SimSun","Source Han Serif SC",Georgia,serif;
+  font-size:14px;line-height:1.95}
+.sk-d .paper{width:170mm;margin:0 auto;padding:16mm 14mm;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.10)}
+.sk-d .jhead{border-bottom:2.5px solid #1A1A1A;padding-bottom:8px;margin-bottom:4px;
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.sk-d .jname{font-size:11.5px;letter-spacing:2px;color:#444}
+.sk-d .jno{font-size:11px;color:#666}
+.sk-d h1{font-size:21px;text-align:center;margin:16px 0 6px;letter-spacing:1px;font-family:"Microsoft YaHei","Songti SC",serif;font-weight:700}
+.sk-d .au{text-align:center;font-size:12px;color:#555;margin-bottom:4px}
+.sk-d .abst{border-top:1px solid #CCC;border-bottom:1px solid #CCC;padding:9px 0;margin:12px 0 16px;font-size:12.5px;color:#333}
+.sk-d .abst b{font-family:"Microsoft YaHei","Songti SC",serif;font-weight:700;color:#9E1B1B}
+.sk-d h2{font-size:15px;margin:20px 0 8px;font-family:"Microsoft YaHei","Songti SC",serif;font-weight:700;letter-spacing:.5px;border-bottom:1px solid #1A1A1A;padding-bottom:5px}
+.sk-d h3{font-size:13.5px;margin:14px 0 6px;font-family:"Microsoft YaHei","Songti SC",serif;font-weight:700;color:#333}
+.sk-d table.d{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0 4px}
+.sk-d table.d th{border-top:1.6px solid #1A1A1A;border-bottom:.8px solid #1A1A1A;padding:5px 7px;text-align:left;font-weight:400;font-size:11.5px}
+.sk-d table.d td{border-bottom:.5px solid #DDD;padding:5px 7px;vertical-align:top}
+.sk-d table.d tr:last-child td{border-bottom:1.6px solid #1A1A1A}
+.sk-d .cap{font-size:11px;color:#666;margin:2px 0 12px}
+.sk-d .fn{font-size:11px;color:#666;border-top:.5px solid #CCC;margin-top:14px;padding-top:6px;line-height:1.8}
+.sk-d .rule{font-variant:small-caps;font-size:11px;color:#444}
+.sk-d .kv{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0 14px}
+.sk-d .kv td{padding:3px 8px 3px 0;color:#333}
+.sk-d .kv td.k{width:74px;color:#666;white-space:nowrap}
+.sk-d .bar{display:inline-block;width:118px;height:9px;background:#ECECEC;border-radius:2px;overflow:hidden;vertical-align:middle}
+.sk-d .bar i{display:block;height:100%;background:#1A1A1A}
+.sk-d b{font-family:"Microsoft YaHei","Songti SC",serif;font-weight:700}
+@media print{.sk-d .paper{width:auto;box-shadow:none;padding:0}}
+
+/* =========================================================
+   英文版字体（lang=en）：Latin 栈优先，保留 CJK 回退防乱码
+   Arial / Georgia 均有真粗体 → 不会触发"合成粗体"位图
+   ========================================================= */
+.lang-en .sk-a{font-family:"Georgia","Times New Roman","Songti SC","SimSun",serif;font-size:14px;line-height:1.8}
+.lang-en .sk-a .ttl,.lang-en .sk-a h2,.lang-en .sk-a .kv td.k,.lang-en .sk-a table.d th,
+.lang-en .sk-a .concl .lb,.lang-en .sk-a .seal,.lang-en .sk-a .rcode,.lang-en .sk-a b{font-family:"Arial","Helvetica Neue","Microsoft YaHei",sans-serif;font-weight:700}
+.lang-en .sk-a .c-must{font-family:"Arial","Helvetica Neue","Microsoft YaHei",sans-serif;font-weight:400}
+.lang-en .sk-b{font-family:"Arial","Helvetica Neue","Microsoft YaHei",sans-serif}
+.lang-en .sk-c{font-family:"Arial","Helvetica Neue","Microsoft YaHei",sans-serif}
+.lang-en .sk-d{font-family:"Georgia","Times New Roman","Songti SC",serif}
+.lang-en .sk-d h1,.lang-en .sk-d h2,.lang-en .sk-d h3,.lang-en .sk-d .abst b,
+.lang-en .sk-d .kv td.k,.lang-en .sk-d b{font-family:"Arial","Helvetica Neue","Microsoft YaHei",sans-serif;font-weight:700}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="pv-head">
+    <div>
+      <div class="pv-title">ontoAI 质检官 · 报告款式对比</div>
+      <div class="pv-sub">同一份质检数据，四种版式。选定后落成正式模板（HTML 版 + PDF 版）。</div>
+    </div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+
+  <div class="stage" id="stage"></div>
+
+  <div class="pv-tip">
+    打印 / 导出：切到某一款后按 Ctrl+P（或点右上角浏览器的打印），已内置 A4 版式与背景色保留规则。
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   同一份 DATA，四款版式共用。正式模板只需替换此对象。
+   ============================================================ */
+const DATA = {
+  /* 版式：a=官方检验报告 b=第三方检测机构 c=现代图表 d=学术/出版 */
+  style: "a",
+  /* 语言：zh=中文外壳 en=英文外壳（仅影响报告 UI 标签；issue/quote 等正文保持原文） */
+  lang: "zh",
+  publisher: "天津市微数人工智能科技有限责任公司",
+  reportNo: "ontoAI-QC-20261011-001",
+  date: "2026-10-11",
+  product: "2026Q3 产品发布稿.docx",
+  modality: "H1 图文混排 / W1 Word",
+  scenario: "S2 对外发布",
+  ruleLevel: "RL1–RL3 · L1–L2",
+  basis: "ontoAI 质检官 SKILL.md v1.4.3 · 通用维度 D1–D6 · 中文残留规则库 RZ",
+  verdict: { code:"modify", label:"修改后放行", emoji:"🟡", note:"改完 2 处必改项即可发布" },
+  counts: { must:2, should:3, doubt:1, pass:7 },
+  byDimension: [
+    { dim:"残留度 D1", must:1, should:2, doubt:0 },
+    { dim:"真实性 D2", must:1, should:0, doubt:1 },
+    { dim:"一致性 D3", must:0, should:1, doubt:0 },
+    { dim:"完整性 D4", must:0, should:0, doubt:0 },
+    { dim:"合规性 D5", must:0, should:0, doubt:0 },
+    { dim:"适配性 D6", must:0, should:0, doubt:0 }
+  ],
+  must: [
+    { no:1, loc:"第 8 页末段", issue:"结尾残留对话尾巴", rule:"RZ-01",
+      quote:"需要我帮你生成其他版本吗？",
+      consequence:"读者一眼看出是 AI 输出，全文可信度归零，客户或出版社直接退回",
+      fix:"删除该句" },
+    { no:2, loc:"第 3 页第 2 段", issue:"引用无出处", rule:"D2.4",
+      quote:"据 2025 年行业统计，市场规模增长了 37%",
+      consequence:"被追问时无法作答；投标或出版场景下属事实性错误",
+      fix:"补真实来源（发布方+年份+页码），或删除改用定性表述" }
+  ],
+  should: [
+    { no:1, loc:"第 2 页", issue:"连续三处三连排比", rule:"RZ-16", advice:"合并为实质描述" },
+    { no:2, loc:"第 4 页", issue:"「赋能」「闭环」两处黑话", rule:"RZ-17", advice:"换成具体动作" },
+    { no:3, loc:"图 3", issue:"与正文口径不一致", rule:"D3.7", advice:"统一为「同比增长」" }
+  ],
+  doubt: [
+    { no:1, loc:"第 5 页", point:"引用《XX 产业白皮书》",
+      reason:"未检索到该报告，无法确认是否真实存在", action:"按「不可用」处理" }
+  ],
+  passed: [
+    { dim:"残留度", item:"无提示词残留、无占位符、无 AI 自述（除上述 1 处）" },
+    { dim:"真实性", item:"全文 23 处数字交叉核对一致（除上述 1 处）" },
+    { dim:"一致性", item:"术语前后统一，人称未跳变" },
+    { dim:"完整性", item:"章节齐全，无截断，图注齐全" },
+    { dim:"合规性", item:"无极限词、无密钥泄露、无隐私信息" },
+    { dim:"适配性", item:"篇幅符合公众号规格，图片尺寸合规" },
+    { dim:"跨模态", item:"5 张配图与正文描述均对应（锚点对齐 11/11）" }
+  ],
+  next: "是否由我执行必改项的修改？（只改这 2 处，其余不动）"
+};
+
+/* ========================= 英文本地化（lang=en 时生效） ========================= */
+const DATA_LANG = DATA.lang === "en" ? "en" : "zh";
+const ZH2EN = {
+  "AI 产物质检报告":"AI Artifact Quality Report",
+  "ontoAI 质检官":"ontoAI QC Inspector",
+  "交付前最后一道关":"Final Gate Before Delivery",
+  "交付前最后一道关 · AI 产物质检报告":"Final Gate Before Delivery · AI Artifact Quality Report",
+  "质检结果报告":"Inspection Result Report",
+  "受检产物":"Product Inspected",
+  "报告编号":"Report No.",
+  "模态 / 场景":"Modality / Scenario",
+  "检验日期":"Inspection Date",
+  "检验依据":"Basis of Inspection",
+  "规则级别":"Rule Level",
+  "一、检验结论":"I. Inspection Conclusion",
+  "检验结论：":"Inspection Conclusion: ",
+  "经检验，该产物共检出必改项 ":"Upon inspection, the product shows ",
+  " 项、可改项 ":" must-fix, ",
+  " 项、存疑项 ":" should-fix, ",
+  " 项，通过项 ":" unverified, and ",
+  " 项。综合判定为 ":" passed items. Overall verdict: ",
+  "质检专用章":"QC SEAL",
+  "电子签章":"e-signature",
+  "二、结果汇总":"II. Summary of Results",
+  "三、问题分布（按维度）":"III. Issue Distribution (by Dimension)",
+  "四、必改项明细（":"IV. Must-Fix Items (",
+  "五、可改项明细（":"V. Should-Fix Items (",
+  "六、存疑项明细（":"VI. Unverified Items (",
+  "七、已通过项（":"VII. Passed Items (",
+  "八、下一步":"VIII. Next Step",
+  "声明：1. 本报告仅对受检产物负责，只标注问题、不修改原文。2. 未新增任何原文不存在的事实、数字与引语。3. 存疑项须由委托方确认后方可消除。4. 本报告不得部分摘用，复制全文须注明出处。":"Statement: 1. This report is responsible only for the inspected product; it flags issues but does not modify the source. 2. No facts, figures, or quotations absent from the source have been added. 3. Unverified items must be confirmed by the client before being cleared. 4. Partial quotation is prohibited; full reproduction must cite the source.",
+  "— 报告结束 —":"— End of Report —",
+  "合计":"Total",
+  "编制：":"Prepared by: ",
+  "审核：":"Reviewed by: ",
+  "批准：":"Approved by: ",
+  "必改 MUST":"MUST FIX",
+  "可改 SHOULD":"SHOULD FIX",
+  "存疑 UNVERIFIED":"UNVERIFIED",
+  "已通过 PASS":"PASSED",
+  "必改项（":"Must-Fix (",
+  "可改项（":"Should-Fix (",
+  "存疑项（":"Unverified (",
+  "已通过项（":"Passed (",
+  "必改项":"Must-Fix Items",
+  "可改项":"Should-Fix Items",
+  "存疑项":"Unverified Items",
+  "已通过项":"Passed Items",
+  "必改":"Must Fix",
+  "可改":"Should Fix",
+  "存疑":"Unverified",
+  "已通过":"Passed",
+  "应用场景":"Scenario",
+  "模态":"Modality",
+  "签发日期":"Issued",
+  "1. 结果汇总":"1. Summary of Results",
+  "2. 问题分布（按维度）":"2. Issue Distribution (by Dimension)",
+  "处置建议":"Next Step",
+  "声明":"Statement",
+  "第 1 页 / 共 1 页":"Page 1 of 1",
+  "问题分布":"Issue Distribution",
+  "质检裁定":"Verdict",
+  "下一步":"Next Step",
+  "产物：":"Product: ",
+  "发布方 / 版权方：":"Publisher / Copyright: ",
+  "摘要：":"Abstract: ",
+  "依据 ":"Per ",
+  "，对受检产物（":", a pre-delivery inspection was performed on the product (",
+  "，场景 ":", scenario ",
+  "，规则级别 ":", rule level ",
+  "）实施交付前质检。共检查 ":"). ",
+  " 项，检出必改 ":" items checked: ",
+  " 项、可改 ":" must-fix, ",
+  " 项、存疑 ":" should-fix, ",
+  " 项，通过 ":" unverified, ",
+  " 项，通过率 ":" passed; pass rate ",
+  "%。综合裁定：":"%. Overall verdict: ",
+  "3. 必改项":"3. Must-Fix Items",
+  "4. 可改项":"4. Should-Fix Items",
+  "5. 存疑项":"5. Unverified Items",
+  "6. 已通过项":"6. Passed Items",
+  "表 1　各分层问题数量。条形长度 ∝ 该层数量（以各层最大数量为满格）。":"Table 1. Counts by tier. Bar length is proportional to the tier count (max tier = full bar).",
+  "表 2　按通用维度 D1–D6 的交叉统计。":"Table 2. Cross-tabulation by dimensions D1–D6.",
+  "表 3　必改项明细。规则代号见《中文残留规则库》与《维度表》。":"Table 3. Must-fix details. Rule codes per Residue Rulebook and Dimension Table.",
+  "注 1：本报告只标注问题、不修改原文；未新增任何原文不存在的事实、数字与引语。<br>注 2：存疑项系因证据不足未能核实，非判定为错误，须经委托方确认后方可消除。<br>注 3：规则代号 RZ 见《中文残留规则库》，D 见《通用维度表》，L 见《合规检查表》。":"Note 1: This report flags issues without modifying the source; no facts, figures, or quotations absent from the source have been added.<br>Note 2: Unverified items are those that could not be confirmed due to insufficient evidence, not findings of error; they must be cleared by the client.<br>Note 3: Rule codes — RZ in the Residue Rulebook, D in the Dimension Table, L in the Compliance Table.",
+  "必改项 — 不改就别发":"Must-Fix — Do Not Ship Without Fixing",
+  "可改项 — 改了更好，不改也能发":"Should-Fix — Better If Fixed",
+  "存疑项 — 我判断不了，请你确认":"Unverified — I Can't Confirm, Please Decide",
+  "已通过 — 这些我查过了":"Passed — These I Checked",
+  " 项）":")",
+  "（":"(",
+  "）":")",
+  /* —— 扩展：表格列头 / 图例短语 / 排版符号（补全全量英文） —— */
+  "位置":"Location",
+  "问题":"Issue",
+  "规则":"Rule",
+  "原文":"Quote",
+  "不改的后果":"Consequence if unfixed",
+  "怎么改":"How to fix",
+  "建议":"Advice",
+  "维度":"Dimension",
+  "检查项与结论":"Check item & result",
+  "结果":"Result",
+  "小计":"Subtotal",
+  "数量":"Count",
+  "分层":"Tier",
+  "分布":"Distribution",
+  "含义":"Meaning",
+  "处置":"Action",
+  "可选":"Optional",
+  "存疑点":"Unverified item",
+  "为什么核不动":"Why unverifiable",
+  "未确认前按什么处理":"Handling before confirmation",
+  "不改就别发":"Don't publish until fixed",
+  "改完再发":"Publish after fixing",
+  "改了更好，不改也能发":"Better if fixed; OK if not",
+  "我判断不了，请你确认":"I can't confirm — please decide",
+  "确认后处理":"Handle after confirmation",
+  "已检查、无问题":"Checked — no issues",
+  "「":"\"",
+  "」":"\"",
+  "。":".",
+  "｜":"|"
+};
+const ZH2EN_ORDER = Object.keys(ZH2EN).sort((a,b)=>b.length-a.length);
+function localize(html){
+  if (DATA.lang !== "en") return html;
+  /* 先摘出 P() 标记内的产物原文（引语/正文逐字保留），再做外壳替换，最后还原 */
+  const stash = [];
+  html = html.replace(/\uE000([\s\S]*?)\uE001/g, (m, g) => { stash.push(g); return "\uE000" + (stash.length - 1) + "\uE001"; });
+  for (const z of ZH2EN_ORDER) if (z) html = html.split(z).join(ZH2EN[z]);
+  return html.replace(/\uE000(\d+)\uE001/g, (m, i) => stash[+i]);
+}
+
+/* ========================= 工具 ========================= */
+const esc = s => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+/* 产物字段保护标记：P() 包住的内容 localize() 一律不改写——
+   引语/正文必须逐字保留（输出契约第 2 条），标点替换只作用于报告外壳 */
+const LOPEN = "\uE000", LCLOSE = "\uE001";
+const PROTECT = s => LOPEN + s + LCLOSE;
+const VCOLOR = { pass:"#2FA36B", tweak:"#3B82F6", modify:"#E08A00", redo:"#C0392B" };
+const C = { must:"#C0392B", should:"#E08A00", doubt:"#8A8A96", pass:"#2FA36B" };
+const c = DATA.counts;
+const M=c.must|0, S=c.should|0, D=c.doubt|0, P=c.pass|0, TOTAL=M+S+D+P;
+const VC = VCOLOR[DATA.verdict.code] || "#6E56CF";
+const RATE = TOTAL ? Math.round(P/TOTAL*100) : 100;
+const lvMax = Math.max(M,S,D,P,1);
+const dimMax = Math.max.apply(null, DATA.byDimension.map(d=>(d.must|0)+(d.should|0)+(d.doubt|0)).concat([1]));
+const txtBar = (n, mx) => { const pct = mx>0 ? Math.max(2, Math.round(n/mx*100)) : 0; return '<span class="bar"><i style="width:'+pct+'%"></i></span>'; };
+/* 用 CSS 画彩色圆点替代 emoji —— emoji 在 PDF 里会变成位图(Type3)字，放大就糊 */
+const dotEmoji = (col, sz) => '<span style="display:inline-block;width:'+(sz||10)+'px;height:'+(sz||10)+'px;border-radius:50%;background:'+col+';margin-right:6px;vertical-align:middle"></span>';
+
+/* ========================= A 款 ========================= */
+function skinA(){
+  const dimRows = DATA.byDimension.map(d=>{
+    const t=(d.must|0)+(d.should|0)+(d.doubt|0);
+    return "<tr><td>"+PROTECT(esc(d.dim))+"</td><td style='text-align:center'>"+(d.must|0)+"</td>"+
+      "<td style='text-align:center'>"+(d.should|0)+"</td><td style='text-align:center'>"+(d.doubt|0)+"</td>"+
+      "<td style='text-align:center'>"+t+"</td><td>"+(t?txtBar(t,dimMax):"—")+"</td></tr>";
+  }).join("");
+  const lvRows = [[dotEmoji(C.must,11)+"必改",M,"不改就别发","改完再发"],[dotEmoji(C.should,11)+"可改",S,"改了更好，不改也能发","可选"],
+    [dotEmoji(C.doubt,11)+"存疑",D,"我判断不了，请你确认","确认后处理"],[dotEmoji(C.pass,11)+"已通过",P,"已检查、无问题","—"]]
+    .map(r=>"<tr><td>"+r[0]+"</td><td style='text-align:center'><b>"+r[1]+"</b></td>"+
+      "<td>"+txtBar(r[1],lvMax)+"</td><td>"+r[2]+"</td><td>"+r[3]+"</td></tr>").join("");
+  return '<div class="sk-a"><div class="paper">'+
+  '<div class="org">'+esc(DATA.publisher)+'</div>'+
+  '<div class="ttl">AI 产物质检报告</div>'+
+  '<div class="sub">QUALITY INSPECTION REPORT · 交付前最后一道关</div>'+
+  '<div class="redline"></div>'+
+  '<table class="kv">'+
+    '<tr><td class="k">受检产物</td><td colspan="3">'+PROTECT(esc(DATA.product))+'</td>'+
+        '<td class="k">报告编号</td><td class="rcode">'+esc(DATA.reportNo)+'</td></tr>'+
+    '<tr><td class="k">模态 / 场景</td><td colspan="3">'+PROTECT(esc(DATA.modality))+' ｜ '+PROTECT(esc(DATA.scenario))+'</td>'+
+        '<td class="k">检验日期</td><td>'+esc(DATA.date)+'</td></tr>'+
+    '<tr><td class="k">检验依据</td><td colspan="3">'+PROTECT(esc(DATA.basis))+'</td>'+
+        '<td class="k">规则级别</td><td>'+PROTECT(esc(DATA.ruleLevel))+'</td></tr>'+
+  '</table>'+
+  '<h2>一、检验结论</h2>'+
+  '<div class="concl has-seal"><span class="lb">检验结论：</span>经检验，该产物共检出必改项 '+M+' 项、可改项 '+S+
+    ' 项、存疑项 '+D+' 项，通过项 '+P+' 项。综合判定为 <b>'+PROTECT(esc(DATA.verdict.label))+'</b>。'+
+    '<div class="note">'+PROTECT(esc(DATA.verdict.note))+'</div>'+
+    '<div class="seal">质检专用章<br>（电子签章）</div></div>'+
+  '<h2>二、结果汇总</h2>'+
+  '<table class="d"><thead><tr><th style="width:92px">分层</th><th style="width:52px">数量</th>'+
+    '<th style="width:150px">分布</th><th>含义</th><th style="width:96px">处置</th></tr></thead><tbody>'+
+    lvRows+'<tr><td><b>合计</b></td><td style="text-align:center"><b>'+TOTAL+'</b></td><td colspan="3"></td></tr>'+
+  '</tbody></table>'+
+  '<h2>三、问题分布（按维度）</h2>'+
+  '<table class="d"><thead><tr><th>维度</th><th style="width:52px">必改</th><th style="width:52px">可改</th>'+
+    '<th style="width:52px">存疑</th><th style="width:52px">小计</th><th style="width:150px">分布</th></tr></thead><tbody>'+
+    dimRows+'</tbody></table>'+
+  '<h2>四、必改项明细（'+M+' 项）</h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:82px">位置</th><th style="width:98px">问题</th>'+
+    '<th style="width:56px">规则</th><th>原文</th><th>不改的后果</th><th style="width:120px">怎么改</th></tr></thead><tbody>'+
+    DATA.must.map(r=>"<tr><td style='text-align:center'>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td style='text-align:center'>"+PROTECT(esc(r.rule))+"</td><td>「"+PROTECT(esc(r.quote))+"」</td>"+
+      "<td class='c-must'>"+PROTECT(esc(r.consequence))+"</td><td>"+PROTECT(esc(r.fix))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>五、可改项明细（'+S+' 项）</h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:82px">位置</th><th>问题</th>'+
+    '<th style="width:56px">规则</th><th>建议</th></tr></thead><tbody>'+
+    DATA.should.map(r=>"<tr><td style='text-align:center'>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td style='text-align:center'>"+PROTECT(esc(r.rule))+"</td><td>"+PROTECT(esc(r.advice))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>六、存疑项明细（'+D+' 项）</h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:82px">位置</th><th>存疑点</th>'+
+    '<th>为什么核不动</th><th style="width:130px">未确认前按什么处理</th></tr></thead><tbody>'+
+    DATA.doubt.map(r=>"<tr><td style='text-align:center'>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.point))+
+      "</td><td>"+PROTECT(esc(r.reason))+"</td><td>"+PROTECT(esc(r.action))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>七、已通过项（'+P+' 项）</h2>'+
+  '<table class="d"><thead><tr><th style="width:86px">维度</th><th>检查项与结论</th><th style="width:46px">结果</th></tr></thead><tbody>'+
+    DATA.passed.map(r=>"<tr><td>"+PROTECT(esc(r.dim))+"</td><td>"+PROTECT(esc(r.item))+"</td><td style='text-align:center'>"+dotEmoji(C.pass,11)+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>八、下一步</h2>'+
+  '<div class="concl" style="border-style:solid">'+PROTECT(esc(DATA.next))+'</div>'+
+  '<div class="sign"><div><span>编制：</span></div><div><span>审核：</span></div><div><span>批准：</span></div></div>'+
+  '<div class="decl">声明：1. 本报告仅对受检产物负责，只标注问题、不修改原文。2. 未新增任何原文不存在的事实、数字与引语。'+
+    '3. 存疑项须由委托方确认后方可消除。4. 本报告不得部分摘用，复制全文须注明出处。</div>'+
+  '<div class="pg">— 报告结束 —</div>'+
+  '</div></div>';
+}
+
+/* ========================= B 款 ========================= */
+function skinB(){
+  const max = Math.max.apply(null, DATA.byDimension.map(d=>(d.must|0)+(d.should|0)+(d.doubt|0)).concat([1]));
+  const dimRows = DATA.byDimension.map(d=>{
+    const m=d.must|0,s=d.should|0,u=d.doubt|0,t=m+s+u;
+    const mk=(n,col)=>n?'<i style="width:'+(n/max*100)+'%;background:'+col+'"></i>':'';
+    return '<tr><td>'+PROTECT(esc(d.dim))+'</td>'+
+      '<td style="width:38%"><div class="barm">'+mk(m,C.must)+mk(s,C.should)+mk(u,C.doubt)+'</div></td>'+
+      '<td style="text-align:center;width:44px">'+m+'</td><td style="text-align:center;width:44px">'+s+'</td>'+
+      '<td style="text-align:center;width:44px">'+u+'</td><td style="text-align:center;width:44px"><b>'+t+'</b></td></tr>';
+  }).join("");
+  const card=(n,l,col)=>'<div class="card" style="--cc:'+col+'"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';
+  return '<div class="sk-b"><div class="paper">'+
+  '<div class="top"><div><div class="t1">AI 产物质检报告</div>'+
+    '<div class="t2">ontoAI 质检官 · 交付前最后一道关</div></div>'+
+    '<div class="no"><b>'+esc(DATA.reportNo)+'</b><br>签发日期 '+esc(DATA.date)+'<br>'+esc(DATA.publisher)+'</div></div>'+
+  '<div class="body">'+
+  '<table class="kv">'+
+    '<tr><td class="k">受检产物</td><td>'+PROTECT(esc(DATA.product))+'</td><td class="k">模态</td><td>'+PROTECT(esc(DATA.modality))+'</td></tr>'+
+    '<tr><td class="k">应用场景</td><td>'+PROTECT(esc(DATA.scenario))+'</td><td class="k">规则级别</td><td>'+PROTECT(esc(DATA.ruleLevel))+'</td></tr>'+
+    '<tr><td class="k">检验依据</td><td colspan="3">'+PROTECT(esc(DATA.basis))+'</td></tr>'+
+  '</table>'+
+  '<div class="verdict" style="--vc:'+VC+'"><div class="vbadge">'+PROTECT(esc(DATA.verdict.label))+'</div>'+
+    '<div class="vn">'+PROTECT(esc(DATA.verdict.note))+'<br>Pass rate <b>'+RATE+'%</b> ('+P+' passed / '+TOTAL+' items inspected)</div></div>'+
+  '<h2>1. 结果汇总<em>SUMMARY</em></h2>'+
+  '<div class="cards">'+card(M,"必改 MUST",C.must)+card(S,"可改 SHOULD",C.should)+
+    card(D,"存疑 UNVERIFIED",C.doubt)+card(P,"已通过 PASS",C.pass)+'</div>'+
+  '<h2>2. 问题分布（按维度）<em>BY DIMENSION</em></h2>'+
+  '<table class="d"><thead><tr><th>维度</th><th>分布</th><th style="text-align:center">必改</th>'+
+    '<th style="text-align:center">可改</th><th style="text-align:center">存疑</th><th style="text-align:center">小计</th></tr></thead><tbody>'+
+    dimRows+'</tbody></table>'+
+  '<div style="font-size:11px;color:#7A8CA1;margin-top:8px">'+
+    '<span class="dot" style="background:'+C.must+'"></span>必改　'+
+    '<span class="dot" style="background:'+C.should+'"></span>可改　'+
+    '<span class="dot" style="background:'+C.doubt+'"></span>存疑</div>'+
+  '<h2>3. 必改项（'+M+'）<em>MUST FIX</em></h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:80px">位置</th><th style="width:96px">问题</th>'+
+    '<th style="width:52px">规则</th><th>原文</th><th>不改的后果</th><th style="width:118px">怎么改</th></tr></thead><tbody>'+
+    DATA.must.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td><span class='tag'>"+PROTECT(esc(r.rule))+"</span></td><td>「"+PROTECT(esc(r.quote))+"」</td>"+
+      "<td style='color:#C0392B'>"+PROTECT(esc(r.consequence))+"</td><td>"+PROTECT(esc(r.fix))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>4. 可改项（'+S+'）<em>SHOULD FIX</em></h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:80px">位置</th><th>问题</th>'+
+    '<th style="width:52px">规则</th><th>建议</th></tr></thead><tbody>'+
+    DATA.should.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td><span class='tag'>"+PROTECT(esc(r.rule))+"</span></td><td>"+PROTECT(esc(r.advice))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>5. 存疑项（'+D+'）<em>UNVERIFIED</em></h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:80px">位置</th><th>存疑点</th>'+
+    '<th>为什么核不动</th><th style="width:126px">未确认前按什么处理</th></tr></thead><tbody>'+
+    DATA.doubt.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.point))+
+      "</td><td>"+PROTECT(esc(r.reason))+"</td><td>"+PROTECT(esc(r.action))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>6. 已通过项（'+P+'）<em>PASSED</em></h2>'+
+  '<table class="d"><thead><tr><th style="width:86px">维度</th><th>检查项与结论</th><th style="width:46px">结果</th></tr></thead><tbody>'+
+    DATA.passed.map(r=>"<tr><td>"+PROTECT(esc(r.dim))+"</td><td>"+PROTECT(esc(r.item))+"</td><td style='text-align:center;color:#2FA36B;font-weight:700'>✓</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>7. 处置建议<em>NEXT STEP</em></h2>'+
+  '<div class="verdict" style="--vc:#12386B">'+PROTECT(esc(DATA.next))+'</div>'+
+  '<div class="decl"><b>声明</b>　1. 本报告仅对受检产物负责，只标注问题、不修改原文。'+
+    '2. 未新增任何原文不存在的事实、数字与引语。3. 存疑项须经委托方确认后方可消除。'+
+    '4. 未经发布方书面同意，不得部分摘用本报告。</div>'+
+  '<div class="sign"><div>编制：　　　　　　</div><div>审核：　　　　　　</div><div>批准：　　　　　　</div></div>'+
+  '<div class="ft">'+esc(DATA.publisher)+'　·　'+esc(DATA.reportNo)+'　·　第 1 页 / 共 1 页</div>'+
+  '</div></div></div>';
+}
+
+/* ========================= C 款 ========================= */
+function skinC(){
+  const rows=[["必改",M,C.must],["可改",S,C.should],["存疑",D,C.doubt],["通过",P,C.pass]];
+  const mx=Math.max(M,S,D,P,1);
+  const bars=rows.map(r=>'<div class="barrow"><div class="blab">'+r[0]+'</div>'+
+    '<div class="btrk"><div class="bfill" style="width:'+Math.max(2,Math.round(r[1]/mx*100))+'%;background:'+r[2]+'"></div></div>'+
+    '<div class="bval">'+r[1]+'</div></div>').join("");
+  const dmax=Math.max.apply(null,DATA.byDimension.map(d=>(d.must|0)+(d.should|0)+(d.doubt|0)).concat([1]));
+  const mk=(n,col)=>n?'<i style="width:'+(n/dmax*100)+'%;background:'+col+'"></i>':'';
+  const dims=DATA.byDimension.map(d=>{const m=d.must|0,s=d.should|0,u=d.doubt|0;
+    return '<div class="barrow"><div class="blab">'+PROTECT(esc(d.dim))+'</div><div class="stack">'+
+      mk(m,C.must)+mk(s,C.should)+mk(u,C.doubt)+'</div><div class="bval">'+(m+s+u)+'</div></div>';}).join("");
+  return '<div class="sk-c"><div class="paper">'+
+  '<div class="hd"><div><div class="brand">ontoAI <span>质检官</span></div>'+
+    '<div class="tagline">交付前最后一道关 · AI 产物质检报告</div></div>'+
+    '<div class="meta">产物：<b>'+PROTECT(esc(DATA.product))+'</b><br>'+PROTECT(esc(DATA.modality))+' ｜ '+PROTECT(esc(DATA.scenario))+
+    ' ｜ 规则级别 '+PROTECT(esc(DATA.ruleLevel))+'<br>报告编号 '+esc(DATA.reportNo)+' ｜ '+esc(DATA.date)+'</div></div>'+
+  '<div class="verdict" style="--vc:'+VC+'"><div><div class="vkick">质检裁定</div>'+
+    '<div class="vlab">'+PROTECT(esc(DATA.verdict.label))+'</div>'+
+    '<div class="vnote">'+PROTECT(esc(DATA.verdict.note))+'</div></div></div>'+
+  '<div class="stats">'+
+    ['<div class="stat" style="--cc:'+C.must+'"><div class="n">'+M+'</div><div class="l">'+dotEmoji(C.must,9)+'必改</div></div>',
+     '<div class="stat" style="--cc:'+C.should+'"><div class="n">'+S+'</div><div class="l">'+dotEmoji(C.should,9)+'可改</div></div>',
+     '<div class="stat" style="--cc:'+C.doubt+'"><div class="n">'+D+'</div><div class="l">'+dotEmoji(C.doubt,9)+'存疑</div></div>',
+     '<div class="stat" style="--cc:'+C.pass+'"><div class="n">'+P+'</div><div class="l">'+dotEmoji(C.pass,9)+'已通过</div></div>'].join("")+
+  '</div>'+
+  '<div class="panel"><h3><i></i>问题分布</h3>'+bars+'</div>'+
+  '<div class="panel"><h3><i></i>问题分布（按维度）</h3>'+
+    '<div class="legend"><span><em style="background:'+C.must+'"></em>必改</span>'+
+    '<span><em style="background:'+C.should+'"></em>可改</span>'+
+    '<span><em style="background:'+C.doubt+'"></em>存疑</span></div>'+dims+'</div>'+
+  '<div class="panel"><h3><i style="background:'+C.must+'"></i>必改项 — 不改就别发</h3>'+
+    '<table class="d"><thead><tr><th style="width:28px">#</th><th>位置</th><th>问题</th><th>规则</th>'+
+    '<th>原文</th><th>不改的后果</th><th>怎么改</th></tr></thead><tbody>'+
+    DATA.must.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td><span class='rule'>"+PROTECT(esc(r.rule))+"</span></td><td class='quote'>「"+PROTECT(esc(r.quote))+"」</td>"+
+      "<td class='cons'>"+PROTECT(esc(r.consequence))+"</td><td>"+PROTECT(esc(r.fix))+"</td></tr>").join("")+
+    '</tbody></table></div>'+
+  '<div class="panel"><h3><i style="background:'+C.should+'"></i>可改项 — 改了更好，不改也能发</h3>'+
+    '<table class="d"><thead><tr><th style="width:28px">#</th><th>位置</th><th>问题</th><th>规则</th><th>建议</th></tr></thead><tbody>'+
+    DATA.should.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td><span class='rule'>"+PROTECT(esc(r.rule))+"</span></td><td>"+PROTECT(esc(r.advice))+"</td></tr>").join("")+
+    '</tbody></table></div>'+
+  '<div class="panel"><h3><i style="background:'+C.doubt+'"></i>存疑项 — 我判断不了，请你确认</h3>'+
+    '<table class="d"><thead><tr><th style="width:28px">#</th><th>位置</th><th>存疑点</th><th>为什么核不动</th><th>未确认前按什么处理</th></tr></thead><tbody>'+
+    DATA.doubt.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.point))+
+      "</td><td>"+PROTECT(esc(r.reason))+"</td><td>"+PROTECT(esc(r.action))+"</td></tr>").join("")+
+    '</tbody></table></div>'+
+  '<div class="panel"><h3><i style="background:'+C.pass+'"></i>已通过 — 这些我查过了</h3>'+
+    '<table class="d"><thead><tr><th style="width:96px">维度</th><th>检查项与结论</th><th style="width:48px">结果</th></tr></thead><tbody>'+
+    DATA.passed.map(r=>"<tr><td>"+PROTECT(esc(r.dim))+"</td><td>"+PROTECT(esc(r.item))+"</td><td style='color:#2FA36B;font-weight:700'>✓</td></tr>").join("")+
+    '</tbody></table></div>'+
+  '<div class="next"><b>下一步</b>'+PROTECT(esc(DATA.next))+'</div>'+
+  '<div class="foot">ontoAI 质检官 · 交付前最后一道关<br>发布方 / 版权方：'+esc(DATA.publisher)+'<br>'+
+    '本报告只标注问题、不修改原文；未新增任何原文不存在的事实、数字与引语。</div>'+
+  '</div></div>';
+}
+
+/* ========================= D 款 ========================= */
+function skinD(){
+  const dimRows=DATA.byDimension.map(d=>{const t=(d.must|0)+(d.should|0)+(d.doubt|0);
+    return "<tr><td>"+PROTECT(esc(d.dim))+"</td><td style='text-align:center'>"+(d.must|0)+"</td>"+
+      "<td style='text-align:center'>"+(d.should|0)+"</td><td style='text-align:center'>"+(d.doubt|0)+"</td>"+
+      "<td style='text-align:center'>"+t+"</td></tr>";}).join("");
+  return '<div class="sk-d"><div class="paper">'+
+  '<div class="jhead"><div class="jname">AI 产物质检报告 · QUALITY INSPECTION REPORT</div>'+
+    '<div class="jno">'+esc(DATA.reportNo)+'</div></div>'+
+  '<h1>'+PROTECT(esc(DATA.product))+'<br><span style="font-size:15px;font-weight:400">质检结果报告</span></h1>'+
+  '<div class="au">'+esc(DATA.publisher)+'　·　'+esc(DATA.date)+'</div>'+
+  '<div class="abst"><b>摘要：</b>依据 '+PROTECT(esc(DATA.basis))+'，对受检产物（'+PROTECT(esc(DATA.modality))+'，场景 '+PROTECT(esc(DATA.scenario))+
+    '，规则级别 '+PROTECT(esc(DATA.ruleLevel))+'）实施交付前质检。共检查 '+TOTAL+' 项，检出必改 '+M+' 项、可改 '+S+' 项、存疑 '+
+    D+' 项，通过 '+P+' 项，通过率 '+RATE+'%。综合裁定：<b>'+PROTECT(esc(DATA.verdict.label))+'</b>。</div>'+
+  '<h2>1. 结果汇总</h2>'+
+  '<table class="d"><thead><tr><th>分层</th><th style="width:58px;text-align:center">数量</th>'+
+    '<th style="width:150px">分布</th><th>处置</th></tr></thead><tbody>'+
+    [[dotEmoji(C.must,10)+"必改",M,"改完再发"],[dotEmoji(C.should,10)+"可改",S,"可选"],[dotEmoji(C.doubt,10)+"存疑",D,"确认后处理"],[dotEmoji(C.pass,10)+"已通过",P,"—"]]
+    .map(r=>"<tr><td>"+r[0]+"</td><td style='text-align:center'><b>"+r[1]+"</b></td>"+
+      "<td>"+txtBar(r[1],lvMax)+"</td><td>"+r[2]+"</td></tr>").join("")+
+    '</tbody></table>'+
+  '<div class="cap">表 1　各分层问题数量。条形长度 ∝ 该层数量（以各层最大数量为满格）。</div>'+
+  '<h2>2. 问题分布（按维度）</h2>'+
+  '<table class="d"><thead><tr><th>维度</th><th style="width:58px;text-align:center">必改</th>'+
+    '<th style="width:58px;text-align:center">可改</th><th style="width:58px;text-align:center">存疑</th>'+
+    '<th style="width:58px;text-align:center">小计</th></tr></thead><tbody>'+dimRows+'</tbody></table>'+
+  '<div class="cap">表 2　按通用维度 D1–D6 的交叉统计。</div>'+
+  '<h2>3. 必改项</h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:78px">位置</th><th style="width:92px">问题</th>'+
+    '<th style="width:52px">规则</th><th>原文</th><th>不改的后果</th><th style="width:112px">怎么改</th></tr></thead><tbody>'+
+    DATA.must.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td class='rule'>"+PROTECT(esc(r.rule))+"</td><td>「"+PROTECT(esc(r.quote))+"」</td>"+
+      "<td>"+PROTECT(esc(r.consequence))+"</td><td>"+PROTECT(esc(r.fix))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<div class="cap">表 3　必改项明细。规则代号见《中文残留规则库》与《维度表》。</div>'+
+  '<h2>4. 可改项</h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:78px">位置</th><th>问题</th>'+
+    '<th style="width:52px">规则</th><th>建议</th></tr></thead><tbody>'+
+    DATA.should.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.issue))+
+      "</td><td class='rule'>"+PROTECT(esc(r.rule))+"</td><td>"+PROTECT(esc(r.advice))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>5. 存疑项</h2>'+
+  '<table class="d"><thead><tr><th style="width:28px">#</th><th style="width:78px">位置</th><th>存疑点</th>'+
+    '<th>为什么核不动</th><th style="width:120px">未确认前按什么处理</th></tr></thead><tbody>'+
+    DATA.doubt.map(r=>"<tr><td>"+esc(r.no)+"</td><td>"+PROTECT(esc(r.loc))+"</td><td>"+PROTECT(esc(r.point))+
+      "</td><td>"+PROTECT(esc(r.reason))+"</td><td>"+PROTECT(esc(r.action))+"</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>6. 已通过项</h2>'+
+  '<table class="d"><thead><tr><th style="width:84px">维度</th><th>检查项与结论</th><th style="width:46px;text-align:center">结果</th></tr></thead><tbody>'+
+    DATA.passed.map(r=>"<tr><td>"+PROTECT(esc(r.dim))+"</td><td>"+PROTECT(esc(r.item))+"</td><td style='text-align:center'>✓</td></tr>").join("")+
+  '</tbody></table>'+
+  '<h2>7. 处置建议</h2>'+
+  '<p style="font-size:13px">'+PROTECT(esc(DATA.next))+'</p>'+
+  '<div class="fn">注 1：本报告只标注问题、不修改原文；未新增任何原文不存在的事实、数字与引语。<br>'+
+    '注 2：存疑项系因证据不足未能核实，非判定为错误，须经委托方确认后方可消除。<br>'+
+    '注 3：规则代号 RZ 见《中文残留规则库》，D 见《通用维度表》，L 见《合规检查表》。</div>'+
+  '</div></div>';
+}
+
+/* ========================= 装配 ========================= */
+const SKINS = [
+  { id:"a", name:"A · 官方检验报告", desc:"公文版式 · 宋体正文 · 红头线 · 印章位 · 签署栏", fn:skinA },
+  { id:"b", name:"B · 第三方检测机构", desc:"实验室风 · 深蓝表头 · 结论徽章 · 三线统计", fn:skinB },
+  { id:"c", name:"C · 现代图表", desc:"SaaS 风 · 卡片 · 条形图 · 屏幕阅读友好", fn:skinC },
+  { id:"d", name:"D · 学术 / 出版", desc:"期刊风 · 衬线 · 三线表 · 表题与注释", fn:skinD }
+];
+
+const tabs = document.getElementById("tabs");
+const stage = document.getElementById("stage");
+
+/* 版式选择优先级：URL ?style=  >  DATA.style  >  默认 A 款 */
+const qs = new URLSearchParams(location.search);
+const pick = (qs.get("style") || DATA.style || "a").toLowerCase();
+let cur = SKINS.filter(s => s.id === pick).length ? pick : "a";
+
+/* 语言：写回 <html lang> 并挂字体类（CSS 据此切换 Latin / CJK 字体栈） */
+document.documentElement.lang = DATA_LANG === "en" ? "en" : "zh-CN";
+document.documentElement.classList.add(DATA_LANG === "en" ? "lang-en" : "lang-zh");
+if (DATA_LANG === "en") document.title = "ontoAI Quality Inspector · Inspection Report";
+
+function show(id){
+  const s = SKINS.filter(x => x.id === id)[0];
+  stage.innerHTML = '<div class="skin on" id="sk-' + id + '">' + localize(s.fn()) + '</div>';
+  tabs.querySelectorAll(".tab").forEach((t,k)=>t.classList.toggle("on", SKINS[k].id === id));
+  document.querySelectorAll(".qbar .tab").forEach(el => el.classList.toggle("on", el.dataset.id === id));
+}
+
+/* 模式分支：
+   ?formal=1 → 正式交付：无任何外壳，收件人看到的就是干净报告
+   ?picker=1 → 全量对比模式：标题 + 带描述的切换卡 + 打印提示
+   默认（双击打开）→ 左上角悬浮快捷切换条（4 款 + 收起），点击即换款 */
+if (qs.get("picker") === "1") {
+  tabs.innerHTML = SKINS.map(s => '<button class="tab" data-id="' + s.id + '">' +
+    '<b>' + s.name + '</b><small>' + s.desc + '</small></button>').join("");
+  tabs.addEventListener("click", e => {
+    const b = e.target.closest(".tab"); if (!b) return;
+    cur = b.dataset.id; show(cur);
+  });
+  show(cur);
+} else if (qs.get("formal") !== "1") {
+  document.querySelector(".pv-head").style.display = "none";
+  document.querySelector(".pv-tip").style.display = "none";
+  const bar = document.createElement("div");
+  bar.className = "qbar";
+  bar.innerHTML = '<span class="qtag">款式</span>' +
+    SKINS.map(s => '<button class="tab" data-id="' + s.id + '" title="' + s.desc + '">' + s.name + '</button>').join("") +
+    '<button class="qhide" title="隐藏切换条，恢复正式报告外观">收起 ✕</button>';
+  document.body.appendChild(bar);
+  bar.addEventListener("click", e => {
+    const t = e.target.closest(".tab");
+    if (t) { cur = t.dataset.id; show(cur); return; }
+    if (e.target.closest(".qhide")) { bar.remove(); document.body.classList.add("formal"); }
+  });
+  show(cur);
+} else {
+  document.querySelector(".pv-head").style.display = "none";
+  document.querySelector(".pv-tip").style.display = "none";
+  document.body.classList.add("formal");
+  show(cur);
+}
+</script>
+</body>
+</html>

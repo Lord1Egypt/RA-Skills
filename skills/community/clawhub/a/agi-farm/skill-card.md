@@ -1,44 +1,62 @@
-## Description: <br>
-Interactive setup wizard that creates a multi-agent AI team on OpenClaw, including agents, workspace files, communication infrastructure, cron automation, a live operations dashboard, and optional GitHub bundle export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AGI Farm is an OpenClaw skill that bootstraps a multi-agent AI team with generated workspaces, communication files, cron automation, optional GitHub export, and a React/SSE operations dashboard.
 
-## Publisher: <br>
-[oabdelmaksoud](https://clawhub.ai/user/oabdelmaksoud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[oabdelmaksoud](https://clawhub.ai/user/oabdelmaksoud)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to bootstrap and operate a configurable multi-agent workspace with specialist agents, shared state files, scheduled dispatch, and a browser dashboard. It is intended for teams that want repeatable multi-agent setup, status checks, rebuilds, exports, and task dispatch commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The dashboard can expose and modify workspace and cron state through browser-accessible controls. <br>
-Mitigation: Run the dashboard bound to localhost, place it behind authentication if remote access is needed, and review workspace changes before relying on them. <br>
-Risk: Persistent OpenClaw automation and scheduled dispatch can continue acting on workspace files after setup. <br>
-Mitigation: Review registered crons, monitor dispatch logs, and disable or remove scheduled jobs when the team should stop running. <br>
-Risk: GitHub export can publish generated bundle contents. <br>
-Mitigation: Inspect generated files and repository visibility before pushing or creating a public GitHub repository. <br>
+## Use Case:
 
+Developers and OpenClaw operators use AGI Farm to create and manage a configurable multi-agent workspace for software, trading, research, general, or custom domains. It supports setup, status checks, workspace rebuilds, bundle export, dashboard monitoring, and task dispatch.
 
-## Reference(s): <br>
-- [AGI Farm Dashboard Reference](references/dashboard.md) <br>
-- [OpenClaw Documentation](https://docs.openclaw.ai) <br>
-- [AGI Farm on ClawHub](https://clawhub.ai/oabdelmaksoud/agi-farm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON configuration, shell commands, and generated workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces OpenClaw workspace state, agent configuration, cron registration, dashboard assets, and optional GitHub export instructions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The dashboard exposes powerful workflow controls and uses broad CORS behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind the dashboard to localhost only, add authentication before shared use, remove wildcard CORS, and avoid exposing port 8080.
+
+Risk: The skill creates agents, writes OpenClaw workspace files, and registers recurring automation.
+
+Mitigation: Review generated files and cron registrations before enabling automated runs, and use dry-run modes where available.
+
+Risk: The optional export flow may push a public GitHub repository.
+
+Mitigation: Review the bundle contents, repository visibility, authentication state, and remote target before running export or setup with GitHub creation enabled.
+
+Risk: Framework integrations and dashboard dependencies can drift over time.
+
+Mitigation: Pin or vendor framework integrations where possible and update dashboard dependencies before operational use.
+
+## Reference(s):
+
+- [Dashboard Reference](references/dashboard.md)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown instructions with inline shell commands plus generated JSON, Markdown, Python, and dashboard files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local OpenClaw workspace; can register recurring automation and run a local dashboard.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

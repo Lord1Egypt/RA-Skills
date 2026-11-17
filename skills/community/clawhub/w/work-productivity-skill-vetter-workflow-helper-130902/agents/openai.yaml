@@ -1,0 +1,7 @@
+interface:
+  display_name: "Skill Vetter Workflow Helper"
+  short_description: "Reviews skills for trigger quality, usefulness, safety, and duplication."
+  default_prompt: "Use $work-productivity-skill-vetter-workflow-helper to vet this skill and decide whether to install, revise, or publish it."
+
+policy:
+  allow_implicit_invocation: true

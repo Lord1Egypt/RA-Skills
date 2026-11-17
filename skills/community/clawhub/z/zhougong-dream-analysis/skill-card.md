@@ -1,43 +1,55 @@
-## Description: <br>
-Bilingual dream-interpretation skill that combines traditional Zhou Gong dream analysis with modern psychology, structured dream input, guided follow-up questions, traditional and scientific interpretations, and auspiciousness-based advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides bilingual Zhou Gong dream interpretation with traditional auspiciousness ratings, modern psychological framing, guided follow-up questions, and practical reflection advice.
 
-## Publisher: <br>
-[koradji77](https://clawhub.ai/user/koradji77) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[koradji77](https://clawhub.ai/user/koradji77)
 
-## Use Case: <br>
-External users and developers use this skill to interpret dream descriptions in Chinese or English, receive traditional and psychology-oriented explanations, and get culturally framed guidance. Results should be treated as entertainment or cultural reference, not professional medical or psychological advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dream interpretations and auspiciousness guidance can be mistaken for medical, psychological, financial, or life advice. <br>
-Mitigation: Present outputs as entertainment and cultural reference only, and direct users with serious mental health concerns to qualified professionals. <br>
-Risk: Dream prompts may include sensitive personal details. <br>
-Mitigation: Avoid sharing details the user would not want processed by a local skill, and review outputs before using them for personal decisions. <br>
+## Use Case:
 
+External users and agents use this skill to interpret dream descriptions in Chinese or English, combining cultural Zhou Gong interpretations with psychological reflection prompts. It is best suited for entertainment, cultural reference, and lightweight self-reflection, not professional mental-health, medical, legal, or financial guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/koradji77/zhougong-dream-analysis) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill manifest](artifact/skill.json) <br>
-- [Test report](artifact/TEST_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-like plain text dream analysis report with bilingual sections and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local execution; no API keys, network access, persistence, or destructive behavior indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill.json) <br>
+Risk: Mutable or inconsistent install package names may cause users to install code that differs from the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the canonical package name from the ClawHub release, pin the version or use an integrity-verified install path, and avoid elevated privileges during installation.
+
+Risk: Dream, luck, and psychological interpretations may be mistaken for professional advice.
+
+Mitigation: Present outputs as entertainment, cultural reference, or reflection only, and direct users to qualified professionals for medical, mental-health, legal, or financial concerns.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/koradji77/skills/zhougong-dream-analysis)
+- [Artifact README](artifact/README.md)
+- [Artifact test report](artifact/TEST_REPORT.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style bilingual dream interpretation report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dream elements, traditional interpretation, psychological interpretation, auspiciousness rating, advice, and follow-up questions.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

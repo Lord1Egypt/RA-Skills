@@ -1,38 +1,51 @@
-## Description: <br>
-View and manage shift schedules and team rosters for operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+View and manage shift schedules and team rosters for operations.
 
-## Publisher: <br>
-[AdmiralKittysDad](https://clawhub.ai/user/AdmiralKittysDad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[admiralkittysdad](https://clawhub.ai/user/admiralkittysdad)
 
-## Use Case: <br>
-Operations teams use this skill to maintain local rosters, inspect weekly shift coverage, and identify understaffed shifts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Team names, roles, skills, work limits, and shift assignments are retained in local JSON files. <br>
-Mitigation: Use the skill on trusted devices and review or delete ~/.ops-commander files when the data should no longer be retained. <br>
+## Use Case:
 
+Operations leads and team coordinators use this skill to maintain local rosters, review shift schedules, and identify coverage gaps.
 
-## Reference(s): <br>
-- [SkillNexus](https://skillnexus.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Guidance] <br>
-**Output Format:** [Markdown tables with local JSON file updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads and writes roster and schedule JSON files under ~/.ops-commander.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Roster and schedule files may contain personnel details stored locally in ~/.ops-commander/.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personnel details beyond what is needed, and periodically review or remove the local JSON files when no longer needed.
+
+## Reference(s):
+
+- [SkillNexus website](https://skillnexus.dev)
+- [ClawHub skill page](https://clawhub.ai/admiralkittysdad/skills/ops-shifts)
+- [Publisher profile](https://clawhub.ai/user/admiralkittysdad)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown tables and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide the agent to read and update local roster and schedule JSON files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

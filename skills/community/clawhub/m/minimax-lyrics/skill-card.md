@@ -1,43 +1,55 @@
-## Description: <br>
-Generate structured song lyrics in various styles and themes using the MiniMax lyrics_generation API for full song creation or editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate structured song lyrics in various styles and themes using the MiniMax lyrics_generation API for full song creation or editing.
 
-## Publisher: <br>
-[raydoomed](https://clawhub.ai/user/raydoomed) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raydoomed](https://clawhub.ai/user/raydoomed)
 
-## Use Case: <br>
-External users and creators use this skill to generate or edit full song lyrics with structure tags through the MiniMax lyrics_generation API. The generated lyrics can be reviewed by the user before being passed into a downstream music-generation workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MiniMax API key exposure or broad credential reuse. <br>
-Mitigation: Use a dedicated MiniMax API key where possible and keep it in the skill configuration with normal file-access controls. <br>
-Risk: Confidential unpublished lyrics or sensitive prompts may be sent to MiniMax. <br>
-Mitigation: Avoid sending confidential or sensitive material unless the user is comfortable sharing it with MiniMax. <br>
-Risk: API calls may consume MiniMax quota or create billing activity. <br>
-Mitigation: Monitor MiniMax quota or billing use and confirm the user wants lyrics-only generation before invoking the skill. <br>
+## Use Case:
 
+Songwriters, creators, and agent workflows use this skill to generate or edit structured song lyrics with style tags and section markers through MiniMax.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/raydoomed/minimax-lyrics) <br>
-- [MiniMax lyrics_generation API endpoint](https://api.minimaxi.com/v1/lyrics_generation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [JSON containing song_title, style_tags, and lyrics, with human-readable text also printed by the script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a MiniMax API key and sends the prompt and any supplied lyrics to MiniMax.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill stores a MiniMax API key in a local configuration file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the key private, restrict file access, and rotate the key if the configuration is exposed.
+
+Risk: Prompts, titles, and existing lyrics are sent to MiniMax for generation or editing.
+
+Mitigation: Avoid submitting confidential or proprietary text unless MiniMax's data handling terms are acceptable.
+
+## Reference(s):
+
+- [MiniMax lyrics_generation API endpoint](https://api.minimaxi.com/v1/lyrics_generation)
+- [ClawHub skill page](https://clawhub.ai/raydoomed/skills/minimax-lyrics)
+- [Publisher profile](https://clawhub.ai/user/raydoomed)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON object plus human-readable lyrics text with section tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated lyrics may include song_title, style_tags, and lyrics fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

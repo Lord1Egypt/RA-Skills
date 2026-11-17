@@ -1,39 +1,53 @@
-## Description: <br>
-Generates structured learning plans with phases, milestones, daily or weekly tasks, resources, and progress checkpoints for study goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured learning plans with staged milestones, daily or weekly tasks, recommended resources, and progress checkpoints for study goals.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Learners, educators, coaches, and agents use this skill to turn a learning goal, current level, schedule, and study mode into a phased study plan. It is suited to programming, certifications, exam preparation, language learning, skill improvement, and new-domain exploration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be invoked too broadly for ordinary study questions because its trigger phrases are general. <br>
-Mitigation: Invoke it explicitly for study-plan generation or narrow the trigger phrases in routing policy. <br>
+## Use Case:
 
+Learners, educators, and agents use this skill to turn a goal, current level, time budget, and learning mode into a staged study plan. It is most directly suited to Chinese-language learning-plan requests, including programming, exam preparation, language learning, and general skill development.
 
-## Reference(s): <br>
-- [Plan Templates](artifact/references/plan_templates.md) <br>
-- [Learning Plan ClawHub Page](https://clawhub.ai/huajianjiu000/learning-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown study plans with goals, stages, weekly or daily tasks, resources, and evaluation criteria.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included Python script can print a generated Markdown plan locally without external APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chinese trigger phrases may activate the skill for general study questions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill when the user clearly asks for a study plan, learning path, or exam preparation plan, and confirm intent when the request is ambiguous.
+
+Risk: The bundled templates are Chinese-only unless the agent adapts them.
+
+Mitigation: Translate or localize the generated plan when the user requests another language.
+
+## Reference(s):
+
+- [Learning Plan Templates](artifact/references/plan_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown study plan with tables, task lists, resource suggestions, and evaluation checkpoints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include shell commands or Python code when the agent uses the bundled local example script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact version information)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-Helps audit Agent Card signing practices in A2A protocol implementations by identifying missing signatures, weak signing schemes, and revocation gaps that allow impersonation in agent-to-agent trust handshakes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps audit Agent Card signing practices in A2A protocol implementations by identifying missing signatures, weak signing schemes, and revocation gaps that allow impersonation in agent-to-agent trust handshakes.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit Agent Card signing practices for A2A protocol implementations. It helps assess signature presence, signing scheme strength, key transparency, revocation support, and key rotation history. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: URL input can cause the agent to contact an endpoint while fetching an Agent Card. <br>
-Mitigation: Provide only endpoints intentionally selected for audit, or use direct JSON input or snapshots when outbound fetching is not desired. <br>
-Risk: The audit evaluates publicly observable Agent Card signing metadata and cannot prove private key custody, key storage security, or undisclosed key compromise. <br>
-Mitigation: Use signing audit results alongside behavioral analysis and broader trust-chain review before relying on capability or identity claims. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyxinweiminicloud/agent-card-signing-auditor) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit Agent Card signing practices in A2A protocol implementations. It checks signature presence, signing scheme strength, key transparency, revocation mechanisms, and rotation history, then provides a risk rating and remediation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown audit report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes signing posture checks, a STRONG / ADEQUATE / WEAK / UNSIGNED risk rating, and remediation recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may cause an agent to fetch user-supplied Agent Card endpoints during an audit.
+
+Mitigation: Use only endpoints that are intended for inspection, and avoid private or internal URLs unless the audit is authorized.
+
+Risk: The audit evaluates publicly observable signing metadata and cannot prove private-key control or detect undisclosed signing-key compromise.
+
+Mitigation: Treat signing results as identity assurance only and pair them with behavioral analysis or other trust checks for sensitive agent interactions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/agent-card-signing-auditor)
+- [Publisher profile](https://clawhub.ai/user/andyxinweiminicloud)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown audit report with risk rating and remediation recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include endpoint-fetching commands for user-supplied Agent Card URLs; no persistence, credential use, or bundled code was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

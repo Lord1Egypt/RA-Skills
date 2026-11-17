@@ -1,7 +1,7 @@
 {
   "cases": [
     {
-      "id": "decision-ask-language-without-code-context",
+      "id": "decision-aREDACTED-SECRET",
       "scenario": "merchant_standard_integration",
       "prompt": "Help me implement Clink checkout session creation on my backend.",
       "must_include": [

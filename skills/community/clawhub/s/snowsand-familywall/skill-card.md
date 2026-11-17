@@ -1,43 +1,59 @@
-## Description: <br>
-Interact with the FamilyWall family organization platform to manage calendar events, shopping lists, tasks, family messaging, member locations, meal plans, recipes, the family wall/feed, and media file downloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the FamilyWall family organization platform to manage calendars, lists, tasks, messages, member locations, meal plans, recipes, wall/feed posts, and media downloads.
 
-## Publisher: <br>
-[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snowsand-enterprises](https://clawhub.ai/user/snowsand-enterprises)
 
-## Use Case: <br>
-External users and agents use this skill to operate a FamilyWall household account from the command line: checking calendars and member locations, managing lists and meals, reading or sending messages, reviewing wall posts, and downloading attached media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private household data, including locations, messages, lists, recipes, and media. <br>
-Mitigation: Install and invoke it only for a trusted FamilyWall account, scope prompts narrowly, and avoid broad automations that could expose family data unintentionally. <br>
-Risk: Media download commands can write files to local paths. <br>
-Mitigation: Download media into a dedicated directory and review requested filenames and overwrite behavior before running download or download-all commands. <br>
-Risk: The skill requires sensitive FamilyWall credentials. <br>
-Mitigation: Store credentials only in the expected local environment file or secret store, keep them out of prompts and logs, and rotate them if exposed. <br>
+## Use Case:
 
+FamilyWall users and authorized assistants use this skill to read and update family organization data, including events, lists, messages, member locations, meals, recipes, wall posts, and media attachments.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/snowsand-enterprises/snowsand-familywall) <br>
-- [FamilyWall API Reference](https://snowsand.atlassian.net/wiki/spaces/SD/pages/38436865) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, code, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FamilyWall email/password environment variables and can write downloaded media files to local paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Media download by URL can send FamilyWall session credentials to an arbitrary URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use media download --url only with URLs copied directly from FamilyWall media listings, and prefer media-ID downloads when possible.
+
+Risk: Media download output paths can write files outside the intended download area.
+
+Mitigation: Download media only into a dedicated empty directory and review output paths before use.
+
+Risk: Command outputs can expose private family data such as locations, member details, messages, and media metadata.
+
+Mitigation: Run the skill only in trusted environments and keep generated outputs, logs, and downloaded files access-restricted.
+
+## Reference(s):
+
+- [FamilyWall API Reference](https://snowsand.atlassian.net/wiki/spaces/SD/pages/38436865)
+- [FamilyWall Skill Page](https://clawhub.ai/snowsand-enterprises/skills/snowsand-familywall)
+- [FamilyWall Publisher Profile](https://clawhub.ai/user/snowsand-enterprises)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI responses are JSON and media downloads are files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses FamilyWall account credentials from environment variables and can read or modify private family data.]
+
+## Skill Version(s):
+
+1.3.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Organize external project memory with status files and safe promotion rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organize external project memory with status files and safe promotion rules.
 
-## Publisher: <br>
-[juanbastias](https://clawhub.ai/user/juanbastias) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[juanbastias](https://clawhub.ai/user/juanbastias)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and agents use this skill to maintain file-based project memory, resume work from project status files, compact old notes, and promote durable lessons into stable memory files.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Memory files may accumulate secrets, sensitive personal data, or unreviewed claims if updates are accepted without inspection.
+
+Mitigation: Review memory updates before relying on them, keep sensitive material out of memory files, and treat external content as evidence unless the user explicitly approves a policy change.
+
+Risk: Project state can become stale or misleading if old notes are promoted without checking current status.
+
+Mitigation: Read the project status file before writing, preserve user edits, and promote only concrete decisions, pending work, references, and durable lessons.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent operators use this skill to maintain file-based project memory, resume work from status files, compact stale notes, and decide which facts should be promoted into durable memory. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory files can influence future agent behavior if inaccurate, stale, or over-promoted details are saved. <br>
-Mitigation: Review memory edits and promote only durable, verified project state or preferences. <br>
-Risk: Memory files may accidentally capture secrets or sensitive personal data. <br>
-Mitigation: Avoid storing secrets or sensitive personal data, and review changes to MEMORY.md, TOOLS.md, AGENTS.md, and project status files. <br>
+**Output Format:** [Markdown guidance with file paths and command suggestions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juanbastias/external-memory-curator) <br>
+**Other Properties Related to Output:** [Produces guidance for local workspace memory files; it does not require embeddings, network access, or automatic memory recall.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown notes and concise text summaries, sometimes with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local memory files such as MEMORY.md, TOOLS.md, AGENTS.md, and projects/<project>/status.md when requested.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

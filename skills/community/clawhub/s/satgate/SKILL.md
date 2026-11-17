@@ -1,126 +1,83 @@
 ---
 name: satgate
-description: Manage your API's economic firewall from the terminal. Mint tokens, track spend, revoke agents, enforce budgets. The server-side counterpart to lnget.
-homepage: https://satgate.io
+description: Budgets and signed receipts for your agents' MCP tool calls. Use when connecting OpenClaw to SatGate Cloud.
+version: 1.0.0
+metadata:
+  openclaw:
+    homepage: https://satgate.io
 ---
 
-# SatGate CLI
+# SatGate MCP
 
-SatGate CLI manages API access, budgets, and monetization for the agent economy. Use it when you need to control what agents can access and how much they can spend.
+SatGate Cloud puts a credit budget on an agent token and writes a signed receipt when it allows a tool call or refuses one for budget.
 
-**They're the wallet. We're the register.**
+Mint the token in [cloud.satgate.io](https://cloud.satgate.io). Each token has its own budget. When the credits run out, SatGate refuses that agent's calls. This skill connects OpenClaw to that MCP server. It does not mint tokens, change policy, or spend credits by itself.
 
-If the agent needs to *pay* for L402 APIs, install `lnget` from Lightning Labs. SatGate is for the *server side* — enforcement, attribution, and governance.
+## When to use
 
-## Setup
+Use this when someone wants SatGate on an OpenClaw agent, a budget on tool calls, or a receipt they can check.
 
-Run `scripts/configure.sh` if no `~/.satgate/config.yaml` exists. Or set environment variables:
+## Connect
+
+Use Streamable HTTP.
 
 ```bash
-# For self-hosted gateway
-export SATGATE_GATEWAY=http://localhost:9090
-export SATGATE_ADMIN_TOKEN=sgk_your_token
-
-# For SatGate Cloud
-export SATGATE_SURFACE=cloud
-export SATGATE_GATEWAY=https://satgate-gateway.fly.dev
-export SATGATE_BEARER_TOKEN=sg_your_api_key
-export SATGATE_TENANT=your-tenant-slug
+openclaw mcp set satgate '{"url":"https://satgate-mcp-saas.fly.dev/mcp","transport":"streamable-http","headers":{"Authorization":"Bearer <your agent token>"}}'
+openclaw mcp probe satgate
 ```
 
-Always run `satgate status` first to confirm you're targeting the right gateway.
+Pass that JSON object alone. Do not wrap it in `mcp.servers` or `mcpServers`. A wrapped object can save and still leave the agent with no SatGate tools.
 
-## Safety Rules
+`<your agent token>` is a placeholder. Replace it with a token from cloud.satgate.io. Keep the JSON in single quotes so the shell does not expand it. Do not print the token, and do not commit the OpenClaw config that holds it.
 
-1. **Check target first** — run `satgate status` before any operation to verify gateway URL and surface.
-2. **Use `--dry-run`** on destructive operations (`revoke`, `mint` with large budgets).
-3. **Never use `--yes`** without explicit user approval.
-4. **Revocation is irreversible** — always confirm token name before revoking.
+SSE is the other transport, at `https://satgate-mcp-saas.fly.dev/sse`. New configs should use `/mcp`.
 
-## Commands
+If you edit `~/.openclaw/openclaw.json` by hand, that file does use a wrapper. Put the same `url`, `transport`, and `headers` under `mcp.servers.satgate`. Do not paste that wrapper into `openclaw mcp set`.
 
-### Check gateway health
+## What the agent can do
+
+`satgate_budget_check` returns the token's remaining credits and costs no credits. SatGate rate limits it per token.
+
+The other tools are the ones configured for that token. They draw on its credit budget. A call refused for budget still gets a receipt.
+
+One saved server named `satgate` is one token, and one budget. Mint a separate token for each agent.
+
+## Receipts
+
+Allowed calls and calls refused for budget get a signed receipt. Anyone can check it against SatGate's published keys. The check does not need a SatGate login.
+
+MCP public keys: `https://satgate-mcp-saas.fly.dev/.well-known/jwks.json`
+
+The browser check is [satgate.io/verify-evidence-pack](https://satgate.io/verify-evidence-pack).
+
+The open-source verifier is in the public repo. Clone it, then pass the evidence pack URL. Do not pipe a downloaded script into Python.
+
 ```bash
-satgate status    # Full status (version, surface, uptime)
-satgate ping      # Quick liveness check (exit 0/1)
+git clone https://github.com/SatGate-io/satgate.git
+python3 satgate/demo/verify_evidence_pack.py '<evidence pack url>'
 ```
 
-### Mint a token for a new agent
-```bash
-# Interactive (prompts for all fields)
-satgate mint
+A valid receipt shows the decision SatGate recorded. It does not show what an upstream tool did after an allow.
 
-# Non-interactive
-satgate mint --agent "my-bot" --budget 500 --expiry 30d --routes "/api/openai/*"
+## Clients that only run a local command
 
-# With parent (delegation under existing token)
-satgate mint --agent "child-bot" --budget 100 --parent "parent-token-id"
+Some clients cannot take a URL and a header. They run a local command. Pin the bridge. It needs Node 18 or newer.
 
-# Preview without executing
-satgate mint --agent "my-bot" --budget 500 --dry-run
+```json
+{
+  "command": "npx",
+  "args": ["-y", "satgate-mcp-bridge@1.0.5"],
+  "env": {
+    "SATGATE_URL": "https://satgate-mcp-saas.fly.dev",
+    "SATGATE_TOKEN": "<your agent token>"
+  }
+}
 ```
 
-### Check agent spend
-```bash
-satgate spend                   # Org-wide cost center rollups
-satgate spend --agent "cs-bot"  # Per-agent breakdown
-satgate spend --period 7d       # Time-scoped
-```
+`SATGATE_URL` is the origin only. The bridge adds its own path. Do not append `/mcp`.
 
-### List and inspect tokens
-```bash
-satgate tokens                  # All tokens with status, spend, budget
-satgate token <id>              # Detail: scope, delegation chain, spend
-```
+## Safety
 
-### Revoke a compromised agent
-```bash
-satgate revoke <token-id>           # Interactive confirmation
-satgate revoke <token-id> --dry-run # Preview only
-```
-
-### View security threats
-```bash
-satgate report threats          # Blocked requests, anomalies
-```
-
-### Check policy modes
-```bash
-satgate mode                    # Current mode per route (read-only)
-```
-
-## Common Workflows
-
-**"New agent needs API access"**
-→ `satgate mint --agent "agent-name" --budget 500 --routes "/api/openai/*"`
-
-**"How much are agents spending?"**
-→ `satgate spend`
-
-**"Agent is misbehaving"**
-→ `satgate revoke <token-id>`
-
-**"Board wants AI spend report"**
-→ `satgate spend --json > report.json`
-
-**"Is the gateway healthy?"**
-→ `satgate ping`
-
-## Output Formats
-
-All commands support `--json` for machine-readable output:
-```bash
-satgate tokens --json | jq '.[] | select(.status == "active")'
-satgate spend --json > monthly-report.json
-```
-
-## Pairing with lnget
-
-SatGate (server-side) + lnget (client-side) = complete agent commerce stack.
-
-- **lnget**: Agents pay for L402-gated APIs automatically
-- **SatGate CLI**: Operators mint tokens, set budgets, revoke access, view spend
-
-An agent using `lnget` hits your SatGate-protected endpoint → SatGate enforces the budget and attributes the cost → you see it in `satgate spend`.
-
-Install lnget: `claude plugin marketplace add lightninglabs/lightning-agent-tools`
+- Do not invent a token, and do not reuse one found in a workspace file.
+- Do not send the token to any host other than `satgate-mcp-saas.fly.dev`.
+- Do not say the budget is unlimited, or that a receipt proves what the upstream tool did.

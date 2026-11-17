@@ -1,50 +1,63 @@
-## Description: <br>
-Manage Claude Managed Agents end to end through a Python helper CLI, with ant CLI equivalents documented as a secondary path. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Claude Managed Agents end to end through a Python helper CLI, with ant CLI equivalents documented as a secondary path.
 
-## Publisher: <br>
-[aaronfaby](https://clawhub.ai/user/aaronfaby) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaronfaby](https://clawhub.ai/user/aaronfaby)
 
-## Use Case: <br>
-Developers and operators use this skill to create, update, inspect, archive, and steer Claude Managed Agents resources through a Python helper CLI, with documented ant CLI equivalents for manual operation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can administer Claude Managed Agents resources using an Anthropic API key. <br>
-Mitigation: Use a least-privilege key where possible, run preflight checks, and review agent, environment, session, file, and resource IDs before mutations. <br>
-Risk: Misconfigured API base URLs or networking settings could send credentials or session traffic to an unintended endpoint. <br>
-Mitigation: Keep ANTHROPIC_API_BASE_URL pointed at a trusted Anthropic endpoint and prefer limited networking with explicit allowed hosts. <br>
-Risk: File uploads and mounted resources may expose local data to the managed-agent service. <br>
-Mitigation: Upload only files intended for the session and review mounted file paths before starting or modifying sessions. <br>
-Risk: Permanent delete operations can remove agents, environments, sessions, files, or mounted resources. <br>
-Mitigation: Archive before deleting unless the user clearly requests permanent cleanup for disposable resources. <br>
+## Use Case:
 
+Developers and operators use this skill to manage Claude Managed Agents agents, environments, sessions, event streams, files, configuration, and diagnostics from a local machine.
 
-## Reference(s): <br>
-- [Claude Managed Agents on ClawHub](https://clawhub.ai/aaronfaby/claude-managed-agents) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Lifecycle Recipes](references/lifecycle-recipes.md) <br>
-- [Files API Workflows](references/files-api.md) <br>
-- [Event Model and Steering](references/event-model.md) <br>
-- [ant CLI Recipes](references/ant-cli-recipes.md) <br>
-- [Known Gaps and Assumptions](references/known-gaps.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline JSON and bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include resource IDs, lifecycle status, exact follow-up commands, or raw JSON when requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad remote-agent lifecycle control can affect agents, environments, sessions, files, and event streams.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this level of control is needed, verify exact resource IDs before archive or delete actions, and prefer archive before permanent deletion.
+
+Risk: API-key destination and networking choices can send requests or managed-agent traffic to unintended endpoints.
+
+Mitigation: Keep ANTHROPIC_API_BASE_URL unset unless using a trusted HTTPS gateway, and prefer limited networking with explicit allowed hosts.
+
+Risk: File upload and mounted-resource workflows can expose sensitive local files or secrets.
+
+Mitigation: Avoid uploading sensitive files or secrets unless explicitly approved, and review mounted resources before starting or modifying sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aaronfaby/skills/claude-managed-agents)
+- [Quickstart](references/quickstart.md)
+- [Lifecycle Recipes](references/lifecycle-recipes.md)
+- [Files API Workflows](references/files-api.md)
+- [Event Model and Steering](references/event-model.md)
+- [ant CLI Recipes](references/ant-cli-recipes.md)
+- [Known Gaps and Assumptions](references/known-gaps.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Concise Markdown with command examples and lifecycle details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include JSON output when the user requests raw API or helper results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

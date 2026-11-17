@@ -1,43 +1,52 @@
-## Description: <br>
-Creates and manages SubAgents for focused development, research, writing, data analysis, or custom tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates and manages SubAgents for user-directed tasks such as development, research, writing, and data analysis.
 
-## Publisher: <br>
-[aning35](https://clawhub.ai/user/aning35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aning35](https://clawhub.ai/user/aning35)
 
-## Use Case: <br>
-Developers and agent users use this skill to design, launch, and manage focused SubAgents with preset roles for coding, research, writing, and data analysis. It helps choose run or session mode, define labels and task prompts, and provide management commands. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: SubAgents may be given tasks that are broader than necessary. <br>
-Mitigation: Give each SubAgent a narrow task and use one-time run mode unless persistence is required. <br>
-Risk: Persistent SubAgent sessions can continue beyond the immediate task. <br>
-Mitigation: Review SubAgent logs and terminate sessions that are no longer needed. <br>
-Risk: A separately obtained create-subagent.ps1 script may not match this reviewed package. <br>
-Mitigation: Do not run external scripts unless they are separately reviewed and trusted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aning35/reate-subagent) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+## Use Case:
 
+Developers and agent operators use this skill to set up task-focused SubAgents, choose a run or session mode, and provide management commands for ongoing SubAgent work.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown text with command and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes suggested SubAgent task prompts, labels, run/session mode selection, and management commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A generated SubAgent may receive broad instructions or tools that let it read or write files, run code, or perform web research.
+
+Mitigation: Review the generated SubAgent task, mode, cleanup setting, and allowed tools before approving creation.
+
+Risk: The skill documentation is Chinese-only, which may lead to misunderstanding for non-Chinese-speaking users.
+
+Mitigation: Translate and review the instructions before installation or use.
+
+## Reference(s):
+
+- [Create SubAgent ClawHub listing](https://clawhub.ai/aning35/skills/reate-subagent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include SubAgent labels, modes, cleanup settings, management commands, and configuration checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and .clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

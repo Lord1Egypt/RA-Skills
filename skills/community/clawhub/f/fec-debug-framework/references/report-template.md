@@ -1,58 +1,58 @@
-# 诊断报告模板
+# Diagnostic report template
 
 ```markdown
-# 前端诊断报告
+# Front-end diagnostic report
 
-> 生成时间: YYYY-MM-DD HH:mm
-> 问题类型: build / runtime / ui / api
-> 影响范围: 页面、功能、用户群或环境
+> Generation time: YYYY-MM-DD HH:mm
+> Question type: build/runtime/ui/api
+> Scope of influence: page, feature, user group or environment
 
-## 问题描述
+## Problem description
 
-- 用户报告或观察到的现象
-- 首次出现时间、环境、分支或版本
+- Phenomenon reported or observed by users
+- First appearance time, environment, branch or version
 
-## 复现路径
+## Reproduction path
 
-1. 操作步骤或触发命令
-2. 期望结果
-3. 实际结果
+1. Operation steps or trigger commands
+2. Desired results
+3. Actual results
 
-## 收集的证据
+## Evidence collected
 
-- 日志 / stderr / console stack
-- 截图、DOM、样式、网络请求或 trace
-- 相关配置、依赖版本、环境变量或状态快照
+- log/stderr/console stack
+- Screenshot, DOM, style, network request or trace
+- Related configurations, dependency versions, environment variables or status snapshots
 
-## 假设与验证
+## Hypothesis and Verification
 
-| 假设 | 验证方法 | 结果 |
+| Hypothesis | Verification Method | Results |
 | --- | --- | --- |
-| 因为 X，导致 Y | 通过 Z 验证 | 证实 / 证伪 / 待定 |
+| Because X, causes Y | Verified by Z | Confirmed / Falsified / Pending |
 
-## 根因
+## Root cause
 
-- 最终确认的根本原因
-- 为什么已有证据能支持该结论
+- Final confirmed root cause
+- Why the existing evidence supports this conclusion
 
-## 修复内容
+## Fix content
 
-- 修改的文件和行为
-- 为什么这是最小有效修复
+- Modified files and behavior
+- Why this is a minimal effective fix
 
-## 验证结果
+## Verification results
 
-- 执行的命令、手工路径或浏览器验证
-- 修复后观察到的结果
+- Executed command, manual path or browser verification
+- Observed results after fix
 
-## 剩余风险
+## Residual risk
 
-- 未覆盖的边界
-- 可能回归的区域
+- Uncovered borders
+- Areas of possible return
 
-## 下一步
+## Next step
 
-- 需要用户决策、后续任务或监控项
+- Requires user decisions, follow-up tasks or monitoring items
 ```
 
-诊断完成后，将报告保存到 `reports/debug-YYYY-MM-DD-HHmmss.md`，并告知用户报告路径。
+After the diagnosis is completed, save the report to `reports/debug-YYYY-MM-DD-HHmmss.md` and inform the user of the report path.

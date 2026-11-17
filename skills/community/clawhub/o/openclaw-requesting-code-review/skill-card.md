@@ -1,41 +1,52 @@
-## Description: <br>
-Use when completing tasks, implementing major features, or before merging - dispatches code review subagent to catch issues before they cascade, adapted for OpenClaw sessions_spawn model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Dispatches a focused OpenClaw code-review subagent during implementation, major feature completion, and pre-merge workflows to catch issues before they cascade.
 
-## Publisher: <br>
-[axelhu](https://clawhub.ai/user/axelhu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[axelhu](https://clawhub.ai/user/axelhu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to gather recent change context, request a focused code review from an OpenClaw subagent, and triage findings before continuing or merging.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Repository diffs and change summaries may expose proprietary or sensitive code to a review subagent.
+
+Mitigation: Use the skill only when that sharing is acceptable, and limit review context to the minimum needed for the review.
+
+Risk: The documented fixed temporary path can create local temporary-file hygiene issues.
+
+Mitigation: Prefer sending the diff directly or writing it to a private mktemp-created directory.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineering agents use this skill to request focused code review before merges, after substantial implementation work, or when they need an independent review of diffs and requirements. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, shell commands, markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan classified the release as suspicious because it may resemble a full application repository rather than a scoped installable skill. <br>
-Mitigation: Confirm the publisher, expected file list, and package scope before installation or agent use. <br>
-Risk: The skill asks agents to collect diffs and prepare code review context, which may include sensitive source details. <br>
-Mitigation: Review the diff and prompt context before sharing it with any external reviewer or subagent environment. <br>
+**Output Format:** [Markdown guidance with inline shell commands and review prompt structure]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/axelhu/openclaw-requesting-code-review) <br>
-- [Skill artifact](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and a subagent review prompt template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces reviewer context and follow-up handling guidance; it does not execute review actions by itself.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

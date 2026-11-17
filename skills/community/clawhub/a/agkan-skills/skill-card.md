@@ -1,40 +1,48 @@
-## Description: <br>
-Use when managing tasks with the agkan CLI tool - creating, listing, updating tasks, managing tags, blocking relationships, or tracking project progress with the kanban board. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when managing tasks with the agkan CLI tool: creating, listing, updating tasks, managing tags, blocking relationships, and tracking project progress with the kanban board.
 
-## Publisher: <br>
-[gendosu](https://clawhub.ai/user/gendosu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[gendosu](https://clawhub.ai/user/gendosu)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and AI agents use this skill to operate the agkan CLI for local task planning, status tracking, tagging, dependency management, and project progress workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Agents using this skill may delete local agkan tasks, tags, or metadata.
+
+Mitigation: Use care with delete commands and keep backups of important project task data before allowing automated task-management changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and AI agents use this skill to manage project work through the agkan CLI, including task creation, status updates, blocking relationships, tags, metadata, and kanban-style progress tracking. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides agents to update or delete local task records through the agkan CLI. <br>
-Mitigation: Install it only where the agkan CLI and target project database are trusted; review the target task or tag before delete commands and prefer closing tasks when history may be needed. <br>
-Risk: Commands may affect an unintended project database if the agkan database path is misconfigured. <br>
-Mitigation: Confirm the project `.agkan.yml` path or `AGENT_KANBAN_DB_PATH` setting before running mutating commands. <br>
+**Output Format:** [Markdown with inline bash, JSON, and YAML examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gendosu/agkan-skills) <br>
+**Other Properties Related to Output:** [Guides use of local agkan task data and optional JSON output for machine processing.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with CLI command examples and JSON schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, status names, tag names, assignees, metadata keys, and project database path configuration.] <br>
+1.0.2 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

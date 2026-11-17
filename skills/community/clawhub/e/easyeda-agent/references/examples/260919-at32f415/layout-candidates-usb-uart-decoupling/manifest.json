@@ -1,0 +1,985 @@
+{
+  "schemaVersion": 1,
+  "units": "mil",
+  "coordinateSemantic": "footprint-anchor",
+  "module": "usb-uart-decoupling",
+  "strategy": "pin-satellites",
+  "boardOutlineSource": "polygon",
+  "boardOutlineFormat": "arc-polyline",
+  "edgeDistanceMethod": "polygon-centerline",
+  "inputHashSemantic": "sha256(raw-file-bytes)",
+  "layoutSha256": "8974dd88a9cb4792b3ee0a5e99e8b293398cd1717f78e2bf12612e754cbc58fb",
+  "boardSha256": "cb388635cadbb6c689e7fb3a8555375a307a92d90b2a1df726855d340f21a65f",
+  "candidates": [
+    {
+      "id": "candidate-01",
+      "variant": "pin-gap(8.00)",
+      "module": "usb-uart-decoupling",
+      "strategy": "pin-satellites",
+      "placements": [
+        {
+          "ref": "C10",
+          "primitiveId": "3154178becb5af96",
+          "xMil": 1672.143,
+          "yMil": 655.6,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1612.422,
+            "minY": 622.646,
+            "maxX": 1731.868,
+            "maxY": 688.557
+          },
+          "pads": [
+            {
+              "primitiveId": "3154178becb5af96e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1699.743,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4
+            },
+            {
+              "primitiveId": "3154178becb5af96e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1644.543,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4
+            }
+          ]
+        },
+        {
+          "ref": "C9",
+          "primitiveId": "fdb5728ee4c68b55",
+          "xMil": 1315.2525,
+          "yMil": 655.6,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1255.5275,
+            "minY": 622.643,
+            "maxX": 1374.9735,
+            "maxY": 688.554
+          },
+          "pads": [
+            {
+              "primitiveId": "fdb5728ee4c68b55e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1287.6525,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "fdb5728ee4c68b55e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1342.8525,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "U4",
+          "primitiveId": "3306d84751f1d257",
+          "xMil": 1500,
+          "yMil": 550,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1382.9735,
+            "minY": 404.32450000000006,
+            "maxX": 1604.422,
+            "maxY": 692.3225
+          },
+          "pads": [
+            {
+              "primitiveId": "3306d84751f1d257e25",
+              "padNumber": "1",
+              "net": "USB_D+",
+              "layer": 1,
+              "x": 1425,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e26",
+              "padNumber": "2",
+              "net": "USB_D-",
+              "layer": 1,
+              "x": 1475,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e27",
+              "padNumber": "3",
+              "net": "GND",
+              "layer": 1,
+              "x": 1525,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e28",
+              "padNumber": "4",
+              "net": "",
+              "layer": 1,
+              "x": 1575,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e29",
+              "padNumber": "8",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1425,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e30",
+              "padNumber": "7",
+              "net": "PA9",
+              "layer": 1,
+              "x": 1475,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e31",
+              "padNumber": "6",
+              "net": "PA10",
+              "layer": 1,
+              "x": 1525,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e32",
+              "padNumber": "5",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1575,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1255.5275,
+          "minY": 404.32450000000006,
+          "maxX": 1731.868,
+          "maxY": 692.3225
+        },
+        "moduleWidthMil": 476.3405,
+        "moduleHeightMil": 287.998,
+        "minInternalGapMil": 8,
+        "closestInternalGap": {
+          "from": "C10",
+          "to": "U4",
+          "distanceMil": 8
+        },
+        "minExternalComponentGapMil": 12.003,
+        "closestExternalComponentGap": {
+          "from": "U4",
+          "to": "C3",
+          "distanceMil": 12.003
+        },
+        "pinDistances": [
+          {
+            "member": "C9",
+            "memberPad": "1",
+            "owner": "U4",
+            "ownerPad": "8",
+            "net": "+3V3",
+            "distanceMil": 82.1475,
+            "source": "原理图.pdf 第1页：C9服务CH340N U4.8 V3"
+          },
+          {
+            "member": "C10",
+            "memberPad": "1",
+            "owner": "U4",
+            "ownerPad": "5",
+            "net": "+3V3",
+            "distanceMil": 69.543,
+            "source": "原理图.pdf 第1页：C10服务CH340N U4.5 VCC"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C10",
+            "nearestEdge": "bottom",
+            "distanceMil": 622.646,
+            "source": "polygon"
+          },
+          {
+            "ref": "C9",
+            "nearestEdge": "bottom",
+            "distanceMil": 622.643,
+            "source": "polygon"
+          },
+          {
+            "ref": "U4",
+            "nearestEdge": "bottom",
+            "distanceMil": 404.3245,
+            "source": "polygon"
+          }
+        ],
+        "limitations": [
+          "15 routed line(s) exist; copper geometry was not checked"
+        ]
+      },
+      "actions": [
+        {
+          "id": "place-C10",
+          "action": "pcb.component.modify",
+          "payload": {
+            "patch": {
+              "rotation": 0,
+              "x": 1672.143,
+              "y": 655.6
+            },
+            "primitiveId": "3154178becb5af96"
+          }
+        },
+        {
+          "id": "place-C9",
+          "action": "pcb.component.modify",
+          "payload": {
+            "patch": {
+              "rotation": 180,
+              "x": 1315.2525,
+              "y": 655.6
+            },
+            "primitiveId": "fdb5728ee4c68b55"
+          }
+        },
+        {
+          "id": "save",
+          "action": "pcb.save",
+          "payload": {}
+        }
+      ],
+      "apply": {
+        "version": 1,
+        "meta": {
+          "name": "usb-uart-decoupling candidate-01",
+          "description": "Generated by easyeda pcb layout-plan; footprint-anchor coordinates; boardSha256=cb388635cadbb6c689e7fb3a8555375a307a92d90b2a1df726855d340f21a65f; layoutSha256=8974dd88a9cb4792b3ee0a5e99e8b293398cd1717f78e2bf12612e754cbc58fb; hashSemantic=sha256(raw-file-bytes)",
+          "project": "ceshi",
+          "doc": "2e719e9419653c72"
+        },
+        "defaults": {},
+        "steps": [
+          {
+            "id": "place-C10",
+            "name": "place C10",
+            "action": "pcb.component.modify",
+            "payload": {
+              "patch": {
+                "rotation": 0,
+                "x": 1672.143,
+                "y": 655.6
+              },
+              "primitiveId": "3154178becb5af96"
+            }
+          },
+          {
+            "id": "place-C9",
+            "name": "place C9",
+            "action": "pcb.component.modify",
+            "payload": {
+              "patch": {
+                "rotation": 180,
+                "x": 1315.2525,
+                "y": 655.6
+              },
+              "primitiveId": "fdb5728ee4c68b55"
+            }
+          },
+          {
+            "id": "save",
+            "name": "save PCB checkpoint",
+            "action": "pcb.save"
+          }
+        ]
+      },
+      "files": {
+        "apply": "candidate-01.apply.json",
+        "candidate": "candidate-01.json",
+        "preview": "candidate-01.svg"
+      }
+    },
+    {
+      "id": "candidate-02",
+      "variant": "pin-gap(20.00)",
+      "module": "usb-uart-decoupling",
+      "strategy": "pin-satellites",
+      "placements": [
+        {
+          "ref": "C10",
+          "primitiveId": "3154178becb5af96",
+          "xMil": 1684.143,
+          "yMil": 655.6,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1624.422,
+            "minY": 622.646,
+            "maxX": 1743.868,
+            "maxY": 688.557
+          },
+          "pads": [
+            {
+              "primitiveId": "3154178becb5af96e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1711.743,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4
+            },
+            {
+              "primitiveId": "3154178becb5af96e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1656.543,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4
+            }
+          ]
+        },
+        {
+          "ref": "C9",
+          "primitiveId": "fdb5728ee4c68b55",
+          "xMil": 1303.2525,
+          "yMil": 655.6,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1243.5275,
+            "minY": 622.643,
+            "maxX": 1362.9735,
+            "maxY": 688.554
+          },
+          "pads": [
+            {
+              "primitiveId": "fdb5728ee4c68b55e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1275.6525,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "fdb5728ee4c68b55e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1330.8525,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "U4",
+          "primitiveId": "3306d84751f1d257",
+          "xMil": 1500,
+          "yMil": 550,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1382.9735,
+            "minY": 404.32450000000006,
+            "maxX": 1604.422,
+            "maxY": 692.3225
+          },
+          "pads": [
+            {
+              "primitiveId": "3306d84751f1d257e25",
+              "padNumber": "1",
+              "net": "USB_D+",
+              "layer": 1,
+              "x": 1425,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e26",
+              "padNumber": "2",
+              "net": "USB_D-",
+              "layer": 1,
+              "x": 1475,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e27",
+              "padNumber": "3",
+              "net": "GND",
+              "layer": 1,
+              "x": 1525,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e28",
+              "padNumber": "4",
+              "net": "",
+              "layer": 1,
+              "x": 1575,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e29",
+              "padNumber": "8",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1425,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e30",
+              "padNumber": "7",
+              "net": "PA9",
+              "layer": 1,
+              "x": 1475,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e31",
+              "padNumber": "6",
+              "net": "PA10",
+              "layer": 1,
+              "x": 1525,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e32",
+              "padNumber": "5",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1575,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1243.5275,
+          "minY": 404.32450000000006,
+          "maxX": 1743.868,
+          "maxY": 692.3225
+        },
+        "moduleWidthMil": 500.3405,
+        "moduleHeightMil": 287.998,
+        "minInternalGapMil": 20,
+        "closestInternalGap": {
+          "from": "C10",
+          "to": "U4",
+          "distanceMil": 20
+        },
+        "minExternalComponentGapMil": 12.003,
+        "closestExternalComponentGap": {
+          "from": "U4",
+          "to": "C3",
+          "distanceMil": 12.003
+        },
+        "pinDistances": [
+          {
+            "member": "C9",
+            "memberPad": "1",
+            "owner": "U4",
+            "ownerPad": "8",
+            "net": "+3V3",
+            "distanceMil": 94.1475,
+            "source": "原理图.pdf 第1页：C9服务CH340N U4.8 V3"
+          },
+          {
+            "member": "C10",
+            "memberPad": "1",
+            "owner": "U4",
+            "ownerPad": "5",
+            "net": "+3V3",
+            "distanceMil": 81.543,
+            "source": "原理图.pdf 第1页：C10服务CH340N U4.5 VCC"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C10",
+            "nearestEdge": "bottom",
+            "distanceMil": 622.646,
+            "source": "polygon"
+          },
+          {
+            "ref": "C9",
+            "nearestEdge": "bottom",
+            "distanceMil": 622.643,
+            "source": "polygon"
+          },
+          {
+            "ref": "U4",
+            "nearestEdge": "bottom",
+            "distanceMil": 404.3245,
+            "source": "polygon"
+          }
+        ],
+        "limitations": [
+          "15 routed line(s) exist; copper geometry was not checked"
+        ]
+      },
+      "actions": [
+        {
+          "id": "place-C10",
+          "action": "pcb.component.modify",
+          "payload": {
+            "patch": {
+              "rotation": 0,
+              "x": 1684.143,
+              "y": 655.6
+            },
+            "primitiveId": "3154178becb5af96"
+          }
+        },
+        {
+          "id": "place-C9",
+          "action": "pcb.component.modify",
+          "payload": {
+            "patch": {
+              "rotation": 180,
+              "x": 1303.2525,
+              "y": 655.6
+            },
+            "primitiveId": "fdb5728ee4c68b55"
+          }
+        },
+        {
+          "id": "save",
+          "action": "pcb.save",
+          "payload": {}
+        }
+      ],
+      "apply": {
+        "version": 1,
+        "meta": {
+          "name": "usb-uart-decoupling candidate-02",
+          "description": "Generated by easyeda pcb layout-plan; footprint-anchor coordinates; boardSha256=cb388635cadbb6c689e7fb3a8555375a307a92d90b2a1df726855d340f21a65f; layoutSha256=8974dd88a9cb4792b3ee0a5e99e8b293398cd1717f78e2bf12612e754cbc58fb; hashSemantic=sha256(raw-file-bytes)",
+          "project": "ceshi",
+          "doc": "2e719e9419653c72"
+        },
+        "defaults": {},
+        "steps": [
+          {
+            "id": "place-C10",
+            "name": "place C10",
+            "action": "pcb.component.modify",
+            "payload": {
+              "patch": {
+                "rotation": 0,
+                "x": 1684.143,
+                "y": 655.6
+              },
+              "primitiveId": "3154178becb5af96"
+            }
+          },
+          {
+            "id": "place-C9",
+            "name": "place C9",
+            "action": "pcb.component.modify",
+            "payload": {
+              "patch": {
+                "rotation": 180,
+                "x": 1303.2525,
+                "y": 655.6
+              },
+              "primitiveId": "fdb5728ee4c68b55"
+            }
+          },
+          {
+            "id": "save",
+            "name": "save PCB checkpoint",
+            "action": "pcb.save"
+          }
+        ]
+      },
+      "files": {
+        "apply": "candidate-02.apply.json",
+        "candidate": "candidate-02.json",
+        "preview": "candidate-02.svg"
+      }
+    },
+    {
+      "id": "candidate-03",
+      "variant": "pin-gap(40.00)",
+      "module": "usb-uart-decoupling",
+      "strategy": "pin-satellites",
+      "placements": [
+        {
+          "ref": "C10",
+          "primitiveId": "3154178becb5af96",
+          "xMil": 1704.143,
+          "yMil": 655.6,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1644.422,
+            "minY": 622.646,
+            "maxX": 1763.868,
+            "maxY": 688.557
+          },
+          "pads": [
+            {
+              "primitiveId": "3154178becb5af96e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1731.743,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4
+            },
+            {
+              "primitiveId": "3154178becb5af96e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1676.543,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4
+            }
+          ]
+        },
+        {
+          "ref": "C9",
+          "primitiveId": "fdb5728ee4c68b55",
+          "xMil": 1283.2525,
+          "yMil": 655.6,
+          "rotationDeg": 180,
+          "layer": 1,
+          "bbox": {
+            "minX": 1223.5275,
+            "minY": 622.643,
+            "maxX": 1342.9735,
+            "maxY": 688.554
+          },
+          "pads": [
+            {
+              "primitiveId": "fdb5728ee4c68b55e14",
+              "padNumber": "2",
+              "net": "GND",
+              "layer": 1,
+              "x": 1255.6525,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            },
+            {
+              "primitiveId": "fdb5728ee4c68b55e15",
+              "padNumber": "1",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1310.8525,
+              "y": 655.6,
+              "width": 31.5,
+              "height": 35.4,
+              "rotation": 180
+            }
+          ]
+        },
+        {
+          "ref": "U4",
+          "primitiveId": "3306d84751f1d257",
+          "xMil": 1500,
+          "yMil": 550,
+          "rotationDeg": 0,
+          "layer": 1,
+          "bbox": {
+            "minX": 1382.9735,
+            "minY": 404.32450000000006,
+            "maxX": 1604.422,
+            "maxY": 692.3225
+          },
+          "pads": [
+            {
+              "primitiveId": "3306d84751f1d257e25",
+              "padNumber": "1",
+              "net": "USB_D+",
+              "layer": 1,
+              "x": 1425,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e26",
+              "padNumber": "2",
+              "net": "USB_D-",
+              "layer": 1,
+              "x": 1475,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e27",
+              "padNumber": "3",
+              "net": "GND",
+              "layer": 1,
+              "x": 1525,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e28",
+              "padNumber": "4",
+              "net": "",
+              "layer": 1,
+              "x": 1575,
+              "y": 444.4,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e29",
+              "padNumber": "8",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1425,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e30",
+              "padNumber": "7",
+              "net": "PA9",
+              "layer": 1,
+              "x": 1475,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e31",
+              "padNumber": "6",
+              "net": "PA10",
+              "layer": 1,
+              "x": 1525,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            },
+            {
+              "primitiveId": "3306d84751f1d257e32",
+              "padNumber": "5",
+              "net": "+3V3",
+              "layer": 1,
+              "x": 1575,
+              "y": 655.6,
+              "width": 24.8,
+              "height": 73.4
+            }
+          ]
+        }
+      ],
+      "measurements": {
+        "moduleBounds": {
+          "minX": 1223.5275,
+          "minY": 404.32450000000006,
+          "maxX": 1763.868,
+          "maxY": 692.3225
+        },
+        "moduleWidthMil": 540.3405,
+        "moduleHeightMil": 287.998,
+        "minInternalGapMil": 40,
+        "closestInternalGap": {
+          "from": "C10",
+          "to": "U4",
+          "distanceMil": 40
+        },
+        "minExternalComponentGapMil": 12.003,
+        "closestExternalComponentGap": {
+          "from": "U4",
+          "to": "C3",
+          "distanceMil": 12.003
+        },
+        "pinDistances": [
+          {
+            "member": "C9",
+            "memberPad": "1",
+            "owner": "U4",
+            "ownerPad": "8",
+            "net": "+3V3",
+            "distanceMil": 114.1475,
+            "source": "原理图.pdf 第1页：C9服务CH340N U4.8 V3"
+          },
+          {
+            "member": "C10",
+            "memberPad": "1",
+            "owner": "U4",
+            "ownerPad": "5",
+            "net": "+3V3",
+            "distanceMil": 101.543,
+            "source": "原理图.pdf 第1页：C10服务CH340N U4.5 VCC"
+          }
+        ],
+        "edgeDistances": [
+          {
+            "ref": "C10",
+            "nearestEdge": "bottom",
+            "distanceMil": 622.646,
+            "source": "polygon"
+          },
+          {
+            "ref": "C9",
+            "nearestEdge": "bottom",
+            "distanceMil": 622.643,
+            "source": "polygon"
+          },
+          {
+            "ref": "U4",
+            "nearestEdge": "bottom",
+            "distanceMil": 404.3245,
+            "source": "polygon"
+          }
+        ],
+        "limitations": [
+          "15 routed line(s) exist; copper geometry was not checked"
+        ]
+      },
+      "actions": [
+        {
+          "id": "place-C10",
+          "action": "pcb.component.modify",
+          "payload": {
+            "patch": {
+              "rotation": 0,
+              "x": 1704.143,
+              "y": 655.6
+            },
+            "primitiveId": "3154178becb5af96"
+          }
+        },
+        {
+          "id": "place-C9",
+          "action": "pcb.component.modify",
+          "payload": {
+            "patch": {
+              "rotation": 180,
+              "x": 1283.2525,
+              "y": 655.6
+            },
+            "primitiveId": "fdb5728ee4c68b55"
+          }
+        },
+        {
+          "id": "save",
+          "action": "pcb.save",
+          "payload": {}
+        }
+      ],
+      "apply": {
+        "version": 1,
+        "meta": {
+          "name": "usb-uart-decoupling candidate-03",
+          "description": "Generated by easyeda pcb layout-plan; footprint-anchor coordinates; boardSha256=cb388635cadbb6c689e7fb3a8555375a307a92d90b2a1df726855d340f21a65f; layoutSha256=8974dd88a9cb4792b3ee0a5e99e8b293398cd1717f78e2bf12612e754cbc58fb; hashSemantic=sha256(raw-file-bytes)",
+          "project": "ceshi",
+          "doc": "2e719e9419653c72"
+        },
+        "defaults": {},
+        "steps": [
+          {
+            "id": "place-C10",
+            "name": "place C10",
+            "action": "pcb.component.modify",
+            "payload": {
+              "patch": {
+                "rotation": 0,
+                "x": 1704.143,
+                "y": 655.6
+              },
+              "primitiveId": "3154178becb5af96"
+            }
+          },
+          {
+            "id": "place-C9",
+            "name": "place C9",
+            "action": "pcb.component.modify",
+            "payload": {
+              "patch": {
+                "rotation": 180,
+                "x": 1283.2525,
+                "y": 655.6
+              },
+              "primitiveId": "fdb5728ee4c68b55"
+            }
+          },
+          {
+            "id": "save",
+            "name": "save PCB checkpoint",
+            "action": "pcb.save"
+          }
+        ]
+      },
+      "files": {
+        "apply": "candidate-03.apply.json",
+        "candidate": "candidate-03.json",
+        "preview": "candidate-03.svg"
+      }
+    }
+  ],
+  "limitations": [
+    "copperPolicy=ignore: board has 15 routed line(s); this snapshot has no copper geometry, so module-to-copper clearance is not proven"
+  ],
+  "summary": "3 candidate(s), 0 rejected variant(s); no editor writes performed"
+}

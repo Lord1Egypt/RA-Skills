@@ -1,39 +1,47 @@
-## Description: <br>
-Write Spanish that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Spanish that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and employees use this skill to draft or revise Spanish text so it reads more natural, casual, and region-aware rather than overly formal or machine-like. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill encourages casual slang and emphatic expressions, which may be too informal or profane for professional, public, or sensitive contexts. <br>
-Mitigation: Specify the intended audience, region, and formality level, then review generated Spanish before sending. <br>
-Risk: Region-specific vocabulary can be inappropriate or confusing if terms from Spain, Mexico, Argentina, or other variants are mixed. <br>
-Mitigation: Choose one target region when requesting output and check that vocabulary stays consistent. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ivangdavila/spanish) <br>
+## Use Case:
+
+External users and agents use this skill to write or revise Spanish in a more natural, casual register. It helps adapt phrasing, fillers, emphasis, and regional vocabulary when the desired audience or country is known.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Casual slang, profanity, or regional expressions may be inappropriate for formal, professional, or region-specific communication.
+
+Mitigation: Specify the audience, country, and register when formal or region-specific Spanish is required.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance] <br>
-**Output Format:** [Natural-language Spanish writing guidance or revised Spanish prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May vary by requested region, tone, and formality level.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Natural-language Spanish text or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, network access, persistence, or data access; output may include casual slang or profanity when contextually appropriate.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

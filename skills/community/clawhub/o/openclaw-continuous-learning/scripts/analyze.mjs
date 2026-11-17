@@ -28,6 +28,24 @@ const INSTINCTS_FILE = join(MEMORY_DIR, 'instincts.jsonl');
 const PATTERNS_FILE = join(MEMORY_DIR, 'patterns.json');
 const OPTIMIZATIONS_FILE = join(MEMORY_DIR, 'optimizations.json');
 
+// ---- Privacy: redact secrets + strip control/Unicode chars before any
+// session-derived text is stored. Nothing sensitive is ever persisted. ------
+function stripControl(s) {
+  return (s || '')
+    .replace(/[\u0000-\u001f\u007f\u0080-\u009f]/g, '')
+    .replace(/[\u061c\u180e\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]/g, '')
+    .trim();
+}
+const SECRET_PATTERNS = [
+  /\b(?:sk|pk|rk|ghp|gho|ghs|ghu|github_pat|AKIA)[A-Za-z0-9_\-]{10,}\b/g,
+  /\b(?:api[_-]?key|token|secret|password|passwd|bearer)\s*[:=]\s*\S+/gi,
+  /-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----/g,
+  /\b[0-9a-fA-F]{24,}\b/g,
+  /\/\/[^\/\s@]+:[^\/\s@]+@/g,
+];
+function redact(s) { let o = (s || ''); for (const r of SECRET_PATTERNS) o = o.replace(r, '[REDACTED]'); return o; }
+function sanitize(s) { return redact(stripControl(s)).replace(/\s+/g, ' ').slice(0, 120); }
+
 // Ensure directory exists
 if (!existsSync(MEMORY_DIR)) {
   mkdirSync(MEMORY_DIR, { recursive: true });
@@ -78,7 +96,10 @@ function loadInstincts() {
 }
 
 function saveInstincts(instincts) {
-  writeFileSync(INSTINCTS_FILE, instincts.map(i => JSON.stringify(i)).join('\n') + '\n');
+  // Retention cap: never keep more than the most recent 200 instincts.
+  const pruned = instincts.slice(-200);
+  writeFileSync(INSTINCTS_FILE, pruned.map(i => JSON.stringify(i)).join('\n') + (pruned.length ? '\n' : ''));
+  return pruned;
 }
 
 function addInstinct(id, domain, trigger, confidence = 0.3, evidence = []) {
@@ -168,7 +189,8 @@ function extractToolCalls(messages) {
           
           errors.push({
             tool: toolName.toLowerCase(),
-            message: errorMsg.substring(0, 150),
+            // Only a redacted, control-stripped, length-capped snippet is kept.
+            message: sanitize(errorMsg),
             timestamp: msg.timestamp
           });
         }
@@ -192,23 +214,29 @@ function extractToolCalls(messages) {
   return { toolCalls, errors };
 }
 
-function analyzeSessions() {
+function analyzeSessions(targetAgents = null) {
   console.log('\n🧠 Continuous Learning - Session Analysis\n');
   console.log('═'.repeat(50));
-  
+
   const allToolCalls = [];
   const allErrors = [];
   const toolCounts = {};
   const errorPatterns = {};
-  
+
   if (!existsSync(AGENTS_DIR)) {
     console.log('⚠️ No agents directory found');
     return { toolCalls: [], errors: [], patterns: [] };
   }
-  
-  const agentDirs = readdirSync(AGENTS_DIR).filter(d => 
+
+  let agentDirs = readdirSync(AGENTS_DIR).filter(d => 
     existsSync(join(AGENTS_DIR, d, 'sessions'))
   );
+  // Scoping: only analyse explicitly-named agents (or --all), never silently
+  // scan every agent.
+  if (targetAgents && targetAgents.length) {
+    agentDirs = agentDirs.filter(d => targetAgents.includes(d));
+    console.log(`🔒 Scoped to explicit agent(s): ${targetAgents.join(', ')}`);
+  }
   
   console.log(`\n📂 Found ${agentDirs.length} agents with sessions\n`);
   
@@ -410,31 +438,59 @@ function listPatterns() {
   });
 }
 
+// Deletion control: wipe all stored learning data (instincts, patterns, optimizations).
+function pruneAll() {
+  writeFileSync(INSTINCTS_FILE, '');
+  savePatterns([]);
+  saveOptimizations([]);
+  console.log('🧹 Pruned all stored learning data (instincts, patterns, optimizations).');
+}
+
 // CLI
 const args = process.argv.slice(2);
-const command = args[0] || 'analyze';
+
+// Parse scoping options: --agent <name> (repeatable) or --all (explicit broad scan).
+const agentOpts = [];
+let allAgents = false;
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === '--agent' && args[i + 1] && !args[i + 1].startsWith('--')) { agentOpts.push(args[i + 1]); i++; }
+  if (args[i] === '--all') allAgents = true;
+}
+// Command = first non-flag token (defaults to 'analyze' when flags come first).
+const command = (args[0] && !args[0].startsWith('--') && args[0] !== '--all') ? args[0] : 'analyze';
+// Analysis requires an explicit scope: at least one --agent, or --all.
+const needsScope = (command === 'analyze' || command === 'errors');
+if (needsScope && !allAgents && agentOpts.length === 0) {
+  console.log('🔒 Scoping required: pass --agent <name> (single agent) or --all (explicitly scan all agents).');
+  process.exit(0);
+}
+const scope = allAgents ? null : (agentOpts.length ? agentOpts : null);
 
 if (command === 'analyze') {
-  analyzeSessions();
+  analyzeSessions(scope);
 } else if (command === 'instincts') {
   listInstincts();
 } else if (command === 'optimizations' || command === 'list') {
   listOptimizations();
 } else if (command === 'patterns') {
   listPatterns();
+} else if (command === 'prune' || command === 'clear') {
+  pruneAll();
 } else if (command === 'errors') {
-  const result = analyzeSessions();
-  console.log('\n❌ All Detected Errors:');
+  const result = analyzeSessions(scope);
+  console.log('\n❌ All Detected Errors (redacted):');
   result.errors.forEach((e, i) => {
     console.log(`${i + 1}. [${e.tool}] ${e.message.substring(0, 80)}`);
   });
 } else if (command === 'help') {
   console.log('Usage:');
-  console.log('  node analyze.mjs           # Analyze sessions');
-  console.log('  node analyze.mjs instincts # List instincts');
-  console.log('  node analyze.mjs list      # List optimizations');
-  console.log('  node analyze.mjs patterns # List patterns');
-  console.log('  node analyze.mjs errors    # Show all errors');
+  console.log('  node analyze.mjs --agent <name>     # Analyze one explicit agent');
+  console.log('  node analyze.mjs --all              # Explicitly analyze all agents');
+  console.log('  node analyze.mjs instincts          # List instincts');
+  console.log('  node analyze.mjs list               # List optimizations');
+  console.log('  node analyze.mjs patterns           # List patterns');
+  console.log('  node analyze.mjs errors --agent <n> # Show redacted errors');
+  console.log('  node analyze.mjs prune              # Delete all stored learning data');
 } else {
   console.log('Unknown command:', command);
 }

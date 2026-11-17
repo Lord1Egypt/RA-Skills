@@ -1,48 +1,72 @@
-## Description: <br>
-Generates professional e-commerce product image workflows with platform-specific requirements, visual styles, scene types, prompts, and output files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional product images for e-commerce platforms (Amazon, Shopify, eBay, etc.). Supports 8 visual styles and 6 scene types optimized for different product categories. Use when user mentions "商品图", "product images", "Amazon listing", "电商图片", or needs e-commerce product photography.
 
-## Publisher: <br>
-[boyd4y](https://clawhub.ai/user/boyd4y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[boyd4y](https://clawhub.ai/user/boyd4y)
 
-## Use Case: <br>
-External users, creators, and e-commerce operators use this skill to plan and generate product image sets for marketplaces such as Amazon, Shopify, eBay, Etsy, Taobao, JD, and Pinduoduo. The workflow analyzes product details, asks for confirmation, creates strategy outlines and prompts, and writes the resulting product-image session files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates local project output files and may store optional user preferences. <br>
-Mitigation: Run it in an intended workspace, review generated directories and preference files, and keep only outputs that match the product workflow. <br>
-Risk: Reference images or requested styles could copy protected branding, packaging, logos, or a competitor's distinctive look. <br>
-Mitigation: Use reference assets you own or are allowed to use, and review prompts and images for protected brand elements before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Quick Start Guide](QUICKSTART.md) <br>
-- [Scene Guide](references/elements/scene-guide.md) <br>
-- [Prompt Assembly Guide](references/workflows/prompt-assembly.md) <br>
-- [Analysis Framework](references/workflows/analysis-framework.md) <br>
-- [Outline Template](references/workflows/outline-template.md) <br>
-- [Preferences Schema](references/config/preferences-schema.md) <br>
-- [Watermark Guide](references/config/watermark-guide.md) <br>
-- [Amazon Platform Requirements](references/platforms/amazon.md) <br>
-- [Shopify Platform Requirements](references/platforms/shopify.md) <br>
+## Use Case:
 
+External sellers, e-commerce operators, and content creators use this skill to plan and generate product image sets tailored to marketplace requirements, visual style, and scene type. It guides product analysis, outline selection, prompt creation, image generation, and completion reporting.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown files, prompt files, generated image files, and concise progress text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates a product-images/{product-slug}/ session directory with source material, analysis, strategy outlines, final outline, prompts, and generated images.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill creates planning files, prompts, generated images, and preference files in the user's workspace.
+
+Mitigation: Review the first-time preferences before saving them and inspect generated session outputs before reuse or publication.
+
+Risk: Product descriptions and reference images may include sensitive product, brand, or campaign material.
+
+Mitigation: Provide only product details and reference images that are appropriate to use for image generation.
+
+Risk: Generated marketplace imagery may need review for accuracy and platform compliance before publication.
+
+Mitigation: Use the skill's confirmation checkpoints and platform requirement references to review image plans before generation and publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/boyd4y/skills/product-image-generator)
+- [README](README.md)
+- [Quick Start Guide](QUICKSTART.md)
+- [Scene Guide](references/elements/scene-guide.md)
+- [Amazon Platform Requirements](references/platforms/amazon.md)
+- [Shopify Store Image Requirements](references/platforms/shopify.md)
+- [eBay Platform Requirements](references/platforms/ebay.md)
+- [Etsy Platform Requirements](references/platforms/etsy.md)
+- [Taobao Platform Requirements](references/platforms/taobao.md)
+- [JD.com Platform Requirements](references/platforms/jd.md)
+- [Pinduoduo Platform Requirements](references/platforms/pinduoduo.md)
+- [Product Analysis Framework](references/workflows/analysis-framework.md)
+- [Outline Template](references/workflows/outline-template.md)
+- [Prompt Assembly Guide](references/workflows/prompt-assembly.md)
+- [Reference Image Guide](references/workflows/reference-guide.md)
+- [Preferences Schema](references/config/preferences-schema.md)
+- [Watermark Guide](references/config/watermark-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, image files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, saved planning files, generated image files, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a product-specific session directory with source inputs, analysis, outline variants, a selected outline, prompts, and generated images.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-智能文字游戏生成系统，支持自定义剧本，自由互动剧情，精美文字排版。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese text-adventure game skill that helps agents create custom scenarios, process free-form player actions, and return structured story responses.
 
-## Publisher: <br>
-[810722796-lgtm](https://clawhub.ai/user/810722796-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[810722796-lgtm](https://clawhub.ai/user/810722796-lgtm)
 
-## Use Case: <br>
-Players and interactive-fiction creators use this skill to generate and play structured text-adventure games from custom scripts or themes, with formatted story output, player actions, status views, and save/load commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved games may retain gameplay text, custom scripts, player actions, or other details entered during play. <br>
-Mitigation: Do not enter passwords, confidential material, or private personal details into scripts or actions when save/load behavior may persist them locally. <br>
-Risk: The README includes an optional external LLM integration example that could send gameplay context and player text to a model provider. <br>
-Mitigation: Only add an external LLM provider after reviewing what data is transmitted, where it is processed, and the provider's retention policy. <br>
+## Use Case:
 
+External users and game-focused agent workflows use this skill to generate and run interactive Chinese text adventures from custom plots or themes. It supports formatted narrative output, player status summaries, inventory display, and local save/load behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/810722796-lgtm/text-adventure-game-skill) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Warhammer 40K built-in template](artifact/data/templates/warhammer_40k.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Structured Markdown-style text with scene sections, choices, status summaries, and optional Python extension guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local JSON save files when the save command is used; optional LLM integration example requires separate provider review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Gameplay text, player state, and custom script content may be saved locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering secrets or sensitive personal information unless local storage is acceptable, and review saved content before sharing files.
+
+Risk: The documented LLM extension path could send gameplay content to a remote API if a user implements it.
+
+Mitigation: Require explicit consent for remote API calls and document the model provider, data handling, and credential requirements before enabling the extension.
+
+Risk: Future named save-slot support could read or write unintended files if save names are accepted unchecked.
+
+Mitigation: Validate save-slot names, restrict them to safe characters, and keep save/load operations inside the intended save directory.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/810722796-lgtm/skills/text-adventure-game-skill)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Warhammer 40K template](artifact/data/templates/warhammer_40k.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown-formatted Chinese narrative text, with optional Python code and configuration guidance for extensions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses may include scene headers, separators, numbered choices, player status, inventory, and save/load command guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

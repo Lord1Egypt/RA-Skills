@@ -1,42 +1,54 @@
-## Description: <br>
-Storyboard Creation helps plan film and video storyboards with shot vocabulary, continuity rules, camera guidance, panel layouts, annotations, and example image-generation commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Film and video storyboarding with shot vocabulary, continuity rules, and panel layout.
 
-## Publisher: <br>
-[okaris](https://clawhub.ai/user/okaris) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okaris](https://clawhub.ai/user/okaris)
 
-## Use Case: <br>
-Creative teams, filmmakers, marketers, animators, and video producers use this skill to turn scene ideas into structured shot lists, AI-generated storyboard panels, and annotated board layouts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an external image-generation CLI that may require installation, login, and provider-side processing. <br>
-Mitigation: Verify the inference.sh installer or use the checksum path, then log in with an account whose costs and permissions are understood. <br>
-Risk: Storyboard prompts or source material may contain confidential scripts, unreleased concepts, client assets, or regulated content. <br>
-Mitigation: Avoid sending sensitive material unless the provider's terms and data handling are acceptable for the project. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [inference.sh](https://inference.sh) <br>
-- [inference.sh CLI installer](https://cli.inference.sh) <br>
-- [inference.sh CLI checksums](https://dist.inference.sh/cli/checksums.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/okaris/storyboard-creation) <br>
+## Use Case:
 
+External creators, filmmakers, marketers, and animation teams use this skill to plan visual scripts, shot lists, camera angles, continuity, and panel annotations for storyboards.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with storyboard planning guidance and inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include prompts, shot lists, panel annotations, storyboard layout guidance, and inference.sh commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs users to run mutable remote installation code and unpinned package commands.
+
+Mitigation: Review installation commands before use, prefer manual verification with published checksums, and avoid running them in environments with sensitive files or credentials.
+
+Risk: Prompts, scripts, shot lists, and image filenames used with infsh may be sent to a third-party service.
+
+Mitigation: Avoid submitting confidential production details, personal data, credentials, or unreleased creative assets unless the service and account terms are approved for that use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/okaris/skills/storyboard-creation)
+- [inference.sh](https://inference.sh)
+- [inference.sh CLI checksum verification](https://dist.inference.sh/cli/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, storyboard prompts, shot lists, and panel annotations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts, image generation commands, storyboard layout guidance, and continuity notes.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

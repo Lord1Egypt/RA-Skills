@@ -1,39 +1,54 @@
-## Description: <br>
-Stretching and flexibility reference for dynamic warm-ups, static holds, PNF techniques, and mobility routines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stretching and flexibility reference for dynamic warm-ups, static holds, PNF techniques, and mobility routines.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and agents use this skill as a command-line stretching reference for warm-up planning, cooldown stretches, mobility routines, PNF techniques, anatomy notes, and common stretching mistakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stretching guidance, especially advanced PNF techniques, may be inappropriate for users with pain, recent injury, surgery, neurologic symptoms, hypermobility, or other medical conditions. <br>
-Mitigation: Review exercise content before following it and consult a qualified clinician or physical therapist when those conditions apply. <br>
+## Use Case:
 
+External users and agents use this skill as a stretching and flexibility reference when designing warm-ups, cooldowns, mobility programs, and general injury-prevention guidance.
 
-## Reference(s): <br>
-- [Stretch ClawHub page](https://clawhub.ai/ckchzh/stretch) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line reference guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local reference output; server security evidence reports no data, credential, network, or persistent system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Stretching guidance may be mistaken for medical care or rehabilitation advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the content as general fitness reference material and consult a qualified coach, physical therapist, or clinician when injured, hypermobile, rehabilitating, or unsure.
+
+Risk: PNF or partner stretches can cause harm if range of motion is forced or symptoms are ignored.
+
+Mitigation: Do not force range of motion; stop with pain, numbness, tingling, or joint symptoms.
+
+## Reference(s):
+
+- [Stretch on ClawHub](https://clawhub.ai/ckchzh/skills/stretch)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like terminal text with command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output; no data access or persistence indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

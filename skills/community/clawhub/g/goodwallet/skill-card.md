@@ -1,44 +1,60 @@
-## Description: <br>
-Crypto wallet for sending, swapping, trading perps, betting on Polymarket, earning DeFi yield, and signing across EVM, Solana, Bitcoin, Doge, and XRP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crypto wallet for sending, swapping, trading perps, betting on Polymarket, earning DeFi yield, and signing across EVM, Solana, Bitcoin, Doge, and XRP.
 
-## Publisher: <br>
-[peteremiljensen](https://clawhub.ai/user/peteremiljensen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[peteremiljensen](https://clawhub.ai/user/peteremiljensen)
 
-## Use Case: <br>
-External users and agents use this skill to interact with the GoodWallet CLI for wallet balances, sends, swaps, perpetual trades, Polymarket bets, DeFi yield actions, and signing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can initiate real financial actions, including token transfers, swaps, trades, bets, yield actions, and signing requests. <br>
-Mitigation: Inspect balances, quotes, positions, recipients, assets, amounts, markets, and signing requests before approval, and require explicit user confirmation before any state-changing command. <br>
-Risk: Wallet configuration, encrypted MPC key shares, and authentication tokens are stored locally on the user's device. <br>
-Mitigation: Use only on a trusted device and install only if the user trusts GoodWallet, GoodDollar, and the npm package. <br>
-Risk: The skill depends on GoodWallet external services for MPC co-signing and transaction policy enforcement. <br>
-Mitigation: Treat service availability and policy responses as part of the approval path, and report failures plainly without automatic retries. <br>
+## Use Case:
 
+External users and agents use this skill to operate the Goodwallet CLI for wallet balances, token transfers, swaps, perpetual trading, Polymarket betting, DeFi yield, and transaction signing. The skill is intended for workflows where the agent summarizes CLI results and requests confirmation before any command that moves funds or creates exposure.
 
-## Reference(s): <br>
-- [GoodWallet homepage](https://goodwallet.etoro.com) <br>
-- [GoodWallet npm package](https://www.npmjs.com/package/goodwallet) <br>
-- [ClawHub GoodWallet listing](https://clawhub.ai/peteremiljensen/goodwallet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with inline shell commands and concise plain-language summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for user confirmation before fund movement, market exposure, yield deposits or withdrawals, and signing actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.7.3 (source: server release metadata) <br>
+Risk: The skill can perform real wallet, trading, betting, signing, and fund-movement workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect balances, quotes, or positions before state-changing actions and require explicit user confirmation for sends, swap execution, trades, bets, earn deposits or withdrawals, and signing.
+
+Risk: The skill depends on a broadly triggered, unpinned globally installed CLI.
+
+Mitigation: Install it only for agents that should operate Goodwallet, and verify the package version plus exact command, asset, amount, recipient, and network before approving high-risk prompts.
+
+Risk: Wallet configuration, encrypted MPC key shares, and auth tokens are stored locally.
+
+Mitigation: Avoid exposing internal wallet details in responses, preserve local configuration confidentiality, and use browser OAuth logout when disconnecting the wallet.
+
+## Reference(s):
+
+- [GoodWallet ClawHub skill](https://clawhub.ai/peteremiljensen/skills/goodwallet)
+- [GoodWallet homepage](https://goodwallet.etoro.com)
+- [goodwallet npm package](https://www.npmjs.com/package/goodwallet)
+- [Publisher profile](https://clawhub.ai/user/peteremiljensen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline CLI commands and concise plain-language summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the globally installed goodwallet CLI and browser OAuth pairing for authentication.]
+
+## Skill Version(s):
+
+1.7.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

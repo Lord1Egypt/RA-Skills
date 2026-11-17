@@ -1,45 +1,54 @@
-## Description: <br>
-Submit Dataify eBay Product Information Builder tasks for eBay product collection by product URL, category URL, keyword, or store URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collect eBay product records by product URL, category URL, keyword, or store URL. Do not use for Amazon, Walmart, or general shopping-search results.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-Developers, operators, and e-commerce data users use this skill to submit guided Dataify Builder jobs that collect eBay product information and return a task ID and status for result tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Dataify API TOKEN is sensitive. <br>
-Mitigation: Keep DATAIFY_API_TOKEN private, do not call the Builder endpoint without a token, and only save a token locally after user confirmation. <br>
-Risk: Submitted URLs or keywords are sent to Dataify and may consume the user's Dataify account quota. <br>
-Mitigation: Review the selected collection mode and parameters before submitting a Builder job. <br>
-Risk: Incorrect mode or parameter values can create an unintended eBay collection task. <br>
-Mitigation: Validate the selected mode, eBay URL domain, keyword, count values, and file name before submission. <br>
+## Use Case:
 
+External users and developers use this skill to submit Dataify Builder jobs for eBay product collection by product URL, category URL, keyword, or store URL, then wait for the final collected JSON result.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-ebay-products) <br>
-- [Publisher profile](https://clawhub.ai/user/dataify-server) <br>
-- [Dataify dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
-- [Dataify login](https://dashboard.dataify.com/login?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with optional shell commands and JSON task submission summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Dataify Builder task details including mode, spider_id, task_id, status, parameters, file_name, dashboard_url, and message when the helper script succeeds.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The helper script imports code from a nearby dataify-task-operations runtime that is outside this skill artifact and can pass that code the user's Dataify API TOKEN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the sibling runtime before installation or execution, use a session-scoped DATAIFY_API_TOKEN, and do not paste tokens into chat.
+
+Risk: Running the skill submits requests to Dataify Builder and may consume account credits for eBay product collection.
+
+Mitigation: Confirm the selected collection mode, target URLs or keywords, and expected scope before running high-volume or multi-input jobs.
+
+## Reference(s):
+
+- [Modes and parameters](references/modes-and-parameters.md)
+- [ClawHub skill page](https://clawhub.ai/dataify-server/skills/dataify-ebay-products)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON task or result payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return a task identifier and status during submission, or the final collected JSON result after asynchronous monitoring completes.]
+
+## Skill Version(s):
+
+1.3.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

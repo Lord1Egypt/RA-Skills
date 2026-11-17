@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "diagram_type": "er",
+  "meta": {
+    "title": "Order System Data Model",
+    "output": "examples/er-order-system-rendered.html",
+    "quality_profile": "showcase",
+    "columns": 3,
+    "views": [
+      { "id": "purchase-core", "label": "Purchase core", "focus": ["customer", "order", "order_item"], "note": "Follow the one-to-many purchase chain from customer to line items." },
+      { "id": "catalog-link", "label": "Catalog link", "focus": ["product", "order_item"], "note": "See how line items reference catalog products." },
+      { "id": "settlement", "label": "Settlement", "focus": ["order", "payment"], "note": "Trace the optional one-to-one payment settlement." }
+    ]
+  },
+  "entities": [
+    {
+      "id": "customer",
+      "label": "Customer",
+      "sublabel": "registered buyers",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "pk" },
+        { "name": "email", "type": "text", "key": "unique" },
+        { "name": "name", "type": "text" },
+        { "name": "created_at", "type": "timestamp" }
+      ]
+    },
+    {
+      "id": "order",
+      "label": "Order",
+      "sublabel": "purchase headers",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "pk" },
+        { "name": "customer_id", "type": "uuid", "key": "fk" },
+        { "name": "status", "type": "enum" },
+        { "name": "total", "type": "decimal" }
+      ]
+    },
+    {
+      "id": "order_item",
+      "label": "Order Item",
+      "sublabel": "line items",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "pk" },
+        { "name": "order_id", "type": "uuid", "key": "fk" },
+        { "name": "product_id", "type": "uuid", "key": "fk" },
+        { "name": "quantity", "type": "int" },
+        { "name": "unit_price", "type": "decimal" }
+      ]
+    },
+    {
+      "id": "product",
+      "label": "Product",
+      "sublabel": "catalog entries",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "pk" },
+        { "name": "sku", "type": "text", "key": "unique" },
+        { "name": "title", "type": "text" },
+        { "name": "price", "type": "decimal" }
+      ]
+    },
+    {
+      "id": "payment",
+      "label": "Payment",
+      "sublabel": "settlement records",
+      "attributes": [
+        { "name": "id", "type": "uuid", "key": "pk" },
+        { "name": "order_id", "type": "uuid", "key": "fk" },
+        { "name": "method", "type": "enum" },
+        { "name": "amount", "type": "decimal" }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "customer-orders",
+      "from": "customer",
+      "to": "order",
+      "label": "places",
+      "fromCardinality": "one",
+      "toCardinality": "zero-or-many",
+      "variant": "emphasis"
+    },
+    {
+      "id": "order-items",
+      "from": "order",
+      "to": "order_item",
+      "label": "contains",
+      "fromCardinality": "one",
+      "toCardinality": "zero-or-many",
+      "variant": "emphasis"
+    },
+    {
+      "id": "item-product",
+      "from": "product",
+      "to": "order_item",
+      "label": "referenced by",
+      "fromCardinality": "one",
+      "toCardinality": "zero-or-many",
+      "variant": "default"
+    },
+    {
+      "id": "order-payment",
+      "from": "order",
+      "to": "payment",
+      "label": "settled by",
+      "fromCardinality": "one",
+      "toCardinality": "zero-or-one",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Primary relationships",
+      "items": [
+        "Customer, Order, and Order Item form the purchase core",
+        "One customer can place many orders; one order holds many items",
+        "Order Item references exactly one product"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Cardinality markers",
+      "items": [
+        "1 and * mark one and many endpoints",
+        "0..1 and 0..* capture optional relationships",
+        "PK, FK, and UQ tags identify key attributes"
+      ]
+    }
+  ]
+}

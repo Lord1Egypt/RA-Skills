@@ -1,43 +1,32 @@
 ---
 name: qa-critical-thinking
-version: 1.5.0
 description: >-
-  当需要挑战已有假设、挖掘隐含约束、发现"所有人都没想过"的测试场景时使用此技能。测试中最常犯的错误是接受了需求文档里的隐含假设——比如"用户一定会有网络"、"输入一定有内容"、"操作顺序一定正确"。用「如果不呢」的深度质疑方式反向思考，暴露那些被默认为"正常"的异常场景。每一个测试场景都应该走一遍"如果这个假设不成立呢"的质疑流程。
-
-when_to_use: 用户说"还有什么"、"如果...会怎样"、"逆向思考"、"你怎么看"、"这样够吗"、"质疑"、"挑战需求"、"有没有漏"、需要怀疑和深度分析时
+  当需要挑战已有假设、挖掘隐含约束、发现"所有人都没想过"的测试场景时使用此技能。测试中最常犯的错误是接受了需求文档里的隐含假设——比如"用户一定会有网络"、"输入一定有内容"、"操作顺序一定正确"。用「如果不呢」的深度质疑方式反向思考，暴露那些被默认为"正常"的异常场景。每一个测试场景都应该走一遍"如果这个假设不成立呢"的质疑流程。 触发场景：还有什么、如果...会怎样、逆向思考、你怎么看、这样够吗、质疑、挑战需求、有没有漏、需要怀疑和深度分析时。 Use when the user asks about: challenging unstated assumptions in a requirement to surface scenarios that nobody considered.
+license: MIT
 allowed-tools: Read Grep Glob
-related_skills:
-  upstream: []  # 基础层技能
-  downstream:
-    - qa-req-deconstruction      # 影响：需求挖掘深度
-    - qa-scenario-tree           # 影响：场景覆盖全面性
-    - qa-boundary-deep-dive      # 影响：边界分析深度
-input_format:
-  required:
-    - name: 需求描述
-      type: string
-      description: 功能需求的详细描述
-    - name: 测试用例
-      type: array
-      description: 待审阅的测试用例列表
-  optional:
-    - name: 业务背景
-      type: string
-      description: 业务目标和用户角色
-output_format:
-  structure:
-    - thinking_gaps: 思维盲区清单
-    - assumption_challenges: 假设挑战列表
-    - alternative_scenarios: 替代场景建议
-    - risk_reevaluation: 风险重评估
+metadata:
+  display-name: "Critical Thinking"
+  version: "1.8.0"
+  when-to-use: "用户说\"还有什么\"、\"如果...会怎样\"、\"逆向思考\"、\"你怎么看\"、\"这样够吗\"、\"质疑\"、\"挑战需求\"、\"有没有漏\"、需要怀疑和深度分析时"
+  related-skills: "{\"upstream\":[],\"downstream\":[\"qa-req-deconstruction\",\"qa-scenario-tree\",\"qa-boundary-deep-dive\",\"qa-requirement-review\"]}"
+  references: "[\"references/thinking-exercises.md\"]"
+  input-format: "{\"required\":[{\"name\":\"需求描述\",\"type\":\"string\",\"description\":\"功能需求的详细描述\"},{\"name\":\"测试用例\",\"type\":\"array\",\"description\":\"待审阅的测试用例列表\"}],\"optional\":[{\"name\":\"业务背景\",\"type\":\"string\",\"description\":\"业务目标和用户角色\"}]}"
+  output-format: "{\"traceability\":[\"本技能质疑思维，不产出唯一ID；发现的假设挑战关联到需求ID或场景ID\"],\"structure\":[{\"thinking_gaps\":\"思维盲区清单\"},{\"assumption_challenges\":\"假设挑战列表\"},{\"alternative_scenarios\":\"替代场景建议\"},{\"risk_reevaluation\":\"风险重评估\"}]}"
+  error-recovery-guidance: "{\"on_failure\":\"质疑流未能暴露假设时回退到需求解构补充上下文\",\"retry_behavior\":\"补充业务背景后重新质疑\"}"
+  categories: "[\"Development\",\"Testing\"]"
+  depth-requirement: "{\"reference_value\":\"根据需求复杂度调整质疑深度：简单×3/中等×5/复杂×7\",\"minimum\":\"至少挑战3个隐含假设\"}"
 ---
+> ⚠️ 本技能单独使用效果有限，建议配合完整技能集（12 步工作流）使用。安装：npx skills add Kokxi/qa-test-skills
+
+> **⚠️ 安全警告**：本技能的示例可能涉及订单号、支付金额、截图、身份证、手机号等敏感数据。
+> 实际使用时请勿粘贴真实生产数据、客户信息或财务凭证；测试前应脱敏/掩码处理。
+> 本技能仅在 workspace/ 输出评估文件，不持久化、不外传、不跨会话复用。
 
 # 测试批判性思维
 
 ## 核心原则
 
-你是一位测试批判性思维专家，对每个"应该"都问"如果不呢？"。
-**核心原则**：对每个"正常"都问"异常呢？"；对每个"确定"都问"假设呢？"
+对每个"正常"都问"异常呢？"；对每个"确定"都问"假设呢？"
 本技能适用于测试用例查漏补缺、需求深度分析和风险评估等需要逆向思考的场景。
 
 ## 质疑框架
@@ -166,63 +155,13 @@ How（怎么做）：
 **用户说"这个功能看起来很简单"**
 → 触发本技能进行深度质疑，挖掘"简单"背后的隐藏风险
 
-## 思维练习
+## 加载时机
 
-### 练习1：功能质疑
-**功能**：用户登录
+| 什么时候读 | 读哪个 |
+|-----------|--------|
+| 想不出新的质疑角度时，取练习集找切入点 | [`references/thinking-exercises.md`](references/thinking-exercises.md) |
 
-```text
-正常思维：
-- 用户输入用户名密码
-- 系统验证
-- 登录成功
-
-批判性思维：
-- 如果用户名不存在会怎样？
-- 如果密码错误会怎样？
-- 如果用户输入<script>会怎样？
-- 如果用户同时在多设备登录会怎样？
-- 如果用户登录后长时间不操作会怎样？
-- 如果网络中断会怎样？
-- 如果数据库挂了会怎样？
-- 如果用户恶意暴力破解会怎样？
-```
-
-### 练习2：规则质疑
-**规则**：密码长度至少8位
-
-```text
-正常思维：
-- 验证密码长度是否≥8
-
-批判性思维：
-- 如果密码刚好8位会怎样？
-- 如果密码超过100位会怎样？
-- 如果密码全是空格会怎样？
-- 如果密码包含emoji会怎样？
-- 如果密码是常见密码（12345678）会怎样？
-- 如果密码包含用户名会怎样？
-- 如果密码包含生日会怎样？
-- 如果密码长期不更换会怎样？
-```
-
-### 练习3：数据质疑
-**数据**：用户输入手机号
-
-```text
-正常思维：
-- 验证手机号格式
-
-批判性思维：
-- 如果手机号为空会怎样？
-- 如果手机号不是11位会怎样？
-- 如果手机号包含特殊字符会怎样？
-- 如果手机号已注册其他账号会怎样？
-- 如果手机号是虚拟号码会怎样？
-- 如果手机号是国际号码会怎样？
-- 如果手机号被标记为骚扰电话会怎样？
-- 如果手机号运营商不支持会怎样？
-```
+> `思维练习`的完整内容已下沉至 `references/thinking-exercises.md`，避免每次触发都占用上下文。
 
 ## 常见陷阱
 
@@ -279,3 +218,10 @@ How（怎么做）：
 - [ ] 是否覆盖了反向场景？
 
 
+## 检查清单
+
+- [ ] 隐含假设是否挑战？
+- [ ] 证据是否充分？
+- [ ] 逻辑是否自洽？
+- [ ] 替代解释是否考虑？
+- [ ] 结论是否可证伪？

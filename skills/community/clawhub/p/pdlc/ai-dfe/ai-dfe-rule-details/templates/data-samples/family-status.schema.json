@@ -1,0 +1,34 @@
+{
+  "title": "Family Status Demand Output",
+  "description": "DFE-owned aggregation schema for a family-wide status roll-up. Shaped from per-package data (Layer 2).",
+  "type": "object",
+  "required": ["$schemaVersion","$generatedBy","$generatedOn","$family","$package","data"],
+  "properties": {
+    "$schema":{"type":"string"},
+    "$schemaVersion":{"type":"string","pattern":"^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "$generatedBy":{"type":"string","const":"AI-DFE"},
+    "$generatedOn":{"type":"string","format":"date-time"},
+    "$family":{"type":"string"},
+    "$package":{"type":"string","const":"AI-DFE"},
+    "consumer":{"type":"string"},
+    "data":{
+      "type":"object","required":["family","counts"],
+      "properties":{
+        "family":{"type":"string"},
+        "counts":{"type":"object","properties":{
+          "ideas":{"type":["integer","null"]},
+          "projects":{"type":["integer","null"]},
+          "activeProjects":{"type":["integer","null"]},
+          "workspacesGenerated":{"type":["integer","null"]}
+        }},
+        "health":{"type":"object","properties":{
+          "projectsWithOpenRisks":{"type":["integer","null"]},
+          "avgComplianceScore":{"type":["number","null"]},
+          "avgTestCoverage":{"type":["number","null"]},
+          "stalledProjects":{"type":["integer","null"]}
+        }},
+        "lastRefreshed":{"type":["string","null"]}
+      }
+    }
+  }
+}

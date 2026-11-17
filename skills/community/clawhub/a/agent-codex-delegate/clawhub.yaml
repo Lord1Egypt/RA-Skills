@@ -1,0 +1,16 @@
+slug: agent-codex-delegate
+name: Codex Delegate
+owner: jlacroix82
+description: Delegate coding, repository analysis, file edits, test runs, or code review to the local Codex CLI
+version: 0.1.3
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - codex
+  - coding
+  - delegate
+  - cli
+  - agent
+entry: SKILL.md
+dependencies: []

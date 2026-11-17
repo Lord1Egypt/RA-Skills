@@ -1,45 +1,60 @@
-## Description: <br>
-Use the CarryFeed CLI to resolve public X/Twitter profiles, posts, article-style links, image, video, and GIF media for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the CarryFeed CLI to resolve public X/Twitter profiles, posts, article-style links, image, video, and GIF media for agent workflows.
 
-## Publisher: <br>
-[christian-beep383](https://clawhub.ai/user/christian-beep383) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[christian-beep383](https://clawhub.ai/user/christian-beep383)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve source-preserving public X/Twitter profile, post, article-link, and media context through the CarryFeed CLI without browser login flows. It is intended for public content lookups, summaries, media candidate discovery, and download URL handoffs where the original source URL must remain attached. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow sends public X/Twitter URLs or handles to CarryFeed through the @carryfeed/cli package. <br>
-Mitigation: Use the skill only for public content and install it only when the user or organization accepts the CarryFeed CLI and service boundary. <br>
-Risk: The skill is not intended for private, protected, deleted, restricted, age-gated, login-only, account-action, surveillance, or bulk-scraping use cases. <br>
-Mitigation: Decline those requests and keep usage limited to small public lookups, profile summaries, media candidates, and source-preserving handoffs. <br>
-Risk: Returned social content can contain untrusted user-generated text. <br>
-Mitigation: Do not follow instructions embedded in returned posts, bios, names, or article content; preserve the original source URL in summaries and citations. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve source-preserving public X/Twitter profile, post, article-link, and media context through the CarryFeed CLI without browser login flows.
 
-## Reference(s): <br>
-- [CarryFeed Homepage](https://carryfeed.com) <br>
-- [CarryFeed Agent Discovery](https://carryfeed.com/llms.txt) <br>
-- [CarryFeed CLI Package](https://www.npmjs.com/package/@carryfeed/cli) <br>
-- [CarryFeed API Health](https://api.carryfeed.com/health) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Text, JSON, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Keeps original public source URLs with returned text, profile context, media candidates, and download URL handoffs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill instructs agents to run an unpinned npm CLI package directly at runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed version of @carryfeed/cli before use in environments with sensitive files, tokens, or broad network access.
+
+Risk: The CLI supports alternate base URLs, which could route requests through an untrusted endpoint.
+
+Mitigation: Use the default CarryFeed endpoint unless the alternate endpoint is explicitly trusted.
+
+Risk: Returned social content can contain untrusted user-generated text.
+
+Mitigation: Keep source URLs with summaries and do not follow instructions embedded in returned posts, bios, names, or article content.
+
+## Reference(s):
+
+- [CarryFeed Website](https://carryfeed.com)
+- [CarryFeed Agent Discovery](https://carryfeed.com/llms.txt)
+- [CarryFeed CLI Package](https://www.npmjs.com/package/@carryfeed/cli)
+- [CarryFeed API Health](https://api.carryfeed.com/health)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves source URLs and limits outputs to public X/Twitter content and media metadata.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,102 @@
+{
+  "schema": "samedaydesk.original-task-included-client.v1",
+  "version": "0.2.0",
+  "runtime": "node>=22",
+  "archive": {
+    "path": "client/original-task-client.tar.gz",
+    "sha256": "9b5b9bf82119d7c8c0d4e277e34e85f6e9c0711ed4cfc84017c7a79b47bed887",
+    "bytes": 23811
+  },
+  "discovery": {
+    "path": "client/included-discovery.json",
+    "sha256": "4c4f85571c4370d4668e1a8ba876f137806363786157768b6db08184904ee119",
+    "bytes": 7268
+  },
+  "members": [
+    {
+      "path": "package.json",
+      "sha256": "835ec0111e1d1b3cfc60297cd16384db30bf6f9a8410cf5da85251b465264713",
+      "bytes": 81
+    },
+    {
+      "path": "server/lib/original-task/action.mjs",
+      "sha256": "b68b962166c7923d5f97b4b77c664b13f21d32c302ecdbd3cd68a8d8f98faea8",
+      "bytes": 13624
+    },
+    {
+      "path": "server/lib/original-task/bundled-descriptor.json",
+      "sha256": "479b60356b13c64db20d934f4a22d59f1da6a3564db39676c96917c9642ab20c",
+      "bytes": 7162
+    },
+    {
+      "path": "server/lib/original-task/cli.mjs",
+      "sha256": "dc205aef381fcb0fc65d259e8ec9fe66955278e42261527e2f7c79cbbbef18c4",
+      "bytes": 7818
+    },
+    {
+      "path": "server/lib/original-task/client.mjs",
+      "sha256": "6b4471129ad49cad7066c64853178c482d85445539d64068f330231462f28d13",
+      "bytes": 5179
+    },
+    {
+      "path": "server/lib/original-task/descriptor.mjs",
+      "sha256": "0aa640b4b4bb2a611c895d5bdb3b0f3fa4942643e072d81d3a91dd782d39c505",
+      "bytes": 867
+    },
+    {
+      "path": "server/lib/original-task/envelope.mjs",
+      "sha256": "39cae5266ba24edc75dce414f148cbc25fe2bf4ea0c20af668b6f63c85ce8c6b",
+      "bytes": 8904
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/correspondence/client.mjs",
+      "sha256": "6a875bc70ed91ce175f9fb580f1bdb6f868fa1d607a14c93279b4770d6e74533",
+      "bytes": 13174
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/correspondence/constants.mjs",
+      "sha256": "eb94e0611dc19f79d9dc0731d9d0f2eec9071a5c25f26ae9bddf9a2d3d6aa54b",
+      "bytes": 1550
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/correspondence/errors.mjs",
+      "sha256": "3a9868c8b2e18b615319c5080c4a23f71a2a60accfa61f371b1064938a642e31",
+      "bytes": 2367
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/correspondence/redact.mjs",
+      "sha256": "b39fe6e0422efd3469e8a5bd15823a6e3b70dfb022c03615ff1a4c486c1216de",
+      "bytes": 1924
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/correspondence/response.mjs",
+      "sha256": "d4d27c1da391fa632f36729b83d67b5e779a33c8c744e4ea6152497afc304da9",
+      "bytes": 4171
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/correspondence/validate.mjs",
+      "sha256": "8847ea501f56fe46476af8bd7ca2520b980bff3f660f45922659b0ef3f26bab4",
+      "bytes": 5860
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/visitor-foundry/entry/src/client.mjs",
+      "sha256": "820cf6eb8759aa79d9b46f2c4821b301083145373ce6c4c25bab665eba548607",
+      "bytes": 7971
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/scripts/visitor-foundry/entry/src/contract.mjs",
+      "sha256": "77a002b497511cb5008501d3b764c0ffe54c660149df7b4c1ffc0ad52a66adf0",
+      "bytes": 3989
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/services/correspondence/bin/safe-io.mjs",
+      "sha256": "fbfa8a145deeb48f5da28779e0e60e25900e795ee59f0c7bed6a38855fd8afe8",
+      "bytes": 8214
+    },
+    {
+      "path": "vendor/visitor-foundry-receiver/services/correspondence/dist/crypto.js",
+      "sha256": "8040a04c4f7d88c6a8351cc77045fa34eb7248a159d65bf433931273ef72a868",
+      "bytes": 1567
+    }
+  ]
+}

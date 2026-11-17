@@ -1,44 +1,54 @@
-## Description: <br>
-SiliconFlow OCR extracts text from screenshots, receipts, forms, and tables with mixed Chinese and English content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from screenshots, receipts, forms, and tables using SiliconFlow OCR, including mixed Chinese and English text.
 
-## Publisher: <br>
-[wangziiiiii](https://clawhub.ai/user/wangziiiiii) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangziiiiii](https://clawhub.ai/user/wangziiiiii)
 
-## Use Case: <br>
-External users and developers use this skill to extract text from screenshots, scans, receipts, invoices, forms, tables, and other document images. It is intended for OCR-focused workflows, including mixed Chinese and English text extraction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected prompts and images are sent to the remote SiliconFlow OCR provider. <br>
-Mitigation: Avoid processing IDs, financial records, confidential screenshots, or other sensitive images unless that transfer is acceptable for the user's workflow. <br>
-Risk: Changing the API base URL can redirect prompts, images, and credentials to another endpoint. <br>
-Mitigation: Leave the base URL at the documented SiliconFlow default unless the user intentionally trusts the alternate endpoint. <br>
-Risk: The skill requires a private SiliconFlow API key. <br>
-Mitigation: Keep the key in the SILICONFLOW_API_KEY environment variable or the documented local secrets file and do not include it in prompts, images, logs, or shared outputs. <br>
+## Use Case:
 
+Developers and agents use this skill to run OCR over local images or image URLs, especially for screenshots, receipts, forms, tables, and mixed Chinese/English document images.
 
-## Reference(s): <br>
-- [Image Ocr on ClawHub](https://clawhub.ai/wangziiiiii/siliconflow-image-ocr) <br>
-- [SiliconFlow Console](https://siliconflow.cn) <br>
-- [SiliconFlow API Base URL](https://api.siliconflow.cn/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Raw JSON from the SiliconFlow chat completions API, plus command-line status and error text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports prompt-only connectivity checks and OCR requests using a local image path or remote image URL; default max output is 512 tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The security evidence says the skill can send the user's API key and document contents to an arbitrary caller-supplied endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only documents acceptable to send to SiliconFlow, avoid sensitive IDs, financial records, credentials, and private business screenshots, and do not pass --base-url unless it is validated as the real SiliconFlow HTTPS endpoint.
+
+Risk: The security evidence marks the release as suspicious pending endpoint validation.
+
+Mitigation: Treat it as higher risk until the publisher removes or strictly validates custom endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangziiiiii/skills/siliconflow-image-ocr)
+- [SiliconFlow](https://siliconflow.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; the OCR helper returns raw JSON from the API.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a SiliconFlow API key and network access to the configured API endpoint.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

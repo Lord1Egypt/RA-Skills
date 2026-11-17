@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn71568gr0p3240v36pag6f7rx83qbb2",
-  "slug": "shenmeng-agent-harness",
+  "name": "agent-harness",
   "version": "1.0.0",
-  "publishedAt": 1775115947795
+  "description": "Agent Harness管理工具 - 创建、配置和使用ACP (Agent Coding Platform) harness进行代码开发",
+  "author": "shenmeng",
+  "tags": ["agent", "acp", "coding", "claude", "codex", "gemini", "development"],
+  "entry": "SKILL.md",
+  "license": "MIT"
 }

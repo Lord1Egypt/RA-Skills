@@ -1,40 +1,54 @@
-## Description: <br>
-Advanced filesystem operations - listing, searching, batch processing, and directory analysis for Clawdbot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Advanced filesystem operations for listing, searching, batch processing, and directory analysis in Clawdbot.
 
-## Publisher: <br>
-[Lucky-2968](https://clawhub.ai/user/Lucky-2968) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lucky-2968](https://clawhub.ai/user/lucky-2968)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to list, search, copy, visualize, and analyze local files and directories with filtering, dry-run previews, and safety checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect and copy local files, so broad paths may expose or duplicate sensitive data. <br>
-Mitigation: Use narrow target paths, review file patterns before execution, and avoid broad paths such as a full home directory unless necessary. <br>
-Risk: Batch copy operations can overwrite or move more files than intended when patterns are too broad. <br>
-Mitigation: Run copy operations with dry-run first and require explicit confirmation before overwriting files. <br>
+## Use Case:
 
+Developers and agent operators use this skill to list, search, copy, visualize, and analyze files and directories during authorized project maintenance and troubleshooting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Lucky-2968/clawdbot-filesystem-1-0-2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command-line text, with optional table, tree, JSON, and list output from filesystem operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and can inspect or copy local files according to the configured path, filtering, and safety options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad local file searches or analysis can expose sensitive project, home directory, log, temporary, or credential-store contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit searches and analysis to project or explicitly authorized directories, and avoid credential stores, home directories, broad log folders, and temporary folders.
+
+Risk: Copy operations can write files into unintended destinations or overwrite useful data if broad patterns are allowed.
+
+Mitigation: Review copy targets and patterns before granting write access, use dry-run mode, and require confirmation for overwrite-prone operations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lucky-2968/skills/clawdbot-filesystem-1-0-2)
+- [Publisher Profile](https://clawhub.ai/user/lucky-2968)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text, table, tree, list, and JSON-style command output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May inspect and copy local files when given authorized paths; dry-run and confirmation settings should be used before write operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata); artifact package.json declares 1.0.2
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

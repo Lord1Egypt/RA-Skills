@@ -1,40 +1,54 @@
-## Description: <br>
-Agricultural monitoring support for crop growth monitoring, pest and disease identification, soil analysis, irrigation management, and yield prediction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports intelligent agriculture monitoring workflows for crop growth tracking, disease and pest identification, soil analysis, irrigation management, and yield forecasting.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-External users and farm operators can use this skill to guide agricultural monitoring scenarios such as smart farm management, greenhouse planting, crop health checks, and irrigation planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The available scanner evidence did not include a full coherence review of the artifact. <br>
-Mitigation: Review the skill instructions and requested permissions before installing or deploying it. <br>
-Risk: The artifact includes installation commands that fetch and run application code. <br>
-Mitigation: Inspect the referenced code and dependencies, then run in an isolated environment before production use. <br>
+## Use Case:
 
+Farm operators, greenhouse managers, precision-agriculture teams, and developers use this skill to understand or set up an agriculture monitoring application that combines crop monitoring, image-based disease and pest recognition, sensor-oriented soil analysis, irrigation management, and yield prediction.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/ai-intelligent-agriculture-monitoring) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata; artifact frontmatter says 1.0.1) <br>
+Risk: The installation path can run unreviewed code from a mutable remote repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository and dependencies first, prefer a pinned commit or signed release, and run the application in a virtual environment or sandbox.
+
+Risk: The described agriculture monitoring workflow may interact with farm devices, credentials, or sensitive operational data.
+
+Mitigation: Do not grant access to devices, credentials, or sensitive data until the application code and dependencies have been audited.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/skills/ai-intelligent-agriculture-monitoring)
+- [ClawHub publisher profile](https://clawhub.ai/user/yang1002378395-cmyk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include installation steps and risk-aware review guidance before running remote code.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata; artifact frontmatter says 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

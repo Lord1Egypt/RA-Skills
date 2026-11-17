@@ -1,39 +1,53 @@
-## Description: <br>
-Provides fast, read-only codebase search and exploration using grep for content, glob for filenames, and tree for directory structure with filtering and limits. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides fast, read-only codebase search and exploration using grep for content, glob for filenames, and tree for directory structure with filtering and limits.
 
-## Publisher: <br>
-[Yanxingang](https://clawhub.ai/user/Yanxingang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yanxingang](https://clawhub.ai/user/yanxingang)
 
-## Use Case: <br>
-Developers and coding agents use this skill to inspect unfamiliar codebases, find definitions and usages, locate files by pattern, and view directory structure without modifying project files. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search output can expose private code, filenames, or configuration contents to the agent conversation. <br>
-Mitigation: Run searches against specific intended project directories and avoid broad home or system paths. <br>
-Risk: The skill depends on local rg, fd, and tree binaries. <br>
-Mitigation: Install dependencies from trusted package managers or verified upstream releases before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw Code Search on ClawHub](https://clawhub.ai/Yanxingang/openclaw-code-search) <br>
+## Use Case:
 
+Developers and coding agents use this skill to search source code, find files, and inspect project structure with consistent read-only command output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured text and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only search output may include file paths, matched lines, result counts, truncation notices, dependency status, or error messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Dependency installation guidance includes unverified system-wide binary installs.
+
+Mitigation: Prefer trusted package-manager channels for rg, fd, and tree; only use fallback downloads after independently verifying artifacts and approving the install scope.
+
+Risk: The skill can expose contents from directories the agent is allowed to inspect.
+
+Mitigation: Use it only on intended project directories and avoid pointing it at locations containing unrelated sensitive files.
+
+## Reference(s):
+
+- [OpenClaw Code Search skill page](https://clawhub.ai/yanxingang/skills/openclaw-code-search)
+- [Yanxingang publisher profile](https://clawhub.ai/user/yanxingang)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Structured text with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only grep, glob, tree, and dependency-check outputs include delimiters, limits, and error messages.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-A senior industry research consultant that conducts in-depth analysis of specified industries, covering development history, industry trends, competitive landscape, technological innovation, and forward-looking recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A senior industry research consultant that conducts in-depth analysis of specified industries, covering development history, industry trends, competitive landscape, and technological innovation, and outputs forward-looking, actionable recommendations.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users, employees, and analysts use this skill to produce structured industry research reports for consulting, market analysis, trend assessment, competitive landscape review, and strategic recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Industry analysis can rely on incomplete, outdated, or low-quality public sources. <br>
-Mitigation: Review cited sources, publication dates, and assumptions before relying on recommendations. <br>
-Risk: Recommendations may be unsuitable for high-stakes business, investment, legal, or regulatory decisions without domain review. <br>
-Mitigation: Have qualified stakeholders validate feasibility, risks, and compliance implications before acting. <br>
+## Use Case:
 
+External users, employees, and analysts use this skill to request structured industry research reports, consulting-style trend analysis, competitive landscape assessments, technology innovation reviews, and actionable strategic recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/industry-research-advisor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report body with cited public sources and dated references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs only the analysis report body and expects review of sources, assumptions, and recommendations before business use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Industry reports may rely on external public web and search sources that can be outdated, incomplete, or inaccurate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authoritative sources, include citation dates, and verify important claims against primary sources before acting on the report.
+
+Risk: Forward-looking recommendations could influence commercial or strategic decisions.
+
+Mitigation: Treat recommendations as decision support and review them with qualified domain, legal, financial, or policy experts before implementation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/industry-research-advisor)
+- [Publisher Profile](https://clawhub.ai/user/openlark)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report body with cited sources and dated references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs a professional, objective industry analysis report organized into development history, trends, competitive landscape, technological innovation, and forward-looking recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

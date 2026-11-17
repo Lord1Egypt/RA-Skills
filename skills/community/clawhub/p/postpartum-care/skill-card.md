@@ -1,43 +1,59 @@
-## Description: <br>
-A Chinese-language postpartum care assistant covering recovery, wound care, confinement meals, breastfeeding, newborn care, exercise, emotional support, family roles, and social content templates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive postpartum care assistant covering recovery, wound care, postpartum meals, breastfeeding, newborn care, exercise, emotional support, family roles, and social-content drafting.
 
-## Publisher: <br>
-[xbmchina](https://clawhub.ai/user/xbmchina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xbmchina](https://clawhub.ai/user/xbmchina)
 
-## Use Case: <br>
-External users and care-support content creators use this skill to draft Chinese-language postpartum recovery, newborn-care, breastfeeding, meal-planning, family-support, and social-media guidance. Medical decisions should remain with clinicians because the security review identifies postpartum and newborn-care content as high-stakes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat postpartum, breastfeeding, and newborn-care content as medical advice. <br>
-Mitigation: State that content is educational, require users to follow their OB, midwife, pediatrician, and lactation consultant, and cite current clinical sources. <br>
-Risk: Urgent postpartum or newborn symptoms may be under-escalated. <br>
-Mitigation: Strengthen warnings to seek medical care for fever, heavy bleeding, wound infection, mastitis symptoms, poor infant feeding, jaundice, dehydration, or thoughts of harming self or baby. <br>
+## Use Case:
 
+External users can use this skill for structured postpartum-care checklists, meal-planning ideas, breastfeeding guidance, newborn-care routines, emotional-support prompts, and Chinese social-content drafts. Health-related output should be reviewed as general informational material and not treated as clinical advice.
 
-## Reference(s): <br>
-- [月子餐详细食谱](references/postpartum_recipes.md) <br>
-- [新生儿护理操作清单](references/newborn_care.md) <br>
-- [坐月子公众号/小红书内容模板库](assets/content_templates.md) <br>
-- [CDC Maternal Warning Signs](https://www.cdc.gov/hearher/maternal-warning-signs/index.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, checklists, meal plans, care scripts, and social content templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational guidance only; should include medical-boundary disclaimers and escalation cues for urgent postpartum or newborn symptoms.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Specific postpartum, infant-care, medication, herbal, and lactation guidance may be mistaken for clinical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as general informational material and require review by qualified postpartum, pediatric, lactation, or emergency-care professionals for clinical decisions.
+
+Risk: Newborn fever, jaundice, infection signs, medication questions, and mental-health crisis signals can require urgent care.
+
+Mitigation: Escalate urgent symptoms to an OB-GYN, midwife, pediatrician, lactation consultant, emergency service, or local crisis resource instead of relying on skill output.
+
+Risk: Herbal, dietary, and lactation-related claims may not be appropriate for every postpartum user or infant.
+
+Mitigation: Treat recipes and lactation suggestions as planning prompts and verify suitability against clinician guidance, allergies, medications, and local standards of care.
+
+## Reference(s):
+
+- [Postpartum recipes](references/postpartum_recipes.md)
+- [Newborn care](references/newborn_care.md)
+- [Content templates](assets/content_templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown and structured prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include postpartum-care checklists, recipe plans, newborn-care steps, breastfeeding suggestions, emotional-support language, and Chinese social-post templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

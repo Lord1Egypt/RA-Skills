@@ -1,43 +1,54 @@
-## Description: <br>
-Detects and modernizes outdated Move V1 syntax, patterns, and APIs to Move V2+ for legacy contract upgrades and migrations to current Move practices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects outdated Move V1 syntax, patterns, and APIs and guides agents through tiered Move V2+ modernization with analysis, user confirmation, and test verification.
 
-## Publisher: <br>
-[iskysun96](https://clawhub.ai/user/iskysun96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iskysun96](https://clawhub.ai/user/iskysun96)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze Move projects, choose a modernization scope, apply tiered V1-to-V2+ transformations, and verify behavior with tests after each tier. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects and modifies local Move source files. <br>
-Mitigation: Keep the project under version control, review the analysis report before approving changes, and inspect generated diffs before relying on them. <br>
-Risk: Full Tier 3 migrations can introduce ABI, storage, or event format breaking changes for deployed contracts. <br>
-Mitigation: Avoid full Tier 3 migrations on deployed contracts unless breaking changes are intended; use compatible mode to exclude breaking changes. <br>
-Risk: Modernization without tests can miss behavior changes. <br>
-Mitigation: Establish a passing test baseline first, generate tests when none exist, and run Move tests after each approved tier. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze and modernize legacy Move contracts from V1 patterns to Move V2+ syntax and APIs. It is intended for upgrades and migrations, not for writing new contracts, feature work, bug fixing, gas optimization, or security audits.
 
-## Reference(s): <br>
-- [Detection Rules](references/detection-rules.md) <br>
-- [Transformation Guide](references/transformation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, Move source edits, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses analysis and confirmation gates, requires a passing test baseline before edits, and verifies after each transformation tier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can edit existing Move contracts, and full Tier 3 migrations may introduce ABI, storage, or event-stream breaking changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on a version-controlled project, review the analysis report before approving changes, prefer lower-risk scopes when compatibility matters, and require tests to pass after each approved tier.
+
+Risk: Modernization can preserve syntax while still missing semantic or operational issues outside the skill's scope.
+
+Mitigation: Use the skill for structural migration only, then run separate security review, bug fixing, or gas optimization workflows when those concerns apply.
+
+## Reference(s):
+
+- [Detection Rules](references/detection-rules.md)
+- [Transformation Guide](references/transformation-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown reports with proposed code changes and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user confirmation for modernization scope and test verification after each approved tier.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

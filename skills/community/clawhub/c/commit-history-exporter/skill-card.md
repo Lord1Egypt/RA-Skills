@@ -1,46 +1,62 @@
-## Description: <br>
-Exports filtered Git and SVN commit histories for selected authors, date ranges, revision ranges, and repository paths into Markdown, CSV, JSON, or detailed reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports Git and SVN commit history for selected authors, time ranges, revision ranges, and project paths to Markdown, CSV, JSON, or detailed reports with changed files and commit messages.
 
-## Publisher: <br>
-[wallaceliang](https://clawhub.ai/user/wallaceliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wallaceliang](https://clawhub.ai/user/wallaceliang)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to collect commit history and change details from Git or SVN repositories they are authorized to inspect. It supports contribution summaries, audit preparation, migration review, and documentation of repository activity. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The export scripts use shell eval with user-supplied inputs. <br>
-Mitigation: Review and patch the scripts to use safely quoted argument arrays before running them in sensitive environments. <br>
-Risk: SVN examples allow passwords to be supplied on the command line. <br>
-Mitigation: Use SVN authentication caching or another secret-handling mechanism instead of passing passwords as command arguments. <br>
-Risk: Exported reports can contain personal data and internal repository details. <br>
-Mitigation: Treat generated reports as sensitive, restrict access, and run the skill only on repositories the user is authorized to inspect. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to retrieve, filter, and export Git or SVN commit records for audits, contribution reviews, release notes, and project history analysis.
 
-## Reference(s): <br>
-- [Git command reference](references/git_commands.md) <br>
-- [SVN command reference](references/svn_commands.md) <br>
-- [SVN working-copy database query guide](references/svn_database_query.md) <br>
-- [SlikSVN command-line tools](https://sliksvn.com/download/) <br>
-- [VisualSVN downloads](https://www.visualsvn.com/downloads/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; generated reports may be Markdown, CSV, JSON, or detailed text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include names, emails, commit messages, changed file paths, revision identifiers, and repository paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: SVN passwords may be exposed when supplied directly on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use SVN credential cache or an interactive/protected secret flow instead of passing passwords as command arguments.
+
+Risk: Exported reports may contain sensitive repository history, including names, emails, commit messages, file paths, and repository URLs.
+
+Mitigation: Treat generated reports as sensitive artifacts and apply appropriate storage, sharing, and retention controls.
+
+Risk: The shipped shell scripts use unsafe command construction and need review before installation.
+
+Mitigation: Review and preferably fix the scripts before deployment; run them only with trusted inputs and in intended repositories.
+
+## Reference(s):
+
+- [Git commit command reference](references/git_commands.md)
+- [SVN commit command reference](references/svn_commands.md)
+- [SVN working copy database query guide](references/svn_database_query.md)
+- [ClawHub skill page](https://clawhub.ai/wallaceliang/skills/commit-history-exporter)
+- [SlikSVN download](https://sliksvn.com/download/)
+- [VisualSVN downloads](https://www.visualsvn.com/downloads/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, CSV, JSON, detailed text reports, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Report content may include author names, email addresses, commit messages, changed file paths, repository paths, and repository URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

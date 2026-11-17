@@ -1,41 +1,58 @@
-## Description: <br>
-Extracts text from scanned PDF files and image files using a local RapidOCR engine or an optional SiliconFlow cloud OCR engine. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+pdf-ocr extracts text from scanned PDF and image files using local RapidOCR or SiliconFlow cloud OCR.
 
-## Publisher: <br>
-[yejinlei](https://clawhub.ai/user/yejinlei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[yejinlei](https://clawhub.ai/user/yejinlei)
 
-## Use Case: <br>
-External users and developers use this skill to extract text from scanned PDFs, screenshots, and document images, including Chinese and English content. It supports local processing by default and optional cloud OCR when higher accuracy is needed and remote processing is approved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install Python packages during use. <br>
-Mitigation: Review before installing, use a locked environment with pinned dependencies, and require confirmation before package installation. <br>
-Risk: The optional SiliconFlow OCR path may send document images to a cloud service. <br>
-Mitigation: Use local RapidOCR for confidential files, keep OCR_ENGINE=rapid by default, and configure a cloud API key only when remote processing is approved. <br>
+## Use Case:
 
+External users and developers use this skill to extract Chinese and English text from scanned PDFs, screenshots, and image files. It supports local OCR for offline-style workflows and SiliconFlow cloud OCR when configured for higher-accuracy processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yejinlei/pdf-ocr-skill) <br>
-- [SiliconFlow OCR API endpoint](https://api.siliconflow.cn/v1/chat/completions) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text or JSON-like OCR result objects, often described in Markdown with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OCR results include extracted text, page count, and the engine used; examples also show writing extracted text to files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: Local document contents can be sent to SiliconFlow cloud OCR after RapidOCR initialization fails or when cloud OCR is selected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents approved for cloud processing, avoid configuring a SiliconFlow API key unless cloud OCR is intended, and monitor the selected OCR engine before processing sensitive files.
+
+Risk: The skill can install Python packages at runtime when dependencies are missing.
+
+Mitigation: Install and review dependencies in an isolated environment before enabling the skill, and restrict network access during execution when runtime installation is not acceptable.
+
+Risk: OCR may produce incomplete or inaccurate text for low-quality scans, complex layouts, or handwriting.
+
+Mitigation: Review extracted text against the source document before using it for contracts, IDs, financial records, medical records, or other high-impact workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yejinlei/skills/pdf-ocr-skill)
+- [SiliconFlow chat completions endpoint](https://api.siliconflow.cn/v1/chat/completions)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text OCR results, Markdown usage guidance, Python code examples, and shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [OCR result objects include extracted text, page count, selected engine, and optionally a saved image directory.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

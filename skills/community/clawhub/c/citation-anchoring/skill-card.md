@@ -1,41 +1,53 @@
-## Description: <br>
-Checks whether citation keys stayed within the same subsection after editing and writes a PASS/FAIL drift report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether citation keys stayed in the same Markdown `###` subsections after editing, so citation drift is reported before claim-to-evidence alignment is lost.
 
-## Publisher: <br>
-[WILLOSCAR](https://clawhub.ai/user/WILLOSCAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[willoscar](https://clawhub.ai/user/willoscar)
 
-## Use Case: <br>
-Researchers, writers, and reviewers use this skill after editing or polishing a draft to verify that citations still support the same subsection-level claims. It compares a current draft with a previously generated baseline anchor file and reports citation drift without editing content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes extra pipeline tooling beyond the documented citation drift check. <br>
-Mitigation: Use the skill only for the documented local citation anchoring workflow, and review any unrelated pipeline tooling before running it. <br>
-Risk: A stale or mismatched baseline anchor file can make the drift report misleading. <br>
-Mitigation: Verify that output/citation_anchors.prepolish.jsonl matches the draft version being audited; regenerate the baseline after intentional subsection restructuring. <br>
+## Use Case:
 
+Developers and researchers use this skill after draft polishing to compare the current draft against a pre-polish citation-anchor baseline and produce a PASS/FAIL drift report. The intended workflow is audit-only and does not edit the draft content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/WILLOSCAR/citation-anchoring) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text] <br>
-**Output Format:** [Markdown report with PASS/FAIL status and drift examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output/CITATION_ANCHORING_REPORT.md from local draft and baseline files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release is advertised as a small no-network citation checker, but the package includes broader research-pipeline tooling that can run scripts and persistently change workspace files, approvals, and reports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in an isolated workspace with explicit filesystem and network limits, and avoid auto-approval or broad routing until the package contents match the declared scope.
+
+Risk: The analysis-only description may not cover all bundled helper behavior.
+
+Mitigation: Route the skill only for the citation anchoring audit, review bundled tooling before deployment, and do not rely on the no-network claim without runtime controls.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/willoscar/skills/citation-anchoring)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown]
+
+**Output Format:** [Markdown PASS/FAIL report with citation drift details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes `output/CITATION_ANCHORING_REPORT.md`; reads `output/DRAFT.md` and `output/citation_anchors.prepolish.jsonl`.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; artifact frontmatter reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

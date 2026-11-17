@@ -1,42 +1,55 @@
-## Description: <br>
-Generates a daily 15:30 market brief covering Chinese equity index moves, industry leaders and laggards, bond-market data, and fixed-income-plus product track outlooks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a daily 15:30 market report covering index moves, sector rankings, bond-market updates, and fixed-income-plus track forecasts.
 
-## Publisher: <br>
-[wesdaliang](https://clawhub.ai/user/wesdaliang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wesdaliang](https://clawhub.ai/user/wesdaliang)
 
-## Use Case: <br>
-Investment analysts and portfolio teams use this skill after the trading session to assemble a Markdown market brief from current market data and fixed-income-plus product-pool references. The output should be treated as informational analysis rather than financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market summaries may be stale, incomplete, or misleading if the agent uses outdated market data or missing local reference files. <br>
-Mitigation: Verify current market data and referenced local files before relying on the report's conclusions. <br>
-Risk: The generated report can be mistaken for investment advice. <br>
-Mitigation: Treat the output as informational analysis, retain explicit risk warnings, and require human review before investment decisions. <br>
+## Use Case:
 
+Analysts and agent users use this skill after market close to prepare a Markdown market brief for China equity indexes, sector performance, bond yields, and fixed-income-plus product-track outlooks.
 
-## Reference(s): <br>
-- [Market Data Query Reference](artifact/references/market_data.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wesdaliang/xqant-daily-market-report) <br>
-- [OpenClaw Homepage Metadata](https://clawhub.ai/skills/xqant-daily-market-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown market report with tables, bullet lists, risk warnings, and concise narrative analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses current market data and local product-list references when available; conclusions require human review before investment use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill asks the agent to use unscoped external memory and non-packaged STANDARD/ files for financial analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where MEMORY.md and the referenced STANDARD/ files are intended inputs for this report and do not contain unrelated private information or instructions.
+
+Risk: The generated fixed-income-plus track outlooks are forecasts and may be wrong or incomplete.
+
+Mitigation: Treat the report as informational commentary rather than investment advice, and review the market data and risk warnings before use.
+
+## Reference(s):
+
+- [Market Data Query Reference](references/market_data.md)
+- [ClawHub Skill Page](https://clawhub.ai/wesdaliang/skills/xqant-daily-market-report)
+- [Publisher Profile](https://clawhub.ai/user/wesdaliang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown market report with concise analysis and risk warnings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses current market data and referenced product lists when available; forecasts should be treated as informational commentary, not investment advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

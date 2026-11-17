@@ -1,38 +1,54 @@
-## Description: <br>
-Convert chat conversations into structured Markdown knowledge-base files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert chat conversations into structured Markdown knowledge-base files.
 
-## Publisher: <br>
-[extraterrest](https://clawhub.ai/user/extraterrest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[extraterrest](https://clawhub.ai/user/extraterrest)
 
-## Use Case: <br>
-External users and developers use Chat2KB to turn selected chat threads into reusable Markdown notes or knowledge-base entries, with preview and save-path controls before writing files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Conversation content may be saved into a persistent local knowledge base, including sensitive or unrelated material if invoked too broadly. <br>
-Mitigation: Invoke the skill only for explicit conversation-export requests, review the preview before saving, and confirm the destination folder or dry-run setting. <br>
+## Use Case:
 
+External users and developers use this skill to turn selected chat conversations into reusable Markdown knowledge-base notes after previewing the generated content.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/extraterrest/chat2kb) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown files with YAML frontmatter and preview text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write knowledge-base files after user preview and confirmation; dry-run mode can suppress file writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: release evidence and clawhub.json) <br>
+Risk: Selected conversation content may include sensitive or private details that would be saved into local Markdown files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated preview and destination path before saving, use dry-run or cancel for sensitive chats, and avoid exporting secrets unless the storage location is appropriate.
+
+Risk: The skill can create or update files in a configured knowledge-base folder.
+
+Mitigation: Resolve the save path through configuration or user confirmation, preserve backups when configured, and require confirmation before writing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/extraterrest/skills/chat2kb)
+- [Publisher profile](https://clawhub.ai/user/extraterrest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML frontmatter and concise status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local Markdown files after user preview and confirmation; supports dry-run behavior through configuration or environment variables.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release metadata and clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

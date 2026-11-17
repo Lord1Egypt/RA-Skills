@@ -1,0 +1,88 @@
+{
+  "_comment": "违禁词库的段落配置 —— 「每一段归哪一组、默认什么级别」的唯一来源。改级别只改这里，两个消费方（check_prohibited.py / preflight.py）自动跟上。",
+  "wordlistVersion": 1,
+  "updatedAt": "2026-09-19",
+
+  "sections": {
+    "一": {
+      "group": "words",
+      "level": null,
+      "note": "表内自带「词 | 级别 | 场景 | 替代 | 日期」五列，逐行取级别，不覆盖"
+    },
+    "二": {
+      "group": "diversion",
+      "level": "P1",
+      "why": "外部平台名，导流站外",
+      "suggestDefault": "不写平台名，只写工具 / 作品名；转化走主页简介",
+      "note": "整段默认 P1；其中的「联系人信息」由 levelOverrides 提到 P0"
+    },
+    "三": {
+      "group": "words",
+      "level": "P1",
+      "why": "极限词 / 绝对化，通用红线",
+      "suggestDefault": "删，或改成不带绝对化的客观描述",
+      "note": "散文段，可能带「全禁：」前缀"
+    },
+    "四": {
+      "group": "words",
+      "level": "P1",
+      "why": "价格 / 营销诱导词",
+      "suggestDefault": "删",
+      "note": "散文段"
+    },
+    "五": {
+      "group": "diversion",
+      "level": "P0",
+      "why": "导流 / 私域话术（主动引流，硬红线）",
+      "suggestDefault": "删；转化走主页简介",
+      "note": "散文段"
+    },
+    "六": {
+      "group": "words",
+      "level": "P2",
+      "why": "账号级禁区词（本账号约定）",
+      "suggestDefault": "删，换账号惯用的中性表达",
+      "note": "散文段，无「全禁：」前缀"
+    },
+    "七": {
+      "group": "notice",
+      "level": "info",
+      "why": "平台强制标注项，不标 = 限流项",
+      "note": "bullet 列表，作为「请逐条核对」提醒输出，不参与文本匹配"
+    }
+  },
+
+  "levelOverrides": {
+    "_comment": "整格多词时可逐词定级。这里把「联系方式」从二段的 P1 提到 P0 —— 联系人信息是硬红线，提及平台名只是风险偏好，两者在词库里同属一段，靠这张表分开。",
+    "微信": "P0",
+    "微信号": "P0",
+    "vx": "P0",
+    "卫星": "P0",
+    "加V": "P0"
+  },
+
+  "extraPatterns": {
+    "_comment": "词库没写、但属于同一判定面的补充规则。",
+    "phone": {
+      "pattern": "(?<!\\d)1[3-9]\\d{9}(?!\\d)",
+      "level": "P0",
+      "group": "diversion",
+      "why": "出现手机号 = 站外导流硬红线",
+      "suggest": "删；转化走主页简介"
+    },
+    "email": {
+      "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+      "level": "P0",
+      "group": "diversion",
+      "why": "出现邮箱 = 站外导流",
+      "suggest": "删；转化走主页简介"
+    },
+    "qr": {
+      "pattern": "二维码|扫码|扫我|加个好友|加好友",
+      "level": "P1",
+      "group": "diversion",
+      "why": "引导扫码 / 加好友 = 站外导流信号",
+      "suggest": "删"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id_column": "id",
+  "missing_tokens": [
+    "",
+    "NA",
+    "N/A",
+    "null",
+    "."
+  ],
+  "criteria": {
+    "max_missing_prop": 0.2,
+    "straightline_min_answered": 4,
+    "extreme_prop_threshold": 0.9
+  },
+  "scales": [
+    {
+      "name": "Scale_A",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "Scale_B",
+      "items": [
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "min": 1,
+      "max": 7
+    }
+  ]
+}

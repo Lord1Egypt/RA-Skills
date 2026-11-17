@@ -1,0 +1,69 @@
+{
+  "cyanobacteria": {
+    "difficulty": 3,
+    "establishes_ecosystem": false,
+    "makes_food_for_humans": false,
+    "makes_oxygen": true,
+    "needs": ["liquid_water", "light_or_chemical_energy", "shielding_from_uv", "nutrients"],
+    "zh": "蓝细菌",
+    "en": "Cyanobacteria",
+    "note_zh": "产氧、改良土壤的候选者。不是人类的口粮。开放火星表面没有稳定液态水和紫外屏蔽，不能撒播就算建立。",
+    "note_en": "An oxygen and soil-precursor candidate. Not human food. Open Martian surface has no stable liquid water and no UV shield; sprinkling cells is not establishment."
+  },
+  "extremophile_bacteria": {
+    "difficulty": 3,
+    "establishes_ecosystem": false,
+    "makes_food_for_humans": false,
+    "makes_oxygen": false,
+    "needs": ["niche_water", "energy", "shielding"],
+    "zh": "极端微生物",
+    "en": "Extremophile bacteria",
+    "note_zh": "比人容易，比‘撒在土上就形成生物圈’难得多。高氯酸盐和干燥仍然致命于生长，而不只是致命于存活性实验。",
+    "note_en": "Easier than a human, much harder than a biosphere-by-sprinkle. Perchlorate and dryness stop growth, not just survival tests."
+  },
+  "lichen": {
+    "difficulty": 4,
+    "establishes_ecosystem": false,
+    "makes_food_for_humans": false,
+    "makes_oxygen": false,
+    "needs": ["moisture_cycles", "uv_shield", "time"],
+    "zh": "地衣",
+    "en": "Lichens",
+    "note_zh": "空间暴露实验里活过。暴露存活不是定居。",
+    "note_en": "They have survived space exposure. Exposure survival is not settlement."
+  },
+  "moss": {
+    "difficulty": 5,
+    "establishes_ecosystem": false,
+    "makes_food_for_humans": false,
+    "makes_oxygen": true,
+    "needs": ["greenhouse", "liquid_water"],
+    "zh": "苔藓",
+    "en": "Mosses",
+    "note_zh": "温室里的先锋植物，卡路里很差。",
+    "note_en": "A greenhouse pioneer with poor calories."
+  },
+  "tardigrade": {
+    "difficulty": 2,
+    "establishes_ecosystem": false,
+    "makes_food_for_humans": false,
+    "makes_oxygen": false,
+    "survival_only": true,
+    "needs": ["experiment_hardware"],
+    "zh": "缓步动物",
+    "en": "Tardigrades",
+    "note_zh": "隐生状态能熬过真空和辐射。它们不会在火星上醒来并开始文明。游戏里这项实验永远不计入‘建立’。",
+    "note_en": "Tun state can endure vacuum and radiation. They will not wake on Mars and start a civilization. This experiment never counts as establishment."
+  },
+  "food_crop": {
+    "difficulty": 8,
+    "establishes_ecosystem": true,
+    "makes_food_for_humans": true,
+    "makes_oxygen": true,
+    "needs": ["greenhouse", "power", "water", "perchlorate_control", "crew_time"],
+    "zh": "粮食作物",
+    "en": "Food crops",
+    "note_zh": "火种的卡路里。电力主要花在灯上，不在制氧上。",
+    "note_en": "The seed's calories. The power goes to lamps, not to the oxygen generator."
+  }
+}

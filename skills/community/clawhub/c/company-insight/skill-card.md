@@ -1,40 +1,53 @@
-## Description: <br>
-Company deep-dive analysis assistant that conducts comprehensive, objective, and concise analysis of a given company, covering business model, competitive advantage, core products, market positioning, financial performance, and organizational culture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Company deep-dive analysis assistant that conducts comprehensive, objective, and concise analysis of a company across business model, competitive advantage, core products, market positioning, financial performance, and organizational culture.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-External users, employees, and analysts use this skill to produce concise company deep-dive reports for company research, competitive analysis, and business analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company facts, dates, market data, and financial figures can be incomplete, stale, or unavailable. <br>
-Mitigation: Verify company facts, dates, and financial data against current reliable sources, and mark undisclosed data clearly. <br>
-Risk: Generated business judgments may overstate certainty or reflect gaps in the available input. <br>
-Mitigation: Review conclusions before relying on them, compare against source evidence and peer data, and treat the report as decision support. <br>
+## Use Case:
 
+Business analysts, investors, operators, and researchers use this skill to generate concise, structured company deep-dive reports. It is intended for company analysis, business analysis, corporate research, competitive analysis, and enterprise research.
 
-## Reference(s): <br>
-- [Company Deep-Dive Analysis on ClawHub](https://clawhub.ai/openlark/company-insight) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Concise multi-section company analysis; users should verify current facts and financial data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Company analyses may include outdated or incorrect financial, market, or organizational facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current financial and market facts from reliable sources before relying on the report.
+
+Risk: Broad business-analysis prompts may produce confident judgments that need domain review.
+
+Mitigation: Review conclusions, risk assessments, and comparisons against source material before sharing or acting on them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/openlark/skills/company-insight)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Structured company deep-dive with sections for summary, business model, competitive advantage, products, users, key numbers, leadership, risks, and future watchpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Regulator-ready SBOM"
+  short_description: "Gate release SBOM delivery"
+policy:
+  products: ["CHAT", "CODEX"]
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "powmcp-sbom-preflight"
+      description: "SBOM Check (PowMCP)"
+      transport: "streamable_http"
+      url: "https://powmcp.com/sbom-preflight/mcp"

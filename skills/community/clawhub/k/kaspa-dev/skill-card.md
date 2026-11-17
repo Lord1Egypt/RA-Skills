@@ -1,52 +1,67 @@
-## Description: <br>
-Kaspa Dev helps developers build Kaspa blockchain transactions, wallets, dApps, block explorers, node workflows, KRC20 token integrations, and SDK-based code across Rust, Go, JavaScript/TypeScript, Python, WASM, and Motoko. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A comprehensive Kaspa blockchain development toolkit for building transactions, integrating wallets, creating dApps and block explorers, operating nodes, and working with Kaspa SDKs and KRC20 tokens.
 
-## Publisher: <br>
-[codecustard](https://clawhub.ai/user/codecustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codecustard](https://clawhub.ai/user/codecustard)
 
-## Use Case: <br>
-Developers and engineers use this skill to create Kaspa blockchain integrations, generate wallet and transaction examples, work with KRC20 tokens, operate nodes, and adapt SDK patterns for applications. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Wallet, private-key, and mnemonic handling examples can expose funds if real secrets are pasted into chats, logs, CLI arguments, or generated files. <br>
-Mitigation: Use testnet or devnet first, never share real keys or mnemonics with an agent, avoid CLI secret arguments for real wallets, and review any generated key-handling code before use. <br>
-Risk: Transaction-building and broadcast examples can affect mainnet assets if used without review. <br>
-Mitigation: Manually verify addresses, amounts, fees, signing behavior, and network selection before any mainnet submission. <br>
-Risk: Node RPC configuration guidance can expose services or credentials if copied into a public environment. <br>
-Mitigation: Restrict RPC access, protect API keys, and review externally reachable node settings before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kaspa Developer Platform API Reference](references/api-reference.md) <br>
-- [Kaspa WASM SDK Guide](references/kaspa-wasm-sdk.md) <br>
-- [Kaspa Rust SDK Guide](references/kaspa-rust-sdk.md) <br>
-- [Kaspa Go SDK Guide](references/kaspa-go-sdk.md) <br>
-- [Kaspa Python SDK Guide](references/kaspa-python-sdk.md) <br>
-- [KRC20 Token Standard](references/krc20-tokens.md) <br>
-- [Wallet Integration Guide](references/wallet-integration.md) <br>
-- [Kaspa Node Operations Guide](references/node-operations.md) <br>
-- [Kaspa Documentation](https://docs.kas.fyi/) <br>
-- [Kaspa Developer Platform](https://kas.fyi/) <br>
-- [Kaspa API Endpoint](https://api.kaspa.org) <br>
-- [Kaspa Motoko Package](https://mops.one/kaspa) <br>
+## Use Case:
 
+Developers and engineers use this skill to generate Kaspa development guidance, code examples, scripts, and configuration for wallet, transaction, dApp, block explorer, node, SDK, and KRC20 token work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, commands, configuration snippets, and optional JSON or CSV examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sample blockchain code, CLI arguments, generated transaction JSON, and wallet or node configuration guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Wallet examples and utilities can print or save private keys or mnemonics in plaintext.
+
+Mitigation: Use testnet or devnet first, remove plaintext secret output, and use secure key storage or hardware-backed signing before handling real funds.
+
+Risk: The Python transaction builder and signing flow are not suitable as-is for production transaction submission.
+
+Mitigation: Use reviewed official SDK signing flows, inspect generated transactions, and test submission behavior away from mainnet before production use.
+
+Risk: Dependency, binary, container, and node RPC guidance can expose systems if packages are unpinned or RPC is reachable remotely without strong controls.
+
+Mitigation: Pin and verify packages, images, and binaries, and bind RPC to localhost unless authenticated remote-access controls are explicitly configured.
+
+## Reference(s):
+
+- [Kaspa Developer Platform API Reference](references/api-reference.md)
+- [Kaspa Go SDK](references/kaspa-go-sdk.md)
+- [Kaspa Python SDK](references/kaspa-python-sdk.md)
+- [Kaspa Rust SDK](references/kaspa-rust-sdk.md)
+- [Kaspa WASM SDK](references/kaspa-wasm-sdk.md)
+- [KRC20 Token Standard](references/krc20-tokens.md)
+- [Kaspa Node Operations Guide](references/node-operations.md)
+- [Kaspa Wallet Integration Guide](references/wallet-integration.md)
+- [Kaspa Documentation](https://docs.kas.fyi/)
+- [Kaspa Developer Platform](https://kas.fyi/)
+- [Kaspa API Endpoint](https://api.kaspa.org)
+- [Kaspa Motoko Package](https://mops.one/kaspa)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include runnable scripts or command examples; review before execution or use with real funds.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

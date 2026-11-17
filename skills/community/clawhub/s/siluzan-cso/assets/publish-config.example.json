@@ -22,7 +22,7 @@
       "cover": {
         "imageUrl": "https://cdn.example.com/cover.jpg",
         "imageName": "cover.jpg",
-        "imageSourceType": 1,
+        "imageSourceType": 2,
         "sourceImageId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
       },
 
@@ -59,7 +59,7 @@
           "cover": {
             "imageUrl": "https://cdn.example.com/cover-youtube.jpg",
             "imageName": "cover-youtube.jpg",
-            "imageSourceType": 1,
+            "imageSourceType": 2,
             "sourceImageId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
           }
         }

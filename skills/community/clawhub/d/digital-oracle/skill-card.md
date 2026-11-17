@@ -1,46 +1,60 @@
-## Description: <br>
-Digital Oracle answers prediction questions by using market trading data across prediction markets, equities, commodities, derivatives, yield curves, currencies, and related financial sources, then cross-validating signals into a structured probability report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Digital Oracle helps agents answer macro, market, geopolitical, and asset-pricing probability questions by cross-validating trading-data signals from prediction markets, prices, derivatives, yield curves, filings, and related public market data.
 
-## Publisher: <br>
-[komako-workshop](https://clawhub.ai/user/komako-workshop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[komako-workshop](https://clawhub.ai/user/komako-workshop)
 
-## Use Case: <br>
-External users and developers use this skill to answer market-priced probability questions about macro events, assets, industries, and geopolitical risk. It guides an agent through selecting independent trading signals, fetching public financial data, and producing structured probability estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound requests to public financial APIs, DuckDuckGo, and web pages can reveal the topic of the user's question. <br>
-Mitigation: Use the skill only for topics where that network exposure is acceptable, and avoid confidential research topics. <br>
-Risk: Snapshot recording can retain sensitive queries or fetched financial data if enabled. <br>
-Mitigation: Enable snapshots only in a controlled directory and clean up recorded data after use. <br>
-Risk: The Stooq provider can be mistaken for Yahoo Finance provenance because it acts as a compatibility wrapper. <br>
-Mitigation: Treat Stooq-backed results as Stooq-sourced when reviewing data provenance. <br>
+## Use Case:
 
+Developers, analysts, and external agent users use this skill to produce structured probability reports for questions that can be informed by real-money market pricing. It selects multiple independent trading-data signals, fetches them from provider APIs or web search, and explains how those prices support or contradict a forecast.
 
-## Reference(s): <br>
-- [Digital Oracle ClawHub Page](https://clawhub.ai/komako-workshop/digital-oracle) <br>
-- [Komako Publisher Profile](https://clawhub.ai/user/komako-workshop) <br>
-- [Provider API Reference](artifact/references/providers.md) <br>
-- [Trading Symbols Directory](artifact/references/symbols.md) <br>
-- [uv Documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown probability report with signal tables, contradiction analysis, scenario estimates, and concise reasoning.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Python provider calls and command examples for fetching public market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
+Risk: The skill can make outbound requests to public market-data and web-search sources from the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a sandbox or with egress controls and approve network access only for expected public data sources.
+
+Risk: The web page fetcher can reach arbitrary URLs, including untrusted or user-supplied pages.
+
+Mitigation: Avoid fetch_page for untrusted URLs in sensitive networks and review fetched sources before relying on their content.
+
+Risk: Yahoo price and options providers depend on yfinance, which is outside the standard-library provider set.
+
+Mitigation: Pin and review yfinance before enabling those providers.
+
+## Reference(s):
+
+- [Digital Oracle ClawHub Skill Page](https://clawhub.ai/komako-workshop/skills/digital-oracle)
+- [Provider API Reference](references/providers.md)
+- [Trading Symbols Directory](references/symbols.md)
+- [uv Documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown probability report with tables, scenario estimates, reasoning chains, and optional inline Python or shell commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires uv. Most providers use the Python standard library; Yahoo price and options providers require reviewing and installing yfinance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter lists 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

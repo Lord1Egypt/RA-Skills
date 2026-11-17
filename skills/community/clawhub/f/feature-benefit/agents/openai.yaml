@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 特性利益点表达"
+  short_description: "把商品特性连接到评论验证的用户利益"
+  default_prompt: "使用 $amazon-feature-benefit-writer 把 Amazon 商品特性转成有评论证据支持的用户利益点。"

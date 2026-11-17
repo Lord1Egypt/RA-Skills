@@ -1,43 +1,56 @@
-## Description: <br>
-Scrape Amazon Brand Analytics (ABA) weekly hot keyword rankings from AMZ123 and return structured keyword trend data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapes weekly Amazon Brand Analytics hot keyword rankings from AMZ123 and returns keyword trend data as CSV or JSON.
 
-## Publisher: <br>
-[simoncai519](https://clawhub.ai/user/simoncai519) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simoncai519](https://clawhub.ai/user/simoncai519)
 
-## Use Case: <br>
-External users and e-commerce analysts use this skill to collect weekly Amazon keyword ranking trends from AMZ123 and export them for market research or listing optimization workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens Chrome and sends the user's keyword to AMZ123. <br>
-Mitigation: Run it only when AMZ123 access and the keyword disclosure fit the user's site terms, workplace network rules, and privacy expectations. <br>
-Risk: The skill creates local CSV or JSON output files. <br>
-Mitigation: Choose the output directory deliberately and review generated files before sharing or importing them into downstream workflows. <br>
+## Use Case:
 
+External users, developers, and ecommerce analysts use this skill to collect Amazon keyword ranking and trend data from AMZ123 for a seed keyword.
 
-## Reference(s): <br>
-- [Output Format Specification](references/output.md) <br>
-- [Workflow for amz-hot-keywords](references/workflow.md) <br>
-- [AMZ123 Top Keywords](https://www.amz123.com/usatopkeywords) <br>
-- [ClawHub Skill Page](https://clawhub.ai/simoncai519/amz-hot-keywords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, CSV, Shell commands, Guidance] <br>
-**Output Format:** [CSV or JSON file containing search_term, current_rank, last_rank, and trend fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes timestamped amz123_hotwords_<keyword> output files and prints the created file path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The browser launch configuration disables the Chrome sandbox by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated virtual environment or container, avoid privileged browser execution, and remove --no-sandbox unless the container requires it.
+
+Risk: CSV reports may carry spreadsheet-handling risk when opened directly in office tools.
+
+Mitigation: Prefer JSON output for downstream processing or sanitize CSV cells before opening reports in spreadsheet software.
+
+## Reference(s):
+
+- [Workflow Guide](references/workflow.md)
+- [Output Format Specification](references/output.md)
+- [AMZ123 Hot Keywords](https://www.amz123.com/usatopkeywords)
+- [ClawHub Skill Page](https://clawhub.ai/simoncai519/skills/amz-hot-keywords)
+
+## Skill Output:
+
+**Output Type(s):** [text, files, JSON]
+
+**Output Format:** [CSV or JSON file, with the created file path printed as plain text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output records include search_term, current_rank, last_rank, and trend; collection is capped at 200 results.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

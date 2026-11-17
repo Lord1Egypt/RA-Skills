@@ -1,39 +1,54 @@
-## Description: <br>
-Automatically write daily, weekly, and monthly diary summaries and extract insights to auto-learn.md for HexaLoop. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically write daily/weekly/monthly diary summaries and extract insights to auto-learn.md for HexaLoop.
 
-## Publisher: <br>
-[0xcjl](https://clawhub.ai/user/0xcjl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[0xcjl](https://clawhub.ai/user/0xcjl)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to generate bilingual daily, weekly, and monthly diary summaries from workspace memory, extract reusable insights into auto-learn.md, and send diary cards to Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can summarize private OpenClaw workspace memory and post diary content to a fixed Feishu chat on a schedule. <br>
-Mitigation: Install only when the Feishu chat ID belongs to the user, make delivery configurable or disable it before cron use, and periodically review diary and auto-learn outputs for sensitive content. <br>
+## Use Case:
 
+External users and developers use this skill to schedule daily, weekly, and monthly diary summaries, capture actionable insights in auto-learn.md, and optionally send Feishu interactive cards.
 
-## Reference(s): <br>
-- [Diary template](templates/diary_template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/0xcjl/auto-diary-0xcjl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Configuration, Shell commands] <br>
-**Output Format:** [Markdown diary and review files, extracted insight text, Feishu interactive card JSON, and cron setup commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes diary files under the OpenClaw workspace memory directory and appends extracted insights to auto-learn.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Private workspace memory, current state, farm status, diary summaries, decisions, and next steps may be retained locally and posted to a fixed Feishu chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when you control the Feishu chat, make the recipient user-configurable, and add preview/redaction before enabling delivery.
+
+Risk: Scheduled cron runs can repeatedly generate and send diary summaries without an interactive review step.
+
+Mitigation: Review cron jobs before enabling recurring runs and keep delivery disabled until scheduled behavior is confirmed.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/0xcjl/skills/auto-diary-0xcjl)
+- [Diary template](artifact/templates/diary_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown diary and review files, auto-learn.md insight entries, Feishu interactive-card JSON, and OpenClaw cron commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes diary and insight files under the user's OpenClaw workspace and can post summaries to a Feishu chat when configured.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

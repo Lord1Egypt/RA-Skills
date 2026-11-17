@@ -1,43 +1,53 @@
-## Description: <br>
-Provides a comprehensive reference of OpenClaw, GCP, mesh, debugging, configuration, and operator commands for controlling and troubleshooting EVEZ-OS-style gateway and agent environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a reference of OpenClaw, GCP, and EVEZ-OS commands and environment variables for system control, debugging, networking, and advanced operations.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers, operators, and administrators use this skill as a compact command and configuration reference for OpenClaw gateway control, agent behavior tuning, diagnostics, networking, GCP access patterns, and mesh operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes operator actions that can expose credentials, prompts, traffic, cloud tokens, and administrative control surfaces. <br>
-Mitigation: Use only in isolated, owner-authorized environments and avoid unredacted secret or full-payload logging in production. <br>
-Risk: The skill includes guidance for disabling authentication and expanding administrative access. <br>
-Mitigation: Keep device authentication enabled, restrict administrative endpoints to trusted networks, and review each command before applying it. <br>
-Risk: Credentials or tokens may be exposed while following debugging, proxy, or cloud metadata commands. <br>
-Mitigation: Rotate any credentials exposed during use and remove captured payloads or diagnostic logs that contain secrets. <br>
+## Use Case:
 
+Experienced OpenClaw and GCP operators use this skill as review-only reference material for locating advanced gateway, agent, environment-variable, networking, and diagnostic controls before applying changes in authorized environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/evez-os-cheat-codes) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, HTTP examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; commands may require owner authorization and environment-specific credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill describes operations that can expose credentials, disable authentication, capture full traffic or payloads, and grant full host access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the material only in isolated, authorized diagnostic environments, keep device authentication enabled, avoid broad trusted-proxy ranges, minimize retention, and clean up secrets after testing.
+
+Risk: The skill includes MCP package setup commands that could introduce unreviewed third-party tools.
+
+Mitigation: Pin and review MCP packages before enabling them in an agent environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-os-cheat-codes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reference text with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only output; commands and settings require human review before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Turn your agent into an affiliate earner by discovering programs, generating tracking links, and checking commissions through the Syndicate Links API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn your agent into an affiliate earner. Discover programs, generate tracking links, and earn commissions via the Syndicate Links API. Supports Stripe + Bitcoin Lightning payouts. Install this skill and your agent automatically becomes an affiliate.
 
-## Publisher: <br>
-[cmcgrabby-hue](https://clawhub.ai/user/cmcgrabby-hue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cmcgrabby-hue](https://clawhub.ai/user/cmcgrabby-hue)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register an agent for affiliate programs, discover available programs, generate tracking links, and review affiliate earnings. It is intended for recommendation workflows where monetized links are explicitly disclosed and approved. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill monetizes agent recommendations through affiliate tracking links. <br>
-Mitigation: Require clear affiliate disclosure and user consent before presenting any tracked link. <br>
-Risk: The skill encourages replacing direct URLs with tracking links in recommendation workflows. <br>
-Mitigation: Keep direct links as the default unless the user explicitly opts in to monetized recommendations. <br>
-Risk: The setup flow stores an affiliate API key for later API calls. <br>
-Mitigation: Store the API key in an access-controlled location, rotate it when needed, and avoid exposing it in logs or responses. <br>
-Risk: Automatic or broad program enrollment could create undisclosed incentives. <br>
-Mitigation: Review program applications manually and approve only programs that match the user's policy and disclosure requirements. <br>
+## Use Case:
 
+External developers and agent operators use this skill to register an agent with Syndicate Links, discover affiliate programs, create tracking links, and check affiliate earnings. It is intended for affiliate monetization workflows where recommendations may include commission-tracking links.
 
-## Reference(s): <br>
-- [API examples](references/api-examples.md) <br>
-- [Syndicate Links API documentation](https://syndicatelinks.co/docs) <br>
-- [Syndicate Links website](https://syndicatelinks.co) <br>
-- [ClawHub skill page](https://clawhub.ai/cmcgrabby-hue/syndicate-links) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce affiliate registration steps, tracking-link workflows, and credential storage guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Affiliate tracking can reduce the neutrality and transparency of product recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use tracking links only with clear user disclosure and preserve recommendation quality independently of commission potential.
+
+Risk: The skill requires external registration and local storage of an affiliate API key.
+
+Mitigation: Run setup only in trusted environments, restrict credential-file permissions, and rotate or remove credentials when access is no longer needed.
+
+Risk: The setup script is not suitable for shared environments unless credential and temporary-file handling are hardened.
+
+Mitigation: Avoid shared hosts for setup, or harden file permissions and temporary-file handling before use.
+
+## Reference(s):
+
+- [API Examples](references/api-examples.md)
+- [Syndicate Links Website](https://syndicatelinks.co)
+- [Syndicate Links API Docs](https://syndicatelinks.co/docs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with bash command examples and API endpoint tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses external Syndicate Links API calls and local affiliate API key configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

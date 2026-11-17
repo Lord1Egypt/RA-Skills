@@ -1,40 +1,53 @@
-## Description: <br>
-Guides an agent through a disciplined release loop from selective staging and commit through merge, CI deployment, workload restart, end-to-end verification, and patch iteration when validation fails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through a release loop from local changes through selective commit, push, target-branch merge, CI deployment, workload restart, end-to-end API and database verification, and patch-and-repeat recovery when validation fails.
 
-## Publisher: <br>
-[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hgvgfgvh](https://clawhub.ai/user/hgvgfgvh)
 
-## Use Case: <br>
-Developers and release engineers use this skill to run an auditable merge, deploy, restart, and verification workflow after local code changes are ready. It emphasizes selective staging, target-branch confirmation, CI SHA reconciliation, workload readiness checks, API and database validation, and a new patch commit when failures require another loop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real merge, deploy, restart, and verification workflows that may affect shared or production systems. <br>
-Mitigation: Confirm the target branch, CI job, Kubernetes namespace, API account, database environment, and production-data scope before invoking the workflow. <br>
-Risk: Deployment verification can require credentials, API calls, database assertions, and workload restarts. <br>
-Mitigation: Use only approved credentials and environments, require explicit approval for production credentials or data, and follow the skill's built-in checks for destructive or ambiguous operations. <br>
+## Use Case:
 
+Developers and release engineers use this skill to move ready code changes through a controlled deployment workflow and verify that the deployed service, database effects, and rollback or patch loop are complete. It is intended for operational release coordination, especially when CI/CD, Kubernetes workloads, and database checks are involved.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/merge-deploy-verify-loop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with checklists, reconciliation tables, and inline command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires explicit user confirmation for ambiguous branch, environment, credential, shared-data, or destructive-operation decisions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The skill may guide high-impact deployment actions such as pushing code, merging branches, triggering CI, restarting pods, or changing shared data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require human review before approving high-impact steps, especially production pod deletion, force pushes, broad DELETE operations, and token use.
+
+Risk: Deployment verification can be misleading if CI builds, pod readiness, or database effects are not actually confirmed.
+
+Mitigation: Follow the skill's explicit gates for merge status, CI success, SHA reconciliation, pod readiness, API assertions, and database SELECT evidence before considering the loop complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hgvgfgvh/skills/merge-deploy-verify-loop)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with command examples, checklists, and deployment reconciliation tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes staged release steps, verification evidence prompts, and failure-loop guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

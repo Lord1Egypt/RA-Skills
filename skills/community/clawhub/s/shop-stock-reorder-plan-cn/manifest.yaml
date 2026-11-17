@@ -1,0 +1,25 @@
+name: "shop-stock-reorder-plan-cn"
+slug: "shop-stock-reorder-plan-cn"
+display_name: "库存补货清单"
+description: "面向中文小店、小说作者及自媒体创作者，把最多100行库存、近段销量、提前期和目标库存表整理为逐SKU补货建议、可复核公式依据与缺失字段清单；适合有限表格的日常补货判断，不用于订单发货、仓储软件部署或编造缺料数据。"
+icon: icon-512.png
+version: "1.0.1"
+license: MIT-0
+repository: "https://github.com/xxjrq/shop-stock-reorder-plan-cn"
+tags:
+  - "库存管理"
+  - "补货计划"
+  - "SKU"
+  - "小店经营"
+  - "表格分析"
+trigger_words:
+  - "库存补货"
+  - "补货清单"
+  - "SKU补货建议"
+interface:
+  display_name: "库存补货清单"
+  short_description: "根据库存、销量和提前期生成可复核的逐SKU补货清单"
+  default_prompt: "使用 $shop-stock-reorder-plan-cn 根据我提供的库存表输出补货建议、公式依据和缺失字段。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+self_test: "bash scripts/self-test.sh"

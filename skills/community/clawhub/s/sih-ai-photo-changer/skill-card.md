@@ -1,42 +1,55 @@
-## Description: <br>
-Sih.AI Photo Changer edits images from natural-language prompts, including background changes, clothing changes, face swaps, style conversion, and beauty retouching through the Sih.AI image API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sih.AI Photo Changer helps agents edit or generate images from a source image and a natural-language prompt using the Sih.AI image API.
 
-## Publisher: <br>
-[a3273283](https://clawhub.ai/user/a3273283) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a3273283](https://clawhub.ai/user/a3273283)
 
-## Use Case: <br>
-External users and developers use this skill to ask an agent to transform a provided image using a natural-language editing prompt and receive generated image URLs from the service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provided images and prompts may be uploaded to an external image API. <br>
-Mitigation: Avoid sensitive, private, or non-consensual images and confirm the service privacy boundary before use. <br>
-Risk: The artifact includes a hardcoded bearer token. <br>
-Mitigation: Use a version that requires the user to provide their own API key through a secret or environment variable, and rotate any exposed token. <br>
-Risk: The exact provider domain and data-handling boundary are not clearly disclosed. <br>
-Mitigation: Verify the API provider and data retention terms before sending production or personal images. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent to transform an input image with prompts for background, outfit, face, style, or beauty edits. The skill returns API JSON and generated image URLs for downstream use.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/a3273283/sih-ai-photo-changer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, JSON] <br>
-**Output Format:** [JSON API response plus plain-text generated image URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated image URLs are documented as expiring after 24 hours.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill uploads user-selected images and prompts to an under-disclosed third-party endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images and prompts suitable for the remote provider; avoid sensitive photos and confidential documents.
+
+Risk: The bundled script contains an exposed bearer token.
+
+Mitigation: Treat the token as exposed, rotate it before trusted use, and replace hardcoded credentials with managed secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a3273283/skills/sih-ai-photo-changer)
+- [Publisher profile](https://clawhub.ai/user/a3273283)
+- [Sih.AI image generation endpoint](https://api.vwu.ai/v1/images/generations/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and API JSON responses containing generated image URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated image URLs are documented as valid for 24 hours; local images are base64-encoded before upload.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

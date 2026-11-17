@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "feature-benefit",
+  "workflow": "listing",
+  "focus": "benefits",
+  "outputTemplate": "ops_listing",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews"
+  ]
+}

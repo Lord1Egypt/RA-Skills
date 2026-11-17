@@ -1,6 +1,6 @@
 # rune-verification
 
-> Rune L3 Skill | validation | model: tier:light
+> Rune L3 Skill | validation | model: tier:mid
 
 
 # verification
@@ -125,6 +125,9 @@ Glob("path/to/expected/file") → found
 | `useEffect` with empty body / `async function` with no `await` | React/JS | Hollow implementation |
 | File has only type/interface exports but no implementation | TypeScript | Stub types-only file |
 | `// TODO` or `# TODO` as the only content in a function | Any | Placeholder |
+| `onClick={() => {}}` / handler bound to an empty or `console.log`-only function | React/Vue/Svelte | Dead handler — wired to nothing |
+| `href="#"` on an action link (not navigation) | HTML/JSX | Dead action link |
+| Submit handler whose body is only `event.preventDefault()` | Any UI | Form that swallows input |
 
 If ANY stub pattern detected → mark file as STUB, Level 2 FAIL.
 
@@ -141,19 +144,39 @@ If ANY stub pattern detected → mark file as STUB, Level 2 FAIL.
 
 If file has 0 consumers → mark as UNWIRED, Level 3 FAIL.
 
-**Exception**: Entry-point files (main.ts, index.ts, App.tsx, routes config) are exempt from Level 3 — they ARE the top-level consumers.
+**Exception**: Entry-point files are exempt from Level 3 — they ARE the top-level consumers. Entry points include: main.ts/index.ts/App.tsx/routes config, server entrypoints referenced by package.json `main`/`start`/`bin`, and root pages served statically (e.g. `public/index.html` behind `express.static`).
+
+**Config/manifest files** (package.json, tsconfig, *.yml, dotfiles): Level 2 = valid, non-empty, matches its schema's basic shape; Level 3 = exempt (consumed by tooling, not imports).
+
+**Level 3.5 — INTERACTION WIRED** (UI files in this task's diff only — `.tsx/.jsx/.vue/.svelte/.html`):
+
+Level 3 proves the component is *rendered*; Level 3.5 proves its interactive elements *do something*. For each UI file created or modified in this task:
+
+1. grep interactive elements in the file — framework-aware patterns: `<button`, `<form`, `type="submit"`, `action=`, `<a ` with an action-style href (`href="#"`, `href=""`, `javascript:`) — pure-navigation anchors (`href="#section-id"` with a matching id, route paths) are exempt — plus binding syntax per framework: React `onClick=`/`onSubmit=`, Svelte `on:click=`/`on:submit=`, Vue `@click`/`@submit`/`v-on:`, plain HTML `addEventListener`
+2. For each element, trace INWARD:
+   - **Handler bound?** Interactive element with NO binding in any framework syntax above and no enclosing form handler → `UNWIRED-INTERACTIVE`. **Prop-origin handlers PASS**: `onClick={props.onSave}`, `on:click={dispatch('save')}`, or a callback-library pattern (`onSubmit={handleSubmit(onSubmit)}` — react-hook-form et al.) count as bound; wiring the prop is the parent's/caller's responsibility, checked at the parent's own 3.5 pass
+   - **Handler resolves?** The bound symbol is locally defined OR imported (imported = resolves; do not demand the import's body) and its body is non-trivial (not caught by the Level 2 dead-handler patterns)
+   - **Target exists?** If the handler calls `fetch`/`axios`/a service function → the route path or service symbol EXISTS somewhere in the codebase (grep the path/symbol). Handler → nonexistent target = `UNWIRED-INTERACTIVE`. Pure-navigation handlers (`router.push`, `navigate(...)`, framework `<Link>`) PASS — navigation is their target
+3. **Reverse check**: every API route HANDLER created in this task (per-route, not per-file — a file with 3 routes gets 3 checks) has ≥1 caller (grep each route's path across UI/service files). Route with 0 callers → `UNCALLED-ROUTE`
+4. Pure-display elements (no user expectation of action: decorative buttons in mockups explicitly listed in `.rune/ui-spec.md` `## Unwired Elements`) are reported as INFO, not failures — they are design's declared debt, tracked by `converge`
+5. **De-dup**: if preflight already flagged the same element as dead-interactive in this session, cite the cross-reference ("preflight Step 4.5 already flagged") instead of emitting a duplicate finding
+
+**Scope guard**: Level 3.5 runs ONLY on files in this task's diff. Pre-existing files with dead interactive elements → WARN (legacy debt, don't punish), never FAIL.
+
+**Signal**: when the diff touches both UI and api/service/data files AND every Level 3.5 check passes, emit `integration.verified` with `{files_checked, interactions_traced}`. Downstream `deploy` uses this as its cross-layer wiring evidence.
 
 <HARD-GATE name="3-level-verification">
 ALL new files must pass Level 1 + Level 2 + Level 3.
+UI files in this task's diff must ALSO pass Level 3.5.
 EXISTS but STUB = "Existence Theater" — agent created files but didn't implement them.
 EXISTS and SUBSTANTIVE but UNWIRED = dead code — created but never connected.
+SUBSTANTIVE and WIRED but UNWIRED-INTERACTIVE = dead button — renders, does nothing. Same failure tier as UNWIRED.
 Report which level failed for each file in the Verification Report.
 </HARD-GATE>
 
 ### Artifact Output Verification
 
-> Inspired by CLI-Anything (HKUDS/CLI-Anything, 14.5k★): "Never trust exit 0."
-> Many tools exit 0 even when they fail silently. Always verify ACTUAL output.
+**Never trust exit 0.** Many tools exit 0 even when they fail silently. Always verify ACTUAL output.
 
 After each phase command, verify that the expected artifact or indicator is present:
 
@@ -187,6 +210,47 @@ Verification MUST check actual command output for success indicators, not just e
 Exit 0 without a confirming output artifact or success string = UNVERIFIED.
 Report the specific line that confirmed success (e.g., "3 passed, 0 failed").
 </HARD-GATE>
+
+### Surface-Constraint Verification (the Constraint Loop)
+
+Everything above verifies *behaviour* with a tool. Some deliverables instead carry a
+constraint on their own **surface form**: a banned or required character, an exact word or
+line count, a positional pattern, a strict format, a naming scheme every entry must follow,
+a diff that must not touch a listed path. These look trivial and are the opposite — a model
+generates meaning-first and reads its own output as tokens, not characters, so the
+constraint sits exactly where its perception is weakest. The most natural wording for the
+topic is usually the likeliest violator.
+
+**Re-reading the output and judging that it complies is not verification.** A re-read always
+passes. That is the whole failure mode.
+
+Run this loop whenever a deliverable carries a mechanically checkable surface constraint:
+
+1. **Expand the constraint before producing anything.** Restate it as a test every governed
+   unit must pass, and decide *how you will count* before there is anything to count. List
+   the on-topic vocabulary most likely to violate it — starting with the subject's own name,
+   which the constraint may rule out — and pick compliant substitutes up front.
+2. **Draft away from the final answer** — a scratch file or reasoning space, never straight
+   into the deliverable.
+3. **Verify mechanically, strongest tool available.** A script, `grep`, `wc`, a formatter's
+   `--check`, a schema validator — seconds of work and the strongest possible evidence. With
+   no tool available, decompose the text into the units the constraint governs and test each
+   one explicitly (spell the word out; count with a running index). Manual decomposition is
+   the fallback for tool-poor runtimes, not a substitute where a tool exists.
+4. **Repair and re-verify the whole artifact.** A fix can introduce a new violation
+   elsewhere, so re-scan everything — one green check on the edited line says nothing about
+   its neighbours. Loop until one complete pass over the final text is clean.
+5. **Ship the verified text byte-for-byte.** Any post-verification rewording, however small,
+   invalidates the check — touch one unit and step 3 runs again.
+
+<HARD-GATE name="surface-constraint">
+"The output satisfies the constraint" is a verified claim only after step 3 has run against
+the EXACT delivered text. Asserted from a re-read, it is an assumption wearing the grammar of
+an observation — see `completion-gate` → `references/claim-discipline.md`. Report the check
+that was run, not the conclusion.
+</HARD-GATE>
+
+Report it like any other phase: `Constraint: <the rule> | Check: <command or method> | Units tested: N | Violations: 0`.
 
 ## Error Recovery
 
@@ -229,11 +293,12 @@ Tests:     [PASS/FAIL/SKIP] ([passed]/[total], [coverage]%)
 Build:     [PASS/FAIL/SKIP]
 
 ### 3-Level File Verification
-| File | L1 Exists | L2 Substantive | L3 Wired | Verdict |
-|------|-----------|----------------|----------|---------|
-| src/auth/login.ts | ✓ | ✓ | ✓ (imported by routes.ts) | PASS |
-| src/auth/reset.ts | ✓ | STUB (returns null) | — | FAIL L2 |
-| src/utils/format.ts | ✓ | ✓ | UNWIRED (0 importers) | FAIL L3 |
+| File | L1 Exists | L2 Substantive | L3 Wired | L3.5 Interaction | Verdict |
+|------|-----------|----------------|----------|------------------|---------|
+| src/auth/login.ts | ✓ | ✓ | ✓ (imported by routes.ts) | ✓ (submit → POST /api/login, route exists) | PASS |
+| src/auth/reset.ts | ✓ | STUB (returns null) | — | — | FAIL L2 |
+| src/utils/format.ts | ✓ | ✓ | UNWIRED (0 importers) | n/a (not UI) | FAIL L3 |
+| src/ui/OrderForm.tsx | ✓ | ✓ | ✓ (rendered by OrdersPage) | UNWIRED-INTERACTIVE (Save → fetch '/api/orders', route absent) | FAIL L3.5 |
 
 Overall:   [PASS/FAIL]
 
@@ -244,11 +309,13 @@ Overall:   [PASS/FAIL]
 - Build: [first 5 build errors]
 - Stubs: [files that failed Level 2 with stub pattern detected]
 - Unwired: [files that failed Level 3 with 0 consumers]
+- Dead interactions: [elements that failed Level 3.5 with the broken link named (no handler / dead handler / missing target)] 
+- Uncalled routes: [route files created this task with 0 callers]
 ```
 
 ## Output Completion Enforcement
 
-> From taste-skill (Leonxlnx/taste-skill, 3.4k★): Truncated code is worse than no code — it passes reviews but breaks at runtime.
+Truncated code is worse than no code — it passes reviews but breaks at runtime.
 
 When verifying code files (Level 2 SUBSTANTIVE check), also scan for **truncation patterns** — signs that the agent generated partial output and stopped:
 
@@ -289,6 +356,7 @@ When any skill calls verification and then reports results upstream:
 2. **Pass requires proof** — PASS means "tool ran AND output shows zero errors" (not "tool ran without crashing")
 3. **Silence is not success** — if a command produces no output, note it explicitly ("0 errors, 0 warnings")
 4. **Partial runs are labeled** — if only 2 of 4 checks ran, Overall = INCOMPLETE (not PASS)
+5. **A zero is only evidence once the instrument is shown live** — "nothing failed" and "nothing was measured" produce identical output, and the silent instrument always wins. Every clean result must carry the size of what it examined: tests **collected**, files **matched**, rules **applied**, rows **returned**. `0 failed` out of `0 collected` is not a pass; a linter that matched no files is not a clean lint; a scanner whose target path was renamed reports the same green as one that found nothing. Where a population count is not available, prove the check can fail — run it against a known-bad input once — before letting it promote a claim.
 
 ### Red Flags — Agent is Lying
 
@@ -299,6 +367,9 @@ When any skill calls verification and then reports results upstream:
 | "Build succeeds" | Build command stdout | REJECTED — re-run and show output |
 | "I verified it" | Verification Report | REJECTED — run verification skill properly |
 | "Fixed and working" | Before/after test output | REJECTED — show the diff in results |
+| "0 tests failed" | A non-zero collected/ran count in the same output | REJECTED — a run that collected 0 tests also reports 0 failures |
+| "Clean scan / no findings" | The count of files, rules, or rows actually examined | REJECTED — an empty target set is indistinguishable from a clean one |
+| "No diff / no change detected" | Evidence the probe can report a difference at all | REJECTED — show it non-zero on a case known to differ |
 
 ## Constraints
 
@@ -307,7 +378,8 @@ When any skill calls verification and then reports results upstream:
 3. MUST report specific failures with file:line references
 4. MUST NOT skip checks because "changes are small"
 5. MUST include stdout/stderr capture in every check result — empty output noted explicitly
-6. MUST mark Overall as INCOMPLETE if any check was skipped without valid reason (tool not installed = valid, "changes are small" = invalid)
+6. MUST mark Overall as INCOMPLETE if any check was skipped without valid reason (tool not installed = valid, "changes are small" = invalid). **Precedence**: a 3-Level or Level 3.5 FAIL dominates — Overall = FAIL even when command checks were validly skipped; INCOMPLETE applies only when nothing failed
+7. MUST run the 3-Level Artifact Verification on every file created/modified this task, AND Level 3.5 INTERACTION WIRED on every UI file (`.tsx/.jsx/.vue/.svelte/.html`) in the diff — skip 3.5 only when the diff contains no UI files (note "L3.5: n/a — no UI files")
 
 ## Sharp Edges
 
@@ -324,6 +396,10 @@ Known failure modes for this skill. Check these before declaring done.
 | Trusting exit code 0 without output verification | CRITICAL | Artifact Verification HARD-GATE: always confirm success indicator in stdout (pass count, "0 errors", output file exists) |
 | Existence Theater — file exists but is a stub | HIGH | 3-Level check: Level 2 scans for stub patterns (`<div>Placeholder</div>`, `return null`, `NotImplementedError`) |
 | Dead code — file created but never imported/used | MEDIUM | 3-Level check: Level 3 greps for consumers. 0 importers = UNWIRED |
+| Dead button — component rendered, interactive element wired to nothing | CRITICAL | Level 3.5: trace element → handler → target for every UI file in the diff. Rendering ≠ working |
+| Punishing legacy files for pre-existing dead interactions | MEDIUM | Level 3.5 scope guard: FAIL only for this task's diff; pre-existing = WARN |
+| Route created this task with zero callers passes silently | HIGH | Level 3.5 reverse check: new route files need ≥1 caller or FAIL |
+| `integration.verified` read as "quickstart validated" | LOW | Standalone verification runs do NOT execute quickstart.md (that's cook Phase 6's job) — the signal proves static wiring, not a live end-to-end run |
 | Truncated code — agent hit output limit mid-file | HIGH | Output Completion Enforcement: scan for `// ...`, `// rest of code`, bare ellipsis patterns. TRUNCATED = Level 2 FAIL |
 
 ## Done When
@@ -332,6 +408,8 @@ Known failure modes for this skill. Check these before declaring done.
 - lint, type-check, tests, and build all executed (or SKIP with reason if tool missing)
 - Each check shows actual command output
 - Failures include specific file:line references (not just counts)
+- 3-Level check run on all created/modified files; Level 3.5 INTERACTION WIRED run on all UI files in the diff (or "n/a — no UI files" noted)
+- `integration.verified` emitted when the diff spans UI+data and all 3.5 checks pass
 - Verification Report emitted with Overall PASS/FAIL verdict
 
 ## Cost Profile
@@ -339,7 +417,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~$0.01-0.03 per run. Haiku + Bash commands. Fast and cheap.
 
 ---
-> **Rune Skill Mesh** — 64 skills, 204 connections + 40 signals, 14 extension packs
+> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — product, sales, data-science, support packs → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
 > **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "kb": {"id": "unsupported-demo", "name": "失败边界演示"},
+  "as_of": "2026-10-19",
+  "projects": [{"id": "content-demo", "name": "内容事实源演示"}],
+  "entities": [{"id": "org-a", "kind": "company", "name": "示例组织 A", "project_ids": ["content-demo"]}],
+  "records": [
+    {
+      "id": "fact-unproven", "entity_id": "org-a", "category": "trust", "key": "certification",
+      "value": "存在认证", "text": "本条用于测试没有来源却声称已证实的输入。",
+      "status": "supported", "project_ids": ["content-demo"], "sources": []
+    }
+  ]
+}

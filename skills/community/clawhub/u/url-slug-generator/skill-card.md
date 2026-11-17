@@ -1,38 +1,53 @@
-## Description: <br>
-Helps create, optimize, and validate SEO-friendly URL slugs for content pages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides creation, optimization, and validation of SEO-friendly URL slugs for blog posts, articles, and content pages.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Content creators, marketers, SEO practitioners, and developers use this skill to generate or audit short, readable, keyword-focused URL slugs for pages such as blogs, articles, guides, categories, and products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Changing an existing live URL slug can break links or create duplicate URLs if uniqueness and redirects are not checked. <br>
-Mitigation: Confirm the slug is unique in the target CMS and configure a 301 redirect before replacing any existing URL. <br>
+## Use Case:
 
+Developers, editors, and SEO practitioners use this skill to generate or audit concise, SEO-friendly URL slugs for content, category, and product pages.
 
-## Reference(s): <br>
-- [Alignify URL optimization](https://alignify.co/zh/seo/url-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown with recommended slug, character count, keyword check, and alternatives] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, persistence, or sensitive access requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill may activate for general URL wording beyond slug-specific requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the task is slug generation, slug optimization, or slug validation; use a site-wide URL structure skill for broader URL policy decisions.
+
+Risk: Outputs may include a third-party URL optimization reference.
+
+Mitigation: Review the external reference before relying on it and remove it from outputs when external links are not appropriate.
+
+## Reference(s):
+
+- [Alignify URL optimization](https://alignify.co/zh/seo/url-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with a recommended slug, character count, primary keyword note, and alternatives when useful.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a third-party URL optimization reference.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

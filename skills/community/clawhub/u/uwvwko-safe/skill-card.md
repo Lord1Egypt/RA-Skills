@@ -1,41 +1,52 @@
-## Description: <br>
-Browser-safety guidance that helps an agent identify and block high-risk web requests involving secrets, system details, sensitive files, or command execution, then notify the user. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Web browsing safety guard that identifies and blocks high-risk malicious instructions, sensitive information leakage, and unauthorized command execution while notifying the user.
 
-## Publisher: <br>
-[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[uwvwko-zzz](https://clawhub.ai/user/uwvwko-zzz)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to add browser-session safety checks that block requests for secrets, sensitive local information, destructive file operations, or unauthorized command execution and return a user-facing warning with suggested next steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad override rules could allow users or web content to weaken protections for risky requests.
+
+Mitigation: Require verified direct-user consent for overrides and do not allow overrides for secrets, destructive actions, or sensitive file access.
+
+Risk: Logging and email reporting could retain or transmit sensitive security-event data.
+
+Mitigation: Use redacted local-only logging by default and enable email reporting only when explicitly configured and protected.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Users and agents use this skill to apply conservative browsing-safety checks before acting on webpage content. It is intended to block requests for credentials, sensitive local information, risky file access, or command execution and provide a clear warning with suggested next steps. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is an instruction-only safety layer and should not be treated as a browser or endpoint security product. <br>
-Mitigation: Use it as agent guidance alongside normal browser, host, and network security controls. <br>
-Risk: Security logs and notifications may contain URLs, prompts, page content, or other sensitive details. <br>
-Mitigation: Decide where logs are stored, set retention limits, and redact secrets or sensitive page content wherever possible. <br>
-Risk: Conservative blocking rules can produce false positives for legitimate troubleshooting or authorized administrative work. <br>
-Mitigation: Require explicit user confirmation for exceptions and prefer sandboxed or read-only environments for risky investigations. <br>
+**Output Format:** [Markdown or plain-text security warnings, notifications, and recommended actions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include risk level, detected request, triggered rule, source URL, block status, and logging details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown safety warnings and user guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include risk labels, triggered-rule summaries, recommended actions, and structured security-log examples.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

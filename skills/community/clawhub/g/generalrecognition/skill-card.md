@@ -1,46 +1,56 @@
-## Description: <br>
-图片通用文字 OCR，支持中英文及多语种。当用户说：这张图里的字提取成文本、截图 OCR 一下，或类似通用识图问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill uses JisuAPI general text recognition OCR to extract text from local or base64-encoded images, with support for Chinese, English, and several other languages.
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to extract text from user-provided screenshots or photos through JisuAPI's general OCR service, then format or analyze the recognized text for the user's workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images are uploaded to JisuAPI for OCR processing. <br>
-Mitigation: Use the skill only when external processing is acceptable, and avoid images containing passwords, IDs, medical, financial, or confidential business information. <br>
-Risk: The skill requires a JisuAPI API key for external service access. <br>
-Mitigation: Use a dedicated API key with appropriate limits and rotate it if exposure is suspected. <br>
-Risk: Local image paths are accepted as input and the image contents are sent to the OCR service. <br>
-Mitigation: Provide only intended workspace-relative image paths or vetted base64 payloads; the script blocks absolute paths and path traversal. <br>
+## Use Case:
 
+Developers and agents use this skill when a user asks to OCR a screenshot or photo and return the recognized text for follow-up formatting, analysis, or translation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jisuapi/generalrecognition) <br>
-- [Publisher profile](https://clawhub.ai/user/jisuapi) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI general text recognition documentation](https://www.jisuapi.com/api/generalrecognition/) <br>
-- [JisuAPI OCR endpoint](https://api.jisuapi.com/generalrecognition/recognize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, API calls, Shell commands, Configuration] <br>
-**Output Format:** [JSON containing recognized text lines or structured error details; agents typically convert the result into concise text or Markdown for the user.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3, requests, a JISU_API_KEY environment variable, and either a workspace-relative image path or a base64 image payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and target metadata) <br>
+Risk: Selected images may be uploaded to JisuAPI for OCR, which can expose sensitive content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use this skill on screenshots or files containing passwords, personal records, internal documents, or regulated data unless external OCR processing is approved.
+
+Risk: Local path inputs can select files for upload, and the security evidence reports weak file-boundary checks.
+
+Mitigation: Use only intended image files and harden path, symlink, file-type, and size validation before deployment.
+
+## Reference(s):
+
+- [JisuAPI General Text Recognition Documentation](https://www.jisuapi.com/api/generalrecognition/)
+- [JisuAPI Provider Site](https://www.jisuapi.com/)
+- [ClawHub Skill Page](https://clawhub.ai/jisuapi/skills/generalrecognition)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/jisuapi)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from the OCR script, typically converted by the agent into plain text or Markdown.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; local images or base64 image data are sent to JisuAPI for OCR.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

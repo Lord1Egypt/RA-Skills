@@ -1,41 +1,57 @@
-## Description: <br>
-Runs a closed-loop OpenClaw automation pipeline that coordinates hunter scanning, gap checks, skill generation, dashboard refreshes, profit reporting, and resilience checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全闭环自动化管道 — Hunter→Skill Factory→Orchestrator→Dashboard→Profit。将Phase 1-3所有组件串联为自动运行的超级管道。核心能力：(1) 一键全流程 (2) 定时自动运行 (3) 异常自愈 (4) 利润报告
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-Developers and operators use this skill to run and check a local OpenClaw workflow that chains market scanning, orchestration, dashboard status, profit reporting, and health checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The pipeline runs fixed downstream OpenClaw skill scripts, so its behavior depends on the trustworthiness of those installed components. <br>
-Mitigation: Install and run it only in workspaces where the hunter, orchestrator, dashboard, profit, and resilience skills have been reviewed and trusted. <br>
-Risk: Pipeline logs may include snippets of business or operational output. <br>
-Mitigation: Review or clear the pipeline_logs directory when that output is sensitive. <br>
+## Use Case:
 
+Developers and operators use this skill to run and inspect a local OpenClaw automation pipeline that chains market scanning, orchestration, dashboard refresh, profit reporting, and health checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/mega-pipeline) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/freeman88-tch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Console text and JSON log files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local pipeline run logs under the OpenClaw workspace state directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill launches multiple local OpenClaw skill scripts through shell commands with weak scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a trusted workspace, verify exact referenced script paths before execution, and prefer a revised version that uses argument-list subprocess calls.
+
+Risk: The skill overstates some scheduling and self-healing automation capabilities.
+
+Mitigation: Treat scheduling and self-healing behavior as unverified until the release documents and implements those features.
+
+Risk: The skill depends on other local skills and their permissions.
+
+Mitigation: Review and trust the referenced local skills before installing or running this pipeline.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman88-tch/skills/mega-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, JSON]
+
+**Output Format:** [Console text with JSON log files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pipeline status output is derived from locally installed OpenClaw skills under ~/.openclaw/workspace/skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

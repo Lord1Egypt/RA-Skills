@@ -1,0 +1,14 @@
+{
+  "mode": "architecture",
+  "title": "Checkout Platform Before",
+  "summary": "Base architecture before the PR adds a fraud check.",
+  "nodes": [
+    { "id": "web", "label": "Web", "kind": "service", "x": 120, "y": 160 },
+    { "id": "api", "label": "Checkout API", "kind": "service", "x": 360, "y": 160 },
+    { "id": "db", "label": "Orders DB", "kind": "memory", "x": 600, "y": 160 }
+  ],
+  "edges": [
+    { "from": "web", "to": "api", "kind": "primary-data", "label": "submit" },
+    { "from": "api", "to": "db", "kind": "memory-write", "label": "order" }
+  ]
+}

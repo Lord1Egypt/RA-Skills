@@ -1,48 +1,57 @@
-## Description: <br>
-Order, configure and manage dedicated game servers (20+ games) via Supercraft REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Order, configure and manage dedicated game servers (20+ games) via Supercraft REST API.
 
-## Publisher: <br>
-[mcjkrs](https://clawhub.ai/user/mcjkrs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mcjkrs](https://clawhub.ai/user/mcjkrs)
 
-## Use Case: <br>
-External users and developers use this skill to order, inspect, configure, start, stop, restart, and send console commands to dedicated Supercraft game servers through a REST API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can purchase paid game server plans. <br>
-Mitigation: Require explicit user approval before creating or opening checkout links. <br>
-Risk: The skill can start, stop, restart, reconfigure, and send console commands to servers. <br>
-Mitigation: Confirm the target server and requested action before executing operational or destructive changes. <br>
-Risk: The skill uses background login polling and stores a JWT for authenticated server control. <br>
-Mitigation: Use polling and token storage only when the user approves where the token is stored, how long polling runs, and how to revoke or delete the token. <br>
-Risk: The skill can retrieve connection details, including passwords. <br>
-Mitigation: Show connection secrets only after explicit user approval and avoid persisting them in logs or shared output. <br>
+## Use Case:
 
+External users and developers use this skill to order, configure, and operate Supercraft dedicated game servers through the Supercraft REST API, including catalog browsing, purchases, server lifecycle actions, configuration, logs, connection details, and console commands.
 
-## Reference(s): <br>
-- [Supercraft Agent API Homepage](https://claws.supercraft.host) <br>
-- [Getting Started Guide](https://claws.supercraft.host/documentation-for-agents/getting-started.md) <br>
-- [OpenAPI Reference](https://claws.supercraft.host/docs) <br>
-- [Machine-readable Discovery](https://supercraft.host/llms.txt) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mcjkrs/game-servers) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with REST endpoint guidance and inline curl command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include authenticated server actions, purchase checkout links, login links, connection details, and configuration updates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The login flow may create a recurring cron-based polling task without clear cleanup or explicit user consent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid persistent cron polling unless the user explicitly approves a bounded, removable task; prefer polling during the active session or after the user's next message.
+
+Risk: JWTs and magic-link tokens could be exposed through command lines, logs, or scheduler entries.
+
+Mitigation: Keep tokens out of command arguments, logs, and scheduler definitions; store credentials only in secure session-local mechanisms when needed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mcjkrs/skills/game-servers)
+- [Supercraft API Homepage](https://claws.supercraft.host)
+- [Getting Started Guide](https://claws.supercraft.host/documentation-for-agents/getting-started.md)
+- [OpenAPI Reference](https://claws.supercraft.host/docs)
+- [Machine-readable Discovery](https://supercraft.host/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with REST API endpoints and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce authenticated API request guidance for Supercraft server management workflows.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

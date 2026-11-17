@@ -1,0 +1,4 @@
+interface:
+  display_name: "需求澄清"
+  short_description: "结合源码证据和针对性问答，明确业务边界、阻塞决策与可验收的需求约定"
+  default_prompt: "使用 $requirements-discovery，结合现有代码澄清这个需求，复用已确认结论，只询问影响实施的关键问题。"

@@ -1,0 +1,28 @@
+# 网盘通 · 全家桶 compose（含 AList；references/34-免客户端一键部署.md 配套）
+# 用法：docker compose -f docker/docker-compose.full.yml up -d
+# 语法自检：docker compose -f docker/docker-compose.full.yml config
+services:
+  pandownloader:
+    image: lis/cloud-drive-downloader:0.19.0
+    container_name: pan-downloader
+    restart: unless-stopped
+    ports:
+      - "${PAN_WEB_PORT:-17890}:17890"
+    environment:
+      # 非回环部署必须保留 token 鉴权（PAN_NOAUTH 仅回环有效）
+      - PAN_CONFIG=/data/state/config.json
+      - PAN_STATE_DIR=/data/state
+    volumes:
+      - ${PAN_STATE_DIR:-./state}:/data/state
+      - ${PAN_DOWNLOAD_DIR:-./download}:/data/download
+    depends_on:
+      - cdd-alist
+    command: ["serve", "--host", "0.0.0.0", "--port", "17890"]
+  cdd-alist:
+    image: xhofe/alist:latest
+    container_name: pan-alist
+    restart: unless-stopped
+    ports:
+      - "${ALIST_WEB_PORT:-5244}:5244"
+    volumes:
+      - ${ALIST_DATA_DIR:-./alist-data}:/opt/alist/data

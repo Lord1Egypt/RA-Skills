@@ -1,7 +1,13 @@
 {
   "name": "cpbl",
-  "version": "1.5.2",
-  "description": "CPBL (Chinese Professional Baseball League) stats, scores, schedules, and player data for Taiwan's pro baseball.",
-  "tags": ["cpbl", "baseball", "taiwan", "sports", "scores"],
+  "version": "2.0.0",
+  "description": "CPBL (Chinese Professional Baseball League) stats, scores, schedules, advanced Statcast data, and player data for Taiwan's pro baseball.",
+  "tags": [
+    "cpbl",
+    "baseball",
+    "taiwan",
+    "sports",
+    "scores"
+  ],
   "author": "ichendong"
 }

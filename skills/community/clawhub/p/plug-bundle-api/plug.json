@@ -1,0 +1,73 @@
+{
+  "plug_slug": "plug-bundle-api",
+  "bundle_slug": "bundle-api",
+  "bundle_name": "Integrations Bundle: api",
+  "members": [
+    {
+      "slug": "api",
+      "name": "api",
+      "category": "Integrations",
+      "role": "primary"
+    },
+    {
+      "slug": "csv-processor",
+      "name": "csv-processor-pro",
+      "category": "Integrations",
+      "role": "primary"
+    },
+    {
+      "slug": "excel",
+      "name": "excel-pro",
+      "category": "Integrations",
+      "role": "primary"
+    },
+    {
+      "slug": "json-repair-2",
+      "name": "json-repair-tool-free",
+      "category": "Integrations",
+      "role": "primary"
+    }
+  ],
+  "pain_points": [
+    "系统集成碎片化维护成本高",
+    "json-repair-2: 存在易出错问题 (错误)"
+  ],
+  "value_props": {
+    "individual_prices": [
+      {
+        "slug": "api",
+        "name": "api",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "csv-processor",
+        "name": "csv-processor-pro",
+        "price": 50.0,
+        "tier": "enterprise"
+      },
+      {
+        "slug": "excel",
+        "name": "excel-pro",
+        "price": 0.0,
+        "tier": "free"
+      },
+      {
+        "slug": "json-repair-2",
+        "name": "json-repair-tool-free",
+        "price": 0.0,
+        "tier": "free"
+      }
+    ],
+    "total_individual": 50.0,
+    "bundle_price": 40.0,
+    "savings": 10.0,
+    "savings_percent": 20.0,
+    "discount_rate": 0.2,
+    "value_statement": "4个skill单买总价50.0元，Plug捆绑价40.0元，节省10.0元 (20.0% off)"
+  },
+  "use_case": "本Plug整合4个互补skill，提供一站式解决方案：\n\n- api (Integrations): 提供 通用工具\n- csv-processor-pro (Integrations): 提供 read、exec、write\n- excel-pro (Integrations): 提供 通用工具\n- json-repair-tool-free (Integrations): 提供 read、exec、write\n\n组合工具集: read, exec, write\n\n典型工作流:\n  1. 使用 api 的 数据处理 完成相关任务\n  2. 使用 csv-processor-pro 的 read、exec、write 完成相关任务\n  3. 使用 excel-pro 的 数据处理 完成相关任务\n  4. 使用 json-repair-tool-free 的 read、exec、write 完成相关任务\n  5. 整合各skill输出，形成完整解决方案",
+  "overall_score": 81.5,
+  "combination_reason": "4个skill组合 | 覆盖1个分类 | 0个互补 | 整体评分81.5/100",
+  "generated_at": "2026-07-31T18:17:55.841727"
+}

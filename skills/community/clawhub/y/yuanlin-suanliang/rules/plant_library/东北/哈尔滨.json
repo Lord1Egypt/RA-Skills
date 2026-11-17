@@ -1,0 +1,1327 @@
+{
+ "schema": "yuanlin-suanliang/plant-library/v2",
+ "region": "东北",
+ "city": "哈尔滨",
+ "zone": "01-区",
+ "zone_climate": "II温带针阔叶混交林区",
+ "cities": [
+  "哈尔滨",
+  "长春",
+  "抚顺",
+  "铁岭"
+ ],
+ "scope": "climate-zone-pool",
+ "source": "plant_library_分区苗木选型.json#01-区（按源库 01–08 区章节序列切分；区级候选池，非单城实测分布）",
+ "confidence": "medium",
+ "plants": [
+  {
+   "name": "辽东冷杉",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "臭冷杉",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青海云杉",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青杄",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白杄",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红皮云杉",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "樟子松",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红松",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北红豆杉(紫杉）",
+   "aliases": [
+    "紫杉"
+   ],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "丹东桧",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "长白侧柏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杜松",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "长白松",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "兴安落叶松",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "长白落叶松",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "核桃楸",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "银白杨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "辽东栎",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香杨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶杨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "青杨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小青杨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山杨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "旱柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "龙爪柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "馒头柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杞柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒙古柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "千金榆",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛赤杨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白桦",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "风桦",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大果榆",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "榆树",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "垂枝榆",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "欧洲白榆",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "春榆",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "茶条槭",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "拧筋槭",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羽叶槭",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "五角枫",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "假色槭",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄檗",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山荆子",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花红",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海棠花",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "海棠果",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山桃稠李",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "稠李",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水榆花楸",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "鼠李",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫椴",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒙椴",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "糠椴",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "刺五加",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "辽东楤木",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水曲柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花曲柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "暴马丁香",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "粉枝柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "裂叶榆",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花楷槭",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花楸",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山梨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北杏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "乔木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "偃松",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "偃柏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "天山圆柏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "沙地柏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "矮紫杉",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "兴安桧",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "树锦鸡儿",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金雀锦鸡儿",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小叶锦鸡儿",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "胡枝子",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "朝鲜槐",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "细叶小檗",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蒙桑",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "文冠果",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫花文冠果",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "香茶藨（biāo）子",
+   "aliases": [
+    "biāo"
+   ],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大花圆锥绣球",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "甘肃山楂",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金露梅",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "郁李",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "毛樱桃",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北珍珠梅",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "红瑞木",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "偃伏棶木",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "西南丁香",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "匈牙利丁香",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "欧丁香",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "水蜡",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄刺梅",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "柳叶绣线菊",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "大花溲疏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "太平花",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "黄花忍冬",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "接骨木",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "金银木",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫枝忍冬",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "长白忍冬",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "桃色忍冬",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "锦带花",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "天目琼花",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北连翘",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "卵叶连翘",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "风箱果",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "银露梅",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "绢毛绣线菊",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "土庄绣线菊",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "小花溲疏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "花木蓝",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北溲疏",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北山梅花",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蓝靛果忍冬",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北接骨木",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "短梗五加",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "灌木",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "杆柳",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "北五味子",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "葛枣猕猴桃",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "猕猴梨",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "南蛇藤",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "转子莲",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "猕猴桃",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "狗枣猕猴桃",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "山葡萄",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "蝙蝠葛",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "其他",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "草地早熟禾",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "匍茎剪股颖",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "羊胡子草",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "白三叶",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "连线草",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "林地早熟禾",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "紫羊茅",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "异穗苔草",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "宽叶苔草",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "东北天南星",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "类叶升麻",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "侧金盏花",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "落新妇",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "耧斗菜",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "歪头菜",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  },
+  {
+   "name": "燕子花",
+   "aliases": [],
+   "region": "东北",
+   "city": "哈尔滨",
+   "category": "地被",
+   "source": "plant_library_分区苗木选型.json#01-区",
+   "confidence": "medium"
+  }
+ ]
+}

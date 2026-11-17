@@ -1,45 +1,64 @@
-## Description: <br>
-妙言小智 (PicTech.cc) 专业级跨境电商图片抠图/白底图工具，帮助 agents 处理图片去背景、透明底图、白底图、纯色背景图、本地图片、网络图片、文件夹图片和批量抠图任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+妙言小智 (PicTech.cc) 专业级跨境电商图片抠图/白底图工具。使用本 skill 处理图片去背景、透明底图、白底图、纯色背景图、本地图片、网络图片、文件夹图片和批量抠图任务。
 
-## Publisher: <br>
-[pictechai](https://clawhub.ai/user/pictechai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pictechai](https://clawhub.ai/user/pictechai)
 
-## Use Case: <br>
-External users and developers use this skill to remove or replace image backgrounds for cross-border e-commerce product imagery, including transparent PNGs, white-background marketplace images, custom solid backgrounds, and batch folder processing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected images, including batch folder contents, are sent to the PicTech/stableai cloud service for processing. <br>
-Mitigation: Use the skill only for images approved for that external processing flow, and avoid processing sensitive images unless the user accepts that transfer. <br>
-Risk: Documentation examples and credential-memory claims may encourage unsafe VK/API-key handling. <br>
-Mitigation: Configure the VK/API key through platform configuration or the RMBG_VK environment variable, avoid pasting keys into chat, and rotate any key that appears in prompts or logs. <br>
-Risk: Processed outputs and cache files may remain on local storage after use. <br>
-Mitigation: Review and delete local output and cache files when processing confidential or regulated images. <br>
+## Use Case:
 
+External users and agents use this skill to remove image backgrounds, create transparent PNGs, and generate white or solid-color product images for ecommerce listing workflows. It supports local image files, image folders, image URLs, and batch processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pictechai/myxz-rmbg-skill) <br>
-- [PicTech.cc website](https://www.pictech.cc) <br>
-- [PicTech API service](https://stableai.com.cn) <br>
-- [VK app key page](https://www.pictech.cc/newpictech/skills/openclaw-image-translation-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Text, Guidance] <br>
-**Output Format:** [PNG image files plus a structured JSON execution result that can be summarized in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Saves processed images to a local output directory and may reuse local cached results for repeated inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata and changelog) <br>
+Risk: Selected images are sent to PicTech/stableai for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive photos or private business images unless the user trusts the service and its handling of uploaded content.
+
+Risk: The skill requires a VK API key.
+
+Mitigation: Use a scoped configuration or environment secret, and do not paste API keys into chat or expose them in replies.
+
+Risk: URL inputs may cause the skill to fetch arbitrary remote images.
+
+Mitigation: Process only trusted URLs until URL validation and size limits are added.
+
+Risk: The security summary flags dependency hygiene as review-worthy.
+
+Mitigation: Review dependency versions and scanner results before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pictechai/skills/myxz-rmbg-skill)
+- [PicTech.cc](https://www.pictech.cc)
+- [PicTech VK key page](https://www.pictech.cc/newpictech/skills/openclaw-image-translation-skill)
+- [StableAI image background removal service](https://stableai.com.cn/myxz/skill/imagermbg)
+
+## Skill Output:
+
+**Output Type(s):** [Files, JSON, Guidance]
+
+**Output Format:** [JSON result object with saved PNG file paths, result URLs, counts, and failure details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are PNG images saved locally, with optional transparent, white, black, or custom solid-color backgrounds.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

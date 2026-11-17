@@ -1,43 +1,60 @@
-## Description: <br>
-Build premium static landing pages with the Stomme/PolyTrader design system, including glass morphism, CSS custom properties, separated copy, responsive layouts, and Cloudflare Pages-ready static HTML, CSS, and JavaScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build premium static landing pages with the Stomme/PolyTrader design system. Glass morphism, CSS custom properties, separated copy, responsive, Cloudflare Pages-ready. Use when building a website, landing page, marketing site, or product page. Produces static HTML/CSS/JS with no framework dependencies.
 
-## Publisher: <br>
-[jonathanlindsay](https://clawhub.ai/user/jonathanlindsay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonathanlindsay](https://clawhub.ai/user/jonathanlindsay)
 
-## Use Case: <br>
-Developers and site builders use this skill to generate polished static marketing sites, landing pages, product pages, and supporting deployment assets from provided content sources. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated validation hooks, CI workflow steps, Playwright checks, and deployment URLs may be copied into an unintended repository or site. <br>
-Mitigation: Review and adapt the generated Git hook, CI workflow, Playwright dependency, and live-validation URL before using the generated output. <br>
-Risk: Generated landing pages may contain visual or interaction regressions such as low-contrast buttons, broken theme toggles, or cache-related asset issues. <br>
-Mitigation: Run the generated pre-push and live validation scripts at desktop and mobile viewports before deployment. <br>
+## Use Case:
 
+Developers and site builders use this skill to generate static marketing, landing, website, and product pages from provided content sources. It guides page structure, theming, validation scripts, Cloudflare Pages deployment assets, and build notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jonathanlindsay/stomme-landing-page-builder) <br>
-- [Design System Reference](references/design-system.md) <br>
-- [Pre-push check template](references/pre-push-check-template.sh) <br>
-- [Live validation template](references/validate-live-template.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Static HTML, CSS, JavaScript, shell scripts, configuration files, and Markdown deployment notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated sites separate copy into JavaScript data, include Cloudflare Pages assets, and include static and browser-based validation scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Generated pre-push validation can execute project JavaScript during git push checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or replace require() and dynamic import() checks with parsing-only validation before enabling the hook.
+
+Risk: The CI example installs Playwright without a pinned version.
+
+Mitigation: Pin Playwright and related dependencies in a lockfile before using the validation workflow.
+
+Risk: The skill includes multilingual and post-deploy checks that may not match every generated site.
+
+Mitigation: Enable or adapt those checks only when they match the project locales, selectors, and deployment target.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jonathanlindsay/skills/stomme-landing-page-builder)
+- [Design System Reference](artifact/references/design-system.md)
+- [Pre-push Check Template](artifact/references/pre-push-check-template.sh)
+- [Live Validation Template](artifact/references/validate-live-template.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated static HTML, CSS, JavaScript, shell scripts, and configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces framework-free static site assets, validation scripts, git hook setup, CI validation guidance, and BUILD-NOTES.md deployment instructions.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

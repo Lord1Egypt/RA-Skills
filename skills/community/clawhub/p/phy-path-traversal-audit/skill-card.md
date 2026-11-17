@@ -1,41 +1,55 @@
-## Description: <br>
-Path traversal and Local File Inclusion (LFI) vulnerability scanner for detecting user-controlled paths passed to filesystem sinks in Python, Java, PHP, Node.js, Go, and Ruby without containment checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Path traversal and Local File Inclusion scanner for Python, Java, PHP, Node.js, Go, and Ruby code that reports CWE-22/CWE-98 findings and safer path-handling guidance.
 
-## Publisher: <br>
-[PHY041](https://clawhub.ai/user/PHY041) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phy041](https://clawhub.ai/user/phy041)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit codebases for path traversal, local file inclusion, and zip-slip patterns and to get language-specific remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary says the embedded script appears broken as written, so scan results may be unreliable. <br>
-Mitigation: Verify or fix the embedded Python before relying on its findings or using it in CI. <br>
-Risk: The skill scans local repositories and needs filesystem access to the target source tree. <br>
-Mitigation: Run it only against repositories you intend to audit and avoid granting credentials, network access, background service privileges, or broader system access. <br>
+## Use Case:
 
+Developers and security engineers use this skill to scan source repositories for path traversal and Local File Inclusion patterns and receive findings with remediation guidance.
 
-## Reference(s): <br>
-- [Canlah AI homepage](https://canlah.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/PHY041/phy-path-traversal-audit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with findings, CLI examples, JSON-output option, and remediation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings may include severity, CWE, file path, line number, matched pattern, HTTP taint signal, risk description, and fix guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and artifact metadata) <br>
+Risk: The shipped artifact may not provide a working scanner, which can create false security confidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and verify scanner execution on known vulnerable and clean test fixtures before relying on reports.
+
+Risk: Using this skill as a CI security gate before the scanner is packaged and tested may miss or misreport vulnerabilities.
+
+Mitigation: Do not enforce it as a CI security gate until executable packaging, import-time behavior, and expected detections are tested.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/phy041/skills/phy-path-traversal-audit)
+- [Canlah AI homepage](https://canlah.ai)
+- [OWASP Top 10 A01:2021 Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, JSON, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports with optional JSON findings and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports severity, CWE classification, HTTP taint context, and remediation guidance for detected path traversal and LFI patterns.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata, target metadata, and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

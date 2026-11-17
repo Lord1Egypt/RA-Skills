@@ -1,39 +1,49 @@
-## Description: <br>
-根据输入的工作任务清单，自动生成包含重点工作和工作明细的 Markdown 格式周报。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据输入的工作任务清单，自动生成包含重点工作和工作明细的 Markdown 格式中文周报。
 
-## Publisher: <br>
-[yunr-tg](https://clawhub.ai/user/yunr-tg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunr-tg](https://clawhub.ai/user/yunr-tg)
 
-## Use Case: <br>
-Employees, managers, and delivery teams use this skill to turn module-tagged task lists into structured weekly reports with summary priorities and detailed work items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated weekly reports may overstate progress or place tasks in the wrong section when the input task list is incomplete or ambiguous. <br>
-Mitigation: Review the generated Markdown, adjust progress values and categories, and confirm module names before sharing or archiving the report. <br>
+## Use Case:
 
+Employees and teams use this skill to convert Chinese work logs or task lists into a structured weekly report. It groups tasks by module and formats重点工作 and 工作明细 sections for sharing or export.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yunr-tg/weekly-report-gen) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yunr-tg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown weekly report with priority-work and work-detail sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses module names and task content from the provided task list; default progress is documented as 50% unless adjusted by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: Generated weekly reports may carry default progress values or task groupings that do not match the team's actual status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated Markdown before sharing and adjust progress, module names, and task categories to match the source task list.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yunr-tg/skills/weekly-report-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese weekly report text grouped by module, with configurable default progress and task categories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

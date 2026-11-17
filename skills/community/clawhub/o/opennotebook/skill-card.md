@@ -1,43 +1,58 @@
-## Description: <br>
-OpenNotebook knowledge management platform client for notebooks, sources, notes, AI search, transformation pipelines, models, embeddings, chat, podcasts, and related API operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenNotebook is a knowledge management client for notebooks, sources, notes, AI search, transformation pipelines, models, embeddings, chat, podcasts, and credentials.
 
-## Publisher: <br>
-[iazrael](https://clawhub.ai/user/iazrael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iazrael](https://clawhub.ai/user/iazrael)
 
-## Use Case: <br>
-Developers and agents use this skill to operate an OpenNotebook knowledge management server from the command line or Python, including notebook management, source ingestion, note management, search, transformations, and model operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload private files and text to the configured OpenNotebook server. <br>
-Mitigation: Verify the server base URL and require explicit approval before uploading sensitive content. <br>
-Risk: The skill can delete notebooks, sources, and notes or administer server resources. <br>
-Mitigation: Review destructive commands before execution and use least-privilege API credentials where possible. <br>
-Risk: API keys are required for protected endpoints. <br>
-Mitigation: Store OPENNOTEBOOK_API_KEY securely, avoid exposing it in logs or tests, and do not run integration tests with real secrets unless intentionally authorized. <br>
+## Use Case:
 
+Developers and agents use this skill to manage OpenNotebook resources through a command-line client or Python API client. It supports creating and updating notebooks, uploading and organizing sources, creating notes, searching or asking questions over the knowledge base, and managing OpenNotebook models and processing workflows.
 
-## Reference(s): <br>
-- [OpenNotebook API Reference](artifact/api_reference.md) <br>
-- [ClawHub OpenNotebook Release](https://clawhub.ai/iazrael/opennotebook) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python code examples, and JSON API responses from the configured OpenNotebook server] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus OPENNOTEBOOK_BASE_URL and OPENNOTEBOOK_API_KEY configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can perform broad administrative and destructive OpenNotebook actions, including uploads, deletes, credential changes, settings changes, model changes, and migrations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before those operations and review proposed commands before execution.
+
+Risk: The skill uses an OpenNotebook API key and may expose it if passed directly on the command line or stored carelessly.
+
+Mitigation: Use only an API key whose permissions are acceptable for agent use, avoid passing keys with --api-key, and protect ~/.openclaw/opennotebook.env.
+
+Risk: Server security evidence rates the release as suspicious because disclosure and credential-safety gaps accompany real administrative functionality.
+
+Mitigation: Review the skill carefully before installation and deploy it only in environments where its OpenNotebook permissions are understood.
+
+## Reference(s):
+
+- [OpenNotebook API Reference](artifact/api_reference.md)
+- [OpenNotebook Skill Page](https://clawhub.ai/iazrael/skills/opennotebook)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, Python usage examples, and API response data from OpenNotebook.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, OPENNOTEBOOK_BASE_URL, and OPENNOTEBOOK_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

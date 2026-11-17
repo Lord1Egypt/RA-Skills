@@ -1,0 +1,7 @@
+{
+  "deprecated": true,
+  "replacement_schema": "../schemas/style-contract.schema.json",
+  "replacement_example": "./style-contract-example.json",
+  "migration_document": "../references/migration-v1.1-to-v1.2.md",
+  "note": "This file no longer mixes schema and example content. Keep it for one compatibility cycle only."
+}

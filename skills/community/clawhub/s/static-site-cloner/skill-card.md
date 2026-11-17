@@ -1,42 +1,54 @@
-## Description: <br>
-Static site reproduction expert - Analyze target websites and manually code their structure, visual style, and basic interactions using pure HTML/CSS/JavaScript. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Static site reproduction expert - Analyze target websites and manually code their structure, visual style, and basic interactions using pure HTML/CSS/JavaScript.
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze public target websites and produce static HTML, CSS, and JavaScript that recreates page structure, visual style, and simple interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch and analyze public web pages supplied by the user. <br>
-Mitigation: Use it only with sites the user owns or is authorized to analyze, and avoid login-gated, private, payment, and account pages. <br>
-Risk: Generated static pages may accidentally retain protected text, logos, trademarks, or other original site content. <br>
-Mitigation: Review generated output before use and replace protected content with placeholders or owned assets. <br>
+## Use Case:
 
+Developers and engineers use this skill to analyze an authorized target website and produce a static front-end reproduction using HTML, CSS, and JavaScript.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/openlark/static-site-cloner) <br>
-- [Website Reproduction Examples](references/examples.md) <br>
-- [CSS layout and interaction patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown with HTML, CSS, and JavaScript code blocks or a static project file structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces pure front-end code only; no backend, database, API, server-side rendering, React, Vue, or jQuery output is expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill could be used to reproduce sites without permission or to imitate sensitive user flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for websites the user owns, has permission to inspect, or is studying lawfully; avoid brands, login pages, checkout flows, and private or internal pages.
+
+Risk: Static reproductions can copy protected text, trademarks, or media too closely.
+
+Mitigation: Replace original copy, trademarks, and sensitive assets with lawful alternatives or placeholders.
+
+## Reference(s):
+
+- [Website Reproduction Examples](references/examples.md)
+- [CSS Layout and Interaction Patterns](references/patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown and front-end code files, or a single HTML file with inline CSS and JavaScript.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Pure front-end output; no backend services or frameworks are included.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

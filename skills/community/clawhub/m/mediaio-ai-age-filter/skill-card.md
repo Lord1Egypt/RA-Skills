@@ -1,42 +1,58 @@
-## Description: <br>
-Apply AI-powered age transformation filters to images using Media.io OpenAPI to render younger or older versions of faces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Age Filter helps agents apply older or younger face transformation effects to user-authorized image URLs through Media.io OpenAPI.
 
-## Publisher: <br>
-[wondershare-boop](https://clawhub.ai/user/wondershare-boop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wondershare-boop](https://clawhub.ai/user/wondershare-boop)
 
-## Use Case: <br>
-External users and developers use this skill to submit an authorized face image URL to Media.io, choose an older or younger age effect, and retrieve generated synthetic image URLs after asynchronous processing completes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected face image URLs to Media.io for processing. <br>
-Mitigation: Use only user-provided or user-authorized images, avoid sensitive private photos unless Media.io's terms are acceptable, and present results as synthetic edited media. <br>
-Risk: The skill requires a Media.io API key and can consume paid credits. <br>
-Mitigation: Keep the API key out of logs and responses, check credits before generation, and stop with a clear message when credits are insufficient. <br>
+## Use Case:
 
+External users and developers use this skill when they need an agent to call Media.io OpenAPI to generate older or younger edited versions of user-authorized face images. It is suited to asynchronous task creation and polling workflows that return generated preview URLs.
 
-## Reference(s): <br>
-- [Media.io API documentation](https://platform.media.io/docs/) <br>
-- [Media.io developer platform](https://developer.media.io/) <br>
-- [ClawHub skill page](https://clawhub.ai/wondershare-boop/mediaio-ai-age-filter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns task status guidance and generated image preview URLs when Media.io completes processing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill sends user-provided image URLs to Media.io using a Media.io API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only user-authorized images and avoid processing images the user lacks rights to submit.
+
+Risk: Generated preview URLs represent synthetic edited media.
+
+Mitigation: Present generated outputs as edited synthetic content and avoid claims of identity verification or biometric certainty.
+
+Risk: API keys could be exposed through logs or responses.
+
+Mitigation: Keep MEDIAIO_API_KEY in the environment and avoid printing raw credentials in logs or user-facing output.
+
+## Reference(s):
+
+- [Media.io API Documentation](https://platform.media.io/docs/)
+- [Media.io Developer Platform](https://developer.media.io/)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with JSON and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEDIAIO_API_KEY, a user-authorized image URL, and polling by task_id before returning generated preview URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

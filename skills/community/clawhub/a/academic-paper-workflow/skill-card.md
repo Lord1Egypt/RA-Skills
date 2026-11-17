@@ -1,46 +1,68 @@
-## Description: <br>
-Academic Paper Workflow coordinates a seven-stage academic writing process for research, drafting, citation formatting, integrity checking, peer review, final validation, and journal-ready output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Academic Paper Workflow coordinates a seven-stage academic writing process for research, drafting, citation formatting, integrity checks, peer review, final validation, and journal-format outputs.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Researchers, students, and academic writers use this skill to run a structured paper-production workflow for SCI reviews, experimental papers, grant applications, and research reports. It guides the agent through staged research, writing, citation validation, integrity review, peer review, and submission formatting while preserving human approval checkpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependent academic skills may have their own network access or data handling behavior. <br>
-Mitigation: Review and approve each dependent skill before use, especially when working with unpublished manuscripts, citation data, or sensitive research material. <br>
-Risk: Workflow checkpoints and passed reports can be mistaken for proof of academic correctness. <br>
-Mitigation: Manually verify citations, integrity reports, peer-review results, and final submission files before relying on them for publication or submission. <br>
-Risk: Generated drafts or formatted submission files may still contain inaccurate claims, missing disclosures, or journal-specific formatting issues. <br>
-Mitigation: Keep the documented human approval checkpoints and perform a final expert review against the target journal requirements before external submission. <br>
+## Use Case:
 
+External researchers, academic authors, and research teams use this skill to run a structured paper, grant proposal, or research report workflow with staged checkpoints, citation handling, review, integrity checks, and final formatting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jirboy/academic-paper-workflow) <br>
-- [Quick start guide](README.md) <br>
-- [Workflow stages](references/workflow-stages.md) <br>
-- [Skill orchestration guide](references/skill-orchestration.md) <br>
-- [Integrity check rules](references/integrity-check-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command examples, staged checklists, and local workflow validation reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces staged paper artifacts such as research reports, drafts, citation reports, integrity reports, review reports, and submission files when paired with the dependent academic skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Academic accuracy and citation integrity can be overstated if workflow goals are treated as guarantees.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep human review for citations, evidence, ambiguous references, and final submission decisions, and run the documented integrity checks before relying on outputs.
+
+Risk: Some supporting reference documents are garbled, which can obscure workflow details.
+
+Mitigation: Ask the publisher to repair the reference documents before operational use and prefer clear release evidence, README, and SKILL.md content when reviewing the workflow.
+
+Risk: The workflow creates local output files and checkpoint JSON.
+
+Mitigation: Use an appropriate output directory, confirm filesystem permissions, and review generated files before sharing or submission.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jirboy/skills/academic-paper-workflow)
+- [README](README.md)
+- [Workflow stages](references/workflow-stages.md)
+- [Skill orchestration](references/skill-orchestration.md)
+- [Integrity check rules](references/integrity-check-rules.md)
+- [IEEE Xplore](https://ieeexplore.ieee.org)
+- [Semantic Scholar](https://www.semanticscholar.org)
+- [Google Scholar](https://scholar.google.com)
+- [arXiv](https://arxiv.org)
+- [Web of Science](https://www.webofscience.com)
+- [Scopus](https://www.scopus.com)
+- [CNKI](https://www.cnki.net)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands; generated workflow artifacts are Markdown, JSON, TXT, DOCX, and PDF files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local workflow outputs and checkpoint JSON under a user-selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

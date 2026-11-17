@@ -1,40 +1,53 @@
-## Description: <br>
-Create, audit and publish production-ready OpenClaw skills with one command. 10 modes included. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, audit and publish production-ready OpenClaw skills with one command. 10 modes included.
 
-## Publisher: <br>
-[mkpareek0315](https://clawhub.ai/user/mkpareek0315) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mkpareek0315](https://clawhub.ai/user/mkpareek0315)
 
-## Use Case: <br>
-Developers and skill publishers use Clawsmith to create, audit, optimize, and prepare OpenClaw skills for ClawHub publication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated SKILL.md files, helper scripts, or publish commands may be incorrect or unsuitable for a user's intended release. <br>
-Mitigation: Review generated files, local write locations, helper scripts, and clawhub publish commands before running or publishing them. <br>
-Risk: Bulk creation or publishing workflows can amplify mistakes across multiple generated skills. <br>
-Mitigation: Validate and scan each generated skill individually before deployment or publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Clawsmith ClawHub release page](https://clawhub.ai/mkpareek0315/clawsmith) <br>
-- [Publisher profile](https://clawhub.ai/user/mkpareek0315) <br>
+## Use Case:
 
+Developers and OpenClaw skill publishers use Clawsmith to create, audit, optimize, and prepare OpenClaw skills for ClawHub publication.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline commands and generated SKILL.md content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include skill metadata, validation findings, templates, helper scripts, README content, and publish commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated skills may contain incorrect metadata, dependency declarations, environment variable requirements, or helper scripts if accepted without review.
+
+Mitigation: Review generated skills before saving or publishing them, with special attention to metadata, required binaries, environment variables, and generated helper scripts.
+
+Risk: The skill depends on the ClawHub CLI, which introduces supply-chain risk if installed from an untrusted or mutable source.
+
+Mitigation: Install the ClawHub CLI only from a trusted registry or a pinned version when possible.
+
+## Reference(s):
+
+- [Clawsmith on ClawHub](https://clawhub.ai/mkpareek0315/skills/clawsmith)
+- [Publisher Profile](https://clawhub.ai/user/mkpareek0315)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with SKILL.md content, examples, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated skill frontmatter, metadata declarations, validation findings, helper scripts, README content, and publish commands.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and target metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

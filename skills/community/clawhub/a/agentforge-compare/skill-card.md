@@ -1,41 +1,53 @@
-## Description: <br>
-OpenClaw AgentForge Compare is a hosted MCP skill for comparing, profiling, recommending, and estimating costs for AI coding assistants. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw AgentForge Compare is a remote MCP skill for comparing AI coding tools, reviewing feature and pricing profiles, generating recommendations, and calculating team costs.
 
-## Publisher: <br>
-[yedanyagamiai-cmd](https://clawhub.ai/user/yedanyagamiai-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yedanyagamiai-cmd](https://clawhub.ai/user/yedanyagamiai-cmd)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to compare AI coding tools, inspect individual tool profiles, receive tool recommendations, and estimate team-level costs before selecting tooling. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hosted MCP prompts may disclose AI-tool comparison needs, procurement plans, sensitive budgets, or proprietary workflow details to the provider. <br>
-Mitigation: Avoid sharing confidential details unless the operator is trusted; sanitize team, budget, and workflow inputs before use. <br>
-Risk: Pricing and recommendation outputs can become outdated or may not reflect final vendor terms. <br>
-Mitigation: Verify pricing, terms, and procurement requirements against official vendor pages before purchase decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw AgentForge Compare on ClawHub](https://clawhub.ai/yedanyagamiai-cmd/agentforge-compare) <br>
-- [OpenClaw MCP Servers Homepage](https://github.com/yedanyagamiai-cmd/openclaw-mcp-servers) <br>
-- [AgentForge Compare MCP Endpoint](https://agentforge-compare-mcp.yagami8095.workers.dev/mcp) <br>
+## Use Case:
 
+Developers and engineering teams use this skill to compare AI coding assistants, inspect tool profiles, estimate costs, and request recommendations based on team size, budget, workflow, and required features.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text, with JSON configuration snippets for MCP setup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hosted MCP responses may include comparison matrices, pricing breakdowns, recommendations, and cost calculations; Pro tools require paid access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recommendation inputs such as team size, budget, workflow, and required features are sent to a remote MCP service.
+
+Mitigation: Avoid sending sensitive internal details, and use only information appropriate for the remote service.
+
+Risk: Pricing and recommendation outputs may be incomplete or outdated for purchasing decisions.
+
+Mitigation: Verify current prices, plan terms, and feature availability on official vendor sites before buying.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yedanyagamiai-cmd/skills/agentforge-compare)
+- [OpenClaw MCP servers homepage](https://github.com/yedanyagamiai-cmd/openclaw-mcp-servers)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown responses with comparison matrices, profiles, recommendations, cost breakdowns, and MCP configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote MCP service responses may depend on current tracked pricing and tool metadata; users should verify vendor pricing before purchasing.]
+
+## Skill Version(s):
+
+2.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

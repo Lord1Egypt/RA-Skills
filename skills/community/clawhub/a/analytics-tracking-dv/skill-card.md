@@ -1,44 +1,62 @@
-## Description: <br>
-Provides utilities and templates for UTM campaign links, conversion pixel snippets, attribution rules, and product tracking plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides utilities for UTM link generation, conversion pixel snippets, attribution rules, and tracking-plan guidance for digital products.
 
-## Publisher: <br>
-[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[clawdiri-ai](https://clawhub.ai/user/clawdiri-ai)
 
-## Use Case: <br>
-Developers, marketing operators, and product teams use this skill to standardize campaign links, conversion pixel setup, attribution rules, and tracking-plan documentation for digital products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics and pixel guidance can create privacy or consent obligations when deployed with GA4, Facebook Pixel, Gumroad, webhooks, or Segment. <br>
-Mitigation: Confirm consent requirements, update the privacy notice, avoid unnecessary personal data, and test tracking only after the deployment context is approved. <br>
-Risk: The release evidence flags a mismatch between Segment-oriented skill text and UTM/pixel-oriented documentation. <br>
-Mitigation: Resolve the documentation mismatch before operators rely on the skill so the intended tracking approach is clear. <br>
-Risk: Pixel IDs, measurement IDs, conversion IDs, and labels are placeholders, and the artifact does not verify installation or firing. <br>
-Mitigation: Replace placeholders with authorized platform identifiers and manually test conversion tracking end to end before production use. <br>
+## Use Case:
 
+Developers and marketing engineers use this skill to create campaign URLs, prepare conversion pixel snippets, define attribution settings, and document product analytics instrumentation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/clawdiri-ai/analytics-tracking-dv) <br>
-- [README.md](README.md) <br>
-- [TRACKING-PLAN.md](TRACKING-PLAN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples, JSON configuration, and code snippets.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes placeholder pixel IDs and tracking templates that require operator configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The Segment examples in the skill definition include names, emails, user IDs, and traits without enough consent or data-processing context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not send personal data through analytics calls unless lawful basis, consent, retention, and processing terms are documented.
+
+Risk: Meta and Google tracking snippets can set cookies or collect identifiers when deployed.
+
+Mitigation: Gate pixel deployment behind a consent banner and update the privacy policy before using the snippets.
+
+Risk: The shipped files focus on UTM, pixel, and attribution setup, while the skill definition claims Segment tracking commands.
+
+Mitigation: Review the release before installation and treat the Segment command examples as under-specified until implementation matches the documentation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/clawdiri-ai/skills/analytics-tracking-dv)
+- [Publisher Profile](https://clawhub.ai/user/clawdiri-ai)
+- [README](artifact/README.md)
+- [Tracking Plan](artifact/TRACKING-PLAN.md)
+- [Pixel Configurations](artifact/pixel_configs.json)
+- [Attribution Configuration](artifact/attribution_config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and HTML or JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external Python dependencies; generated tracking snippets require platform IDs and consent-aware deployment.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

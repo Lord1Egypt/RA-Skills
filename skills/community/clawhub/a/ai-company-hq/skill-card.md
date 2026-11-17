@@ -1,45 +1,59 @@
-## Description: <br>
-HQ skill: Cross-agent coordination, conflict resolution, knowledge base management, audit logging, strategic scheduling, task orchestration, IMA sync hub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Micro-tier governance skill for small AI agent organizations (1-3 agents). Consolidates 18 enterprise function blocks into two departments, governance-and-delivery and engineering-and-safety, covering strategy, risk, compliance, architecture, safety, and delivery. Ships ten harness code templates, three prompt frameworks, a full error-code catalog, and a scaling specification. Provides two self-contained human-paste prompts (method implementation, robustness checks) usable in any AI chat window. Source files are authored in English; runtime output follows the user's language per the language policy, with English fallback. Includes propose-only self-scaling that evaluates scaling thresholds and proposes tier upgrades up to group. Use when a small team needs enterprise-grade governance, engineering harnesses, PII masking, AIGC disclosure, or tier-upgrade assessment for its agents.
 
-## Publisher: <br>
-[johnsmithfan](https://clawhub.ai/user/johnsmithfan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnsmithfan](https://clawhub.ai/user/johnsmithfan)
 
-## Use Case: <br>
-Developers and operators use this agent skill as a central coordination hub for AI-company workflows, including cross-agent routing, conflict resolution, knowledge-base management, audit logging, scheduling, and task orchestration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+GPL-3.0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad cross-agent, state, logging, and knowledge-capture authority may exceed the user's intended scope. <br>
-Mitigation: Restrict allowed file paths, API destinations, MCP recipients, and subagent use before installing or invoking the skill. <br>
-Risk: Broadcasts, shared-state changes, and knowledge-base publication can affect multiple agents or workflows. <br>
-Mitigation: Require explicit confirmation for broadcasts, shared-state changes, and KB publication. <br>
-Risk: Audit logging and knowledge capture can retain sensitive or unnecessary information. <br>
-Mitigation: Define privacy, redaction, retention, and deletion rules before use. <br>
+## Use Case:
 
+Developers, operators, and small AI agent teams use this skill to route governance, delivery, engineering, safety, compliance, PII masking, audit-trace, and tier-upgrade assessment work across a micro-tier agent organization.
 
-## Reference(s): <br>
-- [AI Company HQ ClawHub release](https://clawhub.ai/johnsmithfan/ai-company-hq) <br>
-- [AI Company HQ homepage](https://clawhub.com/skills/ai-company-hq) <br>
-- [Method Patterns & Detailed Specifications](references/method-patterns.md) <br>
-- [Department Integration Process](references/department-integration-process.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with optional code, shell command, configuration, and report content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce implementation plans, robustness findings, test cases, documentation, workflow results, audit-trail summaries, and quality metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1-en2 (source: ClawHub release metadata; artifact frontmatter lists 3.0.0) <br>
+Risk: The security review reports broad workspace read/write and agent-session/subagent permissions with under-disclosed side effects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in workspaces where those authorities are acceptable, and review expected state-file updates and generated upgrade packages before use.
+
+Risk: Self-scaling actions can create tier-upgrade proposals and alter operational state.
+
+Mitigation: Run self-scaling actions manually after review; keep tier changes human-approved and inspect generated upgrade packages before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/johnsmithfan/skills/ai-company)
+- [Server-resolved GitHub source](https://github.com/JohnSmithfan/AI-Company)
+- [Governance and Delivery Department](references/departments/governance-and-delivery.md)
+- [Engineering and Safety Department](references/departments/engineering-and-safety.md)
+- [Method Patterns](references/method-patterns.md)
+- [Error Codes](references/error-codes.md)
+- [Self-Scaling Governance Reference](references/scaling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or structured text with optional code, command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime output follows the user's requested language when provided, with English fallback; immutable identifiers such as slugs, error codes, file paths, and function names remain untranslated.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, CHANGELOG, and artifact _meta.json; server release metadata reports 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

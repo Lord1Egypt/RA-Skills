@@ -1,45 +1,54 @@
-## Description: <br>
-Guides Douyin video analysis and short-form video scripting by producing viral-analysis reports, candidate titles, and 15-second storyboard scripts from user-provided links, topics, and media. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音爆款视频分析与创作引导工具：根据抖音视频链接生成爆款分析报告，或根据主题和用户素材生成候选标题与完整的15秒短视频分镜脚本。
 
-## Publisher: <br>
-[zengrb111](https://clawhub.ai/user/zengrb111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zengrb111](https://clawhub.ai/user/zengrb111)
 
-## Use Case: <br>
-Content creators, marketers, and social media teams use this skill to analyze Douyin videos, identify reusable content patterns, generate title options, and draft 15-second short-video storyboards from their own themes and uploaded media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analysis inputs may include usernames, faces, private messages, account details, comments, IDs, or other personal information. <br>
-Mitigation: Redact unnecessary personal details from links, screenshots, uploads, and comment data before using the skill. <br>
-Risk: The skill may recommend third-party crawler or downloader tools for collecting Douyin video data. <br>
-Mitigation: Review each external tool, its source, dependencies, permissions, and platform compliance requirements before installing or running it. <br>
-Risk: Generated titles and scripts may overfit another creator's successful content pattern. <br>
-Mitigation: Use the analysis as planning guidance and revise outputs into original content before publishing. <br>
+## Use Case:
 
+External creators, marketers, and social media operators use this skill to analyze Douyin viral-video patterns and turn their own topics or media assets into title options, content guidance, and 15-second storyboard scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zengrb111/douyin-video-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/zengrb111) <br>
-- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) <br>
-- [TikTokDownloader](https://github.com/JoeanAmier/TikTokDownloader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown reports, title lists, storyboard tables, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include analysis tables, A/B hook variants, posting suggestions, and external tool setup steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends cloning and running third-party crawler or downloader tools to collect Douyin video data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sandbox those tools before use; prefer manual screenshots or user-provided metrics when automated collection is unnecessary.
+
+Risk: Running external data tools can expose Douyin credentials, browser profiles, home directories, SSH keys, tokens, or unrelated files if configured broadly.
+
+Mitigation: Do not enter Douyin credentials or expose sensitive local files unless the tools have been independently verified and isolated.
+
+## Reference(s):
+
+- [MediaCrawler](https://github.com/NanmiCoder/MediaCrawler)
+- [TikTokDownloader](https://github.com/JoeanAmier/TikTokDownloader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown analysis reports, candidate-title lists, and 15-second storyboard scripts with occasional inline shell commands for optional data tools.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose a Markdown report filename such as 爆款分析_视频ID_日期.md and asks users for screenshots, metrics, or media assets when automated data tools are unavailable.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

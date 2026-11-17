@@ -1,41 +1,55 @@
-## Description: <br>
-Call GET /api/web/markdown/v1 for Web Page Markdown Content through JustOneAPI with url. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/web/markdown/v1 for Web Page Markdown Content through JustOneAPI with url.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve the Markdown content of a web page through JustOneAPI by providing a target URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Target URLs are sent to JustOneAPI and may reveal private, intranet, localhost, presigned, or secret-containing locations. <br>
-Mitigation: Use only URLs that are appropriate to share with JustOneAPI, and avoid private or secret-bearing URLs. <br>
-Risk: The API token is passed through command-line arguments and a URL query parameter. <br>
-Mitigation: Handle JUST_ONE_API_TOKEN as sensitive secret material and avoid exposing command invocations, logs, screenshots, or shell history that include the token. <br>
+## Use Case:
 
+Developers and agents use this skill to fetch Markdown content for a supplied web page URL through the JustOneAPI web markdown endpoint.
 
-## Reference(s): <br>
-- [JustOneAPI API Homepage](https://api.justoneapi.com) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_web_markdown&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown summary followed by JSON response data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and JUST_ONE_API_TOKEN; the endpoint requires a url query parameter.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Target URLs are sent to JustOneAPI and may be visible in service-side URL logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive or signed URLs unless sharing them with JustOneAPI is acceptable.
+
+Risk: The JustOneAPI token can be exposed through local process metadata because it is passed as a command-line argument.
+
+Mitigation: Use a narrowly scoped, revocable token and rotate it if command history or process metadata may have been exposed.
+
+## Reference(s):
+
+- [JustOneAPI homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_web_markdown&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_web_markdown&utm_content=project_link)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summary with optional raw JSON from the API response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a URL input and a JUST_ONE_API_TOKEN credential.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

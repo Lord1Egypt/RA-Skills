@@ -1,41 +1,58 @@
-## Description: <br>
-Converts dentist-supplied comprehensive-exam findings into a draft phased, CDT-coded dental treatment plan with alternatives, risks, benefits, cost narrative prompts, and an informed-consent prompt sheet for licensed-dentist review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts comprehensive dental exam findings into a DRAFT phased, CDT-coded treatment plan with alternatives, risks, benefits, and an informed-consent prompt sheet for licensed-dentist review.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-Dental professionals, supervised dental trainees, and treatment coordinators use this skill to turn clinical findings into a structured draft treatment-plan presentation. It supports phased care planning, CDT-code drafting, alternatives and risk prompts, and unresolved decision lists for review by the licensed dentist before patient presentation or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft treatment plans may contain incorrect CDT codes, sequencing, clinical assumptions, fees, risks, or consent language. <br>
-Mitigation: The licensed dentist must verify and edit all generated codes, sequencing, estimates, risks, and consent language before presentation or treatment. <br>
-Risk: Unnecessary patient identifiers or protected health information could be included in user-provided case details. <br>
-Mitigation: Use chart numbers or initials only, redact direct identifiers from drafts, and avoid entering unnecessary patient identifiers. <br>
-Risk: Patients could mistake draft planning support for diagnosis, consent, or final treatment advice. <br>
-Mitigation: Use the skill only with dental professionals or supervised staff, keep outputs marked DRAFT, and route patient-facing decisions through the licensed dentist. <br>
+## Use Case:
 
+External dental professionals, dental residents, and treatment coordinators use this skill to turn clinician-supplied comprehensive exam findings into a structured draft treatment plan for licensed dentist review. It supports case presentation preparation, informed-consent discussion prompts, phasing, CDT-code confirmation, and non-binding cost narrative scaffolding.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown draft treatment plan with tables, phase sections, consent prompts, and unresolved decision lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are marked as drafts for licensed dentist review and avoid direct patient identifiers, final diagnoses, binding fees, final CDT coding, or signed consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Draft plans may contain incorrect diagnosis, coding, sequencing, fees, referrals, or consent language if used without clinician review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only as a drafting aid and require a licensed dentist to verify diagnosis, CDT codes, sequencing, fees, referrals, and informed-consent materials before patient use.
+
+Risk: Dental case details may include sensitive patient information.
+
+Mitigation: Do not enter direct patient identifiers; use chart numbers or initials and redact full names, dates of birth, contact details, insurance member IDs, and other direct identifiers.
+
+Risk: Patients could misread the output as a final treatment plan or signed informed consent.
+
+Mitigation: Keep outputs marked DRAFT and route them to a licensed dentist or supervised staff member for review before presentation, signature, or treatment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/dental-treatment-plan-presenter)
+- [Open-Skill-Hub issues](https://github.com/archlab-space/Open-Skill-Hub/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown draft treatment plan with tables, patient-facing summaries, decision points, and informed-consent prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are marked DRAFT and intended for licensed dentist review; the skill should not collect direct patient identifiers or provide final diagnoses, final CDT codes, binding fees, medication dosing, or signed consent.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

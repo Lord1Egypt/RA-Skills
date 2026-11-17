@@ -1,42 +1,59 @@
-## Description: <br>
-查询北京花粉实时监测和预报数据，生成包含区级浓度、站点趋势、总量预报与分类预报的结果。北京 16 个固定站点，每区一个，用区名指定。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询北京花粉实时监测和预报数据，生成包含区级浓度、站点趋势、总量预报与分类预报的结果。
 
-## Publisher: <br>
-[ruochenlyu](https://clawhub.ai/user/ruochenlyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruochenlyu](https://clawhub.ai/user/ruochenlyu)
 
-## Use Case: <br>
-External users and agents use this skill to query Beijing district-level pollen readings, station trends, and forecasts. It can also generate daily pollen briefings for Beijing districts in JSON or readable text form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound requests to the documented Beijing pollen API when users ask about Beijing pollen conditions. <br>
-Mitigation: Use it for Beijing pollen queries only, and review implicit invocation settings if calls should require explicit confirmation. <br>
-Risk: Pollen readings and forecasts can be unavailable, delayed, or empty if the upstream public API fails or has no current data. <br>
-Mitigation: Check the returned ok, warnings, and error fields before relying on the result or sending a daily briefing. <br>
+## Use Case:
 
+External users and agents use this skill to query Beijing district-level pollen conditions, trends, forecasts, and daily briefings. It supports human-readable reports and structured JSON for downstream automation.
 
-## Reference(s): <br>
-- [北京花粉监测 API 约定](references/api-contract.md) <br>
-- [Beijing public pollen API](https://pollenwechat.bjpws.com) <br>
-- [ClawHub skill page](https://clawhub.ai/ruochenlyu/beijing-pollen-monitor) <br>
+### Deployment Geography for Use:
 
+China (Beijing pollen data only)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON, with optional human-readable text in data.text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, curl, and jq; supports report, overview, stations, history, forecast, and daily query modes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill makes outbound requests to the configured public Beijing pollen API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy it only in environments where that outbound network access is allowed and expected.
+
+Risk: The skill depends on bash, curl, and jq at runtime.
+
+Mitigation: Verify those dependencies are installed before invoking the skill, and handle dependency errors returned by the script.
+
+Risk: The skill is limited to Beijing pollen data and should not be used for other geographies.
+
+Mitigation: Use district-scoped Beijing queries only, and route non-Beijing pollen requests to another source.
+
+## Reference(s):
+
+- [北京花粉监测 API 约定](references/api-contract.md)
+- [ClawHub skill page](https://clawhub.ai/ruochenlyu/skills/beijing-pollen-monitor)
+- [Upstream Beijing pollen API host](https://pollenwechat.bjpws.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON by default; human-readable text is returned inside data.text when text format is requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash, curl, and jq; makes outbound requests to the configured public Beijing pollen API host.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

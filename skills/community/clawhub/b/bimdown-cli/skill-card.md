@@ -1,46 +1,56 @@
-## Description: <br>
-A bridge between AI and building data for reading and creating BIM models using code-like CSV and SVG workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A bridge between AI and building data. Read & create BIM exactly like writing code. Execute architectural design, or just model your own house!
 
-## Publisher: <br>
-[novashang](https://clawhub.ai/user/novashang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[novashang](https://clawhub.ai/user/novashang)
 
-## Use Case: <br>
-Developers, architects, BIM modelers, and AI coding agents use this skill to create, inspect, validate, render, and optionally publish BimDown building models from briefs or existing plans. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the external bimdown-cli npm package. <br>
-Mitigation: Confirm the package source and obtain user permission before installing or running privileged global npm installation commands. <br>
-Risk: Publishing uploads the project directory, including CSV, SVG, GLB files, filenames, room names, geometry, and notes, to a sharing endpoint. <br>
-Mitigation: Review the project for confidential information and ask for explicit user approval before the first publish. <br>
-Risk: The publish destination can be changed with BIMCLAW_API or --api. <br>
-Mitigation: Confirm the configured endpoint before publishing, especially when an override is present. <br>
+## Use Case:
 
+Developers, architects, engineers, and external agents use this skill to create, inspect, validate, render, and share BimDown BIM projects from design briefs or existing plans.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/novashang/bimdown-cli) <br>
-- [Publisher profile](https://clawhub.ai/user/novashang) <br>
-- [BimClaw publish endpoint](https://bim-claw.com/api/shares/publish) <br>
-- [Building Design SOP](artifact/references/building-design.md) <br>
-- [BIM Modeling SOP](artifact/references/bim-modeling.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and BIM CSV/SVG file content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local BimDown project files and may optionally request user approval to publish a zipped project for web preview.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill depends on the bimdown-cli package and may require installation before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned or project-local bimdown-cli install when stronger supply-chain control is required, and confirm the binary before invoking BimDown workflows.
+
+Risk: The optional publish flow uploads BIM project files and returns a public-by-link share URL.
+
+Mitigation: Publish only with explicit user consent and only when project files, geometry, room names, materials, notes, and GLB meshes can be shared publicly by link.
+
+## Reference(s):
+
+- [BIM Modeling SOP](artifact/references/bim-modeling.md)
+- [Building Design SOP](artifact/references/building-design.md)
+- [BimDown GitHub repository](https://github.com/NovaShang/BimDown)
+- [BimClaw publish API endpoint](https://bim-claw.com/api/shares/publish)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and BIM CSV/SVG code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or modify local BimDown project files and may optionally publish a project after explicit user consent.]
+
+## Skill Version(s):
+
+1.4.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

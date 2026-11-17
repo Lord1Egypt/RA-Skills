@@ -1,43 +1,52 @@
-## Description: <br>
-Analyze and resolve BGP oscillation and BGP route leaks in Azure Virtual WAN-style hub-and-spoke topologies and similar cloud-managed BGP environments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze and resolve BGP oscillation and BGP route leaks in Azure Virtual WAN-style hub-and-spoke topologies and similar cloud-managed BGP environments.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and network engineers use this skill to analyze Azure Virtual WAN-style BGP instability, route leaks, preference cycles, and candidate mitigations. It helps distinguish allowed policy-level fixes from prohibited topology-disrupting actions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Routing recommendations could be incorrect for a user's live Azure network topology or policy constraints.
+
+Mitigation: Treat outputs as advisory and verify proposed changes against the user's network design, change-control process, and Azure documentation before applying them.
+
+Risk: The skill discusses prohibited fixes such as disabling BGP, shutting down peering, removing connectivity, or restarting gateways.
+
+Mitigation: Reject topology-disrupting fixes and prefer policy-level mitigations such as routing intent, export policy, communities, UDRs, and ingress filtering.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and network engineers use this skill to analyze Azure Virtual WAN-style hub-and-spoke BGP issues, identify oscillation or route-leak conditions from supplied topology and routing evidence, and select allowed policy-level mitigations. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Routing recommendations could be unsafe if topology, route-leak, or preference-cycle evidence is incomplete or inaccurate. <br>
-Mitigation: Verify all topology and routing inputs before relying on the analysis. <br>
-Risk: Suggested Azure routing policy, UDR, or export-filter changes could affect live traffic if applied without review. <br>
-Mitigation: Have a qualified network operator review any proposed change before applying it to a live network. <br>
-Risk: Sensitive network details or credentials could be exposed if included in prompts. <br>
-Mitigation: Do not paste secrets into prompts, and redact sensitive operational data before using the skill. <br>
+**Output Format:** [Markdown analysis and recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/wu-uk/azure-bgp-oscillation-route-leak-azure-bgp) <br>
-- [Source skill instructions](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [Advisory routing guidance should be verified against the user's own network design and Azure documentation before policy changes are applied.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown analysis with policy recommendations and fix classifications] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include explanations of preference cycles, valley-free violations, allowed mitigations, and rejected prohibited fixes.] <br>
+0.1.0 (source: release evidence)
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

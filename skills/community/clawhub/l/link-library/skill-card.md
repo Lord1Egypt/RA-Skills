@@ -1,42 +1,57 @@
-## Description: <br>
-Personal knowledge base that captures web content such as articles, tweets, videos, podcasts, images, and PDFs, then makes saved material retrievable for future conversations and writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personal knowledge base that captures web content, including articles, tweets and threads, videos, podcasts, images, and PDFs, and makes it retrievable for future conversations and writing.
 
-## Publisher: <br>
-[Nowhitestar](https://clawhub.ai/user/Nowhitestar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nowhitestar](https://clawhub.ai/user/nowhitestar)
 
-## Use Case: <br>
-Agent users who maintain a personal research library use this skill to save web links, preserve original content and metadata, retrieve prior items, and cite saved material in later writing or discussion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared links may be fetched and saved locally in full text, which can persist sensitive or private material beyond the current conversation. <br>
-Mitigation: Use the skill only for content intended to become part of a persistent local library, and explicitly decline saving for temporary summaries or private links. <br>
-Risk: Private or token-bearing URLs could expose credentials or restricted content if saved as library entries. <br>
-Mitigation: Avoid saving URLs that contain access tokens, session identifiers, private documents, or other sensitive parameters. <br>
-Risk: Some fetch workflows rely on external helper tools or commands whose behavior depends on the local environment. <br>
-Mitigation: Verify helper tools before use and review fetched content and generated entries before relying on them. <br>
+## Use Case:
 
+External users and agents use Link Library to save web content with metadata, summaries, tags, and citations, then retrieve saved material for later discussion or writing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Nowhitestar/link-library) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown entries, concise chat responses, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local library entries with YAML frontmatter, summaries, tags, original content, notes, and related links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can persist full copies of web pages, tweets, PDFs, and other content, which may include private, sensitive, copyrighted, or untrusted text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit save commands for sensitive sources, avoid private links, and review stored entries before reusing or sharing saved material.
+
+Risk: Interest-based saving may capture content when the user expected only a quick discussion.
+
+Mitigation: Confirm ambiguous saves and report the saved title, tags, and path so unwanted entries can be removed.
+
+Risk: Saved external content can later be retrieved into agent context and influence future writing.
+
+Mitigation: Treat retrieved entries as untrusted source material, preserve citations to saved entries, and review generated outputs against the original content before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nowhitestar/skills/link-library)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown files with YAML frontmatter, concise text confirmations, and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Saved entries preserve original content with metadata, summaries, tags, notes, and related-entry links.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Guides agents in using TrueProfit MCP tools to analyze Shopify store profit, revenue, orders, products, ad costs, shipping, COGS, ROAS, and customer metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+TrueProfit profit analytics expert. Use this skill whenever working with TrueProfit MCP tools to analyze store performance, query profit data, orders, products, ad costs, or customer metrics.
 
-## Publisher: <br>
-[trueprofitdev](https://clawhub.ai/user/trueprofitdev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trueprofitdev](https://clawhub.ai/user/trueprofitdev)
 
-## Use Case: <br>
-External e-commerce merchants, analysts, and operators use this skill to query TrueProfit-connected Shopify performance data and choose the right MCP tools for profit, advertising, order, product, shipping, and customer analysis. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide access to sensitive shop, order, product, advertising, and customer data through the intended TrueProfit MCP server. <br>
-Mitigation: Use it only with the intended TrueProfit store, confirm the shop and date range before analysis, and avoid unnecessary customer-level lookups. <br>
-Risk: COGS updates can affect all variants and retroactively change historical profit calculations. <br>
-Mitigation: Require explicit user confirmation before COGS updates, especially bulk updates where variant_id is omitted or set to 0. <br>
-Risk: Incomplete COGS, delayed ad attribution, refunds, or mixed shop currencies can make profit analysis misleading. <br>
-Mitigation: Flag COGS gaps, recent ad reporting lag, refund spikes, and currency differences before presenting or comparing profit metrics. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/trueprofitdev/trueprofit) <br>
-- [TrueProfit MCP server](https://mcp.trueprofit.io/mcp) <br>
-- [TrueProfit skill download](https://mcp.trueprofit.io/skill) <br>
+## Use Case:
 
+External e-commerce merchants, Shopify operators, and agency users use this skill to query TrueProfit-connected stores for profit, revenue, order, product, advertising, shipping, and customer analytics.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with workflow steps, tool-selection tables, and concise analytics presentation advice.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to request confirmation for shop context, date ranges, sensitive customer lookups, and retroactive COGS updates.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill instructs agents to replace the installed skill file with remote content returned by the TrueProfit MCP server.
+
+Mitigation: Review updates through a trusted package or marketplace flow, inspect the diff, and verify provenance before replacing the installed skill file.
+
+Risk: Using the skill requires connecting an authenticated TrueProfit account and exposing merchant analytics through MCP tools.
+
+Mitigation: Install only for trusted stores and accounts, and confirm the user is comfortable using the connected TrueProfit data for analytics.
+
+Risk: Profit analytics may be misleading when COGS is missing, ad platform data is delayed, currencies differ across shops, or UTM coverage is incomplete.
+
+Mitigation: Surface the relevant caveat with results, avoid mixing currencies without confirmation and conversion, and warn when COGS or attribution gaps affect the answer.
+
+## Reference(s):
+
+- [TrueProfit ClawHub skill page](https://clawhub.ai/trueprofitdev/skills/trueprofit)
+- [TrueProfit MCP server](https://mcp.trueprofit.io/mcp)
+- [TrueProfit skill download](https://mcp.trueprofit.io/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with concise analytics summaries, tables, tool-call guidance, and caveats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an authenticated TrueProfit MCP connection and shop context before querying merchant analytics.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

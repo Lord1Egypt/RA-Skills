@@ -1,39 +1,60 @@
-## Description: <br>
-BSC (Binance Smart Chain) trading on PancakeSwap, including wallet creation, token swaps, pair discovery, and balance management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BSC (Binance Smart Chain) trading on PancakeSwap -- wallet creation, token swaps, pair discovery, and balance management.
 
-## Publisher: <br>
-[KJ-Script](https://clawhub.ai/user/KJ-Script) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kj-script](https://clawhub.ai/user/kj-script)
 
-## Use Case: <br>
-External users and developers use this skill to configure a dedicated BSC wallet, discover BEP-20 liquidity, check balances, and prepare or execute PancakeSwap V2 swaps with user confirmation. Use testnet first or a low-balance wallet, and verify token addresses, amounts, chain ID, router address, and slippage before approving transactions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
-
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/KJ-Script/pancake-swap-skills) <br>
-- [PancakeSwap](https://pancakeswap.finance) <br>
-- [PancakeSwap V2 contracts documentation](https://docs.pancakeswap.finance/developers/smart-contracts/pancakeswap-exchange/v2-contracts) <br>
-- [BSC explorer](https://bscscan.com) <br>
+### License/Terms of Use:
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JavaScript examples, configuration values, and transaction guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet-file handling, quote and liquidity checks, transaction preparation, and safety guidance for dedicated low-balance or testnet wallets.] <br>
+## Use Case:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata; artifact frontmatter lists 2.0.0) <br>
+Developers and external users can use this skill to guide an agent through BSC wallet setup, BEP-20 token discovery, PancakeSwap quote checks, balance review, and user-confirmed swaps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to persist and read BSC private-key material for signing swaps.
+
+Mitigation: Use a dedicated low-balance wallet, prefer an encrypted keystore or external signer, restrict wallet file permissions, and review each swap before signing.
+
+Risk: Optional ClawChain registration introduces an identity-binding path that may expose additional account linkage.
+
+Mitigation: Skip ClawChain registration unless event tracking is explicitly needed, and review credential use before enabling that path.
+
+Risk: Automated trading actions can lose funds through bad token addresses, poor liquidity, slippage, or transaction mistakes.
+
+Mitigation: Require user confirmation, verify token contracts and liquidity, check quotes before execution, and keep funded amounts small.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kj-script/skills/pancake-swap-skills)
+- [PancakeSwap](https://pancakeswap.finance)
+- [PancakeSwap BSC Swap UI](https://pancakeswap.finance/swap?chain=bsc)
+- [PancakeSwap V2 Contracts](https://docs.pancakeswap.finance/developers/smart-contracts/pancakeswap-exchange/v2-contracts)
+- [BscScan](https://bscscan.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash, JavaScript, JSON, and transaction-flow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes wallet file paths, environment variables, contract addresses, quote and swap flows, and security handling notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,56 @@
-## Description: <br>
-Generates customized incident response playbooks tailored to organizational assessment data and security requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates customized incident response playbooks tailored to organizational assessment data and security requirements.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security operations centers, incident response teams, compliance officers, and security architects use this skill to generate organization-specific incident response playbooks from assessment data, security controls, risk profiles, compliance frameworks, and threat priorities. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted assessment data may include sensitive organization details, critical systems, incident-response contacts, or security posture information. <br>
-Mitigation: Verify the API operator, privacy terms, retention and logging practices, and authorization to share the data before using real organization information. <br>
-Risk: Generated response procedures, escalation paths, legal considerations, or notification timelines may be incomplete or unsuitable for a specific organization. <br>
-Mitigation: Have security, incident response, compliance, or legal staff review generated playbooks before operational use. <br>
-Risk: Testing with realistic data may expose secrets or unnecessary personal contact information. <br>
-Mitigation: Use redacted placeholders for testing and avoid submitting secrets or unnecessary personal information. <br>
+## Use Case:
 
+Security operations centers, incident response teams, compliance officers, and security architects use this skill to generate organization-specific incident response playbooks from assessment data, risk context, compliance frameworks, and threat profiles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-ir-playbook-generator) <br>
-- [Incident Response Playbook Generator API documentation](https://api.mkkpro.com:8118/docs) <br>
-- [Incident Response Playbook Generator API route](https://api.mkkpro.com/security/ir-playbook-generator) <br>
-- [ToolWeb](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [JSON response containing playbook sections, roles, communication templates, escalation procedures, legal considerations, and contact lists.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated playbooks should be reviewed by security or legal staff before operational use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version) <br>
+Risk: The skill sends organizational security assessment data to an external API, which may include sensitive incident response context, system inventories, compliance requirements, or contact information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the provider's security, retention, deletion, data residency, and access-control practices before use, and avoid submitting real incident evidence, credentials, tokens, private keys, regulated personal data, emergency contact lists, or detailed internal system inventories unless those controls have been approved.
+
+Risk: Generated playbooks may include operational, escalation, or regulatory guidance that is not sufficient for a specific organization or jurisdiction.
+
+Mitigation: Have security, legal, compliance, and incident-response stakeholders review generated playbooks before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-ir-playbook-generator)
+- [API documentation](https://api.mkkpro.com:8118/docs)
+- [API gateway route](https://api.mkkpro.com/security/ir-playbook-generator)
+- [OpenAPI specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON response containing playbook sections suitable for documentation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The response includes executive summary text, response phases, roles, communication templates, escalation procedures, legal considerations, contact lists, session ID, and timestamp.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

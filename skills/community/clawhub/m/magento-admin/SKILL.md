@@ -1,6 +1,6 @@
 ---
 name: magento-admin
-version: "5.6.1"
+version: "5.7.0"
 description: >
   Complete Magento 2 store administration via SSH key auth, REST API, GraphQL,
   and direct DB access. For server owners on their own infrastructure.
@@ -69,11 +69,15 @@ security:
     Connects only to MAGENTO_HOST. Nothing sent to third parties.
 
 prompt_injection_mitigation: >
-  All commands use fixed config variables only. Free-form user input is
-  never interpolated into shell commands.
+  Connection parameters come only from the fixed MAGENTO_* config variables and
+  are never taken from chat. User-supplied operands (order IDs, emails, SKUs,
+  module names, config paths, etc.) are validated against strict allowlist
+  patterns before substitution and refused if they do not match — see the
+  "Input Handling & Injection Safety" section. Never interpolate unvalidated
+  free-form text into a shell command, SQL statement, or URL.
 ---
 
-# magento-admin v5.6 — Complete Magento 2 Administration
+# magento-admin v5.7 — Complete Magento 2 Administration
 
 ## Overview
 
@@ -93,10 +97,9 @@ only to connect to your own server. Nothing is sent to third parties.
 
 ## Configuration
 
-Create a private config file at:
-Set the following variables in your openclaw.json env block:
-
-Set these variables — all commands in this skill use them as placeholders:
+Set the following variables in the `env` block of your private `openclaw.json`
+(never in the skill itself, never in chat). Every command below uses them as
+placeholders that the agent substitutes at run time:
 
 | Variable | Description | Example |
 |---|---|---|
@@ -104,7 +107,7 @@ Set these variables — all commands in this skill use them as placeholders:
 | MAGENTO_SSH_USER | SSH username | deploy |
 | MAGENTO_SSH_KEY | Path to SSH private key | ~/.ssh/magento_deploy |
 | MAGENTO_WEB_ROOT | Magento path | /var/www/html/magento2 |
-| MAGENTO_PHP | PHP binary | /usr/bin/php8.3 |
+| MAGENTO_PHP | PHP binary | /usr/bin/php8.4 |
 | MAGENTO_WEB_USER | Web server user | www-data |
 | MAGENTO_DB_NAME | Database name | magento_db |
 | MAGENTO_DB_USER | DB username | magento_user |
@@ -137,6 +140,53 @@ ssh -i ~/.ssh/magento_deploy -o StrictHostKeyChecking=yes MAGENTO_SSH_USER@MAGEN
   session token via the Magento REST API. Consider creating a dedicated
   admin user with only the roles your agent needs.
 - **SSH key:** Use a dedicated key pair for the agent, not your personal key.
+
+## Input Handling & Injection Safety
+
+The `MAGENTO_*` connection variables are trusted config. **Everything else that
+goes into a command — order IDs, emails, SKUs, quantities, prices, usernames,
+module names, config paths, search terms, coupon codes, file paths — is an
+operand that may originate from a user request, and MUST be validated before it
+is substituted into any shell command, SQL statement, or URL.**
+
+Before substituting a value, check it against the expected shape and **refuse
+(do not run the command) if it does not match**:
+
+| Operand | Allowed pattern | Notes |
+|---|---|---|
+| Order increment ID / entity ID | `^[0-9]+$` | Numeric only |
+| Email | `^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$` | Single address |
+| SKU | `^[A-Za-z0-9._-]+$` | No quotes/spaces/`;` |
+| Qty / price | `^[0-9]+(\.[0-9]+)?$` | Numeric |
+| Admin/customer username | `^[A-Za-z0-9._@-]+$` | |
+| Module name | `^[A-Za-z0-9]+_[A-Za-z0-9]+$` | `Vendor_Module` |
+| Config path | `^[a-z0-9]+(_[a-z0-9]+)*(/[a-z0-9]+(_[a-z0-9]+)*)+$` | `section/group/field` |
+| Index/cache type ID | must be one of the documented IDs listed in this skill | reject anything else |
+| Composer package | `^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+(:\^?[0-9.]+)?$` | |
+| Backup file path | `^/opt/magento_backups/[A-Za-z0-9._-]+\.sql\.gz$` | restore only from the backups dir |
+
+Rules:
+
+- Never interpolate raw free-form text into an SQL `WHERE` clause. The order,
+  customer, and config lookups below take a validated ID/email/path only.
+- The generic "Run a specific SQL query" and "config:set" commands are
+  **owner-operated**: run them only with an explicit, reviewed value from the
+  store owner, never with text a chat user supplied verbatim.
+- If a required operand fails validation, stop and tell the user why rather
+  than attempting to sanitise it yourself.
+
+## TLS / CA Certificate
+
+REST and GraphQL calls use HTTPS. Handle the certificate like this:
+
+- If `MAGENTO_CA_CERT` is **set**, add `--cacert "$MAGENTO_CA_CERT"` to the
+  `curl` call (needed for an internal/self-signed CA). The command examples
+  below show this form.
+- If `MAGENTO_CA_CERT` is **not set**, omit the `--cacert` option entirely and
+  rely on the system CA store (correct for a public cert, e.g. Let's Encrypt).
+- **Never** use `curl -k` / `--insecure` — that disables verification and is a
+  genuine MITM risk, not just a scanner flag.
+
 ## SSH Patterns
 
 ```bash
@@ -168,6 +218,12 @@ ssh -i MAGENTO_SSH_KEY -o StrictHostKeyChecking=yes MAGENTO_SSH_USER@MAGENTO_HOS
 ---
 
 ## FULL HEALTH CHECK
+
+The `SERVICES` line probes a superset of common service names with
+`systemctl is-active`; services your stack doesn't use (e.g. `nginx` on an
+Apache box, or `php8.3-fpm` when you run 8.4) simply report `inactive` — that
+is expected, not an error. Tested against Magento 2.4.9 on Apache + PHP 8.4 +
+MariaDB + OpenSearch + Redis.
 
 ```bash
 ssh -i MAGENTO_SSH_KEY -o StrictHostKeyChecking=yes MAGENTO_SSH_USER@MAGENTO_HOST "
@@ -861,7 +917,10 @@ and required for full store administration.
 - All credentials user-supplied — nothing hardcoded in skill
 - Commands connect only to MAGENTO_HOST — no third-party calls
 - Least-privilege recommendations provided (see above section)
-- prompt_injection_mitigation declared — commands use fixed vars only
+- TLS verification enforced via CA store or `--cacert`; `-k` is never used
+- User-supplied operands validated against allowlist patterns before use
+  (see "Input Handling & Injection Safety") — connection params come only
+  from fixed `MAGENTO_*` config
 
 ## AGENT INSTRUCTIONS
 
@@ -877,6 +936,9 @@ Format responses with:
 - Plain English summary with key numbers — avoid dumping raw output
 - If something is wrong, identify it and suggest the fix
 
-prompt_injection_mitigation: >
-  All commands use fixed configuration variables only. Free-form user
-  input is never interpolated into shell commands.
+**Before running any command that includes a user-supplied value**, validate
+that value against the pattern in the "Input Handling & Injection Safety"
+section and refuse if it does not match. Connection parameters come only from
+the fixed `MAGENTO_*` config; operands from chat are validated, never trusted
+raw. Never interpolate unvalidated free-form text into a shell command, SQL
+statement, or URL, and never use `curl -k`.

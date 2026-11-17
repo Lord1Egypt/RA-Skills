@@ -1,42 +1,60 @@
-## Description: <br>
-Uses AKShare to answer Chinese market-data questions about A-shares, China indexes, open-end mutual funds, macro indicators, macro calendar events, and finance news flashes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses AKShare to answer Chinese market-data questions about A-shares, China indexes, open-end mutual funds, macro indicators, macro calendar events, and finance news flashes.
 
-## Publisher: <br>
-[nickdeep1234](https://clawhub.ai/user/nickdeep1234) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nickdeep1234](https://clawhub.ai/user/nickdeep1234)
 
-## Use Case: <br>
-External users and developers use this skill to map Chinese market-data questions to a fixed AKShare-backed CLI and return concise Chinese summaries for stocks, indexes, funds, macro series, calendars, and finance news. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market data can be ambiguous, unavailable, delayed, or truncated depending on the AKShare dataset and symbol resolution. <br>
-Mitigation: Use the bundled resolver behavior, surface ambiguous candidates instead of guessing, and summarize the returned rows with dataset and date context. <br>
-Risk: The skill executes local Python commands and depends on the user's environment having the required dependencies. <br>
-Mitigation: Run only the bundled query_akshare.py command path and relay missing-dependency guidance from the script error payload. <br>
+## Use Case:
 
+External users and developers use this skill to retrieve structured China market data through a fixed AKShare command set and receive concise Chinese summaries for quotes, history, profiles, macro data, calendar events, and finance news.
 
-## Reference(s): <br>
-- [AKShare documentation](https://akshare.akfamily.xyz/data/index.html) <br>
-- [AKShare Dataset Mapping](artifact/references/datasets.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nickdeep1234/ashare) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Chinese Markdown summary plus JSON data returned by the bundled CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are limited to the bundled Python script and whitelisted AKShare datasets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Dependency installation is not pinned, so AKShare or transitive dependency changes could alter behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill in an isolated Python environment with reviewed pinned versions of akshare and dependencies.
+
+Risk: The skill contacts AKShare-backed market data sources and may return stale, unavailable, or provider-dependent data.
+
+Mitigation: Treat results as market-data retrieval output, check the returned as_of timestamp, and verify important decisions against authoritative financial sources.
+
+Risk: Responses are designed to be in Chinese, which may not match every user or deployment locale.
+
+Mitigation: Override the response language explicitly when a different language is required.
+
+## Reference(s):
+
+- [AKShare Data Documentation](https://akshare.akfamily.xyz/data/index.html)
+- [AKShare Dataset Mapping](references/datasets.md)
+- [ClawHub Skill Page](https://clawhub.ai/nickdeep1234/skills/ashare)
+- [Publisher Profile](https://clawhub.ai/user/nickdeep1234)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown summary derived from JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled CLI returns JSON envelopes with resolved symbol metadata, columns, rows, row counts, truncation status, and timestamps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

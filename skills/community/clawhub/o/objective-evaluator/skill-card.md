@@ -1,38 +1,48 @@
-## Description: <br>
-Evaluates products, services, features, tools, and design concepts through objective product and design principles drawn from Tony Fadell, Don Norman, and Dieter Rams. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate products, ideas, or designs using objective principles from Tony Fadell's painkiller-versus-vitamin framing, Don Norman's three levels of design, and Dieter Rams' red-flag principles.
 
-## Publisher: <br>
-[JarviYin](https://clawhub.ai/user/JarviYin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarviyin](https://clawhub.ai/user/jarviyin)
 
-## Use Case: <br>
-Product builders, designers, reviewers, and agents use this skill to critique products, ideas, services, and design concepts with a structured T3 audit: Tool, Toy, and Trash checks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad review or opinion prompts where a different kind of critique is intended. <br>
-Mitigation: Clarify the desired review frame, audience, and decision criteria before applying the T3 audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JarviYin/objective-evaluator) <br>
-- [Artifact source: SKILL.md](artifact/SKILL.md) <br>
+## Use Case:
 
+External users, product teams, designers, and reviewers use this skill to critique products, services, features, tools, or design concepts through a structured objective evaluation framework.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown critique with assessment tables, scoring labels, and a final verdict] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad review-style prompts and may answer with mixed Chinese and English framing.
+
+Mitigation: Set the desired language and evaluation scope explicitly when invoking the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jarviyin/skills/objective-evaluator)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured assessment sections and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use mixed Chinese and English framing unless the user specifies a language.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

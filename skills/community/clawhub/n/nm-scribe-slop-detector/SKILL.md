@@ -1,7 +1,7 @@
 ---
 name: slop-detector
 description: Detects AI-generated writing patterns in prose
-version: 1.9.8
+version: 1.10.3
 triggers:
   - ai-detection
   - slop
@@ -12,12 +12,12 @@ triggers:
   - reviewing docs for slop
   - vague language
   - or identity leaks before publishing
-metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\u270d\ufe0f", "requires": {"config": ["night-market.scribe:shared"]}}}
+metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/scribe", "emoji": "\u270d\ufe0f"}}
 source: claude-night-market
 source_plugin: scribe
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/scribe](https://github.com/athola/claude-night-market/tree/master/plugins/scribe). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # AI Slop Detection
@@ -28,11 +28,41 @@ A single "delve" is fine. Five "delves" near a "tapestry"
 and an "embark" is generated text. This skill scores
 density per 100 words, marker clustering, and whether
 the overall register fits the document type. It does not
-ban words; it flags concentrations.
+ban words. It flags concentrations.
+
+## When NOT To Use
+
+- Writing the replacement prose (use `scribe:doc-generator`)
+- Drift against a specific voice profile (use `scribe:voice-review`)
 
 ## Execution Workflow
 
-Identify target files and classify them as technical docs,
+**Start by locating the findings, then read them.**
+
+```bash
+uv run --with pyyaml python scripts/slop_score.py --audit <files>
+```
+
+One command over files or directories, one line per finding
+with a file and a line number, exit 0. It loads every category
+in `data/languages/en.yaml`, including the ones the merge gate
+declines to score: `negative_definition`,
+`temporal_residue`, `contrastive_scaffold`, `over_explanation`,
+the softer anthropomorphism verbs, and the per-document
+negation-density reading. Those print as `(low)` or `(medium)`.
+Step 9's anti-goals apply to them: surface, never auto-apply.
+
+A `.py` path is read as its comments and docstrings, with the
+code blanked and the line numbers kept. `--python` extends that
+to a directory sweep. The classification below already names
+code comments as a target; until the collector reached them,
+every category here was checked against markdown alone.
+
+The steps below say what each category means and how to rewrite
+it. Run the script first so the steps have locations to work
+from, rather than rereading the document once per pattern.
+
+Then identify target files and classify them as technical docs,
 narrative prose, or code comments. Classification feeds
 context-aware scoring: tier-1 markers in marketing copy
 score lower than the same markers in API reference.
@@ -40,10 +70,22 @@ score lower than the same markers in API reference.
 ### Language Detection
 
 - Auto-detect language from text content using function word frequency
-- Override with explicit `--lang` parameter (en, de, fr, es)
+- Override with `scripts/slop_score.py --lang` (en, de, fr, es, pt,
+  it, or auto); the score is scaled by the language's calibration
 - Load language-specific patterns from `data/languages/{lang}.yaml`
 - Fall back to English if detection confidence is low
 - See `modules/language-handling.md` for cultural calibration and concrete pattern sets
+
+### Spelling Normalization (British to American)
+
+Convert British spellings to American by default, in any scanned
+document, unless the document opts out via `.slop-config.yaml`
+(`spelling: british`) or a per-word allowlist. This is a consistency
+pass, separate from slop scoring. Use the tested `scribe.spelling`
+functions (`find_british_spellings`, `to_american`); both preserve
+case and skip code, inline code, and URLs.
+
+Load: `@modules/spelling-normalization.md`
 
 ### Vocabulary and Phrase Detection
 
@@ -178,8 +220,15 @@ Scan for:
    this guide...").
 4. **Hedging seesaw** ("While X has its merits, it's not
    without its challenges").
-5. **Parallel "not just" / "not only"** as paragraph
-   openers.
+5. **Contrastive constructions**, opening a clause or trailing
+   it: both contrastive negation ("not just X, but Y", "It's not
+   X, it's Y", and the trailing "It's X, not Y" / "Y, not X")
+   and affirmative antithesis ("Less X, more Y", "Where others
+   X, we Y"). Avoid in all but the most necessary cases; keep
+   only when the contrast carries information that survives
+   removal. The trailing copula form ("It's a tool, not a toy")
+   is the easiest to miss because the opener reads as a plain
+   definition.
 
 See the module for the full pattern catalogue and false-
 positive guidance.
@@ -215,12 +264,19 @@ post-GPT-5 / post-Claude-4.5 prose. Each is detailed in
 | Em-dash overuse | — used as rhetorical pause | Most-cited single tell of 2026 |
 | Plus-sign for "and" | "hooks and skills" in prose | Strong: humans have "and" |
 | Spatial copula | "lives in", "sits at", "stands as", "boasts" | Inanimate subject with animate verb |
-| Negative parallelism | "Not X but Y", "No X. No Y. Just Z.", "No X, no Y, no Z", "It's not X, it's Y", "Y, not X" | Rhetorical scaffold with no argument |
+| Negative parallelism (contrastive negation) | "Not X but Y", "No X. No Y. Just Z.", "No X, no Y, no Z", "It's not X, it's Y", "It's X, not Y", "Y, not X" | Rhetorical scaffold with no argument |
+| Contrastive parallelism (affirmative antithesis) | "Less X, more Y", "Where others X, we Y", "Humans propose; machines dispose" | Manufactured punch; same scaffold without the "not" |
 | Throat-clearing openers | "Here's the thing,", "Look,", "Let that sink in." | Discourse markers signaling nothing |
 | Three-fragment burst | "Focused. Aligned. Measurable." | Rhythm without information |
 | Significance cluster | "stands as a testament to", "marks a turning point" | Asserts importance without showing it |
 | Smart quotes in technical prose | `"text"` / `"text"` instead of `"text"` | Word-processor paste signature |
+| Semicolon splice | "The system is fast; it scales" | Prose semicolon joining two independent clauses. Rephrase into two sentences unless absolutely necessary. A list whose items carry commas is not matched |
+| Negated alternative | "never guesses instead of measuring", "does not retry rather than report" | Defines the thing by what it refuses to do; state what it does |
 | Loop/cascade vocab | "unpack", "surface" (verb), "a quiet shift" | 2026 systems-theory affectation |
+| Performative honesty | "to be honest", "Honestly,", "An Honest Review" | Manufactured authenticity |
+| Sophistication marker | "survey the prior art", "state of the art", "body of work" | Rigor signaling in non-academic prose |
+| Participial tail | ", highlighting", ", underscoring", ", paving the way for" | Fake-analysis tack-on |
+| Emphasis crutch | "Full stop.", "Make no mistake", "Read that again." | Manufactured-importance terminator |
 
 **Prevention rule**: when the slop-detector runs on docs the
 agent itself just generated (auto-invoked by `/doc-generate`,
@@ -244,20 +300,29 @@ slop_score = (tier1_count * 3 + tier2_count * 2 + phrase_count * avg_phrase_scor
 
 ## Step 6: Document Economy Check
 
-Load: `@modules/document-economy.md`
+Load: `@modules/document-economy.md` and
+`@modules/audience-targeting.md`
 
 **Sentence cleanliness is necessary, not sufficient.** A document
 can score 0 on slop density and still waste reader time by being
 too long, lacking a thesis, or repeating everything except the
 one message that matters.
 
-Score the document on three checks (0-2 each):
+Score the document on four checks (0-2 each):
 
 1. **Thesis-first**: does the lead state the single takeaway?
 2. **Sentence weight**: does every sentence carry, instance,
    bound, or repeat the thesis?
 3. **Repetition rule**: is the thesis echoed (good) while
    ambient repetition is cut (good)?
+4. **Audience fit**: is a tier declared, and does every section
+   serve it? Content that only serves a higher tier is extracted
+   to a deep dive, never deleted.
+
+Check 4 needs a declared reader. If the document does not name
+one, ask for it rather than guessing: `modules/audience-targeting.md`
+carries the tier table and the Socratic set. Skip check 4 for
+creative output, which that module scopes out by name.
 
 Combine sentence-level slop score with document-economy score.
 Both must pass. See `modules/document-economy.md` for the full
@@ -365,15 +430,7 @@ stop when a pass finds nothing.
 
 Load: `@modules/empirical-baseline.md` for the 2025-Q1
 2026 research baseline that justifies the severity
-weighting. Headline numbers:
-
-- AI PRs ship 1.7x more total issues, 1.75x more
-  logic/correctness issues, 2.74x more XSS, ~8x more
-  excessive I/O than human-only PRs (CodeRabbit, Dec 2025).
-- 92-96% of detected AI-code issues are maintainability
-  ("code smell"), not correctness (Sonar, Q4 2025).
-- Model-specific patterns: GPT fabricates; Claude omits.
-  Calibrate the audit accordingly.
+weighting.
 
 When a finding's severity is challenged in review, cite
 from this module rather than asserting from authority.
@@ -388,78 +445,9 @@ carries `file`, `line`, `category`, `severity`,
 high-confidence) `diff`. Auto-apply policy is set by
 confidence; never auto-apply `confidence: low`.
 
-Summary report format (human-readable):
-
-```markdown
-## Slop Detection Report: [filename]
-
-**Overall Score**: X.X / 10 (Rating)
-**Word Count**: N words
-**Markers Found**: N total
-
-### CRITICAL (P0, must resolve before merge)
-- Line 8: "As a large language model". IDENTITY LEAK
-- Line 47: References `Client.connect_with_timeout(...)` —
-  HALLUCINATION (method does not exist; closest match is
-  `Client.connect`)
-- Line 102: "production-ready" claim with no CI workflow
- . UNVERIFIED CLAIM
-
-### High-Confidence Markers (vocabulary)
-- Line 23: "delve into" -> consider: "explore"
-- Line 45: "rich tapestry" -> consider: "variety"
-
-### Structural Issues
-- Em dash density: 8/1000 words (HIGH)
-- Bullet ratio: 72% (ELEVATED)
-- Sentence length SD: 3.2 words (LOW VARIANCE)
-
-### Phrase Patterns
-- Line 12: "In today's fast-paced world" (vapid opener)
-- Line 89: "cannot be overstated" (empty emphasis)
-- Line 134: "Let's dive into" (self-narration of structure)
-
-### Tier 5 / 2026 Patterns
-- Line 19: "The skill lives in `plugins/scribe/`" → "is in"
-  (spatial copula, inanimate subject)
-- Line 27: "hooks + skills" → "hooks and skills" (plus-sign
-  conjunction in prose)
-- Line 34: "It's not a tool, it's a transformation" →
-  rewrite positively (negative parallelism)
-- Line 56: "Here's the thing," → delete (throat-clearing
-  opener)
-- Line 78: "Focused. Aligned. Measurable." → "Focused,
-  aligned, and measurable." (three-fragment burst)
-- Line 91: 3 smart quotes outside code blocks (Word-processor
-  paste signature)
-
-### Stub & Deferral
-- Line 56: bare `// TODO: handle expired tokens` (no
-  tracked issue link)
-- Line 71: "for now, we recommend" (deferral language)
-
-### Document Economy Score: X / 6
-- Thesis-first: 1/2 (thesis present but buried in para 3)
-- Sentence weight: 1/2 (~65% of sentences earn weight)
-- Repetition: 2/2 (thesis echoed; ambient repetition cut)
-
-### Recommendations
-1. **CRITICAL**: delete line 8 identity leak before merge
-2. **CRITICAL**: replace `Client.connect_with_timeout`
-   with `Client.connect(opts)` and update example
-3. **CRITICAL**: either add CI + version >= 1.0 to back
-   "production-ready", or delete the claim
-4. Replace [specific word] with [alternative]
-5. Convert bullet list at line 34-56 to prose
-6. Hoist the thesis (line 47) into the lead paragraph
-7. Link bare TODOs to tracked issues or delete code path
-
-### Confidence-low findings (require human decision)
-- Line 89: bullet count of 8 may be appropriate for this
-  enumeration; do not auto-flatten
-- Line 156: `Manager` suffix may be domain-meaningful;
-  verify before renaming
-```
+The human-readable summary report, with its P0, vocabulary,
+structural, tier 5, stub, economy and recommendation sections, is in
+`@modules/report-format.md`.
 
 Per `anti-goals.md`: surface `confidence: low` findings
 in a separate section. Do not silently apply them.
@@ -477,7 +465,7 @@ the report as a guide.
 
 ## Exit Criteria
 
-- All target files scanned
-- Density scores calculated
-- Report generated with specific, line-anchored fixes
-- High-severity items flagged for immediate attention
+- [ ] All target files scanned
+- [ ] Density scores calculated
+- [ ] Report generated with specific, line-anchored fixes
+- [ ] High-severity items flagged for immediate attention

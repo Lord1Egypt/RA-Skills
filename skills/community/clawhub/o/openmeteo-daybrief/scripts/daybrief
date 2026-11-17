@@ -1,0 +1,88 @@
+#!/usr/bin/env node
+// daybrief — one-day weather brief from Open-Meteo (free, no API key), with dry daylight
+// windows for getting outside, optionally limited to free gaps in your calendar.
+//
+//   daybrief --lat 34.02 --lon -118.29 [--tz America/Los_Angeles] [--date today|tomorrow|YYYY-MM-DD]
+//            [--units fahrenheit|celsius] [--gaps-file path.json]   (JSON with a "gaps" array of {local:"HH:MM-HH:MM"})
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { summarizeDay, outdoorWindows, fetchJsonRetry, saveForecast, loadForecast } from './lib.mjs';
+
+function arg(name, dflt) {
+  const i = process.argv.indexOf(`--${name}`);
+  return i > 0 && process.argv[i + 1] ? process.argv[i + 1] : dflt;
+}
+function out(obj, code = 0) {
+  process.stdout.write(JSON.stringify(obj, null, 1) + '\n');
+  process.exit(code);
+}
+
+const lat = Number(arg('lat', process.env.A3_LAT));
+const lon = Number(arg('lon', process.env.A3_LON));
+const tz = arg('tz', process.env.A3_TZ || 'UTC');
+const units = arg('units', 'fahrenheit') === 'celsius' ? 'celsius' : 'fahrenheit';
+if (!Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) out({ error: 'need --lat and --lon' }, 2);
+
+const localDate = (d) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+const which = arg('date', 'today');
+const date = which === 'today' ? localDate(new Date()) : which === 'tomorrow' ? localDate(new Date(Date.now() + 86400000)) : which;
+if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) out({ error: 'bad --date' }, 2);
+
+let gaps;
+const gapsFile = arg('gaps-file');
+if (gapsFile) {
+  try {
+    gaps = JSON.parse(fs.readFileSync(gapsFile, 'utf8')).gaps;
+  } catch (e) {
+    out({ error: `cannot read gaps file: ${e.message}` }, 2);
+  }
+}
+
+// DAYBRIEF_API_URL: a self-hosted Open-Meteo, or a dead address to rehearse an outage.
+const url = new URL(process.env.DAYBRIEF_API_URL || 'https://api.open-meteo.com/v1/forecast');
+url.search = new URLSearchParams({
+  latitude: String(lat),
+  longitude: String(lon),
+  hourly: 'temperature_2m,precipitation_probability,weather_code',
+  daily: 'temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code,sunrise,sunset',
+  temperature_unit: units,
+  timezone: tz,
+  forecast_days: '3',
+}).toString();
+
+const cacheDir = process.env.DAYBRIEF_CACHE_DIR || path.join(os.tmpdir(), 'openmeteo-daybrief');
+const cacheKey = { lat, lon, tz, units };
+const brief = (fx, extra = {}) => ({
+  source: 'open-meteo.com',
+  location: { lat, lon, timezone: tz },
+  ...summarizeDay(fx, date),
+  outdoorWindows: outdoorWindows(fx, date, { minHours: 1, gaps }),
+  gapsConsidered: Boolean(gaps),
+  ...extra,
+});
+
+let fx;
+try {
+  const delayMs = Number(process.env.DAYBRIEF_RETRY_DELAY_MS);
+  fx = await fetchJsonRetry(url, Number.isFinite(delayMs) && delayMs > 0 ? { delayMs } : {});
+} catch (e) {
+  // Open-Meteo is unreachable: fall back to the last forecast fetched within 24 hours, labelled as such.
+  const c = loadForecast(cacheDir, cacheKey);
+  try {
+    if (c) out(brief(c.fx, { cached: true, fetchedAt: c.fetchedAt }));
+  } catch {
+    /* cached forecast does not cover this date */
+  }
+  out({ error: `weather unavailable: ${e.message}` }, 1);
+}
+try {
+  saveForecast(cacheDir, cacheKey, fx);
+} catch {
+  /* cache is best-effort */
+}
+try {
+  out(brief(fx));
+} catch (e) {
+  out({ error: `weather unavailable: ${e.message}` }, 1);
+}

@@ -1,42 +1,53 @@
-## Description: <br>
-Detect branch-level GitHub Actions reliability drift by comparing failure and runtime deltas against a mainline baseline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect branch-level GitHub Actions reliability drift by comparing failure and runtime deltas against a mainline baseline.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and release engineers use this skill to audit exported GitHub Actions runs for branch-specific reliability and runtime drift before issues reach the mainline release flow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper reads files matched by RUN_GLOB. <br>
-Mitigation: Keep RUN_GLOB scoped to intended GitHub Actions export files. <br>
-Risk: Critical drift findings can fail a pipeline when FAIL_ON_CRITICAL is enabled. <br>
-Mitigation: Enable FAIL_ON_CRITICAL only when the pipeline should block on critical branch drift. <br>
-Risk: Drift reports may influence CI triage or release decisions. <br>
-Mitigation: Review generated text or JSON reports before acting on the findings. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-branch-drift-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/daniellummis) <br>
+## Use Case:
 
+Developers and CI/release engineers use this skill to audit GitHub Actions run exports for branch-specific failure-rate and runtime drift before changes reach mainline release workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Text report or JSON report from a Bash/Python command-line helper] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can exit nonzero when FAIL_ON_CRITICAL=1 and critical drift is detected.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad RUN_GLOB patterns can read unrelated JSON files and include parse errors or selected fields in report output.
+
+Mitigation: Set RUN_GLOB to a narrow directory containing only the intended GitHub Actions run exports.
+
+Risk: Generated reports can include repository names, workflow names, branch names, and sample run URLs from the input exports.
+
+Mitigation: Use sanitized exports or limit report sharing when CI metadata is sensitive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daniellummis/skills/github-actions-branch-drift-audit)
+- [Publisher profile](https://clawhub.ai/user/daniellummis)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text or JSON drift report with shell command examples and environment-variable configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can exit nonzero when FAIL_ON_CRITICAL=1 and critical drift rows are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

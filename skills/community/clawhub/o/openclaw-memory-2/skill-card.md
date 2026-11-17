@@ -1,44 +1,54 @@
-## Description: <br>
-Agent memory with ALMA meta-learning, LLM fact extraction, and full-text search. Observer calls remote LLM APIs (OpenAI/Anthropic/Gemini). ALMA and Indexer work offline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent memory with ALMA meta-learning, LLM fact extraction, and full-text search, where Observer calls remote LLM APIs (OpenAI/Anthropic/Gemini) and ALMA and Indexer work offline.
 
-## Publisher: <br>
-[arosstale](https://clawhub.ai/user/arosstale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[arosstale](https://clawhub.ai/user/arosstale)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add memory workflows for OpenClaw agents, including offline memory design exploration, structured fact extraction from conversations, and search across Markdown memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Observer can send full conversation text to the configured external LLM provider. <br>
-Mitigation: Use Observer only with conversations approved for that provider and review provider data handling before deployment. <br>
-Risk: Observer may use a fallback environment API key if an explicit key is not supplied. <br>
-Mitigation: Pass the intended provider-specific apiKey explicitly and avoid relying on environment fallback. <br>
-Risk: Indexer searches local memory directories selected by the caller. <br>
-Mitigation: Point Indexer only at workspaces and memory directories intended for search. <br>
+## Use Case:
 
+Developers and agent builders use this skill to add memory workflows for evolving memory designs, extracting structured facts from conversations, and searching Markdown-based workspace memory.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/arosstale/openclaw-memory-2) <br>
-- [Publisher profile](https://clawhub.ai/user/arosstale) <br>
-- [Project source link from skill text](https://github.com/arosstale/openclaw-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with TypeScript examples, shell commands, and structured memory observations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Observer may return structured observation objects; ALMA returns proposed and evaluated memory designs; Indexer returns ranked search results from local Markdown memory files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: package.json and server release metadata) <br>
+Risk: A credential-handling flaw can send an API key to the wrong LLM provider when relying on fallback environment variables.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit provider-specific apiKey values and avoid passing private conversation history to Observer unless the selected LLM provider is approved for that data.
+
+Risk: Observer sends conversation history to remote LLM APIs when extraction is enabled.
+
+Mitigation: Use Observer only with approved providers and data classes; keep ALMA and Indexer for offline-only memory workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arosstale/skills/openclaw-memory-2)
+- [Publisher Profile](https://clawhub.ai/user/arosstale)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Configuration, Guidance]
+
+**Output Format:** [TypeScript API outputs including structured observations, memory design records, and ranked search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Observer may call remote LLM APIs when configured; ALMA and Indexer operate offline.]
+
+## Skill Version(s):
+
+2.0.1 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Manage Mac disk space by checking usage, cleaning junk, finding large files, and removing duplicates with explicit confirmation before deletions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Mac disk space by checking usage, cleaning junk, finding large files, and removing duplicates with explicit confirmation before deletions.
 
-## Publisher: <br>
-[wukongsheld](https://clawhub.ai/user/wukongsheld) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wukongsheld](https://clawhub.ai/user/wukongsheld)
 
-## Use Case: <br>
-External users and developers use this skill to inspect Mac storage, run CleanerCat disk cleanup workflows, identify large or duplicate files, and remove selected items only after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to download and persistently enable a third-party executable before helping the user. <br>
-Mitigation: Review and verify the downloaded CleanerCat MCP executable before installation, and only use the skill if the user accepts the third-party executable and persistent plugin setup. <br>
-Risk: The skill can request disk cleanup or file deletion actions. <br>
-Mitigation: Require explicit confirmation before cleanup or deletion, inspect listed paths and categories first, and avoid approving actions unless the files are clearly safe to remove. <br>
+## Use Case:
 
+External users and developers use MacCleaner to check macOS disk usage, scan cleanup categories, identify large or duplicate files, and guide confirmed cleanup actions.
 
-## Reference(s): <br>
-- [MacCleaner ClawHub release](https://clawhub.ai/wukongsheld/mac-cleanup-skill) <br>
-- [CleanerCat MCP executable source](https://raw.githubusercontent.com/wukongsheld/cleanercat-mac/main/bin/cleanercat-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown] <br>
-**Output Format:** [Markdown with tables, confirmation prompts, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses CleanerCat MCP tool calls when available and requires explicit user confirmation before cleanup or file deletion actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The security summary says the skill auto-installs an unverified remote executable and persistently modifies Claude plugin configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; prefer a versioned, checksum-verified installer or manual plugin setup with clear uninstall instructions.
+
+Risk: The skill can guide cleanup and file deletion workflows that may remove user data.
+
+Mitigation: Keep the documented explicit user selection and confirmation steps before any cleanup or deletion action, and report results after the operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wukongsheld/skills/mac-cleanup-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with tables, confirmation prompts, shell command blocks, and MCP tool-call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit confirmation before cleanup or deletion workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

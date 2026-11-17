@@ -1,43 +1,63 @@
-## Description: <br>
-Audit an iOS app repo (Swift/Xcode or React Native/Expo) for App Store compliance and release readiness; output a pass/warn/fail report and publish checklist. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit an iOS app repo (Swift/Xcode or React Native/Expo) for App Store compliance and release readiness; output a pass/warn/fail report and publish checklist.
 
-## Publisher: <br>
-[tristanmanchester](https://clawhub.ai/user/tristanmanchester) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tristanmanchester](https://clawhub.ai/user/tristanmanchester)
 
-## Use Case: <br>
-Developers and release engineers use this skill to audit native iOS, React Native, or Expo repositories before App Store or TestFlight submission. It produces static readiness findings, remediation guidance, and a publish checklist. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Optional build, archive, dependency install, Expo, signing, or patch steps can execute project code or create artifacts. <br>
-Mitigation: Run the default read-only audit first, and review any optional mutating or build command before approving it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Audit App Store Readiness on ClawHub](https://clawhub.ai/tristanmanchester/auditing-appstore-readiness) <br>
-- [Expo-specific checks](references/expo.md) <br>
-- [Manual checklist](references/manual-checklist.md) <br>
-- [Native iOS checks](references/native-ios.md) <br>
-- [Permissions to Info.plist usage strings](references/permissions-map.md) <br>
-- [React Native iOS checks](references/react-native.md) <br>
-- [App Store Readiness Report template](references/report-template.md) <br>
+## Use Case:
 
+Developers and release engineers use this skill to audit native iOS, React Native, or Expo repositories before App Store or TestFlight submission. It helps identify compliance gaps, build-readiness issues, privacy checklist items, and recommended remediation steps.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with optional JSON output and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes PASS/WARN/FAIL findings, evidence, remediation steps, and a publish checklist.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The audit script reads local repository metadata and filenames.
+
+Mitigation: Run it only on repositories you are comfortable auditing locally and review the generated report before sharing it.
+
+Risk: Optional commands can write files or download tooling.
+
+Mitigation: Start with the default read-only command, keep JSON output to a simple repo-local filename such as audit.json, and avoid optional npx Expo commands unless the package source is trusted or pinned.
+
+Risk: Automated checks cannot fully verify App Store metadata, privacy labels, export compliance, rights, payments, and regional obligations.
+
+Mitigation: Use the manual checklist before submission and have the release owner confirm unresolved legal, privacy, and store-listing items.
+
+## Reference(s):
+
+- [Expo-specific checks](artifact/references/expo.md)
+- [Manual checklist](artifact/references/manual-checklist.md)
+- [Native iOS checks](artifact/references/native-ios.md)
+- [Permissions to Info.plist usage strings](artifact/references/permissions-map.md)
+- [React Native iOS checks](artifact/references/react-native.md)
+- [App Store Readiness Report template](artifact/references/report-template.md)
+- [ClawHub skill page](https://clawhub.ai/tristanmanchester/skills/auditing-appstore-readiness)
+- [Publisher profile](https://clawhub.ai/user/tristanmanchester)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown readiness report with optional JSON audit output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include PASS/WARN/FAIL checks, evidence, remediation steps, and a publish checklist.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-番剧/角色百科问答：用 AniList API 快速查番、查角色、查声优与作品关联（无需数据库） <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Otaku Wiki helps agents answer anime, character, and voice actor questions by querying the AniList API and formatting Chinese encyclopedia-style responses.
 
-## Publisher: <br>
-[Robin797860](https://clawhub.ai/user/Robin797860) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robin797860](https://clawhub.ai/user/robin797860)
 
-## Use Case: <br>
-External users and anime fans use this skill to ask Chinese-language encyclopedia questions about anime titles, characters, voice actors, staff, and work comparisons using AniList lookup results. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Anime, character, and staff search terms are sent to AniList. <br>
-Mitigation: Avoid using private or sensitive text as lookup terms. <br>
-Risk: Responses depend on AniList availability and the accuracy of AniList data. <br>
-Mitigation: Use the included AniList links to verify important facts before relying on them. <br>
-Risk: The skill is designed to answer in Chinese. <br>
-Mitigation: Use it when Chinese output is acceptable or request translation after the lookup. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AniList GraphQL API](https://graphql.anilist.co) <br>
-- [ClawHub skill page](https://clawhub.ai/Robin797860/otaku-wiki) <br>
+## Use Case:
 
+External users and anime community assistants use this skill to look up anime, character, and staff information from AniList and present concise Chinese knowledge-card answers with source links.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Chinese Markdown summaries backed by JSON returned from the bundled AniList CLI.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes AniList links and concise anime, character, staff, or comparison details when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted user search terms may run unintended shell commands if interpolated into command strings.
+
+Mitigation: Pass user search terms as separate arguments or apply robust shell quoting before invoking the AniList CLI.
+
+Risk: The skill performs live network lookups.
+
+Mitigation: Run in a constrained environment and limit outbound network access to AniList where possible.
+
+## Reference(s):
+
+- [AniList GraphQL API endpoint](https://graphql.anilist.co)
+- [ClawHub skill page](https://clawhub.ai/robin797860/skills/otaku-wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown response with AniList links and JSON CLI results used as intermediate evidence]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and network access to AniList; no API key was detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

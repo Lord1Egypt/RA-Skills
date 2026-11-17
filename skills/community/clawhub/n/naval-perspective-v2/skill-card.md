@@ -1,45 +1,60 @@
-## Description: <br>
-Naval Perspective V2 is a Chinese-language persona and thinking-framework skill that helps an agent respond through Naval Ravikant-style mental models for wealth creation, career choices, life planning, and decision support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Naval Perspective V2 is a Chinese-language skill that applies Naval Ravikant-inspired mental models, decision heuristics, and expression patterns to wealth creation, career choices, life planning, and decision support.
 
-## Publisher: <br>
-[xiejianjun000](https://clawhub.ai/user/xiejianjun000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiejianjun000](https://clawhub.ai/user/xiejianjun000)
 
-## Use Case: <br>
-External users use this skill to get Naval Ravikant-style analysis for questions about leverage, specific knowledge, long-term thinking, compounding, wealth, desire management, and personal decision-making. It is best suited for perspective-taking and structured reflection, not financial, medical, or psychological advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording can steer ordinary conversations into the Naval-style persona unintentionally. <br>
-Mitigation: Prefer explicit activation phrases or narrower trigger conditions when deploying the skill. <br>
-Risk: Persona-style output may be mistaken for Naval Ravikant's actual current views or for professional advice. <br>
-Mitigation: Present responses as a public-information perspective framework and avoid using them as financial, medical, psychological, or legal advice. <br>
-Risk: The release evidence license and artifact frontmatter license disagree. <br>
-Mitigation: Confirm the authoritative release license before publication or redistribution. <br>
+## Use Case:
 
+External users and agents use this skill for Chinese-language interpretive guidance on leverage, specific knowledge, long-term thinking, compounding, first principles, judgment, happiness, wealth, desire management, and permissionless paths. It is intended for framework-based reflection and decision support, not as investment, mental health, or current-events advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiejianjun000/naval-perspective-v2) <br>
-- [CLASSIC_WORKS.md](artifact/CLASSIC_WORKS.md) <br>
-- [CONNECTIONS.md](artifact/CONNECTIONS.md) <br>
-- [VERIFICATION_TESTS.md](artifact/VERIFICATION_TESTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or conversational text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persona-style responses may include mental-model analysis, decision heuristics, and caveats about public-information limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can frame answers as immersive first-person roleplay based on Naval Ravikant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as AI-generated interpretation of public ideas, not statements from Naval Ravikant; keep or add a clear disclaimer when used in user-facing contexts.
+
+Risk: Broad concept triggers such as leverage, wealth, or specific knowledge may activate the skill in conversations where that framing is not desired.
+
+Mitigation: Disable or avoid the skill in workflows where broad concept triggers could disrupt normal assistance.
+
+Risk: The skill states limits around concrete investment advice, mental health guidance, current information, and predicting Naval Ravikant's real views on new issues.
+
+Mitigation: Use the skill for reflective frameworks only and route financial, medical, mental health, legal, or time-sensitive questions to appropriate expert or current sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiejianjun000/skills/naval-perspective-v2)
+- [Classic works matrix](artifact/CLASSIC_WORKS.md)
+- [Connections matrix](artifact/CONNECTIONS.md)
+- [Verification tests](artifact/VERIFICATION_TESTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language plain text or Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution or data access; outputs are AI-generated interpretations of public ideas and may use immersive first-person roleplay framing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

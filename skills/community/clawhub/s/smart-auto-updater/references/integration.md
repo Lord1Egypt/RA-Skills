@@ -118,7 +118,7 @@ export SMART_UPDATER_FEISHU_WEBHOOK="https://open.feishu.cn/webhook/xxx"
 
 ### Slack Webhook
 ```bash
-export SMART_UPDATER_SLACK_WEBHOOK="https://hooks.slack.com/services/xxx"
+export SMART_UPDATER_SLACK_WEBHOOK="REDACTED-SECRET"
 ```
 
 ### Discord Webhook

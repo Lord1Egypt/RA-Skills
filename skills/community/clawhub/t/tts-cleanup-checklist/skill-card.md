@@ -1,40 +1,53 @@
-## Description: <br>
-Cleans Markdown or TXT content into TTS-ready text, with optional chapter splitting, configurable cleanup levels, quality checks, and cleanup reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cleans Markdown and TXT files into TTS-ready text, with optional chapter splitting, configurable cleanup levels, quality checks, and cleanup reports.
 
-## Publisher: <br>
-[booynal](https://clawhub.ai/user/booynal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[booynal](https://clawhub.ai/user/booynal)
 
-## Use Case: <br>
-External users and developers use this skill to prepare Chinese-oriented Markdown or TXT source material for TTS reading while preserving meaning, removing reference noise, tuning punctuation, oralizing numbers, and optionally splitting chapters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad or ambiguous input paths could cause the agent to process unintended Markdown or TXT files. <br>
-Mitigation: Provide narrow input paths or globs and write cleaned output to a separate output directory. <br>
-Risk: Cleanup choices may remove citations, URLs, references, language, or formatting that the user intended to preserve. <br>
-Mitigation: Explicitly state preservation requirements before running cleanup, especially for citations, URLs, references, language, and formatting. <br>
+## Use Case:
 
+Developers, editors, and agents use this skill to prepare long-form Markdown or TXT content for natural TTS reading without summarizing or changing the original meaning. It supports single-file cleanup, batch cleanup, optional chapter splitting, configurable text normalization, and cleanup quality reporting.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/booynal/tts-cleanup-checklist) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown text with cleanup report sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce per-file cleaned text and batch summary reports with quality-check results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Default cleanup may remove citation markers, bare URLs, and reference sections from source-sensitive documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to preserve citations and links, or choose a less aggressive reference_trim setting before processing, then review the cleanup report.
+
+Risk: Cleanup report labels may be generated in Chinese by default.
+
+Mitigation: Set the desired output and report language before running the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/booynal/skills/tts-cleanup-checklist)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown text with cleanup notes and optional batch summary reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Configurable cleanup mode, citation and URL trimming level, punctuation tuning, number style, English alias handling, and long sentence threshold.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

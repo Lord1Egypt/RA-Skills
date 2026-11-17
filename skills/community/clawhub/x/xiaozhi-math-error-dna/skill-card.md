@@ -1,41 +1,57 @@
-## Description: <br>
-Xiaozhi Math Error Dna helps an agent record student math mistakes with consent, classify root causes, track recurring weak points, and generate math error maps or weakness reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes middle- and high-school math error patterns by assigning detailed subtypes to the correction notebook's four general error dimensions and identifying links between them.
 
-## Publisher: <br>
-[qizhitang](https://clawhub.ai/user/qizhitang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qizhitang](https://clawhub.ai/user/qizhitang)
 
-## Use Case: <br>
-Students, guardians, and learning assistants use this skill to turn math mistakes into structured learning records, identify repeated error patterns, and plan targeted remediation. It is intended for consent-based tracking rather than automatic long-term profiling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can maintain student math mistake histories and coordinate reminders or summaries, which may create sensitive learning records if used without clear consent. <br>
-Mitigation: Use it only when the student or guardian agrees to recording, long-term tracking, reminders, parent summaries, and any cross-skill sharing. <br>
+## Use Case:
 
+Students in middle and high school use this skill to understand recurring math errors, review patterns in their correction records, and identify focused next steps. It provides subtype analysis and requested weakness reports while leaving error collection and occurrence counts to the correction notebook.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qizhitang/xiaozhi-math-error-dna) <br>
-- [concept-confusion-map.md](artifact/references/concept-confusion-map.md) <br>
-- [math-error-dimension-table.md](artifact/references/math-error-dimension-table.md) <br>
-- [reading-habits.md](artifact/references/reading-habits.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured text reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces consent-based mistake records, root-cause classifications, recurring-weakness tracking, math error maps, and monthly weakness reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The security evidence reports a scope mismatch around progressive math practice and partial scanner coverage because two local references could not be resolved; confidence is medium.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the reported scope mismatch fits the intended workflow and check the unresolved references before installation.
+
+Risk: The skill handles student learning profiles and may produce student or parent-facing summaries.
+
+Mitigation: Create or share long-term records only with the consent required by the skill, check sharing preferences before parent summaries, and keep crisis referral ahead of normal analysis.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/qizhitang/skills/xiaozhi-math-error-dna)
+- [Math Error Dimension Table](artifact/references/math-error-dimension-table.md)
+- [Concept Confusion Map](artifact/references/concept-confusion-map.md)
+- [Reading Habits](artifact/references/reading-habits.md)
+- [Crisis Referral Protocol](artifact/shared/crisis-referral-protocol.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown, Structured profile data]
+
+**Output Format:** [Chinese text and Markdown reports, with structured learning-record fields for supported handoffs.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Historical counts and progress claims must come from available correction records; the skill does not independently count errors.]
+
+## Skill Version(s):
+
+2.12.7 (source: server-resolved release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -40,6 +40,20 @@ DEFAULT_TIME_PERIOD = 2    # reasonable default per spec
 DEFAULT_SOURCE = 0         # integer source indicator
 DEFAULT_TICKET_LIST_PAGE_SIZE = 20
 
+# Actions this CLI is allowed to send. Anything else is rejected before a
+# request is signed — the CLI must not be a general-purpose proxy to the
+# authenticated Andon API.
+SUPPORTED_ACTIONS = (
+    "GetCurrentTime",
+    "GetMCTicketList",
+    "GetMCTicketById",
+    "DescribeOrganizationTickets",
+    "DescribeTicket",
+    "DescribeTicketOperation",
+    "DescribeOrganizationStories",
+    "DescribeOrganizationStory",
+)
+
 
 # ──────────────────────────────────────────────
 # Time utility
@@ -897,6 +911,15 @@ def _build_cli_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Print request summary without sending HTTP call",
     )
+    parser.add_argument(
+        "--include-organization",
+        action="store_true",
+        help=(
+            "For GetMCTicketList only: also query DescribeOrganizationTickets "
+            "and merge the results. Off by default — this widens the result "
+            "set from your own tickets to organization-wide tickets."
+        ),
+    )
     return parser
 
 
@@ -932,6 +955,41 @@ def main(argv=None):
             filters=data.get("Filters"),
         )
         personal_payload_json = json.dumps(payload_dict)
+
+        # Organization tickets are NOT included by default. Merging them into
+        # what reads as a personal-ticket query silently widened the returned
+        # data scope; the caller now has to ask for it explicitly.
+        if not args.include_organization:
+            if args.verbose or args.dry_run:
+                print("=" * 60)
+                print("[DRY RUN] " if args.dry_run else "", end="")
+                print("Request Summary")
+                print("=" * 60)
+                print(f"Action:   {args.action} (personal tickets only)")
+                print(f"Endpoint: {ENDPOINT}")
+                print(f"Version:  {API_VERSION}")
+                print("Payload:")
+                print(json.dumps(payload_dict, indent=2, ensure_ascii=False))
+                print("\nNote: pass --include-organization to also query "
+                      "organization-wide tickets.")
+
+            if args.dry_run:
+                print("=" * 60)
+                print("[DRY RUN] No HTTP request sent.")
+                sys.exit(0)
+
+            # send_request() already unwraps the {"Response": {...}} envelope,
+            # so read the ticket list out of result["data"] directly — the same
+            # shape query_merged_ticket_list() relies on.
+            result = send_request("GetMCTicketList", personal_payload_json)
+            if result.get("success"):
+                inner = result.get("data", {}).get("Data", {}) or {}
+                result = make_success("GetMCTicketList", {
+                    "tickets": inner.get("Data", []),
+                    "total": inner.get("Total", 0),
+                }, result.get("requestId", ""))
+            print(json.dumps(result, indent=2, ensure_ascii=False))
+            sys.exit(0 if result.get("success") else 1)
 
         # Build org payload — auto-derive time range, default 30 days if not specified
         now = datetime.datetime.now()
@@ -1063,7 +1121,16 @@ def main(argv=None):
             sys.exit(1)
 
     else:
-        payload_dict = data
+        # Fail closed. Previously any unrecognized action was forwarded to the
+        # authenticated API with the caller's raw payload, which exposed the
+        # whole Andon API surface rather than the documented actions.
+        print(json.dumps(make_error(
+            args.action,
+            "UnsupportedAction",
+            f"Unsupported action '{args.action}'. Supported actions: "
+            + ", ".join(SUPPORTED_ACTIONS),
+        ), indent=2, ensure_ascii=False))
+        sys.exit(1)
 
     payload_json = json.dumps(payload_dict)
 

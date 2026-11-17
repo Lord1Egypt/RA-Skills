@@ -1,41 +1,50 @@
-## Description: <br>
-Validate and format passport or identity document data. Use when checking fields, validating numbers, generating fixtures, linting records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate and format passport or identity document data for field checks, number validation, fixture generation, and record linting.
 
-## Publisher: <br>
-[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain-lab](https://clawhub.ai/user/bytesagain-lab)
 
-## Use Case: <br>
-Developers and engineers use Passport to run local CLI actions for passport or identity-document record checking, formatting, linting, and fixture generation. The reviewed artifacts primarily log, search, and export entered values locally rather than independently validating passport data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed script can store passport numbers, names, dates of birth, or other identity-document details in plaintext local logs and exported files. <br>
-Mitigation: Do not enter real sensitive identity data unless local plaintext storage and export are intended; review and delete logs or exports after use. <br>
-Risk: The security review says the advertised validation capability is unsupported by the reviewed script. <br>
-Mitigation: Treat the skill as local logging and formatting assistance, not authoritative passport or identity-document validation; verify results with a trusted validation source. <br>
+## Use Case:
 
+Developers and engineers use this skill to work with passport or identity-document records through command-line style checks, formatting, fixture generation, linting, conversion, previews, and reports.
 
-## Reference(s): <br>
-- [Passport on ClawHub](https://clawhub.ai/bytesagain-lab/passport) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell command examples; CLI output is plain text and exports JSON, CSV, or TXT files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The artifact script stores local command history and exports under ~/.local/share/passport/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The security evidence says the skill is presented as passport or identity validation but does not actually validate data and may retain or export plaintext sensitive identity inputs locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use real passport numbers, identity records, names, dates of birth, or other sensitive personal data unless the skill is redesigned with validated behavior and stronger data safeguards.
+
+## Reference(s):
+
+- [Passport ClawHub Skill Page](https://clawhub.ai/bytesagain-lab/skills/passport)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe local logging, export, search, and status workflows.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

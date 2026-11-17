@@ -1,0 +1,60 @@
+{
+  "$schema": "https://clawhub.ai/schemas/skill-manifest-v1.json",
+  "name": "myotp",
+  "display_name": "MyOTP.App",
+  "description": "Add SMS, WhatsApp, or Telegram OTP / 2FA / MFA / phone verification to any app using MyOTP.App. Two-endpoint REST API with a single X-API-Key header. Use when the user asks for SMS OTP, 2FA, signup phone verification, password reset codes, transaction step-up auth, or wants a Twilio Verify, Vonage Verify, or Firebase Phone Auth alternative. Agents can create an account (POST /v1/agent/register) and buy credits over a 402 (USDC or card, MPP).",
+  "version": "1.0.5",
+  "author": "BroadNet Technologies",
+  "author_email": "info@myotp.app",
+  "license": "MIT",
+  "homepage": "https://myotp.app",
+  "repository": "https://github.com/brntech/myotp-agentkit",
+  "documentation": "https://myotp.app/api-reference/",
+  "tags": [
+    "sms",
+    "otp",
+    "verification",
+    "2fa",
+    "mfa",
+    "authentication",
+    "phone",
+    "whatsapp",
+    "telegram",
+    "twilio-alternative",
+    "vonage-alternative",
+    "firebase-phone-auth",
+    "one-time-password",
+    "phone-verification",
+    "create-account",
+    "register",
+    "agent-signup",
+    "broadnet"
+  ],
+  "categories": [
+    "authentication",
+    "communication",
+    "security"
+  ],
+  "requires": {
+    "env": ["MYOTP_API_KEY"],
+    "bins": ["curl"],
+    "primary_env": "MYOTP_API_KEY"
+  },
+  "external_services": [
+    {
+      "name": "MyOTP.App API",
+      "base_url": "https://api.myotp.app",
+      "auth": "X-API-Key header",
+      "documentation": "https://myotp.app/api-reference/"
+    }
+  ],
+  "pricing_model": "external",
+  "pricing_notes": "Agent signup via POST /v1/agent/register: zero balance, no trial credits, top up to send. Human signup: 15 free trial messages. Starter $20/mo, Business $25/mo, Enterprise custom. Per-message cost varies by destination country and channel. Agent top-up: POST /v1/topup answers 402 (MPP), $0.02 per credit, 25 to 50000 per call, card capped at $100 per 24h, USDC uncapped.",
+  "security": {
+    "obfuscated_code": false,
+    "external_network_calls": ["https://api.myotp.app"],
+    "installer_hooks": false,
+    "binary_dependencies": ["curl"],
+    "audit_url": "https://github.com/brntech/myotp-agentkit/tree/main/clawhub-skill"
+  }
+}

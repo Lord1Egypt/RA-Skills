@@ -1,0 +1,376 @@
+{
+  "meta": {
+    "title": "孔子語錄三語資料庫（Part 2 修身篇・擴充）",
+    "title_en": "Confucius Quotes Trilingual Database (Part 2: On Self-Cultivation)",
+    "version": "1.1",
+    "languages": [
+      "zh_tw",
+      "zh_cn",
+      "en"
+    ],
+    "built": "2026-08-09",
+    "source": "《論語》通行本",
+    "structure": "每則含原文/出處/對象/語境/譯文/詳解/現代應用，三語並列"
+  },
+  "category": {
+    "id": "self_cultivation",
+    "name": {
+      "zh_tw": "修身",
+      "zh_cn": "修身",
+      "en": "On Self-Cultivation"
+    }
+  },
+  "quotes": [
+    {
+      "id": "xs-001",
+      "original": "曾子曰：「吾日三省吾身：為人謀而不忠乎？與朋友交而不信乎？傳不習乎？」",
+      "source": "論語·學而第一",
+      "speaker": "曾子（曾參）",
+      "audience": null,
+      "context": {
+        "zh_tw": "曾子傳孔子之學，此章為儒家修身功夫的典範——每日自省三事。",
+        "zh_cn": "曾子传孔子之学，此章为儒家修身功夫的典范——每日自省三事。",
+        "en": "Zengzi, transmitting the Master's teaching, exemplifies daily self-examination on three counts."
+      },
+      "translation": {
+        "zh_tw": "我每天多次反省自己：替別人辦事是否盡心盡力？與朋友交往是否誠實守信？老師傳授的學問是否溫習實踐了？",
+        "zh_cn": "我每天多次反省自己：替别人办事是否尽心尽力？与朋友交往是否诚实守信？老师传授的学问是否温习实践了？",
+        "en": "I daily examine myself on three counts: In planning for others, have I been loyal? In dealing with friends, have I been trustworthy? In what has been passed on to me, have I practiced it?"
+      },
+      "explanation": {
+        "zh_tw": "三省三問，對人（忠）、對友（信）、對己（習）各占其一。修身不是空談，是每天落實的三件具體檢查。",
+        "zh_cn": "三省三问，对人（忠）、对友（信）、对己（习）各占其一。修身不是空谈，是每天落实的三件具体检查。",
+        "en": "Three questions, one each for duty to others (loyalty), trust with friends (faith), and diligence toward oneself (practice). Self-cultivation is not empty talk but three concrete daily checks."
+      },
+      "application": {
+        "zh_tw": "每天睡前問自己三句：今天答應別人的事辦好了嗎？跟朋友說過的話守住了嗎？今天學到的東西用了嗎？十分鐘的覆盤，勝過一年空想。",
+        "zh_cn": "每天睡前问自己三句：今天答应别人的事办好了吗？跟朋友说过的话守住了吗？今天学到的东西用了吗？十分钟的复盘，胜过一年空想。",
+        "en": "Each night ask: Did I deliver what I promised? Did I keep my word to friends? Did I put today's learning to use? Ten minutes of reflection outweighs a year of daydreaming."
+      }
+    },
+    {
+      "id": "xs-002",
+      "original": "子曰：「君子坦蕩蕩，小人長戚戚。」",
+      "source": "論語·述而第七",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論君子小人之別：心境的高下，不在境遇而在胸懷。",
+        "zh_cn": "论君子小人之别：心境的高下，不在境遇而在胸怀。",
+        "en": "On the difference between the noble and the petty: the height of spirit lies not in fortune but in breadth of heart."
+      },
+      "translation": {
+        "zh_tw": "君子心境平坦寬廣，小人心中常常憂戚不安。",
+        "zh_cn": "君子心境平坦宽广，小人心中常常忧戚不安。",
+        "en": "The noble man is calm and at ease; the petty man is perpetually anxious and troubled."
+      },
+      "explanation": {
+        "zh_tw": "君子問心無愧，行事依義，故坦蕩；小人患得患失，算計利害，故戚戚。同一件事，心態不同，天地不同。",
+        "zh_cn": "君子问心无愧，行事依义，故坦荡；小人患得患失，算计利害，故戚戚。同一件事，心态不同，天地不同。",
+        "en": "The noble man, acting by what is right, has a clear conscience and is at ease; the petty man, counting gains and losses, is ever anxious. The same event, different hearts, different worlds."
+      },
+      "application": {
+        "zh_tw": "焦慮多來自算計與比較；把心思從「我得了多少」移到「我做得對不對」，心境自然開闊。睡前煩惱時，先問這一問。",
+        "zh_cn": "焦虑多来自算计与比较；把心思从「我得了多少」移到「我做得对不对」，心境自然开阔。睡前烦恼时，先问这一问。",
+        "en": "Anxiety mostly comes from calculation and comparison. Shift your mind from “what do I gain” to “have I done right,” and the heart opens. When troubled at night, ask that one question."
+      }
+    },
+    {
+      "id": "xs-003",
+      "original": "子曰：「見賢思齊焉，見不賢而內自省也。」",
+      "source": "論語·里仁第四",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論修身之道：以人為鏡，賢者思齊，不賢者自省。",
+        "zh_cn": "论修身之道：以人为镜，贤者思齐，不贤者自省。",
+        "en": "On self-cultivation: take others as mirrors — aspire to match the worthy, examine yourself at the unworthy."
+      },
+      "translation": {
+        "zh_tw": "見到賢德的人，就想向他看齊；見到不賢德的人，就反省自己有沒有同樣的毛病。",
+        "zh_cn": "见到贤德的人，就想向他看齐；见到不贤德的人，就反省自己有没有同样的毛病。",
+        "en": "When you see a worthy man, think of equaling him; when you see an unworthy one, examine yourself within."
+      },
+      "explanation": {
+        "zh_tw": "別人既是榜樣也是鏡子：見賢思齊，是把羨慕變成行動；見不賢內自省，是把厭惡變成警惕。善用身邊人，是最好的修身教材。",
+        "zh_cn": "别人既是榜样也是镜子：见贤思齐，是把羡慕变成行动；见不贤内自省，是把厌恶变成警惕。善用身边人，是最好的修身教材。",
+        "en": "Others are both models and mirrors: aspiration turns admiration into action; self-examination turns disgust into vigilance. Those around you are the finest textbooks of self-cultivation."
+      },
+      "application": {
+        "zh_tw": "看到優秀的同事，別只羨慕，列出具體可學的三件事；看到令人厭惡的行為，先檢查自己有沒有類似傾向——這是成長最快的方式。",
+        "zh_cn": "看到优秀的同事，别只羡慕，列出具体可学的三件事；看到令人厌恶的行为，先检查自己有没有类似倾向——这是成长最快的方式。",
+        "en": "When you see an excellent colleague, don't just admire — list three concrete things to learn. When you see repugnant behavior, first check yourself for the same tendency. This is the fastest growth."
+      }
+    },
+    {
+      "id": "xs-004",
+      "original": "子曰：「君子求諸己，小人求諸人。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論責己與責人的方向——君子向內求，小人向外求。",
+        "zh_cn": "论责己与责人的方向——君子向内求，小人向外求。",
+        "en": "On the direction of accountability — the noble man looks inward, the petty man outward."
+      },
+      "translation": {
+        "zh_tw": "君子遇到問題要求自己，小人遇到問題責怪別人。",
+        "zh_cn": "君子遇到问题要求自己，小人遇到问题责怪别人。",
+        "en": "The noble man demands of himself; the petty man demands of others."
+      },
+      "explanation": {
+        "zh_tw": "同樣一件事出了岔子：君子先問「我哪裡沒做好」，小人先找「是誰害了我」。求諸己者掌控命運，求諸人者把命運交給別人。",
+        "zh_cn": "同样一件事出了岔子：君子先问「我哪里没做好」，小人先找「是谁害了我」。求诸己者掌控命运，求诸人者把命运交给别人。",
+        "en": "When things go wrong, the noble man asks “where did I fail”; the petty man asks “who wronged me.” The one who looks inward controls his fate; the one who looks outward surrenders it."
+      },
+      "application": {
+        "zh_tw": "專案失敗、關係破裂、計劃泡湯時，第一句話先問自己「我能改什麼」，而不是急著證明「不是我的錯」。能控制的部分永遠在自己手上。",
+        "zh_cn": "项目失败、关系破裂、计划泡汤时，第一句话先问自己「我能改什么」，而不是急着证明「不是我的错」。能控制的部分永远在自己手上。",
+        "en": "When a project fails or a relationship breaks, first ask “what can I change,” not “prove it wasn't my fault.” What you can control always lies in your own hands."
+      }
+    },
+    {
+      "id": "xs-005",
+      "original": "子曰：「過而不改，是謂過矣。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論過錯的定義——錯不可怕，不改才可怕。",
+        "zh_cn": "论过错的定例——错不可怕，不改才可怕。",
+        "en": "On the definition of error — a mistake is not terrible; failing to correct it is."
+      },
+      "translation": {
+        "zh_tw": "犯了過錯卻不改正，這才叫做過錯。",
+        "zh_cn": "犯了过错却不改正，这才叫做过错。",
+        "en": "To err and not to correct — that is the real error."
+      },
+      "explanation": {
+        "zh_tw": "人非聖賢，孰能無過；孔子看重的是改過的能力。犯錯是常態，不改才是墮落。子貢說「君子之過也，如日月之食焉：過也，人皆見之；更也，人皆仰之」——改過不但不損形象，反增光輝。",
+        "zh_cn": "人非圣贤，孰能无过；孔子看重的是改过的能力。犯错是常态，不改才是堕落。子贡说「君子之过也，如日月之食焉：过也，人皆见之；更也，人皆仰之」——改过不但不损形象，反增光辉。",
+        "en": "To err is human; what Confucius values is the power to correct. Error is the norm; refusing to correct is the fall. As Zigong said: “The noble man's faults are like eclipses of sun and moon — all see them; when he amends, all look up to him.” Correction does not tarnish; it brightens."
+      },
+      "application": {
+        "zh_tw": "承認錯誤並道歉、修正，是職場與關係裡最高級的信用建設；掩蓋錯誤才是災難的開始。出了問題，第一時間說「我錯了，我來改」。",
+        "zh_cn": "承认错误并道歉、修正，是职场与关系里最高级的信用建设；掩盖错误才是灾难的开始。出了问题，第一时间说「我错了，我来改」。",
+        "en": "Admitting and amending errors is the highest form of credit-building in work and relationships; covering them up is where disaster begins. When something goes wrong, say at once: “I was wrong — let me fix it.”"
+      }
+    },
+    {
+      "id": "xs-006",
+      "original": "子曰：「德不孤，必有鄰。」",
+      "source": "論語·里仁第四",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "勉勵君子：有德之人不會孤單，必有同道相鄰。",
+        "zh_cn": "勉励君子：有德之人不会孤单，必有同道相邻。",
+        "en": "Encouragement for the noble: one of virtue is never alone; kindred spirits will surely gather."
+      },
+      "translation": {
+        "zh_tw": "有德行的人不會孤單，一定會有志同道合的人來親近他。",
+        "zh_cn": "有德行的人不会孤单，一定会有志同道合的人来亲近他。",
+        "en": "Virtue is never solitary; it always has neighbors."
+      },
+      "explanation": {
+        "zh_tw": "這句是對行善者的安慰：有時你覺得做好人很孤獨，但德行的感召力是真實的——同類相求，時間會把對的人帶來。",
+        "zh_cn": "这句是对行善者的安慰：有时你觉得做好人很孤独，但德行的感召力是真实的——同类相求，时间会把对的人带来。",
+        "en": "A comfort to the good: sometimes being virtuous feels lonely, but virtue truly attracts — like seeks like, and time brings the right people."
+      },
+      "application": {
+        "zh_tw": "堅持原則、不隨波逐流的人，短期可能被孤立；但長期看，正直的聲譽會吸引同樣正直的合作者、朋友與機會。別急，德不孤。",
+        "zh_cn": "坚持原则、不随波逐流的人，短期可能被孤立；但长期看，正直的声誉会吸引同样正直的合作者、朋友与机会。别急，德不孤。",
+        "en": "Those who hold principles may be isolated short-term; but in the long run, integrity attracts partners, friends, and opportunities of like quality. Be patient — virtue is never alone."
+      }
+    },
+    {
+      "id": "xs-007",
+      "original": "子曰：「君子恥其言而過其行。」",
+      "source": "論語·憲問第十四",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論言與行的關係——君子以說得多做得少為恥。",
+        "zh_cn": "论言与行的关系——君子以说得多做得少为耻。",
+        "en": "On the relation of words and deeds — the noble man is ashamed to say more than he does."
+      },
+      "translation": {
+        "zh_tw": "君子以說得多、做得少為恥。",
+        "zh_cn": "君子以说得多、做得少为耻。",
+        "en": "The noble man is ashamed when his words outrun his deeds."
+      },
+      "explanation": {
+        "zh_tw": "孔子多次強調「訥於言而敏於行」：話要少說，事要多做。承諾一旦說出口就變成債務，行動才是唯一的兌現。",
+        "zh_cn": "孔子多次强调「讷于言而敏于行」：话要少说，事要多做。承诺一旦说出口就变成债务，行动才是唯一的兑现。",
+        "en": "Confucius repeatedly urged being slow of speech and quick of action: speak less, do more. A promise once spoken becomes a debt; only action redeems it."
+      },
+      "application": {
+        "zh_tw": "立 flag 容易，兌現難。把「我打算做」改成「我已經做了第一步」；少向別人宣布計劃，多讓結果替你說話。",
+        "zh_cn": "立 flag 容易，兑现难。把「我打算做」改成「我已经做了第一步」；少向别人宣布计划，多让结果替你说话。",
+        "en": "Making resolutions is easy; keeping them is hard. Replace “I plan to” with “I have taken the first step.” Announce less; let results speak."
+      }
+    },
+    {
+      "id": "xs-008",
+      "original": "子曰：「人無遠慮，必有近憂。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "論謀劃的智慧——沒有長遠的考慮，眼前必有憂患。",
+        "zh_cn": "论谋划的智慧——没有长远的考虑，眼前必有忧患。",
+        "en": "On foresight — without long-range thought, troubles are sure to be near at hand."
+      },
+      "translation": {
+        "zh_tw": "一個人沒有長遠的打算，一定會有眼前的憂患。",
+        "zh_cn": "一个人没有长远的打算，一定会有眼前的忧患。",
+        "en": "If a man takes no thought for what is distant, he will find sorrow near at hand."
+      },
+      "explanation": {
+        "zh_tw": "近憂往往不是命運，是過去沒有遠慮的結果。今天的窘迫，多半是昨天欠下的；今天的遠慮，是明天從容的保證。",
+        "zh_cn": "近忧往往不是命运，是过去没有远虑的结果。今天的窘迫，多半是昨天欠下的；今天的远虑，是明天从容的保证。",
+        "en": "Near troubles are seldom fate; they are the arrears of past carelessness. Today's straits are yesterday's debts; today's foresight is tomorrow's ease."
+      },
+      "application": {
+        "zh_tw": "理財、健康、職業規劃都適用：現在開始的每一筆儲蓄、每一次體檢、每一項技能投資，都是在為未來的自己買保險。",
+        "zh_cn": "理财、健康、职业规划都适用：现在开始的每一笔储蓄、每一次体检、每一项技能投资，都是在为未来的自己买保险。",
+        "en": "Applies to finance, health, and career: every saving, checkup, and skill invested now is insurance bought for your future self."
+      }
+    },
+    {
+      "id": "xs-009",
+      "original": "子曰：「君子不重則不威，學則不固。主忠信，無友不如己者，過則勿憚改。」",
+      "source": "論語·學而第一",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "學而篇論君子的自我修養：莊重、好學、忠信、擇友、改過五事。",
+        "zh_cn": "学而篇论君子的自我修养：庄重、好学、忠信、择友、改过五事。",
+        "en": "From Xue'er — five disciplines of the noble man: dignity, learning, loyalty, friendship, and amendment of faults."
+      },
+      "translation": {
+        "zh_tw": "君子不莊重就沒有威嚴，所學也不穩固。以忠信為主，不與不如自己的人交朋友，有了過錯不要怕改正。",
+        "zh_cn": "君子不庄重就没有威严，所学也不稳固。以忠信为主，不与不如自己的人交朋友，有了过错不要怕改正。",
+        "en": "If the noble man is not grave, he will not inspire awe, and his learning will not be solid. Hold loyalty and good faith as primary; do not befriend those who are not your equals; and when you have faults, do not fear to amend them."
+      },
+      "explanation": {
+        "zh_tw": "五事相連成一套修身程序：莊重是外表的定力，好學是內在的根基，忠信是待人的主軸；「無友不如己者」是說交友要能互相砥礪；最後落到改過——修身最難的是肯認錯、肯改。",
+        "zh_cn": "五事相连成一套修身程序：庄重是外表的定力，好学是内在的根基，忠信是待人的主轴；「无友不如己者」是说交友要能互相砥砺；最后落到改过——修身最难的是肯认错、肯改。",
+        "en": "The five form one program: gravity gives outer poise, learning builds inner roots, loyalty and faith anchor dealings with others; “no friends not your equals” means friends who sharpen you; and all culminates in amendment — the hardest part of self-cultivation is admitting and correcting faults."
+      },
+      "application": {
+        "zh_tw": "日常可自問五件事：我夠穩重嗎？有在學嗎？對人誠信嗎？身邊的朋友是讓我變好還是變差？犯了錯敢認、肯改嗎？",
+        "zh_cn": "日常可自问五件事：我够稳重吗？有在学吗？对人诚信吗？身边的朋友是让我变好还是变差？犯了错敢认、肯改吗？",
+        "en": "Ask yourself five things daily: Am I steady? Am I learning? Am I trustworthy? Do my friends make me better or worse? Do I own and correct my mistakes?"
+      }
+    },
+    {
+      "id": "xs-010",
+      "original": "子曰：「君子不以言舉人，不以人廢言。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "衛靈公篇論待人處世的公正：言與人分開看。",
+        "zh_cn": "卫灵公篇论待人处世的公正：言与人分开看。",
+        "en": "From Wei Linggong — on fairness: judge words and persons separately."
+      },
+      "translation": {
+        "zh_tw": "君子不因為一個人話說得好就舉薦他，也不因為一個人品德不好就廢棄他的好話。",
+        "zh_cn": "君子不因为一个人话说得好就举荐他，也不因为一个人品德不好就废弃他的好话。",
+        "en": "The noble man does not promote a man for his fine words, nor reject a man's words for his character."
+      },
+      "explanation": {
+        "zh_tw": "兩句各防一種偏見：聽其言而信其行，會被巧言所惑；因人廢言，會錯失良言。把「話」和「人」分開評價，是成熟的判斷力。",
+        "zh_cn": "两句各防一种偏见：听其言而信其行，会被巧言所惑；因人废言，会错失良言。把「话」和「人」分开评价，是成熟的判断力。",
+        "en": "Each clause guards against one bias: trusting a man for his words lets flattery deceive you; rejecting words for the speaker's sake loses good counsel. Judging speech and speaker separately is mature discernment."
+      },
+      "application": {
+        "zh_tw": "職場上：提案好不好看內容，不看出身；得罪過你的人說的有道理，也該聽。對事不對人，對人也別只看嘴。",
+        "zh_cn": "职场上：提案好不好看内容，不看出身；得罪过你的人说的有道理，也该听。对事不对人，对人也别只看嘴。",
+        "en": "At work: judge proposals by content, not origin; even an adversary's sound advice deserves hearing. Be fair to the matter and not dazzled by the speaker."
+      }
+    },
+    {
+      "id": "xs-011",
+      "original": "子曰：「躬自厚而薄責於人，則遠怨矣。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "衛靈公篇論責己與責人的分寸——多要求自己，少責怪別人。",
+        "zh_cn": "卫灵公篇论责己与责人的分寸——多要求自己，少责怪别人。",
+        "en": "From Wei Linggong — on the measure of blame: demand much of yourself, little of others."
+      },
+      "translation": {
+        "zh_tw": "多責備自己，少責備別人，怨恨自然就遠離了。",
+        "zh_cn": "多责备自己，少责备别人，怨恨自然就远离了。",
+        "en": "Be strict with yourself and lenient toward others — then resentment stays far away."
+      },
+      "explanation": {
+        "zh_tw": "「躬自厚」是對自己嚴，「薄責於人」是對人寬。人際衝突大半源於對人苛、對己寬；把這個比例倒過來，怨氣自然消。",
+        "zh_cn": "「躬自厚」是对自己严，「薄责于人」是对人宽。人际冲突大半源于对人苛、对己宽；把这个比例倒过来，怨气自然消。",
+        "en": "Be strict with yourself, lenient with others. Most conflict springs from demanding much of others and little of oneself; reverse that ratio and resentment dissolves."
+      },
+      "application": {
+        "zh_tw": "吵架、合作出問題時，先列自己的三條，再列對方的一條。多數時候你會發現，責己比責人更能解決問題。",
+        "zh_cn": "吵架、合作出问题时，先列自己的三条，再列对方的一条。多数时候你会发现，责己比责人更能解决问题。",
+        "en": "In disputes or failed collaborations, list three of your own faults before one of the other's. Most often you will find self-examination solves more than blame."
+      }
+    },
+    {
+      "id": "xs-012",
+      "original": "子曰：「巧言亂德。小不忍，則亂大謀。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "衛靈公篇兩句相連：巧言惑亂德行，小事不忍會壞了大計。",
+        "zh_cn": "卫灵公篇两句相连：巧言惑乱德行，小事不忍会坏了大计。",
+        "en": "From Wei Linggong, two linked warnings: clever words corrupt virtue; what cannot be borne in small things ruins great plans."
+      },
+      "translation": {
+        "zh_tw": "花言巧語足以敗壞德行。小事情不能忍耐，就會擾亂大計畫。",
+        "zh_cn": "花言巧语足以败坏德行。小事情不能忍耐，就会扰乱大计划。",
+        "en": "Clever talk ruins virtue. If you cannot bear small provocations, you will ruin great designs."
+      },
+      "explanation": {
+        "zh_tw": "前句戒聽：巧言悅耳，最易動搖判斷；後句戒行：忍不了一時之氣，往往壞了長遠之局。一守一進，都是修身的大關口。",
+        "zh_cn": "前句戒听：巧言悦耳，最易动摇判断；后句戒行：忍不了一时之气，往往坏了长远之局。一守一进，都是修身的大关口。",
+        "en": "The first guards the ear: pleasant words most easily shake judgment. The second guards action: an unendured moment of anger often ruins a long game. Both are great gates of self-cultivation."
+      },
+      "application": {
+        "zh_tw": "談判、投資、吵架時，先問自己：這口氣值得拿大局去換嗎？忍一時不是懦弱，是給大謀留路。",
+        "zh_cn": "谈判、投资、吵架时，先问自己：这口气值得拿大局去换吗？忍一时不是懦弱，是给大谋留路。",
+        "en": "In negotiation, investment, or quarrel, ask: is this anger worth my larger goal? Bearing a moment is not cowardice; it keeps the great design open."
+      }
+    },
+    {
+      "id": "xs-013",
+      "original": "子曰：「君子疾沒世而名不稱焉。」",
+      "source": "論語·衛靈公第十五",
+      "speaker": "孔子",
+      "audience": null,
+      "context": {
+        "zh_tw": "衛靈公篇，孔子慨嘆君子最怕的是到死都沒有可稱道之處。",
+        "zh_cn": "卫灵公篇，孔子慨叹君子最怕的是到死都没有可称道之处。",
+        "en": "From Wei Linggong — the noble man's dread: to die without anything worthy of remembrance."
+      },
+      "translation": {
+        "zh_tw": "君子引以為憾的，是到死而名聲不被稱述。",
+        "zh_cn": "君子引以为憾的，是到死而名声不被称述。",
+        "en": "The noble man grieves to die with his name unremembered."
+      },
+      "explanation": {
+        "zh_tw": "此「名」非虛名，是實德的回響。君子不追求生前顯赫，卻怕自己一生無所立、無所成——怕的不是沒人記得，是沒有值得被記得的東西。",
+        "zh_cn": "此「名」非虚名，是实德的回响。君子不追求生前显赫，却怕自己一生无所立、无所成——怕的不是没人记得，是没有值得被记得的东西。",
+        "en": "This “name” is not fame but the echo of real virtue. The noble man seeks no glory in life, yet dreads a life in which nothing was established — not that none remember, but that there is nothing worth remembering."
+      },
+      "application": {
+        "zh_tw": "與其焦慮「別人怎麼看我」，不如問「我留下了什麼」。作品、幫助過的人、教會過誰——這些才是帶得走的「名」。",
+        "zh_cn": "与其焦虑「别人怎么看我」，不如问「我留下了什么」。作品、帮助过的人、教会过谁——这些才是带得走的「名」。",
+        "en": "Rather than fret over how others see you, ask what you leave behind: work, people helped, things taught — these are the “name” that endures."
+      }
+    }
+  ]
+}

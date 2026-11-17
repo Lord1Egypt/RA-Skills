@@ -4,17 +4,16 @@ Use this library when Lingzao needs to create or route visual work for
 Xiaohongshu covers, graphic notes, WeChat article covers, article images,
 knowledge cards, product pages, or ecommerce-style conversion images.
 
-This is a style-routing library, not a raw-image export. The style groups below
-come from internal visual references, but the distributed Skill must not expose
-private local filesystem paths or imply that ordinary users can access A Tian's
-local folders.
+This is a style-routing library, not a private image library. The style groups
+below are curated for visual direction; the distributed Skill should only expose
+the usable style guidance.
 
 Use the style groups to identify visual category, composition logic, and prompt
 direction. Do not copy private image files into user deliverables, do not expose
-internal source paths to ordinary users, and do not claim the generated image is
+local file paths to ordinary users, and do not claim the generated image is
 copied from a private reference.
 
-## Sanitized Internal Source Categories
+## Style Source Categories
 
 The private source material has been abstracted into these distributable style
 groups:
@@ -28,6 +27,7 @@ groups:
 7. Interaction prompt covers.
 8. Text-dense screenshot graphic notes.
 9. Room-as-identity lifestyle covers.
+10. Travel handdrawn route maps.
 
 ## Style Groups
 
@@ -64,6 +64,45 @@ Avoid:
 - vague "beautiful place" covers that do not explain why to click or save
 - recommending this style to users who have no place/food/route/photo material,
   unless Lingzao is creating an AI-assisted graphic-note version
+
+### 1B. Travel Handdrawn Route Map
+
+Use for:
+
+- illustrated travel maps, food maps, local-life route maps, city-walk maps,
+  check-in routes, "from morning to night" food routes, 2-5 day itinerary maps
+- users who want a single highly saveable Xiaohongshu image that combines
+  destination, route order, foods/attractions, and cute handdrawn style
+
+Visual traits:
+
+- vertical Xiaohongshu 3:4 or 4:5 image
+- cream / parchment / watercolor paper background
+- black brush-calligraphy or thick hand-lettering title with red underline
+- numbered red route pins, winding route line, arrows, dotted boxes
+- watercolor illustrated foods, storefronts, landmarks, mountains, rivers,
+  bridges, old streets, local signs, travel objects, or cute mascots
+- side or bottom "打卡顺序 / 路线建议" box with D1/D2 or morning/afternoon/night
+- sticker accents: hearts, stars, chili, camera, suitcase, signpost, small
+  handwritten labels
+- information-dense but still readable; the image should feel like a travel
+  journal page, not an exact navigation map
+
+Best output:
+
+- one complete map image plus Xiaohongshu caption and 10 publishing keywords
+- food maps should show 5-8 numbered food/place anchors and a route-order box
+- travel maps should show 5-8 scenic pins, simplified region/terrain shape,
+  and a day-by-day or stop-by-stop itinerary box
+
+Avoid:
+
+- realistic satellite or navigation map style
+- generic flat-vector city map with no food/landmark warmth
+- hallucinating exact addresses, prices, stores, or geographic precision when
+  the user did not provide them
+- putting too much tiny Chinese text on the image; keep longer details in the
+  caption
 
 ### 2. WeChat Article Knowledge Pack
 
@@ -385,7 +424,7 @@ Best output:
 
 Avoid:
 
-- raw screenshots with no keyword extraction
+- unedited screenshots with no keyword extraction
 - first pages where users need to read several lines before understanding the
   topic
 - tiny text, cut-off text, or page bodies that are only readable after zooming
@@ -458,6 +497,8 @@ Avoid:
 
 When the user asks for an image but gives no reference image:
 
+- travel map, food map, city-walk map, itinerary map, route order,
+  "打卡路线图/一天从早吃到晚/5 天游路线" -> Travel Handdrawn Route Map
 - travel, food, city, local life, transport -> Travel Food Local-Life Cover
 - WeChat article, official post, article image pack -> WeChat Article Knowledge
   Pack
@@ -488,6 +529,8 @@ When multiple routes are possible, prioritize the user's available material:
   Text-Dense Screenshot Graphic Note
 - has a repeatable room/desk/home scene that can prove the lifestyle ->
   Room-As-Identity Lifestyle Cover
+- has city/destination + route points or wants a route/order map -> Travel
+  Handdrawn Route Map
 - has food/place/travel photos -> Travel Food Local-Life Cover
 - has no photo and wants XHS graphic notes -> Lingzao No-Person Knowledge Card
 - has article draft -> WeChat Article Knowledge Pack

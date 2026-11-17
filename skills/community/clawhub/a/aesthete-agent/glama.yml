@@ -1,0 +1,32 @@
+# Glama.ai platform configuration
+# https://glama.ai/mcp/servers/docsor1212/aesthete-agent
+metadata:
+  name: "aesthete-agent"
+  description: "Mechanically validated frontend aesthetics for coding agents: 13 MCP tools for palette ranking, OKLCH role derivation, WCAG + APCA contrast gates, color-blind simulation, AI-slop detection, scene visualization and one-verdict reporting over a 117-palette evidence library."
+  author: "SorSor"
+  license: "MIT"
+  homepage: "https://github.com/docsor1212/aesthete-agent"
+  repository: "https://github.com/docsor1212/aesthete-agent"
+  documentation: "https://github.com/docsor1212/aesthete-agent#readme"
+  support: "https://github.com/docsor1212/aesthete-agent/issues"
+  keywords:
+    - "mcp"
+    - "color"
+    - "palette"
+    - "design"
+    - "frontend"
+    - "wcag"
+    - "apca"
+    - "accessibility"
+    - "design-tokens"
+    - "oklch"
+  categories:
+    - "developer-tools"
+    - "design"
+
+mcp:
+  protocol: "stdio"
+  capabilities:
+    tools: true
+    prompts: false
+    resources: false

@@ -1,42 +1,59 @@
-## Description: <br>
-Comprehensive search API integration for Baidu Qianfan Web Search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Search helps agents run Baidu Qianfan Web Search queries through a Node.js CLI using a user-supplied Baidu Qianfan API key.
 
-## Publisher: <br>
-[lsall357357](https://clawhub.ai/user/lsall357357) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lsall357357](https://clawhub.ai/user/lsall357357)
 
-## Use Case: <br>
-Developers and agent users use this skill to run Baidu Qianfan enterprise web searches from an agent, including time-filtered, site-filtered, image, video, and safe-search queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms, filters, and result requests are sent to Baidu Qianfan using the user's API key. <br>
-Mitigation: Use a dedicated key where possible and avoid secrets, personal data, or confidential business queries unless that provider flow is approved. <br>
-Risk: The skill depends on a local API key or .env file for authentication. <br>
-Mitigation: Keep any .env file private, do not publish credentials with the skill, and rotate the key if it is exposed. <br>
+## Use Case:
 
+Developers and agent users use this skill to perform Baidu Qianfan enterprise web, image, and video searches with filters for recency, sites, blocked sites, safe search, and resource types.
 
-## Reference(s): <br>
-- [Baidu Qianfan Search API Reference](references/api-reference.md) <br>
-- [Baidu Cloud](https://cloud.baidu.com/) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lsall357357/baidu-qianfan-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance and command output; raw JSON is available with the --raw option.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied BAIDU_QIANFAN_API_KEY and sends search queries to Baidu Qianfan.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json, _meta.json, server release evidence) <br>
+Risk: Search queries are sent to Baidu Qianfan's external search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, regulated personal data, or other sensitive information in search queries.
+
+Risk: The skill requires a Baidu Qianfan API key and supports loading credentials from a local .env file.
+
+Mitigation: Prefer the BAIDU_QIANFAN_API_KEY environment variable over persistent local files and keep credentials out of shared artifacts.
+
+Risk: The release does not include a dependency lockfile.
+
+Mitigation: Pin dependencies with a lockfile before production deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lsall357357/skills/baidu-qianfan-search)
+- [Baidu Cloud](https://cloud.baidu.com/)
+- [Baidu Qianfan API Reference](references/api-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and text or JSON search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied BAIDU_QIANFAN_API_KEY and sends search queries to Baidu Qianfan.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

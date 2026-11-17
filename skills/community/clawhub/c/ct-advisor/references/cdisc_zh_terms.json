@@ -1,0 +1,516 @@
+{
+  "metadata": {
+    "source": "CDISC Define-XML 2.1 官方样式表中文本地化版（define2-1-0.xsl，Lex Jansen 2013-2018）",
+    "license": "MIT（可合法集成/再分发；区别于 P21 私有内容）",
+    "extracted_date": "2026-10-14",
+    "note": "zh→en CDISC Define-XML UI 术语对照，供 ct-sdtm i18n（scripts/i18n.py）与报告中文化复用。en 对照为官方英文版 UI 词汇；confidence=inferred 表示依据上下文推断，非逐字对译。",
+    "unique_zh_terms": 72,
+    "total_occurrences": 118
+  },
+  "terms": [
+    {
+      "zh": "[注释]",
+      "en": "[Comment]",
+      "category": "display_prefix",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "[方法]",
+      "en": "[Method]",
+      "category": "display_prefix",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "[来源]",
+      "en": "[Origin]",
+      "category": "display_prefix",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "跳过导航链接",
+      "en": "Skip navigation links",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "[未解决:",
+      "en": "[Unresolved:",
+      "category": "status_marker",
+      "count": 15,
+      "confidence": "exact"
+    },
+    {
+      "zh": "补充文件",
+      "en": "Supplemental documents",
+      "category": "menu",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "标准",
+      "en": "Standard",
+      "category": "metadata",
+      "count": 3,
+      "confidence": "exact"
+    },
+    {
+      "zh": "分析结果元数据",
+      "en": "Analysis Result Metadata",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "数据集",
+      "en": "Datasets",
+      "category": "menu",
+      "count": 4,
+      "confidence": "exact"
+    },
+    {
+      "zh": "受控术语",
+      "en": "Controlled Terminology",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "代码清单",
+      "en": "Code Lists",
+      "category": "metadata",
+      "count": 2,
+      "confidence": "exact"
+    },
+    {
+      "zh": "外部词典",
+      "en": "External Dictionaries",
+      "category": "metadata",
+      "count": 4,
+      "confidence": "exact"
+    },
+    {
+      "zh": "方法",
+      "en": "Methods",
+      "category": "metadata",
+      "count": 5,
+      "confidence": "exact"
+    },
+    {
+      "zh": "注释",
+      "en": "Comments",
+      "category": "metadata",
+      "count": 4,
+      "confidence": "exact"
+    },
+    {
+      "zh": "研究名称",
+      "en": "Study Name",
+      "category": "study",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "研究概要",
+      "en": "Study Summary",
+      "category": "study",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "协议名称",
+      "en": "Protocol Title",
+      "category": "study",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "元数据名称",
+      "en": "MetaData Version Name",
+      "category": "study",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "元数据说明",
+      "en": "MetaData Version Description",
+      "category": "study",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "研究标准",
+      "en": "Study Standards",
+      "category": "metadata",
+      "count": 2,
+      "confidence": "exact"
+    },
+    {
+      "zh": "类型",
+      "en": "Type",
+      "category": "metadata",
+      "count": 3,
+      "confidence": "exact"
+    },
+    {
+      "zh": "状态",
+      "en": "Status",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "文献资料",
+      "en": "References",
+      "category": "arm",
+      "count": 3,
+      "confidence": "exact"
+    },
+    {
+      "zh": "分析结果元数据-概要",
+      "en": "Analysis Result Metadata - Summary",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "分析结果元数据-详细信息",
+      "en": "Analysis Result Metadata - Detail",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "分析结果",
+      "en": "Analysis Results",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "分析参数",
+      "en": "Analysis Parameter",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "分析变量",
+      "en": "Analysis Variable(s)",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "分析原因",
+      "en": "Analysis Reason",
+      "category": "arm",
+      "count": 1,
+      "confidence": "inferred"
+    },
+    {
+      "zh": "分析目的",
+      "en": "Analysis Purpose",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "数据参考（包括选择标准）",
+      "en": "Data References (incl. selection criteria)",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "编程语句",
+      "en": "Programming Statements",
+      "category": "arm",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "描述",
+      "en": "Description",
+      "category": "metadata",
+      "count": 5,
+      "confidence": "exact"
+    },
+    {
+      "zh": "类",
+      "en": "Class",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "结构",
+      "en": "Structure",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "目的",
+      "en": "Purpose",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "按键",
+      "en": "Key(s)",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "inferred"
+    },
+    {
+      "zh": "位置",
+      "en": "Location",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "变量",
+      "en": "Variables",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "Where条件",
+      "en": "Where Clause",
+      "category": "valuelist",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "标签/描述",
+      "en": "Label/Description",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "角色",
+      "en": "Role",
+      "category": "metadata",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "长度 [有效数字] : 显示格式",
+      "en": "Length [Significant Digits] : Display Format",
+      "category": "column",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "长度或显示格式",
+      "en": "Length or Display Format",
+      "category": "column",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "受控术语或ISO格式",
+      "en": "Controlled Terms or ISO Format",
+      "category": "column",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "来源/源/方法/注释",
+      "en": "Origin/Source/Method/Comment",
+      "category": "column",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "[未解决: VLM]",
+      "en": "[Unresolved: VLM]",
+      "category": "status_marker",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "受控术语 -",
+      "en": "Controlled Terminology -",
+      "category": "valuelist",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "允许值（代码)",
+      "en": "Allowed Values (codes)",
+      "category": "codelist",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "显示值（解码）",
+      "en": "Displayed Value (decode)",
+      "category": "codelist",
+      "count": 1,
+      "confidence": "inferred"
+    },
+    {
+      "zh": "秩",
+      "en": "Rank",
+      "category": "codelist",
+      "count": 2,
+      "confidence": "inferred"
+    },
+    {
+      "zh": "扩展值",
+      "en": "Extensible",
+      "category": "codelist",
+      "count": 2,
+      "confidence": "inferred"
+    },
+    {
+      "zh": "代码清单 -",
+      "en": "Code Lists -",
+      "category": "valuelist",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "允许值（代码）",
+      "en": "Allowed Values (codes)",
+      "category": "codelist",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "外部词典（MedDra，WHODRUG等）",
+      "en": "External Dictionaries (MedDRA, WHO Drug etc.)",
+      "category": "codelist",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "参考名称",
+      "en": "Reference Name",
+      "category": "codelist",
+      "count": 1,
+      "confidence": "inferred"
+    },
+    {
+      "zh": "词典版本",
+      "en": "Dictionary Version",
+      "category": "codelist",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "形式表达式",
+      "en": "Formal Expression",
+      "category": "codelist",
+      "count": 3,
+      "confidence": "exact"
+    },
+    {
+      "zh": "相关父数据集:",
+      "en": "Related parent dataset:",
+      "category": "relrec",
+      "count": 2,
+      "confidence": "exact"
+    },
+    {
+      "zh": "相关补充修饰语数据集:",
+      "en": "Related supplemental qualifier dataset:",
+      "category": "relrec",
+      "count": 2,
+      "confidence": "exact"
+    },
+    {
+      "zh": "源:",
+      "en": "Source:",
+      "category": "origin",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "位置:",
+      "en": "Location:",
+      "category": "origin",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "[非标准]",
+      "en": "[Non-standard]",
+      "category": "status_marker",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "[没有数据]",
+      "en": "[No data]",
+      "category": "status_marker",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "术语]",
+      "en": "term]",
+      "category": "status_marker",
+      "count": 2,
+      "confidence": "exact"
+    },
+    {
+      "zh": "展开所有VLM",
+      "en": "Expand all VLM",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "收起所有VLM",
+      "en": "Collapse all VLM",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "回到Define-XML文档的",
+      "en": "Back to Define-XML document",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "顶部",
+      "en": "top",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "Define-XML文档的创建日期/时间:",
+      "en": "Define-XML document creation date/time:",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "Define-XML上下文:",
+      "en": "Define-XML context:",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    },
+    {
+      "zh": "Define-XML版本:",
+      "en": "Define-XML version:",
+      "category": "ui",
+      "count": 1,
+      "confidence": "exact"
+    }
+  ]
+}

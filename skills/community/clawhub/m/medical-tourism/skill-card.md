@@ -1,44 +1,57 @@
-## Description: <br>
-Book flights for medical tourism, health checkups, and overseas treatment using the flyai CLI, with support for related travel booking tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents collect medical travel flight details, run the flyai CLI for real-time options, and return booking-oriented Markdown with validated links.
 
-## Publisher: <br>
-[bufferstreamer](https://clawhub.ai/user/bufferstreamer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bufferstreamer](https://clawhub.ai/user/bufferstreamer)
 
-## Use Case: <br>
-External users use this skill to search medical tourism flights and related travel options through real-time flyai CLI results. It helps agents collect route parameters, run approved CLI searches, and return Markdown booking options with links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs an agent to install and run an external flyai CLI. <br>
-Mitigation: Require explicit user approval before installation, verify the package source and version, and review the skill before deployment. <br>
-Risk: Booking links lead to third-party travel services. <br>
-Mitigation: Treat returned booking links as external service links and have users review destination, price, and provider details before booking. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search for flights for medical tourism, health checkups, and overseas treatment trips while preserving booking links from real-time CLI results.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/bufferstreamer/medical-tourism) <br>
-- [Parameter Collection and Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Flight result tables must be based on flyai CLI output and include detailUrl booking links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may install and invoke an external flight-search CLI using user-provided travel fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI before installation, prefer a pinned and isolated install, and validate origin, destination, and date values before execution.
+
+Risk: Booking links and travel results depend on external CLI output.
+
+Mitigation: Only present results that include validated detailUrl booking links and avoid filling missing results from model knowledge.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bufferstreamer/skills/medical-tourism)
+- [Parameter Collection and Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown flight search summaries with inline CLI commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires each listed result to include a Book link from the CLI detailUrl field.]
+
+## Skill Version(s):
+
+3.2.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

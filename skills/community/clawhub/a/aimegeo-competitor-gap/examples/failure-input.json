@@ -1,0 +1,15 @@
+{
+  "comparison": {
+    "question": "离线失败边界示例：青禾页面可读，杉木获取超时；AI 查询失败不记作零引用。",
+    "page_slots": ["product"]
+  },
+  "sites": [
+    {"id": "qinghe", "name": "青禾", "role": "brand", "pages": [{"slot": "product", "url": "https://qinghe.example/products/crm", "snapshot": {"path": "pages/qinghe.html", "status": "ok", "http_status": 200, "kind": "simulated", "captured_at": "2026-10-19T12:00:00+08:00"}}]},
+    {"id": "cedar", "name": "杉木", "role": "competitor", "pages": [{"slot": "product", "url": "https://cedar.example/products/crm", "snapshot": {"status": "failed", "reason": "simulated_timeout", "kind": "simulated", "captured_at": "2026-10-19T12:00:00+08:00"}}]}
+  ],
+  "ai_samples": [
+    {"id": "query-failed-demo", "status": "query_failed", "platform": "offline-fixture", "query": "小团队如何选客户资料管理工具？", "reason": "模拟查询失败，未取得回答及原生引用"},
+    {"id": "not-run-demo", "status": "not_run", "platform": "offline-fixture", "query": "支持 CSV 的客户资料工具有哪些？", "reason": "未运行"},
+    {"id": "simulated-demo", "status": "simulated", "platform": "offline-fixture", "query": "有哪些客户资料管理工具？", "captured_at": "2026-10-19T12:00:00+08:00", "answer": "模拟回答：青禾提供客户资料整理功能。", "evidence": "failure-input.json#ai_samples/simulated-demo（构造数据）", "native_citations": []}
+  ]
+}

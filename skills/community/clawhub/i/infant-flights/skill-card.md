@@ -1,47 +1,61 @@
-## Description: <br>
-Book infant flights, baby travel tickets and bassinet seat options with child fare and infant-in-arm booking, with related travel search support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book infant flights, baby travel tickets and bassinet seat options with child fare and infant-in-arm booking.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search infant-friendly flights, direct routes, child-fare travel options, and related booking links through the flyai CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install or require a global flyai CLI before returning travel results. <br>
-Mitigation: Review the CLI package before installation and do not allow automatic global or sudo installation unless the environment intentionally trusts that CLI. <br>
-Risk: Travel-search details may be sent to FlyAI or Fliggy when the CLI runs. <br>
-Mitigation: Use the skill only when the user accepts sharing the required route, date, and travel-search details with the travel provider. <br>
-Risk: The skill may retain local raw travel-query history in `.flyai-execution-log.json`. <br>
-Mitigation: Check for the log file after use and remove or disable it when local retention of travel-query history is not desired. <br>
+## Use Case:
 
+External users and travel-support agents use this skill to search infant-friendly flights, prioritize direct or short-duration itineraries, and format CLI-derived booking options with baby travel reminders.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/infant-flights) <br>
-- [Publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Failure fallbacks](references/fallbacks.md) <br>
-- [Execution log runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with booking links, comparison tables, baby travel tips, and inline flyai CLI commands when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output for flight data and should not answer travel-search results from model memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill directs agents to install and run an unpinned global flyai CLI before returning travel results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before package installation, pin or verify the CLI source where possible, and do not allow sudo installation.
+
+Risk: Travel searches and booking-link workflows may expose itinerary preferences or sensitive passenger context to an external service.
+
+Mitigation: Avoid entering passport numbers, payment details, or unnecessary identity data, and review the flyai service and logging behavior before use.
+
+Risk: The artifact describes local execution logs for user travel requests.
+
+Mitigation: Disable, remove, or tightly control local logging before using the skill with sensitive travel queries.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/infant-flights)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, baby travel tips, and inline shell commands when troubleshooting is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI results for flight options and booking URLs.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

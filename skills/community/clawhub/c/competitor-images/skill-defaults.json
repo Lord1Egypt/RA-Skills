@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "channel": "competitor-images",
+  "workflow": "page_compare",
+  "focus": "images",
+  "outputTemplate": "ops_page_compare",
+  "requiredCapabilities": [
+    "product-detail",
+    "reviews",
+    "competitor-product-detail",
+    "competitor-reviews"
+  ]
+}

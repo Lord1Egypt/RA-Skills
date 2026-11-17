@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="730" viewBox="0 0 1040 730" role="img" aria-labelledby="title description" lang="en">
+  <title id="title">Read the time differences</title>
+  <desc id="description">Illustrative two-leg example: planned 60+60 minutes; actual 52+68 minutes. The activity is eight minutes ahead at CP1 and tied at CP2, although its second leg is eight minutes slower.</desc>
+  <style>text{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-variant-numeric:tabular-nums}</style>
+  <rect x="0" y="0" width="1040" height="730" fill="#FFFFFF" rx="0" />
+  <text x="32" y="48" font-size="28" fill="#202A35" font-weight="700" text-anchor="start">Read the time differences</text>
+  <text x="32" y="81" font-size="19" fill="#626D79" font-weight="400" text-anchor="start">Illustration · planned 60 + 60 min; actual 52 + 68 min.</text>
+  <rect x="24" y="108" width="480" height="345" fill="#F7F8FA" rx="12" />
+  <rect x="536" y="108" width="480" height="345" fill="#F7F8FA" rx="12" />
+  <text x="48" y="145" font-size="21" fill="#202A35" font-weight="650" text-anchor="start">Cumulative gap · plan − actual</text>
+  <text x="560" y="145" font-size="21" fill="#202A35" font-weight="650" text-anchor="start">Segment gap · plan − actual</text>
+  <text x="48" y="174" font-size="17" fill="#626D79" font-weight="400" text-anchor="start">Ahead at this checkpoint</text>
+  <text x="560" y="174" font-size="17" fill="#626D79" font-weight="400" text-anchor="start">Faster or slower on this leg</text>
+  <line x1="80" y1="400" x2="450" y2="400" stroke="#E4E8ED" stroke-width="1" />
+  <text x="68" y="406" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">-10</text>
+  <line x1="80" y1="310" x2="450" y2="310" stroke="#626D79" stroke-width="1.5" />
+  <text x="68" y="316" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">0</text>
+  <line x1="80" y1="220" x2="450" y2="220" stroke="#E4E8ED" stroke-width="1" />
+  <text x="68" y="226" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">+10</text>
+  <text x="80" y="200" font-size="16" fill="#626D79" font-weight="400" text-anchor="start">min</text>
+  <line x1="594" y1="400" x2="964" y2="400" stroke="#E4E8ED" stroke-width="1" />
+  <text x="582" y="406" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">-10</text>
+  <line x1="594" y1="310" x2="964" y2="310" stroke="#626D79" stroke-width="1.5" />
+  <text x="582" y="316" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">0</text>
+  <line x1="594" y1="220" x2="964" y2="220" stroke="#E4E8ED" stroke-width="1" />
+  <text x="582" y="226" font-size="17" fill="#626D79" font-weight="400" text-anchor="end">+10</text>
+  <text x="594" y="200" font-size="16" fill="#626D79" font-weight="400" text-anchor="start">min</text>
+  <polyline points="80,310 228,238 450,310" fill="none" stroke="#087F5B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="80" cy="310" r="5" fill="#626D79" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="228" cy="238" r="5" fill="#087F5B" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="450" cy="310" r="5" fill="#626D79" stroke="#FFFFFF" stroke-width="2" />
+  <text x="228" y="221" font-size="24" fill="#087F5B" font-weight="700" text-anchor="middle">+8</text>
+  <text x="450" y="292" font-size="24" fill="#626D79" font-weight="700" text-anchor="middle">0</text>
+  <text x="80" y="436" font-size="18" fill="#626D79" font-weight="400" text-anchor="middle">Start</text>
+  <text x="228" y="436" font-size="18" fill="#626D79" font-weight="400" text-anchor="middle">CP1</text>
+  <text x="450" y="436" font-size="18" fill="#626D79" font-weight="400" text-anchor="middle">CP2</text>
+  <rect x="662" y="238" width="64" height="72" fill="#087F5B" rx="3" />
+  <text x="694" y="224" font-size="24" fill="#087F5B" font-weight="700" text-anchor="middle">+8</text>
+  <text x="694" y="436" font-size="17" fill="#626D79" font-weight="400" text-anchor="middle">Start → CP1</text>
+  <rect x="852" y="310" width="64" height="72" fill="#C23B38" rx="3" />
+  <text x="884" y="410" font-size="24" fill="#C23B38" font-weight="700" text-anchor="middle">-8</text>
+  <text x="884" y="436" font-size="17" fill="#626D79" font-weight="400" text-anchor="middle">CP1 → CP2</text>
+  <text x="32" y="496" font-size="22" fill="#202A35" font-weight="650" text-anchor="start">The same legs in the time table · delta = actual − plan</text>
+  <rect x="24" y="516" width="992" height="47" fill="#EDF0F4" rx="6" />
+  <text x="48" y="547" font-size="19" fill="#626D79" font-weight="500" text-anchor="start">Arrival</text>
+  <text x="392" y="547" font-size="19" fill="#626D79" font-weight="500" text-anchor="middle">Actual leg time</text>
+  <text x="752" y="547" font-size="19" fill="#626D79" font-weight="500" text-anchor="middle">Planned leg time (delta)</text>
+  <text x="48" y="598" font-size="22" fill="#202A35" font-weight="400" text-anchor="start">CP1</text>
+  <text x="392" y="598" font-size="22" fill="#202A35" font-weight="600" text-anchor="middle">00:52:00</text>
+  <text x="752" y="598" font-size="22" fill="#087F5B" font-weight="700" text-anchor="middle">01:00:00 (−00:08:00)</text>
+  <line x1="24" y1="616" x2="1016" y2="616" stroke="#E4E8ED" stroke-width="1" />
+  <text x="48" y="653" font-size="22" fill="#202A35" font-weight="400" text-anchor="start">CP2</text>
+  <text x="392" y="653" font-size="22" fill="#202A35" font-weight="600" text-anchor="middle">01:08:00</text>
+  <text x="752" y="653" font-size="22" fill="#C23B38" font-weight="700" text-anchor="middle">01:00:00 (+00:08:00)</text>
+  <line x1="24" y1="671" x2="1016" y2="671" stroke="#E4E8ED" stroke-width="1" />
+  <text x="32" y="709" font-size="20" fill="#C23B38" font-weight="600" text-anchor="start">At CP2 the total is on plan, but the second leg was 8 minutes slower.</text>
+</svg>

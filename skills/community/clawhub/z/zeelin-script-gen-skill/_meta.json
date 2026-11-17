@@ -1,6 +1,8 @@
 {
-  "ownerId": "kn72r7h7299j497zc04rxrvc2x827nhs",
-  "slug": "zeelin-script-gen-skill",
-  "version": "1.0.0",
-  "publishedAt": 1776756187144
+  "slug": "script-gen-skill",
+  "version": "4.0.0",
+  "name": "剧本生成技能",
+  "description": "将文本文件（小说/故事）转换为完整的影视分镜剧本",
+  "author": "Your Name",
+  "license": "MIT"
 }

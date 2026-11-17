@@ -1,0 +1,74 @@
+services:
+  rsshub:
+    image: diygod/rsshub:latest
+    container_name: rsshub
+    restart: unless-stopped
+    ports:
+      - "1201:1200"
+    environment:
+      NODE_ENV: production
+      TZ: Asia/Shanghai
+      # 出站统一走宿主机 Clash（7891），国内站由 Clash 规则直连
+      PROXY_URI: http://host.docker.internal:7891
+      TWITTER_AUTH_TOKEN: ${TWITTER_AUTH_TOKEN}
+      # 防风控：feed 结果缓存 30 分钟，重复请求不回源 X
+      CACHE_EXPIRE: "1800"
+
+  miniflux:
+    image: miniflux/miniflux:latest
+    container_name: miniflux
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8088:8080"
+    environment:
+      TZ: Asia/Shanghai
+      DATABASE_URL: postgres://miniflux:miniflux@db:5432/miniflux?sslmode=disable
+      RUN_MIGRATIONS: "1"
+      CREATE_ADMIN: "1"
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: ${MINIFLUX_ADMIN_PASSWORD}
+      # 允许抓取 Docker 内网的 RSSHub
+      FETCHER_ALLOW_PRIVATE_NETWORKS: "1"
+      # 允许 webhook 发往 Docker 内网的中转（与上面是两个独立开关）
+      INTEGRATION_ALLOW_PRIVATE_NETWORKS: "1"
+      # 防风控：每个 feed 轮询间隔 60~120 分钟（默认 10~75 太密）
+      SCHEDULER_ROUND_ROBIN_MIN_INTERVAL: "60"
+      SCHEDULER_ROUND_ROBIN_MAX_INTERVAL: "120"
+
+  db:
+    image: postgres:16-alpine
+    container_name: miniflux-db
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      POSTGRES_USER: miniflux
+      POSTGRES_PASSWORD: miniflux
+      POSTGRES_DB: miniflux
+    volumes:
+      - miniflux-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U miniflux"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  feishu-relay:
+    image: python:3.12-alpine
+    container_name: feishu-relay
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./relay.py:/app/relay.py:ro
+      - ./feishu.env:/app/feishu.env:ro
+      - ./user_token.json:/app/user_token.json
+    ports:
+      - "7070:8080"
+    command: ["python", "/app/relay.py"]
+    depends_on:
+      - miniflux
+
+volumes:
+  miniflux-db:

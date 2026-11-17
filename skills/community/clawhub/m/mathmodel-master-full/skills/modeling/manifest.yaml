@@ -1,0 +1,63 @@
+name: modeling
+version: 0.2.3
+description: >
+  Routing manifest for CUMCM / National Undergraduate Mathematical Contest in Modeling.
+  SKILL.md reads this file first, then loads only the static fragments and deep references needed for the active task.
+
+always_load:
+  - static/core/stance.md
+  - static/core/workflow.md
+  - static/core/output-format.md
+
+axes:
+  stage:
+    detect: |
+      Detect the active modeling stage from the user request and available artifacts.
+      For a complete paper task, load all stages in the canonical order.
+      For a local revision task, load only the requested stage plus any prerequisite stage needed to avoid unsupported output.
+    values:
+      problem-reading: static/fragments/stage/problem-reading.md
+      data-preprocessing-visualization: static/fragments/stage/data-preprocessing-visualization.md
+      model-construction: static/fragments/stage/model-construction.md
+      result-visualization: static/fragments/stage/result-visualization.md
+      sensitivity-analysis: static/fragments/stage/sensitivity-analysis.md
+      model-validation: static/fragments/stage/model-validation.md
+      model-innovation: static/fragments/stage/model-innovation.md
+      paper-writing: static/fragments/stage/paper-writing.md
+    default:
+      - problem-reading
+      - data-preprocessing-visualization
+      - model-construction
+      - result-visualization
+      - sensitivity-analysis
+      - model-validation
+      - model-innovation
+      - paper-writing
+    multi: true
+
+references:
+  on_demand:
+    - condition: detailed problem reading, problem restatement, task decomposition, or hidden constraint extraction
+      path: references/problem-reading.md
+    - condition: detailed data cleaning, feature engineering, missing value handling, or exploratory visualization guidance
+      path: references/data-preprocessing-visualization.md
+    - condition: detailed model taxonomy, model selection, variables, objective functions, constraints, or solving strategy
+      path: references/model-construction.md
+    - condition: detailed result chart selection, figure aesthetics, color palette, chart diversity, figure captioning, or result interpretation rules
+      path: references/result-visualization.md
+    - condition: detailed parameter perturbation, scenario analysis, or robustness writing
+      path: references/sensitivity-analysis.md
+    - condition: validation metrics or checks for prediction, evaluation, optimization, clustering, or simulation models
+      path: references/model-validation.md
+    - condition: model innovation phrasing or defensible novelty extraction
+      path: references/model-innovation.md
+    - condition: full paper structure, abstract rules, conclusion rules, appendix rules, or final checklist
+      path: references/paper-writing.md
+    - condition: excellent sample paper style, abstract rhythm, question-by-question chapter organization, or final manuscript imitation
+      path: references/sample-paper-style.md
+    - condition: Word document formula rendering, LaTeX math insertion, OMML equations, or docx equation validation
+      path: references/word-latex-formulas.md
+    - condition: paper length over 30 pages, visual density, beautiful figures, formula density, algorithm principles, or non-appendix depth
+      path: references/paper-depth-visual-density.md
+    - condition: strict paper typography, Chinese/English font consistency, Times New Roman, SimSun, Python-generated figures, matplotlib, seaborn, or non-AI visual style
+      path: references/typography-and-python-figures.md

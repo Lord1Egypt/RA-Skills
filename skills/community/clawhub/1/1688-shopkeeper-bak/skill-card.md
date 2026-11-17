@@ -1,50 +1,60 @@
-## Description: <br>
-Helps agents search 1688 products, inspect product and shop data, review trends and business opportunities, generate shop daily reports, and publish selected products to downstream shops. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+1688 Shopkeeper helps agents search and evaluate 1688 products, inspect connected shops, publish listings to Douyin, Pinduoduo, Xiaohongshu, and Taobao, view opportunity and trend data, configure AK credentials, and generate shop daily reports.
 
-## Publisher: <br>
-[chenyongzhen](https://clawhub.ai/user/chenyongzhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenyongzhen](https://clawhub.ai/user/chenyongzhen)
 
-## Use Case: <br>
-External sellers and shop operators use this skill to source products from 1688, compare product and trend signals, manage bound shops, and publish listings to supported commerce platforms through an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses 1688-linked shop credentials and may prompt users to provide an AK during setup. <br>
-Mitigation: Use a secure secret mechanism instead of normal chat where possible, and rotate any AK that has already been pasted into chat. <br>
-Risk: The publish capability can create live downstream listings. <br>
-Mitigation: Review before installing and require explicit confirmation before every publish action. <br>
-Risk: Local 1688-skill-data snapshots may retain product, shop, or publishing data. <br>
-Mitigation: Periodically clean up local 1688-skill-data snapshots. <br>
+## Use Case:
 
+External marketplace operators and agents use this skill to source products from 1688, manage connected downstream shops, publish selected products, answer store-operation questions, and review trends or daily operating reports.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chenyongzhen/1688-shopkeeper-bak) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Search capability guide](artifact/references/capabilities/search.md) <br>
-- [Product detail capability guide](artifact/references/capabilities/prod_detail.md) <br>
-- [Publish capability guide](artifact/references/capabilities/publish.md) <br>
-- [Shop daily report guide](artifact/references/capabilities/shop_daily.md) <br>
-- [Common error handling](artifact/references/common/error-handling.md) <br>
-- [1688 AI app](https://air.1688.com/kapp/1688-ai-app/pages/home?from=1688-shopkeeper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON command output containing a success flag, human-facing markdown, and structured data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The agent is expected to show the markdown field first and use structured data for follow-up analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill handles sensitive 1688 marketplace AK credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only an AK you are comfortable granting to this workflow, prefer a secure secret mechanism over pasting credentials into chat, and verify OpenClaw configuration permissions if fallback storage is used.
+
+Risk: The skill can publish products to connected live stores.
+
+Mitigation: Review the skill before installing, run dry-run checks for publish actions, and require explicit confirmation before any live publish action.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenyongzhen/skills/1688-shopkeeper-bak)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Search capability guide](artifact/references/capabilities/search.md)
+- [Publish capability guide](artifact/references/capabilities/publish.md)
+- [Configure capability guide](artifact/references/capabilities/configure.md)
+- [Data contracts](artifact/references/common/data-contracts.md)
+- [Error handling](artifact/references/common/error-handling.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [JSON command output containing a human-facing markdown field, with follow-on agent guidance when needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and a 1688 AK credential through ALI_1688_AK or OpenClaw configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

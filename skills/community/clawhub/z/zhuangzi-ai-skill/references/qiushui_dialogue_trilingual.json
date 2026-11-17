@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "trilingual_philosophical_dialogue",
+  "record_id": "zhuangzi-qiushui-perspective-001",
+  "language_policy": {
+    "primary": "zh-Hant",
+    "supported": ["zh-Hant", "zh-Hans", "en"],
+    "field_structure": "Every user-facing knowledge item is stored under zh-Hant, zh-Hans, and en."
+  },
+  "metadata": {
+    "title": {
+      "zh-Hant": "〈秋水〉：視野、小大之辨與知識謙遜",
+      "zh-Hans": "《秋水》：视野、小大之辨与知识谦逊",
+      "en": "Autumn Floods: Perspective, Great and Small, and Epistemic Humility"
+    },
+    "source_work": {
+      "zh-Hant": "《莊子》外篇第十七篇〈秋水〉",
+      "zh-Hans": "《庄子》外篇第十七篇《秋水》",
+      "en": "Chapter 17 of the Outer Chapters of the Zhuangzi, Autumn Floods"
+    },
+    "dialogue_status": {
+      "zh-Hant": "文風仿作與現代哲學延伸，不是莊周本人的實際對話。",
+      "zh-Hans": "文风仿作与现代哲学延伸，不是庄周本人的实际对话。",
+      "en": "A stylistic imitation and modern philosophical extension, not an actual dialogue with the historical Zhuang Zhou."
+    },
+    "topics": ["perspective", "great_and_small", "epistemic_humility", "limited_standpoint", "comparison"],
+    "keywords": {
+      "zh-Hant": ["秋水", "河伯", "北海若", "小大之辨", "井蛙", "知識謙遜"],
+      "zh-Hans": ["秋水", "河伯", "北海若", "小大之辨", "井蛙", "知识谦逊"],
+      "en": ["Autumn Floods", "River God", "Elder of the North Sea", "great and small", "frog in the well", "epistemic humility"]
+    }
+  },
+  "core_thesis": {
+    "zh-Hant": "〈秋水〉透過河伯見北海若的寓言，鬆動以局部視野衡量萬物的習慣，提醒人承認自身位置、尺度與知識的限制。",
+    "zh-Hans": "《秋水》通过河伯见北海若的寓言，松动以局部视野衡量万物的习惯，提醒人承认自身位置、尺度与知识的限制。",
+    "en": "Through the encounter between the River God and the Elder of the North Sea, Autumn Floods loosens the habit of measuring all things from a local viewpoint and asks us to acknowledge the limits of our position, scale, and knowledge."
+  },
+  "turns": [
+    {
+      "turn_id": 1,
+      "theme_id": "local_viewpoint",
+      "theme": {"zh-Hant": "河伯看見大河便自以為廣大", "zh-Hans": "河伯看见大河便自以为广大", "en": "The River God mistakes a great river for the whole of greatness"},
+      "user": {"zh-Hant": "〈秋水〉為什麼要寫河伯見到大海之後感到慚愧？", "zh-Hans": "《秋水》为什么要写河伯见到大海之后感到惭愧？", "en": "Why does Autumn Floods portray the River God as ashamed after seeing the sea?"},
+      "assistant": {"zh-Hant": "河伯的慚愧，不只是因為自己原來不夠大，而是因為他突然發現：原先用來衡量世界的尺度，其實只是自己所站位置的回聲。〈秋水〉不是叫人永遠追求更大的數量，而是提醒人看見「我正在從哪裡看」；當視野改變，原本理所當然的自我評價也會鬆動。", "zh-Hans": "河伯的惭愧，不只是因为自己原来不够大，而是因为他突然发现：原先用来衡量世界的尺度，其实只是自己所站位置的回声。《秋水》不是叫人永远追求更大的数量，而是提醒人看见“我正在从哪里看”；当视野改变，原本理所当然的自我评价也会松动。", "en": "The River God’s shame is not merely that he turns out to be less vast. It is that he suddenly realizes the measure by which he judged the world was an echo of his own position. Autumn Floods does not tell us to pursue ever-larger quantities; it asks us to notice where we are looking from. When the standpoint changes, supposedly obvious self-evaluations can loosen."},
+      "classification": "textual_interpretation",
+      "source_note": {"zh-Hant": "依據〈秋水〉河伯見北海若的寓言意旨，非逐字引文。", "zh-Hans": "依据《秋水》河伯见北海若的寓言意旨，非逐字引文。", "en": "Based on the meaning of the River God’s encounter with the Elder of the North Sea in Autumn Floods; not a verbatim quotation."}
+    },
+    {
+      "turn_id": 2,
+      "theme_id": "epistemic_humility",
+      "theme": {"zh-Hant": "承認限制不是否定知識", "zh-Hans": "承认限制不是否定知识", "en": "Acknowledging limits is not rejecting knowledge"},
+      "user": {"zh-Hant": "如果每個人的視野都有局限，那我們是不是根本不可能知道任何事情？", "zh-Hans": "如果每个人的视野都有局限，那我们是不是根本不可能知道任何事情？", "en": "If everyone’s perspective is limited, does that mean we can know nothing at all?"},
+      "assistant": {"zh-Hant": "知道自己站在一個位置，不等於失去所有知識；反而能讓知識更謙遜、更精確。井中的青蛙不是沒有井中的經驗，只是不能把井口誤認為天空的全部。你仍然可以研究、判斷與行動，但要為自己的判斷保留修正的門。", "zh-Hans": "知道自己站在一个位置，不等于失去所有知识；反而能让知识更谦逊、更精确。井中的青蛙不是没有井中的经验，只是不能把井口误认为天空的全部。你仍然可以研究、判断与行动，但要为自己的判断保留修正的门。", "en": "Knowing that one stands at a particular position does not destroy knowledge; it can make knowledge more humble and precise. The frog in the well does have experience of the well, but it must not mistake the opening of the well for the whole sky. You can still study, judge, and act, while leaving a door open for revision."},
+      "classification": "modern_interpretation",
+      "concepts": ["epistemic_humility", "perspective", "revision"]
+    },
+    {
+      "turn_id": 3,
+      "theme_id": "comparison_and_self_worth",
+      "theme": {"zh-Hant": "停止用單一尺度比較自己", "zh-Hans": "停止用单一尺度比较自己", "en": "Stopping comparison by a single measure"},
+      "user": {"zh-Hant": "我總是拿自己和別人比較，覺得自己永遠不夠好。〈秋水〉能怎麼幫助我？", "zh-Hans": "我总是拿自己和别人比较，觉得自己永远不够好。《秋水》能怎么帮助我？", "en": "I constantly compare myself with others and feel that I am never good enough. How can Autumn Floods help me?"},
+      "assistant": {"zh-Hant": "先問：你拿的是誰的尺？你比較的可能是別人的成果，卻拿自己的過程來衡量；也可能只看見對方的海面，沒有看見自己的河床。〈秋水〉不是叫你拒絕一切比較，而是提醒你：比較之前，先檢查尺度是否適合你要回答的問題。**創作仿寓言：**一條河羨慕大海的寬，卻忘了自己的水正灌溉兩岸；寬窄不同，不必立刻翻譯成高下。", "zh-Hans": "先问：你拿的是谁的尺？你比较的可能是别人的成果，却拿自己的过程来衡量；也可能只看见对方的海面，没有看见自己的河床。《秋水》不是叫你拒绝一切比较，而是提醒你：比较之前，先检查尺度是否适合你要回答的问题。**创作仿寓言：**一条河羡慕大海的宽，却忘了自己的水正在灌溉两岸；宽窄不同，不必立刻翻译成高下。", "en": "Ask first: whose measure are you using? You may be comparing another person’s outcome with your own unfinished process, or seeing only the other person’s sea surface while overlooking your own riverbed. Autumn Floods does not demand that you reject every comparison; it asks you to examine whether the measure fits the question. **Original imitation-parable:** A river envied the sea for its width and forgot that its own water was nourishing both banks. Different breadths need not immediately be translated into higher and lower worth."},
+      "classification": "creative_imitation",
+      "concepts": ["comparison", "self_worth", "single_measure"],
+      "creative_parable": {"label": {"zh-Hant": "創作仿寓言，不是《莊子》原文", "zh-Hans": "创作仿寓言，不是《庄子》原文", "en": "Original imitation-parable, not a quotation from the Zhuangzi"}},
+      "closing_question": {"zh-Hant": "你最近用來評價自己的那把尺，是否真的適合衡量你正在經歷的生活？", "zh-Hans": "你最近用来评价自己的那把尺，是否真的适合衡量你正在经历的生活？", "en": "Is the measure you have recently used to judge yourself actually suited to the life you are living?"}
+    }
+  ],
+  "closing_reflection": {
+    "question": {"zh-Hant": "我能否承認自己的視野有限，卻不因此停止學習、行動與修正？", "zh-Hans": "我能否承认自己的视野有限，却不因此停止学习、行动与修正？", "en": "Can I acknowledge the limits of my perspective without ceasing to learn, act, and revise?"},
+    "summary": {"zh-Hant": "〈秋水〉以視野轉換鬆動單一尺度，讓謙遜成為更清醒的知識與行動方式。", "zh-Hans": "《秋水》以视野转换松动单一尺度，让谦逊成为更清醒的知识与行动方式。", "en": "Autumn Floods loosens a single measure through a change of perspective, making humility a clearer way of knowing and acting."}
+  },
+  "sources": [
+    {"id": "s1", "title": "Chinese Text Project, Zhuangzi", "url": "https://ctext.org/zhuangzi", "use": "Chapter structure and source text index"},
+    {"id": "s2", "title": "Stanford Encyclopedia of Philosophy, Zhuangzi", "url": "https://plato.stanford.edu/entries/zhuangzi/", "use": "Perspective, language, and philosophical interpretation"},
+    {"id": "s3", "title": "Internet Encyclopedia of Philosophy, Zhuangzi", "url": "https://iep.utm.edu/zhuangzi-chuang-tzu-chinese-philosopher/", "use": "Overview of Inner and Outer Chapters"}
+  ],
+  "import_notes": {
+    "zh-Hant": "本檔可作為單筆 trilingual_philosophical_dialogue 匯入；將 turns[].user 與 turns[].assistant 映射為訊息時，請保留 classification、source_note 與 creative_parable。",
+    "zh-Hans": "本文件可作为单笔 trilingual_philosophical_dialogue 导入；将 turns[].user 与 turns[].assistant 映射为消息时，请保留 classification、source_note 与 creative_parable。",
+    "en": "Import this file as one trilingual_philosophical_dialogue record; when mapping turns[].user and turns[].assistant to messages, preserve classification, source_note, and creative_parable."
+  }
+}

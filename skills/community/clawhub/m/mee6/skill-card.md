@@ -1,40 +1,48 @@
-## Description: <br>
-Mee6 operations via Discord message tool (channel=discord). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mee6 operations via Discord message tool (channel=discord).
 
-## Publisher: <br>
-[ilmn25](https://clawhub.ai/user/ilmn25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ilmn25](https://clawhub.ai/user/ilmn25)
 
-## Use Case: <br>
-Developers and operators use this skill to have an agent send explicit Mee6 bot commands in Discord for level checks, XP changes, role creation, plugin toggles, and prefix updates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can help send Discord commands that change Mee6 roles, plugins, prefixes, or XP. <br>
-Mitigation: Use a least-privileged Discord token or bot account, restrict it to intended servers and channels, keep Discord action gating enabled, and require explicit confirmation for role, plugin, prefix, or XP-changing commands. <br>
-Risk: Mee6 commands could be sent in the wrong context if the agent treats unrelated Discord work as Mee6 work. <br>
-Mitigation: Send Mee6 commands only when the user explicitly requests interaction with the Mee6 bot; use the generic Discord skill for unrelated Discord actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ilmn25/mee6) <br>
-- [Publisher profile](https://clawhub.ai/user/ilmn25) <br>
+## Use Case:
 
+External Discord server operators and agents use this skill as a command reference for user-directed Mee6 bot actions, including level checks, XP changes, role creation, plugin toggles, and prefix changes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Discord command examples and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Discord token and explicit user intent before sending Mee6 commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agents with Discord message access can send Mee6 commands that affect XP, roles, plugins, or prefixes in a Discord server.
+
+Mitigation: Install only for agents allowed to interact with Mee6, and configure Discord action gating before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ilmn25/skills/mee6)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Discord command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Discord token configuration and should emit Mee6 commands only for explicit Mee6 interaction requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

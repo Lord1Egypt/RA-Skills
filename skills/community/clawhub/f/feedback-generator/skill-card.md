@@ -1,40 +1,49 @@
-## Description: <br>
-Craft constructive feedback for colleagues, employees, or service experiences in a professional tone. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Craft constructive feedback for colleagues, employees, or service experiences.
 
-## Publisher: <br>
-[huajianjiu000](https://clawhub.ai/user/huajianjiu000) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huajianjiu000](https://clawhub.ai/user/huajianjiu000)
 
-## Use Case: <br>
-Managers, team leads, peers, and service reviewers use this skill to draft specific, balanced, actionable feedback for employee, peer-to-peer, product/service, and 360-degree review scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts or drafts may include sensitive personal or workplace details. <br>
-Mitigation: Use only the details needed to draft feedback and avoid highly sensitive information unless permitted by the user's organization and agent platform. <br>
-Risk: Generated feedback may be inaccurate, unfair, or poorly matched to the situation if copied without review. <br>
-Mitigation: Review the draft before sharing, keep feedback specific to observed behavior, and adjust tone and wording for the recipient and context. <br>
+## Use Case:
 
+Employees, managers, team leads, and other workplace communicators use this skill to draft specific, behavioral, and actionable feedback for colleagues, employees, service experiences, and review cycles.
 
-## Reference(s): <br>
-- [Feedback Generator on ClawHub](https://clawhub.ai/huajianjiu000/feedback-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with reusable feedback templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces editable feedback drafts and templates; no code or shell commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated feedback may be inaccurate, poorly toned, or misaligned with workplace policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit feedback for factual accuracy, tone, confidentiality, and applicable HR or workplace requirements before sending.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/huajianjiu000/skills/feedback-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and plain-text feedback drafts with reusable templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewable feedback language and delivery guidance; no tools, credentials, persistence, or external access are requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, released 2026-04-18)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

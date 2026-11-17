@@ -1,43 +1,58 @@
-## Description: <br>
-Track time, manage projects and tasks using timesheet.io CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track time, manage projects and tasks using timesheet.io CLI.
 
-## Publisher: <br>
-[FlorianRauscha](https://clawhub.ai/user/FlorianRauscha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[florianrauscha](https://clawhub.ai/user/florianrauscha)
 
-## Use Case: <br>
-Developers, employees, and other Timesheet users use this skill to let an agent operate the Timesheet CLI for time tracking, project and task management, reports, exports, and account configuration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to create, update, delete, export, or configure Timesheet account data through the CLI. <br>
-Mitigation: Require explicit user confirmation before destructive or account-changing commands, including project, task, tag, timer, export, and settings changes. <br>
-Risk: The skill supports API-key authentication through TIMESHEET_API_KEY, which could expose credentials if pasted into chat or logs. <br>
-Mitigation: Keep API keys out of chat and logs, prefer local environment configuration, and verify authentication with timesheet auth status --json before account operations. <br>
-Risk: A malicious or unintended executable named timesheet on PATH could receive account commands or credentials. <br>
-Mitigation: Verify that the timesheet command on PATH is the official Timesheet CLI before using the skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Timesheet homepage](https://timesheet.io) <br>
-- [ClawHub skill page](https://clawhub.ai/FlorianRauscha/timesheet) <br>
-- [Publisher profile](https://clawhub.ai/user/FlorianRauscha) <br>
+## Use Case:
 
+External users and developers use this skill to operate the timesheet.io CLI for authenticated time tracking, project and task management, timer control, tags, reports, and exports.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON-oriented CLI output guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the timesheet CLI and recommends --json output for structured command results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can guide an agent to use an authenticated timesheet.io CLI session or API key.
+
+Mitigation: Install and invoke it only when the agent is intended to access the user's timesheet.io account, and avoid exposing TIMESHEET_API_KEY in shared logs or transcripts.
+
+Risk: The documented CLI workflows include delete commands for projects, tasks, and tags.
+
+Mitigation: Review target IDs and names before approving delete operations.
+
+Risk: Report export commands can produce CSV or XLSX files containing sensitive business, billing, or work-history data.
+
+Mitigation: Treat exported reports as sensitive files and share or store them according to the user's data-handling requirements.
+
+## Reference(s):
+
+- [timesheet.io](https://timesheet.io)
+- [ClawHub skill page](https://clawhub.ai/florianrauscha/skills/timesheet)
+- [Publisher profile](https://clawhub.ai/user/florianrauscha)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, JSON, Files]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the timesheet CLI and authenticated timesheet.io access; exported reports may contain sensitive business or billing data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

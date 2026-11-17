@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Dropbox"
   author: "OOMOL"
-  version: "1.0.3"
+  version: "1.0.8"
   services: ["dropbox"]
   icon: "https://static.oomol.com/logo/third-party/Dropbox.svg"
 ---
@@ -48,16 +48,20 @@ Each action is listed below with a one-line description; actions that change sta
 - `get_shared_link_metadata` — Get metadata for a Dropbox shared link.
 - `get_tags` — Get user-generated Dropbox tags for one or more files or folders.
 - `get_temporary_link` — Create a temporary direct-download Dropbox link for one file.
+- `list_file_members` — List a Dropbox file's user, group and invited members, including inherited access by default.
+- `list_file_members_continue` — Continue a Dropbox file-member listing until the returned cursor is null.
 - `list_folder` — List files and folders inside one Dropbox folder.
 - `list_folder_continue` — Continue a previous Dropbox folder listing with a cursor.
+- `list_folder_members` — List a shared Dropbox folder's users, groups, and invitees. Supply a path to include inherited access.
+- `list_folder_members_continue` — Continue a Dropbox shared-folder member listing until the returned cursor is null.
 - `list_revisions` — List revisions for one Dropbox file.
 - `list_shared_links` — List Dropbox shared links for the current user or a specific path.
 - `modify_shared_link` — Modify settings for an existing Dropbox shared link. [write]
-- `move` — Move one file or folder to another Dropbox path. [write]
-- `restore` — Restore one Dropbox file to a previous revision. [write]
+- `move` — Move one file or folder to another Dropbox path. [destructive]
+- `restore` — Restore one Dropbox file to a previous revision. [destructive]
 - `revoke_shared_link` — Revoke an existing Dropbox shared link. [destructive]
 - `save_url` — Ask Dropbox to save a public URL into a Dropbox file path. [write]
-- `save_url_check_job_status` — Check the status of an asynchronous Dropbox save_url job. [write]
+- `save_url_check_job_status` — Check the status of an asynchronous Dropbox save_url job.
 - `search_files` — Search Dropbox files and folders with the official search_v2 endpoint.
 - `search_files_continue` — Continue a previous Dropbox file search with a cursor.
 - `upload_file` — Upload one file to Dropbox from inline text or base64 content. [write]
@@ -91,11 +95,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Dropbox is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=dropbox
+  https://console.oomol.com/connections/dropbox
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Dropbox homepage: https://www.dropbox.com
+- API documentation: https://www.dropbox.com/developers/documentation/http/documentation

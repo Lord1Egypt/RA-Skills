@@ -1,40 +1,55 @@
-## Description: <br>
-Bing Webmaster Ronnie helps agents submit URLs to Bing Webmaster Tools and fetch search traffic, keyword ranking, crawl health, indexing, and quota data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bing Webmaster Ronnie helps agents submit URLs to Bing Webmaster Tools and retrieve SEO traffic, keyword, crawl, indexing, and quota data for verified sites.
 
-## Publisher: <br>
-[ronnine6527](https://clawhub.ai/user/ronnine6527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ronnine6527](https://clawhub.ai/user/ronnine6527)
 
-## Use Case: <br>
-Developers, SEO operators, and agents use this skill to submit controlled site URLs to Bing and generate Bing Webmaster reporting for search performance, query statistics, crawl health, indexing, and submission quotas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a Bing Webmaster API key and can submit URLs or retrieve SEO data for connected sites. <br>
-Mitigation: Use a scoped API key where possible, prefer the BING_WEBMASTER_API_KEY environment variable over command-line key arguments, and submit only URLs for sites you control. <br>
-Risk: Scheduled reports or webhook delivery can expose search performance and crawl data outside the workspace. <br>
-Mitigation: Review destinations and report contents before enabling scheduled sharing or sending SEO data to client channels. <br>
+## Use Case:
 
+Developers, site operators, and SEO teams use this skill to automate Bing URL submissions and generate Bing Webmaster reporting for sites they control. It is suited for scheduled audits, client reporting, and diagnostics that require an existing Bing Webmaster API key.
 
-## Reference(s): <br>
-- [Bing Webmaster Tools](https://www.bing.com/webmasters/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, terminal text, JSON API responses, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Bing Webmaster API key and user-supplied site URLs; generated reports may contain SEO performance data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence) <br>
+Risk: The skill requires a Bing Webmaster API key that can access data and submit URLs for verified sites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the BING_WEBMASTER_API_KEY environment variable instead of command-line arguments, limit the key to appropriate sites, avoid logging full request URLs, and rotate any key exposed in shell history or logs.
+
+Risk: Batch or scheduled URL submission can send unintended URLs to Bing if inputs are not reviewed.
+
+Mitigation: Review the site URL and URL list before running submit actions, especially in batch or scheduled workflows, and use the skill only for sites the operator controls.
+
+## Reference(s):
+
+- [Bing Webmaster Tools](https://www.bing.com/webmasters/)
+- [ClawHub skill page](https://clawhub.ai/ronnine6527/skills/bing-webmaster-ronnie)
+- [Publisher profile](https://clawhub.ai/user/ronnine6527)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, terminal tables, JSON responses, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and a BING_WEBMASTER_API_KEY for the relevant verified sites. URL submission performs write actions against Bing Webmaster Tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

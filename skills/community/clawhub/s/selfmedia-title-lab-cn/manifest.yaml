@@ -1,0 +1,24 @@
+name: selfmedia-title-lab-cn
+slug: selfmedia-title-lab-cn
+version: 1.0.2
+display_name: 自媒体标题改写
+description: 中文自媒体标题改写：输入核心收益、正文和目标平台，为抖音、小红书、B站各生成三条不同角度的标题，并推荐最贴合正文的一条；适合内容发布前改标题、商品内容标题和多平台文案整理。
+repository: https://github.com/xxjrq/selfmedia-title-lab-cn
+license: MIT-0
+icon: icon-512.png
+tags:
+  - 自媒体
+  - 标题改写
+  - 抖音
+  - 小红书
+  - B站
+trigger_words:
+  - 改写自媒体标题
+  - 抖音标题怎么写
+  - 小红书标题优化
+  - B站视频标题
+self_test: node scripts/self-test.mjs
+platforms:
+  - github
+  - gitee
+  - skillhub

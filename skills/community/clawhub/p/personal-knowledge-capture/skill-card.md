@@ -1,41 +1,54 @@
-## Description: <br>
-Knowledge Capture saves selected conversation highlights into structured Markdown notes, creates self-test questions, and maintains local mastery and review-plan files for spaced repetition. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowledge Capture turns conversation highlights into structured Markdown notes, creates self-test questions, and updates local mastery and review-plan files for adaptive spaced repetition.
 
-## Publisher: <br>
-[qy-zhang](https://clawhub.ai/user/qy-zhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qy-zhang](https://clawhub.ai/user/qy-zhang)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to turn selected chat content into a persistent local knowledge base with notes, quiz questions, mastery tracking, and adaptive review scheduling. It also scores quiz answers and updates learning status based on review performance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected conversation highlights may be retained in a persistent local knowledge base, including sensitive content if the user chooses to save it. <br>
-Mitigation: Use the trigger phrases only for information suitable for retention, and periodically review or delete the local knowledge directory when it contains sensitive material. <br>
-Risk: Generated notes, self-test questions, and scoring feedback may be incomplete or inaccurate if the source conversation is ambiguous. <br>
-Mitigation: Review saved notes and generated questions before relying on them for study or decision-making. <br>
+## Use Case:
 
+Individuals and teams use this skill to capture useful knowledge from conversations, organize it into local study notes, generate quizzes, and track review progress over time.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qy-zhang/personal-knowledge-capture) <br>
-- [Note template](artifact/references/note-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown notes and feedback with JSON learning-state records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent local knowledge files, question-bank entries, mastery status updates, and review schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Saved notes, scores, weak points, and review history may contain sensitive personal or work information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the local knowledge files regularly and delete or redact entries that should not be retained.
+
+Risk: Conversation-derived notes and quiz answers may preserve misunderstandings or incomplete context.
+
+Mitigation: Review generated notes, questions, answers, and feedback before relying on them for study or work decisions.
+
+## Reference(s):
+
+- [Note Template](references/note-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/qy-zhang/skills/personal-knowledge-capture)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown notes, JSON question and mastery records, and concise feedback text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persists notes, quiz items, mastery status, weak points, review history, and review schedules in local knowledge files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

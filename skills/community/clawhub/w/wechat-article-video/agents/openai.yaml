@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Article Video"
+  short_description: "公众号转视频号：30–40秒完整短版、Edge配音、同步字幕与封面"
+  default_prompt: "Use $wechat-article-video to turn this WeChat article and its images into an information-complete compact vertical WeChat Channels video."

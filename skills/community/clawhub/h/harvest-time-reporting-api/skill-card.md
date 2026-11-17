@@ -1,43 +1,54 @@
-## Description: <br>
-Integrates with the Harvest API to help agents manage time entries, projects, tasks, clients, users, invoices, expenses, reports, and related account records. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrates with Harvest API v2 to help agents work with time entries, projects, tasks, clients, user assignments, invoices, expenses, reports, company records, and roles.
 
-## Publisher: <br>
-[zachgodsell93](https://clawhub.ai/user/zachgodsell93) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zachgodsell93](https://clawhub.ai/user/zachgodsell93)
 
-## Use Case: <br>
-Developers and operations teams use this skill to guide agents working with Harvest time tracking and business records through documented API requests, authentication headers, pagination, rate limits, and reporting endpoints. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A powerful Harvest token can allow an agent to create, update, or delete real business data. <br>
-Mitigation: Use the least-privileged Harvest token available and test with limited or non-production access before using production accounts. <br>
-Risk: Invoice, payment, user, role, company-setting, and deletion actions can have financial or administrative impact. <br>
-Mitigation: Require explicit human review before any create, update, delete, invoice, payment, role, user, or company-setting action. <br>
-Risk: The skill includes examples that use account identifiers and bearer-token authentication. <br>
-Mitigation: Keep Harvest tokens and account IDs in environment variables or a secret manager, and do not paste credentials into prompts, logs, or shared output. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Harvest API v2 base URL](https://api.harvestapp.com/v2) <br>
-- [Harvest developer access token page](https://id.getharvest.com/developers) <br>
-- [ClawHub skill page](https://clawhub.ai/zachgodsell93/harvest-time-reporting-api) <br>
+## Use Case:
 
+Developers and operations teams use this skill to give an agent Harvest API reference guidance for time reporting, project administration, invoicing-related workflows, expense reporting, and account management tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with cURL examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Harvest account credentials supplied by the user environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill exposes broad Harvest business, financial, and account-changing actions.
+
+Mitigation: Install only for agents that should access Harvest, use a least-privileged Harvest token, and avoid broad admin tokens where possible.
+
+Risk: Agent-guided requests can create, update, delete, send invoices, or change company and account records.
+
+Mitigation: Require explicit user confirmation before write operations, invoice sending, company updates, or account-record changes.
+
+## Reference(s):
+
+- [Harvest Developer Access Setup](https://id.getharvest.com/developers)
+- [Harvest API v2 Base URL](https://api.harvestapp.com/v2)
+- [ClawHub Skill Page](https://clawhub.ai/zachgodsell93/skills/harvest-time-reporting-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown API reference with cURL examples and environment-variable setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses HARVEST_ACCESS_TOKEN and HARVEST_ACCOUNT_ID for authenticated Harvest API requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,63 @@
-## Description: <br>
-Generates a Chinese rebirth-revenge short-video pipeline from a theme by creating a story, converting it to TTS audio, and composing a vertical MP4 with FFmpeg. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+生成给定题材的中文重生复仇爽文，将正文转换为语音，并用本地素材合成为竖屏短视频。
 
-## Publisher: <br>
-[h1456942763](https://clawhub.ai/user/h1456942763) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[h1456942763](https://clawhub.ai/user/h1456942763)
 
-## Use Case: <br>
-External creators and developers use this skill to automate Chinese web-novel short-video generation from a supplied or random theme. It can run the novel, audio, and video steps independently or as one local command-line pipeline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local shell command construction is unsafe when processing generated media-list and FFmpeg inputs. <br>
-Mitigation: Review before installation, run only in a dedicated throwaway working directory, and avoid media files from untrusted sources or with unusual filenames until the command construction is fixed. <br>
-Risk: Story text is sent to an under-disclosed third-party TTS service. <br>
-Mitigation: Do not use sensitive, private, or proprietary story text, and review the TTS service before using it for production content. <br>
-Risk: The pipeline requires an OpenAI-compatible API key. <br>
-Mitigation: Use a revocable API key scoped for this workflow and rotate or revoke it after testing or deployment. <br>
+## Use Case:
 
+External creators and developers use this skill to automate a Chinese short-video workflow: generate a rebirth revenge story, synthesize narration, and combine narration, background video, and music into a 1080x1920 MP4.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/h1456942763/ai-novel-chongshengfuchou) <br>
-- [Publisher profile](https://clawhub.ai/user/h1456942763) <br>
-- [FFmpeg downloads](https://ffmpeg.org/download.html) <br>
-- [Pexels Videos](https://www.pexels.com/videos/) <br>
-- [Pixabay Videos](https://pixabay.com/videos/) <br>
-- [Free Music Archive](https://freemusicarchive.org/) <br>
-- [YouTube Audio Library](https://www.youtube.com/audiolibrary) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Audio, Video] <br>
-**Output Format:** [Plain text story file, MP3 audio segments, vertical MP4 video, and command-line logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces output.txt, audio/*.mp3, and output.mp4; final video is documented as 1080x1920 vertical output and requires user-provided video/ assets plus bgm.mp3.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: release evidence) <br>
+Risk: Video processing can execute unsafe shell commands from media filenames.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use only trusted media files in an isolated workspace, and fix the package to remove shell=True and validate media filenames before deployment.
+
+Risk: Story text may be sent to both the configured OpenAI-compatible endpoint and a hardcoded third-party TTS service.
+
+Mitigation: Do not place confidential text in output.txt; make the TTS endpoint configurable and clearly disclose all external services before use.
+
+Risk: The security evidence marks the release verdict as suspicious.
+
+Mitigation: Require a preflight review and explicit confirmation before running the full pipeline.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/h1456942763/skills/ai-novel-chongshengfuchou)
+- [FFmpeg Download](https://ffmpeg.org/download.html)
+- [Pexels Videos](https://www.pexels.com/videos/)
+- [Pixabay Videos](https://pixabay.com/videos/)
+- [Free Music Archive](https://freemusicarchive.org/)
+- [YouTube Audio Library](https://www.youtube.com/audiolibrary)
+- [Zero Libre TTS API Endpoint](https://zero-libre-tts.vercel.app/api/tts)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands; generated files include output.txt, audio/*.mp3, and output.mp4.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenAI-compatible API key, FFmpeg/ffprobe, local video files, and bgm.mp3; story text may be sent to the configured LLM endpoint and the TTS service.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

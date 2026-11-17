@@ -1,0 +1,9 @@
+{
+  "name": "humanize-text-skill",
+  "description": "Audit and rewrite zh/en content to remove AI tone, then pull it toward a target human voice. Supports detect-only and edit-in-place modes, scene packs, protected spans, and voice profiles.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/fendouai/humanize-text-skill",
+  "repository": "https://github.com/fendouai/humanize-text-skill",
+  "license": "MIT",
+  "keywords": ["writing", "editing", "ai-detection", "humanize", "bilingual", "voice"]
+}

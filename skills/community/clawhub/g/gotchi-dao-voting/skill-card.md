@@ -1,44 +1,56 @@
-## Description: <br>
-Check active Aavegotchi DAO proposals and vote on Snapshot via Bankr EIP-712 signatures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check active Aavegotchi DAO proposals and vote on Snapshot via Bankr EIP-712 signatures.
 
-## Publisher: <br>
-[aaigotchi](https://clawhub.ai/user/aaigotchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[aaigotchi](https://clawhub.ai/user/aaigotchi)
 
-## Use Case: <br>
-External DAO participants and agent operators use this skill to inspect active Aavegotchi Snapshot proposals, preview vote payloads, and submit votes through Bankr signing when they have voting power. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can cast real Aavegotchi DAO Snapshot votes. <br>
-Mitigation: Run --dry-run first, then verify the proposal ID, choice, voting power, wallet, and Snapshot endpoints before allowing a live submission. <br>
-Risk: The skill can reuse Bankr credentials from broad local sources. <br>
-Mitigation: Supply BANKR_API_KEY explicitly for this workflow and use only the intended Bankr credential. <br>
-Risk: The bundled wallet may not be the intended voting wallet. <br>
-Mitigation: Replace the configured wallet with your own and confirm it has voting power on the target proposal before submitting a vote. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/aaigotchi/gotchi-dao-voting) <br>
-- [Aavegotchi Snapshot space](https://snapshot.org/#/aavegotchi.eth) <br>
-- [Snapshot GraphQL API endpoint](https://hub.snapshot.org/graphql) <br>
-- [Snapshot sequencer endpoint](https://seq.snapshot.org/) <br>
+## Use Case:
 
+DAO participants and agent operators use this skill to list active Aavegotchi Snapshot proposals, inspect voting power, preview vote typed data, and submit Snapshot votes through Bankr signing.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown instructions with shell command examples and JSON payload previews] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live vote submission requires curl, jq, BANKR_API_KEY, and a configured wallet and Snapshot endpoints.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can submit real Aavegotchi DAO Snapshot votes using the configured wallet's signing authority.
+
+Mitigation: Use dry-run first and verify the proposal ID, choice, wallet, Snapshot space, and endpoints before submitting a vote.
+
+Risk: Credential and endpoint handling require review because the skill can discover BANKR_API_KEY from environment and Bankr config locations.
+
+Mitigation: Set BANKR_API_KEY explicitly for this skill and review the configured Bankr and Snapshot endpoints before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaigotchi/skills/gotchi-dao-voting)
+- [Declared skill homepage](https://github.com/aaigotchi/gotchi-dao-voting)
+- [Aavegotchi Snapshot space](https://snapshot.org/#/aavegotchi.eth)
+- [Snapshot GraphQL API endpoint](https://hub.snapshot.org/graphql)
+- [Snapshot sequencer endpoint](https://seq.snapshot.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Terminal output and JSON payloads from shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a dry-run mode that prints Snapshot typed vote data without signing or submitting.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

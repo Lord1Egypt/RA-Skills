@@ -2,6 +2,8 @@
 
 Snippets are moderator attention. This reference expands on the kernel's snippet guidance with examples and edge cases.
 
+They are also the one path that puts reaction-ledger content directly in front of the panel: participants never see each other's reactions, only prose — and your snippets. And you act ahead of the weave: when you snippet a reaction, its author hasn't yet chosen whether to carry it into the next round. Your snippet guarantees delivery instead of betting on that choice.
+
 ## What makes a good snippet
 
 A good snippet has a specific quote and a genuine reaction. The reaction can take many forms:

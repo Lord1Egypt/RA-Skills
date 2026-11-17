@@ -1,0 +1,46 @@
+{
+  "name": "缺陷库 (Bug)",
+  "description": "/qa-bug 指令的输出结果存储模型",
+  "version": "1.0",
+  "fields": {
+    "id": { "type": "string", "format": "bug-YYYYMMDD-NNN", "required": true },
+    "created_at": { "type": "string", "format": "ISO 8601", "required": true },
+    "module": { "type": "string", "description": "产品/模块名称", "required": true },
+    "source": { "type": "string", "description": "来源 session_id", "required": true },
+    "tags": { "type": "array", "items": "string", "default": [] },
+    "data": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "mode": { "type": "string", "enum": ["single", "batch"] },
+        "total_bugs": { "type": "integer", "description": "单条为 1，批量按实际" },
+        "root_cause_distribution": {
+          "type": "object",
+          "properties": {
+            "代码缺陷": { "type": "integer" },
+            "配置错误": { "type": "integer" },
+            "权限设计问题": { "type": "integer" },
+            "数据问题": { "type": "integer" },
+            "需求理解偏差": { "type": "integer" },
+            "第三方依赖": { "type": "integer" }
+          }
+        },
+        "analysis_entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "bug_id": { "type": "string" },
+              "severity": { "type": "string", "enum": ["致命", "严重", "一般", "建议"] },
+              "root_cause_type": { "type": "string" },
+              "root_cause": { "type": "string" },
+              "confidence": { "type": "string", "enum": ["高", "中", "低"] },
+              "fix_suggestion": { "type": "string" },
+              "regression_points": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

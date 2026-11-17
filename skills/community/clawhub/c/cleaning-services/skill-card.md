@@ -1,40 +1,53 @@
-## Description: <br>
-This skill guides agents in planning a monetization path for cleaning services, including positioning, channels, metrics, delivery workflows, compliance risks, and a 30-day execution plan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users plan monetization for cleaning services by outlining positioning, revenue models, execution steps, channels, metrics, risks, and a 30-day action plan.
 
-## Publisher: <br>
-[mike47512](https://clawhub.ai/user/mike47512) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mike47512](https://clawhub.ai/user/mike47512)
 
-## Use Case: <br>
-External users and business operators use this skill to draft a practical cleaning-services monetization plan, validate an MVP channel, standardize service delivery, and track commercial metrics over the first 30 to 90 days. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business, platform, legal, tax, advertising, and contract guidance may be incomplete or jurisdiction-specific. <br>
-Mitigation: Verify recommendations against current platform policies, local legal and tax requirements, and written customer agreements before acting. <br>
-Risk: The monetization workflow may not fit every local market, channel, or delivery team. <br>
-Mitigation: Start with a low-cost MVP, track conversion, retention, repeat purchase, gross margin, and LTV/CAC, then scale only after the data supports it. <br>
+## Use Case:
 
+External users planning or optimizing a cleaning-service business use this skill to structure service offers, customer acquisition channels, fulfillment, business metrics, and a 30-day execution plan.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mike47512/cleaning-services) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only business guidance; no code execution, sensitive access, persistence, or data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version) <br>
+Risk: Business guidance may not fit a user's local laws, platform policies, contracts, taxes, or advertising rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the plan against local legal, tax, contract, and platform requirements before acting on it.
+
+Risk: Cleaning-service offers and marketing claims may create customer expectations that the operator cannot fulfill.
+
+Mitigation: Validate pricing, service scope, quality checks, invoices, and customer communications before launch.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mike47512/skills/cleaning-services)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown business guidance with action-plan and checklist sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static planning guidance; no tool calls, scripts, credentials, or system access requested.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

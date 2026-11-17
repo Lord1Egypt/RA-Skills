@@ -1,41 +1,54 @@
-## Description: <br>
-Agentsmint helps agents create and manage NFT collections on Base by minting NFTs, launching collections, listing items for sale, checking portfolios, deploying contracts, lazy minting, and tracking editions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage NFT collections on Base blockchain. Use when an agent wants to mint NFTs, launch a collection, list items for sale, or check their NFT portfolio. Handles contract deployment, lazy minting, and edition tracking. Platform pays deployment gas.
 
-## Publisher: <br>
-[kit-the-fox](https://clawhub.ai/user/kit-the-fox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kit-the-fox](https://clawhub.ai/user/kit-the-fox)
 
-## Use Case: <br>
-External developers and agents use this skill to create NFT collections, list NFTs, retrieve mint instructions, confirm purchases, and inspect portfolio-related collection data on Base through AgentsMint. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide costly or irreversible blockchain and marketplace actions such as deploy, mint, buy, list, confirm, and ownership transfer. <br>
-Mitigation: Require separate confirmation before each such action, showing the exact wallet, chain, contract, recipient, listing or collection ID, price, gas estimate, transaction hash, and ownership setting. <br>
-Risk: Using a primary wallet could expose more funds than needed for NFT management on Base. <br>
-Mitigation: Use a dedicated low-balance wallet for AgentsMint activity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AgentsMint API Base](https://www.agentsmint.com/api/v1) <br>
-- [AgentsMint BitBuddies Collection](https://agentsmint.com/bitbuddies) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kit-the-fox/agentsmint) <br>
+## Use Case:
 
+External agents and developers use this skill to browse NFT collections, create and deploy Base collections, list NFTs for sale, and prepare or confirm minting transactions through the AgentsMint API.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes wallet, chain, listing, collection, price, gas, transaction hash, and ownership-transfer values that should be reviewed before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill guides agents through real NFT purchases, contract deployment, listings, and ownership transfer.
+
+Mitigation: Require manual approval for every buy, mint, listing, deployment, and ownership transfer before any on-chain action.
+
+Risk: Incorrect transaction details can cause unintended wallet, contract, price, gas, recipient, or chain actions.
+
+Mitigation: Confirm the wallet, Base chain, contract address, function call, recipient, price, gas cost, and transaction hash before execution.
+
+## Reference(s):
+
+- [AgentsMint API Base URL](https://www.agentsmint.com/api/v1)
+- [AgentsMint Skill Page](https://clawhub.ai/kit-the-fox/skills/agentsmint)
+- [BitBuddies Example Collection](https://agentsmint.com/bitbuddies)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with curl examples and JSON request bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents through API calls and on-chain transaction details for Base NFT collection, listing, purchase, and deployment flows.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

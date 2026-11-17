@@ -1,38 +1,54 @@
-## Description: <br>
-查询天气预报，支持城市名或坐标，提供当前天气、未来3天预报和天气图标。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询天气预报，支持城市名/坐标，提供当前天气和预报信息，包含图标展示。
 
-## Publisher: <br>
-[greenteawater](https://clawhub.ai/user/greenteawater) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[greenteawater](https://clawhub.ai/user/greenteawater)
 
-## Use Case: <br>
-External users ask the agent for current weather and a short forecast by city, pinyin, coordinates, or default IP-based location. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups are sent to wttr.in and may reveal a requested city or an IP-based location. <br>
-Mitigation: Provide an explicit city or coordinate when possible and avoid invoking the skill for sensitive location queries. <br>
+## Use Case:
 
+External users and agents use this skill to answer weather questions for a named city, coordinates, pinyin input, or IP-derived location. It returns current conditions and a short forecast with weather icons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/greenteawater/weather-forecasts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown text with weather values and optional inline SVG icon links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes current conditions, temperature, feels-like temperature, humidity, wind speed, wind direction, and a 3-day forecast.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Weather queries are sent to wttr.in, and when no city is supplied the service may infer location from the request IP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer explicit city or coordinate input when privacy matters, and disclose the external weather-service request path to users.
+
+Risk: The script calls wttr.in without an explicit https:// URL and does not URL-encode city names.
+
+Mitigation: Update the script to use an explicit https://wttr.in endpoint and URL-encode user-supplied locations before release hardening.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/greenteawater/skills/weather-forecasts)
+- [wttr.in weather service](https://wttr.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown text with weather values and inline icon image links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and curl; no API key is required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

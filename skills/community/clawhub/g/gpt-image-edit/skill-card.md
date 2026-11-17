@@ -1,48 +1,61 @@
-## Description: <br>
-Uses the local RunComfy CLI to call RunComfy's OpenAI GPT Image 2 edit endpoint for preservation-focused image edits, multilingual in-image text edits, layout changes, and multi-reference compositions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents edit images with OpenAI GPT Image 2 on RunComfy by producing RunComfy CLI commands, JSON inputs, and prompting guidance for targeted edits, text replacement, and multi-reference composition.
 
-## Publisher: <br>
-[kalvinrv](https://clawhub.ai/user/kalvinrv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[permew](https://clawhub.ai/user/permew)
 
-## Use Case: <br>
-Developers, designers, and content teams use this skill to prepare RunComfy GPT Image 2 edit requests for targeted image edits, localized in-image text changes, and multi-reference compositions while preserving important source-image details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image URLs and edit prompts are sent to RunComfy's service. <br>
-Mitigation: Install and use the skill only when RunComfy is trusted for the images and prompts being processed. <br>
-Risk: Private or sensitive images may be exposed through third-party image URLs or model processing. <br>
-Mitigation: Avoid private or sensitive images unless RunComfy's service terms fit the intended use. <br>
-Risk: The RUNCOMFY_TOKEN credential can authorize service access if disclosed. <br>
-Mitigation: Protect RUNCOMFY_TOKEN and local RunComfy configuration files. <br>
-Risk: Generated outputs are downloaded to a user-selected directory. <br>
-Mitigation: Choose output directories deliberately and review generated files before relying on them. <br>
+## Use Case:
 
+External developers and creative automation agents use this skill to prepare RunComfy image-edit requests for localized ad assets, brand-safe copy swaps, background changes, and multi-reference image composition.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kalvinrv/gpt-image-edit) <br>
-- [RunComfy](https://www.runcomfy.com) <br>
-- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=gpt-image-edit) <br>
-- [RunComfy GPT Image 2 edit endpoint](https://www.runcomfy.com/models/openai/gpt-image-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=gpt-image-edit) <br>
-- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=gpt-image-edit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON input snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the runcomfy CLI plus RUNCOMFY_TOKEN or local RunComfy configuration; generated image files are written to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: Prompts and public image URLs are processed by RunComfy-hosted services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content acceptable for hosted processing, and avoid submitting confidential prompts or private images unless the user's RunComfy account and data handling terms allow it.
+
+Risk: RunComfy authentication depends on a local login token or RUNCOMFY_TOKEN.
+
+Mitigation: Use a limited token or account where possible, keep tokens out of shared logs and prompts, and prefer isolated environments for installation and execution.
+
+Risk: Image inputs and generated outputs may contain misleading or adversarial visual content.
+
+Mitigation: Review image URLs and generated files before reuse, especially when the output is used in brand, advertising, or user-facing workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/permew/skills/gpt-image-edit)
+- [RunComfy](https://www.runcomfy.com)
+- [RunComfy CLI documentation](https://docs.runcomfy.com/cli/introduction?utm_source=clawhub&utm_medium=skill&utm_campaign=gpt-image-edit)
+- [RunComfy GPT Image 2 edit endpoint](https://www.runcomfy.com/models/openai/gpt-image-2/edit?utm_source=clawhub&utm_medium=skill&utm_campaign=gpt-image-edit)
+- [RunComfy CLI troubleshooting](https://docs.runcomfy.com/cli/troubleshooting?utm_source=clawhub&utm_medium=skill&utm_campaign=gpt-image-edit)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include RunComfy CLI invocations, endpoint input schemas, prompt patterns, troubleshooting notes, and recommendations for image-editing model selection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

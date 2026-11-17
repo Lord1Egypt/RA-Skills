@@ -1,47 +1,63 @@
-## Description: <br>
-Implement Apple Pay for web and iOS with merchant validation, token handling, and production-safe checkout flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implement Apple Pay for web and iOS with merchant validation, token handling, and production-safe checkout flows.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement Apple Pay checkout, subscription, and PSP-mediated payment flows with merchant setup, token-safety, validation, rollout, and incident-handling guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sensitive Apple Pay tokens, private keys, or certificate material could be exposed during implementation or troubleshooting. <br>
-Mitigation: Forward payment tokens only to the backend or PSP, never store raw token payloads in notes or logs, and do not ask users to paste private keys into chat. <br>
-Risk: Production checkout could fail if merchant IDs, certificates, domains, sandbox credentials, or production credentials are misconfigured. <br>
-Mitigation: Validate merchant prerequisites and keep sandbox and production credentials separated before recommending rollout. <br>
-Risk: Retries without stable idempotency keys can cause duplicate authorizations or payment reconciliation errors. <br>
-Mitigation: Require idempotency and reconciliation for authorization, capture, refund, and void operations before enabling retry behavior. <br>
-Risk: Apple Pay unavailability or elevated failures can reduce conversion if no fallback path exists. <br>
-Mitigation: Require fallback checkout, failure observability, alerting, and rollback or kill-switch criteria before production release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Apple Pay Skill Page](https://clawhub.ai/ivangdavila/apple-pay) <br>
-- [Apple Pay Skill Homepage](https://clawic.com/skills/apple-pay) <br>
-- [Apple Pay Production Gateway](https://apple-pay-gateway.apple.com) <br>
-- [Apple Pay Certificate Gateway](https://apple-pay-gateway-cert.apple.com) <br>
-- [Apple ID](https://appleid.apple.com) <br>
+## Use Case:
 
+Developers and engineers use this skill to implement and validate Apple Pay checkout, subscriptions, PSP handoffs, merchant validation, token handling, fallback flows, and production rollout checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with code, shell commands, checklists, and configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local project notes under ~/apple-pay/ and requires curl, jq, and APPLE_PAY_MERCHANT_ID for diagnostics.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Apple Pay work can involve payment credentials, private keys, merchant identifiers, and raw payment token payloads.
+
+Mitigation: Do not paste private keys or raw Apple Pay token payloads into chat or local notes; keep token handling minimal and auditable.
+
+Risk: Production rollout before merchant, domain, sandbox, fallback, and observability checks pass can cause payment failures or duplicate authorizations.
+
+Mitigation: Use sandbox first, preserve idempotency keys for retries, validate fallback checkout, and keep production rollout behind explicit release gates.
+
+Risk: Client-controlled totals or mixed sandbox and production credentials can create incorrect charges or live checkout failures.
+
+Mitigation: Use server-trusted amounts and currency, separate sandbox and production credentials, and reconcile authorization and capture through the backend or PSP.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/apple-pay)
+- [Skill homepage](https://clawic.com/skills/apple-pay)
+- [Setup guide](artifact/setup.md)
+- [Implementation playbook](artifact/implementation-playbook.md)
+- [Validation checklist](artifact/validation-checklist.md)
+- [Failure handling](artifact/failure-handling.md)
+- [Launch playbook](artifact/launch-playbook.md)
+- [Recurring payments](artifact/recurring-payments.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project notes under ~/apple-pay/ and should avoid storing raw Apple Pay tokens or private key material.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,54 @@
-## Description: <br>
-Manage a shared Redis Docker container for local dev environments. Handles container lifecycle, key inspection, and selective data flush. Joins the shared Docker network created by proxy-manager. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage a shared Redis Docker container for local dev environments, including container lifecycle, key inspection, and selective data flush.
 
-## Publisher: <br>
-[pereirajair](https://clawhub.ai/user/pereirajair) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pereirajair](https://clawhub.ai/user/pereirajair)
 
-## Use Case: <br>
-Developers and engineers use this skill to start, stop, inspect, and clean up a shared local Redis Docker container during application development and testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Redis data can be deleted when flush commands are explicitly run. <br>
-Mitigation: Review the target container and database before confirming any flush, and prefer flush-db for scoped cleanup. <br>
-Risk: The default Redis password may be unsuitable on shared machines or with non-disposable data. <br>
-Mitigation: Set REDIS_PASSWORD before use in shared environments or when working with data that should be protected. <br>
-Risk: The Redis container uses a restart policy and may continue running after Docker restarts. <br>
-Mitigation: Run the stop command when the shared local Redis service is no longer needed. <br>
+## Use Case:
 
+Developers and engineers use this skill to start, stop, inspect, and clean a local Redis service shared by Docker-based development environments.
 
-## Reference(s): <br>
-- [Redis Manager ClawHub page](https://clawhub.ai/pereirajair/redis-manager) <br>
-- [pereirajair publisher profile](https://clawhub.ai/user/pereirajair) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Docker on Linux or macOS and operates on a local Redis container] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The default Redis password is known and the container joins a shared Docker network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set a strong REDIS_PASSWORD before starting Redis and limit which containers can join the shared Docker network.
+
+Risk: Flush commands can permanently delete Redis data.
+
+Mitigation: Treat flush and flush-db as destructive operations and rely on their confirmation prompts only after checking the target database or environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pereirajair/skills/redis-manager)
+- [Publisher profile](https://clawhub.ai/user/pereirajair)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes Docker is available on Linux or macOS and that the shared Docker network exists before Redis starts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.1.0 and _meta.json reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

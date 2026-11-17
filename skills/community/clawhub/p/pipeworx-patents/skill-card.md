@@ -1,42 +1,55 @@
-## Description: <br>
-Patents MCP wraps the PatentsView API for patent and inventor lookup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Patents MCP — wraps PatentsView API (https://api.patentsview.org/)
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and agents use this skill to search patents, retrieve patent details, and search inventors through the Pipeworx Patents MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Patent searches route through Pipeworx's remote MCP gateway. <br>
-Mitigation: Avoid sending confidential invention details unless the user trusts the Pipeworx service and its handling of search data. <br>
-Risk: The setup command uses an unpinned npm bridge through npx. <br>
-Mitigation: Review and pin the bridge package version in managed environments before installation. <br>
+## Use Case:
 
+Developers and patent researchers use this skill to search patents, retrieve patent records, and search inventors through the PatentsView-backed Pipeworx MCP.
 
-## Reference(s): <br>
-- [Pipeworx Patents](https://pipeworx.io/packs/patents) <br>
-- [PatentsView API](https://api.patentsview.org/) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-patents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a remote Pipeworx MCP gateway and does not require an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The setup runs mcp-remote from npm with a mutable latest version at install or runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, reviewed mcp-remote version or a controlled installation path before use.
+
+Risk: Patent queries are sent through Pipeworx's gateway.
+
+Mitigation: Avoid sending sensitive files, credentials, or private research queries unless the gateway is approved for that use.
+
+## Reference(s):
+
+- [Pipeworx patents pack](https://pipeworx.io/packs/patents)
+- [PatentsView API](https://api.patentsview.org/)
+- [ClawHub skill page](https://clawhub.ai/brucegutman/skills/pipeworx-patents)
+
+## Skill Output:
+
+**Output Type(s):** [text, configuration, guidance]
+
+**Output Format:** [Markdown or structured MCP tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides search_patents, get_patent, and search_inventors through a remote MCP gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

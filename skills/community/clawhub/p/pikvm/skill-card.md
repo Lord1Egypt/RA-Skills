@@ -1,43 +1,59 @@
-## Description: <br>
-Control and inspect PiKVM devices over the PiKVM HTTP API for power, HID, screen capture, virtual media, and switch-port operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control and inspect PiKVM devices over the PiKVM HTTP API for power, HID input, screen capture, OCR, virtual media, and switch-port operations.
 
-## Publisher: <br>
-[didyouexpectthat](https://clawhub.ai/user/didyouexpectthat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[didyouexpectthat](https://clawhub.ai/user/didyouexpectthat)
 
-## Use Case: <br>
-Developers, operators, and support engineers use this skill to inspect and operate a user-configured PiKVM-managed machine from an agent workflow. It is suited for authenticated device status checks, remote input, power control, screenshots, OCR, virtual media, and switch-port actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can perform high-impact PiKVM operations such as power off, reset, HID typing, virtual-media changes, and switch-port changes. <br>
-Mitigation: Require clear user intent for state-changing actions, restate the exact operation before execution, and re-read the relevant PiKVM state afterward. <br>
-Risk: PiKVM credentials and session material are sensitive and could expose remote machine control if mishandled. <br>
-Mitigation: Use environment variables for credentials, avoid command-line passwords, do not expose passwords, TOTP values, or cookies in reports, and use the least-privileged PiKVM account available. <br>
-Risk: Disabling TLS verification can weaken protection for PiKVM authentication and API traffic. <br>
-Mitigation: Keep SSL verification enabled when possible and approve insecure connections only for trusted local deployments. <br>
+## Use Case:
 
+Developers and operators use this skill to inspect and administer PiKVM-managed machines through authenticated HTTP API calls, including read-only status checks and explicitly approved remote-control actions.
 
-## Reference(s): <br>
-- [PiKVM API Documentation](https://docs.pikvm.org/api/) <br>
-- [PiKVM API reference notes](references/api-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown summaries with shell commands, JSON API responses, and optional saved snapshot files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and PiKVM_URL, PIKVM_USER, and PIKVM_PASS; PIKVM_VERIFY_SSL and PIKVM_USE_BASIC_AUTH adjust connection behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The skill can send powerful PiKVM credentials and commands to network destinations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated least-privilege PiKVM account, keep HTTPS certificate verification enabled, and avoid untrusted or plaintext PIKVM_URL values.
+
+Risk: Power, HID, switch, and virtual-media operations can affect remote machines in high-impact ways.
+
+Mitigation: Require explicit confirmation before state-changing operations and re-read the relevant PiKVM state after each change.
+
+Risk: Remote media download operations make the PiKVM fetch a URL from its own network.
+
+Mitigation: Treat remote media URLs as sensitive and use only trusted media sources that are appropriate for the PiKVM network.
+
+## Reference(s):
+
+- [PiKVM API documentation](https://docs.pikvm.org/api/)
+- [PiKVM API reference notes](references/api-reference.md)
+- [ClawHub skill page](https://clawhub.ai/didyouexpectthat/skills/pikvm)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON command results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save snapshot image files when explicitly requested; command results should not expose passwords, TOTP values, or session cookies.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

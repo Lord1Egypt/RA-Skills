@@ -1,40 +1,53 @@
-## Description: <br>
-Chat With Pdf Zh helps users ask Chinese questions about uploaded PDFs to summarize documents, extract key information, and review contract, tender, report, and policy content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat With Pdf Zh helps users ask Chinese questions about uploaded PDF documents to summarize content, extract key clauses, dates, and figures, and analyze contracts, tenders, reports, and policy documents.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Employees and external users can use this skill to query PDF documents in Chinese, especially for contract review, tender analysis, report summarization, policy review, keyword lookup, and extraction of clauses, dates, and numeric data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PDFs such as contracts, bids, financial reports, and policy documents may contain sensitive information. <br>
-Mitigation: Install and use this skill only when the agent is permitted to read the PDFs provided by the user. <br>
-Risk: Question answering or summarization over PDFs can omit context or misstate clauses, dates, or numbers. <br>
-Mitigation: Review extracted answers against the source PDF before relying on them for legal, procurement, compliance, financial, or management decisions. <br>
+## Use Case:
 
+Employees and external business users can use this skill to review PDF documents in Chinese, including contracts, tenders, financial reports, research reports, policies, and compliance materials. It supports summarization, question answering, keyword lookup, and extraction of clauses, dates, and numerical data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/olina1ye/chat-with-pdf-zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown text answers, summaries, extracted clauses, and structured bullet lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses depend on the content and quality of PDFs provided by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Uploaded PDFs may contain sensitive business, legal, financial, or compliance information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with documents approved for the target environment and apply normal document-handling controls before upload.
+
+Risk: PDF summaries or extracted answers may omit context or misread document-specific language.
+
+Mitigation: Review extracted clauses, dates, figures, and summaries against the source PDF before making legal, procurement, compliance, or management decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/chat-with-pdf-zh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses to PDF questions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include summaries, extracted clauses, dates, numerical values, keyword matches, and document-specific citations when available from the PDF content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

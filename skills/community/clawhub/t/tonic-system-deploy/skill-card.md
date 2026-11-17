@@ -1,39 +1,55 @@
-## Description: <br>
-Software deployment workflow for systems with separate UAT and PROD environments, covering bug fix deployment planning, UAT-first and PROD-first flow selection, emergency hotfixes, rollbacks, nightly deploy pipelines, approval gates, human checkpoints, automation nodes, Telegram notifications, and rollback procedures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Software deployment workflow for systems with separate UAT and PROD environments, covering bug fix planning, deploy flow selection, emergency hotfixes, rollbacks, nightly pipelines, approval gates, human checkpoints, notifications, and rollback procedures.
 
-## Publisher: <br>
-[tonylnng](https://clawhub.ai/user/tonylnng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tonylnng](https://clawhub.ai/user/tonylnng)
 
-## Use Case: <br>
-Developers, release managers, and operations teams use this skill to choose and execute the appropriate UAT/PROD deployment workflow for bug fixes, emergency hotfixes, rollbacks, multi-service releases, and scheduled nightly deploys with human approval gates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow concerns high-impact production releases where incorrect execution could cause outages, regressions, or unsafe production changes. <br>
-Mitigation: Require explicit release-owner approval before production actions, keep credentials and production access outside the skill, and follow the documented approval, monitoring, smoke test, and rollback checkpoints. <br>
-Risk: Choosing the wrong flow when UAT and PROD versions diverge can create false confidence or introduce regressions. <br>
-Mitigation: Perform the version check before selecting a flow, use PROD-first handling when UAT is ahead of PROD, and validate in the target environment before merging changes onward. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tonylnng/tonic-system-deploy) <br>
+## Use Case:
+
+Developers, release managers, and operations teams use this skill to choose and execute safe deployment paths across separate UAT and PROD environments. It supports routine bug-fix deployments, version-mismatch decisions, emergency hotfix handling, rollback planning, and post-deploy monitoring.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Scheduled automation could deploy or roll back production changes based on status transitions without a fresh approval gate for each live action.
+
+Mitigation: Require explicit authorized approval immediately before every PROD deploy or rollback, and separate status tracking from deploy authority.
+
+Risk: Production deployment guidance can be unsafe if release artifacts, freeze windows, or rollback readiness are not checked before execution.
+
+Mitigation: Enforce freeze checks, validate release artifacts, maintain audit logs, and confirm rollback paths before any production action.
+
+Risk: Operator notifications may be missed or misunderstood during high-impact deploys or rollbacks.
+
+Mitigation: Localize notification templates for receiving operators and verify that the right channels and on-call responders are configured.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with decision trees, tables, checklists, notification templates, and inline command or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes human approval checkpoints, rollback guidance, freeze policy guidance, and deployment notification templates.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with workflow diagrams, checklists, tables, notification templates, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deployment process guidance rather than executable automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

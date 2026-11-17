@@ -1,0 +1,25 @@
+# Personal archive data — NEVER commit your own copies of these
+memory/
+sources/
+backups/
+memory/backup-config.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Local tooling output
+*.out
+_tmp_*
+*.tmp
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Python packaging artifacts
+build/
+dist/
+*.whl
+*.tar.gz

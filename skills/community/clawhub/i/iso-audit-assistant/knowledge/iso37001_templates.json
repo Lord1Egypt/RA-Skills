@@ -1,0 +1,32 @@
+{
+  "standard": "ISO 37001:2025 反贿赂管理体系 — 特色程序模板（通用程序由 generic_mss 自动合并）",
+  "templates": [
+    {"id": "SP-AB-001", "name": "贿赂风险评估程序", "name_en": "Bribery Risk Assessment", "clause": "6.1",
+     "meta": {"owner": "合规/内审", "frequency": "年度/重大变化时"},
+     "sections": [
+       {"title": "1 目的", "content": "识别评估组织面临的贿赂风险，为控制措施提供依据。"},
+       {"title": "2 适用范围", "content": "适用于{org}全部业务及商业伙伴的贿赂风险。"},
+       {"title": "3 职责", "content": "3.1 合规部组织评估；3.2 业务部门提供信息；3.3 管理层审批。"},
+       {"title": "4 工作程序", "content": "4.1 识别风险场景（政府交往/采购/销售）；4.2 评估可能性与影响；4.3 确定高风险区域；4.4 制定控制措施；4.5 动态更新。"}
+     ],
+     "high_voltage_check": ["hv-ab-dd"]},
+    {"id": "SP-AB-002", "name": "尽职调查与商业伙伴管理程序", "name_en": "Due Diligence & Partners", "clause": "8.2/8.3",
+     "meta": {"owner": "采购/合规", "frequency": "合作前/定期"},
+     "sections": [
+       {"title": "1 目的", "content": "对商业伙伴开展反贿赂尽职调查，降低第三方风险。"},
+       {"title": "2 适用范围", "content": "适用于{org}供应商、代理商、经销商、顾问等。"},
+       {"title": "3 职责", "content": "3.1 采购/业务部发起；3.2 合规部尽调；3.3 法务审核协议。"},
+       {"title": "4 工作程序", "content": "4.1 伙伴分级（按风险）；4.2 高风险方背景调查；4.3 签署反贿赂条款；4.4 定期复评；4.5 违规终止合作。"}
+     ],
+     "high_voltage_check": ["hv-ab-dd"]},
+    {"id": "SP-AB-003", "name": "礼品招待与财务控制程序", "name_en": "Gifts, Hospitality & Finance", "clause": "8.3/8.4",
+     "meta": {"owner": "合规/财务", "frequency": "持续"},
+     "sections": [
+       {"title": "1 目的", "content": "规范礼品招待与财务行为，防止其演变为贿赂。"},
+       {"title": "2 适用范围", "content": "适用于{org}员工及代表组织的所有交往。"},
+       {"title": "3 职责", "content": "3.1 合规部制定标准；3.2 财务审核报销；3.3 全员遵守。"},
+       {"title": "4 工作程序", "content": "4.1 礼品招待申报与限额；4.2 超限额审批；4.3 财务凭证完整可审计；4.4 禁止账外资金；4.5 违规处理。"}
+     ],
+     "high_voltage_check": ["hv-ab-gift"]}
+  ]
+}

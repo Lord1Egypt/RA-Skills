@@ -229,31 +229,61 @@
 
 ## 系統配置
 
-- Base URL：`$INSURAI_AGENT_URL`（預設：`https://insurai.com.tw/insurai/agent`）
+- Base URL：`$INSURAI_AGENT_URL`（預設：`https://insurai.com.tw/insurai/agent`；必須為 HTTPS）
 - 認證方式：所有請求都必須帶入 Header X-API-KEY: $INSURAI_API_KEY
-- TLS 驗證：`$INSURAI_TLS_VERIFY`（預設：`true`；可設 `false` 或 CA bundle 路徑）
+- TLS 驗證：一律啟用，使用 Python `requests` 預設安全設定；`INSURAI_AGENT_URL` 必須使用 HTTPS，且不提供停用 TLS 驗證的環境變數
 - **外部依賴**：Python `requests` 庫（腳本會在執行時自動檢查，若缺少會清楚提示）
 
-在執行任何 API 呼叫前，先檢查環境變數：
+若尚未取得 `INSURAI_API_KEY`，請先至 https://insurai.com.tw 註冊會員，登入後申請 `INSURAI-API-KEY`，再設定 `INSURAI_API_KEY`。`INSURAI_AGENT_URL` 可省略，預設使用正式端點。
 
-echo "Agent URL: ${INSURAI_AGENT_URL:-https://insurai.com.tw/insurai/agent}"
-echo "API Key: ${INSURAI_API_KEY:?請先設定 INSURAI_API_KEY 環境變數}"
-echo "TLS Verify: ${INSURAI_TLS_VERIFY:-true}"
+### 安全與能力邊界
 
-確認環境變數已設定：
+本 skill 僅透過內建 Python helper 呼叫 InsurAI Agent API。
+
+會使用的環境變數：
+
+- `INSURAI_AGENT_URL`：HTTPS API base URL，預設為 `https://insurai.com.tw/insurai/agent`
+- `INSURAI_API_KEY`：僅作為 `X-API-KEY` header 傳送至 `INSURAI_AGENT_URL`
+
+網路存取：
+
+- helper 僅向 `INSURAI_AGENT_URL` 發送請求
+- 預設正式端點為 `https://insurai.com.tw/insurai/agent`
+- `INSURAI_AGENT_URL` 必須使用 HTTPS；非 HTTPS URL 會在送出任何 API 請求前被拒絕
+
+會送至 API 的資料：
+
+- 使用者提供的保險情境、職業關鍵字、商品搜尋字詞、保險公司篩選條件、年齡、性別、職業等級、商品代碼與文件類型等必要查詢參數
+
+隱私與資料處理：
+
+- 保險規劃與商品查詢輸入可能包含敏感個人或財務資料，例如年齡、性別、地區、職業、家庭狀況、既有保單、健康相關情境與保障需求
+- 每次對話首次呼叫 API 前，應告知使用者必要資料會送至設定的 `INSURAI_AGENT_URL`，並取得使用者同意後才繼續
+- 送出內容應採最小化原則
+- 除非使用者明確要求且該 action 必要，否則不得包含身分證字號、聯絡方式、完整保單文件、付款資料、醫療紀錄或其他不必要識別資訊
+- 若代他人查詢，應先取得該當事人同意
+
+不允許的行為：
+
+- 不列舉本機檔案
+- 不列舉環境變數；helper 只讀取明確列入允許清單的 `INSURAI_AGENT_URL` 與 `INSURAI_API_KEY`
+- 不讀取或上傳使用者檔案
+- 不輸出或暴露 `INSURAI_API_KEY`
+- 不執行 sudo、安裝套件、下載外部腳本或任意 shell 指令
+
+在執行任何 API 呼叫前，先確認環境變數已設定；不要輸出 API key 明文：
 
 ```bash
 echo "Agent URL: ${INSURAI_AGENT_URL:-https://insurai.com.tw/insurai/agent}"
-echo "API Key: ${INSURAI_API_KEY:?請先設定 INSURAI_API_KEY 環境變數}"
-echo "TLS Verify: ${INSURAI_TLS_VERIFY:-true}"
+test -n "$INSURAI_API_KEY" && echo "API Key: set" || echo "API Key: missing"
 ```
 
-若 INSURAI_API_KEY 未設定，請提示使用者先設定：
+若 `INSURAI_API_KEY` 未設定，請提示使用者先至 https://insurai.com.tw 註冊會員並申請 `INSURAI-API-KEY`，再設定 `INSURAI_API_KEY`；只有需要覆寫正式端點時才設定 `INSURAI_AGENT_URL`：
 
 ```bash
-export INSURAI_AGENT_URL=https://insurai.com.tw/insurai/agent
 export INSURAI_API_KEY=your_api_key_here
-export INSURAI_TLS_VERIFY=true
+# Optional: override the production endpoint.
+export INSURAI_AGENT_URL=https://insurai.com.tw/insurai/agent
 ```
 
 ---
@@ -273,7 +303,7 @@ export INSURAI_TLS_VERIFY=true
 python3 scripts/insurai_api.py <action> [args...]
 ```
 
-Python 腳本使用 `requests` 庫，預設啟用 TLS 憑證驗證；若內網憑證尚未正確佈建，可暫時設 `INSURAI_TLS_VERIFY=false` 或指定 CA bundle 路徑。
+Python 腳本使用 `requests` 庫，`INSURAI_AGENT_URL` 必須使用 HTTPS，TLS 憑證驗證一律啟用且不得關閉；不提供停用 TLS 驗證的環境變數，避免帶有 `X-API-KEY` 與保險資料的請求暴露於中間人攔截或竄改風險。
 
 ---
 
@@ -911,8 +941,8 @@ python3 scripts/insurai_api.py pdf_link \
 當 python3 指令逾時（exit code 非 0）且 API Key 已設定時，先執行以下檢查：
 
 ```bash
-# 1. 確認 API Key 存在
-echo $INSURAI_API_KEY
+# 1. 確認 API Key 存在，不輸出明文
+test -n "$INSURAI_API_KEY" && echo "API Key: set" || echo "API Key: missing"
 
 # 2. 檢查主機解析結果
 host insurai.com.tw

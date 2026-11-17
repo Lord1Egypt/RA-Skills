@@ -1,43 +1,58 @@
-## Description: <br>
-零配置即装即用，支持汽车票班次查询含余票和预订链接、去汽车站交通方式查询（地铁优先）和目的地住宿推荐，多旅游平台数据直连。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+汽车票班次查询含余票和预订链接，去汽车站交通方式查询（地铁优先）和目的地住宿推荐，多旅游平台数据直连，零配置即装即用。暑期短途汽车出行。
 
-## Publisher: <br>
-[travel-skills](https://clawhub.ai/user/travel-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[travel-skills](https://clawhub.ai/user/travel-skills)
 
-## Use Case: <br>
-External travelers planning intercity bus trips in China use this skill to query bus schedules, prices, remaining seats, station transit options, and destination hotel recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel search details are sent to the skill publisher's proxy services and downstream travel or map providers. <br>
-Mitigation: Avoid entering sensitive home addresses or private itinerary details unless they are needed for the lookup. <br>
-Risk: Ticket availability, prices, transit times, and taxi fares can change after the skill returns results. <br>
-Mitigation: Confirm details on the final booking page or local transit provider before purchasing tickets or starting travel. <br>
-Risk: The skill provides booking links and recommendations but does not directly purchase, refund, or manage tickets. <br>
-Mitigation: Complete purchases and any after-sales requests through the linked travel provider. <br>
+## Use Case:
 
+External travelers use this skill to look up China intercity bus schedules, prices, remaining seats, route-to-station transit options, and destination hotel recommendations with booking links.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/travel-skills/bus-ticket-query) <br>
-- [travel-skills publisher profile](https://clawhub.ai/user/travel-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style text with ticket listings, route guidance, hotel recommendations, estimates, and booking links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns real-time or estimated travel information; prices, seat availability, routes, and fares can change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: Travel routes, station locations, and hotel preferences are sent to external proxy and map services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when this data sharing is acceptable, and avoid including unnecessary personal or sensitive details in travel and lodging queries.
+
+Risk: Ticket availability, prices, traffic, transit operations, and taxi estimates can change after the skill returns results.
+
+Mitigation: Confirm final ticket, transit, hotel, and fare details on the linked booking or map service before making travel decisions.
+
+Risk: Setting PROXY_TOKEN can authorize requests to the proxy integration.
+
+Mitigation: Do not set PROXY_TOKEN unless the deployment is intended to use this specific proxy integration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/travel-skills/skills/bus-ticket-query)
+- [Publisher profile](https://clawhub.ai/user/travel-skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown text with route, ticket, transit, hotel, and booking-link results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include external booking URLs, live availability notes, estimated transit times, estimated taxi costs, and warnings that prices, seats, and transport conditions can change.]
+
+## Skill Version(s):
+
+1.0.19 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

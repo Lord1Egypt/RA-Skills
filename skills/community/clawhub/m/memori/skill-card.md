@@ -1,44 +1,61 @@
-## Description: <br>
-Agent-native memory for OpenClaw that structures memory from agent trace, execution history, decisions, tool calls, and conversations into durable long-term memory primitives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent-native memory for OpenClaw that structures memory from agent trace, execution history, decisions, tool calls, and conversations into durable long-term memory primitives.
 
-## Publisher: <br>
-[rpkruse](https://clawhub.ai/user/rpkruse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache-2.0 <br>
+## Publisher:
 
+[rpkruse](https://clawhub.ai/user/rpkruse)
 
-## Use Case: <br>
-Developers and OpenClaw users use Memori to add opt-in, persistent long-term memory from agent execution, tool usage, workflow history, decisions, and conversations. Agents can retrieve relevant stored context through explicit recall tools while memory creation runs in the background after interactions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache-2.0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent conversations, tool traces, workflow history, and decisions may be sent to Memori and stored as long-term memory once the integration is configured. <br>
-Mitigation: Enable the skill only with explicit user consent, use scoped credentials and a dedicated project ID, avoid sharing secrets while enabled, and confirm how to pause, clear, or delete stored memories. <br>
-Risk: The skill requires sensitive credentials and project identifiers for remote memory storage. <br>
-Mitigation: Store MEMORI_API_KEY, ENTITY_ID, and PROJECT_ID in the configured environment or OpenClaw configuration, rotate credentials when needed, and avoid exposing them in chat or logs. <br>
+## Use Case:
 
+Developers and OpenClaw users use Memori to add opt-in, cloud-backed long-term memory to agents, including structured recall of prior decisions, workflow history, tool usage, and conversations.
 
-## Reference(s): <br>
-- [Memori ClawHub Release](https://clawhub.ai/rpkruse/memori) <br>
-- [Memori API Service](https://api.memorilabs.ai) <br>
-- [Memori npm Package](https://www.npmjs.com/package/@memorilabs/openclaw-memori) <br>
-- [Memori Documentation](https://memorilabs.ai/docs/memori-cloud/openclaw/overview/) <br>
-- [Memori Repository](https://github.com/MemoriLabs/Memori) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEMORI_API_KEY, ENTITY_ID, PROJECT_ID, the memori binary, and the external service https://api.memorilabs.ai.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Risk: Configured use stores OpenClaw session content, tool-use history, and related memory data with Memori.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the plugin only after reviewing Memori privacy and retention controls, and keep projectId and entityId scopes narrow.
+
+Risk: MEMORI_API_KEY exposure could allow unauthorized access to a user's Memori configuration.
+
+Mitigation: Keep the API key in environment or secret storage, avoid printing it in logs or chat, and prefer a reviewed, pinned plugin version.
+
+Risk: Broad memory capture or recall may surface more historical context than needed.
+
+Mitigation: Use narrow project scopes and date-bounded recall where possible, and monitor quota and stored memory volume.
+
+## Reference(s):
+
+- [Memori OpenClaw documentation](https://memorilabs.ai/docs/memori-cloud/openclaw/overview/)
+- [Memori npm package](https://www.npmjs.com/package/@memorilabs/openclaw-memori)
+- [Memori GitHub repository](https://github.com/MemoriLabs/Memori)
+- [Memori API dashboard](https://app.memorilabs.ai/)
+- [Memori API service](https://api.memorilabs.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MEMORI_API_KEY, ENTITY_ID, PROJECT_ID, and the memori CLI; uses the Memori API service after user configuration.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

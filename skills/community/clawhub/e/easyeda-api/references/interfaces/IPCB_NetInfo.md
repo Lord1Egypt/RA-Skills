@@ -1,11 +1,11 @@
 # IPCB\_NetInfo interface
 
-网络属性
+Net property
 
 ## Signature
 
 ```typescript
-interface IPCB_NetInfo 
+interface IPCB_NetInfo
 ```
 
 ## Properties
@@ -14,78 +14,62 @@ interface IPCB_NetInfo
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [color](./IPCB_NetInfo.md)
 
+</td><td>
 
 </td><td>
 
+{ r: number; g: number; b: number; alpha: number } \| null
 
 </td><td>
 
-{ r: number; g: number; b: number; alpha: number; } \| null
-
-
-</td><td>
-
-颜色
-
+Color
 
 </td></tr>
 <tr><td>
 
 [length](./IPCB_NetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 number
 
-
 </td><td>
 
-长度
-
+Length
 
 </td></tr>
 <tr><td>
 
 [net](./IPCB_NetInfo.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-网络名称
-
+Net name
 
 </td></tr>
 </tbody></table>
@@ -98,24 +82,19 @@ string
 
 # IPCB\_NetInfo.color property
 
-颜色
+Color
 
 ## Signature
 
 ```typescript
-color: {
-        r: number;
-        g: number;
-        b: number;
-        alpha: number;
-    } | null;
+color: { r: number; g: number; b: number; alpha: number } | null;
 ```
 
 ### length
 
 # IPCB\_NetInfo.length property
 
-长度
+Length
 
 ## Signature
 
@@ -127,7 +106,7 @@ length: number;
 
 # IPCB\_NetInfo.net property
 
-网络名称
+Net name
 
 ## Signature
 

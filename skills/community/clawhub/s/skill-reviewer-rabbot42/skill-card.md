@@ -1,39 +1,53 @@
-## Description: <br>
-Reviews and evaluates OpenClaw Skill quality and provides improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews and evaluates OpenClaw Skill quality and provides improvement suggestions.
 
-## Publisher: <br>
-[rabbot42](https://clawhub.ai/user/rabbot42) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rabbot42](https://clawhub.ai/user/rabbot42)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to review an OpenClaw Skill's SKILL.md for clear purpose, scope, actionable instructions, review criteria, and improvement opportunities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill reviews another SKILL.md file, which may contain untrusted instructions. <br>
-Mitigation: Point the skill only at the intended skill file and treat reviewed content as source material rather than instructions to execute. <br>
-Risk: Review output is advisory and could miss quality, safety, or suitability issues. <br>
-Mitigation: Use the review as an input to human evaluation before publishing or installing a skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rabbot42/skill-reviewer-rabbot42) <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to review OpenClaw Skills against quality criteria, assign a score, and produce practical improvement suggestions.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown review with score, strengths, issues, and improvement suggestions; may include inline shell commands from reviewed skill examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory review text only and does not automatically modify the reviewed skill.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The review may be based on reading a target Skill's SKILL.md.
+
+Mitigation: Use the skill only on Skill files you are comfortable exposing to the reviewing agent.
+
+Risk: Checklist-based review output may miss context-specific requirements or make subjective scoring judgments.
+
+Mitigation: Use the output as guidance and keep final acceptance decisions under human review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rabbot42/skills/skill-reviewer-rabbot42)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/rabbot42)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown review with score, strengths, issues, and improvement suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read a target Skill's SKILL.md when asked to assess that skill; does not require write access, credentials, network access, or automatic changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

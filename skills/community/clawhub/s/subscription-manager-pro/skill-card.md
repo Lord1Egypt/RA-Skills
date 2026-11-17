@@ -1,43 +1,55 @@
-## Description: <br>
-Track all your subscriptions, get alerts before renewals, identify forgotten services, and calculate total spend. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track subscriptions, alert before renewals, identify forgotten services, and calculate total spend.
 
-## Publisher: <br>
-[kilusha](https://clawhub.ai/user/kilusha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kilusha](https://clawhub.ai/user/kilusha)
 
-## Use Case: <br>
-External users use this skill to track recurring subscriptions, review upcoming renewals, and summarize monthly or yearly subscription spend from locally stored records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Subscription and spending details are stored locally in JSON. <br>
-Mitigation: Install only when local storage of these records is acceptable and protect or back up the local data directory according to the user's privacy needs. <br>
-Risk: Canceling a subscription in the tracker may be mistaken for canceling the real service. <br>
-Mitigation: Treat cancel actions as local record updates only and cancel the actual subscription directly with the provider. <br>
-Risk: Permanent deletion can remove records the user may later need. <br>
-Mitigation: Back up records before using permanent deletion. <br>
+## Use Case:
 
+External users and personal-finance agents use this skill to record recurring subscriptions, review upcoming renewals, summarize spend by category, and manage local status changes such as paused or cancelled records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kilusha/subscription-manager-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/kilusha) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and local JSON or CSV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-entered subscription records locally and can export tracked records as CSV or JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill's cancel/remove wording can be mistaken for cancelling a real paid subscription with the provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat cancel/remove as a local record update only, and separately confirm cancellation with the subscription provider.
+
+Risk: CSV exports may be opened in spreadsheet software with subscription names, notes, or URLs from untrusted text.
+
+Mitigation: Review exported fields before opening CSV files in spreadsheets, especially if records include untrusted formulas or links.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kilusha/skills/subscription-manager-pro)
+- [Skill homepage](https://github.com/openclaw/skills/tree/main/skills/subscription-manager-pro)
+- [Repository metadata](https://github.com/openclaw/skills.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Markdown responses with CLI command examples and local JSON or CSV files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores subscription records locally under ~/.openclaw/workspace/subscription-manager-pro/data and can export records as CSV or JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and claw.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

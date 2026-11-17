@@ -1,41 +1,66 @@
-## Description: <br>
-Find, compare, and recommend agent skills across ClawHub and Skills.sh for capability gaps, workflow improvements, safer alternatives, and install decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, compare, and install agent skills across ClawHub and Skills.sh when the user needs new capabilities, better workflows, stronger tools, or safer alternatives.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and agent users use this skill to discover, compare, and select installable skills across ClawHub and Skills.sh when a task may benefit from a specialized agent capability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flagged the skill as suspicious because setup can persistently change agent routing outside the local folder it claims to stay within. <br>
-Mitigation: Keep setup limited to ~/skill-finder/ unless the user explicitly approves AGENTS.md or routing memory changes. <br>
-Risk: Search and install workflows may involve external registry queries or skill installation decisions. <br>
-Mitigation: Require confirmation before external searches or any skill installation, and review candidate skills before installing. <br>
+## Use Case:
 
+Developers and agent users use this skill to find, compare, and optionally install agent skills when a task would benefit from a stronger specialized workflow or a safer alternative. It supports cross-registry discovery across ClawHub and Skills.sh, candidate evaluation, and source-aware installation guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/skill-finder) <br>
-- [Skill homepage](https://clawic.com/skills/skill-finder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with recommendations, comparisons, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local preference files under ~/skill-finder/ when the user explicitly chooses settings or asks to save preferences.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.5 (source: frontmatter and server release evidence) <br>
+Risk: Setup can persistently change agent routing by adding steering that loads this skill for future capability-related requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the steering change before applying it, and decline or edit the routing line unless the future loading behavior is desired.
+
+Risk: Search and install commands run unpinned external CLIs through npx.
+
+Mitigation: Prefer pinned, reviewed versions of the ClawHub and Skills.sh CLIs, inspect candidate skills before installation, and keep installs explicitly opt-in.
+
+Risk: Search queries are sent to external skill registries.
+
+Mitigation: Avoid including secrets, proprietary details, or sensitive task context in registry search queries.
+
+Risk: Recommended skills may come from third-party sources or may be flagged by scanners.
+
+Mitigation: Inspect scanner warnings and candidate files before installing, prefer safer alternatives when available, and do not use force-install or auto-confirm flags.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/skills/skill-finder)
+- [Skill Homepage](https://clawic.com/skills/skill-finder)
+- [Search Strategies](artifact/search.md)
+- [Skill Evaluation Criteria](artifact/evaluate.md)
+- [Setup](artifact/setup.md)
+- [Troubleshooting](artifact/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and structured recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ranked skill recommendations, exact install commands, setup steps, and local preference updates.]
+
+## Skill Version(s):
+
+1.1.5 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

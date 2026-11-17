@@ -1,37 +1,58 @@
-## Description: <br>
-Clawhub Stats Tracker helps an agent view published ClawHub skill operating metrics, including stars, downloads, installs, versions, and publication times. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ClawHub Stats Tracker helps agents query public ClawHub skill operating metrics, including stars, downloads, installs, versions, and publish times.
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-Developers and ClawHub skill publishers use this skill to check operational metrics for tracked skills, inspect individual skill stats, or compare related skill series. It is intended for read-only stats review, not publishing, installation, deletion, or search workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub stats tracking issue](https://github.com/openclaw/clawhub/issues/156) <br>
+Developers and ClawHub skill publishers use this skill to check release statistics for tracked skills, individual skill slugs, or slug series. It supports operational reporting for public ClawHub releases without requiring ClawHub login.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON examples, and tabular stats output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Security posture from clawscan: suspicious. Install only if the user trusts and controls ~/.clawhub/tracked-skills.json, review or patch scripts/fetch-stats.sh before batch mode, and prefer a pinned or locally trusted ClawHub CLI instead of npx clawhub@latest.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: A crafted tracked-skills configuration can lead the helper script to execute unsafe local code.
+
+Mitigation: Use only a trusted ~/.clawhub/tracked-skills.json file and validate slug values before running batch lookups.
+
+Risk: The helper script invokes a mutable npm package at runtime.
+
+Mitigation: Pin the clawhub CLI version before running the script in production or repeatable reporting workflows.
+
+Risk: Downloads and installs metrics are documented as potentially inaccurate.
+
+Mitigation: Treat install and download counts as operational indicators and corroborate important decisions with ClawHub issue status or other records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/clawhub-stats-tracker)
+- [OpenClaw ClawHub installs metrics issue](https://github.com/openclaw/clawhub/issues/156)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and tabular text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can read a local tracked-skills JSON file and call the public clawhub inspect command for each slug.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

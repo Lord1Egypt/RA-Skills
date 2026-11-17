@@ -1,45 +1,68 @@
-## Description: <br>
-Low-latency inbound and outbound AI phone calls via the OpenAI Realtime API and Twilio, covering pre-warm and pre-accept patterns, IVR and receptionist flows, customer-service routing, VAD tuning, function calling, prompt caching, and implementation caveats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Low-latency inbound and outbound AI phone calls via the OpenAI Realtime API and Twilio, covering pre-warm and pre-accept patterns, IVR and receptionist flows, customer-service routing, VAD tuning, function calling, prompt caching, and implementation caveats.
 
-## Publisher: <br>
-[cygnostik](https://clawhub.ai/user/cygnostik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cygnostik](https://clawhub.ai/user/cygnostik)
 
-## Use Case: <br>
-Developers and operators use this skill to design and configure OpenClaw voice-agent phone systems for Twilio and the OpenAI Realtime API, including outbound pre-warm, inbound IVR, receptionist, and CSR workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice workflows can process caller data, store notes, and use silent phone-based lookup without sufficient disclosure or verification. <br>
-Mitigation: Configure explicit call disclosures, consent and recording policies, caller verification before account-specific actions, strict transcript and note retention, and treat caller ID as a hint rather than authentication. <br>
-Risk: The skill requires sensitive OpenAI and Twilio credentials. <br>
-Mitigation: Store credentials only in OpenClaw environment configuration or a secret manager, avoid committing configuration files, and rotate or scope credentials according to deployment policy. <br>
+## Use Case:
 
+Developers and engineers use this skill to configure and troubleshoot low-latency AI phone-call systems that connect OpenAI Realtime API sessions with Twilio media streams. It supports inbound IVR, receptionist, customer-service, and outbound calling flows with guidance for warm starts, audio handling, turn detection, and tool use.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cygnostik/llc-phone) <br>
-- [Publisher Profile](https://clawhub.ai/user/cygnostik) <br>
-- [Promethean Dynamic](https://promethean-dynamic.com) <br>
-- [README](artifact/README.md) <br>
-- [Inbound Call Modes](artifact/docs/04-inbound-modes.md) <br>
-- [OpenClaw Configuration Reference](artifact/docs/09-openclaw-config.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OpenAI and Twilio credentials when applying the guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.4 (source: server release metadata) <br>
+Risk: Reference instructions can lead to unsafe production deployment of billable phone calls, customer records, or caller audio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production use and add Twilio signature validation, outbound endpoint authentication, and strict request and tool-argument schemas.
+
+Risk: Outbound calling flows can create cost, abuse, or policy exposure if destinations and call volume are uncontrolled.
+
+Mitigation: Use destination allowlists, spending limits, rate limits, campaign controls, and audit logging before connecting real phone numbers or campaigns.
+
+Risk: Customer-service and receptionist examples may touch personal data and call recordings.
+
+Mitigation: Add record-level authorization, consent and notice language, and data-handling review before using customer records or caller audio.
+
+Risk: Latency and behavior claims include practitioner observations that may vary by model, region, prompt, and transport path.
+
+Mitigation: Benchmark the selected models, voices, prompts, and Twilio edge configuration in a production-like environment before rollout.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cygnostik/skills/llc-phone)
+- [Promethean Dynamic](https://promethean-dynamic.com)
+- [Overview and model selection notes](docs/01-overview.md)
+- [Session configuration reference](docs/02-session-config.md)
+- [Pre-warm outbound calls](docs/03-prewarm-outbound.md)
+- [Inbound call modes](docs/04-inbound-modes.md)
+- [Operational notes and known issues](docs/08-known-issues.md)
+- [OpenClaw configuration](docs/09-openclaw-config.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline code blocks and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires OpenAI and Twilio credentials for applied deployment.]
+
+## Skill Version(s):
+
+3.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

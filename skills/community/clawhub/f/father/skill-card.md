@@ -1,41 +1,56 @@
-## Description: <br>
-Preserve your father's wisdom, work ethic, life lessons, and the things he never said out loud but showed through everything he did. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Father.skill helps users preserve and organize memories of their father, including life lessons, work ethic, problem-solving patterns, and unspoken expressions of care.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-External users and agents use Father.skill to preserve a user's own memories of their father, organize life lessons, work ethic, and unspoken patterns, and generate reflective guidance based on those notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may store sensitive personal memories locally under ~/.father-skill/. <br>
-Mitigation: Keep that folder private, restrict device access, and delete the folder when the records are no longer needed. <br>
-Risk: Generated 'what would dad say?' responses can feel authoritative even though they are reflective aids based on user notes. <br>
-Mitigation: Treat generated responses as interpretive guidance, not literal truth or professional advice. <br>
+## Use Case:
 
+External users use this skill to capture memories, lessons, personality details, and complicated or grief-sensitive reflections about their father in a private local archive. It is intended for legacy preservation and understanding, not daily parenting coordination.
 
-## Reference(s): <br>
-- [Father.skill on ClawHub](https://clawhub.ai/realteamprinz/father) <br>
-- [Understanding Your Father Guide](references/understanding-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and JSONL-style local memory records with conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores user-provided memories locally under ~/.father-skill/ in human-readable files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may store sensitive family memories, grief details, or relationship history in local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the ~/.father-skill/ folder as private data, restrict local access, and delete the folder when the archive is no longer wanted.
+
+Risk: Conversational responses about what a father might say could be emotionally sensitive or feel more certain than the recorded memories support.
+
+Mitigation: Ground responses in user-supplied memories, preserve uncertainty, and avoid fabricating details that were not recorded.
+
+## Reference(s):
+
+- [Understanding Your Father - A Guide](references/understanding-guide.md)
+- [Father Profile Template](templates/FATHER-PROFILE.md)
+- [ClawHub Skill Page](https://clawhub.ai/realteamprinz/skills/father)
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSONL, Guidance, Configuration]
+
+**Output Format:** [Markdown and JSONL entries with conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local files are described under ~/.father-skill/; no external transmission is described in the evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,52 @@
-## Description: <br>
-News video maker skill. Use search tools to get news, generate speech, and create video with golden subtitles. For creating news briefing videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+News video maker skill. Use search tools to get news, generate speech, and create video with golden subtitles. For creating news briefing videos.
 
-## Publisher: <br>
-[iZorro](https://clawhub.ai/user/iZorro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[izorro](https://clawhub.ai/user/izorro)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to turn current-news topics into short briefing videos with voiceover, subtitles, and a provided background image.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: FFmpeg command construction can expose users to unsafe local command execution if file paths are not tightly controlled.
+
+Mitigation: Use trusted local file paths and output directories, and run FFmpeg with a fixed argument array plus strict path and subtitle-filter escaping.
+
+Risk: The workflow searches the web and sends generated news text to a TTS tool.
+
+Mitigation: Review the selected news content before narration and use only TTS providers appropriate for the data being processed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and content creators use this skill to turn current news topics into narrated briefing videos with a background image, speech audio, and timed subtitles. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: News search queries and narration text may be sent to configured search and text-to-speech providers. <br>
-Mitigation: Use approved providers and avoid including confidential or sensitive information in search queries or narration text. <br>
-Risk: The workflow runs FFmpeg against user-provided input paths and output directories to create a local MP4 file. <br>
-Mitigation: Use trusted background images, audio, subtitle files, and output directories before executing the generated FFmpeg command. <br>
+**Output Format:** [MP4 video file plus Markdown-style instructions and an FFmpeg command]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Uses web search, TTS-generated audio, SRT-style subtitles, a user-provided background image, and FFmpeg.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with inline FFmpeg command examples and generated media file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or coordinates news text, TTS audio, SRT subtitles, and a local MP4 video file.] <br>
+1.0.4 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

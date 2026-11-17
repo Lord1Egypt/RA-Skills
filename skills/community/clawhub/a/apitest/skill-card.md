@@ -1,40 +1,57 @@
-## Description: <br>
-ApiTest fetches tool information from a local localhost:8080/gettool endpoint using an API_TEST_KEY bearer token. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ApiTest retrieves tool information from a local localhost:8080/gettool endpoint using a Bearer token from API_TEST_KEY.
 
-## Publisher: <br>
-[yehan5555](https://clawhub.ai/user/yehan5555) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yehan5555](https://clawhub.ai/user/yehan5555)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to retrieve JSON tool data from a trusted local server after configuring API_TEST_KEY. It is appropriate only when the user controls localhost:8080 or explicitly intends to send the token to that local service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may automatically send API_TEST_KEY to localhost:8080 when broad localhost or tool-data triggers match. <br>
-Mitigation: Install only when you control the localhost:8080 service, and prefer disabling auto invocation or narrowing triggers so the request runs only when explicitly requested. <br>
-Risk: The local endpoint response comes from a service outside the skill package. <br>
-Mitigation: Verify the local service and review returned tool data before relying on it in downstream agent actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yehan5555/apitest) <br>
-- [Publisher profile](https://clawhub.ai/user/yehan5555) <br>
+## Use Case:
 
+Developers and operators use this skill to let an agent fetch tool data from a trusted local service after configuring API_TEST_KEY.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, text] <br>
-**Output Format:** [JSON response data from the local endpoint, returned as agent text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_TEST_KEY and a reachable localhost:8080 service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and skill frontmatter name) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can automatically send API_TEST_KEY as a Bearer token to localhost:8080.
+
+Mitigation: Use it only with an intentionally running, trusted localhost:8080 service and require confirmation before sending the token.
+
+Risk: Broad auto-invocation patterns may trigger authenticated requests for loosely related API or localhost requests.
+
+Mitigation: Narrow triggers to the exact gettool request or disable automatic invocation.
+
+Risk: The credential is described as read-write.
+
+Mitigation: Provide a narrowly scoped or read-only credential whenever the local service supports it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yehan5555/skills/apitest)
+- [Publisher profile](https://clawhub.ai/user/yehan5555)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with optional JSON response data and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API_TEST_KEY and a trusted service on localhost:8080.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and skill frontmatter name)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-EventKit integration patterns, permission handling, zero-width character steganography, and batch operations for macOS/iOS apps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EventKit integration patterns, permission handling, zero-width character steganography, and batch operations for macOS/iOS apps.
 
-## Publisher: <br>
-[soponcd](https://clawhub.ai/user/soponcd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[soponcd](https://clawhub.ai/user/soponcd)
 
-## Use Case: <br>
-Developers and engineers use this skill to implement EventKit reminders or events in macOS and iOS apps, including authorization, calendar management, bidirectional sync, batch operations, and test patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill teaches hidden zero-width note markers that can obscure tracking metadata from users. <br>
-Mitigation: Disclose any sync markers placed in notes, prefer visible or app-local metadata, and provide a way to inspect and remove markers. <br>
-Risk: Bulk delete patterns can remove user calendar or reminder data at scale if identifiers or scopes are wrong. <br>
-Mitigation: Require explicit confirmation, preview affected items, restrict operations to scoped identifiers, keep logs, and plan recovery before deleting. <br>
-Risk: EventKit examples may request broad calendar and reminder access. <br>
-Mitigation: Request only the EventKit permissions actually needed for the app workflow and check authorization before operations. <br>
+## Use Case:
 
+Developers building macOS or iOS applications use this skill for EventKit reminders and events integration, permission handling, calendar management, batch operations, and bidirectional sync patterns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/soponcd/eventkit-integration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands] <br>
-**Output Format:** [Markdown with Swift and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples are implementation templates and should be reviewed, scoped, and hardened before use in an app.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Examples request broad EventKit reminder and event permissions, which can expose more calendar data than a specific app workflow needs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Request only the EventKit permissions required for the app feature, explain the purpose to users, and avoid event access when reminder-only access is sufficient.
+
+Risk: The skill teaches invisible identity markers in reminder notes, which can surprise users and make stored metadata hard to inspect or remove.
+
+Mitigation: Use invisible note markers only with explicit user opt-in, document what is stored, and provide a way to remove or migrate the markers.
+
+Risk: Batch deletion and duplicate-purge patterns can remove important reminders or local task records if identifiers, sync state, or duplicate detection are wrong.
+
+Mitigation: Add confirmation, backups, dry-run logging, or undo safeguards before deleting reminders or local records, and test deletion flows against non-production calendars.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/soponcd/skills/eventkit-integration)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands]
+
+**Output Format:** [Markdown guidance with Swift and shell command code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

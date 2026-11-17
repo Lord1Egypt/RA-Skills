@@ -57,38 +57,7 @@ main() {
   
   # 检查是否有内容
   if echo "${json_data}" | grep -q '"hasContent": false'; then
-    log "INFO" "无内容，发送简短通知"
-    
-    # 生成无内容通知消息
-    local no_content_msg="📭 昨日（${yesterday}）无学习记录
-
-昨天没有检测到实质性学习内容。
-休息一下也好 😴
-
-⏰ 今日 10:00 继续为你扫描学习卡片
-
----
-💃 金银 Planet · 自我提升部"
-
-    # 发送飞书消息
-    if command -v openclaw &> /dev/null; then
-      openclaw message send --channel=feishu --target="${FEISHU_TARGET}" --message="${no_content_msg}" 2>&1 | tee -a "${LOG_FILE}"
-      SEND_STATUS=${PIPESTATUS[0]}
-      if [ $SEND_STATUS -eq 0 ]; then
-        log "INFO" "无内容通知已发送到 ${FEISHU_TARGET}"
-      else
-        log "ERROR" "无内容通知发送失败 (状态码: $SEND_STATUS)"
-      fi
-    else
-      log "WARN" "openclaw 命令不可用，消息未发送"
-    fi
-
-    # 输出到 stdout
-    echo "${no_content_msg}"
-    
-    # 创建空卡片文件并标记已发送
-    echo -e "# 昨日学习卡片 - ${yesterday}\n\n📭 昨日无学习记录。\n\n**自动发送：** $(date '+%Y-%m-%d %H:%M') ✅ 已发送（无内容通知）" > "${card_file}"
-    
+    log "INFO" "无内容，跳过"
     exit 0
   fi
   

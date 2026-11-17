@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "theme-starter",
+  "displayName": "Neutral Starter (WorkBuddy)",
+  "version": "1.0.0",
+  "targets": {
+    "workbuddy": {
+      "css": "workbuddy.css",
+      "verification": {
+        "contexts": [
+          {
+            "name": "home",
+            "when": { "any": [".wb-home-page"] },
+            "required": [
+              { "name": "home-hero", "any": [".wb-home-header"] },
+              { "name": "home-composer", "any": [".wb-home-composer"] }
+            ]
+          },
+          {
+            "name": "conversation",
+            "when": { "any": [".chat-container:not(.chat-container--welcome)"] },
+            "required": [
+              { "name": "composer-shell", "any": [".chat-container:not(.chat-container--welcome) section:has([role='textbox'][contenteditable='true'])"] }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

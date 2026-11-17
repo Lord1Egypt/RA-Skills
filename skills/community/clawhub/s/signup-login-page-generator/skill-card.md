@@ -1,39 +1,53 @@
-## Description: <br>
-Guides signup and login page structure, domain choice, modal versus dedicated page decisions, discount integration, form strategy, and SEO treatment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides signup and login page structure, domain choice, modal versus dedicated page decisions, discount integration, form verification, and SEO for account creation flows.
 
-## Publisher: <br>
-[kostja94](https://clawhub.ai/user/kostja94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kostja94](https://clawhub.ai/user/kostja94)
 
-## Use Case: <br>
-Developers, designers, and growth teams use this skill to plan signup and login pages for account creation, trial signup, paid signup, and discount-aware registration flows. It helps choose page structure, URL/domain approach, form requirements, trust signals, and noindex behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Authentication page guidance can be misapplied to production signup or login flows, causing privacy, SEO, cookie, or verification issues. <br>
-Mitigation: Review recommendations against the product's security, privacy, authentication, cookie, and SEO requirements before implementation. <br>
+## Use Case:
 
+Developers, marketers, and product teams use this skill to plan or audit signup and login flows for account creation, trials, paid signup, discount verification, and authentication page SEO.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kostja94/signup-login-page-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/kostja94) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with structured recommendations and inline implementation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Covers domain and URL choice, modal versus dedicated page recommendation, page structure, discount integration, form and verification guidance, SEO meta tags, and related skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: Recommendations could be incomplete or misapplied for a specific product, authentication provider, discount policy, or SEO requirement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed signup/login structure, verification flow, and robots directives against the product's actual auth, legal, and SEO requirements before implementation.
+
+Risk: The skill may use existing local project-context summaries to tailor recommendations.
+
+Mitigation: Keep credentials and sensitive secrets out of project-context summaries; the security evidence says the skill does not execute code or request credentials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kostja94/skills/signup-login-page-generator)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with tables and short HTML/meta-tag snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May tailor recommendations using local project-context summaries when available; does not execute code or request credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

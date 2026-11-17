@@ -1,0 +1,8 @@
+{
+  "example": "MCP tool call",
+  "tool": "sold_prices",
+  "arguments": {
+    "query": "Super Smash Bros Melee GameCube",
+    "limit": 5
+  }
+}

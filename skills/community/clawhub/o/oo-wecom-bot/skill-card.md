@@ -1,45 +1,56 @@
-## Description: <br>
-WeCom Bot helps an agent send text, markdown, markdown_v2, image, and news messages through a WeCom bot webhook by using the OOMOL oo CLI and wecom_bot connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate WeCom Bot through an OOMOL-connected account to read and manage chats, messages, documents, schedules, meetings, todos, sheets, and pages.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent prepare and send WeCom Bot webhook messages through an OOMOL-connected account. It is intended for confirmed message-sending workflows where the agent inspects the live connector schema before constructing payloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send WeCom Bot messages that change external communication state. <br>
-Mitigation: Confirm the exact message payload and intended effect with the user before running any write action. <br>
-Risk: The setup instructions include remote shell installer commands. <br>
-Mitigation: Use a verified package or inspect the installer before execution, and run setup only after an auth or connection failure requires it. <br>
-Risk: The routing language is broader than the listed message-sending actions. <br>
-Mitigation: Treat the skill as scoped to WeCom Bot message sending and inspect the live connector schema before each action. <br>
+## Use Case:
 
+Employees and teams use the skill to manage WeCom communications and collaboration data through an agent connected to their WeCom account.
 
-## Reference(s): <br>
-- [WeCom Bot homepage](https://work.weixin.qq.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-wecom-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill instructs the agent to inspect live connector schemas before running message-sending actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The required CLI may silently install or update other agent skills without disclosing those changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI setup, use a verified release, and consider setting OO_SKILLS_SYNC_DISABLED=1 before invoking it, as described in the CLI environment-variable reference.
+
+Risk: The connector can read or change WeCom business data, and OOMOL mediates access to that data.
+
+Mitigation: Connect only the intended WeCom account and confirm the exact target and effect before any write or deletion.
+
+## Reference(s):
+
+- [WeCom Bot](https://work.weixin.qq.com)
+- [WeCom API documentation](https://developer.work.weixin.qq.com/document/path/91770)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+- [oo CLI environment variables](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md#environment-variables)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Text, Markdown]
+
+**Output Format:** [Connector results as structured JSON, text, or Markdown; CLI instructions may use Markdown code blocks.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Available results depend on the selected WeCom action; write actions change account data and require confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

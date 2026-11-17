@@ -1,0 +1,12 @@
+name: minutes-scheduled-task
+version: 1.2.0
+description: 实现 Windows 分钟级定时任务（每 N 分钟执行），绕过 WorkBuddy 内置调度器不支持分钟级（BYMINUTE 被忽略）的限制。使用 Windows 任务计划程序 + 独立脚本方案。
+triggers:
+  - 每 N 分钟定时执行
+  - 每10分钟
+  - 每5分钟
+  - 分钟级定时任务
+  - 定时推送
+category: productivity
+platform: windows
+requires_api_keys: false

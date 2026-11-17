@@ -1,46 +1,61 @@
-## Description: <br>
-Helps agents search and format real-time island and beach flight options with booking links using flyai/Fliggy CLI results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fly to islands, search island destination flights and beach flights with tropical route booking, with related travel booking and planning support powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Travelers and travel-planning agents use this skill to collect island flight parameters, run flyai searches, and present real-time route options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can ask the agent to install a global npm CLI, with fallback guidance that may use sudo. <br>
-Mitigation: Require explicit user confirmation before installation, avoid sudo where possible, and pin the CLI version before use. <br>
-Risk: Travel search details may be sent to flyai/Fliggy-backed services when the CLI is used. <br>
-Mitigation: Tell users before sending trip details to the service and avoid submitting sensitive travel information unless they approve. <br>
-Risk: The skill describes local execution logs that can include raw travel queries. <br>
-Mitigation: Disable logging where possible, or redact and remove .flyai-execution-log.json after use. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to search island and beach-destination flights through the flyai CLI, compare recommended, low-cost, direct, or connecting routes, and return booking-linked Markdown results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/island-flight) <br>
-- [Templates - island-flight](references/templates.md) <br>
-- [Playbooks - island-flight](references/playbooks.md) <br>
-- [Fallbacks - Flight Category (Island Flight)](references/fallbacks.md) <br>
-- [Runbook - Execution Log Schema](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with booking links and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires live flyai CLI output and detailUrl booking links for each result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill asks agents to install and run an unpinned third-party travel CLI, including fallback guidance that may use sudo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install the CLI manually in a scoped environment, pin and review the package source and version, and do not allow sudo or global installs during automated execution.
+
+Risk: Flight searches can include sensitive travel details, and the artifact describes persisting raw user queries in a local execution log.
+
+Mitigation: Disable or redact local logging for sensitive itineraries and avoid retaining origin, destination, travel dates, or user queries unless the user explicitly accepts that handling.
+
+Risk: The skill depends on live CLI output and booking detailUrl links for accurate schedules, prices, and route details.
+
+Mitigation: Treat results as unavailable if the CLI fails or lacks booking links, and do not substitute model knowledge for prices, schedules, transfers, or ferry details.
+
+## Reference(s):
+
+- [island-flight ClawHub release](https://clawhub.ai/dingtom336-gif/skills/island-flight)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with flight comparison tables, inline booking links, and CLI bash commands for execution or recovery]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI results and detailUrl booking links; may maintain an internal execution log when file writes are available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

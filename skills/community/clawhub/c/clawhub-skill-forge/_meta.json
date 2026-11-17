@@ -2,5 +2,9 @@
   "ownerId": "kn7824yf4srh3akes6axhmqf5n81q7dh",
   "slug": "clawhub-skill-forge",
   "version": "1.0.0",
-  "publishedAt": 1772677320890
+  "publishedAt": "2026-03-05T02:17:00Z",
+  "requiredEnvVars": [],
+  "requires": {
+    "os": ["windows", "macos", "linux"]
+  }
 }

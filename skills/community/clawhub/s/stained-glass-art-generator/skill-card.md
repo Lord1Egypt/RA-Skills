@@ -1,42 +1,58 @@
-## Description: <br>
-Generates stained-glass-style images and illustrations from text prompts through the Neta/TalesOfAI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates stained-glass-style art and illustrations from text prompts using the Neta AI image generation API.
 
-## Publisher: <br>
-[blammectrappora](https://clawhub.ai/user/blammectrappora) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[blammectrappora](https://clawhub.ai/user/blammectrappora)
 
-## Use Case: <br>
-External users and developers use this skill to generate stained-glass-style portraits, animals, landscapes, decorative panels, and mosaic-inspired artwork from text prompts, with optional image-size and reference-image controls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, optional reference image UUIDs, and the API token are sent to Neta/TalesOfAI. <br>
-Mitigation: Use the skill only when the service is trusted for the prompt content, avoid sensitive or regulated prompts, and prefer limited or revocable API tokens. <br>
-Risk: Image generation depends on an external API and may fail, time out, or return moderated results. <br>
-Mitigation: Plan for retries or fallback handling and review generated outputs before using them in production or customer-facing workflows. <br>
+## Use Case:
 
+External users and developers use this skill to request stained-glass-style images such as portraits, animals, landscapes, and decorative panels from text prompts, with optional size and reference-image controls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/blammectrappora/stained-glass-art-generator) <br>
-- [Neta API token signup](https://www.neta.art/open/) <br>
-- [Neta/TalesOfAI image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text image URL with command-line status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Neta API token passed with --token; supports portrait, landscape, square, and tall sizes plus an optional reference image UUID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill handles API tokens and prompt data through the Neta image generation flow with incomplete provider disclosure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive prompts, verify that the token is intended for use with api.talesofai.com, and prefer scoped, revocable tokens.
+
+Risk: The documented command-line token flag can expose real tokens through shell history or process listings.
+
+Mitigation: Avoid placing production tokens directly on the command line; use safer local secret handling where possible.
+
+Risk: The installation guidance includes an unpinned npx command.
+
+Mitigation: Prefer a pinned package version or the ClawHub-native install path before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/blammectrappora/skills/stained-glass-art-generator)
+- [Neta API token setup](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text image URL with command-line status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports optional size and reference image UUID arguments.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

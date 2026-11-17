@@ -1,44 +1,63 @@
-## Description: <br>
-Video To Notes turns local or linked videos into transcripts and structured study notes using ffmpeg and Whisper, with note styles for courses, lectures, tutorials, talks, documentaries, and meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts user-provided local or online videos into transcripts and structured study notes using media extraction, Whisper transcription, and agent-generated Markdown note templates.
 
-## Publisher: <br>
-[yll-kb](https://clawhub.ai/user/yll-kb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yll-kb](https://clawhub.ai/user/yll-kb)
 
-## Use Case: <br>
-Learners, students, professionals, and knowledge workers use this skill to convert videos or video URLs into reviewable transcripts and structured notes. The agent checks required tools, optionally downloads supported video URLs after confirmation, transcribes audio, and produces notes tailored to the content type. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video transcripts and notes may contain private or sensitive content. <br>
-Mitigation: Review generated files after processing and delete transcripts or notes when the source video contains private information. <br>
-Risk: URL downloads and local transcription require user-visible local processing and may involve platform or copyright restrictions. <br>
-Mitigation: Only process videos the user is allowed to use, confirm any URL download and output directory before execution, and follow platform terms. <br>
-Risk: Dependency installation can add local tools or Python packages. <br>
-Mitigation: Detect missing dependencies first, show the exact tools or packages and installation commands, and proceed only after explicit user approval. <br>
+## Use Case:
 
+Students, self-directed learners, developers, and professionals use this skill to turn lectures, tutorials, talks, meetings, and documentaries into structured study notes. Agents can transcribe up to a small batch of videos, segment the transcript, and produce review-oriented Markdown with summaries, diagrams, key points, and quick-reference tables.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yll-kb/video-to-notes) <br>
-- [Workflow Reference](artifact/references/workflow.md) <br>
-- [Note Templates Reference](artifact/references/note-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown notes and timestamped text transcripts, with shell commands and setup guidance when dependencies or downloads are needed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Transcript files are written as .txt beside the source video or in the requested output directory; generated notes are derived from the transcript and the selected note style.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence) <br>
+Risk: Videos, transcripts, and notes may contain sensitive personal, meeting, course, or business information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only videos the user explicitly provides, tell the user where transcripts and notes will be saved, and remind them to review or delete generated files when privacy matters.
+
+Risk: Online video download can implicate platform rules, copyright, or access restrictions.
+
+Mitigation: Download online videos only after user approval, ask the user to confirm they have rights to use the content, and fall back to a local file when a platform blocks download.
+
+Risk: Installing transcription and media dependencies can increase supply-chain exposure.
+
+Mitigation: Show missing dependencies and full install commands before installation, wait for explicit user approval, and recommend virtual environments with pinned dependency versions for stronger control.
+
+Risk: Transcription and summarization can miss words, mishear technical terms, or over-compress important details.
+
+Mitigation: Use language hints and higher-accuracy Whisper models for important content, keep timestamped transcript output, and ask the user to review generated notes before relying on them.
+
+## Reference(s):
+
+- [Workflow Reference](references/workflow.md)
+- [Note Templates](references/note-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/yll-kb/skills/video-to-notes)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown notes plus timestamped transcript text and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create transcript text files beside the source video or in a selected output directory; temporary audio files are removed after transcription.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

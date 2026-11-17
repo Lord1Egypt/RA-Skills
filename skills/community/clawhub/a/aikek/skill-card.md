@@ -1,43 +1,59 @@
-## Description: <br>
-Access AIKEK APIs for crypto and DeFi research, real-time market and news queries, Solana-wallet authentication, and image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access AIKEK APIs for crypto/DeFi research and image generation. Authenticate with a Solana wallet, query the knowledge engine for real-time market data and news, generate images.
 
-## Publisher: <br>
-[vvsotnikov](https://clawhub.ai/user/vvsotnikov) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vvsotnikov](https://clawhub.ai/user/vvsotnikov)
 
-## Use Case: <br>
-Developers and external agent users use this skill to authenticate with AIKEK, query crypto and DeFi knowledge endpoints, generate images, and manage credit-related API workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a locally stored Solana private key and a non-expiring AIKEK API token. <br>
-Mitigation: Store credentials in a private secrets store or a restricted local credentials file, avoid printing full tokens, and keep ~/.config/aikek/credentials private. <br>
-Risk: Some API calls consume AIKEK credits or submit referral verification data. <br>
-Mitigation: Review and explicitly approve credit-spending requests and referral submissions before running them. <br>
-Risk: Credentials could be exposed if sent to a non-AIKEK domain. <br>
-Mitigation: Send AIKEK credentials only to api.alphakek.ai and verify endpoint URLs before execution. <br>
+## Use Case:
 
+Developers and external users use this skill to authenticate with AIKEK, query crypto and DeFi market intelligence, generate image assets, and manage API credits through documented endpoints.
 
-## Reference(s): <br>
-- [AIKEK Developer API Documentation](https://docs.alphakek.ai/developers/developer-api.md) <br>
-- [AIKEK API Base URL](https://api.alphakek.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, Python, JSON, and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes authenticated API request examples that may consume AIKEK credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: release metadata; SKILL.md frontmatter reports 1.3) <br>
+Risk: The setup flow can store and print long-lived API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an OS keychain, secret manager, or encrypted vault when possible; avoid printing or pasting tokens into shell history; rotate or revoke exposed credentials.
+
+Risk: The generated Solana wallet is used for API authentication.
+
+Mitigation: Do not put funds in the generated wallet.
+
+Risk: API tokens do not expire automatically.
+
+Mitigation: Store tokens securely, restrict where they are sent, and revoke or rotate them if exposure is suspected.
+
+## Reference(s):
+
+- [AIKEK Developer API Documentation](https://docs.alphakek.ai/developers/developer-api.md)
+- [AIKEK API Base URL](https://api.alphakek.ai)
+- [ClawHub Skill Page](https://clawhub.ai/vvsotnikov/skills/aikek)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, Python, curl, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint usage, credential setup guidance, and examples of expected external API responses.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release metadata; artifact frontmatter reports 1.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

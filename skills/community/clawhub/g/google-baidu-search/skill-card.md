@@ -1,45 +1,61 @@
-## Description: <br>
-Automatically selects Google for English or international web searches and Baidu for Chinese or China-related searches, then returns unified search results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically chooses Google or Baidu for web search based on query language and returns unified search results.
 
-## Publisher: <br>
-[leohuang8688](https://clawhub.ai/user/leohuang8688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leohuang8688](https://clawhub.ai/user/leohuang8688)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run web searches from Python or the CLI with automatic routing to Google for English or international queries and Baidu for Chinese or China-related queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms are sent to Google or Baidu using configured provider credentials. <br>
-Mitigation: Avoid searching for secrets or confidential data and inform users which provider receives each query. <br>
-Risk: Provider API keys are loaded from environment variables or a local .env file. <br>
-Mitigation: Use limited-scope or quota-limited keys and keep local .env files out of published artifacts and commits. <br>
-Risk: Runtime behavior depends on external search APIs and Python dependencies. <br>
-Mitigation: Pin or review dependencies and install the skill in an isolated environment for sensitive use. <br>
+## Use Case:
 
+Developers and agents use this skill to run web searches through Google Custom Search, Baidu Search, or an automatic engine selector for Chinese and international queries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leohuang8688/google-baidu-search) <br>
-- [Google Custom Search documentation](https://cloud.google.com/custom-search/docs) <br>
-- [Google Programmable Search Engine](https://programmablesearchengine.google.com/) <br>
-- [Baidu AI documentation](https://ai.baidu.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Formatted text with Markdown-style result entries, Python list/dictionary result objects, and CLI output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires at least one configured provider credential; Google results are capped at 10 per request by the provider API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence) <br>
+Risk: Search queries are sent to external Google or Baidu services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using this skill for secrets, regulated data, or sensitive business queries unless external disclosure is acceptable.
+
+Risk: API keys may be exposed in error output.
+
+Mitigation: Use restricted, low-quota API keys and review or fix error handling so credential-bearing URLs are not printed.
+
+Risk: The skill requires provider API credentials and is subject to provider quotas and rate limits.
+
+Mitigation: Configure only the required providers, monitor quota usage, and keep credentials in environment variables or a local .env file excluded from sharing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leohuang8688/skills/google-baidu-search)
+- [Publisher profile](https://clawhub.ai/user/leohuang8688)
+- [Google Custom Search documentation](https://cloud.google.com/custom-search/docs)
+- [Google Programmable Search Engine](https://programmablesearchengine.google.com/)
+- [Baidu AI documentation](https://ai.baidu.com/docs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Formatted text or Markdown search results, plus Python and CLI usage examples in documentation.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include title, URL, snippet, source, and engine fields when provider responses contain them.]
+
+## Skill Version(s):
+
+1.5.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

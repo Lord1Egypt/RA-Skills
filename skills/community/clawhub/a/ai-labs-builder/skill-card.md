@@ -1,47 +1,60 @@
-## Description: <br>
-AI Labs Builder creates modern websites, AI applications, dashboards, and automated workflows with Next.js, TypeScript, Tailwind, shadcn/ui, and MCP integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Labs Builder creates modern websites, AI applications, dashboards, and automated workflows with Next.js, TypeScript, Tailwind, shadcn/ui, and MCP integration.
 
-## Publisher: <br>
-[slemo54](https://clawhub.ai/user/slemo54) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[slemo54](https://clawhub.ai/user/slemo54)
 
-## Use Case: <br>
-Developers and builders use this skill to generate scaffolding, commands, and configuration for websites, AI apps, dashboards, and workflow automation projects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The generator writes project files and runs npm/npx tooling. <br>
-Mitigation: Use an explicit empty project directory and review generated code before deployment. <br>
-Risk: Generated workflow projects can expose webhook handling without authentication or signature checks. <br>
-Mitigation: Add authentication and signature verification before exposing any generated webhook server. <br>
-Risk: Generated AI apps may process provider credentials, prompts, or user data. <br>
-Mitigation: Keep API keys in environment variables and avoid entering sensitive data until privacy and provider handling are reviewed. <br>
-Risk: Broad invocation triggers can match general project creation requests. <br>
-Mitigation: Confirm the intended project type and destination before running project generation commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Next.js Documentation](https://nextjs.org/docs) <br>
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs) <br>
-- [shadcn/ui](https://ui.shadcn.com) <br>
-- [OpenAI API Documentation](https://platform.openai.com/docs) <br>
-- [Model Context Protocol](https://modelcontextprotocol.io/) <br>
+## Use Case:
 
+Developers and builders use this skill to scaffold new web, AI app, dashboard, and workflow projects, including generated files, shell setup commands, and starter configuration.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands, generated code snippets, and project scaffolding instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate project files and run npm/npx tooling through bundled shell scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The scaffolding scripts run package-manager commands and fetch dependencies from remote registries.
+
+Mitigation: Run scaffolding in a disposable or sandboxed directory, review generated package files, and pin package versions before production use.
+
+Risk: Generated AI chat and webhook examples may be exposed without production-grade security controls.
+
+Mitigation: Add authentication, rate limits, input validation, webhook secret checks, and deployment review before exposing endpoints.
+
+Risk: Generated projects rely on API-key environment variables for AI providers and integrations.
+
+Mitigation: Store secrets in environment management, avoid committing populated environment files, and rotate any exposed keys.
+
+## Reference(s):
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [shadcn/ui](https://ui.shadcn.com)
+- [OpenAI API Documentation](https://platform.openai.com/docs)
+- [Model Context Protocol](https://modelcontextprotocol.io/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated project files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated projects may require package installation and user-supplied API keys before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

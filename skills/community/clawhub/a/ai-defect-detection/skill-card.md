@@ -1,38 +1,48 @@
-## Description: <br>
-Detects surface defects and supports quality inspection workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects and reports surface and quality defects with classification, localization, statistics, and inspection reports.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Quality engineers, manufacturing teams, and automation developers use this skill to frame surface inspection workflows for defect detection, classification, localization, statistical analysis, and report generation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Install instructions fetch and run mutable remote code that was not included in the reviewed artifact.
+
+Mitigation: Review the external repository and dependencies, pin to a reviewed commit, and run in a sandbox or virtual environment with limited filesystem and credential access.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Quality engineers and industrial inspection teams use this skill to detect, classify, localize, summarize, and report surface defects in product or production-line imagery. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Artifact details were limited in the supplied security adjudication. <br>
-Mitigation: Review the skill description, requested permissions, and generated commands before installation or deployment. <br>
+**Output Format:** [Markdown text with lists and bash command blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/ai-defect-detection) <br>
+**Other Properties Related to Output:** [May direct installation of remote Python/FastAPI application code not included in the reviewed artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured inspection guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May describe defect classifications, localization, statistical summaries, and report-generation steps.] <br>
+1.0.0 (source: frontmatter, skill.json, release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

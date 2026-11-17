@@ -1,0 +1,637 @@
+/* ═══════════════════════════════════════════════════════════
+   workbuddy-skin · theme.css — 双主题（跟随 App 外观切换）
+   浅色：亮色玻璃 + 深字；深色：暗玻璃 + 白字 + 壁纸压暗纱
+   配色基准：Accent 紫 #7C5CFC
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── 公共变量（两套主题一致） ── */
+body[data-application-name=workbuddy] {
+  --wbs-accent: #7c5cfc;
+  --wbs-accent-bright: #a78bfa;
+  --wbs-accent-soft: rgba(124, 92, 252, 0.12);
+  --wbs-accent-mid: rgba(124, 92, 252, 0.35);
+
+  --cb-button-dark-background: var(--wbs-accent) !important;
+  --cb-button-dark-foreground: #ffffff !important;
+  --cb-button-dark-hover-background: #6a4de8 !important;
+  --cb-bg-primary: transparent !important;
+  --cb-bg-secondary: transparent !important;
+  --cb-panel-bg-primary: transparent !important;
+  --cb-main-area-background: transparent !important;
+  --cb-content-background: transparent !important;
+  --cb-bg-surface: transparent !important;
+  --cb-vscode-editor-background: transparent !important;
+  --cb-vscode-sideBar-background: transparent !important;
+  --cb-vscode-titleBar-activeBackground: transparent !important;
+  --cb-vscode-titleBar-inactiveBackground: transparent !important;
+  --cb-input-background: transparent !important;
+  --cb-vscode-input-background: transparent !important;
+  --atm-chat-content-bg: transparent !important;
+}
+
+/* ── 浅色主题 ── */
+body[data-application-name=workbuddy].light {
+  --wbs-surface: #ffffff;
+  --wbs-surface-2: #f6f4fc;
+  --wbs-bg: #efecf9;
+  --wbs-text: #26243a;
+  --wbs-text-soft: rgba(38, 36, 58, 0.62);
+  /* 浅色磨砂玻璃（参考 macOS 亮色 vibrancy） */
+  --wbs-glass: rgba(255, 255, 255, 0.05);
+  --wbs-glass-border: rgba(255, 255, 255, 0.55);
+  --wbs-glass-text: rgba(38, 36, 58, 0.92);
+  --wbs-glass-text-soft: rgba(38, 36, 58, 0.55);
+  --wbs-tile: rgba(255, 255, 255, 0.38);
+  /* 组件（输入框与侧栏同款玻璃，保持通透感统一） */
+  --wbs-input-bg: var(--wbs-glass);
+  --wbs-input-blur: 4px;
+  --wbs-input-border: rgba(255, 255, 255, 0.25);
+  --wbs-input-shadow: rgba(38, 36, 58, 0.10);
+  --wbs-pill-bg: rgba(255, 255, 255, 0.42);
+  --wbs-pill-border: rgba(255, 255, 255, 0.55);
+  --wbs-pill-hover: rgba(255, 255, 255, 0.60);
+  --wbs-title-color: var(--wbs-text);
+  --wbs-title-shadow: 0 1px 12px rgba(255, 255, 255, 0.55);
+  --wbs-text-shadow: 0 1px 8px rgba(255, 255, 255, 0.65);
+  --wbs-hairline: rgba(38, 36, 58, 0.10);
+  --wbs-panel-bg: rgba(255, 255, 255, 0.35);
+  --wbs-panel-border: rgba(255, 255, 255, 0.60);
+  --wbs-bubble-bg: rgba(255, 255, 255, 0.62);
+
+  /* WorkBuddy 设计变量（浅色） */
+  --cb-text-primary: rgba(38, 36, 58, 0.92) !important;
+  --cb-text-secondary: rgba(38, 36, 58, 0.60) !important;
+  --cb-text-disabled: rgba(38, 36, 58, 0.35) !important;
+  --cb-text-link: var(--wbs-accent) !important;
+  --cb-text-error-active: #e5526d !important;
+  --cb-vscode-foreground: rgba(38, 36, 58, 0.92) !important;
+  --cb-vscode-editor-foreground: rgba(38, 36, 58, 0.92) !important;
+  --cb-vscode-descriptionForeground: rgba(38, 36, 58, 0.60) !important;
+  --cb-vscode-titleBar-activeForeground: rgba(38, 36, 58, 0.92) !important;
+  --cb-vscode-titleBar-inactiveForeground: rgba(38, 36, 58, 0.60) !important;
+  --cb-vscode-dropdown-background: rgba(255, 255, 255, 0.94) !important;
+  --cb-vscode-list-hoverBackground: rgba(38, 36, 58, 0.06) !important;
+  --cb-vscode-list-activeSelectionBackground: rgba(124, 92, 252, 0.18) !important;
+  --cb-vscode-toolbar-hoverBackground: rgba(38, 36, 58, 0.06) !important;
+  --cb-vscode-scrollbarSlider-background: rgba(38, 36, 58, 0.18) !important;
+  --cb-vscode-scrollbarSlider-hoverBackground: rgba(38, 36, 58, 0.30) !important;
+  --cb-textLink-foreground: var(--wbs-accent) !important;
+  --cb-vscode-widget-border: rgba(38, 36, 58, 0.14) !important;
+  --cb-vscode-panel-border: rgba(38, 36, 58, 0.08) !important;
+  --cb-stroke-secondary: rgba(38, 36, 58, 0.12) !important;
+  --cb-team-member-card-background: rgba(255, 255, 255, 0.32) !important;
+  --atm-surface: rgba(255, 255, 255, 0.38) !important;
+}
+
+/* ── 深色主题 ── */
+body[data-application-name=workbuddy].dark {
+  --wbs-surface: #1c1826;
+  --wbs-surface-2: #231e30;
+  --wbs-bg: #14101e;
+  --wbs-text: rgba(255, 255, 255, 0.92);
+  --wbs-text-soft: rgba(255, 255, 255, 0.62);
+  /* 深色磨砂玻璃（参考 macOS 暗色 vibrancy） */
+  --wbs-glass: rgba(18, 14, 26, 0.05);
+  --wbs-glass-border: rgba(255, 255, 255, 0.14);
+  --wbs-glass-text: rgba(255, 255, 255, 0.92);
+  --wbs-glass-text-soft: rgba(255, 255, 255, 0.55);
+  --wbs-tile: rgba(255, 255, 255, 0.10);
+  /* 组件（输入框与侧栏同款玻璃，保持通透感统一） */
+  --wbs-input-bg: var(--wbs-glass);
+  --wbs-input-blur: 4px;
+  --wbs-input-border: rgba(255, 255, 255, 0.10);
+  --wbs-input-shadow: rgba(0, 0, 0, 0.12);
+  --wbs-pill-bg: rgba(18, 14, 26, 0.26);
+  --wbs-pill-border: rgba(255, 255, 255, 0.16);
+  --wbs-pill-hover: rgba(255, 255, 255, 0.16);
+  --wbs-title-color: #ffffff;
+  --wbs-title-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  --wbs-text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  --wbs-hairline: rgba(255, 255, 255, 0.08);
+  --wbs-panel-bg: rgba(12, 10, 18, 0.52);
+  --wbs-panel-border: rgba(255, 255, 255, 0.10);
+  --wbs-bubble-bg: rgba(30, 24, 48, 0.72);
+
+  /* WorkBuddy 设计变量（深色） */
+  --cb-text-primary: rgba(255, 255, 255, 0.92) !important;
+  --cb-text-secondary: rgba(255, 255, 255, 0.60) !important;
+  --cb-text-disabled: rgba(255, 255, 255, 0.35) !important;
+  --cb-text-link: var(--wbs-accent-bright) !important;
+  --cb-text-error-active: #ff6b81 !important;
+  --cb-vscode-foreground: rgba(255, 255, 255, 0.92) !important;
+  --cb-vscode-editor-foreground: rgba(255, 255, 255, 0.92) !important;
+  --cb-vscode-descriptionForeground: rgba(255, 255, 255, 0.60) !important;
+  --cb-vscode-titleBar-activeForeground: rgba(255, 255, 255, 0.92) !important;
+  --cb-vscode-titleBar-inactiveForeground: rgba(255, 255, 255, 0.60) !important;
+  --cb-vscode-dropdown-background: rgba(24, 20, 34, 0.92) !important;
+  --cb-vscode-list-hoverBackground: rgba(255, 255, 255, 0.08) !important;
+  --cb-vscode-list-activeSelectionBackground: rgba(124, 92, 252, 0.25) !important;
+  --cb-vscode-toolbar-hoverBackground: rgba(255, 255, 255, 0.08) !important;
+  --cb-vscode-scrollbarSlider-background: rgba(255, 255, 255, 0.15) !important;
+  --cb-vscode-scrollbarSlider-hoverBackground: rgba(255, 255, 255, 0.28) !important;
+  --cb-textLink-foreground: var(--wbs-accent-bright) !important;
+  --cb-vscode-widget-border: rgba(255, 255, 255, 0.14) !important;
+  --cb-vscode-panel-border: rgba(255, 255, 255, 0.08) !important;
+  --cb-stroke-secondary: rgba(255, 255, 255, 0.12) !important;
+  --cb-team-member-card-background: rgba(255, 255, 255, 0.06) !important;
+  --atm-surface: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 深色模式：壁纸上压一层暗纱，白字/暗玻璃才有对比度 */
+body[data-application-name=workbuddy].dark::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 20, 0.38);
+  pointer-events: none;
+  z-index: 0;
+}
+body[data-application-name=workbuddy].dark #root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══ 输入框：磨砂玻璃（整体罩在外层容器，内层全透明） ═══ */
+.wb-home-composer__input-slot {
+  background: transparent !important;
+}
+/* 只罩最外层容器（input-slot 直接子级），避免误伤内部弹层容器 */
+.wb-home-composer__input-slot > [class*="_container"],
+[class*="_input-area-container"] [class*="_container"] {
+  background: var(--wbs-input-bg) !important;
+  border: 1px solid var(--wbs-input-border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px var(--wbs-input-shadow) !important;
+  -webkit-backdrop-filter: blur(var(--wbs-input-blur)) saturate(1.2);
+  backdrop-filter: blur(var(--wbs-input-blur)) saturate(1.2);
+}
+/* 弹层容器豁免：backdrop-filter 会创建堆叠上下文，把 z-1100 的菜单压到输入区（z-16）下面，
+   导致空输入时 placeholder 盖住菜单项、点不中 */
+/* 空状态底部固定输入区的白色渐变罩（原生滚动渐隐，壁纸上像白条） */
+[class*="_input-area-container"]::before {
+  background: none !important;
+}
+.wb-home-composer [class*="_container"]:has(> [class*="_menu_"]),
+[class*="_input-area-container"] [class*="_container"]:has(> [class*="_menu_"]) {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.wb-home-composer [class*="_mainArea"],
+[class*="_input-area-container"] [class*="_mainArea"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ═══ 功能胶囊：磨砂玻璃 ═══ */
+.wb-scene-tabs {
+  background: transparent !important;
+}
+.wb-scene-tabs__pill {
+  background: var(--wbs-pill-bg) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border: 1px solid var(--wbs-pill-border) !important;
+  color: var(--wbs-glass-text) !important;
+}
+.wb-scene-tabs__pill--active {
+  background: rgba(124, 92, 252, 0.78) !important;
+  border-color: rgba(124, 92, 252, 0.5) !important;
+  color: #fff !important;
+}
+.quick-actions__item {
+  background: var(--wbs-pill-bg) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border: 1px solid var(--wbs-pill-border) !important;
+  color: var(--wbs-glass-text) !important;
+  transition: background 0.12s ease, transform 0.12s ease;
+}
+.quick-actions__item:hover {
+  background: var(--wbs-pill-hover) !important;
+  transform: translateY(-1px);
+}
+
+/* ═══ 背景：壁纸挂 body（永远铺满窗口，不受 grid 尺寸异常影响） ═══ */
+html, body { height: 100%; }
+body[data-application-name=workbuddy] {
+  /* center bottom：底部对齐，保住右下角海绵宝宝和沙滩，裁顶部天空余量 */
+  background: var(--wbs-bg) url(/*__BG__*/"";/*__END__*/) center bottom / cover no-repeat fixed !important;
+}
+body[data-application-name=workbuddy] #root {
+  background: transparent !important;
+}
+/* 视频背景：#root 抬到 <video> 层之上 */
+body.wbs-video #root {
+  position: relative;
+  z-index: 1;
+}
+.teams-container,
+.teams-content-wrapper,
+.teams-main-content,
+[class*="_gridViewItem"],
+[class*="_gridView"],
+[class*="_grid"] {
+  background: transparent !important;
+}
+
+/* ═══ 主工作区：壁纸尽量清晰 ═══ */
+[data-view-id=main-content],
+.main-content {
+  background: transparent !important;
+}
+/* 首页大标题（颜色/阴影随主题） */
+.wb-home-page h1,
+.wb-home-page__title,
+.wb-home-page [class*="_title"],
+.wb-home-page [class*="_slogan"] {
+  color: var(--wbs-title-color) !important;
+  text-shadow: var(--wbs-title-shadow);
+}
+
+/* ═══ 左侧栏：磨砂玻璃 ═══ */
+[data-view-id=sidebar],
+.conversation-sidebar,
+.conversation-list {
+  background: var(--wbs-glass) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  backdrop-filter: blur(8px) saturate(1.2);
+  border-right: none;
+  color: var(--wbs-glass-text) !important;
+}
+/* 侧栏文字统一玻璃色 */
+.conversation-list-logo-row,
+.conversation-list-version-badge,
+.conversation-list-topbar,
+.conversation-list-topbar button,
+.conversation-section-label,
+.conversation-list-content .conversation-item,
+.conversation-agent-card [class*="_title"],
+.conversation-list-content [class*="_collapse"],
+.conversation-section-content > button {
+  color: var(--wbs-glass-text) !important;
+}
+.conversation-agent-card [class*="_time"],
+.conversation-list-content [class*="_time"] {
+  color: var(--wbs-glass-text-soft) !important;
+}
+.conversation-list-topbar button svg,
+.conversation-sidebar svg {
+  color: var(--wbs-glass-text-soft);
+}
+
+/* ═══ 顶栏：日历条（同款玻璃） ═══ */
+#wbs-topbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: transparent;
+  border-bottom: none;
+  flex-shrink: 0;
+  user-select: none;
+  transition: padding-left 0.2s ease;
+  -webkit-app-region: drag; /* 空白处可拖动窗口 */
+}
+#wbs-topbar .wbs-cal-nav,
+#wbs-topbar .wbs-cal-month,
+#wbs-topbar .wbs-cal-day { -webkit-app-region: no-drag; }
+/* 全透明垫在壁纸上，文字加阴影保可读性（阴影颜色随主题） */
+#wbs-topbar .wbs-cal-nav,
+#wbs-topbar .wbs-cal-month,
+#wbs-topbar .wbs-cal-day .dow,
+#wbs-topbar .wbs-cal-day .dnum { text-shadow: var(--wbs-text-shadow); }
+/* 侧栏收起时给红绿灯让位 */
+#wbs-topbar.wbs-pad-left { padding-left: 96px; }
+/* 对话标题栏也全透明 + 可拖动（与日历条同款，视觉融进壁纸） */
+.workbuddy-topbar {
+  background: transparent !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom: none !important;
+  -webkit-app-region: drag;
+  color: var(--wbs-glass-text) !important;
+}
+.workbuddy-topbar * { color: var(--wbs-glass-text) !important; }
+.workbuddy-topbar button,
+.workbuddy-topbar a,
+.workbuddy-topbar input { -webkit-app-region: no-drag; }
+#wbs-topbar .wbs-cal-nav {
+  border: none;
+  background: transparent;
+  color: var(--wbs-glass-text-soft);
+  font-size: 14px;
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#wbs-topbar .wbs-cal-nav:hover { background: var(--wbs-accent-soft); color: var(--wbs-accent); }
+/* 视频开关：钉在居中日历的右侧（日历 7 天约 270px 宽，半宽 + 间距 ≈ 155px） */
+#wbs-topbar .wbs-video-toggle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(155px);
+  font-size: 11px;
+}
+#wbs-topbar .wbs-cal-month {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--wbs-glass-text);
+  min-width: 52px;
+  text-align: center;
+}
+#wbs-topbar .wbs-cal-days {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+}
+#wbs-topbar .wbs-cal-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+#wbs-topbar .wbs-cal-day:hover { background: var(--wbs-accent-soft); }
+#wbs-topbar .wbs-cal-day .dow { font-size: 10px; color: var(--wbs-glass-text-soft); }
+#wbs-topbar .wbs-cal-day .dnum { font-size: 14px; font-weight: 600; color: var(--wbs-glass-text); }
+#wbs-topbar .wbs-cal-day.today {
+  background: var(--wbs-accent);
+  box-shadow: 0 2px 8px rgba(124, 92, 252, 0.35);
+}
+#wbs-topbar .wbs-cal-day.today .dow,
+#wbs-topbar .wbs-cal-day.today .dnum { color: #fff; }
+#wbs-topbar .wbs-cal-day.focus {
+  outline: 1.5px solid var(--wbs-accent-mid);
+  outline-offset: -1.5px;
+}
+#wbs-topbar .wbs-cal-month { cursor: pointer; }
+
+/* ═══ 敲木鱼 ═══ */
+#wbs-muyu {
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  z-index: 9999;
+  cursor: pointer;
+  user-select: none;
+}
+#wbs-muyu .wbs-muyu-fish {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 92, 252, 0.18);
+  box-shadow: 0 2px 10px rgba(38, 36, 58, 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease, box-shadow 0.12s ease;
+}
+#wbs-muyu:hover .wbs-muyu-fish { box-shadow: 0 4px 14px rgba(124, 92, 252, 0.22); }
+
+/* 槌子：平时藏在鱼上方，敲击时挥下 */
+#wbs-muyu .wbs-muyu-mallet {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-50deg);
+  transform-origin: 50% 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+#wbs-muyu.knocked .wbs-muyu-mallet { animation: wbs-mallet 0.3s ease-out; }
+@keyframes wbs-mallet {
+  0% { opacity: 0; transform: translateX(-50%) rotate(-55deg); }
+  15% { opacity: 1; }
+  37% { opacity: 1; transform: translateX(-50%) rotate(6deg); }  /* 击中 */
+  60% { transform: translateX(-50%) rotate(-18deg); }          /* 弹起 */
+  100% { opacity: 0; transform: translateX(-50%) rotate(-40deg); }
+}
+
+/* 鱼身：槌子落下瞬间（0.11s）压缩颤动 */
+#wbs-muyu.knocked .wbs-muyu-fish { animation: wbs-knock 0.25s ease 0.11s; }
+@keyframes wbs-knock {
+  0% { transform: scale(1); }
+  35% { transform: scale(0.85, 0.78); }
+  70% { transform: scale(1.05, 1.08); }
+  100% { transform: scale(1); }
+}
+
+/* 涟漪：击中时从鱼身扩散 */
+#wbs-muyu .wbs-muyu-ripple {
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 2px solid var(--wbs-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+#wbs-muyu.knocked .wbs-muyu-ripple { animation: wbs-ripple 0.5s ease-out 0.11s; }
+@keyframes wbs-ripple {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.9); }
+}
+#wbs-muyu .wbs-muyu-count {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--wbs-glass-text-soft);
+  font-variant-numeric: tabular-nums;
+}
+#wbs-muyu .wbs-muyu-float {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--wbs-accent);
+  white-space: nowrap;
+  animation: wbs-floatup 0.9s ease forwards;
+  pointer-events: none;
+}
+@keyframes wbs-floatup {
+  0% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -26px); }
+}
+
+/* ═══ 侧栏：新建任务等入口 → Arc 风小方块磁贴（3 列网格） ═══ */
+/* 结构：.conversation-list-tabs 直接装 6 个入口按钮 + 一个 tab-row（助理+操作图标） */
+.conversation-list-tabs {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px 12px;
+}
+/* 拆掉 tab-row 外壳，让「助理」按钮也进网格；重置 flex order 恢复 DOM 顺序 */
+.conversation-list-tab-row { display: contents !important; }
+.conversation-list-tabs > *,
+.conversation-list-tab-row > * { order: 0 !important; }
+.conversation-list-tab-button {
+  position: relative;
+  aspect-ratio: 1.3 / 1;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px !important;
+  margin: 0 !important;
+  border-radius: 12px !important;
+  background: var(--wbs-tile) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 92, 252, 0.14) !important;
+  box-shadow: 0 1px 3px rgba(38, 36, 58, 0.05);
+  color: var(--wbs-glass-text-soft) !important;
+  font-size: 10px !important;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+/* 纯图标磁贴：藏文字，图标居中（悬停提示由 JS 把文字写进 title） */
+.conversation-list-tab-button span { display: none !important; }
+.conversation-list-tabs .conversation-list-tab-button.conversation-list-tab-button {
+  gap: 0 !important;
+  /* 助理按钮（tab-row 里的原生 tab 变体）自带 !important 透明底，提高优先级盖回去 */
+  background: var(--wbs-tile) !important;
+}
+.conversation-list-tab-button svg { width: 22px; height: 22px; }
+.conversation-list-tab-button .conversation-list-tab-button-sub {
+  font-size: 9px;
+  opacity: 0.7;
+}
+.conversation-list-tab-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(124, 92, 252, 0.18);
+  border-color: var(--wbs-accent-mid) !important;
+  color: var(--wbs-glass-text) !important;
+}
+/* 激活磁贴（如「助理」）：原生 active 样式把它洗成全透明，视觉上比邻居暗一截；改为紫色 tint */
+.conversation-list-tab-button.active {
+  background: rgba(124, 92, 252, 0.22) !important;
+  border-color: var(--wbs-accent-mid) !important;
+}
+.conversation-list-tab-button svg { width: 18px; height: 18px; color: var(--wbs-accent); flex-shrink: 0; }
+/* 文件夹/齿轮小图标：磁贴太小容不下两个隐藏按钮，直接隐藏 */
+.conversation-list-tab-actions { display: none !important; }
+
+/* ═══ 任务/空间列表：极简风（无线框、细分割线、克制排版） ═══ */
+/* 分区标题：小字宽字距，不要胶囊底 */
+.conversation-section-label {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em;
+  color: var(--wbs-glass-text-soft) !important;
+  padding: 14px 16px 6px !important;
+}
+/* 条目：去卡片化，行间一根发丝线 */
+.conversation-list-content .conversation-item {
+  margin: 0;
+  padding: 0 8px;
+}
+.conversation-agent-card,
+.conversation-list-content .conversation-item > [class*="_card"] {
+  background: transparent !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  padding: 8px 10px !important;
+  transition: background 0.12s ease;
+}
+/* 发丝分割线（除最后一行），颜色随主题 */
+.conversation-list-content .conversation-item:not(:last-child) .conversation-agent-card,
+.conversation-list-content .conversation-item:not(:last-child) > [class*="_card"] {
+  box-shadow: 0 0.5px 0 var(--wbs-hairline) !important;
+  border-radius: 0 !important;
+}
+.conversation-agent-card:hover,
+.conversation-list-content .conversation-item > [class*="_card"]:hover {
+  background: rgba(124, 92, 252, 0.07) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+/* 标题：中等字重，单行省略 */
+.conversation-agent-card [class*="_header"] { min-width: 0; }
+.conversation-agent-card [class*="_title"] {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+}
+/* 时间/次要信息：更淡更小 */
+.conversation-agent-card [class*="_time"],
+.conversation-list-content [class*="_time"] {
+  color: var(--wbs-glass-text-soft) !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+/* 状态图标收敛 */
+.conversation-agent-card [class*="_statusIcon"] svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.75;
+}
+/* 任务高亮 */
+.conversation-list-content .conversation-item { transition: opacity 0.15s ease; }
+.conversation-item.wbs-dayhit .conversation-agent-card,
+.conversation-item.wbs-dayhit > [class*="_card"] {
+  background: rgba(124, 92, 252, 0.25) !important;
+  border-radius: 8px !important;
+  box-shadow: inset 2.5px 0 0 var(--wbs-accent-bright) !important;
+}
+.conversation-item.wbs-dayhit [class*="_title"] { color: var(--wbs-accent-bright) !important; }
+.conversation-item.wbs-daydim { opacity: 0.35; }
+
+/* 「收起」弱化 */
+.conversation-list-content [class*="_collapse"],
+.conversation-section-content > button {
+  color: var(--wbs-glass-text-soft) !important;
+  font-size: 11px !important;
+}
+
+/* ═══ 对话消息：文字垫玻璃卡（壁纸上可读性的最后一道） ═══ */
+/* 消息组：头像标题 + AI 回复 + 用户气泡都在一块玻璃上（阅读面板） */
+.group-messages {
+  background: var(--wbs-panel-bg) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid var(--wbs-panel-border) !important;
+  border-radius: 14px !important;
+  padding: 12px 16px !important;
+  margin-bottom: 8px;
+}
+/* 用户气泡：玻璃 + 紫调描边 */
+[class*="_userMessageBubble_"] {
+  background: var(--wbs-bubble-bg) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  backdrop-filter: blur(12px) saturate(1.3);
+  border: 1px solid rgba(124, 92, 252, 0.35) !important;
+}

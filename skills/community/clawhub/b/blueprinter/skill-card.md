@@ -1,41 +1,58 @@
-## Description: <br>
-Generate technical diagrams using HTML/CSS in Flat Engineering Blueprint style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blueprinter helps agents generate architecture diagrams, system diagrams, flowcharts, and technical specification sheets as flat blueprint-style HTML/CSS.
 
-## Publisher: <br>
-[yofine](https://clawhub.ai/user/yofine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yofine](https://clawhub.ai/user/yofine)
 
-## Use Case: <br>
-Developers and engineers use this skill to create architecture diagrams, system diagrams, flowcharts, and technical specification sheets with a flat engineering blueprint visual style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated diagrams could include inaccurate or sensitive architecture details if the user supplies them. <br>
-Mitigation: Review diagrams before sharing and avoid placing secrets or confidential values in diagram text. <br>
-Risk: The provided HTML template loads fonts from Google Fonts, which may create an external request when rendered. <br>
-Mitigation: Remove the font link or self-host approved fonts when external font-loading requests are undesirable. <br>
+## Use Case:
 
+Developers, engineers, and technical writers use this skill to ask an agent for flat, high data-ink HTML/CSS diagrams for architectures, systems, flowcharts, and specification sheets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yofine/blueprinter) <br>
-- [Google Fonts stylesheet used by template](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with HTML and CSS code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces diagram styling guidance and template snippets; no executable tool code is included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated HTML/CSS diagrams may contain incorrect or misleading technical details if the prompt or source architecture is incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review diagrams against the relevant architecture, system design, or specification before publishing or using them for implementation decisions.
+
+Risk: The bundled HTML template includes a Google Fonts link, which may load third-party resources.
+
+Mitigation: Replace or remove the external font link when diagrams must avoid third-party font loading.
+
+Risk: The bundled HTML template defaults the document language to English.
+
+Mitigation: Update the HTML language attribute when producing diagrams for another locale.
+
+## Reference(s):
+
+- [Blueprinter ClawHub skill page](https://clawhub.ai/yofine/skills/blueprinter)
+- [Google Fonts stylesheet used by the HTML template](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with HTML and CSS code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs flat blueprint-style diagram markup and styling guidance; no hidden execution or privileged behavior was identified in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,77 @@
+part: SY6280
+link_status: verified_2026-07-01 (datasheet-pdf-mirror-extracted)
+expected_family: "Silergy SY6280 \u2014 load switch / high-side switch"
+main_page: https://www.silergy.com/product/sy6280
+datasheet_path_expected: ../../datasheets/SY6280_Datasheet.pdf
+datasheet_source_note: "SY6280 datasheet (PDF, 6 pages, 300KB) hosted at eaw.app mirror \u2014 Application Note Rev. 0.1.\
+  \ Found via Tavily web search (Gap #3 close-out). PDF contains full Electrical Characteristics table on page 3: Input 2.4-5.5V,\
+  \ Rds(on) 80m\u03A9, Quiescent 25\xB5A, Over Current Limit 0.75-2A, Thermal Shutdown 130\xB0C, Package SOT23-5."
+specs:
+  function: Load switch / high-side P-MOSFET power distribution switch
+  topology: P-channel MOSFET high-side switch with programmable current limit
+  input_voltage_v:
+    min: 2.4
+    max: 5.5
+  rds_on_mohm: 80
+  quiescent_current_ua: 25
+  shutdown_current_ua:
+    min: 0.1
+    max: 1
+  over_current_limit_a:
+    min: 0.75
+    typ: 1.0
+    max: 1.25
+    min_via_rset_min: 0.4
+    max_via_rset_max: 2.0
+  en_threshold_v:
+    rising_min: 2.0
+    falling_max: 0.8
+  thermal_shutdown_c:
+    threshold: 130
+    hysteresis: 20
+  out_discharge_resistance_ohm: 150
+  turn_on_time_us: 120
+  turn_off_time_us: 10
+  package: SOT23-5
+  temperature_range_c:
+    junction: -40 to 125
+    ambient: -40 to 85
+  esd_hbm_kv: 2
+  use_cases:
+  - USB 3G Datacard
+  - USB Dongle
+  - MiniPCI Accessories
+  - Battery disconnect switch
+  - Inrush current limiter
+unverified:
+- exact_on_resistance_mohm
+- exact_max_continuous_current_a
+- exact_input_voltage_range_v
+- exact_quiescent_current_ua
+- enable_pin_logic_levels
+- soft_start_time_ms
+- thermal_shutdown_threshold_c
+- exact_package_per_subvariant
+notes:
+- "Promoted from \"missing yaml\" to family-page-only_2026-06-30 \u2014 Silergy product pages are JS-rendered and not accessible\
+  \ via Firecrawl scrape. Specs are inferred from the class-overview pages (Protection Switches, High-side Switches) which\
+  \ Firecrawl can reach."
+- 'Use case: USB load switch, battery disconnect switch, inrush current limiter, power rail gating in portable / battery-powered
+  designs.'
+- 'Open gap: requires manual datasheet download from silergy.com (logged-in download) or distributor (LCSC, Mouser, etc.).'
+- 'Family differentiator vs SY6970: SY6280 is a high-side load switch; SY6970 is an isolated DC-DC (different function).'
+- "Distributor search 2026-07-01: Mouser lists successor SY20812DAAT/SY20812CAAT (5.5V, 2A, Programmable OC, Active High,\
+  \ with/without Auto discharge, SOT-23-5). Direct datasheet PDF for SY6280 not available from public distributors. Status:\
+  \ pending-datasheet-2026-07-01 \u2014 no public mirror found; requires vendor-direct download from silergy.com (logged-in).\
+  \ Roadmap: v0.4.1."
+- "Verified 2026-07-01 via LCSC distributor listing page (https://www.lcsc.com/search?q=SY6280). LCSC page confirms part exists\
+  \ in catalog (vendor-direct datasheet not available \u2014 Silergy requires logged-in download from silergy.com). Spec values\
+  \ remain from family-overview inference (verified-via-distributor confirms part exists, not deep spec)."
+- "Verified 2026-07-01 via Tavily-found mirror PDF (eaw.app/Downloads/SY6280_Datasheet.pdf, 6 pages, 300KB). Spec fields above\
+  \ sourced from Electrical Characteristics table page 3 of Application Note Rev. 0.1. Found via Tavily web search \u2014\
+  \ Gap #3 final close-out (Tavily route as bridge when firecrawl /vendor-direct fails)."
+extracted_at: '2026-06-30T01:10:00+08:00'
+extracted_from_pages: []
+extraction_method: family-overview inference (product page JS-rendered, not accessible)
+extraction_source: references/semiconductor-vendor/Silergy/firecrawl-snapshots/Protection-Switches_clean.md
+datasheet_source_url: https://eaw.app/Downloads/SY6280_Datasheet.pdf

@@ -1,45 +1,59 @@
-## Description: <br>
-Local-first, privacy-first OpenClaw inference plugin that routes routine queries to local Ollama models and uses cloud fallback for complex prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local-first privacy-first inference. Your OpenClaw agent thinks locally and asks the cloud intelligently. Saves 85%+ tokens, protects privacy, agent learns from cloud responses--cloud doesn't learn from you.
 
-## Publisher: <br>
-[shivaclaw](https://clawhub.ai/user/shivaclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shivaclaw](https://clawhub.ai/user/shivaclaw)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this plugin to reduce cloud inference costs and keep routine agent queries local while retaining optional cloud fallback for complex prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries may be routed to third-party cloud providers automatically, and the security evidence says this can be less safe than the privacy claims imply. <br>
-Mitigation: Review before installing in sensitive workspaces; use strict local-only mode by disabling cloudFallback for privacy-sensitive use. <br>
-Risk: The plugin writes local audit, cache, metrics, and memory-related files. <br>
-Mitigation: Keep enforceContextBoundary and audit logging enabled, and regularly review the local audit trail for unexpected cloud routing or privacy boundary violations. <br>
-Risk: Sanitization and cloud routing behavior may not fully support the claim that private data never leaves the system. <br>
-Mitigation: Avoid relying on that claim until routing and sanitization behavior is reviewed; test with representative sensitive prompts before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw users use this plugin to route agent queries through local Ollama inference first, with optional cloud fallback for queries that need external model support. It is intended for cost-conscious and privacy-sensitive agent deployments that can review and configure the cloud boundary.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/shivaclaw/project-nirvana-plugin) <br>
-- [Publisher profile](https://clawhub.ai/user/shivaclaw) <br>
-- [Project repository](https://github.com/ShivaClaw/nirvana-plugin) <br>
-- [Issue tracker](https://github.com/ShivaClaw/nirvana-plugin/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local audit, metrics, cache, and memory files when installed and used by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Cloud fallback may receive raw user queries or insufficiently stripped context despite the stated privacy guarantee.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local-only mode unless cloud providers are approved for the workload, and review audit logs before relying on the privacy boundary for sensitive or regulated data.
+
+Risk: Docker services and local model endpoints can expose data or control surfaces if bound beyond the local host.
+
+Mitigation: Bind Ollama and related services to localhost or a private network, restrict access with firewall rules, and avoid exposing model endpoints publicly.
+
+Risk: Unpinned latest-tag container images and shared service credentials can make deployments harder to audit and reproduce.
+
+Mitigation: Pin container image versions, use unique service credentials, and rotate any defaults before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shivaclaw/skills/project-nirvana-plugin)
+- [GitHub repository](https://github.com/ShivaClaw/nirvana-plugin)
+- [GitHub issues](https://github.com/ShivaClaw/nirvana-plugin/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [Natural-language agent responses with JSON routing metadata, configuration examples, and audit records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes requests to local Ollama or optional cloud fallback; caches responses and records routing, privacy, and performance events.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

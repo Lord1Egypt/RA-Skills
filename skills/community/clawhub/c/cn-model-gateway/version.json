@@ -1,0 +1,1 @@
+{"version": "1.9.0", "homepage": "https://skillhub.cn/skill/cn-model-gateway", "notes": "v1.9.0：新增每日健康晨报 + 厂商变更雷达（3σ 异常检测）；统一错误映射扩容（429/451/余额不足/内容审查 + 中文处置建议）；错误映射表 YAML 外置"}

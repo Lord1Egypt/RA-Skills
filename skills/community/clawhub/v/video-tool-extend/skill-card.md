@@ -1,44 +1,59 @@
-## Description: <br>
-Extend or continue an existing HTTPS video with a prompt via WeryAI (video-extend). Use when the user wants to lengthen a clip with style and duration controls, not text-to-video from scratch. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extend or continue an existing HTTPS video with a prompt via WeryAI (video-extend).
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-Developers and video-production agents use this skill to extend an existing public HTTPS video with a WeryAI prompt, style, resolution, and duration. It is scoped to video extension, not text-to-video or local file upload workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Paid WeryAI API calls can consume credits and are not idempotent. <br>
-Mitigation: Use dry-run first and require explicit user confirmation of the video URL, prompt, style, resolution, and duration before submit or wait. <br>
-Risk: The skill sends the public video URL and prompt to WeryAI. <br>
-Mitigation: Avoid private media and sensitive prompts unless the user is comfortable sharing them with WeryAI. <br>
-Risk: API keys may be exposed if written into files or prompts. <br>
-Mitigation: Keep WERYAI_API_KEY only in the runtime environment and never write it into files. <br>
+## Use Case:
 
+Developers and external users use this skill to extend an existing public HTTPS video with a prompt, selected style, resolution, and duration through WeryAI. It is not intended for text-to-video generation from scratch or local file upload workflows.
 
-## Reference(s): <br>
-- [WeryAI llms.txt](https://docs.weryai.com/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/video-tool-extend) <br>
-- [Publisher profile](https://clawhub.ai/user/zoucdr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, a public HTTPS video URL, and explicit user confirmation before paid submit or wait calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Paid WeryAI requests are not idempotent and may consume credits when submitted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dry-run first and require explicit user confirmation of the video URL, prompt, duration, style, and resolution before submit or wait.
+
+Risk: The provided public video URL, prompt, and WERYAI_API_KEY are sent to WeryAI for generation.
+
+Mitigation: Install and run only if the user is comfortable sharing those inputs with WeryAI, and keep WERYAI_API_KEY in the runtime environment rather than files.
+
+Risk: This skill only covers the video-extend workflow and does not upload local files or run sibling video CLIs.
+
+Mitigation: Run only artifact/scripts/video_extend.js for this skill and verify the package contains only SKILL.md, eval.yaml, and scripts/video_extend.js before use.
+
+## Reference(s):
+
+- [WeryAI llms.txt](https://docs.weryai.com/llms.txt)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/video-tool-extend)
+- [Publisher profile](https://clawhub.ai/user/zoucdr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON CLI output and final video URLs as Markdown links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 18+, WERYAI_API_KEY, paid network access to WeryAI, and a public HTTPS video URL.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -6,16 +6,34 @@ Each SNP contributes a weighted score; composite scores are 0–10.
 from collections import defaultdict
 
 
-def snp_raw_score(risk_count: int) -> float:
+def snp_raw_score(risk_count: int, inheritance: str = "additive") -> float:
     """
-    Convert risk allele count to a 0–1 dosage score.
-    0 copies → 0.0 (homozygous reference)
-    1 copy   → 0.5 (heterozygous)
-    2 copies → 1.0 (homozygous risk)
+    Convert risk allele count to a 0–1 score.
+
+    additive (default): 0 / 0.5 / 1.0 by copy number.
+      0 copies → 0.0 (homozygous reference)
+      1 copy   → 0.5 (heterozygous)
+      2 copies → 1.0 (homozygous risk)
+
+    dominant_protective: a single non-risk copy is protective, so the score is
+    0.0 unless the genotype is homozygous for the risk allele. Used for lactase
+    persistence at rs4988235, where the -13910T persistence allele is dominant
+    and non-persistence is recessive (Enattah et al. 2002, PMID 11788828).
     """
     if risk_count is None:
         return None
-    return {0: 0.0, 1: 0.5, 2: 1.0}.get(risk_count, 0.0)
+    if risk_count not in (0, 1, 2):
+        raise ValueError(
+            f"Unexpected risk_count={risk_count!r}. Expected 0, 1, 2, or None."
+        )
+    if inheritance == "dominant_protective":
+        return 1.0 if risk_count == 2 else 0.0
+    if inheritance not in ("additive", "", None):
+        raise ValueError(
+            f"Unexpected inheritance={inheritance!r}. "
+            f"Expected 'additive' or 'dominant_protective'."
+        )
+    return {0: 0.0, 1: 0.5, 2: 1.0}[risk_count]
 
 
 def compute_nutrient_risk_scores(snp_calls: dict, snp_panel: list) -> dict:
@@ -54,7 +72,10 @@ def compute_nutrient_risk_scores(snp_calls: dict, snp_panel: list) -> dict:
                 missing += 1
                 continue
 
-            raw = snp_raw_score(call["risk_count"])
+            raw = snp_raw_score(
+                call["risk_count"],
+                inheritance=panel_entry.get("inheritance", "additive"),
+            )
             if raw is None:
                 missing += 1
                 continue

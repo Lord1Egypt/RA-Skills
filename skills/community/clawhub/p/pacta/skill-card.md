@@ -1,40 +1,53 @@
-## Description: <br>
-Pacta is a deprecated escrow skill that has been permanently deactivated and exits with a warning instead of providing V1 smart contract interaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pacta is a deprecated and permanently deactivated escrow skill whose runtime exits immediately instead of performing Pacta V1 blockchain actions.
 
-## Publisher: <br>
-[amenizm](https://clawhub.ai/user/amenizm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amenizm](https://clawhub.ai/user/amenizm)
 
-## Use Case: <br>
-External users and developers may encounter this release when checking Pacta V1 availability. The skill only communicates deactivation and regulatory-review status, then prevents agent-driven escrow actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users with historical Pacta V1 funds could mistake this release for a recovery or contract-interaction path. <br>
-Mitigation: Treat the skill as informational only and seek official project guidance before attempting any manual Pacta V1 action. <br>
-Risk: Automations that still expect Pacta escrow functionality will fail when the handler exits. <br>
-Mitigation: Handle the non-zero exit status and remove this skill from workflows that require Pacta V1 escrow operations. <br>
+## Use Case:
 
+External users and developers can inspect this release as a deactivated Pacta V1 escrow skill. It should not be used for escrow, token approval, agreement delivery, contract recovery, or other Pacta V1 actions.
 
-## Reference(s): <br>
-- [ClawHub Pacta Skill Page](https://clawhub.ai/amenizm/pacta) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text terminal warning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Exits with status code 1 after printing the deactivation warning.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter, manifest.json, evidence.release.version) <br>
+Risk: Deprecated manifest command names may make the skill appear to support Pacta V1 escrow, token approval, agreement, or delivery workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the command names as obsolete compatibility metadata and do not rely on this skill for escrow, token approval, contract recovery, or related workflows.
+
+Risk: Users may attempt to bypass the disabled interface and interact manually with Pacta V1 contracts while funds are frozen or contracts are under review.
+
+Mitigation: Do not attempt manual Pacta V1 contract interactions through this skill; the release is intentionally nonfunctional and exits immediately.
+
+## Reference(s):
+
+- [ClawHub Pacta Skill Page](https://clawhub.ai/amenizm/skills/pacta)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime exits with a fatal error and does not execute Pacta V1 actions.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, manifest, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

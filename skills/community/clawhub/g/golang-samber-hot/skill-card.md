@@ -1,45 +1,59 @@
-## Description: <br>
-In-memory caching in Golang using samber/hot for eviction algorithms, TTL, cache loaders, sharding, stale-while-revalidate, missing key caching, and Prometheus metrics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents building Go services with samber/hot in-memory caches, including eviction selection, TTLs, loaders, sharding, stale-while-revalidate, missing-key caching, and Prometheus metrics.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill when adopting or maintaining samber/hot caches in Go services. It helps select eviction algorithms, configure TTLs and loaders, size caches, prevent common runtime mistakes, and add production monitoring patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dependency update commands such as go get -u can change module versions beyond the cache library. <br>
-Mitigation: Review go.mod and go.sum changes before accepting them, then run the project's normal tests and linting. <br>
-Risk: Generated cache code or git operations may alter application behavior or repository state. <br>
-Mitigation: Inspect proposed code and git changes before applying them, especially around TTLs, loaders, concurrency settings, and cache capacity. <br>
+## Use Case:
 
+Developers and engineers use this skill when adopting or maintaining samber/hot caches in Go codebases, especially to choose algorithms, size capacity, add loaders and TTL behavior, and avoid common runtime mistakes.
 
-## Reference(s): <br>
-- [samber/cc-skills-golang homepage](https://github.com/samber/cc-skills-golang) <br>
-- [samber/hot package documentation](https://pkg.go.dev/github.com/samber/hot) <br>
-- [samber/hot source repository](https://github.com/samber/hot) <br>
-- [Algorithm Selection Guide](references/algorithm-guide.md) <br>
-- [API Reference](references/api-reference.md) <br>
-- [Production Patterns](references/production-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Go and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recommendations and implementation snippets for Go projects using samber/hot.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server evidence and frontmatter) <br>
+Risk: The setup command uses an unpinned Go dependency update, which can pull a newer release than intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned command such as go get github.com/samber/hot@vX.Y.Z, then review go.mod and go.sum changes and run normal Go dependency checks.
+
+Risk: Cache configuration mistakes can produce stale data, loader-error blind spots, excessive memory use, or runtime panics from incompatible options.
+
+Mitigation: Use TTLs with janitor cleanup, check loader errors, size caches from measured item cost and memory budget, and avoid mutually exclusive options such as WithoutLocking with WithJanitor.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-samber-hot)
+- [cc-skills-golang repository](https://github.com/samber/cc-skills-golang)
+- [samber/hot package documentation](https://pkg.go.dev/github.com/samber/hot)
+- [samber/hot repository](https://github.com/samber/hot)
+- [Algorithm Selection Guide](references/algorithm-guide.md)
+- [API Reference](references/api-reference.md)
+- [Production Patterns](references/production-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Go code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Go tooling for install and verification commands.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

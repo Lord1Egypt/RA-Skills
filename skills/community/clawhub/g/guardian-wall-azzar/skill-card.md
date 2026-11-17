@@ -1,40 +1,57 @@
-## Description: <br>
-Mitigate prompt injection attacks, especially indirect ones from external web content or files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mitigate prompt injection attacks, especially indirect ones from external web content or files.
 
-## Publisher: <br>
-[1999AZZAR](https://clawhub.ai/user/1999AZZAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1999azzar](https://clawhub.ai/user/1999azzar)
 
-## Use Case: <br>
-Developers and agent operators use this skill to sanitize untrusted web, file, or uploaded text before an agent processes it, flagging common prompt-injection patterns and recommending isolated delimiters for external content. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompt-injection detections are heuristic and may miss novel or obfuscated attacks. <br>
-Mitigation: Use Guardian Wall as one defensive layer, keep untrusted content isolated with unique delimiters, and review high-stakes content before an agent acts on it. <br>
-Risk: Audit sub-agents may receive sensitive external content during high-stakes review. <br>
-Mitigation: Send sensitive content to an audit sub-agent only in an appropriately constrained environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt injection pattern reference](artifact/references/patterns.md) <br>
-- [Guardian Wall ClawHub release page](https://clawhub.ai/1999AZZAR/guardian-wall-azzar) <br>
+## Use Case:
 
+Developers and agents use Guardian Wall before processing untrusted web, file, or uploaded text to sanitize content, flag common prompt-injection patterns, and wrap suspicious content for safer downstream review.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline command references and plain-text sanitizer output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The sanitizer reports cleaned text and warning labels for detected prompt-injection indicators.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Keyword and regex heuristics can miss sophisticated or obfuscated prompt-injection attacks.
+
+Mitigation: Treat clean results as a screening signal, keep untrusted content delimited, and manually review high-stakes inputs.
+
+Risk: Heuristics can flag benign content that resembles attack examples.
+
+Mitigation: Review warnings manually before blocking content or changing downstream actions.
+
+Risk: The artifact includes adversarial phrases as examples of attacks to detect.
+
+Mitigation: Use those examples only as detection evidence and keep them separated from operational task instructions.
+
+## Reference(s):
+
+- [Comprehensive Encyclopedia of LLM Adversarial Patterns](references/patterns.md)
+- [Guardian Wall ClawHub Release](https://clawhub.ai/1999azzar/skills/guardian-wall-azzar)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with optional plain-text sanitizer output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The sanitizer returns cleaned text and warnings; detections are heuristic and require manual review.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

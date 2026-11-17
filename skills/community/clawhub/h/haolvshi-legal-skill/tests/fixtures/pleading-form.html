@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<body>
+  <table>
+    <tr><td>原告（自然人）</td><td>
+      <div v-for="(plaintiff, index) in plaintiffs">
+        <label :for="'plaintiffName_' + index">姓名：</label>
+        <input type="text" v-model="plaintiff.plaintiffName">
+        <label>性别：</label>
+        <select v-model="plaintiff.plaintiffGender"><option value="男">男</option><option value="女">女</option></select>
+      </div>
+    </td></tr>
+    <tr><td>被告（自然人）</td><td>
+      <div v-for="(defendant, index) in defendants">
+        <label>姓名：</label><input type="text" v-model="defendant.defendantName">
+        <label>住址：</label><input type="text" v-model="defendant.defendantAddress">
+      </div>
+    </td></tr>
+    <tr><td>诉讼请求</td><td><textarea name="litigationRequest"></textarea></td></tr>
+    <tr><td>事实与理由</td><td><textarea name="factsAndReasons"></textarea></td></tr>
+    <tr><td>证据材料</td><td><textarea name="evidenceList"></textarea></td></tr>
+    <tr><td>管辖法院</td><td><input name="courtName" type="text"></td></tr>
+  </table>
+</body>
+</html>

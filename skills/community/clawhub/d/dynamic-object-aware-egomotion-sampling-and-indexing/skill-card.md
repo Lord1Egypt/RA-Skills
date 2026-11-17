@@ -1,41 +1,52 @@
-## Description: <br>
-Standardize video sampling and frame indexing so interval instructions and mask frames stay aligned with a valid key/index scheme. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardize video sampling and frame indexing so interval instructions and mask frames stay aligned with a valid key/index scheme.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wu-uk](https://clawhub.ai/user/wu-uk)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to choose video sampling intervals and keep frame-indexed instructions, masks, and artifact stores aligned to the same sampled frame IDs.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Malformed videos or invalid metadata can produce empty sample sets, invalid FPS, or out-of-range frame indices when implementing the pseudocode.
+
+Mitigation: Check that the video opens, frame count and FPS are positive, and sample_ids is non-empty before generating intervals or frame artifacts.
+
+Risk: Inconsistent interval boundary semantics can misalign instructions, masks, and stored frame artifacts.
+
+Mitigation: Document whether interval end values are inclusive or exclusive and enforce the same sampled frame IDs across all downstream outputs.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to choose a video sampling stride or FPS and keep interval instructions, frame masks, and other per-frame artifacts aligned to the same valid frame indices. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code]
 
-## Known Risks and Mitigations: <br>
-Risk: Frame sampling or interval boundaries can drift from downstream masks or per-frame artifacts. <br>
-Mitigation: Check that sample IDs are strictly increasing, stay below the total frame count, and match the documented interval and artifact coverage policy. <br>
-Risk: The agent may read the wrong local video path or assume an unavailable video-reading runtime. <br>
-Mitigation: Confirm the intended input video path before use and verify that the runtime has an appropriate video-reading library such as OpenCV. <br>
-Risk: Future releases could add scripts, dependencies, or broader file access not covered by the current clean scan. <br>
-Mitigation: Review and scan each new version before installing or using it. <br>
+**Output Format:** [Markdown with Python pseudocode]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Focuses on consistent sampled frame IDs, interval keys, and downstream artifact coverage.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code] <br>
-**Output Format:** [Markdown with Python pseudocode] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance centers on sampled video frame IDs, interval keys, and per-frame artifact consistency checks.] <br>
+0.1.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

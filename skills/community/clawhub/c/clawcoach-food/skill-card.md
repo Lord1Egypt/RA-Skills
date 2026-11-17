@@ -1,39 +1,57 @@
-## Description: <br>
-ClawCoach Food analyzes food photos or text meal descriptions, estimates calories and macros, and logs confirmed meals for ClawCoach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Food photo analysis and meal logging for ClawCoach. Send a photo of your meal and get instant macro breakdown via Claude Vision.
 
-## Publisher: <br>
-[authoredniko](https://clawhub.ai/user/authoredniko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[authoredniko](https://clawhub.ai/user/authoredniko)
 
-## Use Case: <br>
-External ClawCoach users use this skill to analyze meal photos or text descriptions, review estimated calories and macros, and save confirmed meal logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Meal logs and profile details are stored locally and may contain sensitive health or nutrition information. <br>
-Mitigation: Treat ~/.clawcoach/ as sensitive local data and delete that directory when records should no longer be retained. <br>
-Risk: Food photo analysis depends on Anthropic API access and estimated nutrition values may be inaccurate. <br>
-Mitigation: Review estimates before confirming a meal and adjust unclear foods or portions before logging. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawCoach project homepage](https://github.com/clawcoach/clawcoach) <br>
+## Use Case:
 
+External users use this skill to analyze meal photos or text food descriptions, estimate calories and macronutrients, confirm meal entries, and maintain a local ClawCoach food log.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration] <br>
-**Output Format:** [Markdown meal summaries and JSON meal-log entries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ANTHROPIC_API_KEY and stores confirmed meal records locally under ~/.clawcoach/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ambiguous photos or casual food prompts may be interpreted as meal-logging requests.
+
+Mitigation: Review the proposed food analysis before confirming and use edit or redo when the estimate is wrong.
+
+Risk: Confirmed meals create a local dietary history.
+
+Mitigation: Install only if local food logging is desired, and review or remove entries in ~/.clawcoach/food-log.json when needed.
+
+Risk: Nutrition estimates can be inaccurate when portions or foods are unclear.
+
+Mitigation: Confirm portions and request clarification for unclear items before saving a meal.
+
+## Reference(s):
+
+- [ClawCoach Food on ClawHub](https://clawhub.ai/authoredniko/skills/clawcoach-food)
+- [ClawCoach project homepage](https://github.com/clawcoach/clawcoach)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown-style conversational responses with meal estimates, confirmation prompts, and local log guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ANTHROPIC_API_KEY for the OpenClaw environment; confirmed meals are stored locally under ~/.clawcoach/food-log.json.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

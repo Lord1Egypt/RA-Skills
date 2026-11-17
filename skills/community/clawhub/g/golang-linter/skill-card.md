@@ -1,43 +1,56 @@
-## Description: <br>
-Provides Go linting guidance, golangci-lint configuration support, lint output interpretation, and disciplined nolint suppression practices for Go projects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides linting best practices and golangci-lint configuration guidance for Go projects, including running linters, configuring .golangci.yml, suppressing warnings, and interpreting lint output.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill to configure and run golangci-lint, interpret lint findings, apply safe suppressions, and maintain Go code quality workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Lint auto-fix commands and parallel cleanup can change repository code. <br>
-Mitigation: Run code-changing lint actions on a branch, prefer targeted paths where possible, and review git diffs and tests before accepting changes. <br>
-Risk: Incorrect or overly broad nolint suppressions can hide real correctness, security, or resource-management issues. <br>
-Mitigation: Require linter-specific nolint directives with justification, and avoid suppressing security and resource-leak linters without strong review. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up, run, and interpret Go linting workflows with golangci-lint. It helps configure .golangci.yml, apply targeted nolint directives, prioritize fixes, and troubleshoot common linter issues.
 
-## Reference(s): <br>
-- [Golang Linter on ClawHub](https://clawhub.ai/samber/golang-linter) <br>
-- [Source homepage](https://github.com/samber/cc-skills-golang) <br>
-- [Linter Reference](artifact/references/linter-reference.md) <br>
-- [Nolint Directives](artifact/references/nolint-directives.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, Go, YAML, and Makefile snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend code-changing lint fix commands and configuration changes that should be reviewed before acceptance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill can encourage broad automated repository edits, especially when using golangci-lint --fix or parallel cleanup agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run lint first, apply fixes only to explicit scopes, review git diff afterward, and use parallel cleanup agents only when the work is planned and isolated.
+
+Risk: Automated lint guidance can introduce incorrect or misleading code changes if applied without review.
+
+Mitigation: Review proposed commands, configuration changes, nolint directives, and code edits before deployment.
+
+## Reference(s):
+
+- [Linter Reference](artifact/references/linter-reference.md)
+- [Nolint Directives](artifact/references/nolint-directives.md)
+- [ClawHub Skill Page](https://clawhub.ai/samber/skills/golang-linter)
+- [Project Homepage](https://github.com/samber/cc-skills-golang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline Go, YAML, Makefile, and shell snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose golangci-lint commands and configuration changes; running commands requires go and golangci-lint.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

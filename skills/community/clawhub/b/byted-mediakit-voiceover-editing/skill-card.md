@@ -1,49 +1,65 @@
-## Description: <br>
-A Volcano Engine AI MediaKit skill for turning talking-head video or audio inputs into ASR transcripts, editing decisions, review data, and video export artifacts across local, cloud, or SkillHub gateway execution modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Volcano Engine AI MediaKit talking-head video editing skill that guides agents through environment setup, media management, audio processing, talking-head cuts, video export, review UI, and iterative refinement.
 
-## Publisher: <br>
-[volc-ai-mediakit](https://clawhub.ai/user/volc-ai-mediakit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volc-ai-mediakit](https://clawhub.ai/user/volc-ai-mediakit)
 
-## Use Case: <br>
-Developers, media operators, and agent workflows use this skill to process talking-head media, generate ASR-based edit decisions, review proposed cuts, and export edited video through local tooling or Volcano Engine VOD. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The review server can expose local files while it is running. <br>
-Mitigation: Run the review server only on localhost, stop it after review, and avoid browsing untrusted pages while the server is active. <br>
-Risk: Cloud or SkillHub gateway execution can upload media and produce real playback URLs. <br>
-Mitigation: Use least-privilege VOD and ASR credentials, test with an isolated media space, and confirm whether generated playback URLs should be shared. <br>
-Risk: The security summary says the skill can silently change cloud media publication state. <br>
-Mitigation: Review export settings and publication effects before using production media or production VOD spaces. <br>
-Risk: Local execution may download or install dependencies and model assets unless they are already provisioned. <br>
-Mitigation: Install in an isolated environment and pre-review dependency and model downloads before running local mode. <br>
+## Use Case:
 
+Developers and agent users use this skill to turn video or audio URLs, local media, VOD IDs, or DirectUrl assets into reviewed talking-head video edits with ASR correction, speech-cut decisions, and export artifacts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/volc-ai-mediakit/byted-mediakit-voiceover-editing) <br>
-- [Publisher profile](https://clawhub.ai/user/volc-ai-mediakit) <br>
-- [Environment configuration template](templates/env.md) <br>
-- [EDL editing decision format](references/%E5%86%85%E7%BD%AE/EDL%E7%BC%96%E8%BE%91%E5%86%B3%E7%AD%96%E6%A0%BC%E5%BC%8F.md) <br>
-- [ASR semantic correction reference](references/%E5%86%85%E7%BD%AE/ASR%E8%AF%AD%E4%B9%89%E7%BA%A0%E9%94%99.md) <br>
-- [Target platform configuration](references/%E5%86%85%E7%BD%AE/%E7%9B%AE%E6%A0%87%E5%B9%B3%E5%8F%B0%E9%85%8D%E7%BD%AE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, json, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration notes, JSON edit/export artifacts, and review/export workflow outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ASR and edit-decision JSON under the task output directory, review page data, export request data, and either local video output paths or VOD OutputVid and PlayURL values depending on execution mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.9 (source: server-resolved release metadata and SKILL.md frontmatter) <br>
+Risk: The local review server can expose readable local files and allows unauthenticated requests to change or export projects.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Bind review and export servers only to 127.0.0.1, avoid exposing them to other hosts, and close them when review or export is complete.
+
+Risk: Cloud and gateway modes require credentials for media, speech recognition, and VOD operations.
+
+Mitigation: Use tightly scoped credentials, keep secrets out of committed files, and prefer a separate VOD space for testing.
+
+Risk: Local dependency or model setup can execute third-party code.
+
+Mitigation: Install and run the skill in an isolated environment and review setup steps before installation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volc-ai-mediakit/skills/byted-mediakit-voiceover-editing)
+- [Skill README](README.md)
+- [Environment Template](templates/env.md)
+- [Environment Check](references/执行步骤/1. 环境检查.md)
+- [URL to ASR Pipeline](references/执行步骤/3. URL到ASR流水线与候选生成.md)
+- [Speech Cut Workflow](references/执行步骤/5. 口播剪辑.md)
+- [Review and Export](references/执行步骤/6b. 审核与导出.md)
+- [EDL Editing Decision Format](references/内置/EDL编辑决策格式.md)
+- [User Editing Rules](references/用户规则/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, configuration steps, and JSON artifact specifications]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides generation and review of ASR-corrected segments, speech-cut decisions, review data, export requests, and exported video metadata.]
+
+## Skill Version(s):
+
+1.0.9 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

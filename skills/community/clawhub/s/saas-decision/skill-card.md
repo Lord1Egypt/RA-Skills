@@ -1,43 +1,58 @@
-## Description: <br>
-SaaS产品辅助决策助手，基于用户提供的SaaS行业与定位，从市场需求、用户画像、需求痛点、竞品格局、变现定价、获客增长、推广营销、成本结构和技术可行性九个维度分析，并生成交互式HTML可行性决策报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SaaS辅助决策助手 helps users assess SaaS product ideas across market demand, user profile, pain points, competition, monetization, acquisition, marketing, cost, and technical feasibility, then produces an interactive HTML feasibility report.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-External users, founders, product teams, and developers use this skill to evaluate SaaS product ideas with web research, SaaS-specific scoring, pricing and acquisition estimates, risk notes, and an HTML decision report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: External web searches and fetches may send the user's SaaS idea, market, or strategy details to external services. <br>
-Mitigation: Avoid entering proprietary or confidential strategy and review search terms before using the skill. <br>
-Risk: The generated report includes market, MRR, ARPU, LTV, CAC, and cost estimates that may be incomplete or time-sensitive. <br>
-Mitigation: Treat estimates as advisory and validate them with current market data and first-party customer research before making business decisions. <br>
-Risk: The skill writes a local HTML report to a user-selected path. <br>
-Mitigation: Choose the output path deliberately and review the report file before sharing or publishing it. <br>
+## Use Case:
 
+Product founders, product managers, and SaaS teams use this skill to research and score a SaaS product concept, then generate a feasibility report for MVP, pricing, acquisition, architecture, and go-to-market decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bettermen/saas-decision) <br>
-- [Publisher profile](https://clawhub.ai/user/bettermen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus generated single-file HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and may use WebSearch, WebFetch, Read, Write, Bash, and Edit tools; generated reports include advisory estimates and should be validated against current market data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated HTML may include user-provided or web-sourced text that is not escaped by the report generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as untrusted files and open them in a constrained browser context until HTML escaping is added.
+
+Risk: The skill requests broad read, write, edit, shell, web search, and web fetch capabilities without clear output-path limits.
+
+Mitigation: Run it in a scoped workspace, set explicit output paths, and review shell and file-write actions before execution.
+
+Risk: Market, pricing, MRR, ARR, LTV, CAC, and competitor conclusions are based on public sources and benchmark estimates that may be incomplete or stale.
+
+Mitigation: Validate generated recommendations with current sources, customer interviews, and first-party financial assumptions before making investment decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/saas-decision)
+- [Publisher profile](https://clawhub.ai/user/bettermen)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, HTML files, guidance]
+
+**Output Format:** [Single-file responsive HTML report with supporting analysis text and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public web research and benchmark-style estimates; generated reports should be reviewed before relying on product, market, or financial conclusions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

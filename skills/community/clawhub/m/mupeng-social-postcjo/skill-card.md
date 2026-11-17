@@ -1,44 +1,56 @@
-## Description: <br>
-Post and reply on Twitter and Farcaster with character limit checks, image support, threads, link shortening, and draft preview. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create reviewed posts for Twitter and Farcaster.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
+
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to draft, validate, preview, and publish social posts or replies for Twitter/X and Farcaster after explicit human approval.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: An agent-assisted workflow can publish public posts or replies after approval.
+
+Mitigation: Default to dry-run preview, show the exact final text and destinations, and publish only after explicit human approval of the unchanged payload.
+
+Risk: Packaged backup material contains obsolete examples for plaintext credentials, wallet keys, and auto-confirm live posting.
+
+Mitigation: Treat the backup file as obsolete, never use auto-confirm for live posts, and use protected secret management or tightly permissioned environment injection for credentials.
+
+Risk: Malformed platform payloads, missing media, or wrong reply targets could publish unintended content.
+
+Mitigation: Validate current platform limits, links, local media paths, attachment lists, and reply target URLs or IDs before requesting approval.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and social operators use this skill to prepare commands for posting or replying on Twitter and Farcaster, including media posts, threads, shortened links, and dry-run previews. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to store powerful Twitter and Farcaster credentials, including private keys. <br>
-Mitigation: Use least-privilege credentials where possible, keep credential files owner-only, and avoid storing a custody private key unless it is strictly required. <br>
-Risk: The artifact describes posting scripts that are not included for review. <br>
-Mitigation: Review the actual scripts before installing, adding credentials, or posting to social platforms. <br>
-Risk: Using automatic confirmation can send posts or replies without another prompt. <br>
-Mitigation: Start with dry-run previews and avoid --yes unless you explicitly want posts or replies sent without additional confirmation. <br>
+**Output Format:** [Markdown or plain text preview with final post text, destinations, approval request, and resulting post URLs or IDs.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupeng-social-postcjo) <br>
-- [X Developer Portal](https://developer.twitter.com/en/portal/dashboard) <br>
-- [X API pricing](https://developer.twitter.com/#pricing) <br>
-- [OpenClaw CLI forum](https://openclawcli.forum) <br>
+**Other Properties Related to Output:** [Defaults to dry-run preview; live publishing requires explicit approval of the exact payload.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run and confirmation options for previewing posts before execution.] <br>
+1.0.1 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

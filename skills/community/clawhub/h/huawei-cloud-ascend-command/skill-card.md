@@ -1,53 +1,62 @@
-## Description: <br>
-Huawei Cloud Ascend Command helps agents translate natural-language requests into local or SSH-based Huawei Ascend NPU administration commands for device queries, monitoring, configuration, firmware, virtualization, certificates, and compute tests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates natural-language requests into npu-smi and ascend-dmi operations for local or SSH-connected Huawei Ascend NPUs, covering device monitoring, configuration, firmware, vNPU virtualization, certificates, and FLOPS testing.
 
-## Publisher: <br>
-[huaweiclouddev](https://clawhub.ai/user/huaweiclouddev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaweicloudskill](https://clawhub.ai/user/huaweicloudskill)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to inspect and administer Huawei Ascend NPU hosts through npu-smi and ascend-dmi operations. It supports routine device health checks and high-impact administrative workflows such as ECC, fan, firmware, vNPU, certificate, reset, and raw npu-smi actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote high-impact NPU administration can affect device configuration, firmware, certificates, virtualization, resets, and raw npu-smi behavior. <br>
-Mitigation: Install only where Ascend NPU administration is intended; prefer read-only use, least-privilege accounts, explicit device IDs, and manual review before high-impact operations. <br>
-Risk: Credential handling and SSH remote execution can expose or misuse privileged access. <br>
-Mitigation: Prefer SSH keys and least-privilege accounts, avoid command-line passwords where possible, and do not ask users to share passwords in conversation. <br>
-Risk: Troubleshooting guidance includes a broad device permission workaround that is unsafe on shared or production systems. <br>
-Mitigation: Do not apply chmod 666 to NPU device nodes on shared or production hosts; use scoped group membership or administrator-approved permissions instead. <br>
+## Use Case:
 
+Developers and NPU administrators use the skill to inspect Ascend device health and metrics, manage supported configuration and firmware tasks, operate vNPU and certificate functions, and run FLOPS checks on local or SSH-connected hosts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huaweiclouddev/huawei-cloud-ascend-command) <br>
-- [Publisher profile](https://clawhub.ai/user/huaweiclouddev) <br>
-- [Huawei Ascend official documentation](https://www.hiascend.com/document) <br>
-- [npu-smi command reference](https://www.hiascend.com/document/detail/zh/Atlas%20200I%20A2/260RC1/re/npu/npusmi_007.html) <br>
-- [Acceptance criteria](references/acceptance-criteria.md) <br>
-- [Verification steps](references/verification-method.md) <br>
-- [Troubleshooting guide](references/troubleshooting.md) <br>
-- [Device queries reference](references/device-queries.md) <br>
-- [Configuration management reference](references/configuration.md) <br>
-- [Firmware upgrade reference](references/firmware-upgrade.md) <br>
-- [Virtualization management reference](references/virtualization.md) <br>
-- [Certificate management reference](references/certificate-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text and JSON-style command results with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May emit local or SSH npu-smi and ascend-dmi operations; sensitive operations require explicit review and confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata, created 2026-06-10) <br>
+Risk: SSH identity verification and password handling need review before remote use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the SSH server identity, use safer password input, and keep credentials out of conversation and logs.
+
+Risk: Device configuration, firmware, and virtualization writes can change live hardware state.
+
+Mitigation: Confirm the exact operation and NPU/chip target, use consistent write confirmation, and check device state before retrying a failed write.
+
+Risk: Unsafe device permissions or persistent SSH service changes can expose the host.
+
+Mitigation: Avoid the world-writable device workaround and review persistent SSH service changes separately.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/huaweicloudskill/skills/huawei-cloud-ascend-command)
+- [Ascend official documentation](https://www.hiascend.com/document)
+- [npu-smi command reference](https://www.hiascend.com/document/detail/zh/Atlas%20200I%20A2/260RC1/re/npu/npusmi_007.html)
+- [Command mapping](references/command-mapping.md)
+- [Firmware upgrade guide](references/firmware-upgrade.md)
+- [Troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, JSON]
+
+**Output Format:** [Human-readable status or error text, with an optional JSON result envelope.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs supported local or remote device operations; read-only queries return results, while sensitive writes require confirmation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

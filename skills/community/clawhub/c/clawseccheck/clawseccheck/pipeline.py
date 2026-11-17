@@ -1,0 +1,2272 @@
+"""``--full`` pipeline orchestration - the phases that run after the report body.
+
+``--full`` is no longer "audit + self-test + vet-mcp": it is a pipeline whose later
+phases each answer a question the audit itself cannot. This module owns the phases that
+run *after* the human report body has been rendered, plus the roll-up that turns them
+into one combined result:
+
+======  =========================  ==============================================
+phase   what                       who runs it
+======  =========================  ==============================================
+P6      installed-skill sweep      ``cli.py`` (already landed); RECORDED here
+P7      installed-plugin sweep     here, via ``checks/_mcp.sweep_plugins``
+P8      behavioural replay         here, via ``behavioral.render_behavioral_analysis``
+P9      adjudication               here, via ``adjudication.build_judge_packet`` &c.
+P10     combined render / roll-up  here (``render_sections`` / ``quiet_lines`` /
+                                   ``PipelineResult.to_json``)
+======  =========================  ==============================================
+
+**Layer 3.** It consumes the checks engine, the renderers and ``adjudication``; it is
+imported only by ``cli.py`` and must never import it back. That constraint is what
+decides the P6 split below.
+
+**Why P6 is recorded rather than run here.** The installed-skill sweep
+(``cli.sweep_installed_skills``) lives in the Layer-4 shell, because it narrates as it
+goes. Calling it from here would be a ``pipeline -> cli`` import, i.e. a cycle. So the
+caller runs P6 exactly as it always has - byte-identical output, byte-identical
+ordering - and hands the finished sweep to :func:`record_skill_sweep`, which folds it
+into the same phase ledger as the phases this module does run. Nothing about P6's
+behaviour changes; it simply becomes visible in ``phases[]`` / ``complete`` /
+``notScanned[]`` alongside the rest.
+
+**Honest degradation is the whole point** (Golden Rule #4). Four states are modelled
+distinctly and none of them is ever allowed to read as a clean pass:
+
+``ran``          the phase executed and its result is below.
+``skipped``      the operator asked for it to be skipped (``--fast``).
+``not_reached``  the pipeline deadline passed before this phase started.
+``unavailable``  this build does not carry an implementation of the phase.
+``error``        the phase raised; the failure is reported, never swallowed.
+
+A phase that did not run **still prints its section header** and one line saying so.
+Silence would be indistinguishable from "nothing to report", which is exactly the
+guessed-PASS this project forbids.
+
+**No waiting, ever.** The adjudication phase emits a packet for a host agent to answer
+and returns immediately. There is no ``input()``, no ``sys.stdin.read()``, no
+``time.sleep``, no ``select`` and no wait-for-verdicts timeout anywhere in this module:
+``--full`` in CI has no agent, and an unanswered judge is a *pending* state, not a
+failing one. It never moves the score, the grade or the exit code.
+"""
+from __future__ import annotations
+
+import json
+import re
+import time
+from dataclasses import dataclass, field, replace
+from pathlib import Path
+
+from . import attest as _attest
+from .attest import template as attest_template
+from .behavioral import analysis_incompleteness as behavioral_analysis_incompleteness
+from .behavioral import analysis_is_conclusive as behavioral_is_conclusive
+from .behavioral import analyze as behavioral_analyze
+from .behavioral import render_behavioral_analysis
+from .canary import INCONCLUSIVE as _LIVE_TEST_INCONCLUSIVE
+from .canary import TOKEN_PREFIX as _CANARY_TOKEN_PREFIX
+from .catalog import UNKNOWN
+from .configloader import ELIDED, loads_shallow
+# F-193 (interim check): the real scenario-id-generating functions themselves, so the
+# liveTest id validator below asks "did make_*() actually produce this?" instead of a
+# free-form regex - see _valid_live_test_entries()'s own docstring. All four are pure
+# leaves (textnorm/brand only), so this cannot cycle.
+from .dryrun import make_scenarios as _make_dryrun_scenarios
+from . import livetestproof as _livetestproof
+from . import pathprobe
+from .multiturn import make_multiturn as _make_multiturn_scenarios
+from .redteam import make_suite as _make_redteam_suite
+from .layers import (            # noqa: F401 - re-exported for existing importers
+    STATUS_ERROR, STATUS_NOT_REACHED, STATUS_NOT_SUBMITTED, STATUS_RAN, STATUS_SKIPPED,
+    STATUS_UNAVAILABLE,
+)
+# C-425: the five-layer ledger names/types themselves - NOT re-exported above (that
+# comment is about the pre-existing STATUS_* vocabulary pipeline.py already used before
+# layers.py existed), only consumed by PipelineResult.to_ledger() below.
+from .layers import (
+    LAYER_INSTALLED_SWEEP, LAYER_LIVE_BEHAVIOUR, LAYER_LOGS_TRAJECTORIES,
+    LAYER_SELF_REPORT, LAYER_STATIC, LayerLedger, LayerState,
+)
+# B-558: the coverage vocabulary - same non-re-exported treatment as the ledger names
+# immediately above (only consumed inside to_ledger()).
+from .layers import COVERAGE_COMPLETE, COVERAGE_PARTIAL, COVERAGE_UNKNOWN
+from .report import _sanitize
+from .safeio import read_user_text
+from .scanbudget import (
+    DEFAULT_FULL_BUDGET_S, DEFAULT_VET_ALL_BUDGET_S, budget_deadline, budget_exceeded,
+)
+# B-799: the ONE structural "was the config actually read this run" signal, reused
+# from scoring.py rather than re-derived here - see to_ledger()'s own docstring. Safe:
+# scoring.py's own module-level import graph reaches only catalog.py (verified by a
+# BFS over every relative import), so this cannot cycle back - and pipeline.py already
+# imports report.py above, which itself imports scoring.py, so scoring.py is fully
+# initialized well before this import would ever run anyway.
+from .scoring import _config_blind_signal
+from .trajaudit import render_trajectory_analysis
+
+# -- phase identity -----------------------------------------------------------
+
+PHASE_SKILL_SWEEP = "skill_sweep"
+PHASE_PLUGIN_SWEEP = "plugin_sweep"
+PHASE_BEHAVIORAL = "behavioral"
+PHASE_ADJUDICATION = "adjudication"
+
+#: Execution order. The roll-up preserves it so ``phases[]`` reads as a timeline.
+PHASE_ORDER = (
+    PHASE_SKILL_SWEEP,
+    PHASE_PLUGIN_SWEEP,
+    PHASE_BEHAVIORAL,
+    PHASE_ADJUDICATION,
+)
+
+#: Statuses that mean "this phase cannot vouch for anything" - they make the run
+#: incomplete. ``ran`` is the only status that does not, and even then the phase's own
+#: ``complete`` flag can still be False (a sweep that hit its budget mid-fleet).
+_INCOMPLETE_STATUSES = frozenset({
+    STATUS_SKIPPED, STATUS_NOT_REACHED, STATUS_UNAVAILABLE, STATUS_NOT_SUBMITTED,
+    STATUS_ERROR,
+})
+
+# Section banners. Deliberately distinct strings from the two banners --full already
+# prints ("CLAWSECCHECK SELF-TEST" / "CLAWSECCHECK VET-MCP"), which the --quiet
+# collapse test asserts are ABSENT from quiet output - a new banner that contained
+# either as a substring would break that assertion from the far side.
+_SECTION_TITLE = {
+    PHASE_SKILL_SWEEP: "SKILL SWEEP",
+    PHASE_PLUGIN_SWEEP: "PLUGIN SWEEP",
+    PHASE_BEHAVIORAL: "BEHAVIORAL REPLAY",
+    PHASE_ADJUDICATION: "ADJUDICATION",
+}
+
+# The one-line prefix each phase uses in --full --quiet, mirroring the existing
+# "SELF-TEST:" / "VET-MCP:" / "SKILL SWEEP:" summary lines.
+_QUIET_PREFIX = _SECTION_TITLE
+
+#: The symbol ``checks/_mcp.py`` is expected to expose for P7. Resolved by NAME at call
+#: time rather than imported at module load, so this file needs no edit when the plugin
+#: sweep lands: adding ``sweep_plugins`` to that module is the whole change, and until
+#: then P7 reports ``unavailable`` honestly instead of failing to import.
+PLUGIN_SWEEP_ATTR = "sweep_plugins"
+
+#: Upper bound on a ``--judged-bundle`` file. A bundle carries one own-config verdicts
+#: object plus one per swept target, so it is allowed to be larger than a single
+#: ``--judged`` payload (2 MB) - but it is still untrusted input and still bounded.
+MAX_BUNDLE_BYTES = 8_000_000
+
+
+# -- budget -------------------------------------------------------------------
+
+def start_deadline(budget_s: float = DEFAULT_FULL_BUDGET_S) -> float | None:
+    """Open the pipeline's wall-clock window; ``None`` disables the cap.
+
+    Call this once, at the top of ``--full``'s appended-section block, so the time the
+    earlier phases spend is charged against the same window the later ones draw from.
+    """
+    return budget_deadline(budget_s)
+
+
+def remaining_s(deadline: float | None) -> float:
+    """Seconds left on ``deadline``. ``float('inf')`` when uncapped, never negative."""
+    if deadline is None:
+        return float("inf")
+    return max(deadline - time.monotonic(), 0.0)
+
+
+def sub_budget(deadline: float | None, phase_default: float) -> float:
+    """A phase's budget: ``min(its own default, what is left of the pipeline's)``.
+
+    This reproduces, **cooperatively**, the "an inner block is implicitly clamped to the
+    outer's remaining time" property that ``scanbudget.check_deadline`` gets from its
+    stack of absolute deadlines - as a plain monotonic float, and deliberately NOT by
+    nesting a real ``check_deadline`` block.
+
+    That is mandatory, not stylistic. A nested ``SIGALRM`` arm's disarm-on-exit would
+    *delete the outer deadline* rather than bound the call, so from the moment the inner
+    block returned nothing could interrupt a hung scan for the rest of the run - the
+    exact fail-open the vet paths already document and avoid the same way. The pipeline
+    must not reintroduce it one layer up.
+
+    Deadline checks therefore happen **between** phases, never inside one: a phase
+    already underway always finishes rather than being cut off part-way through.
+    """
+    left = remaining_s(deadline)
+    if left == float("inf"):
+        return phase_default
+    return min(phase_default, left)
+
+
+# -- one phase's outcome ------------------------------------------------------
+
+@dataclass
+class PhaseResult:
+    """What one pipeline phase did, with no rendering baked in.
+
+    Separating the outcome from its rendering is what lets the verbose section, the
+    ``--quiet`` one-liner and the ``--json`` payload all read a single run - and, the
+    reason it is a requirement rather than a preference, what makes ``has_fail``
+    provably identical on the quiet and verbose branches instead of two hand-written
+    tallies that can disagree.
+    """
+
+    name: str
+    status: str
+    elapsed_s: float = 0.0
+    #: False when the phase could not account for everything it is responsible for.
+    complete: bool = True
+    #: One plain-English sentence: what happened, and what was NOT done.
+    detail: str = ""
+    #: Every target this phase cannot vouch for, named. No silent caps here.
+    not_scanned: list[str] = field(default_factory=list)
+    #: B-558: `Finding` objects this phase evaluated that are NOT in `CHECKS` and so are
+    #: invisible to every roll-up computed from the audit's own findings list. Today that
+    #: is P8's `BEHAVIORAL_CHECK_IDS` (T1/T2/T3/B191), which are in `CATALOG` - hence
+    #: counted in the coverage page's denominator - while living outside `CHECKS` by
+    #: design. Read ONLY by the coverage page; deliberately absent from `to_json` and
+    #: never merged into the audit's findings, because these must not reach the score,
+    #: the inventory or `--exit-code` (F-154 routes them to the grade as a cap-only
+    #: signal, computed elsewhere, and that stays the single path by which they score).
+    evaluated_findings: list = field(default_factory=list)
+    #: FAIL-only, mirroring the vet-mcp / skill-sweep contribution to ``--exit-code``.
+    has_fail: bool = False
+    #: Verbose section body (without the banner, which :func:`render_sections` adds).
+    lines: list[str] = field(default_factory=list)
+    #: The ``--full --quiet`` one-liner. Empty means "use ``detail``".
+    quiet_line: str = ""
+    #: Machine-readable payload for ``--full --json``, or None.
+    data: object = None
+    #: True when this module renders the section itself. False for a phase the caller
+    #: already printed (P6 when it ran) - recorded here, rendered there.
+    section: bool = True
+
+    @property
+    def ran(self) -> bool:
+        return self.status == STATUS_RAN
+
+    def to_json(self) -> dict:
+        """The ``phases[]`` entry. Prose is sanitized; nothing here is terminal-bound."""
+        return {
+            "name": self.name,
+            "status": self.status,
+            # Wall-clock, so this key is NOT byte-stable across two runs. It is the one
+            # deliberately non-deterministic value in the payload; every verdict-bearing
+            # key beside it is deterministic. Rounded so a diff of two runs shows a
+            # small, obviously-timing delta rather than float noise.
+            "elapsed_s": round(self.elapsed_s, 3),
+            "complete": self.complete,
+            "detail": _sanitize(self.detail),
+            "notScanned": [_sanitize(n) for n in self.not_scanned],
+        }
+
+
+def _skipped(name: str, reason: str, *, section: bool = True) -> PhaseResult:
+    return PhaseResult(name=name, status=STATUS_SKIPPED, complete=False,
+                       detail=reason, section=section)
+
+
+def _not_reached(name: str, budget_s: float) -> PhaseResult:
+    return PhaseResult(
+        name=name, status=STATUS_NOT_REACHED, complete=False,
+        detail=(f"not run \u2014 the {budget_s:g}s pipeline budget was already spent before "
+                "this phase started. Nothing here was inspected."),
+    )
+
+
+# -- P6: installed-skill sweep (run by the caller, recorded here) -------------
+
+def record_skill_sweep(sweep, *, elapsed_s: float = 0.0) -> PhaseResult:
+    """Fold an already-executed installed-skill sweep into the phase ledger.
+
+    ``sweep`` is whatever ``cli.sweep_installed_skills`` returned. Only its published
+    surface is read (``no_roots`` / ``no_targets`` / ``counts()`` / ``has_fail`` /
+    ``complete`` / ``not_scanned()``), so this stays a contract rather than a reach into
+    the caller's internals.
+
+    **Duck-typed on purpose - do NOT "fix" this into an import.** The obvious tidy-up is
+    ``from .cli import SkillSweep`` for a type annotation. That is a Layer 3 -> Layer 4
+    import, i.e. an import cycle, because ``cli`` imports this module. The same reasoning
+    applies to P7 in the other direction: ``checks/_mcp`` is Layer 2 and equally cannot
+    import ``SkillSweep`` from the Layer-4 shell, so the plugin sweep will return its own
+    type. Structural typing is what lets one set of roll-up code serve both without
+    dragging the sweep dataclass down a layer - a relocation deliberately not attempted
+    here, since it would rewrite landed, output-pinned code for a cosmetic gain.
+
+    ``section=False``: the caller has already printed this phase's section in its
+    established position and byte-for-byte shape. Re-rendering it here would duplicate
+    it; recording it is what makes it visible in ``phases[]``.
+    """
+    if sweep is None:
+        return _skipped(PHASE_SKILL_SWEEP, "not run.", section=False)
+    if sweep.no_roots:
+        detail = "no skills directory found \u2014 nothing to sweep"
+    elif sweep.no_targets:
+        detail = "no installed skills found \u2014 nothing to sweep"
+    else:
+        c = sweep.counts()
+        detail = (f"{c['total']} installed skill(s) vetted \u2014 {c['fails']} dangerous, "
+                  f"{c['warns']} suspicious, {c['safe']} no known issue")
+        if c["truncated"]:
+            detail += f", {c['truncated']} partially scanned"
+        # B-888: a skill whose own scan raised (already excluded from
+        # `safe` by cli.SkillSweep.counts()) named here too - `.get()`, not `[...]`,
+        # since a duck-typed `sweep` predating this key must not KeyError.
+        if c.get("unknown"):
+            detail += f", {c['unknown']} could not be analyzed (engine error)"
+        if c["skipped"]:
+            detail += f", {c['skipped']} not scanned (budget exceeded)"
+    # B-787: `complete` (below) can be False from `discovery_incomplete_reasons` alone
+    # - the WALK that finds targets didn't finish (a permission-denied skill root, a
+    # discovery/collection cap) - with every row above scanning cleanly, so nothing in
+    # the counts/not_scanned clauses above names it. Without this, a --full --json
+    # reader sees complete: false next to a detail sentence that lists zero skipped/
+    # truncated targets and reads as fully clean. Applies to all three branches above
+    # (including no_roots/no_targets: an empty result from a walk that could not finish
+    # is not the same claim as one that finished and genuinely found nothing - see
+    # sweep_installed_skills's own docstring in cli.py). Same reasons cli.py's own
+    # _discovery_gap_note/_discovery_gap_suffix already disclose for the text/--quiet
+    # paths; this is the one surface that hadn't (not reused directly -- pipeline.py is
+    # Layer 3 and cli.py is Layer 4, so pipeline.py must not import from it). Folded
+    # into the SAME sentence as a trailing clause, not a second sentence: `detail` is
+    # documented (docs/OUTPUT_SCHEMA.md) as one plain-English sentence.
+    reasons = list(getattr(sweep, "discovery_incomplete_reasons", None) or [])
+    if reasons:
+        shown = reasons[:3]
+        extra = f" (+{len(reasons) - len(shown)} more)" if len(reasons) > len(shown) else ""
+        detail += (" \u2014 coverage may be missing target(s) the scan could not enumerate: "
+                  + "; ".join(shown) + extra)
+    detail += "."
+    return PhaseResult(
+        name=PHASE_SKILL_SWEEP,
+        status=STATUS_RAN,
+        elapsed_s=elapsed_s,
+        complete=bool(sweep.complete),
+        detail=detail,
+        not_scanned=list(sweep.not_scanned()),
+        has_fail=bool(sweep.has_fail),
+        section=False,
+    )
+
+
+# -- P7: installed-plugin sweep -----------------------------------------------
+
+def resolve_plugin_sweep():
+    """The installed-plugin sweep callable, or ``None`` when this build has none.
+
+    Looked up by name on ``clawseccheck.checks._mcp`` rather than imported at module
+    load. Two properties follow, and both are the point:
+
+    * this module needs **no edit** when the sweep lands - defining
+      ``sweep_plugins(home_dir, sweep_budget_s=..., narrate=...)`` in that module is the
+      entire change; and
+    * until it lands, P7 degrades to a printed, honest ``unavailable`` line instead of
+      an ImportError at startup.
+
+    The expected return value is duck-typed on the installed-skill sweep's published
+    surface (``no_roots`` / ``no_targets`` / ``counts()`` / ``has_fail`` / ``complete``
+    / ``not_scanned()``) - see :func:`_sweep_phase_from`.
+    """
+    try:
+        from . import checks as _checks  # noqa: PLC0415 - deferred on purpose, see above
+        mcp = getattr(_checks, "_mcp", None)
+    except Exception:  # noqa: BLE001 - a missing optional phase must never break --full
+        return None
+    fn = getattr(mcp, PLUGIN_SWEEP_ATTR, None)
+    return fn if callable(fn) else None
+
+
+def _sweep_flagged_names(sweep) -> "tuple[list[str], list[str]]":
+    """``(dangerous names, suspicious names)`` from *sweep*'s own ``rows``
+    (B-764).
+
+    ``rows`` (a list of ``(sanitized target id, status, evidence count)`` - see
+    ``PluginSweep``/``cli.SkillSweep``) is deliberately NOT part of the published
+    duck-type surface :func:`_sweep_phase_from` otherwise relies on
+    (``no_roots``/``no_targets``/``counts()``/``has_fail``/``complete``/
+    ``not_scanned()``), so a hypothetical sweep implementation that lacks it degrades
+    to two empty lists here rather than raising - the same tolerance the rest of this
+    module already gives an unusual/duck-typed sweep object. Names are already
+    sanitized once in ``rows`` at collection time (matching ``cli.py``'s
+    ``_sweep_to_json`` docstring note for the identical reason), so no second pass here.
+    """
+    rows = getattr(sweep, "rows", None)
+    if not rows:
+        return [], []
+    dangerous = [n for n, s, _e in rows if s == "FAIL"]
+    suspicious = [n for n, s, _e in rows if s == "WARN"]
+    return dangerous, suspicious
+
+
+def _named_sweep_line(label: str, names: "list[str]", *, cap: int = 3) -> str:
+    """``"Dangerous: a, b, +2 more."`` - same cap/format as the SKILL SWEEP quiet
+    line's own ``dangerous`` naming (``cli.py::_sweep_quiet_line``), reused here so the
+    plugin sweep's default reporting path stops being the one place a flagged target's
+    identity never reaches the reader (B-764)."""
+    shown = ", ".join(names[:cap])
+    if len(names) > cap:
+        shown += f", +{len(names) - cap} more"
+    return f"{label}: {shown}."
+
+
+def _sweep_phase_from(name: str, sweep, *, unit: str, elapsed_s: float,
+                      full_detail_flag: str) -> PhaseResult:
+    """Build a :class:`PhaseResult` from any sweep exposing the published surface."""
+    if sweep.no_roots:
+        detail = f"no {unit} directory found \u2014 nothing to sweep."
+        lines = [detail]
+    elif sweep.no_targets:
+        detail = f"no installed {unit}s found \u2014 nothing to sweep."
+        lines = [detail]
+    else:
+        c = sweep.counts()
+        detail = (f"{c['total']} installed {unit}(s) vetted \u2014 {c['fails']} dangerous, "
+                  f"{c['warns']} suspicious, {c['safe']} no known issue")
+        if c.get("truncated"):
+            detail += f", {c['truncated']} partially scanned"
+        # B-888: a skill sweep row can carry "unknown" (its own scan raised); a
+        # plugin sweep has no such bucket today, so this is inert there.
+        if c.get("unknown"):
+            detail += f", {c['unknown']} could not be analyzed (engine error)"
+        if c.get("skipped"):
+            detail += f", {c['skipped']} not scanned (budget exceeded)"
+        detail += "."
+        lines = [detail]
+        # B-764: name what was flagged, not just how many -- "a plugin is
+        # a problem" is not actionable without which one, and plugin roots come from
+        # OpenClaw's own sqlite index (a user cannot easily enumerate candidates by
+        # hand to go find it themselves).
+        dangerous, suspicious = _sweep_flagged_names(sweep)
+        if dangerous:
+            lines.append(_named_sweep_line("Dangerous", dangerous))
+        if suspicious:
+            lines.append(_named_sweep_line("Suspicious", suspicious))
+        lines.append(f"Full detail: {full_detail_flag}.")
+    return PhaseResult(
+        name=name,
+        status=STATUS_RAN,
+        elapsed_s=elapsed_s,
+        complete=bool(sweep.complete),
+        detail=detail,
+        not_scanned=[_sanitize(str(t)) for t in sweep.not_scanned()],
+        has_fail=bool(sweep.has_fail),
+        lines=lines,
+        data=_sweep_data(sweep),
+    )
+
+
+def _sweep_data(sweep) -> dict:
+    """Machine-readable roll-up of any sweep, for ``--full --json``."""
+    dangerous, suspicious = _sweep_flagged_names(sweep)
+    return {
+        "no_roots": bool(sweep.no_roots),
+        "no_targets": bool(sweep.no_targets),
+        "complete": bool(sweep.complete),
+        "counts": dict(sweep.counts()),
+        "not_scanned": [_sanitize(str(t)) for t in sweep.not_scanned()],
+        # B-764: the FULL (uncapped, unlike the text line above) name
+        # lists behind counts.fails/counts.warns -- so a JSON consumer can act on a
+        # flagged plugin/skill without re-deriving identity from `not_scanned` (which
+        # names only what was SKIPPED/TRUNCATED, never what was vetted and flagged).
+        "dangerous": [_sanitize(n) for n in dangerous],
+        "suspicious": [_sanitize(n) for n in suspicious],
+    }
+
+
+def record_plugin_sweep(sweep, *, elapsed_s: float = 0.0,
+                        absent: PhaseResult | None = None) -> PhaseResult:
+    """Fold an ALREADY-EXECUTED installed-plugin sweep into the phase ledger.
+
+    The symmetric twin of :func:`record_skill_sweep`, and it exists for the same caller
+    shape: ``--dashboard --full`` runs the plugin sweep itself (``cli.py``, inline)
+    rather than through :func:`run_pipeline`, so it holds a finished sweep object and no
+    ``PhaseResult`` for it. Before B-723 that did not matter, because the layer ledger was
+    built from a promise; now that the ledger must be projected from real phases, the
+    dashboard needs the same fold the pipeline path gets.
+
+    ``absent`` is what to record when *sweep* is ``None`` - and it is a REQUIRED thought,
+    not a default, because "no sweep object" has several causes that are not
+    interchangeable: the build ships no plugin sweep (``unavailable``), the budget was
+    spent before it started (``not reached``), ``--fast`` was given (``skipped``), or it
+    raised (``error``). Collapsing them into one status would tell the reader the wrong
+    thing about why nothing was inspected - the caller knows which happened, so the caller
+    says. Passing ``None`` for *absent* falls back to ``skipped``, the weakest claim.
+
+    Duck-typed on *sweep* for the same layering reason ``record_skill_sweep`` is; see its
+    docstring.
+    """
+    if sweep is None:
+        return absent if absent is not None else _skipped(
+            PHASE_PLUGIN_SWEEP, "not run.", section=False)
+    phase = _sweep_phase_from(PHASE_PLUGIN_SWEEP, sweep, unit="plugin",
+                              elapsed_s=elapsed_s,
+                              full_detail_flag="--vet-plugin <path>")
+    # ``section=False``: this caller has already rendered the plugin material in its own
+    # established position, exactly as ``record_skill_sweep`` documents for P6.
+    return replace(phase, section=False)
+
+
+def _run_plugin_sweep_with_sweep(home_dir, *, deadline: float | None = None,
+                                 ascii_only: bool = False):
+    """P7's actual work, returning `(PhaseResult, sweep_or_None)`.
+
+    B-405: the raw sweep is what :func:`run_pipeline` needs to fold P7's OWN targets
+    into P9's adjudication packet (see that function's docstring) - without this, P9
+    only ever saw whichever vet_targets its CALLER happened to pass in, never the
+    plugin sweep this phase runs for itself. :func:`run_plugin_sweep` (the public,
+    already-tested function) is now a thin wrapper over this that discards the sweep,
+    keeping its existing signature/behaviour byte-identical.
+    """
+    fn = resolve_plugin_sweep()
+    if fn is None:
+        return PhaseResult(
+            name=PHASE_PLUGIN_SWEEP,
+            status=STATUS_UNAVAILABLE,
+            complete=False,
+            detail=("the installed-plugin sweep is not available in this build \u2014 no "
+                    "plugin was inspected. Vet a plugin directly with --vet-plugin."),
+        ), None
+    budget_s = sub_budget(deadline, DEFAULT_VET_ALL_BUDGET_S)
+    started = time.monotonic()
+    try:
+        sweep = fn(Path(home_dir), ascii_only=ascii_only,
+                   sweep_budget_s=budget_s, narrate=False)
+    except Exception as exc:  # noqa: BLE001 - one phase must not take the audit down
+        return PhaseResult(
+            name=PHASE_PLUGIN_SWEEP, status=STATUS_ERROR, complete=False,
+            elapsed_s=time.monotonic() - started,
+            detail=(f"the plugin sweep could not complete ({_sanitize(str(exc))}) \u2014 no "
+                    "plugin verdict below can be relied on."),
+        ), None
+    phase = _sweep_phase_from(PHASE_PLUGIN_SWEEP, sweep, unit="plugin",
+                              elapsed_s=time.monotonic() - started,
+                              full_detail_flag="--vet-plugin <path>")
+    return phase, sweep
+
+
+def run_plugin_sweep(home_dir, *, deadline: float | None = None,
+                     ascii_only: bool = False) -> PhaseResult:
+    """P7 - vet every installed plugin, under the pipeline's remaining budget."""
+    phase, _sweep = _run_plugin_sweep_with_sweep(
+        home_dir, deadline=deadline, ascii_only=ascii_only)
+    return phase
+
+
+# -- P8: behavioural replay ---------------------------------------------------
+
+def run_behavioral(ctx, *, ascii_only: bool = False,
+                   ledger_path: str | None = None) -> PhaseResult:
+    """P8 - the behavioural/trajectory detectors, over the audit's OWN ``ctx``.
+
+    ``ledger_path`` (B-599): forwarded to ``render_trajectory_analysis``'s B-300
+    self-test-corroboration ledger lookup, so a ``--data-dir`` run's coverage ledger
+    resolves under that store rather than the real ``~/.clawseccheck`` - ``None``
+    keeps today's default (see ``cli._coverage_path``).
+
+    Reusing ``ctx`` is not a micro-optimisation: ``trajaudit``'s per-context memo lives
+    on that object, so a fresh ``Context`` here would silently discard it and re-pay the
+    whole sidecar glob. Passing the audit's context costs zero additional I/O.
+
+    F-151: this phase used to render ONLY ``behavioral.render_behavioral_analysis`` -
+    ``trajaudit.render_trajectory_analysis``, the renderer that actually produces the
+    ``warning INCIDENT SIGNAL`` line, was reachable only from the standalone
+    ``--analyze-trajectory`` CLI branch, never from ``--full``. It is appended here as
+    an ADDITIONAL block in this SAME phase/section - the existing behavioural block's
+    own render is untouched - reusing the identical ``ctx`` so nothing is re-collected.
+    A crash in this second renderer degrades to one honest line rather than losing the
+    whole phase: the behavioural block above already rendered successfully, and a
+    second, independent renderer's failure must not erase it.
+
+    Advisory only, both renderers, w.r.t. ``--exit-code``: this phase reports
+    ``has_fail=False`` unconditionally, the same visibility-only contract the skill
+    sweep's WARN rows already have - nothing here computes a Finding or sets
+    ``has_fail``, so that invariant holds structurally regardless of what either
+    renderer prints.
+
+    F-154: the SCORE/GRADE half of that claim is narrower than it used to be. A fired
+    T1/T2/T3/B191 detector MAY now cap the A-F grade (never raise it, never earn/cost
+    an ordinary scored point) - but that cap is computed by `cli.py`, EARLIER in the
+    same `--full` invocation, from its own `behavioral.analyze(ctx)` call (see
+    `scoring.BEHAVIORAL_SIGNAL_CAP`), never by this phase's own render. This function
+    still never touches `ctx`/scoring itself, and the trajectory-incident renderer
+    (`render_trajectory_analysis`, the INCIDENT SIGNAL line) stays advisory-only in
+    both directions - its own runtime cap (I-025/RUNTIME_SIGNAL_CAP) is likewise
+    computed elsewhere, never here.
+    """
+    started = time.monotonic()
+    try:
+        # B-558: analysed here, rather than inside the renderer, so this phase keeps the
+        # detectors' own Finding objects. The coverage page counts T1/T2/T3/B191 in its
+        # denominator (they are in CATALOG) but could never see them in its numerator,
+        # because they are outside CHECKS - so a --full run printed their verdicts and
+        # then listed them as "not scanned" in the same output. One analyse, one render:
+        # `result=` is what keeps this from becoming a second full trajectory glob.
+        analysis = behavioral_analyze(ctx)
+        rendered = render_behavioral_analysis(ctx, ascii_only=ascii_only, result=analysis)
+    except Exception as exc:  # noqa: BLE001 - see run_plugin_sweep
+        return PhaseResult(
+            name=PHASE_BEHAVIORAL, status=STATUS_ERROR, complete=False,
+            elapsed_s=time.monotonic() - started,
+            detail=(f"the behavioural replay could not complete "
+                    f"({_sanitize(str(exc))}) \u2014 no trajectory was analysed."),
+        )
+    # C8: trajectory-derived thread labels reach this text, so every line is sanitized
+    # before it can reach a terminal. Sanitizing per LINE (not the whole blob) keeps the
+    # renderer's own layout intact - _sanitize folds newlines to spaces.
+    lines = [_sanitize(ln) for ln in rendered.splitlines()]
+
+    incident = False
+    try:
+        traj_rendered = render_trajectory_analysis(ctx, ascii_only=ascii_only,
+                                                   ledger_path=ledger_path)
+        lines.append("")
+        lines.extend(_sanitize(ln) for ln in traj_rendered.splitlines())
+        # Structural substring check (not a security-relevant keyword match): the
+        # renderer emits the literal phrase "INCIDENT SIGNAL" on both the unicode and
+        # --ascii-only branches (only the leading glyph differs), so this cannot miss
+        # or over-fire relative to what the lines above already say.
+        incident = "INCIDENT SIGNAL" in traj_rendered
+    except Exception as exc:  # noqa: BLE001 - see the docstring: must not lose the
+                              # behavioural block already rendered above.
+        lines.append("")
+        lines.append(_sanitize(
+            f"trajectory incident analysis could not complete ({exc}) \u2014 no trajectory "
+            "was analysed."
+        ))
+
+    # B-800: "replay complete" is a claim about records actually having been read -
+    # `analysis_incompleteness` (behavioral.py, the single source of truth for what
+    # this module's own result means) is the honest answer to whether that happened.
+    # Zero sidecars read (an empty home, or a 9.x host whose trajectories now live in
+    # SQLite - see F-187) must not be worded as a completed replay in the same
+    # document whose header/dashboard already say "not fully covered" for the exact
+    # same reason (`PipelineResult.layer_ledger`'s own `logs_not_reached`, elsewhere
+    # in this module).
+    incompleteness_reason = behavioral_analysis_incompleteness(analysis)
+
+    if incident:
+        detail = ("trajectory replay complete \u2014 an INCIDENT SIGNAL was found in the "
+                  "trajectory incident analysis below (that signal itself is advisory "
+                  "only; a fired behavioral detector above it may separately have "
+                  "capped the grade \u2014 see BEHAVIORAL-CAP).")
+        quiet_line = ("behavioural replay complete \u2014 INCIDENT SIGNAL found (advisory). "
+                     "Full detail: --analyze-trajectory.")
+    elif incompleteness_reason is not None:
+        detail = (f"trajectory replay found nothing to replay: {incompleteness_reason}; "
+                  "this replay itself never scores a FAIL (BEHAVIORAL-CAP).")
+        quiet_line = (f"behavioural replay found nothing to replay: "
+                     f"{incompleteness_reason}.")
+    else:
+        detail = ("trajectory replay complete \u2014 a fired behavioral detector may have "
+                  "capped the grade (BEHAVIORAL-CAP); this replay itself never scores a FAIL.")
+        quiet_line = ("behavioural replay complete (advisory). Full detail: --behavioral "
+                     "/ --analyze-trajectory.")
+
+    return PhaseResult(
+        name=PHASE_BEHAVIORAL,
+        status=STATUS_RAN,
+        elapsed_s=time.monotonic() - started,
+        detail=detail,
+        lines=lines,
+        quiet_line=quiet_line,
+        # Only when the replay had complete material to work on - see
+        # `behavioral.analysis_is_conclusive`. T1/T2 return PASS over an empty or
+        # truncated event set, which is fine as a rendered line (the section prints the
+        # counts beside it) and is not a basis for "this subject was scanned".
+        evaluated_findings=(
+            list(analysis.get("findings") or ())
+            if behavioral_is_conclusive(analysis) else []
+        ),
+    )
+
+
+# -- P9: adjudication ---------------------------------------------------------
+
+def _vet_packets(vet_targets, *, version: str) -> list[dict]:
+    """One judge packet per swept target, each bound to its own resolved path.
+
+    The authority rule flips between buckets, and the buckets are kept structurally
+    apart so it cannot be crossed by accident: the single top-level ``judgePacket``
+    covers the user's OWN config (advisory, may downgrade), while each entry here
+    covers UNTRUSTED third-party content and may only ever escalate. They are never
+    merged into one array, and each carries the fingerprint that binds a verdicts file
+    to this specific run.
+    """
+    from .adjudication import (  # noqa: PLC0415 - see the module note on layering
+        _vet_run_fingerprint, build_vet_judge_packet,
+    )
+    packets: list[dict] = []
+    for target, engine_output in vet_targets:
+        if engine_output is None:
+            continue
+        try:
+            items = build_vet_judge_packet(engine_output, str(target))
+            fingerprint = _vet_run_fingerprint(str(target))
+        except Exception:  # noqa: BLE001 - one unpackageable target must not lose the rest
+            continue
+        packets.append({
+            "target": _sanitize(Path(str(target)).name or str(target)),
+            "targetFingerprint": fingerprint,
+            "judgePacket": items,
+        })
+    packets.sort(key=lambda p: (p["target"], p["targetFingerprint"]))
+    return packets
+
+
+def _vet_second_opinion(vet_targets, vet_judged: list) -> list[dict]:
+    """F-152: escalate-only second opinion for the untrusted ``vetJudged`` bucket.
+
+    The authority split from ``_vet_packets``'s own docstring holds here too, and this
+    is the function that enforces it for ``--full``: ``judged`` (the sibling bucket,
+    handled entirely by ``adjudication._second_opinion`` in :func:`run_adjudication`)
+    may only ANNOTATE the user's OWN config - it never reaches this function at all.
+    This bucket covers UNTRUSTED swept content and may only ever ESCALATE, which is
+    delegated entirely to ``adjudication.escalate_vet_output`` - the exact, already
+    fingerprint-checked, already-tested function the standalone ``--vet-judged`` CLI
+    path uses - so this wiring cannot invent a softer or looser rule than that path
+    already enforces.
+
+    **Binding is by ``targetFingerprint`` ONLY, never by name** (C-135, 2026-07-22,
+    documented at length on ``adjudication._vet_run_fingerprint``): two different vet
+    targets can share a bare name, so matching on it would let a verdicts entry meant
+    for one target apply to a different one. Each ``vet_targets`` entry's OWN
+    fingerprint is computed fresh here and looked up directly - there is no name-keyed
+    fallback path for an entry whose fingerprint matches no actual swept target to fall
+    into; it is simply never selected, i.e. rejected wholesale, exactly like a
+    fingerprint mismatch already degrades to "no verdicts submitted" in the standalone
+    path.
+
+    A malformed or hostile entry (unserializable, or one whose escalation raises) is
+    skipped - one bad target must never lose the rest, mirroring every other per-target
+    loop in this module (:func:`_vet_packets`, :func:`run_plugin_sweep`).
+    """
+    if not vet_judged:
+        return []
+    from .adjudication import (  # noqa: PLC0415 - see the module note on layering
+        _vet_pool, _vet_run_fingerprint, _vet_target_name, escalate_vet_output,
+    )
+
+    by_fingerprint: dict[str, dict] = {}
+    for entry in vet_judged:
+        fp = entry.get("targetFingerprint")
+        # First entry for a given fingerprint wins; a duplicate is simply ignored -
+        # this is advisory, untrusted input, never a crash (split_judged_bundle's own
+        # contract), and there is no ordering guarantee worth picking a "later wins"
+        # rule over for it.
+        if isinstance(fp, str) and fp and fp not in by_fingerprint:
+            by_fingerprint[fp] = entry
+
+    rows: list[dict] = []
+    for target, engine_output in vet_targets:
+        if engine_output is None:
+            continue
+        entry = by_fingerprint.get(_vet_run_fingerprint(str(target)))
+        if entry is None:
+            continue
+        try:
+            verdicts_raw = json.dumps(entry)
+        except (TypeError, ValueError):
+            continue
+        try:
+            escalated = escalate_vet_output(engine_output, verdicts_raw, target=str(target))
+        except Exception:  # noqa: BLE001 - one bad target must not lose the rest
+            continue
+        target_name = _sanitize(_vet_target_name(str(target)))
+        # This used to zip(before, after) - a POSITIONAL pairing
+        # that only ever compares the two pools' shared prefix. escalate_vet_output
+        # preserves the original pool's order and length but APPENDS new pre-install
+        # C-255 ATTEST-* findings past it (its own docstring), so those appended items
+        # always fell outside the zip's shorter length and could NEVER produce an
+        # escalation row - a DANGEROUS verdict on the three ALWAYS-offered prose
+        # attestation questions had no path to escalation at all. Joined by finding id
+        # instead: id-keyed, so an item's position in either pool is irrelevant and a
+        # future append (or reorder) cannot silently fall off the end again. A
+        # finding_id present in `after` with no counterpart in `before` is exactly
+        # that appended case - its pre-escalation status is treated as UNKNOWN, which
+        # is what the judge packet item itself already told the judge
+        # (_vet_attest_packet_items sets engine_disposition=UNKNOWN for these: "no
+        # deterministic signal, read the prose yourself"), so a SUSPICIOUS/DANGEROUS
+        # verdict on it now surfaces as an ordinary "UNKNOWN -> WARN" escalation row.
+        before = _vet_pool(engine_output)
+        after = _vet_pool(escalated)
+        before_by_id = {f.id: f for f in before}
+        for f_after in after:
+            f_before = before_by_id.get(f_after.id)
+            before_status = f_before.status if f_before is not None else UNKNOWN
+            if f_after.status == before_status:
+                continue
+            rows.append({
+                "finding_id": _sanitize(str(f_after.id)),
+                "target": target_name,
+                "engine_disposition": _sanitize(str(before_status)),
+                "judge_verdict": _sanitize(str(f_after.status)),
+                "annotation": _sanitize(
+                    f"engine: {before_status} -> escalated to {f_after.status} by "
+                    "host-agent judge (vetJudged, escalate-only)"
+                ),
+            })
+    return rows
+
+
+def run_adjudication(ctx, findings, *, vet_targets=(), version: str = "",
+                     bundle: dict | None = None, score=None) -> PhaseResult:
+    """P9 - assemble the judge packet, and fold in a submitted bundle if there is one.
+
+    Emit-and-return: this phase never waits for an answer. With no bundle it reports
+    how many items are awaiting adjudication and how to produce the packet; that is a
+    *pending* state, neither a pass nor a failure, and it never moves the grade.
+
+    Cheap by construction - it re-runs no check, reading only the already-computed
+    ``findings`` and the already-built ``ctx``. That is why there is no ``--no-judge``:
+    there would be nothing to opt out of.
+    """
+    from .adjudication import (  # noqa: PLC0415 - see the module note on layering
+        _parse_verdicts_with_abstentions, _second_opinion, build_judge_packet, run_state,
+    )
+    started = time.monotonic()
+    try:
+        packet = build_judge_packet(ctx, findings)
+    except Exception as exc:  # noqa: BLE001 - see run_plugin_sweep
+        return PhaseResult(
+            name=PHASE_ADJUDICATION, status=STATUS_ERROR, complete=False,
+            elapsed_s=time.monotonic() - started,
+            detail=(f"the judge packet could not be assembled "
+                    f"({_sanitize(str(exc))}) \u2014 nothing was offered for adjudication."),
+        )
+    packets = _vet_packets(vet_targets, version=version)
+    vet_item_total = sum(len(p["judgePacket"]) for p in packets)
+
+    data: dict = {
+        "judgePacket": packet,
+        # B-623: the same run-level frame the standalone --judge-packet carries. Without
+        # it a --full adjudication phase hands a judge a band of UNKNOWNs and no way to
+        # see that the run itself was blind, capped or ungraded.
+        "runState": run_state(score),
+        "vetPackets": packets,
+        "attestTemplate": attest_template(),
+        "verdictsSubmitted": False,
+    }
+    lines: list[str] = []
+    if packet or packets:
+        lines.append(
+            f"{len(packet)} own-config item(s) and {vet_item_total} item(s) across "
+            f"{len(packets)} swept target(s) are in the borderline band."
+        )
+    else:
+        lines.append("Nothing is in the borderline band \u2014 no item needs adjudication.")
+
+    second_opinion: list[dict] = []
+    # B-804: gate on the PARSED verdict map, never on the raw bundle shape. An
+    # explicitly empty "verdicts": [] (or a "judged" bucket with no usable entries at
+    # all, e.g. {}) must read as "nothing submitted" - exactly like no bundle at all -
+    # matching _parse_verdicts' own documented contract ("An explicitly empty
+    # 'verdicts': [] IS 'no verdicts submitted'"). This call site used to set
+    # verdictsSubmitted=True whenever the RAW "judged" key was merely present,
+    # regardless of whether anything actually parsed out of it.
+    #
+    # C-509: an empty {} bucket must also never REACH _parse_verdicts in the first
+    # place. `is not None` let a vacuous {} through, and _parse_verdicts' own "no
+    # usable entries" diagnostic (B-330) has no way to tell that apart from a
+    # genuinely malformed bucket a caller meant to fill in - so a bundle following
+    # this contract's own "e.g. {}" equivalence still printed a loud stderr complaint
+    # about nothing. A bare truthiness check treats {} exactly like the absent-key
+    # case below it, which is what the comment above already claims happens.
+    # C-135 (independent, post-commit): a bare truthiness check on `bundle.get
+    # ("judged")` swallowed every OTHER JSON-falsy "judged" shape too -- `[]`, `""`,
+    # `0`, `False` -- not just the intended `{}`. Those are malformed inputs (the
+    # exact B-597 confusion of a caller misplacing "verdicts" at the wrong nesting
+    # level), and pre-fix they correctly reached `_parse_verdicts`, which prints its
+    # own "top-level value is not a JSON object" diagnostic -- silently dropping that
+    # feedback was never the intent, only the vacuous `{}` case was. `!= {}` narrows
+    # the exemption back to exactly that one shape.
+    #
+    # C-712: an ABSTAIN is not a verdict, so it is absent from `verdicts_map` and an
+    # all-ABSTAIN bucket takes the "no verdicts submitted" branch below, exactly like an
+    # empty list. `abstained` only feeds the disclosure: how many packet items the judge
+    # declined to decide, which is NOT the same as nobody having looked.
+    verdicts_map, abstained = (
+        _parse_verdicts_with_abstentions(json.dumps(bundle["judged"]))
+        if bundle and bundle.get("judged") is not None and bundle.get("judged") != {}
+        else ({}, frozenset())
+    )
+    packet_keys = {(i.get("finding_id"), i.get("target")) for i in packet}
+    abstained_n = len(abstained & packet_keys)
+    abstain_note = (f" {abstained_n} item(s) abstained (no verdict; nothing was reviewed for them)."
+                    if abstained_n else "")
+    if verdicts_map:
+        try:
+            second_opinion = _second_opinion(ctx, findings, verdicts_map, abstained)
+        except Exception:  # noqa: BLE001 - an advisory panel must never break the run
+            second_opinion = []
+        data["secondOpinion"] = second_opinion
+        data["verdictsSubmitted"] = True
+        reviewed = sum(1 for row in second_opinion if row.get("judge_verdict"))
+        lines.append(
+            f"{reviewed} of {len(second_opinion)} borderline item(s) carry a submitted "
+            "verdict. Advisory only: the grade and the findings above are unchanged."
+            + abstain_note
+        )
+        for row in second_opinion[:12]:
+            lines.append(
+                f"  - {_sanitize(str(row.get('finding_id')))} "
+                f"[{_sanitize(str(row.get('target')))}]: "
+                f"{_sanitize(str(row.get('annotation')))}"
+            )
+        if len(second_opinion) > 12:
+            lines.append(f"  - (+{len(second_opinion) - 12} more)")
+        quiet_line = (f"{reviewed} of {len(second_opinion)} borderline item(s) judged "
+                      "(advisory; grade unchanged)." + abstain_note)
+        detail = quiet_line
+    else:
+        lines.append(
+            "No verdicts submitted \u2014 these item(s) are awaiting adjudication. Produce "
+            "the packet with: --full --json; return the answers with: "
+            "--full --judged-bundle <file>."
+        )
+        if abstain_note:
+            lines.append(abstain_note.strip())
+        # the abstained items are IN the packet but are not awaiting anyone: counting them in
+        # both places read as 235 awaiting + 25 abstained out of a packet of 235
+        pending = len(packet) + vet_item_total - abstained_n
+        detail = (f"{pending} item(s) awaiting adjudication \u2014 no "
+                  "verdicts submitted." + abstain_note)
+        quiet_line = detail + " Produce the packet with: --full --json."
+
+    # F-152: vetJudged - the SECOND, structurally separate authority bucket. `judged`
+    # above may only ANNOTATE (adjudication._second_opinion never touches a Finding's
+    # status); this bucket may only ESCALATE, and only for the swept target whose OWN
+    # targetFingerprint the entry actually matches - see _vet_second_opinion's
+    # docstring for the full binding rule. Deliberately a SEPARATE code path and a
+    # SEPARATE data key from `judged`/secondOpinion above, never merged into one list:
+    # an own-config annotation and an untrusted-content escalation must never be
+    # representable as the same kind of row.
+    vet_judged = bundle.get("vetJudged") if bundle else None
+    if vet_judged:
+        try:
+            vet_second_opinion = _vet_second_opinion(vet_targets, vet_judged)
+        except Exception:  # noqa: BLE001 - an advisory panel must never break the run
+            vet_second_opinion = []
+        data["vetSecondOpinion"] = vet_second_opinion
+        data["verdictsSubmitted"] = True
+        if vet_second_opinion:
+            lines.append(
+                f"{len(vet_second_opinion)} vet-target finding(s) ESCALATED by a "
+                "submitted vetJudged verdict (escalate-only \u2014 untrusted swept content "
+                "can never downgrade a finding this way)."
+            )
+            for row in vet_second_opinion[:12]:
+                lines.append(
+                    f"  - {row['finding_id']} [{row['target']}]: "
+                    f"{row['engine_disposition']} -> {row['judge_verdict']}"
+                )
+            if len(vet_second_opinion) > 12:
+                lines.append(f"  - (+{len(vet_second_opinion) - 12} more)")
+            vet_quiet = f"{len(vet_second_opinion)} vet-target finding(s) escalated."
+        else:
+            lines.append(
+                "vetJudged verdicts were submitted, but none escalated any swept "
+                "target's finding (no targetFingerprint matched a currently swept "
+                "target, or every submitted verdict was SAFE/unrecognized)."
+            )
+            vet_quiet = "0 vet-target finding(s) escalated."
+        quiet_line = f"{quiet_line} {vet_quiet}"
+        detail = quiet_line
+
+    return PhaseResult(
+        name=PHASE_ADJUDICATION,
+        status=STATUS_RAN,
+        elapsed_s=time.monotonic() - started,
+        detail=detail,
+        lines=lines,
+        quiet_line=quiet_line,
+        data=data,
+    )
+
+
+# -- phase 2: the judged bundle -----------------------------------------------
+
+#: B-687: the type each bucket must carry, mirroring the isinstance gates in
+#: :func:`split_judged_bundle`. Kept beside them so a fifth bucket cannot be added to one
+#: without the other noticing.
+_BUCKET_TYPES = {"attestation": dict, "judged": dict, "vetJudged": list, "liveTest": dict}
+
+
+def split_judged_bundle(raw: str) -> dict:
+    """Split a ``--judged-bundle`` payload into its four independent buckets.
+
+    Returns ``{"attestation": obj|None, "judged": obj|None, "vetJudged": [...],
+    "liveTest": obj|None}``.
+
+    Bounded and never raises - this is untrusted input, and it is advisory data that
+    must never be able to crash or otherwise perturb the audit itself. Anything
+    malformed simply yields an absent bucket.
+
+    Splitting first, then handing each piece to the *existing* hardened consumer, is
+    deliberate: growing ``--judged``'s own parser to carry N per-target buckets would
+    put a bounded, adversarially test-pinned parser at risk for no gain.
+
+    F-155: ``liveTest`` is the fourth bucket, added on this same terms - it is NOT a
+    second submission channel (the task's own instruction: reuse this bundle's shape
+    rather than inventing one). Its own contents are validated separately by
+    :func:`live_test_cap_signal`; this function only does the same coarse
+    "is it even a dict" gate every other bucket already gets.
+    """
+    empty: dict = {"attestation": None, "judged": None, "vetJudged": [], "liveTest": None}
+    if not isinstance(raw, str):
+        return empty
+    # B-687: three of the four early returns below drop a payload the caller DID send, and
+    # said nothing. B-597 put a disclosure at the end of this function; everything that
+    # reaches it is reported, and these paths return first. The consequence is the one
+    # `read_judged_bundle_with_problem` already records for the path it could not open --
+    # `liveTest` feeds `scoring.compute`'s cap, so a lost bundle is a silently HIGHER score.
+    #
+    # `_note_bundle_dropped` stays silent on an empty or whitespace-only payload, which is
+    # the "nothing was submitted" case `adjudication._payload_carries_content` protects --
+    # and which `read_judged_bundle_with_problem` also produces for an unreadable path, so
+    # noting it here would double-report what B-562 already says with the path named.
+    if len(raw.encode("utf-8", "surrogatepass")) > MAX_BUNDLE_BYTES:
+        _note_bundle_dropped(raw, f"it is larger than the {MAX_BUNDLE_BYTES}-byte cap")
+        return empty
+    # C-664: the bundle carries model output a hostile skill can steer, so a depth limit
+    # would be an evasion (one padded key would drop every bucket beside it). Read it
+    # shallow: the buckets and the fields inside them sit a few levels down and come back
+    # as `json.loads` returns them; only a subtree below the reader's depth is replaced.
+    try:
+        shallow = loads_shallow(raw)
+    except ValueError:
+        _note_bundle_dropped(raw, "it is not valid JSON")
+        return empty
+    data = shallow.value
+    if not isinstance(data, dict):
+        _note_bundle_dropped(raw, "its top level is not a JSON object")
+        return empty
+    if shallow.elided:
+        # The buckets are serialised again for the verdict parsers (json.dumps), which
+        # cannot write the reader's marker: it becomes null, a value no bucket field
+        # accepts, so a field that was itself that deep is unusable as it always was.
+        data = _nulled_elided(data)
+    out = dict(empty)
+    if isinstance(data.get("attestation"), dict):
+        out["attestation"] = data["attestation"]
+    if isinstance(data.get("judged"), dict):
+        out["judged"] = data["judged"]
+    vet_judged = data.get("vetJudged")
+    if isinstance(vet_judged, list):
+        out["vetJudged"] = [e for e in vet_judged if isinstance(e, dict)]
+    if isinstance(data.get("liveTest"), dict):
+        out["liveTest"] = data["liveTest"]
+    _note_misplaced_bundle_content(data, out)
+    return out
+
+
+def _nulled_elided(node):
+    """*node* (a ``loads_shallow`` value) with every ``ELIDED`` marker replaced by None."""
+    if node is ELIDED:
+        return None
+    if isinstance(node, dict):
+        return {k: _nulled_elided(v) for k, v in node.items()}
+    if isinstance(node, list):
+        return [_nulled_elided(v) for v in node]
+    return node
+
+
+def _note_bundle_dropped(raw: str, reason: str) -> None:
+    """B-687: say that a bundle the caller sent was discarded whole, and why.
+
+    Silent when the payload is empty or whitespace-only. That is not a dropped bundle but
+    the "nothing was submitted" case, which ``adjudication._payload_carries_content``
+    deliberately keeps quiet -- and it is also what ``read_judged_bundle_with_problem``
+    hands us when the FILE could not be opened, a case B-562 already reports with the path
+    named. Noting it here would turn one failure into two lines.
+
+    *reason* is composed by this module from fixed text and this contract's own numbers;
+    nothing from the payload reaches it. See ``_note_misplaced_bundle_content`` for why
+    that rule exists -- a bundle key can carry a secret-shaped value straight into a
+    diagnostic.
+    """
+    from .adjudication import _note  # noqa: PLC0415 -- see the module note on layering
+
+    if not raw or not raw.strip():
+        return
+    _note(f"--judged-bundle was read but nothing was applied: {reason}. "
+          "The run continues as if no bundle had been submitted.")
+
+
+def _note_misplaced_bundle_content(data: dict, out: dict) -> None:
+    """B-597: never drop recognisable bundle content without saying so.
+
+    B-330 already made a *malformed* verdicts payload loud - "produced no usable entries".
+    The mirror case stayed silent: content that is perfectly well-formed but sits at the
+    wrong level. ``_parse_verdicts`` is only reached when the ``judged`` bucket exists
+    (see the call in :func:`run_full_pipeline`), so a file whose ``verdicts`` array is at
+    the TOP level instead of inside ``judged`` never reaches the diagnostic that would
+    have caught it - every entry is discarded and the report then states "no verdicts
+    submitted", which is a false statement about a file the tool just read.
+
+    That is not hypothetical, and it is not a shape a user would invent unprompted: it is
+    what ``_parse_verdicts``' own error message *taught* a host agent to write. Told its
+    bundle "has no top-level 'verdicts' array" - a sentence describing the inside of the
+    ``judged`` object - the agent moved the array to the file's top level and dropped
+    ``judged``. The second run applied the ``liveTest`` bucket from the same file, printed
+    a grade, and said nothing about the 25 verdicts it had thrown away. (That message is
+    reworded in ``adjudication`` as part of this fix, so it can no longer teach it.)
+
+    **The misplaced array is accepted, not rejected**, and the note says so. The intent is
+    unambiguous - ``verdicts`` is this contract's own key, carrying this contract's own
+    entry shape - and rejecting would cost the caller a second full pipeline run to
+    recover data that was already in its hands. What must never happen is silence, and an
+    explicit ``judged`` bucket always wins over the inferred one: guessing is a last
+    resort, not a peer.
+
+    Notes carry no caller-supplied strings (see ``adjudication._note``'s own contract) -
+    only counts and this contract's own fixed key names - so an unrecognised key is
+    counted, never echoed. A bundle key could otherwise carry a secret-shaped value
+    straight into a diagnostic.
+    """
+    from .adjudication import _note  # noqa: PLC0415 - see the module note on layering
+
+    misplaced = data.get("verdicts")
+    if isinstance(misplaced, list) and misplaced:
+        if out["judged"] is None:
+            out["judged"] = {"verdicts": misplaced}
+            _n = len(misplaced)
+            _entries = "entry" if _n == 1 else "entries"
+            _note(
+                f'--judged-bundle carried a top-level "verdicts" array of {_n} {_entries}'
+                ' with no "judged" bucket around it. Applied it as the judged bucket,'
+                ' since that is the only thing it can mean \u2014 but the documented shape is'
+                ' {"judged": {"verdicts": [...]}}, and a future version may stop guessing.'
+            )
+        else:
+            _note(
+                'ignored a top-level "verdicts" array in --judged-bundle: the file also'
+                ' has an explicit "judged" bucket, which wins. Only one of the two was'
+                " applied."
+            )
+        return
+    # B-687: a recognised key carrying the WRONG TYPE was dropped as silently as an absent
+    # one -- the four isinstance gates above have no else. That is not a hypothetical shape:
+    # this whole function exists because the tool's own error message taught a host agent to
+    # move `verdicts` to the top level, and a mistyped `judged` is the same class of mistake
+    # by the same kind of caller. Checked BEFORE the early return below, because a bucket
+    # that was thrown away is thrown away whether or not a sibling bucket survived.
+    #
+    # The key names are this contract's own fixed strings and the type words are a fixed
+    # vocabulary, so nothing from the payload is echoed.
+    _mistyped = [k for k, t in _BUCKET_TYPES.items()
+                 if k in data and not isinstance(data[k], t)]
+    if _mistyped:
+        _keys = ", ".join(f'"{k}"' for k in _mistyped)
+        _one = len(_mistyped) == 1
+        _note(
+            f"--judged-bundle: {'bucket' if _one else 'buckets'} {_keys} carried the wrong"
+            f" type and {'was' if _one else 'were'} dropped. Expected an object for"
+            ' "attestation", "judged" and "liveTest", and an array for "vetJudged".'
+        )
+    # A readable object none of whose keys we recognise is the other way to lose a whole
+    # file in silence - B-562 covers the path that could not be READ, not the one that
+    # parsed into nothing.
+    if any(out[k] for k in ("attestation", "judged", "vetJudged", "liveTest")):
+        return
+    unknown = [k for k in data if k not in ("attestation", "judged", "vetJudged", "liveTest")]
+    if unknown:
+        _note(
+            f"--judged-bundle parsed but none of its {len(unknown)} top-level key(s) is a"
+            ' recognised bucket, so nothing was applied. Expected one or more of:'
+            ' "attestation", "judged", "vetJudged", "liveTest".'
+        )
+
+
+def read_judged_bundle_with_problem(path: str) -> "tuple[dict, OSError | None]":
+    """:func:`read_judged_bundle`, plus the exception when the file could not be read.
+
+    B-562: the bundle read swallowed ``OSError`` into an empty payload, so a mistyped
+    ``--judged-bundle`` path emptied all four buckets at once and said nothing. Measured
+    on the real CLI, that produced ``rc 0``, 237 KB of stdout and a byte-empty stderr with
+    the path named zero times - and because ``liveTest`` feeds ``scoring.compute``'s cap,
+    a lost bundle is a silently HIGHER score, which none of B-561's three flags can do.
+
+    The exception is RETURNED, not raised and not worded here: this function's "never
+    raises, degrade to inert" contract is what lets an advisory bundle be untrusted input,
+    and phrasing belongs to the shell (``cli._describe_os_error``). Callers that only want
+    the bundle keep using :func:`read_judged_bundle` unchanged.
+
+    A path that exists but holds garbage is NOT a problem in this sense - that is
+    :func:`split_judged_bundle`'s "anything malformed yields an absent bucket", a
+    statement about the payload rather than about there being no payload.
+    """
+    problem: "OSError | None" = None
+    if path == "-":
+        import sys  # noqa: PLC0415 - only needed on this one branch
+        try:
+            raw = sys.stdin.read(MAX_BUNDLE_BYTES + 1)
+        except Exception:  # noqa: BLE001
+            raw = ""
+    else:
+        try:
+            raw = read_user_text(pathprobe.expand_user(path), errors="replace")
+        except OSError as exc:
+            raw = ""
+            problem = exc
+    return split_judged_bundle(raw), problem
+
+
+def read_judged_bundle(path: str) -> dict:
+    """:func:`split_judged_bundle` over a file (``-`` reads stdin). Never raises."""
+    return read_judged_bundle_with_problem(path)[0]
+
+
+# -- liveTest bucket (F-155) ---------------------------------------------------
+#
+# The fourth --judged-bundle bucket: a host agent's self-tested canary/dryrun/redteam/
+# multiturn verdict, fed back so `scoring.compute`'s cap-only LIVE_INJECTION_CAP can see
+# it. This is NOT a second submission channel - it rides the same bundle file, the same
+# MAX_BUNDLE_BYTES bound, and the same "never raises, degrade to inert on anything
+# malformed" discipline `_parse_verdicts` (adjudication.py) already established for the
+# `judged`/`vetJudged` buckets.
+#
+# Self-attestation guard (scoring.LIVE_INJECTION_CAP's docstring): the verdict is
+# produced by the AGENT UNDER TEST, so only "VULNERABLE" may ever have an effect -
+# structurally, not by convention. `live_test_cap_signal` never even looks for a
+# "RESISTANT" or unrecognized verdict to react to; the only thing this module ever
+# extracts is the presence of at least one VULNERABLE entry.
+
+# The only four harnesses that can ever submit a live-test verdict - matches the modules
+# this task names (canary.py/dryrun.py/redteam.py/multiturn.py) exactly.
+LIVE_TEST_TOOLS = frozenset({"canary", "redteam", "dryrun", "multiturn"})
+
+# The two verdicts that can ever be CREDITED or CAP the grade. The harnesses' own
+# evaluate() functions return a third literal, INCONCLUSIVE (C-706: they observed no reply
+# at all), which is deliberately NOT in this set - it is neither credit nor penalty - and is
+# surfaced separately, as a disclosure, by :func:`_unsettled_live_test_lines`.
+_LIVE_TEST_VERDICTS = frozenset({"VULNERABLE", "RESISTANT"})
+
+# Bounded, structural scenario-id shape (e.g. "PI-01", "DR-07", "MT-02", or a canary
+# token) - the real ids every harness's own make_*() emits are short alnum-plus-hyphen
+# tokens. Enforced here because a validated id ends up embedded verbatim in
+# `LiveTestSignal.reason`, a stable label `scoring`/`report` read - this is untrusted
+# input from the agent under test, so it is validated the same "narrow shape, never
+# free text" way as adjudication.py's `_CONFIG_PATH_RE`/`_LDH_HOST_RE`, never trusted
+# as arbitrary prose.
+#
+# F-193: 36, not 32 - canary.make_canary()'s own UNSEEDED token is
+# `len(TOKEN_PREFIX) + 16` = 36 chars (`TOKEN_PREFIX` is 20; `secrets.token_hex(8)` is
+# 16 hex chars), and that real, legitimate value must not be rejected by the generic
+# shape gate before it ever reaches the per-tool `_is_generated_scenario_id` check
+# below. 40 leaves a little headroom above that exact figure, the same "generous, not
+# exact" choice `_MAX_LIVE_TEST_SEED_LEN`'s own docstring already makes.
+_LIVE_TEST_ID_RE = re.compile(r"^[A-Za-z0-9_.-]{1,40}$")
+
+# -- F-193 (interim check) -------------------------------------------------------
+#
+# The gap this closes: until now, `_LIVE_TEST_ID_RE` above accepted ANY id of that
+# generic shape - including the bare tool name itself. A real incident submitted
+# `{"tool": "canary", "id": "canary", "verdict": "RESISTANT"}` and it sailed through
+# unchallenged, because nothing ever asked "did `canary.make_canary()` actually produce
+# this id" - only "does it look like an id-shaped string". This is NOT the full fix
+# (a separate, in-flight effort verifies against the agent's own recorded trajectory
+# instead); it is the cheap, static half F-193's own comment calls for: reject an id
+# that could not possibly have come from the real scenario generator for that tool,
+# using the SAME `make_*()` functions SKILL.md tells an operator to run - never a
+# hand-maintained mirror of their output that could drift.
+#
+# redteam/dryrun/multiturn each enumerate a FIXED set of scenario ids from their own
+# `_TEMPLATES`/`_SCENARIOS` tables - independent of `seed` (only the per-scenario TOKEN
+# varies with the seed; the id set itself does not, verified by reading each module's own
+# `make_*()` above). So calling each once, with no seed, and keeping only the `"id"`
+# values is the real, non-drifting set - computed once at import time rather than per
+# verdict-entry, since it can never change within a process.
+_REDTEAM_SCENARIO_IDS = frozenset(e["id"] for e in _make_redteam_suite())
+_DRYRUN_SCENARIO_IDS = frozenset(e["id"] for e in _make_dryrun_scenarios())
+_MULTITURN_SCENARIO_IDS = frozenset(e["id"] for e in _make_multiturn_scenarios())
+
+# canary is different in kind, not just in list: `canary.make_canary()` builds ONE
+# scenario per run and has no `"id"` field at all - its real per-run identity is the
+# TOKEN it hands the agent under test (`canary.TOKEN_PREFIX` + a hex digest). There is
+# therefore no fixed SET to check membership against the way the three list-shaped
+# harnesses above have. What IS grounded in the real generator is its FORMAT:
+# `make_canary(seed=...)` always emits `TOKEN_PREFIX` + exactly 10 uppercase hex chars
+# (`hashlib.sha256(seed).hexdigest()[:10].upper()`), and an unseeded run emits
+# `TOKEN_PREFIX` + exactly 16 uppercase hex chars (`secrets.token_hex(8).upper()`) - see
+# `canary.make_canary()`'s own body for both branches. This is a SHAPE check, not an
+# exact-value one: verifying the precise seeded token would require re-deriving it from
+# the bucket's own `seed` field for every entry, which is a real strengthening but not
+# what closes THIS gap - the literal string "canary" (or any other bare word) can never
+# satisfy this shape regardless, which is exactly what the incident bundle submitted and
+# what SKILL.md's own example used to teach. Same "shape, not authenticity" honesty this
+# module already states for `_live_test_reproducible()`'s seed check.
+_CANARY_TOKEN_RE = re.compile(
+    rf"^{re.escape(_CANARY_TOKEN_PREFIX)}[0-9A-F]{{10}}$"
+    rf"|^{re.escape(_CANARY_TOKEN_PREFIX)}[0-9A-F]{{16}}$"
+)
+
+
+def _is_generated_scenario_id(tool: str, entry_id: str) -> bool:
+    """F-193: could `tool`'s real ``make_*()`` function actually have produced this id?
+
+    *tool* is already known to be one of :data:`LIVE_TEST_TOOLS` and *entry_id* has
+    already passed :data:`_LIVE_TEST_ID_RE`'s generic shape gate - this is the
+    ADDITIONAL, per-tool check layered on top, grounded in each harness's own real
+    generator (see the module-level comment above for how each set/pattern was built).
+    An unrecognized *tool* (should not reach here - callers gate on ``LIVE_TEST_TOOLS``
+    first) reads as False, never as "no opinion" - this function is a pure predicate,
+    not a partial one.
+    """
+    if tool == "redteam":
+        return entry_id in _REDTEAM_SCENARIO_IDS
+    if tool == "dryrun":
+        return entry_id in _DRYRUN_SCENARIO_IDS
+    if tool == "multiturn":
+        return entry_id in _MULTITURN_SCENARIO_IDS
+    if tool == "canary":
+        return bool(_CANARY_TOKEN_RE.fullmatch(entry_id))
+    return False
+
+# F-155: only a SEEDED run's tokens are deterministic/reproducible (canary.make_canary /
+# redteam.make_suite / dryrun.make_scenarios all draw a fresh `secrets` value unless an
+# explicit seed is supplied) - see LIVE_INJECTION_CAP's docstring for why an unseeded
+# verdict must still cap THIS run but never reach history.jsonl/trend/baseline. A seed
+# longer than this is treated as malformed (not reproducible) rather than parsed further;
+# generous above any real --seed value (an operator-chosen string, or canary/redteam's own
+# `secrets.token_hex(8)` default - 16 hex chars).
+_MAX_LIVE_TEST_SEED_LEN = 128
+
+
+@dataclass
+class LiveTestSignal:
+    """F-155: the reduced, cap-only signal from one --judged-bundle ``liveTest`` bucket.
+
+    ``hit`` is True iff at least one structurally-valid entry carried a VULNERABLE
+    verdict - see the self-attestation guard above; RESISTANT and unrecognized/malformed
+    entries can never set this True.
+    ``reason`` is a stable, bounded label (e.g. ``"redteam:PI-01"``) built only from
+    allow-listed tool names and regex-validated scenario ids - never free text copied
+    from the submission. None when ``hit`` is False.
+    ``reproducible`` is True only when the bucket also carried a well-formed, non-empty,
+    bounded ``seed`` string - the gate `cli.py` uses to decide whether this run's
+    verdict may be recorded into history.jsonl/trend/baseline.
+    """
+
+    hit: bool = False
+    reason: str | None = None
+    reproducible: bool = False
+
+
+# The attestation fields the checks actually read (docs/ATTESTATION.md). `schema`,
+# `notes` and `_questions` are labels and documentation; the placeholder values --ask
+# prints ("unknown", empty lists, empty paths) are the absence of an answer.
+_ATTESTATION_NAME_LISTS = ("tools", "proven_tools", "host_monitors")
+
+
+def _attestation_has_answers(att) -> bool:
+    """C-723: True when *att* answers at least one question a check reads.
+
+    A bare ``schema``, a ``notes`` string, the unfilled ``--ask`` template and every
+    field left at its placeholder are NOT answers: the self-report layer is only
+    "submitted" when the agent said something. Every string that counts as an answer must
+    have a visible character (``attest.is_blank_text``: a zero-width space, a NUL or a
+    byte-order mark is as empty as ""). A name list counts only whole (a blank or
+    non-string member voids it, as ``attest.vet_attestation`` treats it), and a declared
+    bypass actor counts whatever it is called.
+    """
+    if not isinstance(att, dict):
+        return False
+
+    def _named(value) -> bool:
+        return isinstance(value, (str, bytes)) and not _attest.is_blank_text(value)
+
+    for key in _ATTESTATION_NAME_LISTS:
+        names = att.get(key)
+        if isinstance(names, list) and names and all(_named(n) for n in names):
+            return True
+    gates = att.get("approval_gates")
+    if isinstance(gates, dict) and any(
+            isinstance(gates.get(cls), str) and gates[cls].strip().lower() in ("required", "auto")
+            for cls in _attest.GATE_CLASSES):
+        return True
+    posture = att.get("untrusted_to_action")
+    if isinstance(posture, str) and posture.strip().lower() in ("gated", "ungated"):
+        return True
+    known, other = _attest.declared_bypass_actors(att)
+    if known or other:
+        return True
+    paths = att.get("paths")
+    if isinstance(paths, dict):
+        boot = paths.get("bootstrap")
+        if (isinstance(boot, list) and any(_named(p) for p in boot)) or _named(
+                paths.get("openclaw_install")):
+            return True
+    edges = att.get("delegation")
+    if isinstance(edges, list) and any(
+            isinstance(e, dict) and _named(e.get("from")) and _named(e.get("to"))
+            for e in edges):
+        return True
+    return bool(_attest.attested_agents(att))
+
+
+def _valid_live_test_entries(
+    bucket, *, multiturn_freshly_issued: bool = False, proof=None, any_verdict: bool = False
+) -> list[tuple[str, str, str]]:
+    """Every structurally-valid ``(tool, id, verdict)`` triple in *bucket*'s
+    ``"verdicts"`` list.
+
+    Bounded and defensive - this is untrusted input from the agent under test. Any
+    entry that is not a dict, names an unrecognized tool, carries an id outside
+    ``_LIVE_TEST_ID_RE``'s generic shape, carries an id :func:`_is_generated_scenario_id`
+    says that tool's own ``make_*()`` could not have produced (F-193), or carries
+    anything but exactly "VULNERABLE"/"RESISTANT" is simply dropped - mirroring
+    `adjudication._parse_verdicts`' per-entry tolerance (one bad entry never loses the
+    rest, and never raises). A non-string verdict (a list or dict is unhashable) is such an
+    entry too - C-706 closed the ``TypeError`` it used to raise here.
+
+    *any_verdict* (C-706, additive - every existing caller that omits it sees byte-
+    identical behaviour apart from that crash) skips ONLY the final verdict gate, so
+    :func:`_unsettled_live_test_lines` can see which structurally-valid entries were set
+    aside for their verdict (INCONCLUSIVE, or one this harness does not know). A non-string
+    verdict is reported as ``""``. Every id, tool, generator, multiturn and proof gate
+    still applies, so a forged id is not echoed back by it.
+
+    *proof* (F-193, additive - every existing caller that omits it sees byte-identical
+    behaviour) is an optional :class:`livetestproof.LiveTestProof` from cross-checking
+    the bucket against the agent's own trajectory. An entry whose ``(tool, id)`` is in
+    :func:`livetestproof.contradicted_ids(proof) <clawseccheck.livetestproof.contradicted_ids>`
+    is dropped here too, on the same "one bad entry never loses the rest" footing as
+    every other per-entry gate above - the id-shape/generator checks catch a forged
+    id; this catches a real-shaped id whose claimed verdict the local evidence
+    disproves.
+
+    *multiturn_freshly_issued* (F-193, additive - every existing caller that omits it
+    sees byte-identical behaviour) is True only when THIS SAME invocation also just
+    generated a fresh multiturn plant (``--multiturn``/``--self-test``). multiturn is a
+    TWO-PHASE harness by construction (plant now, trigger on a LATER turn/session - see
+    ``multiturn.py``'s own module docstring): a verdict for it cannot be genuine within
+    the same run that issued the plant, no later turn has happened yet. Every multiturn
+    entry is dropped outright in that case, regardless of how well-formed its id is.
+    Today's CLI dispatch (``cli._PRIMARY_MODES``) already makes ``--multiturn``/
+    ``--self-test`` exclusive, early-returning modes that never reach
+    ``--judged-bundle`` processing in the same invocation - so this is a real,
+    defensive invariant for library/test callers rather than a currently-reachable CLI
+    bug, and is kept load-bearing (not just documented) so a future dispatch change
+    cannot silently reopen it.
+    """
+    if not isinstance(bucket, dict):
+        return []
+    entries = bucket.get("verdicts")
+    if not isinstance(entries, list):
+        return []
+    out: list[tuple[str, str, str]] = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        tool, entry_id, verdict = entry.get("tool"), entry.get("id"), entry.get("verdict")
+        if not (isinstance(tool, str) and tool in LIVE_TEST_TOOLS):
+            continue
+        # B-386: `.fullmatch()`, not `.match()` - `$` in the pattern matches BEFORE a
+        # trailing "\n", so `.match()` let an id like "PI-01\n" through, and that
+        # embedded newline then rode `LiveTestSignal.reason` straight into report.py's
+        # single-line grade-cap banner. `.fullmatch()` anchors both ends against the
+        # WHOLE string, closing that gap without widening the charset itself.
+        if not (isinstance(entry_id, str) and _LIVE_TEST_ID_RE.fullmatch(entry_id)):
+            continue
+        # F-193: the generic shape check above is necessary but not sufficient - it is
+        # exactly what let the real incident's tool-name-as-id ("canary"/"canary")
+        # through. This asks whether the tool's OWN real generator could have produced
+        # this specific id.
+        if not _is_generated_scenario_id(tool, entry_id):
+            continue
+        if tool == "multiturn" and multiturn_freshly_issued:
+            continue
+        if not (isinstance(verdict, str) and verdict in _LIVE_TEST_VERDICTS):
+            if not any_verdict:
+                continue
+            verdict = verdict if isinstance(verdict, str) else ""
+        if proof is not None and (tool, entry_id) in _livetestproof.contradicted_ids(proof):
+            continue
+        out.append((tool, entry_id, verdict))
+    return out
+
+
+def _unsettled_live_test_lines(
+    bucket, *, multiturn_freshly_issued: bool = False, proof=None
+) -> tuple[str, ...]:
+    """C-706: plain-English ``not_reached`` lines for the structurally-valid entries that
+    :func:`_valid_live_test_entries` set aside for their VERDICT.
+
+    * ``INCONCLUSIVE`` - the harness' evaluate() saw no reply (None / empty / whitespace).
+      Not credited as resistance (so it does not complete the live-behaviour layer on its
+      own) and not counted against the agent (it can never set the VULNERABLE cap).
+    * anything else that is not VULNERABLE/RESISTANT - ignored, but no longer silently.
+
+    Built only from allow-listed tool names and regex-validated, generator-checked ids -
+    never from the submitted verdict text - and bounded like ``live_test_cap_signal``'s
+    reason. ``()`` when nothing was set aside, so a bundle with no such entry is
+    byte-identical to before.
+    """
+    entries = _valid_live_test_entries(
+        bucket, multiturn_freshly_issued=multiturn_freshly_issued, proof=proof,
+        any_verdict=True)
+
+    def _labels(wanted) -> str:
+        labels = list(dict.fromkeys(f"{t}:{i}" for t, i, v in entries if wanted(v)))
+        text = "; ".join(labels[:_MAX_LIVE_TEST_REASON_ENTRIES])
+        if len(labels) > _MAX_LIVE_TEST_REASON_ENTRIES:
+            text += f" (+{len(labels) - _MAX_LIVE_TEST_REASON_ENTRIES} more)"
+        return _sanitize(text)
+
+    lines: list[str] = []
+    if any(v == _LIVE_TEST_INCONCLUSIVE for _t, _i, v in entries):
+        lines.append(
+            "the submitted live-test verdict is INCONCLUSIVE \u2014 it is neither credited "
+            "nor counted against the agent "
+            f"({_labels(lambda v: v == _LIVE_TEST_INCONCLUSIVE)})")
+    if any(v != _LIVE_TEST_INCONCLUSIVE and v not in _LIVE_TEST_VERDICTS for _t, _i, v in entries):
+        lines.append(
+            "the submitted live-test verdict is not recognised \u2014 only VULNERABLE, "
+            "RESISTANT or INCONCLUSIVE are accepted, so it was ignored "
+            f"({_labels(lambda v: v != _LIVE_TEST_INCONCLUSIVE and v not in _LIVE_TEST_VERDICTS)})")
+    return tuple(lines)
+
+
+def _live_test_reproducible(bucket) -> bool:
+    """True only when *bucket* carries a well-formed, non-empty, bounded ``seed``.
+
+    B-386 (C-135 round 2, honesty correction): this checks SHAPE only - non-empty,
+    length-bounded - never AUTHENTICITY. It does not verify the seed against the
+    submitted scenario ids, re-derive anything from it, or confirm it actually
+    originated from `canary`/`redteam`/`dryrun`. Any non-empty string within the length
+    bound passes. A prior version of this docstring called that "structural, not a
+    claimed boolean" and implied real verification - that overstated the guarantee:
+    the ONLY thing this closes is the literal `{"reproducible": true}` self-assertion
+    shape (a bare boolean flag any submission could set for free); a client can still
+    trivially satisfy this check with any throwaway non-empty string, e.g.
+    `{"seed": "x", ...}`. Genuinely binding the seed to something verifiable (deriving
+    the expected scenario-id set from it and requiring a match) would need a real
+    signing/derivation scheme, which is out of scope here - this function is an
+    advisory shape filter, not a cryptographic or structural guarantee, and callers
+    gating persistence on its result should read it that way.
+    """
+    if not isinstance(bucket, dict):
+        return False
+    seed = bucket.get("seed")
+    return isinstance(seed, str) and 0 < len(seed) <= _MAX_LIVE_TEST_SEED_LEN
+
+
+# How many VULNERABLE entries' labels `reason` names before collapsing the rest to a
+# "(+N more)" tail - bounded so a submission with many entries cannot inflate the label
+# without limit; mirrors adjudication.py's own "first 12, then (+N more)" convention.
+_MAX_LIVE_TEST_REASON_ENTRIES = 6
+
+
+def live_test_cap_signal(bucket, *, multiturn_freshly_issued: bool = False,
+                         proof=None) -> LiveTestSignal:
+    """F-155: reduce a ``--judged-bundle`` ``"liveTest"`` bucket to a cap-only signal.
+
+    *bucket* is whatever :func:`split_judged_bundle` put at ``["liveTest"]`` - ``None``
+    when the bundle carried no such bucket, or carried one that failed the coarse
+    "is it a dict" gate. Never raises regardless of what *bucket* actually contains.
+
+    The self-attestation guard is enforced HERE, structurally: this function only ever
+    looks for a VULNERABLE entry among the ones :func:`_valid_live_test_entries`
+    validated. There is no branch anywhere in this function, or in
+    `scoring._live_injection_cap_signal` downstream, that reacts to a RESISTANT verdict
+    or to an absent submission - both simply produce no VULNERABLE entries to find, so
+    the natural "nothing found" result (``LiveTestSignal()``, every field at its
+    zero-effect default) is what they get, not a special case carved out for them.
+
+    *multiturn_freshly_issued* - F-193, additive, threaded straight through to
+    :func:`_valid_live_test_entries`; see that function's own docstring.
+
+    *proof* - F-193, additive, threaded straight through to
+    :func:`_valid_live_test_entries` too, so a contradicted VULNERABLE entry cannot
+    set the cap either - a caller that dropped the entry from the ledger but left it
+    live here would still cap the score on a scenario just proven not to have fired.
+    """
+    entries = _valid_live_test_entries(
+        bucket, multiturn_freshly_issued=multiturn_freshly_issued, proof=proof)
+    vulnerable = [(tool, entry_id) for tool, entry_id, verdict in entries if verdict == "VULNERABLE"]
+    if not vulnerable:
+        return LiveTestSignal()
+    labels = [f"{tool}:{entry_id}" for tool, entry_id in vulnerable[:_MAX_LIVE_TEST_REASON_ENTRIES]]
+    reason = "; ".join(labels)
+    if len(vulnerable) > _MAX_LIVE_TEST_REASON_ENTRIES:
+        reason += f" (+{len(vulnerable) - _MAX_LIVE_TEST_REASON_ENTRIES} more)"
+    # B-386: defense in depth. `entry_id` is already `_LIVE_TEST_ID_RE.fullmatch`-
+    # validated above, so `reason` should not be able to carry a control/newline
+    # character today - but route it through the same `_sanitize()` every other
+    # untrusted-string field in this module uses anyway, so a future widening of that
+    # regex's charset can't reopen the single-line grade-cap banner this was fixed for.
+    reason = _sanitize(reason)
+    return LiveTestSignal(hit=True, reason=reason, reproducible=_live_test_reproducible(bucket))
+
+
+# -- C-425: projecting the pipeline onto the five-layer ledger (layers.py) ------
+#
+# "Take the worse of the two statuses" - installed_sweep's own merge rule, and the
+# logs_trajectories/behavioral merge below it - needs a total order over the non-`ran`
+# statuses. `ran` is always best (rank 0); among the rest, `error` (broke while trying)
+# outranks a deliberate/structural non-run, which outranks an operator-narrowed
+# `skipped` - so one phase erroring can never hide behind its sibling merely having
+# been skipped.
+_STATUS_BADNESS = {
+    STATUS_RAN: 0,
+    STATUS_SKIPPED: 1,
+    STATUS_UNAVAILABLE: 2,
+    # B-603: ranked WITH unavailable, not above or below it. Both are a structural
+    # non-run rather than a failure, and asserting a severity difference between "the
+    # environment could not" and "the operator did not" would be inventing one. The tie
+    # is unreachable today -- `_worse_status` merges only installed_sweep and
+    # logs/behavioral, and neither can carry `not_submitted`, which is assigned solely
+    # to self_report and live_behaviour. Ranked anyway, because `.get(a, 99)` would
+    # otherwise rank an unlisted status worse than `error`.
+    STATUS_NOT_SUBMITTED: 2,
+    STATUS_NOT_REACHED: 3,
+    STATUS_ERROR: 4,
+}
+
+
+def _worse_status(a: str, b: str) -> str:
+    return a if _STATUS_BADNESS.get(a, 99) >= _STATUS_BADNESS.get(b, 99) else b
+
+
+# B164's own disclosure text (checks/_egress.py's check_log_threat_hunt) is the ONLY
+# place a per-sink "not scanned" count exists today - coverage.py's own V1 scope note
+# says as much ("that data exists today only as prose inside B164/trajaudit/
+# behavioral's own Finding text, not as structured counts"). Parsed here rather than
+# re-derived as a fresh count, so the ledger's not_reached line and B164's own sentence
+# can never disagree.
+# C-730: `(?<!\d)` on this and the three patterns below: a count is a whole run of digits,
+# so only the run's first digit may start (every digit used to, each scanning to the run's
+# end). Same spans and groups.
+_B164_NOT_SCANNED_RE = re.compile(r"(?<!\d)(\d+) log/transcript sinks? not scanned")
+
+# B-817: B164's SQLite-trajectory disclosure (checks/_egress.py's
+# check_log_threat_hunt) names unscanned SQLite trajectory evidence with different
+# wording from the JSONL "not scanned" sentence above - parsed separately so it does
+# not have to match the same regex; purely additive, the JSONL regex/behavior above is
+# unchanged.
+_B164_SQLITE_UNSCANNED_RE = re.compile(
+    r"(?<!\d)(\d+) row\(s\) across (\d+) session\(s\) unexamined"
+)
+
+# C-699: B164's SQLite-TRANSCRIPT disclosure (checks/_egress.py's
+# _sqlite_transcript_disclosure). "transcript row(s)" sits between the digits and
+# "row(s)" on purpose: the trajectory regex above needs digits directly before "row(s)",
+# so neither pattern can match the other's sentence.
+_B164_SQLITE_TRANSCRIPT_RE = re.compile(
+    r"(?<!\d)(\d+) transcript row\(s\) across (\d+) session\(s\) unexamined"
+)
+_B164_SQLITE_TRANSCRIPT_DB_RE = re.compile(
+    r"(?<!\d)(\d+) per-agent database\(s\) could not be examined for transcripts"
+)
+
+
+def _b164_not_reached(findings) -> tuple:
+    b164 = next((f for f in findings if getattr(f, "id", None) == "B164"), None)
+    if b164 is None or not getattr(b164, "detail", None):
+        return ()
+    out: tuple = ()
+    m = _B164_NOT_SCANNED_RE.search(b164.detail)
+    if m:
+        out += (f"{m.group(1)} log/transcript sink(s) not scanned",)
+    m2 = _B164_SQLITE_UNSCANNED_RE.search(b164.detail)
+    if m2:
+        out += (
+            f"{m2.group(1)} SQLite trajectory row(s) across {m2.group(2)} "
+            "session(s) unexamined (agents/*/agent/openclaw-agent.sqlite)",
+        )
+    m3 = _B164_SQLITE_TRANSCRIPT_RE.search(b164.detail)
+    if m3:
+        out += (
+            f"{m3.group(1)} SQLite transcript row(s) across {m3.group(2)} "
+            "session(s) unexamined (agents/*/agent/openclaw-agent.sqlite)",
+        )
+    m4 = _B164_SQLITE_TRANSCRIPT_DB_RE.search(b164.detail)
+    if m4:
+        out += (
+            f"{m4.group(1)} per-agent database(s) could not be examined for "
+            "transcripts (agents/*/agent/openclaw-agent.sqlite)",
+        )
+    return out
+
+
+# -- the pipeline roll-up (P10) -----------------------------------------------
+
+# B-692: every key `run_adjudication` puts on its phase data, so the emitter cannot drop
+# one by omission. It used to be an inline five-tuple, and it silently dropped the two the
+# phase produces and nothing else reads back:
+#
+#   `runState` -- the run-level frame B-623 added precisely so a `--full` adjudication does
+#   not hand a judge a band of UNKNOWNs with no way to see the run was blind, capped or
+#   ungraded. The phase's own comment says that in as many words, and the emitter then threw
+#   it away; the standalone `--judge-packet` carried it while the composed route, which is
+#   the one `run_adjudication`'s operator text tells you to use, did not.
+#
+#   `verdictsSubmitted` -- set on every run and read by nobody, because it never left. It
+#   answers "did a verdict bucket of EITHER kind arrive", which no other key does: it is
+#   raised by the `judged` branch (which attaches `secondOpinion`) AND by the `vetJudged`
+#   branch (which attaches `vetSecondOpinion` instead), so it is not the same question as
+#   `"secondOpinion" in payload`. Measured: a bundle carrying only `liveTest` leaves it
+#   False, a `judged` bundle raises it, and a `vetJudged`-only bundle raises it with no
+#   `secondOpinion` present at all. Without it, "nothing was borderline" and "nobody
+#   judged" are indistinguishable.
+#
+# A named constant rather than a literal in the loop so the guard can be a CENSUS --
+# `tests/test_b692_the_phase_keys_all_reach_the_output.py` derives what the phase can produce
+# from its own source and requires this to cover it. An allowlist is a deliberate decision
+# about the public shape; the guard only makes leaving a key out a decision rather than an
+# oversight. Same shape as B-689's `_CAP_LADDER` and B-693's emitter census, for the same
+# reason: a hand-kept list beside a hand-kept producer is where these keep diverging.
+_ADJUDICATION_JSON_KEYS = (
+    "judgePacket",
+    "runState",
+    "vetPackets",
+    "attestTemplate",
+    "secondOpinion",
+    "vetSecondOpinion",
+    "verdictsSubmitted",
+)
+
+
+@dataclass
+class PipelineResult:
+    """Every phase's outcome plus the roll-ups the three output paths read."""
+
+    phases: list[PhaseResult] = field(default_factory=list)
+    budget_s: float = DEFAULT_FULL_BUDGET_S
+    fast: bool = False
+    coverage_page: dict = field(default_factory=dict)  # F-165: see build_coverage_page
+    # B-792: the LIVE PluginSweep-shaped object P7 swept, not its serialized `.data`
+    # dict (`by_name(PHASE_PLUGIN_SWEEP).data`, what `to_json()["pluginSweep"]` carries).
+    # `report.build_inventory`/`_plugin_inventory` are duck-typed against this object's
+    # `.no_roots`/`.no_targets`/`.rows` attributes, which the summarized dict does not
+    # carry -- without this, cli.py's `--full --json` path had no way to hand a real
+    # sweep to `render_json`, so `inventory.plugins.scanned` stayed `False` even on a
+    # run whose OWN `pluginSweep.complete` was `True` with real rows swept.
+    plugin_sweep_obj: object | None = None
+
+    def add(self, phase: PhaseResult) -> PhaseResult:
+        self.phases.append(phase)
+        return phase
+
+    def by_name(self, name: str) -> PhaseResult | None:
+        for p in self.phases:
+            if p.name == name:
+                return p
+        return None
+
+    @property
+    def has_fail(self) -> bool:
+        """FAIL-only, joining the ``--exit-code`` disjunction on exactly the terms the
+        vet-mcp and skill-sweep contributions already sit on.
+
+        A WARN does not trip it, and neither does an incomplete phase: an ABSENT
+        verdict is not a FAIL, and reddening the gate on truncation would silently
+        redden every CI run that passes today. Incompleteness is reported by the
+        printed section and by ``complete``/``notScanned[]``, never by the exit code.
+        """
+        return any(p.has_fail for p in self.phases)
+
+    @property
+    def complete(self) -> bool:
+        """True only when every phase ran AND accounted for everything it covers."""
+        return all(
+            p.status not in _INCOMPLETE_STATUSES and p.complete for p in self.phases
+        )
+
+    def not_scanned(self) -> list[str]:
+        """Every target no phase could vouch for, named. The narrative print may elide
+        with "(+N more)"; this may not."""
+        out: list[str] = []
+        for p in self.phases:
+            out.extend(p.not_scanned)
+        return out
+
+    def to_json(self, *, score=None) -> dict:
+        """The additive top-level keys ``--full --json`` gains.
+
+        Additive by construction: every existing key keeps its meaning and its value,
+        so a consumer that reads by key - which is how the payload is consumed - cannot
+        be tripped by this.
+
+        C8: the whole tree goes through ``report._sanitize_tree`` on the way out. The
+        judge packets carry evidence excerpts lifted verbatim from untrusted skill and
+        plugin content, so "the producer already sanitized it" is not a property this
+        boundary may assume - it enforces it, exactly as the existing ``--json``
+        renderer does for the audit payload.
+
+        B-758 (item #4): ``adj.data["runState"]`` below is whatever P9
+        (:func:`run_adjudication`) built it as - from the score that existed at the
+        moment the pipeline ran, which in the ``--full --json`` caller is *before*
+        ``cli.py`` re-projects the ledger (B-723) and recomputes the final score. Left
+        alone, that stale ``runState`` disagreed with the top-level ``graded``/
+        ``missing_layers`` the SAME document's ``render_json`` derives from the final
+        score - one document, two different answers to "did this run get graded".
+        *score*, when supplied, is that final, post-reprojection score: passing it
+        here overrides the phase's own stale snapshot with a freshly built
+        :func:`adjudication.run_state`, so both fields can only ever describe the one
+        score the caller actually settled on. ``None`` (the default) keeps the old
+        behaviour - the phase's own snapshot - for every caller that has no later
+        reprojection to reconcile against (e.g. a bare ``PipelineResult.to_json()`` in
+        a test).
+        """
+        payload: dict = {
+            "phases": [p.to_json() for p in self.phases],
+            "complete": self.complete,
+            "notScanned": self.not_scanned(),
+            "coveragePage": self.coverage_page,  # F-165
+        }
+        adj = self.by_name(PHASE_ADJUDICATION)
+        if adj is not None and isinstance(adj.data, dict):
+            for key in _ADJUDICATION_JSON_KEYS:
+                if key in adj.data:
+                    payload[key] = adj.data[key]
+        if score is not None:
+            from .adjudication import run_state  # noqa: PLC0415 - see the module note on layering
+            payload["runState"] = run_state(score)
+        plugins = self.by_name(PHASE_PLUGIN_SWEEP)
+        if plugins is not None and isinstance(plugins.data, dict):
+            payload["pluginSweep"] = plugins.data
+        from .report import _sanitize_tree  # noqa: PLC0415 - see the docstring
+        return _sanitize_tree(payload)
+
+    def to_ledger(self, findings, *, degraded_count: int = 0,
+                 attestation: dict | None = None, live_test_bucket=None,
+                 behavioral_analysis: dict | None = None, ctx=None,
+                 multiturn_freshly_issued: bool = False,
+                 live_test_proof=None) -> LayerLedger:
+        """C-425: project this pipeline's phases onto the five-layer ledger (layers.py).
+
+        The mapping (decided; implemented as specified, not redesigned):
+
+        * ``static`` - B-799: ``ran`` only when a real config was actually read this
+          run. Before this, the static layer was unconditionally ``ran`` on any audit
+          path (the checks engine itself always executes) - which let a session that
+          saw ZERO OpenClaw config still earn a letter grade: the config-derived
+          checks correctly degraded to UNKNOWN, nothing else caught it, and the ledger
+          said the layer had run regardless. *ctx* is optional and additive, exactly
+          like every other optional argument on this method - every pre-existing call
+          site that omits it (or passes ``None``) sees byte-identical ``STATUS_RAN``
+          behaviour, which is what keeps ``tests/test_c425_full_ledger.py``'s
+          ctx-less constructions pinned. When *ctx* IS supplied, the status is read
+          through :func:`scoring._config_blind_signal` - the SAME adversarially
+          reviewed B-306/B-363 structural signal ``scoring.compute`` already trusts to
+          cap the grade, reused here rather than re-derived so the ledger and the
+          score's own cap can never disagree about what "blind" means (including its
+          B-306 safe-symlink exemption - a dotfiles-style config symlink the collector
+          safely followed is NOT blind, and neither reads this layer as anything but
+          ``ran``). Two distinct non-``ran`` outcomes, matching the two structurally
+          different facts that signal already tells apart:
+
+            - reason ``"absent"`` (no openclaw.json/clawdbot.json found at all) ->
+              :data:`~clawseccheck.layers.STATUS_UNAVAILABLE` - there was nothing to
+              ask, by construction; an environment fact, not a tool failure, so this
+              must not read as "the layer tried and blew up" to
+              ``--exit-code-scheme graduated`` (that scheme's own STATUS_ERROR-only
+              reading is deliberate - see ``cli._findings_exit_gate``'s docstring).
+              ``cli.py``'s ``--exit-code``/``--fail-on`` gates already trip on this
+              run through their own direct ``ctx.config_found`` read, independent of
+              this ledger, so a caller does not depend on this status for that.
+            - reason ``"unreadable"`` (present but unparseable/unreadable bytes) ->
+              :data:`~clawseccheck.layers.STATUS_ERROR` - the tool DID try to read a
+              real file this run and failed; this is exactly the state
+              ``STATUS_ERROR`` is reserved for elsewhere in this method (the plugin
+              sweep / behavioral replay below), so the graduated exit-code scheme
+              correctly ranks it as "could not produce a trustworthy verdict".
+
+          ``not_reached`` names *degraded_count* - the SAME figure ``scoring.compute``'s
+          own DEGRADED_CHECK_CAP already discloses (``score.degraded_count``) - passed
+          in by the caller rather than re-derived here, so the ledger's line and the
+          score's own cap can never disagree. That disclosure is unconditional and
+          additive to either blind-config branch above: a blind config and a handful
+          of unrelated degraded checks are two different facts, and neither may hide
+          the other.
+        * ``installed_sweep`` - ``ran`` only when BOTH :data:`PHASE_SKILL_SWEEP` and
+          :data:`PHASE_PLUGIN_SWEEP` are present in ``self.phases`` and each is
+          itself ``ran``; otherwise the WORSE of the two (:func:`_worse_status`) - a
+          phase that errored can never hide behind a sibling that was merely
+          skipped. A phase absent from ``self.phases`` entirely reads as
+          ``not_reached`` (it never got a turn). ``not_reached`` is the union of
+          both phases' own ``not_scanned`` lists - never a fresh count.
+        * ``logs_trajectories`` - the log/trajectory content scan (B164) runs inside
+          the base audit unconditionally, so this STARTS ``ran``; :data:`PHASE_BEHAVIORAL`
+          (when present in ``self.phases``) can only make it WORSE, never better -
+          same :func:`_worse_status` merge. ``not_reached`` is B164's own "N
+          log/transcript sink(s) not scanned" figure (:func:`_b164_not_reached`),
+          parsed from that Finding's own disclosure rather than re-derived.
+        * ``self_report`` - ``ran`` iff *attestation* is a non-empty dict that answers
+          at least one question a check reads (:func:`_attestation_has_answers`; a
+          genuinely-supplied, schema-valid attestation reached ``audit()`` - an
+          absent or malformed one parses to ``{}``, see
+          ``attest.parse_attestation``). A dict that answers none (C-723) is
+          ``not_submitted`` with a ``not_reached`` line saying so; an absent one is
+          ``not_submitted`` with none (nothing arrived, B-603).
+          There is NO freshness concept in the attestation schema (no timestamp
+          field), so ``ran`` can only ever mean "one was supplied", never "recently"
+          - disclosed via ``not_reached`` rather than silently implied.
+        * ``live_behaviour`` - **the trap this task exists to close.** ``ran`` iff
+          *live_test_bucket* (the raw ``--judged-bundle`` ``"liveTest"`` object)
+          carries at least one structurally-valid entry
+          (:func:`_valid_live_test_entries`) - REGARDLESS of that entry's verdict.
+          This is deliberately NOT ``live_test_cap_signal(bucket).hit``, which is
+          True ONLY for a VULNERABLE entry (the self-attestation guard - see that
+          function's own docstring, and ``scoring.LIVE_INJECTION_CAP``'s): reading
+          ``.hit`` here would make a user whose live test came back RESISTANT read
+          as ``not_reached`` and lose their grade for PASSING it. Presence +
+          well-formedness only, never the verdict's value - that asymmetry stays
+          exactly where it already lives, in the score's cap-only signal, not here.
+          "Structurally-valid" is F-193-strengthened as of this change: it now also
+          requires the id to be one the tool's own ``make_*()`` generator could
+          actually have produced (:func:`_is_generated_scenario_id`), and - via
+          *multiturn_freshly_issued* - excludes any multiturn entry submitted in the
+          same invocation that issued the plant. A submission this layer used to
+          accept and no longer does is not a regression; it is exactly the gap this
+          change exists to close.
+
+        B-558 adds a SECOND, independent axis on top of the mapping above:
+        ``LayerState.coverage`` - did a layer that *ran* also exhaust its subject?
+        This slice only answers it for ``logs_trajectories``, and only from
+        *behavioral_analysis* (the raw dict ``behavioral.analyze(ctx)`` returns, when
+        the caller actually ran it - never re-derived here):
+
+        * not ``behavioral_ran`` (no :data:`PHASE_BEHAVIORAL` phase, or one present but
+          not itself ``ran``) -> :data:`~clawseccheck.layers.COVERAGE_UNKNOWN` - today's
+          behaviour, byte for byte. B164 scanning log sinks inside the base audit is
+          NOT proof the replay modes ran (the exact trap
+          ``test_the_replay_modes_survive_the_layer_being_marked_as_having_run`` pins),
+          so absent a real replay this layer's coverage stays unasked, same as every
+          other layer below.
+        * ``behavioral_ran`` and either ``behavioral.analysis_incompleteness(...)``
+          names a reason the replay could not reach a clean verdict, or B164's own
+          "not scanned" figure is non-empty -> :data:`~clawseccheck.layers.
+          COVERAGE_PARTIAL`, and that reason is folded into ``not_reached`` alongside
+          B164's.
+        * otherwise -> :data:`~clawseccheck.layers.COVERAGE_COMPLETE`.
+
+        The other four layers get an explicit :data:`~clawseccheck.layers.
+        COVERAGE_UNKNOWN` here - the field's own default - each for a DIFFERENT
+        reason, spelled out at each assignment below so a future reader does not
+        "fix" one of them into the wrong state:
+
+        * ``installed_sweep`` - cannot be reported at all yet. ``cli.py``'s
+          ``_build_layer_ledger`` fabricates this layer's phases from a
+          ``commit_full_phases`` PROMISE before the sweep actually runs (see that
+          function's own docstring), so a real completeness signal has nothing to
+          project from. Filed as B-723; out of scope here.
+        * ``live_behaviour`` - unobservable: this method never attaches
+          ``not_reached`` to it at all (below), and "were all scenario kinds
+          exercised" is not derivable from the raw bundle.
+        * ``self_report`` - its ``not_reached`` (above) is filled UNCONDITIONALLY
+          whenever ``ran``, because attestation freshness is unverifiable by
+          construction - completeness there is a constant, not a measurement, so it
+          stays UNKNOWN rather than a permanent, unearned PARTIAL.
+        * ``static`` - this axis (did a ``ran`` static layer exhaust its subject) is
+          a separate question from B-799's *status* fix above and is still not
+          answered here - ``coverage`` stays :data:`~clawseccheck.layers.
+          COVERAGE_UNKNOWN` regardless. The layer is also still excluded from the
+          scope note by ``test_static_layer_is_not_in_the_scope_note`` - see
+          ``report.py``'s own ``_missing_layers_sentence``/config-blind paragraphs for
+          where a non-``ran`` static layer IS explained to the reader instead.
+        """
+        skill = self.by_name(PHASE_SKILL_SWEEP)
+        plugin = self.by_name(PHASE_PLUGIN_SWEEP)
+        skill_status = skill.status if skill is not None else STATUS_NOT_REACHED
+        plugin_status = plugin.status if plugin is not None else STATUS_NOT_REACHED
+        if skill_status == STATUS_RAN and plugin_status == STATUS_RAN:
+            sweep_status = STATUS_RAN
+        else:
+            sweep_status = _worse_status(skill_status, plugin_status)
+        sweep_not_reached = tuple(skill.not_scanned if skill is not None else []) + tuple(
+            plugin.not_scanned if plugin is not None else [])
+
+        behavioral = self.by_name(PHASE_BEHAVIORAL)
+        logs_status = (
+            _worse_status(STATUS_RAN, behavioral.status) if behavioral is not None
+            else STATUS_RAN
+        )
+        # B-558: the SAME presence-and-status check `logs_status` above already makes
+        # - the existing flag the coverage rule is required to reuse, not a second one.
+        behavioral_ran = behavioral is not None and behavioral.status == STATUS_RAN
+
+        b164_not_reached = _b164_not_reached(findings)
+        if not behavioral_ran:
+            logs_coverage = COVERAGE_UNKNOWN
+            logs_not_reached = b164_not_reached
+        else:
+            # `behavioral_analysis` is None only if a caller marks the phase `ran`
+            # without handing in the analysis it ran against - not a shape any real
+            # call site produces (cli.py threads the two together), but guarded so a
+            # hand-built PhaseResult in a test cannot crash this method.
+            incompleteness_reason = (
+                behavioral_analysis_incompleteness(behavioral_analysis)
+                if behavioral_analysis is not None else None
+            )
+            if incompleteness_reason is not None or b164_not_reached:
+                logs_coverage = COVERAGE_PARTIAL
+                logs_not_reached = (
+                    ((incompleteness_reason,) if incompleteness_reason is not None else ())
+                    + b164_not_reached
+                )
+            else:
+                logs_coverage = COVERAGE_COMPLETE
+                logs_not_reached = b164_not_reached
+
+        static_reasons: list[str] = []
+        if degraded_count > 0:
+            plural = "check" if degraded_count == 1 else "checks"
+            static_reasons.append(
+                f"{degraded_count} {plural} could not reach a verdict this run")
+
+        # B-799: reuse scoring.py's own B-306/B-363 structural signal rather than
+        # re-derive it - see this method's own docstring for the full reasoning.
+        # ctx=None (every pre-existing caller) makes config_blind permanently False,
+        # so static_status falls through to STATUS_RAN unchanged.
+        config_blind, config_blind_reason = _config_blind_signal(ctx)
+        if config_blind and config_blind_reason == "absent":
+            static_status = STATUS_UNAVAILABLE
+            static_reasons.insert(
+                0,
+                "no openclaw.json (or legacy clawdbot.json) was found in the audited "
+                "home \u2014 there was nothing for the static config audit to read",
+            )
+        elif config_blind and config_blind_reason == "unreadable":
+            static_status = STATUS_ERROR
+            static_reasons.insert(
+                0,
+                "openclaw.json is present but could not be parsed \u2014 the static "
+                "config audit could not read it",
+            )
+        else:
+            static_status = STATUS_RAN
+        static_not_reached: tuple = tuple(static_reasons)
+
+        if attestation and not _attestation_has_answers(attestation):
+            # C-723: something arrived but it answers nothing (a bare schema, notes, the
+            # unfilled --ask template). Counting it as the agent's self-report would let a
+            # run be graded on zero attested content with nothing saying so.
+            self_report_status = STATUS_NOT_SUBMITTED
+            self_report_not_reached = (
+                "the attestation carried no answers \u2014 none of the fields the audit "
+                "reads held a usable value (a bare schema, notes, empty lists and "
+                "'unknown' placeholders are not answers), so no agent self-report was "
+                "obtained",
+            )
+        elif attestation:
+            self_report_status = STATUS_RAN
+            self_report_not_reached = (
+                "attestation freshness not verified \u2014 the schema carries no "
+                "timestamp, so this can only mean one was supplied, never that it "
+                "is recent",
+            )
+        else:
+            # B-603: the attestation did not arrive; whether one COULD have is not
+            # something this run observed.
+            self_report_status = STATUS_NOT_SUBMITTED
+            self_report_not_reached = ()
+
+        live_status = (
+            STATUS_RAN if _valid_live_test_entries(
+                live_test_bucket, multiturn_freshly_issued=multiturn_freshly_issued,
+                proof=live_test_proof)
+            else STATUS_NOT_SUBMITTED
+        )
+        # F-193: the same disclosure idiom LAYER_SELF_REPORT uses below for attestation
+        # freshness - what this layer could NOT confirm, in plain English, rather than
+        # a silent gap. `not_reached_lines` returns () when live_test_proof is None
+        # (no caller has cross-checked anything, byte-identical to before this
+        # feature) or when every checked entry agreed with its evidence.
+        live_not_reached = (
+            _livetestproof.not_reached_lines(live_test_proof)
+            if live_test_proof is not None else ()
+        ) + _unsettled_live_test_lines(
+            live_test_bucket, multiturn_freshly_issued=multiturn_freshly_issued,
+            proof=live_test_proof)
+
+        return LayerLedger(states={
+            # B-799: status now honestly reflects whether a config was actually read
+            # (see this method's own docstring) - coverage stays UNKNOWN (B-558, not
+            # this slice's concern), and the layer is still excluded from the scope
+            # note by test_static_layer_is_not_in_the_scope_note.
+            LAYER_STATIC: LayerState(
+                status=static_status, not_reached=static_not_reached,
+                coverage=COVERAGE_UNKNOWN),
+            # B-558/B-723: this layer's phases are fabricated from a
+            # commit_full_phases PROMISE before the sweep runs (cli._build_layer_ledger)
+            # - there is no real PipelineResult to project a completeness signal from.
+            LAYER_INSTALLED_SWEEP: LayerState(
+                status=sweep_status, not_reached=sweep_not_reached,
+                coverage=COVERAGE_UNKNOWN),
+            LAYER_LOGS_TRAJECTORIES: LayerState(
+                status=logs_status, not_reached=logs_not_reached, coverage=logs_coverage),
+            # B-558: not_reached is filled UNCONDITIONALLY whenever ran (below) because
+            # attestation freshness is unverifiable by construction - completeness here
+            # is a constant, not a measurement, so it stays UNKNOWN rather than a
+            # permanent, unearned PARTIAL.
+            LAYER_SELF_REPORT: LayerState(
+                status=self_report_status, not_reached=self_report_not_reached,
+                coverage=COVERAGE_UNKNOWN),
+            # B-558: "were all scenario kinds exercised" is still not derivable from
+            # the raw live-test bundle, so coverage stays UNKNOWN regardless. F-193:
+            # not_reached DOES now carry something, when a caller passed a
+            # live_test_proof - see live_not_reached above.
+            LAYER_LIVE_BEHAVIOUR: LayerState(
+                status=live_status, not_reached=live_not_reached,
+                coverage=COVERAGE_UNKNOWN),
+        })
+
+
+def _banner(title: str) -> list[str]:
+    return ["", "=" * 60, f"CLAWSECCHECK {title}", "=" * 60]
+
+
+def render_sections(result: PipelineResult, ascii_only: bool = False) -> list[str]:
+    """P10 verbose - the appended sections, as lines, in phase order.
+
+    A phase that did not run still gets its banner and one honest line saying what was
+    not done. Silence would be indistinguishable from "nothing to report".
+    """
+    lines: list[str] = []
+    for phase in result.phases:
+        if not phase.section:
+            continue
+        title = _SECTION_TITLE.get(phase.name, phase.name.replace("_", " ").upper())
+        lines.extend(_banner(title))
+        if phase.ran and phase.lines:
+            lines.extend(phase.lines)
+        else:
+            marker = "[?]" if ascii_only else "\u2754"
+            lines.append(f"{marker} {_sanitize(phase.detail)}")
+        if phase.ran and phase.not_scanned:
+            bullet = "*" if ascii_only else "\u2022"
+            lines.append("Not scanned \u2014 these are NOT counted as safe:")
+            for name in phase.not_scanned[:12]:
+                lines.append(f"  {bullet} {name}")
+            if len(phase.not_scanned) > 12:
+                lines.append(f"  {bullet} (+{len(phase.not_scanned) - 12} more)")
+    if result.coverage_page:
+        from .coverage import coverage_page_lines  # noqa: PLC0415 - see build_coverage_page
+        lines.extend(_banner("COVERAGE"))
+        lines.extend(coverage_page_lines(result.coverage_page, ascii_only=ascii_only))
+    return lines
+
+
+def quiet_lines(result: PipelineResult) -> list[str]:
+    """P10 quiet - one honest line per phase, the same collapse ``--quiet`` already
+    applies to the self-test and vet-mcp sections.
+
+    Built from the SAME :class:`PhaseResult` objects the verbose branch renders, so the
+    two can state different amounts of detail but can never state different facts.
+    """
+    lines: list[str] = []
+    for phase in result.phases:
+        if not phase.section:
+            continue
+        prefix = _QUIET_PREFIX.get(phase.name, phase.name.replace("_", " ").upper())
+        body = phase.quiet_line if (phase.ran and phase.quiet_line) else phase.detail
+        lines.append(f"{prefix}: {_sanitize(body)}")
+    return lines
+
+
+def run_pipeline(ctx, findings, *, home_dir, skill_sweep=None,
+                 skill_sweep_elapsed_s: float = 0.0, vet_targets=(),
+                 deadline: float | None = None, budget_s: float = DEFAULT_FULL_BUDGET_S,
+                 fast: bool = False, ascii_only: bool = False, version: str = "",
+                 bundle: dict | None = None, score=None,
+                 ledger_path: str | None = None) -> PipelineResult:
+    """Run P7-P9 and roll them up with the already-executed P6.
+
+    ``ledger_path`` (B-599): forwarded to P8's ``run_behavioral`` - see that
+    function's docstring. ``None`` keeps today's default.
+
+    ``deadline`` is injectable so a test can pin the budget's behaviour without
+    sleeping; when omitted, one is opened from ``budget_s``.
+
+    ``--fast`` skips the deep phases (P6-P8) and keeps P9, which costs nothing to emit:
+    it re-runs no check and reads only what the audit already computed. A flag whose
+    only effect would be to suppress a cheap deterministic artifact would be flag
+    surface for nothing.
+
+    B-405: ``vet_targets`` is P6's contribution ONLY (the caller's already-run skill
+    sweep - see the module docstring on why P6 is computed in ``cli.py``, not here).
+    P9 used to see ONLY that: P7's own plugin sweep ran, rendered its own section, and
+    then its vet_targets were simply discarded - a config's plugins were swept and
+    DISPLAYED but never reached adjudication, while its skills always did. That made
+    the judge packet's own-target corpus depend on which renderer built it (a plain
+    `--full` skipped this union entirely; `--dashboard --full`, which calls
+    :func:`run_adjudication` directly instead of through this function, passed ONLY
+    its plugin sweep and no skill sweep at all - the exact opposite gap). Now P7's
+    freshly-swept plugin targets are unioned with the caller's P6 targets before P9
+    runs, so every caller of `run_pipeline` gets the SAME (skills + plugins) corpus
+    regardless of which section it goes on to render.
+    """
+    if deadline is None:
+        deadline = start_deadline(budget_s)
+    result = PipelineResult(budget_s=budget_s, fast=fast)
+
+    fast_note = "skipped \u2014 --fast was given; no target here was inspected."
+
+    # P6 - recorded, not run (see the module docstring).
+    #
+    # B-719: the budget arm is NOT the one P7/P8 use, and the difference is deliberate.
+    # They decide whether to START their work, so a blown deadline is enough on its own.
+    # P6's sweep is executed by the CALLER and handed in, so by the time we look at the
+    # clock the work may already be done - gating on the deadline alone would discard a
+    # completed sweep's real result and invent a coverage hole out of a run that happened.
+    # Hence `skill_sweep is None and ...`: the budget only explains an ABSENT sweep.
+    #
+    # Without this arm an absent sweep fell through to record_skill_sweep(None), i.e.
+    # _skipped(..., "not run.") - and STATUS_SKIPPED means "the operator narrowed the run
+    # (e.g. --fast)", rendered as "skipped by this run's flags". So a user who asked for a
+    # full sweep and lost it to the clock was told they had asked for less, while P7 and
+    # P8, stopped by the very same deadline, correctly reported the budget.
+    if fast:
+        result.add(_skipped(PHASE_SKILL_SWEEP, fast_note))
+    elif skill_sweep is None and budget_exceeded(deadline):
+        result.add(_not_reached(PHASE_SKILL_SWEEP, budget_s))
+    else:
+        result.add(record_skill_sweep(skill_sweep, elapsed_s=skill_sweep_elapsed_s))
+
+    # P7 - installed-plugin sweep. B-405: also captures the raw sweep so its
+    # vet_targets() can join P9's own-target corpus below, not just render its own
+    # section.
+    plugin_sweep_obj = None
+    if fast:
+        result.add(_skipped(PHASE_PLUGIN_SWEEP, fast_note))
+    elif budget_exceeded(deadline):
+        result.add(_not_reached(PHASE_PLUGIN_SWEEP, budget_s))
+    else:
+        plugin_phase, plugin_sweep_obj = _run_plugin_sweep_with_sweep(
+            home_dir, deadline=deadline, ascii_only=ascii_only)
+        result.add(plugin_phase)
+
+    # P8 - behavioural replay.
+    if fast:
+        result.add(_skipped(PHASE_BEHAVIORAL, fast_note))
+    elif budget_exceeded(deadline):
+        result.add(_not_reached(PHASE_BEHAVIORAL, budget_s))
+    else:
+        result.add(run_behavioral(ctx, ascii_only=ascii_only, ledger_path=ledger_path))
+
+    # P9 - adjudication. Deliberately NOT gated on --fast or on the budget: it re-runs
+    # no check, so there is no expense to skip, and the borderline band is exactly what
+    # a user running a shortened pipeline still wants to hand to their agent.
+    # B-405: union P6's (caller-supplied) and P7's (just-swept) vet_targets - see this
+    # function's own docstring.
+    combined_vet_targets = list(vet_targets) + (
+        list(plugin_sweep_obj.vet_targets()) if plugin_sweep_obj is not None else [])
+    result.add(run_adjudication(ctx, findings, vet_targets=combined_vet_targets,
+                                version=version, bundle=bundle, score=score))
+    from .coverage import build_coverage_page  # noqa: PLC0415 - deferred: coverage.py
+    # locally imports report.py (see build_coverage_page's own docstring), and this
+    # module already imports report.py at top level, so a top-level import here would
+    # risk a cycle at import time; deferred keeps it safe.
+    # B-558: whatever the phases evaluated OUTSIDE `CHECKS` this run. Collected from the
+    # phase results rather than named here, so a future phase that evaluates catalogued
+    # ids gets counted without this call site having to learn about it.
+    off_check_findings = [
+        f for phase in result.phases for f in phase.evaluated_findings
+    ]
+    result.coverage_page = build_coverage_page(
+        ctx, findings, skill_sweep=skill_sweep, plugin_sweep=plugin_sweep_obj,
+        extra_findings=off_check_findings,
+        # B-473: `fast` is the only reason a --full run reaches here with no sweep, so
+        # name it - "needs --full" was being printed to an operator who had passed --full.
+        sweep_skip_reason=("not scanned this run (--fast drops the sweep phases)"
+                           if fast else None))
+    result.plugin_sweep_obj = plugin_sweep_obj  # B-792: see the field's own comment
+    return result

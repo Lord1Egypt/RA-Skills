@@ -1,44 +1,59 @@
-## Description: <br>
-Analyzes query patterns for a specified table or collection, designs reusable indexes, and validates changes through iterative EXPLAIN checks in full-table or single-query mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes query patterns for a target table or collection, designs reusable indexes, and iterates with EXPLAIN validation in full or single-query workflows.
 
-## Publisher: <br>
-[jiang-zx](https://clawhub.ai/user/jiang-zx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiang-zx](https://clawhub.ai/user/jiang-zx)
 
-## Use Case: <br>
-Developers and database engineers use this skill to inventory queries for a target table or collection, design minimal reusable indexes, validate index usage with EXPLAIN output, and prepare rollback SQL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose or execute database index creation or deletion, and the artifact describes a default no-confirmation mode. <br>
-Mitigation: Use confirmation-required mode, require human review before DDL or dropIndex execution, and keep rollback SQL with each proposed index change. <br>
-Risk: Index changes can affect write performance, locking behavior, storage use, and query plans. <br>
-Mitigation: Run the workflow against development or staging first, use least-privilege database credentials for discovery, compare before-and-after EXPLAIN results, and review production rollout separately. <br>
-Risk: Deleting an existing index may regress unobserved queries if evidence is incomplete. <br>
-Mitigation: Treat index deletion as a candidate until replacement coverage, non-regressing EXPLAIN output, and a rebuild path are documented. <br>
+## Use Case:
 
+Developers and database engineers use this skill to inventory query usage for a target table or collection, design a minimal reusable index set, justify schema changes, validate plans with EXPLAIN, and document rollback steps.
 
-## Reference(s): <br>
-- [Database index and EXPLAIN rules](references/index-rules.md) <br>
-- [MySQL EXPLAIN guide](references/mysql-explain-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/jiang-zx/index-optimization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with SQL, MongoDB commands, shell commands, EXPLAIN summaries, and rollback statements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes query inventory, access-pattern summary, index DDL or createIndex commands, confirmation records, EXPLAIN validation, iteration logs, final recommendations, and rollback SQL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can propose or execute schema-changing index creation or deletion without explicit approval in its default no-confirmation mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit confirmation-required mode, review each DDL statement before execution, and require intentional approval before any index creation or deletion.
+
+Risk: DROP INDEX or dropIndex operations can degrade production workloads if the replacement index has not been validated.
+
+Mitigation: Do not allow automatic index deletion on production databases; validate replacement plans with EXPLAIN and keep rollback DDL before any approved drop.
+
+Risk: Discovery and EXPLAIN steps may require database access and could expose or affect sensitive environments if run with broad credentials.
+
+Mitigation: Run discovery and EXPLAIN against development or staging targets with read-only credentials until a specific reviewed DDL change is approved.
+
+## Reference(s):
+
+- [Index Rules](references/index-rules.md)
+- [MySQL EXPLAIN Guide](references/mysql-explain-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/jiang-zx/skills/index-optimization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with SQL or MongoDB DDL, EXPLAIN summaries, clickable code-location links, and rollback commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce SQL migration files under docs/sql for SQL database workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Extracts text from scanned documents, photographed pages, handwritten notes, and images using OCR through the MinerU Open API CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OCR document extraction - extract text from scanned documents, photos, and images using OCR.
 
-## Publisher: <br>
-[tanis90](https://clawhub.ai/user/tanis90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tanis90](https://clawhub.ai/user/tanis90)
 
-## Use Case: <br>
-External users and developers use this skill to extract text from scanned PDFs, photographed documents, image files, and document URLs. It is suited for OCR workflows where the agent should propose or run MinerU CLI commands and return extracted text or Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Documents are uploaded to MinerU's cloud OCR service for processing. <br>
-Mitigation: Avoid processing confidential legal, medical, financial, or business documents unless MinerU's privacy and retention practices meet the user's needs. <br>
-Risk: The skill can process local file paths and URLs selected by the user. <br>
-Mitigation: Confirm the exact file or URL before uploading it for OCR. <br>
+## Use Case:
 
+Developers and external users use this skill to extract text from scanned PDFs, photographed pages, handwritten notes, and image files by invoking the MinerU Open API CLI.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tanis90/scan-to-markdown) <br>
-- [MinerU](https://mineru.net) <br>
-- [MinerU CLI download](https://mineru.net/ecosystem?tab=cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and extracted OCR text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process local files or document URLs through MinerU's cloud OCR service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Documents are uploaded to MinerU's cloud API for OCR processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid confidential, regulated, or private documents unless MinerU's terms and the processing model have been reviewed and accepted.
+
+Risk: The skill relies on unpinned third-party CLI installation sources.
+
+Mitigation: Use a pinned, reviewed installer version where possible and run OCR workflows in an isolated environment for sensitive use cases.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tanis90/skills/scan-to-markdown)
+- [MinerU](https://mineru.net)
+- [MinerU CLI](https://mineru.net/ecosystem?tab=cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and OCR result guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports local files and URLs for PDF, PNG, JPG, WebP, BMP, and TIFF inputs up to 10MB or 20 pages, according to the artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

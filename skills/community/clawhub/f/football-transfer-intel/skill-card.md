@@ -1,46 +1,58 @@
-## Description: <br>
-Football transfer intelligence for real-time rumour tracking, AI Truth Meter credibility scores, and multi-source verification across 137,000+ transfer events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Football transfer intelligence: real-time rumour tracking, AI Truth Meter credibility scores, and multi-source verification across 137,000+ transfer events.
 
-## Publisher: <br>
-[leeleon](https://clawhub.ai/user/leeleon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leeleon](https://clawhub.ai/user/leeleon)
 
-## Use Case: <br>
-External users and football analysts use this skill to retrieve trending transfer rumours, inspect player-specific rumour profiles, and request credibility scores for player-to-club links. The skill helps an agent summarize source signals, transfer likelihood, sentiment, and relevant error or credit guidance from the Rising Transfers API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Football player and club search terms are sent to Rising Transfers for API-backed lookups. <br>
-Mitigation: Install only if that data sharing is acceptable, and use hot topics mode when detailed search terms do not need to be sent. <br>
-Risk: Authenticated detailed lookups can consume Rising Transfers credits. <br>
-Mitigation: Use a limited or dedicated RT_API_KEY and monitor credit usage for transfer detail and Truth Meter queries. <br>
-Risk: The skill may be invoked automatically for football transfer questions. <br>
-Mitigation: Disable automatic skill discovery or approve API-backed queries manually when stricter control is needed. <br>
+## Use Case:
 
+External users and football analysts use this skill to check trending transfer stories, retrieve player-specific rumour details, and assess the credibility of proposed player-to-club moves.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/leeleon/football-transfer-intel) <br>
-- [Rising Transfers API](https://api.risingtransfers.com) <br>
-- [Hot topics endpoint](https://api.risingtransfers.com/api/v1/intelligence/hot-topics) <br>
-- [Transfer intelligence endpoint](https://api.risingtransfers.com/api/v1/intelligence/transfer) <br>
-- [Truth Meter verification endpoint](https://api.risingtransfers.com/api/v1/intel/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown transfer summaries with credibility scores, source lists, API-derived fields, and concise setup or error guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses RT_API_KEY for authenticated detailed lookups; hot topics can run without an API key. Detailed calls may consume Rising Transfers credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Player and club search terms are sent to Rising Transfers for football transfer lookup and verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use hot topics without an API key when possible and avoid including unrelated private information in transfer queries.
+
+Risk: Authenticated detailed queries send RT_API_KEY to the Rising Transfers API service.
+
+Mitigation: Store the key in the RT_API_KEY environment variable and use it only for the documented Rising Transfers endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leeleon/skills/football-transfer-intel)
+- [Rising Transfers API](https://api.risingtransfers.com)
+- [Rising Transfers skill repository](https://github.com/LeoandLeon/rising-transfers-clawhub-skills)
+- [Hot Topics endpoint](https://api.risingtransfers.com/api/v1/intelligence/hot-topics)
+- [Transfer Detail endpoint](https://api.risingtransfers.com/api/v1/intelligence/transfer)
+- [Truth Meter verification endpoint](https://api.risingtransfers.com/api/v1/intel/verify)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, guidance]
+
+**Output Format:** [Markdown summaries with transfer scores, source evidence, timestamps, and concise error guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require RT_API_KEY for detailed transfer lookups; hot topics can be used without an API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

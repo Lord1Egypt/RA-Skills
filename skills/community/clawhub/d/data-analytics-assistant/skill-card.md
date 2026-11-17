@@ -1,44 +1,52 @@
-## Description: <br>
-Data Analytics Assistant supports website traffic statistics, user behavior analysis, conversion-rate optimization suggestions, and analytics report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+数据分析助手。支持网站访问统计、用户行为分析、转化率优化建议。
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and site operators use this skill to summarize website traffic, analyze user behavior, identify conversion funnel issues, and draft analytics reports with optimization guidance.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may be used with user analytics data while privacy, consent, and retention rules are not defined in the artifact.
+
+Mitigation: Provide only data you are authorized to analyze, prefer aggregated or anonymized metrics, and apply your own privacy, consent, and retention requirements.
+
+Risk: Reports and optimization plans can include estimated or incomplete metrics.
+
+Mitigation: Label estimates clearly and validate metrics against trusted analytics sources before using recommendations for business decisions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External builders, product teams, and analysts can use this prompt skill to draft Chinese-language website analytics summaries, traffic and behavior reports, funnel analysis, and conversion optimization guidance. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The prompt skill can trigger on broad analytics requests and may produce analytics guidance without access to verified source data. <br>
-Mitigation: Use it for intended website analytics and reporting workflows, and require users to provide or confirm source data before relying on results. <br>
-Risk: Example output may include estimated metrics when real analytics data is unavailable. <br>
-Mitigation: Label estimates clearly and replace them with measured data before making operational or commercial decisions. <br>
-Risk: Future versions that add Google Analytics integration, credentials, executable scripts, or write access would increase security and privacy risk. <br>
-Mitigation: Review and rescan future versions before deployment, and prefer narrow, read-only analytics access for real data. <br>
+**Output Format:** [Markdown reports, metric summaries, tables, and concise recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/data-analytics-assistant) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
+**Other Properties Related to Output:** [May include estimated metrics, funnel analysis, visualization recommendations, and action plans.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown reports, metric tables, and optimization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code is included in this release; outputs may include estimates, analytics summaries, and suggested next actions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

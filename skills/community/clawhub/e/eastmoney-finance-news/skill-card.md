@@ -1,43 +1,58 @@
-## Description: <br>
-Searches Eastmoney financial data for timely news, reports, announcements, and policy analysis based on user queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Eastmoney data to retrieve timely financial news, research reports, announcements, and policy analysis for natural-language financial queries.
 
-## Publisher: <br>
-[yunduanmanbu](https://clawhub.ai/user/yunduanmanbu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunduanmanbu](https://clawhub.ai/user/yunduanmanbu)
 
-## Use Case: <br>
-Developers and financial-analysis agents use this skill to search Eastmoney for current market news, research reports, announcements, policy analysis, and related securities for a natural-language query. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial-search queries are sent to Eastmoney's API. <br>
-Mitigation: Avoid confidential, regulated, or proprietary details in queries. <br>
-Risk: The artifact includes a default Eastmoney API key path and has credential-management caveats. <br>
-Mitigation: Set a user-controlled EASTMONEY_APIKEY where possible instead of relying on the provided default. <br>
-Risk: Search results can be saved as eastmoney_news_*.txt files in the working directory. <br>
-Mitigation: Run the script from a directory where creating and retaining those result files is acceptable. <br>
+## Use Case:
 
+Financial analysts, researchers, and agent users use this skill to query Eastmoney for market news, reports, announcements, policy analysis, and related securities for a natural-language topic.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yunduanmanbu/eastmoney-finance-news) <br>
-- [Eastmoney news-search API endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Guidance] <br>
-**Output Format:** [Plain text financial-news results with titles, related securities, and core content; optionally saved as local .txt files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries are sent to Eastmoney's API and saved files use eastmoney_news_*.txt naming.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: User queries and financial topics are sent to the Eastmoney API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not submit confidential investment research, internal company names, regulated data, or other sensitive prompts unless that disclosure is acceptable.
+
+Risk: The artifact includes an embedded default Eastmoney API key.
+
+Mitigation: Prefer a user-controlled, scoped API key through EASTMONEY_APIKEY and treat the embedded default key as exposed.
+
+Risk: The helper can write query results to local text files in the working directory.
+
+Mitigation: Review output files before sharing or committing them, and avoid saving sensitive query results.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yunduanmanbu/skills/eastmoney-finance-news)
+- [Eastmoney News Search API Endpoint](https://mkapi2.dfcfs.com/finskillshub/api/claw/news-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands]
+
+**Output Format:** [Plain text financial-news results with optional local text files; helper code returns parsed JSON responses.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results may include titles, related securities, and core article or report content.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

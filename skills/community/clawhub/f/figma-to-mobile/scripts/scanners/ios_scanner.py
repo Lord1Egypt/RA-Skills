@@ -15,7 +15,8 @@ from pathlib import Path
 
 from .base import (
     ColorEntry, CustomViewEntry, ImageEntry,
-    ModuleReport, ProjectScanner, ScanReport, StringEntry,
+    ModuleReport, ProjectScanner, ScanReport,
+    SemanticLabel, StringEntry,
 )
 from .ios_resources import (
     scan_colorset_assets,
@@ -23,6 +24,34 @@ from .ios_resources import (
 )
 from .ios_assets import scan_imagesets, scan_loose_images
 from .ios_swift_scan import scan_swift_single_pass
+
+# iOS color set name → semantic role mappings.
+# Ordered longest-first to avoid partial matches.
+_COLORSET_SEMANTICS: list[tuple[str, str]] = [
+    ("secondarylabel", "text_secondary"),
+    ("placeholdertext", "text_placeholder"),
+    ("systemgroupedbackground", "surface"),
+    ("systembackground", "background"),
+    ("accentcolor", "primary"),
+    ("primarycolor", "primary"),
+    ("secondarycolor", "secondary"),
+    ("tertiarycolor", "tertiary"),
+    ("surfacecolor", "surface"),
+    ("backgroundcolor", "background"),
+    ("errorcolor", "error"),
+    ("tintcolor", "tint"),
+    ("labelcolor", "text_primary"),
+    ("accent", "primary"),
+    ("primary", "primary"),
+    ("secondary", "secondary"),
+    ("tertiary", "tertiary"),
+    ("surface", "surface"),
+    ("background", "background"),
+    ("error", "error"),
+    ("tint", "tint"),
+    ("label", "text_primary"),
+    ("separator", "separator"),
+]
 
 
 def _discover_modules(project_root: Path) -> list[tuple[str, Path]]:
@@ -71,51 +100,34 @@ def _discover_modules(project_root: Path) -> list[tuple[str, Path]]:
 class IOSScanner(ProjectScanner):
     """Scan an iOS project and produce a unified ScanReport."""
 
-    def scan(
-        self,
-        project_root: Path,
-        target_module: str | None = None,
-        **kwargs,
-    ) -> ScanReport:
-        """
-        Scan the iOS project.
+    def get_platform_name(self) -> str:
+        return "ios"
 
-        Args:
-            project_root: Path to project root.
-            target_module: Optional module name to focus on.
-            level: "resources" (fast) or "full" (default).
-        """
-        level = kwargs.get("level", "full")
-        report = ScanReport(platform="ios", project_root=str(project_root))
+    def discover_modules(
+        self, project_root: Path, target_module: str | None = None,
+    ) -> tuple[list[tuple[str, Path]], list[str]]:
         all_modules = _discover_modules(project_root)
+        errors: list[str] = []
 
         if target_module:
             filtered = [(n, d) for n, d in all_modules if n == target_module]
             if not filtered:
-                report.errors.append(f"Module '{target_module}' not found")
-            all_modules = filtered or all_modules
+                errors.append(f"Module '{target_module}' not found in iOS project")
+            modules = filtered or all_modules
+        else:
+            modules = all_modules
 
+        if not modules:
+            errors.append("No iOS modules found in project")
+
+        return modules, errors
+
+    def scan_module(
+        self, name: str, mod_dir: Path, project_root: Path, level: str = "full",
+    ) -> ModuleReport:
         scan_views = level == "full"
 
-        for mod_name, mod_dir in all_modules:
-            mod_report = self._scan_module(
-                mod_name, mod_dir, project_root, scan_views=scan_views
-            )
-            report.modules.append(mod_report)
-
-        # Build indices
-        report.indices["colors"] = self._build_color_index(report)
-        report.indices["strings"] = self._build_string_index(report)
-        report.indices["images"] = self._build_image_index(report)
-
-        report.finalize_metadata(modules_skipped=0)
-        return report
-
-    def _scan_module(
-        self, name: str, mod_dir: Path, root: Path,
-        *, scan_views: bool = True,
-    ) -> ModuleReport:
-        # Single-pass Swift scan (colors + NSLocalizedString + optionally views)
+        # Single-pass Swift scan (colors + strings + optionally views)
         swift_data = scan_swift_single_pass(
             mod_dir,
             colors=True,
@@ -126,7 +138,7 @@ class IOSScanner(ProjectScanner):
         # Colors: xcassets colorsets + swift code colors
         raw_colors = scan_colorset_assets(mod_dir) + swift_data["colors"]
 
-        # Strings: .strings + JSON i18n + NSLocalizedString (from swift pass)
+        # Strings: .strings + JSON i18n + NSLocalizedString
         raw_strings = (
             scan_strings_files(mod_dir)
             + scan_json_strings(mod_dir)
@@ -148,27 +160,64 @@ class IOSScanner(ProjectScanner):
             custom_views=[CustomViewEntry(**v) for v in raw_views],
         )
 
-    @staticmethod
-    def _build_color_index(report: ScanReport) -> dict:
-        idx: dict[str, str] = {}
+    def build_indices(self, report: ScanReport) -> None:
+        """Build color/string/image indices for iOS."""
+        idx_colors: dict[str, str] = {}
         for mod in report.modules:
             for c in mod.colors:
-                idx[c.name] = c.value
-        return idx
+                if c.name not in idx_colors:
+                    idx_colors[c.name] = c.value
+        report.indices["colors"] = idx_colors
 
-    @staticmethod
-    def _build_string_index(report: ScanReport) -> dict:
-        idx: dict[str, str] = {}
+        idx_strings: dict[str, str] = {}
         for mod in report.modules:
             for s in mod.strings:
                 if s.value:
-                    idx[s.key] = s.value
-        return idx
+                    idx_strings[s.key] = s.value
+        report.indices["strings"] = idx_strings
 
-    @staticmethod
-    def _build_image_index(report: ScanReport) -> dict:
-        idx: dict[str, str] = {}
+        idx_images: dict[str, str] = {}
         for mod in report.modules:
             for i in mod.images:
-                idx[i.name] = i.type
-        return idx
+                if i.name not in idx_images:
+                    idx_images[i.name] = i.type
+        report.indices["images"] = idx_images
+
+    def build_semantic_labels(self, report: ScanReport) -> None:
+        """
+        Annotate iOS resources with semantic roles.
+
+        Sources:
+          1. Asset Catalog color set names → semantic roles
+             (e.g. "AccentColor" → primary, "BackgroundColor" → background)
+          2. Swift code color variable names → heuristics
+             (e.g. "let primaryColor = UIColor(...)")
+        """
+        for mod in report.modules:
+            self._label_ios_colors(mod, report)
+
+    def _label_ios_colors(self, mod: ModuleReport, report: ScanReport) -> None:
+        """Label iOS colors from Asset Catalog naming and code conventions."""
+        for c in mod.colors:
+            # Source 1: Asset Catalog naming (highest confidence)
+            name_clean = c.name.lower().replace(" ", "").replace("_", "").replace("-", "")
+            for keyword, role in _COLORSET_SEMANTICS:
+                kw_clean = keyword.lower().replace(" ", "").replace("_", "").replace("-", "")
+                if kw_clean == name_clean:
+                    report.semantic_labels.append(SemanticLabel(
+                        name=c.value if c.value else c.name,
+                        resource_type="color",
+                        semantic_role=role,
+                        source="asset_naming",
+                        confidence="high",
+                    ))
+                    break
+                elif kw_clean in name_clean:
+                    report.semantic_labels.append(SemanticLabel(
+                        name=c.value if c.value else c.name,
+                        resource_type="color",
+                        semantic_role=role,
+                        source="asset_naming",
+                        confidence="medium",
+                    ))
+                    break

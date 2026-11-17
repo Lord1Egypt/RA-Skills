@@ -1,45 +1,56 @@
-## Description: <br>
-Scans a Solana wallet for reclaimable SOL from dormant token accounts and program buffer accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans a Solana public wallet address for estimated reclaimable SOL from dormant token accounts and program buffer accounts.
 
-## Publisher: <br>
-[nedim1511](https://clawhub.ai/user/nedim1511) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nedim1511](https://clawhub.ai/user/nedim1511)
 
-## Use Case: <br>
-External users and agents use this skill to check whether a Solana public wallet address has reclaimable SOL from dormant token accounts or program buffer accounts. The scan is read-only and returns totals that help the user decide whether to claim through Unclaimed SOL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A scan sends the user's public Solana wallet address to the Unclaimed SOL API. <br>
-Mitigation: Disclose the API call and obtain user consent before running the scan. <br>
-Risk: Users could confuse the scan with wallet recovery or transaction signing. <br>
-Mitigation: Ask only for Solana public addresses and never request private keys, seed phrases, mnemonics, or signing approval. <br>
-Risk: The external API may be unavailable or return unexpected data. <br>
-Mitigation: Surface a concise failure message and direct users to Unclaimed SOL for a manual check. <br>
+## Use Case:
 
+External users and agents use this skill to check a Solana public wallet address for estimated reclaimable SOL and explain the result. The skill requires consent before sending the public address to the Unclaimed SOL API.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/nedim1511/unclaimed-sol-scanner) <br>
-- [Unclaimed SOL](https://unclaimedsol.com) <br>
-- [Privacy Policy](https://blog.unclaimedsol.com/privacy-policy/) <br>
-- [Fee Schedule](https://unclaimedsol.com/fees/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown summary with JSON-derived SOL totals and optional shell command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user consent before sending a public Solana wallet address to the Unclaimed SOL API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The scan sends a public Solana wallet address to unclaimedsol.com and directs users toward a third-party wallet-connection flow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the API call, obtain consent before scanning, and avoid encouraging wallet connection or transaction signing unless the user independently trusts the service.
+
+Risk: The skill depends on the Unclaimed SOL API response for claimable SOL estimates and fee-adjusted totals.
+
+Mitigation: Present scan results as estimates, preserve the returned precision, disclose that totals are net of fees, and reference the published fee schedule.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nedim1511/skills/unclaimed-sol-scanner)
+- [Unclaimed SOL](https://unclaimedsol.com)
+- [Unclaimed SOL privacy policy](https://blog.unclaimedsol.com/privacy-policy/)
+- [Unclaimed SOL fee schedule](https://unclaimedsol.com/fees/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown summary with JSON scan results and inline shell command usage]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Solana public key and user consent before the external API call.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

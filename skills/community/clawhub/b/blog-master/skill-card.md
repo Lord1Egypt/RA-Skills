@@ -1,41 +1,50 @@
-## Description: <br>
-Write SEO-optimized blog posts for any niche and publish them to WordPress, Google Business Profile, and Google Blogger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to draft SEO-optimized blog posts for any niche, including AEO-ready sections, publishing-channel variants, and a seasonal blog calendar template.
 
-## Publisher: <br>
-[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[danielblinker83-bot](https://clawhub.ai/user/danielblinker83-bot)
 
-## Use Case: <br>
-Marketing teams, business owners, and content creators use this skill to draft SEO-focused blog posts, metadata, FAQ-style answer sections, and channel-specific publishing guidance for common blogging platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts can include inaccurate claims, links, metadata, or publishing settings. <br>
-Mitigation: Review generated claims, links, metadata, target account, platform, and scheduled or published status before publishing. <br>
-Risk: The skill includes guidance for public publishing channels. <br>
-Mitigation: Install and use it as a content-writing aid rather than blanket permission to publish automatically. <br>
+## Use Case:
 
+Marketing teams, business owners, and content writers use this skill to turn brand, audience, keyword, and topic inputs into SEO-focused blog drafts and shorter variants for WordPress, Google Business Profile, and Blogger.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/danielblinker83-bot/blog-master) <br>
-- [ContentAI Suite](https://contentai-suite.vercel.app) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown templates and publishing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires human review of claims, links, metadata, target accounts, and publishing status before external publication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated blog drafts or publishing guidance may include unverified claims, links, or account and publish-status choices that affect a real business presence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fact-check generated content, verify links, and explicitly choose the target account and publish status before publishing.
+
+## Reference(s):
+
+- [Blog Master ClawHub release page](https://clawhub.ai/danielblinker83-bot/skills/blog-master)
+- [ContentAI Suite](https://contentai-suite.vercel.app)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown blog drafts, SEO checklists, content calendars, and publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code, credential handling, persistence, or hidden automation; publishing choices require user review.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; skill frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

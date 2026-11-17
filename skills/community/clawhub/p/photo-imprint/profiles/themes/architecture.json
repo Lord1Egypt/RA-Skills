@@ -1,0 +1,10 @@
+{
+  "profile_type": "theme",
+  "id": "architecture",
+  "version": "1.0.0",
+  "subject_priority": ["mass and silhouette", "facade or interior structure", "openings", "material transitions", "human scale cues"],
+  "preserve": ["perspective", "structural proportions", "distinctive rooflines and openings", "repeat patterns"],
+  "deemphasize": ["cars", "temporary barriers", "incidental crowds", "unreadable signage"],
+  "forbid_invention": ["windows", "ornament", "signage text", "structural details"],
+  "prompt_fragment": "Extract the building or interior as the primary subject, preserving perspective, structural proportions, openings, and distinctive material transitions."
+}

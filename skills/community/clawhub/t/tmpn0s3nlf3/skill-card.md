@@ -1,43 +1,54 @@
-## Description: <br>
-Generates native Huawei eNSP .topo topology files from natural-language network design requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Always use when user asks to create, generate, or design a network topology diagram for eNSP (Enterprise Network Simulation Platform), or mentions creating eNSP topologies, network simulations with Huawei devices (AR routers, S5700 switches, PC, Cloud, etc.).
 
-## Publisher: <br>
-[forealmy](https://clawhub.ai/user/forealmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[forealmy](https://clawhub.ai/user/forealmy)
 
-## Use Case: <br>
-Network engineers, lab builders, and developers use this skill to turn requested Huawei eNSP network topologies into ready-to-open .topo files with supported devices, links, labels, and area boxes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated topology files may overwrite an existing file if a filename is reused. <br>
-Mitigation: Choose or review output filenames before writing files in the current working directory. <br>
-Risk: Generated topology files may store sensitive real network details included in the request. <br>
-Mitigation: Avoid including sensitive production network details unless storing them in the generated .topo file is acceptable. <br>
+## Use Case:
 
+Developers and network engineers use this skill to turn natural-language eNSP topology requests into native .topo files for Huawei network simulation. It supports common routers, switches, firewalls, wireless devices, endpoints, connection types, area boxes, and text annotations.
 
-## Reference(s): <br>
-- [eNSP .topo File Format Reference](references/topo-reference.md) <br>
-- [Huawei eNSP Product Page](https://support.huawei.com/enterprise/en/cloud-computing/ensp-pid-21602604) <br>
-- [ClawHub Skill Page](https://clawhub.ai/forealmy/tmpn0s3nlf3) <br>
-- [Publisher Profile](https://clawhub.ai/user/forealmy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Guidance] <br>
-**Output Format:** [Native .topo XML file plus a brief saved-path message] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes generated topology files in the current working directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill creates .topo files in the current workspace, which could overwrite an existing topology if the same filename is reused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or choose the output filename before generation when preserving existing topology files matters.
+
+Risk: Generated network topologies may not exactly match the user's intended device models, interfaces, or layout.
+
+Mitigation: Inspect the generated .topo file in eNSP before using it as the basis for simulation or configuration work.
+
+## Reference(s):
+
+- [eNSP .topo File Format Reference](references/topo-reference.md)
+- [Huawei eNSP product page](https://support.huawei.com/enterprise/en/cloud-computing/ensp-pid-21602604)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Markdown, Guidance]
+
+**Output Format:** [Native .topo XML file with a short Markdown completion message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates .topo files in the current workspace and reports the output path for opening in eNSP.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; frontmatter lists 1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

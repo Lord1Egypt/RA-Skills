@@ -1,39 +1,57 @@
-## Description: <br>
-Drafts OSHA-aligned Job Hazard Analysis and Job Safety Analysis documents for a single job or task, including hazard identification, hierarchy-of-controls planning, risk scoring, worker participation, and unsigned review blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Drafts OSHA-aligned Job Hazard Analyses (JHA/JSA) for a single job or task, covering hazard identification, hierarchy-of-controls planning, risk scoring, worker participation, and unsigned review blocks.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-EHS managers, safety professionals, supervisors, competent persons, and frontline workers use this skill to draft or update a structured JHA/JSA for a job before review and work authorization. It helps collect job scope, hazards, controls, permits, emergency response, worker input, open questions, and sign-off placeholders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-United States <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Draft hazard analyses may be incomplete or incorrect for a specific site, regulation, SDS, permit, PPE choice, or employer procedure. <br>
-Mitigation: A competent person, supervisor, or EHS reviewer should verify regulations, site procedures, SDS details, permits, PPE, controls, and sign-offs before work begins. <br>
-Risk: Job inputs can include worker identifiers, medical records, fit-test details, or other sensitive safety information. <br>
-Mitigation: Users should avoid sharing unnecessary worker identifiers or medical records and should summarize sensitive SDS, medical, and personnel details. <br>
+## Use Case:
 
+EHS managers, safety professionals, supervisors, competent persons, and frontline workers use this skill to draft or update a task-specific JHA/JSA before competent-person, supervisor, or EHS review. It is intended for pre-task hazard analysis, high-risk work planning, permit and training cross-reference, worker participation capture, and unresolved-information tracking.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+United States
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured draft JHA/JSA in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are drafting aids only and remain subject to competent-person, supervisor, or EHS review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: changelog, released 2026-05-28) <br>
+Risk: Draft JHA content may be incomplete, incorrect, or misapplied to site-specific work conditions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat every output as a draft and require review by the responsible competent person, supervisor, or EHS lead before any work proceeds.
+
+Risk: Safety standards, permit requirements, SDS details, or employer procedures may need verification for the specific jobsite.
+
+Mitigation: Verify cited standards, SDS references, AHJ requirements, and site EHS procedures before relying on the draft.
+
+Risk: Personal medical, respiratory fit-test, or worker-identifying information could be exposed if entered into the agent conversation.
+
+Mitigation: Avoid entering personal medical or fit-test details and summarize worker participation without unnecessary identifiers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/job-hazard-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown draft Job Hazard Analysis with tables, review blocks, self-check results, and unresolved-question lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft-only safety planning output; review by the responsible competent person, supervisor, or EHS lead is required before work proceeds.]
+
+## Skill Version(s):
+
+0.1.1 (source: release evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

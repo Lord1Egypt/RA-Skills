@@ -1,44 +1,51 @@
-## Description: <br>
-Use when you want to set up, maintain, or review a Claude Code style layered memory workflow, including `CLAUDE.md` rules, session memory, durable memory, and promotion of stable learnings into instruction files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents set up, maintain, and review a Claude Code style layered memory workflow with instruction memory, session memory, durable memory, and promotion of stable learnings into instruction files.
 
-## Publisher: <br>
-[indulgeback](https://clawhub.ai/user/indulgeback) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[indulgeback](https://clawhub.ai/user/indulgeback)
 
-## Use Case: <br>
-Developers and agent maintainers use this skill to set up and review repo-local layered memory for coding agents, separating durable rules, active session state, and long-lived project context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repo-local memory may retain secrets, credentials, health or financial details, or overly personal notes if users store them there. <br>
-Mitigation: Review `.agent-memory/` content periodically, avoid saving sensitive details, and remove stale or overly personal notes. <br>
-Risk: Stale durable memory can mislead future agent sessions when project files or policies have changed. <br>
-Mitigation: Verify referenced files and current repository state before acting on memory, and update or delete stale memories when drift is found. <br>
+## Use Case:
 
+Developers and engineers use this skill to create and maintain a repo-local memory workflow for coding agents, including durable rules, active session summaries, reusable context files, and memory cleanup reviews.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/indulgeback/claude-code-memory-skill) <br>
-- [Layered Memory Architecture](references/architecture.md) <br>
-- [Host Tool Mapping](references/host-tool-mapping.md) <br>
-- [Example Durable Memory Index](examples/persistent-memory/MEMORY.md) <br>
-- [Example Session Summary](examples/session-memory/summary.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with file layout examples and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or update repo-local memory files only when the user asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Durable memory can accidentally retain secrets, regulated personal data, sensitive user attributes, or stale context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review `.agent-memory/` and instruction-file changes before accepting them, avoid saving sensitive data, and verify durable memories against the current repository before relying on them.
+
+## Reference(s):
+
+- [Layered Memory Architecture](references/architecture.md)
+- [Host Tool Mapping](references/host-tool-mapping.md)
+- [ClawHub Skill Page](https://clawhub.ai/indulgeback/skills/claude-code-memory-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with file layout examples and configuration recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, network payloads, hidden persistence, or credential handling are identified in the server security evidence.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

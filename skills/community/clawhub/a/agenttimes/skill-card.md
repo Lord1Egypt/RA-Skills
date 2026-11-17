@@ -1,42 +1,59 @@
-## Description: <br>
-Live context layer for AI agents. One /ask endpoint for news, weather, crypto prices, and alerts. 228K+ articles, 3,576 feeds, 14 categories. Enriched with sentiment, entities, and credibility. Free to use, no API key needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Live context layer for AI agents. One /ask endpoint for news, weather, crypto prices, and alerts. 228K+ articles, 3,576 feeds, 14 categories. Enriched with sentiment, entities, and credibility. Free to use, no API key needed.
 
-## Publisher: <br>
-[angpenghian](https://clawhub.ai/user/angpenghian) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[angpenghian](https://clawhub.ai/user/angpenghian)
 
-## Use Case: <br>
-Developers and AI agents use Agent Times to query current news, weather, crypto prices, trending stories, and topic alerts through copy-paste curl workflows and JSON API responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webhook subscriptions send query interests and matching article data to the provided webhook URL. <br>
-Mitigation: Use only trusted HTTPS webhook endpoints, understand what data will be delivered, and save the returned unsubscribe secret. <br>
-Risk: External API responses can vary by endpoint and source field. <br>
-Mitigation: Parse the JSON response shape by checking the source field before acting on returned data. <br>
+## Use Case:
 
+Developers and agents use Agenttimes to retrieve current news, weather, crypto prices, trending stories, and topic alerts through the Agent Times API. It is useful when an agent needs live context from a single API surface and can process JSON responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/angpenghian/agenttimes) <br>
-- [Agent Times homepage](https://agenttimes.live) <br>
-- [Agent Times documentation](https://agenttimes.live/info) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash examples and JSON response descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Most documented endpoints require no API key; /search uses x402 micropayment and /subscribe sends matching article data to the user-provided webhook.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-8.1.1 (source: server release metadata) <br>
+Risk: The skill sends user queries to the external agenttimes.live service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when sharing the query with Agent Times is acceptable, and avoid sending sensitive or confidential data.
+
+Risk: The /subscribe endpoint posts matching articles to a caller-provided public webhook and returns an unsubscribe secret.
+
+Mitigation: Use only an intentional public HTTPS webhook URL and store the unsubscribe secret so subscriptions can be removed.
+
+Risk: The /search endpoint is documented as a paid x402 request.
+
+Mitigation: Confirm payment intent before using /search; prefer the documented free endpoints when paid web search is not needed.
+
+## Reference(s):
+
+- [Agent Times homepage](https://agenttimes.live)
+- [Agent Times API documentation](https://agenttimes.live/info)
+- [ClawHub skill listing](https://clawhub.ai/angpenghian/skills/agenttimes)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with curl examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl for command examples; no API key is documented as required for the free endpoints.]
+
+## Skill Version(s):
+
+8.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,53 @@
-## Description: <br>
-Generates a Docker Compose YAML file for a development MySQL and Redis stack. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Docker Compose configuration for common local development services such as databases, caches, search, messaging, web servers, and Node.js.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers and engineers use this skill to quickly create a local Docker Compose configuration for common development services. The bundled generator currently emits MySQL and Redis service definitions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The generator writes to docker-compose.yml by default and can overwrite an existing file at the chosen output path. <br>
-Mitigation: Run it in the intended project directory, pass a non-conflicting output path when needed, and review any existing compose file before generation. <br>
-Risk: The documentation lists several services, but the bundled generator currently emits only MySQL and Redis. <br>
-Mitigation: Review the generated compose file and add or adjust services manually before relying on it for a broader stack. <br>
-Risk: The generated MySQL example uses default local-development credentials. <br>
-Mitigation: Change credentials and environment values before using the compose file outside a disposable local development environment. <br>
+## Use Case:
 
+Developers and engineers use this skill to quickly draft Docker Compose files for local application infrastructure and development environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/docker-compose-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [configuration, shell commands, text] <br>
-**Output Format:** [Docker Compose YAML plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes docker-compose.yml by default unless the caller supplies another output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated services may expose default credentials and unauthenticated services on host ports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change database credentials, add Redis authentication, and limit port bindings before using the compose file on shared, public, or production hosts.
+
+Risk: The bundled generator script can overwrite an existing file when given an output path.
+
+Mitigation: Run it in a clean working directory or review the target output path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sunshine-del-ux/skills/docker-compose-generator)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, code, shell commands, guidance]
+
+**Output Format:** [Text with Docker Compose YAML and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a docker-compose.yml file when the bundled shell script is executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

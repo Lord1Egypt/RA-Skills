@@ -1,40 +1,52 @@
-## Description: <br>
-Audit your OpenClaw configuration against 12 production primitives PLUS 8 common setup footguns (silent cost leaks, prompt-injection paths, zombie session state, dead fallbacks). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits OpenClaw configuration against 12 production primitives and 8 common setup footguns, returning a severity-ranked assessment with specific fixes.
 
-## Publisher: <br>
-[shawnpetros](https://clawhub.ai/user/shawnpetros) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[shawnpetros](https://clawhub.ai/user/shawnpetros)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill after setup, major configuration changes, migration, or periodic checks to audit OpenClaw installations for operational gaps, credential handling issues, stale session state, and channel leak risks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill asks the agent to inspect sensitive local OpenClaw secrets, auth, session, and workspace files more broadly than necessary.
+
+Mitigation: Require redaction and field-only extraction; do not allow secret values or full session contents into the report.
+
+Risk: The audit may suggest deleting or archiving session and thread-binding state as part of remediation.
+
+Mitigation: Manually review any suggested deletions or archival actions before applying them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to inspect a local OpenClaw setup after initial configuration, major changes, migrations, or periodic health checks. It returns severity-ranked findings and concrete fixes for production readiness and common setup risks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The audit reads sensitive local OpenClaw configuration paths and setup files. <br>
-Mitigation: Run it only when you want local OpenClaw settings inspected, and do not allow the agent to read or quote secret values. <br>
-Risk: Audit output may reveal operational details such as API keys, paths, hostnames, session details, or provider names if shared as-is. <br>
-Mitigation: Redact sensitive values and environment-specific details before sharing the findings outside the intended audience. <br>
+**Output Format:** [Markdown structured by severity with score and prioritized fixes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shawnpetros/openclaw-audit) <br>
+**Other Properties Related to Output:** [Severity-ranked findings with critical, warning, and info sections plus an overall 0/20 score.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown structured by severity with scores and prioritized fixes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are ranked critical, warning, and info, with top fixes and a 0/20 audit score.] <br>
+1.2.0 (source: server release metadata and SKILL.md frontmatter)
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

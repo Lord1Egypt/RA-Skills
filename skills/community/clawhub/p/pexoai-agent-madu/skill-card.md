@@ -1,45 +1,60 @@
-## Description: <br>
-Creates short AI-generated videos for ads, social media, brand, product, and explainer content in 16:9, 9:16, or 1:1 aspect ratios. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates short AI-generated videos for ads, social media, brand, product, UGC-style, promo, and explainer content in multiple aspect ratios.
 
-## Publisher: <br>
-[madu1seo-bit](https://clawhub.ai/user/madu1seo-bit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[madu1seo-bit](https://clawhub.ai/user/madu1seo-bit)
 
-## Use Case: <br>
-Creators, marketers, and developers use this skill to submit short-video requests to Pexo, upload optional reference media, monitor generation progress, preview options, and retrieve final video URLs. It supports product ads, social clips, UGC-style content, brand videos, explainers, and revision workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a sensitive Pexo API key from environment variables or ~/.pexo/config. <br>
-Mitigation: Keep the config file private, avoid sharing or committing the key, and rotate the key if exposure is suspected. <br>
-Risk: Prompts and selected media are sent to Pexo as an external video-generation service. <br>
-Mitigation: Submit only media and prompt content that is acceptable to send to Pexo. <br>
-Risk: A misconfigured PEXO_BASE_URL could send credentials or content to the wrong endpoint. <br>
-Mitigation: Verify PEXO_BASE_URL points to the real Pexo endpoint before running the skill. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to request short social videos, product ads, promotional clips, UGC-style content, and revisions through Pexo.
 
-## Reference(s): <br>
-- [ClawHub Release Page](https://clawhub.ai/madu1seo-bit/pexoai-agent-madu) <br>
-- [Pexo Homepage](https://pexo.ai) <br>
-- [Pexo OpenClaw Setup](https://pexo.ai/connect/openclaw) <br>
-- [Setup and Troubleshooting](references/SETUP.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands, JSON status snippets, project links, preview URLs, and final video URLs.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PEXO_API_KEY, PEXO_BASE_URL, curl, jq, and file; generated videos are produced asynchronously by the Pexo service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release metadata) <br>
+Risk: The shell helpers source a local config file before making requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep ~/.pexo/config private and writable only by the current user.
+
+Risk: The API key is sent to the configured PEXO_BASE_URL.
+
+Mitigation: Set PEXO_BASE_URL to https://pexo.ai unless intentionally using another trusted endpoint.
+
+Risk: Video prompts and uploaded media are sent to Pexo for generation.
+
+Mitigation: Avoid sensitive or proprietary files unless Pexo's retention and deletion policies are acceptable.
+
+## Reference(s):
+
+- [Setup and Troubleshooting](references/SETUP.md)
+- [Pexo OpenClaw Setup Guide](https://pexo.ai/connect/openclaw)
+- [Pexo Homepage](https://pexo.ai)
+- [ClawHub Skill Page](https://clawhub.ai/madu1seo-bit/skills/pexoai-agent-madu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON status responses, and plain-text video URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces project links, asset IDs, preview choices, status updates, and final video URLs; requires PEXO_API_KEY and PEXO_BASE_URL.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release evidence; artifact frontmatter states 0.3.4)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

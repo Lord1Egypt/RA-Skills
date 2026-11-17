@@ -1,46 +1,66 @@
-## Description: <br>
-Add browser audio notifications to Moltbot/Clawdbot webchat with 5 intensity levels - from whisper to impossible-to-miss (only when tab is backgrounded). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Add browser audio notifications to Moltbot/Clawdbot webchat with 5 intensity levels - from whisper to impossible-to-miss (only when tab is backgrounded).
 
-## Publisher: <br>
-[brokemac79](https://clawhub.ai/user/brokemac79) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[brokemac79](https://clawhub.ai/user/brokemac79)
 
-## Use Case: <br>
-Developers and webchat operators use this skill to add configurable browser audio alerts to Moltbot or Clawdbot-style webchat deployments. It is intended for chat events where users should hear a notification only when the tab is backgrounded. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Audio notifications may be enabled, too loud, or too frequent for a deployment's user expectations. <br>
-Mitigation: Review the default enabled setting, selected intensity level, volume, and cooldown before deployment, and expose controls so users can disable or lower notifications. <br>
-Risk: Custom sound and preference data stored in localStorage can persist on the browser profile. <br>
-Mitigation: Document local storage behavior for users, provide a reset or removal path for custom sounds, and avoid storing sensitive audio files on shared browser profiles. <br>
-Risk: A settings panel served from an untrusted or user-editable path could present unsafe or misleading controls. <br>
-Mitigation: Serve the bundled settings panel from a trusted local path and review related Content Security Policy settings during integration. <br>
+## Use Case:
 
+Developers and webchat maintainers use this skill to add browser-side audio notifications, user settings, and configurable sound intensity to Moltbot/Clawdbot-style webchat interfaces.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/brokemac79/webchat-audio-notifications) <br>
-- [Integration Guide](artifact/docs/integration.md) <br>
-- [Easy Setup Guide](artifact/docs/EASY_SETUP.md) <br>
-- [Sound Files Attribution](artifact/client/sounds/SOUNDS.md) <br>
-- [Howler.js](https://howlerjs.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown with JavaScript, HTML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces browser integration guidance and client-side configuration for webchat audio notifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata; artifact SKILL.md lists 1.1.0) <br>
+Risk: The skill adds browser JavaScript to a webchat page.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the JavaScript before deployment and install it only in webchat environments where browser-side notification behavior is acceptable.
+
+Risk: Uploaded custom sounds and notification preferences persist in browser localStorage.
+
+Mitigation: Avoid storing sensitive audio files as custom sounds, and clear the custom sound or browser data when the data should be removed.
+
+Risk: Browser autoplay and mobile restrictions can prevent audio from playing until a user gesture occurs.
+
+Mitigation: Keep the enable or test-sound prompt visible during setup and test the target browsers, especially iOS Safari and mobile browsers.
+
+Risk: Remote sound assets can add unnecessary availability and privacy exposure.
+
+Mitigation: Prefer local or self-hosted sound assets, as recommended by the security guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brokemac79/skills/webchat-audio-notifications)
+- [Integration Guide](docs/integration.md)
+- [Easy Setup Guide](docs/EASY_SETUP.md)
+- [Sound Files Attribution](client/sounds/SOUNDS.md)
+- [Howler.js](https://howlerjs.com/)
+- [Mixkit Sound Effects License](https://mixkit.co/license/#sfxFree)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JavaScript, HTML, JSON, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes browser-side JavaScript assets, a settings panel, example configuration, local/self-hosted sound assets, and integration guidance.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

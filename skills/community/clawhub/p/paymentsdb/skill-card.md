@@ -1,41 +1,56 @@
-## Description: <br>
-Query Stripe customer and billing data from a synced PostgreSQL database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Stripe customer and billing data from a synced PostgreSQL database. Use when the user asks about Stripe customers, subscriptions, invoices, charges, or any Stripe-related data.
 
-## Publisher: <br>
-[ramonverse](https://clawhub.ai/user/ramonverse) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ramonverse](https://clawhub.ai/user/ramonverse)
 
-## Use Case: <br>
-External operators and developers use this skill to answer questions about Stripe customers, subscriptions, invoices, charges, and related billing records from a read-only PostgreSQL replica. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives the agent SQL access to sensitive Stripe billing data through a database replica. <br>
-Mitigation: Use a dedicated read-only PostgreSQL role limited to the stripe schema and review query results for customer or financial data before sharing them. <br>
-Risk: The setup flow asks the user to place database credentials in query.sh. <br>
-Mitigation: Avoid committing or sharing query.sh after adding credentials, and rotate any password that may have been exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ramonverse/paymentsdb) <br>
-- [Publisher profile](https://clawhub.ai/user/ramonverse) <br>
-- [PaymentsDB provisioning site](https://paymentsdb.com) <br>
+## Use Case:
 
+Developers and operators use this skill to answer questions about Stripe customers, subscriptions, invoices, charges, and related billing records by querying a synced PostgreSQL database.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline SQL and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires psql and configured PostgreSQL credentials in query.sh.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent receives SQL access to a synced Stripe billing database.
+
+Mitigation: Use a dedicated read-only PostgreSQL role restricted to the needed Stripe views, and review queries before execution.
+
+Risk: The setup flow encourages credentials to be placed directly in query.sh.
+
+Mitigation: Store credentials outside the script when possible and rotate any credentials that were stored or shared this way.
+
+Risk: The SQL wrapper does not prevent non-Stripe or mutating SQL.
+
+Mitigation: Restrict database privileges to read-only access and only install the skill when broad SQL query access is acceptable.
+
+## Reference(s):
+
+- [PaymentsDB](https://paymentsdb.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Guidance]
+
+**Output Format:** [Markdown with inline shell and SQL snippets; psql output is unaligned text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires psql and a configured read-only PostgreSQL connection; SQL is passed as a single quoted argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

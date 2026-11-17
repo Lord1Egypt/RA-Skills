@@ -722,7 +722,7 @@ www.asdermato.com
 
 ## Asphalion Proposal
 
-# Benefit-Risk-Intelligence-for-Asphalion.pdf
+# Benefit-RiREDACTED-SECRET.pdf
 
 The First Regulatory-approved Benefit-Risk Intelligence platform
 From Proven Collaboration to Enterprise-Scale Evidence Infrastructure

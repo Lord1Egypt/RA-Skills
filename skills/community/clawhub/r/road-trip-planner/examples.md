@@ -60,11 +60,11 @@ Hailar Airport, Morigele River, Erguna City, Erguna Wetland, Birch Forest Scenic
 | Day 8 | Zhangye → Biandukou → Qilian Grassland → Menyuan / 张掖 → 扁都口 → 祁连草原 → 门源 | 280km | 5.0h |
 | Day 9 | Menyuan → Datong → Xining / 门源 → 大通 → 西宁 | 150km | 2.5h |
 
-**Core map nodes (15) / 核心地图节点（15 个）**：
-Xining City, Ta'er Monastery, Qinghai Lake, Chaka Salt Lake, Delingha City, Dachaidan Emerald Lake, Dachaidan Town, Aksay Kazakh Autonomous County, Dunhuang City, Mingsha Mountain Crescent Spring, Mogao Caves, Jiayuguan Fortress, Zhangye Rainbow Danxia, Qilian Mountain Grassland, Menyuan
+**Core map nodes (16) / 核心地图节点（16 个）**：
+Xining City, Ta'er Monastery, Qinghai Lake, Chaka Salt Lake, Delingha City, Dachaidan Emerald Lake, Dachaidan Town, Aksay Kazakh Autonomous County, Dunhuang City, Mingsha Mountain Crescent Spring, Mogao Caves, Jiayuguan Fortress, Zhangye Rainbow Danxia, Qilian Mountain Grassland, Menyuan, Xining City
 
 **Output / 输出结果**：
-- Personal map QR code (closed loop, 15 nodes — one slot left for user customization)
+- Personal map QR code (closed loop, 16 nodes with Xining preserved at both start and end)
 - Markdown itinerary guide (with altitude sickness, Mogao Caves tickets, temperature tips)
 
 ---

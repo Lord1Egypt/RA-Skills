@@ -1,42 +1,58 @@
-## Description: <br>
-Baidu Map helps developers integrate Baidu Maps location services including geocoding, route planning, POI search, panorama, traffic, weather, static maps, and coordinate conversion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Baidu Map helps agents use a zero-dependency Baidu Maps Web API CLI for geocoding, POI search, routing, coordinate conversion, and BD-09 coordinate-system guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers use this skill to draft and review Baidu Maps API integrations for location search, routing, coordinate conversion, static map generation, and related LBS workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Baidu Maps ak values and related credentials can be exposed if pasted into prompts, logs, screenshots, repositories, or frontend code. <br>
-Mitigation: Keep credentials out of shared prompts and code; prefer server-side handling, key restrictions, and rotation. <br>
-Risk: Precise addresses, coordinates, and IP-derived location data are sensitive and may be sent to Baidu during lookups. <br>
-Mitigation: Only perform user-authorized lookups and minimize location data shared with external APIs. <br>
+## Use Case:
 
+Developers and agents use this skill to query Baidu Maps Web Service APIs, normalize addresses or POI data, troubleshoot BD-09/WGS-84/GCJ-02 coordinate issues, and prepare CLI commands or implementation guidance for map workflows.
 
-## Reference(s): <br>
-- [Baidu Maps API endpoint](https://api.map.baidu.com) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/baidu-map) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with API endpoint examples and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Baidu Maps HTTP request examples and API key handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Map queries, addresses, coordinates, route endpoints, and generic call parameters are sent to Baidu Maps APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data approved for Baidu Maps processing and avoid submitting sensitive locations unless that data sharing is acceptable.
+
+Risk: The generic call command can access additional Baidu endpoints and may consume API quota.
+
+Mitigation: Review the endpoint and parameters before execution, scope the Baidu Maps AK appropriately, and monitor quota usage.
+
+Risk: Baidu Maps defaults to BD-09 and coordinate order differs across commands, which can cause inaccurate locations if mixed with WGS-84 or GCJ-02 data.
+
+Mitigation: Confirm coordinate system and latitude/longitude order before storing or displaying results, and use conversion steps where required.
+
+## Reference(s):
+
+- [Baidu Map ClawHub skill page](https://clawhub.ai/zhangifonly/skills/baidu-map)
+- [Baidu Maps API endpoint](https://api.map.baidu.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require a Baidu Maps server-side AK and can consume Baidu Maps API quota.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

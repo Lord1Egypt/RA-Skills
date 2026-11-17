@@ -1,42 +1,57 @@
-## Description: <br>
-Manages the full deploy cycle - build validation, GitHub push, Vercel deployment, and health checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages the full deploy cycle: build validation, GitHub push, Vercel deployment, and health checks.
 
-## Publisher: <br>
-[guifav](https://clawhub.ai/user/guifav) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guifav](https://clawhub.ai/user/guifav)
 
-## Use Case: <br>
-Developers and engineers use Deploy Pilot to plan, execute, and verify Next.js deployments to Vercel through GitHub, including preview and production releases, health checks, environment-variable checks, and rollback steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can push to GitHub, trigger Vercel deployments, promote deployments, update environment variables, and manage domains, which can affect production availability. <br>
-Mitigation: Use project-scoped, least-privileged Vercel credentials, run only in trusted repositories, and require manual confirmation before production pushes, deployment promotion, environment-variable updates, domain changes, or PR merges. <br>
-Risk: A deployment may ship incomplete changes, failing checks, missing environment variables, or database migrations that are not backward-compatible. <br>
-Mitigation: Complete the planning protocol, run pre-deploy checks, verify feature handoff files, dependencies, environment variables, and migrations, and halt when checks fail. <br>
-Risk: Post-deployment failures may go unnoticed or persist if rollback is delayed. <br>
-Mitigation: Perform health checks, review logs and key pages within five minutes, and use the documented rollback procedure when validation fails. <br>
+## Use Case:
 
+Developers and engineers use Deploy Pilot to plan, execute, and verify GitHub-to-Vercel deployments for Next.js applications, including preview, production, rollback, environment-variable, and health-check workflows.
 
-## Reference(s): <br>
-- [ClawHub Deploy Pilot listing](https://clawhub.ai/guifav/deploy-pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with deployment plans, checklists, command snippets, and status summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands for git, GitHub CLI, Vercel CLI, curl, jq, and local test/build tooling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The skill can guide an agent through production deployment actions using GitHub and Vercel credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege GitHub and Vercel credentials, and require explicit approval before pushes, PR merges, production promotions, domain changes, environment-variable changes, or rollbacks.
+
+Risk: The skill uses mutable CLI execution patterns such as npx for deployment and verification commands.
+
+Mitigation: Prefer pinned or locally installed CLI versions and review command output before continuing with deployment-sensitive steps.
+
+Risk: Incorrect environment-variable, migration, or health-check handling can cause a failed or unsafe deployment.
+
+Mitigation: Complete the planning checklist before deployment, verify required environment variables and migrations, and run post-deploy health checks before reporting success.
+
+## Reference(s):
+
+- [Deploy Pilot on ClawHub](https://clawhub.ai/guifav/skills/deploy-pilot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment plans, pre-deploy checklists, command sequences, health-check summaries, rollback steps, and environment-variable guidance.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata, generated 2026-09-10T20:42:47Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

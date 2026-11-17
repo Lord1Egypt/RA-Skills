@@ -27,7 +27,24 @@ license: MIT
 - 对扫描件进行 OCR 文字识别
 - 将文档分块用于 RAG 应用
 
+
+## 免费资源领取和计费说明
+[百度智能文档分析平台 领取免费测试资源](https://cloud.baidu.com/doc/OCR/s/fk3h7xu7h)
+
+
+[百度智能文档分析平台计费与购买方式](https://cloud.baidu.com/doc/OCR/s/Fls06fa15#%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%EF%BC%88paddleocr-vl%EF%BC%89)
+
+
+| 用户类型 | 免费额度 |
+|---------|---------|
+| 个人实名认证用户 | **200 页** |
+| 企业实名认证用户 | **200 页** |
+
 ## API 配置
+
+### 额度获取方式
+
+您可通过百度智能云平台获取[免费额度](https://cloud.baidu.com/doc/OCR/s/fk3h7xu7h)与[购买调用资源](https://cloud.baidu.com/doc/OCR/s/Fls06fa15#%E6%96%87%E6%A1%A3%E8%A7%A3%E6%9E%90%EF%BC%88paddleocr-vl%EF%BC%89)
 
 ### 环境变量（必须）
 
@@ -156,8 +173,8 @@ python3 scripts/baidu_doc_parser.py --file_url <文件公网URL>
 | 字段 | 类型 | 说明 |
 |------|------|------|
 | `page_id` | string | 页码 ID |
-| `page_num` | int | 页码数 |
-| `text` | string | 当前页的所有纯文字内容 |
+| `page_num` | int | 页码数，从 0 开始 |
+| `text` | string | 当前页的所有纯文字内容，含表格 Markdown |
 | `layouts` | list | 页面内容版式分析的结果 |
 | `tables` | list | 页面表格解析结果 |
 | `images` | list | 页面中图片解析结果 |
@@ -190,7 +207,7 @@ python3 scripts/baidu_doc_parser.py --file_url <文件公网URL>
 
 | 类型 | 说明 |
 |------|------|
-| `para` | 段落 |
+| `text` | 段落 |
 | `table` | 表格 |
 | `image` | 文档中的插图 |
 | `head_tail` | 页面顶部（页眉/页脚） |
@@ -198,6 +215,7 @@ python3 scripts/baidu_doc_parser.py --file_url <文件公网URL>
 | `seal` | 印章 |
 | `title` | 标题 |
 | `formula` | 公式 |
+| `hand_sign` | 手写签名 |
 
 **子类型（sub_type）**：
 

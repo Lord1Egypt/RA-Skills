@@ -1,42 +1,53 @@
-## Description: <br>
-Run OSINT investigations from chat for emails, usernames, domains, IP addresses, phone numbers, photo geolocation, news, social signals, and link-graph intelligence using osint-mcp tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run OSINT investigations from chat - email, username, domain, IP, phone, photo geolocation, plus news, social, and link-graph intelligence - using the osint-mcp tools.
 
-## Publisher: <br>
-[snuri00](https://clawhub.ai/user/snuri00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snuri00](https://clawhub.ai/user/snuri00)
 
-## Use Case: <br>
-Developers, investigators, journalists, and security researchers use this skill for explicit, user-directed open-source intelligence lookups and situational research across identifiers, infrastructure, public sources, and media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be triggered by loosely related investigation requests because of broad OSINT wording. <br>
-Mitigation: Use it only for explicit, user-directed investigation or lookup tasks and confirm the intended scope before searches involving sensitive targets. <br>
-Risk: Lookups involving people, accounts, domains, breaches, or photo geolocation can expose privacy-sensitive information or produce harmful false confidence. <br>
-Mitigation: Corroborate findings across independent sources, label estimates and low-confidence results clearly, and refuse requests that seek stalking, doxxing, harassment, surveillance, location tracking, or harm. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to route authorized OSINT investigations across identifiers, web signals, social sources, image geolocation, and entity-link graphing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snuri00/osint-mcp) <br>
-- [Project homepage](https://github.com/snuri00/osint-mcp) <br>
-- [Publisher profile](https://clawhub.ai/user/snuri00) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tool-selection steps and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference optional API-key configuration for premium OSINT sources; results involving people, breaches, or geolocation should be treated as sensitive and corroborated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.3 (source: server release metadata) <br>
+Risk: The setup asks users to install and persistently run mutable external code from GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the osint-mcp source before installing, and prefer an isolated virtual environment or container.
+
+Risk: Person, breach, and geolocation results can be sensitive or uncertain.
+
+Mitigation: Configure only task-specific API keys, treat results as estimates, corroborate findings, and use the skill only for authorized investigations.
+
+## Reference(s):
+
+- [osint-mcp project homepage](https://github.com/snuri00/osint-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, text, markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and tool-selection instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference sensitive OSINT results, breach data, and geolocation estimates that require corroboration and authorized use.]
+
+## Skill Version(s):
+
+2.4.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

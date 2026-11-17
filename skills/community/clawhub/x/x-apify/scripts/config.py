@@ -10,10 +10,16 @@ from pathlib import Path
 
 # API configuration
 APIFY_API_BASE = "https://api.apify.com/v2"
-DEFAULT_ACTOR_ID = "CJdippxWmn9uRfooo"  # kaitoeasyapi - $0.25/1000 tweets, 32M runs
+# apidojo~tweet-scraper (Tweet Scraper V2). Checked on the Apify API 2026-08-31:
+# public, not deprecated, $0.40 per 1,000 tweets, 0 failed of 4.7M public runs in 30 days.
+# The payloads in fetch_tweets.py (searchTerms / startUrls / maxItems) are this actor's
+# input schema. The previous default kaitoeasyapi takes a different schema and silently
+# returned nothing for those payloads.
+DEFAULT_ACTOR_ID = "apidojo~tweet-scraper"
 
 # Defaults
-DEFAULT_MAX_RESULTS = 20
+# apidojo~tweet-scraper rejects runs below 50 items.
+DEFAULT_MAX_RESULTS = 50
 MAX_QUERY_LENGTH = 500
 
 # Cache TTLs (seconds)
@@ -46,25 +52,11 @@ def get_actor_id():
 
 
 def get_cache_dir():
-    """Get cache directory from environment or use default.
-
-    The cache directory is always resolved relative to the skill root to
-    prevent path-traversal / arbitrary-write attacks via X_APIFY_CACHE_DIR.
-    Any value that resolves outside the skill directory is silently ignored
-    and the safe default is used instead.
-    """
-    skill_root = get_skill_dir().resolve()
+    """Get cache directory from environment or use default."""
     env_dir = os.environ.get("X_APIFY_CACHE_DIR")
     if env_dir:
-        candidate = (skill_root / env_dir).resolve()
-        # Only allow paths inside the skill directory
-        try:
-            candidate.relative_to(skill_root)
-            return candidate
-        except ValueError:
-            # Path escapes skill root — fall back to safe default
-            pass
-    return skill_root / ".cache"
+        return Path(env_dir)
+    return get_skill_dir() / ".cache"
 
 
 def sanitize_query(query):

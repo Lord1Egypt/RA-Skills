@@ -1,43 +1,60 @@
-## Description: <br>
-Uses browser automation to open article links from Toutiao, WeChat public accounts, Zhihu, Xueqiu, and similar sites, extract article metadata and body text, clean the content, and produce summaries or exports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用浏览器自动化阅读今日头条、微信公众号、知乎等平台文章，自动提取标题、作者、发布时间和正文内容，并支持内容清洗和摘要生成。
 
-## Publisher: <br>
-[brainpower168](https://clawhub.ai/user/brainpower168) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brainpower168](https://clawhub.ai/user/brainpower168)
 
-## Use Case: <br>
-Readers, researchers, and content-analysis agents use this skill to fetch public article URLs, extract title, author, date, source URL, and cleaned body text, then generate a short summary or export the result. It is intended for article reading and summarization workflows, not for handling confidential or restricted pages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill opens user-supplied article links in an automated browser. <br>
-Mitigation: Confirm the target URL before use and run it only for pages the user intends the agent to access. <br>
-Risk: Extracted article text can be cached locally in the skill folder and later shown or exported. <br>
-Mitigation: Avoid private, confidential, paywalled, internal, or sensitive pages unless local caching is acceptable, and clear the cache after sensitive processing. <br>
-Risk: Generated summaries and export files may contain copied article content. <br>
-Mitigation: Review exported Markdown, TXT, JSON, or HTML files before sharing and handle them according to the sensitivity of the source article. <br>
+## Use Case:
 
+External users and agents use this skill to read trusted public article URLs from Toutiao, WeChat Official Accounts, Zhihu, Xueqiu, and similar content platforms. It extracts article metadata and body text, cleans the content, generates a concise summary, and can export results for later review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/brainpower168/toutiao-article-reader) <br>
-- [Server-resolved publisher profile](https://clawhub.ai/user/brainpower168) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, html, shell commands, guidance] <br>
-**Output Format:** [Console text or JSON, with optional Markdown, TXT, JSON, or HTML export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include title, author, publish time, source URL, cleaned content, word count, reading time, summary, key points, and value assessment; caches extracted article data locally for 24 hours by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill launches Chromium without its sandbox while visiting user-provided article URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in an isolated environment and only open trusted public article URLs.
+
+Risk: Article URLs and fetched article content are cached locally.
+
+Mitigation: Avoid private, internal, signed, token-bearing, localhost, or metadata-service URLs, and clear the cache when stored content should not persist.
+
+Risk: Browser automation against arbitrary pages can expose the runtime to untrusted web content.
+
+Mitigation: Review URLs before execution and keep usage limited to public content platforms that are appropriate for the environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brainpower168/skills/toutiao-article-reader)
+- [Publisher profile](https://clawhub.ai/user/brainpower168)
+- [Artifact README](README.md)
+- [Artifact skill instructions](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, files, shell commands]
+
+**Output Format:** [Console text or structured JSON, with optional Markdown, TXT, JSON, or HTML export files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include title, author, publish time, platform, original URL, extracted content, word count, estimated reading time, cache status, and heuristic summary fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release, SKILL.md metadata, package.json; artifact CHANGELOG also contains a later v1.1.0 entry for review)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

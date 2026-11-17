@@ -1,40 +1,52 @@
-## Description: <br>
-火一五记忆 manages personal and shared memory files by enterprise WeChat chat_id so an agent can separate user-specific and shared knowledge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+火一五记忆管理系统按企业微信用户分类存储个人记忆和公有记忆。
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and teams use this skill to help an agent save chat-derived memories into per-user and shared Markdown memory files, keeping personal preferences separate from common project or company knowledge.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may automatically retain chat-derived information in local Markdown memory files.
+
+Mitigation: Use it only where users understand that memory can be saved, and review stored content before relying on it.
+
+Risk: Shared memory can be loaded across users without clear consent or safeguards.
+
+Mitigation: Limit shared memory to sanitized, non-sensitive knowledge and have an administrator review, edit, and delete stored content as needed.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Agents and workspace administrators use this skill to classify chat-derived memories into per-user and shared Markdown files, then load the appropriate memory for each enterprise WeChat chat_id. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Chat-derived information may be written to persistent local memory, including shared memory, with unclear consent and retention controls. <br>
-Mitigation: Review the skill before installing it, use it only where persistent local memory is acceptable, and prefer saving only on explicit user request. <br>
-Risk: Shared memory can expose user- or project-specific information to other chats that load the same shared memory file. <br>
-Mitigation: Inspect and delete saved entries regularly, and keep personal memories in per-user files while reserving shared memory for information intended for all users. <br>
+**Output Format:** [Markdown guidance with example memory file content and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/huo15-mem) <br>
+**Other Properties Related to Output:** [Writes and loads local Markdown memory files organized by user and shared scope.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown memory files with optional shell commands for inspection and cleanup] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores memories under per-user and shared local memory paths.] <br>
+1.0.3 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

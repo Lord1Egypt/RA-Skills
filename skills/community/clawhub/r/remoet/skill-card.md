@@ -1,44 +1,51 @@
-## Description: <br>
-Job search and career discovery through your agent. Find tech companies that match your stack, star the ones you'd actually work for, and pull remote developer jobs from your shortlist, all by talking. Backed by company-level tech stack data nobody else has. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Job search and career discovery through your agent. Search the open tech job board directly, or star the companies that match your stack for an ongoing feed of their roles, all by talking. Backed by company-level tech stack data derived from the roles each company is hiring for now.
 
-## Publisher: <br>
-[remoet](https://clawhub.ai/user/remoet) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[remoet](https://clawhub.ai/user/remoet)
 
-## Use Case: <br>
-External developers and job seekers use this skill to find technology companies that match their stack, curate a starred company shortlist, manage a Remoet profile, and retrieve jobs from companies they have already vetted. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send professional profile details, CV-derived work history, projects, education, saved jobs, application notes, and messages to Remoet. <br>
-Mitigation: Review and redact sensitive CV or profile content before asking the agent to import it, and only connect the skill when sharing that information with Remoet is acceptable. <br>
-Risk: Changing visibility can make the user's profile discoverable to companies on the platform. <br>
-Mitigation: Keep visibility set to NONE unless the user intentionally chooses STARRED or ALL visibility after understanding who can discover the profile. <br>
-Risk: Some job actions affect applications, messages, saved jobs, stars, or subscription state. <br>
-Mitigation: Confirm user intent before applying, withdrawing, accepting or rejecting offers, messaging companies, changing stars, or starting an upgrade flow. <br>
+## Use Case:
 
+Job seekers and developers use the skill to find open roles and companies matching their skills, curate a shortlist, and manage career information through an agent.
 
-## Reference(s): <br>
-- [Remoet homepage](https://remoet.dev) <br>
-- [Remoet onboarding](https://remoet.dev/onboarding?utm_source=clawhub) <br>
-- [ClawHub Remoet skill page](https://clawhub.ai/remoet/remoet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON or YAML configuration snippets, and MCP tool-use instructions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Remoet API key or OAuth-capable MCP client; tool results may include profile, company, job, application, digest, subscription, and link tree data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release metadata) <br>
+Risk: CV details may be saved to a Remoet account without first warning the user or getting approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before using CV onboarding, review the profile information proposed for upload and approve it only if you want those details stored in your Remoet account.
+
+## Reference(s):
+
+- [Remoet](https://remoet.dev)
+- [Remoet agent onboarding](https://remoet.dev/onboarding?mode=agent&utm_source=clawhub)
+- [Remoet MCP server](https://api.remoet.dev/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational responses with job and company listings and links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include job matches, company shortlists, saved-job details, and application links.]
+
+## Skill Version(s):
+
+1.5.2 (source: frontmatter, server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

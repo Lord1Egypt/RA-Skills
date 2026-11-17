@@ -1,41 +1,54 @@
-## Description: <br>
-快速笔记 - 想到就记，自动带标签归档(idea/todo/readlater)，本地JSON持久化，支持搜索回溯 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+快速笔记 helps an agent capture short voice or text notes, assign simple idea/todo/readlater tags, persist them locally as JSON, and search them later.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to quickly capture ideas, todos, read-later items, and short knowledge fragments, then search or filter them by keyword and tag. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Notes are saved locally as plaintext JSON, which can expose sensitive content if users store secrets or private personal data. <br>
-Mitigation: Do not store passwords, tokens, financial details, or other secrets unless stronger storage protections are added. <br>
-Risk: Voice capture or broad activation phrases can save unintended note content. <br>
-Mitigation: Confirm note content before saving when using voice input or broad activation phrases. <br>
+## Use Case:
 
+External users and developers can use this skill to quickly record ideas, todos, reading items, and knowledge fragments, then retrieve them by keyword or tag.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-quick-note) <br>
-- [Publisher profile](https://clawhub.ai/user/534422530) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples plus JSON note records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Notes are stored locally as plaintext JSON when the provided implementation is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Notes are saved as an unencrypted local JSON file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing secrets or highly sensitive information, and review or delete saved notes when needed.
+
+Risk: The skill could be invoked accidentally and save unintended note content.
+
+Mitigation: Use deliberate prompts before saving notes and review captured notes for accuracy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-quick-note)
+- [ClawHub publisher profile](https://clawhub.ai/user/534422530)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, JSON]
+
+**Output Format:** [Markdown with inline Python, shell, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local plaintext JSON note records; no third-party dependencies are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

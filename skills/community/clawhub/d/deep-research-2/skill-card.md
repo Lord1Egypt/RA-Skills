@@ -1,44 +1,55 @@
-## Description: <br>
-This skill helps agents perform comprehensive research, deep investigation, and detailed academic-style reporting on complex topics, producing multi-thousand word markdown reports with extensive citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Research helps agents conduct comprehensive investigations and produce detailed, evidence-based Markdown reports with extensive citations.
 
-## Publisher: <br>
-[kongyo2](https://clawhub.ai/user/kongyo2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kongyo2](https://clawhub.ai/user/kongyo2)
 
-## Use Case: <br>
-Researchers, analysts, developers, and other agent users use this skill when they need a structured, source-grounded research report rather than a brief answer. It guides the agent through topic decomposition, staged web research, source evaluation, citation management, section drafting, and final markdown report assembly. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Research scope can expand significantly because the skill emphasizes exhaustive investigation, multilingual search, and several-thousand-word reports. <br>
-Mitigation: Set clear limits on topic scope, browsing depth, source types, languages, and output length before invoking the skill. <br>
-Risk: The workflow may create intermediate markdown draft files when local drafting is permitted. <br>
-Mitigation: Confirm the workspace and file-writing permissions before allowing the agent to create or assemble draft files. <br>
-Risk: Long-form research can still contain incorrect, stale, or poorly verified claims if source access or cross-checking is incomplete. <br>
-Mitigation: Require direct source access, cross-verification of critical claims, and a complete references section for delivered reports. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kongyo2/deep-research-2) <br>
-- [Research Methodology](references/research_methodology.md) <br>
-- [Citation Guidelines](references/citation_guidelines.md) <br>
-- [Report Template](assets/report_template.md) <br>
+## Use Case:
 
+External users and employees can use this skill when they need a rigorous, source-verified investigation that results in a long-form academic-style report. It is suited for complex topics where planning, multilingual search, source evaluation, critical synthesis, and full references matter more than speed.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown research reports with inline citations and a references section] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include intermediate markdown draft files when the agent is allowed to create local drafts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may create intermediate draft files while preparing long research sections.
+
+Mitigation: Use a workspace where draft files are acceptable, and confirm filenames or output location before handling sensitive topics.
+
+Risk: Broad activation wording may make the skill heavier than needed for simple summaries or ordinary explanations.
+
+Mitigation: Use this skill for comprehensive sourced reports, and choose a simpler assistant path for quick answers.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kongyo2/skills/deep-research-2)
+- [Research Methodology](references/research_methodology.md)
+- [Citation Guidelines](references/citation_guidelines.md)
+- [Report Template](assets/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, files]
+
+**Output Format:** [Markdown report with inline citations and a references section]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local draft Markdown files while assembling a long report.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-B2B SaaS product and feature launch planner for coordinating product launches, feature releases, and go-to-market execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+B2B SaaS product and feature launch planner for planning, coordinating, or executing a product launch, feature release, or go-to-market motion.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-Product, marketing, sales, and customer success teams use this skill to turn a B2B SaaS product or feature release into launch positioning, audience messaging, launch-day sequencing, asset planning, and success metrics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renehdzgtz/b2b-saas-product-launch) <br>
+Employees and go-to-market teams use this skill to structure B2B SaaS product or feature launches across Product, Marketing, Sales, and Customer Success. It helps produce launch positioning, checklists, launch-day sequencing, audience messaging, asset plans, and success metrics.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown launch plan with checklists, audience messaging, asset lists, and success metrics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, API keys, or external tool calls are required by the skill.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: Generated launch plans or announcement copy may be inaccurate, incomplete, or not aligned with actual product readiness.
+
+Mitigation: Review launch communications, checklists, and success metrics with Product, Marketing, Sales, Customer Success, and legal stakeholders before public use.
+
+Risk: The skill may activate for broad product announcement requests.
+
+Mitigation: Confirm that the requested task is a B2B SaaS product or feature launch before using the generated plan.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/renehdzgtz/skills/b2b-saas-product-launch)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown launch plan with structured sections and messaging templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning guidance and launch communications that should be reviewed for business accuracy before public use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

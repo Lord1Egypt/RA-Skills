@@ -1,4 +1,4 @@
-# BlaveClaw Strategy Marketplace API
+# Blave Agent Strategy Marketplace API
 
 Use Blave API credentials for all requests.
 Base URL: `https://api.blave.org`
@@ -48,10 +48,12 @@ Content-Type: application/json
   "title": "Strategy Name",
   "description": "What it does and how",
   "price": 300,
-  "category": "trend",
+  "category": "Crypto",
   "code": "...full source code..."
 }
 ```
+`category` is free-form here (any string up to 100 characters, may be empty or omitted; a non-string or longer value is rejected with 400). At review Blave assigns the public category — exactly one of `Crypto`, `TW Stock`, `US Stock`, `Forex`, `Other`.
+
 Status starts as `pending`. Blave reviews and publishes it.
 
 Check submission status:
@@ -67,13 +69,11 @@ Status values: `pending` | `approved` | `unlisted`
 
 ```python
 # ===== STRATEGY 1: BTC SMA Cross =====
-MODE          = "live"
 STRATEGY_NAME = "btc_sma_cross"
 SYMBOL        = "BTCUSDT"
 # ... full strategy 1 code ...
 
 # ===== STRATEGY 2: ETH RSI Fade =====
-MODE          = "live"
 STRATEGY_NAME = "eth_rsi_fade"
 SYMBOL        = "ETHUSDT"
 # ... full strategy 2 code ...
@@ -81,7 +81,7 @@ SYMBOL        = "ETHUSDT"
 
 ```
 POST /openclaw/marketplace/strategies/submit
-{"title": "BTC SMA + ETH RSI Bundle", "description": "...", "price": 500, "category": "bundle", "code": "..."}
+{"title": "BTC SMA + ETH RSI Bundle", "description": "...", "price": 500, "category": "Crypto", "code": "..."}
 ```
 
 In `description`, write a structured block for each strategy separated by `---`.

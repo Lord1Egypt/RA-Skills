@@ -7,14 +7,14 @@ Filters out routine check-in/out and daily summary emails.
 
 import json
 import os
+import re
 import sys
 import base64
-from core.keychain_secrets import load_google_secrets, keyring_module_available, last_keyring_error
-load_google_secrets()
 from datetime import datetime
 from typing import Dict, List, Optional
 
-from utils import write_json_atomic
+from utils import (write_json_atomic, append_capped_id, locked_file,
+                   read_id_list, AuthErrorFlag)
 
 
 class SchoolEmailMonitor:
@@ -31,6 +31,10 @@ class SchoolEmailMonitor:
         self.load_config()
         self.processed_ids = self._load_processed_ids()
         self.calendar_synced_ids = self._load_calendar_synced_ids()
+        # Why the last fetch could not happen. See the vocabulary note below.
+        self.auth_status: Optional[str] = None
+        self.auth_detail: Optional[str] = None
+        self.auth_message: Optional[str] = None
 
     # ─── Config & State ─────────────────────────────────────────────────────
 
@@ -49,31 +53,49 @@ class SchoolEmailMonitor:
                     env_key = val[2:-1]
                     cal[key] = os.environ.get(env_key, "")
 
+    # The JSON files are the ordered record; `processed_ids` /
+    # `calendar_synced_ids` are in-memory membership indexes over them. See
+    # utils.append_capped_id for why the cap must not be applied to the set.
+    # utils.read_id_list is the one implementation; kept as a method so the
+    # existing call sites read the same.
+    _read_id_list = staticmethod(read_id_list)
+
     def _load_processed_ids(self) -> set:
-        if os.path.exists(self.processed_ids_file):
-            with open(self.processed_ids_file, 'r') as f:
-                return set(json.load(f))
-        return set()
+        self._processed_order = self._read_id_list(self.processed_ids_file)
+        return set(self._processed_order)
 
     def _save_processed_ids(self):
-        # Keep only the last 500 IDs to avoid unbounded growth
-        ids_list = list(self.processed_ids)[-500:]
-        write_json_atomic(self.processed_ids_file, ids_list)
+        write_json_atomic(self.processed_ids_file, self._processed_order)
 
     def _mark_processed(self, msg_id: str):
-        self.processed_ids.add(msg_id)
-        self._save_processed_ids()
+        # Locked across read -> append -> write, and re-read INSIDE the lock.
+        # write_json_atomic prevents a corrupt file; it does nothing about a
+        # lost update, and the ordered list is loaded once in __init__. The
+        # runner holds one monitor across ~20 sequential Gmail round trips
+        # while chat can call mark_email_synced at any moment; last writer
+        # wins, and a dropped id means the email is re-fetched and its events
+        # re-proposed to the shared family calendar.
+        with locked_file(self.processed_ids_file):
+            self._processed_order = append_capped_id(
+                self._read_id_list(self.processed_ids_file), msg_id)
+            self.processed_ids = set(self._processed_order)
+            self._save_processed_ids()
 
     def _load_calendar_synced_ids(self) -> set:
-        if os.path.exists(self.calendar_synced_ids_file):
-            with open(self.calendar_synced_ids_file, 'r') as f:
-                return set(json.load(f))
-        return set()
+        self._synced_order = self._read_id_list(self.calendar_synced_ids_file)
+        return set(self._synced_order)
+
+    def mark_calendar_synced(self, msg_id: str):
+        """Record that an email's events reached the calendar."""
+        # Same lost-update race as _mark_processed; same remedy.
+        with locked_file(self.calendar_synced_ids_file):
+            self._synced_order = append_capped_id(
+                self._read_id_list(self.calendar_synced_ids_file), msg_id)
+            self.calendar_synced_ids = set(self._synced_order)
+            self._save_calendar_synced_ids()
 
     def _save_calendar_synced_ids(self):
-        # Keep only the last 500 IDs to avoid unbounded growth
-        ids_list = list(self.calendar_synced_ids)[-500:]
-        write_json_atomic(self.calendar_synced_ids_file, ids_list)
+        write_json_atomic(self.calendar_synced_ids_file, self._synced_order)
 
     # ─── Auth-error deduplication ────────────────────────────────────────────
 
@@ -93,80 +115,47 @@ class SchoolEmailMonitor:
             state = {"notified": notified, "updated_at": datetime.now().isoformat()}
             write_json_atomic(self.auth_error_state_file, state)
         except Exception as e:
-            print(f"[school_email_monitor] Warning: could not save auth_error_state: {e}")
+            print(f"[school_email_monitor] Warning: could not save auth_error_state: {e}", file=sys.stderr)
 
     # ─── Gmail Auth ──────────────────────────────────────────────────────────
 
-    def get_gmail_service(self):
-        from google.oauth2.credentials import Credentials
-        from google.auth.transport.requests import Request
-        from googleapiclient.discovery import build
+    # Set when a fetch cannot happen, so callers can tell WHY without parsing
+    # stdout. One of:
+    #   "no_query"    — school_email_query is empty or unreadable in config
+    #   "auth_failed" — gog could not read mail
+    #
+    # The three-way credential vocabulary that used to live here — env_broken /
+    # no_creds / auth_failed — described homebase's OWN credentials, which it
+    # no longer has. It existed to stop telling the user to re-authenticate
+    # when the real problem was an interpreter without `keyring`. gog owns the
+    # token now and reports its own state via `gog auth status`, so the
+    # distinction has moved to where it can actually be made.
+    #
+    # `auth_message` carries the family-facing text for the FIRST auth_failed
+    # only; on repeat failures it is None so the caller stays silent. That
+    # one-shot behaviour is unchanged and still matters: a revoked token
+    # otherwise alerts on every run, four times a day.
+    AUTH_HELP = (
+        "⚠️ *Google auth error — school emails paused*\n\n"
+        "The Google refresh token has expired or been revoked.\n"
+        "School email monitoring is paused until re-authenticated.\n\n"
+        "*To check:*\n"
+        "  gog auth status\n\n"
+        "*To fix:*\n"
+        "  gog auth add <your-google-account> --services gmail,calendar\n\n"
+        "_(This message will not repeat until the token is fixed and breaks again.)_"
+    )
 
-        client_id     = os.environ.get("GOOGLE_CLIENT_ID", "")
-        client_secret = os.environ.get("GOOGLE_CLIENT_SECRET", "")
-        refresh_token = os.environ.get("GOOGLE_REFRESH_TOKEN", "")
-
-        if not all([client_id, client_secret, refresh_token]):
-            # Distinguish "environment is broken" (interpreter has no `keyring`
-            # module → keychain_secrets silently returned empty) from "the user
-            # actually needs to re-auth." Telling the user to run reauth_google
-            # when keyring isn't even importable is worse than silence — they
-            # run the script, it appears to work, the cron still fails, they
-            # lose trust in every alert.
-            if not keyring_module_available():
-                print(json.dumps({
-                    "status": "env_broken",
-                    "error": "keyring module unavailable in current interpreter",
-                    "interpreter": sys.executable,
-                    "detail": last_keyring_error(),
-                }))
-                print("NO_REPLY")
-                return None
-            print("Error: No valid Google credentials found for Gmail.")
-            return None
-
-        creds = Credentials(
-            token="",
-            refresh_token=refresh_token,
-            token_uri="https://oauth2.googleapis.com/token",
-            client_id=client_id,
-            client_secret=client_secret
-        )
-
-        try:
-            creds.refresh(Request())
-            # Successful auth — clear any previous error flag so future failures notify fresh
-            self._set_auth_error_notified(False)
-            return build('gmail', 'v1', credentials=creds)
-        except Exception as e:
-            err_str = str(e)
-            if self._is_auth_error_notified():
-                # Already notified — log silently, output NO_REPLY so agent sends nothing
-                print(f"[auth-suppressed] Token still invalid ({err_str[:60]}). Run `python core/reauth_google.py` to fix.")
-                print("NO_REPLY")
-            else:
-                # First failure — surface it to WhatsApp once, then set the flag
-                print(
-                    f"⚠️ *Google auth error — school emails paused*\n\n"
-                    f"The Google refresh token has expired or been revoked.\n"
-                    f"School email monitoring is paused until re-authenticated.\n\n"
-                    f"*To fix:*\n"
-                    f"  cd ~/.openclaw/workspace/skills/homebase\n"
-                    f"  python core/reauth_google.py\n\n"
-                    f"_(This message will not repeat until the token is fixed and breaks again.)_"
-                )
-                self._set_auth_error_notified(True)
-            return None
     # ─── Email Body Extraction ───────────────────────────────────────────────
 
     def _extract_body_and_attachments(self, payload: Dict) -> tuple:
         """
-        FIX: Recursive multipart parser — original only went 1 level deep,
-        missing content in nested multipart/alternative or multipart/mixed structures.
-        Returns (body_text, has_pdf).
+        Recursive multipart parser.
+        Returns (body_text, has_pdf, has_image).
         """
         body = ""
         has_pdf = False
+        has_image = False
         mime = payload.get("mimeType", "")
 
         if mime == "text/plain":
@@ -177,12 +166,17 @@ class SchoolEmailMonitor:
         elif mime == "application/pdf":
             has_pdf = True
 
+        elif mime.startswith("image/"):
+            has_image = True
+
         elif mime.startswith("multipart/"):
             for part in payload.get("parts", []):
-                sub_body, sub_pdf = self._extract_body_and_attachments(part)
+                sub_body, sub_pdf, sub_image = self._extract_body_and_attachments(part)
                 body += sub_body
                 if sub_pdf:
                     has_pdf = True
+                if sub_image:
+                    has_image = True
 
         # Fallback: non-multipart with body data but unknown mime
         elif "data" in payload.get("body", {}):
@@ -193,7 +187,7 @@ class SchoolEmailMonitor:
             except Exception:
                 pass
 
-        return body, has_pdf
+        return body, has_pdf, has_image
 
     # ─── Core Fetch ─────────────────────────────────────────────────────────
 
@@ -202,9 +196,7 @@ class SchoolEmailMonitor:
         Fetch recent school emails from Gmail.
         Skips already-processed message IDs by default.
         """
-        service = self.get_gmail_service()
-        if not service:
-            return []
+        from core import gmail
 
         # Build query from config — no hardcoded school domains
         try:
@@ -213,25 +205,32 @@ class SchoolEmailMonitor:
         except Exception:
             query = ""
         if not query:
+            # A missing query is "cannot read mail", not "no mail". Left
+            # undifferentiated it returned [] forever and the runner logged a
+            # quiet day every time — the same shape as the auth failure this
+            # class went to trouble to separate out, and the same family as
+            # the `none`-bucket and has:attachment silent drops.
+            self.auth_status = "no_query"
+            self.auth_detail = "school_email_query is empty or unreadable in config"
             return []
 
         try:
-            results = service.users().messages().list(
-                userId='me', q=query, maxResults=20
-            ).execute()
-            messages = results.get('messages', [])
+            message_ids = gmail.search(query, max_results=20)
+
+            # A search that came back is proof the token works. Clearing the
+            # notified flag here is what re-arms the one-shot alert, so a token
+            # that breaks, gets fixed, and breaks again is reported the second
+            # time too. Without it the first failure would be the only one this
+            # household ever hears about.
+            self._set_auth_error_notified(False)
 
             email_data = []
-            for msg in messages:
-                msg_id = msg['id']
-
+            for msg_id in message_ids:
                 # FIX: Skip already-processed emails properly (was a comment placeholder)
                 if skip_processed and msg_id in self.processed_ids:
                     continue
 
-                txt = service.users().messages().get(
-                    userId='me', id=msg_id, format='full'
-                ).execute()
+                txt = gmail.get_message(msg_id)
 
                 headers = txt['payload'].get('headers', [])
                 subject = next(
@@ -248,7 +247,7 @@ class SchoolEmailMonitor:
                 )
 
                 # FIX: Use recursive parser instead of shallow 1-level check
-                body, has_pdf = self._extract_body_and_attachments(txt['payload'])
+                body, has_pdf, has_image = self._extract_body_and_attachments(txt['payload'])
 
                 # Filter out daily summaries and routine check-in/check-out emails
                 combined = (subject + " " + body).lower()
@@ -266,18 +265,45 @@ class SchoolEmailMonitor:
                     "date": date_str,
                     "body": body[:ctx_limit],
                     "has_pdf_attachment": has_pdf,
+                    "has_inline_image": has_image,
                     "fetched_at": datetime.now().isoformat(),
-                    # Raw Gmail payload kept for PDF attachment download in calendar sync
+                    # Raw Gmail payload kept for attachment download in calendar sync
                     "_payload": txt['payload'],
                 })
 
-                self._mark_processed(msg_id)
+                # Do NOT mark processed here — this email hasn't been acted on
+                # yet, only fetched. Marking processed happens in
+                # mark_email_synced(), once the agent has actually evaluated
+                # it. Otherwise an agent that bails early (crash, hallucinated
+                # tool call, silent no-op) permanently loses the email: it's
+                # already "processed" even though nothing happened.
 
             return email_data
 
         except Exception as e:
-            print(f"Error fetching Gmail: {e}")
+            # A fetch that fails must not read as "no mail today". Returning []
+            # with no status was how a broken token looked identical to a quiet
+            # day — the same silent-drop family as the `none` bucket and the
+            # has:attachment filter. The caller keys on auth_status.
+            print(f"Error fetching Gmail: {e}", file=sys.stderr)
+            self.auth_status = "auth_failed"
+            self.auth_detail = str(e)[:300]
+            # One shot only: a revoked token would otherwise alert the family
+            # four times a day until someone noticed.
+            if not self._is_auth_error_notified():
+                self._set_auth_error_notified(True)
+                self.auth_message = self.AUTH_HELP
             return []
+
+    @staticmethod
+    def _defang(text: str) -> str:
+        """Neutralize WhatsApp markup in text an outsider wrote.
+
+        Anyone can email the household, so `subject` and `body` are
+        attacker-controlled. A `*` or `_` in either breaks the surrounding
+        formatting of a message that reads as the assistant speaking.
+        """
+        return re.sub(r"[*_~`]", "", text or "")
 
     def format_for_whatsapp(self, emails: List[Dict]) -> Optional[str]:
         """
@@ -289,14 +315,17 @@ class SchoolEmailMonitor:
 
         lines = ["📚 *School Updates*\n"]
         for email in emails:
-            lines.append(f"📧 *{email['subject']}*")
-            lines.append(f"From: {email['sender']}")
+            lines.append(f"📧 *{self._defang(email['subject'])}*")
+            lines.append(f"From: {self._defang(email['sender'])}")
             if email.get("has_pdf_attachment"):
                 lines.append("📎 PDF attachment detected")
             # Show a brief snippet of the body
-            snippet = email.get("body", "")[:300].strip()
+            snippet = self._defang(email.get("body", ""))[:300].strip()
             if snippet:
-                lines.append(f"_{snippet}..._" if len(email.get("body", "")) > 300 else f"_{snippet}_")
+                # Quoted, so the family can see where the school's words end
+                # and the assistant's begin.
+                ellipsis = "..." if len(email.get("body", "")) > 300 else ""
+                lines.append(f"> _{snippet}{ellipsis}_")
             lines.append("")  # blank line between emails
 
         return "\n".join(lines).strip()
@@ -309,25 +338,31 @@ if __name__ == "__main__":
     import sys as _sys
     import traceback as _tb
     try:
-        # Bail early if the interpreter can't read Keychain — emit a parseable
-        # env_broken status + NO_REPLY so the agent suppresses delivery instead
-        # of firing a misleading credentials-missing DM. The Daily Owner Health
-        # Digest will roll up these env_broken events overnight.
-        if not keyring_module_available():
-            print(_json.dumps({
-                "status": "env_broken",
-                "error": "keyring module unavailable in cron interpreter",
-                "interpreter": _sys.executable,
-                "detail": last_keyring_error(),
-            }))
-            print("NO_REPLY")
-            _sys.exit(0)
+        # The keyring-importability bail-out that stood here until 2026-09-07
+        # is gone with the credentials it guarded. It emitted `env_broken` +
+        # NO_REPLY when this interpreter could not read the Keychain, so a
+        # cron python without `keyring` would not fire a misleading
+        # credentials-missing DM. gog holds the token now and this interpreter
+        # reads no secrets at all, so there is nothing to bail out of; a gog
+        # failure surfaces as auth_failed from the fetch instead.
         from core.config_loader import SKILL_DIR
         monitor = SchoolEmailMonitor(SKILL_DIR)
         emails = monitor.fetch_recent_school_emails()
         if emails:
             summary = monitor.format_for_whatsapp(emails)
             print(_json.dumps({"status": "emails_found", "count": len(emails), "summary": summary}, indent=2))
+        elif monitor.auth_status:
+            # No service. The getter recorded why; this entry point decides what
+            # reaches a human. Only the first auth failure carries a message —
+            # after that auth_message is None and we stay silent (principle 6).
+            payload = {"status": monitor.auth_status, "error": monitor.auth_detail}
+            if monitor.auth_status == "env_broken":
+                payload["interpreter"] = _sys.executable
+            if monitor.auth_message:
+                payload["summary"] = monitor.auth_message
+            print(_json.dumps(payload, indent=2))
+            if not monitor.auth_message:
+                print("NO_REPLY")
         else:
             print(_json.dumps({"status": "no_new_emails"}))
     except Exception as _e:

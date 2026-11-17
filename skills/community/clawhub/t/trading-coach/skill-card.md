@@ -1,42 +1,55 @@
-## Description: <br>
-Trading Coach analyzes broker CSV trade records, matches positions with FIFO logic, scores trading quality across multiple dimensions, and produces review insights and improvement guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trading Coach turns brokerage CSV exports into trading review reports with FIFO position matching, eight-dimension trade quality scoring, and ten-dimension improvement insights.
 
-## Publisher: <br>
-[BENZEMA216](https://clawhub.ai/user/BENZEMA216) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[benzema216](https://clawhub.ai/user/benzema216)
 
-## Use Case: <br>
-External users and developers use this skill to turn broker CSV exports into trading performance reviews, quality scores, and actionable coaching suggestions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to run unreviewed external code on sensitive brokerage CSV files. <br>
-Mitigation: Review the referenced repository and dependencies before running it, use a virtual environment or other isolation, and run only copied CSVs with account identifiers and unnecessary personal data removed. <br>
-Risk: Generated scores and recommendations could be mistaken for trading instructions. <br>
-Mitigation: Treat generated analysis as informational coaching output and review it before making trading decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Trading Coach on ClawHub](https://clawhub.ai/BENZEMA216/trading-coach) <br>
-- [Supported CSV Formats](artifact/references/csv_formats.md) <br>
-- [AI Insight Dimensions](artifact/references/insight_dimensions.md) <br>
-- [Quality Scoring System](artifact/references/scoring_system.md) <br>
+## Use Case:
 
+External traders and reviewers use this skill to analyze brokerage CSV exports, calculate trading performance, identify repeated trading-pattern issues, and produce concise post-trade review guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples and structured trading-review recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the agent to run local Python commands against user-provided broker CSV files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run remote trading-analysis code on sensitive brokerage files.
+
+Mitigation: Review the referenced code and requirements, pin a known commit, run it in an isolated environment, and redact account identifiers or unnecessary personal fields before use.
+
+Risk: Trading reports and recommendations can be misleading if source records, matching, scoring, or assumptions are incomplete.
+
+Mitigation: Treat outputs as decision-support material, verify calculations against brokerage records, and avoid relying on the skill as financial advice.
+
+## Reference(s):
+
+- [Supported CSV Formats](references/csv_formats.md)
+- [Quality Scoring System](references/scoring_system.md)
+- [AI Insight Dimensions](references/insight_dimensions.md)
+- [ClawHub Skill Page](https://clawhub.ai/benzema216/skills/trading-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with CLI commands, scoring summaries, and actionable trading review recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize sensitive brokerage CSV data; review inputs and outputs before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

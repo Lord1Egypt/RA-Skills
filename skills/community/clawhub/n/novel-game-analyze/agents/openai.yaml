@@ -1,0 +1,4 @@
+interface:
+  display_name: "Novel Game Analysis"
+  short_description: "Extract story arcs, key scenes, characters, and rules · 拆解小说主线剧情、高光名场面、人物关系与世界规矩"
+  default_prompt: "Use $novel-game-analyze to deconstruct this novel's story arcs, standout conflict scenes, character relationships, world rules, and adaptation boundaries into a cited SOURCE_BIBLE."

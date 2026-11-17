@@ -1,45 +1,61 @@
-## Description: <br>
-mx-auto is a local Runtime automation entrypoint for App triggers, read-only browser sandbox inspection, and local script execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local Runtime automation entrypoint for App triggers, read-only browser sandbox inspection, and local script execution. Use when the user wants to list or run Runtime triggers, inspect existing browser sandbox tabs/snapshots, or list/show/run local App scripts.
 
-## Publisher: <br>
-[yiming1001](https://clawhub.ai/user/yiming1001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yiming1001](https://clawhub.ai/user/yiming1001)
 
-## Use Case: <br>
-Developers and operators use this skill to list or run Runtime triggers, inspect existing browser sandbox tabs and snapshots without changing browser state, and list, show, or run local App scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local Runtime admin credentials and contacts localhost Runtime APIs. <br>
-Mitigation: Install only when local Runtime automation is needed, verify the publisher, and keep Runtime admin tokens out of logs and shared outputs. <br>
-Risk: Trigger and script execution can change local app state. <br>
-Mitigation: Review the exact trigger or script name and input JSON before execution, and prefer list/show commands when inspecting available actions. <br>
-Risk: Cloud command and cloud-token handling paths are under-disclosed in the release evidence. <br>
-Mitigation: Review or remove the cloud dispatch script and avoid storing cloud tokens in preferences unless that remote command path is intentionally accepted. <br>
+## Use Case:
 
+Developers and operators use this skill to route local Runtime automation requests for trigger execution, read-only browser sandbox inspection, and local App script listing or execution.
 
-## Reference(s): <br>
-- [Trigger Workflow](references/triggers.md) <br>
-- [Sandbox Workflow](references/sandbox.md) <br>
-- [Scripts Workflow](references/scripts.md) <br>
-- [mx-auto Learning Guide](references/learning-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and optional JSON command output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May route local Runtime operations that read admin credentials, inspect existing browser tabs, or execute exact-match triggers and scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill handles Runtime and cloud tokens and can send them to configurable URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Runtime base URLs and stored preferences, avoid storing cloud tokens with the preference helper, and rotate any Runtime or cloud token that may have been used with an untrusted configured URL.
+
+Risk: Trigger and script execution can perform local Runtime automation with side effects.
+
+Mitigation: Review commands before execution, use exact trigger or script names, and do not fuzzy-match execution targets.
+
+Risk: Browser sandbox inspection may expose content from already-open tabs.
+
+Mitigation: Use the sandbox workflow only for read-only tab listing or snapshots of existing targets and avoid navigation, clicks, typing, or other browser state changes.
+
+## Reference(s):
+
+- [mx-auto Skill Page](https://clawhub.ai/yiming1001/skills/mx-auto)
+- [mx-auto Learning Guide](references/learning-guide.md)
+- [Sandbox Workflow](references/sandbox.md)
+- [Scripts Workflow](references/scripts.md)
+- [Trigger Workflow](references/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Text]
+
+**Output Format:** [Markdown guidance with shell commands and text or JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include Runtime trigger lists, trigger run results, browser tab or snapshot summaries, script catalog entries, script run results, and clear failure messages.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

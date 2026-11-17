@@ -1,42 +1,55 @@
-## Description: <br>
-Evaluate and improve an organization's data governance across six domains by scoring controls, identifying risks, and prioritizing remediation actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate and improve an organization's data governance across six domains by scoring controls, identifying risks, and prioritizing remediation actions.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, governance teams, and data leaders use this skill to assess data governance maturity across quality, cataloging, access control, compliance, retention, and AI/agent data governance domains, then generate a prioritized remediation roadmap. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cost figures, benchmarks, and compliance guidance may not match a user's current legal, regulatory, or organizational requirements. <br>
-Mitigation: Treat the output as planning guidance and validate it with internal policy owners, legal counsel, and current regulatory sources before relying on it. <br>
-Risk: Optional external resource links lead outside the skill package. <br>
-Mitigation: Open external links only when the destination is trusted and appropriate for the deployment environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-data-governance) <br>
-- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Data, compliance, business, and engineering teams use this skill to assess governance maturity across data quality, cataloging, access control, compliance, retention, and AI or agent data governance. It helps turn control scores into a risk-prioritized remediation roadmap.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance with scoring tables and remediation recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory governance assessments; users should validate benchmarks, cost figures, and compliance guidance for their own environment.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes legal, compliance, cost, and benchmark claims that may be inaccurate or unsuitable for a specific organization.
+
+Mitigation: Independently verify those claims with qualified legal, compliance, finance, or domain experts before using them for regulatory or purchasing decisions.
+
+Risk: The artifact includes promotional external links.
+
+Mitigation: Review external links before sharing outputs with end users or adopting linked resources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-data-governance)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Industry Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown assessment guidance with scoring tables and remediation priorities]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces domain scores, an overall governance score, scoring interpretation, remediation priorities, and benchmark context.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

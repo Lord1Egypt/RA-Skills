@@ -1,47 +1,64 @@
-## Description: <br>
-SuperClaw is a bundle of 14 agent workflow skills for disciplined AI coding, including TDD, debugging, code review, planning, brainstorming, verification, subagent dispatch, and skill writing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SuperClaw is a bundle of 14 agent workflow skills for disciplined AI coding across TDD, debugging, code review, planning, brainstorming, verification, subagent dispatch, and related development workflows.
 
-## Publisher: <br>
-[gvuckovich](https://clawhub.ai/user/gvuckovich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gvuckovich](https://clawhub.ai/user/gvuckovich)
 
-## Use Case: <br>
-Developers and agent operators use this skill bundle to guide AI coding sessions through repeatable workflows for design, planning, TDD, debugging, code review, parallel agent dispatch, git worktrees, and completion verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundle can broadly steer agent behavior across planning, implementation, review, debugging, verification, and git workflows. <br>
-Mitigation: Use it with close supervision and require explicit confirmation before high-impact actions such as commits, pushes, PRs, dependency installs, tests, and worktree deletion. <br>
-Risk: Some workflows can run project code or shell commands. <br>
-Mitigation: Review commands before execution, run them in the intended workspace, and avoid granting broader permissions than the task requires. <br>
-Risk: The brainstorming companion can start a local browser helper and may bind to 0.0.0.0. <br>
-Mitigation: Start the browser helper only with user consent, prefer local-only binding where possible, and stop the helper when the session no longer needs it. <br>
-Risk: Local records such as .events and .superpowers may contain project or preference details. <br>
-Mitigation: Treat those files as local records that may contain sensitive context and review them before sharing or publishing workspace contents. <br>
+## Use Case:
 
+Developers and coding agents use this skill bundle to structure software work with repeatable workflows for planning, TDD, debugging, review, verification, worktree isolation, subagent coordination, and skill authoring.
 
-## Reference(s): <br>
-- [SuperClaw README](README.md) <br>
-- [Codex Tool Mapping](using-superpowers/references/codex-tools.md) <br>
-- [Gemini CLI Tool Mapping](using-superpowers/references/gemini-tools.md) <br>
-- [SuperClaw ClawHub Listing](https://clawhub.ai/gvuckovich/superclaw-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, and review summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to edit files, run tests, manage git state, dispatch subagents, or start a local browser companion when the workflow calls for it.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow skills can lead an agent to make persistent repository changes, including file edits, commits, worktree changes, and skill edits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher, work in an isolated branch or worktree, and review file changes, commits, and skill edits before accepting them.
+
+Risk: The optional browser companion can be exposed beyond localhost if configured with a non-loopback bind host.
+
+Mitigation: Keep the companion on localhost or place it behind an authenticated tunnel, and avoid exposing it on a public interface.
+
+Risk: Brainstorming companion session files may contain project or design details that should not be published.
+
+Mitigation: Keep `.superpowers/brainstorm` out of releases and source control unless the contents have been intentionally reviewed for publication.
+
+Risk: The bundle is third-party content with a low trust-tier quality signal in server metadata.
+
+Mitigation: Pin the installer version and review the skill behavior against local repository policy before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/gvuckovich/skills/superclaw-skills)
+- [SuperClaw README](artifact/README.md)
+- [Codex Tool Mapping](artifact/using-superpowers/references/codex-tools.md)
+- [Gemini CLI Tool Mapping](artifact/using-superpowers/references/gemini-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, and configuration snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to create or edit files, run verification commands, use git worktrees, and dispatch subagents when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

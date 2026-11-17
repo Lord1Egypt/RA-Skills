@@ -1,48 +1,66 @@
-## Description: <br>
-Automates interactions for iOS simulators/devices and Android emulators/devices for navigating apps, taking snapshots or screenshots, tapping, typing, scrolling, and extracting UI information on mobile targets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates interactions for iOS simulators/devices and Android emulators/devices. Use when navigating apps, taking snapshots/screenshots, tapping, typing, scrolling, or extracting UI info on mobile targets.
 
-## Publisher: <br>
-[okwasniewski](https://clawhub.ai/user/okwasniewski) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[okwasniewski](https://clawhub.ai/user/okwasniewski)
 
-## Use Case: <br>
-Developers and engineers use this skill to drive mobile apps on iOS simulators/devices and Android emulators/devices during exploration, debugging, replay maintenance, and verification workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Mobile automation can perform high-impact UI actions such as purchases, account changes, or messages. <br>
-Mitigation: Use test devices or test accounts when possible and require confirmation before high-impact UI actions. <br>
-Risk: The external agent-device CLI can control mobile apps and devices. <br>
-Mitigation: Install or run the CLI only from a trusted, pinned source. <br>
-Risk: Logs, screenshots, recordings, traces, replay scripts, and generated artifacts may contain sensitive runtime data. <br>
-Mitigation: Keep logging off unless debugging, use scoped debugging windows, and review or delete files under ~/.agent-device and other generated artifact paths when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Snapshot Refs and Selectors](references/snapshot-refs.md) <br>
-- [Logs and Debug](references/logs-and-debug.md) <br>
-- [Session Management](references/session-management.md) <br>
-- [Permissions and Setup](references/permissions.md) <br>
-- [Video Recording](references/video-recording.md) <br>
-- [Coordinate System](references/coordinate-system.md) <br>
-- [Batching](references/batching.md) <br>
-- [ClawHub skill page](https://clawhub.ai/okwasniewski/agent-device) <br>
+## Use Case:
 
+Developers and agents use this skill to automate authorized iOS and Android app interaction flows, collect UI state, maintain deterministic replays, and troubleshoot logs or crashes.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to create local logs, screenshots, recordings, replay scripts, traces, or batch step files during mobile automation workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: On-demand package execution can install an unexpected or unverified agent-device version.
+
+Mitigation: Prefer a trusted preinstalled binary; if installation is required, pin and verify the exact package version before use.
+
+Risk: Device logs and generated artifacts may contain sensitive app or runtime data.
+
+Mitigation: Keep logging off except during scoped debugging, review or delete files under ~/.agent-device, and use redaction patterns when needed.
+
+Risk: Physical iOS device setup can involve sensitive signing or provisioning configuration.
+
+Mitigation: Use Xcode Automatic Signing where possible, keep signing environment variables unset by default, and avoid sharing or committing secret values.
+
+Risk: Mobile automation could affect devices, simulators, or apps outside the intended scope.
+
+Mitigation: Run the skill only against authorized targets and prefer least-privilege, isolated environments for autonomous workflows.
+
+## Reference(s):
+
+- [Snapshot Refs and Selectors](references/snapshot-refs.md)
+- [Logs and Debug](references/logs-and-debug.md)
+- [Session Management](references/session-management.md)
+- [Permissions and Setup](references/permissions.md)
+- [Video Recording](references/video-recording.md)
+- [Coordinate System](references/coordinate-system.md)
+- [Batching](references/batching.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to create local screenshots, recordings, logs, traces, and replay scripts during authorized mobile automation workflows.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,62 @@
-## Description: <br>
-Analyzes China A-share portfolios from screenshots or saved holdings, fetches AKShare market data, calculates technical indicators, and returns structured holding-level suggestions in chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes China A-share portfolio screenshots or saved holdings, updates portfolio data, retrieves AKShare market data, calculates technical indicators, and returns structured holding diagnostics with action suggestions.
 
-## Publisher: <br>
-[lzwaang](https://clawhub.ai/user/lzwaang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lzwaang](https://clawhub.ai/user/lzwaang)
 
-## Use Case: <br>
-External users with China A-share portfolios use this skill to extract holdings from screenshots or manual entries, update a local portfolio file, and generate technical-analysis reports with market context and per-stock signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process portfolio screenshots and store holdings locally. <br>
-Mitigation: Require explicit confirmation before reading unrelated images, and verify extracted holdings before using the analysis. <br>
-Risk: The skill can update or clear saved portfolio data. <br>
-Mitigation: Confirm changes with the user before overwriting, removing, or clearing holdings. <br>
-Risk: The skill includes setup guidance for installing packages, changing environment variables, creating filesystem links, and restarting OpenClaw. <br>
-Mitigation: Review commands before execution and require explicit approval for system-level changes. <br>
-Risk: Incorrect extracted holdings or market data may produce misleading portfolio guidance. <br>
-Mitigation: Treat reports as reference material, validate holdings and data sources, and avoid presenting outputs as financial advice. <br>
+## Use Case:
 
+External users and agents use this skill to turn China A-share portfolio screenshots or saved holdings into a technical-analysis report. It supports portfolio updates, market and index lookup, indicator calculations, and suggested hold, reduce, add, take-profit, or stop-loss actions for review.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/lzwaang/stock-analysis-china) <br>
-- [Analysis prompt template](references/analysis_prompt_template.md) <br>
-- [AKShare issue tracker](https://github.com/akfamily/akshare/issues) <br>
-- [Tesseract simplified Chinese language data](https://github.com/tesseract-ocr/tessdata/raw/main/chi_sim.traineddata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with inline shell commands and local portfolio JSON updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local holdings data and live market data when dependencies and network access are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can read inbound local screenshots, including screenshots that may not be intended for portfolio analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before processing images and verify that the selected screenshot is portfolio-related.
+
+Risk: The skill can overwrite, remove, or clear stored portfolio holdings.
+
+Mitigation: Confirm the recognized holdings and requested portfolio changes before writing positions_portfolio.json or clearing entries.
+
+Risk: The skill includes guidance for broad environment changes and global or system package installation.
+
+Mitigation: Review setup commands before execution and avoid running global or system install commands automatically.
+
+Risk: The generated stock analysis may be incomplete or misleading if market data, OCR, or technical indicators are inaccurate.
+
+Mitigation: Treat reports as informational technical analysis, verify source data, and do not treat action suggestions as financial advice.
+
+## Reference(s):
+
+- [Analysis prompt template](references/analysis_prompt_template.md)
+- [ClawHub skill page](https://clawhub.ai/lzwaang/skills/stock-analysis-china)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown-style chat report with optional shell commands and JSON portfolio updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read inbound portfolio screenshots, update positions_portfolio.json, fetch live market data through AKShare, and print structured analysis results.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

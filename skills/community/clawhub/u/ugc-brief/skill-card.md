@@ -1,44 +1,53 @@
-## Description: <br>
-Write creator briefs that produce authentic, high-converting user-generated content - covering deliverables, messaging hooks, do's/don'ts, and usage rights - without scripting away the authenticity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write creator briefs that produce authentic, high-converting user-generated content, covering deliverables, messaging hooks, do's/don'ts, and usage rights without scripting away the authenticity.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce brands, DTC operators, and TikTok Shop sellers use this skill to draft structured UGC creator briefs with deliverables, hook options, messaging guidance, usage rights, logistics, and payment terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated briefs may include objective product, health, safety, efficacy, comparative, testimonial, or pricing claims that are not substantiated or platform-compliant. <br>
-Mitigation: Verify those claims are truthful, substantiated, platform-compliant, and approved for the brand and jurisdiction before using briefs in live ads. <br>
-Risk: Usage-rights language may not fit a specific creator contract, creator relationship, platform, or jurisdiction. <br>
-Mitigation: Have usage-rights terms reviewed before incorporating them into creator agreements or paid media workflows. <br>
+## Use Case:
 
+External ecommerce brands, DTC operators, and TikTok Shop sellers use this skill to draft structured UGC creator briefs for videos, ads, product-page content, and creator collaborations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/leooooooow/ugc-brief) <br>
-- [UGC Brief Template](output-template.md) <br>
-- [UGC Hook Library](hook-library.md) <br>
-- [UGC Usage Rights Guide](usage-rights-guide.md) <br>
-- [UGC Brief Quality Checklist](quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown creator brief, checklists, and structured guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior; generated briefs should be reviewed before use in live campaigns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Usage-rights drafting can be mistaken for legal advice or complete contractual coverage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat usage-rights sections as drafting help and confirm creator licensing, paid-ad usage, editing rights, exclusivity, whitelisting, duration, territory, platform rules, and local law in writing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leooooooow/skills/ugc-brief)
+- [Output Template](artifact/output-template.md)
+- [Hook Library](artifact/hook-library.md)
+- [Usage Rights Guide](artifact/usage-rights-guide.md)
+- [Quality Checklist](artifact/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Drafting guidance and reusable brief sections; no code execution or tool calls.]
+
+## Skill Version(s):
+
+1.1.0 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

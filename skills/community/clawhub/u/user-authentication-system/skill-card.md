@@ -1,40 +1,57 @@
-## Description: <br>
-Role-based access control for Greek accounting firms, including login, role hierarchy, per-client permissions, session management, and audit logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Role-based access control for Greek accounting firms. Login, role hierarchy, per-client permissions, session management, audit logging.
 
-## Publisher: <br>
-[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[satoshistackalotto](https://clawhub.ai/user/satoshistackalotto)
 
-## Use Case: <br>
-Accounting firm operators and agents use this skill to manage local OpenClaw user authentication, role-based authorization, per-client access, sessions, 2FA, and security audit workflows. <br>
-
-### Deployment Geography for Use: <br>
-Greece <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill covers sensitive credential and account-control workflows where password, session-token, and 2FA handling require production-grade review. <br>
-Mitigation: Before use in a real accounting environment, confirm the OpenClaw implementation uses bcrypt, Argon2id, or scrypt for passwords, hashes bearer tokens before lookup, avoids raw token storage, and protects 2FA secrets. <br>
-Risk: Account-control actions such as all-client grants, role changes, password resets, deactivations, and session revocations can affect access to accounting data. <br>
-Mitigation: Require explicit admin approval and audit logging for privileged account-control actions before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/satoshistackalotto/user-authentication-system) <br>
-- [Publisher profile](https://clawhub.ai/user/satoshistackalotto) <br>
+## Use Case:
 
+Developers and operators of Greek accounting firm workflows use this skill to add local user authentication, role hierarchy, per-client authorization, session management, and audit logging to OpenClaw environments.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell, YAML, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance for local OpenClaw authentication and RBAC workflows using OPENCLAW_DATA_DIR, jq, openssl, and openclaw.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles credentials, sessions, and account authority in a shared local filesystem.
+
+Mitigation: Use strong filesystem isolation and restrictive permissions for authentication data before relying on the skill.
+
+Risk: Authorization and path-safety flaws could expose or modify sensitive account data.
+
+Mitigation: Require username and path validation, and handle OPENCLAW_DATA_DIR consistently across all examples and runtime paths.
+
+Risk: Administrative actions such as session revocation, account deactivation, or government submissions can be disruptive.
+
+Mitigation: Require explicit confirmation for disruptive admin actions and senior approval for government submissions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/satoshistackalotto/skills/user-authentication-system)
+- [Publisher Profile](https://clawhub.ai/user/satoshistackalotto)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, YAML examples, and Python-style reference code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires jq, openssl, openclaw, and OPENCLAW_DATA_DIR; outputs local authentication and authorization guidance for OpenClaw.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

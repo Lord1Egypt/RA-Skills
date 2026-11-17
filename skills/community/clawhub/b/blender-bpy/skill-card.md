@@ -1,40 +1,53 @@
-## Description: <br>
-Blender Python scripting via bpy API. Use for scene automation, procedural modeling, batch rendering, and object manipulation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blender Python scripting via the bpy API for scene automation, procedural modeling, batch rendering, and object manipulation.
 
-## Publisher: <br>
-[FlayZz](https://clawhub.ai/user/FlayZz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[flayzz](https://clawhub.ai/user/flayzz)
 
-## Use Case: <br>
-Developers and technical artists use this skill to get Blender Python snippets and command guidance for automating scenes, procedural modeling, batch rendering, and object or material manipulation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Blender Python may change local scenes or start long-running renders when executed. <br>
-Mitigation: Review scripts before running them, use Blender locally and intentionally, and prefer background execution only when that is the intended workflow. <br>
-Risk: Console, REST, or scheduled render access can broaden local automation beyond a single chat request. <br>
-Mitigation: Keep console or REST access local and user-directed, and remove cron render jobs when they are no longer needed. <br>
+## Use Case:
 
+Developers and technical artists use this skill to get Blender bpy scripting guidance, command patterns, and code snippets for automating scenes, renders, materials, and object manipulation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/FlayZz/blender-bpy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Python and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Blender to be installed and accessible from the command line.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Blender Python scripts can modify project files and interact with the local filesystem.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated or suggested Blender scripts before execution, especially scripts used for batch rendering or scheduled jobs.
+
+Risk: Long or scheduled Blender renders can consume local compute resources for extended periods.
+
+Mitigation: Run renders in a controlled environment, prefer headless background execution when appropriate, and bound scheduled jobs to the intended project scope.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/flayzz/skills/blender-bpy)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline Python and shell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Blender to be installed and available as the blender command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

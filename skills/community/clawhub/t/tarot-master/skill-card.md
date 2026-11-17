@@ -1,44 +1,56 @@
-## Description: <br>
-Tarot Master helps agents interpret tarot cards and spreads, answer relationship or divination questions, and draft Chinese social media tarot content and replies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tarot Master helps agents provide tarot card interpretations, spread readings, relationship guidance, social media tarot content, and comment replies in friendly conversational Chinese.
 
-## Publisher: <br>
-[luoboask](https://clawhub.ai/user/luoboask) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[luoboask](https://clawhub.ai/user/luoboask)
 
-## Use Case: <br>
-External users and content operators use this skill to produce tarot card readings, relationship-oriented spread analysis, actionable advice, and Chinese-language social media replies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags comment-reply guidance that may move users toward private or paid conversations without clear privacy, consent, or payment boundaries. <br>
-Mitigation: Manually review social media replies, avoid the DM and paid-follow-up wording as written, state privacy limits, do not request sensitive personal details, and be transparent before moving conversations private. <br>
-Risk: Tarot responses can be mistaken for deterministic predictions or personal, health, or death advice. <br>
-Mitigation: Keep responses framed as reflective guidance, avoid absolute predictions, and preserve the artifact's restrictions against health, death, and fixed-outcome claims. <br>
+## Use Case:
 
+External users and content creators use this skill to receive tarot readings, interpret single cards or spreads, draft tarot-themed social posts, and answer common tarot comments. The skill is intended as reflective guidance and content support, not as professional counseling, medical, legal, or financial advice.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/luoboask/tarot-master) <br>
-- [Major Arcana reference](artifact/references/knowledge/major-arcana.md) <br>
-- [Minor Arcana reference](artifact/references/knowledge/minor-arcana.md) <br>
-- [Spread templates](artifact/references/spreads/spreads.md) <br>
-- [Comment reply patterns](artifact/references/comment-engine/reply-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style Chinese prose and reply templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include randomly selected tarot cards and upright or reversed orientations for comment replies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may disclose sensitive relationship or emotional details while asking for readings or private follow-up.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set clear privacy, data-minimization, and non-professional-advice boundaries before using this skill with real users.
+
+Risk: Tarot guidance may be mistaken for certain predictions or professional advice.
+
+Mitigation: Keep responses framed as reflective, current-tendency guidance and avoid absolute predictions, health predictions, death predictions, or definitive relationship outcomes.
+
+## Reference(s):
+
+- [22张大阿卡那完整档案](references/knowledge/major-arcana.md)
+- [56张小阿卡那概览](references/knowledge/minor-arcana.md)
+- [牌阵模板](references/spreads/spreads.md)
+- [评论回复模式库](references/comment-engine/reply-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational Chinese responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include tarot interpretations, spread analysis, social content drafts, and comment replies with practical suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

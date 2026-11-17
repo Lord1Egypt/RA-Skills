@@ -1,44 +1,61 @@
-## Description: <br>
-Lightweight email manager with IMAP/SMTP support, advanced search, folder management, and attachment detection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lightweight email manager with IMAP/SMTP support, advanced search, folder management, and attachment detection.
 
-## Publisher: <br>
-[jorgermp](https://clawhub.ai/user/jorgermp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-ISC <br>
+## Publisher:
 
+[jorgermp](https://clawhub.ai/user/jorgermp)
 
-## Use Case: <br>
-External users and developers use this skill to send, read, search, and organize email through IMAP and SMTP providers such as Zoho Mail, Gmail, Outlook, iCloud Mail, or custom mail servers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+ISC
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles mailbox credentials and mailbox contents. <br>
-Mitigation: Install only when mailbox access is acceptable, use an app password or dedicated mailbox, and avoid sharing command output that contains sensitive email content. <br>
-Risk: The artifact disables IMAP certificate validation. <br>
-Mitigation: Remove the rejectUnauthorized: false IMAP setting before use so TLS certificates are validated. <br>
-Risk: Send and move commands can change mailbox state. <br>
-Mitigation: Require manual review before any send or move command, especially when operating on UIDs returned by search or read commands. <br>
+## Use Case:
 
+Developers and email power users use this skill to send mail, read and search mailbox contents, inspect attachment metadata, list folders, and move messages through an IMAP/SMTP provider.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jorgermp/email-manager-lite) <br>
-- [Zoho Mail App Passwords](https://accounts.zoho.eu/home#security/apppasswords) <br>
-- [Google App Passwords](https://myaccount.google.com/apppasswords) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command output text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May issue email send, read, search, folder listing, and move operations when configured with mailbox credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles email credentials and private mailbox data and can read mail, send mail, and move messages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped app password or a test mailbox, and review commands before granting access to a real account.
+
+Risk: The authoritative security scan reports that IMAP TLS certificate verification is disabled.
+
+Mitigation: Enable certificate verification before production use and confirm the configured IMAP host presents a valid certificate.
+
+Risk: Terminal output may include untrusted email content from senders outside the user's control.
+
+Mitigation: Avoid trusting or reusing email-derived terminal output until sanitization is added.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jorgermp/skills/email-manager-lite)
+- [Zoho app passwords](https://accounts.zoho.eu/home#security/apppasswords)
+- [Google app passwords](https://myaccount.google.com/apppasswords)
+- [README](artifact/README.md)
+- [SKILL](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Terminal text with command examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Email operations may send messages, read mailbox content, list folders, and move messages when run with valid credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact files report 0.2.0 in frontmatter, package.json, and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

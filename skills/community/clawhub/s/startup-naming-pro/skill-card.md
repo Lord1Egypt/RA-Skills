@@ -1,40 +1,57 @@
-## Description: <br>
-Generate and evaluate brand, product, and startup names using linguistic science, cultural awareness, trademark heuristics, and domain availability principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and evaluate brand, product, and startup names using linguistic science, cultural awareness, trademark heuristics, domain availability principles, and structured naming frameworks.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-External users, founders, marketers, and product teams use this skill to generate and evaluate startup, product, brand, feature, or project names across descriptive, abstract, metaphorical, and compound naming styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trademark, domain, and cultural-safety assessments may be incomplete or only heuristic. <br>
-Mitigation: Verify important names with official trademark databases, domain registrars, culturally knowledgeable reviewers, and qualified counsel before commercial use. <br>
-Risk: Generated names may be misleading, too generic, offensive in a target market, or already associated with another brand. <br>
-Mitigation: Treat outputs as brainstorming candidates and run independent market, linguistic, and legal review before selection. <br>
+## Use Case:
 
+External users, founders, marketers, and product teams use this skill to generate, evaluate, and refine startup, brand, product, feature, or project names. It helps compare naming categories, score candidates, and surface heuristic trademark, domain, and cultural risks before human review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/371166758-qq/startup-naming-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown naming candidates with scores, rationale, tagline pairings, domain options, and risk flags] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, credentials, install hooks, or privileged actions are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Trademark conflicts or domain availability may be missed or change after candidate generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify legal conflicts and domain availability with authoritative sources before selecting or launching a name.
+
+Risk: Cultural and language checks are heuristic and may miss local meanings, slang, or offensive associations.
+
+Mitigation: Review shortlisted names with qualified native speakers or market reviewers in each target region.
+
+Risk: Naming briefs can include confidential launch, product, or strategy details.
+
+Mitigation: Share only the information needed for naming and avoid confidential details unless the operating environment is approved for them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/371166758-qq/skills/startup-naming-pro)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with scored name candidates, rationales, tagline pairings, domain heuristics, and risk flags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and should be checked against authoritative trademark, domain, and cultural sources before business use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

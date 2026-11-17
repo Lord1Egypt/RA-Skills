@@ -1,44 +1,55 @@
-## Description: <br>
-Full-store Shopify operations coach that produces stage-specific guidance for sourcing, suppliers, listings, store decoration, social content, and monitoring through the Yufluent service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shopify full-store operations coach that guides sourcing, supplier evaluation, listing optimization, store decoration, social planning, and monitoring through the Yufluent cloud harness.
 
-## Publisher: <br>
-[metahuan](https://clawhub.ai/user/metahuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[metahuan](https://clawhub.ai/user/metahuan)
 
-## Use Case: <br>
-External developers, operators, and Shopify store teams use this skill to generate operational plans and checklists across store launch, expansion, optimization, marketing, and performance review stages. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends Shopify store details, business metrics, and bearer-authenticated requests to the vendor service. <br>
-Mitigation: Share only the store context needed for the task, avoid unnecessary revenue or operational details, and review the vendor endpoint before use. <br>
-Risk: The API base URL can affect where sensitive requests are sent. <br>
-Mitigation: Set any API base URL only to a trusted HTTPS endpoint and avoid untrusted or unexpected hosts. <br>
-Risk: Generated operational plans may be incorrect, incomplete, or unsuitable for a specific store or market. <br>
-Mitigation: Have a qualified operator review recommendations before changing listings, suppliers, marketing content, or store configuration. <br>
+## Use Case:
 
+External Shopify operators and ecommerce developers use this skill to obtain guided operating plans for new-store launch and existing-store optimization across sourcing, suppliers, listings, decoration, social content, and monitoring.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/metahuan/yufluent-clawhub-publish-yufluentcn-shopify-operator) <br>
-- [Yufluent homepage](https://claw.changzhiai.com) <br>
-- [Yufluent OpenClaw setup](https://claw.changzhiai.com/app/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are stage-specific Shopify operations guidance generated from user-provided store context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The API token and Shopify business context are sent to the configured Yufluent cloud endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set TOKENAPI_BASE_URL only to a trusted endpoint, prefer HTTPS, and limit submitted store data to what the workflow needs.
+
+Risk: The local wrapper depends on helper modules resolved from the skill directory layout, which can be unsafe in shared or writable installations.
+
+Mitigation: Install and run the skill only from a trusted local skill directory and avoid shared or writable parent directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/metahuan/skills/yufluent-clawhub-publish-yufluentcn-shopify-operator)
+- [Yufluent console](https://claw.changzhiai.com)
+- [OpenClaw integration](https://claw.changzhiai.com/app/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration]
+
+**Output Format:** [Markdown operating plans, structured checklists, templates, and CLI/API invocation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TOKENAPI_KEY; sends store URL, niche, message, language, and business context to the configured Yufluent cloud endpoint.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

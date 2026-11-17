@@ -1,0 +1,15 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "Governance Check After Task",
+  "version": "1.0.0",
+  "description": "After spec task completion, verifies architecture compliance, governance artifacts, commit conventions, and DoD criteria.",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check .compliance-state.json → currentPhase. Apply phase-appropriate rules only.\n\nA spec task was just completed. Run these compliance checks:\n\n1. ARCHITECTURE COMPLIANCE: Verify code follows architecture-principles.md — no violations of stated principles.\n2. LAYER ISOLATION: If domain layer code was touched, verify no infrastructure dependencies.\n3. MODULE BOUNDARIES: Verify no cross-module direct references were introduced.\n4. API CONTRACT ALIGNMENT: If endpoints were created/modified, verify they match the API contract.\n5. DEFINITION OF DONE: Check against DEFINITION_OF_DONE.md criteria applicable to this task.\n6. COMMIT CONVENTION: Verify commits follow the stated convention from git-workflow.md.\n\nReport findings as:\n- ✅ Passing rules (silent if all pass)\n- ⚠️ Warnings (non-critical gaps)\n- ❌ Violations (critical rules broken — fix before PR)\n\nIf all rules pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks above, append a JSON event to `compliance-log/events/{today-date}.jsonl` (create the file if it doesn't exist). Format:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"post-task-governance\", \"trigger\": \"postTaskExecution\", \"ruleId\": \"{primary-rule-checked}\", \"ruleSeverity\": \"{severity}\", \"result\": \"{pass|fail|warn}\", \"message\": \"{one-line-finding}\"}\nLog ONE event per rule checked."
+  }
+}

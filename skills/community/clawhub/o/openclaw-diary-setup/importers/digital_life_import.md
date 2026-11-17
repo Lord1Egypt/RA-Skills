@@ -106,7 +106,7 @@ npm install -g @anthropic/slack-mcp
   "slack": {
     "command": "slack-mcp",
     "env": {
-      "SLACK_BOT_TOKEN": "xoxb-your-bot-token"
+      "SLACK_BOT_TOKEN": "REDACTED-SECRET"
     }
   }
 }

@@ -1,0 +1,722 @@
+{
+  "meta": {
+    "source_file": "hengshi-observation-2026-08.pdf",
+    "page_count": 52,
+    "extractor": "extract_style.py 0.1.0",
+    "derived_by": "journal-draft/derive_skill.py"
+  },
+  "canvas": {
+    "size_mm": [
+      227,
+      276
+    ],
+    "standard_size": "custom",
+    "bleed_mm": 0,
+    "columns": 2,
+    "columns_frac": 0.91,
+    "text_extent_mm": [
+      12.4,
+      214.2
+    ],
+    "geometry_note": "渲染器的组件几何（封面/引言/目录/编委会/封底的 mm 定位）是按 A4 样刊调的，非 A4 开本下版心不成比例，需人工微调。"
+  },
+  "palette": {
+    "roles": {
+      "text-secondary": "#595757",
+      "accent": "#231815",
+      "text": "#1F1F20",
+      "primary": "#B5272D",
+      "meta": "#FFFFFF"
+    },
+    "full": [
+      {
+        "hex": "#595757",
+        "count": 1847,
+        "ratio": 0.821,
+        "role_guess": "text-secondary"
+      },
+      {
+        "hex": "#231815",
+        "count": 177,
+        "ratio": 0.079,
+        "role_guess": "accent"
+      },
+      {
+        "hex": "#1F1F20",
+        "count": 151,
+        "ratio": 0.067,
+        "role_guess": "text"
+      },
+      {
+        "hex": "#000000",
+        "count": 66,
+        "ratio": 0.029,
+        "role_guess": "text"
+      },
+      {
+        "hex": "#B5272D",
+        "count": 5,
+        "ratio": 0.002,
+        "role_guess": "primary"
+      },
+      {
+        "hex": "#FFFFFF",
+        "count": 4,
+        "ratio": 0.002,
+        "role_guess": "meta"
+      }
+    ],
+    "body_color_measured": "#595757",
+    "body_color_size_pt": 13.0,
+    "body_color_ratio": 0.969
+  },
+  "typography": {
+    "families": [
+      "OPPOSans-R",
+      "OPPOSans-B",
+      "DINOT",
+      "FZLTHK--GBK1-0",
+      "DINOT-Bold",
+      "OPPOSans-H",
+      "OPPOSans-L",
+      "Wingdings-Regular"
+    ],
+    "type_scale": [
+      {
+        "size_pt": 39.0,
+        "size_mm10": 137.6,
+        "count": 4
+      },
+      {
+        "size_pt": 38.0,
+        "size_mm10": 134.1,
+        "count": 7
+      },
+      {
+        "size_pt": 18.0,
+        "size_mm10": 63.5,
+        "count": 35
+      },
+      {
+        "size_pt": 15.0,
+        "size_mm10": 52.9,
+        "count": 9
+      },
+      {
+        "size_pt": 14.0,
+        "size_mm10": 49.4,
+        "count": 95
+      },
+      {
+        "size_pt": 13.0,
+        "size_mm10": 45.9,
+        "count": 1794
+      },
+      {
+        "size_pt": 12.5,
+        "size_mm10": 44.1,
+        "count": 5
+      },
+      {
+        "size_pt": 12.0,
+        "size_mm10": 42.3,
+        "count": 20
+      },
+      {
+        "size_pt": 11.0,
+        "size_mm10": 38.8,
+        "count": 12
+      },
+      {
+        "size_pt": 9.0,
+        "size_mm10": 31.8,
+        "count": 5
+      },
+      {
+        "size_pt": 8.5,
+        "size_mm10": 30.0,
+        "count": 5
+      },
+      {
+        "size_pt": 8.0,
+        "size_mm10": 28.2,
+        "count": 54
+      },
+      {
+        "size_pt": 7.2,
+        "size_mm10": 25.4,
+        "count": 150
+      },
+      {
+        "size_pt": 6.0,
+        "size_mm10": 21.2,
+        "count": 49
+      }
+    ]
+  },
+  "chrome": {
+    "running_head": [
+      {
+        "text": "ZHONG LUN",
+        "pages": 50,
+        "count": 50,
+        "y_mm": 265,
+        "size_pt": 7.2,
+        "color": "#1F1F20"
+      },
+      {
+        "text": "NEWSLETTER 衡石e简报",
+        "pages": 49,
+        "count": 49,
+        "y_mm": 265,
+        "size_pt": 7.2,
+        "color": "#1F1F20"
+      }
+    ],
+    "folio": {
+      "y_mm": 265.0,
+      "align": "left",
+      "size_pt": 7.2,
+      "color": "#1F1F20"
+    },
+    "cta_candidates": []
+  },
+  "page_templates": [
+    {
+      "id": "T1",
+      "pages": [
+        1
+      ],
+      "count": 1,
+      "lines": 14,
+      "chars": 158,
+      "numeric_lines": 0,
+      "largest_size_pt": 15.0,
+      "grid": {
+        "left_mm": 107.0,
+        "right_mm": 181.0
+      },
+      "body_size_pt": 15.0,
+      "body_font": "OPPOSans-H",
+      "image_slots": [
+        {
+          "id": "slot_0_54",
+          "x_mm": 0,
+          "y_mm": 54,
+          "w_mm": 228,
+          "h_mm": 222,
+          "aspect": 1.03,
+          "pages": 1,
+          "page_ratio": 1.0,
+          "role_guess": "hero",
+          "recurring": true
+        }
+      ],
+      "repeat_short_text": [],
+      "unit_block_chars": {
+        "n": 1,
+        "min": 138,
+        "p50": 138,
+        "max": 138
+      },
+      "unit_samples": [
+        {
+          "title": "008/",
+          "chars": 138
+        }
+      ],
+      "component_guess": "cover",
+      "confidence": 0.6,
+      "signature": [
+        "text",
+        105,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "T2",
+      "pages": [
+        2,
+        9,
+        18,
+        33,
+        44
+      ],
+      "count": 5,
+      "lines": 16,
+      "chars": 201,
+      "numeric_lines": 0,
+      "largest_size_pt": 39.0,
+      "grid": {
+        "left_mm": 12.0,
+        "right_mm": 213.0
+      },
+      "body_size_pt": 38.0,
+      "body_font": "OPPOSans-L",
+      "image_slots": [
+        {
+          "id": "slot_12_87",
+          "x_mm": 12,
+          "y_mm": 87,
+          "w_mm": 201,
+          "h_mm": 168,
+          "aspect": 1.2,
+          "pages": 5,
+          "page_ratio": 1.0,
+          "role_guess": "hero",
+          "recurring": true
+        }
+      ],
+      "repeat_short_text": [],
+      "component_guess": "quote",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        10,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "T3",
+      "pages": [
+        3,
+        4,
+        7,
+        10,
+        15,
+        19,
+        20,
+        24,
+        26,
+        29,
+        30,
+        36,
+        40,
+        41,
+        42,
+        45,
+        47,
+        50
+      ],
+      "count": 18,
+      "lines": 838,
+      "chars": 16388,
+      "numeric_lines": 0,
+      "largest_size_pt": 18.0,
+      "grid": {
+        "left_mm": 12.0,
+        "right_mm": 214.0
+      },
+      "body_size_pt": 13.0,
+      "body_font": "OPPOSans-R",
+      "image_slots": [],
+      "repeat_short_text": [
+        {
+          "text": "第一部分\\",
+          "n": 4
+        }
+      ],
+      "component_guess": "article",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        10,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "T4",
+      "pages": [
+        5,
+        43,
+        51
+      ],
+      "count": 3,
+      "lines": 128,
+      "chars": 2095,
+      "numeric_lines": 0,
+      "largest_size_pt": 18.0,
+      "grid": {
+        "left_mm": 12.0,
+        "right_mm": 107.0
+      },
+      "body_size_pt": 13.0,
+      "body_font": "OPPOSans-R",
+      "image_slots": [
+        {
+          "id": "slot_120_189",
+          "x_mm": 120,
+          "y_mm": 189,
+          "w_mm": 93,
+          "h_mm": 66,
+          "aspect": 1.41,
+          "pages": 2,
+          "page_ratio": 0.67,
+          "role_guess": "inline",
+          "recurring": true
+        },
+        {
+          "id": "slot_135_222",
+          "x_mm": 135,
+          "y_mm": 222,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 2,
+          "page_ratio": 0.67,
+          "role_guess": "inline",
+          "recurring": true
+        },
+        {
+          "id": "slot_135_192",
+          "x_mm": 135,
+          "y_mm": 192,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 1,
+          "page_ratio": 0.33,
+          "role_guess": "inline",
+          "recurring": false
+        },
+        {
+          "id": "slot_135_198",
+          "x_mm": 135,
+          "y_mm": 198,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 1,
+          "page_ratio": 0.33,
+          "role_guess": "inline",
+          "recurring": false
+        },
+        {
+          "id": "slot_132_225",
+          "x_mm": 132,
+          "y_mm": 225,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 1,
+          "page_ratio": 0.33,
+          "role_guess": "inline",
+          "recurring": false
+        }
+      ],
+      "repeat_short_text": [
+        {
+          "text": "合伙人",
+          "n": 3
+        }
+      ],
+      "component_guess": "article",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        10,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "T5",
+      "pages": [
+        6,
+        12,
+        13,
+        14,
+        16,
+        21,
+        22,
+        23,
+        27,
+        28,
+        31,
+        35,
+        37,
+        38,
+        39,
+        46,
+        49
+      ],
+      "count": 17,
+      "lines": 837,
+      "chars": 15731,
+      "numeric_lines": 0,
+      "largest_size_pt": 18.0,
+      "grid": {
+        "left_mm": 119.0,
+        "right_mm": 214.0
+      },
+      "body_size_pt": 13.0,
+      "body_font": "OPPOSans-R",
+      "image_slots": [],
+      "repeat_short_text": [
+        {
+          "text": "第三部分\\",
+          "n": 3
+        }
+      ],
+      "component_guess": "article",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        120,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "T6",
+      "pages": [
+        8,
+        17,
+        34,
+        48
+      ],
+      "count": 4,
+      "lines": 121,
+      "chars": 2172,
+      "numeric_lines": 0,
+      "largest_size_pt": 18.0,
+      "grid": {
+        "left_mm": 12.0,
+        "right_mm": 107.0
+      },
+      "body_size_pt": 13.0,
+      "body_font": "OPPOSans-R",
+      "image_slots": [
+        {
+          "id": "slot_135_225",
+          "x_mm": 135,
+          "y_mm": 225,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 2,
+          "page_ratio": 0.5,
+          "role_guess": "inline",
+          "recurring": false
+        },
+        {
+          "id": "slot_120_192",
+          "x_mm": 120,
+          "y_mm": 192,
+          "w_mm": 93,
+          "h_mm": 63,
+          "aspect": 1.48,
+          "pages": 1,
+          "page_ratio": 0.25,
+          "role_guess": "inline",
+          "recurring": false
+        },
+        {
+          "id": "slot_120_198",
+          "x_mm": 120,
+          "y_mm": 198,
+          "w_mm": 93,
+          "h_mm": 57,
+          "aspect": 1.63,
+          "pages": 1,
+          "page_ratio": 0.25,
+          "role_guess": "inline",
+          "recurring": false
+        }
+      ],
+      "repeat_short_text": [],
+      "component_guess": "article",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        10,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "T7",
+      "pages": [
+        11,
+        25
+      ],
+      "count": 2,
+      "lines": 82,
+      "chars": 1602,
+      "numeric_lines": 0,
+      "largest_size_pt": 18.0,
+      "grid": {
+        "left_mm": 119.0,
+        "right_mm": 214.0
+      },
+      "body_size_pt": 13.0,
+      "body_font": "OPPOSans-R",
+      "image_slots": [
+        {
+          "id": "slot_12_36",
+          "x_mm": 12,
+          "y_mm": 36,
+          "w_mm": 93,
+          "h_mm": 48,
+          "aspect": 1.94,
+          "pages": 1,
+          "page_ratio": 0.5,
+          "role_guess": "inline",
+          "recurring": false
+        },
+        {
+          "id": "slot_12_183",
+          "x_mm": 12,
+          "y_mm": 183,
+          "w_mm": 96,
+          "h_mm": 72,
+          "aspect": 1.33,
+          "pages": 1,
+          "page_ratio": 0.5,
+          "role_guess": "inline",
+          "recurring": false
+        }
+      ],
+      "repeat_short_text": [],
+      "component_guess": "article",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        120,
+        1,
+        0
+      ]
+    },
+    {
+      "id": "T8",
+      "pages": [
+        32
+      ],
+      "count": 1,
+      "lines": 22,
+      "chars": 252,
+      "numeric_lines": 0,
+      "largest_size_pt": 11.0,
+      "grid": {
+        "left_mm": 159.0,
+        "right_mm": 107.0
+      },
+      "body_size_pt": 8.0,
+      "body_font": "FZLTHK--GBK1-0",
+      "image_slots": [
+        {
+          "id": "slot_132_186",
+          "x_mm": 132,
+          "y_mm": 186,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 1,
+          "page_ratio": 1.0,
+          "role_guess": "inline",
+          "recurring": true
+        },
+        {
+          "id": "slot_132_210",
+          "x_mm": 132,
+          "y_mm": 210,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 1,
+          "page_ratio": 1.0,
+          "role_guess": "inline",
+          "recurring": true
+        },
+        {
+          "id": "slot_132_234",
+          "x_mm": 132,
+          "y_mm": 234,
+          "w_mm": 18,
+          "h_mm": 18,
+          "aspect": 1.0,
+          "pages": 1,
+          "page_ratio": 1.0,
+          "role_guess": "inline",
+          "recurring": true
+        }
+      ],
+      "repeat_short_text": [
+        {
+          "text": "公司业务部",
+          "n": 3
+        },
+        {
+          "text": "上海办公室",
+          "n": 3
+        }
+      ],
+      "component_guess": "article",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        160,
+        2,
+        0
+      ]
+    },
+    {
+      "id": "T9",
+      "pages": [
+        52
+      ],
+      "count": 1,
+      "lines": 2,
+      "chars": 121,
+      "numeric_lines": 0,
+      "largest_size_pt": 7.0,
+      "grid": {
+        "left_mm": 17.0,
+        "right_mm": 218.0
+      },
+      "body_size_pt": 7.0,
+      "body_font": "OPPOSans-B",
+      "image_slots": [
+        {
+          "id": "slot_0_0",
+          "x_mm": 0,
+          "y_mm": 0,
+          "w_mm": 228,
+          "h_mm": 219,
+          "aspect": 1.04,
+          "pages": 1,
+          "page_ratio": 1.0,
+          "role_guess": "hero",
+          "recurring": true
+        }
+      ],
+      "repeat_short_text": [],
+      "component_guess": "backcover",
+      "confidence": 0.5,
+      "signature": [
+        "text",
+        15,
+        0,
+        1
+      ]
+    }
+  ],
+  "scale_baseline": {
+    "pages": 52,
+    "chars": 41055,
+    "source": "自动实测：PyMuPDF 抽取 52 页 / 41055 字。articles 与 units 无法自动估准，须人工补——补齐前 --stats 只覆盖页数与字数。"
+  },
+  "grids": {
+    "A": {
+      "left_mm": 12.4,
+      "right_mm": 214.2
+    },
+    "B": {
+      "left_mm": 12.4,
+      "right_mm": 214.2
+    }
+  }
+}

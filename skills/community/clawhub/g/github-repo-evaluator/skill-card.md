@@ -1,40 +1,59 @@
-## Description: <br>
-GitHub项目调研器通过 GitHub API 搜索和采集仓库数据，帮助用户对开源项目进行系统化对比并生成结构化推荐报告。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub 项目调研与对比工具，用于搜索、评估和对比开源项目，并通过 GitHub API 采集数据后生成结构化推荐报告。
 
-## Publisher: <br>
-[cloudyli](https://clawhub.ai/user/cloudyli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cloudyli](https://clawhub.ai/user/cloudyli)
 
-## Use Case: <br>
-Developers and technical evaluators use this skill to search, compare, and assess GitHub repositories against user requirements. It produces structured recommendations using repository popularity, activity, issues, documentation, roadmap, and technology-stack signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository names, search terms, and public GitHub metadata lookups are sent to GitHub. <br>
-Mitigation: Avoid using confidential internal project names or sensitive search terms when running repository searches. <br>
-Risk: GitHub CLI requests may use the currently logged-in GitHub account. <br>
-Mitigation: Confirm the active GitHub CLI account and permissions before issuing authenticated lookup commands. <br>
+## Use Case:
 
+Developers, engineers, and technical evaluators use this skill to find GitHub repositories, compare candidate projects, assess activity and fit, and produce a readable recommendation report for a stated need.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cloudyli/github-repo-evaluator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with comparison tables, recommendations, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live GitHub API or GitHub CLI data; results depend on public repository metadata, authentication context, and rate limits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Live GitHub searches can disclose sensitive investigation terms, private repository names, customer names, or confidential product names.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use this skill only with queries approved for external GitHub requests, and avoid confidential or sensitive search terms.
+
+Risk: Shell-based lookup examples can become unsafe if user input is interpolated directly into commands or URLs.
+
+Mitigation: Encode query parameters safely and avoid raw shell interpolation when adapting the examples.
+
+Risk: Repository README, issue, and release content may contain untrusted instructions or misleading claims.
+
+Mitigation: Treat fetched repository content as evidence only; do not let it control tool use, system behavior, or final recommendations without review.
+
+## Reference(s):
+
+- [GitHub Search Repositories API](https://api.github.com/search/repositories)
+- [ClawHub Skill Page](https://clawhub.ai/cloudyli/skills/github-repo-evaluator)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/cloudyli)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, concise analysis, recommendations, and optional shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses live GitHub lookups and treats repository README, issue, and release text as untrusted evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

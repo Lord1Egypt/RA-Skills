@@ -1,43 +1,55 @@
-## Description: <br>
-Quickly build and manage multi-channel automation workflows with template configuration, task orchestration, and real-time monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Openclaw Workflow Automation helps agents guide users through selecting, configuring, and deploying OpenClaw workflow automation templates for customer service, data processing, content generation, alerts, task orchestration, and channel integrations.
 
-## Publisher: <br>
-[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yang1002378395-cmyk](https://clawhub.ai/user/yang1002378395-cmyk)
 
-## Use Case: <br>
-Developers and operators use this skill to choose workflow templates, configure automated tasks, and manage customer-service, data-processing, content-generation, alerting, and notification workflows across multiple channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated replies, forwarding, publishing, and notifications may send incorrect, unintended, or sensitive content. <br>
-Mitigation: Review each template before deployment, add human approval for outbound actions, restrict recipients and credentials, and redact sensitive content. <br>
-Risk: Data and document workflows may store or archive sensitive information. <br>
-Mitigation: Define retention, deletion, access controls, and storage destinations before enabling stored or archived outputs. <br>
+## Use Case:
 
+Developers, operators, and automation builders use this skill to create OpenClaw workflow templates and configuration guidance for multi-channel automation scenarios. It is suited for template-driven customer support, data pipelines, content publishing, alerts, document handling, and scheduled task orchestration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yang1002378395-cmyk/openclaw-workflow-automation) <br>
-- [Skill overview](artifact/SKILL.md) <br>
-- [Workflow templates](artifact/TEMPLATES.md) <br>
-- [Workflow example script](artifact/scripts/workflow_example.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JSON workflow templates and Python example code] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed before deployment, especially when workflows reply, forward, publish, notify, store, or archive content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Workflow templates may be connected to email inboxes, document stores, databases, or public posting accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add approval steps, recipient allowlists, logging, data-retention limits, and privacy checks before deployment.
+
+Risk: Automated replies, notifications, and social posting can send incorrect or unintended content.
+
+Mitigation: Review generated templates, restrict destination accounts, and test workflows with non-production inputs before enabling live automation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yang1002378395-cmyk/skills/openclaw-workflow-automation)
+- [Workflow Template Library](artifact/TEMPLATES.md)
+- [Workflow Example Script](artifact/scripts/workflow_example.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON workflow templates and Python example code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are template and configuration guidance for an agent; deployment details should be reviewed before connecting real channels or data sources.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

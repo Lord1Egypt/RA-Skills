@@ -1,0 +1,1 @@
+Hardens the Codex Remote Control pairing relay by requiring a daemon-bound pair-status poll token before `/api/codex-relay/pair-status/<pairing_id>` can return the daemon relay key. The token is minted by pair-init, expires with the pairing code, and is consumed after the completed credential response.

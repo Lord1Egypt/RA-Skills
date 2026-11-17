@@ -1,44 +1,59 @@
-## Description: <br>
-Manage 4todo (4to.do) from chat. Capture tasks, prioritize with the Eisenhower Matrix, reorder, complete, and manage recurring tasks across workspaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage 4todo (4to.do) from chat. Capture tasks, prioritize with the Eisenhower Matrix, reorder, complete, and manage recurring tasks across workspaces.
 
-## Publisher: <br>
-[blackstorm](https://clawhub.ai/user/blackstorm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blackstorm](https://clawhub.ai/user/blackstorm)
 
-## Use Case: <br>
-External users and developers use this skill to manage 4todo workspaces, todos, priorities, ordering, completion state, and recurring tasks from an agent chat workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a bearer token to read and modify a user's 4todo account. <br>
-Mitigation: Provide the API token through OpenClaw configuration, environment injection, or a secret store rather than chat, logs, or repo files. <br>
-Risk: Agent actions can create, complete, reorder, or update recurring todos in the selected workspace. <br>
-Mitigation: Review workspace and task names before broad changes or recurring-task updates, then re-fetch tasks to verify the result. <br>
-Risk: Expired or invalid tokens can cause repeated failed API calls. <br>
-Mitigation: Stop retrying on token_expired or invalid_token responses and ask the user to refresh the token in 4todo settings and update configuration. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [4todo Skill Page](https://clawhub.ai/blackstorm/4todo) <br>
-- [4todo Website](https://4to.do) <br>
-- [4todo API v0 Documentation](references/api_v0.md) <br>
-- [4todo API v0 Base URL](https://4to.do/api/v0) <br>
+## Use Case:
 
+External users and developers use this skill to manage 4todo workspaces, todos, priorities, ordering, completion state, and recurring tasks from an agent chat interface.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with task summaries, configuration guidance, and optional curl commands when debugging or requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a user-provided FOURTODO_API_TOKEN and should avoid exposing internal IDs or secrets by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.3 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A real 4todo token can be exposed locally through documented command usage.
+
+Mitigation: Use a narrowly scoped, revocable token where available, inject it through environment configuration, and avoid shared hosts where process arguments may be visible to other users.
+
+Risk: The skill can change account data by creating, completing, reordering, updating, or deleting todos and recurring todos.
+
+Mitigation: Confirm account-changing actions before execution, especially recurring-task deletion or schedule changes, and re-fetch the affected workspace to verify the result.
+
+Risk: Expired or invalid tokens can trigger repeated failed API calls if handled incorrectly.
+
+Mitigation: Stop retrying on 401 invalid_token or token_expired responses and ask the user to refresh the token in configuration.
+
+## Reference(s):
+
+- [4todo ClawHub listing](https://clawhub.ai/blackstorm/skills/4todo)
+- [4todo app](https://4to.do)
+- [4todo API v0 documentation](references/api_v0.md)
+- [4todo API v0 base URL](https://4to.do/api/v0)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown chat responses with optional curl commands, JSON snippets, and configuration examples when technical detail is needed.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a FOURTODO_API_TOKEN bearer token and curl to interact with the 4todo API; user-facing responses should avoid exposing internal IDs unless needed for disambiguation.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata, released 2026-02-07T13:09:01Z)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

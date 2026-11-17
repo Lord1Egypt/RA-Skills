@@ -1,46 +1,61 @@
-## Description: <br>
-Systematically verifies academic references against scholarly databases and resolvers to help detect AI-hallucinated, fabricated, uncertain, or broken citations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents verify academic references against Google Scholar, CNKI, arXiv, DOI resolvers, and other academic databases to detect fabricated, broken, uncertain, or unverifiable citations.
 
-## Publisher: <br>
-[benchen4395](https://clawhub.ai/user/benchen4395) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[benchen4395](https://clawhub.ai/user/benchen4395)
 
-## Use Case: <br>
-Researchers, students, editors, reviewers, and developers use this skill to verify whether cited papers, DOI links, arXiv records, and bibliography entries genuinely exist before relying on a manuscript or generated reference list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided papers, citation lists, or Overleaf-accessible content may contain private or unpublished research material. <br>
-Mitigation: Review the material before using the skill and avoid submitting confidential manuscripts or references to agents or external services unless that sharing is approved. <br>
-Risk: Verification searches may disclose citation metadata to third-party scholarly services. <br>
-Mitigation: Use only approved academic search services for sensitive work, and avoid querying sensitive citation metadata where policy or confidentiality obligations prohibit disclosure. <br>
-Risk: A citation may be misclassified when databases are incomplete, inaccessible, rate-limited, or return partial matches. <br>
-Mitigation: Treat uncertain and not-found results as review prompts, and confirm high-impact decisions with authoritative sources such as DOI records, publisher pages, arXiv records, or library databases. <br>
+## Use Case:
 
+Developers, researchers, editors, and academic reviewers use this skill to extract and verify references from PDFs, arXiv pages, Overleaf projects, BibTeX files, or pasted bibliographies. It helps identify citations that are verified, uncertain, not found, fabricated, or broken.
 
-## Reference(s): <br>
-- [Citation Extraction and Parsing Rules](references/citation-extraction.md) <br>
-- [Database Query Strategies](references/search-strategies.md) <br>
-- [Authenticity Judgment Criteria](references/verification-criteria.md) <br>
-- [Reference Extraction Decision Tree](scripts/extract_references.md) <br>
-- [ClawHub skill page](https://clawhub.ai/benchen4395/paper-reference-checker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with citation status labels and verification notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include verified, uncertain, not found, fabricated, or broken citation classifications.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: frontmatter and server release metadata) <br>
+Risk: Citation titles, DOIs, arXiv IDs, or bibliography details may be sent to external academic search services during verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using the skill on confidential manuscripts unless those external lookups are acceptable for the user's use case.
+
+Risk: Academic database searches can produce partial matches or missing results that lead to uncertain citation judgments.
+
+Mitigation: Use DOI and arXiv identifiers first, cross-check multiple databases when needed, and preserve UNCERTAIN status when evidence is incomplete.
+
+## Reference(s):
+
+- [Citation Extraction and Parsing Rules](references/citation-extraction.md)
+- [Database Query Strategies](references/search-strategies.md)
+- [Authenticity Judgment Criteria](references/verification-criteria.md)
+- [Reference Extraction Decision Tree](scripts/extract_references.md)
+- [Sample Citation Verification Report](examples/sample-report.md)
+- [BibTeX Example](examples/bibtex-example.bib)
+- [DOI Resolver](https://doi.org/{DOI})
+- [arXiv Abstract Lookup](https://arxiv.org/abs/{ID})
+- [ClawHub Skill Page](https://clawhub.ai/benchen4395/skills/paper-reference-checker)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown citation verification report with status labels and supporting lookup notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include citation status categories such as VERIFIED, UNCERTAIN, NOT FOUND, FABRICATED, and BROKEN CITATION.]
+
+## Skill Version(s):
+
+1.2.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

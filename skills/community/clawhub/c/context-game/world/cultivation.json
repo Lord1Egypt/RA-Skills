@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "name": "天衍修真界",
+    "tone_family": "cultivation",
+    "tone_variant": "修仙江湖",
+    "version": 1
+  },
+  "continents": [
+    {
+      "id": "continent_tian",
+      "name": "天衍大陆",
+      "summary": "修真文明所在的世界，灵脉集中于名山洞天，宗门、皇朝、散修、魔道并立，万宝坊市是各方都要给面子的中立之地。"
+    }
+  ],
+  "nations": [
+    {
+      "id": "nation_xuanshu",
+      "name": "玄枢宗",
+      "continent": "continent_tian",
+      "summary": "正道魁首宗门，以灵枢大阵统御诸派，与炎黄皇朝表面共治天下，实则忌惮皇朝坐大。",
+      "tension_seeds": [
+        "宗门内主战派与主和派就'是否主动讨魔'争执不下",
+        "宗门灵脉枯竭的勘测结果被宗主瞒报，高层人心浮动"
+      ]
+    },
+    {
+      "id": "nation_qingyan",
+      "name": "青衍剑府",
+      "continent": "continent_tian",
+      "summary": "以剑修立身的骄傲宗门，不附皇朝、亦不满玄枢宗的盟主做派，暗谋独立。",
+      "tension_seeds": [
+        "剑府欲借皇朝之势脱离玄枢宗盟，府内分裂为附皇派与守盟派",
+        "剑府镇府剑器的灵脉共鸣日渐微弱，弟子修炼瓶颈陡增"
+      ]
+    },
+    {
+      "id": "nation_chihuo",
+      "name": "赤火洞天",
+      "continent": "continent_tian",
+      "summary": "以炼器闻名的上古洞天，法器供给诸派，却不满被玄枢宗视作附庸、被皇朝征召供械。",
+      "tension_seeds": [
+        "洞天不满玄枢宗的盟主抽成，欲抬高法器定价",
+        "赤火熔渊灵矿告急，炼器材料被魔庭大肆抢夺"
+      ]
+    },
+    {
+      "id": "nation_yanhuang",
+      "name": "炎黄皇朝",
+      "continent": "continent_tian",
+      "summary": "统御凡俗的世俗皇朝，与宗门'共治'却暗通魔庭以制衡宗门，借坊市灵材充盈国库。",
+      "tension_seeds": [
+        "皇帝病危引发主战派（皇子）与主和派（裴相）的继位之争",
+        "皇朝暗中扶持噬魂魔庭，以魔压宗的密约濒临泄露"
+      ]
+    },
+    {
+      "id": "nation_shihun",
+      "name": "噬魂魔庭",
+      "continent": "continent_tian",
+      "summary": "蛰伏噬魂渊的魔道势力，与正道世仇，借皇朝暗援休养生息，欲倾覆宗门、染指灵脉。",
+      "tension_seeds": [
+        "魔尊与裴相的密约：扶皇朝压宗门，待两败俱伤再并吞",
+        "魔庭内血河左使与幽媱右使争宠，内斗不止"
+      ]
+    }
+  ],
+  "neutral_port": {
+    "id": "port_wanbao",
+    "name": "万宝坊市",
+    "continent": "continent_tian",
+    "summary": "横跨诸派领地的自由坊市与拍卖场，亦是云渺秘境入口的所在；入者弃前怨、禁私斗，是宗门、皇朝、散修、魔道唯一都给面子的中立交汇点。"
+  },
+  "faction_matrix": {
+    "nation_chihuo|nation_qingyan": { "relation": -20, "note": "炼器宗与剑修宗争夺灵材与法剑定价，同属正道却明争暗斗。" },
+    "nation_chihuo|nation_shihun": { "relation": -58, "note": "魔庭大肆抢夺赤火灵矿，两派仇深似海，遇则必战。" },
+    "nation_chihuo|nation_xuanshu": { "relation": 18, "note": "赤火法器多供玄枢宗，表面臣服，实则怨恨抽成过重。" },
+    "nation_chihuo|nation_yanhuang": { "relation": -35, "note": "皇朝征召赤火供军械，洞天不堪其索，矛盾日深。" },
+    "nation_chihuo|port_wanbao": { "relation": 40, "note": "坊市是赤火最大的法器销赃与售卖处，利益绑定最深。" },
+    "nation_qingyan|nation_shihun": { "relation": -72, "note": "剑府与魔庭世代为仇，正魔不两立，遇魔必斩。" },
+    "nation_qingyan|nation_xuanshu": { "relation": 62, "note": "剑府与宗门同列正道、表面共尊盟主；裂缝在于剑府已密会裴相谋独立，凌虚更向宗主告密——同盟内已生离心。" },
+    "nation_qingyan|nation_yanhuang": { "relation": -42, "note": "剑府不附皇朝、皇朝忌剑府坐大，青璇密会裴相使对立公开化。" },
+    "nation_qingyan|port_wanbao": { "relation": 12, "note": "剑府弟子常驻坊市接赏易物，与坊市关系平淡而实用。" },
+    "nation_shihun|nation_xuanshu": { "relation": -65, "note": "正道魁首与魔道死敌，玄枢宗历年讨魔皆以噬魂渊为标。" },
+    "nation_shihun|nation_yanhuang": { "relation": -8, "note": "公开敌对，实则裴相暗通魔尊；表面仇恨是双方默契的掩护。" },
+    "nation_shihun|port_wanbao": { "relation": -15, "note": "魔庭借坊市洗灵材、探虚实，坊市监管对其睁只眼闭只眼。" },
+    "nation_xuanshu|nation_yanhuang": { "relation": 55, "note": "宗门与皇朝'共治天下'的表面同盟；裂缝在于皇朝暗中扶持魔庭以制衡宗门，裴相正是那道暗门。" },
+    "nation_xuanshu|port_wanbao": { "relation": 25, "note": "宗门派执法长老常驻坊市监管，既护秩序也压散修。" },
+    "nation_yanhuang|port_wanbao": { "relation": 8, "note": "皇朝向坊市抽灵材税、又靠坊市充盈国库，关系疏淡而互利。" }
+  }
+}

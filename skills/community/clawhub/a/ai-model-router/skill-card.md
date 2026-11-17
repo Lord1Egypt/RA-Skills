@@ -1,40 +1,57 @@
-## Description: <br>
-Automatically routes requests between two configured AI models based on task complexity, privacy needs, and user preferences for optimized AI usage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Model Router automatically routes requests between configured AI models based on task complexity, privacy signals, and user preferences.
 
-## Publisher: <br>
-[yuldrone](https://clawhub.ai/user/yuldrone) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuldrone](https://clawhub.ai/user/yuldrone)
 
-## Use Case: <br>
-Developers and engineers use this skill to choose between a primary local model and a secondary cloud model for a prompt, with privacy-sensitive prompts routed to the primary model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Heuristic routing may recommend a cloud model for work that the user intended to keep local. <br>
-Mitigation: For sensitive work, force the primary local model and review the route decision before sending prompts to any external provider. <br>
-Risk: Optional context tracking can store truncated prompt history locally. <br>
-Mitigation: Review or delete ~/.model-router/contexts.json periodically when context tracking is enabled. <br>
+## Use Case:
 
+Developers and engineers use this skill to route agent tasks between local and cloud AI models, favoring simpler or sensitive requests for the primary model and complex requests for a secondary model.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuldrone/ai-model-router) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [CLI text or JSON routing decisions with Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected model, route reason, confidence, complexity score, privacy indicators, and model configuration status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Privacy mode can route sensitive prompts to the primary model even when the primary model is cloud-configured.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before entering secrets, verify that primary_model in ~/.model-router/models.json points to a local model.
+
+Risk: Context tracking can store message snippets as local plaintext.
+
+Mitigation: Disable context tracking for sensitive sessions or protect and periodically delete ~/.model-router/contexts.json.
+
+Risk: An unpinned installer command or elevated install can increase supply-chain and local privilege risk.
+
+Mitigation: Use a pinned installer version and run installation without elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yuldrone/skills/ai-model-router)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Text or JSON routing decision with model id, reason, confidence, and optional configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include selected model, complexity score, privacy detections, and conversation context identifiers.]
+
+## Skill Version(s):
+
+2.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

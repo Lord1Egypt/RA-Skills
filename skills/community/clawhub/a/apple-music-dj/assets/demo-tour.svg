@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 925 458" width="925" height="458" role="img" aria-labelledby="t d">
+<title id="t">Apple Music DJ demo</title>
+<desc id="d">A terminal replay of the no-account demo: “Show me my taste card”, “Songs like Radiohead”, “Make me a 90s throwback”, “Give me one song for today”, “How compatible am I with Björk?”.</desc>
+<style>
+text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace;font-size:13px;white-space:pre}
+.l{opacity:0;fill:#e6edf3}.req{fill:#79c0ff;font-weight:600}.dim{fill:#8b949e}.cap{fill:#8b949e;font-size:12px}
+@keyframes s1l0{0%,1.533%{opacity:0}1.534%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l0{animation:s1l0 26.10s linear infinite}
+@keyframes s1l1{0%,4.981%{opacity:0}4.982%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l1{animation:s1l1 26.10s linear infinite}
+@keyframes s1l2{0%,5.326%{opacity:0}5.327%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l2{animation:s1l2 26.10s linear infinite}
+@keyframes s1l3{0%,5.670%{opacity:0}5.671%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l3{animation:s1l3 26.10s linear infinite}
+@keyframes s1l4{0%,6.015%{opacity:0}6.016%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l4{animation:s1l4 26.10s linear infinite}
+@keyframes s1l5{0%,6.360%{opacity:0}6.361%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l5{animation:s1l5 26.10s linear infinite}
+@keyframes s1l6{0%,6.705%{opacity:0}6.706%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l6{animation:s1l6 26.10s linear infinite}
+@keyframes s1l7{0%,7.050%{opacity:0}7.051%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l7{animation:s1l7 26.10s linear infinite}
+@keyframes s1l8{0%,7.395%{opacity:0}7.396%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l8{animation:s1l8 26.10s linear infinite}
+@keyframes s1l9{0%,7.739%{opacity:0}7.740%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l9{animation:s1l9 26.10s linear infinite}
+@keyframes s1l10{0%,8.084%{opacity:0}8.085%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l10{animation:s1l10 26.10s linear infinite}
+@keyframes s1l11{0%,8.429%{opacity:0}8.430%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l11{animation:s1l11 26.10s linear infinite}
+@keyframes s1l12{0%,8.774%{opacity:0}8.775%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l12{animation:s1l12 26.10s linear infinite}
+@keyframes s1l13{0%,9.119%{opacity:0}9.120%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l13{animation:s1l13 26.10s linear infinite}
+@keyframes s1l14{0%,9.464%{opacity:0}9.465%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l14{animation:s1l14 26.10s linear infinite}
+@keyframes s1l15{0%,9.808%{opacity:0}9.809%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l15{animation:s1l15 26.10s linear infinite}
+@keyframes s1l16{0%,10.153%{opacity:0}10.154%,22.759%{opacity:1}22.760%,100%{opacity:0}}.s1l16{animation:s1l16 26.10s linear infinite}
+@keyframes s2l0{0%,24.674%{opacity:0}24.675%,42.452%{opacity:1}42.453%,100%{opacity:0}}.s2l0{animation:s2l0 26.10s linear infinite}
+@keyframes s2l1{0%,28.123%{opacity:0}28.124%,42.452%{opacity:1}42.453%,100%{opacity:0}}.s2l1{animation:s2l1 26.10s linear infinite}
+@keyframes s2l2{0%,28.467%{opacity:0}28.468%,42.452%{opacity:1}42.453%,100%{opacity:0}}.s2l2{animation:s2l2 26.10s linear infinite}
+@keyframes s2l3{0%,28.812%{opacity:0}28.813%,42.452%{opacity:1}42.453%,100%{opacity:0}}.s2l3{animation:s2l3 26.10s linear infinite}
+@keyframes s2l4{0%,29.157%{opacity:0}29.158%,42.452%{opacity:1}42.453%,100%{opacity:0}}.s2l4{animation:s2l4 26.10s linear infinite}
+@keyframes s2l5{0%,29.502%{opacity:0}29.503%,42.452%{opacity:1}42.453%,100%{opacity:0}}.s2l5{animation:s2l5 26.10s linear infinite}
+@keyframes s2l6{0%,29.847%{opacity:0}29.848%,42.452%{opacity:1}42.453%,100%{opacity:0}}.s2l6{animation:s2l6 26.10s linear infinite}
+@keyframes s3l0{0%,44.368%{opacity:0}44.369%,62.146%{opacity:1}62.147%,100%{opacity:0}}.s3l0{animation:s3l0 26.10s linear infinite}
+@keyframes s3l1{0%,47.816%{opacity:0}47.817%,62.146%{opacity:1}62.147%,100%{opacity:0}}.s3l1{animation:s3l1 26.10s linear infinite}
+@keyframes s3l2{0%,48.161%{opacity:0}48.162%,62.146%{opacity:1}62.147%,100%{opacity:0}}.s3l2{animation:s3l2 26.10s linear infinite}
+@keyframes s3l3{0%,48.506%{opacity:0}48.507%,62.146%{opacity:1}62.147%,100%{opacity:0}}.s3l3{animation:s3l3 26.10s linear infinite}
+@keyframes s3l4{0%,48.851%{opacity:0}48.852%,62.146%{opacity:1}62.147%,100%{opacity:0}}.s3l4{animation:s3l4 26.10s linear infinite}
+@keyframes s3l5{0%,49.195%{opacity:0}49.196%,62.146%{opacity:1}62.147%,100%{opacity:0}}.s3l5{animation:s3l5 26.10s linear infinite}
+@keyframes s3l6{0%,49.540%{opacity:0}49.541%,62.146%{opacity:1}62.147%,100%{opacity:0}}.s3l6{animation:s3l6 26.10s linear infinite}
+@keyframes s4l0{0%,64.061%{opacity:0}64.062%,80.115%{opacity:1}80.116%,100%{opacity:0}}.s4l0{animation:s4l0 26.10s linear infinite}
+@keyframes s4l1{0%,67.510%{opacity:0}67.511%,80.115%{opacity:1}80.116%,100%{opacity:0}}.s4l1{animation:s4l1 26.10s linear infinite}
+@keyframes s5l0{0%,82.031%{opacity:0}82.032%,98.084%{opacity:1}98.085%,100%{opacity:0}}.s5l0{animation:s5l0 26.10s linear infinite}
+@keyframes s5l1{0%,85.479%{opacity:0}85.480%,98.084%{opacity:1}98.085%,100%{opacity:0}}.s5l1{animation:s5l1 26.10s linear infinite}
+@media (prefers-reduced-motion: reduce){.l{animation:none!important;opacity:0}.l.still{opacity:1}}
+</style>
+<rect width="925" height="458" rx="10" fill="#0d1117"/>
+<rect width="925" height="38" rx="10" fill="#161b22"/><rect y="28" width="925" height="10" fill="#161b22"/>
+<circle cx="22" cy="19" r="6" fill="#ff5f56"/><circle cx="42" cy="19" r="6" fill="#ffbd2e"/><circle cx="62" cy="19" r="6" fill="#27c93f"/>
+<text x="462" y="23" text-anchor="middle" class="cap" xml:space="preserve">🎧 Apple Music DJ</text>
+<text class="l req s1l0" x="24" y="64" xml:space="preserve">› Show me my taste card</text>
+<text class="l dim s1l1" x="24" y="84" xml:space="preserve">╔══════════════════════════════════════╗</text>
+<text class="l out s1l2" x="24" y="104" xml:space="preserve">║          🎧  TASTE DNA CARD          ║</text>
+<text class="l dim s1l3" x="24" y="124" xml:space="preserve">╠══════════════════════════════════════╣</text>
+<text class="l out s1l4" x="24" y="144" xml:space="preserve">  Archetype: Nostalgia Keeper</text>
+<text class="l out s1l5" x="24" y="164" xml:space="preserve">  Your heart lives in a different decade. The classics never get old.</text>
+<text class="l dim s1l6" x="24" y="184" xml:space="preserve"></text>
+<text class="l dim s1l7" x="24" y="204" xml:space="preserve">  ── TOP GENRES ──</text>
+<text class="l out s1l8" x="24" y="224" xml:space="preserve">  Alternative......... ███████████████░░░░░ 75%</text>
+<text class="l out s1l9" x="24" y="244" xml:space="preserve">  Rock................ ██░░░░░░░░░░░░░░░░░░ 12%</text>
+<text class="l out s1l10" x="24" y="264" xml:space="preserve">  Electronic.......... ██░░░░░░░░░░░░░░░░░░ 12%</text>
+<text class="l dim s1l11" x="24" y="284" xml:space="preserve"></text>
+<text class="l dim s1l12" x="24" y="304" xml:space="preserve">  ── TOP ARTISTS ──</text>
+<text class="l out s1l13" x="24" y="324" xml:space="preserve">   1. Radiohead</text>
+<text class="l out s1l14" x="24" y="344" xml:space="preserve">   2. Oasis</text>
+<text class="l out s1l15" x="24" y="364" xml:space="preserve">   3. Muse</text>
+<text class="l out s1l16" x="24" y="384" xml:space="preserve">  …</text>
+<text class="l req s2l0 still" x="24" y="64" xml:space="preserve">› Songs like Radiohead</text>
+<text class="l out s2l1 still" x="24" y="84" xml:space="preserve">Like Radiohead · Oct 2026</text>
+<text class="l out s2l2 still" x="24" y="104" xml:space="preserve"> 1. Starlight — Muse                 Fans of Radiohead tend to love Muse.</text>
+<text class="l out s2l3 still" x="24" y="124" xml:space="preserve"> 2. Champagne Supernova — Oasis      Fans of Radiohead tend to love Oasis.</text>
+<text class="l out s2l4 still" x="24" y="144" xml:space="preserve"> 3. Paranoid Android — Radiohead     One of Radiohead&#x27;s best.</text>
+<text class="l out s2l5 still" x="24" y="164" xml:space="preserve"> 4. Wonderwall — Oasis               Fans of Radiohead tend to love Oasis.</text>
+<text class="l out s2l6 still" x="24" y="184" xml:space="preserve"> 5. Supermassive Black Hole — Muse   Fans of Radiohead tend to love Muse.</text>
+<text class="l req s3l0" x="24" y="64" xml:space="preserve">› Make me a 90s throwback</text>
+<text class="l out s3l1" x="24" y="84" xml:space="preserve">1990s Throwback · Oct 2026</text>
+<text class="l out s3l2" x="24" y="104" xml:space="preserve"> 1. Let Down — Radiohead               Radiohead in the 1990s — from OK Computer.</text>
+<text class="l out s3l3" x="24" y="124" xml:space="preserve"> 2. Wonderwall — Oasis                 Oasis in the 1990s — from (What&#x27;s the Story) Morning Glory?.</text>
+<text class="l out s3l4" x="24" y="144" xml:space="preserve"> 3. Bachelorette — Björk               A 1990s track that fits your taste.</text>
+<text class="l out s3l5" x="24" y="164" xml:space="preserve"> 4. Don&#x27;t Look Back in Anger — Oasis   Oasis in the 1990s — from (What&#x27;s the Story) Morning Glory?.</text>
+<text class="l out s3l6" x="24" y="184" xml:space="preserve"> 5. Paranoid Android — Radiohead       Radiohead in the 1990s — from OK Computer.</text>
+<text class="l req s4l0" x="24" y="64" xml:space="preserve">› Give me one song for today</text>
+<text class="l out s4l1" x="24" y="84" xml:space="preserve">🎧 Today&#x27;s pick: *Everything In Its Right Place* by Radiohead — A deep cut from Radiohead you haven&#x27;t heard yet.</text>
+<text class="l req s5l0" x="24" y="64" xml:space="preserve">› How compatible am I with Björk?</text>
+<text class="l out s5l1" x="24" y="84" xml:space="preserve">Björk: 12% — Wild card — musically distant from your usual taste.</text>
+<text x="24" y="446" class="cap" xml:space="preserve">demo mode · fictional listener · nothing touches an Apple Music account</text>
+</svg>

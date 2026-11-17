@@ -1,40 +1,54 @@
-## Description: <br>
-Guides an agent through planning, deploying, validating, troubleshooting, and documenting a new kubeadm-based Kubernetes cluster on Ubuntu. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides developers and operators through planning, deploying, validating, and documenting a kubeadm-based Kubernetes cluster on Ubuntu.
 
-## Publisher: <br>
-[t2phage](https://clawhub.ai/user/t2phage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[t2phage](https://clawhub.ai/user/t2phage)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to create a new Ubuntu Kubernetes cluster with kubeadm, from node information gathering and architecture design through deployment, validation, and delivery reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for powerful SSH or root-level access and may reconfigure dedicated machines during cluster setup. <br>
-Mitigation: Use dedicated or disposable Ubuntu machines, prefer temporary SSH keys or temporary admin accounts, verify every IP and hostname, and require exact command previews before approving each milestone. <br>
-Risk: Cleanup guidance may affect test resources or destroy the whole cluster if approved with the wrong scope. <br>
-Mitigation: Do not approve the cleanup milestone unless it clearly states whether it will delete only test namespaces and resources or destroy the entire cluster. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to design, execute, troubleshoot, validate, and document a new Kubernetes cluster deployment on Ubuntu hosts using kubeadm.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/t2phage/deploy-k8s-cluster) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, checklists, command previews, troubleshooting options, and deployment reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires milestone-by-milestone user confirmation; supports Ubuntu and kubeadm-based clusters only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may require privileged SSH access to Kubernetes hosts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use dedicated hosts, SSH keys or an SSH agent, and tightly scoped deployment accounts instead of broad password-based access.
+
+Risk: Cleanup or reset actions may destroy cluster resources or host state.
+
+Mitigation: Back up or isolate target machines and require explicit user confirmation before cleanup or destroy operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/t2phage/skills/deploy-k8s-cluster)
+- [Publisher profile](https://clawhub.ai/user/t2phage)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with structured deployment plans, reports, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce architecture designs, deployment plans, validation reports, troubleshooting options, and delivery documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

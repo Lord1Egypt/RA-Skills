@@ -1,42 +1,53 @@
-## Description: <br>
-Full-stack content creation pipeline from research to publication: it analyzes competitor articles, identifies content gaps, drafts SEO-oriented content with brand voice, prepares CMS-ready formatting, and creates platform-specific promotion copy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Content Engine guides an agent through a full-stack content creation pipeline that researches competitors, identifies content gaps, drafts SEO-oriented content, formats it for common publishing platforms, and prepares promotion copy.
 
-## Publisher: <br>
-[ariktulcha](https://clawhub.ai/user/ariktulcha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ariktulcha](https://clawhub.ai/user/ariktulcha)
 
-## Use Case: <br>
-Content marketers, founders, editors, and developers use this skill to turn a topic, keyword, existing draft, or article URL into research briefs, long-form drafts, SEO reports, CMS-ready Markdown, and social promotion copy. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated drafts, metadata, and social posts may be inaccurate, off-brand, or unsuitable for publication. <br>
-Mitigation: Review research briefs, final drafts, SEO metadata, and promotion copy before using them externally. <br>
-Risk: Optional CMS publishing or social scheduling can make content public through connected services. <br>
-Mitigation: Confirm the destination CMS, account, schedule, and final content before approving any live publication or scheduling action. <br>
-Risk: Stored brand preferences or content context may include sensitive business information. <br>
-Mitigation: Store only necessary brand guidance and avoid putting confidential strategy, credentials, or sensitive customer data into memory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ariktulcha/content-engine) <br>
-- [Publisher profile](https://clawhub.ai/user/ariktulcha) <br>
+## Use Case:
 
+External content teams, marketers, and creators use this skill to turn a topic or keyword into a research brief, publish-ready article, SEO optimization report, CMS-ready formatting, and platform-specific promotion copy.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown drafts, research briefs, SEO reports, CMS frontmatter, and platform-specific promotion copy] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save Markdown drafts to the workspace and may propose publishing or scheduling actions through connected services when available.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workspace drafts, CMS publishing integrations, social scheduling, and stored brand preferences can affect public content or future drafts.
+
+Mitigation: Confirm publish or schedule actions before execution and periodically review stored brand preferences, avoided topics, competitor exclusions, and content calendars.
+
+Risk: Competitor research and content-gap analysis can produce inaccurate or stale strategic guidance if search results or memory are outdated.
+
+Mitigation: Review research briefs, sources, and optimization recommendations before relying on them for publication decisions.
+
+## Reference(s):
+
+- [Content Engine on ClawHub](https://clawhub.ai/ariktulcha/skills/content-engine)
+- [Publisher profile](https://clawhub.ai/user/ariktulcha)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown reports, article drafts, CMS-ready Markdown or frontmatter, and platform-specific social post copy]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save draft files to the workspace and may propose publish or scheduling actions when compatible integrations are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,59 @@
-## Description: <br>
-Helps an agent prepare, quality-check, publish, verify, and locally register normal Marktplaats.nl sale advertisements through a gated workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Marktplaats-advertenties voorbereiden, plaatsen/bewerken, copy-QA, preflight, live-verificatie en register.
 
-## Publisher: <br>
-[roelbroersma](https://clawhub.ai/user/roelbroersma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roelbroersma](https://clawhub.ai/user/roelbroersma)
 
-## Use Case: <br>
-External users and agents use this skill to create and manage individual Marktplaats.nl listings with copy quality, preflight, live verification, and local register checks. It is intended for normal sale advertisements, not bulk posting, account-security bypass, buyer messaging, or unauthorized paid options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can assist with a logged-in Marktplaats account, which may expose account or listing data if used without clear user control. <br>
-Mitigation: Use it only after explicit per-ad posting or editing instructions, keep saved snapshots private, and avoid sharing session-related data. <br>
-Risk: Optional probe and fetch paths may collect broader or more privacy-sensitive page data than the core workflow needs. <br>
-Mitigation: Prefer Marktplaats URLs, use browser-session probes only for the active listing task, and avoid raw cookies or cookie files unless the operator understands the saved-output privacy impact. <br>
-Risk: Publication or paid-option choices could create unintended marketplace actions or costs. <br>
-Mitigation: Stop unless copy-QA, preflight, live verification, and register-update gates pass, and require explicit approval before publishing, editing, or enabling paid options. <br>
+## Use Case:
 
+External users and developers use this skill to prepare, check, place or update normal Marktplaats sale advertisements with script-gated copy QA, preflight checks, live verification and a local register.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/roelbroersma/marktplaats-publisher) <br>
-- [Marktplaats.nl](https://www.marktplaats.nl) <br>
-- [README](README.md) <br>
-- [English Guide](references/guide-en.md) <br>
-- [Nederlandse Handleiding](references/handleiding-nl.md) <br>
-- [Robust Posting Checklist](references/robust-posting-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text with inline shell commands and JSON-backed ad records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are gated by copy-QA, preflight, live verification, and register-update checks before publication-related actions continue.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.0 (source: server release evidence and package.json) <br>
+Risk: The skill may use a local agent with the user's logged-in Safari Marktplaats session and write ad snapshots or registers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when comfortable with that local access pattern, keep snapshots private, and inspect logs or snapshots for sensitive data before sharing.
+
+Risk: The probe workflow can read authenticated browser forms and may forward user-supplied cookies or headers if misused.
+
+Mitigation: Do not pass cookies, cookie files, Authorization headers, or non-Marktplaats URLs to the probe tool.
+
+## Reference(s):
+
+- [Marktplaats Skill Page](https://clawhub.ai/roelbroersma/skills/marktplaats-publisher)
+- [README](README.md)
+- [Nederlandse handleiding](references/handleiding-nl.md)
+- [English guide](references/guide-en.md)
+- [Robust posting checklist](references/robust-posting-checklist.md)
+- [Setup for small models](references/setup-small-model-nl.md)
+- [Background Safari flow](references/background-safari-nl.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local JSON file updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and may use a logged-in Safari Marktplaats session for authenticated checks.]
+
+## Skill Version(s):
+
+0.6.3 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

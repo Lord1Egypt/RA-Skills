@@ -1,47 +1,59 @@
-## Description: <br>
-Speech recognition CLI for AI agent automation. Transcribe audio from stdin, files, or URLs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Speech recognition CLI for AI agent automation. Transcribe audio from stdin, files, or URLs.
 
-## Publisher: <br>
-[dionren](https://clawhub.ai/user/dionren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dionren](https://clawhub.ai/user/dionren)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe recorded, streamed, or piped audio into text, JSON, SRT, or VTT output. It supports local ASR engines and optional cloud transcription engines for automation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill installs or runs a downloaded speech recognition executable. <br>
-Mitigation: Verify the release source and checksum before trusting the binary, and run installation in an environment appropriate for downloaded tools. <br>
-Risk: Audio supplied to transcription may contain private or sensitive speech. <br>
-Mitigation: Use local engines for private audio when possible, and review provider privacy terms before sending audio to cloud engines. <br>
-Risk: Optional cloud engines require API keys for OpenAI, Doubao, or Deepgram. <br>
-Mitigation: Protect API keys, avoid exposing them in prompts or logs, and use scoped or dedicated keys where available. <br>
-Risk: Service-style engines can keep local transcription services running after use. <br>
-Mitigation: Check engine status and stop service engines when transcription work is complete. <br>
+## Use Case:
 
+Developers and agent users use Asr Claw to transcribe audio from files, URLs, stdin, or live streams into text, JSON, and subtitle formats using local or cloud ASR engines.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dionren/asr-claw) <br>
-- [Project Homepage](https://github.com/llm-net/asr-claw) <br>
-- [Release Binary Download](https://github.com/llm-net/asr-claw/releases/latest/download/asr-claw-${os}-${arch}) <br>
-- [Release Checksums](https://github.com/llm-net/asr-claw/releases/latest/download/checksums.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands; CLI output may be JSON, plain text, SRT, or VTT.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include transcription segments, full text, selected engine, audio duration, and timing metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.1 (source: ClawHub release metadata and SKILL.md frontmatter) <br>
+Risk: Cloud ASR engines can send audio to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local engines for private or regulated recordings, and use cloud engines only when the provider's policies are acceptable for the audio.
+
+Risk: Installation downloads an external executable from a GitHub release.
+
+Mitigation: Confirm the release source is trusted and verify the provided checksum before installing or running the executable.
+
+Risk: The default language setting is Chinese, which may be unexpected for some recordings.
+
+Mitigation: Review and change the default language setting before use when another language is expected.
+
+## Reference(s):
+
+- [Asr Claw ClawHub Skill Page](https://clawhub.ai/dionren/skills/asr-claw)
+- [asr-claw Homepage](https://github.com/llm-net/asr-claw)
+- [asr-claw Release Checksums](https://github.com/llm-net/asr-claw/releases/latest/download/checksums.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Shell commands, Configuration]
+
+**Output Format:** [JSON envelope, plain text, SRT/VTT subtitle files, and Markdown command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports file, stdin, URL, and streaming audio inputs; transcription output can include segment timing.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

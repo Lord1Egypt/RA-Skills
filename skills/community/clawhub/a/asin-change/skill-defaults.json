@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "channel": "asin-change",
+  "workflow": "watch",
+  "focus": "all",
+  "outputTemplate": "watch_digest",
+  "requiredCapabilities": [
+    "product-detail",
+    "product-snapshots"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "orders": [
+    {"id": "D-9003", "items": [{"sku": "BEANS", "quantity": 3, "unit": "个"}]}
+  ],
+  "gifts": [
+    {"qualifying_sku": "BEANS", "min_order_quantity": 3, "min_order_unit": "个", "sku": "GIFT", "quantity": 1, "unit": "个"}
+  ]
+}

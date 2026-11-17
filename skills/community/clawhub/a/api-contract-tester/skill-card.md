@@ -1,39 +1,48 @@
-## Description: <br>
-Validate API contracts between services by generating and verifying consumer-driven Pact contracts, OpenAPI compliance tests, and schema compatibility checks for microservices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Validate API contracts between services using consumer-driven contract testing, OpenAPI compliance tests, and schema compatibility checks for microservices.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to generate and verify API contract tests, compare OpenAPI versions for breaking changes, and map consumers to API endpoints before deploying service changes.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Dependency installation and contract verification may run tooling or live API calls against provider URLs.
+
+Mitigation: Review generated tests and commands before execution, install dependencies in an isolated environment, and target controlled API endpoints rather than shared production systems.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to generate contract tests, verify APIs against Pact or OpenAPI contracts, detect breaking API changes, and map consumer dependencies before API releases. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest local tooling commands or package installation while inspecting API contracts. <br>
-Mitigation: Review generated commands before execution and run them only in the intended repository and environment. <br>
-Risk: Contract verification may send requests to provider APIs or validation endpoints. <br>
-Mitigation: Use non-production endpoints or scoped test credentials when verifying contracts, and avoid sending sensitive data in generated tests. <br>
+**Output Format:** [Markdown guidance with Python/pytest examples, shell command snippets, and contract-test report outlines]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include dependency installation commands and live API verification guidance.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python test examples, shell commands, compatibility tables, and breaking-change reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent guidance for local repository analysis and API contract validation; it does not declare a fixed machine-readable output schema.] <br>
+1.0.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

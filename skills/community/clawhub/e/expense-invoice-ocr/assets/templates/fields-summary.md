@@ -303,4 +303,148 @@
 - `totalAmountLower`: 合计金额(小写)
 - `passengerName`: 旅客姓名
 
+## VAT_TOLL_INVOICE (增值税通行费发票)
+- `title`: 发票名称
+- `invoiceCode`: 发票代码
+- `invoiceNo`: 发票号码
+- `printedCode`: 机打代码
+- `printedNo`: 机打号码
+- `checkCode`: 校验码
+- `machineCode`: 机器编号
+- `invoiceDate`: 开票日期
+- `passwordArea`: 密码区
+- `buyerName`: 购方名称
+- `buyerCode`: 购方纳税人识别号
+- `buyerAddressAndPhone`: 购方地址及电话
+- `buyerBankAndAccount`: 购方开户行及账号
+- `sellerName`: 销售方名称
+- `sellerCode`: 销售方纳税人识别号
+- `sellerAddressAndPhone`: 销售方地址及电话
+- `sellerBankAndAccount`: 销售方开户行及账号
+- `preTaxTotalAmount`: 税前合计金额
+- `totalTaxAmount`: 合计税额
+- `totalAmountUpper`: 价税合计(大写)
+- `totalAmountLower`: 价税合计(小写)
+- `invoiceForm`: 联次
+- `remarks`: 备注
+- `payee`: 收款人
+- `checker`: 复核
+- `drawer`: 开票人
+- `goodsDetails`: 发票商品明细
+  - `goodsName`: 货物服务名称
+  - `plateNo`: 车牌号
+  - `vehicleType`: 类型
+  - `passageDateBegin`: 通行日期起
+  - `passageDateEnd`: 通行日期止
+  - `itemAmount`: 金额
+  - `taxRate`: 税率
+  - `taxAmount`: 税额
+
+## RIDE_HAILING_ITINERARY (网约车行程单)
+- `title`: 标题
+- `applyTime`: 申请时间
+- `tripTime`: 行程时间
+- `passengerPhone`: 行程人手机号
+- `totalAmountLower`: 合计金额(小写)
+- `pageNo`: 页码
+- `tripDetails`: 行程明细
+  - `tripSerialNo`: 序号
+  - `tripServiceProvider`: 服务商
+  - `tripRideType`: 车型
+  - `tripPickupTime`: 上车时间
+  - `tripCity`: 城市
+  - `tripStartLocation`: 起点
+  - `tripEndLocation`: 终点
+  - `tripMileage`: 里程
+  - `tripAmt`: 金额
+  - `tripRemark`: 备注
+
+## UNIONPAY_POS_RECEIPT (银联POS签购单)
+- `billType`: 签单类型
+- `merchantName`: 商户名称
+- `merchantNo`: 商户编号
+- `issNo`: 发卡行
+- `transType`: 交易类型
+- `voucherNo`: 凭证号
+- `batchNo`: 批次号
+- `referNo`: 参考号
+- `dateTime`: 交易时间
+- `amount`: 交易金额
+
+## MEDICAL_INPATIENT_INVOICE (医疗住院发票)
+- `title`: 标题
+- `invoiceCode`: 票据代码
+- `invoiceNo`: 票据号码
+- `payerName`: 交款人
+- `payerAccount`: 交款人统一社会信用代码
+- `checkCode`: 校验码
+- `invoiceDate`: 开票日期
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `payeeName`: 收款单位
+- `checker`: 复核人
+- `payee`: 收款人
+- `businessSerialNo`: 业务流水号
+- `medicalRecordNo`: 病历号
+- `inpatientNo`: 住院号
+- `inpatientDept`: 住院科别
+- `admissionTime`: 住院时间
+- `medicalOrgType`: 医疗机构类型
+- `insuranceType`: 医保类型
+- `insuranceNo`: 医保编号
+- `gender`: 性别
+- `poolFundPay`: 医保统筹基金支付
+- `personalAccountPay`: 个人账户支付
+- `personalCashPay`: 个人现金支付
+- `personalSelfPay`: 个人自付
+- `personalSelfExpense`: 个人自费
+- `itemDetails`: 项目明细-多栏
+  - `itemName`: 项目名称
+  - `itemAmt`: 金额
+
+## MEDICAL_EXPENSE_SETTLEMENT (医疗费用结算单)
+- `title`: 标题
+- `institutionCode`: 机构编码
+- `institutionName`: 机构名称
+- `hospitalLevel`: 医院等级
+- `patientName`: 姓名
+- `gender`: 性别
+- `idNumber`: 身份证号
+- `personnelCategory`: 人员类别
+- `socialSecurityCardNumber`: 社保卡号
+- `settlementTime`: 结算时间
+- `printTime`: 打印时间
+- `insuranceType`: 险种类型
+- `insuredRegion`: 参保地
+- `medicalRegion`: 就医地
+- `settlementId`: 结算ID
+- `admissionNumber`: 住院号
+- `admissionMethod`: 入院方式
+- `dischargeDepartment`: 出院科室
+- `primaryDiagnosis`: 主要诊断
+- `secondaryDiagnosis`: 次要诊断
+- `admissionDate`: 入院日期
+- `dischargeDate`: 出院日期
+- `hospitalizationDays`: 住院天数
+- `totalAmountUpper`: 合计金额(大写)
+- `totalAmountLower`: 合计金额(小写)
+- `medicalCoveredAmount`: 医保范围内金额
+- `personalSelfExpense`: 自费金额
+- `aboveLimitSelfPayAmount`: 超限价自费金额
+- `deductible`: 起付线
+- `totalFundPay`: 基金支付合计
+- `pooledFundPay`: 统筹基金支付
+- `largeMutualAidFundPay`: 大额互助资金支付
+- `retireeSupplFundPay`: 退休人员补充基金支付
+- `employerSupplFundPay`: 单位补充基金支付
+- `disabledVeteranSubsidyPay`: 残疾军人医疗补助支付
+- `criticalIllnessPay`: 大病保障支付
+- `medicalAssistancePay`: 医疗救助支付
+- `civilServantSubsidyPay`: 公务员补助支付
+- `otherFundPay`: 其他基金支付
+- `selfPayCategoryOne`: 自付一金额
+- `selfPayCategoryTwo`: 自付二金额
+- `personalCashPay`: 个人现金支付
+- `personalAccountPay`: 个人账户支付
+
 ## UNIFIED_IDENTIFICATION_OF_FINANC (财务票据统一识别)

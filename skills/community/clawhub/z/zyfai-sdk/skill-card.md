@@ -1,47 +1,62 @@
-## Description: <br>
-Earn yield on any Ethereum wallet on Base, Arbitrum, and Plasma using either simple Vault deposits on Base or a Smart Wallet with automated yield optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Zyfai Yield Automation helps agents use the Zyfai SDK to connect wallets, deposit supported assets into non-custodial Safe subaccounts, manage automated DeFi yield strategies, and withdraw funds on Ethereum Mainnet, Base, and Arbitrum.
 
-## Publisher: <br>
-[pauldefi](https://clawhub.ai/user/pauldefi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pauldefi](https://clawhub.ai/user/pauldefi)
 
-## Use Case: <br>
-External users and developers use this skill to automate DeFi yield workflows, including Vault deposits and withdrawals, Smart Wallet deployment, session-key setup, strategy configuration, and earnings inspection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through wallet-connected DeFi actions, including deposits, withdrawals, smart-wallet deployment, session-key permissioning, cross-chain settings, and identity-registry transactions. <br>
-Mitigation: Require explicit user approval for each wallet transaction and configuration change, and use only wallets and funds the user is prepared to expose to DeFi risk. <br>
-Risk: Raw private keys in an autonomous agent environment can expose wallet funds if logs, prompts, dependencies, or runtime hosts are compromised. <br>
-Mitigation: Use wallet providers, hardware-backed KMS, or wallet-as-a-service custody instead of raw private keys, and avoid hardcoding secrets. <br>
-Risk: Package or SDK changes could alter transaction behavior in a high-impact financial workflow. <br>
-Mitigation: Pin and verify package versions before use, and review generated SDK calls and transaction parameters before signing. <br>
+## Use Case:
 
+External developers and wallet-enabled agents use this skill to integrate Zyfai SDK flows for DeFi yield deposits, withdrawals, portfolio inspection, strategy updates, and agent registration across supported Ethereum networks.
 
-## Reference(s): <br>
-- [Zyfai Skill on ClawHub](https://clawhub.ai/pauldefi/zyfai-sdk) <br>
-- [Zyfai SDK Documentation](https://docs.zyf.ai) <br>
-- [Zyfai SDK API Key Portal](https://sdk.zyf.ai) <br>
-- [Zyfai SDK Demo](https://github.com/ondefy/zyfai-sdk-demo) <br>
-- [Zyfai MCP Server](https://mcp.zyf.ai/mcp) <br>
-- [Zyfai Agent Registration Metadata](https://www.zyf.ai/.well-known/agent-registration.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, bash, HTTP, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose wallet transactions, SDK calls, API-key setup, and chain-specific DeFi configuration that require explicit user approval before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release evidence) <br>
+Risk: The skill can guide agents to initiate real blockchain deposits, withdrawals, strategy changes, cross-chain settings, and on-chain registration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before every funds-moving transaction, strategy update, cross-chain enablement, or registry action.
+
+Risk: Wallet-enabled use can expose private keys, API keys, and session credentials if raw secrets are used directly.
+
+Mitigation: Pin and lock dependencies, store API keys securely, avoid raw private keys, and prefer wallet providers, WalletClient integrations, KMS, or wallet-as-a-service signers with policy controls.
+
+Risk: Deposited funds are exposed to smart contract, market, protocol, and strategy risk.
+
+Mitigation: Make users confirm supported chains, assets, minimum balances, transaction amounts, and DeFi risk before deposit or withdrawal execution.
+
+## Reference(s):
+
+- [Zyfai SDK documentation](https://docs.zyf.ai)
+- [Zyfai API key portal](https://sma.zyf.ai)
+- [Programmatic API key creation endpoint](https://sma.zyf.ai/api/sdk-api-keys/create)
+- [Zyfai SDK demo](https://github.com/ondefy/zyfai-sdk-demo)
+- [Zyfai MCP server](https://mcp.zyf.ai/mcp)
+- [Zyfai agent registration metadata](https://www.zyf.ai/.well-known/agent-registration.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with TypeScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance can include wallet connection, API key setup, supported-chain constraints, SDK method calls, and transaction approval checkpoints.]
+
+## Skill Version(s):
+
+1.0.13 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

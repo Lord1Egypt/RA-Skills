@@ -1,43 +1,57 @@
-## Description: <br>
-Use when the user needs a general newsletter sponsor workflow across local, B2B, tech, finance, lifestyle, health, hobby, or brand newsletters: prospecting, sponsor-fit criteria, rate cards, media-kit bullets, outreach, follow-up, IOs, asset collection, approval, payment, fulfillment, and renewal tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user needs a general newsletter sponsor workflow across local, B2B, tech, finance, lifestyle, health, hobby, or brand newsletters: prospecting, sponsor-fit criteria, rate cards, media-kit bullets, outreach, follow-up, IOs, asset collection, approval, payment, fulfillment, and renewal tracking.
 
-## Publisher: <br>
-[freeman14](https://clawhub.ai/user/freeman14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman14](https://clawhub.ai/user/freeman14)
 
-## Use Case: <br>
-Newsletter operators, media teams, and sponsor operations staff use this skill to define sponsor fit, organize pipeline stages, draft outreach, identify rate-card gaps, and prepare fulfillment handoff notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may work with sponsor, audience, pricing, payment, and pipeline information. <br>
-Mitigation: Use connected business data only when appropriate and review sponsor records, pricing, payment, and pipeline outputs before acting on them. <br>
-Risk: Outreach, contract, payment, or publishing actions can have commercial consequences. <br>
-Mitigation: Require explicit approval before sending outreach, signing insertion orders, collecting payment, or publishing sponsor copy. <br>
-Risk: Unsupported audience metrics or guaranteed performance claims could mislead sponsors. <br>
-Mitigation: Do not invent metrics, sponsor interest, testimonials, or guaranteed clicks, conversions, sales, or ROI; separate audience proof from speculative benefits. <br>
-Risk: Sponsor recommendations may conflict with reader trust or explicit exclusions. <br>
-Mitigation: Screen sponsors against audience fit, category exclusions, trust risk, and offer relevance before recommending or advancing them. <br>
+## Use Case:
 
+Newsletter operators, marketing teams, and sponsor operations staff use this skill to plan and manage sponsorship workflows from prospect qualification through outreach, approvals, fulfillment handoff, and renewal tracking.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with tables, checklists, outreach drafts, and handoff notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include sponsor-fit criteria, pipeline tables, package gaps, outreach sequences, approval checklists, and connected-workspace handoff notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may use newsletter audience metrics, sponsor records, and pipeline notes in a connected workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the agent may access that workspace data before installation or use, and avoid providing data that should not be used for sponsorship operations.
+
+Risk: Outreach, contracts, payments, and sponsor copy can create business or reader-trust impact if acted on without review.
+
+Mitigation: Keep human approval required before sending outreach, signing IOs, collecting payment, or publishing sponsor copy.
+
+Risk: Missing or incomplete pricing, audience, or sponsor-history data could lead to speculative recommendations.
+
+Mitigation: Treat package options and sponsor benefits as hypotheses when source data is missing, and do not present guaranteed clicks, conversions, sales, or ROI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman14/skills/newsletter-sponsor-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with sponsor strategy notes, pipeline tables, outreach sequences, checklists, and handoff notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include structured pipeline and lead tables when reusable artifacts are useful.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

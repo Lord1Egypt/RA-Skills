@@ -1,39 +1,57 @@
-## Description: <br>
-Parse, analyze, and extract content from documents (PDF, DOCX, PPTX, audio). Supports OCR, table extraction, and semantic chunking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parse, analyze, and extract content from documents (PDF, DOCX, PPTX, audio). Supports OCR, table extraction, and semantic chunking.
 
-## Publisher: <br>
-[c7934597](https://clawhub.ai/user/c7934597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c7934597](https://clawhub.ai/user/c7934597)
 
-## Use Case: <br>
-External users and developers use this skill to process user-selected documents, extract structured content, summarize key points, answer questions about the extracted material, and translate content when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-selected documents are processed through an external Akashic MCP service. <br>
-Mitigation: Install only if the Akashic MCP provider is trusted for the documents being analyzed; avoid confidential, regulated, or highly personal files unless handling, retention, and access controls have been confirmed. <br>
-Risk: OCR, transcription, or extraction quality may be poor for low-resolution scans or difficult audio. <br>
-Mitigation: Review extracted content before relying on summaries or answers, and provide a higher-resolution scan or clearer source file when quality is poor. <br>
+## Use Case:
 
+Developers and end users use this skill to process PDFs, DOCX files, PPTX decks, and audio files, then extract, summarize, translate, or answer questions about the resulting content.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown summaries, extracted-content sections, answers, translations, and transcription notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Akashic MCP service for document processing, chat completion, and translation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Document contents may be handled by Akashic MCP services during processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit document-analysis tasks, and avoid sensitive files unless sharing them with the configured processing service is approved.
+
+Risk: Broad activation phrases may match general file or document requests.
+
+Mitigation: Invoke the skill only when the user clearly requests analysis, extraction, summarization, transcription, or translation of a supported document or audio file.
+
+Risk: OCR or transcription quality can be poor for low-resolution scans or unclear audio.
+
+Mitigation: Ask for a higher-quality source when quality is poor and clearly qualify uncertain extracted content.
+
+## Reference(s):
+
+- [Akashic Doc Analyzer on ClawHub](https://clawhub.ai/c7934597/skills/akashic-doc-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text summaries, extracted content, translations, and answers based on processed documents]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference document chunks, OCR results, extracted tables, slide content, or audio transcript segments returned by Akashic MCP tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

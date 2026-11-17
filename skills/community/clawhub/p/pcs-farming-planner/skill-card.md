@@ -1,47 +1,66 @@
-## Description: <br>
-Plan yield farming, CAKE staking, and reward harvesting on PancakeSwap by discovering active farms, comparing APR/APY, and generating deep links to the PancakeSwap farming interface. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans PancakeSwap yield farming, CAKE staking, LP staking, unstaking, and reward-harvesting workflows by comparing APR data and producing PancakeSwap UI deep links.
 
-## Publisher: <br>
-[pcs-bot](https://clawhub.ai/user/pcs-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pcs-bot](https://clawhub.ai/user/pcs-bot)
 
-## Use Case: <br>
-External DeFi users and agent operators use this skill to discover PancakeSwap farm and Syrup Pool opportunities, compare APR/APY, inspect wallet positions, and prepare UI deep links or shell commands for user-reviewed staking, unstaking, and harvesting workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes mainnet transaction guidance that can lead to real on-chain actions. <br>
-Mitigation: Review every transaction section before use and do not run any cast send command or token approval unless the user deliberately intends that action. <br>
-Risk: Helper scripts may install Python packages at runtime. <br>
-Mitigation: Avoid running helper scripts until dependencies are pinned and installed through a reviewed setup process. <br>
-Risk: Wallet-position inspection exposes sensitive operational context for DeFi users. <br>
-Mitigation: Use only intended public wallet addresses and treat returned balances, positions, and pending rewards as user-sensitive information. <br>
+## Use Case:
 
+External DeFi users and agents use this skill to compare PancakeSwap farms and Syrup Pools, plan staking or reward-harvesting actions, and open PancakeSwap deep links for wallet review and confirmation. The skill is planning-oriented and does not execute transactions by itself.
 
-## Reference(s): <br>
-- [ClawHub Farming Planner release](https://clawhub.ai/pcs-bot/pcs-farming-planner) <br>
-- [Publisher profile: pcs-bot](https://clawhub.ai/user/pcs-bot) <br>
-- [PancakeSwap AI repository](https://github.com/pancakeswap/pancakeswap-ai) <br>
-- [fetch-farms.py](artifact/references/fetch-farms.py) <br>
-- [fetch-solana.cjs](artifact/references/fetch-solana.cjs) <br>
-- [fetch-syrup-pools.py](artifact/references/fetch-syrup-pools.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with tables, deep links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include PancakeSwap deep links and user-reviewed cast examples; the skill states that it does not execute transactions itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The skill mandates a telemetry ping before workflow use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disable or require explicit user approval for the ping before installation or execution.
+
+Risk: Bundled local scripts and runtime dependency installation can execute unreviewed code.
+
+Mitigation: Review the bundled Python and Node scripts, pin or preinstall dependencies, and run them only in a controlled environment.
+
+Risk: Transaction-capable cast command examples could be misused for mainnet actions.
+
+Mitigation: Prefer PancakeSwap UI deep links for mainnet and require explicit approval plus wallet-safe key handling for any CLI transaction.
+
+Risk: APR, pool, and reward data come from external APIs and chain RPCs and may be stale or misleading.
+
+Mitigation: Treat APR output as untrusted financial data and verify final rates and transaction details in the PancakeSwap UI before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/pcs-bot/skills/pcs-farming-planner)
+- [PancakeSwap AI Repository](https://github.com/pancakeswap/pancakeswap-ai)
+- [PancakeSwap App](https://pancakeswap.finance/)
+- [fetch-farms.py](references/fetch-farms.py)
+- [fetch-syrup-pools.py](references/fetch-syrup-pools.py)
+- [fetch-solana.cjs](references/fetch-solana.cjs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tables, PancakeSwap deep links, and optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [APR and pool data are fetched from external APIs or chain RPCs and should be treated as time-sensitive.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

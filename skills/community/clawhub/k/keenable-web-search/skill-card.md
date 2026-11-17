@@ -1,44 +1,59 @@
-## Description: <br>
-Searches the live web for current, citable information across news, research, documentation, company and market research, and fact-checking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keenable Web Search lets agents search the live web for current, citable information such as news, research papers, documentation, company research, and fact-checking sources through a bundled keyless Python script.
 
-## Publisher: <br>
-[keenable](https://clawhub.ai/user/keenable) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keenable](https://clawhub.ai/user/keenable)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to retrieve current web results, source URLs, and snippets for research, news lookup, fact-checking, documentation discovery, and market research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to Keenable's public search endpoint. <br>
-Mitigation: Do not include secrets, credentials, private customer data, or confidential business material in queries. <br>
-Risk: An agent may auto-route broad search requests to this skill. <br>
-Mitigation: Use explicit Keenable-specific invocation when routing should be controlled. <br>
-Risk: The public endpoint may rate-limit requests. <br>
-Mitigation: Retry later when a rate-limit response is returned. <br>
+## Use Case:
 
+Developers and agents use this skill to gather current web references for research, news, fact-checking, company or market research, and documentation lookup. It is intended for web information retrieval, not local file operations or non-web tasks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/keenable/skills/keenable-web-search) <br>
-- [Keenable](https://keenable.ai) <br>
-- [Keenable Public Search Endpoint](https://api.keenable.ai/v1/search/public) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Formatted text search results with titles, URLs, and snippets, or raw JSON when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports natural-language queries plus optional site and date filters; public endpoint responses may be rate-limited.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence and frontmatter) <br>
+Risk: Search queries and filters are sent to Keenable's public search service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, private internal details, personal data, or regulated information unless Keenable's data handling has been reviewed for the use case.
+
+Risk: Search snippets may be incomplete or misleading if used without checking the source page.
+
+Mitigation: Open the most relevant result URL and cite the primary source before relying on a claim.
+
+Risk: The public endpoint can rate limit requests.
+
+Mitigation: Retry later or add backoff when automating repeated searches.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/keenable/skills/keenable-web-search)
+- [Keenable homepage](https://keenable.ai)
+- [Keenable public search endpoint](https://api.keenable.ai/v1/search/public)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Formatted text search results with titles, URLs, and snippets, or raw JSON when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports natural-language queries plus optional site and date filters; no API key is required.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

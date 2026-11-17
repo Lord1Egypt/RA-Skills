@@ -1,44 +1,54 @@
-## Description: <br>
-Prepare and publish a local skill to ClawHub and GitHub using a workflow that keeps the local publish directory clean. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Prepare and publish a local skill to ClawHub and GitHub using a workflow that keeps the local publish directory clean.
 
-## Publisher: <br>
-[zackz2025](https://clawhub.ai/user/zackz2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zackz2025](https://clawhub.ai/user/zackz2025)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to prepare, clean, publish, and back up local agent skills on ClawHub and GitHub while preserving a minimal local publishing directory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Publishing can expose sensitive content or unintended project details. <br>
-Mitigation: Review the target directory, git diff, repository, account identity, version, changelog, and sensitive-content sweep before approving a release. <br>
-Risk: Credential handling during GitHub or ClawHub publishing can expose long-lived tokens. <br>
-Mitigation: Prefer browser login, SSH, or a credential manager, and do not paste or store long-lived tokens in chat or files. <br>
-Risk: Git operations may overwrite or rewrite public repository history. <br>
-Mitigation: Inspect remote state and require explicit confirmation before any force-push or destructive history operation. <br>
+## Use Case:
 
+Developers and skill maintainers use this skill to clean, validate, publish, and optionally sync local agent skills to ClawHub and GitHub while reducing credential, force-push, and accidental-publication risks.
 
-## Reference(s): <br>
-- [Publish Checklist](references/publish-checklist.md) <br>
-- [ClawHub Listing](https://clawhub.ai/zackz2025/publish-to-clawhub) <br>
-- [Publisher Profile](https://clawhub.ai/user/zackz2025) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command snippets and file-change recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits, publish commands, git commands, and safety checks for user review before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server-resolved release metadata) <br>
+Risk: The workflow can publish local skill content to public services before the user notices private names, paths, credentials, or proprietary details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the target repository and ClawHub listing, run the documented sensitive-content sweep, and review generated changes before publishing.
+
+Risk: Authentication and GitHub publishing steps can expose credentials or alter public remote history if handled carelessly.
+
+Mitigation: Use browser login, SSH, or a credential manager instead of pasted long-lived tokens, and require explicit user confirmation before any force-push.
+
+## Reference(s):
+
+- [Publish Checklist](references/publish-checklist.md)
+- [ClawHub skill listing](https://clawhub.ai/zackz2025/skills/publish-to-clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include proposed file edits, publish commands, authentication guidance, and follow-up checks.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

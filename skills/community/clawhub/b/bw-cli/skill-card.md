@@ -1,44 +1,59 @@
-## Description: <br>
-Interact with Bitwarden password manager using the bw CLI for authentication, vault item management, password and passphrase generation, organization operations, and Send workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the Bitwarden password manager using the bw CLI for authentication, vault operations, password and passphrase generation, organization management, and Bitwarden Send workflows.
 
-## Publisher: <br>
-[0x7466](https://clawhub.ai/user/0x7466) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[0x7466](https://clawhub.ai/user/0x7466)
 
-## Use Case: <br>
-Developers and technical users use this skill to operate Bitwarden or Vaultwarden through the bw CLI, including unlock/login flows, vault reads and writes, imports and exports, Sends, and organization administration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable broad agent access to Bitwarden vault contents and credentials. <br>
-Mitigation: Install only when an agent is intentionally allowed to operate the vault, and prefer interactive unlock or short-lived secrets. <br>
-Risk: Vault exports, deletes, Sends, organization or device approvals, and bw serve can expose or alter sensitive account data. <br>
-Mitigation: Require explicit approval before running these operations. <br>
-Risk: Raw exports, session keys, passwords, or retrieved secrets may be exposed through command output or logs. <br>
-Mitigation: Avoid raw exports and do not log BW_SESSION, BW_PASSWORD, or retrieved secret values. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Bitwarden CLI documentation](https://bitwarden.com/help/cli/) <br>
-- [Bitwarden CLI documentation markdown](https://bitwarden.com/help/cli.md) <br>
-- [Bitwarden personal API key documentation](https://bitwarden.com/help/personal-api-key/) <br>
-- [Bitwarden CLI command reference](references/commands.md) <br>
+## Use Case:
 
+Developers, operators, and agent users use this skill as a command reference for working with Bitwarden or Vaultwarden vaults through the bw CLI, including login, unlock, item management, exports, and sharing.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include commands that retrieve, modify, export, or delete password-vault data.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage persistent plaintext storage or shell auto-loading of password manager credentials.
+
+Mitigation: Prefer interactive unlocks or an OS-backed secret manager, and do not keep master passwords in workspace files or auto-sourced shell startup files.
+
+Risk: Commands can expose, export, delete, or share sensitive vault data.
+
+Mitigation: Review commands before execution, avoid raw or full exports unless strictly required, and use reversible operations where available.
+
+Risk: Running the bw REST API server can expand local access to vault operations.
+
+Mitigation: Run bw serve only on localhost and only for the shortest time needed.
+
+## Reference(s):
+
+- [Bitwarden CLI documentation](https://bitwarden.com/help/cli/)
+- [Bitwarden CLI markdown documentation](https://bitwarden.com/help/cli.md)
+- [Bitwarden personal API key documentation](https://bitwarden.com/help/personal-api-key/)
+- [Bitwarden CLI command reference](references/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that access or modify password manager data; review before execution.]
+
+## Skill Version(s):
+
+1.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

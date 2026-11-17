@@ -1,42 +1,55 @@
-## Description: <br>
-Detects AI-like writing patterns in Chinese and English long-form articles using six dimensions and returns evidence-backed assessments with improvement suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detect AI flavor in long-form Chinese and English articles by auto-detecting language, applying language-specific indicators, and judging whether text reads like AI-generated or human-written.
 
-## Publisher: <br>
-[vivian8725118](https://clawhub.ai/user/vivian8725118) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivian8725118](https://clawhub.ai/user/vivian8725118)
 
-## Use Case: <br>
-Writers, editors, and reviewers use this skill to evaluate pasted article text or article URLs for AI-like style patterns. It returns a language-aware score table, quoted evidence, a probable-origin judgment, and concrete revision suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-authorship judgments are heuristic and can be mistaken or over-interpreted. <br>
-Mitigation: Treat results as writing feedback, not as proof of authorship for academic, employment, moderation, or disciplinary decisions. <br>
-Risk: Article URL analysis may access private drafts, internal pages, or authenticated content if a user provides those links. <br>
-Mitigation: Submit only text or URLs that the user intends the agent to access and analyze. <br>
+## Use Case:
 
+External users and writers use this skill to evaluate Chinese or English long-form articles for AI-like writing patterns and receive a dimension scorecard, quoted evidence, source-likelihood judgment, and revision suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vivian8725118/detect-ai-flavor) <br>
-- [Evaluation examples](references/evaluation-examples.md) <br>
-- [Indicator checklist](references/indicator-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown report with language detection, a dimension score table, quoted evidence, probable origin, and improvement suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multi-article comparison tables when the user provides more than one article.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: URL inputs may cause remote content fetching.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Paste article text directly when privacy matters, and do not submit private, internal, or sensitive URLs unless remote fetching is acceptable.
+
+Risk: AI-authorship verdicts are writing heuristics, not proof of authorship.
+
+Mitigation: Review the quoted evidence and dimension-level findings before relying on the verdict.
+
+## Reference(s):
+
+- [AI flavor evaluation examples](references/evaluation-examples.md)
+- [AI flavor indicator checklist](references/indicator-checklist.md)
+- [ClawHub skill page](https://clawhub.ai/vivian8725118/skills/detect-ai-flavor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown with dimension score tables, quoted evidence, verdicts, and improvement suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language-adaptive output for Chinese, English, or bilingual input]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

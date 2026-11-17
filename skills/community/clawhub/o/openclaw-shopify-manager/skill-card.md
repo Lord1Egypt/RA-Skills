@@ -1,50 +1,67 @@
-## Description: <br>
-Connect OpenClaw to Shopify with guided setup, local `.env` secret storage, Shopify OAuth, webhook validation, product and content operations, and host or Docker-sidecar deployment support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect OpenClaw to Shopify with guided setup, local secret storage, Shopify OAuth, webhook validation, product and content operations, and host or Docker-sidecar deployment support.
 
-## Publisher: <br>
-[dave8172](https://clawhub.ai/user/dave8172) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dave8172](https://clawhub.ai/user/dave8172)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw to a Shopify store, complete app setup and OAuth, inspect store and product data, and run user-confirmed product or content updates through a local connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security assessment says the skill asks for more Shopify access than its documented features need. <br>
-Mitigation: Start with read-only verification, remove `read_orders` unless order access is required, and keep Shopify scopes limited to the intended workflow. <br>
-Risk: The skill includes commands that can change Shopify product or content data. <br>
-Mitigation: Require explicit user approval before any product or content mutation and keep mutation controls such as `require-confirmation-for-mutations` enabled. <br>
-Risk: The local connector stores Shopify secrets and tokens in a runtime `.env` file. <br>
-Mitigation: Keep the runtime `.env` outside repositories, restrict file permissions, and avoid placing secrets in config files, docs, screenshots, or command-line arguments. <br>
-Risk: Tailscale, systemd, or public HTTPS exposure can affect the host environment and callback surface. <br>
-Mitigation: Bind the connector locally by default, expose only the intended callback path, verify health endpoints after changes, and enable Tailscale or systemd only when the operator understands the host impact. <br>
+## Use Case:
 
+Developers and store operators use this skill to connect a Shopify store to OpenClaw, complete Shopify app setup, run a local connector, read store data, and make confirmed product or content updates.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/dave8172/openclaw-shopify-manager) <br>
-- [Setup](references/setup.md) <br>
-- [Shopify scopes and safety](references/scopes-and-safety.md) <br>
-- [Security and behavior](references/security-and-behavior.md) <br>
-- [Docker and container edge cases](references/docker.md) <br>
-- [systemd](references/systemd.md) <br>
-- [Tailscale](references/tailscale.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and local runtime script usage] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Shopify app credentials and local runtime configuration; store-changing actions should require explicit confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.1 (source: server release evidence) <br>
+Risk: The skill handles powerful Shopify API credentials and offline access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store secrets only in the local .env runtime file, protect the runtime directory with owner-only permissions, and keep .env, state, and logs out of version control.
+
+Risk: Default or excessive Shopify scopes can grant more store access than a workflow needs.
+
+Mitigation: Start with read-only scopes, remove read_orders unless it is required, and add write scopes only for approved product or content workflows.
+
+Risk: Product or content mutation helpers can change live Shopify store data.
+
+Mitigation: Require explicit user confirmation before each write and use read-only or approved-operation modes for normal operation.
+
+Risk: OAuth and webhook endpoints must be exposed over public HTTPS and can be misconfigured.
+
+Mitigation: Validate the shop domain, verify callback URL alignment before OAuth, keep the connector bound locally when possible, and add webhook size and rate limits for production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dave8172/skills/openclaw-shopify-manager)
+- [Setup](references/setup.md)
+- [Shopify scopes and safety](references/scopes-and-safety.md)
+- [Security and behavior](references/security-and-behavior.md)
+- [Tailscale](references/tailscale.md)
+- [systemd](references/systemd.md)
+- [Docker and container edge cases](references/docker.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON status output, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate local runtime files, a .env-backed connector configuration, logs, state files, and Shopify Admin API JSON responses when the bundled scripts are run.]
+
+## Skill Version(s):
+
+0.2.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,49 @@
-## Description: <br>
-Set up and maintain basic bookkeeping for a solopreneur business, including income and expense tracking, tax preparation, invoices, receipts, cash flow, reconciliation, and basic financial reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents provide practical bookkeeping setup and maintenance guidance for solopreneurs, including accounting software selection, chart of accounts, transaction tracking, reconciliation, financial reports, invoices, receipts, and tax preparation.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and small-business operators use this skill to create a simple bookkeeping routine, choose accounting software, organize accounts, reconcile transactions, and prepare records for tax filing. It provides educational guidance and should not replace advice from a qualified accountant or tax professional. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bookkeeping and tax guidance may be incomplete, outdated, or not applicable to a user's jurisdiction or business structure. <br>
-Mitigation: Confirm current requirements with official sources or a qualified accountant before making filing, deduction, or compliance decisions. <br>
-Risk: The skill discusses financial recordkeeping but does not perform secure storage, reconciliation, or validation of user financial data. <br>
-Mitigation: Use reputable accounting software and keep sensitive financial records in systems designed for that purpose. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and agents use this skill to help solopreneurs set up basic bookkeeping, maintain monthly records, understand financial statements, and prepare organized materials for tax filing. It is educational guidance and should not replace advice from a CPA or local tax professional.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with checklists, examples, and procedural steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Educational bookkeeping guidance only; no executable behavior, data access, or persistence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global, with U.S.-oriented tax and deduction guidance requiring local professional review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Tax, deduction, and receipt-retention guidance may be U.S.-specific, incomplete for a user's situation, or outdated.
+
+Mitigation: Treat the skill as educational bookkeeping guidance and confirm current rules with a CPA or local tax professional before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jk-0001/skills/bookkeeping-basics)
+- [Publisher profile](https://clawhub.ai/user/jk-0001)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance with checklists, tables, and plain-language explanations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code, persistence, credential use, or hidden behavior.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

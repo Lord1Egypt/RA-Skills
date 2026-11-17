@@ -1,46 +1,53 @@
-## Description: <br>
-Performs financial due diligence on deals by analyzing earnings quality, working capital, revenue quality, liabilities, cash flow, red flags, and valuation sanity checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs M&A-grade financial due diligence on acquisition targets, investment opportunities, or partnership prospects, covering earnings quality, working capital, revenue quality, liabilities, cash flow, red flags, and valuation checks.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Private equity firms, corporate development teams, search fund operators, and founders use this skill to turn target-company financials and deal terms into a structured diligence package with findings, risks, valuation checks, and negotiation points. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive company, customer, banking, or transaction information. <br>
-Mitigation: Share only documents the user is authorized to provide and redact unnecessary personal, banking, customer, and confidential identifiers before analysis. <br>
-Risk: Financial diligence findings, valuation checks, or go/no-go recommendations may be incomplete or incorrect when based on partial inputs. <br>
-Mitigation: Independently verify findings and transaction decisions with qualified finance, legal, tax, and deal advisors before relying on them. <br>
-Risk: The artifact includes 2025-2026 valuation multiplier benchmarks that may become stale or may not match a specific market segment. <br>
-Mitigation: Validate valuation assumptions against current market comparables and deal-specific facts before using them in negotiations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-financial-due-diligence) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact Skill Instructions](artifact/SKILL.md) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
-- [Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/) <br>
+## Use Case:
 
+Private equity firms, corporate development teams, search fund operators, and founders use this skill to evaluate deals by generating structured financial diligence reports with findings, risks, negotiation points, and valuation sanity checks.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown diligence report with tables, scores, ranked findings, valuation checks, and negotiation points] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided financial statements, revenue breakdowns, and deal terms; no executable code or privileged action is indicated by the evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The agent may process sensitive company financials or deal materials.
+
+Mitigation: Use only documents you are authorized to provide, keep the task scoped, and avoid sharing unnecessary confidential information.
+
+Risk: Financial diligence outputs may contain incorrect assumptions, benchmarks, or recommendations that could affect deal decisions.
+
+Mitigation: Ask the agent to state assumptions and cite source documents, then have qualified finance or legal professionals review material decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-financial-due-diligence)
+- [AfrexAI context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses user-provided financial documents and deal assumptions; material deal decisions require qualified finance or legal review.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

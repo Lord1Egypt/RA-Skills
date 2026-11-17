@@ -1,41 +1,53 @@
-## Description: <br>
-Perspective Control System helps agents write or review immersive narrative scenes by enforcing scene-level POV dominance, sensory anchoring, subjective filtering, hard-break transitions, and External lens mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perspective Control System guides immersive narrative writing and review by enforcing scene-level POV dominance, sensory anchoring, subjective filtering, hard-break transitions, and External lens mode.
 
-## Publisher: <br>
-[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaibazax-dev](https://clawhub.ai/user/kaibazax-dev)
 
-## Use Case: <br>
-External writers and reviewing agents use this skill to draft or critique narrative scenes with a single governing point of view, sensory anchor, and explicit hard breaks for perspective changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may over-apply strict point-of-view discipline to general fiction writing. <br>
-Mitigation: Use it when strict scene-level POV control is desired, and ask the agent to relax these constraints for scenes that need omniscient, cinematic, or experimental narration. <br>
-Risk: Vietnamese-flavored examples may influence language or phrasing. <br>
-Mitigation: State the target language, voice, and style in the task prompt when applying the skill. <br>
+## Use Case:
 
+External writers and reviewers use this skill to keep narrative scenes governed by one declared point of view, with sensory anchors, constrained inference, hard scene breaks for POV changes, and an External lens mode for non-subjective scenes.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kaibazax-dev/vn-povs) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/kaibazax-dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and prose guidance for narrative drafting or review] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no executable code, tools, or external data access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: The skill's examples and terminology are partly Vietnamese, which may make guidance harder to apply in other writing contexts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that users understand the POV labels and examples, or adapt example names and prose while preserving the single-POV rules.
+
+Risk: Strict POV enforcement can reject intentional omniscient or experimental narration as a violation.
+
+Mitigation: Apply the checklist only when the target scene is meant to follow scene-level limited POV or the defined External lens mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaibazax-dev/skills/vn-povs)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown narrative-writing guidance with examples, tables, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces scene-planning structure, POV rules, anti-pattern corrections, and concise review guidance; no executable output.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

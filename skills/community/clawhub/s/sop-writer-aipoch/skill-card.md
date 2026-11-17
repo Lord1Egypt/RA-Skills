@@ -1,43 +1,54 @@
-## Description: <br>
-Write GCP-compliant Standard Operating Procedures for labs and clinical sites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write GCP-compliant Standard Operating Procedures for labs and clinical sites.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Clinical site, laboratory, and QA users can draft SOPs for sample processing, equipment calibration, safety procedures, and GCP compliance workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An unsafe output path could overwrite or place SOP files in an unintended location. <br>
-Mitigation: Use an output path inside a disposable or project workspace and review the path before running the script. <br>
-Risk: Sensitive clinical or patient content could be written into local output files without proper controls. <br>
-Mitigation: Avoid regulated patient or clinical data unless authorized and appropriate data-handling controls are in place. <br>
-Risk: Generated SOPs may be incomplete or unsuitable for regulated use without expert review. <br>
-Mitigation: Treat generated SOPs as drafts and require qualified compliance review before operational use. <br>
+## Use Case:
 
+Lab and clinical site teams use this skill to draft Standard Operating Procedures for sample processing, equipment calibration, safety procedures, and GCP compliance workflows.
 
-## Reference(s): <br>
-- [SOP Writer release page](https://clawhub.ai/aipoch-ai/sop-writer-aipoch) <br>
-- [aipoch-ai publisher profile](https://clawhub.ai/user/aipoch-ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Plain text SOP document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes the generated SOP to an output file and prints it to standard output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The SOP output path can overwrite any file the running process is allowed to write.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill in a controlled workspace, use trusted output filenames, avoid absolute paths and ../ traversal, and restrict output to a dedicated directory.
+
+Risk: Generated SOPs may omit site-specific controls or contain placeholders that are not ready for regulated use.
+
+Mitigation: Have qualified staff review and complete the generated SOP before operational or compliance use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/sop-writer-aipoch)
+- [Publisher profile](https://clawhub.ai/user/aipoch-ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files]
+
+**Output Format:** [Plain text SOP document with structured sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes the generated SOP to a user-selected output path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

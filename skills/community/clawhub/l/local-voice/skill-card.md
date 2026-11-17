@@ -1,43 +1,54 @@
-## Description: <br>
-Local text-to-speech (TTS) and speech-to-text (STT) using FluidAudio on Apple Silicon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local text-to-speech (TTS) and speech-to-text (STT) using FluidAudio on Apple Silicon, with on-device synthesis and transcription for local voice capabilities, voice assistant integration, and cloud TTS/STT replacement.
 
-## Publisher: <br>
-[TrondW](https://clawhub.ai/user/TrondW) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[trondw](https://clawhub.ai/user/trondw)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up local voice capabilities on Apple Silicon Macs, including offline TTS, STT, and voice assistant integration through a localhost service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow installs a macOS LaunchAgent that starts a background local voice service at login. <br>
-Mitigation: Review the setup script before running it, and unload the LaunchAgent and remove installed files when the service should be disabled. <br>
-Risk: The service listens on a localhost HTTP port for TTS and STT requests. <br>
-Mitigation: Keep the service bound to 127.0.0.1 and avoid exposing or proxying the endpoint to untrusted networks. <br>
-Risk: Setup and first use may install Homebrew or Swift dependencies and download speech models. <br>
-Mitigation: Install only in environments where those dependency and model downloads are acceptable, and review dependency sources before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Kokoro Voice Reference](references/VOICES.md) <br>
-- [FluidAudio Swift package](https://github.com/FluidInference/FluidAudio.git) <br>
-- [Hummingbird Swift package](https://github.com/hummingbird-project/hummingbird.git) <br>
+## Use Case:
 
+Developers and engineers use this skill to set up local voice capabilities on Apple Silicon Macs, including on-device speech synthesis, transcription, and voice assistant integration without relying on cloud TTS or STT services.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell, Swift, JavaScript, JSON, and XML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides setup and use of a local service that returns WAV audio for TTS and JSON transcripts for STT.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup installs a local voice daemon that starts at login and stays alive in the user's session.
+
+Mitigation: Review the LaunchAgent behavior before installation, decide whether persistence is desired, and keep unload and removal steps for the plist and installed binary.
+
+Risk: Swift dependencies are pulled during build and may change within allowed package ranges.
+
+Mitigation: Pin or review Swift dependencies before deployment.
+
+## Reference(s):
+
+- [Kokoro Voice Reference](references/VOICES.md)
+- [FluidAudio Swift package dependency](https://github.com/FluidInference/FluidAudio.git)
+- [Hummingbird Swift package dependency](https://github.com/hummingbird-project/hummingbird.git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, API examples, Swift code references, and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local setup steps, LaunchAgent configuration, HTTP endpoint examples, and troubleshooting guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Avoid common Blender mistakes — transform application, modifier order, UV seams, and export settings for game engines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Avoid common Blender mistakes involving transform application, modifier order, UV seams, and export settings for game engines.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, technical artists, and agents supporting 3D content workflows use this skill to avoid common Blender mistakes around transforms, modifiers, UVs, normals, exports, and bpy usage. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Agent guidance may propose Blender edits or export settings that alter a model or asset pipeline. <br>
-Mitigation: Review suggested Blender operations and export settings before applying them, especially on production assets. <br>
-Risk: Incorrect transforms, modifier order, UV seams, normals, or export settings can cause asset deformation, invisible faces, baking issues, or game-engine import problems. <br>
-Mitigation: Use the skill as a review checklist and confirm changes in Blender and the target engine before export. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/blender) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/ivangdavila) <br>
+## Use Case:
 
+Developers, artists, and technical artists use this skill as a Blender workflow checklist for avoiding common modeling, modifier, UV, normal, origin, export, and bpy API mistakes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with inline Blender shortcuts and bpy code references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static Blender reference content; no executable code, install hooks, credential access, persistence, or hidden behavior reported by security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Workflow guidance may lead to unwanted changes when applied to important Blender assets without review.
+
+Mitigation: Confirm recommendations against project requirements and work on backed-up or versioned assets before applying changes.
+
+Risk: Blender export and bpy API guidance can be context-sensitive to mode, selection, target engine, and asset setup.
+
+Mitigation: Verify settings in the active Blender project and test exports in the target engine before relying on the result.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/blender)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown text with Blender shortcuts, workflow notes, and inline Python API snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code or tool calls are included in the skill artifact.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

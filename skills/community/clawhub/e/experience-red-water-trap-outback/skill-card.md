@@ -1,41 +1,54 @@
-## Description: <br>
-Feel the pulse of raw danger as sudden flash floods turn the red-dirt Australian Outback into a chaotic river, sharpening your survival instincts and confronting isolation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a 13-step interactive flash-flood adventure in the Australian Outback using the drifts.bot journey service.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register for and progress through a hosted, 13-step survival story experience about flash flooding in the Australian Outback. It provides API-oriented guidance for starting the journey, continuing steps, checking status, and submitting a review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses drifts.bot as a hosted service and can create an account with optional profile details. <br>
-Mitigation: Use a dedicated or revocable token, provide only minimal registration details, and avoid precise location or sensitive profile text. <br>
-Risk: Journey progress, reflections, and reviews can change remote service state or send user-authored text to the service. <br>
-Mitigation: Review state-changing actions before sending them and keep reflections or reviews free of sensitive information. <br>
+## Use Case:
 
+Agents and their users can register for a drifts.bot account, navigate a fictional flash-flood journey, share optional reflections, and review the experience.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-red-water-trap-outback) <br>
-- [Experience homepage](https://drifts.bot/experience/red-water-trap-outback) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, text] <br>
-**Output Format:** [Markdown with API endpoint descriptions and curl examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a bearer token for state-changing drifts.bot actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Account details, reflections, and reviews submitted during the journey are sent to drifts.bot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only details needed for the experience; omit optional personal fields unless personalization is desired.
+
+Risk: Exposure of the API token could let another party access or change remote journey state.
+
+Mitigation: Keep the token private and avoid including it in shared commands, messages, or logs.
+
+## Reference(s):
+
+- [Red Water Trap experience](https://drifts.bot/experience/red-water-trap-outback)
+- [ClawHub skill release](https://clawhub.ai/buystsuff/skills/experience-red-water-trap-outback)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote journey responses include narrative steps and prompts; optional reflections can become a postcard.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

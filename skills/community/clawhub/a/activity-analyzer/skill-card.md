@@ -1,37 +1,47 @@
-## Description: <br>
-Use ActivityWatch to analyze user's computer activity (Requires Node.js). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes ActivityWatch computer activity data to summarize time distribution and provide actionable productivity advice.
 
-## Publisher: <br>
-[qew21](https://clawhub.ai/user/qew21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[qew21](https://clawhub.ai/user/qew21)
 
-## Use Case: <br>
-Developers and productivity-focused users use this skill to query local ActivityWatch activity for a recent time window, summarize time distribution, identify patterns, and receive actionable productivity advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: ActivityWatch app names and window titles may expose sensitive document names, URLs, email subjects, or other private activity details to the AI model. <br>
-Mitigation: Review output before sharing, redact or aggregate window titles, remove raw result printing when possible, and collect only the time range needed for the analysis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qew21/activity-analyzer) <br>
+## Use Case:
+
+Individuals and productivity-focused users run this skill to review recent ActivityWatch application and window activity, understand time distribution, identify patterns such as context switching, and receive concise improvement suggestions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: ActivityWatch application names and raw window titles may reveal sensitive document names, URLs, email subjects, or other private work context to the configured AI model.
+
+Mitigation: Run the skill only with user consent, limit collection to the needed time range, and aggregate or redact window titles before sending activity summaries for analysis.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown analysis with plain-text command output from a local Node.js script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The command queries the last 24 hours by default, prints up to 50 activity records longer than one minute, and may include raw app names and window titles.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown narrative with command output summaries and actionable recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses recent local ActivityWatch records and should minimize or redact raw window titles before model analysis.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

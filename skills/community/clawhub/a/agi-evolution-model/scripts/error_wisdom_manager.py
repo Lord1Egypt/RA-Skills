@@ -12,17 +12,26 @@
 
 基于：error_wisdom_spec.md 规范
 """
+__version__ = "1.0.0"
+
 
 import os
 import json
 import time
 import hashlib
 import argparse
+import logging
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Tuple
 from dataclasses import dataclass, asdict, field
 from collections import defaultdict
 import math
+from interfaces import TraceContext, ValidationResult, create_trace_context
+from metrics_collector import MetricsCollector
+from health_checker import HealthChecker
+
+# 配置日志
+logger = logging.getLogger(__name__)
 
 
 # ==================== 数据结构 ====================
@@ -188,14 +197,8 @@ class ErrorWisdomManager:
         self.rules = self._load_json(self.rules_file, {"rules": {}, "metadata": {"total_count": 0}})
         self.patterns = self._load_json(self.patterns_file, {"patterns": {}, "metadata": {"total_count": 0}})
         self.stats = self._load_json(self.stats_file, self._default_stats())
-        
-        # ===== Phase 3: 集成时效性管理器 =====
-        try:
-            from error_wisdom_timeliness import TimelinessManager
-            self.timeliness_manager = TimelinessManager(memory_dir)
-        except ImportError:
-            self.timeliness_manager = None
-        # ===== 时效性集成结束 =====
+
+        # 注意：时效性管理器由 CognitiveErrorIntegrator 单独管理，不在此处初始化
     
     def _load_json(self, filepath: str, default: dict) -> dict:
         """加载JSON文件"""
@@ -261,6 +264,8 @@ class ErrorWisdomManager:
         Returns:
             错误智慧条目ID
         """
+        logger.info(f"记录错误到智慧库: error_type={error_type}, error_code={error_code}, trace_id={trace_id}")
+        
         # 生成ID
         date_str = datetime.utcnow().strftime("%Y%m%d")
         entry_count = len(self.entries["entries"]) + 1
@@ -298,6 +303,8 @@ class ErrorWisdomManager:
             )
         )
         
+        logger.debug(f"创建错误智慧条目: entry_id={entry_id}")
+        
         # 存储条目
         self.entries["entries"][entry_id] = entry.to_dict()
         self.entries["metadata"]["total_count"] = len(self.entries["entries"])
@@ -305,12 +312,7 @@ class ErrorWisdomManager:
         
         # 更新统计
         self._update_stats(entry)
-        
-        # ===== Phase 3: 同步时效性管理器 =====
-        if self.timeliness_manager:
-            self.timeliness_manager._initialize_entry(entry_id, base_confidence=0.85)
-        # ===== 时效性同步结束 =====
-        
+
         # 检查是否需要生成预防规则
         self._check_and_generate_rule(error_type, error_subtype)
         

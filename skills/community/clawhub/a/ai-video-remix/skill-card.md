@@ -1,47 +1,63 @@
-## Description: <br>
-Ai Video Remix helps agents plan and render styled video remixes from a user's ShotAI-indexed local video library using semantic search, optional LLM planning, ffmpeg clip extraction, and Remotion rendering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-driven video remix generator that uses ShotAI semantic search, optional LLM planning, and Remotion rendering to produce styled video compositions from a user's local video library.
 
-## Publisher: <br>
-[abu-shotai](https://clawhub.ai/user/abu-shotai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abu-shotai](https://clawhub.ai/user/abu-shotai)
 
-## Use Case: <br>
-Developers, creators, and external users use this skill to have an agent create styled highlight reels, travel vlogs, sports clips, nature montages, or other video remixes from a local ShotAI-indexed footage library. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs users to clone and run a separate runtime that can execute npm install and npx commands. <br>
-Mitigation: Review the separately cloned runtime before execution and install only when the user intends to use ShotAI for local video remixing. <br>
-Risk: Local footage, SHOTAI_TOKEN, and optional LLM API keys may be sensitive. <br>
-Mitigation: Keep tokens and keys out of logs and repositories, and use AGENT_PROVIDER=none or a local provider for sensitive footage. <br>
-Risk: Optional YouTube music downloads may introduce network access, availability issues, or licensing concerns. <br>
-Mitigation: Use --bgm with a licensed local music file when network access or music licensing is a concern. <br>
+## Use Case:
 
+External creators and developers use this skill to ask an agent for travel vlogs, sports highlights, nature montages, and other styled cuts from local footage that has already been imported and indexed in ShotAI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/abu-shotai/ai-video-remix) <br>
-- [ShotAI](https://www.shotai.io) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Configuration Reference](references/config.md) <br>
-- [Video Quality Tuning Guide](references/tuning.md) <br>
-- [Composition Guide](references/composition-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; runtime code is cloned separately before rendering video output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release evidence) <br>
+Risk: The reviewed package asks users to clone and execute unpinned external runtime code that was not included in the package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external repository before use and prefer a pinned commit or reviewed release.
+
+Risk: The runtime processes local video files and uses ShotAI and optional LLM credentials.
+
+Mitigation: Run it in a limited workspace and provide only the minimum credentials needed for the selected ShotAI and LLM providers.
+
+Risk: Optional background music download can access YouTube through yt-dlp.
+
+Mitigation: Use a local MP3 with --bgm or BGM_PATH to avoid YouTube access.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/abu-shotai/skills/ai-video-remix)
+- [AI Video Remix Source Repository](https://github.com/abu-ShotAI/ai-video-remix)
+- [ShotAI](https://www.shotai.io)
+- [Setup Guide](references/setup.md)
+- [Configuration Reference](references/config.md)
+- [Video Quality Tuning Guide](references/tuning.md)
+- [Adding a New Composition](references/composition-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill is instruction-only; rendered MP4 video output is produced by separately cloned runtime code.]
+
+## Skill Version(s):
+
+0.1.3 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

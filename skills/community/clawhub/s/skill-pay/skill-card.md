@@ -1,43 +1,54 @@
-## Description: <br>
-Add credit-based payments to OpenClaw skills so builders can register paid skills, charge users per call, track earnings, and withdraw USDC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SkillPay adds credit-based payments to OpenClaw skills so builders can register paid skills, charge per call, track earnings, and withdraw USDC.
 
-## Publisher: <br>
-[adjusternwachukwu-bot](https://clawhub.ai/user/adjusternwachukwu-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adjusternwachukwu-bot](https://clawhub.ai/user/adjusternwachukwu-bot)
 
-## Use Case: <br>
-Developers and builders use SkillPay to add credit-based monetization to OpenClaw skills, including buyer registration, deposits, per-call charging, builder registration, paid-skill registration, earnings checks, and withdrawals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through deposits, user charges, paid-skill registration, and withdrawals. <br>
-Mitigation: Require explicit user approval before every deposit, withdrawal, paid-skill registration, or user charge. <br>
-Risk: Buyer and builder API keys and wallet details are sensitive payment credentials. <br>
-Mitigation: Store keys and wallet details in a secret store and avoid exposing them in prompts, logs, or shared skill outputs. <br>
-Risk: Payment-provider details, fee model, wallet destination, and recovery process may be misunderstood or change outside the skill. <br>
-Mitigation: Verify the SkillPay provider, platform fee, wallet destination, and recovery process before enabling monetized workflows. <br>
+## Use Case:
 
+External developers and skill builders use SkillPay to add pay-per-use credit flows to OpenClaw skills, including user credit purchases, builder registration, per-call charges, earnings checks, and USDC withdrawals.
 
-## Reference(s): <br>
-- [SkillPay ClawHub release page](https://clawhub.ai/adjusternwachukwu-bot/skill-pay) <br>
-- [SkillPay API base](https://skillpay.gpupulse.dev/api/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API endpoint examples and payment-flow guidance; users must supply their own SkillPay API keys and wallet details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Reusable user and builder payment credentials can act as bearer secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat `sp_usr_...` and `sp_bld_...` values as sensitive credentials, avoid sharing them with untrusted skills, and rotate or revoke them when exposure is suspected.
+
+Risk: Deposit, withdrawal, and payment commands can move credits or funds if run with valid credentials.
+
+Mitigation: Verify the amount, account, destination wallet, and revocation options before running payment-related commands.
+
+## Reference(s):
+
+- [SkillPay ClawHub listing](https://clawhub.ai/adjusternwachukwu-bot/skills/skill-pay)
+- [SkillPay API base](https://skillpay.gpupulse.dev/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, code, configuration]
+
+**Output Format:** [Markdown with bash and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoint examples and bearer-token usage patterns.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

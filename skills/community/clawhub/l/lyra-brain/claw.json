@@ -1,0 +1,27 @@
+{
+  "name": "lyra-brain",
+  "displayName": "LYRA 3-Brain Memory",
+  "version": "2.1.0",
+  "description": "Local 3-brain memory with explicit --i-consent disk writes under LYRA_CORE_ROOT. Narrow triggers. No network. No secrets.",
+  "slug": "lyra-brain",
+  "publisher": "deepseekoracle",
+  "license": "LYGO-Sovereign-v2.0",
+  "signature": "Delta9Phi963-LYRA-BRAIN-v2.1.0",
+  "tags": ["latest", "lyra", "lygo", "memory", "3-brain"],
+  "entry": "SKILL.md",
+  "permissions": {
+    "network": false,
+    "shell": false,
+    "process_spawn": false,
+    "filesystem": {
+      "read": "LYRA_CORE_ROOT modules + memory",
+      "write": "LYRA_CORE_ROOT/memory and graph with --i-consent only"
+    },
+    "env": ["LYRA_CORE_ROOT", "LYRA_CORE"]
+  },
+  "security": {
+    "consent_required_for_write": true,
+    "no_secrets_in_memory": true,
+    "version": "2.1.0"
+  }
+}

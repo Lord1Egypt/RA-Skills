@@ -1,40 +1,53 @@
-## Description: <br>
-Hash passwords using bcrypt or verify a password against a bcrypt hash. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hash passwords using bcrypt or verify a password against a bcrypt hash.
 
-## Publisher: <br>
-[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ohernandez-dev-blossom](https://clawhub.ai/user/ohernandez-dev-blossom)
 
-## Use Case: <br>
-Developers and agents use this skill to generate bcrypt hashes for passwords or verify a password against an existing bcrypt hash using Python. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's one-line shell examples can expose real passwords in shell history or process listings. <br>
-Mitigation: Review before use with real passwords; prefer reading secrets from stdin, an interactive prompt, or a temporary script that avoids command-line password literals. <br>
-Risk: Invalid bcrypt rounds or malformed hashes can cause confusing failures or slow execution. <br>
-Mitigation: Validate the rounds value and hash prefix before running commands, and warn users when high cost factors may be intentionally slow. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate bcrypt hashes for password storage workflows or check whether a supplied password matches an existing bcrypt hash.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/bcrypt-generate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks and plain-text hash or verification result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hashing output is a bcrypt hash string; verification output is a match or non-match result.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Inline shell commands can expose passwords through shell history, process listings, logs, or command interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Read passwords from standard input or another non-command-line channel, avoid shell interpolation, and do not place secrets in temporary files or command arguments.
+
+Risk: Unvalidated rounds or hash inputs can cause slow execution, malformed verification attempts, or unsafe command construction.
+
+Mitigation: Parse rounds as an integer, validate bcrypt hash format before verification, and review commands before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ohernandez-dev-blossom/skills/bcrypt-generate)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands and plaintext bcrypt hash or match result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and the Python bcrypt package.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

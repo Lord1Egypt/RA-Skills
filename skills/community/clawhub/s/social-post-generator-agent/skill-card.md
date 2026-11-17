@@ -1,39 +1,49 @@
-## Description: <br>
-Take a blog post URL or text and generate social media posts from it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Take a blog post URL or text and generate social media posts from it.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Content marketers, founders, and developers can use this skill to turn an article URL, text snippet, or local draft into social posts, Twitter threads, and hook variations for Twitter or LinkedIn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read local files or fetch user-provided URLs, including private files, internal network URLs, localhost or cloud metadata endpoints, or URLs containing tokens if the user supplies them. <br>
-Mitigation: Only provide intended public article URLs, non-sensitive text files, or text snippets; avoid internal URLs, tokenized URLs, localhost, and cloud metadata endpoints. <br>
-Risk: Generated posts are draft promotional copy and may be incomplete, inaccurate, or unsuitable for a brand voice without review. <br>
-Mitigation: Review and edit the generated posts before publishing, especially claims, attribution, tone, and hashtags. <br>
+## Use Case:
 
+External creators, marketers, and developers use this skill to repurpose article URLs or supplied text into Twitter posts, LinkedIn posts, Twitter threads, and social post hooks.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted social post drafts and hook lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses optional environment variables for platform, tone, brand attribution, and hashtags.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can make outbound requests to user-supplied URLs from the agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public URLs, and avoid private, internal, localhost, cloud-metadata, or sensitive draft URLs unless the runtime blocks private-network egress or the skill validates destinations and limits redirects.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/social-post-generator-agent)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with formatted social posts, numbered thread segments, hook variations, and brief usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output varies by PLATFORM, TONE, BRAND_NAME, HASHTAGS, and the supplied URL or text input.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

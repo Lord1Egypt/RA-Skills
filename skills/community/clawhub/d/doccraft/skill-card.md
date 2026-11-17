@@ -1,54 +1,67 @@
-## Description: <br>
-Create source-grounded professional documents from existing materials, outlines, or templates, then generate, edit, review, or redline final Word documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DocCraft helps agents create source-grounded professional documents from existing materials and generate, edit, review, or redline .docx deliverables.
 
-## Publisher: <br>
-[Bloom-u](https://clawhub.ai/user/Bloom-u) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bloom-u](https://clawhub.ai/user/bloom-u)
 
-## Use Case: <br>
-Employees, external contributors, and developers use Doccraft to turn PDFs, DOCX, TXT, Markdown, templates, outlines, and mixed project sources into formal proposals, technical plans, implementation schemes, reports, and review-ready Word deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Anthropic service agreement terms
 
-## Known Risks and Mitigations: <br>
-Risk: The skill works with local source materials and Word documents, which can expose sensitive files or alter important deliverables. <br>
-Mitigation: Use a narrow project folder, work from copies of important files, and keep working drafts separate from final deliverables. <br>
-Risk: Unfamiliar DOCX, PPTX, or XLSX files may carry document-processing risks when unpacked or validated. <br>
-Mitigation: Isolate unfamiliar office files before processing them and keep document-processing tools updated. <br>
-Risk: An untrusted SGDB_DOCX_MODULE value could change which Node docx module is loaded for Word generation. <br>
-Mitigation: Use only trusted module paths or workspace dependencies when generating DOCX files. <br>
-Risk: Source-grounded drafting can still introduce unsupported or misleading claims if source gaps are ignored. <br>
-Mitigation: Build a source manifest, draft against section briefs, and run the consistency review before final delivery. <br>
+## Use Case:
 
+Developers, employees, and external users can use this skill to turn source files, outlines, and templates into formal long-form deliverables, then prepare Word outputs with formatting, review, comments, or tracked changes.
 
-## Reference(s): <br>
-- [Doccraft ClawHub Skill Page](https://clawhub.ai/Bloom-u/doccraft) <br>
-- [Doccraft Publisher Profile](https://clawhub.ai/user/Bloom-u) <br>
-- [Source Manifest](references/source-manifest.md) <br>
-- [Section Briefs](references/section-briefs.md) <br>
-- [Drafting Rules](references/drafting-rules.md) <br>
-- [Consistency Review](references/consistency-review.md) <br>
-- [Word Format Profile](references/word-format-profile.md) <br>
-- [Word Delivery Brief](references/word-delivery-brief.md) <br>
-- [Word Assembly Plan](references/word-assembly-plan.md) <br>
-- [DOCX JavaScript Workflow](docx-js.md) <br>
-- [OOXML Editing Workflow](ooxml.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, plain text, JSON working briefs, Python or JavaScript helper commands, and generated or edited DOCX files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local working files such as source manifests, section briefs, format profiles, delivery briefs, merged Markdown drafts, review notes, ZIP packages, and DOCX artifacts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: An unpinned global npm install path can change the local environment or make DOCX generation less reproducible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated workspace and prefer a pinned local docx dependency with a lockfile.
+
+Risk: Processing malicious or oversized Office archives can exhaust disk, memory, or CPU.
+
+Mitigation: Process trusted Office files only, or run archive handling with size and time limits.
+
+Risk: The skill reads selected source files and writes or modifies document outputs.
+
+Mitigation: Review selected inputs and generated or modified documents before external delivery.
+
+## Reference(s):
+
+- [DocCraft Skill Page](https://clawhub.ai/bloom-u/skills/doccraft)
+- [DocCraft Skill Instructions](SKILL.md)
+- [DOCX JavaScript Workflow](docx-js.md)
+- [OOXML Editing Workflow](ooxml.md)
+- [Source Manifest](references/source-manifest.md)
+- [Section Briefs](references/section-briefs.md)
+- [Drafting Rules](references/drafting-rules.md)
+- [Consistency Review](references/consistency-review.md)
+- [Word Delivery Brief](references/word-delivery-brief.md)
+- [Word Assembly Plan](references/word-assembly-plan.md)
+- [Word Format Profile](references/word-format-profile.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text drafts, generated .docx files, review notes, configuration JSON, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read user-selected source files and write or modify local document outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

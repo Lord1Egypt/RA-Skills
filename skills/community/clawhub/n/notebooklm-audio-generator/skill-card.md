@@ -1,41 +1,54 @@
-## Description: <br>
-Automates uploading multiple sources (files, URLs, YouTube, Drive, text) to a NotebookLM notebook, generating a deep dive audio overview in a preferred language, and downloading the result. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates uploading multiple sources (files, URLs, YouTube, Drive, text) to a NotebookLM notebook, generating a deep dive audio overview in a preferred language, and downloading the result.
 
-## Publisher: <br>
-[shiyanch](https://clawhub.ai/user/shiyanch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiyanch](https://clawhub.ai/user/shiyanch)
 
-## Use Case: <br>
-External users and developers use this skill to turn selected documents, web links, YouTube URLs, Google Drive documents, or pasted text into a NotebookLM deep-dive audio overview and save the generated audio locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected sources are uploaded to Google's NotebookLM for processing. <br>
-Mitigation: Use only sources you are authorized to upload, avoid confidential or regulated documents unless approved, and delete the NotebookLM notebook afterward if the uploaded sources should not be retained there. <br>
-Risk: Generated audio is saved to a local destination selected during the workflow. <br>
-Mitigation: Choose the download folder deliberately and verify the downloaded file before sharing or relying on it. <br>
+## Use Case:
 
+External users and developers use this skill to create NotebookLM deep-dive audio overviews from local files, URLs, YouTube links, Google Drive documents, or pasted text, then download the generated MP3 artifact.
 
-## Reference(s): <br>
-- [NotebookLM Audio Generator on ClawHub](https://clawhub.ai/shiyanch/notebooklm-audio-generator) <br>
-- [epub2txt](https://github.com/SPACESODA/epub2txt.git) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and a downloaded audio file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a NotebookLM audio artifact saved locally as an MP3 after user-selected sources are processed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The setup flow asks users to run unverified third-party code before authentication and document upload.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup steps first, use pinned versions or a reviewed commit for the CLI and epub2txt, and inspect the GitHub run.sh script before running it.
+
+Risk: Source documents are uploaded to NotebookLM during the audio generation workflow.
+
+Mitigation: Only upload documents the user is comfortable sending to NotebookLM.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shiyanch/skills/notebooklm-audio-generator)
+- [epub2txt GitHub repository](https://github.com/SPACESODA/epub2txt.git)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands and downloaded audio file output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces or retrieves an MP3 audio overview after NotebookLM generation completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

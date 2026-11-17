@@ -1,7 +1,7 @@
 ---
 name: "伙伴云"
-version: "1.0.0"
-description: "伙伴云开发助手，精通多维表格、自动化流程、数据分析、API集成"
+version: "1.1.0"
+description: "伙伴云零代码平台指南。Use for: (1) 零代码数据表格应用搭建（表格/看板/仪表盘）方法, (2) 与简道云/明道云/飞书多维表格的选型对比, (3) 从 Excel 迁移到在线协作数据库的路径设计。Huoban zero-code platform guide: app building, competitor selection, and Excel-migration paths."
 tags: ["lowcode", "table", "automation", "data"]
 author: "ClawSkills Team"
 category: "productivity"
@@ -319,6 +319,12 @@ def huoban_webhook():
 | 普通成员 | 本人数据 | 新增 + 编辑本人 |
 | 外部协作 | 指定数据 | 只读/填写 |
 
+## 工作边界
+
+- 版本功能与定价以官网为准；选型看团队规模与 IT 能力，不唯功能论
+- 复杂业务逻辑超出零代码边界时，诚实建议转低代码/定制开发
+- 同类选型参考：`jiandaoyun`（表单流程强）、`mingdao`（私有化强）
+
 ---
 
-**最后更新**: 2026-03-16
+**最后更新**: 2026-07-11

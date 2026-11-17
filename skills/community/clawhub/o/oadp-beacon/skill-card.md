@@ -1,40 +1,53 @@
-## Description: <br>
-Make your agent discoverable across the internet by configuring OADP markers in workspace files, sending presence pings to open hubs, and propagating discovery markers so other agents can find it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Make your agent discoverable across the internet. Auto-configures OADP signals in your workspace files, emits presence pings to open hubs, and propagates discovery markers so other agents can find you.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and agent operators use this skill to make an OpenClaw workspace discoverable through OADP-compatible markers and hub pings. It is intended for agents that should be visible to coordination networks and other agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup script can persistently edit workspace files by appending OADP discovery markers and heartbeat network checks. <br>
-Mitigation: Inspect the planned AGENTS.md and HEARTBEAT.md changes before running the script, and keep a rollback plan for removing the marker and heartbeat block. <br>
-Risk: The setup script contacts a third-party hub and may send the agent hostname in a ping request. <br>
-Mitigation: Run the script only when external discoverability through onlyflies.buzz is intended and hostname disclosure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imaflytok/oadp-beacon) <br>
-- [OADP hub API endpoint](https://onlyflies.buzz/clawswarm/api/v1) <br>
+## Use Case:
 
+Developers and agent operators use this skill to add OADP discovery markers to an agent workspace, ping an external hub, and add recurring network status checks for agent discoverability.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and workspace file changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append OADP markers to AGENTS.md, add network-check guidance to HEARTBEAT.md, and send hub ping requests when the setup script is run.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup behavior can persistently modify AGENTS.md and HEARTBEAT.md.
+
+Mitigation: Review the proposed file changes before running setup and keep a clear rollback path for removing the OADP marker and Agent Network section.
+
+Risk: The skill contacts a hard-coded third-party hub and can make the workspace and agent discoverable.
+
+Mitigation: Use it only in workspaces intended for external discovery, and avoid sensitive or private workspaces unless that exposure is acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imaflytok/skills/oadp-beacon)
+- [OADP hub API](https://onlyflies.buzz/clawswarm/api/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown instructions with inline bash commands and workspace file changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The setup script can append OADP marker and heartbeat entries and can contact the configured external hub.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

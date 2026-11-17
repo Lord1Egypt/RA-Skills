@@ -1,46 +1,65 @@
-## Description: <br>
-Accurate text measurement and layout engine for calculating text height, line count, wrapping, and layout details for a given font and width, including Chinese, CJK, emoji, and mixed-language text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pretext helps agents measure and lay out text for frontend, canvas, virtual-scroll, chat, and AI-generated UI workflows, including height, line count, line details, rich inline text, DOM snippets, and particle-text demos.
 
-## Publisher: <br>
-[markcookie](https://clawhub.ai/user/markcookie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[markcookie](https://clawhub.ai/user/markcookie)
 
-## Use Case: <br>
-Developers and engineers use this skill to precompute text dimensions, line breaks, canvas drawing coordinates, virtual-scroll item heights, and generated HTML snippets before rendering UI. It is especially useful for frontend, Canvas, SSR, and AI-generated UI workflows where DOM measurement is slow or unavailable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML or JavaScript snippets may be unsafe if pasted into sensitive browser sessions without review. <br>
-Mitigation: Review generated HTML and JavaScript before opening it or pasting it into a browser, and avoid running CDN-based snippets on sensitive logged-in pages. <br>
-Risk: Text measurement can differ from actual rendering when fonts, browser engines, or operating systems vary. <br>
-Mitigation: Use named and preloaded fonts, install optional canvas support for higher precision, and verify against real browser rendering for pixel-critical UI work. <br>
-Risk: The ClawHub capability metadata includes unrelated crypto and purchase tags. <br>
-Mitigation: Treat those tags as publisher metadata that should be corrected; the authoritative security scan found no hidden data theft, destructive behavior, or automatic privileged action. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to estimate text dimensions, wrapping, and line layout before rendering UI. It is most relevant for virtual scrolling, chat interfaces, canvas drawing, generated UI validation, and browser or Node.js text-layout utilities.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/markcookie/pretext-text-measurement) <br>
-- [@chenglou/pretext](https://github.com/chenglou/pretext) <br>
-- [@chenglou/pretext UMD build](https://unpkg.com/@chenglou/pretext/dist/pretext.umd.min.js) <br>
-- [node-canvas](https://github.com/Automattic/node-canvas) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON results, Markdown guidance, shell commands, JavaScript snippets, and optional generated HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js. Optional canvas support improves measurement precision; without it, the skill can fall back to JavaScript Unicode estimation with lower precision.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata; artifact frontmatter and package.json report 1.0.0) <br>
+Risk: The security scan reports that the skill can generate active browser HTML and JavaScript with unsafe interpolation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated snippets before use, sanitize any user-controlled text or styling, and avoid pasting generated snippets into authenticated or sensitive pages.
+
+Risk: The browser workflow references an unpinned CDN dependency.
+
+Mitigation: Pin the dependency version or vendor the browser bundle before relying on generated browser snippets.
+
+Risk: The security verdict is suspicious because the skill goes beyond passive text measurement.
+
+Mitigation: Install only when the broader frontend helper behavior is needed and review the skill before deployment.
+
+Risk: The artifact warns that text measurements can differ across fonts, browsers, operating systems, and fallback modes.
+
+Mitigation: Use installed named fonts, ensure fonts are loaded before measuring, prefer canvas-backed measurement for precision, and verify critical layouts in the target browser.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/markcookie/skills/pretext-text-measurement)
+- [Artifact README](artifact/README.md)
+- [Upstream @chenglou/pretext project](https://github.com/chenglou/pretext)
+- [node-canvas project](https://github.com/Automattic/node-canvas)
+- [Pretext UMD browser dependency](https://unpkg.com/@chenglou/pretext/dist/pretext.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown guidance, JSON measurement results, shell commands, and generated HTML or JavaScript snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js; canvas is optional for higher-precision measurement and the fallback mode uses JavaScript Unicode estimates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter and package.json report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

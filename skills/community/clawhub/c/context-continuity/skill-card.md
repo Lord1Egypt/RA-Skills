@@ -1,40 +1,50 @@
-## Description: <br>
-Context Continuity helps an agent resume prior work by reading local memory files and automatically writing concise daily conversation summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent continue prior work by reading local memory files and summarizing recent project context when the user asks to resume a previous conversation.
 
-## Publisher: <br>
-[CJstate](https://clawhub.ai/user/CJstate) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cjstate](https://clawhub.ai/user/cjstate)
 
-## Use Case: <br>
-Developers and agent users use this skill to preserve and resume project context across conversations by summarizing recent tasks, decisions, progress, and todos from local memory files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic local conversation-memory storage can preserve sensitive or private information with limited user control. <br>
-Mitigation: Install only where local memory storage is acceptable, avoid using it around secrets or private data, and review or delete memory files regularly. <br>
-Risk: Automatically loading prior memory can reintroduce stale or unintended context into a new conversation. <br>
-Mitigation: Review the generated context summary before acting and adjust or remove outdated memory entries when needed. <br>
+## Use Case:
 
+Agent users use this skill to carry context across conversations by summarizing recent tasks, decisions, preferences, and open work from local memory files. It is useful when a user starts a new conversation, asks to continue earlier work, or wants a short recap of current project state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/CJstate/context-continuity) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown summaries with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces concise context summaries and local memory file updates when followed by the agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill automatically persists conversation history to local memory files without clear consent, filtering, or scoping controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where automatic local memory is acceptable, and avoid secrets, credentials, personal data, or confidential material unless storage is changed to opt-in with redaction, scoped retrieval, and clear deletion controls.
+
+## Reference(s):
+
+- [Context Continuity on ClawHub](https://clawhub.ai/cjstate/skills/context-continuity)
+- [Publisher profile](https://clawhub.ai/user/cjstate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown summary with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are intended to stay concise and are grounded in local MEMORY.md and memory/YYYY-MM-DD.md files.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

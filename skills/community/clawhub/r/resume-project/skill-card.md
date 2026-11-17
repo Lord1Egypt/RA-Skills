@@ -1,44 +1,60 @@
-## Description: <br>
-Transforms project experience from code repositories or pasted descriptions into architecturally deep resume bullets and application material. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms project experience into industrial-strength resume bullets with architectural depth.
 
-## Publisher: <br>
-[wwaguai](https://clawhub.ai/user/wwaguai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwaguai](https://clawhub.ai/user/wwaguai)
 
-## Use Case: <br>
-Developers and job seekers use this skill to turn code repositories, project descriptions, or existing resume drafts into bilingual resume content with architectural rationale, technical depth checks, and quantified-result prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Repository scanning and git metadata inspection can expose local project structure and contributor information. <br>
-Mitigation: Run the skill only on repositories the user is comfortable sharing with the agent, and review the requested scan scope before using it on sensitive codebases. <br>
-Risk: Automatic resume-library storage can retain personal career details, project context, and generated resume content across sessions. <br>
-Mitigation: Review ~/.claude/resume-library.md after use and remove confidential or outdated records when working with sensitive material. <br>
-Risk: The release bundle includes unrelated skills, scripts, and powerful references beyond the main resume analyzer. <br>
-Mitigation: Review and scan the installed bundle before deployment; prefer a minimized package containing only the resume-project files when possible. <br>
+## Use Case:
 
+Developers and engineers use this skill to turn a code repository or pasted project description into stronger resume material. It scans or audits project details, asks for missing architectural and quantitative context, and produces bilingual resume bullets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwaguai/resume-project) <br>
-- [Resume Project README](artifact/skills/skills/resume-project/README.md) <br>
-- [Resume Project evals](artifact/skills/skills/resume-project/evals/evals.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with bilingual resume bullets, interview questions, topology analysis, and ATS keyword lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May inspect repositories, read git metadata, and append analysis results to ~/.claude/resume-library.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: The skill may read project repositories and some Git metadata during repository-based analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on repositories you are comfortable exposing to the agent, and review any generated resume content before sharing it.
+
+Risk: The skill keeps a persistent resume library in the user's home directory.
+
+Mitigation: Review ~/.claude/resume-library.md periodically and remove sensitive project, employer, or career details that should not persist.
+
+Risk: The release artifact bundles many unrelated tools in addition to the resume skill.
+
+Mitigation: Inspect the package before installation and prefer a package that contains only the intended resume-project skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wwaguai/skills/resume-project)
+- [Skill instructions](artifact/skills/skills/resume-project/SKILL.md)
+- [Skill README](artifact/skills/skills/resume-project/README.md)
+- [Evaluation cases](artifact/skills/skills/resume-project/evals/evals.json)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with bilingual resume bullets, targeted follow-up questions, topic labels, and TBD placeholders for unconfirmed metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May append persistent project records to ~/.claude/resume-library.md.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,69 @@
-## Description: <br>
-Enforces a disciplined four-phase pipeline for non-trivial coding tasks: plan with a hypothesis, make one focused change, validate the root cause, and use bounded debugging before escalation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enforces a disciplined 4-phase pipeline for non-trivial coding tasks: Plan, Code, Validate, and Debug with explicit hypotheses, focused changes, root-cause checks, and bounded retry attempts.
 
-## Publisher: <br>
-[brasco05](https://clawhub.ai/user/brasco05) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brasco05](https://clawhub.ai/user/brasco05)
 
-## Use Case: <br>
-Developers and coding agents use this skill to structure feature work, bug fixes, refactors, test failures, and deployment investigations into a phase-gated process with explicit planning, focused changes, validation evidence, and bounded debugging. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local debugging notes and phase logs may capture sensitive details if secrets are included in errors or prompts. <br>
-Mitigation: Keep secrets out of logs and periodically review `.learnings/ERRORS.md` and `.pipeline-state/`. <br>
-Risk: Optional prompt-time hooks may add reminders to agent workflows when enabled. <br>
-Mitigation: Enable optional hooks only in workspaces where prompt-time reminders are desired. <br>
+## Use Case:
 
+Developers and coding agents use this skill to structure non-trivial bug fixes, feature work, refactors, test failures, and error investigations into a phase-gated workflow. It helps agents plan before editing, make one focused change at a time, validate root cause, and escalate after three documented debug attempts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/brasco05/coding-pipeline) <br>
-- [Phase 1 Planner](references/phase-1-planner.md) <br>
-- [Phase 2 Coder](references/phase-2-coder.md) <br>
-- [Phase 3 Validator](references/phase-3-validator.md) <br>
-- [Phase 4 Debugger](references/phase-4-debugger.md) <br>
-- [Integration with Other Skills](references/integration.md) <br>
-- [OpenClaw Integration](references/openclaw-integration.md) <br>
-- [Hook Setup](references/hooks-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with optional shell commands and local state files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local phase-tracking and failed-attempt logs when optional helper scripts or related workflow guidance are used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and package.json) <br>
+Risk: Broad always-on hooks can influence routine coding sessions even when the pipeline is not appropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable reminders at the project level, narrow hook matchers where possible, and skip the pipeline for trivial edits as documented by the skill.
+
+Risk: Persistent learning files or workspace memory updates can affect future agent behavior beyond the current task.
+
+Mitigation: Review .learnings entries and workspace memory or rule updates before allowing them to persist.
+
+Risk: The phase tracker writes local workflow state under .pipeline-state in the current workspace.
+
+Mitigation: Run the helper only in the intended project and inspect or reset .pipeline-state when task state should not carry forward.
+
+## Reference(s):
+
+- [Skill Definition](SKILL.md)
+- [README](README.md)
+- [Phase 1 Planner](references/phase-1-planner.md)
+- [Phase 2 Coder](references/phase-2-coder.md)
+- [Phase 3 Validator](references/phase-3-validator.md)
+- [Phase 4 Debugger](references/phase-4-debugger.md)
+- [Anti-Patterns](references/anti-patterns.md)
+- [Worked Examples](references/examples.md)
+- [Hook Setup](references/hooks-setup.md)
+- [Integration with Other Skills](references/integration.md)
+- [Multi-Agent Support](references/multi-agent.md)
+- [OpenClaw Integration](references/openclaw-integration.md)
+- [ClawHub Skill Page](https://clawhub.ai/brasco05/skills/coding-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with shell command and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes optional checklist templates, hook reminders, and local phase-state tracking guidance.]
+
+## Skill Version(s):
+
+1.0.1 (source: evidence.release.version, artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

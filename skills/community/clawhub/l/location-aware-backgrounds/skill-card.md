@@ -1,43 +1,59 @@
-## Description: <br>
-Generate and save location-aware background images by choosing a real place cue, using local time and weather, and rendering through `nano-banana-pro`. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and save location-aware background images by choosing a real place cue, using local time and weather, and rendering through `nano-banana-pro`.
 
-## Publisher: <br>
-[chadnewbry](https://clawhub.ai/user/chadnewbry) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chadnewbry](https://clawhub.ai/user/chadnewbry)
 
-## Use Case: <br>
-External users and developers use this skill to generate finished place-aware background images for apps, dashboards, wallpapers, and mockups. It helps choose grounded city cues, apply local time and weather context when provided or approved, shape UI-readable prompts, and save rendered image files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Using Gemini API access with Nano Banana Pro may incur provider quota use or billing. <br>
-Mitigation: Confirm API key permissions, quota, and billing expectations before running the skill. <br>
-Risk: Screenshots, private images, or precise location details may be used as rendering inputs if the user provides or approves them. <br>
-Mitigation: Provide only location and visual context intended for image generation, and avoid sensitive inputs. <br>
-Risk: Generated files are saved locally, defaulting to ./generated/ when no output path is specified. <br>
-Mitigation: Specify an explicit output path when file location matters. <br>
+## Use Case:
 
+Developers, designers, and agents use this skill to create finished location-aware background images for apps, dashboards, wallpapers, and mockups with explicit output paths and style constraints.
 
-## Reference(s): <br>
-- [Location-Aware Background Prompt Patterns](references/prompt-patterns.md) <br>
-- [ClawHub Listing](https://clawhub.ai/chadnewbry/location-aware-backgrounds) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Guidance] <br>
-**Output Format:** [PNG image files plus Markdown rationale, exact prompt text, saved file paths, and an optional production recommendation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires uv and GEMINI_API_KEY; defaults to one image and saves under ./generated/ when no output path is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release evidence) <br>
+Risk: The skill requires a Gemini API key and uses Nano Banana Pro as the renderer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when you are comfortable providing that credential and using that rendering provider.
+
+Risk: Prompt details or reference images may be sent to the image-generation provider to complete the render.
+
+Mitigation: Avoid providing sensitive prompt content or reference images unless that provider use is acceptable.
+
+Risk: Generated images are saved locally.
+
+Mitigation: Choose output paths intentionally and review generated files before sharing or deploying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chadnewbry/skills/location-aware-backgrounds)
+- [OpenClaw homepage](https://clawhub.ai/chadnewbry/location-aware-backgrounds)
+- [Prompt patterns](references/prompt-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Guidance]
+
+**Output Format:** [PNG image files with Markdown rationale, exact prompts, saved paths, and production recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Nano Banana Pro for rendering and saves generated images locally.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

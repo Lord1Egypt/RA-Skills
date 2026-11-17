@@ -1,43 +1,55 @@
-## Description: <br>
-Operate Google Routes through an OOMOL-connected account to compute routes and route matrices using the oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Routes lets agents compute routes and route matrices through an OOMOL-connected Google Routes account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect Google Routes connector schemas and run route or route-matrix calculations through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Route locations and related request data are sent through OOMOL's connector to Google Routes. <br>
-Mitigation: Confirm trust in OOMOL and review live schemas and payloads before sending route data. <br>
-Risk: Setup, login, or connection commands can change the user's local environment or account connection state. <br>
-Mitigation: Run oo CLI install, login, or connection steps only after a matching command failure indicates they are needed. <br>
+## Use Case:
 
+Developers and agents use this skill to calculate routes between origins and destinations and compute route matrices for waypoint combinations via a connected Google Routes account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/skills/oo-google-routes) <br>
-- [Google Routes Documentation](https://developers.google.com/maps/documentation/routes) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector action responses are JSON objects containing data and meta.executionId when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The first-time setup instructions include remote shell installer commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the oo CLI installation method before use and prefer a verified package or signed release when available.
+
+Risk: Route origins, destinations, waypoints, and related metadata may be sensitive and are routed through OOMOL's connector service.
+
+Mitigation: Use the skill only when sharing route request data with OOMOL's connector service is acceptable for the user's task and policy.
+
+## Reference(s):
+
+- [Google Routes documentation](https://developers.google.com/maps/documentation/routes)
+- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Google Routes ClawHub skill page](https://clawhub.ai/oomol/skills/oo-google-routes)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API Calls, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses include connector data and an execution identifier when actions run successfully.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

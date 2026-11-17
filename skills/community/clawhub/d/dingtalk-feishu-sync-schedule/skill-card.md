@@ -1,44 +1,60 @@
-## Description: <br>
-Synchronizes DingTalk calendar events for today and the next six days into Feishu Calendar, with setup guidance, token refresh, and scheduled execution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Synchronizes DingTalk calendar events for the current week into a Feishu calendar, with setup guidance for credentials, authorization, token refresh, and scheduled runs.
 
-## Publisher: <br>
-[alittlebao](https://clawhub.ai/user/alittlebao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alittlebao](https://clawhub.ai/user/alittlebao)
 
-## Use Case: <br>
-People who use both DingTalk and Feishu calendars use this skill to configure local credentials, refresh Feishu tokens, and copy near-term DingTalk events into Feishu Calendar on demand or by cron. Agents can use it to guide setup, run the sync script, and troubleshoot token, calendar, and permission issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Feishu event deletion can affect more calendar events than users may expect when an event has the sync marker or matches a DingTalk title and start time. <br>
-Mitigation: Review or change the deletion logic before enabling cron so it deletes only events clearly created by this tool; test on a non-critical calendar first. <br>
-Risk: The skill stores DingTalk and Feishu credentials, access tokens, and refresh tokens in local configuration files. <br>
-Mitigation: Restrict file permissions, keep credentials out of shared workspaces and logs, and grant only the calendar permissions needed for the sync. <br>
-Risk: Sync logs and command output may expose calendar titles, locations, timing, or operational details. <br>
-Mitigation: Protect log files such as /var/log/dingtalk_sync.log and avoid forwarding logs to places where calendar details should not be visible. <br>
+## Use Case:
 
+Employees, operators, or agents who use both DingTalk and Feishu can use this skill to configure and run one-way calendar synchronization for the next seven days. It helps maintain a Feishu calendar from DingTalk events while managing local credential files and refresh tokens.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alittlebao/dingtalk-feishu-sync-schedule) <br>
-- [DingTalk Open Platform](https://open.dingtalk.com/) <br>
-- [Feishu Open Platform](https://open.feishu.cn/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python execution steps, configuration file fields, and API endpoint notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON config files under ~/.dingtalk and ~/.feishu; may call DingTalk and Feishu calendar APIs when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Local configuration files store application secrets, access tokens, and refresh tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on ~/.dingtalk and ~/.feishu files, keep them out of shared logs or backups, and avoid running the skill as root.
+
+Risk: The sync process can delete or replace Feishu calendar events during repeated runs.
+
+Mitigation: Test manually with a backup or non-critical calendar before scheduling automated runs, and review whether matching title and start time could affect manually created events.
+
+Risk: Logs can expose token fragments or detailed calendar data.
+
+Mitigation: Remove token fragments and unnecessary calendar details from logs before retaining or sharing them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alittlebao/skills/dingtalk-feishu-sync-schedule)
+- [Publisher profile](https://clawhub.ai/user/alittlebao)
+- [DingTalk Open Platform](https://open.dingtalk.com/)
+- [Feishu Open Platform](https://open.feishu.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and configuration steps; scripts produce console logs and local JSON configuration updates.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runtime flow can call DingTalk and Feishu APIs, update local credential files, refresh Feishu tokens, and delete or recreate Feishu calendar events.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Codebase Documenter helps agents create README files, architecture guides, code comments, and API documentation for codebases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps agents write documentation for codebases, including README files, architecture documentation, code comments, and API documentation.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-Developers and engineers use this skill to create beginner-friendly project documentation, including READMEs, architecture overviews, API docs, and explanatory code comments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires SKILLBOSS_API_KEY and may route source code or architecture details through an external AI service. <br>
-Mitigation: Use it only for repositories where external processing is approved, require explicit approval before sending sensitive content, or use a local-only documentation workflow. <br>
-Risk: Generated documentation can misstate project behavior, setup steps, or API behavior if it is not checked against the source code. <br>
-Mitigation: Review generated docs against the codebase and test commands, examples, and API snippets before publishing. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to create beginner-friendly project documentation, architecture guides, API docs, and explanatory code comments from a codebase.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alv-codebase-documenter) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown prose with code blocks, file trees, templates, and documentation examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated documentation structure, code comments, API examples, setup commands, diagrams, and review checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The artifact requires SKILLBOSS_API_KEY and describes AI-powered documentation generation through SkillBoss API Hub, but the artifact does not explain what codebase data is sent there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the external integration is acceptable for the codebase, and review generated documentation before committing it.
+
+Risk: Generated documentation can be incomplete, inaccurate, or misleading if the codebase is complex or the agent misses context.
+
+Mitigation: Review generated README, architecture, API, and code-comment content against the source code before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alv-codebase-documenter)
+- [Publisher profile](https://clawhub.ai/user/alvisdunlop)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown, prose guidance, templates, and code-comment examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May rely on SKILLBOSS_API_KEY for AI-powered documentation generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

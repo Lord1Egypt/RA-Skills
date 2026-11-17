@@ -1,8 +1,8 @@
 {
   "skill_id": "nutrigenomics",
   "name": "Nutrigenomics",
-  "version": "0.3.2",
-  "description": "Generate personalised nutrition recommendations from your genetic data (23andMe, AncestryDNA, or VCF). Analyzes 40+ genes affecting nutrient metabolism, absorption, and food sensitivities. All processing is local\u2014your data stays private.",
+  "version": "0.3.13",
+  "description": "Generate personalised nutrition recommendations from your genetic data (23andMe, AncestryDNA, or VCF). Analyses 24 genes (28 SNPs) across 12 nutrient domains affecting nutrient metabolism, absorption, and food sensitivities. All processing is local—your data stays private.",
   "author": "David de Lorenzo",
   "license": "MIT",
   "category": "health-nutrition-genetics",
@@ -92,20 +92,19 @@
   "dependencies": {
     "python": ">=3.11",
     "packages": [
-      "pandas>=1.5.0",
-      "numpy>=1.24.0",
-      "matplotlib>=3.7.0",
-      "seaborn>=0.12.0",
-      "reportlab>=4.0.0"
+      "pandas>=2.2,<3.0",
+      "numpy>=1.26,<3.0",
+      "matplotlib>=3.8,<4.0",
+      "seaborn>=0.13,<1.0"
     ]
   },
   "documentation": {
     "main": "README_OPENCLAW.md"
   },
   "metadata": {
-    "genes_analyzed": 40,
-    "snps_in_panel": 58,
-    "nutrient_categories": 8,
+    "genes_analyzed": 24,
+    "snps_in_panel": 28,
+    "nutrient_categories": 12,
     "data_privacy": "All processing local, no external transmission",
     "disclaimer": "Educational analysis, not medical advice",
     "attribution_file": "ATTRIBUTION.md",

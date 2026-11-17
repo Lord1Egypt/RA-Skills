@@ -1,44 +1,54 @@
-## Description: <br>
-Scan files, URLs, domains, and IP addresses with the VirusTotal Public API v3 for malware analysis and threat intelligence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance and curl examples for using the VirusTotal Public API v3 to scan or look up files, URLs, domains, and IP addresses for malware analysis.
 
-## Publisher: <br>
-[arf0nz0](https://clawhub.ai/user/arf0nz0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arf0nz0](https://clawhub.ai/user/arf0nz0)
 
-## Use Case: <br>
-Developers and security analysts use this skill to run VirusTotal Public API v3 checks for files, URLs, domains, IP addresses, and analysis status while preserving credential hygiene and requiring user consent before submissions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Files, URLs, domains, and IP addresses sent to VirusTotal may be shared with VirusTotal and its security partners. <br>
-Mitigation: Warn the user before each request, require explicit confirmation, prefer hash lookups for files, and avoid confidential, internal, or regulated data unless authorized. <br>
-Risk: The skill requires a sensitive VirusTotal API key. <br>
-Mitigation: Load the key from a local secrets file with restrictive permissions and never display, hardcode, or echo credentials in tool output. <br>
-Risk: Free-tier VirusTotal requests are rate limited. <br>
-Mitigation: Handle 429 responses by waiting before retrying and avoid bulk workflows that exceed the documented free-tier limit. <br>
+## Use Case:
 
+Developers, security analysts, and external users can use this skill to guide malware, URL, domain, and IP reputation checks through VirusTotal. It is best suited for workflows where users can explicitly approve third-party data sharing before any lookup or submission.
 
-## Reference(s): <br>
-- [VirusTotal Public API v3 Overview](https://docs.virustotal.com/reference/overview) <br>
-- [VirusTotal API Key Setup](https://www.virustotal.com/gui/my-apikey) <br>
-- [ClawHub Skill Page](https://clawhub.ai/arf0nz0/virustotal3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API Calls] <br>
-**Output Format:** [Markdown with inline bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses curl with a VirusTotal API key and returns VirusTotal API JSON for agent interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter, CHANGELOG, server release evidence) <br>
+Risk: The documented credential-loading pattern sources a secrets file as shell code and may expose the API key through temporary header files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a native secret store or a strict parser for VIRUSTOTAL_API_KEY, and ensure any temporary credential files are permission-restricted and cleaned up unconditionally.
+
+Risk: Submitting files, URLs, domains, or IP addresses to VirusTotal can share those artifacts or investigation interests with VirusTotal and its security partners.
+
+Mitigation: Require explicit user confirmation before every outbound lookup or submission, and prefer hash lookups over file uploads for sensitive materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arf0nz0/skills/virustotal3)
+- [VirusTotal API v3 documentation](https://docs.virustotal.com/reference/overview)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash/curl examples and JSON response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a VirusTotal API key; VirusTotal free-tier usage is documented as 4 requests per minute.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

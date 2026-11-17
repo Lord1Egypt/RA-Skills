@@ -1,46 +1,62 @@
-## Description: <br>
-Litho Doc guides an agent through autonomous software project documentation and codebase architecture analysis, including C4-style architecture diagrams and human-readable Markdown documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Litho Doc helps agents analyze a software repository and generate C4-style architecture documentation, workflow documentation, module deep dives, boundary interface notes, and conditional database documentation.
 
-## Publisher: <br>
-[sopaco](https://clawhub.ai/user/sopaco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sopaco](https://clawhub.ai/user/sopaco)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to analyze a repository and generate project documentation, architecture and workflow explanations, module deep-dives, boundary interface notes, and conditional database documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read broadly across the target repository during documentation analysis. <br>
-Mitigation: Run it only on repositories where broad code and configuration review is acceptable, and avoid sensitive workspaces unless generated summaries can be retained locally. <br>
-Risk: The skill may create hidden .litho-agent intermediate analysis files while generating final documentation. <br>
-Mitigation: Choose the output location deliberately, confirm whether intermediate files should be removed after generation, and review generated documentation before sharing it. <br>
+## Use Case:
 
+Developers and engineers use this skill to have an agent inspect a codebase and produce readable project documentation, including architecture views, workflow explanations, module deep dives, interface summaries, and database notes when applicable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sopaco/litho-documents-skill) <br>
-- [Litho Document Skill](artifact/SKILL.md) <br>
-- [Phase 1: Preprocessing](artifact/references/phase1-preprocessing.md) <br>
-- [Phase 2: Research](artifact/references/phase2-research.md) <br>
-- [Phase 3: Composition](artifact/references/phase3-composition.md) <br>
-- [Phase 4: Output](artifact/references/phase4-output.md) <br>
-- [Document Templates](artifact/references/doc-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Files, Guidance] <br>
-**Output Format:** [Markdown files with Mermaid diagram code blocks and an execution summary.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary .litho-agent analysis files while generating final documentation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version is 3.0.0) <br>
+Risk: The skill reads repository contents to produce documentation, which may expose sensitive code or project details to the agent session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the target repository for sensitive material before use and run the skill only in an environment approved for that codebase.
+
+Risk: The skill may create documentation artifacts and temporary .litho-agent research files in the target workspace.
+
+Mitigation: Specify the intended output directory and decide whether temporary research files should be retained for review or deleted after generation.
+
+Risk: Generated architecture explanations and diagrams can be incomplete or misleading if the repository structure is ambiguous or very large.
+
+Mitigation: Review generated documentation against the source code before publishing or using it for engineering decisions.
+
+## Reference(s):
+
+- [Litho Doc ClawHub Release](https://clawhub.ai/sopaco/skills/litho-documents-skill)
+- [Phase 1 Preprocessing Guide](references/phase1-preprocessing.md)
+- [Phase 2 Research Guide](references/phase2-research.md)
+- [Phase 3 Composition Guide](references/phase3-composition.md)
+- [Phase 4 Output Guide](references/phase4-output.md)
+- [Mermaid Diagram Templates](references/doc-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, guidance]
+
+**Output Format:** [Markdown documentation files with Mermaid diagrams and a concise execution summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary .litho-agent research files during analysis and can delete or retain them based on user preference.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

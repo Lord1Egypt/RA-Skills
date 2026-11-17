@@ -1,45 +1,56 @@
-## Description: <br>
-Query version-specific GitHub bug reports with quality assessment markers so an agent can combine the results with user configuration for contextual OpenClaw upgrade evaluation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query version-specific GitHub bug reports with quality assessment markers; agent combines output with user config for contextual upgrade evaluation.
 
-## Publisher: <br>
-[suidge](https://clawhub.ai/user/suidge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[suidge](https://clawhub.ai/user/suidge)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill before upgrades to retrieve version-specific issue summaries, severity groupings, quality markers, and merged-fix status. Agents use that output with local deployment context to recommend whether an upgrade is suitable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The script uses the local GitHub CLI session and sends version search terms to GitHub. <br>
-Mitigation: Confirm gh authentication status and intended GitHub account before running the skill. <br>
-Risk: Upgrade guidance can be misleading if the agent ignores the user's actual OpenClaw channels, plugins, runtime, Node version, or deployment model. <br>
-Mitigation: Ask the agent to compare reported issues against the user's local configuration before acting on upgrade recommendations. <br>
-Risk: The skill may require access to sensitive local OpenClaw configuration to make contextual recommendations. <br>
-Mitigation: Approve any local configuration inspection explicitly and limit it to the fields needed for the upgrade assessment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill before upgrades to query version-specific bug reports, regressions, fix status, and issue quality markers. Agents can combine the report with the user's channel, plugin, runtime, Node version, deployment method, and current version to produce contextual upgrade guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/suidge/openclaw-version-bug-hunter) <br>
-- [Severity rules](references/severity-rules.md) <br>
-- [OpenClaw GitHub issues target](https://github.com/openclaw/openclaw) <br>
-- [GitHub CLI](https://cli.github.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style terminal report with categorized issue lists, quality markers, counts, and upgrade-evaluation guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a version string and depends on local gh and jq availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.2 (source: server release evidence) <br>
+Risk: The skill uses the user's authenticated GitHub CLI to query the public OpenClaw repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this GitHub access pattern is acceptable, and confirm the target version before running reports or using them for upgrade decisions.
+
+Risk: Issue and pull request titles are external GitHub content and may be incomplete or misleading.
+
+Mitigation: Treat report text as untrusted evidence and review relevant linked issues before acting on upgrade guidance.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/suidge/skills/openclaw-version-bug-hunter)
+- [Severity Rules](references/severity-rules.md)
+- [OpenClaw GitHub Issues](https://github.com/openclaw/openclaw/issues)
+- [GitHub CLI](https://cli.github.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal report with categorized issue lists, quality markers, statistics, fix status, and upgrade guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an installed and authenticated GitHub CLI to query GitHub issue and pull request data.]
+
+## Skill Version(s):
+
+2.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

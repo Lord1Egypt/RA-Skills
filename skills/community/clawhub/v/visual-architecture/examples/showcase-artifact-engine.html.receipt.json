@@ -1,0 +1,53 @@
+{
+  "artifactKind": "html",
+  "generatedAt": "2026-09-01T00:41:52.238408+00:00",
+  "input": {
+    "bytes": 2270,
+    "path": "examples/showcase-artifact-engine.json",
+    "sha256": "fa7b3f4d8005206fa711bb263ba68794b43a947ae99d668e8d35d537402cff17"
+  },
+  "mode": "workflow",
+  "output": {
+    "bytes": 12076,
+    "path": "examples/showcase-artifact-engine.html",
+    "sha256": "abd80773350615d3f9cb60a8b7ff66c1dabad90197c2e0a0382adf0e92b5d441"
+  },
+  "tool": "visual-architecture",
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "edgeKinds": [
+        "control",
+        "memory-write",
+        "primary-data"
+      ],
+      "edges": 5,
+      "evidenceItems": 0,
+      "mode": "workflow",
+      "nodeKinds": [
+        "agent",
+        "llm",
+        "memory",
+        "service"
+      ],
+      "nodes": 6,
+      "quality": {
+        "checks": [],
+        "rating": "excellent",
+        "routeCrossings": 0,
+        "score": 100
+      },
+      "sourceBacked": false,
+      "sourceConfidence": {
+        "high": 0,
+        "low": 0,
+        "medium": 0,
+        "unspecified": 0
+      },
+      "theme": "showcase"
+    },
+    "ok": true,
+    "warnings": []
+  },
+  "version": "1.8.0"
+}

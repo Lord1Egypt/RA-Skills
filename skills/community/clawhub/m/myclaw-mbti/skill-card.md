@@ -1,43 +1,59 @@
-## Description: <br>
-Claw Mbti analyzes recent natural-language interactions with the agent to produce a playful MBTI-style personality report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Claw Mbti analyzes recent natural-language interactions with an OpenClaw agent to produce a playful MBTI-style personality report.
 
-## Publisher: <br>
-[xiaoyang0807](https://clawhub.ai/user/xiaoyang0807) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoyang0807](https://clawhub.ai/user/xiaoyang0807)
 
-## Use Case: <br>
-External ClawHub users invoke this skill to receive an MBTI-style report based on recent conversation patterns, with fallback guidance when interaction history is missing or sparse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill profiles the user from recent conversation history and memory without a clearly documented opt-in flow. <br>
-Mitigation: Invoke the skill explicitly, avoid sharing reports that include private interaction details, and review whether history-based profiling is appropriate before use. <br>
-Risk: The artifact includes Git-based installation commands that users may copy into an agent session. <br>
-Mitigation: Prefer vetted ClawHub installation commands, or review the project repository before using remote Git installation commands. <br>
+## Use Case:
 
+External ClawHub users use this skill to ask their assistant for an MBTI-style personality diagnosis based on recent conversation patterns. The skill can produce a full report when enough interaction history exists, or a lighter prompt/initial impression when history is limited.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/xiaoyang0807/myclaw-mbti) <br>
-- [Project Homepage](https://github.com/xiaoyang0807/claw-mbti) <br>
-- [Reference Manual](reference.md) <br>
-- [Type Catalog](types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with a table and inline shell commands when installation guidance is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses recent chat history and memory; filters shell, Git, code, and installation content from personality evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.0 (source: server release evidence) <br>
+Risk: The skill profiles recent conversations and memory to infer personality traits, which may surface sensitive behavioral details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when the user is comfortable with that profiling scope, and review the generated evidence before sharing or retaining the report.
+
+Risk: The skill can include share prompts and installation prompts in its output.
+
+Mitigation: Confirm share/install text is appropriate for the audience, and remove promotional prompts when they are not wanted.
+
+Risk: The GitHub install/update command fetches and runs content from a remote repository path.
+
+Mitigation: Prefer trusted ClawHub installation flows, and review the remote repository before running GitHub install or update commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoyang0807/skills/myclaw-mbti)
+- [Publisher profile](https://clawhub.ai/user/xiaoyang0807)
+- [Project homepage](https://github.com/xiaoyang0807/claw-mbti)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown report with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include share prompts and installation or update commands; report content is based on recent conversation and memory when available.]
+
+## Skill Version(s):
+
+1.5.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

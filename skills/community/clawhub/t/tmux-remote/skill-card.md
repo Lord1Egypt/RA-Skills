@@ -1,42 +1,52 @@
-## Description: <br>
-Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.
 
-## Publisher: <br>
-[164149043](https://clawhub.ai/user/164149043) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[164149043](https://clawhub.ai/user/164149043)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to manage interactive command-line workflows inside tmux, including listing sessions, attaching to panes, sending commands, capturing pane output, and waiting for expected text.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can operate live tmux panes, including sending input and killing panes.
+
+Mitigation: Use dedicated session names and verify the target session, window, and pane before sending keys or killing panes.
+
+Risk: Captured pane output can include secrets, credentials, or private terminal history.
+
+Mitigation: Avoid capturing sensitive panes and review pane output before sharing or storing it.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to let an agent inspect tmux sessions, send keystrokes to interactive command-line tools, and capture pane output during terminal workflows. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: An agent can read tmux pane contents, including command output, prompts, and any secrets visible in terminal history. <br>
-Mitigation: Use a dedicated low-risk tmux session or socket and avoid running the skill against panes that expose credentials, production access, or sensitive data. <br>
-Risk: An agent can send keystrokes to live tmux panes and may execute unintended commands if the wrong target is selected. <br>
-Mitigation: Confirm the session, window, and pane target before sending Enter or destructive commands. <br>
-Risk: Capturing large pane histories can reveal more context than intended. <br>
-Mitigation: Limit captured history to the minimum needed for the workflow and clear panes that contain sensitive output. <br>
+**Output Format:** [Markdown with inline bash code blocks and shell script helpers]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/164149043/tmux-remote) <br>
+**Other Properties Related to Output:** [Requires tmux on Linux or macOS; helper scripts can list sessions and poll pane output for matching text.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires tmux on Linux or macOS; shell helpers can list tmux sessions and poll pane text.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

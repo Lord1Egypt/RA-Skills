@@ -1,44 +1,57 @@
-## Description: <br>
-Scaffold a personal LLM wiki with multi-agent rules, MCP support, privacy-tagged markdown, and an optional static publishing target. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffolds a personal LLM wiki using the Karpathy pattern, with multi-agent files, an MCP server, and an optional SEO/GEO publish target.
 
-## Publisher: <br>
-[mackding](https://clawhub.ai/user/mackding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mackding](https://clawhub.ai/user/mackding)
 
-## Use Case: <br>
-Developers and agent users use this skill to create a local personal-knowledge-base vault, then ingest sources, query compiled wiki pages, lint stale or contradictory notes, expose selected pages through MCP, and optionally publish public pages as a static site. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill instructs the agent to run an external npm scaffolder that creates local files and agent configuration. <br>
-Mitigation: Install only if you trust the create-opc-wiki npm package and repository, use a dedicated vault folder, and review generated files before relying on them. <br>
-Risk: Generated agent rules and MCP files can affect how connected agents access and summarize wiki content. <br>
-Mitigation: Review generated agent rules and MCP files before opening the vault in agents or MCP clients. <br>
-Risk: Publishing the optional static site can expose notes tagged as public. <br>
-Mitigation: Do not tag secrets, personal notes, or confidential material as privacy: public before building or deploying the site. <br>
+## Use Case:
 
+Developers and agent users use this skill to scaffold a local personal-knowledge-base vault with reusable wiki ingest, query, and lint workflows. It helps maintain compiled Markdown knowledge for use across agents and optional public publishing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mackding/create-opc-wiki) <br>
-- [create-opc-wiki npm package](https://www.npmjs.com/package/create-opc-wiki) <br>
-- [LLM Wiki inspiration](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Code, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and generated project files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce machine-readable JSON output when the scaffolder is run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The install command uses create-opc-wiki@latest from npm, so the executed package can change after this skill review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a specific reviewed package version, install only from a trusted npm publisher, and run scaffolding in a constrained directory or sandbox.
+
+Risk: The generated vault includes agent rules, MCP server files, and site publishing files that can affect agent behavior or expose public-tagged content.
+
+Mitigation: Inspect generated files before opening the vault in an agent or running npm install/npm start, and confirm privacy tags before publishing.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/mackding/skills/create-opc-wiki)
+- [npm package](https://www.npmjs.com/package/create-opc-wiki)
+- [Karpathy LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
+- [Project GitHub repository](https://github.com/MackDing/create-opc-wiki)
+- [Quick examples](artifact/EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and optional JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Running the recommended npx command can scaffold files in the target vault; the --json flag emits a machine-readable result.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -35,7 +35,7 @@ except ImportError:
 # =========================
 
 BASE_URL = "https://coding.dashscope.aliyuncs.com/v1/chat/completions"
-DEFAULT_API_KEY = "sk-sp-2b89d1b9a55d4cb9a8094c9127459aab"
+DEFAULT_API_KEY = "REDACTED-SECRET"
 
 # 四模型角色配置
 ROLES = {

@@ -1,41 +1,58 @@
-## Description: <br>
-Professional Adobe Photoshop automation via ExtendScript bridges for text updates, filters, action playback, layer creation, and image export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Adobe Photoshop automation via COM/ExtendScript bridge. Supports text updates, filters, and action playback.
 
-## Publisher: <br>
-[abdul-karim-mia](https://clawhub.ai/user/abdul-karim-mia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abdul-karim-mia](https://clawhub.ai/user/abdul-karim-mia)
 
-## Use Case: <br>
-Developers and creative automation users use this skill to let an agent control Adobe Photoshop on Windows or macOS for active-document edits, filters, recorded actions, and PNG/JPEG exports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad local Photoshop scripting power that can modify open documents and local files. <br>
-Mitigation: Use backed-up PSDs, review generated ExtendScript before execution, and avoid running it against sensitive folders or untrusted prompts. <br>
-Risk: Export commands can write files wherever the current user account has access. <br>
-Mitigation: Confirm export paths before execution and constrain outputs to expected project directories. <br>
-Risk: Photoshop modal dialogs, missing active documents, or mismatched layer names can cause commands to fail or hang. <br>
-Mitigation: Close Photoshop dialogs and verify the active document, target layers, and action names before running automation commands. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdul-karim-mia/photoshop-automator) <br>
+## Use Case:
 
+Developers, designers, and automation engineers use this skill to automate Adobe Photoshop tasks such as running ExtendScript, updating text layers, creating layers, applying filters, playing actions, and exporting active documents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands] <br>
-**Output Format:** [Markdown status messages and generated ExtendScript executed through local Photoshop automation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Adobe Photoshop on Windows or macOS; commands operate on the active document.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.4 (source: server release metadata and package.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The raw runScript command can execute arbitrary Photoshop ExtendScript with broad local scripting and filesystem power.
+
+Mitigation: Review every generated script before execution and add confirmation or allowlist controls before unattended use.
+
+Risk: Photoshop scripts and export operations can create, modify, overwrite, or delete local files.
+
+Mitigation: Use explicit output paths in non-sensitive directories, validate paths, and add overwrite checks.
+
+Risk: Temporary script files are written locally before execution.
+
+Mitigation: Use safer temporary-file creation and cleanup controls when adapting the skill for unattended workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdul-karim-mia/skills/photoshop-automator)
+- [Publisher profile](https://clawhub.ai/user/abdul-karim-mia)
+- [Project homepage from artifact metadata](https://github.com/abdul-karim-mia/photoshop-automator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text returned from local Photoshop automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Adobe Photoshop and platform automation tools such as cscript on Windows or osascript on macOS.]
+
+## Skill Version(s):
+
+1.2.4 (source: server release metadata, package.json, _meta.json, handler.js)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

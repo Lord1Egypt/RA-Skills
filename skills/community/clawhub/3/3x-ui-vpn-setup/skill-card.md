@@ -1,46 +1,62 @@
-## Description: <br>
-Complete VPN server setup from scratch, including VPS hardening, 3x-ui Xray proxy panel installation, VLESS Reality or VLESS TLS configuration, and Hiddify client connection guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through hardening an Ubuntu or Debian VPS and installing 3x-ui with VLESS Reality or VLESS TLS so a user can connect through Hiddify.
 
-## Publisher: <br>
-[DavydenkovM](https://clawhub.ai/user/DavydenkovM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[davydenkovm](https://clawhub.ai/user/davydenkovm)
 
-## Use Case: <br>
-Developers, operators, and external users use this skill to set up a fresh Ubuntu or Debian VPS as a hardened 3x-ui VPN/proxy server. It guides SSH access, firewall and system hardening, VLESS Reality or TLS setup, client connection, and final access-lockdown steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can give the agent root or server-admin authority on a VPS. <br>
-Mitigation: Install only on a fresh, dedicated VPS and review downloaded installer commands and root-level commands before execution. <br>
-Risk: The workflow includes risky credential handling paths, including passwords in generated guides or chat summaries. <br>
-Mitigation: Redact passwords from generated guides and summaries, avoid plaintext password commands, and share credentials only through the minimum necessary channel. <br>
-Risk: The optional fake cloud login fallback page can mislead users or visitors. <br>
-Mitigation: Do not use the fake cloud login fallback; replace it with a truthful static page or omit the fallback page. <br>
+## Use Case:
 
+Developers, operators, and technical end users use this skill to configure a fresh VPS as a hardened 3x-ui VPN server and produce client connection guidance. It supports both no-domain VLESS Reality setup and domain-based VLESS TLS setup.
 
-## Reference(s): <br>
-- [VLESS TLS Setup](references/vless-tls.md) <br>
-- [Fallback Site (Nginx Stub)](references/fallback-nginx.md) <br>
-- [ClawHub release page](https://clawhub.ai/DavydenkovM/3x-ui-vpn-setup) <br>
-- [RealiTLScanner releases](https://github.com/XTLS/RealiTLScanner/releases) <br>
-- [Hiddify client releases](https://github.com/hiddify/hiddify-app/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce a local user guide with server access, panel access, and client connection details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: High-privilege installer execution can change a server substantially and may execute unverified remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before use, run it only against a VPS you own or are authorized to configure, and prefer pinned and verified installer sources.
+
+Risk: Subnet scanning may violate provider policy or local network rules.
+
+Mitigation: Confirm scanning is permitted before running Reality scanner commands, and skip or adapt the scan when provider terms do not allow it.
+
+Risk: Generated guide files may contain sudo passwords, panel credentials, and VPN connection details.
+
+Mitigation: Avoid storing sudo or panel passwords in generated markdown, keep any guide file private, delete temporary copies, and rotate credentials after setup.
+
+## Reference(s):
+
+- [VLESS TLS Setup](references/vless-tls.md)
+- [Fallback Site (Nginx Stub)](references/fallback-nginx.md)
+- [3x-ui install script](https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+- [RealiTLScanner release download](https://github.com/XTLS/RealiTLScanner/releases/latest/download/RealiTLScanner-linux-${SA})
+- [Hiddify client releases](https://github.com/hiddify/hiddify-app/releases)
+- [ClawHub skill page](https://clawhub.ai/davydenkovm/skills/3x-ui-vpn-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash, JSON, configuration, and connection-link snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May generate a local markdown guide with server access details, panel access details, and VPN client setup instructions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

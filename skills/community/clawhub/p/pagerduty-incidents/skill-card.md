@@ -1,45 +1,57 @@
-## Description: <br>
-Manage PagerDuty incidents, services, schedules, escalation policies, users, and on-call data via the PagerDuty REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage PagerDuty incidents, services, schedules, escalation policies, users, and on-call data via the PagerDuty REST API.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-Operations, reliability, and incident-response teams use this skill to inspect PagerDuty incidents and related service, schedule, escalation, user, and on-call data, then perform user-confirmed incident-management actions through ClawLink. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill connects to PagerDuty through ClawLink and can access account incident-management data. <br>
-Mitigation: Review the ClawLink connection and PagerDuty permissions before use, and install only when the user is comfortable with that connection. <br>
-Risk: Confirmed write actions can change real on-call operations, including incident status, escalations, schedules, services, or users. <br>
-Mitigation: Preview and explicitly confirm the target resource and intended effect before any create, update, delete, escalation, reassignment, or schedule action. <br>
+## Use Case:
 
+Developers, site reliability engineers, and incident responders use this skill to inspect PagerDuty state and manage incident workflows from an agent chat. It supports listing and updating incidents, services, schedules, escalation policies, users, and on-call data through the connected PagerDuty account.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hith3sh/pagerduty-incidents) <br>
-- [PagerDuty REST API Reference](https://developer.pagerduty.com/api-reference/) <br>
-- [PagerDuty Incidents API](https://developer.pagerduty.com/api-reference/rZMyfN/incidents/) <br>
-- [PagerDuty Services API](https://developer.pagerduty.com/api-reference/R4FyWD/services/) <br>
-- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw) <br>
-- [ClawLink Verification](https://claw-link.dev/verify) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and JSON parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces user-facing instructions and ClawLink tool-call guidance; write operations should be previewed and explicitly confirmed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: The skill asks users to install and allow an unpinned third-party plugin that can mediate PagerDuty credentials and operational changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege PagerDuty access, review the plugin before installing, and prefer a pinned or verified ClawLink plugin release when available.
+
+Risk: PagerDuty write operations can affect production incident response, escalation, schedules, services, or users.
+
+Mitigation: Confirm every create, update, delete, reassignment, escalation, and schedule change with the user before execution.
+
+## Reference(s):
+
+- [PagerDuty REST API Reference](https://developer.pagerduty.com/api-reference/)
+- [PagerDuty Incidents API](https://developer.pagerduty.com/api-reference/rZMyfN/incidents/)
+- [PagerDuty Services API](https://developer.pagerduty.com/api-reference/R4FyWD/services/)
+- [ClawLink OpenClaw Documentation](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the live ClawLink PagerDuty tool catalog; write operations should be previewed and confirmed before execution.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

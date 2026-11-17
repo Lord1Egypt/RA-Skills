@@ -1,45 +1,64 @@
-## Description: <br>
-Request movies and TV shows through Jellyseerr. Use when the user wants to add media to their Plex/Jellyfin server, search for content availability, or manage media requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Request movies and TV shows through Jellyseerr. Use when the user wants to add media to their Plex/Jellyfin server, search for content availability, or manage media requests.
 
-## Publisher: <br>
-[EricRosenberg](https://clawhub.ai/user/EricRosenberg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ericrosenberg](https://clawhub.ai/user/ericrosenberg)
 
-## Use Case: <br>
-External users and media server operators use this skill to search Jellyseerr, submit movie and TV requests, and monitor when requested content becomes available in Plex or Jellyfin. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow stores a Jellyseerr API key in ~/.config/jellyseerr/config.json. <br>
-Mitigation: Use the skill only on trusted machines, keep the config file private, and rotate the Jellyseerr API key if the host or file may have been exposed. <br>
-Risk: The optional webhook setup can create a persistent unauthenticated listener on port 8384. <br>
-Mitigation: Restrict the port to Jellyseerr or localhost, avoid broad firewall exposure, and add a shared secret or reverse proxy authentication before enabling webhooks. <br>
-Risk: The optional installer creates background jobs or a systemd service that continue running after setup. <br>
-Mitigation: Review the installer before running it with sudo, install the service only when persistent notification handling is needed, and monitor or disable the service if no longer required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jellyseerr Webhook Setup Guide](references/WEBHOOK_SETUP.md) <br>
-- [Jellyseerr API Reference](references/api.md) <br>
-- [Jellyseerr project documentation](https://github.com/Fallenbagel/jellyseerr) <br>
-- [ClawHub Jellyseerr release page](https://clawhub.ai/EricRosenberg/jellyseerr) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/EricRosenberg) <br>
+## Use Case:
 
+External users and developers use this skill to search Jellyseerr, submit movie and TV requests for Plex or Jellyfin libraries, and monitor requested media availability.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text and Markdown with inline shell commands and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local configuration and cache files under ~/.config/jellyseerr and ~/.cache/jellyseerr when the user runs bundled scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Notification setup can install a persistent Jellyseerr webhook service on the host.
+
+Mitigation: Inspect the generated systemd unit before enabling it, run it with least privilege, and install it only on hosts intended to run this integration.
+
+Risk: The webhook listener is unauthenticated and may be reachable on the network.
+
+Mitigation: Bind the service to localhost or a trusted interface, place it behind HTTPS and authentication when exposed, and restrict firewall access to the Jellyseerr server.
+
+Risk: Cron-based polling writes a temporary crontab backup and can add recurring execution.
+
+Mitigation: Prefer the webhook service when appropriate, review crontab changes before applying them, and avoid the /tmp crontab method on shared hosts.
+
+Risk: Automatic approval can submit media requests without manual review.
+
+Mitigation: Keep auto_approve disabled unless automatic media approvals are intended for the deployment.
+
+## Reference(s):
+
+- [Jellyseerr Webhook Setup Guide](references/WEBHOOK_SETUP.md)
+- [Jellyseerr API Reference](references/api.md)
+- [Jellyseerr project documentation](https://github.com/Fallenbagel/jellyseerr)
+- [ClawHub skill page](https://clawhub.ai/ericrosenberg/skills/jellyseerr)
+- [Publisher profile](https://clawhub.ai/user/ericrosenberg)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce Jellyseerr API requests, local configuration files, cached tracking data, and notification setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

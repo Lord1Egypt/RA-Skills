@@ -1,0 +1,4 @@
+interface:
+  display_name: "TokenLab OpenAI Migration"
+  short_description: "Migrate OpenAI-compatible apps to TokenLab"
+  default_prompt: "Use $tokenlab-openai-compatible-migration to migrate this integration to TokenLab with a minimal diff."

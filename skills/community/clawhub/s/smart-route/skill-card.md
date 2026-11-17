@@ -1,42 +1,58 @@
-## Description: <br>
-Calculates traffic-aware route durations, distances, and Google Maps navigation links between user-supplied locations using the Google Routes API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculate traffic-aware routes, travel times, and distances between locations using Google Routes API.
 
-## Publisher: <br>
-[vemec](https://clawhub.ai/user/vemec) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vemec](https://clawhub.ai/user/vemec)
 
-## Use Case: <br>
-External users, employees, or agents use this skill to answer route, distance, traffic, and drive-time questions with current Google Routes API data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Origin and destination addresses are sent to Google Routes API and printed in command output. <br>
-Mitigation: Treat route addresses as sensitive data and use the skill only when the user accepts sending those locations to Google and displaying them in JSON output. <br>
-Risk: The Google Cloud API key can incur quota or billing charges if broadly scoped or overused. <br>
-Mitigation: Use a restricted Google Cloud API key limited to Routes API and monitor quota and billing. <br>
-Risk: Non-driving modes may still return a Google Maps link with driving travel mode. <br>
-Mitigation: Review the JSON mode and route link before presenting non-driving route links as final navigation guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vemec/smart-route) <br>
-- [Google Cloud Console](https://console.cloud.google.com/) <br>
+## Use Case:
 
+External users and agents use this skill to calculate travel time, distance, and a navigation link between an origin and destination, with traffic-aware routing for driving trips.
 
-## Skill Output: <br>
-**Output Type(s):** [json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON object from a Node.js command, with Markdown setup guidance in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires node and GOOGLE_ROUTES_API_KEY; sends origin and destination addresses to Google Routes API and includes them in stdout.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Origin and destination addresses are sent to Google Routes API and printed in the JSON response.
+
+Mitigation: Use the skill only when users are comfortable sharing those addresses with Google through their own API key, and avoid submitting sensitive addresses unless necessary.
+
+Risk: BICYCLE and WALK requests can return a Google Maps link that still uses driving mode.
+
+Mitigation: Verify the route mode in Google Maps before relying on non-driving directions.
+
+Risk: Responses are requested with a fixed es-419 locale and metric units.
+
+Mitigation: Check duration, distance, and route details against user expectations when locale-specific wording or units matter.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vemec/skills/smart-route)
+- [Publisher profile](https://clawhub.ai/user/vemec)
+- [Google Cloud Console](https://console.cloud.google.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON from a Node.js command, with setup guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and the GOOGLE_ROUTES_API_KEY environment variable; route output includes origin, destination, mode, duration, distance, traffic duration seconds, and a Google Maps route link.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

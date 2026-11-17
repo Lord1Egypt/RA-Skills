@@ -1,0 +1,11 @@
+# FAQ Schema Content Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+question,source,asked_on,approved_answer,visible_on_page
+<question>,<support tickets>,<YYYY-MM-DD>,<yes or no>,<yes or no>
+<question>,<on-site search>,<YYYY-MM-DD>,<yes or no>,<yes or no>
+<question>,<sales questions>,<YYYY-MM-DD>,<yes or no>,<yes or no>
+<question>,<chat transcripts>,<YYYY-MM-DD>,<yes or no>,<yes or no>
+<question>,<email replies>,<YYYY-MM-DD>,<yes or no>,<yes or no>
+<question>,<support tickets>,<YYYY-MM-DD>,<yes or no>,<yes or no>
+<question>,<on-site search>,<YYYY-MM-DD>,<yes or no>,<yes or no>
+<question>,<sales questions>,<YYYY-MM-DD>,<yes or no>,<yes or no>

@@ -1,44 +1,56 @@
-## Description: <br>
-Video generation provider plugin for Vidu (viduq3-pro, viduq3-turbo, viduq2, viduq1). Supports text-to-video, image-to-video, reference-to-video, and start-end-to-video. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video generation provider plugin for Vidu (viduq3-pro, viduq3-turbo, viduq2, viduq1) that supports text-to-video, image-to-video, reference-to-video, and start-end-to-video.
 
-## Publisher: <br>
-[xiaonan-ss](https://clawhub.ai/user/xiaonan-ss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaonan-ss](https://clawhub.ai/user/xiaonan-ss)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect agents to Vidu for text-to-video, image-to-video, reference-to-video, and start-end video generation with a configured Vidu API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; the plugin supports both global and China Vidu API endpoints. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video prompts, uploaded images, and uploaded videos are sent to Vidu for generation. <br>
-Mitigation: Install only when this data sharing is acceptable for the intended users and workload. <br>
-Risk: The Vidu API key is a sensitive credential. <br>
-Mitigation: Store VIDU_API_KEY as a secret and rotate it if it is exposed. <br>
-Risk: The provider is enabled by default and applies a default video generation model during onboarding. <br>
-Mitigation: Review default-provider and default-model behavior if the OpenClaw deployment requires stricter manual activation. <br>
+## Use Case:
 
+Developers and external OpenClaw users use this provider to connect agents to Vidu video generation for text, image, reference, and start-end video workflows.
 
-## Reference(s): <br>
-- [Vidu Platform](https://platform.vidu.com) <br>
-- [ClawHub release page](https://clawhub.ai/xiaonan-ss/vidu-provider) <br>
-- [OpenClaw](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Files, Configuration] <br>
-**Output Format:** [Generated video files with provider metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses VIDU_API_KEY, supports one generated video per request, and can use text, image, video, and start/end-frame inputs depending on the selected Vidu model.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated videos are downloaded from provider-supplied URLs without clear destination or size controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an environment where downloads cannot reach internal services; validate generated-video URLs, block private-network destinations and redirects, and cap download size before deployment.
+
+Risk: Prompts and uploaded images or videos are sent to Vidu for generation.
+
+Mitigation: Use only data that is appropriate for Vidu processing, and document provider data handling for users before deployment.
+
+## Reference(s):
+
+- [Vidu Platform](https://platform.vidu.com)
+- [Vidu Global API endpoint](https://api.vidu.com)
+- [Vidu China API endpoint](https://api.vidu.cn)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [Files, API Calls, Configuration]
+
+**Output Format:** [Generated video assets with provider metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VIDU_API_KEY; supports Global and China Vidu endpoints; returns one generated video per request.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter/package.json: 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

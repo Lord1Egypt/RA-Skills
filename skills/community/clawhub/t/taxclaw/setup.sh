@@ -10,23 +10,70 @@ CONFIG_PATH="$CONFIG_DIR/config.yaml"
 
 mkdir -p "$DATA_DIR" "$CONFIG_DIR"
 
-python3 -m venv "$VENV_DIR"
+pick_python() {
+  if [ -n "${TAXCLAW_PYTHON:-}" ]; then
+    printf '%s\n' "$TAXCLAW_PYTHON"
+    return 0
+  fi
+
+  for candidate in python3.14 python3.13 python3.12 python3.11 python3; do
+    if ! command -v "$candidate" >/dev/null 2>&1; then
+      continue
+    fi
+    if "$candidate" - <<'PY' >/dev/null 2>&1
+import sys
+raise SystemExit(0 if sys.version_info >= (3, 11) else 1)
+PY
+    then
+      command -v "$candidate"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+PYTHON_BIN="$(pick_python || true)"
+if [ -z "$PYTHON_BIN" ]; then
+  echo "TaxClaw requires Python 3.11 or newer. Set TAXCLAW_PYTHON=/path/to/python3.11+ and rerun setup." >&2
+  exit 2
+fi
+if ! "$PYTHON_BIN" - <<'PY' >/dev/null 2>&1
+import sys
+raise SystemExit(0 if sys.version_info >= (3, 11) else 1)
+PY
+then
+  echo "TaxClaw requires Python 3.11 or newer; $PYTHON_BIN is too old." >&2
+  exit 2
+fi
+
+echo "Using Python: $("$PYTHON_BIN" -V) ($PYTHON_BIN)"
+
+"$PYTHON_BIN" -m venv "$VENV_DIR"
 
 "$VENV_DIR/bin/pip" install --upgrade pip
 "$VENV_DIR/bin/pip" install -r "$SKILL_DIR/requirements.txt"
 
 if [ ! -f "$CONFIG_PATH" ]; then
-  cp "$SKILL_DIR/config.yaml.example" "$CONFIG_PATH"
+  cp "$SKILL_DIR/config.example.yaml" "$CONFIG_PATH"
   echo "Created config at $CONFIG_PATH"
 else
   echo "Config already exists at $CONFIG_PATH"
 fi
 
 # init db
-PYTHONPATH="$SKILL_DIR" "$VENV_DIR/bin/python" -c "from src.db import init_db; init_db()"
+PYTHONPATH="$SKILL_DIR" "$VENV_DIR/bin/python" -P -c "from src.db import init_db; init_db()"
 
 echo
-echo "✅ taxclaw setup complete"
-echo "Next steps:"
-echo "  1) Edit config: $CONFIG_PATH"
-echo "  2) Start UI: bash $SKILL_DIR/start.sh"
+echo "✅ $("$SKILL_DIR/bin/taxclaw" --version 2>/dev/null || echo taxclaw) setup complete"
+echo
+echo "First-run check (read-only; it installs and downloads nothing):"
+echo
+# `taxclaw doctor` reports and always exits 0; never let it fail setup.
+"$SKILL_DIR/bin/taxclaw" doctor || echo "  (could not run the doctor; run: $SKILL_DIR/bin/taxclaw doctor)"
+echo
+echo "More:"
+echo "  Full model list (live cloud model lists): $SKILL_DIR/bin/taxclaw models"
+echo "  Edit config: $CONFIG_PATH (or use Settings in the web UI)"
+echo "  Start UI: bash $SKILL_DIR/start.sh"
+echo "  Use from any MCP client: $SKILL_DIR/bin/taxclaw mcp"

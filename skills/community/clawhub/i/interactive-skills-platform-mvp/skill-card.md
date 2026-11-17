@@ -1,46 +1,58 @@
-## Description: <br>
-Designs an MVP plan for turning command-line skills into a web platform with SKILL.md upload, conversational parameter collection, dynamic UI rendering, execution flow, phased implementation, acceptance checks, and risk planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs a Web MVP for making SKILL.md capabilities usable by non-technical users through upload, conversational parameter collection, dynamic UI rendering, and an agent execution loop.
 
-## Publisher: <br>
-[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangzhiming1999](https://clawhub.ai/user/wangzhiming1999)
 
-## Use Case: <br>
-Developers, product engineers, and skill creators use this skill to plan a web-based MVP that lets non-technical users upload and run agent skills through a conversational interface. It produces architecture, API design, implementation phases, validation plans, and risk boundaries for the platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The proposed MVP includes execution of uploaded skills while key safety controls are deferred. <br>
-Mitigation: Require security review before implementation and add sandboxed execution, per-run permissions, and audit logs before executing uploaded skills. <br>
-Risk: Uploaded skills may contain sensitive credentials or content that should not be stored, sent, or executed without consent. <br>
-Mitigation: Add explicit upload consent, secret scanning and redaction, retention and deletion controls, and clear user warnings. <br>
-Risk: A web platform that executes skills without access controls can expose users or infrastructure to unauthorized actions. <br>
-Mitigation: Require authentication and authorization before storing, analyzing, or running skills. <br>
+## Use Case:
 
+Developers, engineers, and product builders use this skill to plan an MVP that turns command-line skills into a web-based experience for non-technical users. It produces an implementation-oriented architecture, API outline, phased delivery checklist, validation plan, and risk boundaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangzhiming1999/interactive-skills-platform-mvp) <br>
-- [Claude Agent SDK documentation](https://github.com/anthropics/anthropic-sdk-python) <br>
-- [FastAPI documentation](https://fastapi.tiangolo.com/) <br>
-- [React documentation](https://react.dev/) <br>
-- [felo-skills repository](https://github.com/Felo-Inc/felo-skills) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with architecture notes, API sketches, phased checklists, validation guidance, and risk planning] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically written in Chinese and structured around background, problem, solution, checklist, and risk sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The planned platform executes uploaded or third-party skills, which can create security exposure if shipped without execution controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require authentication, per-skill ownership checks, sandboxed per-run execution, restricted tools and network access, credential isolation, path validation, audit logs, quotas, and explicit warnings before executing uploaded skills.
+
+Risk: The skill is a planning reference, so generated implementation guidance may be incomplete or unsafe if treated as production-ready.
+
+Mitigation: Use the output as a reviewed design starting point and complete security, operational, and product review before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wangzhiming1999/skills/interactive-skills-platform-mvp)
+- [Project Homepage](https://github.com/wangzhiming1999/oliver-skill)
+- [Claude Agent SDK Reference](https://github.com/anthropics/anthropic-sdk-python)
+- [felo-skills Repository](https://github.com/Felo-Inc/felo-skills)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [React Documentation](https://react.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with architecture notes, API sketches, phased checklists, test cases, and risk guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default response language is Chinese unless the user requests otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and artifact/clawhub.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

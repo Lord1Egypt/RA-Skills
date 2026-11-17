@@ -28,7 +28,7 @@ v16.1 变更:
 import argparse, json, sys, time, asyncio
 import httpx
 
-DEFAULT_API = "http://127.0.0.1:9800"
+DEFAULT_API = "http://<server-ip>:9800"
 
 # v16.1: mode 枚举（与 api_server MODES 对齐 + 新增）
 ALL_MODES = [
@@ -44,7 +44,7 @@ ALL_MODES = [
 PRESETS = {
     'dev': {
         'queries': ['Python asyncio 教程', 'Rust 入门', 'TypeScript 新特性',
-                    'Vue 3 vs React', 'PostgreSQL 性能优化', 'Kubernetes 实战',
+                    'Vue 3 vs React', 'PostgreSQL 性能优化', 'Kubernetes 迭代',
                     'OpenAI API 价格', 'GitHub Actions 部署'],
         'mode': 'dev_rss',
         'loop': 1800,

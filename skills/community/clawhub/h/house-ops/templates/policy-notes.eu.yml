@@ -1,0 +1,249 @@
+# policy-notes.eu.yml — 欧洲首批六个市场的购房政策数据表（英国·爱尔兰·法国·荷兰·德国·西班牙）
+#
+# 用法与纪律，与 policy-notes.cn.yml 完全一致：
+#   - 每行携带 as_of；**写入报告前必须联网核实并以核实结果为准**，报告中标注核实日期。
+#   - 来源冲突时用 `conflict: true` 显式标注，并在评估里显式告知用户“该口径存在冲突，需就地核实”。
+#   - 本表不提供任何法律或税务意见；跨境购房务必找当地律师/税务顾问（欧陆多为公证人，英美多为律师/过户师）。
+#
+# 中国大陆有哪些合格层级不适用于欧洲，评估时注意这些“结构性差异”：
+#   1. 欧洲大多**没有限购**，但对非欧盟买家有 KYC/资金来源审查；个别国家（丹麦、奥地利、瑞士等）
+#      有许可制，本表首批六国未包含。
+#   2. 学区：多数国家靠 catchment（划片）或家庭住址，实践上没有“五年一户/六年一户”这类学位锁定制。
+#   3. 产权形态：英国 leasehold（租赁产权）vs freehold（永久产权）差异巨大，等同于中国的“产权年限”问题，
+#      且服务费/地租/建筑安全隐患比中国“商办公寓”更复杂。
+
+as_of_overview: 2026-09-24
+verification_rule: "每次引用前联网核实并以核实结果为准；报告标注核实日期"
+conflict_rule: "凡标 conflict: true 的口径，公开来源互相打架——报告必须显式提示并给出待核实清单"
+
+markets:
+  # ============================ 英国（英格兰与威尔士） ============================
+  uk:
+    name: 英国（英格兰与威尔士）
+    currency: GBP
+    transaction_tax:
+      name: Stamp Duty Land Tax（SDLT）
+      as_of: 2025-04-01
+      apply_to: 印花税自 2025-04-01 起适用，英格兰与北爱尔兰同口径
+      standard_bands:
+        - ["£0 - £125,000", "0%"]
+        - ["£125,001 - £250,000", "2%"]
+        - ["£250,001 - £925,000", "5%"]
+        - ["£925,001 - £1,500,000", "10%"]
+        - ["£1,500,000 以上", "12%"]
+      first_time_buyer:
+        relief_cap: "£500,000（超过则全额按标准档，不再有减免）"
+        bands:
+          - ["£0 - £300,000", "0%"]
+          - ["£300,001 - £500,000", "5%"]
+      surcharges:
+        additional_property: "整套加 5 个百分点（2024-10-31 起）；适用门槛≥£40,000"
+        non_uk_resident: "整套加 2 个百分点（一年内在英居留<183 天即视为非居民）"
+        corporate_over_500k: “17% 全额征收”
+      deadline: "成交后 14 天内申报缴纳（通常由过户律师代办）"
+      verify: true
+    devolved_taxes:
+      scotland:
+        name: LBTT（苏格兰）
+        bands: ["£0-£145,000 0%", "£145,001-£250,000 2%", "£250,001-£325,000 5%", "£325,001-£750,000 10%", "£750,000 以上 12%"]
+        additional_dwelling_supplement: "8%"
+        ftt_relief: "首次购房者 £175,000 以内 0%"
+        as_of: 2026-09-24
+        verify: true
+      wales:
+        name: LTT（威尔士）
+        bands: ["£0-£225,000 0%", "£225,001-£400,000 6%", "£400,001-£750,000 7.5%", "£750,001-£1,500,000 10%", "£1,500,000 以上 12%"]
+        note: "无首次购房减免，但免税额起点最高"
+        as_of: 2026-09-24
+        verify: true
+    process:
+      steps: ["报价（口头报价通常不具约束力，双方均可撤回）", "委任过户律师/surveyor", "法务调查 searches（地方/环境/水务/洪水）与房产勘察", "交换合同 exchange（此时才具法律约束力，定金可没收）", "成交 completion 并过户登记", "14 天内申报印花税"]
+      notes: "与中国“网签即锁定”不同，exchange 之前任何一步都可以无责退出；务必搞清楚报价阶段损失的是勘察费还是定金。"
+    ownership:
+      freehold: "永久产权（房屋与土地均归业主）"
+      leasehold: "租赁产权（仅拥有有期限的使用权，需付地租 ground rent 与服务费 service charge）"
+      reform_status:
+        as_of: 2026-09-24
+        facts:
+          - “Leasehold and Freehold Reform Act 2024 已获御准，但部分条款尚未生效（secondary legislation 未出）”
+          - “2026-01-27 公布 Leasehold and Commonhold Reform Bill 草案：现有租赁地租封顶 £250/年，40 年后降至象征性 peppercorn；废除 forfeiture；新建公寓默认采用 commonhold”
+          - “2026-05-13 议会开幕演说同时提出 Building Safety Remediation Bill：赋予外墙整改法定义务，>18m 建筑目标 2029 年底完成，11-18m 目标 2031 年底”
+        verify: true
+        note: "**仍在立法流程中，法案内容可能变化**。涉及 leasehold 房源一律不得按“改革已落地”计算持有成本——只提示、不入评分。"
+    key_checks:
+      - “leasehold 剩余年限（<80 年时续期成本显著上升，且 2024 法案的估价改革尚未全部生效）”
+      - “服务费 service charge 历史账单与未来大修预算（含外墙整改与 betterment 追加费用）”
+      - “公寓外墙/建筑安全：EWS1 与 Building Safety Fund 整改状态”
+      - “洪水/黏土胀缩/采空/日本虎杖（knotweed）等环境风险”
+      - “catchment 学区：只认当局当年招生政策，中介的『名校学区』话术一律不采信”
+    recurring_costs: ["Council Tax（按估值档收取）", "leasehold 的地租与服务费", "建筑保险", "住宅大修储备"]
+
+  # ============================ 爱尔兰 ============================
+  ie:
+    name: 爱尔兰
+    currency: EUR
+    transaction_tax:
+      name: Stamp Duty（印花税）
+      as_of: 2026-09-24
+      status: "本表未收录具体税率——写作前需从 Revenue 官网核实当期住宅印花税档位"
+      verify: true
+      note: "成交即缴印花税；Revenue 将成交数据交给 PSRA，才有公开的 Property Price Register。"
+    process:
+      steps: ["报价与定金", "签 contracts（换约后有约束力）", "委任事务律师", "成交与产权登记", "缴纳印花税"]
+      verify: true
+      notes: "流程比英国更快但同样存在报价可撤回阶段；交易可能会遇到招标式/多轮加价，需核实。"
+    key_checks:
+      - “PPR 上的历史成交比对（近 8-10 年，注意整栋/组合交易会被记成一行）”
+      - “BER 能效等级（有无升级空间）”
+      - “mica/pyrite 缺陷（某些郡的建筑石材问题）——特定区域的重大风险项”
+      - “规划许可与改建合规（尤其乡间独栋与自建房）”
+    data_note: "爱尔兰有 2010 年起的**交易级**公开登记（PPR），单套成交可复核，是欧洲最容易核价的市场之一。"
+
+  # ============================ 法国 ============================
+  fr:
+    name: 法国
+    currency: EUR
+    transaction_costs:
+      name: Frais de notaire（含过户税）
+      as_of: 2026-06-01
+      ancien: "约 7% - 8%（含所有杂费）"
+      neuf: "约 2% - 3%（新房/5 年内，因增值税已含在价款中）"
+      dmto:
+        structure: "Droits de Mutation à Titre Onéreux（过户税）：全国基准 3.80%，多数省已提高至 4.50%"
+        surcharge: "自 2025-04-01 起，各省可将上限再提高 0.5 点至 5.00%，有效期至 2028-03-31（LF 2025 art.116）；2026 年多数省采用 5.00%"
+        first_time_buyer: "首购主居留存费率 4.50% 的过渡安排存在，用前核实"
+        verify: true
+      notary_emoluments: "公证人报酬按累进法定费率（约占 1%），不得擅自加价；报价须事先书面模拟"
+      verify: true
+    process:
+      steps: ["口头/书面报价 offre d'achat", "签 compromis de vente（定金约 5%-10%，进公证人监管账户）", "10 天冷静期（loi SRU，仅限个人购房者的住宅交易）", "条件成就（贷款条件通常 45-60 天）", "签 acte authentique 正式过户（通常签约后 2-3 个月）"]
+      notes: "**10 天冷静期内可无条件退出并全额退定金**；如 SME/SCI 购产或买地皮则不适用。"
+    energy_label:
+      name: DPE（Diagnostic de Performance Énergétique）
+      as_of: 2025-01-01
+      rental_ban: "G 级住宅自 2025-01-01 起被认定为不宜居，不得签订/续签新租约；F 级 2028、E 级 2034 依次跟进"
+      verify: true
+      note: "**本身不阻止出售，但会重挫价格与未来租金收益**——买入自住也要把翻新成本算进 Fit/Price。"
+    recurring_costs:
+      - “Taxe foncière（年度持有税，按地籍租值×地方税率，各 commune 差异极大）”
+      - “Taxe d'habitation：2023 年起主居全面取消，但**二套住宅仍征**，且部分海滨/旅游市镇加征最高 60%”
+      - “IFI 不动产财富税：净法国不动产 >€1.3M 部分按 0.5%-1.5%”
+    ownership:
+      copropriete: "公寓为共同产权：必查 copropriété 大会纪要、carnet d'entretien（维护记录）、大额工程决议与欠费"
+    financing:
+      hcsf_cap: "HCSF 规定月供等债务负担不超过毛收入约 35%"
+      verify: true
+
+  # ============================ 荷兰 ============================
+  nl:
+    name: 荷兰
+    currency: EUR
+    transaction_tax:
+      name: Overdrachtsbelasting（过户税）
+      as_of: 2026-01-01
+      owner_occupier: "2%（自住买家，无免税额，全额计征）"
+      non_owner_occupied:
+        value_rule: "非自住住宅 2026-01-01 起由 10.4% 下调（公开来源记为 8%）"
+        conflict: true
+        commercial: "非住宅（商业/办公/仓储/车房）维持 10.4%"
+      anti_flip: "6 个月内转售时，卖方已缴过户税的抵扣额受限（防止利用降税套利的快进快出）"
+      starter_exemption: "35 岁以下首套自住 0% 免税额历史上存在且为“一生一次”式限制；2026 年是否仍有效须核实"
+      verify: true
+      note: "**存在来源冲突**：不同公开资料对 2026 年非自住住宅档位给出 10.4% 与 8% 两种说法，必须以 Belastingdienst 当期口径为准。"
+    recurring_costs:
+      - "WOZ 政府年度估值，是多种税的基数（OZB / 所得税 / 水务税）"
+      - "Eigenwoningforfait（自有住宅推定租金计入 box 1）"
+      - "OZB（市政不动产税）、waterschapsbelasting（水务局税）、rioolheffing（排污费）"
+    eigenwoningforfait:
+      conflict: true
+      note: "2026 年 EWF 税率档位在不同资料间不一致（有以 €75,000/€1,330,000 分档、也有以 €75,000/€1,350,000 分档的说法），务必以 Belastingdienst 当期表格为准。"
+      verify: true
+    mortgage_note: "自住房抵押贷款利息可在 box 1 抵扣，但须为 30 年内摊销型；自住房出售增值不征资本利得税。"
+    process:
+      steps: ["看房与报价", "临时买卖合同（买方享法定 3 天冷静期）", "融资审批与技术勘察 bouwkundige keuring", "公证人 notaris 办理过户契约", "Kadaster 登记"]
+      verify: true
+    key_checks:
+      - “erfpacht（地租）条款与期限——阿姆斯特丹等城市普遍存在，买期或年费会显著改变持有成本”
+      - “VvE（业主协会）储备金与 MJOP 长期维护计划”
+      - "地基与打桩：荷兰软土地基普遍，木桩腐烂与下沉属实质风险（ bouwkundige keuring 必查）"
+      - "洪水与防涝：核实所处圩区/堤防水位管辖与是否繳纳 waterschapsbelasting"
+
+  # ============================ 德国 ============================
+  de:
+    name: 德国
+    currency: EUR
+    transaction_tax:
+      name: Grunderwerbsteuer（不动产取得税，州级立法）
+      as_of: 2026-01-01
+      rates:
+        “3.5%”: ["Bayern"]
+        “5.0%”: ["Baden-Württemberg", "Niedersachsen", "Rheinland-Pfalz", "Sachsen-Anhalt", "Thüringen", "Bremen（第二来源列为 5.0%）"]
+        “5.5%”: ["Bremen", "Hamburg", "Sachsen"]
+        “6.0%”: ["Berlin", "Hessen", "Mecklenburg-Vorpommern"]
+        “6.5%”: ["Brandenburg", "Nordrhein-Westfalen", "Saarland", "Schleswig-Holstein"]
+      conflict: true
+      conflict_note: "Bremen 口径冲突：多数资料称 2025-07-01 起由 5.0% 升至 5.5%，另有计算器仍列 5.0%。以该州税务机关当期口径为准。"
+      first_time_buyer_relief: "联邦层面首购减免仅在联盟协议中提及（€250,000 免税额），**尚未落地**；黑森州已自 2024-03-01 提供 Hessengeld 补贴"
+      verify: true
+    other_costs:
+      notary_and_register: "公证与土地登记合计约 1.5% - 2.0%（GNotKG 法定累进）"
+      agent_commission: "自 2020-12-23 起，向消费者出售公寓/独栋时买方佣金不得超过卖方（市场常规为双方各 3.57% 含增值税）；provisionsfrei（免佣）亦常见"
+      financing_note: "**Kaufnebenkosten（税费与手续费）银行不放贷，必须自有现金**——最常见的预算翻车点"
+      verify: true
+    data_limitation:
+      as_of: 2026-09-24
+      fact: "德国**没有全国性的开放单套成交登记**：Kaufpreissammlung（成交价采集）由各州地产估价委员会持有，多为付费或仅出版汇总"
+      consequence: "德国房源的'挂牌-成交交叉验证'无法达到『成交数据』档，只能按『公开统计/片区均值』降级；provenance 建议从 suspect 起步并要求实地/估价佐证"
+    recurring_costs: ["Grundsteuer（土地税，2025 年起按新评估口径，各州可采用自己的模型）", "Wohngebäudeversicherung（建筑险）", "能源改造合规成本（Energieausweis 为强制，供暖相关规则变动快，用前核实）"]
+    verify: true
+
+  # ============================ 西班牙 ============================
+  es:
+    name: 西班牙
+    currency: EUR
+    transaction_tax:
+      name: ITP（Impuesto de Transmisiones Patrimoniales，自治区立法）
+      as_of: 2026-06-01
+      base: "计税基数 = 申报价与 Catastro 的 Valor de Referencia 两者**较高者**（2022 年起）"
+      rates_by_region:
+        - rate: 6%
+          regions: ["Comunidad de Madrid", "Navarra", "Ceuta", "Melilla"]
+        - rate: 6.5%
+          regions: ["Canarias"]
+        - rate: 7%
+          regions: ["Andalucía", "País Vasco", "La Rioja"]
+        - rate: 8%
+          regions: ["Galicia", "Murcia", "Aragón（8-10% 累进）", "Castilla y León（8-10% 累进）", "Extremadura（8-11% 累进）", "Illes Balears（8-13% 累进）", "Asturias（8-10% 累进）"]
+        - rate: 9%
+          regions: ["Cantabria", "Castilla-La Mancha", "Comunidad Valenciana（€100 万以下）"]
+        - rate: 10%
+          regions: ["Cataluña（累进至 13%）", "Comunidad Valenciana（€100 万以上 11%）"]
+      notes: "以上为各自治区标准档；青年/多子女/残障/主居等减免档普遍存在但条件各异，且部分减免仅限西班牙税务居民。"
+      verify: true
+      deadline: "公证后 30 个工作日内申报（Modelo 600），逾期有滞纳金与加罚；未缴清不得登记"
+      new_build: "新房为增值税（住宅约 10%）+ AJD 印花税，非二手房的 ITP"
+      verify: true
+    process:
+      steps: ["保留/预订", "签 Contrato de Arras（定金，常见 10%；买方退出损失定金，卖方退出须双倍返还）", "尽调：nota simple 调档查负担/抵押/查封、社区与税费结清证明", "公证处签 escritura", "登记与缴纳 ITP"]
+      notes: "**Arras 合同是有违约责任的（有别于法国 10 天冷静期、荷兰 3 天冷静期）**——签字前必须完成 nota simple 尽调。"
+    recurring_costs: ["IBI（市政不动产税）", "社区管理费 comunidad", "垃圾处理费", "非居民 IRNR 推算所得税与可能的财富/团结税（按自治区）"]
+    key_checks:
+      - “未登记的加建/改建（obra sin legalizar）——影响合法性与贷款”
+      - “沿海 servidumbre de protección（海岸保护役权）：建筑与翻修改造受行政管理限制”
+      - “VPO/保障性住房的再交易限制”
+      - “旅游租赁许可（各自治区甚至各市规则不同，Airbnb 类预期必须核实）”
+      - “占用方（ocupas）风险与腾退难度”
+    verify: true
+
+common_market_guidance:
+  listing_platforms_note: "欧洲主流挂牌平台（Rightmove/Zoopla、Idealista/Fotocasa、Funda、ImmobilienScout24、SeLoger/Leboncoin、Daft.ie 等）**尚未注册为本项目的 scrapers 平台模块**——目前只能按 generic 兜底清单采集，并按以下档位计入可靠度：成交数据（仅英/爱/法可用官方登记核实）> 挂牌数据 > 中介口述 > 未核实。"
+  marketing_claim_patterns:
+    - “chain-free / no onward chain（无链式依赖）—— 只是卖方/中介的说法，须向过户律师核实链条真实状态”
+    - “offers over / offers in excess of —— 只是议价起点口径，不是成交价”
+    - “guide price —— 表示意向区间，不是可接受价格”
+    - “shared ownership / key worker only —— 产权形态与转售限制特殊，不能按普通产权比较”
+    - “2 bed + study —— study（书房）大多不满足卧室法定要求，不等于多一间房”
+    - “solar panels owned outright —— 租赁与自有影响可转让性与收益归属，须核对合同”
+    - “turn-key / fully renovated —— 须核对 permits/验收/合规文件，而非只看装修”
+    - “gone to sealed bids / best offers —— 常见加价手段，决策前要求书面确认上限规则”
+  evidence_hierarchy_note: "欧洲的隐性持有成本比挂牌话术更致命且不可目视：服务费与地租（英国）、erfpacht 与 VvE 储备（荷兰）、copropriété 欠费与 DPE 翻新义务（法国）、加建合法性（西班牙）——必须索取书面文件核实，不得凭现场观感判断。"

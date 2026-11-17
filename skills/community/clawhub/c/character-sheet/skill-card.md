@@ -1,39 +1,53 @@
-## Description: <br>
-Transforms character descriptions into structured character-sheet prompts covering front, side, and back views, facial details, palette, local design details, and full-body proportion references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured character reference prompts for a four-area character sheet covering front, side, and back views, facial details, palette, key accessories, and full-body proportions.
 
-## Publisher: <br>
-[chang9852](https://clawhub.ai/user/chang9852) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chang9852](https://clawhub.ai/user/chang9852)
 
-## Use Case: <br>
-Artists, designers, and external users use this skill to convert a textual character idea into a consistent multi-view visual production brief for image generation or handoff to visual creators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad character-design phrases. <br>
-Mitigation: Deploy it where character-sheet prompt generation is expected, and review trigger behavior before making it available in broader agent workflows. <br>
+## Use Case:
 
+External users and creative practitioners use this skill to turn a written character concept into consistent image-generation prompts for a production-style character reference sheet.
 
-## Reference(s): <br>
-- [Character Sheet on ClawHub](https://clawhub.ai/chang9852/character-sheet) <br>
-- [chang9852 publisher profile](https://clawhub.ai/user/chang9852) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured prompt guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces prompt sections for multiple character-sheet regions while emphasizing consistent appearance, palette, and proportions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad Chinese trigger phrases such as character design or draw a character may activate the skill when a user intended a more general creative task.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user wants a structured character-sheet prompt before applying the four-area output format.
+
+Risk: The skill is written for Chinese-language interaction, which may make outputs less accessible to users expecting another language.
+
+Mitigation: Adapt the prompt language to the user's requested language while preserving the same character-consistency and section requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chang9852/skills/character-sheet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text containing structured image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language prompt guidance organized into character-sheet sections]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Manage investment portfolios by recording positions, analyzing allocation, calculating returns, and generating rebalance suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage investment portfolios. Use when adding positions, analyzing allocation, calculating returns, or generating rebalance advice.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and users managing local investment records use this skill to add or remove holdings, review allocation and performance, and draft rebalance suggestions from stored transaction data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Portfolio holdings and transaction history are stored in plaintext on the user's machine. <br>
-Mitigation: Protect ~/.portfolio on shared or backed-up systems and keep controlled backups if the records matter. <br>
-Risk: Rebalance and performance output can affect financial decisions if accepted without review. <br>
-Mitigation: Verify calculations and assumptions before making real trades or other investment decisions. <br>
+## Use Case:
 
+External users and developers use this skill to manage local investment portfolio records, review holdings, analyze allocation, calculate returns, and generate rebalance suggestions.
 
-## Reference(s): <br>
-- [ClawHub Portfolio Skill](https://clawhub.ai/bytesagain1/portfolio) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Terminal text, tables, JSON, or CSV] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores holdings and transaction records as local JSON files under ~/.portfolio.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.4.2 (source: ClawHub release metadata) <br>
+Risk: The skill creates and modifies persistent local portfolio data under ~/.portfolio.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review commands before execution and keep backups of important portfolio data.
+
+Risk: Remove operations can change saved holdings and transaction records.
+
+Mitigation: Confirm ticker symbols and quantities before running remove commands.
+
+Risk: CSV exports may be unsafe if untrusted ticker values are imported before validation and CSV escaping are improved.
+
+Mitigation: Avoid importing untrusted ticker values into CSV exports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/portfolio)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, CSV]
+
+**Output Format:** [Markdown guidance with bash commands and command output in table, JSON, or CSV formats]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes portfolio holdings and transaction data to local JSON files under ~/.portfolio.]
+
+## Skill Version(s):
+
+3.4.2 (source: server release metadata; artifact frontmatter lists 3.4.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

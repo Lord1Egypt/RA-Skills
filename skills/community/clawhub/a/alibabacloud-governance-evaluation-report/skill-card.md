@@ -1,53 +1,63 @@
-## Description: <br>
-Queries Alibaba Cloud Governance Center maturity checks and helps generate structured risk and compliance reports for account governance analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Alibaba Cloud Governance Center evaluation report skill for querying governance maturity check results, generating structured risk reports, and account compliance analysis.
 
-## Publisher: <br>
-[sdk-team](https://clawhub.ai/user/sdk-team) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sdk-team](https://clawhub.ai/user/sdk-team)
 
-## Use Case: <br>
-Cloud platform engineers, security teams, and operators use this skill to inspect Alibaba Cloud Governance Center results, drill into risky checks, and get remediation-oriented reports for account governance analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses Alibaba Cloud credentials to read Governance Center results, which can expose sensitive account posture if credentials are overprivileged or mishandled. <br>
-Mitigation: Use a dedicated read-only RAM policy or temporary role-based credentials, and avoid pasting secrets into chat logs, terminal history, or generated reports. <br>
-Risk: Governance and non-compliant resource results may reveal sensitive cloud inventory and compliance details. <br>
-Mitigation: Treat outputs as sensitive operational data, share them only with authorized users, and redact resource identifiers before external distribution. <br>
-Risk: Aliyun CLI auto-plugin installation changes the local execution environment. <br>
-Mitigation: Review the Aliyun auto-plugin setting before use and run the skill in a controlled environment with only the required Governance Center permissions. <br>
-Risk: The helper script caches Governance Center metadata locally under the user's home directory. <br>
-Mitigation: Clear the local governance metadata cache when working on shared systems or when cached metadata should not persist. <br>
+## Use Case:
 
+Developers, cloud operations teams, and security reviewers use this skill to inspect Alibaba Cloud Governance Center maturity results, prioritize risks, and get focused remediation guidance.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/sdk-team/alibabacloud-governance-evaluation-report) <br>
-- [Related APIs](references/related-apis.md) <br>
-- [RAM Policies](references/ram-policies.md) <br>
-- [Verification Methods](references/verification-method.md) <br>
-- [Aliyun CLI Installation & Configuration Guide](references/cli-installation-guide.md) <br>
-- [Overview report format](references/report-format-overview.md) <br>
-- [Pillar report format](references/report-format-pillar.md) <br>
-- [Detail report format](references/report-format-detail.md) <br>
-- [Alibaba Cloud Governance Center documentation](https://help.aliyun.com/zh/governance/) <br>
-- [Alibaba Cloud Governance API overview](https://help.aliyun.com/zh/governance/developer-reference/api-governance-2021-01-20-overview) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports in chat, with shell command examples and structured JSON from the helper script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Aliyun CLI 3.3.0 or later, Governance Center read permissions, and user confirmation before running customizable parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Risk: The skill requires Aliyun CLI plugin updates and automatic plugin installation behavior that may persist beyond a single report run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable automatic plugin installation only when that persistent CLI behavior is acceptable, avoid updating unrelated plugins, and review local CLI configuration after use.
+
+Risk: The skill invokes the local Aliyun CLI with the user's current cloud credentials to query Governance Center data.
+
+Mitigation: Use a dedicated read-only Governance Center profile where possible, confirm user-selectable parameters before execution, and avoid credentials with broader permissions than the report requires.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-governance-evaluation-report)
+- [Aliyun CLI releases](https://github.com/aliyun/aliyun-cli/releases)
+- [Alibaba Cloud Governance Center documentation](https://help.aliyun.com/zh/governance/)
+- [Governance API reference](https://help.aliyun.com/zh/governance/developer-reference/api-governance-2021-01-20-overview)
+- [CLI installation guide](references/cli-installation-guide.md)
+- [RAM policies](references/ram-policies.md)
+- [Related APIs](references/related-apis.md)
+- [Verification methods](references/verification-method.md)
+- [Overview report format](references/report-format-overview.md)
+- [Pillar report format](references/report-format-pillar.md)
+- [Detail report format](references/report-format-detail.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown conversation reports with inline shell commands and structured JSON from helper queries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports are emitted in conversation and are not written to files; helper metadata may be cached locally.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

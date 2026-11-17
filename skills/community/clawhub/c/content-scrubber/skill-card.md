@@ -1,41 +1,54 @@
-## Description: <br>
-OpenClaw plugin that scrubs private infrastructure details from outgoing messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw plugin that scrubs private infrastructure details from outgoing messages with regex-based redaction of RFC 1918 IPs, localhost ports, SSH targets, and hostnames before they reach Discord, Telegram, Signal, or other messaging surfaces.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[solomonneas](https://clawhub.ai/user/solomonneas)
 
-## Use Case: <br>
-Developers and OpenClaw users use this plugin to reduce accidental disclosure of private infrastructure details in outgoing messages before delivery to chat surfaces such as Discord, Telegram, and Signal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security evidence marks the artifact review suspicious because the workspace did not expose a coherent single skill artifact to verify. <br>
-Mitigation: Confirm the installed package contains the intended SKILL.md, index.ts, openclaw.plugin.json, and package.json files, then rerun review on the exact artifact before deployment. <br>
-Risk: Allowed recipients bypass scrubbing and dry-run mode logs matches without redacting message content. <br>
-Mitigation: Keep allowedRecipients narrowly scoped, verify dryRun is false for normal use, and test redaction behavior before enabling the plugin on production messaging channels. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to reduce accidental disclosure of private infrastructure details in outgoing chat messages. It is intended for message-sending workflows where deterministic text replacement is acceptable as a best-effort privacy control.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/solomonneas/content-scrubber) <br>
-- [Publisher profile](https://clawhub.ai/user/solomonneas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Redacted message text and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Deterministic regex-based message interception with dry-run and allowed-recipient configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, package.json, release evidence) <br>
+Risk: The scrubber is a best-effort privacy control and may miss sensitive endpoint formats, internal hostnames, SSH targets, or localhost representations outside its built-in regex rules.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Test representative sensitive formats before deployment and extend or tune the rules for the environment's actual message patterns.
+
+Risk: Dry-run mode and allowed recipients can bypass redaction for real outgoing messages.
+
+Mitigation: Keep dryRun disabled for protective use and restrict allowedRecipients to explicitly reviewed destinations.
+
+## Reference(s):
+
+- [Content Scrubber ClawHub Release](https://clawhub.ai/solomonneas/skills/content-scrubber)
+- [solomonneas ClawHub Profile](https://clawhub.ai/user/solomonneas)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with TypeScript plugin code and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces deterministic replacement text such as [redacted-ip], [redacted-service], [redacted-target], and [redacted-host].]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

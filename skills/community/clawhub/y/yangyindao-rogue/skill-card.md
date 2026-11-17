@@ -1,45 +1,59 @@
-## Description: <br>
-阴阳岛肉鸽 is a pixel-art cultivation roguelike game where players choose a class, evolve weapons, advance realms, survive tribulations, and remove curses on Yin Yang Island. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language pixel-art cultivation roguelike browser game with career choices, weapon evolution, realm progression, curse challenges, and an AI control interface.
 
-## Publisher: <br>
-[121212165](https://clawhub.ai/user/121212165) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[121212165](https://clawhub.ai/user/121212165)
 
-## Use Case: <br>
-Players and agents use this skill to launch and interact with a browser-based Chinese cultivation roguelike. The included interface supports direct play, game-state inspection, action execution, and simple AI decision workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generic trigger phrases may invoke the skill unintentionally. <br>
-Mitigation: Use explicit invocation by skill name or a specific trigger phrase when launching the game. <br>
-Risk: Game progress and achievements are stored in browser localStorage. <br>
-Mitigation: Use a trusted browser profile and clear site data when local persistence is not desired. <br>
-Risk: Opening the page may contact Google Fonts for styling. <br>
-Mitigation: Review or restrict external font requests in environments that require offline or controlled network behavior. <br>
+## Use Case:
 
+External users can play the browser-based roguelike directly, while agent developers can inspect or use the exposed YinYangDAO interface to read game state and issue game actions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/121212165/yangyindao-rogue) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [SPEC.md](artifact/SPEC.md) <br>
-- [AI_INTERFACE_SPEC.md](artifact/AI_INTERFACE_SPEC.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code] <br>
-**Output Format:** [Markdown guidance with a local HTML game artifact and JavaScript interface examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The game runs in the browser, stores progress locally, and may request Google Fonts for styling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Game progress and achievements are stored in browser local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted browser profile and clear the site's local storage when persistent game state should be removed.
+
+Risk: The browser game loads a font from Google.
+
+Mitigation: Allow the external font request only where policy permits, or self-host or remove the font before controlled deployment.
+
+Risk: Broad trigger phrases may cause less precise activation.
+
+Mitigation: Review and narrow the trigger phrases before installing the skill in shared agent environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/121212165/skills/yangyindao-rogue)
+- [Game specification](artifact/SPEC.md)
+- [AI game interface specification](artifact/AI_INTERFACE_SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Code, Guidance]
+
+**Output Format:** [HTML, JavaScript, and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes local browser game state and a window.YinYangDAO control interface.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

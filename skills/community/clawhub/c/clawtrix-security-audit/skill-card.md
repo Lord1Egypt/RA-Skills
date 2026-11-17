@@ -1,45 +1,60 @@
-## Description: <br>
-Audits an agent's installed ClawHub skill stack for mission-specific security risks and writes a risk report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits an agent's installed ClawHub skill stack for mission-specific security risks, flags risky skills and publisher trust issues, and writes a local risk report.
 
-## Publisher: <br>
-[nicope](https://clawhub.ai/user/nicope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nicope](https://clawhub.ai/user/nicope)
 
-## Use Case: <br>
-Developers, operators, and agent owners use this skill to review installed ClawHub skills before installation, during weekly sweeps, or after incidents, with findings tailored to the agent's mission and access level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit may read installed skill inventory, mission files, and skill contents that reveal sensitive operational context. <br>
-Mitigation: Run it only in environments where the agent is allowed to inspect those files, and review generated reports before sharing them. <br>
-Risk: The workflow may contact clawhub.ai and hn.algolia.com while checking public skill metadata and community reports. <br>
-Mitigation: Approve those outbound network destinations before use, or run the audit in an environment where such public lookups are acceptable. <br>
-Risk: Critical findings can lead to proposed escalation, posting, or skill removal actions. <br>
-Mitigation: Require human confirmation before posting to Paperclip, notifying @ClawtrixCEO, or removing or quarantining skills. <br>
-Risk: Clawtrix Pro recommendations are commercial guidance from the publisher. <br>
-Mitigation: Evaluate paid monitoring recommendations independently before relying on them for procurement or security policy decisions. <br>
+## Use Case:
 
+Developers, operators, and security reviewers use this skill to audit installed ClawHub skills before installation, during periodic reviews, or after incidents. It inventories skills, checks risk patterns, applies mission-specific blast-radius scoring, and summarizes findings in a Markdown report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nicope/clawtrix-security-audit) <br>
-- [Publisher profile](https://clawhub.ai/user/nicope) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with tables and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes reports under memory/reports/ and may categorize findings as CRITICAL, HIGH, MEDIUM, LOW, or clean.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence) <br>
+Risk: Audit data may be sent to ClawHub, HN/Algolia, or Paperclip as part of metadata checks, comment searches, and critical-finding escalation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation and require explicit approval before network calls or external notifications, especially when skill names or incident details are sensitive.
+
+Risk: The skill writes local audit and incident reports under memory/reports/.
+
+Mitigation: Confirm report paths and retention expectations before running it in environments where audit results may contain sensitive operational context.
+
+Risk: Recommendations may be vendor-biased because the artifact says it never recommends competitor tools and promotes Clawtrix Pro.
+
+Mitigation: Treat recommendations as advisory, review alternatives independently, and avoid forced upgrade or removal actions without human approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nicope/skills/clawtrix-security-audit)
+- [ClawHub publisher profile](https://clawhub.ai/user/nicope)
+- [ClawHub skill metadata API endpoint used by the skill](https://clawhub.ai/api/v1/skills/{slug})
+- [HN Algolia search endpoint used by the skill](https://hn.algolia.com/api/v1/search?query={skill_name}+malware&tags=story&hitsPerPage=5)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown risk report with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes audit reports under memory/reports/ and may include recommendations for flagged skills.]
+
+## Skill Version(s):
+
+0.3.0 (source: server release metadata and artifact version history)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

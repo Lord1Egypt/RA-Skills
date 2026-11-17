@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>OwlWrite 积分充值</title>
+<style>
+  :root { --brand:#5b46e4; --ok:#0a8f56; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"PingFang SC","Microsoft YaHei",sans-serif; background:#f5f6fa;
+         display:flex; align-items:center; justify-content:center; min-height:100vh; }
+  .card { background:#fff; border-radius:16px; padding:28px 32px; width:380px;
+          box-shadow:0 8px 30px rgba(0,0,0,.08); text-align:center; }
+  .logo { font-size:20px; font-weight:700; color:var(--brand); margin-bottom:4px; }
+  .amount { font-size:34px; font-weight:800; margin:10px 0 2px; }
+  .hint { color:#8a8f9d; font-size:13px; margin-bottom:16px; }
+  .tabs { display:flex; gap:8px; margin-bottom:16px; }
+  .tab { flex:1; padding:10px 0; border-radius:10px; border:1px solid #e3e5ee;
+         background:#fff; font-size:15px; cursor:pointer; color:#444; }
+  .tab.on { background:var(--brand); color:#fff; border-color:var(--brand); font-weight:600; }
+  #qr img, #qr canvas { width:240px; height:240px; }
+  .order { font-size:12px; color:#8a8f9d; word-break:break-all; margin:8px 0; }
+  .status { margin-top:10px; font-size:14px; color:#8a8f9d; }
+  .status.ok { color:var(--ok); font-weight:700; }
+  .note { margin-top:14px; font-size:12px; color:#a0a4b0; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">🦉 OwlWrite 积分充值</div>
+  <div class="amount" id="amount">--</div>
+  <div class="hint">1 点 = ¥0.01 · 积分自购买起 1 年有效 · 先充先用</div>
+  <div class="tabs">
+    <button class="tab on" id="tab-wechat" onclick="switchTo('wechat')">微信支付</button>
+    <button class="tab" id="tab-alipay" onclick="switchTo('alipay')">支付宝</button>
+  </div>
+  <div id="qr"><div class="hint">正在载入二维码…</div></div>
+  <div class="order" id="order"></div>
+  <div class="status" id="status">等待支付…（本页由 Agent 每 5 秒自动核对，付完自动继续）</div>
+  <div class="note">二维码 15 分钟有效，过期请让 Agent 重新发起。<br>
+  请勿向任何人透露付款截图以外的账户信息。</div>
+</div>
+<script>
+/* 本页不含任何 token/密钥。字段由 Agent 写入：OWL_AMOUNT / ORDERS / 支付二维码由 Agent 生成。 */
+var OWL_AMOUNT = window.OWL_AMOUNT || "--";
+var ORDERS = window.OWL_ORDERS || { wechat: null, alipay: null };  // {channel: {order_no, qr_dataurl}}
+var current = "wechat";
+document.getElementById("amount").textContent = "¥" + OWL_AMOUNT;
+
+function render() {
+  var o = ORDERS[current];
+  var src = o && (o.qr_dataurl || o.qr_url);
+  document.getElementById("qr").innerHTML =
+    src ? '<img alt="二维码" src="' + src + '">'
+        : '<div class="hint">该渠道订单未创建，请让 Agent 切换渠道。</div>';
+  document.getElementById("order").textContent = o && o.order_no ? "订单号 " + o.order_no : "";
+}
+function switchTo(ch) {
+  current = ch;
+  document.getElementById("tab-wechat").classList.toggle("on", ch === "wechat");
+  document.getElementById("tab-alipay").classList.toggle("on", ch === "alipay");
+  render();
+  /* 通知 Agent 切了渠道：Agent 读 localStorage 标记轮询新单（无跨页通信，靠 Agent 巡检） */
+  try { localStorage.setItem("owl_pay_channel", ch); } catch (e) {}
+}
+render();
+</script>
+</body>
+</html>

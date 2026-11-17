@@ -1,42 +1,58 @@
-## Description: <br>
-Coordinates multiple AI agents into role-based groups that split tasks, debate options, review outputs, and produce business, content, software, or decision-support deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+One Man Conglomerate coordinates a COO-style group of specialized agents to split tasks, debate options, review outputs, and produce business, content, video monetization, or software-development deliverables.
 
-## Publisher: <br>
-[freeman88-tch](https://clawhub.ai/user/freeman88-tch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freeman88-tch](https://clawhub.ai/user/freeman88-tch)
 
-## Use Case: <br>
-External users, founders, creators, and developers use this skill to set up a COO-led group of agents for parallel brainstorming, debate, review, and delivery of plans, scripts, software tasks, or business decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes file cleanup, project archiving, and knowledge-memory update behavior that could delete, move, archive, or persist information unexpectedly. <br>
-Mitigation: Use it only in workspaces where cleanup and archiving are acceptable, and require the agent to show a proposed action list and get explicit confirmation before deleting, moving, archiving, or saving project knowledge. <br>
-Risk: The server security summary marks the release as suspicious because user controls for cleanup and archiving are not clearly specified. <br>
-Mitigation: Review the skill carefully before installing and keep cleanup, archive, and memory-update actions under explicit user approval. <br>
+## Use Case:
 
+External users, founders, solo operators, and developers use this skill to organize multiple agents into role-based teams for content creation, business decisions, short-video monetization, software development, and project closeout.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freeman88-tch/one-man-conglomerate) <br>
-- [Publisher profile](https://clawhub.ai/user/freeman88-tch) <br>
-- [E-commerce decision example](artifact/examples/电商决策案例.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with role templates and example command-style prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces role-based agent group plans and handoff guidance; no credential or API-key requirements were detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Project closeout behavior may archive, delete, or reorganize files without sufficiently clear limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the agent to list every file it intends to archive, delete, or modify and obtain explicit confirmation before cleanup begins.
+
+Risk: Persistent knowledge-base updates may record inaccurate or unwanted project information.
+
+Mitigation: Review proposed memory or knowledge-base entries before they are written and reject entries that are not necessary for future work.
+
+Risk: Multi-agent debate can produce confident but incorrect business, finance, or implementation recommendations.
+
+Mitigation: Treat outputs as proposals and require human review, source checks, and project-specific validation before acting on recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/freeman88-tch/skills/one-man-conglomerate)
+- [E-commerce decision example](artifact/examples/电商决策案例.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown and plain-text responses with role-based plans, critiques, and final recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May coordinate multiple sub-agents and may propose project file cleanup or persistent knowledge updates during closeout.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

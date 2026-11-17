@@ -1,46 +1,60 @@
-## Description: <br>
-Xeon TTS installs and operates local OpenVINO Qwen3-TTS services for OpenClaw QQBOT voice cloning and style-conditioned speech synthesis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local OpenVINO Qwen3-TTS skill for OpenClaw QQBOT workflows that supports voice cloning from short reference audio and styled text-to-speech generation.
 
-## Publisher: <br>
-[aurora2035](https://clawhub.ai/user/aurora2035) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aurora2035](https://clawhub.ai/user/aurora2035)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to add local text-to-speech, voice cloning, and custom tone synthesis to QQBOT workflows while keeping TTS separate from STT/ASR chains. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation creates persistent local user services and modifies OpenClaw QQBOT TTS configuration. <br>
-Mitigation: Review install scripts before use, run on a machine where persistent user services are acceptable, and disable the xeontts systemd services when the workflow is no longer needed. <br>
-Risk: The local workflow API can expose TTS and voice-cloning actions if bound too broadly. <br>
-Mitigation: Keep the workflow gateway bound to localhost and avoid exposing ports 5002 or 9002 to untrusted networks. <br>
-Risk: Voice cloning can process and retain user voice samples locally. <br>
-Mitigation: Require consent for cloned voices, enforce the 3 to 5 second reference-audio check, and communicate the default 7 day retention window for reference and generated files. <br>
-Risk: The installer downloads models and packages during setup. <br>
-Mitigation: Install only in environments where those downloads are approved and review configured model and package sources before enabling the services. <br>
+## Use Case:
 
+Developers and OpenClaw QQBOT operators use this skill to install and run local TTS services for voice cloning and styled speech generation while keeping TTS separate from ASR/STT workflows.
 
-## Reference(s): <br>
-- [ClawHub xeontts skill page](https://clawhub.ai/aurora2035/xeontts) <br>
-- [Qwen3-TTS Base OpenVINO INT8 model](https://huggingface.co/aurora2035/Qwen3-TTS-12Hz-0.6B-Base-OpenVINO-INT8) <br>
-- [Qwen3-TTS CustomVoice OpenVINO INT8 model](https://huggingface.co/aurora2035/Qwen3-TTS-12Hz-0.6B-CustomVoice-OpenVINO-INT8) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown and text guidance with shell commands, JSON configuration, local API calls, and generated audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Voice cloning requires a 3 to 5 second reference audio sample; generated reference and output files default to 7 day local retention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release evidence) <br>
+Risk: The skill exposes local TTS and workflow services, including an unauthenticated Node gateway that can be powerful if reachable from a network.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only on a trusted local machine, firewall port 9002, and consider changing the gateway to bind to 127.0.0.1 before use.
+
+Risk: The installation flow can register persistent user-level systemd services and download dependencies and models.
+
+Mitigation: Review the systemd units and dependency sources before enabling autostart; disable autostart until the installation behavior is approved.
+
+Risk: The direct clone-speak endpoint can operate on file paths and reference audio supplied to the local service.
+
+Mitigation: Do not use the direct clone-speak endpoint with arbitrary file paths; prefer the guided workflow with duration checks and local file retention controls.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aurora2035/skills/xeontts)
+- [Publisher profile](https://clawhub.ai/user/aurora2035)
+- [Qwen3-TTS Base OpenVINO INT8 model](https://huggingface.co/aurora2035/Qwen3-TTS-12Hz-0.6B-Base-OpenVINO-INT8)
+- [Qwen3-TTS CustomVoice OpenVINO INT8 model](https://huggingface.co/aurora2035/Qwen3-TTS-12Hz-0.6B-CustomVoice-OpenVINO-INT8)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local audio files through the installed services; generated files and reference audio default to seven-day retention.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

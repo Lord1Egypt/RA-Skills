@@ -1,42 +1,54 @@
-## Description: <br>
-Dataify Google Images turns a user's Google Images request into a confirmed Dataify Scraper API form submission and returns the API response body. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Images for image results, not Google Lens reverse-image search or general web results.
 
-## Publisher: <br>
-[dataify-server](https://clawhub.ai/user/dataify-server) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dataify-server](https://clawhub.ai/user/dataify-server)
 
-## Use Case: <br>
-External users and developers use this skill to run Google Images searches through Dataify after reviewing the complete request parameter table and explicitly approving the API call. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search terms and supplied location fields are sent to Dataify when the user approves an API call. <br>
-Mitigation: Review the confirmation table before approval and avoid submitting sensitive queries or location values. <br>
-Risk: Supplying the Dataify API token on the command line can expose it in local shell history or process listings. <br>
-Mitigation: Prefer setting DATAIFY_API_TOKEN in the environment rather than passing the token with --token. <br>
+## Use Case:
 
+External users and developers use this skill to turn Google Images requests into Dataify Scraper API searches and receive concise image-result links or raw JSON/HTML when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dataify-server/dataify-google-images) <br>
-- [Dataify Google Images API reference](references/google_images_api.md) <br>
-- [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown confirmation table followed by the raw Dataify API response body after approval] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Dataify API token; the skill requires explicit user confirmation before external API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Searches may send the user's query, filters, and location fields to Dataify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid precise locations or sensitive searches unless the user is comfortable sharing them with the service.
+
+Risk: The skill requires a Dataify API token and consumes Dataify access.
+
+Mitigation: Configure DATAIFY_API_TOKEN through an environment variable, never place tokens in chat, and confirm broad or multi-page searches before spending additional access.
+
+## Reference(s):
+
+- [Dataify Google Images API Reference](artifact/references/google_images_api.md)
+- [ClawHub Skill Page](https://clawhub.ai/dataify-server/skills/dataify-google-images)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Concise Markdown summaries by default; raw JSON or HTML when requested.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include source links, result counts, truncation notes, and token setup guidance when needed.]
+
+## Skill Version(s):
+
+1.3.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

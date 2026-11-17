@@ -1,41 +1,55 @@
-## Description: <br>
-Helps founders, product managers, makers, and small teams turn rough product ideas into validated plans, prototype workflows, and user-facing positioning before heavy investment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps founders and builders turn rough product ideas into validated plans, prototypes, and user-facing positioning through repeatable workflows, checklists, lightweight analysis, and decision support.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-External founders, product managers, makers, and small teams use this skill to structure early product validation work, clarify assumptions, build repeatable checklists or workflows, and prepare actionable planning artifacts before investing heavily. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad business or product wording may trigger the skill during varied or sensitive strategy discussions. <br>
-Mitigation: Use explicit invocation, or narrow or disable implicit triggers when working with mixed-topic or sensitive business material. <br>
-Risk: Planning outputs may be incomplete or misleading if the user's assumptions, market, or customer evidence are weak. <br>
-Mitigation: Review assumptions, validate recommendations with real users or customer evidence, and treat outputs as planning support rather than final investment decisions. <br>
+## Use Case:
 
+External founders, product managers, makers, and small teams use this skill to test whether a product idea is worth building before committing major time or budget. It helps convert a rough idea into validation plans, prototype-oriented next steps, positioning, checklists, lightweight analysis, and decision support.
 
-## Reference(s): <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/product-validation-planner-002325) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with checklists, workflows, analysis, code snippets, and shell commands when relevant] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, validation notes, remaining risks, and suggested next steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Broad activation wording may cause the skill to influence adjacent product validation or startup planning conversations when implicit invocation is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Installers can narrow trigger phrases or require explicit invocation for idea-validation and MVP-planning requests.
+
+## Reference(s):
+
+- [Product Validation Planner on ClawHub](https://clawhub.ai/kyro-ma/skills/product-validation-planner-002325)
+- [Requirement Plan](references/requirement-plan.md)
+- [Ask HN: Product idea validation made simple and streamlined](https://pmfboard.com/)
+- [I'm Eric Ries, author of The Lean Startup and new book Incorruptible - AMA](https://news.ycombinator.com/item?id=48480617)
+- [Define Product Requirements and Business Rules](https://github.com/lenixeduardo/promptLabz/issues/21)
+- [Validation: the organic-catch gate](https://github.com/autumngarage/cortex/issues/576)
+- [24 Idea Validation - Save Yourself Time and Money](https://wenku.csdn.net/doc/7fnjuwdtp5?ops_request_misc=elastic_search_misc&request_id=e57c75c3d99e43db9a99189d847980e1&biz_id=&utm_medium=distribute.pc_search_result.none-task-c_download-2~all~ElasticSearch~search_v2-1-7fnjuwdtp5-null-null.142^v102^control&utm_term=product%20idea%20validation)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text, with code blocks or configuration snippets when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation checks, reusable workflows, checklists, templates, analysis, implementation notes, and follow-up risks.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

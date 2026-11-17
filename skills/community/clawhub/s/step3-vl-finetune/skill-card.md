@@ -1,40 +1,53 @@
-## Description: <br>
-Guides developers through Step3-VL-10B multimodal model LoRA or full finetuning on a GPU server, including configuration, training, inference, and troubleshooting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through configuring, training, troubleshooting, and using LoRA or full fine-tuning workflows for the Step3-VL-10B multimodal model on Linux GPU servers.
 
-## Publisher: <br>
-[hunwenpinghao](https://clawhub.ai/user/hunwenpinghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hunwenpinghao](https://clawhub.ai/user/hunwenpinghao)
 
-## Use Case: <br>
-Developers and ML engineers use this skill to configure a Linux GPU environment, prepare training data, apply Step3-VL compatibility workarounds, and run finetuning and inference workflows for Step3-VL-10B. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Training and inference guidance includes environment variables, GPU paths, and commands that can consume GPU resources or write model adapter outputs. <br>
-Mitigation: Review commands and paths before running them, execute in the intended Linux GPU environment, and validate outputs on test data before broader use. <br>
-Risk: The guide includes model compatibility workarounds such as patched forward and adapter save behavior that may affect model correctness. <br>
-Mitigation: Review the code changes, confirm they match the installed Step3-VL and PEFT versions, and test inference quality before relying on the resulting adapter. <br>
+## Use Case:
 
+Developers and ML engineers use this skill to prepare Step3-VL-10B fine-tuning runs, configure GPU training environments, save LoRA adapters, and run inference with the fine-tuned model. The guidance is most useful for Linux GPU server workflows that need practical troubleshooting steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hunwenpinghao/step3-vl-finetune) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks, shell commands, configuration examples, and troubleshooting notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Targets Linux GPU environments with python3 and CUDA_VISIBLE_DEVICES configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The guide contains environment-specific server, registry, internal IP, endpoint, and document path details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace these details with deployment-specific placeholders before installation or sharing, and avoid sending data to the listed endpoint unless the network and access controls are approved.
+
+Risk: The documented workaround may train only the language component while presenting the workflow as multimodal fine-tuning.
+
+Mitigation: Validate whether the vision encoder is active before claiming full multimodal fine-tuning, and document language-only behavior when using the monkey-patched forward path.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hunwenpinghao/skills/step3-vl-finetune)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline bash, Python, JSON, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Linux GPU environments requiring python3 and CUDA_VISIBLE_DEVICES; environment-specific endpoints, paths, and registry names should be replaced before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

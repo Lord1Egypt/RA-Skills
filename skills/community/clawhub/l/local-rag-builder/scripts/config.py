@@ -31,23 +31,6 @@ DEFAULT_CONFIG = {
             "sentence": {"chunk_size": None, "chunk_overlap": None},
         },
     },
-    "router": {
-        "enabled": True,
-        "fallback": {
-            "enabled": True,
-            "model_path": "",
-            "min_score_threshold": 0.3,
-            "broadcast_on_fail": True,
-            "auto_update_signatures": True,
-        },
-    },
-    "reranker": {
-        "enabled": False,
-        "mode": "model",
-        "model_path": "",
-        "top_k": 5,
-        "sort_rules": [],
-    },
     "retrieval": {
         "k": 3,
         "score_threshold": None,

@@ -1,43 +1,60 @@
-## Description: <br>
-Museum Data Manager helps agents query, manage, validate, and export records from a MySQL-backed museum database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and query museum database records, track data collection status, verify completeness, and export museum data in JSON, CSV, or SQL formats.
 
-## Publisher: <br>
-[jackandking](https://clawhub.ai/user/jackandking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackandking](https://clawhub.ai/user/jackandking)
 
-## Use Case: <br>
-Data collection teams, researchers, and agents use this skill to inspect museum records, track collection progress, find incomplete data, run SQL queries, and export datasets for reporting or backup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unrestricted SQL execution could change or delete museum database records. <br>
-Mitigation: Use a least-privilege MySQL account, prefer read-only access unless writes are required, and review every custom SQL statement before execution. <br>
-Risk: Misconfigured database credentials could expose broader data than the skill needs. <br>
-Mitigation: Avoid root or GRANT ALL credentials and scope the account to only the intended museum database. <br>
-Risk: Exports may write sensitive or unwanted data to user-selected paths. <br>
-Mitigation: Choose export paths deliberately, keep backups, and review exported files before sharing or automation. <br>
+## Use Case:
 
+Developers and data operators use this skill to inspect, validate, and export museum records stored in a MySQL database for cultural heritage data collection and reporting workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackandking/museum) <br>
-- [Publisher profile](https://clawhub.ai/user/jackandking) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [CLI text output and exported JSON, CSV, or SQL files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MySQL connection settings and may write export files to user-selected paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and manifest.json) <br>
+Risk: The skill can give an agent broad database access, including custom SQL execution and data exports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for databases you control, use a dedicated least-privilege account, and prefer read-only permissions for normal operation.
+
+Risk: Database credentials and exported museum records can be exposed through process arguments, logs, or generated dump files.
+
+Mitigation: Treat exports as sensitive, avoid logging credentials, store outputs in controlled locations, and rotate credentials if exposure is suspected.
+
+Risk: User-supplied SQL can read or modify data beyond the intended workflow.
+
+Mitigation: Do not let agents run arbitrary SQL without review, and avoid granting GRANT ALL or wildcard-host access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackandking/skills/museum)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Museum database schema](artifact/schema.sql)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and CLI output; exports may be JSON, CSV, or SQL files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires MySQL connection environment variables and invokes a local mycli executable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

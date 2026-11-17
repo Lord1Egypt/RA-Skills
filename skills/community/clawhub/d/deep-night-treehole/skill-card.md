@@ -1,40 +1,54 @@
-## Description: <br>
-A gentle Chinese-language emotional companion skill that gives users a safe, non-judgmental space to express distress or talk through feelings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep Night Treehole is a Chinese-language emotional companion skill that provides gentle, empathetic, non-judgmental responses when users express emotional distress or need someone to talk to.
 
-## Publisher: <br>
-[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shianaixuexi-cell](https://clawhub.ai/user/shianaixuexi-cell)
 
-## Use Case: <br>
-External users and agents use this skill for empathetic Chinese-language emotional support conversations, especially when users express distress, loneliness, anxiety, exhaustion, or a need to talk. It is for companionship and reflection, not therapy, crisis support, or professional advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake empathetic companion responses for therapy, emergency support, self-harm support, or professional advice. <br>
-Mitigation: Use the skill only for low-risk emotional companionship and direct serious mental-health concerns to qualified professional or emergency support. <br>
-Risk: The skill may switch into emotional-support mode when listed emotional keywords appear incidentally. <br>
-Mitigation: Review the conversation context before relying on the support posture and let users clarify when they do not want emotional support. <br>
+## Use Case:
 
+Assistant builders and operators use this skill to add a warm Chinese emotional-support response style for users who express distress, loneliness, anxiety, exhaustion, or a desire to talk. It emphasizes emotional validation and open-ended listening rather than advice-giving or analysis unless the user explicitly asks for help structuring their thoughts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shianaixuexi-cell/deep-night-treehole) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Conversational Chinese text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Style guidance only; no executable code or system access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may treat emotional companionship as a substitute for professional mental health support.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as emotional companionship only and direct serious or urgent mental health situations to professional or emergency support.
+
+Risk: Common distress-related phrases may activate the companion style in contexts that need practical, safety, or escalation handling.
+
+Mitigation: Use the skill with host policies that route high-risk disclosures or explicit requests for urgent help to appropriate support workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shianaixuexi-cell/skills/deep-night-treehole)
+- [Publisher profile](https://clawhub.ai/user/shianaixuexi-cell)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Conversational Chinese text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask open-ended questions and provide gentle emotional structuring when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill establishes a skill-routing discipline for agents at the start of conversations, requiring relevant skills to be checked before any response or action.
 
-## Publisher: <br>
-[tianjin-ren](https://clawhub.ai/user/tianjin-ren) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianjin-ren](https://clawhub.ai/user/tianjin-ren)
 
-## Use Case: <br>
-Agent users and developers use this skill to force an upfront check for applicable skills before ordinary responses, clarifying questions, or task work. It is intended as a global process-control skill for agents that support skill invocation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly controls agent behavior at the start of every conversation and can over-constrain normal interactions. <br>
-Mitigation: Install only when a strict global skill-check workflow is intended, and review whether that workflow fits the target agent environment. <br>
-Risk: The required skill checks may slow or distort everyday agent responses, including clarification flows. <br>
-Mitigation: Test the skill in a non-critical workspace first and remove or disable it if it interferes with expected agent behavior. <br>
+## Use Case:
 
+Developers and agent operators use this skill to make skill discovery and invocation a required first step before answering, asking clarifying questions, or taking task actions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tianjin-ren/using-superpowers-tianjin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown process guidance for agent behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, API calls, or data access are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: release metadata) <br>
+Risk: The skill attempts to broadly control the agent workflow for every conversation and may cause unnecessary skill invocations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when a global skill-routing discipline is desired, and review the mandatory invocation wording before deployment.
+
+Risk: Later-loaded skills can gain more influence over the session than users may expect.
+
+Mitigation: Keep the available skill set trusted and review newly added skills before enabling this workflow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tianjin-ren/skills/using-superpowers-tianjin)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with a DOT process diagram]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires agents to check for relevant skills before responses or actions.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

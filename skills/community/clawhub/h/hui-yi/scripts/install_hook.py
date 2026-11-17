@@ -12,6 +12,10 @@ import argparse
 import json
 
 from core.common import WORKSPACE_ROOT
+from core.safe_fs import (
+    atomic_write_text, check_directory, ensure_directory, iter_files,
+    lexical_path, preflight_files, read_text, safe_exists,
+)
 DEFAULT_HOOK_DIR = WORKSPACE_ROOT / "hooks" / "hui-yi-signal-hook"
 DEFAULT_TEMPLATE_DIR = SKILL_ROOT / "templates" / "hook"
 DEFAULT_CONFIG_PATH = WORKSPACE_ROOT.parent / "openclaw.json"
@@ -35,9 +39,9 @@ IGNORED_PARTS = {
 
 
 def load_config(path: Path) -> dict:
-    if not path.exists():
+    if not safe_exists(path):
         return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(read_text(path))
 
 
 def print_enable_disclosure(config_path: Path) -> None:
@@ -67,8 +71,8 @@ def ensure_hook_enabled(config: dict) -> tuple[dict, list[str]]:
 
 
 def write_config(path: Path, config: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    ensure_directory(path.parent)
+    atomic_write_text(path, json.dumps(config, ensure_ascii=False, indent=2) + "\n")
 
 
 def should_ignore(path: Path) -> bool:
@@ -84,29 +88,33 @@ def should_ignore(path: Path) -> bool:
 
 
 def iter_template_files(template_dir: Path):
-    for path in sorted(template_dir.rglob("*")):
-        if not path.is_file():
-            continue
+    for path in iter_files(template_dir):
         if should_ignore(path):
             continue
         yield path
 
 
 def build_plan(template_dir: Path, target_dir: Path) -> list[tuple[Path, Path]]:
+    template_dir = check_directory(template_dir)
+    target_dir = check_directory(target_dir, allow_missing=True)
     files = list(iter_template_files(template_dir))
     if not files:
         raise FileNotFoundError(f"No template files found in: {template_dir}")
-    return [
+    plan = [
         (target_dir / src.relative_to(template_dir), src)
         for src in files
     ]
+    preflight_files(*(destination for destination, _ in plan))
+    return plan
 
 
 def write_file(destination: Path, source: Path, force: bool) -> str:
-    if destination.exists() and not force:
+    preflight_files(destination, source)
+    if safe_exists(destination) and not force:
         return f"SKIP {destination} (already exists, use --force to overwrite)"
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+    content = read_text(source)
+    ensure_directory(destination.parent)
+    atomic_write_text(destination, content, exclusive=not force)
     return f"WROTE {destination}"
 
 
@@ -120,26 +128,32 @@ def main() -> int:
     parser.add_argument("--config-path", default=str(DEFAULT_CONFIG_PATH), help="path to openclaw.json")
     args = parser.parse_args()
 
-    target_dir = Path(args.target_dir)
-    template_dir = Path(args.template_dir)
-    config_path = Path(args.config_path)
+    target_dir = lexical_path(args.target_dir)
+    template_dir = lexical_path(args.template_dir)
+    config_path = lexical_path(args.config_path)
 
-    if not template_dir.exists():
+    if not safe_exists(template_dir, kind="directory"):
         raise FileNotFoundError(f"Template directory not found: {template_dir}")
-    if not template_dir.is_dir():
-        raise NotADirectoryError(f"Template path is not a directory: {template_dir}")
 
     planned = build_plan(template_dir, target_dir)
+    if args.enable:
+        preflight_files(config_path)
+        if not args.dry_run and not safe_exists(config_path):
+            print("ERROR: config file not found; refusing to create openclaw.json", file=sys.stderr)
+            return 1
+        # Parse and validate config before installing any files.
+        if safe_exists(config_path):
+            ensure_hook_enabled(load_config(config_path))
 
     if args.dry_run:
         for destination, source in planned:
-            if destination.exists() and not args.force:
+            if safe_exists(destination) and not args.force:
                 print(f"SKIP {destination} (already exists, use --force to overwrite)")
             else:
                 print(f"WOULD WRITE {destination} <- {source}")
         if args.enable:
             print_enable_disclosure(config_path)
-            if not config_path.exists():
+            if not safe_exists(config_path):
                 print(f"WOULD ABORT: config file not found: {config_path} (pass --config-path to the real openclaw.json)")
                 return 0
             config = load_config(config_path)
@@ -156,7 +170,7 @@ def main() -> int:
 
     if args.enable:
         print_enable_disclosure(config_path)
-        if not config_path.exists():
+        if not safe_exists(config_path):
             print(f"ERROR: config file not found: {config_path}", file=sys.stderr)
             print("Refusing to create a new openclaw.json; pass --config-path to the real config file.", file=sys.stderr)
             return 1

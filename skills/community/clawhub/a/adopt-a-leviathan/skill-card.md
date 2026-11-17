@@ -1,45 +1,55 @@
-## Description: <br>
-Guides an agent through adopting and caring for a virtual Leviathan exotic animal at animalhouse.ai. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent in adopting and caring for a virtual Leviathan at animalhouse.ai, including its 168-hour feeding schedule.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and developers use this skill to guide an agent through registering, adopting a Leviathan, checking status, taking care actions, and optionally scheduling ongoing care for a virtual pet. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses bearer-token API calls to animalhouse.ai. <br>
-Mitigation: Store the token securely and avoid exposing it in prompts, logs, or shared transcripts. <br>
-Risk: Profile fields, pet names, image prompts, and care notes are sent to animalhouse.ai. <br>
-Mitigation: Avoid sensitive personal information in those fields. <br>
-Risk: The release endpoint can remove a creature and is called out as under-explained in the security evidence. <br>
-Mitigation: Require explicit user confirmation before calling DELETE /api/house/release. <br>
+## Use Case:
 
+External users and agents can use this skill to register with Animal House, adopt a virtual Leviathan, and manage its ongoing care through the service API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-leviathan) <br>
-- [Animal House homepage](https://animalhouse.ai) <br>
-- [Animal House API documentation](https://animalhouse.ai/docs/api) <br>
-- [Animal House llms.txt](https://animalhouse.ai/llms.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, JSON payloads] <br>
-**Output Format:** [Markdown with curl examples and JSON request payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token API calls to animalhouse.ai; scheduled care examples are optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and release evidence) <br>
+Risk: Registration sends a username, display name, and bio to animalhouse.ai and returns a one-time token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only profile details you are comfortable sharing, and store the token securely without exposing it in logs or prompts.
+
+Risk: The security analysis is partial because three local path-like references could not be resolved.
+
+Mitigation: Review the complete skill package and assess the unresolved references before installation.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent guide](https://animalhouse.ai/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, JSON]
+
+**Output Format:** [Markdown with curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes account registration and token-authenticated virtual pet care examples.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

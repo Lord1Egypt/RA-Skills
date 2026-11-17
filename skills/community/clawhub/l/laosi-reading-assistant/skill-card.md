@@ -1,39 +1,53 @@
-## Description: <br>
-阅读助手 - 贴链接或粘贴文字，自动提炼4点：主旨/论据/行动/疑问，不用读全文。支持网页抓取和本地文本 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+阅读助手 accepts pasted text or webpage URLs and extracts four concise reading points: main idea, key arguments, action items, and open questions.
 
-## Publisher: <br>
-[534422530](https://clawhub.ai/user/534422530) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[534422530](https://clawhub.ai/user/534422530)
 
-## Use Case: <br>
-Readers, researchers, and developers use this skill to summarize pasted text or fetched web pages into a concise four-part reading brief covering the main idea, key arguments, action items, and open questions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can save local reading history containing summaries, source labels or URLs, timestamps, and extracted snippets. <br>
-Mitigation: Avoid using it on confidential emails, internal documents, or sensitive URLs unless logging is removed or disabled, and periodically delete saved history. <br>
+## Use Case:
 
+External users, developers, and knowledge workers use this skill to quickly understand long articles, papers, technical documentation, or messages by receiving a structured four-part summary.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/534422530/laosi-reading-assistant) <br>
-- [Example article URL from artifact](https://arxiv.org/abs/2205.14135) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code] <br>
-**Output Format:** [Structured Markdown reading summary with optional JSON-like extraction data and Python usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save summaries, source labels or URLs, timestamps, and extracted snippets to a local reading_log.json history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Automatic local logging may save sensitive summaries or source details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with non-sensitive material unless logging requires explicit consent and users can inspect and delete saved records.
+
+Risk: Broad URL fetching may retrieve private, internal, or unintended locations.
+
+Mitigation: Restrict fetching to safe HTTP and HTTPS destinations, block local or internal targets, and enforce response-size limits before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/534422530/skills/laosi-reading-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown reading summary with structured fields; the artifact also includes Python example code that can emit JSON-compatible extraction records.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries are organized around main idea, key arguments, action items, and open questions.]
+
+## Skill Version(s):
+
+1.0.0 (source: artifact frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

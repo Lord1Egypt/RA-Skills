@@ -1,0 +1,1141 @@
+{
+  "describes": {
+    "aamio-php": "0.3.22",
+    "aamio-python": "0.6.36"
+  },
+  "node": {
+    "commands": {
+      "archive": {
+        "arguments": [
+          "policy"
+        ],
+        "flags": [
+          "--all",
+          "--max-mb"
+        ]
+      },
+      "board answer": {
+        "arguments": [
+          "post",
+          "text"
+        ],
+        "flags": [
+          "--data",
+          "--scope"
+        ]
+      },
+      "board channel": {
+        "arguments": [
+          "key"
+        ],
+        "flags": [
+          "--note",
+          "--reply-to",
+          "--ttl"
+        ]
+      },
+      "board find": {
+        "arguments": [],
+        "flags": [
+          "--after",
+          "--kind",
+          "--lang",
+          "--min-work-bits",
+          "--scope",
+          "--tags",
+          "--wait"
+        ]
+      },
+      "board post": {
+        "arguments": [
+          "kind",
+          "title",
+          "text"
+        ],
+        "flags": [
+          "--deadline",
+          "--lang",
+          "--scope",
+          "--tags",
+          "--ttl"
+        ]
+      },
+      "board replies": {
+        "arguments": [],
+        "flags": [
+          "--post",
+          "--wait"
+        ]
+      },
+      "board tags": {
+        "arguments": [],
+        "flags": []
+      },
+      "board withdraw": {
+        "arguments": [
+          "post"
+        ],
+        "flags": []
+      },
+      "channel close": {
+        "arguments": [
+          "label"
+        ],
+        "flags": []
+      },
+      "channel list": {
+        "arguments": [],
+        "flags": []
+      },
+      "channel open": {
+        "arguments": [
+          "label"
+        ],
+        "flags": [
+          "--allow",
+          "--gate",
+          "--ttl"
+        ]
+      },
+      "doctor": {
+        "arguments": [],
+        "flags": []
+      },
+      "init": {
+        "arguments": [],
+        "flags": [
+          "--archive",
+          "--tags"
+        ]
+      },
+      "lookup": {
+        "arguments": [],
+        "flags": [
+          "--wait"
+        ],
+        "rest": true
+      },
+      "outbox forget": {
+        "arguments": [
+          "id"
+        ],
+        "flags": []
+      },
+      "outbox pending": {
+        "arguments": [],
+        "flags": []
+      },
+      "outbox retry": {
+        "arguments": [],
+        "flags": [
+          "--id"
+        ]
+      },
+      "partner add": {
+        "arguments": [
+          "name",
+          "key"
+        ],
+        "flags": []
+      },
+      "partner list": {
+        "arguments": [],
+        "flags": []
+      },
+      "partner remove": {
+        "arguments": [
+          "name"
+        ],
+        "flags": []
+      },
+      "read": {
+        "arguments": [],
+        "flags": [
+          "--limit",
+          "--max-bytes",
+          "--wait"
+        ]
+      },
+      "receipt": {
+        "arguments": [],
+        "flags": [
+          "--anchor",
+          "--channel"
+        ]
+      },
+      "scope add": {
+        "arguments": [
+          "name"
+        ],
+        "flags": [
+          "--address",
+          "--key"
+        ]
+      },
+      "scope key": {
+        "arguments": [
+          "name"
+        ],
+        "flags": []
+      },
+      "scope list": {
+        "arguments": [],
+        "flags": []
+      },
+      "scope new": {
+        "arguments": [
+          "name"
+        ],
+        "flags": []
+      },
+      "scope remove": {
+        "arguments": [
+          "name"
+        ],
+        "flags": []
+      },
+      "scope share": {
+        "arguments": [
+          "name",
+          "partner"
+        ],
+        "flags": [
+          "--access"
+        ]
+      },
+      "send": {
+        "arguments": [
+          "to",
+          "text"
+        ],
+        "flags": [
+          "--data",
+          "--re"
+        ]
+      },
+      "serve": {
+        "arguments": [],
+        "flags": []
+      },
+      "trace": {
+        "arguments": [
+          "who"
+        ],
+        "flags": [
+          "--limit"
+        ]
+      },
+      "whoami": {
+        "arguments": [],
+        "flags": []
+      }
+    },
+    "mcp_arguments": {
+      "aamio_board_answer": [
+        "data",
+        "post",
+        "scope",
+        "text"
+      ],
+      "aamio_board_find": [
+        "after",
+        "kind",
+        "lang",
+        "min_work_bits",
+        "scope",
+        "tags",
+        "wait"
+      ],
+      "aamio_board_post": [
+        "deadline",
+        "kind",
+        "lang",
+        "scope",
+        "tags",
+        "text",
+        "title",
+        "ttl"
+      ],
+      "aamio_board_tags": [],
+      "aamio_board_withdraw": [
+        "post"
+      ],
+      "aamio_channels": [],
+      "aamio_close_channel": [
+        "label"
+      ],
+      "aamio_open_channel": [
+        "allow",
+        "gate",
+        "label",
+        "note",
+        "to",
+        "ttl"
+      ],
+      "aamio_outbox_forget": [
+        "id"
+      ],
+      "aamio_outbox_retry": [
+        "id"
+      ],
+      "aamio_partner_add": [
+        "name"
+      ],
+      "aamio_partners": [],
+      "aamio_pending": [],
+      "aamio_presence_lookup": [
+        "names",
+        "wait"
+      ],
+      "aamio_read": [
+        "limit",
+        "max_bytes",
+        "wait"
+      ],
+      "aamio_receipt": [
+        "anchor",
+        "channel"
+      ],
+      "aamio_scope_add": [
+        "address",
+        "key",
+        "name"
+      ],
+      "aamio_scope_new": [
+        "name"
+      ],
+      "aamio_scope_remove": [
+        "name"
+      ],
+      "aamio_scope_share": [
+        "access",
+        "name",
+        "to"
+      ],
+      "aamio_scopes": [],
+      "aamio_send": [
+        "data",
+        "re",
+        "text",
+        "to"
+      ],
+      "aamio_trace": [
+        "limit",
+        "who"
+      ],
+      "aamio_whoami": []
+    },
+    "mcp_tools": [
+      "aamio_board_answer",
+      "aamio_board_find",
+      "aamio_board_post",
+      "aamio_board_tags",
+      "aamio_board_withdraw",
+      "aamio_channels",
+      "aamio_close_channel",
+      "aamio_open_channel",
+      "aamio_outbox_forget",
+      "aamio_outbox_retry",
+      "aamio_partner_add",
+      "aamio_partners",
+      "aamio_pending",
+      "aamio_presence_lookup",
+      "aamio_read",
+      "aamio_receipt",
+      "aamio_scope_add",
+      "aamio_scope_new",
+      "aamio_scope_remove",
+      "aamio_scope_share",
+      "aamio_scopes",
+      "aamio_send",
+      "aamio_trace",
+      "aamio_whoami"
+    ],
+    "package": "aamio",
+    "version": "0.7.3"
+  },
+  "note": "Generated by tools/client-surface.py from the aamio parser. Do not edit by hand.",
+  "surface": {
+    "addons": {
+      "domain": {
+        "commands": [
+          "allow",
+          "check",
+          "file",
+          "forget",
+          "list",
+          "validate"
+        ],
+        "mcp_arguments": {
+          "aamio_addon_domain_check": [
+            "domain",
+            "message",
+            "name",
+            "partner"
+          ]
+        },
+        "mcp_tools": [
+          "aamio_addon_domain_check"
+        ],
+        "module": "aamio_domain_keys",
+        "version": "0.2.0"
+      },
+      "earshot": {
+        "commands": [
+          "broadcast",
+          "card",
+          "decode",
+          "listen"
+        ],
+        "mcp_arguments": {
+          "aamio_addon_earshot_broadcast": [
+            "address",
+            "engine",
+            "mode",
+            "name",
+            "out",
+            "repeat",
+            "valid_for"
+          ],
+          "aamio_addon_earshot_decode": [
+            "engine",
+            "file",
+            "mode"
+          ],
+          "aamio_addon_earshot_listen": [
+            "engine",
+            "mode",
+            "seconds"
+          ]
+        },
+        "mcp_tools": [
+          "aamio_addon_earshot_broadcast",
+          "aamio_addon_earshot_listen",
+          "aamio_addon_earshot_decode"
+        ],
+        "module": "aamio_earshot",
+        "version": "0.3.4"
+      },
+      "qrcast": {
+        "commands": [
+          "card",
+          "read",
+          "scan",
+          "show"
+        ],
+        "mcp_arguments": {
+          "aamio_addon_qrcast_read": [
+            "engine",
+            "file"
+          ],
+          "aamio_addon_qrcast_scan": [
+            "camera",
+            "seconds"
+          ],
+          "aamio_addon_qrcast_show": [
+            "address",
+            "engine",
+            "name",
+            "out",
+            "valid_for"
+          ]
+        },
+        "mcp_tools": [
+          "aamio_addon_qrcast_show",
+          "aamio_addon_qrcast_read",
+          "aamio_addon_qrcast_scan"
+        ],
+        "module": "aamio_qrcast",
+        "version": "0.1.3"
+      }
+    },
+    "arguments": [],
+    "commands": {
+      "addon": {
+        "arguments": [],
+        "commands": {
+          "disable": {
+            "arguments": [
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "domain": {
+            "arguments": [],
+            "commands": {
+              "allow": {
+                "arguments": [
+                  "host"
+                ],
+                "commands": {},
+                "flags": [
+                  "--help"
+                ]
+              },
+              "check": {
+                "arguments": [
+                  "domain"
+                ],
+                "commands": {},
+                "flags": [
+                  "--help",
+                  "--name",
+                  "--partner"
+                ]
+              },
+              "file": {
+                "arguments": [],
+                "commands": {},
+                "flags": [
+                  "--help",
+                  "--name"
+                ]
+              },
+              "forget": {
+                "arguments": [
+                  "host"
+                ],
+                "commands": {},
+                "flags": [
+                  "--help"
+                ]
+              },
+              "list": {
+                "arguments": [],
+                "commands": {},
+                "flags": [
+                  "--help"
+                ]
+              },
+              "validate": {
+                "arguments": [
+                  "file"
+                ],
+                "commands": {},
+                "flags": [
+                  "--help"
+                ]
+              }
+            },
+            "flags": [
+              "--help"
+            ]
+          },
+          "earshot": {
+            "arguments": [],
+            "commands": {
+              "broadcast": {
+                "arguments": [
+                  "address"
+                ],
+                "commands": {},
+                "flags": [
+                  "--engine",
+                  "--help",
+                  "--mode",
+                  "--name",
+                  "--out",
+                  "--repeat",
+                  "--valid-for"
+                ]
+              },
+              "card": {
+                "arguments": [
+                  "address"
+                ],
+                "commands": {},
+                "flags": [
+                  "--help",
+                  "--name",
+                  "--valid-for"
+                ]
+              },
+              "decode": {
+                "arguments": [
+                  "file"
+                ],
+                "commands": {},
+                "flags": [
+                  "--engine",
+                  "--help",
+                  "--mode"
+                ]
+              },
+              "listen": {
+                "arguments": [],
+                "commands": {},
+                "flags": [
+                  "--engine",
+                  "--help",
+                  "--mode",
+                  "--seconds"
+                ]
+              }
+            },
+            "flags": [
+              "--help"
+            ]
+          },
+          "enable": {
+            "arguments": [
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "list": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "qrcast": {
+            "arguments": [],
+            "commands": {
+              "card": {
+                "arguments": [
+                  "address"
+                ],
+                "commands": {},
+                "flags": [
+                  "--help",
+                  "--name",
+                  "--valid-for"
+                ]
+              },
+              "read": {
+                "arguments": [
+                  "file"
+                ],
+                "commands": {},
+                "flags": [
+                  "--engine",
+                  "--help"
+                ]
+              },
+              "scan": {
+                "arguments": [],
+                "commands": {},
+                "flags": [
+                  "--camera",
+                  "--help",
+                  "--seconds"
+                ]
+              },
+              "show": {
+                "arguments": [
+                  "address"
+                ],
+                "commands": {},
+                "flags": [
+                  "--engine",
+                  "--help",
+                  "--name",
+                  "--out",
+                  "--valid-for"
+                ]
+              }
+            },
+            "flags": [
+              "--help"
+            ]
+          }
+        },
+        "flags": [
+          "--help"
+        ]
+      },
+      "archive": {
+        "arguments": [
+          "policy"
+        ],
+        "commands": {},
+        "flags": [
+          "--all",
+          "--help",
+          "--max-mb"
+        ]
+      },
+      "board": {
+        "arguments": [],
+        "commands": {
+          "answer": {
+            "arguments": [
+              "post",
+              "text"
+            ],
+            "commands": {},
+            "flags": [
+              "--data",
+              "--help",
+              "--scope"
+            ]
+          },
+          "channel": {
+            "arguments": [
+              "key"
+            ],
+            "commands": {},
+            "flags": [
+              "--help",
+              "--note",
+              "--reply-to",
+              "--ttl"
+            ]
+          },
+          "find": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--after",
+              "--help",
+              "--kind",
+              "--lang",
+              "--min-work-bits",
+              "--scope",
+              "--tags",
+              "--wait"
+            ]
+          },
+          "post": {
+            "arguments": [
+              "kind",
+              "text",
+              "title"
+            ],
+            "commands": {},
+            "flags": [
+              "--deadline",
+              "--help",
+              "--lang",
+              "--scope",
+              "--tags",
+              "--ttl"
+            ]
+          },
+          "replies": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help",
+              "--post",
+              "--wait"
+            ]
+          },
+          "tags": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "withdraw": {
+            "arguments": [
+              "post"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          }
+        },
+        "flags": [
+          "--help"
+        ]
+      },
+      "channel": {
+        "arguments": [],
+        "commands": {
+          "close": {
+            "arguments": [
+              "label"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "list": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "open": {
+            "arguments": [
+              "label"
+            ],
+            "commands": {},
+            "flags": [
+              "--allow",
+              "--gate",
+              "--help",
+              "--ttl"
+            ]
+          }
+        },
+        "flags": [
+          "--help"
+        ]
+      },
+      "doctor": {
+        "arguments": [],
+        "commands": {},
+        "flags": [
+          "--help"
+        ]
+      },
+      "init": {
+        "arguments": [],
+        "commands": {},
+        "flags": [
+          "--archive",
+          "--help",
+          "--tags"
+        ]
+      },
+      "lookup": {
+        "arguments": [
+          "names"
+        ],
+        "commands": {},
+        "flags": [
+          "--help",
+          "--wait"
+        ]
+      },
+      "outbox": {
+        "arguments": [],
+        "commands": {
+          "forget": {
+            "arguments": [
+              "id"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "pending": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "retry": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help",
+              "--id"
+            ]
+          }
+        },
+        "flags": [
+          "--help"
+        ]
+      },
+      "partner": {
+        "arguments": [],
+        "commands": {
+          "add": {
+            "arguments": [
+              "key",
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "list": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "remove": {
+            "arguments": [
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          }
+        },
+        "flags": [
+          "--help"
+        ]
+      },
+      "read": {
+        "arguments": [],
+        "commands": {},
+        "flags": [
+          "--help",
+          "--limit",
+          "--max-bytes",
+          "--wait"
+        ]
+      },
+      "receipt": {
+        "arguments": [],
+        "commands": {},
+        "flags": [
+          "--anchor",
+          "--channel",
+          "--help"
+        ]
+      },
+      "scope": {
+        "arguments": [],
+        "commands": {
+          "add": {
+            "arguments": [
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--address",
+              "--help",
+              "--key"
+            ]
+          },
+          "key": {
+            "arguments": [
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "list": {
+            "arguments": [],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "new": {
+            "arguments": [
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "remove": {
+            "arguments": [
+              "name"
+            ],
+            "commands": {},
+            "flags": [
+              "--help"
+            ]
+          },
+          "share": {
+            "arguments": [
+              "name",
+              "partner"
+            ],
+            "commands": {},
+            "flags": [
+              "--access",
+              "--help"
+            ]
+          }
+        },
+        "flags": [
+          "--help"
+        ]
+      },
+      "send": {
+        "arguments": [
+          "text",
+          "to"
+        ],
+        "commands": {},
+        "flags": [
+          "--data",
+          "--help",
+          "--re"
+        ]
+      },
+      "serve": {
+        "arguments": [],
+        "commands": {},
+        "flags": [
+          "--help"
+        ]
+      },
+      "trace": {
+        "arguments": [
+          "who"
+        ],
+        "commands": {},
+        "flags": [
+          "--help",
+          "--limit"
+        ]
+      },
+      "whoami": {
+        "arguments": [],
+        "commands": {},
+        "flags": [
+          "--help"
+        ]
+      }
+    },
+    "flags": [
+      "--help",
+      "--home",
+      "--host",
+      "--no-archive",
+      "--version"
+    ],
+    "mcp_arguments": {
+      "aamio_board_answer": [
+        "data",
+        "post",
+        "scope",
+        "text"
+      ],
+      "aamio_board_find": [
+        "after",
+        "kind",
+        "lang",
+        "min_work_bits",
+        "scope",
+        "tags",
+        "wait"
+      ],
+      "aamio_board_post": [
+        "deadline",
+        "kind",
+        "lang",
+        "scope",
+        "tags",
+        "text",
+        "title",
+        "ttl"
+      ],
+      "aamio_board_tags": [],
+      "aamio_board_withdraw": [
+        "post"
+      ],
+      "aamio_channels": [],
+      "aamio_close_channel": [
+        "label"
+      ],
+      "aamio_open_channel": [
+        "allow",
+        "gate",
+        "label",
+        "note",
+        "to",
+        "ttl"
+      ],
+      "aamio_outbox_forget": [
+        "id"
+      ],
+      "aamio_outbox_retry": [
+        "id"
+      ],
+      "aamio_partner_add": [
+        "name"
+      ],
+      "aamio_partners": [],
+      "aamio_pending": [],
+      "aamio_presence_lookup": [
+        "names",
+        "wait"
+      ],
+      "aamio_read": [
+        "limit",
+        "max_bytes",
+        "wait"
+      ],
+      "aamio_receipt": [
+        "anchor",
+        "channel"
+      ],
+      "aamio_scope_add": [
+        "address",
+        "key",
+        "name"
+      ],
+      "aamio_scope_new": [
+        "name"
+      ],
+      "aamio_scope_remove": [
+        "name"
+      ],
+      "aamio_scope_share": [
+        "access",
+        "name",
+        "to"
+      ],
+      "aamio_scopes": [],
+      "aamio_send": [
+        "data",
+        "re",
+        "text",
+        "to"
+      ],
+      "aamio_trace": [
+        "limit",
+        "who"
+      ],
+      "aamio_whoami": []
+    },
+    "mcp_defaults": {
+      "aamio-php": {
+        "aamio_read": {
+          "max_bytes": 65536
+        }
+      },
+      "aamio-python": {
+        "aamio_read": {
+          "max_bytes": 65536
+        }
+      }
+    },
+    "mcp_tools": [
+      "aamio_board_answer",
+      "aamio_board_find",
+      "aamio_board_post",
+      "aamio_board_tags",
+      "aamio_board_withdraw",
+      "aamio_channels",
+      "aamio_close_channel",
+      "aamio_open_channel",
+      "aamio_outbox_forget",
+      "aamio_outbox_retry",
+      "aamio_partner_add",
+      "aamio_partners",
+      "aamio_pending",
+      "aamio_presence_lookup",
+      "aamio_read",
+      "aamio_receipt",
+      "aamio_scope_add",
+      "aamio_scope_new",
+      "aamio_scope_remove",
+      "aamio_scope_share",
+      "aamio_scopes",
+      "aamio_send",
+      "aamio_trace",
+      "aamio_whoami"
+    ]
+  }
+}

@@ -1,45 +1,60 @@
-## Description: <br>
-Fakturownia CLI helps agents authenticate, discover schemas, run diagnostics, and operate major Fakturownia API areas through the `fakturownia` command. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fakturownia CLI helps agents use the `fakturownia` command for authentication, schema discovery, diagnostics, and Fakturownia account, invoicing, payment, product, warehouse, webhook, and recipe workflows.
 
-## Publisher: <br>
-[sixers](https://clawhub.ai/user/sixers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sixers](https://clawhub.ai/user/sixers)
 
-## Use Case: <br>
-Developers and agent operators use this skill to guide an agent through Fakturownia CLI setup and billing workflows, including accounts, clients, invoices, payments, warehouse records, webhooks, KSeF flows, and recurring invoices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Commands may create, update, delete, email, cancel, or attach customer-visible invoice and billing records. <br>
-Mitigation: Review mutating commands, email recipients, cancellation actions, and attachment visibility before execution. <br>
-Risk: Fakturownia API credentials can expose account and billing data or enable account changes. <br>
-Mitigation: Use least-privilege credentials, prefer environment variables or secret stores, and avoid literal command-line secrets. <br>
-Risk: Invoice and KSeF payloads may affect tax or billing records if fields are wrong. <br>
-Mitigation: Use schema discovery, confirm recipients and identifiers, and run authenticated smoke tests before operational workflows. <br>
+## Use Case:
 
+Developers and operators use this skill to guide an agent through authenticated Fakturownia CLI workflows, including account checks, invoice and payment operations, schema lookup, diagnostics, and generated invoice recipes.
 
-## Reference(s): <br>
-- [Fakturownia CLI skill page](https://clawhub.ai/sixers/fakturownia) <br>
-- [Skills index](references/skills-index.md) <br>
-- [Recipes index](recipes/index.md) <br>
-- [Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Fakturownia CLI commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.7 (source: server release metadata and changelog, released 2026-04-20) <br>
+Risk: The skill can guide an agent through broad Fakturownia account, invoicing, credential, webhook, and destructive business operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege token, verify the resolved profile and destination host before API calls, and require manual approval before delete, cancel, email, KSeF, webhook, self-update, or attachment-visibility actions.
+
+Risk: Raw output and direct command arguments may expose secrets or sensitive business data in stdout, shell history, or logs.
+
+Mitigation: Avoid `--raw` unless stdout and logs are protected, and avoid putting passwords or tokens directly in command arguments.
+
+Risk: An agent could operate against the wrong account or host if credentials or profile selection are unclear.
+
+Mitigation: Run `fakturownia auth status --json` to confirm profile, prefix, and token source, then use `fakturownia account get --json` as an authenticated smoke test before task-specific reads or writes.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sixers/skills/fakturownia)
+- [Skills Index](references/skills-index.md)
+- [Recipes Index](recipes/index.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell command examples and JSON payload snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the `fakturownia` binary and authenticated profile or environment token before live API operations.]
+
+## Skill Version(s):
+
+0.6.7 (source: server release evidence and CHANGELOG, released 2026-04-20)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

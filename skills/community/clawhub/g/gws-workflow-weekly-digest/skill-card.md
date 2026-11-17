@@ -1,42 +1,49 @@
-## Description: <br>
-Google Workflow: Weekly summary: this week's meetings + unread email count. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Workflow: Weekly summary: this week's meetings + unread email count.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Employees and productivity-focused agents use this skill to generate a read-only weekly Google Workspace digest that combines this week's meetings with an unread email count. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured or untrusted gws command or Google account could expose calendar and email metadata to the wrong environment. <br>
-Mitigation: Before installing, confirm the gws command comes from a trusted source, review the shared Google Workspace auth instructions, and use the intended Google account and scopes for a read-only weekly digest. <br>
-Risk: The generated weekly digest may contain sensitive meeting or email summary information. <br>
-Mitigation: Review the digest before sharing it and restrict output to authorized recipients or systems. <br>
+## Use Case:
 
+Employees and agents working with Google Workspace use this skill to run a read-only weekly digest that combines this week's calendar agenda with Gmail triage and unread email count information.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/googleworkspace-bot/gws-workflow-weekly-digest) <br>
-- [Shared Google Workspace auth and global flags](../gws-shared/SKILL.md) <br>
-- [Google Workspace workflow commands](../gws-workflow/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and CLI output options for json, table, yaml, or csv.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command and Google Workspace authentication; the documented workflow is read-only.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata; artifact metadata version 0.22.5) <br>
+Risk: The skill depends on the separate gws CLI, Google account authorization scopes, and shared-skill behavior outside this artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the gws CLI and requested Google account scopes are trusted, and review the shared Google Workspace auth behavior before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/googleworkspace-bot/skills/gws-workflow-weekly-digest)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, guidance, text]
+
+**Output Format:** [Markdown guidance with bash commands; command output can be json, table, yaml, or csv.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and Google Workspace authorization; the documented command is read-only.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

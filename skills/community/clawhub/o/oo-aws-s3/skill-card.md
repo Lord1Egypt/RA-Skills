@@ -1,48 +1,55 @@
-## Description: <br>
-AWS S3 helps an agent operate Amazon S3 through an OOMOL-connected account, including listing buckets and objects, reading metadata, uploading objects, generating pre-signed URLs, and deleting objects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AWS S3 buckets and objects through a connected OOMOL account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, operators, and automation users use this skill to let an agent inspect and manage AWS S3 resources through their connected OOMOL account. It is suited for bucket and object discovery, object metadata checks, uploads, pre-signed URL workflows, and carefully approved deletion tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate a connected AWS S3 account, including write, pre-signed URL, and delete workflows. <br>
-Mitigation: Review every write, pre-signed URL, and delete payload before approval, and confirm the target bucket, key, action, and expected effect. <br>
-Risk: Deleting an object removes data from the connected AWS S3 account. <br>
-Mitigation: Require explicit approval for destructive actions and verify the exact object target before running the command. <br>
-Risk: Pre-signed URLs can grant time-limited access to read, upload, or delete an object. <br>
-Mitigation: Generate pre-signed URLs only for intended recipients, actions, buckets, and keys, and avoid sharing them beyond the required workflow. <br>
-Risk: First-time setup may run an installer for the oo CLI. <br>
-Mitigation: Use the fallback install path only when the CLI is missing, and verify the installer from OOMOL's official source before running it. <br>
+## Use Case:
 
+Developers and operators use this skill to list buckets and objects, inspect and download objects, and upload or delete objects through a connected AWS account. It can also generate pre-signed URLs for object access.
 
-## Reference(s): <br>
-- [AWS S3 homepage](https://aws.amazon.com/s3/) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-aws-s3) <br>
-- [Publisher profile](https://clawhub.ai/user/oomol) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include action payloads, connector schema inspection commands, command outputs, setup guidance, or approval prompts for write and destructive actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: Pre-signed upload or delete links may be treated as safe reads, although they can change or remove S3 data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require approval after reviewing each link's target, method, recipient, and expiration.
+
+Risk: First-time setup instructions can execute an installer without verification, and the remote implementation and installer are unaudited.
+
+Mitigation: Install a reviewed, pinned CLI separately and inspect its automatic skill-sync settings.
+
+## Reference(s):
+
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Amazon S3](https://aws.amazon.com/s3/)
+- [Amazon S3 API Reference](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, API calls, Text]
+
+**Output Format:** [CLI commands with JSON inputs and structured JSON responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action-specific S3 results and metadata, subject to the connected AWS permissions.]
+
+## Skill Version(s):
+
+1.0.7 (source: frontmatter, server metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

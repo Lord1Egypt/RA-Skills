@@ -1,41 +1,54 @@
-## Description: <br>
-Query wisdom from Laozi (Daoism), Confucius (Confucianism), and Buddha (Buddhism) - core teachings, quotes, and applied insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query wisdom from Laozi (Daoism), Confucius (Confucianism), and Buddha (Buddhism) - core teachings, quotes, and applied insights.
 
-## Publisher: <br>
-[whlgstone2](https://clawhub.ai/user/whlgstone2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whlgstone2](https://clawhub.ai/user/whlgstone2)
 
-## Use Case: <br>
-External users and developers use this skill to ask an assistant for concise explanations, comparisons, quotes, and applied guidance based on Daoist, Confucian, and Buddhist teachings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Quotes, translations, or philosophical interpretations may be incomplete or inaccurate when used for decisions or cultural learning. <br>
-Mitigation: Verify important quotes and interpretations against primary texts or trusted translations when accuracy matters. <br>
+## Use Case:
 
+External users and cultural learners use this skill to ask for concise teachings, quote references, comparative explanations, and applied reflections from Daoist, Confucian, and Buddhist traditions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whlgstone2/laozi-confucius-buddha-wisdom) <br>
-- [Publisher profile](https://clawhub.ai/user/whlgstone2) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text conversational responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Content-only reference skill; no code, credential use, network access, or hidden behavior found in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Users may mistake cultural or philosophical reference material for individualized professional advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as cultural and philosophical reference content, and use qualified professional review for legal, medical, financial, or other high-stakes decisions.
+
+Risk: Chinese-language source terminology and examples may lose nuance when used outside the documented primary interaction language.
+
+Mitigation: Prefer Chinese prompts when precision matters, and ask for clarification or translation context when responding in another language.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whlgstone2/skills/laozi-confucius-buddha-wisdom)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with concise explanations, examples, and quotes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language interaction is the primary documented mode; responses are cultural and philosophical reference content only.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Provides a local Python message router for coordinating multiple agents through topic subscriptions, task dispatch, completion events, and optional sessions_spawn lifecycle integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hermes provides a Python message router for multi-agent coordination, delivering task, done, and system messages only to agents subscribed to matching topics.
 
-## Publisher: <br>
-[briefness](https://clawhub.ai/user/briefness) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[briefness](https://clawhub.ai/user/briefness)
 
-## Use Case: <br>
-Developers and agent builders use this skill to coordinate local multi-agent workflows with sparse topic subscriptions instead of broad message broadcasts. It is suited for routing task, completion, and system-event payloads between cooperating agents in a single process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agent payloads may contain secrets or sensitive content and are delivered to subscribed callbacks while also remaining in in-memory pending task records or the bounded message pool during the process lifetime. <br>
-Mitigation: Avoid routing secrets unless every subscribed handler is trusted, sanitize payloads before publishing, and tune pending task TTL and message pool size for the deployment. <br>
-Risk: The sessions_spawn integration depends on an external API and lifecycle coordination outside this skill. <br>
-Mitigation: Use the core HermesRouter or HermesAgent APIs when sessions_spawn is unavailable, and call on_agent_exit during lifecycle cleanup to remove subscriptions. <br>
+## Use Case:
 
+Developers and engineers use this skill to coordinate multiple agents through topic-based publish/subscribe routing, including optional lifecycle integration with sessions_spawn. It is intended for agent workflows that need sparse message delivery instead of broad message broadcasts.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/briefness/hermes-multiagent-skill) <br>
-- [Artifact skill documentation](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown documentation and Python API usage patterns that produce local message callbacks, task identifiers, and routing statistics.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs locally with Python 3.8+ standard-library components and does not create databases; sessions_spawn integration requires the external sessions_spawn API to be available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence and artifact frontmatter) <br>
+Risk: Message routing can mix or disrupt messages between agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for testing or non-sensitive coordination until routing bugs are fixed, and review routing behavior before production use.
+
+Risk: Mutable or prematurely recycled messages can cause handlers to observe incorrect message contents.
+
+Mitigation: Use immutable or copied messages and recycle message objects only after all handlers finish.
+
+Risk: Duplicate active agent IDs can route messages to the wrong active participant.
+
+Mitigation: Reject duplicate active agent IDs or isolate agents by session.
+
+Risk: User-facing text is Chinese-only in the artifact.
+
+Mitigation: Document the language limitation for users who need localized or English-only operational output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/briefness/skills/hermes-multiagent-skill)
+- [Publisher Profile](https://clawhub.ai/user/briefness)
+
+## Skill Output:
+
+**Output Type(s):** [Code, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with Python code examples and API usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs describe in-process Python routing APIs; no external credentials or network services are required by the artifact.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

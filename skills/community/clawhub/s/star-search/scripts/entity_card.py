@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""实战 66 实体知识卡片 (2026-06-16)
+"""v20.66 实体知识卡片 (2026-06-16)
 - 实体知识库 (字典: entity -> {name, type, description, official_url, pinyin, ...})
 - search 后: brain.entity 命中知识库 → 自动返 entity_card
 - 类型: company/product/website/person/finance/tech/general
@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Optional, Dict, List
 from urllib.parse import urlparse
 
-LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.token-star.cn/v1')
+LLM_BASE_URL = os.environ.get('LLM_BASE_URL', 'https://api.<service-domain>/v1')
 LLM_API_KEY = os.environ.get('LLM_API_KEY', '')
 LLM_MODEL = os.environ.get('LLM_MODEL', 'DeepSeek-V4-Flash')
 LLM_TIMEOUT = int(os.environ.get('LLM_TIMEOUT', '10'))
@@ -50,14 +50,14 @@ CACHE_FILE = Path('/home/ubuntu/star-search/entity_kb.json')
 KB_LLM_CACHE = Path('/home/ubuntu/star-search/entity_kb_llm.json')
 
 
-# ============ 内置知识库 (实战 66 起步) ============
+# ============ 内置知识库 (v20.66 起步) ============
 BUILTIN_KB = {
-    # ========== 金融/投资 (实战 76 扩展) ==========
+    # ========== 金融/投资 (v20.76 扩展) ==========
     '韭研公社': {
         'name': '韭研公社',
         'type': 'community',
         'category': 'finance',
-        'description': '新生代股票研究平台 (原韭菜公社), 实战研究赋能, 投资者交流社区',
+        'description': '新生代股票研究平台 (原韭菜公社), 迭代研究赋能, 投资者交流社区',
         'official_url': 'https://www.jiuyangongshe.com/',
         'alt_urls': ['https://pc2.jiucaigongshe.com/', 'https://t.10jqka.com.cn/601319077/'],
         'founded': '2020',
@@ -94,7 +94,7 @@ BUILTIN_KB = {
         'tags': ['股票', '行情', '交易', '金融'],
         'logo': '📊',
     },
-    # 实战 76 新增 20+ 公司
+    # v20.76 新增 20+ 公司
     '阿里巴巴': {
         'name': '阿里巴巴',
         'type': 'company',
@@ -563,7 +563,7 @@ BUILTIN_KB = {
 
 
 def _normalize_entity(entity: str) -> str:
-    """实战 66: 实体归一化"""
+    """v20.66: 实体归一化"""
     if not entity:
         return ''
     e = entity.strip().lower()
@@ -575,20 +575,20 @@ def _normalize_entity(entity: str) -> str:
 
 
 def get_entity_card(entity: str) -> Optional[Dict]:
-# 实战 66: 查实体卡片
+    """v20.66: 查实体卡片
     1) 查内置 KB
     2) 查 LLM 缓存
     3) 没找到返 None
 
-    实战 76: 模糊匹配 (entity="腾讯 微信" → 找 "微信" / "腾讯" 都行)
-    实战 79: 优先查 intent_strategy.BUILTIN_KB_EXTRA (8 个新概念/人)
+    v20.76: 模糊匹配 (entity="腾讯 微信" → 找 "微信" / "腾讯" 都行)
+    v20.79: 优先查 intent_strategy.BUILTIN_KB_EXTRA (8 个新概念/人)
     """
     if not entity:
         return None
     e_norm = _normalize_entity(entity)
 
-    # 实战 79: 优先查 intent_strategy.BUILTIN_KB_EXTRA (8 概念)
-    # 实战 85: 优先查 BUILTIN_KB_EXTRA2 (90+ 公司/产品/概念/食物/地点)
+    # v20.79: 优先查 intent_strategy.BUILTIN_KB_EXTRA (8 概念)
+    # v20.85: 优先查 BUILTIN_KB_EXTRA2 (90+ 公司/产品/概念/食物/地点)
     try:
         import intent_strategy as _is
         for _kb_name in ('BUILTIN_KB_EXTRA2', 'BUILTIN_KB_EXTRA'):
@@ -610,7 +610,7 @@ def get_entity_card(entity: str) -> Optional[Dict]:
         if key.lower() == e_norm or e_norm == key.lower():
             return dict(info)  # copy
 
-    # 实战 76: 模糊匹配 - 拆 entity 为词, 每个词试一次
+    # v20.76: 模糊匹配 - 拆 entity 为词, 每个词试一次
     for word in e_norm.split():
         if not word or len(word) < 2:
             continue
@@ -659,7 +659,7 @@ def _call_llm(prompt: str, max_tokens: int = 400) -> Optional[str]:
 
 
 def create_entity_card_via_llm(entity: str) -> Optional[Dict]:
-    """实战 66: 用 LLM 生成实体卡片 (异步调用)"""
+    """v20.66: 用 LLM 生成实体卡片 (异步调用)"""
     e_norm = _normalize_entity(entity)
     if not e_norm:
         return None
@@ -728,7 +728,7 @@ def create_entity_card_via_llm(entity: str) -> Optional[Dict]:
 
 
 def match_entity_to_card(entity: str, results: list = None) -> Optional[Dict]:
-    """实战 66: 智能匹配实体
+    """v20.66: 智能匹配实体
     1) 内置 KB 查
     2) results 里查官方域名
     3) LLM 生成

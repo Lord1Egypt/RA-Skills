@@ -1,38 +1,54 @@
-## Description: <br>
-Expert AI agent specializing in professional document generation for PDFs, presentations, spreadsheets, and Word documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in document generation.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to plan and generate professional documents as code, including PDFs, presentations, spreadsheets, and Word documents with appropriate libraries, templates, formatting, and accessibility considerations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The activation wording is broad and may invoke the skill on general references to document generation. <br>
-Mitigation: Review and narrow trigger wording before installation if accidental invocation would disrupt the workflow. <br>
+## Use Case:
 
+Developers and document automation users use this skill to generate professional PDFs, presentations, spreadsheets, and Word documents with code-based tools, reusable templates, and format-specific library guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-document-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, files, guidance] <br>
-**Output Format:** [Markdown with code blocks and generated document files when the agent creates artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated PDF, PPTX, XLSX, or DOCX files depending on the requested document format.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated document scripts may use external libraries or user-provided data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code, dependencies, and data handling before running scripts or distributing outputs.
+
+Risk: Broad document-generation requests can produce files that require content, accessibility, and formatting review.
+
+Mitigation: Check generated documents against the intended audience, brand requirements, data accuracy, and accessibility expectations before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-document-generator)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code snippets and generated document files when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scripts and PDF, PPTX, XLSX, or DOCX files depending on the user's requested document.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

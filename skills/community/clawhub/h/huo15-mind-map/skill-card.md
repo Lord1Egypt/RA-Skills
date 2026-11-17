@@ -1,37 +1,53 @@
-## Description: <br>
-Generates styled mind maps from Markdown outlines, JSON, OPML, or XMind inputs and exports them as XMind, OPML, FreeMind, Markdown, JSON, PNG, PDF, or SVG files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and converts mind maps from Markdown outlines, JSON, OPML, or XMind into XMind 2021+, OPML, FreeMind, Markdown, JSON, PNG, PDF, or SVG with 13 built-in visual styles.
 
-## Publisher: <br>
-[zhaobod1](https://clawhub.ai/user/zhaobod1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhaobod1](https://clawhub.ai/user/zhaobod1)
 
-## Use Case: <br>
-Developers, analysts, and content teams use this skill to convert structured outlines into portable mind-map files and presentation-ready visual exports with selectable visual styles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad mind-map aliases and style keywords may activate the skill more often than intended in multi-skill environments. <br>
-Mitigation: Confirm the requested input and output paths before running exports, especially when the agent is choosing among multiple installed skills. <br>
+## Use Case:
 
+Developers, creators, and business users use this skill to turn outlines and mind-map files into interoperable mind-map documents and presentation-ready rendered images.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, JSON] <br>
-**Output Format:** [XMind, OPML, FreeMind, Markdown, JSON, PNG, PDF, or SVG files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports multiple visual styles and optional additional export formats from one source outline.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The skill reads input files and writes output files at paths supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review input and output paths before running conversions, especially absolute paths and paths that may overwrite existing files.
+
+Risk: Command-line help text may be less complete than the main skill description.
+
+Mitigation: Use the skill documentation as the primary reference for supported formats, styles, and parameters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhaobod1/skills/huo15-mind-map)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command examples and generated mind-map files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local files in user-selected output formats and paths.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter, artifact metadata, and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

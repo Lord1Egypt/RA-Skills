@@ -1,36 +1,48 @@
-## Description: <br>
-Write Norwegian that sounds human. Not formal, not robotic, not AI-generated. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write Norwegian that sounds human. Not formal, not robotic, not AI-generated.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Writers, translators, and agents use this skill to draft or revise Norwegian text in a more natural casual voice, including guidance on written standards, particles, fillers, dialect influence, and informal expressions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can make AI-assisted Norwegian text sound more human, which may be misleading if authorship disclosure is required. <br>
-Mitigation: Use it for style improvement only where AI assistance is acceptable, and disclose AI assistance when policy, law, or audience expectations require it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+External users and writers use this skill to make Norwegian text sound more natural, casual, and native-like, with attention to Bokmal defaults, particles, fillers, and dialect influence.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only style guidance with no code execution, data access, persistence, or hidden operational behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill defaults to casual Bokmal-style phrasing, which may be inappropriate for formal, conservative, Nynorsk, or dialect-specific writing.
+
+Mitigation: Ask for the desired register, written standard, or dialect when those constraints matter, and review generated text with a fluent Norwegian speaker for high-stakes use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/norwegian)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Natural-language text or Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults toward informal Bokmal-style phrasing unless the user asks for formal, conservative, Nynorsk, or dialect-specific writing.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

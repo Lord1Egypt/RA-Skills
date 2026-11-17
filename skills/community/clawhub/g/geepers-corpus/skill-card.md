@@ -1,40 +1,53 @@
-## Description: <br>
-Query the COCA (Corpus of Contemporary American English) linguistics API for word frequency, collocations, concordances, and historical usage trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query the COCA (Corpus of Contemporary American English) linguistics API for word frequency, collocations, concordances, and historical usage trends.
 
-## Publisher: <br>
-[lukeslp](https://clawhub.ai/user/lukeslp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lukeslp](https://clawhub.ai/user/lukeslp)
 
-## Use Case: <br>
-Developers, writers, and linguistics researchers use this skill to query contemporary American English usage data for word frequency, collocations, concordance examples, and historical trends. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends corpus queries to a third-party API service. <br>
-Mitigation: Verify that api.dr.eamer.dev is the intended corpus provider and avoid sending private or sensitive text unless that service is trusted. <br>
-Risk: The skill requires an API key for authenticated access. <br>
-Mitigation: Use a dedicated API key when available and manage it through the DREAMER_API_KEY environment variable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Geepers Corpus on ClawHub](https://clawhub.ai/lukeslp/geepers-corpus) <br>
-- [COCA corpus API](https://api.dr.eamer.dev) <br>
+## Use Case:
 
+Writers, linguists, and developers use this skill to query the COCA corpus API for American English concordance examples, collocations, word frequency, genre filters, and historical usage trends.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and API endpoint examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DREAMER_API_KEY for authenticated API access.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Searched words, query parameters, and the configured API key are sent to the documented external corpus API.
+
+Mitigation: Avoid using the skill for sensitive private text unless the user trusts that service's handling of requests.
+
+Risk: The skill depends on a DREAMER_API_KEY for authenticated API access.
+
+Mitigation: Store the API key in the environment and avoid placing it in prompts, transcripts, or checked-in files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lukeslp/skills/geepers-corpus)
+- [Dreamer Corpus API](https://api.dr.eamer.dev)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with API request examples and concise text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DREAMER_API_KEY and sends query terms and parameters to https://api.dr.eamer.dev.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

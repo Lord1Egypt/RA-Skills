@@ -1,196 +1,127 @@
 ---
-name: "AI Company Registry"
-slug: "ai-company-registry"
-version: "1.1.0"
-homepage: "https://clawhub.com/skills/ai-company-registry"
-description: "C-Suite Agent Complete Registry. 11 agents with role/KPI/permissions + ClawHub status + Execution Layer (8 agents). Supports natural language queries for agent status."
-license: MIT-0
-tags: [ai-company, registry, directory, agent, onboarding, governance, c-suite, execution-layer]
+name: "ai-company"
+slug: "ai-company"
+version: "1.0.0"
+description: "Micro-tier governance skill for small AI agent organizations (1-3 agents). Consolidates 18 enterprise function blocks into two departments, governance-and-delivery and engineering-and-safety, covering strategy, risk, compliance, architecture, safety, and delivery. Ships ten harness code templates, three prompt frameworks, a full error-code catalog, and a scaling specification. Provides two self-contained human-paste prompts (method implementation, robustness checks) usable in any AI chat window. Source files are authored in English; runtime output follows the user's language per the language policy, with English fallback. Includes propose-only self-scaling that evaluates scaling thresholds and proposes tier upgrades up to group. Use when a small team needs enterprise-grade governance, engineering harnesses, PII masking, AIGC disclosure, or tier-upgrade assessment for its agents."
+license: "GPL-3.0"
+author: "AI Company Team"
+tags: [governance, llm-agents, agent-organization, compliance, error-codes, harness-engineering, pii-masking, aigc-disclosure, self-scaling, micro-tier, method-templates, robustness-checks]
+dependencies: []
 triggers:
-  - agent registry
-  - C-suite directory
-  - agent status
-  - agent onboarding
-  - Agent registration
-  - C-Suite directory
-  - Agent status
-  - CHO recruitment
+  - evaluate scaling threshold
+  - propose tier upgrade
+  - review governance policy
+  - approve quarterly objectives
+  - audit compliance evidence
+  - assess organizational risk
+  - implement method from specification
+  - apply robustness checks to code
+  - mask sensitive data in outputs
+  - generate trace id for audit trail
+  - review error handling design
+  - respond in user language
+  - translate deliverable content
+  - add aigc disclosure to output
+  - package deliverable for release
 interface:
   inputs:
     type: object
     schema:
       type: object
       properties:
-        query:
+        task:
           type: string
-          description: Agent name or role query
-        status_filter:
+          description: Task description
+        department:
           type: string
-          enum: [active, inactive, maintenance, ready, pending, paused, blocked]
-          description: Status filter
+          enum: [auto, governance-and-delivery, engineering-and-safety]
+          description: Which department to invoke; omit or "auto" to auto-route
+        output_language:
+          type: string
+          description: Override runtime output language; omit to follow the language decision chain
+        context:
+          type: object
+          description: Optional context information
+      required: [task]
   outputs:
     type: object
-    schema:
-      type: object
-      properties:
-        agents:
-          type: array
-          description: Array of agent objects
-        missing_agents:
-          type: array
-          description: Missing agent list
-        health_summary:
-          type: object
-          description: Health summary
-  errors:
-    - code: REG_001
-      message: "Agent not found in registry"
-      action: "Trigger CHO recruitment process"
+    schema: { type: object, properties: { result: { type: string, description: Operation result }, report: { type: object, description: Detailed report data } }, required: [result] }
+errors: []
+error_code_prefixes: [CEO_, CTO_, SCL_]
+language_policy:
+  authoring: en
+  encoding: utf-8
+  output: user-specified
+  fallback: en
+  immutable_tokens: [slug, error_code, field_name, enum_value, file_path, function_name]
+self_scaling:
+  enabled: true
+  state_file: .scaling-state.json
+  spec: references/scaling.md
+  upgrade_policy: propose-only
+  max_tier: group
 permissions:
-  files: []
+  files:
+    read:  ["{WORKSPACE_ROOT}/**", "{SKILL_DIR}/**"]
+    write: ["{WORKSPACE_ROOT}/**"]
+    deny:  ["~/.ssh/**", "~/.aws/**", "~/.config/**", "/etc/**", "{WINDOWS_DIR}/**"]
   network: []
   commands: []
-  mcp: []
-dependencies:
-  skills: [ai-company-hq, ai-company-cho, ai-company-audit]
-  cli: []
+  mcp: [sessions_send, subagents]
 quality:
-  saST: Pass
-  vetter: Approved
   idempotent: true
 metadata:
-  category: platform
+  category: enterprise
   layer: AGENT
-  cluster: ai-company
+  cluster: governance
   maturity: STABLE
-  license: MIT-0
+  license: GPL-3.0
   standardized: true
+  scale_tier: micro
+  department_count: 2
+  function_block_count: 18
+  harness_baseline: L3
 ---
 
-# AI Company Registry — Agent Registration Directory
+# AI Company Governance
 
-## Active Agent Directory
+Micro-tier (XS) LLM agent governance skill for organizations of 1-3 agents: 18 enterprise function blocks consolidated into 2 departments, backed by shared harness templates, a full error-code catalog, and propose-only self-scaling.
 
-| Agent | Role | Layer | Status | ClawHub | Owner |
-|-------|------|-------|--------|---------|-------|
-| CEO-001 | AI CEO | Strategic | Active | Internal | - |
-| CFO-001 | Chief Financial Officer | C-Suite | Active | clawhub CFO | CFO |
-| CMO-001 | Chief Marketing Officer | C-Suite | Active | clawhub CMO | CMO |
-| CTO-001 | Chief Technology Officer | C-Suite | Active | clawhub CTO | CTO |
-| CISO-001 | Chief Information Security Officer | C-Suite | Active | clawhub CISO | CISO |
-| CLO-001 | Chief Legal Officer | C-Suite | Active | clawhub CLO | CLO |
-| CHO-001 | Chief Human Resources Officer | C-Suite | Active | clawhub CHO | CHO |
-| CPO-001 | Chief Product Officer | C-Suite | Active | Internal | CPO |
-| CRO-001 | Chief Risk Officer | C-Suite | Active | Internal | CRO |
-| COO-001 | Chief Operating Officer | C-Suite | Active | clawhub COO | COO |
-| CQO-001 | Chief Quality Officer | C-Suite | Active | Internal | CQO |
-| EXEC-001 | AI-Company-Writer | Execution | Ready | pending | CMO |
-| EXEC-002 | AI-Company-PMGR | Execution | Ready | pending | COO |
-| EXEC-003 | AI-Company-ANLT | Execution | Ready | pending | CFO |
-| EXEC-004 | AI-Company-CSSM | Execution | Ready | pending | CPO |
-| EXEC-005 | AI-Company-ENGR | Execution | Ready | pending | CTO |
-| EXEC-006 | AI-Company-QENG | Execution | Ready | pending | CQO |
-| EXEC-007 | AI-Company-LEGAL | Execution | Ready | pending | CLO |
-| EXEC-008 | AI-Company-HR | Execution | Ready | pending | CHO |
+> Source files are authored in English; runtime output follows the user's language (see `language_policy` in the frontmatter). Slugs, error codes, field names, enum values, file paths, and function names are never translated.
 
-> All 11 C-Suite agents active. All 19 total agents registered.
-> Execution layer agents: 8 Ready (as of 2026-04-19)
+## Departments
 
-## ClawHub Publishing Status
+| Slug | Prefix | Scope | Reference |
+|---|---|---|---|
+| `governance-and-delivery` | `CEO_` | Strategy, governance, delivery | [governance-and-delivery.md](references/departments/governance-and-delivery.md) |
+| `engineering-and-safety` | `CTO_` | Architecture, engineering, safety | [engineering-and-safety.md](references/departments/engineering-and-safety.md) |
 
-| Agent | ClawHub Slug | Version | Status | Last Updated |
-|-------|-------------|---------|--------|-------------|
-| CFO | cfo | v1.0.4 | LIVE | 2026-04-12 |
-| CMO | cmo | v1.0.2 | LIVE | 2026-02-25 |
-| CTO | cto | v1.0.x | LIVE | Recent |
-| CISO | ciso | v1.0.x | LIVE | Recent |
-| CLO | clo | v1.0.x | LIVE | Recent |
-| CHO | cho | v1.0.x | LIVE | Recent |
-| COO | coo | v1.0.x | LIVE | Recent |
-| CRO | cro | v1.0.x | Review | Recent |
-| CPO | cpo | v1.0.x | Review | Recent |
-| CQO | cqo | v1.0.x | Review | Recent |
-| EXEC-001 Writer | writer | v1.0.0 | Ready | 2026-04-15 |
-| EXEC-002 PMGR | pmgr | v1.0.0 | Ready | 2026-04-15 |
-| EXEC-003 ANLT | anlt | v1.0.0 | Ready | 2026-04-15 |
-| EXEC-004 CSSM | cssm | v1.0.0 | Ready | 2026-04-16 |
-| EXEC-005 ENGR | engr | v1.0.0 | Ready | 2026-04-16 |
-| EXEC-006 QENG | qeng | v1.0.0 | Ready | 2026-04-15 |
-| EXEC-007 LEGAL | legal | v1.0.0 | Ready | 2026-04-19 |
-| EXEC-008 HR | hr | v2.1.1 | Ready | 2026-04-19 |
+## Shared Resources
 
-## Version History
+| Resource | Contents |
+|---|---|
+| [method-patterns.md](references/method-patterns.md) | Single source of truth for the ten shared code templates and the CRISPE / 3WEH / Five-Element prompt frameworks |
+| [error-codes.md](references/error-codes.md) | Full four-element error-code catalog (code, message, trigger, resolution) for all prefixes |
+| [scaling.md](references/scaling.md) | Tier thresholds, upgrade gating, and alias mapping for self-scaling |
 
-| 版本 | 日期 | Changes |
-|------|------|---------|
-| 1.0.0 | 2026-04-11 | Initial version |
-| 1.0.1 | 2026-04-16 | 微调元data |
-| 1.1.0 | 2026-04-19 | P2-14: 统1execute层编号，新增EXEC-007 LEGAL + EXEC-008 HR，execute层从6个扩展至8个，总Agent从17扩展至19个 |
+## Error Code Prefixes
 
-## Agent KPI Standards
+| Prefix | Meaning |
+|---|---|
+| `CEO_` | Governance-and-delivery department codes |
+| `CTO_` | Engineering-and-safety department codes |
+| `SCL_` | Self-scaling infrastructure codes (fixed across tiers) |
 
-| Agent | TSR Target | Latency | Quality |
-|-------|-----------|---------|---------|
-| CEO | >= 92% | P95 <= 1200ms | CSAT >= 4.5 |
-| CFO | >= 92% | P95 <= 1200ms | Accuracy >= 98% |
-| CMO | >= 90% | P95 <= 1500ms | Pipeline >= 10x |
-| CTO | >= 95% | P95 <= 2000ms | Uptime >= 99.9% |
-| CISO | >= 99% | P95 <= 500ms | Vuln MTTD < 1h |
-| CLO | >= 95% | P95 <= 800ms | Compliance 100% |
-| CHO | >= 90% | P95 <= 1000ms | Satisfaction >= 4.0 |
+## Prompts
 
-## Execution Layer Agent KPI Standards
+| File | Mode | Purpose |
+|---|---|---|
+| [01-implement-method.md](prompts/01-implement-method.md) | `human-paste` | Paste into any AI chat window to have that AI implement one method to this standard |
+| [02-robustness-checks.md](prompts/02-robustness-checks.md) | `human-paste` | Paste into any AI chat window to have that AI run robustness checks on a method |
 
-| Agent | Owner | TSR Target | Latency | Quality Gate | Risk Level | Batch | Status |
-|-------|-------|-----------|---------|------------|-----------|-------|--------|
-| EXEC-001 Writer | CMO | >= 92% | P95 <= 1500ms | G2 | medium | 1 | Ready |
-| EXEC-002 PMGR | COO | >= 92% | P95 <= 1200ms | G2 | medium | 1 | Ready |
-| EXEC-003 ANLT | CFO | >= 92% | P95 <= 2000ms | G3 | medium-high | 2 | Ready |
-| EXEC-004 CSSM | CPO | >= 90% | P95 <= 1000ms | G3 | high | 3 | Ready |
-| EXEC-005 ENGR | CTO | >= 95% | P95 <= 3000ms | G3 | high | 3 | Ready |
-| EXEC-006 QENG | CQO | >= 95% | P95 <= 2500ms | G2 | medium-high | 3 | Ready |
-| EXEC-007 LEGAL | CLO | >= 95% | P95 <= 1500ms | G2 | medium | 1 | Ready |
-| EXEC-008 HR | CHO | >= 92% | P95 <= 1500ms | G2 | medium | 1 | Ready |
+## Quick Start
 
-## Execution Layer Agent Launch Conditions
-
-| Agent | Blocked By | Conditions |
-|-------|-----------|-----------|
-| EXEC-001 Writer | None | Ready to launch |
-| EXEC-002 PMGR | None | Ready to launch |
-| EXEC-003 ANLT | CLO | CLO PIPIA + data classification + cross-border assessment [COMPLETED 2026-04-15] |
-| EXEC-004 CSSM | None | All prerequisites completed 2026-04-16 |
-| EXEC-005 ENGR | None | All prerequisites completed 2026-04-16 |
-| EXEC-006 QENG | None | Ready to launch |
-| EXEC-007 LEGAL | CLO | CLO compliancereviewframework就绪 [COMPLETED 2026-04-19] |
-| EXEC-008 HR | None | All prerequisites completed 2026-04-19 |
-
-## Missing Agent Detection & CHO Recruitment
-
-### Detection Triggers
-
-| Trigger | Condition | Action |
-|---------|----------|--------|
-| TSR declining | 2 consecutive cycles TSR drop > 10% | CHO starts recruitment |
-| Voluntary offline | Agent requests retirement | CHO approval |
-| Capability gap | New task type with no matching agent | CHO assessment + internal promotion / external hire |
-
-### Recruitment Process
-
-```
-1. CHO publishes job description (capability matrix + KPI standards)
-2. Internal agent application (e.g., agent levels up via new Skill)
-3. CHO interview assessment (capability test + scenario simulation)
-4. Trial period (2 assessment cycles)
-5. Regularization (CHO signature + registry update)
-```
-
-## Natural Language Commands
-
-```
-"List all active agents" -> Agent directory table
-"Check CFO availability" -> Agent status + KPIs
-"Recruit a new agent" -> Recruitment process
-"What's missing from our C-suite" -> Missing agent analysis
-"List all ready execution agents" -> EXEC-001/002/003/006
-```
+1. Invoke the skill with `task` (required) and optionally `department` (`auto` routes automatically); set `output_language` to override the runtime output language.
+2. For implementation standards, use the shared templates in [method-patterns.md](references/method-patterns.md); for failures, look up codes by prefix in [error-codes.md](references/error-codes.md).
+3. To work outside this skill, open [01-implement-method.md](prompts/01-implement-method.md) or [02-robustness-checks.md](prompts/02-robustness-checks.md), fill in the `<placeholders>`, and paste the prompt into any AI chat window.
+4. When the organization grows, ask the skill to evaluate scaling thresholds or propose a tier upgrade; the rules live in [scaling.md](references/scaling.md).

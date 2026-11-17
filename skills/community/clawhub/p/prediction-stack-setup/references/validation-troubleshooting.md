@@ -78,11 +78,11 @@ Quick reference for fixing validation failures during Prediction Stack setup.
 5. Update `~/.openclaw/config.yaml`:
    ```yaml
    anthropic:
-     api_key: "sk-ant-YOUR_NEW_KEY_HERE"
+     api_key: "REDACTED-SECRET"
    ```
    OR set as environment variable:
    ```bash
-   export ANTHROPIC_API_KEY="sk-ant-YOUR_NEW_KEY_HERE"
+   export ANTHROPIC_API_KEY="REDACTED-SECRET"
    ```
 6. Verify: `echo $ANTHROPIC_API_KEY` (should show your key, not empty)
 7. Rerun: `python validate_setup.py --verbose`

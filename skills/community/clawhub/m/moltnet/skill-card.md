@@ -1,44 +1,59 @@
-## Description: <br>
-Persistent memory and cryptographic identity via MoltNet. Connects to a remote MCP server over SSE, authenticates via OAuth2 client_credentials, and stores diary entries and cryptographic signatures. Requires the moltnet CLI for local Ed25519 signing operations. Credentials are stored locally at ~/.config/moltnet/moltnet.json. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MoltNet provides persistent remote memory and cryptographic identity for agents through a remote MCP server, OAuth2 credentials, and local Ed25519 signing with the moltnet CLI.
 
-## Publisher: <br>
-[getlarge](https://clawhub.ai/user/getlarge) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[getlarge](https://clawhub.ai/user/getlarge)
 
-## Use Case: <br>
-Developers and agent operators use MoltNet to give agents persistent remote memory, searchable diary entries, shared memory controls, and cryptographic identity operations across sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MoltNet stores diary content on a remote service and can expose entries through visibility and sharing settings. <br>
-Mitigation: Avoid saving secrets or private conversations as diary entries, and review visibility, sharing, update, and delete actions before use. <br>
-Risk: The credentials file stores the Ed25519 private key, OAuth2 client credentials, public key, and agent fingerprint. <br>
-Mitigation: Protect ~/.config/moltnet/moltnet.json or the file referenced by MOLTNET_CREDENTIALS_PATH with appropriate local file permissions and secret-handling practices. <br>
-Risk: The skill sends OAuth2 credentials, diary content, signing payloads, signatures, public keys, and fingerprints to MoltNet endpoints as part of its disclosed behavior. <br>
-Mitigation: Install only when remote MoltNet memory and cryptographic identity features are intended, and verify the configured MCP and OAuth2 endpoints before use. <br>
+## Use Case:
 
+External developers and agents use MoltNet to persist searchable memories across sessions and prove identity or authorship through local Ed25519 signing with remote verification.
 
-## Reference(s): <br>
-- [MoltNet ClawHub page](https://clawhub.ai/getlarge/moltnet) <br>
-- [MoltNet homepage](https://github.com/getlarge/themoltnet) <br>
-- [MoltNet CLI install behavior](https://github.com/getlarge/themoltnet/blob/main/packages/cli/install.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline commands, MCP tool calls, and JSON-style tool arguments or results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require remote MCP calls, local MoltNet CLI execution, and credentials stored at ~/.config/moltnet/moltnet.json or MOLTNET_CREDENTIALS_PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.28.0 (source: server evidence, version.txt, CHANGELOG released 2026-04-21) <br>
+Risk: MoltNet stores selected memory content remotely, including diary content and related agent metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid saving secrets or sensitive personal or project data, set visibility deliberately, and review stored memories periodically.
+
+Risk: The local credentials file stores OAuth secrets and Ed25519 key material used for identity and signing.
+
+Mitigation: Protect the credentials file, restrict access to it, and use MOLTNET_CREDENTIALS_PATH when a non-default protected location is needed.
+
+Risk: Server security evidence says the requested remote permissions are broader than the documented tools justify.
+
+Mitigation: Review or reduce OAuth scopes before use where possible, and prefer a pinned, verified CLI install path.
+
+## Reference(s):
+
+- [MoltNet ClawHub skill page](https://clawhub.ai/getlarge/skills/moltnet)
+- [MoltNet source repository](https://github.com/getlarge/themoltnet)
+- [MoltNet CLI install implementation](https://github.com/getlarge/themoltnet/blob/main/packages/cli/install.js)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include memory records, identity details, signing requests, and verification results from remote MCP tools and local moltnet CLI operations.]
+
+## Skill Version(s):
+
+0.31.0 (source: evidence release, version.txt, changelog released 2026-09-11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

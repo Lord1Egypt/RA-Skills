@@ -1,47 +1,60 @@
-## Description: <br>
-Professional US stock analysis with financial data, news, social sentiment, and multi-model AI. Comprehensive reports at $0.02-0.10 per analysis. Use when: the user needs market data, stock analysis, watchlists, or portfolio workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional US stock analysis with financial data, news, social sentiment, and multi-model AI.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to run US equity research workflows for stock analysis, watchlists, portfolio monitoring, earnings reviews, competitor comparison, and screening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends stock symbols, portfolio or watchlist context, research queries, fetched source content, and LLM prompts to AIsa. <br>
-Mitigation: Use the skill only with data you are comfortable sharing with AIsa, avoid unnecessary sensitive portfolio details, and review organization data-sharing requirements before use. <br>
-Risk: The skill requires an AIsa API key and uses paid API calls. <br>
-Mitigation: Use a scoped or test AIsa key where possible, store it in the environment, and monitor credit usage during analysis workflows. <br>
-Risk: Generated reports are written to disk and include raw collected data. <br>
-Mitigation: Choose output paths deliberately, protect generated report files, and remove or redact raw data before sharing. <br>
-Risk: Stock-analysis output may be incomplete, stale, or unsuitable as personalized investment advice. <br>
-Mitigation: Treat reports as informational research, verify material claims against primary sources, and consult qualified financial professionals before making investment decisions. <br>
+## Use Case:
 
+Developers, analysts, and external users use this skill to gather US equity data, monitor portfolios, screen stocks, and generate informational stock analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aisadocs/us-stock-analyst) <br>
-- [AIsa API Reference](https://aisa.mintlify.app/api-reference/introduction) <br>
-- [AIsa complete docs](https://aisa.mintlify.app/llms.txt) <br>
-- [AIsa website](https://aisa.one) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Human-readable terminal report and JSON analysis report written to disk] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include investment summary, key metrics, sentiment, valuation, data sources, raw collected data, and an informational-only disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Stock tickers, watchlists, research queries, and analysis context may be sent to AIsa and model providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with information you are comfortable sharing with those services, and avoid submitting sensitive or non-public portfolio context.
+
+Risk: Generated reports may contain incorrect, incomplete, or time-sensitive financial analysis.
+
+Mitigation: Review reports before relying on them and consult licensed financial professionals before making investment decisions.
+
+Risk: Saved reports are written as local JSON files when an output path is provided.
+
+Mitigation: Choose output filenames and directories carefully to avoid overwriting files or exposing reports in shared locations.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/aisadocs/skills/us-stock-analyst)
+- [AIsa API reference](https://aisa.mintlify.app/api-reference/introduction)
+- [AIsa complete documentation](https://aisa.mintlify.app/llms.txt)
+- [AIsa website](https://aisa.one)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell and Python examples, plus JSON analysis reports when saved to a file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and may write local JSON report files when an output path is provided]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,53 @@
-## Description: <br>
-Codebase intelligence — generates structured navigation maps with file:line references so agents stop re-scanning the same files every session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Codebase intelligence that generates structured navigation maps with file:line references so agents can avoid repeatedly scanning the same files during code exploration.
 
-## Publisher: <br>
-[keshav55](https://clawhub.ai/user/keshav55) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[keshav55](https://clawhub.ai/user/keshav55)
 
-## Use Case: <br>
-Developers and engineering agents use Atris to create and maintain a repository navigation map for code exploration, onboarding, and answering file-location questions with exact file:line references. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and maintains atris/MAP.md in the user's repository, which may capture sensitive file paths or implementation details in private codebases. <br>
-Mitigation: Review atris/MAP.md before committing or sharing it, and require confirmation before creating or regenerating the map when stricter repository-change control is needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/keshav55/atris) <br>
+## Use Case:
 
+Developers and coding agents use Atris to build and maintain an `atris/MAP.md` navigation index for a repository, then consult that map before searching code. The skill is used for codebase exploration, locating symbols and entry points, and onboarding to unfamiliar projects.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown navigation map with file:line references and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and updates atris/MAP.md in the target repository.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The generated `atris/MAP.md` may include secrets, private paths, or sensitive architecture details if committed or shared without review.
+
+Mitigation: Review `atris/MAP.md` before committing or sharing it, and remove secrets, credentials, private paths, and sensitive architecture notes.
+
+Risk: Navigation guidance can become stale after code moves, deletions, or major refactors.
+
+Mitigation: Update map entries surgically when files change, and regenerate affected sections when references are clearly stale.
+
+## Reference(s):
+
+- [Atris ClawHub skill page](https://clawhub.ai/keshav55/skills/atris)
+- [Publisher profile](https://clawhub.ai/user/keshav55)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown navigation map with file:line references and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates `atris/MAP.md` in the target repository; requires ripgrep (`rg`) for scanning.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

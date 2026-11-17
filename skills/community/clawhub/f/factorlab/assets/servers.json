@@ -1,0 +1,14 @@
+{
+  "servers": [
+    {"ip": "119.6.200.40", "port": 7709, "name": "主站1"},
+    {"ip": "182.140.139.191", "port": 7709, "name": "主站2"},
+    {"ip": "218.200.222.134", "port": 7709, "name": "主站3"},
+    {"ip": "182.150.28.166", "port": 7709, "name": "主站4"}
+  ],
+  "settings": {
+    "refresh_seconds": 30,
+    "top_k": 30,
+    "min_score": 55,
+    "use_live_data": true
+  }
+}

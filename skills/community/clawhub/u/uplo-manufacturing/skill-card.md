@@ -1,44 +1,59 @@
-## Description: <br>
-AI-powered manufacturing knowledge management for searching work orders, quality inspections, production schedules, and equipment maintenance records with structured extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered manufacturing knowledge management. Search work orders, quality inspections, production schedules, and equipment maintenance records with structured extraction.
 
-## Publisher: <br>
-[RooJenkins](https://clawhub.ai/user/RooJenkins) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[roojenkins](https://clawhub.ai/user/roojenkins)
 
-## Use Case: <br>
-Manufacturing employees and operations teams use this skill to query plant-floor knowledge, trace quality issues, plan maintenance, and find revision-controlled procedures from their organization's UPLO-backed knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a UPLO instance and API key for MCP-backed organizational knowledge queries. <br>
-Mitigation: Store tokens outside source control, prefer environment variables or a secret manager, avoid exposing credentials in screenshots, and rotate any credential that may have been exposed. <br>
-Risk: Manufacturing answers may rely on confidential or restricted operational records from the connected knowledge base. <br>
-Mitigation: Respect configured classification tiers and only surface information that exists in the authorized knowledge base. <br>
-Risk: Outdated procedures, calibration certificates, or drawing revisions can affect quality or safety decisions. <br>
-Mitigation: Check document revision levels in results and use the skill's stale-document workflow to flag obsolete records before relying on them. <br>
+## Use Case:
 
+Manufacturing teams use this skill to search and connect plant-floor knowledge such as work orders, inspection records, production schedules, CAPA records, maintenance logs, equipment manuals, and revision-controlled procedures. It supports root cause analysis, preventive maintenance planning, material traceability, document updates, and escalation to knowledge owners.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/RooJenkins/uplo-manufacturing) <br>
-- [UPLO](https://uplo.ai) <br>
-- [UPLO schemas](https://uplo.ai/schemas) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP tool calls, shell commands, and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on the connected UPLO instance, configured MCP token, manufacturing schema pack, and available organizational knowledge.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/skill.json) <br>
+Risk: The skill runs an unpinned MCP package with an API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted UPLO MCP package source, prefer a pinned MCP package version, and provide a narrowly scoped UPLO token.
+
+Risk: The skill can retrieve broad organizational context, including full organizational export and session-start identity or status context.
+
+Mitigation: Confirm that broad context retrieval is acceptable for the environment and rely on server-side authorization, auditing, and data-minimization controls.
+
+Risk: Manufacturing answers can affect quality, maintenance, revision control, and safety-sensitive decisions.
+
+Mitigation: Review retrieved records before acting, check document revision levels, and escalate recurring quality failures or overdue maintenance to the responsible owner.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/roojenkins/skills/uplo-manufacturing)
+- [UPLO](https://uplo.ai)
+- [UPLO schemas](https://uplo.ai/schemas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with MCP tool-call examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a UPLO instance URL and API key; MCP responses may include work orders, quality records, maintenance history, organizational context, directives, and knowledge-owner information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

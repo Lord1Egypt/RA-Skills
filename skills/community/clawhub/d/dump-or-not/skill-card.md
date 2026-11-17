@@ -1,46 +1,61 @@
-## Description: <br>
-A Chinese relationship-advice skill that reviews relationship descriptions or chat records, scores the relationship across structured dimensions, and gives a direct breakup-or-stay recommendation plus a diagnostic card. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language relationship decision assistant that analyzes relationship descriptions or chat records across structured dimensions and gives direct breakup-or-stay guidance with a diagnostic card.
 
-## Publisher: <br>
-[sachi-pp](https://clawhub.ai/user/sachi-pp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sachi-pp](https://clawhub.ai/user/sachi-pp)
 
-## Use Case: <br>
-External users can provide relationship context, pasted chat logs, or screenshots and receive a structured relationship assessment. The skill helps them identify red flags, compare relationship quality dimensions, and decide whether to continue or end the relationship. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may submit sensitive relationship chats, screenshots, or personal identifiers for analysis and image-card rendering. <br>
-Mitigation: Redact names, phone numbers, addresses, photos, and other identifiers before use, and avoid sharing generated cards that contain private details. <br>
-Risk: The artifact behavior can write submitted chat-derived content to local temporary render files and serve it through a local background web server for screenshot generation. <br>
-Mitigation: Review and confirm the render/send step before use, and remove temporary card files after generating any needed output. <br>
-Risk: The skill uses a blunt relationship-advice persona that may feel harsh or unsuitable for vulnerable users. <br>
-Mitigation: Use it as informal decision support only, and seek trusted personal or professional support for safety, abuse, crisis, or mental-health concerns. <br>
+## Use Case:
 
+External users use this skill to describe relationship uncertainty or provide chat records, then receive structured relationship analysis, follow-up questions when key facts are missing, and direct guidance on whether to continue or end the relationship.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sachi-pp/dump-or-not) <br>
-- [Publisher profile](https://clawhub.ai/user/sachi-pp) <br>
-- [Relationship evaluation dimensions](references/dimensions.md) <br>
-- [One-vote veto conditions](references/veto-conditions.md) <br>
-- [Stop-gain breakup scenario](references/ziying-scenario.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Conversational Markdown followed by a generated 1080px vertical diagnostic card image.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask up to two follow-up questions when required relationship details are missing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release evidence) <br>
+Risk: The skill may process intimate relationship chats or screenshots.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing unnecessary personal identifiers and review any chat excerpts before submitting them to the agent.
+
+Risk: The diagnostic card workflow can leave generated HTML or image files in temporary and media directories.
+
+Mitigation: Delete generated files after use and avoid rendering cards from content that should not be stored or shared.
+
+Risk: The rendering workflow starts a local HTTP server for card capture.
+
+Mitigation: Run the workflow only in a trusted local environment and stop the server after rendering.
+
+## Reference(s):
+
+- [Artifact README](artifact/README.md)
+- [Assessment Dimensions](artifact/references/dimensions.md)
+- [Veto Conditions](artifact/references/veto-conditions.md)
+- [Profit-Taking Breakup Scenario](artifact/references/ziying-scenario.md)
+- [Diagnostic Card Rendering Guide](artifact/scripts/render.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, shell commands, files]
+
+**Output Format:** [Chinese prose and Markdown tables, followed by instructions that generate a PNG diagnostic card.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask up to two follow-up questions at a time before producing the final analysis.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

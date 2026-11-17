@@ -1,44 +1,58 @@
-## Description: <br>
-Web Researcher Mini helps agents search, scrape, crawl, and summarize web content into clean Markdown or JSON for research workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Firecrawl CLI for web scraping, crawling, and search, with support for extracting web content as clean Markdown and summarizing URLs or files.
 
-## Publisher: <br>
-[weilianglin100-sketch](https://clawhub.ai/user/weilianglin100-sketch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[weilianglin100-sketch](https://clawhub.ai/user/weilianglin100-sketch)
 
-## Use Case: <br>
-Researchers, analysts, and developers use this skill to collect web pages, crawl sites, search the web, and summarize URLs or files for research, documentation extraction, competitive intelligence, and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: External scraping and AI summarization services can receive submitted URLs, documents, page content, and configured API credentials. <br>
-Mitigation: Use approved public or shareable content only, avoid secrets and private/internal URLs unless approved, and configure scoped API keys. <br>
-Risk: Broad searches, crawls, or parallel scraping jobs can consume Firecrawl credits or collect more pages than intended. <br>
-Mitigation: Check status and credits first, confirm crawl limits, depth, concurrency, include/exclude paths, and output destinations before broad jobs. <br>
-Risk: Setup and workflow steps may add .firecrawl outputs to .gitignore or suggest shell-profile changes for API keys. <br>
-Mitigation: Review .gitignore and shell-profile changes before accepting them, and avoid committing generated research outputs or credentials. <br>
+## Use Case:
 
+External users, developers, and researchers use this skill to search, scrape, crawl, map, and summarize web content for research, documentation extraction, market analysis, competitor monitoring, and news review.
 
-## Reference(s): <br>
-- [Web Researcher Mini ClawHub listing](https://clawhub.ai/weilianglin100-sketch/web-researcher-mini) <br>
-- [Summarize homepage](https://summarize.sh) <br>
-- [Firecrawl CLI installation guidance](artifact/firecrawl-skills/rules/install.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples; Firecrawl and summarize commands can produce Markdown, JSON, text, HTML, links, screenshots, or extracted summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write extracted or summarized results to local files such as .firecrawl outputs when directed by the agent workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill sends target URLs and extracted content to external services such as Firecrawl and, for summarization workflows, AI providers or Apify.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for material approved for those services, and avoid confidential, internal, regulated, or proprietary content unless policy permits it.
+
+Risk: The documented batch command pattern can execute shell commands over untrusted URL lists.
+
+Mitigation: Review URL lists before batch execution, avoid running the xargs/sh example on untrusted input, and prefer constrained, quoted command construction.
+
+Risk: Installation and authentication examples can encourage global installs and shell-profile API key storage.
+
+Mitigation: Prefer pinned or local installs, avoid sudo npm install, and store API keys in a proper secret manager.
+
+## Reference(s):
+
+- [Web Researcher Mini ClawHub Page](https://clawhub.ai/weilianglin100-sketch/skills/web-researcher-mini)
+- [Summarize CLI](https://summarize.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can direct agents to write scraped, searched, crawled, mapped, or summarized web content to local output files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

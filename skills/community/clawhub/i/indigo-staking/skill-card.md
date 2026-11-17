@@ -1,42 +1,60 @@
-## Description: <br>
-Query and manage INDY token staking positions on Indigo Protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query and manage INDY token staking positions on Indigo Protocol.
 
-## Publisher: <br>
-[adacapo21](https://clawhub.ai/user/adacapo21) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adacapo21](https://clawhub.ai/user/adacapo21)
 
-## Use Case: <br>
-Developers and agents use this skill to query Indigo Protocol staking state and prepare INDY staking, adjustment, closing, and reward-distribution actions for wallet review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare crypto staking transactions that may move or lock assets if signed. <br>
-Mitigation: Verify the wallet address, staking position, amount units, fees, rewards, and resulting asset movement before signing any returned CBOR transaction. <br>
-Risk: Returned CBOR values depend on the Indigo MCP provider and may not include enough confirmation guidance by themselves. <br>
-Mitigation: Install and use the skill only with a trusted Indigo MCP provider, and treat each CBOR value as a transaction proposal requiring independent wallet review. <br>
+## Use Case:
 
+External users and developers use this skill to inspect INDY staking information, review staking positions, and prepare unsigned transactions to open, adjust, close, or distribute rewards for Indigo Protocol staking positions.
 
-## Reference(s): <br>
-- [Indigo Staking ClawHub Release](https://clawhub.ai/adacapo21/indigo-staking) <br>
-- [Staking MCP Tools Reference](artifact/references/mcp-tools.md) <br>
-- [Staking Concepts](artifact/references/concepts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with MCP tool names, parameters, JSON examples, and unsigned transaction CBOR outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations can return unsigned Cardano transaction CBOR that must be inspected and signed outside the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Security evidence marks the release suspicious because transaction instructions are inconsistent enough to require careful review before use with real funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually verify every generated transaction in a trusted wallet or transaction inspector before signing.
+
+Risk: Staking actions can affect locked INDY, accrued ADA rewards, transaction fees, and governance voting power.
+
+Mitigation: Confirm the caller address, staking UTxO transaction hash and output index, all outputs, fees, and INDY amounts in whole tokens and smallest units before signing.
+
+Risk: Owner-address queries can expose wallet-linked staking information.
+
+Mitigation: Avoid querying wallet-linked owner addresses without the address holder's consent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/adacapo21/skills/indigo-staking)
+- [Publisher Profile](https://clawhub.ai/user/adacapo21)
+- [Staking MCP Tools Reference](references/mcp-tools.md)
+- [Staking Concepts](references/concepts.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API Calls, Configuration instructions, guidance]
+
+**Output Format:** [Markdown with MCP tool call examples and JSON transaction responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations return unsigned Cardano transaction CBOR that must be reviewed, signed, and submitted outside the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Cross-cloud security posture assessment covering IAM analysis, encryption audit, and public exposure detection across AWS, Azure, and GCP using provider-specific inline command labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-cloud security posture assessment covering IAM analysis, encryption audit, and public exposure detection across AWS, Azure, and GCP using [AWS]/[Azure]/[GCP] inline labels for provider-specific commands.
 
-## Publisher: <br>
-[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vahagn-madatyan](https://clawhub.ai/user/vahagn-madatyan)
 
-## Use Case: <br>
-Developers, cloud security engineers, auditors, and incident responders use this skill to assess IAM posture, encryption coverage, and public exposure across multi-cloud AWS, Azure, and GCP environments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for broad cloud visibility across AWS, Azure, and GCP and may handle sensitive IAM, credential-report, and exposure data. <br>
-Mitigation: Use narrowly scoped read-only cloud credentials, restrict assessment scope to approved accounts or projects, and treat collected security data as confidential. <br>
-Risk: The security evidence notes that the skill overstates read-only safety while requesting GCP Storage Admin for bucket IAM inspection. <br>
-Mitigation: Avoid granting GCP Storage Admin unless it is truly required for the assessment, and prefer the least-privileged role set that supports the requested checks. <br>
+## Use Case:
 
+Developers, cloud security engineers, and auditors use this skill to assess IAM, encryption, and public exposure posture across AWS, Azure, and GCP environments. It supports multi-cloud reviews, pre-compliance audits, migration gates, incident-response scoping, periodic checks, and due diligence.
 
-## Reference(s): <br>
-- [CLI Reference](references/cli-reference.md) <br>
-- [Security Controls Reference](references/security-controls.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown assessment procedure with CLI command blocks and a report template] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces findings, provider comparison, and prioritized remediation guidance without modifying cloud resources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The release security summary flags an overbroad GCP storage admin prerequisite despite the skill's read-only posture.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the narrowest read-only or custom GCP permissions that can list buckets and read IAM policies instead of granting storage admin.
+
+Risk: Production cloud assessment can expose sensitive posture details or run low-impact initiation commands.
+
+Mitigation: Review commands before use, run them with a dedicated short-lived audit identity, and treat aws iam generate-credential-report as an explicit initiation step.
+
+## Reference(s):
+
+- [Cloud Security Posture skill page](https://clawhub.ai/vahagn-madatyan/skills/cloud-security-posture)
+- [CLI Reference](references/cli-reference.md)
+- [Security Controls Reference](references/security-controls.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, markdown]
+
+**Output Format:** [Markdown with inline shell commands and assessment tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces read-only assessment guidance and report content for agent-mediated cloud security reviews.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

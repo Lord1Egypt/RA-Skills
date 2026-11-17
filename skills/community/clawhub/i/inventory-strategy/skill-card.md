@@ -1,44 +1,61 @@
-## Description: <br>
-零售库存健康诊断与行动策略生成，基于语义层指标完成品类四象限分类、问题商品定位和行动方案输出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates retail inventory health diagnostics and action strategies using sell-through rate, stock-to-sales ratio, category quadrants, item drill-downs, and HTML/XLSX reports.
 
-## Publisher: <br>
-[jackyujun](https://clawhub.ai/user/jackyujun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackyujun](https://clawhub.ai/user/jackyujun)
 
-## Use Case: <br>
-Retail operators, planners, and inventory analysts use this skill to diagnose inventory health from semantic-layer metrics, identify at-risk categories and brand-season combinations, and generate staged HTML reports plus an xlsx action plan. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill queries inventory, sales, stock-value, and discount metrics that may include sensitive business information. <br>
-Mitigation: Install and run it only where metric-query access to those business metrics is approved. <br>
-Risk: Generated HTML and spreadsheet reports may expose sensitive commercial data if shared broadly. <br>
-Mitigation: Review generated report files before distributing them outside the intended business audience. <br>
+## Use Case:
 
+Retail operators, planners, and inventory analysts use this skill to diagnose inventory health, locate risky categories or brand-season combinations, and generate staged action plans. The workflow depends on an authorized metric-query skill for inventory and sales metrics.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jackyujun/inventory-strategy) <br>
-- [Final HTML report specification](references/report-html-spec.md) <br>
-- [Step 2 output template](references/step2-output-template.html) <br>
-- [Classification helper code](references/classify-code.py) <br>
-- [Dynamic sensing reference](references/dynamic-sensing.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown conversation output with generated HTML and xlsx report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires metric-query access to inventory, sales, stock-value, discount, and related semantic-layer metrics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill depends on metric-query access to inventory and sales data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only where the metric-query dependency is trusted and authorized for the relevant business data.
+
+Risk: Generated HTML reports and XLSX action plans may contain commercially sensitive inventory, pricing, brand, and season data.
+
+Mitigation: Store, transmit, and share generated files according to the organization's business data handling rules.
+
+Risk: Operational recommendations can be misleading if metric names, time constraints, or source data are incorrect.
+
+Mitigation: Confirm metric and dimension names through the required gateway search, preserve the specified time constraints, and review outputs before acting on promotions, replenishment, or clearance decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackyujun/skills/inventory-strategy)
+- [Final HTML report specification](artifact/references/report-html-spec.md)
+- [Step 1.5 dynamic health sensing reference](artifact/references/dynamic-sensing.md)
+- [Quadrant classification and action-rule code](artifact/references/classify-code.py)
+- [Stage 1 HTML output template](artifact/references/step2-output-template.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown guidance with JSON query payloads, generated HTML reports, and XLSX action plans]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces staged outputs and pauses for user confirmation between diagnosis, drill-down, and action-plan phases.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

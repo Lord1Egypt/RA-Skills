@@ -1,44 +1,60 @@
-## Description: <br>
-基于 AutoFigure-Edit 的科研级科学插图生成与编辑系统，能够从长篇方法描述自动生成完全可编辑的矢量图（SVG），支持参考图风格迁移和浏览器内交互式编辑 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates editable scientific illustration SVGs from research method descriptions, with optional reference-image style transfer and browser-based SVG editing.
 
-## Publisher: <br>
-[davidzhao30](https://clawhub.ai/user/davidzhao30) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidzhao30](https://clawhub.ai/user/davidzhao30)
 
-## Use Case: <br>
-Researchers, students, and technical writers use this skill to turn method descriptions into editable scientific figures, including SVG outputs, style-guided variants, and browser-editable diagrams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses external AI providers and API keys, so confidential unpublished research may be sent outside the local environment depending on provider configuration. <br>
-Mitigation: Keep API keys scoped and avoid submitting confidential research unless the selected provider terms and data handling are acceptable. <br>
-Risk: The documented editor/server behavior can expose generated files or uploads if bound to a network interface unintentionally. <br>
-Mitigation: Run the editor in an isolated Python environment and bind it to localhost unless broader network access is intentional. <br>
-Risk: The workflow depends on an external AutoFigure-Edit repository and Python dependencies that are outside the reviewed documentation artifact. <br>
-Mitigation: Review the external repository and dependencies before installation or execution. <br>
+## Use Case:
 
+Researchers, developers, and technical authors use this skill to turn long-form method descriptions into editable SVG figures, apply a reference visual style, and refine generated diagrams in an interactive editor.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidzhao30/scientific-drawing-skill-1-0-0) <br>
-- [AutoFigure-Edit project](https://github.com/ResearAI/AutoFigure-Edit) <br>
-- [Gemini API documentation](https://ai.google.dev/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance with command examples and generated SVG, PNG, JSON, and image asset files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include editable SVG figures, rendered PNG previews, segmentation metadata, templates, and extracted icon assets.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Installation and runtime behavior may execute unreviewed remote code or dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment or container and pin external repositories and dependencies to reviewed versions before use.
+
+Risk: The local editor may expose broad network access when bound to 0.0.0.0.
+
+Mitigation: Bind the editor to localhost by default, add authentication and network controls before wider exposure, and avoid opening it on untrusted networks.
+
+Risk: Scientific text, unpublished figures, or proprietary images may be sent to third-party AI providers or be affected by telemetry.
+
+Mitigation: Do not submit sensitive research or proprietary images unless provider terms, data handling, and telemetry behavior have been reviewed and accepted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/davidzhao30/skills/scientific-drawing-skill-1-0-0)
+- [AutoFigure-Edit project referenced by skill artifact](https://github.com/ResearAI/AutoFigure-Edit)
+- [Segment Anything 3 reference from skill artifact](https://github.com/facebookresearch/segment-anything-3)
+- [Google Gemini documentation referenced by skill artifact](https://ai.google.dev/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and generated figure file descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The described workflow produces editable SVG files, PNG previews, segmentation metadata, SVG templates, and extracted icon assets.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

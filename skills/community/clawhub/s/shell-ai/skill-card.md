@@ -1,42 +1,50 @@
-## Description: <br>
-Reference tool for devtools that covers Shell AI concepts, quickstart material, patterns, debugging, performance, security, migration, and cheat-sheet guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that covers Shell AI intro, quickstart, patterns, debugging, performance, security, migration, and cheat sheet guidance.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local reference for Shell AI concepts, implementation patterns, troubleshooting, performance, security, and migration guidance in devtools workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reference content is generic and may not match a user's specific Shell AI environment or operational requirements. <br>
-Mitigation: Review the guidance before applying it to production workflows and validate recommendations against the target environment. <br>
-Risk: The executable script reports version 2.0.1 while the release and skill metadata identify version 2.0.2. <br>
-Mitigation: Confirm the packaged script version during release validation so operators can trace the installed artifact accurately. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick local reference for Shell AI concepts, operational patterns, troubleshooting, performance, security, migration, and command-oriented cheat sheets.
 
-## Reference(s): <br>
-- [Shell Ai on ClawHub](https://clawhub.ai/ckchzh/shell-ai) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown-style headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No credentials, network access, or file mutation are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill provides generic operational reference guidance that may not match a user's real systems, policies, or tool versions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify operational steps against the target environment and current authoritative documentation before applying them to real systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/shell-ai)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections are emitted locally; no credentials, network calls, or external API calls are described by the security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

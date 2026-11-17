@@ -1,43 +1,57 @@
-## Description: <br>
-Generates images with Alibaba Cloud Bailian Qwen-Image and Z-Image models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images using Alibaba Cloud Bailian Qwen-Image and Z-Image models (通义千图文生图 + 人像照片模型).
 
-## Publisher: <br>
-[irron](https://clawhub.ai/user/irron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[irron](https://clawhub.ai/user/irron)
 
-## Use Case: <br>
-External users and developers use this skill to generate local image files from text prompts through DashScope, with automatic model selection for portrait, photo, and general image-generation scenarios. <br>
-
-### Deployment Geography for Use: <br>
-Global, subject to Alibaba Cloud DashScope regional API-key availability. <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent to Alibaba Cloud for generation. <br>
-Mitigation: Avoid sensitive or confidential prompt content and review the provider terms before use. <br>
-Risk: The skill requires a DashScope API key. <br>
-Mitigation: Use a dedicated, revocable key via DASHSCOPE_API_KEY and do not commit secrets in TOOLS.md. <br>
-Risk: An explicit output path can overwrite an existing local file. <br>
-Mitigation: Choose output paths carefully and write generated images to a controlled directory. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Alibaba Cloud Qwen-Image API documentation](https://help.aliyun.com/zh/model-studio/qwen-image-api) <br>
-- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com/) <br>
-- [ClawHub release page](https://clawhub.ai/irron/qwen-image-skill) <br>
+## Use Case:
 
+Developers and agent users use this skill to generate image files from text prompts with automatic model selection for portrait/photo prompts versus general image-generation prompts.
 
-## Skill Output: <br>
-**Output Type(s):** [Image files, Shell commands, Configuration guidance] <br>
-**Output Format:** [PNG image files plus terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; accepts prompt, model, size, watermark, prompt extension, and output path options.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can read DASHSCOPE_API_KEY from local TOOLS.md files, which may expose or reuse credentials outside a controlled environment.
+
+Mitigation: Provide DASHSCOPE_API_KEY through a controlled environment variable and avoid storing the key in shared TOOLS.md files.
+
+Risk: Image prompts are sent to Alibaba Cloud DashScope for processing.
+
+Mitigation: Do not submit sensitive prompts unless external processing by Alibaba Cloud is acceptable for the use case.
+
+Risk: The image download path saves API-provided URLs without sufficient host, response, or size validation.
+
+Mitigation: Review the skill before deployment and add allowed-host, response status, content type, and maximum-size checks for downloaded images.
+
+## Reference(s):
+
+- [Qwen-Image API documentation](https://help.aliyun.com/zh/model-studio/qwen-image-api)
+- [Alibaba Cloud Bailian console](https://bailian.console.aliyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, configuration, guidance]
+
+**Output Format:** [Image file output with console status text and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DASHSCOPE_API_KEY; supports prompt, model, size, prompt extension, watermark, and output-path options.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

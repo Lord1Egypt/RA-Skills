@@ -1,0 +1,75 @@
+# spec-coverage.yaml —— 涵蓋度常駐檔案（範本）
+#
+# status 五選一：confirmed | draft | tbd | n/a | missing
+#   confirmed  使用者確認過，已寫入文件            → 必填 file
+#   draft      已寫入文件但未確認                  → 必填 file、note（缺什麼）
+#   tbd        知道需要但尚未決定，不寫入文件      → 必填 note（誰決定什麼）、owner
+#   n/a        本專案不適用，不寫入文件            → 必填 note（理由）
+#   missing    尚未討論過，不寫入文件              → 由 Agent 主動標記
+#
+# 規則：項目只改狀態、不刪除；只做增量更新、不重建。
+#      變更項目代號需要人類授權，見 SKILL.md〈項目代號的變更〉。
+
+project: <專案代號>
+updated: <YYYY-MM-DD>
+spec_version: 0.1.0
+
+items:
+  # ── 第一篇 Business 商業層 ──────────────────────────────
+  S01: { status: missing }   # 專案背景
+  S02: { status: missing }   # 名詞定義 Glossary
+  S03: { status: missing }   # 使用者痛點分析
+  S04: { status: missing }   # 專案目標
+  S05: { status: missing }   # 商業模式
+  S06: { status: missing }   # 假設、限制與風險
+
+  # ── 第二篇 Business Design 業務層 ───────────────────────
+  S07: { status: missing }   # 業務流程
+  S08: { status: missing }   # 業務資料模型
+  S09: { status: missing }   # 業務規則 BR-
+  S10: { status: missing }   # 狀態機定義
+  S11: { status: missing }   # 角色定義（業務層）
+
+  # ── 第三篇 Requirements & Constraints 需求與約束層 ─────────
+  S12: { status: missing }   # 系統定位與範圍
+  S13: { status: missing }   # 功能需求與驗收標準 FR- / AC-
+  S14: { status: missing }   # 非功能需求 NFR-
+  S15: { status: missing }   # 合規與隱私要求
+  S16: { status: missing }   # 運行平台與技術選型約束
+
+  # ── 第四篇 System Design 系統層 ─────────────────────────
+  S17: { status: missing }   # 系統整體架構
+  S18: { status: missing }   # 系統模組設計
+  S19: { status: missing }   # 系統流程
+  S20: { status: missing }   # 權限矩陣 RBAC
+  S21: { status: missing }   # 失敗語意與一致性策略
+  S22: { status: missing }   # AI 元件設計（產品含 AI 時）
+
+  # ── 第五篇 Interface Design 介面層 ──────────────────────
+  S23: { status: missing }   # API 規格 API-
+  S24: { status: missing }   # Event 與訊息設計
+  S25: { status: missing }   # 第三方整合
+  S26: { status: missing }   # UI／UX 規劃
+
+  # ── 第六篇 Implementation 實作層 ────────────────────────
+  S27: { status: missing }   # 資料庫設計
+  S28: { status: missing }   # Cache 與資料同步策略
+  S29: { status: missing }   # 資料遷移與轉換
+  S30: { status: missing }   # 批次任務與背景作業
+  S31: { status: missing }   # 檔案與媒體管理
+  S32: { status: missing }   # 系統安全實作
+
+  # ── 第七篇 Infrastructure & Operations ───────────────
+  S33: { status: missing }   # 部署架構
+  S34: { status: missing }   # 備份與災難復原
+  S35: { status: missing }   # 觀測與監控
+  S36: { status: missing }   # 設定與環境變數清單
+
+  # ── 第八篇 Quality Assurance 品質層 ─────────────────────
+  S37: { status: missing }   # 測試策略
+  S38: { status: missing }   # AI 評測（產品含 AI 時）
+
+  # ── 第九篇 Records 紀錄（跨層） ────────────────────────────
+  S39: { status: missing }   # 架構決策紀錄 ADR-
+  S40: { status: missing }   # 開發規範
+  S41: { status: missing }   # 參考資料

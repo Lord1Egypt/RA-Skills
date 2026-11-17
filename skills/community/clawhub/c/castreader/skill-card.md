@@ -1,48 +1,63 @@
-## Description: <br>
-Extracts web page or synced book text and converts it to natural AI speech with Kokoro TTS, producing MP3 audio for delivery by an agent. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts web pages, text files, and synced book chapters, then converts the content into natural-sounding MP3 audio through CastReader/Kokoro TTS.
 
-## Publisher: <br>
-[vinxu](https://clawhub.ai/user/vinxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vinxu](https://clawhub.ai/user/vinxu)
 
-## Use Case: <br>
-External users and developers use this skill to turn article URLs, text files, or synced WeChat Reading and Kindle book chapters into MP3 narration. It supports extraction-first review flows before generating full-article, summary, paragraph, chapter, or full-book audio. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Article, book, or text-file content may be sent to the default CastReader TTS endpoint or a configured endpoint. <br>
-Mitigation: Use the skill only with content approved for that endpoint, avoid confidential or copyrighted material unless permitted, and configure CASTREADER_API_URL deliberately. <br>
-Risk: Generated audio and cached extraction data are written to local temporary paths. <br>
-Mitigation: Clear /tmp/castreader-* and /tmp/castreader-book-* after sensitive use and avoid shared temporary directories for private content. <br>
-Risk: The skill reads local synced book content from ~/castreader-library/books/ when book mode is used. <br>
-Mitigation: List books first, use exact server-returned book IDs, and limit use to library content the user is authorized to process. <br>
-Risk: The security verdict is suspicious because the skill has weak scoping around URLs, local library access, and command templates. <br>
-Mitigation: Review commands before execution, prefer trusted URLs, and avoid expanding the provided command templates beyond documented flows. <br>
+## Use Case:
 
+External users and agents use this skill to turn article URLs, extracted text, and synced WeChat Reading or Kindle book chapters into audio for listening workflows. It is useful when a chat agent needs to summarize, present choices, generate MP3 output, and send the resulting audio file back to the user.
 
-## Reference(s): <br>
-- [CastReader API Reference](references/castreader-api.md) <br>
-- [CastReader OpenClaw Homepage](https://castreader.ai/openclaw) <br>
-- [CastReader Website](https://castreader.ai) <br>
-- [Kokoro-82M Model Card](https://huggingface.co/hexgrad/Kokoro-82M) <br>
-- [ClawHub Release Page](https://clawhub.ai/vinxu/castreader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance, JSON command output, and MP3 audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated audio is written to local MP3 files, typically under /tmp/castreader-* or next to the source text file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.14 (source: server release evidence) <br>
+Risk: The skill has broad network and local-library access with under-disclosed privacy and containment risks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run in an isolated account or container, and keep dependencies updated.
+
+Risk: URLs, article text, or book content may be sent to the configured CastReader API for speech generation.
+
+Mitigation: Use only URLs and book content that are acceptable to send to CastReader's API, and avoid private, internal, or sensitive content.
+
+Risk: URL extraction can access arbitrary web targets from the runtime environment.
+
+Mitigation: Avoid internal or localhost URLs and do not run the skill in an environment with access to sensitive internal web services.
+
+## Reference(s):
+
+- [CastReader OpenClaw homepage](https://castreader.ai/openclaw)
+- [CastReader API Reference](references/castreader-api.md)
+- [Kokoro-82M model](https://huggingface.co/hexgrad/Kokoro-82M)
+- [CastReader website](https://castreader.ai)
+- [Chrome Extension](https://chromewebstore.google.com/detail/castreader-tts-reader/foammmkhpbeladledijkdljlechlclpb)
+- [Edge Add-on](https://microsoftedge.microsoft.com/addons/detail/niidajfbelfcgnkmnpcmdlioclhljaaj)
+- [ClawHub skill page](https://clawhub.ai/vinxu/skills/castreader)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON-shaped script results; generated MP3 files are returned by file path for message delivery.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and network access to the configured CastReader API endpoint; generated audio is written as MP3 files, commonly under /tmp.]
+
+## Skill Version(s):
+
+3.2.14 (source: server release evidence; artifact SKILL.md lists 3.2.13)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

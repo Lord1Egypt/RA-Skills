@@ -1,47 +1,62 @@
-## Description: <br>
-Deploy, import, interact with, and monitor smart contracts using Circle Smart Contract Platform APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents deploy, import, interact with, and monitor smart contracts through Circle Smart Contract Platform APIs, including template deployments, ABI calls, bytecode deployments, and webhook event monitoring.
 
-## Publisher: <br>
-[mscandlen3](https://clawhub.ai/user/mscandlen3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mscandlen3](https://clawhub.ai/user/mscandlen3)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement Circle Smart Contract Platform workflows for contract deployment, import, ABI-based reads and writes, template contracts, and event monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Circle API keys, entity secrets, or wallet credentials could be exposed if copied into frontend code, logs, committed files, or plain-text command flags. <br>
-Mitigation: Keep secrets server-side in environment variables or a secrets manager, avoid logging them, and add ignore rules for local secret material. <br>
-Risk: Deploy, mint, or write transactions can move funds or create irreversible on-chain effects on the wrong network, token, contract, or amount. <br>
-Mitigation: Default to testnet and require manual confirmation of wallet, network, fee, contract address, function, token, and amount before any write transaction. <br>
-Risk: Custom bytecode or unknown contracts may contain unaudited behavior or fail because of chain, constructor, gas, or EVM-version mismatches. <br>
-Mitigation: Prefer audited templates when available, warn before deploying custom bytecode or interacting with unknown contracts, validate inputs, and poll deployment or transaction status for failures. <br>
+## Use Case:
 
+Developers and engineers use this skill to build Circle Smart Contract Platform workflows for testnet-first smart contract deployment, contract imports, ABI reads and writes, and event monitoring.
 
-## Reference(s): <br>
-- [Circle Developer Docs](https://developers.circle.com/llms.txt) <br>
-- [Deploy Smart Contract with Bytecode](references/deploy-bytecode.md) <br>
-- [Deploy ERC-1155 Template](references/deploy-erc-1155.md) <br>
-- [Interact with a Deployed Contract](references/interact.md) <br>
-- [Monitor Smart Contract Events](references/monitor-events.md) <br>
-- [Contract Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API request patterns, environment variable guidance, transaction confirmation checklists, and polling steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Smart contract deployments and write transactions can trigger high-impact blockchain actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where Circle credentials stay server-side, use testnet by default, and require manual confirmation before mainnet or value-moving actions.
+
+Risk: Deployment examples can be unsafe to reuse directly if retry and idempotency handling is incomplete.
+
+Mitigation: Add UUID v4 idempotency keys to mutating requests and review retry behavior before production use.
+
+Risk: Dependency or credential handling mistakes could expose Circle API keys or entity secrets.
+
+Mitigation: Pin and review npm dependencies and keep API keys and entity secrets out of frontend code, logs, and committed files.
+
+## Reference(s):
+
+- [Deploy Smart Contract with Bytecode](references/deploy-bytecode.md)
+- [Deploy ERC-1155 Template](references/deploy-erc-1155.md)
+- [Interact with a Deployed Contract](references/interact.md)
+- [Monitor Smart Contract Events](references/monitor-events.md)
+- [Contracts Templates](references/templates.md)
+- [Circle Developer Docs](https://developers.circle.com/llms.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with TypeScript, shell, and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes testnet-first workflows, credential-handling guidance, idempotency requirements, and transaction confirmation checkpoints.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,57 @@
-## Description: <br>
-Interact with Metal Dollar (XMD) stablecoin to mint, redeem, check supply, collateral reserves, and oracle prices. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Metal Dollar (XMD) stablecoin - mint, redeem, supply analytics, collateral reserves, and oracle prices.
 
-## Publisher: <br>
-[paulgnz](https://clawhub.ai/user/paulgnz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[paulgnz](https://clawhub.ai/user/paulgnz)
 
-## Use Case: <br>
-External users and developers use this skill to inspect XMD treasury state, collateral reserves, balances, supply, and oracle prices, and to perform confirmed XMD mint or redeem transactions on XPR Network. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Write tools can sign real XPR Network transactions that move assets. <br>
-Mitigation: Use read-only tools by default; enable mint or redeem only when needed and require users to verify the amount, collateral symbol, and confirmed=true flag before execution. <br>
-Risk: Private-key environment variables are used for write operations but are not declared in the manifest requirements. <br>
-Mitigation: Provision a dedicated least-privileged XPR permission for this skill and avoid broad active-key access. <br>
-Risk: Mint and redeem outcomes depend on collateral limits, treasury pause state, and oracle pricing. <br>
-Mitigation: Check treasury config, collateral status, reserves, and oracle price before initiating a transaction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/paulgnz/xmd) <br>
-- [Publisher profile](https://clawhub.ai/user/paulgnz) <br>
+## Use Case:
 
+External users and developers use this skill to inspect XMD treasury state, collateral reserves, balances, supply, and oracle prices, and to request mint or redeem transactions for supported XPR Network collateral.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON tool responses with status messages, XMD analytics, and transaction identifiers for write operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only tools return XMD and collateral state; write tools require confirmed=true and can sign real blockchain transactions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.11 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Write tools can sign real XPR Network financial transactions using environment credentials.
+
+Mitigation: Install only with a dedicated, narrowly scoped XPR permission and small transaction limits.
+
+Risk: Setting confirmed=true allows xmd_mint and xmd_redeem to submit transfers.
+
+Mitigation: Require an external transaction preview or manual wallet confirmation before permitting confirmed=true.
+
+Risk: Mint and redeem results depend on current treasury state, collateral enablement, pause status, caps, and oracle prices.
+
+Mitigation: Check config, collateral status, reserves, and oracle price tools immediately before any write operation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/paulgnz/skills/xmd)
+- [XPR mainnet RPC endpoint](https://xpr-mainnet-rpc.saltant.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, API calls, guidance]
+
+**Output Format:** [Structured JSON tool responses with concise text guidance and transaction identifiers for submitted write operations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only tools query XPR Network state; mint and redeem tools require explicit confirmation before signing.]
+
+## Skill Version(s):
+
+0.2.11 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

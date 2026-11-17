@@ -3,8 +3,8 @@
 ## 数据来源
 
 **接口**: 红狐数据 - 公众号爆款文章搜索
-**URL**: `https://redfox.hk/story/api/gzh/search/hotArticle`
-**API Key**: `ak_c4fc9018ffb14ce4ae35dafd92f466c3`
+**URL**: `https://redfox.hk/story/api/gzh/search/hotArticleNew`
+**API Key**: `ak_xxxxxxxxxxxxxxxx`
 
 ---
 

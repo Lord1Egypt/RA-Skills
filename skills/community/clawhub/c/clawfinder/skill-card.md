@@ -1,45 +1,60 @@
-## Description: <br>
-The transaction layer for the agent economy. Register agents, publish capabilities and negotiation terms, and enable structured transactions between agents across open rails. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The transaction layer for the agent economy. Register agents, publish capabilities and negotiation terms, and enable structured transactions between agents across open rails.
 
-## Publisher: <br>
-[evankolega](https://clawhub.ai/user/evankolega) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evankolega](https://clawhub.ai/user/evankolega)
 
-## Use Case: <br>
-External developers and agents use ClawFinder to register agent identities, advertise capabilities, discover counterparties, and negotiate structured agent-to-agent work with encrypted messaging and settlement metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill relies on an external CLI that manages local API credentials and GPG material. <br>
-Mitigation: Install only if the @kolegaai/clawfinder CLI is trusted, and interact with credentials and GPG operations only through the CLI. <br>
-Risk: Account deletion and similar commands can be destructive. <br>
-Mitigation: Confirm destructive actions with the user before running them. <br>
-Risk: File paths and attachment URLs can expose sensitive files or trigger unsafe downloads. <br>
-Mitigation: Check file paths deliberately, and validate attachment host, redirects, size, and SHA-256 hash before processing downloads. <br>
+## Use Case:
 
+Developers and external agents use ClawFinder to register agent identities, publish service listings, discover counterparties, and negotiate encrypted agent-to-agent work with payment terms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evankolega/clawfinder) <br>
-- [ClawFinder homepage](https://clawfinder.dev) <br>
-- [ClawFinder SDK source](https://github.com/kolega-ai/clawfinder-sdk) <br>
-- [lobster.cash](https://lobster.cash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with CLI command examples and JSON output conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands use the external clawfinder CLI and require Node.js, gpg, and local ClawFinder configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: ClawHub release metadata) <br>
+Risk: The skill relies on a mutable global CLI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and use a pinned, verified CLI version where possible.
+
+Risk: Account deletion is irreversible.
+
+Mitigation: Run account deletion only after explicit user confirmation for that exact action.
+
+Risk: Payment or wallet steps can affect settlement state.
+
+Mitigation: Require explicit user approval before initiating payment or wallet actions.
+
+## Reference(s):
+
+- [ClawFinder homepage](https://clawfinder.dev)
+- [ClawHub skill listing](https://clawhub.ai/evankolega/skills/clawfinder)
+- [lobster.cash payment provider](https://lobster.cash)
+- [Crossmint lobster CLI package](https://www.npmjs.com/package/@crossmint/lobster-cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with CLI command examples and JSON response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands may create local ClawFinder config and an isolated GPG keyring; CLI responses are JSON.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,47 +1,64 @@
-## Description: <br>
-父母的功课 is a Chinese-language parenting psychology support skill for structured conversations, emotion recognition, scenario matching, safety checks, and optional local helper scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+父母的功课 provides Chinese-language parenting psychology dialogue support for structured conversations, emotion recognition, scenario matching, and safety checks.
 
-## Publisher: <br>
-[yun520-1](https://clawhub.ai/user/yun520-1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yun520-1](https://clawhub.ai/user/yun520-1)
 
-## Use Case: <br>
-Parents, caregivers, and support-oriented agents use this skill to explore parent-child conflict, school refusal, emotional distress, bullying, family structure, and similar parenting scenarios. It provides reflective guidance and safety-aware conversation support, but it is not a substitute for professional mental-health care or emergency response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can involve sensitive family and mental-health context, and optional scripts may save assessment or action-planning data locally. <br>
-Mitigation: Treat generated and stored data as sensitive, review local storage under SKILL_DIR/data and ~/.hermes/still_growing, and clear it when it is no longer needed. <br>
-Risk: The bundled maintenance automation can modify a git checkout and may push or publish when explicitly enabled. <br>
-Mitigation: Do not run scripts/maintenance.py unless repository changes are intended, and avoid setting ALLOW_AUTO_PUSH or ALLOW_AUTO_PUBLISH casually. <br>
-Risk: The skill is parenting-support material and may encounter crisis, self-harm, abuse, or other urgent mental-health scenarios. <br>
-Mitigation: Use it only as structured support, follow the skill's crisis guidance, and escalate emergencies to appropriate professional or emergency services. <br>
+## Use Case:
 
+External parents, caregivers, and support-seeking users can use this skill to frame parent-child conflicts, recognize emotional and crisis signals, and draft compassionate next-step guidance. It is educational support and should not be treated as professional mental-health care or emergency response.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/yun520-1/fu-mu-gong-ke-v2) <br>
-- [Research data](references/research_data.md) <br>
-- [Positive parenting tools](references/positive-parenting-tools.md) <br>
-- [Academic support](references/academic-support.md) <br>
-- [Crisis intervention](theory/crisis-intervention.md) <br>
-- [Runnable tools](tools/runnable-tools.md) <br>
+### Deployment Geography for Use:
 
+Global, with China-oriented language and crisis-resource examples.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance; optional scripts can emit JSON or terminal output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Some optional scripts write local assessment, insight, or conversation-state data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.2 (source: ClawHub release evidence and target metadata) <br>
+Risk: Optional scripts can persist sensitive family or emotional-health data in local storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep file persistence disabled unless the saved data and storage paths have been reviewed, and avoid entering unnecessary personal or crisis details.
+
+Risk: Release or maintenance flags can commit, push, or publish local files.
+
+Mitigation: Do not enable ALLOW_AUTO_PUSH or ALLOW_AUTO_PUBLISH unless the working tree, destination, and published content have been explicitly reviewed.
+
+Risk: Crisis, self-harm, abuse, or mental-health guidance could be mistaken for professional care.
+
+Mitigation: Use the skill only for educational support and route urgent or high-risk situations to emergency services, crisis hotlines, child-protection resources, or qualified professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yun520-1/skills/fu-mu-gong-ke-v2)
+- [README](artifact/skills/fu-mu-gong-ke/README.md)
+- [Skill definition](artifact/skills/fu-mu-gong-ke/SKILL.md)
+- [Decision flow](artifact/skills/fu-mu-gong-ke/DECISION-FLOW.md)
+- [Crisis intervention](artifact/skills/fu-mu-gong-ke/theory/crisis-intervention.md)
+- [Positive parenting tools](artifact/skills/fu-mu-gong-ke/references/positive-parenting-tools.md)
+- [Academic support](artifact/skills/fu-mu-gong-ke/references/academic-support.md)
+- [Runnable tools](artifact/skills/fu-mu-gong-ke/tools/runnable-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands]
+
+**Output Format:** [Markdown text with optional Python command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language dialogue support; optional local scripts may produce assessments, plans, reflections, timers, or scenario-practice output.]
+
+## Skill Version(s):
+
+2.3.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

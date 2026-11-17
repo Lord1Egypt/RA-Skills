@@ -1,42 +1,59 @@
-## Description: <br>
-DingTalk bot connection configuration guide for installing, configuring, and troubleshooting the OpenClaw DingTalk connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through installing, configuring, and troubleshooting the OpenClaw DingTalk connector for DingTalk bot messaging.
 
-## Publisher: <br>
-[chao980](https://clawhub.ai/user/chao980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chao980](https://clawhub.ai/user/chao980)
 
-## Use Case: <br>
-Developers and operators use this skill to connect OpenClaw to DingTalk bots, configure AppKey/AppSecret credentials, validate gateway status, and troubleshoot message delivery issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The setup guide instructs users to install and trust an external DingTalk connector package. <br>
-Mitigation: Confirm the connector package and repository are trusted before installation. <br>
-Risk: The configuration flow handles AppSecret and API credentials that could be exposed through committed config files, logs, or screenshots. <br>
-Mitigation: Keep ~/.openclaw/openclaw.json private, avoid sharing logs or screenshots containing secrets, restrict local file access where possible, and rotate credentials after any suspected exposure. <br>
+## Use Case:
 
+Developers and operators use this skill to connect OpenClaw to a DingTalk enterprise bot, configure AppKey and AppSecret credentials, and troubleshoot message delivery, authentication, version, stream connection, and port issues.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chao980/dingtalk-link-smb) <br>
-- [DingTalk OpenClaw connector documentation](https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector) <br>
-- [DingTalk Open Platform](https://open-dev.dingtalk.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup flow asks users to install mutable external connector code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify the DingTalk connector and OpenClaw versions where possible before installation.
+
+Risk: The setup flow stores DingTalk AppSecret credentials in a local OpenClaw configuration file.
+
+Mitigation: Restrict ~/.openclaw/openclaw.json to the owning user, keep it out of repositories and support bundles, and rotate the AppSecret if exposure is suspected.
+
+Risk: Global npm installation can broaden host-level impact if run with elevated privileges.
+
+Mitigation: Avoid running global npm installs with elevated privileges unless the environment requires it and the package source has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chao980/skills/dingtalk-link-smb)
+- [DingTalk OpenClaw connector documentation](https://github.com/DingTalk-Real-AI/dingtalk-openclaw-connector)
+- [DingTalk Open Platform](https://open-dev.dingtalk.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

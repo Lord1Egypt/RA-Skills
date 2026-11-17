@@ -50,7 +50,9 @@ function parseArgs(argv) {
         "  --days N                 (1-365, news only, default 7)\n" +
         "  --include a,b,c          domains to include\n" +
         "  --exclude a,b,c          domains to exclude\n" +
-        "  --json                   raw JSON output\n" +
+        "  --json                   redacted JSON output\n" +
+        "\n" +
+        "Env: TAVILY_TEST_ENDPOINT is local-test-only; use dummy keys because it receives Authorization.\n" +
         "\n" +
         "For caching, raw-content, extract, and stats, use a separately reviewed Pro Tavily skill/package when available.\n"
       );
@@ -108,26 +110,48 @@ function truncate(s, n) {
   return s.length > n ? s.slice(0, n - 3) + "..." : s;
 }
 
-function formatHuman(resp, args, elapsedMs) {
+function redactSecret(text, secret) {
+  const value = String(text || "");
+  if (!secret) return value;
+  return value.split(secret).join("[redacted]");
+}
+
+function redactValue(value, secret) {
+  if (!secret) return value;
+  if (typeof value === "string") return redactSecret(value, secret);
+  if (Array.isArray(value)) return value.map((item) => redactValue(item, secret));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([key, item]) => [redactSecret(key, secret), redactValue(item, secret)]));
+  }
+  return value;
+}
+
+function isDummyLocalTestKey(value) {
+  const key = String(value || "").trim().toLowerCase();
+  return /^(test|dummy|fake|local|example)[-_]/.test(key)
+    || /(^|[-_])(test|dummy|fake|local|example|not[-_]?real|do[-_]?not[-_]?(?:print|use))([-_]|$)/.test(key);
+}
+
+function formatHuman(resp, args, elapsedMs, secret) {
   const lines = [];
-  lines.push(`Query: ${args.query}`);
+  lines.push(`Query: ${redactSecret(args.query, secret)}`);
   lines.push(`Topic: ${args.topic} - Depth: ${args.depth} - Results: ${(resp.results || []).length}/${args.max}`);
   if (resp.answer) {
     lines.push("");
     lines.push("Answer:");
-    lines.push(truncate(String(resp.answer).trim(), 1200));
+    lines.push(truncate(redactSecret(String(resp.answer).trim(), secret), 1200));
   }
   lines.push("");
   lines.push("Results:");
   (resp.results || []).forEach((r, i) => {
-    lines.push(`${i + 1}. ${r.title || "(no title)"}`);
-    lines.push(`   ${r.url || ""}`);
-    if (r.published_date) lines.push(`   published: ${r.published_date}`);
-    if (r.content) lines.push(`   ${truncate(String(r.content).replace(/\s+/g, " ").trim(), 280)}`);
+    lines.push(`${i + 1}. ${redactSecret(r.title || "(no title)", secret)}`);
+    lines.push(`   ${redactSecret(r.url || "", secret)}`);
+    if (r.published_date) lines.push(`   published: ${redactSecret(r.published_date, secret)}`);
+    if (r.content) lines.push(`   ${truncate(redactSecret(String(r.content).replace(/\s+/g, " ").trim(), secret), 280)}`);
   });
   lines.push("");
   const parts = [`elapsed ${elapsedMs}ms`];
-  if (resp.response_time) parts.push(`api ${resp.response_time}s`);
+  if (resp.response_time) parts.push(`api ${redactSecret(resp.response_time, secret)}s`);
   lines.push(`- ${parts.join(" - ")}`);
   return asciiSafe(lines.join("\n"));
 }
@@ -153,6 +177,9 @@ async function main() {
     if (parsed.protocol !== "http:" || parsed.hostname !== "127.0.0.1" || parsed.username || parsed.password || !parsed.port) {
       die("TAVILY_TEST_ENDPOINT is only allowed for local 127.0.0.1 tests");
     }
+    if (!isDummyLocalTestKey(apiKey)) {
+      die("TAVILY_TEST_ENDPOINT requires a clearly dummy/local/test TAVILY_API_KEY; refusing to send a possible real credential to a test endpoint");
+    }
   }
   const body = {
     query: args.query,
@@ -174,6 +201,7 @@ async function main() {
   try {
     resp = await fetch(endpoint, {
       method: "POST",
+      redirect: "manual",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
@@ -187,6 +215,10 @@ async function main() {
   }
 
   const elapsed = Date.now() - started;
+  if (resp.status >= 300 && resp.status < 400) {
+    clearTimeout(timer);
+    die(`HTTP ${resp.status}: redirect refused; not following provider/test endpoint redirects to preserve outbound destination boundary`);
+  }
   let text;
   try {
     text = await resp.text();
@@ -201,19 +233,21 @@ async function main() {
     let detail = text;
     try { const j = JSON.parse(text); detail = j.detail || j.error || text; } catch {}
     const retry = resp.headers.get("retry-after");
-    const retryHint = retry ? ` (retry-after: ${retry}s)` : "";
-    die(`HTTP ${resp.status}${retryHint}: ${String(detail).slice(0, 500)}`);
+    const safeRetry = retry ? redactSecret(retry, apiKey).slice(0, 120) : "";
+    const retryHint = safeRetry ? ` (retry-after: ${safeRetry})` : "";
+    die(`HTTP ${resp.status}${retryHint}: ${redactSecret(String(detail), apiKey).slice(0, 500)}`);
   }
 
   let data;
   try { data = JSON.parse(text); }
-  catch { die(`invalid JSON response: ${text.slice(0, 300)}`); }
+  catch { die(`invalid JSON response: ${redactSecret(text, apiKey).slice(0, 300)}`); }
 
+  const safeData = redactValue(data, apiKey);
   if (args.json) {
-    process.stdout.write(JSON.stringify(data, null, 2) + "\n");
+    process.stdout.write(JSON.stringify(safeData, null, 2) + "\n");
     return;
   }
-  process.stdout.write(formatHuman(data, args, elapsed) + "\n");
+  process.stdout.write(formatHuman(safeData, args, elapsed, apiKey) + "\n");
 }
 
 main().catch((e) => die(e?.message || String(e)));

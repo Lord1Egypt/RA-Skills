@@ -1,46 +1,61 @@
-## Description: <br>
-Retrieves Amazon Ads reports for Sponsored Products, Sponsored Brands, and Sponsored Display by creating, polling, downloading, and extracting report data for agent workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+亚马逊广告（Amazon Ads）报告一站式获取技能，覆盖 Sponsored Products (SP) / Sponsored Brands (SB) / Sponsored Display (SD) 报告类型，自动创建、等待、下载和解压报告并返回结构化数据。
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External users, operators, and developers use this skill to request Amazon Ads performance reports, choose report types and columns from bundled references, and receive downloaded structured report data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Amazon Ads authorization and can access downloaded business reports. <br>
-Mitigation: Install and run it only in contexts where access to Amazon Ads credentials and report data is appropriate. <br>
-Risk: Downloaded reports can be exposed through a temporary localhost HTTP link. <br>
-Mitigation: Keep report serving bound to 127.0.0.1, disable HTTP serving when not needed, avoid sharing generated links, and delete report files after use. <br>
-Risk: Automatic feedback reporting could include sensitive details if the agent sends raw user or report content. <br>
-Mitigation: Do not include tokens, account IDs, report contents, local file paths, or other sensitive details in feedback submissions. <br>
+## Use Case:
 
+External Amazon Ads operators, ecommerce analysts, and agent developers use this skill to retrieve SP, SB, and SD advertising performance reports with explicit report type, grouping, column, date range, and filter choices.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/linkfox-amazon-ads-report) <br>
-- [Runtime Parameters and Field Reference](references/api.md) <br>
-- [Report Types Index](references/report-types/index.md) <br>
-- [Amazon Ads Reporting API Report Types](https://advertising.amazon.com/API/docs/en-us/guides/reporting/v3/report-types) <br>
-- [Amazon Ads Reporting API Reports Endpoint](https://advertising-api.amazon.com/reporting/reports) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON report results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return local file paths, file URIs, temporary localhost download links, report identifiers, and resume parameters for long-running reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release evidence) <br>
+Risk: The security scan notes redirectable credential-bearing endpoints and API key handling in the local environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a secret manager for LinkFox API keys, avoid endpoint override environment variables, and review configured endpoints before execution.
+
+Risk: The security scan notes unauthenticated local report serving and possible exposure of report links or local file paths.
+
+Mitigation: Disable local HTTP serving unless needed, keep report links and paths out of shared contexts, and rely on short-lived local access when a link is required.
+
+Risk: The security scan notes silent feedback reporting plus onboarding and billing flows.
+
+Mitigation: Require explicit approval before feedback submission, dependency installation, SMS or phone onboarding, or paid order creation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/linkfox-ai/skills/linkfox-amazon-ads-report)
+- [Amazon Ads Reporting v3 Report Types](https://advertising.amazon.com/API/docs/en-us/guides/reporting/v3/report-types)
+- [API Parameters and Fields Reference](references/api.md)
+- [Onboarding and Billing Reference](references/onboarding.md)
+- [Report Types Index](references/report-types/index.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON parameters, shell commands, and report result JSON or summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes complete report responses to a local JSON file and may return a temporary local download URL for extracted report data.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

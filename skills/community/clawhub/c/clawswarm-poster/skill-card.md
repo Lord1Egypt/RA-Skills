@@ -1,41 +1,53 @@
-## Description: <br>
-Post formatted content simultaneously across MoltX, Twitter/X, Discord, and Telegram from one command with platform-specific optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post formatted content simultaneously across MoltX, Twitter/X, Discord, and Telegram from one command with platform-specific optimization.
 
-## Publisher: <br>
-[imaflytok](https://clawhub.ai/user/imaflytok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[imaflytok](https://clawhub.ai/user/imaflytok)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare platform-tailored social posts and publishing commands for MoltX, Twitter/X, Discord, Telegram, and ClawSwarm service registration. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Publishing commands can send content to external services. <br>
-Mitigation: Review every payload before sending and only publish content intended to leave the local environment. <br>
-Risk: API keys, bot tokens, and agent IDs may be required for posting or service registration. <br>
-Mitigation: Store credentials in a dedicated secret store and avoid hard-coding them in prompts, scripts, or shared logs. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imaflytok/clawswarm-poster) <br>
-- [Publisher profile](https://clawhub.ai/user/imaflytok) <br>
-- [ClawSwarm services marketplace](https://onlyflies.buzz/clawswarm/services.html) <br>
+## Use Case:
 
+Developers and agents use this skill to prepare and publish platform-specific posts across social and messaging services from a single workflow. It also includes optional marketplace registration examples for offering cross-posting as a paid service.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes platform-specific content limits and live external API command examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can lead an agent to publish content to external social and messaging services using API keys, bot tokens, OAuth credentials, or webhooks.
+
+Mitigation: Review content before posting, use scoped credentials, and keep secrets out of prompts, command history, shared logs, and generated output.
+
+Risk: The skill includes paid ClawSwarm service registration steps for an external service that is not required for basic cross-posting.
+
+Mitigation: Skip service registration unless the operator has reviewed the provider, data retention, credential scope, pricing, and removal process.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imaflytok/skills/clawswarm-poster)
+- [ClawSwarm services marketplace](https://onlyflies.buzz/clawswarm/services.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes platform-specific content formatting guidance and external API or service registration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Normalizes Indian real-estate location text into canonical Mumbai and Pune city and locality fields with confidence scores and unresolved flags. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Normalize Indian real-estate location text into canonical city and locality fields for Mumbai and Pune leads, with confidence scores and unresolved flags.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-External teams and developers use this skill after lead extraction to standardize Indian real-estate location hints before scoring, routing, analytics, or storage. It is intended for Mumbai and Pune locality normalization and flags ambiguous or low-confidence cases instead of forcing a match. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Ambiguous aliases can create incorrect city or locality assignments for downstream routing, scoring, analytics, or storage. <br>
-Mitigation: Review ambiguous aliases and make downstream steps respect confidence scores and unresolved_flag before automation. <br>
-Risk: Coverage is limited to the supplied Mumbai and Pune alias map, so unsupported locations may remain unresolved. <br>
-Mitigation: Treat unresolved outputs as requiring human or upstream review rather than canonical locations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vishalgojha/india-location-normalizer) <br>
-- [India location alias map](references/india-location-aliases-v1.json) <br>
-- [Location normalizer input schema](references/location-normalizer-input.schema.json) <br>
-- [Location normalizer output schema](references/location-normalizer-output.schema.json) <br>
+## Use Case:
 
+Developers and operators use this skill after lead extraction to standardize Mumbai and Pune real-estate locality hints before scoring or storage. It returns canonical city, locality, micro-market, matched alias, confidence, resolution method, and unresolved status without writing data or triggering outbound actions.
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, guidance] <br>
-**Output Format:** [JSON matching references/location-normalizer-output.schema.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [One normalized location record per input lead, including city, canonical locality, micro-market, matched alias, confidence, resolution method, and unresolved flag.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+India
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Ambiguous aliases can route a lead to the wrong locality when the same short form is used for multiple areas.
+
+Mitigation: Use the skill's unresolved_flag behavior for equally matched or low-confidence aliases, and review or tune ambiguous aliases such as bare "thane" and "cbd" before relying on routing decisions.
+
+Risk: The alias map is limited to Mumbai and Pune, so unsupported cities or unrecognized locality text may remain unresolved.
+
+Mitigation: Preserve the original input in matched_alias for unresolved records and treat unresolved outputs as requiring downstream review or expanded reference data.
+
+## Reference(s):
+
+- [India location aliases v1](references/india-location-aliases-v1.json)
+- [Location normalizer input schema](references/location-normalizer-input.schema.json)
+- [Location normalizer output schema](references/location-normalizer-output.schema.json)
+- [ClawHub skill page](https://clawhub.ai/vishalgojha/skills/india-location-normalizer)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON object containing normalized location records]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Read-only normalization output with confidence scores, resolution method, and unresolved flags.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

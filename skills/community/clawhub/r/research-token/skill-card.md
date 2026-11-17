@@ -1,38 +1,53 @@
-## Description: <br>
-Research a token's Uniswap liquidity, volume profile, pool distribution, and risk factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Research a token's Uniswap liquidity, volume profile, pool distribution, and risk factors. Use when the user asks about a token's tradability, liquidity depth, or wants due diligence.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-External users and developers use this skill to perform Uniswap-focused due diligence on token tradability, liquidity depth, volume trends, pool distribution, and observable on-chain risk factors before trading or LPing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Token research output may be mistaken for financial advice or relied on without independent verification. <br>
-Mitigation: Use the skill as due diligence support only and verify important liquidity, pool, and risk claims before trading or providing liquidity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wpank/research-token) <br>
-- [Publisher profile](https://clawhub.ai/user/wpank) <br>
+## Use Case:
 
+External users and developers use this skill to assess Uniswap token tradability, liquidity depth, pool distribution, volume trends, and observable risk factors before trading or liquidity decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown summary with token liquidity, volume, pool distribution, risk factors, and concise error messages when data is unavailable.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Delegates token research to a token-analyst agent and reports Uniswap protocol perspective only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill provides Uniswap liquidity due diligence, which may be mistaken for investment advice or a complete scam assessment.
+
+Mitigation: Present findings as protocol-focused liquidity, volume, and observable risk analysis, and avoid treating them as price predictions or comprehensive investment recommendations.
+
+Risk: The README installation examples use mutable remote package commands.
+
+Mitigation: Before installation, prefer a pinned commit or reviewed package version.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wpank/skills/research-token)
+- [Publisher Profile](https://clawhub.ai/user/wpank)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown summary with structured token, liquidity, volume, risk, and trading-depth sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries should identify missing tokens, absent pools, or limited data with concise user-facing messages.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Scans Markdown files in the current or specified directory and generates a structured digest with titles, sections, word counts, and summary totals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a structured daily digest from top-level Markdown files in the current or specified directory.
 
-## Publisher: <br>
-[ithrael](https://clawhub.ai/user/ithrael) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[ithrael](https://clawhub.ai/user/ithrael)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and developers use this skill to summarize Markdown documents in a working directory into a daily report with titles, sections, word counts, and aggregate statistics.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The digest may expose information from private Markdown documents in the current or specified directory.
+
+Mitigation: Run the skill only in directories intended for summarization and avoid workspaces containing sensitive Markdown files.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, writers, and documentation teams use this skill to summarize Markdown work in a chosen folder into a quick daily report for review or sharing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Text]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads Markdown files in the current or specified folder and prints document metadata that may reveal sensitive workspace content. <br>
-Mitigation: Run it against an explicit narrow directory in sensitive workspaces and review the generated digest before sharing it. <br>
+**Output Format:** [Markdown report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ithrael/ithrael-daily-digest) <br>
+**Other Properties Related to Output:** [Reports generation time, scanned directory, file count, per-file titles, level-two sections, word counts, aggregate totals, and unreadable-file errors.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands] <br>
-**Output Format:** [Markdown report printed to stdout] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports top-level Markdown files in the selected directory, including extracted titles, second-level headings, word counts, and aggregate totals.] <br>
+1.0.0 (source: release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

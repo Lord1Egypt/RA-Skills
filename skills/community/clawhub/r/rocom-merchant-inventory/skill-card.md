@@ -1,42 +1,60 @@
-## Description: <br>
-查询《洛克王国世界》远行商人当前库存，自动过滤出本轮仍有效的商品。适用于想查看远行商人当前卖什么，或需要输出简洁文本、JSON 结果时使用；需要用户自行提供 API key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询《洛克王国世界》远行商人当前库存，并自动过滤出本轮仍有效的商品。
 
-## Publisher: <br>
-[nitansde](https://clawhub.ai/user/nitansde) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nitansde](https://clawhub.ai/user/nitansde)
 
-## Use Case: <br>
-Players and agents use this skill to fetch the current Roco Kingdom World traveling merchant inventory, filter out items outside the current sales window, and return a concise text or JSON result. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a user-provided API key. <br>
-Mitigation: Use an API key you are allowed to use, prefer an environment variable or local secret, and avoid placing the key in shared chat, command history, or logs. <br>
-Risk: The skill depends on a third-party API service for inventory data. <br>
-Mitigation: Install and run it only if you trust the publisher and the wegame.shallow.ink API service. <br>
+## Use Case:
 
+External users and game-assistant agents use this skill to check the current RoCom merchant inventory and return the items still valid in the current merchant round. It is useful when a user wants a concise text summary or JSON result and can provide their own API key.
 
-## Reference(s): <br>
-- [API 说明](references/api.md) <br>
-- [ClawHub skill page](https://clawhub.ai/nitansde/rocom-merchant-inventory) <br>
-- [Merchant inventory API endpoint](https://wegame.shallow.ink/api/v1/games/rocom/merchant/info?refresh=true) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text by default, or JSON when requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Filters inventory items by the current Beijing-time sales window and includes fetched time, round status, item count, item names, images, and availability windows when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill sends the user-provided Roco merchant API key to the documented wegame.shallow.ink endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that endpoint is acceptable for the deployment, and provide ROCOM_API_KEY from a controlled environment.
+
+Risk: Passing the API key with --api-key can expose it through shell history, logs, or shared terminal output.
+
+Mitigation: Prefer ROCOM_API_KEY over command-line arguments and rotate the key if it may have been exposed.
+
+Risk: Inventory results depend on a live remote API and current Beijing-time filtering.
+
+Mitigation: Treat empty or failed results as live-service conditions and retry or verify directly before acting on the inventory.
+
+## Reference(s):
+
+- [API 说明](references/api.md)
+- [ClawHub skill page](https://clawhub.ai/nitansde/skills/rocom-merchant-inventory)
+- [Entropy-Increase-Team API key source](https://github.com/Entropy-Increase-Team/)
+- [RoCom merchant inventory API endpoint](https://wegame.shallow.ink/api/v1/games/rocom/merchant/info?refresh=true)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Plain text inventory summary or JSON object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied ROCOM_API_KEY and filters items to the current Beijing-time merchant round.]
+
+## Skill Version(s):
+
+1.0.2 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

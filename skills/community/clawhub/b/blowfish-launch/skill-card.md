@@ -1,41 +1,54 @@
-## Description: <br>
-Launch, deploy, and manage Solana tokens via the Blowfish Agent API, including status checks and claiming accrued trading fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch, check, list, and manage Solana token deployments and fee claims through the Blowfish Agent API for Meteora Dynamic Bonding Curve launches.
 
-## Publisher: <br>
-[basedmereum](https://clawhub.ai/user/basedmereum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[basedmereum](https://clawhub.ai/user/basedmereum)
 
-## Use Case: <br>
-Developers and external users use this skill to launch Solana tokens through Blowfish, monitor launch status, list launched tokens, and claim accrued trading fees. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent process to use a full Solana wallet private key for real token-launch and fee-claim actions. <br>
-Mitigation: Use only a dedicated low-value Solana wallet, keep the private key out of shell history, and manually confirm every launch or fee-claim action before submission. <br>
-Risk: Actions are sent to an external Blowfish API endpoint and may create live on-chain effects. <br>
-Mitigation: Verify the API endpoint and publisher before use, install dependencies deliberately, and review request parameters before the agent runs the bundled script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Blowfish Agent API Reference](references/api.md) <br>
-- [Blowfish Agent API](https://api-blowfish.neuko.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/basedmereum/blowfish-launch) <br>
+## Use Case:
 
+Developers and external users use this skill to launch Solana tokens, monitor launch status, list launched tokens, and claim accrued trading fees through the Blowfish Agent API.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and API parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit authenticated token-launch, status-check, listing, and fee-claim requests through the Blowfish Agent API.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles a Solana private key through WALLET_SECRET_KEY.
+
+Mitigation: Use only a dedicated low-value wallet and avoid exposing WALLET_SECRET_KEY in shell history, logs, or shared command transcripts.
+
+Risk: The skill can trigger real token launches or fee claims.
+
+Mitigation: Require a manual confirmation step before any launch or fee claim and treat launches and claims as real blockchain operations, not simulations.
+
+## Reference(s):
+
+- [Blowfish Agent API Reference](references/api.md)
+- [ClawHub Skill Page](https://clawhub.ai/basedmereum/skills/blowfish-launch)
+- [Blowfish Agent API Base URL](https://api-blowfish.neuko.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, TypeScript code paths, and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide authenticated token launches, launch status polling, token listing, and fee claims.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

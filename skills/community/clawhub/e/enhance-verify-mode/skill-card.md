@@ -1,38 +1,50 @@
-## Description: <br>
-验证模式 — 检查工作成果、运行测试、验证假设。借鉴 Claude Code 的 Verification Agent。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+验证模式 — 检查工作成果、运行测试、验证假设。借鉴 Claude Code 的 Verification Agent。
 
-## Publisher: <br>
-[jobzhao15](https://clawhub.ai/user/jobzhao15) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jobzhao15](https://clawhub.ai/user/jobzhao15)
 
-## Use Case: <br>
-Developers use this skill to verify completed code changes or hypotheses by checking logic, edge cases, tests, builds, and security-sensitive behavior, then producing an evidence-backed verification report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Verification may involve running tests, builds, linters, or other repository commands in sensitive workspaces. <br>
-Mitigation: Review commands before approval and run them with the least privileges needed for the repository. <br>
+## Use Case:
 
+Developers and engineers use this skill to verify completed code changes, inspect assumptions, run relevant tests or checks, and produce a concise verification report with findings and evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jobzhao15/enhance-verify-mode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Markdown verification report with checklist items, findings, severity, and conclusion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include test, build, or lint command recommendations and evidence from command results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Verification may involve running tests, build checks, linters, or formatters that are expensive or may modify files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or confirm commands first in repositories where test runs are costly or formatter edits are not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jobzhao15/skills/enhance-verify-mode)
+- [Project homepage](https://github.com/jobzhao15/openclaw-enhance)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown verification report with checklists, test results, findings, and conclusions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or run repository tests, build checks, linters, or formatters depending on the verification target.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

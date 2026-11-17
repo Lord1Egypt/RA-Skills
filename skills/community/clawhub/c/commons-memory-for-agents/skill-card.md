@@ -1,49 +1,65 @@
-## Description: <br>
-OpenClaw Agent Memory Commons helps OpenClaw agents search, validate, contribute, and sync privacy-safe knowledge cards for shared fixes, workflows, integration notes, benchmarks, and tool recipes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Agent Memory Commons helps OpenClaw agents search, validate, contribute, recommend, and synchronize privacy-safe knowledge cards for shared fixes, workflows, integration notes, model benchmarks, and tool recipes.
 
-## Publisher: <br>
-[mixomaxo](https://clawhub.ai/user/mixomaxo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mixomaxo](https://clawhub.ai/user/mixomaxo)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to reuse evidence-backed operational knowledge, search and validate local cards, and stage privacy-safe contributions for review before public publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Optional scheduled sync jobs update local reports and refresh shared knowledge cards on a schedule. <br>
-Mitigation: Enable cron jobs only after reviewing the workflow and confirming that scheduled ClawHub updates and local report files are acceptable. <br>
-Risk: GitHub setup and push flows can publish files from a maintainer workspace. <br>
-Mitigation: Treat publishing commands as maintainer actions: review tracked files, avoid secrets, use least-privilege tokens, and prefer manual or private-repository review until the published contents are inspected. <br>
-Risk: Shared knowledge cards can become unsafe or misleading if private data, secrets, or unverified advice bypass review. <br>
-Mitigation: Use the built-in validation and review flow, reject cards containing private data or credentials, and publish public cards through reviewed pull requests. <br>
+## Use Case:
 
+External OpenClaw users, maintainers, and developers use this skill to reuse evidence-backed operational lessons and contribute reviewed knowledge cards without sharing private chats, secrets, raw logs, or personal data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mixomaxo/skills/commons-memory-for-agents) <br>
-- [Publisher Profile](https://clawhub.ai/user/mixomaxo) <br>
-- [Architecture](docs/architecture.md) <br>
-- [Discovery and Installation](docs/discovery.md) <br>
-- [Governance](docs/governance.md) <br>
-- [Threat Model](docs/threat-model.md) <br>
-- [Knowledge Card Schema](docs/knowledge-card.schema.json) <br>
-- [Static Card Index](site/index.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, JSON knowledge cards, static JSON/HTML indexes, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local pending proposals and reports are written under OpenClaw state; public cards are reviewed before distribution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release evidence; artifact frontmatter reports 1.0.11) <br>
+Risk: Persistent scheduled jobs may update executable skill code automatically without user approval or version pinning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable cron-based sync only after review; prefer manual or pinned ClawHub updates and inspect updates before execution.
+
+Risk: GitHub setup commands can use tokens with repository permissions.
+
+Mitigation: Use a narrowly scoped GitHub token and confirm the target account and repository before running setup commands.
+
+Risk: Shared cards can carry private data, secrets, or unverified guidance if review is skipped.
+
+Mitigation: Use the proposed-card queue, schema validation, secret scanning, and pull-request maintainer review before publishing cards.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/mixomaxo/skills/commons-memory-for-agents)
+- [README](artifact/README.md)
+- [OpenClaw Commons Architecture](artifact/docs/architecture.md)
+- [Discovery and Installation](artifact/docs/discovery.md)
+- [Governance](artifact/docs/governance.md)
+- [Threat Model](artifact/docs/threat-model.md)
+- [Knowledge Card Schema](artifact/docs/knowledge-card.schema.json)
+- [Artifact-declared Static Index](https://mixomaxo.github.io/openclaw-commons-memory/)
+- [Artifact-declared GitHub Repository](https://github.com/Mixomaxo/openclaw-commons-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON knowledge cards, generated Markdown reports, and generated JSON indexes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Validates and searches knowledge-card JSON, stages pending cards, prepares pull request files, builds a static site index, and can produce sync and morning reports.]
+
+## Skill Version(s):
+
+1.0.12 (source: evidence.release.version; artifact metadata reports 1.0.11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,53 @@
-## Description: <br>
-Expert IoT engineer specializing in connected device architectures, edge computing, and IoT platform development. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert IoT engineer specializing in connected device architectures, edge computing, and IoT platform development. Masters IoT protocols, device management, and data pipelines with focus on building scalable, secure, and reliable IoT solutions.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, review, and implement IoT architectures across device connectivity, edge computing, cloud integration, security, data pipelines, and fleet management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: IoT architecture, firmware, cloud deployment, or configuration advice could affect real devices or infrastructure if applied without review. <br>
-Mitigation: Require explicit approval and engineering review before applying firmware, command, deployment, or configuration changes. <br>
-Risk: Performance, uptime, latency, scale, cost, or accuracy claims may be planning estimates rather than measured results. <br>
-Mitigation: Require measured evidence before relying on those claims for production decisions. <br>
+## Use Case:
 
+Developers and engineers use this skill for IoT architecture, device management, edge computing, protocol selection, data pipeline design, and secure connected-device deployment guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/mtsatryan/ah-iot-engineer) <br>
-- [Publisher Profile](https://clawhub.ai/user/mtsatryan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with optional code blocks, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only advisor; no executable code or install hooks are included in the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated firmware, cloud, device-management, or deployment changes could affect real IoT infrastructure if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes, test them in a staging environment, and scan code or configuration before applying them to production devices or cloud services.
+
+Risk: IoT security guidance may not fully cover deployment-specific threat models, compliance obligations, or operational constraints.
+
+Mitigation: Have qualified security and platform owners validate authentication, encryption, certificate management, access control, and incident-response choices before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-iot-engineer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with possible code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill artifact; no hidden execution, persistence, or credential-handling behavior found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

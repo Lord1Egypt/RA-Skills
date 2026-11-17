@@ -1,109 +1,128 @@
 # jd-triage
 
-**Stop wasting cycles on bad-fit JDs.** Paste a job description, get a verdict against the criteria *you* defined.
+**Two questions, kept apart: do you want it, and can you get it?**
 
-A skill for [OpenClaw](https://github.com/openclaw) that evaluates job descriptions against your personal career criteria. Bootstrap your filter once; evaluate every JD against it forever. Maintains an evaluation history so you can compare new opportunities against past ones.
+Paste a job posting. Get a verdict against the criteria *you* defined — plus an
+honest read on whether you'd clear the bar. Most JD filters collapse both into
+one score, which is exactly the information you needed.
+
+A skill for [OpenClaw](https://github.com/openclaw). Works in any market, any
+language, any profession.
 
 ---
 
 ## What it does
 
-- **Evaluates a JD** with a 4-tier verdict (✅ Strong Apply / 🎯 Apply / ⚠️ Caution / ❌ Skip / OUT) and 6-axis 5-star scoring
-- **Bootstraps your criteria** through a one-time structured intake — 13 questions in 3 blocks
-- **Refreshes itself** every 15 days with a single yes/no prompt — no nag, no rerun
-- **Logs every evaluation** to a single history file with stable IDs (`JD-YYYYMMDD-XXX`)
-- **Compares two JDs** side by side — useful when you have multiple offers or want to benchmark a new role against a previous one
-- **Speaks your language** — bootstrap and output follow your input language (Chinese/English supported); stored data uses English keys + your-language values for grep-friendliness
+- **Scores two independent dimensions.** Desirability from five weighted axes
+  against your stored criteria; Candidacy from the posting's stated must-haves
+  against your skills. A role you want but can't get is a **stretch**, not a
+  skip. A role you can get but don't want is a **backup**, not an apply.
+- **Weights red lines by where they appear.** "Owns revenue targets" in the title
+  is an instant no. The same phrase in the last bullet, framed as *support*, is a
+  question to ask the recruiter — not a rejection.
+- **Makes vibe judgments inspectable.** Every vibe rating quotes the posting and
+  names the anchor it reasoned from. Anchors carry your *reason*, so the skill
+  works on a 12-person studio nobody has heard of, not just famous logos.
+- **Turns unknowns into questions.** Missing comp, ambiguous scope, unclear
+  remote policy — each becomes a line you can paste into a reply to the recruiter.
+- **Logs everything, including rejections.** Over time, `analyze` shows which
+  patterns keep reaching you and which requirement you keep almost meeting.
 
-## Who it's for
+## Starting up
 
-- People actively job hunting who want to filter inbound recruiter messages fast
-- People who passively look at JDs and waste mental cycles re-evaluating the same dealbreakers
-- Anyone whose criteria has multiple subtle dimensions (vibe / company type / lifestyle) that a salary-and-title filter misses
+Five questions. Not thirteen.
 
-**Not for:** Recruiters evaluating candidates. The skill grades the JD against the user, not the other way around.
+Quick Start asks for your role family and market, what titles you want, your
+floors (comp with basis, locations, remote), your automatic no's, and one to
+three organizations you admire *with a line on why each*. That is enough to
+evaluate. Everything else is asked once, at the moment it first matters.
 
-## Installation
-
-```bash
-clawdhub install jd-triage
-```
-
-Or manual:
-
-```bash
-git clone <repo-url> ~/.openclaw/skills/jd-triage
-```
-
-## First run
-
-The first time you invoke the skill (paste a JD or run `/jd-triage`), you'll be asked 13 questions in 3 blocks:
-
-1. **Profile** (3 Qs) — years of experience, current title/company, current salary
-2. **Hard gates** (4 Qs) — salary floor, target cities, lifestyle tier, hard red lines
-3. **Soft axes** (6 Qs) — title keywords, target industries, company type ratings, company size ratings, positive vibe anchors, negative vibe anchors
-
-Your answers are saved to `~/.openclaw/workspace/jd_criteria.md`. Subsequent runs skip the bootstrap entirely until 15 days pass, at which point the skill asks one yes/no question to confirm nothing has changed.
+Prefer showing over telling? `/jd-triage learn` reads a handful of postings you
+liked and a handful you passed on, then proposes your red lines and anchors for
+you to accept or edit.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| Paste a JD (or `/jd-triage`) | Evaluate the JD; bootstrap first if no criteria saved |
-| `/jd-triage update` | Edit your criteria — current values pre-filled, change only what you want |
-| `/jd-triage reset` | Wipe and re-bootstrap from scratch |
-| `/jd-triage history` | Show last 10 evaluations as a one-line table |
-| `/jd-triage compare <id1> [<id2>]` | Side-by-side comparison; if only one ID given, compares with most recent |
+| Paste a posting, or `/jd-triage` | Evaluate |
+| `/jd-triage quickstart` | The 5-question setup |
+| `/jd-triage learn` | Derive criteria from example postings |
+| `/jd-triage update` \| `reset` | Edit criteria, current values pre-filled |
+| `/jd-triage history [apply\|out]` | Last 10 evaluations |
+| `/jd-triage compare <id1> [<id2>]` | Side by side |
+| `/jd-triage analyze` | Patterns across everything you've evaluated (needs 8+) |
+| `/jd-triage plan` | Which gap to close next, ranked by what postings actually ask for |
 
-Natural language also works: "compare with the last one", "show my JD history", "update my criteria".
+Natural language works too, in your language: "should I apply to this",
+"和上次对比", "what should I learn next".
 
 ## Sample output
 
 ```
-Verdict: ⚠️ Caution
+🎯 STRETCH APPLY        Desirability: Strong   Candidacy: Stretch
 
-Title fit         ★★★★☆
-Industry/track    ★★★★★
-Company type      ★★★☆☆ (mid-size, you weighted 3)
-Company size      ★★★★☆
-Vibe              ★★☆☆☆  ← key drag
-Salary match      ★★★★☆
+Want it
+  Role fit     ★★★★★
+  Domain       ★★★★★
+  Org          ★★★★☆
+  Vibe         ★★★★☆   anchor "Basecamp" — why: "small team, no growth theater"
+                       triggered by: "we ship deliberately", "no on-call"
+  Comp         — (info insufficient)
+  → weighted 4.6/5 across 4 axes
 
-One-liner: Strong AI Agent role on paper, but company description leans heavily on
-"growth funnels" and "conversion KPIs" — matches your negative vibe anchors.
-Action: Negotiate first to clarify scope; backup option, not lead.
+Can get it
+  Meets 2/5 stated must-haves
+  ✅ SQL   ✅ experiment design
+  ⚠️ Kubernetes (learning — half credit)
+  ❌ 5 years managing a team   ❌ regulated-industry experience
 
-💡 If this evaluation changed your view on any criteria, say "update criteria".
+Strong on everything you control; the management requirement is the one real
+blocker, and it's the kind they usually probe rather than verify.
+
+Open questions
+- Is the team-management requirement firm, or would mentoring experience clear it?
+- What's the full package, and is the posted number base or all-in?
+
+Logged: JD-20260725-001
 ```
 
-## Files written
+## Files it writes
 
-The skill writes to your OpenClaw workspace:
-
-- `~/.openclaw/workspace/jd_criteria.md` — your criteria profile
+- `~/.openclaw/workspace/jd_criteria.md` — your criteria
 - `~/.openclaw/workspace/jd_history.md` — append-only evaluation log
 
-Both files are plain markdown. Edit them by hand if you want — the skill will trust your edits and only point out missing required fields.
+Plain markdown, hand-editable. The skill parses your edits and asks about
+anything malformed instead of overwriting it.
 
 ## Privacy
 
-By default, history entries store the verdict, scores, and a one-line summary — **not the raw JD text**. This avoids accidentally persisting recruiter contact info or unposted comp details.
-
-If you set `history_detail: full` in your criteria file, raw JDs are stored too. The skill will warn you the first time you opt in. Don't sync your workspace to public clouds with this setting on.
+History stores verdicts, scores, and a one-line summary — **not the raw posting**.
+Set `history_detail: full` to keep raw text; you'll be warned once. Recruiter
+contact details and unposted comp live in those postings, so don't turn it on for
+a workspace you sync publicly.
 
 ## Limitations
 
-- **Does not evaluate your fit for the role.** The skill grades how well a JD matches *your* criteria, not whether you match the JD's requirements. It does not read your resume.
-- **Vibe is subjective.** The vibe-fit axis depends entirely on the anchor companies you provide. A 1★ vibe rating drops the verdict at least one tier — this is intentional, not a bug. If you don't care about vibe, don't fill in vibe anchors.
-- **Salary signals can be missing.** Many JDs omit comp; the skill will flag this and ask you to follow up with the recruiter rather than guessing.
-- **No salary-negotiation advice.** Out of scope.
-- **Single-language summaries.** Stored summaries stay in the language you wrote them in — they are never auto-translated, even when you switch interaction languages.
-- **No automatic history cleanup in v0.1.** Manage `jd_history.md` manually if it grows long.
+- **It does not read your resume.** Candidacy is scored from the skills inventory
+  you provide, against what the posting actually states. It will not tell you how
+  you compare to other applicants.
+- **It does not map seniority across markets.** L5, P7, and Grade 6 are not
+  comparable, so it counts stated requirements and ignores the level label.
+- **Vibe is only as good as your anchors' reasons.** The `why` is what it reasons
+  from. One-word anchors produce weak ratings — that is the design working, not
+  failing.
+- **The sample is your inbox.** `analyze` describes the roles reaching you, never
+  "the market".
+- **No comp negotiation advice.** Out of scope.
+- **Model support is measured, not assumed.** Verified on GLM-5.2 and Claude
+  Sonnet 4.6 — 18 test cases, 100% verdict stability across repeated runs and
+  100% compliance with the skill's own rules. Smaller models are simply untested;
+  no claim either way.
 
 ## Author
 
-Maintained by Barry Wang ([@bwancoding](https://github.com/bwancoding)). Issues and pull requests welcome at [https://github.com/bwancoding/jd-triage](https://github.com/bwancoding/jd-triage).
+Barry Wang ([@bwancoding](https://github.com/bwancoding)) —
+[github.com/bwancoding/jd-triage](https://github.com/bwancoding/jd-triage)
 
-## License
-
-MIT — see the [LICENSE](../LICENSE) file in the repo root.
+MIT licensed.

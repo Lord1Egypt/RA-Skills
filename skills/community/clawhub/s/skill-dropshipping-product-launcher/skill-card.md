@@ -1,41 +1,61 @@
-## Description: <br>
-Creates WooCommerce draft product listings with images, variants, and margin calculation from CJ Dropshipping products using product ID and sell price. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates WooCommerce draft product listings with images, variants, and margin calculation from CJ Dropshipping products using a product ID and sell price.
 
-## Publisher: <br>
-[Zero2Ai-hub](https://clawhub.ai/user/Zero2Ai-hub) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zero2ai-hub](https://clawhub.ai/user/zero2ai-hub)
 
-## Use Case: <br>
-E-commerce operators and automation agents use this skill to preview or create WooCommerce draft listings from CJ Dropshipping product IDs, including images, variants, pricing, margin checks, and product links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill accesses CJ Dropshipping and WooCommerce APIs using local credential files. <br>
-Mitigation: Use staging or limited-scope credentials where possible, keep credential JSON files out of shared folders, logs, and repositories, and verify the configured store URL before execution. <br>
-Risk: Normal execution can create WooCommerce product drafts and upload media. <br>
-Mitigation: Run with --dry-run first and review product details, pricing, margin, category, and store target before allowing writes. <br>
+## Use Case:
 
+Developers and ecommerce operators use this skill to preview or create WooCommerce draft product listings from CJ Dropshipping product data, including image uploads, variants, pricing, and margin output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/Zero2Ai-hub/skill-dropshipping-product-launcher) <br>
-- [Publisher Profile](https://clawhub.ai/user/Zero2Ai-hub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, API calls] <br>
-**Output Format:** [Console text with a machine-readable JSON result block] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can run in dry-run mode; normal execution writes draft products and media through CJ Dropshipping and WooCommerce APIs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill handles CJ and WooCommerce credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped credentials, store them outside shared workspaces, and rotate them if the skill has been run with untrusted configuration.
+
+Risk: The skill can make live WooCommerce store changes and upload product media.
+
+Mitigation: Run dry-run mode first and review the target store, product details, images, and draft listing before publishing.
+
+Risk: Weak destination and download scoping can expose the store to unintended hosts or untrusted product image sources.
+
+Mitigation: Require HTTPS, allow only exact trusted CJ and WooCommerce hosts, and avoid untrusted product or image URLs.
+
+Risk: Dependency choices may become stale or include unreviewed transitive code.
+
+Mitigation: Upgrade or pin reviewed dependencies before deployment and rescan after dependency changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zero2ai-hub/skills/skill-dropshipping-product-launcher)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Console text with a machine-readable JSON result block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can create WooCommerce draft products, upload images, calculate margin, and run in dry-run preview mode.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact metadata, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

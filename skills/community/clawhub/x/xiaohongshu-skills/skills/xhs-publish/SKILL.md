@@ -3,17 +3,6 @@ name: xhs-publish
 description: |
   小红书内容发布技能。支持图文发布、视频发布、长文发布、定时发布、标签、可见性设置。
   当用户要求发布内容到小红书、上传图文、上传视频、发长文时触发。
-version: 1.0.0
-metadata:
-  openclaw:
-    requires:
-      bins:
-        - python3
-        - uv
-    emoji: "\U0001F4DD"
-    os:
-      - darwin
-      - linux
 ---
 
 # 小红书内容发布
@@ -42,23 +31,6 @@ metadata:
 | `select-template` | 选择长文排版模板 |
 | `next-step` | 进入长文发布页并填写描述 |
 | `publish_pipeline.py` | 发布流水线（含图片下载） |
-
----
-
-## 账号选择（前置步骤）
-
-每次 skill 触发后，先运行：
-
-```bash
-python scripts/cli.py list-accounts
-```
-
-根据返回的 `count`：
-- **0 个命名账号**：直接使用默认账号（后续命令不加 `--account`）。
-- **1 个命名账号**：告知用户"将使用账号 X 发布"，直接加 `--account <名称>` 执行。
-- **多个命名账号**：向用户展示列表，**明确询问发布到哪个账号**，用 `--account <选择的名称>` 执行所有后续命令。
-
-账号选定后，本次发布全程固定该账号，**不重复询问**。
 
 ---
 

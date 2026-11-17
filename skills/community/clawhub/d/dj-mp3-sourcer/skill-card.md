@@ -1,38 +1,51 @@
-## Description: <br>
-Downloads music from links by finding available sources across Bandcamp, Beatport, Amazon Music, Spotify, and YouTube, with MP3 320k output and a free-only mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads music from user-provided links by searching Bandcamp, Beatport, Amazon Music, Spotify, and YouTube for the best available source, preferring extended mixes and MP3 320k output.
 
-## Publisher: <br>
-[Robinnnnn](https://clawhub.ai/user/Robinnnnn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[robinnnnn](https://clawhub.ai/user/robinnnnn)
 
-## Use Case: <br>
-DJs and music collectors use this skill to resolve single tracks or batch lists from mixed music links, surface paid purchase options, download free sources, and normalize downloaded MP3 filenames for music they have the right to access. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The filename-normalization script can move MP3 files outside the chosen folder if track metadata contains path-like artist or title values. <br>
-Mitigation: Sanitize artist and title values before normalization, reject slashes and '..', use a dry run where possible, and work in a disposable output folder. <br>
-Risk: The skill can download or link to music from external platforms. <br>
-Mitigation: Use it only for purchases, free releases, Creative Commons works, or music the user has the right to access, and follow copyright laws in the relevant jurisdiction. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
+
+DJs, music curators, and agents assisting them use this skill to source tracks from user-provided links, return purchase links for paid sources, download from free sources, and clean MP3 filenames after download.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can use external downloader tools to retrieve music from online platforms.
+
+Mitigation: Install downloader tools in an isolated environment and use the skill only for music the user is allowed to access.
+
+Risk: The filename normalization script renames MP3 files in place.
+
+Mitigation: Run normalization only on a dedicated download folder or a backup copy of the files.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and file-handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce purchase links for paid sources and filename-normalization steps for downloaded MP3 files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown with inline bash commands and download or purchase-link results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create MP3 files through external downloader tools and may rename local MP3 files in place during filename normalization.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,52 @@
-## Description: <br>
-Pywayne Lark Custom Bot helps agents send Feishu/Lark channel messages through a webhook, including text, images, rich text posts, interactive cards, shared chat content, signatures, and mentions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu/Lark Custom Bot API wrapper for sending messages to Feishu channels via webhook.
 
-## Publisher: <br>
-[wangyendt](https://clawhub.ai/user/wangyendt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wangyendt](https://clawhub.ai/user/wangyendt)
 
-## Use Case: <br>
-Developers and agents use this skill to send Lark/Feishu bot messages to channels, including text, images, rich posts, interactive cards, shared chats, and mentions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can post visible messages to shared Lark/Feishu channels, including @all mentions, images, rich posts, interactive cards, and shared chat content. <br>
-Mitigation: Require confirmation before posting, using @all mentions, uploading images, or sharing chats, and review the destination channel and message content before sending. <br>
-Risk: The skill uses sensitive bot credentials such as webhook URLs, signing secrets, app IDs, and app secrets. <br>
-Mitigation: Store credentials securely, avoid exposing them in shared prompts or outputs, rotate exposed secrets, and use least-privileged bot or app credentials. <br>
-Risk: Image upload and bot actions depend on an external pywayne package before real credentials are used. <br>
-Mitigation: Verify the package source and dependency version before connecting production credentials or sending sensitive images. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangyendt/lark-custom-bot) <br>
-- [Feishu](https://www.feishu.cn) <br>
+## Use Case:
 
+Developers and engineers use this skill to send Feishu/Lark bot messages, upload selected images, build rich text posts, share chats, and send interactive cards through a configured webhook.
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Markdown with Python code snippets and configuration placeholders] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Credential placeholders should be supplied by the user and handled outside shared output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Webhook URLs, signing secrets, app IDs, and app secrets are sensitive credentials.
+
+Mitigation: Store credentials securely, avoid pasting them into shared logs or prompts, and rotate them if exposed.
+
+Risk: The skill can help send messages or upload selected images to Feishu/Lark channels.
+
+Mitigation: Review message content, recipients, and selected image files before posting through the bot.
+
+## Reference(s):
+
+- [Feishu](https://www.feishu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with Python code examples and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May describe webhook, signing secret, app ID, and app secret configuration needed by the user's Feishu/Lark bot.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

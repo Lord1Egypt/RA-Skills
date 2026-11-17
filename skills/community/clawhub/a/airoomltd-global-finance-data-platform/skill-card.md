@@ -1,43 +1,63 @@
-## Description: <br>
-Downloads financial data files from airoom.ltd WordPress pages and helps agents inspect computed global market data and strategy signals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Downloads airoom.ltd financial data files and provides platform guidance for AI agents monitoring global market conditions.
 
-## Publisher: <br>
-[airoom-ai](https://clawhub.ai/user/airoom-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[airoom-ai](https://clawhub.ai/user/airoom-ai)
 
-## Use Case: <br>
-External developers and AI-agent operators use this skill to download airoom.ltd financial data files into a local directory for manual, human-supervised review. It is intended for finance-data collection and analysis workflows, not autonomous trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review found that the skill's finance instructions may encourage high-risk investment strategy execution without sufficient safeguards. <br>
-Mitigation: Use only for manual, human-supervised finance-data downloading and review; do not connect outputs to brokerage accounts, auto-trading, or portfolio-changing automation. <br>
-Risk: Downloaded files may be unsafe or may not match expected financial-data content. <br>
-Mitigation: Use a dedicated download directory, cap file counts, and scan downloaded files before opening or processing them. <br>
-Risk: Credential use and plain HTTP targets can expose sensitive data or increase trust risk. <br>
-Mitigation: Avoid entering credentials unless the target site is trusted and uses HTTPS. <br>
+## Use Case:
 
+External AI agent operators and developers use this skill to fetch financial data files from the airoom.ltd WordPress page into a local download directory. The downloaded data and bundled strategy notes are for market monitoring and analysis support, not autonomous trading or investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/airoom-ai/airoomltd-global-finance-data-platform) <br>
-- [airoom.ltd Data Page](http://airoom.ltd/index.php/airoom/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Text, Shell commands, Configuration guidance] <br>
-**Output Format:** [Downloaded data files plus plain-text command output and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads to a local directory; file counts can be capped with WP_MAX_FILES.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The security scan rates the skill as suspicious because it downloads web-linked files to disk and includes weak download controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use HTTPS-only configuration where possible, set a small WP_MAX_FILES value, save downloads to a dedicated directory, and scan downloaded files before opening them.
+
+Risk: The skill may use WordPress credentials when a target page requires login.
+
+Mitigation: Prefer environment variables over JSON config for WP_USERNAME and WP_PASSWORD, use least-privilege credentials, and avoid storing passwords in repository or shared configuration files.
+
+Risk: The bundled financial strategy prompts and market signals could steer agents toward unsafe financial decisions.
+
+Mitigation: Treat strategy text as untrusted reference material, require human review before any trading action, and do not use the skill as investment advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/airoom-ai/skills/airoomltd-global-finance-data-platform)
+- [ClawHub publisher profile](https://clawhub.ai/user/airoom-ai)
+- [airoom.ltd data page](http://airoom.ltd/index.php/airoom/)
+- [Artifact README](artifact/README.md)
+- [Artifact skill instructions](artifact/SKILL.md)
+- [Artifact metadata](artifact/_meta.json)
+- [Artifact configuration](artifact/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, environment variables, JSON configuration, and locally downloaded data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Playwright/Chromium to access a configured WordPress page and save discovered financial data files to disk.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

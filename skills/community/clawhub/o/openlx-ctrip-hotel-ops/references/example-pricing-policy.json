@@ -1,0 +1,19 @@
+{
+  "mode": "AUTOMATIC",
+  "strategy": "BASIC",
+  "target_fen": 21800,
+  "floor_fen": 20800,
+  "ceiling_fen": 39800,
+  "max_change_bps": 1000,
+  "daily_change_bps": 1500,
+  "daily_count": 3,
+  "cooldown_minutes": 60,
+  "valid_until": "REPLACE_WITH_AUTHORIZED_ISO_DATE",
+  "dates": [
+    "2026-09-12"
+  ],
+  "room_ids": [
+    "double"
+  ],
+  "max_age_minutes": 60
+}

@@ -1,40 +1,58 @@
-## Description: <br>
-Standardizes OpenClaw cron job entries to always use the current user session as target when creating or editing scheduled tasks, reminders, or recurring checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Standardizes OpenClaw cron job entries to target the current user session and use the expected jobs.json schema.
 
-## Publisher: <br>
-[thegoaldev](https://clawhub.ai/user/thegoaldev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thegoaldev](https://clawhub.ai/user/thegoaldev)
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to create or update local OpenClaw cron jobs that deliver scheduled agent turns to the active user session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates persistent local scheduled agent turns by editing OpenClaw cron configuration and restarting the gateway. <br>
-Mitigation: Install only when local OpenClaw cron management is intended; review scheduled jobs periodically and remove or disable entries that are no longer wanted. <br>
-Risk: Incorrect schedule, payload, or session-target values can cause missed, repeated, or misdirected reminders. <br>
-Mitigation: Validate ~/.openclaw/cron/jobs.json after edits, keep the required user-session target, and update nextRunAtMs when changing recurring intervals. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to create or update scheduled reminders and recurring checks as OpenClaw cron jobs that deliver messages to the active user session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thegoaldev/cron-skills-session) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON] <br>
-**Output Format:** [Markdown guidance with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Directs edits to ~/.openclaw/cron/jobs.json and validation before gateway restart.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill gives an agent persistent automation authority by directing it to create or update OpenClaw cron jobs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review each job's schedule, message payload, enabled state, and deletion behavior before activation.
+
+Risk: Restarting the OpenClaw gateway may interrupt local service state.
+
+Mitigation: Confirm that a restart is acceptable and keep a rollback path for the edited jobs.json file before restarting.
+
+Risk: Incorrect schedule math or stale nextRunAtMs values can cause jobs to run at the wrong time or remain frozen.
+
+Mitigation: Validate timestamp calculations, update nextRunAtMs when changing intervals, and run JSON validation before reload.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thegoaldev/skills/cron-skills-session)
+- [ClawHub publisher profile](https://clawhub.ai/user/thegoaldev)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with JSON examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates or updates OpenClaw cron job entries in ~/.openclaw/cron/jobs.json when used by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

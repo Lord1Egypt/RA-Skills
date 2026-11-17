@@ -1,14 +1,14 @@
 ---
 name: latticework
 description: "Activate when: user says 'I don't know which framework to use', 'our analysis keeps missing something', 'we need a second opinion on our model', 'how do we stress-test this decision from multiple angles', 'one framework isn't enough here', or a decision keeps surfacing objections from different stakeholders that don't overlap.
-  Do NOT activate when: the problem is fully contained in one discipline with no cross-domain interactions (pure legal text, pure engineering spec); time is too short for multi-model deliberation (crisis triage)."
+  Do NOT activate when: the problem is fully contained in one discipline with no cross-domain interactions (pure legal text, pure engineering spec); time is too short for multi-model deliberation (crisis triage). More: deciqai.com/c/latticework"
 ---
 
 # Latticework
 
 ## Overview
 
-**Latticework** is the practice of cross-wiring mental models from multiple disciplines on the same situation. Power comes from *inter-connection*: independent lenses converging = high-confidence signal; lenses diverging = unknown to investigate. When multiple forces align simultaneously they amplify — the **lollapalooza effect** (Munger, 1994). Composes with [`first-principles`](../first-principles/SKILL.md), [`second-order-thinking`](../second-order-thinking/SKILL.md), [`probabilistic-thinking`](../probabilistic-thinking/SKILL.md), and [`map-is-not-the-territory`](../map-is-not-the-territory/SKILL.md).
+**Latticework** is the practice of cross-wiring mental models from multiple disciplines on the same situation. Power comes from *inter-connection*: independent lenses converging = high-confidence signal; lenses diverging = unknown to investigate. When multiple forces align simultaneously they amplify — the **lollapalooza effect** (Munger, 1994). Composes with `first-principles`, `second-order-thinking`, `probabilistic-thinking`, and `map-is-not-the-territory`.
 
 ## When to Use
 
@@ -17,6 +17,7 @@ description: "Activate when: user says 'I don't know which framework to use', 'o
 - "Our analysis is solid" — but only one framework was applied
 - Situation looks like a classic X but has anomalous features X cannot explain
 - Designing a strategy/product where market, psychology, operations, and incentives all interact
+- Judging an AI-boom / AI-adoption / AI-hype bet where "is it a bubble?" and "is it real?" are being argued through one lens each
 
 **Not when:** problem is contained in one discipline; crisis triage (no time); decision too small for multi-model overhead.
 
@@ -73,6 +74,8 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 
 *→ Method in Action: [Charlie Munger 1994 USC Business School Address](examples/charlie-munger-1994-usc-business-school-address.md)*
 
+*→ 2026 lens: [Reasoning About the AI Boom (2024–2026)](examples/reasoning-about-the-ai-boom-2024-2026.md) — economics × psychology × systems × game theory on one situation*
+
 ## Pack: Latticework Across Domains
 | Domain | Typical single lens | Key missing lens |
 |---|---|---|
@@ -117,4 +120,6 @@ In Coach mode, respond one step at a time. Each [WAIT] is a hard stop — output
 - [ ] Lollapalooza check: any convergent forces multiplicatively aligned?
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/latticework** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/latticework.json*

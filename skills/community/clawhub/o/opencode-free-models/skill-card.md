@@ -1,42 +1,51 @@
-## Description: <br>
-Configures free opencode.ai AI models in local OpenClaw or QClaw model settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configures free opencode.ai models for OpenClaw or QClaw by fetching available model metadata and adding provider entries to the local model configuration.
 
-## Publisher: <br>
-[pinke](https://clawhub.ai/user/pinke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pinke](https://clawhub.ai/user/pinke)
 
-## Use Case: <br>
-Developers using OpenClaw or QClaw use this skill to fetch opencode.ai models whose IDs include "free" and add them to the local model provider configuration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make persistent local changes to OpenClaw or QClaw model routing configuration. <br>
-Mitigation: Review or back up the existing openclaw.json file before running the skill. <br>
-Risk: The skill contacts opencode.ai to retrieve the model list used for configuration. <br>
-Mitigation: Run it only when that network dependency is acceptable and the user wants OpenClaw or QClaw to use opencode.ai free models. <br>
+## Use Case:
 
+Developers and agent users use this skill to add currently available free opencode.ai models to OpenClaw or QClaw without manually editing provider configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/pinke/opencode-free-models) <br>
-- [Publisher profile](https://clawhub.ai/user/pinke) <br>
-- [opencode.ai models endpoint](https://opencode.ai/zen/v1/models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May persist changes to ~/.openclaw/openclaw.json or ~/.qclaw/openclaw.json and uses the public API key value "public".] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can automatically change persistent OpenClaw or QClaw model configuration based on remote data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed configuration changes, back up the existing configuration file, and run the update only after explicit confirmation.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/pinke/skills/opencode-free-models)
+- [Publisher profile](https://clawhub.ai/user/pinke)
+- [opencode.ai models endpoint](https://opencode.ai/zen/v1/models)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update OpenClaw or QClaw model provider configuration on disk when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

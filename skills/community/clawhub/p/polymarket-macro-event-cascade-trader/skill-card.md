@@ -1,44 +1,59 @@
-## Description: <br>
-Trades 2nd and 3rd order effects from nearly-resolved Polymarket events by identifying cascade chains and trading lagging downstream markets before they fully reprice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades second- and third-order effects from nearly resolved Polymarket events by identifying cascade chains and lagging downstream markets before they reprice.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External users and trading agents use this skill to scan Polymarket-style event markets, classify near-resolution trigger events, map expected macro cascades, and place paper or explicitly enabled live trades with configurable risk limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automated trading can create real financial losses when live mode is enabled. <br>
-Mitigation: Use paper mode first, keep withdrawals disabled, verify risk limits, and require explicit approval before any live strategy or order. <br>
-Risk: The required API key grants trading authority. <br>
-Mitigation: Provide only trading-permission credentials, store them as sensitive secrets, and avoid keys with withdrawal capability. <br>
-Risk: Cascade signals can be wrong or stale during fast-moving macro events. <br>
-Mitigation: Review configured thresholds, spread and position limits, and use additional market or news confirmation before live execution. <br>
+## Use Case:
 
+External traders and agent operators use this skill to scan Polymarket for nearly resolved macro events, map likely downstream market moves, and execute paper or explicitly enabled live trades with configurable limits.
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/diagnostikon/polymarket-macro-event-cascade-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk on GitHub](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with trade status messages and configuration-driven trading actions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SIMMER_API_KEY and simmer-sdk; defaults to paper trading unless live trading is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The skill can place real Polymarket trades when live mode is enabled.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode until trading behavior has been reviewed and deliberately enable live mode only with credentials scoped for the intended account.
+
+Risk: Advertised volume and concurrent-position safeguards are not complete account-level controls.
+
+Mitigation: Use the smallest practical funded account, configure conservative trade limits, and monitor account-level exposure outside the skill.
+
+Risk: The skill depends on simmer-sdk for market access and order execution.
+
+Mitigation: Pin or review the SDK dependency before deployment.
+
+## Reference(s):
+
+- [Polymarket Macro Event Cascade Trader on ClawHub](https://clawhub.ai/diagnostikon/skills/polymarket-macro-event-cascade-trader)
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance and terminal output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configurable risk parameters and may place simulated or live prediction-market trades depending on runtime flags and credentials.]
+
+## Skill Version(s):
+
+0.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

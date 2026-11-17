@@ -1,44 +1,63 @@
-## Description: <br>
-Hyperliquid trading plugin with background position monitoring and custom automations. Execute market orders, limit orders, manage positions, view funding rates, run trading strategies, and write event-driven automation scripts with automatic alerts for PnL changes and liquidation risk. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hyperliquid trading plugin for market and limit orders, position management, funding-rate review, background monitoring, and event-driven automation with alerts for PnL changes and liquidation risk.
 
-## Publisher: <br>
-[ya7ya](https://clawhub.ai/user/ya7ya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ya7ya](https://clawhub.ai/user/ya7ya)
 
-## Use Case: <br>
-Developers and external users can use this skill to let an agent inspect Hyperliquid account state, discover markets, place trades, manage orders, and run monitored trading automations. It is intended for users who deliberately configure a wallet or API key for agent-assisted crypto trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place live crypto trades and automate trading decisions. <br>
-Mitigation: Install only for intentional agent-assisted trading, test with dry-run and testnet first, and use a dedicated low-balance or restricted API wallet. <br>
-Risk: The skill requires sensitive wallet credentials. <br>
-Mitigation: Store HYPERLIQUID_PRIVATE_KEY only in trusted agent environments and avoid using a wallet with withdrawal authority when a restricted API wallet is sufficient. <br>
-Risk: Persistent automation or forwarding behavior can continue acting after setup. <br>
-Mitigation: Inspect generated automation before running it live, monitor active automations, and configure only dashboard or webhook URLs controlled by the user. <br>
+## Use Case:
 
+External users and developers use this skill to operate Hyperliquid trading workflows, inspect account and market data, place orders, and create monitored trading automations.
 
-## Reference(s): <br>
-- [ClawHub Open-broker Skill Page](https://clawhub.ai/ya7ya/openbroker) <br>
-- [OpenBroker npm Package](https://www.npmjs.com/package/openbroker-plugin) <br>
-- [Hyperliquid App](https://app.hyperliquid.xyz/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command examples, JSON-capable CLI output, and JavaScript automation snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js 22+, network access to api.hyperliquid.xyz, the openbroker CLI, and HYPERLIQUID_PRIVATE_KEY for live trading.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill can give an agent real-money trading authority through a wallet private key and live Hyperliquid order commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only with a dedicated, limited wallet, prefer testnet or dry runs first, cap funding and leverage, and avoid broad mainnet permissions.
+
+Risk: Persistent trading automations can continue acting on market events after setup.
+
+Mitigation: Review generated automation code before live runs, require explicit risk limits, monitor positions and liquidation risk, and use stop/cleanup handlers.
+
+Risk: Dashboard forwarding can send audit notes, metrics, and trade actions to a configured endpoint.
+
+Mitigation: Set OB_DASHBOARD_URL only to a trusted endpoint or leave it unset.
+
+Risk: The installed npm package controls trading behavior.
+
+Mitigation: Verify the exact openbroker-plugin package and version before installation.
+
+## Reference(s):
+
+- [Open-broker ClawHub Skill Page](https://clawhub.ai/ya7ya/skills/openbroker)
+- [openbroker-plugin npm package](https://www.npmjs.com/package/openbroker-plugin)
+- [Hyperliquid App](https://app.hyperliquid.xyz/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code, JSON]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, TypeScript automation code, and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js 22+, network access to api.hyperliquid.xyz, the openbroker CLI, and HYPERLIQUID_PRIVATE_KEY for trading operations.]
+
+## Skill Version(s):
+
+1.2.0 (source: SKILL.md metadata and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

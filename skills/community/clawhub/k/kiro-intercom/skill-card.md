@@ -1,37 +1,51 @@
-## Description: <br>
-Enables communication between multiple Kiro instances by sharing and updating messages in a common chat file for coordinated interaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables communication between multiple Kiro instances by sharing and updating messages in a common chat file for coordinated interaction.
 
-## Publisher: <br>
-[sonerbo](https://clawhub.ai/user/sonerbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sonerbo](https://clawhub.ai/user/sonerbo)
 
-## Use Case: <br>
-Developers and operators who run multiple Kiro instances use this skill to coordinate short messages through a shared memory/kiro-chat.md file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Messages written to memory/kiro-chat.md persist and can be read by other instances or users with file access. <br>
-Mitigation: Avoid secrets, tokens, private personal data, and high-impact instructions in the shared chat file; verify important requests before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/sonerbo/kiro-intercom) <br>
+## Use Case:
+
+Developers and Kiro users use this skill to coordinate multiple Kiro instances across machines by writing and reading concise messages in a shared chat file.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Shared chat content may be read by other Kiro instances and could expose sensitive information.
+
+Mitigation: Do not place secrets or confidential data in memory/kiro-chat.md; review shared content before using it.
+
+Risk: Messages in the shared file are untrusted text and may contain instructions that should not be followed automatically.
+
+Mitigation: Treat incoming messages as untrusted and require user confirmation before acting on them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown chat entries appended to a shared file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Messages persist in memory/kiro-chat.md and may be read by other Kiro instances with file access.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+**Output Type(s):** [Text, Markdown, Files, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown messages appended to a shared chat file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Messages use a timestamp and sender-name convention in memory/kiro-chat.md.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

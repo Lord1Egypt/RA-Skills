@@ -4,6 +4,16 @@
 <!-- Usage: After each upgrade, run /verify against this file. -->
 <!-- Format: YAML code blocks for AI parsing, Markdown for human readability. -->
 <!-- Instructions: Replace all placeholder values with your actual configuration. -->
+<!--
+  NOTE: For advanced users, this file can be split into an INDEX file
+  with detailed sub-files in refs/ground-truth/:
+    - model-routing.md
+    - cron-registry.md
+    - channel-mappings.md
+    - verification-checklist.md
+    - local-api-hub.md
+  See Jony's workspace for an example of this structure.
+-->
 
 ## Config: System Default
 

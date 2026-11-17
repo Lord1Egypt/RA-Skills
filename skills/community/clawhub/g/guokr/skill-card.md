@@ -1,41 +1,53 @@
-## Description: <br>
-Guokr is a coming-soon AI assistant skill for music entertainment workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guokr is a coming-soon OpenClaw skill for an intelligent music entertainment workflow.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-OpenClaw users can use this placeholder release to track the planned Guokr integration for music entertainment automation and intelligent workflow support. The current version is informational only and does not yet provide working automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The current release is a placeholder and does not provide working functionality. <br>
-Mitigation: Treat this version as informational; re-review future versions before use if they add code, API integrations, credentials, automation, or account and data access. <br>
-Risk: Skill quality was quarantined for moderation review in the server evidence. <br>
-Mitigation: Complete moderation review before listing or recommending the skill for normal user workflows. <br>
+## Use Case:
 
+External OpenClaw users can use this placeholder skill to identify the planned Guokr music-entertainment integration and its intended future automation support. The current release is informational and does not provide functional automation behavior.
 
-## Reference(s): <br>
-- [Guokr Skill on ClawHub](https://clawhub.ai/zhangifonly/guokr) <br>
-- [Publisher profile: zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Placeholder release; no code, API calls, shell commands, credentials, or account access are provided.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Users may assume the placeholder performs music integration, decision support, or automation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat this release as informational until the publisher documents concrete triggers, supported actions, permission requirements, and user controls.
+
+Risk: The planned behavior is broad and may be unclear when a functional version is released.
+
+Mitigation: Review the updated artifact and security summary before installation, especially for any automation that can affect music accounts or user data.
+
+## Reference(s):
+
+- [Guokr ClawHub skill page](https://clawhub.ai/zhangifonly/skills/guokr)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior is included in this placeholder release.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

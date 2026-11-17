@@ -1,87 +1,99 @@
 ---
 name: dataify-bing-images
-description: When users want to use Bing for image search, they can use this skill
+description: "Search Bing Images for image results. Do not use for Bing web, news, shopping, map, or video results."
 ---
 
 # Bing Images
 
-## Overview
+Use `scripts/bing_images.py` to turn a natural-language image request into a Bing Images API call. The API schema and uncommon field details are in [references/api.md](references/api.md); read it only when a requested filter is unclear.
 
-Use this skill to turn a natural-language Bing image search request into Dataify Bing Images API fields, preview the complete request parameters, ask the user whether to modify them, call the API through `scripts/bing_images.py` only after confirmation, and return the API response directly without summarizing, parsing, reformatting, or post-processing it.
+## Interaction policy
 
-The source API document is summarized in `references/api.md`. Read it when field behavior, allowed values, defaults, or response shape is unclear.
+Optimize for the user's outcome, not the API request shape.
 
-## Default Rules
+- For ordinary read-only image searches, infer reasonable parameters and execute immediately. Do not pause to show a full parameter table or ask for confirmation.
+- Before execution, give at most one short natural-language update when useful, such as `按“木偶实物摄影”搜索约 6 张照片，尺寸不限。`
+- If a term has a plausible alternate meaning, state the assumption and continue when the search is easy to refine. Ask only when the ambiguity would materially change the result and no safe assumption is reasonable.
+- Ask before execution only when the request introduces a meaningful cost, a consequential license/commercial-use constraint, or another choice that cannot be inferred safely.
+- Show the full parameter table only when the user explicitly asks to inspect or modify advanced search settings. Technical fields such as `engine`, `json`, `first`, and `no_cache` should not appear in the ordinary flow.
 
-Use parameter defaults only when the field's description states a default value. Do not use example values from the API document as defaults.
+## Request construction
 
-Default values used by this skill:
+Preserve explicit user choices. Infer only filters supported by the prompt. Do not copy example values into live requests.
 
-- `engine`: `bing_images`.
-- `json`: `1`.
-- `first`: `1`.
-- `no_cache`: `false`.
+Defaults provided by the API wrapper:
 
-All other fields have no default and stay blank unless the user provides them or the prompt parser confidently infers them.
+- `engine=bing_images`
+- `json=1`
+- `first=1`
+- `no_cache=false`
 
-## Workflow
-
-1. Identify the user's image search query and map optional requirements to API fields:
-   - `q`: 搜索关键词，必填；可以是任意语言。
-   - `json`: 采集结果输出格式；默认 `1` 返回 JSON，`2` 返回 JSON 和 HTML，`3` 返回 HTML。
-   - `mkt`: 搜索结果界面显示语言，格式为 `<语言代码>-<国家/地区代码>`，例如 `en-US`。
-   - `cc`: 按国家或地区用户习惯展示搜索结果，使用两个字母的国家/地区代码，例如 `us`、`cn`、`jp`、`uk`。
-   - `first`: 控制自然结果偏移量，默认值为 `1`。
-   - `count`: 控制每页结果数量；该值为建议值，可能无法完全反映实际返回数量。
-   - `imagesize`: 按图片尺寸过滤：`small` 小、`medium` 中、`large` 大、`wallpaper` 超大/壁纸。
-   - `color2`: 按图片颜色过滤，例如 `color` 彩色、`bw` 黑白、`FGcls_RED` 红色、`FGcls_BLUE` 蓝色。
-   - `photo`: 按图片类型过滤：`photo` 照片、`clipart` 剪贴画、`linedrawing` 线条画、`animatedgif` 动图、`animatedgifhttps` HTTPS 动图、`transparent` 透明、`shopping` 购物。
-   - `aspect`: 按图片布局过滤：`square` 方形、`wide` 宽图、`tall` 高图。
-   - `face`: 按人物类型过滤：`face` 仅面部、`portrait` 头肩肖像。
-   - `age`: 按日期过滤：`lt1440` 过去 24 小时、`lt10080` 过去一周、`lt43200` 过去一个月、`lt525600` 过去一年。
-   - `license`: 按使用许可过滤，例如 `Type-Any` 所有 Creative Commons、`L1` Public Domain、`L2_L3` 免费修改共享和商业使用。
-   - `no_cache`: 是否跳过缓存；默认 `false` 使用缓存，`true` 跳过缓存。
-2. Prefer explicit user-provided field values over inferred values. Never use API examples such as `pizza`, `count=10`, or sample filters as defaults.
-3. Before every live call, preview the complete request parameter table. Do not show `Authorization`.
 
 ```bash
-python3 scripts/bing_images.py --prompt "pizza" --preview
+# Ordinary search: execute directly after applying the interaction policy.
+
+# Advanced-settings review requested by the user.
+python3 scripts/bing_images.py --prompt "木偶实物摄影，6张" --preview
 ```
 
-4. Show the table to the user and ask whether they want to modify any parameter. The table must include the complete field list and exactly these columns: parameter name, current value, default value, description.
-5. If the user requests changes, rerun the preview with explicit flags or `--field key=value`, show the updated table, and ask again.
-6. Call the API only after the user confirms the table. Use `--confirmed` for the live call:
+Useful explicit overrides:
 
-```bash
-python3 scripts/bing_images.py --prompt "pizza" --confirmed
-```
-
-7. Ensure authentication before the live call:
-   - Read `DATAIFY_API_TOKEN` from the current environment.
-   - If the user provides a token during the task, pass it with `--token` or set `DATAIFY_API_TOKEN` for the command before invoking the script.
-   - The script adds a `Bearer ` prefix when the token does not already include one.
-   - If no token is available, ask the user to input a Dataify API token or register at [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill).
-8. Return the script output directly to the user. Do not summarize image results, extract fields, reformat JSON, parse embedded JSON strings, or process returned HTML unless the user separately asks for processing.
-
-## Script Usage
-
-The script supports automatic parsing plus explicit overrides:
-
-```bash
-python3 scripts/bing_images.py \
-  --prompt "用必应图片搜索 OpenAI 标志，正方形透明图片，过去一周，返回 JSON 和 HTML" \
-  --no-cache true \
-  --preview
-```
-
-Useful flags:
-
-- `--q`, `--json`, `--mkt`, `--cc`, `--first`, `--count`, `--imagesize`, `--color2`, `--photo`, `--aspect`, `--face`, `--age`, `--license`, `--no-cache`
+- `--q`, `--json`, `--mkt`, `--cc`, `--first`, `--count`
+- `--imagesize`, `--color2`, `--photo`, `--aspect`, `--face`, `--age`, `--license`, `--no-cache`
 - `--field key=value` for any supported API field
-- `--preview` to print the complete request-parameter table and skip network/auth checks
-- `--confirmed` to allow a live API call after user confirmation
-- `--token` to provide a token for the current run
-- `--body-format form|json`, default `form`
-- `--dry-run` to print the parsed payload and skip network/auth checks
 
-If a live call fails because `DATAIFY_API_TOKEN` is missing, ask the user to provide a token or register at [Dataify Dashboard](https://dashboard.dataify.com?utm_source=skill). 
+## Results
+
+Return the useful image results rather than raw API plumbing.
+
+- For a normal image-finding request, present a compact gallery or concise list using the returned image URL, title, dimensions, and source link when available.
+- Prefer the original image URL for display and keep attribution/source links accessible.
+- Mention that licensing is unverified unless the user requested a license filter.
+- Return raw JSON or HTML only when the user explicitly requests raw output.
+- If the API returns more items than requested, show only the requested number unless the user asks for all results.
+
+## Authentication and account handling
+
+Read `DATAIFY_API_TOKEN` from the environment. Never display its value or ask the user to paste it into chat.
+
+Detect the current operating system and shell before showing setup instructions. Never ask the user to paste the token into chat. After configuration succeeds, continue the original task without requiring the user to repeat it.
+
+- If missing, offer https://dashboard.dataify.com/login?utm_source=skill and state that new accounts receive 50 free credits. Show only the session-scoped setup command appropriate to the current OS and shell.
+- After the user says it is configured, verify only whether the variable is present, then continue the original request without making them repeat it.
+- Explain when a terminal or app restart may be required for environment changes to take effect. Do not recommend a project `.env` unless the execution path loads it and the file is ignored by version control.
+- For an invalid token, direct the user to API-key management. For insufficient credits, direct them to balance or recharge management.
+- Do not promote registration or the dashboard during normal successful use.
+
+If a live call fails because of sandboxed network access, retry through the standard approval mechanism. Do not repeat a successful live call merely because the UI truncated the response; instead, preserve or retrieve the existing output locally when possible.
+
+## Result presentation
+
+- Return a compact, user-facing result by default: the most relevant titles, links, and vertical-specific fields, plus a count or truncation note when useful.
+- Do not expose transport details, fixed engine fields, task plumbing, or the full response envelope in the ordinary flow.
+- Return raw JSON or HTML only when the user explicitly requests raw output.
+- Preserve source links and distinguish missing fields from empty values; do not invent data.
+
+## Quick Start
+
+```bash
+# Ordinary search: execute directly after applying the interaction policy.
+```
+
+## Parameter interaction policy
+
+- For a clear, low-risk, read-only, and low-cost request, apply safe defaults and execute immediately. A short execution summary is optional; do not pause for confirmation.
+- Ask only for a missing required input, a material ambiguity, a high-volume or multi-page scope, a media download, a choice that materially changes credit usage, an irreversible action, or an explicit user request to review parameters.
+- When confirmation is required, show only user-facing values that affect the target, scope, output, or cost. Prefer one concise sentence; use a compact table only when three or more consequential values are easier to compare.
+- Never show fixed fields, empty optional fields, unchanged defaults, credentials, or internal implementation parameters such as engine selectors, response-format flags, offsets, spider IDs, and file-name templates.
+- Keep advanced filters hidden unless the user asks for them or they are needed to resolve ambiguity. Never substitute documentation example values for missing required user input.
+- After returning results, offer relevant refinements instead of forcing all optional decisions before the first result.
+
+## Account CTA policy
+
+- Show a prominent Dataify account CTA only when the API token is missing, rejected/invalid, or the account has insufficient credits.
+- For a missing token, offer https://dashboard.dataify.com/login?utm_source=skill and state: New accounts receive 50 free credits. Never ask the user to paste the token into chat.
+- Detect the current operating system and shell. Show only the matching session-scoped setup command first (`export` for macOS/Linux shells, `$env:` for Windows PowerShell, or `set` for Windows Command Prompt). Show other platforms or persistent setup only when detection is ambiguous or the user asks.
+- After the user says the token is configured, verify only whether `DATAIFY_API_TOKEN` is present; never print its value. If verification succeeds, continue the original task without asking the user to repeat it.
+- Explain that persistent shell changes may require a new terminal or restarting the agent application. Do not recommend a project `.env` unless the execution path explicitly loads it, and ensure `.env` is ignored by version control.
+- For an invalid token, direct the user to API-key management without implying that a new registration is required. For insufficient credits, direct the user to balance or recharge management.
+- During normal submission, processing, and successful completion, do not promote registration or the Dashboard. Never expose the token or include it in CTA attribution parameters.

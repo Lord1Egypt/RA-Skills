@@ -1,41 +1,57 @@
-## Description: <br>
-Multi-agent trading debate framework for collective market decision-making when a trading signal is detected or a position decision is needed. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-Agent Trading Debate coordinates role-based market analysis, bull and bear arguments, judge verdicts, and position-sizing guidance for trading decisions.
 
-## Publisher: <br>
-[w491623834-oss](https://clawhub.ai/user/w491623834-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[w491623834-oss](https://clawhub.ai/user/w491623834-oss)
 
-## Use Case: <br>
-Trading teams and agent operators use this skill to coordinate structured market-decision debates across regime detection, analyst reports, bull and bear arguments, judge verdicts, and execution or hold decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market-order execution instructions could be used without sufficient approval or safety controls. <br>
-Mitigation: Use the skill only for analysis or paper trading unless a separate live-order approval process requires human confirmation, explicit account and environment labels, allowed assets, maximum order size, and slippage limits. <br>
-Risk: Simulated or insufficient-data trading outputs could be mistaken for production-ready signals. <br>
-Mitigation: Fail closed when outputs are simulated or data is insufficient, and require review before any live execution workflow consumes the decision. <br>
+## Use Case:
 
+External users and trading teams use this skill to coordinate multi-agent market analysis, compare bull and bear cases, and produce a judge verdict with position sizing and follow-up logging.
 
-## Reference(s): <br>
-- [Feishu Trading Debate Formats](references/feishu_format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/w491623834-oss/multi-agent-trading-debate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown debate prompts and verdict templates, JSON log-entry examples, and command-line script outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include market regime, trading signal, confidence score, position size, risk level, stop loss, and next review time.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The workflow may influence real trade execution decisions despite weak safeguards for that impact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as analysis support unless explicit human approval is required before any order is placed.
+
+Risk: Simulation-mode helper output or stale market assumptions could be mistaken for validated live market data.
+
+Mitigation: Require validated live market data and label simulation output as non-actionable before using results in a trade decision.
+
+Risk: Prediction and transaction-cost logs may contain sensitive trading activity or strategy details.
+
+Mitigation: Document what is logged, who can access it, and how long records are retained.
+
+## Reference(s):
+
+- [Feishu Trading Debate Formats](references/feishu_format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown debate prompts and verdict templates, plus JSON outputs from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes trading signal, confidence, position size, risk level, stop loss, next review, and prediction log fields.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

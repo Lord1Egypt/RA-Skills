@@ -1,43 +1,55 @@
-## Description: <br>
-Generates AI images through the Doubao web interface using browser automation, then saves and can deliver the selected images to a requested destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates AI images through the Doubao web interface using browser automation, then saves or delivers the resulting images for downstream workflows.
 
-## Publisher: <br>
-[fanxi-ju](https://clawhub.ai/user/fanxi-ju) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fanxi-ju](https://clawhub.ai/user/fanxi-ju)
 
-## Use Case: <br>
-Developers and content creators use this skill to produce visual assets from prompts when API-based image generation is unavailable or too costly, then save or send the selected images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Browser automation against Doubao may be subject to service limits or terms, especially when behavior is designed to avoid bot detection. <br>
-Mitigation: Check whether the intended use is allowed by the service, use only authorized accounts and workloads, and stop if the service blocks automation. <br>
-Risk: Prompts, generated images, or saved files may be sent to external destinations such as Feishu or another requested channel. <br>
-Mitigation: Avoid sensitive prompts or images, review generated content before delivery, and confirm the exact destination before sending. <br>
-Risk: Saved images can persist in /workspace/ai_images/doubao/ after use. <br>
-Mitigation: Delete files that are no longer needed and follow the user's or organization's retention requirements. <br>
+## Use Case:
 
+Developers and content creators use this skill to generate visual assets through Doubao when they need image drafts, illustrations, avatars, presentation graphics, or social media concepts without using a paid image-generation API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fanxi-ju/doubao-ai-image) <br>
-- [Doubao web interface](https://www.doubao.com/chat/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [files, guidance] <br>
-**Output Format:** [Markdown instructions with browser actions and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated images are saved under /workspace/ai_images/doubao/ and may be sent to a specified destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Prompts and generated images may be sent to Doubao and optionally to Feishu or another requested destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive prompts or images unless the user accepts the destination service terms and the selected delivery channel.
+
+Risk: Generated images are saved locally under the workspace image directory.
+
+Mitigation: Review saved files and workspace retention expectations before using the skill for sensitive content.
+
+## Reference(s):
+
+- [Doubao Web Interface](https://www.doubao.com/chat/)
+- [ClawHub Skill Page](https://clawhub.ai/fanxi-ju/skills/doubao-ai-image)
+- [Publisher Profile](https://clawhub.ai/user/fanxi-ju)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, files, text]
+
+**Output Format:** [Markdown guidance describing browser workflow steps, prompt handling, image capture, local file paths, and optional delivery actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated images are saved under the workspace image directory when the workflow completes.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

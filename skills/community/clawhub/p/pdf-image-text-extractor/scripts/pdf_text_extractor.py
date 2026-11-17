@@ -147,7 +147,7 @@ def main():
     
     pdf_path = sys.argv[1]
     result = extract_text_from_pdf(pdf_path)
-
+    
     # 输出 JSON 格式结果
     print(json.dumps(result, ensure_ascii=False, indent=2))
     

@@ -1,0 +1,165 @@
+# Definitions of the three deployment modes (Phase 11 · vendor narrowing removed)
+# Core premise: the ontology specification layer (semantic / logic / decision / action library /
+# departments / industry packs / private customization under references/) is vendor-neutral data.
+# The three modes = the same specification + different "runtime shells". Swap the shell and it runs;
+# the business brain is neither lost nor rewritten.
+#
+# Important: this file describes only "deployment patterns" and "runtime capability contracts",
+# and lists several reference implementation products per pattern.
+# EdgeClaw / JoyAgent etc. are only "reference implementation examples", not the sole answer;
+# any product satisfying the capability contract can be plugged in.
+
+# ── Three deployment modes (presented as an external comparison) ──
+# Note: cloud_edge / pure_private only reference the pattern definitions below; they are not bound
+# to a single vendor here.
+modes:
+  skill_package:                # Mode A · current form
+    name: Skill package (current form · WorkBuddy runtime)
+    essence: The ontology runs on the WorkBuddy cloud SaaS; WorkBuddy = the ontology runtime kernel (LLM / external brain / orchestration / library / persistence all included)
+    data_location: instance.yaml on local disk; the 4 library tables in WorkBuddy cloud space
+    offline: requires online
+    ops_burden: zero
+    cost: subscription
+    external_capability: strongest (full cloud ecosystem)
+    compliance: medium (data leaves the domain)
+    fit: SMEs / OPC / fast validation
+    barrier: lowest
+    note: The skill "shell" is today in WorkBuddy format; the specification itself is vendor-neutral and can be ported to other host platforms (see host_platforms)
+
+  cloud_edge:                   # Mode B · cloud collaboration (references the edge_cloud pattern)
+    name: Cloud collaboration (edge internal · cloud external)
+    pattern_ref: edge_cloud
+    essence: Edge (local / intranet) handles internal, cloud (public / private) handles external; sensitive internal decisions and data stay on the edge, external retrieval and heavy compute go to the cloud
+    data_location: sensitive data (PII / contracts / invoices / finance) stays on the edge; public intelligence / monitoring signals / complex reasoning requests go to the cloud
+    offline: core still runs when disconnected
+    ops_burden: medium (manage both ends + sync + auth)
+    cost: device + a little cloud compute
+    external_capability: strong (cloud external brain)
+    compliance: strong (sensitive data never leaves)
+    fit: manufacturing / regulated / has a workshop
+    barrier: medium (one device / one lightweight runtime)
+    reference_products:
+      - ModelBest EdgeClaw Box (runs agents even offline; on-device MiniCPM + switchable cloud LLM)
+      - Huawei / Lenovo edge intelligence all-in-one
+      - Cloud vendors' edge agent gateways (Alibaba / Tencent / Baidu edge nodes)
+      - Self-built: lightweight edge runtime (MiniCPM, etc.) + cloud API external brain
+
+  pure_private:                 # Mode C · fully private (references the on_prem pattern)
+    name: Fully private (air-gapped self-hosted)
+    pattern_ref: on_prem
+    essence: The whole ontology (semantic + logic + decision + runtime) runs entirely in your own data center / private cloud, fully offline
+    data_location: all local; not a single grain leaves
+    offline: fully offline
+    ops_burden: heavy (GPU / models / upgrades self-managed)
+    cost: one-time buyout + self-ops
+    external_capability: weak (must wire up retrieval yourself)
+    compliance: strongest (never leaves the premises)
+    fit: defense / government / strict-compliance core
+    barrier: high (technical team)
+    reference_products:
+      - JD JoyAgent-JDGenie (100% open source, standalone Docker/K8s local deployment, can connect local models)
+      - Dify (private deployment)
+      - CrewAI / LangGraph (self-built multi-agent)
+      - n8n (self-built orchestration)
+      - Coze enterprise private edition
+      - Zhipu / Tongyi / Wenxin private deployment
+      - Baidu Qianfan / Alibaba Bailian private deployment
+
+# ── Deployment patterns: vendor-neutral "runtime capability contracts" ──
+# Any product satisfying required_runtime_capabilities can serve as a reference implementation.
+# The --pattern output of adapters.py is based on the vendor-neutral runtime_manifest.yaml in this section.
+patterns:
+  edge_cloud:                   # Edge-cloud collaboration pattern
+    display: Edge-cloud collaboration (edge internal · cloud external)
+    essence: Sensitive internal decisions and data stay on the edge; external retrieval and heavy compute go to the cloud; the core still runs when disconnected
+    required_runtime_capabilities:
+      - The edge can run the ontology semantic / logic / decision layers independently (usable offline)
+      - The edge can host sensitive department agents (PII / contracts / money / legal never leave the domain)
+      - The cloud can switch external brains (complex reasoning / external retrieval backend)
+      - Supports sync boundary declaration and authentication (what goes to the cloud is explicitly declared)
+    reference_products:
+      - ModelBest EdgeClaw Box
+      - Huawei / Lenovo edge intelligence all-in-one
+      - Cloud vendors' edge agent gateways
+      - Self-built (edge MiniCPM + cloud API)
+
+  on_prem:                      # Fully private pattern
+    display: Fully private (air-gapped self-hosted)
+    essence: The whole ontology + runtime runs in your own data center / private cloud, fully offline and auditable
+    required_runtime_capabilities:
+      - Standalone local deployment (Docker / K8s / bare metal), no cloud lock-in
+      - Can connect local LLMs (qwen / glm / deepseek / domestic-tech base)
+      - Loads the vendor-neutral specification directly (references/*.yaml with zero rewriting)
+      - Optional ERP / MES / OA write-back hooks (Action layer writeback)
+      - Air-gapped operation + operation audit
+    reference_products:
+      - JD JoyAgent-JDGenie
+      - Dify (private)
+      - CrewAI / LangGraph (self-built)
+      - n8n (self-built orchestration)
+      - Coze enterprise private edition
+      - Zhipu / Tongyi / Wenxin private deployment
+      - Qianfan / Bailian private deployment
+
+# ── Host Platforms: which platforms the skill "shell" can be ported to ──
+# Answers "is it only for WorkBuddy": today the shell is WorkBuddy format, but the specification is
+# vendor-neutral and can be turned into each host platform's "wrapping scaffold" via adapters.py
+# (pointing at the same references/, with zero rewriting of the specification).
+host_platforms:
+  note: >
+    The skill "shell" is currently in WorkBuddy format, so today it runs directly on WorkBuddy;
+    competitors such as Coze / Dify / Claude / Yuanqi / Qianfan use different plugin / skill formats
+    and cannot load it directly. But that "vendor-neutral ontology specification" layer does not
+    depend on any platform — run adapters.py --target <platform> to generate that platform's
+    "wrapping scaffold" and port the same specification over with zero rewriting.
+  targets:
+    - workbuddy   # Native platform: SKILL.md is the WorkBuddy skill format, loads references/ directly
+    - coze        # Coze: references/ as knowledge base + principal bot calling action_specs
+    - dify        # Dify: references/ as knowledge base + workflow nodes; enterprise edition can be private (Mode C)
+    - claude      # Anthropic Claude: references/ exposed as an MCP server, called by the Agent SDK
+    - yuanqi      # Tencent Yuanqi: references/ as agent knowledge base + tools
+    - qianfan     # Baidu Qianfan AgentBuilder: references/ as knowledge base + custom tools
+  packaging_adapters: "scripts/adapters.py --target <platform> -> produces host_<platform>_manifest.yaml (porting scaffold)"
+
+# Sync boundary (the crux of Mode B): which data goes to the cloud must be explicitly declared;
+# the default is "sensitive data never leaves the domain"
+sync_boundary:
+  edge_local:                   # Closed loop on the edge, never leaves the domain
+    - PII
+    - contracts
+    - finance
+    - internal_docs
+  cloud_sync:                   # Goes to the cloud external brain
+    - monitoring_signals
+    - public_intel
+    - heavy_reasoning
+
+# Integration flows (fully self-consistent onboarding)
+# Deliverables: scripts/export_spec.py (specification exporter) + scripts/adapters.py (integration
+# config generator); see references/portability.md
+# Note: all flows below target "patterns"; a specific product is only one reference implementation.
+integration:
+  cloud_edge_flow:
+    - Define the sync boundary (instance.yaml / deployment.yaml marking edge_local / cloud_sync)
+    - Install a lightweight runtime on the edge (a product satisfying the edge_cloud capability contract, e.g. EdgeClaw Box or a self-built small server, loading the edge subset of the specification)
+    - Connect the cloud external brain (WorkBuddy / public APIs for complex reasoning + external retrieval backend)
+    - Run both loops (the edge internal loop handles sensitive high-frequency work; the cloud external loop handles complex external work)
+    - Evolve continuously (the cloud pushes optimized models / strategies back to the edge)
+  pure_private_flow:
+    - Choose a self-hosted runtime (a product satisfying the on_prem capability contract, e.g. JoyAgent-class open source / a self-written lightweight runtime)
+    - Deploy a local model (qwen / glm / deepseek or a domestic-tech base)
+    - Load the ontology specification (feed references/*.yaml directly; vendor-neutral data with zero rewriting)
+    - Connect enterprise systems (ERP / MES / OA write-back interfaces; Action layer writeback)
+    - Run air-gapped (when disconnected, rely on local Ontology semantic anchoring + operation execution, auditable)
+  host_porting_flow:            # Answers "is it only for WorkBuddy": porting to competitor host platforms
+    - Use export_spec.py to export a vendor-neutral bundle (references/ + instance)
+    - Use adapters.py --target <platform> to generate that host platform's "wrapping scaffold"
+    - The scaffold wraps the same references/ into the target platform's loadable skill / plugin format, with zero rewriting
+    - Real integration with that platform's SDK / API is a later, independent phase (the scaffold already lays the foundation and explains the differences)
+
+# Red lines cut across all three modes: the PII / contract / invoice constraints in decision.yaml
+# apply equally to forms B and C (the specification layer is consistent)
+invariants_across_modes:
+  - PII is never written in plain text (across A / B / C)
+  - Actions beyond authority are always drafted + await confirmation (proactive.yaml L2 default tier)
+  - The semantic / logic / decision specifications stay consistent and are never rewritten

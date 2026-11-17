@@ -1,47 +1,62 @@
-## Description: <br>
-ClevrPay helps agents guide trusted stablecoin payment workflows between verified counterparties, including A-Pass checks, deposit address lookup, institution whitelist checks, wallet registration, and A-Token deposit, withdrawal, or transfer guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clevr Pay helps agents guide trusted stablecoin payment workflows, including A-Pass checks, deposit address retrieval, institution whitelist checks, wallet registration, and A-Token deposit, withdrawal, and transfer guidance.
 
-## Publisher: <br>
-[umy997](https://clawhub.ai/user/umy997) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[umy997](https://clawhub.ai/user/umy997)
 
-## Use Case: <br>
-External users, developers, and agent-commerce builders use this skill to route ClevrPay and Cleanverse payment tasks such as A-Pass registration or status checks, supported-chain lookup, deposit address retrieval, institution whitelist checks, wallet registration, and A-Token withdrawal or transfer workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto payment, wallet-registration, withdrawal, or transfer workflows can cause unrecoverable on-chain mistakes if the chain, token, amount, recipient, or wallet mapping is wrong. <br>
-Mitigation: Require explicit user confirmation and independently verify the chain, token, amount, destination address, A-Pass state, and wallet registration before any registration, withdrawal, or transfer. <br>
-Risk: The security summary says routing and confirmation safeguards are under-specified for a high-impact financial use case. <br>
-Mitigation: Review the skill carefully before installation and use it only for explicit ClevrPay or Cleanverse workflows. <br>
-Risk: Static chain and token documentation may drift from live service configuration. <br>
-Mitigation: Use query_chain_config as the source of truth before claiming support for a chain or token. <br>
+## Use Case:
 
+External users, developers, and agent builders use Clevr Pay to check payment eligibility, obtain deposit information, register wallet mappings, and coordinate ClevrPay A-Token deposit, withdrawal, and transfer flows for verified counterparties.
 
-## Reference(s): <br>
-- [Clevr Pay Skills API Documentation](references/api-doc.md) <br>
-- [Quick API map](references/quick-api-map.md) <br>
-- [Retrieval and boundaries](references/retrieval-and-boundaries.md) <br>
-- [Use cases](references/use-cases.md) <br>
-- [Glossary and retrieval language](references/glossary.md) <br>
-- [Access Core Contract ABI](references/access_core.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown responses with API workflow guidance and optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API command names, wallet addresses, chain names, token symbols, and verification steps for payment workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence) <br>
+Risk: Wallet registration, deposit-address retrieval, withdrawals, and token transfers can affect funds or expose irreversible transaction risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation and verify chain, token, amount, recipient, fees, and reversibility before proceeding.
+
+Risk: Skipping A-Pass authentication in production can bypass an intended eligibility check.
+
+Mitigation: Avoid using --skip-auth in production and complete A-Pass authentication before deposit workflows.
+
+Risk: An exposed RPC URL in the evidence should be treated as credential-like material.
+
+Mitigation: Redact or rotate sensitive RPC URLs before distribution.
+
+## Reference(s):
+
+- [Access Core Contract ABI](references/access_core.md)
+- [Clevr Pay Skills API Documentation](references/api-doc.md)
+- [Glossary and Retrieval Language](references/glossary.md)
+- [Quick API Map](references/quick-api-map.md)
+- [Retrieval and Boundaries](references/retrieval-and-boundaries.md)
+- [Use Cases](references/use-cases.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline commands and API call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation for wallet registration, deposit-address retrieval, withdrawals, and token transfers.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

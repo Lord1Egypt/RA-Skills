@@ -1,46 +1,60 @@
-## Description: <br>
-Placekey helps agents resolve postal addresses, geocodes, and Placekey identifiers through OOMOL-connected Placekey actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Look up Placekey identifiers and geocode information for one or multiple locations through the connected Placekey service.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to look up Placekey identifiers, resolve addresses into geocoded responses, and run bulk Placekey lookups through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Address and location data is sent through OOMOL as the intermediary for Placekey requests. <br>
-Mitigation: Install and use the skill only when that data path is acceptable for the user's task and organization. <br>
-Risk: The skill requires connected Placekey credentials through OOMOL. <br>
-Mitigation: Use an OOMOL-connected account with appropriate Placekey access and avoid exposing raw API credentials in prompts or shell commands. <br>
-Risk: First-time setup may involve running an external oo CLI installer. <br>
-Mitigation: Review the oo CLI installer before running optional setup commands, and run setup only when the connector command fails for an installation or authentication reason. <br>
+## Use Case:
 
+Developers using the connected Placekey service can resolve addresses to geocodes or Placekey identifiers, look up a single location, and run bulk lookups for up to 100 locations.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/oomol/oo-placekey) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [Placekey Homepage](https://www.placekey.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON response handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before constructing payloads; bulk lookup supports up to 100 locations per request.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and skill metadata) <br>
+Risk: First-time setup executes an unverified remote CLI installer, and the deployed connector implementation was not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI dependency before automatic setup and prefer a verified, version-pinned installation.
+
+Risk: Startup skill synchronization can make broader changes to agent skills.
+
+Mitigation: Set OO_SKILLS_SYNC_DISABLED=1 if those additional changes are unwanted.
+
+Risk: Addresses sent through the service are processed by OOMOL and Placekey.
+
+Mitigation: Submit only addresses you intend both services to process.
+
+## Reference(s):
+
+- [Placekey API Documentation](https://docs.placekey.io/)
+- [Placekey Homepage](https://www.placekey.io)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Placekey ClawHub Release](https://clawhub.ai/oomol/skills/oo-placekey)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Guidance]
+
+**Output Format:** [JSON service responses with concise guidance and Markdown instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bulk lookups support up to 100 locations per request.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

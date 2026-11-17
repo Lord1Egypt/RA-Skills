@@ -1,43 +1,56 @@
-## Description: <br>
-Search the Recreation Information Database (RIDB) for campgrounds and recreation facilities near a location, including geocoded city names or latitude/longitude coordinates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the Recreation Information Database (RIDB) for campgrounds, recreation areas, and federal facilities near a location using city geocoding or latitude/longitude coordinates.
 
-## Publisher: <br>
-[seanrea](https://clawhub.ai/user/seanrea) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[seanrea](https://clawhub.ai/user/seanrea)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to find federal campgrounds, recreation areas, and reservable facilities near a specified location or coordinate pair. It helps discover facility IDs and metadata before checking availability or booking through recreation.gov. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Location names or coordinates entered for searches are sent to external services for geocoding and facility lookup. <br>
-Mitigation: Avoid using sensitive private locations when that matters to the user's threat model, or provide only locations the user is comfortable sharing with OpenStreetMap Nominatim and RIDB. <br>
-Risk: The skill requires an RIDB API key for facility searches. <br>
-Mitigation: Provide the key through the documented environment variable or command option and avoid exposing it in shared logs, prompts, or committed files. <br>
+## Use Case:
 
+External users and developers use this skill to discover federal campgrounds and recreation facilities near a destination, retrieve campground IDs and facility metadata, and produce JSON for downstream availability workflows.
 
-## Reference(s): <br>
-- [RIDB API Notes](references/api-notes.md) <br>
-- [RIDB Portal](https://ridb.recreation.gov) <br>
-- [RIDB API Key Profile](https://ridb.recreation.gov/profile) <br>
-- [Recreation.gov](https://www.recreation.gov) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Human-readable text or JSON from a Python CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an RIDB API key; location-name searches send the entered location to OpenStreetMap Nominatim for geocoding.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Location-name queries are sent to OpenStreetMap/Nominatim and campsite search coordinates are sent to RIDB.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering home addresses or other sensitive exact locations; use latitude/longitude coordinates when they are sufficient.
+
+Risk: Passing the RIDB API key on the command line can expose it through shell history or local process listings.
+
+Mitigation: Set RIDB_API_KEY in the environment instead of using the --api-key flag.
+
+## Reference(s):
+
+- [RIDB API Notes](references/api-notes.md)
+- [RIDB Portal](https://ridb.recreation.gov)
+- [RIDB API Key Profile](https://ridb.recreation.gov/profile)
+- [recreation.gov](https://www.recreation.gov)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CLI examples; the CLI can emit human-readable text or JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a RIDB API key; location-name searches use OpenStreetMap/Nominatim geocoding.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

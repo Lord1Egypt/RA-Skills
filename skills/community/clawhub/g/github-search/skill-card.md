@@ -1,41 +1,54 @@
-## Description: <br>
-Searches and analyzes GitHub repositories by keyword, language, stars, update recency, and repository details for technical research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and analyzes GitHub repositories with filters for keywords, language, stars, forks, and update date to support technical research.
 
-## Publisher: <br>
-[linshengli](https://clawhub.ai/user/linshengli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[linshengli](https://clawhub.ai/user/linshengli)
 
-## Use Case: <br>
-Developers, researchers, and technical analysts use this skill to find, filter, compare, and summarize GitHub repositories in a technology domain. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crafted inputs could cause the included scripts to run unintended local shell commands. <br>
-Mitigation: Review or patch the scripts before installing, avoid untrusted repository names, and prefer safer request handling or strict allowlists for command arguments. <br>
-Risk: A GitHub token may be exposed or over-privileged if configured broadly. <br>
-Mitigation: Use GITHUB_TOKEN only when needed and set it to a fine-grained read-only token. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linshengli/github-search) <br>
-- [GitHub Search API](https://api.github.com/search/repositories) <br>
-- [GitHub Repository API](https://api.github.com/repos) <br>
+## Use Case:
 
+Developers and technical researchers use this skill to find, filter, and compare open source GitHub repositories in a technology area and produce report-ready summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, shell commands, guidance] <br>
-**Output Format:** [Markdown tables and reports, with optional JSON or CSV command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use GITHUB_TOKEN for higher GitHub API rate limits.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Untrusted search terms, repository names, sort values, or order values may trigger shell command execution in the bundled GitHub API scripts.
+
+Mitigation: Use only trusted inputs until the scripts replace shell-based curl execution with structured HTTP requests and strict allowlists.
+
+Risk: An inherited GITHUB_TOKEN may be exposed if command injection is triggered.
+
+Mitigation: Avoid setting GITHUB_TOKEN for this skill unless needed, and use a least-privilege token when authenticated GitHub API access is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linshengli/skills/github-search)
+- [GitHub Search API endpoint](https://api.github.com/search/repositories)
+- [GitHub REST repositories endpoint](https://api.github.com/repos)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, CSV, Shell commands, Guidance]
+
+**Output Format:** [Markdown tables, JSON, or CSV repository reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can include repository statistics, language summaries, activity indicators, and links to GitHub repositories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

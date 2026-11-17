@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Prerender"
   author: "OOMOL"
-  version: "1.0.1"
+  version: "1.0.6"
   services: ["prerender"]
   icon: "https://static.oomol.com/logo/third-party/prerender.svg"
 ---
@@ -39,8 +39,8 @@ Each action is listed below with a one-line description; actions that change sta
 
 - `add_sitemap` — Submit a sitemap XML URL to Prerender so it can discover and cache new URLs from that sitemap. [write]
 - `clear_cache` — Queue a Prerender cache clear request for URLs matching a wildcard query pattern. [destructive]
-- `get_cache_clear_status` — Check whether a Prerender cache clear job is currently running for the authenticated account. [destructive]
-- `recache_urls` — Queue one or more URLs for first-time caching or recaching with the Prerender recache API.
+- `get_cache_clear_status` — Check whether a Prerender cache clear job is currently running for the authenticated account.
+- `recache_urls` — Queue one or more URLs for first-time caching or recaching with the Prerender recache API. [write]
 
 ## Safety
 
@@ -71,11 +71,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Prerender is not connected, or the connection expired or lacks a scope. Connect once (auth type: API key) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=prerender
+  https://console.oomol.com/connections/prerender
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Prerender homepage: https://prerender.io
+- API documentation: https://docs.prerender.io/docs/6-api

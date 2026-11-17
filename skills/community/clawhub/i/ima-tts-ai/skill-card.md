@@ -1,44 +1,60 @@
-## Description: <br>
-Convert text, scripts, and captions into natural voiceovers for videos, explainers, product demos, and social posts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert text, scripts, and captions into natural voiceovers for videos, explainers, product demos, and social posts.
 
-## Publisher: <br>
-[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[allenfancy-gan](https://clawhub.ai/user/allenfancy-gan)
 
-## Use Case: <br>
-External users and content creators use this skill to turn scripts, captions, and plain text into generated voiceover audio for videos, explainers, product demos, social posts, podcasts, audiobooks, accessibility workflows, and commercial narration drafts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends text prompts and an API key to IMA Studio and can create paid or credit-consuming text-to-speech jobs. <br>
-Mitigation: Use only trusted IMA Studio accounts and scoped or test API keys, and avoid submitting secrets or sensitive documents for synthesis. <br>
-Risk: Changing the provider endpoint could send prompts and credentials somewhere other than the documented IMA Studio API. <br>
-Mitigation: Keep the default provider endpoint unless an intentional override has been reviewed. <br>
-Risk: The skill stores local preference data and operation history under ~/.openclaw/. <br>
-Mitigation: Delete ~/.openclaw/memory/ima_prefs.json or ~/.openclaw/logs/ima_skills/ when local preference or operation history should not be retained. <br>
+## Use Case:
 
+External creators, developers, and teams use this skill to turn text, scripts, and captions into speech audio URLs for narration, social videos, demos, e-learning, accessibility, and IVR-style voice prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/allenfancy-gan/ima-tts-ai) <br>
-- [IMA Studio homepage](https://imastudio.com) <br>
-- [Volcengine TTS timbre documentation](https://www.volcengine.com/docs/6561/1257544?lang=zh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and optional JSON result containing task_id, URL, duration, model, and credit.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires IMA_API_KEY and returns remote audio URLs; local preferences and operation logs may be stored under ~/.openclaw/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.8 (source: server release evidence) <br>
+Risk: The helper can be configured with a custom base URL, which could expose the IMA API key and submitted text to an untrusted endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the default IMA API host, avoid custom base URLs unless fully trusted, and prefer scoped or test API keys.
+
+Risk: Text submitted for speech synthesis may contain confidential, personal, or regulated content.
+
+Mitigation: Avoid sending sensitive content unless the user is authorized and the provider use is approved for that data.
+
+Risk: The skill stores user preferences and operational logs under the user's OpenClaw directory.
+
+Mitigation: Review retention expectations and delete local preference or log files when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/allenfancy-gan/skills/ima-tts-ai)
+- [IMA Studio homepage](https://imastudio.com)
+- [IMA Claw homepage](https://www.imaclaw.ai/)
+- [Volcengine TTS timbre list](https://www.volcengine.com/docs/6561/1257544?lang=zh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance]
+
+**Output Format:** [Plain-language status text with audio URL/media result and optional JSON from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires IMA_API_KEY; generated speech is returned as a remote audio URL rather than a local download.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release metadata; artifact frontmatter and changelog report 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

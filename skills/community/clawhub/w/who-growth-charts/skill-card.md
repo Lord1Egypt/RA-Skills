@@ -1,42 +1,62 @@
-## Description: <br>
-Generate WHO child growth charts (height, weight, BMI) with percentile curves. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate WHO child growth charts for height, weight, and BMI with percentile curves and child measurement overlays using WHO reference data downloaded on demand.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-External users and caregivers use this skill to generate WHO child growth standard charts and overlay a child's height, weight, or BMI measurements against percentile curves. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill downloads WHO reference data and an emblem from cdn.who.int. <br>
-Mitigation: Run it only in environments where those one-way downloads are acceptable and review network access expectations before deployment. <br>
-Risk: Generated charts and measurement JSON files can contain private child health information. <br>
-Mitigation: Store outputs in an approved private workspace and delete the who-growth-charts cache/output directory when it is no longer needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [WHO Growth Charts ClawHub release](https://clawhub.ai/odrobnik/who-growth-charts) <br>
-- [Publisher profile: odrobnik](https://clawhub.ai/user/odrobnik) <br>
-- [WHO child growth standards data](https://cdn.who.int/media/docs/default-source/child-growth/child-growth-standards/indicators) <br>
-- [WHO growth reference data for 5-19 years](https://cdn.who.int/media/docs/default-source/child-growth/growth-reference-5-19-years) <br>
+## Use Case:
 
+External users, caregivers, and developers use this skill to generate local WHO percentile charts for a child's height, weight, or BMI from supplied measurement data.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads WHO reference spreadsheets on demand, caches them locally, and writes chart outputs under who-growth-charts by default.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.2.3 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Child measurement data and generated charts may contain sensitive health information.
+
+Mitigation: Keep input JSON, generated charts, and cached files in a private directory with appropriate local access controls.
+
+Risk: The documented /tmp/withings.json pattern may expose imported measurement data on shared systems.
+
+Mitigation: Use a secure temporary file, a private workspace path, or a direct pipe instead of a predictable /tmp path.
+
+Risk: Unpinned Python dependencies can change behavior across installations.
+
+Mitigation: Install the skill in a virtual environment and prefer pinned versions of pandas, matplotlib, scipy, and openpyxl.
+
+Risk: The skill downloads WHO reference files and caches them locally.
+
+Mitigation: Run it where outbound access to the WHO CDN is expected and review cached files according to local data handling policy.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/odrobnik/skills/who-growth-charts)
+- [WHO Child Growth Standards reference data](https://cdn.who.int/media/docs/default-source/child-growth/child-growth-standards/indicators)
+- [WHO Growth Reference 5-19 years data](https://cdn.who.int/media/docs/default-source/child-growth/growth-reference-5-19-years)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with shell commands; generated PNG chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local chart images and caches downloaded WHO reference files under who-growth-charts/ by default.]
+
+## Skill Version(s):
+
+1.2.3 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

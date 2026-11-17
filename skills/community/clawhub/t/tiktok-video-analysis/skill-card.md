@@ -1,42 +1,55 @@
-## Description: <br>
-Provides quick, evidence-based analysis of TikTok videos using available titles, screenshots, metrics, comments, captions, or transcripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a quick, evidence-based analysis of TikTok videos to identify why they perform well and what can be adapted for ecommerce or content strategy.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-Creators, ecommerce teams, and content strategists use this skill to turn partial TikTok evidence into a practical read on likely performance drivers, reusable structure, and adaptation ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analysis may be based on partial TikTok evidence, which can make performance explanations uncertain. <br>
-Mitigation: Separate strong signals from weaker guesses and include confidence notes when screenshots, metrics, comments, captions, or transcript are missing. <br>
-Risk: The optional Chrome extension handoff may expose TikTok or account-related data to a third party. <br>
-Mitigation: Review the extension publisher, browser permissions, privacy policy, and data sharing implications before using it. <br>
+## Use Case:
 
+Creators, operators, ecommerce teams, and content strategists use this skill to quickly evaluate TikTok videos from available titles, screenshots, metrics, comments, captions, or transcripts and turn observations into practical content lessons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Leooooooow/tiktok-video-analysis) <br>
-- [Output template](artifact/references/output-template.md) <br>
-- [Creatop Free TikTok Video Analyzer](https://chromewebstore.google.com/detail/creatop-free-tiktok-video/delhbcobkiagflejjaipegpoeoghpelj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured bullets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes confidence notes for partial evidence and may include repurposing ideas, content briefs, or hook lists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill recommends a specific third-party Chrome extension for deeper TikTok video analysis without meaningful disclosure or alternatives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing the extension, independently review its publisher, permissions, privacy policy, update history, and whether a browser extension is necessary for the requested analysis.
+
+Risk: Analysis may be incomplete or misleading when only partial video evidence is available.
+
+Mitigation: State which inputs are available, separate strong signals from guesses, and include confidence notes for conclusions based on limited evidence.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leooooooow/skills/tiktok-video-analysis)
+- [Output Template](references/output-template.md)
+- [Creatop Free TikTok Video Analyzer](https://chromewebstore.google.com/detail/creatop-free-tiktok-video/delhbcobkiagflejjaipegpoeoghpelj)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured analysis sections and practical takeaways]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes confidence notes when analysis is based on partial evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

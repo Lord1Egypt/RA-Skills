@@ -1,6 +1,6 @@
 {
-  "name": "@frontend-craft/fec-nextjs-project-standard",
-  "version": "2.4.0",
+  "name": "@bovinphang/fec-nextjs-project-standard",
+  "version": "2.9.0",
   "description": "Use when creating or reviewing Next.js 14+ App Router projects, file routes, layouts, server/client component boundaries, SSR/SSG/ISR, streaming, metadata, middleware, server actions, or Next-specific data fetching. For generic client React component architecture, apply the project's React conventions separately; Chinese triggers include Next.js, App Router.",
   "type": "module",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "references",
     "scripts",
     "data",
+    "assets",
     "metadata.json",
     "README.md",
     "LICENSE"

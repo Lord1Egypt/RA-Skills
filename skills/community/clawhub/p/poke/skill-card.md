@@ -1,43 +1,58 @@
-## Description: <br>
-Send SMS/iMessage to the user via Poke and process inbound Poke events for alerts, forwarded Poke events, and external webhook triggers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send SMS/iMessage to the user via Poke and process inbound Poke events.
 
-## Publisher: <br>
-[G9Pedro](https://clawhub.ai/user/G9Pedro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[g9pedro](https://clawhub.ai/user/g9pedro)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to connect an agent to Poke for two-way SMS/iMessage communication, phone-originated requests, and Poke-routed webhook events from external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent phone-to-agent access can expose the local agent to inbound requests and external webhook events. <br>
-Mitigation: Install only when this bridge is intended, use revocable least-privilege tokens, and keep clear approval rules for inbound Poke and webhook-triggered actions. <br>
-Risk: The skill can set up persistent systemd services and a Poke tunnel for ongoing connectivity. <br>
-Mitigation: Review the npm package and setup changes before installation, verify the created services, and understand how to disable the MCP server and tunnel services. <br>
-Risk: Public exposure or broad tools such as file, log, and webhook actions can increase data exposure and command-routing risk. <br>
-Mitigation: Avoid the public exposure option unless strong access controls are added, and do not expose file, log, or external webhook actions without trusted source validation. <br>
+## Use Case:
 
+Developers and agents use this skill to connect OpenClaw with Poke for user messaging, SMS-based alerts, inbound Poke event handling, and webhook-triggered workflows.
 
-## Reference(s): <br>
-- [Poke Bridge ClawHub page](https://clawhub.ai/G9Pedro/poke) <br>
-- [Poke device authentication](https://poke.com/device) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, configuration snippets, and operational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides setup of Poke/OpenClaw connectivity, systemd services, tunnel registration, message routing, and webhook trigger handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.6.5 (source: server release metadata) <br>
+Risk: Persistent Poke tunnel access may provide a long-lived route to the local OpenClaw MCP server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a foreground, temporary tunnel unless persistent access is explicitly needed, and review the systemd service before enabling it.
+
+Risk: The exposed MCP-side tools can enable access to active sessions, logs, and workspace files.
+
+Mitigation: Require explicit approval or allowlists before exposing files, logs, active sessions, or session-targeting actions.
+
+Risk: The documented SDK workaround patches installed Poke binaries and libraries in place.
+
+Mitigation: Pin and verify package versions, and avoid patching installed binaries unless the change has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/g9pedro/skills/poke)
+- [Poke device login](https://poke.com/device)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include setup, routing, troubleshooting, and webhook guidance for Poke and OpenClaw integration.]
+
+## Skill Version(s):
+
+0.6.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

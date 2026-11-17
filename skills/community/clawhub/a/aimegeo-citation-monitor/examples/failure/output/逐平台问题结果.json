@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "dataset_kind": "simulated",
+  "brand": {
+    "name": "青禾工具",
+    "aliases": [
+      "青禾",
+      "Qinghe Tools"
+    ],
+    "domains": [
+      "example.com"
+    ],
+    "include_subdomains": true
+  },
+  "overall": {
+    "planned": 6,
+    "effective_answers": 0,
+    "citation_observed_answers": 0,
+    "status_counts": {
+      "success": 0,
+      "error": 1,
+      "timeout": 1,
+      "not_run": 4,
+      "simulated": 0
+    },
+    "mentioned_answers": null,
+    "native_cited_answers": null,
+    "mention_rate": null,
+    "native_citation_rate": null,
+    "citation_unknown_answers": 0,
+    "critical_native_gaps": []
+  },
+  "history": [
+    {
+      "run_id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "planned": 6,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 1,
+        "timeout": 1,
+        "not_run": 4,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    }
+  ],
+  "by_platform": [
+    {
+      "run_id": "all-failed",
+      "platform": "demo-platform",
+      "planned": 6,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 1,
+        "timeout": 1,
+        "not_run": 4,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    }
+  ],
+  "by_category": [
+    {
+      "run_id": "all-failed",
+      "category": "价格",
+      "planned": 1,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 0,
+        "timeout": 0,
+        "not_run": 1,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    },
+    {
+      "run_id": "all-failed",
+      "category": "品牌",
+      "planned": 1,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 1,
+        "timeout": 0,
+        "not_run": 0,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    },
+    {
+      "run_id": "all-failed",
+      "category": "品类",
+      "planned": 1,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 0,
+        "timeout": 1,
+        "not_run": 0,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    },
+    {
+      "run_id": "all-failed",
+      "category": "场景",
+      "planned": 1,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 0,
+        "timeout": 0,
+        "not_run": 1,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    },
+    {
+      "run_id": "all-failed",
+      "category": "比较",
+      "planned": 1,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 0,
+        "timeout": 0,
+        "not_run": 1,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    },
+    {
+      "run_id": "all-failed",
+      "category": "限制",
+      "planned": 1,
+      "effective_answers": 0,
+      "citation_observed_answers": 0,
+      "status_counts": {
+        "success": 0,
+        "error": 0,
+        "timeout": 0,
+        "not_run": 1,
+        "simulated": 0
+      },
+      "mentioned_answers": null,
+      "native_cited_answers": null,
+      "mention_rate": null,
+      "native_citation_rate": null,
+      "citation_unknown_answers": 0,
+      "critical_native_gaps": []
+    }
+  ],
+  "comparison": null,
+  "results": [
+    {
+      "run_id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "platform": "demo-platform",
+      "query_id": "q1",
+      "category": "品牌",
+      "priority": "critical",
+      "expected_native_citation": true,
+      "query": "青禾工具是什么，适合谁使用？",
+      "status": "error",
+      "reason": "受控失败样例：执行器返回错误",
+      "source": {
+        "kind": "simulation",
+        "executor": "offline-fixture",
+        "reference": "fixture:failure/q1"
+      },
+      "conditions": null,
+      "collected_at": null,
+      "raw_record": {
+        "platform": "demo-platform",
+        "query_id": "q1",
+        "status": "error",
+        "reason": "受控失败样例：执行器返回错误",
+        "source": {
+          "kind": "simulation",
+          "executor": "offline-fixture",
+          "reference": "fixture:failure/q1"
+        }
+      },
+      "mentioned": null,
+      "native_cited": null,
+      "matched_aliases": null,
+      "matched_native_citations": null,
+      "first_native_position": null
+    },
+    {
+      "run_id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "platform": "demo-platform",
+      "query_id": "q2",
+      "category": "品类",
+      "priority": "normal",
+      "expected_native_citation": false,
+      "query": "小团队有哪些知识整理工具？",
+      "status": "timeout",
+      "reason": "受控失败样例：采集超时",
+      "source": {
+        "kind": "simulation",
+        "executor": "offline-fixture",
+        "reference": "fixture:failure/q2"
+      },
+      "conditions": null,
+      "collected_at": null,
+      "raw_record": {
+        "platform": "demo-platform",
+        "query_id": "q2",
+        "status": "timeout",
+        "reason": "受控失败样例：采集超时",
+        "source": {
+          "kind": "simulation",
+          "executor": "offline-fixture",
+          "reference": "fixture:failure/q2"
+        }
+      },
+      "mentioned": null,
+      "native_cited": null,
+      "matched_aliases": null,
+      "matched_native_citations": null,
+      "first_native_position": null
+    },
+    {
+      "run_id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "platform": "demo-platform",
+      "query_id": "q3",
+      "category": "比较",
+      "priority": "normal",
+      "expected_native_citation": false,
+      "query": "青禾工具和速记表有哪些区别？",
+      "status": "not_run",
+      "reason": "No record supplied for planned sample",
+      "source": null,
+      "conditions": null,
+      "collected_at": null,
+      "raw_record": null,
+      "mentioned": null,
+      "native_cited": null,
+      "matched_aliases": null,
+      "matched_native_citations": null,
+      "first_native_position": null
+    },
+    {
+      "run_id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "platform": "demo-platform",
+      "query_id": "q4",
+      "category": "场景",
+      "priority": "normal",
+      "expected_native_citation": false,
+      "query": "怎样整理多人协作的会议记录？",
+      "status": "not_run",
+      "reason": "No record supplied for planned sample",
+      "source": null,
+      "conditions": null,
+      "collected_at": null,
+      "raw_record": null,
+      "mentioned": null,
+      "native_cited": null,
+      "matched_aliases": null,
+      "matched_native_citations": null,
+      "first_native_position": null
+    },
+    {
+      "run_id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "platform": "demo-platform",
+      "query_id": "q5",
+      "category": "价格",
+      "priority": "high",
+      "expected_native_citation": false,
+      "query": "青禾工具的价格信息在哪里看？",
+      "status": "not_run",
+      "reason": "No record supplied for planned sample",
+      "source": null,
+      "conditions": null,
+      "collected_at": null,
+      "raw_record": null,
+      "mentioned": null,
+      "native_cited": null,
+      "matched_aliases": null,
+      "matched_native_citations": null,
+      "first_native_position": null
+    },
+    {
+      "run_id": "all-failed",
+      "started_at": "2026-10-09T09:00:00+08:00",
+      "platform": "demo-platform",
+      "query_id": "q6",
+      "category": "限制",
+      "priority": "normal",
+      "expected_native_citation": false,
+      "query": "选知识整理工具时要核对哪些限制？",
+      "status": "not_run",
+      "reason": "No record supplied for planned sample",
+      "source": null,
+      "conditions": null,
+      "collected_at": null,
+      "raw_record": null,
+      "mentioned": null,
+      "native_cited": null,
+      "matched_aliases": null,
+      "matched_native_citations": null,
+      "first_native_position": null
+    }
+  ]
+}

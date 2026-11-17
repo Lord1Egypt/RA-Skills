@@ -1,114 +1,68 @@
-# Command Reference
+# Command reference
 
-Full command surface for the `aomi` CLI (or `npx @aomi-labs/client@0.1.30` equivalent). The skill invokes read forms freely; `set`/mutating forms only when the user explicitly asks.
+## Availability
 
-## Chat
+Install `@aomi-labs/cli@latest` for the terminal command. `@aomi-labs/client`
+is the TypeScript SDK; its old CLI entry prints migration instructions.
+The separate CLI version history restarted at 0.1.x. Require CLI `0.2.0` or
+newer, verified from public npm on October 30, 2026 with SDK `0.11.2`.
 
-```bash
-aomi --prompt "<message>"                              # one-shot send and exit
-aomi chat "<message>" --new-session
-aomi chat "<message>" --verbose                        # stream tool calls and agent output
-aomi chat "<message>" --model <rig>
-aomi chat "<message>" --public-key 0xUserAddress --chain 1
-aomi chat "<message>" --app khalani --chain 137
+```sh
+npm install -g @aomi-labs/cli@latest
+aomi --version
+aomi tx --help
+aomi tx export --help
+aomi tx submit --help
+aomi tx preflight --help
 ```
 
-- Quote the message.
-- On the first command in a new assistant thread, prefer `--new-session`.
-- Pass `--public-key` on the first wallet-aware message.
-- Use `--app`, `--model`, `--chain` to change the active context for the next request.
+For one-shot use, substitute `npx @aomi-labs/cli@latest` for `aomi`. Check both
+the version and capabilities: an old embedded-client executable can have a
+numerically higher version. Installing a skill does not update a global binary.
 
-## Transactions
+## Commit and payment commands
 
-```bash
-aomi tx list                                           # pending/signed requests
-aomi tx simulate <id> [<id> ...]                       # dry-run a batch on a fork
-aomi tx sign <id> [<id> ...]                           # sign and submit
+```sh
+aomi config current --json
+aomi wallet current --json
+aomi session list
+aomi session resume <local-session-id>
+aomi tx preflight <intent-file>
+aomi chat "<intent>" --new-session --public-key <sender> --chain <chain-id>
+aomi tx list --json
+aomi tx export <commit-id> --format commit > reviewed-commit.json
+aomi tx sign <commit-id>
+aomi tx submit <commit-id> --signed-file <signed-export-file>
+aomi tx submit <commit-id> --tx-hash <prepared-broadcast-hash>
 ```
 
-## Sessions
+Preflight is read-only on chain and never signs.
+A full Commit ID identifies the durable payment. An external signed file uses
+`aomi.commit.v1`, the unchanged exact exported Commit, and a top-level `payloads`
+array. `--tx-hash` reports the exact prepared broadcast hash; it is not a general
+way to attach arbitrary transactions.
 
-```bash
-aomi session list                                      # local sessions with topic + pending count
-aomi session new
-aomi session resume <id>                               # set active pointer
-aomi session delete <id>                               # remove (check no pending txs first)
-aomi session status                                    # current session summary
-aomi session log                                       # replay conversation + tool output
-aomi session events                                    # raw backend system events
-aomi session close                                     # clear active pointer; next chat starts fresh
-```
+`tx list` can contain both Commits and legacy Actions. `tx simulate` accepts
+legacy EVM Action IDs; consult the current help only if that branch is needed.
+A Commit's simulation evidence is already in its durable review.
 
-Selectors accept the backend session id, `session-N`, or `N`.
+## Transport and signing
 
-## Secrets
+| Setting | Meaning |
+| --- | --- |
+| `--backend-url` / `AOMI_BACKEND_URL` | Portal/BFF origin, production `https://chat.aomi.dev`, staging `https://chat-staging.aomi.dev` |
+| `--public-key` | Intended sender context, not authorization or proof of funding |
+| `--chain` | Explicit session chain ID |
+| `--rpc-url` / `CHAIN_RPC_URL` | Signing RPC, must match the prepared transaction's chain |
+| `--account-bearer` / `AOMI_ACCOUNT_BEARER` | Account authorization, never print its value |
+| `AOMI_STATE_DIR` | Local CLI state directory, default `~/.aomi` |
 
-```bash
-aomi secret list                                       # handle names only, no values
-aomi secret clear                                      # drop all configured secrets
-aomi secret add NAME=<value> [NAME=...]                # user-directed only (see workflows.md)
-```
+`config current --json` reports a sanitized origin and its source (flag, env,
+saved session, default). Environment overrides take precedence over saved
+configuration. The direct backend `api.aomi.dev` / `api-staging.aomi.dev` does
+not serve Portal guest login. Correct only the CLI's override when other tools
+still need a direct backend URL.
 
-## Apps and Models
-
-```bash
-aomi app list
-aomi app current
-aomi model list
-aomi model current
-aomi model set <rig>                                   # persist model for current session
-```
-
-`aomi chat --model <rig> "<message>"` applies a model for one turn without persisting it. Pick an app per turn with `--app <name>` or `AOMI_APP=<name>`. The installed set is dynamic — confirm with `aomi app list`. Full catalog and per-app credential requirements in [apps.md](apps.md).
-
-## Chain
-
-```bash
-aomi chain list
-aomi chain current
-aomi chain set <id>                                    # only when user asked to change default
-```
-
-## Wallet and Config
-
-```bash
-aomi wallet current                                    # configured address only, no credential
-aomi wallet set <signing-key>                          # user-directed; user supplies key
-aomi config current                                    # backend URL
-aomi config set-backend <url>                          # repoint CLI at a different backend
-```
-
-`aomi wallet set` persists a signing key under `AOMI_STATE_DIR`. After running, confirm with the derived address — never repeat the key value back.
-
-## Flags and Env Vars
-
-Flags override environment variables.
-
-| Flag            | Default                | Purpose                                                   |
-| --------------- | ---------------------- | --------------------------------------------------------- |
-| `--backend-url` | `https://api.aomi.dev` | Backend URL                                               |
-| `--api-key`     | none                   | API key for non-default apps (user-supplied)              |
-| `--app`         | `default`              | Backend app                                               |
-| `--model`       | backend default        | Session model                                             |
-| `--new-session` | off                    | Create a fresh active session for this command            |
-| `--public-key`  | none                   | Wallet address for chat/session context                   |
-| `--rpc-url`     | chain RPC default      | RPC override for signing                                  |
-| `--chain`       | none                   | Active wallet chain (inherits session chain if unset)     |
-| `--eoa`         | off                    | Force plain EOA, skip AA (sign-only)                      |
-| `--aa`          | off                    | Force AA, error if provider not configured (sign-only)    |
-| `--aa-provider` | auto-detect            | `alchemy` \| `pimlico` (sign-only)                        |
-| `--aa-mode`     | chain default          | `4337` \| `7702` (sign-only)                              |
-
-| Env Var           | Default   | Purpose                                |
-| ----------------- | --------- | -------------------------------------- |
-| `AOMI_STATE_DIR`  | `~/.aomi` | Root directory for local session state |
-| `AOMI_CONFIG_DIR` | `~/.aomi` | Root directory for persistent config   |
-
-## Config Rules
-
-- Signing keys must be 0x-prefixed hex. Configuring them is a user action, not a skill action.
-- `--aa-provider` and `--aa-mode` cannot be used with `--eoa`.
-- The default signing RPC is one URL. For chain switching, pass `--rpc-url` on `aomi tx sign` with a chain-matching public RPC.
-- In auto-detect mode, the CLI falls back to a zero-config AA path when no provider is configured.
-
-For account-abstraction details (modes, providers, sponsorship, chain defaults), see [account-abstraction.md](account-abstraction.md).
+Signing configuration belongs to the designated signer. Inspect the live
+command help for EOA/AA/Solana flags, then match the exported Commit payload.
+The separate Rust `aomi-cli` interface is not interchangeable with these commands.

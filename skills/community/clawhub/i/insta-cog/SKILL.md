@@ -1,5 +1,5 @@
 ---
-name: insta-cog
+name: instagram-reels-tiktok-cellcog
 description: "AI social media video and content creation powered by CellCog. Instagram Reels, TikTok videos, Stories, carousels, social posts. Full video production from a single prompt — scripted, shot, stitched, and scored automatically."
 metadata:
   openclaw:
@@ -12,9 +12,9 @@ author: CellCog
 homepage: https://cellcog.ai
 dependencies: [cellcog]
 ---
-# Insta Cog - Full Video Production From a Single Prompt
+# Instagram Reels & TikTok - Full Video Production From a Single Prompt
 
-**Script, shoot, stitch, score — automatically.** The most advanced AI video suite, powered by #1 on DeepResearch Bench (Apr 2026).
+**Script, shoot, stitch, score — automatically.** The most advanced AI video suite, powered by #1 on DeepResearch Bench (October 2026).
 
 No other AI platform generates multi-scene, production-ready Reels and TikToks from a single prompt. CellCog handles the entire pipeline: coherent script, scene-by-scene generation with consistent characters, background music, and automatic editing — 30 seconds to 4 minutes, ready to post. Plus carousels, Stories, and static posts.
 
@@ -29,6 +29,7 @@ result = client.create_chat(
     notify_session_key="agent:main:main",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 ```
 
@@ -40,6 +41,7 @@ result = client.create_chat(
     prompt="[your task prompt]",
     task_label="my-task",
     chat_mode="agent",
+    chat_tier="max",
 )
 print(result["message"])
 ```
@@ -146,16 +148,16 @@ CellCog can create content in various aesthetics:
 
 ---
 
-## Chat Mode for Social Content
+## Choosing Mode & Tier
 
-| Scenario | Recommended Mode |
-|----------|------------------|
-| Single posts, Stories, standard Reels | `"agent"` |
-| Multi-part campaigns, brand storytelling series, complex video concepts | `"agent team"` |
+**Use `chat_mode="agent", chat_tier="max"` for short-form video production.** Even short videos run the full production pipeline; campaign coherence needs depth.
 
-**Use `"agent"` for most social content.** Individual posts, Reels, and carousels execute well in agent mode.
+| Scenario | Recommended |
+|----------|-------------|
+| Reels, TikToks, campaign series | `chat_mode="agent", chat_tier="max"` |
+| Single throwaway clips | `chat_mode="agent", chat_tier="flash"` |
 
-**Use `"agent team"` for campaign-level thinking** - when you need a cohesive content strategy across multiple pieces or complex creative direction.
+Agent Team (`chat_mode="team"`) is reserved for deep research — short-form video production runs best on Agent max.
 
 ---
 
@@ -224,6 +226,7 @@ There is a real learning curve to generating videos with CellCog. It takes time,
 
 ## If CellCog is not installed
 
-Run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool) to install and authenticate.
-**OpenClaw users:** Run `clawhub install cellcog` instead.
+**Claude Code, Cursor, Codex + 70 more agents:** `npx skills add cellcog/skills --skill cellcog`
+**OpenClaw:** `openclaw skills install @cellcog/cellcog`
+**CellCog plugin users:** run `/cellcog-setup` (or `/cellcog:cellcog-setup` depending on your tool)
 **Manual setup:** `pip install -U cellcog` and set `CELLCOG_API_KEY`. See the **cellcog** skill for SDK reference.

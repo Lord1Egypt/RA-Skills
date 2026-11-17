@@ -4,8 +4,15 @@ Manages tables for transactions, categories, match rules, manual overrides,
 and metadata. Follows a connect/disconnect pattern with date type adapters.
 """
 
+import itertools
 import sqlite3
 from datetime import date, datetime
+
+from financial_categorizer.matching import (
+    aggregate_tolerance,
+    clean_description,
+    inexact_amount_match,
+)
 
 
 def adapt_date(val):
@@ -146,7 +153,8 @@ class DatabaseHandler:
                             CHECK(status IN ('pending','settled')),
                 matched_rule_id INTEGER REFERENCES match_rules(id) ON DELETE SET NULL,
                 adjusted_amount REAL,
-                UNIQUE(date, description, amount, account_id, status)
+                occurrence  INTEGER NOT NULL DEFAULT 1,
+                UNIQUE(date, description, amount, account_id, status, occurrence)
             )""")
 
         cur.execute("""
@@ -193,16 +201,42 @@ class DatabaseHandler:
                             CHECK(match_type IN ('regex','exact','contains')),
                 created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )""")
-
         cur.execute("""
             CREATE TABLE IF NOT EXISTS metadata(
                 key   TEXT PRIMARY KEY,
                 value TEXT
             )""")
 
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS recurring_payments(
+                id              INTEGER PRIMARY KEY AUTOINCREMENT,
+                name            TEXT NOT NULL,
+                pattern         TEXT NOT NULL,
+                match_type      TEXT NOT NULL DEFAULT 'contains'
+                                CHECK(match_type IN ('regex', 'exact', 'contains')),
+                amount_min      REAL,
+                amount_max      REAL,
+                interval_type   TEXT NOT NULL CHECK(interval_type IN ('monthly', 'weekly', 'yearly', 'days')),
+                interval_value  INTEGER NOT NULL DEFAULT 1,
+                day_of_month    INTEGER,
+                day_of_week     INTEGER,
+                week_of_month   INTEGER CHECK(week_of_month IN (1, 2, 3, 4, 5, -1)),
+                tolerance_days  INTEGER NOT NULL DEFAULT 4,
+                start_date      DATE NOT NULL,
+                end_date        DATE,
+                category_id     INTEGER REFERENCES categories(id) ON DELETE SET NULL,
+                account_id      INTEGER REFERENCES accounts(id) ON DELETE SET NULL,
+                created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )""")
+
         self.conn.commit()
 
         # Check and migrate schemas dynamically if tables already existed without the new columns
+        cur.execute("PRAGMA table_info(transactions)")
+        cols_tx = [row[1] for row in cur.fetchall()]
+        if "recurring_id" not in cols_tx:
+            cur.execute("ALTER TABLE transactions ADD COLUMN recurring_id INTEGER REFERENCES recurring_payments(id) ON DELETE SET NULL")
+
         cur.execute("PRAGMA table_info(transaction_links)")
         cols_links = [row[1] for row in cur.fetchall()]
         if "to_account_id" not in cols_links:
@@ -269,19 +303,25 @@ class DatabaseHandler:
                 
                 cur.execute("PRAGMA foreign_keys = OFF;")
                 cur.execute("BEGIN TRANSACTION;")
+                
+                # Step 1: Rename all corrupted tables to _old first.
+                # This prevents subsequent renames from rewriting foreign keys in newly recreated tables.
                 for table_name, old_sql in corrupted_tables:
-                    # Replace references to accounts_old with accounts
-                    new_sql = old_sql.replace('"accounts_old"', 'accounts').replace('accounts_old', 'accounts')
-                    
                     cur.execute(f"ALTER TABLE {table_name} RENAME TO {table_name}_old;")
+                
+                # Step 2: Recreate all corrupted tables with corrected SQL
+                for table_name, old_sql in corrupted_tables:
+                    new_sql = old_sql.replace('"accounts_old"', 'accounts').replace('accounts_old', 'accounts')
                     cur.execute(new_sql)
-                    
-                    # Copy columns dynamically
+                
+                # Step 3: Copy data from old tables to new tables, then drop old tables
+                for table_name, old_sql in corrupted_tables:
                     cur.execute(f"PRAGMA table_info({table_name}_old)")
                     cols = [r[1] for r in cur.fetchall()]
                     cols_str = ", ".join(f'"{c}"' for c in cols)
                     cur.execute(f"INSERT INTO {table_name} ({cols_str}) SELECT {cols_str} FROM {table_name}_old")
                     cur.execute(f"DROP TABLE {table_name}_old;")
+                
                 cur.execute("COMMIT;")
             except Exception as e:
                 try:
@@ -291,6 +331,7 @@ class DatabaseHandler:
                 raise e
             finally:
                 cur.execute("PRAGMA foreign_keys = ON;")
+
                 self.conn.isolation_level = old_isolation
             self.conn.commit()
             
@@ -299,8 +340,93 @@ class DatabaseHandler:
             stats = Stats(self)
             stats._ensure_views()
 
+        # Migration: add the ``occurrence`` column and relax the transactions
+        # uniqueness constraint so genuinely identical postings (same date,
+        # description, amount, account and status) can coexist. Older databases
+        # carried UNIQUE(date, description, amount, account_id, status), which
+        # silently collapsed such rows on import. Run after the corrupt-DB
+        # repair so a legacy schema is rebuilt first.
+        cur.execute("PRAGMA table_info(transactions)")
+        cols_tx = [row[1] for row in cur.fetchall()]
+        if "occurrence" not in cols_tx:
+            self._migrate_transactions_add_occurrence(cur)
+
         cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
         return [row[0] for row in cur.fetchall()]
+
+    def _migrate_transactions_add_occurrence(self, cur) -> None:
+        """Rebuild the transactions table with an ``occurrence`` column.
+
+        SQLite cannot drop a table-level UNIQUE constraint in place, so the
+        table is rebuilt. ``occurrence`` numbers identical postings
+        (same date/description/amount/account/status) 1..N; every pre-existing
+        row becomes occurrence 1. Foreign keys are disabled for the rebuild and
+        any dropped views are recreated afterwards.
+        """
+        from financial_categorizer.stats import Stats
+
+        cur.execute("PRAGMA foreign_keys = OFF;")
+        old_isolation = self.conn.isolation_level
+        self.conn.isolation_level = None
+        dropped_views = []
+        try:
+            cur.execute("SELECT name FROM sqlite_master WHERE type='view'")
+            dropped_views = [r[0] for r in cur.fetchall()]
+            for view_name in dropped_views:
+                cur.execute(f"DROP VIEW IF EXISTS {view_name};")
+
+            cur.execute("BEGIN TRANSACTION;")
+            cur.execute("""
+                CREATE TABLE transactions_new(
+                    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+                    date        DATE NOT NULL,
+                    description TEXT NOT NULL,
+                    amount      REAL NOT NULL,
+                    account_id  INTEGER NOT NULL REFERENCES accounts(id) ON DELETE RESTRICT,
+                    source_file TEXT,
+                    imported_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    category_id INTEGER REFERENCES categories(id) ON DELETE SET NULL,
+                    comment     TEXT,
+                    status      TEXT NOT NULL DEFAULT 'settled'
+                                CHECK(status IN ('pending','settled')),
+                    matched_rule_id INTEGER REFERENCES match_rules(id) ON DELETE SET NULL,
+                    adjusted_amount REAL,
+                    recurring_id INTEGER REFERENCES recurring_payments(id) ON DELETE SET NULL,
+                    occurrence  INTEGER NOT NULL DEFAULT 1,
+                    UNIQUE(date, description, amount, account_id, status, occurrence)
+                )""")
+
+            # Copy whatever columns the legacy table actually has (very old
+            # schemas may lack matched_rule_id / recurring_id / adjusted_amount).
+            cur.execute("PRAGMA table_info(transactions)")
+            legacy_cols = [row[1] for row in cur.fetchall()]
+            new_cols = {
+                "id", "date", "description", "amount", "account_id",
+                "source_file", "imported_at", "category_id", "comment",
+                "status", "matched_rule_id", "adjusted_amount", "recurring_id",
+            }
+            copy_cols = [c for c in legacy_cols if c in new_cols]
+            cols_str = ", ".join(copy_cols + ["occurrence"])
+            select_str = ", ".join(copy_cols + ["1"])
+            cur.execute(
+                f"INSERT INTO transactions_new ({cols_str}) SELECT {select_str} FROM transactions"
+            )
+            cur.execute("DROP TABLE transactions;")
+            cur.execute("ALTER TABLE transactions_new RENAME TO transactions;")
+            cur.execute("COMMIT;")
+        except Exception:
+            try:
+                cur.execute("ROLLBACK;")
+            except sqlite3.OperationalError:
+                pass
+            raise
+        finally:
+            cur.execute("PRAGMA foreign_keys = ON;")
+            self.conn.isolation_level = old_isolation
+
+        if dropped_views:
+            Stats(self)._ensure_views()
+        self.conn.commit()
 
     # ------------------------------------------------------------------ #
     #  Metadata helpers
@@ -590,6 +716,244 @@ class DatabaseHandler:
             "orphaned_links": orphaned_links
         }
 
+    def cleanup_pending(self, dry_run: bool = False, force_ids: list = None) -> dict:
+        """Find and optionally delete ghost pending transactions.
+
+        A ghost pending is a reservation whose settled counterpart already
+        exists in the database — matched individually, as part of a
+        split-authorization group, or inexactly (same merchant and window,
+        settled amount within the inexact band: merchants like ICA Maxi
+        authorize a buffer and settle a different final amount) — so keeping
+        it would double-count the purchase. Inexact matches fire only when a
+        single settled candidate qualifies. Unresolved pendings are kept and
+        reported for manual review with nearby same-merchant candidates as
+        hints.
+
+        Args:
+            dry_run: Report ghosts without deleting them.
+            force_ids: Optional explicit pending ids to delete regardless of
+                matching confidence (manual override). Raises ValueError if
+                an id does not refer to a pending transaction.
+
+        Returns a dict:
+        {
+            "deleted": int,
+            "ghosts": [ {"id", "date", "amount", "description", "matched_settled"} ],
+            "unresolved": [ {"id", "date", "amount", "description"} ]
+        }
+        """
+        cur = self.get_cursor()
+        cur.execute(
+            "SELECT id, account_id, date, description, amount FROM transactions "
+            "WHERE status = 'pending' ORDER BY date, id"
+        )
+        pendings = cur.fetchall()
+        cur.execute(
+            "SELECT id, account_id, date, description, amount FROM transactions "
+            "WHERE status = 'settled' ORDER BY date, id"
+        )
+        settled = cur.fetchall()
+
+        settled_by_id = {s[0]: s for s in settled}
+        consumed_settled = set()
+        resolved = set()   # pending ids matched to a settled counterpart
+        matches = []       # (pending_id, settled_id)
+
+        def _as_date(val):
+            if isinstance(val, datetime):
+                return val.date()
+            if isinstance(val, date):
+                return val
+            return date.fromisoformat(str(val))
+
+        # Pass 1: individual matches (same rules as the importer: cleaned
+        # description substring, settled 0-10 days after pending, amount
+        # within 1.0 SEK). Each settled row can only justify one pending.
+        for p_id, p_acct, p_date, p_desc, p_amount in pendings:
+            p_clean = clean_description(p_desc)
+            p_dt = _as_date(p_date)
+            for s_id, s_acct, s_date, s_desc, s_amount in settled:
+                if s_acct != p_acct or s_id in consumed_settled:
+                    continue
+                s_clean = clean_description(s_desc)
+                if p_clean not in s_clean and s_clean not in p_clean:
+                    continue
+                if not (0 <= (_as_date(s_date) - p_dt).days <= 10):
+                    continue
+                if (s_amount < 0) != (p_amount < 0):
+                    continue
+                if abs(s_amount - p_amount) > 1.0:
+                    continue
+                matches.append((p_id, s_id, "exact"))
+                consumed_settled.add(s_id)
+                resolved.add(p_id)
+                break
+
+        # Pass 2: split-authorization groups (sum of 2-4 pendings vs one
+        # settled charge, within the importer's aggregate tolerance).
+        for s_id, s_acct, s_date, s_desc, s_amount in settled:
+            if s_id in consumed_settled:
+                continue
+            s_clean = clean_description(s_desc)
+            s_dt = _as_date(s_date)
+            pool = []
+            for p_id, p_acct, p_date, p_desc, p_amount in pendings:
+                if p_acct != s_acct or p_id in resolved:
+                    continue
+                p_clean = clean_description(p_desc)
+                if p_clean not in s_clean and s_clean not in p_clean:
+                    continue
+                if not (0 <= (s_dt - _as_date(p_date)).days <= 10):
+                    continue
+                if (p_amount < 0) != (s_amount < 0):
+                    continue
+                pool.append((p_id, p_amount))
+            if len(pool) < 2 or len(pool) > 8:
+                continue
+            tolerance = aggregate_tolerance(s_amount)
+            matched_group = None
+            for size in range(2, min(4, len(pool)) + 1):
+                for combo in itertools.combinations(pool, size):
+                    if abs(sum(a for _, a in combo) - s_amount) <= tolerance:
+                        matched_group = combo
+                        break
+                if matched_group:
+                    break
+            if matched_group:
+                for p_id, _ in matched_group:
+                    matches.append((p_id, s_id, "split"))
+                    resolved.add(p_id)
+                consumed_settled.add(s_id)
+
+        # Pass 3: inexact settlements (same merchant, settled 0-10 days after
+        # the reservation, settled amount inside the inexact amount band —
+        # merchants like ICA Maxi authorize a buffer and settle a different
+        # final amount). Auto-match only on MUTUAL uniqueness: exactly one
+        # settled candidate for the pending AND no other pending able to
+        # claim that settled row; any ambiguity stays unresolved for manual
+        # review (--force-id).
+        def _inexact_pool(p_row, s_row):
+            """True if pending p_row and settled s_row pass the
+            description/window/inexact-band checks."""
+            p_acct_, p_date_, p_desc_, p_amount_ = p_row[1], p_row[2], p_row[3], p_row[4]
+            s_acct_, s_date_, s_desc_, s_amount_ = s_row[1], s_row[2], s_row[3], s_row[4]
+            if p_acct_ != s_acct_:
+                return False
+            p_clean_ = clean_description(p_desc_)
+            s_clean_ = clean_description(s_desc_)
+            if p_clean_ not in s_clean_ and s_clean_ not in p_clean_:
+                return False
+            if not (0 <= (_as_date(s_date_) - _as_date(p_date_)).days <= 10):
+                return False
+            return inexact_amount_match(p_amount_, s_amount_)
+
+        for p in pendings:
+            p_id = p[0]
+            if p_id in resolved:
+                continue
+            inexact_candidates = [
+                s for s in settled
+                if s[0] not in consumed_settled and _inexact_pool(p, s)
+            ]
+            if len(inexact_candidates) != 1:
+                continue
+            s = inexact_candidates[0]
+            contested = any(
+                q[0] not in resolved and q[0] != p_id and _inexact_pool(q, s)
+                for q in pendings
+            )
+            if contested:
+                continue
+            matches.append((p_id, s[0], "inexact"))
+            consumed_settled.add(s[0])
+            resolved.add(p_id)
+
+        ghosts = []
+        for p_id, s_id, match_type in matches:
+            p = next((x for x in pendings if x[0] == p_id), None)
+            s = settled_by_id.get(s_id)
+            if p is None:
+                continue
+            ghosts.append({
+                "id": p[0],
+                "date": p[2],
+                "amount": p[4],
+                "description": p[3],
+                "match_type": match_type,
+                "matched_settled": (
+                    {"id": s[0], "date": s[2], "amount": s[4]} if s else None
+                ),
+            })
+
+        # Forced deletions (explicit manual override, no counterpart needed).
+        forced_ids_set = set()
+        if force_ids:
+            pending_by_id = {p[0]: p for p in pendings}
+            for fid in force_ids:
+                p = pending_by_id.get(fid)
+                if p is None:
+                    raise ValueError(
+                        f"force-id {fid}: no pending transaction with that id"
+                    )
+                if fid in resolved or fid in forced_ids_set:
+                    continue
+                forced_ids_set.add(fid)
+                ghosts.append({
+                    "id": p[0],
+                    "date": p[2],
+                    "amount": p[4],
+                    "description": p[3],
+                    "match_type": "forced",
+                    "matched_settled": None,
+                })
+
+        unresolved = []
+        for p in pendings:
+            if p[0] in resolved or p[0] in forced_ids_set:
+                continue
+            p_clean = clean_description(p[3])
+            p_dt = _as_date(p[2])
+            candidates = []
+            for s_id, s_acct, s_date, s_desc, s_amount in settled:
+                if s_acct != p[1]:
+                    continue
+                s_clean = clean_description(s_desc)
+                if p_clean not in s_clean and s_clean not in p_clean:
+                    continue
+                if not (0 <= (_as_date(s_date) - p_dt).days <= 10):
+                    continue
+                candidates.append({"id": s_id, "date": s_date, "amount": s_amount})
+            unresolved.append({
+                "id": p[0],
+                "date": p[2],
+                "amount": p[4],
+                "description": p[3],
+                "candidates": candidates[:3],
+                "probable_cancelled": (
+                    (date.today() - p_dt).days > 45 and not candidates
+                ),
+            })
+
+        deleted = 0
+        if not dry_run and ghosts:
+            ids = [g["id"] for g in ghosts]
+            placeholders = ",".join("?" * len(ids))
+            cur.execute(
+                f"SELECT COUNT(*) FROM transaction_links "
+                f"WHERE from_transaction_id IN ({placeholders}) "
+                f"OR to_transaction_id IN ({placeholders})",
+                ids + ids,
+            )
+            affects_links = cur.fetchone()[0] > 0
+            for ghost in ghosts:
+                cur.execute("DELETE FROM transactions WHERE id = ?", (ghost["id"],))
+                deleted += 1
+            self.commit()
+            if affects_links:
+                self.recalculate_adjusted_amounts()
+
+        return {"deleted": deleted, "ghosts": ghosts, "unresolved": unresolved}
+
     def delete_account(self, account_id: int) -> bool:
         """Delete an account. Fails if transactions reference it (ON DELETE RESTRICT).
 
@@ -662,7 +1026,8 @@ class DatabaseHandler:
         """
         sql = """
             SELECT t.id, t.date, t.description, t.amount, t.adjusted_amount,
-                   t.category_id, c.name AS category_name, a.name AS account_name
+                   t.category_id, c.name AS category_name, a.name AS account_name,
+                   a.ownership_ratio
             FROM transactions t
             JOIN accounts a ON a.id = t.account_id
             LEFT JOIN categories c ON c.id = t.category_id
@@ -695,6 +1060,8 @@ class DatabaseHandler:
                 "category_id": row[5],
                 "category_name": row[6],
                 "account_name": row[7],
+                "ownership_ratio": row[8],
+                "unsplit_amount": row[4] / row[8] if row[4] is not None and row[8] > 0 else row[3],
             }
             for row in cur.fetchall()
         ]

@@ -1,38 +1,57 @@
-## Description: <br>
-Parses job description text into structured position details including title, requirements, salary range, company information, skills, responsibilities, and keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parses job description text into structured position information for job analysis.
 
-## Publisher: <br>
-[51mee-com](https://clawhub.ai/user/51mee-com) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[51mee-com](https://clawhub.ai/user/51mee-com)
 
-## Use Case: <br>
-Recruiters, HR teams, and developers use this skill to convert job descriptions into structured position data for review, search, or downstream workflow inputs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated position data may be incomplete or unreliable when job descriptions are sparse, ambiguous, or untrusted. <br>
-Mitigation: Validate the returned JSON before using it in hiring, analytics, or business workflows. <br>
+## Use Case:
 
+Recruiting, HR, and hiring workflow users provide job description text and use the skill to extract title, category, experience, education, salary, company details, requirements, and keywords into a fixed structure.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/51mee-com/51mee-position-parse) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON] <br>
-**Output Format:** [JSON object following the PositionInfo interface, with an optional Markdown report layout documented by the skill.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Missing fields should be returned as null; validate generated JSON before using it in automated workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: Job description text may contain prompt-injection content or ambiguous instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the job description strictly as untrusted input and require the model to follow only the fixed extraction schema.
+
+Risk: The artifact describes both direct JSON output and a Markdown report, which can lead to inconsistent output formatting.
+
+Mitigation: Choose and enforce one expected output contract at integration time, preferably validated JSON matching the declared schema.
+
+Risk: Model extraction may omit, misclassify, or overstate job requirements from sparse descriptions.
+
+Mitigation: Validate generated fields against the source job description and preserve null values when information is absent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/51mee-com/skills/51mee-position-parse)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON]
+
+**Output Format:** [JSON object or Markdown report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Missing fields are represented as null; no code execution or external tools are evidenced.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

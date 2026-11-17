@@ -1,39 +1,51 @@
-## Description: <br>
-Provides gym and fitness studio operations guidance for membership pricing, retention, staffing, equipment planning, class scheduling, compliance, and growth planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides gym and fitness studio operations guidance covering membership pricing, retention, staffing, equipment lifecycle, class scheduling, compliance, financial benchmarks, and growth planning.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Gym owners, studio operators, and agents supporting fitness businesses use this skill to reason about pricing, retention workflows, staffing plans, facility costs, class schedules, compliance considerations, growth phases, and financial benchmarks. <br>
-
-### Deployment Geography for Use: <br>
-United States <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pricing, wage, insurance, AED/CPR, ADA, and financial benchmarks may vary by location, insurer, and market conditions. <br>
-Mitigation: Verify operational decisions against current local law, insurer requirements, and market conditions before relying on the guidance. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-gym-fitness) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+External operators and agents use this reference pack to answer gym and fitness studio operations questions, including pricing, staffing, retention, equipment planning, scheduling, compliance, and growth planning.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reference content for agent responses and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static markdown-only reference content; no code execution, credential use, persistence, or hidden agent instructions were identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+United States
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Business, compliance, insurance, and legal benchmarks may not match a specific location or operating model.
+
+Mitigation: Verify state-specific legal, insurance, ADA, AED/CPR, employment, and facility requirements before using the guidance for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-gym-fitness)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+- [AI Revenue Leak Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Agent Setup Wizard](https://afrexai-cto.github.io/agent-setup/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reference content for agent context]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Content-only reference pack; no executable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

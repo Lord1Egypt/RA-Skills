@@ -1,39 +1,48 @@
-## Description: <br>
-Expert refactoring specialist mastering safe code transformation techniques and design pattern application. Specializes in improving code structure, reducing complexity, and enhancing maintainability while preserving behavior with focus on systematic, test-driven refactoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert refactoring specialist mastering safe code transformation techniques and design pattern application. Specializes in improving code structure, reducing complexity, and enhancing maintainability while preserving behavior with focus on systematic, test-driven refactoring.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to analyze code quality, identify refactoring opportunities, and guide incremental behavior-preserving code transformations with tests and review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can guide broad code changes that may alter behavior or introduce regressions if accepted without review.
+
+Mitigation: Review proposed diffs, run relevant tests, inspect commits, and confirm behavior preservation before accepting changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to identify code smells, plan safe refactors, apply refactoring patterns, and preserve behavior with tests while improving maintainability. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Refactoring guidance or generated code changes could alter behavior if applied without validation. <br>
-Mitigation: Use the skill on a branch, provide a specific refactoring target, review diffs, and require tests or CI before merging. <br>
-Risk: Broad cross-file, database schema, or API contract refactors can have larger downstream impact. <br>
-Mitigation: Apply changes incrementally and use extra review for database schema, API contract, and broad cross-file refactors. <br>
+**Output Format:** [Markdown with code snippets, proposed changes, and shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include refactoring plans, test guidance, code review notes, and implementation steps.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with code and shell command snippets when needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include refactoring plans, code changes, test recommendations, metrics summaries, and review notes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

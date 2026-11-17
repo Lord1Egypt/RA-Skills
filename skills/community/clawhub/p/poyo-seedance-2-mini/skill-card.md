@@ -1,45 +1,61 @@
-## Description: <br>
-Helps agents prepare PoYo Seedance 2.0 Mini video-generation requests, including text-to-video, image-to-video, reference-guided video, async submission, polling, and webhook guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents prepare and optionally submit PoYo Seedance 2.0 Mini video-generation requests for text-to-video, image-to-video, first/last-frame, reference-media, polling, and webhook workflows.
 
-## Publisher: <br>
-[coolhackboy](https://clawhub.ai/user/coolhackboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coolhackboy](https://clawhub.ai/user/coolhackboy)
 
-## Use Case: <br>
-Developers and agent users use this skill to create Seedance 2.0 Mini payloads, choose video-generation parameters, and submit or explain PoYo async video jobs. It is useful for text-to-video, image-to-video, first/last-frame, reference-media, polling, and webhook workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PoYo API keys could be exposed if used in browser code, logs, screenshots, public repositories, or chat output. <br>
-Mitigation: Keep POYO_API_KEY in server-side environment variables or a backend secret manager, and avoid printing or storing it in user-visible places. <br>
-Risk: Prompts, media URLs, reference files, and callback URLs submitted to PoYo or a webhook receiver may contain sensitive information. <br>
-Mitigation: Submit only data the user is comfortable sharing with PoYo and the callback receiver; avoid confidential media and private endpoints unless those parties are trusted. <br>
-Risk: The included submission script can make live network calls and create PoYo video-generation tasks when run with a payload and API key. <br>
-Mitigation: Run live submissions only after explicit user approval in a trusted shell, and review the payload before executing the script. <br>
+## Use Case:
 
+Developers and content automation teams use this skill to prepare PoYo Seedance 2.0 Mini text-to-video, image-to-video, and reference-to-video payloads, submit trusted prepared requests when explicitly requested, and plan polling or webhook follow-up.
 
-## Reference(s): <br>
-- [PoYo Seedance 2.0 Mini API Reference](references/api.md) <br>
-- [PoYo Seedance 2.0 Mini documentation](https://docs.poyo.ai/api-manual/video-series/seedance-2-mini) <br>
-- [PoYo Seedance 2 Mini model page](https://poyo.ai/models/seedance-2-mini) <br>
-- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-seedance-2-mini) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Shell commands, API calls] <br>
-**Output Format:** [Markdown guidance with JSON payloads and curl or bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Live submissions require POYO_API_KEY; otherwise the skill produces payloads, examples, and polling or webhook guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Prompts, media URLs, callback URLs, and generation parameters may be sent to PoYo during video generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Submit only data the user is comfortable sharing with PoYo, and avoid confidential prompts, private media URLs, private reference files, or private callback URLs unless the user has accepted that exposure.
+
+Risk: The helper script uploads whichever local JSON payload path it is given.
+
+Mitigation: Use the script only with a trusted, prepared JSON payload file and avoid files influenced by untrusted instructions.
+
+Risk: PoYo API keys can be exposed if placed in browser code, logs, screenshots, repositories, or chat output.
+
+Mitigation: Keep POYO_API_KEY in a server-side environment variable or secret manager and never echo or embed the key in generated examples.
+
+## Reference(s):
+
+- [PoYo Seedance 2.0 Mini model page](https://poyo.ai/models/seedance-2-mini)
+- [PoYo Seedance 2.0 Mini API documentation](https://docs.poyo.ai/api-manual/video-series/seedance-2-mini)
+- [Local PoYo Seedance 2.0 Mini API reference](references/api.md)
+- [PoYo API key page](https://poyo.ai/dashboard/api-key)
+- [ClawHub skill page](https://clawhub.ai/coolhackboy/skills/poyo-seedance-2-mini)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON payloads and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include PoYo request parameters, trusted payload examples, task IDs from submitted jobs, and polling or webhook next steps.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

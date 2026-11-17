@@ -1,39 +1,54 @@
-## Description: <br>
-Provides architecture and iteration guidance for designing, developing, and reviewing AI command-line products. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides engineering architecture and iteration guidance for AI CLI products, including modular design, feature flags, backend adapters, permissions, hooks, context management, recovery, diagnostics, auditability, observability, trust chains, and state-machine design.
 
-## Publisher: <br>
-[wuritu](https://clawhub.ai/user/wuritu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wuritu](https://clawhub.ai/user/wuritu)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan AI CLI architecture, review product structure, and reason about modules such as feature flags, permissions, hooks, context management, session recovery, diagnostics, auditing, observability, and state-machine design. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Architecture advice may later be turned into implementation code that handles filesystem access, credentials, background execution, permission modes, or audit controls. <br>
-Mitigation: Review any separate implementation for those behaviors before installation or deployment. <br>
+## Use Case:
 
+Developers and engineering teams use this skill to design, review, and iterate AI command-line tools and agent runtimes. It supports architecture planning, roadmap decisions, feature integration checks, and pre-release review.
 
-## Reference(s): <br>
-- [Ai Cli Architecture on ClawHub](https://clawhub.ai/wuritu/ai-cli-architecture) <br>
-- [AI CLI Engineering Architecture Patterns](references/patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, architecture notes, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; the skill does not install code, run commands, or request credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Architecture guidance may not match every team’s language, platform, or engineering standards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review recommendations against local architecture practices before adopting them.
+
+Risk: Broad AI CLI trigger coverage may surface the skill in many product design discussions.
+
+Mitigation: Use the skill as advisory reference material and keep final architecture decisions under human engineering review.
+
+## Reference(s):
+
+- [AI CLI Engineering Architecture Patterns](references/patterns.md)
+- [ClawHub skill page](https://clawhub.ai/wuritu/skills/ai-cli-architecture)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, configuration, code, shell commands]
+
+**Output Format:** [Markdown guidance with checklists, architecture patterns, and implementation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reference content; no code execution or resource access is evidenced.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

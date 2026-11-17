@@ -1,40 +1,54 @@
-## Description: <br>
-Fetches the latest AI news digest from AI资讯速览 and presents each item as a titled summary in Chinese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches the latest Chinese AI news digest from AI资讯速览 and presents each item as a titled summary.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve the current or date-specific AI news digest from AI资讯速览 and present the original Chinese titles with short summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts AI资讯速览, a third-party public website, when invoked for AI news. <br>
-Mitigation: Use it for requests that call for that public AI news digest, and ask for translation when the digest should be presented in another language. <br>
+## Use Case:
 
+External users and agents use this skill to retrieve the latest or date-specific Chinese AI news digest and present titles and summaries in a readable numbered format.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/goog/ai-news-info) <br>
-- [AI资讯速览](https://ai-digest.liziran.com/zh/) <br>
-- [AI资讯速览 Archive](https://ai-digest.liziran.com/zh/archive.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown with numbered Chinese news titles and one-to-three sentence summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses original Chinese titles and summaries unless the user asks for translation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: External AI digest content may be incomplete, outdated, or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify important claims against primary sources before relying on them.
+
+Risk: Using the skill may contact the disclosed third-party AI digest website.
+
+Mitigation: Use the skill when AI news is requested and treat returned news as external web content.
+
+## Reference(s):
+
+- [AI资讯速览](https://ai-digest.liziran.com/zh/)
+- [AI资讯速览 Archive](https://ai-digest.liziran.com/zh/archive.html)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted Chinese news summaries with numbered titles and brief summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses original Chinese titles and summaries unless the user asks for translation.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

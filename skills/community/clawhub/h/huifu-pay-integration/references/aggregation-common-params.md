@@ -1,5 +1,13 @@
 # 公共参数说明
 
+官方公共资料入口：
+
+- [基础参数汇总](https://paas.huifu.com/partners/api/doc/csfl/api_csfl.md)：地区、银行、支行、MCC、交易类型、文件类型等公共编码/枚举的入口。
+- [名词解释](https://paas.huifu.com/partners/api/doc/csfl/api_csfl_mcjs.md)：ATU、H5、结算周期、手续费等术语口径。
+- [返回码](https://paas.huifu.com/partners/api/doc/csfl/api_csfl_ywm.md)：网关与业务返回码全集。
+
+这些页面是公共字典和术语来源，不覆盖具体接口页对字段必填、条件、类型和层级的定义；发生差异时保留两边证据并按具体接口合同处理。
+
 
 ## 目录
 
@@ -109,7 +117,7 @@
 
 ### method_expand 参数
 
-不同 trade_type 需要传入不同的 `method_expand` 扩展参数。注意，`trade_type` 是场景选择器，这 10 个枚举值本身不是 `method_expand` 的 key。`method_expand` 的 JSON 内容直接是当前场景对象本身。
+本节只描述**聚合下单请求侧**的 `request.data.method_expand`，不得外推到查询响应。不同 `trade_type` 需要传入不同的 `method_expand` 扩展参数。请求侧的 `trade_type` 是场景选择器，这 10 个枚举值本身不是 `request.data.method_expand` 的 key；该 JSON 内容直接是当前请求场景对象本身。查询响应 `response.data.method_expand` 同样只解码一次且字段单层平铺，具体字段与勘误必须改读 `aggregation-query-payment-query.md`。
 
 | trade_type | method_expand 必填字段 | 说明 |
 |-----------|----------------------|------|

@@ -1,43 +1,59 @@
-## Description: <br>
-Monitors Twitter/X daily to find and filter new AI Agent, Crypto, and DeFi project posts matching configured keywords. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitors Twitter/X daily to find and filter new AI Agent, Crypto, and DeFi projects matching configured keywords, producing raw and curated result files.
 
-## Publisher: <br>
-[torchesfrms](https://clawhub.ai/user/torchesfrms) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[torchesfrms](https://clawhub.ai/user/torchesfrms)
 
-## Use Case: <br>
-Developers and crypto researchers use this skill to monitor social posts for early AI Agent, Crypto, and DeFi project leads and produce raw and filtered result files for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release declares wallet, purchase, transaction-signing, and OAuth capabilities that are not justified by the observed monitoring scripts. <br>
-Mitigation: Review capability declarations before installation and do not grant wallet, transaction-signing, purchasing, or OAuth access unless a trusted reviewer confirms the need. <br>
-Risk: The scripts write collected results to a hard-coded local output path. <br>
-Mitigation: Change output paths to the intended workspace before running the skill. <br>
-Risk: Bundled and generated social-media rows may contain untrusted promotional content. <br>
-Mitigation: Treat results as leads for independent review, not as investment, wallet, or operational instructions. <br>
+## Use Case:
 
+Developers and operators use this skill to run scheduled Twitter/X searches for early AI-agent, crypto, and DeFi project signals and filter the results into project-focused exports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/torchesfrms/agentfarm-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/torchesfrms) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, csv, shell commands, configuration] <br>
-**Output Format:** [Shell output plus JSON, CSV, and Markdown result files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs searches with configurable keyword, count, and time-window settings and writes raw and filtered social-media results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Risk: Generated results and links come from untrusted social-media content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify links, accounts, and project claims before acting on any result.
+
+Risk: Crypto or DeFi opportunities surfaced by the skill may be misleading, spam, or financially risky.
+
+Mitigation: Independently validate projects and avoid treating filtered results as recommendations.
+
+Risk: CSV exports may contain formula-leading cells from untrusted source text.
+
+Mitigation: Sanitize exports before opening them in spreadsheet applications.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/torchesfrms/skills/agentfarm-finder)
+- [Artifact README](artifact/README.md)
+- [Artifact skill documentation](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration]
+
+**Output Format:** [CSV, JSON, Markdown, and shell output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include raw Twitter/X search results, filtered project exports, links, timestamps, and summary counts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

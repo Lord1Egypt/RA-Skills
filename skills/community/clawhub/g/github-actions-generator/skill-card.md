@@ -1,39 +1,53 @@
-## Description: <br>
-Generates GitHub Actions workflows for CI/CD, testing, deployment, Docker builds, releases, Dependabot updates, and scheduled tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates GitHub Actions workflow files for CI/CD, tests, deployment, Docker publishing, releases, Dependabot updates, and scheduled jobs.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
 
-## Use Case: <br>
-Developers use this skill to create starter GitHub Actions workflow files for common CI/CD, testing, deployment, Docker, release, dependency update, and scheduled-job scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow files may overwrite existing .github/workflows/ci.yml or .github/workflows/deploy.yml files. <br>
-Mitigation: Check for existing workflow files before running the generator, then review the generated workflow before committing or enabling deployment automation. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate starter GitHub Actions workflows for common repository automation tasks such as CI, deployment, Docker publishing, release publishing, dependency updates, and scheduled jobs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sunshine-del-ux/github-actions-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/Sunshine-del-ux) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and YAML workflow configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates starter workflow files under .github/workflows and may overwrite ci.yml or deploy.yml.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and artifact metadata) <br>
+Risk: The skill writes or overwrites GitHub Actions workflow files in the current repository.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated YAML before committing it, especially action versions, workflow permissions, secrets exposure, and deployment behavior.
+
+Risk: Generated automation may not match a repository's build, test, deployment, or secret-handling requirements.
+
+Mitigation: Treat generated workflows as a starting point and adapt them to the repository before enabling them on protected branches.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunshine-del-ux/skills/github-actions-generator)
+
+## Skill Output:
+
+**Output Type(s):** [configuration, code, shell commands]
+
+**Output Format:** [GitHub Actions YAML workflow files and brief terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes workflow files under .github/workflows in the current repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,63 @@
-## Description: <br>
-股票交易下单和查询功能，需要提供股票代码、价格、数量等信息，支持买入、卖出、持仓查询、账户查询、撤单等操作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+股票交易下单和查询功能。需要提供股票代码、价格、数量等信息。支持买入、卖出、持仓查询、账户查询、撤单等操作。
 
-## Publisher: <br>
-[yangheng3](https://clawhub.ai/user/yangheng3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangheng3](https://clawhub.ai/user/yangheng3)
 
-## Use Case: <br>
-External users can use this skill to have an agent prepare local HTTP API calls for stock buy, sell, cancellation, position, account, and order-status operations. It is intended for use only with a configured local stock trading assistant. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can cause high-impact trading and account actions through a local API. <br>
-Mitigation: Require manual confirmation for every buy, sell, or cancellation request and prefer paper trading before live use. <br>
-Risk: The artifact documents a default API key for the trading assistant. <br>
-Mitigation: Change the default API key before use and use only with a verified trading assistant. <br>
+## Use Case:
 
+External users and agents use this skill to prepare local HTTP API calls for stock buy, sell, cancellation, position, account, and order queries after configuring a trusted local trading assistant.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangheng3/stock-auto-trade) <br>
-- [Publisher profile](https://clawhub.ai/user/yangheng3) <br>
-- [Stock trading assistant website](https://www.gp998.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and a local trading assistant API on localhost.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can prepare requests for real stock orders and cancellations through an external trading assistant.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require manual confirmation in a trusted trading interface before any order or cancellation is sent.
+
+Risk: The artifact uses a public default API key for authenticated requests.
+
+Mitigation: Replace the default API key with a unique strong secret before use.
+
+Risk: The skill depends on an external trading assistant that is not verified by the provided provenance.
+
+Mitigation: Install and use the trading assistant only if its source and behavior can be independently trusted and verified.
+
+Risk: Exposing the trading API beyond the local machine could allow unauthorized financial actions.
+
+Mitigation: Keep the trading assistant API bound to localhost.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangheng3/skills/stock-auto-trade)
+- [Publisher profile](https://clawhub.ai/user/yangheng3)
+- [Trading assistant download page](https://www.gp998.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance]
+
+**Output Format:** [Markdown with curl commands and JSON request and response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and a local trading assistant API configured on localhost.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,59 @@
-## Description: <br>
-clawsSpace lets an AI agent open and control a shared virtual game space through a local OpenClaw bridge, including movement, perception, chat, and NPC interactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+clawsSpace helps agents launch a local game bridge, open a shared web game world, and exchange movement, chat, perception, and interaction commands through WebSocket and HTTP APIs.
 
-## Publisher: <br>
-[canyang335100](https://clawhub.ai/user/canyang335100) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[canyang335100](https://clawhub.ai/user/canyang335100)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to start a local bridge, connect a game client, and let an agent navigate, observe, chat, and interact inside a shared virtual social space. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a localhost bridge with unauthenticated control APIs that can control a connected game character and expose game state while active. <br>
-Mitigation: Start the bridge only for trusted sessions, keep it bound to localhost, stop it when not in use, and avoid browsing untrusted pages during the session. <br>
-Risk: The skill keeps durable gameplay and social memory in workspace files. <br>
-Mitigation: Review, archive, or delete the workspace memory files when long-term logs are not desired. <br>
-Risk: Future LLM paths may use MINIMAX_API_KEY if it is set in the environment. <br>
-Mitigation: Do not set MINIMAX_API_KEY unless you have reviewed how the skill will use that API key. <br>
+## Use Case:
 
+Developers and ClawHub/OpenClaw users use this skill to connect an AI agent to a shared browser game space, inspect game state, and issue movement, chat, perception, and interaction commands through a local bridge.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/canyang335100/clawsspace) <br>
-- [Publisher profile](https://clawhub.ai/user/canyang335100) <br>
-- [Node.js](https://nodejs.org/) <br>
-- [Game client](https://www.mxdl.online/index2.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with inline shell commands, JavaScript examples, and JSON protocol snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local bridge startup instructions and agent-control commands for a connected game session.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The local bridge exposes unauthenticated game-state and control APIs that could control connected game sessions if reachable by untrusted clients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the bridge bound to trusted local use, do not expose ports 18765 or 18766 to other networks, and stop the bridge when it is not needed.
+
+Risk: The AI loop can retain gameplay interactions in local clawspace workspace memory files.
+
+Mitigation: Review or clear the clawspace memory files when retained gameplay history is not desired.
+
+Risk: Automated movement, chat, and interaction commands can affect a connected game session.
+
+Mitigation: Supervise automation, confirm the intended player UID before sending commands, and avoid leaving the bridge running unattended.
+
+## Reference(s):
+
+- [clawsSpace ClawHub listing](https://clawhub.ai/canyang335100/skills/clawsspace)
+- [clawsSpace game URL](https://www.mxdl.online/index2.html)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown with shell commands, JavaScript snippets, and JSON payload examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local bridge commands and game-control API payloads, and may use local clawspace memory files during AI loop workflows.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

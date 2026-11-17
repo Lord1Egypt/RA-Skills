@@ -1,43 +1,56 @@
-## Description: <br>
-Scans stock-related news headlines, scores sentiment from -10 to +10, and prints a sentiment report with notable events and summary counts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a headline-based stock news sentiment report with a -10 to +10 score, sentiment thermometer, notable event list, and short operational guidance.
 
-## Publisher: <br>
-[jackpipipi](https://clawhub.ai/user/jackpipipi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jackpipipi](https://clawhub.ai/user/jackpipipi)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and market-monitoring agents can run this skill to generate a quick headline-based sentiment scan for a stock ticker. Treat the result as a supplemental review aid, not as investment advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill's financial sentiment claims may overstate its actual coverage.
+
+Mitigation: Treat it as a narrow Yahoo Finance headline sentiment helper and independently check source coverage, dates, and market context.
+
+Risk: Sentiment scores and operation suggestions can be misleading if used as investment signals.
+
+Mitigation: Do not rely on the report for investment decisions without independent source verification and appropriate human review.
+
+Risk: Runtime dependencies can vary across environments.
+
+Mitigation: Install dependencies in an isolated environment with pinned versions where possible.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and agents use this skill to run a Python helper for stock news sentiment triage across supported ticker formats. It is intended to summarize headline-level sentiment and notable events, not to provide investment advice. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation describes broad multi-source monitoring, while the artifact behavior centers on Yahoo Finance news headlines through yfinance. <br>
-Mitigation: Treat reports as headline-level Yahoo Finance sentiment unless the skill is extended and verified against additional data sources. <br>
-Risk: Sentiment scores and printed suggestions may be incomplete or misleading for financial decisions. <br>
-Mitigation: Use the output only for triage and compare it with primary filings, reputable news, and independent financial analysis. <br>
-Risk: The script depends on yfinance and pandas at runtime. <br>
-Mitigation: Install and run the skill in a controlled Python environment and review dependencies before use. <br>
+**Output Format:** [Console text report]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackpipipi/news-sentiment-scan) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/jackpipipi) <br>
+**Other Properties Related to Output:** [Accepts a stock ticker plus optional day range and market argument; sentiment scores are bounded from -10 to +10.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts stock code, optional day count, and optional market identifier; report includes sentiment score, events, counts, and a cautionary suggestion.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,19 +1,133 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "CalibreSubagentInput",
+  "title": "Prepared Calibre analysis input",
   "type": "object",
-  "required": ["book_id", "title", "lang", "source_files"],
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "run_id",
+    "book_id",
+    "book_uuid",
+    "title",
+    "library_id",
+    "format",
+    "lang",
+    "file_hash",
+    "source_file",
+    "text_path",
+    "text_hash",
+    "source_files",
+    "coverage",
+    "low_text_confirmed",
+    "manifest_digest"
+  ],
   "properties": {
-    "book_id": { "type": "integer", "minimum": 1 },
-    "title": { "type": "string", "minLength": 1 },
-    "lang": { "type": "string", "enum": ["ja", "en"] },
+    "version": {
+      "const": 3
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,100}$"
+    },
+    "book_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "book_uuid": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string"
+    },
+    "library_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "format": {
+      "enum": [
+        "EPUB",
+        "PDF"
+      ]
+    },
+    "lang": {
+      "enum": [
+        "ja",
+        "en"
+      ]
+    },
+    "file_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "source_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
     "source_files": {
       "type": "array",
       "minItems": 1,
-      "maxItems": 10,
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "path",
+          "sha256",
+          "chars"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^part-[0-9]+$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "chars": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
     },
-    "notes": { "type": "string" }
-  },
-  "additionalProperties": false
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected_files",
+        "source_chars"
+      ],
+      "properties": {
+        "expected_files": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_chars": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "low_text_confirmed": {
+      "type": "boolean"
+    },
+    "manifest_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
 }

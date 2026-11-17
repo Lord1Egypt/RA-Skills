@@ -1,40 +1,53 @@
-## Description: <br>
-Percept Ambient continuously captures and summarizes ambient conversations to build a local knowledge graph for context-aware assistance without explicit commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Continuously captures and summarizes ambient conversations to build a local knowledge graph for context-aware assistance without explicit commands.
 
-## Publisher: <br>
-[jarvis563](https://clawhub.ai/user/jarvis563) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jarvis563](https://clawhub.ai/user/jarvis563)
 
-## Use Case: <br>
-Developers and agent users use this skill when they want always-on local conversation memory that can assemble searchable context packets about people, projects, decisions, and recent discussions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can continuously capture, store, search, and re-surface sensitive speech from users and bystanders. <br>
-Mitigation: Enable it only with clear consent, visible microphone indicators, reviewed retention defaults, and working deletion/export controls. <br>
-Risk: Stored transcripts, embeddings, and the localhost dashboard/API may expose sensitive conversation history if they leave the machine or are reachable by untrusted clients. <br>
-Mitigation: Confirm embeddings remain local or are explicitly approved, and ensure the dashboard/API is protected and bound only to trusted local access. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/jarvis563/percept-ambient) <br>
-- [Publisher profile](https://clawhub.ai/user/jarvis563) <br>
+## Use Case:
 
+Developers and agent users use this skill to maintain passive, local conversation memory so agents can retrieve relevant people, project, decision, and relationship context during later work.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON context packet examples and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can describe local search, dashboard, retention, and privacy-control workflows for ambient conversation context.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is designed for always-on conversation capture and searchable memory, which can expose sensitive participant, project, and relationship context if enabled without clear consent and access controls.
+
+Mitigation: Enable only in approved spaces or sessions with opt-in recording, visible status indication, participant consent, local authentication, encryption, retention limits, and easy pause, export, and permanent deletion controls.
+
+Risk: Searchable ambient transcripts and derived knowledge graphs can retain context longer than users expect.
+
+Mitigation: Configure TTL auto-purge and review privacy settings before deployment so retained transcripts and derived entities match the intended retention policy.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jarvis563/skills/percept-ambient)
+- [Project link listed in skill artifact](https://github.com/GetPercept/percept)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local context packets, entity and relationship context, search guidance, and dashboard usage details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

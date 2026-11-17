@@ -1,41 +1,57 @@
-## Description: <br>
-Generic macOS desktop control using AppleScript for app and window semantics plus screenshot, OCR, mouse, and keyboard workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generic macOS desktop control using AppleScript for app and window semantics plus screenshot, OCR, mouse, and keyboard workflows.
 
-## Publisher: <br>
-[kd-oauth](https://clawhub.ai/user/kd-oauth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kd-oauth](https://clawhub.ai/user/kd-oauth)
 
-## Use Case: <br>
-Developers and agent operators use this skill to perform supervised macOS desktop automation, including app activation, screenshot capture, OCR or template-based target location, mouse actions, and keyboard input. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unvalidated AppleScript app names or bundle paths could trigger unintended app automation. <br>
-Mitigation: Use trusted or allowlisted app names and bundle paths until AppleScript inputs are escaped or otherwise constrained. <br>
-Risk: Desktop automation can capture screen content and perform clicks, drags, keyboard shortcuts, or clipboard paste actions. <br>
-Mitigation: Run only in supervised sessions, grant Screen Recording and Accessibility permissions only to a trusted runtime, avoid pasting secrets, and verify targets before externally visible actions. <br>
-Risk: Temporary screenshots, crops, and calibration data may remain in /tmp/macos_desktop_control after sensitive sessions. <br>
-Mitigation: Clean /tmp/macos_desktop_control after sessions that involve sensitive screen content. <br>
+## Use Case:
 
+Developers and automation agents use this skill to control a macOS desktop session through app/window inspection, screenshot capture, OCR or image matching, and mouse or keyboard actions.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with Python command examples and JSON, text, image, or desktop-action outputs from scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write screenshots, crops, and calibration files under /tmp/macos_desktop_control.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata) <br>
+Risk: The skill can control the screen, mouse, keyboard, clipboard, and AppleScript in the active macOS session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a dedicated, low-sensitivity macOS session with explicit Screen Recording and Accessibility permissions.
+
+Risk: Pasted text or generated screenshots may expose sensitive information.
+
+Mitigation: Avoid pasting secrets, clear or protect generated screenshots, and verify target fields before sending externally visible input.
+
+Risk: Untrusted app names can trigger AppleScript interpolation risk until the issue is fixed.
+
+Mitigation: Use only trusted app names or bundle paths and review the AppleScript command path before installation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kd-oauth/skills/desktop-control-for-macos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; scripts may emit JSON coordinates, file paths, and image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires macOS Screen Recording and Accessibility permissions; OCR uses Apple Vision through PyObjC.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -14,14 +14,50 @@ cp -r openclaw-unreal-skill ~/.openclaw/workspace/skills/unreal-plugin
 ```
 openclaw-unreal-skill/
 ├── extension/
-│   ├── index.ts       # 도구 정의 및 핸들러
+│   ├── index.ts       # 도구 정의, 핸들러, 안전 게이트
+│   ├── dist/index.js  # 컴파일된 번들
+│   ├── openclaw.plugin.json
 │   └── package.json   # Extension 메타데이터
-├── scripts/           # 헬퍼 스크립트
+├── tests/
+│   └── gate.test.mjs  # 안전 게이트 테스트 (Unreal 불필요)
 ├── SKILL.md           # 스킬 문서 (영문)
 ├── SKILL_KO.md        # 스킬 문서 (한국어)
 ├── README.md          # 영문 README
 ├── README_KO.md       # 한국어 README (이 파일)
-└── LICENSE            # MIT 라이선스
+└── LICENSE.md         # Apache-2.0
+```
+
+## 안전
+
+조회 전용 도구(`level.getCurrent`, `actor.find`, `transform.get*`,
+`debug.hierarchy`, `debug.screenshot`, `console.getLogs` 등)는 이전과 동일하게
+동작합니다. 프로젝트를 바꾸는 도구는 기본이 거부이며, 두 가지 옵트인이 모두
+필요합니다:
+
+```bash
+# 1. 운영자가 게이트웨이 프로세스에서 프로젝트 변경을 허용
+OPENCLAW_EDITOR_ALLOW_DESTRUCTIVE=1 openclaw gateway restart
+```
+
+```
+# 2. 사용자에게 확인한 뒤, 호출마다 그 변경을 승인
+unreal_execute: actor.delete {name: "Cube_01"}, confirm: true
+```
+
+`dryRun: true` 로 전송 없이 미리 볼 수 있고, `openclaw unreal status` 로 현재
+허용 여부를 확인할 수 있습니다. 자세한 내용은
+[SKILL_KO.md 의 안전 및 권한](SKILL_KO.md#안전-및-권한) 참고.
+
+## 개발
+
+```bash
+# 안전 게이트 테스트 실행 (Node 22.18+ / 24, Unreal Editor 불필요)
+node --test --test-force-exit tests/*.test.mjs
+
+# extension/index.ts 수정 후 번들 재빌드
+npx --yes esbuild@0.21.5 extension/index.ts --bundle --format=esm \
+  --platform=node --target=esnext --external:openclaw \
+  --outfile=extension/dist/index.js
 ```
 
 ## 사용법

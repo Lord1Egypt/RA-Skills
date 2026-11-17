@@ -1,48 +1,60 @@
-## Description: <br>
-Comprehensive travel planning, booking, and management skill for China trips, multi-destination itineraries, family travel logistics, travel cost optimization, and complex travel arrangements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive travel planning, booking, and management skill for China trips, multi-destination itineraries, family travel logistics, cost optimization, and travel coordination.
 
-## Publisher: <br>
-[newlux](https://clawhub.ai/user/newlux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newlux](https://clawhub.ai/user/newlux)
 
-## Use Case: <br>
-External users and agents use this skill to plan China-focused or complex international trips, including itinerary structure, flights, lodging, sights, travel documents, family needs, and cost-aware coordination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel, visa, document, and booking guidance may be mistaken for an official travel, immigration, booking, or payment service. <br>
-Mitigation: Treat outputs as planning guidance and confirm requirements, reservations, prices, and policies with official providers before acting. <br>
-Risk: Trip planning can involve sensitive passport, visa, payment, insurance, medical, or emergency-contact details. <br>
-Mitigation: Avoid sharing full sensitive details unless they are explicitly needed in the chat, and prefer placeholders for planning drafts. <br>
+## Use Case:
 
+Travelers and travel planners use this skill to organize China trips, compare routes and costs, prepare travel documents, and coordinate family-friendly lodging, flights, sights, consultants, and tour packages.
 
-## Reference(s): <br>
-- [Travel China release page](https://clawhub.ai/newlux/travel-china) <br>
-- [newlux publisher profile](https://clawhub.ai/user/newlux) <br>
-- [Family Travel Checklist](references/family-travel-checklist.md) <br>
-- [International Travel Document Requirements](references/travel-documents.md) <br>
-- [Travel Consultants](references/agents.md) <br>
-- [Hotel Recommendations](references/hotels.md) <br>
-- [Attractions and Sights](references/sights.md) <br>
-- [Flights](references/flights.md) <br>
-- [Tour Packages and Vacations](references/vacations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel-planning guidance with checklists and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not execute bookings, persist data, or access credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server evidence release.version) <br>
+Risk: Travel requirements, prices, schedules, availability, and cancellation terms can change after guidance is generated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm current visa, entry, flight, hotel, cancellation, and pricing details with official providers before making bookings.
+
+Risk: Travel planning may involve sensitive passport, visa, health, or family information.
+
+Mitigation: Share only the information needed for planning and avoid exposing document numbers or other sensitive personal data unless the deployment is approved to handle it.
+
+## Reference(s):
+
+- [Travel China Skill Page](https://clawhub.ai/newlux/skills/travel-china)
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Document Requirements](references/travel-documents.md)
+- [Travel Consultants](references/agents.md)
+- [Hotel Recommendations](references/hotels.md)
+- [Attractions and Sights](references/sights.md)
+- [Flights](references/flights.md)
+- [Tour Packages and Vacations](references/vacations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown travel planning guidance with checklists and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Users should verify current visa, entry, flight, hotel, cancellation, and pricing details with official providers before booking or sharing document information.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -25,7 +25,7 @@ function walk(dir, prefix='') {
   for (const f of fs.readdirSync(dir, {withFileTypes: true})) {
     const full = path.join(dir, f.name);
     const rel = prefix ? prefix + '/' + f.name : f.name;
-    if (f.name === '.git' || f.name === 'node_modules' || f.name === '.claude-plugin') continue;
+    if (f.name === '.git' || f.name === 'node_modules' || f.name === '.claude-plugin' || f.name === '.codex-plugin' || f.name === 'skills') continue;
     if (f.isDirectory()) walk(full, rel);
     else if (rel.split('.').pop().match(/^(md|json|yaml|yml|js|ts|py|sh|txt|toml|css|html|svg|xml|csv|env|ini|cfg)$/)) {
       files.push({ relPath: rel, bytes: fs.readFileSync(full) });
@@ -59,6 +59,6 @@ fetch('https://clawhub.ai/api/v1/skills', {
 ## 说明
 
 - 脚本读取 ClawHub 配置中的 token 鉴权（Windows: `%APPDATA%\clawhub\config.json`，其他: `~/.config/clawhub/config.json`）
-- 仅上传文本类文件（按扩展名白名单过滤），跳过 `.git`、`node_modules` 和 `.claude-plugin`
+- 仅上传文本类文件（按扩展名白名单过滤），跳过 `.git`、`node_modules`、`.claude-plugin`、`.codex-plugin` 和 Codex wrapper `skills/`
 - `tags: ['latest']` 标记为最新版本
 - `acceptLicenseTerms: true` 必须保留

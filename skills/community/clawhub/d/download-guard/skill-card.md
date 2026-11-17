@@ -1,44 +1,60 @@
-## Description: <br>
-Download Guard is a Windows-only AI agent skill that checks download paths and disk space, blocks unsafe fallback to C:, logs downloads, and helps manage tool caches during install, clone, pull, and download workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download Guard helps Windows agents manage download and install commands by checking configured storage paths and disk space, avoiding silent C-drive fallback, logging downloads, and guiding cache scans or migrations.
 
-## Publisher: <br>
-[nihaoljx](https://clawhub.ai/user/nihaoljx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nihaoljx](https://clawhub.ai/user/nihaoljx)
 
-## Use Case: <br>
-Developers and agent users on Windows use this skill to make agent-triggered downloads and installs visible, space-aware, and tied to an explicit download root. It is most relevant when agents run package installs, model pulls, git clones, cache scans, or cache migration commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cache migration and auto-fix commands may make persistent local package-manager or user environment changes. <br>
-Mitigation: Treat "migrate cache" and "fix warnings" as system-maintenance actions, review the proposed changes, and confirm that PATH and tool-specific configuration still point to the intended locations. <br>
-Risk: An unsuitable DOWNLOAD_ROOT or log-retention setting can make downloads fail, store files in an unintended location, or retain more history than expected. <br>
-Mitigation: Review DOWNLOAD_ROOT and log retention during first setup and after storage changes; use the built-in path check before large downloads. <br>
+## Use Case:
 
+Developers and agent users on Windows use this skill to make AI-agent initiated downloads, installs, model pulls, and clones more transparent and less likely to fill the system drive. It also helps inspect tool-cache locations and guide cache migration when C-drive usage is risky.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/nihaoljx/download-guard) <br>
-- [README](artifact/README.md) <br>
-- [Detailed Reference](artifact/reference.md) <br>
-- [Configuration Reference](artifact/config.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown status messages with inline PowerShell commands and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Windows PowerShell 5.1+ is required; some flows can write logs or change user-level tool configuration after user-facing prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.4.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The release evidence flags risky default configuration and recommends review before installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Reset config.md to an unconfigured state before first use, then choose and verify the intended download root during setup.
+
+Risk: Cache migration and warning fixes can make persistent npm, pip, yarn, pnpm, uv, PATH, and environment changes.
+
+Mitigation: Review the target path and proposed changes before running migration or fix commands, and keep a backup of existing settings.
+
+Risk: Download logs may display filenames or paths that originated outside the trusted workspace.
+
+Mitigation: Treat log contents as untrusted display data and avoid copying paths or filenames into privileged commands without review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nihaoljx/skills/download-guard)
+- [README](artifact/README.md)
+- [Reference](artifact/reference.md)
+- [Changelog](artifact/CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown status messages with inline PowerShell commands and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Windows-focused; requires PowerShell for bundled helper scripts.]
+
+## Skill Version(s):
+
+5.4.0 (source: SKILL.md frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

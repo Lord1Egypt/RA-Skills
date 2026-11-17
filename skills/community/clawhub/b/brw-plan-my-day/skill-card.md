@@ -1,41 +1,49 @@
-## Description: <br>
-Generate an energy-optimized, time-blocked daily plan based on circadian rhythm research and GTD principles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate an energy-optimized, time-blocked daily plan based on circadian rhythm research and GTD principles.
 
-## Publisher: <br>
-[BrianRWagner](https://clawhub.ai/user/BrianRWagner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brianrwagner](https://clawhub.ai/user/brianrwagner)
 
-## Use Case: <br>
-Individuals, managers, founders, and contributors use this skill to turn daily priorities, calendar constraints, and energy preferences into a focused time-blocked plan with breaks, buffers, success criteria, and reflection prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Daily planning may require calendar events, task details, and reflection notes that include sensitive personal or work information. <br>
-Mitigation: Share only the details needed for planning, omit sensitive entries when possible, and decide whether the agent should remember reflection details before using the skill. <br>
-Risk: Default work hours, energy windows, and no-overwork boundaries may not match a user's actual schedule or obligations. <br>
-Mitigation: Customize work hours, peak-energy windows, recovery periods, and personal boundaries before relying on the generated plan. <br>
-Risk: A generated daily plan can mis-rank priorities or create an unrealistic schedule if the input context is incomplete. <br>
-Mitigation: Review the plan before acting on it, keep buffer time, and adjust priority order or time blocks when commitments change. <br>
+## Use Case:
 
+External users and workplace teams use this skill to turn priorities, calendar constraints, and energy patterns into an hour-by-hour daily plan with breaks, buffers, and an evening check-in.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/BrianRWagner/brw-plan-my-day) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown daily plan] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Hour-by-hour schedule with top priorities, protected focus blocks, breaks, success criteria, and evening reflection prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence; artifact frontmatter lists 2.0.0) <br>
+Risk: Daily planning can expose calendar events, priorities, and work context to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Provide only the personal or workplace details appropriate for planning, and omit sensitive events or priorities that should not be shared.
+
+## Reference(s):
+
+- [Plan My Day ClawHub release](https://clawhub.ai/brianrwagner/skills/brw-plan-my-day)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown daily plan with schedule blocks, checklists, and reflection prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; may include suggested time blocks, planning constraints, and personal reflection prompts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

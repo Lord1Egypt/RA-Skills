@@ -1,42 +1,62 @@
-## Description: <br>
-The 7 Habits of Highly Effective People helps an agent provide principle-centered coaching for personal effectiveness, goal setting, time management, relationships, communication, renewal, and leadership. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stephen R. Covey's "The 7 Habits of Highly Effective People" skill provides principle-centered coaching guidance for personal effectiveness, goal setting, prioritization, relationships, communication, leadership, and self-renewal.
 
-## Publisher: <br>
-[jaysonmeng](https://clawhub.ai/user/jaysonmeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jaysonmeng](https://clawhub.ai/user/jaysonmeng)
 
-## Use Case: <br>
-External users use this skill through an agent to receive practical coaching based on Stephen R. Covey's 7 Habits framework. It is intended for self-improvement, productivity, communication, relationship-building, and leadership prompts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad activation language and may offer 7 Habits-style advice on general self-improvement or time-management prompts where the framework is not needed. <br>
-Mitigation: Treat the output as optional coaching, confirm that the Covey framework is relevant to the user's request, and redirect or disable the skill when it activates irrelevantly. <br>
+## Use Case:
 
+External users can use this skill to receive concise coaching and practical exercises based on Covey's 7 Habits framework for personal effectiveness, prioritization, relationships, communication, leadership, and renewal.
 
-## Reference(s): <br>
-- [Core Framework](references/1-core-framework.md) <br>
-- [Key Principles](references/2-principles.md) <br>
-- [Techniques](references/3-techniques.md) <br>
-- [Anti-Patterns](references/4-anti-patterns.md) <br>
-- [Voice and Application](references/5-voice-and-app.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance with immediate action steps and a watermark] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes user self-improvement questions to relevant 7 Habits concepts; no files, code, or shell commands are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill may activate broadly or proactively without clear user intent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy with activation controls that require a clear request for 7 Habits, Stephen Covey, or closely related coaching guidance.
+
+Risk: The skill forces a Heardly App promotional footer in every response.
+
+Mitigation: Review whether promotional footer behavior is acceptable for the target environment before enabling the skill.
+
+Risk: The skill can introduce unsolicited 7 Habits framing into general coaching or productivity conversations.
+
+Mitigation: Limit use to contexts where users expect Covey-style self-improvement guidance and review outputs before sensitive use.
+
+## Reference(s):
+
+- [Core Framework: Private Victory to Public Victory to Renewal](references/1-core-framework.md)
+- [Key Principles](references/2-principles.md)
+- [Techniques: The 7 Habits in Practice](references/3-techniques.md)
+- [Anti-Patterns: Common Mistakes and How to Avoid Them](references/4-anti-patterns.md)
+- [Voice & Application](references/5-voice-and-app.md)
+- [ClawHub skill page](https://clawhub.ai/jaysonmeng/skills/7-habits-covey)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with an immediate action and promotional footer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are instructed to stay within the 7 Habits framework and end with a Heardly App promotional footer.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

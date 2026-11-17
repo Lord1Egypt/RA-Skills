@@ -1,48 +1,63 @@
-## Description: <br>
-AI广告投手 Ad Trader helps advertising operators import CSV, Excel, or JSON ad exports, analyze campaign performance, generate optimization recommendations, detect anomalies, and produce interactive HTML reports for Tencent Ads, Ocean Engine, Baidu Ads, Meta Ads, and Google Ads data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI广告投手 Ad Trader helps advertising optimizers import multi-platform campaign data, diagnose ROI/ROAS/CTR/CVR/CPA performance, recommend budget and creative adjustments, and generate interactive HTML reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Advertising operators, growth marketers, and analysts use this skill to normalize ad export files, inspect CTR, CVR, CPA, ROAS, ROI, budget allocation, creative fatigue, and anomalies, then generate operational reports and recommendations for campaign review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad natural-language trigger phrases may cause the assistant to apply the skill to unrelated advertising discussions. <br>
-Mitigation: Use the skill only when working with intended advertising export files or explicit campaign analysis and reporting tasks. <br>
-Risk: Generated HTML reports load Chart.js from a third-party CDN when opened. <br>
-Mitigation: Open reports in environments where that network dependency is acceptable, or review and adapt the report before sharing in restricted environments. <br>
-Risk: Reports and normalized files may contain sensitive advertising performance, spend, revenue, or campaign metrics. <br>
-Mitigation: Review generated outputs before sharing and restrict distribution of reports that include sensitive business metrics. <br>
+## Use Case:
 
+External marketing teams, ad traders, and analysts use this skill to normalize advertising exports, review account health, detect anomalies, and produce budget, bidding, creative, and reporting guidance. It supports Tencent Ads, Ocean Engine, Baidu Ads, Meta Ads, and Google Ads style data.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bettermen/ad-trader) <br>
-- [Advertising metrics reference](references/metrics.md) <br>
-- [Advertising platform comparison](references/platforms.md) <br>
-- [Advertising optimization strategies](references/strategies.md) <br>
-- [Tencent Ads Marketing API](https://developers.e.qq.com/) <br>
-- [Ocean Engine Open Platform](https://open.oceanengine.com/) <br>
-- [Chart.js report dependency](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, CLI commands, JSON summaries, normalized CSV or JSON files, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML reports load Chart.js from a third-party CDN when opened.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: Generated HTML reports can expose sensitive advertising performance, campaign, and creative data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as sensitive business documents and store or share them only through approved channels.
+
+Risk: Reports generated from untrusted datasets may include unsafe content when opened.
+
+Mitigation: Use trusted datasets, sanitize campaign and creative names before report generation, and avoid opening reports produced from untrusted files.
+
+Risk: HTML reports load Chart.js from jsDelivr when opened.
+
+Mitigation: Bundle Chart.js locally or integrity-pin the dependency when remote CDN loading is not acceptable.
+
+## Reference(s):
+
+- [README](README.md)
+- [广告投放指标体系](references/metrics.md)
+- [主流广告投放平台对比](references/platforms.md)
+- [广告投放优化最佳实践](references/strategies.md)
+- [Tencent Ads Marketing API](https://developers.e.qq.com/)
+- [Ocean Engine Marketing API](https://open.oceanengine.com/)
+- [Chart.js CDN dependency](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, HTML files, shell commands, configuration, guidance]
+
+**Output Format:** [Chinese-language text or JSON summaries, shell command suggestions, optional normalized data files, and generated interactive HTML reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [HTML reports may contain sensitive campaign data and load Chart.js from jsDelivr unless the dependency is bundled or integrity-pinned.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

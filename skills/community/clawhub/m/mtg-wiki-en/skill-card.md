@@ -1,42 +1,56 @@
-## Description: <br>
-MTG Wiki is a Magic: The Gathering knowledge assistant for rules questions, bilingual card lookup, card interaction analysis, formats, strategy, lore, and article translation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MTG (Magic: The Gathering) comprehensive knowledge base assistant that answers rules questions, queries cards in Chinese and English, analyzes card interactions, explains formats and strategies, and tells lore.
 
-## Publisher: <br>
-[raymondeeeemmmm](https://clawhub.ai/user/raymondeeeemmmm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raymondeeeemmmm](https://clawhub.ai/user/raymondeeeemmmm)
 
-## Use Case: <br>
-Developers and agents use this skill to answer Magic: The Gathering questions with rule citations, bilingual card data, interaction analysis, format and strategy context, lore, and translated article output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Card lookup terms may be sent to mtgch or Scryfall when API-backed searches are used. <br>
-Mitigation: Use the skill only when sharing MTG lookup terms with those services is acceptable, or prefer local database lookups where available. <br>
-Risk: The full local database workflow asks users to clone a linked repository and run Python scripts. <br>
-Mitigation: Review the repository and scripts before cloning or running them, and run local indexing commands in an isolated environment. <br>
+## Use Case:
 
+External Magic: The Gathering players, judges, and agents use this skill to answer rules questions, look up cards in Chinese or English, analyze card interactions, explain formats and strategy, translate MTG content, and cite relevant rules.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/raymondeeeemmmm/mtg-wiki-en) <br>
-- [mtgch API](https://mtgch.com/api/v1/) <br>
-- [Scryfall API](https://api.scryfall.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with rule citations, bilingual card names, reference tables, glossary sections, and inline shell commands when local lookup tools are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local Python lookup commands and may rely on mtgch or Scryfall for API-backed card searches.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: The skill directs users to clone a mutable external repository and run an indexing script that was not included in the reviewed package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the cloned repository, pin it to a trusted commit, and run the indexing command in a low-privilege environment without sensitive credentials.
+
+Risk: Card, rules, or translation lookups may send query text to third-party APIs.
+
+Mitigation: Avoid submitting confidential decklists, private rules scenarios, or sensitive user content to external lookup services.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/raymondeeeemmmm/skills/mtg-wiki-en)
+- [Full MTG knowledge base repository referenced by artifact](https://github.com/RaymondYHH/mtg-skill.git)
+- [mtgch API](https://mtgch.com/api/v1/)
+- [Scryfall API](https://api.scryfall.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with optional inline shell commands and structured card or rules references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May cite MTG rule numbers, bilingual card names, wiki-style cross-links, and lookup commands when relevant.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

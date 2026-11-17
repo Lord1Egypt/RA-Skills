@@ -1,40 +1,53 @@
-## Description: <br>
-Local text-to-voice generation for OpenClaw workspaces using a canonical txt-to-mp3 pipeline. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Local text-to-voice generation for OpenClaw workspaces using a canonical txt-to-mp3 pipeline.
 
-## Publisher: <br>
-[betonimig](https://clawhub.ai/user/betonimig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[betonimig](https://clawhub.ai/user/betonimig)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to convert prepared text files into MP3 voice output through a reusable local workspace workflow with stable input, output, and state paths. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill presents itself as local while its node-edge-tts backend may send text outside the local workspace. <br>
-Mitigation: Use only with text that is acceptable to send to an external TTS provider, or replace the backend with a verifiably offline TTS engine. <br>
-Risk: Secrets, private messages, customer data, or proprietary documents could be exposed during voice generation. <br>
-Mitigation: Do not process sensitive or proprietary text unless the provider and data flow are clearly disclosed and approved for that data. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to convert prepared text files into MP3 voice output at a stable canonical path, with helpers for dependency checks, voice selection, chunking long text, and Telegram voice delivery.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/betonimig/text-to-voice-local) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated MP3 file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a canonical MP3 at tmp/voice-mode-latest.mp3 and updates skill state pointers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server-resolved release metadata) <br>
+Risk: The skill presents itself as local while using node-edge-tts, which may send text to an external Edge TTS service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review text sensitivity before conversion and use a pinned local dependency or offline TTS engine when privacy, confidentiality, or reproducibility matters.
+
+Risk: Voice generation depends on local Node.js, ffmpeg, and node-edge-tts availability.
+
+Mitigation: Run the status command before generation and resolve missing dependencies using the printed install hints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/betonimig/skills/text-to-voice-local)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Text]
+
+**Output Format:** [Shell command guidance and generated MP3 files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes canonical output to tmp/voice-mode-latest.mp3 and records the latest output path in skills/text-to-voice-local/state/last-output.txt.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

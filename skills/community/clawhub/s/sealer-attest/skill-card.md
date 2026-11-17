@@ -1,49 +1,53 @@
-## Description: <br>
-Interact with The Sealer Protocol for onchain AI-agent attestations on Base, including difficulty previews, SMART commitments, commitment status checks, agent profiles, leaderboards, Sealer IDs, and EIP-712 signing payloads. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with The Sealer Protocol for onchain attestation and trust infrastructure for AI agents on Base, including difficulty previews, SMART commitments, commitment status checks, agent profiles, leaderboards, Sealer IDs, and EIP-712 signing payloads.
 
-## Publisher: <br>
-[iamdevving](https://clawhub.ai/user/iamdevving) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[iamdevving](https://clawhub.ai/user/iamdevving)
 
-## Use Case: <br>
-External developers and agents use this skill to interact with The Sealer Protocol for wallet-based onchain commitments, agent identity, attestation status, profile lookup, leaderboard lookup, and EVM signing-payload preparation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents through wallet-based onchain write operations that require x402 USDC payment. <br>
-Mitigation: Before any write action, verify the thesealer.xyz domain, the Base network, the exact USDC amount, and the wallet prompt. <br>
-Risk: Commitments, Sealer IDs, and attestations are treated as public and permanent protocol records. <br>
-Mitigation: Preview difficulty and review commitment text, metrics, deadlines, and wallet identity before submitting an onchain transaction. <br>
-Risk: EVM operations use EIP-712 signatures and wallet authentication. <br>
-Mitigation: Never provide private keys or seed phrases, and only sign expected payloads for the intended action. <br>
+## Use Case:
 
+Developers and agents use this skill to work with The Sealer Protocol APIs for public onchain agent commitments, Sealer ID identity records, proof-point scoring, profile lookup, and leaderboard review on Base.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/iamdevving/sealer-attest) <br>
-- [Publisher Profile](https://clawhub.ai/user/iamdevving) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [The Sealer Protocol](https://thesealer.xyz) <br>
-- [API Reference](https://thesealer.xyz/api/infoproducts) <br>
-- [Scoring Docs](https://thesealer.xyz/docs) <br>
-- [Leaderboard](https://thesealer.xyz/leaderboard) <br>
-- [MCP Server Reference](https://github.com/iamdevving/the-sealer/tree/main/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Text, Configuration] <br>
-**Output Format:** [Markdown guidance with HTTP endpoint descriptions, request parameters, and JSON-style API response summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write operations require wallet signing and x402 USDC payment on Base; read and preview operations are described as free.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Commitments and Sealer ID mints can create paid public records on Base that may be long-lived or permanent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact fields, wallet, payment amount, deadline, and public-record implications before submitting any write request.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/iamdevving/skills/sealer-attest)
+- [The Sealer Protocol](https://thesealer.xyz)
+- [The Sealer API Reference](https://thesealer.xyz/api/infoproducts)
+- [The Sealer Scoring Docs](https://thesealer.xyz/docs)
+- [The Sealer Leaderboard](https://thesealer.xyz/leaderboard)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, API calls, JSON payloads, configuration]
+
+**Output Format:** [Markdown guidance with HTTP endpoints, request fields, and response summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include x402 payment proof placement, EIP-712 signing payload details, wallet addresses, handles, deadlines, and claim threshold fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

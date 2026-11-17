@@ -1,39 +1,51 @@
-## Description: <br>
-Auto-generates comprehensive API docs from code. REST, GraphQL, WebSocket with examples and schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-generates comprehensive API documentation from code for REST, GraphQL, and WebSocket APIs with examples and schemas.
 
-## Publisher: <br>
-[ryudi84](https://clawhub.ai/user/ryudi84) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ryudi84](https://clawhub.ai/user/ryudi84)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft API documentation for REST, GraphQL, and WebSocket endpoints, including endpoint details, authentication requirements, schemas, examples, and rate limiting notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated examples may include real endpoints, tokens, customer data, or production request bodies if those details are present in the source material. <br>
-Mitigation: Review and sanitize generated examples before publishing or running them. <br>
-Risk: Generated API documentation may be incomplete or inaccurate if the input code or endpoint descriptions are incomplete. <br>
-Mitigation: Validate endpoint methods, paths, authentication requirements, schemas, examples, and rate limit details against the authoritative API implementation before release. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ryudi84/sovereign-api-docs-generator) <br>
+## Use Case:
+
+Developers and API teams use this skill to draft API reference documentation from code or endpoint definitions, including authentication, schemas, errors, rate limits, and request examples.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated examples and schemas may be inaccurate if the source code or endpoint definitions are incomplete.
+
+Mitigation: Review generated examples, schemas, and endpoint details for accuracy before publishing.
+
+Risk: The skill has broad trigger guidance and may be invoked for tasks outside API documentation.
+
+Mitigation: Invoke it intentionally for documentation tasks and confirm the output matches the target API surface.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [OpenAPI/Swagger-compatible Markdown with parameter tables, JSON examples, and example requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes REST, GraphQL, and WebSocket documentation elements when available.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [OpenAPI/Swagger-compatible Markdown with tables, JSON examples, and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint details, authentication requirements, headers, parameters, request and response schemas, error formats, rate limits, and examples in curl, JavaScript fetch, and Python requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

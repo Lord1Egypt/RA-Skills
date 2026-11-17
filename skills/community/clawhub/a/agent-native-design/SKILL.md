@@ -1,11 +1,11 @@
 ---
 name: agent-native-design
 description: Use when designing, reviewing, or refactoring a CLI that must serve AI agents alongside humans, or when converting an API or SDK into an agent-usable CLI interface.
-license: MIT
+license: CC-BY-NC-4.0
 homepage: https://github.com/Agents365-ai/agent-native-design
 compatibility: Includes sidecar metadata for OpenClaw, Hermes, pi-mono, and OpenAI Codex; the core SKILL.md is portable to any agent runtime that supports Agent Skills-style instructions.
 platforms: [macos, linux, windows]
-metadata: {"openclaw":{"requires":{},"emoji":"⌨️","os":["darwin","linux","win32"]},"hermes":{"tags":["cli","agent-native","interface-design","structured-output","schema-driven"],"category":"engineering","requires_tools":[],"related_skills":[]},"pimo":{"category":"engineering","tags":["cli","agent-native","interface-design","structured-output","schema-driven"]},"author":"Agents365-ai","version":"1.3.3"}
+metadata: {"openclaw":{"requires":{},"emoji":"⌨️","os":["darwin","linux","win32"]},"hermes":{"tags":["cli","agent-native","interface-design","structured-output","schema-driven"],"category":"engineering","requires_tools":[],"related_skills":[]},"pimo":{"category":"engineering","tags":["cli","agent-native","interface-design","structured-output","schema-driven"]},"author":"Agents365-ai","version":"1.3.5"}
 ---
 
 # agent-native-design
@@ -124,7 +124,7 @@ CLI arguments are not inherently trusted — they may come from a hallucinating 
 
 ### Principle 3. The CLI Must Describe Itself
 
-The CLI must be self-describing enough that an agent can use it without reading external README files. Self-description must be **progressive**, not eager: top-level `--help` lists resources; resource help lists actions; action help lists flags; a separate `schema <resource.action>` returns the full typed schema. A CLI with hundreds of commands that dumps everything into the first `--help` pays that token cost on every agent invocation. See `references/design-patterns.md#help-design` and `examples.md` Examples 2 and 5.
+The CLI must be self-describing enough that an agent can use it without reading external README files. Self-description must be **progressive**, not eager: top-level `--help` lists resources; resource help lists actions; action help lists flags; a separate `schema <resource.action>` returns the full typed schema. A CLI with hundreds of commands that dumps everything into the first `--help` pays that token cost on every agent invocation. See `references/design-patterns.md#help-design` and `references/examples.md` Examples 2 and 5.
 
 ### Principle 4. Safety Through Graduated Visibility
 
@@ -140,37 +140,11 @@ If a schema exists, everything derives from it: CLI command structure, validatio
 
 ### Principle 7. Authentication Must Be Delegatable
 
-Authentication is obtained and refreshed by human/system-managed flows. The agent uses credentials; it never owns the auth lifecycle. Preferred mechanisms: environment variables, config files, OS keychain integration, externally refreshed tokens. Canonical pattern: `examples.md` Example 3.
+Authentication is obtained and refreshed by human/system-managed flows. The agent uses credentials; it never owns the auth lifecycle. Preferred mechanisms: environment variables, config files, OS keychain integration, externally refreshed tokens. Canonical pattern: `references/examples.md` Example 3.
 
 ---
 
 ## Standard review workflow
-
-### Step 0. Update check (notify, don't pull) — first use per conversation
-
-Throttle to one check per 24 hours per installation; never mutate the skill directory without explicit user consent.
-
-1. If `<this-skill-dir>/.last_update` exists and is less than 24 hours old, skip this step entirely.
-
-2. Otherwise, fetch the latest tag from upstream:
-
-   ```bash
-   git -C <this-skill-dir> ls-remote --tags origin 'v*' 2>/dev/null \
-     | awk '{print $2}' | sed 's|refs/tags/||' \
-     | sort -V | tail -1
-   ```
-
-3. Compare with this skill's `metadata.version` from the frontmatter. If the upstream tag is strictly newer (semver), tell the user one line and ask:
-
-   > "A newer version of this skill is available: vX.Y.Z → vA.B.C. Want me to `git pull`?"
-
-   If they say yes, run `git -C <this-skill-dir> pull --ff-only`. Refresh `.last_update` either way so the prompt doesn't repeat for 24 hours.
-
-4. If upstream is the same or older, refresh `.last_update` silently and continue.
-
-5. On any failure (offline, not a git checkout — e.g. ClawHub-installed copy, read-only path, no permission), swallow the error silently and continue with the user's task. Do not mention the failure.
-
-This step is the only place this skill ever touches its own files. It notifies; it does not pull without permission. The user owns the update lifecycle (Principle 7 applied to the skill itself).
 
 ### Step 1. Classify the input
 

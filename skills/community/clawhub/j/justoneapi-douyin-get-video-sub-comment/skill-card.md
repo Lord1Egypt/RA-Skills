@@ -1,43 +1,56 @@
-## Description: <br>
-Call GET /api/douyin/get-video-sub-comment/v1 for Douyin (TikTok China) Comment Replies through JustOneAPI with commentId. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call GET /api/douyin/get-video-sub-comment/v1 for Douyin (TikTok China) Comment Replies through JustOneAPI with commentId.
 
-## Publisher: <br>
-[justoneapi](https://clawhub.ai/user/justoneapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[justoneapi](https://clawhub.ai/user/justoneapi)
 
-## Use Case: <br>
-Developers and analysts use this skill to call a JustOneAPI Douyin endpoint for comment-reply data, including text, authors, and timestamps, using a required commentId and optional page parameter. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JustOneAPI token and sends it as a URL query parameter. <br>
-Mitigation: Use a limited-scope or disposable token where possible, avoid exposing command lines or logs, and rotate the token if it may have been shared. <br>
-Risk: The skill calls an external JustOneAPI endpoint and returns backend payloads. <br>
-Mitigation: Install and run it only when you trust JustOneAPI and are comfortable sending the requested commentId and token to that service. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve Douyin comment replies by commentId through JustOneAPI for thread analysis and feedback research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/justoneapi/justoneapi-douyin-get-video-sub-comment) <br>
-- [JustOneAPI homepage](https://api.justoneapi.com) <br>
-- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_sub_comment&utm_content=project_link) <br>
-- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_sub_comment&utm_content=project_link) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a JUST_ONE_API_TOKEN credential and a commentId query parameter; page is optional.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: JustOneAPI token exposure through command-line arguments and URL query parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, revocable tokens; avoid sharing command logs or process telemetry; rotate the token if it may have appeared in logs.
+
+Risk: Broad permissions, billing impact, or long token lifetime can increase the impact of misuse.
+
+Mitigation: Review token scope and lifetime before installation and prefer a limited token for this endpoint.
+
+## Reference(s):
+
+- [JustOneAPI API homepage](https://api.justoneapi.com)
+- [Just One API Usage Guide](https://docs.justoneapi.com/en/?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_sub_comment&utm_content=project_link)
+- [Just One API Dashboard](https://dashboard.justoneapi.com/en/login?utm_source=clawhub.ai&utm_medium=referral&utm_campaign=justoneapi_douyin_get_video_sub_comment&utm_content=project_link)
+- [ClawHub skill page](https://clawhub.ai/justoneapi/skills/justoneapi-douyin-get-video-sub-comment)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Markdown summary with JSON API response and inline shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and JUST_ONE_API_TOKEN; required lookup parameter is commentId.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,52 @@
-## Description: <br>
-Drafts economic damages calculation memos for forensic accountants, CPA-CFFs, CFEs, and valuation analysts working on litigation matters such as lost profits, business interruption, IP infringement, wrongful termination, and personal-injury earnings loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a forensic accountant, CPA-CFF, CFE, or valuation analyst needs to draft an economic damages calculation memo for litigation matters including lost profits, business interruption, IP infringement, wrongful termination, or personal-injury earnings loss.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[archlab-space](https://clawhub.ai/user/archlab-space)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Forensic accountants, valuation analysts, and litigation-support teams use this skill to structure a draft economic damages calculation memo from engagement facts, pleadings, financial records, and source-document citations. The memo is intended for engagement-partner, retaining-counsel, and credentialed-expert review before disclosure or trial use.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Confidential litigation materials, PII, privileged communications, sealed material, or full account numbers could be exposed if users paste them into the memo workflow.
+
+Mitigation: Use case codes and Bates references where possible, redact sensitive identifiers, and handle matter materials under the applicable protective order.
+
+Risk: A draft damages calculation could be mistaken for legal advice, Rule 26 disclosure, trial testimony, or an executed expert report.
+
+Mitigation: Keep outputs labeled as drafts and require engagement-partner, retaining-counsel, and credentialed-expert review before disclosure or trial use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External forensic accountants, valuation analysts, and litigation-support teams use this skill to structure draft damages memos that tie theories, loss periods, methods, assumptions, offsets, discounting, taxes, and source documents to reviewable evidence. The output is intended for engagement-partner and counsel review, not as legal advice or an executed expert report. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A draft memo could be mistaken for legal advice, an executed expert report, or Rule 26 disclosure. <br>
-Mitigation: Keep the draft-only framing, require engagement-partner and counsel review, and obtain the credentialed expert's approval before any disclosure or testimony use. <br>
-Risk: Matter intake may involve personal data, privileged communications, attorney work product, or sealed material. <br>
-Mitigation: Use case-caption codes, Bates ranges, and exhibit identifiers; redact sensitive data and follow the applicable protective order before adding material to the memo. <br>
-Risk: Incorrect assumptions, unsupported damages methods, or untraced inputs could produce misleading calculations. <br>
-Mitigation: Maintain the source-document index, assumptions-and-limitations register, Daubert/Kumho and SSFS self-check, and counsel-confirmed legal standard before final review. <br>
-Risk: Workspace tools or service credentials could permit actions beyond draft memo preparation. <br>
-Mitigation: Install only where the agent has the minimum needed access, avoid unnecessary service credentials, and confirm commands before any write action. <br>
+**Output Format:** [Markdown draft memo with tables, assumption registers, source-document indexes, sensitivity scenarios, and review banners]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archlab-space/economic-damages-calculation-memo) <br>
-- [Publisher profile](https://clawhub.ai/user/archlab-space) <br>
+**Other Properties Related to Output:** [Outputs are always drafts for engagement-partner and counsel review; the skill does not produce legal advice, investment advice, Rule 26 disclosure, trial testimony, or an executed expert report.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Draft Markdown memo with tables, assumption registers, source-document indexes, sensitivity scenarios, and review banners] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Draft-only; requires engagement-partner and counsel review before disclosure, testimony, or trial use.] <br>
+0.1.1 (source: evidence release metadata and changelog, released 2026-05-28)
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and CHANGELOG, released 2026-05-28) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

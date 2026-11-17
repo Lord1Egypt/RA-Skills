@@ -1,39 +1,55 @@
-## Description: <br>
-Smart image loader that handles both URLs and local files, automatically downloads URLs to temporary locations, and displays images using the read tool. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart image loader that handles both URLs and local files, automatically downloads URLs to temporary locations, and displays images using the read tool.
 
-## Publisher: <br>
-[tingwei1123](https://clawhub.ai/user/tingwei1123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tingwei1123](https://clawhub.ai/user/tingwei1123)
 
-## Use Case: <br>
-Developers and agent users use this skill to display images from trusted web URLs or local workspace paths. It helps an agent download URL images to a temporary file or resolve local image paths before using an image-reading tool. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch arbitrary image URLs for display. <br>
-Mitigation: Use trusted image URLs and avoid unusual filenames or query strings. <br>
-Risk: The cleanup guidance could mishandle crafted filenames if raw shell removal is used. <br>
-Mitigation: Clean up temporary files with Python file removal or safe argument passing instead of raw shell rm. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tingwei1123/smart-image-loader) <br>
+## Use Case:
+
+Developers and agent users use this skill to resolve an image URL or workspace file path into a local file path suitable for display. It is useful when an agent needs to fetch a remote image, verify a local image path, and return display-oriented status information.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill downloads images from user-provided URLs, which can expose agents to untrusted remote content.
+
+Mitigation: Use only trusted image URLs, validate content type and file size before display, and review the downloaded file before using it in downstream workflows.
+
+Risk: The skill accepts local paths without documented workspace confinement.
+
+Mitigation: Restrict local image paths to the active workspace and reject paths that resolve outside approved directories.
+
+Risk: The artifact documentation recommends shell-based cleanup with `rm <file_path>`.
+
+Mitigation: Perform cleanup through a safe non-shell file API and avoid interpolating user-controlled paths into shell commands.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text status fields with a local file path for the image-reading tool] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary image files for URL inputs; URL downloads require cleanup after display.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, shell commands, code, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with shell commands and plain-text status output from the helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper script reports success status, input type, local file path, message, and whether cleanup is needed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

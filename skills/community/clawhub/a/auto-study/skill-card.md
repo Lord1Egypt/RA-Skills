@@ -1,54 +1,73 @@
-## Description: <br>
-Use when performing study tasks on browser-based platforms such as Yuketang, Xuexitong, Zhihuishu, and Pintia, including answering quizzes and page actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when performing study tasks on browser-based platforms such as Yuketang, Xuexitong, Zhihuishu, and Pintia, including answering quizzes and page actions.
 
-## Publisher: <br>
-[amiracleta](https://clawhub.ai/user/amiracleta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[amiracleta](https://clawhub.ai/user/amiracleta)
 
-## Use Case: <br>
-Developers and agent users use this skill to guide a browser-based agent through study-platform workflows, including reading questions, returning answers, selecting or filling responses, and optionally submitting when explicitly requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent control of a logged-in browser profile and can submit quiz or coursework answers. <br>
-Mitigation: Use only for permitted practice or coursework assistance, require explicit user confirmation before submission, and review every answer before applying it. <br>
-Risk: The skill may save screenshots, markdown records, scores, and browser profile data from study platforms. <br>
-Mitigation: Use a dedicated browser profile and delete saved screenshots, records, scores, and profiles after the task is complete. <br>
-Risk: Automation may violate rules for formal exams, contests, or platforms that prohibit automated assistance. <br>
-Mitigation: Do not use the skill for formal exams, contests, or prohibited platform workflows. <br>
+## Use Case:
 
+Developers and end users can use this skill to guide an agent through browser-based learning platform tasks, including reading questions, returning answers, selecting options, filling blanks, and recording results. It is intended for learning, ordinary quizzes, and permitted browser-based answering assistance, not formal exams or disallowed automation.
 
-## Reference(s): <br>
-- [Auto Study ClawHub listing](https://clawhub.ai/amiracleta/auto-study) <br>
-- [Project homepage from metadata](https://github.com/AmiracleTa/Auto-Study-Skill) <br>
-- [Agent Browser CLI](https://github.com/vercel-labs/agent-browser) <br>
-- [Agent Browser Skill](https://clawhub.ai/MaTriXy/agent-browser-clawdbot) <br>
-- [Google Chrome](https://www.google.com/chrome/) <br>
-- [Core strategy](artifact/SKILL.md) <br>
-- [Xuexitong-specific strategy](artifact/references/xuexitong.md) <br>
-- [Zhihuishu-specific strategy](artifact/references/zhihuishu.md) <br>
-- [Yuketang-specific strategy](artifact/references/yuketang.md) <br>
-- [Pintia-specific strategy](artifact/references/pintia.md) <br>
-- [Windows runtime instructions](artifact/references/runtime-windows.md) <br>
-- [WSL runtime instructions](artifact/references/runtime-wsl.md) <br>
-- [macOS runtime instructions](artifact/references/runtime-macos.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, concise answer text, browser action guidance, and optional code or shell-command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save markdown records, screenshots, answer records, and scores under the configured auto-study workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.2 (source: server release metadata) <br>
+Risk: The skill can answer and submit academic work on supported learning platforms.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where automated answering and submission are allowed, avoid formal exams or graded work unless explicitly permitted, and review before any submit action.
+
+Risk: The skill reuses authenticated Chrome profiles for supported sites.
+
+Mitigation: Use a dedicated browser profile for this skill and remove stored profiles when they are no longer needed.
+
+Risk: The skill can retain screenshots, answer records, scores, and browser state locally.
+
+Mitigation: Periodically delete stored screenshots, answer records, scores, and browser profiles, especially after sensitive or account-linked sessions.
+
+Risk: The security guidance flags an unsafe WSL sandbox-bypass fallback.
+
+Mitigation: Do not rely on the WSL sandbox-bypass fallback; keep artifact writes inside the intended workspace and verify external browser dependencies before use.
+
+## Reference(s):
+
+- [Auto Study ClawHub Skill Page](https://clawhub.ai/amiracleta/skills/auto-study)
+- [Publisher Profile](https://clawhub.ai/user/amiracleta)
+- [Homepage](https://github.com/AmiracleTa/Auto-Study-Skill)
+- [Agent Browser CLI](https://github.com/vercel-labs/agent-browser)
+- [Agent Browser Skill](https://clawhub.ai/MaTriXy/agent-browser-clawdbot)
+- [Google Chrome](https://www.google.com/chrome/)
+- [Pintia Guidance](artifact/references/pintia.md)
+- [Xuexitong Guidance](artifact/references/xuexitong.md)
+- [Yuketang Guidance](artifact/references/yuketang.md)
+- [Zhihuishu Guidance](artifact/references/zhihuishu.md)
+- [macOS Runtime Guidance](artifact/references/runtime-macos.md)
+- [Windows Runtime Guidance](artifact/references/runtime-windows.md)
+- [WSL Runtime Guidance](artifact/references/runtime-wsl.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Concise text answers, markdown records, code snippets, shell commands, and browser action guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local screenshots, answer records, score records, and persistent Chrome profiles when used.]
+
+## Skill Version(s):
+
+1.5.2 (source: server release; artifact frontmatter reports 1.5.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,54 @@
-## Description: <br>
-Run an ICP definition or refinement workshop for teams defining best customers, aligning sales and marketing on targeting, identifying negative ICP criteria, or building a segment-and-persona framework. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run an ICP definition or refinement workshop that helps teams align sales and marketing on best-customer criteria, negative ICP criteria, and segment-and-persona frameworks.
 
-## Publisher: <br>
-[davidslavich](https://clawhub.ai/user/davidslavich) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davidslavich](https://clawhub.ai/user/davidslavich)
 
-## Use Case: <br>
-GTM, sales, marketing, and growth teams use this skill to facilitate an ICP workshop and produce a versioned ICP document grounded in customer, loss, churn, segment, buying-committee, and FIRE scoring analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ICP workshops may involve sensitive customer names, churn details, pricing, or sales strategy. <br>
-Mitigation: Only share that business information when it is appropriate for the workspace and audience. <br>
+## Use Case:
 
+Sales, marketing, growth, and go-to-market teams use this skill to facilitate ICP definition or refinement workshops and produce a versioned ICP document for targeting and qualification alignment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/davidslavich/gtm-icp-definition) <br>
-- [iCustomer website](https://icustomer.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown ICP document] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Versioned ICP document with segment, buying committee, negative ICP, and FIRE scoring sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: The workshop may require customer, lost-deal, and churn details that include confidential account information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data permitted by the workspace and model-use policies; omit or anonymize sensitive customer details when needed.
+
+Risk: ICP segments or scoring criteria may be unsupported if based on assumptions rather than real customer evidence.
+
+Mitigation: Flag ungrounded segments as hypotheses and validate them with early customer data before using them for targeting decisions.
+
+## Reference(s):
+
+- [GTM ICP Definition skill page](https://clawhub.ai/davidslavich/skills/gtm-icp-definition)
+- [iCustomer website](https://icustomer.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown ICP document using the provided workshop template]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Versioned ICP document; unvalidated segments are flagged as hypotheses and revisited on a six-month cadence.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

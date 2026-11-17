@@ -1,49 +1,63 @@
-## Description: <br>
-Restrained information visualization skill pack for AI agents that turns briefs into Mermaid, ASCII/termaid, self-contained HTML, Python, draw.io, Obsidian Canvas, and Three.js archviz outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A restrained information visualization skill pack for AI agents that routes briefs into Mermaid, ASCII or termaid, self-contained HTML, Python visualizations, Obsidian Canvas, draw.io guidance, or Three.js architectural visualization outputs.
 
-## Publisher: <br>
-[archsueh](https://clawhub.ai/user/archsueh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archsueh](https://clawhub.ai/user/archsueh)
 
-## Use Case: <br>
-Developers, designers, technical writers, and agent operators use this skill to turn visualization briefs into restrained diagrams, charts, editable handoff guidance, and 3D architectural visualizations with explicit design dials, palettes, validation checks, and fallbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML may load Chart.js, Three.js, or animejs from third-party CDNs. <br>
-Mitigation: Review generated HTML before opening it, and vendor or pin browser dependencies for offline or sensitive environments. <br>
-Risk: The artifact includes self-evolution guidance that can modify installed skill files. <br>
-Mitigation: Require explicit approval before edits to installed skill files, or disable the self-evolution section for controlled deployments. <br>
+## Use Case:
 
+Developers, designers, educators, and technical teams use this skill to create concise diagrams, charts, architectural visualizations, editable diagram handoffs, and text-first visual artifacts from a user brief.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/archsueh/archviz-skills) <br>
-- [README](README.md) <br>
-- [Design system](DESIGN.md) <br>
-- [Scene contract](references/scene-contract.md) <br>
-- [Validation checklist](references/validation-checklist.md) <br>
-- [termaid terminal routing](references/termaid-routing.md) <br>
-- [draw.io output mode](references/drawio-output-mode.md) <br>
-- [Dark mode tokens](references/dark-mode-tokens.md) <br>
-- [Editorial parchment language](references/editorial-parchment-language.md) <br>
-- [Gantt rules](references/gantt-rules.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, Mermaid, ASCII text, self-contained HTML, Python code, draw.io guidance, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include generated files/templates and validation or fallback guidance; generated HTML may load third-party browser scripts from CDNs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: ClawHub release metadata) <br>
+Risk: Generated HTML can load scripts from jsDelivr and execute remote code when opened or hosted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated HTML before opening or hosting it, and pin or vendor dependencies where possible.
+
+Risk: Python visualization modes may require local dependencies and script execution.
+
+Mitigation: Use a dedicated virtual environment and review generated scripts before running them.
+
+Risk: Self-evolution or maintenance workflows can modify installed skill files.
+
+Mitigation: Allow installed skill edits only when explicitly requested, then review diffs before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archsueh/skills/archviz-skills)
+- [README](artifact/README.md)
+- [Design system](artifact/DESIGN.md)
+- [Validation checklist](artifact/references/validation-checklist.md)
+- [Termaid routing](artifact/references/termaid-routing.md)
+- [Draw.io output mode](artifact/references/drawio-output-mode.md)
+- [Scene contract](artifact/references/scene-contract.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, Mermaid or ASCII diagrams, self-contained HTML, Python scripts, draw.io guidance, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are brief-driven and may include terminal fallbacks, CDN-backed HTML visualization templates, or Python dependency guidance depending on the selected mode.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence; artifact frontmatter reports 0.1.7)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

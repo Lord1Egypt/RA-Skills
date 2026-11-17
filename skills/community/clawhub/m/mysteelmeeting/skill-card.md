@@ -1,42 +1,55 @@
-## Description: <br>
-Searches Mysteel conference listings on huizhan.mysteel.com by industry, region, province, status, charge type, activity type, keyword, and pagination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Mysteel conference listings by industry, region or province, status, fee type, activity type, keyword, and pagination options.
 
-## Publisher: <br>
-[wyb92](https://clawhub.ai/user/wyb92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wyb92](https://clawhub.ai/user/wyb92)
 
-## Use Case: <br>
-External users and agents use this skill to find Mysteel industry conferences and meeting registration options using natural language filters for sector, location, status, and pricing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases could run a Mysteel conference web query when the user intended a general meeting or location question. <br>
-Mitigation: Use explicit prompts that name Mysteel meeting search, and ask for clarification before using the skill for ambiguous meeting requests. <br>
-Risk: Conference-search terms are sent to huizhan.mysteel.com and small local cache files may be kept. <br>
-Mitigation: Avoid sensitive search terms, install only when this data sharing is acceptable, and use the cache-clear option when local cached category data should be removed. <br>
+## Use Case:
 
+External users and agents use this skill to find Mysteel industry conferences and inspect meeting status, location, dates, fees, and detail links. It is useful for filtering Chinese-language conference information across steel, coal, non-ferrous metals, new energy, agriculture, and related industries.
 
-## Reference(s): <br>
-- [Mysteel Meeting API Reference](artifact/references/api_reference.md) <br>
-- [Mysteel conference activity API](https://huizhan.mysteel.com/event/activity) <br>
-- [ClawHub skill page](https://clawhub.ai/wyb92/mysteelmeeting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Human-readable terminal text and Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include conference names, locations, dates, status, fees, detail URLs, matched industry or area IDs, and cache-management guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Search terms and filters may be sent to huizhan.mysteel.com when live queries or category refreshes run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering confidential search terms or sensitive business planning details unless this network use is acceptable.
+
+Risk: Temporary industry and area category cache files are stored inside the skill directory.
+
+Mitigation: Use the documented cache-clearing option or remove cache files before packaging or sharing when cached category data should not persist.
+
+## Reference(s):
+
+- [我的钢铁网会议查询 API 参考](references/api_reference.md)
+- [Mysteel conference activity API](https://huizhan.mysteel.com/event/activity)
+- [ClawHub skill page](https://clawhub.ai/wyb92/skills/mysteelmeeting)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text query results with command-line examples and returned conference details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include meeting status, location, dates, fee information, total counts, pagination, and detail URLs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

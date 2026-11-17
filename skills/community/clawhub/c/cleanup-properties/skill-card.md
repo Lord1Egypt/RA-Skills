@@ -1,40 +1,52 @@
-## Description: <br>
-Archive or delete unused custom properties across all HubSpot object types (contacts, companies, deals). Identifies Salesforce sync properties, test/temp properties, and obsolete form fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Archive or delete unused custom properties across all HubSpot object types (contacts, companies, deals). Identifies Salesforce sync properties, test/temp properties, and obsolete form fields.
 
-## Publisher: <br>
-[tomgranot](https://clawhub.ai/user/tomgranot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[tomgranot](https://clawhub.ai/user/tomgranot)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+HubSpot administrators, RevOps teams, and CRM developers use this skill to inventory custom properties, identify safe cleanup candidates, and plan archive or deletion steps while protecting active integrations and automations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Deleting HubSpot properties can permanently remove the property definition and associated data.
+
+Mitigation: Archive properties first, wait 30 days, keep a cleanup log, and delete only after manual review confirms no issues.
+
+Risk: Removing Salesforce sync, form, workflow, list, or calculated properties can break integrations, automation, reporting, or active data collection.
+
+Mitigation: Use a least-privilege HubSpot API token, review candidates manually, verify dependencies, and get owner approval before changing those properties.
+
+## Reference(s):
 
 
-## Use Case: <br>
-HubSpot administrators and operations teams use this skill to inventory custom CRM properties, identify cleanup candidates, and plan safe archive or deletion steps while checking forms, workflows, lists, Salesforce mappings, and calculated properties. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Deleting HubSpot properties can permanently remove property definitions and associated data. <br>
-Mitigation: Archive properties first, keep a cleanup log, wait through a review window, and require explicit user approval before irreversible deletion. <br>
-Risk: Property cleanup can disrupt active forms, workflows, lists, Salesforce sync mappings, or calculated properties. <br>
-Mitigation: Use a narrowly scoped HubSpot token and review those dependencies before proposing archive or deletion actions. <br>
+**Output Format:** [Markdown guidance with an inline Python code example]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tomgranot/cleanup-properties) <br>
+**Other Properties Related to Output:** [Includes manual review checkpoints for HubSpot property dependencies before archive or deletion.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline Python code and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied HubSpot access and review before any irreversible deletion.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter version 1.0) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

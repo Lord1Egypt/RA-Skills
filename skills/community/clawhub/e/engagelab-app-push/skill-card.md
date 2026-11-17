@@ -1,45 +1,59 @@
-## Description: <br>
-Call EngageLab App Push REST APIs to send push notifications and in-app messages, manage tags and aliases, schedule or recall messages, query statistics, validate push requests, and configure callbacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Call EngageLab App Push REST APIs to send push notifications and in-app messages to Android, iOS, and HarmonyOS devices; manage tags and aliases; create scheduled tasks and push plans; batch push; recall messages; query statistics; and configure callbacks.
 
-## Publisher: <br>
-[devengagelab](https://clawhub.ai/user/devengagelab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[devengagelab](https://clawhub.ai/user/devengagelab)
 
-## Use Case: <br>
-Developers and operators use this skill to prepare EngageLab App Push API requests, generate code or shell commands, manage devices and campaigns, and validate requests before sending notifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare or invoke live sends, recalls, schedule changes, tag or alias mutations, and irreversible user deletion. <br>
-Mitigation: Confirm the app, audience, identifiers, message content, and consequences before execution; prefer validation or read-only calls before live changes. <br>
-Risk: EngageLab App Push uses AppKey and Master Secret credentials for Basic authentication. <br>
-Mitigation: Keep the Master Secret out of prompts, logs, and generated files; use placeholders until the user intentionally supplies credentials in a trusted environment. <br>
-Risk: Callbacks can affect analytics or automation if spoofed or replayed. <br>
-Mitigation: Require HMAC-SHA256 verification of the X-CALLBACK-ID header and make callback handlers idempotent in production. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate EngageLab App Push API requests, helper code, and operational guidance for mobile push notifications, in-app messages, device tag and alias management, scheduling, recall, statistics, callbacks, and related push workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/devengagelab/engagelab-app-push) <br>
-- [Callback API Reference](references/callback-api.md) <br>
-- [App Push API Error Codes](references/error-codes.md) <br>
-- [HTTP Status Code Reference](references/http-status-code.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and API request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May prepare live EngageLab API requests that require credentials and human confirmation before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill handles AppKey, Master Secret, Group Master Secret, and callback secrets for EngageLab App Push operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use placeholders or environment variables for secrets, avoid pasting secrets into chat or shell history, and scope credentials to the minimum required application or group.
+
+Risk: The skill can produce requests for broad or destructive actions, including broadcast sends, schedule changes, message recalls, voice deletion, and user or device deletion.
+
+Mitigation: Require explicit user confirmation and a prior lookup of target identifiers before executing broad sends or destructive operations.
+
+Risk: Generated helper code could be pointed at an unintended host if the base URL is changed.
+
+Mitigation: Restrict generated or helper code to official EngageLab HTTPS API hosts for the intended data center.
+
+## Reference(s):
+
+- [Callback API](references/callback-api.md)
+- [App Push API Error Codes](references/error-codes.md)
+- [HTTP Status Code](references/http-status-code.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline code blocks and API request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include curl, Python, Node.js, Java, or Go examples using placeholders for credentials.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

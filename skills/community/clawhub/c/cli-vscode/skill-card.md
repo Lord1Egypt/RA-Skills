@@ -1,42 +1,55 @@
-## Description: <br>
-Command-line interface for VSCode that lets an agent open files, manage workspaces, install or list extensions, and check editor status with optional JSON output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Command-line interface for VSCode to open files, install and list extensions, manage workspaces, and check editor status with JSON output support.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-Developers and AI agent operators use this skill to control a local VSCode installation from a command line workflow. It is suited for opening project files, adding folders to a workspace, managing extensions, and collecting editor status in text or JSON form. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing untrusted VSCode extensions can change local editor behavior or introduce unwanted code into the development environment. <br>
-Mitigation: Approve extension installation deliberately and use trusted extension identifiers. <br>
-Risk: Adding folders or opening paths can expose local project context to the editor workflow. <br>
-Mitigation: Review folder and file paths before adding them to a workspace or opening them through the skill. <br>
-Risk: The Linux setup command uses sudo to create a code command symlink. <br>
-Mitigation: Run the sudo setup command only after confirming the target VSCode path is correct. <br>
+## Use Case:
 
+Developers and AI agent builders use this skill to automate common VSCode actions from a command line or JSON-oriented workflow, including opening files, managing extensions, adding workspace folders, and checking editor status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/cli-vscode) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Text, Configuration instructions] <br>
-**Output Format:** [Command-line actions with plain text or JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires VSCode and the code command-line tool to be installed and available on PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can let an agent install arbitrary VSCode extensions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval for install-extension commands and verify extension IDs and publishers before installation.
+
+Risk: The skill can add folders to a VSCode workspace, which may expose sensitive files to editor tooling or extensions.
+
+Mitigation: Add only necessary folders and avoid sensitive directories unless the user has approved the workspace change.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kaising-openclaw1/skills/cli-vscode)
+- [Skill Documentation](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Command-line text or JSON responses, with Markdown documentation and bash examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires VSCode and the code command-line tool; can install VSCode extensions and add folders to the active workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

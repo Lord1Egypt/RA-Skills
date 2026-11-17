@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7e0r45nvzpc1wtgv0xcy1gvn820xq4",
+  "ownerId": "kn72ce44tqw8bnnnewrn1s5x3s7yz7sq",
   "slug": "memu-lite",
-  "version": "1.1.0",
-  "publishedAt": 1772436165197
+  "version": "1.0.0",
+  "name": "memU-lite",
+  "description": "Lightweight structured memory system for OpenClaw - inspired by memU, zero external dependencies"
 }

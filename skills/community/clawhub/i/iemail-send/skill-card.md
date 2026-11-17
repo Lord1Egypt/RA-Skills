@@ -1,44 +1,60 @@
-## Description: <br>
-Send transactional email via Iemail OpenAPI. Configure via OpenClaw skill env only. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send transactional email via Iemail OpenAPI. Configure via OpenClaw skill env only.
 
-## Publisher: <br>
-[jack-atlas](https://clawhub.ai/user/jack-atlas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-atlas](https://clawhub.ai/user/jack-atlas)
 
-## Use Case: <br>
-External developers and operators use this skill to let an agent send single transactional emails through DmartechX/Iemail OpenAPI with configured Iemail credentials and sender settings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad credential-file access guidance and requires email API credentials. <br>
-Mitigation: Prefer injected IEMAIL_ACCESS_KEY, IEMAIL_ACCESS_KEY_SECRET, and IEMAIL_SENDER values, protect API keys, and confirm each recipient and message body before sending. <br>
-Risk: The Python script may install packages at runtime. <br>
-Mitigation: Review before installing and prefer a version with pinned dependencies instead of runtime pip installation. <br>
-Risk: Email content may include sensitive or regulated information. <br>
-Mitigation: Avoid sending sensitive or regulated content unless the provider and workflow are approved for that data. <br>
+## Use Case:
 
+Developers and agents use this skill to send single transactional emails through the Dmartech/Iemail OpenAPI from an OpenClaw workspace configured with sender and API credentials.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jack-atlas/iemail-send) <br>
-- [DmartechX/Iemail Application](https://app.dmartech.cn/) <br>
-- [Iemail API Endpoint](https://iemail-api.dmartech.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Shell commands and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the IEMAIL_ACCESS_KEY, IEMAIL_ACCESS_KEY_SECRET, and IEMAIL_SENDER environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill can send email content through an external Dmartech/Iemail API.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only approved sender accounts and do not send sensitive, regulated, or unauthorized content through the API.
+
+Risk: The skill asks agents to read OpenClaw or workspace configuration files for credentials.
+
+Mitigation: Provide only the required Iemail variables in an isolated environment and avoid allowing access to unrelated configuration or secrets.
+
+Risk: The Python script can install missing dependencies at runtime without pinned versions.
+
+Mitigation: Preinstall or pin required dependencies in the runtime environment before enabling the skill.
+
+## Reference(s):
+
+- [Dmartech Application](https://app.dmartech.cn/)
+- [Iemail API Endpoint](https://iemail-api.dmartech.cn)
+- [ClawHub Skill Page](https://clawhub.ai/jack-atlas/skills/iemail-send)
+- [Publisher Profile](https://clawhub.ai/user/jack-atlas)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API responses from the email script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Iemail credential environment variables; sends content to an external email API.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

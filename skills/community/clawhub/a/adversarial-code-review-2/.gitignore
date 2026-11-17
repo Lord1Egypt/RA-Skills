@@ -1,0 +1,12 @@
+.adversarial-loop/
+.adversarial-review/
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+*.py[cod]
+*.before
+*.orig
+.adversarial-review-git-mode/
+.adversarial-review-meta/
+_retrospective/

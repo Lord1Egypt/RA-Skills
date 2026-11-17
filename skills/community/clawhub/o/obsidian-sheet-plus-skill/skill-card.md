@@ -1,41 +1,55 @@
-## Description: <br>
-Use when working with Obsidian spreadsheet data, including reading, writing, formatting, filtering, formulas, data validation, conditional formatting, merging cells, and sheet management through the Sheet Plus plugin REST API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Obsidian Sheet Plus helps agents read, write, format, filter, and manage Obsidian spreadsheet data through the Sheet Plus plugin REST API.
 
-## Publisher: <br>
-[ljcoder2015](https://clawhub.ai/user/ljcoder2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ljcoder2015](https://clawhub.ai/user/ljcoder2015)
 
-## Use Case: <br>
-Developers and Obsidian users use this skill to let an agent operate spreadsheet workbooks through the Sheet Plus plugin, including bulk data edits, formulas, filters, validation rules, formatting, and worksheet management. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Spreadsheet operations can modify, clear, or restructure workbook data. <br>
-Mitigation: Verify the target sheet and range before destructive actions and keep backups for important workbooks. <br>
-Risk: The local Sheet Plus REST API may expose workbook contents or modification capability if left unauthenticated or reachable beyond localhost. <br>
-Mitigation: Enable the plugin API key when appropriate and keep the REST API bound to localhost only. <br>
+## Use Case:
 
+Developers and Obsidian users use this skill to automate spreadsheet workflows in Obsidian, including reading workbook data, updating ranges, applying formulas and formatting, managing filters, and creating or restructuring sheets.
 
-## Reference(s): <br>
-- [Server-resolved GitHub source](https://github.com/ljcoder2015/obsidian-sheet-plus-skill) <br>
-- [ClawHub skill page](https://clawhub.ai/ljcoder2015/skills/obsidian-sheet-plus-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local REST API calls to read or modify Obsidian Sheet Plus workbooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata); artifact frontmatter version 1.0.0 <br>
+Risk: The skill can read or change workbook data through a local REST API that may run without authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable the API key option when available, keep the service bound to localhost, and install the skill only for intentional Obsidian Sheet Plus automation.
+
+Risk: Workbook edits such as overwrites, clears, deletes, merges, and bulk formatting can have high impact if applied to the wrong sheet or range.
+
+Mitigation: Require explicit confirmation for full-workbook export and destructive or bulk operations, and verify sheet names and ranges before execution.
+
+## Reference(s):
+
+- [Source repository](https://github.com/ljcoder2015/obsidian-sheet-plus-skill)
+- [ClawHub skill page](https://clawhub.ai/ljcoder2015/skills/obsidian-sheet-plus-skill)
+- [Publisher profile](https://clawhub.ai/user/ljcoder2015)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown]
+
+**Output Format:** [Markdown with curl examples, JSON request bodies, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill guides an agent to call a local Obsidian Sheet Plus REST API and to verify API availability and target sheet names before operations.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

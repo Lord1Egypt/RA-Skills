@@ -1,44 +1,58 @@
-## Description: <br>
-Voice Log starts and stops background voice journaling, streams microphone audio to Soniox realtime speech-to-text while running, and returns recent rolling transcript text for summarization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Background voice journaling with Soniox realtime STT for OpenClaw; it requires SONIOX_API_KEY and supports starting or stopping passive speech logging and summarizing recent conversation transcript text.
 
-## Publisher: <br>
-[easwee](https://clawhub.ai/user/easwee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[easwee](https://clawhub.ai/user/easwee)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to deliberately start or stop a local voice journal, check recording status, and summarize recent conversation from the rolling transcript. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Microphone recording and transcription can capture sensitive or non-consenting conversation. <br>
-Mitigation: Start recording deliberately, stop it when finished, check status if unsure, and avoid recording sensitive or non-consenting conversations. <br>
-Risk: The Soniox API key enables access to the transcription service if exposed. <br>
-Mitigation: Use a revocable Soniox API key and rotate or revoke it if it may have been exposed. <br>
-Risk: The local rolling transcript may contain private conversation text. <br>
-Mitigation: Run the skill only on trusted devices and accounts; the skill stores transcript data under its local `.data` directory with best-effort restrictive permissions. <br>
+## Use Case:
 
+OpenClaw users use this skill to start and stop a voice journal, keep a rolling one-hour local transcript, and ask an agent to summarize recent minutes of conversation. It is most useful when hands-free conversation recap is needed and the user is comfortable with live microphone capture and Soniox transcription.
 
-## Reference(s): <br>
-- [Voice Log on ClawHub](https://clawhub.ai/easwee/voice-log) <br>
-- [easwee publisher profile](https://clawhub.ai/user/easwee) <br>
-- [Soniox Speech-to-Text](https://soniox.com/speech-to-text) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Short natural-language responses, transcript text, JSON status output, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The rolling transcript keeps the latest 60 minutes; the `last` command returns up to 1800 characters by default unless overridden.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence, package.json, skill.json) <br>
+Risk: The skill records microphone audio and may capture people who have not consented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start the journal only in consented settings, stop it when finished, and avoid use around bystanders who have not agreed to be recorded.
+
+Risk: Audio is sent to Soniox for transcription and a rolling transcript is stored locally while the journal is running.
+
+Mitigation: Use the skill only where third-party transcription and local transcript retention are acceptable, and manage the local .data directory according to the user's privacy policy.
+
+Risk: The Soniox dependency is version-ranged in package metadata.
+
+Mitigation: Pin and review the Soniox dependency before sensitive or regulated use.
+
+## Reference(s):
+
+- [Voice Log on ClawHub](https://clawhub.ai/easwee/skills/voice-log)
+- [Soniox Speech-to-Text](https://soniox.com/speech-to-text)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Short text responses, optional transcript excerpts, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Transcript retrieval is capped at 1800 characters by default unless the command requests full output or a different maximum.]
+
+## Skill Version(s):
+
+0.1.5 (source: release evidence, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

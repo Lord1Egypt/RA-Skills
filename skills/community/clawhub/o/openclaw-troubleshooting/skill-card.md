@@ -1,45 +1,55 @@
-## Description: <br>
-OpenClaw常见问题解决方案技能，提供自动化诊断、错误修复和性能优化功能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw故障排除工具提供系统诊断、依赖检查、权限修复和工作区结构修复，帮助用户定位并处理常见 OpenClaw 问题。
 
-## Publisher: <br>
-[playgod2023](https://clawhub.ai/user/playgod2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[playgod2023](https://clawhub.ai/user/playgod2023)
 
-## Use Case: <br>
-OpenClaw users and skill developers use this skill to diagnose local environment, dependency, workspace, and permission issues and to repair common setup problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Repair mode can change the local Python environment by installing missing packages. <br>
-Mitigation: Review the dependency list first and run installs manually in a disposable or backed-up environment when possible. <br>
-Risk: Permission repair can apply broad chmod -R 755 changes to the OpenClaw workspace. <br>
-Mitigation: Back up important workspaces and prefer manual permission fixes for only the affected paths. <br>
-Risk: The quick start and fix all flows can combine dependency, workspace, and permission repairs in one run. <br>
-Mitigation: Run diagnostic mode first, then execute only the specific repair action that is needed. <br>
+## Use Case:
 
+OpenClaw users and skill developers use this agent skill to diagnose local environment, dependency, permission, and workspace structure issues. It can provide troubleshooting output and run repair actions for common OpenClaw setup problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/playgod2023/openclaw-troubleshooting) <br>
-- [README](artifact/README.md) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Configuration](artifact/config.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and terminal text with inline shell commands and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute local Python diagnostics and repair actions when invoked through the included scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Repair paths can automatically install software and change permissions across the OpenClaw workspace.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run diagnostic commands first, review the exact repair effects before using quick_start.py or fix all, and back up the OpenClaw workspace.
+
+Risk: Dependency repairs can alter the active Python environment through pip installs.
+
+Mitigation: Prefer running dependency repairs inside an isolated virtual environment instead of allowing system-level or user-level pip changes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/playgod2023/skills/openclaw-troubleshooting)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and console-style text with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; repair paths can modify dependencies, permissions, and workspace directories.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

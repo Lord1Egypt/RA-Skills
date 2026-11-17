@@ -1,40 +1,54 @@
-## Description: <br>
-Format and convert dates, times, and durations; compute timezones, relative time, and weekday or month names in the user's local language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locale Dates helps an agent format and convert dates, times, durations, time zones, relative time, and localized weekday or month names without external tools.
 
-## Publisher: <br>
-[tommot2](https://clawhub.ai/user/tommot2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommot2](https://clawhub.ai/user/tommot2)
 
-## Use Case: <br>
-Developers and end users use this skill when an agent needs to format dates and times, convert timezones, calculate relative dates or durations, or present weekday and month names in the user's language. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A hardcoded Europe/Oslo display rule can cause incorrect times if applied to logs, audits, incidents, schedules, or deadlines for users in other timezones. <br>
-Mitigation: Preserve the original timezone, clearly label any conversion, and only use Europe/Oslo when that default matches the user's intended locale. <br>
+## Use Case:
 
+Agents use this skill to answer date, time, duration, time-zone conversion, and locale-specific formatting requests in the user's language. It is useful for user-facing assistants that need clear, localized date and time output.
 
-## Reference(s): <br>
-- [Locale Reference Table](references/locales.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tommot2/locale-dates) <br>
-- [Publisher profile](https://clawhub.ai/user/tommot2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text date, time, duration, and timezone guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no shell execution, subprocesses, file modification, persistence, or external dependencies.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.1.0 (source: server release evidence and skill changelog) <br>
+Risk: Timezone and daylight-saving calculations can be wrong when the user's location, target timezone, or date is ambiguous.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for or state the timezone, spell out ambiguous dates, and verify critical calculations before relying on the result.
+
+Risk: The skill may rely on existing user preference context for locale choices.
+
+Mitigation: Confirm the desired locale or use ISO 8601 when the user's preferred format is unknown.
+
+## Reference(s):
+
+- [Locale Reference Table](references/locales.md)
+- [Locale Dates on ClawHub](https://clawhub.ai/tommot2/skills/locale-dates)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown answers with localized date and time values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only output; no files, shell commands, dependencies, persistence, or external tool calls are produced by the skill.]
+
+## Skill Version(s):
+
+3.1.0 (source: release evidence and changelog, released 2026-04-23)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

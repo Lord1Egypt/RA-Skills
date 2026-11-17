@@ -5,6 +5,7 @@ Shared fixtures for all test modules.
 
 import sqlite3
 import sys
+import time
 from pathlib import Path
 
 import pytest
@@ -15,6 +16,20 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 from datetime import datetime
 
 from _common import datetime_to_coredata
+
+
+@pytest.fixture(autouse=True)
+def pin_utc(monkeypatch):
+    """Run every test in UTC so results don't depend on the machine's zone.
+
+    Scripts fall back to the system zone for assets without a capture offset;
+    tests that exercise that fallback pin their own zone on top of this.
+    """
+    monkeypatch.setenv("TZ", "UTC")
+    time.tzset()
+    yield
+    monkeypatch.undo()
+    time.tzset()
 
 
 @pytest.fixture
@@ -48,7 +63,8 @@ def basic_db():
             ZLONGITUDE REAL,
             ZAVALANCHEKIND INTEGER,
             ZAVALANCHEPICKTYPE INTEGER,
-            ZDUPLICATEASSETVISIBILITYSTATE INTEGER
+            ZDUPLICATEASSETVISIBILITYSTATE INTEGER,
+            ZUUID TEXT
         )
     """)
 
@@ -74,7 +90,8 @@ def basic_db():
     cursor.execute(
         """
         INSERT INTO ZASSET VALUES
-          (1, 'IMG_001.jpg', ?, 4032, 3024, 0, 0, 1, 0, 0, 41.5, -90.5, 0, NULL, 0)
+          (1, 'IMG_001.jpg', ?, 4032, 3024, 0, 0, 1, 0, 0, 41.5, -90.5, 0, NULL, 0,
+           'AAAAAAAA-0000-0000-0000-000000000001')
     """,
         (datetime_to_coredata(datetime(2025, 1, 1, 12, 0, 0)),),
     )
@@ -84,7 +101,8 @@ def basic_db():
     cursor.execute(
         """
         INSERT INTO ZASSET VALUES
-          (2, 'Screenshot.png', ?, 1920, 1080, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, 0)
+          (2, 'Screenshot.png', ?, 1920, 1080, 0, 1, 0, 0, 0, NULL, NULL, 0, NULL, 0,
+           'AAAAAAAA-0000-0000-0000-000000000002')
     """,
         (datetime_to_coredata(datetime(2025, 2, 1, 10, 0, 0)),),
     )
@@ -93,7 +111,8 @@ def basic_db():
     cursor.execute(
         """
         INSERT INTO ZASSET VALUES
-          (3, 'IMG_002.jpg', ?, 4032, 3024, 0, 0, 0, 0, 0, 41.5, -90.5, 2, 0, 0)
+          (3, 'IMG_002.jpg', ?, 4032, 3024, 0, 0, 0, 0, 0, 41.5, -90.5, 2, 0, 0,
+           'AAAAAAAA-0000-0000-0000-000000000003')
     """,
         (datetime_to_coredata(datetime(2025, 3, 1, 15, 0, 0)),),
     )
@@ -103,7 +122,8 @@ def basic_db():
     cursor.execute(
         """
         INSERT INTO ZASSET VALUES
-          (4, 'IMG_003.jpg', ?, 4032, 3024, 0, 0, 0, 0, 1, NULL, NULL, 0, NULL, 0)
+          (4, 'IMG_003.jpg', ?, 4032, 3024, 0, 0, 0, 0, 1, NULL, NULL, 0, NULL, 0,
+           'AAAAAAAA-0000-0000-0000-000000000004')
     """,
         (datetime_to_coredata(datetime(2025, 3, 2, 16, 0, 0)),),
     )

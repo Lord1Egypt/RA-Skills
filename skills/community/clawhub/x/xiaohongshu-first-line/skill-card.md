@@ -1,44 +1,59 @@
-## Description: <br>
-Xiaohongshu First Line analyzes public Xiaohongshu profiles, recent posts, tags, comments, and search results to help a user discover shared interests and draft natural first messages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users analyze public Xiaohongshu profiles, posts, comments, and discovery results to generate natural, interest-based first-message suggestions.
 
-## Publisher: <br>
-[isolcat](https://clawhub.ai/user/isolcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isolcat](https://clawhub.ai/user/isolcat)
 
-## Use Case: <br>
-External users use this skill to browse or analyze Xiaohongshu profiles and posts, identify shared interests and communication style, and generate specific first-message options with follow-up guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a logged-in Xiaohongshu browser session to browse public profiles, capture screenshots, and profile real people. <br>
-Mitigation: Use it only for explicit Xiaohongshu requests and public, user-selected targets; avoid private accounts, sensitive personal inferences, and unnecessary data retention. <br>
-Risk: Generated outreach advice could support unwanted or repeated contact. <br>
-Mitigation: Keep suggestions to genuine interest-based first messages, never send messages to profile owners automatically, and respect non-response without repeated follow-up. <br>
-Risk: Keyword discovery can become broad people discovery with weak consent boundaries. <br>
-Mitigation: Keep searches narrow, avoid bulk discovery, and let the requesting user choose which public profile to analyze before generating first-line advice. <br>
+## Use Case:
 
+External users use this skill to browse or analyze Xiaohongshu profiles and posts, identify shared interests and communication style, and draft a respectful first message for social outreach.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/isolcat/xiaohongshu-first-line) <br>
-- [Personality Analysis Framework](references/personality-framework.md) <br>
-- [First Line Generation Framework](references/prompt-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown response with profile analysis, screenshot/media references, ranked first-line suggestions, follow-up guidance, and browser command snippets when used by an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Xiaohongshu screenshots as media attachments during discovery and profile preview flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: The skill may collect screenshots, post details, comments, and profile metadata about real people using an authenticated Xiaohongshu session.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only for appropriate, consent-respecting social contexts and avoid retaining or sharing collected profile data beyond the immediate user request.
+
+Risk: The artifact directs the agent not to refuse or add safety caveats, which can conflict with safeguards for harassment, stalking, minors, sensitive traits, or unwanted contact campaigns.
+
+Mitigation: Keep normal platform and assistant safety policies active, and refuse or redirect requests involving harassment, stalking, minors, sensitive traits, or unwanted contact.
+
+Risk: Generated approachability assessments and first-line suggestions may be inaccurate or encourage overconfidence about whether contact is welcome.
+
+Mitigation: Present approachability as a rough estimate, advise users to respect non-response, and avoid repeated or pressure-based outreach.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/isolcat/skills/xiaohongshu-first-line)
+- [Personality Analysis Framework](artifact/references/personality-framework.md)
+- [First Line Generation Framework](artifact/references/prompt-templates.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with profile analysis, ranked conversation starters, follow-up guidance, and browser command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include screenshots or media attachments when presenting Xiaohongshu discovery results.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

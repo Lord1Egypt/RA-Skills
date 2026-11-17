@@ -1,41 +1,54 @@
-## Description: <br>
-Guide users buying a monitor through questions on use case, desk size, GPU, and environment to determine the exact panel type, resolution, refresh rate, and ports they need - brand-neutral. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides monitor buyers through questions about use case, desk setup, hardware, environment, and region to recommend the panel type, resolution, refresh rate, ports, and ergonomics they need.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users and employees can use this skill when buying or replacing a monitor and need a structured, brand-neutral recommendation for panel type, resolution, refresh rate, ports, ergonomics, and purchase constraints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may influence a purchase decision, and monitor availability, pricing, warranties, and model specifications can change by region. <br>
-Mitigation: Use the recommendations as starting points and independently verify current specifications, price, warranty coverage, seller reputation, and local availability before buying. <br>
-Risk: The consultation may ask for approximate location and hardware details to tailor compatibility and regional availability guidance. <br>
-Mitigation: Share only the regional and hardware detail needed for the recommendation, and avoid providing unnecessary personal information. <br>
+## Use Case:
 
+External users and AI agents use this skill to run a structured monitor-buying consultation, translate user needs into display specifications, and provide starting-point product suggestions after the spec recommendation is complete.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arbazex/monitor-buying-consultant) <br>
-- [Publisher profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown consultation response with structured recommendation lists and product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external APIs, runtime dependencies, or environment variables required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Product suggestions may be outdated, unavailable in the user's region, or perceived as brand endorsements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat named models as research starting points and verify current specs, prices, warranty, and regional availability before buying.
+
+Risk: The consultation asks for location and hardware details to tailor monitor advice.
+
+Mitigation: Share only the level of location and hardware detail needed for the recommendation and avoid unnecessary personal or account information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/arbazex/skills/monitor-buying-consultant)
+- [Skill homepage](https://github.com/arbazex/personal-tech-buying-consultants/tree/master/monitor-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown consultation with prioritized spec lists and up to five numbered product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Asks targeted follow-up questions before recommendations; product suggestions are starting points for user research, not endorsements.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

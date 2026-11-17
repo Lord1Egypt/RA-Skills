@@ -1,44 +1,61 @@
-## Description: <br>
-Reads Gmail messages across folders and labels with the gog CLI, including inbox checks, unread-message review, folder listing, Gmail search, and message retrieval. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reads and searches Gmail folders and labels through the gog CLI so an agent can check inboxes, unread messages, spam, custom labels, threads, and message content.
 
-## Publisher: <br>
-[Coorops25](https://clawhub.ai/user/Coorops25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[coorops25](https://clawhub.ai/user/coorops25)
 
-## Use Case: <br>
-Employees and personal Gmail users use this skill to ask an agent to check, search, summarize, and retrieve Gmail messages through the gog CLI. It is also packaged with broader email automation behaviors for organizing, analyzing, responding to, scheduling, and reporting on mail activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The release may do more than read Gmail, including moving, sending, exporting, monitoring, and externally processing sensitive email data. <br>
-Mitigation: Install it only when broad Gmail automation is intended, limit Google scopes where possible, and keep recurring jobs or external notifications disabled unless explicitly needed. <br>
-Risk: Bulk delete, archive, send, or export actions can affect many emails or expose message content. <br>
-Mitigation: Require clear previews and explicit user confirmation before any bulk delete, archive, send, or export operation. <br>
-Risk: User-provided email search text or message content could be unsafe if passed directly into shell commands. <br>
-Mitigation: Avoid raw user text in shell commands and construct gog queries with careful quoting and validation. <br>
-Risk: Local email logs may retain sensitive metadata or message content. <br>
-Mitigation: Periodically review or delete local email logs and avoid storing message content unless the user explicitly requests it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [gog CLI homepage](https://gogcli.sh) <br>
-- [ClawHub skill page](https://clawhub.ai/Coorops25/gmailcleaner) <br>
+## Use Case:
 
+External users and their agents use this skill to read, search, summarize, and navigate Gmail messages after configuring gog CLI access. It is suited to inbox checks, unread-message review, folder or label searches, and follow-up workflows that need message IDs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and structured email summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses JSON output from the gog CLI for agent-side parsing; result limits are controlled with --max.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can expose sensitive Gmail content and may require broad mailbox authorization.
+
+Mitigation: Review before installing when Gmail contains sensitive personal, work, legal, financial, or authentication messages, and prefer Gmail-only authorization unless Sheets or Docs export is explicitly needed.
+
+Risk: Analyzer and responder workflows may send selected email content to Anthropic.
+
+Mitigation: Use those workflows only after confirming the user is comfortable with external AI processing of selected email content.
+
+Risk: Related organizer, responder, scheduler, reporter, export, and logging workflows can modify mailbox state or persist email-derived information.
+
+Mitigation: Require explicit confirmation before sending, deleting, bulk moves, scheduled jobs, exports, and persistent logs.
+
+Risk: Installation through an unverified package path could introduce supply-chain risk.
+
+Mitigation: Use the reviewed brew installation path when possible and avoid the npm install path unless it has been verified.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coorops25/skills/gmailcleaner)
+- [gog CLI homepage](https://gogcli.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and summarized email lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses gog CLI JSON results as input, presents concise summaries instead of raw JSON, and preserves message IDs for follow-up actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

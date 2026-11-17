@@ -1,43 +1,59 @@
-## Description: <br>
-Analyzes BlueKing ITSM ticket exports with field mapping, workload statistics, response-time and trend analysis, frequent issue identification, SLA monitoring, and daily or weekly report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+嘉为蓝鲸 ITSM 工单分析技能，支持多流程工单数据读取、字段智能映射、新工单处理建议、趋势分析、高频问题识别和 SLA 监控。
 
-## Publisher: <br>
-[MichaelJochen](https://clawhub.ai/user/MichaelJochen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[michaeljochen](https://clawhub.ai/user/michaeljochen)
 
-## Use Case: <br>
-IT operations teams and service desk analysts use this skill to analyze exported BlueKing ITSM ticket data, summarize workload and response metrics, identify recurring issues, monitor SLA risk, and generate operational reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticket exports and generated reports may contain confidential operational or requester information. <br>
-Mitigation: Keep ticket files and reports in approved internal locations, redact sensitive fields before sharing, and limit access to authorized service desk or operations personnel. <br>
-Risk: Optional API keys or webhook URLs could expose ticket data if configured with broad permissions or unapproved destinations. <br>
-Mitigation: Use least-privilege API credentials, store secrets outside shared reports, and configure webhook or scheduled pushes only for approved internal channels. <br>
+## Use Case:
 
+ITSM operations teams and support engineers use this skill to analyze Jiawei BlueKing ITSM ticket exports, estimate workload, review response times, classify recurring issues, and generate daily or weekly reports. It can also produce handling suggestions for new tickets from historical CSV or Excel data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/MichaelJochen/itsm-ticket-analyzer) <br>
-- [Publisher Profile](https://clawhub.ai/user/MichaelJochen) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [OpenClaw GitHub Repository](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON-like analysis summaries, shell command examples, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local CSV or Excel ticket exports and may produce recommendations, report tables, SLA warnings, and operational summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Risk: ITSM exports and generated reports may contain personal, account, incident, or internal system details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat inputs and reports as confidential and redact unnecessary sensitive fields before analysis or sharing.
+
+Risk: Optional webhook or scheduled report delivery can expose ticket details to unintended destinations.
+
+Mitigation: Review the destination and report contents before enabling scheduled pushes or webhook sharing.
+
+Risk: Unpinned Python dependencies can change behavior across installations.
+
+Mitigation: Install in a dedicated virtual environment and prefer pinned versions or a reviewed lock file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/michaeljochen/skills/itsm-ticket-analyzer)
+- [Publisher profile](https://clawhub.ai/user/michaeljochen)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports and recommendations, optional JSON from analysis scripts, and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local CSV or Excel ticket exports and may write report files when an output path is supplied.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

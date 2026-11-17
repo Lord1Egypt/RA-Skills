@@ -1,46 +1,60 @@
-## Description: <br>
-全面排查企业的经营风险情况，适用于供应商准入尽调、贷前风险筛查、合作伙伴背景调查等场景，全方位预警潜在经营风险，辅助决策者规避合作隐患。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+全面排查企业的经营风险情况，适用于供应商准入尽调、贷前风险筛查、合作伙伴背景调查等场景，全方位预警潜在经营风险，辅助决策者规避合作隐患。
 
-## Publisher: <br>
-[llx-26](https://clawhub.ai/user/llx-26) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[llx-26](https://clawhub.ai/user/llx-26)
 
-## Use Case: <br>
-External users, analysts, procurement teams, lenders, and partner-risk reviewers use this skill to query Qixin enterprise risk data for supplier onboarding, pre-loan screening, and business background checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Company names, enterprise IDs, and due-diligence queries are sent to the Qixin API service. <br>
-Mitigation: Install only if the user trusts the Qixin API service and is comfortable sharing queried company identifiers with it. <br>
-Risk: Fuzzy company-name lookup can return the wrong enterprise when a name is ambiguous. <br>
-Mitigation: Prefer exact enterprise IDs for sensitive reviews and verify the returned ename before relying on the result. <br>
-Risk: The QXBENT_API_TOKEN grants access to the external service if exposed. <br>
-Mitigation: Store the token with limited exposure and avoid putting it broadly in shell startup files on shared systems. <br>
+## Use Case:
 
+External users and developers use this skill to query Qixin enterprise risk signals for supplier onboarding, pre-loan screening, and partner background checks. It returns shell-company indicators, contract breach history, operating risk counts and details, and survival-status risk information for the requested enterprise.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/llx-26/qxb-risk-assessment) <br>
-- [Publisher Profile](https://clawhub.ai/user/llx-26) <br>
-- [getRiskAssessment API Reference](references/getRiskAssessment.md) <br>
-- [Qixin API Token Quota Center](https://www.qixin.com/app-center/home?route=skill-quota) <br>
-- [Qixin Enterprise Public API Base](https://external-api.qixin.com/skill/ent/public) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with JSON-like enterprise risk data returned from the Qixin API.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, axios, and QXBENT_API_TOKEN; accepts either enterprise name or enterprise ID.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Company names or enterprise IDs are sent to Qixin using the configured API token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run the skill only when this external lookup is intended, and avoid submitting enterprises that should not be shared with Qixin.
+
+Risk: Fuzzy enterprise-name matching can resolve to a different company than intended.
+
+Mitigation: Prefer an exact enterprise ID for important diligence decisions and confirm that the returned ename matches the intended company.
+
+Risk: Dependency versions may change during installation because the artifact does not include a lockfile.
+
+Mitigation: Review and pin resolved npm dependency versions before deployment in controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/llx-26/skills/qxb-risk-assessment)
+- [getRiskAssessment API reference](references/getRiskAssessment.md)
+- [Qixin skill quota page](https://www.qixin.com/app-center/home?route=skill-quota)
+- [Qixin external API base](https://external-api.qixin.com/skill/ent/public)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and text summaries with optional TypeScript code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node, npm, axios, and QXBENT_API_TOKEN; queries may use an enterprise name or enterprise ID.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence; package.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

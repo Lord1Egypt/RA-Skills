@@ -1,41 +1,53 @@
-## Description: <br>
-Track daily habits, streaks, and completions locally with JSON-backed CLI scripts and weekly Markdown reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Track daily habits, streaks, and completions locally.
 
-## Publisher: <br>
-[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newageinvestments25-byte](https://clawhub.ai/user/newageinvestments25-byte)
 
-## Use Case: <br>
-External users and developers use this skill to add, archive, log, check, and review personal habits through local Python CLI scripts without external services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Habit names, completion history, and review notes are stored locally and may reveal personal routines. <br>
-Mitigation: Use non-sensitive habit names when privacy matters and store habit data only in trusted local directories. <br>
-Risk: The skill can create and update local habit JSON files and optional Markdown review files. <br>
-Mitigation: Review the intended command and data or output path before execution; use HABIT_DATA_DIR, --data-dir, or --output only with directories the user intends to modify. <br>
+## Use Case:
 
+External users and agents use this skill to manage a local habit tracker: add or archive habits, log completions, check streaks, and generate weekly reviews.
 
-## Reference(s): <br>
-- [Habit Tracker Data Format](references/data-format.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/newageinvestments25-byte/nai-habit-tracker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text, JSON status output, and Markdown weekly review reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON habit files and optional Markdown output files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill creates and updates local habit files under the default habit data directory or a user-specified data directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review HABIT_DATA_DIR and --data-dir before running commands, and point them only at directories intended for habit data.
+
+Risk: Weekly review output can overwrite a file when --output targets an existing path.
+
+Mitigation: Choose a dedicated report path or check whether the target file exists before saving a weekly review.
+
+## Reference(s):
+
+- [Habit Tracker Data Format](references/data-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration guidance]
+
+**Output Format:** [Plain text, JSON, Markdown reports, and Python CLI commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local JSON habit data; weekly reviews can be printed or written as Markdown files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

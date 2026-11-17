@@ -1,44 +1,59 @@
-## Description: <br>
-Chinese Name Generator - Cantian AI helps agents analyze Chinese names and generate personal, company, brand, pet, stage, screen, and bilingual naming candidates using favorable-element filtering, pronunciation, meaning, aesthetics, and secondary San Cai/Wu Ge references. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese naming analysis and candidate generation skill that prioritizes favorable-element filtering and uses WuGe as a secondary reference for personal, company, brand, bilingual, stage, screen, online, and pet naming scenarios.
 
-## Publisher: <br>
-[tianlinle](https://clawhub.ai/user/tianlinle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tianlinle](https://clawhub.ai/user/tianlinle)
 
-## Use Case: <br>
-External users and agents use this skill to generate and compare Chinese naming candidates for people, businesses, brands, shops, pets, stage names, screen names, and bilingual naming tasks. It can run local scripts to score candidates by favorable elements, character data, pronunciation, and optional San Cai/Wu Ge structure. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Traditional favorable-element and WuGe scoring may be interpreted as factual certainty. <br>
-Mitigation: Present scores as advisory naming references and combine them with human judgment about pronunciation, meaning, culture, and personal preference. <br>
-Risk: Using the tsx fallback can introduce an additional npm dependency. <br>
-Mitigation: Prefer the documented Node 24 path; when tsx is needed, review or pin the dependency before use. <br>
-Risk: Naming requests can include unnecessary personal details. <br>
-Mitigation: Ask only for the naming details needed for the task and avoid retaining extra sensitive context. <br>
+## Use Case:
 
+External users and developers use this skill to generate and evaluate Chinese name candidates by surname, favorable element, pronunciation, meaning, style, and optional San Cai / WuGe structure. It supports personal names as well as company, brand, store, bilingual, stage, screen, online, and pet naming workflows.
 
-## Reference(s): <br>
-- [Cantian AI](https://cantian.ai) <br>
-- [Cantian BaZi companion skill](https://clawhub.ai/tianlinle/cantian-bazi) <br>
-- [ClawHub release page](https://clawhub.ai/tianlinle/cantian-naming) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with optional JSON output from local scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Name analysis and candidate lists may include scores, score breakdowns, character attributes, pronunciation, elemental tags, and optional San Cai/Wu Ge results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server release evidence) <br>
+Risk: The skill description covers broad naming scenarios, while the scanner summary says the implementation mainly automates Chinese-character name scoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the local scoring scripts as structured evidence and review final recommendations for fit, cultural nuance, pronunciation, and scenario-specific meaning before presenting them.
+
+Risk: Optional runtime setup may require installing tsx on Node versions below 24.
+
+Mitigation: Prefer Node 24; when tsx is needed, pin and review the dependency before installation.
+
+Risk: Names containing characters missing from the bundled hanzi dataset cause script errors rather than fallback analysis.
+
+Mitigation: Check unsupported characters and either choose candidates from the bundled dataset or explain that the requested character cannot be scored by the skill.
+
+## Reference(s):
+
+- [Cantian AI](https://cantian.ai)
+- [Cantian BaZi companion skill](https://clawhub.ai/tianlinle/cantian-bazi)
+- [ClawHub skill page](https://clawhub.ai/tianlinle/skills/cantian-naming)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown reports or JSON from local TypeScript scripts, with concise natural-language recommendations for agent responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include candidate names, scores, character attributes, San Cai / WuGe summaries, favorable-element matching, and interpretation guidance.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

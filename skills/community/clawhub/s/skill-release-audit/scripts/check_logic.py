@@ -8,6 +8,7 @@ Module 1: Logic & Syntax Check
 """
 
 import ast
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -66,8 +67,56 @@ def check_bash_syntax(script_path: Path) -> list[dict]:
     return issues
 
 
+def _is_runtime_external_ref(ref: str) -> bool:
+    """True if the ref points outside the skill package (runtime environment path).
+
+    Covers:
+      - ~/... / ~user/...
+      - $HOME/... / ${HOME}/... / other env-var-prefixed paths
+      - absolute paths (/etc/..., C:\\..., ...)
+    These are resolved at runtime in the *user's* environment, not inside the
+    skill package, so their existence cannot be validated here. They are
+    reported as INFO (when expanded path also missing) or silently skipped.
+    """
+    r = ref.strip()
+    if r.startswith("~"):
+        return True
+    if r.startswith("$"):
+        # $HOME/... or ${HOME}/...
+        return True
+    if r.startswith("/"):
+        return True
+    # Windows drive letters: C:\... or C:/...
+    if len(r) >= 2 and r[0].isalpha() and r[1] == ":" and (r[2:3] in ("\\", "/")):
+        return True
+    return False
+
+
+def _resolve_runtime_ref(ref: str) -> Path | None:
+    """Best-effort expanduser()/expandvars() resolution for runtime paths."""
+    r = ref.strip()
+    if r.startswith("$"):
+        # ${HOME}/x or $HOME/x -> $HOME
+        r = re.sub(r"\$\{?HOME\}?", os.path.expanduser("~"), r)
+    try:
+        return Path(os.path.expandvars(os.path.expanduser(r)))
+    except Exception:
+        return None
+
+
 def check_internal_paths(skill_dir: Path) -> list[dict]:
-    """Check that file paths referenced in SKILL.md actually exist."""
+    """Check that file paths referenced in SKILL.md actually exist.
+
+    Ref classification:
+      1. Package-internal refs (scripts/, references/, assets/, bare relative
+         paths) → must exist inside the skill dir; missing → WARN.
+      2. Runtime external refs (~/, $HOME/, absolute paths) → outside the
+         package, resolved in the user's environment at runtime. Not a package
+         completeness problem even if absent (e.g. files generated on first
+         run). If expanduser() resolves to an existing path → skip silently;
+         otherwise emit INFO (not WARN) so the report stays honest without
+         false-positive noise.
+    """
     issues = []
     skill_md = skill_dir / "SKILL.md"
     if not skill_md.exists():
@@ -88,7 +137,37 @@ def check_internal_paths(skill_dir: Path) -> list[dict]:
             #   <name>.json, {skill}/x.md, *.py, output/{id}.html
             if any(c in ref for c in "<>{}*"):
                 continue
+
+            # --- Runtime external paths: not package refs ---
+            if _is_runtime_external_ref(ref):
+                resolved = _resolve_runtime_ref(ref)
+                if resolved is not None and resolved.exists():
+                    continue  # exists in this environment — nothing to report
+                issues.append({
+                    "file": "SKILL.md",
+                    "line": None,
+                    "message": t("logic.runtime_external_ref", ref=ref),
+                    "severity": "INFO",
+                })
+                continue
+
+            # --- Package-internal reference ---
+            # 搜索顺序：① skill 根下原样路径；② scripts/ 下同名文件（SKILL.md 惯例
+            # 常用裸文件名指代 scripts/ 里的脚本）；③ references/ 下同名文件。
+            # 命中任一即视为存在——检查器是保守验证存在性，不是路径拼写裁判。
+            # 另：`bash xxx.sh` 这类反引号内嵌命令的写法，取末段文件名再搜，
+            # 避免把命令前缀（bash/ python3 等）误当路径段。
             ref_path = skill_dir / ref
+            if not ref_path.exists():
+                stem = ref.split('/')[-1]
+                # 命令式引用（如 `bash sync.sh`）：末段可能仍含命令前缀，
+                # 取空格分隔后的最后一个 token 作为候选文件名
+                token = stem.split(' ')[-1] if ' ' in stem else stem
+                for sub in ("", "scripts", "references"):
+                    candidate = skill_dir / sub / token if sub else skill_dir / token
+                    if candidate.exists():
+                        ref_path = candidate
+                        break
             if not ref_path.exists():
                 issues.append({
                     "file": "SKILL.md",

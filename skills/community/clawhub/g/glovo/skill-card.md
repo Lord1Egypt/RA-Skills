@@ -1,42 +1,58 @@
-## Description: <br>
-Navigate Glovo in a live browser session to compare stores, manage carts, and reach checkout safely before ordering. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Glovo in a live browser session to compare stores, manage carts, and reach checkout safely before ordering.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill to browse Glovo with their own signed-in session, compare live store options, prepare draft carts, verify checkout details, and recover from order issues. The skill is intended for workflows where Glovo-specific state such as address, cart, availability, fees, promotions, and support status matters. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate in a real signed-in Glovo session with live addresses, carts, payment methods, and purchase consequences. <br>
-Mitigation: Keep browser-control permission explicit, summarize checkout details, and require current-thread approval before changing sensitive state or placing an order. <br>
-Risk: Optional local memory in ~/glovo/ could capture sensitive ordering context if used carelessly. <br>
-Mitigation: Store only non-sensitive preferences and durable operating notes; do not store passwords, payment card data, verification codes, full receipts, or raw support transcripts. <br>
+## Use Case:
 
+External users use this skill when a Glovo-specific task depends on a real signed-in session, saved address, current store availability, fees, promotions, cart state, or order issue. It helps compare delivery options, draft carts, verify checkout details, and recover from Glovo-specific order problems.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/glovo) <br>
-- [Glovo website](https://glovoapp.com) <br>
-- [Skill homepage](https://clawic.com/skills/glovo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with checkout summaries, browser-control instructions, and optional local memory setup steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce draft cart summaries, store comparisons, issue-recovery steps, and local notes for ~/glovo/ when the user permits persistent memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: A signed-in browser session can expose live address, cart, payment, and ordering state, and checkout actions may create real purchases.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require current-thread approval before browser control, cart changes, delivery address changes, or final order placement, and summarize checkout details before any live purchase action.
+
+Risk: Optional persistent notes under ~/glovo/ may contain delivery preferences, address labels, store history, and issue patterns.
+
+Mitigation: Store only durable operating preferences when the user allows local memory, and do not store passwords, payment card data, one-time verification codes, full receipts, or raw support transcripts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/glovo)
+- [Glovo skill homepage](https://clawic.com/skills/glovo)
+- [Glovo web app](https://glovoapp.com)
+- [Browser flow](artifact/browser-flow.md)
+- [Checkout guardrails](artifact/checkout-guardrails.md)
+- [Issue recovery](artifact/issue-recovery.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional shell commands and local configuration file templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce browser-control plans, checkout summaries, issue-recovery guidance, and optional local memory notes under ~/glovo/ when the user allows persistent storage.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

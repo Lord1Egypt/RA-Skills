@@ -1,42 +1,60 @@
-## Description: <br>
-Spec-task enforces a structured task lifecycle for agent work, including configuration, recall, task creation, document generation, status transitions, verification, and archiving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Spec-task guides agents through a structured task lifecycle for complex or delegated work, requiring task briefs, specifications, plans, checklists, status transitions, verification, and archiving.
 
-## Publisher: <br>
-[leonardo-lb](https://clawhub.ai/user/leonardo-lb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leonardo-lb](https://clawhub.ai/user/leonardo-lb)
 
-## Use Case: <br>
-Developers and agent operators use this skill to manage non-trivial agent tasks through a required brief, spec, plan, checklist, execution log, verification flow, and optional archive. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Task summaries, outputs, history, or lessons may contain sensitive project details when written locally or archived. <br>
-Mitigation: Review archive settings before use and avoid including secrets or sensitive task details in task documents, outputs, history, or lessons. <br>
-Risk: This release is marked deprecated due to unstable factors. <br>
-Mitigation: Prefer the plugin release with the same name when available, or validate the workflow on non-sensitive tasks before relying on it. <br>
+## Use Case:
 
+Developers and agent operators use spec-task to organize complex or delegated work into traceable task artifacts, explicit lifecycle states, acceptance criteria, and archival records.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leonardo-lb/spec-task) <br>
-- [OpenSpec concept mapping](reference/openspec-mapping.md) <br>
-- [Status.yaml format reference](reference/status-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown task documents with YAML configuration and status fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local task documents and may create memory history or lessons when archived.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata) <br>
+Risk: The skill strongly shapes agent workflow and may add overhead or inappropriate process requirements to simple tasks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only where structured task lifecycle enforcement is desired, and review whether its required brief, spec, plan, checklist, and state transitions fit the workspace.
+
+Risk: The skill can create persistent task history, lessons, logs, verification records, and archive files that may retain sensitive project details.
+
+Mitigation: Confirm the configured memory and archive paths before use, review archive contents before approval, and disable or avoid history and lesson generation for sensitive projects.
+
+Risk: The release changelog states the skill has been deprecated due to unstable factors.
+
+Mitigation: Prefer the replacement plugin with the same name for new deployments, or test this skill in a non-sensitive workspace before relying on it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/leonardo-lb/skills/spec-task)
+- [OpenSpec concept mapping](artifact/reference/openspec-mapping.md)
+- [Status.yaml format reference](artifact/reference/status-format.md)
+- [Agent task schema](artifact/schemas/agent-task/schema.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown task documents, YAML status/configuration, and concise tool-use guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured task artifacts such as brief.md, spec.md, plan.md, checklist.md, status.yaml, logs, verification records, and optional archive notes.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

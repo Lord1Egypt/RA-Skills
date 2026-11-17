@@ -1,41 +1,56 @@
-## Description: <br>
-AI 提示词优化专家，帮助用户将创意想法转化为高质量的 Seedance 2.0（视频）、Seedream 4.0（图像）、可灵 O1（视频）提示词，输出中英双语版本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Prompt Optimizer helps users turn creative ideas into structured bilingual prompts for Seedance 2.0 video, Seedream 4.0 image, and Kling O1 video generation.
 
-## Publisher: <br>
-[xiaoxty](https://clawhub.ai/user/xiaoxty) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoxty](https://clawhub.ai/user/xiaoxty)
 
-## Use Case: <br>
-External creators and prompt writers use this skill to turn short creative ideas into structured bilingual prompts and parameter suggestions for Seedance 2.0, Seedream 4.0, and Kling O1. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts may be inaccurate, inappropriate, or mismatched to the intended image or video tool. <br>
-Mitigation: Review each generated prompt, parameter recommendation, and optimization note before using it with a generation tool. <br>
+## Use Case:
 
+External users and creative developers use this skill to convert brief image or video ideas into clear prompts, parameter suggestions, and optimization notes for supported AI generation tools.
 
-## Reference(s): <br>
-- [AI Prompt Optimizer on ClawHub](https://clawhub.ai/xiaoxty/ai-prompt-optimizer) <br>
-- [Seedance 2.0 prompt guide](artifact/seedance-guide.md) <br>
-- [Seedream 4.0 prompt guide](artifact/seedream-guide.md) <br>
-- [Kling O1 prompt guide](artifact/kling-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with bilingual optimized prompts, parameter suggestions, and optimization notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an optional tool parameter for seedance, seedream, or kling; asks for clarification when the target tool is unclear.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill defaults to Chinese responses, which may not match every user's preferred response language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Override the response language in the calling prompt when another language is required.
+
+Risk: Generated prompts and parameter suggestions may need review before use in downstream image or video generation tools.
+
+Mitigation: Review the optimized prompt, target tool selection, and suggested parameters before submitting them to a generation service.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xiaoxty/skills/ai-prompt-optimizer)
+- [Seedance 2.0 Prompt Guide](artifact/seedance-guide.md)
+- [Seedream 4.0 Prompt Guide](artifact/seedream-guide.md)
+- [Kling O1 Prompt Guide](artifact/kling-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with bilingual prompt text, parameter recommendations, and optimization notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese responses while providing optimized prompts in Chinese and English.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

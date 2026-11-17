@@ -1,41 +1,59 @@
-## Description: <br>
-Keigo Mail Generator helps draft structured Japanese business emails with appropriate honorific language, optional internal template use, and locally managed signature details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Keigo Mail Generator drafts Japanese business emails with appropriate honorific style, reusable local signature details, and optional internal template phrasing when requested.
 
-## Publisher: <br>
-[transmind](https://clawhub.ai/user/transmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[transmind](https://clawhub.ai/user/transmind)
 
-## Use Case: <br>
-Employees and business users use this skill to create Japanese business email drafts for apologies, invitations, follow-ups, outreach, and other workplace communication while reusing saved signature details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores signature and contact details locally for future email drafts. <br>
-Mitigation: Avoid entering contact details that should not be saved, and use the documented rm flow to remove stored fields when needed. <br>
-Risk: Generated business emails may contain wording, factual, or compliance issues. <br>
-Mitigation: Review and edit generated drafts before sending, especially when handling sensitive, legal, or customer-facing communication. <br>
+## Use Case:
 
+Employees and business users use this skill to draft polished Japanese business email for apologies, outreach, invitations, and other external communications. It can reuse locally stored signature details and optionally incorporate internal text templates when the user explicitly asks for template reference.
 
-## Reference(s): <br>
-- [Keigo Mail Generator on ClawHub](https://clawhub.ai/transmind/keigo-mail-generator) <br>
-- [Demo Video](https://www.youtube.com/watch?v=_UD1pcth0Dc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown email draft, with an optional signature update notice before the draft.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 for local signature processing; generated emails should be reviewed before sending.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata; SKILL.md frontmatter reports 1.0.1) <br>
+Risk: The skill can save and reuse personal business signature details in a local SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local signature persistence is acceptable, include only necessary contact fields, and use the documented rm flow to remove fields when no longer needed.
+
+Risk: Broad mail-related activation can update or reuse signature details when a user did not intend that behavior.
+
+Mitigation: Use narrow, intentional invocation text and review any signature update notice before relying on the generated email.
+
+Risk: Generated business email may contain inaccurate, inappropriate, or legally unsuitable wording.
+
+Mitigation: Review and edit drafts before sending, especially for apologies, contractual matters, customer communications, or regulated contexts.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/transmind/skills/keigo-mail-generator)
+- [README](README.md)
+- [Demo video](https://www.youtube.com/watch?v=_UD1pcth0Dc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Plain text or Markdown email draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a signature update notice before the draft when local signature storage changes.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release metadata; artifact frontmatter reports 1.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

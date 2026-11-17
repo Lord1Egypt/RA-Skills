@@ -1,38 +1,53 @@
-## Description: <br>
-Learn Feynman helps users test whether they truly understand a concept by having them explain it in their own words, then asking targeted follow-up questions to identify unclear reasoning, missing prerequisites, and gaps in understanding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Learn Feynman helps learners test whether they truly understand a concept by explaining it in their own words while the agent asks targeted follow-up questions to expose gaps.
 
-## Publisher: <br>
-[li-evan](https://clawhub.ai/user/li-evan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[li-evan](https://clawhub.ai/user/li-evan)
 
-## Use Case: <br>
-Learners and knowledge workers use this skill after studying a topic to check whether their understanding is closed-loop. The skill prompts the user to explain the concept plainly, probes skipped or vague steps, and helps separate missing prerequisite knowledge from incomplete reasoning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger wording may activate the tutoring workflow when the user only intended a generic self-check. <br>
-Mitigation: Clarify that the tutoring workflow is not desired, or ask the agent to answer without using the Feynman self-check mode. <br>
+## Use Case:
 
+External learners and study-focused agents use this skill to verify understanding after studying a topic by having the user teach the concept, answer probing questions, and identify whether gaps come from missing prerequisites or incomplete reasoning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/li-evan/learn-feynman) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces questions, gap analysis, and learning guidance without executing tools or commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The broad trigger wording may activate the skill during ordinary study conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm that the user wants a Feynman-style understanding check before applying probing follow-up questions.
+
+Risk: The agent could incorrectly assume what prerequisite knowledge the user already has.
+
+Mitigation: Only treat knowledge as established when the user confirms it or reliable context supports it; ask when uncertain.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/li-evan/skills/learn-feynman)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Markdown or plain text conversational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Does not run code or request external access.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

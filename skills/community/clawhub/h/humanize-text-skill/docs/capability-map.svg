@@ -1,0 +1,62 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="980" rx="28" fill="#F3F6F4"/>
+  <rect x="36" y="36" width="1528" height="908" rx="24" fill="#FCFEFC" stroke="#CFD9D2" stroke-width="2"/>
+  <text x="72" y="96" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#182127">humanize-text-skill Capability Map</text>
+  <text x="72" y="132" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5B6862">What the skill does, what each layer owns,</text>
+  <text x="72" y="156" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#5B6862">and where the user-facing value comes from</text>
+
+  <rect x="72" y="168" width="470" height="320" rx="24" fill="#E7F1FA" stroke="#8FB4D1" stroke-width="2"/>
+  <text x="102" y="214" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#17384D">Subtraction Layer</text>
+  <text x="102" y="252" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#33434E">Remove the patterns that make text feel</text>
+  <text x="102" y="276" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#33434E">templated or AI-shaped.</text>
+  <text x="102" y="308" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#33434E">• tier1 / tier2 / tier3 vocabulary</text>
+  <text x="102" y="338" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#33434E">• structural anti-patterns</text>
+  <text x="102" y="368" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#33434E">• translation tone (zh-only)</text>
+  <text x="102" y="398" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#33434E">• chatbot residue and AI-tool fingerprints</text>
+  <text x="102" y="428" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#33434E">• rhythm and uniformity signals</text>
+  <text x="102" y="462" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5A6770">Output: `score` + issue list</text>
+
+  <rect x="564" y="168" width="470" height="320" rx="24" fill="#FFF4E2" stroke="#D9B17B" stroke-width="2"/>
+  <text x="594" y="214" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#6A4317">Fidelity Gate</text>
+  <text x="594" y="252" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#4E4A43">Protect what must not drift, even if that keeps</text>
+  <text x="594" y="276" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#4E4A43">the sentence a bit stiff.</text>
+  <text x="594" y="308" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• numbers, dates, versions, ranges, units</text>
+  <text x="594" y="338" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• commands, code, params, fields, paths</text>
+  <text x="594" y="368" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• names, owners, issue/PR ids, quotes</text>
+  <text x="594" y="398" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• errors, logs, metrics, statuses</text>
+  <text x="594" y="462" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5A6770">Currently enforced in the rule layer, guarded by SNF evals.</text>
+
+  <rect x="1056" y="168" width="470" height="320" rx="24" fill="#EEE8FA" stroke="#B49AD3" stroke-width="2"/>
+  <text x="1086" y="214" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#4A2F72">Addition Layer</text>
+  <text x="1086" y="252" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#4F4A58">Pull clean text toward a target human voice</text>
+  <text x="1086" y="276" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#4F4A58">instead of stopping at “less AI”.</text>
+  <text x="1086" y="308" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4F4A58">• casual / professional / technical / warm / blunt</text>
+  <text x="1086" y="338" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4F4A58">• custom voice calibrated from a sample</text>
+  <text x="1086" y="368" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4F4A58">• sentence-length and rhythm targets</text>
+  <text x="1086" y="398" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4F4A58">• connector preferences and concrete pull suggestions</text>
+  <text x="1086" y="462" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5A6770">Output: `voice.drift` + split / vary / connector hints</text>
+
+  <rect x="72" y="530" width="700" height="350" rx="24" fill="#EEF6EE" stroke="#9FC29F" stroke-width="2"/>
+  <text x="102" y="576" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#244A29">Interaction Layer</text>
+  <text x="102" y="614" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#35543A">This is what turns the engine into a usable skill.</text>
+  <text x="102" y="652" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#35543A">• 3 modes: rewrite / detect / edit</text>
+  <text x="102" y="682" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#35543A">• scene-aware behavior: chat / status / docs / public-writing</text>
+  <text x="102" y="712" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#35543A">• scene packs: README / release-note / forum-post / issue-reply</text>
+  <text x="102" y="742" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#35543A">• second-pass audit: opener / summary / narrator / empty judgment / rhythm</text>
+  <text x="102" y="772" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#35543A">• audit-only fallback for risky sourcing in status and docs</text>
+  <text x="102" y="832" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5A6770">Owned by SKILL.md, scene-guardrails.md, scene-packs.md, examples.md, quick-checklist.md</text>
+
+  <rect x="804" y="530" width="722" height="350" rx="24" fill="#F7F1EA" stroke="#CDBAA0" stroke-width="2"/>
+  <text x="834" y="576" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#4E3F2D">Alignment Layer</text>
+  <text x="834" y="614" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#4E4A43">Keep prose, engine, examples, and behavior aligned.</text>
+  <text x="834" y="652" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• one scorer contract in core/scoring.js</text>
+  <text x="834" y="682" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• CATEGORIES.md maps detector types back to skill prose</text>
+  <text x="834" y="712" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• policy/*.toml locks scene, tier, and voice names</text>
+  <text x="834" y="742" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• fixtures.json and benchmark.md catch misses and false positives</text>
+  <text x="834" y="772" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#4E4A43">• human-rubric.md reviews rewrite quality outside engine score</text>
+  <text x="834" y="832" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5A6770">The goal is not just “can detect”, but “can teach, rewrite, and stay consistent”.</text>
+
+  <rect x="72" y="898" width="1454" height="16" rx="8" fill="#D8E4DD"/>
+  <text x="72" y="946" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#182127">User-facing promise:</text>
+  <text x="278" y="946" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#56636D">cleaner than a detector, safer than blind rewriting, and more human than simple de-AI tools</text>
+</svg>

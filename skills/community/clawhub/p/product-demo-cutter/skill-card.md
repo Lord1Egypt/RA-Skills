@@ -1,39 +1,55 @@
-## Description: <br>
-Cut longer product demo videos into shorter, more usable product moments for ecommerce, storefronts, ads, and creator workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cut longer product demo videos into shorter, more usable product moments for ecommerce, storefronts, ads, and creator workflows.
 
-## Publisher: <br>
-[Leooooooow](https://clawhub.ai/user/Leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External creators, ecommerce teams, and product teams use this skill to turn longer product demos into focused clips for product pages, ads, storefronts, creator briefs, and internal review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product demo footage may contain confidential product, launch, or storefront details. <br>
-Mitigation: Use only footage the user is comfortable having the agent analyze, and remove confidential material before requesting cut recommendations. <br>
+## Use Case:
 
+Marketing, ecommerce, creator, and product teams use this skill to turn longer product demo footage into shorter clips, cut strategies, key extracted moments, destination recommendations, and notes on weak or repetitive footage.
 
-## Reference(s): <br>
-- [Product Demo Cutter output template](references/output-template.md) <br>
-- [ClawHub release page](https://clawhub.ai/Leooooooow/product-demo-cutter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a demo cut strategy, key moments to extract, recommended destinations for cuts, and notes on weak or repetitive footage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Users may provide confidential product footage or unreleased launch details to their agent environment.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only footage and product details approved for that environment, and withhold or redact sensitive launch, pricing, or roadmap information when needed.
+
+Risk: Generated cut recommendations may overstate whether weak or repetitive footage is publication-ready.
+
+Mitigation: Review the proposed moments against the source footage and verify product claims, proof points, and destination fit before publishing.
+
+## Reference(s):
+
+- [Product Demo Cutter Output Template](references/output-template.md)
+- [Product Demo Cutter on ClawHub](https://clawhub.ai/leooooooow/skills/product-demo-cutter)
+- [Publisher Profile](https://clawhub.ai/user/leooooooow)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a demo cut strategy, key moments to extract, recommended destinations for each cut, and footage weakness notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

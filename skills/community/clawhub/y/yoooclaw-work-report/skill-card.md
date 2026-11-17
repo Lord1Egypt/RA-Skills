@@ -1,40 +1,49 @@
-## Description: <br>
-Extracts work-related progress, communication points, approvals, follow-ups, risks, and blockers from local notification logs to draft a daily or weekly work report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically extracts work progress, alignment points, approvals, risks, and follow-ups from work-related notification history to generate a daily or weekly work report.
 
-## Publisher: <br>
-[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vivalavida-say-hi](https://clawhub.ai/user/vivalavida-say-hi)
 
-## Use Case: <br>
-Employees use this skill near the end of a workday or week to turn selected workplace app notifications into a concise report suitable for a manager or workspace update. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local notification logs can contain names, project details, deadlines, approvals, and other confidential workplace information. <br>
-Mitigation: Limit the selected apps, groups, and date ranges before use, and review the generated report before sending it to a manager or workspace. <br>
-Risk: A notification-derived summary can miss context or overstate a status, approval, blocker, or commitment. <br>
-Mitigation: Confirm important names, project status, deadlines, approvals, and risks against source notifications or workplace systems before sharing the report. <br>
+## Use Case:
 
+Employees and team contributors use this skill to turn work-related notifications from apps such as Feishu, DingTalk, WeCom, Outlook, Jira, GitHub, and Notion into concise daily or weekly status reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/yoooclaw-work-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown-style daily or weekly report in chat text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Does not write files; daily reports are capped at about 800 Chinese characters and weekly reports at about 1500 Chinese characters according to the skill evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may read full daily notification archives, including non-work and sensitive notifications, before filtering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installing when notification history may include confidential or personal content, and configure monitored apps and groups narrowly.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vivalavida-say-hi/skills/yoooclaw-work-report)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style conversational report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Daily reports are capped at about 800 Chinese characters, weekly reports at about 1500 Chinese characters, and the skill does not generate files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

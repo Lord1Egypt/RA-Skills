@@ -1,7 +1,7 @@
 ---
 name: wdh
 description: Call any of seven paid-per-call CLI utilities on WDH.sh — big-file transfer (≤5 GB), URL shortening, Chart.js rendering, hosted markdown pages, QR codes, paid feature requests, paid support tickets — settled in USDC on Base mainnet via x402 with no signup or API key. Use when the user wants any of these utilities and has an EVM wallet, or mentions x402, USDC, micropayment, pay-per-call, or any of the wdh.sh hostnames (files.wdh.sh, short.wdh.sh, charts.wdh.sh, md.wdh.sh, qr.wdh.sh, feedback.wdh.sh, support.wdh.sh). Costs $0.001–$5.00 USDC per call depending on tool.
-version: 0.2.0
+version: 0.3.1
 metadata:
   openclaw:
     requires:

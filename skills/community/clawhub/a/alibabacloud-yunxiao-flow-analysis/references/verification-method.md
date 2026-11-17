@@ -2,7 +2,7 @@
 
 This document provides step-by-step verification methods to ensure the Yunxiao Flow Analysis skill is working correctly at each stage of the troubleshooting workflow.
 
-> **Token Note**: The `--token` parameter in all script commands below can be provided via the environment variable `YUNXIAO_ACCESS_TOKEN`. If the environment variable is set, the `--token` argument can be omitted.
+> **Authentication**: All scripts read the token exclusively from the environment variable `YUNXIAO_ACCESS_TOKEN`. Ensure it is set before running any command: `export YUNXIAO_ACCESS_TOKEN="pt-xxx"`
 
 ---
 
@@ -15,7 +15,6 @@ python3 scripts/yunxiao_flow_get_pipeline_runs.py \
   --org-id <org-id> \
   --pipeline-id <pipeline-id> \
   --pipeline-runid <pipeline-runid> \
-  --token <token> \
   --domain <domain>
 ```
 
@@ -67,7 +66,6 @@ python3 scripts/yunxiao_flow_get_job_step_log.py \
   --pipeline-runid <pipeline-runid> \
   --job-id <job-id> \
   --step-index <step-index> \
-  --token <token> \
   --domain <domain> \
   --full-log
 ```
@@ -147,7 +145,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_order.py \
   --org-id <org-id> \
   --pipeline-id <pipeline-id> \
   --deploy-order-id <deploy-order-id> \
-  --token <token> \
   --domain <domain>
 ```
 
@@ -193,7 +190,6 @@ python3 scripts/yunxiao_flow_get_vm_deploy_machine_log.py \
   --pipeline-runid <pipeline-runid> \
   --deploy-order-id <deploy-order-id> \
   --machine-sn <machine-sn> \
-  --token <token> \
   --domain <domain>
 ```
 
@@ -224,17 +220,16 @@ import json
 import sys
 import os
 
-def verify_pipeline_runs(org_id, pipeline_id, pipeline_runid, token, domain):
+def verify_pipeline_runs(org_id, pipeline_id, pipeline_runid, domain):
     """Verify Step 1: Pipeline runs retrieval"""
     print("=" * 60)
     print("Step 1: Verifying Pipeline Runs Retrieval")
     print("=" * 60)
     
-    cmd = f"""python3 scripts/yunxiao_flow_get_pipeline_runs.py \
-      --org-id {org_id} \
-      --pipeline-id {pipeline_id} \
-      --pipeline-runid {pipeline_runid} \
-      --token {token} \
+    cmd = f"""python3 scripts/yunxiao_flow_get_pipeline_runs.py \\
+      --org-id {org_id} \\
+      --pipeline-id {pipeline_id} \\
+      --pipeline-runid {pipeline_runid} \\
       --domain {domain}"""
     
     result = os.popen(cmd).read()
@@ -270,20 +265,19 @@ def verify_pipeline_runs(org_id, pipeline_id, pipeline_runid, token, domain):
         print(f"  Raw output: {result[:200]}...")
         return None
 
-def verify_job_step_log(org_id, pipeline_id, pipeline_runid, job_id, step_index, token, domain):
+def verify_job_step_log(org_id, pipeline_id, pipeline_runid, job_id, step_index, domain):
     """Verify Step 2: Job step log retrieval"""
     print("\n" + "=" * 60)
     print("Step 2: Verifying Job Step Log Retrieval")
     print("=" * 60)
     
-    cmd = f"""python3 scripts/yunxiao_flow_get_job_step_log.py \
-      --org-id {org_id} \
-      --pipeline-id {pipeline_id} \
-      --pipeline-runid {pipeline_runid} \
-      --job-id {job_id} \
-      --step-index {step_index} \
-      --token {token} \
-      --domain {domain} \
+    cmd = f"""python3 scripts/yunxiao_flow_get_job_step_log.py \\
+      --org-id {org_id} \\
+      --pipeline-id {pipeline_id} \\
+      --pipeline-runid {pipeline_runid} \\
+      --job-id {job_id} \\
+      --step-index {step_index} \\
+      --domain {domain} \\
       --full-log"""
     
     result = os.popen(cmd).read()
@@ -316,15 +310,15 @@ def verify_job_step_log(org_id, pipeline_id, pipeline_runid, job_id, step_index,
 
 def main():
     """Main verification workflow"""
-    if len(sys.argv) < 6:
-        print("Usage: python verify_workflow.py <org-id> <pipeline-id> <pipeline-runid> <token> <domain>")
+    if len(sys.argv) < 5:
+        print("Usage: python verify_workflow.py <org-id> <pipeline-id> <pipeline-runid> <domain>")
+        print("Note: Token must be set via environment variable YUNXIAO_ACCESS_TOKEN")
         sys.exit(1)
     
     org_id = sys.argv[1]
     pipeline_id = sys.argv[2]
     pipeline_runid = sys.argv[3]
-    token = sys.argv[4]
-    domain = sys.argv[5]
+    domain = sys.argv[4]
     
     print("Starting Yunxiao Flow Analysis Skill Verification")
     print(f"  Org ID: {org_id}")
@@ -333,7 +327,7 @@ def main():
     print(f"  Domain: {domain}")
     
     # Step 1: Get pipeline runs
-    failure_info = verify_pipeline_runs(org_id, pipeline_id, pipeline_runid, token, domain)
+    failure_info = verify_pipeline_runs(org_id, pipeline_id, pipeline_runid, domain)
     
     if failure_info:
         # Step 2: Get failed step log
@@ -341,7 +335,7 @@ def main():
             org_id, pipeline_id, pipeline_runid,
             failure_info['job_id'],
             failure_info['step_index'],
-            token, domain
+            domain
         )
     
     print("\n" + "=" * 60)
@@ -359,7 +353,6 @@ python3 verify_workflow.py \
   <org-id> \
   <pipeline-id> \
   <pipeline-runid> \
-  <token> \
   <domain>
 ```
 
@@ -387,9 +380,9 @@ import json
 import os
 
 # Test pipeline runs
-result = os.popen(f"""python3 scripts/yunxiao_flow_get_pipeline_runs.py \
-  --org-id {org_id} --pipeline-id {pipeline_id} --pipeline-runid {pipeline_runid} \
-  --token {token} --domain {domain}""").read()
+result = os.popen(f"""python3 scripts/yunxiao_flow_get_pipeline_runs.py \\
+  --org-id {org_id} --pipeline-id {pipeline_id} --pipeline-runid {pipeline_runid} \\
+  --domain {domain}""").read()
 
 data = json.loads(result)
 assert 'stages' in data

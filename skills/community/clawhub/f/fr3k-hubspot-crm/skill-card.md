@@ -1,41 +1,54 @@
-## Description: <br>
-Full HubSpot CRM automation -- contacts, deals, companies, activities, and pipeline reports via the HubSpot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Full HubSpot CRM automation for contacts, deals, companies, activities, and pipeline reports via the HubSpot API.
 
-## Publisher: <br>
-[fr3kstyle](https://clawhub.ai/user/fr3kstyle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fr3kstyle](https://clawhub.ai/user/fr3kstyle)
 
-## Use Case: <br>
-Developers, sales operations teams, and agents use this skill to manage HubSpot CRM contacts, deals, companies, activities, associations, and pipeline reporting from command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change or delete live HubSpot CRM records when used with a powerful private app token. <br>
-Mitigation: Use a dedicated least-privilege HubSpot private app token, test on sandbox or test records first, and require human confirmation before update, association, activity logging, stage-move, or delete commands. <br>
-Risk: Unused or overly broad HubSpot scopes can expose more CRM and email data than the workflow needs. <br>
-Mitigation: Grant only the HubSpot scopes required for the intended commands and avoid unused email-related scopes unless they are necessary. <br>
+## Use Case:
 
+Developers and CRM operators use this skill to manage HubSpot contacts, deals, companies, associations, activities, and pipeline reports from an agent-directed command-line workflow.
 
-## Reference(s): <br>
-- [Hubspot Crm on ClawHub](https://clawhub.ai/fr3kstyle/fr3k-hubspot-crm) <br>
-- [HubSpot API endpoint](https://api.hubapi.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and shell-command guidance for setup and use, with JSON responses from HubSpot CRM operations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a HubSpot Private App bearer token in HUBSPOT_API_KEY and can operate on live CRM contacts, deals, companies, activities, and associations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Commands can change or delete live HubSpot CRM records using a bearer token without built-in confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated private app token with only required scopes and require explicit human confirmation before delete, update, association, or deal-stage commands.
+
+Risk: Running the skill against a production HubSpot account may expose or modify customer and sales data.
+
+Mitigation: Review the account target and token scope before installation, and test workflows in a non-production or least-privileged environment when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fr3kstyle/skills/fr3k-hubspot-crm)
+- [HubSpot API endpoint](https://api.hubapi.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a HubSpot Private App bearer token in HUBSPOT_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

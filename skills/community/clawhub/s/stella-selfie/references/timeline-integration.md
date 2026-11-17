@@ -11,8 +11,8 @@ If `timeline_resolve` is unavailable, fails, times out, returns `fact.status ===
 
 - `timeline_resolve` is optional. Stella must work normally without it.
 - Timeline enhancement is best-effort only.
-- Never refuse, delay, or noticeably degrade image generation because timeline context is missing.
-- Never introduce a hard dependency on timeline-specific env vars, install steps, or internal field paths.
+- When timeline context is missing, continue with the skill's normal scene defaults and existing generation, configuration and safety rules.
+- Keep timeline enhancement optional; it requires no additional environment variables or installation steps.
 
 ## Eligibility
 
@@ -89,7 +89,7 @@ Use it to:
 - supply concrete place / date / time anchors
 - support realistic weather / lighting / indoor-outdoor coherence
 - enrich mood, social context, and continuity details
-- unlock Nano Banana real-world grounding when city plus exact local date/time anchors are available
+- incorporate trusted weather details already present in the conversation or timeline; city/time alone are not weather evidence
 
 Timeline does not own selfie semantics in general. Stella still owns the capture strategy and final prompt assembly.
 
@@ -111,7 +111,7 @@ Merge rules:
 
 - Use `selfie_ready` as the base prompt skeleton when present.
 - Use `scene` to enrich missing reality details such as city, time, props, lighting, mood, and continuity-friendly appearance details.
-- Do not invent exact real-world synchronization unless city plus exact local date/time anchors are present.
+- Do not claim real-world weather synchronization from city/date/time anchors alone. This skill does not enable search grounding or add a weather lookup.
 
 ## Recent Scene Reuse
 
@@ -164,7 +164,7 @@ Do not encode brittle hard mappings such as “fresh moment means mirror.”
 
 ## Outdoor and Real-World Awareness
 
-This is the main place to use Nano Banana's real-world perception for eligible requests.
+Keep environment, time, lighting and clothing coherent for eligible requests. Use weather facts only when a trusted source has actually supplied them.
 
 Classify the scene into one of these buckets:
 
@@ -181,25 +181,22 @@ Signals can come from:
 
 ### Outdoor
 
-When the scene is truly outdoor, and `scene.city` plus either `scene.calendar_date` or `scene.local_timestamp` are available:
+When the scene is truly outdoor:
 
-- explicitly inject the city and an exact local date/time anchor into the prompt
-- append the real-world grounding clause using this exact strong form:
-  `The outdoor environment must display the real-time weather conditions and natural lighting and shadow effects of the specified [city] at the specified [YYYY-MM-DD], at [HH:mm].`
-- let outdoor light, sky condition, pavement dryness, seasonal vegetation, and air feel match the real world naturally through that clause instead of soft atmosphere wording
-- adjust outfit details to fit likely weather and activity while preserving the character's style
-- do not pre-bake conflicting environment outcomes such as `spring evening`, `sunny afternoon`, `rainy street`, `golden-hour light`, or similar weather/lighting conclusions into the main descriptive sentence
+- include available city and local date/time as scene anchors
+- use supplied weather facts when available; otherwise use a plausible general atmosphere without claiming observed or live weather
+- keep outdoor light, sky, pavement, vegetation and clothing mutually coherent
+- preserve the character's style and explicit outfit requests; do not invent a wardrobe change solely from an inferred forecast
+- avoid conflicting weather/lighting details in the main sentence
 
-If exact city/date anchors are missing, fall back to general atmosphere cues instead of claiming real-world synchronization.
+Even exact city/date anchors do not prove weather. Do not instruct the model to retrieve real-time conditions implicitly.
 
 ### Indoor With Outdoor View
 
 When the scene is indoors but the outside is visible:
 
-- still inject city and exact local date/time anchors when available, so the visible outdoors can benefit from real-world perception
-- use the same strong grounding pattern for the visible outdoors:
-  `The outdoor environment must display the real-time weather conditions and natural lighting and shadow effects of the specified [city] at the specified [YYYY-MM-DD], at [HH:mm].`
-- make the visible outdoors match the city, local date/time, and weather
+- include city and local date/time anchors when available
+- make the visible outdoors consistent with supplied facts, using the same weather-evidence rule as outdoor scenes
 - keep clothing primarily appropriate for the indoor environment
 
 ### Indoor Closed
@@ -227,18 +224,18 @@ A [mode] photo of this person, [activity] at [location], wearing [appearance], w
 
 Then enrich only when supported by timeline facts:
 
-- add `city` and exact local date/time anchors when they help real-world grounding
+- add `city` and local date/time anchors when they clarify the scene
 - add `location_props` as concrete scene details
 - add `lighting_hint` for believable light behavior
 - add `framing_hint` as a descriptive cue when it strengthens realism
 - add `environment_mood` and `social_context` as subtle atmosphere cues
-- keep atmosphere cues subordinate to grounding; they must not override objective outdoor weather or lighting
-- when real-world grounding is active, avoid descriptive phrases in the main sentence that already decide the outdoor weather, season, sky state, or time-specific light result
+- keep atmosphere cues consistent with supplied facts; do not overwrite trusted weather or lighting details
+- do not infer exact weather, season or sky state solely from city/time
 
-For outdoor or outdoor-visible scenes, append this explicit grounding clause with concrete values:
+For outdoor or outdoor-visible scenes, an optional coherence clause can be:
 
 ```text
-The outdoor environment must display the real-time weather conditions and natural lighting and shadow effects of the specified [city] at the specified [YYYY-MM-DD], at [HH:mm].
+Keep the visible environment, lighting and clothing consistent with the supplied scene facts and local time.
 ```
 
 ## Examples
@@ -252,11 +249,11 @@ A mirror selfie of this person, organizing work files at her home study, wearing
 ### Sparse request, cafe by the window, outdoor visible
 
 ```text
-A direct selfie of this person, reading at a cozy cafe window seat, wearing a light casual outfit, relaxed and content, seated by the window with the city visible outside. The outdoor environment must display the real-time weather conditions and natural lighting and shadow effects of the specified Shanghai at the specified 2026-03-28, at 17:40.
+A selfie of this person, reading at a cozy cafe window seat in Shanghai on 2026-03-28 at 17:40 local time, wearing a light casual outfit, relaxed and content, looking into the lens, with the city visible outside. Keep the visible environment and lighting consistent with the supplied scene facts.
 ```
 
-### Sparse request, outdoor city walk that reads better as non-selfie
+### Sparse selfie request, outdoor city walk
 
 ```text
-A direct selfie of this person, walking along a riverside street in Hangzhou, wearing a stylish weather-appropriate outfit, relaxed and cheerful, handheld framing, clearly a selfie. The outdoor environment must display the real-time weather conditions and natural lighting and shadow effects of the specified Hangzhou at the specified 2026-03-28, at 16:20.
+A selfie of this person, walking along a riverside street in Hangzhou on 2026-03-28 at 16:20 local time, wearing a stylish casual outfit, relaxed and cheerful, handheld framing, looking into the lens. Keep the visible environment and lighting consistent with the supplied scene facts.
 ```

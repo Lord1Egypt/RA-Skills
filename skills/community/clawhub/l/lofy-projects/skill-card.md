@@ -1,38 +1,52 @@
-## Description: <br>
-Project management for the Lofy AI assistant - tracks multiple projects with milestones, priority scoring, meeting prep automation, time logging, stale project alerts, and work session recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Project management for the Lofy AI assistant — tracks multiple projects with milestones, priority scoring engine (urgency × job relevance × momentum × energy match), meeting prep automation, time logging, stale project alerts, and work session recommendations.
 
-## Publisher: <br>
-[harrey401](https://clawhub.ai/user/harrey401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[harrey401](https://clawhub.ai/user/harrey401)
 
-## Use Case: <br>
-External users use this skill to manage projects, coursework, and research by tracking status, deadlines, blockers, milestones, meetings, and time logs. It also helps prioritize work sessions and prepare concise meeting context from stored project data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist project changes to a local project tracker after project conversations. <br>
-Mitigation: Require explicit confirmation before any JSON write, including a visible summary of the proposed change. <br>
-Risk: The skill can proactively send meeting prep from broad meeting-related triggers. <br>
-Mitigation: Require confirmation before sending meeting prep, including the destination and message summary. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+People using the Lofy AI assistant use this skill to maintain a local project and academic work record, prioritize what to work on next, prepare for meetings, and track milestones, blockers, time logs, and deadlines.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown and structured JSON guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose updates to a local data/projects.json tracker and meeting-prep messages.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can maintain local project records and update data/projects.json during project conversations.
+
+Mitigation: Review proposed changes before saving when project comments should not be recorded automatically.
+
+Risk: Project status, deadlines, and time logs may become stale or inaccurate if the local project file is not maintained.
+
+Mitigation: Review or back up data/projects.json periodically and correct stale project records before relying on prioritization recommendations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrey401/skills/lofy-projects)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with structured project updates and JSON data changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose or update local data/projects.json records for projects, academic deadlines, meetings, milestones, blockers, next actions, and time logs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

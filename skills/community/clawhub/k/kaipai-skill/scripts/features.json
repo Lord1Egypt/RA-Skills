@@ -1,0 +1,7 @@
+{
+  "delivery_channels": [
+    "feishu",
+    "telegram"
+  ],
+  "sdk": false
+}

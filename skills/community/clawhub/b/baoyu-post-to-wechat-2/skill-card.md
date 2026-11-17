@@ -1,47 +1,62 @@
-## Description: <br>
-Posts content to WeChat Official Account via API or Chrome CDP, supporting article publishing from HTML, Markdown, or plain text and image-text posts with multiple images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Posts content to WeChat Official Account through API or Chrome browser workflows, including markdown or HTML articles and image-text posts.
 
-## Publisher: <br>
-[nengnengZ](https://clawhub.ai/user/nengnengZ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nengnengz](https://clawhub.ai/user/nengnengz)
 
-## Use Case: <br>
-Developers and content operators use this skill to prepare and post WeChat Official Account drafts from Markdown, HTML, plain text, and image sets while managing account-specific publishing preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles WeChat account credentials and browser login sessions. <br>
-Mitigation: Install only from a trusted publisher, inspect EXTEND.md and .baoyu-skills/.env before use, avoid committing secrets, and prefer a dedicated Chrome profile. <br>
-Risk: Browser mode can control Chrome, clipboard content, and draft creation. <br>
-Mitigation: Confirm the selected account and article content before execution, and treat browser automation as capable of making changes in the active WeChat session. <br>
-Risk: The security summary notes that one browser article path saves drafts even though help text implies draft saving is optional. <br>
-Mitigation: Review the chosen article workflow before use and verify whether it will create or save a draft. <br>
+## Use Case:
 
+Developers and content operators use this skill to prepare, convert, and publish WeChat Official Account articles or image-text posts from local content. It supports API-based drafts and browser-based workflows for accounts configured by the user.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/nengnengZ/baoyu-post-to-wechat-2) <br>
-- [OpenClaw homepage metadata](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-wechat) <br>
-- [WeChat Official Account platform](https://mp.weixin.qq.com) <br>
-- [Article posting reference](references/article-posting.md) <br>
-- [Image-text posting reference](references/image-text-posting.md) <br>
-- [First-time setup reference](references/config/first-time-setup.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, configuration snippets, and publishing status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local preference files, credential environment entries, converted article HTML, and WeChat draft content.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter lists 1.56.1) <br>
+Risk: Article content and image references can expose local files, internal URLs, or sensitive diagram content during rendering or publishing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted Markdown, HTML, and image files; avoid sensitive PlantUML diagrams; reject references to internal URLs or arbitrary local paths before publishing.
+
+Risk: WeChat credentials may be handled in plaintext configuration.
+
+Mitigation: Prefer environment variables or a secret manager, keep credentials out of shared project files, and review account-specific configuration before use.
+
+Risk: Browser-based publishing uses an authenticated Chrome profile and can affect the active WeChat account.
+
+Mitigation: Use a dedicated restricted Chrome profile for this skill, isolate profiles per account, and confirm the selected account and draft before submitting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nengnengz/skills/baoyu-post-to-wechat-2)
+- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-post-to-wechat)
+- [Article posting guide](artifact/references/article-posting.md)
+- [Image-text posting guide](artifact/references/image-text-posting.md)
+- [First-time setup guide](artifact/references/config/first-time-setup.md)
+- [WeChat Official Account platform](https://mp.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration examples, and publication status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke local TypeScript scripts to convert content, upload media, create drafts, or automate a browser session.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter reports 1.56.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

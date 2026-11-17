@@ -1,44 +1,60 @@
-## Description: <br>
-Collects ecommerce category URLs, extracts category hierarchy data, and saves the results as CSV files. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Collects e-commerce category URLs, extracts category hierarchy data, and saves structured results as CSV files.
 
-## Publisher: <br>
-[QirongZhang](https://clawhub.ai/user/QirongZhang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qirongzhang](https://clawhub.ai/user/qirongzhang)
 
-## Use Case: <br>
-Developers and ecommerce operations users use this skill to turn product collection URLs into structured category CSV data for review, catalog analysis, or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes CSV files to a local output directory, which may create or replace same-name files. <br>
-Mitigation: Set an explicit output directory and check for existing CSV files before running the script. <br>
-Risk: The Python workflow depends on pandas. <br>
-Mitigation: Install pandas from a trusted package source in the intended runtime environment. <br>
-Risk: Category parsing is heuristic and may not match every ecommerce URL structure. <br>
-Mitigation: Review the generated CSV before using it for catalog decisions or downstream automation. <br>
+## Use Case:
 
+Developers and automation users use this skill to turn e-commerce collection URLs into CSV rows containing the original URL, category path, domain, and parsed category levels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/QirongZhang/category-link-collector) <br>
-- [README](artifact/README.md) <br>
-- [Usage examples](artifact/examples/usage.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with Python and shell examples; generated CSV files use UTF-8-SIG encoding.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts lists of category URLs plus optional output directory and maximum hierarchy depth; creates local CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill writes CSV files to the local filesystem, and the bundled default output path is user-specific.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set an explicit output directory appropriate for the runtime before using the collector.
+
+Risk: CSV rows built from links supplied by other people may contain values that spreadsheet applications treat as formulas.
+
+Mitigation: Treat generated CSVs as untrusted and sanitize or review formula-like cells before opening them in spreadsheet software.
+
+Risk: Included tests may create and remove paths under /tmp.
+
+Mitigation: Review the test cleanup path before running tests on shared systems.
+
+## Reference(s):
+
+- [Skill README](README.md)
+- [Usage Examples](examples/usage.md)
+- [ClawHub Skill Page](https://clawhub.ai/qirongzhang/skills/category-link-collector)
+- [Publisher Profile](https://clawhub.ai/user/qirongzhang)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, files]
+
+**Output Format:** [CSV files and Markdown or shell guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CSV output uses URL-derived category fields and may write to a configurable local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

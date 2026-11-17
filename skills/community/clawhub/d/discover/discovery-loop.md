@@ -5,7 +5,7 @@ Use this loop when the user wants the agent to keep finding new things, not just
 ## Loop
 
 1. Lock the topic and why it matters.
-2. Check `~/discover/watchlist.md` and the latest matching findings.
+2. Check `~/Clawic/data/discover/watchlist.md` and the latest matching findings.
 3. Pick one lens that has not been overused.
 4. Search narrowly for signal, not volume.
 5. Run `novelty-test.md`.

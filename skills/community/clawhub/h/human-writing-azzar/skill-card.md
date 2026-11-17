@@ -1,39 +1,55 @@
-## Description: <br>
-Guidelines and standards for professional, human-like writing and documentation. Use this skill when generating READMEs, technical documentation, code comments, or any formal written output to avoid common AI 'tells', buzzwords, and stylistic tropes. Ensure content follows the 'Professional Human in the Field' standard: high precision, zero fluff, and no emojis in technical contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guidelines and standards for professional, human-like writing and documentation that help agents avoid common AI writing tells, buzzwords, and stylistic tropes in READMEs, technical documentation, code comments, and formal written output.
 
-## Publisher: <br>
-[1999AZZAR](https://clawhub.ai/user/1999AZZAR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1999azzar](https://clawhub.ai/user/1999azzar)
 
-## Use Case: <br>
-Developers, technical writers, and agents use this skill to draft or revise READMEs, technical documentation, code comments, and formal written output with concise professional tone and fewer AI-writing tells. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The writing guidance may push output toward a specific tone or away from disclosure practices required by a school, workplace, publisher, or platform. <br>
-Mitigation: Apply the user's disclosure requirements and organization style guide before publishing or submitting generated text. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Writing Signs](references/ai-tells.md) <br>
-- [Human-like Professional Writing Standards](references/standards.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/1999AZZAR/human-writing-azzar) <br>
+## Use Case:
 
+Developers, documentation authors, and agents use this skill to draft and revise technical prose with a professional, concise style. It is suited for READMEs, technical explanations, pull request text, and code comments where low-fluff, human-facing language is required.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text prose] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no code execution, data access, persistence, or credential use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may make documentation, explanations, and code comments more terse or opinionated than a user's normal voice.
+
+Mitigation: Review the style preferences before applying the skill to user-facing or brand-sensitive writing.
+
+Risk: Applying the writing constraints mechanically can remove useful context from technical documentation.
+
+Mitigation: Review generated prose for completeness and restore specific facts, examples, or rationale where they improve reader understanding.
+
+## Reference(s):
+
+- [Human Writing skill page](https://clawhub.ai/1999azzar/skills/human-writing-azzar)
+- [1999azzar publisher profile](https://clawhub.ai/user/1999azzar)
+- [AI Writing Signs](references/ai-tells.md)
+- [Human-like Professional Writing Standards](references/standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown or plain text, including revised prose and code comments when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Style constraints emphasize concise professional wording, avoidance of common AI writing tells, no emojis in technical documentation, and low-fluff output.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Expert guidance on choosing the right Mapbox search tool and parameters for geocoding, POI search, and location discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert guidance on choosing the right Mapbox search tool and parameters for geocoding, POI search, and location discovery
 
-## Publisher: <br>
-[mapbox](https://clawhub.ai/user/mapbox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mapbox](https://clawhub.ai/user/mapbox)
 
-## Use Case: <br>
-Developers and agents use this skill to choose among Mapbox search, category search, and reverse geocoding workflows, then apply appropriate parameters for location discovery, POI lookup, and geocoding tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Nearby search workflows can involve precise user location. <br>
-Mitigation: Prefer a city, ZIP code, or approximate area unless precise location is necessary, and avoid reuse or storage of location data unless the user clearly agrees. <br>
-Risk: ETA and routing-related search parameters can increase API usage and cost. <br>
-Mitigation: Request ETA only when travel time or routing is needed, and otherwise use search results with offline distance or bearing calculations where appropriate. <br>
+## Use Case:
 
+Developers and agents use this skill to select the appropriate Mapbox search tool and parameters for geocoding, point-of-interest search, reverse geocoding, local search, and location discovery workflows.
 
-## Reference(s): <br>
-- [Advanced Parameters Reference](artifact/references/advanced-params.md) <br>
-- [Performance, Combining Tools, and Troubleshooting](artifact/references/optimization-combining.md) <br>
-- [Common Patterns and Workflows](artifact/references/workflows.md) <br>
-- [Mapbox Search Box API Docs](https://docs.mapbox.com/api/search/search-box/) <br>
-- [Category Search API](https://docs.mapbox.com/api/search/search-box/#category-search) <br>
-- [Geocoding API](https://docs.mapbox.com/api/search/geocoding/) <br>
-- [Category List Resource](https://docs.mapbox.com/api/search/search-box/#category-list) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with JSON and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Mapbox search tool selection, parameter recommendations, workflow patterns, and anti-patterns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide agents to pass user-provided location or coordinates to Mapbox tools for local results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm privacy expectations before using precise location data and pass only the location context needed for the search task.
+
+Risk: Mapbox token scope and API quota impact are deployment-dependent, and ETA routing options can add per-result cost.
+
+Mitigation: Confirm Mapbox token scope separately and request ETA or routing parameters only when the user needs travel-time results.
+
+## Reference(s):
+
+- [Advanced Parameters Reference](references/advanced-params.md)
+- [Performance, Combining Tools, and Troubleshooting](references/optimization-combining.md)
+- [Common Patterns and Workflows](references/workflows.md)
+- [Mapbox Search Box API Docs](https://docs.mapbox.com/api/search/search-box/)
+- [Category Search API](https://docs.mapbox.com/api/search/search-box/#category-search)
+- [Geocoding API](https://docs.mapbox.com/api/search/geocoding/)
+- [Category List Resource](https://docs.mapbox.com/api/search/search-box/#category-list)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with JSON and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance for Mapbox search workflows; may guide agents to use location or coordinate inputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

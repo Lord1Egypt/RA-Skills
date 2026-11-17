@@ -10,6 +10,7 @@
 | 统一前缀 | `/aitablet/api/skill/v2`                           |
 | 数据格式 | `application/json; charset=UTF-8`                  |
 | 鉴权方式 | `Authorization: Bearer {AIWORK_AUTH_TOKEN}`（受保护接口） |
+| 默认时区 | `UTC+8`（北京时间）；未携带时区的时间字符串均按 `UTC+8` 理解 |
 
 ### 1.2 通用响应结构
 
@@ -60,9 +61,20 @@
 | pageNum | Integer | 否 | 默认 1 |
 | pageSize | Integer | 否 | 默认 10，范围 1~100 |
 | orderBy | String | 否 | `createTime` / `updateTime` |
-| startTime | String | 否 | 格式 `yyyy-MM-dd HH:mm:ss` |
-| endTime | String | 否 | 格式 `yyyy-MM-dd HH:mm:ss` |
+| startTime | String | 否 | 格式 `yyyy-MM-dd HH:mm:ss`，默认按 `UTC+8` 解析 |
+| endTime | String | 否 | 格式 `yyyy-MM-dd HH:mm:ss`，默认按 `UTC+8` 解析 |
 | keyword | String | 否 | 标题关键字 |
+
+返回核心字段（`data.list[]` / `SkillNoteVO`）：
+
+- `noteUid`, `title`, `createTime`, `updateTime`, `labels[{name,uid,type}]`
+- `labelNames`, `type`, `groupName`, `group{name,uid}`, `version`, `top`, `encryptType`
+- `audioInfo[]`：笔记关联音频基础信息，包含 `audioUid`, `title`, `duration`, `audioType`, `sampleRate`, `sampleBytes`, `channel`, `offlineCompleted`, `cleared`, `audioUrl`
+
+音频字段说明：
+
+- `duration` 单位为毫秒。
+- `audioUrl` 为预签名播放地址，可直接用于播放；当音频已清理（`cleared=true`）时可能为空。
 
 ### 2.2 查询笔记详情
 
@@ -144,11 +156,10 @@
 {
   "todo": "完成周报",
   "beginTime": 1761922800000,
-  "endTime": 1761926400000,
   "description": "可存放待办描述、会议链接等具体信息",
   "important": true,
   "done": false,
-  "notifyAhead": "30m",
+  "notifyAhead": "0",
   "repeat": "weekly",
   "repeatEndTime": 1764601200000,
   "repeatCount": 10,
@@ -162,10 +173,11 @@
 
 字段校验：
 
-- `notifyAhead` 最大长度 10
+- `notifyAhead` 提前提醒，仅支持`10m`、`30m`、`1h`、`1d`、`1w` 以及 `0`准时提醒，不要传除这些枚举外其他值
+- `notifyAhead` 默认传`0`，除非明确要求提前提醒
 - `repeat` 最大长度 40
 - `groupUid` 最大长度 45
-- `todo`和`beginTime`均不能为空
+- `todo`和`beginTime`均不能为空，beginTime填写待办的准确时间
 
 ### 3.3 更新待办
 
@@ -182,7 +194,7 @@
 
 ### 3.5 待办返回字段（`SkillTodoV2VO`）
 
-时间字段已统一为毫秒时间戳：
+时间字段统一为毫秒时间戳：
 
 - `beginTime`, `endTime`, `repeatEndTime`
 - `syncTime`, `finishTime`, `createTime`, `updateTime`

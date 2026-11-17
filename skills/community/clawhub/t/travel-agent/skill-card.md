@@ -1,46 +1,59 @@
-## Description: <br>
-Find, book, and change flights for your human via email. One message, and done. (by BonBook) <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find, book, and change flights for your human via email. One message, and done. (by BonBook)
 
-## Publisher: <br>
-[aSzelem](https://clawhub.ai/user/aSzelem) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aszelem](https://clawhub.ai/user/aszelem)
 
-## Use Case: <br>
-External users and their agents use this skill to search, book, change, and cancel flights through BonBook by sending and receiving booking email with explicit human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an agent with email send and receive access, which may expose mailbox content beyond BonBook-specific messages. <br>
-Mitigation: Install only for trusted agents with appropriate mailbox access controls, and limit use to BonBook-related messages and booking operations. <br>
-Risk: Flight booking, changes, cancellation, payment, calendar sync, and PII entry can affect travel plans, money, and personal data. <br>
-Mitigation: Require explicit human review and approval for itinerary choices, prices, refund terms, payment steps, calendar sync, and any PII entry. <br>
-Risk: Email should not contain passport numbers, card numbers, credentials, or unnecessary personal data. <br>
-Mitigation: Keep sensitive data on BonBook web flows or secure portals and avoid placing sensitive PII or payment details in email. <br>
+## Use Case:
 
+External users and their agents use this skill to request flight searches, bookings, changes, cancellations, and check-in related travel workflows through BonBook email exchanges. It requires existing email send and receive permissions and human approval for account setup, payment entry, and travel transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aSzelem/travel-agent) <br>
-- [BonBook website](https://bonbook.co) <br>
-- [BonBook access setup](https://bonbook.co/access) <br>
-- [artifact/README.md](artifact/README.md) <br>
-- [artifact/skill.md](artifact/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Email instructions, Configuration] <br>
-**Output Format:** [Markdown instructions with example email text and operational checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires existing email send and receive permissions; optional web browsing, calendar read, and form completion may be used with explicit human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.4.1 (source: skill metadata and release evidence) <br>
+Risk: The skill uses email send and receive permissions for travel workflows, which can expose mailbox access beyond BonBook messages depending on the agent platform.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the human is comfortable granting email access, and constrain agent behavior to BonBook booking messages when platform controls allow it.
+
+Risk: Payment, booking-change, and cancellation flows may proceed without consistently requiring final approval of the exact transaction.
+
+Mitigation: Require explicit human approval of itinerary, passenger, restrictions, refund terms, fees, and final total before every booking, paid change, or cancellation; keep payment entry and CVC verification human-controlled.
+
+Risk: Travel requests and booking details are shared with BonBook to fulfill the service.
+
+Mitigation: Use the skill only when sharing travel details with BonBook is acceptable and avoid sending sensitive PII, credentials, or card data by email.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aszelem/skills/travel-agent)
+- [BonBook Website](https://bonbook.co)
+- [BonBook Access](https://bonbook.co/access)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Email instructions, Configuration instructions]
+
+**Output Format:** [Markdown guidance with email workflow steps and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit human approval for setup, payment entry, bookings, paid changes, and cancellations.]
+
+## Skill Version(s):
+
+2.4.1 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

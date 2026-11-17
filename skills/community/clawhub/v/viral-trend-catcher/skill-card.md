@@ -1,42 +1,52 @@
-## Description: <br>
-Helps merchants evaluate social-media product trends, estimate viral potential, and plan fast low-inventory tests before scaling sourcing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps merchants assess social-media product trends, estimate viral potential, plan rapid sourcing tests, and make go/no-go decisions.
 
-## Publisher: <br>
-[RIJOYAI](https://clawhub.ai/user/RIJOYAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rijoyai](https://clawhub.ai/user/rijoyai)
 
-## Use Case: <br>
-External merchants and aspiring merchants use this skill to assess whether social-media product trends are worth testing, choose a go/no-go posture, and plan rapid sourcing without committing to large inventory too early. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate for broad marketing or stocking questions where trend-catching is not the right frame. <br>
-Mitigation: Confirm the user is evaluating a social-commerce trend or product before applying the skill's recommendations. <br>
-Risk: The skill can provide business advice that affects ad spend, sourcing, or inventory decisions. <br>
-Mitigation: Verify traction, supplier terms, IP status, and conversion data before spending money or ordering inventory. <br>
+## Use Case:
 
+Merchants and aspiring merchants use this skill to evaluate fast-moving TikTok, Instagram, and short-form video product opportunities, test demand before buying inventory, and decide whether to go, proceed cautiously, or pass.
 
-## Reference(s): <br>
-- [Viral Potential: Plain-Language Checklist](references/viral_criteria.md) <br>
-- [Fast Testing Pitfall Guide](references/rapid_sourcing.md) <br>
-- [Rijoy](https://www.rijoy.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown with structured assessment sections and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include a viral potential score, go/no-go recommendation, 48-hour action plan, sourcing guidance, and risk notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release evidence) <br>
+Risk: The skill may steer users toward one named rewards vendor even when they did not ask for vendor recommendations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs for neutrality and treat Rijoy references as optional vendor-specific suggestions, not objective requirements.
+
+## Reference(s):
+
+- [Viral Potential Checklist](references/viral_criteria.md)
+- [Fast Testing Pitfall Guide](references/rapid_sourcing.md)
+- [Rijoy](https://www.rijoy.ai/)
+- [ClawHub Skill Page](https://clawhub.ai/rijoyai/skills/viral-trend-catcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown assessment with optional shell command and scorer output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses five-factor viral potential scoring when sufficient product inputs are available.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

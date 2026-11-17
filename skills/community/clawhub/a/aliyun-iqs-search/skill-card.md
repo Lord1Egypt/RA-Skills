@@ -1,42 +1,55 @@
-## Description: <br>
-Uses Aliyun Intelligent Query Service (IQS) UnifiedSearch API to perform web searches and return structured ranked results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+阿里云信息查询服务（IQS）UnifiedSearch API联网搜索
 
-## Publisher: <br>
-[lilisidu1210-ui](https://clawhub.ai/user/lilisidu1210-ui) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lilisidu1210-ui](https://clawhub.ai/user/lilisidu1210-ui)
 
-## Use Case: <br>
-Developers and agents use this skill to run Aliyun IQS web searches from Node.js and receive ranked JSON web results for current information lookup. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are transmitted to Alibaba Cloud IQS under the user's Aliyun account. <br>
-Mitigation: Use only when Alibaba Cloud processing is acceptable for the query content, and avoid submitting secrets, personal data, or confidential business terms. <br>
-Risk: The skill requires an Aliyun IQS API key and may consume account quota or incur billing. <br>
-Mitigation: Use a dedicated API key where possible, keep any .env file private, and monitor quota or billing. <br>
+## Use Case:
 
+Developers and agents use this skill to run web searches through Alibaba Cloud IQS UnifiedSearch and return structured results with titles, URLs, descriptions, relevance scores, and positions.
 
-## Reference(s): <br>
-- [Aliyun IQS product documentation](https://help.aliyun.com/product/42958.html) <br>
-- [Aliyun IQS UnifiedSearch endpoint](https://cloud-iqs.aliyuncs.com/search/unified) <br>
-- [ClawHub skill page](https://clawhub.ai/lilisidu1210-ui/aliyun-iqs-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, text, shell commands, configuration] <br>
-**Output Format:** [JSON object containing success status and data.web search results with title, URL, description, score, and position.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and ALI_IQS_API_KEY; filters to linked results with rerankScore above 0.5.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Search queries are sent to Alibaba Cloud IQS using the configured API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Alibaba Cloud IQS is an intended search provider, and avoid submitting secrets, confidential internal information, or sensitive queries.
+
+Risk: The skill can read ALI_IQS_API_KEY from a local .env file if the environment variable is not set.
+
+Mitigation: Prefer setting ALI_IQS_API_KEY as an environment variable and protect any local .env file from disclosure.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lilisidu1210-ui/skills/aliyun-iqs-search)
+- [Aliyun IQS product documentation](https://help.aliyun.com/product/42958.html)
+- [Aliyun IQS UnifiedSearch endpoint](https://cloud-iqs.aliyuncs.com/search/unified)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, shell commands, configuration guidance]
+
+**Output Format:** [JSON search results emitted by a Node.js CLI, with Markdown setup and usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires node and ALI_IQS_API_KEY. Search results with rerank scores at or below 0.5 are filtered out.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

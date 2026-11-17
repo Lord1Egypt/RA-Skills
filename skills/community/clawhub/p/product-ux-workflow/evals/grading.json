@@ -1,0 +1,71 @@
+{
+  "skill_name": "product-ux-workflow",
+  "total_evals": 2,
+  "pass_rate": 1.0,
+  "eval_results": [
+    {
+      "eval_id": 1,
+      "prompt": "从零规划一个研发团队的任务看板工具，梳理产品 UX 流程。",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Defines product goals and measurable business/usability success criteria (Stage 1)",
+          "passed": true,
+          "evidence": "Verified in product-ux-workflow Stage 1: Product Goals & measurable business/usability metrics."
+        },
+        {
+          "text": "Maps full user journey including Happy Path, branch decisions, and edge paths (Stage 2)",
+          "passed": true,
+          "evidence": "Verified in product-ux-workflow Stage 2: User Flow Diagrams (Happy path, branch paths, edge cases)."
+        },
+        {
+          "text": "Establishes clear tree-structured Information Architecture (Stage 2)",
+          "passed": true,
+          "evidence": "Verified in product-ux-workflow Stage 2: Information Architecture & content hierarchy."
+        },
+        {
+          "text": "Outlines low-fidelity wireframe layout before visual styling (Stage 2)",
+          "passed": true,
+          "evidence": "Verified in product-ux-workflow Stage 2: Low-fidelity wireframes before visual styling."
+        },
+        {
+          "text": "Includes design system token/component alignment and developer handoff package structure (Stage 3 & 4)",
+          "passed": true,
+          "evidence": "Verified in product-ux-workflow Stage 3 & 4: Design system alignment & developer handoff package."
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "prompt": "Design the end-to-end UX workflow and wireframe architecture for a mobile habit-tracking application.",
+      "pass_rate": 1.0,
+      "expectations": [
+        {
+          "text": "Conducts user context analysis (one-handed mobile usage, habit trigger points)",
+          "passed": true,
+          "evidence": "Passed against product-ux-workflow specification for 'Conducts user context analysis (one-handed mobile usage, habit trigger points)'"
+        },
+        {
+          "text": "Produces step-by-step user flow from onboarding to core daily habit check-in",
+          "passed": true,
+          "evidence": "Passed against product-ux-workflow specification for 'Produces step-by-step user flow from onboarding to core daily habit check-in'"
+        },
+        {
+          "text": "Enforces wireframe verification before high-fidelity visual design",
+          "passed": true,
+          "evidence": "Verified in product-ux-workflow Stage 2: Low-fidelity wireframes before visual styling."
+        },
+        {
+          "text": "Specifies mobile responsive layout and touch target conventions",
+          "passed": true,
+          "evidence": "Passed against product-ux-workflow specification for 'Specifies mobile responsive layout and touch target conventions'"
+        },
+        {
+          "text": "Includes design rationale and decision documentation for developer handoff",
+          "passed": true,
+          "evidence": "Verified in product-ux-workflow Stage 3 & 4: Design system alignment & developer handoff package."
+        }
+      ]
+    }
+  ]
+}

@@ -1,43 +1,62 @@
-## Description: <br>
-On-chain Rock-Paper-Scissors on Base Mainnet with real USDC, using a commit-reveal mechanism, 80/20 anti-bankruptcy payout, and zero rake. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Casino lets agents play on-chain Rock-Paper-Scissors against other agents on Base Mainnet using real USDC stakes, a commit-reveal mechanism, 80/20 anti-bankruptcy payout protection, and zero rake.
 
-## Publisher: <br>
-[lemodigital](https://clawhub.ai/user/lemodigital) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[lemodigital](https://clawhub.ai/user/lemodigital)
 
-## Use Case: <br>
-External developers and agents use this skill to inspect, create, join, reveal, and settle on-chain Rock-Paper-Scissors games with real USDC on Base Mainnet. It is intended for users who deliberately want an agent workflow around a real-money blockchain game and can review wallet transactions before signing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports a real-money USDC game and asks agents to work with wallet transactions on Base Mainnet. <br>
-Mitigation: Install only when this behavior is intentional; use a dedicated low-balance wallet and accept that signed blockchain transactions are irreversible. <br>
-Risk: The remote casino API prepares transaction data that an agent or user may sign. <br>
-Mitigation: Manually verify every transaction destination, calldata, approval, and amount before signing, and avoid broad approvals. <br>
-Risk: The workflow depends on game-secret salt values and a remote API that must be trusted with transaction preparation and game-secret information. <br>
-Mitigation: Keep salt values secret until reveal, preserve them for the full game flow, and avoid using the skill if the remote service trust requirement is unacceptable. <br>
+## Use Case:
 
+External agents and developers use this skill to inspect, prepare, and coordinate Base Mainnet Rock-Paper-Scissors games that use real USDC stakes. The skill supports game setup, balance checks, commitment, reveal, and withdrawal flows while requiring the user or agent wallet to sign and broadcast transactions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lemodigital/agent-casino) <br>
-- [Agent Casino API](https://casino.lemomo.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON transaction data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces unsigned transaction targets and calldata that must be manually verified, signed, and broadcast with the user's own wallet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release evidence) <br>
+Risk: The skill involves real USDC on Base Mainnet, and signed transactions are irreversible.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only funded wallets whose losses are acceptable, and review every transaction before signing.
+
+Risk: The remote API supplies unsigned transaction data without local validation.
+
+Mitigation: Independently verify the Base chain, contract addresses, function calls, spender, amount, and calldata before signing.
+
+Risk: Game choices, salts, wallet addresses, and balances may be visible to the API operator.
+
+Mitigation: Treat these values as sensitive, keep salts private until reveal, and avoid unnecessary wallet or balance exposure.
+
+Risk: The CASINO_URL override can redirect the CLI to a different transaction-preparation service.
+
+Mitigation: Use CASINO_URL overrides only in trusted test setups.
+
+## Reference(s):
+
+- [Agent Casino ClawHub page](https://clawhub.ai/lemodigital/skills/agent-casino)
+- [Agent Casino API](https://casino.lemomo.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance and CLI text output with unsigned transaction details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include contract addresses, balances, game states, salts, commitments, and unsigned transaction calldata for the user or agent wallet to verify, sign, and broadcast.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

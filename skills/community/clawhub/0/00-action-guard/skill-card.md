@@ -1,40 +1,54 @@
-## Description: <br>
-Guides an agent to call permission-gate before tools, writes, sensitive queries, cross-platform messages, skill invocation, or other non-casual actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+00 Action Guard directs an agent to check a permission gate before using tools or taking other non-chat actions.
 
-## Publisher: <br>
-[rancho718](https://clawhub.ai/user/rancho718) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rancho718](https://clawhub.ai/user/rancho718)
 
-## Use Case: <br>
-Agent developers and operators use this skill to add a permission-checking step before tool use, file changes, sensitive queries, cross-platform messages, and skill invocation while allowing routine conversation to continue. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: If permission checks are skipped or misconfigured, tools, writes, sensitive queries, or cross-platform actions may run without the intended gate. <br>
-Mitigation: Require the agent to wait for permission-gate results and proceed only when allowed=true, as described in the artifact. <br>
-Risk: The security guidance notes powerful actions in the release context. <br>
-Mitigation: Install and use the skill only in intended ClawHub or Convex maintenance contexts, and review tool, moderation, or PR actions before approving writes. <br>
+## Use Case:
 
+Developers and operators use this always-on OpenClaw skill to document a permission-check protocol before tool-backed actions, writes, sensitive queries, cross-platform messages, or skill execution.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rancho718/00-action-guard) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, API calls, or configuration files are produced by the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill broadly attempts to control nearly all tool-backed work through an undefined permission gate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a controlled OpenClaw environment where the permission gate is trusted, audited, and has documented authentication, scope, timeout, and recovery behavior.
+
+Risk: Incorrect gate behavior could block legitimate work or allow actions without an appropriate permission decision.
+
+Mitigation: Test the gate in a non-production environment and review audit logs before enabling the skill for routine tool use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rancho718/skills/00-action-guard)
+- [Publisher profile](https://clawhub.ai/user/rancho718)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown]
+
+**Output Format:** [Markdown instructions and decision flow]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Always-on behavioral guidance for OpenClaw agents]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

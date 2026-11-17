@@ -1,51 +1,59 @@
-## Description: <br>
-Guides agents through planning and integrating self-hosted PayRam crypto and stablecoin checkout for e-commerce stores, including cart flows, payment links, webhook handling, settlement, and operational controls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Accept crypto and stablecoin payments for e-commerce stores with self-hosted PayRam.
 
-## Publisher: <br>
-[BuddhaSource](https://clawhub.ai/user/BuddhaSource) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[buddhasource](https://clawhub.ai/user/buddhasource)
 
-## Use Case: <br>
-Developers, store operators, and integration agents use this skill to evaluate and implement crypto checkout flows for Shopify, WooCommerce, Magento, custom carts, subscriptions, digital products, and SaaS billing with PayRam. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an unpinned remote shell installer for high-impact payment infrastructure. <br>
-Mitigation: Before production use, verify the script source, pin a release or commit, check integrity, and test the deployment on testnet. <br>
-Risk: Crypto payment acceptance can create legal, tax, KYC, refund, and consumer-protection obligations that vary by jurisdiction. <br>
-Mitigation: Confirm obligations for the merchant's jurisdiction before launch and keep compliance review separate from the technical setup. <br>
-Risk: Automated fulfillment, sweeps, and payouts can move value before the integration is proven safe. <br>
-Mitigation: Keep manual controls around fulfillment, sweeps, and payouts until monitoring, signatures, and operational procedures are validated. <br>
+## Use Case:
 
+Developers, ecommerce operators, and store teams use this skill to plan crypto checkout flows, integrate PayRam-style payment links and webhooks, and evaluate stablecoin payment tradeoffs for online stores.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/BuddhaSource/crypto-payments-ecommerce) <br>
-- [PayRam website](https://payram.com) <br>
-- [PayRam documentation](https://docs.payram.com) <br>
-- [PayRam GitHub](https://github.com/payram) <br>
-- [PayRam MCP server](https://mcp.payram.com) <br>
-- [MoonPay](https://www.moonpay.com/) <br>
-- [Ramp Network](https://ramp.network/) <br>
-- [Transak](https://transak.com/) <br>
-- [Morningstar: PayRam Adds Polygon Support](https://www.morningstar.com/news/accesswire/1131605msn/payram-adds-polygon-support-expanding-multi-chain-infrastructure-for-permissionless-stablecoin-payments) <br>
-- [Cointelegraph: PayRam Pioneers Permissionless Commerce](https://cointelegraph.com/press-releases/payram-pioneers-permissionless-commerce-with-private-stablecoin-payments) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JavaScript code snippets, bash command snippets, architecture notes, checklists, and integration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes e-commerce platform guidance, payment flow examples, security practices, and compliance reminders] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server-resolved release metadata) <br>
+Risk: The skill documents running a remote installer for financial infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin the installer to a reviewed release or commit, verify its integrity, inspect it before execution, and test it away from production servers and wallet-connected environments.
+
+Risk: Crypto checkout creates customer-facing refund, dispute, tax, and legal obligations.
+
+Mitigation: Define refund, dispute, tax, compliance, and legal terms before accepting customer payments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/buddhasource/skills/crypto-payments-ecommerce)
+- [PayRam Homepage](https://payram.com)
+- [PayRam MCP Server](https://mcp.payram.com)
+- [PayRam Documentation](https://docs.payram.com)
+- [PayRam X Profile](https://x.com/payramapp)
+- [Morningstar PayRam Polygon Support Coverage](https://www.morningstar.com/news/accesswire/1131605msn/payram-adds-polygon-support-expanding-multi-chain-infrastructure-for-permissionless-stablecoin-payments)
+- [Cointelegraph PayRam Coverage](https://cointelegraph.com/press-releases/payram-pioneers-permissionless-commerce-with-private-stablecoin-payments)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline JavaScript and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Provides ecommerce integration guidance, payment-flow examples, webhook handling patterns, and operational security recommendations.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

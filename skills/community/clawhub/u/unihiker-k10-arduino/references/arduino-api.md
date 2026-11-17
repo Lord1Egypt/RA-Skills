@@ -402,4 +402,24 @@ bool isWakeUp(void);
  * @brief Get command word ID
  */
 bool isDetectCmdID(uint8_t id);
+
+/**
+ * @fn setAsrSpeed
+ * @brief Initialize TTS and set speech speed. Chinese K10 firmware only.
+ * @param speed Speech speed, range 0-5
+ */
+void setAsrSpeed(uint8_t speed);
+
+/**
+ * @fn speak
+ * @brief Synthesize speech. Chinese K10 firmware only.
+ * @param prompt Text or number to synthesize
+ */
+void speak(String prompt);
+void speak(const char *prompt);
+void speak(float prompt);
 ````
+
+> **Firmware compatibility:** TTS (`setAsrSpeed` / `speak`) exists only in the Chinese K10 firmware. Confirm the firmware variant before using these methods. Refreshing CN model data alone does not prove that the installed firmware includes the TTS API.
+
+Official sources: [Arduino/PIO example](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_Example) and [Arduino/PIO API list](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_API_List).

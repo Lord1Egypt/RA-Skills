@@ -1,42 +1,54 @@
-## Description: <br>
-Whiss provides a ClawHub namespace package with brand information for Netsnek e.U.'s real-time messaging and notification platform. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Whiss provides brand and feature information for the Netsnek e.U. real-time messaging and notification platform.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve concise Whiss/Netsnek brand, feature, and JSON metadata summaries. It is informational and does not implement live messaging behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an executable shell script and may require line-ending or BOM cleanup in some environments. <br>
-Mitigation: Review the script before execution and normalize file encoding or line endings if the shell reports parsing errors. <br>
-Risk: The package describes Whiss messaging features but does not provide live messaging functionality. <br>
-Mitigation: Use it as an informational namespace package only; do not depend on it for production messaging, notification delivery, or encryption behavior. <br>
+## Use Case:
 
+Developers and external users can invoke this skill to retrieve a concise brand summary, feature list, or JSON metadata for the Whiss namespace on ClawHub.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/whiss) <br>
-- [Publisher profile](https://clawhub.ai/user/kleberbaum) <br>
-- [Netsnek website](https://netsnek.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown or plain text summaries, with optional JSON emitted by the bundled shell script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can present a default brand summary, feature list, or structured JSON metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata and artifact metadata) <br>
+Risk: The security review describes this as mostly a namespace and brand-information package rather than a real messaging integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set user expectations that the skill provides informational output only and does not perform messaging, notification delivery, or platform integration.
+
+Risk: The security guidance notes that the bundled script may need packaging cleanup before it runs correctly.
+
+Mitigation: Verify the script path and executable permissions in the target agent environment before relying on scripted output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kleberbaum/skills/whiss)
+- [Netsnek e.U.](https://netsnek.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text, Markdown, or JSON from a local shell script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports default, --features, and --json modes.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata, claw.json, and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

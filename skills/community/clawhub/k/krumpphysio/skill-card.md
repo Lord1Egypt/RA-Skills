@@ -1,52 +1,72 @@
-## Description: <br>
-Teaches OpenClaw agents to act as a Krump-inspired physiotherapy coach for therapeutic movement scoring, rehab coaching with Krump vocabulary and Laban notation, optional Canton ledger logging, and SDG 3 health-and-wellbeing flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+KrumpPhysio teaches OpenClaw agents to act as Krump-inspired physiotherapy coaches for therapeutic movement scoring, rehab coaching, Laban-style feedback, optional audit logging, and health-and-wellbeing workflows.
 
-## Publisher: <br>
-[arunnadarasa](https://clawhub.ai/user/arunnadarasa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arunnadarasa](https://clawhub.ai/user/arunnadarasa)
 
-## Use Case: <br>
-External users and developers use this skill to configure OpenClaw agents for Krump-inspired physiotherapy coaching, movement scoring, rehab adherence support, and optional integrations for video analysis, session logging, observability, and payments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Optional video intake and health-session logging can handle patient data and health-related content. <br>
-Mitigation: Obtain explicit consent, minimize PII, enable redaction and limited retention, and set privacy-preserving defaults before deployment. <br>
-Risk: Optional telemetry can capture prompt content or tool I/O that may include sensitive health-session details. <br>
-Mitigation: Disable prompt and tool-I/O capture by default for patient workflows, restrict credentials, and enable tracing only after privacy review. <br>
-Risk: Optional provider APIs and Stripe payment links can expose credentials or create incorrect payment flows if configured casually. <br>
-Mitigation: Review external code and provider settings, use scoped test credentials first, label test payment links clearly, and verify currency units before execution. <br>
+## Use Case:
 
+External developers, coaches, and deploying teams use this skill to build agents that score therapeutic movements from provided joint-angle or video metrics and return concise Krump/Laban-styled coaching feedback. It can also guide optional Canton logging, observability, privacy-preserving attestations, media services, and Stripe payment flows when those integrations are configured.
 
-## Reference(s): <br>
-- [KrumpPhysio ClawHub page](https://clawhub.ai/arunnadarasa/krumpphysio) <br>
-- [reference.md](artifact/reference.md) <br>
-- [KrumpPhysio repository](https://github.com/arunnadarasa/krumpphysio) <br>
-- [Implementation guide](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/IMPLEMENTATION-GUIDE-FLOCK-OPENCLAW-CANTON.md) <br>
-- [Quantum README](https://github.com/arunnadarasa/krumpphysio/blob/main/quantum/README.md) <br>
-- [Privacy documentation](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/PRIVACY.md) <br>
-- [Sindri ZKP Telegram FLock documentation](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/SINDRI-ZKP-TELEGRAM-FLOCK.md) <br>
-- [Stripe documentation](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/STRIPE.md) <br>
-- [Best practices](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/BEST-PRACTICES.md) <br>
-- [ClawHub krump skill](https://clawhub.ai/arunnadarasa/krump) <br>
-- [ClawHub asura skill](https://clawhub.ai/arunnadarasa/asura) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with scoring feedback, Laban notation, health tips, and optional shell commands or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize JSON returned by optional local video or quantum scripts into human-facing coaching responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: server release metadata) <br>
+Risk: Broad exec-based integrations can run local scripts for video analysis, quantum planning, Canton logging, and payment-link creation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review external scripts and dependencies, validate all command inputs, and run integrations with least-privilege service accounts.
+
+Risk: Health-data logging and observability can expose sensitive coaching content or tool I/O.
+
+Mitigation: Require explicit user or admin consent before enabling Canton logging or telemetry, disable prompt and tool-I/O capture by default, and keep payloads minimal.
+
+Risk: Stripe payment actions are described near coaching workflows and could blur payment authority with health guidance.
+
+Mitigation: Separate payment authority from coaching behavior and require reviewed, explicit payment commands with clear currency units and test/live mode labeling.
+
+Risk: Third-party media, voice, and attestation services can send patient-adjacent data outside the local environment.
+
+Mitigation: Enable those services only with configured credentials, documented consent, privacy controls, and data minimization.
+
+Risk: The artifact suggests making the agent default for some workflows, while security evidence warns against default-agent deployment before hardening.
+
+Mitigation: Follow the security evidence: install only after review and hardening, and do not make the skill the default agent unless risk controls are approved.
+
+## Reference(s):
+
+- [KrumpPhysio ClawHub Skill Page](https://clawhub.ai/arunnadarasa/skills/krumpphysio)
+- [arunnadarasa Publisher Profile](https://clawhub.ai/user/arunnadarasa)
+- [KrumpPhysio Skill Reference](artifact/reference.md)
+- [KrumpPhysio Publishing Notes](artifact/PUBLISH.md)
+- [KrumpPhysio Implementation Guide](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/IMPLEMENTATION-GUIDE-FLOCK-OPENCLAW-CANTON.md)
+- [KrumpPhysio Privacy Documentation](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/PRIVACY.md)
+- [KrumpPhysio Stripe Documentation](https://github.com/arunnadarasa/krumpphysio/blob/main/docs/STRIPE.md)
+- [KrumpPhysio Quantum README](https://github.com/arunnadarasa/krumpphysio/blob/main/quantum/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with optional inline shell commands and JSON-shaped metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Movement scoring replies usually include a score out of 10, brief feedback, Laban-style notation, a sign-off, and a health tip.]
+
+## Skill Version(s):
+
+1.0.11 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

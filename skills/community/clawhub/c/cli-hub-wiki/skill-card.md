@@ -1,40 +1,49 @@
-## Description: <br>
-CLI-Hub Tools helps agents document and suggest commands for discovering, installing, launching, updating, and uninstalling CLI-Hub tools across automation, media, knowledge management, AI, cloud, design, game, and data workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI-Hub Tools helps agents reference CLI-Hub commands for discovering, installing, updating, and launching third-party CLI tools across automation, media, AI, cloud, design, and data workflows.
 
-## Publisher: <br>
-[smseow001](https://clawhub.ai/user/smseow001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[smseow001](https://clawhub.ai/user/smseow001)
 
-## Use Case: <br>
-Developers and external users use this skill as a CLI-Hub reference for finding relevant tools and composing commands to install, inspect, launch, update, or remove those tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill describes installing and running many powerful third-party CLI tools, including tools for browser automation, cloud services, API access, screen recording, process management, updates, and uninstalls. <br>
-Mitigation: Install only after trusting the CLI-Hub package and downstream registry; prefer a virtual environment or container, inspect each tool before use, and require explicit approval before install, launch, browser, cloud, API, screen-recording, process-management, update, or uninstall actions. <br>
-Risk: Security evidence rates the release as suspicious because it is documentation for a broad CLI installer without clear safety boundaries. <br>
-Mitigation: Treat generated commands as proposals, review them manually, and scan or test selected tools in an isolated environment before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to look up CLI-Hub commands and select tools for browser automation, video editing, knowledge management, AI model workflows, cloud services, design, game development, automation, and data tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smseow001/cli-hub-wiki) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill provides reference text and example CLI-Hub commands; users should review commands before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Installing or launching CLI-Hub tools can introduce third-party supply-chain exposure and can affect browsers, cloud accounts, processes, or local data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use containment such as a virtual environment, review upstream packages and individual tools, and only execute commands that match the intended task.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/smseow001/skills/cli-hub-wiki)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and command tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Contains references to third-party CLI installation and launch commands; review commands before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,266 @@
+{
+  "output_mode": "social-card",
+  "platform": "rednote",
+  "dimensions": {
+    "width": 1080,
+    "height": 1440,
+    "aspect_ratio": "3:4"
+  },
+  "source_anchor": "示例文章：如何高效使用 AI 工具提升写作效率",
+  "batch_id": "demo-social-001",
+  "total_pages": 6,
+  "style_family": "swiss-grid",
+  "background_asset": {
+    "asset_id": "bg-generated-quiet-window",
+    "url": "../data/quiet-window-placeholder.svg",
+    "object_position": "center",
+    "opacity": "0.16",
+    "caption": "Generated local placeholder background"
+  },
+  "content_compression": {
+    "core_claim": "AI 工具可以显著提升写作效率，但关键在于正确的使用方法",
+    "viewer_promise": "学会 3 个核心技巧，让 AI 成为你的写作助手而非替代品",
+    "section_map": ["问题场景", "误区分析", "正确方法", "实战案例", "总结清单"],
+    "page_hooks": [
+      "还在把 AI 当搜索引擎用？",
+      "90% 的人用错了 AI",
+      "技巧一：角色设定法",
+      "技巧二：迭代优化法",
+      "技巧三：混合创作法",
+      "记住这 3 点"
+    ],
+    "body_fragments": [
+      "直接问'帮我写篇文章'是最低效的方式",
+      "AI 不是搜索引擎，而是协作伙伴",
+      "给 AI 一个明确的角色，比如'资深编辑'",
+      "第一轮生成后，继续追问优化",
+      "AI 生成框架，人工填充细节",
+      "角色设定、迭代优化、混合创作"
+    ],
+    "visual_evidence": [
+      "对比图：错误用法 vs 正确用法",
+      "角色设定提示词示例",
+      "迭代优化流程图",
+      "混合创作工作流",
+      "实际案例截图",
+      "清单总结"
+    ]
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "role": "cover",
+      "hook": "还在把 AI 当搜索引擎用？",
+      "point": "90% 的人用错了 AI 写作",
+      "copy": "三个技巧，让 AI 成为你的写作助手",
+      "visual": "../data/quiet-window-placeholder.svg",
+      "bottom_points": "不是替代你，而是放大你",
+      "image_asset": {
+        "asset_id": "visual-generated-cover",
+        "source": "../data/quiet-window-placeholder.svg",
+        "type": "illustration",
+        "object_fit": "cover",
+        "object_position": "center"
+      }
+    },
+    {
+      "page_number": 2,
+      "role": "problem",
+      "point": "最常见的误区",
+      "copy": "直接问'帮我写篇文章'是最低效的方式。AI 不是搜索引擎，而是需要协作的伙伴。",
+      "visual": "../data/quiet-window-placeholder.svg",
+      "bottom_points": "",
+      "image_asset": {
+        "asset_id": "visual-generated-problem",
+        "source": "../data/quiet-window-placeholder.svg",
+        "type": "illustration",
+        "object_fit": "contain",
+        "object_position": "center"
+      }
+    },
+    {
+      "page_number": 3,
+      "role": "flow",
+      "point": "技巧一：角色设定法",
+      "copy": "给 AI 一个明确的角色，比如'资深科技编辑'或'10 年经验的市场总监'",
+      "visual": "../data/quiet-window-placeholder.svg",
+      "bottom_points": "",
+      "image_asset": {
+        "asset_id": "visual-generated-role",
+        "source": "../data/quiet-window-placeholder.svg",
+        "type": "illustration",
+        "object_fit": "contain",
+        "object_position": "center"
+      }
+    },
+    {
+      "page_number": 4,
+      "role": "flow",
+      "point": "技巧二：迭代优化法",
+      "copy": "第一轮生成只是开始。继续追问：'这个开头能否更有冲击力？'",
+      "visual": "../data/quiet-window-placeholder.svg",
+      "bottom_points": "",
+      "image_asset": {
+        "asset_id": "visual-generated-flow",
+        "source": "../data/quiet-window-placeholder.svg",
+        "type": "illustration",
+        "object_fit": "contain",
+        "object_position": "center"
+      }
+    },
+    {
+      "page_number": 5,
+      "role": "screenshot",
+      "point": "技巧三：混合创作法",
+      "copy": "让 AI 生成框架，人工填充细节和情感。最好的内容是人机协作的结果。",
+      "visual": "../data/quiet-window-placeholder.svg",
+      "bottom_points": "",
+      "image_asset": {
+        "asset_id": "visual-generated-evidence",
+        "source": "../data/quiet-window-placeholder.svg",
+        "type": "screenshot",
+        "object_fit": "contain",
+        "object_position": "center"
+      }
+    },
+    {
+      "page_number": 6,
+      "role": "summary",
+      "point": "记住这 3 个核心技巧",
+      "copy": "",
+      "visual": "",
+      "bottom_points": [
+        "角色设定：给 AI 明确的身份和背景",
+        "迭代优化：第一轮只是草稿，继续追问",
+        "混合创作：AI 出框架，人工填情感"
+      ],
+      "image_asset": {
+        "asset_id": "none",
+        "source": "",
+        "type": "none",
+        "object_fit": "none",
+        "object_position": "none"
+      }
+    }
+  ],
+  "platform_specs": {
+    "safe_zone": {
+      "left": 72,
+      "right": 72,
+      "top": 72,
+      "bottom": 80
+    },
+    "file_format": "PNG",
+    "naming_pattern": "social-{page_number:02d}-{topic}.png"
+  },
+  "asset_source_record": [
+    {
+      "asset_id": "bg-generated-quiet-window",
+      "role": "background",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "color_overlay",
+      "checked_at": "2026-05-29",
+      "decision": "use",
+      "notes": "Local generated placeholder used to exercise shared social-card background plumbing."
+    },
+    {
+      "asset_id": "visual-generated-cover",
+      "role": "evidence",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "masked",
+      "checked_at": "2026-05-29",
+      "decision": "use",
+      "notes": "Fixture visual asset; production tasks must replace with source-locked evidence or recorded public/user asset."
+    },
+    {
+      "asset_id": "visual-generated-problem",
+      "role": "evidence",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "masked",
+      "checked_at": "2026-05-29",
+      "decision": "use",
+      "notes": "Fixture visual asset; production tasks must replace with source-locked evidence or recorded public/user asset."
+    },
+    {
+      "asset_id": "visual-generated-role",
+      "role": "evidence",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "masked",
+      "checked_at": "2026-05-29",
+      "decision": "use",
+      "notes": "Fixture visual asset; production tasks must replace with source-locked evidence or recorded public/user asset."
+    },
+    {
+      "asset_id": "visual-generated-flow",
+      "role": "evidence",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "masked",
+      "checked_at": "2026-05-29",
+      "decision": "use",
+      "notes": "Fixture visual asset; production tasks must replace with source-locked evidence or recorded public/user asset."
+    },
+    {
+      "asset_id": "visual-generated-evidence",
+      "role": "evidence",
+      "source_type": "generated_graphics",
+      "source_url": "../data/quiet-window-placeholder.svg",
+      "provider": "local_render_fixture",
+      "creator_or_owner": "content-visual-forge",
+      "license": "repo_fixture",
+      "attribution_required": false,
+      "attribution_text": "",
+      "commercial_use_allowed": true,
+      "transformation": "masked",
+      "checked_at": "2026-05-29",
+      "decision": "use",
+      "notes": "Fixture visual asset; production tasks must replace with source-locked evidence or recorded public/user asset."
+    }
+  ],
+  "quality_gate": {
+    "density_check": {
+      "segments": ["0-25%", "25-50%", "50-75%", "75-100%"],
+      "filled_segments": 4,
+      "justified_empty_segments": 0,
+      "under_filled_segments": 0
+    },
+    "text_legibility": "pass",
+    "visual_consistency": "pass",
+    "image_source_recorded": true,
+    "text_overlay_safe": true
+  }
+}

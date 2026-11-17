@@ -1,45 +1,62 @@
-## Description: <br>
-Automatically processes voice messages by transcribing audio, generating a context-aware reply, and synthesizing a voice response when voice or audio messages are received. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Voice Chat Bridge automatically handles voice or audio messages by transcribing speech, using conversation context to draft a reply, and generating a spoken response.
 
-## Publisher: <br>
-[zhangqinghua2015](https://clawhub.ai/user/zhangqinghua2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangqinghua2015](https://clawhub.ai/user/zhangqinghua2015)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to bridge chat voice messages into text, generate a concise agent reply using the current conversation context, and return a synthesized voice response for Feishu or Telegram workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Always-on voice processing and automatic replies can respond in chats where the user did not intend to enable automation. <br>
-Mitigation: Enable the trigger only for trusted chats or users and require clear channel and sender scoping before automatic replies are sent. <br>
-Risk: Voice transcripts and generated replies may contain sensitive content that can be sent to the active LLM provider or Edge TTS. <br>
-Mitigation: Decide which providers may receive sensitive text, prefer local fallbacks where appropriate, and suppress transcript and reply logging where possible. <br>
-Risk: Speech models and Python dependencies are downloaded separately and can affect integrity and runtime behavior. <br>
-Mitigation: Use pinned dependencies, verified model downloads, and local review before deployment. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to add voice-message workflows that convert incoming audio to text, generate a context-aware reply, and return an OGG/Opus voice response for channels such as Feishu or Telegram.
 
-## Reference(s): <br>
-- [ClawHub Voice Chat Bridge release page](https://clawhub.ai/zhangqinghua2015/voice-chat) <br>
-- [Sherpa-ONNX SenseVoice model release](https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17.tar.bz2) <br>
-- [Vosk Chinese small model release](https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-model-small-cn-0.22.zip) <br>
-- [Telegram Bot API](https://api.telegram.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, files] <br>
-**Output Format:** [Plain text transcripts and replies, JSON status objects, and OGG/Opus audio files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Temporary audio outputs are written under /tmp/voice-chat; operation depends on ffmpeg, downloaded STT models, a TTS engine, and OpenClaw session context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.5 (source: server evidence and changelog, released 2026-04-01) <br>
+Risk: Automatic voice handling can process private chat audio and current conversation context without clear user consent or channel boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with explicit user consent and scope automation to trusted channels and users.
+
+Risk: Transcripts, generated replies, or logs may expose sensitive chat content.
+
+Mitigation: Disable or restrict content logging and avoid reusing privileged sessions for transcript replies.
+
+Risk: Downloaded speech-recognition models and runtime dependencies may be unverified.
+
+Mitigation: Verify downloaded models and dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhangqinghua2015/skills/voice-chat)
+- [README](artifact/README.md)
+- [Design Document](artifact/DESIGN.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Sherpa-ONNX SenseVoice Model Download](https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-2024-07-17.tar.bz2)
+- [Vosk Chinese Small Model Download](https://github.com/alphacep/vosk-api/releases/download/v0.3.45/vosk-model-small-cn-0.22.zip)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands; runtime scripts emit text, JSON status, and generated OGG/Opus voice-file paths.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local temporary files under /tmp/voice-chat and depends on configured STT/TTS engines.]
+
+## Skill Version(s):
+
+2.3.5 (source: server release metadata and changelog, released 2026-04-01)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

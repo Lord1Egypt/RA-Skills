@@ -1,45 +1,56 @@
-## Description: <br>
-从京东、淘宝、天猫、拼多多等中国电商平台抓取商品价格并进行比较分析。当用户需要比较不同电商平台的商品价格、寻找最佳性价比、或监控商品价格变化时使用。支持关键词搜索、商品链接分析、价格历史追踪和购买建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares product prices across Chinese ecommerce platforms and helps agents produce price, promotion, shipping, review, shop reputation, and purchase recommendation analyses.
 
-## Publisher: <br>
-[birdme007](https://clawhub.ai/user/birdme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[birdme007](https://clawhub.ai/user/birdme007)
 
-## Use Case: <br>
-External users and purchasing analysts use this skill to compare prices, promotions, shipping costs, reviews, and seller reputation across major Chinese e-commerce platforms before buying or monitoring products. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may contact shopping platforms and its documentation discusses anti-bot workarounds. <br>
-Mitigation: Use only user-approved, low-rate checks and review each target platform's terms before running scraping workflows. <br>
-Risk: Logged-in scraping, cookies, browser sessions, proxies, or CAPTCHA-solving workflows could create consent, account, or compliance risk. <br>
-Mitigation: Do not provide credentials, cookies, browser sessions, proxy pools, or CAPTCHA-solving steps unless explicit authorization and terms review are in place. <br>
-Risk: Price and inventory results can be incomplete, stale, account-specific, or region-specific. <br>
-Mitigation: Treat generated comparisons as decision support and verify final price, stock, shipping, and seller details on the platform before purchase. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/birdme007/ecommerce-price-comparison) <br>
-- [平台API文档](references/platform_apis.md) <br>
-- [价格比较逻辑](references/comparison_logic.md) <br>
-- [报告模板](assets/template_report.md) <br>
-- [抓取脚本说明](scripts/README.md) <br>
+## Use Case:
 
+External users and shopping research agents use this skill to compare ecommerce prices, monitor price changes, and generate purchase recommendations from product names or links. Developers may also use the bundled JD scraper and comparison references as a starting point for price-analysis workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with tables, code snippets, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include price comparisons, scoring, purchase recommendations, risk notes, and scraper setup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Security evidence marks the release suspicious because the documentation overclaims broad platform support while the concrete implementation is JD-focused.
+
+Mitigation: Validate platform coverage before relying on results, and treat non-JD platform workflows as guidance unless matching implementation is supplied.
+
+Risk: Security evidence notes anti-bot evasion guidance and risky unpinned dependency installation commands.
+
+Mitigation: Use official or permitted APIs where possible, avoid unauthorized proxy, IP-rotation, or CAPTCHA-bypass workflows, and install pinned dependencies in an isolated environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/birdme007/skills/ecommerce-price-comparison)
+- [Platform API notes](references/platform_apis.md)
+- [Comparison logic](references/comparison_logic.md)
+- [Report template](assets/template_report.md)
+- [JD scraper README](scripts/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, configuration examples, and report templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include price comparison tables, ranking scores, product recommendations, and scraper usage guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

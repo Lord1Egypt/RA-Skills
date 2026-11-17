@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "confidence": {
+    "direct_label": 0.95,
+    "pattern_match": 0.78,
+    "geometry_pattern": 0.86,
+    "inferred": 0.5
+  },
+  "view_rules": [
+    {
+      "type": "finish_plan",
+      "patterns": [
+        "精装修平面",
+        "装修平面",
+        "吊顶平面",
+        "地面铺装",
+        "墙面排版",
+        "FINISH PLAN",
+        "INTERIOR PLAN"
+      ]
+    },
+    {
+      "type": "elevation_sheet",
+      "patterns": [
+        "立面图",
+        "背景墙",
+        "造型墙",
+        "ELEVATION"
+      ]
+    },
+    {
+      "type": "detail_node",
+      "patterns": [
+        "节点详图",
+        "大样",
+        "收口节点",
+        "DETAIL",
+        "SAMPLE"
+      ]
+    },
+    {
+      "type": "schedule",
+      "patterns": [
+        "装修做法表",
+        "材料表",
+        "地面做法",
+        "墙面做法",
+        "SCHEDULE",
+        "BOQ",
+        "建筑做法表",
+        "建筑做法说明",
+        "建筑总说明",
+        "建筑设计说明",
+        "保温专篇",
+        "节能设计专篇",
+        "做法表"
+      ]
+    },
+    {
+      "type": "door_window_board",
+      "patterns": [
+        "门表",
+        "窗表",
+        "门窗表",
+        "DOOR SCHEDULE",
+        "WINDOW SCHEDULE"
+      ]
+    },
+    {
+      "type": "furniture_layout",
+      "patterns": [
+        "固定家具",
+        "柜体",
+        "厨房",
+        "卫生间",
+        "FIXTURE",
+        "FURNITURE"
+      ]
+    }
+  ],
+  "system_rules": [
+    {
+      "system": "floor",
+      "patterns": [
+        "地面",
+        "铺装",
+        "地板",
+        "瓷砖",
+        "FLOOR",
+        "PAVING"
+      ]
+    },
+    {
+      "system": "wall",
+      "patterns": [
+        "墙面",
+        "乳胶漆",
+        "壁纸",
+        "木饰面",
+        "石材",
+        "WALL"
+      ]
+    },
+    {
+      "system": "ceiling",
+      "patterns": [
+        "顶棚",
+        "吊顶",
+        "天花",
+        "CEILING"
+      ]
+    },
+    {
+      "system": "skirting",
+      "patterns": [
+        "踢脚",
+        "脚线",
+        "SKIRTING",
+        "BASE"
+      ]
+    },
+    {
+      "system": "furniture",
+      "patterns": [
+        "家具",
+        "柜体",
+        "台面",
+        "FURNITURE",
+        "CABINET"
+      ]
+    },
+    {
+      "system": "waterproof",
+      "patterns": [
+        "防水",
+        "防潮",
+        "WATERPROOF"
+      ]
+    },
+    {
+      "system": "insulation",
+      "patterns": [
+        "保温",
+        "外墙外保温",
+        "外墙内保温",
+        "内保温",
+        "保温层",
+        "岩棉",
+        "挤塑板",
+        "聚苯板",
+        "保温装饰一体板",
+        "燃烧性能",
+        "传热系数"
+      ]
+    }
+  ],
+  "component_rules": [
+    {
+      "category": "floor_layer",
+      "system": "floor",
+      "patterns": [
+        "地面",
+        "铺装",
+        "地板",
+        "瓷砖",
+        "石材",
+        "FLOOR",
+        "PAVING",
+        "楼面做法",
+        "地面做法"
+      ]
+    },
+    {
+      "category": "wall_finish",
+      "system": "wall",
+      "patterns": [
+        "乳胶漆",
+        "壁纸",
+        "木饰面",
+        "墙面砖",
+        "涂料",
+        "WALL",
+        "墙面做法",
+        "外墙做法",
+        "内墙做法"
+      ]
+    },
+    {
+      "category": "ceiling_finish",
+      "system": "ceiling",
+      "patterns": [
+        "吊顶",
+        "天花",
+        "石膏板",
+        "铝扣板",
+        "CEILING",
+        "顶棚做法",
+        "天花做法"
+      ]
+    },
+    {
+      "category": "skirting",
+      "system": "skirting",
+      "patterns": [
+        "踢脚",
+        "脚线",
+        "SKIRTING",
+        "BASE"
+      ]
+    },
+    {
+      "category": "furniture",
+      "system": "furniture",
+      "patterns": [
+        "柜体",
+        "台面",
+        "洗手台",
+        "橱柜",
+        "FURNITURE",
+        "CABINET"
+      ]
+    },
+    {
+      "category": "waterproof",
+      "system": "waterproof",
+      "patterns": [
+        "防水",
+        "防潮",
+        "WATERPROOF"
+      ]
+    },
+    {
+      "category": "door_window",
+      "system": "wall",
+      "patterns": [
+        "门",
+        "窗",
+        "门套",
+        "窗台板",
+        "DOOR",
+        "WINDOW"
+      ]
+    },
+    {
+      "category": "insulation",
+      "system": "insulation",
+      "patterns": [
+        "保温",
+        "外墙外保温",
+        "外墙内保温",
+        "内保温",
+        "保温层",
+        "岩棉",
+        "挤塑板",
+        "聚苯板",
+        "保温装饰一体板",
+        "燃烧性能",
+        "传热系数",
+        "保温做法",
+        "保温材料"
+      ]
+    }
+  ],
+  "reference_patterns": {
+    "elevation": "标高\\s*[-+]?\\d+(?:\\.\\d{1,3})?",
+    "finish_code": "(?<![0-9A-Z])((?:DM|QM|WM|CM|JM)\\s*[-_]?\\d{1,3})",
+    "material": "(?<![0-9A-Z])((?:石材|瓷砖|木饰面|乳胶漆|壁纸|铝扣板|石膏板)[A-Z0-9_-]{0,8})",
+    "node": "(?<![0-9A-Z])((?:JD|XD|SC)\\s*[-_]?\\d{1,4}[A-Za-z]?)"
+  },
+  "scale_pattern": "1\\s*[:：]\\s*\\d{1,5}",
+  "unit_patterns": {
+    "mm": [
+      "单位\\s*[:：]?\\s*mm",
+      "mm"
+    ],
+    "m": [
+      "单位\\s*[:：]?\\s*m"
+    ]
+  },
+  "layer_rules": [
+    {
+      "category": "floor_layer",
+      "patterns": [
+        "地面",
+        "铺装",
+        "FLOOR"
+      ]
+    },
+    {
+      "category": "wall_finish",
+      "patterns": [
+        "墙面",
+        "乳胶漆",
+        "壁纸",
+        "WALL"
+      ]
+    },
+    {
+      "category": "ceiling_finish",
+      "patterns": [
+        "吊顶",
+        "天花",
+        "CEILING"
+      ]
+    },
+    {
+      "category": "furniture",
+      "patterns": [
+        "家具",
+        "柜体",
+        "FURNITURE"
+      ]
+    },
+    {
+      "category": "detail",
+      "patterns": [
+        "节点",
+        "大样",
+        "DETAIL"
+      ]
+    },
+    {
+      "category": "insulation",
+      "patterns": [
+        "保温",
+        "岩棉",
+        "挤塑板",
+        "聚苯板"
+      ]
+    }
+  ]
+}

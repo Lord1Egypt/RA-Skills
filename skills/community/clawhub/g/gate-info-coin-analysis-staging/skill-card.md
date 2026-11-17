@@ -1,47 +1,60 @@
-## Description: <br>
-Single-coin comprehensive analysis for a cryptocurrency using fundamentals, market snapshot, technical analysis, news, and social sentiment data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a read-only, single-coin cryptocurrency analysis workflow that combines fundamentals, market data, technical indicators, news, and social sentiment into a structured report.
 
-## Publisher: <br>
-[gaixianggeng](https://clawhub.ai/user/gaixianggeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gaixianggeng](https://clawhub.ai/user/gaixianggeng)
 
-## Use Case: <br>
-External users and developers use this skill to generate a structured, data-driven analysis report for one cryptocurrency when they need a broad overview rather than price-only, risk-only, comparison, or technical-only output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crypto market analysis may be mistaken for financial advice. <br>
-Mitigation: Present the report as data-driven information, include the not-investment-advice warning, and avoid explicit buy/sell recommendations or price predictions. <br>
-Risk: Unavailable or failed market, news, technical, or sentiment feeds could lead to incomplete analysis. <br>
-Mitigation: Continue only with available feeds, clearly label unavailable dimensions, and do not fabricate missing data. <br>
-Risk: Ambiguous coin names or symbols may cause analysis of the wrong asset. <br>
-Mitigation: Ask the user to clarify the coin before running the analysis when the target asset cannot be identified. <br>
-Risk: Broad trigger phrases may route risk-only, comparison, news-only, or technical-only requests into the wrong workflow. <br>
-Mitigation: Route those requests to the dedicated specialized skill or tool path instead of stretching this single-coin comprehensive workflow. <br>
+## Use Case:
 
+External users and developers use this skill to request a neutral, data-driven analysis of one cryptocurrency when they need fundamentals, market context, technical signals, recent news, and social sentiment in one report.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gaixianggeng/gate-info-coin-analysis-staging) <br>
-- [Gate Info Coin Analysis Runtime Rules](references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md) <br>
-- [Gate Info CoinAnalysis MCP Specification](references/mcp.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables, summaries, links, and risk warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses available Gate Info and Gate News data, labels missing dimensions as unavailable, and avoids buy/sell advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Cryptocurrency analysis can be mistaken for investment advice or trading instructions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the report neutral and data-driven, include a non-investment-advice disclaimer, and avoid explicit buy, sell, or target-price recommendations.
+
+Risk: Unavailable or partial MCP data could make the analysis misleading.
+
+Mitigation: Degrade gracefully, label unavailable sections clearly, and never fabricate missing fundamentals, technicals, news, or sentiment data.
+
+Risk: Ambiguous coin names or multi-dimension requests can route the agent to the wrong workflow.
+
+Mitigation: Ask the user to clarify ambiguous coin symbols and route comparisons, risk-only checks, event attribution, or broader research requests to the appropriate Gate skill.
+
+## Reference(s):
+
+- [Gate Info CoinAnalysis MCP Specification](references/mcp.md)
+- [Gate Info Coin Analysis Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+- [ClawHub skill page](https://clawhub.ai/gaixianggeng/skills/gate-info-coin-analysis-staging)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown report with tables, bullet lists, linked news items, risk warnings, and a non-investment-advice disclaimer.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses available read-only Gate Info and Gate News MCP data; unavailable dimensions are labeled instead of fabricated.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

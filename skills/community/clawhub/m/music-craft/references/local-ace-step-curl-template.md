@@ -1,6 +1,6 @@
-# Local ACE-Step Curl Template
+# Local ACE-Step Request Template
 
-Copy-pasteable direct submission pattern for the ACE-Step REST API. Use this
+Copy-pasteable direct submission pattern for the ACE-Step REST API, using the bundled standard-library helper. Use this
 when the local server is already running on `http://127.0.0.1:8001` and the
 operator wants deterministic control over the request body.
 
@@ -10,14 +10,29 @@ ACE-Step accepts a JSON request body at `/release_task`. The critical detail is
 that `lyrics` must be a JSON string, so multiline lyrics need to be escaped
 before they are inserted into the payload.
 
-## Prepare Prompt And Lyrics JSON
+## Build The Request Body
+
+Write the body with Python so multiline lyrics are escaped correctly:
 
 ```bash
-PROMPT_JSON=$(python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))' < prompt.txt)
-LYRICS_JSON=$(python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))' < cleaned_lyrics.txt)
+python3 - <<'PY'
+import json
+from pathlib import Path
+body = {
+    "prompt": Path("prompt.txt").read_text(encoding="utf-8"),
+    "lyrics": Path("cleaned_lyrics.txt").read_text(encoding="utf-8"),
+    "audio_duration": 200,
+    "bpm": 80,
+    "key_scale": "E major",
+    "time_signature": "4/4",
+    "vocal_language": "en",
+    "thinking": True,
+    "inference_steps": 8,
+    "guidance_scale": 7.0,
+}
+Path("body.json").write_text(json.dumps(body, ensure_ascii=False), encoding="utf-8")
+PY
 ```
-
-## Submit A Job
 
 `prompt.txt` should contain the full production-sheet prompt. Example:
 
@@ -28,25 +43,18 @@ the final chorus. Anti-sparse rule: every section has guitar, bass, drums,
 and vocal presence; never a cappella, never silent gaps.
 ```
 
+## Submit And Wait
+
 ```bash
-
-TASK_ID=$(curl -s -m 30 -X POST http://127.0.0.1:8001/release_task \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"prompt\": $PROMPT_JSON,
-    \"lyrics\": $LYRICS_JSON,
-    \"audio_duration\": 200,
-    \"bpm\": 80,
-    \"key_scale\": \"E major\",
-    \"time_signature\": \"4/4\",
-    \"vocal_language\": \"en\",
-    \"thinking\": true,
-    \"inference_steps\": 8,
-    \"guidance_scale\": 7.0
-  }" | python3 -c 'import json,sys; print(json.load(sys.stdin).get("data",{}).get("task_id",""))')
-
+TASK_ID=$(python3 scripts/acestep_request.py release_task --print-task-id --json-file body.json)
 printf 'TASK_ID=%s\n' "$TASK_ID"
+python3 scripts/wait_for_acestep.py "$TASK_ID" --expected-seconds 200
 ```
+
+`scripts/acestep_request.py` only talks to a loopback server (`127.0.0.1`,
+`localhost`, `::1`). Other endpoints work the same way, for example
+`python3 scripts/acestep_request.py health` or
+`python3 scripts/acestep_request.py v1/init --json '{"dit_model": "acestep-v15-turbo"}'`.
 
 ## Field Notes
 

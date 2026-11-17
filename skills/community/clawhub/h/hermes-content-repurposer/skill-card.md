@@ -1,48 +1,68 @@
-## Description: <br>
-Takes one long-form piece of content and repurposes it into Twitter threads, LinkedIn posts, newsletter editions, and short video scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Takes one long-form piece of content and repurposes it into Twitter threads, LinkedIn posts, newsletter editions, and short video scripts.
 
-## Publisher: <br>
-[marcvanstad](https://clawhub.ai/user/marcvanstad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marcvanstad](https://clawhub.ai/user/marcvanstad)
 
-## Use Case: <br>
-Creators, marketers, agencies, and content operators use this skill to turn long-form articles, transcripts, podcasts, videos, and feeds into channel-ready social posts, newsletters, and short video scripts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch URLs, feeds, videos, and files supplied by the user and save generated drafts locally. <br>
-Mitigation: Run it only with trusted inputs and runtime settings, and confirm where fetched content and generated drafts are stored. <br>
-Risk: Generated social posts, newsletters, and scripts may misquote source material or include inaccurate claims. <br>
-Mitigation: Review every draft before publishing and keep quote-accuracy, link-integrity, tone, and character-limit checks enabled. <br>
-Risk: Optional scheduling, RSS watching, or publishing workflows can repeatedly process external content. <br>
-Mitigation: Enable recurring jobs and posting behavior deliberately, monitor queues and outputs, and avoid confidential source material unless the runtime and API configuration meet the user's data-handling expectations. <br>
+## Use Case:
 
+Content creators, marketers, agencies, podcasters, and video teams use this skill to turn long-form source material into platform-specific social posts, newsletters, and short video scripts. It supports configurable brand voice, batch processing, source watching, and quality checks before publication.
 
-## Reference(s): <br>
-- [Skill README](README.md) <br>
-- [Repurpose configuration](reference/config/repurpose.yaml) <br>
-- [Source configuration](reference/config/sources.yaml) <br>
-- [Narrative extraction prompt](reference/prompts/extract_narrative.yaml) <br>
-- [Twitter thread prompt](reference/prompts/twitter_thread.yaml) <br>
-- [LinkedIn post prompt](reference/prompts/linkedin_post.yaml) <br>
-- [Quality checks template](reference/templates/quality_checks.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown drafts, text scripts, YAML configuration, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated drafts are organized by platform under local output folders; configured quality checks cover length, tone, quote accuracy, links, duplicate content, hashtags, and CTA presence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Scheduled runs, RSS watching, or publishing integrations may process or publish content without the operator's intended review cadence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable scheduling, source watching, and publishing integrations only after confirming they are needed, and keep generated drafts in a review workflow before publication.
+
+Risk: Remote source URLs can introduce untrusted or inaccurate content into generated drafts.
+
+Mitigation: Use trusted source URLs and verify generated quotes, links, and claims against the original content before publishing.
+
+Risk: The artifact references requirements and scripts that are not included, so dependency and runtime behavior cannot be fully verified from the provided files.
+
+Mitigation: Review and pin dependencies and inspect any runtime scripts before installing or enabling automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcvanstad/skills/hermes-content-repurposer)
+- [README](README.md)
+- [Repurpose configuration](reference/config/repurpose.yaml)
+- [Source watcher configuration](reference/config/sources.yaml)
+- [Narrative extraction prompt](reference/prompts/extract_narrative.yaml)
+- [Twitter thread prompt](reference/prompts/twitter_thread.yaml)
+- [LinkedIn post prompt](reference/prompts/linkedin_post.yaml)
+- [Quality checks template](reference/templates/quality_checks.yaml)
+- [Twitter thread template](reference/templates/twitter_thread/default.yaml)
+- [LinkedIn thought leader template](reference/templates/linkedin/thought_leader.yaml)
+- [Newsletter weekly digest template](reference/templates/newsletter/weekly_digest.yaml)
+- [TikTok video script template](reference/templates/video_script/tiktok.yaml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, configuration, guidance]
+
+**Output Format:** [Platform-specific drafts, structured narrative JSON, markdown content, YAML configuration guidance, and script outlines.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are organized by platform and constrained by configurable character limits, duration targets, brand voice settings, and quality checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

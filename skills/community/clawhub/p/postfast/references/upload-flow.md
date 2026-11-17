@@ -1,6 +1,6 @@
 # Media Upload Flow
 
-PostFast uses a 3-step media upload process. External URLs are NOT supported — all media must go through this flow.
+PostFast uses a 3-step media upload process. External URLs are NOT supported: all media must go through this flow.
 
 ## Step 1: Get Signed Upload URLs
 
@@ -26,10 +26,14 @@ curl -X POST https://api.postfa.st/file/get-signed-upload-urls \
 
 For multiple files, set `count` to the number of files. All must share the same content type.
 
+Accepted `contentType` values: `image/jpeg`, `image/png`, `image/gif`, `image/webp`, `video/mp4`, `video/webm`, `video/mov`, `video/quicktime`, `application/pdf`, `application/msword`, `application/vnd.openxmlformats-officedocument.wordprocessingml.document`, `application/vnd.ms-powerpoint`, `application/vnd.openxmlformats-officedocument.presentationml.presentation`, `application/x-subrip` (.srt), `text/vtt` (.vtt). Use `image/jpeg` for `.jpg` files (`image/jpg` returns `400`).
+
+Size caps: 250MB per video (Bluesky 100MB, Telegram 50MB), 10MB per image, 60MB per document, 10MB per caption file. The endpoint allows 180 requests per minute and 420 per day, so request several URLs per call with `count` instead of one call per file.
+
 **Key prefix by type:**
 - Images: `image/uuid.ext`
 - Videos: `video/uuid.ext`
-- Documents: `file/uuid.ext`
+- Documents and caption files: `file/uuid.ext`
 
 ## Step 2: Upload File to S3
 
@@ -88,7 +92,7 @@ For carousels (Instagram, Facebook, TikTok, Pinterest, LinkedIn):
 
 ## LinkedIn Document Upload
 
-Documents use a different flow — `linkedinAttachmentKey` instead of `mediaItems`:
+Documents use a different flow, with `linkedinAttachmentKey` instead of `mediaItems`:
 
 1. Get signed URL: `{ "contentType": "application/pdf", "count": 1 }`
 2. Upload file to signed URL
@@ -108,6 +112,32 @@ Documents use a different flow — `linkedinAttachmentKey` instead of `mediaItem
   }
 }
 ```
+
+## YouTube Caption Upload
+
+A caption file also goes in `controls`, not in `mediaItems`:
+
+1. Get signed URL: `{ "contentType": "application/x-subrip", "count": 1 }` for .srt, or `"text/vtt"` for .vtt
+2. Upload the file to the signed URL (timed SRT or WebVTT, plain UTF-8, max 10MB)
+3. Upload the video as usual, then create the post with both keys:
+
+```json
+{
+  "posts": [{
+    "content": "Full tutorial with English captions",
+    "mediaItems": [{ "key": "video/uuid.mp4", "type": "VIDEO", "sortOrder": 0 }],
+    "scheduledAt": "2026-12-15T14:00:00.000Z",
+    "socialMediaId": "YOUTUBE_ACCOUNT_ID"
+  }],
+  "controls": {
+    "youtubeIsShort": false,
+    "youtubeLanguage": "en",
+    "youtubeCaptionKey": "file/uuid.srt"
+  }
+}
+```
+
+`youtubeCaptionKey` needs `youtubeLanguage`. See SKILL.md Pattern 5c for the rules and error codes.
 
 ## Custom Cover Image for Video Posts
 

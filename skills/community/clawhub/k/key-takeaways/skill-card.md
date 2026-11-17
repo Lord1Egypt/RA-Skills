@@ -1,42 +1,54 @@
-## Description: <br>
-Extracts and summarizes key takeaways from documents, meeting notes, articles, and other text content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts candidate key takeaways from provided text by selecting sentences that contain conclusion, result, significance, or similar evidence indicators.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, analysts, and external users use this skill to turn supplied documents, meeting notes, articles, or reports into concise takeaways, summaries, and action items. It is best suited for bounded text review where the user can inspect the result against the source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release security summary says the documentation overpromises batch, export, and configuration examples. <br>
-Mitigation: Treat those examples as unverified until tested against the installed artifact, and prefer the documented fallback path when execution does not match the advertised interface. <br>
-Risk: Summaries and takeaways can omit context or misstate source material. <br>
-Mitigation: Review generated takeaways against the supplied source text before using them for decisions or downstream publication. <br>
-Risk: The security guidance recommends explicit approval before file writes. <br>
-Mitigation: Confirm output paths with the user before allowing an agent to create or overwrite exported files. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to extract concise candidate takeaways from documents, meeting notes, articles, reports, or other text. It is best suited for bounded evidence-insight workflows where outputs are reviewed against the source text.
 
-## Reference(s): <br>
-- [Key Takeaways Guidelines](references/guidelines.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown, JSON, or plain text depending on the requested summary and export format] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should state assumptions, limits, risks, unresolved items, and validation needs when relevant.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Documentation describes broader summarization, action-item, export, and batch-processing behavior than the simple local extractor demonstrates.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it as a lightweight key-sentence helper and review outputs against the original source before relying on them.
+
+Risk: Some audited stress inputs reached only partial status because of scope-control or fallback-boundary gaps.
+
+Mitigation: Confirm input scope, required parameters, and fallback behavior before running the skill on larger or ambiguous tasks.
+
+## Reference(s):
+
+- [Key Takeaways Reference Guidelines](artifact/references/guidelines.md)
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/key-takeaways)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, guidance]
+
+**Output Format:** [Markdown or JSON-style summaries containing extracted takeaways and source-review notes when relevant]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local text processing; outputs should be checked against the source text before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,48 @@
-## Description: <br>
-[QwenCloud] Manage account auth and query usage/billing. Use for: login, logout, check usage, view billing, free tier quota, coding plan status, pay-as-you-go costs. Skip for: model browsing, non-account tasks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+[QwenCloud] Manage account auth and query usage/billing. Use for: login, logout, check usage, view billing, free tier quota, coding plan status, pay-as-you-go costs. Skip for: model browsing, non-account tasks.
 
-## Publisher: <br>
-[cuixiaoyang123](https://clawhub.ai/user/cuixiaoyang123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[cuixiaoyang123](https://clawhub.ai/user/cuixiaoyang123)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agents use this skill to authenticate with QwenCloud and retrieve usage, free tier quota, coding plan status, and pay-as-you-go billing information through the QwenCloud CLI.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents to install an unpinned global third-party CLI that handles QwenCloud sessions, credentials, usage, and billing data.
+
+Mitigation: Install only a reviewed pinned CLI version from a trusted source in a constrained environment, and verify credential storage before logging in.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill to authenticate with the QwenCloud CLI and answer account-level questions about usage, free-tier quota, coding plan status, and pay-as-you-go billing. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration, Text, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires installing and invoking the external QwenCloud CLI, including a global npm install step. <br>
-Mitigation: Install only if the QwenCloud CLI is trusted, and review the global npm install command before use. <br>
-Risk: The skill can let an agent access QwenCloud account status, quotas, usage, billing details, and credential storage behavior. <br>
-Mitigation: Review credential-storage settings and allow access only when the agent is permitted to handle QwenCloud account and billing information. <br>
+**Output Format:** [Markdown guidance with inline shell commands; CLI results are parsed from JSON or shown as plaintext when requested.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Prefers explicit JSON CLI output for agent parsing and human-readable summaries.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, JSON, Markdown] <br>
-**Output Format:** [Markdown guidance with shell command examples and structured JSON CLI output handling] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prefers explicit --format json for agent use, with human-readable summaries produced from parsed CLI responses.] <br>
+0.2.1 (source: server release metadata)
 
-## Skill Version(s): <br>
-0.2.1 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

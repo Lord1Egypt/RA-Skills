@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "domains": {
+    "visual": "视觉设计",
+    "writing": "文案表达",
+    "naming": "命名",
+    "code": "代码风格",
+    "work": "做事方式",
+    "product": "产品取舍"
+  },
+  "domains_en": {
+    "visual": "Visual design",
+    "writing": "Writing",
+    "naming": "Naming",
+    "code": "Code style",
+    "work": "Way of working",
+    "product": "Product trade-offs"
+  },
+  "axes": {
+    "visual.theme":    {"left": "亮色", "right": "暗色", "left_en": "Light", "right_en": "Dark"},
+    "visual.density":  {"left": "留白疏朗", "right": "信息密集", "left_en": "Airy", "right_en": "Dense"},
+    "visual.ornament": {"left": "克制极简", "right": "装饰丰富", "left_en": "Minimal", "right_en": "Ornate"},
+    "visual.depth":    {"left": "扁平", "right": "质感层次（玻璃/阴影/光）", "left_en": "Flat", "right_en": "Layered (glass / shadow / light)"},
+    "visual.color":    {"left": "低饱和中性", "right": "高饱和鲜艳", "left_en": "Muted", "right_en": "Vivid"},
+    "visual.shape":    {"left": "锐利直角", "right": "圆润", "left_en": "Sharp corners", "right_en": "Rounded"},
+    "visual.type":     {"left": "无衬线现代", "right": "衬线人文", "left_en": "Sans-serif", "right_en": "Serif"},
+    "visual.motion":   {"left": "静止", "right": "动效丰富", "left_en": "Still", "right_en": "Lots of motion"},
+    "visual.tone":     {"left": "严肃专业", "right": "活泼趣味", "left_en": "Serious", "right_en": "Playful"},
+
+    "writing.length":  {"left": "极简短", "right": "详尽", "left_en": "Very short", "right_en": "Thorough"},
+    "writing.order":   {"left": "结论先行", "right": "铺垫推导", "left_en": "Conclusion first", "right_en": "Build-up first"},
+    "writing.tone":    {"left": "冷静中性", "right": "热情口语", "left_en": "Calm, neutral", "right_en": "Warm, chatty"},
+    "writing.format":  {"left": "段落叙述", "right": "列表表格", "left_en": "Prose", "right_en": "Lists and tables"},
+    "writing.jargon":  {"left": "平白易懂", "right": "专业术语", "left_en": "Plain words", "right_en": "Technical terms"},
+    "writing.hedging": {"left": "直言断定", "right": "谨慎留余地", "left_en": "Blunt, decisive", "right_en": "Hedged, cautious"},
+
+    "naming.length":   {"left": "短而好记", "right": "描述完整", "left_en": "Short and catchy", "right_en": "Fully descriptive"},
+    "naming.lang":     {"left": "母语（如中文）", "right": "英文", "left_en": "Native language", "right_en": "English"},
+    "naming.style":    {"left": "直白功能", "right": "意象隐喻", "left_en": "Literal", "right_en": "Evocative"},
+
+    "code.abstraction": {"left": "直白少抽象", "right": "抽象复用", "left_en": "Direct, few abstractions", "right_en": "Abstract, reusable"},
+    "code.comments":    {"left": "少注释", "right": "多注释", "left_en": "Few comments", "right_en": "Many comments"},
+    "code.deps":        {"left": "零依赖/标准库", "right": "善用框架库", "left_en": "Standard library only", "right_en": "Frameworks and libraries"},
+    "code.paradigm":    {"left": "命令式", "right": "函数式", "left_en": "Imperative", "right_en": "Functional"},
+
+    "work.autonomy":   {"left": "先问再做", "right": "直接推进", "left_en": "Ask first", "right_en": "Just do it"},
+    "work.scope":      {"left": "最小可行", "right": "一次做全", "left_en": "Minimum viable", "right_en": "Everything at once"},
+    "work.options":    {"left": "给一个推荐", "right": "列多个选项", "left_en": "One recommendation", "right_en": "Several options"},
+    "work.risk":       {"left": "稳妥成熟", "right": "大胆新颖", "left_en": "Proven and safe", "right_en": "Bold and new"},
+
+    "product.features": {"left": "少而精", "right": "功能齐全", "left_en": "Few, polished features", "right_en": "Feature-complete"},
+    "product.novelty":  {"left": "经典耐看", "right": "新潮前卫", "left_en": "Timeless", "right_en": "Cutting-edge"},
+    "product.gamify":   {"left": "纯粹工具", "right": "游戏化", "left_en": "Pure tool", "right_en": "Gamified"}
+  }
+}

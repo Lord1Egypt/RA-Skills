@@ -1,40 +1,53 @@
-## Description: <br>
-Helps agents operate Feishu/Lark Bitable bases by distinguishing wiki and base tokens, listing tables and fields, and guiding record CRUD and batch writes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Feishu Bitable operations, including wiki and base URL token handling, field write formats, batch operations, CRUD workflows, and common error resolution.
 
-## Publisher: <br>
-[bbj375767338-arch](https://clawhub.ai/user/bbj375767338-arch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bbj375767338-arch](https://clawhub.ai/user/bbj375767338-arch)
 
-## Use Case: <br>
-Developers and operators use this skill when an agent needs to read, create, update, delete, or batch-populate Feishu/Lark Bitable records while handling wiki URL token resolution and field value formats correctly. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide agents to create, update, batch-create, or delete Bitable records using configured Feishu app permissions. <br>
-Mitigation: Use a least-privilege Feishu app, review app permissions, and confirm table names, record IDs, admin user IDs, and batch contents before write or delete operations. <br>
-Risk: Using a wiki node token as a Bitable app token can cause failed operations and confusion about which base is being modified. <br>
-Mitigation: Resolve wiki URLs with feishu_wiki_space_node get, then verify the returned app token and table ID before any CRUD action. <br>
+## Use Case:
 
+Developers and operators use this skill when an agent needs to read or update Feishu Bitable bases, create or query records, manage table fields, resolve wiki URLs into Bitable app tokens, and prepare correctly formatted field values.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bbj375767338-arch/feishu-bitable-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Feishu/Lark tool-call examples and bash-style code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes token parsing guidance, field-format tables, CRUD examples, batch operation examples, and common error resolutions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Create, update, batch_create, or delete operations can change Feishu Bitable records if the agent targets the wrong base, table, records, or fields.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before any write or delete action, require the agent to summarize the exact base, table, records, and fields, then confirm the change explicitly.
+
+Risk: Using a wiki node token as a Bitable app token can cause failed or misdirected operations.
+
+Mitigation: For wiki URLs, resolve the node token first and use the returned object token as the Bitable app token.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bbj375767338-arch/skills/feishu-bitable-ops)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline command examples and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Feishu Bitable URL parsing guidance, field value formats, CRUD examples, batch operation limits, and common error handling notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Manage and update Airflow DAG Python files through GitHub pull requests with strict path, repository, and content restrictions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and update Airflow DAG Python files through GitHub pull requests with strict path and content restrictions.
 
-## Publisher: <br>
-[kansodata](https://clawhub.ai/user/kansodata) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kansodata](https://clawhub.ai/user/kansodata)
 
-## Use Case: <br>
-Developers and data platform engineers use this skill to read existing Airflow DAG Python files and submit single-file DAG updates through human-reviewed GitHub pull requests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Airflow DAG edits can affect production workflows if repository, path, or content guardrails are not enforced by the connected GitHub tools. <br>
-Mitigation: Verify the tool allowlist and least-privilege GitHub access before installation, and require human review before merging pull requests. <br>
-Risk: A generated update could introduce unsafe or invalid DAG content. <br>
-Mitigation: Restrict operations to a single allowlisted .py DAG file, require DAG-like content, reject dangerous patterns, and use pull request review before merge. <br>
-Risk: A merged DAG change may need to be undone after review or deployment. <br>
-Mitigation: Use the documented rollback posture: close unmerged pull requests, delete created branches, or revert the merge commit after merge. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to read and update allowlisted Airflow DAG Python files through GitHub pull requests with human review before merge.
 
-## Reference(s): <br>
-- [Airflow DAG Git on ClawHub](https://clawhub.ai/kansodata/airflow-dag-git) <br>
-- [kansodata publisher profile](https://clawhub.ai/user/kansodata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with tool calls, Python DAG content, and pull request instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended to stay within allowlisted repositories and DAG paths and to create human-reviewed pull requests rather than direct production changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Airflow DAG changes can affect scheduled production workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where the named GitHub tools are configured with the documented allowlists, and review every generated pull request before merging.
+
+Risk: Out-of-scope repository or file changes could bypass intended workflow control.
+
+Mitigation: Restrict operations to allowlisted owners, repositories, and DAG paths, and keep updates to a single .py file.
+
+Risk: Unsafe or invalid DAG content could be proposed for review.
+
+Mitigation: Require DAG-like content checks and inspect the generated pull request diff before merge.
+
+## Reference(s):
+
+- [Airflow DAG Git on ClawHub](https://clawhub.ai/kansodata/skills/airflow-dag-git)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with Python DAG content and pull request details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single allowlisted Python DAG file changes are submitted through a GitHub pull request for human review.]
+
+## Skill Version(s):
+
+0.1.1 (source: server evidence release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

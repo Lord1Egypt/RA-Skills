@@ -1,45 +1,62 @@
-## Description: <br>
-Agent Dashboard helps OpenClaw users generate and deploy dashboard views for active tasks, cron health, issues, and action items across local canvas, GitHub Pages, or Supabase/Vercel tiers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent Dashboard provides a real-time OpenClaw dashboard for monitoring active tasks, cron health, issues, action items, products, and recent activity across canvas, GitHub Pages, or Supabase/Vercel deployment tiers.
 
-## Publisher: <br>
-[tahseen137](https://clawhub.ai/user/tahseen137) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT License <br>
+## Publisher:
 
+[tahseen137](https://clawhub.ai/user/tahseen137)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to view operational status for active agent work, scheduled jobs, action items, product status, and recent activity. It supports local viewing as well as optional hosted dashboards that update through GitHub Pages polling or Supabase Realtime. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Hosted dashboard tiers may expose operational status publicly or allow tampering despite client-side PIN protection. <br>
-Mitigation: Use Tier 1 for local-only viewing, or add stronger hosting and database access controls before using Tier 2 or Tier 3. <br>
-Risk: Dashboard fields can reveal sensitive task names, internal URLs, customer data, or meaningful error details if users include them in status updates. <br>
-Mitigation: Keep dashboard data limited to non-sensitive operational status and avoid secrets, customer data, internal URLs, and detailed error content. <br>
-Risk: Scheduled dashboard updates may continue publishing status after the dashboard is no longer needed. <br>
-Mitigation: Disable the dashboard cron job when monitoring is no longer required. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to view agent activity, cron status, action items, product health, and recent events from a dashboard. It supports a local canvas mode and optional hosted modes for GitHub Pages polling or Supabase Realtime updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tahseen137/agent-dashboard) <br>
-- [Customization Guide](references/customization.md) <br>
-- [Dashboard sample data](assets/templates/dashboard-data.json) <br>
-- [Supabase setup SQL](assets/templates/setup-supabase.sql) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with HTML, JSON, SQL, and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces dashboard setup instructions and deployable dashboard assets across three tiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server-resolved release metadata) <br>
+Risk: Remote tiers can publish operational agent and cron status outside the local machine.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use Tier 1 for sensitive workflows, and keep dashboard fields free of internal URLs, secrets, private error text, personal data, or other confidential operational details.
+
+Risk: The embedded client-side PIN is weak protection for hosted dashboards.
+
+Mitigation: Add real server-side authentication, Vercel password protection, Supabase Auth, or a private hosting model before publishing sensitive dashboard content.
+
+Risk: Tier 3 uses public Supabase anon access that can read and update the dashboard table.
+
+Mitigation: Tighten Supabase policies for production use and limit the table to non-sensitive dashboard status data.
+
+Risk: A scheduled cron update can continue publishing status data automatically.
+
+Mitigation: Review the cron configuration and generated dashboard payload before enabling or changing scheduled publishing.
+
+## Reference(s):
+
+- [Customization Guide](references/customization.md)
+- [ClawHub Skill Page](https://clawhub.ai/tahseen137/skills/agent-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JSON, SQL, shell commands, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes static dashboard assets and setup paths for local canvas rendering, GitHub Pages polling, and Supabase Realtime deployment.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

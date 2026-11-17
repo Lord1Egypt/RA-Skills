@@ -1,41 +1,59 @@
-## Description: <br>
-Print markdown files to an ESC/POS thermal receipt printer over TCP, USB, or serial. Supports headings, bold, underline, tables, images, QR codes, paper cuts, and buzzer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Print markdown files to an ESC/POS thermal receipt printer over TCP, USB, or serial. Supports headings, bold, underline, tables, images, QR codes, paper cuts, and buzzer.
 
-## Publisher: <br>
-[yatesdr](https://clawhub.ai/user/yatesdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yatesdr](https://clawhub.ai/user/yatesdr)
 
-## Use Case: <br>
-Developers, operators, and agents use Ticketmax to turn markdown reports, receipts, alerts, and summaries into physical ESC/POS thermal-printer output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents can send sensitive or unintended content to a real configured printer. <br>
-Mitigation: Confirm PRINTER_ADDR before use and review sensitive text before printing. <br>
-Risk: Installing the latest ticketmax package can reduce supply-chain reproducibility. <br>
-Mitigation: Use a pinned or reviewed ticketmax version when reproducible deployment matters. <br>
+## Use Case:
 
+Developers and operators use this skill to have agents prepare Markdown receipts, reports, alerts, and shift summaries that can be printed on ESC/POS thermal receipt printers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yatesdr/ticketmax) <br>
-- [Ticketmax Homepage](https://github.com/yatesdr/ticketmax) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and printer-oriented content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured PRINTER_ADDR and the ticketmax command; output may trigger physical printing, paper cuts, QR codes, images, and buzzer actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: frontmatter and server release metadata) <br>
+Risk: Installing the Go package with @latest can pull an unreviewed future release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin a reviewed ticketmax version for controlled deployments.
+
+Risk: An incorrect PRINTER_ADDR or -addr value can send output to the wrong printer or device.
+
+Mitigation: Confirm the printer address and run a connectivity or test print before production use.
+
+Risk: Agent-generated or externally supplied Markdown can trigger physical effects such as paper cuts and buzzer sounds.
+
+Mitigation: Review Markdown before printing, especially content containing cut or beep comments.
+
+## Reference(s):
+
+- [Ticketmax homepage](https://github.com/yatesdr/ticketmax)
+- [Ticketmax ClawHub skill page](https://clawhub.ai/yatesdr/skills/ticketmax)
+- [Publisher profile](https://clawhub.ai/user/yatesdr)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and printer-oriented markup]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generated Markdown may include QR blocks, image references, paper-cut comments, and buzzer comments for physical printer output.]
+
+## Skill Version(s):
+
+0.1.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

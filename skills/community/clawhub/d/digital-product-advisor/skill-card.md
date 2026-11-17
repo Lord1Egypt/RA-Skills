@@ -1,47 +1,63 @@
-## Description: <br>
-Use when helping a user choose consumer electronics products through source-aware market research, comparison, and recommendation. MVP focuses on Bluetooth earbuds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when helping a user choose consumer electronics products through source-aware market research, comparison, and recommendation. MVP focuses on Bluetooth earbuds.
 
-## Publisher: <br>
-[fina1ee](https://clawhub.ai/user/fina1ee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fina1ee](https://clawhub.ai/user/fina1ee)
 
-## Use Case: <br>
-External users and shopping assistants use this skill to compare Bluetooth earbuds in a specific market, budget, currency, and use case, then produce source-aware recommendations with tradeoffs, links, and confidence notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Exported reports may save the user's region, budget, preferences, shortlist, and links to a local Markdown file. <br>
-Mitigation: Check the destination path before saving or sharing reports, especially in shared or persistent environments. <br>
-Risk: Prices, availability, and seller legitimacy can change after the report is generated. <br>
-Mitigation: Verify current prices, availability, store reputation, warranty terms, and seller legitimacy before buying. <br>
-Risk: A recommendation or product link could be mistaken for approval to purchase. <br>
-Mitigation: Treat the skill as an advisor only; it does not authorize checkout or replace the user's final buying decision. <br>
+## Use Case:
 
+External users and agents use this skill to produce source-aware Bluetooth earbud buying recommendations tailored to budget, region, marketplace availability, brand scope, phone ecosystem, and use case. It can also export the recommendation as a Markdown report when requested.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fina1ee/digital-product-advisor) <br>
-- [Bluetooth Earbuds Buying Logic](references/bluetooth-earbuds.md) <br>
-- [Parameter Model](references/parameters.md) <br>
-- [Scoring Framework](references/scoring-framework.md) <br>
-- [Markdown Export Policy](references/export-policy.md) <br>
-- [Source Quality Guide](references/source-quality.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Markdown reports, shortlist tables, recommendation prose, and optional saved .md report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include product links, source notes, weighted scores, assumptions, tradeoffs, and confidence level.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Product prices, availability, discounts, and regional value can change quickly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Browse current official/spec, review/testing, and price/availability sources for the user's market before recommending products.
+
+Risk: Numeric scores may look more objective than the source evidence supports.
+
+Mitigation: Treat scores as decision aids, explain assumptions and missing evidence, and include tradeoffs and confidence level in the report.
+
+Risk: Saved Markdown reports may be written to an unexpected custom folder.
+
+Mitigation: Use the default reports/earbuds/ folder unless the user provides another path, generate safe filenames, and report the exact saved path.
+
+## Reference(s):
+
+- [Digital Product Advisor on ClawHub](https://clawhub.ai/fina1ee/skills/digital-product-advisor)
+- [Bluetooth Earbuds Buying Logic](artifact/references/bluetooth-earbuds.md)
+- [Parameter Model](artifact/references/parameters.md)
+- [Scoring Framework](artifact/references/scoring-framework.md)
+- [Source Quality](artifact/references/source-quality.md)
+- [Markdown Export Policy](artifact/references/export-policy.md)
+- [Report Template](artifact/templates/report-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown buying reports, concise recommendation guidance, optional JSON-shaped candidate data, and optional local Markdown report files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include shortlist tables, scenario picks, tradeoffs, product links or labeled search links, sources checked, and a confidence level.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

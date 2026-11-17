@@ -1,37 +1,53 @@
-## Description: <br>
-Automatically generates detailed Standard Operating Procedures (SOPs) for recurring digital tasks. Ideal for scaling agency operations or documenting internal AI workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically generates detailed Standard Operating Procedures (SOPs) for recurring digital tasks used in agency operations or internal AI workflows.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-Operations teams, agency teams, and agent developers use this skill to turn recurring digital tasks into repeatable SOPs with prerequisites, numbered workflow steps, failure modes, and success criteria. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The helper script can overwrite markdown files outside the advertised SOPs folder when given a path-like task name. <br>
-Mitigation: Review before installing if an agent may run the helper script; use simple task names without slashes or '..', check for existing output files, and prefer a fixed version that sanitizes task names, verifies the resolved path stays inside SOPs/, and refuses to overwrite without explicit approval. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/balkanblbn/sop-architect) <br>
+## Use Case:
 
+External users and operations teams use this skill to turn recurring digital tasks into repeatable SOP markdown files with numbered workflow steps and success criteria.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown SOP files with numbered steps and success criteria] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The helper script writes SOPs to the SOPs directory using a task-name-derived markdown filename.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The bundled SOP generation script can overwrite Markdown files outside the intended SOPs folder when given a crafted task name.
+
+Mitigation: Reject task names containing slashes, backslashes, .. path components, or existing destination paths before running the script.
+
+Risk: The release security verdict is suspicious for broad use with untrusted task names.
+
+Mitigation: Review and constrain inputs before installation or execution in shared or automated environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/balkanblbn/skills/sop-architect)
+- [Publisher profile](https://clawhub.ai/user/balkanblbn)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown SOP files with numbered steps and success criteria]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated SOP filenames are derived from the task name.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

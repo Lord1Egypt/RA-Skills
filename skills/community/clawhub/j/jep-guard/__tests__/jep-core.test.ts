@@ -20,8 +20,7 @@ describe('JEPCore', () => {
   it('detects tampering', () => {
     const core = new JEPCore('test-agent');
     const event = core.createJudge({ action: 'test' }, 'test-agent');
-    event.what = 'tampered';
-    expect(core.verifySignature(event)).toBe(false);
+    expect(core.verifySignature({...event,what:'tampered'})).toBe(false);
   });
 
   it('creates events with causal links', () => {

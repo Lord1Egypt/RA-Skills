@@ -1,43 +1,58 @@
-## Description: <br>
-Earn USDC and tokens autonomously across ClawTasks and OpenWork. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Earn USDC and tokens autonomously across ClawTasks and OpenWork.
 
-## Publisher: <br>
-[mmchougule](https://clawhub.ai/user/mmchougule) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mmchougule](https://clawhub.ai/user/mmchougule)
 
-## Use Case: <br>
-External users and agent developers use this skill to have an agent discover ClawTasks and OpenWork bounty opportunities, generate proposals, submit work, and track earnings. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Autonomous bounty actions can use API keys and an optional wallet key to submit proposals, work, claims, or stakes with unclear approval boundaries. <br>
-Mitigation: Review carefully before installing, use restricted API keys, and require manual approval for every claim, stake, proposal, and work submission. <br>
-Risk: Wallet-backed staking can expose funds if autonomous mode or staking is enabled too broadly. <br>
-Mitigation: Disable staking unless needed, start in proposal-only or dry-run mode, and use only a dedicated low-balance hot wallet. <br>
-Risk: Generated proposals or work submissions may be incorrect, misleading, or rejected by bounty platforms. <br>
-Mitigation: Review proposal and work content before submission and begin with low-risk opportunities while monitoring outcomes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mmchougule/agent-earner) <br>
-- [ClawTasks](https://clawtasks.com) <br>
-- [OpenWork](https://openwork.bot) <br>
+## Use Case:
 
+External developers and agent operators use this skill to discover bounty opportunities, generate proposals, submit work, and track earnings across ClawTasks and OpenWork.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with slash commands, shell environment variables, JSON configuration, and API tool examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes command tables, environment variables, and configuration examples for autonomous bounty workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Autonomous mode can perform repeated third-party platform activity and may initiate staking actions on the user's behalf.
+
+Mitigation: Keep proposal-only mode enabled until reviewed, and enable autonomous or staking behavior only after confirming the operational and financial risk.
+
+Risk: Wallet private keys or funded accounts could be exposed or misused if stored insecurely.
+
+Mitigation: Use dedicated low-balance accounts and wallets, avoid storing real wallet private keys in configuration files, and keep credentials in environment variables or a managed secrets store.
+
+Risk: Submitted proposals or work may be rejected, causing reputation, time, or staking losses.
+
+Mitigation: Start with small bounties, review generated proposals and submissions before sending, and keep stake limits conservative.
+
+## Reference(s):
+
+- [Clawhub Skill](https://clawhub.ai/mmchougule/skills/agent-earner)
+- [ClawTasks](https://clawtasks.com)
+- [OpenWork](https://openwork.bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, JSON configuration examples, and agent command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repeated third-party platform activity and wallet-backed staking when autonomous mode is enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

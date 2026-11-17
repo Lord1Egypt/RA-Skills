@@ -1,43 +1,59 @@
-## Description: <br>
-Automates an AutoDock Vina molecular docking workflow from a protein PDB file, ligand SMILES string, and pocket description to top-ranked complex structures and affinity score outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates AutoDock Vina protein-small molecule docking from a PDB protein file, ligand SMILES, and pocket description, producing top docked complex structures and docking score results.
 
-## Publisher: <br>
-[supertiefeng](https://clawhub.ai/user/supertiefeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[supertiefeng](https://clawhub.ai/user/supertiefeng)
 
-## Use Case: <br>
-Developers and computational biology users can use this skill to prepare protein and ligand inputs, run AutoDock Vina docking, and collect complex structure and affinity score outputs for binding-mode prediction or ligand screening. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The docking script can run unintended local shell commands if crafted file paths or output paths are supplied. <br>
-Mitigation: Review inputs before execution, use trusted paths in an isolated environment, and update subprocess calls to argument-list form with path validation before production use. <br>
-Risk: The workflow relies on downloaded and locally installed docking tools. <br>
-Mitigation: Install dependencies from trusted sources, verify downloaded tooling, and keep docking work directories scoped to the intended project. <br>
+## Use Case:
 
+Developers and computational chemistry practitioners use this skill to prepare protein and ligand inputs, configure a binding pocket, run AutoDock Vina docking, and review predicted binding poses and affinity scores.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/supertiefeng/molecular-docking-autodock) <br>
-- [AutoDock Vina manual reference](references/autodock_vina_manual.md) <br>
-- [Pocket prediction guide](references/pocket_prediction_guide.md) <br>
-- [P2Rank release archive](https://github.com/rdk/p2rank/releases/download/2.4/p2rank_2.4.tar.gz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples; generated docking outputs are PDB/PDBQT structures and score text files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local molecular docking dependencies and user-supplied protein, ligand, pocket, and output-directory parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Crafted protein, output, or generated file paths may cause unintended shell command execution in the docking script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated, unprivileged environment and avoid untrusted paths until shell commands are converted to argument-list subprocess calls with constrained paths.
+
+Risk: The P2Rank dependency is downloaded externally during setup.
+
+Mitigation: Pin dependencies and verify the P2Rank archive before use.
+
+Risk: Text-described pocket prediction can select an offset or unintended binding pocket.
+
+Mitigation: Prefer explicit pocket coordinates or residue ranges for important runs and review the predicted binding mode before acting on results.
+
+## Reference(s):
+
+- [AutoDock VINA usage reference](references/autodock_vina_manual.md)
+- [Pocket description and prediction guide](references/pocket_prediction_guide.md)
+- [P2Rank 2.4 release archive](https://github.com/rdk/p2rank/releases/download/2.4/p2rank_2.4.tar.gz)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown guidance plus generated PDB/PDBQT structures, Vina config, docking log, and tabular score text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include the top docked complex structure, ligand pose files, docking_scores.txt, and optional visualization assets when dependencies are available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

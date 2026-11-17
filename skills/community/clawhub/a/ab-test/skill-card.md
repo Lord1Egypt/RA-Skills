@@ -1,43 +1,50 @@
-## Description: <br>
-Manage A/B tests for marketing and product experiments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage A/B tests.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Marketing, product, and experimentation teams use this skill to manage A/B testing workflows, configure required API access, and run test-related command-line tasks that return JSON results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys could be exposed if pasted into chat, committed to files, or stored in unprotected environments. <br>
-Mitigation: Store AB_API_KEY in a protected environment variable or secret manager and avoid including secrets in prompts, logs, or source files. <br>
-Risk: Proposed experiment changes could affect marketing or product decisions if applied without review. <br>
-Mitigation: Review test setup, targeting, and result interpretation before applying changes or acting on exported results. <br>
-Risk: The artifact describes running scripts/ab_test.py, but that script is not included in the submitted artifact. <br>
-Mitigation: Confirm the required runtime files are available in the deployment environment before depending on command execution. <br>
+## Use Case:
 
+Marketing and product teams, or agents assisting them, use this skill to manage and automate A/B testing workflows and export results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/ab-test) <br>
-- [Publisher profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, json] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON result expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API key configuration through a protected environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill asks for an A/B testing API key but does not clearly define the service, data use, or safeguards for account-changing experiment actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review carefully before installing and use a non-production or tightly scoped A/B testing API key unless the publisher documents the exact service, allowed operations, and confirmation requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/ab-test)
+- [ClawHub publisher profile](https://clawhub.ai/user/jpengcheng523-netizen)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AB_API_KEY environment variable; expected command output is JSON.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

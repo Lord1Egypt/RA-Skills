@@ -1,43 +1,53 @@
-## Description: <br>
-Pesticide management reference covering chemical classes, application methods, IPM strategies, residue limits, safety protocols, product selection, spray-rate calculations, and compliance management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pesticide management reference for chemical classes, application methods, IPM strategies, residue limits, safety protocols, spray rate calculations, and compliance checks.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External developers, agricultural advisors, and applicators use this skill as a quick reference for pesticide classes, IPM planning, application calculations, safety checks, resistance management, and compliance topics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pesticide product choice, rate, interval, residue, safety, and compliance information can be outdated or location-specific. <br>
-Mitigation: Verify the current product label, SDS, and applicable local, state, and national regulations before acting, and consult a qualified applicator or agronomist for location-specific decisions. <br>
-Risk: Static reference output may be mistaken for legally sufficient compliance advice. <br>
-Mitigation: Use the skill as a quick reference and checklist aid only; base final operational and compliance decisions on authoritative labels, official rules, and local policy. <br>
-Risk: The skill runs a local bash script. <br>
-Mitigation: Review the script before execution and run it only in an appropriate local environment. <br>
+## Use Case:
 
+External agricultural users and agents use this skill as a quick reference for pesticide classification, IPM planning, application methods, safety practices, resistance management, and regulatory checklist prompts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/pesticide) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output selected by command.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, script VERSION, server release metadata) <br>
+Risk: Pesticide labels, SDS data, approved crops and pests, rates, buffer zones, PPE, REI/PHI, licensing requirements, and local regulations may differ from or supersede this reference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only as a quick reference and verify operational decisions against current product labels, SDS, and appropriate regulatory or licensed applicator guidance.
+
+Risk: The skill includes pesticide application and compliance checklists that could be mistaken for authoritative operational instructions.
+
+Mitigation: Treat checklist output as planning support and require review by qualified personnel before purchase, mixing, application, storage, disposal, or compliance reporting.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown command examples from a local shell reference script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No hidden data access, persistence, credential use, or external tool calls were reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

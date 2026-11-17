@@ -1,40 +1,50 @@
-## Description: <br>
-Generates short, family-friendly jokes, stories, riddles, and brain teasers in the user's language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates clean, positive jokes, short stories, riddles, and brain teasers in the user's language.
 
-## Publisher: <br>
-[lyuns](https://clawhub.ai/user/lyuns) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lyuns](https://clawhub.ai/user/lyuns)
 
-## Use Case: <br>
-External users and agents use this skill to produce light entertainment content such as jokes, short stories, riddles, and brain teasers. It is intended for clean, positive, all-ages responses rather than factual, political, violent, or sensitive content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad fun or interesting-content prompts may be answered as jokes, riddles, stories, or brain teasers even when another response style was intended. <br>
-Mitigation: Ask for the desired content type explicitly when a specific format is needed. <br>
-Risk: The skill is entertainment-oriented and is not designed for sensitive, political, violent, or factual-advice use cases. <br>
-Mitigation: Use it only for lightweight all-ages entertainment and review outputs before sharing in higher-stakes contexts. <br>
+## Use Case:
 
+Users ask the agent for light entertainment content, such as family-friendly jokes, brief stories, riddles, or brain teasers. The skill is suited for casual, all-ages creative responses rather than factual or sensitive-topic assistance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lyuns/aigc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Plain text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in the user's language; defaults to a joke when no content type is specified.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: A generic prompt such as asking for something interesting may trigger light entertainment content when the user expected a broader answer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit prompts when a specific response type is needed, and reserve this skill for casual joke, story, riddle, and brain-teaser requests.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lyuns/skills/aigc)
+- [Publisher profile](https://clawhub.ai/user/lyuns)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text creative response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and keeps content brief, clean, positive, and family-friendly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

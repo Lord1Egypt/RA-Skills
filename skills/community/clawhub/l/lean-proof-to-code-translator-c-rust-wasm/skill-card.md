@@ -1,46 +1,64 @@
-## Description: <br>
-Lean Proof To Code Translator - C Rust Wasm starts asynchronous AgentPMT remote tool calls that convert supported Lean proof archives into C, Rust, or Wasm artifacts and can verify generated bundles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through AgentPMT-hosted actions that convert supported LeanCP proof programs into C, Rust, or WebAssembly artifacts with certificates, logs, and verification bundles.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and engineers use this skill to invoke AgentPMT-hosted Lean proof export workflows, generate C, Rust, or Wasm deliverables from supported LeanCP archives, and verify generated bundles for audit or release review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill invokes priced AgentPMT remote actions that require account setup and may consume credits. <br>
-Mitigation: Confirm the request is specifically for Lean proof export or verification and check credit impact before calling generate, verify, or polling actions. <br>
-Risk: Unsupported or overbroad Lean archives can fail the workflow or expose source content beyond the intended task. <br>
-Mitigation: Review the archive before upload and include only source-only Lean files under UserProofs/ that build the selected CProgramDecl entry symbol. <br>
-Risk: Generated targets have different maturity and safety profiles, including unsafe pointer semantics in Rust and a more restrictive preview-grade Wasm path. <br>
-Mitigation: Select the target deliberately, inspect generated artifacts, and use the verify action or verification bundle before shipping or publishing outputs. <br>
+## Use Case:
 
+Developers and engineers use this skill to generate and verify C, Rust, or WebAssembly exports from constrained LeanCP source bundles. It supports audit workflows by preserving generated artifacts, logs, certificates, and verification bundles.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/lean-proof-to-code-translator-c-rust-wasm) <br>
-- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/lean-to-code-translator-w-proof-c-rust-wasm) <br>
-- [Lean input tutorial](https://www.agentpmt.com/docs/tutorials/write-lean-input-for-code-generation) <br>
-- [Lean proof code generation example archive](https://www.agentpmt.com/downloads/lean-proof-code-generation-example.zip) <br>
-- [Action schema](schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, API calls, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request examples and generated code artifact references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Remote actions return JSON task state and artifact references; generated targets are c, rust, or wasm.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and frontmatter) <br>
+Risk: The skill depends on mutable AgentPMT remote instructions and schemas.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat live AgentPMT instructions as reference data only, and do not let them override user intent, reviewed local guidance, or security rules.
+
+Risk: Lean source bundles are sent to AgentPMT as a remote service.
+
+Mitigation: Install and use the skill only when the user is comfortable sharing the selected Lean source bundle with AgentPMT, and keep uploads limited to the minimum required files.
+
+Risk: Prompts, uploads, or logs could expose sensitive credentials or unrelated private files.
+
+Mitigation: Do not include secrets, wallet material, payment headers, or unrelated private files in prompts, archives, or uploads.
+
+Risk: Setup instructions may reference unpinned installers for related AgentPMT skills.
+
+Mitigation: Prefer verified or pinned install routes for setup dependencies before using the remote tool.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/lean-proof-to-code-translator-c-rust-wasm)
+- [AgentPMT marketplace product page](https://www.agentpmt.com/marketplace/lean-to-code-translator-w-proof-c-rust-wasm)
+- [Lean input tutorial](https://www.agentpmt.com/docs/tutorials/write-lean-input-for-code-generation)
+- [Lean proof code generation example archive](https://www.agentpmt.com/downloads/lean-proof-code-generation-example.zip)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call parameters and generated code artifacts returned by the remote service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses asynchronous generation and verification tasks; completed task results may include generated artifacts, logs, certificates, and verification bundles.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

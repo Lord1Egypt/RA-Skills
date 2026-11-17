@@ -1,47 +1,63 @@
-## Description: <br>
-Use when integrating Outlit tracking into web, server, native, or desktop apps; adding SDK event tracking, identity, consent, activation, billing, visitor tracking, customerId attribution, or troubleshooting @outlit/browser, @outlit/node, or the Rust outlit crate. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when integrating Outlit tracking into web, server, native, or desktop apps; adding SDK event tracking, identity, consent, activation configuration, billing integrations, visitor tracking, customerId attribution, or troubleshooting @outlit/browser, @outlit/node, or the Rust outlit crate.
 
-## Publisher: <br>
-[leo-paz](https://clawhub.ai/user/leo-paz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo-paz](https://clawhub.ai/user/leo-paz)
 
-## Use Case: <br>
-Developers and engineers use this skill to add or troubleshoot Outlit tracking across browser, server, native, and desktop applications, including identity, consent, event tracking, activation, billing, and customer attribution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Analytics tracking can create visitor storage and collect product or website activity before consent and privacy requirements are settled. <br>
-Mitigation: Confirm consent, privacy notice, and data-minimization requirements before enabling automatic tracking; use autoTrack false when consent is uncertain. <br>
-Risk: Custom tracking events may send PII, secrets, or unnecessary form data to analytics if event properties are copied without review. <br>
-Mitigation: Review event properties before instrumentation and avoid sending PII, secrets, or unnecessary form data. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or troubleshoot Outlit analytics instrumentation across browser, server, native, and desktop applications, including identity, consent, activation, billing, and event tracking decisions.
 
-## Reference(s): <br>
-- [Outlit Skill on ClawHub](https://clawhub.ai/leo-paz/skills/outlit-sdk) <br>
-- [Outlit tracking quickstart](https://docs.outlit.ai/tracking/quickstart) <br>
-- [How Outlit tracking works](https://docs.outlit.ai/tracking/how-it-works) <br>
-- [Customer context graph](https://docs.outlit.ai/concepts/customer-context-graph) <br>
-- [Identity resolution](https://docs.outlit.ai/concepts/identity-resolution) <br>
-- [Outlit browser SDK](https://docs.outlit.ai/tracking/browser/npm) <br>
-- [Outlit Node.js SDK](https://docs.outlit.ai/tracking/server/nodejs) <br>
-- [Outlit Rust and Tauri SDK](https://docs.outlit.ai/tracking/server/rust) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks and command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SDK setup steps, environment variable names, event tracking examples, identity and consent recommendations, and troubleshooting checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can lead agents to enable broad automatic visitor, form, and identity tracking in the target app.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review consent, auto-tracking, user disclosure, data retention, and sensitive-field handling before deploying instrumentation.
+
+Risk: The skill may guide use of persistent fingerprints, email, userId, or customerId values for attribution.
+
+Mitigation: Collect the minimum identifiers needed, align identity choices with privacy policy and consent requirements, and avoid sending secrets or unnecessary personal data.
+
+Risk: The installation guidance includes an unpinned global npx command.
+
+Mitigation: Prefer a pinned, local, or isolated install path before using the skill in production environments.
+
+## Reference(s):
+
+- [Outlit skill page](https://clawhub.ai/leo-paz/skills/outlit-sdk)
+- [Outlit quickstart](https://docs.outlit.ai/tracking/quickstart)
+- [Outlit tracking concepts](https://docs.outlit.ai/tracking/how-it-works)
+- [Outlit customer context graph](https://docs.outlit.ai/concepts/customer-context-graph)
+- [Outlit browser SDK](https://docs.outlit.ai/tracking/browser/npm)
+- [Outlit Node.js SDK](https://docs.outlit.ai/tracking/server/nodejs)
+- [Outlit Rust SDK](https://docs.outlit.ai/tracking/server/rust)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include framework-specific installation, initialization, identity, consent, event tracking, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.4 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

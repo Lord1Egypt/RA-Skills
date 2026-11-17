@@ -1,44 +1,54 @@
-## Description: <br>
-Summarize and analyze text documents without external APIs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Summarize, analyze, and extract insights from local text documents without external APIs.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers and knowledge workers use this skill to quickly digest long text documents, extract key points and keywords, inspect document structure and readability, and compare two document versions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads user-selected local text files, so sensitive document contents may be exposed to the agent session. <br>
-Mitigation: Use it only with documents the agent is allowed to read and avoid passing unnecessary confidential files. <br>
-Risk: The bundled shell script may mishandle file path substitution, which can make results incomplete or fail unexpectedly. <br>
-Mitigation: Run on a small non-sensitive sample first, check file paths carefully, and verify the summarized output against the original document. <br>
-Risk: Extractive summaries, keyword counts, and comparisons can omit context or overemphasize simple statistical signals. <br>
-Mitigation: Treat the output as a drafting aid and review the source document before making decisions from the summary. <br>
+## Use Case:
 
+Developers, agents, and knowledge workers use this skill to digest reports, extract ranked bullets and keywords, compute readability statistics, detect outlines, and compare two document versions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-doc-summarizer) <br>
-- [Publisher profile](https://clawhub.ai/user/loutai0307-prog) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or terminal text with summaries, ranked bullets, keyword tables, document statistics, outlines, or comparison results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local-only processing of user-selected text files; outputs are extractive or statistical and should be reviewed before relying on them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill reads document files supplied by the user, so sensitive content in those files may be processed locally by the agent workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on documents the user intentionally selects for analysis and review the selected paths before execution.
+
+Risk: Server security guidance notes a functional quoting issue around file arguments that may affect reliability.
+
+Mitigation: Test commands on non-sensitive sample files before relying on results for important document review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-doc-summarizer)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or plain text with command examples and document analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local summaries, bullets, keyword tables, statistics, outlines, and document comparison results from user-specified files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,55 @@
-## Description: <br>
-Leevar 专属企业家思维框架，用于商业决策、战略规划、业务创新、团队管理、项目启动和市场判断，并融合使命驱动与第一原理分析来生成执行路径。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Leevar Entrepreneur Mindset helps an agent structure entrepreneurship, strategy, project evaluation, market judgment, and execution planning through a first-principles and mission-driven decision framework.
 
-## Publisher: <br>
-[forevercrab321-svg](https://clawhub.ai/user/forevercrab321-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[forevercrab321-svg](https://clawhub.ai/user/forevercrab321-svg)
 
-## Use Case: <br>
-Leevar and supporting agents use this Chinese-language framework to structure entrepreneurial decisions, strategy planning, product selection, expansion, competition, investment, team management, product design, and business model discussions. It produces first-principles analysis, mission checks, and concrete next-step recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill applies a strongly opinionated entrepreneurial strategy lens that may steer business, investment, hiring, or operational decisions too firmly. <br>
-Mitigation: Treat recommendations as brainstorming support and review them with appropriate financial, legal, hiring, and operational judgment before acting. <br>
-Risk: The skill is personalized for Leevar, so its assumptions and mission framing may not fit other users or organizations. <br>
-Mitigation: Confirm that the mission, project scoring criteria, and execution recommendations match the user's actual goals and constraints before relying on them. <br>
+## Use Case:
 
+External users and agents use this skill to structure solopreneur business decisions, project selection, expansion choices, competitive strategy, and concrete next actions. It is especially suited for Chinese-language entrepreneurship planning where a strongly opinionated framework is desired.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/forevercrab321-svg/leevar-entrepreneur) <br>
-- [Strategic case library](references/strategy-cases.md) <br>
-- [Core quotes](references/quotes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured natural-language guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language strategic decision support; no code execution, shell commands, credential handling, or privileged actions are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can shape business, strategy, and investment-oriented answers through a strongly opinionated framework.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that posture is desired, and compare important decisions against independent market, financial, and legal review.
+
+Risk: Investment or business suggestions may be mistaken for professional advice.
+
+Mitigation: Treat outputs as brainstorming and seek qualified financial or legal advice before acting on high-stakes recommendations.
+
+## Reference(s):
+
+- [Strategy Case Library](references/strategy-cases.md)
+- [Core Quotes](references/quotes.md)
+- [ClawHub Skill Page](https://clawhub.ai/forevercrab321-svg/skills/leevar-entrepreneur)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text strategy guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No code execution, persistence, credential use, or hidden data access reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

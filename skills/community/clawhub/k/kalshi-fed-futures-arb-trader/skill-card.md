@@ -1,47 +1,61 @@
-## Description: <br>
-Compares CME FedWatch implied rate probabilities to Kalshi Fed rate decision market prices and trades when divergence exceeds threshold. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares CME FedWatch implied rate probabilities to Kalshi Fed rate decision market prices and trades when divergence exceeds threshold.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and advanced trading agents use this skill to compare FedWatch-implied rate-cut probabilities with Kalshi Fed rate market prices, surface divergence, and optionally place constrained trades. It is intended for users who can manage real-money prediction-market and wallet risk. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real USDC trades through the configured trading venue. <br>
-Mitigation: Start in dry-run mode, use --live only intentionally, and use a dedicated low-balance wallet with a scoped Simmer API key. <br>
-Risk: The default FedWatch probabilities are static and may become stale. <br>
-Mitigation: Verify or replace the FedWatch probability inputs before live use. <br>
-Risk: The skill depends on simmer-sdk and external market APIs for discovery, context, and execution. <br>
-Mitigation: Review simmer-sdk and required credentials if full auditability is needed before deploying with live funds. <br>
+## Use Case:
 
+External users and trading agents use this skill to compare FedWatch-implied rate-cut probabilities with Kalshi market prices, then identify or execute trades when the configured divergence threshold is met.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/diagnostikon/kalshi-fed-futures-arb-trader) <br>
-- [Publisher profile](https://clawhub.ai/user/diagnostikon) <br>
-- [Simmer skills homepage](https://simmer.markets/skills) <br>
-- [simmer-sdk repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
-- [simmer-sdk PyPI package](https://pypi.org/project/simmer-sdk/) <br>
-- [CME FedWatch Tool](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Console text with optional JSON automaton report and Markdown setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to dry-run mode; live execution requires an explicit --live flag and configured credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can place live trades when invoked with --live.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use paper mode first, then enable --live only with tightly limited trading credentials and explicit loss limits.
+
+Risk: The release asks for a raw Solana private key that the security evidence calls unnecessary.
+
+Mitigation: Do not provide a funded Solana private key unless the publisher explains why this implementation needs it.
+
+Risk: The trading dependency and execution path affect real funds.
+
+Mitigation: Pin and review simmer-sdk before deployment and monitor trades with conservative position limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diagnostikon/skills/kalshi-fed-futures-arb-trader)
+- [Simmer Skills homepage](https://simmer.markets/skills)
+- [Simmer SDK on PyPI](https://pypi.org/project/simmer-sdk/)
+- [Simmer SDK repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+- [CME FedWatch Tool](https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [CLI text, JSON automaton reports, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can run in dry-run mode by default or execute live trades when explicitly invoked with --live.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

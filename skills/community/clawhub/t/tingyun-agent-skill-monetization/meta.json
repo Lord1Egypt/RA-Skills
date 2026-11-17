@@ -1,0 +1,45 @@
+{
+ "pkg": "tingyun-agent-skill-monetization",
+ "kind": "agent",
+ "name_zh": "AI Agent 技能包变现路径顾问",
+ "desc_zh": "为想把 AI 技能包上架变现的开发者梳理多平台分成策略、定价、素材与推广要点，输出可执行的上市清单。",
+ "desc_en": "Turns a skill package into a listed product: platform revenue-share strategy, pricing, asset requirements and promotion checklist.",
+ "tags": [
+  "技能变现",
+  "多平台",
+  "产品化"
+ ],
+ "keywords": [
+  "skill monetization",
+  "revenue share",
+  "marketplace listing",
+  "pricing",
+  "promotion"
+ ],
+ "suggested_price_usd": [
+  9
+ ],
+ "price_cny_tiers": [
+  39,
+  79,
+  199
+ ],
+ "suggested_price_cny": 79,
+ "origin": "停云文化 · 原创撰写",
+ "created_at": "2026-11-02",
+ "platforms": {
+  "agensi": {
+   "slug": "tingyun-agent-skill-monetization",
+   "price_usd": 9
+  },
+  "skillhub": {
+   "status": "pending"
+  },
+  "github": {
+   "status": "pending"
+  },
+  "workbuddy": {
+   "status": "pending"
+  }
+ }
+}

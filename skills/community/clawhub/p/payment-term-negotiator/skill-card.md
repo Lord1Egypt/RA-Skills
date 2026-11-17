@@ -1,41 +1,55 @@
-## Description: <br>
-Provides frameworks and templates for negotiating payment terms with structured analysis, actionable recommendations, and next steps guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides frameworks and templates for negotiating payment terms with structured analysis, actionable recommendations, and next steps guidance.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-Business operators, finance teams, and procurement staff use this skill to prepare payment-term negotiation strategies, compare counteroffers, and plan next steps for supplier or client negotiations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat negotiation templates or cash-flow planning guidance as legal, accounting, or financial advice for high-value contracts. <br>
-Mitigation: Use the output as planning support and have qualified legal, accounting, or finance professionals review important agreements and financing decisions. <br>
-Risk: Recommendations can be misleading when user-provided payment amounts, timing, or business constraints are incomplete. <br>
-Mitigation: Validate assumptions with current contract terms, cash-flow data, and supplier or client constraints before acting on the guidance. <br>
+## Use Case:
 
+Business owners, finance teams, and procurement or vendor-management staff use this skill to draft payment-term negotiation strategies, compare cash-flow tradeoffs, and plan next steps when customers or suppliers request different terms.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/harrylabsj/payment-term-negotiator) <br>
-- [Publisher Profile](https://clawhub.ai/user/harrylabsj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, text, JSON] <br>
-**Output Format:** [JSON string containing input analysis, recommendations, next steps, templates, and a disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational business guidance only; no external API calls, code execution, or financial transactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Users may treat negotiation templates or cash-flow examples as professional financial or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational starting points and have qualified financial or legal professionals review decisions before acting on them.
+
+Risk: Examples mix English and Chinese, which may create unclear language expectations for some users.
+
+Mitigation: Clarify the intended response language in the user request and review generated wording before sharing it externally.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/payment-term-negotiator)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, JSON]
+
+**Output Format:** [JSON string with structured analysis, recommendations, next steps, templates, and a disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational only; no external API calls, transactions, or persistence.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

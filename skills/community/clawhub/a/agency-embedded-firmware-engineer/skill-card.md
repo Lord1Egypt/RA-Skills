@@ -1,41 +1,50 @@
-## Description: <br>
-Expert AI agent specializing in embedded firmware engineer. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in embedded firmware engineer.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-Developers and firmware engineers use this skill for embedded firmware design and implementation guidance across resource-constrained systems, RTOS task architecture, peripheral drivers, and MCU-specific workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Firmware snippets may be adapted directly into production code without complete timeout, interrupt, DMA, or fault-handling review. <br>
-Mitigation: Treat generated snippets as starting points and require bounded waits, error handling, hardware-in-the-loop validation, and code review before compiling or flashing to hardware. <br>
-Risk: Embedded guidance can be incomplete for a specific MCU, board revision, SDK, HAL, or timing budget. <br>
-Mitigation: Verify recommendations against the target datasheet, reference manual, SDK documentation, board constraints, and measured timing data. <br>
+## Use Case:
 
+Developers and embedded engineers use this agent for firmware design and implementation guidance across constrained MCU systems, RTOS task architecture, peripheral drivers, and communication protocols.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-embedded-firmware-engineer) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides advisory firmware patterns and implementation guidance; outputs require engineering review before use on hardware.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Sample firmware code may be copied into device projects before it has production-grade return-value checks, timeouts, and safe-failure behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden generated or copied firmware examples with explicit error handling, bounded waits, and target-specific validation before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zhouqkt/skills/agency-embedded-firmware-engineer)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with embedded code and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include firmware patterns, RTOS architecture guidance, peripheral driver recommendations, and validation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

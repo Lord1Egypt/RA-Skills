@@ -1,42 +1,55 @@
-## Description: <br>
-Checks export scope, destination, privacy, redaction, and approval before files, records, datasets, logs, or account data are exported or shared. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks export scope, destination, privacy, redaction, and approval before files, records, datasets, logs, or account data are exported or shared.
 
-## Publisher: <br>
-[mindbomber](https://clawhub.ai/user/mindbomber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mindbomber](https://clawhub.ai/user/mindbomber)
 
-## Use Case: <br>
-Agents and operators use this skill to review proposed data exports before sharing files, records, datasets, logs, reports, messages, or account data. It helps decide whether to proceed, narrow scope, ask for more detail, redact, request approval, route to review, or block the export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the skill as an enforcement mechanism even though the security evidence identifies it as advisory instruction text. <br>
-Mitigation: Confirm operational users understand that it provides guardrail guidance and pair it with actual access controls, approval workflows, or review tooling where enforcement is required. <br>
-Risk: Marketplace capability tags include broad labels that may affect policy routing or trust decisions. <br>
-Mitigation: Review the published capability tags before relying on them for automated policy, trust, or routing decisions. <br>
+## Use Case:
 
+Agents and developers use this skill to gate data export requests by checking scope, destination, privacy sensitivity, redaction, approval, and retention before sharing files, records, datasets, logs, reports, messages, or account data.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mindbomber/aana-data-export-guardrail-skill) <br>
-- [Data export guardrail schema](artifact/schemas/data-export-guardrail.schema.json) <br>
-- [Redacted data export guardrail example](artifact/examples/redacted-data-export-guardrail.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with a structured text decision pattern] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no code execution, package installation, persistence, service calls, or data export is performed by the skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Broad, bulk, cross-account, external, public, or sensitive exports can disclose private or regulated data when scope, recipient, retention, or approval is unclear.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's checks to narrow scope, redact sensitive fields, verify destination and retention, require approval, or block unauthorized and excessive exports.
+
+Risk: A configured checker could receive unnecessary sensitive details if review payloads include full records, secrets, logs, customer data, or unrelated private data.
+
+Mitigation: Send only the minimal redacted review payload described by the skill and use the optional checker path only with a trusted, properly configured review service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mindbomber/skills/aana-data-export-guardrail-skill)
+- [Data export guardrail schema](artifact/schemas/data-export-guardrail.schema.json)
+- [Redacted data export guardrail example](artifact/examples/redacted-data-export-guardrail.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown guidance with a structured text decision pattern and optional JSON-compatible review payload.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instruction-only; may ask, redact, require approval, route to review, or block risky exports.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence; artifact manifest lists 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

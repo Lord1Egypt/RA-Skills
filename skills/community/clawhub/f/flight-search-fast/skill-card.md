@@ -1,42 +1,59 @@
-## Description: <br>
-Search Google Flights for flight prices and schedules using browser automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search Google Flights for current flight prices, schedules, cabin comparisons, and booking-provider links using browser automation.
 
-## Publisher: <br>
-[skillhq-ai](https://clawhub.ai/user/skillhq-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[skillhq-ai](https://clawhub.ai/user/skillhq-ai)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to search current Google Flights prices, schedules, availability, cabin comparisons, and booking-provider links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may read visible Google Flights page text, including location-influenced search context or unrelated details if the browser is signed in. <br>
-Mitigation: Use explicit airports or cities, avoid signed-in pages with unrelated personal details, and review visible page context before running the skill. <br>
-Risk: Booking links lead to third-party airline or online travel agency sites with independent prices, terms, and privacy practices. <br>
-Mitigation: Treat booking links as handoff options only, verify price and terms on the provider site, and do not let the agent complete purchases. <br>
+## Use Case:
 
+External users and travel-focused agents use this skill to search Google Flights for airfare, schedules, cabin price deltas, and booking-provider links. The skill supports comparison and handoff workflows, but does not complete purchases or enter personal or payment data.
 
-## Reference(s): <br>
-- [Google Flights Skill Page](https://clawhub.ai/skillhq-ai/flight-search-fast) <br>
-- [Interaction Patterns](references/interaction-patterns.md) <br>
-- [agent-browser CLI](https://github.com/nicobailey/agent-browser) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style concise flight lists with optional booking-link tables and inline shell commands for browser automation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs current third-party flight-result text, prices, schedules, cabin comparisons, and booking provider links when visible in Google Flights.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Flight searches are sent to Google Flights, and booking links may lead to third-party airline or OTA sites with separate privacy and payment practices.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users when third-party services are involved, present links as handoffs, and do not complete purchases or enter personal or payment data.
+
+Risk: The skill depends on browser automation against a live web interface, so consent banners, CAPTCHA, locale differences, or UI changes can block or alter results.
+
+Mitigation: Use fresh snapshots, follow the documented fallback interactions, and stop rather than attempting to solve CAPTCHA challenges.
+
+Risk: Installing the skill or its browser automation dependency from unpinned external sources can create supply-chain exposure.
+
+Mitigation: Install from trusted, pinned revisions when possible and review or scan the skill before deployment.
+
+## Reference(s):
+
+- [Google Flights](https://www.google.com/travel/flights)
+- [agent-browser CLI](https://github.com/nicobailey/agent-browser)
+- [Google Flights Interaction Patterns](artifact/references/interaction-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text or Markdown flight summaries with optional booking-provider links and browser automation commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps the browser results session available for booking-link extraction and stops before purchase or payment steps.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

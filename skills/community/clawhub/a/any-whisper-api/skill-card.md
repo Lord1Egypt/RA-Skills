@@ -1,40 +1,54 @@
-## Description: <br>
-Transcribe audio via API Whisper with any compatible local servers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio via API Whisper with any compatible local servers.
 
-## Publisher: <br>
-[NW15D](https://clawhub.ai/user/NW15D) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[nw15d](https://clawhub.ai/user/nw15d)
 
-## Use Case: <br>
-Developers and users use this skill to transcribe local audio files through an OpenAI or Whisper-compatible transcription API, with options for model, language, prompt, output path, and JSON output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Audio content and the bearer token are sent to the configured WHISPER_API_HOST. <br>
-Mitigation: Use only a trusted local or known Whisper-compatible server, and avoid sensitive audio unless the endpoint's handling and retention are acceptable. <br>
-Risk: The configured server address was flagged as unsafe to handle. <br>
-Mitigation: Set WHISPER_API_HOST explicitly to a known endpoint and review the command before execution. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/NW15D/any-whisper-api) <br>
-- [OpenAI speech-to-text documentation](https://platform.openai.com/docs/guides/speech-to-text) <br>
+## Use Case:
 
+Developers and external users use this skill to transcribe local audio files through an OpenAI-compatible Whisper transcription endpoint, including compatible local Whisper servers.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [Transcript text or JSON written to a file by a shell command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [By default, output is written beside the input audio file; callers can override the path with --out.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Audio recordings and the configured API key can be sent to any WHISPER_API_HOST value, including insecure or unintended endpoints.
+
+Mitigation: Use only a trusted HTTPS endpoint or a truly local server, and avoid sending production OpenAI API keys to custom Whisper servers.
+
+Risk: Submitted recordings may contain sensitive data and are uploaded in full to the configured transcription endpoint.
+
+Mitigation: Treat input recordings as sensitive data and review endpoint trust and retention expectations before transcription.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nw15d/skills/any-whisper-api)
+- [Publisher profile](https://clawhub.ai/user/nw15d)
+- [OpenAI speech-to-text guide](https://platform.openai.com/docs/guides/speech-to-text)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Transcription files written as text or JSON, with shell command guidance for running the transcription script.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl plus WHISPER_API_KEY and WHISPER_API_HOST environment configuration.]
+
+## Skill Version(s):
+
+1.3.0 (source: release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

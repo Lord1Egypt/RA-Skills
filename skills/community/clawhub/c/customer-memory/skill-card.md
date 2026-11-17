@@ -1,41 +1,55 @@
-## Description: <br>
-Give AI agents persistent memory of customer interactions, preferences, and history using BlueColumn. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Give AI agents persistent memory of customer interactions, preferences, and history using BlueColumn for support, sales, and customer-success workflows.
 
-## Publisher: <br>
-[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bluecolumnconsulting-lgtm](https://clawhub.ai/user/bluecolumnconsulting-lgtm)
 
-## Use Case: <br>
-Support, sales, and customer success agents use this skill to recall customer history, store interaction summaries, and log preferences through BlueColumn. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores and recalls customer interaction history, which can include sensitive customer records. <br>
-Mitigation: Use only where BlueColumn is approved for customer data, minimize or pseudonymize identifiers where feasible, and define retention, deletion, and access-control rules before production use. <br>
-Risk: The skill requires a BlueColumn API key. <br>
-Mitigation: Use a dedicated scoped API key and avoid logging or exposing credentials. <br>
+## Use Case:
 
+Support, sales, and customer-success agents use this skill to recall and store customer-specific interaction history, preferences, issue resolutions, and notes in BlueColumn.
 
-## Reference(s): <br>
-- [BlueColumn API Reference](references/api.md) <br>
-- [BlueColumn](https://bluecolumn.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, API calls, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a scoped BlueColumn API key and careful handling of customer identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Persistent storage of identifiable customer data may create privacy, retention, and access-control exposure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Define permitted data before use, redact secrets and sensitive personal data, prefer opaque customer IDs over emails, and establish retention, deletion, and access-review procedures.
+
+Risk: Customer memory recall could mix data across tenants or customers if queries are too broad.
+
+Mitigation: Restrict recall to the current tenant and customer and review returned sources before using recalled context in customer-facing responses.
+
+## Reference(s):
+
+- [BlueColumn API Reference](references/api.md)
+- [BlueColumn](https://bluecolumn.ai)
+- [ClawHub Skill Page](https://clawhub.ai/bluecolumnconsulting-lgtm/skills/customer-memory)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API Calls, Guidance]
+
+**Output Format:** [Markdown with inline bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a BlueColumn API key; outputs should avoid logging or exposing customer data and credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

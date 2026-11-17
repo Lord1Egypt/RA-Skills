@@ -1,39 +1,59 @@
-## Description: <br>
-Channels the combined product philosophy of Steve Jobs and Jony Ive to support product, design, messaging, naming, pricing, and strategic decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jobs-Ive helps agents apply a Jobs/Ive-inspired product lens to simplify product strategy, interface design, naming, copywriting, pricing, and presentations.
 
-## Publisher: <br>
-[stubbi](https://clawhub.ai/user/stubbi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[stubbi](https://clawhub.ai/user/stubbi)
 
-## Use Case: <br>
-External users, product teams, designers, and founders use this skill to simplify products and copy, critique interfaces, name products, shape pricing, prune features, and present product strategy through an Apple-like product lens. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad product, design, pricing, or simplification requests and provide strongly opinionated creative or business guidance. <br>
-Mitigation: Treat its recommendations as a creative product lens and review strategy, pricing, and design decisions with appropriate business, user research, legal, or accessibility context before adoption. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Ive's Design Principles: Complete Reference](references/design-principles.md) <br>
-- [Apple Messaging & Copy Playbook](references/messaging.md) <br>
-- [The Jobs/Ive Worldview: Complete Philosophical Reference](references/philosophy.md) <br>
+## Use Case:
 
+External product builders, designers, founders, marketers, and agents use this skill to apply an opinionated Apple-inspired filter to product decisions, naming, copy, interface critique, pricing, onboarding, and presentations.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured prose with product, design, messaging, naming, pricing, or strategy recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, persistence, or data movement was identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad prompts such as "simplify this" may activate an opinionated Apple-inspired lens when a neutral review was expected.
+
+Mitigation: Use the skill when the user wants product, design, copy, naming, pricing, or presentation guidance with a strong simplification bias, and compare recommendations against the user's actual goals.
+
+Risk: The artifact footer includes an `npx` package command.
+
+Mitigation: Do not run external package commands from the skill text unless the package source is trusted and appropriate for the environment.
+
+Risk: The Jobs/Ive framing can over-prioritize minimalism or decisiveness over accessibility, operational needs, or user research.
+
+Mitigation: Treat the output as a design lens and review recommendations against practical constraints, user evidence, accessibility requirements, and business context before acting.
+
+## Reference(s):
+
+- [Jobs-Ive Skill Page](https://clawhub.ai/stubbi/skills/jobs-ive)
+- [The Jobs/Ive Worldview: Complete Philosophical Reference](references/philosophy.md)
+- [Apple Messaging & Copy Playbook](references/messaging.md)
+- [Ive's Design Principles: Complete Reference](references/design-principles.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text guidance, critiques, rewritten copy, naming options, decision frameworks, and presentation outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static guidance skill with no runtime code, persistence, hidden data access, MCP usage, or credential requirements.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,61 @@
-## Description: <br>
-WhoisFreaks (whoisfreaks.com) support for searching and reading domain, IP, ASN, availability, and subdomain data through the OOMOL oo CLI connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search WhoisFreaks for domain availability, domain and IP WHOIS records, ASN records, and subdomain information through a connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operations teams use this skill to run user-directed WhoisFreaks lookups for domains, IP addresses, autonomous systems, domain availability, and subdomains from an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a connected WhoisFreaks account and may use account credentials or billing through the OOMOL connector. <br>
-Mitigation: Use it only with an intended OOMOL-connected WhoisFreaks account, and run setup, login, connection, or billing steps only after a relevant failure and user confirmation. <br>
-Risk: WHOIS, IP, ASN, and subdomain lookups are sent to the WhoisFreaks/OOMOL connector. <br>
-Mitigation: Submit only lookup targets the user explicitly wants to query, and avoid adding unrelated sensitive data to action payloads. <br>
-Risk: Connector action inputs can change over time. <br>
-Mitigation: Inspect the live action schema before building payloads and match requests to the authoritative schema. <br>
+## Use Case:
 
+Developers and infrastructure or security teams can use this skill to check domain availability and retrieve WHOIS records or subdomain listings from a connected WhoisFreaks account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-whoisfreaks) <br>
-- [WhoisFreaks homepage](https://whoisfreaks.com) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution and returns connector responses as JSON when commands are run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and frontmatter) <br>
+Risk: The optional CLI setup path uses an unverified remote installer, and the executable has not been verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup before installing and use a verified CLI release.
+
+Risk: Startup synchronization may change other agents’ installed skills without clear user control.
+
+Mitigation: Approve local changes separately and consider disabling startup skill synchronization before its first run.
+
+Risk: Connecting WhoisFreaks entrusts OOMOL with account access and lookup requests.
+
+Mitigation: Review the connection setup before installing or connecting the skill.
+
+## Reference(s):
+
+- [WhoisFreaks documentation](https://whoisfreaks.com/documentation/)
+- [WhoisFreaks](https://whoisfreaks.com)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [ClawHub skill listing](https://clawhub.ai/oomol/skills/oo-whoisfreaks)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Shell commands, Configuration instructions]
+
+**Output Format:** [JSON lookup responses with shell command guidance in Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Lookup actions are read-only and require the oo CLI and a connected WhoisFreaks account.]
+
+## Skill Version(s):
+
+1.0.6 (source: artifact frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

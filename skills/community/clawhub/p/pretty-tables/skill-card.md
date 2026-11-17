@@ -1,38 +1,53 @@
-## Description: <br>
-Create beautiful, full-width tables in Word documents using the docx npm library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Pretty Tables helps agents create professional, full-width DOCX tables with the docx npm library that render consistently in Microsoft Word and Google Docs.
 
-## Publisher: <br>
-[happytreees](https://clawhub.ai/user/happytreees) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[happytreees](https://clawhub.ai/user/happytreees)
 
-## Use Case: <br>
-Developers and document-generation agents use this skill to create styled DOCX tables for itineraries, schedules, data tables, and reports that render consistently in Microsoft Word and Google Docs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example code writes a DOCX file and depends on the docx npm package. <br>
-Mitigation: Install docx from a trusted package source and review the output filename and location before running examples. <br>
+## Use Case:
 
+Developers and agents use this skill when generating JavaScript/docx code for itineraries, schedules, data tables, and reports that need consistent table width, shading, padding, and column sizing across DOCX viewers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/happytreees/pretty-tables) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance focuses on DOCX table widths, cell padding, colors, and rendering compatibility.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated JavaScript examples may write DOCX files to disk in unintended locations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review output paths before running generated scripts and execute them only in intended project directories.
+
+Risk: Changing the documented table-width, cell-width, shading, padding, or column-sum rules can produce inconsistent DOCX rendering across viewers.
+
+Mitigation: Use DXA widths on both tables and cells, ShadingType.CLEAR for fills, explicit cell margins, and column widths that sum exactly to the table width.
+
+## Reference(s):
+
+- [ClawHub Pretty Tables skill page](https://clawhub.ai/happytreees/skills/pretty-tables)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code]
+
+**Output Format:** [Markdown with JavaScript code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Emphasizes DXA table and cell widths, ShadingType.CLEAR fills, cell margins, and exact column-width sums.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

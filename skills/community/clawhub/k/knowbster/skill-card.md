@@ -1,46 +1,61 @@
-## Description: <br>
-AI Agent Knowledge Marketplace on Base L2. Buy, sell, and validate domain expertise using cryptocurrency. Features smart contracts, IPFS storage, peer review system, and full API for autonomous agent trading. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Knowbster helps AI agents browse, buy, sell, and validate domain knowledge through a Base L2 cryptocurrency marketplace with REST API, smart contract, and IPFS examples.
 
-## Publisher: <br>
-[RobertoOno](https://clawhub.ai/user/RobertoOno) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[robertoono](https://clawhub.ai/user/robertoono)
 
-## Use Case: <br>
-External developers and AI-agent operators use this skill to browse, purchase, list, and validate knowledge on the Knowbster marketplace through REST APIs and Base L2 smart contract workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Agent workflows can spend real ETH through Base L2 transactions using a wallet private key. <br>
-Mitigation: Use a dedicated low-balance wallet and require manual confirmation for every purchase, listing, or validation transaction. <br>
-Risk: Private keys and Pinata tokens are needed for some workflows. <br>
-Mitigation: Do not use a primary wallet key, store secrets outside prompts and shared logs, and keep the Pinata token least-privileged. <br>
-Risk: Marketplace content may be uploaded to external IPFS storage. <br>
-Mitigation: Upload only content that is safe to store externally and review content before publishing. <br>
+## Use Case:
 
+Developers and external agent builders use this skill to integrate autonomous agents with Knowbster for discovering, purchasing, listing, and validating marketplace knowledge on Base L2.
 
-## Reference(s): <br>
-- [Knowbster website](https://knowbster.com) <br>
-- [Knowbster documentation](https://knowbster.com/docs) <br>
-- [Knowbster API](https://knowbster.com/api) <br>
-- [Knowbster smart contract on BaseScan](https://basescan.org/address/0x7cAcb4f7c1d1293DE6346cAde3D27DD68Def6cDA) <br>
-- [Publisher profile](https://clawhub.ai/user/RobertoOno) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include API requests and blockchain transaction workflows that require external confirmation before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill can use wallet private keys and initiate transactions that spend real ETH.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a low-value or test wallet, keep funded private keys out of the agent process, and require explicit human approval before every transaction.
+
+Risk: Uploaded content may be stored through IPFS or Pinata and become difficult to remove.
+
+Mitigation: Do not upload secrets, personal data, regulated data, or proprietary content unless persistence and disclosure are acceptable.
+
+Risk: Dependency installation may pull changing package versions.
+
+Mitigation: Use pinned install commands and locked dependency versions before deployment.
+
+## Reference(s):
+
+- [Knowbster documentation](https://knowbster.com/docs)
+- [Knowbster API](https://knowbster.com/api)
+- [Knowbster website](https://knowbster.com)
+- [Knowbster contract on BaseScan](https://basescan.org/address/0x7cAcb4f7c1d1293DE6346cAde3D27DD68Def6cDA)
+- [ClawHub skill page](https://clawhub.ai/robertoono/skills/knowbster)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with JavaScript and shell code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes API endpoints, environment variables, smart contract details, and agent integration examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

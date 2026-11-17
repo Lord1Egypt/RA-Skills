@@ -1,0 +1,162 @@
+{
+  "INTJ": {
+    "careers": [
+      {"name_zh": "战略咨询顾问", "name_en": "Strategy Consultant", "reason_zh": "Ni+Te 的宏观框架思维与结构化拆解能力，天然适合顶层设计与复杂问题求解。", "reason_en": "Their big-picture framing and structured decomposition are tailor-made for top-level design and complex problem solving."},
+      {"name_zh": "数据科学家", "name_en": "Data Scientist", "reason_zh": "对模式与因果的好奇心，加上严密的逻辑推理，使其擅长从数据中构建洞见。", "reason_en": "Curiosity about patterns and causality plus rigorous logic makes them adept at building insight from data."},
+      {"name_zh": "软件架构师", "name_en": "Software Architect", "reason_zh": "系统化设计倾向和追求优雅方案的本能，与架构工作的长期规划属性高度契合。", "reason_en": "A systems-design mindset and instinct for elegant solutions fit the long-horizon nature of architecture work."},
+      {"name_zh": "研究员", "name_en": "Researcher", "reason_zh": "独立判断和深度钻研的特质，在需要长期专注的研究岗位上如鱼得水。", "reason_en": "Independent judgment and deep-dive persistence thrive in research roles demanding sustained focus."}
+    ],
+    "growth_zh": "INTJ 应刻意补足人际温度与向上沟通，把个人判断转化为团队共识；长期看，向战略/技术负责人方向发展最能放大其系统设计天赋。",
+    "growth_en": "INTJs should deliberately build interpersonal warmth and upward communication, converting personal judgment into team consensus; long term, growing toward strategy or technical leadership best amplifies their systems-design gifts."
+  },
+  "INTP": {
+    "careers": [
+      {"name_zh": "算法工程师", "name_en": "Algorithm Engineer", "reason_zh": "对抽象模型和底层逻辑的痴迷，使其在算法设计与理论推导中表现卓越。", "reason_en": "Their fascination with abstract models and underlying logic drives excellence in algorithm design and theoretical derivation."},
+      {"name_zh": "软件工程师", "name_en": "Software Engineer", "reason_zh": "发现系统漏洞与模式的能力，加上对知识的广泛兴趣，非常适合复杂系统的构建与调试。", "reason_en": "A knack for spotting system flaws and patterns, plus broad curiosity, suits building and debugging complex systems."},
+      {"name_zh": "研究员", "name_en": "Researcher", "reason_zh": "为理解而理解的求知欲，使学术与工业研究成为其精神自留地。", "reason_en": "A desire to understand for its own sake makes academia and industrial research their intellectual home."},
+      {"name_zh": "数据分析师", "name_en": "Data Analyst", "reason_zh": "严密逻辑与发现不一致的敏锐度，让其在数据校验与归因分析中如侦探般出色。", "reason_en": "Rigorous logic and sensitivity to inconsistency make them detective-like in data validation and attribution analysis."}
+    ],
+    "growth_zh": "INTP 的关键成长点是「闭环」：用外部机制（节点、检查表、搭档）对抗虎头蛇尾，把洞察转化为可交付成果；与强执行型伙伴搭档事半功倍。",
+    "growth_en": "INTPs' key growth lever is closure: use external mechanisms (milestones, checklists, partners) to counter weak follow-through and turn insight into deliverables; pairing with strong executors multiplies results."
+  },
+  "ENTJ": {
+    "careers": [
+      {"name_zh": "管理咨询顾问", "name_en": "Management Consultant", "reason_zh": "全局视野、结构化分析与强势推进的组合，正是高级别管理咨询的核心素质。", "reason_en": "The blend of global vision, structured analysis, and forceful drive is the core profile of high-stakes management consulting."},
+      {"name_zh": "项目经理", "name_en": "Project Manager", "reason_zh": "目标拆解与跨部门推动能力，使其能把复杂项目从计划带到落地。", "reason_en": "Goal decomposition and cross-functional drive let them carry complex projects from plan to delivery."},
+      {"name_zh": "创业者", "name_en": "Entrepreneur", "reason_zh": "对效率的执着与敢拍板的胆识，使其擅长在不确定中快速建立秩序和方向。", "reason_en": "Efficiency obsession and decisive nerve equip them to build order and direction amid uncertainty."},
+      {"name_zh": "投资分析师", "name_en": "Investment Analyst", "reason_zh": "战略判断与机会评估能力，使其在商业逻辑推演与决策建议上游刃有余。", "reason_en": "Strategic judgment and opportunity assessment make them fluent in business-logic reasoning and decision recommendations."}
+    ],
+    "growth_zh": "ENTJ 需警惕「强推进」透支团队信任：刻意练习倾听与示弱，把下属成长纳入自身 KPI，才能从高效管理者进化为真正的领导者。",
+    "growth_en": "ENTJs should watch for driving so hard that team trust erodes: deliberately practice listening and showing vulnerability, and count team members' growth as part of their own success."
+  },
+  "ENTP": {
+    "careers": [
+      {"name_zh": "产品经理", "name_en": "Product Manager", "reason_zh": "多角度审视需求并挑战既有假设的能力，是产品创新与迭代的核心引擎。", "reason_en": "Viewing needs from every angle and challenging assumptions is the core engine of product innovation."},
+      {"name_zh": "商业分析师", "name_en": "Business Analyst", "reason_zh": "快速识别模式与漏洞的思维，使其擅长拆解商业模式并提出突破性策略。", "reason_en": "Rapid pattern-and-gap recognition makes them skilled at dissecting business models and proposing breakthrough strategies."},
+      {"name_zh": "创业者", "name_en": "Entrepreneur", "reason_zh": "对颠覆式想法的热情和极强的说服力，适合从零到一的开创性探索。", "reason_en": "Passion for disruptive ideas and strong persuasiveness suit zero-to-one ventures."},
+      {"name_zh": "律师", "name_en": "Lawyer", "reason_zh": "缜密的多角度论证与雄辩口才，使其在辩论式职业中占据天然优势。", "reason_en": "Airtight multi-angle argumentation and eloquence give them a natural edge in advocacy-driven professions."}
+    ],
+    "growth_zh": "ENTP 的进化方向是「收尾能力」：学会给想法排序、砍掉支线，把最好的一个点子执行到底；引入流程与搭档对抗注意力漂移。",
+    "growth_en": "ENTPs evolve by finishing: learn to rank ideas, cut side quests, and execute one great idea to completion, using process and partners to counter attention drift."
+  },
+  "INFJ": {
+    "careers": [
+      {"name_zh": "心理咨询师", "name_en": "Psychological Counselor", "reason_zh": "深刻洞察人心与持久共情的能力，使其成为助人职业中的稀缺天赋。", "reason_en": "Deep insight into people combined with lasting empathy is a rare gift in helping professions."},
+      {"name_zh": "组织发展顾问", "name_en": "Organizational Development Consultant", "reason_zh": "对人与组织深层动力的直觉把握，适合推动文化变革与人才发展。", "reason_en": "Intuitive grasp of people and organizational dynamics suits culture change and talent development."},
+      {"name_zh": "内容策划/作家", "name_en": "Content Strategist / Writer", "reason_zh": "细腻而有感染力的文字表达，能把抽象理念转化为打动人心的叙事。", "reason_en": "Delicate, moving prose turns abstract ideas into narratives that touch people."},
+      {"name_zh": "教师/培训师", "name_en": "Teacher / Trainer", "reason_zh": "看见个体潜力并因材施教的特质，使其在育人岗位上极具影响力。", "reason_en": "Seeing individual potential and tailoring guidance makes them highly influential as educators."}
+    ],
+    "growth_zh": "INFJ 要建立「自我关怀」的边界机制，避免共情过载与理想化落差；把宏大使命拆为阶段性小目标，可持续地释放影响力。",
+    "growth_en": "INFJs need self-care boundaries to prevent empathy overload and idealism gaps; break grand missions into staged milestones to sustain their impact."
+  },
+  "INFP": {
+    "careers": [
+      {"name_zh": "用户体验设计师", "name_en": "UX Designer", "reason_zh": "对他者处境的想象与共情，使其能设计出真正贴近人心的体验。", "reason_en": "Imagining and empathizing with users' situations lets them design experiences that truly resonate."},
+      {"name_zh": "作家/编辑", "name_en": "Writer / Editor", "reason_zh": "丰富的内心世界与出色的文字功底，适合以内容传递价值与美。", "reason_en": "A rich inner world and fine writing craft suit conveying value and beauty through content."},
+      {"name_zh": "心理咨询师", "name_en": "Psychological Counselor", "reason_zh": "非评判的接纳姿态与深度共情，是建立信任关系的天然优势。", "reason_en": "A non-judgmental, accepting stance with deep empathy is a natural trust-builder."},
+      {"name_zh": "教师", "name_en": "Teacher", "reason_zh": "价值驱动的育人心态，使其在陪伴式教育中激发学生的独特潜能。", "reason_en": "Value-driven nurturing lets them awaken each student's unique potential in mentoring-style education."}
+    ],
+    "growth_zh": "INFP 的成长关键是「把理想装进日程表」：用小步快跑的完成感对抗完美主义，练习温和而坚定地表达需求与界限。",
+    "growth_en": "INFPs grow by scheduling their ideals: counter perfectionism with small, quick wins, and practice expressing needs and boundaries gently but firmly."
+  },
+  "ENFJ": {
+    "careers": [
+      {"name_zh": "培训师/学习发展专家", "name_en": "Corporate Trainer / L&D Specialist", "reason_zh": "发现并点燃他人潜力的天赋，使其成为最受欢迎的成长伙伴。", "reason_en": "A gift for spotting and igniting others' potential makes them beloved growth partners."},
+      {"name_zh": "人力资源顾问", "name_en": "HR Business Partner", "reason_zh": "感召力与组织敏感度的结合，适合连接业务与人才的组织润滑角色。", "reason_en": "Charisma plus organizational sensitivity suits the connecting role between business and talent."},
+      {"name_zh": "公关/传播经理", "name_en": "PR / Communications Manager", "reason_zh": "出色的表达与关系经营能力，使其善于讲好品牌故事并协调多方关系。", "reason_en": "Excellent expression and relationship stewardship make them great storytellers and multi-party coordinators."},
+      {"name_zh": "教师/教育管理者", "name_en": "Teacher / Education Administrator", "reason_zh": "以人为本的愿景感召力，使其能带动班级或学校层面的积极改变。", "reason_en": "People-centered visionary influence lets them drive positive change at class or school level."}
+    ],
+    "growth_zh": "ENFJ 要警惕为他人燃烧自己：设定能量预算与拒绝清单，练习把「我能帮」升级为「谁更适合帮」，从救火者转型为赋能者。",
+    "growth_en": "ENFJs must avoid burning out for others: set energy budgets and a refusal list, and upgrade 'I can help' into 'who is best to help,' evolving from firefighter to enabler."
+  },
+  "ENFP": {
+    "careers": [
+      {"name_zh": "产品经理", "name_en": "Product Manager", "reason_zh": "对可能性与用户心理的敏锐嗅觉，使其擅长发掘未被满足的需求。", "reason_en": "A keen nose for possibilities and user psychology makes them strong at spotting unmet needs."},
+      {"name_zh": "市场营销专员", "name_en": "Marketing Specialist", "reason_zh": "创意发散与感染力表达，正是打动人心的营销内容所需要的核心能力。", "reason_en": "Divergent creativity and infectious expression are exactly what heart-winning marketing content needs."},
+      {"name_zh": "招聘顾问", "name_en": "Recruiter / Talent Acquisition Specialist", "reason_zh": "识人天赋与真诚热情，使其善于在人与机会之间做精彩的连接。", "reason_en": "People-savvy intuition and genuine warmth make them great connectors between people and opportunities."},
+      {"name_zh": "记者/内容创作者", "name_en": "Journalist / Content Creator", "reason_zh": "旺盛好奇心与生动叙事能力，适合挖掘故事并引发共鸣。", "reason_en": "Abundant curiosity and vivid storytelling suit digging out stories that spark resonance."}
+    ],
+    "growth_zh": "ENFP 的跃迁点在于「完成力」：建立优先级筛选机制，学会对好想法说不，与擅长时间管理的伙伴互相成就。",
+    "growth_en": "ENFPs level up through completion: build prioritization filters, learn to say no to good ideas, and co-thrive with time-management-strong partners."
+  },
+  "ISTJ": {
+    "careers": [
+      {"name_zh": "财务/会计", "name_en": "Accountant / Finance Specialist", "reason_zh": "严谨细致与对规则的恪守，使其在数字与合规领域拥有极高准确度。", "reason_en": "Meticulous rigor and respect for rules yield exceptional accuracy with numbers and compliance."},
+      {"name_zh": "审计师", "name_en": "Auditor", "reason_zh": "事实导向与细节敏感度，是识别异常、防范风险的天然职业优势。", "reason_en": "Fact orientation and detail sensitivity are natural advantages in spotting anomalies and managing risk."},
+      {"name_zh": "质量保证工程师", "name_en": "QA Engineer", "reason_zh": "系统化检查与高标准验收的习惯，使其成为产品质量的坚实防线。", "reason_en": "Systematic checking and high acceptance standards make them a solid line of defense for quality."},
+      {"name_zh": "运营管理", "name_en": "Operations Manager", "reason_zh": "流程构建与按期交付的可靠性，适合保障复杂业务稳定运转。", "reason_en": "Process-building and on-time reliability suit keeping complex operations running smoothly."}
+    ],
+    "growth_zh": "ISTJ 可主动拥抱小幅变化练习弹性，把「按规矩办」升级为「理解规矩为何如此」，向流程优化与团队带教方向扩展影响力。",
+    "growth_en": "ISTJs can proactively embrace small changes to build flexibility, upgrading 'follow the rules' to 'understand why,' extending influence toward process improvement and mentoring."
+  },
+  "ISFJ": {
+    "careers": [
+      {"name_zh": "人力资源专员", "name_en": "HR Specialist", "reason_zh": "对个体需求的敏锐觉察与默默服务的姿态，使其成为值得信赖的员工伙伴。", "reason_en": "Attunement to individual needs and quiet service make them trusted employee partners."},
+      {"name_zh": "客户成功经理", "name_en": "Customer Success Manager", "reason_zh": "耐心细致的长期服务意识，善于维护客户关系并持续创造价值。", "reason_en": "Patient, attentive long-term service orientation sustains client relationships and ongoing value."},
+      {"name_zh": "教师", "name_en": "Teacher", "reason_zh": "记性好、责任心强且关怀个体，能在稳定环境中持续滋养学生成长。", "reason_en": "Good memory, strong responsibility, and individual care steadily nurture students in stable settings."},
+      {"name_zh": "医护/健康管理师", "name_en": "Healthcare / Health Management Professional", "reason_zh": "照顾他人的天性加上可靠的执行力，是照护类职业的理想人格底色。", "reason_en": "A caregiving nature plus reliable execution is an ideal personality base for care professions."}
+    ],
+    "growth_zh": "ISFJ 需练习「课题分离」：明确职责边界、敢于说温和的不，让自己的付出被看见；适度参与变革讨论而非被动接受。",
+    "growth_en": "ISFJs should practice boundary clarity: define responsibilities, dare to say a gentle no, make their contributions visible, and join change discussions rather than merely receiving them."
+  },
+  "ESTJ": {
+    "careers": [
+      {"name_zh": "项目经理", "name_en": "Project Manager", "reason_zh": "搭建流程、明确分工与推动交付的强项，使其成为交付型工作的中坚力量。", "reason_en": "Strengths in building process, clarifying roles, and driving delivery make them delivery-powerhouse material."},
+      {"name_zh": "供应链/物流管理", "name_en": "Supply Chain / Logistics Manager", "reason_zh": "秩序感与标准化的执行体系偏好，契合复杂链条的协调与管控需求。", "reason_en": "A sense of order and preference for standardized execution fits coordinating and controlling complex chains."},
+      {"name_zh": "销售运营/管理", "name_en": "Sales Operations / Sales Manager", "reason_zh": "结果导向与赏罚分明的管理风格，能有效带动一线团队达成目标。", "reason_en": "Results orientation and clear accountability effectively drive frontline teams to targets."},
+      {"name_zh": "财务管理", "name_en": "Financial Manager", "reason_zh": "对数据、标准与合规的天然尊重，适合掌管预算与资源分配。", "reason_en": "Natural respect for data, standards, and compliance suits owning budgets and resource allocation."}
+    ],
+    "growth_zh": "ESTJ 的进阶课题是「柔性地坚持」：留出倾听与共创空间，把变化视为可管理的流程而非威胁，管理带宽会显著扩大。",
+    "growth_en": "ESTJs' advanced lesson is flexible firmness: leave room for listening and co-creation, treat change as a manageable process rather than a threat, and their managerial bandwidth expands."
+  },
+  "ESFJ": {
+    "careers": [
+      {"name_zh": "人力资源专员", "name_en": "HR Specialist", "reason_zh": "关怀个体与协调关系的双重天赋，使其成为团队凝聚力的构建者。", "reason_en": "The dual gift of caring for individuals and coordinating relationships makes them team-cohesion builders."},
+      {"name_zh": "客户服务管理", "name_en": "Customer Service Manager", "reason_zh": "热心周到与口碑意识，使其擅长营造令客户安心的服务体验。", "reason_en": "Warm attentiveness and reputation awareness create reassuring customer experiences."},
+      {"name_zh": "活动策划/公关", "name_en": "Event Planner / PR Specialist", "reason_zh": "张罗组织与照顾每位参与者的能力，是活动成功的隐形保障。", "reason_en": "Organizing flair and attention to every attendee is the invisible guarantee of event success."},
+      {"name_zh": "教师/培训运营", "name_en": "Teacher / Training Coordinator", "reason_zh": "责任心与亲和力的组合，适合需要持续人际投入的教育场景。", "reason_en": "Responsibility combined with approachability suits education settings demanding sustained people investment."}
+    ],
+    "growth_zh": "ESFJ 的成长在于「自我校准」：减少对外部认可的依赖，练习基于事实做独立判断；面对变革时主动询问理由，而不是默认抗拒。",
+    "growth_en": "ESFJs grow through self-calibration: reduce dependence on external approval, practice fact-based independent judgment, and proactively ask why when facing change rather than defaulting to resistance."
+  },
+  "ISTP": {
+    "careers": [
+      {"name_zh": "软件工程师", "name_en": "Software Engineer", "reason_zh": "拆解系统与独立排障的能力，使其在调试与攻坚场景中表现出色。", "reason_en": "System dissection and independent troubleshooting shine in debugging and hard-problem scenarios."},
+      {"name_zh": "运维/可靠性工程师", "name_en": "DevOps / Site Reliability Engineer", "reason_zh": "临危不乱的危机处理风格，正是线上故障应急所需要的心态。", "reason_en": "Unflappable crisis handling is exactly the temperament online incident response demands."},
+      {"name_zh": "网络安全工程师", "name_en": "Cybersecurity Engineer", "reason_zh": "发现系统漏洞的敏锐直觉，使其在攻防对抗中如鱼得水。", "reason_en": "A sharp instinct for system vulnerabilities makes them naturals in offense-defense contexts."},
+      {"name_zh": "机械/硬件工程师", "name_en": "Mechanical / Hardware Engineer", "reason_zh": "对机械原理的天然理解力与动手实践偏好，适合实体系统的设计与改造。", "reason_en": "An innate grasp of mechanisms and hands-on preference suits designing and refining physical systems."}
+    ],
+    "growth_zh": "ISTP 若想走向更大舞台，需要补上「主动沟通」这堂课：定期同步进展、提前暴露风险，把个人英雄主义升级为可复制的团队战法。",
+    "growth_en": "To reach a bigger stage, ISTPs need proactive communication: sync progress regularly, surface risks early, and upgrade lone-hero fixes into repeatable team playbooks."
+  },
+  "ISFP": {
+    "careers": [
+      {"name_zh": "视觉设计师", "name_en": "Visual Designer", "reason_zh": "出众的审美与对细节质感的执着，使其作品天然具备打动人心的力量。", "reason_en": "Outstanding aesthetics and devotion to tactile detail give their work a naturally moving quality."},
+      {"name_zh": "品牌/营销设计", "name_en": "Brand / Marketing Designer", "reason_zh": "对和谐与美的直觉，使其善于塑造统一而有温度的品牌形象。", "reason_en": "An intuition for harmony and beauty helps craft cohesive, warm brand identities."},
+      {"name_zh": "用户体验设计师", "name_en": "UX Designer", "reason_zh": "对使用体验的细腻感知，能捕捉到他人忽略的体验痛点。", "reason_en": "Fine-grained perception of experience catches pain points others miss."},
+      {"name_zh": "内容创作者", "name_en": "Content Creator", "reason_zh": "用作品而非言语表达的偏好，使其在创作型岗位上获得心流与成就。", "reason_en": "A preference for expression through work rather than words brings flow and achievement in creative roles."}
+    ],
+    "growth_zh": "ISFP 可练习把热爱结构化：设定作品集节奏与商业目标，学会为自己报价与谈判，让才华获得应有的市场回报。",
+    "growth_en": "ISFPs can structure their passion: set portfolio cadence and business goals, learn to price and negotiate for themselves, so their talent earns fair market rewards."
+  },
+  "ESTP": {
+    "careers": [
+      {"name_zh": "销售经理", "name_en": "Sales Manager", "reason_zh": "捕捉机会的敏锐与临场谈判能力，使其在一线交易场景中所向披靡。", "reason_en": "Opportunity radar and on-the-spot negotiation make them formidable in frontline deal-making."},
+      {"name_zh": "商务拓展经理", "name_en": "Business Development Manager", "reason_zh": "快速建立信任与果断推进的风格，适合开拓新市场与新伙伴。", "reason_en": "Fast trust-building and decisive momentum suit opening new markets and partnerships."},
+      {"name_zh": "创业者", "name_en": "Entrepreneur", "reason_zh": "风险偏好与行动本能，使其善于在混沌中抢出先手优势。", "reason_en": "Risk appetite and action instinct help them seize first-mover edges amid chaos."},
+      {"name_zh": "危机公关/应急协调", "name_en": "Crisis Communications / Emergency Coordinator", "reason_zh": "压力下的冷静与快速反应，是处理突发状况的稀缺品质。", "reason_en": "Coolness under pressure and rapid response are scarce qualities for handling emergencies."}
+    ],
+    "growth_zh": "ESTP 的升级路径是「延迟满足」：为冲动的决策增加 24 小时冷静期，建立复盘习惯，把直觉胜绩沉淀为可迁移的方法论。",
+    "growth_en": "ESTPs upgrade through delayed gratification: add a 24-hour cooling period to impulsive decisions, build a review habit, and distill intuitive wins into transferable methodology."
+  },
+  "ESFP": {
+    "careers": [
+      {"name_zh": "市场营销专员", "name_en": "Marketing Specialist", "reason_zh": "感染力与现场活力，使其策划的活动自带传播力与人气。", "reason_en": "Charisma and live-wire energy give their campaigns built-in reach and popularity."},
+      {"name_zh": "活动运营/策划", "name_en": "Event Operations / Planner", "reason_zh": "即兴发挥与氛围掌控的天赋，让每场活动都成为记忆点。", "reason_en": "A gift for improvisation and vibe control makes every event memorable."},
+      {"name_zh": "销售/客户经理", "name_en": "Sales / Account Manager", "reason_zh": "自来熟的亲和力与善解人意，能快速与客户建立真实连接。", "reason_en": "Instant likability and emotional attunement build real client connections fast."},
+      {"name_zh": "主播/内容创作者", "name_en": "Live Streamer / Content Creator", "reason_zh": "天然的舞台表现欲与乐观感染力，适合面向大众的表达型职业。", "reason_en": "Natural stage presence and upbeat energy suit audience-facing expressive careers."}
+    ],
+    "growth_zh": "ESFP 的成长抓手是「结构化自律」：用日历和清单替代纯记忆，为冲动消费与承诺设置冷静期，让天赋有了可持续的载体。",
+    "growth_en": "ESFPs grow through structured self-discipline: replace pure memory with calendars and checklists, add cooling-off periods for impulses and promises, and give their talent a sustainable vehicle."
+  }
+}

@@ -1,47 +1,63 @@
-## Description: <br>
-Use APIDot for MiniMax Music 2.6 API workflows, including AI music generation, lyrics, instrumentals, audio export planning, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use APIDot for MiniMax Music 2.6 API workflows, including AI music generation, lyrics, instrumentals, audio export planning, async task submission, task_id handling, polling, task status, webhook integration, and APIDot docs routing.
 
-## Publisher: <br>
-[jiehao71727](https://clawhub.ai/user/jiehao71727) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiehao71727](https://clawhub.ai/user/jiehao71727)
 
-## Use Case: <br>
-Developers and builders use this skill to plan APIDot MiniMax Music 2.6 integrations for song, instrumental, lyric, async polling, webhook, and final audio delivery workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys, private prompts, generated URLs, or callback URLs could be exposed during implementation. <br>
-Mitigation: Keep APIDOT_API_KEY server-side, avoid logging sensitive prompts or generated URLs, and store secrets in a backend environment or secret manager. <br>
-Risk: APIDot request fields, availability, limits, pricing, or commercial terms may change after this documentation-only release. <br>
-Mitigation: Verify live APIDot docs before implementing request payloads or making pricing-sensitive decisions. <br>
-Risk: Async task handling can lose or duplicate results if task IDs, polling state, or webhook callbacks are not handled carefully. <br>
-Mitigation: Persist task_id and request metadata together, use terminal task status before storing final audio URLs, and make webhook handlers idempotent. <br>
+## Use Case:
 
+Developers and engineers use this skill to route MiniMax Music 2.6 integration work through APIDot documentation, plan async task submission and polling, and handle webhook-based audio delivery. It supports agent guidance for API request planning while keeping credentials and live calls outside the skill artifact.
 
-## Reference(s): <br>
-- [APIDot API Docs](https://apidot.ai/docs) <br>
-- [APIDot MiniMax Music 2.6 Model Page](https://apidot.ai/models/minimax-music-2-6) <br>
-- [APIDot MiniMax Music 2.6 Docs](https://apidot.ai/docs/minimax-music-2-6) <br>
-- [APIDot Webhooks](https://apidot.ai/docs/webhooks) <br>
-- [APIDot Examples](https://github.com/APIDotAI/apidot-examples) <br>
-- [APIDot MiniMax Music 2.6 Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration instructions, Code] <br>
-**Output Format:** [Markdown guidance with optional code or configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no executable code, bundled API client, stored credentials, or automatic network calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: APIDot API keys or private generation data could be exposed if copied into client code, logs, screenshots, public repositories, or chat output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep APIDOT_API_KEY in server-side environment variables or a backend secret manager, and avoid logging API keys, private prompts, callback URLs, or generated audio URLs.
+
+Risk: Model request fields, availability, pricing, or commercial terms may change outside the skill artifact.
+
+Mitigation: Verify current APIDot docs and model pages before implementing payloads, limits, or product assumptions.
+
+Risk: Async media jobs can fail, outlive a browser session, or deliver duplicate webhook callbacks.
+
+Mitigation: Persist task_id and request metadata, poll for local testing, use callback_url for production workflows, retry transient failures with backoff, and make webhook handlers idempotent.
+
+## Reference(s):
+
+- [Local APIDot MiniMax Music 2.6 reference](references/api.md)
+- [APIDot documentation](https://apidot.ai/docs)
+- [MiniMax Music 2.6 model page](https://apidot.ai/models/minimax-music-2-6)
+- [MiniMax Music 2.6 API docs](https://apidot.ai/docs/minimax-music-2-6)
+- [APIDot quickstart](https://apidot.ai/docs/quickstart)
+- [APIDot webhooks](https://apidot.ai/docs/webhooks)
+- [APIDot examples](https://github.com/APIDotAI/apidot-examples)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with API integration notes and optional code or configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; no bundled execution or automatic network calls.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

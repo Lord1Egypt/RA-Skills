@@ -1,41 +1,57 @@
-## Description: <br>
-A skill-auditing checklist that helps agents review installed or remote skills for code security, permission risks, data leakage, and content compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits installed or remote agent skills for code security, permission risks, data leakage, and content-compliance concerns.
 
-## Publisher: <br>
-[aohoyo](https://clawhub.ai/user/aohoyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[langhuachuanshi](https://clawhub.ai/user/langhuachuanshi)
 
-## Use Case: <br>
-Developers and agents use this skill before or after installing another skill to structure a security review, inspect risky file patterns, score findings, and produce a markdown audit report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release declares wallet and sensitive-credential capabilities even though the security evidence describes this as a checklist with no executable payload. <br>
-Mitigation: Do not grant wallet, credential, or broad profile access unless the publisher provides a corrected package that clearly justifies those capabilities. <br>
-Risk: Audit reports and scores may be incomplete or misleading if the wrong skill name or temporary path is reviewed. <br>
-Mitigation: Confirm the target skill name and temporary path before running review commands, and treat results as a checklist that still requires human review. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to inspect skills before installation or after installation and produce a structured security review with findings, scoring, and recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aohoyo/silas-skill-auditor) <br>
-- [Publisher profile](https://clawhub.ai/user/aohoyo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs checklist-style security findings, scores, and recommendations; it does not include an executable payload.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may inspect skill directories and surface sensitive-looking strings found during review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit skill-audit tasks and do not send discovered secrets or tokens to external services.
+
+Risk: The documented pre-install review workflow uses a fixed /tmp/skill-audit-tmp path.
+
+Mitigation: Use a uniquely generated private temporary directory and guarded cleanup before deleting review files.
+
+Risk: Broad trigger wording can cause the skill to run outside a clear audit request.
+
+Mitigation: Invoke it only when the user explicitly requests a skill audit, safety check, or security review.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/langhuachuanshi/skills/silas-skill-auditor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown security review report with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes file inventory, categorized risk findings, instruction analysis, score, rating, and recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

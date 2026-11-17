@@ -1,47 +1,64 @@
-## Description: <br>
-Convert data between formats (JSON, CSV, XML, YAML). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert data between JSON, CSV, XML, and YAML through the NEXUS remote data-transform service.
 
-## Publisher: <br>
-[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberforexblockchain](https://clawhub.ai/user/cyberforexblockchain)
 
-## Use Case: <br>
-Developers and agents use this skill to convert JSON, CSV, XML, and YAML data through a paid hosted NEXUS API when they have a payment proof or sandbox credential. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends input data and payment proof to a hosted NEXUS conversion service, and the security scan notes unclear per-request controls. <br>
-Mitigation: Use only for data you are allowed to send to the provider, configure the agent to ask before each paid remote request, and avoid secrets, regulated data, private datasets, and sensitive business records unless you trust the provider and its retention claims. <br>
-Risk: Payment flows can create real charges or settlement activity across supported crypto payment protocols. <br>
-Mitigation: Use sandbox credentials for testing and require explicit approval, budget limits, and payment review before x402, MPP, AP2, XRPL, Cardano, or Stellar payments. <br>
+## Use Case:
 
+Developers and agents use this skill to convert structured data between common interchange formats. The skill is suited for workflows that can send input data and payment proof to NEXUS for remote processing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cyberforexblockchain/nexus-data-transform) <br>
-- [NEXUS platform](https://ai-service-hub-15.emergent.host) <br>
-- [x402 discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402) <br>
-- [MPP discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover) <br>
-- [AP2 configuration](https://ai-service-hub-15.emergent.host/api/ap2/config) <br>
-- [XRPL configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config) <br>
-- [Stablecoin registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins) <br>
-- [A2A agent card](https://ai-service-hub-15.emergent.host/.well-known/agent.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, structured data] <br>
-**Output Format:** [JSON object containing a result string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or a supported payment credential; sends the input payload to the hosted NEXUS service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Input data and payment proof or payment credentials are sent to the NEXUS remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending secrets, credentials, regulated data, or private documents unless the user trusts the provider and its retention claims.
+
+Risk: Paid payment flows can incur charges or settle with the wrong asset or network if used without review.
+
+Mitigation: Confirm the payment requirement, currency, network, and amount before retrying the paid request; use the sandbox flow for testing when appropriate.
+
+Risk: Remote AI processing can return transformed data that is malformed or semantically different from the input.
+
+Mitigation: Validate the converted output against the expected schema or downstream parser before relying on it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberforexblockchain/skills/nexus-data-transform)
+- [NEXUS Platform](https://ai-service-hub-15.emergent.host)
+- [x402 Discovery](https://ai-service-hub-15.emergent.host/api/mpp/x402)
+- [MPP Discovery](https://ai-service-hub-15.emergent.host/api/mpp/discover)
+- [AP2 Configuration](https://ai-service-hub-15.emergent.host/api/ap2/config)
+- [XRPL Configuration](https://ai-service-hub-15.emergent.host/api/xrpl/config)
+- [Stablecoin Registry](https://ai-service-hub-15.emergent.host/api/mpp/stablecoins)
+- [A2A Agent Card](https://ai-service-hub-15.emergent.host/.well-known/agent.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API requests and shell command examples; the service response is JSON containing a result string.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires NEXUS_PAYMENT_PROOF or a supported x402/MPP/AP2 payment credential for paid requests.]
+
+## Skill Version(s):
+
+2.1.0 (source: artifact frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

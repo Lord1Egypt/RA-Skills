@@ -1,40 +1,52 @@
-## Description: <br>
-Manage YouTube Music library, playlists, and discovery via ytmusicapi. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage YouTube Music library, playlists, and discovery via ytmusicapi.
 
-## Publisher: <br>
-[gentrycopsy](https://clawhub.ai/user/gentrycopsy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gentrycopsy](https://clawhub.ai/user/gentrycopsy)
 
-## Use Case: <br>
-Developers and YouTube Music users use this skill to configure ytmusicapi access and manage songs, albums, playlists, lyrics, and related music discovery through an authenticated YouTube Music account. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires local YouTube Music authentication files that should be treated like credentials. <br>
-Mitigation: Keep browser.json private, delete headers.txt after setup, and do not commit either file to source control. <br>
-Risk: Authenticated operations can change a user's YouTube Music library and playlists. <br>
-Mitigation: Ask the agent to confirm before making playlist or library changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [YouTube Music](https://music.youtube.com) <br>
-- [ClawHub skill page](https://clawhub.ai/gentrycopsy/ytmusic) <br>
+## Use Case:
 
+Developers and agents use this skill to configure ytmusicapi access and manage YouTube Music library items, playlists, metadata, lyrics, and discovery workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline Python and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose authenticated YouTube Music library and playlist operations for user review before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The setup flow stores sensitive YouTube Music browser session data in plaintext files.
+
+Mitigation: Keep headers.txt and browser.json out of source control and shared folders, restrict file permissions, delete headers.txt after generating browser.json, and revoke or rotate the browser session if either file is exposed.
+
+Risk: Installing ytmusicapi directly can pull dependencies into the active Python environment.
+
+Mitigation: Install dependencies in an isolated, pinned environment.
+
+## Reference(s):
+
+- [YouTube Music](https://music.youtube.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local authentication files such as oauth.json or browser.json.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Momo helps freelancers track work time, prepare timesheet reports, and start invoicing workflows from a local shell helper. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Momo namespace for Netsnek e.U. time tracking and invoicing tool for freelancers. Logs work hours, generates timesheets, creates invoices, and tracks payments.
 
-## Publisher: <br>
-[kleberbaum](https://clawhub.ai/user/kleberbaum) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[kleberbaum](https://clawhub.ai/user/kleberbaum)
 
-## Use Case: <br>
-Freelancers and solo operators use this skill to invoke a local time tracking helper for logging work, reviewing reported hours, and preparing invoice-related actions. In this version, users should treat the workflow as a prototype because the reviewed script only reports selected modes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requests local command execution through a shell script. <br>
-Mitigation: Install only if local command execution is acceptable, and inspect the script before running it. <br>
-Risk: The release description claims time tracking, PDF invoices, and payment tracking, but the reviewed script currently only prints selected modes. <br>
-Mitigation: Treat generated output as a prototype workflow and verify records, invoices, and payment status outside the skill. <br>
+## Use Case:
 
+External freelancers use momo to log work hours, generate timesheet reports, create invoices from recorded time, and track payment status for client billing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kleberbaum/momo) <br>
-- [README](artifact/README.md) <br>
-- [Skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and local command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a local shell script with exec permission on Linux.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata) <br>
+Risk: The skill requests local command execution permission for its timesheet script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local execution is acceptable, and review the script before use.
+
+Risk: Generated invoices or reports may be incorrect or incomplete in this early/stub implementation.
+
+Mitigation: Review generated invoices and reports against source work records before using them for client billing.
+
+Risk: Future versions could expand file changes or external actions beyond the inspected artifact behavior.
+
+Mitigation: Confirm each future version still limits local changes and external actions to what you intend before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/kleberbaum/skills/momo)
+- [Publisher Profile](https://clawhub.ai/user/kleberbaum)
+- [README](artifact/README.md)
+- [Skill Definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and command-line output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local command execution permission on Linux; generated reports and invoices should be reviewed before client billing.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter, claw.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

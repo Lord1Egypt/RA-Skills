@@ -1,42 +1,60 @@
-## Description: <br>
-Mail Mate connects to IMAP mailboxes, filters messages by provider, time window, subject, and body keywords, extracts structured fields with regular expressions, and can optionally push matching results to DingTalk, Feishu, or Telegram. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mail Mate connects to IMAP mailboxes, filters messages by provider, time window, subject, and body keywords, extracts structured fields with regular expressions, and can push matching email summaries to chat platforms.
 
-## Publisher: <br>
-[tankeito](https://clawhub.ai/user/tankeito) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tankeito](https://clawhub.ai/user/tankeito)
 
-## Use Case: <br>
-Developers and agent operators use this skill to retrieve recent or time-bounded IMAP email, normalize and filter message content, extract structured fields, and route concise results into downstream agent workflows or trusted notification channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mailbox credentials and app passwords are sensitive and are required for normal IMAP access. <br>
-Mitigation: Use a dedicated or least-privilege mailbox where possible, keep credentials out of shared logs, and remove generated .env files when scheduled processing is no longer needed. <br>
-Risk: Filtered email previews and extracted fields may contain private or business-sensitive content, especially when pushed to chat platforms. <br>
-Mitigation: Keep filters narrow, reduce preview_length for sensitive mail, and enable DingTalk, Feishu, or Telegram delivery only to trusted destinations. <br>
-Risk: Scheduled cron execution can continue reading mail after the immediate task is complete. <br>
-Mitigation: Review the installed crontab entry and remove it when recurring processing is no longer intended. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn mailbox messages into structured JSON results and optional operational notifications. It is suited for scheduled email monitoring, alert triage, and extracting fields from routine notification emails.
 
-## Reference(s): <br>
-- [Mail Mate on ClawHub](https://clawhub.ai/tankeito/mail-mate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [JSON result objects, optional Markdown push messages, and shell/configuration guidance for scheduled execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns mailbox server, time window, filter description, count, matching email summaries, extracted_data fields, previews, and optional push status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact metadata) <br>
+Risk: The skill handles private mailbox data and authentication secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only for mailboxes and notification destinations you explicitly control, and use mailbox-specific authorization credentials where available.
+
+Risk: The cron helper and .env handling are flagged by security guidance as risky.
+
+Mitigation: Avoid the cron helper until its argument validation and .env handling are fixed; if scheduling is required, review the generated environment file and restrict host access.
+
+Risk: Push notifications may send subjects, senders, extracted fields, and previews outside the mailbox environment.
+
+Mitigation: Configure only trusted webhook destinations and avoid push delivery for sensitive mail streams unless outbound disclosure is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tankeito/skills/mail-mate)
+- [Publisher Profile](https://clawhub.ai/user/tankeito)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Documentation](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results with optional Markdown push messages and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns success status, server, time window, filter summary, count, matched emails, extracted fields, previews, and optional push status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

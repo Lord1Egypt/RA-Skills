@@ -1,40 +1,53 @@
-## Description: <br>
-Optimize IHC/IF protocols for specific tissues and antigens. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize IHC/IF protocols for specific tissues and antigens.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Researchers, lab staff, and developers use this skill to draft IHC/IF staining protocol suggestions for tissues, antigen locations, and detection difficulty levels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Protocol suggestions are generic wet-lab guidance and may not fit a specific antibody, tissue preparation, or laboratory SOP. <br>
-Mitigation: Verify recommendations against antibody datasheets, institutional protocols, and pilot controls before wet-lab use. <br>
-Risk: The documented command-line options do not exactly match the script options. <br>
-Mitigation: Check the script help and use the implemented options for tissue, antigen location, and difficulty until the documentation is updated. <br>
+## Use Case:
 
+External users and wet-lab developers use this skill to generate starting-point IHC/IF staining protocol recommendations for tissues, antigen locations, and detection difficulty.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aipoch-ai/ihc-if-optimizer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain-text protocol recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local IHC/IF protocol suggestions; no network or API calls are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Generated wet-lab recommendations may be incorrect, incomplete, or unsuitable for a specific experimental or clinical setting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified reviewer validate recommendations against local protocols, controls, reagent datasheets, and safety requirements before use.
+
+Risk: The artifact documentation lists some CLI options and file-output behavior that the actual script does not implement.
+
+Mitigation: Use the script-supported arguments and treat documentation-only options as unavailable until the artifact is corrected.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/ihc-if-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance, shell commands]
+
+**Output Format:** [Plain text protocol recommendations printed to stdout]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external dependencies or network calls are indicated by the release evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+{"id":"S1","kind":"entity_data","ref":"AN202609210000000001","claim":"美的集团全称、代码与主营","confidence":"L1","asof":"2026-09-20"}
+{"id":"S3","kind":"disclosure_cn","ref":"AN202608300000000003","claim":"2026Q2单季财务数据","confidence":"L1","asof":"2026-08-30"}
+{"id":"S4","kind":"disclosure_cn","ref":"AN202604300000000004","claim":"2026Q1单季财务数据","confidence":"L1","asof":"2026-04-30"}
+{"id":"S5","kind":"disclosure_cn","ref":"AN202603300000000005","claim":"2025A累计财务数据","confidence":"L1","asof":"2026-03-30"}
+{"id":"S6","kind":"disclosure_cn","ref":"AN202609010000000006","claim":"分红股权登记日","confidence":"L1","asof":"2026-09-01"}
+{"id":"S8","kind":"regulatory_cn","ref":"AN202609030000000008","claim":"监管措施命中","confidence":"L1","asof":"2026-09-03"}
+{"id":"S999","kind":"disclosure_cn","ref":"AN202609990000000999","claim":"正文从未引用的孤儿记录","confidence":"L1","asof":"2026-09-20"}

@@ -1,41 +1,49 @@
-## Description: <br>
-Taobao Live helps livestream sellers and operators plan product selection, sales scripts, traffic operations, data review, and compliance-aware Taobao livestream workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taobao Live provides operating guidance for product curation, run-of-show planning, sales scripts, traffic operations, and GMV diagnostics for shelf-commerce livestreams.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-External sellers, livestream hosts, and ecommerce operations teams use this skill to draft Taobao Live run-of-show plans, product mix strategies, promotional scripts, traffic tactics, KPI reviews, and compliance reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample livestream scripts and promotions could introduce misleading marketing claims, fake scarcity, or unsupported discount language if reused without review. <br>
-Mitigation: Review and rewrite scripts before use; verify all prices, inventory limits, testimonials, discounts, and promotional claims against actual business records and Taobao platform rules. <br>
-Risk: The skill provides operational marketing guidance that may become outdated as Taobao Live policies or advertising tools change. <br>
-Mitigation: Check current Taobao Live platform rules, advertising policies, and seller center guidance before applying recommendations in a live campaign. <br>
+## Use Case:
 
+Merchants, livestream operators, and ecommerce teams use this skill to plan Taobao Live store or influencer broadcasts, create sales scripts, manage traffic, and diagnose GMV performance.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/zhangifonly/taobao-live) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with tables and sample livestream scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only guidance; no tool use, code execution, or system access is described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Sample ecommerce sales language may contain unverifiable absolute advertising claims such as best, number one, or lowest on the whole internet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and revise livestream scripts before use, removing absolute claims unless they are independently verified and allowed by applicable platform and advertising rules.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangifonly/skills/taobao-live)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with tables, checklists, and example livestream scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bilingual Chinese and English operational guidance; no executable code or privileged tool use.]
+
+## Skill Version(s):
+
+1.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

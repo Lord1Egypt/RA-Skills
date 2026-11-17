@@ -1,43 +1,57 @@
-## Description: <br>
-HTTP bridge that keeps MCP servers alive and exposes them via REST for OpenClaw agents that need MCP tools without native MCP support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+HTTP bridge that keeps MCP servers alive and exposes them via REST. Built for OpenClaw agents that need MCP tools without native MCP support.
 
-## Publisher: <br>
-[BitBrujo](https://clawhub.ai/user/BitBrujo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[bitbrujo](https://clawhub.ai/user/bitbrujo)
 
-## Use Case: <br>
-Developers and engineers use this skill to keep configured MCP servers running as local child processes and expose their tools through REST endpoints for agents without native MCP support. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local bridge can expose powerful configured MCP tools through an unauthenticated localhost HTTP API. <br>
-Mitigation: Keep the service bound to 127.0.0.1, configure only trusted MCP server commands, and add authentication or firewall controls before using high-privilege tools. <br>
-Risk: API keys and other secrets can be stored or printed in plaintext through config.json and show-config output. <br>
-Mitigation: Avoid storing secrets with set-env when possible, protect config.json, and do not share show-config output. <br>
-Risk: Persistent MCP server processes can continue invoking configured tools while the bridge is running. <br>
-Mitigation: Review configured server commands before startup, enable audit logging for sensitive use, and remove unused servers from the configuration. <br>
+## Use Case:
 
+Developers and agent operators use Cherry MCP to keep configured MCP servers running as child processes and expose their tools through local HTTP REST endpoints for OpenClaw agents or other clients without native MCP support.
 
-## Reference(s): <br>
-- [Cherry Mcp on ClawHub](https://clawhub.ai/BitBrujo/cherry-mcp) <br>
-- [BitBrujo publisher profile](https://clawhub.ai/user/BitBrujo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command, JSON configuration, and REST API examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local bridge setup guidance and security notes for configured MCP tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: The bridge exposes powerful MCP tool calls and restart actions over HTTP without built-in authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the service bound to localhost or protect it with real authentication, restrict CORS, and avoid exposing it directly to a network.
+
+Risk: Configured MCP server commands and packages run as child processes on the host.
+
+Mitigation: Pin and review MCP server packages before use, and run the bridge under a low-privilege account with minimal environment variables.
+
+Risk: API keys stored through the CLI are saved in plain text in config.json.
+
+Mitigation: Do not store secrets in config.json; provide credentials through the runtime environment and keep local configuration out of source control.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bitbrujo/skills/cherry-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash, JSON, and HTTP examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes commands and configuration for running a local MCP-to-HTTP bridge.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

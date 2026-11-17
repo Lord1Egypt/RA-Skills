@@ -1,40 +1,53 @@
-## Description: <br>
-Generates Xiaohongshu-style viral note drafts with topic, audience, trend, SEO or algorithm optimization, batch generation, and export options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates Chinese Xiaohongshu-style social posts with configurable topic, style, audience, trending-topic, optimization, batch, and export options.
 
-## Publisher: <br>
-[yyq56565656](https://clawhub.ai/user/yyq56565656) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yyq56565656](https://clawhub.ai/user/yyq56565656)
 
-## Use Case: <br>
-Content creators, marketers, brand operators, and social media teams use this skill to draft Xiaohongshu notes for food visits, lifestyle posts, product recommendations, experience sharing, educational content, and brand promotion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated posts may include inaccurate claims, unsupported engagement predictions, or platform-policy issues. <br>
-Mitigation: Review each generated note for factual accuracy, Xiaohongshu policy compliance, and substantiated performance claims before publishing. <br>
-Risk: The artifact describes content-generation behavior but contains no executable implementation. <br>
-Mitigation: Treat the skill as prompt/documentation guidance and verify any referenced command or workflow exists in the intended agent environment before relying on it. <br>
+## Use Case:
 
+External creators, marketers, and agents supporting social content workflows use this skill to draft Chinese Xiaohongshu notes for food visits, lifestyle posts, product recommendations, tutorials, experience sharing, and brand promotion.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yyq56565656/xiaohongshu-viral-notes-generator-v2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown or plain text with example shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include hashtags, interaction prompts, style variants, estimated performance sections, and optional export guidance; generated content should be reviewed before publishing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Generated exposure, engagement, collection-rate, and recommendation-weight estimates may be interpreted as guaranteed performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat performance claims as marketing guidance and review generated copy before publishing.
+
+Risk: Exported generated content may be saved to an unintended destination.
+
+Mitigation: Review the export path before saving generated notes.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/yyq56565656/skills/xiaohongshu-viral-notes-generator-v2)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text containing generated Chinese social-post copy, hashtags, optional effect estimates, and export-ready content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code, dependencies, credential access, persistence, or hidden execution behavior; exposure and engagement estimates should be reviewed as marketing claims.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

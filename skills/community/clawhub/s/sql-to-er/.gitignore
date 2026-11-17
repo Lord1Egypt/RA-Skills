@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+!docs/
+!assets/
+/*.png
+/*.svg
+/*.docx
+/*.mmd
+/*.dot
+/*.gojs.json
+.DS_Store

@@ -1,41 +1,50 @@
-## Description: <br>
-Solana wallet-native AI gateway - pay per AI request with USDC on Solana across multiple AI providers without provider API keys or accounts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill points users to the current SolanaProx ClawHub release and makes no calls.
 
-## Publisher: <br>
-[yebdmo2](https://clawhub.ai/user/yebdmo2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yebdmo2](https://clawhub.ai/user/yebdmo2)
 
-## Use Case: <br>
-Developers and agent builders use this skill to access AI inference, orchestration, and related capabilities through SolanaProx using a Solana wallet address and pre-funded USDC balance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends a Solana wallet address to solanaprox.com as the credential for paid AI requests. <br>
-Mitigation: Use a dedicated wallet or low-balance account and only install the skill if sending that wallet address to SolanaProx is acceptable. <br>
-Risk: Automated or unattended orchestration can spend from a pre-deposited USDC balance. <br>
-Mitigation: Monitor spending and avoid unattended use unless explicit cost controls are in place. <br>
+## Use Case:
 
+People looking for SolanaProx use this skill to learn that the service has moved and find its current ClawHub release. It also points users to the service website for account sign-in information.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yebdmo2/solanaprox-ai) <br>
-- [SolanaProx homepage](https://solanaprox.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, API examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include wallet-address configuration and examples for paid SolanaProx API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-4.2.0 (source: server-resolved release metadata) <br>
+Risk: The skill directs users to a separate ClawHub release and a website that supports wallet sign-in.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the current release and website independently before installing or signing in with a wallet.
+
+## Reference(s):
+
+- [This skill's ClawHub listing](https://clawhub.ai/yebdmo2/skills/solanaprox-ai)
+- [SolanaProx website](https://solanaprox.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance]
+
+**Output Format:** [Natural-language text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Points users to the current listing; makes no external calls.]
+
+## Skill Version(s):
+
+5.0.0 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

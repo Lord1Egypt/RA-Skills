@@ -1,49 +1,64 @@
-## Description: <br>
-AI Presentation Maker guides an agent through an interview-driven workflow to generate factual presentation decks with speaker notes, validation checks, and Markdown, HTML, Gamma, PPTX, or PDF export paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Presentation Maker is an interview-driven pitch deck generator for OpenClaw agents that creates fact-grounded slide decks with speaker notes, validation flags, and exports to Markdown, HTML, Gamma-ready Markdown, PPTX, and PDF.
 
-## Publisher: <br>
-[jeffjhunter](https://clawhub.ai/user/jeffjhunter) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jeffjhunter](https://clawhub.ai/user/jeffjhunter)
 
-## Use Case: <br>
-Developers, consultants, speakers, and business users use this skill to turn real project details into presentation decks for pitches, talks, demos, and audience-specific briefings. It emphasizes interview-sourced facts, speaker notes, and validation prompts to reduce speculative or unsupported claims. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Presentation content may include sensitive business details stored in local deck and metadata files. <br>
-Mitigation: Use the skill only where local storage under ~/workspace/presentations is acceptable, and review generated files before sharing or archiving them. <br>
-Risk: HTML exports may preserve untrusted HTML-like slide content and may contact Google Fonts. <br>
-Mitigation: Review HTML output before presenting or publishing it, and modify the exporter for offline or sensitive environments. <br>
-Risk: Speaker profile prefill from SOUL.md or AGENTS.md can carry personal or organizational details into a deck. <br>
-Mitigation: Confirm any prefilled speaker information before generating or exporting presentations. <br>
+## Use Case:
 
+Developers, consultants, and creators use this skill to interview a presenter, choose a narrative angle, and generate presentation decks grounded in user-provided facts, costs, results, and caveats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jeffjhunter/ai-presentation-maker) <br>
-- [Publisher homepage](https://jeffjhunter.com) <br>
-- [HTML slide exporter](references/export-html-slides.py) <br>
-- [PPTX exporter](references/export-pptx.py) <br>
-- [Gamma export script](references/export-gamma.sh) <br>
-- [Slide templates](references/slide-templates.py) <br>
-- [Gamma.app](https://gamma.app) <br>
-- [AI Persona Method](https://aipersonamethod.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown decks, JSON metadata, HTML slide files, optional PPTX/PDF exports, and shell command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local presentation files under ~/workspace/presentations; PPTX export requires python3 and python-pptx, and PDF export requires pandoc or HTML print.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The security review flags unsafe HTML export handling for untrusted or third-party Markdown.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated decks before HTML export and avoid exporting untrusted Markdown until sanitization is fixed.
+
+Risk: The security review flags optional Persona OS import behavior that can read SOUL.md or AGENTS.md outside the stated presentation workspace.
+
+Mitigation: Use Persona OS import only when the user explicitly wants those files read for speaker information.
+
+Risk: Optional Python export dependencies can introduce dependency and environment risk.
+
+Mitigation: Install optional dependencies such as python-pptx only in an isolated, pinned environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jeffjhunter/skills/ai-presentation-maker)
+- [Publisher profile](https://clawhub.ai/user/jeffjhunter)
+- [Gamma.app](https://gamma.app)
+- [presentation-helper.sh](assets/presentation-helper.sh)
+- [export-html-slides.py](references/export-html-slides.py)
+- [export-pptx.py](references/export-pptx.py)
+- [export-gamma.sh](references/export-gamma.sh)
+- [slide-templates.py](references/slide-templates.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown slide decks with speaker notes, validation summaries, and optional HTML, Gamma Markdown, PPTX, or PDF exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores presentation JSON and Markdown under ~/workspace/presentations; optional exports require python3, python-pptx, or pandoc depending on format.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, artifact/_meta.json, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

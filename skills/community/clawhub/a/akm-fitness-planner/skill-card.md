@@ -1,46 +1,60 @@
-## Description: <br>
-AKM Fitness models goals, body limits, equipment context, time budget, and recovery before producing constraint-aware workout decisions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AKM Fitness helps an agent model fitness goals, body limits, equipment context, time budget, recovery, and adherence risks before producing a constraint-aware training decision.
 
-## Publisher: <br>
-[sirsws](https://clawhub.ai/user/sirsws) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sirsws](https://clawhub.ai/user/sirsws)
 
-## Use Case: <br>
-External users and agents use this skill to elicit a reusable fitness profile and make training decisions that account for goals, physical constraints, equipment, time budget, recovery, and adherence risks. It is best suited when generic workout plans fail because real-world constraints materially affect the decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fitness guidance could be mistaken for medical diagnosis or rehabilitation planning. <br>
-Mitigation: Keep outputs within training decision support, avoid diagnosis, and route rehabilitation planning or medically constrained cases to a qualified clinician. <br>
-Risk: Missing pain, injury, recovery, equipment, or time-budget inputs could produce overconfident workout recommendations. <br>
-Mitigation: Require profile elicitation, list unresolved MissingInputs, reduce decision confidence, narrow the plan, or pause when critical state variables are unknown. <br>
-Risk: Security evidence reports clean scan signals but does not claim a full coherence review of the artifact. <br>
-Mitigation: Review the actual skill files before installation or deployment and confirm behavior matches the listed boundaries. <br>
+## Use Case:
 
+External users and agent builders use this skill to turn fitness goals, physical constraints, equipment availability, time limits, and recovery state into a structured training profile and a practical workout decision. It is intended for constraint-aware planning, not diagnosis, rehabilitation care, or broad medical guidance.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/sirsws/akm-fitness-planner) <br>
-- [Public source branch](https://github.com/sirsws/akm/tree/main/branches/fitness) <br>
-- [Skill files](https://github.com/sirsws/akm/tree/main/branches/fitness/skill) <br>
-- [Sample record](https://github.com/sirsws/akm/blob/main/branches/fitness/skill/SAMPLE_RECORD.md) <br>
-- [Research paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6231465) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured text with named fields such as StateJudgment, PrimaryDecision, DecisionConfidence, Plan, RiskNotes, NonNegotiables, and MissingInputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill should expose missing critical inputs, reduce confidence when state is uncertain, and keep decisions within training-planning boundaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill asks for health-related and body-limitation details that may be sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only the details needed for planning and avoid unnecessary medical history or identifying information.
+
+Risk: Fitness output could be mistaken for medical diagnosis or rehabilitation care.
+
+Mitigation: Use the skill as a training decision aid and defer diagnosis, rehabilitation planning, and medical restrictions to a qualified clinician.
+
+Risk: The install command uses a mutable npx/GitHub source.
+
+Mitigation: Review the resolved repository contents before installation and prefer a pinned commit or verified release when possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sirsws/skills/akm-fitness-planner)
+- [Public sample record](https://github.com/sirsws/akm/blob/main/branches/fitness/skill/SAMPLE_RECORD.md)
+- [AKM fitness branch paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6231465)
+- [Skill source files](https://github.com/sirsws/akm/tree/main/branches/fitness/skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured fields and YAML-style examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a training profile, state judgment, primary decision, confidence, plan, risk notes, non-negotiables, and missing inputs.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

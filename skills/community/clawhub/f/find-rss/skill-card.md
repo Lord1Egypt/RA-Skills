@@ -1,39 +1,51 @@
-## Description: <br>
-Discover RSS and Atom feeds for websites so users can subscribe to updates or monitor content. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover RSS and Atom feeds for websites by checking HTML alternate links and common feed paths.
 
-## Publisher: <br>
-[yangzhe1991](https://clawhub.ai/user/yangzhe1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yangzhe1991](https://clawhub.ai/user/yangzhe1991)
 
-## Use Case: <br>
-Developers, researchers, and content-monitoring users use this skill to locate RSS or Atom feed URLs for public websites. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill makes web requests to the user-supplied URL and common feed paths. <br>
-Mitigation: Use it only with public websites you intend to query, and avoid localhost, private network hosts, internal services, or sensitive URLs. <br>
-Risk: Some websites may block automated requests, omit feed links from static HTML, or rate limit repeated checks. <br>
-Mitigation: Treat a not-found result as inconclusive and verify manually through the website footer, documentation, or a trusted feed reader. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Find RSS on ClawHub](https://clawhub.ai/yangzhe1991/find-rss) <br>
+## Use Case:
+
+External users and developers use this skill to locate RSS or Atom feed URLs for websites they want to follow, monitor, or add to feed readers and news aggregation workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The helper script can make unrestricted network requests to user-supplied URLs and followed redirects, including internal or local services.
+
+Mitigation: Use only explicit public http/https website URLs, and avoid running the skill where the agent can reach private networks, localhost admin services, or cloud metadata endpoints unless those destinations are blocked by the runtime.
+
+Risk: Automated feed discovery may be blocked, rate limited, or miss feeds on JavaScript-rendered sites.
+
+Mitigation: Treat missing results as inconclusive; verify important feeds manually through the site's RSS or subscribe links or a trusted feed reader.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Terminal text with discovered feed URLs and short guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs a bash script against the user-supplied website URL and common feed paths.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Text, Shell commands, Guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Terminal text listing discovered feed URLs, status messages, and follow-up tips.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a website URL input; results depend on network access and the target site's feed support.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

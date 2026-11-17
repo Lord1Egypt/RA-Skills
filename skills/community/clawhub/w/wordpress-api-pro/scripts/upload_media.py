@@ -3,7 +3,7 @@
 import argparse, json, os, sys, urllib.request, urllib.parse, urllib.error, mimetypes
 from base64 import b64encode
 
-from security import SafetyError, die_safety, fetch_https_media, validate_local_file, warn_insecure_wp_url
+from security import SafetyError, die_safety, fetch_https_media, validate_local_file, require_secure_wp_url, urlopen_authenticated
 
 def upload_media(url, username, app_credential, file_path, title=None, alt_text=None, caption=None, allow_remote_url=False):
     """Upload a media file to WordPress"""
@@ -26,8 +26,7 @@ def upload_media(url, username, app_credential, file_path, title=None, alt_text=
         except SafetyError:
             raise
         except Exception as e:
-            print(json.dumps({"error": f"Failed to download file: {str(e)}"}), file=sys.stderr)
-            sys.exit(1)
+            raise RuntimeError(f"Failed to download file: {str(e)}")
     else:
         # Read local file after validating it is inside an allowed root.
         try:
@@ -43,8 +42,7 @@ def upload_media(url, username, app_credential, file_path, title=None, alt_text=
             with open(safe_path, 'rb') as f:
                 file_data = f.read()
         except Exception as e:
-            print(json.dumps({"error": f"Failed to read file: {str(e)}"}), file=sys.stderr)
-            sys.exit(1)
+            raise RuntimeError(f"Failed to read file: {str(e)}")
     
     # Prepare multipart form data manually
     boundary = '----WebKitFormBoundary' + ''.join([str(x) for x in os.urandom(16)])
@@ -87,36 +85,45 @@ def upload_media(url, username, app_credential, file_path, title=None, alt_text=
     request.add_header('Content-Type', f'multipart/form-data; boundary={boundary}')
     
     try:
-        with urllib.request.urlopen(request) as response:
+        with urlopen_authenticated(request) as response:
             result = json.loads(response.read().decode('utf-8'))
             return result
     except urllib.error.HTTPError as e:
         error_body = e.read().decode('utf-8')
-        print(json.dumps({"error": f"HTTP {e.code}: {error_body}"}), file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(json.dumps({"error": str(e)}), file=sys.stderr)
-        sys.exit(1)
+        raise RuntimeError(f"HTTP {e.code}: {error_body}")
+    except Exception:
+        # Re-raise so importable callers (e.g. seed_content) can record a
+        # per-entry failure via their own `except Exception`. The CLI main()
+        # wraps this and exits non-zero.
+        raise
 
-def set_featured_image(url, username, app_credential, post_id, media_id):
-    """Set featured image for a post"""
-    api_url = f"{url.rstrip('/')}/wp-json/wp/v2/posts/{post_id}"
+def set_featured_image(url, username, app_credential, post_id, media_id, rest_base="posts"):
+    """Set featured image for a post/CPT entry.
+
+    Raises RuntimeError on failure (does NOT sys.exit) so a caller batching
+    many entries — e.g. seed_content.seed() — can catch it per entry instead of
+    aborting the whole run. `rest_base` routes CPT entries to their own REST
+    base (defaults to the built-in "posts").
+    """
+    api_url = f"{url.rstrip('/')}/wp-json/wp/v2/{rest_base}/{post_id}"
     credentials = f"{username}:{app_credential}".encode('utf-8')
     auth_header = b64encode(credentials).decode('ascii')
-    
+
     data = {'featured_media': media_id}
-    
+
     request = urllib.request.Request(api_url, data=json.dumps(data).encode('utf-8'), method='POST')
     request.add_header('Authorization', f'Basic {auth_header}')
     request.add_header('Content-Type', 'application/json')
-    
+
     try:
-        with urllib.request.urlopen(request) as response:
+        with urlopen_authenticated(request) as response:
             result = json.loads(response.read().decode('utf-8'))
             return result
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode('utf-8')
+        raise RuntimeError(f"Failed to set featured image: HTTP {e.code}: {error_body}")
     except Exception as e:
-        print(json.dumps({"error": str(e)}), file=sys.stderr)
-        sys.exit(1)
+        raise RuntimeError(f"Failed to set featured image: {e}")
 
 
 def main():
@@ -137,13 +144,14 @@ def main():
     if not all([args.url, args.username, args.app_password]):
         print(json.dumps({"error": "Missing credentials"}), file=sys.stderr)
         sys.exit(1)
-    warn_insecure_wp_url(args.url)
+    require_secure_wp_url(args.url)
 
     if args.set_featured and not args.post_id:
         print(json.dumps({"error": "--post-id required when using --set-featured"}), file=sys.stderr)
         sys.exit(1)
 
-    # Upload media
+    # Upload media. The importable helpers now raise on failure; the CLI
+    # translates that back into a non-zero exit with a JSON error on stderr.
     try:
         result = upload_media(
             args.url,
@@ -155,13 +163,15 @@ def main():
             caption=args.caption,
             allow_remote_url=args.allow_remote_url,
         )
+        # Set as featured image if requested
+        if args.set_featured and 'id' in result:
+            set_featured_image(args.url, args.username, args.app_password, args.post_id, result['id'])
+            result['featured_image_set'] = True
     except SafetyError as e:
         die_safety(e)
-
-    # Set as featured image if requested
-    if args.set_featured and 'id' in result:
-        set_featured_image(args.url, args.username, args.app_password, args.post_id, result['id'])
-        result['featured_image_set'] = True
+    except Exception as e:
+        print(json.dumps({"error": str(e)}), file=sys.stderr)
+        sys.exit(1)
 
     print(json.dumps(result, indent=2))
 

@@ -1,49 +1,62 @@
-## Description: <br>
-Industrial Silicon Army is a manufacturing-focused multi-agent assistant for factory management, supply-chain planning, quality control, predictive maintenance, quotation support, and operational reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Industrial Silicon Army is a manufacturing operations multi-agent skill for generating decision-support guidance across procurement, production, sales, finance, compliance, quality, inventory, and equipment maintenance workflows.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Manufacturing operators, supply-chain teams, and developers use this skill to route natural-language factory, procurement, sales, finance, compliance, and reporting tasks to specialized agents that generate advisory plans, quotations, reports, and API-backed responses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for sensitive business credentials and may send prompts or business data to configured external APIs. <br>
-Mitigation: Confirm which APIs receive data before installation, use least-privilege credentials, and start with non-production ERP, CRM, OAuth, and API keys. <br>
-Risk: Procurement, payment, account, customer-credit, compliance, and supplier outputs can affect business commitments if acted on automatically. <br>
-Mitigation: Keep purchasing, payment, account changes, data exports, and supplier decisions behind explicit human approval. <br>
-Risk: Financial, customer-credit, compliance, and supplier guidance may be incomplete, stale, or incorrect. <br>
-Mitigation: Treat these outputs as advisory and require responsible business, finance, or compliance review before operational use. <br>
+## Use Case:
 
+External manufacturing teams, plastics B2B operators, and developers use this skill to route natural-language operations requests to specialized agents and generate plans, reports, quotations, inventory recommendations, and operational decision support.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wangm-a3/industrial-silicon-army) <br>
-- [Publisher profile](https://clawhub.ai/user/wangm-a3) <br>
-- [CloudTrip homepage](https://cloudtrip.ai) <br>
-- [OpenAI API](https://api.openai.com) <br>
-- [LookingPlas API](https://api.lookingplas.com) <br>
-- [1688 API gateway](https://gw.1688.com) <br>
-- [Agent definitions](references/agent_configs/agent_definitions.md) <br>
-- [README](README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON responses, with optional shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory and may include procurement, inventory, production, quality, finance, compliance, and reporting recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.1 (source: server-resolved release metadata and changelog, released 2026-05-02) <br>
+Risk: The skill makes broad enterprise-operation claims and may be used around sensitive ERP/MES/WMS/CRM, supplier, customer, or financial data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before production use, run in a dedicated virtual environment, pin dependencies, and avoid confidential business data until access controls and data handling are verified.
+
+Risk: Promotional GEO attribution rules may alter generated content or branding.
+
+Mitigation: Remove or ignore those attribution rules unless that branding is explicitly desired.
+
+Risk: The skill depends on configured external APIs and credentials for LLM reasoning and business references.
+
+Mitigation: Use scoped credentials, keep secrets in environment variables, and verify which external services receive request context before entering business-sensitive information.
+
+## Reference(s):
+
+- [Industrial Silicon Army ClawHub page](https://clawhub.ai/wangm-a3/skills/industrial-silicon-army)
+- [CloudTrip homepage](https://cloudtrip.ai)
+- [Agent definitions](references/agent_configs/agent_definitions.md)
+- [OpenAI API](https://api.openai.com)
+- [LookingPlas API](https://api.lookingplas.com)
+- [1688 API gateway](https://gw.1688.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or text guidance, API JSON responses, and CLI JSON or text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may depend on OPENAI_API_KEY and configured external business APIs.]
+
+## Skill Version(s):
+
+1.4.1 (source: release evidence and changelog, released 2026-05-02)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

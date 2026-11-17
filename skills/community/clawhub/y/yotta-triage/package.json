@@ -1,0 +1,39 @@
+{
+  "name": "@yottameta/yotta-triage",
+  "version": "0.1.6",
+  "description": "Yuanjian — a zero-dependency static malware triage engine for AI agents: MD5/SHA1/SHA256 hashes, magic-type detection, Shannon entropy, printable strings (ASCII/UTF-16LE) with URL/domain/IP/email/command/path/base64 classification, and PE/ELF header parsing (architecture, timestamp, sections, packed/RWX indicators). Outputs a triage report plus an IOC list (hash/URL/domain/IP/email) for downstream intel consumption. Pure Python 3.8+ standard library, fully offline and read-only; no deobfuscation, unpacking, or execution. Triggers when the user provides a suspicious file/sample or a folder of samples and needs static triage, hashing, entropy, string extraction, or PE/ELF inspection. Boundaries: static features only; never executes or modifies samples; authorized / own-asset / educational use only.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-triage"
+  ],
+  "files": [
+    "SKILL.md",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    "install.sh",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "NOTICE",
+    "CHANGELOG.md",
+    "!scripts/test_*.py",
+    "!**/__pycache__",
+    "!**/*.pyc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-triage.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-triage": "bin/install.js"
+  },
+  "scripts": {
+    "test": "python scripts/test_yotta_triage.py"
+  }
+}

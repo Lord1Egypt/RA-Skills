@@ -1,43 +1,58 @@
-## Description: <br>
-Privacy-first personal finance tracker with local SQLite storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy-first personal finance tracker with local SQLite storage.
 
-## Publisher: <br>
-[gowtham1984](https://clawhub.ai/user/gowtham1984) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gowtham1984](https://clawhub.ai/user/gowtham1984)
 
-## Use Case: <br>
-External users use this skill to import local bank statement files, categorize transactions, track budgets, ask spending questions, and generate personal finance reports while keeping data on their machine. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bank transaction history is sensitive and is stored in a local SQLite database. <br>
-Mitigation: Use the skill only on trusted machines, keep the skill data directory private, and avoid importing statements on shared systems. <br>
-Risk: Generated HTML reports may contain personal financial details. <br>
-Mitigation: Review generated reports before sharing them and store or delete report files according to the user's privacy requirements. <br>
-Risk: Custom regex categorization rules can slow local processing when patterns are complex. <br>
-Mitigation: Prefer exact or keyword rules where possible and review regex rules before running bulk recategorization. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Category Guide](references/category_guide.md) <br>
-- [Query Examples](references/query_examples.md) <br>
-- [Supported Bank Formats](references/supported_banks.md) <br>
+## Use Case:
 
+External users use this skill to import local bank statement files, categorize transactions, track budgets, ask spending questions, and generate finance reports while keeping data on their own machine.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Conversational Markdown with shell command examples and report summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce local JSON, text, or HTML reports through bundled scripts; user-facing responses should summarize results rather than expose raw JSON.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Imported bank transactions are stored in a local SQLite database.
+
+Mitigation: Install only if local storage of personal finance data is acceptable, and protect the configured data directory with normal device and filesystem controls.
+
+Risk: HTML reports may turn imported transaction text into active browser content.
+
+Mitigation: Prefer text or JSON reports, and avoid opening HTML reports generated from untrusted or modified statement data until HTML escaping is fixed.
+
+Risk: The skill installs and runs local Python dependencies and scripts.
+
+Mitigation: Use a virtual environment and import statements only from trusted sources.
+
+## Reference(s):
+
+- [Category Guide](references/category_guide.md)
+- [Query Examples](references/query_examples.md)
+- [Supported Bank Formats](references/supported_banks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Conversational Markdown with inline shell commands and parsed JSON, text, or HTML report summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The underlying scripts emit JSON for imports, categorization, queries, budgets, and reports; reports may also be generated as text or HTML.]
+
+## Skill Version(s):
+
+1.0.0 (source: skill.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

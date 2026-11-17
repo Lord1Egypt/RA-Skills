@@ -1,6 +1,6 @@
 ---
 name: med-chronic-disease-review
-description: 门诊慢病审核（糖尿病/高血压）。输入 OCR 结果数组 JSON，输出审核结论与原因（原始 JSON + 自然语言结论）。
+description: 门诊慢病审核（糖尿病/高血压）。输入 OCR 结果数组 JSON，由内部医疗大模型输出审核结论与原因（原始 JSON + 自然语言结论）。
 metadata:
   {
     "openclaw":
@@ -16,7 +16,8 @@ metadata:
 ----
 给定一份 OCR 结果数组（每项包含 `fileName/page/docType/ocrText`），本技能会：
 
-- 输出审核接口原始 JSON
+- 调用内部医疗大模型进行慢病审核推理
+- 输出结构化 JSON（含 `final_decision`、`reasoning`）
 - 输出自然语言摘要（结论 + 原因）
 
 数据安全、隐私与伦理声明
@@ -24,7 +25,7 @@ metadata:
 - **最小必要原则**：仅处理审核所必需的文本内容；不要求也不鼓励提供与审核无关的身份信息。
 - **严格脱敏**：在发送至任何模型/接口前，会对可识别个人身份的信息进行脱敏/去标识化处理（如姓名、证件号、手机号、详细地址、人脸/影像等）。仅传递脱敏后的必要信息用于本次 skill 调用。
 - **不做本地持久化**：不将用户输入与中间结果写入本地持久化存储（包含磁盘文件、数据库、日志）。仅在内存中短暂处理；**本次调用结束即销毁**。
-- **第三方 API 风险提示**：在功能需要时，可能会调用第三方模型/服务接口；此时仅会发送**脱敏后的必要信息**，并使用加密传输。除完成本次请求外，不用于任何其他用途（如训练、画像、营销）。
+- **第三方 API 风险提示**：在功能需要时，会调用内部医疗大模型接口；此时仅会发送**脱敏后的必要信息**，并使用加密传输。除完成本次请求外，不用于任何其他用途（如训练、画像、营销）。
 - **医疗边界**：本技能输出为审核规则匹配与原因摘要的辅助信息，不构成医疗诊断或治疗建议；如涉及临床判断请以执业医生意见为准。
 
 输入格式
@@ -39,7 +40,7 @@ metadata:
 ```
 
 也支持通过统一入口 `scripts/run.py` 直接输入 `pdf/doc/docx/xls/xlsx/csv/txt/json`。
-预处理成功后，会先归一化为 `ocr_array.json`（每项含 `fileName/page/docType/ocrText`），再调用本 skill 的原始审核逻辑。
+预处理成功后，会先归一化为 `ocr_array.json`（每项含 `fileName/page/docType/ocrText`），再调用医疗大模型审核。
 
 快速开始
 --------
@@ -47,34 +48,40 @@ metadata:
 
 ```bash
 # 糖尿病
-python3 scripts/run.py \
+python3 insurance/claims-review/chronic-disease/scripts/run.py \
   --disease-code diabetes \
+  --appkey <your-appkey> \
   --input data/med-chronic-disease-review/糖尿病_ocr_task_result.json
 
 # 高血压
-python3 scripts/run.py \
+python3 insurance/claims-review/chronic-disease/scripts/run.py \
   --disease-code hypertension \
+  --appkey <your-appkey> \
   --input data/med-chronic-disease-review/高血压_ocr_task_result.json
+
+# 本地校验（不调模型）
+python3 insurance/claims-review/chronic-disease/scripts/run.py \
+  --disease-code diabetes \
+  --dry-run \
+  --input data/med-chronic-disease-review/糖尿病_ocr_task_result.json
 
 # 或继续直接使用原始 OCR 数组入口
-python3 scripts/chronic_disease_review.py \
+python3 insurance/claims-review/chronic-disease/scripts/chronic_disease_review.py \
   --disease-code diabetes \
+  --appkey <your-appkey> \
   --input data/med-chronic-disease-review/糖尿病_ocr_task_result.json
-
-# 高血压
-python3 scripts/chronic_disease_review.py \
-  --disease-code hypertension \
-  --input data/med-chronic-disease-review/高血压_ocr_task_result.json
 ```
 
 参数说明
 --------
 - `--disease-code STRING`：**必填**。糖尿病/高血压（也支持 `diabetes/hypertension/dm/htn` 别名）。本 skill 每次只审核一个病种。
-- `--review-type STRING`：可选。默认 `慢病审核`（也可传 `大病审核` 等服务支持的值）。
-- `--input PATH`：OCR 数组 JSON（UTF-8）。
-- `--base URL`：后端 base（默认：`http://10.10.20.15:9011`）。
-- `--llm-model STRING`：可选。模型名。
-- `--timeout SECONDS`：HTTP 超时；`0` 表示一直等待（默认：0）。
+- `--review-type STRING`：可选。默认 `慢病审核`。
+- `--appkey STRING`：**必填**（`--dry-run` 时除外）。内部医疗大模型鉴权 key，由平台分配。
+- `--input PATH`：OCR 数组 JSON（UTF-8）或经 `run.py` 支持的文档格式。
+- `--base URL`：大模型 base（默认：`https://maas-api.hivoice.cn/v1`）。
+- `--model STRING`：模型名（默认：`u2-med`）。
+- `--timeout SECONDS`：HTTP 超时（默认：120）。
+- `--dry-run`：跳过模型调用，输出占位结论（用于联调预处理链路）。
 - `--output-json PATH`：保存原始返回 JSON（默认：`../runs/med-chronic-disease-review/{scenario}_resp.json`）。
 - `--output-text PATH`：保存自然语言摘要（默认：`../runs/med-chronic-disease-review/{scenario}_resp.txt`）。
 
@@ -89,18 +96,27 @@ python3 scripts/chronic_disease_review.py \
 --------
 - 若输出路径父目录不存在，会自动创建。
 - 自然语言摘要重点字段：
-  - `final_decision`：通过/不通过
+  - `final_decision`：通过/不通过/待补充
   - `reasoning`：原因（可选）
 
 依赖
 ----
+### 前置 Skill
+本 skill 的 `scripts/run.py` 依赖 **`_shared/doc-preprocess`** 提供的公共文件预处理库（`preprocess.py`）。
+请确保 `_shared/doc-preprocess/` 位于 `skills/` 根目录下。
+
 ### 运行环境
 - Python 3.7+
 
-### 外部 API
-- 后端审核服务：`https://shangbao.yunzhisheng.cn/skills/chronic-disease`
-  - 方法：POST `/api/v1/review/flow/by-ocr`
-  - 需要网络访问 `shangbao.yunzhisheng.cn`
+### 模型配置
+本 skill 通过内部医疗大模型进行推理（不再依赖商保后端审核 flow API）：
+
+- endpoint：`https://maas-api.hivoice.cn/v1/chat/completions`
+- model：`u2-med`
+- 协议：OpenAI Chat Completions（兼容标准 `/v1/chat/completions`）
+- 鉴权：通过 `--appkey` 参数传入 Bearer token，由用户在 OpenClaw 中调用时提供
+
+> 强制通过 `--appkey` 调用内部医疗大模型；`--dry-run` 仅用于本地链路校验。
 
 ### Python 第三方包（可选，按输入格式需要）
 | 包名 | 用途 | 必要条件 |

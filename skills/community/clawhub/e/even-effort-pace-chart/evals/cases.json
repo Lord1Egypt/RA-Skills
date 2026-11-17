@@ -1,0 +1,198 @@
+{
+  "default_parameters": {
+    "sample_m": 5,
+    "smoothing_m": 20,
+    "ascent_smoothing_m": 0,
+    "ascent_method": "hysteresis",
+    "ascent_threshold_m": 10,
+    "elevation_spike_m": 30,
+    "distance_tolerance_m": 0,
+    "ascent_km_per_100m": 1,
+    "fatigue_rate": 0.08,
+    "water_mode": "distance",
+    "water_ml_per_10km": 700,
+    "target_step_minutes": 30,
+    "start_time": "06:00",
+    "secondary_display": "pace",
+    "pace_basis": "distance",
+    "output_formats": ["svg"]
+  },
+  "targets_seconds": [14400, 16200, 18000, 19800, 21600],
+  "cases": [
+    {
+      "id": "target_only",
+      "prompt_zh": "用提供的 course.gpx 生成体感一致配速表，目标完赛时间 5 小时。",
+      "prompt_en": "Generate an even-effort pace chart from the supplied course.gpx with a 5-hour finish target.",
+      "variants_zh": ["根据 course.gpx 制作体感一致配速表，我计划 300 分钟完赛。", "用 course.gpx 做分站配速表，我的完赛目标是五小时。"],
+      "variants_en": ["Create an even-effort chart from course.gpx with a finish goal of 300 minutes.", "Build a checkpoint pace chart for course.gpx; I aim to finish in five hours."]
+    },
+    {
+      "id": "start_does_not_select_arrival",
+      "prompt_zh": "用提供的 course.gpx 生成体感一致配速表，目标完赛时间 5 小时，相邻方案间隔 30 分钟，出发时间早上六点。",
+      "prompt_en": "Generate an even-effort pace chart from the supplied course.gpx: 5-hour finish target, 30-minute spacing between schedules, starting at 06:00.",
+      "variants_zh": ["用 course.gpx 排配速，五小时完赛，相邻方案差半小时，早上六点发枪。"],
+      "variants_en": ["Plan course.gpx for a five-hour finish, half-hour intervals, and a 6 a.m. start."]
+    },
+    {
+      "id": "explicit_arrival",
+      "prompt_zh": "用提供的 course.gpx 生成体感一致配速表，目标完赛 5 小时，括号内显示到达时间。",
+      "prompt_en": "Generate an even-effort pace chart from the supplied course.gpx with a 5-hour finish target and arrival clock times in parentheses.",
+      "variants_zh": ["用 course.gpx 制作五小时配速表，括号里写到各站时钟上的到站时间。"],
+      "variants_en": ["For a five-hour course.gpx plan, put the local clock time of arrival at each station in parentheses."],
+      "expected_parameters": {"secondary_display": "arrival_time"}
+    },
+    {
+      "id": "replace_target_list",
+      "prompt_zh": "复用提供的配置和 course.gpx，把目标列表改为以 5 小时为中心的五组方案，其他设置保持不变。",
+      "prompt_en": "Reuse the supplied configuration and course.gpx, replacing the target list with five schedules centered on 5 hours. Keep the other settings.",
+      "variants_zh": ["沿用给定的配置和 course.gpx，原来的目标列表不要了，以五小时展开五档，其他设置不变。"],
+      "variants_en": ["Keep the supplied course.gpx settings but replace the old target list with five plans centered on five hours."],
+      "selected_config": {"targets": ["12:00", "13:00"], "start_time": "07:30", "fatigue_rate": 0.1},
+      "expected_parameters": {"start_time": "07:30", "fatigue_rate": 0.1},
+      "required_config": {"target": "05:00"},
+      "forbidden_config": ["targets"]
+    },
+    {
+      "id": "preserve_zero_false",
+      "prompt_zh": "复用提供的配置和 course.gpx，目标仍为 5 小时。将 smoothing_m、ascent_smoothing_m、fatigue_rate、water_ml_per_10km 设为 0，use_kml_altitudes 设为 false，其他设置不变。",
+      "prompt_en": "Reuse the supplied configuration and course.gpx with the same 5-hour target. Set smoothing_m, ascent_smoothing_m, fatigue_rate, and water_ml_per_10km to 0 and use_kml_altitudes to false. Keep the other settings.",
+      "variants_zh": ["保留给定配置和五小时目标，把图示平滑、爬升平滑、疲劳率以及每 10 等效公里水量都设为零，并关闭 use_kml_altitudes。"],
+      "variants_en": ["Keep the supplied five-hour configuration, set display smoothing, ascent smoothing, fatigue rate, and water per 10 equivalent km to zero, and disable use_kml_altitudes."],
+      "selected_config": {"target": "05:00", "smoothing_m": 20, "ascent_smoothing_m": 40, "fatigue_rate": 0.08, "water_ml_per_10km": 700, "use_kml_altitudes": true},
+      "expected_parameters": {"smoothing_m": 0, "ascent_smoothing_m": 0, "fatigue_rate": 0, "water_ml_per_10km": 0},
+      "required_config": {"smoothing_m": 0, "ascent_smoothing_m": 0, "fatigue_rate": 0, "water_ml_per_10km": 0, "use_kml_altitudes": false}
+    },
+    {
+      "id": "time_water_manual_conditions",
+      "prompt_zh": "用提供的 course.gpx 生成配速表，目标 5 小时，并以 5 小时方案按耗时计算携水。预报不可用，我确认天气晴：默认饮水速率 600 毫升/小时，CP1 出发到下一站按 700 毫升/小时，每段额外预留 15 分钟。",
+      "prompt_en": "Generate a chart from the supplied course.gpx with a 5-hour target and calculate time-based water from the 5-hour plan. The forecast is unavailable and I confirm sunny conditions: use 600 ml/hour by default, 700 ml/hour from CP1 to the next station, and a 15-minute buffer for each leg.",
+      "variants_zh": ["给 course.gpx 做五小时配速表，以该方案的移动耗时算带水。天气预报不可用，我确认晴天；平时每小时 0.6 升，CP1 出发后每小时 0.7 升，每一段多算一刻钟。"],
+      "variants_en": ["Plan course.gpx around a five-hour finish and use that schedule's moving time for water. The forecast is unavailable; I confirm sunny weather. Use 0.6 litres per hour, 0.7 from CP1, and an extra quarter hour per leg."],
+      "expected_parameters": {
+        "water_mode": "time",
+        "water_target_seconds": 18000,
+        "water_ml_per_hour": 600,
+        "water_buffer_minutes": 15,
+        "water_rate_overrides": {"wpt:1": 700},
+        "water_weather_source": "manual"
+      }
+    },
+    {
+      "id": "explicit_svg_only",
+      "prompt_zh": "复用提供的配置和 course.gpx，目标仍为 5 小时，只导出 SVG，其他设置保持不变。",
+      "prompt_en": "Reuse the supplied configuration and course.gpx with the same 5-hour target. Export only SVG and keep the other settings.",
+      "variants_zh": ["沿用给定配置和五小时目标，用 course.gpx 只生成 SVG，不要 HTML 或 JSON。"],
+      "variants_en": ["Keep the supplied five-hour course.gpx settings, but produce SVG alone without HTML or JSON."],
+      "selected_config": {"target": "05:00", "output_formats": ["svg", "html", "json"]},
+      "expected_parameters": {"output_formats": ["svg"]}
+    },
+    {
+      "id": "single_target",
+      "prompt_zh": "用 course.gpx 制作配速表，只显示 5 小时这一列，不展开其他目标。",
+      "prompt_en": "Create a chart from course.gpx with only the 5-hour column; do not expand other targets.",
+      "variants_zh": ["根据 course.gpx 排配速，完赛目标 300 分钟，表里只需要这一档。", "给 course.gpx 做五小时单列方案，不要其他完赛时间。"],
+      "variants_en": ["Make a course.gpx pace chart with a single 300-minute finish target.", "For course.gpx, show just one five-hour plan and no other targets."],
+      "targets_seconds": [18000]
+    },
+    {
+      "id": "exact_target_list",
+      "prompt_zh": "用 course.gpx 制作配速表，只列出 4、5、6 小时三个完赛目标。",
+      "prompt_en": "Create a chart from course.gpx with exactly three finish targets: 4, 5, and 6 hours.",
+      "variants_zh": ["根据 course.gpx 出表，完赛方案指定为 04:00、05:00、06:00 三列。"],
+      "variants_en": ["For course.gpx, show only the 04:00, 05:00, and 06:00 finish plans."],
+      "targets_seconds": [14400, 18000, 21600]
+    },
+    {
+      "id": "distance_water",
+      "prompt_zh": "用 course.gpx 做 5 小时配速表，按每 10 等效公里 900 毫升比较各段水量。",
+      "prompt_en": "Make a five-hour course.gpx chart and compare leg water at 900 ml per 10 equivalent kilometres.",
+      "variants_zh": ["根据 course.gpx 规划五小时完赛，水量按等效距离计算，每十等效公里用 0.9 升。"],
+      "variants_en": ["Plan course.gpx for five hours, using 0.9 litres per ten equivalent kilometres to compare water."],
+      "expected_parameters": {"water_mode": "distance", "water_ml_per_10km": 900}
+    },
+    {
+      "id": "station_rest_and_cutoff",
+      "prompt_zh": "根据 course.gpx 制作 5 小时配速表，CP1 停留 10 分钟，CP1 关门为发枪后 3 小时。",
+      "prompt_en": "Create a five-hour chart from course.gpx, with a 10-minute rest at CP1 and a CP1 cutoff 3 hours after the start.",
+      "variants_zh": ["用 course.gpx 规划五小时完赛，在 CP1 休息十分钟；该站发枪后三小时关门。"],
+      "variants_en": ["For the five-hour course.gpx plan, stay ten minutes at CP1; its cutoff is three hours elapsed."],
+      "rests_seconds": {"wpt:1": 600},
+      "cutoffs_seconds": {"wpt:1": 10800}
+    },
+    {
+      "id": "explicit_html_only",
+      "prompt_zh": "复用提供的配置和 course.gpx，目标仍为 5 小时，只生成 HTML，其他设置不变。",
+      "prompt_en": "Reuse the supplied configuration and course.gpx with the same 5-hour target. Generate only HTML and keep the other settings.",
+      "variants_zh": ["沿用给定的五小时配置和 course.gpx，仅导出 HTML，不要 SVG 或 JSON。"],
+      "variants_en": ["Keep the supplied five-hour course.gpx configuration, but export HTML alone without SVG or JSON."],
+      "selected_config": {"target": "05:00", "output_formats": ["svg", "json"]},
+      "expected_parameters": {"output_formats": ["html"]}
+    },
+    {
+      "id": "preserve_selected_options",
+      "prompt_zh": "复用提供的配置和 course.gpx，将完赛目标改为 5 小时，其他设置保持不变。",
+      "prompt_en": "Reuse the supplied configuration and course.gpx, changing the finish target to 5 hours and keeping other settings.",
+      "variants_zh": ["沿用给定配置和 course.gpx，只把完赛时间换成五小时，别改其他参数。"],
+      "variants_en": ["Keep the supplied course.gpx settings and change only the finish target to five hours."],
+      "selected_config": {
+        "target": "04:00", "start_time": "07:30", "fatigue_rate": 0.1,
+        "secondary_display": "arrival_time", "output_formats": ["svg", "html"]
+      },
+      "expected_parameters": {
+        "start_time": "07:30", "fatigue_rate": 0.1,
+        "secondary_display": "arrival_time", "output_formats": ["svg", "html"]
+      }
+    }
+  ],
+  "manual_review_cases": [
+    {
+      "id": "custom_water_needs_clarification",
+      "prompt_zh": "用提供的 course.gpx 生成体感一致配速表，目标完赛 5 小时，我要自定义带水量。",
+      "prompt_en": "Generate an even-effort pace chart from the supplied course.gpx with a 5-hour finish target. I want to customize my water plan.",
+      "variants_zh": ["帮我用 course.gpx 做五小时配速表，我想自己调整携水方案。"],
+      "variants_en": ["Make a five-hour course.gpx plan; I would like a custom water plan."]
+    },
+    {
+      "id": "personalized_water_missing_details",
+      "prompt_zh": "用提供的 course.gpx 生成 5 小时配速表，请根据比赛天气和我的个人情况给我安排各站带水量。",
+      "prompt_en": "Generate a 5-hour pace chart from the supplied course.gpx and plan my departure water at each station based on the race weather and my personal needs.",
+      "variants_zh": ["用 course.gpx 排五小时的表，结合天气和我的情况帮我算每站出发要带多少水。"],
+      "variants_en": ["For a five-hour course.gpx plan, personalize each station's departure water using my needs and the race weather."]
+    },
+    {
+      "id": "weather_preview_confirmation",
+      "prompt_zh": "用提供的 course.gpx 制作 5 小时配速表并按耗时规划携水。比赛于当前日期后第 7 天当地 06:00 发枪，时区 Asia/Shanghai。请先查询赛段天气，等我确认天气和个人饮水速率后再生成。",
+      "prompt_en": "Use the supplied course.gpx for a 5-hour chart with time-based water. The race starts at 06:00 local time seven days from today in Asia/Shanghai. Check the weather for each leg first, then wait for me to confirm the forecast and my personal drinking rate before generating.",
+      "variants_zh": ["用 course.gpx 排五小时方案，带水按耗时算。比赛在七天后的北京时间早上六点，先查各段天气，等我确认天气和饮水速率再出表。"],
+      "variants_en": ["Plan course.gpx for five hours with water based on time. The start is 06:00 in Asia/Shanghai seven days from now. Show me each leg's forecast and wait for my weather and drinking-rate confirmation before generating."]
+    },
+    {
+      "id": "conflicting_targets",
+      "prompt_zh": "用 course.gpx 制作配速表：同一张表只要 5 小时一列，同时必须有以 5 小时为中心的五列。",
+      "prompt_en": "Make a course.gpx chart that has only one 5-hour column and, in the same table, five columns centered on 5 hours.",
+      "variants_zh": ["按 course.gpx 做一张表，五小时单列，但这张表又必须展示五档目标。"],
+      "variants_en": ["For course.gpx, make one table that is both a single five-hour column and five target columns."]
+    },
+    {
+      "id": "missing_target",
+      "prompt_zh": "根据 course.gpx 为我的越野赛生成体感一致配速表。",
+      "prompt_en": "Create an even-effort pace chart for my trail race using course.gpx.",
+      "variants_zh": ["帮我用 course.gpx 做一份按站点分段的越野配速计划。"],
+      "variants_en": ["Use course.gpx to make a checkpoint-by-checkpoint trail pacing plan."]
+    },
+    {
+      "id": "implicit_skill_selection",
+      "prompt_zh": "我有条越野赛道 course.gpx，目标 5 小时完赛，帮我做体感一致的分站配速表。",
+      "prompt_en": "I have a trail race route, course.gpx, and aim to finish in 5 hours. Make an even-effort checkpoint pace chart.",
+      "variants_zh": ["我想按体感一致安排 course.gpx 的赛道，五小时完赛，各站分别该用多久？请做成配速表。"],
+      "variants_en": ["Help me plan course.gpx at even effort for a five-hour finish, with a pace chart for each checkpoint."]
+    },
+    {
+      "id": "confirm_before_generation",
+      "prompt_zh": "用 course.gpx 制作 5 小时配速表。先列出准备使用的参数，等我确认后再生成文件。",
+      "prompt_en": "Create a five-hour chart from course.gpx. Show the parameters first and wait for my confirmation before generating files.",
+      "variants_zh": ["用 course.gpx 做五小时配速，先给我看配置，未经我的确认不要出文件。"],
+      "variants_en": ["Plan course.gpx for five hours; let me review the configuration and do not create files until I approve."]
+    }
+  ]
+}

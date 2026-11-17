@@ -1,6 +1,93 @@
 {
-  "ownerId": "kn76f9a11cpzp3cn6fy9hv8cnh82nwxz",
-  "slug": "stock-master-pro",
+  "name": "stock-master-pro",
+  "displayName": "A 股大师 Pro",
   "version": "0.0.1",
-  "publishedAt": 1774344974875
+  "description": "基于 QVeris AI 的 A 股实时持仓监控与深度复盘系统。支持午盘/尾盘/收盘三时段复盘、板块深度分析（为什么涨）、强势股评分推荐、持仓主力意图分析、龙虎榜监控、Web Dashboard 可视化。",
+  "author": "yaoha",
+  "license": "MIT",
+  "homepage": "https://github.com/yaoha/stock-master-pro",
+  "repository": "https://github.com/yaoha/stock-master-pro",
+  "keywords": ["股票", "A 股", "复盘", "QVeris", "量化", "持仓监控", "Web Dashboard"],
+  "categories": ["金融", "数据分析", "可视化"],
+  "minOpenClawVersion": "1.0.0",
+  "dependencies": {
+    "qveris": ">=0.0.1"
+  },
+  "dependencyInstallGuide": {
+    "name": "QVeris",
+    "description": "QVeris AI 提供 A 股实时行情、资金流向、龙虎榜等数据",
+    "registerUrl": "https://qveris.ai/?ref=y9d7PKgdPcPC-A",
+    "installMethod": "官网注册后复制安装命令",
+    "checkScript": "scripts/check_dependency.mjs",
+    "required": true,
+    "reason": "本技能依赖 QVeris AI 获取 A 股实时数据。请通过下方链接注册 QVeris（免费），然后在首页复制安装命令即可。",
+    "steps": [
+      "访问 https://qveris.ai/?ref=y9d7PKgdPcPC-A 注册（免费）",
+      "在首页点击"复制安装命令"",
+      "在终端运行安装命令",
+      "安装完成后 API Key 自动配置"
+    ]
+  },
+  "features": [
+    "📊 三时段复盘（午盘 12:30/尾盘 15:30/收盘 16:00）",
+    "🔥 板块深度分析（为什么涨、持续性评级、怎么跟进）",
+    "⭐ 强势股评分推荐（100 分制，含推荐理由）",
+    "💰 持仓监控（主力意图、技术位置、目标价/止损价）",
+    "🐉 龙虎榜监控（机构/游资/北向资金分析）",
+    "📅 财报日历提醒",
+    "📢 公告监控（持仓股票重大公告）",
+    "🎯 趋势选股器（右侧交易、温和放量、趋势向上）",
+    "🖥️ Web Dashboard（专业金融终端风格，10 秒自动刷新）"
+  ],
+  "scripts": {
+    "check": "node scripts/check_dependency.mjs",
+    "noon-review": "node scripts/noon_review.mjs",
+    "afternoon-review": "node scripts/afternoon_review.mjs",
+    "close-review": "node scripts/close_review.mjs",
+    "announcement": "node scripts/announcement_monitor.mjs",
+    "screener": "node scripts/stock_screener.mjs",
+    "aggregate": "node scripts/aggregate_data.mjs"
+  },
+  "cronJobs": [
+    {
+      "name": "午盘复盘",
+      "schedule": "0 12 30 * * 1-5",
+      "script": "scripts/noon_review.mjs",
+      "description": "每个交易日 12:30 生成午盘复盘"
+    },
+    {
+      "name": "尾盘复盘",
+      "schedule": "0 15 30 * * 1-5",
+      "script": "scripts/afternoon_review.mjs",
+      "description": "每个交易日 15:30 生成尾盘复盘"
+    },
+    {
+      "name": "收盘总结",
+      "schedule": "0 16 0 * * 1-5",
+      "script": "scripts/close_review.mjs",
+      "description": "每个交易日 16:00 生成收盘总结"
+    },
+    {
+      "name": "公告监控",
+      "schedule": "0 */10 9-15 * * 1-5",
+      "script": "scripts/announcement_monitor.mjs",
+      "description": "交易时间每 10 分钟检查持仓股票公告"
+    }
+  ],
+  "webDashboard": {
+    "enabled": true,
+    "port": 3000,
+    "path": "web/",
+    "startScript": "web/start-web.sh",
+    "description": "访问 http://localhost:3000 查看专业金融终端风格的 Web Dashboard"
+  },
+  "config": {
+    "dataPath": "stocks/",
+    "refreshInterval": 10000,
+    "checkInterval": 600000,
+    "tradingHours": {
+      "morning": {"start": "9:30", "end": "11:30"},
+      "afternoon": {"start": "13:00", "end": "15:00"}
+    }
+  }
 }

@@ -1,42 +1,55 @@
-## Description: <br>
-Translates text and extracts and translates text from images or image URLs using Xiangji/Tosoiot translation services with multiple engine options. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Translates text and text embedded in images or image URLs through the Xiangji/Tosoiot translation service, with support for batch image translation and multiple translation engines.
 
-## Publisher: <br>
-[leoking](https://clawhub.ai/user/leoking) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leoking](https://clawhub.ai/user/leoking)
 
-## Use Case: <br>
-Developers and external users can use this skill to translate text, local images, or batches of image URLs across supported source and target languages. It is intended for workflows that need OCR-style image translation or multi-engine text translation through the Xiangji/Tosoiot service. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends selected text, images, and image URLs to third-party translation APIs. <br>
-Mitigation: Use it only with providers approved for the data being translated, and avoid confidential, regulated, personal, internal-only, or secret-bearing content unless that use is approved. <br>
-Risk: Service keys are supplied on the command line and may be exposed through shell history, shared logs, or process inspection. <br>
-Mitigation: Use revocable service keys, avoid running commands in shared shells or logs, and rotate keys if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Skill page](https://clawhub.ai/leoking/image-translator) <br>
-- [Xiangji Translation website](https://www.xiangjifanyi.com/) <br>
-- [Xiangji API documentation](https://openapi-doc.xiangjifanyi.com/) <br>
-- [Language support reference](references/languages.md) <br>
+## Use Case:
 
+External users and developers use this skill to translate text, local images, or batches of image URLs between supported languages through Xiangji/Tosoiot APIs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [JSON responses and terminal text from command-line translation scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Xiangji/Tosoiot API credentials and explicit source and target language codes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles API credentials for text and image translation.
+
+Mitigation: Use approved credential handling and prefer adapting the scripts to read secrets from environment variables or a secure secret store rather than command-line flags.
+
+Risk: The skill sends text, local images, and image URLs to Xiangji/Tosoiot translation services.
+
+Mitigation: Use only content you are authorized to share, and avoid confidential, regulated, internal, personal, or signed image URL content unless policy and terms permit it.
+
+## Reference(s):
+
+- [Xiangji official website](https://www.xiangjifanyi.com/)
+- [Xiangji OpenAPI documentation](https://openapi-doc.xiangjifanyi.com/)
+- [Supported languages](references/languages.md)
+- [Image Translator ClawHub listing](https://clawhub.ai/leoking/skills/image-translator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python script commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Xiangji/Tosoiot API credentials and sends text, images, or image URLs to external translation APIs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

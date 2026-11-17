@@ -1,43 +1,55 @@
-## Description: <br>
-Control an OpenClaw LED panel (64x32 HUB75 on ESP32-S3) over HTTP - display text, graphics, shapes, play sounds, and read status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control an OpenClaw LED panel (64x32 HUB75 on ESP32-S3) over HTTP to display text, graphics, shapes, play sounds, and read status.
 
-## Publisher: <br>
-[joaquinckronoset](https://clawhub.ai/user/joaquinckronoset) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joaquinckronoset](https://clawhub.ai/user/joaquinckronoset)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to send HTTP commands to a controlled local LED panel for short text, graphics, dashboard panels, sound playback, and device status checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent can change what appears on the configured panel and play sounds. <br>
-Mitigation: Install only when you control the panel and local network, and verify OPENCLAW_PANEL_IP before use. <br>
-Risk: Panel display control can briefly interrupt the normal timeline or leave temporary content visible. <br>
-Mitigation: Use the documented lock and unlock workflow, and unlock or reset the panel after temporary displays. <br>
-Risk: Brightness and volume changes can persist across reboots. <br>
-Mitigation: Keep brightness and volume within the documented 0-100 range and restore preferred values after tests. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to let an agent control a local OpenClaw LED panel, including drawing display content, playing sounds, checking status, and adjusting brightness or volume.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/joaquinckronoset/openclawpanel) <br>
-- [OpenClaw Panel Project](https://github.com/joaquinckronoset/openclawpanel) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with curl commands and JSON request bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and OPENCLAW_PANEL_IP for a panel on the same local network.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can change a physical display, play audible sounds, and persist brightness or volume settings on the configured panel.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when agent control of the panel is intended, verify OPENCLAW_PANEL_IP points to the user's own local device, and review commands before execution.
+
+Risk: Commands sent to an unintended or unreachable panel IP may affect the wrong local device or fail unexpectedly.
+
+Mitigation: Check device status before use and keep the OpenClaw host and panel on the expected local network.
+
+## Reference(s):
+
+- [OpenClaw Panel ClawHub page](https://clawhub.ai/joaquinckronoset/skills/openclawpanel)
+- [OpenClaw Panel project](https://github.com/joaquinckronoset/openclawpanel)
+- [Skill API reference](SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with HTTP API examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OPENCLAW_PANEL_IP and curl to issue local HTTP requests to the configured panel.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,35 @@
 {
-  "ownerId": "kn73vp5rarc3b14rc7wjcw8f8580t5d1",
+  "owner": "clawic",
   "slug": "react",
-  "version": "1.0.4",
-  "publishedAt": 1771980210009
+  "displayName": "React",
+  "latest": {
+    "version": "1.0.7",
+    "publishedAt": 1785068764917
+  },
+  "history": [
+    {
+      "version": "1.0.6",
+      "publishedAt": 1784845071882
+    },
+    {
+      "version": "1.0.5",
+      "publishedAt": 1784812422259
+    },
+    {
+      "version": "1.0.4",
+      "publishedAt": 1771980210009
+    },
+    {
+      "version": "1.0.3",
+      "publishedAt": 1771105484919
+    },
+    {
+      "version": "1.0.2",
+      "publishedAt": 1771006106452
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770657896736
+    }
+  ]
 }

@@ -1,8 +1,11 @@
 {
   "name": "lens-skill",
-  "version": "1.2.3",
-  "description": "An evolving digital shadow for OpenClaw.",
+  "version": "2.2.1",
+  "description": "Personal identity engine for AI agents, powered by the Trinity Nodes (AXIOM, ETHOS, MODUS).",
   "author": "Joshua Britt",
   "private": false,
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  }
 }

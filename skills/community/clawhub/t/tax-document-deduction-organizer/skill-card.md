@@ -1,44 +1,55 @@
-## Description: <br>
-Helps users organize tax income statements, receipts, deductions, estimated taxes, and accountant handoff checklists before filing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users organize income statements, receipts, deductions, estimated taxes, and accountant handoff checklists before filing.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Self-employed workers, small business owners, tax preparers, families, and finance admins use this skill to turn scattered financial records into practical tax document workflows, deduction checklists, and handoff materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive financial or identity information could be shared while preparing tax records. <br>
-Mitigation: Minimize inputs to what is necessary, redact SSNs, account numbers, credentials, and full raw financial records when possible, and keep records in approved storage. <br>
-Risk: Deduction or estimated-tax guidance may be mistaken for professional tax advice. <br>
-Mitigation: Use outputs as organization support only and have a qualified tax professional verify filing decisions, deduction eligibility, and estimated-tax calculations. <br>
-Risk: Broad automatic activation may invoke the skill in adjacent financial conversations. <br>
-Mitigation: Confirm the user wants tax document organization help before requesting or processing sensitive tax information. <br>
+## Use Case:
 
+External users, tax preparers, self-employed workers, small business owners, families, and finance admins use this skill to turn scattered tax records into organized checklists, templates, workflows, and handoff materials. It supports practical preparation but does not replace qualified tax, legal, or filing advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kyro-ma/tax-document-deduction-organizer) <br>
-- [Publisher profile](https://clawhub.ai/user/kyro-ma) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with checklists, templates, lightweight analysis, and optional local implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, validation notes, and next-step guidance for sensitive tax document workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Tax-record organization may involve sensitive financial data such as SSNs, tax IDs, account numbers, or full documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use summaries or redacted extracts where possible, and avoid sharing full unredacted records unless truly necessary.
+
+Risk: The skill can help organize tax materials but may produce guidance that users could mistake for tax or legal advice.
+
+Mitigation: Treat outputs as preparation aids and rely on a qualified tax professional for filing decisions or legal tax advice.
+
+## Reference(s):
+
+- [Requirement Plan](references/requirement-plan.md)
+- [ClawHub Skill Page](https://clawhub.ai/kyro-ma/skills/tax-document-deduction-organizer)
+- [Publisher Profile](https://clawhub.ai/user/kyro-ma)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text, with code or shell commands when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, validation notes, checklists, templates, and next steps.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

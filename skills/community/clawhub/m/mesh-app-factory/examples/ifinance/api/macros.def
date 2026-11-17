@@ -1,0 +1,29 @@
+{
+    "is_prj_stakeholder" : {
+        "name" : "prj_info",
+        "type" : "call",
+        "method" : "GET",
+        "tokenSign" : "APP",
+        "cache" : "#PID#",
+        "comment" : "查询帐号在项目中的角色",
+        "service" : "iproject",
+        "url" : "/role?id=#PID#&account=@{#tokenAcc}",
+        "onSuccess" : {
+            "errorCode":"NO_RIGHT",
+            "errorInfo":"not stakeholder",
+            "condition":"@{CONDITION|!role,'s.==','L'}||@{CONDITION|!role,'s.==','O'}"
+        }
+    },
+    
+    "get_prj_info" : {
+        "name" : "prj_info",
+        "type" : "call",
+        "method" : "GET",
+        "tokenSign" : "APP",
+        "cache" : "#PID#",
+        "trans" : false,
+        "comment" : "查询项目基本信息，返回name、leader、owner等",
+        "service" : "iproject",
+        "url" : "/get?id=#PID#"
+    }
+}

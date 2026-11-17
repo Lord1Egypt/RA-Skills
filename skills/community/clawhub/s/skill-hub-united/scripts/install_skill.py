@@ -194,6 +194,33 @@ def safe_extract_check(members: list[str], target_dir: Path) -> None:
             err(f"archive member escapes target directory, possibly malicious: {m!r}")
 
 
+def validate_tar_members(tf: tarfile.TarFile) -> None:
+    """Reject tar members that are not plain files or directories.
+
+    Symlinks / hardlinks pointing outside the extraction dir (plus later writes
+    through them) and device/FIFO nodes enable write-outside-target attacks.
+    Legitimate skill packages never contain them, so we refuse the whole
+    archive instead of relying on version-dependent extract filters.
+    """
+    for m in tf.getmembers():
+        if m.isfile() or m.isdir():
+            continue
+        if m.issym() or m.islnk():
+            err(f"archive contains a symlink/hardlink member (write-outside-target risk), "
+                f"refusing: {m.name!r} → {m.linkname!r}")
+        err(f"archive contains a non-regular member (device/fifo/special), "
+            f"refusing: {m.name!r}")
+
+
+def validate_zip_members(zf: zipfile.ZipFile) -> None:
+    """Reject zip entries that encode symlinks (S_IFLNK in the unix mode bits)."""
+    for info in zf.infolist():
+        mode = (info.external_attr >> 16) & 0o170000
+        if mode == 0o120000:  # S_IFLNK
+            err(f"archive contains a symlink entry (write-outside-target risk), "
+                f"refusing: {info.filename!r}")
+
+
 def replace_dir(src: Path, dst: Path) -> None:
     """Fully replace dst with src (wipe dst then copytree) for clean overwrite semantics.
 
@@ -286,6 +313,7 @@ def extract_archive(data: bytes, extract_to: Path) -> None:
             with zipfile.ZipFile(tmp_path) as zf:
                 names = zf.namelist()
                 safe_extract_check(names, extract_to)
+                validate_zip_members(zf)
                 _extract_with_strip(names, lambda dst: zf.extractall(dst), extract_to)
                 return
         except zipfile.BadZipFile:
@@ -295,6 +323,7 @@ def extract_archive(data: bytes, extract_to: Path) -> None:
             with tarfile.open(tmp_path) as tf:
                 names = tf.getnames()
                 safe_extract_check(names, extract_to)
+                validate_tar_members(tf)  # reject symlinks/hardlinks/devices on any Python version
                 # Python 3.12+ prefers filter='data'; fall back when unsupported.
                 try:
                     _extract_with_strip(names, lambda dst: tf.extractall(dst, filter="data"), extract_to)

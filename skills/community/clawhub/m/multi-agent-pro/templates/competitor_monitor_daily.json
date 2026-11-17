@@ -1,0 +1,127 @@
+{
+  "name": "竞对监控日报",
+  "description": "每日自动监控竞对动态：官网更新、产品发布、价格变动、社媒动态，生成竞对日报。适用于市场情报收集、竞品分析。",
+  "category": "monitoring",
+  "version": "1.0",
+  "tags": ["竞对", "监控", "日报", "市场情报"],
+  "three_elements": {
+    "time_estimate": "8-15 分钟",
+    "api_key_required": "可选",
+    "output_files": ["competitor_daily.md", "competitor_monitor_state.json"]
+  },
+  "dependencies": [
+    {
+      "skill_id": "kuaicha-search",
+      "install_link": "https://skillhub.cn/skill/kuaicha-search",
+      "description": "同花顺快查企业数据（用于查竞对工商信息）",
+      "required": false
+    },
+    {
+      "skill_id": "tencent-docs",
+      "install_link": "https://skillhub.cn/skill/tencent-docs",
+      "description": "腾讯文档（用于日报协作）",
+      "required": false
+    }
+  ],
+  "pipeline": {
+    "pipeline_name": "竞对监控日报",
+    "version": "1.0",
+    "description": "每日竞对动态监控与日报生成",
+    "agents": [
+      {
+        "id": "config_loader",
+        "name": "监控配置加载Agent",
+        "role": "加载竞对监控配置（竞对列表、监控维度、关键词）",
+        "type": "task",
+        "inputs": ["monitor_config"],
+        "outputs": ["competitor_list", "monitor_dimensions"],
+        "depends_on": [],
+        "retry": 2,
+        "timeout": 30,
+        "fallback": "default",
+        "default_value": {"competitor_list": [], "monitor_dimensions": []}
+      },
+      {
+        "id": "web_scout",
+        "name": "官网动态抓取Agent",
+        "role": "抓取竞对官网、新闻页、产品页的更新内容",
+        "type": "task",
+        "inputs": ["competitor_list"],
+        "outputs": ["website_updates"],
+        "depends_on": ["config_loader"],
+        "retry": 3,
+        "timeout": 120,
+        "fallback": "skip"
+      },
+      {
+        "id": "price_tracker",
+        "name": "价格监控Agent",
+        "role": "检查竞对价格变动、促销活动、新功能发布",
+        "type": "task",
+        "inputs": ["competitor_list"],
+        "outputs": ["price_changes"],
+        "depends_on": ["config_loader"],
+        "retry": 2,
+        "timeout": 90,
+        "fallback": "default",
+        "default_value": {"price_changes": []}
+      },
+      {
+        "id": "social_monitor",
+        "name": "社媒监控Agent",
+        "role": "监控竞对社交媒体动态（微博/微信公众号/抖音）",
+        "type": "task",
+        "inputs": ["competitor_list"],
+        "outputs": ["social_updates"],
+        "depends_on": ["config_loader"],
+        "retry": 2,
+        "timeout": 90,
+        "fallback": "default",
+        "default_value": {"social_updates": []}
+      },
+      {
+        "id": "change_analyzer",
+        "name": "变动分析Agent",
+        "role": "汇总所有渠道变动，识别重要更新、趋势变化、潜在威胁",
+        "type": "task",
+        "inputs": ["website_updates", "price_changes", "social_updates"],
+        "outputs": ["change_summary", "priority_alerts"],
+        "depends_on": ["web_scout", "price_tracker", "social_monitor"],
+        "retry": 2,
+        "timeout": 60,
+        "fallback": "default",
+        "default_value": {"change_summary": "无重大变动", "priority_alerts": []}
+      },
+      {
+        "id": "approver",
+        "name": "市场审核",
+        "role": "市场团队审核竞对预警，确认需跟进的事项",
+        "type": "approval",
+        "inputs": ["priority_alerts"],
+        "outputs": ["confirmed_alerts"],
+        "depends_on": ["change_analyzer"],
+        "retry": 0,
+        "timeout": 0,
+        "fallback": "abort",
+        "timeout_seconds": 300,
+        "timeout_action": "reject"
+      },
+      {
+        "id": "reporter",
+        "name": "日报生成Agent",
+        "role": "生成结构化竞对日报：摘要、关键变动、风险提醒、建议行动",
+        "type": "task",
+        "inputs": ["change_summary", "confirmed_alerts"],
+        "outputs": ["competitor_daily"],
+        "depends_on": ["approver"],
+        "retry": 2,
+        "timeout": 120,
+        "fallback": "abort"
+      }
+    ],
+    "state_store": {
+      "type": "json",
+      "path": "./competitor_monitor_state.json"
+    }
+  }
+}

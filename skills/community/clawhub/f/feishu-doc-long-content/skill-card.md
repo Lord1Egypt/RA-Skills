@@ -1,43 +1,53 @@
-## Description: <br>
-Guides agents through creating Feishu documents and writing longer content in safe chunks to avoid truncation or write errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents to create Feishu Docs by creating an empty document first, then writing content in chunks under 800 bytes to avoid truncation or errors.
 
-## Publisher: <br>
-[Josephyb97](https://clawhub.ai/user/Josephyb97) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[josephyb97](https://clawhub.ai/user/josephyb97)
 
-## Use Case: <br>
-Developers and agents use this skill when writing long Markdown or note content into Feishu Docs. It helps them create an empty document, write concise chunks under the documented practical limit, verify the result, and fall back to local Markdown when needed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive content written through Feishu document actions may persist in the user's workspace. <br>
-Mitigation: Confirm the content is appropriate for Feishu before writing, and verify the resulting document after each write. <br>
-Risk: The local Markdown fallback can leave a copy of document content on disk. <br>
-Mitigation: Write local fallback files only to an intentional location and remove them when they are no longer needed. <br>
-Risk: Oversized content may be truncated or rejected by Feishu write actions. <br>
-Mitigation: Split content into smaller chunks, keep each write under 800 bytes where practical, and read the document after writing to confirm completeness. <br>
+## Use Case:
 
+Developers and agents working with Feishu Docs use this guide to avoid content-size failures when creating or updating long documents. It describes splitting content, writing in smaller chunks, and verifying document contents after each write.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Josephyb97/feishu-doc-long-content) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, API call examples] <br>
-**Output Format:** [Markdown guidance with JSON request examples and troubleshooting tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommends keeping Feishu write content below 800 bytes per request and validating writes after creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact package.json) <br>
+Risk: The local Markdown fallback can leave a persistent copy of document contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: For sensitive content, split writes into smaller Feishu updates when possible; if a local file is necessary, use a temporary protected location and delete it afterward.
+
+Risk: Long Feishu write payloads can fail, truncate content, or create blank documents.
+
+Mitigation: Create the document first, write content in chunks under 800 bytes, and verify the result with a read after writing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/josephyb97/skills/feishu-doc-long-content)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code]
+
+**Output Format:** [Markdown guidance with JSON examples and a troubleshooting table]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable code; recommends small Feishu write payloads and read-after-write verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

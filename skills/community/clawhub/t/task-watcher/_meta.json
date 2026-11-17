@@ -1,6 +1,24 @@
 {
-  "ownerId": "kn7ecyzc2xkecxz46jd7gvwxgs822fyc",
-  "slug": "task-watcher",
-  "version": "1.2.1",
-  "publishedAt": 1772894585566
+  "name": "task-watcher",
+  "displayName": "Task Watcher — Async Task Monitoring & Callback",
+  "version": "1.2.0",
+  "description": "Monitor long-running async tasks and get notifications when states change. Built-in adapters for XHS content review, GitHub PR, and cron jobs.",
+  "author": "sly",
+  "license": "MIT",
+  "tags": [
+    "monitoring",
+    "callback",
+    "async",
+    "notification",
+    "discord",
+    "automation"
+  ],
+  "requirements": {
+    "python": ">=3.10",
+    "openclaw": ">=2026.3"
+  },
+  "entrypoints": {
+    "watcher": "scripts/watcher.py",
+    "register": "scripts/register_task.py"
+  }
 }

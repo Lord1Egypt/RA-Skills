@@ -1,0 +1,2 @@
+[2026-07-25 21:27:10] M4 C:\Users\Administrator\.agents\skills\skills-summarize-audit\scripts\audit_skill_plugin_issues.py EDIT load_mcp_tool_counts() added; assess_context_pressure() updated with reasonix_dir and real tool_count; tool_count_source tracking added
+[2026-07-25 21:27:10] M5 C:\Users\Administrator\.agents\skills\skills-summarize-audit\scripts\audit_skill_plugin_issues.py EDIT load_agent_capabilities() added; assess_agent_dispatch() updated with capabilities_yaml, capabilities_source, unmapped marking

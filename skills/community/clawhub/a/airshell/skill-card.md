@@ -1,47 +1,66 @@
-## Description: <br>
-AirShell gives an agent a playbook for configuring and interpreting a SEN63C/Raspberry Pi air-quality sensor, including CO2, PM2.5, temperature, humidity, webhook alerts, and optional purifier control. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent playbook for the AirShell air quality sensor that helps an agent configure a sensor webhook, interpret CO2, PM2.5, temperature, and humidity readings, and decide when to notify the user.
 
-## Publisher: <br>
-[oloapiu](https://clawhub.ai/user/oloapiu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[oloapiu](https://clawhub.ai/user/oloapiu)
 
-## Use Case: <br>
-External users and developers use this skill to connect an AirShell air-quality sensor to an agent, configure room-specific alarm thresholds, interpret indoor readings, and receive context-aware ventilation or purifier guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The setup flow can store sensitive household context such as room use, occupant sensitivity, location, and notification preferences. <br>
-Mitigation: Review deployment.md before use, avoid unnecessary health details, and keep the deployment context local and access-controlled. <br>
-Risk: The skill may configure a gateway webhook token and query a weather API using the deployment location. <br>
-Mitigation: Use revocable limited webhook credentials, restrict device and gateway access, and provide only the location precision needed for ventilation decisions. <br>
-Risk: Optional purifier automation can silently run a local Python script that controls a connected device. <br>
-Mitigation: Enable purifier automation only after reviewing the script path, Python environment, and environment-variable credential handling. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AirShell ClawHub Page](https://clawhub.ai/oloapiu/airshell) <br>
-- [CO2 Domain Knowledge](references/co2.md) <br>
-- [PM2.5 Domain Knowledge](references/pm25.md) <br>
-- [Temperature and Humidity Domain Knowledge](references/temp_humidity.md) <br>
-- [Deployment Context Template](references/deployment.md) <br>
-- [Deployment Context Example](references/deployment.example.md) <br>
-- [Open-Meteo Forecast API](https://api.open-meteo.com/v1/forecast) <br>
+## Use Case:
 
+Developers and end users use this skill to connect an AirShell sensor to an agent, maintain deployment context, set alarm thresholds, interpret indoor air quality readings, and produce context-aware notifications or configuration updates.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Shell commands, API calls] <br>
-**Output Format:** [Markdown with inline JSON, HTTP, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local deployment context and propose or execute device configuration when the user confirms setup choices.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.1 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Deployment context can store room, occupant, and location details.
+
+Mitigation: Store only the detail needed for air-quality decisions and review deployment.md before sharing or committing it.
+
+Risk: Webhook credentials and gateway details may be posted to a configured device URL.
+
+Mitigation: Confirm the device URL is trusted and local or private, and require clear approval before sending or changing gateway configuration.
+
+Risk: Optional purifier automation can run local commands from editable deployment configuration.
+
+Mitigation: Enable purifier control only with fixed trusted script and Python paths, credentials stored in environment variables or a secrets file, and explicit approval for configuration changes.
+
+Risk: Real-time air-quality readings can be mistaken for regulatory or medical determinations.
+
+Mitigation: Treat outputs as practical guidance, preserve the skill's caveats about real-time measurements, and escalate health concerns to appropriate professionals.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/oloapiu/skills/airshell)
+- [CO2 domain knowledge](references/co2.md)
+- [PM2.5 domain knowledge](references/pm25.md)
+- [Temperature and humidity domain knowledge](references/temp_humidity.md)
+- [Deployment context template](references/deployment.md)
+- [Deployment context example](references/deployment.example.md)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance, Shell commands, Code, API calls]
+
+**Output Format:** [Plain-language text, Markdown deployment context, JSON device configuration, inline shell commands, and optional Python command execution]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update deployment context, POST sensor configuration to a configured device URL, query weather and sensor APIs, and optionally run a local purifier-control script.]
+
+## Skill Version(s):
+
+1.1.1 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

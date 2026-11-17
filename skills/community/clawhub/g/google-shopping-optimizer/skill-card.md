@@ -1,45 +1,57 @@
-## Description: <br>
-Optimize Google Merchant Center product feeds, bidding strategies, and Shopping ad performance for ecommerce sellers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize Google Merchant Center product feeds, bidding strategies, and Shopping ad performance for ecommerce sellers.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers and marketing teams use this skill to audit Google Merchant Center feeds, diagnose Shopping campaign waste, and produce prioritized optimization plans for feed quality, bidding, product grouping, and competitive positioning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recommendations can affect ad spend, bids, budgets, negative keywords, audiences, tags, and campaign structure. <br>
-Mitigation: Manually review and approve every Google Ads or Merchant Center change before applying it. <br>
-Risk: Inputs may include Google Ads, Merchant Center business data, or customer audience data. <br>
-Mitigation: Prefer read-only exports, limit inputs to the data needed for analysis, and avoid pasting raw customer email or phone lists into the agent. <br>
-Risk: Projected impact estimates can be misleading when source reports are incomplete or stale. <br>
-Mitigation: Check projections against historical performance data and document the assumptions before using them for budget decisions. <br>
+## Use Case:
 
+External ecommerce sellers and advertising teams use this skill to audit Google Merchant Center feeds, diagnose Shopping campaign waste, and produce prioritized recommendations for feed quality, campaign structure, bidding, and monitoring.
 
-## Reference(s): <br>
-- [Output template](references/output-template.md) <br>
-- [Feed optimization guide](references/feed-optimization-guide.md) <br>
-- [Bidding strategy playbook](references/bidding-strategy-playbook.md) <br>
-- [Quality checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown optimization plan with tables, prioritized recommendations, and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-supplied Google Merchant Center, Google Ads, search term, and product feed data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Audience and Customer Match recommendations can involve privacy-sensitive customer email or phone lists.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only permissioned first-party data, confirm Google Ads Customer Match policy compliance, document consent or another valid legal basis, and avoid purchased or third-party lists.
+
+Risk: Optimization recommendations may affect ad spend, targeting, and campaign profitability if implemented without review.
+
+Mitigation: Have a qualified ads operator review proposed bid, ROAS, negative keyword, audience, and campaign-structure changes before applying them.
+
+## Reference(s):
+
+- [Google Shopping Optimizer](https://clawhub.ai/leooooooow/skills/google-shopping-optimizer)
+- [Output Template](references/output-template.md)
+- [Feed Optimization Guide](references/feed-optimization-guide.md)
+- [Bidding Strategy Playbook](references/bidding-strategy-playbook.md)
+- [Quality Checklist](assets/quality-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown optimization plan with tables, checklists, recommendations, and phased roadmap sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include impact estimates, ROAS targets, negative keyword recommendations, custom label strategy, monitoring cadence, and privacy-sensitive audience list guidance.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

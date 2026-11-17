@@ -1,43 +1,58 @@
-## Description: <br>
-Read, extract, summarize, and compare office documents including PDF, Word, Excel, and PowerPoint. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Office Document Assistant helps agents read, extract, summarize, and compare PDF, Word, Excel, and PowerPoint documents using deterministic text extraction with OCR fallback for PDFs.
 
-## Publisher: <br>
-[windrunner20](https://clawhub.ai/user/windrunner20) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[windrunner20](https://clawhub.ai/user/windrunner20)
 
-## Use Case: <br>
-External users and developers use this skill to extract text from PDF, Word, Excel, and PowerPoint files so an agent can summarize, search, outline, extract fields from, or compare office documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted document text can appear in chat output, command output, logs, or orchestration traces. <br>
-Mitigation: Use the skill only on documents the user intentionally provides, avoid highly confidential documents unless necessary, and clearly separate extracted content from summary or inference. <br>
-Risk: OCR, spreadsheet, and layout extraction may be incomplete or noisy. <br>
-Mitigation: State extraction limits, flag weak or OCR-derived content, and avoid claiming precise layout, formula, chart, or visual interpretation. <br>
-Risk: Local parsers and OCR tools process user-selected files. <br>
-Mitigation: Process only trusted files and keep document parsing and OCR dependencies updated. <br>
+## Use Case:
 
+Employees, external users, and developers use this skill to extract text from office documents and turn the results into summaries, key points, structured fields, page or slide outlines, and multi-document comparisons.
 
-## Reference(s): <br>
-- [Capabilities and Boundaries](references/capabilities.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown guidance with optional JSON extraction results and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled extractor can cap output text with --max-chars and marks truncated results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: User-supplied documents may contain sensitive information and the skill reads the document paths provided to the agent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on files the user is comfortable giving to the agent, and avoid exposing extracted content beyond the intended session or workflow.
+
+Risk: Text-first extraction and OCR can be incomplete or noisy for scanned PDFs, legacy Office files, charts, and complex layouts.
+
+Mitigation: Preserve extraction warnings, distinguish directly extracted content from summaries or inference, and verify important facts against the source document.
+
+Risk: The skill may invoke local OCR or conversion tools on supplied documents.
+
+Mitigation: Confirm the file path and required dependencies before running extraction, and review generated text before relying on downstream summaries or comparisons.
+
+## Reference(s):
+
+- [Capabilities and Boundaries](references/capabilities.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with optional JSON extraction output and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include extracted document text, summaries, key fields, warnings, and truncation notes.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

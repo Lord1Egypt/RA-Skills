@@ -1,61 +1,80 @@
-## Description: <br>
-Core pack for visual work that acts as a quality gate for UI, components, pages, layouts, and frontend design QA. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Core pack for visual work that acts as a quality gate for UI, components, pages, layouts, and frontend work before presentation or design QA.
 
-## Publisher: <br>
-[aa-on-ai](https://clawhub.ai/user/aa-on-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aa-on-ai](https://clawhub.ai/user/aa-on-ai)
 
-## Use Case: <br>
-Developers and design-focused agents use this skill to review frontend work before presenting it, with checks for visual quality, accessibility, UI states, responsive behavior, and common design anti-patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Checker scripts can silently contact an environment-controlled telemetry URL. <br>
-Mitigation: Unset ADS_TELEMETRY_URL or remove telemetry code before running the scripts. <br>
-Risk: The skill encourages broad automatic use and memory updates during design work. <br>
-Mitigation: Require explicit approval before writing design decisions into memory or modifying skill reference files. <br>
-Risk: Always-on design QA guidance can influence many frontend tasks. <br>
-Mitigation: Review the skill before installation and use it only when its design-review workflow matches the intended agent behavior. <br>
+## Use Case:
 
+Developers and design-focused agents use this skill to review visual and frontend work against typography, spacing, layout, motion, responsive, accessibility, and state-completeness expectations before presenting results.
 
-## Reference(s): <br>
-- [Design Review on ClawHub](https://clawhub.ai/aa-on-ai/design-review) <br>
-- [Visual Alignment & Composition Reference](references/alignment.md) <br>
-- [Anti-Patterns Reference](references/anti-patterns.md) <br>
-- [Color Reference](references/color.md) <br>
-- [Inspiration & Pattern Research Reference](references/inspiration.md) <br>
-- [Layout Reference](references/layout.md) <br>
-- [Mock Data Reference](references/mock-data.md) <br>
-- [Motion Reference](references/motion.md) <br>
-- [Responsive Design Reference](references/responsive.md) <br>
-- [Spacing Reference](references/spacing.md) <br>
-- [Typography Reference](references/typography.md) <br>
-- [UX Writing Reference](references/ux-writing.md) <br>
-- [Mobbin](https://mobbin.com) <br>
-- [Godly](https://godly.website) <br>
-- [Awwwards](https://awwwards.com) <br>
-- [Refero](https://refero.design) <br>
-- [Dribbble](https://dribbble.com) <br>
-- [Siteinspire](https://siteinspire.com) <br>
-- [Screenlane](https://screenlane.com) <br>
-- [Page Flows](https://pageflows.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with optional shell command output from checker scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include screenshot evidence, referenced design sources, known gaps, and warnings from local UI checker scripts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Local checker scripts may run automatically as part of the design-review workflow.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before running bundled scripts and review the target files and command arguments first.
+
+Risk: Checker scripts can make silent outbound telemetry requests when ADS_TELEMETRY_URL is set.
+
+Mitigation: Unset ADS_TELEMETRY_URL or remove telemetry calls before installation in environments where outbound telemetry is not allowed.
+
+Risk: The skill instructs agents to read and update design memory, which can persist project-specific preferences.
+
+Mitigation: Limit memory access to approved project paths and require approval before writing persistent design-memory updates.
+
+Risk: The broad always-active posture may affect visual work even when a narrower review would be preferred.
+
+Mitigation: Narrow activation to explicit design-review or frontend QA tasks when installing in shared agent environments.
+
+## Reference(s):
+
+- [Design Review Skill Page](https://clawhub.ai/aa-on-ai/skills/design-review)
+- [Visual Alignment & Composition Reference](references/alignment.md)
+- [Anti-Patterns Reference](references/anti-patterns.md)
+- [Color Reference](references/color.md)
+- [Inspiration & Pattern Research Reference](references/inspiration.md)
+- [Layout Reference](references/layout.md)
+- [Mock Data Reference](references/mock-data.md)
+- [Motion Reference](references/motion.md)
+- [Responsive Design Reference](references/responsive.md)
+- [Spacing Reference](references/spacing.md)
+- [Typography Reference](references/typography.md)
+- [UX Writing Reference](references/ux-writing.md)
+- [Mobbin](https://mobbin.com)
+- [Godly](https://godly.website)
+- [Awwwards](https://awwwards.com)
+- [Refero](https://refero.design)
+- [Dribbble](https://dribbble.com)
+- [Siteinspire](https://siteinspire.com)
+- [Screenlane](https://screenlane.com)
+- [Page Flows](https://pageflows.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands]
+
+**Output Format:** [Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include suggested local checker-script commands for accessibility, anti-pattern, and state-completeness review.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,63 @@
-## Description: <br>
-Evoclaw (Evolved) helps an agent install and operate a self-evolving identity framework that logs experiences, reflects on them, and updates SOUL.md through governance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+EvoClaw (Evolved) helps an agent maintain and evolve its identity by logging experiences, classifying significance, reflecting, proposing governed SOUL.md changes, and validating the pipeline.
 
-## Publisher: <br>
-[shuoyu017](https://clawhub.ai/user/shuoyu017) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shuoyu017](https://clawhub.ai/user/shuoyu017)
 
-## Use Case: <br>
-Developers and agent operators use this skill to configure an OpenClaw agent that maintains durable memory, classifies experiences, reflects on them, proposes identity changes, and runs validators under configurable governance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for durable memory and ongoing authority to evolve an agent's SOUL.md over time. <br>
-Mitigation: Use supervised governance before enabling it, review proposed SOUL.md changes, and periodically inspect or delete memory and telemetry files. <br>
-Risk: External social sources and credential setup can expand data exposure if enabled casually. <br>
-Mitigation: Keep external sources disabled unless needed, use environment variables for credentials, and do not paste raw API keys for automatic shell-profile storage. <br>
-Risk: Heartbeat and local-file workflows can modify agent operating files outside the immediate conversation. <br>
-Mitigation: Review all AGENTS.md and HEARTBEAT.md changes and run the included validators before relying on the updated workspace. <br>
+## Use Case:
 
+Agents and their operators use EvoClaw to install an experience-to-reflection pipeline that records interaction evidence, classifies significance, and routes proposed identity changes through configurable governance before updating SOUL.md.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/shuoyu017/evoclaw-evolved) <br>
-- [EvoClaw Configuration](artifact/README.md) <br>
-- [EvoClaw Configuration Guide](artifact/configure.md) <br>
-- [EvoClaw Data Schemas Reference](artifact/references/schema.md) <br>
-- [EvoClaw Pipeline Examples](artifact/references/examples.md) <br>
-- [Heartbeat Debugging Guide](artifact/references/heartbeat-debug.md) <br>
-- [EvoClaw Source API Reference](artifact/references/sources.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown operating manual with JSON schemas, Python helper scripts, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead an agent to create or update memory, SOUL.md, AGENTS.md, HEARTBEAT.md, telemetry, and configuration files in its workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill asks for broad persistent authority over memory, agent instructions, credentials, network activity, and SOUL.md edits with unsafe controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a non-sensitive workspace, keep governance supervised, and review proposed identity or instruction changes before they are applied.
+
+Risk: External feeds, telemetry or config sync, and the visualizer can expose workspace or operational data.
+
+Mitigation: Disable external feeds and telemetry unless required, use environment variable names instead of pasted secrets, and avoid the visualizer until it is localhost-only, authenticated, and routed through the proposal pipeline.
+
+Risk: Instruction rewrites and fork cleanup can alter agent behavior or workspace state.
+
+Mitigation: Review installation diffs, scan before deployment, and require human approval for instruction rewrites and cleanup actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shuoyu017/skills/evoclaw-evolved)
+- [README.md](artifact/README.md)
+- [configure.md](artifact/configure.md)
+- [EvoClaw Data Schemas Reference](artifact/references/schema.md)
+- [EvoClaw Pipeline Examples](artifact/references/examples.md)
+- [EvoClaw Source API Reference](artifact/references/sources.md)
+- [Heartbeat Debugging Guide](artifact/references/heartbeat-debug.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, JSONL, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces installation, governance, validation, and troubleshooting guidance for agent-managed identity evolution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

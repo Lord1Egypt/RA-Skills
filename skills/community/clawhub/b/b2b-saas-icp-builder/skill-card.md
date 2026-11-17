@@ -1,39 +1,54 @@
-## Description: <br>
-Builds a structured Ideal Customer Profile and buyer persona document for B2B SaaS sales, marketing, product, and go-to-market planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds structured Ideal Customer Profile and buyer persona documents for B2B SaaS go-to-market, sales, marketing, and product planning.
 
-## Publisher: <br>
-[renehdzgtz](https://clawhub.ai/user/renehdzgtz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[renehdzgtz](https://clawhub.ai/user/renehdzgtz)
 
-## Use Case: <br>
-External users and business teams use this skill to define, refine, or document an Ideal Customer Profile, buyer personas, target segments, pain points, and jobs-to-be-done for B2B SaaS planning. It helps align sales, marketing, and product decisions around a shared target customer profile. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide confidential CRM exports, named customer details, private win/loss notes, or sensitive deal information while building the ICP. <br>
-Mitigation: Use authorized data only and prefer anonymized examples or aggregated patterns when sharing customer and deal context. <br>
+## Use Case:
 
+External users and business teams use this skill to define, refine, and document B2B SaaS ideal customer profiles, target segments, buyer personas, pain points, buying triggers, and jobs-to-be-done.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/renehdzgtz/b2b-saas-icp-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/renehdzgtz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown document with structured ICP sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask for product, customer, CRM, churn, and win/loss context before drafting the final ICP document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill may use sensitive CRM, customer, win/loss, or churn details provided during ICP planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only customer or CRM details that are appropriate for the chat environment, and redact sensitive account data when possible.
+
+Risk: The skill can activate during adjacent go-to-market planning conversations and may produce target-customer guidance that influences sales, marketing, or product decisions.
+
+Mitigation: Review the generated ICP against internal customer evidence and business constraints before using it for operational decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/renehdzgtz/skills/b2b-saas-icp-builder)
+- [ClawHub publisher profile](https://clawhub.ai/user/renehdzgtz)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown ICP document]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask for missing product, customer, problem, stage, and data context before producing the ICP document.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

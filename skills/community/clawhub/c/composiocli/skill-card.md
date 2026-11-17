@@ -1,47 +1,61 @@
-## Description: <br>
-Use 1000+ external apps via Composio - either directly through the CLI or by building AI agents and apps with the SDK. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use 1000+ external apps via Composio - either directly through the CLI or by building AI agents and apps with the SDK.
 
-## Publisher: <br>
-[eladrave](https://clawhub.ai/user/eladrave) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[eladrave](https://clawhub.ai/user/eladrave)
 
-## Use Case: <br>
-Developers and agent builders use this skill to install and operate the Composio CLI, connect user accounts, execute external-app tools, and build Composio SDK integrations for multi-user agents and applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Agents may connect to third-party accounts and execute actions such as sending messages, creating issues, deleting resources, or enabling triggers. <br>
-Mitigation: Require explicit user approval before linking accounts or executing side-effecting actions, and restrict agents to the minimum tools and user context needed for the task. <br>
-Risk: Approval-bypass examples or broad permissions could allow actions to run without an adequate human checkpoint. <br>
-Mitigation: Do not use approval-bypass patterns unless the deployment intentionally permits them, and add review gates for destructive or externally visible operations. <br>
-Risk: Tool inputs, outputs, callback parameters, webhook payloads, or logs can contain sensitive account or business data. <br>
-Mitigation: Redact sensitive values before logging or analytics, avoid exposing raw payloads, and store API keys and OAuth secrets only in appropriate secret-management systems. <br>
+## Use Case:
 
+Developers and agents use this skill to search, connect, and execute Composio tools from the CLI, or to build AI agents and applications that integrate with external services through the Composio SDK.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/eladrave/composiocli) <br>
-- [Composio CLI Guide](artifact/rules/composio-cli.md) <br>
-- [Building with Composio](artifact/rules/building-with-composio.md) <br>
-- [Composio Documentation](https://docs.composio.dev) <br>
-- [Composio Platform](https://platform.composio.dev) <br>
-- [Composio CLI Installer](https://composio.dev/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and TypeScript or Python code examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include Composio CLI workflows, account-linking steps, SDK setup guidance, JSON-oriented command examples, and integration patterns for external services.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The setup instructions include a pipe-to-shell installer.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer first or replace it with a verified package or signed release before installation.
+
+Risk: The skill can guide agents to perform high-impact actions in external accounts, including sending messages, posting content, creating issues, deleting connections, or changing trigger state.
+
+Mitigation: Require explicit user confirmation before executing actions that change external account state.
+
+Risk: Tool arguments and trigger payloads may contain sensitive user or account data.
+
+Mitigation: Avoid logging full tool arguments or trigger payloads, and redact sensitive values when diagnostics are needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/eladrave/skills/composiocli)
+- [Composio documentation](https://docs.composio.dev)
+- [Composio platform](https://platform.composio.dev)
+- [Composio CLI guide](rules/composio-cli.md)
+- [Building with Composio](rules/building-with-composio.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

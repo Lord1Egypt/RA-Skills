@@ -1,43 +1,58 @@
-## Description: <br>
-Chat Memory converts OpenClaw session transcripts into searchable Markdown memory, builds a structured glossary of people, projects, decisions, and timelines, and suggests memory-aware cron prompt updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat Memory converts OpenClaw session logs into searchable Markdown memory, builds an indexed glossary of people, projects, decisions, and timelines, and suggests memory-aware cron prompts.
 
-## Publisher: <br>
-[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[moltbotmolty-del](https://clawhub.ai/user/moltbotmolty-del)
 
-## Use Case: <br>
-Developers and agent operators use this skill to preserve useful context from long-running OpenClaw work by converting session logs into workspace memory, indexing entities and decisions, and guiding cron jobs or subagents to search memory before work starts. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Converted session memory can contain sensitive conversation details, secrets, regulated data, or private project context. <br>
-Mitigation: Review generated memory files before broad use, avoid indexing sessions that contain sensitive data, and treat the workspace memory directory as sensitive. <br>
-Risk: The glossary builder includes hardcoded people and project examples that may not match a user's workspace. <br>
-Mitigation: Customize the known people, projects, and topic patterns before relying on glossary output for recall. <br>
-Risk: Cron memory guidance can influence automated jobs with stale or irrelevant context. <br>
-Mitigation: Keep cron automation visible and easy to disable, and review suggested prompt changes before applying them. <br>
+## Use Case:
 
+Developers and external ClawHub users who run OpenClaw agents use this skill to preserve context across compactions and make past sessions searchable for future agent work.
 
-## Reference(s): <br>
-- [Chat Memory on ClawHub](https://clawhub.ai/moltbotmolty-del/chat-memory) <br>
-- [AI Advantage](https://aiadvantage.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated Markdown memory files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local memory/session Markdown files, a glossary index, state files, and a cron optimization report when its bundled scripts are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill broadly copies and indexes private agent conversations without built-in redaction, retention controls, or strong scoping.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on approved workspaces, and add redaction, session allowlists, retention limits, and a purge process before indexing sensitive work.
+
+Risk: Long-lived searchable memory may retain credentials, customer data, legal, medical, HR, or confidential business material if those appear in chat history.
+
+Mitigation: Avoid those workspaces unless sensitive content is excluded or scrubbed before conversion and vector indexing.
+
+Risk: Cron-based automation can repeatedly refresh memory indexes and extend the lifetime of copied session content.
+
+Mitigation: Review the cron schedule and scope before enabling automation, and test manually before running unattended updates.
+
+## Reference(s):
+
+- [ClawHub Chat Memory release](https://clawhub.ai/moltbotmolty-del/skills/chat-memory)
+- [AI Advantage](https://aiadvantage.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands; scripts generate Markdown memory files, JSON state and cache files, and a Markdown cron optimization report.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local filesystem outputs include session transcripts, a glossary, state/cache files, and cron optimization reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

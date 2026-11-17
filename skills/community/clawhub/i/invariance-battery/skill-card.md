@@ -1,40 +1,53 @@
-## Description: <br>
-Runtime assertion guidance for continuously checking AI agent invariants, detecting drift, enforcing safety constraints, and reporting falsification results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runtime assertion system that continuously verifies AI agent invariants - properties that must always hold.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and engineers use this skill to design invariant checks for autonomous agents, audit drift from design intent, and plan falsification reporting for safety-critical behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: If the instructional action-blocking pattern is adapted into automation, overly broad or stale invariants could halt legitimate agent actions. <br>
-Mitigation: Test invariants before enforcement, document expected failures, and provide a clear human review or override path. <br>
-Risk: If the audit-trail concept is implemented, logs may capture sensitive agent state, prompts, actions, or decisions. <br>
-Mitigation: Review log storage, access controls, retention, and redaction before recording runtime checks. <br>
+## Use Case:
 
+Developers and engineers use this skill to define runtime invariant checks for autonomous agents, detect drift from intended behavior, and frame falsification reports when an invariant fails.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/invariance-battery) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown guidance with Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No commands are executed; the skill provides concepts and example patterns for invariant definitions, runtime checks, drift detection, and falsification reporting.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: server release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: An implemented invariant gate could block actions or create logs in ways that exceed the intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Explicitly scope checked actions, halt behavior, audit log contents, and retention policy before deployment.
+
+Risk: Invariant guidance can be misapplied if checks are treated as proof that an agent is correct.
+
+Mitigation: Use invariant failures as falsification signals and review proposed checks before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/invariance-battery)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code]
+
+**Output Format:** [Markdown guidance with Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Conceptual guidance only; no executable hooks, credential use, or hidden behavior were identified in the supplied security evidence.]
+
+## Skill Version(s):
+
+1.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

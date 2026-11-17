@@ -1,41 +1,56 @@
-## Description: <br>
-Find the best tool for your task across 22,000+ MCP servers and OpenClaw skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find the best tool for your task across 22,000+ MCP servers and OpenClaw skills. Ranked by community trust. No API key.
 
-## Publisher: <br>
-[c5huracan](https://clawhub.ai/user/c5huracan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[c5huracan](https://clawhub.ai/user/c5huracan)
 
-## Use Case: <br>
-Developers and agents use this skill to discover relevant MCP servers and OpenClaw skills for a described task, with results ranked by text relevance and community trust. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search phrases are sent to api.rhdxm.com. <br>
-Mitigation: Keep queries generic and do not include secrets, private code, customer data, internal URLs, proprietary project names, or regulated information. <br>
+## Use Case:
 
+Developers and agents use this skill to discover relevant MCP servers and OpenClaw skills for a plain-language task, with optional filtering by ecosystem.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/c5huracan/meyhem-capabilities) <br>
-- [Meyhem API documentation](https://api.rhdxm.com/docs) <br>
-- [Meyhem MCP endpoint](https://api.rhdxm.com/mcp/) <br>
-- [Source code](https://github.com/c5huracan/meyhem) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results with names, ecosystems, homepages, star counts, authors, and descriptions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and sends the user's search query to api.rhdxm.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: frontmatter and server release evidence) <br>
+Risk: Search queries are sent to api.rhdxm.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not include secrets, credentials, customer data, proprietary project details, or internal system information in searches.
+
+Risk: The skill suggests external MCP servers and OpenClaw skills that may have their own permissions, behavior, and maintenance posture.
+
+Mitigation: Review the suggested tool's source, permissions, security posture, and license before installing or using it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/c5huracan/skills/meyhem-capabilities)
+- [Meyhem API documentation](https://api.rhdxm.com/docs)
+- [Meyhem MCP endpoint](https://api.rhdxm.com/mcp/)
+- [Source code](https://github.com/c5huracan/meyhem)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text search results and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results may include tool names, ecosystems, homepages, star counts, authors, and descriptions.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

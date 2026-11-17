@@ -48,6 +48,14 @@ description: AI生视频工具（首尾帧/单图模式），根据原图和提�
 
 **读数据建议**：**禁止** Read 转存的视频文件内容。直接把 `Saved full response:` 后的本地路径提供给用户即可。
 
+## 解决认证和算力问题
+发生以下异常情况时，采用 references/onboarding.md 引导解决问题：
+
+### 异常情况
+- **未配置API Key**：环境变量未配置 `LINKFOX_AGENT_API_KEY`，也未配置 `LINKFOXAGENT_API_KEY`。
+- **响应401或402状态码**
+- **响应提示算力或余额不足**：消息含"算力余额不足/计费不足/余额不足/quota exceeded/insufficient balance/套餐到期/需充值/请充值"，或类似含义的内容。
+
 ## 使用指引
 
 1. **模型选择**：一般商品视频用 `KLING`；长时长用 `WAN`/`SEED`。

@@ -2,10 +2,11 @@
 
 | API | Line |
 |-----|------|
-| Shopify | 2 |
-| DocuSign | 83 |
-| Bitly | 287 |
-| Dub | 380 |
+| Shopify | 13 |
+| DocuSign | 94 |
+| HelloSign (Dropbox Sign) | 202 |
+| Bitly | 298 |
+| Dub | 391 |
 
 ---
 

@@ -1,49 +1,63 @@
-## Description: <br>
-Security engineering workflow for OpenClaw privilege governance and hardening. Use for least-privilege execution, approval-first privileged actions, idle timeout controls, port + egress monitoring, and ISO 27001/NIST-aligned compliance reporting with mitigations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security engineering workflow for OpenClaw privilege governance and hardening. Use for least-privilege execution, approval-first privileged actions, idle timeout controls, port + egress monitoring, and ISO 27001/NIST-aligned compliance reporting with mitigations.
 
-## Publisher: <br>
-[fletcherfrimpong](https://clawhub.ai/user/fletcherfrimpong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fletcherfrimpong](https://clawhub.ai/user/fletcherfrimpong)
 
-## Use Case: <br>
-Developers and security engineers use this skill to harden OpenClaw workflows with approval-first privilege elevation, policy checks, port and egress monitoring, and ISO 27001/NIST-aligned compliance reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can route OpenClaw sudo calls through an opt-in shim, changing the local privileged execution path. <br>
-Mitigation: Enable the runtime hook only after reviewing it, keep it opt-in, and require interactive confirmation before LaunchAgent plist changes. <br>
-Risk: Environment variables can relax high-impact controls, including non-interactive sudo and plist confirmation. <br>
-Mitigation: Avoid OPENCLAW_SKIP_PLIST_CONFIRM and OPENCLAW_ALLOW_NONINTERACTIVE_SUDO unless there is a reviewed operational need. <br>
-Risk: Policy and baseline files control privileged command, port, prompt, and egress decisions. <br>
-Mitigation: Keep policy files reviewed and restrictive, harden ~/.openclaw permissions, and treat generated port and egress baselines as sensitive local security data. <br>
+## Use Case:
 
+Developers and security engineers use this skill to assess and harden OpenClaw privilege governance, approval-first elevated execution, port and egress controls, and ISO 27001/NIST-aligned compliance reporting.
 
-## Reference(s): <br>
-- [Least-Privilege Policy](artifact/references/least-privilege-policy.md) <br>
-- [Port Monitoring Policy](artifact/references/port-monitoring-policy.md) <br>
-- [Compliance Controls Map](artifact/references/compliance-controls-map.json) <br>
-- [Approved Ports Template](artifact/references/approved_ports.template.json) <br>
-- [Command Policy Template](artifact/references/command-policy.template.json) <br>
-- [Egress Allowlist Template](artifact/references/egress-allowlist.template.json) <br>
-- [Prompt Policy Template](artifact/references/prompt-policy.template.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fletcherfrimpong/cyber-security-engineer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, json, html] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON assessment outputs, configuration templates, and an HTML compliance dashboard] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports affected check IDs, status, risk, evidence, and concrete mitigations; network findings include port, bind address, process or service, and reason.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: frontmatter and server release evidence) <br>
+Risk: The sudo runtime hook can create serious review concerns around persistent PATH changes, caller-controlled guard paths, and approval bypasses.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after review; do not enable the sudo runtime hook until caller-controlled paths are removed, policy files fail closed, approval-state mutation is protected, and LaunchAgent PATH changes have explicit confirmation and rollback.
+
+Risk: Privileged execution controls may be incomplete if policy files are absent or elevated paths bypass the guarded wrapper.
+
+Mitigation: Make policy files mandatory for privileged actions and route every elevated operation through guarded_privileged_exec.py with explicit user approval.
+
+Risk: Unapproved listening ports or outbound destinations can remain exposed when baselines are missing or incomplete.
+
+Mitigation: Maintain reviewed approved_ports.json and egress_allowlist.json baselines, then review and remediate all unapproved port and egress findings.
+
+## Reference(s):
+
+- [Least-Privilege Policy For OpenClaw](references/least-privilege-policy.md)
+- [Port Monitoring Policy For OpenClaw](references/port-monitoring-policy.md)
+- [Compliance Controls Map](references/compliance-controls-map.json)
+- [Approved Ports Template](references/approved_ports.template.json)
+- [Command Policy Template](references/command-policy.template.json)
+- [Egress Allowlist Template](references/egress-allowlist.template.json)
+- [Prompt Policy Template](references/prompt-policy.template.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown]
+
+**Output Format:** [Markdown status reports with inline shell commands and generated JSON or HTML assessment files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include check IDs, status, risk, evidence, and concrete mitigations for security and compliance findings.]
+
+## Skill Version(s):
+
+0.1.9 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

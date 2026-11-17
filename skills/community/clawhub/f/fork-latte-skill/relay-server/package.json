@@ -1,0 +1,8 @@
+{
+  "name": "signup-relay",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "报名信息中转服务：接收报名并写入飞书多维表格，飞书凭证仅存于服务端",
+  "scripts": { "start": "node server.js" }
+}

@@ -1,42 +1,55 @@
-## Description: <br>
-Build and query a local FAQ knowledge base from markdown files for business operations Q&A and Feishu bot responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and query a FAQ knowledge base from markdown files for business operations Q&A.
 
-## Publisher: <br>
-[imBing](https://clawhub.ai/user/imBing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[imbing](https://clawhub.ai/user/imbing)
 
-## Use Case: <br>
-Employees, support teams, and business operations users use this skill to import FAQ markdown, add and manage FAQ entries, and answer common questions through a searchable local knowledge base. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive business or customer data could be imported into FAQ answers that are later reused. <br>
-Mitigation: Import only content intended for reuse in answers, and choose an approved storage location before creating the FAQ database. <br>
-Risk: Write and delete commands can alter or remove entries from the local FAQ knowledge base. <br>
-Mitigation: Export a backup before using remove or other maintenance commands, and run write/delete actions only when explicitly managing the knowledge base. <br>
+## Use Case:
 
+Employees, support teams, and business operations agents use this skill to create, manage, search, and export FAQ knowledge bases for Feishu or similar business Q&A workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/imBing/bo-faq-bot) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; FAQ search, export, and stats commands return plain text or JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local FAQ data is stored under ~/.faq-bot by default and can be redirected with FAQ_BOT_DIR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata and artifact _meta.json) <br>
+Risk: FAQ entries are stored locally in ~/.faq-bot unless FAQ_BOT_DIR is set.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set FAQ_BOT_DIR to an approved local path and review storage handling before installing or running the skill.
+
+Risk: Imported markdown content can be reused in automated answers.
+
+Mitigation: Import only FAQ files whose content has been reviewed and is appropriate for automated responses.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imbing/skills/bo-faq-bot)
+- [Publisher profile](https://clawhub.ai/user/imbing)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The FAQ search command returns matched questions, answers, confidence scores, tags, and the top answer as JSON.]
+
+## Skill Version(s):
+
+0.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

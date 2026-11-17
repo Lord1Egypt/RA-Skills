@@ -1,0 +1,48 @@
+{
+  "skill_name": "huawei-cloud-daily-hot-topics",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "Argument help (syntax)",
+      "command": "python3 scripts/fetch_hot_topics.py --help",
+      "expected": "argparse help printed, exit 0; contains --top/--source/--format/--output",
+      "type": "syntax",
+      "executor": "script"
+    },
+    {
+      "id": "TC-02",
+      "name": "Default Markdown hot-topic list",
+      "command": "python3 scripts/fetch_hot_topics.py",
+      "expected": "Markdown ranking table with 排名/标题/热度/来源 and up to 10 rows",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-03",
+      "name": "Plain-text output",
+      "command": "python3 scripts/fetch_hot_topics.py --format text --top 5",
+      "expected": "Plain-text ranked list, at most 5 entries",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-04",
+      "name": "JSON output with --top constraint",
+      "command": "python3 scripts/fetch_hot_topics.py --format json --top 3",
+      "expected": "Parseable JSON object whose items array has at most 3 entries",
+      "type": "readonly",
+      "executor": "script"
+    },
+    {
+      "id": "TC-05",
+      "name": "Offline fallback marks sample data",
+      "command": "python3 scripts/fetch_hot_topics.py --offline --format json",
+      "expected": "JSON with is_sample=true and a non-empty items array (bundled sample data)",
+      "type": "readonly",
+      "executor": "script"
+    }
+  ],
+  "env_vars_required": [],
+  "notes": "Public keyless hot-list API, read-only; no Huawei Cloud credentials, CLI, SDK or AK/SK are needed. The smoke harness only executes hcloud/curl commands, so these script cases are reported as not-executed; the structural self-check plus the offline unit tests under tests/ (HTTP mocked) cover the behaviour."
+}

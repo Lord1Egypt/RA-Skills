@@ -1,37 +1,34 @@
 ---
-name: book-hotels
+name: rollinggo-searchhotel
+version: 1.0.0
 description: 使用 RollingGo CLI 查询酒店信息、筛选结果、读取酒店标签和获取房型价格。当用户需要按目的地 / 日期 / 星级 / 预算 / 标签 / 距离搜索酒店、查看酒店详情与房型报价，或读取酒店标签库时触发本技能。触发短语——"搜索酒店"、"查酒店"、"酒店详情"、"房型价格"、"酒店标签"、"附近酒店"、"rollinggo"。
-homepage: https://mcp.agentichotel.cn
+homepage: https://rollinggo.store
 metadata:
   {
     "openclaw": {
       "emoji": "🏨",
-      "primaryEnv": "AIGOHOTEL_API_KEY",
+      "skillKey": "rollinggo-searchhotel",
+      "primaryEnv": "RollingGo_API_KEY",
       "requires": {
         "anyBins": ["rollinggo", "npx", "node", "uvx", "uv"],
-        "env": ["AIGOHOTEL_API_KEY"]
-      },
-      "install": [
-        {
-          "id": "node",
-          "kind": "node",
-          "package": "rollinggo",
-          "bins": ["rollinggo"],
-          "label": "Install rollinggo (npm)"
-        },
-        {
-          "id": "uv",
-          "kind": "uv",
-          "package": "rollinggo",
-          "bins": ["rollinggo"],
-          "label": "Install rollinggo (uv)"
-        }
-      ]
+        "env": ["RollingGo_API_KEY"]
+      }
     }
   }
 ---
 
 # RollingGo 酒店 CLI
+
+## 🚨 前置检查 (Pre-flight Check)
+
+在发起任何命令行查询或执行动作前，**必须首先检查**环境是否具备 `ROLLINGGO_API_KEY`：
+- **无 Key 时**：**严禁发起 CLI 命令**，直接向用户输出友好提示：
+  > “您好！我是您的 RollingGo 酒店服务管家 🏨。
+  > 为了为您查询真实房型与最新实时报价，需要配置 RollingGo API Key 凭证。
+  > 请前往 RollingGo 官方门户免费申请获取：🔗 **https://rollinggo.store**
+  > 获取后在环境中配置 `ROLLINGGO_API_KEY` 即可开启使用！”
+
+---
 
 ## 适用范围
 
@@ -41,26 +38,32 @@ metadata:
 - **基于标签与品牌匹配：** 用户想寻找包含特定设施或属于特定品牌的酒店（如“亲子友好”、“包含早餐”、“万豪”等），技能可先查询标签库以进行精准筛选。
 - **查询房型与实时报价：** 用户想深入了解某家具体酒店（通过 hotelId）的可用房型、实时价格、退款政策或具体配置。
 - **酒店对比与评估：** 用户需要基于真实的结构化数据和当前报价，在多个候选酒店中进行对比分析。
-- **酒店预订：** 用户选定酒店想要完成预订时。可提取并提供结果中的预订 URL 或酒店主页链接，引导用户直接点击完成购买。
+- **预订引导：** 用户选定酒店想要完成预订时。可提取并提供结果中的预订 URL 或酒店主页链接，引导用户直接点击完成购买。
 
 ❌ **以下情况不适用：**
 - 用户询问非酒店类的旅游预订业务（如机票、火车票、接送机、租车等）。
 
 ## API Key
 
-解析顺序：`--api-key` 参数 → `AIGOHOTEL_API_KEY` 环境变量。
+解析顺序：`--api-key` 参数 → `RollingGo_API_KEY` 环境变量。
 
-还没有 Key？前往申请：https://mcp.agentichotel.cn/apply
+还没有 Key？前往申请：https://rollinggo.store/apply
 
 ## 运行环境
 
-根据用户环境选择，加载对应的参考文件，并在整个会话中保持一致。
+默认加载 [references/rollinggo-npx.md](references/rollinggo-npx.md)；用户明确使用 `uv`/`uvx`/Python 时改加载 [references/rollinggo-uv.md](references/rollinggo-uv.md)。API Key 持久化配置见 [references/claw-host-env.md](references/claw-host-env.md)。
 
-- **`npm`、`npx`、Node 或无明确偏好：** 加载 [references/rollinggo-npx.md](references/rollinggo-npx.md)
-- **`uv`、`uvx`、PyPI 或 Python：** 加载 [references/rollinggo-uv.md](references/rollinggo-uv.md)
-- **一致性检查或对比：** 同时加载两个参考文件
+## 版本新鲜度（始终使用最新版）
 
-未明确指定时默认使用 **npm/npx**（跨环境兼容性更好）。
+本技能默认策略：每次执行都使用最新发布版本。
+
+- **npm/npx：** `npx --yes --package rollinggo@latest rollinggo ...`
+- **uvx：** `uvx --refresh --from rollinggo@latest rollinggo ...`
+
+如果使用已安装命令而不是临时执行，先升级再运行：
+
+- **npm 全局：** `npm install -g rollinggo@latest`
+- **uv 工具：** `uv tool upgrade rollinggo@latest`
 
 ## 主要工作流
 
@@ -98,6 +101,7 @@ rollinggo hotel-detail --help
 
 ## 关键规则
 
+- **API Key 前置检查**：调用命令行前，确认环境包含 `ROLLINGGO_API_KEY`。若缺失，停止发起 CLI 命令，提示用户前往 `https://rollinggo.store` 申请获取 API Key 并配置。
 - `--place-type` 必须使用 `rollinggo search-hotels --help` 里显示的精确值
 - `--star-ratings` 格式：`最小值,最大值`，如 `4.0,5.0`
 - `--format table` **只允许**用于 `search-hotels`；`hotel-detail` 和 `hotel-tags` 会拒绝该参数
@@ -115,3 +119,4 @@ rollinggo hotel-detail --help
 ## 无结果时的放宽策略
 
 按顺序尝试：移除 `--star-ratings` → 增大 `--size` → 增大 `--distance-in-meter` → 移除标签筛选 → 放宽日期或预算
+

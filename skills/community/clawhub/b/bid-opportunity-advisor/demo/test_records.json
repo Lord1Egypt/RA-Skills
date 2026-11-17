@@ -1,0 +1,50 @@
+[
+  {
+    "title": "XX市智慧校园平台采购项目",
+    "type": "招标",
+    "project_name": "XX市智慧校园平台采购项目",
+    "budget_amount": null,
+    "win_amount": null,
+    "win_company": null,
+    "buyer": "广州市教育局",
+    "agency": "广东XX招标公司 公开招标公告",
+    "region": "广东",
+    "publish_date": "2026-08-01",
+    "source_url": "https://www.ccgp.gov.cn/cggg/zygg/2026/08/01/t_1.htm",
+    "source_platform": "中国政府采购网",
+    "project_type": null,
+    "content_summary": "公开招标公告"
+  },
+  {
+    "title": "XX区安防监控系统中标公告",
+    "type": "中标",
+    "project_name": "XX区安防监控系统采购项目",
+    "budget_amount": 5000000,
+    "win_amount": 4800000,
+    "win_company": "云南新秦云科技有限公司",
+    "buyer": "深圳市XX管理局",
+    "agency": "深圳YY公司 中标结果公告",
+    "region": "广东",
+    "publish_date": "2026-08-02",
+    "source_url": "https://www.ccgp.gov.cn/cggg/zbgg/2026/08/02/t_2.htm",
+    "source_platform": "中国政府采购网",
+    "project_type": "公开招标",
+    "content_summary": "XX区安防监控系统采购项目"
+  },
+  {
+    "title": "XX省政务云迁移服务采购",
+    "type": "招标",
+    "project_name": "XX省政务云迁移服务采购",
+    "budget_amount": null,
+    "win_amount": null,
+    "win_company": null,
+    "buyer": "云南省大数据局",
+    "agency": "云南ZZ公司 公开招标公告",
+    "region": "云南",
+    "publish_date": "2026-08-03",
+    "source_url": "https://www.ccgp.gov.cn/cggg/zygg/2026/08/03/t_3.htm",
+    "source_platform": "中国政府采购网",
+    "project_type": null,
+    "content_summary": "公开招标公告"
+  }
+]

@@ -201,9 +201,12 @@ The site should look professional and be easy to scan.
 ## Message Deduplication
 
 Before processing any message:
-1. Check memory.recall(key: "processed_{messageId}")
-2. Skip if already processed
-3. After processing, store the key
+1. Ask the trusted dispatcher for the durable attempt keyed by authenticated source, messageId, operation, and destination
+2. Skip a completed attempt only when its receipt is present
+3. Process a never-started attempt through the dispatcher, which records and claims it before any external effect
+4. If an attempt started but has no receipt, stop and request reconciliation; never replay it merely because a processed marker is missing
+
+The dispatcher, not prompt memory, atomically claims attempts and persists receipts. Use provider idempotency or receipt lookup only where its guarantees are verified. Unknown outbound-send outcomes remain terminal until a human reconciles them; follow [operator-approval-loop.md](./operator-approval-loop.md).
 
 ## Tone
 
@@ -214,9 +217,9 @@ Before processing any message:
 
 ## Don't
 
-- Don't promise fixes or timelines
-- Don't share internal discussions
-- Don't ignore feedback even if it seems minor
+- Don't promise fixes or timelines--say you'll flag it for the team
+- Don't share internal discussions--point to the public changelog
+- Don't ignore feedback even if it seems minor--acknowledge it briefly
 - Don't repeat yourself--vary acknowledgments
 ```
 </example>
@@ -224,15 +227,12 @@ Before processing any message:
 <iteration>
 ## Iterating on System Prompts
 
-Prompt-native development means rapid iteration:
-
-1. **Observe** agent behavior in production
-2. **Identify** gaps: "It's not rating video feedback high enough"
-3. **Add guidance**: "Video walkthroughs are gold--always rate them 4-5"
-4. **Deploy** (just edit the prompt file)
-5. **Repeat**
-
-No code changes. No recompilation. Just prose.
+1. **Observe** a concrete production failure and retain a reproducible case.
+2. **Identify** the cause. Separate prompt gaps from tool-schema, retrieval, and model limitations.
+3. **Edit** the responsible rule without duplicating it across prompt layers.
+4. **Compare** old and new prompts on the failing case and a fixed set of previously passing cases. Keep held-out cases unavailable during editing; evaluate them before promotion.
+5. **Deploy** only when the failure is corrected without regressions under the same outcome criteria. Use the behavioral checks in [agent-native-testing.md](./agent-native-testing.md); content snapshots alone cannot prove behavior.
+6. **Stop** an edit loop that oscillates, plateaus, or reveals a non-prompt bottleneck. Address that cause before adding more instructions.
 </iteration>
 
 <checklist>
@@ -243,8 +243,11 @@ No code changes. No recompilation. Just prose.
 - [ ] Features as separate sections
 - [ ] Judgment criteria instead of rigid rules
 - [ ] Examples for ambiguous cases
-- [ ] Explicit boundaries (what NOT to do)
+- [ ] Explicit boundaries, each paired with the behavior to substitute (a bare "don't X" makes X more available, not less)
 - [ ] Tone guidance
 - [ ] Tool usage guidance (when to use each)
 - [ ] Memory/context handling
+- [ ] Required platform behavior survives empty or customized deployer, persona, and AGENTS.md layers
+- [ ] Descriptive sections contain facts; rules sections own directives, with one owner per rule
+- [ ] Prompt edits pass failing-case, regression, and held-out behavioral checks
 </checklist>

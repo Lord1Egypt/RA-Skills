@@ -1,45 +1,58 @@
-## Description: <br>
-Generate vertical satisfying rust restoration shorts (WeryAI): text-to-video or rusty-object image to grind and polish motion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates vertical WeryAI rust-restoration short videos from text briefs or rusty-object images, focusing on grind, polish, rust removal, and shine-reveal motion.
 
-## Publisher: <br>
-[zoucdr](https://clawhub.ai/user/zoucdr) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zoucdr](https://clawhub.ai/user/zoucdr)
 
-## Use Case: <br>
-External creators and agents use this skill to turn short rust-restoration briefs or rusty-object images into vertical WeryAI video-generation requests with expanded production prompts. It supports satisfying restoration shorts that show corrosion removal, polishing motion, and a final shine reveal. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a WERYAI_API_KEY and submits paid video-generation requests. <br>
-Mitigation: Install only when the publisher is trusted, keep the API key out of the skill package, and confirm parameters before running paid generation. <br>
-Risk: Local image paths can be read and uploaded to WeryAI when used for image-to-video requests. <br>
-Mitigation: Prefer public HTTPS image URLs; use local paths only after confirming the exact file path and obtaining explicit consent for upload. <br>
-Risk: Unsupported model parameters can cause failed or rejected WeryAI requests. <br>
-Mitigation: Validate model, duration, aspect ratio, audio, and image fields against the bundled WeryAI API reference before submission. <br>
+## Use Case:
 
+External users and content creators use this skill to generate vertical rust-restoration short videos from text briefs or public HTTPS rusty-object images. The agent expands short prompts, confirms WeryAI parameters, invokes the bundled CLI, and returns playable video URLs or clear failure details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zoucdr/rust-restore-video) <br>
-- [WeryAI video CLI and JSON reference](resources/WERYAI_VIDEO_API.md) <br>
-- [WeryAI video API host](https://api.weryai.com) <br>
-- [WeryAI model registry and upload host](https://api-growth-agent.weryai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON request bodies and shell commands for the WeryAI video CLI] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access, and paid WeryAI generation credits.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter and release evidence) <br>
+Risk: Local image inputs can cause the helper script to read a local file and upload it to WeryAI file storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer public HTTPS image URLs; allow local paths only after explicit user consent, and run the skill in a limited workspace or container with only intended files accessible.
+
+Risk: Generation and status calls require WERYAI_API_KEY and successful runs consume WeryAI credits.
+
+Mitigation: Keep the API key private and scoped, never commit it, and require confirmation before paid generation runs or retries.
+
+Risk: Unsupported model parameters can cause API failures or unexpected results.
+
+Mitigation: Validate model, duration, aspect ratio, audio, image, and optional fields against the bundled WeryAI reference and the skill's frozen model tables before submitting.
+
+## Reference(s):
+
+- [WeryAI video CLI and JSON reference](artifact/resources/WERYAI_VIDEO_API.md)
+- [ClawHub skill page](https://clawhub.ai/zoucdr/skills/rust-restore-video)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, json, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI payloads; final generation results are returned as text or JSON containing video URLs or error details.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WERYAI_API_KEY, Node.js 18+, network access to WeryAI APIs, and user confirmation before paid generation runs.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

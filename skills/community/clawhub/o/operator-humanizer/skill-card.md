@@ -1,48 +1,67 @@
-## Description: <br>
-Operator Humanizer helps agents analyze and rewrite text by identifying AI-writing patterns, banned phrases, statistical signals, and style artifacts, then suggesting more natural phrasing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operator Humanizer helps agents detect AI-writing patterns, score statistical signals, and revise drafts into more human-sounding prose for posts, articles, emails, marketing copy, newsletters, scripts, and similar text.
 
-## Publisher: <br>
-[Kevjade](https://clawhub.ai/user/Kevjade) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kevjade](https://clawhub.ai/user/kevjade)
 
-## Use Case: <br>
-External users and writing-focused agents use this skill to inspect drafts for AI-writing signals and revise social posts, articles, emails, marketing copy, newsletters, scripts, or similar text toward a less robotic style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can be used to hide AI authorship or simulate a specific person's writing style. <br>
-Mitigation: Use it only where authorship and disclosure rules permit style editing, and do not use it to impersonate a real person or bypass authenticity requirements. <br>
-Risk: The skill's rewrite suggestions may change meaning, tone, or factual claims while making text sound more natural. <br>
-Mitigation: Review every revised draft for accuracy, attribution, and policy compliance before publishing or submitting it. <br>
+## Use Case:
 
+External users, developers, and writing teams use this skill to review drafts for AI-like vocabulary, structure, and rhythm, then produce rewrites or suggestions that sound less robotic. It supports content review and revision across common written formats while requiring human review for authorship, consent, and disclosure-sensitive contexts.
 
-## Reference(s): <br>
-- [Operator Humanizer on ClawHub](https://clawhub.ai/Kevjade/operator-humanizer) <br>
-- [Publisher profile: Kevjade](https://clawhub.ai/user/Kevjade) <br>
-- [The 24 AI Writing Patterns](references/patterns.md) <br>
-- [Phrases to Remove](references/phrases.md) <br>
-- [Structural Patterns to Avoid](references/structures.md) <br>
-- [AI Vocabulary Database](references/vocabulary.md) <br>
-- [Statistical Signals of AI Writing](references/statistical-signals.md) <br>
-- [Personality Injection Guide](references/personality-injection.md) <br>
-- [Humanization Examples](references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and CLI text or JSON reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AI-score summaries, pattern findings, and prioritized rewrite suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill can be used for detector-evasive humanization or policy evasion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for legitimate editing and quality review, not to bypass disclosure, authorship, or platform rules.
+
+Risk: The skill includes guidance for writing like a specific person, which can enable impersonation.
+
+Mitigation: Use specific-person voice adaptation only with consent and clear disclosure; do not use it to impersonate real people.
+
+Risk: The skill references hidden Unicode spacing in examples.
+
+Mitigation: Inspect generated output for hidden Unicode characters before publishing or submitting it.
+
+Risk: AI-detection scores and claims are heuristic and may be wrong.
+
+Mitigation: Treat scores as rough style signals and require human editorial review before relying on them.
+
+## Reference(s):
+
+- [The 24 AI Writing Patterns](references/patterns.md)
+- [Phrases to Remove](references/phrases.md)
+- [Structural Patterns to Avoid](references/structures.md)
+- [AI Vocabulary Database](references/vocabulary.md)
+- [Statistical Signals of AI Writing](references/statistical-signals.md)
+- [Personality Injection Guide](references/personality-injection.md)
+- [Humanization Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown prose with optional JSON analysis from the local CLI]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AI-likelihood scores, pattern flags, and humanization suggestions; scores are heuristic.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

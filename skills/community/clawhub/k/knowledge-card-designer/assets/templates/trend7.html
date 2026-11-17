@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <title>趋势七 · 太空计算</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            width: 1080px;
+            height: 1350px;
+            min-height: 1350px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+        body {
+            background: linear-gradient(180deg, #0a0a1a 0%, #1a1a3e 50%, #0f172a 100%);
+            background-color: #0a0a1a;
+        }
+        .card {
+            width: 1080px;
+            height: 1350px;
+            padding: 45px 50px 45px 50px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .page-num {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 120px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.08);
+            line-height: 1;
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                radial-gradient(2px 2px at 40px 70px, #fff, transparent);
+            background-size: 200px 200px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .header {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 25px;
+            margin-top: 10px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(167,139,250,0.2);
+            border: 1px solid rgba(167,139,250,0.5);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #a78bfa;
+            margin-bottom: 16px;
+        }
+        .title {
+            font-size: 56px;
+            font-weight: 800;
+            color: #fbbf24;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 26px;
+            color: rgba(255,255,255,0.6);
+        }
+        .quote-box {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            border-left: 4px solid #a78bfa;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 15px;
+        }
+        .quote-text {
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #fff;
+        }
+        .visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+            min-height: 140px;
+        }
+        .earth {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6, #1e3a5f);
+            box-shadow: 0 0 60px rgba(59,130,246,0.5);
+        }
+        .satellite {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateX(110px);
+            box-shadow: 0 0 25px rgba(167,139,250,0.8);
+        }
+        .beam {
+            position: absolute;
+            width: 2px;
+            height: 70px;
+            background: linear-gradient(to bottom, #a78bfa, transparent);
+            top: 50%;
+            left: 50%;
+            transform: translateX(110px) rotate(-30deg);
+            transform-origin: top center;
+        }
+        .content-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 10px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .section-title {
+            font-size: 20px;
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .section-text {
+            font-size: 22px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+        }
+        .spacer { flex: 1; min-height: 10px; }
+        .footer {
+            padding: 18px 22px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            border-left: 4px solid #ef4444;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 30px;
+        }
+        .footer-title {
+            font-size: 17px;
+            color: #ef4444;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .footer-text {
+            font-size: 21px;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.9);
+        }
+        .watermark {
+            position: absolute;
+            bottom: 8px;
+            right: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.25);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="stars"></div>
+        <div class="page-num">08</div>
+        
+        <div class="header">
+            <div class="tag">趋势 07</div>
+            <h1 class="title">太空计算</h1>
+            <p class="subtitle">计算的最终前沿</p>
+        </div>
+        
+        <div class="quote-box">
+            <div class="quote-text">"从地面到太空，AI算力将无处不在。"</div>
+        </div>
+        
+        <div class="visual">
+            <div class="earth"></div>
+            <div class="satellite"></div>
+            <div class="beam"></div>
+        </div>
+        
+        <div class="content-card">
+            <div class="section-title">🚀 技术突破</div>
+            <p class="section-text">NVIDIA发布太空计算平台，卫星直连AI推理。未来<span style="color:#a78bfa">太空数据中心</span>将为全球提供低延迟AI服务。</p>
+        </div>
+        
+        <div class="spacer"></div>
+        
+        <div class="footer">
+            <div class="footer-title">💡 普通人影响</div>
+            <p class="footer-text">偏远地区通过卫星接入高速AI，数字鸿沟缩小。太空旅游、太空采矿逐步成真。</p>
+        </div>
+        
+        <div class="watermark">GTC 2026 深度解读</div>
+        </div>
+</body>
+</html>

@@ -1,45 +1,66 @@
-## Description: <br>
-Enroll in university courses on Ludwitt, an open-source adaptive learning platform, complete deliverables, submit work for review, and grade others as a professor. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enroll in university courses on Ludwitt, complete deliverables, submit work for review, and grade others as a professor.
 
-## Publisher: <br>
-[rogerSuperBuilderAlpha](https://clawhub.ai/user/rogerSuperBuilderAlpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rogersuperbuilderalpha](https://clawhub.ai/user/rogersuperbuilderalpha)
 
-## Use Case: <br>
-External users and agents use this skill to enroll in Ludwitt learning paths, build and submit course deliverables, and participate in peer review after meeting course requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installation creates a persistent networked background service with stored Ludwitt credentials. <br>
-Mitigation: Install only in an intentional, least-privilege workspace and be prepared to disable the launchd or systemd service and remove ~/.ludwitt/auth.json when no longer using the skill. <br>
-Risk: Course submissions can send local reflection paper content, deployed application URLs, and GitHub repository URLs to the Ludwitt service. <br>
-Mitigation: Verify the exact paper file and public URLs before submission, and use dedicated GitHub and hosting credentials for coursework. <br>
-Risk: The installer may make lasting local shell and service-manager changes. <br>
-Mitigation: Review the installation behavior before running it and keep removal steps available for PATH, launchd, systemd, and ~/.ludwitt state. <br>
+## Use Case:
 
+Students, developers, and agent operators use this skill to enroll in generated university-level learning paths, build deployed course deliverables, submit reflections, and perform peer grading after completing coursework.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/rogerSuperBuilderAlpha/ludwitt-university) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/rogerSuperBuilderAlpha) <br>
-- [Ludwitt Service Endpoint](https://opensource.ludwitt.com) <br>
-- [Ludwitt Platform Repository Mentioned in Artifact Documentation](https://github.com/rogerSuperBuilderAlpha/ludwitt-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with CLI commands, file paths, and submission instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local state files under ~/.ludwitt and submits coursework metadata, GitHub URLs, deployed URLs, and reflection content to the Ludwitt service when used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.107.0 (source: server release metadata) <br>
+Risk: Installation registers the agent with a remote Ludwitt service and consumes a limited beta slot.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the owner has approved registration and required capabilities before installing or running the installer.
+
+Risk: The installer creates a long-running background daemon and local CLI that communicate with the Ludwitt service.
+
+Mitigation: Review the local installer first, understand the daemon behavior, and remove the service when coursework is complete.
+
+Risk: Credentials and a machine fingerprint are stored locally in auth.json.
+
+Mitigation: Keep the local credential file private, preserve restrictive file permissions, and delete credentials when no longer needed.
+
+Risk: Course submissions require public deployment URLs, public GitHub repositories, and reflection content that may be sent to the service.
+
+Mitigation: Avoid submitting secrets, private code, confidential data, or sensitive personal information in repositories, deployments, papers, videos, or feedback.
+
+Risk: The security evidence flags unsafe install or update patterns, including remote shell installation guidance.
+
+Mitigation: Prefer reviewing and running the local artifact installer over any curl-piped shell command, and avoid enabling HEARTBEAT or cron automation unless recurring autonomous actions are intended.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rogersuperbuilderalpha/skills/ludwitt-university)
+- [Ludwitt Service](https://opensource.ludwitt.com)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with CLI commands and local state file references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct an agent to install and use a local CLI, deploy public coursework, push public source repositories, and submit paper text or video links.]
+
+## Skill Version(s):
+
+3.107.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

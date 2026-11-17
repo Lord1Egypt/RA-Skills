@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杰峰精准客流检测区域配置工具</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#448cf7;--primary-dark:#2b6fd9;--danger:#e74c3c;--success:#34a853;--out-color:#4285f4;--in-color:#34a853;--bg:#f5f7fa;--card:#fff;--text:#333;--text-light:#666;--border:#e0e4e8;--radius:8px;--shadow:0 2px 8px rgba(0,0,0,0.08)}
+body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.header{background:var(--primary);color:#fff;padding:12px 24px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 4px rgba(0,0,0,0.15)}
+.header h1{font-size:18px;font-weight:600}
+.header .device-info{font-size:13px;opacity:0.85;margin-left:auto}
+.main{display:flex;height:calc(100vh - 52px);padding:16px;gap:16px}
+.canvas-panel{flex:7;display:flex;flex-direction:column;min-width:0}
+.canvas-container{flex:1;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+canvas{display:block;cursor:crosshair}
+.toolbar{display:flex;align-items:center;gap:8px;padding:12px 0;flex-wrap:wrap}
+.toolbar .group{display:flex;gap:4px;padding:4px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow)}
+.toolbar .group-label{font-size:12px;color:var(--text-light);padding:0 8px;display:flex;align-items:center}
+.btn{padding:6px 14px;border:1px solid var(--border);border-radius:6px;background:var(--card);cursor:pointer;font-size:13px;transition:all .15s;color:var(--text);white-space:nowrap}
+.btn:hover{border-color:var(--primary);color:var(--primary)}
+.btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn.active.out-btn{background:var(--out-color);border-color:var(--out-color)}
+.btn.active.in-btn{background:var(--in-color);border-color:var(--in-color)}
+.btn.danger{color:var(--danger);border-color:var(--danger)}
+.btn.danger:hover{background:var(--danger);color:#fff}
+.coord-display{margin-left:auto;font-size:13px;color:var(--text-light);background:var(--card);padding:6px 12px;border-radius:6px;box-shadow:var(--shadow);font-family:"Cascadia Code",Consolas,monospace}
+.config-panel{flex:3;display:flex;flex-direction:column;gap:12px;overflow-y:auto;min-width:320px;max-width:420px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.card-title{font-size:14px;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.card-title::before{content:'';width:3px;height:16px;background:var(--primary);border-radius:2px}
+.form-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+.form-row label{font-size:13px;color:var(--text)}
+.form-row .value{font-size:13px}
+.radio-group{display:flex;flex-direction:column;gap:6px}
+.radio-group label{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;padding:4px 0}
+.radio-group input[type="radio"]{accent-color:var(--primary);cursor:pointer}
+.toggle{position:relative;width:44px;height:24px;cursor:pointer}
+.toggle input{display:none}
+.toggle .slider{position:absolute;inset:0;background:#ccc;border-radius:12px;transition:.2s}
+.toggle .slider::before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s}
+.toggle input:checked+.slider{background:var(--primary)}
+.toggle input:checked+.slider::before{transform:translateX(20px)}
+.time-row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.time-row input[type="time"]{flex:1;padding:4px 6px;border:1px solid var(--border);border-radius:4px;font-size:13px}
+.time-row .btn{padding:4px 8px;font-size:16px;line-height:1}
+.time-list{max-height:200px;overflow-y:auto}
+.btn-add{width:100%;padding:6px;border:1px dashed var(--border);border-radius:6px;background:transparent;cursor:pointer;color:var(--primary);font-size:13px;margin-top:4px}
+.btn-add:hover{border-color:var(--primary);background:rgba(68,140,247,0.05)}
+.output-section{display:flex;flex-direction:column;gap:8px}
+.btn-generate{width:100%;padding:10px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-size:14px;font-weight:600;transition:background .15s}
+.btn-generate:hover{background:var(--primary-dark)}
+.btn-download{width:100%;padding:10px;background:var(--success);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-size:14px;font-weight:600;transition:background .15s}
+.btn-download:hover{background:#2d9249}
+.btn-download:disabled{background:#ccc;cursor:not-allowed}
+textarea{width:100%;height:140px;border:1px solid var(--border);border-radius:6px;padding:8px;font-size:12px;font-family:"Cascadia Code",Consolas,monospace;resize:vertical;background:#fafbfc}
+.error-msg{color:var(--danger);font-size:12px;padding:6px 8px;background:#fef0f0;border-radius:4px;display:none}
+.error-msg.show{display:block}
+.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-light);gap:12px;padding:40px}
+.placeholder svg{width:64px;height:64px;opacity:0.3}
+.placeholder p{font-size:14px;text-align:center;max-width:360px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="header">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+  <h1>精准客流检测区域配置</h1>
+  <span class="device-info" id="deviceInfo"></span>
+</div>
+<div class="main">
+  <div class="canvas-panel">
+    <div class="canvas-container" id="canvasContainer">
+      <canvas id="drawCanvas"></canvas>
+      <div class="placeholder" id="placeholder" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><circle cx="8" cy="10" r="2"/><path d="M22 17l-5-5-3 3-4-4-8 8"/></svg>
+        <p>未加载摄像头快照。<br>请通过 <strong>generate-config-page</strong> 动作打开本页面以自动注入快照图片。<br><br>也可在控制台手动设置：<br><code>window.__SNAPSHOT_BASE64__</code></p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="group">
+        <span class="group-label">绘制:</span>
+        <button class="btn out-btn active" id="btnOut" onclick="setActivePolygon('out')">店外框</button>
+        <button class="btn in-btn" id="btnIn" onclick="setActivePolygon('in')">店内框</button>
+      </div>
+      <button class="btn" onclick="undoVertex()">撤销</button>
+      <button class="btn danger" onclick="clearCurrent()">清空当前</button>
+      <button class="btn danger" onclick="clearAll()">全部清空</button>
+      <span class="coord-display" id="coordDisplay">X: ---- , Y: ----</span>
+    </div>
+  </div>
+  <div class="config-panel">
+    <div class="card">
+      <div class="card-title">客流模式</div>
+      <div class="radio-group">
+        <label><input type="radio" name="flowType" value="0" checked> 进过店（进店 + 过店）</label>
+        <label><input type="radio" name="flowType" value="1"> 进店</label>
+        <label><input type="radio" name="flowType" value="2"> 过店</label>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">功能开关</div>
+      <div class="form-row">
+        <label>算法开关</label>
+        <label class="toggle"><input type="checkbox" id="openStatus" checked><span class="slider"></span></label>
+      </div>
+      <div class="form-row">
+        <label>OSD 叠加</label>
+        <label class="toggle"><input type="checkbox" id="showOsd"><span class="slider"></span></label>
+      </div>
+      <div class="form-row">
+        <label>过滤外卖员</label>
+        <label class="toggle"><input type="checkbox" id="deliveryFilter" checked><span class="slider"></span></label>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">运行时段</div>
+      <div class="time-list" id="timeList"></div>
+      <button class="btn-add" onclick="addTimeRow()">+ 添加时段</button>
+    </div>
+    <div class="card output-section">
+      <div class="card-title">输出配置</div>
+      <div class="error-msg" id="errorMsg"></div>
+      <button class="btn-generate" onclick="generateConfig()">生成配置 JSON</button>
+      <textarea id="jsonOutput" readonly placeholder="点击上方按钮生成配置..."></textarea>
+      <button class="btn-download" id="btnDownload" disabled onclick="downloadConfig()">下载 config_output.json</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+var MAX_VERTICES = 4;
+var VERTEX_RADIUS = 6;
+var DRAG_THRESHOLD = 10;
+
+var COLORS = {
+  out: { fill: 'rgba(66,133,244,0.3)', stroke: '#4285f4', vertex: '#4285f4' },
+  'in':  { fill: 'rgba(52,168,83,0.3)',  stroke: '#34a853', vertex: '#34a853' }
+};
+
+var canvas, ctx;
+var imgLoaded = false;
+var img = new Image();
+var naturalW = 0, naturalH = 0;
+var displayW = 0, displayH = 0;
+
+var polygons = { out: [], 'in': [] };
+var activePolygon = 'out';
+var dragging = null;
+var mousePos = { x: 0, y: 0 };
+
+function init() {
+  canvas = document.getElementById('drawCanvas');
+  ctx = canvas.getContext('2d');
+
+  var deviceId = window.__DEVICE_ID__ || '';
+  var deviceSn = window.__DEVICE_SN__ || '';
+  if (deviceId || deviceSn) {
+    document.getElementById('deviceInfo').textContent = 'ID: ' + deviceId + '  |  SN: ' + deviceSn;
+  }
+
+  var snapshot = window.__SNAPSHOT_BASE64__;
+  if (snapshot) {
+    img.onload = function() {
+      naturalW = img.naturalWidth;
+      naturalH = img.naturalHeight;
+      imgLoaded = true;
+      resizeCanvas();
+      render();
+    };
+    img.src = snapshot;
+  } else {
+    document.getElementById('placeholder').style.display = 'flex';
+    canvas.style.display = 'none';
+    naturalW = 8192;
+    naturalH = 8192;
+    resizeCanvas();
+    render();
+  }
+
+  addTimeRow('08:00:00', '22:00:00');
+
+  canvas.addEventListener('mousedown', onMouseDown);
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('mouseup', onMouseUp);
+  window.addEventListener('resize', function() { resizeCanvas(); render(); });
+}
+
+function resizeCanvas() {
+  var container = document.getElementById('canvasContainer');
+  var cw = container.clientWidth;
+  var ch = container.clientHeight;
+
+  if (!imgLoaded && !window.__SNAPSHOT_BASE64__) {
+    displayW = Math.min(cw - 20, 800);
+    displayH = Math.min(ch - 20, 600);
+    canvas.width = displayW;
+    canvas.height = displayH;
+    canvas.style.width = displayW + 'px';
+    canvas.style.height = displayH + 'px';
+    return;
+  }
+
+  if (naturalW === 0 || naturalH === 0) return;
+  var ratio = naturalW / naturalH;
+  var w = cw - 8;
+  var h = w / ratio;
+  if (h > ch - 8) { h = ch - 8; w = h * ratio; }
+  displayW = Math.round(w);
+  displayH = Math.round(h);
+  canvas.width = displayW;
+  canvas.height = displayH;
+  canvas.style.width = displayW + 'px';
+  canvas.style.height = displayH + 'px';
+}
+
+function displayToImage(dx, dy) {
+  if (displayW === 0 || displayH === 0) return { x: 0, y: 0 };
+  return { x: dx / displayW * naturalW, y: dy / displayH * naturalH };
+}
+
+function imageToDisplay(ix, iy) {
+  if (naturalW === 0 || naturalH === 0) return { x: 0, y: 0 };
+  return { x: ix / naturalW * displayW, y: iy / naturalH * displayH };
+}
+
+function imageTo8192(ix, iy) {
+  if (naturalW === 0 || naturalH === 0) return { x: 0, y: 0 };
+  return { x: Math.round(ix / naturalW * 8192), y: Math.round(iy / naturalH * 8192) };
+}
+
+function findVertex(dx, dy) {
+  var imgPt = displayToImage(dx, dy);
+  var threshold = DRAG_THRESHOLD / displayW * naturalW;
+  var keys = ['out', 'in'];
+  for (var k = 0; k < keys.length; k++) {
+    var key = keys[k];
+    for (var i = 0; i < polygons[key].length; i++) {
+      var v = polygons[key][i];
+      var dist = Math.sqrt((v.x - imgPt.x) * (v.x - imgPt.x) + (v.y - imgPt.y) * (v.y - imgPt.y));
+      if (dist < threshold) {
+        return { poly: key, index: i };
+      }
+    }
+  }
+  return null;
+}
+
+function getCanvasPos(e) {
+  var r = canvas.getBoundingClientRect();
+  return { x: e.clientX - r.left, y: e.clientY - r.top };
+}
+
+function onMouseDown(e) {
+  if (!imgLoaded && !window.__SNAPSHOT_BASE64__) return;
+  var pos = getCanvasPos(e);
+  var hit = findVertex(pos.x, pos.y);
+  if (hit) {
+    dragging = hit;
+    canvas.style.cursor = 'grabbing';
+  }
+}
+
+function onMouseMove(e) {
+  var pos = getCanvasPos(e);
+  var imgPt = displayToImage(pos.x, pos.y);
+  var c8192 = imageTo8192(imgPt.x, imgPt.y);
+  document.getElementById('coordDisplay').textContent = 'X: ' + c8192.x + ' , Y: ' + c8192.y;
+  mousePos = pos;
+
+  if (dragging) {
+    polygons[dragging.poly][dragging.index] = { x: imgPt.x, y: imgPt.y };
+    render();
+    return;
+  }
+
+  var hit = findVertex(pos.x, pos.y);
+  canvas.style.cursor = hit ? 'grab' : 'crosshair';
+
+  render(pos);
+}
+
+function onMouseUp(e) {
+  if (dragging) {
+    dragging = null;
+    canvas.style.cursor = 'crosshair';
+    render();
+    return;
+  }
+  if (!imgLoaded && !window.__SNAPSHOT_BASE64__) return;
+
+  var pos = getCanvasPos(e);
+  var hit = findVertex(pos.x, pos.y);
+  if (hit) return;
+
+  var imgPt = displayToImage(pos.x, pos.y);
+  var poly = polygons[activePolygon];
+  if (poly.length < MAX_VERTICES) {
+    poly.push({ x: imgPt.x, y: imgPt.y });
+    render();
+  }
+}
+
+function render(hoverPos) {
+  ctx.clearRect(0, 0, displayW, displayH);
+
+  if (imgLoaded) {
+    ctx.drawImage(img, 0, 0, displayW, displayH);
+  } else {
+    ctx.fillStyle = '#e8ecf1';
+    ctx.fillRect(0, 0, displayW, displayH);
+    ctx.fillStyle = '#999';
+    ctx.font = '14px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('\u65E0\u5FEB\u7167 - \u8BF7\u901A\u8FC7 generate-config-page \u52A8\u4F5C\u6253\u5F00', displayW / 2, displayH / 2);
+  }
+
+  var keys = ['out', 'in'];
+  for (var k = 0; k < keys.length; k++) {
+    drawPolygon(keys[k]);
+  }
+
+  if (hoverPos && polygons[activePolygon].length > 0 && polygons[activePolygon].length < MAX_VERTICES) {
+    var pts = polygons[activePolygon];
+    var last = imageToDisplay(pts[pts.length - 1].x, pts[pts.length - 1].y);
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = COLORS[activePolygon].stroke;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(last.x, last.y);
+    ctx.lineTo(hoverPos.x, hoverPos.y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+}
+
+function drawPolygon(key) {
+  var pts = polygons[key];
+  if (pts.length === 0) return;
+  var color = COLORS[key];
+  var displayPts = [];
+  for (var i = 0; i < pts.length; i++) {
+    displayPts.push(imageToDisplay(pts[i].x, pts[i].y));
+  }
+  var isComplete = pts.length === MAX_VERTICES;
+
+  if (isComplete) {
+    ctx.beginPath();
+    ctx.moveTo(displayPts[0].x, displayPts[0].y);
+    for (var i = 1; i < displayPts.length; i++) ctx.lineTo(displayPts[i].x, displayPts[i].y);
+    ctx.closePath();
+    ctx.fillStyle = color.fill;
+    ctx.fill();
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(displayPts[0].x, displayPts[0].y);
+  for (var i = 1; i < displayPts.length; i++) ctx.lineTo(displayPts[i].x, displayPts[i].y);
+  if (isComplete) ctx.closePath();
+  ctx.strokeStyle = color.stroke;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  for (var i = 0; i < displayPts.length; i++) {
+    var dp = displayPts[i];
+    ctx.beginPath();
+    ctx.arc(dp.x, dp.y, VERTEX_RADIUS, 0, Math.PI * 2);
+    ctx.fillStyle = color.vertex;
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('' + (i + 1), dp.x, dp.y);
+  }
+
+  if (isComplete) {
+    var cx = 0, cy = 0;
+    for (var i = 0; i < displayPts.length; i++) { cx += displayPts[i].x; cy += displayPts[i].y; }
+    cx /= displayPts.length;
+    cy /= displayPts.length;
+    var label = key === 'out' ? '\u5E97\u5916\u6846' : '\u5E97\u5185\u6846';
+    ctx.font = 'bold 13px sans-serif';
+    var metrics = ctx.measureText(label);
+    var pad = 4;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillRect(cx - metrics.width / 2 - pad, cy - 9 - pad, metrics.width + pad * 2, 18 + pad * 2);
+    ctx.fillStyle = color.stroke;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, cx, cy);
+  }
+}
+
+window.setActivePolygon = function(key) {
+  activePolygon = key;
+  document.getElementById('btnOut').classList.toggle('active', key === 'out');
+  document.getElementById('btnIn').classList.toggle('active', key === 'in');
+};
+
+window.undoVertex = function() {
+  var poly = polygons[activePolygon];
+  if (poly.length > 0) { poly.pop(); render(); }
+};
+
+window.clearCurrent = function() {
+  polygons[activePolygon] = [];
+  render();
+};
+
+window.clearAll = function() {
+  polygons.out = [];
+  polygons['in'] = [];
+  render();
+};
+
+window.addTimeRow = function(start, end) {
+  var list = document.getElementById('timeList');
+  var row = document.createElement('div');
+  row.className = 'time-row';
+  var sVal = start || '08:00:00';
+  var eVal = end || '22:00:00';
+  row.innerHTML =
+    '<input type="time" step="1" value="' + sVal + '">' +
+    '<span style="color:#999">-</span>' +
+    '<input type="time" step="1" value="' + eVal + '">' +
+    '<button class="btn danger" onclick="this.parentNode.remove()" title="\u5220\u9664">&times;</button>';
+  list.appendChild(row);
+};
+
+window.generateConfig = function() {
+  var errEl = document.getElementById('errorMsg');
+  errEl.className = 'error-msg';
+  errEl.textContent = '';
+
+  var errors = [];
+  if (polygons.out.length !== MAX_VERTICES) errors.push('\u5E97\u5916\u6846\u9700\u8981\u6070\u597D 4 \u4E2A\u9876\u70B9\uFF08\u5F53\u524D: ' + polygons.out.length + ' \u4E2A\uFF09');
+  if (polygons['in'].length !== MAX_VERTICES) errors.push('\u5E97\u5185\u6846\u9700\u8981\u6070\u597D 4 \u4E2A\u9876\u70B9\uFF08\u5F53\u524D: ' + polygons['in'].length + ' \u4E2A\uFF09');
+
+  var timeRows = document.querySelectorAll('#timeList .time-row');
+  if (timeRows.length === 0) errors.push('\u81F3\u5C11\u9700\u8981\u914D\u7F6E\u4E00\u4E2A\u8FD0\u884C\u65F6\u6BB5');
+
+  if (errors.length > 0) {
+    errEl.textContent = errors.join('\uFF1B');
+    errEl.className = 'error-msg show';
+    return;
+  }
+
+  var areas = ['out', 'in'].map(function(key) {
+    return {
+      points: polygons[key].map(function(p) {
+        var c = imageTo8192(p.x, p.y);
+        return { X: c.x, Y: c.y };
+      }),
+      name: key
+    };
+  });
+
+  var times = [];
+  timeRows.forEach(function(row) {
+    var inputs = row.querySelectorAll('input');
+    var s = inputs[0].value;
+    var e = inputs[1].value;
+    if (s.length === 5) s += ':00';
+    if (e.length === 5) e += ':00';
+    times.push({ start: s, end: e });
+  });
+
+  var flowType = document.querySelector('input[name="flowType"]:checked').value;
+  var openStatus = document.getElementById('openStatus').checked ? '1' : '0';
+  var showOsd = document.getElementById('showOsd').checked ? '1' : '0';
+  var deliveryFilter = document.getElementById('deliveryFilter').checked ? '1' : '0';
+
+  var config = {
+    includeAreas: JSON.stringify(areas),
+    flowType: flowType,
+    openStatus: openStatus,
+    showOsdStatus: showOsd,
+    deliveryDriversStatus: deliveryFilter,
+    taskTime: JSON.stringify(times)
+  };
+
+  var json = JSON.stringify(config, null, 2);
+  document.getElementById('jsonOutput').value = json;
+  document.getElementById('btnDownload').disabled = false;
+};
+
+window.downloadConfig = function() {
+  var json = document.getElementById('jsonOutput').value;
+  if (!json) return;
+  var blob = new Blob([json], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'config_output.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+})();
+</script>
+</body>
+</html>

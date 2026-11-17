@@ -1,44 +1,59 @@
-## Description: <br>
-Cross-framework enhancement overlay that helps an agent decide whether a task needs multiple agents and, if so, choose between single-agent, sequential, supervisor, swarm, or hierarchical topologies before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cross-framework enhancement overlay for deciding whether an agent task needs multiple agents and, if so, choosing single-agent, sequential, supervisor, swarm, or hierarchical topology using a binary-question rubric.
 
-## Publisher: <br>
-[agentsope](https://clawhub.ai/user/agentsope) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentsope](https://clawhub.ai/user/agentsope)
 
-## Use Case: <br>
-Developers and agent builders use this skill during multi-agent planning to defend the single-agent baseline, identify when role splitting is justified, and select an appropriate topology across CrewAI, LangGraph, and OpenAI Swarm-style handoffs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The overlay may activate during broad multi-agent design discussions and influence architecture choices outside a narrow implementation task. <br>
-Mitigation: Treat its output as planning guidance and review topology changes against the project's trust, latency, cost, and audit requirements before implementation. <br>
-Risk: The release evidence notes local authoring paths in metadata or source-evidence text. <br>
-Mitigation: Use those paths only as provenance notes for this release and remove local machine paths from future public releases. <br>
-Risk: Incorrect multi-agent topology choices can add unnecessary agents, token cost, latency, or unbounded handoff loops. <br>
-Mitigation: Apply the single-agent baseline first, require a concrete split-justifying failure mode, and bound runtime handoff topologies with iteration limits, timeouts, and explicit exit state. <br>
+## Use Case:
 
+Developers and agent builders use this skill before writing agent code to decide whether a single agent with tools is sufficient or whether a multi-agent topology is justified. When multiple agents are justified, it guides selection among sequential, supervisor, swarm, and hierarchical patterns.
 
-## Reference(s): <br>
-- [R1 Source Evidence](artifact/references/R1-source-evidence.md) <br>
-- [Operation Candidates](artifact/intermediate/operation_candidates.json) <br>
-- [LangChain Benchmarking Multi-Agent Architectures](https://www.langchain.com/blog/benchmarking-multi-agent-architectures) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with topology rubrics, decision steps, anti-patterns, and framework mapping notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory planning output; does not execute tools or modify files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata; artifact frontmatter is 0.1.0) <br>
+Risk: The artifact documentation includes publisher-local source paths.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat those paths as provenance notes only; do not rely on them as install-time or runtime paths.
+
+Risk: Topology guidance can be misapplied to create unnecessary multi-agent systems with higher latency, token use, or coordination risk.
+
+Mitigation: Apply the skill's single-agent baseline check first and add agents only when context isolation or parallel expertise is clearly justified.
+
+Risk: Runtime handoff topologies can loop or fail to terminate if delegation is left unbounded.
+
+Mitigation: Use explicit iteration limits, outer timeouts, and state-based exit counters before deploying supervisor, swarm, hierarchical, or delegation-heavy designs.
+
+## Reference(s):
+
+- [Source Evidence](artifact/references/R1-source-evidence.md)
+- [LangChain Benchmarking Multi-Agent Architectures](https://www.langchain.com/blog/benchmarking-multi-agent-architectures)
+- [ClawHub Skill Page](https://clawhub.ai/agentsope/skills/agentsop-agent-topology-selection)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, configuration]
+
+**Output Format:** [Markdown guidance with rubrics, topology mappings, and implementation notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only skill; produces topology-selection recommendations and implementation guardrails.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata; artifact frontmatter is 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

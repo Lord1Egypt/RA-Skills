@@ -1,0 +1,29 @@
+{
+  "manifest": "captioned/manifest.json",
+  "start": "2026-11-23",
+  "order": ["speed", "intro"],
+  "accounts": [
+    {"name": "TikTok", "platform": "TIKTOK", "output": "vertical", "language": "en", "timezone": "America/New_York",
+     "times": ["18:00"], "days": ["mon", "wed", "fri"], "privacyLevel": "PUBLIC_TO_EVERYONE"},
+    {"name": "Reels", "platform": "INSTAGRAM", "output": "vertical", "language": "en", "timezone": "America/New_York",
+     "times": ["12:00"], "days": ["mon", "wed", "fri"]},
+    {"name": "Shorts", "platform": "YOUTUBE", "output": "vertical", "language": "en", "timezone": "America/New_York",
+     "times": ["15:00"], "days": ["tue", "thu"], "privacy": "public", "category": "28", "madeForKids": false},
+    {"name": "TikTok ES", "platform": "TIKTOK", "output": "vertical", "language": "es", "timezone": "America/Mexico_City",
+     "times": ["19:00"], "days": ["mon", "wed", "fri"], "privacyLevel": "PUBLIC_TO_EVERYONE"},
+    {"name": "LinkedIn Page", "platform": "LINKEDIN_PAGES", "output": "linkedin", "language": "en", "timezone": "America/New_York",
+     "times": ["08:30"], "days": ["tue", "thu"]}
+  ],
+  "posts": {
+    "speed": {
+      "en": {"text": "Why does a school radio call with the ISS last only about 10 minutes? The station crosses from horizon to horizon at 17,500 mph. NASA astronaut Nichole Ayers explains. #ISS #hamradio #space",
+             "title": "Why a radio call with the ISS lasts 10 minutes"},
+      "es": {"text": "¿Por qué una llamada de radio con la Estación Espacial dura solo unos 10 minutos? La estación cruza el cielo a 28 000 km/h. Lo explica la astronauta de la NASA Nichole Ayers. #EEI #radioaficionados #espacio"}
+    },
+    "intro": {
+      "en": {"text": "16 orbits a day: that's life on the International Space Station. NASA astronaut Nichole Ayers says hello from orbit. #ISS #NASA #space",
+             "title": "Hello from the ISS: 16 orbits a day"},
+      "es": {"text": "16 vueltas a la Tierra al día: así es la vida en la Estación Espacial Internacional. La astronauta de la NASA Nichole Ayers saluda desde la órbita. #EEI #NASA #espacio"}
+    }
+  }
+}

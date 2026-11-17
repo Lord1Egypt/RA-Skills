@@ -1,41 +1,52 @@
-## Description: <br>
-Read, extract text and metadata, and convert documents in formats like PDF, DOCX, XLSX, PPTX, EPUB, RTF, and OpenDocument. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read, extract text and metadata, and convert documents in formats like PDF, DOCX, XLSX, PPTX, EPUB, RTF, and OpenDocument.
 
-## Publisher: <br>
-[Neckr0ik](https://clawhub.ai/user/Neckr0ik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neckr0ik](https://clawhub.ai/user/neckr0ik)
 
-## Use Case: <br>
-Developers and agents use this skill to inspect user-provided document files, extract text and metadata, and convert PDFs into images for OCR or visual review. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Document text and metadata may contain sensitive information and can enter the agent context during extraction. <br>
-Mitigation: Use the skill only on documents intentionally provided for processing, and avoid sensitive files unless sharing extracted content and metadata with the agent is acceptable. <br>
-Risk: Document conversion can create or overwrite output files in the selected output directory. <br>
-Mitigation: Choose output paths deliberately and review generated files before relying on or sharing them. <br>
-Risk: Some documents may extract incompletely, including scanned PDFs, encrypted PDFs, complex formatting, or RTF metadata. <br>
-Mitigation: Review extraction results for completeness and use OCR, passwords, or specialized table extraction tools when the document format requires them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Neckr0ik/document-handler) <br>
+## Use Case:
 
+Developers and agents use this skill to inspect document files they explicitly provide, extract text and metadata, and convert PDFs to images for OCR or visual review.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, files, guidance] <br>
-**Output Format:** [Plain text, metadata text, Markdown guidance, and generated image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local user-provided document files; PDF image conversion writes PNG files to the selected output directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Document text and metadata can contain sensitive information.
+
+Mitigation: Only provide files the agent is authorized to read, and review extracted content before sharing it outside the intended context.
+
+Risk: Scanned, encrypted, or complex documents may produce incomplete or lossy extraction results.
+
+Mitigation: Use OCR or the required password when needed, and validate extracted text or images before relying on them.
+
+## Reference(s):
+
+- [Document Handler ClawHub Skill Page](https://clawhub.ai/neckr0ik/skills/document-handler)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce extracted document text, metadata, or PNG images derived from user-provided files.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

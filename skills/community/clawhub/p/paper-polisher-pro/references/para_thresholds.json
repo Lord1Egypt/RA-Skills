@@ -1,0 +1,78 @@
+{
+ "version": "v4.9.0",
+ "bench": "mixed_bench_20261005.json",
+ "n_paragraphs": 333,
+ "n_ai_paragraphs": 134,
+ "recommended_high": {
+  "para_high": 50.0,
+  "precision": 0.6,
+  "ai_para_coverage": 0.627,
+  "f1": 0.6131
+ },
+ "review_band": {
+  "para_medium_floor": 45.0,
+  "ai_para_coverage_ge_floor": 0.701
+ },
+ "confusion_at_high": {
+  "tp": 84,
+  "fp": 56,
+  "fn": 50,
+  "tn": 143
+ },
+ "honest_conclusion": "高置信段落判定（≥50 分）精度 0.60，但 AI 段覆盖率仅 63%——段落归因的用途=「高置信段实锤 + 剩余段人工复核排序」，不是段落级自动判定。文档级 AUROC 0.52-0.54 的原理性局限不变。阈值校准于同基准（n=333 段，单参数），属校准集内选点。",
+ "grid_top8": [
+  {
+   "para_high": 50.0,
+   "precision": 0.6,
+   "ai_para_coverage": 0.627,
+   "f1": 0.6131
+  },
+  {
+   "para_high": 52.5,
+   "precision": 0.603,
+   "ai_para_coverage": 0.545,
+   "f1": 0.5725
+  },
+  {
+   "para_high": 55.0,
+   "precision": 0.63,
+   "ai_para_coverage": 0.507,
+   "f1": 0.562
+  },
+  {
+   "para_high": 57.5,
+   "precision": 0.567,
+   "ai_para_coverage": 0.381,
+   "f1": 0.4554
+  },
+  {
+   "para_high": 60.0,
+   "precision": 0.544,
+   "ai_para_coverage": 0.321,
+   "f1": 0.4038
+  },
+  {
+   "para_high": 62.5,
+   "precision": 0.515,
+   "ai_para_coverage": 0.254,
+   "f1": 0.34
+  },
+  {
+   "para_high": 65.0,
+   "precision": 0.533,
+   "ai_para_coverage": 0.239,
+   "f1": 0.3299
+  },
+  {
+   "para_high": 67.5,
+   "precision": 0.542,
+   "ai_para_coverage": 0.194,
+   "f1": 0.2857
+  }
+ ],
+ "grid_domain": [
+  50.0,
+  95.0
+ ],
+ "grid_domain_note": "网格域 [50,95]；全局 F1 最优在 47.5（P=0.589/F1=0.637）——现选 50.0 为偏精度保守选点，honest_conclusion 的「≥50」限定据此。"
+}

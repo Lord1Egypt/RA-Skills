@@ -1,42 +1,64 @@
-## Description: <br>
-Queries TikTok Shop promotional videos for a product and returns engagement, estimated sales, GMV, creator, and publishing metadata for video marketing analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries promotional videos associated with a TikTok Shop product and helps sellers analyze engagement, estimated sales, GMV, creator, and publishing signals.
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External sellers, operators, and commerce analysts use this skill to inspect TikTok product-associated videos, compare engagement and estimated conversion metrics, and identify influencer content that may be driving sales. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends TikTok product identifiers, optional influencer IDs, and API key-authenticated requests to LinkFox services. <br>
-Mitigation: Use only with data that is appropriate to share with LinkFox and confirm the API key is scoped and stored as an environment variable. <br>
-Risk: The skill instructs agents to automatically submit freeform interaction feedback to a separate LinkFox feedback API. <br>
-Mitigation: Avoid including sensitive business details in feedback and obtain user or operator approval before sending feedback when appropriate. <br>
-Risk: Persisted response files may contain sensitive commerce, pricing, or identifier data. <br>
-Mitigation: Write response files outside git working trees and delete them after the task is complete. <br>
+## Use Case:
 
+External sellers, marketplace analysts, and agent users use this skill to inspect TikTok product promotional videos, compare engagement and estimated conversion metrics, and identify creator content linked to a product ID.
 
-## Reference(s): <br>
-- [EchoTik Product Video API Reference](references/api.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown tables, JSON API responses, shell commands, and optional persisted response files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY. Video sales and GMV are estimated values; persisted response files may contain sensitive commerce data and should be cleaned up after use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill sends product queries, API keys, and session metadata to LinkFox endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when LinkFox is trusted for the business data involved, and protect or rotate API keys if exposed.
+
+Risk: The onboarding flow can ask for phone-number login, SMS verification, API-key generation, plan selection, and payment order creation.
+
+Mitigation: Prefer obtaining an API key directly from the first-party LinkFox site, and require the user to confirm any paid plan or order action.
+
+Risk: Endpoint override environment variables could redirect requests away from the expected LinkFox services.
+
+Mitigation: Avoid setting endpoint override variables unless they are intentionally reviewed for the current environment.
+
+Risk: The skill writes API responses and cache/session files locally, which may contain sensitive product or account context.
+
+Mitigation: Periodically review and delete local LinkFox cache and session files when they are no longer needed.
+
+## Reference(s):
+
+- [EchoTik product video API reference](references/api.md)
+- [Authentication and billing onboarding guide](references/onboarding.md)
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-echotik-product-video)
+- [LinkFox Skills](https://skill.linkfox.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON API results and saved JSON data files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can write full API responses to local LinkFox session data files and print either full JSON or summaries depending on response size.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

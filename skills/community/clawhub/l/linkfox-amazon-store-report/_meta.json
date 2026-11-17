@@ -1,6 +1,13 @@
 {
-  "ownerId": "kn7dmc1t4j28hem1twwyav85p182pb1j",
+  "ownerId": "linkfoxagent",
   "slug": "linkfox-amazon-store-report",
-  "version": "1.0.2",
-  "publishedAt": 1779264350216
+  "version": "1.0.3",
+  "publishedAt": 1745554800000,
+  "dependencies": [
+    {
+      "slug": "linkfox-amazon-store-auth",
+      "minVersion": "1.0.0",
+      "reason": "Report retrieval requires the authorization & token management skill to obtain store tokens before calling Amazon seller APIs."
+    }
+  ]
 }

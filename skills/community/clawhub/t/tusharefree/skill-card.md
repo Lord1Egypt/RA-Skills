@@ -1,43 +1,60 @@
-## Description: <br>
-Provides Tushare Pro financial-data API guidance for A-shares, indices, funds, futures, bonds, macroeconomic data, and token-authenticated Python access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tushare Pro financial data platform guidance for accessing A-share, index, fund, futures, bond, and macroeconomic data through token-authenticated Python APIs.
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers, data analysts, and agents use this skill to configure the Tushare Python API and retrieve Chinese financial market, company financial, fund, futures, bond, and macroeconomic data for analysis workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tushare tokens are account credentials and can be exposed if hardcoded in prompts, scripts, or shared notebooks. <br>
-Mitigation: Use TUSHARE_TOKEN or a secret manager, avoid committing tokens, and rotate any token that may have been exposed. <br>
-Risk: Unpinned Python dependencies can change behavior or introduce supply-chain risk in production and shared environments. <br>
-Mitigation: Pin and review dependency versions before deployment, especially for tushare and pandas. <br>
+## Use Case:
 
+Developers and external users can use this skill to configure Tushare Pro access, retrieve financial market and macroeconomic datasets, and generate Python examples for analysis workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/coderwpf/tusharefree) <br>
-- [Tushare Pro](https://tushare.pro) <br>
-- [Tushare Pro Documentation](https://tushare.pro/document/2) <br>
-- [Tushare API Interface List](https://tushare.pro/document/1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Python and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and a Tushare token; examples produce pandas DataFrames and optional CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Tushare API access requires a personal token, which could be exposed if written into prompts, code, or commits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the token in an environment variable or local secret store rather than committed code or shared examples.
+
+Risk: Routine package upgrades can pull unreviewed dependency updates.
+
+Mitigation: Install in a virtual environment and pin reviewed dependency versions for repeatable use.
+
+Risk: Some Tushare endpoints depend on credit level, rate limits, and live API availability.
+
+Mitigation: Check for empty responses or API exceptions and throttle requests according to account limits before relying on results.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coderwpf/skills/tusharefree)
+- [Tushare Pro homepage](https://tushare.pro)
+- [Tushare Pro official documentation](https://tushare.pro/document/2)
+- [Tushare Pro interface list](https://tushare.pro/document/1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python, tushare and pandas packages, and a user-provided Tushare token; some APIs require sufficient Tushare credits.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

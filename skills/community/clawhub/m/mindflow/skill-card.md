@@ -1,40 +1,58 @@
-## Description: <br>
-Converts text, Markdown files, or TXT files into image-based mind maps with configurable output format and resolution. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mindflow converts text, Markdown files, and TXT files into image-based mind maps with configurable output format and resolution.
 
-## Publisher: <br>
-[NewToolAI](https://clawhub.ai/user/NewToolAI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newtoolai](https://clawhub.ai/user/newtoolai)
 
-## Use Case: <br>
-External users, developers, and content creators use Mindflow to turn text, notes, Markdown, or TXT files into image-based mind maps for summarization, planning, and study workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing JavaScript dependencies and running Puppeteer introduces normal local runtime and browser-rendering exposure. <br>
-Mitigation: Install dependencies from trusted registries, keep them updated, and run rendering in a constrained local environment. <br>
-Risk: Rendering arbitrary untrusted HTML can expose the local environment to unsafe content or unwanted network activity. <br>
-Mitigation: Use intended text, Markdown, or TXT inputs; sanitize untrusted HTML or block network access before rendering. <br>
+## Use Case:
 
+Developers and content authors use Mindflow to turn notes, articles, scripts, Markdown, or TXT files into concise mind map Markdown and rendered image files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/NewToolAI/mindflow) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown workflow guidance with generated PNG or JPEG image files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated mind map Markdown is limited to 300 tokens and up to 4 hierarchy levels; the renderer supports PNG, JPEG, and JPG outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Risk: The HTML-to-image rendering step can execute active HTML while browser isolation is weakened.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only in an isolated workspace or container with minimal filesystem access and preferably no network access.
+
+Risk: Untrusted Markdown or HTML may produce unsafe or misleading rendered content.
+
+Mitigation: Avoid untrusted inputs where possible and review generated intermediate HTML before rendering images.
+
+Risk: Runtime dependencies are installed by package name in the artifact instructions.
+
+Mitigation: Pin and review markmap and Puppeteer dependencies before use.
+
+## Reference(s):
+
+- [Mindflow ClawHub Skill Page](https://clawhub.ai/newtoolai/skills/mindflow)
+- [newtoolai Publisher Profile](https://clawhub.ai/user/newtoolai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown instructions with generated mind map image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated Markdown is constrained to 300 tokens and four hierarchy levels; image output defaults to PNG and may be rendered as PNG or JPEG.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

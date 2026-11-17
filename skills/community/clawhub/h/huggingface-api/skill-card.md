@@ -1,46 +1,58 @@
-## Description: <br>
-Full Hugging Face Hub skill for CLI and Python API workflows, including downloading models and datasets, uploading files, managing repositories and Spaces, searching the Hub, and handling cache. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Hugging Face Hub CLI and Python API guidance for downloading models and datasets, uploading files, managing repositories and Spaces, searching the Hub, and handling cache with HF_TOKEN-backed authentication when needed.
 
-## Publisher: <br>
-[fantox](https://clawhub.ai/user/fantox) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fantox](https://clawhub.ai/user/fantox)
 
-## Use Case: <br>
-Developers and engineers use this skill to automate Hugging Face Hub operations for model inference preparation, dataset pipelines, repository management, and Space deployment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: HF_TOKEN may grant access to private or gated Hugging Face resources and write operations. <br>
-Mitigation: Use the narrowest token scope possible, prefer read-only or repo-scoped tokens, and never hard-code tokens in scripts. <br>
-Risk: Upload, delete, cache cleanup, and Space-management commands can change or remove remote or local resources. <br>
-Mitigation: Review target repository names, repo types, revisions, and delete or cleanup prompts before execution. <br>
-Risk: Remote inference or Hub operations may send prompts, audio, files, or metadata to network services. <br>
-Mitigation: Avoid sending private prompts, audio, or sensitive artifacts unless the user has approved the destination and data handling. <br>
+## Use Case:
 
+Developers and engineers use this skill to operate Hugging Face Hub workflows from an agent, including model and dataset transfer, Hub search, repository administration, Space deployment, and cache inspection.
 
-## Reference(s): <br>
-- [Hugging Face Hub documentation](https://huggingface.co/docs/huggingface_hub) <br>
-- [Hugging Face Hub API reference](artifact/references/api_reference.md) <br>
-- [Hugging Face access tokens](https://huggingface.co/settings/tokens) <br>
-- [ClawHub skill page](https://clawhub.ai/fantox/huggingface-api) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/fantox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose authenticated Hugging Face Hub operations that depend on HF_TOKEN scope and network access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: HF_TOKEN can authorize private reads, uploads, repository deletion, and Space management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use fine-grained read-only or repo-scoped tokens by default, and grant write permissions only for the specific workflow that requires them.
+
+Risk: Upload, delete, tag deletion, and --yes commands can modify or remove Hugging Face Hub content without enough guardrails.
+
+Mitigation: Review every write or delete command before execution, and avoid --yes deletion in automation unless an explicit approval step is present.
+
+Risk: Downloads from mutable branches can change over time and affect reproducibility.
+
+Mitigation: Pin downloads to a specific revision or commit SHA for production workflows.
+
+## Reference(s):
+
+- [Hugging Face Hub documentation](https://huggingface.co/docs/huggingface_hub)
+- [Hugging Face Hub API Reference](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and Python code snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose authenticated Hugging Face Hub operations that depend on the permissions granted to HF_TOKEN.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

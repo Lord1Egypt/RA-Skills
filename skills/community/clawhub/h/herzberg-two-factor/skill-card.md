@@ -1,44 +1,53 @@
-## Description: <br>
-Helps an agent use Herzberg's two-factor theory to diagnose motivation, engagement, and retention issues by separating hygiene gaps from motivator gaps and recommending job enrichment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps managers distinguish workplace conditions that reduce dissatisfaction from job factors that build motivation, then suggests practical job-enrichment steps.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-Employees, managers, and HR or people-operations practitioners use this skill to diagnose low motivation, engagement, and retention problems. It helps distinguish hygiene issues such as pay, safety, and working conditions from motivators such as achievement, recognition, responsibility, growth, and meaningful work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's recommendations can be overused as a complete management diagnosis when issues involve pay inequity, unsafe conditions, burnout, harassment, or skill gaps. <br>
-Mitigation: Use it as one management lens, first address clear hygiene or safety problems, and route legal, HR, safety, or capability concerns to the appropriate process. <br>
+## Use Case:
 
+Managers and team leads use the skill to diagnose low engagement, retention problems, or weak morale by separating hygiene gaps from motivator gaps. It guides them toward evidence-based job-enrichment actions after basic workplace conditions are addressed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/deciqai/skills/herzberg-two-factor) <br>
-- [Sources - herzberg-two-factor](references/sources.md) <br>
-- [Herzberg's Pittsburgh Study and the Critical Incident Method (1959)](examples/herzbergs-pittsburgh-study-and-the-critical-incident-method-1959.md) <br>
-- [One More Time: How Do You Motivate Employees?](https://hbr.org/2003/01/one-more-time-how-do-you-motivate-employees) <br>
-- [Motivation Through the Design of Work: Test of a Theory](https://doi.org/10.1016/0030-5073(76)90016-7) <br>
-- [Self-Determination and Intrinsic Motivation in Human Behavior](https://doi.org/10.1037/0033-295X.87.1.1) <br>
-- [The Critical Incident Technique](https://doi.org/10.1037/h0061470) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown diagnosis template and conversational guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable behavior, credential use, network access, or hidden data handling.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Employee interview or survey details could expose confidential information or identifying details if retained in notes or saved lessons.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use authorized, anonymized or aggregated feedback; omit confidential details and identifiers from saved lessons; review recommendations before changing workplace policies.
+
+## Reference(s):
+
+- [Sources and further reading](artifact/references/sources.md)
+- [Herzberg, One More Time: How Do You Motivate Employees?](https://hbr.org/2003/01/one-more-time-how-do-you-motivate-employees)
+- [Hackman and Oldham, Motivation Through the Design of Work](https://doi.org/10.1016/0030-5073(76)90016-7)
+- [Deci and Ryan, The Empirical Exploration of Intrinsic Motivational Processes](https://doi.org/10.1016/S0065-2601(08)60130-6)
+- [Flanagan, The Critical Incident Technique](https://doi.org/10.1037/h0061470)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown diagnosis with coaching prompts and structured tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coach mode proceeds one question at a time; recommendations should be reviewed before workplace policy changes.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,58 @@
-## Description: <br>
-Guide short mindfulness practices for daily stress relief, grounding, and attention recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide short mindfulness practices for daily stress relief, grounding, and attention recovery.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users can use this skill for short guided mindfulness practices that support daily stress relief, grounding, sleep wind-down, and attention recovery. It is designed for general self-observation and calming support, not diagnosis, treatment, or crisis intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crisis-resource references may be location-specific and not universal. <br>
-Mitigation: Confirm emergency and crisis resources appropriate to the user's country or region; in an immediate emergency, direct the user to local emergency services or a local crisis line. <br>
-Risk: Users may mistake mindfulness guidance for clinical care. <br>
-Mitigation: Keep boundaries explicit: the skill should not diagnose, claim treatment effects, or replace therapy, psychiatry, emergency care, or crisis intervention. <br>
-Risk: Normal mindfulness guidance can be inappropriate during self-harm, harm-to-others, or acute crisis statements. <br>
-Mitigation: Stop the ordinary mindfulness flow and provide direct escalation to trusted people, emergency services, crisis support, or licensed professionals. <br>
+## Use Case:
 
+External users and employees use this skill to receive short mindfulness, breathing, grounding, body scan, thought-noticing, and sleep wind-down guidance for everyday stress and attention recovery. It is general wellness support, not diagnosis, treatment, psychotherapy, or crisis intervention.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/harrylabsj/mindfulness-guide) <br>
-- [Publisher profile](https://clawhub.ai/user/harrylabsj) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global, with crisis-resource localization required for users outside China.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational guidance in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Short, stepwise mindfulness guidance with safety escalation when crisis signals are present.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: Users may mistake general mindfulness guidance for medical care, psychotherapy, or crisis intervention.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep wellness boundaries visible, avoid diagnosis or treatment claims, and escalate self-harm, harm-to-others, or acute crisis content to local emergency, crisis, or licensed professional support.
+
+Risk: The artifact includes China-specific crisis-resource examples that may be unsuitable for users in other regions.
+
+Mitigation: Localize emergency and crisis resources for the deployment region and direct users to local services when safety is at risk.
+
+Risk: The examples and operating style are mostly Chinese-language and may not fit every audience.
+
+Mitigation: Review and localize language, tone, and examples before broad multilingual or regional deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/mindfulness-guide)
+- [ClawHub publisher profile](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Text, Markdown]
+
+**Output Format:** [Conversational markdown or plain text with short guided-practice steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces brief mindfulness guidance only; no files, shell commands, API calls, or persistent data access.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata; artifact frontmatter states 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

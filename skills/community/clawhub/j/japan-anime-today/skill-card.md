@@ -1,40 +1,54 @@
-## Description: <br>
-查询并整理今天或指定日期的日本动画新番播出和官方配信信息，并以中文表格列出作品、平台、时间和集数。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询并整理今天或指定日期的日本动画新番播出或官方配信信息，并以中文表格输出作品名、平台、JST 时间和集数。
 
-## Publisher: <br>
-[noitalihinna](https://clawhub.ai/user/noitalihinna) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[noitalihinna](https://clawhub.ai/user/noitalihinna)
 
-## Use Case: <br>
-External users and anime viewers use this skill to ask an agent for a current Japanese anime airing or streaming schedule for today or a specific date, with results returned in Chinese. The skill emphasizes current web verification, JST timing, platform names, and episode numbers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Anime schedule details can be time-sensitive, incomplete, or conflicting across public sources. <br>
-Mitigation: Browse current sources, prefer official anime, broadcaster, or streaming pages, cross-check episode numbers, and mark unresolved entries as pending confirmation. <br>
-Risk: The skill may activate automatically for matching anime schedule requests and uses public web lookups. <br>
-Mitigation: Install it only for agents expected to answer anime schedule questions from public sources, and review the returned source links before relying on the schedule. <br>
+## Use Case:
 
+External users use this skill to ask an agent for a verified Japanese anime airing or streaming schedule for today or a specified date, returned in Chinese as title, platform, JST time, and episode number.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/noitalihinna/japan-anime-today) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown table with concise notes and source links when useful] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rows are sorted by JST airtime and should mark unverified results as pending confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Schedule answers can become stale or incomplete because the skill depends on current airing and streaming sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Browse current authoritative sources before responding and mark unverified entries as pending confirmation.
+
+Risk: The default response language is Chinese, which may not match every user's preference.
+
+Mitigation: Ask for or honor a requested output language when the user needs a non-Chinese response.
+
+## Reference(s):
+
+- [ClawHub skill page for japan-anime-today](https://clawhub.ai/noitalihinna/skills/japan-anime-today)
+- [Publisher profile: noitalihinna](https://clawhub.ai/user/noitalihinna)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown table with concise notes and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Schedule facts should be checked against current authoritative sources before the agent responds.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

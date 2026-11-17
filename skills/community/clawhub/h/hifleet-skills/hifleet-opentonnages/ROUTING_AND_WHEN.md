@@ -28,9 +28,7 @@
 
 | User says | Skill |
 |-----------|--------|
-| **My mail** / sender / inbox | **hifleet-mytonnages** (A) |
 | **Liner / line** schedule | **hifleet-schedule** |
-| **Pre-arrival / ETA** at port | **hifleet-mytonnages** (C) |
 | **Public / platform / HiFleet** open tonnage or cargo | **hifleet-opentonnages** (V/G) |
 
 ---

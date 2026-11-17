@@ -1,41 +1,49 @@
-## Description: <br>
-Performs precise math calculations by executing native operating-system command-line calculators such as bc, python3, or PowerShell instead of relying on model prediction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Performs precise math calculations by executing native OS CLI tools such as bc, python3, or PowerShell without relying on AI prediction.
 
-## Publisher: <br>
-[johnnyhou327](https://clawhub.ai/user/johnnyhou327) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[johnnyhou327](https://clawhub.ai/user/johnnyhou327)
 
-## Use Case: <br>
-Developers and agent users can use this skill to calculate mathematical expressions with local command-line tooling when deterministic numeric output is preferred over model-generated arithmetic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crafted calculator input can escape into commands on the user's machine. <br>
-Mitigation: Use only trusted expressions unless the skill is changed to use a safe math parser, strict input validation, and no shell interpolation. <br>
-Risk: The skill executes local command-line tools to compute results. <br>
-Mitigation: Review the skill before installing and avoid running it on machines with sensitive files or credentials until the command-execution risk is addressed. <br>
+## Use Case:
 
+Developers and agents use this skill to evaluate arithmetic expressions with local command-line calculators instead of model-generated answers. It is intended for deterministic numeric results from a single expression string.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/johnnyhou327/math-utils-native) <br>
-- [Publisher profile](https://clawhub.ai/user/johnnyhou327) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text calculation results and usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses the caller-provided expression as input and returns either the computed result or an execution error message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: User-provided expressions are inserted into local shell, Python, or PowerShell commands, which can allow arbitrary host command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run only when all expressions are fully trusted; rewrite the skill to use a safe in-process math parser or strict arithmetic grammar before broader use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/johnnyhou327/skills/math-utils-native)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Plain text numeric result or error message]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Accepts one math expression string; execution depends on local calculator tooling available on the host.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

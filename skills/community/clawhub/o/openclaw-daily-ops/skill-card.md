@@ -1,41 +1,58 @@
-## Description: <br>
-Daily cost reporting and session hygiene for OpenClaw deployments, including per-session API spend reports, 7-day trends, and stale session cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Daily cost reporting + session hygiene for OpenClaw deployments. Tracks per-session API spend, shows 7-day trend, and wipes zombie sessions >24h old to prevent context snowball. Zero personal info -- configure with your own paths and Discord channel. Runs nightly via cron.
 
-## Publisher: <br>
-[zylcold](https://clawhub.ai/user/zylcold) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zylcold](https://clawhub.ai/user/zylcold)
 
-## Use Case: <br>
-Developers and operators use this skill to monitor daily OpenClaw API spend, post operational cost summaries to Discord, and clear stale session files on a scheduled basis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run unattended and post operational metadata to Discord. <br>
-Mitigation: Run in dry-run mode first, protect the Discord webhook as a secret, and confirm the report contents are acceptable before enabling scheduled posting. <br>
-Risk: The stale-session cleanup can permanently empty session files using weak safety checks. <br>
-Mitigation: Verify configured session paths point only to OpenClaw session files, add backups or quarantine behavior, and confirm thresholds before enabling cron. <br>
+## Use Case:
 
+Developers and operators use this skill to monitor daily OpenClaw API spend, post concise Discord cost reports, and reset stale high-context sessions during scheduled operations.
 
-## Reference(s): <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
-- [ClawHub skill page](https://clawhub.ai/zylcold/openclaw-daily-ops) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, JSON files] <br>
-**Output Format:** [Markdown Discord report, shell command guidance, and JSON state logs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May post operational summaries to Discord and write local cost and session reset logs when run outside dry-run mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can permanently truncate stale session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run dry-run first, execute under an unprivileged account, and confirm configured session paths before enabling scheduled resets.
+
+Risk: Usage summaries can be sent to an external Discord webhook.
+
+Mitigation: Restrict access to the configuration file and review what session names or usage metadata may appear in reports.
+
+Risk: Weak path safeguards could affect files outside the intended sessions directory if configuration or metadata is wrong.
+
+Mitigation: Validate that sessionFile paths remain inside the configured sessions directory before running the reset script.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/zylcold/skills/openclaw-daily-ops)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report text with inline shell commands and JSON configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write local JSON state logs and post usage summaries to a configured Discord webhook.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

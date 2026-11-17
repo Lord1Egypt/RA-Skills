@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <!--
   网站诊断报告 — 对齐 MarkAI WebsiteAnalysisReport/v3（ChatContent → WebsiteGuide）
 
@@ -20,7 +20,7 @@
         if (dark) document.documentElement.setAttribute("data-theme", "dark");
       })();
     </script>
-    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.js"></script>
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.min.js"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -696,6 +696,12 @@
         gap: 24px;
       }
 
+      .priority-empty {
+        grid-column: 1 / -1;
+        margin: 0;
+        color: var(--text-secondary, #4e5969);
+      }
+
       .priority-column {
         display: flex;
         flex-direction: column;
@@ -1015,7 +1021,6 @@
         }
       }
 
-
       @media print {
         body {
           background: var(--surface);
@@ -1039,8 +1044,6 @@
         }
       }
 
-
-
       /* 移动端原生适配（≤768px，网站诊断） */
       @supports (padding: env(safe-area-inset-bottom)) {
         body {
@@ -1063,8 +1066,7 @@
 
         .report-container {
           padding: max(8px, env(safe-area-inset-left, 0px))
-            max(8px, env(safe-area-inset-right, 0px))
-            max(24px, env(safe-area-inset-bottom, 0px));
+            max(8px, env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px));
         }
 
         .report-content {
@@ -1336,80 +1338,6 @@
           { id: "ci8", issue: "网站语言与广告不一致", impact: "用户体验差", priority: "中" },
           { id: "ci9", issue: "缺少社媒分享入口", impact: "二次传播效率低", priority: "低" },
           { id: "ci10", issue: "品牌风格不统一", impact: "品牌可信度低", priority: "低" },
-        ];
-
-        const PRIORITY_GROUP_DATA = [
-          {
-            优先级: "高",
-            执行周期: "1-2周",
-            影响内容: "影响转化和广告投放",
-            优化项: [
-              {
-                优化方向: "核心Banner与首屏CTA",
-                具体任务: "优化Banner图片清晰度、风格统一；突出首屏核心CTA和价值主张",
-                广告影响说明: "提升Landing Page Experience评分，降低跳出率，直接影响Quality Score",
-              },
-              {
-                优化方向: "转化跟踪部署",
-                具体任务: "部署GA4、GTM、Facebook Pixe等；设置表单提交、电话点击事件",
-                广告影响说明: "完整数据采集，支持自动出价和再营销，提高广告ROI",
-              },
-              {
-                优化方向: "移动端适配优化",
-                具体任务: "响应式布局优化；按钮触控目标≥44px；检查移动端首屏加载",
-                广告影响说明: "移动端体验直接影响广告质量分和移动端转化率",
-              },
-              {
-                优化方向: "页面加载速度优化",
-                具体任务: "压缩图片、JS/CSS；使用缓存/CDN；优化首屏加载",
-                广告影响说明: "提升Google Ads速度评分，降低CPC成本，提高广告排名",
-              },
-            ],
-          },
-          {
-            优先级: "中",
-            执行周期: "2-4周",
-            影响内容: "影响用户体验",
-            优化项: [
-              {
-                优化方向: "导航栏与页面布局调整",
-                具体任务: "栏目精简，导航层级≤3；首屏信息层级清晰",
-                广告影响说明: "提升用户体验，降低跳出率，增加表单提交概率",
-              },
-              {
-                优化方向: "表单优化",
-                具体任务: "字段≤6个，必填≤4个；自动校验和清晰错误提示",
-                广告影响说明: "提升表单提交率，增加转化量，优化广告ROI",
-              },
-              {
-                优化方向: "产品类目页与详情页内容优化",
-                具体任务: "每页英文说明≥200词；每产品≥3张高清图；规格参数齐全",
-                广告影响说明: "提高Ad Relevance和转化率，降低广告质量分惩罚",
-              },
-            ],
-          },
-          {
-            优先级: "低",
-            执行周期: "1-3个月",
-            影响内容: "优化细节提高美观或品牌感",
-            优化项: [
-              {
-                优化方向: "全站语言统一",
-                具体任务: "全站英文（除语言切换外）",
-                广告影响说明: "保证广告与落地页语言一致，提升Ad Relevance",
-              },
-              {
-                优化方向: "品牌视觉统一",
-                具体任务: "图片、Banner风格统一；字体、Logo、配色一致",
-                广告影响说明: "提升品牌认知度和广告可信度，间接增加转化",
-              },
-              {
-                优化方向: "社媒分享功能完善",
-                具体任务: "添加OG标签、社交媒体Card；配置社媒分享按钮",
-                广告影响说明: "提升社交可分享性，辅助再营销和广告推广",
-              },
-            ],
-          },
         ];
 
         /** 对齐 useWebsiteGuide/config allModuleConfigs（仅渲染所需字段） */
@@ -1786,46 +1714,79 @@
       </div>`;
         }
 
-        function renderPriorityPlan() {
-          return PRIORITY_GROUP_DATA.map((group) => {
-            const cls =
-              group.优先级 === "高"
-                ? "priority-high"
-                : group.优先级 === "中"
-                  ? "priority-medium"
-                  : "priority-low";
-            const title =
-              group.优先级 === "高"
-                ? "急需优化！"
-                : group.优先级 === "中"
-                  ? "建议优化"
-                  : "推荐优化";
-            const icon = group.优先级 === "高" ? "🔥" : group.优先级 === "中" ? "💡" : "🚩";
-            const items = group.优化项
-              .map(
-                (item) => `
+        function priorityRank(priority) {
+          const p = String(priority || "").trim();
+          if (p === "高" || p.toLowerCase() === "high") return "高";
+          if (p === "低" || p.toLowerCase() === "low") return "低";
+          if (p === "中" || p.toLowerCase() === "medium") return "中";
+          return "";
+        }
+
+        /** 第四节只渲染 Agent 写入的 priorityPlan，不使用固定清单。 */
+        function readPriorityPlan(data) {
+          const raw = data && (data.priorityPlan || data["优化优先级"]);
+          if (!Array.isArray(raw)) return [];
+          return raw
+            .map((group) => {
+              const rank = priorityRank(group.priority || group["优先级"]);
+              const items = (group.items || group["优化项"] || [])
+                .map((item) => ({
+                  direction: String(item.direction || item["优化方向"] || "").trim(),
+                  task: String(item.task || item["具体任务"] || "").trim(),
+                  adImpact: String(item.adImpact || item["广告影响说明"] || "").trim(),
+                }))
+                .filter((item) => item.direction || item.task);
+              return {
+                rank,
+                period: String(group.period || group["执行周期"] || "").trim(),
+                impact: String(group.impact || group["影响内容"] || "").trim(),
+                items,
+              };
+            })
+            .filter((group) => group.rank && group.items.length > 0);
+        }
+
+        function renderPriorityPlan(groups) {
+          if (!groups.length) {
+            return `<p class="priority-empty">本次诊断未写入行动计划。请在 diagnosis.json 的 priorityPlan 中按本站未满分项编写后再生成报告。</p>`;
+          }
+          return groups
+            .map((group) => {
+              const cls =
+                group.rank === "高"
+                  ? "priority-high"
+                  : group.rank === "中"
+                    ? "priority-medium"
+                    : "priority-low";
+              const title =
+                group.rank === "高" ? "急需优化！" : group.rank === "中" ? "建议优化" : "推荐优化";
+              const icon = group.rank === "高" ? "🔥" : group.rank === "中" ? "💡" : "🚩";
+              const items = group.items
+                .map(
+                  (item) => `
           <div class="priority-item-card">
-            <div class="item-header"><span class="item-bullet">•</span><h4 class="item-title-text">${escapeHtml(item.优化方向)}</h4></div>
-            <p class="item-description">${escapeHtml(item.具体任务)}</p>
-            <div class="item-impact"><span class="impact-icon">↑</span><span class="impact-text">${escapeHtml(item.广告影响说明)}</span></div>
+            <div class="item-header"><span class="item-bullet">•</span><h4 class="item-title-text">${escapeHtml(item.direction)}</h4></div>
+            <p class="item-description">${escapeHtml(item.task)}</p>
+            <div class="item-impact"><span class="impact-icon">↑</span><span class="impact-text">${escapeHtml(item.adImpact)}</span></div>
           </div>`,
-              )
-              .join("");
-            return `
+                )
+                .join("");
+              return `
         <div class="priority-column ${cls}">
           <div class="priority-header">
             <div class="priority-header-top">
               <div class="priority-icon-wrapper"><span class="priority-icon">${icon}</span></div>
               <div class="priority-info">
                 <h3 class="priority-title">${title}</h3>
-                <div class="priority-badge">${escapeHtml(group.执行周期)}</div>
+                <div class="priority-badge">${escapeHtml(group.period)}</div>
               </div>
             </div>
-            <p class="priority-subtitle">${escapeHtml(group.影响内容)}</p>
+            <p class="priority-subtitle">${escapeHtml(group.impact)}</p>
           </div>
           <div class="priority-items">${items}</div>
         </div>`;
-          }).join("");
+            })
+            .join("");
         }
 
         function renderLongtermValue() {
@@ -2054,7 +2015,7 @@
               <p>行动计划以任务化方式呈现，您可以直接分配给团队执行。</p>
               <p>高优先级任务可优先完成，快速释放广告投放价值！</p>
             </div>
-            <div class="priority-columns">${renderPriorityPlan()}</div>
+            <div class="priority-columns">${renderPriorityPlan(readPriorityPlan(data))}</div>
           </div>
 
           <div class="report-section">

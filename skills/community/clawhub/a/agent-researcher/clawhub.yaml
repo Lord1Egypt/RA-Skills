@@ -1,0 +1,16 @@
+slug: agent-researcher
+name: research-assistant
+owner: jlacroix82
+description: Web search, content aggregation, and research assistance for agent-native skills. ⚠️ Persists extracted content and relationships to disk. Fetches arbitrary URLs. Review privacy and network safety before installing.
+version: 1.1.5
+type: skill
+author: OpenClaw
+license: MIT
+keywords:
+  - research
+  - search
+  - web
+  - aggregation
+  - agent
+entry: SKILL.md
+dependencies: []

@@ -1,0 +1,7 @@
+interface:
+  display_name: "分析代码"
+  short_description: "快速分析方法流程、数据库表名及服务调用引用关系"
+  default_prompt: "使用 $analyze-code 快速分析我提供的方法路径，说明流程、数据库表名和当前仓库引用。"
+
+policy:
+  allow_implicit_invocation: true

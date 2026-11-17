@@ -1,43 +1,55 @@
-## Description: <br>
-Automates TRON energy rental and fee optimization through the TRXDO resource-pool API for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates TRON energy rental through TRXDO to help reduce smart contract and USDT transaction fees.
 
-## Publisher: <br>
-[itfers](https://clawhub.ai/user/itfers) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[itfers](https://clawhub.ai/user/itfers)
 
-## Use Case: <br>
-OpenClaw bot operators and developers use this skill to query TRXDO account/resource information and submit TRON energy-rental orders that may reduce USDT and smart-contract transaction fees. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Chat commands can use configured TRXDO API credentials to submit cost-affecting energy-rental orders. <br>
-Mitigation: Require explicit confirmation before order submission and limit access to authorized users. <br>
-Risk: The artifact does not include built-in wallet-address validation, quantity limits, spending limits, or audit logging. <br>
-Mitigation: Add address validation, per-user quantity and spending limits, and persistent audit logs before shared or production use. <br>
-Risk: TRXDO user IDs and secret keys are loaded from local configuration. <br>
-Mitigation: Store credentials in a secrets manager or protected environment variables rather than checked-in or shared config files. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill to let an agent query TRXDO account information and submit TRON energy rental orders from chat commands for fee optimization.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/itfers/tron-energy-rental) <br>
-- [TRXDO website](https://www.trxdo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and plain-text agent responses with configuration examples and API-backed status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit cost-affecting TRON energy-rental orders using configured TRXDO credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Paid TRON energy rental orders can be triggered from chat commands without built-in confirmation, authorization, or spending limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before connecting funded TRXDO credentials, add confirmation, admin allowlisting, strict quantity limits, TRON address validation, rate limits, and safer secret storage.
+
+Risk: Configured TRXDO user ID and secret key are used to sign API requests.
+
+Mitigation: Store credentials outside shared skill files, restrict file access, rotate exposed keys, and avoid committing populated config.json.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/itfers/skills/tron-energy-rental)
+- [TRXDO energy rental platform](https://www.trxdo.com)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, API calls, configuration]
+
+**Output Format:** [Plain text command responses with Python, C#, and JSON configuration artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses configured TRXDO credentials to sign account, order submission, and order query API requests.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata, created 2026-05-25)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

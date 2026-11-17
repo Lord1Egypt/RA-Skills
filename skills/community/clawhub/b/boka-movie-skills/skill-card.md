@@ -1,43 +1,54 @@
-## Description: <br>
-Bona Movie Production is Bona Group's film-grade production skill for image generation, image editing, and video generation with Nano Banana, Seedance, and Kling models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bona Movie Production is Bona Group's film-grade production skill for image generation, image editing, and video generation using Nano Banana 2, Nano Banana Pro, Seedance, and generate_video_kling_v3.
 
-## Publisher: <br>
-[chengzipidaily](https://clawhub.ai/user/chengzipidaily) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chengzipidaily](https://clawhub.ai/user/chengzipidaily)
 
-## Use Case: <br>
-External creators and agents use this skill to prepare and submit Bona image, image-editing, and video-generation tasks, then query or wait for generation results. It is suited for film-grade visual production workflows such as key visuals, posters, character sheets, image-to-video, reference-driven video, and audio-driven video. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, private media URLs, audio references, and video references are sent to an external Bona service for processing. <br>
-Mitigation: Do not submit confidential prompts, private media URLs, or sensitive audio/video references unless external processing by the Bona service is acceptable. <br>
-Risk: The skill requires a Bona API key or access token for generation and query requests. <br>
-Mitigation: Store credentials in environment variables or a secret manager, avoid committing them to files, and rotate them if they may have been exposed. <br>
-Risk: Generation tasks can take minutes and may fail, time out, or complete without a result URL in the immediate response. <br>
-Mitigation: Use task status as the authoritative signal, continue polling while work is in progress, and report failed or missing-result states without silently changing the requested workflow. <br>
+## Use Case:
 
+External users and developers use this skill to prepare and run Bona image and video generation tasks, including text-to-image, image editing, reference-driven image generation, text-to-video, frame-driven video, and reference media video workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/chengzipidaily/boka-movie-skills) <br>
-- [Publisher Profile](https://clawhub.ai/user/chengzipidaily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON] <br>
-**Output Format:** [Markdown usage guidance with shell command examples and JSON API responses from the Bona client] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Bona API key or access token. Generated media is produced by the external Bona service and returned through task responses or follow-up queries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can send API keys, bearer tokens, prompts, and media references to overridden service endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted publisher and use endpoint overrides only with trusted HTTPS Bona endpoints.
+
+Risk: Prompts and media links may contain confidential production material.
+
+Mitigation: Avoid submitting confidential media or sensitive prompts until credential and data-transmission disclosures are reviewed.
+
+## Reference(s):
+
+- [Bona Movie Production ClawHub release](https://clawhub.ai/chengzipidaily/skills/boka-movie-skills)
+- [chengzipidaily publisher profile](https://clawhub.ai/user/chengzipidaily)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code]
+
+**Output Format:** [Markdown with inline shell commands and command-line parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Bona API task requests and JSON task status responses when the bundled client is executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter metadata.version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

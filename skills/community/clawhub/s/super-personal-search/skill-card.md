@@ -1,42 +1,63 @@
-## Description: <br>
-Build, debug, and extend the Connectify founder network platform, including its React/Vite frontend, Express backend, Redis cache, OpenAI ranking, and Apify ingestion adapter. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, debug, and extend the Connectify founder network platform, including its React/Vite frontend, Express backend, Redis cache, OpenAI ranking flow, and Apify ingestion stub.
 
-## Publisher: <br>
-[deonmenezes](https://clawhub.ai/user/deonmenezes) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deonmenezes](https://clawhub.ai/user/deonmenezes)
 
-## Use Case: <br>
-Developers and engineers use this skill to run, modify, debug, and deploy the Connectify network analytics app. It is especially relevant when preserving the `/api/query` response contract, tuning OpenAI-based relevance scoring, managing Redis-backed connection data, or replacing placeholder ingestion with Apify actor calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The app sends contact details and free-form notes to OpenAI when AI ranking and suggested-action features run. <br>
-Mitigation: Avoid entering sensitive relationship notes or confidential contact data unless the deployment has appropriate consent, data-processing controls, and OpenAI configuration. <br>
-Risk: The app stores network contact records and query-context data in Redis. <br>
-Mitigation: Use an appropriately secured Redis deployment, restrict access to stored contact data, and review retention behavior before using real network records. <br>
+## Use Case:
 
+Developers and engineers use this skill to run, modify, and troubleshoot the Connectify founder network application, including the query API, chat interface, scoring logic, and connection ingestion flow.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/deonmenezes/super-personal-search) <br>
-- [Artifact README](README.md) <br>
-- [Artifact skill guide](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown with inline bash, JSON, and code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance is scoped to the Connectify app and its local development, API, Redis, OpenAI, and Apify integration workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The included backend can expose contact data without login checks.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication and tenant-scoped data access before deploying with real network data.
+
+Risk: Detailed contact records may be sent to OpenAI during relevance scoring and action generation.
+
+Mitigation: Disclose this data flow to users and add controls for limiting, redacting, or approving contact data sent to the model provider.
+
+Risk: A public deployment without rate limits or request size limits could be abused.
+
+Mitigation: Add rate limits and request size limits before making the API publicly reachable.
+
+Risk: Dependency and deployment readiness need review before production use.
+
+Mitigation: Update and scan dependencies, then deploy only in a controlled environment until security review is complete.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/deonmenezes/skills/super-personal-search)
+- [Artifact README](artifact/README.md)
+- [Artifact Skill Guide](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code, shell commands, JSON contracts, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose repository edits, local validation commands, API request examples, and configuration changes for the Connectify application.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

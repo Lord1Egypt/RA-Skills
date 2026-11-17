@@ -1,43 +1,65 @@
-## Description: <br>
-Lobster Haoyun observes local conversation and memory patterns to generate a five-dimension behavioral profile, daily fortune guidance, micro-actions, and shareable fortune card content while keeping conversation details on-device. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Haoyun analyzes local conversation and memory patterns across five behavioral dimensions to generate Chinese personality readings, daily fortunes, cultivation reminders, and optional community recommendations through OceanBus.
 
-## Publisher: <br>
-[ryanbihai](https://clawhub.ai/user/ryanbihai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ryanbihai](https://clawhub.ai/user/ryanbihai)
 
-## Use Case: <br>
-External users and agent operators use this skill in Claude Code to receive a privacy-conscious behavioral reading, daily fortune, short cultivation advice, community recommendations, and generated fortune-card output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security guidance identifies API-key based access as a consideration. <br>
-Mitigation: Keep any required API key private, install from the documented package or source path, and review the skill before deployment. <br>
-Risk: The skill stores local identity, profile, history, and preference data and may use network services for calendar, discovery, and card workflows. <br>
-Mitigation: Confirm the first-run consent text with users, keep conversation content local as documented, and delete the local data directory to remove the generated identity and stored profile data. <br>
+## Use Case:
 
+External ClawHub users use this skill for Chinese-language self-reflection, daily fortune generation, and lightweight behavioral guidance based on their agent conversation context. It is suited to users who accept local profile storage and limited OceanBus metadata exchange for calendar, story, and recommendation features.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ryanbihai/lobster-haoyun) <br>
-- [Publisher profile](https://clawhub.ai/user/ryanbihai) <br>
-- [Project homepage](https://github.com/ryanbihai/lobster-haoyun) <br>
-- [OceanBus package](https://www.npmjs.com/package/oceanbus) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and generated card file references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local profile, history, preference, credential, and PNG fortune-card files under the documented local data path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.8.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill analyzes agent conversation context and memory to derive a behavioral profile.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only after explicit first-run consent, and review the consent disclosure before allowing profile analysis.
+
+Risk: The skill stores derived profile data, history, preferences, consent state, and OceanBus credentials locally under ~/.lucky-lobster.
+
+Mitigation: Treat that directory as user data; delete ~/.lucky-lobster to clear the anonymous identity and locally stored profile state.
+
+Risk: The skill sends limited profile metadata, city-level location when provided, date, and anonymous OpenID through OceanBus for calendar, story, and recommendation features.
+
+Mitigation: Do not use the network-backed features unless that metadata exchange is acceptable for the user and deployment environment.
+
+Risk: The security guidance notes supply-chain caveats around dependency pinning and downloaded font verification.
+
+Mitigation: Prefer deployments that pin dependencies, verify downloaded assets, and document remote fields in the consent prompt.
+
+## Reference(s):
+
+- [ClawHub listing](https://clawhub.ai/ryanbihai/skills/lobster-haoyun)
+- [Artifact README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [OceanBus npm package](https://www.npmjs.com/package/oceanbus)
+- [Project homepage listed in artifact](https://github.com/ryanbihai/lobster-haoyun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown fortune or personality reading with optional generated PNG card and local JSON state]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Node.js commands, optional OceanBus environment variables, and local state under ~/.lucky-lobster.]
+
+## Skill Version(s):
+
+0.8.0 (source: SKILL.md frontmatter and server release metadata; package.json reports 0.5.12 and manifest.yaml reports 0.5.11)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

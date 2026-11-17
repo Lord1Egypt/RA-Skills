@@ -1,46 +1,62 @@
-## Description: <br>
-Stock Push installs and documents scheduled OpenClaw jobs that fetch A-share market data from Eastmoney and send pre-market, after-close, and next-day WeChat stock alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Push schedules A-share market, holdings, and next-day watchlist notifications through OpenClaw and WeChat using Eastmoney quote data.
 
-## Publisher: <br>
-[maizhenn](https://clawhub.ai/user/maizhenn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maizhenn](https://clawhub.ai/user/maizhenn)
 
-## Use Case: <br>
-OpenClaw users who monitor A-share holdings use this skill to install and maintain timed stock-market push jobs. It helps configure WeChat alerts for watchlists, holdings summaries, market-close reviews, and next-day reminders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer configures root-level cron and logrotate entries. <br>
-Mitigation: Review the installer before use, prefer a user-level scheduler or dedicated non-root account where possible, and know how to remove /etc/cron.d/stock-monitor and /etc/logrotate.d/stock-monitor. <br>
-Risk: The stock scripts contain a hard-coded WeChat USER_ID and example holdings or watchlists. <br>
-Mitigation: Edit all three scripts before deployment so alerts use the intended recipient and portfolio data. <br>
-Risk: The Python installer includes a remote-download path for a packaged skill file. <br>
-Mitigation: Use a local package or verify the downloaded package before installation. <br>
+## Use Case:
 
+External users who monitor A-share holdings use this skill to receive scheduled pre-market, close-of-day, and next-day attention messages. Operators can configure holdings, recipient details, cron schedules, and troubleshooting steps for an OpenClaw-based notification setup.
 
-## Reference(s): <br>
-- [Stock Push ClawHub Page](https://clawhub.ai/maizhenn/stock-push) <br>
-- [Publisher Profile](https://clawhub.ai/user/maizhenn) <br>
-- [Field Verification](references/field-verification.md) <br>
-- [History](references/history.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python scripts, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces scheduled stock-alert messages through OpenClaw and writes local cron, logrotate, and log files when installed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The installer configures root-level cron jobs and log rotation files on the host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the installer before use, prefer least-privilege scheduling where possible, and remove /etc/cron.d/stock-monitor and /etc/logrotate.d/stock-monitor after testing.
+
+Risk: Stock information may be sent to a hardcoded WeChat recipient if the scripts are installed without editing.
+
+Mitigation: Replace the recipient identifier and holdings with user-owned values before enabling scheduled sends; keep recipient settings in a safer local configuration when adapting the skill.
+
+Risk: The installer can unpack or install a skill archive without independent authenticity checks.
+
+Mitigation: Verify any skill archive by expected hash or signature before installation.
+
+## Reference(s):
+
+- [Stock Push on ClawHub](https://clawhub.ai/maizhenn/skills/stock-push)
+- [Publisher profile](https://clawhub.ai/user/maizhenn)
+- [Field verification](references/field-verification.md)
+- [Change history](references/history.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Eastmoney quote endpoint](https://push2.eastmoney.com/api/qt/stock/get)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain-text notification messages with Markdown and shell command setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scheduled cron execution for pre-market, close-of-day, and next-day watchlist messages; requires user-specific recipient and holdings configuration.]
+
+## Skill Version(s):
+
+1.0.2 (source: evidence.json release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

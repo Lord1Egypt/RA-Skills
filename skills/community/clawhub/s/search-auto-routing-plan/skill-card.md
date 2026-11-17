@@ -1,40 +1,57 @@
-## Description: <br>
-Plan which search provider to use before multi-provider skills run by scoring query signals, choosing Serper, Tavily, Exa, Brave, or Firecrawl, defining fallback chains, and documenting the rationale. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plan which search provider to use before multi-provider skills run by scoring query signals, choosing Serper, Tavily, Exa, Brave, or Firecrawl, defining a fallback chain, and documenting the rationale.
 
-## Publisher: <br>
-[ruti3](https://clawhub.ai/user/ruti3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruti3](https://clawhub.ai/user/ruti3)
 
-## Use Case: <br>
-Developers and agents use this skill to plan search-provider routing before running multi-provider search workflows. It helps select a primary provider, fallback chain, query phrasing, and quality checks without calling search APIs itself. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Downstream executor skills may perform live searches, use API keys, or handle sensitive queries outside this planning skill. <br>
-Mitigation: Review any downstream executor skill separately, especially when it performs live searches, uses API keys, or handles sensitive queries. <br>
-Risk: A routing plan can recommend an unsuitable provider or fallback chain if query signals, constraints, or available providers are incomplete. <br>
-Mitigation: Confirm the search goal, signal scores, constraints, and available providers before using the plan to drive execution. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create an explicit, auditable routing plan before using multi-provider web search skills or search APIs. It helps select a primary search provider, fallback chain, provider-specific query phrasing, and post-route quality checks without executing searches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruti3/skills/search-auto-routing-plan) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown with scoring tables, fallback steps, checklist items, and optional YAML executor hints] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Planning-only output; no API calls, network access, credentials, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Users may treat the skill as a live search tool or assume it fetched current results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the output only as a routing plan; execute selected providers separately and verify retrieved results.
+
+Risk: Sensitive or personal query text could be routed to an external provider if the plan is followed without review.
+
+Mitigation: For sensitive queries, confirm consent, minimize logging, and prefer available privacy-preserving or internal search options.
+
+Risk: Users may provide API keys even though the skill does not need credentials.
+
+Mitigation: Do not give API keys to this prompt-only skill; configure credentials only in approved downstream executor tools.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruti3/skills/search-auto-routing-plan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown routing plan with scoring tables and optional YAML executor hints]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompt-only planning output; no live API calls, network access, code execution, credential handling, or persistence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

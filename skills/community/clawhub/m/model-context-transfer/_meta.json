@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7fnb0gmgcxnv2gjmjkd6q22s82pw9r",
-  "slug": "model-context-transfer",
+  "name": "model-context-transfer",
   "version": "1.0.0",
-  "publishedAt": 1775041305568
+  "description": "模型切换时的上下文传递技能，确保新模型能完整接收之前的对话记忆、任务状态和关键信息",
+  "tags": ["context", "transfer", "handover", "memory", "model-switch"],
+  "author": "木铭建材AI团队",
+  "created": "2026-04-01",
+  "files": [
+    "SKILL.md",
+    "scripts/generate_transfer.py",
+    "references/quick-transfer-template.md"
+  ],
+  "usage": [
+    "切换模型时的上下文交接",
+    "Agent之间的任务交接",
+    "长期项目的记忆维护",
+    "紧急情况下的快速交接"
+  ]
 }

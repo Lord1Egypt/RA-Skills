@@ -1,41 +1,51 @@
-## Description: <br>
-Stochastic is a lightweight local reference tool for stochastic concepts in finance contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stochastic reference tool. Use when working with stochastic in finance contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External developers and finance practitioners use this skill to retrieve static reference sections for stochastic-finance concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and due diligence checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat generic finance, compliance, or regulatory reference text as trading, legal, or regulatory advice. <br>
-Mitigation: Use the output as educational reference material only and confirm decisions against qualified professional, legal, regulatory, or organizational sources. <br>
-Risk: The release includes an executable local shell script. <br>
-Mitigation: Review the script before running it and limit use to the documented commands that print static reference sections. <br>
+## Use Case:
 
+Developers and finance practitioners use this skill as a lightweight command-line reference for stochastic finance concepts, formulas, regulations, risks, instruments, strategies, glossary terms, and due diligence checklists.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/stochastic) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-formatted reference text printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static local reference sections; no API calls or credential requirements detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill provides generic and shallow finance reference material that may be mistaken for authoritative stochastic finance, regulatory, or investment guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a lightweight static reference and verify finance, regulatory, and investment decisions against authoritative sources.
+
+## Reference(s):
+
+- [Publisher homepage](https://bytesagain.com)
+- [Publisher profile](https://clawhub.ai/user/bytesagain3)
+- [ClawHub skill page](https://clawhub.ai/bytesagain3/skills/stochastic)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-formatted command-line text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static reference output selected by command: intro, formulas, regulations, risks, instruments, strategies, glossary, checklist, help, or version.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

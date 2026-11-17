@@ -1,40 +1,57 @@
-## Description: <br>
-Sync and manage CardDAV contacts (Google, iCloud, Nextcloud, etc.) using vdirsyncer + khard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync and manage CardDAV contacts (Google, iCloud, Nextcloud, etc.) using vdirsyncer + khard.
 
-## Publisher: <br>
-[jcromero](https://clawhub.ai/user/jcromero) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcromero](https://clawhub.ai/user/jcromero)
 
-## Use Case: <br>
-Developers and technical users use this skill to configure, sync, search, inspect, and manage CardDAV address books through vdirsyncer and khard. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can expose contact data and account access through vdirsyncer, khard, local contact files, and an app-password file. <br>
-Mitigation: Use an app-specific password where possible and restrict permissions on the password file and local contact storage. <br>
-Risk: Contact edit, move, remove, sync, or conflict-resolution operations can change or delete address book data. <br>
-Mitigation: Review conflict-resolution settings and ask the agent to confirm the exact contact before edit, move, or delete operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [CardDAV Contacts on ClawHub](https://clawhub.ai/jcromero/carddav-contacts) <br>
-- [Publisher profile](https://clawhub.ai/user/jcromero) <br>
+## Use Case:
 
+Developers, operators, and power users use this skill to configure vdirsyncer and khard for CardDAV contact synchronization, lookup, editing, and address-book management from the command line.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and configuration blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces command and configuration guidance for vdirsyncer and khard; does not directly sync contacts without user execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: CardDAV synchronization can delete or overwrite contacts when conflicts or address-book mappings are misconfigured.
+
+Mitigation: Review vdirsyncer collections and conflict_resolution settings before first sync, keep a contact backup, and run an initial sync against a test or known-safe address book when possible.
+
+Risk: The example password.fetch command reads an app-password file from disk, which can expose credentials if file permissions are loose.
+
+Mitigation: Store app-password files with strict user-only permissions or use a keyring-backed command instead of a broadly readable file.
+
+Risk: khard remove and move commands can affect the wrong contact when a search term matches multiple records.
+
+Mitigation: Show or list matching contacts first and confirm the exact contact before running delete or move commands.
+
+## Reference(s):
+
+- [ClawHub CardDAV Contacts release page](https://clawhub.ai/jcromero/skills/carddav-contacts)
+- [Google CardDAV well-known endpoint](https://www.googleapis.com/.well-known/carddav)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and INI configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance assumes Linux with vdirsyncer and khard installed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

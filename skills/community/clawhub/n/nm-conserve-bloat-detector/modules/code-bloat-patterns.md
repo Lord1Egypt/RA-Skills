@@ -88,7 +88,7 @@ grep -rn "^def " --include="*.py" . | awk -F'def ' '{print $2}' | \
 **Confidence:** HIGH (85%) | **Action:** EXTRACT shared utility
 
 ### 7. Dead Wrapper / Facade Bloat
-**Definition:** Modules that wrap existing functionality without adding meaningful logic — thin facades, unused service interfaces, or re-export layers with no consumers.
+**Definition:** Modules that wrap existing functionality without adding meaningful logic: thin facades, unused service interfaces, or re-export layers with no consumers.
 
 **Signals:**
 - File imports from another internal module and re-exports similar API
@@ -141,7 +141,7 @@ done
 **Confidence:** HIGH (80%) | **Action:** INLINE until 3rd use case
 
 ### 9. Happy Path Bias
-**Definition:** Tests verify success paths only; no error handling tested.
+**Definition:** Tests verify success paths only, with no error handling tested.
 **AI Cause:** AI optimizes for "works" demonstrations.
 
 ```bash
@@ -150,14 +150,18 @@ grep -rL "Error\|Exception\|raises\|fail\|invalid" --include="test_*.py" .
 ```
 **Confidence:** MEDIUM (70%) | **Action:** ADD error path tests
 
-For comprehensive AI-specific patterns, see: `@module:ai-generated-bloat`
+For the full set of AI-specific patterns, see: `@module:ai-generated-bloat`
 
 ## Scoring
 
 ```python
 PATTERN_SCORES = {
-    'god_class': 30, 'lava_flow': 25, 'dead_code': 35,
-    'import_bloat': 15, 'duplication': 20, 'dead_wrapper': 30
+    "god_class": 30,
+    "lava_flow": 25,
+    "dead_code": 35,
+    "import_bloat": 15,
+    "duplication": 20,
+    "dead_wrapper": 30,
 }
 score = min(100, sum(PATTERN_SCORES[p] for p in detected))
 ```

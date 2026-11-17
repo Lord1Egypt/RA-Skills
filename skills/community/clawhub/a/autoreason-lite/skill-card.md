@@ -1,43 +1,54 @@
-## Description: <br>
-Apply a bounded multi-candidate self-refinement loop (A/B/AB + judges + do-nothing option) to improve drafts, plans, and analyses while preventing scope creep. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apply a bounded multi-candidate self-refinement loop (A/B/AB + judges + do-nothing option) to improve drafts, plans, and analyses while preventing scope creep.
 
-## Publisher: <br>
-[cwheeler67](https://clawhub.ai/user/cwheeler67) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cwheeler67](https://clawhub.ai/user/cwheeler67)
 
-## Use Case: <br>
-External users and developers use this skill to refine writing, strategy memos, explanations, product copy, and decision frameworks through a bounded candidate-and-judge workflow that preserves intent and limits scope creep. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A broad request such as "improve this" may activate a refinement workflow when the user only wanted a small edit. <br>
-Mitigation: Clarify success criteria when tone, audience, length, or goal are missing, and prefer no change when alternatives add mostly stylistic churn. <br>
-Risk: Refined drafts may introduce inaccurate or misleading claims if candidates are optimized for style over faithfulness. <br>
-Mitigation: Review outputs for factual accuracy, preserve required facts, and surface uncertainty when confidence drops. <br>
-Risk: Drafts submitted for refinement may contain confidential content. <br>
-Mitigation: Avoid sharing confidential drafts unless the user is comfortable with the platform handling that content. <br>
+## Use Case:
 
+External users and developers use this skill to improve drafts, strategy memos, explanations, product copy, and decision frameworks through a bounded A/B/AB refinement and judging loop.
 
-## Reference(s): <br>
-- [Judge Rubric](references/judge-rubric.md) <br>
-- [Autoreason Lite ClawHub Page](https://clawhub.ai/cwheeler67/autoreason-lite) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns a final refined result with 2-4 bullets summarizing key improvements and an optional convergence note.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Broad refinement requests may activate a deeper review loop when a small edit would be enough.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill's avoid cases, maximum three-round cap, and convergence rule to stop when no meaningful gain is found.
+
+Risk: Revision pressure can introduce unsupported claims or drift from the user's intent.
+
+Mitigation: Judge candidates against faithfulness, preserve critical facts, prefer no-change over noisy edits, and surface uncertainty when confidence drops.
+
+## Reference(s):
+
+- [Judge Rubric](references/judge-rubric.md)
+- [Autoreason Lite ClawHub Listing](https://clawhub.ai/cwheeler67/skills/autoreason-lite)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with final refined text and concise improvement bullets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Bounded to at most three refinement rounds with a +/-15% length guardrail unless the user asks otherwise.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

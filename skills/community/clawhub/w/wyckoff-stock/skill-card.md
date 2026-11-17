@@ -1,40 +1,53 @@
-## Description: <br>
-A股诊股工具，基于Wyckoff 2.0方法论分析股票。支持获取实时K线数据、技术指标计算、趋势分析、支撑阻力识别、Wyckoff结构判断、风险收益评估。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language A-share stock diagnosis skill that uses Wyckoff 2.0 methods to fetch K-line data, calculate technical indicators, analyze trends, identify support and resistance, assess Wyckoff structure, and summarize risk-reward signals.
 
-## Publisher: <br>
-[dxarch1980](https://clawhub.ai/user/dxarch1980) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxarch1980](https://clawhub.ai/user/dxarch1980)
 
-## Use Case: <br>
-External users and agents use this skill to generate informational technical-analysis reports for A-share stock codes, including Wyckoff structure, trend, volume, support/resistance, and risk-reward signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on efinance as a third-party market-data dependency that makes network requests. <br>
-Mitigation: Install only in environments where that dependency and outbound market-data requests are acceptable. <br>
-Risk: The generated diagnosis may be mistaken for investment advice. <br>
-Mitigation: Treat the report as informational technical analysis and require human financial judgment before acting on it. <br>
+## Use Case:
 
+External users and agents can use this skill to generate Chinese-language technical-analysis reports for A-share stock codes, including price structure, trend, volume, Wyckoff phase, historical signal statistics, and risk-reward context. Outputs are informational and should not be treated as investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dxarch1980/wyckoff-stock) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Plain text diagnosis report with structured report object fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an A-share stock code; the optional lookback window defaults to 250 days.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: Stock analysis output may be mistaken for investment advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat reports as informational technical analysis only and review decisions with qualified financial judgment.
+
+Risk: The skill depends on efinance to fetch market data at runtime.
+
+Mitigation: Install efinance in an isolated virtual environment and pin the dependency version where possible.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxarch1980/skills/wyckoff-stock)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Chinese-language console report and structured report object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script expects an A-share stock code and optionally analyzes the most recent K-line history available through efinance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

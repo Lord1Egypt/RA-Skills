@@ -1,43 +1,54 @@
-## Description: <br>
-Remove watermarks from local image files or remote image URLs through the Airemovewatermark API, with support for task polling and credit checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Remove Watermark lets agents remove watermarks from local image files or remote image URLs through the Airemovewatermark API.
 
-## Publisher: <br>
-[isees](https://clawhub.ai/user/isees) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[isees](https://clawhub.ai/user/isees)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to process images they own or are authorized to edit through Airemovewatermark, poll asynchronous tasks, check credits, and optionally save completed results locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image files or image URLs are sent to the Airemovewatermark remote service for processing. <br>
-Mitigation: Install and use the skill only if you trust Airemovewatermark with the selected images, and confirm the user wants to process each image through the remote API. <br>
-Risk: The skill depends on an API key and supports overriding the API base URL. <br>
-Mitigation: Keep API_KEY private, avoid untrusted API_BASE_URL or --base-url values, and continue only after credential errors are fixed. <br>
-Risk: Watermark removal can be inappropriate when the user lacks rights to edit the image. <br>
-Mitigation: Use the skill only for images the user owns or is authorized to edit. <br>
+## Use Case:
 
+Developers and external agent users use this skill to submit authorized images to the Airemovewatermark service, check credits, poll removal tasks, and optionally save completed outputs locally.
 
-## Reference(s): <br>
-- [AI Remove Watermark on ClawHub](https://clawhub.ai/isees/airemove-watermark) <br>
-- [Airemovewatermark OpenClaw documentation](https://airemovewatermark.net/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands; the bundled script returns structured JSON and can save an image file when download is requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires API_KEY. Local image files or image URLs are sent to a remote service, and local downloads are opt-in.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.7 (source: server evidence and frontmatter) <br>
+Risk: The skill can upload agent-readable image files and an API key to a remote or configurable service endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when the Airemovewatermark service is trusted, keep API_BASE_URL unset unless using a trusted endpoint, and process only files the user is authorized to upload.
+
+Risk: Untrusted prompts could influence local file paths or command arguments.
+
+Mitigation: Require explicit user confirmation before processing a local path or remote image URL, and do not allow untrusted prompts to choose file paths or arguments.
+
+## Reference(s):
+
+- [Airemovewatermark OpenClaw page](https://airemovewatermark.net/openclaw)
+- [ClawHub skill page](https://clawhub.ai/isees/skills/airemove-watermark)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and structured JSON responses from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return task status, task ID, output URL, result summary, and an optional local result file when downloads are enabled.]
+
+## Skill Version(s):
+
+0.1.7 (source: frontmatter, manifest, server evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

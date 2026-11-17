@@ -1,39 +1,53 @@
-## Description: <br>
-Synthesizes raw qualitative research data into evidence-backed themes, prioritized insights, and actionable product recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when a UX researcher or product team has raw qualitative data such as transcripts, usability notes, survey responses, or diary entries and needs a structured insights report with evidence-backed themes and recommendations.
 
-## Publisher: <br>
-[archlab-space](https://clawhub.ai/user/archlab-space) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[archlab-space](https://clawhub.ai/user/archlab-space)
 
-## Use Case: <br>
-UX researchers and product teams use this skill to turn interview transcripts, usability notes, survey responses, diary entries, or other raw qualitative data into a structured research synthesis report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Raw research data may contain participant identifiers or confidential organization details. <br>
-Mitigation: Redact names, emails, company names, locations, and other sensitive participant identifiers before sharing data unless disclosure is approved. <br>
-Risk: Recommendations may be misleading if weak qualitative patterns are treated as statistically conclusive. <br>
-Mitigation: Keep findings tied to the supplied observations, review extracted themes before generating insights, and avoid claims of statistical significance for qualitative data. <br>
+## Use Case:
 
+UX researchers and product teams use this skill to synthesize qualitative or mixed-method research data into a structured Markdown report. It extracts observations, clusters themes, formulates prioritized insights, and links recommendations to supporting evidence.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Structured Markdown research synthesis report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes evidence-backed themes, prioritized insights, linked recommendations, and methodological notes based on user-provided research data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence and CHANGELOG, released 2026-05-28) <br>
+Risk: Research notes may contain names, emails, locations, company names, or confidential participant details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing unnecessary personal or confidential data and use the skill's redaction and anonymization steps before synthesis.
+
+Risk: Qualitative synthesis can overstate confidence if findings are treated like statistically significant results.
+
+Mitigation: Keep findings grounded in the provided data, report sample size and limitations, and avoid claims of statistical significance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/archlab-space/skills/user-research-synthesis)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown research synthesis report with executive summary, key insights, evidence, recommendations, and methodological notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses curated participant quotes or paraphrases and avoids raw data dumps in the final report.]
+
+## Skill Version(s):
+
+0.2.2 (source: server evidence and changelog, released 2026-05-28)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

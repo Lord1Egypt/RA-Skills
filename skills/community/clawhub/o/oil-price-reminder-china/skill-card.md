@@ -1,43 +1,59 @@
-## Description: <br>
-自动监控国家发改委油价公告，判断近期油价涨跌趋势，并在调价窗口前提醒用户加油或等待。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+油价智能提醒技能自动监控国家发改委油价公告，判断近期油价涨跌趋势，并在调价窗口前提醒用户加油或等待调价。
 
-## Publisher: <br>
-[catplus-eric](https://clawhub.ai/user/catplus-eric) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[catplus-eric](https://clawhub.ai/user/catplus-eric)
 
-## Use Case: <br>
-Drivers and personal agents in China use this skill to monitor public fuel-price announcements and receive timely guidance on whether to refuel before or after an expected adjustment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Fuel-price reminders may be approximate because adjustment timing is estimated rather than guaranteed. <br>
-Mitigation: Use the reminder as planning guidance and verify current official announcements or local prices before making time-sensitive refueling decisions. <br>
-Risk: A recurring schedule can continue checking and sending reminders after the user no longer wants monitoring. <br>
-Mitigation: Confirm the cron schedule, notification channel, disable procedure, and removal of /workspace/memory/oil_state.json during setup. <br>
-Risk: Some advertised configuration behavior may require manual setup. <br>
-Mitigation: Review the script and configure schedule, city expectations, state location, and messaging behavior before deployment. <br>
+## Use Case:
 
+External users use this skill to monitor China NDRC fuel-price announcements and receive timely guidance on whether to refuel before or after an expected price adjustment. The skill is intended for scheduled reminder workflows that can run periodically and write local reminder state.
 
-## Reference(s): <br>
-- [National Development and Reform Commission news releases](https://www.ndrc.gov.cn/xwdt/xwfb/) <br>
-- [ClawHub skill page](https://clawhub.ai/catplus-eric/oil-price-reminder-china) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text reminder messages with setup and scheduling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores a small local state file to reduce repeated reminders] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Enabling the skill can create a recurring cron job that keeps running and contacts the NDRC website.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the exact schedule before enabling it, keep the check frequency modest, and require clear disable or removal steps for the cron job.
+
+Risk: Several advertised safety and configuration controls are not implemented in the artifact.
+
+Mitigation: Ask the publisher to add explicit confirmation, duplicate-job protection, configurable city and frequency handling, and duplicate-reminder controls before relying on it.
+
+Risk: The reminder depends on external NDRC web content and an estimated adjustment window.
+
+Mitigation: Treat reminders as advisory and confirm important refueling decisions against official announcements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/catplus-eric/skills/oil-price-reminder-china)
+- [National Development and Reform Commission news releases](https://www.ndrc.gov.cn/xwdt/xwfb/)
+- [National Development and Reform Commission](https://www.ndrc.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text reminders and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON state for reminder tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

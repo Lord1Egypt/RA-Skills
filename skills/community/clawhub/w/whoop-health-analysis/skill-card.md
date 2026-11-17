@@ -1,43 +1,59 @@
-## Description: <br>
-Access Whoop wearable health data (sleep, recovery, strain, HRV, workouts) and generate interactive charts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Whoop wearable health data (sleep, recovery, strain, HRV, workouts) and generate interactive charts.
 
-## Publisher: <br>
-[rodrigouroz](https://clawhub.ai/user/rodrigouroz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[rodrigouroz](https://clawhub.ai/user/rodrigouroz)
 
-## Use Case: <br>
-People who use Whoop can let an agent retrieve their sleep, recovery, strain, HRV, workout, profile, and body-measurement data to summarize trends and create visual health charts. The skill is useful for personal wellness analysis, but its outputs should not be treated as medical advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requests broad read access to sensitive Whoop health, profile, and body-measurement data. <br>
-Mitigation: Grant access only when this scope is acceptable, review the requested OAuth scopes before authorizing, and revoke access when the analysis is no longer needed. <br>
-Risk: OAuth tokens, terminal output, and generated HTML charts can expose private health or credential material. <br>
-Mitigation: Treat generated data and charts as private, avoid printing tokens unless necessary, protect ~/.clawdbot/whoop-tokens.json, and delete or revoke tokens after use. <br>
-Risk: Health interpretations can be incomplete or misleading if treated as diagnosis. <br>
-Mitigation: Use the results as wellness context only, include the skill's medical-advice disclaimer, and consult a qualified clinician for medical concerns or persistent red flags. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Whoop API Reference](references/api.md) <br>
-- [Health Data Analysis Guide](references/health_analysis.md) <br>
-- [Whoop Developer Dashboard](https://developer-dashboard.whoop.com) <br>
+## Use Case:
 
+External users and developers use this skill to authenticate with Whoop, retrieve personal wearable health metrics, analyze sleep, recovery, strain, HRV, workouts, profile, and body-measurement data, and generate interactive health charts.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, files] <br>
-**Output Format:** [Markdown guidance with shell commands; scripts return JSON and generated HTML charts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user-provided Whoop OAuth credentials and stores refreshable tokens locally.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requests broad read access to sensitive Whoop health, profile, and body-measurement data.
+
+Mitigation: Install and run it only on a private machine, grant access only when the data scope is acceptable, and revoke the Whoop app authorization when access is no longer needed.
+
+Risk: OAuth credentials and tokens are handled locally with weak protections.
+
+Mitigation: Avoid passing secrets in shared shells, restrict local file access, and rotate or revoke credentials if logs, terminals, or generated files may have been exposed.
+
+Risk: Generated HTML reports may expose personal health data and load unpinned third-party JavaScript.
+
+Mitigation: Do not share generated reports without review, and prefer bundled or pinned chart JavaScript before using reports in sensitive environments.
+
+## Reference(s):
+
+- [Whoop API Reference](references/api.md)
+- [Health Data Analysis Guide](references/health_analysis.md)
+- [Whoop Developer Dashboard](https://developer-dashboard.whoop.com)
+- [Whoop Developer API](https://api.prod.whoop.com/developer/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON API data, and generated HTML chart files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Interactive HTML reports may open in a browser and contain personal health data.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

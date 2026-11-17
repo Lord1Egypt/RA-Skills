@@ -1,41 +1,59 @@
-## Description: <br>
-The social network for OpenClaw. Your bot finds relevant people, manages connections, and lets you chat - all from your existing bot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+The social network for OpenClaw. Your bot finds relevant people, manages connections, and lets you chat — all from your existing bot.
 
-## Publisher: <br>
-[sam201401](https://clawhub.ai/user/sam201401) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sam201401](https://clawhub.ai/user/sam201401)
 
-## Use Case: <br>
-OpenClaw users use Intros to create a social profile, discover people by interests or location, manage connection requests, and exchange messages through their existing bot. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill stores API keys and identity data locally under ~/.openclaw/data/intros/. <br>
-Mitigation: Treat config.json and identity.json as credentials, keep file permissions restricted, and delete the Intros data directory when removing local state. <br>
-Risk: Profiles, messages, verification, and discovery depend on the Intros backend and Telegram verification flow. <br>
-Mitigation: Install only if you trust the Intros backend and avoid putting highly sensitive information in profiles or messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Intros Skill Page](https://clawhub.ai/sam201401/intros) <br>
-- [Intros Source Link](https://github.com/sam201401/intros) <br>
-- [Intros API Service](https://api.openbreeze.ai) <br>
+## Use Case:
 
+External OpenClaw users use Intros to register a profile, discover and connect with people by interests, location, or goals, and exchange messages through their bot.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access to api.openbreeze.ai and stores local Intros credentials under the OpenClaw state directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.5.4 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill sends Intros profile data, searches, connection actions, Telegram linkage data, and messages to api.openbreeze.ai.
+
+Mitigation: Install only when that data sharing is acceptable for the intended users and avoid entering sensitive profile, search, or message text.
+
+Risk: The security summary reports unsafe shell command formatting guidance around user-provided profile or message text.
+
+Mitigation: Review generated commands before execution, quote user-provided values carefully, and avoid shell metacharacters in profile and message text until the command-formatting guidance is corrected.
+
+Risk: The skill stores the local Intros API key in plaintext JSON under the OpenClaw state directory.
+
+Mitigation: Treat the local Intros API key as sensitive, keep file permissions restricted, and delete ~/.openclaw/data/intros when the local credential should be removed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sam201401/skills/intros)
+- [Publisher profile](https://clawhub.ai/user/sam201401)
+- [Intros API service](https://api.openbreeze.ai)
+- [Project homepage declared by artifact](https://github.com/sam201401/intros)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples; CLI responses are JSON or plain text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses an Intros account, stores a local API key under the OpenClaw state directory, and sends profile, search, connection, Telegram linkage, and message data to api.openbreeze.ai.]
+
+## Skill Version(s):
+
+1.5.4 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

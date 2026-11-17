@@ -1,40 +1,62 @@
-## Description: <br>
-Search grocery products, find store locations, add items to cart, and view profile information across Kroger-family stores. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Kroger-family grocery products, finds store locations, adds items to a Kroger cart, and views profile information through the Kroger API.
 
-## Publisher: <br>
-[niemesrw](https://clawhub.ai/user/niemesrw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[niemesrw](https://clawhub.ai/user/niemesrw)
 
-## Use Case: <br>
-External users use this skill to search Kroger-family grocery products and store locations, compare available product details, and manage cart or profile workflows after Kroger authentication. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Cart and profile features require Kroger login and expose reusable refresh tokens to the hosted proxy and, per the skill instructions, to agent long-term memory. <br>
-Mitigation: Prefer self-hosting or local CLI mode with personal Kroger credentials, avoid saving refresh tokens in agent memory unless they can be removed or revoked, and review the skill before installing for account features. <br>
-Risk: The skill can add items to a user's Kroger cart after authentication. <br>
-Mitigation: Require explicit user confirmation before any cart change. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Supermarket ClawHub Listing](https://clawhub.ai/niemesrw/supermarket) <br>
-- [Kroger Developer API](https://developer.kroger.com/) <br>
+## Use Case:
 
+External users and agents use this skill to search Kroger-family grocery products and stores, check local product details when location data is available, and manage a Kroger cart or profile after OAuth login.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Kroger API request guidance, product or location summaries, OAuth login steps, token refresh steps, and cart-change confirmation prompts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The hosted OAuth proxy handles Kroger OAuth tokens for account-linked cart and profile flows.
+
+Mitigation: Review the proxy trust model before installation; use the skill only if the hosted proxy is acceptable, or self-host with fixed OAuth scopes and rate limits.
+
+Risk: The skill may lead an agent to retain a Kroger refresh token across sessions.
+
+Mitigation: Prefer secure keychain storage or avoid saving refresh tokens in agent memory; provide a clear logout or revocation path.
+
+Risk: Token polling returns user access and refresh tokens to the agent after browser login.
+
+Mitigation: Use short-lived login sessions, hard-to-guess session IDs, atomic token claiming, denied direct database access, and no token logging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/niemesrw/skills/supermarket)
+- [Kroger Developer API](https://developer.kroger.com/)
+- [Kroger Products OpenAPI](artifact/openapi/products-openapi.json)
+- [Kroger Locations OpenAPI](artifact/openapi/locations-openapi.json)
+- [Kroger Cart OpenAPI](artifact/openapi/cart-openapi.json)
+- [Kroger Identity OpenAPI](artifact/openapi/identity-openapi.json)
+- [Kroger Authorization OpenAPI](artifact/openapi/authorization-openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request or response examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require OAuth login for cart and profile actions; product and location queries use short-lived client tokens.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

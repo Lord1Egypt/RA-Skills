@@ -1,0 +1,100 @@
+{
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "CES 告警规则列表 (read-only)",
+      "command": "hcloud CES ListAlarmRules --cli-region={region} --limit=1",
+      "expected": "JSON list of alarm rules or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "CES 告警历史列表 (read-only)",
+      "command": "hcloud CES ListAlarmHistories --cli-region={region} --limit=1",
+      "expected": "JSON list of alarm histories or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "CES 告警模板列表 (read-only)",
+      "command": "hcloud CES ListAlarmTemplates --cli-region={region} --limit=1",
+      "expected": "JSON list of alarm templates or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "CES 仪表盘列表 (read-only)",
+      "command": "hcloud CES ListDashboardInfos --cli-region={region}",
+      "expected": "JSON list of dashboards or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "CES 资源分组列表 (read-only)",
+      "command": "hcloud CES ListResourceGroups --cli-region={region} --limit=1",
+      "expected": "JSON list of resource groups or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-06",
+      "name": "CES 一键告警列表 (read-only)",
+      "command": "hcloud CES ListOneClickAlarms --cli-region={region}",
+      "expected": "JSON list of one-click alarms or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-07",
+      "name": "EPS 企业项目列表 (read-only)",
+      "command": "hcloud EPS ListEnterpriseProject --cli-region={region} --limit=1",
+      "expected": "JSON list of enterprise projects or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-08",
+      "name": "EPS 企业项目配额 (read-only)",
+      "command": "hcloud EPS ShowEnterpriseProjectQuota --cli-region={region}",
+      "expected": "JSON quotas object",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-09",
+      "name": "EPS 企业项目迁移记录 (read-only)",
+      "command": "hcloud EPS ListMigrationRecord --cli-region={region} --limit=1",
+      "expected": "JSON list of migration records or empty",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-10",
+      "name": "own-script smoke: ces_eps_query.py --help",
+      "command": "python3 $PWD/scripts/ces_eps_query.py --help",
+      "expected": "usage text",
+      "type": "syntax",
+      "executor": "sdk"
+    },
+    {
+      "id": "TC-11",
+      "name": "own-script syntax: ensure_env.py",
+      "command": "bash -n $PWD/scripts/ensure_env.py",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-12",
+      "name": "own-script syntax: ensure_cli.sh",
+      "command": "bash -n $PWD/scripts/ensure_cli.sh",
+      "expected": "no syntax errors",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ]
+}

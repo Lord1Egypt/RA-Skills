@@ -1,47 +1,63 @@
-## Description: <br>
-Sync Notes helps an agent synchronize a local Obsidian or Markdown notes vault with a Cloudflare R2 bucket using rclone, encrypted S3 storage, and rclone crypt. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sync the local Obsidian vault with a Cloudflare R2 bucket using rclone (S3 + crypt). Triggered by `/sync-notes`. Defaults to bidirectional sync; understands natural-language flags for partial download/upload by glob.
 
-## Publisher: <br>
-[jiangsier-xyz](https://clawhub.ai/user/jiangsier-xyz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangsier-xyz](https://clawhub.ai/user/jiangsier-xyz)
 
-## Use Case: <br>
-Developers and note-taking users use this skill to configure and run encrypted synchronization between a local notes folder and a Cloudflare R2 bucket. It supports first-time setup, baseline initialization, routine bidirectional sync, status checks, and targeted uploads or downloads by glob. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Routine synchronization can modify or delete notes on both the local filesystem and the Cloudflare R2 bucket. <br>
-Mitigation: Use status checks and dry runs during initial setup, establish the baseline deliberately, and review conflict output before running another sync. <br>
-Risk: Cloudflare R2 credentials and crypt settings are written to local skill configuration files. <br>
-Mitigation: Use a narrowly scoped R2 token, keep generated configuration files out of commits and backups, and preserve the crypt passphrase securely outside the synced notes folder. <br>
-Risk: Local backups are rolling snapshots and may be overwritten by later write-side operations. <br>
-Mitigation: Create a manual backup before large deletes, schema changes, or other high-impact sync operations. <br>
+## Use Case:
 
+Developers and note-taking users use Sync Notes to configure and run encrypted bidirectional sync between a local Obsidian or Markdown vault and a Cloudflare R2 bucket. The agent translates `/sync-notes` requests into setup, status, baseline, full sync, upload, or download commands.
 
-## Reference(s): <br>
-- [ClawHub Sync Notes listing](https://clawhub.ai/jiangsier-xyz/sync-notes) <br>
-- [rclone documentation](https://rclone.org/) <br>
-- [rclone install documentation](https://rclone.org/install/) <br>
-- [Cloudflare R2 documentation](https://developers.cloudflare.com/r2/) <br>
-- [Remotely Save Obsidian plugin](https://github.com/remotely-save/remotely-save) <br>
-- [rclone filtering documentation](https://rclone.org/filtering/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash, rclone, CLOUD_NOTES_PATH, and user-supplied Cloudflare R2 and crypt credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Bidirectional sync can change or delete notes on both local and remote storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run status and dry-run checks before first or broad syncs, resolve conflicts manually, and keep an independent backup of the vault.
+
+Risk: R2 credentials and rclone crypt secrets are stored locally in configuration files.
+
+Mitigation: Keep configuration files private with restrictive permissions, never expose secrets in chat, and back up the crypt passphrase offline.
+
+Risk: Crafted shell configuration values or unrestricted extra rclone flags could cause unintended command execution or unsafe sync behavior.
+
+Mitigation: Review generated configuration before syncing, validate setup inputs, and remove or allowlist extra rclone flags before deployment.
+
+## Reference(s):
+
+- [Sync Notes ClawHub Page](https://clawhub.ai/jiangsier-xyz/skills/sync-notes)
+- [rclone Documentation](https://rclone.org/)
+- [rclone Install Documentation](https://rclone.org/install/)
+- [rclone Filtering Documentation](https://rclone.org/filtering/)
+- [Cloudflare R2 Documentation](https://developers.cloudflare.com/r2/)
+- [Remotely Save Obsidian Plugin](https://github.com/remotely-save/remotely-save)
+- [Default rclone Filter Rules](config/filter.txt)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise status or conflict summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local rclone configuration, logs, state, and backup files when its shell scripts are executed.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

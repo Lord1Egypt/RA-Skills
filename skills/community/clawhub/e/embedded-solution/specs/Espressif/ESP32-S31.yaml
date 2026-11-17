@@ -1,0 +1,83 @@
+part: ESP32-S31
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "ESP32-S31 \u2014 Dual-Core RISC-V SoC with Wi-Fi 6 + BLE 5.4 + 802.15.4 + Ethernet"
+main_page: https://www.espressif.com/en/products/socs/esp32-s31
+datasheet_path_expected: ../../datasheets/esp32-s31.pdf
+created_at: '2026-06-30T18:42:00+08:00'
+specs:
+  family: ESP32-S (next-gen after S3)
+  cores:
+  - 2x 32-bit RISC-V @ up to 320 MHz
+  - edge_ai: neural network inference + signal processing + CV + audio
+  wireless:
+    wifi_6:
+      band: 2.4 GHz
+      standard: 802.11ax
+      benefits: enhanced transmission efficiency + reduced power consumption
+      use_case: battery-powered + always-connected
+    bluetooth_le_5_4:
+    - LE Audio
+    - Direction Finding
+    - Bluetooth Mesh 1.1
+    bluetooth_classic_br_edr:
+    - legacy audio device compatibility
+    - low-latency HMI applications
+    ieee_802_15_4:
+    - Thread
+    - Zigbee
+    - Matter-over-Thread
+    ethernet_mac: 1000 Mbps
+  hmi:
+    gpio_count: 60
+    display: diverse display interfaces
+    camera: DVP 8-16-bit
+    rgb_lcd: 8-24-bit
+    touch_channels: 14
+  peripherals:
+    usb_otg: true
+    spi: true
+    i2s: true
+    uart: true
+    i2c: true
+    led_pwm: true
+    twai_can_2_0: true
+  security:
+  - Secure Boot
+  - Flash / PSRAM encryption
+  - ECDSA digital signature
+  - RAM-based PUF
+  - Hardware crypto acceleration
+  software:
+    esp_idf: yes (open-source Espressif SDK)
+    cloud_connectivity_agents: common
+  use_cases:
+  - Edge AI camera (smart doorbell + face recognition)
+  - Smart home hub (Wi-Fi 6 + 1 Gbps Ethernet)
+  - Industrial IoT gateway
+  - Audio product (Bluetooth Classic + LE Audio)
+  - "Multi-protocol bridge (Wi-Fi 6 \u2192 Thread/Zigbee)"
+unverified:
+- exact SRAM/Flash size
+- exact operating voltage range
+- exact operating temperature range
+- exact core-specific frequency breakdown
+- exact package options / pinout
+notes:
+- "New yaml entry on 2026-06-30 \u2014 extracted from espressif.com product page via Firecrawl (12,858 bytes raw)."
+- 'Family differentiator vs ESP32-S3 (existing yaml): S3 is Xtensa LX7 @ 240 MHz + Wi-Fi + BLE (no 802.15.4); S31 is RISC-V
+  @ 320 MHz + Wi-Fi 6 + BLE 5.4 + 802.15.4 + BT Classic + 1 Gbps Ethernet + Edge AI.'
+- 'Family differentiator vs ESP32-C5 (existing yaml): C5 is dual-band Wi-Fi 6 + BLE 5 + 802.15.4 (no BT Classic, no 1 Gbps
+  Ethernet); S31 adds BT Classic, 1 Gbps Ethernet, and Edge AI vector extensions.'
+- 'Family differentiator vs ESP32-H4 (existing yaml): H4 is BLE 5.4 + 802.15.4 only (no Wi-Fi, no Ethernet); S31 is full multi-protocol.'
+- 'Use case: flagship multi-protocol host SoC with edge AI. Pair with cloud connectivity for industrial IoT gateway or smart
+  home hub.'
+- 'Verified 2026-07-01 via firecrawl-html-extract against esp32-s31.html: 14/33 spec fields matched (42%). Source: https://www.espressif.com/en/products/socs/esp32-s31
+  (vendor product page scraped as HTML; no separate PDF available).'
+- 'Verified 2026-07-01 via vendor-direct datasheet PDF (datasheets/esp32-s31.pdf): 28/33 spec fields matched (85%). Source:
+  https://documentation.espressif.com/esp32-s31_datasheet_en.pdf.'
+extracted_at: '2026-06-30T18:42:00+08:00'
+extraction_method: firecrawl-extract (keyed) of espressif.com product page
+extraction_source: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-S31-family_clean.md
+extraction_source_raw: references/semiconductor-vendor/Espressif/firecrawl-snapshots/ESP32-S31-family_raw.md
+extraction_credits_used: 1
+datasheet_source_url: https://documentation.espressif.com/esp32-s31_datasheet_en.pdf

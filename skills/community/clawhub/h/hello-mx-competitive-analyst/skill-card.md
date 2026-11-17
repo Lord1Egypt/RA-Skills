@@ -1,38 +1,57 @@
-## Description: <br>
-Competitive Analyst（竞品分析）技能。用于竞争对手分析、同行对比、市场定位评估、行业格局分析、投资备忘录与战略复盘。支持 competitive analysis、peer comparison、market positioning、industry landscape 等检索词。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Competitive Analyst guides agents in producing competitive analysis, peer comparison, market positioning, industry landscape, investment memo, and strategy review reports.
 
-## Publisher: <br>
-[gracexiaoo](https://clawhub.ai/user/gracexiaoo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gracexiaoo](https://clawhub.ai/user/gracexiaoo)
 
-## Use Case: <br>
-Analysts, strategists, and investment teams use this skill to produce competitive analysis, peer comparisons, market positioning assessments, industry landscape summaries, investment memoranda, and strategic retrospectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial or competitive conclusions may be unreliable if source files, market data, or spreadsheet inputs are stale, incorrect, or misunderstood. <br>
-Mitigation: Review financial sources and uploaded spreadsheets before relying on outputs, especially for investment or business decisions. <br>
+## Use Case:
 
+Employees, external users, and analysts use this skill to structure competitive research, compare peers, map market positioning, and draft market or strategy reviews with sourced financial evidence.
 
-## Reference(s): <br>
-- [Frameworks Reference](references/frameworks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown competitive analysis report with tables and embedded chart guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should cite each numeric value, keep data consistent across text and charts, and remain in a single markdown document.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: Competitive analysis may include inaccurate or weakly sourced market and financial claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review cited sources and prefer provided files or trusted financial data and search results before relying on the output.
+
+Risk: Investment-context reports may be mistaken for investment advice.
+
+Mitigation: Keep outputs framed as analysis, avoid investment recommendations or price movement predictions, and review for investment-advice boundaries.
+
+Risk: Charts, tables, and narrative statements can diverge when figures, time periods, units, or competitor sets are inconsistent.
+
+Mitigation: Check chart values, table values, units, fiscal periods, and competitor coverage against the source evidence before release.
+
+## Reference(s):
+
+- [Frameworks Reference](references/frameworks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown competitive-analysis report with tables and embedded charts when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single Markdown document; financial figures should be sourced and checked for consistency across text, tables, and charts.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

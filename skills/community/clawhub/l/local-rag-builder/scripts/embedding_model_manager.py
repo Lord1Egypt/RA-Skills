@@ -24,9 +24,6 @@ DOWNLOAD_SOURCES = [
     {"name": "hf_official", "url_template": None,
      "method": "huggingface_official",
      "description": "HuggingFace 官方源"},
-    {"name": "hf_direct", "url_template": None,
-     "method": "hf_direct",
-     "description": "HF 直接下载（逐文件，稳定）"},
     {"name": "llm_find", "url_template": None,
      "method": "llm_search",
      "description": "LLM 自动查找可用源"},
@@ -40,16 +37,6 @@ RECOMMENDED_MODELS = [
     {"id": "maidalun1020/bce-embedding-base_v1", "size_mb": 800, "desc": "网易 BCEmbedding", "type": "bce"},
     {"id": "sentence-transformers/all-MiniLM-L6-v2", "size_mb": 80, "desc": "英文嵌入（超轻量）", "type": "st"},
     {"id": "BAAI/bge-large-zh-v1.5", "size_mb": 1300, "desc": "高精度中文嵌入（大）", "type": "bge"},
-]
-
-# Rerank / 路由模型列表（与嵌入模型分开管理）
-RECOMMENDED_RERANK_MODELS = [
-    {"id": "BAAI/bge-reranker-v2-m3", "size_mb": 1136, "desc": "多语言通用路由/rerank（推荐）", "type": "rerank"},
-    {"id": "BAAI/bge-reranker-large", "size_mb": 1120, "desc": "中英通用 rerank", "type": "rerank"},
-    {"id": "BAAI/bge-reranker-base", "size_mb": 556, "desc": "轻量 rerank（CPU 友好）", "type": "rerank"},
-    {"id": "BAAI/bge-reranker-v2.5-gemma2-lightweight", "size_mb": 3000, "desc": "高精度 rerank（大）", "type": "rerank"},
-    {"id": "mixedbread-ai/mxbai-rerank-base-v1", "size_mb": 556, "desc": "MIT 协议，可商用轻量", "type": "rerank"},
-    {"id": "Alibaba-NLP/gte-multilingual-reranker-base", "size_mb": 600, "desc": "阿里出品，中文友好", "type": "rerank"},
 ]
 
 MODEL_INDEX_FILE = os.path.join(MODELS_DIR, "model_index.json")
@@ -194,7 +181,6 @@ try:
     print(f"SAVED_TO:{{path}}")
 except Exception as e:
     print(f"ERROR:{{e}}")
-    sys.exit(1)
 """
     py = sys.executable
     result = run_command([py, "-c", script], timeout=600)
@@ -205,101 +191,32 @@ def _download_with_hf_mirror(model_id, cache_dir):
     """使用 HuggingFace 镜像下载"""
     env = os.environ.copy()
     env["HF_ENDPOINT"] = "https://hf-mirror.com"
-    env["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"  # 关闭 tqdm 进度条，避免 \r 导致管道阻塞
     script = f"""
 import os, sys
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
-os.environ['HF_HUB_DISABLE_PROGRESS_BARS'] = '1'
 from huggingface_hub import snapshot_download
 try:
     path = snapshot_download('{model_id}', cache_dir=r'{cache_dir}')
     print(f"SAVED_TO:{{path}}")
 except Exception as e:
     print(f"ERROR:{{e}}")
-    sys.exit(1)
 """
-    result = run_command([sys.executable, "-c", script], timeout=1800)
+    result = run_command([sys.executable, "-c", script], timeout=600)
     return result
 
 
 def _download_with_hf_official(model_id, cache_dir):
     """使用 HuggingFace 官方源下载"""
     script = f"""
-import os, sys
-os.environ['HF_HUB_DISABLE_PROGRESS_BARS'] = '1'
 from huggingface_hub import snapshot_download
 try:
     path = snapshot_download('{model_id}', cache_dir=r'{cache_dir}')
     print(f"SAVED_TO:{{path}}")
 except Exception as e:
     print(f"ERROR:{{e}}")
-    sys.exit(1)
 """
-    result = run_command([sys.executable, "-c", script], timeout=1800)
+    result = run_command([sys.executable, "-c", script], timeout=600)
     return result
-
-
-def _download_with_hf_direct(model_id, cache_dir):
-    """直接使用 hf_hub_download 逐文件下载（不经过子进程，避免 \r 死锁 + 超时问题）"""
-    from huggingface_hub import hf_hub_download, list_repo_files
-    import os, time
-
-    # 设置镜像源（主进程可能未设 HF_ENDPOINT）
-    os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
-    os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
-
-    try:
-        files = list_repo_files(model_id)
-    except Exception as e:
-        # 镜像失败时降级到官方源
-        os.environ["HF_ENDPOINT"] = "https://huggingface.co"
-        try:
-            files = list_repo_files(model_id)
-        except Exception as e2:
-            return {"success": False, "stdout": "", "stderr": f"list_repo_files 全部失败: {e} / {e2}", "returncode": 1}
-
-    # 排除非必要的文件（onnx 多份权重只保留一种）
-    skip_patterns = ["onnx/", ".gitattributes"]
-    essentials = [f for f in files if not any(p in f for p in skip_patterns)]
-    print(f"  需要下载 {len(essentials)} 个文件（跳过 {len(files)-len(essentials)} 个非必要文件）")
-
-    total_bytes = 0
-    stdout_lines = []
-    success = True
-
-    for filename in essentials:
-        try:
-            print(f"    下载 {filename}...", end="", flush=True)
-            t0 = time.time()
-            path = hf_hub_download(model_id, filename, cache_dir=cache_dir)
-            elapsed = time.time() - t0
-            size = os.path.getsize(path)
-            total_bytes += size
-            speed = size / elapsed / (1024*1024) if elapsed > 0 else 0
-            size_str = f"{size/1024/1024:.1f}MB" if size > 1024*1024 else f"{size/1024:.0f}KB"
-            print(f" {size_str} ({speed:.1f} MB/s)")
-            stdout_lines.append(f"SAVED_TO:{path}")
-        except Exception as e:
-            print(f" 失败: {e}")
-            success = False
-            # 单个文件失败不影响整个下载（继续下一个）
-            continue
-
-    if success:
-        # 找到最终的 snapshot 目录
-        model_dir = os.path.join(cache_dir, f"models--{model_id.replace('/', '--')}", "snapshots")
-        if os.path.isdir(model_dir):
-            snaps = os.listdir(model_dir)
-            if snaps:
-                final_path = os.path.join(model_dir, snaps[0])
-                stdout_lines.append(f"FINAL_PATH:{final_path}")
-
-    return {
-        "success": success,
-        "stdout": "\n".join(stdout_lines),
-        "stderr": "",
-        "returncode": 0 if success else 1,
-    }
 
 
 def download_model(model_id, sources=None, max_retries_per_source=3, max_sources=5):
@@ -313,25 +230,10 @@ def download_model(model_id, sources=None, max_retries_per_source=3, max_sources
     download_dir = os.path.join(cache_directory, "model_downloads")
     os.makedirs(download_dir, exist_ok=True)
 
-    # 清理旧的不完整下载残留（确保断点续存能命中）
-    blobs_dir = os.path.join(download_dir, f"models--{model_id.replace('/', '--')}", "blobs")
-    if os.path.isdir(blobs_dir):
-        cleaned = 0
-        for fn in os.listdir(blobs_dir):
-            if fn.endswith(".incomplete"):
-                try:
-                    os.remove(os.path.join(blobs_dir, fn))
-                    cleaned += 1
-                except OSError:
-                    pass
-        if cleaned:
-            print(f"  清理旧不完整文件 {cleaned} 个")
-
     source_methods = {
         "modelscope": _download_with_modelscope,
-        "hf_mirror": _download_with_hf_mirror,
-        "hf_official": _download_with_hf_official,
-        "hf_direct": _download_with_hf_direct,
+        "huggingface_mirror": _download_with_hf_mirror,
+        "huggingface_official": _download_with_hf_official,
     }
 
     for source_name in sources:
@@ -488,26 +390,13 @@ def get_model_path(model_id):
     return best_match
 
 
-def check_model_downloaded(model_id):
-    """检查模型是否已下载"""
-    models = list_downloaded_models()
-    for m in models:
-        if m["model_id"].lower() == model_id.lower():
-            return True, m.get("path", "")
-    return False, ""
-
-
 if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="嵌入模型管理工具")
     parser.add_argument("--download", type=str, help="下载模型（HuggingFace ID）")
-    parser.add_argument("--interactive", action="store_true", help="交互式选择嵌入模型下载")
-    parser.add_argument("--interactive-rerank", action="store_true", dest="interactive_rerank",
-                        help="交互式选择 rerank/路由模型下载")
+    parser.add_argument("--interactive", action="store_true", help="交互式选择模型下载")
     parser.add_argument("--list", action="store_true", help="列出已下载模型")
-    parser.add_argument("--list-rerank", action="store_true", dest="list_rerank",
-                        help="列出已下载的 rerank/路由模型")
     parser.add_argument("--check", type=str, help="验证模型完整性")
     parser.add_argument("--remove", type=str, help="删除模型")
     parser.add_argument("--json", action="store_true", help="JSON 格式输出（供智能体调用）")
@@ -524,21 +413,6 @@ if __name__ == "__main__":
             else:
                 print(f"已下载模型 ({len(models)}):")
                 for m in models:
-                    print(f"  {m['model_id']} -> {m['path']} ({m.get('size_mb', '?')}MB)")
-
-    elif args.list_rerank:
-        models = list_downloaded_models()
-        if args.json:
-            print(json.dumps(models, ensure_ascii=False, indent=2))
-        else:
-            rerank_ids = {m["id"].lower() for m in RECOMMENDED_RERANK_MODELS}
-            rerank_dl = [m for m in models if m["model_id"].lower() in rerank_ids or
-                         any(r in m["model_id"].lower() for r in ["rerank", "reranker"])]
-            if not rerank_dl:
-                print("未下载任何 rerank/路由模型")
-            else:
-                print(f"已下载 rerank/路由模型 ({len(rerank_dl)}):")
-                for m in rerank_dl:
                     print(f"  {m['model_id']} -> {m['path']} ({m.get('size_mb', '?')}MB)")
 
     elif args.check:
@@ -581,37 +455,6 @@ if __name__ == "__main__":
                 idx = int(choice) - 1
                 if 0 <= idx < len(RECOMMENDED_MODELS):
                     model_id = RECOMMENDED_MODELS[idx]["id"]
-                else:
-                    print("无效选择")
-                    sys.exit(1)
-
-            if model_id:
-                result = download_model(model_id)
-                if result["success"]:
-                    print(f"\n[OK] 模型就绪: {result['path']}")
-                else:
-                    print(f"\n[!] 下载失败: {result['details']}")
-        except (ValueError, EOFError):
-            print("取消操作")
-
-    elif args.interactive_rerank:
-        print("\n推荐 rerank/路由模型:")
-        print("-" * 80)
-        print(f"{'#':<3} {'模型 ID':<50} {'大小':<10} {'说明':<25}")
-        print("-" * 80)
-        for i, m in enumerate(RECOMMENDED_RERANK_MODELS, 1):
-            print(f"{i:<3} {m['id']:<50} {m['size_mb']:<10} {m['desc']:<25}")
-        print("-" * 80)
-        print("0) 自定义模型 ID")
-
-        try:
-            choice = input("\n请选择 (0-{}): ".format(len(RECOMMENDED_RERANK_MODELS))).strip()
-            if choice == "0":
-                model_id = input("输入 HuggingFace 模型 ID: ").strip()
-            else:
-                idx = int(choice) - 1
-                if 0 <= idx < len(RECOMMENDED_RERANK_MODELS):
-                    model_id = RECOMMENDED_RERANK_MODELS[idx]["id"]
                 else:
                     print("无效选择")
                     sys.exit(1)

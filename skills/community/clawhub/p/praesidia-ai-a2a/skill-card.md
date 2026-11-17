@@ -1,44 +1,56 @@
-## Description: <br>
-Verify AI agents, check trust scores (0-100), fetch A2A agent cards, discover marketplace agents, and apply guardrails for security and compliance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Praesidia helps AI assistants verify agent identities, check trust scores, fetch A2A agent cards, discover marketplace agents, and apply security and compliance guardrails.
 
-## Publisher: <br>
-[msoica](https://clawhub.ai/user/msoica) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msoica](https://clawhub.ai/user/msoica)
 
-## Use Case: <br>
-Developers and AI operators use this skill to verify agent identities, inspect trust scores, discover marketplace agents, retrieve A2A agent cards, and manage security or compliance guardrails through Praesidia. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send user content and agent details to an external Praesidia service. <br>
-Mitigation: Use a scoped API key when available and avoid sending secrets, regulated data, or private content unless external processing is intended. <br>
-Risk: Guardrail changes can persist and affect production agent behavior. <br>
-Mitigation: Require explicit user confirmation before applying, changing, or enabling guardrails, and review the target agent and organization before submitting API requests. <br>
-Risk: Trust scores and verification results may influence whether users rely on third-party agents. <br>
-Mitigation: Present trust scores, levels, verification status, and compliance details clearly so users can make their own deployment decision. <br>
+## Use Case:
 
+Developers, enterprise teams, and OpenClaw users use this skill to verify agent identity and trust, discover suitable public agents, fetch A2A cards, and configure guardrails for security, compliance, and content moderation.
 
-## Reference(s): <br>
-- [Praesidia](https://praesidia.ai) <br>
-- [Praesidia API Documentation](https://app.praesidia.ai/docs/api) <br>
-- [A2A Protocol](https://a2a-protocol.org) <br>
-- [ClawHub Skill Page](https://clawhub.ai/msoica/praesidia-ai-a2a) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API calls, Markdown, Configuration] <br>
-**Output Format:** [Markdown with API request examples and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses PRAESIDIA_API_KEY and may call Praesidia API endpoints when the agent follows the skill guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can change live agent guardrail configurations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Praesidia key and require a clear summary plus user confirmation before applying or modifying guardrails.
+
+Risk: The skill can send user content and bearer credentials to remote endpoints.
+
+Mitigation: Keep the API URL on the official Praesidia host or a trusted HTTPS deployment, and do not send secrets or regulated content to validation unless approved.
+
+## Reference(s):
+
+- [Praesidia Homepage](https://praesidia.ai)
+- [Praesidia API Documentation](https://app.praesidia.ai/docs/api)
+- [A2A Protocol](https://a2a-protocol.org)
+- [ClawHub Skill Page](https://clawhub.ai/msoica/skills/praesidia-ai-a2a)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses with REST API call examples and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include trust-score summaries, guardrail recommendations, and API request details.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

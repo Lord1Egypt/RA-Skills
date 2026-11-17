@@ -1,0 +1,1 @@
+A pedestrian suddenly jaywalks across the road. Braking could cause a rear-end collision, while continuing might hit the cyclist. Write a simple pseudocode algorithm that decides whether to brake or not based on the distance to the car ahead and the relative speed. Include a condition for emergency 

@@ -1,42 +1,52 @@
-## Description: <br>
-支付宝账单自动汇总服务，支持周报、月报、年报三种周期。触发词：账单汇总、每周账单、每月账单、年度账单、消费分析、账单报告、账单周报、账单月报。当用户需要定期查看账单汇总、消费分析报告时使用此技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+支付宝账单汇总会为已授权用户生成周度、月度和年度账单汇总与消费分析报告。
 
-## Publisher: <br>
-[1148260649](https://clawhub.ai/user/1148260649) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[1148260649](https://clawhub.ai/user/1148260649)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to schedule recurring Alipay bill summaries and review spending, income, categories, large transactions, payment methods, and period-over-period changes. The skill is intended for users who have authorized access to their Alipay bill data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Recurring scheduled reports may expose sensitive financial information if the schedule, threshold, timezone, or authorization scope is not reviewed.
+
+Mitigation: Confirm report frequency, large-transaction threshold, timezone, and Alipay authorization scope before enabling; edit or disable the cron jobs when automatic reports are not desired.
+
+Risk: Reports depend on authorized Alipay bill data and may be incomplete if access or the dependent bill-query skill is unavailable.
+
+Mitigation: Verify Alipay authorization and call-alipay-service availability before relying on generated summaries.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users who have authorized Alipay data access use this skill to create scheduled weekly, monthly, and annual bill summary reports with spending, income, category, payment-method, large-transaction, and comparison analysis. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive Alipay financial data and produces recurring financial reports. <br>
-Mitigation: Enable it deliberately, choose only the reporting periods needed, and keep generated reports private. <br>
-Risk: Scheduled cron jobs may continue producing reports after the user no longer wants automated summaries. <br>
-Mitigation: Track the created OpenClaw cron jobs and remove them when billing summaries should stop. <br>
-Risk: The skill depends on a separate Alipay data-access skill for bill data. <br>
-Mitigation: Install only when that dependency is trusted and the Alipay authorization state is understood. <br>
+**Output Format:** [Markdown report text with OpenClaw cron shell commands]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1148260649/alipay-billing-summary) <br>
+**Other Properties Related to Output:** [Recurring reports depend on authorized Alipay bill access and the call-alipay-service skill.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with OpenClaw cron command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces recurring weekly, monthly, and annual billing-summary task definitions; depends on authorized Alipay data access through call-alipay-service.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

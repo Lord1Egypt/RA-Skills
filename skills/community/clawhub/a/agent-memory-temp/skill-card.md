@@ -1,42 +1,51 @@
-## Description: <br>
-Persistent memory system enabling AI agents to remember facts, learn from experiences, and track entities across sessions for improved context awareness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory system enabling AI agents to remember facts, learn from experiences, and track entities across sessions for improved context awareness.
 
-## Publisher: <br>
-[Liguang00806](https://clawhub.ai/user/Liguang00806) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liguang00806](https://clawhub.ai/user/liguang00806)
 
-## Use Case: <br>
-Developers and agent builders use this skill to add local SQLite-backed memory for facts, lessons, and entity context across agent sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The reviewed release has inconsistent package identity and install instructions. <br>
-Mitigation: Confirm that users intend to install agent-memory-temp or agent-memory and verify the publisher/source before installation. <br>
-Risk: The local SQLite memory database can contain sensitive user, project, or relationship data. <br>
-Mitigation: Avoid storing secrets or regulated personal data, set retention expectations, and periodically review, export, or delete stored memories. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add local, persistent memory for facts, lessons learned, and tracked entities across agent sessions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/Liguang00806/agent-memory-temp) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists facts, lessons, and entity records in a local SQLite database by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill persists conversation-derived facts, lessons, and entity attributes in a local SQLite database, which can include personal or sensitive context if agents store it unfiltered.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated database path with restrictive permissions, avoid storing secrets or sensitive personal information, set expirations where possible, and periodically inspect or delete stored memories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liguang00806/skills/agent-memory-temp)
+- [Artifact README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local SQLite-backed memory operations and examples; no external runtime dependencies are declared.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

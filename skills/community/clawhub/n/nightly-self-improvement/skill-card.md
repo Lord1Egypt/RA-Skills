@@ -1,39 +1,58 @@
-## Description: <br>
-Nightly Build helps an agent scan recent sessions for friction points, choose one small reversible improvement, implement it, and leave a morning briefing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Nightly Build helps an agent scan recent sessions for friction points, choose one reversible improvement, implement it, and send a morning briefing.
 
-## Publisher: <br>
-[joeytbuilds](https://clawhub.ai/user/joeytbuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeytbuilds](https://clawhub.ai/user/joeytbuilds)
 
-## Use Case: <br>
-OpenClaw users use this skill to schedule an agent that reviews recent sessions and memory for workflow friction, performs one low-risk reversible improvement, and reports what changed. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A recurring unattended agent can read session history and memory and make local changes without per-action approval. <br>
-Mitigation: Limit allowed directories, exclude sensitive sessions or projects, require approval for memory edits and scripts, and document how to disable the cron job. <br>
-Risk: Morning briefings and saved summaries can expose secrets or personal data from prior sessions. <br>
-Mitigation: Redact secrets and personal data before writing briefings, and save briefings to a local file by default. <br>
+## Use Case:
 
+External ClawHub users use this skill to configure an agent that performs bounded overnight workspace maintenance, prepares low-risk improvements, and reports what changed in the morning.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell and JSON configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a recurring 3:00 AM cron setup and a tiered autonomy policy for what the agent may change.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can run recurring overnight automation while the user is absent.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only after setting explicit scan boundaries and adding a simple pause or removal path for the cron job.
+
+Risk: The skill may read broad conversation, memory, and workspace context.
+
+Mitigation: Limit the session and memory sources it may inspect before deployment.
+
+Risk: The skill can prepare or trigger actions involving scripts, aliases, files, and messaging.
+
+Mitigation: Keep outputs local by default, require review before external messages, and prohibit unattended script or alias creation unless separately approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeytbuilds/skills/nightly-self-improvement)
+- [Publisher profile](https://clawhub.ai/user/joeytbuilds)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local process document, cron setup guidance, and a morning briefing format.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

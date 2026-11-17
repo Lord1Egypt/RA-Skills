@@ -1,42 +1,60 @@
-## Description: <br>
-Fetches real-time SL (Stockholm public transport) departures and deviation information for stop, route, delay, and autonomous monitoring queries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch real-time SL (Stockholm public transport) departures and deviation information using a Python CLI tool.
 
-## Publisher: <br>
-[patello](https://clawhub.ai/user/patello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patello](https://clawhub.ai/user/patello)
 
-## Use Case: <br>
-External users and developers use this skill to check upcoming Stockholm public transport departures, inspect active disruptions, and maintain local favourite stops or routes for background monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; transit data and route planning are scoped to Stockholm, Sweden. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Saved favourite stops and routes can reveal commuting habits. <br>
-Mitigation: Store .sl/preferences.json locally with appropriate workspace access controls and enable autonomous monitoring only for routes the user intentionally wants watched. <br>
-Risk: Autonomous disruption monitoring can produce irrelevant notifications if route-specific disruptions are not filtered. <br>
-Mitigation: Apply the documented route-leg filtering logic and notify only when a new deviation affects the saved boarding, alighting, transfer stop, or whole line. <br>
+## Use Case:
 
+External users and agents use this skill to query Stockholm public transport departures, route options, and service deviations, and to maintain favorites for recurring checks.
 
-## Reference(s): <br>
-- [SL Trafiklab API References](references/api.md) <br>
-- [SL Transport Integration API](https://transport.integration.sl.se/v1) <br>
-- [ClawHub Release Page](https://clawhub.ai/patello/sl-trafiklab-api) <br>
+### Deployment Geography for Use:
 
+Global; operational data covers Stockholm, Sweden.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with curl and jq commands plus JSON preference snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; may write local autonomous monitoring preferences to .sl/preferences.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The preferences override can read from or overwrite arbitrary local paths instead of staying within the documented workspace preferences file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the documented .sl/preferences.json storage path and avoid invoking commands with --preferences pointing elsewhere.
+
+Risk: Saved favorite stops and routes may reveal location or routine data.
+
+Mitigation: Treat saved favorites as sensitive local data and remove them when they are no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patello/skills/sl-trafiklab-api)
+- [SL Trafiklab CLI and API References](references/api.md)
+- [SL Transport API Reference](references/sl_transport_spec.md)
+- [SL Deviations API Reference](references/sl_deviations_spec.md)
+- [SL Journey Planner v2 Trips API Reference](references/journey_planner_v2_spec.md)
+- [SL Transport API](https://transport.integration.sl.se/v1)
+- [SL Deviations API](https://deviations.integration.sl.se/v1)
+- [SL Journey Planner API](https://journeyplanner.integration.sl.se/v2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with inline shell commands and JSON preference snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke live SL API requests and read or write saved favorites in .sl/preferences.json.]
+
+## Skill Version(s):
+
+3.7.0 (source: server release evidence and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

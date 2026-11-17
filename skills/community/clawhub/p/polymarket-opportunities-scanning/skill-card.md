@@ -1,46 +1,59 @@
-## Description: <br>
-Scan Polymarket prediction markets for book arbitrage opportunities in multi-outcome markets, generate a formatted report, and deliver it via Telegram and email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan Polymarket prediction markets for book arbitrage opportunities in overbooked or underbooked multi-outcome markets, generate a formatted report, and deliver it via Telegram and email.
 
-## Publisher: <br>
-[caoqi](https://clawhub.ai/user/caoqi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caoqi](https://clawhub.ai/user/caoqi)
 
-## Use Case: <br>
-Developers and market analysts use this skill to scan public Polymarket multi-outcome markets for overbooked or underbooked pricing and generate a ranked opportunity report. It also supports scheduled local reports delivered through configured email or Telegram workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The scripts fetch public Polymarket market data and write opportunities.json locally. <br>
-Mitigation: Review the generated local output before using it for decisions and avoid committing opportunities.json if it contains operationally sensitive preferences. <br>
-Risk: Email delivery uses the default Apple Mail account through local osascript automation. <br>
-Mitigation: Set SMTP_TO deliberately, review the recipient before scheduling, and run the report manually before enabling recurring delivery. <br>
-Risk: The optional cron setup can repeatedly run the scan and send reports without further review. <br>
-Mitigation: Review the scripts and delivery settings before enabling a schedule, and monitor initial scheduled runs for failures or unexpected recipients. <br>
-Risk: Telegram delivery is described by the skill but is not implemented in the provided scripts. <br>
-Mitigation: Do not rely on Telegram delivery unless an implementation is added and reviewed separately. <br>
+## Use Case:
 
+External users and developers use this skill to scan active Polymarket multi-outcome markets, rank possible book-arbitrage opportunities, and schedule recurring reports for review before any trading decision.
 
-## Reference(s): <br>
-- [Setup Guide](references/setup.md) <br>
-- [Polymarket Gamma API](https://gamma-api.polymarket.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/caoqi/polymarket-opportunities-scanning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown instructions, shell commands, JavaScript scripts, and JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local opportunities.json file and formatted report text for email or Telegram delivery.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The report sender can send email through the local Apple Mail account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and restrict the .env recipient before scheduling or running the sender.
+
+Risk: The sender uses shell execution around local scripts.
+
+Mitigation: Install and run it only from a directory that is not writable or controlled by untrusted users.
+
+Risk: Telegram delivery is described in the documentation but not implemented by the included sender script.
+
+Mitigation: Treat Telegram instructions as inaccurate until the publisher updates the implementation.
+
+## Reference(s):
+
+- [Setup Guide](references/setup.md)
+- [Polymarket Gamma API](https://gamma-api.polymarket.com)
+- [ClawHub Skill Page](https://clawhub.ai/caoqi/skills/polymarket-opportunities-scanning)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JavaScript scripts, JSON scan output, and formatted report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces opportunities.json and a formatted market-opportunity report for Telegram and email delivery.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

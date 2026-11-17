@@ -1,46 +1,61 @@
-## Description: <br>
-MiniMax Agent self-evolution system with 5-layer memory for continuous learning, error analysis, and persistent personalized context management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MiniMax Agent self-evolution system with 5-layer memory for continuous learning, error analysis, and persistent personalized context management.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to add structured cross-session memory, learning logs, failure analysis, and self-improvement prompts to MiniMax Agent workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can persist conversation-derived context and user preferences across sessions. <br>
-Mitigation: Require explicit user confirmation before writing memories, and provide a review, expiry, and deletion process for saved entries. <br>
-Risk: Error logging can capture raw command output or sensitive context. <br>
-Mitigation: Redact secrets, personal data, and unnecessary command output before saving error or learning logs. <br>
-Risk: Persisted lessons may steer future behavior using stale or low-confidence information. <br>
-Mitigation: Use confidence labels, keep session notes lean, and periodically review or remove obsolete memories. <br>
+## Use Case:
 
+Developers and agent operators use this skill to give a MiniMax Agent a persistent memory workflow for learning from user corrections, command failures, project context, and completed tasks across sessions.
 
-## Reference(s): <br>
-- [Max-Self-Improvement ClawHub page](https://clawhub.ai/ruiyongwang/max-self-improvement) <br>
-- [Architecture](references/architecture.md) <br>
-- [Evolution Cases](references/evolution_cases.md) <br>
-- [Memory Templates](references/memory_templates.md) <br>
-- [Learning Templates](assets/SKILL-TEMPLATE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with file templates and shell script prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces persistent memory entries and learning logs when adopted by an agent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence and _meta.json) <br>
+Risk: Persistent memory can save broad conversation, project, and error details across sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when persistent local memory is intended; avoid storing secrets, private project details, raw command output, or sensitive user information, and periodically inspect and delete generated memory and .learnings files.
+
+Risk: Error logging can capture command output into local learning files.
+
+Mitigation: Redact sensitive command output before logging and review generated error entries before keeping or sharing them.
+
+Risk: Packaging can include local skill contents in distributable archives.
+
+Mitigation: Review package contents before distribution and remove unintended local files or sensitive generated memories.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ruiyongwang/skills/max-self-improvement)
+- [Detailed Architecture](references/architecture.md)
+- [Evolution Cases](references/evolution_cases.md)
+- [Memory Templates](references/memory_templates.md)
+- [Learning Templates](assets/SKILL-TEMPLATE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, templates, and generated local memory or learning files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update persistent local memory and .learnings files during agent use.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

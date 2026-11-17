@@ -1,44 +1,60 @@
-## Description: <br>
-Assist with civil enforcement application (执行申请) preparation and process guidance after obtaining a court judgment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assists with civil enforcement application preparation and process guidance after obtaining a court judgment, providing procedural guidance only.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to prepare China civil enforcement application materials after obtaining an enforceable judgment, mediation document, arbitration award, payment order, or notarized debt instrument. It helps draft application templates, organize filing checklists, understand timelines, and identify follow-up steps for court enforcement. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat procedural filing guidance as legal advice or rely on it without checking court-specific requirements. <br>
-Mitigation: Present the skill as procedural template assistance only and advise users to verify deadlines, jurisdiction, and filing requirements with the court or a qualified lawyer. <br>
-Risk: Civil enforcement preparation can involve applicant, debtor, asset, address, and financial information. <br>
-Mitigation: Collect only lawfully obtained and necessary information, avoid sharing full IDs or asset details outside official or secure channels, and redact sensitive details when they are not needed. <br>
-Risk: Incorrect timing assumptions can cause users to miss enforcement deadlines. <br>
-Mitigation: Highlight the two-year application window described in the artifact and require users to confirm the final effective date and performance deadline for their document. <br>
+## Use Case:
 
+External users use this skill after receiving a civil judgment, arbitration award, payment order, mediation document, or notarized debt instrument to prepare enforcement application materials, document checklists, filing guidance, timelines, and follow-up steps. It is intended for procedural support and not legal strategy.
 
-## Reference(s): <br>
-- [Complete Enforcement Procedure Guide](references/enforcement-process.md) <br>
-- [Application Document Templates](references/application-templates.md) <br>
-- [Asset Investigation Guidance](references/asset-inquiry.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose with application templates, document checklists, timeline guidance, and next-step recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Procedural guidance only; may include Chinese legal terms and placeholders for user-provided case facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: ClawHub release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Users may treat procedural enforcement guidance as legal advice or strategy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: State that the skill provides procedural guidance only and recommend consulting a qualified lawyer for strategy, complex enforcement matters, or sensitive investigations.
+
+Risk: Civil enforcement preparation may involve sensitive personal, financial, address, identity, and asset information.
+
+Mitigation: Avoid entering unnecessary real ID numbers, addresses, account numbers, or third-party asset details, and use only lawfully obtained and verified information.
+
+Risk: Court requirements and enforcement outcomes can vary by jurisdiction, debtor assets, and court resources.
+
+Mitigation: Confirm local court filing requirements and deadlines before relying on generated materials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/harrylabsj/skills/enforcement-assistant)
+- [Complete enforcement procedure guide](references/enforcement-process.md)
+- [Application document templates](references/application-templates.md)
+- [Asset investigation guidance](references/asset-inquiry.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with application templates, document checklists, timelines, and next-step recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Procedural legal information only; no hidden execution, data transmission, or persistence was reported in security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

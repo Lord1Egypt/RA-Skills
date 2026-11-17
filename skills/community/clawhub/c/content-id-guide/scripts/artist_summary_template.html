@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- set lang to the document's actual language when generating -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claim summary for {{artist_name}}</title>
+<style>
+  /* Clean, print-first artist summary. Design rules: flat color only,
+     no glow or halo effects, badges have background color only with
+     no borders, 4px corner radius maximum, sentence case body text,
+     uppercase reserved for badges. */
+  :root {
+    --ink: #141414;
+    --paper: #ffffff;
+    --muted: #5a5a5a;
+    --level1-bg: #F5C518; --level1-ink: #141414;
+    --level2-bg: #AD4A00; --level2-ink: #ffffff;
+    --level3-bg: #C21807; --level3-ink: #ffffff;
+    --brand-font: {{label_font_stack | default: Georgia, 'Times New Roman', serif}};
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: var(--brand-font);
+    color: var(--ink);
+    background: var(--paper);
+    margin: 0;
+    padding: 32px;
+    max-width: 720px;
+    margin-inline: auto;
+    line-height: 1.55;
+  }
+  header.letterhead {
+    display: flex; align-items: center; gap: 16px;
+    padding-bottom: 16px; margin-bottom: 24px;
+    border-bottom: 2px solid var(--ink);
+  }
+  header.letterhead img.logo { max-height: 56px; width: auto; }
+  header.letterhead .label-name { font-size: 1.1rem; font-weight: 700; }
+  h1 { font-size: 1.4rem; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); margin: 0 0 20px; }
+  .release {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin: 20px 0;
+  }
+  .release img.art { width: 96px; height: 96px; object-fit: cover; border-radius: 4px; }
+  .badge {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: none;
+  }
+  .badge.level1 { background: var(--level1-bg); color: var(--level1-ink); }
+  .badge.level2 { background: var(--level2-bg); color: var(--level2-ink); }
+  .badge.level3 { background: var(--level3-bg); color: var(--level3-ink); }
+  section { margin: 20px 0; }
+  section h2 { font-size: 1.05rem; margin: 0 0 8px; }
+  table.timeline { width: 100%; border-collapse: collapse; }
+  table.timeline td { padding: 6px 8px; border-bottom: 1px solid #e3e3e3; vertical-align: top; }
+  .amounts { background: #f4f4f4; border-radius: 4px; padding: 12px 16px; }
+  .amounts .estimate-note { color: var(--muted); font-size: 0.85rem; }
+  .disclaimer {
+    margin-top: 28px; padding: 14px 16px;
+    background: #f4f4f4; border-radius: 4px;
+    font-size: 0.85rem; color: var(--muted);
+  }
+  footer.verify {
+    margin-top: 16px; font-size: 0.85rem; color: var(--muted);
+  }
+  a { color: var(--ink); text-decoration: underline; }
+  @media print {
+    body { padding: 0; }
+    .no-print { display: none; }
+    a { text-decoration: underline; }
+  }
+</style>
+</head>
+<body>
+
+<header class="letterhead">
+  <!-- Branding slots are operator-supplied. The session must first
+       record the operator's confirmation that they are authorized to
+       use this letterhead, logo, font, and any artwork included. -->
+  <img class="logo" src="{{label_logo}}" alt="{{label_name}} logo">
+  <div>
+    <div class="label-name">{{label_name}}</div>
+    <div class="subtitle">{{label_contact_line}}</div>
+  </div>
+</header>
+
+<h1>What's happening with your release, in plain terms</h1>
+<p class="subtitle">Prepared {{prepared_date}} for {{artist_name}}</p>
+
+<div class="release">
+  <img class="art" src="{{album_art}}" alt="Artwork for {{release_title}}">
+  <div>
+    <strong>{{release_title}}</strong><br>
+    {{platform}} · {{event_type_plain}}<br>
+    <span class="badge {{severity_class}}">{{severity_label}}</span>
+  </div>
+</div>
+
+<section>
+  <h2>What this is</h2>
+  <p>{{plain_explanation}}</p>
+  <h2>What this is not</h2>
+  <p>{{what_it_is_not}}</p>
+</section>
+
+<section>
+  <h2>Dates worth knowing</h2>
+  <table class="timeline">
+    <!-- One row per timeline entry. Unconfirmed dates always carry
+         the UNCONFIRMED badge and their confirm_by note. -->
+    {{timeline_rows}}
+  </table>
+</section>
+
+<section class="amounts">
+  <h2>Money, as currently understood</h2>
+  <p>{{amounts_plain}}</p>
+  <p class="estimate-note">These figures are estimates as of
+  {{prepared_date}} and can change as the dispute resolves. Final
+  numbers come from the platform's own reports, not this page.</p>
+</section>
+
+<section>
+  <h2>What {{label_name}} is doing</h2>
+  <p>{{label_actions_plain}}</p>
+</section>
+
+<div class="disclaimer">
+  This summary is a plain-language explanation prepared to keep you
+  informed. It is not legal guidance, and the details in it should be
+  verified with your manager or team before anyone acts on them. For
+  anything critical or confusing, proper legal counsel is the right
+  next step. Official platform pages describing this process:
+  {{official_links}}
+</div>
+
+<!-- A text-only variant of this summary (no images, minimal markup,
+     small transfer size) is generated on request for limited
+     bandwidth or screen-reader-first reading; content identical,
+     including the disclaimer and verifier line. -->
+<footer class="verify">
+  Verify details with: {{verifier_name_role}} · Questions: {{contact}}
+</footer>
+
+</body>
+</html>

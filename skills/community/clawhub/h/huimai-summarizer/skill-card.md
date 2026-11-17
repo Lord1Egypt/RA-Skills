@@ -1,41 +1,54 @@
-## Description: <br>
-上传长文档/文章/PDF/合同，自动生成结构化摘要、关键条款提取、执行清单。支持20+种摘要格式。安装即用，无需API Key。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+上传长文档/文章/PDF/合同，自动生成结构化摘要、关键条款提取、执行清单。支持20+种摘要格式。安装即用，无需API Key。
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-External users and knowledge workers use this skill to summarize long documents, articles, PDFs, contracts, emails, meetings, and conversations into concise summaries, key takeaways, action items, comparisons, and custom formats. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Summaries and metadata may be retained locally under ~/.openclaw/summarize-pro, including history.json and saved.json. <br>
-Mitigation: Avoid using the skill for highly sensitive contracts, emails, or meeting notes unless local retention is acceptable; periodically review or delete retained local files. <br>
-Risk: Document summaries can omit nuance or misstate details if source material is ambiguous, very long, or poorly structured. <br>
-Mitigation: Review generated summaries, action items, dates, names, and contractual terms against the original document before relying on them. <br>
+## Use Case:
 
+External users and employees can use this skill to summarize long documents, articles, PDFs, contracts, emails, meetings, and conversations into structured summaries, key points, action items, and comparisons.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/huimai-summarizer) <br>
-- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with optional shell commands and local JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can persist local preferences, summary history, saved summaries, and templates under ~/.openclaw/summarize-pro/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: Local summary history, saved summaries, templates, preferences, and statistics may retain sensitive document content under ~/.openclaw/summarize-pro.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when local retention is acceptable for the material, and review or delete the stored files when handling sensitive content.
+
+Risk: Summarization triggers and history logging can accidentally process or retain user-provided text when the user invokes summary-related commands.
+
+Mitigation: Confirm intent before summarizing sensitive material and clear local history or saved summaries after use when retention is not desired.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-summarizer)
+- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown and structured text summaries with optional local JSON settings, history, saved summaries, and templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may maintain local summary history, saved summaries, templates, preferences, and usage statistics under ~/.openclaw/summarize-pro.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

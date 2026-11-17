@@ -1,0 +1,35 @@
+<!--
+  kpi-card.html — KPI 卡片(渐变背景 + 大数字 + 上下标 + run 级字距)
+  用法:复制到页面,替换 {{参数}}。⚠️ 仅仪表盘原型(阅读/混合档);演讲档 KPI 用 stat-number 裸排(原型 17)。
+  需要 nativeGradient:true 才走原生渐变(否则截图)。
+  参数:
+    X / Y / W / H     — 卡片位置与尺寸(含单位,如 100px)
+    GRAD_FROM         — 渐变起始色(变量名,如 var(--brand-dark))
+    GRAD_TO           — 渐变结束色(变量名,如 var(--signal-blue))
+    LABEL             — 顶部小标签(如 ACCURACY)
+    VALUE             — 大数字(如 94.2)
+    UNIT              — 单位/上标(如 %,留空则不显示)
+    DELTA             — 增量文字(如 ↑ 12% vs Q3)
+    DELTA_COLOR       — 增量色(变量名,如 var(--signal-green))
+  z 序:卡片底 z-index:1 → 内容文字 z-index:10
+-->
+<!-- 卡片底(渐变) -->
+<div data-object="true" data-object-type="shape"
+     style="position:absolute;left:{{X}};top:{{Y}};width:{{W}};height:{{H}};
+            background:linear-gradient(135deg,{{GRAD_FROM}},{{GRAD_TO}});
+            border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);z-index:1;"></div>
+<!-- 标签(letter-spacing + 小字) -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 28px);top:calc({{Y}} + 24px);width:calc({{W}} - 56px);height:20px;
+            font-size:16px;font-weight:600;color:var(--on-navy-dim);letter-spacing:6px;
+            text-transform:uppercase;line-height:20px;z-index:10;">{{LABEL}}</div>
+<!-- 大数字 + 上标 -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 28px);top:calc({{Y}} + 56px);width:calc({{W}} - 56px);height:60px;
+            font-size:56px;font-weight:800;color:var(--white);line-height:1;z-index:10;">
+  {{VALUE}}<sup style="font-size:24px;color:{{DELTA_COLOR}};">{{UNIT}}</sup>
+</div>
+<!-- 增量 -->
+<div data-object="true" data-object-type="textbox"
+     style="position:absolute;left:calc({{X}} + 28px);top:calc({{Y}} + 128px);width:calc({{W}} - 56px);height:24px;
+            font-size:18px;color:{{DELTA_COLOR}};letter-spacing:1px;line-height:24px;z-index:10;">{{DELTA}}</div>

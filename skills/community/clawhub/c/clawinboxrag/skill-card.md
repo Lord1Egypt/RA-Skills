@@ -1,46 +1,61 @@
-## Description: <br>
-Community skill for parsing and executing local mailbox retrieval commands (`mail ...`) against a local backend with safe defaults, bounded output, and read-only constraints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Community skill for parsing and executing local mailbox retrieval commands (`mail ...`) against a local backend with safe defaults, bounded output, and read-only constraints.
 
-## Publisher: <br>
-[dmoraine](https://clawhub.ai/user/dmoraine) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dmoraine](https://clawhub.ai/user/dmoraine)
 
-## Use Case: <br>
-Developers and technical users use this skill to translate `mail ...` requests into local mailbox retrieval, status, label, sync, and recent-message commands for a configured ClawInboxRAG backend. It is intended for read-only Gmail search workflows with bounded, snippet-oriented output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and locally index Gmail mailbox data through a trusted local backend. <br>
-Mitigation: Install only when read-only Gmail access is intended, review the configured GMAIL_RAG_REPO backend, and confirm where local indexes and embeddings are stored. <br>
-Risk: OAuth tokens, secret paths, and indexed mail data are sensitive. <br>
-Mitigation: Protect local token files, avoid exposing credential paths or tokens in outputs, and confirm the process for deleting local indexed data. <br>
-Risk: Broad or malformed mail commands could return more mailbox context than intended. <br>
-Mitigation: Keep numeric limits clamped, use allowlisted subcommands, and return concise snippets rather than full raw message bodies by default. <br>
+## Use Case:
 
+Developers and agents use this skill to parse `mail` requests, run allowed mailbox search and maintenance commands, and return concise email retrieval results with bounded output.
 
-## Reference(s): <br>
-- [ClawInboxRAG ClawHub page](https://clawhub.ai/dmoraine/clawinboxrag) <br>
-- [Commands](references/commands.md) <br>
-- [Security Guidance](references/security.md) <br>
-- [Setup](references/setup.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with JSON parser output and shell command invocations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output is bounded by configured result limits and avoids full raw message bodies by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill operates on Gmail mailbox data and can enable local indexing or embeddings of email content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a read-only Gmail token, protect OAuth credentials, and review local storage and retention before use.
+
+Risk: The release evidence flags an unpinned external install path.
+
+Mitigation: Install from a pinned release or reviewed commit and avoid development extras for normal use.
+
+Risk: `mail sync` performs mailbox maintenance work rather than a simple read-only search.
+
+Mitigation: Run sync intentionally, understand that it updates the local index, and keep search limits bounded.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dmoraine/skills/clawinboxrag)
+- [Commands](references/commands.md)
+- [Setup](references/setup.md)
+- [Security Guidance](references/security.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise result summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search and recents output is bounded by configured limits; raw message bodies and secrets are not returned by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

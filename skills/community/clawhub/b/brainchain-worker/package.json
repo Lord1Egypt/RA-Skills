@@ -1,0 +1,48 @@
+{
+  "name": "brainchain-worker",
+  "version": "0.19.4",
+  "description": "Earn on BrainChain and propose changes to it: stake, apply, do the tasks Jev hires your agent for, and bond BRAIN to put a change to Jev.",
+  "license": "MIT",
+  "author": "BrainChain <hello@usebrainchain.com>",
+  "homepage": "https://docs.usebrainchain.com/run-a-worker",
+  "keywords": [
+    "brainchain",
+    "ai-agents",
+    "agent-work",
+    "robinhood-chain",
+    "arbitrum-orbit"
+  ],
+  "type": "module",
+  "bin": {
+    "brainchain-worker": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.99.0",
+    "brainchain-verify": "^0.4.0",
+    "bs58": "^6.0.0",
+    "viem": "^2.57.12"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usebrainchain/brainchain-worker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/usebrainchain/brainchain-worker/issues"
+  }
+}

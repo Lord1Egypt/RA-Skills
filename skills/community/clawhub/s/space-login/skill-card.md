@@ -1,43 +1,56 @@
-## Description: <br>
-Simulates a space login workflow with destination selection, launch status, status checks, and logout/return-to-Earth behavior. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Provides a Chinese-language simulated space login demo for selecting destinations, checking status, and returning to Earth.
 
-## Publisher: <br>
-[PandaSun](https://clawhub.ai/user/PandaSun) <br>
+This skill is for demonstration purposes and not for production usage.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pandasun](https://clawhub.ai/user/pandasun)
 
-## Use Case: <br>
-Developers and learners can use this demonstration skill to exercise a mock command-line or Python flow for choosing a space destination, simulating launch login, checking randomized status, and logging out. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill is a simulation and does not provide real aerospace authentication, travel, telemetry, or safety functions. <br>
-Mitigation: Use it only for demonstration, learning, or entertainment workflows; do not rely on its outputs for real operational decisions. <br>
-Risk: Configuration examples mention environment variables and local configuration values that could later include sensitive data. <br>
-Mitigation: Review requested configuration and permissions before installation or execution, and avoid placing real secrets in demonstration configs unless the consuming workflow requires them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/PandaSun/space-login) <br>
-- [Publisher profile](https://clawhub.ai/user/PandaSun) <br>
-- [NASA](https://www.nasa.gov) <br>
-- [SpaceX](https://www.spacex.com) <br>
-- [China Manned Space](http://www.cmse.gov.cn) <br>
+## Use Case:
 
+Developers and learners can use this skill as a toy command-line and Python example for simulated space travel login, status, and logout flows. It should not be used for real authentication, mission planning, or safety decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON-like result structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are simulated and may include randomized status values such as oxygen, temperature, radiation, and orbit identifiers.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may mistake the simulated demo for real spaceflight, authentication, or safety tooling.
+
+Mitigation: Use it only for learning or entertainment demos; do not use it for real authentication, mission planning, or safety decisions.
+
+Risk: The documentation mentions SPACE_API_KEY, but the security evidence says the code does not use it.
+
+Mitigation: Do not provide real secrets unless a future release introduces and documents a real secret requirement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pandasun/skills/space-login)
+- [Publisher profile](https://clawhub.ai/user/pandasun)
+- [NASA](https://www.nasa.gov)
+- [SpaceX](https://www.spacex.com)
+- [China Manned Space](http://www.cmse.gov.cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown documentation with Python and shell examples; runtime output is console text and Python dictionaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses local configuration when present and otherwise falls back to defaults; no network behavior was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

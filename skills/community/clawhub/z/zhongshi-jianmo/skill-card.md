@@ -1,40 +1,50 @@
-## Description: <br>
-仲氏纯碱馍馍店信息查询，提供店名、简介、营业时间、地址、预订方式、Wi-Fi 和招牌产品信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+仲氏纯碱馍馍店信息查询，帮助用户获取店名、简介、营业时间、地址、预订方式、Wi-Fi 和招牌产品信息。
 
-## Publisher: <br>
-[lbl96](https://clawhub.ai/user/lbl96) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lbl96](https://clawhub.ai/user/lbl96)
 
-## Use Case: <br>
-External users and agents use this skill to answer questions about 仲氏纯碱馍馍店, including its address, hours, reservation options, Wi-Fi availability, delivery status, and signature products. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad local-food triggers may steer generic restaurant or food questions toward this specific shop. <br>
-Mitigation: Use the skill for questions about 仲氏纯碱馍馍店 or closely related local bread-shop queries, and verify time-sensitive details such as hours or availability directly with the store. <br>
-Risk: Static shop information can become outdated. <br>
-Mitigation: Treat listed hours, address, reservation details, Wi-Fi availability, delivery status, and product availability as static reference data that should be confirmed with the store before relying on it. <br>
+## Use Case:
 
+External users and agents use this skill to answer common questions about 仲氏纯碱馍馍店, including location, hours, reservations, Wi-Fi, delivery status, and signature products.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lbl96/zhongshi-jianmo) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text answers grounded in static shop information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, or external service calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Static shop details such as hours, product availability, prices, or reservation conditions may become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users when a requested detail is not present in the skill data and recommend confirming time-sensitive facts directly with the shop.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lbl96/skills/zhongshi-jianmo)
+- [ClawHub publisher profile](https://clawhub.ai/user/lbl96)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Natural-language Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses static shop information and should avoid unsupported claims about prices, quantities, or time-sensitive availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,60 @@
-## Description: <br>
-Virse Design helps agents work with the Virse AI Design Platform for image generation, canvas layout, workspace management, and asset organization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Virse Design helps agents use the Virse AI Design Platform for image generation, canvas layout, workspace management, and asset organization.
 
-## Publisher: <br>
-[vxcent](https://clawhub.ai/user/vxcent) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vxcent](https://clawhub.ai/user/vxcent)
 
-## Use Case: <br>
-External users, designers, and developers use this skill to connect an agent to a Virse account, manage workspaces and canvases, generate image assets, organize visual content, and run creative workflow playbooks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent broad access to Virse workspaces, canvases, and assets after authentication. <br>
-Mitigation: Install and authenticate only when that account access is intended, and review workspace or canvas changes before allowing broad actions. <br>
-Risk: Image generation and batch workflows may consume Virse credits. <br>
-Mitigation: Check account balance and confirm larger generation batches before running them. <br>
-Risk: Destructive or cross-workspace actions can modify or remove Virse content. <br>
-Mitigation: Require explicit user approval for deletes, removals, and cross-workspace scans or collection workflows. <br>
-Risk: Persistent account tokens can remain available to future agent sessions. <br>
-Mitigation: Remove ~/.virse/token when persistent access is no longer needed, or use a session-scoped VIRSE_API_KEY. <br>
-Risk: Self-update behavior may change skill behavior after installation. <br>
-Mitigation: Review update prompts and release changes before accepting an update. <br>
+## Use Case:
 
+External designers, creative operators, and developers use this skill to connect an agent to Virse for workspace and canvas inspection, AI image generation, asset organization, and repeatable visual design workflows.
 
-## Reference(s): <br>
-- [Virse Design on ClawHub](https://clawhub.ai/vxcent/virse) <br>
-- [Virse Tools Reference](tools-reference.md) <br>
-- [Virse Authentication Guide](auth-guide.md) <br>
-- [Product Listing Image Pipeline Example](examples/product-listing-pipeline.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and JSON tool arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify Virse workspaces, canvases, image assets, folders, edges, and groups through authenticated Virse calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles Virse credentials and can read or change Virse workspaces, canvases, assets, and generated images using the user's token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the Virse service and publisher are trusted, use an appropriate token, and require user confirmation before destructive operations.
+
+Risk: A custom VIRSE_BASE_URL could send authentication or workspace operations to an untrusted host.
+
+Mitigation: Keep VIRSE_BASE_URL unset or set only to a trusted Virse endpoint before using the skill.
+
+Risk: The skill includes an update path that checks a GitHub source and can apply updates after user approval.
+
+Mitigation: Review any proposed update and its source before approving installation or pull operations.
+
+## Reference(s):
+
+- [Virse Design Skill Page](https://clawhub.ai/vxcent/skills/virse)
+- [Virse Tools Reference](artifact/tools-reference.md)
+- [Virse Authentication Guide](artifact/auth-guide.md)
+- [Product Listing Image Pipeline](artifact/examples/product-listing-pipeline.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON tool-call arguments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May execute Virse MCP operations that read or change workspaces, canvases, assets, and image generations when the user authorizes the workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

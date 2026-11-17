@@ -1,45 +1,60 @@
-## Description: <br>
-AIPing Media generates images and videos with AIPing, downloads results to /tmp, and can send selected media through Feishu with a CDN link fallback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AIPing Media helps an agent generate images and videos through the AIPing API, download generated media locally, and send native image or video messages through Feishu with CDN links as a fallback.
 
-## Publisher: <br>
-[haoruilee](https://clawhub.ai/user/haoruilee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haoruilee](https://clawhub.ai/user/haoruilee)
 
-## Use Case: <br>
-Developers and agents use this skill to generate AI images or short videos from prompts, save the media locally, and deliver it to a Feishu user or chat when credentials are configured. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and generated media are sent to AIPing, and selected media can be sent to Feishu. <br>
-Mitigation: Use the skill only when those services are approved for the content being processed. <br>
-Risk: Misconfigured Feishu credentials or recipient IDs can send media to the wrong destination or fail delivery. <br>
-Mitigation: Use least-privilege Feishu app permissions and verify the open_id or chat_id before sending. <br>
-Risk: Generated files may remain in /tmp after the workflow finishes. <br>
-Mitigation: Clear sensitive generated image or video files from /tmp when they are no longer needed. <br>
+## Use Case:
 
+Developers and external agent users can use this skill to add image and video generation workflows that save media under /tmp and optionally deliver the results to Feishu users or chats. It is suited for media generation tasks where configured AIPing and Feishu credentials are available.
 
-## Reference(s): <br>
-- [AIPing Media on ClawHub](https://clawhub.ai/haoruilee/aiping-media) <br>
-- [AIPing Supported Models](references/models.md) <br>
-- [AIPing API](https://aiping.cn/api/v1) <br>
-- [Feishu Open Platform API](https://open.feishu.cn/open-apis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [JSON responses with local file paths or CDN URLs, plus downloaded image/video files and optional Feishu messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated media is stored under /tmp; Feishu delivery requires AIPING_API_KEY, FEISHU_APP_ID, and FEISHU_APP_SECRET.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The skill uses AIPing and Feishu credentials and can send generated media to Feishu recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when Feishu delivery is expected, store app credentials carefully, and use explicit recipient IDs for each send operation.
+
+Risk: The skill can fetch media from URLs before uploading to Feishu.
+
+Mitigation: Avoid passing arbitrary or untrusted URLs as media sources; prefer locally generated media paths when possible.
+
+Risk: Generated files left in /tmp may contain sensitive media content.
+
+Mitigation: Treat /tmp outputs as sensitive and remove generated files after they are no longer needed.
+
+## Reference(s):
+
+- [AIPing Media ClawHub page](https://clawhub.ai/haoruilee/skills/aiping-media)
+- [AIPing supported models](references/models.md)
+- [AIPing API](https://aiping.cn/api/v1)
+- [Feishu Open API](https://open.feishu.cn/open-apis)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Files, API Calls, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON responses with local media paths, Feishu delivery status, and fallback CDN URLs; documentation includes Markdown and shell command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated media is downloaded to /tmp by default; Feishu delivery requires configured app credentials and explicit recipient identifiers.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

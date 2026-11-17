@@ -54,6 +54,7 @@ x402 automatic — $0.005 USDC per endpoint on Base mainnet ($0.01 for `/ai`)
 - `GET /api/rsi/` — RSI heatmap
 - `GET /api/ao/` — Awesome Oscillator screener
 - `GET /api/indicator/today` — today's triggered ALSAT & indicator signals (TD9, AlphaTrend, etc.)
+- `GET /api/stronger-weaker-coins/` — during a BTC drop: `stronger_coins` (held up, long candidates) and `weaker_coins` (fell more than BTC, short candidates).
 
 ### Coin Info
 - `GET /api/coinstats/<symbol>` — market cap, volume, supply

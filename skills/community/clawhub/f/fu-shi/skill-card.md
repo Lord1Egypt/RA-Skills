@@ -1,40 +1,53 @@
-## Description: <br>
-Fu Shi helps an agent decompose complex tasks into prioritized steps, choose an execution strategy, and track progress and blockers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fu Shi helps agents decompose complex tasks, choose execution strategies, prioritize work, and track progress and blockers.
 
-## Publisher: <br>
-[lt8899789](https://clawhub.ai/user/lt8899789) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lt8899789](https://clawhub.ai/user/lt8899789)
 
-## Use Case: <br>
-Developers and agents use Fu Shi to turn complex work into ordered subtasks, select an execution approach, and keep lightweight status on progress and blockers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Planning output may be generic or incomplete for complex tasks. <br>
-Mitigation: Review generated steps, dependencies, estimates, and blockers before using them as an execution plan. <br>
-Risk: The release includes an executable local Node.js helper. <br>
-Mitigation: Review future updates before installation, especially if integrations, file access, credential use, or persistent progress storage are added. <br>
+## Use Case:
 
+Developers and agents use this skill to turn broad goals into ordered subtasks, select a planning approach, estimate effort, identify risks, and report basic progress state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lt8899789/fu-shi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance and JSON task-planning structures] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces task decompositions, strategy plans, and lightweight progress summaries; local helper commands accept decompose, plan, and track inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.35 (source: release evidence and SKILL.md frontmatter) <br>
+Risk: Generated plans can be incomplete, misprioritized, or based on limited task context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the proposed subtasks, dependencies, priorities, risks, and blockers before using them to drive execution.
+
+Risk: The skill is a Chinese-language planning helper and may not fit teams that require another working language.
+
+Mitigation: Confirm that the generated planning text is understandable to the intended reviewers and translate or adapt it where needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lt8899789/skills/fu-shi)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance, shell commands]
+
+**Output Format:** [JSON responses and concise planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language task decomposition, strategy planning, and progress tracking outputs.]
+
+## Skill Version(s):
+
+1.0.35 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

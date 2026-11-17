@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1118">
+  <title>ClawTrader · 交易工作台</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark">C</div>
+        <div>
+          <div class="brand-name">ClawTrader</div>
+          <div class="brand-sub">交易工作台 <span id="modeBadge" class="mode-badge">DEMO</span></div>
+        </div>
+      </div>
+      <div class="topbar-center">
+        <label class="account-picker">
+          <span>账户</span>
+          <select id="accountSelect" aria-label="选择账户"></select>
+        </label>
+        <span id="connectionBadge" class="status-pill status-warn"><i></i>检查连接</span>
+        <span class="trading-day" id="tradingDay">交易日 --</span>
+      </div>
+      <div class="top-actions">
+        <button class="icon-button" id="refreshButton" title="刷新数据" aria-label="刷新数据">↻</button>
+        <button class="icon-button" id="settingsButton" title="设置" aria-label="设置">⚙</button>
+        <div class="avatar">Q</div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="account-strip panel">
+        <div class="fund-card primary-fund">
+          <span class="metric-label">账户权益</span>
+          <strong id="balanceValue">--</strong>
+          <span class="metric-foot" id="profitValue">当日盈亏 --</span>
+        </div>
+        <div class="fund-card">
+          <span class="metric-label">可用资金</span>
+          <strong id="availableValue">--</strong>
+          <span class="metric-foot">可开仓资金</span>
+        </div>
+        <div class="fund-card">
+          <span class="metric-label">占用保证金</span>
+          <strong id="marginValue">--</strong>
+          <span class="metric-foot" id="frozenValue">冻结 --</span>
+        </div>
+        <div class="fund-card">
+          <span class="metric-label">持仓盈亏</span>
+          <strong id="positionProfitValue">--</strong>
+          <span class="metric-foot">实时估算</span>
+        </div>
+        <div class="fund-card account-health-card">
+          <span class="metric-label">实例状态</span>
+          <strong id="accountState">--</strong>
+          <span class="metric-foot" id="accountStateDetail">--</span>
+        </div>
+      </section>
+
+      <section class="quote-panel panel">
+        <div class="panel-heading">
+          <div>
+            <span class="section-kicker">MARKET</span>
+            <h1>自选行情</h1>
+          </div>
+          <div class="heading-actions">
+            <label class="search-box"><span>⌕</span><input id="instrumentSearch" placeholder="搜索合约" autocomplete="off"></label>
+            <button class="text-button" id="subscribeButton">+ 添加</button>
+          </div>
+        </div>
+        <div class="quote-table-wrap">
+          <table class="quote-table">
+            <thead><tr><th>合约</th><th>最新</th><th>涨跌</th><th>买一 / 量</th><th>卖一 / 量</th><th>成交量</th><th></th></tr></thead>
+            <tbody id="quoteRows"></tbody>
+          </table>
+        </div>
+        <div class="quote-footer"><span class="live-dot"></span><span id="quoteUpdated">行情等待中</span><span class="footer-hint">点击行情行填入委托板</span></div>
+      </section>
+
+      <aside class="order-panel panel">
+        <div class="panel-heading compact-heading">
+          <div><span class="section-kicker">ORDER TICKET</span><h2>委托下单</h2></div>
+          <span class="ticket-account" id="ticketAccount">账户 --</span>
+        </div>
+        <form id="orderForm" class="order-form">
+          <div class="field-row">
+            <label class="field grow"><span>合约</span><input id="instrumentInput" name="instrument" value="al2610" required></label>
+            <label class="field exchange-field"><span>市场</span><select id="exchangeInput" name="exchange"><option>SHFE</option><option>DCE</option><option>CZCE</option><option>CFFEX</option><option>INE</option><option>GFEX</option></select></label>
+          </div>
+          <div class="segmented direction-segment" role="group" aria-label="买卖方向">
+            <button type="button" class="segment buy active" data-direction="buy">买入</button>
+            <button type="button" class="segment sell" data-direction="sell">卖出</button>
+          </div>
+          <div class="segmented offset-segment" role="group" aria-label="开平方式">
+            <button type="button" class="segment active" data-offset="open">开仓</button>
+            <button type="button" class="segment" data-offset="close">平仓</button>
+            <button type="button" class="segment" data-offset="close_today">平今</button>
+            <button type="button" class="segment" data-offset="close_yesterday">平昨</button>
+          </div>
+          <div class="price-block">
+            <div class="price-type-row">
+              <span class="field-label">价格</span>
+              <div class="mini-segmented"><button type="button" class="mini-segment active" data-price-type="limit">限价</button><button type="button" class="mini-segment" data-price-type="market">市价</button></div>
+            </div>
+            <div class="price-input-wrap"><input id="priceInput" name="price" type="number" step="0.01" min="0" value="20840" required><span id="priceHint">买一 20,840</span></div>
+          </div>
+          <div class="field-row">
+            <label class="field grow"><span>手数</span><div class="number-control"><button type="button" data-step="-1">−</button><input id="volumeInput" name="volume" type="number" value="1" min="1" max="100000" required><button type="button" data-step="1">+</button></div></label>
+            <label class="field"><span>有效</span><select id="timeCondInput"><option value="gfd">当日有效</option><option value="ioc">立即成交</option></select></label>
+          </div>
+          <div class="quick-qty"><span>快捷手数</span><button type="button" data-qty="1">1</button><button type="button" data-qty="2">2</button><button type="button" data-qty="5">5</button><button type="button" data-qty="10">10</button></div>
+          <div class="order-summary"><span id="orderSummary">买入 · al2610 · 开仓 · 1 手</span><strong id="estimatedValue">占用估算 --</strong></div>
+          <button class="primary-button submit-button" type="submit"><span>下单</span><kbd>Enter</kbd></button>
+          <div class="ticket-note"><span class="shield-icon">◇</span> 双重确认 · 幂等提交 · 账户 <b id="ticketAccountFoot">--</b></div>
+        </form>
+      </aside>
+
+      <section class="positions-panel panel data-panel">
+        <div class="panel-heading data-heading">
+          <div><span class="section-kicker">ACCOUNT DATA</span><h2>账户数据</h2></div>
+          <div class="tabs" role="tablist"><button class="tab active" data-tab="positions">持仓 <span id="positionCount">0</span></button><button class="tab" data-tab="orders">委托 <span id="orderCount">0</span></button><button class="tab" data-tab="trades">成交 <span id="tradeCount">0</span></button></div>
+          <button class="icon-button subtle" id="dataRefreshButton" title="刷新账户数据" aria-label="刷新账户数据">↻</button>
+        </div>
+        <div class="data-table-wrap"><table class="data-table"><thead id="dataHead"></thead><tbody id="dataRows"></tbody></table></div>
+      </section>
+    </main>
+
+    <div class="login-backdrop" id="loginPanel" hidden>
+      <form class="login-modal" id="loginForm">
+        <span class="section-kicker">SECURE ACCESS</span>
+        <h2>登录交易工作台</h2>
+        <p>请输入服务访问令牌。</p>
+        <label class="login-field"><span>访问令牌</span><input id="loginToken" type="password" autocomplete="current-password" required></label>
+        <button class="primary-button submit-button" type="submit">进入工作台</button>
+        <div class="login-error" id="loginError" role="alert"></div>
+      </form>
+    </div>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+    <div class="modal-backdrop" id="confirmModal" hidden>
+      <div class="confirm-modal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+        <div class="modal-icon">!</div><div class="modal-copy"><span class="section-kicker">CONFIRM ORDER</span><h2 id="confirmTitle">确认提交委托</h2><p id="confirmDetails"></p><div class="modal-warning">请确认账户、合约、方向和手数。提交后将直接发送至交易网关。</div></div>
+        <div class="modal-actions"><button class="secondary-button" id="cancelConfirm">返回修改</button><button class="primary-button" id="submitConfirm">确认下单</button></div>
+      </div>
+    </div>
+  </div>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

@@ -1,44 +1,56 @@
-## Description: <br>
-Aggregates and deduplicates AI news from multiple Chinese and English technology sources into a categorized digest with titles, summaries, and links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aggregate and deduplicate AI news from multiple Chinese and English tech news sources into a single merged digest.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-Users and teams use this skill to gather current AI news from multiple Chinese and English technology sources and receive a deduplicated, categorized markdown digest. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill makes outbound web requests and may use general web search when source pages fail. <br>
-Mitigation: Review the default source list for the deployment environment and verify important items against linked source pages before relying on the digest. <br>
-Risk: News coverage can be incomplete, stale, duplicated, or unavailable when public sources fail or change. <br>
-Mitigation: Treat the digest as a current-news aid, preserve source links in the output, and note failed sources when coverage is incomplete. <br>
+## Use Case:
 
+External users and developers use this skill to fetch current AI news from multiple Chinese and English technology sources, merge duplicate stories, categorize the results, and produce a concise digest in the user's language.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/big-ai-news) <br>
-- [TechNews AI category](https://technews.tw/category/ai/) <br>
-- [QbitAI](https://www.qbitai.com/) <br>
-- [TechNice AI category](https://www.technice.com.tw/category/issues/ai/) <br>
-- [AIBase daily news](https://news.aibase.com/zh/daily) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown news digest with categorized numbered entries, briefs, links, and top picks.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Adapts response language to the user's query; duplicate stories may be merged with multiple source links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on web access to public news pages and search results, so some sources may be unavailable or return incomplete results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Continue with available sources, disclose failed sources in the digest, and use broad web search only as a last resort.
+
+Risk: Current news aggregation can include duplicate, stale, or incorrectly summarized stories.
+
+Mitigation: Deduplicate by comparing titles and topics, include source links for review, and keep briefs concise.
+
+## Reference(s):
+
+- [TechNews AI](https://technews.tw/category/ai/)
+- [QbitAI](https://www.qbitai.com/)
+- [TechNice AI](https://www.technice.com.tw/category/issues/ai/)
+- [AIBase Daily](https://news.aibase.com/zh/daily)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown news digest with categorized numbered lists, brief summaries, and source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output language follows the user's query language; mixed-language requests default to Chinese.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

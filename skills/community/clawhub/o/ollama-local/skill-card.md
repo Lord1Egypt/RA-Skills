@@ -1,40 +1,57 @@
-## Description: <br>
-Manage and use local Ollama models. Use for model management (list/pull/remove), chat/completions, embeddings, and tool-use with local LLMs. Covers OpenClaw sub-agent integration and model selection guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and use local Ollama models for model management, chat and completion requests, embeddings, tool-use workflows, and OpenClaw sub-agent integration.
 
-## Publisher: <br>
-[Timverhoogt](https://clawhub.ai/user/Timverhoogt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[timverhoogt](https://clawhub.ai/user/timverhoogt)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage Ollama models, run local chat or completion requests, create embeddings, and test tool-use workflows through OpenClaw sub-agents. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, completions, embeddings, and tool-use requests may be sent to a configured remote Ollama server. <br>
-Mitigation: Keep OLLAMA_HOST on localhost for sensitive prompts, use only trusted remote Ollama servers, and confirm the target host before sending requests. <br>
-Risk: Model pull, removal, and sub-agent workflows can consume disk or network resources, or remove local model files. <br>
-Mitigation: Double-check the target host and model name before running pull, rm, or sub-agent workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Model Guide](references/models.md) <br>
-- [Ollama Local on ClawHub](https://clawhub.ai/Timverhoogt/ollama-local) <br>
+## Use Case:
 
+Developers and agent operators use this skill to interact with local or trusted remote Ollama servers, manage installed models, run prompts and embeddings, test tool-calling behavior, and configure Ollama-backed sub-agents.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and command output from Ollama helper scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May stream model responses and print model metadata, embeddings summaries, or tool-call traces depending on the selected command.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts, embedding text, and tool-use messages are sent to the configured Ollama host.
+
+Mitigation: Keep OLLAMA_HOST on localhost for private work, or use only a trusted remote Ollama server with appropriate transport protections.
+
+Risk: Sensitive data could be exposed through prompts or embedding requests.
+
+Mitigation: Avoid sending secrets or confidential text in prompts, embedding input, or tool-call messages.
+
+Risk: The remove-model command deletes a local Ollama model.
+
+Mitigation: Verify the target model name before using rm.
+
+## Reference(s):
+
+- [Model Guide](artifact/references/models.md)
+- [ClawHub Skill Page](https://clawhub.ai/timverhoogt/skills/ollama-local)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, JSON examples, and text responses from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May send prompts, embedding text, and tool-call messages to the configured OLLAMA_HOST. Model removal commands delete local Ollama models.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

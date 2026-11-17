@@ -1,46 +1,63 @@
-## Description: <br>
-Provides a unified web search interface that routes queries across configured search providers, merges results, falls back between providers, and reports provider alerts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+联网搜索统一接口 - 自动选择最优服务商，支持降级、合并、告警
 
-## Publisher: <br>
-[naive-white-expert](https://clawhub.ai/user/naive-white-expert) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naive-white-expert](https://clawhub.ai/user/naive-white-expert)
 
-## Use Case: <br>
-Developers and agents use this skill to issue web searches through one Python API while selecting search intensity, date filters, site filters, platform filters, and domestic or overseas routing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries, domains, date filters, platform filters, and related parameters may be sent to whichever configured third-party search provider the skill routes to or falls back to. <br>
-Mitigation: Configure only providers approved for the intended data, and avoid searching for credentials, confidential internal material, private customer data, regulated content, or other sensitive information unless provider handling is permitted. <br>
-Risk: Fallback routing can send a query to alternate configured providers when the preferred provider fails or returns empty results. <br>
-Mitigation: Provide API keys only for providers the deployment is allowed to use, and use the documented region, platform, site, and exclude-site filters to narrow routing and results. <br>
+## Use Case:
 
+Developers and agents use this skill to run web searches through one interface that selects configured providers, applies routing and filters, and returns answers, sources, provider details, and alerts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/naive-white-expert/skills/unified-web-search) <br>
-- [Project homepage](https://github.com/naive-white-expert/unified-web-search) <br>
-- [Provider comparison](references/comparison.md) <br>
-- [Volcengine key types](references/volcengine-key-types.md) <br>
-- [DashScope](https://dashscope.aliyun.com/) <br>
-- [Tavily](https://tavily.com/) <br>
-- [Volcengine Search API endpoint](https://open.feedcoopapi.com/search_api/web_search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration, guidance] <br>
-**Output Format:** [Python dictionary with answer text, source metadata, provider list, alerts, and routing metadata] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns up to 10 deduplicated sources and may include retry hints, date range metadata, filter notes, and fallback provider details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.1 (source: ClawHub release evidence) <br>
+Risk: Search terms, filters, and related metadata may be sent to the configured external search providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure only approved providers and avoid searching for secrets, regulated data, or other sensitive information.
+
+Risk: The dependency guidance includes an unpinned requests install instruction.
+
+Mitigation: Install in a controlled environment and pin or audit dependencies according to local policy until the publisher updates dependency guidance.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/naive-white-expert/skills/unified-web-search)
+- [Publisher profile](https://clawhub.ai/user/naive-white-expert)
+- [Project homepage](https://github.com/naive-white-expert/unified-web-search)
+- [Service provider comparison](references/comparison.md)
+- [Volcengine key types](references/volcengine-key-types.md)
+- [DashScope](https://dashscope.aliyun.com/)
+- [Tavily](https://tavily.com/)
+- [Volcengine Search API endpoint](https://open.feedcoopapi.com/search_api/web_search)
+- [Volcengine Search console](https://console.volcengine.com/search-infinity/api-key)
+- [Volcengine Ark console](https://console.volcengine.com/ark/)
+- [Volcengine Agent Plan console](https://console.volcengine.com/ark/region:ark+cn-beijing/openManagement?LLM=%7B%7D&advancedActiveKey=agentPlan)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance]
+
+**Output Format:** [JSON object with answer text, sources, provider names, alerts, and applied filter metadata]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires at least one configured external search provider API key.]
+
+## Skill Version(s):
+
+2.2.1 (source: server release metadata; SKILL.md frontmatter states 2.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

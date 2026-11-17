@@ -1,41 +1,58 @@
-## Description: <br>
-OAuth Device Flow authentication for the CareMax Health API, used by CareMax skills to obtain and refresh local tokens for health-data API access. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CareMax Auth helps agents authenticate to the CareMax Health API with OAuth Device Flow and use bundled shell helpers for token-backed health-data requests, file uploads, OCR sessions, and downloads.
 
-## Publisher: <br>
-[kittenyang](https://clawhub.ai/user/kittenyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kittenyang](https://clawhub.ai/user/kittenyang)
 
-## Use Case: <br>
-Developers and agent operators use this skill to authenticate against CareMax and support related CareMax workflows for reading health indicators, querying records, uploading medical files, running OCR, and saving reviewed reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive health data and can read, upload, download, OCR, write, and delete medical records. <br>
-Mitigation: Install only in trusted environments, review requested actions before execution, and require explicit user confirmation before uploads, downloads, writes, or deletes. <br>
-Risk: The authentication flow stores reusable local tokens and may expose tokens in command output. <br>
-Mitigation: Protect the local credentials file with strict file permissions, avoid sharing logs that contain token output, and prefer releases that redact tokens. <br>
-Risk: Automatic authentication and token refresh can grant broad API access without repeated user prompts. <br>
-Mitigation: Use least-privilege accounts where possible, review OAuth scopes before approval, and revoke tokens when the skill is no longer needed. <br>
+## Use Case:
 
+Developers and agent users use this skill to connect a CareMax account, manage OAuth tokens, and run authenticated CareMax health-data workflows such as logging indicators, uploading medical files, and OCR processing.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OAuth credentials and CareMax API responses; OCR progress is emitted as JSON lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill can use CareMax tokens to read and write health data, upload and OCR medical files, download files, and delete upload sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted CareMax workflows, review the requested OAuth scope before approval, and avoid running data-changing commands unless the requested action is clear.
+
+Risk: Command output and local credential files may expose sensitive OAuth tokens or health data.
+
+Mitigation: Treat terminal output, logs, and ~/.caremax/credentials.json as sensitive; do not share them, and revoke or refresh credentials if exposed.
+
+Risk: Custom base URLs can redirect authentication and health-data requests away from the normal CareMax API.
+
+Mitigation: Use custom base URLs only for trusted local development or approved staging endpoints.
+
+## Reference(s):
+
+- [CareMax Auth ClawHub listing](https://clawhub.ai/kittenyang/skills/caremax-auth)
+- [kittenyang publisher profile](https://clawhub.ai/user/kittenyang)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON, files, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local OAuth credentials and may download files when the user runs the bundled scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,61 @@
-## Description: <br>
-Book charter flights, private jet bookings and group charter aircraft with exclusive flight services, with related travel search support powered by Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book charter flights, private jet bookings, group charter aircraft, and related travel services using live flyai CLI results powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External travelers and travel planners use this skill to search charter-compatible, private-jet-style, or group-charter flight options through the flyai CLI. The skill formats real-time flight results with booking links and notes that actual charter or private-jet booking requires direct contact with operators or airlines. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel-search results may be mistaken for actual charter or private-jet booking availability. <br>
-Mitigation: State that returned results are scheduled flights for route and pricing context, and that actual charter or private-jet booking requires direct contact with operators or airlines. <br>
-Risk: The workflow requires installing and using an external flyai CLI with travel itinerary details. <br>
-Mitigation: Review the CLI before use and avoid entering passport, payment, or other highly sensitive personal data. <br>
-Risk: Responses can become misleading if generated from model knowledge rather than live CLI output. <br>
-Mitigation: Use only flyai CLI results for travel answers and require booking links for every displayed result. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search charter-compatible route options, private-jet-style premium routes, and fallback flight searches via the flyai CLI. It formats live travel results into bookable Markdown while reminding users that actual charter or private jet booking requires direct operator or airline confirmation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/charter-flight) <br>
-- [Parameter and output templates](references/templates.md) <br>
-- [Scenario playbooks](references/playbooks.md) <br>
-- [Failure recovery](references/fallbacks.md) <br>
-- [Execution runbook](references/runbook.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with booking links and inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires flyai CLI output; shown flight results should include booking links and a brand tag.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill instructs agents to install the flyai CLI globally and fallback material mentions sudo installation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and review the CLI in a controlled environment; do not allow automatic sudo or global package installation without explicit operator approval.
+
+Risk: The security evidence flags vendor-only booking links and misleading charter framing.
+
+Mitigation: Treat results as scheduled-flight references and verify actual charter or private jet availability directly with operators or airlines before booking.
+
+Risk: The runbook describes local execution logging that could capture sensitive travel details.
+
+Mitigation: Disable or tightly control logging before use with sensitive itineraries, and define retention and access controls for any travel logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dingtom336-gif/skills/charter-flight)
+- [Templates](references/templates.md)
+- [Playbooks](references/playbooks.md)
+- [Fallbacks](references/fallbacks.md)
+- [Runbook](references/runbook.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with booking links, comparison tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires live flyai CLI output and booking links for listed results; should not provide travel results from model memory.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

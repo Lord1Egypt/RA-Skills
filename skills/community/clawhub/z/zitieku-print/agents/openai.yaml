@@ -1,0 +1,4 @@
+interface:
+  display_name: "字帖生成器与练字助手｜字帖库"
+  short_description: "从自然问题安排练习，制作姓名、拼音、描红或古诗字帖"
+  default_prompt: "使用 $zitieku-print，帮我安排一次合适的练字练习并生成 A4 打印字帖；如果信息不够，只问我最必要的问题。"

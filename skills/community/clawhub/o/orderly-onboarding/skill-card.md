@@ -1,44 +1,61 @@
-## Description: <br>
-Agent onboarding for Orderly Network - omnichain perpetual futures infrastructure, MCP server, skills, and developer quickstart <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent onboarding for Orderly Network - omnichain perpetual futures infrastructure, MCP server, skills, and developer quickstart
 
-## Publisher: <br>
-[Tarnadas](https://clawhub.ai/user/Tarnadas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tarnadas](https://clawhub.ai/user/tarnadas)
 
-## Use Case: <br>
-External developers and engineers use this skill to orient agents around Orderly Network, install related MCP and skill tooling, and find the right documentation or workflow for DEX, SDK, API, and trading-bot development. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Installation commands use npx/npm packages and may change local agent or MCP configuration. <br>
-Mitigation: Review package names and source before installing, prefer pinned versions and local installs where practical, and inspect MCP or agent configuration changes. <br>
-Risk: The skill covers leveraged perpetual futures workflows where incorrect setup or use can lead to rapid liquidation or loss of funds. <br>
-Mitigation: Use testnet first, confirm trading and authentication flows, and review leveraged-trading risks before using real funds. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Orderly Network Documentation](https://orderly.network/docs) <br>
-- [Orderly Network SDK Repository](https://github.com/orderlynetwork/js-sdk) <br>
-- [Orderly Example DEX Repository](https://github.com/orderlynetwork/example-dex) <br>
-- [Orderly MCP Server on npm](https://www.npmjs.com/package/@orderly.network/mcp-server) <br>
-- [Orderly Skills on npm](https://www.npmjs.com/package/@orderly.network/skills) <br>
-- [Orderly Tokenomics Documentation](https://orderly.network/docs/introduction/tokenomics) <br>
+## Use Case:
 
+Developers, builders, aggregators, trading desks, and bot authors use this skill to understand Orderly Network, configure agent tooling, and find the right Orderly SDK, API, MCP, and skill resources for onboarding.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash, JSON, and TOML code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include package installation commands, MCP client configuration snippets, and links to Orderly documentation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill recommends unpinned package execution through npx defaults or @latest.
+
+Mitigation: Pin package versions before running install or MCP setup commands.
+
+Risk: The skill includes broad persistent agent configuration and all-agent global install examples.
+
+Mitigation: Prefer project-local installation, install only the needed Orderly pieces, and review MCP configuration diffs before applying them.
+
+## Reference(s):
+
+- [Orderly Documentation](https://orderly.network/docs)
+- [Orderly Tokenomics](https://orderly.network/docs/introduction/tokenomics)
+- [Orderly API](https://api.orderly.org)
+- [Orderly Testnet API](https://testnet-api.orderly.org)
+- [Orderly Chain Info Endpoint](https://api.orderly.org/v1/public/chain_info)
+- [Orderly JavaScript SDK](https://github.com/orderlynetwork/js-sdk)
+- [Orderly Example DEX](https://github.com/orderlynetwork/example-dex)
+- [Orderly MCP Server Package](https://www.npmjs.com/package/@orderly.network/mcp-server)
+- [Orderly Skills Package](https://www.npmjs.com/package/@orderly.network/skills)
+- [ClawHub Skill Page](https://clawhub.ai/tarnadas/skills/orderly-onboarding)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and JSON/TOML configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes onboarding checklists, package installation commands, MCP setup examples, API endpoints, and links to related Orderly skills and documentation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

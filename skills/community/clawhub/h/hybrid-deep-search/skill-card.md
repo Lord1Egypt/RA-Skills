@@ -1,44 +1,58 @@
-## Description: <br>
-Hybrid Deep Search routes search queries between Brave API for fast lookup and OpenAI Codex for deeper analysis based on query complexity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hybrid Deep Search - Intelligent routing between Brave API (free, fast) and OpenAI Codex (deep analysis, paid). Auto-selects optimal search strategy based on query complexity.
 
-## Publisher: <br>
-[scsun1978](https://clawhub.ai/user/scsun1978) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[scsun1978](https://clawhub.ai/user/scsun1978)
 
-## Use Case: <br>
-Developers and agents use this skill to run query-driven web research with automatic routing between quick search and deeper synthesis modes. It is intended for fact lookup, comparison, analysis, and focused research workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Queries may include secrets, personal data, internal URLs, or proprietary text that could be sent to external search or model providers. <br>
-Mitigation: Do not include sensitive data in queries, and keep API keys in environment variables rather than command text or committed configuration. <br>
-Risk: Deep search mode can incur OpenAI usage costs. <br>
-Mitigation: Use automatic or quick mode for simple lookups and monitor OpenAI API usage when enabling Codex mode. <br>
-Risk: The artifact describes some provider behavior as simulated or requiring real integration, so returned results may not reflect live provider data in all environments. <br>
-Mitigation: Verify actual Brave and OpenAI provider integration before relying on the skill for production research results. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/scsun1978/hybrid-deep-search) <br>
-- [Brave Search API](https://brave.com/search/api/) <br>
-- [OpenAI GPT-5-Codex Model Documentation](https://platform.openai.com/docs/models/gpt-5-codex) <br>
-- [OpenAI API Reference](https://platform.openai.com/docs/api-reference) <br>
+## Use Case:
 
+Developers and agent users use this skill to route search queries between fast web lookup and deeper Codex-assisted analysis based on query complexity. It supports quick fact finding, comparison research, news-oriented lookup, academic-oriented lookup, and structured search output.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown, JSON, or plain text command-line output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include routing analysis, selected search mode, engine status, error messages, and formatted search or analysis results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The security review says auto mode may route sensitive queries to external providers and may trigger paid OpenAI usage.
+
+Mitigation: Review queries before using auto or codex mode, configure OPENAI_API_KEY deliberately, and use quick mode when external paid routing is not acceptable.
+
+Risk: The security review says the skill may be a prototype and may not perform real search yet.
+
+Mitigation: Validate behavior in a controlled workspace, check returned source quality, and treat results as unverified until the search path is confirmed.
+
+Risk: The security review says declared shell and network permissions are broad for sensitive workspaces.
+
+Mitigation: Narrow allowed commands and network access before deployment, and review the skill before installation.
+
+## Reference(s):
+
+- [Brave Search API](https://brave.com/search/api/)
+- [OpenAI GPT-5-Codex](https://platform.openai.com/docs/models/gpt-5-codex)
+- [OpenAI API Reference](https://platform.openai.com/docs/api-reference)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, JSON, or plain text search results with optional command-line usage and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes queries in quick, codex, or auto mode; codex mode requires OPENAI_API_KEY and may use paid external API access.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

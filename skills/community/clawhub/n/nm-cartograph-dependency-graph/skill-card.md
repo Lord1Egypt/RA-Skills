@@ -1,38 +1,50 @@
-## Description: <br>
-Generates a Mermaid dependency graph showing import relationships between modules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a Mermaid dependency graph showing import relationships between modules.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to analyze module import relationships, identify coupling or circular dependencies, and plan refactors with Mermaid dependency diagrams. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation language can lead the agent to inspect more of a codebase than intended. <br>
-Mitigation: Use explicit prompts with a target path, package, or module when requesting dependency analysis. <br>
+## Use Case:
 
+Developers and engineers use this skill to visualize import dependencies between modules, packages, or plugins, helping them understand coupling, find circular dependencies, and assess refactoring impact.
 
-## Reference(s): <br>
-- [Cartograph plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, code, guidance] <br>
-**Output Format:** [Markdown with Mermaid code blocks and concise analysis notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dependency counts, high fan-in and fan-out modules, and circular dependency notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: Dependency names and relationships may be sent to Mermaid Chart without a privacy warning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before installing, check whether sharing dependency information with Mermaid Chart is acceptable and whether that destination is approved under your repository’s data-sharing rules.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/athola/skills/nm-cartograph-dependency-graph)
+- [Project page listed in Clawdis metadata](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Text]
+
+**Output Format:** [Mermaid flowchart with dependency analysis notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Shows directed import relationships, dependency groupings, external or optional dependencies, and any detected cycles.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

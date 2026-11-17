@@ -1,40 +1,55 @@
-## Description: <br>
-Helps agents diagnose and redesign incentive systems for compensation, OKRs, contracts, platform rules, and performance management by mapping goals, actors, current incentives, gaming risks, and monitoring plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users diagnose and redesign incentives that shape behavior in teams, compensation, performance systems, contracts, and platforms.
 
-## Publisher: <br>
-[deciqai](https://clawhub.ai/user/deciqai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deciqai](https://clawhub.ai/user/deciqai)
 
-## Use Case: <br>
-External users, developers, and business operators use this skill to analyze incentive-driven behavior and design aligned compensation, KPI, policy, contract, or platform-rule structures. It is intended for systemic incentive diagnosis, not for excusing individual misconduct or providing psychological persuasion tactics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce compensation, contract, policy, or management recommendations that may be mistaken for legal, HR, or financial advice. <br>
-Mitigation: Treat outputs as decision support and have qualified legal, HR, financial, or domain reviewers approve changes before applying them to real incentive systems. <br>
+## Use Case:
 
+Managers, operators, and product designers use this skill to find incentive misalignment and design compensation, metrics, contracts, or platform rules that encourage desired behavior.
 
-## Reference(s): <br>
-- [Sources - incentive-design](references/sources.md) <br>
-- [Method in Action: Munger 1995 + FedEx + Modern Applications](examples/munger-1995-fedex-modern-applications.md) <br>
-- [deciqAI](https://deciqai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces structured incentive analysis with goal/actor mapping, current incentives, alignment diagnosis, redesign checklist, pilot scope, monitoring plan, and review cycle.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Risk: Proposed compensation or policy changes may be incorrect or misleading if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes before applying them.
+
+Risk: Reusable examples could expose confidential employee details.
+
+Mitigation: Omit confidential employee details from reusable examples.
+
+## Reference(s):
+
+- [Primary sources](artifact/references/sources.md)
+- [ClawHub release page](https://clawhub.ai/deciqai/skills/incentive-design)
+- [Incentive Design overview](https://deciqai.com/c/incentive-design)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Guidance, Markdown]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [A structured diagnosis and redesign with gaming countermeasures, pilot scope, monitoring, and review cycle.]
+
+## Skill Version(s):
+
+1.0.6 (source: server-resolved release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

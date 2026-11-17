@@ -1,40 +1,51 @@
-## Description: <br>
-Skill Publish helps agents audit, clean, publish, and verify SKILL.md-based skills for ClawHub and GitHub. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides skill authors through auditing, sanitizing, verifying, and publishing agent skills to ClawHub, SkillHub, and GitHub.
 
-## Publisher: <br>
-[haiyangchenbj](https://clawhub.ai/user/haiyangchenbj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[haiyangchenbj](https://clawhub.ai/user/haiyangchenbj)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to audit skill packages for publish readiness, prepare clean release contents, and coordinate publishing to ClawHub and GitHub. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security scan reports suspicious publish behavior involving external publishing and repository file changes. <br>
-Mitigation: Run audit mode first, review the exact file list and target version, and proceed with publish mode only after confirming the intended ClawHub and GitHub targets. <br>
-Risk: Publishing workflows can expose or modify content if credentials are too broad or the wrong repository is targeted. <br>
-Mitigation: Use a narrowly scoped GitHub token, verify the repository target before publishing, and review generated changes before relying on them. <br>
+## Use Case:
 
+Developers and skill authors use this workflow to audit source content for personal data, credentials, and other publishing concerns, then prepare and verify a release. Publishing stages include explicit approval gates before external publication.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/haiyangchenbj/workbuddy-skill-publish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance, configuration] <br>
-**Output Format:** [Markdown reports with command snippets and checklist-style publish status] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audit tables, clean-file lists, publish targets, version information, URLs, and commit or publish identifiers.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: ClawScan rates the release suspicious, citing reported source-file overwrite and safeguard concerns; scan coverage is incomplete (7 of 9 components) and some checks were partial.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the reported overwrite behavior, approval safeguards, and network permissions before use. Inspect proposed file changes and require explicit approval before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/haiyangchenbj/skills/skill-audit-publish)
+- [Publish rules](references/publish-rules.md)
+- [SkillHub publishing guide](references/skillhub-publish.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Audit summaries and approval details in text or Markdown, publishing files, and command examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Files and summaries depend on the source skill and selected publishing stages.]
+
+## Skill Version(s):
+
+1.5.12 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-Monitor Nate B Jones's YouTube channel, pull each new video transcript (YouTube captions or auto-transcribed audio), summarize it with an abstract + bullet highlights + reference links, and distribute the digest via email, chat, and/or a document per user-configured outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor Nate B Jones's YouTube channel, pull each new video transcript (YouTube captions or auto-transcribed audio), summarize it with an abstract + bullet highlights + reference links, and distribute the digest via email, chat, and/or a document per user-configured outputs.
 
-## Publisher: <br>
-[arpee](https://clawhub.ai/user/arpee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arpee](https://clawhub.ai/user/arpee)
 
-## Use Case: <br>
-Subscribers, researchers, and operators use this skill to monitor Nate B Jones uploads, summarize each new video, and send a concise digest to configured email, chat, or document destinations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated summaries may be sent outside the local environment through configured email, chat, or document destinations. <br>
-Mitigation: Before running, confirm recipients, chat targets, document sharing settings, and whether scheduled automation should be enabled. <br>
-Risk: The workflow relies on YouTube, transcript, email, chat, and document credentials that may grant access beyond this single digest task. <br>
-Mitigation: Use the narrowest practical credential scopes and review configured API keys and service permissions before deployment. <br>
+## Use Case:
 
+Employees, creators, and operators use this skill to monitor Nate B Jones uploads, turn new video transcripts into concise digests, and publish those digests to configured recipients or archives.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arpee/nate-b-jones-digest) <br>
-- [Configuration example](references/config-example.yml) <br>
-- [Nate B Jones YouTube channel](https://www.youtube.com/@NateBJones) <br>
-- [youtube-transcript-api](https://pypi.org/project/youtube-transcript-api/) <br>
-- [Whisper CLI](https://github.com/openai/whisper) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown digest with optional plain text or HTML delivery outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Digests include an abstract, bullet highlights, and reference links; delivery channels and transcript handling are controlled by user configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Configured email, chat, or document destinations could send digests to unintended recipients.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Change the example recipients and sharing settings before running, and review the first generated digest before enabling routine delivery.
+
+Risk: Raw transcripts and scheduled run logs can accumulate retained content beyond the user's needs.
+
+Mitigation: Set a retention policy for transcripts, audio artifacts, and audit logs before automation is enabled.
+
+Risk: Automated polling and publishing can repeat or send stale digests if last-video tracking is misconfigured.
+
+Mitigation: Use the configured last-video log, keep lightweight audit records, and verify duplicate prevention during initial runs.
+
+## Reference(s):
+
+- [Configuration example](references/config-example.yml)
+- [youtube_transcript_api documentation](https://pypi.org/project/youtube-transcript-api/)
+- [Whisper CLI](https://github.com/openai/whisper)
+- [ClawHub skill page](https://clawhub.ai/arpee/skills/nate-b-jones-digest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown playbook with inline shell commands, configuration examples, and digest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise video digest bodies and optional delivery or archival instructions; raw transcripts are retained only for traceability and are not distributed by default.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

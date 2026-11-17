@@ -1,41 +1,54 @@
-## Description: <br>
-A content research writing assistant that helps users research topics, add citations, improve hooks, iterate outlines, and get draft feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese content research writing assistant for research, citations, hook improvement, outline iteration, and real-time feedback.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Writers, marketers, educators, and developers use this skill to plan, research, draft, cite, review, and polish long-form content such as articles, newsletters, tutorials, case studies, and documentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Research notes, citations, or suggested claims may be incorrect, outdated, or insufficiently supported. <br>
-Mitigation: Verify facts, quotations, links, and citations against authoritative sources before publishing. <br>
-Risk: Drafts, sources, or writing samples shared with the agent may include sensitive or unpublished material. <br>
-Mitigation: Provide only content and source material that is appropriate to use in the session. <br>
+## Use Case:
 
+External writers, content marketers, educators, and technical authors use this skill to plan, research, cite, draft, and refine articles, newsletters, tutorials, case studies, and documentation while preserving the writer's voice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guohongbin-git/content-research-writer-cn) <br>
-- [OpenClaw metadata homepage](https://clawhub.com/skills/content-research-writer-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with prose, outlines, citations, checklists, suggested edits, and inline shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce draft text, research notes, citation lists, feedback, and file-organization guidance for a writing project.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Research summaries or citations may be incomplete, stale, or unsupported.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify cited sources, quoted material, and factual claims before publishing.
+
+Risk: The skill may activate for broad writing requests and shape user drafts beyond the intended task.
+
+Mitigation: Confirm the target audience, tone, scope, and requested level of feedback before accepting major revisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guohongbin-git/skills/content-research-writer-cn)
+- [Artifact Metadata Homepage](https://clawhub.com/skills/content-research-writer-cn)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands]
+
+**Output Format:** [Markdown with outlines, citations, checklists, feedback sections, draft suggestions, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill may produce research summaries, citation lists, editorial alternatives, line edits, and pre-publication review checklists.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

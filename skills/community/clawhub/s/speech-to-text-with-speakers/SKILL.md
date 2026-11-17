@@ -1,7 +1,7 @@
 ---
 name: speech-to-text-with-speakers
-description: "Speech to Text With Speakers: Transcribe audio from file_id or public_url with three tiered actions for recordings up to 15, 30, or 60 minutes. Use when an agent needs speech to text with speakers, transcribe meeting recordings, generate subtitles and captions for videos, convert voice memos to searchable text, transcribe podcast episodes, transcribe extended, file id, public url through AgentPMT-hosted remote tool calls. Discovery terms: speech to text with speakers."
-version: 1.0.0
+description: "Speech to Text With Speakers: Transcribe audio from file_id or public_url with three tiered actions for recordings up to 15, 30, or 60 minutes. Use when an agent needs speech to text with speakers, transcribe meeting recordings, generate subtitles and captions for videos, convert voice memos to searchable text, transcribe podcast episodes, get task, task id, list tasks through AgentPMT-hosted remote tool calls. Discovery terms: speech to text with speakers, transcribe meeting recordings."
+version: 1.0.6
 homepage: https://www.agentpmt.com/marketplace/speech-to-text-with-speakers
 compatibility: "Agent instructions for AgentPMT-hosted remote tool calls. Follow this skill body for supported account, wallet, and setup routes. No local command runtime is declared."
 metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/marketplace/speech-to-text-with-speakers"}}
@@ -9,7 +9,7 @@ metadata: {"author":"agentpmt","openclaw":{"homepage":"https://www.agentpmt.com/
 # Speech to Text With Speakers
 
 ## Freshness
-Last updated: `2026-06-24`.
+Last updated: `2026-07-22`.
 
 If the current date is more than 7 days after the last updated date, reinstall this skill from skills.sh or ClawHub before relying on endpoints, schemas, setup steps, or examples.
 
@@ -19,7 +19,7 @@ Turn any audio recording into clean, searchable text in seconds. Transcribe voic
 ## Product Instructions
 ### Speech to Text
 
-Transcribe audio with one tool and choose the action that matches the upload length.
+Transcribe audio with one tool. Transcribe actions run as background tasks: the submit response returns a `task_id` immediately, and short clips usually complete inline in that same response. Poll `get_task` for anything still processing.
 
 #### Tool Call Format
 
@@ -59,11 +59,15 @@ Transcribe audio with one tool and choose the action that matches the upload len
 
 ```json
 {
-  "action": "transcribe_standard",
-  "file_id": "FILE_ID",
-  "output_format": "json",
-  "enable_word_timestamps": true,
-  "remove_filler_words": false
+  "action": "get_task",
+  "task_id": "TASK_ID"
+}
+```
+
+```json
+{
+  "action": "list_tasks",
+  "limit": 20
 }
 ```
 
@@ -72,24 +76,43 @@ Transcribe audio with one tool and choose the action that matches the upload len
 - `transcribe_quick`: audio up to 15 minutes. Price: 100 credits.
 - `transcribe_standard`: audio up to 30 minutes. Price: 150 credits.
 - `transcribe_extended`: audio up to 60 minutes. Price: 200 credits.
+- `get_task`: check a transcription task's progress and retrieve its result. Price: 1 credit.
+- `list_tasks`: list recent transcription tasks. Price: 1 credit.
+
+#### Async task flow
+
+- Every transcribe action returns a task envelope: `{action, task_id, status, ...}`. ALWAYS check `status` before polling — short clips finish within the submit request and return `status: "completed"` with `outputs` inline, costing zero polls.
+- When `status` is `"processing"`, poll `get_task` with the returned `task_id` every 10-15 seconds. `progress` advances as the job moves through download, validation, and recognition.
+- A completed task carries the full transcription payload in `outputs[0]`: the selected content inline (`text`, `srt_content`, `vtt_content`, or `json_data`), plus `speakers`, `word_count`, `confidence_score`, `audio_metadata`, and the File Manager artifact fields `result_file_id`/`result_signed_url`.
+- A failed task carries `error`. Tier-limit failures also carry `error_details` with `recommended_actions` — resubmit with the suggested larger tier.
+- If the service restarts mid-transcription, in-flight Google batch jobs resume automatically. Jobs that cannot resume are marked failed with an instruction to resubmit; they never sit in `processing` forever.
+
+#### Billing
+
+- Transcribe actions charge on submission. A task that later fails (for example, audio too long for the tier) is not auto-refunded — pick the tier from the recording length you already know, and check `error_details.recommended_actions` before resubmitting.
 
 #### Notes
 
 - Provide either `file_id` or `public_url`.
 - `public_url` must be an HTTPS URL and cannot point to private or internal network addresses.
+- Audio downloads are capped at 150MB. If a recording is larger, compress it to mp3 or m4a and retry.
 - If `language_code` is omitted, the tool defaults to `en-US`.
 - Supported output formats: `text`, `srt`, `vtt`, `json`.
 - Optional controls: `enable_diarization`, `enable_word_timestamps`, `remove_filler_words`, `enable_profanity_filter`, `max_alternatives`.
 - `remove_filler_words` defaults to `true`, which uses Google STT V2's cleaned transcript path.
 - Set `remove_filler_words` to `false` to preserve disfluencies through Vercel AI Gateway using the `openai/whisper-1` gateway model slug. This path always requests word-level timestamps from the gateway for clipping workflows.
 - `remove_filler_words=false` does not support `enable_diarization=true` or `max_alternatives` greater than `1`; use the default cleaned path for those features.
-- Subtitle responses include inline subtitle content and may also include stored file links during normal platform invocations.
+- `enable_diarization=true` supports audio up to 20 minutes (a provider limit). Longer recordings fail with guidance: disable diarization, or split the audio into 20-minute segments and transcribe them individually.
+- With `enable_diarization=true`, `text` output is speaker-labelled one line per turn (`[0:04] Speaker 0: ...`), inline and in the stored `transcription.txt`, so it is readable without reformatting. Without diarization it is the flat transcript. Speaker numbers match the `speaker_tag` values in `speakers`/`json_data`.
+- During invocations with File Manager storage available, `text` and `json` results are stored for every successful transcription; `srt` and `vtt` results are stored when the generated subtitle content is non-empty. The corresponding filenames are `transcription.txt`, `transcription.json`, `transcription.srt`, and `transcription.vtt`.
+- Stored artifacts are returned through the `result_file_id` and `result_signed_url` fields in `outputs[0]`. Agents should use `result_file_id` for later File Manager operations.
+- If transcription succeeds but artifact storage fails, the inline result remains available and `result_file_error` explains that the File Manager file could not be created.
 
 ## When To Use
 - Use this skill for `Speech to Text With Speakers` on AgentPMT.
 - Use it when an agent needs this specific tool's behavior, schema, inputs, outputs, and invocation shape.
-- Search and activation keywords: speech to text with speakers, transcribe meeting recordings, generate subtitles and captions for videos, convert voice memos to searchable text, transcribe podcast episodes, transcribe extended, file id, public url.
-- Supported action names: `transcribe_extended`, `transcribe_quick`, `transcribe_standard`.
+- Search and activation keywords: speech to text with speakers, transcribe meeting recordings, generate subtitles and captions for videos, convert voice memos to searchable text, transcribe podcast episodes, get task, task id, list tasks.
+- Supported action names: `get_task`, `list_tasks`, `transcribe_extended`, `transcribe_quick`, `transcribe_standard`.
 
 ## Use Cases
 - Transcribe meeting recordings
@@ -111,12 +134,14 @@ No categories or industry tags are published for this tool.
 
 ## Actions And Schema
 Complete generated action schema: `./schema.md`.
-Supported action count: `3`.
+Supported action count: `5`.
 x402 availability: not enabled for this product.
 
-- `transcribe_extended` (action slug: `transcribe-extended`): Transcribe audio up to 60 minutes. Price: `200` credits. Parameters: `enable_diarization`, `enable_profanity_filter`, `enable_word_timestamps`, `file_id`, `language_code`, `max_alternatives`, `output_format`, `public_url`, plus 1 more.
-- `transcribe_quick` (action slug: `transcribe-quick`): Transcribe audio up to 15 minutes. Price: `100` credits. Parameters: `enable_diarization`, `enable_profanity_filter`, `enable_word_timestamps`, `file_id`, `language_code`, `max_alternatives`, `output_format`, `public_url`, plus 1 more.
-- `transcribe_standard` (action slug: `transcribe-standard`): Transcribe audio up to 30 minutes. Price: `150` credits. Parameters: `enable_diarization`, `enable_profanity_filter`, `enable_word_timestamps`, `file_id`, `language_code`, `max_alternatives`, `output_format`, `public_url`, plus 1 more.
+- `get_task` (action slug: `get-task`): Check a transcription task's progress and retrieve its result. Completed tasks carry the full transcription payload in outputs[0]. Price: `1` credits. Parameters: `task_id`.
+- `list_tasks` (action slug: `list-tasks`): List recent transcription tasks with status and progress. Price: `1` credits. Parameters: `limit`.
+- `transcribe_extended` (action slug: `transcribe-extended`): Start an asynchronous transcription of audio up to 60 minutes. Returns a task_id immediately (short clips complete inline in the same response); poll get_task for the completed transcript and File Manager artifact. Price: `200` credits. Parameters: `enable_diarization`, `enable_profanity_filter`, `enable_word_timestamps`, `file_id`, `language_code`, `max_alternatives`, `output_format`, `public_url`, plus 1 more.
+- `transcribe_quick` (action slug: `transcribe-quick`): Start an asynchronous transcription of audio up to 15 minutes. Returns a task_id immediately (short clips complete inline in the same response); poll get_task for the completed transcript and File Manager artifact. Price: `100` credits. Parameters: `enable_diarization`, `enable_profanity_filter`, `enable_word_timestamps`, `file_id`, `language_code`, `max_alternatives`, `output_format`, `public_url`, plus 1 more.
+- `transcribe_standard` (action slug: `transcribe-standard`): Start an asynchronous transcription of audio up to 30 minutes. Returns a task_id immediately (short clips complete inline in the same response); poll get_task for the completed transcript and File Manager artifact. Price: `150` credits. Parameters: `enable_diarization`, `enable_profanity_filter`, `enable_word_timestamps`, `file_id`, `language_code`, `max_alternatives`, `output_format`, `public_url`, plus 1 more.
 
 ## Live Schema And Examples
 Use the compact schema above for ordinary calls. Before a new production integration, or whenever parameters, enum values, nested objects, outputs, or examples are unclear, fetch live details first.
@@ -209,15 +234,8 @@ MCP call shape after the main AgentPMT MCP server is connected:
   "params": {
     "name": "Speech-to-Text-With-Speakers",
     "arguments": {
-      "action": "transcribe_extended",
-      "enable_diarization": false,
-      "enable_profanity_filter": false,
-      "enable_word_timestamps": false,
-      "file_id": "example file id",
-      "language_code": "example language code",
-      "max_alternatives": 1,
-      "output_format": "text",
-      "public_url": "https://example.com"
+      "action": "get_task",
+      "task_id": "example task id"
     }
   }
 }
@@ -231,15 +249,8 @@ Authenticated AgentPMT REST call body:
 {
   "name": "speech-to-text-with-speakers",
   "parameters": {
-    "action": "transcribe_extended",
-    "enable_diarization": false,
-    "enable_profanity_filter": false,
-    "enable_word_timestamps": false,
-    "file_id": "example file id",
-    "language_code": "example language code",
-    "max_alternatives": 1,
-    "output_format": "text",
-    "public_url": "https://example.com"
+    "action": "get_task",
+    "task_id": "example task id"
   }
 }
 ```
@@ -251,7 +262,7 @@ Use the setup skill for the account connection details before making REST calls.
 - If the response includes warnings or correction targets, apply them before retrying.
 - If the response includes a `passed` or success-style boolean, use it as the workflow gate.
 - If validation fails or the response shape is unclear, call `get_schema` or `get_instructions` before retrying.
-- If `transcribe_extended` fails, preserve the request parameters and retry only after fixing schema, auth, or payment errors.
+- If `get_task` fails, preserve the request parameters and retry only after fixing schema, auth, or payment errors.
 
 ## Security
 - Do not place account secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs.

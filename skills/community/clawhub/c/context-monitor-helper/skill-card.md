@@ -1,44 +1,54 @@
-## Description: <br>
-Context Monitor Helper estimates conversation context usage, appends percentage and progress indicators to responses, and warns users when context usage crosses configured thresholds. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Monitor Helper estimates local session context usage and appends a percentage, progress bar, token count, and cleanup reminder when configured thresholds are reached.
 
-## Publisher: <br>
-[rfdiosuao](https://clawhub.ai/user/rfdiosuao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rfdiosuao](https://clawhub.ai/user/rfdiosuao)
 
-## Use Case: <br>
-Developers and agent users use this skill to monitor long conversations, track estimated token consumption, and receive reminders to start a new session or compact context before limits are reached. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill inspects current conversation contents in memory to estimate token usage. <br>
-Mitigation: Use it only in conversations where in-memory token estimation is acceptable, and rely on the security finding that no hidden storage or network behavior was detected. <br>
-Risk: The /context off command is reported not to disable future monitoring until fixed by the publisher. <br>
-Mitigation: Do not rely on /context off as a privacy or behavior control; uninstall or disable the skill at the platform level when monitoring should stop. <br>
-Risk: Token counts are estimates and may differ from platform-reported usage. <br>
-Mitigation: Treat displayed percentages as planning guidance and verify exact usage with platform statistics when precision matters. <br>
+## Use Case:
 
+Developers and agent users managing long ClawHub or OpenClaw sessions use this skill to monitor estimated context consumption and decide when to start a new session or compact context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rfdiosuao/context-monitor-helper) <br>
-- [Publisher profile](https://clawhub.ai/user/rfdiosuao) <br>
-- [Artifact README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown-compatible status text with context percentage, optional progress bar, token estimate, and threshold guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses estimated token counts and configured warning and critical thresholds; does not persist conversation content according to security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill estimates token usage from local session history and may append Chinese context-status text to replies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when users are comfortable with local session-history inspection for token estimation and visible status text appended to responses.
+
+Risk: Development tooling dependencies may need refresh before running build or test commands on untrusted inputs.
+
+Mitigation: Refresh the dev dependency lockfile and review dependency updates before running local build or test tooling.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/rfdiosuao/skills/context-monitor-helper)
+- [Publisher Profile](https://clawhub.ai/user/rfdiosuao)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style status text with percentage, progress bar, token counts, and threshold guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Token usage is estimated from local visible session history and model context-window defaults.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

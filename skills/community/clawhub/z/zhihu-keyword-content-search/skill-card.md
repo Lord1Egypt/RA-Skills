@@ -1,42 +1,55 @@
-## Description: <br>
-Searches Zhihu questions by keyword, sorts high-answer-count questions, crawls related answers, and saves the results as JSON and plain text. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Searches Zhihu questions by keyword, ranks matching questions by answer count, and crawls answers into JSON and plain text files.
 
-## Publisher: <br>
-[taiyuexiao](https://clawhub.ai/user/taiyuexiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taiyuexiao](https://clawhub.ai/user/taiyuexiao)
 
-## Use Case: <br>
-Developers and researchers use this skill to collect Zhihu question-and-answer content for keyword-focused review, local analysis, or downstream summarization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A full Zhihu login cookie is required and could expose the user's account session if shared or logged. <br>
-Mitigation: Treat the cookie like a password, avoid putting it in shared logs, screenshots, shell history, or saved scripts, and rotate or log out the session if it is exposed. <br>
-Risk: Crawled Zhihu content is saved locally as JSON and plain text and may contain sensitive or copyrighted material. <br>
-Mitigation: Use a dedicated output folder and review saved files before sharing, publishing, or reusing them. <br>
+## Use Case:
 
+Agents use this skill when a user asks to search, crawl, or analyze Zhihu Q&A content for selected keywords. It is suited to workflows where the user can provide an active Zhihu session cookie and review the saved local data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/taiyuexiao/zhihu-keyword-content-search) <br>
-- [Zhihu](https://www.zhihu.com) <br>
-- [Zhihu Search API](https://www.zhihu.com/api/v4/search_v3) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions, Files, JSON, Text] <br>
-**Output Format:** [Markdown guidance with shell commands; crawler output is JSON files and merged plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-supplied Zhihu login cookie and writes results to a local output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill asks users to pass a full logged-in Zhihu browser cookie on the command line.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a dedicated environment, avoid shared terminals and logs, clear shell history after use, and revoke or refresh the Zhihu session afterward.
+
+Risk: The skill stores scraped answer data locally as JSON and merged plain text.
+
+Mitigation: Choose an appropriate local output directory, limit access to generated files, and review retained data before sharing or reuse.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/taiyuexiao/skills/zhihu-keyword-content-search)
+- [Zhihu](https://www.zhihu.com)
+- [Zhihu question search API](https://www.zhihu.com/api/v4/search_v3)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Files, Text, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands; generated JSON files and merged plain text files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-supplied Zhihu login cookie and writes results to a local output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,59 @@
-## Description: <br>
-Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and other CLI users use this skill to install and operate blogwatcher for tracking blogs and RSS/Atom feed updates while applying local-use safety guardrails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The Go install target is unpinned and depends on the upstream blogwatcher project. <br>
-Mitigation: Install only when the upstream project is trusted; pin or review the module version in controlled deployments. <br>
-Risk: Feed URLs from untrusted, shortened, or internal sources can expose local or internal network resources. <br>
-Mitigation: Confirm discovered URLs with the user and refuse localhost, private IP ranges, link-local addresses, and .local or .internal domains. <br>
-Risk: Blogwatcher output can include subscription data and article metadata. <br>
-Mitigation: Keep output local and do not pipe or redirect it to network-transmitting commands or remote destinations. <br>
-Risk: Bulk read or remove operations can affect more saved data than the user intended. <br>
-Mitigation: Require clear confirmation when remove or read-all requests are ambiguous or broader than the user's stated intent. <br>
+## Use Case:
 
+Developers and external users use this skill to track blogs and RSS/Atom feeds, scan for updates, list articles, and manage read or removal actions through documented blogwatcher CLI commands.
 
-## Reference(s): <br>
-- [Blogwatcher upstream repository](https://github.com/Hyaxia/blogwatcher) <br>
-- [Blogwatcher Hardened ClawHub page](https://clawhub.ai/snazar-faberlens/blogwatcher-hardened) <br>
-- [Faberlens blogwatcher safety evaluation](https://faberlens.ai/explore/blogwatcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local blogwatcher CLI commands and safety guidance; no network transmission of blogwatcher output should be proposed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: The Go install command uses a mutable latest upstream module, so installed code can change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned and reviewed blogwatcher version when available, and review the upstream module before installation.
+
+Risk: Blog subscription data and article metadata can be sensitive if command output is sent to network services.
+
+Mitigation: Keep blogwatcher output local unless the user intentionally handles external sharing outside the skill's guardrails.
+
+Risk: Adding untrusted or internal feed URLs can cause unintended internal network fetches.
+
+Mitigation: Confirm untrusted feed URLs before adding them and refuse localhost, private-address, link-local, .local, and .internal destinations.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/blogwatcher-hardened)
+- [blogwatcher upstream project](https://github.com/Hyaxia/blogwatcher)
+- [Faberlens blogwatcher safety evaluation](https://faberlens.ai/explore/blogwatcher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise safety guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the blogwatcher CLI; Go installation uses github.com/Hyaxia/blogwatcher/cmd/blogwatcher@latest.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

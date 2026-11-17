@@ -1,40 +1,53 @@
-## Description: <br>
-Helps verify the cryptographic integrity of skill updates by checking whether each version is signed by the same key as the original install, detecting key changes, signature gaps, and unsigned updates that may indicate a compromised or transferred skill. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps verify the cryptographic integrity of skill updates by checking whether each version is signed by the same key as the original install, detecting key changes, signature gaps, and unsigned updates that may indicate a compromised or transferred skill.
 
-## Publisher: <br>
-[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[andyxinweiminicloud](https://clawhub.ai/user/andyxinweiminicloud)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to audit whether skill updates preserve signing-key continuity, identify unsigned versions, and summarize chain-of-custody gaps before trusting an updated skill. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Version history or signing metadata may be unavailable or incomplete, which can limit confidence in chain-of-custody conclusions. <br>
-Mitigation: Treat missing metadata as an explicit uncertainty and avoid claiming signature continuity without per-version signing records. <br>
-Risk: The skill may lead an agent to retrieve or parse public update-signature metadata and produce recommendations about pinning versions or challenging a publisher. <br>
-Mitigation: Review the target skill, source metadata, and resulting recommendations before acting on version-pinning or publisher-trust decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/andyxinweiminicloud/update-signature-verifier) <br>
-- [Publisher Profile](https://clawhub.ai/user/andyxinweiminicloud) <br>
+## Use Case:
 
+Developers and security reviewers use this skill to audit skill update histories for signature continuity, key changes, unsigned versions, and chain-of-custody gaps. Its report helps decide whether an update path needs publisher follow-up, content review, or version pinning.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown signature continuity report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include version-by-version signing key comparisons, unsigned version detection, chain-of-custody status, and recommended actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat a clean or continuous signature report as proof that update content is safe.
+
+Mitigation: Treat the report as advisory evidence and still review signed update content for unsafe behavior.
+
+Risk: Missing version history, signing records, or historical key fingerprints can make chain-of-custody findings incomplete.
+
+Mitigation: Provide available version-signing metadata and treat absent metadata as an audit gap rather than evidence of continuity.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andyxinweiminicloud/skills/update-signature-verifier)
+- [Publisher profile](https://clawhub.ai/user/andyxinweiminicloud)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown signature continuity report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes version-by-version signing key comparison, key change events, unsigned version detection, chain-of-custody status, and recommended actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

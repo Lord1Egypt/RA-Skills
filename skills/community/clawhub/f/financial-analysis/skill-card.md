@@ -1,45 +1,64 @@
-## Description: <br>
-Analyzes multi-asset portfolios with rolling-window risk-parity backtests, CSV data ingestion, performance metrics, text reports, and chart outputs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes multi-asset portfolios using local CSV market data, rolling inverse-volatility risk-parity style weighting, monthly rebalancing, backtesting metrics, text reports, JSON data, and PNG visualizations.
 
-## Publisher: <br>
-[wzratgit](https://clawhub.ai/user/wzratgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[wzratgit](https://clawhub.ai/user/wzratgit)
 
-## Use Case: <br>
-Developers, analysts, and portfolio researchers use this skill to run local risk-parity backtests from trusted CSV market-return data and generate portfolio allocation, return, risk, and correlation outputs. The outputs support analysis and review, not personalized financial advice or proof of future returns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads local CSV files and writes reports, derived JSON, and charts to local output paths. <br>
-Mitigation: Run it in a virtual environment and use only CSV and output paths you trust. <br>
-Risk: Generated reports may include local file paths and derived portfolio data. <br>
-Mitigation: Review reports and charts before sharing them outside the intended audience. <br>
-Risk: Backtest metrics and investment suggestions can be mistaken for personalized financial advice or future-performance evidence. <br>
-Mitigation: Treat outputs as informational research and validate assumptions, transaction costs, and data quality before relying on them. <br>
+## Use Case:
 
+Developers, analysts, and portfolio researchers use this skill to run local rolling-window portfolio backtests on CSV return data and generate performance, risk, allocation, and correlation outputs. It is suitable for educational and analytical review, not personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wzratgit/financial-analysis) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [优化使用指南.md](artifact/优化使用指南.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance plus generated TXT, JSON, and PNG chart files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads CSV input paths and writes reports, derived data, and charts to a chosen output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.json) <br>
+Risk: Backtest reports and generated investment suggestions may be mistaken for personalized financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as educational analysis only and require independent review before any investment decision.
+
+Risk: Unpinned Python dependencies and arbitrary CSV paths can make local runs less reproducible or expose unintended files.
+
+Mitigation: Install dependencies in a dedicated virtual environment, prefer pinned package versions, and run only on chosen CSV files.
+
+Risk: Fixed output filenames may overwrite previous reports, JSON data, or chart files.
+
+Mitigation: Use a dedicated output directory for each run or archive existing outputs before rerunning the skill.
+
+Risk: The weighting logic appears to be inverse-volatility weighting rather than a full equal-risk-contribution optimizer.
+
+Mitigation: Describe results as a risk-parity style approximation and validate methodology before using outputs for formal analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wzratgit/skills/financial-analysis)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [优化使用指南.md](artifact/优化使用指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Files, Guidance]
+
+**Output Format:** [Plain-text reports, JSON metrics, PNG charts, and console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes fixed report, data, and chart filenames under the selected output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact manifest)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

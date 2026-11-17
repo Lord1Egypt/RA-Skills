@@ -1,43 +1,58 @@
-## Description: <br>
-UptimeRobot (uptimerobot.com). Use this skill for reading, creating, updating, and deleting UptimeRobot data through an OOMOL-connected account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operate UptimeRobot through your OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to manage UptimeRobot monitors and account information from an agent session through the OOMOL oo CLI connector. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, and delete UptimeRobot monitors in the connected account. <br>
-Mitigation: Review the exact payload and target before approving write or destructive actions, especially monitor deletion. <br>
-Risk: The skill requires access to an OOMOL-connected UptimeRobot account. <br>
-Mitigation: Use an OOMOL/UptimeRobot connection with the minimum scopes acceptable for the intended work. <br>
+## Use Case:
 
+External users can use the skill to review account details, monitors, and alert contacts, and to create, update, or delete monitors in a connected UptimeRobot account.
 
-## Reference(s): <br>
-- [UptimeRobot homepage](https://uptimerobot.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [OOMOL oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-uptimerobot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed JSON payloads for schema-checked UptimeRobot connector actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: release evidence and skill metadata) <br>
+Risk: Skill setup may introduce broader changes to agent configuration than expected.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI setup, prefer a verified release, and set OO_SKILLS_SYNC_DISABLED=1 when only this integration is needed.
+
+Risk: Using the integration entrusts OOMOL with access to the connected UptimeRobot account.
+
+Mitigation: Keep approval requirements for monitor changes and deletions.
+
+Risk: The remote installer and hosted connector implementation are outside the inspected package.
+
+Mitigation: Review the CLI setup before installing and review the connected account permissions.
+
+## Reference(s):
+
+- [oo CLI command reference](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+- [UptimeRobot API documentation](https://help.uptimerobot.com/en/articles/11620152-how-to-use-uptimerobot-s-api)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text, Shell commands]
+
+**Output Format:** [JSON requests and text summaries of UptimeRobot account data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Monitor creation and updates change account state; deletion is destructive.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

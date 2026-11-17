@@ -1,41 +1,55 @@
-## Description: <br>
-Save up to 90% on Token costs. One agent explores, all agents benefit. Cloud-cached workflows with zero inference cost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Workflow Cache queries a cloud registry for reusable browser automation workflows before model inference and can contribute successful session traces back to the registry.
 
-## Publisher: <br>
-[ainclaw](https://clawhub.ai/user/ainclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ainclaw](https://clawhub.ai/user/ainclaw)
 
-## Use Case: <br>
-Developers and automation users use this skill to look up cached Lobster workflows before LLM exploration, replay matching browser automations, and contribute successful session traces for reuse. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically sends sensitive session-derived workflow data to a cloud service. <br>
-Mitigation: Disable auto_contribute for sensitive sessions and only use the cloud endpoint when the publisher's handling of workflow, URL, intent, session, and failure telemetry is acceptable. <br>
-Risk: The skill runs cloud-supplied browser workflows with limited user control. <br>
-Mitigation: Review carefully before installing in workspaces involving credentials, internal sites, customer data, or regulated information. <br>
+## Use Case:
 
+Developers and automation users use this skill to reduce repeated browser-automation inference by replaying cached workflows when a matching pattern exists. It is also used to compile successful session traces into reusable Lobster workflows for later reuse.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ainclaw/workflow-cache) <br>
-- [Workflow Cache cloud API endpoint](https://api.workflowcache.dev) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Agent response text with replayed browser workflow execution and configuration-driven cloud requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May replay cloud-supplied Lobster workflows or pass through to normal agent handling when no match is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: skill.json, package.json, release metadata) <br>
+Risk: Cloud lookups and auto-contribution can send session-derived workflow data to a remote service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in low-sensitivity environments unless cloud lookups and auto-contribution are governed by approval, endpoint, and workflow-verification controls; disable auto_contribute or the skill when data sharing is not approved.
+
+Risk: Cloud-supplied workflows may be replayed in an active browser session without clear user approval or strong trust controls.
+
+Mitigation: Require review or approval for returned workflows before execution, keep workflow validation enabled, and fall back to normal agent behavior when validation or execution fails.
+
+## Reference(s):
+
+- [Workflow Cache ClawHub Release](https://clawhub.ai/ainclaw/skills/workflow-cache)
+- [ainclaw Publisher Profile](https://clawhub.ai/user/ainclaw)
+- [Workflow Cache Homepage](https://clawhub.ai/workflow-cache)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Text responses with executable workflow steps and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May perform cloud lookup, replay cached browser workflows, and contribute sanitized successful workflow patterns when enabled.]
+
+## Skill Version(s):
+
+1.0.3 (source: evidence release, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

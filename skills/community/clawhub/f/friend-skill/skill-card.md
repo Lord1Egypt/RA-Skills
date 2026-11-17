@@ -1,43 +1,53 @@
-## Description: <br>
-friend-skill helps users create a local JSON-based digital friend persona from relationship details and optional private chat records for simulated companion chat. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates local digital friend personas from private chat records and relationship details for companion-style simulated conversation.
 
-## Publisher: <br>
-[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cp3d1455926-svg](https://clawhub.ai/user/cp3d1455926-svg)
 
-## Use Case: <br>
-External users use this skill to build a private, local friend persona, preserve shared memories and speech style, and test simulated chat when the real friend is unavailable. Typical tasks include venting, opinion rehearsal, conversation practice, role play, and personal memory capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can process sensitive friend and chat data and stores generated persona files locally. <br>
-Mitigation: Use only data you have consent to use, keep generated persona JSON files private, and delete source chats and persona files when they are no longer needed. <br>
-Risk: Imported chats may include group conversations or third-party private content. <br>
-Mitigation: Limit imports to appropriate one-on-one conversations and remove unrelated personal information before analysis. <br>
-Risk: The packaged artifact layout may not match the documented commands. <br>
-Mitigation: Review the installed file paths before running commands and adjust paths so the intended local scripts are executed. <br>
+## Use Case:
 
+Developers and agent users use this skill to build and test local JSON friend personas from authorized private chats or relationship notes for companion, conversation rehearsal, memory, and opinion-simulation scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/friend-skill) <br>
-- [Publisher profile](https://clawhub.ai/user/cp3d1455926-svg) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json files, shell commands, guidance] <br>
-**Output Format:** [Markdown instructions with JavaScript and JSON examples, plus CLI text output and local persona JSON files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local friend persona JSON files under a friends directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Crafted friend names can cause files to be written outside the intended friends folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running, and do not run the builder with untrusted names or JSON files until filename sanitization is fixed.
+
+Risk: The skill processes private chat logs and relationship details.
+
+Mitigation: Use only chat logs and relationship details you are authorized to process, and avoid importing group chats or third-party private conversations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cp3d1455926-svg/skills/friend-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON persona files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include locally saved friend persona JSON derived from user-provided chat records and relationship details.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

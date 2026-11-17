@@ -1,43 +1,58 @@
-## Description: <br>
-Systeme.io API integration with managed OAuth for managing contacts, tags, courses, communities, and subscriptions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Systeme.io contacts, tags, courses, communities, and subscriptions through a connected account.
 
-## Publisher: <br>
-[byungkyu](https://clawhub.ai/user/byungkyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[byungkyu](https://clawhub.ai/user/byungkyu)
 
-## Use Case: <br>
-External users and developers use this skill to manage Systeme.io account data through Maton-managed OAuth, including contacts, tags, course enrollments, community memberships, and subscriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create, update, delete, enroll, remove memberships, and cancel subscriptions in a connected Systeme.io account. <br>
-Mitigation: Confirm the exact account, resource, and intended effect before any write operation, and specify the intended connection when multiple Systeme.io connections exist. <br>
-Risk: The skill requires a Maton API key and OAuth access to a Systeme.io account. <br>
-Mitigation: Install only if you trust Maton.ai, keep MATON_API_KEY secret, and revoke unneeded keys or connections. <br>
+## Use Case:
 
+People managing a Systeme.io account can use this skill to look up and update contacts, tags, course enrolments, community memberships, and subscriptions. It also describes optional user-approved automations using functions and triggers.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/systeme) <br>
-- [Maton Homepage](https://maton.ai) <br>
-- [Systeme.io API Reference](https://developer.systeme.io/reference) <br>
-- [Systeme.io API Overview](https://developer.systeme.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline Python, JavaScript, and shell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access and MATON_API_KEY; write operations require explicit user approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+Risk: Account writes and deletes can change or remove business data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Start with read-only calls, grant the narrowest available access, and confirm every write or delete with the user.
+
+Risk: Webhooks, triggers, functions, and executable watches can keep acting after the initial request.
+
+Mitigation: Create them only for a named, user-approved destination and remove them when no longer needed.
+
+## Reference(s):
+
+- [ClawHub Systeme.io skill](https://clawhub.ai/byungkyu/skills/systeme)
+- [Maton homepage](https://maton.ai)
+- [Systeme.io API Reference](https://developer.systeme.io/reference)
+- [Maton documentation](https://docs.maton.ai)
+- [Maton CLI manual](https://cli.maton.ai/manual)
+- [Time trigger reference](references/time/triggers.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration]
+
+**Output Format:** [Markdown with inline shell and code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent responses may contain account data; disclose only what the task needs.]
+
+## Skill Version(s):
+
+1.2.6 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

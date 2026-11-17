@@ -1,42 +1,58 @@
-## Description: <br>
-Amazon Seasonal Planner provides Chinese-language seasonal planning guidance for Amazon Prime Day, Black Friday/Cyber Monday, and Christmas operations across calendar planning, inventory, advertising, pricing, and review workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Amazon sellers through Prime Day, Black Friday/Cyber Monday, and Christmas planning with calendars, inventory formulas, advertising strategy, checklists, and retrospective review prompts.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Amazon marketplace sellers and operators use this skill to prepare for seasonal sales periods, estimate inventory needs, plan ad budgets and pricing, run readiness checklists, and review performance after the season. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Seasonal planning advice can affect inventory purchases, pricing, and advertising spend. <br>
-Mitigation: Verify current Amazon deadlines, FBA fees, promotion rules, margins, and inventory assumptions before acting on the guidance. <br>
-Risk: The skill content is Chinese-language, which can limit reviewability for teams that do not read Chinese. <br>
-Mitigation: Have a Chinese-reading operator review the guidance or translate it before using it for operational decisions. <br>
+## Use Case:
 
+External Amazon sellers and e-commerce operators use this skill to plan seasonal sales campaigns, estimate inventory needs, set advertising phases, prepare operational checklists, and structure post-season reviews.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/amazon-seasonal-planner) <br>
-- [Inventory Formula Reference](references/inventory-formula.md) <br>
-- [Seasonal Ads Strategy Reference](references/ads-strategy.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown plans, tables, checklists, and formula snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language operational planning guidance; no API calls or executable shell commands are declared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence; artifact metadata lists 1.0.0) <br>
+Risk: Seasonal calendars, Amazon Seller Central requirements, FBA deadlines, advertising costs, and storage fees may change over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify dates, formulas, fees, and campaign recommendations against current Amazon Seller Central documentation before using the guidance for business decisions.
+
+Risk: The skill is primarily written in Chinese and may activate on broad holiday shopping terms.
+
+Mitigation: Confirm that the requester intends Amazon seasonal-planning guidance and review translated or localized details when operating in another language.
+
+## Reference(s):
+
+- [Amazon Seasonal Planner skill page](https://clawhub.ai/wangm-a3/skills/amazon-seasonal-planner)
+- [Inventory formula reference](references/inventory-formula.md)
+- [Seasonal advertising strategy reference](references/ads-strategy.md)
+- [Related skill: amazon-inventory-forecast](https://clawhub.ai/skills/amazon-inventory-forecast)
+- [Related skill: amazon-pricing-intelligence](https://clawhub.ai/skills/amazon-pricing-intelligence)
+- [Related skill: amazon-ops-agents](https://clawhub.ai/skills/amazon-ops-agents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown plans, tables, formulas, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; responses are advisory planning content.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; artifact frontmatter and clawhub.yaml list 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

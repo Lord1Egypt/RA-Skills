@@ -1,40 +1,54 @@
-## Description: <br>
-Generates images from text prompts using user-configured MiniMax, OpenAI DALL-E, or Stability AI API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通用文生图技能，帮助 agents use MiniMax, OpenAI DALL-E, or Stability AI with user-provided API keys to generate images from text prompts.
 
-## Publisher: <br>
-[xiaoliang1319-cloud](https://clawhub.ai/user/xiaoliang1319-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoliang1319-cloud](https://clawhub.ai/user/xiaoliang1319-cloud)
 
-## Use Case: <br>
-External users and developers use this skill in OpenClaw to generate images from natural-language prompts through their configured image-provider API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts may be sent to external image-generation providers and could expose confidential or sensitive details. <br>
-Mitigation: Avoid secrets or confidential information in prompts and configure only the provider API keys intended for use. <br>
-Risk: Provider API usage can create billing or quota exposure. <br>
-Mitigation: Monitor provider usage and billing for the configured API keys. <br>
+## Use Case:
 
+External users and agent developers use this skill to configure an image-provider API key and request text-to-image generation in OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoliang1319-cloud/xiaoxia-image-gen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration instructions, Shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Routes image generation to MiniMax, OpenAI DALL-E, or Stability AI based on configured API keys.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: API keys could be exposed or misused if configured insecurely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep provider API keys private, use environment variables or secret storage, and rotate keys if exposure is suspected.
+
+Risk: Prompts are sent to the configured image provider and may incur usage charges.
+
+Mitigation: Review provider data-handling terms before use and monitor provider usage or billing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoliang1319-cloud/skills/xiaoxia-image-gen)
+- [Publisher profile](https://clawhub.ai/user/xiaoliang1319-cloud)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and image-generation prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided MiniMax, OpenAI, or Stability AI API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

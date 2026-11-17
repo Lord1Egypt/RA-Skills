@@ -1,41 +1,59 @@
-## Description: <br>
-Generate Skill skeleton code, SKILL.md, and reference materials following best practices <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Skill skeleton code, SKILL.md, and reference materials following best practices
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers and agent builders use this skill to draft new Skill skeletons, improve existing SKILL.md files, and organize supporting reference materials. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may create local files or code-hosting pull requests as part of normal skill-development workflows. <br>
-Mitigation: Specify the exact workspace path and repository target, then review generated files or pull requests before accepting them. <br>
-Risk: Generated skill guidance or templates may be incomplete or unsuitable for a specific release process. <br>
-Mitigation: Review generated SKILL.md content and reference materials against the included quality checklist before deployment. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create or improve agent skills, including drafting SKILL.md, organizing reference materials, generating optional code skeletons, and checking quality.
 
-## Reference(s): <br>
-- [Skill quality checklist](references/skill-checklist.md) <br>
-- [SKILL.md standard template](references/skill-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local files or code-hosting pull requests depending on available connectors.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Generated local files could overwrite existing skill work if paths are not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm output paths before writing files and avoid overwriting existing work unless the user explicitly requests it.
+
+Risk: Generated trigger descriptions may be too broad and cause an agent to invoke the skill in unrelated contexts.
+
+Mitigation: Review and narrow trigger wording before publishing or installing the generated skill.
+
+Risk: When a code-hosting connector is available, generated changes may be prepared for a pull request.
+
+Mitigation: Review generated diffs, reference files, and PR content before merging or release.
+
+## Reference(s):
+
+- [Skill Quality Checklist](references/skill-checklist.md)
+- [SKILL.md Standard Template](references/skill-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/bettermen/skills/skill-development)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with optional code blocks, directory trees, generated SKILL.md content, reference-file content, and review tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local file paths, quality checklists, and PR-ready generated skill files when a code-hosting connector is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

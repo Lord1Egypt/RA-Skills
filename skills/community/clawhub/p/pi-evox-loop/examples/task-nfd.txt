@@ -1,0 +1,2 @@
+Read `data/café_report.json` and report its `revenue` value.
+Use exactly the file name given above.

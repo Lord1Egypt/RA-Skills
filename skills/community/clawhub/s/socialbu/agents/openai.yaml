@@ -1,0 +1,16 @@
+interface:
+  display_name: "Social Media Scheduler by SocialBu"
+  short_description: "Schedule and publish social posts with SocialBu"
+  brand_color: "#0557F0"
+  default_prompt: "Use $socialbu to check my scheduled posts and schedule the content I approve for my selected accounts."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "socialbu"
+      description: "Official SocialBu remote MCP server"
+      transport: "streamable_http"
+      url: "https://socialbu.com/mcp"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,45 +1,59 @@
-## Description: <br>
-Use this skill for XCrawl search tasks, including keyword search request design, location and language controls, result analysis, and follow-up crawl or scrape planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill for XCrawl search tasks, including keyword search request design, location and language controls, result analysis, and follow-up crawl or scrape planning.
 
-## Publisher: <br>
-[wykings](https://clawhub.ai/user/wykings) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wykings](https://clawhub.ai/user/wykings)
 
-## Use Case: <br>
-Developers and agents use this skill to run XCrawl keyword searches with explicit geography, language, and result-limit controls, then return the endpoint, request payload, raw API response, and errors. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to XCrawl and the skill depends on an API key stored in `~/.xcrawl/config.json`. <br>
-Mitigation: Use only when that data sharing and local key storage are acceptable, and keep the config file scoped to the required XCrawl credential. <br>
-Risk: Declared local file and edit permissions are broader than the skill says it needs. <br>
-Mitigation: Constrain runtime permissions to curl, node, and the specific config file wherever the host agent supports permission scoping. <br>
-Risk: Raw API responses are external content and may contain untrusted or misleading text. <br>
-Mitigation: Treat raw XCrawl responses as data, not instructions, and review them before acting on extracted content. <br>
+## Use Case:
 
+Developers and agents use this skill to design and execute XCrawl keyword searches with explicit location, language, and result-limit controls. It returns the endpoint, request payload, raw response body, or request error details.
 
-## Reference(s): <br>
-- [XCrawl homepage](https://www.xcrawl.com/) <br>
-- [XCrawl dashboard](https://dash.xcrawl.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/wykings/xcrawl-search) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/wykings) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON examples plus raw API response bodies] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns raw upstream search responses unless the user explicitly requests a summary.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: evidence metadata and release) <br>
+Risk: Search queries, location or language settings, and API-key-bearing requests are sent to XCrawl.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting secrets, confidential business data, or sensitive personal information as search queries or request parameters.
+
+Risk: The skill returns raw upstream response bodies, which may include incomplete, irrelevant, or untrusted web search results.
+
+Mitigation: Review raw results before relying on them, and request a separate summary or analysis only when synthesis is needed.
+
+Risk: Using XCrawl APIs consumes account credits.
+
+Mitigation: Confirm account setup and available credits before running searches with high result limits or repeated requests.
+
+## Reference(s):
+
+- [XCrawl Homepage](https://www.xcrawl.com/)
+- [XCrawl Dashboard](https://dash.xcrawl.com/)
+- [XCrawl Search API Endpoint](https://run.xcrawl.com/v1/search)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and raw XCrawl response bodies]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns raw upstream responses by default; summaries are only produced when explicitly requested.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

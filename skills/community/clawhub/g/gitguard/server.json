@@ -1,0 +1,15 @@
+{
+  "name": "gitguard",
+  "description": "Advanced Git/GitHub repo intelligence: secret scanning, health scoring, commit quality, stale branch detection, dependency freshness, and PR/issue triage.",
+  "homepage": "https://github.com/welove111/gitguard-skill",
+  "url": "https://github.com/welove111/gitguard-skill/.netlify/functions/mcp",
+  "tools": [
+    {"name": "scan_secrets", "description": "Scan a repo for exposed API keys/tokens/credentials via entropy + pattern analysis."},
+    {"name": "health_report", "description": "Composite 0-100 repo health score across secrets, branches, commits, deps, activity."},
+    {"name": "multi_repo_dashboard", "description": "Rank many local repos by health score, worst first."},
+    {"name": "commit_quality", "description": "Conventional Commits compliance and message-quality scoring."},
+    {"name": "stale_branches", "description": "List branches with keep/review/delete/merge recommendations."},
+    {"name": "dependency_check", "description": "Check package.json/requirements.txt against live npm/PyPI registries."},
+    {"name": "github_triage", "description": "Fetch open PRs/issues from GitHub and flag which have gone stale."}
+  ]
+}

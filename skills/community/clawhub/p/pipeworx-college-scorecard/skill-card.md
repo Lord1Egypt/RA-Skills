@@ -1,41 +1,54 @@
-## Description: <br>
-Searches U.S. colleges by name and retrieves College Scorecard details such as tuition and admission rates through a Pipeworx-hosted MCP gateway. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search US colleges by name and retrieve details such as tuition and admission rates using a College Scorecard MCP server.
 
-## Publisher: <br>
-[b-gutman](https://clawhub.ai/user/b-gutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[b-gutman](https://clawhub.ai/user/b-gutman)
 
-## Use Case: <br>
-Students, advisors, researchers, and developers can use this skill to search U.S. colleges and retrieve public College Scorecard details while working in an agent. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: College lookup queries are sent to a third-party Pipeworx-hosted MCP gateway. <br>
-Mitigation: Use ordinary college search terms and avoid including unrelated personal or sensitive information in queries unless sharing it with that service is acceptable. <br>
-Risk: Lookup results depend on the remote MCP gateway and the underlying College Scorecard data source. <br>
-Mitigation: Confirm important tuition, admissions, or institutional details against authoritative college or Department of Education sources before relying on them. <br>
+## Use Case:
 
+Developers and agents use this skill to configure a College Scorecard MCP server for searching US colleges and retrieving school details such as tuition, location, and admission rates.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/b-gutman/pipeworx-college-scorecard) <br>
-- [College Scorecard MCP gateway](https://gateway.pipeworx.io/college-scorecard/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text and JSON MCP server configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Queries are sent to a Pipeworx-hosted MCP gateway; results depend on College Scorecard data and gateway availability.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: College lookup requests are routed to an unverified third-party domain.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that routing is acceptable and avoid sending personal, credential, or unrelated conversation data through the MCP server.
+
+Risk: Tuition and admissions results may be incorrect or presented as more authoritative than the service warrants.
+
+Mitigation: Verify important college data against an authoritative source before relying on it.
+
+## Reference(s):
+
+- [Pipeworx College Scorecard Skill Page](https://clawhub.ai/b-gutman/skills/pipeworx-college-scorecard)
+- [College Scorecard MCP Endpoint](https://gateway.pipeworx.io/college-scorecard/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with a JSON MCP server configuration block]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Routes college lookup requests through gateway.pipeworx.io.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

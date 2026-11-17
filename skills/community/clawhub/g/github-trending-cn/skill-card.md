@@ -1,38 +1,53 @@
-## Description: <br>
-GitHub 趋势监控 | GitHub Trending Monitor. 获取 GitHub 热门项目、编程语言趋势、开源动态 | Get GitHub trending repos, language trends, open source updates. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese and English GitHub Trending-style repository lists, language filters, and open-source update summaries, with static sample trend data in this release.
 
-## Publisher: <br>
-[guohongbin-git](https://clawhub.ai/user/guohongbin-git) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guohongbin-git](https://clawhub.ai/user/guohongbin-git)
 
-## Use Case: <br>
-Developers and open source watchers use this skill to ask for GitHub trending repositories, language-specific trend lists, popular developers, and emerging projects over daily, weekly, or monthly windows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may return sample or stale GitHub Trending data rather than live trend results. <br>
-Mitigation: Treat generated rankings as potentially stale unless the skill fetches current GitHub data and cites the source used for the response. <br>
-Risk: Broad trigger terms may invoke the skill during general GitHub discussions. <br>
-Mitigation: Use explicit prompts for trending lookups and review whether the skill response is relevant before relying on it. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and open-source observers use this skill to ask an agent for GitHub Trending-style project lists by timeframe or programming language. The current release should be treated as sample trend output unless the publisher updates it to fetch live GitHub data.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON-formatted repository rankings and descriptions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require python3 and curl; scanner guidance notes results may be sample or stale unless live GitHub data is fetched and cited.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat static sample repository rankings and star counts as current GitHub Trending results.
+
+Mitigation: Label outputs as sample data and verify trends against live GitHub Trending or GitHub API data before using them for decisions.
+
+Risk: The skill description implies live trend monitoring while the release evidence says the current output is locally contained sample data.
+
+Mitigation: Review the skill before installation and require a publisher update or clear demo/mock labeling before presenting the output as live data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guohongbin-git/skills/github-trending-cn)
+- [Publisher profile](https://clawhub.ai/user/guohongbin-git)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json]
+
+**Output Format:** [Markdown-style trend list or JSON object containing repository entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports language and result-limit filtering in the bundled script; values are static sample data in this release.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

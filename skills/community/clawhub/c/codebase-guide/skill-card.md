@@ -1,53 +1,72 @@
-## Description: <br>
-Use for every task involving this project; it covers running Ganglion, CLI commands, the HTTP bridge API, pipeline execution, knowledge queries, configuration, and operational workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Ganglion project operations, including CLI commands, HTTP bridge API usage, pipeline execution, knowledge queries, configuration, troubleshooting, and operational workflows.
 
-## Publisher: <br>
-[tensorlink-dev](https://clawhub.ai/user/tensorlink-dev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tensorlink-dev](https://clawhub.ai/user/tensorlink-dev)
 
-## Use Case: <br>
-Developers and operators use this skill to administer Ganglion projects, run local or remote pipelines, inspect state, query knowledge, configure projects, and troubleshoot operational issues. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Always-on activation can cause the agent to apply Ganglion-specific operational guidance in any task involving the project. <br>
-Mitigation: Install only when the workspace is intended for Ganglion administration and confirm the current mode before running commands. <br>
-Risk: The documented remote API can register tools, change agent behavior, patch pipelines, connect MCP servers, and roll back project state. <br>
-Mitigation: Keep the HTTP bridge bound to localhost or otherwise strongly protected, review new tool, agent, and MCP code before registration, and avoid mutations during active runs. <br>
-Risk: Pipeline execution requires OPENAI_API_KEY and may expose project context or incur model usage costs. <br>
-Mitigation: Protect the API key, use trusted project directories, and verify configuration before pipeline execution. <br>
-Risk: Rollback and mutation commands can alter project state. <br>
-Mitigation: Commit or back up the project before mutations or rollback operations and inspect audit history before undoing changes. <br>
-Risk: Shared knowledge stores can mix trusted and untrusted experiment history across bots. <br>
-Mitigation: Isolate knowledge stores between trusted and untrusted experiments and use bot identifiers deliberately. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Codebase Guide on ClawHub](https://clawhub.ai/tensorlink-dev/codebase-guide) <br>
-- [Ganglion Project Homepage](https://github.com/TensorLink-AI/ganglion) <br>
-- [Commands & API Reference](references/commands.md) <br>
-- [Configuration Reference](references/configuration.md) <br>
-- [Operations Guide](references/operations.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
-- [Common Workflows](examples/common-workflows.md) <br>
-- [Sample API Requests](examples/sample-requests.md) <br>
-- [Health Check Script](scripts/healthcheck.sh) <br>
+## Use Case:
 
+Developers and operators use this skill to run and inspect Ganglion projects, scaffold configurations, operate local or HTTP bridge modes, manage pipelines, query knowledge, troubleshoot failures, and perform controlled runtime changes.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline bash, curl, JSON, and Python examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are operational instructions for Ganglion CLI, HTTP bridge, configuration, health checks, and troubleshooting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill auto-activates broadly and can guide agents through powerful Ganglion operations such as live mutation, rollback, MCP expansion, and project-source access.
+
+Mitigation: Install only for trusted Ganglion projects and require explicit approval before pipeline, prompt, policy, rollback, or MCP changes.
+
+Risk: HTTP bridge workflows can expose operational control if bound to an untrusted network.
+
+Mitigation: Keep the HTTP bridge bound to localhost or another trusted network.
+
+Risk: Tool and agent registration endpoints accept code-like definitions that can change runtime behavior.
+
+Mitigation: Review submitted code before using tool or agent registration endpoints.
+
+Risk: Troubleshooting commands and project inspection can execute Python against local project files.
+
+Mitigation: Avoid running troubleshooting Python execution commands on untrusted projects and prefer a virtual environment with pinned reviewed package versions.
+
+Risk: OPENAI_API_KEY is required for pipeline execution and may be exposed through careless terminal or log handling.
+
+Mitigation: Do not expose OPENAI_API_KEY in shared logs or terminals.
+
+## Reference(s):
+
+- [Codebase Guide on ClawHub](https://clawhub.ai/tensorlink-dev/skills/codebase-guide)
+- [Ganglion Project Homepage](https://github.com/TensorLink-AI/ganglion)
+- [Commands & API Reference](references/commands.md)
+- [Configuration Reference](references/configuration.md)
+- [Operational Procedures](references/operations.md)
+- [Troubleshooting](references/troubleshooting.md)
+- [Common Workflows](examples/common-workflows.md)
+- [Sample API Requests & Responses](examples/sample-requests.md)
+- [Healthcheck Script](scripts/healthcheck.sh)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, markdown]
+
+**Output Format:** [Markdown guidance with bash, curl, Python, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3, ganglion, and OPENAI_API_KEY according to server-resolved metadata.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

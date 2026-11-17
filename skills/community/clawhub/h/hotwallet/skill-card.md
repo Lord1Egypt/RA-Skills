@@ -1,40 +1,54 @@
-## Description: <br>
-Hotwallet reference tool. Use when working with hotwallet in blockchain contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hotwallet reference tool. Use when working with hotwallet in blockchain contexts.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and blockchain practitioners use this skill as a quick command-line reference for hotwallet concepts, calculations, compliance topics, risks, tools, strategies, glossary terms, and checklist items. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad hotwallet, regulatory, compliance, and funds-adjacent reference guidance that may be incomplete or non-expert. <br>
-Mitigation: Use it as a lightweight reference only; validate operational, legal, compliance, and funds-management decisions with qualified experts and current authoritative sources. <br>
+## Use Case:
 
+Developers, operators, and blockchain practitioners can use this skill to generate concise hotwallet reference material, command help, checklists, glossary entries, and high-level risk or compliance guidance.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain1/hotwallet) <br>
-- [BytesAgain publisher profile](https://clawhub.ai/user/bytesagain1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text emitted by Bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static reference output; no wallet, credential, file, or network access is described in the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generic placeholder guidance could mislead users making hotwallet design, custody, compliance, incident response, or transaction-security decisions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the generated material as a starting reference only and require qualified review before using it for financial security or compliance decisions.
+
+Risk: The security verdict is suspicious because the topic is financially sensitive while the artifact content is generic.
+
+Mitigation: Review the skill carefully before installation and replace placeholder content with accurate, domain-specific guidance before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/hotwallet)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown and plain text emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference sections such as intro, formulas, regulations, risks, instruments, strategies, glossary, and checklist]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

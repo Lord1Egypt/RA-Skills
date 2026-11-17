@@ -14,6 +14,8 @@ arguments:
 
 View your recent call history with transcripts and AI-generated summaries.
 
+Call history contains sensitive communications data, including phone numbers, summaries, and transcripts. Only run this in a trusted local workspace and follow your retention/deletion policy.
+
 ## Usage
 
 ```

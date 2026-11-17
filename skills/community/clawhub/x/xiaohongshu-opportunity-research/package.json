@@ -1,0 +1,37 @@
+{
+  "name": "xiaohongshu-opportunity-research",
+  "version": "1.1.4",
+  "description": "研究小红书搜索结果、作品结构、达人数据和用户反馈，筛选值得继续验证的机会。当用户询问小红书选题、小红书增长或用户痛点时使用。",
+  "keywords": [
+    "小红书",
+    "爆款笔记",
+    "数据分析",
+    "市场调研",
+    "数据挖掘",
+    "趋势监控",
+    "竞品分析",
+    "KOL营销",
+    "流量增长",
+    "用户画像"
+  ],
+  "homepage": "https://github.com/um-why/xiaohongshu-openclaw-skill#readme",
+  "bugs": {
+    "url": "https://github.com/um-why/xiaohongshu-openclaw-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/um-why/xiaohongshu-openclaw-skill.git"
+  },
+  "license": "MIT",
+  "author": "um-why",
+  "engines": {
+    "node": ">=16"
+  },
+  "main": "src/xiaohongshu/search-cli.js",
+  "scripts": {
+    "search": "node src/xiaohongshu/search-cli.js",
+    "detail": "node src/xiaohongshu/detail-cli.js",
+    "post": "node src/xiaohongshu/post-cli.js",
+    "comment": "node src/xiaohongshu/comment-cli.js"
+  }
+}

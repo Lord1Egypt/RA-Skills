@@ -1,39 +1,54 @@
-## Description: <br>
-Mediation and ADR reference for dispute resolution processes, mediator techniques, caucus strategy, and settlement agreements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mediation is an ADR reference skill for dispute resolution processes, mediator techniques, caucus strategy, settlement agreements, and choosing between ADR methods.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users, parties, counsel, and legal or commercial teams use this skill as a quick reference when preparing for mediation, comparing ADR options, planning caucus strategy, or drafting settlement terms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Mediation, settlement, tax, and legal material may be incomplete or not specific to the user's jurisdiction or dispute. <br>
-Mitigation: Treat the output as general reference information and verify important settlement terms, tax treatment, and legal strategy with qualified counsel. <br>
+## Use Case:
 
+External users, counsel, parties, and agents preparing for mediation use this skill to compare ADR options, plan mediation sessions, evaluate caucus and negotiation techniques, and draft settlement terms. It provides general educational reference material and should not replace jurisdiction-specific or case-specific advice from qualified counsel.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bytesagain3/mediation) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-like terminal text from shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-specific reference sections for mediation topics, settlement preparation, ethics, and checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Mediation and settlement guidance may not match the user's jurisdiction, dispute posture, or case-specific legal duties.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the content as general educational reference material and verify legal strategy, enforceability, confidentiality, and settlement terms with qualified counsel.
+
+Risk: Static ADR reference text can become outdated or incomplete for a particular venue, court rule, mediation provider, or settlement context.
+
+Mitigation: Check current rules, provider procedures, and dispute-specific documents before relying on the guidance in a mediation workflow.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/mediation)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Plain text guidance from shell command output with Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Command-selected reference topics; no external API calls or credentials detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

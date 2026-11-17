@@ -1,0 +1,30 @@
+{
+  "name": "pdf-master",
+  "slug": "pdf-master",
+  "displayName": "万能 PDF 大师",
+  "version": "2.1.0",
+  "description": "全能 PDF 智能处理技能：25 项能力覆盖 Office 高保真互转、扫描件 OCR、PDF 直接编辑、加密水印权限、批量合并拆分、智能压缩、排版保留翻译、合同风险审查、发票验真归档、电子签名审批流、批量替换、表单创建、图纸测量、翻页电子书、印刷级导出、密文级永久删除等。含 10 个实测脚本、质量验收标准、错误降级链与安全合规护栏。",
+  "category": "办公效率",
+  "tags": ["pdf", "ocr", "office", "文档处理", "批量处理"],
+  "license": "MIT-0",
+  "requires": {
+    "bins": ["python3"],
+    "python_packages": ["pymupdf", "pdfplumber", "pikepdf", "pypdf", "pandas", "openpyxl"],
+    "optional_bins": ["tesseract", "libreoffice"],
+    "optional_python_packages": ["pdf2docx", "pytesseract", "paddleocr", "pillow"],
+    "setup_script": "setup.sh",
+    "requirements": "requirements.txt",
+    "requirements_optional": "requirements-optional.txt"
+  },
+  "capabilities": {
+    "core": ["office-convert", "ocr", "direct-edit", "security-protection", "batch-automation"],
+    "value": ["table-extract", "layout-parse", "summary", "masking", "metadata-scrub", "auto-rename", "diff", "doc-qa", "spec-matrix"],
+    "pro": ["smart-compress", "translation", "contract-review", "invoice-archive"],
+    "barrier": ["e-signature", "batch-replace", "form-builder", "drawing-measure", "flipbook", "print-export", "permanent-redaction"]
+  },
+  "files": {
+    "entry": "SKILL.md",
+    "scripts": "scripts/",
+    "references": "references/"
+  }
+}

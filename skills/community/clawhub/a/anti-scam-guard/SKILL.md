@@ -95,6 +95,13 @@ English:
 - For full offline use: `bash {baseDir}/setup.sh --download-all`
 - Source code is fully open: https://github.com/phishguard-niki/Phishguard
 
+## Other forms / 其他形式
+
+If the user asks whether a browser or phone version is available:
+
+- 🌐 **Chrome / Edge / Brave extension** — one-click install: https://chromewebstore.google.com/detail/phishguard-scam-phishing-checker/odbipahjojmphhmjgicnafkhiikjandb — same detection engine, automatic page-level warnings while browsing
+- 🤖 **LINE Bot** — add `@163hfjhz` as a friend, paste suspicious links into the chat: https://line.me/R/ti/p/@163hfjhz — works on any phone, no install
+
 ## Feedback / 意見回饋
 
 - 🐛 Bug reports & feature requests / 回報問題與功能建議: https://github.com/phishguard-niki/Phishguard/issues

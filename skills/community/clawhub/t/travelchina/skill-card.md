@@ -1,44 +1,59 @@
-## Description: <br>
-Comprehensive travel planning, booking, and management skill for China trips, multi-destination itineraries, family travel logistics, travel cost optimization, and travel document preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel China helps agents plan China-focused trips, including multi-destination itineraries, family travel logistics, cost optimization, travel documents, booking coordination, flights, hotels, sights, and tour packages.
 
-## Publisher: <br>
-[newlux](https://clawhub.ai/user/newlux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[newlux](https://clawhub.ai/user/newlux)
 
-## Use Case: <br>
-External users and travel planners use this skill to plan China-focused trips, compare travel logistics, prepare documents, and organize family-friendly itineraries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel-document, visa, vaccination, booking, itinerary, and pricing guidance may be incomplete or outdated. <br>
-Mitigation: Verify current requirements and reservations with official government, airline, hotel, or booking sources before acting. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to organize China trips, compare routes and travel products, prepare document checklists, and coordinate family-friendly logistics.
 
-## Reference(s): <br>
-- [Family Travel Checklist](references/family-travel-checklist.md) <br>
-- [International Travel Documents](references/travel-documents.md) <br>
-- [Travel Consultants](references/agents.md) <br>
-- [Hotel Recommendations](references/hotels.md) <br>
-- [Attractions and Sights](references/sights.md) <br>
-- [Flights](references/flights.md) <br>
-- [Tour Packages and Vacations](references/vacations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credentials, or hidden automation detected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Travel-document, visa, entry, health, and vaccination guidance can become outdated or vary by traveler and destination.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat document guidance as a planning checklist and verify requirements with official government, airline, and destination sources before booking or travel.
+
+Risk: Travel planning can involve passports, visas, family details, medical needs, accessibility needs, and other personal information.
+
+Mitigation: Share only the details required for the planning task and avoid including sensitive personal data unless the active agent environment is approved for it.
+
+## Reference(s):
+
+- [Family Travel Checklist](references/family-travel-checklist.md)
+- [International Travel Document Requirements](references/travel-documents.md)
+- [Travel Consultants](references/agents.md)
+- [Hotel Recommendations](references/hotels.md)
+- [Attractions and Sights](references/sights.md)
+- [Flights](references/flights.md)
+- [Tour Packages and Vacations](references/vacations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown travel-planning guidance and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Chinese-language travel references; users should verify current official travel requirements before booking or travel.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

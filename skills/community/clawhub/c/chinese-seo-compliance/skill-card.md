@@ -1,47 +1,57 @@
-## Description: <br>
-Checks Chinese marketing content for advertising-law, banned-word, platform-rule, and SEO issues using an external compliance API, then suggests safer wording and optimization fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese SEO Compliance helps agents scan Chinese marketing content for advertising-law, banned-word, sensitive-word, platform-rule, and SEO issues across Baidu, Douyin, Xiaohongshu, Taobao, WeChat, and Bilibili.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers, marketers, and content teams use this skill to scan Chinese-language campaign copy for platform-specific compliance issues and SEO gaps before publication. It helps revise flagged wording and verify that updated content passes the external compliance check. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Content submitted for scanning is sent to an external compliance-checking API. <br>
-Mitigation: Avoid sending confidential drafts, customer data, legal strategy, or unreleased business material unless the API operator and its privacy and retention practices have been reviewed. <br>
-Risk: Compliance scan results may not guarantee legal safety for high-risk campaigns. <br>
-Mitigation: Use the scan as pre-publication support and have a qualified legal professional review high-risk content before release. <br>
-Risk: Chinese advertising and platform rules can change over time. <br>
-Mitigation: Re-scan content close to publication and document any remaining issues or manual legal review decisions. <br>
+## Use Case:
 
+External developers, marketers, and content teams use this skill to check Chinese-language advertising and SEO content before publication. It guides platform selection, API-based scanning, severity review, suggested wording fixes, and re-scan verification.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/lm203688/chinese-seo-compliance) <br>
-- [Compliance Web App](https://1341839497-jv04655vcs.ap-shanghai.tencentscf.com/) <br>
-- [Compliance Check API](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com/check) <br>
-- [Suggestion API](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com/suggestions?platform=xiaohongshu) <br>
-- [API Health Check](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com/health) <br>
-- [Baidu Webmaster Tools](https://ziyuan.baidu.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with API request examples and compliance recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific violation summaries, suggested replacement language, SEO recommendations, and follow-up scan commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata) <br>
+Risk: The security scan reports that the workflow pushes user content to an unaudited external API without clear consent or privacy details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external service and its data-handling terms before use, and avoid sending confidential drafts, customer data, credentials, personal data, or regulated material unless that review is acceptable.
+
+Risk: Compliance checks can miss changing legal or platform requirements and do not guarantee legal safety.
+
+Mitigation: Use the scan as a pre-publication aid and require legal or qualified human review for high-risk, regulated, or commercially material content.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/chinese-seo-compliance)
+- [Hosted web app](https://1341839497-jv04655vcs.ap-shanghai.tencentscf.com/)
+- [Compliance check API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com/check)
+- [Suggestions API endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com/suggestions?platform=xiaohongshu)
+- [API health endpoint](https://1341839497-2yuxt6z58d.ap-guangzhou.tencentscf.com/health)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, API Calls]
+
+**Output Format:** [Markdown with inline shell commands and JSON API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include platform-specific violation summaries, severity notes, suggested replacements, SEO suggestions, and re-scan outcomes.]
+
+## Skill Version(s):
+
+2.3.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

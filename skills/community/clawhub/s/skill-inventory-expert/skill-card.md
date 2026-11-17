@@ -1,39 +1,50 @@
-## Description: <br>
-AI Agent skill inventory & capability assessment guide. Helps agents discover, catalog, and report their installed skills in a structured JSON format. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Inventory Expert helps AI agents discover, catalog, and report installed skills in structured JSON.
 
-## Publisher: <br>
-[saqierma-cyber](https://clawhub.ai/user/saqierma-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[saqierma-cyber](https://clawhub.ai/user/saqierma-cyber)
 
-## Use Case: <br>
-Developers, agent operators, and external users use this skill to inventory installed agent skills, classify capabilities, and report skill metadata in a structured format. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated inventories can reveal information about the local environment, including skill names, paths, and local tool versions. <br>
-Mitigation: Review generated inventory output before sharing it outside the intended audience. <br>
+## Use Case:
 
+Developers and AI agent operators use this skill to inventory local agent skills, summarize their capabilities, and produce a compact structured report for assessment or documentation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/saqierma-cyber/skill-inventory-expert) <br>
-- [Publisher Profile](https://clawhub.ai/user/saqierma-cyber) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Code, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated inventories may include local skill names, paths, versions, and tool versions; review before sharing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill directs agents to inspect local skill directories and skill configuration metadata, which may expose sensitive local setup details if shared broadly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated inventories before sharing, avoid dumping full SKILL.md contents, and inspect ~/.claude/skills.json only when exposing local skill configuration metadata is acceptable.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/saqierma-cyber/skills/skill-inventory-expert)
+- [Publisher Profile](https://clawhub.ai/user/saqierma-cyber)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local skill inventory guidance and sample structured inventory output.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

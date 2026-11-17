@@ -1,41 +1,56 @@
-## Description: <br>
-WittIoT气象站数据查询，支持WittStation系列气象站，提供实时温湿度、气压、光照、风速风向、降雨量等传感器数据查询，以及24小时/7天/30天历史趋势查询。也支持通过设备短码（shortcode）免登录查询公开气象站数据。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries WittIoT weather stations for device lists, real-time sensor readings, historical trends, and public shortcode weather data.
 
-## Publisher: <br>
-[wittiot](https://clawhub.ai/user/wittiot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wittiot](https://clawhub.ai/user/wittiot)
 
-## Use Case: <br>
-External users and agents use this skill to query WittIoT weather stations for current sensor readings, historical trends, device lists, and public station data by shortcode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill needs a WittIoT API key for private account data and may expose weather-station information to the agent runtime. <br>
-Mitigation: Set WITTIOT_API_KEY as an environment variable or managed secret, avoid pasting it into chat or plaintext config, and revoke the key from WittIoT if exposed. <br>
-Risk: Public shortcode queries can return data for public weather stations without authentication. <br>
-Mitigation: Use shortcodes only for stations intended to be public and avoid sharing private station identifiers in prompts or logs. <br>
+## Use Case:
 
+WittIoT weather station users and agents use this skill to inspect bound devices, fetch current temperature, humidity, pressure, light, wind, and rainfall readings, analyze 24-hour, 7-day, or 30-day history, and query public stations by shortcode.
 
-## Reference(s): <br>
-- [WittIoT API Specification](references/api-spec.md) <br>
-- [WittIoT](https://wittiot.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON script output for the agent to summarize] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled Python helper emits JSON for devices, realtime readings, history records, shortcode results, errors, and device-selection prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and _meta.json) <br>
+Risk: The skill uses a WittIoT account API key for private device, realtime, and history queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set WITTIOT_API_KEY through a trusted secret mechanism and avoid sharing API keys in chat, command-line arguments, or project-local config files.
+
+Risk: A project-local config.json containing a real API key could be exposed through file sharing or weak file permissions.
+
+Mitigation: Prefer environment-based secret injection; if config.json is used, keep it out of shared artifacts and restrict local file access.
+
+## Reference(s):
+
+- [WittIoT API Specification](references/api-spec.md)
+- [WittIoT API Key Page](https://wittiot.com/index/apikey)
+- [WittIoT Dashboard](https://wittiot.com/index/dashboard)
+- [ClawHub Skill Page](https://clawhub.ai/wittiot/skills/wittiot-device-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command examples and JSON script results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WITTIOT_API_KEY for private device, realtime, and history queries; public shortcode queries do not require an API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

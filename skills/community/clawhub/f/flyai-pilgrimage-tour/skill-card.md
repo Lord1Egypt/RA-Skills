@@ -1,53 +1,71 @@
-## Description: <br>
-Plans film, TV, variety-show, and anime location pilgrimages by finding real POIs, assembling itineraries, and adding flight, hotel, attraction, and booking guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans film, TV, variety-show, and anime location-pilgrimage trips by finding real filming POIs and assembling routes with flight, hotel, and ticket options.
 
-## Publisher: <br>
-[hello-ahang](https://clawhub.ai/user/hello-ahang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hello-ahang](https://clawhub.ai/user/hello-ahang)
 
-## Use Case: <br>
-External travelers and travel-planning agents use this skill to turn a movie, show, anime, or variety-program reference into a visitable location itinerary with POI checks, transportation, lodging, cost estimates, and booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to install or upgrade a global, unpinned FlyAI CLI package. <br>
-Mitigation: Review the package source and run the skill in an isolated environment before installing the CLI globally. <br>
-Risk: The skill suggests commands that disable HTTPS certificate validation for travel and booking searches. <br>
-Mitigation: Do not run commands with NODE_TLS_REJECT_UNAUTHORIZED=0; fix certificate trust issues and keep normal HTTPS validation enabled. <br>
-Risk: The skill can save travel profile details that may include sensitive family, accessibility, or home-location information. <br>
-Mitigation: Ask before saving profile data and avoid storing sensitive details unless the user intentionally requests persistence. <br>
+## Use Case:
 
+External travelers and travel-planning agents use this skill to turn a film, TV show, variety program, or anime title into a bookable itinerary for visiting filming locations, including POIs, route sequencing, transportation, lodging, ticket links, and photo tips.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hello-ahang/flyai-pilgrimage-tour) <br>
-- [Skill instructions](SKILL.md) <br>
-- [AI Search reference](reference/ai-search.md) <br>
-- [Keyword Search reference](reference/keyword-search.md) <br>
-- [POI / Attraction Search reference](reference/search-poi.md) <br>
-- [Flight Search reference](reference/search-flight.md) <br>
-- [Hotel Search reference](reference/search-hotel.md) <br>
-- [Train Search reference](reference/search-train.md) <br>
-- [Marriott Hotel Search reference](reference/search-marriott-hotel.md) <br>
-- [Marriott Package Search reference](reference/search-marriott-package.md) <br>
-- [User profile storage reference](reference/user-profile-storage.md) <br>
-- [Example conversation](reference/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with itinerary sections, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include travel profile read/write guidance and FlyAI CLI command examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill asks agents to install or upgrade mutable global npm software, with possible sudo use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before installation, avoid sudo where possible, and verify the package source before running commands.
+
+Risk: The skill suggests disabling TLS verification for booking-related searches.
+
+Mitigation: Do not disable TLS by default; prefer fixing certificate or network issues and only use insecure mode temporarily with explicit user approval.
+
+Risk: The skill can read or store persistent travel profile data, including preferences and family details.
+
+Mitigation: Ask before saving profile data, keep stored details minimal, use protected storage, and provide a clear path to delete or skip persistence.
+
+Risk: The skill surfaces flight, hotel, attraction, and ticket booking links.
+
+Mitigation: Verify each booking link, provider, price, itinerary, and payment page in a trusted browser session before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hello-ahang/skills/flyai-pilgrimage-tour)
+- [AI Search reference](reference/ai-search.md)
+- [Keyword Search reference](reference/keyword-search.md)
+- [POI / Attraction Search reference](reference/search-poi.md)
+- [Flight Search reference](reference/search-flight.md)
+- [Train Search reference](reference/search-train.md)
+- [Hotel Search reference](reference/search-hotel.md)
+- [Marriott Hotel Search reference](reference/search-marriott-hotel.md)
+- [Marriott Package Search reference](reference/search-marriott-package.md)
+- [User Profile Storage reference](reference/user-profile-storage.md)
+- [Example Dialogues](reference/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown itinerary with inline shell commands and booking links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include FlyAI booking URLs, POI details, transport and hotel options, and optional user-profile memory updates.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

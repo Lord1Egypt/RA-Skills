@@ -1,43 +1,59 @@
-## Description: <br>
-JavaScript SDK and CLI guidance for Circle Chain, covering @lidh04/circle-chain-sdk user auth, wallet, block, miner, transfers, contacts, HTTP configuration, and the global circle CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+JavaScript SDK and CLI guidance for Circle Chain, covering user authentication, wallet operations, blocks, mining, transfers, contacts, and HTTP configuration.
 
-## Publisher: <br>
-[lidh04](https://clawhub.ai/user/lidh04) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lidh04](https://clawhub.ai/user/lidh04)
 
-## Use Case: <br>
-Developers and engineers use this skill when integrating Circle Chain from Node.js or browser code, working in js-circle-chain-sdk, using the circle CLI, configuring HTTP settings, or implementing local mining and wallet workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill supports wallet and transfer workflows where account credentials and pay passwords may be handled. <br>
-Mitigation: Treat account credentials and pay passwords as sensitive, and review commands before execution. <br>
-Risk: The SDK may perform a Node.js-only GeoIP request to ipwho.is when resolving HTTP gateway settings. <br>
-Mitigation: Set an explicit host or use CIRCLE_SKIP_GEO=1 when third-party GeoIP requests are not acceptable. <br>
-Risk: Installing the global circle CLI adds a command-line tool for account, wallet, mining, and transfer operations. <br>
-Mitigation: Install only from the trusted @lidh04/circle-chain-sdk package and review CLI actions before using them with real accounts. <br>
+## Use Case:
 
+Developers and engineers use this skill when integrating Circle Chain from Node.js or browser code, using the circle CLI, or maintaining the @lidh04/circle-chain-sdk package.
 
-## Reference(s): <br>
-- [Circle Chain Skill on ClawHub](https://clawhub.ai/lidh04/skills/circle-chain) <br>
-- [ipwho.is GeoIP service](https://ipwho.is/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include SDK usage patterns, CLI commands, HTTP configuration notes, and security cautions for wallet and transfer workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release evidence) <br>
+Risk: The skill relies on an external npm package for wallet, account, transfer, and payment-password workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a reviewed pinned package version and avoid entering account, wallet, or payment-password data until package provenance and behavior are acceptable.
+
+Risk: The SDK may contact a GeoIP service to choose the gateway host.
+
+Mitigation: Set an explicit gateway host or set CIRCLE_SKIP_GEO=1 when automatic GeoIP-based host selection is not desired.
+
+Risk: Global installation exposes the circle command from the trusted package on the local system.
+
+Mitigation: Avoid global installation unless the circle command is required; prefer local project installation for scoped use.
+
+## Reference(s):
+
+- [Circle Chain Skill on ClawHub](https://clawhub.ai/lidh04/skills/circle-chain)
+- [Publisher Profile](https://clawhub.ai/user/lidh04)
+- [ipwho.is GeoIP Service](https://ipwho.is/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JavaScript and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include CLI commands, SDK usage patterns, and HTTP configuration guidance.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

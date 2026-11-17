@@ -1,43 +1,60 @@
-## Description: <br>
-Guides users through a Socratic interview to document implicit SOP knowledge and produce AS-IS and TO-BE workflow visuals plus configuration guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+通过苏格拉底追问方式提取用户隐性 SOP 知识，生成 AS-IS + TO-BE 可视化流程图和配置文件组。
 
-## Publisher: <br>
-[wwei03804-a11y](https://clawhub.ai/user/wwei03804-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wwei03804-a11y](https://clawhub.ai/user/wwei03804-a11y)
 
-## Use Case: <br>
-Employees, operations specialists, project managers, and similar workflow owners use this skill to map existing work processes, identify automation opportunities, and prepare configuration guidance for agent-assisted execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated workflow summaries and configuration guidance can contain sensitive business-process details. <br>
-Mitigation: Use only for workflows the user is comfortable documenting, and review generated files before sharing, syncing, or copying them into OpenClaw. <br>
-Risk: Users may be prompted to describe confidential procedures, internal weaknesses, customer details, passwords, or tokens. <br>
-Mitigation: Do not provide passwords, tokens, customer names, confidential procedures, or internal weaknesses; back up existing configuration files before any overwrite. <br>
+## Use Case:
 
+Employees and operations-focused users use this skill to map repeated work into an AS-IS process, design a TO-BE automation plan, and generate OpenClaw configuration drafts from their answers. It is aimed at SOP extraction, workflow bottleneck analysis, automation recommendations, and agent configuration planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wwei03804-a11y/ai-replace-me-check) <br>
-- [Mermaid template reference](references/mermaid-template.md) <br>
-- [Output guide](references/output-guide.md) <br>
-- [Skill creation prompt](scripts/skill-creation-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown and plain text workflow diagrams with configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AS-IS and TO-BE process maps, SOP summaries, tool recommendations, and configuration file guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill recommends a curl-to-shell installer and unpinned npx installation commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the source, version, and integrity of installation commands before running them, and prefer pinned versions where available.
+
+Risk: Generated OpenClaw configuration may overwrite or persistently change project behavior.
+
+Mitigation: Treat generated configuration as a draft, keep it project-scoped, review diffs, and back up existing configuration before applying changes.
+
+Risk: Automation recommendations may enable scheduled tasks or external-data access before the user has reviewed the operational impact.
+
+Mitigation: Require explicit approval before enabling scheduled automation, external-data access, or actions that affect live workflows.
+
+## Reference(s):
+
+- [Output Guide](references/output-guide.md)
+- [Mermaid Diagram Template](references/mermaid-template.md)
+- [Example Outputs](references/example-outputs.md)
+- [ClawHub Skill Page](https://clawhub.ai/wwei03804-a11y/skills/ai-replace-me-check)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with ASCII diagrams, markdown files, HTML summary guidance, shell command snippets, and OpenClaw configuration drafts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated from user answers and may include SOUL.md, USER.md, AGENTS.md, TOOLS.md, HEARTBEAT.md, IDENTITY.md, skills-recommendations.md, skill-creation-prompt.md, automation-suggestions.md, and summary.html.]
+
+## Skill Version(s):
+
+2.3.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

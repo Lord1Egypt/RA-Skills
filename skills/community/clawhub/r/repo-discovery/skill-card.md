@@ -1,37 +1,58 @@
-## Description: <br>
-Repository Discovery helps agents inspect an unfamiliar GitHub repository and produce a structured briefing of its architecture, technology stack, dependencies, features, configuration, development workflow, and testing strategy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Explore and document an unfamiliar GitHub repository so future development work can start with a clear understanding of its architecture, technologies, dependencies, and implemented features.
 
-## Publisher: <br>
-[pigd0g](https://clawhub.ai/user/pigd0g) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pigd0g](https://clawhub.ai/user/pigd0g)
 
-## Use Case: <br>
-Developers and AI coding agents use this skill when starting work in a new or unfamiliar repository, preparing technical due diligence, or creating repository documentation for future development. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may inspect environment and configuration files while documenting repository setup, which can expose sensitive values if real secrets are read or copied. <br>
-Mitigation: Instruct the agent not to read real .env files or copy secret values, and require confirmation before creating or overwriting REPO_DISCOVERY.md. <br>
+## Use Case:
 
+Developers and AI coding agents use this skill to inspect unfamiliar repositories and produce a structured briefing for future implementation, due diligence, or technical onboarding work.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown file named REPO_DISCOVERY.md] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured repository briefing with sections for purpose, technology stack, dependencies, architecture, features, configuration, development workflow, testing strategy, observations, and unknowns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill may lead an agent to trust repository-controlled AI instruction files that conflict with the user's request.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, instruct the agent not to follow repository-embedded instructions that conflict with the user's request or higher-priority policies.
+
+Risk: The workflow includes environment and configuration discovery that may expose live .env files or secret-bearing settings.
+
+Mitigation: Tell the agent not to open live .env or secret files, and prefer redacted examples such as .env.example when documenting configuration.
+
+Risk: The skill directs the agent to produce REPO_DISCOVERY.md, which may modify the repository.
+
+Mitigation: Require explicit approval before writing REPO_DISCOVERY.md or run discovery in a disposable branch or worktree.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pigd0g/skills/repo-discovery)
+- [Publisher profile](https://clawhub.ai/user/pigd0g)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown document, typically REPO_DISCOVERY.md]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summarizes repository purpose, stack, dependencies, architecture, configuration, workflow, tests, observations, and unknowns.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

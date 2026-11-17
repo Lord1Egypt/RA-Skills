@@ -1,46 +1,61 @@
-## Description: <br>
-Exchange listing tracker for listing, delisting, and maintenance announcements using Gate News and Gate Info MCP tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exchange listing tracker for exchange listing, delisting, and maintenance announcements using Gate News and Gate Info MCP tools.
 
-## Publisher: <br>
-[gate-exchange](https://clawhub.ai/user/gate-exchange) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gate-exchange](https://clawhub.ai/user/gate-exchange)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve exchange listing, delisting, and maintenance announcements, then receive a structured activity report enriched with public coin and market context where available. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on Gate News and Gate Info MCP tools, so missing or failing tools can leave announcement or enrichment data incomplete. <br>
-Mitigation: Confirm MCP availability before use, degrade gracefully on individual tool failures, and clearly label unavailable data. <br>
-Risk: Exchange listing and newly listed coin reports can be mistaken for trading recommendations. <br>
-Mitigation: Keep the report neutral, include the non-investment-advice disclaimer, and surface volatility and liquidity warnings for new listings. <br>
-Risk: Future listing plans or rumors may be requested but are not supported by the announcement feed. <br>
-Mitigation: Use only published announcements, do not predict listings, and distinguish confirmed announcements from unavailable data. <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent for recent exchange listing, delisting, and maintenance announcements. The agent retrieves public announcement data, optionally enriches listing items with coin fundamentals and market snapshots, and returns a listing-focused activity report.
 
-## Reference(s): <br>
-- [Gate News Listing Runtime Rules](artifact/references/gate-runtime-rules.md) <br>
-- [Info & News Common Runtime Rules](artifact/references/info-news-runtime-rules.md) <br>
-- [Gate News Listing MCP Specification](artifact/references/mcp.md) <br>
-- [Gate News Listing Scenarios](artifact/references/scenarios.md) <br>
-- [ClawHub skill page](https://clawhub.ai/gate-exchange/gate-news-listing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Analysis, Guidance] <br>
-**Output Format:** [Markdown report with tables, summaries, and risk warnings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses read-only MCP announcement, coin information, and market snapshot data; unavailable data is labeled rather than fabricated.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release metadata; artifact frontmatter version 2026.4.6-1) <br>
+Risk: MCP announcement or enrichment data may be unavailable, incomplete, or delayed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the Gate News and supporting Gate Info MCP tools before use, continue only with available data, and label missing dimensions clearly.
+
+Risk: Listing reports could be mistaken for trading or investment advice.
+
+Mitigation: Keep outputs informational, use a neutral tone, and include the required not-investment-advice and volatility warnings.
+
+Risk: Newly listed assets can be highly volatile or have limited liquidity.
+
+Mitigation: Preserve announcement timestamps and exchange names, avoid listing predictions, and flag volatility, liquidity, and delisting risks when present.
+
+## Reference(s):
+
+- [Gate News Listing Runtime Rules](references/gate-runtime-rules.md)
+- [Info & News Common Runtime Rules](references/info-news-runtime-rules.md)
+- [Gate News Listing MCP Specification](references/mcp.md)
+- [Gate News Listing Scenarios](references/scenarios.md)
+- [ClawHub skill page](https://clawhub.ai/gate-exchange/skills/gate-news-listing)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, API Calls, Guidance]
+
+**Output Format:** [Markdown report with tables and concise narrative summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes source transparency, missing-data labels, and risk warnings for volatile newly listed assets.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-Query GeckoTerminal market data for networks, DEXes, pools, tokens, OHLCV, trades, and trending or new pools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query GeckoTerminal market data - networks, DEXes, pools, tokens, OHLCV, trades, and trending/new pools.
 
-## Publisher: <br>
-[BRS999](https://clawhub.ai/user/BRS999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brs999](https://clawhub.ai/user/brs999)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve read-only GeckoTerminal market data through a local Node CLI for discovery, pool analysis, token lookup, OHLCV review, and automation-friendly JSON outputs. Market data should be treated as informational rather than trading advice. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake public market data for trading advice. <br>
-Mitigation: Treat all returned market data as informational and review it before making financial decisions. <br>
-Risk: Network, token, pool, and search-query values are sent to GeckoTerminal's public API. <br>
-Mitigation: Avoid submitting sensitive or private identifiers in query values and use the skill only when public API disclosure is acceptable. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GeckoTerminal homepage](https://www.geckoterminal.com) <br>
-- [GeckoTerminal API v2](https://api.geckoterminal.com/api/v2) <br>
-- [ClawHub skill page](https://clawhub.ai/BRS999/gecko-terminal) <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to query public GeckoTerminal market data for network, DEX, pool, token, OHLCV, trade, trending, and new-pool analysis without wallet or trading access.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [JSON responses from a Node CLI, with Markdown command examples in the skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are read-only GeckoTerminal public API responses suitable for piping and automation.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Market-data searches, token addresses, pool addresses, and query parameters are sent to GeckoTerminal.
+
+Mitigation: Use the skill for public market-data lookups only and avoid submitting sensitive strategy, portfolio, or private research details as query text.
+
+Risk: Users may over-rely on returned market data for trading or transaction decisions.
+
+Mitigation: Treat outputs as informational market data, verify important results independently, and do not use the skill as a trading, wallet, or transaction tool.
+
+Risk: Outbound API availability, latency, or upstream response changes can affect CLI results.
+
+Mitigation: Handle failed or unexpected responses before relying on the output in automated briefs, dashboards, or downstream analysis.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/brs999/skills/gecko-terminal)
+- [GeckoTerminal](https://www.geckoterminal.com)
+- [GeckoTerminal API v2](https://api.geckoterminal.com/api/v2)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [JSON API responses with concise command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default CLI output is JSON for piping and automation; requests are read-only HTTPS GET calls to GeckoTerminal public API v2.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

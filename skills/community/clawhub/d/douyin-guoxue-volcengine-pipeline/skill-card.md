@@ -1,45 +1,54 @@
-## Description: <br>
-Creates and publishes Chinese metaphysics, guoxue, and I Ching short videos for Douyin using Volcengine image and video generation, Edge TTS dubbing, ffmpeg assembly, Douyin publishing, and backend verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and publish Chinese metaphysics, guoxue, and I Ching short videos for Douyin using Volcengine image and video generation, Edge TTS dubbing, ffmpeg stitching, Douyin publishing, and backend verification.
 
-## Publisher: <br>
-[jinhuadeng](https://clawhub.ai/user/jinhuadeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jinhuadeng](https://clawhub.ai/user/jinhuadeng)
 
-## Use Case: <br>
-Developers, operators, and content creators use this skill to guide an agent through a reusable pipeline for generating, assembling, publishing, and verifying vertical Douyin guoxue short videos. It is intended for workflows that need multi-shot visual generation, Chinese voiceover, subtitles, AI-content declaration handling, and final backend verification. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can publish public Douyin posts using local account credentials before a person has reviewed the exact video, title, account, and AI-content declaration. <br>
-Mitigation: Require manual final approval before any publish command runs, and verify the published item in the Douyin creator backend after publishing. <br>
-Risk: Companion scripts and local credentials for Volcengine and Douyin are outside this skill card's bundled files. <br>
-Mitigation: Review the referenced companion scripts before use and run with dedicated or least-privilege Volcengine keys and Douyin accounts where possible. <br>
-Risk: AI-generated content declaration may be incomplete if automation cannot confirm the required Douyin UI clicks. <br>
-Mitigation: Treat declaration status as unverified unless logs or manual review confirm the AI-content declaration was applied. <br>
+## Use Case:
 
+External creators and operators use this skill to generate reusable three-shot 9:16 Douyin guoxue videos, assemble voiceover and subtitles, publish them, and verify the posted result in the creator backend.
 
-## Reference(s): <br>
-- [Prompt Patterns](references/prompt-patterns.md) <br>
-- [Publish Notes](references/publish-notes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jinhuadeng/douyin-guoxue-volcengine-pipeline) <br>
-- [Publisher Profile](https://clawhub.ai/user/jinhuadeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline PowerShell, Python, ffmpeg, and CLI command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing workflow steps, prompt structure, publish checks, and final reporting fields; generated media and public posts are created by companion tools outside the skill itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The workflow can publish public Douyin content from the user's account.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval after showing the final video, title, target account, AI-content declaration status, and backend verification plan before any publish step.
+
+Risk: A script success message may not prove that the content was actually posted or declared as AI-generated.
+
+Mitigation: Verify the creator backend after publishing and report the posted item, timestamp, duration, title snippet, and AI-content declaration status.
+
+## Reference(s):
+
+- [Prompt Patterns](references/prompt-patterns.md)
+- [Publish Notes](references/publish-notes.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, configuration paths, prompt patterns, and publishing checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides agents to produce local video assets, publish metadata, backend verification results, and AI-content declaration status.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

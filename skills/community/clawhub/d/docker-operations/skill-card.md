@@ -1,50 +1,66 @@
-## Description: <br>
-Provides Docker container and image operations for creating, running, managing, and inspecting containers and images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Docker container and image operations for creating, running, managing, and inspecting containers and images.
 
-## Publisher: <br>
-[netium](https://clawhub.ai/user/netium) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[netium](https://clawhub.ai/user/netium)
 
-## Use Case: <br>
-Developers and engineers use this skill as an agent-facing Docker CLI reference for container lifecycle, image management, registry operations, cleanup, inspection, and system information tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Docker cleanup, removal, import, bind-mount, push, and login commands can affect local resources, credentials, registries, or sensitive filesystems. <br>
-Mitigation: Review commands before execution, avoid production or sensitive hosts without explicit approval, prefer scoped filters and temporary empty directories, and use --password-stdin for credentials. <br>
-Risk: The release security verdict is suspicious because the reference includes high-impact Docker examples without enough safety guardrails for agent use. <br>
-Mitigation: Treat commands as proposals, require operator supervision for mutating actions, and scan or review the skill before deployment. <br>
+## Use Case:
 
+Developers and engineers use this skill to get Docker CLI guidance for container lifecycle, image management, registry operations, Compose workflows, inspection, interaction, and cleanup tasks.
 
-## Reference(s): <br>
-- [Docker Operations](https://clawhub.ai/netium/docker-operations) <br>
-- [Container Lifecycle Commands](references/container-lifecycle.md) <br>
-- [Container Interaction Commands](references/container-interaction.md) <br>
-- [Container Listing Commands](references/container-listing.md) <br>
-- [Image Operations Commands](references/image-operations.md) <br>
-- [Image Inspection Commands](references/image-inspection.md) <br>
-- [Registry Commands](references/registry.md) <br>
-- [Cleanup Commands](references/cleanup.md) <br>
-- [Docker Compose Commands](references/compose.md) <br>
-- [System Information Commands](references/system-info.md) <br>
-- [Advanced Image Operations](references/advanced-image-operations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Markdown, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Docker command examples may mutate local containers, images, volumes, registries, and filesystems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.2 (source: server-resolved release metadata) <br>
+Risk: Docker cleanup and removal commands can delete containers, images, networks, or volumes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval before prune, rm, rmi, compose down -v, force flags, or volume deletion commands.
+
+Risk: Registry login and push workflows can expose credentials or publish to the wrong registry.
+
+Mitigation: Use password-stdin or a credential helper, verify registry names, and require approval before push operations.
+
+Risk: Running privileged containers or untrusted images can affect the host environment.
+
+Mitigation: Prefer trusted, pinned images and require explicit approval before privileged execution.
+
+## Reference(s):
+
+- [Advanced Image Operations](references/advanced-image-operations.md)
+- [Cleanup Commands](references/cleanup.md)
+- [Docker Compose Commands](references/compose.md)
+- [Container Interaction Commands](references/container-interaction.md)
+- [Container Lifecycle Commands](references/container-lifecycle.md)
+- [Container Listing Commands](references/container-listing.md)
+- [Image Inspection Commands](references/image-inspection.md)
+- [Image Operations Commands](references/image-operations.md)
+- [Registry Commands](references/registry.md)
+- [System Information Commands](references/system-info.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and command reference tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include destructive Docker operations and should be reviewed before execution.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

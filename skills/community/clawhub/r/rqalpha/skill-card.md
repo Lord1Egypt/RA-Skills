@@ -1,47 +1,56 @@
-## Description: <br>
-RQAlpha is an open-source event-driven backtesting helper for A-share and futures strategy development, backtesting, and simulation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+RQAlpha 米筐开源事件驱动回测框架 - 支持A股和期货，模块化架构，可自由扩展。
 
-## Publisher: <br>
-[coderwpf](https://clawhub.ai/user/coderwpf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[coderwpf](https://clawhub.ai/user/coderwpf)
 
-## Use Case: <br>
-Developers and quantitative researchers use this skill to generate RQAlpha setup steps, strategy templates, backtest commands, API examples, and troubleshooting guidance for local simulation workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading-adjacent examples could be mistaken for live-trading instructions. <br>
-Mitigation: Keep usage limited to backtesting or simulation unless live brokerage integrations are intentionally configured and explicitly confirmed. <br>
-Risk: A compromised or unexpected upstream RQAlpha package could affect local execution. <br>
-Mitigation: Install in a virtual environment and verify the upstream RQAlpha package before running examples. <br>
-Risk: Broker gateway or credential configuration could enable order-capable behavior. <br>
-Mitigation: Do not connect broker gateways, live-trading mods, or brokerage credentials without deliberate opt-in and real-money risk review. <br>
+## Use Case:
 
+Developers and quantitative researchers use this skill to get concise RQAlpha guidance for installing the framework, structuring backtest strategies, running simulations, and using common trading, data, scheduling, and portfolio APIs.
 
-## Reference(s): <br>
-- [ClawHub rqalpha Release](https://clawhub.ai/coderwpf/rqalpha) <br>
-- [RQAlpha Documentation](https://rqalpha.readthedocs.io/) <br>
-- [RQAlpha GitHub Repository](https://github.com/ricequant/rqalpha) <br>
-- [Ricequant](https://www.ricequant.com) <br>
-- [Quick Reference](QUICK_REFERENCE.md) <br>
-- [Demo Project](demo_project/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes RQAlpha commands, strategy snippets, dependency requirements, and local backtesting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Dependency installation can introduce unreviewed package behavior or version drift.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment or container and prefer pinned, reviewed dependency versions.
+
+Risk: Order-placement examples could be misapplied outside backtesting or simulation.
+
+Mitigation: Treat trading examples as backtest or simulation code unless a user deliberately connects RQAlpha to a live broker and accepts the financial risk.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/coderwpf/skills/rqalpha)
+- [RQAlpha documentation](https://rqalpha.readthedocs.io/)
+- [RQAlpha GitHub project](https://github.com/ricequant/rqalpha)
+- [RiceQuant](https://www.ricequant.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3; examples may rely on rqalpha, pandas, and numpy.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

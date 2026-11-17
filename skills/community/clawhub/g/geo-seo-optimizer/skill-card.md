@@ -1,38 +1,49 @@
-## Description: <br>
-Optimize content for Generative AI search engines (Perplexity, ChatGPT, Gemini). Use when drafting articles, marketing copy, or technical docs to ensure AI models prioritize your information as a top reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimize content for Generative AI search engines (Perplexity, ChatGPT, Gemini). Use when drafting articles, marketing copy, or technical docs to ensure AI models prioritize your information as a top reference.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-Content writers, marketers, and documentation authors use this skill to structure articles, marketing copy, and technical docs for better discoverability in generative AI search engines. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Citation, statistic, or authority claims could be inaccurate or misleading if applied without verification. <br>
-Mitigation: Verify cited sources, statistics, and authority claims before publishing content produced with this skill. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [GEO Guidelines](references/guidelines.md) <br>
-- [ClawHub release page](https://clawhub.ai/balkanblbn/geo-seo-optimizer) <br>
+## Use Case:
 
+External content creators, marketers, technical writers, and documentation teams use this skill to draft or revise content so it is easier for generative AI search systems to parse, cite, and summarize.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose and checklist-style writing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution; writing guidance only.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may encourage content to include unsupported citations, statistics, or source claims.
+
+Mitigation: Review generated recommendations for editorial accuracy and verify every citation, statistic, and source claim before publication.
+
+## Reference(s):
+
+- [GEO Full Guidelines](references/guidelines.md)
+- [ClawHub skill page](https://clawhub.ai/balkanblbn/skills/geo-seo-optimizer)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, text]
+
+**Output Format:** [Markdown guidance and content recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review recommendations for editorial accuracy and avoid fabricating citations or statistics.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

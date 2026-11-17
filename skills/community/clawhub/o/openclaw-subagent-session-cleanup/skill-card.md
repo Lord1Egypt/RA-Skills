@@ -1,40 +1,53 @@
-## Description: <br>
-Cleans up accumulated OpenClaw subagent and cron child sessions to improve slow subagent startup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Clean up accumulated subagent and cron:run child sessions in OpenClaw to fix slow subagent startup.
 
-## Publisher: <br>
-[lrddrl](https://clawhub.ai/user/lrddrl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lrddrl](https://clawhub.ai/user/lrddrl)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw use this skill to reduce slow subagent startup caused by accumulated child session records. It guides stopping the gateway, running a cleanup script or dry run, and restarting the gateway while preserving main and channel sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The referenced cleanup.ps1 script is not included in the artifact evidence and may modify session records. <br>
-Mitigation: Obtain and inspect the exact cleanup script before use, confirm which sessions.json and history files it will touch, and run a dry run first. <br>
-Risk: Using the CleanJsonl option can delete conversation history files. <br>
-Mitigation: Back up session data before cleanup and require explicit confirmation before deleting any .jsonl history files. <br>
+## Use Case:
 
+Developers and OpenClaw operators use this skill when accumulated child session records make subagents slow to start. It guides cleanup of subagent and cron run session records while preserving main and channel sessions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lrddrl/openclaw-subagent-session-cleanup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown with PowerShell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes dry-run and history-file deletion cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill tells agents to run an unbundled local cleanup script that can modify persistent OpenClaw session data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inspect the actual cleanup.ps1 script in the target environment, run a dry-run first, and back up sessions.json before cleanup.
+
+Risk: Using the CleanJsonl option can delete .jsonl conversation history files.
+
+Mitigation: Avoid CleanJsonl unless conversation history deletion is intentional, and back up .jsonl history files before using it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lrddrl/skills/openclaw-subagent-session-cleanup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes dry-run, backup, and history-deletion cautions for cleanup operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

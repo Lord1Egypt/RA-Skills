@@ -1,40 +1,53 @@
-## Description: <br>
-Manage Google Cloud Storage for command-line cloud operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage Google Cloud Storage.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to manage Google Cloud Storage tasks from command-line workflows and automate storage operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate on Google Cloud Storage resources using cloud credentials. <br>
-Mitigation: Use a least-privilege key limited to the specific project and buckets needed. <br>
-Risk: Storage write, overwrite, delete, or public-access changes can affect cloud data and exposure. <br>
-Mitigation: Manually confirm any write, overwrite, delete, or public-access changes before execution. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to manage Google Cloud Storage tasks and automate storage-related cloud operations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/jpeng-gcp-storage-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, JSON] <br>
-**Output Format:** [Markdown with bash commands and JSON result examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires STORAGE_API_KEY for authenticated Google Cloud Storage operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill asks for a cloud storage credential and may expose STORAGE_API_KEY through shared shells, logs, or broad permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege credential limited to the intended storage actions, and avoid entering or logging the credential in shared environments.
+
+Risk: The release evidence says the referenced implementation script is not included, so the operation scope is unclear.
+
+Mitigation: Review the installed package contents and clarify the intended Google Cloud Storage actions before executing the skill.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-gcp-storage-manager)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires STORAGE_API_KEY for authenticated storage operations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

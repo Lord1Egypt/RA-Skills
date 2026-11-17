@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "package-json-generator",
+  "schema_version": "1",
+  "name": "package-json-generator",
   "version": "1.0.0",
-  "publishedAt": 1772444106173
+  "description": "生成 package.json",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["package.json", "npm", "node", "generator"],
+  "license": "MIT"
 }

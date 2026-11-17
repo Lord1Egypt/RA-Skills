@@ -1,44 +1,62 @@
-## Description: <br>
-Read and manage emails via IMAP protocol. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read and manage emails via IMAP protocol. List, read, search, and download email attachments. Supports digest mode for daily briefings. Triggers: check email, read inbox, new mail, email digest.
 
-## Publisher: <br>
-[shimonxin](https://clawhub.ai/user/shimonxin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shimonxin](https://clawhub.ai/user/shimonxin)
 
-## Use Case: <br>
-Employees, external users, and developers can use this skill to inspect an IMAP mailbox, search messages, read email content, download attachments, and generate daily email digests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access private email content and attachments. <br>
-Mitigation: Use a low-risk mailbox or app-specific credential and confirm mailbox reads or downloads before running commands. <br>
-Risk: TLS certificate verification is weakened. <br>
-Mitigation: Prefer a revised version that verifies TLS certificates before use with sensitive mailboxes. <br>
-Risk: Email digests, attachments, message text, and mailbox state may be saved locally. <br>
-Mitigation: Choose or disable local storage locations and avoid opening downloaded attachments directly. <br>
-Risk: Some dependency sources are resolved over HTTP. <br>
-Mitigation: Prefer HTTPS dependency sources and review dependencies before installation. <br>
+## Use Case:
 
+External users and developers use this skill to inspect IMAP mailboxes, read and search messages, generate daily email digests, mark messages read or unread, and download attachments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shimonxin/imap-mailbox) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown, terminal text, local files, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local digest, attachment, message text, and mailbox state files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill needs IMAP credentials and can read mailbox contents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted environments, use least-privilege or app-specific credentials when available, and rotate or revoke tokens periodically.
+
+Risk: TLS certificate verification is disabled in the IMAP connection.
+
+Mitigation: Enable certificate verification and review IMAP host settings before using the skill with real mailbox credentials.
+
+Risk: Email-derived digests and attachment files may be saved to local workspace storage.
+
+Mitigation: Review storage locations, retention, and access controls before processing sensitive mailbox content.
+
+Risk: Attachment downloads can use sender-provided filenames.
+
+Mitigation: Sanitize attachment filenames and constrain downloads to an expected output directory before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shimonxin/skills/imap-mailbox)
+- [Publisher profile](https://clawhub.ai/user/shimonxin)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, files]
+
+**Output Format:** [Plain text and Markdown summaries, with shell command usage and downloaded local files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write email digests and attachment files to local workspace storage.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

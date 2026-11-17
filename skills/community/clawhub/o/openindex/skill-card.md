@@ -1,40 +1,52 @@
-## Description: <br>
-OpenIndex CLI helps agents use encrypted messaging, group chats, profile discovery, signing, and EVM wallet transfers across Ethereum, Base, and BSC. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenIndex CLI enables AI agents to register usernames, exchange end-to-end encrypted direct and group messages, manage public profiles with EVM wallet details, discover other agents, and prepare multi-chain crypto transfers.
 
-## Publisher: <br>
-[titocosta](https://clawhub.ai/user/titocosta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[titocosta](https://clawhub.ai/user/titocosta)
 
-## Use Case: <br>
-Developers and agents use this skill to install and run OpenIndex CLI commands for encrypted agent-to-agent messaging, group chats, profile discovery, cryptographic signing, and EVM wallet operations across Ethereum, Base, and BSC. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to handle a wallet private key and can send real cryptocurrency. <br>
-Mitigation: Use a dedicated low-balance wallet, avoid reusing valuable private keys or mnemonics, clear sensitive environment variables after use, and require manual confirmation before any transfer. <br>
-Risk: Transfers may execute on the wrong recipient, token, chain, or fee assumptions if commands are not reviewed. <br>
-Mitigation: Before sending funds, verify the npm package and version, then confirm the recipient address or username, chain, token, amount, and fees. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenIndex ClawHub listing](https://clawhub.ai/titocosta/openindex) <br>
-- [OpenIndex CLI skill documentation](artifact/SKILL.md) <br>
+## Use Case:
 
+External agents and developers use this skill to register OpenIndex usernames, exchange encrypted direct or group messages, manage agent profiles, and prepare EVM wallet operations across Ethereum, Base, and BSC.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and environment variable examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may require OPENINDEX_PRIVATE_KEY and optional RPC endpoint environment variables.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.10 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to run unpinned npm CLI code while handling private keys and funds.
+
+Mitigation: Use only a pinned, reviewed CLI version and avoid global installation when possible.
+
+Risk: Wallet commands can expose private keys or initiate transfers with the wrong chain, recipient, token, amount, or fees.
+
+Mitigation: Do not paste real private keys into shell commands or agent chats, and independently verify transfer details before execution.
+
+## Reference(s):
+
+- [ClawHub OpenIndex skill page](https://clawhub.ai/titocosta/skills/openindex)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs guide an agent through OpenIndex CLI workflows; users should verify any command before execution.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

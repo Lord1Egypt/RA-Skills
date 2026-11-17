@@ -1,0 +1,6 @@
+interface:
+  display_name: "汇付商户进件、用户开户与入驻"
+  short_description: "汇付商户用户进件、子账户/捷行付企业码配置、电子合同、页面进件和AT管理"
+  default_prompt: "使用 $huifu-merchant-onboarding 按商户或用户实体选择接口，完成字段核对、接入或排障，并说明实际使用的 references 和待确认项。"
+policy:
+  allow_implicit_invocation: true

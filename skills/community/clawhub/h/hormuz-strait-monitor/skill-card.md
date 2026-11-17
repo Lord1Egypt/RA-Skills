@@ -1,45 +1,60 @@
-## Description: <br>
-Tracks Strait of Hormuz shipping transit data from public shipping sites, records daily traffic and throughput metrics, and alerts when traffic recovery thresholds are met. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks shipping transit data through the Strait of Hormuz from hormuzstraitmonitor.com and shipxy.com, then alerts when vessel count, throughput, or non-Iranian vessel exit thresholds indicate traffic recovery.
 
-## Publisher: <br>
-[laigen](https://clawhub.ai/user/laigen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[laigen](https://clawhub.ai/user/laigen)
 
-## Use Case: <br>
-Analysts, operators, and agents use this skill to monitor public shipping indicators around the Strait of Hormuz, persist transit observations, and surface recovery alerts for Middle East shipping disruption and oil-flow monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs Chrome/Selenium browser automation and uses webdriver-manager to download ChromeDriver. <br>
-Mitigation: Install and run it only in environments where browser automation and driver downloads are approved. <br>
-Risk: The skill writes local CSV history and may create debug screenshots or HTML files under ~/.openclaw/workspace/memory. <br>
-Mitigation: Review local retention requirements and remove debug artifacts when they are no longer needed. <br>
-Risk: Notification channels can send monitoring summaries outside the local runtime when enabled. <br>
-Mitigation: Review the configured channel before enabling notifications and confirm that external sharing is acceptable. <br>
+## Use Case:
 
+External users, analysts, and operators use this skill to monitor Strait of Hormuz shipping activity and receive alerts when transit and throughput recovery thresholds are met.
 
-## Reference(s): <br>
-- [Configuration Reference](references/config.json) <br>
-- [Hormuz Strait Monitor Data Source](https://hormuzstraitmonitor.com/) <br>
-- [ShipXY Hormuz Data Source](https://www.shipxy.com/special/hormuz) <br>
-- [ClawHub Skill Page](https://clawhub.ai/laigen/hormuz-strait-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Plain text runtime summaries and CSV rows, with Markdown setup instructions in the skill documentation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Appends timestamped transit metrics and alert messages to a local CSV file under ~/.openclaw/workspace/memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Runtime browser-driver download and Chrome automation may execute newly fetched driver software.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run in an isolated virtual environment or container and pin the Selenium, webdriver-manager, Chrome, and ChromeDriver versions before deployment.
+
+Risk: Chrome is launched with sandboxing disabled while visiting external websites.
+
+Mitigation: Avoid running as root or with broad host filesystem access; use a constrained container or dedicated runtime account.
+
+Risk: The skill writes monitoring and debug files under the OpenClaw workspace.
+
+Mitigation: Review configured output paths and limit workspace permissions to the directories needed for CSV records and debug artifacts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/laigen/skills/hormuz-strait-monitor)
+- [hormuzstraitmonitor.com](https://hormuzstraitmonitor.com/)
+- [shipxy.com Hormuz Page](https://www.shipxy.com/special/hormuz)
+- [Configuration Reference](references/config.json)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text, Configuration, Shell commands]
+
+**Output Format:** [CSV data file with textual alert messages and optional notification summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Appends timestamped transit metrics and alerts under ~/.openclaw/workspace/memory; notification channel is optional.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Distills chat records into structured persona JSON profiles and activation snippets that help an agent respond in the represented person's style. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persona Distiller analyzes local chat records to produce structured persona models and reusable prompt snippets that help an agent respond in a selected person's style.
 
-## Publisher: <br>
-[jcduann](https://clawhub.ai/user/jcduann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jcduann](https://clawhub.ai/user/jcduann)
 
-## Use Case: <br>
-External users and agent developers use this skill to analyze local chat exports, generate persona profiles, and activate a chosen speaking style in an AI conversation. It is intended for consent-based, local persona profiling and manual review of generated snippets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill creates and manages profiles derived from private chat records. <br>
-Mitigation: Use it only with consent from represented people and keep chat extracts and .persona.json files private. <br>
-Risk: Automatic persona loading can apply a persona when a name is mentioned. <br>
-Mitigation: Prefer explicit persona activation and review the selected persona before injecting its snippet into an agent session. <br>
-Risk: The Windows clipboard export path can execute crafted persona text. <br>
-Mitigation: Avoid clipboard export for persona files you did not create and trust; inspect snippets before exporting or activating them. <br>
+## Use Case:
 
+Developers and end users use this skill to analyze chat logs, generate structured persona JSON, and activate a persona style through a reusable system prompt snippet for later conversations.
 
-## Reference(s): <br>
-- [Persona Distiller on ClawHub](https://clawhub.ai/jcduann/persona-distiller) <br>
-- [Persona Distillation Guide](references/distillation-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON persona files, text activation snippets, and Markdown guidance with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated persona files include linguistic, vocabulary, tone, behavior, and system_prompt_snippet fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Private chat logs may be transformed into persistent persona prompts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only conversations you have permission to analyze, and review or redact generated persona JSON before activation.
+
+Risk: Generated persona prompts may preserve sensitive details or misleading traits from the source chats.
+
+Mitigation: Manually inspect the generated JSON and prompt snippet, remove sensitive content, and validate the persona before reuse.
+
+Risk: Export and file-write behavior may expose or modify local data in ways the user did not intend.
+
+Mitigation: Run the scripts in a controlled local directory, avoid automatic startup loading, and do not use Windows clipboard export until the PowerShell injection issue is fixed.
+
+## Reference(s):
+
+- [Distillation Guide](references/distillation-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/jcduann/skills/persona-distiller)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON persona files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated persona JSON and system prompt snippets are local artifacts that should be reviewed and redacted before activation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,63 @@
-## Description: <br>
-Streams coding agent sessions such as Claude Code, Codex, and Gemini CLI to a Discord channel in real time via webhook. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stream coding agent sessions to a Discord channel in real time via webhook, formatting agent events such as tool calls, file changes, shell commands, command output, and completion summaries.
 
-## Publisher: <br>
-[allanjeng](https://clawhub.ai/user/allanjeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[allanjeng](https://clawhub.ai/user/allanjeng)
 
-## Use Case: <br>
-Developers and engineering teams use Codecast to make coding agent sessions observable in Discord, including tool calls, command output, file activity, status updates, PR review sessions, and parallel task runs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Live development activity, command output, file paths, and agent summaries may be sent to Discord. <br>
-Mitigation: Use private Discord channels, restrict webhook access, and avoid streaming sensitive repositories or secrets. <br>
-Risk: Webhook and bot tokens are required for some modes and could expose channel access if mishandled. <br>
-Mitigation: Store credentials in protected secret storage when possible, limit file permissions, and rotate tokens if exposure is suspected. <br>
-Risk: The Discord bridge can forward remote messages into active agent sessions. <br>
-Mitigation: Restrict bridge channel and user IDs, and avoid bridge mode for high-sensitivity workspaces. <br>
-Risk: The setup guide describes a global allow-all permission posture for Claude Code. <br>
-Mitigation: Do not apply global bypass permissions on normal machines; prefer scoped sandboxing and review commands before execution. <br>
-Risk: PR review and parallel task modes include eval-based command construction according to the security guidance. <br>
-Mitigation: Avoid PR and parallel modes until command construction is fixed and reviewed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Codecast release page](https://clawhub.ai/allanjeng/codecast) <br>
-- [Setup guide](references/setup.md) <br>
-- [Advanced modes](references/advanced-modes.md) <br>
-- [Discord output](references/discord-output.md) <br>
+## Use Case:
 
+Developers and engineering teams use Codecast to make coding-agent sessions observable in Discord, including live command output, file activity, status updates, and completion summaries. It also supports PR review, parallel task, replay, and interactive bridge workflows when configured.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Discord messages and Markdown documentation with shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Streams and batches live agent output, truncates long command output, and can replay saved session logs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-4.1.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Streaming coding-agent sessions to Discord can expose secrets, source code, local paths, prompts, command output, and other sensitive work.
+
+Mitigation: Use only private, trusted Discord destinations; review streamed content expectations before use; avoid sessions involving secrets or confidential repositories unless the destination is approved.
+
+Risk: Broad permission bypass can allow an inner agent to take actions without normal confirmation prompts.
+
+Mitigation: Avoid global permission bypass by default, run with the least privileges that support the task, and review scripts and commands before starting a relay session.
+
+Risk: Interactive bridge controls can forward Discord messages to local agent sessions or affect local processes if channel and user scope are too broad.
+
+Mitigation: Disable the bridge unless needed, require explicit channel and user allowlists, and protect Discord bot tokens and webhook URLs.
+
+Risk: PR review and parallel task modes can process untrusted repositories, pull requests, or task files.
+
+Mitigation: Do not run PR review or parallel task mode on untrusted input until eval usage is fixed; inspect inputs and use isolated working directories when these modes are enabled.
+
+## Reference(s):
+
+- [Setup guide](references/setup.md)
+- [Advanced modes](references/advanced-modes.md)
+- [Discord output](references/discord-output.md)
+- [ClawHub skill page](https://clawhub.ai/allanjeng/skills/codecast)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples; scripts relay JSONL or raw CLI streams into Discord messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runtime relay output may include file activity, command output, tool usage, token usage, cost, and completion summaries; Discord posts are rate-limited and may be batched.]
+
+## Skill Version(s):
+
+4.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

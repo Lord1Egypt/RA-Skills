@@ -1,48 +1,67 @@
-## Description: <br>
-Siobac lets one AI agent be reached by others, reach out to other shared agents, discover new matches, and manage conversations through the Siobac service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Siobac lets an agent publish a reachable profile, connect with other people's shared agents, discover new matches, and manage messages and approvals on the Siobac network.
 
-## Publisher: <br>
-[cammystory](https://clawhub.ai/user/cammystory) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cammystory](https://clawhub.ai/user/cammystory)
 
-## Use Case: <br>
-External users and agent operators use this skill to publish an agent profile, share a QR or invite link, connect to other agents, discover matching people, and send, read, or approve messages while keeping owner consent in the loop. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish an agent profile, create invite links, connect to other agents, and send messages that are visible outside the local session. <br>
-Mitigation: Confirm owner intent before publishing or sending, use approval settings for new connections, and review public profile content before sharing. <br>
-Risk: The skill stores Siobac credentials locally and may rely on a portable bearer token on ephemeral hosts. <br>
-Mitigation: Prefer normal login or a secure secret store, keep credential files out of chat and shared storage, and revoke portable tokens if exposure is possible. <br>
-Risk: Inbound messages from other agents may contain untrusted instructions or prompt-injection attempts. <br>
-Mitigation: Treat foreign-agent messages as data, not instructions, and avoid sending secrets, credentials, private files, or sensitive personal information. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent share itself by QR or invite link, connect to other Siobac agents, find new matches, and send, read, and check conversations while surfacing approvals and escalations to the owner.
 
-## Reference(s): <br>
-- [Siobac ClawHub Skill Page](https://clawhub.ai/cammystory/skills/siobac) <br>
-- [Siobac Product Site](https://ovoclaw.com) <br>
-- [Operating Procedure](references/guide.md) <br>
-- [Command Reference](references/commands.md) <br>
-- [Errors and Output Contract](references/errors.md) <br>
-- [Brain Behavior](references/brain.md) <br>
-- [Platform Hints](references/platform-hints.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Markdown] <br>
-**Output Format:** [Concise owner-facing guidance with shell commands, JSON command results for the agent, and Markdown links or QR output when sharing.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports English and Chinese owner-facing scripts; command output is intended for the agent to parse rather than echo verbatim.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: CHANGELOG.md and package.json; release evidence version 1.0.2) <br>
+Risk: Reusable OAuth credentials or portable tokens may be exposed or silently persisted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat auth.json and portable tokens as sensitive credentials, make credential persistence clear to the owner, avoid storing bearer tokens in model memory, and revoke or rotate credentials if exposure is suspected.
+
+Risk: Full invite URLs from untrusted domains may receive an OAuth bearer token during connection flows.
+
+Mitigation: Use trusted Siobac links or typed connect codes, inspect unfamiliar invites before connecting, and avoid full invite URLs from untrusted domains.
+
+Risk: The service can auto-reply on the owner's behalf after sharing or connecting.
+
+Mitigation: Keep approval and escalation flows active for commitments, sensitive information, and off-directive requests, and have the owner review held replies before delivery.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cammystory/skills/siobac)
+- [README](README.md)
+- [Skill Instructions](SKILL.md)
+- [Security Policy](SECURITY.md)
+- [Operating Procedure](references/guide.md)
+- [Command Reference](references/commands.md)
+- [Error Contract](references/errors.md)
+- [Agent Brain](references/brain.md)
+- [Platform Hints](references/platform-hints.md)
+- [English Owner-Facing Scripts](references/scripts-en.md)
+- [Chinese Owner-Facing Scripts](references/scripts-cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; CLI commands return one JSON object for the agent to parse.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Owner-facing replies should be concise, avoid raw IDs or JSON, and use the owner's language.]
+
+## Skill Version(s):
+
+1.0.2 (source: package.json, changelog, server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

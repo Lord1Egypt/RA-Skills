@@ -1,51 +1,65 @@
-## Description: <br>
-Supports Chinese-language study conversations for Chapter 6, "Interdependence," of Rowland S. Miller's Intimate Relationships using progressive disclosure and chapter-specific reference notes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language tutoring and review support for Chapter 6, Interdependence, from Rowland S. Miller's Intimate Relationships, with concise explanations of social exchange, CL/CLalt, equity, communal relationships, commitment, and the investment model.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Learners, instructors, and study assistants use this skill to explain and review Miller's chapter on interdependence, including social exchange, CL/CLalt, equity, communal relationships, commitment, and investment models. It is intended for educational dialogue, exam review, and case analysis within the chapter's scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may provide incorrect or incomplete educational explanations if chapter concepts are applied beyond the provided reference material. <br>
-Mitigation: Use it as study support, keep answers within the Chapter 6 scope, and verify important claims against the referenced textbook material. <br>
-Risk: Relationship safety topics such as abuse, coercion, or control could be mishandled if treated only as interdependence or commitment examples. <br>
-Mitigation: Prioritize safety and professional support for such cases, then limit any textbook framing to clearly bounded educational explanation. <br>
-Risk: Install-time evidence reports clean scan results but advises review before granting broad local access. <br>
-Mitigation: Review the skill text before deployment and avoid granting credentials or broad local access unless the skill clearly requires them. <br>
+## Use Case:
 
+Students and educators use this skill for Chinese-language study conversations, exam review, concept clarification, and case analysis focused strictly on Miller's Intimate Relationships Chapter 6. It helps explain relationship satisfaction, dependence, rewards and costs, fairness, communal norms, and commitment without expanding into therapy, legal advice, or later textbook chapters.
 
-## Reference(s): <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Commitment](references/commitment.md) <br>
-- [Common Misconceptions](references/common-misconceptions.md) <br>
-- [Equity And Communal Relationships](references/equity-communal.md) <br>
-- [Examples](references/examples.md) <br>
-- [Key Terms](references/key-terms.md) <br>
-- [Research](references/research.md) <br>
-- [Rewards And Costs](references/rewards-costs.md) <br>
-- [Social Exchange](references/social-exchange.md) <br>
-- [Theories And Models](references/theories.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Analysis] <br>
-**Output Format:** [Chinese-language Markdown or plain text study guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses progressive disclosure and introduces English terms with Chinese explanations on first mention.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may treat textbook relationship theory as personal safety, therapy, or legal advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep responses theoretical and chapter-scoped; for violence, control, or immediate safety concerns, prioritize safety and professional support before returning to textbook concepts.
+
+Risk: The skill strongly prefers Chinese responses, which may not fit users who need English or multilingual tutoring.
+
+Mitigation: Present it as a Chinese-language study aid and make the response-language expectation clear before use.
+
+Risk: The skill is limited to one textbook chapter and can be misleading if used for broader relationship counseling or unrelated course material.
+
+Mitigation: Redirect out-of-scope topics to the appropriate source material and avoid inventing research details, dates, proportions, or advice not present in the chapter evidence.
+
+## Reference(s):
+
+- [Key Terms](artifact/references/key-terms.md)
+- [Theories And Models](artifact/references/theories.md)
+- [Social Exchange](artifact/references/social-exchange.md)
+- [Rewards And Costs](artifact/references/rewards-costs.md)
+- [Equity And Communal Relationships](artifact/references/equity-communal.md)
+- [Commitment](artifact/references/commitment.md)
+- [Research](artifact/references/research.md)
+- [Examples](artifact/references/examples.md)
+- [Common Misconceptions](artifact/references/common-misconceptions.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese-language Markdown prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses concise, progressive disclosure and introduces English terms on first mention.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

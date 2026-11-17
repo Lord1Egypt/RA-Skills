@@ -1,0 +1,18 @@
+{
+  "name": "webchat-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "网页划线对话插件的 AI 后端：Express + CodeBuddy Agent SDK + SSE 流式",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "postinstall": "node patch-sdk.mjs"
+  },
+  "dependencies": {
+    "@tencent-ai/agent-sdk": "^0.3.43",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "dotenv": "^16.4.5"
+  }
+}

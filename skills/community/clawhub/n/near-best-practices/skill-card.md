@@ -1,43 +1,52 @@
-## Description: <br>
-Comprehensive NEAR best practices guide with 100+ terms covering wallet security, smart contracts, and DeFi safety. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A local NEAR best-practices lookup guide covering wallet security, smart contracts, DeFi safety, key management, gas optimization, and testing.
 
-## Publisher: <br>
-[shaiss](https://clawhub.ai/user/shaiss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[shaiss](https://clawhub.ai/user/shaiss)
 
-## Use Case: <br>
-Developers and NEAR users use this skill to look up concise best-practice guidance for wallets, smart contracts, DeFi safety, key management, gas optimization, and testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet, key, contract, and DeFi guidance may be incomplete or become outdated for high-value financial or security decisions. <br>
-Mitigation: Verify important decisions against official NEAR documentation and current project-specific security reviews before acting. <br>
-Risk: Users may expose seed phrases or private keys while seeking wallet or key-management help. <br>
-Mitigation: Do not provide seed phrases, private keys, or other wallet secrets to any tool; use the skill only as a local reference guide. <br>
+## Use Case:
 
+Developers and NEAR users use this skill to browse, search, list, and retrieve concise best-practice tips for common NEAR wallet, contract, DeFi, key, gas, and testing topics.
 
-## Reference(s): <br>
-- [NEAR Documentation](https://docs.near.org/) <br>
-- [NEAR Standards (NEPs)](https://github.com/near/NEPs) <br>
-- [NEAR Contract Security](https://docs.near.org/develop/contracts/security) <br>
-- [ClawHub Skill Page](https://clawhub.ai/shaiss/near-best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [CLI text output and Markdown documentation with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns local best-practice lookup results, category listings, detailed explanations, and random tips.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: package.json and server release metadata) <br>
+Risk: The release advertises broader best-practice coverage than the bundled lookup data supports.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill as a quick reference and confirm security-sensitive NEAR guidance against official NEAR documentation, standards, and current project requirements.
+
+## Reference(s):
+
+- [NEAR Documentation](https://docs.near.org/)
+- [NEAR Standards (NEPs)](https://github.com/near/NEPs)
+- [NEAR Contract Security](https://docs.near.org/develop/contracts/security)
+- [ClawHub Skill Page](https://clawhub.ai/shaiss/skills/near-best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style terminal text with command examples and concise guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local lookup responses are selected from bundled static guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

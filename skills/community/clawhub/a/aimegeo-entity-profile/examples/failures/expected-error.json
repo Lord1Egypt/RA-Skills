@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "errors": [
+    {
+      "code": "same_as_cross_entity",
+      "path": "$.entities[1].same_as[0]",
+      "message": "A related entity's website is not sameAs"
+    }
+  ]
+}

@@ -1,47 +1,60 @@
-## Description: <br>
-Generates modern operator-style social media infographics for Twitter, LinkedIn, and Instagram using OpenAI gpt-image-2. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate modern operator-style social-media infographics for Twitter, LinkedIn, and Instagram using OpenAI gpt-image-2.
 
-## Publisher: <br>
-[berthelol](https://clawhub.ai/user/berthelol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[berthelol](https://clawhub.ai/user/berthelol)
 
-## Use Case: <br>
-External creators, founders, marketers, and operators use this skill to plan, brand, and render structured social graphics and carousel-ready infographic concepts with reference logos, screenshots, and avatar assets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OpenAI image calls use a sensitive API key and can incur usage charges. <br>
-Mitigation: Use a project-scoped OpenAI API key with an appropriate spending limit. <br>
-Risk: Selected prompts, logos, screenshots, and avatar images are sent to OpenAI for image rendering. <br>
-Mitigation: Avoid confidential or internal assets unless they are approved for upload to the image service. <br>
-Risk: The workflow may install Python dependencies and includes a fallback that can affect the system Python environment. <br>
-Mitigation: Install dependencies in a virtual environment and avoid system-wide pip installation unless explicitly approved. <br>
-Risk: Brand favicons fetched from Google may be generic, low resolution, or unsuitable for final artwork. <br>
-Mitigation: Visually verify downloaded PNG assets before rendering and replace weak favicons with approved brand assets when needed. <br>
+## Use Case:
 
+External creators, marketers, founders, and agent users use this skill to turn social-media ideas into branded infographic prompts, reusable prompt files, and rendered image assets.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/berthelol/infographic-creator) <br>
-- [Prompt templates](references/prompt-templates.md) <br>
-- [Style guide](references/style-guide.md) <br>
-- [Style tokens](references/style.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and Python prompt files; rendered assets are PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires OPENAI_API_KEY and stores generated images under infographics/outputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Prompt files, logos, screenshots, and avatars can be uploaded to OpenAI, and the CLI can read a caller-provided prompt file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review prompt-file paths before execution, keep sensitive files out of prompt and asset directories, and only use assets that are acceptable to upload to OpenAI.
+
+Risk: Image generation uses a billable API and can incur unexpected cost if rerun repeatedly.
+
+Mitigation: Use a project-scoped OpenAI API key with spending limits and monitor usage during operational runs.
+
+Risk: Dependencies are listed by package name without pinned versions.
+
+Mitigation: Pin and review the openai and cairosvg dependency versions before operational use.
+
+## Reference(s):
+
+- [Infographic Skill Definition](artifact/SKILL.md)
+- [Visual Style Guide](artifact/references/style-guide.md)
+- [Prompt Templates](artifact/references/prompt-templates.md)
+- [Style Tokens](artifact/references/style.json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with shell and Python snippets, saved prompt files, configuration JSON, and generated PNG files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses OpenAI image APIs, supports 4:5, 1:1, and 16:9 formats, and stores prompts, assets, and outputs under an infographics workspace.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,57 @@
-## Description: <br>
-Block-by-block reading mode for OpenAlgernon materials with guided reading tools and paper-mode reflection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Algernon Texto guides OpenAlgernon study materials block by block with interactive reading, explanation, testing, mapping, and paper-reading modes.
 
-## Publisher: <br>
-[AntonioVFranco](https://clawhub.ai/user/AntonioVFranco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[antoniovfranco](https://clawhub.ai/user/antoniovfranco)
 
-## Use Case: <br>
-External users use this skill to read OpenAlgernon materials in guided blocks, ask for explanations or examples, and generate study cards from concepts they explored during the session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guided reading sessions and generated study content may be persisted locally or appended to Notion when optional Notion configuration is present. <br>
-Mitigation: Review persistence settings before use; leave NOTION_PAGE_ID unset or use a dedicated Notion page if external export is not desired. <br>
+## Use Case:
 
+Learners and study agents use this skill to read OpenAlgernon materials in manageable blocks, request explanations or examples, reflect between paper sections, and generate study cards from explored concepts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/AntonioVFranco/algernon-texto) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style guided reading interaction with inline slash-command menus and bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append session summaries locally and optionally export study content to Notion when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill can read material paths from the local OpenAlgernon database and material manifests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with trusted OpenAlgernon databases and manifests, and validate slugs and resolved material paths before reading content.
+
+Risk: Configured Notion credentials may cause generated concepts and flashcards to be uploaded.
+
+Mitigation: Preview external exports and require explicit user confirmation before appending session content to Notion.
+
+Risk: Session-derived summaries may be appended to local conversation memory.
+
+Mitigation: Ask before saving local memory and avoid storing sensitive study material or personal notes unless the user confirms.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/antoniovfranco/skills/algernon-texto)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown and plain text with inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May optionally append generated study summaries and cards to configured Notion and local memory destinations.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

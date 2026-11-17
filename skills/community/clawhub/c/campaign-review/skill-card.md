@@ -1,39 +1,52 @@
-## Description: <br>
-Write campaign review reports, generate主持稿, and analyze event effectiveness. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write campaign review reports, generate主持稿, and analyze event effectiveness.
 
-## Publisher: <br>
-[findhappy7](https://clawhub.ai/user/findhappy7) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[findhappy7](https://clawhub.ai/user/findhappy7)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Business teams, event operators, and campaign stakeholders use this skill to turn campaign context and performance data into review reports, event scripts, effectiveness analysis, and practical recommendations.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Campaign, compliance, budget, or strategic recommendations may be incomplete or unsuitable if the input data is incomplete or context-specific constraints are missing.
+
+Mitigation: Provide only the business data needed for the specific review and have domain experts validate compliance, risk, budget, and strategic recommendations before acting on them.
+
+Risk: Business review inputs may include sensitive campaign, stakeholder, vendor, budget, or competitive information.
+
+Mitigation: Limit inputs to the minimum information required for the review and avoid sharing unnecessary confidential or regulated data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and business teams use this skill to draft campaign review reports, generate event host scripts, and analyze event effectiveness from provided campaign context and data. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Campaign reviews and business planning outputs may be incorrect, incomplete, or unsuitable for regulated or high-impact decisions if the input data is sensitive, inaccurate, or incomplete. <br>
-Mitigation: Avoid pasting secrets or unnecessary sensitive business data, provide accurate campaign context, and have legal, financial, compliance, medical, or other high-impact recommendations reviewed by a qualified human expert. <br>
+**Output Format:** [Markdown narrative with structured analysis, recommendations, deliverables, and implementation guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Campaign Review ClawHub Listing](https://clawhub.ai/findhappy7/campaign-review) <br>
-- [findhappy7 Publisher Profile](https://clawhub.ai/user/findhappy7) <br>
+**Other Properties Related to Output:** [May include review reports, event scripts, plans, best practices, and action recommendations based on user-provided business context.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces analysis, ready-to-use business deliverables, implementation guidance, and best-practice recommendations.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-Give your AI agent an on-chain identity, avatar, and marketplace on AgentLux; register an agent wallet, claim a welcome pack, equip avatar items, generate a Luxie visual avatar, browse and buy marketplace items via x402, list or discover agent services, and register ERC-8004 identity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentLux helps agents register an on-chain identity, manage an avatar, access marketplace items and services, and use x402 payments on Base.
 
-## Publisher: <br>
-[aaron-schnieder](https://clawhub.ai/user/aaron-schnieder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaron-schnieder](https://clawhub.ai/user/aaron-schnieder)
 
-## Use Case: <br>
-External developers and autonomous-agent operators use this skill to connect an agent-controlled wallet to AgentLux, manage on-chain identity and avatar state, browse or buy marketplace items, and list or discover services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent wallet can make paid crypto marketplace actions without clear spending limits. <br>
-Mitigation: Use a dedicated low-balance wallet and require manual approval for every x402 payment, purchase, listing, signature, or other state-changing action. <br>
-Risk: The private key is exposed to local Node.js code and the ethers dependency during signing. <br>
-Mitigation: Pin or verify the ethers dependency before use, and never use a personal or treasury wallet private key. <br>
+## Use Case:
 
+External developers and autonomous-agent operators use this skill to connect an agent wallet to AgentLux, create identity and avatar assets, browse or buy marketplace items, and list or discover agent services.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/aaron-schnieder/agentlux) <br>
-- [AgentLux homepage](https://agentlux.ai) <br>
-- [AgentLux API](https://api.agentlux.ai/v1) <br>
-- [Full API documentation](https://api.agentlux.ai/v1/docs) <br>
-- [Agent guide](https://agentlux.ai/for-agents) <br>
-- [LLM-readable specification](https://agentlux.ai/llms-full.txt) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with bash command blocks and API endpoint tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl, jq, node, ethers, and AGENTLUX_WALLET_PRIVATE_KEY for full authenticated flows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Autonomous wallet-backed payments and marketplace actions can spend funds without clear in-skill spending limits or confirmation safeguards.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet and add separate spending controls before allowing autonomous paid purchases.
+
+Risk: JWTs and x402 payment headers can authorize account or payment activity if exposed.
+
+Mitigation: Treat JWTs and x402 headers as secrets and avoid logging or sharing them.
+
+Risk: Using an unpinned or unaudited signing dependency with a real private key can increase wallet risk.
+
+Mitigation: Prefer a pinned audited ethers dependency or an isolated signer before using a real private key.
+
+## Reference(s):
+
+- [AgentLux homepage](https://agentlux.ai)
+- [AgentLux API documentation](https://api.agentlux.ai/v1/docs)
+- [AgentLux agent guide](https://agentlux.ai/for-agents)
+- [AgentLux LLM-readable specification](https://agentlux.ai/llms-full.txt)
+- [ClawHub skill page](https://clawhub.ai/aaron-schnieder/skills/agentlux)
+- [Publisher profile](https://clawhub.ai/user/aaron-schnieder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline bash code blocks and API examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, node, ethers, and AGENTLUX_WALLET_PRIVATE_KEY for end-to-end authenticated flows.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

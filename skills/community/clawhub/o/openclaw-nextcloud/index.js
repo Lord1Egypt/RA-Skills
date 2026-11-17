@@ -24,14 +24,17 @@ import path from 'node:path';
 import process from 'node:process';
 import { Buffer } from 'node:buffer';
 import { XMLParser } from 'fast-xml-parser';
-import { addDays, formatISO, format } from 'date-fns';
+import { addDays, formatISO } from 'date-fns';
 import crypto from 'node:crypto';
 
 // --- Configuration ---
 const CONFIG = {
     url: process.env.NEXTCLOUD_URL,
     user: process.env.NEXTCLOUD_USER,
-    token: process.env.NEXTCLOUD_TOKEN
+    token: process.env.NEXTCLOUD_TOKEN,
+    // Optional. When set, created events name the account as a confirmed
+    // organiser and attendee; when unset, events are written exactly as before.
+    email: process.env.NEXTCLOUD_EMAIL || null
 };
 
 if (!CONFIG.url || !CONFIG.user || !CONFIG.token) {
@@ -40,6 +43,42 @@ if (!CONFIG.url || !CONFIG.user || !CONFIG.token) {
         message: 'Missing configuration. Set NEXTCLOUD_URL, NEXTCLOUD_USER, and NEXTCLOUD_TOKEN.'
     }));
     process.exit(1);
+}
+
+// Reject values that are still an unresolved secret reference rather than the
+// value itself. OpenClaw resolves SecretRefs only for the skill's `apiKey`
+// field; anything under `skills.entries.<key>.env` is injected literally, so a
+// reference placed there arrives here as its own text. Without this check the
+// run fails much later as an opaque 401 (or, for NEXTCLOUD_URL, as a confusing
+// protocol error), which is near-undiagnosable from the agent side.
+{
+    const UNRESOLVED_REF_PATTERNS = [
+        /^secretref:/i,          // not OpenClaw syntax, but a common guess
+        /^secretref-env:/i,      // retired OpenClaw marker
+        /^__env__:/i,            // older retired OpenClaw marker
+        /^\$[A-Z][A-Z0-9_]{0,127}$/,      // $NAME env shorthand
+        /^\$\{[A-Z][A-Z0-9_]{0,127}\}$/,  // ${NAME} env shorthand
+        /^\{\s*"?source"?\s*:/          // a stringified SecretRef object
+    ];
+
+    const named = {
+        NEXTCLOUD_URL: CONFIG.url,
+        NEXTCLOUD_USER: CONFIG.user,
+        NEXTCLOUD_TOKEN: CONFIG.token,
+        NEXTCLOUD_EMAIL: CONFIG.email
+    };
+
+    for (const [name, value] of Object.entries(named)) {
+        if (!value) continue;
+        const isRef = UNRESOLVED_REF_PATTERNS.some(p => p.test(value.trim()));
+        if (!isRef) continue;
+        // Names the variable but never echoes the value.
+        console.error(JSON.stringify({
+            status: 'error',
+            message: `${name} holds an unresolved secret reference instead of a value. OpenClaw resolves SecretRefs only for skills.entries.openclaw-nextcloud.apiKey, which it injects as NEXTCLOUD_TOKEN; values under skills.entries.openclaw-nextcloud.env are injected verbatim. Set the app password as apiKey: {"source":"store","provider":"default","id":"NEXTCLOUD_TOKEN"} and give the other variables plain values. See the Configuration section of README.md.`
+        }));
+        process.exit(1);
+    }
 }
 
 // Refuse to send the token over plaintext HTTP unless explicitly opted in.
@@ -66,7 +105,12 @@ const AUTH_HEADER = 'Basic ' + Buffer.from(`${CONFIG.user}:${CONFIG.token}`).toS
 // XML Parser
 const parser = new XMLParser({
     ignoreAttributes: false,
-    attributeNamePrefix: "@_"
+    attributeNamePrefix: "@_",
+    // Decode numeric character references. Nextcloud writes the CR of a CRLF
+    // line ending as &#13;, which the parser otherwise leaves in the text: an
+    // expanded calendar-data block then has no line that reads BEGIN:VEVENT.
+    // &amp; is still decoded last, so escaped text is not decoded twice.
+    htmlEntities: true
 });
 
 // --- Helpers ---
@@ -118,6 +162,489 @@ function errorOutput(message) {
     process.exit(1);
 }
 
+// --- Security: path traversal prevention ---
+// Reject paths that attempt to escape the WebDAV files namespace via dot-segments,
+// percent-encoded traversal, backslashes, null bytes, or control characters.
+function sanitizePath(filePath) {
+    if (typeof filePath !== 'string' || filePath === '') {
+        throw new Error('File path must be a non-empty string.');
+    }
+    // Preserve literal percent signs while still decoding valid escapes once
+    // to catch encoded traversal (e.g. %2e%2e%2f). If otherwise valid-looking
+    // escapes are not valid UTF-8, treat the path as a literal filename.
+    const normalizedPercentEncoding = filePath.replace(/%(?![0-9A-Fa-f]{2})/g, '%25');
+    let decoded;
+    try {
+        decoded = decodeURIComponent(normalizedPercentEncoding);
+    } catch {
+        decoded = filePath;
+    }
+    // Reject complete dot-segments after decoding. Both "." and ".." are
+    // normalized by URL clients and can otherwise alias a different DAV target.
+    const decodedSegments = decoded.split('/');
+    if (decodedSegments.some(segment => segment === '.' || segment === '..')) {
+        throw new Error('File path contains disallowed dot-segments (. or ..).');
+    }
+    if (/[\x00-\x1f\x7f]/.test(decoded)) {
+        throw new Error('File path contains control characters.');
+    }
+    if (/\\/.test(decoded)) {
+        throw new Error('File path contains backslashes.');
+    }
+    return decoded;
+}
+
+// URL-encode each path segment individually so that / in segment names are
+// encoded as %2F and don't become path separators.
+function encodePathSegments(decodedPath) {
+    return decodedPath.split('/').map(seg => encodeURIComponent(seg)).join('/');
+}
+
+// --- Security: iCalendar / vCard property-value escaping ---
+// Prevent property injection and value corruption by escaping special
+// characters per RFC 5545 (iCalendar) and RFC 6350 (vCard).
+//   \  → \\    (escape backslash first)
+//   ;  → \;
+//   ,  → \,
+//   \n → \\n   (literal backslash-n to represent newline in the value)
+//   \r → \\n
+// Additionally strip raw CR/LF to prevent property-line injection.
+function escapePropertyValue(value) {
+    if (typeof value !== 'string') return String(value);
+    // Escape existing backslashes before introducing the backslash-n sequence
+    // used for newlines. This prevents both property injection and accidental
+    // double-escaping of the newline marker.
+    let escaped = value.replace(/\\/g, '\\\\');
+    escaped = escaped.replace(/\r\n/g, '\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\n');
+    // Escape semicolons and commas which delimit structured values
+    escaped = escaped.replace(/;/g, '\\;').replace(/,/g, '\\,');
+    return escaped;
+}
+
+// RFC 5545 3.1: a parameter value is paramtext or a quoted-string, and neither
+// defines a backslash escape. escapePropertyValue() is the wrong tool here - it
+// would emit CN=Doe\, John, which a strict parser reads as two parameter
+// values. Quote when the value needs it, and drop what a quoted-string has no
+// way to represent.
+function escapeParameterValue(value) {
+    const cleaned = String(value)
+        .replace(/[\u0000-\u001F\u007F]+/g, ' ')
+        .replace(/"/g, "'");
+    return /[,;:]/.test(cleaned) ? `"${cleaned}"` : cleaned;
+}
+
+// NEXTCLOUD_EMAIL is interpolated into a mailto: URI on the ORGANIZER and
+// ATTENDEE lines, where a newline or a structural character would break out of
+// the property and inject one of its own. Reject rather than rewrite: an
+// address containing those is a misconfiguration, and quietly altering someone's
+// identity is worse than telling them it is wrong.
+function parseOrganizerEmail(value) {
+    const email = String(value).trim();
+    if (!/^[^\s@,;:"<>\\]+@[^\s@,;:"<>\\]+\.[^\s@,;:"<>\\]+$/.test(email)) {
+        throw new Error('NEXTCLOUD_EMAIL must be a plain email address, e.g. user@example.com.');
+    }
+    return email;
+}
+
+// Decode one layer of RFC 5545 / RFC 6350 text escaping when returning
+// calendar and contact values to callers. A single-pass replacement avoids
+// interpreting escape sequences that were themselves escaped in the source.
+function unescapePropertyValue(value) {
+    if (value === null || value === undefined) return value;
+    return String(value).replace(/\\([\\;,nN])/g, (_, char) =>
+        char === 'n' || char === 'N' ? '\n' : char
+    );
+}
+
+// Split a structured value (e.g. vCard N: Last;First;Middle;Prefix;Suffix) on
+// its component separators only. Escaped characters are stepped over as a pair,
+// so a "\;" inside a component is not mistaken for a separator, and a component
+// ending in an escaped backslash ("\\") does not swallow the separator after it.
+// Components are returned still escaped — unescape each one individually.
+function splitStructuredValue(value) {
+    const parts = [];
+    let current = '';
+    for (let i = 0; i < value.length; i++) {
+        const char = value[i];
+        if (char === '\\' && i + 1 < value.length) {
+            current += char + value[++i];
+        } else if (char === ';') {
+            parts.push(current);
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    parts.push(current);
+    return parts;
+}
+
+function parsePriorityInput(value) {
+    if (!/^[0-9]$/.test(String(value))) {
+        throw new Error('Priority must be an integer from 0 to 9.');
+    }
+    return String(value);
+}
+
+function parseStatusInput(value) {
+    const normalized = String(value).toUpperCase();
+    const validStatuses = ['NEEDS-ACTION', 'IN-PROCESS', 'COMPLETED', 'CANCELLED'];
+    if (!validStatuses.includes(normalized)) {
+        throw new Error(`Invalid status '${value}'. Valid values: ${validStatuses.join(', ')}.`);
+    }
+    return normalized;
+}
+
+// Longest possible month, so the year-less form is held to the same standard as
+// the full one. February allows 29: a birthday on a leap day is legitimate, and
+// with no year there is nothing to check it against.
+const MAX_DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+// A BDAY value for a VERSION:3.0 vCard. RFC 2426 3.6.5 allows a full date; the
+// year-less form (--MM-DD) is what a client writes when the year is unknown, and
+// Nextcloud stores it alongside 3.0 cards. Both are normalised to their
+// hyphenated form. Anything else is REJECTED rather than escaped: a birthday
+// carries no free text, and the value is interpolated straight into a property
+// line, where a CR or LF would inject a property of its own.
+function parseBirthdayInput(value) {
+    if (typeof value !== 'string') {
+        throw new Error(`Invalid birthday '${value}'. Expected a string.`);
+    }
+    const raw = value.trim();
+
+    const full = /^(\d{4})-?(\d{2})-?(\d{2})$/.exec(raw);
+    if (full) {
+        const [, y, mo, d] = full;
+        const normalized = `${y}-${mo}-${d}`;
+        const date = new Date(`${normalized}T00:00:00Z`);
+        // The Date constructor rolls 2026-02-30 over into March, so compare the
+        // round trip rather than trusting isNaN alone.
+        if (isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== normalized) {
+            throw new Error(`Invalid birthday '${value}'. That date does not exist.`);
+        }
+        return normalized;
+    }
+
+    const noYear = /^--(\d{2})-?(\d{2})$/.exec(raw);
+    if (noYear) {
+        const [, mo, d] = noYear;
+        const month = Number(mo);
+        const day = Number(d);
+        if (month < 1 || month > 12 || day < 1 || day > MAX_DAYS_IN_MONTH[month - 1]) {
+            throw new Error(
+                `Invalid birthday '${value}'. That date does not exist.`
+            );
+        }
+        return `--${mo}-${d}`;
+    }
+
+    throw new Error(
+        `Invalid birthday '${value}'. Use YYYY-MM-DD (1943-10-19), the compact form ` +
+        '(19431019), or --MM-DD (--10-19) when the year is unknown.'
+    );
+}
+
+// ADR components in the order RFC 2426 3.2.1 gives them, named after the flags
+// that set them.
+const ADR_COMPONENTS = ['poBox', 'extended', 'street', 'city', 'region', 'postalCode', 'country'];
+const ADDRESS_TYPES = ['home', 'work', 'other'];
+const ADR_PROPERTY = /^(?:[A-Za-z0-9-]+\.)?ADR$/i;
+
+// The address flags of `contacts create` and `contacts edit`, keyed by ADR
+// component, with undefined for a flag that was not passed. Returns undefined
+// when no component was passed. The type becomes a parameter rather than a
+// value, so it is checked against the list instead of escaped.
+function parseAddressInput(components, type) {
+    const given = Object.fromEntries(
+        Object.entries(components).filter(([, value]) => value !== undefined)
+    );
+    if (Object.keys(given).length === 0) {
+        if (type !== undefined) {
+            throw new Error(
+                '--address-type needs at least one of --po-box, --extended, --street, --city, ' +
+                '--region, --postal-code or --country.'
+            );
+        }
+        return undefined;
+    }
+    if (type === undefined) return { type: null, components: given };
+
+    const normalized = type.trim().toLowerCase();
+    if (!ADDRESS_TYPES.includes(normalized)) {
+        throw new Error(`Invalid address type '${type}'. Valid values: ${ADDRESS_TYPES.join(', ')}.`);
+    }
+    return { type: normalized, components: given };
+}
+
+function parsePercentCompleteInput(value) {
+    const str = String(value);
+    if (!/^\d{1,3}$/.test(str)) {
+        throw new Error('Percent-complete must be an integer from 0 to 100.');
+    }
+    const num = parseInt(str, 10);
+    if (num < 0 || num > 100) {
+        throw new Error('Percent-complete must be between 0 and 100.');
+    }
+    return String(num);
+}
+
+function parseClassInput(value) {
+    const normalized = String(value).toUpperCase();
+    const validClasses = ['PUBLIC', 'PRIVATE', 'CONFIDENTIAL'];
+    if (!validClasses.includes(normalized)) {
+        throw new Error(`Invalid class '${value}'. Valid values: ${validClasses.join(', ')}.`);
+    }
+    return normalized;
+}
+
+// URL carries a URI value (RFC 5545 3.8.4.6), not TEXT, so the TEXT escaping of
+// commas and semicolons must not be applied to it — another client would render
+// the backslashes literally. Nothing needs escaping in a well-formed URI, so
+// reject the characters that would break the property line instead.
+function parseUriInput(value) {
+    const uri = String(value).trim();
+    if (/[\u0000-\u001F\u007F]/.test(uri) || /\s/.test(uri)) {
+        throw new Error('URL must be a single URI with no spaces or line breaks.');
+    }
+    return uri;
+}
+
+function parseTagsInput(value) {
+    if (typeof value !== 'string' || value.trim() === '') {
+        return [];
+    }
+    return value.split(',').map(tag => tag.trim()).filter(Boolean);
+}
+
+const MAX_TEXT_INPUT_BYTES = 64 * 1024 * 1024;
+const CONFIRMATION_REQUIRED = new Set([
+    'notes:delete',
+    'files:delete',
+    'calendar:delete',
+    'tasks:delete',
+    'shares:create-link',
+    'shares:delete',
+    'contacts:delete',
+    'boards:delete',
+    'stacks:delete',
+    'cards:delete',
+    'labels:delete'
+]);
+
+// Every flag each command/subcommand accepts, read out of main() below.
+//
+// Per subcommand rather than per command so a flag that belongs to a sibling
+// (`notes list --category`) is rejected instead of ignored. A flag is listed only
+// on the subcommands that use it, even where main() reads it before dispatching:
+// the cards block reads --card up front, but `cards list` and `cards create`
+// never use it, and the comment-* subcommands never read --board or --stack.
+//
+// Keep in sync when adding a flag: test/regressions.mjs asserts this table and
+// the flags main() reads match.
+const FLAG_TABLE = {
+    addressbooks: {
+        list: '',
+    },
+    boards: {
+        create: '--color --title',
+        delete: '--board',
+        edit: '--archived --board --color --title',
+        get: '--board',
+        list: '',
+    },
+    calendar: {
+        create: '--calendar --description --description-file --end --location --start --summary',
+        delete: '--calendar --uid',
+        edit: '--calendar --description --description-file --end --location --start --summary --uid',
+        list: '--calendar --from --to',
+    },
+    calendars: {
+        list: '--type',
+    },
+    cards: {
+        'assign-label': '--board --card --label --stack',
+        'comment-add': '--card --message --message-file',
+        'comment-delete': '--card --comment',
+        'comment-list': '--card',
+        create: '--board --description --description-file --duedate --order --stack --title',
+        delete: '--board --card --stack',
+        edit: '--archived --board --card --description --description-file --done --duedate --order --stack --title',
+        get: '--board --card --stack',
+        list: '--board --stack',
+        move: '--board --card --order --stack --to-stack',
+        'remove-label': '--board --card --label --stack',
+    },
+    contacts: {
+        create: '--address-type --addressbook --bday --city --country --email --extended --name --note --note-file --organization --phone --po-box --postal-code --region --street --title',
+        delete: '--addressbook --uid',
+        edit: '--address-type --addressbook --bday --city --country --email --extended --name --note --note-file --organization --phone --po-box --postal-code --region --street --title --uid',
+        get: '--addressbook --uid',
+        list: '--addressbook',
+        search: '--addressbook --query',
+    },
+    files: {
+        delete: '--path',
+        get: '--out --path',
+        list: '--path',
+        search: '--query',
+        upload: '--content --content-file --path',
+    },
+    labels: {
+        create: '--board --color --title',
+        delete: '--board --label',
+        edit: '--board --color --label --title',
+        list: '--board',
+    },
+    notes: {
+        create: '--category --content --content-file --title',
+        delete: '--id',
+        edit: '--category --content --content-file --id --title',
+        get: '--id',
+        list: '',
+    },
+    shares: {
+        'create-link': '--expire --password --password-file --path --permissions',
+        delete: '--id',
+        list: '--path',
+    },
+    stacks: {
+        create: '--board --order --title',
+        delete: '--board --stack',
+        edit: '--board --order --stack --title',
+        list: '--board',
+    },
+    tasks: {
+        complete: '--calendar --uid',
+        create: '--calendar --class --description --description-file --due --location --priority --start --tags --title --url',
+        delete: '--calendar --uid',
+        edit: '--calendar --class --description --description-file --due --location --percent-complete --priority --start --status --tags --title --uid --url',
+        list: '--calendar',
+    },
+};
+
+// Accepted on every command. requireExplicitConfirmation reads --confirm outside
+// any command block, so it is not in the table above.
+const GLOBAL_FLAGS = ['--confirm'];
+
+// Reject a flag the command does not accept, instead of ignoring it.
+//
+// An ignored flag is indistinguishable from success (`calendar list --calendar`
+// once returned every calendar and exited 0). A typo or a flag left over from an
+// older interface must fail loudly, and the message names what the command does
+// accept so the caller can correct it without a second round trip.
+//
+// Only flag position is checked, not required-ness: a missing --uid is reported by
+// the command itself with a message that says what is missing.
+function rejectUnknownFlags(args, command, subCommand) {
+    const table = FLAG_TABLE[command];
+    if (!table) return;
+    if (!(subCommand in table)) return;   // unknown subcommand: main() reports it
+
+    const allowed = new Set(
+        `${table[subCommand]} ${GLOBAL_FLAGS.join(' ')}`.split(' ').filter(Boolean)
+    );
+
+    // args[0] is the command and args[1] the subcommand, so scanning starts at 2.
+    // Every flag in this CLI takes exactly one value, so an accepted flag skips its
+    // value. That is also what keeps a value beginning with dashes (the frontmatter
+    // case, "---\ntitle: x" on --content) from being read as a flag.
+    for (let i = 2; i < args.length; i++) {
+        const arg = args[i];
+        if (!arg.startsWith('--')) continue;
+        if (allowed.has(arg)) {
+            i++;
+            continue;
+        }
+        throw new Error(
+            `Unknown option '${arg}' for '${command} ${subCommand}'. ` +
+            `Accepted: ${[...allowed].sort().join(', ')}`
+        );
+    }
+}
+
+// A flag that takes one value. An empty value is meaningful — on `tasks edit` it
+// clears the property — so it is returned as '', while the flag with no value at
+// all is a typo rather than a request to clear.
+function getOptionValue(args, flag) {
+    const index = args.indexOf(flag);
+    if (index === -1) return undefined;
+    const value = args[index + 1];
+    if (value === undefined) {
+        throw new Error(`Missing value for ${flag}`);
+    }
+    return value;
+}
+
+function readTextOption(args, inlineFlag, fileFlag, {
+    required = false,
+    stripFinalNewline = false,
+    maxBytes = MAX_TEXT_INPUT_BYTES,
+    binary = false
+} = {}) {
+    const inlineValue = getOptionValue(args, inlineFlag);
+    const filePath = getOptionValue(args, fileFlag);
+
+    if (inlineValue !== undefined && filePath !== undefined) {
+        throw new Error(`Use either ${inlineFlag} or ${fileFlag}, not both.`);
+    }
+    if (inlineValue !== undefined) {
+        if (required && inlineValue.length === 0) {
+            throw new Error(`${inlineFlag} must not be empty.`);
+        }
+        // Inline values arrive as strings; for byte-oriented callers encode them
+        // as UTF-8 so the length and the bytes sent are the same thing.
+        return binary ? Buffer.from(inlineValue, 'utf8') : inlineValue;
+    }
+    if (filePath === undefined) {
+        if (required) throw new Error(`Missing ${inlineFlag} or ${fileFlag}`);
+        return undefined;
+    }
+
+    const resolvedPath = path.resolve(filePath);
+    let stat;
+    try {
+        stat = fs.statSync(resolvedPath);
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            throw new Error(`${fileFlag} file not found: ${filePath}`);
+        }
+        throw new Error(`Cannot read ${fileFlag}: ${error.message}`);
+    }
+    if (!stat.isFile()) {
+        throw new Error(`${fileFlag} must reference a regular file.`);
+    }
+    if (stat.size > maxBytes) {
+        throw new Error(`${fileFlag} exceeds the ${maxBytes}-byte safety limit.`);
+    }
+
+    // Binary callers get the raw bytes: decoding as UTF-8 would replace every
+    // byte that is not valid UTF-8 with U+FFFD, silently corrupting the file.
+    let value;
+    if (binary) {
+        value = fs.readFileSync(resolvedPath);
+    } else {
+        value = fs.readFileSync(resolvedPath, 'utf8');
+        if (stripFinalNewline) value = value.replace(/\r?\n$/, '');
+    }
+    if (required && value.length === 0) {
+        throw new Error(`${fileFlag} must not be empty.`);
+    }
+    return value;
+}
+
+function requireExplicitConfirmation(args, command, subCommand) {
+    const action = `${command}:${subCommand}`;
+    if (!CONFIRMATION_REQUIRED.has(action)) return;
+
+    const confirmation = getOptionValue(args, '--confirm');
+    if (confirmation !== action) {
+        throw new Error(
+            `Refusing ${command} ${subCommand} without explicit confirmation. ` +
+            'See SKILL.md for confirmation requirements.'
+        );
+    }
+}
+
 function ensureArray(item) {
     if (Array.isArray(item)) return item;
     if (item === undefined || item === null) return [];
@@ -159,6 +686,61 @@ function parseDateInput(str) {
         throw new Error(`Invalid date '${str}'. Use ISO 8601 (2026-04-15T17:00:00Z) or CalDAV compact format (20260415T170000Z).`);
     }
     return date;
+}
+
+function toCalDavDate(date) {
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+}
+
+// A DTSTART/DUE value as both an instant (for ordering) and the text to write,
+// keeping the RFC 5545 value type. A calendar date with no time of day is a
+// DATE — an all-day task — and writing it as midnight UTC instead would land it
+// on the previous day for anyone west of UTC.
+function parseCalendarValue(str) {
+    const raw = String(str).trim();
+    const dateOnly = /^(\d{4})-?(\d{2})-?(\d{2})$/.exec(raw);
+    if (dateOnly) {
+        const [, y, mo, d] = dateOnly;
+        const date = new Date(`${y}-${mo}-${d}T00:00:00Z`);
+        if (isNaN(date.getTime())) {
+            throw new Error(`Invalid date '${str}'. Use ISO 8601 (2026-04-15) or CalDAV compact format (20260415).`);
+        }
+        return { date, isDate: true, ical: `${y}${mo}${d}` };
+    }
+    const date = parseDateInput(raw);
+    return { date, isDate: false, ical: toCalDavDate(date) };
+}
+
+// Read a DTSTART/DUE back out of stored calendar data so an edit can be checked
+// against it. A value another client wrote in a form we cannot parse yields
+// null rather than an exception: it should not block an edit to a different
+// property of the same task.
+function readCalendarValue(text, prop) {
+    const match = text.match(new RegExp(`^${prop}(;[^:\r\n]*)?:(.*)$`, 'm'));
+    if (!match) return null;
+    try {
+        const value = parseCalendarValue(match[2].trim());
+        const declaredDate = /(?:^|;)VALUE=DATE(?:;|$)/i.test(match[1] || '');
+        return declaredDate ? { ...value, isDate: true } : value;
+    } catch {
+        return null;
+    }
+}
+
+// The ordering and value-type rules RFC 5545 3.6.2 puts on a VTODO's DTSTART
+// and DUE. Both arguments are parseCalendarValue() results, or null where the
+// task has no such property.
+function validateTaskDates(start, due) {
+    if (!start || !due) return;
+    if (start.isDate !== due.isDate) {
+        throw new Error(
+            "A task's start and due dates must both be all-day dates (2026-04-15) or both carry a " +
+            'time (2026-04-15T17:00:00Z). Set --start and --due together to change which form the task uses.'
+        );
+    }
+    if (start.date.getTime() > due.date.getTime()) {
+        throw new Error('Start date must be earlier than or equal to due date.');
+    }
 }
 
 // --- Modules ---
@@ -220,7 +802,7 @@ const Notes = {
         if (category !== undefined) payload.category = category;
 
         if (Object.keys(payload).length === 0) {
-            throw new Error('Nothing to update. Provide title, content, or category.');
+            throw new Error('Nothing to update. Provide title, content/content-file, or category.');
         }
 
         const data = await request(`/index.php/apps/notes/api/v1/notes/${id}`, {
@@ -251,8 +833,10 @@ const Notes = {
 // 2. Files (WebDAV)
 const Files = {
     async list(dirPath = '/') {
-        const cleanPath = dirPath.startsWith('/') ? dirPath.slice(1) : dirPath;
-        const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+        const decodedPath = sanitizePath(dirPath);
+        const relPath = decodedPath.replace(/^\/+/, '');
+        const safePath = relPath ? encodePathSegments(relPath) : '';
+        const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
 
         // Explicitly request oc:fileid alongside the standard DAV props.
         // Without an explicit body, default PROPFIND props are returned and oc:fileid is omitted.
@@ -291,9 +875,9 @@ const Files = {
             const isDir = props['d:resourcetype'] && props['d:resourcetype']['d:collection'] !== undefined;
             const name = decodeURIComponent(href.split('/').filter(p => p).pop());
 
-            if (href.endsWith(encodeURIComponent(CONFIG.user) + '/' + cleanPath) ||
-                href.endsWith(encodeURIComponent(CONFIG.user) + '/' + cleanPath + '/')) {
-                 if (cleanPath !== '' && name === cleanPath.split('/').pop()) return null;
+            if (href.endsWith(encodeURIComponent(CONFIG.user) + '/' + safePath) ||
+                href.endsWith(encodeURIComponent(CONFIG.user) + '/' + safePath + '/')) {
+                 if (relPath !== '' && name === relPath.split('/').pop()) return null;
             }
 
             const fileId = props['oc:fileid'] != null ? String(props['oc:fileid']) : null;
@@ -311,23 +895,26 @@ const Files = {
     },
     
     async upload(filePath, content) {
-        const cleanPath = filePath.startsWith('/') ? filePath.slice(1) : filePath;
+        const decodedPath = sanitizePath(filePath);
+        const relPath = decodedPath.replace(/^\/+/, '');
+        if (!relPath) throw new Error('File path must be non-empty.');
+        const safePath = encodePathSegments(relPath);
 
         // Ensure parent directories exist. MKCOL each segment; 405 means it already exists.
-        const segments = cleanPath.split('/').filter(Boolean);
+        const segments = relPath.split('/').filter(Boolean);
         if (segments.length > 1) {
             let currentPath = '';
             for (const seg of segments.slice(0, -1)) {
-                currentPath = currentPath ? `${currentPath}/${seg}` : seg;
+                currentPath = currentPath ? `${currentPath}/${encodeURIComponent(seg)}` : encodeURIComponent(seg);
                 try {
-                    await request(`/remote.php/dav/files/${CONFIG.user}/${currentPath}`, { method: 'MKCOL' });
+                    await request(`/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${currentPath}`, { method: 'MKCOL' });
                 } catch (e) {
                     if (e.status !== 405) throw e;
                 }
             }
         }
 
-        const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+        const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
 
         await request(endpoint, {
             method: 'PUT',
@@ -338,12 +925,20 @@ const Files = {
             rawBody: true
         });
 
-        return { path: filePath, status: 'uploaded', size: content.length };
+        // Bytes actually sent. `.length` on a string is a UTF-16 code-unit
+        // count, which undershoots any multi-byte character.
+        const size = Buffer.isBuffer(content)
+            ? content.length
+            : Buffer.byteLength(content, 'utf8');
+        return { path: filePath, status: 'uploaded', size };
     },
 
-    async get(filePath) {
-        const cleanPath = filePath.startsWith('/') ? filePath.slice(1) : filePath;
-        const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+    async get(filePath, out) {
+        const decodedPath = sanitizePath(filePath);
+        const relPath = decodedPath.replace(/^\/+/, '');
+        if (!relPath) throw new Error('File path must be non-empty.');
+        const safePath = encodePathSegments(relPath);
+        const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
 
         const response = await fetch(`${CONFIG.url}${endpoint}`, {
             method: 'GET',
@@ -356,13 +951,50 @@ const Files = {
             throw new Error(`Request failed: HTTP ${response.status}: ${response.statusText}`);
         }
 
-        const content = await response.text();
-        return { path: filePath, content, size: content.length };
+        // Read the body as bytes. response.text() decodes as UTF-8 and replaces
+        // every non-UTF-8 byte with U+FFFD, corrupting any binary download.
+        const buffer = Buffer.from(await response.arrayBuffer());
+
+        // --out writes the raw bytes to a file, which is the only lossless path:
+        // a JSON string cannot carry arbitrary bytes. The bytes come from
+        // Nextcloud and are as untrusted as any retrieved content, so `wx`
+        // refuses to replace a file that already exists.
+        if (out !== undefined) {
+            const resolved = path.resolve(out);
+            try {
+                fs.writeFileSync(resolved, buffer, { flag: 'wx' });
+            } catch (error) {
+                if (error.code === 'EEXIST') {
+                    throw new Error(
+                        `--out file already exists: ${out}. ` +
+                        'files get never overwrites a local file; choose a new path.'
+                    );
+                }
+                throw new Error(`Cannot write --out: ${error.message}`);
+            }
+            return { path: filePath, out: resolved, size: buffer.length };
+        }
+
+        // Inline content is text only. A strict decode refuses bytes that are not
+        // valid UTF-8 instead of returning them as U+FFFD under a success status.
+        let content;
+        try {
+            content = new TextDecoder('utf-8', { fatal: true }).decode(buffer);
+        } catch {
+            throw new Error(
+                `${filePath} is not UTF-8 text and cannot be returned inline ` +
+                'without corrupting it. Use --out <file> to save the raw bytes.'
+            );
+        }
+        return { path: filePath, content, size: buffer.length };
     },
 
     async delete(filePath) {
-        const cleanPath = filePath.startsWith('/') ? filePath.slice(1) : filePath;
-        const endpoint = `/remote.php/dav/files/${CONFIG.user}/${cleanPath}`;
+        const decodedPath = sanitizePath(filePath);
+        const relPath = decodedPath.replace(/^\/+/, '');
+        if (!relPath) throw new Error('File path must be non-empty.');
+        const safePath = encodePathSegments(relPath);
+        const endpoint = `/remote.php/dav/files/${encodeURIComponent(CONFIG.user)}/${safePath}`;
 
         await request(endpoint, {
             method: 'DELETE'
@@ -481,22 +1113,33 @@ const CalDAV = {
         }).filter(c => c && (!componentType || c.componentType === componentType));
     },
 
-    async getEvents(start, end) {
-        const calendars = await this.findCalendars('VEVENT');
+    async getEvents(start, end, calendarName = null) {
+        let calendars = await this.findCalendars('VEVENT');
+        if (calendarName) {
+            const matched = matchByName(calendars, calendarName);
+            if (!matched) {
+                const available = calendars.map(c => c.displayname).join(', ') || '(none)';
+                throw new Error(`Event-enabled calendar '${calendarName}' not found. Available: ${available}`);
+            }
+            calendars = [matched];
+        }
         const allEvents = [];
 
-        const toCalDavDate = (dateStr) => {
-            const d = parseDateInput(dateStr);
-            return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-        };
-        const startStr = toCalDavDate(start);
-        const endStr = toCalDavDate(end);
+        const startStr = toCalDavDate(parseDateInput(start));
+        const endStr = toCalDavDate(parseDateInput(end));
 
+        // The time-range filter matches a recurring event by any occurrence in the
+        // window, but the stored VEVENT holds only the first one and its RRULE.
+        // Asking the server to expand (RFC 4791 9.6.5) returns each occurrence in
+        // the window as a VEVENT of its own, with EXDATEs and moved occurrences
+        // applied, and every time of day in UTC.
         const body = `
             <c:calendar-query xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
                 <d:prop>
                     <d:getetag />
-                    <c:calendar-data />
+                    <c:calendar-data>
+                        <c:expand start="${startStr}" end="${endStr}" />
+                    </c:calendar-data>
                 </d:prop>
                 <c:filter>
                     <c:comp-filter name="VCALENDAR">
@@ -525,30 +1168,40 @@ const CalDAV = {
                      if (!propstats[0] || !propstats[0]['d:prop']) continue;
                      
                      const calData = propstats[0]['d:prop']['cal:calendar-data'];
-                     const unfolded = calData.replace(/\r?\n[ \t]/g, '');
+                     // Each VEVENT's own lines only. Any timezoned event carries a VTIMEZONE
+                     // whose DST rules have DTSTART lines of their own (dated 1970), and a
+                     // VALARM carries its own DESCRIPTION; an unscoped match finds whichever
+                     // comes first in the file.
+                     for (const vevent of this._componentTexts(calData)) {
+                         const uidMatch = vevent.match(/^UID(?:;[^:]*)?:(.*)$/m);
+                         const summaryMatch = vevent.match(/^SUMMARY(?:;[^:]*)?:(.*)$/m);
+                         const descriptionMatch = vevent.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
+                         const dtstartMatch = vevent.match(/^DTSTART(?:;[^:]*)?:(.*)$/m);
+                         const dtendMatch = vevent.match(/^DTEND(?:;[^:]*)?:(.*)$/m);
+                         const locationMatch = vevent.match(/^LOCATION(?:;[^:]*)?:(.*)$/m);
+                         const recurrenceIdMatch = vevent.match(/^RECURRENCE-ID(?:;[^:]*)?:(.*)$/m);
 
-                     const uidMatch = calData.match(/UID:(.*)/);
-                     const summaryMatch = calData.match(/SUMMARY:(.*)/);
-                     const descriptionMatch = unfolded.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
-                     const dtstartMatch = calData.match(/DTSTART(?:;.*)?:(.*)/);
-                     const dtendMatch = calData.match(/DTEND(?:;.*)?:(.*)/);
-                     const locationMatch = calData.match(/LOCATION:(.*)/);
-
-                     allEvents.push({
-                         uid: uidMatch ? uidMatch[1].trim() : 'No UID',
-                         calendar: cal.displayname,
-                         summary: summaryMatch ? summaryMatch[1].trim() : 'No Title',
-                         description: descriptionMatch ? descriptionMatch[1].trim() : null,
-                         start: dtstartMatch ? dtstartMatch[1].trim() : 'Unknown',
-                         end: dtendMatch ? dtendMatch[1].trim() : null,
-                         location: locationMatch ? locationMatch[1].trim() : null
-                     });
+                         allEvents.push({
+                             uid: uidMatch ? uidMatch[1].trim() : 'No UID',
+                             calendar: cal.displayname,
+                             summary: summaryMatch ? unescapePropertyValue(summaryMatch[1].trim()) : 'No Title',
+                             description: descriptionMatch ? unescapePropertyValue(descriptionMatch[1].trim()) : null,
+                             start: dtstartMatch ? dtstartMatch[1].trim() : 'Unknown',
+                             end: dtendMatch ? dtendMatch[1].trim() : null,
+                             location: locationMatch ? unescapePropertyValue(locationMatch[1].trim()) : null,
+                             // Set on every occurrence of a recurring event, and only there.
+                             recurrenceId: recurrenceIdMatch ? recurrenceIdMatch[1].trim() : null
+                         });
+                     }
                  }
              } catch (e) {
                  // ignore errors for specific calendars
              }
         }
-        return allEvents;
+        // Occurrences of one recurring event arrive together, so without this the
+        // next thing on the calendar is not necessarily first. Compact UTC values
+        // sort as text, and an all-day date sorts ahead of times on that day.
+        return allEvents.sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
     },
 
     async getTodos(calendarName = null) {
@@ -573,11 +1226,7 @@ const CalDAV = {
                 </d:prop>
                 <c:filter>
                     <c:comp-filter name="VCALENDAR">
-                        <c:comp-filter name="VTODO">
-                            <c:prop-filter name="STATUS">
-                                <c:text-match negate-condition="yes">COMPLETED</c:text-match>
-                            </c:prop-filter>
-                        </c:comp-filter>
+                        <c:comp-filter name="VTODO" />
                     </c:comp-filter>
                 </c:filter>
             </c:calendar-query>
@@ -601,23 +1250,65 @@ const CalDAV = {
                         continue; 
                      }
                      const calData = propstats[0]['d:prop']['cal:calendar-data'];
-                     const unfolded = calData.replace(/\r?\n[ \t]/g, '');
+                     // The VTODO's own lines only. A VCALENDAR that carries a VTIMEZONE has
+                     // DTSTART lines for the DST rules, and every match below is anchored so a
+                     // DESCRIPTION quoting "DUE:" cannot stand in for the property either.
+                     const vtodo = this._componentText(calData);
+                     if (!vtodo) continue;
 
-                     const summaryMatch = calData.match(/SUMMARY:(.*)/);
-                     const descriptionMatch = unfolded.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
-                     const statusMatch = calData.match(/STATUS:(.*)/);
-                     const uidMatch = calData.match(/UID:(.*)/);
-                     const dueMatch = calData.match(/DUE(?:;.*)?:(.*)/);
-                     const priorityMatch = calData.match(/PRIORITY:(.*)/);
+                     const summaryMatch = vtodo.match(/^SUMMARY(?:;[^:]*)?:(.*)$/m);
+                     const descriptionMatch = vtodo.match(/^DESCRIPTION(?:;[^:]*)?:(.*)$/m);
+                     const statusMatch = vtodo.match(/^STATUS(?:;[^:]*)?:(.*)$/m);
+                     const uidMatch = vtodo.match(/^UID(?:;[^:]*)?:(.*)$/m);
+                     const startMatch = vtodo.match(/^DTSTART(?:;[^:]*)?:(.*)$/m);
+                     const dueMatch = vtodo.match(/^DUE(?:;[^:]*)?:(.*)$/m);
+                     const priorityMatch = vtodo.match(/^PRIORITY(?:;[^:]*)?:(.*)$/m);
+                     const locationMatch = vtodo.match(/^LOCATION(?:;[^:]*)?:(.*)$/m);
+                     const urlMatch = vtodo.match(/^URL(?:;[^:]*)?:(.*)$/m);
+                     const classMatch = vtodo.match(/^CLASS(?:;[^:]*)?:(.*)$/m);
+                     const categoriesMatch = vtodo.match(/^CATEGORIES(?:;[^:]*)?:(.*)$/m);
+
+                     // STATUS decides visibility below, so REQUEST-STATUS and a DESCRIPTION
+                     // mentioning "STATUS:" both have to be kept out of it.
+                     const status = statusMatch ? statusMatch[1].trim() : 'NEEDS-ACTION';
+                     // CalDAV prop-filter on STATUS only matches VTODOs where STATUS exists (RFC 4791 §3.6.4).
+                     // Post-filter completed tasks so VTODOs with an implicit STATUS:NEEDS-ACTION
+                     // (e.g. todos created by the Nextcloud Tasks web UI) are still returned.
+                     if (status === 'COMPLETED') continue;
+
+                     let tags = null;
+                     if (categoriesMatch) {
+                         const rawTags = categoriesMatch[1].trim();
+                         const split = [];
+                         let current = '';
+                         for (let i = 0; i < rawTags.length; i++) {
+                             const char = rawTags[i];
+                             if (char === '\\' && i + 1 < rawTags.length) {
+                                 current += char + rawTags[++i];
+                             } else if (char === ',') {
+                                 split.push(current);
+                                 current = '';
+                             } else {
+                                 current += char;
+                             }
+                         }
+                         split.push(current);
+                         tags = split.map(t => unescapePropertyValue(t.trim())).filter(Boolean);
+                     }
 
                      allTodos.push({
                          uid: uidMatch ? uidMatch[1].trim() : 'No UID',
                          calendar: cal.displayname,
-                         summary: summaryMatch ? summaryMatch[1].trim() : 'No Title',
-                         description: descriptionMatch ? descriptionMatch[1].trim() : null,
-                         status: statusMatch ? statusMatch[1].trim() : 'NEEDS-ACTION',
+                         summary: summaryMatch ? unescapePropertyValue(summaryMatch[1].trim()) : 'No Title',
+                         description: descriptionMatch ? unescapePropertyValue(descriptionMatch[1].trim()) : null,
+                         status: status,
+                         start: startMatch ? startMatch[1].trim() : null,
                          due: dueMatch ? dueMatch[1].trim() : null,
-                         priority: priorityMatch ? parseInt(priorityMatch[1].trim(), 10) : null
+                         priority: priorityMatch ? parseInt(priorityMatch[1].trim(), 10) : null,
+                         location: locationMatch ? unescapePropertyValue(locationMatch[1].trim()) : null,
+                         url: urlMatch ? unescapePropertyValue(urlMatch[1].trim()) : null,
+                         class: classMatch ? classMatch[1].trim().toUpperCase() : null,
+                         tags: tags
                      });
                  }
              } catch (e) {
@@ -704,38 +1395,103 @@ const CalDAV = {
         return null;
     },
     
-    _updateProperty(vcal, prop, value) {
-        if (value === null || value === undefined) {
-            return vcal;
+    // Index the lines belonging to the VTODO or VEVENT itself. Properties must
+    // never be read from or written to anything else in the VCALENDAR: a
+    // VTIMEZONE carries DTSTART lines of its own (the DST rules, dated 1970),
+    // and a VALARM carries its own SUMMARY and DESCRIPTION. An unscoped match
+    // finds whichever comes first in the file.
+    _componentLines(lines, from = 0) {
+        let name = null;
+        let nested = 0;
+        const own = [];
+        for (let i = from; i < lines.length; i++) {
+            const line = lines[i];
+            if (!name) {
+                const begin = /^BEGIN:(VTODO|VEVENT)\s*$/.exec(line);
+                if (begin) name = begin[1];
+                continue;
+            }
+            if (nested === 0 && new RegExp(`^END:${name}\\s*$`).test(line)) {
+                return { name, own, end: i };
+            }
+            if (/^BEGIN:/.test(line)) nested++;
+            else if (/^END:/.test(line)) nested--;
+            else if (nested === 0) own.push(i);
         }
-        // Match an existing line including any property parameters (e.g. DUE;TZID=Europe/London:...).
-        const regex = new RegExp(`^${prop}(?:;[^:\\r\\n]*)?:.*$`, 'm');
-        const newLine = `${prop}:${value}`;
-        if (regex.test(vcal)) {
-            return vcal.replace(regex, newLine);
-        }
-        const endMatch = vcal.match(/END:(VTODO|VEVENT)/);
-        if (!endMatch) {
-            throw new Error('Cannot insert property: no END:VTODO or END:VEVENT found in calendar data.');
-        }
-        return vcal.replace(endMatch[0], `${newLine}\n${endMatch[0]}`);
+        return null;
     },
 
-    async createTask(title, calendarName, dueDate, priority, description) {
+    // The component's own property lines, unfolded, for reading values out of.
+    _componentText(vcal) {
+        const lines = vcal.replace(/\r?\n[ \t]/g, '').split(/\r?\n/);
+        const component = this._componentLines(lines);
+        return component ? component.own.map(i => lines[i]).join('\n') : '';
+    },
+
+    // The same for every component in the file. An expanded recurring event
+    // comes back as one VEVENT per occurrence.
+    _componentTexts(vcal) {
+        const lines = vcal.replace(/\r?\n[ \t]/g, '').split(/\r?\n/);
+        const texts = [];
+        for (let c = this._componentLines(lines); c; c = this._componentLines(lines, c.end + 1)) {
+            texts.push(c.own.map(i => lines[i]).join('\n'));
+        }
+        return texts;
+    },
+
+    // Replace, insert, or (value === null) remove a property on the component.
+    _updateProperty(vcal, prop, value, params = null) {
+        if (value === undefined) return vcal;
+
+        const lines = vcal.split(/\r?\n/);
+        const component = this._componentLines(lines);
+        if (!component) {
+            throw new Error('Cannot insert property: no END:VTODO or END:VEVENT found in calendar data.');
+        }
+
+        const eol = vcal.includes('\r\n') ? '\r\n' : '\n';
+        const newLine = value === null ? null : `${prop}${params ? `;${params}` : ''}:${value}`;
+        // Match an existing line including any property parameters (e.g. DUE;TZID=Europe/London:...).
+        const regex = new RegExp(`^${prop}(?:;[^:]*)?:`);
+        const first = component.own.find(i => regex.test(lines[i]));
+
+        if (first === undefined) {
+            if (newLine === null) return vcal;
+            lines.splice(component.end, 0, newLine);
+            return lines.join(eol);
+        }
+
+        // A value longer than 75 octets is folded across continuation lines
+        // (RFC 5545 3.1); they are part of this property and go with it.
+        let last = first;
+        while (last + 1 < lines.length && /^[ \t]/.test(lines[last + 1])) last++;
+        lines.splice(first, last - first + 1, ...(newLine === null ? [] : [newLine]));
+        return lines.join(eol);
+    },
+
+    async createTask(title, calendarName, options = {}) {
+        const start = options.startDate ? parseCalendarValue(options.startDate) : null;
+        const due = options.dueDate ? parseCalendarValue(options.dueDate) : null;
+        validateTaskDates(start, due);
+
         const cal = await this.getCalendar(calendarName, 'VTODO');
         const uid = crypto.randomUUID();
         const now = new Date();
-        const dtstamp = format(now, "yyyyMMdd'T'HHmmss'Z'");
+        const dtstamp = toCalDavDate(now);
 
-        let vtodo = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//OpenClaw//Nextcloud Skill//EN\nBEGIN:VTODO\nUID:${uid}\nDTSTAMP:${dtstamp}\nSUMMARY:${title}\nSTATUS:NEEDS-ACTION\n`;
+        let vtodo = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//OpenClaw//Nextcloud Skill//EN\nBEGIN:VTODO\nUID:${uid}\nDTSTAMP:${dtstamp}\nSUMMARY:${escapePropertyValue(title)}\nSTATUS:NEEDS-ACTION\n`;
 
-        if (dueDate) {
-             const due = parseDateInput(dueDate);
-             vtodo += `DUE:${format(due, "yyyyMMdd'T'HHmmss'Z'")}\n`;
+        if (start) vtodo += `DTSTART${start.isDate ? ';VALUE=DATE' : ''}:${start.ical}\n`;
+        if (due) vtodo += `DUE${due.isDate ? ';VALUE=DATE' : ''}:${due.ical}\n`;
+
+        if (options.priority) vtodo += `PRIORITY:${options.priority}\n`;
+        if (options.description) vtodo += `DESCRIPTION:${escapePropertyValue(options.description)}\n`;
+        if (options.location) vtodo += `LOCATION:${escapePropertyValue(options.location)}\n`;
+        if (options.url) vtodo += `URL:${options.url}\n`;
+        if (options.className) vtodo += `CLASS:${options.className}\n`;
+        if (options.tags && options.tags.length > 0) {
+            vtodo += `CATEGORIES:${options.tags.map(escapePropertyValue).join(',')}\n`;
         }
-
-        if (priority) vtodo += `PRIORITY:${priority}\n`;
-        if (description) vtodo += `DESCRIPTION:${description}\n`;
 
         vtodo += `END:VTODO\nEND:VCALENDAR`;
 
@@ -761,13 +1517,45 @@ const CalDAV = {
         
         let vtodo = task.data;
         
-        if (updates.title) vtodo = this._updateProperty(vtodo, 'SUMMARY', updates.title);
+        if (updates.title) vtodo = this._updateProperty(vtodo, 'SUMMARY', escapePropertyValue(updates.title));
         if (updates.priority) vtodo = this._updateProperty(vtodo, 'PRIORITY', updates.priority);
-        if (updates.description) vtodo = this._updateProperty(vtodo, 'DESCRIPTION', updates.description);
-        if (updates.dueDate) {
-             const due = parseDateInput(updates.dueDate);
-             vtodo = this._updateProperty(vtodo, 'DUE', format(due, "yyyyMMdd'T'HHmmss'Z'"));
+        if (updates.description) vtodo = this._updateProperty(vtodo, 'DESCRIPTION', escapePropertyValue(updates.description));
+        if (updates.startDate || updates.dueDate) {
+            const start = updates.startDate ? parseCalendarValue(updates.startDate) : null;
+            const due = updates.dueDate ? parseCalendarValue(updates.dueDate) : null;
+            // Check against the stored dates when only one side is being changed, reading
+            // them from the VTODO itself so a VTIMEZONE's DST rules cannot stand in for
+            // the task's own start.
+            const stored = this._componentText(vtodo);
+            validateTaskDates(
+                start || readCalendarValue(stored, 'DTSTART'),
+                due || readCalendarValue(stored, 'DUE')
+            );
+
+            if (start) vtodo = this._updateProperty(vtodo, 'DTSTART', start.ical, start.isDate ? 'VALUE=DATE' : null);
+            if (due) vtodo = this._updateProperty(vtodo, 'DUE', due.ical, due.isDate ? 'VALUE=DATE' : null);
         }
+        if (updates.location !== undefined) {
+            vtodo = this._updateProperty(vtodo, 'LOCATION', updates.location === null ? null : escapePropertyValue(updates.location));
+        }
+        if (updates.url !== undefined) {
+            vtodo = this._updateProperty(vtodo, 'URL', updates.url);
+        }
+        if (updates.className !== undefined) {
+            vtodo = this._updateProperty(vtodo, 'CLASS', updates.className);
+        }
+        if (updates.tags !== undefined) {
+            vtodo = this._updateProperty(
+                vtodo,
+                'CATEGORIES',
+                updates.tags === null || updates.tags.length === 0
+                    ? null
+                    : updates.tags.map(escapePropertyValue).join(',')
+            );
+        }
+
+        if (updates.status) vtodo = this._updateProperty(vtodo, 'STATUS', updates.status);
+        if (updates.percentComplete !== undefined) vtodo = this._updateProperty(vtodo, 'PERCENT-COMPLETE', updates.percentComplete);
 
         await request(task.href, {
             method: 'PUT',
@@ -796,7 +1584,7 @@ const CalDAV = {
         
         let vtodo = task.data;
         const now = new Date();
-        const completedDate = format(now, "yyyyMMdd'T'HHmmss'Z'");
+        const completedDate = toCalDavDate(now);
         
         vtodo = this._updateProperty(vtodo, 'STATUS', 'COMPLETED');
         vtodo = this._updateProperty(vtodo, 'COMPLETED', completedDate);
@@ -816,20 +1604,31 @@ const CalDAV = {
     // --- Calendar Events ---
 
     async createEvent(summary, start, end, calendarName, description, location) {
+        // Resolved before any network call so a malformed NEXTCLOUD_EMAIL is
+        // reported immediately rather than after calendar discovery has run.
+        const organizerEmail = CONFIG.email ? parseOrganizerEmail(CONFIG.email) : null;
+
         const cal = await this.getCalendar(calendarName, 'VEVENT');
         const uid = crypto.randomUUID();
         const now = new Date();
-        const dtstamp = format(now, "yyyyMMdd'T'HHmmss'Z'");
+        const dtstamp = toCalDavDate(now);
 
-        const toCalDavDate = (dateStr) => {
-            const d = parseDateInput(dateStr);
-            return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-        };
+        let vevent = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//OpenClaw//Nextcloud Skill//EN\nBEGIN:VEVENT\nUID:${uid}\nDTSTAMP:${dtstamp}\nSUMMARY:${escapePropertyValue(summary)}\nDTSTART:${toCalDavDate(parseDateInput(start))}\nDTEND:${toCalDavDate(parseDateInput(end))}\n`;
 
-        let vevent = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//OpenClaw//Nextcloud Skill//EN\nBEGIN:VEVENT\nUID:${uid}\nDTSTAMP:${dtstamp}\nSUMMARY:${summary}\nDTSTART:${toCalDavDate(start)}\nDTEND:${toCalDavDate(end)}\n`;
+        if (description) vevent += `DESCRIPTION:${escapePropertyValue(description)}\n`;
+        if (location) vevent += `LOCATION:${escapePropertyValue(location)}\n`;
 
-        if (description) vevent += `DESCRIPTION:${description}\n`;
-        if (location) vevent += `LOCATION:${location}\n`;
+        // With an address configured, name the account as the organiser and as
+        // an already-accepted attendee, so clients show the event as confirmed
+        // instead of as an invitation awaiting a reply. RSVP is deliberately
+        // omitted: asking for a response that PARTSTAT has already given is
+        // what produces the pending prompt this is meant to avoid.
+        if (organizerEmail) {
+            const cn = escapeParameterValue(CONFIG.user || organizerEmail.split('@')[0]);
+            vevent += `STATUS:CONFIRMED\n`;
+            vevent += `ORGANIZER;CN=${cn}:mailto:${organizerEmail}\n`;
+            vevent += `ATTENDEE;CN=${cn};ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED:mailto:${organizerEmail}\n`;
+        }
 
         vevent += `END:VEVENT\nEND:VCALENDAR`;
 
@@ -911,20 +1710,20 @@ const CalDAV = {
 
         let vevent = event.data;
 
-        if (updates.summary) vevent = this._updateProperty(vevent, 'SUMMARY', updates.summary);
+        if (updates.summary) vevent = this._updateProperty(vevent, 'SUMMARY', escapePropertyValue(updates.summary));
         if (updates.start) {
             const d = parseDateInput(updates.start);
-            vevent = this._updateProperty(vevent, 'DTSTART', d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z');
+            vevent = this._updateProperty(vevent, 'DTSTART', toCalDavDate(d));
         }
         if (updates.end) {
             const d = parseDateInput(updates.end);
-            vevent = this._updateProperty(vevent, 'DTEND', d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z');
+            vevent = this._updateProperty(vevent, 'DTEND', toCalDavDate(d));
         }
         if (updates.description !== undefined) {
-            vevent = this._updateProperty(vevent, 'DESCRIPTION', updates.description);
+            vevent = this._updateProperty(vevent, 'DESCRIPTION', escapePropertyValue(updates.description));
         }
         if (updates.location !== undefined) {
-            vevent = this._updateProperty(vevent, 'LOCATION', updates.location);
+            vevent = this._updateProperty(vevent, 'LOCATION', escapePropertyValue(updates.location));
         }
 
         await request(event.href, {
@@ -1135,22 +1934,41 @@ const Contacts = {
     },
 
     _parseVCard(vcard) {
+        // Unfold first: a property longer than 75 octets continues on lines that
+        // start with whitespace (RFC 6350 3.2), and a full address often is one.
+        vcard = vcard.replace(/\r?\n[ \t]/g, '');
+
         // Normalize line endings (vCard uses CRLF, and XML may encode CR as &#13;)
-        const cleanValue = (val) => val ? val.replace(/&#13;/g, '').replace(/\r/g, '').trim() : null;
+        const cleanValue = (val) => val
+            ? unescapePropertyValue(val.replace(/&#13;/g, '').replace(/\r/g, '').trim())
+            : null;
+
+        const matchField = (field) => {
+            const regex = new RegExp(`^(?:[A-Za-z0-9-]+\\.)?${field}(?:;[^:\\r\\n]*)?:(.*)$`, 'mi');
+            const match = vcard.match(regex);
+            return match ? match[1].replace(/&#13;/g, '').replace(/\r/g, '').trim() : null;
+        };
 
         const getField = (field) => {
-            const regex = new RegExp(`^${field}(?:;[^:]*)?:(.*)$`, 'mi');
-            const match = vcard.match(regex);
-            return match ? cleanValue(match[1]) : null;
+            const raw = matchField(field);
+            return raw === null ? null : unescapePropertyValue(raw);
         };
 
         const uid = getField('UID');
         const fn = getField('FN'); // Full Name
-        const n = getField('N');   // Structured Name: Last;First;Middle;Prefix;Suffix
+
+        // Structured Name: Last;First;Middle;Prefix;Suffix. Split on component
+        // separators before unescaping, otherwise an escaped ";" inside a
+        // component becomes indistinguishable from a separator.
+        const rawName = matchField('N');
+        const nameParts = rawName === null
+            ? null
+            : splitStructuredValue(rawName).map(part => unescapePropertyValue(part));
+        const n = nameParts === null ? null : nameParts.join(';');
 
         // Parse phone numbers (can have multiple)
         const phones = [];
-        const phoneRegex = /^TEL(?:;[^:]*)?:(.*)$/gmi;
+        const phoneRegex = /^(?:[A-Za-z0-9-]+\.)?TEL(?:;[^:\r\n]*)?:(.*)$/gmi;
         let phoneMatch;
         while ((phoneMatch = phoneRegex.exec(vcard)) !== null) {
             phones.push(cleanValue(phoneMatch[1]));
@@ -1158,7 +1976,7 @@ const Contacts = {
 
         // Parse emails (can have multiple)
         const emails = [];
-        const emailRegex = /^EMAIL(?:;[^:]*)?:(.*)$/gmi;
+        const emailRegex = /^(?:[A-Za-z0-9-]+\.)?EMAIL(?:;[^:\r\n]*)?:(.*)$/gmi;
         let emailMatch;
         while ((emailMatch = emailRegex.exec(vcard)) !== null) {
             emails.push(cleanValue(emailMatch[1]));
@@ -1168,16 +1986,147 @@ const Contacts = {
         const title = getField('TITLE');
         const note = getField('NOTE');
 
+        const addresses = vcard.split(/\r?\n/)
+            .map(line => this._parseContentLine(line))
+            .filter(prop => prop && ADR_PROPERTY.test(prop.name))
+            .map(prop => this._parseAddress(prop));
+
+        // Expose BDAY in the normalised form when it is one we recognise, and
+        // pass through whatever the server holds when it is not, so an unusual
+        // value stays visible instead of being silently dropped.
+        let birthday = getField('BDAY');
+        if (birthday !== null) {
+            try {
+                birthday = parseBirthdayInput(birthday);
+            } catch {
+                // keep the raw value
+            }
+        }
+
         return {
             uid: uid,
             fullName: fn,
             name: n,
+            // Individually unescaped components, so callers that need a single
+            // part (e.g. a first name) don't have to re-split `name` and guess
+            // whether a ";" was a separator or part of the text.
+            nameComponents: nameParts === null ? null : {
+                last: nameParts[0] ?? null,
+                first: nameParts[1] ?? null,
+                middle: nameParts[2] ?? null,
+                prefix: nameParts[3] ?? null,
+                suffix: nameParts[4] ?? null
+            },
             phones: phones.length > 0 ? phones : null,
             emails: emails.length > 0 ? emails : null,
             organization: org,
             title: title,
-            note: note
+            note: note,
+            birthday: birthday,
+            addresses: addresses.length > 0 ? addresses : null
         };
+    },
+
+    // Split an unfolded property line into its name (with any group prefix), its
+    // parameters and its value. A ";" or ":" inside a quoted parameter value does
+    // not count: vCard 4.0 puts the formatted address on ADR as LABEL="...", which
+    // can hold either.
+    _parseContentLine(line) {
+        const head = [];
+        let start = 0;
+        let quoted = false;
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+                quoted = !quoted;
+            } else if (!quoted && (char === ';' || char === ':')) {
+                head.push(line.slice(start, i));
+                start = i + 1;
+                if (char === ':') {
+                    const [name, ...params] = head;
+                    return { name, params, value: line.slice(start) };
+                }
+            }
+        }
+        return null;
+    },
+
+    // TYPE values on a property, lowercased: TYPE=home,pref and TYPE=HOME;TYPE=PREF
+    // both give ['home', 'pref']. A bare parameter (ADR;HOME:) is the vCard 2.1
+    // spelling of a type and counts as one.
+    _paramTypes(params) {
+        return params.flatMap(param => {
+            const eq = param.indexOf('=');
+            if (eq === -1) return [param];
+            return param.slice(0, eq).toUpperCase() === 'TYPE'
+                ? param.slice(eq + 1).replace(/"/g, '').split(',')
+                : [];
+        }).map(type => type.trim().toLowerCase()).filter(Boolean);
+    },
+
+    // Like N, the components are split before they are unescaped, so an escaped
+    // ";" in a street name stays in the street.
+    _parseAddress(prop) {
+        const parts = splitStructuredValue(prop.value).map(part => unescapePropertyValue(part));
+        const address = { types: this._paramTypes(prop.params) };
+        ADR_COMPONENTS.forEach((key, i) => {
+            address[key] = parts[i] ?? null;
+        });
+        return address;
+    },
+
+    // Set the given components of one ADR and keep the rest of it as stored.
+    // `type` picks the first address of that type, or the first address of any
+    // type when it is null. When there is no such address a new one is added.
+    // An address left with every component empty is removed rather than written
+    // as ADR:;;;;;;.
+    _setAddress(vcard, { type, components }) {
+        const eol = vcard.includes('\r\n') ? '\r\n' : '\n';
+        const lines = vcard.split(/\r?\n/);
+
+        // Lines that start with whitespace continue the property before them, so
+        // the target is a run of lines [first, last], replaced as one.
+        let first = 0;
+        let last = -1;
+        let target = null;
+        while (!target && last + 1 < lines.length) {
+            first = last + 1;
+            last = first;
+            while (last + 1 < lines.length && /^[ \t]/.test(lines[last + 1])) last++;
+            const unfolded = lines.slice(first, last + 1)
+                .map((line, i) => (i === 0 ? line : line.slice(1)))
+                .join('');
+            const prop = this._parseContentLine(unfolded);
+            if (prop && ADR_PROPERTY.test(prop.name) &&
+                (type === null || this._paramTypes(prop.params).includes(type))) {
+                target = prop;
+            }
+        }
+
+        // Components that were not passed keep their stored text, still escaped,
+        // so they go back byte for byte.
+        const stored = target ? splitStructuredValue(target.value) : [];
+        const parts = ADR_COMPONENTS.map((key, i) =>
+            components[key] !== undefined ? escapePropertyValue(components[key]) : (stored[i] ?? '')
+        );
+
+        let line = null;
+        if (parts.some(part => part !== '')) {
+            // The group and parameters are kept, except a LABEL: it is the old
+            // address formatted for display, and would contradict the new one.
+            const head = target
+                ? [target.name, ...target.params.filter(param => !/^LABEL=/i.test(param))]
+                : ['ADR', ...(type ? [`TYPE=${type.toUpperCase()}`] : [])];
+            line = `${head.join(';')}:${parts.join(';')}`;
+        }
+
+        if (target) {
+            lines.splice(first, last - first + 1, ...(line === null ? [] : [line]));
+        } else if (line !== null) {
+            const end = lines.findIndex(l => /^END:VCARD\s*$/i.test(l));
+            lines.splice(end === -1 ? lines.length : end, 0, line);
+        }
+        return lines.join(eol);
     },
 
     async get(uid, addressBookName = null) {
@@ -1244,25 +2193,29 @@ const Contacts = {
         const ab = await this.getAddressBook(addressBookName);
         const uid = crypto.randomUUID();
 
-        let vcard = `BEGIN:VCARD\nVERSION:3.0\nUID:${uid}\nFN:${fullName}\n`;
+        const escapedFn = escapePropertyValue(fullName);
+        let vcard = `BEGIN:VCARD\nVERSION:3.0\nUID:${uid}\nFN:${escapedFn}\n`;
 
-        // Parse name into structured format if possible
+        // Parse name into structured format if possible.
+        // N components are semicolon-delimited; escape each component individually.
         const nameParts = fullName.split(' ');
         if (nameParts.length >= 2) {
-            const lastName = nameParts[nameParts.length - 1];
-            const firstName = nameParts.slice(0, -1).join(' ');
+            const lastName = escapePropertyValue(nameParts[nameParts.length - 1]);
+            const firstName = escapePropertyValue(nameParts.slice(0, -1).join(' '));
             vcard += `N:${lastName};${firstName};;;\n`;
         } else {
-            vcard += `N:${fullName};;;;\n`;
+            vcard += `N:${escapedFn};;;;\n`;
         }
 
-        if (options.email) vcard += `EMAIL:${options.email}\n`;
-        if (options.phone) vcard += `TEL:${options.phone}\n`;
-        if (options.organization) vcard += `ORG:${options.organization}\n`;
-        if (options.title) vcard += `TITLE:${options.title}\n`;
-        if (options.note) vcard += `NOTE:${options.note}\n`;
+        if (options.email) vcard += `EMAIL:${escapePropertyValue(options.email)}\n`;
+        if (options.phone) vcard += `TEL:${escapePropertyValue(options.phone)}\n`;
+        if (options.organization) vcard += `ORG:${escapePropertyValue(options.organization)}\n`;
+        if (options.title) vcard += `TITLE:${escapePropertyValue(options.title)}\n`;
+        if (options.note) vcard += `NOTE:${escapePropertyValue(options.note)}\n`;
+        if (options.bday) vcard += `BDAY:${options.bday}\n`;
 
         vcard += `END:VCARD`;
+        if (options.address) vcard = this._setAddress(vcard, options.address);
 
         const filename = `${uid}.vcf`;
         const urlWithSlash = ab.url.endsWith('/') ? ab.url : ab.url + '/';
@@ -1281,13 +2234,22 @@ const Contacts = {
     },
 
     _updateVCardField(vcard, field, value) {
-        const regex = new RegExp(`^${field}(?:;[^:]*)?:.*$`, 'mi');
+        const regex = new RegExp(`^((?:[A-Za-z0-9-]+\\.)?${field}(?:;[^:\\r\\n]*)?:).*$`, 'mi');
         const newLine = `${field}:${value}`;
         if (regex.test(vcard)) {
-            return vcard.replace(regex, newLine);
+            return vcard.replace(regex, (match, prefix) => `${prefix}${value}`);
         } else {
-            return vcard.replace('END:VCARD', `${newLine}\nEND:VCARD`);
+            return vcard.replace('END:VCARD', () => `${newLine}\nEND:VCARD`);
         }
+    },
+
+    // Drop a property line entirely, including any `itemN.` group prefix and the
+    // newline after it. Used to clear a field the caller explicitly emptied.
+    // The group's sibling properties (item1.X-ABLabel) are left in place: removing
+    // them would change how the client displays the fields that remain.
+    _removeVCardField(vcard, field) {
+        const regex = new RegExp(`^(?:[A-Za-z0-9-]+\\.)?${field}(?:;[^:\\r\\n]*)?:.*(?:\\r?\\n)?`, 'mi');
+        return vcard.replace(regex, '');
     },
 
     async update(uid, addressBookName, updates) {
@@ -1297,20 +2259,29 @@ const Contacts = {
         let vcard = contact.data;
 
         if (updates.fullName) {
-            vcard = this._updateVCardField(vcard, 'FN', updates.fullName);
+            vcard = this._updateVCardField(vcard, 'FN', escapePropertyValue(updates.fullName));
             // Update structured name too
             const nameParts = updates.fullName.split(' ');
             if (nameParts.length >= 2) {
-                const lastName = nameParts[nameParts.length - 1];
-                const firstName = nameParts.slice(0, -1).join(' ');
+                const lastName = escapePropertyValue(nameParts[nameParts.length - 1]);
+                const firstName = escapePropertyValue(nameParts.slice(0, -1).join(' '));
                 vcard = this._updateVCardField(vcard, 'N', `${lastName};${firstName};;;`);
             }
         }
-        if (updates.email) vcard = this._updateVCardField(vcard, 'EMAIL', updates.email);
-        if (updates.phone) vcard = this._updateVCardField(vcard, 'TEL', updates.phone);
-        if (updates.organization) vcard = this._updateVCardField(vcard, 'ORG', updates.organization);
-        if (updates.title) vcard = this._updateVCardField(vcard, 'TITLE', updates.title);
-        if (updates.note) vcard = this._updateVCardField(vcard, 'NOTE', updates.note);
+        if (updates.email) vcard = this._updateVCardField(vcard, 'EMAIL', escapePropertyValue(updates.email));
+        if (updates.phone) vcard = this._updateVCardField(vcard, 'TEL', escapePropertyValue(updates.phone));
+        if (updates.organization) vcard = this._updateVCardField(vcard, 'ORG', escapePropertyValue(updates.organization));
+        if (updates.title) vcard = this._updateVCardField(vcard, 'TITLE', escapePropertyValue(updates.title));
+        if (updates.note) vcard = this._updateVCardField(vcard, 'NOTE', escapePropertyValue(updates.note));
+        // An explicitly empty --bday clears the property; otherwise it is written.
+        // Unlike the fields above, an empty string is meaningful here rather than
+        // a falsy no-op, so this is checked with `!== undefined`.
+        if (updates.bday !== undefined) {
+            vcard = updates.bday === ''
+                ? this._removeVCardField(vcard, 'BDAY')
+                : this._updateVCardField(vcard, 'BDAY', updates.bday);
+        }
+        if (updates.address) vcard = this._setAddress(vcard, updates.address);
 
         await request(contact.href, {
             method: 'PUT',
@@ -1368,6 +2339,9 @@ const Contacts = {
                     <card:prop-filter name="ORG">
                         <card:text-match collation="i;unicode-casemap" match-type="contains">${query}</card:text-match>
                     </card:prop-filter>
+                    <card:prop-filter name="ADR">
+                        <card:text-match collation="i;unicode-casemap" match-type="contains">${query}</card:text-match>
+                    </card:prop-filter>
                 </card:filter>
             </card:addressbook-query>
         `;
@@ -1403,6 +2377,331 @@ const Contacts = {
     }
 };
 
+// 6. Deck (Kanban boards, stacks, cards, labels, comments)
+const Deck = {
+    // Deck REST lives under /index.php/apps/deck/api/v1.1; comments use the OCS v1.0 endpoint.
+    _base: '/index.php/apps/deck/api/v1.1',
+    _headers: { 'OCS-APIRequest': 'true', 'Accept': 'application/json' },
+    _jsonHeaders: { 'OCS-APIRequest': 'true', 'Accept': 'application/json', 'Content-Type': 'application/json' },
+
+    _boardUrl(id) {
+        const baseUrl = CONFIG.url.replace(/\/+$/, '');
+        return `${baseUrl}/index.php/apps/deck/#/board/${id}`;
+    },
+
+    _normalizeBoard(b) {
+        return {
+            id: b.id,
+            title: b.title,
+            color: b.color,
+            archived: b.archived,
+            owner: b.owner && b.owner.uid,
+            permissions: b.permissions,
+            labelCount: Array.isArray(b.labels) ? b.labels.length : undefined,
+            stackCount: Array.isArray(b.stacks) ? b.stacks.length : undefined,
+            lastModified: b.lastModified,
+            url: this._boardUrl(b.id)
+        };
+    },
+
+    _normalizeCard(c) {
+        return {
+            id: c.id,
+            title: c.title,
+            description: c.description,
+            stackId: c.stackId,
+            type: c.type,
+            order: c.order,
+            labels: (c.labels || []).map(l => ({ id: l.id, title: l.title, color: l.color })),
+            assignedUsers: (c.assignedUsers || []).map(u => (u.participant && u.participant.uid) || u.uid),
+            duedate: c.duedate || null,
+            done: c.done || null,
+            archived: c.archived,
+            commentsCount: c.commentsCount,
+            createdAt: c.createdAt,
+            lastModified: c.lastModified
+        };
+    },
+
+    // --- Boards ---
+    async listBoards() {
+        const data = await request(`${this._base}/boards`, { headers: this._headers });
+        // Deck DELETE is a soft-delete (sets deletedAt); hide those from listings.
+        return (data || []).filter(b => !b.deletedAt).map(b => this._normalizeBoard(b));
+    },
+
+    async getBoard(boardId) {
+        if (!boardId) throw new Error('Board ID is required.');
+        return await request(`${this._base}/boards/${boardId}`, { headers: this._headers });
+    },
+
+    async createBoard(title, color = '0082c9') {
+        if (!title || title.trim() === '') throw new Error('Title is required for creating a board.');
+        const data = await request(`${this._base}/boards`, {
+            method: 'POST',
+            headers: this._jsonHeaders,
+            body: JSON.stringify({ title, color })
+        });
+        return this._normalizeBoard(data);
+    },
+
+    async editBoard(boardId, updates = {}) {
+        if (!boardId) throw new Error('Board ID is required for update.');
+        // Deck PUT replaces the board; merge onto the current state (read-modify-write).
+        const current = await this.getBoard(boardId);
+        const payload = {
+            title: updates.title !== undefined ? updates.title : current.title,
+            color: updates.color !== undefined ? updates.color : current.color,
+            archived: updates.archived !== undefined ? updates.archived : current.archived
+        };
+        const data = await request(`${this._base}/boards/${boardId}`, {
+            method: 'PUT',
+            headers: this._jsonHeaders,
+            body: JSON.stringify(payload)
+        });
+        return this._normalizeBoard(data);
+    },
+
+    async deleteBoard(boardId) {
+        if (!boardId) throw new Error('Board ID is required for deletion.');
+        await request(`${this._base}/boards/${boardId}`, { method: 'DELETE', headers: this._jsonHeaders });
+        return { success: true, id: boardId };
+    },
+
+    // --- Stacks (columns) ---
+    async listStacks(boardId) {
+        if (!boardId) throw new Error('Board ID is required.');
+        const data = await request(`${this._base}/boards/${boardId}/stacks`, { headers: this._headers });
+        return (data || []).map(s => ({
+            id: s.id,
+            title: s.title,
+            boardId: s.boardId,
+            order: s.order,
+            cards: (s.cards || []).map(c => this._normalizeCard(c)),
+            cardCount: (s.cards || []).length,
+            lastModified: s.lastModified
+        }));
+    },
+
+    async createStack(boardId, title, order = 999) {
+        if (!boardId) throw new Error('Board ID is required.');
+        if (!title || title.trim() === '') throw new Error('Title is required for creating a stack.');
+        const data = await request(`${this._base}/boards/${boardId}/stacks`, {
+            method: 'POST',
+            headers: this._jsonHeaders,
+            body: JSON.stringify({ title, order })
+        });
+        return { id: data.id, title: data.title, boardId: data.boardId, order: data.order };
+    },
+
+    async editStack(boardId, stackId, updates = {}) {
+        if (!boardId || !stackId) throw new Error('Board ID and Stack ID are required for update.');
+        const stacks = await this.listStacks(boardId);
+        const current = stacks.find(s => String(s.id) === String(stackId));
+        if (!current) throw new Error(`Stack ${stackId} not found on board ${boardId}.`);
+        const payload = {
+            title: updates.title !== undefined ? updates.title : current.title,
+            order: updates.order !== undefined ? updates.order : current.order
+        };
+        const data = await request(`${this._base}/boards/${boardId}/stacks/${stackId}`, {
+            method: 'PUT',
+            headers: this._jsonHeaders,
+            body: JSON.stringify(payload)
+        });
+        return { id: data.id, title: data.title, boardId: data.boardId, order: data.order };
+    },
+
+    async deleteStack(boardId, stackId) {
+        if (!boardId || !stackId) throw new Error('Board ID and Stack ID are required for deletion.');
+        await request(`${this._base}/boards/${boardId}/stacks/${stackId}`, { method: 'DELETE', headers: this._jsonHeaders });
+        return { success: true, id: stackId };
+    },
+
+    // --- Cards ---
+    async listCards(boardId, stackId = null) {
+        if (!boardId) throw new Error('Board ID is required.');
+        const stacks = await this.listStacks(boardId);
+        const filtered = stackId !== null ? stacks.filter(s => String(s.id) === String(stackId)) : stacks;
+        return filtered.flatMap(s => s.cards.map(c => ({ ...c, stackTitle: s.title })));
+    },
+
+    async getCard(boardId, stackId, cardId) {
+        if (!boardId || !stackId || !cardId) throw new Error('Board ID, Stack ID and Card ID are required.');
+        return await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}`, { headers: this._headers });
+    },
+
+    async createCard(boardId, stackId, title, options = {}) {
+        if (!boardId || !stackId) throw new Error('Board ID and Stack ID are required.');
+        if (!title || title.trim() === '') throw new Error('Title is required for creating a card.');
+        const payload = { title, type: 'plain', order: options.order !== undefined ? options.order : 999 };
+        if (options.description !== undefined) payload.description = options.description;
+        if (options.duedate !== undefined) payload.duedate = options.duedate;
+        const data = await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards`, {
+            method: 'POST',
+            headers: this._jsonHeaders,
+            body: JSON.stringify(payload)
+        });
+        return this._normalizeCard(data);
+    },
+
+    async editCard(boardId, stackId, cardId, updates = {}) {
+        if (!boardId || !stackId || !cardId) throw new Error('Board ID, Stack ID and Card ID are required for update.');
+        // Deck PUT replaces the card; merge onto the current state (read-modify-write).
+        const current = await this.getCard(boardId, stackId, cardId);
+        const payload = {
+            title: updates.title !== undefined ? updates.title : current.title,
+            description: updates.description !== undefined ? updates.description : current.description,
+            type: current.type || 'plain',
+            owner: (current.owner && current.owner.uid) || current.owner,
+            order: updates.order !== undefined ? updates.order : current.order,
+            duedate: updates.duedate !== undefined ? updates.duedate : current.duedate
+        };
+        if (updates.done !== undefined) payload.done = updates.done; // ISO string or null
+        else if (current.done) payload.done = current.done;
+        if (updates.archived !== undefined) payload.archived = updates.archived;
+        else payload.archived = current.archived;
+        const data = await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}`, {
+            method: 'PUT',
+            headers: this._jsonHeaders,
+            body: JSON.stringify(payload)
+        });
+        return this._normalizeCard(data);
+    },
+
+    async deleteCard(boardId, stackId, cardId) {
+        if (!boardId || !stackId || !cardId) throw new Error('Board ID, Stack ID and Card ID are required for deletion.');
+        await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}`, { method: 'DELETE', headers: this._jsonHeaders });
+        return { success: true, id: cardId };
+    },
+
+    async moveCard(boardId, stackId, cardId, toStackId, order = 999) {
+        if (!boardId || !stackId || !cardId || !toStackId) {
+            throw new Error('Board ID, Stack ID, Card ID and target --to-stack are required for move.');
+        }
+        // Deck's reorder endpoint expects the *target* stack in the path (and body);
+        // the card's current stack is irrelevant to the move itself.
+        const data = await request(`${this._base}/boards/${boardId}/stacks/${toStackId}/cards/${cardId}/reorder`, {
+            method: 'PUT',
+            headers: this._jsonHeaders,
+            body: JSON.stringify({ order, stackId: Number(toStackId) })
+        });
+        // reorder returns the moved stack's cards; surface the moved card.
+        const moved = Array.isArray(data)
+            ? data.find(c => String(c.id) === String(cardId))
+            : (data && data.cards ? data.cards.find(c => String(c.id) === String(cardId)) : data);
+        return moved ? this._normalizeCard(moved) : { success: true, id: cardId, stackId: Number(toStackId) };
+    },
+
+    async assignLabel(boardId, stackId, cardId, labelId) {
+        if (!boardId || !stackId || !cardId || !labelId) throw new Error('Board, Stack, Card and Label IDs are required.');
+        await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}/assignLabel`, {
+            method: 'PUT',
+            headers: this._jsonHeaders,
+            body: JSON.stringify({ labelId: Number(labelId) })
+        });
+        return { success: true, cardId, labelId, assigned: true };
+    },
+
+    async removeLabel(boardId, stackId, cardId, labelId) {
+        if (!boardId || !stackId || !cardId || !labelId) throw new Error('Board, Stack, Card and Label IDs are required.');
+        await request(`${this._base}/boards/${boardId}/stacks/${stackId}/cards/${cardId}/removeLabel`, {
+            method: 'PUT',
+            headers: this._jsonHeaders,
+            body: JSON.stringify({ labelId: Number(labelId) })
+        });
+        return { success: true, cardId, labelId, assigned: false };
+    },
+
+    // --- Labels ---
+    async listLabels(boardId) {
+        if (!boardId) throw new Error('Board ID is required.');
+        const board = await this.getBoard(boardId);
+        return (board.labels || []).map(l => ({ id: l.id, title: l.title, color: l.color, boardId: l.boardId }));
+    },
+
+    async createLabel(boardId, title, color) {
+        if (!boardId) throw new Error('Board ID is required.');
+        if (!title || title.trim() === '') throw new Error('Title is required for creating a label.');
+        if (!color) throw new Error('Color (hex, e.g. FF0000) is required for creating a label.');
+        const data = await request(`${this._base}/boards/${boardId}/labels`, {
+            method: 'POST',
+            headers: this._jsonHeaders,
+            body: JSON.stringify({ title, color })
+        });
+        return { id: data.id, title: data.title, color: data.color, boardId: data.boardId };
+    },
+
+    async editLabel(boardId, labelId, updates = {}) {
+        if (!boardId || !labelId) throw new Error('Board ID and Label ID are required for update.');
+        const labels = await this.listLabels(boardId);
+        const current = labels.find(l => String(l.id) === String(labelId));
+        if (!current) throw new Error(`Label ${labelId} not found on board ${boardId}.`);
+        const payload = {
+            title: updates.title !== undefined ? updates.title : current.title,
+            color: updates.color !== undefined ? updates.color : current.color
+        };
+        const data = await request(`${this._base}/boards/${boardId}/labels/${labelId}`, {
+            method: 'PUT',
+            headers: this._jsonHeaders,
+            body: JSON.stringify(payload)
+        });
+        return { id: data.id, title: data.title, color: data.color, boardId: data.boardId };
+    },
+
+    async deleteLabel(boardId, labelId) {
+        if (!boardId || !labelId) throw new Error('Board ID and Label ID are required for deletion.');
+        await request(`${this._base}/boards/${boardId}/labels/${labelId}`, { method: 'DELETE', headers: this._jsonHeaders });
+        return { success: true, id: labelId };
+    },
+
+    // --- Comments (OCS Deck API) ---
+    _commentsBase(cardId) {
+        return `/ocs/v2.php/apps/deck/api/v1.0/cards/${cardId}/comments`;
+    },
+
+    _unwrapOcs(envelope) {
+        const meta = envelope && envelope.ocs && envelope.ocs.meta;
+        if (!meta || (meta.status !== 'ok' && meta.statuscode >= 300)) {
+            throw new Error(`OCS error ${meta && meta.statuscode}: ${meta && meta.message}`);
+        }
+        return envelope.ocs.data;
+    },
+
+    async listComments(cardId) {
+        if (!cardId) throw new Error('Card ID is required.');
+        const envelope = await request(this._commentsBase(cardId), { headers: this._headers });
+        const data = this._unwrapOcs(envelope) || [];
+        return (Array.isArray(data) ? data : [data]).map(c => ({
+            id: c.id,
+            message: c.message,
+            actorId: c.actorId,
+            actorDisplayName: c.actorDisplayName,
+            creationDateTime: c.creationDateTime
+        }));
+    },
+
+    async addComment(cardId, message) {
+        if (!cardId) throw new Error('Card ID is required.');
+        if (!message || message.trim() === '') throw new Error('Message is required for a comment.');
+        const envelope = await request(this._commentsBase(cardId), {
+            method: 'POST',
+            headers: this._jsonHeaders,
+            body: JSON.stringify({ message })
+        });
+        const c = this._unwrapOcs(envelope);
+        return { id: c.id, message: c.message, actorId: c.actorId, creationDateTime: c.creationDateTime };
+    },
+
+    async deleteComment(cardId, commentId) {
+        if (!cardId || !commentId) throw new Error('Card ID and Comment ID are required for deletion.');
+        const envelope = await request(`${this._commentsBase(cardId)}/${commentId}`, {
+            method: 'DELETE', headers: this._jsonHeaders
+        });
+        this._unwrapOcs(envelope);
+        return { success: true, id: commentId };
+    }
+};
+
 
 // --- Main ---
 
@@ -1412,6 +2711,9 @@ async function main() {
     const subCommand = args[1];
 
     try {
+        rejectUnknownFlags(args, command, subCommand);
+        requireExplicitConfirmation(args, command, subCommand);
+
         if (command === 'notes') {
             if (subCommand === 'list') {
                 const result = await Notes.list();
@@ -1423,19 +2725,19 @@ async function main() {
                 output(result);
             } else if (subCommand === 'create') {
                 const titleIndex = args.indexOf('--title');
-                const contentIndex = args.indexOf('--content');
                 const categoryIndex = args.indexOf('--category');
                 
-                if (titleIndex === -1 || contentIndex === -1) {
-                    throw new Error('Missing --title or --content arguments');
+                if (titleIndex === -1) {
+                    throw new Error('Missing --title');
                 }
                 
                 const title = args[titleIndex + 1];
-                const content = args[contentIndex + 1];
+                const content = readTextOption(
+                    args, '--content', '--content-file', { required: true }
+                );
                 const category = categoryIndex !== -1 ? args[categoryIndex + 1] : '';
 
                 if (!title || title.startsWith('--')) throw new Error('Invalid title provided');
-                if (!content || content.startsWith('--')) throw new Error('Invalid content provided');
                 if (category && category.startsWith('--')) throw new Error('Invalid category provided');
 
                 const result = await Notes.create(title, content, category);
@@ -1443,14 +2745,13 @@ async function main() {
             } else if (subCommand === 'edit') {
                 const idIndex = args.indexOf('--id');
                 const titleIndex = args.indexOf('--title');
-                const contentIndex = args.indexOf('--content');
                 const categoryIndex = args.indexOf('--category');
 
                 if (idIndex === -1) throw new Error('Missing --id');
 
                 const id = args[idIndex + 1];
                 const title = titleIndex !== -1 ? args[titleIndex + 1] : undefined;
-                const content = contentIndex !== -1 ? args[contentIndex + 1] : undefined;
+                const content = readTextOption(args, '--content', '--content-file');
                 const category = categoryIndex !== -1 ? args[categoryIndex + 1] : undefined;
 
                 const result = await Notes.update(id, title, content, category);
@@ -1479,15 +2780,18 @@ async function main() {
                 if (pathIndex === -1) throw new Error('Missing --path');
                 const filePath = args[pathIndex + 1];
 
-                const contentIndex = args.indexOf('--content');
-                if (contentIndex === -1) throw new Error('Missing --content');
-                const content = args[contentIndex + 1];
+                // Binary-safe: `--content-file` is read as raw bytes so PDFs,
+                // images and archives survive the round trip. Inline `--content`
+                // is still a UTF-8 string, encoded to bytes here.
+                const content = readTextOption(
+                    args, '--content', '--content-file', { required: true, binary: true }
+                );
 
                 output(await Files.upload(filePath, content));
             } else if (subCommand === 'get') {
                 const pathIndex = args.indexOf('--path');
                 if (pathIndex === -1) throw new Error('Missing --path');
-                output(await Files.get(args[pathIndex + 1]));
+                output(await Files.get(args[pathIndex + 1], getOptionValue(args, '--out')));
             } else if (subCommand === 'delete') {
                 const pathIndex = args.indexOf('--path');
                 if (pathIndex === -1) throw new Error('Missing --path');
@@ -1499,9 +2803,10 @@ async function main() {
              if (subCommand === 'list') {
                 const fromIndex = args.indexOf('--from');
                 const toIndex = args.indexOf('--to');
+                const calendar = getOptionValue(args, '--calendar');
                 const start = fromIndex !== -1 ? args[fromIndex + 1] : formatISO(new Date());
                 const end = toIndex !== -1 ? args[toIndex + 1] : formatISO(addDays(new Date(), 7));
-                const result = await CalDAV.getEvents(start, end);
+                const result = await CalDAV.getEvents(start, end, calendar);
                 output(result);
             } else if (subCommand === 'create') {
                 const summaryIndex = args.indexOf('--summary');
@@ -1519,8 +2824,9 @@ async function main() {
                 const calIndex = args.indexOf('--calendar');
                 const calendar = calIndex !== -1 ? args[calIndex + 1] : null;
 
-                const descIndex = args.indexOf('--description');
-                const description = descIndex !== -1 ? args[descIndex + 1] : null;
+                const description = readTextOption(
+                    args, '--description', '--description-file'
+                ) ?? null;
 
                 const locIndex = args.indexOf('--location');
                 const location = locIndex !== -1 ? args[locIndex + 1] : null;
@@ -1544,8 +2850,10 @@ async function main() {
                 const endIndex = args.indexOf('--end');
                 if (endIndex !== -1) updates.end = args[endIndex + 1];
 
-                const descIndex = args.indexOf('--description');
-                if (descIndex !== -1) updates.description = args[descIndex + 1];
+                const description = readTextOption(
+                    args, '--description', '--description-file'
+                );
+                if (description !== undefined) updates.description = description;
 
                 const locIndex = args.indexOf('--location');
                 if (locIndex !== -1) updates.location = args[locIndex + 1];
@@ -1581,12 +2889,38 @@ async function main() {
                 const dueDate = dueIndex !== -1 ? args[dueIndex + 1] : null;
 
                 const prioIndex = args.indexOf('--priority');
-                const priority = prioIndex !== -1 ? args[prioIndex + 1] : null;
+                const priority = prioIndex !== -1
+                    ? parsePriorityInput(args[prioIndex + 1])
+                    : null;
 
-                const descIndex = args.indexOf('--description');
-                const description = descIndex !== -1 ? args[descIndex + 1] : null;
+                const description = readTextOption(
+                    args, '--description', '--description-file'
+                ) ?? null;
 
-                output(await CalDAV.createTask(title, calendar, dueDate, priority, description));
+                const options = {
+                    title,
+                    calendar,
+                    dueDate,
+                    priority,
+                    description
+                };
+
+                const start = getOptionValue(args, '--start');
+                if (start) options.startDate = start;
+
+                const location = getOptionValue(args, '--location');
+                if (location) options.location = location;
+
+                const url = getOptionValue(args, '--url');
+                if (url) options.url = parseUriInput(url);
+
+                const className = getOptionValue(args, '--class');
+                if (className) options.className = parseClassInput(className);
+
+                const tags = getOptionValue(args, '--tags');
+                if (tags) options.tags = parseTagsInput(tags);
+
+                output(await CalDAV.createTask(title, calendar, options));
 
              } else if (subCommand === 'edit') {
                 const uidIndex = args.indexOf('--uid');
@@ -1604,10 +2938,40 @@ async function main() {
                 if (dueIndex !== -1) updates.dueDate = args[dueIndex + 1];
                 
                 const prioIndex = args.indexOf('--priority');
-                if (prioIndex !== -1) updates.priority = args[prioIndex + 1];
+                if (prioIndex !== -1) {
+                    updates.priority = parsePriorityInput(args[prioIndex + 1]);
+                }
                 
-                const descIndex = args.indexOf('--description');
-                if (descIndex !== -1) updates.description = args[descIndex + 1];
+                const description = readTextOption(
+                    args, '--description', '--description-file'
+                );
+                if (description !== undefined) updates.description = description;
+
+                const start = getOptionValue(args, '--start');
+                if (start) updates.startDate = start;
+
+                // For these four, an empty value removes the property from the task.
+                const location = getOptionValue(args, '--location');
+                if (location !== undefined) updates.location = location === '' ? null : location;
+
+                const url = getOptionValue(args, '--url');
+                if (url !== undefined) updates.url = url === '' ? null : parseUriInput(url);
+
+                const className = getOptionValue(args, '--class');
+                if (className !== undefined) updates.className = className === '' ? null : parseClassInput(className);
+
+                const tags = getOptionValue(args, '--tags');
+                if (tags !== undefined) updates.tags = parseTagsInput(tags);
+
+                const statusIndex = args.indexOf('--status');
+                if (statusIndex !== -1) {
+                    updates.status = parseStatusInput(args[statusIndex + 1]);
+                }
+
+                const percentIndex = args.indexOf('--percent-complete');
+                if (percentIndex !== -1) {
+                    updates.percentComplete = parsePercentCompleteInput(args[percentIndex + 1]);
+                }
 
                 output(await CalDAV.updateTask(uid, calendar, updates));
 
@@ -1661,8 +3025,10 @@ async function main() {
                 const permIndex = args.indexOf('--permissions');
                 const permissions = permIndex !== -1 ? args[permIndex + 1] : 'read';
 
-                const pwIndex = args.indexOf('--password');
-                const password = pwIndex !== -1 ? args[pwIndex + 1] : null;
+                const password = readTextOption(
+                    args, '--password', '--password-file',
+                    { stripFinalNewline: true, maxBytes: 16 * 1024 }
+                ) ?? null;
 
                 const expIndex = args.indexOf('--expire');
                 const expireDate = expIndex !== -1 ? args[expIndex + 1] : null;
@@ -1724,8 +3090,22 @@ async function main() {
                 const titleIndex = args.indexOf('--title');
                 if (titleIndex !== -1) options.title = args[titleIndex + 1];
 
-                const noteIndex = args.indexOf('--note');
-                if (noteIndex !== -1) options.note = args[noteIndex + 1];
+                const note = readTextOption(args, '--note', '--note-file');
+                if (note !== undefined) options.note = note;
+
+                const bday = getOptionValue(args, '--bday');
+                if (bday !== undefined) options.bday = parseBirthdayInput(bday);
+
+                const address = parseAddressInput({
+                    poBox: getOptionValue(args, '--po-box'),
+                    extended: getOptionValue(args, '--extended'),
+                    street: getOptionValue(args, '--street'),
+                    city: getOptionValue(args, '--city'),
+                    region: getOptionValue(args, '--region'),
+                    postalCode: getOptionValue(args, '--postal-code'),
+                    country: getOptionValue(args, '--country')
+                }, getOptionValue(args, '--address-type'));
+                if (address !== undefined) options.address = address;
 
                 output(await Contacts.create(fullName, addressBook, options));
             } else if (subCommand === 'edit') {
@@ -1752,8 +3132,29 @@ async function main() {
                 const titleIndex = args.indexOf('--title');
                 if (titleIndex !== -1) updates.title = args[titleIndex + 1];
 
-                const noteIndex = args.indexOf('--note');
-                if (noteIndex !== -1) updates.note = args[noteIndex + 1];
+                const note = readTextOption(args, '--note', '--note-file');
+                if (note !== undefined) updates.note = note;
+
+                // An empty value clears the property, matching the tasks
+                // convention (--tags ""). getOptionValue throws when the flag has
+                // no following argument at all, so "" must be passed explicitly.
+                const bday = getOptionValue(args, '--bday');
+                if (bday !== undefined) {
+                    updates.bday = bday === '' ? '' : parseBirthdayInput(bday);
+                }
+
+                // Only the components passed are changed, and an empty value
+                // clears one. --address-type picks which address to change.
+                const address = parseAddressInput({
+                    poBox: getOptionValue(args, '--po-box'),
+                    extended: getOptionValue(args, '--extended'),
+                    street: getOptionValue(args, '--street'),
+                    city: getOptionValue(args, '--city'),
+                    region: getOptionValue(args, '--region'),
+                    postalCode: getOptionValue(args, '--postal-code'),
+                    country: getOptionValue(args, '--country')
+                }, getOptionValue(args, '--address-type'));
+                if (address !== undefined) updates.address = address;
 
                 output(await Contacts.update(uid, addressBook, updates));
             } else if (subCommand === 'delete') {
@@ -1768,8 +3169,187 @@ async function main() {
             } else {
                 throw new Error('Unknown contacts command');
             }
+        } else if (command === 'boards') {
+            if (subCommand === 'list') {
+                output(await Deck.listBoards());
+            } else if (subCommand === 'get') {
+                const boardIndex = args.indexOf('--board');
+                if (boardIndex === -1) throw new Error('Missing --board');
+                output(await Deck.getBoard(args[boardIndex + 1]));
+            } else if (subCommand === 'create') {
+                const titleIndex = args.indexOf('--title');
+                if (titleIndex === -1) throw new Error('Missing --title');
+                const colorIndex = args.indexOf('--color');
+                const color = colorIndex !== -1 ? args[colorIndex + 1] : undefined;
+                output(await Deck.createBoard(args[titleIndex + 1], color));
+            } else if (subCommand === 'edit') {
+                const boardIndex = args.indexOf('--board');
+                if (boardIndex === -1) throw new Error('Missing --board');
+                const updates = {};
+                const titleIndex = args.indexOf('--title');
+                if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+                const colorIndex = args.indexOf('--color');
+                if (colorIndex !== -1) updates.color = args[colorIndex + 1];
+                const archivedIndex = args.indexOf('--archived');
+                if (archivedIndex !== -1) updates.archived = args[archivedIndex + 1] === 'true';
+                output(await Deck.editBoard(args[boardIndex + 1], updates));
+            } else if (subCommand === 'delete') {
+                const boardIndex = args.indexOf('--board');
+                if (boardIndex === -1) throw new Error('Missing --board');
+                output(await Deck.deleteBoard(args[boardIndex + 1]));
+            } else {
+                throw new Error('Unknown boards command');
+            }
+        } else if (command === 'stacks') {
+            const boardIndex = args.indexOf('--board');
+            if (boardIndex === -1) throw new Error('Missing --board');
+            const boardId = args[boardIndex + 1];
+            if (subCommand === 'list') {
+                output(await Deck.listStacks(boardId));
+            } else if (subCommand === 'create') {
+                const titleIndex = args.indexOf('--title');
+                if (titleIndex === -1) throw new Error('Missing --title');
+                const orderIndex = args.indexOf('--order');
+                const order = orderIndex !== -1 ? Number(args[orderIndex + 1]) : undefined;
+                output(await Deck.createStack(boardId, args[titleIndex + 1], order));
+            } else if (subCommand === 'edit') {
+                const stackIndex = args.indexOf('--stack');
+                if (stackIndex === -1) throw new Error('Missing --stack');
+                const updates = {};
+                const titleIndex = args.indexOf('--title');
+                if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+                const orderIndex = args.indexOf('--order');
+                if (orderIndex !== -1) updates.order = Number(args[orderIndex + 1]);
+                output(await Deck.editStack(boardId, args[stackIndex + 1], updates));
+            } else if (subCommand === 'delete') {
+                const stackIndex = args.indexOf('--stack');
+                if (stackIndex === -1) throw new Error('Missing --stack');
+                output(await Deck.deleteStack(boardId, args[stackIndex + 1]));
+            } else {
+                throw new Error('Unknown stacks command');
+            }
+        } else if (command === 'cards') {
+            if (subCommand === 'comment-list') {
+                const cardIndex = args.indexOf('--card');
+                if (cardIndex === -1) throw new Error('Missing --card');
+                output(await Deck.listComments(args[cardIndex + 1]));
+            } else if (subCommand === 'comment-add') {
+                const cardIndex = args.indexOf('--card');
+                if (cardIndex === -1) throw new Error('Missing --card');
+                const message = readTextOption(
+                    args, '--message', '--message-file', { required: true }
+                );
+                output(await Deck.addComment(args[cardIndex + 1], message));
+            } else if (subCommand === 'comment-delete') {
+                const cardIndex = args.indexOf('--card');
+                if (cardIndex === -1) throw new Error('Missing --card');
+                const commentIndex = args.indexOf('--comment');
+                if (commentIndex === -1) throw new Error('Missing --comment');
+                output(await Deck.deleteComment(args[cardIndex + 1], args[commentIndex + 1]));
+            } else {
+                const boardIndex = args.indexOf('--board');
+                if (boardIndex === -1) throw new Error('Missing --board');
+                const boardId = args[boardIndex + 1];
+                const stackIndex = args.indexOf('--stack');
+                const cardIndex = args.indexOf('--card');
+                if (subCommand === 'list') {
+                    const stackId = stackIndex !== -1 ? args[stackIndex + 1] : null;
+                    output(await Deck.listCards(boardId, stackId));
+                } else if (subCommand === 'get') {
+                    if (stackIndex === -1) throw new Error('Missing --stack');
+                    if (cardIndex === -1) throw new Error('Missing --card');
+                    output(await Deck.getCard(boardId, args[stackIndex + 1], args[cardIndex + 1]));
+                } else if (subCommand === 'create') {
+                    if (stackIndex === -1) throw new Error('Missing --stack');
+                    const titleIndex = args.indexOf('--title');
+                    if (titleIndex === -1) throw new Error('Missing --title');
+                    const options = {};
+                    const description = readTextOption(
+                        args, '--description', '--description-file'
+                    );
+                    if (description !== undefined) options.description = description;
+                    const dueIndex = args.indexOf('--duedate');
+                    if (dueIndex !== -1) options.duedate = args[dueIndex + 1];
+                    const orderIndex = args.indexOf('--order');
+                    if (orderIndex !== -1) options.order = Number(args[orderIndex + 1]);
+                    output(await Deck.createCard(boardId, args[stackIndex + 1], args[titleIndex + 1], options));
+                } else if (subCommand === 'edit') {
+                    if (stackIndex === -1) throw new Error('Missing --stack');
+                    if (cardIndex === -1) throw new Error('Missing --card');
+                    const updates = {};
+                    const titleIndex = args.indexOf('--title');
+                    if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+                    const description = readTextOption(
+                        args, '--description', '--description-file'
+                    );
+                    if (description !== undefined) updates.description = description;
+                    const dueIndex = args.indexOf('--duedate');
+                    if (dueIndex !== -1) updates.duedate = args[dueIndex + 1];
+                    const orderIndex = args.indexOf('--order');
+                    if (orderIndex !== -1) updates.order = Number(args[orderIndex + 1]);
+                    const doneIndex = args.indexOf('--done');
+                    if (doneIndex !== -1) updates.done = args[doneIndex + 1] === 'true' ? new Date().toISOString() : null;
+                    const archivedIndex = args.indexOf('--archived');
+                    if (archivedIndex !== -1) updates.archived = args[archivedIndex + 1] === 'true';
+                    output(await Deck.editCard(boardId, args[stackIndex + 1], args[cardIndex + 1], updates));
+                } else if (subCommand === 'delete') {
+                    if (stackIndex === -1) throw new Error('Missing --stack');
+                    if (cardIndex === -1) throw new Error('Missing --card');
+                    output(await Deck.deleteCard(boardId, args[stackIndex + 1], args[cardIndex + 1]));
+                } else if (subCommand === 'move') {
+                    if (stackIndex === -1) throw new Error('Missing --stack');
+                    if (cardIndex === -1) throw new Error('Missing --card');
+                    const toIndex = args.indexOf('--to-stack');
+                    if (toIndex === -1) throw new Error('Missing --to-stack');
+                    const orderIndex = args.indexOf('--order');
+                    const order = orderIndex !== -1 ? Number(args[orderIndex + 1]) : undefined;
+                    output(await Deck.moveCard(boardId, args[stackIndex + 1], args[cardIndex + 1], args[toIndex + 1], order));
+                } else if (subCommand === 'assign-label') {
+                    if (stackIndex === -1) throw new Error('Missing --stack');
+                    if (cardIndex === -1) throw new Error('Missing --card');
+                    const labelIndex = args.indexOf('--label');
+                    if (labelIndex === -1) throw new Error('Missing --label');
+                    output(await Deck.assignLabel(boardId, args[stackIndex + 1], args[cardIndex + 1], args[labelIndex + 1]));
+                } else if (subCommand === 'remove-label') {
+                    if (stackIndex === -1) throw new Error('Missing --stack');
+                    if (cardIndex === -1) throw new Error('Missing --card');
+                    const labelIndex = args.indexOf('--label');
+                    if (labelIndex === -1) throw new Error('Missing --label');
+                    output(await Deck.removeLabel(boardId, args[stackIndex + 1], args[cardIndex + 1], args[labelIndex + 1]));
+                } else {
+                    throw new Error('Unknown cards command');
+                }
+            }
+        } else if (command === 'labels') {
+            const boardIndex = args.indexOf('--board');
+            if (boardIndex === -1) throw new Error('Missing --board');
+            const boardId = args[boardIndex + 1];
+            if (subCommand === 'list') {
+                output(await Deck.listLabels(boardId));
+            } else if (subCommand === 'create') {
+                const titleIndex = args.indexOf('--title');
+                if (titleIndex === -1) throw new Error('Missing --title');
+                const colorIndex = args.indexOf('--color');
+                if (colorIndex === -1) throw new Error('Missing --color');
+                output(await Deck.createLabel(boardId, args[titleIndex + 1], args[colorIndex + 1]));
+            } else if (subCommand === 'edit') {
+                const labelIndex = args.indexOf('--label');
+                if (labelIndex === -1) throw new Error('Missing --label');
+                const updates = {};
+                const titleIndex = args.indexOf('--title');
+                if (titleIndex !== -1) updates.title = args[titleIndex + 1];
+                const colorIndex = args.indexOf('--color');
+                if (colorIndex !== -1) updates.color = args[colorIndex + 1];
+                output(await Deck.editLabel(boardId, args[labelIndex + 1], updates));
+            } else if (subCommand === 'delete') {
+                const labelIndex = args.indexOf('--label');
+                if (labelIndex === -1) throw new Error('Missing --label');
+                output(await Deck.deleteLabel(boardId, args[labelIndex + 1]));
+            } else {
+                throw new Error('Unknown labels command');
+            }
         } else {
-            console.log('Usage: node index.js <notes|files|calendar|calendars|tasks|contacts|addressbooks|shares> <list|get|create|search|edit|delete|create-link> [options]');
+            errorOutput('Usage: node scripts/nextcloud.js <notes|files|calendar|calendars|tasks|contacts|addressbooks|shares|boards|stacks|cards|labels> <list|get|create|search|edit|delete|move|create-link> [options]');
         }
     } catch (err) {
         errorOutput(err);

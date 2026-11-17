@@ -1,42 +1,49 @@
-## Description: <br>
-NexAPI 工具类接口调用。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NexAPI tool API invocation.
 
-## Publisher: <br>
-[avrinbai](https://clawhub.ai/user/avrinbai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avrinbai](https://clawhub.ai/user/avrinbai)
 
-## Use Case: <br>
-Developers and agent operators use Nexapi to call NexAPI utility, data, content, and operations endpoints through a Python CLI while minimizing repeated catalog fetches and response volume. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a NexAPI key and can store it in a local configuration file. <br>
-Mitigation: Keep the API key scoped and rotated, and store the configuration file in a private location with owner-only permissions. <br>
-Risk: Endpoint override settings can direct requests to a non-default host or health path. <br>
-Mitigation: Avoid setting the base URL or health path to untrusted hosts. <br>
-Risk: The integration depends on trust in the external NexAPI service. <br>
-Mitigation: Install only if you trust the API service and need this integration. <br>
+## Use Case:
 
+Developers and external users use this skill to discover NexAPI utility endpoints, configure API access, cache endpoint metadata, and call selected tool, data, content, or operations APIs with compact output.
 
-## Reference(s): <br>
-- [NexAPI service endpoint](https://api.avrinbai.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to compact responses; full API responses require verbose mode.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can store a NexAPI API key in plaintext and send it to a configurable, undocumented endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the NexAPI service and runtime environment are trusted; avoid setting NEXAPI_BASE_URL unless the destination is fully trusted, prefer environment-based API keys over local plaintext storage on shared systems, and check generated config file permissions after using auth set.
+
+## Reference(s):
+
+- [NexAPI service endpoint](https://api.avrinbai.cn)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Configuration, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default command output is compact; --verbose requests the full API response, and binary responses return metadata instead of raw bytes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

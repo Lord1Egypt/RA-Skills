@@ -1,45 +1,60 @@
-## Description: <br>
-Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax.
 
-## Publisher: <br>
-[hoyaryyj](https://clawhub.ai/user/hoyaryyj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hoyaryyj](https://clawhub.ai/user/hoyaryyj)
 
-## Use Case: <br>
-Developers, writers, and knowledge workers use this skill to create and edit Obsidian notes with valid Obsidian-specific Markdown syntax for links, embeds, callouts, properties, tags, math, diagrams, and footnotes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Obsidian notes can include external image links that Markdown viewers may fetch when rendering. <br>
-Mitigation: Review external image links before sharing or opening sensitive notes. <br>
+## Use Case:
 
+Developers, writers, and agents use this skill to create or edit Obsidian notes that rely on Obsidian-specific Markdown extensions such as wikilinks, embeds, callouts, properties, tags, comments, highlighting, math, Mermaid diagrams, and footnotes.
 
-## Reference(s): <br>
-- [Obsidian Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown) <br>
-- [Internal links](https://help.obsidian.md/links) <br>
-- [Embed files](https://help.obsidian.md/embeds) <br>
-- [Callouts](https://help.obsidian.md/callouts) <br>
-- [Properties](https://help.obsidian.md/properties) <br>
-- [Callouts Reference](references/CALLOUTS.md) <br>
-- [Embeds Reference](references/EMBEDS.md) <br>
-- [Properties Reference](references/PROPERTIES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with Obsidian Markdown examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Obsidian-specific Markdown snippets for notes, wikilinks, embeds, callouts, properties, tags, math, diagrams, and footnotes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The broad trigger phrase may cause the skill to be invoked during generic Markdown, tag, or frontmatter discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the task is about Obsidian Flavored Markdown before applying Obsidian-specific syntax guidance.
+
+Risk: Incorrect Obsidian syntax can cause notes to render or link differently than intended.
+
+Mitigation: Review generated notes in Obsidian reading view, especially wikilinks, embeds, callouts, and YAML properties.
+
+## Reference(s):
+
+- [Obsidian Flavored Markdown](https://help.obsidian.md/obsidian-flavored-markdown)
+- [Internal links](https://help.obsidian.md/links)
+- [Embed files](https://help.obsidian.md/embeds)
+- [Callouts](https://help.obsidian.md/callouts)
+- [Properties](https://help.obsidian.md/properties)
+- [Callouts Reference](artifact/references/CALLOUTS.md)
+- [Embeds Reference](artifact/references/EMBEDS.md)
+- [Properties Reference](artifact/references/PROPERTIES.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with Obsidian-specific syntax examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no code execution or runtime authority.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

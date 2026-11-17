@@ -2,11 +2,13 @@
 """Unified CLI for Poetize blog automation.
 
 Usage:
-    python poetize_cli.py publish --markdown-file article.md --brief-file brief.json --publish --wait
-    python poetize_cli.py manage list-articles --search-key "AI"
-    python poetize_cli.py config --output openclaw.json --api-key KEY
-    python poetize_cli.py smoke-test --base-url URL --api-key KEY
-    python poetize_cli.py eval
+    poetize-blog publish --markdown-file article.md --brief-file brief.json --publish --wait
+    poetize-blog manage list-articles --search-key "AI"
+    poetize-blog config --output openclaw.json --api-key KEY
+    poetize-blog smoke-test --base-url URL --api-key KEY
+    poetize-blog run-strategy-tests
+
+(Equivalent: `python scripts/poetize_cli.py ...` via the wrapper at the skill root.)
 
 Supports --stdin-brief and --stdin-payload to read JSON from stdin,
 which avoids temporary files and CLI escaping issues for Agent runtimes.
@@ -18,6 +20,8 @@ import argparse
 import json
 import os
 import sys
+import urllib.parse
+from pathlib import Path
 from typing import Any
 
 # Re-export helpers from existing modules
@@ -30,6 +34,7 @@ from manage_blog import (
     post_async_update,
     read_json_file as manage_read_json_file,
     resolve_article_id,
+    validate_time_ranges,
 )
 from manage_blog import apply_ops_strategy
 from publish_post import (
@@ -46,6 +51,96 @@ from publish_post import apply_article_strategy
 from publish_post import ensure_payment_plugin_ready as publish_ensure_payment
 from publish_post import ensure_taxonomy_ready
 from render_openclaw_config import build_config, infer_base_url
+
+
+# ---------------------------------------------------------------------------
+# Credentials storage (~/.config/poetize/credentials.json, local fallback)
+# ---------------------------------------------------------------------------
+
+try:
+    CREDENTIALS_PATH = Path.home() / ".config" / "poetize" / "credentials.json"
+except Exception:
+    CREDENTIALS_PATH = None
+
+LOCAL_CREDENTIALS_PATH = Path(__file__).resolve().parent.parent / "credentials.json"
+
+
+def load_credentials() -> dict[str, str]:
+    """Load saved credentials. Returns {base_url, api_key} or empty dict.
+    Checks:
+    1. Global: ~/.config/poetize/credentials.json
+    2. Local: {baseDir}/credentials.json
+
+    CWD credential discovery (./credentials.json) was removed for security:
+    a planted file in the working directory could otherwise hijack the
+    resolved base_url and exfiltrate article content. Env vars and explicit
+    CLI args are the trusted sources; files are a convenience fallback only.
+    """
+    paths_to_check = []
+    if CREDENTIALS_PATH:
+        paths_to_check.append(CREDENTIALS_PATH)
+    paths_to_check.append(LOCAL_CREDENTIALS_PATH)
+
+    for path in paths_to_check:
+        if path.exists():
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                if isinstance(data, dict):
+                    res = {
+                        k: str(v)
+                        for k, v in data.items()
+                        if k in ("base_url", "api_key") and v
+                    }
+                    if res.get("base_url") and res.get("api_key"):
+                        return res
+            except (json.JSONDecodeError, OSError):
+                pass
+    return {}
+
+
+def save_credentials(base_url: str, api_key: str, local: bool = False) -> Path:
+    """Save credentials with 0600 permissions."""
+    target_path = LOCAL_CREDENTIALS_PATH if local else (CREDENTIALS_PATH if CREDENTIALS_PATH else LOCAL_CREDENTIALS_PATH)
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"base_url": base_url, "api_key": api_key}
+    target_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    try:
+        target_path.chmod(0o600)
+    except OSError:
+        pass  # Windows or non-POSIX filesystems
+    return target_path
+
+
+def clear_credentials(local: bool = False) -> tuple[bool, Path]:
+    """Delete credentials file if exists."""
+    target_path = LOCAL_CREDENTIALS_PATH if local else (CREDENTIALS_PATH if CREDENTIALS_PATH else LOCAL_CREDENTIALS_PATH)
+    if target_path and target_path.exists():
+        target_path.unlink()
+        return True, target_path
+    return False, target_path
+
+
+def resolve_credentials(args: argparse.Namespace) -> None:
+    """Fill args.base_url and args.api_key from: CLI > env > credentials files (global, local).
+
+    Env vars are explicit per-session intent and take precedence over
+    persisted credential files, which are a convenience fallback. This avoids
+    a stale or planted credentials.json shadowing the user's environment.
+    Called once in main() after argparse, before dispatching to cmd_*.
+    """
+    if not getattr(args, "base_url", None):
+        args.base_url = os.getenv("POETIZE_BASE_URL")
+    if not getattr(args, "api_key", None):
+        args.api_key = os.getenv("POETIZE_API_KEY")
+    if not getattr(args, "base_url", None) or not getattr(args, "api_key", None):
+        creds = load_credentials()
+        if not getattr(args, "base_url", None):
+            args.base_url = creds.get("base_url")
+        if not getattr(args, "api_key", None):
+            args.api_key = creds.get("api_key")
 
 
 # ---------------------------------------------------------------------------
@@ -73,6 +168,51 @@ def _cli_die(message: str) -> None:
     raise exc
 
 
+# ---------------------------------------------------------------------------
+# v5.1.0+ endpoints: version-gap guard
+# ---------------------------------------------------------------------------
+
+# /api/api/comment/*, /api/api/translation/*, and /api/api/article/updateSection
+# only exist starting from this awesome-poetize-open backend version. Older
+# backends 404/500 on these routes because the endpoint itself does not exist
+# yet — that failure looks identical to a real bug from the CLI's perspective,
+# so we translate it into an explicit version-mismatch message instead of
+# surfacing a raw HTTP error.
+V5_ENDPOINTS_MIN_BACKEND_VERSION = "v5.1.0"
+
+
+def request_json_v5_endpoint(
+    method: str,
+    url: str,
+    api_key: str,
+    payload: dict[str, Any] | None = None,
+    *,
+    feature_name: str,
+    commands: str,
+) -> dict[str, Any]:
+    """Wrap request_json for routes that require backend v5.1.0+.
+
+    On HTTP 404/500 (endpoint not registered on older backends), re-raise
+    with a version-mismatch explanation instead of the raw server error.
+    """
+    try:
+        return request_json(method, url, api_key, payload)
+    except SystemExit as exc:
+        detail = getattr(exc, "_poetize_detail", "") or ""
+        if detail.startswith("HTTP 404") or detail.startswith("HTTP 500"):
+            endpoint = url.split("/api/api/", 1)[-1] if "/api/api/" in url else url
+            _cli_die(
+                f"{detail}\n\n"
+                f"This likely means your awesome-poetize-open backend is older than "
+                f"{V5_ENDPOINTS_MIN_BACKEND_VERSION}, which is the first version to "
+                f"expose {endpoint}. "
+                f"{feature_name} support ({commands}) "
+                f"requires upgrading the backend to {V5_ENDPOINTS_MIN_BACKEND_VERSION} or later. "
+                f"All other commands in this skill are unaffected."
+            )
+        raise
+
+
 def read_stdin_json(label: str) -> dict[str, Any]:
     """Read a JSON object from stdin."""
     if sys.stdin.isatty():
@@ -86,14 +226,19 @@ def read_stdin_json(label: str) -> dict[str, Any]:
     return data
 
 
-def resolve_brief(args: argparse.Namespace) -> dict[str, Any]:
-    """Load brief from --brief-file or --stdin-brief."""
+def resolve_brief(args: argparse.Namespace, meta: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Load brief from --stdin-brief > --brief-file > inline _brief in front matter."""
     if getattr(args, "stdin_brief", False):
         return read_stdin_json("Brief")
     brief_file = getattr(args, "brief_file", None)
     if brief_file:
         return load_json_object(brief_file, label="Brief file")
-    _cli_die("Provide --brief-file or --stdin-brief for this command.")
+    # Inline _brief from front matter (publish command only)
+    if meta is not None:
+        inline = meta.get("_brief")
+        if isinstance(inline, dict) and inline:
+            return inline
+    _cli_die("Provide --brief-file, --stdin-brief, or an inline _brief block in front matter.")
 
 
 def resolve_payload(args: argparse.Namespace) -> dict[str, Any]:
@@ -110,9 +255,45 @@ def resolve_payload(args: argparse.Namespace) -> dict[str, Any]:
 # Global args
 # ---------------------------------------------------------------------------
 
+def _positive_float(value: str) -> float:
+    try:
+        f = float(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"invalid float value: '{value}'")
+    if f <= 0:
+        raise argparse.ArgumentTypeError(f"value must be positive, got: {f}")
+    return f
+
+
+RECYCLE_BIN_UPGRADE_HINT = (
+    "此命令依赖回收站能力（需要 awesome-poetize-open v5.2.7+）。"
+    "旧版后端没有对应端点，HTTP 层可能返回 404 或 500；"
+    "若博客已升级到 v5.2.7+ 仍出现本提示，请查看后端日志排查。"
+)
+
+
+def call_recycle_bin_api(method: str, url: str, api_key: str,
+                         payload: dict[str, Any] | None = None) -> dict[str, Any]:
+    """回收站命令专用请求兜底。
+
+    旧后端（<v5.2.7）没有这些端点，HTTP 层可能返回 404 或 500；
+    统一翻译为带升级指引的结构化错误，模型无需主动探测能力。
+    """
+    response = request_json(method, url, api_key, payload, return_error_dict=True)
+    if response.get("code") != 200 and response.get("detail") is not None:
+        response["agent_guide"] = {
+            "message": RECYCLE_BIN_UPGRADE_HINT,
+            "next_steps": ["升级博客后端到 v5.2.7+ 后重试；若已升级，请检查后端日志。"],
+        }
+    return response
+
+
 def add_global_args(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("--base-url", default=os.getenv("POETIZE_BASE_URL"), help="Poetize base URL.")
-    parser.add_argument("--api-key", default=os.getenv("POETIZE_API_KEY"), help="Poetize API key.")
+    parser.add_argument("--base-url", default=None, help="Poetize base URL. Falls back to POETIZE_BASE_URL env or ~/.config/poetize/credentials.json.")
+    parser.add_argument("--api-key", default=None, help="Poetize API key. Falls back to POETIZE_API_KEY env or ~/.config/poetize/credentials.json.")
+    parser.add_argument("--wait", action="store_true", help="Poll async task until completion. No-op for synchronous commands.")
+    parser.add_argument("--poll-interval", type=_positive_float, default=2.0, help="Seconds between poll requests (default: 2.0).")
+    parser.add_argument("--timeout", type=_positive_float, default=900.0, help="Maximum wait time in seconds (default: 900.0).")
 
 
 # ---------------------------------------------------------------------------
@@ -135,9 +316,7 @@ def add_publish_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--allow-create-sort", action="store_true", help="Allow creating a missing category.")
     parser.add_argument("--allow-create-label", action="store_true", help="Allow creating a missing tag.")
     parser.add_argument("--print-payload", action="store_true", help="Print JSON payload before sending.")
-    parser.add_argument("--wait", action="store_true", help="Poll async task until completion.")
-    parser.add_argument("--poll-interval", type=float, default=2.0, help="Seconds between poll requests (default: 2.0).")
-    parser.add_argument("--timeout", type=int, default=900, help="Maximum wait time in seconds (default: 900).")
+    parser.add_argument("--force", action="store_true", help="Skip the heading-structure validation and publish anyway.")
 
 
 def cmd_publish(args: argparse.Namespace) -> None:
@@ -150,12 +329,11 @@ def cmd_publish(args: argparse.Namespace) -> None:
         return
 
     try:
-        brief = resolve_brief(args)
-
         with open(args.markdown_file, "r", encoding="utf-8") as handle:
             markdown_text = handle.read()
 
         payload, meta = build_payload(markdown_text, args)
+        brief = resolve_brief(args, meta)
         payload = apply_article_strategy(
             brief,
             payload,
@@ -177,8 +355,50 @@ def cmd_publish(args: argparse.Namespace) -> None:
             _output_error("Article API returned non-200", detail=json.dumps(response, ensure_ascii=False))
             return
 
+        def attach_agent_guide(res: dict[str, Any], pay: dict[str, Any], resp_data: Any) -> None:
+            article_id = args.article_id
+            if not article_id and isinstance(resp_data, dict):
+                article_id = resp_data.get("articleId") or resp_data.get("id")
+            id_str = str(article_id) if article_id else "<article_id>"
+
+            if pay.get("viewStatus") is False:
+                res["agent_guide"] = {
+                    "message": "Draft created/updated successfully with a temporary password.",
+                    "password": pay.get("password"),
+                    "tips": pay.get("tips"),
+                    "next_steps": [
+                        f"Verify the draft format/metadata: python poetize_cli.py manage get-article --article-id {id_str}",
+                        f"Promote this draft to public: python poetize_cli.py publish --markdown-file {args.markdown_file} --article-id {id_str} --publish --wait"
+                    ]
+                }
+
+            # 长文 AI 翻译被截断或部分语言失败：正文已经发布成功，只是并非所有目标语言都就绪。
+            # 这个状态最容易被误当成失败而重发，故直接给出善后步骤。
+            status = resp_data.get("status") if isinstance(resp_data, dict) else None
+            if status == "partial_success":
+                res["translation_recovery"] = {
+                    "status": "partial_success",
+                    "message": (
+                        "Article published, but AI translation did not complete for every language. "
+                        "This is NOT a failed publish — do not retry it as a new create."
+                    ),
+                    "next_steps": [
+                        "Check which languages are missing / truncated: "
+                        f"python poetize_cli.py manage list-translation-languages --article-id {id_str}",
+                        "Re-run the publish with 'skipAiTranslation: true' in front matter to bypass the AI "
+                        f"step entirely and refresh the static pages: python poetize_cli.py publish "
+                        f"--markdown-file {args.markdown_file} --article-id {id_str} --wait",
+                        "Then store each translation yourself: python poetize_cli.py manage save-translation "
+                        f"--article-id {id_str} --language <lang> --title \"<translated title>\" "
+                        "--content-file <translated.md> --brief-file <ops-brief.json>",
+                        "save-translation refreshes the article and its language pages on its own — "
+                        "no extra publish is needed just to make a saved translation visible.",
+                    ],
+                }
+
         if not args.wait:
             result = {"ok": True, **response}
+            attach_agent_guide(result, payload, response.get("data"))
             print(json.dumps(result, ensure_ascii=False, indent=2))
             return
 
@@ -194,6 +414,7 @@ def cmd_publish(args: argparse.Namespace) -> None:
             return
 
         result = {"ok": True, **final_response}
+        attach_agent_guide(result, payload, final_data)
         print(json.dumps(result, ensure_ascii=False, indent=2))
     except StrategyValidationError as exc:
         _output_error("Strategy validation failed", detail=exc.render())
@@ -219,9 +440,27 @@ def add_manage_subparsers(parser: argparse.ArgumentParser) -> None:
     p.add_argument("--label-id", type=int, help="Filter by tag ID.")
     p.add_argument("--label-name", help="Filter by tag name (resolved to ID).")
     p.add_argument("--exact-title", help="Filter to a single exact title match.")
+    p.add_argument("--recommend-only", action="store_true",
+                   help="Only articles featured in recommendations.")
+    p.add_argument("--article-search",
+                   help="Full-text search over title + content; wrap in /.../ for case-insensitive regex (e.g. \"/^Vue 3/\").")
+    p.add_argument("--created-between", action="append", metavar="START~END",
+                   help="Filter by create time, format START~END (either side omittable; "
+                        "yyyy-MM-dd or yyyy-MM-dd HH:mm:ss). Repeat to OR-combine multiple ranges. Backend v5.2.0+.")
+    p.add_argument("--updated-between", action="append", metavar="START~END",
+                   help="Filter by last-update time; same format as --created-between. Backend v5.2.0+.")
+    p.add_argument("--published-between", action="append", metavar="START~END",
+                   help="Filter by first-public-publish time (RSS pubDate semantics; drafts never published are excluded); "
+                        "same format as --created-between. Backend v5.2.0+.")
+    p.add_argument("--order", choices=["create-time", "update-time", "publish-time"],
+                   help="Sort field (default: create-time). Backend v5.2.0+ for non-default values.")
+    p.add_argument("--asc", action="store_true",
+                   help="Sort ascending (default: descending). Backend v5.2.0+.")
+    p.add_argument("--orphan-only", action="store_true",
+                   help="Only list broken articles whose category/tag is missing or was deleted (data-repair aid).")
 
     # get-article
-    p = sub.add_parser("get-article", help="Get article detail.")
+    p = sub.add_parser("get-article", help="Get article content by ID, slug, or exact title.")
     add_global_args(p)
     add_article_target_args(p)
 
@@ -233,9 +472,6 @@ def add_manage_subparsers(parser: argparse.ArgumentParser) -> None:
     p.add_argument("--stdin-payload", action="store_true", help="Read payload JSON from stdin.")
     p.add_argument("--brief-file", help="JSON brief file for strategy validation.")
     p.add_argument("--stdin-brief", action="store_true", help="Read brief JSON from stdin.")
-    p.add_argument("--wait", action="store_true", help="Poll async task until completion.")
-    p.add_argument("--poll-interval", type=float, default=2.0, help="Seconds between poll requests (default: 2.0).")
-    p.add_argument("--timeout", type=int, default=900, help="Maximum wait time in seconds (default: 900).")
     p.add_argument("--print-payload", action="store_true", help="Print JSON payload before sending.")
 
     # hide-article
@@ -246,9 +482,87 @@ def add_manage_subparsers(parser: argparse.ArgumentParser) -> None:
     p.add_argument("--stdin-brief", action="store_true", help="Read brief JSON from stdin.")
     p.add_argument("--password", help="Password for hidden article.")
     p.add_argument("--tips", help="Preview tip for hidden article.")
-    p.add_argument("--wait", action="store_true", help="Poll async task until completion.")
-    p.add_argument("--poll-interval", type=float, default=2.0, help="Seconds between poll requests (default: 2.0).")
-    p.add_argument("--timeout", type=int, default=900, help="Maximum wait time in seconds (default: 900).")
+
+    # delete-article（移入回收站，保留期内可恢复；彻底删除不受支持）
+    p = sub.add_parser("delete-article", help="Move an article to the recycle bin (recoverable during the retention window).")
+    add_global_args(p)
+    add_article_target_args(p)
+    p.add_argument("--brief-file", help="JSON brief file for strategy validation.")
+    p.add_argument("--stdin-brief", action="store_true", help="Read brief JSON from stdin.")
+
+    # restore-article
+    p = sub.add_parser("restore-article", help="Restore an article from the recycle bin.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Trashed article ID (see list-trash).")
+
+    # list-trash
+    p = sub.add_parser("list-trash", help="List articles in the recycle bin.")
+    add_global_args(p)
+    p.add_argument("--search-key", help="Filter by title fragment.")
+    p.add_argument("--current", type=int, default=1, help="Page number.")
+    p.add_argument("--size", type=int, default=10, help="Page size.")
+
+    # list-versions
+    p = sub.add_parser("list-versions", help="List historical version snapshots of an article (newest first).")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+
+    # restore-version
+    p = sub.add_parser("restore-version",
+                       help="Restore an article to a historical version (auto-snapshots the current version first).")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--version-id", type=int, required=True, help="Version ID from list-versions.")
+
+    # trash-detail（回收站文章详情，含正文与翻译，用于判断恢复对象）
+    p = sub.add_parser("trash-detail", help="Fetch a trashed article's full content and translations (to decide what to restore).")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Trashed article ID (see list-trash).")
+
+    # version-detail（历史版本详情，含正文与翻译快照，用于判断回滚目标）
+    p = sub.add_parser("version-detail", help="Fetch a version snapshot's full content and translations (to decide what to roll back to).")
+    add_global_args(p)
+    p.add_argument("--version-id", type=int, required=True, help="Version ID from list-versions.")
+
+    # 资源回收站（删除进回收站，30 天内可恢复；彻底删除不受支持）
+    p = sub.add_parser("list-resources", help="List resources (excludes trashed ones).")
+    add_global_args(p)
+    p.add_argument("--search-key", help="Filter by path or original name fragment.")
+    p.add_argument("--current", type=int, default=1, help="Page number.")
+    p.add_argument("--size", type=int, default=10, help="Page size.")
+
+    p = sub.add_parser("delete-resource", help="Move a resource to the recycle bin (recoverable during the retention window).")
+    add_global_args(p)
+    p.add_argument("--resource-id", type=int, help="Target resource ID.")
+    p.add_argument("--path", help="Target resource path (when id unknown).")
+
+    p = sub.add_parser("restore-resource", help="Restore a resource from the recycle bin.")
+    add_global_args(p)
+    p.add_argument("--resource-id", type=int, required=True, help="Trashed resource ID (see list-resource-trash).")
+
+    p = sub.add_parser("list-resource-trash", help="List resources in the recycle bin.")
+    add_global_args(p)
+    p.add_argument("--search-key", help="Filter by path or original name fragment.")
+    p.add_argument("--current", type=int, default=1, help="Page number.")
+    p.add_argument("--size", type=int, default=10, help="Page size.")
+
+    p = sub.add_parser("list-resource-backups", help="List replacement backups (old versions kept after replace).")
+    add_global_args(p)
+    p.add_argument("--resource-id", type=int, help="Filter backups by resource ID.")
+    p.add_argument("--current", type=int, default=1, help="Page number.")
+    p.add_argument("--size", type=int, default=10, help="Page size.")
+
+    p = sub.add_parser("restore-resource-backup", help="Restore a resource to a pre-replacement old version (the current file is backed up first).")
+    add_global_args(p)
+    p.add_argument("--backup-id", type=int, required=True, help="Backup ID from list-resource-backups.")
+
+    p = sub.add_parser("resource-trash-detail", help="Fetch a trashed resource's metadata and preview URL (to decide what to restore).")
+    add_global_args(p)
+    p.add_argument("--resource-id", type=int, required=True, help="Trashed resource ID (see list-resource-trash).")
+
+    p = sub.add_parser("resource-backup-detail", help="Fetch a replacement backup's metadata and preview URL (to decide which old version to restore).")
+    add_global_args(p)
+    p.add_argument("--backup-id", type=int, required=True, help="Backup ID from list-resource-backups.")
 
     # article-analytics
     p = sub.add_parser("article-analytics", help="Get article analytics.")
@@ -256,7 +570,7 @@ def add_manage_subparsers(parser: argparse.ArgumentParser) -> None:
     add_article_target_args(p)
 
     # site-visits
-    p = sub.add_parser("site-visits", help="Get site visit trends.")
+    p = sub.add_parser("site-visits", help="Get site visit trends with bot/human breakdown (daily, summary, ua_type_breakdown, top_uas, referrer_breakdown, region_breakdown).")
     add_global_args(p)
     p.add_argument("--days", type=int, choices=[7, 30], default=7, help="Number of days for trend data (7 or 30, default: 7).")
 
@@ -286,6 +600,241 @@ def add_manage_subparsers(parser: argparse.ArgumentParser) -> None:
     p = sub.add_parser("sitemap-update", help="Trigger sitemap update.")
     add_global_args(p)
 
+    # list-comments
+    p = sub.add_parser("list-comments", help="List comments for an article.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--floor-comment-id", type=int, help="Optional floor/thread ID to fetch replies within a specific comment tree.")
+    p.add_argument("--current", type=int, default=1, help="Page number (default: 1).")
+    p.add_argument("--size", type=int, default=10, help="Page size (default: 10).")
+
+    # save-comment
+    p = sub.add_parser("save-comment", help="Post or reply to a comment.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--content", required=True, help="Comment text content.")
+    p.add_argument("--parent-comment-id", type=int, help="Optional parent comment ID (to reply).")
+    p.add_argument("--parent-user-id", type=int, help="Optional parent user ID (to reply).")
+    p.add_argument("--floor-comment-id", type=int, help="Ignored by the backend for writes: the server always recomputes floorCommentId from --parent-comment-id and only logs a warning if this disagrees. Safe to omit; kept for symmetry with list-comments.")
+    p.add_argument("--as-ai", action="store_true", help="Comment/reply as the AI assistant persona.")
+
+    # task-status
+    p = sub.add_parser("task-status", help="Get status of an asynchronous article save/update task.")
+    add_global_args(p)
+    p.add_argument("--task-id", required=True, help="Async task ID.")
+
+    # get-translation
+    p = sub.add_parser("get-translation", help="Get article translation for a specific language.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--language", default="en", help="Translation language code (default: en).")
+
+    # list-translation-languages
+    p = sub.add_parser("list-translation-languages", help="List available translation languages for an article.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+
+    # save-translation
+    p = sub.add_parser("save-translation", help="Save or update a manual translation for an article.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--language", required=True, help="Target translation language code.")
+    p.add_argument("--title", required=True, help="Translated article title.")
+    p.add_argument("--content-file", required=True, help="File containing translated Markdown content.")
+    p.add_argument("--summary", help="Optional translated summary.")
+    p.add_argument("--brief-file", help="JSON brief file for strategy validation.")
+    p.add_argument("--stdin-brief", action="store_true", help="Read brief JSON from stdin.")
+
+    # delete-translation
+    p = sub.add_parser("delete-translation", help="Delete a specific language translation.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--language", required=True, help="Translation language to delete.")
+    p.add_argument("--brief-file", help="JSON brief file for strategy validation.")
+    p.add_argument("--stdin-brief", action="store_true", help="Read brief JSON from stdin.")
+
+    # regenerate-translation
+    p = sub.add_parser("regenerate-translation", help="Regenerate all translations for an article via AI.")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--brief-file", help="JSON brief file for strategy validation.")
+    p.add_argument("--stdin-brief", action="store_true", help="Read brief JSON from stdin.")
+
+    # update-section
+    p = sub.add_parser("update-section", help="Update a section of an article by heading (avoids full regeneration).")
+    add_global_args(p)
+    p.add_argument("--article-id", type=int, required=True, help="Target article ID.")
+    p.add_argument("--heading", help="Stored heading text to locate; run get-article first and preserve its heading level (required except append).")
+    p.add_argument("--action", required=True, choices=["replace", "insert_after", "insert_before", "delete", "append"], help="Section update action.")
+    p.add_argument("--content-file", help="New section Markdown (required except delete); database body headings must be H2-H6.")
+    p.add_argument("--new-heading-level", type=int, choices=range(2, 7), metavar="2..6", help="Explicit new level for the replacement heading; replace only. Omit to preserve the current level.")
+    p.add_argument("--skip-ai-translation", action="store_true", help="Skip automatic AI translation re-generation.")
+    p.add_argument("--heading-index", type=int, metavar="N", help="1-based index to disambiguate when multiple headings match (get from error message).")
+    p.add_argument("--dry-run", action="store_true", help="Preview the change without persisting; returns original/updated content for review.")
+    p.add_argument("--brief-file", help="JSON brief file for strategy validation.")
+    p.add_argument("--stdin-brief", action="store_true", help="Read brief JSON from stdin.")
+
+    # list-sorts
+    p = sub.add_parser("list-sorts", help="List all categories.")
+    add_global_args(p)
+
+    # list-labels
+    p = sub.add_parser("list-labels", help="List all tags, optionally filtered by category.")
+    add_global_args(p)
+    p.add_argument("--sort-id", type=int, help="Filter tags by category ID.")
+
+    # create-sort
+    p = sub.add_parser("create-sort", help="Create a new category.")
+    add_global_args(p)
+    p.add_argument("--name", required=True, help="Category name.")
+    p.add_argument("--description", required=True, help="Category description.")
+    p.add_argument("--sort-type", type=int, choices=[0, 1], default=1, help="0=navbar, 1=normal (default: 1).")
+    p.add_argument("--priority", type=int, default=99, help="Priority (lower=earlier, default: 99).")
+
+    # update-sort
+    p = sub.add_parser("update-sort", help="Update an existing category.")
+    add_global_args(p)
+    p.add_argument("--id", type=int, required=True, help="Category ID.")
+    p.add_argument("--name", help="New category name.")
+    p.add_argument("--description", help="New category description.")
+    p.add_argument("--sort-type", type=int, choices=[0, 1], help="0=navbar, 1=normal.")
+    p.add_argument("--priority", type=int, help="Priority.")
+
+    # delete-sort
+    p = sub.add_parser("delete-sort", help="Delete a category.")
+    add_global_args(p)
+    p.add_argument("--id", type=int, required=True, help="Category ID.")
+
+    # create-label
+    p = sub.add_parser("create-label", help="Create a new tag.")
+    add_global_args(p)
+    p.add_argument("--name", required=True, help="Tag name.")
+    p.add_argument("--description", required=True, help="Tag description.")
+    p.add_argument("--sort-id", type=int, required=True, help="Category ID this tag belongs to.")
+
+    # update-label
+    p = sub.add_parser("update-label", help="Update an existing tag.")
+    add_global_args(p)
+    p.add_argument("--id", type=int, required=True, help="Tag ID.")
+    p.add_argument("--name", help="New tag name.")
+    p.add_argument("--description", help="New tag description.")
+    p.add_argument("--sort-id", type=int, help="Move tag to a different category.")
+
+    # delete-label
+    p = sub.add_parser("delete-label", help="Delete a tag.")
+    add_global_args(p)
+    p.add_argument("--id", type=int, required=True, help="Tag ID.")
+
+
+def format_comment_tree(records: list[dict[str, Any]]) -> str:
+    if not records:
+        return "No comments."
+    
+    lines = []
+    comments_map = {c["id"]: c for c in records}
+    
+    children_map = {}
+    for c in records:
+        pid = c.get("parentCommentId") or 0
+        children_map.setdefault(pid, []).append(c)
+        
+    for siblings in children_map.values():
+        siblings.sort(key=lambda x: x.get("createTime", "") or x.get("id", 0))
+        
+    def build_lines(comment_id: int, indent: int = 0):
+        c = comments_map[comment_id]
+        username = c.get("displayUsername") or c.get("username") or f"User {c.get('userId')}"
+        content = c.get("commentContent") or ""
+        
+        info = c.get("commentInfo")
+        is_ai = False
+        if info:
+            try:
+                info_json = json.loads(info) if isinstance(info, str) else info
+                is_ai = bool(info_json.get("aiReply") or info_json.get("ai_reply"))
+            except Exception:
+                is_ai = "aiReply\":true" in str(info) or "ai_reply\":true" in str(info)
+                
+        prefix = "[AI] " if is_ai else ""
+        
+        parent_username = c.get("parentUsername")
+        reply_str = f" Reply to {parent_username}" if parent_username else ""
+        
+        user_id = c.get("userId")
+        user_suffix = f"(user:{user_id})" if user_id is not None else ""
+        
+        indent_str = "  " * indent
+        lines.append(f"{indent_str}- #{c['id']}{user_suffix} {prefix}{username}{reply_str}: {content.strip()}")
+        
+        children = children_map.get(comment_id, [])
+        for child in children:
+            build_lines(child["id"], indent + 1)
+
+    top_level = [c for c in records if (c.get("parentCommentId") or 0) not in comments_map]
+    top_level.sort(key=lambda x: x.get("createTime", "") or x.get("id", 0), reverse=True)
+    
+    for c in top_level:
+        build_lines(c["id"], 0)
+        
+    return "\n".join(lines)
+
+
+def _fetch_translation_languages(base_url: str, api_key: str, article_id: int) -> list[str]:
+    """Fetch the list of available translation languages for an article."""
+    url = build_url(base_url, "/api/api/translation/languages", {"articleId": article_id})
+    response = request_json_v5_endpoint(
+        "GET", url, api_key,
+        feature_name="Translation management",
+        commands="manage list-translation-languages",
+    )
+    if response.get("code") != 200:
+        return []
+    languages = response.get("data", [])
+    return languages if isinstance(languages, list) else []
+
+
+def _wait_for_translations(
+    base_url: str,
+    api_key: str,
+    article_id: int,
+    poll_interval: float,
+    timeout: float,
+) -> dict[str, Any]:
+    """Poll list-translation-languages until the language list stabilizes or timeout.
+
+    Stabilization = same non-empty language set for 2 consecutive polls. This is a
+    heuristic since the backend has no translation task-status endpoint.
+    """
+    import time
+
+    elapsed = 0.0
+    prev_langs: set[str] | None = None
+    stable_count = 0
+
+    while elapsed < timeout:
+        time.sleep(poll_interval)
+        elapsed += poll_interval
+        current_langs = set(_fetch_translation_languages(base_url, api_key, article_id))
+        if prev_langs is not None and current_langs == prev_langs and len(current_langs) > 0:
+            stable_count += 1
+            if stable_count >= 1:
+                return {
+                    "ok": True,
+                    "languages": sorted(current_langs),
+                    "elapsed": elapsed,
+                    "message": "Translation languages stabilized.",
+                }
+        else:
+            stable_count = 0
+        prev_langs = current_langs
+
+    return {
+        "ok": False,
+        "languages": sorted(prev_langs) if prev_langs else [],
+        "elapsed": elapsed,
+        "message": f"Timed out after {timeout}s; translation may still be in progress.",
+    }
+
 
 def cmd_manage(args: argparse.Namespace) -> None:
     args.base_url = normalize_base_url(str(args.base_url or ""))
@@ -299,19 +848,81 @@ def cmd_manage(args: argparse.Namespace) -> None:
 
     try:
         if mc == "list-articles":
-            response = list_articles(args)
+            response = list_articles(
+                args,
+                search_key=args.search_key,
+                current=args.current,
+                size=args.size,
+                sort_id=args.sort_id,
+                sort_name=args.sort_name,
+                label_id=args.label_id,
+                label_name=args.label_name,
+                orphan_only=args.orphan_only,
+                recommend_only=args.recommend_only,
+                article_search=args.article_search,
+                create_time_ranges=validate_time_ranges(args.created_between, "--created-between"),
+                update_time_ranges=validate_time_ranges(args.updated_between, "--updated-between"),
+                publish_time_ranges=validate_time_ranges(args.published_between, "--published-between"),
+                order=args.order.replace("-", "_") if args.order else None,
+                asc=args.asc,
+            )
             if args.exact_title:
                 records = [
                     item for item in extract_records(response)
                     if str(item.get("articleTitle", "")).strip() == args.exact_title.strip()
                 ]
                 response = {"code": response.get("code"), "message": response.get("message"), "data": {"records": records, "matched": len(records)}}
+            if response.get("code") == 200:
+                data = response.get("data", {})
+                records = data.get("records", []) if isinstance(data, dict) else []
+                next_steps = []
+                if records:
+                    first_id = records[0].get("id") or records[0].get("articleId")
+                    if first_id:
+                        next_steps.append(f"Fetch article details (content/metadata): python poetize_cli.py manage get-article --article-id {first_id}")
+                next_steps.append("Fetch details of any article: python poetize_cli.py manage get-article --article-id <id>")
+                if args.orphan_only:
+                    if records:
+                        next_steps.append("Repair a broken article: python poetize_cli.py manage update-article --article-id <id> --payload-file payload.json with valid sortId/labelId (see manage list-sorts / list-labels).")
+                        message = f"Found {len(records)} orphan article(s) with missing or deleted category/tag. These are invisible to visitors and normal category/tag navigation."
+                    else:
+                        message = "No orphan articles found. All articles reference a valid category and tag."
+                else:
+                    message = "Articles listed successfully."
+                response["agent_guide"] = {
+                    "message": message,
+                    "next_steps": next_steps
+                }
             print(json.dumps(response, ensure_ascii=False, indent=2))
             return
 
         if mc == "get-article":
             article_id = resolve_article_id(args)
             response = request_json("GET", f"{args.base_url.rstrip('/')}/api/api/article/{article_id}", args.api_key)
+            if response.get("code") == 200:
+                data = response.get("data")
+                next_steps = []
+                if isinstance(data, dict):
+                    art_id = data.get("id")
+                    if art_id:
+                        next_steps.extend([
+                            f"Update metadata fields: python poetize_cli.py manage update-article --article-id {art_id} --payload-file payload.json --stdin-brief",
+                            f"Edit one section without full rewrite (preserve the stored heading's exact # count; database content starts at H2 and must not gain an H1): python poetize_cli.py manage update-section --article-id {art_id} --heading \"<heading>\" --action replace --content-file <file> --stdin-brief",
+                            f"Rewrite article content: edit local markdown file, then run: python poetize_cli.py publish --markdown-file <file> --article-id {art_id} --publish --wait",
+                            f"Manage translations: python poetize_cli.py manage list-translation-languages --article-id {art_id}",
+                            f"Hide this article from public view: python poetize_cli.py manage hide-article --article-id {art_id} --stdin-brief"
+                        ])
+                response["agent_guide"] = {
+                    "message": "Article details fetched successfully.",
+                    "next_steps": next_steps
+                }
+                # 隐藏文章返回密码供 Agent 查看
+                if isinstance(data, dict) and data.get("viewStatus") is False:
+                    pwd = data.get("password")
+                    if pwd:
+                        response["agent_guide"]["password"] = pwd
+                        response["agent_guide"]["tips"] = data.get("tips", "")
+                        response["agent_guide"]["message"] = f"Article details fetched. This is a HIDDEN article — password: {pwd}"
             print(json.dumps(response, ensure_ascii=False, indent=2))
             return
 
@@ -324,7 +935,15 @@ def cmd_manage(args: argparse.Namespace) -> None:
             if args.print_payload:
                 print(json.dumps(payload, ensure_ascii=False, indent=2))
                 return
-            post_async_update(args, payload)
+            response = post_async_update(args, payload)
+            id_str = str(article_id)
+            response["agent_guide"] = {
+                "message": "Article updated successfully.",
+                "next_steps": [
+                    f"Fetch details to verify update: python poetize_cli.py manage get-article --article-id {id_str}"
+                ]
+            }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
             return
 
         if mc == "hide-article":
@@ -337,7 +956,413 @@ def cmd_manage(args: argparse.Namespace) -> None:
                 "tips": args.tips or "文章已隐藏，仅供受控预览",
             }
             payload = apply_ops_strategy(brief, payload, expected_task_type="hide_article")
-            post_async_update(args, payload)
+            response = post_async_update(args, payload)
+            id_str = str(article_id)
+            response["agent_guide"] = {
+                "message": "Article hidden successfully. It is no longer visible to the public.",
+                "password": payload.get("password"),
+                "tips": payload.get("tips"),
+                "next_steps": [
+                    f"Verify hidden status: python poetize_cli.py manage get-article --article-id {id_str}",
+                    f"To make it public again: edit markdown and run: python poetize_cli.py publish --markdown-file <file> --article-id {id_str} --publish --wait"
+                ]
+            }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "delete-article":
+            article_id = resolve_article_id(args)
+            brief = resolve_brief(args)
+            payload = apply_ops_strategy(brief, {"id": article_id}, expected_task_type="delete_article")
+            response = call_recycle_bin_api("POST", f"{args.base_url.rstrip('/')}/api/api/article/delete", args.api_key,
+                                    payload)
+            if response.get("code") == 200:
+                # 保留天数以后端返回为准，避免与后端策略变化脱节
+                retention_days = (response.get("data") or {}).get("retentionDays")
+                window = f"{retention_days} days" if retention_days else "the retention window"
+                response["agent_guide"] = {
+                    "message": f"Article moved to the recycle bin. It is recoverable during the retention window "
+                               f"({window}); permanent purge happens automatically only after that.",
+                    "next_steps": [
+                        "Verify it is in trash: python poetize_cli.py manage list-trash",
+                        f"Restore it: python poetize_cli.py manage restore-article --article-id {article_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "restore-article":
+            response = call_recycle_bin_api("POST", f"{args.base_url.rstrip('/')}/api/api/article/restore", args.api_key,
+                                    {"id": args.article_id})
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Article restored from the recycle bin.",
+                    "next_steps": [
+                        f"Verify: python poetize_cli.py manage get-article --article-id {args.article_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-trash":
+            params: dict[str, Any] = {"current": args.current, "size": args.size}
+            if args.search_key:
+                params["searchKey"] = args.search_key
+            query = urllib.parse.urlencode(params)
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/article/trashList?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Recycle bin listed. Items are auto-purged after retentionDays.",
+                    "next_steps": [
+                        "Restore one item: python poetize_cli.py manage restore-article --article-id <id>"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-versions":
+            query = urllib.parse.urlencode({"articleId": args.article_id})
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/article/versions?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Version snapshots listed (newest first). Each update creates one snapshot; "
+                               "version restores are themselves snapshotted and reversible.",
+                    "next_steps": [
+                        "Restore one version: python poetize_cli.py manage restore-version "
+                        f"--article-id {args.article_id} --version-id <id>"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "restore-version":
+            response = call_recycle_bin_api("POST", f"{args.base_url.rstrip('/')}/api/api/article/restoreVersion",
+                                    args.api_key,
+                                    {"articleId": args.article_id, "versionId": args.version_id})
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Article restored to the requested version. The pre-restore state was snapshotted, "
+                               "so this restore can be undone with another restore-version.",
+                    "next_steps": [
+                        f"Verify: python poetize_cli.py manage get-article --article-id {args.article_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "trash-detail":
+            query = urllib.parse.urlencode({"id": args.article_id})
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/article/trashDetail?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Trashed article content fetched. Read content/translations to confirm this is the article to restore.",
+                    "next_steps": [
+                        f"Restore it: python poetize_cli.py manage restore-article --article-id {args.article_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "version-detail":
+            query = urllib.parse.urlencode({"versionId": args.version_id})
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/article/versionDetail?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Version content fetched. Compare it with the current article before rolling back.",
+                    "next_steps": [
+                        "Roll back: python poetize_cli.py manage restore-version --article-id <id> "
+                        f"--version-id {args.version_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-resources":
+            params = {"current": args.current, "size": args.size}
+            if args.search_key:
+                params["searchKey"] = args.search_key
+            query = urllib.parse.urlencode(params)
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/resource/list?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Resources listed. Use the id (or path) with delete-resource; trashed resources are excluded.",
+                    "next_steps": []
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "delete-resource":
+            body: dict[str, Any] = {}
+            if getattr(args, "resource_id", None):
+                body["id"] = args.resource_id
+            if getattr(args, "path", None):
+                body["path"] = args.path
+            if not body:
+                raise SystemExit("delete-resource requires --resource-id or --path")
+            response = call_recycle_bin_api("POST", f"{args.base_url.rstrip('/')}/api/api/resource/delete", args.api_key, body)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Resource moved to the recycle bin. It is recoverable during the retention window.",
+                    "next_steps": [
+                        "Verify: python poetize_cli.py manage list-resource-trash",
+                        "Restore: python poetize_cli.py manage restore-resource --resource-id <id>"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "restore-resource":
+            response = call_recycle_bin_api("POST", f"{args.base_url.rstrip('/')}/api/api/resource/restore", args.api_key,
+                                    {"id": args.resource_id})
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Resource restored from the recycle bin.",
+                    "next_steps": []
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-resource-trash":
+            params = {"current": args.current, "size": args.size}
+            if args.search_key:
+                params["searchKey"] = args.search_key
+            query = urllib.parse.urlencode(params)
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/resource/trashList?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Resource recycle bin listed. Items are auto-purged after retentionDays.",
+                    "next_steps": [
+                        "Restore: python poetize_cli.py manage restore-resource --resource-id <id>"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-resource-backups":
+            params: dict[str, Any] = {"current": args.current, "size": args.size}
+            if getattr(args, "resource_id", None):
+                params["resourceId"] = args.resource_id
+            query = urllib.parse.urlencode(params)
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/resource/backupList?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Replacement backups listed. These are pre-replacement old versions kept for rollback.",
+                    "next_steps": [
+                        "Restore one: python poetize_cli.py manage restore-resource-backup --backup-id <id>"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "restore-resource-backup":
+            response = call_recycle_bin_api("POST", f"{args.base_url.rstrip('/')}/api/api/resource/restoreBackup",
+                                    args.api_key, {"id": args.backup_id})
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Resource restored to the pre-replacement version. The overwritten current file was backed up first, so this restore can be undone.",
+                    "next_steps": []
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "resource-trash-detail":
+            query = urllib.parse.urlencode({"id": args.resource_id})
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/resource/trashDetail?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Trashed resource metadata fetched. Open previewUrl to visually confirm before restoring.",
+                    "next_steps": [
+                        f"Restore: python poetize_cli.py manage restore-resource --resource-id {args.resource_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "resource-backup-detail":
+            query = urllib.parse.urlencode({"id": args.backup_id})
+            response = call_recycle_bin_api("GET", f"{args.base_url.rstrip('/')}/api/api/resource/backupDetail?{query}",
+                                    args.api_key)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Backup metadata fetched. Open previewUrl to visually confirm before restoring the old version.",
+                    "next_steps": [
+                        f"Restore: python poetize_cli.py manage restore-resource-backup --backup-id {args.backup_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "task-status":
+            task_id = args.task_id
+            response = request_json("GET", f"{args.base_url.rstrip('/')}/api/api/article/task/{urllib.parse.quote(task_id, safe='')}", args.api_key)
+            if response.get("code") == 200:
+                data = response.get("data", {})
+                next_steps = []
+                art_id = data.get("articleId")
+                status = data.get("status")
+                if art_id:
+                    # Article exists!
+                    next_steps.extend([
+                        f"Fetch details: python poetize_cli.py manage get-article --article-id {art_id}",
+                        f"Safe retry/update content (prevents duplicates): python poetize_cli.py publish --markdown-file <file> --article-id {art_id} --publish --wait"
+                    ])
+                elif status == "failed":
+                    next_steps.append("Task failed and no article was created in DB. Safe to retry publishing as a new article: python poetize_cli.py publish --markdown-file <file> --draft/--publish --wait")
+                else:
+                    next_steps.append("Task is still processing or in queue. Wait a few seconds and run this command again.")
+                response["agent_guide"] = {
+                    "message": f"Task status retrieved. Status: {status}.",
+                    "next_steps": next_steps
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-comments":
+            payload = {
+                "source": args.article_id,
+                "commentType": "article",
+                "current": args.current,
+                "size": args.size
+            }
+            if args.floor_comment_id is not None:
+                payload["floorCommentId"] = args.floor_comment_id
+            response = request_json_v5_endpoint("POST", f"{args.base_url.rstrip('/')}/api/api/comment/list", args.api_key, payload, feature_name="Comment list/reply", commands="manage list-comments / manage save-comment")
+            if response.get("code") == 200:
+                data = response.get("data", {})
+                records = data.get("records", []) if isinstance(data, dict) else []
+                
+                all_records = list(records)
+                root_comment_missing = False
+                if args.floor_comment_id is None and records:
+                    for r in records:
+                        child_comments_info = r.get("childComments")
+                        if isinstance(child_comments_info, dict) and child_comments_info.get("total", 0) > 0:
+                            total_replies = child_comments_info.get("total", 0)
+                            reply_payload = {
+                                "source": args.article_id,
+                                "commentType": "article",
+                                "floorCommentId": r["id"],
+                                "current": 1,
+                                "size": 10
+                            }
+                            reply_res = request_json_v5_endpoint("POST", f"{args.base_url.rstrip('/')}/api/api/comment/list", args.api_key, reply_payload, feature_name="Comment list/reply", commands="manage list-comments / manage save-comment")
+                            if reply_res.get("code") == 200:
+                                reply_data = reply_res.get("data", {})
+                                reply_records = reply_data.get("records", []) if isinstance(reply_data, dict) else []
+                                all_records.extend(reply_records)
+                                r["childComments"]["records"] = reply_records
+                                
+                                # 如果本楼层实际子回复数量大于首页加载的 10 条
+                                if total_replies > len(reply_records):
+                                    remaining = total_replies - len(reply_records)
+                                    dummy = {
+                                        "id": -r["id"],  # 用负数做主键避免冲突
+                                        "parentCommentId": r["id"],
+                                        "commentContent": f"... [{remaining} more replies under this floor. Run: python poetize_cli.py manage list-comments --article-id {args.article_id} --floor-comment-id {r['id']} --current 2 --size 10 to view]",
+                                        "username": "System"
+                                    }
+                                    all_records.append(dummy)
+                else:
+                    # 单独拉取某楼层的分页数据，尝试获取楼层主评论作为树根以提供完整上下文。
+                    # 注意：后端没有按 id 查单条评论的接口，这里只能在最新一页一级评论
+                    # (size=50, 按 create_time desc 排序) 里线性查找。如果该楼层的主评论
+                    # 不在最新 50 条一级评论内（文章评论数较多、楼层较老），root_comment 会
+                    # 找不到——这种情况必须显式告知调用方，而不是静默丢弃楼层上下文。
+                    root_comment = None
+                    main_payload = {
+                        "source": args.article_id,
+                        "commentType": "article",
+                        "current": 1,
+                        "size": 50
+                    }
+                    main_res = request_json_v5_endpoint("POST", f"{args.base_url.rstrip('/')}/api/api/comment/list", args.api_key, main_payload, feature_name="Comment list/reply", commands="manage list-comments / manage save-comment")
+                    if main_res.get("code") == 200:
+                        main_data = main_res.get("data", {})
+                        main_records = main_data.get("records", []) if isinstance(main_data, dict) else []
+                        for mr in main_records:
+                            if mr.get("id") == args.floor_comment_id:
+                                root_comment = mr
+                                break
+                        if root_comment is None:
+                            root_comment_missing = True
+
+                    if root_comment:
+                        all_records = [root_comment] + all_records
+
+                    # 单独拉取某楼层的分页数据，判断是否需要翻页
+                    total = data.get("total", 0)
+                    if total > args.current * args.size:
+                        remaining = total - (args.current * args.size)
+                        dummy = {
+                            "id": -9999,
+                            "parentCommentId": args.floor_comment_id,
+                            "commentContent": f"... [{remaining} more replies on next page. Run: python poetize_cli.py manage list-comments --article-id {args.article_id} --floor-comment-id {args.floor_comment_id} --current {args.current + 1} --size {args.size} to view]",
+                            "username": "System"
+                        }
+                        all_records.append(dummy)
+                
+                response["formatted_tree"] = format_comment_tree(all_records)
+                if root_comment_missing:
+                    response["root_comment_missing"] = True
+
+                next_steps = []
+                if records:
+                    first_comment = records[0]
+                    fc_id = first_comment.get("id")
+                    fc_user = first_comment.get("userId")
+                    fc_floor = first_comment.get("floorCommentId") or fc_id
+                    next_steps.extend([
+                        f"Reply to the first comment: python poetize_cli.py manage save-comment --article-id {args.article_id} --content \"your reply\" --parent-comment-id {fc_id} --parent-user-id {fc_user} --as-ai"
+                    ])
+                next_steps.append(f"Write a new top-level comment: python poetize_cli.py manage save-comment --article-id {args.article_id} --content \"your comment\"")
+                agent_guide_message = "Comments retrieved successfully."
+                if root_comment_missing:
+                    agent_guide_message += (
+                        f" WARNING: the floor's root comment (id={args.floor_comment_id}) was not found among "
+                        "the latest 50 top-level comments, so formatted_tree is showing replies without their "
+                        "root context. This happens when the article has many top-level comments and this floor "
+                        "is older. Run 'manage list-comments --article-id ... --current <N>' with increasing pages "
+                        "against the default (no --floor-comment-id) call to locate the root comment manually if needed."
+                    )
+                response["agent_guide"] = {
+                    "message": agent_guide_message,
+                    "next_steps": next_steps
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "save-comment":
+            comment_info = "{\"aiReply\":true}" if args.as_ai else "{\"aiReply\":false}"
+            payload = {
+                "source": args.article_id,
+                "type": "article",
+                "commentContent": args.content,
+                "commentInfo": comment_info
+            }
+            if args.parent_comment_id is not None:
+                payload["parentCommentId"] = args.parent_comment_id
+            if args.parent_user_id is not None:
+                payload["parentUserId"] = args.parent_user_id
+            if args.floor_comment_id is not None:
+                payload["floorCommentId"] = args.floor_comment_id
+            
+            response = request_json_v5_endpoint("POST", f"{args.base_url.rstrip('/')}/api/api/comment/save", args.api_key, payload, feature_name="Comment list/reply", commands="manage list-comments / manage save-comment")
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": "Comment posted successfully.",
+                    "next_steps": [
+                        f"View updated comments list: python poetize_cli.py manage list-comments --article-id {args.article_id}"
+                    ]
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
             return
 
         if mc == "article-analytics":
@@ -379,6 +1404,371 @@ def cmd_manage(args: argparse.Namespace) -> None:
 
         if mc == "sitemap-update":
             response = request_json("POST", f"{args.base_url.rstrip('/')}/api/api/seo/sitemap/update", args.api_key, {})
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "get-translation":
+            url = build_url(args.base_url, "/api/api/translation/get", {
+                "articleId": args.article_id,
+                "language": args.language,
+            })
+            response = request_json_v5_endpoint("GET", url, args.api_key, feature_name="Translation management", commands="manage get-translation / list-translation-languages / save-translation / delete-translation / regenerate-translation")
+            if response.get("code") == 200:
+                data = response.get("data")
+                next_steps = []
+                if isinstance(data, dict) and data:
+                    next_steps.append(
+                        f"Edit this translation: python poetize_cli.py manage save-translation "
+                        f"--article-id {args.article_id} --language {args.language} "
+                        f"--title \"<title>\" --content-file <file> --stdin-brief"
+                    )
+                    next_steps.append(
+                        f"Delete this translation: python poetize_cli.py manage delete-translation "
+                        f"--article-id {args.article_id} --language {args.language} --stdin-brief"
+                    )
+                else:
+                    next_steps.append(
+                        f"Generate translation: python poetize_cli.py manage regenerate-translation "
+                        f"--article-id {args.article_id} --stdin-brief"
+                    )
+                    next_steps.append(
+                        f"Save a manual translation: python poetize_cli.py manage save-translation "
+                        f"--article-id {args.article_id} --language {args.language} "
+                        f"--title \"<title>\" --content-file <file> --stdin-brief"
+                    )
+                response["agent_guide"] = {
+                    "message": f"Translation for '{args.language}' retrieved.",
+                    "next_steps": next_steps,
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-translation-languages":
+            url = build_url(args.base_url, "/api/api/translation/languages", {
+                "articleId": args.article_id,
+            })
+            response = request_json_v5_endpoint("GET", url, args.api_key, feature_name="Translation management", commands="manage get-translation / list-translation-languages / save-translation / delete-translation / regenerate-translation")
+            if response.get("code") == 200:
+                languages = response.get("data", [])
+                next_steps = []
+                if isinstance(languages, list) and languages:
+                    first_lang = languages[0]
+                    next_steps.append(
+                        f"Get translation: python poetize_cli.py manage get-translation "
+                        f"--article-id {args.article_id} --language {first_lang}"
+                    )
+                next_steps.append(
+                    f"Regenerate all translations: python poetize_cli.py manage regenerate-translation "
+                    f"--article-id {args.article_id} --stdin-brief"
+                )
+                response["agent_guide"] = {
+                    "message": f"Available translation languages: {languages if isinstance(languages, list) else []}",
+                    "next_steps": next_steps,
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "save-translation":
+            brief = resolve_brief(args)
+            if not args.title or not args.title.strip():
+                _cli_die("--title cannot be empty or whitespace.")
+            try:
+                with open(args.content_file, "r", encoding="utf-8") as handle:
+                    translated_content = handle.read()
+            except FileNotFoundError:
+                _cli_die(f"Content file does not exist: {args.content_file}")
+            except OSError as exc:
+                _cli_die(f"Failed to read content file: {exc}")
+
+            payload = {
+                "articleId": args.article_id,
+                "targetLanguage": args.language,
+                "translatedTitle": args.title,
+                "translatedContent": translated_content,
+            }
+            if args.summary:
+                payload["translatedSummary"] = args.summary
+            payload = apply_ops_strategy(brief, payload, expected_task_type="update_translation")
+            response = request_json_v5_endpoint("POST", f"{args.base_url.rstrip('/')}/api/api/translation/save", args.api_key, payload, feature_name="Translation management", commands="manage get-translation / list-translation-languages / save-translation / delete-translation / regenerate-translation")
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": f"Translation for '{args.language}' saved successfully.",
+                    "next_steps": [
+                        f"Verify translation: python poetize_cli.py manage get-translation "
+                        f"--article-id {args.article_id} --language {args.language}",
+                    ],
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "delete-translation":
+            brief = resolve_brief(args)
+            payload = {
+                "articleId": args.article_id,
+                "language": args.language,
+            }
+            payload = apply_ops_strategy(brief, payload, expected_task_type="delete_translation")
+            response = request_json_v5_endpoint("POST", f"{args.base_url.rstrip('/')}/api/api/translation/delete", args.api_key, payload, feature_name="Translation management", commands="manage get-translation / list-translation-languages / save-translation / delete-translation / regenerate-translation")
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": f"Translation for '{args.language}' deleted.",
+                    "next_steps": [
+                        f"List remaining translations: python poetize_cli.py manage list-translation-languages "
+                        f"--article-id {args.article_id}",
+                        f"Regenerate translation: python poetize_cli.py manage regenerate-translation "
+                        f"--article-id {args.article_id} --stdin-brief",
+                    ],
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "regenerate-translation":
+            brief = resolve_brief(args)
+            apply_ops_strategy(brief, {}, expected_task_type="regenerate_translation")
+            url = build_url(args.base_url, "/api/api/translation/regenerate", {
+                "articleId": args.article_id,
+            })
+            response = request_json_v5_endpoint("POST", url, args.api_key, feature_name="Translation management", commands="manage get-translation / list-translation-languages / save-translation / delete-translation / regenerate-translation")
+            if response.get("code") == 200:
+                if getattr(args, "wait", False):
+                    wait_result = _wait_for_translations(
+                        args.base_url, args.api_key, args.article_id,
+                        args.poll_interval, args.timeout,
+                    )
+                    response["translation_wait"] = wait_result
+                    if not wait_result.get("ok"):
+                        print(json.dumps(response, ensure_ascii=False, indent=2))
+                        _output_error(wait_result.get("message", "Translation wait failed."))
+                        return
+                response["agent_guide"] = {
+                    "message": f"Translation regeneration started for article {args.article_id}.",
+                    "next_steps": [
+                        f"Check available languages after a few minutes: "
+                        f"python poetize_cli.py manage list-translation-languages --article-id {args.article_id}",
+                        f"Get a specific translation: python poetize_cli.py manage get-translation "
+                        f"--article-id {args.article_id} --language en",
+                    ],
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "update-section":
+            brief = resolve_brief(args)
+            if args.action != "append" and not args.heading:
+                _cli_die("--heading is required for non-append actions (replace/insert_after/insert_before/delete).")
+            if args.new_heading_level is not None and args.action != "replace":
+                _cli_die("--new-heading-level can only be used with --action replace.")
+            content = None
+            if args.action != "delete":
+                if not args.content_file:
+                    _cli_die("--content-file is required for non-delete actions.")
+                try:
+                    with open(args.content_file, "r", encoding="utf-8") as handle:
+                        content = handle.read()
+                except FileNotFoundError:
+                    _cli_die(f"Content file does not exist: {args.content_file}")
+                except OSError as exc:
+                    _cli_die(f"Failed to read content file: {exc}")
+                # Front matter guard: section content must be pure Markdown body
+                stripped = content.lstrip()
+                if stripped.startswith("---") and (
+                    len(stripped) == 3 or stripped[3] in ("\n", "\r")
+                ):
+                    _cli_die(
+                        "Content file appears to start with YAML front matter (---). "
+                        "Section content must be pure Markdown body without front matter. "
+                        "Front matter is only valid in publish --markdown-file."
+                    )
+
+            payload = {
+                "articleId": args.article_id,
+                "action": args.action,
+                "content": content,
+            }
+            if args.heading:
+                payload["heading"] = args.heading
+            if args.new_heading_level is not None:
+                payload["newHeadingLevel"] = args.new_heading_level
+            if args.heading_index is not None:
+                payload["headingIndex"] = args.heading_index
+            if args.dry_run:
+                payload["dryRun"] = True
+            if args.skip_ai_translation:
+                payload["skipAiTranslation"] = True
+            payload = apply_ops_strategy(brief, payload, expected_task_type="update_section")
+            response = request_json_v5_endpoint("POST", f"{args.base_url.rstrip('/')}/api/api/article/updateSection", args.api_key, payload, feature_name="Section-level article editing", commands="manage update-section")
+            if response.get("code") == 200:
+                data = response.get("data", {})
+                changed = data.get("changed", False) if isinstance(data, dict) else False
+                is_dry_run = isinstance(data, dict) and data.get("dryRun", False)
+                warning = data.get("warning") if isinstance(data, dict) else None
+
+                if is_dry_run:
+                    response["agent_guide"] = {
+                        "message": "Dry-run preview: no changes persisted. Review originalContent vs updatedContent before rerunning without --dry-run.",
+                        "next_steps": [
+                            f"Apply for real: python poetize_cli.py manage update-section --article-id {args.article_id} --heading \"{args.heading or ''}\" --action {args.action} --content-file <file>",
+                            "If rollback is needed after applying: use the originalSectionContent from this response to replace back.",
+                        ],
+                    }
+                    if warning:
+                        print(f"⚠ WARNING: {warning}", file=sys.stderr)
+                    print(json.dumps(response, ensure_ascii=False, indent=2))
+                    return
+
+                skip_msg = (
+                    "Translation was skipped."
+                    if args.skip_ai_translation
+                    else "AI translation is being regenerated asynchronously."
+                )
+                if getattr(args, "wait", False) and not args.skip_ai_translation:
+                    wait_result = _wait_for_translations(
+                        args.base_url, args.api_key, args.article_id,
+                        args.poll_interval, args.timeout,
+                    )
+                    response["translation_wait"] = wait_result
+                    if not wait_result.get("ok"):
+                        print(json.dumps(response, ensure_ascii=False, indent=2))
+                        _output_error(wait_result.get("message", "Translation wait failed."))
+                        return
+                agent_message = f"Section update {'applied' if changed else 'resulted in no changes'}. {skip_msg}"
+                if warning:
+                    agent_message = f"⚠ {warning} {agent_message}"
+                response["agent_guide"] = {
+                    "message": agent_message,
+                    "next_steps": [
+                        f"Verify updated content: python poetize_cli.py manage get-article --article-id {args.article_id}",
+                    ],
+                }
+                if warning:
+                    print(f"⚠ WARNING: {warning}", file=sys.stderr)
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-sorts":
+            response = request_json("GET", f"{args.base_url.rstrip('/')}/api/api/categories", args.api_key)
+            if response.get("code") == 200:
+                data = response.get("data", [])
+                next_steps = []
+                if isinstance(data, list) and data:
+                    first_id = data[0].get("id")
+                    if first_id:
+                        next_steps.append(f"View tags in this category: python poetize_cli.py manage list-labels --sort-id {first_id}")
+                next_steps.append("Create a new category: python poetize_cli.py manage create-sort --name \"<name>\" --description \"<desc>\"")
+                response["agent_guide"] = {"message": f"Found {len(data) if isinstance(data, list) else 0} categories.", "next_steps": next_steps}
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "list-labels":
+            response = request_json("GET", f"{args.base_url.rstrip('/')}/api/api/tags", args.api_key)
+            if response.get("code") == 200:
+                data = response.get("data", [])
+                if args.sort_id is not None and isinstance(data, list):
+                    data = [item for item in data if item.get("sortId") == args.sort_id]
+                    response["data"] = data
+                next_steps = []
+                if isinstance(data, list) and data:
+                    first_id = data[0].get("id")
+                    if first_id:
+                        next_steps.append(f"Update this tag: python poetize_cli.py manage update-label --id {first_id} --name \"<new name>\" --description \"<new desc>\"")
+                next_steps.append("Create a new tag: python poetize_cli.py manage create-label --name \"<name>\" --description \"<desc>\" --sort-id <id>")
+                response["agent_guide"] = {"message": f"Found {len(data) if isinstance(data, list) else 0} tags.", "next_steps": next_steps}
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "create-sort":
+            payload = {
+                "sortName": args.name,
+                "sortDescription": args.description,
+                "sortType": args.sort_type,
+                "priority": args.priority,
+            }
+            response = request_json("POST", f"{args.base_url.rstrip('/')}/api/api/sort/create", args.api_key, payload)
+            if response.get("code") == 200:
+                data = response.get("data")
+                sort_id = data.get("id") if isinstance(data, dict) else None
+                next_steps = [
+                    f"Create a tag in this category: python poetize_cli.py manage create-label --name \"<name>\" --description \"<desc>\" --sort-id {sort_id}" if sort_id else "Create a tag: python poetize_cli.py manage create-label --name \"<name>\" --description \"<desc>\" --sort-id <id>",
+                    "Publish an article to this category: python poetize_cli.py publish --markdown-file <file> --sort \"<name>\" --label \"<tag>\" --allow-create-label --draft --wait",
+                ]
+                response["agent_guide"] = {"message": f"Category '{args.name}' created successfully.", "next_steps": next_steps}
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "update-sort":
+            payload: dict[str, Any] = {"id": args.id}
+            if args.name is not None:
+                payload["sortName"] = args.name
+            if args.description is not None:
+                payload["sortDescription"] = args.description
+            if args.sort_type is not None:
+                payload["sortType"] = args.sort_type
+            if args.priority is not None:
+                payload["priority"] = args.priority
+            response = request_json("POST", f"{args.base_url.rstrip('/')}/api/api/sort/update", args.api_key, payload)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": f"Category {args.id} updated successfully. All article caches and prerendered pages have been refreshed.",
+                    "next_steps": [f"Verify: python poetize_cli.py manage list-sorts"],
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "delete-sort":
+            response = request_json("POST", build_url(args.base_url, "/api/api/sort/delete"), 
+                                   args.api_key, {"id": args.id})
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": f"Category {args.id} deleted successfully. Affected article pages have been re-rendered.",
+                    "next_steps": ["List remaining categories: python poetize_cli.py manage list-sorts"],
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "create-label":
+            payload = {
+                "labelName": args.name,
+                "labelDescription": args.description,
+                "sortId": args.sort_id,
+            }
+            response = request_json("POST", f"{args.base_url.rstrip('/')}/api/api/label/create", args.api_key, payload)
+            if response.get("code") == 200:
+                data = response.get("data")
+                label_id = data.get("id") if isinstance(data, dict) else None
+                response["agent_guide"] = {
+                    "message": f"Tag '{args.name}' created successfully.",
+                    "next_steps": [
+                        f"Publish an article with this tag: python poetize_cli.py publish --markdown-file <file> --sort-id {args.sort_id} --label-id {label_id} --draft --wait" if label_id else "Publish an article: python poetize_cli.py publish --markdown-file <file> --draft --wait",
+                    ],
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "update-label":
+            payload = {"id": args.id}
+            if args.name is not None:
+                payload["labelName"] = args.name
+            if args.description is not None:
+                payload["labelDescription"] = args.description
+            if args.sort_id is not None:
+                payload["sortId"] = args.sort_id
+            response = request_json("POST", f"{args.base_url.rstrip('/')}/api/api/label/update", args.api_key, payload)
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": f"Tag {args.id} updated successfully. All article caches and prerendered pages have been refreshed.",
+                    "next_steps": ["Verify: python poetize_cli.py manage list-labels"],
+                }
+            print(json.dumps(response, ensure_ascii=False, indent=2))
+            return
+
+        if mc == "delete-label":
+            response = request_json("POST", build_url(args.base_url, "/api/api/label/delete"), 
+                                   args.api_key, {"id": args.id})
+            if response.get("code") == 200:
+                response["agent_guide"] = {
+                    "message": f"Tag {args.id} deleted successfully. Affected article pages have been re-rendered.",
+                    "next_steps": ["List remaining tags: python poetize_cli.py manage list-labels"],
+                }
             print(json.dumps(response, ensure_ascii=False, indent=2))
             return
 
@@ -425,7 +1815,21 @@ def cmd_upload_image(args: argparse.Namespace) -> None:
         except SystemExit as exc:
             _output_error("Upload failed", detail=getattr(exc, "_poetize_detail", str(exc)))
             return
-        result = {"ok": True, "url": url, "source": "file", "file": args.file, "type": args.type}
+        result = {
+            "ok": True, 
+            "url": url, 
+            "source": "file", 
+            "file": args.file, 
+            "type": args.type,
+            "agent_guide": {
+                "message": "Image uploaded successfully to the blog storage server.",
+                "markdown_syntax": f"![image]({url})",
+                "next_steps": [
+                    "Embed the image in your markdown content using the markdown_syntax.",
+                    "Or use it as article cover via 'cover' or 'coverFile' in your markdown front matter."
+                ]
+            }
+        }
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return
 
@@ -484,7 +1888,21 @@ def cmd_upload_image(args: argparse.Namespace) -> None:
         finally:
             os.unlink(tmp_path)
 
-        result = {"ok": True, "url": url, "source": "stdin-base64", "filename": args.filename, "type": args.type}
+        result = {
+            "ok": True, 
+            "url": url, 
+            "source": "stdin-base64", 
+            "filename": args.filename, 
+            "type": args.type,
+            "agent_guide": {
+                "message": "Image uploaded successfully to the blog storage server.",
+                "markdown_syntax": f"![image]({url})",
+                "next_steps": [
+                    "Embed the image in your markdown content using the markdown_syntax.",
+                    "Or use it as article cover via 'cover' or 'coverFile' in your markdown front matter."
+                ]
+            }
+        }
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return
 
@@ -496,12 +1914,13 @@ def cmd_upload_image(args: argparse.Namespace) -> None:
 # ---------------------------------------------------------------------------
 
 def add_config_args(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("--output", required=True, help="Path to write the generated OpenClaw JSON config.")
-    parser.add_argument("--existing-config", help="Optional existing OpenClaw JSON config to merge into.")
-    parser.add_argument("--api-key", default=os.getenv("POETIZE_API_KEY"), help="Poetize API key.")
-    parser.add_argument("--base-url", default=os.getenv("POETIZE_BASE_URL"), help="Poetize base URL.")
+    parser.add_argument("--output", required=True, help="Path to write the generated config file.")
+    parser.add_argument("--format", choices=["openclaw", "env"], default="openclaw", help="Output format: openclaw (JSON, default) or env (shell-sourceable KEY=VALUE).")
+    parser.add_argument("--existing-config", help="Optional existing OpenClaw JSON config to merge into (openclaw format only).")
+    parser.add_argument("--api-key", default=None, help="Poetize API key. Falls back to env or ~/.config/poetize/credentials.json.")
+    parser.add_argument("--base-url", default=None, help="Poetize base URL. Falls back to env or ~/.config/poetize/credentials.json.")
     parser.add_argument("--allow-placeholder-api-key", action="store_true", help="Allow placeholder apiKey.")
-    parser.add_argument("--disable-watch", action="store_true", help="Do not set watch config.")
+    parser.add_argument("--disable-watch", action="store_true", help="Do not set watch config (openclaw format only).")
 
 
 def cmd_config(args: argparse.Namespace) -> None:
@@ -522,6 +1941,24 @@ def cmd_config(args: argparse.Namespace) -> None:
 
     base_url = infer_base_url(args.base_url, repo_root)
 
+    output_path = Path(args.output)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if args.format == "env":
+        # Shell-sourceable KEY=VALUE file for Trae/Qoder/IDE agents or ~/.bashrc
+        lines = [
+            "# Poetize blog automation credentials",
+            "# Source this file or copy into ~/.bashrc / IDE env settings.",
+            f"POETIZE_BASE_URL={base_url}",
+            f"POETIZE_API_KEY={api_key}",
+            "",
+        ]
+        output_path.write_text("\n".join(lines), encoding="utf-8")
+        result = {"ok": True, "output": str(output_path), "format": "env", "baseUrl": base_url}
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
+
+    # openclaw format (default)
     existing_config: dict[str, Any] = {}
     if args.existing_config:
         from render_openclaw_config import load_json_object
@@ -539,11 +1976,9 @@ def cmd_config(args: argparse.Namespace) -> None:
         _output_error("Config generation failed", detail=getattr(exc, "_poetize_detail", str(exc)))
         return
 
-    output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(generated, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    result = {"ok": True, "output": str(output_path), "baseUrl": base_url}
+    result = {"ok": True, "output": str(output_path), "format": "openclaw", "baseUrl": base_url}
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
@@ -552,8 +1987,8 @@ def cmd_config(args: argparse.Namespace) -> None:
 # ---------------------------------------------------------------------------
 
 def add_smoke_test_args(parser: argparse.ArgumentParser) -> None:
-    parser.add_argument("--base-url", default=os.getenv("POETIZE_BASE_URL"), help="Poetize base URL.")
-    parser.add_argument("--api-key", default=os.getenv("POETIZE_API_KEY"), help="Poetize API key.")
+    parser.add_argument("--base-url", default=None, help="Poetize base URL. Falls back to env or ~/.config/poetize/credentials.json.")
+    parser.add_argument("--api-key", default=None, help="Poetize API key. Falls back to env or ~/.config/poetize/credentials.json.")
     parser.add_argument("--size", type=int, default=1, help="Number of articles to request (default: 1).")
     parser.add_argument("--search-key", help="Optional search filter for list-articles.")
 
@@ -591,8 +2026,88 @@ def cmd_smoke_test(args: argparse.Namespace) -> None:
         "recordsReturned": len(records),
         "responseCode": response.get("code"),
         "responseMessage": response.get("message"),
+        "agent_guide": {
+            "message": "Smoke test passed. API connection is fully functional.",
+            "next_steps": [
+                "List existing articles to plan internal links: python poetize_cli.py manage list-articles",
+                "Create and publish a new draft article: python poetize_cli.py publish --markdown-file article.md --draft --wait"
+            ]
+        }
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+# ---------------------------------------------------------------------------
+# auth command
+# ---------------------------------------------------------------------------
+
+def cmd_auth(args: argparse.Namespace) -> None:
+    if args.auth_command == "login":
+        base_url = str(args.base_url or "").strip()
+        api_key = str(args.api_key or "").strip()
+        if not base_url or not api_key:
+            _output_error("Both --base-url and --api-key are required for auth login.")
+            return
+        is_local = getattr(args, "local", False)
+        saved_path = save_credentials(base_url, api_key, local=is_local)
+        result = {
+            "ok": True, 
+            "saved": True, 
+            "path": str(saved_path),
+            "agent_guide": {
+                "message": "API credentials stored successfully.",
+                "next_steps": [
+                    "Verify API connection: python poetize_cli.py smoke-test",
+                    "List recent articles: python poetize_cli.py manage list-articles --size 5"
+                ]
+            }
+        }
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    elif args.auth_command == "show":
+        creds = load_credentials()
+        env_url = os.getenv("POETIZE_BASE_URL")
+        env_key = os.getenv("POETIZE_API_KEY")
+        cli_url = getattr(args, "base_url", None)
+        cli_key = getattr(args, "api_key", None)
+        # Effective resolution: CLI > env > global file > local file
+        active_url = cli_url or env_url or creds.get("base_url")
+        active_key = cli_key or env_key or creds.get("api_key")
+        active_source = (
+            "cli" if cli_url or cli_key
+            else "env" if env_url or env_key
+            else "file" if creds.get("base_url")
+            else None
+        )
+        result = {
+            "global_file": {
+                "path": str(CREDENTIALS_PATH) if CREDENTIALS_PATH else None,
+                "exists": CREDENTIALS_PATH.exists() if CREDENTIALS_PATH else False,
+            },
+            "local_file": {
+                "path": str(LOCAL_CREDENTIALS_PATH),
+                "exists": LOCAL_CREDENTIALS_PATH.exists(),
+            },
+            "active_credentials": {
+                "base_url": active_url,
+                "api_key": "***" if active_key else None,
+                "source": active_source,
+            },
+            "env": {
+                "POETIZE_BASE_URL": env_url,
+                "POETIZE_API_KEY": "***" if env_key else None,
+            },
+            "cli": {
+                "base_url": cli_url,
+                "api_key": "***" if cli_key else None,
+            },
+            "resolution_order": "CLI > env > ~/.config/poetize/credentials.json > {baseDir}/credentials.json",
+        }
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    elif args.auth_command == "clear":
+        is_local = getattr(args, "local", False)
+        deleted, target_path = clear_credentials(local=is_local)
+        result = {"ok": True, "deleted": deleted, "path": str(target_path)}
+        print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
 # ---------------------------------------------------------------------------
@@ -638,7 +2153,7 @@ def print_help_path(parser: argparse.ArgumentParser, path: list[str]) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="poetize",
+        prog="poetize-blog",
         description="Unified CLI for Poetize blog automation.",
     )
     sub = parser.add_subparsers(dest="command", required=True)
@@ -657,6 +2172,16 @@ def build_parser() -> argparse.ArgumentParser:
 
     smoke_parser = sub.add_parser("smoke-test", help="Run read-only smoke test.")
     add_smoke_test_args(smoke_parser)
+
+    auth_parser = sub.add_parser("auth", help="Manage persisted credentials (~/.config/poetize/credentials.json or local fallback).")
+    auth_sub = auth_parser.add_subparsers(dest="auth_command", required=True)
+    auth_login = auth_sub.add_parser("login", help="Save base-url and api-key for future use.")
+    auth_login.add_argument("--base-url", required=True, help="Poetize base URL.")
+    auth_login.add_argument("--api-key", required=True, help="Poetize API key.")
+    auth_login.add_argument("--local", action="store_true", help="Save in local skill folder instead of global home directory.")
+    auth_sub.add_parser("show", help="Show where credentials are resolved from.")
+    auth_clear = auth_sub.add_parser("clear", help="Delete saved credentials.")
+    auth_clear.add_argument("--local", action="store_true", help="Clear from local skill folder instead of global home directory.")
 
     eval_parser = sub.add_parser("eval", help="Run strategy-layer evaluations.")
     add_eval_args(eval_parser)
@@ -681,23 +2206,28 @@ def main() -> None:
         raise SystemExit(exc.code)
 
     try:
-        if args.command == "publish":
-            cmd_publish(args)
-        elif args.command == "manage":
-            cmd_manage(args)
-        elif args.command == "upload-image":
-            cmd_upload_image(args)
-        elif args.command == "config":
-            cmd_config(args)
-        elif args.command == "smoke-test":
-            cmd_smoke_test(args)
-        elif args.command == "eval":
-            cmd_eval(args)
-        elif args.command == "help":
-            print_help_path(parser, args.subcommand or [])
+        if args.command == "auth":
+            cmd_auth(args)
         else:
-            parser.print_help()
-            _output_error("No command specified.")
+            # Non-auth commands need base_url/api_key resolved from CLI > env > credentials file
+            resolve_credentials(args)
+            if args.command == "publish":
+                cmd_publish(args)
+            elif args.command == "manage":
+                cmd_manage(args)
+            elif args.command == "upload-image":
+                cmd_upload_image(args)
+            elif args.command == "config":
+                cmd_config(args)
+            elif args.command == "smoke-test":
+                cmd_smoke_test(args)
+            elif args.command == "eval":
+                cmd_eval(args)
+            elif args.command == "help":
+                print_help_path(parser, args.subcommand or [])
+            else:
+                parser.print_help()
+                _output_error("No command specified.")
     except Exception as exc:
         # Catch-all for unexpected Python exceptions (TypeError, KeyError, etc.)
         # that were not caught by individual cmd_* functions.

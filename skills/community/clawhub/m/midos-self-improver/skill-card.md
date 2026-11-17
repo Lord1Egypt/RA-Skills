@@ -1,42 +1,56 @@
-## Description: <br>
-Structured learning pipeline with quality-gated promotion. Captures corrections, errors, and patterns; promotes only what proves itself through recurrence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Structured learning pipeline with quality-gated promotion that captures corrections, errors, and patterns, then promotes recurring learnings into project memory.
 
-## Publisher: <br>
-[msruruguay](https://clawhub.ai/user/msruruguay) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[msruruguay](https://clawhub.ai/user/msruruguay)
 
-## Use Case: <br>
-Developers and agent operators use this skill to capture corrections, errors, knowledge gaps, best practices, and recurring patterns, then promote repeated high-value learnings into project memory. It is intended for teams that want structured agent self-improvement with deduplication, scoring, staging, and pruning. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to persist learning data and promote rules into future agent instructions without enough user approval controls. <br>
-Mitigation: Require manual approval and diff review before any promotion into CLAUDE.md, AGENTS.md, or permanent memory. <br>
-Risk: Persisted learning stores may retain sensitive, stale, or low-value information over time. <br>
-Mitigation: Add secret redaction and periodically prune the .learnings, .patterns, and .knowledge stores. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/msruruguay/midos-self-improver) <br>
-- [MidOS](https://midos.dev) <br>
-- [MidOS Developer Access](https://midos.dev/dev) <br>
-- [MidOS Pro](https://midos.dev/pro) <br>
+## Use Case:
 
+Developers and agent maintainers use this skill to capture corrections, tool errors, knowledge gaps, best practices, and recurring implementation patterns. It helps stage, score, and promote only repeated learnings into project-level agent memory.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and JSON entry examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project-local learning records and promoted memory instructions when adopted by an agent.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, changelog, released 2026-03-04) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks an agent to record project activity and preserve repeated user or tool output as lasting memory.
+
+Mitigation: Use it only in trusted projects and treat learning logs as sensitive project data.
+
+Risk: Automatic promotion into CLAUDE.md, AGENTS.md, or scheduled assessment can persist incorrect, sensitive, or personal information without enough review.
+
+Mitigation: Require manual diff review, secret and personal-data redaction, path limits, audit history, and rollback controls before promotion.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/msruruguay/skills/midos-self-improver)
+- [MidOS](https://midos.dev)
+- [artifact/SKILL.md](artifact/SKILL.md)
+- [artifact/CHANGELOG.md](artifact/CHANGELOG.md)
+- [artifact/benchmark/results.json](artifact/benchmark/results.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline JSON, Python, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces agent memory capture guidance, rule promotion criteria, example entry schemas, and operational commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

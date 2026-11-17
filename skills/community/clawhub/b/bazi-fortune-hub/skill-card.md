@@ -1,55 +1,61 @@
-## Description: <br>
-BaZi Fortune Hub helps agents integrate with a remote BaZi fortune-reading and metaphysics forum gateway that exposes 12 authenticated tools over MCP JSON-RPC or REST. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to BaZi fortune readings, daily divination, and a community forum through the Fortune Hub service.
 
-## Publisher: <br>
-[tchen6500](https://clawhub.ai/user/tchen6500) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tchen6500](https://clawhub.ai/user/tchen6500)
 
-## Use Case: <br>
-External agent developers use this skill to discover and call BaZi analysis, credit-checking, usage-history, and forum tools through the Fortune Hub gateway. It is intended for entertainment-oriented Chinese metaphysics workflows where agents must authenticate, check live pricing and credits, and handle forum writes carefully. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: BaZi inputs can include birth details and location, which are personal data. <br>
-Mitigation: Collect only necessary inputs, avoid logging sensitive values, and send requests only when the user intends to use the remote Fortune Hub service. <br>
-Risk: The skill requires an API key for authenticated tool calls. <br>
-Mitigation: Keep the API key server-side, use the documented request headers, and do not expose credentials in client-side code or shared transcripts. <br>
-Risk: Forum tools can create posts, comments, or likes on a user's behalf. <br>
-Mitigation: Confirm user intent before forum writes and review generated content before submitting it. <br>
-Risk: Examples may use `npx mcp-remote`, which can execute downloaded package code. <br>
-Mitigation: Review or pin any `npx mcp-remote` setup before use. <br>
-Risk: Long-running fortune tools can exceed short client timeouts. <br>
-Mitigation: Configure client tool-call timeouts to at least 120 seconds before running the full t1-through-t4 chain. <br>
+## Use Case:
 
+External agent developers and users use this skill to request entertainment-only BaZi readings or divination and to read or contribute to the Fortune Hub community forum.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tchen6500/skills/bazi-fortune-hub) <br>
-- [Fortune Hub](https://fortunehub.lighttune.com.au) <br>
-- [MCP Endpoint](https://fortunehub.lighttune.com.au/api/mcp) <br>
-- [Live MCP Discovery](https://fortunehub.lighttune.com.au/.well-known/mcp.json) <br>
-- [Static MCP Server Card](https://fortunehub.lighttune.com.au/.well-known/mcp/server-card.json) <br>
-- [Tool Schemas](references/12-tools.md) <br>
-- [Billing Reference](references/billing.md) <br>
-- [Error Handling Reference](references/errors.md) <br>
-- [Rate Limits Reference](references/rate-limits.md) <br>
-- [Risk Mitigations Reference](references/risk-mitigations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, API calls] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces agent-facing integration guidance for authenticated MCP JSON-RPC and REST tool calls; successful MCP tool payloads may require JSON parsing by the client.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Birth details and questions are sent to an external fortune-reading service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Disclose the destination before use and share only necessary details; obtain consent before submitting another person's birth information.
+
+Risk: Forum posts and comments are sent to the external service and may persist publicly.
+
+Mitigation: Show the proposed content to the user and obtain explicit confirmation before posting or commenting.
+
+Risk: The service requires an API key, and some full readings consume credits.
+
+Mitigation: Keep the key private and check available credits before beginning a paid reading.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/tchen6500/skills/bazi-fortune-hub)
+- [Fortune Hub service](https://fortunehub.lighttune.com.au)
+- [Tool reference](references/14-tools.md)
+- [Billing reference](references/billing.md)
+- [Client risk mitigations](references/risk-mitigations.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Plain text or Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fortune readings are for entertainment only; forum contributions may be published.]
+
+## Skill Version(s):
+
+0.4.0 (source: ClawHub release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

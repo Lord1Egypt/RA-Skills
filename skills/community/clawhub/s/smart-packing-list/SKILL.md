@@ -1,8 +1,8 @@
 ---
-name: smart-packing-list
-display_name: 旅游行李清单
-version: 1.0.1
-description: 根据目的地实时天气、行程天数、出行类型和旅行者构成，智能生成个性化打包清单，支持打包进度检查和出行贴士提醒。
+name: 旅游行李清单
+display_name: "旅游行李清单"
+version: 1.0.3
+description: 根据目的地实时天气、行程天数、出行类型和旅行者构成，智能生成个性化打包清单，支持打包进度检查和出行贴士提醒。暑期出行行李准备，智能清单一键生成
 tags: [行李清单, 打包, 出行准备, 旅行必备, 行李整理]
 author: travel-skills
 tools:

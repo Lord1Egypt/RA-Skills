@@ -1,47 +1,62 @@
-## Description: <br>
-Reads and searches X (Twitter) data including profiles, timelines, mentions, followers, tweet search, trends, lists, communities, and Spaces, and supports posting, liking, unliking, following, and unfollowing after OAuth authorization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Twitter Autopilot helps agents read and search X (Twitter) data and, after user OAuth authorization, publish posts or perform likes, follows, and related account interactions.
 
-## Publisher: <br>
-[bibaofeng](https://clawhub.ai/user/bibaofeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bibaofeng](https://clawhub.ai/user/bibaofeng)
 
-## Use Case: <br>
-Developers and external users use this skill for Twitter/X research, social listening, trend monitoring, publishing, and authorized account engagement without sharing account passwords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured AISA_API_KEY may appear in normal command output or logs. <br>
-Mitigation: Use a dedicated key that can be rotated, and avoid sharing logs or transcripts from status, authorize, or post commands. <br>
-Risk: Posting, liking, following, or unfollowing can create visible public account activity. <br>
-Mitigation: Confirm every publish and engagement action with the user before execution and do not report success until the relay returns success. <br>
-Risk: Files passed with --media-file are uploaded to AIsa's relay and Twitter/X. <br>
-Mitigation: Treat each media path as an external upload and verify the file selection before running media-post commands. <br>
+## Use Case:
 
+External users and developers use this skill for Twitter/X research, social listening, trend and account monitoring, and OAuth-authorized publishing or engagement workflows without sharing account passwords.
 
-## Reference(s): <br>
-- [Twitter Autopilot Release Page](https://clawhub.ai/bibaofeng/twitter-autopilot-aisa-api) <br>
-- [Twitter Autopilot README](README.md) <br>
-- [Twitter OAuth Workflow](references/post_twitter.md) <br>
-- [Twitter Engagement Workflow](references/engage_twitter.md) <br>
-- [AIsa API Reference](https://aisa.one/docs/api-reference/) <br>
-- [Agent Skills Specification](https://agentskills.io/specification) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; optional TWITTER_RELAY_BASE_URL and TWITTER_RELAY_TIMEOUT configure relay behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The configured AIsa API key can be exposed in normal outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing; use a dedicated low-privilege, rotatable API key and avoid running status, authorize, or post with a real key unless secret redaction is fixed.
+
+Risk: A configurable relay can receive the API key and user content.
+
+Mitigation: Keep the default relay configuration; do not set TWITTER_RELAY_BASE_URL to a non-default or HTTP endpoint.
+
+Risk: Posting, likes, follows, unfollows, and OAuth authorization can change a public X/Twitter account.
+
+Mitigation: Require explicit user approval for each account-changing action and verify action success from the relay before claiming completion.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bibaofeng/skills/twitter-autopilot-aisa-api)
+- [Twitter Engagement Workflow](references/engage_twitter.md)
+- [Twitter OAuth Workflow](references/post_twitter.md)
+- [AIsa](https://aisa.one)
+- [AIsa API Reference](https://aisa.one/docs/api-reference/)
+- [Agent Skills Specification](https://agentskills.io/specification)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, guidance]
+
+**Output Format:** [Markdown responses with shell or Python command invocations and API result summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY; OAuth authorization is required before posting, likes, follows, or unfollows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, target metadata, and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

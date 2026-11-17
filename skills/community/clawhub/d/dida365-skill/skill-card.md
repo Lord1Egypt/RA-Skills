@@ -1,44 +1,59 @@
-## Description: <br>
-滴答清单任务管理工具 helps agents manage Dida365/TickTick tasks and projects through Python CLI commands for creating, viewing, completing, updating, moving, searching, and deleting items. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+滴答清单/TickTick task-management skill for creating, viewing, updating, completing, deleting, moving, and filtering tasks and projects through a Python CLI.
 
-## Publisher: <br>
-[woodcoal](https://clawhub.ai/user/woodcoal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[woodcoal](https://clawhub.ai/user/woodcoal)
 
-## Use Case: <br>
-Agents and users with Dida365/TickTick accounts use this skill to manage task and project workflows from the command line, including task creation, search, updates, completion, movement, and deletion. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read and modify task and project data in a connected Dida365/TickTick account. <br>
-Mitigation: Install it only for accounts where this access is intended, and review account-changing commands before execution. <br>
-Risk: Local credential and cache files may contain sensitive account data. <br>
-Mitigation: Keep .env, .dida-token.json, and .dida-cache.json private and avoid committing or casually syncing them. <br>
-Risk: Delete operations can remove tasks or projects when supplied with the wrong ID. <br>
-Mitigation: Verify task and project IDs and require explicit user approval before running delete commands. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent manage Dida365/TickTick tasks and projects through explicit CLI commands. It supports OAuth setup, project and task CRUD operations, checklist tasks, due-date queries, inbox lookup, completed-task search, and cache refresh workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/woodcoal/dida365-skill) <br>
-- [Dida365 developer platform](https://developer.dida365.com/manage) <br>
-- [Dida365 OpenAPI endpoint](https://api.dida365.com/open/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Text] <br>
-**Output Format:** [Markdown with inline shell commands and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local OAuth credentials and a local cache; destructive delete commands require explicit approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill stores OAuth credentials, access tokens, refresh tokens, and cached task data in local plaintext files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Protect .env, .dida-token.json, and .dida-cache.json with local file controls; avoid using the skill on accounts containing highly sensitive task data unless those files are secured.
+
+Risk: The skill can create, update, complete, move, and delete live Dida365/TickTick tasks and projects.
+
+Mitigation: Use the skill only for explicit Dida365/TickTick requests and require clear user confirmation before any create, update, complete, move, or delete action, with heightened confirmation for deletions.
+
+Risk: Cached task and project data can become stale and lead to decisions based on old account state.
+
+Mitigation: Use the --force option or clear the local cache when current account state matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/woodcoal/skills/dida365-skill)
+- [Dida365 developer platform](https://developer.dida365.com/manage)
+- [Dida365 OpenAPI endpoint](https://api.dida365.com/open/v1)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON snippets; CLI execution produces plain text status messages or formatted JSON for task detail output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3.8+, Dida365 OAuth credentials, and local token/cache files for authenticated use.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

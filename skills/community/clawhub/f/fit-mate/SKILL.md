@@ -1,5 +1,5 @@
 ---
-name: fit-mate
+name: fitness-coach
 description: |
   TRIGGER when: user asks about workout plans, exercise routines, fat loss, muscle gain, body recomposition, meal planning for fitness, calorie or macro tracking, home or gym training, hydration or sleep tracking, smartwatch/workout data analysis, or weekly fitness progress reviews.
   DO NOT TRIGGER when: user asks for medical diagnosis, physical therapy prescriptions, clinical disease nutrition, urgent symptom triage, eating disorder treatment, pregnancy/postpartum programming, minor-specific coaching, mental health counseling, or sports competition prep.
@@ -219,7 +219,7 @@ This table is the default read budget. If a row says no raw logs by default, do 
 | `/fitness-coach checkin` | `user_profile.json`, `current_plan.json`, `current_status.json` | only the smallest current or adjacent month slice needed if status is missing or stale | none |
 | `/fitness-coach progress` | `cache/progress_summary.json` | at most `3` recent month files per domain by default; never read `weekly_reports/` | only stale sections of `cache/progress_summary.json` if regeneration is needed |
 | `/fitness-coach adjust` | `user_profile.json`, `current_plan.json`, `current_status.json`, `cache/progress_summary.json` | exact recent windows for the affected domains only; at most `3` recent month files per domain by default | `current_plan.json`, current adjustments month file, `current_status.json`, affected progress-summary sections |
-| `/fitness-coach report` | `user_profile.json`, `current_plan.json`, `references/report-template.md` plus exact report-week logs | only the month file(s) overlapping the requested week, usually `1-2` files per domain | `data/weekly_reports/week_YYYY-MM-DD.pdf` |
+| `/fitness-coach report` | `user_profile.json`, `current_plan.json`, `references/report-template.md` plus exact report-week logs | only the month file(s) overlapping the requested week, usually `1-2` files per domain | `data/weekly_reports/week_YYYY-MM-DD.md` |
 
 ## Command Guide
 
@@ -371,7 +371,7 @@ After writing, refresh:
   - sleep: last `7-14` days
   - recovery: last `7-14` days
 - Do not scan every monthly archive unless the user explicitly asks for long-term history.
-- Do not read weekly report archive files to answer `/progress`; use cache first and raw logs only for the exact missing window.
+- Do not read weekly report markdown files to answer `/progress`; use cache first and raw logs only for the exact missing window.
 - Summarize:
   - weight change
   - adherence to training plan
@@ -409,22 +409,11 @@ Actions:
 
 - Read `user_profile.json` and `current_plan.json` for target context and next-week focus.
 - Read [references/report-template.md](references/report-template.md).
-- Generate a weekly report as a polished PDF using actual logs, not generic praise.
+- Generate a weekly report using actual logs, not generic praise.
 - Read only the monthly log files overlapping the requested report week.
 - If the requested week's planned-session count is not reliable from hot files and report-week data, report completed sessions only rather than inventing a denominator.
-- Use a professional PDF layout with clean typography, section cards, and restrained accent colors. A taller single page or two pages is acceptable when the content genuinely needs more room.
-- Include only visuals that can be derived from report-week data and hot files, such as:
-  - weight trend mini line chart
-  - training completion bar or adherence card
-  - nutrition, hydration, and sleep summary cards
-  - recovery status badge when watch data exists
-- Use simple professional icons for weight, training, food, hydration, sleep, and recovery. Avoid emoji-heavy styling.
-- Let Chinese nutrition, hydration, and sleep notes wrap fully inside their cards. Expand card height if needed instead of clipping text.
-- Do not compress or arbitrarily shorten the `Coach Verdict` section to match neighboring cards. If that section is longer, let the PDF grow vertically or spill onto a second page.
 - Keep the saved report compact and summary-only. Do not paste raw daily logs, set-by-set workouts, or full meal-by-meal dumps into the archive file.
-- Save the report to `{baseDir}/data/weekly_reports/week_YYYY-MM-DD.pdf`.
-- If the runtime has no native PDF export capability, use the bundled script `scripts/generate_weekly_report_pdf.py` to generate the PDF directly from a compact report-summary payload.
-- The bundled script may bootstrap a local `.pdfgen-venv` and install Python PDF dependencies automatically; do not require browser print, office apps, or OS-level PDF tools when this path is available.
+- Save the report to `{baseDir}/data/weekly_reports/week_YYYY-MM-DD.md`.
 
 ## Data Rules By Command
 

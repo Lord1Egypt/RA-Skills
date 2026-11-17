@@ -1,44 +1,55 @@
-## Description: <br>
-US Stocks Analysis helps agents synthesize U.S. equities data, including price, sentiment, insider trades, congressional disclosures, institutional flows, analyst ratings, and AI signals, into read-only briefings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes US stocks through quick data workflows or an adversarial investment committee, producing a sourced plain-English verdict.
 
-## Publisher: <br>
-[thesentitrader](https://clawhub.ai/user/thesentitrader) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thesentitrader](https://clawhub.ai/user/thesentitrader)
 
-## Use Case: <br>
-External users and agents use this skill to request concise educational analysis of U.S. stocks, sector sentiment, earnings setup, insider activity, congressional disclosures, institutional holdings, analyst actions, and AI-derived market signals. It is intended for informational synthesis, not trading execution or personalized investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat synthesized stock signals as personalized investment advice. <br>
-Mitigation: Present outputs as educational context and analysis only, and avoid buy, sell, or personalized recommendation language. <br>
-Risk: API responses can be preview-gated, rate-limited, delayed, or incomplete. <br>
-Mitigation: State relevant data limits in the briefing, follow documented fallback windows, and avoid implying the analysis is exhaustive. <br>
-Risk: The skill requires a SentiSense API key. <br>
-Mitigation: Use the SENTISENSE_API_KEY environment variable and avoid exposing credentials in prompts, logs, shell history, or user-facing output. <br>
+## Use Case:
 
+Investors and researchers use the skill to review a US ticker or test an investment thesis against sentiment, smart-money activity, and fundamentals. Its findings are educational analysis, not personalized investment advice.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/thesentitrader/skills/us-stocks-analysis) <br>
-- [SentiSense Website](https://sentisense.ai) <br>
-- [SentiSense Full API Reference](https://sentisense.ai/skill.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Concise plain text or Markdown briefings with endpoint-specific API call guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SENTISENSE_API_KEY; uses read-only SentiSense API endpoints; outputs should remain educational and non-advisory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.11 (source: ClawHub release metadata) <br>
+Risk: The security review was partial because several local references could not be resolved, despite no reported scanner findings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the unresolved references before installation and confirm the API credential is used only for the documented read-only data access.
+
+Risk: Stock analysis may inform consequential financial decisions even though the skill is informational and non-advisory.
+
+Mitigation: Treat the output as research input, verify cited figures against their sources, and make financial decisions independently.
+
+## Reference(s):
+
+- [SentiSense API reference](https://sentisense.ai/skill.md)
+- [Get a SentiSense API key](https://app.sentisense.ai/get-api-key)
+- [ClawHub release page](https://clawhub.ai/thesentitrader/skills/us-stocks-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Text, Markdown]
+
+**Output Format:** [Plain-English Markdown briefs and investment-committee verdicts with sourced figures and stated uncertainty]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Informational analysis; not personalized investment advice.]
+
+## Skill Version(s):
+
+2.11.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

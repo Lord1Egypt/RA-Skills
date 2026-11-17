@@ -1,0 +1,15 @@
+{
+  "generatedBy": "AI-GCE",
+  "generatedVersion": "{version}",
+  "source": "{upstream-rule-path}",
+  "name": "Segregation of Duties Check",
+  "version": "1.0.0",
+  "description": "After task completion, reminds that code author ≠ reviewer ≠ deployer. Enforces GOV-ROLE segregation rules.",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check .compliance-state.json → currentPhase. This hook applies from Construction phase onward (Tier 2).\n\nA task was completed. Verify segregation of duties:\n\n1. AUTHOR ≠ REVIEWER: The person who wrote this code MUST NOT review/approve the PR. Check CODEOWNERS for the affected module — is a different person assigned as reviewer?\n2. FINANCIAL SEGREGATION: If this task involved financial entities (invoices, payments, journal entries), remind that business logic MUST enforce creator ≠ approver.\n3. DEPLOYMENT SEGREGATION: When this work goes to production, the deployer MUST be different from the author.\n\nReport:\n- ✅ Segregation rules satisfied by project structure\n- ⚠️ Rules that need human confirmation (can't verify automatically)\n- ❌ Any violations detected\n\nIf all rules pass, confirm compliance silently.\n\n## Compliance Logging\nAfter completing all checks, append to `compliance-log/events/{today-date}.jsonl`:\n{\"timestamp\": \"{ISO-8601-UTC}\", \"type\": \"check\", \"id\": \"chk-{date}-{time}-{seq}\", \"hook\": \"segregation-check\", \"trigger\": \"postTaskExecution\", \"ruleId\": \"GOV-ROLE-004\", \"ruleSeverity\": \"critical\", \"result\": \"{pass|fail|warn}\", \"message\": \"{finding}\"}\nLog ONE event per rule checked."
+  }
+}

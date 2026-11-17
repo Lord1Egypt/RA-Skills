@@ -1,40 +1,57 @@
-## Description: <br>
-Check balances and transfer Quack tokens through the Quack Network API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check balances and transfer Quack tokens through the Quack Network API.
 
-## Publisher: <br>
-[JPaulGrayson](https://clawhub.ai/user/JPaulGrayson) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jpaulgrayson](https://clawhub.ai/user/jpaulgrayson)
 
-## Use Case: <br>
-Agents and developers use this skill to check Quack token balances and send Quack Network token transfers for payments or agent fund management. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Token transfers can be sent with a stored Quack API key without built-in confirmation or transfer limits. <br>
-Mitigation: Use a limited-scope or low-balance key when possible, and manually verify the recipient, amount, memo, and agent ID before running a transfer. <br>
-Risk: The local Quack API key grants access to wallet balance and transfer actions. <br>
-Mitigation: Store the credential only in the expected local credentials file and avoid using a key tied to balances you are not willing to expose to automated actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Quack Wallet on ClawHub](https://clawhub.ai/JPaulGrayson/quack-wallet) <br>
-- [Quack Network API](https://quack.us.com) <br>
+## Use Case:
 
+External users and developers use this skill to let an agent check a Quack token balance and initiate token transfers or payments on the Quack Network.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON responses from the Quack Network API] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local Quack API key credential and command-line parameters for recipient, amount, memo, and optional agent ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The transfer script can move tokens using stored credentials without a built-in confirmation step.
+
+Mitigation: Require an explicit confirmation process before execution and verify the recipient and amount immediately before running a transfer.
+
+Risk: The skill depends on an agent-accessible Quack API credential.
+
+Mitigation: Install and run it only in trusted environments, protect the credential file, and limit credential access to agents authorized to view balances or initiate transfers.
+
+Risk: Transfers may be sensitive and potentially irreversible.
+
+Mitigation: Start with low-value transfers, keep an audit trail of recipient, amount, and memo, and use operational controls appropriate for token movement.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpaulgrayson/skills/quack-wallet)
+- [Quack Network API](https://quack.us.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, code]
+
+**Output Format:** [Markdown guidance with bash commands and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local Quack API credential; transfer commands accept recipient, amount, memo, and optional agent ID.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

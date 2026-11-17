@@ -1,47 +1,59 @@
-## Description: <br>
-Product Analysis guides agents through structured product requirements analysis across fast, standard, and iteration workflows, producing Mermaid process diagrams, functional architecture, tracking plans, PRDs, and development tickets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides Chinese-language product requirements analysis through quick, standard, or iteration workflows and produces business flows, feature architecture, tracking plans, PRDs, and development tickets.
 
-## Publisher: <br>
-[zhanghy1993](https://clawhub.ai/user/zhanghy1993) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhanghy1993](https://clawhub.ai/user/zhanghy1993)
 
-## Use Case: <br>
-Product managers, developers, and cross-functional product teams use this skill to convert feature requests, uploaded PRDs, or iteration briefs into structured product analysis, diagrams, implementation-ready specifications, and handoff documents. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated PRDs, tracking plans, tickets, and diagrams may persist sensitive product requirements or implementation details as workspace files. <br>
-Mitigation: Verify the output directory before use, avoid including highly sensitive requirements unless workspace retention is acceptable, and review generated files before sharing. <br>
-Risk: Analytics and tracking-plan sections may raise privacy, consent, retention, or data-minimization concerns. <br>
-Mitigation: Review tracking outputs with the appropriate privacy or compliance stakeholders before handing them to engineering. <br>
-Risk: Generated product analysis can contain incorrect assumptions or incomplete requirements if source inputs are ambiguous. <br>
-Mitigation: Use the built-in confirmation steps, quality checks, and product or engineering review before treating outputs as implementation requirements. <br>
+## Use Case:
 
+Product managers and development teams use this skill to turn requirements or existing product documents into structured analysis, workflows, architecture, analytics plans, PRDs, and implementation tickets.
 
-## Reference(s): <br>
-- [ClawHub product-analysis release page](https://clawhub.ai/zhanghy1993/product-analysis) <br>
-- [Analysis Frameworks](references/analysis-frameworks.md) <br>
-- [Flowchart Standards](references/flowchart-standards.md) <br>
-- [Architecture Patterns](references/architecture-patterns.md) <br>
-- [Exception Checklist](references/exception-checklist.md) <br>
-- [Draw.io Standards](references/drawio-standards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown documents with Mermaid diagrams, optional Draw.io files, and inline shell commands for local validation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated files are saved to a per-run output directory; local scripts may validate Mermaid syntax, MECE structure, and document quality.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact frontmatter declares v6.6) <br>
+Risk: Uploaded requirements and generated local deliverables may contain sensitive product information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review documents before upload and control access to generated files under /mnt/user-data/outputs.
+
+Risk: Generated analytics and tracking plans may not meet applicable privacy, consent, or retention requirements.
+
+Mitigation: Review tracking specifications against applicable organizational and regional requirements before implementation.
+
+Risk: Research requests may cause web searches involving project details.
+
+Mitigation: Avoid including sensitive details in research requests and review search content before use.
+
+## Reference(s):
+
+- [ClawHub product-analysis release](https://clawhub.ai/zhanghy1993/skills/product-analysis)
+- [Analysis frameworks](references/analysis-frameworks.md)
+- [Flowchart standards](references/flowchart-standards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown documents, Mermaid diagrams, Guidance]
+
+**Output Format:** [Markdown files with Mermaid diagrams]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Deliverables may include business-flow analyses, feature architectures, tracking plans, PRDs, and development tickets.]
+
+## Skill Version(s):
+
+1.1.0 (source: ClawHub release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

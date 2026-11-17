@@ -1,42 +1,58 @@
-## Description: <br>
-Reviews pitch decks and provides investor-ready feedback with scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reviews pitch decks and provides investor-ready feedback with scoring.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-External founders, startup teams, and business reviewers use this skill to evaluate pitch decks with VC-style scoring, identify critical fixes, and prepare for investor questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Pitch decks may contain confidential business information. <br>
-Mitigation: Review what information is shared with the agent and avoid submitting confidential material where the deployment environment is not approved for it. <br>
-Risk: Related tools and external websites are outside this skill's clean prompt-only security finding. <br>
-Mitigation: Review linked websites and the separate afrexai-proposal-gen skill independently before installing or using them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1kalin/afrexai-pitch-deck-reviewer) <br>
-- [Publisher profile](https://clawhub.ai/user/1kalin) <br>
-- [AfrexAI AI Revenue Calculator](https://afrexai-cto.github.io/ai-revenue-calculator/) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Founders, startup operators, and advisors use this skill to review pitch decks against investor expectations, score core sections, identify critical fixes, and anticipate likely investor questions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown pitch deck review with section scores, strengths, critical fixes, nice-to-have improvements, and anticipated investor questions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a 100-point overall score composed from ten 1-10 section scores.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Pitch decks may contain confidential business, financial, or fundraising information.
+
+Mitigation: Avoid submitting confidential deck material to outside services without checking their policies and access controls.
+
+Risk: Related external links and the optional proposal-generator install are separate third-party tools.
+
+Mitigation: Review those tools independently and prefer pinned or verified packages before installing or using them.
+
+Risk: Generated pitch-deck feedback may be incomplete, subjective, or unsuitable for a specific investor audience.
+
+Mitigation: Use the review as a drafting aid and have founders, advisors, or legal and finance reviewers validate high-stakes claims before sharing a deck.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-pitch-deck-reviewer)
+- [AI revenue calculator](https://afrexai-cto.github.io/ai-revenue-calculator/)
+- [Industry context packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown with section scores, verdict tables, prioritized fixes, and investor questions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces qualitative feedback and numeric section scores from user-provided pitch deck content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

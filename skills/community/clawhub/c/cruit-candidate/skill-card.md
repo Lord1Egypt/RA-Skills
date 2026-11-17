@@ -1,44 +1,60 @@
-## Description: <br>
-Create and maintain a Cruit candidate profile for an AI-native developer, including join, publish, refresh, and weekly update workflows for recruiter discovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and maintain a privacy-respecting Cruit profile for an AI-native developer.
 
-## Publisher: <br>
-[nwang783](https://clawhub.ai/user/nwang783) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT No Attribution <br>
+## Publisher:
 
+[nwang783](https://clawhub.ai/user/nwang783)
 
-## Use Case: <br>
-Developers use this skill in a coding agent to create, publish, and refresh a recruiter-searchable Cruit profile from approved project metadata, optional resume facts, and user-provided work preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can fetch live instructions from Cruit on each run, so reviewed behavior may change after installation. <br>
-Mitigation: Review before installing, prefer a pinned or marketplace-reviewed update path when available, and enforce the documented rule that only the configured Cruit instruction URL may be fetched. <br>
-Risk: The workflow stores a local access token and sends approved resume or project profile facts to Cruit's servers. <br>
-Mitigation: Use only approved folders and approved profile drafts, avoid publishing secrets or private contact details, and remove ~/.cruit/credentials.json to clear the saved session. <br>
+## Use Case:
 
+Developers use this skill in supported coding agents to connect to Cruit, assemble a recruiter-searchable profile from approved project metadata and optional resume facts, publish only after review, and set up profile refreshes.
 
-## Reference(s): <br>
-- [Cruit Candidate ClawHub Page](https://clawhub.ai/nwang783/cruit-candidate) <br>
-- [Cruit Candidate Instructions](https://cruit.dev/skills/candidate/INSTRUCTIONS.md) <br>
-- [Cruit Website](https://cruit.dev) <br>
-- [Security Notes](SECURITY.md) <br>
-- [Example Candidate Flow](examples/candidate-profile-flow.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational Markdown with structured profile drafts, setup prompts, and occasional JSON-shaped API payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Contacts https://cruit.dev, stores local credentials under ~/.cruit/, and requires user approval before publishing unless automatic refresh is explicitly enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+Risk: Mutable remote instructions can change the workflow after installation or approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the latest fetched instructions before use and enforce the documented fixed-host restriction plus non-overridable consent and privacy rules.
+
+Risk: Remote installer use may execute unreviewed changes if run directly from a shell pipeline.
+
+Mitigation: Prefer a marketplace-reviewed package, or download and inspect the installer before running it; install only into user-level skill folders.
+
+Risk: The skill stores a local access token and can publish candidate profile data to cruit.dev.
+
+Mitigation: Use browser device auth, never paste secrets, keep credential files user-only, inspect only approved folders, and publish only after the user approves the profile draft.
+
+## Reference(s):
+
+- [Cruit Candidate on ClawHub](https://clawhub.ai/nwang783/skills/cruit-candidate)
+- [Cruit Candidate Instructions](https://cruit.dev/skills/candidate/INSTRUCTIONS.md)
+- [Cruit](https://cruit.dev)
+- [Security Notes](SECURITY.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, API calls, Configuration, Shell commands]
+
+**Output Format:** [Markdown guidance with API payload shapes, shell command snippets, and local JSON configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Publishes approved profile data to cruit.dev and stores local credentials and refresh configuration under ~/.cruit during setup.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

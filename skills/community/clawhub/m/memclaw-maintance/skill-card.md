@@ -1,48 +1,66 @@
-## Description: <br>
-MemClaw Maintenance Guide provides installation, configuration, verification, troubleshooting, and maintenance guidance for the MemClaw OpenClaw memory plugin. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MemClaw Maintenance Guide provides installation, configuration, troubleshooting, migration, and maintenance guidance for the MemClaw OpenClaw memory plugin.
 
-## Publisher: <br>
-[sopaco](https://clawhub.ai/user/sopaco) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sopaco](https://clawhub.ai/user/sopaco)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to install, configure, verify, troubleshoot, and maintain the MemClaw persistent memory plugin. Daily memory operations are directed to the separate memclaw skill. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill guides installation of the external @memclaw/memclaw plugin and persistent memory behavior. <br>
-Mitigation: Install only if the publisher and plugin are trusted, and review the plugin configuration before enabling it at session startup. <br>
-Risk: MemClaw configuration uses LLM and embedding provider API keys. <br>
-Mitigation: Use protected provider API keys, keep openclaw.json private, and avoid sharing configuration files publicly. <br>
-Risk: Persistent memory can retain sensitive user or project information. <br>
-Mitigation: Avoid storing secrets in memory and review memory retention practices before using the skill in sensitive environments. <br>
-Risk: The skill recommends AGENTS.md changes and scheduled maintenance behavior that can affect future sessions globally. <br>
-Mitigation: Review AGENTS.md changes and disable or adjust scheduled maintenance if global behavior is not desired. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and configure MemClaw, migrate existing OpenClaw memories, and run maintenance or troubleshooting for persistent local memory.
 
-## Reference(s): <br>
-- [MemClaw maintenance troubleshooting guide](references/troubleshooting.md) <br>
-- [MemClaw maintenance tools reference](references/tools.md) <br>
-- [memclaw daily-usage skill](https://clawhub.ai/sopaco/memclaw) <br>
-- [MemClaw project repository](https://github.com/sopaco/cortex-mem) <br>
-- [MemClaw plugin README](https://raw.githubusercontent.com/sopaco/cortex-mem/refs/heads/main/examples/%40memclaw/plugin/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation steps, OpenClaw configuration examples, maintenance tool examples, service checks, and troubleshooting guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.31 (source: server release metadata) <br>
+Risk: The skill asks users to make MemClaw the default memory system and store profile or session data persistently.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm this memory posture with the user, back up existing memory files and AGENTS.md, and avoid storing sensitive information unless the configured providers and retention policy are acceptable.
+
+Risk: Relevant memory content may be sent to configured LLM and embedding providers.
+
+Mitigation: Review provider configuration, API key handling, and data-sharing expectations before enabling the plugin.
+
+Risk: The documented plugin install command uses an unpinned package path.
+
+Mitigation: Pin or verify the MemClaw package version and source before installation when possible.
+
+Risk: Migration and maintenance can change persistent memory indexes and derived memory layers.
+
+Mitigation: Run maintenance in dry-run mode first where supported and keep backups before migration, pruning, or reindexing.
+
+## Reference(s):
+
+- [MemClaw Maintenance Tools Reference](./references/tools.md)
+- [MemClaw Troubleshooting Guide](./references/troubleshooting.md)
+- [MemClaw daily-use skill](https://clawhub.ai/sopaco/memclaw)
+- [MemClaw project repository](https://github.com/sopaco/cortex-mem)
+- [MemClaw plugin README](https://raw.githubusercontent.com/sopaco/cortex-mem/refs/heads/main/examples/%40memclaw/plugin/README.md)
+- [MemClaw GitHub Issues](https://github.com/sopaco/cortex-mem/issues)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with JSON configuration snippets and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include OpenClaw configuration examples, AGENTS.md memory guidance, and MemClaw migration or maintenance tool payloads.]
+
+## Skill Version(s):
+
+0.9.31 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

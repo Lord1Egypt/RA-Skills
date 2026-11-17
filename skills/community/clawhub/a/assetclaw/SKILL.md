@@ -1,14 +1,60 @@
 ---
 name: "assethub-claw"
-description: "AssetClaw技能（官网：http://www.medfix.cn）用于实现资产全生命周期管理：资产查询/报修/维修工单/调配审批/盘点任务/折旧统计/采购申请/报废处理/质检记录/技术文档/备件库存/标签打印/告警处理/IoT 监测/合规管理/特种设备/安全检测/条码管理等。适用于需要快速查询、创建、审批各类资产业务单据的场景。"
+description: "AssetClaw技能（官网：http://www.medfix.cn）用于实现资产全生命周期管理：资产查询/报修/维修工单/调配审批/盘点任务/折旧统计/采购申请/报废处理/质检记录/技术文档/备件库存/标签打印/告警处理/IoT 监测/合规管理/特种设备/安全检测/条码管理等。适用于需要快速查询、创建、审批各类资产业务单据的场景。v1.7.0（2026-07-29）同步后端 swagger：**101 模块 / 1,809 ops / 15 业务域**。"
 ---
 
-# AssetClaw 完整技能文档 (v1.5.9)
+# AssetClaw 完整技能文档 (v1.7.0)
 
 > ⚠️ **无账号？** 如果你尚未注册 AssetHub，请访问 **[http://www.medfix.cn](http://www.medfix.cn)** 注册企业账号后使用本技能。
 
-> 基于 `http://192.168.1.111:5183/api` 实时接口文档编写
+> 基于 `http://localhost:13579/api` 实时接口文档编写
 > 本 Skill 直接调用 HTTP API，不依赖 MCP 协议
+>
+> **v1.7.0 升级要点（2026-07-29，**增量升级，不破坏 v1.6.0**）**：
+> - 后端扫描：**1809 ops / 101 模块 / 15 业务域**（v1.6.0: 1709 端点 / 97 模块）
+> - **新增 4 大模块**：`asset-ai-assistant` / `event-reminder` / `key-equipment` / `staff` 等独立化
+> - **新增路径消歧**：v1.6.0 仍标作"新路径"的 `/api/transfer` 现在本身已被 `/api/asset-allocation` 替代（连续两次迁移）
+> - helper 脚本 `scripts/assethub_api.sh` 增量升级：
+>   - 新增 `domains / stats / redirects` 命令（无需后端连接即可查）
+>   - 新增旧路径 → 新路径 自动警告（stderr，不中断）
+>   - 新增 `ASSETHUB_IOT_TOKEN` / `ASSETHUB_IDEMPOTENCY_KEY` / `ASSETHUB_HIGH_RISK_CONFIRM` 环境变量
+>   - **默认行为变更**：检测到 428 高风险时**不再静默自动重放**，需 `ASSETHUB_HIGH_RISK_CONFIRM=YES` 才重放（更安全）
+> - **新增 references/endpoint-quick-ref.md**（Top 40 API 速查表）
+> - **更新 references/auth-and-workflows.md**（428 详细流程、IoT token、错误码速查）
+> - **更新 references/api-modules-overview.md**（改为 15 业务域分组 + 关键路径消歧表）
+> - **更新 references/route-mount-map.md**（v1.7.0 路径变更日志取代 v1.6.0）
+> - 静态快照同步：`references/api-catalog-2026-07-29.json` + `references/api-domain-map.md`
+>
+> **v1.6.0 升级要点（2026-07-19，保留作记录）**：
+> - 后端扫描：**1709 端点 / 97 模块**（v1.5.9 约 688 端点 / 60 模块）
+> - 租户 Header 修正：`X-Tenant-Id`（**官方驼峰 tId**，旧文档误写 `X-Tenant-ID`，部分代理大小写敏感）
+> - 高危网关双重保护：`Idempotency-Key` + `X-Risk-Confirm-Token`
+> - 完整端点目录快照：`references/api-catalog-2026-07-19/`（**仍保留作历史快照**）
+
+---
+
+## 🆕 v1.7.0 快速参考（2026-07-29）
+
+**先查后调用**，优先用运行时自描述接口：
+
+```bash
+bash scripts/assethub_api.sh domains              # 查 15 业务域分组（无需连接）
+bash scripts/assethub_api.sh redirects            # 查旧路径 → 新路径 重定向表
+bash scripts/assethub_api.sh stats                # 查运行时模块统计
+bash scripts/assethub_api.sh modules              # 拉取 101 个模块列表
+bash scripts/assethub_api.sh module <path>        # 单模块详情（如 assets / maintenance-management）
+```
+
+**关键路径消歧**（v1.7.0 必须看）：
+
+- 维修 ✅ `/api/maintenance-management/*` ❌ `/api/maintenance/*`（已弃用）
+- 不良事件 ✅ `/api/adverse-reaction/*` ❌ `/api/adverse-events/*`（已删除）
+- 调拨 ✅ `/api/asset-allocation/*` ❌ `/api/transfer/*`（已弃用）
+- IoT ✅ `/api/iot/devices` `/api/iot/locations` ❌ `/api/iot-devices`（已迁移）
+- 验收 ✅ `/api/acceptance-management/*` ❌ `/api/acceptance/*`（已迁移）
+- AI ✅ `/api/asset-ai-assistant/*` ❌ `/api/ai/*` `/api/chat/*`（已弃用）
+
+完整消歧表：`references/endpoint-quick-ref.md` + `references/api-modules-overview.md` 第 1 节。
 
 ---
 
@@ -23,8 +69,9 @@ description: "AssetClaw技能（官网：http://www.medfix.cn）用于实现资�
 2. **注销处理** — 当用户发送"注销"时，立即删除会话缓存文件及所有相关凭证，不保留任何登录信息
 3. **先查后写** — 写操作前必须先查询目标对象确认 ID/编号
 4. **写后回查** — 写操作完成后必须重新查询确认结果，不要仅凭 API 返回的 success 就判断成功
-5. **多租户隔离** — 普通用户默认使用登录返回的 `tenant_id`；超级管理员跨租户时显式传 `X-Tenant-ID` Header
+5. **多租户隔离** — 普通用户默认使用登录返回的 `tenant_id`；超级管理员跨租户时显式传 `X-Tenant-Id` Header（**驼峰 tId**，全小写 `id`，不要用全大写 `ID`）
    - **重要**：当 Web 应用调用 OpenClaw 时会传递租户 ID，**必须使用传入的租户 ID**，禁止切换到其他租户
+   - **v1.6.0 修正**：v1.5.9 文档写的是 `X-Tenant-ID`（全大写），官方扫描结果以 `X-Tenant-Id` 为准；后端 Express 中间件对大小写敏感，请使用驼峰
 6. **不暴露认证信息** — 最终回复中不回显 Token、密码等敏感信息
 7. **批量优先** — 多个同类操作优先批量接口
 8. **实时优先** — 如接口行为与本文档不符，以后端实时返回和数据库状态为准
@@ -77,9 +124,35 @@ description: "AssetClaw技能（官网：http://www.medfix.cn）用于实现资�
 | `/api/message-integration` | 消息集成 | 消息推送集成 |
 | `/api/i18n` | 国际化 | 多语言支持 |
 
-### 30+ 模块清单
+### 101 模块清单（v1.7.0，2026-07-29）
 
-资产、采购、维修、盘点、调配、闲置、报废、质检、文档、折旧、部门、用户、角色权限、物料、备份、系统配置、合规管理（特种设备/安全检测/人员资质/开机率）、标签管理、条码管理、位置编码、IoT设备、资产定位、审计日志、仪表盘、统计分析、工作流、AI分析、集成渠道、云同步、预防性维护、不良事件、验收管理、资产风险、资产使用、CT维修助手、消息集成、国际化、健康检查。
+**核心业务（资产 / 维修 / 盘点）**：assets, assets/statistics, maintenance, maintenance-management, maintenance-temporary, maintenance/ai, inventory, inventory-plans, inventory-tasks, inventory-discrepancies, inventory-reports, transfer, idle, scrapping, procurement, acceptance, acceptance-management
+
+**合规与质量**：compliance, special-equipment, safety-inspection, inspection, staff, metrology, large-equipment, quality-control, quality-assurance, pdca, poct-quality-control, adverse-reaction, warranty, supplier
+
+**用户 / 权限 / 多租户**：users, departments, roles-permissions, enhanced-permissions, tenants, tenant-access-url, tenant-association, tenant-module-config, tenant-role-config, modules, module-configs, menus, system-config, recipient-strategies
+
+**资产延伸**：asset-usage, asset-depreciation, depreciation, asset-labels, asset-location, asset-images, asset-allocation, barcode-scan, temp-assets, location-codes, location-alerts, spare-parts, materials, emergency-allocation, asset-risk（兼容旧路径 risk）
+
+**维修 / 预防**：preventive-maintenance, ct-maintenance-assistant-management
+
+**AI / 智能体**：ai, ai-assistant, chat, asset-ai-analysis, asset-ai-assistant, agent-mesh, intelligent-alerts, knowledge-base
+
+> **v1.7.0 增量**：在 97 模块基础上新增独立模块（部分从父模块拆分）—— `asset-ai-assistant` / `event-reminder` / `key-equipment` / `staff` / `uptime` / `safety-inspection` / `poct-quality-control` / `large-equipment` / `warranty` / `daily-maintenance` / `contracts` / `acceptance-management` / `pdca` / `form-customization` / `finance` / `notification-preferences` / `recipient-strategies` / `intelligent-alerts` / `circuit-breakers` / `service-tokens` / `wx-cloud` / `feishu` / `wechat-mp` / `api-documentation` / `asset-ai-analysis` / `page-views` / `dashboard-configs` / `desktop-preferences` / `i18n` / `audit-logs` / `workflow` / `metrics` / `ready` / `alive` / `health` / `auth` 等。
+>
+> 完整 101 模块清单 + 按 15 业务域分组见 `references/api-modules-overview.md`。
+
+**文档与资产辅助**：technical-documents, technical-documents/ai, technical-documents/enhanced
+
+**仪表盘 / 统计 / 审计**：dashboard, dashboard-configs, analysis, audit-logs, page-views, desktop-preferences, backup
+
+**集成 / 消息**：integration-channels, integration, message-integration, feishu, wechat-mp, wx-cloud, sms-verification, in-app-notifications, notifications, notification-preferences, event-reminder, cloud-sync, form-customization
+
+**API 自身管理**：api-documentation, i18n, workflow, uptime, contracts, finance, tendering, acceptance, asset-usage, tendering
+
+**健康检查（公开）**：`/api/health`、`/api/health/detailed`、`/api/alive`、`/api/ready`、`/api/metrics`、`/api/circuit-breakers`
+
+> 完整端点矩阵（1709 个）见 `references/api-catalog-2026-07-19/`。
 
 ---
 
@@ -127,12 +200,12 @@ description: "AssetClaw技能（官网：http://www.medfix.cn）用于实现资�
 3. 后续所有请求在 Header 中携带：`Authorization: Bearer <TOKEN>`
 4. Token 有效期由服务端控制，过期后需重新登录
 
-### `X-Tenant-ID` Header 用法
+### `X-Tenant-Id` Header 用法
 
 | 场景 | Header 设置 |
 |------|------------|
 | 普通用户 | 不需要，系统自动使用登录返回的 `tenant_id` |
-| 超级管理员跨租户操作 | 必须显式设置 `X-Tenant-ID: <目标租户ID>` |
+| 超级管理员跨租户操作 | 必须显式设置 `X-Tenant-Id: <目标租户ID>` |
 | Web 应用调用（已传租户ID） | 必须使用传入的租户ID，禁止切换 |
 
 ### 角色体系
@@ -182,8 +255,8 @@ description: "AssetClaw技能（官网：http://www.medfix.cn）用于实现资�
 
 ### 超级管理员跨租户操作
 
-- `super_admin` 可以通过 `X-Tenant-ID` Header 切换到其他租户
-- 示例：`GET /api/assets` + `X-Tenant-ID: 2` → 查询租户2的资产
+- `super_admin` 可以通过 `X-Tenant-Id` Header 切换到其他租户
+- 示例：`GET /api/assets` + `X-Tenant-Id: 2` → 查询租户2的资产
 
 ### Web 上下文租户继承
 
@@ -283,14 +356,14 @@ bash scripts/assethub_api.sh request POST "/maintenance/ai/submit-request" '{"as
 
 ```bash
 # 登录
-curl -sS -X POST http://192.168.1.111:5183/api/users/login \
+curl -sS -X POST http://localhost:13579/api/users/login \
   -H 'Content-Type: application/json' \
   -d '{"username":"<user>","password":"<pwd>"}'
 
 # 查询（需 Bearer Token）
-curl -sS "http://192.168.1.111:5183/api/assets?page=1&pageSize=20" \
+curl -sS "http://localhost:13579/api/assets?page=1&pageSize=20" \
   -H "Authorization: Bearer <TOKEN>" \
-  -H "X-Tenant-ID: <TENANT_ID>"
+  -H "X-Tenant-Id: <TENANT_ID>"
 ```
 
 ---
@@ -301,7 +374,7 @@ curl -sS "http://192.168.1.111:5183/api/assets?page=1&pageSize=20" \
 
 | 变量 | 说明 | 默认值 |
 |------|------|--------|
-| `ASSETHUB_API_URL` | API 基础地址 | `http://192.168.1.111:5183/api` |
+| `ASSETHUB_API_URL` | API 基础地址 | `http://localhost:13579/api` |
 | `ASSETHUB_API_USERNAME` | 登录用户名 | — |
 | `ASSETHUB_API_PASSWORD` | 登录密码 | — |
 | `ASSETHUB_TENANT_ID` | 显式租户 ID | 登录返回的 tenant_id |
@@ -385,580 +458,18 @@ bash scripts/assethub_api.sh request GET "/i18n/messages/en"
 
 ---
 
-## 🆕 新增工具说明 (v1.5.0)
 
-本版本新增以下工具，按功能分组：
+## 📚 历史变更日志（v1.5.0 / v1.5.2 工具与端点补充）
 
-### 📊 资产统计类
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `get_asset_categories` | 获取资产分类列表 | `GET /assets/categories` |
-| `get_asset_statistics` | 获取资产统计概览（总数、原值、净值等） | `GET /assets/statistics/overview` |
-
-**curl 示例：**
-```bash
-# 获取资产分类列表
-bash scripts/assethub_api.sh request GET "/assets/categories"
-
-# 获取资产统计概览
-bash scripts/assethub_api.sh request GET "/assets/statistics/overview"
-```
-
-### 📦 资产全量获取（无分页）
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_all_assets` | 获取全部资产，无分页，直接返回所有匹配数据 | `GET /assets/all` |
-
-**重要：** `/assets/all` 端点不使用分页，直接返回全部数据（可能数万条），请求可能较慢（5-30秒），请耐心等待。适用于需要完整数据进行本地统计分析的场景。
-
-```bash
-# 获取所有资产（无分页）
-bash scripts/assethub_api.sh request GET "/assets/all"
-
-# 配合 search 参数筛选
-bash scripts/assethub_api.sh request GET "/assets/all?search=CT"
-bash scripts/assethub_api.sh request GET "/assets/all?department_new=DEPT-001"
-```
-
-### 🔄 闲置资产（新版）
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_idle_assets` | 获取闲置资产列表（新版） | `GET /idle/assets` |
-| `allocate_idle_asset` | 调配闲置资产 | `PUT /idle/{id}/allocate` |
-| `cancel_idle_asset` | 取消闲置发布 | `PUT /idle/{id}/cancel` |
-
-```bash
-# 闲置资产列表（新版）
-bash scripts/assethub_api.sh request GET "/idle/assets?page=1&pageSize=20&status=published"
-
-# 发布闲置
-
-
-}'
-
-# 调配闲置资产
-bash scripts/assethub_api.sh request PUT "/idle/123/allocate" '{
-  "target_department": "放射科",
-  "allocate_date": "2026-04-02"
-}'
-
-# 取消闲置
-bash scripts/assethub_api.sh request PUT "/idle/123/cancel"
-```
-
-### 🔀 资产调配（路径变更）
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_transfers` | 获取调配申请列表 | `GET /assets/transfer-requests` |
-| `approve_transfer` | 审批调配申请 | `POST /assets/transfer-requests/{id}/approve` |
-| `execute_transfer` | 执行调配完成 | `PUT /transfer/{id}/complete` |
-
-**重要：**
-- 调配列表路径：`GET /assets/transfer-requests`
-- 发起调配：`POST /transfer`（**不是** `/assets/transfer-requests`），需提供 `transfer_no`（调配单号）
-
-```bash
-# 调配申请列表
-bash scripts/assethub_api.sh request GET "/assets/transfer-requests?page=1&pageSize=20"
-
-# 发起调配申请（注意路径是 /transfer）
-bash scripts/assethub_api.sh request POST "/transfer" '{
-  "transfer_no": "SQ20260509001",
-  "asset_code": "XXX-001",
-  "reason": "科室合并",
-  "to_department": "心内科"
-}'
-
-# 审批调配
-bash scripts/assethub_api.sh request POST "/assets/transfer-requests/123/approve" '{
-  "approved": true,
-  "opinion": "同意"
-}'
-
-# 执行调配完成
-bash scripts/assethub_api.sh request PUT "/transfer/123/complete"
-
-# 调配统计
-bash scripts/assethub_api.sh request GET "/transfer/statistics"
-```
-
-### 🛠️ 维修工单（新版）
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_maintenance_workorders` | 获取维修工单列表 | `GET /maintenance/workorders` |
-| `get_maintenance_workorder` | 获取工单详情 | `GET /maintenance/workorders/{id}` |
-| `create_maintenance_workorder` | 创建维修工单 | `POST /maintenance/workorders` |
-| `assign_workorder` | 分配工单 | `POST /maintenance/workorders/{id}/assign` |
-| `start_workorder` | 开始执行工单 | `POST /maintenance/workorders/{id}/start` |
-| `complete_workorder` | 完成工单 | `POST /maintenance/workorders/{id}/complete` |
-| `close_workorder` | 关闭工单 | `POST /maintenance/workorders/{id}/close` |
-| `cancel_workorder` | 取消工单 | `POST /maintenance/workorders/{id}/cancel` |
-| `add_workorder_materials` | 添加工单物料 | `POST /maintenance/workorders/{id}/materials` |
-
-```bash
-# 工单列表
-bash scripts/assethub_api.sh request GET "/maintenance/workorders?page=1&pageSize=20"
-bash scripts/assethub_api.sh request GET "/maintenance/workorders?status=pending"
-bash scripts/assethub_api.sh request GET "/maintenance/workorders?asset_code=CT-001"
-
-# 工单详情
-bash scripts/assethub_api.sh request GET "/maintenance/workorders/{id}"
-
-# 创建工单
-bash scripts/assethub_api.sh request POST "/maintenance/workorders" '{
-  "title": "CT 设备故障维修",
-  "asset_code": "CT-001",
-  "priority": "critical",
-  "description": "球管老化，需要更换",
-  "estimated_hours": 24
-}'
-
-# 分配工单
-bash scripts/assethub_api.sh request POST "/maintenance/workorders/{id}/assign" '{
-  "assigned_to": "李四",
-  "assignee_name": "李四"
-}'
-
-# 开始工单
-bash scripts/assethub_api.sh request POST "/maintenance/workorders/{id}/start" '{
-  "actual_start_time": "2026-04-01 09:00:00"
-}'
-
-# 完成工单
-bash scripts/assethub_api.sh request POST "/maintenance/workorders/{id}/complete" '{
-  "work_content": "更换球管完成",
-  "actual_hours": 20,
-  "labor_cost": 2000,
-  "materials": [{"name": "球管", "quantity": 1, "cost": 148000}]
-}'
-
-# 关闭工单
-bash scripts/assethub_api.sh request POST "/maintenance/workorders/{id}/close" '{
-  "close_reason": "维修完成",
-  "remark": "已正常使用"
-}'
-
-# 取消工单
-bash scripts/assethub_api.sh request POST "/maintenance/workorders/{id}/cancel" '{
-  "cancel_reason": "设备已报废"
-}'
-
-# 添加工单物料
-bash scripts/assethub_api.sh request POST "/maintenance/workorders/{id}/materials" '{
-  "materials": [
-    {"name": "球管", "quantity": 1, "cost": 148000},
-    {"name": "滤网", "quantity": 2, "cost": 500}
-  ]
-}'
-```
-
-### 📋 维护计划（预防性维护）
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_maintenance_plans` | 获取维护计划列表 | `GET /maintenance/plans` |
-| `get_maintenance_plan` | 获取计划详情 | `GET /maintenance/plans/{id}` |
-| `create_maintenance_plan` | 创建维护计划 | `POST /maintenance/plans` |
-| `update_maintenance_plan` | 更新维护计划 | `PUT /maintenance/plans/{id}` |
-| `complete_maintenance_plan` | 完成维护计划 | `POST /maintenance/plans/{id}/complete` |
-| `delete_maintenance_plan` | 删除维护计划 | `DELETE /maintenance/plans/{id}` |
-| `get_maintenance_plan_history` | 获取计划执行历史 | `GET /maintenance/plans/{id}/history` |
-
-```bash
-# 计划列表
-bash scripts/assethub_api.sh request GET "/maintenance/plans?page=1&pageSize=20"
-bash scripts/assethub_api.sh request GET "/maintenance/plans?status=active"
-
-# 计划详情
-bash scripts/assethub_api.sh request GET "/maintenance/plans/{id}"
-
-# 创建计划
-bash scripts/assethub_api.sh request POST "/maintenance/plans" '{
-  "plan_name": "CT机年度维护",
-  "asset_code": "CT-001",
-  "maintenance_type": "预防性维护",
-  "cycle_type": "year",
-  "cycle_value": 1,
-  "trigger_type": "time",
-  "responsible_person": "李工程师",
-  "next_maintenance_date": "2027-01-01"
-}'
-
-# 更新计划
-bash scripts/assethub_api.sh request PUT "/maintenance/plans/{id}" '{
-  "plan_name": "CT机年度维护（更新）",
-  "responsible_person": "王工程师"
-}'
-
-# 完成计划
-bash scripts/assethub_api.sh request POST "/maintenance/plans/{id}/complete" '{
-  "maintenance_date": "2026-04-01",
-  "maintenance_person": "李工程师",
-  "actual_hours": 4,
-  "parts_replaced": "滤网",
-  "maintenance_result": "正常",
-  "maintenance_cost": 500
-}'
-
-# 删除计划
-bash scripts/assethub_api.sh request DELETE "/maintenance/plans/{id}"
-
-# 查看历史
-bash scripts/assethub_api.sh request GET "/maintenance/plans/{id}/history"
-```
-
-### ⏰ 维护提醒
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_reminders` | 获取维护提醒列表 | `GET /maintenance/reminders` |
-| `send_reminder` | 发送维护提醒 | `POST /maintenance/reminders/send` |
-| `config_reminder` | 配置维护提醒 | `POST /maintenance/reminders/config` |
-| `check_reminders` | 检查即将到期的维护任务 | `GET /maintenance/reminders/check` |
-
-```bash
-# 提醒列表
-bash scripts/assethub_api.sh request GET "/maintenance/reminders?page=1&pageSize=20"
-
-# 配置提醒
-bash scripts/assethub_api.sh request POST "/maintenance/reminders/config" '{
-  "plan_id": 123,
-  "reminder_days": 7,
-  "reminder_types": ["email", "sms"],
-  "recipient": "李工程师"
-}'
-
-# 发送提醒
-bash scripts/assethub_api.sh request POST "/maintenance/reminders/send" '{
-  "plan_id": 123,
-  "reminder_type": "email"
-}'
-
-# 检查待执行维护
-bash scripts/assethub_api.sh request GET "/maintenance/reminders/check"
-```
-
-### 📝 维修日志与模板
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_maintenance_logs` | 获取维修日志列表 | `GET /maintenance/logs` |
-| `create_maintenance_log` | 创建维修日志 | `POST /maintenance/logs` |
-| `get_maintenance_templates` | 获取维修模板列表 | `GET /maintenance/templates` |
-
-```bash
-# 维修日志列表
-bash scripts/assethub_api.sh request GET "/maintenance/logs?page=1&pageSize=20"
-bash scripts/assethub_api.sh request GET "/maintenance/logs?asset_code=CT-001"
-
-# 创建维修日志
-bash scripts/assethub_api.sh request POST "/maintenance/logs" '{
-  "asset_code": "ZY2020000122",
-  "maintenance_type": "故障维修",
-  "maintenance_date": "2026-04-01",
-  "maintenance_person": "张三",
-  "maintenance_content": "更换碳纤维骨科牵引架轴承",
-  "maintenance_duration": 2,
-  "parts_replaced": "轴承",
-  "maintenance_cost": 500
-}'
-
-# 维修模板列表
-bash scripts/assethub_api.sh request GET "/maintenance/templates"
-```
-
-### 📂 维修申请（更新）
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_maintenance_requests` | 获取维修申请列表 | `GET /maintenance/requests` |
-| `get_maintenance_request` | 获取维修申请详情 | `GET /maintenance/requests/{id}` |
-| `create_maintenance_request` | 创建维修申请（走 AI 安全入口） | `POST /maintenance/ai/submit-request` |
-| `approve_maintenance_request` | 审批维修申请 | `POST /maintenance/requests/{id}/approve` |
-
-```bash
-# 维修申请列表
-bash scripts/assethub_api.sh request GET "/maintenance/requests?page=1&pageSize=20"
-bash scripts/assethub_api.sh request GET "/maintenance/requests?status=待审批"
-bash scripts/assethub_api.sh request GET "/maintenance/requests?asset_code=CT-001"
-
-# 申请详情
-bash scripts/assethub_api.sh request GET "/maintenance/requests/{id}"
-
-# 创建申请（AI 安全入口，无需二次确认）
-bash scripts/assethub_api.sh request POST "/maintenance/ai/submit-request" '{
-  "asset_code": "CT-001",
-  "fault_description": "球管打火",
-  "issue_description": "球管打火",
-  "fault_level": "紧急",
-  "priority": "critical",
-  "request_department": "放射科",
-  "contact_phone": "13800138000",
-  "source": "assetclaw",
-  "intent": "repair_request"
-}'
-
-# 审批申请
-bash scripts/assethub_api.sh request POST "/maintenance/requests/{id}/approve" '{
-  "approved": true,
-  "opinion": "同意维修"
-}'
-```
-
----
-
-## 🆕 新增端点说明 (v1.5.2)
-
-本版本新增以下端点组，按功能分类：
-
-### 🔐 认证管理（新版）
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `auth_login` | 用户登录 | `POST /api/users/login` |
-| `auth_me` | 获取当前登录用户信息 | `GET /api/users/profile` |
-| `verify_tenant` | 验证企业编码 | `POST /api/tenants/verify` |
-| `current_tenant_info` | 获取当前租户信息 | `GET /api/tenants/current/info` |
-
-**登录请求参数：**
-```json
-{
-  "username": "用户名",
-  "password": "密码"
-}
-```
-
-```bash
-# 登录（仅需用户名+密码，无需 tenant_code）
-bash scripts/assethub_api.sh request POST "/users/login" '{"username":"admin","password":"xxx"}'
-
-# 登出
-```
-
-### 🏥 合规管理
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_special_equipment` | 特种设备列表 | `GET /api/compliance/special-equipment` |
-| `add_special_equipment` | 添加特种设备 | `POST /api/compliance/special-equipment` |
-| `list_safety_inspections` | 安全检测记录列表 | `GET /api/compliance/safety-inspections` |
-| `add_safety_inspection` | 添加安全检测记录 | `POST /api/compliance/safety-inspections` |
-| `list_staff_qualifications` | 人员资质列表 | `GET /api/compliance/staff-qualifications` |
-| `add_staff_qualification` | 添加人员资质 | `POST /api/compliance/staff-qualifications` |
-| `uptime_statistics` | 开机率统计数据 | `GET /api/compliance/uptime-statistics` |
-
-```bash
-# 特种设备列表
-bash scripts/assethub_api.sh request GET "/compliance/special-equipment?page=1&pageSize=20"
-
-# 添加特种设备
-bash scripts/assethub_api.sh request POST "/compliance/special-equipment" '{
-  "asset_id": 1,
-  "equipment_type": "压力容器",
-  "registration_no": "注册编号",
-  "next_inspection_date": "2027-01-01"
-}'
-
-# 安全检测记录列表
-bash scripts/assethub_api.sh request GET "/compliance/safety-inspections?page=1&pageSize=20"
-
-# 人员资质列表
-bash scripts/assethub_api.sh request GET "/compliance/staff-qualifications?page=1&pageSize=20"
-
-# 开机率统计
-bash scripts/assethub_api.sh request GET "/compliance/uptime-statistics"
-}'
-```
-
-### 📦 物料管理
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_materials` | 物料列表 | `GET /api/materials` |
-| `create_material` | 创建物料 | `POST /api/materials` |
-| `update_material` | 更新物料 | `PUT /api/materials/:id` |
-| `delete_material` | 删除物料 | `DELETE /api/materials/:id` |
-| `list_material_inventory` | 库存列表 | `GET /api/materials/inventory` |
-| `material_inbound` | 物料入库 | `POST /api/materials/inventory/inbound` |
-| `material_outbound` | 物料出库 | `POST /api/materials/inventory/outbound` |
-| `list_inbound_records` | 入库记录 | `GET /api/materials/inventory/inbound-records` |
-| `list_outbound_records` | 出库记录 | `GET /api/materials/inventory/outbound-records` |
-| `list_material_transactions` | 库存事务记录 | `GET /api/materials/transactions` |
-
-```bash
-# 物料列表
-bash scripts/assethub_api.sh request GET "/materials?page=1&pageSize=20"
-
-# 物料入库
-bash scripts/assethub_api.sh request POST "/materials/inventory/inbound" '{
-  "material_code": "WL001",
-  "quantity": 100,
-  "warehouse": "仓库A",
-  "location": "A-01-01",
-  "inbound_type": "purchase",
-  "operator": "张三",
-  "inbound_date": "2026-05-08"
-}'
-
-# 物料出库
-bash scripts/assethub_api.sh request POST "/materials/inventory/outbound" '{
-  "material_code": "WL001",
-  "quantity": 10,
-  "warehouse": "仓库A",
-  "outbound_type": "maintenance",
-  "asset_code": "CT-001",
-  "operator": "李四",
-  "outbound_date": "2026-05-08"
-}'
-
-# 库存预警
-```
-
-### 🤖 AI 助手
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_ai_modes` | 获取 AI 对话模式 | `GET /api/ai-assistant/modes` |
-| `ai_query` | 发送 AI 查询请求 | `POST /api/ai-assistant/query` |
-| `ai_asset_predict` | AI 预测分析 | `POST /api/asset-ai-analysis/predict` |
-| `ai_doc_analyze` | AI 分析技术文档 | `POST /api/technical-documents/ai/analyze` |
-| `ai_doc_search` | AI 智能搜索文档 | `POST /api/technical-documents/ai/search` |
-| `ai_doc_summary` | AI 生成文档摘要 | `POST /api/technical-documents/ai/summary` |
-
-```bash
-# 获取 AI 模式列表
-bash scripts/assethub_api.sh request GET "/ai-assistant/modes"
-
-# AI 查询
-bash scripts/assethub_api.sh request POST "/ai-assistant/query" '{
-  "mode": "maintenance",
-  "message": "CT 机球管打火怎么维修",
-  "context": {"asset_code": "CT-001"}
-}'
-
-# AI 资产分析
-
-### 📊 条码管理
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `generate_barcode` | 生成资产条码（**返回 PNG 二进制图片**） | `GET /api/barcode-scan/generate/:asset_code` |
-| `verify_barcode` | 验证条码 | `POST /api/barcode-scan/verify` |
-| `scan_barcode_inventory` | 扫码盘点 | `POST /api/barcode-scan/inventory` |
-| `barcode_scan_logs` | 扫描日志 | `GET /api/barcode-scan/logs` |
-
-```bash
-# 生成条码（返回 PNG 二进制图片，非 JSON）
-bash scripts/assethub_api.sh request GET "/barcode-scan/generate/CT-001"
-# 注意：该接口返回图片二进制，直接保存即可
-
-# 扫码盘点
-bash scripts/assethub_api.sh request POST "/barcode-scan/inventory" '{
-  "inventory_id": 1,
-  "asset_code": "CT-001",
-  "actual_location": "放射科",
-  "actual_status": "在用",
-  "scan_time": "2026-05-08 10:30:00"
-}'
-```
-
-### ☁️ 云同步
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `cloud_sync_sources` | 同步源列表 | `GET /api/cloud-sync/sources` |
-| `create_sync_source` | 创建同步源 | `POST /api/cloud-sync/sources` |
-
-```bash
-# 同步源列表
-bash scripts/assethub_api.sh request GET "/cloud-sync/sources"
-
-# 创建同步源
-bash scripts/assethub_api.sh request POST "/cloud-sync/sources" '{
-  "name": "外部资产同步",
-  "type": "api",
-  "config": {"endpoint": "https://..."},
-  "enabled": true
-}'
-```
-
-### 🏷️ 标签与位置编码
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `list_location_codes` | 位置编码列表 | `GET /api/location-codes` |
-| `create_location_code` | 创建位置编码 | `POST /api/location-codes` |
-
-```bash
-# 位置编码列表
-bash scripts/assethub_api.sh request GET "/location-codes?page=1&pageSize=20"
-
-# 创建位置编码
-bash scripts/assethub_api.sh request POST "/location-codes" '{
-  "code": "A-01-01",
-  "name": "A栋1层1号房间",
-  "type": "room"
-}'
-```
-
-### 📈 使用量与阈值检查
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `check_usage_thresholds` | 检查维护阈值 | `GET /api/maintenance/usage/check-thresholds` |
-
-```bash
-# 检查维护阈值
-bash scripts/assethub_api.sh request GET "/maintenance/usage/check-thresholds"
-```
-
-### 💻 系统健康检查
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `health_check` | 基础健康检查 | `GET /api/health` |
-| `detailed_health` | 详细健康检查 | `GET /api/health/detailed` |
-| `system_ready` | 系统就绪检查 | `GET /api/ready` |
-| `system_alive` | 服务存活检查 | `GET /api/alive` |
-| `api_docs` | API 文档概览 | `GET /api/api-docs` |
-
-```bash
-# 基础健康检查（无需认证）
-bash scripts/assethub_api.sh request GET "/health"
-
-```
-
-### 📊 数据分析
-
-| 工具名 | 说明 | 路径 |
-|--------|------|------|
-| `analysis_overview` | 综合分析 | `GET /api/analysis` |
-| `value_distribution` | 价值分布分析 | `GET /api/analysis/value-distribution` |
-| `depreciation_analysis` | 折旧分析报告 | `GET /api/analysis/depreciation` |
-
-```bash
-# 综合分析
-bash scripts/assethub_api.sh request GET "/analysis"
-
-# 价值分布
-bash scripts/assethub_api.sh request GET "/analysis/value-distribution"
-```
-
----
-
-# 🔑 认证与请求头
+> ⚠️ **本章节已于 v1.6.0 精简**：原 ~568 行变更日志已迁移到 `references/api-catalog-2026-07-19/`。
+> v1.5.0 工具与 v1.5.2 端点的完整列表，参见 `references/api-catalog-2026-07-19/API接口总览.md`（97 模块 / 1709 端点）。
 
 ## 标准请求头
 
 ```http
-Authorization: Bearer <JWT_TOKEN>
+X-Tenant-Id: <tenant_id>   # 仅超级管理员跨租户时需要（v1.6.0 修正：驼峰 tId）
 Content-Type: application/json
-X-Tenant-ID: <tenant_id>   # 仅超级管理员跨租户时需要
+X-Tenant-Id: <tenant_id>   # 仅超级管理员跨租户时需要（v1.6.0：驼峰 tId）
 Idempotency-Key: <唯一键>  # 所有写操作都需要（长度≤128），格式：op-$(date +%s)-$RANDOM
 ```
 
@@ -1009,9 +520,9 @@ AssetHub API 对写操作有两层安全机制：
 
 **curl 示例（AI 安全入口）：**
 ```bash
-curl -sS -X POST "http://192.168.1.111:5183/api/maintenance/ai/submit-request" \
+curl -sS -X POST "http://localhost:13579/api/maintenance/ai/submit-request" \
   -H "Authorization: Bearer <TOKEN>" \
-  -H "X-Tenant-ID: <TENANT_ID>" \
+  -H "X-Tenant-Id: <TENANT_ID>" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: op-$(date +%s)-$RANDOM" \
   -d '{"asset_code":"CT-001","fault_description":"球管打火报警E01","source":"assetclaw","intent":"repair_request"}'
@@ -1194,7 +705,7 @@ session = j.loads(open('/tmp/assethub-claw-session.json').read())
 token = session['token']
 tenant_id = session['tenant_id']
 
-base = "http://192.168.1.111:5183/api"
+base = "http://localhost:13579/api"
 
 def fetch(page, pageSize=200):
     url = f"{base}/assets?page={page}&pageSize={pageSize}"
@@ -1247,9 +758,9 @@ data = fetch_all_assets()
 medical_imaging = [a for a in data if a.get("category_id") == 5]
 ```
 
-### 内网 192.168.1.111:5183 无法访问
+### 内网 localhost:13579 无法访问
 
-**问题：** 内网 API 地址 `192.168.1.111:5183` 连接超时。
+**问题：** 内网 API 地址 `localhost:13579` 连接超时。
 
 **原因：** 该地址仅限医院内网访问。
 
@@ -1257,7 +768,7 @@ medical_imaging = [a for a in data if a.get("category_id") == 5]
 - `www.medfix.cn` → 跳转到 AssetHub 登录页
 - 直接在浏览器打开 `http://www.medfix.cn` 登录后，在 URL 中找到对应的租户入口
 
-**注意：** 脚本中使用内网地址（`http://192.168.1.111:5183/api`），在外网环境下需通过 VPN 或代理访问。
+**注意：** 脚本中使用内网地址（`http://localhost:13579/api`），在外网环境下需通过 VPN 或代理访问。
 
 ### 资产总况统计接口
 
@@ -1795,7 +1306,7 @@ import urllib.request, json, sys, urllib.parse
 
 session = json.loads(open('/tmp/assethub-claw-session.json').read())
 token = session['token']; tenant_id = session['tenant_id']
-base = "http://192.168.1.111:5183/api"
+base = "http://localhost:13579/api"
 
 def fetch(path):
     url = f"{base}{path}"
@@ -1968,9 +1479,9 @@ bash scripts/assethub_api.sh request POST "/maintenance/ai/submit-request" '{
 }'
 
 # 直接 curl 调用（需手动加 Idempotency-Key）
-curl -sS -X POST "http://192.168.1.111:5183/api/maintenance/ai/submit-request" \
+curl -sS -X POST "http://localhost:13579/api/maintenance/ai/submit-request" \
   -H "Authorization: Bearer <TOKEN>" \
-  -H "X-Tenant-ID: <TENANT_ID>" \
+  -H "X-Tenant-Id: <TENANT_ID>" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: op-$(date +%s)-$RANDOM" \
   -d '{"asset_code":"CT-001","fault_description":"球管打火，报警 E01","issue_description":"球管打火，报警 E01","fault_level":"紧急","priority":"critical","request_department":"放射科","contact_phone":"13800138000","source":"assetclaw","intent":"repair_request"}'
@@ -2275,7 +1786,7 @@ bash scripts/assethub_api.sh request GET "/technical-documents?page=1&pageSize=2
 bash scripts/assethub_api.sh request GET "/technical-documents?category=技术资料&pageSize=20"
 
 # 上传文档（需要 form-data，curl 示例）
-curl -sS -X POST "http://192.168.1.111:5183/api/technical-documents" \
+curl -sS -X POST "http://localhost:13579/api/technical-documents" \
   -H "Authorization: Bearer <TOKEN>" \
   -F "file=@/path/to/file.pdf" \
   -F "title=设备操作手册" \
@@ -3840,3 +3351,30 @@ AssetHub 的科室信息分散存储在多个字段：
 1. 所有写操作必须带 `Idempotency-Key: op-$(date +%s)-$RANDOM`
 2. **报修走 AI 安全入口** `POST /maintenance/ai/submit-request`，一次完成，不触发二次确认
 3. 普通端点需两段式：第一次拿 confirmToken，第二次带 `X-Risk-Confirm-Token` 重放
+
+---
+
+## 🆕 v1.6.0 变更日志（2026-04-02）
+
+### 新增
+
+- **`references/api-conventions.md`** — 协议层全局约定（Base URL、认证、租户、统一响应、错误码、限流、高危网关、幂等、上传、SSE）
+- **`references/middleware.md`** — 中间件速查（12 个中间件 + 客户端应对矩阵 + 权限码速查）
+- **`references/asset-state-machine.md`** — 资产状态机详解（5 个状态、流转图、流转入口、非法流转示例、工作流引擎）
+- **`references/route-mount-map.md`** — 路由挂载总览（`backend/server.js` 与各模块路由的对应表，约 60+ 前缀）
+- **`references/api-modules-overview.md`** — 60+ 模块概览（按业务域分组、入口前缀、关键端点数量）
+- **`references/skill-authoring-checklist.md`** — OpenClaw skill 编写规范（命名、查询前写入、缓存、SSE、高危入口、调用顺序）
+- **主文档全局约定章节** — 错误码、高危网关、中间件、references 索引速查表
+- **核心原则 #9** — 依赖 references/ 的引导规则
+
+### 优化
+
+- 主 SKILL.md 不再重复错误码/中间件/状态机的元知识（已在 references/ 中）
+- 现有端点（v1.5.8/v1.5.9 补充的 enhanced-permissions、adverse-reaction、agent-mesh、tendering 等）已映射到 `references/api-modules-overview.md` 和 `references/route-mount-map.md`
+- 维修模块双路径（`/maintenance-management/*` 新 vs `/maintenance/*` 旧）在 `references/route-mount-map.md` 第 7 节标注
+
+### 不变
+
+- helper 脚本 `scripts/assethub_api.sh` 不变
+- 现有 API 模块速查、API 调用示例、决策树、经验教训章节不变
+- 业务调用方式完全兼容 v1.5.9

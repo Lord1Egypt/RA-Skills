@@ -1,41 +1,50 @@
-## Description: <br>
-Bayesian inference engine for AI agents. Update beliefs with new evidence. Prior + evidence = posterior. Multi-factor prediction with calibration tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bayesian inference engine for AI agents that updates beliefs with evidence, combines weighted factors into posterior probabilities, and supports calibration tracking.
 
-## Publisher: <br>
-[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whatsonyourmind](https://clawhub.ai/user/whatsonyourmind)
 
-## Use Case: <br>
-Developers and agents use Oraclaw Bayesian to update prior probabilities with weighted evidence, combine multiple evidence sources, and return posterior estimates with factor contributions and calibration information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prediction inputs may include sensitive evidence sent to the OraClaw service. <br>
-Mitigation: Avoid submitting sensitive evidence unless the service's privacy and retention terms have been reviewed. <br>
-Risk: Repeated predictions may create paid usage after the free tier. <br>
-Mitigation: Use a revocable API key and monitor usage and billing for the ORACLAW_API_KEY account. <br>
+## Use Case:
 
+External developers and agents use this skill to start from a prior probability, combine weighted evidence factors, update posterior probabilities, and track calibration over repeated predictions.
 
-## Reference(s): <br>
-- [OraClaw Bayesian homepage](https://oraclaw.dev/bayesian) <br>
-- [ClawHub release page](https://clawhub.ai/whatsonyourmind/oraclaw-bayesian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [JSON-compatible Bayesian prediction result with posterior probability, factor contributions, and calibration score.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ORACLAW_API_KEY; paid API use may incur USDC charges after the free tier.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill requires ORACLAW_API_KEY and sends evidence to a third-party provider for paid inference.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped API key, confirm the paid API model before installation, and avoid sending sensitive or confidential evidence unless the provider is trusted for that data.
+
+## Reference(s):
+
+- [OraClaw Bayesian homepage](https://oraclaw.dev/bayesian)
+- [ClawHub skill page](https://clawhub.ai/whatsonyourmind/skills/oraclaw-bayesian)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with JSON-shaped tool input and probability results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ORACLAW_API_KEY; paid inference is disclosed at $0.02 per inference with a free monthly tier.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

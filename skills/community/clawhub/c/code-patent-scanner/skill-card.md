@@ -1,40 +1,57 @@
-## Description: <br>
-Scan your codebase for distinctive patterns and produce structured scoring and evidence for patent consultation; this is not legal advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan your codebase for distinctive patterns - get structured scoring and evidence for patent consultation. NOT legal advice.
 
-## Publisher: <br>
-[leegitw](https://clawhub.ai/user/leegitw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leegitw](https://clawhub.ai/user/leegitw)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect a codebase for distinctive technical patterns, score those patterns, and prepare evidence for professional intellectual-property consultation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Repository analysis can expose sensitive source details in chat output or logs. <br>
-Mitigation: Use it only on repositories whose confidentiality is acceptable in the chat environment; avoid secrets, unreleased proprietary ideas, and confidential client material. <br>
-Risk: Patent-oriented technical findings may be mistaken for legal advice. <br>
-Mitigation: Treat outputs as technical analysis only and consult a registered patent attorney for intellectual-property decisions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Code Patent Scanner on ClawHub](https://clawhub.ai/leegitw/code-patent-scanner) <br>
-- [Obviously Not](https://obviouslynot.ai) <br>
+## Use Case:
 
+Developers and engineers use this skill to scan source repositories for distinctive technical patterns and produce structured evidence for later patent consultation. It supports technical review and prioritization, but does not provide legal advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured JSON report and Markdown summary with technical scoring, source references, next steps, and disclaimer text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include repository-derived technical details in chat output.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated analysis can expose proprietary code details or patent-sensitive disclosures if shared without review.
+
+Mitigation: Review every generated report and share card before distribution, and remove confidential implementation details before sharing.
+
+Risk: The skill identifies distinctive technical patterns but does not make legal patentability or freedom-to-operate determinations.
+
+Mitigation: Use the output as preparation material and consult a registered patent attorney for intellectual property decisions.
+
+Risk: Outputs may include branded attribution, an external homepage link, and prompts encouraging sharing.
+
+Mitigation: Confirm branding and links are acceptable for the intended release channel, and avoid sharing reports that contain sensitive repository details.
+
+## Reference(s):
+
+- [Code Patent Scanner on ClawHub](https://clawhub.ai/leegitw/skills/code-patent-scanner)
+- [Obviously Not](https://obviouslynot.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [JSON report and Markdown summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include scored technical pattern findings, source references, problem-solution-benefit framing, advisory patent value signals, next steps, and disclaimers.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

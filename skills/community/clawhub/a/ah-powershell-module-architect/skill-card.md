@@ -1,40 +1,53 @@
-## Description: <br>
-PowerShell architecture expert specializing in module design, function structure, reusable libraries, profile optimization, and cross-version compatibility across PowerShell 5.1 and PowerShell 7+. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PowerShell architecture expert specializing in module design, function structure, reusable libraries, profile optimization, and cross-version compatibility across PowerShell 5.1 and PowerShell 7+.
 
-## Publisher: <br>
-[mtsatryan](https://clawhub.ai/user/mtsatryan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mtsatryan](https://clawhub.ai/user/mtsatryan)
 
-## Use Case: <br>
-Developers, IT operations engineers, and automation teams use this skill to refactor fragmented PowerShell scripts into documented, testable modules and maintainable shell profiles. It supports module manifests, public/private function structure, Pester test recommendations, and compatibility planning for PowerShell 5.1 and PowerShell 7+. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PowerShell module or profile guidance may affect shell startup behavior or enterprise administration tooling if applied without review. <br>
-Mitigation: Review proposed module, profile, and administration code before use, especially changes that alter shell profiles or shared operational tooling. <br>
-Risk: Cross-version compatibility recommendations may need validation across PowerShell 5.1 and PowerShell 7+ environments. <br>
-Mitigation: Test generated patterns in the target PowerShell versions and operating environments before deployment. <br>
+## Use Case:
 
+Developers, engineers, and IT operations teams use this skill to design, refactor, and review PowerShell modules, reusable function libraries, and team profiles for maintainability and cross-version compatibility.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mtsatryan/ah-powershell-module-architect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with PowerShell snippets, checklists, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory output only; review generated PowerShell module and profile changes before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated profile changes may run automatically in future PowerShell sessions if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed profile edits before applying them and keep heavy work out of profiles.
+
+Risk: Generated module architecture or function guidance may not match local operational standards.
+
+Mitigation: Validate public interfaces, manifest metadata, error handling, and Pester test coverage before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mtsatryan/skills/ah-powershell-module-architect)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with PowerShell examples, checklists, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory text; review generated module, function, and profile changes before applying them.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

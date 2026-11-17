@@ -1,43 +1,54 @@
-## Description: <br>
-Analyzes error messages and tracebacks to identify likely root causes and suggest fixes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Debug Companion analyzes pasted error messages and tracebacks, identifies likely causes, and returns repair suggestions for common programming errors.
 
-## Publisher: <br>
-[ysy88092144](https://clawhub.ai/user/ysy88092144) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysy88092144](https://clawhub.ai/user/ysy88092144)
 
-## Use Case: <br>
-Developers and engineers use this skill to submit error messages, tracebacks, and optional code context for structured debugging analysis, repair suggestions, and reference links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Debug logs and tracebacks can contain secrets, private paths, customer data, hostnames, or proprietary code. <br>
-Mitigation: Redact sensitive details before submitting errors and share only the smallest excerpt needed for diagnosis. <br>
-Risk: Suggested fixes may be incomplete or incorrect for project-specific code and dependency versions. <br>
-Mitigation: Review proposed changes and validate them in a test environment before applying them to production code. <br>
+## Use Case:
 
+Developers and engineers use this skill to interpret runtime errors, compiler errors, and tracebacks across common programming languages. It helps extract error details, explain likely root causes, and propose actionable fixes or reference material.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ysy88092144/debug-companion) <br>
-- [Publisher Profile](https://clawhub.ai/user/ysy88092144) <br>
-- [Python Built-in Exceptions](https://docs.python.org/3/library/exceptions.html) <br>
-- [Stack Overflow Error Discussions](https://stackoverflow.com/questions/tagged/error) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with structured sections and inline code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include parsed error details, root cause explanation, repair steps, code snippets, and reference links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+Risk: The skill claims automatic redaction, but the security evidence says the inspected implementation retains and displays raw traceback and context data that may contain secrets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Manually redact production tracebacks, secrets, tokens, passwords, connection strings, private URLs, and proprietary code before using the skill.
+
+Risk: Generated debugging guidance or code changes may be incomplete or incorrect for project-specific logic.
+
+Mitigation: Review proposed fixes and test them in a controlled environment before applying them to production code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ysy88092144/skills/debug-companion)
+- [ClawHub publisher profile](https://clawhub.ai/user/ysy88092144)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown with structured sections and inline code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include external reference links and code snippets; users should redact sensitive traceback or code context before sharing.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, server release metadata, script header)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

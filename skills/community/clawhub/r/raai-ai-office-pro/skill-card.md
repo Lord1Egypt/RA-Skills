@@ -1,48 +1,67 @@
-## Description: <br>
-Operational chief-of-staff for Russian CEOs: OKR, weekly review, decision log, briefing, delegation and strategic priorities. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Operational chief-of-staff for Russian CEOs: OKR, weekly review, decision log, briefing, delegation and strategic priorities.
 
-## Publisher: <br>
-[raaipro](https://clawhub.ai/user/raaipro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raaipro](https://clawhub.ai/user/raaipro)
 
-## Use Case: <br>
-CEOs, owners, and operating leaders use this skill to structure business cadence through daily briefings, OKRs, weekly reviews, decision logs, delegation checkpoints, quarterly planning, and investor updates. It is aimed at Russian-language small and midsize businesses that already have teams, metrics, and recurring management cycles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle sensitive company metrics, decisions, team details, and operating cadence. <br>
-Mitigation: Review the configuration before connecting real company data, use scoped credentials, and keep optional integrations disabled until access boundaries are approved. <br>
-Risk: Calendar, diary, Telegram, CRM, or Sheets actions may change operational records without clear approval gates. <br>
-Mitigation: Require explicit user confirmation before any write action and start with read-only or disabled integrations during evaluation. <br>
-Risk: Broad production triggers can route ordinary messages into management workflows. <br>
-Mitigation: Avoid broad one-word triggers in production and use stricter intent routing or confirmation prompts for workflow activation. <br>
-Risk: Installation can affect an existing ai-office-pro skill directory. <br>
-Mitigation: Back up any existing ai-office-pro directory before installation or upgrade. <br>
+## Use Case:
 
+External Russian-speaking CEOs, owners, and managing directors use this skill to structure operating rhythms around OKRs, daily briefings, weekly reviews, decision logs, delegation, investor updates, and strategic priorities.
 
-## Reference(s): <br>
-- [ClawHub listing for Ai Office Pro](https://clawhub.ai/raaipro/raai-ai-office-pro) <br>
-- [Quick Start](examples/quick-start.md) <br>
-- [Onboarding Guide](docs/onboarding.md) <br>
-- [Anti-Fail Guide](docs/anti-fail.md) <br>
-- [Dogfooding Evidence](proof/dogfooding-RAAI.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Structured Russian-language Markdown or plain text for briefings, OKRs, weekly reviews, decision logs, delegation plans, quarterly plans, and investor updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on user-provided business metrics and optional integrations such as Sheets, Calendar, Telegram, CRM, or diary tools.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.5.4 (source: server release metadata and frontmatter) <br>
+Risk: The package security verdict is suspicious, and the server summary says the main CEO assistant is coherent but includes under-scoped helper prompts and scripts that need review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the package before installation, especially SKILL.md, config/raai_system_prompt.md, install.sh, build.sh, and test/smoke-test.sh.
+
+Risk: Bundled shell scripts fail static shell syntax checks and the security guidance says exact file writes and a manual or dry-run install path are not documented.
+
+Mitigation: Avoid running bundled shell scripts until the publisher fixes syntax errors, documents file writes, supplies a manual or dry-run install path, and provides the expected environment template.
+
+Risk: Optional integrations can expose business spreadsheets, calendar events, decision logs, and Russian-language business operating data.
+
+Mitigation: Keep integrations disabled unless explicitly needed, use least-privilege credentials, and test with non-sensitive data before connecting production systems.
+
+Risk: The skill can produce misleading operating recommendations when KPI, calendar, delegation, or decision data is missing or inaccurate.
+
+Mitigation: Require CEO or operator review of outputs and populate configuration and metrics with real, current business data before relying on the generated plans.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/raaipro/skills/raai-ai-office-pro)
+- [README](artifact/README.md)
+- [Quick Start](artifact/examples/quick-start.md)
+- [Onboarding](artifact/docs/onboarding.md)
+- [Anti-Fail Limitations](artifact/docs/anti-fail.md)
+- [ROI](artifact/docs/roi.md)
+- [Dogfooding Proof](artifact/proof/dogfooding-RAAI.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration, shell commands]
+
+**Output Format:** [Markdown with structured business templates and occasional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language management outputs; quality depends on user-provided business data and enabled integrations.]
+
+## Skill Version(s):
+
+3.5.4 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

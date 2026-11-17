@@ -1,42 +1,51 @@
-## Description: <br>
-Find nearby Wikipedia articles based on geographic location. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find nearby Wikipedia articles based on geographic location.
 
-## Publisher: <br>
-[jrrqd](https://clawhub.ai/user/jrrqd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jrrqd](https://clawhub.ai/user/jrrqd)
 
-## Use Case: <br>
-External users and agents use this skill to turn a shared location, coordinates, or place name into nearby Wikipedia articles with distances and optional brief descriptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Precise location data can reveal sensitive places when used with browser geolocation or API queries. <br>
-Mitigation: Use an approximate place name or ask the agent to confirm before sending exact coordinates for sensitive locations. <br>
-Risk: Nearby results may be sparse or empty where Wikipedia has few geotagged articles. <br>
-Mitigation: Set expectations, try a broader radius when appropriate, or ask for a nearby known place as the search center. <br>
+## Use Case:
 
+External users and agents use this skill to discover nearby Wikipedia articles for places, landmarks, museums, restaurants, and other points of interest from a current location, named place, or explicit coordinates.
 
-## Reference(s): <br>
-- [Wikipedia Nearby](https://en.wikipedia.org/wiki/Special:Nearby) <br>
-- [Wikipedia API endpoint](https://en.wikipedia.org/w/api.php) <br>
-- [ClawHub skill page](https://clawhub.ai/jrrqd/wikipedia-nearby) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with URL templates, nearby-article summaries, and optional curl commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided coordinates, browser geolocation permission, or a geocoded place name; results depend on Wikipedia articles with geographic coordinates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Precise coordinates shared by a user or messaging integration may be sent to Wikipedia APIs during nearby-article searches.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a place name or approximate area when exact location sharing is not necessary.
+
+## Reference(s):
+
+- [Wikipedia Nearby](https://en.wikipedia.org/wiki/Special:Nearby)
+- [Wikipedia Geosearch API](https://en.wikipedia.org/w/api.php?action=query&list=geosearch&gscoord={lat}%7C{lng}&gsradius=10000&gslimit=50&format=json)
+- [ClawHub Skill Page](https://clawhub.ai/jrrqd/skills/wikipedia-nearby)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, API calls, markdown]
+
+**Output Format:** [Markdown with inline URL and bash examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Wikipedia article titles, distances, brief extracts, and API request examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,199 @@
+{
+  "platform": "中国政府采购网（中央）",
+  "source_url": "http://www.ccgp.gov.cn/cggg/zygg/",
+  "generated_at": "2026-07-28T10:37:45.174277",
+  "total_count": 19,
+  "compliance_note": "本采集严格遵守 robots.txt（取不到策略文件或返回非 200 时按默认禁止，fail-closed），仅采依法公开公告，同域请求间隔 ≥3 秒；不破解验证码、不绕过登录、不采非公开信息。",
+  "data": [
+    {
+      "id": "ccgp_20260728_27018003",
+      "title": "华中农业大学农业智能装备创新支撑中心项目第三十四批（太阳能发电储能系统等设备）第二次公开招标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/gkzb/202607/t20260728_27018003.htm",
+      "publish_date": "2026-07-28",
+      "category": "公开招标",
+      "category_code": "gkzb",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.172915"
+    },
+    {
+      "id": "ccgp_20260728_27018006",
+      "title": "中华人民共和国青岛海事局前湾海事处办公楼北侧改造项目竞争性磋商采购公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/jzxcs/202607/t20260728_27018006.htm",
+      "publish_date": "2026-07-28",
+      "category": "竞争性磋商",
+      "category_code": "jzxcs",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173057"
+    },
+    {
+      "id": "ccgp_20260728_27017985",
+      "title": "中国中小企业发展促进中心地方园区级企业服务平台及智慧园区管理系统开发中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017985.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173123"
+    },
+    {
+      "id": "ccgp_20260728_27017973",
+      "title": "西南财经大学ScienceDirect数据库及CRSP数据库采购项目公开招标中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017973.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173253"
+    },
+    {
+      "id": "ccgp_20260728_27017972",
+      "title": "武汉市消防救援支队水上大队水上大队及所属队站物业管理服务项目中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017972.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173314"
+    },
+    {
+      "id": "ccgp_20260728_27017965",
+      "title": "上海市静安区消防救援支队2026年消防为民办实事项目（锂电池专用灭火器）成交公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/cjgg/202607/t20260728_27017965.htm",
+      "publish_date": "2026-07-28",
+      "category": "成交公告",
+      "category_code": "cjgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173365"
+    },
+    {
+      "id": "ccgp_20260728_27017963",
+      "title": "成都市龙泉驿区消防救援局2026年度办公用品耗材配送项目（二次）比选公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/qtgg/202607/t20260728_27017963.htm",
+      "publish_date": "2026-07-28",
+      "category": "其他公告",
+      "category_code": "qtgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173416"
+    },
+    {
+      "id": "ccgp_20260728_27017941",
+      "title": "成都市龙泉驿区消防救援局2026年度桶装水、瓶装水配送项目（二次）比选公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/qtgg/202607/t20260728_27017941.htm",
+      "publish_date": "2026-07-28",
+      "category": "其他公告",
+      "category_code": "qtgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173466"
+    },
+    {
+      "id": "ccgp_20260728_27017942",
+      "title": "成都市龙泉驿区消防救援局2026年度空调维修维护服务项目（二次）比选公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/qtgg/202607/t20260728_27017942.htm",
+      "publish_date": "2026-07-28",
+      "category": "其他公告",
+      "category_code": "qtgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173517"
+    },
+    {
+      "id": "ccgp_20260728_27017944",
+      "title": "池州出入境边防检查站网络线路租赁集成项目成交公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/cjgg/202607/t20260728_27017944.htm",
+      "publish_date": "2026-07-28",
+      "category": "成交公告",
+      "category_code": "cjgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173570"
+    },
+    {
+      "id": "ccgp_20260728_27017946",
+      "title": "中华人民共和国池州出入境边防检查站物业管理服务项目成交公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/cjgg/202607/t20260728_27017946.htm",
+      "publish_date": "2026-07-28",
+      "category": "成交公告",
+      "category_code": "cjgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173622"
+    },
+    {
+      "id": "ccgp_20260728_27017927",
+      "title": "中国地震局工程力学研究所地震场地效应模拟装置及控制系统购置项目中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017927.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173672"
+    },
+    {
+      "id": "ccgp_20260728_27017929",
+      "title": "中央民族大学海淀校区运动场地改造建设项目中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017929.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173721"
+    },
+    {
+      "id": "ccgp_20260728_27017917",
+      "title": "中国地质调查局天津地质调查中心（华北地质科技创新中心）内蒙古自治区杭锦旗赛台地区铀矿钻探废标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/qtgg/202607/t20260728_27017917.htm",
+      "publish_date": "2026-07-28",
+      "category": "其他公告",
+      "category_code": "qtgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173769"
+    },
+    {
+      "id": "ccgp_20260728_27017916",
+      "title": "中国地质调查局天津地质调查中心（华北地质科技创新中心）河北井陉地区铝土矿机械岩心钻探及配套工作中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017916.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173818"
+    },
+    {
+      "id": "ccgp_20260728_27017919",
+      "title": "大理市消防救援大队2026年7月至2028年7月车辆船舶保险服务采购项目（三次）",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/jzxcs/202607/t20260728_27017919.htm",
+      "publish_date": "2026-07-28",
+      "category": "竞争性磋商",
+      "category_code": "jzxcs",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173870"
+    },
+    {
+      "id": "ccgp_20260728_27017886",
+      "title": "国家林业和草原局林草调查规划院2025年林草生态综合监测数据服务和软件升级项目第2包废标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/qtgg/202607/t20260728_27017886.htm",
+      "publish_date": "2026-07-28",
+      "category": "其他公告",
+      "category_code": "qtgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173920"
+    },
+    {
+      "id": "ccgp_20260728_27017885",
+      "title": "国家林业和草原局林草调查规划院2025年林草生态综合监测数据服务和软件升级项目第1包中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017885.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.173969"
+    },
+    {
+      "id": "ccgp_20260728_27017882",
+      "title": "中国科学院2026年部门集中采购项目第27包（显微镜类）中标公告",
+      "link": "http://www.ccgp.gov.cn/cggg/zygg/zbgg/202607/t20260728_27017882.htm",
+      "publish_date": "2026-07-28",
+      "category": "中标公告",
+      "category_code": "zbgg",
+      "region": "中央/全国",
+      "parsed_at": "2026-07-28T10:37:45.174017"
+    }
+  ]
+}

@@ -1,45 +1,66 @@
-## Description: <br>
-AI Short Drama Toolkit provides a Chinese-language workflow for creating short dramas from concept through scripts, prompts, production planning, platform adaptation, and monetization guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Short Drama Toolkit helps creators plan Chinese-language AI short dramas with script templates, prompt templates, production workflows, platform adaptation guidance, and monetization strategy.
 
-## Publisher: <br>
-[caingao](https://clawhub.ai/user/caingao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[caingao](https://clawhub.ai/user/caingao)
 
-## Use Case: <br>
-External creators and content teams use this skill to draft Chinese short-drama scripts, generate reusable AI image/video/voice prompts, plan production workflows, and evaluate platform-specific publishing and monetization options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use with third-party AI tools can expose confidential scripts, private audio, or identifiable voice likenesses. <br>
-Mitigation: Do not upload sensitive material or recognizable voices unless consent, rights clearance, provider data-retention terms, and commercial-use rights have been reviewed. <br>
-Risk: Generated short-drama assets and platform plans can raise copyright, likeness, or content-moderation issues. <br>
-Mitigation: Review generated scripts, visuals, audio, music, and publication plans against platform rules and rights requirements before release. <br>
+## Use Case:
 
+Content creators, social media teams, and developers use this skill to generate short-drama scripts, story outlines, visual prompts, storyboard guidance, production workflow advice, and monetization plans for Chinese short-video platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/caingao/ai-short-drama) <br>
-- [README](artifact/README.md) <br>
-- [Production Workflow](artifact/production-workflow.md) <br>
-- [Prompt Templates](artifact/prompt-templates.md) <br>
-- [Script Templates](artifact/script-templates.md) <br>
-- [Monetization Guide](artifact/monetization-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, templates, prompts, production checklists, and platform recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Chinese-language scripts, scene prompts, storyboard tables, workflow steps, and monetization recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Unpublished scripts, client material, voice samples, or personal data could be exposed when users follow recommendations involving third-party AI tools.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review inputs before using external services, remove sensitive material, and use approved tools or contractual protections for confidential work.
+
+Risk: Commercial use of generated visuals, music, scripts, or cloned voices may create copyright, likeness, or consent issues.
+
+Mitigation: Confirm tool license terms, platform policies, music rights, and voice-cloning permissions before publication or monetization.
+
+Risk: Generated drama concepts may include sensitive themes or content that violates platform review rules.
+
+Mitigation: Screen scripts and prompts against target platform content policies before production and distribution.
+
+Risk: Revenue examples and platform monetization paths may become outdated or may not apply to every creator.
+
+Mitigation: Treat monetization figures as planning examples and verify current platform programs, eligibility requirements, and local rules before making business decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/caingao/skills/ai-short-drama)
+- [AI Short Drama Toolkit README](artifact/README.md)
+- [Script Templates](artifact/script-templates.md)
+- [Prompt Templates](artifact/prompt-templates.md)
+- [Production Workflow](artifact/production-workflow.md)
+- [Monetization Guide](artifact/monetization-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured prose, tables, checklists, and prompt blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language content-production guidance; no code execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

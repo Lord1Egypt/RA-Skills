@@ -1,0 +1,8 @@
+interface:
+  display_name: "读者反馈改稿待办"
+  short_description: "将读者与编辑意见去重归纳为可执行且可核查的章节改稿清单"
+  default_prompt: "使用 $novel-feedback-actionlist-cn 整理我提供的读者或编辑意见及对应章节摘要，归纳问题组、影响章节和优先改稿项。"
+  icon_small: "./icon-512.png"
+  icon_large: "./icon-512.png"
+policy:
+  allow_implicit_invocation: true

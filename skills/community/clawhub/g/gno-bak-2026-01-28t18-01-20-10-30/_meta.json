@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7b944nr4v3gv0bn25f68qqyn803vh4",
-  "slug": "gno-bak-2026-01-28t18-01-20-10-30",
-  "version": "1.0.0",
-  "publishedAt": 1769585539997
+  "owner": "gmickel",
+  "slug": "gno",
+  "displayName": "Gno",
+  "latest": {
+    "version": "0.13.0",
+    "publishedAt": 1767655652781,
+    "commit": "https://github.com/clawdbot/skills/commit/71cdf4f7fb659ef67ff7a8c394777adda6375e84"
+  },
+  "history": []
 }

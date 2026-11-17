@@ -1,41 +1,60 @@
-## Description: <br>
-基于热量差=目标步数的核心理念，通过定时提醒、饮食打卡、步数督促、数据分析、激励机制陪伴用户健康减肥。支持8+16断食、加餐记录、平台期解释、体重趋势预测和多轮对话优化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ai Companion Diet helps users track meals, steps, weight, calorie targets, reminders, and weight-loss trend analysis for diet planning.
 
-## Publisher: <br>
-[joeyoung310](https://clawhub.ai/user/joeyoung310) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[joeyoung310](https://clawhub.ai/user/joeyoung310)
 
-## Use Case: <br>
-External users and agents use this skill to run a local diet companion workflow for calorie estimates, meal logging, step tracking, weight trends, reminders, and progress summaries. It is intended for wellness tracking and does not replace medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores weight, meal, activity, and body-metric history as plaintext files in its local data directory. <br>
-Mitigation: Use it only on trusted single-user machines, avoid shared workspaces, and delete the local data folder when those records should no longer be retained. <br>
-Risk: Calorie estimates, fasting suggestions, and weight-loss summaries may be incomplete or unsuitable for users with medical conditions. <br>
-Mitigation: Treat outputs as wellness tracking guidance only and consult a qualified health professional for medical or condition-specific advice. <br>
+## Use Case:
 
+External users and agents use this skill to operate a local diet-tracking assistant that initializes user profile data, records meals, steps, and weight, and returns summaries, reminders, BMI/category calculations, plateau analysis, and trend predictions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/joeyoung310/ai-companion-diet) <br>
-- [Publisher profile](https://clawhub.ai/user/joeyoung310) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Terminal text plus local JSON records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates plaintext local data files for user profile, daily meal and step records, and weight history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill stores sensitive diet, step, and weight data in local JSON files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a trusted local environment and document data location, deletion, and file-permission behavior before deployment.
+
+Risk: Unsafe input handling can execute local code when crafted meal, step, or weight values are supplied.
+
+Mitigation: Avoid adversarial or copied values and prefer a fixed version that validates numeric inputs and passes data to Python as arguments instead of generated code.
+
+Risk: Weight-loss recommendations may be mistaken for medical advice.
+
+Mitigation: Present outputs as general wellness guidance and advise users with health conditions or discomfort to consult a qualified medical professional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/joeyoung310/skills/ai-companion-diet)
+- [ClawHub publisher profile](https://clawhub.ai/user/joeyoung310)
+- [Artifact skill definition](artifact/SKILL.md)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Terminal text with JSON data files and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local JSON records under data/ and returns calorie, step, weight, reminder, and trend-analysis messages.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

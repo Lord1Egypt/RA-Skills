@@ -1,0 +1,95 @@
+{
+  "schema": "260919-can-plan-validation/v1",
+  "verdict": "rejected",
+  "facts": {
+    "actions": 36,
+    "classifiedSegments": 36,
+    "nets": [
+      "CANH",
+      "CANL"
+    ],
+    "layer": 1,
+    "widthMil": 8.0,
+    "clearanceMil": 6.0,
+    "viaCount": 0,
+    "sourceSnapshot": {
+      "boardSha256": "aaf6b96f2e277e256c5f08f5b1fbdda08554d14bb236451f7c46a557c0805ebc",
+      "tracksSha256": "1f435687997bd04849f7322e3e5de40e474b0c6d44b7d5134184106fcb9c822f",
+      "viasSha256": "3ebdd5ba8869fde231f904ec153c60513572e2fa13fe0b2f9349ca0b8ae8aece",
+      "poursSha256": "450c1cb71382370ba8aaffcab65e3f244b157175ee7fdae5ee286b048694be4d",
+      "fillsSha256": "2fbf6c65415cb62d6fd0f7b3f47d7edabf4f43a15a4f949407803c82b831a8bd",
+      "regionsSha256": "f858a9032a00adb1e2dfffb8d72dc83cfa3c090279c9dbf7324ce67aa2452a78",
+      "documentUuid": "2e719e9419653c72"
+    },
+    "topology": {
+      "CANH": {
+        "orderedMainPads": [
+          "U5.7",
+          "R12.1",
+          "CN1.2"
+        ],
+        "orderedVertexIndices": [
+          0,
+          5,
+          11
+        ],
+        "mainSegments": 11,
+        "mainLengthMil": 606.0087,
+        "branchPad": "D1.1",
+        "branchSegments": 2,
+        "branchLengthMil": 108.609,
+        "branchTee": {
+          "x": 2700.0,
+          "y": 1575.0
+        },
+        "branchSharesOnlyDeclaredTee": true
+      },
+      "CANL": {
+        "orderedMainPads": [
+          "U5.6",
+          "R12.2",
+          "CN1.1"
+        ],
+        "orderedVertexIndices": [
+          0,
+          10,
+          21
+        ],
+        "mainSegments": 21,
+        "mainLengthMil": 1040.5245,
+        "branchPad": "D1.2",
+        "branchSegments": 2,
+        "branchLengthMil": 89.9663,
+        "branchTee": {
+          "x": 2880.0,
+          "y": 1420.0
+        },
+        "branchSharesOnlyDeclaredTee": true
+      }
+    },
+    "existingCanViaCount": 0
+  },
+  "findings": [
+    {
+      "code": "branch_pad_inner_entry",
+      "message": "CANH branch approaches D1.1 from the component-body side instead of its external pad end",
+      "evidence": {
+        "actionId": "H-branch-2",
+        "pad": "D1.1",
+        "outwardSide": "bottom",
+        "previous": [
+          2700.0,
+          1542.9
+        ],
+        "padCenter": [
+          2754.1,
+          1488.8
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "pad source shapes are unavailable; conservative hypot(width,height) square hulls were used and special-pad presence is unproven",
+    "track snapshot lacks arcsAvailable:true; existing arc absence is unproven"
+  ]
+}

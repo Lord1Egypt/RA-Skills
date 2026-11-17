@@ -1,38 +1,52 @@
-## Description: <br>
-这是一个测试技能，用于研究ClawHub发布流程。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+这是一个测试技能，用于研究ClawHub发布流程。
 
-## Publisher: <br>
-[waleychenyue](https://clawhub.ai/user/waleychenyue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[waleychenyue](https://clawhub.ai/user/waleychenyue)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External developers and reviewers can use this skill to test a ClawHub skill publishing flow, validate expected skill structure, and review basic metadata configuration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users who do not read Chinese may misunderstand the skill's scope or usage.
+
+Mitigation: Review localized instructions before using the skill in non-Chinese workflows.
+
+Risk: The artifact is a low-detail test skill and may not provide enough operational guidance for production publishing workflows.
+
+Mitigation: Supplement it with project-specific release checks before relying on it for a production process.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and ClawHub publishers can use this low-content test skill to validate skill structure, metadata, and release workflow checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The release is a low-content test skill rather than a functional capability. <br>
-Mitigation: Install it only for validating or studying the ClawHub publishing process, not as an operational automation skill. <br>
+**Output Format:** [Markdown guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/waleychenyue/test-skill-by-waleychenyue) <br>
+**Other Properties Related to Output:** [Static Chinese-language checklist-style guidance; no executable behavior.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance and checklist-style text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, credential access, or external tool use is requested by the artifact.] <br>
+1.0.0 (source: server release metadata and artifact metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

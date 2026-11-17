@@ -12,9 +12,13 @@ For Chinese books: --language zh (no --zh needed, single-language card)
 import json, sys, os, argparse, datetime, re, html as html_mod
 from weasyprint import HTML
 from normalize_quotes import normalize_all
+import render_common as _rc
 
 def esc(s):
     return html_mod.escape(s or '', quote=False)
+
+def esc_attr(s):
+    return html_mod.escape(s or '', quote=True)
 
 def md_links_to_text(text):
     """Convert markdown [text](url) to 'text (url)' plain text — IMA cannot click links."""
@@ -23,6 +27,8 @@ def md_links_to_text(text):
 
 def paras(text, md=False):
     out = []
+    # 先清 MDX/JSX 组件标签（<Note>、<img> 等），否则会被当普通文本字面显示
+    text = _rc.clean_mdx(text)
     for ln in (text or '').split('\n'):
         ln = ln.strip()
         if ln:
@@ -71,25 +77,25 @@ def build_html(payload, zh, date_str, language='en'):
                     '<div class="%s">%s</div></div>') % (color, title_cn if zh_ps else title_en, cls, content)
 
     if bilingual:
-        sections.append(block('核心观点', 'Core Idea', zh.get('coreIdeaZh',''), payload.get('coreIdea',''), '#1a7f37'))
-        sections.append(block('详细解释', 'Explanation', zh.get('explanationZh',''), payload.get('explanation',''), '#0969da', md=True))
-        sections.append(block('金句', 'Key Quote', zh.get('quoteZh',''), payload.get('quote',''), '#8250df'))
-        sections.append(block('应用场景', 'Application', zh.get('applicationZh',''), payload.get('application',''), '#bf8700', md=True))
+        sections.append(block('核心观点', 'Core Idea', zh.get('coreIdeaZh',''), payload.get('coreIdea',''), '#1e8e3e'))
+        sections.append(block('详细解释', 'Explanation', zh.get('explanationZh',''), payload.get('explanation',''), '#1a73e8', md=True))
+        sections.append(block('金句', 'Key Quote', zh.get('quoteZh',''), payload.get('quote',''), '#7b1fa2'))
+        sections.append(block('应用场景', 'Application', zh.get('applicationZh',''), payload.get('application',''), '#f9ab00', md=True))
     else:
         # Chinese book: content is in payload directly, no translation needed
         label = '核心观点' if language == 'zh' else 'Core Idea'
-        sections.append(block(label, label, payload.get('coreIdea',''), '', '#1a7f37'))
+        sections.append(block(label, label, payload.get('coreIdea',''), '', '#1e8e3e'))
         label2 = '详细解释' if language == 'zh' else 'Explanation'
-        sections.append(block(label2, label2, payload.get('explanation',''), '', '#0969da', md=True))
+        sections.append(block(label2, label2, payload.get('explanation',''), '', '#1a73e8', md=True))
         label3 = '金句' if language == 'zh' else 'Key Quote'
-        sections.append(block(label3, label3, payload.get('quote',''), '', '#8250df'))
+        sections.append(block(label3, label3, payload.get('quote',''), '', '#7b1fa2'))
         label4 = '应用场景' if language == 'zh' else 'Application'
-        sections.append(block(label4, label4, payload.get('application',''), '', '#bf8700', md=True))
+        sections.append(block(label4, label4, payload.get('application',''), '', '#f9ab00', md=True))
 
     # image (base64 data URI or URL)
     img_html = ''
     if payload.get('image'):
-        img_html = '<div class="img-wrap"><img src="%s"></div>' % esc(payload['image'])
+        img_html = '<div class="img-wrap"><img src="%s"></div>' % esc_attr(payload['image'])
 
     # related links — plain text URLs (IMA can't click)
     links_html = ''
@@ -118,7 +124,7 @@ def build_html(payload, zh, date_str, language='en'):
                 link_items.append('<div class="link-item">%s%s<br><span class="link-url">%s</span></div>' % (esc(label), mark, esc(href)))
             else:
                 link_items.append('<div class="link-item"><span class="link-url">%s</span></div>' % esc(href))
-        links_html = '<div class="sec"><div class="sec-h" style="color:#0969da">相关链接 · Related Links</div><div class="links">%s</div></div>' % ''.join(link_items)
+        links_html = '<div class="sec"><div class="sec-h" style="color:#1a73e8">相关链接 · Related Links</div><div class="links">%s</div></div>' % ''.join(link_items)
 
     note_html = ''
     if (zh or {}).get('note'):
@@ -132,14 +138,14 @@ def build_html(payload, zh, date_str, language='en'):
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 body {{ font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "Source Han Sans SC", "WenQuanYi Micro Hei", "SimSun", "宋体", sans-serif; color: #1f2328; line-height: 1.7; }}
 .card {{ border: 2px solid #e1e4e8; border-radius: 18px; overflow: hidden; }}
-.card-head {{ background: linear-gradient(135deg,#1cb0f6,#0969da); color: #fff; padding: 16px 22px; }}
+.card-head {{ background: linear-gradient(135deg,#1a73e8,#1557b0); color: #fff; padding: 16px 22px; }}
 .card-head .progress {{ font-size: 17px; font-weight: 700; opacity: .92; }}
 .card-head .topic {{ font-size: 25px; font-weight: 800; margin-top: 6px; line-height: 1.3; }}
 .card-head .chapter {{ display:inline-block; font-size: 13px; background: rgba(255,255,255,.22); padding: 3px 12px; border-radius: 99px; margin-top: 8px; }}
 .sec {{ padding: 14px 22px; border-bottom: 1px solid #f0f1f3; }}
 .sec:last-child {{ border-bottom: none; }}
 .sec-h {{ font-size: 15px; font-weight: 800; margin-bottom: 10px; letter-spacing: .5px; }}
-.term-h {{ color: #cf222e; }}
+.term-h {{ color: #d93025; }}
 .term-tbl {{ width: 100%; border-collapse: collapse; }}
 .term-tbl td {{ padding: 6px 10px; border-bottom: 1px solid #f0f1f3; font-size: 16px; }}
 .term-en {{ color: #8a5a00; font-weight: 600; width: 38%; white-space: nowrap; }}
@@ -155,13 +161,13 @@ body {{ font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", "Hiragino
 .links {{ }}
 .link-item {{ font-size: 14px; margin-bottom: 8px; word-break: break-all; }}
 .link-url {{ font-size: 13px; color: #6e7781; word-break: break-all; }}
-.ext-tag {{ display:inline-block; font-size:11px; background:#8250df; color:#fff; padding:1px 6px; border-radius:4px; margin-left:4px; vertical-align: middle; }}
+.ext-tag {{ display:inline-block; font-size:11px; background:#7b1fa2; color:#fff; padding:1px 6px; border-radius:4px; margin-left:4px; vertical-align: middle; }}
 .note {{ padding: 12px 22px 16px; font-size: 13.5px; color: #6e7781; border-top: 1px solid #f0f1f3; background: #fafbfc; }}
 .footer {{ padding: 8px 22px 14px; font-size: 12px; color: #8c959f; text-align: center; word-break: break-all; }}
 </style></head><body>
 <div class="card">
   <div class="card-head">
-    <div class="progress">第 {idx} / {total} 张 · {esc(date_str)}</div>
+    <div class="progress">第 {esc(str(idx))} / {esc(str(total))} 张 · {esc(date_str)}</div>
     <div class="topic">{topic}</div>
     <span class="chapter">{chapter}</span>
   </div>
@@ -183,13 +189,25 @@ def main():
     args = ap.parse_args()
     payload = json.load(open(args.payload, encoding='utf-8'))
     zh = json.load(open(args.zh, encoding='utf-8')) if args.zh else None
-    language = args.language or payload.get('language', 'en')
+    # 未显式传 --language 时优先用 payload 里的语言（argparse default 恒真值会吃掉回退）
+    language = args.language if '--language' in sys.argv else payload.get('language', 'en')
     zh, payload = normalize_all(zh, payload, language)  # 规范化中文引号
     date_str = datetime.date.today().isoformat()
     html_str = build_html(payload, zh, date_str, language=language)
-    HTML(string=html_str).write_pdf(args.out)
+    HTML(string=_rc.patch_style(html_str)).write_pdf(args.out)
+    # 产物校验：非空 + PDF 魔数（design-spec：产物必须校验，失败中止）
+    try:
+        size = os.path.getsize(args.out)
+        with open(args.out, 'rb') as _f:
+            magic = _f.read(4)
+    except OSError:
+        size, magic = 0, b''
+    if size <= 0 or magic != b'%PDF':
+        print(json.dumps({'ok': False, 'error': 'PDF 产物无效（空文件或魔数不符）: %s' % args.out},
+                         ensure_ascii=False), file=sys.stderr)
+        sys.exit(1)
     print(json.dumps({'ok': True, 'pdf': args.out, 'date': date_str,
-                      'size': os.path.getsize(args.out), 'language': language}, ensure_ascii=False))
+                      'size': size, 'language': language}, ensure_ascii=False))
 
 if __name__ == '__main__':
     main()

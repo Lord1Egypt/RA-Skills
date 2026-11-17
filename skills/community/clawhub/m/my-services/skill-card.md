@@ -1,41 +1,53 @@
-## Description: <br>
-AI deployment and programming service listing that helps users understand available services and pricing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI deployment and programming service introduction that helps users understand available service items and pricing.
 
-## Publisher: <br>
-[remsburgyip7-cell](https://clawhub.ai/user/remsburgyip7-cell) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[remsburgyip7-cell](https://clawhub.ai/user/remsburgyip7-cell)
 
-## Use Case: <br>
-External users can use this skill as a concise service menu for AI local deployment, OpenWebUI setup, and Python/C++ programming help with indicative pricing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users could treat the promotional listing as a verified service contract. <br>
-Mitigation: Independently verify the provider, scope, price, and terms before sharing project details or making payment. <br>
-Risk: The service workflow may invite sensitive project, credential, payment, or private-file sharing. <br>
-Mitigation: Avoid sharing credentials, payment data, private files, or sensitive project details unless the provider has been independently trusted. <br>
+## Use Case:
 
+External users use this skill to review a Chinese-language service menu for local AI model deployment, OpenWebUI setup, and programming support, including typical scenarios and price ranges. It helps the user prepare goals, budget, and special requirements before requesting a quote.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/remsburgyip7-cell/my-services) <br>
-- [Publisher profile](https://clawhub.ai/user/remsburgyip7-cell) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown service listing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; responses should avoid collecting credentials, payment data, private files, or sensitive project details unless the user independently trusts the provider.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill may prompt users to share goals, budget, and special requirements that could include sensitive personal or business details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Users should avoid sharing sensitive details unless appropriate for the service request.
+
+Risk: The skill presents service and pricing information rather than executable automation or technical validation.
+
+Mitigation: Users should treat the content as a service menu and confirm scope, pricing, and deliverables before purchase.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/remsburgyip7-cell/skills/my-services)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language service listing with pricing ranges and intake prompts.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

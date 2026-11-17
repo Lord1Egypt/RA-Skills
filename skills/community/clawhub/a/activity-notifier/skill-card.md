@@ -1,39 +1,54 @@
-## Description: <br>
-Broadcast agent activity status to a Discord channel for transparency while an agent is thinking, using tools, searching the web, coding, finishing, or reporting errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Broadcast agent activity status to Discord channel (thinking, tool use, web search, coding, done, error). Use for transparency so users know agent is working.
 
-## Publisher: <br>
-[silvermoonswk](https://clawhub.ai/user/silvermoonswk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[silvermoonswk](https://clawhub.ai/user/silvermoonswk)
 
-## Use Case: <br>
-Developers and agent operators use this skill to send concise progress updates to a configured Discord channel during long-running or multi-step agent work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Discord activity updates can reveal task context to people with access to the configured channel. <br>
-Mitigation: Verify the channel audience, keep updates high-level, and avoid secrets, confidential filenames, private URLs, and sensitive incident details. <br>
-Risk: Frequent status notifications can create distracting channel noise. <br>
-Mitigation: Send updates only for meaningful progress on longer tasks and keep each message concise. <br>
+## Use Case:
 
+Developers and external users can use this skill to send concise Discord updates while an agent is thinking, using tools, searching the web, coding, waiting, finishing, or reporting an error.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Concise Discord status messages, often as Markdown-formatted text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Discord token configuration and a target channel.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Activity updates may be sent to a fixed or unintended Discord channel, exposing task context without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure an explicit trusted activity channel before use and keep notifications generic.
+
+Risk: Discord notifications can accidentally reveal prompts, credentials, file contents, command output, or detailed errors.
+
+Mitigation: Do not include sensitive data in activity messages; limit updates to brief status and progress summaries.
+
+## Reference(s):
+
+- [Activity Notifier ClawHub listing](https://clawhub.ai/silvermoonswk/skills/activity-notifier)
+- [silvermoonswk ClawHub profile](https://clawhub.ai/user/silvermoonswk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Concise Discord activity messages, often Markdown-formatted.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Discord token and a trusted activity channel; messages should avoid sensitive task details.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

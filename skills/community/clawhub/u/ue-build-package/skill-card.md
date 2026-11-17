@@ -1,40 +1,52 @@
-## Description: <br>
-Helps agents compile and package Unreal Engine projects for Windows, Android, and iOS using UnrealBuildTool, AutomationTool, Rider, and related status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compile and package Unreal Engine projects from the command line, including Windows, Android, and iOS packaging, cooking, solution builds, pak generation, editor commands, and build status checks.
 
-## Publisher: <br>
-[vincentwilliam](https://clawhub.ai/user/vincentwilliam) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vincentwilliam](https://clawhub.ai/user/vincentwilliam)
 
-## Use Case: <br>
-Developers and build engineers use this skill to have an agent produce Unreal Engine build, packaging, and status-check commands for local projects. It is useful for command-line builds, platform packaging, Rider or Visual Studio workflows, and troubleshooting build output. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Hardcoded project paths, target names, platform choices, and cleanup steps may be incorrect for the user's local Unreal Engine project. <br>
-Mitigation: Review every generated command, path, target, platform, Rider automation step, and cleanup action before allowing an agent to run it. <br>
-Risk: Build and packaging commands can modify project outputs, logs, caches, staged builds, or local binaries. <br>
-Mitigation: Run commands only in the intended project workspace and confirm the affected directories before executing build, package, or cache-cleaning operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/vincentwilliam/ue-build-package) <br>
-- [Publisher profile](https://clawhub.ai/user/vincentwilliam) <br>
+## Use Case:
 
+Developers and build engineers use this skill to generate UnrealBuildTool, AutomationTool, PowerShell, and IDE-oriented guidance for building, packaging, and troubleshooting Unreal Engine projects.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and PowerShell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are project-specific and may include hardcoded Unreal Engine paths, target names, platforms, and local cleanup guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Hardcoded SilverPalace paths and target names may not match the user's Unreal Engine project.
+
+Mitigation: Confirm project paths, target names, and platform settings before running generated build or packaging commands.
+
+Risk: Troubleshooting guidance includes cache deletion and IDE automation actions that can affect local build state.
+
+Mitigation: Treat cache deletion and IDE automation as manual troubleshooting steps and review them before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vincentwilliam/skills/ue-build-package)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with bash and PowerShell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Project-specific paths and target names may need adjustment before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

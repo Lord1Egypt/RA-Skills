@@ -1,44 +1,63 @@
-## Description: <br>
-Manage WeCom calendars and schedules by creating, querying, updating, and canceling events with support for repeats, reminders, attendees, and timezone settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage WeCom calendars and schedules by creating, querying, updating, and canceling events with support for repeats, reminders, attendees, and timezone settings.
 
-## Publisher: <br>
-[davinwang](https://clawhub.ai/user/davinwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davinwang](https://clawhub.ai/user/davinwang)
 
-## Use Case: <br>
-Developers and operations teams with a configured WeCom app use this skill to let an agent manage organizational calendar events and shared calendars. It is suited for schedule creation, lookup, updates, cancellation, attendee handling, reminders, and recurring events. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify real organizational calendar data, including updates, cancellations, recurring events, and large attendee lists. <br>
-Mitigation: Use a dedicated least-privilege WeCom app and require explicit review before update, cancel, recurring-event, or large-attendee operations. <br>
-Risk: The skill depends on WeCom credentials that grant calendar API access. <br>
-Mitigation: Keep WECOM_CORP_ID, WECOM_AGENT_ID, and WECOM_AGENT_SECRET out of source control and shared logs. <br>
-Risk: Calendar API calls require correct WeCom permissions and trusted IP configuration. <br>
-Mitigation: Confirm the app has only the required calendar permissions and that trusted IP settings are configured before deployment. <br>
+## Use Case:
 
+Developers and operators use this skill to manage WeCom calendars and schedules from an agent workflow, including event creation, lookup, updates, cancellation, attendees, reminders, recurrence, and timezone-aware scheduling.
 
-## Reference(s): <br>
-- [WeCom Schedule API documentation](https://developer.work.weixin.qq.com/document/path/93703) <br>
-- [WeCom Calendar API documentation](https://developer.work.weixin.qq.com/document/path/93707) <br>
-- [ClawHub skill page](https://clawhub.ai/davinwang/wecom-calendar) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Text] <br>
-**Output Format:** [Command-line instructions and JSON API responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeCom app credentials and trusted IP configuration before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata; artifact docs and package.json show 1.0.0) <br>
+Risk: The skill can perform live WeCom calendar updates and cancellations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where calendar changes are intended and verify schedule_id and cal_id values before update or cancel commands.
+
+Risk: The skill requires WeCom application credentials loaded from environment variables.
+
+Mitigation: Keep the .env file private and grant the WeCom app only the permissions needed for the intended calendar workflow.
+
+Risk: Dependency versions are declared without a lockfile in the artifact evidence.
+
+Mitigation: Pin dependencies with a lockfile before production deployment.
+
+Risk: Some documented calendar and cancellation operations are marked as untested in the artifact documentation.
+
+Mitigation: Test those operations in a non-critical calendar before relying on them for production workflows.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davinwang/skills/wecom-calendar)
+- [WeCom Schedule API Documentation](https://developer.work.weixin.qq.com/document/path/93703)
+- [WeCom Calendar API Documentation](https://developer.work.weixin.qq.com/document/path/93707)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WeCom application credentials in environment variables and performs live WeCom calendar API operations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence, changelog source: user)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

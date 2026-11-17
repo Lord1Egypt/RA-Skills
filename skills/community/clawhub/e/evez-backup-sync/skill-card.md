@@ -1,41 +1,53 @@
-## Description: <br>
-Auto-backup and sync engine for AI agent workspaces that commits and pushes Git changes, backs up critical state to Supabase, stores memories with mem0, and captures state snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Auto-backup and sync engine for AI agent workspaces. Git commit and push to GitHub on schedule. Supabase cloud backup for critical state. mem0 persistent memory for knowledge retention. Full state snapshot every 15 minutes.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and operators use this skill to run backup workflows for AI agent workspaces, including Git synchronization, cloud state backup, and searchable memory persistence. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports broad unauthenticated controls that can commit, push, and persist workspace data to external services. <br>
-Mitigation: Review carefully before installing, run only in an isolated workspace with test data, and add authentication before exposing the HTTP API. <br>
-Risk: Backup operations can send workspace data to Git remotes, Supabase, and mem0. <br>
-Mitigation: Require explicit opt-in for each destination, use narrow file allowlists, exclude secrets, and disclose what data is sent before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run scheduled backups for an AI agent workspace, including git pushes, Supabase state backups, mem0 memory saves, and status/API access.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/evezart/evez-backup-sync) <br>
-- [Publisher profile](https://clawhub.ai/user/evezart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [JSON, Shell commands, Configuration, Files] <br>
-**Output Format:** [JSON API responses and command-line execution guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local backup state files and trigger Git commits, Git pushes, Supabase writes, or mem0 memory writes when executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill exposes powerful git, cloud backup, and memory operations through an unauthenticated network service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated environment, bind it to localhost, and add authentication before giving it workspace, git, Supabase, or memory access.
+
+Risk: Backup endpoints can commit and push broad workspace changes or sync sensitive state to external services.
+
+Mitigation: Replace broad git staging with an allowlist, verify configured remotes and credentials, and restrict Supabase and memory endpoints to approved data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/evez-backup-sync)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions, bash commands, and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local backup state, commit workspace changes, push git remotes, and sync data to configured Supabase or mem0 services when run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

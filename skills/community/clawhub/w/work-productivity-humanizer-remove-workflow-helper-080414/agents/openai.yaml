@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Humanizer Remove Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Humanizer-style..."
+  default_prompt: "Use $work-productivity-humanizer-remove-workflow-helper to help me Agent users show strong demand for Humanizer-style workflows on Clawhub. They need practical help fixing bugs, hardening."
+
+policy:
+  allow_implicit_invocation: true

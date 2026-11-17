@@ -1,0 +1,104 @@
+#!/bin/sh
+# Documentation governance pre-commit gate (installed by the docs-gov skill's init).
+#
+# Why block locally too, instead of relying on CI alone:
+#   Measured on a real project — of the last 80 commits to main, thirty to forty were direct pushes, and CI never ran on them.
+#   "Having CI is enough" depends on whether the team goes through PRs; release and version-bump commits usually don't.
+#
+# Why the hook itself is under version control (this file lives in .githooks/; .git/hooks only holds a forwarding shim):
+#   .git/hooks isn't tracked by git — nobody sees changes to it, and a fresh clone doesn't have it. In .githooks/,
+#   changes show up in git status. (Copied from the source project's gate of the same name.)
+#
+# Escape hatch: git commit --no-verify. For emergency commits, when you know you'll follow up.
+
+set -eu
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+CHECKER="$REPO_ROOT/scripts/governance.py"
+
+# === Has the copy drifted from the skill source? ===
+# scripts/governance.py is a copy of governance.py from the docs-gov skill.
+# There used to be only a comment saying "re-copy when the source changes" — nothing would speak up when the two diverged.
+# It really happened: the copy lagged the source by three days, and audit kept printing three numbers already verified as wrong
+# until someone happened to ask. A trigger line without a device is a sticky note; this is the device.
+#
+# If the source can't be found (CI, someone else's machine), skip — those environments only ever have the copy.
+# Source location for this read-only comparison: env var DOC_GOVERNANCE_HOME first, then common skill install dirs.
+# (governance.py itself never uses that variable to choose what init installs.)
+SKILL_SRC=""
+for d in "${DOC_GOVERNANCE_HOME:-}" "$HOME/.claude/skills/docs-gov" \
+         "$HOME/.cursor/skills/docs-gov" "$HOME/.codex/skills/docs-gov"; do
+  if [ -n "$d" ] && [ -f "$d/governance.py" ]; then SKILL_SRC="$d/governance.py"; break; fi
+done
+if [ -n "$SKILL_SRC" ] && [ -f "$CHECKER" ]; then
+  # The copy has three extra provenance lines (lines 2–4); strip them before comparing
+  if ! sed '2,4d' "$CHECKER" | diff -q - "$SKILL_SRC" >/dev/null 2>&1; then
+    echo "⛔ pre-commit blocked: scripts/governance.py has drifted from the skill source."
+    echo ""
+    echo "   source: $SKILL_SRC"
+    echo "   copy:   $CHECKER"
+    echo ""
+    echo "   If the source changed, re-copy it (don't edit the copy on its own — two diverging copies is exactly what this script guards against):"
+    echo "     head -4 scripts/governance.py > /tmp/h && \\"
+    echo "     tail -n +2 \"$SKILL_SRC\" >> /tmp/h && mv /tmp/h scripts/governance.py"
+    echo ""
+    echo "   To genuinely skip: git commit --no-verify"
+    exit 1
+  fi
+fi
+
+# Only run when docs changed; don't slow down code-only commits
+STAGED_MD="$(git diff --cached --name-only --diff-filter=ACMR -- '*.md' || true)"
+[ -z "$STAGED_MD" ] && exit 0
+
+# ── Speak up when the working tree and the index disagree ──
+# It really happened: one `git add a b c` included two paths that no longer existed (the files had just been
+# git mv'd), git errored and **aborted the whole command**, and not a single one of the listed files got staged.
+# In `git status --short` they showed as " M" — the leading space means "not staged" — and were read as staged.
+#
+# This gate stayed green at the time: it used `git diff --cached` to decide whether to run,
+# but what it actually ran was `check --root $REPO_ROOT` — **against the working tree**.
+# The working tree was right, the index was incomplete, a bad commit landed, and only CI caught it.
+#
+# Not a hard block: "commit only part of the changes" is legitimate. But it has to be said,
+# because a green result below does not mean "what you're about to commit is green".
+# Both shapes count: tracked but modified and not staged (the shape of that incident), and newly created, never added.
+# The latter fools the check below just as well — the file is on disk, the check can read it, but it isn't in the commit.
+DIRTY="$(git diff --name-only -- '*.md' || true)"
+UNTRACKED="$(git ls-files --others --exclude-standard -- '*.md' || true)"
+if [ -n "$DIRTY" ] || [ -n "$UNTRACKED" ]; then
+  echo "⚠️  The check below runs against the **working tree**, not what you're about to commit. These .md files are not in this commit:"
+  [ -n "$DIRTY" ] && echo "$DIRTY" | sed 's/^/     modified, not staged: /'
+  [ -n "$UNTRACKED" ] && echo "$UNTRACKED" | sed 's/^/     new, not added: /'
+  echo "     If you missed them, git add them; if you're deliberately committing only part, ignore this."
+  echo ""
+fi
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "⛔ pre-commit blocked: python3 is required to run the documentation governance checks."
+  echo "   To genuinely skip: git commit --no-verify"
+  exit 1
+fi
+
+if [ ! -f "$CHECKER" ]; then
+  # A missing checker must be an error, never a silent pass —
+  # "the checking mechanism stops working and doesn't report it" is exactly what this system guards against (the same class as a failed sync marked success).
+  echo "⛔ pre-commit blocked: can't find $CHECKER"
+  echo "   It is a copy of governance.py from the docs-gov skill; copy it again from the skill directory."
+  exit 1
+fi
+
+# Trigger line: a commit that renames/moves many .md files at once.
+# The "three steps of moving files" (update references → update the index → verify relative paths) were not ported into this skill,
+# because there is no evidence that lacking them ever caused an incident. But renames are exactly when broken links and missing index entries happen,
+# so the three steps are shown here — check can detect the consequences of the first two; the third only a human can verify.
+RENAMED=$(git diff --cached --name-status --diff-filter=R -- '*.md' | wc -l | tr -d ' ')
+if [ "$RENAMED" -ge 3 ]; then
+  echo "📦 This commit renames/moves $RENAMED documents. Go through the three steps:"
+  echo "   1. Were references updated? (the links check below verifies this)"
+  echo "   2. Was the index updated? (the index check verifies the directory and README cover each other)"
+  echo "   3. Did relative path depth change? (the number of ../ — a machine can't verify this one; look yourself)"
+fi
+
+echo "🔍 Documentation governance checks (.md changes present)…"
+python3 "$CHECKER" check --root "$REPO_ROOT"

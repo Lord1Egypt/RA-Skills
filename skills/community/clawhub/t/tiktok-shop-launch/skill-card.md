@@ -1,39 +1,54 @@
-## Description: <br>
-Provides localized TikTok Shop operating strategy, content guidance, livestream script structure, compliance checkpoints, and advertising recommendations for cross-border sellers targeting the United States, Southeast Asia, Europe, and Japan. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language agent skill that provides localized TikTok Shop launch strategy, content guidance, live-selling script structure, compliance planning, and advertising advice for cross-border ecommerce sellers.
 
-## Publisher: <br>
-[wangm-a3](https://clawhub.ai/user/wangm-a3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangm-a3](https://clawhub.ai/user/wangm-a3)
 
-## Use Case: <br>
-Cross-border e-commerce sellers and marketing operators use this skill to plan localized TikTok Shop launches, content positioning, livestream selling flows, compliance checkpoints, and ad budget allocation for target markets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal, tax, advertising, platform-compliance, consumer protection, and privacy guidance may be incomplete or outdated for a target market. <br>
-Mitigation: Check recommendations against current official TikTok Shop, TikTok Ads, tax, consumer protection, and privacy rules before acting on them. <br>
+## Use Case:
 
+Cross-border ecommerce sellers and marketing teams use this skill to plan TikTok Shop launches for the United States, Southeast Asia, Europe, and Japan. It helps turn a product description, target market, and optional budget into market insight, positioning, localized content direction, live-selling plans, compliance checkpoints, and ad strategy.
 
-## Reference(s): <br>
-- [Regional Strategies Reference](artifact/references/regional-strategies.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/wangm-a3/tiktok-shop-launch) <br>
+### Deployment Geography for Use:
 
+United States, Southeast Asia, Europe, and Japan
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Markdown-style structured guidance with market analysis, content strategy, livestream planning, compliance notes, and advertising recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on product description, target market, and optional budget.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server-resolved release evidence) <br>
+Risk: Legal, tax, advertising, and platform-policy requirements can change by market.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current requirements with official TikTok Shop, ad platform, and local regulator sources before acting on the skill's planning guidance.
+
+Risk: Generated localization, live-selling, and advertising recommendations may be incomplete or unsuitable for a specific product or jurisdiction.
+
+Mitigation: Review outputs with qualified business, legal, tax, and compliance stakeholders before publishing campaigns or entering a market.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangm-a3/skills/tiktok-shop-launch)
+- [Regional strategies reference](references/regional-strategies.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured sections and optional script/checklist content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Planning guidance only; users should verify current legal, tax, advertising, platform, and local regulatory requirements before acting.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata; artifact clawhub.yaml reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

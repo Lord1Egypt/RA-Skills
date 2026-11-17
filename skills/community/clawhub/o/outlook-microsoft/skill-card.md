@@ -1,44 +1,57 @@
-## Description: <br>
-Microsoft Outlook mail and calendar management skill for the 21Vianet Microsoft 365 environment, supporting mail viewing, sending, search, organization, deletion, calendar event management, and free/busy checks through Microsoft Graph China endpoints. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Microsoft Outlook mailbox and calendar management for 21Vianet Microsoft 365, using Microsoft Graph China endpoints to read, search, send, organize, and delete mail and manage calendar events.
 
-## Publisher: <br>
-[lurking9527](https://clawhub.ai/user/lurking9527) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lurking9527](https://clawhub.ai/user/lurking9527)
 
-## Use Case: <br>
-Employees and agents use this skill to operate a 21Vianet Microsoft 365 mailbox and calendar, including reading and searching messages, sending or replying to mail, creating and deleting calendar events, and checking availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify mailbox and calendar data. <br>
-Mitigation: Use a dedicated Azure app and mailbox or calendar that the operator is comfortable allowing an agent to modify, and restrict Microsoft Graph permissions where possible. <br>
-Risk: OAuth credentials and client configuration are stored locally. <br>
-Mitigation: Protect ~/.outlook-microsoft and any .env file with user-only permissions, never commit those files, and revoke tokens or rotate the client secret if exposure is suspected. <br>
+## Use Case:
 
+Employees and delegated agents use this skill to manage a 21Vianet Microsoft 365 Outlook mailbox and calendar. It supports inspecting and searching messages, sending or replying to mail, organizing folders, creating or updating events, and checking free/busy status.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lurking9527/outlook-microsoft) <br>
-- [Microsoft Outlook Skill setup guide](references/setup.md) <br>
-- [Azure China portal](https://portal.azure.cn/) <br>
-- [Microsoft Graph China endpoint](https://microsoftgraph.chinacloudapi.cn) <br>
-- [Microsoft China device login](https://microsoft.com/deviceloginchina) <br>
+### Deployment Geography for Use:
 
+China (21Vianet Microsoft 365 tenants)
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON command inputs or outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 plus OUTLOOK_CLIENT_ID and OUTLOOK_TENANT_ID environment configuration; uses OAuth token state outside the skill output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill requests delegated Microsoft permissions that can read, send, modify, and delete mailbox and calendar content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for trusted use cases, use a dedicated least-privilege app registration where possible, review destructive or outbound actions before execution, and revoke Microsoft app consent when the skill is no longer needed.
+
+Risk: Microsoft access credentials are stored in local plaintext files under ~/.outlook-microsoft without enforced private permissions.
+
+Mitigation: Protect the credential directory with restrictive permissions or a secure credential store, avoid providing a client secret for device-code flow unless required, and rotate or revoke credentials if the files may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lurking9527/skills/outlook-microsoft)
+- [Microsoft Outlook Skill setup guide](references/setup.md)
+- [Azure China portal](https://portal.azure.cn/)
+- [Microsoft device login for China](https://microsoft.com/deviceloginchina)
+- [Microsoft Graph China endpoint](https://microsoftgraph.chinacloudapi.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [JSON responses and Markdown instructions with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses JSON command arguments and returns single-stream command output.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

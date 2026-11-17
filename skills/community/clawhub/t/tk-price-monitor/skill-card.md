@@ -1,40 +1,53 @@
-## Description: <br>
-Monitor competitor and product pricing changes across websites. Set price thresholds, get alerts on drops/increases, track historical pricing, and identify pricing patterns. Works for e-commerce, SaaS, and service pricing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor competitor and product pricing changes across websites with threshold alerts, historical tracking, and pricing-pattern reports.
 
-## Publisher: <br>
-[tktk-ai](https://clawhub.ai/user/tktk-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tktk-ai](https://clawhub.ai/user/tktk-ai)
 
-## Use Case: <br>
-External users, business intelligence teams, e-commerce operators, SaaS teams, agencies, and dropshippers use this skill to monitor competitor pricing, detect changes, compare pricing tiers, and generate pricing intelligence reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Price monitoring can conflict with website terms, robots rules, rate limits, or authorization boundaries. <br>
-Mitigation: Use the skill only for public or authorized pricing research and configure monitoring to respect website terms, robots guidance, and rate limits. <br>
-Risk: Providing account credentials to a monitoring workflow can expose sensitive access if the surrounding workflow is not trusted. <br>
-Mitigation: Avoid supplying account credentials unless the full workflow and data handling environment are explicitly trusted. <br>
+## Use Case:
 
+External business users, agencies, e-commerce teams, SaaS operators, and pricing analysts use this skill to track competitor pricing changes, receive threshold alerts, compare pricing tiers, and generate pricing intelligence reports.
 
-## Reference(s): <br>
-- [Price Monitor ClawHub Page](https://clawhub.ai/tktk-ai/tk-price-monitor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown reports with tables, alerts, trend observations, and pricing recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may lead an agent to visit competitor pricing pages and maintain recurring price-checking context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit tracked URLs to intended pricing pages and review any scheduled monitoring configuration before enabling repeated checks.
+
+Risk: Pricing reports may influence commercial decisions based on changing or incomplete external pricing data.
+
+Mitigation: Review detected changes and recommendations against current source pages before acting on pricing strategy.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tktk-ai/skills/tk-price-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with tables, alert summaries, pricing matrices, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include recurring monitoring criteria, competitor URLs, thresholds, and historical pricing observations supplied by the user.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

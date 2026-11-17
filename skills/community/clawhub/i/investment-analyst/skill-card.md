@@ -1,40 +1,58 @@
-## Description: <br>
-Investment Analyst helps agents perform fundamental and technical investment analysis, calculate returns, review portfolios, generate reports, and classify investor risk profiles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investment Analyst is a Portuguese-language agent skill for fundamental and technical investment analysis, including market-data review, ROI calculations, portfolio analysis, report generation, and risk profile classification.
 
-## Publisher: <br>
-[edsoneras](https://clawhub.ai/user/edsoneras) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edsoneras](https://clawhub.ai/user/edsoneras)
 
-## Use Case: <br>
-External users and agents use this skill to evaluate stocks, FIIs, ETFs, and portfolios with market data, ROI calculations, fundamental metrics, technical indicators, reports, and risk profile classification. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Investment analysis or recommendations may be incorrect, outdated, or unsuitable for a user's financial situation. <br>
-Mitigation: Treat outputs as informational, verify market data independently, and consult a qualified financial advisor before making real investment decisions. <br>
-Risk: Users may share sensitive financial or personal information that is not needed for analysis. <br>
-Mitigation: Do not provide broker logins, account numbers, tax IDs, or unnecessary personal financial details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Financial Metrics Reference](references/financial-metrics.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/edsoneras/investment-analyst) <br>
+## Use Case:
 
+External users can use this skill to evaluate stocks, FIIs, ETFs, and portfolios, calculate investment returns, generate concise analysis reports, and classify investor risk profiles. It should support investment research workflows, not replace regulated financial, tax, or legal advice.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or structured text with summaries, tables, metrics, pros and cons, recommendations, sources, and disclaimers.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include calculated ROI, portfolio allocation, risk profile classification, and investment analysis caveats.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill produces investment recommendations and risk labels that could be mistaken for personalized regulated financial, tax, or legal advice.
+
+Mitigation: Keep the disclaimer visible, treat outputs as research support, and require review by a qualified advisor before acting on recommendations.
+
+Risk: Market data, portfolio values, and technical indicators may be outdated, incomplete, or sourced inconsistently.
+
+Mitigation: Verify prices, fundamentals, benchmarks, and dates against current authoritative market data before using the analysis.
+
+Risk: Portfolio analysis may require sensitive personal financial details.
+
+Mitigation: Share only the information necessary for the analysis and avoid providing unnecessary account, identity, credential, or private financial data.
+
+## Reference(s):
+
+- [Financial Metrics Reference](references/financial-metrics.md)
+- [ClawHub Skill Page](https://clawhub.ai/edsoneras/skills/investment-analyst)
+- [ClawHub Publisher Profile](https://clawhub.ai/user/edsoneras)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or structured text with summaries, metric tables, pros and cons, recommendations, sources, and a financial-advice disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include market metrics, ROI calculations, portfolio allocation notes, rebalance suggestions, and risk profile labels.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

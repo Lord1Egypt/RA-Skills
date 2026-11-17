@@ -1,42 +1,55 @@
-## Description: <br>
-Discover Spain like a local with specific restaurants, hidden gems, regional tips, and experiences beyond the tourist traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans Spain travel with local-level picks for itineraries, restaurants, regional rules, timing, booking windows, logistics, and tourist-trap avoidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Travelers planning or discussing trips to Spain use this skill to get local-style recommendations for cities, regions, food, beaches, nightlife, transport, accommodations, emergencies, and itinerary choices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store trip preferences locally, which may include sensitive health, accessibility, dietary, budget, or travel details if the user provides them. <br>
-Mitigation: Ask before saving sensitive details and keep only the minimum trip context needed for future recommendations. <br>
-Risk: The setup flow asks whether the assistant should jump in whenever Spain comes up, which may create broader persistent behavior than some users expect. <br>
-Mitigation: Make the behavior opt-in and tell users they can decline unless they want Spain-related assistance across future conversations. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to plan Spain trips, compare regions and cities, build itineraries, choose restaurants and experiences, and prepare practical logistics. It advises only and does not book, pay, or transact on the user's behalf.
 
-## Reference(s): <br>
-- [ClawHub Spain skill page](https://clawhub.ai/ivangdavila/spain) <br>
-- [Spain skill homepage](https://clawic.com/skills/spain) <br>
-- [Spain setup guide](setup.md) <br>
-- [Spain memory template](memory-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown and conversational travel guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain local trip context in ~/spain/ when the user enables memory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: The security review marks the release suspicious because the skill under-discloses local file access and may move legacy preference files while claiming it stays within one data folder.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review local-file behavior before installing, confirm any legacy file movement with the user, and limit preference reads and writes to the documented Clawic data paths.
+
+Risk: Stored travel preferences can reveal itinerary details, dietary needs, mobility needs, budget, and other personal travel context.
+
+Mitigation: Store only preferences the user explicitly provides, keep them local, and avoid reading shared profile data without clear user consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/spain)
+- [Clawic Spain skill page](https://clawic.com/skills/spain)
+- [Clawic skill library](https://clawic.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text travel advice, itineraries, named recommendations, and local preference updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May read and persist user travel preferences under ~/Clawic/data/spain/ when the user reveals them.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

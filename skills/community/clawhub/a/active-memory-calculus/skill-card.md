@@ -1,49 +1,57 @@
-## Description: <br>
-Automatically remembers and analyzes calculus students' learning preferences, concept mastery, and error patterns to adapt tutoring and generate learning summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Active Memory for Calculus Teaching captures calculus learning preferences, concept mastery, and error patterns to personalize tutoring and generate study summaries.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-Educators, tutors, and learning-agent developers use this skill to personalize higher-mathematics tutoring by tracking student preferences, concept mastery, recurring mistakes, and learning gaps. It can also generate session summaries, knowledge graph updates, and recommendations for follow-up study. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill automatically profiles student learning behavior and can persist profiles, memories, transcripts, dream summaries, and knowledge graphs. <br>
-Mitigation: Use it only with student consent, store data in a protected CALCULUS_MEMORY_PATH, and define inspection, correction, deletion, and retention procedures before deployment. <br>
-Risk: Transcript persistence and dream generation can store sensitive learning interactions beyond the immediate tutoring session. <br>
-Mitigation: Disable transcript persistence or dreaming when they are not needed, minimize retained data, and restrict access to the storage directory. <br>
-Risk: Personalized warnings and study recommendations may be based on incomplete or incorrect memory extraction. <br>
-Mitigation: Review generated summaries and recommendations before using them for high-stakes tutoring decisions, and allow students or educators to correct saved profiles. <br>
+## Use Case:
 
+Educators, tutors, and learning-agent developers use this skill to maintain student-specific calculus memory, adapt explanations and difficulty, warn about repeated mistakes, and summarize learning progress.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daigxok/active-memory-calculus) <br>
-- [README](artifact/README.md) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [Quickstart](artifact/QUICKSTART.md) <br>
-- [System prompt](artifact/prompts/system.md) <br>
-- [Basic usage example](artifact/examples/example_basic_usage.md) <br>
-- [Integration example](artifact/examples/example_integration.md) <br>
-- [Dream output example](artifact/examples/example_dream_output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON records, configuration snippets, Python API examples, and agent guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write student profiles, recent memories, dream summaries, and knowledge graph files under the configured CALCULUS_MEMORY_PATH.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact metadata lists 1.0.0) <br>
+Risk: The skill automatically stores and reuses student learning data, including preferences, mastery signals, error patterns, and session-derived summaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only with explicit student or administrator consent, document what is collected, and provide a process to inspect and delete stored profiles and summaries.
+
+Risk: Persistent memory, transcript, dream-summary, and knowledge-graph files may contain sensitive student records.
+
+Mitigation: Set a dedicated private memory directory, avoid shared or cloud-synced storage, and apply retention controls appropriate for the classroom or institution.
+
+Risk: Weak path-safety controls and student identifier handling can expose or mix records if deployed without guardrails.
+
+Mitigation: Validate student identifiers, constrain file paths to the approved memory directory, and review configuration before use with minors or regulated student records.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daigxok/skills/active-memory-calculus)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Configuration, Guidance]
+
+**Output Format:** [Structured JSON memory context, Markdown-style dream summaries, and plain-text tutoring guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May persist student profiles, recent memories, dream summaries, and knowledge-graph files under the configured memory directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

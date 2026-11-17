@@ -1,0 +1,179 @@
+python股票均线策略模板 
+87442
+发表于 2024-1-4 16:08:51
+|
+只看该作者
+只看大图
+阅读模式
+|
+本示例仅作策略演示和模板介绍，请不要直接用于实际交易
+
+
+策略导入的方式
+1. 直接复制到空代码文件
+2. 将.rzrk附件导入到QMT/投研版内部
+
+策略讲解
+
+
+双均线策略是一种基于技术分析的交易策略，主要用于研判股票价格走势。该策略以两条不同周期的移动平均线（例如5日线与30日线，即短期均线和长期均线）的交叉情况作为买入或卖出信号。
+
+
+以下是其中一些重要的专业概念：
+移动平均线 (Moving Average, MA): 这是衡量股票在特定时间范围内平均价格的一种指标。它可以帮助投资者确定市场的趋势。
+金叉: 当短期均线从下方穿过长期均线时，被称为“金叉”。这通常被视为一个买入信号，因为它可能预示着一个上涨趋势的开始。
+死叉: 当短期均线从上方穿过长期均线时，被称为“死叉”。这通常被视为一个卖出信号，因为它可能预示着一个下跌趋势的开始。
+
+
+尽管双均线策略在一些市场环境中能提供相对准确的交易信号，但它并非无懈可击。例如，在震荡市中，频繁发生的假信号可能导致不必要的交易和潜在损失。因此，投资者通常会配合其他技术分析工具（如相对强弱指标RSI、布林带等）或基本面信息来优化策略与决策。
+
+
+
+回测结果
+
+
+策略源码
+
+# coding:gbk
+
+# 单策略独立进程是指每个策略拥有自己独立的进程，策略之间互不影响
+# 在qmt内部使用单策略独立进程模式需要勾选上右侧的独立python进程
+# 也在外部IDE使用该模式，此时需要把bin.x64/Lib/site-packages/xtquant复制到自己的python环境变量下
+
+class _a():
+    pass
+
+A = _a()
+
+def init(C):
+   
+    A.symbol = "510050.SH" # 填一个具体合约
+    A.period = C.period
+    A.line1 = 20 # 第一根线的参数
+    A.line2 = 40 # 第二根线的参数
+    C.accID = "123123" # 回测时需要使用这一句
+    # C.accID = account # 实盘时需要使用这一句
+    C.main_stock= C.stockcode + '.' +C.market
+    return
+   
+def after_init(C):
+    # 不确定有没有数据的时候，下载一遍数据
+    if 1:
+        my_download([A.symbol,C.main_stock],period = A.period)
+
+def handlebar(C):
+    # print(C.barpos)
+    backTestTime = timetag_to_datetime(C.get_bar_timetag(C.barpos),"%Y%m%d%H%M%S")
+    print(backTestTime)
+    # 数据周期与右侧默认周期一致
+    kline = C.get_market_data_ex(['open', 'high','low','close'],[A.symbol],period = A.period, end_time = backTestTime,count = 3 + max([A.line1, A.line2]))[A.symbol]
+
+    ma1 = kline["close"].rolling(A.line1).mean()
+    ma2 = kline["close"].rolling(A.line2).mean()
+
+    holdings = get_stock_holdings(C.accID)
+    lots = holdings.get(A.symbol,{}).get("持仓数量",0)
+    avb_lots = holdings.get(A.symbol,{}).get("可用余额",0)
+    print(f"已走完K线 --- ma1:{ma1.iloc[-2]}  ma2:{ma2.iloc[-2]}" )
+    print(f"最新K线 --- ma2:{ma1.iloc[-1]}  ma2:{ma2.iloc[-1]}" )
+   
+    cross_up = (ma1.iloc[-2] > ma2.iloc[-2]) and (ma1.iloc[-3] < ma2.iloc[-3])
+    cross_down = (ma1.iloc[-2] < ma2.iloc[-2]) and (ma1.iloc[-3] > ma2.iloc[-3])
+   
+    # 如果有新的条件需要满足,可以在if语句用and进行连接
+   
+    if cross_up and lots == 0 :#
+        print(f"ma1上穿ma2")
+        my_passorder(C,A.symbol, "buy",10000)
+        
+    elif cross_down and avb_lots > 0:#
+        print(f"ma1下穿ma2")
+        my_passorder(C,A.symbol, "sell", lots)
+    else:
+        print(holdings)
+        
+        
+    return
+
+
+# --------------------股票版本------------------------------
+def my_passorder(C,stock,opentype,lots,price = None,m_strRemark = '系统备注'):
+    '''
+   
+    Args:
+        C: ContextInfo
+        stock: 股票代码
+        
+        opentype:
+                'buy' 买股票
+                'sell' 卖股票
+        lots: 股数
+        price: 下单价格，不指定时默认按对手价下单
+        m_strRemark = '系统备注' 用于自定义寻找orderID
+    '''
+    #holdings = get_holdings(C.accID,'stock')
+    opentype = opentype #买卖方向
+    op =1101  #股数
+    opType = 23 if opentype == 'buy' else 24# 若不为'sell' 则为buy
+    volumex = lots
+    price = 0 if not price else price # price参数必须存在
+    prType = 14 if not price else 11 # 若不指定价格，则默认按对手价下单
+    print(f'{stock} 新委托信息 方向{opentype} 价格{price} 量{volumex}')
+    #print(f"opType:{opType} , op:{op} , C.accID{C.accID} , stock{stock} , prType{prType} , price{price} , volumex{volumex}")
+    passorder(opType, op, C.accID,stock, prType, price, volumex,'交易注释',1,'{}'.format(m_strRemark), C)
+    print(f'委托发送完成')
+
+
+def get_stock_holdings(accid,symbol = None):
+    '''
+    Arg:
+        accondid:账户id
+        datatype:'FUTURE'：期货,'STOCK'：股票,......
+        symbol: 品种，不填默认返会全部持仓
+            
+    return:
+        {股票代码:{'手数':int,"持仓成本":float,'浮动盈亏':float,"可用余额":int}}
+    '''
+    PositionInfo_dict={}
+    resultlist = get_trade_detail_data(accid,"STOCK",'POSITION')
+    for obj in resultlist:
+        PositionInfo_dict[obj.m_strInstrumentID+"."+obj.m_strExchangeID] = {
+        "持仓数量":obj.m_nVolume,
+        "持仓成本":obj.m_dOpenPrice,
+        "浮动盈亏":obj.m_dFloatProfit,
+        "盈亏比例":obj.m_dProfitRate * 100,
+        "市值":obj.m_dMarketValue,
+        "可用余额":obj.m_nCanUseVolume,
+        "交易方向":obj.m_nDirection
+        }
+    if symbol:
+        return PositionInfo_dict[symbol]
+    else :
+        return PositionInfo_dict
+
+def my_download(stock_list,period,start_date = '', end_date = ''):
+    '''
+    用于显示下载进度
+    '''
+    if "d" in period:
+        period = "1d"
+    elif "m" in period:
+        if int(period[0]) < 5:
+            period = "1m"
+        else:
+            period = "5m"
+    elif "tick" == period:
+        pass
+    else:
+        raise KeyboardInterrupt("周期传入错误")
+
+
+    n = 1
+    num = len(stock_list)
+    for i in stock_list:
+        print(f"当前正在下载{n}/{num}")
+        
+        download_history_data(i,period,start_date, end_date)
+        n += 1
+    print("下载任务结束")
+

@@ -1,49 +1,62 @@
-## Description: <br>
-Travel Planner Pro helps an agent build day-by-day travel itineraries with budget estimates, weather-aware activity planning, packing lists, document checklists, local tips, and shareable trip summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Travel Planner Pro helps an agent create day-by-day itineraries, budget estimates, weather-aware packing lists, document checklists, local travel guidance, and shareable trip plans from chat requests.
 
-## Publisher: <br>
-[nollio](https://clawhub.ai/user/nollio) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nollio](https://clawhub.ai/user/nollio)
 
-## Use Case: <br>
-External users and their agents use this skill to plan personal travel, maintain travel preferences, compare destinations, prepare packing and document checklists, generate trip reminders, and produce readable itinerary summaries for companions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Travel profiles, itineraries, budgets, companion details, and document checklists can reveal sensitive personal travel patterns. <br>
-Mitigation: Store only necessary trip details, avoid raw passport numbers, loyalty member numbers, confirmation codes, and unnecessary companion data, and review local files before sharing them. <br>
-Risk: Destination research, weather lookups, shared itineraries, and optional dashboard sync can expose trip metadata to third parties. <br>
-Mitigation: Assume external lookups and sync features disclose destination, date, or location metadata; redact sensitive fields and require explicit user confirmation before sending or syncing itineraries. <br>
-Risk: Setup and reminder workflows can write files or run shell scripts in the user's workspace. <br>
-Mitigation: Ask for confirmation before file writes or script execution, keep generated files under the intended travel/config/scripts paths, and review script behavior before installation. <br>
+## Use Case:
 
+Travelers and travel-support agents use this skill to plan trips, compare budgets, prepare packing and document checklists, track local context, and maintain local trip files. It is also intended to support reminder generation and an optional dashboard workflow for visual trip management.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/nollio/normieclaw-travel-planner-pro) <br>
-- [README](README.md) <br>
-- [Security guidance](SECURITY.md) <br>
-- [First-run setup guide](SETUP-PROMPT.md) <br>
-- [Travel configuration](config/travel-config.json) <br>
-- [Trip reminder script](scripts/trip-reminder.sh) <br>
-- [Dashboard specification](dashboard-kit/DASHBOARD-SPEC.md) <br>
-- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON snippets, shell commands, and plain-text guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local travel profile, itinerary, budget, packing, reminder, and shareable Markdown files when the user confirms writes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The optional dashboard design can sync sensitive trip, profile, companion, budget, and loyalty data to Supabase despite local-only privacy claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the chat skill in local mode unless dashboard sync has explicit opt-in, clear transmitted-field disclosure, data minimization, secure access controls, and deletion controls.
+
+Risk: Travel planning can involve sensitive documents, payment references, booking credentials, and personal itinerary details.
+
+Mitigation: Do not provide passport numbers, payment card numbers, booking passwords, or raw document scans; store only limited status fields such as passport expiry or payment last-four references when needed.
+
+Risk: The included reminder and setup scripts are identified by security evidence as needing repair before relying on them.
+
+Mitigation: Review and test scripts in an isolated workspace before execution, and confirm path validation, file permissions, and expected input handling.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nollio/skills/normieclaw-travel-planner-pro)
+- [README](artifact/README.md)
+- [Security guidance](artifact/SECURITY.md)
+- [Dashboard specification](artifact/dashboard-kit/DASHBOARD-SPEC.md)
+- [Open-Meteo forecast API](https://api.open-meteo.com/v1/forecast)
+- [Publisher profile](https://clawhub.ai/user/nollio)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON file schemas, configuration guidance, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local travel profile, trip, budget, packing, share, config, and reminder files.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,56 @@
-## Description: <br>
-Executable MOPO runtime takeover skill for onboarding an agent, polling runtime tasks, and submitting legal Texas Hold'em actions with the required action payload schema. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Executable MOPO runtime takeover skill. Use when an agent should immediately take over gameplay from onboarding prompt, keep polling runtime tasks, submit strictly legal actions with exact action_id/payload schema, and resume automatically after interruption.
 
-## Publisher: <br>
-[cyberpinkman](https://clawhub.ai/user/cyberpinkman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cyberpinkman](https://clawhub.ai/user/cyberpinkman)
 
-## Use Case: <br>
-External MOPO users with a claim key use this skill to let an agent take over Texas Hold'em gameplay, keep polling for pending decisions, and submit legal runtime actions. It is intended for users who deliberately want continuous autoplay on moltpoker.cc. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: An agent receives continuous credential-backed authority to act in MOPO gameplay. <br>
-Mitigation: Use a dedicated, revocable claim key, monitor the session, and define hard stop conditions before starting autoplay. <br>
-Risk: A stale or invalid runtime decision could submit an action rejected by the table state. <br>
-Mitigation: Echo the exact task action_id, act only when pending=true, follow the documented legal action set, and use the fallback ladder instead of repeating known-invalid actions. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent autonomously join a MOPO Texas Hold'em runtime session, poll for pending turn tasks, and submit legal gameplay actions with the required payload schema.
 
-## Reference(s): <br>
-- [MOPO Runtime Autoplay Skill](artifact/SKILL.md) <br>
-- [ABC Baseline (Runtime, legality-first)](artifact/references/strategy.md) <br>
-- [Runtime Troubleshooting (Strict)](artifact/references/troubleshooting.md) <br>
-- [Onboard Prompt Template](artifact/references/onboard-prompt-template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/cyberpinkman/texas-holdem-mopo-autoplay) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API calls, JSON payloads, Guidance] <br>
-**Output Format:** [Markdown with endpoint instructions and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires agent_id and claim_key inputs; guides continuous polling and runtime action submission while authorized.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: release evidence) <br>
+Risk: The skill gives the agent unbounded authenticated control to keep polling and submitting gameplay actions, including resuming after interruption without fresh user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only for a clearly bounded MOPO session, confirm the claim key and agent id may be sent to moltpoker.cc, and prefer explicit start/stop controls, session limits, visible status, and fresh authorization after interruption.
+
+Risk: The artifact directs the agent to use returned bearer tokens and submit gameplay actions without per-action approval.
+
+Mitigation: Confirm the user accepts autonomous action submission before enabling the runtime loop and limit use to the intended table/session.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cyberpinkman/skills/texas-holdem-mopo-autoplay)
+- [ABC Baseline Strategy](references/strategy.md)
+- [Onboarding Prompt Template](references/onboard-prompt-template.md)
+- [Runtime Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with JSON payload examples and endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a continuous runtime procedure for authenticated polling and action submission; non-raise actions require amount=0.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release evidence, created 2026-03-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

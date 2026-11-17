@@ -1,40 +1,60 @@
-## Description: <br>
-Restore a gateway to its last known-good configuration, or tag the current config as known-good when a gateway configuration change needs fast rollback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Restore a gateway to its last known-good configuration, or tag the current config as known-good when a gateway config change needs a fast rollback.
 
-## Publisher: <br>
-[halfdeadcat](https://clawhub.ai/user/halfdeadcat) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[halfdeadcat](https://clawhub.ai/user/halfdeadcat)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and operators use this skill to restore Slack or Discord gateway configuration from a known-good backup, tag the current configuration as known-good, and restart the gateway with health checks.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can make live Slack or Discord gateway configuration changes and restart services.
+
+Mitigation: Install and invoke it only on gateway hosts where the operator expects those live changes and restarts.
+
+Risk: Broad natural-language triggers can execute restore behavior without clear confirmation or operator control.
+
+Mitigation: Add an explicit confirmation step before restore or tag actions, especially in production environments.
+
+Risk: Detached execution and temporary logging can make status and auditability harder to monitor.
+
+Mitigation: Prefer a non-detached execution path with visible status output and a secure temporary log path.
+
+Risk: Rollback handling may require correction before production use.
+
+Mitigation: Review and test rollback behavior on a non-critical gateway before installing on an active host.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and operators use this skill to restore Slack or Discord gateway configuration from a known-good backup, tag current configuration as known-good, and restart the gateway with health checks. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can overwrite live Slack or Discord gateway configuration and restart services. <br>
-Mitigation: Install it only on gateway hosts you operate, review the local restart scripts before use, and keep known-good backups current. <br>
-Risk: Broad natural-language restore requests can trigger rollback behavior without enough confirmation or scoping. <br>
-Mitigation: Require an explicit target gateway and confirmation before production restores; prefer scoped commands such as /restore slack or /restore discord. <br>
+**Output Format:** [Markdown with inline bash commands and operational status text]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/halfdeadcat/gateway-restore) <br>
+**Other Properties Related to Output:** [May initiate gateway configuration file changes and service restarts when executed in an appropriate host environment.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and operational status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke local shell scripts that copy gateway configuration files, create backups, and restart Slack or Discord gateway services.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

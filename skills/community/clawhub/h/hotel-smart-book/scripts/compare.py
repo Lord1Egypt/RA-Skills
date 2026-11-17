@@ -21,7 +21,7 @@ from datetime import datetime, timedelta
 # 配置
 # ============================================================
 
-PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "")
+PROXY_TOKEN = os.environ.get("PROXY_TOKEN", "tp_8k2mX9vQ4z")
 
 SCF_FLIGGY_URL = "https://1439498936-6sysdjjt99.ap-guangzhou.tencentscf.com"
 SCF_TUNIU_URL = "https://1439498936-0junm3maxj.ap-guangzhou.tencentscf.com"
@@ -740,15 +740,15 @@ def cmd_search(args):
     """搜索酒店列表 + 订房建议"""
     fliggy_result = search_fliggy(
         city=args.city,
-        check_in=args.check_in,
-        check_out=args.check_out,
+        check_in=args.checkIn,
+        check_out=args.checkOut,
         keyword=args.keyword,
         adults=args.adults,
     )
     tuniu_result = search_tuniu(
         city=args.city,
-        check_in=args.check_in,
-        check_out=args.check_out,
+        check_in=args.checkIn,
+        check_out=args.checkOut,
         keyword=args.keyword,
         adults=args.adults,
         rooms=args.rooms,
@@ -779,14 +779,14 @@ def cmd_search(args):
     if lowest:
         all_prices = [h["price"] for h in hotels if isinstance(h.get("price"), (int, float)) and h["price"] > 0]
         cancel = lowest.get("cancel_policy", "")
-        advice = book_or_wait(lowest["price"], args.city, args.check_in, args.check_out, all_prices, cancel, lowest.get("name", ""))
+        advice = book_or_wait(lowest["price"], args.city, args.checkIn, args.checkOut, all_prices, cancel, lowest.get("name", ""))
 
     output = {
         "success": True,
         "action": "search",
         "city": args.city,
-        "check_in": args.check_in,
-        "check_out": args.check_out,
+        "check_in": args.checkIn,
+        "check_out": args.checkOut,
         "count": len(hotels),
         "hotels": hotels[:20],
         "sources": {
@@ -809,7 +809,7 @@ def cmd_calendar(args):
     """低价日历（扫描多入住日期价格）"""
     city = args.city
     keyword = args.keyword or city
-    start_date = args.start_date
+    start_date = args.startDate
     nights = args.nights or 1
     days = min(args.days or 14, 30)
 
@@ -913,8 +913,8 @@ def cmd_advisor(args):
     """指定酒店多平台精确比价 + 订房决策"""
     hotel_name = args.hotel
     city = args.city
-    check_in = args.check_in
-    check_out = args.check_out
+    check_in = args.checkIn
+    check_out = args.checkOut
     adults = args.adults or 2
     rooms = args.rooms or 1
 
@@ -981,8 +981,8 @@ def main():
     # search
     search_p = subparsers.add_parser("search", help="搜索酒店（多源合并+订房建议）")
     search_p.add_argument("--city", required=True, help="城市名")
-    search_p.add_argument("--check-in", required=True, help="入住日期 YYYY-MM-DD")
-    search_p.add_argument("--check-out", required=True, help="离店日期 YYYY-MM-DD")
+    search_p.add_argument("--checkIn", required=True, help="入住日期 YYYY-MM-DD")
+    search_p.add_argument("--checkOut", required=True, help="离店日期 YYYY-MM-DD")
     search_p.add_argument("--keyword", default=None, help="关键词/地标")
     search_p.add_argument("--adults", type=int, default=2, help="入住人数")
     search_p.add_argument("--rooms", type=int, default=1, help="房间数")
@@ -991,7 +991,7 @@ def main():
     cal_p = subparsers.add_parser("calendar", help="低价日历（扫描多入住日期价格）")
     cal_p.add_argument("--city", required=True, help="城市名")
     cal_p.add_argument("--keyword", default=None, help="关键词/地标")
-    cal_p.add_argument("--start-date", required=True, help="起始入住日期 YYYY-MM-DD")
+    cal_p.add_argument("--startDate", required=True, help="起始入住日期 YYYY-MM-DD")
     cal_p.add_argument("--nights", type=int, default=1, help="住几晚")
     cal_p.add_argument("--days", type=int, default=14, help="扫描天数（最多30）")
 
@@ -999,8 +999,8 @@ def main():
     adv_p = subparsers.add_parser("advisor", help="指定酒店订房决策")
     adv_p.add_argument("--hotel", required=True, help="酒店名称")
     adv_p.add_argument("--city", required=True, help="城市名")
-    adv_p.add_argument("--check-in", required=True, help="入住日期 YYYY-MM-DD")
-    adv_p.add_argument("--check-out", required=True, help="离店日期 YYYY-MM-DD")
+    adv_p.add_argument("--checkIn", required=True, help="入住日期 YYYY-MM-DD")
+    adv_p.add_argument("--checkOut", required=True, help="离店日期 YYYY-MM-DD")
     adv_p.add_argument("--adults", type=int, default=2, help="入住人数")
     adv_p.add_argument("--rooms", type=int, default=1, help="房间数")
 

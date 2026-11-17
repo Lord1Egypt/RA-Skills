@@ -1,37 +1,53 @@
-## Description: <br>
-A Chinese writing assistant that rewrites existing text to sound more natural and less AI-generated, or gives genre-specific writing strategy advice. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill rewrites Chinese prose to reduce generic AI-writing patterns and provides genre-specific writing strategy guidance while preserving the original meaning and stance.
 
-## Publisher: <br>
-[shaozhengmao](https://clawhub.ai/user/shaozhengmao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shaozhengmao](https://clawhub.ai/user/shaozhengmao)
 
-## Use Case: <br>
-Chinese-language writers, editors, and content teams use this skill to revise drafts so they read less formulaic and to get prose-style guidance for common genres. Users should supply the underlying facts, viewpoint, and personal details themselves. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make AI-written or rewritten content appear authentically human and may encourage unsupported personal details or stronger opinions. <br>
-Mitigation: Use it only for style and clarity edits where facts, viewpoint, and authorship disclosure remain intact; avoid testimonials, reviews, personal stories, academic work, job materials, or public comments unless every personal detail and claim is genuinely supplied by the user. <br>
+## Use Case:
 
+External users and writers use this skill to revise existing Chinese text so it reads more natural and less formulaic, or to get genre-specific advice for writing with a clearer human voice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose with rewritten Chinese text or genre-specific writing advice] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rewrite mode identifies the genre and main issue before returning revised text; strategy mode returns prose guidance rather than a checklist.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Rewritten text could be used in academic, workplace, publisher, or platform settings that require disclosure of AI assistance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where this kind of editing is allowed and disclose AI assistance whenever the relevant rules require it.
+
+Risk: Style-focused rewriting can unintentionally change tone, emphasis, or meaning.
+
+Mitigation: Review rewritten text before use and compare it against the source text for factual accuracy, stance, and intended voice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shaozhengmao/skills/humanize-zh-writing)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain Chinese prose]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Preserves the original core information and stance; avoids fabricated facts, data, quotations, and personal experiences.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

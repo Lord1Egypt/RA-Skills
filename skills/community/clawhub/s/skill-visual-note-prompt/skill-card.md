@@ -1,40 +1,51 @@
-## Description: <br>
-Generates structured image prompts that turn short notes into 3:4 visual knowledge-card prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将简短文本转换为知识卡片图片的提示词生成器（社区精简版）。基于严格的格式规则，自动分析输入内容并生成符合视觉笔记标准的图片提示词。
 
-## Publisher: <br>
-[spiderzhcl](https://clawhub.ai/user/spiderzhcl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[spiderzhcl](https://clawhub.ai/user/spiderzhcl)
 
-## Use Case: <br>
-External users, educators, creators, and note-takers use this skill to convert short learning notes, summaries, and concept descriptions into standardized prompts for image generators. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts include fixed style constraints and a fixed author attribution. <br>
-Mitigation: Review and edit the prompt before sending it to an image generator, especially if the handwriting style, series labels, or attribution are not desired. <br>
+## Use Case:
 
+External creators, educators, and developers use this skill to turn short learning notes, summaries, and concept explanations into standardized Chinese image-generation prompts for 3:4 visual note cards.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/spiderzhcl/skill-visual-note-prompt) <br>
-- [Format guide](references/format-guide.md) <br>
-- [Style library](assets/style-library.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown prompt blocks for image generation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May output one or more 3:4 visual-note prompt blocks with required negative-prompt and author fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Generated prompts include fixed Chinese sketchnote formatting and a default third-party author attribution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or edit the prompt template before use when neutral attribution, another language, or more flexible output is required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/spiderzhcl/skills/skill-visual-note-prompt)
+- [Visual note prompt format guide](references/format-guide.md)
+- [Visual style and layout library](assets/style-library.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prompt blocks with fixed visual-note fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese sketchnote image prompts with fixed 3:4 card sizing, style/layout choices, negative prompts, and author attribution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,45 +1,62 @@
-## Description: <br>
-A private media assistant that searches M-Team torrents and sends the user-selected item to a local Transmission downloader. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps an agent search M-Team for media torrents, present ranked results to the user, and send the selected torrent to a local Transmission instance.
 
-## Publisher: <br>
-[dengqijun](https://clawhub.ai/user/dengqijun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dengqijun](https://clawhub.ai/user/dengqijun)
 
-## Use Case: <br>
-External users and personal media operators use this skill to search M-Team for requested films, series, or anime, review ranked torrent options, and add an explicitly selected torrent to a local Transmission/NAS workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Credentials for M-Team and Transmission can be exposed or over-privileged if left in source code or broad accounts. <br>
-Mitigation: Move credentials out of source code and use a limited Transmission account, as recommended by the security guidance. <br>
-Risk: Incorrect NAS path mappings can send downloads to the wrong destination. <br>
-Mitigation: Verify the category-to-path mapping before deployment and require the agent to show the destination before every download. <br>
-Risk: The workflow adds torrents to a local downloader, which can start unwanted downloads if selection is ambiguous. <br>
-Mitigation: Require explicit user selection and show the selected title, size, and destination before each download. <br>
+## Use Case:
 
+Personal media-server users and developers use this skill to search M-Team by natural-language request, compare torrent options, and add a confirmed selection to Transmission with an appropriate NAS save path.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dengqijun/mteam-transmission0-1) <br>
-- [README.md](artifact/README.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [skill.yaml](artifact/skill.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown conversation text with tool calls and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output lists candidate torrents by title, size, seeders, and selection number; download output reports Transmission status and NAS destination.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill can start local torrent downloads through Transmission.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require a clear user confirmation before adding any torrent and verify that M-Team and torrent usage complies with applicable legal, privacy, and network policies.
+
+Risk: Credentials and service endpoints are handled too loosely for automatic installation.
+
+Mitigation: Use environment variables or a secret manager, avoid editing secrets into source, and use a least-privileged Transmission account.
+
+Risk: Remote download URLs and torrent payloads are fetched before being sent to Transmission.
+
+Mitigation: Validate the returned download URL and torrent content before fetching or adding it.
+
+Risk: The artifact frames proxy headers and Cloudflare bypass behavior as part of operation.
+
+Mitigation: Remove or replace the Cloudflare bypass framing and confirm proxy behavior against local network policy before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/dengqijun/skills/mteam-transmission0-1)
+- [Publisher Profile](https://clawhub.ai/user/dengqijun)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown resource lists and plain-text download status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes torrent title, size, seeder count, category, Chinese subtitle markers, and final Transmission save path; torrent IDs should remain internal to tool use.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

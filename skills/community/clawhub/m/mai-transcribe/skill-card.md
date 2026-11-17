@@ -1,44 +1,58 @@
-## Description: <br>
-Transcribe audio with Microsoft's MAI-Transcribe-1 model via Azure AI Speech. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribe audio with Microsoft's MAI-Transcribe-1 model via Azure AI Speech.
 
-## Publisher: <br>
-[robotsbuildrobots](https://clawhub.ai/user/robotsbuildrobots) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robotsbuildrobots](https://clawhub.ai/user/robotsbuildrobots)
 
-## Use Case: <br>
-Developers and agents use this skill to transcribe user-selected audio files through an Azure Speech resource, producing a local transcript for review or downstream workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Selected audio files are uploaded to Microsoft/Azure for transcription. <br>
-Mitigation: Use only audio that is permitted under the user's Azure data handling requirements, and avoid confidential, regulated, or private recordings unless that processing is approved. <br>
-Risk: Using the wrong Azure Speech endpoint or key can send requests to an unintended resource or fail authentication. <br>
-Mitigation: Verify AZURE_SPEECH_ENDPOINT is the user's own Speech resource endpoint and that AZURE_SPEECH_KEY belongs to that same resource before running transcription. <br>
-Risk: Large audio files are buffered in memory before upload. <br>
-Mitigation: Prefer normal voice-note-sized recordings or split large recordings before transcription. <br>
+## Use Case:
 
+Developers and agents use this skill to transcribe local audio files through an Azure Speech resource and save the result as a plain-text transcript or raw JSON response.
 
-## Reference(s): <br>
-- [MAI-Transcribe-1 Azure AI Speech documentation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe) <br>
-- [ClawHub skill page](https://clawhub.ai/robotsbuildrobots/mai-transcribe) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/robotsbuildrobots) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text transcript by default, or raw JSON when requested with --json.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes output to a local file, defaulting to <input>.txt or <input>.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Selected audio files are sent to the configured Azure Speech endpoint for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for recordings permitted by the user's Azure data-handling and privacy requirements.
+
+Risk: The skill requires an Azure Speech key and endpoint in environment variables.
+
+Mitigation: Set AZURE_SPEECH_ENDPOINT to the exact HTTPS Speech resource endpoint, protect AZURE_SPEECH_KEY as a cloud credential, and rotate it when needed.
+
+Risk: Large audio files are buffered in memory before upload.
+
+Mitigation: Prefer normal-sized voice recordings or split very large recordings before transcription.
+
+## Reference(s):
+
+- [MAI-Transcribe-1 Azure AI Speech documentation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe)
+- [ClawHub skill page](https://clawhub.ai/robotsbuildrobots/skills/mai-transcribe)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text transcript or raw JSON response written to a local file, with concise command and setup guidance for the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default output path is the input audio path with .txt appended; --json writes the raw Azure response.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

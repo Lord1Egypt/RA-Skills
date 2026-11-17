@@ -1,42 +1,54 @@
-## Description: <br>
-Union Ad Tech turns documents, notes, or ideas into UnionSkill-branded tech-blue advertising presentation packages with AI-generated 16:9 slide images and PPTX assembly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Union Ad Tech helps agents turn source content into UnionSkill-branded tech-blue presentation packages through content analysis, outline confirmation, per-slide image generation, and PPTX assembly.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-External users, marketers, and developers use this skill to convert documents, notes, or project descriptions into UnionSkill-branded cyber tech-blue presentation packages for AI, Web3, and hard-tech promotion after confirming the slide outline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated presentations may include UnionSkill branding, watermarks, metadata, and a cooperation note. <br>
-Mitigation: Review finished presentations before sharing them, especially for client, legal, academic, or neutral-brand contexts. <br>
-Risk: AI-generated slide images may contain inaccurate text, visual artifacts, or mismatches with the confirmed outline. <br>
-Mitigation: Use the skill's outline-confirmation and QA checks to verify slide count, readability, and content accuracy before delivery. <br>
+## Use Case:
 
+External users and developers use this skill to create UnionSkill-branded marketing, roadshow, exhibition, proposal, and open-source release presentations for AI, Web3, and hard-tech topics. The workflow requires outline confirmation before image generation and produces packaged presentation deliverables.
 
-## Reference(s): <br>
-- [Union Ad Tech ClawHub Page](https://clawhub.ai/timo2026/union-ad-tech) <br>
-- [Cyber Tech Blue Style Guide](references/style_guide.md) <br>
-- [UnionSkill Website](https://www.unionskillai.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown guidance with generated presentation files such as PPTX, PNG ZIP, TXT, and optional HTML] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user confirmation of the slide outline before image generation and adds UnionSkill branding, watermarks, and presentation metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter says 2.0) <br>
+Risk: Generated deliverables intentionally include UnionSkill branding, watermarks, metadata attribution, partner information, website, and business email.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use this skill only for UnionSkill-branded PPT deliverables, and review the generated package before sharing it externally.
+
+Risk: The workflow depends on an external PPTX assembler and an unpinned python-pptx installation step.
+
+Mitigation: Use a trusted and reviewed assembler installation, pin python-pptx in an isolated environment, and run the skill in a controlled workspace.
+
+## Reference(s):
+
+- [Cyber Tech Blue Style Guide](artifact/references/style_guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/timo2026/skills/union-ad-tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and file-path outputs for generated PPTX, image ZIP, partner notes, and optional HTML deliverables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated decks include UnionSkill branding elements such as a closing page, per-slide watermark, metadata attribution, and partner information file.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

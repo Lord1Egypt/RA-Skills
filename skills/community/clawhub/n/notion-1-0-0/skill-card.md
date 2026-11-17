@@ -1,42 +1,53 @@
-## Description: <br>
-Notion API for creating and managing pages, databases, and blocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Notion API for creating and managing pages, databases, and blocks.
 
-## Publisher: <br>
-[7revor](https://clawhub.ai/user/7revor) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[7revor](https://clawhub.ai/user/7revor)
 
-## Use Case: <br>
-Developers and automation builders use this skill to configure Notion API access and prepare curl-based requests for reading, creating, querying, and updating pages, data sources, and blocks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A Notion integration key can grant access to shared pages and data sources. <br>
-Mitigation: Scope the integration to only the pages or data sources needed and protect the local API key file. <br>
-Risk: Create and update requests can change Notion workspace content. <br>
-Mitigation: Review generated commands and request payloads before executing them. <br>
-Risk: The API key could be exposed if copied into shared files, logs, or commits. <br>
-Mitigation: Keep the key out of source control and shared transcripts, and rotate it if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Notion Developers](https://developers.notion.com) <br>
-- [Notion Integrations](https://notion.so/my-integrations) <br>
+## Use Case:
 
+Developers and agents use this skill to work with the Notion API for reading, creating, querying, and updating pages, data sources, and content blocks.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown with bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Notion integration key and workspace permissions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill uses a local Notion integration token, which can expose workspace content if stored or shared carelessly.
+
+Mitigation: Use a least-privilege Notion integration, share only required pages or data sources, and store the token with owner-only permissions or a secret manager.
+
+Risk: The documented create, update, and append requests can modify Notion workspace content.
+
+Mitigation: Review any create, update, or append command before running it, especially target IDs and request payloads.
+
+## Reference(s):
+
+- [Notion API documentation](https://developers.notion.com)
+- [Notion integrations setup](https://notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Notion API setup guidance, curl commands, endpoint examples, and property payload examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

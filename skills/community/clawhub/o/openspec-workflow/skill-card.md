@@ -1,43 +1,61 @@
-## Description: <br>
-Guides agents through an OpenSpec-based development lifecycle using OpenSpec CLI, Claude Code, GitHub CLI, and git to draft artifacts, review them, implement tasks, ship pull requests, and support auto-archiving after merge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenSpec Workflow guides developers and engineering agents through spec-driven code changes using OpenSpec artifacts, Claude Code review and implementation, GitHub PRs, and optional auto-archive CI.
 
-## Publisher: <br>
-[BobbyRadford](https://clawhub.ai/user/BobbyRadford) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bobbyradford](https://clawhub.ai/user/bobbyradford)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to run an OpenSpec-centered change lifecycle: create and review spec artifacts, delegate implementation, prepare pull requests, and optionally configure auto-archiving after merge. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Sub-agents may be launched with broad automatic authority and permission prompts bypassed. <br>
-Mitigation: Review the skill before installation, remove skip-permissions flags where possible, and require explicit approval for long-running review or implementation agents. <br>
-Risk: The workflow can modify files, create commits, push branches, open pull requests, and delete merged branches. <br>
-Mitigation: Run it only in a disposable or well-backed-up repository unless those repository actions are intended and approved. <br>
-Risk: The bundled auto-archive workflow uses repository write and pull-request permissions. <br>
-Mitigation: Review the workflow YAML and permission scope before adding it to a repository. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenSpec Auto-Archive on Merge](references/archive-action.md) <br>
-- [Review Loop Protocol](references/review-loop.md) <br>
-- [ClawHub skill page](https://clawhub.ai/BobbyRadford/openspec-workflow) <br>
+## Use Case:
 
+Developers and engineering agents use this skill to plan, review, implement, and ship OpenSpec-backed repository changes. It is suited for code changes that affect product behavior, spec artifacts, task breakdowns, pull requests, and optional OpenSpec archive automation.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to create OpenSpec artifacts, workflow YAML, commits, pull requests, and issue comments when authorized.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow can grant an agent broad repository authority, including reading and modifying the full repo, committing, pushing, opening PRs, and running archive automation.
+
+Mitigation: Require a clean worktree, scope file changes with path allowlists, and require human review before commits, pushes, or PR creation.
+
+Risk: The artifact recommends running Claude Code with --dangerously-skip-permissions.
+
+Mitigation: Remove --dangerously-skip-permissions and use normal permission prompts or a restricted execution environment.
+
+Risk: The archive workflow can delete branches after merge.
+
+Mitigation: Make branch deletion opt-in and restrict cleanup to expected same-repository branches.
+
+Risk: Dependencies and GitHub Actions are shown without pinning.
+
+Mitigation: Pin CLI and GitHub Action versions before deploying the workflow in production repositories.
+
+## Reference(s):
+
+- [OpenSpec Auto-Archive Reference](references/archive-action.md)
+- [Review Loop Protocol](references/review-loop.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, YAML configuration, and workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces repo workflow instructions, review prompts, PR commands, and CI configuration examples for an agent to apply in an OpenSpec-enabled repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

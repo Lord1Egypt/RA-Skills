@@ -1,44 +1,59 @@
-## Description: <br>
-Use when needing to fetch, test, and update OpenRouter free model lists in Claude Code or OpenClaw configurations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when needing to fetch, test, and update OpenRouter free model lists in Claude Code or OpenClaw configurations.
 
-## Publisher: <br>
-[youshu3008](https://clawhub.ai/user/youshu3008) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youshu3008](https://clawhub.ai/user/youshu3008)
 
-## Use Case: <br>
-Developers and engineers use this skill to fetch OpenRouter free model IDs, test model availability, and update Claude Code or OpenClaw model configuration with verified models and fallbacks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow can use sensitive local API tokens for authenticated OpenRouter calls. <br>
-Mitigation: Use a dedicated OPENROUTER_API_KEY and unset ANTHROPIC_AUTH_TOKEN unless you intentionally want that token source used. <br>
-Risk: The update scripts can change live Claude Code and OpenClaw model configuration. <br>
-Mitigation: Back up ~/.claude/settings.json and ~/.openclaw/openclaw.json before running update or test commands. <br>
-Risk: The full test workflow may restart OpenClaw and should not be treated as a dry run. <br>
-Mitigation: Review commands before execution and run step by step when service interruption or configuration changes need approval. <br>
+## Use Case:
 
+Developers and engineers use this skill to refresh OpenRouter free model allowlists, test model availability, and synchronize Claude Code and OpenClaw configuration with validated fallbacks.
 
-## Reference(s): <br>
-- [OpenRouter API documentation](https://openrouter.ai/docs) <br>
-- [OpenRouter models API](https://openrouter.ai/api/v1/models) <br>
-- [ClawHub skill page](https://clawhub.ai/youshu3008/updating-openrouter-free-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands, code snippets, and configuration update instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create temporary model list files and update local Claude Code or OpenClaw configuration when its scripts are executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The model tester can use ANTHROPIC_AUTH_TOKEN before OPENROUTER_API_KEY, which may expose the wrong token to OpenRouter.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated OpenRouter-scoped API key and avoid relying on ANTHROPIC_AUTH_TOKEN for this workflow.
+
+Risk: The update scripts can make persistent changes to Claude Code and OpenClaw model configuration.
+
+Mitigation: Back up ~/.claude/settings.json and ~/.openclaw/openclaw.json, then inspect /tmp/verified_models.txt before applying updates.
+
+Risk: The complete test and restart helper can affect a live OpenClaw setup.
+
+Mitigation: Avoid complete_test.sh on production or live setups and confirm any OpenClaw restart manually.
+
+## Reference(s):
+
+- [OpenRouter API docs](https://openrouter.ai/docs)
+- [OpenRouter models API](https://openrouter.ai/api/v1/models)
+- [ClawHub skill page](https://clawhub.ai/youshu3008/skills/updating-openrouter-free-models)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, and generated JSON configuration changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create temporary model-list files under /tmp and update local Claude Code or OpenClaw configuration when the user runs the scripts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

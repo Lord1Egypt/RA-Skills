@@ -1,41 +1,56 @@
-## Description: <br>
-飞书日历与日程管理工具集，支持日历管理、日程管理、参会人管理和忙闲查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+飞书日历与日程管理工具集，包含日历管理、日程管理、参会人管理和忙闲查询。
 
-## Publisher: <br>
-[chenfa188](https://clawhub.ai/user/chenfa188) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[chenfa188](https://clawhub.ai/user/chenfa188)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Agent users and developers use this skill to create, search, update, reply to, and inspect Feishu calendar events, attendees, and free/busy windows with Feishu ID and timezone conventions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Meeting attendees may receive broad edit permissions by default.
+
+Mitigation: Use narrower attendee permissions where possible and review permission settings before creating shared meetings.
+
+Risk: Calendar updates, attendee removals, or invitations can affect shared schedules.
+
+Mitigation: Require explicit confirmation before modifying events, removing attendees, or sending invitations.
+
+Risk: Timezone assumptions can create events at unintended times.
+
+Mitigation: Confirm Asia/Shanghai timezone expectations and use ISO 8601 or RFC 3339 timestamps with timezone offsets.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Employees and agents use this skill to create, search, update, reply to, and troubleshoot Feishu calendar events, attendees, meeting rooms, and free/busy queries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Write actions can create or change persistent Feishu calendar data. <br>
-Mitigation: Confirm the meeting time, timezone, attendees, RSVP change, room booking, and target event before executing create, patch, reply, or attendee changes. <br>
-Risk: The artifact describes broad attendee permissions that can let invitees edit events or manage participants. <br>
-Mitigation: Review whether invitees should be allowed to modify the event or manage participants before applying attendee permissions. <br>
-Risk: Incorrect timezone or identifier formats can create events for the wrong time or participants. <br>
-Mitigation: Use Asia/Shanghai with RFC 3339 timestamps and verify Feishu identifiers such as user open_id, chat ID, room ID, and email address before making API calls. <br>
+**Output Format:** [Markdown guidance with JSON examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Assumes Asia/Shanghai timezone and Feishu open_id-style identifiers where applicable.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API call parameters] <br>
-**Output Format:** [Markdown guidance with JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Asia/Shanghai time, RFC 3339 timestamps, and Feishu open_id, chat, room, and email identifiers.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,65 @@
-## Description: <br>
-Claw Markdown Gen converts webpage articles into styled Markdown posts for WeChat, Zhihu, Juejin, Xiaohongshu, and Toutiao, with rewriting, word-count control, image keywording, and optional AI image generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates stylized Markdown articles with image handling from webpage content for WeChat, Zhihu, Juejin, Xiaohongshu, and Toutiao publishing workflows.
 
-## Publisher: <br>
-[webkixi](https://clawhub.ai/user/webkixi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[webkixi](https://clawhub.ai/user/webkixi)
 
-## Use Case: <br>
-External users and content creators use this skill through the ClawMarkDown Chrome extension to turn webpage articles into publishable Markdown posts in common Chinese platform styles. It supports light, medium, and heavy rewriting, image placement, image keyword annotations, and optional AI-generated images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Webpage text, image metadata, and heavy-mode image prompts may be sent through the AI workflow or a configured image-generation API. <br>
-Mitigation: Avoid using AI image generation on private dashboards, account pages, confidential documents, or other sensitive webpage content. <br>
-Risk: Optional image generation depends on a user-provided API key and endpoint. <br>
-Mitigation: Use a trusted image API endpoint, keep the API key scoped, and rotate or revoke the key if exposure is suspected. <br>
-Risk: Rewriting and generated imagery can change tone, emphasis, or factual detail before publication. <br>
-Mitigation: Review the final Markdown and any generated images before publishing or sharing externally. <br>
+## Use Case:
 
+External content creators and ClawMarkDown plugin users use this skill to convert webpage articles into platform-specific Chinese Markdown posts with controlled rewrite depth, image placeholders, keyword comments, and optional AI-generated images.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/webkixi/skills/claw-markdown-gen) <br>
-- [Claw Markdown Gen repository](https://github.com/webkixi/claw-markdown-gen) <br>
-- [ClawMarkDown main project](https://github.com/webkixi/clawmark) <br>
-- [Image handling reference](artifact/references/image-handling.md) <br>
-- [Humanized Chinese writing reference](artifact/references/ren-zh.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown article content with image placeholders, keyword comments, and optional generated-image links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require IMAGE_API_KEY and IMAGE_API_URL for heavy-mode AI image generation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Image-generation credentials can be sent to a user-configured API URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped image-generation key and only configure trusted HTTPS API endpoints.
+
+Risk: Article text, image context, and generated prompts may be sent to configured AI services.
+
+Mitigation: Avoid using the skill on sensitive webpages unless that data sharing is acceptable.
+
+Risk: Some invocation paths produce plugin-promotional output instead of transformed article content.
+
+Mitigation: Document and verify the ClawMarkDown plugin invocation requirement before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/webkixi/skills/claw-markdown-gen)
+- [README](artifact/README.md)
+- [Image handling reference](artifact/references/image-handling.md)
+- [Humanized Chinese writing reference](artifact/references/ren-zh.md)
+- [WeChat style configuration](artifact/references/styles/wechat_common_style.json)
+- [Zhihu style configuration](artifact/references/styles/zhihu_common_style.json)
+- [Juejin style configuration](artifact/references/styles/juejin_common_style.json)
+- [Xiaohongshu style configuration](artifact/references/styles/xiaohongshu_common_style.json)
+- [Toutiao style configuration](artifact/references/styles/toutiao_common_style.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown articles with image placeholders, keyword comments, optional SVG or Mermaid blocks, and generated image links from post-processing.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for ClawMarkDown-driven publishing workflows and may include platform-specific style conventions.]
+
+## Skill Version(s):
+
+2.3.1 (source: release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

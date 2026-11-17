@@ -1,42 +1,59 @@
-## Description: <br>
-A pluggable pipe filter that strips verbose CLI output before it reaches the LLM, so an agent spends its context budget on signal instead of noise. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A pluggable pipe filter that strips verbose CLI output before it reaches the LLM, so an agent spends its context budget on signal instead of noise.
 
-## Publisher: <br>
-[workloftai](https://clawhub.ai/user/workloftai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[workloftai](https://clawhub.ai/user/workloftai)
 
-## Use Case: <br>
-Developers and coding agents use slim to filter large command output, logs, diffs, lockfiles, and YAML or JSON dumps before passing them into an LLM context. It helps preserve useful signal while reducing context cost for command-line workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Filtered output can omit the middle of large command results when the lossy clamp is applied. <br>
-Mitigation: Re-run the command without slim whenever exact or complete output is required. <br>
-Risk: Wrapper mode executes the command provided by the user before filtering its output. <br>
-Mitigation: Use wrapper mode only for commands you would already run locally; use pipe mode when you only need to filter existing output. <br>
+## Use Case:
 
+Developers and agents use slim to filter large command outputs such as YAML or JSON dumps, lockfiles, long diffs, and verbose install logs before passing them into an LLM context. It is useful when summarized head-and-tail output is acceptable and exact complete output can be rerun without slim when needed.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/workloftai/skills/slim) <br>
-- [Workloft Labs](https://workloft.ai/labs) <br>
-- [lowfat inspiration](https://github.com/zdk/lowfat) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples; filtered command output is emitted as plain text.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Pipe mode writes filtered output to stdout; --report writes a savings summary to stderr. Large outputs may be clamped to head and tail with an elision marker.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Large outputs can be lossy because slim may hide the middle of command output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use pipe mode only when summarized output is acceptable, and rerun the original command without slim when exact complete output is required.
+
+Risk: The exec wrapper form runs the requested command under the agent's normal privileges.
+
+Mitigation: Review commands before using `slim -- some-command`; prefer pipe mode when command execution is already handled elsewhere.
+
+Risk: bench.py executes local benchmark commands when run.
+
+Mitigation: Run bench.py only when local benchmark execution is intentional.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/workloftai/skills/slim)
+- [Workloft Labs](https://workloft.ai/labs)
+- [lowfat inspiration](https://github.com/zdk/lowfat)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Filtered stdout text with optional stderr savings summary and Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May elide the middle of large outputs with an explicit marker; --report emits estimated character and token savings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence; artifact frontmatter and clawhub.json list 0.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

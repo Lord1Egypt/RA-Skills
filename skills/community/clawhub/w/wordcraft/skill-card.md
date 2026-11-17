@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Wordcraft is a local devtools reference skill that returns plain-text guidance for intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet topics.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use Wordcraft as an offline quick-reference for devtools concepts, implementation patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The packaged script reports version 2.0.2 while the release and skill frontmatter report 2.0.3. <br>
-Mitigation: Confirm the packaged version string during release review before relying on command-line version output. <br>
-Risk: The skill provides generic static reference guidance, so content may not match a user's specific Wordcraft environment or policy requirements. <br>
-Mitigation: Review the referenced guidance against local tooling, security, and compliance requirements before applying it. <br>
+## Use Case:
 
+Developers and engineers use Wordcraft to quickly retrieve bundled reference notes and implementation patterns for devtools workflows without network access or credentials.
 
-## Reference(s): <br>
-- [Wordcraft on ClawHub](https://clawhub.ai/bytesagain3/wordcraft) <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and lists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Offline static content; no secrets, network access, or elevated permissions expected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: frontmatter and server release evidence) <br>
+Risk: The bundled reference text may be generic or inconsistent with a fully validated Wordcraft implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as quick reference material and verify commands or practices against project documentation before applying them.
+
+Risk: The script reports version 2.0.2 while the skill metadata and server release evidence identify version 2.0.3.
+
+Mitigation: Use the server release version for governance tracking and reconcile the script version before relying on CLI version output.
+
+## Reference(s):
+
+- [Wordcraft on ClawHub](https://clawhub.ai/bytesagain3/skills/wordcraft)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with markdown-style headings and lists.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands print bundled heredoc content; no external API calls, credentials, or network access are required.]
+
+## Skill Version(s):
+
+2.0.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

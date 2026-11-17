@@ -1,41 +1,50 @@
-## Description: <br>
-Csp reference tool. Use when working with csp in devtools contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Csp reference tool. Use when working with csp in devtools contexts.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill as a concise command-line reference for CSP-related devtools workflows, including quick starts, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The shell script emits generic CSP/devtools reference guidance that may be incomplete or too broad for a specific production environment. <br>
-Mitigation: Review the generated guidance against project-specific browser, security, and deployment requirements before applying changes. <br>
-Risk: The skill is distributed as executable shell content. <br>
-Mitigation: Inspect the script before installation and run only commands selected by the user. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick CSP reference for devtools workflows, including core concepts, patterns, debugging, security considerations, migration, and checklist-style guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/csp) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command-selected reference sections such as intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server-resolved release metadata) <br>
+Risk: Generic CSP guidance may be incomplete or unsuitable for a production security policy.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify CSP recommendations against authoritative CSP documentation and the target application's security requirements before applying them.
+
+## Reference(s):
+
+- [Csp on ClawHub](https://clawhub.ai/xueyetianya/skills/csp)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style reference text printed by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local reference content; no credentials, network access, or persistent settings are used according to security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

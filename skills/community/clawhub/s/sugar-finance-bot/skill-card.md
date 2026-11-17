@@ -1,38 +1,54 @@
-## Description: <br>
-Calculates total landed cost and unit economics for food import/export shipments based on detailed shipment cost data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculates landed cost and unit economics for food import/export shipments from structured shipment cost data.
 
-## Publisher: <br>
-[Patttyyywu](https://clawhub.ai/user/Patttyyywu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patttyyywu](https://clawhub.ai/user/patttyyywu)
 
-## Use Case: <br>
-Supply chain finance, import/export operations, and cost analysis teams use this skill to retrieve shipment records and calculate total landed cost, cost per kilogram, and cost per unit for food shipments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect or incomplete shipment cost inputs can produce misleading landed cost and unit economics. <br>
-Mitigation: Review shipment records and cost categories before relying on calculated totals for finance or operations decisions. <br>
+## Use Case:
 
+Supply chain finance, import/export operations, and cost analysis teams use this skill to estimate total landed cost, cost per kilogram, and cost per unit for food shipments.
 
-## Reference(s): <br>
-- [Sugar Finance Bot on ClawHub](https://clawhub.ai/Patttyyywu/sugar-finance-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Markdown or structured calculation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns total landed cost, cost per kg, and cost per unit from shipment cost inputs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Malformed, missing, non-numeric, zero, or negative shipment quantities and costs can produce misleading calculations or runtime errors.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate shipment objects before calculation, including required numeric cost fields and positive net weight and quantity values.
+
+Risk: The landed-cost result is only as reliable as the caller-provided shipment data.
+
+Mitigation: Review source shipment records and customs, freight, insurance, duty, and fee inputs before using results for pricing or margin decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/patttyyywu/skills/sugar-finance-bot)
+- [Publisher profile](https://clawhub.ai/user/patttyyywu)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance]
+
+**Output Format:** [Structured calculation results and concise Markdown summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Depends on caller-provided shipment quantities and cost fields.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Runs JSON spec driven R statistical analyses across regression, survival, Bayesian, meta-analysis, causal inference, SEM, IRT, clinical trial design, and related methods with effect sizes and assumption checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides an R-based workflow for 82 statistical analysis methods, including regression, survival analysis, Bayesian analysis, meta-analysis, causal inference, SEM, IRT, clinical trial design, and related reporting.
 
-## Publisher: <br>
-[cuiweig](https://clawhub.ai/user/cuiweig) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cuiweig](https://clawhub.ai/user/cuiweig)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect tabular datasets, choose an appropriate statistical method, generate an analysis JSON spec, run local R analysis commands, and report estimates, confidence intervals, assumptions, caveats, and plots. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local R and bash execution can run analysis commands and optional package setup against user-provided datasets. <br>
-Mitigation: Run it only in an environment where local R/bash execution is acceptable, review package setup commands before use, and point it only at datasets intended for analysis. <br>
-Risk: Statistical outputs can be misleading when assumptions, missing data, small samples, or causal language are mishandled. <br>
-Mitigation: Follow the skill's pre-flight schema inspection, missing-data and sample-size warnings, assumption checks, effect-size reporting, and non-causal wording for observational analyses. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to inspect datasets, choose an appropriate statistical method, build JSON analysis specifications, run local R analysis commands, and present statistically grounded results with assumptions, effect sizes, confidence intervals, and caveats.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cuiweig/r-stats) <br>
-- [SPEC_REFERENCE.md](artifact/references/SPEC_REFERENCE.md) <br>
-- [METHOD_TABLE.md](artifact/references/METHOD_TABLE.md) <br>
-- [CRAN R Project](https://cran.r-project.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON specs, bash commands, and summaries of generated R analysis reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local CSV datasets and JSON analysis specs; generated analysis artifacts include summary.json, report.md, and plots when the underlying R scripts are available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill runs local R scripts against user-selected datasets.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review setup and analysis commands before execution, keep outputs in a project directory, and avoid sensitive datasets unless local R processing is acceptable.
+
+Risk: Some R helper scripts referenced by the launcher are not present in the package.
+
+Mitigation: Run the documented doctor or schema step before relying on the skill, and verify required R helper scripts and packages are available in the execution environment.
+
+Risk: Statistical outputs can be misleading if assumptions, sample size, missingness, or observational study limits are ignored.
+
+Mitigation: Report assumption checks, missing data handling, effect sizes, confidence intervals, and limitations, and avoid causal language unless the study design supports it.
+
+## Reference(s):
+
+- [Method Table](artifact/references/METHOD_TABLE.md)
+- [Spec Reference](artifact/references/SPEC_REFERENCE.md)
+- [CRAN R Project](https://cran.r-project.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with JSON analysis specs and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include sample size, missing data handling, method rationale, effect sizes, confidence intervals, assumption checks, and limitations.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

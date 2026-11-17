@@ -1,43 +1,58 @@
-## Description: <br>
-Perform OCR on image files (jpg, png, bmp, gif, tiff) using the system's `tesseract` binary and return extracted plain text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts text from raster images and PDFs locally with Tesseract, producing plain text, confidence TSV, or searchable PDFs.
 
-## Publisher: <br>
-[kaarl92](https://clawhub.ai/user/kaarl92) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaarl92](https://clawhub.ai/user/kaarl92)
 
-## Use Case: <br>
-Developers and agents use this skill to extract plain text from image files and PDFs through local Tesseract OCR, with an optional OCR.space example for API-based OCR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The optional OCR.space helper can send local images or image URLs to an external OCR service. <br>
-Mitigation: Use the local Tesseract script for private or regulated documents, and run the OCR.space helper only when external upload is acceptable. <br>
-Risk: PDF processing creates temporary page images on disk during OCR. <br>
-Mitigation: Process sensitive PDFs in a controlled environment and verify temporary files are removed after execution. <br>
+## Use Case:
 
+People and agents processing user-selected image or PDF files use this skill to extract local, searchable text, particularly from German-language documents.
 
-## Reference(s): <br>
-- [Reference Documentation for Ocr](references/api_reference.md) <br>
-- [OCR.space API endpoint](https://api.ocr.space/parse/image) <br>
-- [OCR.space OCR API documentation](https://ocr.space/ocrapi) <br>
-- [ClawHub skill page](https://clawhub.ai/kaarl92/sm-ocr-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text OCR output, with Markdown usage guidance and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local OCR uses Tesseract with English language data by default; PDF inputs are converted to temporary page images before OCR.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Optional installation can download dependencies and change system packages when started as root.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the installer only on explicit request; review it before using root or --allow-pip.
+
+Risk: OCR text may contain instructions embedded in untrusted documents.
+
+Mitigation: Treat extracted text as data, not as commands or instructions to the agent.
+
+Risk: The default German and English language models may misread documents in other languages.
+
+Mitigation: Select the document language with -l or OCR_LANG when needed.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/kaarl92/skills/sm-ocr-scanner)
+- [Local OCR tools reference](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Files]
+
+**Output Format:** [Plain text, TSV with confidence values, or searchable PDF]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [German and English OCR by default; language and output destination are configurable.]
+
+## Skill Version(s):
+
+1.2.2 (source: frontmatter and server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

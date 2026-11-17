@@ -1,45 +1,59 @@
-## Description: <br>
-AI-powered QA for Strykr trading platform. Pre-built tests for crypto, stocks, news, AI chat. CI/CD ready. Works with Cursor, Claude, ChatGPT, Copilot. Vibe-coding enabled. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered QA for the Strykr trading platform with pre-built tests for crypto signals, stock signals, news, economic events, AI chat, PRISM API health checks, and known issue tracking.
 
-## Publisher: <br>
-[NextFrontierBuilds](https://clawhub.ai/user/NextFrontierBuilds) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[nextfrontierbuilds](https://clawhub.ai/user/nextfrontierbuilds)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to run Strykr-focused regression, smoke, API health, and AI response quality checks after deployments or during site monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Automated browser tests may run against environments the user is not authorized to test. <br>
-Mitigation: Run the skill only against Strykr or another explicitly authorized test environment. <br>
-Risk: Screenshots, console logs, timing data, and reports may capture sensitive application or user information. <br>
-Mitigation: Review, redact, or secure generated artifacts before storing or sharing them. <br>
-Risk: Unpinned QA dependencies can make CI results difficult to reproduce. <br>
-Mitigation: Pin the web-qa-bot dependency and review dependency changes before CI rollout. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to run regression, smoke, and health checks for the Strykr finance dashboard after deployments or feature changes. It helps validate page loading, navigation, filters, signal cards, AI chat responses, PRISM endpoints, known issues, screenshots, console errors, timing, and markdown reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/NextFrontierBuilds/strykr-qa-bot) <br>
-- [Publisher Profile](https://clawhub.ai/user/NextFrontierBuilds) <br>
-- [Strykr Application](https://app.strykr.ai) <br>
-- [web-qa-bot Dependency](https://github.com/NextFrontierBuilds/web-qa-bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, shell commands, TypeScript APIs, and YAML configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce screenshots, console logs, timing metrics, and local test reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: SKILL.md frontmatter, package.json, server release evidence) <br>
+Risk: The skill invokes an unpinned external npm tool through npx, which may change between runs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin web-qa-bot to an exact reviewed version, commit a lockfile, and run the local locked binary in CI.
+
+Risk: Browser tests, API checks, screenshots, console logs, and reports may expose financial application data or account context.
+
+Mitigation: Use test accounts, avoid production sessions and secrets, restrict network access to intended Strykr hosts, and handle generated artifacts as sensitive.
+
+Risk: Some helper methods contain placeholder browser-context logic and may not independently prove page behavior without the underlying web-qa-bot runner.
+
+Mitigation: Review generated reports and screenshots, and verify critical assertions against the actual browser runner before relying on results for release decisions.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/nextfrontierbuilds/skills/strykr-qa-bot)
+- [Strykr application](https://app.strykr.ai)
+- [web-qa-bot dependency](https://github.com/NextFrontierBuilds/web-qa-bot)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, terminal status output, YAML configuration, TypeScript helper APIs, screenshots, console error captures, and timing metrics]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can mark pass, fail, skip, and known-issue statuses; screenshots and console logs may contain sensitive application or account data.]
+
+## Skill Version(s):
+
+0.1.2 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

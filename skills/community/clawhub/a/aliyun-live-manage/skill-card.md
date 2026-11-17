@@ -1,46 +1,59 @@
-## Description: <br>
-Use when managing Alibaba Cloud ApsaraVideo Live resources and workflows via OpenAPI/SDK, including live domain configuration, stream ingest and playback setup, recording/transcoding templates, monitoring queries, and live stream operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents manage Alibaba Cloud ApsaraVideo Live resources and workflows via OpenAPI/SDK, including live domain configuration, stream ingest and playback setup, recording and transcoding templates, monitoring queries, and live stream operations.
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and cloud operators use this skill to plan, inspect, and manage Alibaba Cloud ApsaraVideo Live domains, stream workflows, templates, monitoring queries, and stream control operations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide real Alibaba Cloud ApsaraVideo Live service changes, including add, set, delete, forbid, and resume operations. <br>
-Mitigation: Use temporary least-privilege RAM or STS credentials limited to the intended domains and operations, query current state before mutations, and confirm each change before execution. <br>
-Risk: Saved operation evidence may contain stream names, domains, authentication settings, signed URLs, or other operational details. <br>
-Mitigation: Review and redact output/aliyun-live-manage/ before sharing or publishing generated evidence. <br>
+## Use Case:
 
+Developers and cloud operators use this skill to plan and perform Alibaba Cloud ApsaraVideo Live management tasks, including domain setup, stream operations, recording/transcoding configuration, monitoring queries, and OpenAPI metadata discovery.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/cinience/aliyun-live-manage) <br>
-- [OpenAPI Product Page](https://api.aliyun.com/product/live) <br>
-- [ApsaraVideo Live API Metadata](https://api.aliyun.com/meta/v1/products/live/versions/2016-11-01/api-docs.json) <br>
-- [ApsaraVideo Live API Definition Template](https://api.aliyun.com/meta/v1/products/live/versions/2016-11-01/apis/{ApiName}/api.json) <br>
-- [ApsaraVideo Live Documentation](https://www.alibabacloud.com/help/en/live) <br>
-- [Source List](references/sources.md) <br>
-- [Task Templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, API calls, Files] <br>
-**Output Format:** [Markdown with inline shell commands, API names, parameter templates, and saved JSON or Markdown evidence files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated execution evidence should be stored under output/aliyun-live-manage/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: A user may authorize changes to the wrong Alibaba Cloud Live region, domain, app, or stream.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the exact region, domain, app, stream, and desired operation before mutations; use read-only Describe/List APIs first and keep a rollback plan.
+
+Risk: Saved evidence files may contain credentials, Authorization data, signatures, tokens, signed URLs, or sensitive identifiers.
+
+Mitigation: Use least-privilege STS/RAM credentials and redact sensitive values before saving request payloads, responses, or execution notes under output/aliyun-live-manage/.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cinience/skills/aliyun-live-manage)
+- [Source List](references/sources.md)
+- [Task Templates](references/templates.md)
+- [Alibaba Cloud OpenAPI Product Page](https://api.aliyun.com/product/live)
+- [ApsaraVideo Live API Metadata](https://api.aliyun.com/meta/v1/products/live/versions/2016-11-01/api-docs.json)
+- [ApsaraVideo Live API Definition Template](https://api.aliyun.com/meta/v1/products/live/versions/2016-11-01/apis/{ApiName}/api.json)
+- [Alibaba Cloud ApsaraVideo Live Documentation](https://www.alibabacloud.com/help/en/live)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated JSON or Markdown evidence files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated API inventory and execution evidence are expected under output/aliyun-live-manage/.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

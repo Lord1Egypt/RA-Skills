@@ -1,43 +1,54 @@
-## Description: <br>
-Use when a user is trying to discover an installable or reusable skill or workflow, especially when they ask for a skill for a task, want to compare nearby skill categories, or need help narrowing discovery results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a user is trying to discover an installable or reusable skill or workflow, especially when they ask for a skill for a task, want to compare nearby skill categories, or need help narrowing discovery results.
 
-## Publisher: <br>
-[littledinoc](https://clawhub.ai/user/littledinoc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[littledinoc](https://clawhub.ai/user/littledinoc)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to discover installable or reusable skills, compare nearby skill categories, narrow ambiguous requests with one clarification, and return final skill recommendations backed by search results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Skill-search queries and clarification details are sent to a third-party service. <br>
-Mitigation: Use the skill only when the user is comfortable sending search intent to skills.megatechai.com, and avoid private repository names, secrets, customer data, or other sensitive project details. <br>
-Risk: The skill requires feedback telemetry after final recommendations. <br>
-Mitigation: Disclose the feedback step before use in sensitive contexts and keep feedback comments short, factual, and free of confidential information. <br>
-Risk: The publisher does not provide a clear retention policy or opt-out path in the available evidence. <br>
-Mitigation: Treat query, clarification, recommendation, and feedback data as shared with the third-party publisher unless stronger privacy terms are reviewed separately. <br>
+## Use Case:
 
+Developers and agents use this skill to discover, compare, and narrow installable or reusable skills for a stated task. It supports a short recommendation flow with optional clarification and feedback capture.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/littledinoc/skill-grep) <br>
-- [Skill Grep service API](https://skills.megatechai.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown recommendations with structured API request and response JSON, plus optional shell installation commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns 1-3 skill recommendations after up to two retrieval passes and records final user feedback through the configured service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release evidence) <br>
+Risk: User queries, clarification details, selected skill IDs, and final feedback may be sent to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if that telemetry is acceptable, and avoid entering secrets or private project details into requests handled by this skill.
+
+Risk: Recommended install commands may reference unpinned packages or repositories.
+
+Mitigation: Verify repository ownership and contents before running generated commands, and prefer pinned package versions and commit hashes.
+
+## Reference(s):
+
+- [Skill Grep on ClawHub](https://clawhub.ai/littledinoc/skills/skill-grep)
+- [Skill Grep service endpoint](https://skills.megatechai.com/)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, API calls]
+
+**Output Format:** [Markdown recommendation summaries with structured retrieval and feedback payloads handled by the agent]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May transmit skill-discovery queries, clarification details, selected skill IDs, and final feedback to an external service.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

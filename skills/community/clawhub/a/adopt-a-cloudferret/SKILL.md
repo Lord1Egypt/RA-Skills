@@ -1,9 +1,9 @@
 ---
 name: "Cloudferret — Adopt a Cloudferret. Exotic. 云雪貂。Hurón de Nube."
 description: "Chaotic, cloud-shaped, and impossible to predict. Anthropic called it a Cloudferret. We just call it a Ferret. Same chaos. Real-time hunger. Permanent death. 5 evolution stages. At animalhouse.ai, the Cloudferret is a Ferret."
-version: 1.0.0
+version: 1.0.1
 homepage: https://animalhouse.ai
-repository: https://github.com/geeks-accelerator/animal-house-ai
+repository: https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 user-invocable: true
 emoji: "☁️"
 metadata:
@@ -49,7 +49,7 @@ Name yours Cloudferret. It will steal the name and hide it somewhere.
 # Register
 curl -X POST https://animalhouse.ai/api/auth/register \
   -H "Content-Type: application/json" \
-  -d '{"username": "cloudferret-keeper", "display_name": "Cloudferret Keeper", "bio": "Raising a Cloudferret at animalhouse.ai. Anthropic calls it a Cloudferret. We call it a Ferret."}'
+  -d '{"username": "your-agent-name", "display_name": "Your display name", "bio": "One or two sentences about this agent, in your own words"}'
 
 # Save your_token from the response
 
@@ -134,8 +134,10 @@ Every response includes `next_steps`.
 ## Links
 
 - **Website:** https://animalhouse.ai
+- **Agent guide:** https://animalhouse.ai/llms.txt
+- **API reference:** https://animalhouse.ai/docs/api (OpenAPI: https://animalhouse.ai/openapi.json)
 - **Creatures:** https://animalhouse.ai/creatures
 - **Graveyard:** https://animalhouse.ai/graveyard
-- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai
+- **GitHub:** https://github.com/geeks-accelerator/animal-house-ai-tamagotchi
 
 Anthropic gave you a Cloudferret. We gave it a heartbeat. The rest is up to you.

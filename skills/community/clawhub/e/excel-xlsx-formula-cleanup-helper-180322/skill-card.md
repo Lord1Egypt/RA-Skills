@@ -1,41 +1,59 @@
-## Description: <br>
-Diagnose and repair Microsoft Excel XLSX workbook issues involving formulas, named ranges, Power Query refreshes, pivot tables, VBA or macro preservation, workbook corruption, and repeatable data cleanup. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnose and fix Microsoft Excel XLSX workbook issues involving formulas, named ranges, Power Query refreshes, pivot tables, VBA/macro preservation, workbook corruption, and repeatable data cleanup.
 
-## Publisher: <br>
-[kyro-ma](https://clawhub.ai/user/kyro-ma) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kyro-ma](https://clawhub.ai/user/kyro-ma)
 
-## Use Case: <br>
-Analysts, finance and operations teams, spreadsheet-heavy small businesses, and developers use this skill to diagnose Excel workbook defects and plan safe repairs while preserving formulas, structure, formatting, macros, and business logic. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Excel workbooks can contain sensitive business data. <br>
-Mitigation: Use the skill on workbook copies, review proposed edits before applying them, and invoke it explicitly for workbook-specific repair or automation tasks. <br>
-Risk: Some workbook structures, such as pivot caches, Power Query metadata, and macros, may not be safely rebuilt by Python libraries alone. <br>
-Mitigation: Preserve package parts where possible and note when desktop Excel, Power Query, or Power BI tooling is required for recalculation or refresh. <br>
+## Use Case:
 
+External users, analysts, finance and operations teams, spreadsheet-heavy small businesses, and developers use this skill to diagnose and repair Excel workbooks while preserving formulas, formatting, macros, Power Query assets, pivots, and business logic.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kyro-ma/excel-xlsx-formula-cleanup-helper-180322) <br>
-- [Requirement Plan](references/requirement-plan.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with code blocks and validation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include workbook diagnoses, safe repair plans, automation code, and validation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Workbook repair suggestions or generated scripts could damage important spreadsheets if applied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Work on copies, review proposed edits before applying them, and validate formulas, ranges, tables, pivots, macros, and expected recalculation afterward.
+
+Risk: .xlsm files, external links, Power Query connections, pivot caches, and business-critical formulas can be lost or changed by unsupported tooling.
+
+Mitigation: Inspect workbook package parts and supported library behavior before saving, preserve macro-related parts when required, and note when desktop Excel or Power Query refresh is still needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kyro-ma/skills/excel-xlsx-formula-cleanup-helper-180322)
+- [ClawHub publisher profile](https://clawhub.ai/user/kyro-ma)
+- [Requirement plan](references/requirement-plan.md)
+- [Power BI introduction and data acquisition](https://segmentfault.com/a/1190000020692249)
+- [Power Query connecting multiple tables](https://segmentfault.com/a/1190000046365752)
+- [Excel SQL query answer](https://segmentfault.com/q/1010000042660742/a-1020000042660744)
+- [openpyxl simple examples](https://segmentfault.com/a/1190000022195748)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code snippets, shell commands, and validation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workbook-specific diagnoses, repair plans, scripts, and validation steps; edits should be reviewed before applying to important files.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

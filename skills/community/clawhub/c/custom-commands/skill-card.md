@@ -1,42 +1,57 @@
-## Description: <br>
-Create and manage custom commands like backup, sync, clean, generate, and audit to automate file tasks and content workflows efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage custom commands like backup, sync, clean, generate, and audit to automate file tasks and content workflows efficiently.
 
-## Publisher: <br>
-[twunkdean-cloud](https://clawhub.ai/user/twunkdean-cloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twunkdean-cloud](https://clawhub.ai/user/twunkdean-cloud)
 
-## Use Case: <br>
-Developers and workflow operators use this skill to define reusable assistant commands for file backup, synchronization, cleanup, content generation, and audit tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backup and sync commands could overwrite or move files unexpectedly if paths or cloud destinations are ambiguous. <br>
-Mitigation: Require exact source and destination paths, make the cloud destination explicit, and preview the planned operation before execution. <br>
-Risk: Clean commands could delete files that match an overly broad pattern. <br>
-Mitigation: Show the matched files and require confirmation before deleting or archiving anything. <br>
-Risk: Memory optimization rules could store sensitive operational details if redaction is skipped. <br>
-Mitigation: Confirm what may be stored in memory and redact IPs, credentials, internal URLs, and similar sensitive values before saving. <br>
+## Use Case:
 
+Developers and workflow authors use this skill to define command shorthand for backup, sync, cleanup, content generation, audits, voice-triggered actions, and memory hygiene guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/twunkdean-cloud/custom-commands) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline command patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; file-operation commands require explicit paths and confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Backup and sync actions could move data to unintended destinations or cloud storage.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation, named destinations, and workspace-limited paths before proposing or executing file transfer commands.
+
+Risk: Cleanup commands could delete useful files if patterns are broad or unreviewed.
+
+Mitigation: Use dry-run previews and recoverable deletion behavior before cleanup actions.
+
+Risk: Memory archiving could retain sensitive data.
+
+Mitigation: Redact IPs, credentials, and internal URLs before storing or archiving task records.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/twunkdean-cloud/skills/custom-commands)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with command-style responses and inline shell commands when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit confirmation and scoped paths for file transfer, cleanup, and memory-archiving actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

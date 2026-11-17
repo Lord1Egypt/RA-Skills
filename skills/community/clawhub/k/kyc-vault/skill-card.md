@@ -1,40 +1,58 @@
-## Description: <br>
-Automates KYC identity verification by securely managing and submitting identity documents, while asking user permission before accessing or uploading any file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates KYC identity verification by securely managing and submitting identity documents, while asking user permission before accessing or uploading any file.
 
-## Publisher: <br>
-[seamao](https://clawhub.ai/user/seamao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[seamao](https://clawhub.ai/user/seamao)
 
-## Use Case: <br>
-External users use this skill to assist with website KYC flows by matching local identity documents to requested verification fields, filling personal information, and requesting confirmation before each file access, upload, or final submission. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive identity documents and personal information during KYC workflows. <br>
-Mitigation: Keep the identity vault private, inspect and edit the manifest before entering real data, and approve each document access, upload, field fill, and final submission deliberately. <br>
-Risk: A user could interact with the wrong or malicious KYC domain. <br>
-Mitigation: Verify the exact domain before starting a session and stop if a page attempts to bypass permission or upload rules. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [KYC Vault ClawHub listing](https://clawhub.ai/seamao/kyc-vault) <br>
-- [OpenClaw](https://openclaw.ai) <br>
+## Use Case:
 
+External users can use this skill to set up a local identity document vault and complete website KYC flows with per-file permission prompts, domain confirmation, form filling, and final submit confirmation.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Browser actions] <br>
-**Output Format:** [Markdown instructions with inline shell commands and confirmation prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requests explicit user confirmation before reading manifest data, accessing files, uploading documents, filling personal information, or submitting KYC forms.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.2.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles passports, selfies, address proofs, and other highly sensitive identity material.
+
+Mitigation: Create the identity vault with owner-only permissions, avoid shared or synced folders, and approve access only for specific files needed by a trusted KYC site.
+
+Risk: The setup documentation references a mutable remote manifest download.
+
+Mitigation: Prefer the bundled manifest template and verify any downloaded manifest source before placing personal information in it.
+
+Risk: A malicious or mistaken website could cause identity material to be sent to the wrong destination.
+
+Mitigation: Verify the exact domain and filename shown in each prompt, and continue only for KYC sites the user already trusts.
+
+## Reference(s):
+
+- [OpenClaw](https://openclaw.ai)
+- [KYC Vault on ClawHub](https://clawhub.ai/seamao/skills/kyc-vault)
+- [seamao ClawHub profile](https://clawhub.ai/user/seamao)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline shell commands, permission prompts, and setup guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit user confirmation before reading identity data, uploading each file, filling personal information, or submitting a KYC form.]
+
+## Skill Version(s):
+
+0.2.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,7 +1,7 @@
 ---
 name: incentive-design
 description: "Activate when: user asks why a team keeps doing the wrong thing despite training; user is designing compensation, bonuses, or commissions; user says 'people are gaming the metric' or 'our OKRs aren't working'; user wants to fix a performance management system; user asks what incentives are driving a behavior; user is drafting contracts or platform rules to shape behavior.
-  Do NOT activate when: the situation is clearly individual misconduct with no systemic pattern; user wants psychological persuasion tactics rather than structural system design."
+  Do NOT activate when: the situation is clearly individual misconduct with no systemic pattern; user wants psychological persuasion tactics rather than structural system design. More: deciqai.com/c/incentive-design"
 ---
 
 # Incentive Design
@@ -10,7 +10,7 @@ description: "Activate when: user asks why a team keeps doing the wrong thing de
 
 Behavior follows incentives more reliably than character, intent, or training. Get the incentives right and mediocre operators produce excellent results; get them wrong and talented teams produce dysfunction. This is Charlie Munger's "Reward and Punishment Superresponse Tendency" — his first and most important of 25 psychological tendencies (1995 Harvard Law School lecture). The operational question: when behavior is undesirable, ask "what incentive makes this rational?" before asking "what's wrong with these people?"
 
-Composes with [`principal-agent`](../principal-agent/SKILL.md), [`goodharts-law`](../goodharts-law/SKILL.md), [`signaling-games`](../signaling-games/SKILL.md), [`okr-goal-setting`](../okr-goal-setting/SKILL.md), [`prisoners-dilemma`](../prisoners-dilemma/SKILL.md).
+Composes with `principal-agent`, `goodharts-law`, `signaling-games`, `okr-goal-setting`, `prisoners-dilemma`.
 
 ## When to Use
 
@@ -18,6 +18,7 @@ Composes with [`principal-agent`](../principal-agent/SKILL.md), [`goodharts-law`
 - Diagnosing why a team is producing undesirable behavior despite training or management
 - Drafting contracts, regulations, or platform rules where behavior must be shaped
 - Evaluating an existing system for hidden perverse incentives
+- Designing reward signals or pricing in AI-native products (RLHF/reward hacking, usage-based vs outcome-based pricing, scarce AI-talent comp amid heavy AI capex and fast AI adoption)
 
 **Not when:** clearly individual misconduct unrelated to systemic incentives; using incentive framing to excuse deliberate bad-faith behavior.
 
@@ -59,6 +60,7 @@ Redesign (7-item) | Pilot scope / Monitoring / Review cycle
 ```
 
 *→ Method in Action: [Munger 1995 + FedEx + Modern Applications](examples/munger-1995-fedex-modern-applications.md)*
+*→ 2026 lens: [Incentive Design in the AI Economy — RLHF reward design, scarce-talent comp, usage-based pricing (2024–2026)](examples/ai-economy-incentives-rlhf-talent-pricing-2024-2026.md)*
 
 ## Pack: Application Patterns
 
@@ -115,4 +117,6 @@ Redesign (7-item) | Pilot scope / Monitoring / Review cycle
 
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/incentive-design** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/incentive-design.json*

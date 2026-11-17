@@ -1,5 +1,5 @@
 ## Description: <br>
-Quick BI-SmartQ routes data analysis requests across Quick BI file and dataset Q&A, document parsing, dashboard skill generation, data insights, and report generation. <br>
+Quick BI-SmartQ routes user requests across Quick BI file and dataset Q&A, document parsing, dashboard skill generation, data insights, and data-report workflows. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,39 +11,42 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, developers, and data analysts use this skill to analyze Quick BI datasets, uploaded spreadsheet or document files, dashboards, and report requests through a routed agent workflow. <br>
+Developers and analysts use this skill to route natural-language Quick BI requests into file Q&A, dataset Q&A, document extraction, dashboard skill generation, insight analysis, or report generation. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Quick BI may receive uploaded files, questions, dashboard data, and report inputs. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and prefer scoped Quick BI credentials for the intended workspace. <br>
-Risk: Trial mode may create a persistent device-linked user record and the skill may store credentials or identifiers in .qbi configuration files. <br>
-Mitigation: Review ~/.qbi/config.yaml and the workspace .qbi/smartq-chat/config.yaml before use, and disable global saving where possible. <br>
-Risk: Dashboard skill generation may alter skill-center directories. <br>
-Mitigation: Review generated dashboard skills and scan them before deployment. <br>
+Risk: The skill can upload business files, dashboards, and datasets to Alibaba Cloud Quick BI services. <br>
+Mitigation: Install only when Quick BI processing is intended and approved for the relevant files; avoid uploading sensitive or regulated documents unless organizational policy permits it. <br>
+Risk: The skill uses sensitive Quick BI credentials and can create or persist identity data in workspace and global QBI configuration files. <br>
+Mitigation: Use least-privilege Quick BI credentials, avoid global credential storage where possible, and review changes to ~/.qbi and workspace .qbi folders. <br>
+Risk: Dashboard workflows can generate skills and may install or overwrite generated skill names. <br>
+Mitigation: Require explicit confirmation before installing a generated skill or reusing an existing skill name. <br>
+Risk: The report workflow may use online search behavior while producing reports. <br>
+Mitigation: Use report generation only when online search is acceptable for the user's data and business context. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sdk-team/skills/alibabacloud-quickbi-smartq) <br>
-- [Publisher profile](https://clawhub.ai/user/sdk-team) <br>
-- [File Q&A module](artifact/references/chat/module-chat-file.md) <br>
-- [Dataset Q&A module](artifact/references/chat/module-chat-dataset.md) <br>
-- [Document parser module](artifact/references/document/module-document-parser.md) <br>
-- [Dashboard skill generation module](artifact/references/dashboard/module-dashboard.md) <br>
-- [Data insight module](artifact/references/insight/module-data-insight.md) <br>
-- [Data report module](artifact/references/report/module-data-report.md) <br>
+- [Quick BI-SmartQ Skill Definition](artifact/SKILL.md) <br>
+- [Chat Module](artifact/references/chat/module-chat.md) <br>
+- [Dashboard Skill Generator](artifact/references/dashboard/module-dashboard.md) <br>
+- [Dashboard Generator Reference](artifact/references/dashboard/module-dashboard-reference.md) <br>
+- [Document Parser](artifact/references/document/module-document-parser.md) <br>
+- [Document Classification Fields](artifact/references/document/document_classification.md) <br>
+- [Data Insight Module](artifact/references/insight/module-data-insight.md) <br>
+- [Data Report Module](artifact/references/report/module-data-report.md) <br>
+- [Quick BI Smart Product Page](https://www.aliyun.com/product/quickbi-smart?utm_content=g_1000411205) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance] <br>
-**Output Format:** [Markdown responses with command examples, chart image links, and generated files where applicable] <br>
+**Output Format:** [Markdown with shell commands, API result summaries, generated file paths, chart or table references, and report links when available] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chart image Markdown links are treated as primary deliverables and should be preserved verbatim when produced.] <br>
+**Other Properties Related to Output:** [May produce generated Quick BI query skills, structured Excel outputs, chart image paths, JSON data paths, trace IDs, or report replay links depending on the routed workflow.] <br>
 
 ## Skill Version(s): <br>
-0.0.2 (source: server release metadata; artifact metadata reports 1.3.0) <br>
+0.0.1 (source: server release metadata; artifact metadata version 1.3.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

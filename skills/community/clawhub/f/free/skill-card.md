@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents summarize public Free Fire pages, including events, version updates, tournament information, and community rules, without assisting cheating or account services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Registers a Free Fire skill that helps agents organize public game pages, version events, esports information, and community rules.
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-Players, community managers, and support-oriented agents use this skill to organize public Free Fire announcements, events, patch notes, tournaments, rules, and help links into concise summaries, tables, and checklists. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be asked to process login details, payment information, private account data, cheating requests, or restriction-bypass requests. <br>
-Mitigation: Keep use limited to public Free Fire announcements, events, rules, and help pages, and refuse requests involving private data, account services, cheating, or bypassing platform restrictions. <br>
-Risk: Free Fire event and version information changes frequently, so stale summaries can mislead users. <br>
-Mitigation: Include dates and source links in outputs so users can verify current public announcements before acting. <br>
+## Use Case:
 
+External users and agents use this skill to summarize publicly available Free Fire announcements, events, tournaments, updates, rewards, rules, and support links while avoiding account services, private data, cheating, bypass, or payment-circumvention requests.
 
-## Reference(s): <br>
-- [Free Fire official site](https://ff.garena.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/CodeKungfu/free) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries, tables, and checklists with dates and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Public information only; avoids login details, payment data, private account data, cheating, and restriction-bypass requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Free Fire event, esports, reward, and version information changes frequently and can become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require dated summaries and source links from official public pages.
+
+Risk: Requests may drift toward cheating, account trading, payment bypass, login-only material, or private player data.
+
+Mitigation: Refuse those requests and limit outputs to public information, rules, support links, and account-safety guidance.
+
+## Reference(s):
+
+- [Free Fire Official Site](https://ff.garena.com/)
+- [ClawHub Free Fire Skill](https://clawhub.ai/codekungfu/skills/free)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown summaries, tables, and concise checklists with source links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Retains dates and source links for frequently changing public Free Fire information.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

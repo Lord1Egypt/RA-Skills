@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "skill": "social-collaboration-mind",
+  "totalOps": 1,
+  "totalErrors": 0,
+  "capabilityStats": {
+    "协作心智": {
+      "count": 1,
+      "success": 1,
+      "fail": 0
+    }
+  },
+  "errorPatterns": {},
+  "preferences": {},
+  "recentOps": [
+    {
+      "t": "2026-07-23T06:18",
+      "cap": "协作心智",
+      "ok": true,
+      "err": null,
+      "note": null
+    }
+  ],
+  "optimizations": {},
+  "lastUpdated": "2026-07-23T06:18"
+}

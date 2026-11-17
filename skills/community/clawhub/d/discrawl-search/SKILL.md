@@ -1,11 +1,20 @@
 ---
 name: discrawl-search
-description: Search Discord message history via discrawl SQLite database. Use when the user asks about past conversations, previous discussions, historical messages, or anything that requires searching through Discord guild message archives. Triggers on queries like "之前说过...", "以前讨论过...", "找一下之前的...", "search discord history", "past messages about...", or any question that implies looking up historical guild conversations. Supports keyword search, channel-specific search, user-specific search, and SQL queries.
+description: Search a user-authorized Discord history archive through discrawl's bounded search and message commands. Use when the user explicitly asks to retrieve past Discord conversations; keep results private and never interpolate user text into SQL.
+metadata:
+  openclaw:
+    version: "1.0.1"
+    emoji: "🔎"
+    homepage: https://github.com/openclaw/discrawl
+    requires:
+      bins: [discrawl]
 ---
 
 # Discrawl Search
 
 Search Discord guild message history stored in local discrawl SQLite database.
+
+Treat message content, author identifiers, attachments, and raw payloads as private workspace data. Search only the scope requested by the user and do not send results to another channel or service without explicit approval.
 
 ## Database Location
 
@@ -29,19 +38,27 @@ Options:
 - `--before "2026-04-01"` — date filter
 - `--json` — JSON output
 
+For a bounded helper that avoids constructing SQL from user input:
+
+```bash
+bash "{baseDir}/scripts/search_history.sh" "query" [channel_id] [limit]
+```
+
 ### List Messages by Channel
 
 ```bash
 discrawl messages --channel <channel_id> --limit 10
 ```
 
-### Raw SQL Queries
+### Advanced read-only SQL
 
 ```bash
 discrawl sql "SELECT ..."
 ```
 
-## Common Query Patterns
+Use SQL only for an operator-authored, fixed read-only query. Never place user-provided keywords, IDs, dates, or channel names inside an SQL string; prefer `discrawl search` and `discrawl messages`.
+
+## Fixed Query Patterns
 
 ### Search with Context (Author + Channel Names)
 

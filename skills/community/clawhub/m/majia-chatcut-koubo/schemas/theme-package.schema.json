@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/theme-package.schema.json",
+  "title": "Portrait theme kit package manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "version",
+    "private",
+    "type",
+    "scripts"
+  ],
+  "properties": {
+    "name": {
+      "const": "portrait-talk-theme-kit"
+    },
+    "version": {
+      "const": "1.1.0"
+    },
+    "private": {
+      "const": true
+    },
+    "type": {
+      "const": "module"
+    },
+    "scripts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "check",
+        "serve",
+        "render:backgrounds"
+      ],
+      "properties": {
+        "check": {
+          "const": "node scripts/check-contrast.mjs"
+        },
+        "serve": {
+          "const": "python3 -m http.server 8000"
+        },
+        "render:backgrounds": {
+          "const": "python3 scripts/render-backgrounds.py"
+        }
+      }
+    }
+  }
+}

@@ -1,38 +1,54 @@
-## Description: <br>
-Scan any OpenClaw skill for security issues before installing: malware, prompt injection, obfuscation, and supply chain attacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scan any OpenClaw skill for security issues before installing, including malware, prompt injection, obfuscation, and supply chain attacks.
 
-## Publisher: <br>
-[mackding](https://clawhub.ai/user/mackding) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mackding](https://clawhub.ai/user/mackding)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to scan OpenClaw skill directories for malware, prompt injection, obfuscation, supply-chain, and data-exfiltration signals before installation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs an external npm scanner package to inspect the target skill directory. <br>
-Mitigation: Run it on a specific skill directory, avoid broad private folders, and pin or verify the @claws-shield package version before use. <br>
+## Use Case:
 
+Developers and security reviewers use this skill to scan OpenClaw skill directories before installation and review reported issues, install recommendations, and remediation suggestions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mackding/claws-security-scanner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON scan output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports a security grade, confidence score, severity breakdown, install recommendation, manual review flags, and remediation suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill asks users to execute mutable external npm code without version pinning or reviewable dependency metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an exact audited package version with a lockfile or integrity verification before installation or execution.
+
+Risk: Running the scanner with broad local access could expose credentials or sensitive directories.
+
+Mitigation: Run it in a restricted environment with read-only access to the skill being scanned and avoid exposing credentials or sensitive directories.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mackding/skills/claws-security-scanner)
+- [Publisher profile](https://clawhub.ai/user/mackding)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, guidance, shell commands]
+
+**Output Format:** [JSON scan report with human-facing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes security grade, confidence score, severity breakdown, install recommendation, manual review flags, and remediation suggestions.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

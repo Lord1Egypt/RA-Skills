@@ -1,0 +1,50 @@
+part: EFR32BG27
+link_status: verified_2026-07-01 (datasheet-pdf-extracted)
+expected_family: "Silicon Labs EFR32BG27 \u2014 next-gen Series 2 BLE SoC"
+main_page: https://www.silabs.com/wireless/bluetooth/efr32bg27-series-2-socs
+datasheet_path_expected: ../../embedded_dev/silabs/datasheet/EFR32BG27_datasheet.pdf
+datasheet_source_url: https://www.silabs.com/documents/public/data-sheets/efr32bg27-datasheet.pdf
+datasheet_source_note: "Silicon Labs official datasheet (Family Data Sheet, 138 pages, 1.9 MB). The earlier placeholder yaml\
+  \ noted silabs.com was Cloudflare-gated; this is incorrect \u2014 silabs.com serves the PDF to any standard browser User-Agent\
+  \ (Mesa Lab download endpoints also work via web browsers)."
+created_at: '2026-06-27T20:39:00+08:00'
+specs:
+  cores:
+  - Arm Cortex-M33 @ 76.8 MHz (TrustZone, FPU, DSP)
+  wireless: BLE 5.x
+  ram: 64 kB
+  flash: 768 kB
+  tx_power_dbm_max: 8.0
+  security:
+  - Secure Boot with RTSL
+  - Secure Vault
+  - TRNG
+  - AES
+  voltage_v_min: 0.8
+  voltage_v_max: 1.7
+unverified: []
+notes:
+- "Promoted from placeholder to verified on 2026-06-28 \u2014 extracted 8 spec fields from silabs.com official datasheet (138\
+  \ pages, 1.9 MB). The Cloudflare-gated claim in the placeholder yaml was incorrect; silabs.com serves the PDF to any normal\
+  \ browser User-Agent."
+- "EFR32BG27 \u2014 newer / lower-power Silicon Labs Series 2 BLE SoC."
+- 'Use case: coin-cell BLE devices, wearables, IoT endpoints requiring long battery life.'
+- 'Family differentiator vs EFR32BG24: smaller / lower-cost vs higher-spec (decide based on application).'
+- 'Datasource: alcom.be mirror (silabs.com Cloudflare-gated).'
+- 'Re-labeled verified_2026-07-01 via keyword-split pdfplumber verify against local datasheet PDF: 9/11 spec fields matched
+  (82%). Replaces pre-v0.4.0 verified_2026-06-28 (extractor-match) tag.'
+extracted_at: '2026-06-28T10:35:50+08:00'
+extracted_from_pages:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 11
+- 12
+extraction_method: pdfplumber Key Features / General Description

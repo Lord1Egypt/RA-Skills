@@ -1,47 +1,60 @@
-## Description: <br>
-Control local music playback with play, pause, resume, stop, status, and song listing commands from a configured music directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Play Local Music helps an agent control local audio playback with commands to play, pause, resume, stop, list songs, and report status from a configured music directory.
 
-## Publisher: <br>
-[awspace](https://clawhub.ai/user/awspace) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[awspace](https://clawhub.ai/user/awspace)
 
-## Use Case: <br>
-Developers and agent users can use this skill to control local audio playback through shell commands, including starting playback, pausing, resuming, stopping, checking status, and selecting songs from a local directory. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The documented entry point depends on a play-music wrapper that is not present in the artifact file list. <br>
-Mitigation: Verify that the wrapper is supplied elsewhere before installation or use. <br>
-Risk: Installing pygame from an untrusted package source could introduce dependency risk. <br>
-Mitigation: Install pygame only from a trusted Python package source. <br>
-Risk: A broad MUSIC_DIR may expose unintended local audio files to playback commands. <br>
-Mitigation: Keep MUSIC_DIR limited to the intended audio directory. <br>
-Risk: A custom MUSIC_LOCK_FILE path could point at a sensitive or inappropriate file location. <br>
-Mitigation: Do not set MUSIC_LOCK_FILE to sensitive paths. <br>
-Risk: Troubleshooting with broad process-kill commands can stop unrelated processes. <br>
-Mitigation: Prefer the documented server-stop command over broad pkill troubleshooting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/awspace/play-music) <br>
-- [README](artifact/README.md) <br>
-- [Setup Instructions](artifact/SETUP.md) <br>
+## Use Case:
 
+Developers and agent users can use this skill to operate a local music player through a single command interface. It is intended for trusted local environments where an agent may start playback, select songs, and manage playback state.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target local audio files and a localhost playback server; playback depends on pygame and available music files.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: A local background server opens a localhost control port and accepts playback commands without authentication.
+
+Mitigation: Use only in a trusted local-user environment and prefer a hardened version with authenticated control requests.
+
+Risk: The default lock file is written under /tmp with world-writable permissions.
+
+Mitigation: Configure a private per-user runtime directory and restrictive lock-file permissions.
+
+Risk: Song selection depends on local paths and configured music directories.
+
+Mitigation: Validate song names and constrain playback to the intended music directory.
+
+Risk: Server shutdown guidance may rely on broad process-matching commands.
+
+Mitigation: Prefer targeted server-stop behavior and avoid running the skill with elevated privileges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/awspace/skills/play-music)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact _meta.json lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

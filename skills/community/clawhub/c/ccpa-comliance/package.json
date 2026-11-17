@@ -1,8 +1,8 @@
 {
   "name": "ccpa-compliance",
-  "version": "1.0.4",
-  "description": "美国加州消费者隐私法（CCPA/CPRA）合规检查、风险评估和文档生成工具。为加州市场提供全面的CCPA/CPRA合规解决方案。🎉 1.0.4版本重要更新：纯本地运行，无需外部依赖。",
-  "author": "OpenClaw Community",
+  "version": "1.0.5",
+  "description": "美国加州消费者隐私法（CCPA/CPRA）合规检查、风险评估和文档生成工具。为加州市场提供全面的CCPA/CPRA合规解决方案。🎉 v1.0.5: 统一化CLI接口，多格式报告输出，跨法域联合检查。",
+  "author": "Wei Wu (wwumit)",
   "license": "MIT",
   "keywords": [
     "CCPA",

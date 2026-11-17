@@ -1,0 +1,72 @@
+<!doctype html>
+<!--
+  Minimal correct wiring for a SendPulse integration. Copy the <head>, then write markup out of
+  the bundle's classes and add nothing else. Load order is the contract: CDN bundle, then
+  tokens.css, then bundle-fixes.css, then the app's own CSS last.
+
+  Both themes are linked up front and one is disabled with media="not all" — this is what
+  login.sendpulse.com itself does. Dark is a separate server-rendered build of the same URL, not
+  a media query, so it never activates on its own.
+
+  The theme is an INPUT: the SendPulse host passes ?theme=dark on this app's URL. Read it at boot
+  and apply it. There is no theme switcher in an integration — the app does not own that setting.
+
+  And it is only on the URL the host opened: a redirect, an OAuth return or any link the app builds
+  itself arrives without ?theme and silently reverts to light. Carry the param through those hops,
+  or read it once here and keep it for the session. Same for ?lang= and ?access=.
+-->
+<html lang="en" class="ma-light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integration — SendPulse</title>
+
+    <!-- Never vendored: the stylesheet's root-relative url(/my.fonts/…) and url(/img/…) resolve
+         against its own origin, so a local copy silently breaks every icon and the promo badge. -->
+    <link
+      id="sp-theme-light"
+      rel="stylesheet"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=light"
+    />
+    <link
+      id="sp-theme-dark"
+      rel="stylesheet"
+      media="not all"
+      href="https://cdn.sendpulse.com/dist/css/sp-marketplace-app-ui.min.css?force=dark"
+    />
+
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="bundle-fixes.css" />
+    <!-- <link rel="stylesheet" href="app.css"> — yours, and it should stay small -->
+
+    <script>
+      // The theme comes from the host, never from a control in the app. Swapping `media` on the
+      // two links is the whole switch; mirroring ma-light/ma-dark on <html> is what activates the
+      // tokens block and the bundle's shadow/filter fixes. Run it before render to avoid a flash.
+      // Both builds are fetched this way. If a server renders this shell, drop the script and one
+      // <link>, and emit the correct href and class from the ?theme= param instead.
+      (function () {
+        var dark = new URLSearchParams(location.search).get("theme") === "dark";
+        document.getElementById("sp-theme-light").media = dark ? "not all" : "all";
+        document.getElementById("sp-theme-dark").media = dark ? "all" : "not all";
+        document.documentElement.classList.toggle("ma-dark", dark);
+        document.documentElement.classList.toggle("ma-light", !dark);
+      })();
+      // A single-theme app deletes this script and the dark <link>, and stops.
+    </script>
+  </head>
+
+  <body>
+    <!-- Nothing wraps the panel: an integration is embedded, so the host owns the outer gutter and
+         the app fills the frame it is given — no padding, no margin, no max-width out here. -->
+    <!-- One panel is the whole layout on these screens: its .panel-body is the only inset. -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h2>Integration settings</h2>
+      </div>
+      <div class="panel-footer">
+        <button class="btn btn-primary" type="button">Save</button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,5 +2,7 @@
   "ownerId": "kn74pevtm6718v45ghdc50xmsn83cjax",
   "slug": "12agent-novel",
   "version": "2.8.0",
-  "publishedAt": 1774416101540
+  "publishedAt": 1774332187872,
+  "lastUpdated": 1774358340000,
+  "changelog": "v2.8.0: 新增早期并行风格参考研究功能，修复流程bug，优化用户体验"
 }

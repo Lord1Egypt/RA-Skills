@@ -1,0 +1,4 @@
+interface:
+  display_name: "Buildin CLI"
+  short_description: "Use the Buildin CLI safely for authorized API, content, and file tasks."
+  default_prompt: "Use $buildin-cli to inspect the Buildin CLI and authentication state, obtain explicit approval before installing, updating, or logging in, inspect CLI help, and run authorized Buildin commands."

@@ -1,51 +1,69 @@
-## Description: <br>
-Guides AI agents through Chromia blockchain dApp development using Rell, Chromia CLI (chr), and Postchain nodes, covering configuration, FT4 accounts, cross-chain communication, EVM integration, NFT standards, Filehub storage, TypeScript clients, AI extensions, and deployment pipelines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides AI agents through Chromia blockchain dApp development with Rell, Chromia CLI, Postchain nodes, and related integrations including FT4, ICCF/ICMF, EIF, CRC2, Filehub, and TypeScript clients.
 
-## Publisher: <br>
-[deconsoleapp](https://clawhub.ai/user/deconsoleapp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[deconsoleapp](https://clawhub.ai/user/deconsoleapp)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan, configure, implement, test, and deploy Chromia dApps with Rell, Chromia CLI, Postchain clients, FT4, cross-chain integrations, Filehub, and related Chromia extensions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Private keys or mnemonics may be exposed during wallet, admin, or deployment workflows. <br>
-Mitigation: Keep real private keys out of chat, logs, source control, and browser or client code; use secure key management for production. <br>
-Risk: Deployment update, remove, auto-confirm, or local wipe commands can change or destroy blockchain state. <br>
-Mitigation: Before running deployment create/update/remove, using -y, or running chr node start --wipe, verify the network, blockchain name, container, key identity, and whether state loss or removal is acceptable. <br>
-Risk: On-chain storage may expose secrets, personal data, regulated data, or confidential prompts and outputs. <br>
-Mitigation: Do not store secrets, personal data, regulated data, or confidential prompts and outputs on-chain. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, implement, test, and deploy Chromia dApps with Rell, Chromia CLI, Postchain, FT4, cross-chain messaging, EVM interoperability, NFTs, decentralized storage, and TypeScript clients.
 
-## Reference(s): <br>
-- [Chromia Skill Source](https://bitbucket.org/chromawallet/chromia-skill/src) <br>
-- [AI & Extensions Reference](references/ai-extensions.md) <br>
-- [CRC2 NFT Standard Reference](references/crc2-nft.md) <br>
-- [Deployment](references/deployment.md) <br>
-- [EIF (Ethereum Interoperability Framework) Reference](references/eif-evm.md) <br>
-- [Filehub Reference](references/filehub.md) <br>
-- [FT4 Integration Reference](references/ft4-integration.md) <br>
-- [Governance & Provider Staking Reference](references/governance.md) <br>
-- [ICCF & ICMF Cross-Chain Communication Reference](references/iccf-icmf.md) <br>
-- [Postchain Client Reference](references/postchain-client.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Chromia CLI binary `chr` for CLI-based workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release evidence) <br>
+Risk: Production signing keys may be mishandled if copied into project .env files or browser/client code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep production admin private keys out of generated project files and client-side bundles; use controlled signing workflows and review secret handling before deployment.
+
+Risk: Deployment commands using -y, --wipe, or deployment remove can make high-impact changes without adequate confirmation.
+
+Mitigation: Independently verify the target network, container, key, and destructive operation before execution; require explicit confirmation for reset or removal commands.
+
+## Reference(s):
+
+- [Chromia Skill Source](https://bitbucket.org/chromawallet/chromia-skill/src)
+- [Chromia Skill on ClawHub](https://clawhub.ai/deconsoleapp/skills/chromia-skill)
+- [AI & Extensions Reference](references/ai-extensions.md)
+- [CRC2 NFT Standard Reference](references/crc2-nft.md)
+- [Deployment](references/deployment.md)
+- [EIF Ethereum Interoperability Framework Reference](references/eif-evm.md)
+- [Filehub Reference](references/filehub.md)
+- [FT4 Integration Reference](references/ft4-integration.md)
+- [Governance & Provider Staking Reference](references/governance.md)
+- [ICCF & ICMF Cross-Chain Communication Reference](references/iccf-icmf.md)
+- [Postchain Client Reference](references/postchain-client.md)
+- [FT4 Library](https://gitlab.com/chromaway/ft4-lib.git)
+- [Directory Chain Library](https://gitlab.com/chromaway/core/directory-chain)
+- [VectorDB Extension](https://gitlab.com/chromaway/core/vectordb-extension)
+- [Stork Oracle Chromia Extension](https://gitlab.com/chromaway/core/stork-oracle-chromia-extension)
+- [CRC2 Library](https://gitlab.com/chromaway/crc2-lib)
+- [CRC2 Bridge Demo](https://bitbucket.org/chromawallet/crc2-bridge-demo)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with inline code blocks, shell commands, configuration snippets, and code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the Chromia CLI binary chr for command execution.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

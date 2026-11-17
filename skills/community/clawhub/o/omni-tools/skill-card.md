@@ -1,41 +1,59 @@
-## Description: <br>
-Reference tool for devtools covering intro, quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance for Omni Tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Omni Tools concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers and engineers use Omni Tools as a quick reference for devtools-oriented concepts, setup patterns, troubleshooting, performance, security, migration, and cheat-sheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes an executable bash helper. <br>
-Mitigation: Review the helper before installation and run only the documented reference commands; the security evidence says the reviewed script prints documentation and should not need credentials, internet access, special permissions, or persistent access. <br>
-Risk: Reference guidance may be incomplete or too generic for a specific devtools environment. <br>
-Mitigation: Treat the output as guidance and validate commands, security practices, and migration steps against the target environment before applying changes. <br>
+## Use Case:
 
+Developers and engineers use Omni Tools as a quick reference for devtools concepts, best practices, and implementation patterns across intro, quickstart, debugging, performance, security, migration, and cheatsheet topics.
 
-## Reference(s): <br>
-- [Omni Tools on ClawHub](https://clawhub.ai/ckchzh/omni-tools) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation emitted by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API keys, credentials, network access, special permissions, or persistent access are indicated by the security evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Generic command names may be unclear or collide with similarly named tooling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use clear invocation context or namespacing when installing or documenting the skill.
+
+Risk: Reference-only guidance can become outdated or too generic for a specific production environment.
+
+Mitigation: Review the generated guidance against current project requirements before applying it.
+
+Risk: The script's internal version string reports 2.0.1 while the release and skill frontmatter report 2.0.2.
+
+Mitigation: Align the script version string with the release version before packaging or publishing command output.
+
+## Reference(s):
+
+- [Omni Tools on ClawHub](https://clawhub.ai/ckchzh/skills/omni-tools)
+- [BytesAgain homepage](https://bytesagain.com)
+- [BytesAgain publisher profile](https://clawhub.ai/user/ckchzh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Plain text and Markdown-style reference sections emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No external API calls, credentials, or network access according to the artifact and security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: frontmatter and server release evidence; script VERSION reports 2.0.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

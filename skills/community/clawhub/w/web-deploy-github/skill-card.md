@@ -1,41 +1,59 @@
-## Description: <br>
-Create and deploy single-page static websites to GitHub Pages with autonomous workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and deploy single-page static websites to GitHub Pages using a workflow that initializes a project, builds responsive HTML, CSS, and JavaScript, and publishes with GitHub Actions automation.
 
-## Publisher: <br>
-[ThomekSolutions](https://clawhub.ai/user/ThomekSolutions) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thomeksolutions](https://clawhub.ai/user/thomeksolutions)
 
-## Use Case: <br>
-Developers and agents use this skill to create static website projects, generate complete HTML/CSS/JavaScript pages, and publish them to GitHub Pages with GitHub Actions automation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Deployment can publish project files to a public GitHub Pages site. <br>
-Mitigation: Review the generated files, git status, and repository contents before deployment, and confirm no secrets or private content are included. <br>
-Risk: Deployment uses the currently authenticated GitHub CLI account. <br>
-Mitigation: Run gh auth status and confirm the intended GitHub account before creating or pushing the repository. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Complete Workflow Documentation](references/workflow.md) <br>
-- [Design Patterns and Best Practices](references/design-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ThomekSolutions/web-deploy-github) <br>
+## Use Case:
 
+Developers and engineers use this skill to generate portfolio, CV, landing page, or other static web projects and publish them to GitHub Pages. It supports project initialization, local site implementation, GitHub repository setup, and automated deployment.
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Files, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and generated HTML, CSS, JavaScript, README, and GitHub Actions files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates static website project files and deployment configuration; deployment can create a public GitHub repository and publish the selected project.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The deployment script can create public GitHub repositories, push project contents, and activate GitHub Pages.
+
+Mitigation: Require explicit approval before repository creation, git pushes, and GitHub Pages activation; review the generated repository before publishing.
+
+Risk: Project initialization and deployment can overwrite or commit unintended local files if run in a populated directory.
+
+Mitigation: Run the skill in a new empty project directory, inspect files before commit, and add a conservative .gitignore before deployment.
+
+Risk: Published static site contents may expose secrets, private documents, or unsuitable placeholder content.
+
+Mitigation: Scan the project tree for secrets and private files, replace placeholder content, and confirm the final site contents before pushing.
+
+## Reference(s):
+
+- [Web Deploy GitHub Pages on ClawHub](https://clawhub.ai/thomeksolutions/skills/web-deploy-github)
+- [Complete Workflow Documentation](artifact/references/workflow.md)
+- [Design Patterns and Best Practices](artifact/references/design-patterns.md)
+- [GitHub CLI](https://cli.github.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash commands and generated HTML, CSS, JavaScript, README, and GitHub Actions workflow files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local project files and configure deployment for a public GitHub Pages repository.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

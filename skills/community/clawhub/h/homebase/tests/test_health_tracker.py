@@ -18,18 +18,13 @@ Covers:
 import json
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Stub Google imports before importing health_tracker
-for mod in ("google", "google.oauth2", "google.oauth2.credentials",
-            "google.auth", "google.auth.transport", "google.auth.transport.requests",
-            "googleapiclient", "googleapiclient.discovery"):
-    import types as _types
-    sys.modules.setdefault(mod, _types.ModuleType(mod))
 
 import features.health.health_tracker as ht
 
@@ -45,8 +40,8 @@ def isolated_paths(tmp_path):
         # Write default config
         (tmp_path / "health_config.json").write_text(json.dumps({
             "children": {
-                "amyra":   {"name": "Amyra",   "weight_kg": 14.0},
-                "reyansh": {"name": "Reyansh", "weight_kg": 11.0},
+                "ana":   {"name": "Ana",   "weight_kg": 14.0},
+                "ben": {"name": "Ben", "weight_kg": 11.0},
             }
         }))
         yield tmp_path
@@ -125,14 +120,14 @@ class TestUnitConversion:
 
 class TestResolveChild:
     def test_exact_key(self):
-        assert ht._resolve_child("amyra") == "amyra"
+        assert ht._resolve_child("ana") == "ana"
 
     def test_display_name_match(self):
-        assert ht._resolve_child("Amyra") == "amyra"
+        assert ht._resolve_child("Ana") == "ana"
 
     def test_prefix_match(self):
-        assert ht._resolve_child("Amy") == "amyra"
-        assert ht._resolve_child("Rey") == "reyansh"
+        assert ht._resolve_child("Ana") == "ana"
+        assert ht._resolve_child("Ben") == "ben"
 
     def test_unknown_child(self):
         assert ht._resolve_child("Bob") is None
@@ -142,23 +137,23 @@ class TestResolveChild:
 
 class TestLogMedication:
     def test_no_dose_asks_for_amount(self):
-        result = ht.log_medication("Amyra", "tylenol")
+        result = ht.log_medication("Ana", "tylenol")
         assert "How much" in result
-        assert "Amyra" in result
+        assert "Ana" in result
 
     def test_dose_ml_logged_confirmed(self):
-        result = ht.log_medication("Amyra", "tylenol", dose_ml=5.0)
+        result = ht.log_medication("Ana", "tylenol", dose_ml=5.0)
         assert "✅" in result
-        assert "Amyra" in result
+        assert "Ana" in result
         assert "5mL" in result
 
     def test_dose_mg_logged_confirmed(self):
-        result = ht.log_medication("Amyra", "tylenol", dose_mg=160.0)
+        result = ht.log_medication("Ana", "tylenol", dose_mg=160.0)
         assert "✅" in result
         assert "160mg" in result
 
     def test_shows_next_dose_time(self):
-        result = ht.log_medication("Amyra", "tylenol", dose_ml=5.0)
+        result = ht.log_medication("Ana", "tylenol", dose_ml=5.0)
         assert "Next" in result or "earliest" in result
 
     def test_unknown_child_returns_error(self):
@@ -166,35 +161,54 @@ class TestLogMedication:
         assert "Unknown child" in result or "❓" in result
 
     def test_unknown_medication_returns_error(self):
-        result = ht.log_medication("Amyra", "aspirin", dose_ml=5.0)
+        result = ht.log_medication("Ana", "aspirin", dose_ml=5.0)
         assert "Unknown medication" in result or "❓" in result
 
     def test_early_dose_warning(self):
         # Log first dose, then immediately a second — should warn
-        ht.log_medication("Amyra", "tylenol", dose_ml=5.0)
-        result = ht.log_medication("Amyra", "tylenol", dose_ml=5.0)
+        ht.log_medication("Ana", "tylenol", dose_ml=5.0)
+        result = ht.log_medication("Ana", "tylenol", dose_ml=5.0)
         assert "⚠️" in result or "only" in result.lower()
 
     def test_alternate_med_shown(self):
-        result = ht.log_medication("Amyra", "tylenol", dose_ml=5.0)
+        result = ht.log_medication("Ana", "tylenol", dose_ml=5.0)
         assert "Ibuprofen" in result or "ibuprofen" in result.lower()
+
+    def test_max_doses_24h_warning(self):
+        """Tylenol's max_doses_24h is 5 (see MEDICATIONS config). The 6th
+        dose within a rolling 24h window — even if correctly spaced past
+        the 4h interval each time — must surface an advisory warning."""
+        from datetime import timedelta
+        now = ht._now()
+        # 5 doses, each exactly on the 4h interval, oldest at now-20h.
+        for hours_ago in (20, 16, 12, 8, 4):
+            ts = (now - timedelta(hours=hours_ago)).isoformat()
+            ht.log_medication("Ana", "tylenol", dose_ml=5.0, timestamp=ts)
+
+        result = ht.log_medication("Ana", "tylenol", dose_ml=5.0)
+        assert "dose #6" in result
+        assert "max recommended is 5/24h" in result
+
+    def test_no_max_doses_warning_under_the_limit(self):
+        result = ht.log_medication("Ana", "tylenol", dose_ml=5.0)
+        assert "max recommended" not in result
 
 
 # ─── log_fever ────────────────────────────────────────────────────────────────
 
 class TestLogFever:
     def test_confirmed_fever_logged(self):
-        result = ht.log_fever("Amyra", temp_f=101.5)
+        result = ht.log_fever("Ana", temp_f=101.5)
         assert "✅" in result
         assert "101.5°F" in result
 
     def test_subjective_fever_logged(self):
-        result = ht.log_fever("Amyra", subjective=True)
+        result = ht.log_fever("Ana", subjective=True)
         assert "✅" in result
         assert "warm" in result.lower() or "unconfirmed" in result.lower()
 
     def test_high_fever_warning(self):
-        result = ht.log_fever("Amyra", temp_f=104.5)
+        result = ht.log_fever("Ana", temp_f=104.5)
         assert "⚠️" in result or "pediatrician" in result.lower()
 
     def test_unknown_child_error(self):
@@ -206,9 +220,9 @@ class TestLogFever:
 
 class TestLogSymptom:
     def test_symptom_logged(self):
-        result = ht.log_symptom("Amyra", "runny nose")
+        result = ht.log_symptom("Ana", "runny nose")
         assert "✅" in result
-        assert "Amyra" in result
+        assert "Ana" in result
 
     def test_unknown_child_error(self):
         result = ht.log_symptom("Nobody", "cough")
@@ -219,7 +233,7 @@ class TestLogSymptom:
 
 class TestUpdateChildWeight:
     def test_weight_updated(self):
-        result = ht.update_child_weight("Amyra", 15.5)
+        result = ht.update_child_weight("Ana", 15.5)
         assert "✅" in result
         assert "15.5" in result
 
@@ -232,17 +246,99 @@ class TestUpdateChildWeight:
 
 class TestGetHealthSummary:
     def test_empty_log(self):
-        result = ht.get_health_summary("Amyra")
+        result = ht.get_health_summary("Ana")
         assert "No health events" in result
 
     def test_summary_after_logging(self):
-        ht.log_medication("Amyra", "tylenol", dose_ml=5.0)
-        ht.log_fever("Amyra", temp_f=102.0)
-        result = ht.get_health_summary("Amyra")
-        assert "Amyra" in result
+        ht.log_medication("Ana", "tylenol", dose_ml=5.0)
+        ht.log_fever("Ana", temp_f=102.0)
+        result = ht.get_health_summary("Ana")
+        assert "Ana" in result
         assert "Tylenol" in result or "tylenol" in result.lower()
         assert "102" in result
 
     def test_unknown_child_error(self):
         result = ht.get_health_summary("Bob")
         assert "Unknown child" in result or "❓" in result
+
+
+# ─── _load_cfg: config.json owns identity, health_config.json owns weights ───
+
+class TestLoadCfgReadsConfigJson:
+    """Regression: the 'preferred' branch read `config.family`, which does not
+    exist on Config. It returned {}, the loop never ran, and every call fell
+    through to health_config.json inside a bare `except: pass`. A kid present
+    in config.json but not health_config.json was invisible to every dosing
+    tool — reported as '❓ Unknown child'."""
+
+    def test_kids_come_from_config_not_the_weights_file(self, tmp_path, monkeypatch):
+        import features.health.health_tracker as ht
+
+        cfg_path = tmp_path / "health_config.json"
+        cfg_path.write_text(json.dumps({
+            "children": {"ana": {"name": "Ana", "weight_kg": 14.0}}
+        }))
+        monkeypatch.setattr(ht, "HEALTH_CFG_PATH", str(cfg_path))
+
+        # Two kids configured; only one has a weight on file.
+        fake_config = SimpleNamespace(kids=[
+            SimpleNamespace(name="Ana"),
+            SimpleNamespace(name="Ben"),
+        ])
+        with patch.dict(sys.modules):
+            import core.config_loader as cl
+            monkeypatch.setattr(cl, "config", fake_config)
+            children = ht._load_cfg()["children"]
+
+        assert set(children) == {"ana", "ben"}
+        assert children["ana"]["weight_kg"] == 14.0
+        # Known child, no weight yet — not an unknown child.
+        assert children["ben"]["weight_kg"] == 0.0
+
+    def test_falls_back_to_weights_file_when_no_kids_configured(self, tmp_path, monkeypatch):
+        import features.health.health_tracker as ht
+
+        cfg_path = tmp_path / "health_config.json"
+        cfg_path.write_text(json.dumps({
+            "children": {"solo": {"name": "Solo", "weight_kg": 20.0}}
+        }))
+        monkeypatch.setattr(ht, "HEALTH_CFG_PATH", str(cfg_path))
+
+        with patch.dict(sys.modules):
+            import core.config_loader as cl
+            monkeypatch.setattr(cl, "config", SimpleNamespace(kids=[]))
+            children = ht._load_cfg()["children"]
+
+        assert children["solo"]["weight_kg"] == 20.0
+
+
+class TestDoseLogIsCrossProcessSafe:
+    """A dropped dose is a missing entry in the interval check that gates the
+    next one, so losing one is a safety failure, not lost bookkeeping."""
+
+    def test_concurrent_dose_logs_do_not_lose_updates(self, tmp_path):
+        import json
+        import subprocess
+        import sys as _sys
+
+        skill_dir = str(Path(__file__).parent.parent)
+        log_path = tmp_path / "health_log.json"
+
+        prog = (
+            "import sys;"
+            "sys.path.insert(0, sys.argv[1]);"
+            "import features.health.health_tracker as ht;"
+            "ht.HEALTH_LOG_PATH = sys.argv[2];"
+            "ht._append_event('ana', {'n': int(sys.argv[3])})"
+        )
+        procs = [
+            subprocess.Popen([_sys.executable, "-c", prog, skill_dir, str(log_path), str(i)],
+                             cwd=skill_dir)
+            for i in range(8)
+        ]
+        for p in procs:
+            assert p.wait(timeout=60) == 0
+
+        events = json.loads(log_path.read_text())["ana"]
+        assert len(events) == 8, f"a dose was lost: {len(events)} of 8 survived"
+        assert sorted(e["n"] for e in events) == list(range(8))

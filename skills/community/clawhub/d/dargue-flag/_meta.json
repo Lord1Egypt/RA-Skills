@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn7e9w2zb20pqv6p0wwd0nexw182nfxw",
-  "slug": "dargue-flag",
+  "name": "dargue-flag",
   "version": "1.0.0",
-  "publishedAt": 1780134855250
+  "description": "视频搜索与浏览 Skill，支持关键词搜索和视频分类浏览",
+  "entry": "scripts/video-search.js"
 }

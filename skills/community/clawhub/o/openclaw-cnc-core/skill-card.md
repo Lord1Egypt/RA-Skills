@@ -1,43 +1,62 @@
-## Description: <br>
-OpenClaw CNC Core helps agents work with CNC machining quote workflows, including STEP/STL parsing, material and time estimation, quote calculation, historical-case retrieval, and risk review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Supports CNC machining quotes with drawing analysis, cost estimates, historical case retrieval, and risk checks.
 
-## Publisher: <br>
-[timo2026](https://clawhub.ai/user/timo2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[timo2026](https://clawhub.ai/user/timo2026)
 
-## Use Case: <br>
-Developers and CNC workflow engineers use this skill to add quoting, material configuration, drawing parsing, case retrieval, and manual-review logic to machining quote systems. It is also useful for evaluating whether a submitted part quote should be calculated automatically or escalated for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive CAD files, order details, or customer snippets may leave the local machine through the public HTTP demo, cloud LLM providers, or a Feishu webhook. <br>
-Mitigation: Review data flows before use, avoid uploading proprietary CAD files to the public demo unless authorized, prefer local/Ollama mode for sensitive work, and configure Feishu only when sending those snippets is approved. <br>
-Risk: The quote engine imports executable code from a local ~/.openclaw/workspace/data path. <br>
-Mitigation: Review, restrict, or remove the data_layer import behavior before production deployment, and ensure the local workspace path is controlled by trusted operators. <br>
+## Use Case:
 
+CNC shops and developers use the skill to estimate machining costs, generate quotes, retrieve similar cases, and identify quotes needing manual review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/timo2026/openclaw-cnc-core) <br>
-- [OpenClaw CNC Website](https://openclaw.ai/cnc) <br>
-- [Provider Configuration Guide](docs/PROVIDERS.md) <br>
-- [Release Changelog](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python and bash examples, JSON configuration examples, and structured quote or risk-review data when used from code.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference cloud LLM providers, local Ollama mode, SQLite-backed case data, STEP/STL inputs, and CNC quote records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata; artifact CHANGELOG top entry is 1.2.0) <br>
+Risk: Proprietary or customer-owned CAD files may be exposed through the public demo.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid uploading sensitive drawings unless the demo operator's data handling is approved; use local processing for sensitive work.
+
+Risk: Cloud providers and Feishu webhooks may receive sensitive quote or customer details.
+
+Mitigation: Use approved providers and destinations only; prefer local models where data must remain private.
+
+Risk: The provider guide suggests piping a downloaded installer into a shell.
+
+Mitigation: Review installation steps and use an approved installation method instead of running an unreviewed remote script.
+
+Risk: The included publishing script can force-push repositories using configured tokens.
+
+Mitigation: Do not run the publishing script unless you intend to overwrite the publisher's remote branches with authorized credentials.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/timo2026/skills/openclaw-cnc-core)
+- [Provider configuration guide](artifact/docs/PROVIDERS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Configuration instructions]
+
+**Output Format:** [Structured quote data (Python object or JSON), with risk and review guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes price breakdown, confidence, and manual-review flags.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

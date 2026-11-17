@@ -1,39 +1,56 @@
-## Description: <br>
-Download a file from a URL and save it locally. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Download a file from a URL and save it locally.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and agent operators use this skill to download HTTP/HTTPS resources such as images, documents, audio, video, or reports to a specified local path.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can download from arbitrary URLs, which may retrieve untrusted or malicious files.
+
+Mitigation: Verify the URL source before use and scan or inspect downloaded files before opening or executing them.
+
+Risk: The skill can write files wherever the agent process has permission, including unsafe destinations or existing files.
+
+Mitigation: Use a dedicated downloads directory, avoid sensitive paths, and review the requested save path before execution.
+
+Risk: Running the downloader with elevated privileges increases the impact of unsafe file writes.
+
+Mitigation: Run the agent without elevated privileges and restrict filesystem permissions to the intended workspace.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent users use this skill to download an HTTP or HTTPS resource to a local file path when they need to save remote content such as an image, document, audio file, or video. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Files, JSON]
 
-## Known Risks and Mitigations: <br>
-Risk: Untrusted remote files may be saved locally and later opened or executed. <br>
-Mitigation: Use trusted URLs and treat downloaded content as untrusted until it has been inspected. <br>
-Risk: A chosen save path could overwrite important project, configuration, or system files. <br>
-Mitigation: Use an explicit destination such as a dedicated downloads folder and avoid saving over important files. <br>
+**Output Format:** [Downloaded file saved to disk with JSON status on stdout]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Requires the requests package and accepts a required url plus an optional save_path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON, Shell commands] <br>
-**Output Format:** [JSON status message with the saved local file path; downloaded content is written as a local file.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the Python requests package. The URL is required; save_path is optional and defaults to a filename derived from the URL.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

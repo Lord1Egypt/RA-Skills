@@ -1,42 +1,55 @@
-## Description: <br>
-Helps agents draft Chinese WeChat public-account long-form articles in the KittLabs voice from user-provided briefs, materials, or article drafts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese long-form WeChat article writing skill that helps agents draft, expand, continue, and revise articles in the Digital Life Kitt Agent (KittLabs) voice while avoiding short-form posts and title-only generation.
 
-## Publisher: <br>
-[yejiming](https://clawhub.ai/user/yejiming) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yejiming](https://clawhub.ai/user/yejiming)
 
-## Use Case: <br>
-External users and content teams use this skill to turn source material, notes, briefs, PDFs, links, or partial drafts into Chinese long-form WeChat articles with a specific KittLabs-style voice and editorial process. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation wording could cause the skill to be used for generic writing requests where a KittLabs-style Chinese WeChat voice is not wanted. <br>
-Mitigation: Ask the user to confirm the target voice, language, channel, and desired neutrality before applying the style to ambiguous writing requests. <br>
-Risk: Persona-specific drafting can overfit to a named creator style or imply endorsement if published without review. <br>
-Mitigation: Require human editorial review before publication and avoid presenting generated drafts as the named creator's own writing without permission. <br>
+## Use Case:
 
+External creators and agents use this skill to turn briefs, notes, links, transcripts, or partial drafts into Chinese WeChat-style long-form articles in Kitt's personal writing voice. It guides topic judgment, structure, style, revision, and self-checking for public-account articles rather than short social posts or headline generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yejiming/kitt-writer) <br>
-- [Content methodology](references/content_methodology.md) <br>
-- [Style examples](references/style_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose and editorial guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Chinese long-form article drafts, structure suggestions, and revision guidance; no code execution or account access is described.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Generated articles may include Kitt-specific attribution, byline, or call-to-action text that is not intended for every publisher.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the final draft before publication and remove or edit any fixed Kitt attribution, byline, or call-to-action unless that attribution and promotion are intended.
+
+Risk: The skill is designed for Chinese WeChat-style long-form writing in a specific persona and may be unsuitable for short posts, summaries, or other publication voices.
+
+Mitigation: Use it only for long-form WeChat-style drafts in Kitt's voice, and choose a different skill for short-form content or title-only generation.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/yejiming/skills/kitt-writer)
+- [Content Methodology](references/content_methodology.md)
+- [Style Examples](references/style_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Chinese long-form prose, article outlines, revision notes, and self-check guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include a fixed Kitt attribution or call-to-action that should be reviewed before publishing.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

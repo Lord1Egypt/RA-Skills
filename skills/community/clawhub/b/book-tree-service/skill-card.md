@@ -1,41 +1,54 @@
-## Description: <br>
-Helps agents search for and book tree-service appointments through Lokuli MCP. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book Tree Service helps agents search for tree-service providers, check availability, and create bookings through Lokuli's MCP server.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users use this skill to find tree-service providers, check appointment availability, and create bookings through Lokuli. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends booking details to Lokuli as an external service provider. <br>
-Mitigation: Install only if Lokuli is an acceptable provider for the deployment context. <br>
-Risk: Bookings may include provider, service, time, and customer contact details. <br>
-Mitigation: Confirm the provider, time, service, and contact details before creating a booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-tree-service) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+## Use Case:
 
+External users and booking agents use this skill to find local tree-service providers, check appointment availability, and create bookings through Lokuli.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with JSON-RPC MCP call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lokuli MCP to search providers, check availability, and create bookings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad tree-service requests may be routed to an external booking service.
+
+Mitigation: Use the skill only when the user explicitly wants tree-service provider search or booking help.
+
+Risk: The skill can submit customer name, email, phone number, and appointment details to Lokuli.
+
+Mitigation: Confirm user intent and get explicit approval before sharing contact or appointment details.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/edwardrodriguez703-design/skills/book-tree-service)
+- [Publisher Profile](https://clawhub.ai/user/edwardrodriguez703-design)
+- [Lokuli MCP Endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Configuration]
+
+**Output Format:** [Markdown and JSON-RPC tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include MCP tool-call arguments for provider search, availability checks, and booking creation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,59 @@
-## Description: <br>
-Generates a single chat-ready meme image from speech-recognition text or polished text, choosing a meme style from the text tone and using doubao-seedream-4-5-251128 as the default image model. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a single chat-ready Chinese meme image from speech-recognition text or polished text, with automatic tone-based styling and optional caption templates.
 
-## Publisher: <br>
-[Hei-MaoM](https://clawhub.ai/user/Hei-MaoM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hei-maom](https://clawhub.ai/user/hei-maom)
 
-## Use Case: <br>
-External users and developers use this skill to turn short voice-input text into a single meme, sticker, or caption-ready image for chat experiences. It can produce an image with embedded Chinese caption text or a caption-free image with a separate caption template. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided text is sent to the configured image model provider. <br>
-Mitigation: Use a dedicated model API key, review the configured base URL before running it, and avoid sending private, confidential, or credential-like text unless the provider is trusted. <br>
-Risk: Generated meme images are saved locally and may contain user text. <br>
-Mitigation: Choose an output directory where saved meme images are acceptable for the deployment environment. <br>
-Risk: Dependency resolution may change runtime behavior over time. <br>
-Mitigation: Install from pinned or locked dependencies in stricter environments. <br>
+## Use Case:
 
+External users and developers use this skill to turn dictated or polished Chinese chat text into one meme or sticker image for messaging interfaces and input-method integrations.
 
-## Reference(s): <br>
-- [Image model API integration notes](references/api_cn.md) <br>
-- [Input-method integration notes](references/integration_cn.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, files, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON from the generation script plus a saved JPEG image path; template mode also includes caption-template JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires MEME_MODEL_API_KEY for the configured OpenAI-compatible image API. Defaults to saving one .jpg image under meme_outputs or a caller-provided output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Dictated or polished user text is sent to an external image-model endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted model endpoints and avoid sending sensitive, confidential, or regulated dictated text.
+
+Risk: The image download path follows URLs returned by the image service.
+
+Mitigation: Prefer b64_json image responses, or add URL allowlisting, content-type validation, size limits, and timeout controls before use in networked or corporate environments.
+
+Risk: Dependencies are declared with broad lower bounds.
+
+Mitigation: Pin and review dependency versions before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hei-maom/skills/voice-text-to-meme)
+- [图片模型接入说明](artifact/references/api_cn.md)
+- [输入法接入说明](artifact/references/integration_cn.md)
+
+## Skill Output:
+
+**Output Type(s):** [image file, json, text]
+
+**Output Format:** [JPEG image file plus JSON metadata containing the selected source text, tone, mode, prompt, image path, and caption or caption template.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to a single JPEG output; template mode returns suggested top, bottom, or single-caption text for downstream overlay.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

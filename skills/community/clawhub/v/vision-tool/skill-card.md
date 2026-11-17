@@ -1,38 +1,53 @@
-## Description: <br>
-Image recognition using Ollama + qwen3.5:4b with think=False for reliable content extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image recognition using Ollama + qwen3.5:4b with think=False for reliable content extraction.
 
-## Publisher: <br>
-[huruilizhen](https://clawhub.ai/user/huruilizhen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huruilizhen](https://clawhub.ai/user/huruilizhen)
 
-## Use Case: <br>
-Developers and agent operators use this skill to analyze local image files and extract concise visual descriptions through a configured Ollama vision model. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted images are visible to the configured Ollama service and model setup. <br>
-Mitigation: Use only a trusted Ollama instance and avoid sensitive screenshots, documents, or personal photos unless that environment is approved for the data. <br>
+## Use Case:
 
+Developers and agent users use Vision Tool to analyze selected image files through a configured Ollama qwen3.5:4b service and return visual descriptions or structured JSON results.
 
-## Reference(s): <br>
-- [ClawHub Vision Tool release page](https://clawhub.ai/huruilizhen/vision-tool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json] <br>
-**Output Format:** [Plain text analysis by default, with optional structured JSON output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [JSON output includes success state, analysis text, source, timing, and token statistics when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Selected images and prompts are sent to the configured Ollama service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep Ollama local for sensitive images and analyze only images the user intends to share with that service.
+
+Risk: Development cleanup commands can remove local build and cache files when run in a modified workspace.
+
+Mitigation: Review cleanup commands before running them and keep unrelated work outside the skill workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huruilizhen/skills/vision-tool)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, guidance]
+
+**Output Format:** [Plain text image analysis or JSON result object]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [JSON output includes success or error status, source, elapsed time, token statistics, image name, prompt, and analysis text when available.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release metadata, SKILL.md frontmatter, CHANGELOG; pyproject.toml reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

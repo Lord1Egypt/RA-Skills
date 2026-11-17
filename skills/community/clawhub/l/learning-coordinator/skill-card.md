@@ -1,43 +1,61 @@
-## Description: <br>
-Coordinates learning signals, pattern promotion, and stage management for self-improving memory by monitoring corrections and preferences to identify emerging patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates learning signals, pattern promotion, and stage management for self-improving memory by monitoring corrections and preferences, identifying emerging patterns, and integrating with Memory Sync Enhanced through an adapter.
 
-## Publisher: <br>
-[whoisme007](https://clawhub.ai/user/whoisme007) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[whoisme007](https://clawhub.ai/user/whoisme007)
 
-## Use Case: <br>
-Developers and agent operators use this skill to coordinate self-improving memory workflows, inspect learning stages, identify repeated correction patterns, and manage promotion or demotion of patterns across memory tiers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read and create ~/self-improving/learning.md when automatic creation is enabled. <br>
-Mitigation: Review the learning rules file before enabling the skill, and set auto_create to false if unexpected local writes are not acceptable. <br>
-Risk: The skill imports local adapter code and can use correction or preference adapters to drive learning behavior. <br>
-Mitigation: Use only trusted local adapters and review adapter configuration before relying on automatic learning signals. <br>
-Risk: Automatic stage adjustment can promote or demote learned patterns based on feedback and configured thresholds. <br>
-Mitigation: Review learning statistics and pattern reports before treating promoted patterns as confirmed behavior. <br>
+## Use Case:
 
+Developers and agent operators use this skill to coordinate learning workflows across correction, preference, and memory tiers. It helps inspect learning stages, identify repeated correction patterns, promote or demote patterns, and report learning statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/whoisme007/learning-coordinator) <br>
-- [Skill homepage](https://clawhub.com/skills/learning-coordinator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, Python API examples, YAML configuration, and structured learning-status data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read or create local learning-rule files under ~/self-improving/ and may query trusted local correction or preference adapters when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The coordinator can read or create local files through a caller-controlled learning_rules_file path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in trusted workspaces, pin learning_rules_file to the intended ~/self-improving/learning.md path, and review configuration before enabling the skill.
+
+Risk: Automatic file creation may create or modify local learning-rule state unexpectedly.
+
+Mitigation: Consider setting auto_create to false or requiring explicit approval before first-run file creation.
+
+Risk: Some learning actions are reported as incomplete, placeholder, or non-durable behavior.
+
+Mitigation: Do not use emerging-pattern or promotion results for production decisions until the implementation is reviewed and the behavior is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/whoisme007/skills/learning-coordinator)
+- [Publisher profile](https://clawhub.ai/user/whoisme007)
+- [Artifact skill documentation](artifact/SKILL.md)
+- [Enhanced configuration example](artifact/config/enhanced_config.yaml)
+- [Enhanced usage example](artifact/examples/enhanced_usage.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python API examples, shell commands, YAML configuration, and JSON-like status dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns learning statistics, pattern lists, health status, and promotion results through the coordinator and adapter APIs.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

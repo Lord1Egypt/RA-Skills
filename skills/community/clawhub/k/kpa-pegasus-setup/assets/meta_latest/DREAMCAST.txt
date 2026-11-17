@@ -1,0 +1,25 @@
+collection: DREAMCAST
+sort-by: 10
+shortname: dreamcast
+launch: am start --user 0 -n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture -e ROM "{file.path}" -e LIBRETRO /data/data/com.retroarch.aarch64/cores/flycast_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg
+
+game: VR网球
+file: VR网球.chd
+assets.box_front: Imgs/VR网球.png
+description: 《VR网球》，世嘉 DC 平台。
+game: 快打刑事
+file: 快打刑事.chd
+assets.box_front: Imgs/快打刑事.png
+description: 《快打刑事》，世嘉 DC 平台。
+game: 沉默狙击手
+file: 沉默狙击手.chd
+assets.box_front: Imgs/沉默狙击手.png
+description: 《沉默狙击手》，世嘉 DC 平台。
+game: 立体壁球
+file: 立体壁球.chd
+assets.box_front: Imgs/立体壁球.png
+description: 《立体壁球》，世嘉 DC 平台。
+game: 魔法宝石
+file: 魔法宝石.chd
+assets.box_front: Imgs/魔法宝石.png
+description: 《魔法宝石》，世嘉 DC 平台。

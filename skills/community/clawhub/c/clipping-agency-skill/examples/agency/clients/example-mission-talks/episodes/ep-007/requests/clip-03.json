@@ -1,0 +1,66 @@
+{
+ "content": [
+  {
+   "text": "The one man on Apollo 11 who couldn't watch the Moonwalk on TV. #apollo11 #moonlanding #history",
+   "media": [
+    {
+     "type": "MEDIA_LIBRARY",
+     "mediaId": "example-media-mission-03"
+    }
+   ]
+  }
+ ],
+ "schedule": {
+  "type": "SCHEDULE_FOR_LATER",
+  "scheduledFor": "2026-11-18T23:00:00Z"
+ },
+ "socialAccounts": [
+  {
+   "platform": "TIKTOK",
+   "socialAccountId": "example-acct-mission-tiktok",
+   "postType": "VIDEO",
+   "postMode": "DIRECT_POST",
+   "privacyLevel": "FOLLOWER_OF_CREATOR",
+   "allowComment": true,
+   "allowDuet": false,
+   "allowStitch": true,
+   "isYourBrand": false,
+   "isBrandedContent": false,
+   "autoAddMusic": false,
+   "contentOverride": [
+    {
+     "text": "The one man on Apollo 11 who couldn't watch the Moonwalk on TV. #apollo11 #moonlanding #history",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-mission-03"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "platform": "YOUTUBE",
+   "socialAccountId": "example-acct-mission-youtube",
+   "title": "Apollo 11's command module pilot had one complaint (1969)",
+   "privacy": "public",
+   "madeForKids": false,
+   "tags": [
+    "apollo 11",
+    "moon landing",
+    "funny"
+   ],
+   "contentOverride": [
+    {
+     "text": "Apollo 11's command module pilot in 1969 on the one thing missing from his spacecraft. #Shorts",
+     "media": [
+      {
+       "type": "MEDIA_LIBRARY",
+       "mediaId": "example-media-mission-03"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

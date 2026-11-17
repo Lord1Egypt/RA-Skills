@@ -1,0 +1,32 @@
+{
+  "skill_name": "custom-ui-spec",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Implement a macOS-style settings panel with shadcn/ui and Radix UI adhering to Apple HIG.",
+      "expected_output": "Accessible component code following Apple Human Interface Guidelines with HIG spacing, touch targets, and tokens.",
+      "files": [],
+      "expectations": [
+        "Selects Apple HIG specification based on platform decision tree",
+        "Uses headless component architecture (shadcn/ui or Radix primitives)",
+        "Adheres to HIG touch target requirements (min 44x44 pt)",
+        "Includes accessible attributes (aria-label, focus rings, disabled states)",
+        "Verifiable via python validate_ui.py --spec hig"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Create an Android Material 3 confirmation dialog with primary and secondary actions.",
+      "expected_output": "Material 3 compliant confirmation dialog specification with elevation tokens and accessibility states.",
+      "files": [],
+      "expectations": [
+        "Selects Google Material Design 3 specification",
+        "Maps components to Material definitions (Dialog, Button, Surface)",
+        "Enforces Material 3 corner radius (e.g. 28dp for dialog containers)",
+        "Implements proper tonal elevation and color roles (Primary, SurfaceVariant, OnSurface)",
+        "Includes full state definitions (focus, hover, active, pressed)"
+      ]
+    }
+  ]
+}
+

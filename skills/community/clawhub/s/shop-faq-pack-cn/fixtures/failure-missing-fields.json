@@ -1,0 +1,22 @@
+{
+  "store_name": "缺料示例店",
+  "shipping": "部分商品可包邮。",
+  "delivery": "尽快发货。",
+  "after_sales": "支持售后。",
+  "expected_missing_fields": [
+    "approval_status",
+    "shipping.free_shipping_condition",
+    "shipping.non_free_shipping_charge",
+    "shipping.region_rules",
+    "delivery.processing_time",
+    "delivery.transit_time",
+    "delivery.holiday_notice",
+    "after_sales.eligibility_conditions",
+    "after_sales.request_period",
+    "after_sales.return_shipping_responsibility",
+    "after_sales.exchange_conditions",
+    "after_sales.exchange_shipping_responsibility",
+    "after_sales.refund_method",
+    "specifications"
+  ]
+}

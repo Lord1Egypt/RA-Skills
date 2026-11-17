@@ -1,39 +1,54 @@
-## Description: <br>
-Generates structured daily reports that summarize completed tasks, ongoing work, pending items, and notable notes for daily progress review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured daily reports that summarize completed tasks, ongoing work, pending items, blockers, and notable notes.
 
-## Publisher: <br>
-[nopedijah](https://clawhub.ai/user/nopedijah) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nopedijah](https://clawhub.ai/user/nopedijah)
 
-## Use Case: <br>
-Developers, operators, and individual users use this skill to turn daily memory, recent conversation context, and relevant project files into concise status reports with completed work, ongoing work, pending items, blockers, and notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may read local memory or project files and include sensitive or stale details in a daily report. <br>
-Mitigation: Review the generated report before sharing it, and ask the agent to confirm which files it used when working with sensitive projects. <br>
-Risk: The skill may save generated summaries back into local memory files. <br>
-Mitigation: Confirm memory-file writes before they happen and review saved reports for sensitive content. <br>
+## Use Case:
 
+Employees, external users, and developers can use this skill to turn daily memory, recent conversation context, and relevant project notes into concise daily progress reports. It is intended for status summaries that highlight accomplishments, active work, pending tasks, blockers, and decisions needed.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Guidance] <br>
-**Output Format:** [Structured Markdown report with Chinese section headings and status indicators] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update memory files with generated reports for future reference.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill may read broad private context, including memory files, recent conversation history, and project files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in workspaces where those sources are acceptable inputs, and review the generated report for sensitive details before sharing.
+
+Risk: The skill may update persistent memory without clear user approval or scoping.
+
+Mitigation: Require user confirmation before saving a generated report back into memory, and limit saved content to the intended daily-report scope.
+
+## Reference(s):
+
+- [Daily Report (HuangYang) on ClawHub](https://clawhub.ai/nopedijah/skills/daily-report-huangyang)
+- [Publisher profile: nopedijah](https://clawhub.ai/user/nopedijah)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown daily report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include task statuses, blockers, priorities, notes, and links when relevant.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,37 +1,52 @@
-## Description: <br>
-Overrides default LLM truncation behavior, enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Overrides default LLM truncation behavior, enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly for tasks requiring exhaustive, unabridged output.
 
-## Publisher: <br>
-[akdira](https://clawhub.ai/user/akdira) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[akdira](https://clawhub.ai/user/akdira)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, developers, and agent operators use this skill when a task requires complete, unabridged deliverables such as full files, full implementations, or exhaustive multi-part answers. It guides the agent to scope requested deliverables, avoid placeholder shortcuts, and pause at clean continuation points when responses approach token limits.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may produce longer answers than desired for workflows that require concise responses.
+
+Mitigation: Use it for tasks that require complete, unabridged deliverables and avoid enabling it for strict-brevity workflows.
+
+Risk: The skill may conflict with workflows that require fixed output protocols.
+
+Mitigation: Confirm that the required output protocol allows complete responses and clean continuation markers before using the skill.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill when a task requires exhaustive, unabridged output such as complete files, full code implementations, or multi-part deliverables. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's broad trigger can encourage longer responses even when concise handling or tighter scoping would be safer. <br>
-Mitigation: Use it only when complete output is explicitly valuable, and avoid applying it to sensitive, restricted, or high-risk requests where careful scoping matters more than completeness. <br>
+**Output Format:** [Markdown, code blocks, shell commands, configuration snippets, or other user-requested response formats without intentional omissions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May produce longer responses and uses clean continuation breakpoints when a response approaches token limits.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with complete code blocks or structured text as requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Emphasizes complete deliverables, explicit pause points for long responses, and avoidance of placeholder or truncated output.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release.version) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Agent Memory Dna V5 is a recalled skill release whose remaining artifacts warn users not to execute the revoked VantaGrid Engine version. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a revoked safety placeholder for Agent Memory DNA V5 that warns users not to use version 5.1.4 and halts execution.
 
-## Publisher: <br>
-[groaries](https://clawhub.ai/user/groaries) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[groaries](https://clawhub.ai/user/groaries)
 
-## Use Case: <br>
-Developers and agents reviewing this release use it to identify that version 5.1.4 has been recalled and should be uninstalled or avoided, rather than to run the original memory workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: This release identifies itself as revoked and warns of potential data leakage and instability. <br>
-Mitigation: Do not execute or install this version; remove it and use a trusted current release from the publisher. <br>
-Risk: Related commands, packages, or author wording can be mistaken for official or trusted sources. <br>
-Mitigation: Verify any command or Python package against trusted sources before installation or use. <br>
+## Use Case:
 
+Developers and agents encountering this release use it to recognize that version 5.1.4 has been recalled, stop execution, uninstall it, and seek a current version from the publisher.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/groaries/agent-memory-dna-v5) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown documentation and terminal warning text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included Python stub prints a recall warning and exits with a non-zero status.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-5.1.4 (source: server release metadata) <br>
+Risk: Users may attempt to install or rely on a recalled version that the artifact says must not be used.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not install this release as a working skill; uninstall it and obtain a current version from the publisher.
+
+Risk: The recalled version is associated with data leakage and instability warnings in the artifact.
+
+Mitigation: Treat the package as a safety tombstone and do not attempt to restore or run removed behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/groaries/skills/agent-memory-dna-v5)
+- [Publisher profile](https://clawhub.ai/user/groaries)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and terminal warning text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The remaining executable exits immediately with a safety warning.]
+
+## Skill Version(s):
+
+5.1.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

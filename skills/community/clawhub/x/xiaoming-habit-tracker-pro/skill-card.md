@@ -1,41 +1,57 @@
-## Description: <br>
-Habit Tracker Pro helps users build habits, track check-ins, review statistics, and view achievements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Habit Tracker Pro helps users define habits, record check-ins, view statistics, and track achievements.
 
-## Publisher: <br>
-[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaising-openclaw1](https://clawhub.ai/user/kaising-openclaw1)
 
-## Use Case: <br>
-External users use this skill to manage personal habit routines, record check-ins, inspect recent habit statistics, and view achievement progress. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest habit commands that create or update habit records. <br>
-Mitigation: Review generated clawhub habit commands before running them, especially add and check-in actions. <br>
-Risk: Artifact metadata declares a curl binary requirement that is not explained by the skill text. <br>
-Mitigation: Confirm why curl is required before installation or deployment in restricted environments. <br>
+## Use Case:
 
+External users can use this skill to ask an agent for habit-tracking commands and guidance for adding habits, recording check-ins, viewing statistics, and listing achievements.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaising-openclaw1/xiaoming-habit-tracker-pro) <br>
-- [Publisher profile](https://clawhub.ai/user/kaising-openclaw1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Markdown] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose clawhub habit commands that create or update habit records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and artifact metadata) <br>
+Risk: The install instructions use a mutable latest-version npx command.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the install command before use, prefer a pinned and reviewed ClawHub CLI version, and avoid running it as root or in environments containing unrelated secrets.
+
+Risk: The artifact declares a curl dependency that is not explained by the visible instructions.
+
+Mitigation: Confirm why curl is required before deployment and remove or constrain the dependency if it is unnecessary.
+
+Risk: The documentation is mostly Chinese, which may limit reviewer understanding in multilingual release workflows.
+
+Mitigation: Have a qualified reviewer confirm the visible instructions, pricing claims, and command behavior before publishing or recommending the skill.
+
+## Reference(s):
+
+- [Habit Tracker Pro on ClawHub](https://clawhub.ai/kaising-openclaw1/skills/xiaoming-habit-tracker-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

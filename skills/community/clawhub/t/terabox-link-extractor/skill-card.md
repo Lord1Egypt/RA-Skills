@@ -1,45 +1,60 @@
-## Description: <br>
-Extracts high-speed direct download and stream links from TeraBox URLs using the XAPIverse protocol without requiring a browser session. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Direct link extraction from TeraBox URLs using the XAPIverse protocol. Extracts high-speed download and stream links for all resolutions without browser session requirements.
 
-## Publisher: <br>
-[abdul-karim-mia](https://clawhub.ai/user/abdul-karim-mia) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[abdul-karim-mia](https://clawhub.ai/user/abdul-karim-mia)
 
-## Use Case: <br>
-Developers and agent users use this skill to extract direct download and streaming links from TeraBox URLs through the XAPIverse service after user consent. It is useful when an agent needs to return a text report of file names, sizes, stream URLs, download URLs, and remaining service credits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: TeraBox URLs and the configured XAPIverse API key are sent to xapiverse.com for processing. <br>
-Mitigation: Ask for informed user consent before extraction and use a dedicated API key with appropriate access controls. <br>
-Risk: The optional CLI download mode may write outside the promised Downloads folder according to the authoritative security summary. <br>
-Mitigation: Prefer link extraction only, and avoid `--download` until provider file names are sanitized and the final resolved download path is validated. <br>
-Risk: The release has a suspicious security verdict because third-party data sharing is not disclosed consistently. <br>
-Mitigation: Disclose the xapiverse.com data transfer before use and review the skill before deployment in sensitive environments. <br>
+## Use Case:
 
+External users and developers use this skill to extract direct download and stream links from user-provided TeraBox URLs after explicit consent. It requires Node.js and a TERABOX_API_KEY for the XAPIverse service.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abdul-karim-mia/terabox-link-extractor) <br>
-- [API reference](references/api-reference.md) <br>
-- [Version history](references/changelog.md) <br>
-- [XAPIverse TeraBox Pro API](https://xapiverse.com/apis/terabox-pro) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown text report and optional JSON or pipe-delimited CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and TERABOX_API_KEY; extraction sends the target TeraBox URL and API key to xapiverse.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release evidence, package.json, _meta.json, handler.js, references/changelog.md) <br>
+Risk: The skill sends the full TeraBox URL and TERABOX_API_KEY to xapiverse.com.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask for explicit user consent before extraction and use only non-sensitive links unless the user accepts third-party processing.
+
+Risk: Security evidence warns that download mode can write untrusted remote files outside the intended folder.
+
+Mitigation: Avoid CLI --download mode until output-path containment, filenames, allowed download hosts, redirect limits, and size/time limits are fixed.
+
+Risk: Security evidence rates the release suspicious because third-party data sharing is inconsistently disclosed.
+
+Mitigation: Disclose xapiverse.com processing and API-key use before running the extractor.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abdul-karim-mia/skills/terabox-link-extractor)
+- [TeraBox API Reference](references/api-reference.md)
+- [Skill changelog](references/changelog.md)
+- [XAPIverse TeraBox Pro API](https://xapiverse.com/apis/terabox-pro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text report with extracted file metadata, stream links, download links, and remaining credits; CLI mode can also emit JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires TERABOX_API_KEY and sends the target URL to xapiverse.com for processing.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release, package.json, _meta.json, references/changelog.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,60 @@
-## Description: <br>
-This skill helps agents parse, analyze, and optimize resume content into professional, ATS-friendly resume text while preserving the user's factual information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Optimizes Chinese-language PDF resumes by analyzing ATS and hiring-manager issues, rewriting content with STAR structure, and producing a professional ATS-friendly resume while preserving factual details.
 
-## Publisher: <br>
-[xiu215](https://clawhub.ai/user/xiu215) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiu215](https://clawhub.ai/user/xiu215)
 
-## Use Case: <br>
-External users and career-support agents use this skill to review uploaded resume content, identify weaknesses, rewrite experience bullets with STAR-style structure, improve ATS keyword alignment, and produce a complete resume draft. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Uploaded resumes may contain personal contact, employment, education, and career history details. <br>
-Mitigation: Use the skill only with resume content the user is comfortable providing to the selected agent/runtime. <br>
-Risk: Resume wording can become overstated or misleading during optimization. <br>
-Mitigation: Review the final resume for factual accuracy and remove any phrasing that is not supported by the original resume content. <br>
+## Use Case:
 
+External users and job seekers use this skill to convert a PDF resume into Chinese ATS-friendly resume text. The skill provides issue analysis, item-by-item rewrites, and a final structured resume while emphasizing factual preservation.
 
-## Reference(s): <br>
-- [Resume Optimizer ClawHub Release](https://clawhub.ai/xiu215/ats-crusher-resume-cn) <br>
-- [ATS Keywords Guide](references/ats_keywords.md) <br>
-- [Industry Resume Templates](references/industry_templates.md) <br>
-- [Quantification Guide](references/quantification_guide.md) <br>
-- [Strong Verbs](references/strong_verbs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown resume analysis, before-and-after bullet rewrites, and final structured resume text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves original resume facts and requires user review for accuracy.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Uploaded resumes may contain sensitive personal information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Redact unnecessary sensitive identifiers before analysis and install only in environments suitable for resume processing.
+
+Risk: Resume optimization can accidentally introduce inaccurate employers, dates, metrics, awards, or achievements.
+
+Mitigation: Verify every factual detail in the final resume against the original resume before using it.
+
+Risk: Weak quantified phrasing may overstate accomplishments when exact metrics are unavailable.
+
+Mitigation: Use only source-supported metrics and prefer qualitative improvements when the original resume lacks specific numbers.
+
+## Reference(s):
+
+- [ATS Keywords Guide](references/ats_keywords.md)
+- [Industry Resume Templates](references/industry_templates.md)
+- [Quantification Guide](references/quantification_guide.md)
+- [Strong Verbs Lexicon](references/strong_verbs.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Text]
+
+**Output Format:** [Markdown with structured resume text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes problem analysis, original-versus-optimized rewrites, and a final Chinese resume; users should verify all factual details.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

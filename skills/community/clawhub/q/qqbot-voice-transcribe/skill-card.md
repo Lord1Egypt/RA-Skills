@@ -1,45 +1,65 @@
-## Description: <br>
-Transcribes QQ Bot voice messages by decoding QQ Silk V3 audio and using Whisper speech recognition with Gateway integration and a user confirmation flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transcribes QQ Bot voice messages by decoding QQ Silk V3 audio and running Whisper, with examples for Gateway integration.
 
-## Publisher: <br>
-[cindypapa](https://clawhub.ai/user/cindypapa) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cindypapa](https://clawhub.ai/user/cindypapa)
 
-## Use Case: <br>
-Developers and QQ Bot operators use this skill to convert incoming QQ voice attachments into text, attach the transcription to bot messages, and request user confirmation before acting on the recognized content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Gateway integration examples can pass user-controlled attachment filenames into shell command strings. <br>
-Mitigation: Use spawn or execFile with argument arrays, generate safe server-side filenames, and restrict processing to a controlled directory. <br>
-Risk: The skill depends on an external Silk decoder path and optional persistent swap configuration. <br>
-Mitigation: Pin the decoder to a trusted location and enable swap instructions only after intentionally approving the system-level change. <br>
-Risk: Voice messages may contain sensitive content that is transcribed, logged, or stored. <br>
-Mitigation: Disclose transcription behavior to bot users and apply retention, access control, and logging policies before deployment. <br>
+## Use Case:
 
+Developers and bot operators use this skill to add transcription of QQ .amr and .silk voice attachments to QQ Bot workflows. The skill provides scripts and integration examples that convert voice messages into text for display or review in the bot flow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cindypapa/qqbot-voice-transcribe) <br>
-- [silk-v3-decoder](https://github.com/kn007/silk-v3-decoder) <br>
-- [Whisper](https://github.com/openai/whisper) <br>
-- [OpenClaw QQ Bot](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with command snippets, Python and TypeScript examples, and generated transcription text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ffmpeg, python3, git, whisper, and a trusted Silk V3 decoder path; Gateway examples should be adapted before production use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter and changelog state 2.0.0) <br>
+Risk: Gateway examples expose bot hosts to command injection through shell execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Replace shell exec examples with execFile or spawn argument arrays, generate safe server-side filenames, and sanitize all paths before deployment.
+
+Risk: The release claims confirmation and safety controls that are not actually implemented.
+
+Mitigation: Add a real opt-in confirmation step before any downstream bot action uses a voice transcript.
+
+Risk: Voice transcripts can contain sensitive user content.
+
+Mitigation: Define privacy handling and log-retention limits for audio files, transcripts, paths, and recognition logs.
+
+Risk: Swap and fstab instructions can alter host-level system configuration.
+
+Mitigation: Run under a dedicated low-privilege account and apply swap or fstab changes only with explicit administrator approval.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cindypapa/skills/qqbot-voice-transcribe)
+- [silk-v3-decoder](https://github.com/kn007/silk-v3-decoder)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [OpenClaw](https://github.com/openclaw/openclaw)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and Python or TypeScript code examples; transcription scripts produce plain text and optional JSON batch reports.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local audio files and external binaries including ffmpeg, Python 3, Whisper, git, and silk-v3-decoder.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter and changelog state 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

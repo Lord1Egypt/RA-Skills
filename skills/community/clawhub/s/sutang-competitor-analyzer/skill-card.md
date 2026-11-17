@@ -1,41 +1,54 @@
-## Description: <br>
-Helps users create structured competitor analysis reports with product, pricing, user feedback, operations strategy, SWOT, insights, and action recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users structure competitor research into data-supported comparison reports covering product features, pricing, user experience, SWOT analysis, insights, and action recommendations.
 
-## Publisher: <br>
-[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miromiraclemiro-ux](https://clawhub.ai/user/miromiraclemiro-ux)
 
-## Use Case: <br>
-Product, operations, and business teams use this skill to scope competitor research and generate concise or full Markdown reports for market comparison and planning. It is intended for competitor research, product comparison, market research, and actionable differentiation analysis rather than stock analysis, deep industry reports, career planning, or casual conversation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Confidential roadmap, pricing, strategy, or sensitive competitor intelligence may be exposed if supplied as analysis context. <br>
-Mitigation: Limit inputs to information acceptable for analysis, omit sensitive details, and review generated reports before sharing. <br>
-Risk: Competitor reports may contain incorrect, stale, or unsupported conclusions if source data is weak. <br>
-Mitigation: Verify cited sources and treat generated recommendations as analysis support rather than final business decisions. <br>
+## Use Case:
 
+Product managers, operators, founders, and analysts use this skill to scope competitors, compare product and go-to-market dimensions, and produce concise or full competitor-analysis reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/sutang-competitor-analyzer) <br>
-- [Artifact skill definition](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown reports with tables, structured comparisons, SWOT analysis, insights, and action recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use web research and user-provided competitor, product, industry, pricing, and review context.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Competitor research may include confidential strategy, unreleased product plans, pricing, customer data, or internal documents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted inputs where possible, and avoid enabling persistent memory for sensitive business context unless later reuse is acceptable.
+
+Risk: The security summary notes web and file tool use without clear user controls.
+
+Mitigation: Review the skill before installation, limit access to sensitive files or sources where possible, and confirm cited data before using the report for decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miromiraclemiro-ux/skills/sutang-competitor-analyzer)
+- [ClawHub publisher profile](https://clawhub.ai/user/miromiraclemiro-ux)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown reports with comparison tables, SWOT summaries, source notes, and action recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires data sources for factual competitor claims.]
+
+## Skill Version(s):
+
+2.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

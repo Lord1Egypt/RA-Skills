@@ -1,8 +1,11 @@
 ---
-name: framework-mapping
-description: Map document sections to compliance framework controls with confidence scoring. Produces bidirectional mappings for gap analysis.
-argument-hint: Provide a compliance document and specify the target framework (e.g., NIST 800-53, HITRUST, ISO 27001)
-allowed-tools: Read, Glob, Grep, WebFetch
+name: "framework-mapping"
+description: "Map document sections to compliance framework controls with confidence scoring. Produces bidirectional mappings for gap analysis."
+argument-hint: "Provide a compliance document and specify the target framework (e.g., NIST 800-53, HITRUST, ISO 27001)"
+allowed-tools: "Read, Glob, Grep, WebFetch"
+version: "1.1"
+author: "Rote Compliance"
+license: "Apache-2.0"
 ---
 
 # Framework Mapping

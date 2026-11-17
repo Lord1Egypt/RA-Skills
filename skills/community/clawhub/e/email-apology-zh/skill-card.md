@@ -1,39 +1,50 @@
-## Description: <br>
-专为客服、项目管理及日常职场场景设计的专业道歉邮件生成工具，适用于服务延误、发货推迟、系统故障、数据错误、承诺未兑现等需要正式致歉的情况。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates professional Chinese apology emails for customer service, project management, and workplace scenarios involving delays, errors, service incidents, or unmet commitments.
 
-## Publisher: <br>
-[olina1ye](https://clawhub.ai/user/olina1ye) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[olina1ye](https://clawhub.ai/user/olina1ye)
 
-## Use Case: <br>
-Customer support, project management, and workplace teams use this skill to draft formal Chinese apology emails for delays, mistakes, service incidents, and corrective follow-up. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated apology emails may include inaccurate factual claims about dates, responsibility, compensation, or prevention steps. <br>
-Mitigation: Review and correct all factual details before sending the draft externally. <br>
-Risk: The skill declares broad read and write tool access even though its normal behavior is email drafting. <br>
-Mitigation: Grant file access only when source material is intentionally provided or when saving a draft is requested. <br>
+## Use Case:
 
+Customer support, project management, and workplace users can use this skill to draft formal Chinese apology emails that explain an issue, accept responsibility, describe corrective action, and outline prevention steps.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-formatted Chinese email draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated drafts may include placeholders for customer names, dates, order numbers, compensation details, and contact information.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated apology emails may contain inaccurate facts, inappropriate legal commitments, compensation terms, or customer-specific details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and edit the draft for factual accuracy, authorized commitments, compensation language, and recipient details before sending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/olina1ye/skills/email-apology-zh)
+- [Publisher profile](https://clawhub.ai/user/olina1ye)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text email draft]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language business email content should be reviewed before sending.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

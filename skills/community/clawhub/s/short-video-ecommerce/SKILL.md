@@ -1,81 +1,75 @@
 ---
-name: youtube-shorts-automation
-description: Fully automated YouTube Shorts creation workflow — from topic idea → ready-to-upload 15-60 second vertical video with voiceover, one click.
+name: ai-ebook-generator
+description: Fully automated AI eBook creator — from topic idea → finished PDF with cover, table of contents, complete content, one click.
 metadata:
   {
     "openclaw": {
       "os": ["win32", "darwin", "linux"],
-      "emoji": "📱",
-      "requires": {"bins": ["ffmpeg"]}
+      "emoji": "📚",
+      "requires": {"bins": []}
     }
   }
 ---
 
-# Fully Automated YouTube Shorts Creation
+# Fully Automated AI eBook Generator
 
-One-click end-to-end automated YouTube Shorts creation. Just give me a topic, get a **ready-to-upload 9:16 vertical video with voiceover**.
+One-click fully automated eBook creation. Just give me a topic, get a complete ready-to-publish PDF eBook with table of contents, chapters, content, and cover.
 
-Perfect for creators who want to grow a channel without spending hours editing every day.
+Perfect for digital creators who want to sell eBooks on Amazon/Kindle, Gumroad, or their own site without writing a word.
 
 ## When to use
 
-- You want to grow a YouTube Shorts channel but don't have time to create every video manually
-- You're building multiple niche channels and need scale
-- You want to test multiple topics quickly without investing tons of time
-- You're new to content creation and don't know how to edit
+- You want to create an info product to sell but don't have time to write
+- You're building a lead magnet and need a free eBook quickly
+- You want to test multiple topics to see what sells
+- You're a writer looking for a first draft to edit
 
 ## How it works
 
-**Just type:** `make short [your topic]`
+**Just type:** `generate ebook [your topic]`
 
 Example:
 ```
-make short 10 surprising facts about pandas
+generate ebook 101 Keto Diet Recipes for Beginners
 ```
 
 The automation does everything:
 
-1. **Research & Script** → Research topic, write engaging 15-60 second script optimized for Shorts retention
-2. **AI Visual Generation** → Generate AI video clips matching the script (5-15 seconds per segment)
-3. **TTS Voiceover** → Generate natural-sounding voiceover matching the script
-4. **Auto Editing** → ffmpeg stitches clips + voiceover, adds transitions, outputs final 9:16 MP4
-5. **Thumbnail** → Automatically generates optimized thumbnail image
-6. **Title/Description** → Writes SEO-optimized title and description ready to copy
+1. **Topic Research & Outline** → Create detailed table of contents with chapters
+2. **Content Writing** → Write complete content for every chapter
+3. **Formatting** → Add proper page breaks, headers, page numbering
+4. **Cover Design** → AI generate professional eBook cover
+5. **PDF Compile** → Output final ready-to-publish PDF
 
-Output: ready-to-upload MP4 + thumbnail + title + description — everything you need to publish.
+Output: finished PDF eBook ready to upload and sell.
 
 ## Features
 
-✅ **True end-to-end automation** → Topic in → ready-to-upload video out  
-✅ **Shorts-optimized script writing** → Hooks in first 3 seconds, optimized retention  
-✅ **AI video generation** → Supports SeedDance / Kling models  
-✅ **Natural TTS voiceover** → Multiple voice options available  
-✅ **Auto-editing with ffmpeg** → Stitching, transitions, audio mixing  
-✅ **Auto thumbnail generation** → AI generates eye-catching thumbnail  
-✅ **SEO optimized title/description** → Ready to copy  
-✅ **9:16 vertical output** → Perfect for YouTube Shorts / TikTok / Reels  
-✅ **Batch processing** → Generate multiple videos in one go  
+✅ **True end-to-end automation** → Topic in → finished PDF out  
+✅ **Professional structure** → Automatic table of contents, chapter breaks, page numbering  
+✅ **AI cover generation** → Professional cover generated automatically  
+✅ **Customizable length** → Short (10000 words) to full (50000+ words)  
+✅ **Unique content** → Every book written from scratch, no plagiarism  
+✅ **Ready to publish** → Output PDF ready to upload directly to Kindle/Gumroad  
+✅ **Table of contents linked** → Clickable links in PDF for easy navigation  
 
 ## Requirements
 
-- API key for AI video generation (SeedDance or Kling)
-- ffmpeg (usually pre-installed with ClawX)
-- TTS (pre-installed with ClawX)
+- OPENROUTER_API_KEY for content and cover generation
 
 ## Pricing
 
-One-time payment $29 → lifetime license + free updates
+One-time payment $24 → lifetime license + free updates
 
-No subscriptions, pay once use forever. Generate unlimited shorts.
+No subscriptions, pay once generate unlimited eBooks.
 
 ## Why this vs other tools
 
 | Feature | Other Tools | This Skill |
 |---------|-------------|------------|
-| End-to-end automation | ❌ Usually only do one step | ✅ Topic to uploaded-ready everything |
-| Shorts-optimized scripts | ❌ Generic writing | ✅ Built for Shorts retention hooks |
-| Auto-editing | ❌ You do it yourself | ✅ Fully automatic |
-| One-time payment | ❌ Mostly monthly subscription | ✅ Pay once generate unlimited |
-| Batch processing | ❌ Limited | ✅ Generate multiple videos at once |
+| End-to-end automation | ❌ You write content, you format, you make cover | ✅ Everything done for you |
+| Automatic PDF formatting | ❌ You do all the layout | ✅ Automatic TOC, pages, numbers |
+| AI cover generation | ❌ Usually extra step | ✅ Included automatically |
+| One-time payment | ❌ Mostly per-book or subscription | ✅ Pay once generate forever |
 
-Build your channel faster with less work.
+Create and publish eBooks without writing a word. Launch your info product business today.

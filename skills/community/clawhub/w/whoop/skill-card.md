@@ -1,43 +1,50 @@
-## Description: <br>
-WHOOP morning check-in (recovery/sleep/strain) with suggestions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+WHOOP morning check-in (recovery/sleep/strain) with suggestions.
 
-## Publisher: <br>
-[Borahm](https://clawhub.ai/user/Borahm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[borahm](https://clawhub.ai/user/borahm)
 
-## Use Case: <br>
-External users with WHOOP accounts use this skill to run a morning recovery, sleep, and strain check-in and receive short day-planning suggestions from the latest available WHOOP data. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks users to provide long-lived WHOOP health-account credentials. <br>
-Mitigation: Treat refresh tokens as passwords, use a private chat or environment, and know how to revoke the WHOOP app credentials. <br>
-Risk: The security review reports that referenced runtime scripts are missing from the artifact. <br>
-Mitigation: Do not enter WHOOP credentials or enable daily automation until the missing scripts are included and inspected. <br>
-Risk: Daily automation may send health-related check-in output to an unintended destination. <br>
-Mitigation: Confirm where scheduled messages are delivered before enabling cron or other automation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Borahm/whoop) <br>
-- [WHOOP OAuth authorization endpoint](https://api.prod.whoop.com/oauth/oauth2/auth) <br>
-- [WHOOP OAuth token endpoint](https://api.prod.whoop.com/oauth/oauth2/token) <br>
+## Use Case:
 
+People who use WHOOP can have an agent run a morning check-in that fetches recent recovery, sleep, and strain data, then returns short suggestions for the day.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown instructions with shell commands and short text suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WHOOP OAuth environment variables and a refresh token before use.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Long-lived WHOOP OAuth secrets and health-data access tokens are stored locally in plaintext files.
+
+Mitigation: Use owner-only permissions for ~/.clawdbot/.env and ~/.cache/whoop-morning, limit the WHOOP app to needed scopes, and revoke or rotate authorization if either file may have been exposed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/borahm/skills/whoop)
+- [WHOOP OAuth authorization endpoint](https://api.prod.whoop.com/oauth/oauth2/auth)
+- [WHOOP OAuth token endpoint](https://api.prod.whoop.com/oauth/oauth2/token)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires WHOOP OAuth credentials and a refresh token; the daily run returns a short user-facing morning check-in.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

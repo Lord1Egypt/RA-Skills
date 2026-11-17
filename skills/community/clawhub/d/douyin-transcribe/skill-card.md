@@ -1,45 +1,56 @@
-## Description: <br>
-Transcribes Douyin links or uploaded video files into punctuated Chinese text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+抖音视频转文字。用户发抖音链接或视频文件，自动转录为带标点的中文文本。
 
-## Publisher: <br>
-[junweiren98-rgb](https://clawhub.ai/user/junweiren98-rgb) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junweiren98-rgb](https://clawhub.ai/user/junweiren98-rgb)
 
-## Use Case: <br>
-OpenClaw users and agents use this skill to turn Douyin video links or local video files into readable Chinese transcripts for review, reuse, or knowledge-base capture. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys, audio, and transcript text may be exposed because the skill asks for API keys in chat, persists them locally, and sends media content to Groq or OpenAI. <br>
-Mitigation: Review before installing, use only non-sensitive videos, avoid pasting API keys into chat, and prefer a version that stores secrets in a secure secret store. <br>
-Risk: Shell commands built from user-controlled input may execute unsafely. <br>
-Mitigation: Prefer a fixed version that uses argument-array process execution instead of shell strings, and review command behavior before deployment. <br>
-Risk: Transcript files are saved locally and may retain sensitive video content after the task finishes. <br>
-Mitigation: Limit use to non-sensitive media and clean local transcript and temporary output directories according to the deployment's retention policy. <br>
+## Use Case:
 
+External users and developers use this skill to turn Douyin links or local video files into punctuated, segmented Chinese transcripts. It can return the transcription to the user and save a Markdown transcript for later use.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/junweiren98-rgb/douyin-transcribe) <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [Groq](https://groq.com) <br>
-- [FFmpeg](https://ffmpeg.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown transcript text with setup and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates local Markdown transcript files under douyin-transcripts when run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The server security summary reports material risk from command execution and API-key handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, run only in a sandboxed environment, and patch command execution to use argument arrays with strict URL and file-path validation before processing untrusted inputs.
+
+Risk: The skill requires Groq or OpenAI API credentials and may process private videos or account sessions.
+
+Mitigation: Configure secrets through a safer local or platform secret mechanism, avoid sensitive videos and private logged-in sessions, and do not paste API keys into normal chat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/junweiren98-rgb/skills/douyin-transcribe)
+- [OpenClaw](https://openclaw.ai)
+- [Groq](https://groq.com)
+- [FFmpeg](https://ffmpeg.org)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local Markdown transcript files under douyin-transcripts/ and temporary media files under temp/.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

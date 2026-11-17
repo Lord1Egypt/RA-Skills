@@ -1,44 +1,59 @@
-## Description: <br>
-Deterministic OpenClaw gateway restart with down/up state-machine verification, origin-session proactive ACK, and backward-compatible config. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deterministic OpenClaw gateway restart with down/up state-machine verification, origin-session proactive ACK, and backward-compatible config.
 
-## Publisher: <br>
-[Zjianru](https://clawhub.ai/user/Zjianru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zjianru](https://clawhub.ai/user/zjianru)
 
-## Use Case: <br>
-Developers and operators use this skill to restart an OpenClaw gateway from natural-language restart intent while preserving context, verifying the down/up transition, and reporting the result back to the originating session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent authority to restart the OpenClaw gateway, which can interrupt availability if used unintentionally. <br>
-Mitigation: Require an explicit confirmation step before restart execution and restrict who can invoke or configure the restart workflow. <br>
-Risk: The workflow can run diagnostic commands and send external notifications that may include operational details. <br>
-Mitigation: Keep notification channels minimal, review diagnostic content before enabling broad delivery, and restrict edits to restart config and context files. <br>
+## Use Case:
 
+Developers and operators use Restart Guard to restart an OpenClaw gateway while preserving context, verifying the down/up recovery sequence, and delivering a post-restart report to the originating session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Zjianru/restart-guard) <br>
-- [README](README.md) <br>
-- [Enhanced restart implementation spec](ENHANCED_RESTART_IMPLEMENTATION_SPEC.md) <br>
-- [Troubleshooting reference](references/troubleshooting.md) <br>
-- [Example configuration](config.example.yaml) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with bash commands, YAML configuration, and JSON or Markdown restart result artifacts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write restart context, diagnostics, and delivery status files during restart workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: frontmatter, changelog, server release metadata) <br>
+Risk: The skill can restart OpenClaw gateway infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a controlled OpenClaw environment and require explicit operator confirmation before restart.
+
+Risk: Configured diagnostics or verification commands could be overly broad.
+
+Mitigation: Restrict diagnostics and verification commands to known OpenClaw commands; the artifact documents strict non-shell execution and rejection of shell metacharacters.
+
+Risk: Gateway credentials, notification tokens, or restart context files could be exposed if storage or endpoint scope is weak.
+
+Mitigation: Keep the gateway host loopback-only unless the endpoint is fully trusted, avoid arbitrary auth_token_env values, and protect ~/.openclaw/.env plus restart context files with strict permissions.
+
+## Reference(s):
+
+- [README](artifact/README.md)
+- [Enhanced Restart Implementation Spec](artifact/ENHANCED_RESTART_IMPLEMENTATION_SPEC.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and shell commands with generated restart context and diagnostic files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces restart status events, concise user-facing reports, local diagnostics, and notification routing metadata.]
+
+## Skill Version(s):
+
+2.2.0 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

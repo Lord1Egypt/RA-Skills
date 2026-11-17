@@ -1,12 +1,12 @@
 {
   "name": "quicker-connector",
-  "version": "1.2.0",
-  "description": "与 Quicker 自动化工具集成，读取、搜索和执行 Quicker 动作列表。支持 CSV 和数据库双数据源，智能匹配用户需求并调用本地 QuickerStarter 执行。",
+  "version": "1.5.0",
+  "description": "与 Quicker 自动化工具集成，读取、搜索和执行 Quicker 动作列表。支持 CSV 和数据库双数据源，智能匹配用户需求并调用本地 QuickerStarter 执行。同时提供数据维护能力：解析维护工具全量备份（export 目录），按配置映射定位/读取/修改快捷键、轮盘、手势、组合键等所有配置，并根据修改内容自动判断单文件导回还是批量导入（先导出再导入）。",
   "author": "CodeBuddy",
   "optimizedBy": "Advanced Skill Creator",
   "license": "MIT",
   "main": "SKILL_OPTIMIZED.md",
-  "categories": ["automation", "productivity", "windows"],
+  "categories": ["automation", "productivity", "windows", "configuration"],
   "tags": ["quicker", "automation", "workflow", "windows"],
   "supported_languages": ["zh-CN", "en"],
   "platform": ["windows"],
@@ -152,6 +152,39 @@
       "examples": [
         "启动 quicker 交互模式"
       ]
+    },
+    {
+      "name": "data_maintenance",
+      "description": "数据维护：解析维护工具全量备份（export 目录），按配置映射定位/读取/修改 Quicker 全部配置（快捷键、轮盘、手势、组合键、动作定义、状态变量等）；并可根据修改内容自动生成导回（导入）方案：能单文件导回的走单文件导回，不能的引导批量分享导入（先导出再导入，限制影响范围）",
+      "parameters": {
+        "feature": {
+          "type": "string",
+          "description": "配置功能关键词，如\"扩展热键\"\"轮盘菜单\"\"左键增强\"\"定时任务\"等；见映射 config_index"
+        },
+        "action": {
+          "type": "string",
+          "enum": ["locate", "read", "update", "find_action", "list", "import_plan"],
+          "description": "操作类型：定位/读取/修改/查找动作/列出/生成导回方案"
+        },
+        "value": {
+          "type": "object",
+          "description": "update 时传入的新值"
+        },
+        "items": {
+          "type": "array",
+          "description": "import_plan 时传入的修改项列表：功能关键词或文件路径/动作名"
+        }
+      },
+      "examples": [
+        "扩展热键配置在哪个文件",
+        "读取轮盘菜单动作",
+        "把左键+C改成复制",
+        "查找\"视频旋转修复版\"动作",
+        "列出所有动作",
+        "我改了扩展热键，怎么导回",
+        "改了动作 5479d192，怎么单独导回",
+        "修改了多个配置文件，生成导入方案"
+      ]
     }
   ],
 
@@ -202,6 +235,16 @@
       "default": 10,
       "minimum": 1,
       "maximum": 50
+    },
+    "export_root": {
+      "type": "string",
+      "description": "维护工具全量备份（export）目录，数据维护功能的根目录",
+      "default": "G:\\Data\\Tools\\Quicker\\export"
+    },
+    "map_path": {
+      "type": "string",
+      "description": "配置映射 JSON 路径（知识库）",
+      "default": "data/quicker_export_map.json"
     }
   },
 
@@ -286,6 +329,39 @@
   },
 
   "version_history": [
+    {
+      "version": "1.5.0",
+      "date": "2026-10-06",
+      "changes": [
+        "新增 scripts/icon_exporter.py：批量导出动作图标为独立 PNG + icons_manifest.json（去重 + 并发 + CLI）",
+        "IconResolver 新增 resolve_many() 批量并发接口（去重复用、本地缓存快速通道、ThreadPoolExecutor）",
+        "Excel 导出新增 icon_mode=embedded/path/none 与 icons_dir/--icons-only，兼容旧签名",
+        "embedded 模式自动压缩 xlsx 内重复图片媒体（350→232，903.3KB→627.5KB，可用 --no-dedupe 关闭）",
+        "size 参数校验（必须 >= 1，避免静默产出 0 个图标）；目标 xlsx 被占用时给出友好提示且不破坏原文件",
+        "QuickerConnector 新增 export_icons()，export_to_excel() 支持 icon_mode/icons_dir"
+      ]
+    },
+    {
+      "version": "1.4.0",
+      "date": "2026-10-06",
+      "changes": [
+        "新增导回（导入）能力：get_import_plan 按修改内容自动判断单文件导回还是批量导入",
+        "映射新增 import_mode / import_method 字段与 import_guide（批量导入先导出再导入流程）",
+        "SKILL.md 新增「导回（导入）能力」章节与决策表",
+        "skill.json data_maintenance 支持 import_plan 操作"
+      ]
+    },
+    {
+      "version": "1.3.0",
+      "date": "2026-10-06",
+      "changes": [
+        "新增数据维护能力：解析维护工具全量备份（export 目录）",
+        "新增配置映射知识库 data/quicker_export_map.json（功能→文件→字段三级映射）",
+        "quicker_connector.py 新增 QuickerExportMap 类：locate/read_config/update_config/find_action 等",
+        "SKILL.md 新增数据维护章节与全量导出路径指导",
+        "skill.json 新增 data_maintenance capability 与 export_root/map_path 设置"
+      ]
+    },
     {
       "version": "1.2.0",
       "date": "2026-03-28",

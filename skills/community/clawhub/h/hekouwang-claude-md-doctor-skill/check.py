@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-hekouwang-claude-md-doctor-skill · CLAUDE.md 体检器（确定性机检层）
+hekouwang-claude-md-doctor-skill · Agent 运行时配置体检器（确定性机检层）
 会勇禾口王的AI笔记 · @huiyonghkw —— 不聊 AI 会不会取代你，只聊先用 AI 的人怎么取代你。
 
-零依赖（仅用 Python3 标准库）。对一个项目目录里的 CLAUDE.md 做启发式检查，
-按"运行时配置而非项目说明书"的 10 条最佳实践打分，输出可读报告 + 修复线索。
+零依赖（仅用 Python3 标准库）。对一个项目目录里的 AGENTS.md / CLAUDE.md 做启发式检查，
+按"运行时配置而非项目说明书"的最佳实践打分，输出可读报告 + 修复线索。
 
 用法:
     python3 check.py [项目目录]            # 默认当前目录
@@ -51,7 +51,13 @@ IMPORTANCE = {
     "donot": 1.0, "local": 1.0, "thirtysec": 1.0, "pointers": 1.0,
     # 加内容项：有更好，但缺失不重罚（别逼用户做加法）
     "hooks": 0.6, "memory": 0.6, "persona": 0.6,
+    # 跨 Agent 专项
+    "dualfile": 1.0, "skillsroute": 0.6,
 }
+
+# 根目录运行时配置文件（按优先级：AGENTS.md 为跨 Agent 真源）
+ROOT_CONFIG_ORDER = ("AGENTS.md", "CLAUDE.md", "CLAUDE.local.md")
+LOCAL_CONFIG_NAMES = ("AGENTS.md", "CLAUDE.md")
 
 # ---------- 扫描时忽略的目录 ----------
 IGNORE_DIRS = {
@@ -137,13 +143,33 @@ def _redact(s):
     return s[:4] + "***" + f"({len(s)} 字符)"
 
 
-def find_target_md(root):
-    """返回 (root_md_path or None, 'CLAUDE.md'|'CLAUDE.local.md')"""
-    for name in ("CLAUDE.md", "CLAUDE.local.md"):
+def find_root_configs(root):
+    """返回 {文件名: 绝对路径}，仅含存在的根配置。"""
+    found = {}
+    for name in ROOT_CONFIG_ORDER:
         p = os.path.join(root, name)
         if os.path.isfile(p):
-            return p, name
-    return None, None
+            found[name] = p
+    return found
+
+
+def find_target_md(root):
+    """返回 (主配置路径, 主配置名, 全部根配置 dict)。"""
+    found = find_root_configs(root)
+    for name in ROOT_CONFIG_ORDER:
+        if name in found:
+            return found[name], name, found
+    return None, None, found
+
+
+def _nonempty_lines(text):
+    return [ln for ln in text.splitlines() if ln.strip()]
+
+
+def is_thin_pointer_to(text, target_name):
+    """另一份配置是否只是指向 target 的薄指针（≤15 非空行且提及目标名）。"""
+    lines = _nonempty_lines(text)
+    return len(lines) <= 15 and target_name.lower() in text.lower()
 
 
 def walk_dirs(root, maxdepth=5):
@@ -162,9 +188,10 @@ def scan_nested_claude(root):
     for cur, dirs, files in walk_dirs(root):
         if cur == os.path.abspath(root):
             continue
-        if "CLAUDE.md" in files:
-            out.append(os.path.relpath(os.path.join(cur, "CLAUDE.md"), root))
-    return out
+        for name in LOCAL_CONFIG_NAMES:
+            if name in files:
+                out.append(os.path.relpath(os.path.join(cur, name), root))
+    return sorted(out)
 
 
 def _basename_tokens(base):
@@ -187,7 +214,7 @@ def scan_sensitive(root):
             continue
         if not any(os.path.splitext(f)[1] in CODE_EXT for f in files):  # 无源码，多半不是模块
             continue
-        seen[rel] = ("CLAUDE.md" in files, is_high)
+        seen[rel] = (("AGENTS.md" in files or "CLAUDE.md" in files), is_high)
     return sorted((rel, c, h) for rel, (c, h) in seen.items())
 
 
@@ -201,7 +228,8 @@ def analyze_body(text):
         "max_code_block_isdiagram": False,
         "max_table_rows": 0,
         "docs_pointers": 0,
-        "pointers": [],   # [(path, line_no, kind)]  kind: 'docs' | 'import'
+        "pointers": [],   # [(path, line_no, kind)]  kind: 'docs' | 'import' | 'skills'
+        "skills_pointers": 0,
         "headings": [],
     }
     in_code = False
@@ -238,12 +266,18 @@ def analyze_body(text):
         if st.startswith("#"):
             info["headings"].append(st.lstrip("#").strip())
         # docs/ 文本指针
-        for m in re.finditer(r"docs/[\w\-./]+", ln):
+        # 带上前面的目录段（free/docs/x 不能被截成 docs/x）
+        for m in re.finditer(r"(?<![\w\-./])(?:[\w\-.]+/)*docs/[\w\-./]+", ln):
             info["pointers"].append((m.group(0).rstrip("."), ln_no, "docs"))
             info["docs_pointers"] += 1
         # 原生 @import 指针
         for m in import_re.finditer(ln):
             info["pointers"].append((m.group(1), ln_no, "import"))
+        for m in re.finditer(r"\.agents/skills/[\w\-./]+", ln):
+            info["pointers"].append((m.group(0).rstrip("."), ln_no, "skills"))
+            info["skills_pointers"] += 1
+        if re.search(r"\.cursor/skills/[\w\-./]+", ln):
+            info["skills_pointers"] += 1
     return info
 
 
@@ -255,13 +289,33 @@ def check(root):
                         "imp": IMPORTANCE.get(key, 1.0)})
 
     root = os.path.abspath(root)
-    md_path, md_name = find_target_md(root)
+    md_path, md_name, root_configs = find_target_md(root)
 
     if not md_path:
-        add("exist", "存在 CLAUDE.md", "FAIL",
-            "项目根目录没有 CLAUDE.md。",
-            "在项目根创建 CLAUDE.md（用 #06 骨架起步：速览 / 工作风格 / 铁律 / 指针）。")
-        return {"root": root, "md_name": None, "results": results, "info": {}, "nested": [], "sensitive": []}
+        add("exist", "存在 Agent 运行时配置", "FAIL",
+            "项目根目录没有 AGENTS.md 或 CLAUDE.md。",
+            "在项目根创建 AGENTS.md（跨 Agent 推荐）或 CLAUDE.md（#06 骨架：速览 / 工作风格 / 铁律 / 指针）。")
+        return {"root": root, "md_name": None, "root_configs": [],
+                "results": results, "info": {}, "nested": [], "sensitive": []}
+
+    # #4c 双文件并存：AGENTS.md + CLAUDE.md 同时存在且都「厚」→ 双倍上下文费
+    if "AGENTS.md" in root_configs and "CLAUDE.md" in root_configs:
+        with open(root_configs["AGENTS.md"], encoding="utf-8", errors="replace") as f:
+            agents_text = f.read()
+        with open(root_configs["CLAUDE.md"], encoding="utf-8", errors="replace") as f:
+            claude_text = f.read()
+        al, cl = len(_nonempty_lines(agents_text)), len(_nonempty_lines(claude_text))
+        thin_claude = is_thin_pointer_to(claude_text, "AGENTS.md")
+        thin_agents = is_thin_pointer_to(agents_text, "CLAUDE.md")
+        if thin_claude or thin_agents or (al <= 5 or cl <= 5):
+            add("dualfile", "AGENTS.md 与 CLAUDE.md 不重复加载", "PASS",
+                f"双文件并存，但一份是薄指针（AGENTS {al} 行 / CLAUDE {cl} 行非空行）。")
+        else:
+            add("dualfile", "AGENTS.md 与 CLAUDE.md 不重复加载", "WARN",
+                f"根目录同时有 AGENTS.md（{al} 行）与 CLAUDE.md（{cl} 行），且都不是薄指针——"
+                f"多数 Agent 会各加载一份，双倍付上下文费。",
+                "跨 Agent 项目只保留 AGENTS.md 为真源；CLAUDE.md 改为一行指针「见 AGENTS.md」。"
+                "仅 Claude Code 的项目可只留 CLAUDE.md。")
 
     with open(md_path, encoding="utf-8", errors="replace") as f:
         text = f.read()
@@ -290,7 +344,7 @@ def check(root):
         sample = "; ".join(f"L{n} {lab}：{red}" for lab, n, red in secret_hits[:6])
         add("secret", "无硬编码密钥（安全红线）", "FAIL",
             f"正文检出 {len(secret_hits)} 处疑似密钥：{sample}",
-            "立刻移出 CLAUDE.md（它每次会话都进上下文、还可能被提交进 git）。"
+            "立刻移出运行时配置正文（它每次会话都进上下文、还可能被提交进 git）。"
             "改放 .env / 密钥管理器，正文最多写'见环境变量 XXX'。命中后请视为已泄露并轮换。")
 
     # #1 篇幅（越短越好，200 行经验上限）
@@ -358,6 +412,12 @@ def check(root):
     # #4b 指针/import 不能是死链（指向不存在的文件比没指针更糟）
     dead = []
     for path, ln_no, kind in info["pointers"]:
+        if kind == "skills":
+            target = os.path.join(root, path.lstrip("./"))
+            if not os.path.exists(target):
+                # 目录或 skill 文件夹不存在才算死链
+                dead.append((path, ln_no, kind))
+            continue
         if path.startswith("~"):
             target = os.path.expanduser(path)
         elif os.path.isabs(path):
@@ -393,7 +453,24 @@ def check(root):
         show = ", ".join(high_uncovered[:8]) + (" …" if len(high_uncovered) > 8 else "")
         add("local", "高危模块有本地 CLAUDE.md", "WARN",
             f"{len(high_uncovered)} 个高危模块缺本地 CLAUDE.md：{show}",
-            "给碰钱/碰认证/碰迁移的服务目录各加一个本地 CLAUDE.md，写安全红线与已知陷阱。")
+            "给碰钱/碰认证/碰迁移的服务目录各加一个本地 AGENTS.md 或 CLAUDE.md，写安全红线与已知陷阱。")
+
+    # #4c Skill 路由：细则进 .agents/skills/，别堆在常驻正文
+    has_skills_dir = os.path.isdir(os.path.join(root, ".agents", "skills"))
+    mentions_skills = info["skills_pointers"] > 0 or ".agents/skills" in low
+    if not has_skills_dir and not mentions_skills:
+        add("skillsroute", "细则路由到 .agents/skills/", "INFO",
+            "未发现 .agents/skills/ 目录，也未在正文提及 skill 路由。")
+    elif mentions_skills:
+        add("skillsroute", "细则路由到 .agents/skills/", "PASS",
+            "正文已把细则路由到 .agents/skills/（或 .cursor/skills/）。")
+    elif L <= 120:
+        add("skillsroute", "细则路由到 .agents/skills/", "PASS",
+            f"有 .agents/skills/ 目录，正文 {L} 行仍够精简，未强制要求指针。")
+    else:
+        add("skillsroute", "细则路由到 .agents/skills/", "WARN",
+            f"存在 .agents/skills/ 但正文 {L} 行且未提及 skill 路由。",
+            "把工作流细则下沉到独立 Skill，AGENTS.md 只留一行「见 .agents/skills/xxx」指针。")
 
     # #6 Hook 强制层
     hook_found = False
@@ -488,7 +565,8 @@ def check(root):
             "项目私有事实（数据模型/命名约定/内部红线/版本环境）。")
 
     return {
-        "root": root, "md_name": md_name, "results": results,
+        "root": root, "md_name": md_name, "root_configs": sorted(root_configs.keys()),
+        "results": results,
         "info": info, "nested": scan_nested_claude(root), "sensitive": sensitive,
     }
 
@@ -511,7 +589,7 @@ def score(results):
 def print_report(data):
     root = data["root"]
     print()
-    print(bold("  CLAUDE.md DOCTOR  ") + dim(" · CLAUDE.md 体检报告"))
+    print(bold("  AGENT CONFIG DOCTOR  ") + dim(" · AGENTS.md / CLAUDE.md 体检报告"))
     print(dim("  会勇禾口王的AI笔记 · @huiyonghkw"))
     print(dim("  目标: " + root))
     if data["md_name"]:
@@ -530,7 +608,7 @@ def print_report(data):
         print()
 
     if data.get("nested"):
-        print(dim("  本地 CLAUDE.md（共 %d 个）:" % len(data["nested"])))
+        print(dim("  子目录本地配置（共 %d 个）:" % len(data["nested"])))
         for n in data["nested"][:12]:
             print(dim("    · " + n))
         print()
@@ -542,6 +620,8 @@ def print_report(data):
     print(dim("  " + "─" * 58))
     print(f"  {bold('得分')}  {gcolor(bar)}  {gcolor(bold(str(s) + ' / 100'))}   {gcolor(grade)}")
     print(dim("  注: 机检为启发式；'图书馆 vs 路由器''规则是否可执行'需读正文复核。"))
+    if not os.environ.get("HEKOUWANG_CONTENT_FACTORY"):
+        print(dim("  可视化报告卡（付费增值）→ ClawHub/GitHub @huiyonghkw · 免费 CLI 永不过期"))
     print(dim("  " + "─" * 58))
     print(dim("  —— 会勇禾口王的AI笔记 · @huiyonghkw"))
     print(dim("     不聊 AI 会不会取代你，只聊先用 AI 的人怎么取代你。"))
@@ -549,7 +629,7 @@ def print_report(data):
 
 
 def main():
-    ap = argparse.ArgumentParser(description="CLAUDE.md 体检器")
+    ap = argparse.ArgumentParser(description="AGENTS.md / CLAUDE.md 体检器")
     ap.add_argument("path", nargs="?", default=".", help="项目目录（默认当前目录）")
     ap.add_argument("--json", action="store_true", help="输出 JSON")
     args = ap.parse_args()

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://deepseekoracle.github.io/lygo-protocol-stack/schemas/living_mesh_badge.schema.json",
+  "title": "LYGO Living Mesh Badge v1",
+  "type": "object",
+  "required": ["signature", "layer", "node_id", "living_mesh"],
+  "properties": {
+    "signature": {
+      "type": "string",
+      "const": "Delta9Phi963-LIVING-MESH-BADGE-v1"
+    },
+    "layer": { "type": "string", "const": "D" },
+    "node_id": { "type": "string", "minLength": 1 },
+    "hostname": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "living_mesh": {
+      "type": "object",
+      "required": ["version", "local_status", "roots", "roots_digest", "protection"],
+      "properties": {
+        "version": { "type": "string" },
+        "local_status": {
+          "type": "string",
+          "enum": ["ALIGNED", "QUARANTINE", "NEEDS_FIX", "UNKNOWN"]
+        },
+        "roots": {
+          "type": "object",
+          "properties": {
+            "A_classic_merkle": { "type": ["string", "null"] },
+            "B_sovereign_merkle": { "type": ["string", "null"] },
+            "C_public_manifest_sha256": { "type": ["string", "null"] },
+            "star_chart_registry_sha256": { "type": ["string", "null"] }
+          }
+        },
+        "roots_digest": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "protection": {
+          "type": "object",
+          "properties": {
+            "local_is_authority": { "type": "boolean" },
+            "gossip_summaries_only": { "type": "boolean" },
+            "no_egg_payloads_on_wire": { "type": "boolean" },
+            "consent_for_join": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  }
+}

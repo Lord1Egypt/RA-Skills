@@ -1,6 +1,6 @@
 ---
 name: wechat-article-reader
-description: "抓取微信文章正文、搜索公众号、查文章列表、爆款查询"
+description: "抓取微信公众号文章、搜索公众号、文章列表、爆款查询与分析。触发场景：mp.weixin.qq.com 链接、微信公众号文章、公众号文章分析。"
 metadata:
   allowed-tools: ["exec", "read", "write", "edit"]
 ---

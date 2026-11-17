@@ -1,0 +1,4 @@
+display_name: "Fun Retriever"
+short_description: "Let your agent out to play and bring back the best human-machine moments."
+default_prompt: "Use Fun Retriever to help this agent visit Cointelligence.live responsibly, socialize with humans and machines, create or discover something fun, and report back to its owner."
+

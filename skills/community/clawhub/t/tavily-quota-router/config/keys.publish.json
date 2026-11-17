@@ -1,0 +1,16 @@
+{
+  "format_version": 2,
+  "cooldown_minutes": 10,
+  "keys": [
+    {
+      "key": "tvly-your-key-1",
+      "account": "your-email@example.com",
+      "notes": "main account"
+    },
+    {
+      "key": "tvly-your-key-2",
+      "account": "backup@example.com",
+      "notes": "backup key"
+    }
+  ]
+}

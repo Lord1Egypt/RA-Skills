@@ -1,0 +1,11 @@
+{
+  "fixture_notice": "Synthetic input. Not real customer comments, a real video, or a VOC survey.",
+  "id": "fixture0001",
+  "title": "Synthetic parser fixture",
+  "webpage_url": "https://www.youtube.com/watch?v=fixture0001",
+  "comment_count": 9,
+  "comments": [
+    {"id": "fixture-comment-1", "text": "Synthetic fixture: I need timestamps with every quotation.", "like_count": 2, "parent": "root", "timestamp": null},
+    {"id": "fixture-comment-2", "text": "Synthetic fixture: which shipping region does this price cover?", "like_count": 1, "parent": "root", "timestamp": null}
+  ]
+}

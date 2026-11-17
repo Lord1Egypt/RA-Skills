@@ -1,0 +1,9 @@
+{
+  "tiers": {
+    "routine": ["openai/gpt-5.6-luna", "openai/gpt-5.6-terra"],
+    "balanced": ["openai/gpt-5.6-sol"],
+    "research": ["openai/gpt-6-astra"],
+    "coding": ["openai/gpt-6-astra", "openai/gpt-5.6-sol"],
+    "background": ["openai/gpt-5.6-luna"]
+  }
+}

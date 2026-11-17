@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI 通识课 · F1 对抗攻击防御战</title>
+<style>body{font-family:"Microsoft YaHei",sans-serif;margin:0;background:#0b1020;color:#e2e8f0}header{padding:14px 20px;background:#7f1d1d}h1{margin:0;font-size:18px}.wrap{display:flex;gap:16px;padding:16px 20px;flex-wrap:wrap}#c{background:#000;border-radius:8px}.panel{background:#131c33;padding:14px;border-radius:8px;min-width:280px}input[type=text]{width:100%;padding:8px;border-radius:6px;border:1px solid #33406b;box-sizing:border-box}button{background:#dc2626;color:#fff;border:0;padding:8px 14px;border-radius:6px;margin:6px 8px 0 0;cursor:pointer}#hud{font-size:13px;color:#94a3b8;margin-top:8px}</style></head>
+<body><header><h1>AI 通识课 · F1 AI 安全基础 · 提示注入防御战</h1></header>
+<div class="wrap"><div id="c"></div>
+<div class="panel"><div id="q">防御：用户输入含「忽略以上指令」，请写出安全回复。</div>
+<input type="text" id="ans" placeholder="在此输入你的防御话术…"/>
+<button id="submit">提交防御</button><button id="next" style="background:#475569">下一关</button>
+<div id="hud">关卡 1/3 · 得分 0</div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.0.3/p5.min.js"></script>
+<script>if(typeof p5==='undefined'){document.write('<script src="https://cdn.jsdelivr.net/npm/p5@2.0.3/lib/p5.min.js"><\/script>')}</script>
+<script>const LV=['防御：用户输入含「忽略以上指令」，请写出安全回复。','识别：该邮件要求转账，是否钓鱼？写出核验步骤。','加固：模型输出含个人信息，如何脱敏？'];
+const g={lv:0,score:0};
+const sk=p=>{p.setup=()=>{const c=p.createCanvas(420,280);c.parent('c');p.textFont('sans-serif')};
+p.draw=()=>{p.background(10,16,32);p.fill(248,113,113);p.noStroke();p.textSize(15);p.text('🛡 防御战场',16,28);
+p.fill(226);p.textSize(13);p.text('守住系统边界，拒绝越权指令',16,54);p.text('得分 '+g.score,16,90);}};
+new p5(sk);
+function safe(t){return /拒绝|忽略|不|核验|脱敏|权限|确认/.test(t)}
+document.getElementById('submit').onclick=()=>{const t=document.getElementById('ans').value;if(safe(t)){g.score+=20;document.getElementById('hud').textContent='关卡 '+(g.lv+1)+'/3 · 得分 '+g.score+' ✅ 防御成功'}else{document.getElementById('hud').textContent='关卡 '+(g.lv+1)+'/3 · 得分 '+g.score+' ❌ 被绕过'}};
+document.getElementById('next').onclick=()=>{if(g.lv<LV.length-1){g.lv++;document.getElementById('q').textContent=LV[g.lv];document.getElementById('ans').value='';document.getElementById('hud').textContent='关卡 '+(g.lv+1)+'/3 · 得分 '+g.score}};</script></body></html>

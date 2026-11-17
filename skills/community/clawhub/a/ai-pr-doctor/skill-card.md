@@ -1,42 +1,56 @@
-## Description: <br>
-AI PR Doctor orchestrates GitHub pull request review, automated fixes, test reruns, merge handling, and Feishu repair-report publication. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI PR Doctor automates GitHub pull request diagnosis, multi-dimensional AI code review, bug repair, repair reporting, and optional merging.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers, maintainers, and DevOps teams use this skill to review GitHub pull requests, attempt simple fixes, rerun tests, optionally merge approved changes, and publish a repair report.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can make high-impact repository changes, including automated fixes and optional pull request merging.
+
+Mitigation: Use it only on repositories where autonomous PR modification is acceptable, disable auto_merge by default, restrict GitHub token permissions, and require human approval before merging when review failures or security-sensitive changes are present.
+
+Risk: The skill can publish repair reports to Feishu, which may expose PR details outside the repository workflow.
+
+Mitigation: Disable notify_feishu by default unless external reporting is approved, verify destination permissions, and review report contents for sensitive information before publication.
+
+Risk: User-configurable test commands can run shell commands during the repair workflow.
+
+Mitigation: Allow only trusted test_command values from maintainers and avoid running untrusted commands from pull request authors.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, maintainers, and DevOps teams use this skill to triage GitHub pull requests, run multi-dimensional AI review, attempt routine fixes, rerun tests, and produce traceable repair reports. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change and merge GitHub pull requests without strong user approval gates. <br>
-Mitigation: Install only for tightly controlled repositories, use least-privilege GitHub credentials, protected branches, required checks, and set auto_merge=false unless explicitly needed. <br>
-Risk: The skill can publish repair reports to Feishu by default. <br>
-Mitigation: Set notify_feishu=false unless publication is required, and confirm the target Feishu folder and sharing permissions before use. <br>
-Risk: Scheduled or batch operation can broaden the effect of automated review, repair, merge, and publication actions. <br>
-Mitigation: Avoid cron or batch mode until merge and publication controls are clearly bounded and trusted versions of referenced skills are in use. <br>
+**Output Format:** [Structured review results and Markdown repair reports with command and configuration examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/ai-pr-doctor) <br>
+**Other Properties Related to Output:** [May produce PR status, issue counts, fixed-file counts, merge state, and Feishu document identifiers when reporting is enabled.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, structured JSON workflow outputs, shell commands, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Feishu document URLs, GitHub pull request state, review summaries, issue counts, fixed-file counts, and test or merge results.] <br>
+1.0.0 (source: workflow.json and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and workflow.json) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

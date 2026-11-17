@@ -1,44 +1,63 @@
-## Description: <br>
-QA Pilot guides AI agents to test web apps against the original request, fix defects, and report completion only after verification. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+QA Pilot gives AI agents a framework-agnostic methodology for testing websites and applications, fixing discovered issues, and reporting completion only after verification.
 
-## Publisher: <br>
-[helal-muneer](https://clawhub.ai/user/helal-muneer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[helal-muneer](https://clawhub.ai/user/helal-muneer)
 
-## Use Case: <br>
-Developers and agent users use QA Pilot to make coding agents run systematic web and application QA, compare implemented behavior with the original request, fix defects, and provide an honest QA report before marking work complete. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may test against production systems, external services, payment flows, or forms that submit real data. <br>
-Mitigation: Use local or staging environments, test credentials, and test data; require explicit approval before production or external-service testing. <br>
-Risk: The self-fix loop may modify application code while resolving QA findings. <br>
-Mitigation: Keep normal code review controls around edits, inspect diffs, and re-test changed workflows before accepting completion. <br>
+## Use Case:
 
+Developers, agent builders, and AI-assisted app creators use QA Pilot to make an agent test built or modified apps against the original request, exercise user workflows, fix defects, and provide an honest QA report before declaring work complete.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/helal-muneer/qa-pilot) <br>
-- [QA Pilot Methodology](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Security Policy](artifact/SECURITY.md) <br>
-- [Changelog](artifact/CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance and QA reports, with code edits or shell commands when fixes are needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include test plans, issue lists, fix summaries, and retest results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, skill.json, skill.yaml, changelog released 2026-04-16) <br>
+Risk: The skill gives agents broad permission to perform active QA and automatic fix attempts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only on local or explicitly approved test environments, and keep the scope limited to the app or workflow being evaluated.
+
+Risk: Testing against production, admin consoles, payments, messaging, or third-party systems can cause unintended actions or data exposure.
+
+Mitigation: Avoid those targets unless explicitly approved; use test accounts, disposable data, and cleanup steps after testing.
+
+Risk: The install guidance includes an unpinned npx command.
+
+Mitigation: Prefer a pinned or trusted install path before enabling the skill in an agent environment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/helal-muneer/skills/qa-pilot)
+- [Publisher Profile](https://clawhub.ai/user/helal-muneer)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [SECURITY.md](artifact/SECURITY.md)
+- [CHANGELOG.md](artifact/CHANGELOG.md)
+- [Demo README](artifact/demo/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown methodology with checklists, QA report templates, YAML configuration examples, and shell command snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Single-stream agent guidance; use should be scoped to approved local or test environments because it can prompt active browser testing, dev-server use, and fix attempts.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact skill metadata, and CHANGELOG dated 2026-04-16)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

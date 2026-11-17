@@ -1,43 +1,55 @@
-## Description: <br>
-Checks OpenClaw model provider configuration, connectivity, authentication, and model responses, and can help configure a provider when given a model name and API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether OpenClaw model provider configuration is complete and whether configured models can connect and return content.
 
-## Publisher: <br>
-[jasonzhang2015](https://clawhub.ai/user/jasonzhang2015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jasonzhang2015](https://clawhub.ai/user/jasonzhang2015)
 
-## Use Case: <br>
-Developers and operators use this skill to validate OpenClaw model provider settings after configuration changes or updates. It reports whether configured providers and models are reachable, authenticated, and returning usable content, with troubleshooting guidance for failures. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can modify OpenClaw model provider settings and restart the gateway. <br>
-Mitigation: Review planned configuration changes, confirm provider base URLs, and keep a backup or rollback path before applying changes. <br>
-Risk: The skill can store API keys and send live authenticated requests to configured model endpoints, which may consume quota. <br>
-Mitigation: Use limited-scope or disposable API keys where possible, and confirm live test calls are acceptable for the target account. <br>
-Risk: The security scan verdict is suspicious because automatic diagnostics may run without a clear consent gate. <br>
-Mitigation: Install only where automatic model diagnostics are expected, and require operator approval for configuration changes and live calls. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw model provider configuration after configuration changes or when a user asks to test models. It can help identify missing settings, unreachable endpoints, invalid API keys, and models that do not return content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jasonzhang2015/model-config-check) <br>
-- [Publisher profile](https://clawhub.ai/user/jasonzhang2015) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown report with shell command results and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute live provider connectivity and model response checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The skill can persist API keys in OpenClaw model configuration and use them in real provider API calls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use keys only with trusted provider endpoints and rotate any key that may have been tested against an untrusted baseUrl.
+
+Risk: The skill can make automatic network requests to configured model provider URLs during diagnostics.
+
+Mitigation: Prefer HTTPS-only provider URLs, avoid untrusted custom relays, and review the configured baseUrl before running checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jasonzhang2015/skills/model-config-check)
+- [Skill instructions](artifact/SKILL.md)
+- [Model check script](artifact/scripts/check_models.sh)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown-style diagnostic report with provider status, model test results, and troubleshooting advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May invoke network connectivity checks and provider API calls using configured model credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

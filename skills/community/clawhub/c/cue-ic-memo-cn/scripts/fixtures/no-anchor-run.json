@@ -1,0 +1,28 @@
+{
+  "asof": "2026-10-11 08:20",
+  "asof_date": "2026-10-11",
+  "bear_rows": 2,
+  "billing": "credits_charged=0.701（服务端返回原样）",
+  "bull_rows": 2,
+  "business_rows": 1,
+  "exit_code": 0,
+  "fact_rows": 3,
+  "gap_rows": 5,
+  "material_rows": 1,
+  "memo": "memo-600606-2026-10-11.md",
+  "mixed_groups": {},
+  "routed_rows": 3,
+  "source_rows": 4,
+  "subject": "600606",
+  "subject_name": "示例股份",
+  "totals": {
+    "营业收入": "2340.0"
+  },
+  "totals_meta": {
+    "营业收入": {
+      "basis": "合并口径·已审",
+      "parts": 2,
+      "unit": "百万元"
+    }
+  }
+}

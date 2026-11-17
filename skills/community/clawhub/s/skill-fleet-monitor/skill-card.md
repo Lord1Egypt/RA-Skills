@@ -1,44 +1,58 @@
-## Description: <br>
-Scans installed skills for version drift, delisted listings, and related fleet health signals, then reports items that need review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans installed skills for version drift and delisted publishers, producing a fleet health report with items that need attention.
 
-## Publisher: <br>
-[ordo-tech](https://clawhub.ai/user/ordo-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ordo-tech](https://clawhub.ai/user/ordo-tech)
 
-## Use Case: <br>
-Developers and operators use this skill to audit installed ClawHub/OpenClaw skills after installation, on a schedule, or after a security advisory. It helps identify outdated or delisted skills and, in the fuller workflow, publisher standing, advisory, pattern, and permission concerns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads installed skill manifests and reports skill names, versions, authors, and risk notes that may reveal local inventory. <br>
-Mitigation: Run it only where that inventory can be inspected, and review or delete saved reports if the inventory is sensitive. <br>
-Risk: Public ClawHub pages, search results, or advisory feeds may be unavailable or incomplete during a run. <br>
-Mitigation: Treat findings as triage signals, verify important flags manually, and note skipped advisory checks instead of treating them as a clean result. <br>
-Risk: The full workflow may write a local audit report for history. <br>
-Mitigation: Confirm the report location and retention expectations before scheduled use, especially on shared workspaces. <br>
+## Use Case:
 
+Developers and operators use this skill to audit installed ClawHub or OpenClaw skills for outdated versions or delisted listings after installation, during periodic hygiene checks, or after security advisories.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/ordo-tech/skill-fleet-monitor) <br>
-- [Publisher profile](https://clawhub.ai/user/ordo-tech) <br>
-- [ClawHub security advisories](https://clawhub.com/security/advisories) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown fleet health report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports installed skill names, versions, publishers, status labels, and suggested actions; the full workflow may save a local Markdown report for audit history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release evidence and skill frontmatter) <br>
+Risk: The released free workflow requests broader authority than its documented two checks require.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing the requested read, write, web_fetch, and web_search access; prefer a version that removes unused write and web_search permissions from the free workflow.
+
+Risk: The skill inventories installed skills and contacts ClawHub to check versions and delisting status.
+
+Mitigation: Run it only where installed skill names, versions, publishers, and related listing checks are acceptable to process against public ClawHub pages.
+
+Risk: Generated reports may include a commercial upgrade link.
+
+Mitigation: Review reports before sharing or archiving them in security records, and remove promotional content when it is not appropriate for operational output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ordo-tech/skills/skill-fleet-monitor)
+- [ClawHub publisher profile](https://clawhub.ai/user/ordo-tech)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown fleet health report with status lines and recommended actions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Free workflow covers version drift and delisted-skill checks; reports may include a commercial upgrade link.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

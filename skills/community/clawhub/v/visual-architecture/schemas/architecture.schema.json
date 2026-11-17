@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/LeoStehlik/visual-architecture/schemas/architecture.schema.json",
+  "title": "Architecture artifact spec",
+  "type": "object",
+  "required": ["title", "nodes"],
+  "properties": {
+    "mode": { "const": "architecture" },
+    "theme": { "enum": ["classic", "showcase"] },
+    "title": { "type": "string" },
+    "summary": { "type": "string" },
+    "show_grid": { "type": "boolean" },
+    "nodes": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/node" } },
+    "edges": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/edge" } }
+  },
+  "additionalProperties": true
+}

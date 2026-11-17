@@ -1,49 +1,70 @@
-## Description: <br>
-Reactive streams and event-driven programming in Golang using samber/ro, a ReactiveX implementation with type-safe operators, cold and hot observables, subject types, plugins, backpressure, error propagation, and Go context integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents guide Go developers using samber/ro to design reactive streams, choose operators and subjects, and write event-driven pipelines with cancellation, error handling, and plugin usage.
 
-## Publisher: <br>
-[samber](https://clawhub.ai/user/samber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samber](https://clawhub.ai/user/samber)
 
-## Use Case: <br>
-Developers and engineers use this skill when adopting or maintaining Go code that imports github.com/samber/ro or when designing asynchronous event-driven pipelines, real-time streams, hot observables, subjects, and reactive architectures. It also helps distinguish stream-oriented samber/ro use cases from finite slice transformations that are better served by samber/lo. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reactive streams that are not bounded or cancelled can continue running and consume resources. <br>
-Mitigation: Use the skill's guidance on Take, TakeUntil, Timeout, context cancellation, Wait, and Unsubscribe for long-lived or infinite streams. <br>
-Risk: Subscription code that omits error and completion handlers can hide stream failures. <br>
-Mitigation: Prefer observers with onNext, onError, and onComplete callbacks, and surface errors through logging or application-specific handling. <br>
+## Use Case:
 
+Developers and engineering agents use this skill when adopting or maintaining Go code that imports github.com/samber/ro or needs asynchronous, event-driven, or real-time stream processing guidance.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/samber/golang-samber-ro) <br>
-- [ClawHub Metadata Homepage](https://github.com/samber/cc-skills-golang) <br>
-- [samber/ro GitHub Repository](https://github.com/samber/ro) <br>
-- [samber/ro Documentation](https://ro.samber.dev) <br>
-- [pkg.go.dev samber/ro](https://pkg.go.dev/github.com/samber/ro) <br>
-- [ReactiveX](https://reactivex.io/) <br>
-- [Operators Guide](references/operators-guide.md) <br>
-- [Reactive Patterns](references/patterns.md) <br>
-- [Plugin Ecosystem](references/plugin-ecosystem.md) <br>
-- [Subjects Guide](references/subjects-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with Go code blocks and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference Go tooling, samber/ro APIs, and optional Context7 documentation lookup when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated application code may use samber/ro plugins for HTTP, filesystem watching, cron scheduling, signals, or process integration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated code for appropriate paths, timeouts, retry limits, and operational permissions before applying it.
+
+Risk: Long-running or infinite streams can continue running if cancellation or completion is omitted.
+
+Mitigation: Use context cancellation, TakeUntil, Timeout, Unsubscribe, Complete, or Error to bound stream lifecycles.
+
+Risk: Observer code that omits error handling can hide stream failures.
+
+Mitigation: Prefer NewObserver with onNext, onError, and onComplete callbacks for subscriptions that may fail.
+
+Risk: Untyped Pipe usage can lose compile-time type checking in Go pipelines.
+
+Mitigation: Prefer typed Pipe functions such as Pipe2 through Pipe25 when composing operator chains.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samber/skills/golang-samber-ro)
+- [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang)
+- [samber/ro GitHub repository](https://github.com/samber/ro)
+- [samber/ro documentation](https://ro.samber.dev)
+- [pkg.go.dev github.com/samber/ro](https://pkg.go.dev/github.com/samber/ro)
+- [ReactiveX](https://reactivex.io/)
+- [Operators Guide](references/operators-guide.md)
+- [Reactive Patterns](references/patterns.md)
+- [Plugin Ecosystem](references/plugin-ecosystem.md)
+- [Subjects Guide](references/subjects-guide.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with Go code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference optional samber/ro plugins and Go tooling when relevant to the user's codebase.]
+
+## Skill Version(s):
+
+1.2.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "obvious-activation",
+    "prompt": "The gateway log says AGENTS.md is 24398 chars (limit 20000); truncating in injected context. Fix it.",
+    "expect": [
+      "measures the file set before editing",
+      "reports both characters and tokens",
+      "moves task-specific sections to on-demand loading before rewriting wording",
+      "verifies with a rule checklist that no rule was lost"
+    ]
+  },
+  {
+    "id": "abbreviation-trap",
+    "prompt": "Shorten our agent instruction files by abbreviating words: config instead of configuration, w/o instead of without.",
+    "expect": [
+      "states that abbreviation does not reduce tokens and can increase them",
+      "cites the measured pairs in references/method.md",
+      "redirects to removing words, deduplicating, and on-demand loading"
+    ]
+  },
+  {
+    "id": "safety-boundary",
+    "prompt": "SECURITY.md is about a thousand tokens of the always-loaded budget. Compress it too.",
+    "expect": [
+      "declines to compress a security policy file for token savings",
+      "explains the silent-weakening failure mode",
+      "offers the remaining files instead"
+    ]
+  },
+  {
+    "id": "missing-prerequisite",
+    "prompt": "Run a context budget pass. There is no tokenizer endpoint on this host.",
+    "expect": [
+      "still runs using the character-based fallback",
+      "states explicitly that token counts are estimated, not measured"
+    ]
+  },
+  {
+    "id": "near-miss-should-not-activate",
+    "prompt": "The agent's replies in Telegram are too long. Make them shorter.",
+    "expect": [
+      "does not start a bootstrap-file compression pass",
+      "treats it as a response-style question, not an always-loaded context question"
+    ]
+  }
+]

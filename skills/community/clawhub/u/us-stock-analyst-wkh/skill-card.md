@@ -1,37 +1,53 @@
-## Description: <br>
-Produces structured US equity research and trading support, including company snapshots, earnings analysis, valuation scenarios, catalyst and risk assessment, thesis development, and monitoring plans. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produces actionable US equity research and trading support: company snapshot, earnings analysis, valuation and scenario modeling, catalysts/risk list, thesis, and monitoring plan.
 
-## Publisher: <br>
-[jhryo25](https://clawhub.ai/user/jhryo25) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jhryo25](https://clawhub.ai/user/jhryo25)
 
-## Use Case: <br>
-External users, analysts, and investors use this skill to structure US equity research, earnings previews or recaps, valuation scenarios, catalyst tracking, risk review, and optional trade-plan support for NYSE and NASDAQ securities. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Stock research and trade-plan suggestions may be mistaken for personalized investment advice or may rely on stale or incomplete market data. <br>
-Mitigation: Treat outputs as informational, verify market data independently, and keep the required not-investment-advice disclaimer in generated responses. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jhryo25/us-stock-analyst-wkh) <br>
+## Use Case:
 
+External users, developers, and market researchers use this skill to produce structured US equity research briefs, earnings previews and recaps, valuations, thesis updates, monitoring plans, and optional trade-plan guidance for NYSE/NASDAQ equities, ADRs, and ETFs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown research brief with checklists, scenarios, risk analysis, action plan, and disclaimer] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should label missing market data as unknown or to be sourced, avoid guaranteed returns, and include a not-investment-advice disclaimer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may rely on generated equity research or optional trade-plan guidance as financial advice.
+
+Mitigation: Treat outputs as research support, retain the investment-advice disclaimer, and review suitability before acting.
+
+Risk: Market data, filings, news, and valuation inputs may be missing or stale.
+
+Mitigation: Verify current market data from authoritative sources and keep unknown values labeled as Unknown / To be sourced.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jhryo25/skills/us-stock-analyst-wkh)
+- [Skill Markdown artifact](artifact/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured research sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a mandatory investment-advice disclaimer and labels missing data as Unknown / To be sourced.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact basic info)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

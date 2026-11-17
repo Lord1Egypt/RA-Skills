@@ -1,43 +1,59 @@
-## Description: <br>
-Extracts YouTube subtitles locally with yt-dlp and helps agents return transcript text or summaries without relying on an external transcript API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses yt-dlp to retrieve YouTube video metadata and multilingual subtitles, then returns transcript text and a simple summary for agent workflows.
 
-## Publisher: <br>
-[miku233333](https://clawhub.ai/user/miku233333) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[miku233333](https://clawhub.ai/user/miku233333)
 
-## Use Case: <br>
-Agents and developers use this skill to extract subtitles from user-provided YouTube videos, save transcript files locally, and produce concise summaries or transcript-based notes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may install yt-dlp at runtime if it is not already available, changing the active Python environment. <br>
-Mitigation: Install yt-dlp yourself in an isolated environment before running the skill. <br>
-Risk: The skill invokes yt-dlp, contacts YouTube with supplied URLs, and writes transcript or cache files locally. <br>
-Mitigation: Run it only with URLs you intend to process, choose a controlled output directory, and review or remove saved transcript and cache files when finished. <br>
-Risk: The release security summary says the skill overstates its safety and under-discloses runtime package installation. <br>
-Mitigation: Review the behavior before installation and treat the release as requiring extra scrutiny despite its advertised local execution model. <br>
+## Use Case:
 
+Developers and agents use this skill to collect YouTube captions for transcript review, summarization, and downstream content analysis when YouTube access and yt-dlp use are acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/miku233333/youtube-transcript-local) <br>
-- [yt-dlp project](https://github.com/yt-dlp/yt-dlp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text guidance with shell commands; generated transcript files may be SRT, VTT, or Markdown summaries.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke yt-dlp, contact YouTube for supplied URLs, and save transcript or cache files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill requires YouTube network access while describing itself as local-only.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in environments where YouTube access is approved, and disclose network access to reviewers and operators.
+
+Risk: The extractor can install yt-dlp automatically if it is not already present.
+
+Mitigation: Preinstall and pin yt-dlp through a trusted dependency process, and avoid runtime package installation during normal use.
+
+Risk: The server security verdict is suspicious because the artifact under-discloses dependency and network behavior.
+
+Mitigation: Review the skill before installation, run it in a constrained environment, and treat local/no-risk claims as incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/miku233333/skills/youtube-transcript-local)
+- [yt-dlp project](https://github.com/yt-dlp/yt-dlp)
+- [OpenClaw documentation](https://docs.openclaw.ai/tools/skills)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and plain text with optional subtitle files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create transcript and cache files in local working directories.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

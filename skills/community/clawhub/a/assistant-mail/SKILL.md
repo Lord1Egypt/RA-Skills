@@ -1,11 +1,24 @@
 ---
 name: assistant-mail
-description: "A skill that allows AI agents to send emails using the AssistantMail API."
+title: Assistant Mail — agent email with allowlist & consent
+description: "Free (1 mailbox, 25 emails/day): https://app.assistant-mail.ai/?plan=free&utm_source=clawhub&utm_medium=skill&utm_campaign=clawhub_free — managed agent email for OpenClaw & Hermes with allowlist, consent, retention, send caps. Install: openclaw skills install @assistantmail/assistant-mail + MCP with ASSISTANT_MAIL_API_KEY. Outbound gated by allowlist; paid plans consent invites before send. mailboxId UUID + API key auth; Upgrade in-app · Docs https://assistant-mail.ai/docs. Listed on ClawHub — not an official OpenClaw endorsement."
+homepage: https://assistant-mail.ai/docs
 ---
-# AssistantMail AI Agent Skill
+# Assistant Mail — agent email with allowlist & consent
+
+Managed agent email for personal and small-team OpenClaw and Hermes: allowlist, consent, retention, and send caps. Mailbox access uses `mailboxId` (UUID) plus API key auth.
+
+**Listed on ClawHub — not an official OpenClaw endorsement.**
+
+- **Install:** `openclaw skills install @assistantmail/assistant-mail`, then MCP with `ASSISTANT_MAIL_API_KEY`
+- **Free:** 1 mailbox, 25 emails/day — [create a Free account](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify)
+- **Outbound:** gated by allowlist; paid plans send consent invites before send
+- **Paid:** Upgrade in-app only · [Docs](https://assistant-mail.ai/docs)
+
+Skill page: https://clawhub.ai/assistantmail/skills/assistant-mail
 
 ## Capability
-This skill gives AI agents a consistent way to discover AssistantMail endpoint details and directly fetch mailbox/message data through MCP.
+This skill gives AI agents a consistent way to discover Assistant Mail endpoint details and directly fetch mailbox/message data through MCP.
 
 ## Critical Access Model
 - Knowing an email address like `agent-b1e4643c@assistant-mail.ai` does **not** grant mailbox access.
@@ -18,7 +31,7 @@ What this means for agents:
 - A valid API key or Cognito JWT is still required.
 
 ## Agent Bootstrap (Required)
-1. Human owner registers or signs in on [assistant-mail.ai](https://app.assistant-mail.ai). [Learn more](https://assistant-mail.ai)
+1. Human owner registers or signs in on [assistant-mail.ai](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify) (Free: 1 mailbox, 25 emails/day). [Docs](https://assistant-mail.ai/docs)
 2. Human owner creates an API key with `POST /v1/api-keys`.
 3. Human owner shares the returned `amk_...` key securely with the agent runtime.
 4. Agent lists mailboxes via `GET /v1/mailboxes` and stores the target `mailboxId`.
@@ -26,8 +39,10 @@ What this means for agents:
 
 Notes:
 - API keys are only shown once at creation.
-- API key management endpoints are only available from [the human-facing app](https://app.assistant-mail.ai)
+- API key management endpoints are only available from [the human-facing app](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify)
 - API key auth can be supplied as `x-api-key: amk_...` or `Authorization: Bearer amk_...`.
+- Outbound send is gated by the recipient allowlist. On paid plans, recipients must confirm a consent invite before the agent can send.
+- Paid plans: Upgrade in-app only (not Payment Links).
 
 ## MCP Connection
 - **Command**: `assistantmail-mcp`
@@ -61,7 +76,13 @@ Notes:
 These direct tools cover the API-key operational endpoints agents are expected to call.
 
 ## OpenClaw
-Use this skill by registering the MCP command `assistantmail-mcp` in your OpenClaw skill/MCP registry.
+Install from ClawHub, then register the MCP command `assistantmail-mcp` and set `ASSISTANT_MAIL_API_KEY`:
+
+```bash
+openclaw skills install @assistantmail/assistant-mail
+```
+
+Listed on ClawHub — not an official OpenClaw endorsement. Skill: https://clawhub.ai/assistantmail/skills/assistant-mail
 
 ## Claude
 Use this skill by adding an MCP server entry that launches `assistantmail-mcp`.

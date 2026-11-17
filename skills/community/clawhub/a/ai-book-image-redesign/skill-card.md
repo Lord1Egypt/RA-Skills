@@ -1,41 +1,57 @@
-## Description: <br>
-将用户提供的单文件 HTML 或前端原型封装为可复用的静态网页应用 skill，并提供本地初始化和静态站导出脚本。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将用户提供的 HTML/前端原型整理成一个可复用的网页应用 skill，默认输出为静态 HTML，并支持最终用户自行填写 API URL、API Key 和模型配置来运行图片重设计流程。
 
-## Publisher: <br>
-[kelcey2023](https://clawhub.ai/user/kelcey2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kelcey2023](https://clawhub.ai/user/kelcey2023)
 
-## Use Case: <br>
-Developers and agents use this skill to turn an existing HTML/front-end image redesign prototype into a local static web app, then export deployable files for Vercel or another static host. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The static browser app stores API endpoint settings and API keys in browser localStorage. <br>
-Mitigation: Use trusted endpoints, prefer short-lived or low-privilege keys, and clear browser storage or modify the page to avoid saving keys. <br>
-Risk: Uploaded manuscript images and credentials can be sent to user-entered remote endpoints. <br>
-Mitigation: Avoid confidential manuscript images unless the selected provider is approved, and prefer a backend proxy with environment-injected credentials for production use. <br>
+## Use Case:
 
+Developers and creators use this skill to package an existing HTML/front-end prototype as a reusable static web app for AI book-manuscript image redesign. The generated app lets end users upload manuscript images, configure an image generation API endpoint, and export deployable static files.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kelcey2023/ai-book-image-redesign) <br>
-- [Publisher Profile](https://clawhub.ai/user/kelcey2023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with bash commands plus generated static HTML and JSON deployment files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a browser-based static image redesign tool that accepts user-provided API endpoint, API key, model name, prompt, and uploaded images.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.100 (source: server release evidence) <br>
+Risk: Browser-side API key handling can expose credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or low-privilege API keys for evaluation, and prefer a backend proxy or server-side environment variable injection before real deployment.
+
+Risk: Uploaded manuscript images and generated results are sent to the configured external API endpoint.
+
+Mitigation: Avoid unpublished or sensitive manuscript images unless the endpoint is trusted, and enforce HTTPS for API calls and polling.
+
+Risk: External API responses may include untrusted URLs or messages.
+
+Mitigation: Validate result URLs, keep polling same-origin or explicitly trusted, and render API messages as text rather than HTML.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kelcey2023/skills/ai-book-image-redesign)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands and generated static HTML/configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a static HTML image-redesign web app, Vercel configuration, and setup/export shell scripts.]
+
+## Skill Version(s):
+
+1.0.100 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

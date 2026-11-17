@@ -1,44 +1,64 @@
-## Description: <br>
-Manage AdGuard Home network-wide DNS ad blocking. Query blocklist stats, add/remove custom DNS rules, check filtering status, and view top blocked domains from your self-hosted DNS server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage AdGuard Home network-wide DNS ad blocking, including status checks, filtering statistics, custom DNS rules, query logs, and filtering controls for a self-hosted DNS server.
 
-## Publisher: <br>
-[kryzl19](https://clawhub.ai/user/kryzl19) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kryzl19](https://clawhub.ai/user/kryzl19)
 
-## Use Case: <br>
-Developers, operators, and self-hosted infrastructure administrators use this skill to inspect AdGuard Home DNS filtering status, review blocking statistics, manage custom rules, and toggle network-wide filtering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose sensitive DNS activity through AdGuard Home statistics and query-log access. <br>
-Mitigation: Install only where the agent is allowed to view network DNS activity, and use a dedicated account with the least privilege AdGuard Home supports. <br>
-Risk: The skill can change network-wide filtering behavior and custom DNS rules. <br>
-Mitigation: Require review before allowing rule changes or filtering toggles, and review scripts/rules.sh before enabling add or remove actions. <br>
-Risk: Unsafe endpoint choices can expose credentials or administrative traffic. <br>
-Mitigation: Prefer HTTPS or a strictly local AdGuard Home endpoint for ADGUARD_BASE_URL. <br>
+## Use Case:
 
+External users and administrators use this skill to inspect and manage an AdGuard Home instance from an agent workflow. It supports checking DNS filtering status, viewing statistics and logs, managing blocking rules, and enabling or disabling filtering.
 
-## Reference(s): <br>
-- [AdGuard Home project](https://github.com/Adguard/AdGuardHome) <br>
-- [AdGuard Home overview](https://adguard.com/adguard-home/overview.html) <br>
-- [AdGuard Home web interface API documentation](https://github.com/AdguardTeam/AdGuardHome/wiki/Config#web-interface) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and terminal text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ADGUARD_USERNAME, ADGUARD_PASSWORD, ADGUARD_BASE_URL, curl, and jq.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: The skill can enable or disable network-wide DNS filtering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit toggle operations to trusted users and review filtering changes before and after execution.
+
+Risk: Authentication uses Basic Auth and may be sent to non-local endpoints.
+
+Mitigation: Prefer HTTPS for any non-local AdGuard Home URL and use a dedicated low-privilege account with a unique password.
+
+Risk: DNS query logs can expose household or organizational browsing patterns.
+
+Mitigation: Restrict query-log access to trusted workflows and avoid unattended log inspection.
+
+Risk: Rule-management behavior may not match the documented DNS rewrite wording.
+
+Mitigation: Manually verify add and remove results in AdGuard Home because the implementation appears to target filtering rules rather than DNS rewrite rules.
+
+## Reference(s):
+
+- [AdGuard Home project](https://github.com/Adguard/AdGuardHome)
+- [AdGuard Home overview](https://adguard.com/adguard-home/overview.html)
+- [AdGuard Home API configuration reference](https://github.com/AdguardTeam/AdGuardHome/wiki/Config#web-interface)
+- [ClawHub skill page](https://clawhub.ai/kryzl19/skills/adguard-home-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Plain text and shell command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires ADGUARD_USERNAME, ADGUARD_PASSWORD, ADGUARD_BASE_URL, curl, and jq.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

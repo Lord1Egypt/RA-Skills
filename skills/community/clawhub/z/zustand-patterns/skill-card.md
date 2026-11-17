@@ -1,40 +1,49 @@
-## Description: <br>
-Provides practical Zustand state-management patterns for React projects, including store design, reusable slices, persistence, recoverable tasks, Electron IPC integration, testing, and common pitfalls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides practical Zustand state-management patterns for React projects, covering store design, reusable slices, persistence, recoverable tasks, Electron IPC integration, testing, and common pitfalls.
 
-## Publisher: <br>
-[bingfoon](https://clawhub.ai/user/bingfoon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[bingfoon](https://clawhub.ai/user/bingfoon)
 
-## Use Case: <br>
-Developers and engineers use this skill to design and review Zustand stores in React applications, especially when splitting state by module, persisting selected fields, recovering remote tasks, wiring Electron IPC events, and testing store actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persisted Zustand state could accidentally retain secrets, raw logs, or runtime-only data if examples are applied without filtering fields. <br>
-Mitigation: Use partial persistence for user configuration and preferences only; avoid persisting secrets, raw logs, in-flight progress, and transient errors. <br>
-Risk: Recoverable polling flows can continue after restart without clear user awareness or control. <br>
-Mitigation: Keep recovered polling visible to users and provide a cancellable recovery flow. <br>
-Risk: Electron IPC examples can expose unsafe channels if the main process does not validate requests. <br>
-Mitigation: Validate IPC channel names and payloads in the Electron main process before acting on renderer requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers and engineers use this skill to design, test, and maintain Zustand stores in React applications, including applications that use persistence, recoverable remote tasks, or Electron IPC.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with TypeScript examples and implementation checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no executable install behavior was identified in the server security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Applying the persistence examples too broadly could store secrets, logs, or unnecessary runtime state in localStorage or Electron storage.
+
+Mitigation: Persist only non-sensitive user settings and keep secrets, logs, and runtime processing state out of persisted Zustand state.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bingfoon/skills/zustand-patterns)
+- [ClawHub publisher profile](https://clawhub.ai/user/bingfoon)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown with TypeScript examples and implementation checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; no tool or MCP invocation is required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

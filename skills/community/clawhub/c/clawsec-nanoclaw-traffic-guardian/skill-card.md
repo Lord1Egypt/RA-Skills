@@ -1,41 +1,55 @@
-## Description: <br>
-NanoClaw runtime traffic monitoring baseline for host-side proxy inspection with container-safe MCP and IPC status surfaces. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NanoClaw runtime traffic monitoring baseline for host-side proxy inspection with container-safe MCP and IPC status surfaces.
 
-## Publisher: <br>
-[davida-ps](https://clawhub.ai/user/davida-ps) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[davida-ps](https://clawhub.ai/user/davida-ps)
 
-## Use Case: <br>
-Developers and security engineers use this skill as a builder-facing specification for adding opt-in NanoClaw traffic monitoring, redacted local findings, and container-safe status surfaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake the scaffold for a working traffic monitor. <br>
-Mitigation: Treat this release as a builder-facing specification until a future version ships an implemented proxy, detector, host service, and MCP tool surface. <br>
-Risk: A future proxy implementation could expose sensitive traffic, CA key material, or unredacted findings if the safety contract is not preserved. <br>
-Mitigation: Keep monitoring opt-in, keep CA private keys host-side, avoid automatic trust-store changes, redact logs and MCP responses, and expose only status or redacted findings through container-facing tools. <br>
+## Use Case:
 
+Developers and security engineers use this skill as a NanoClaw specification baseline for opt-in host-side traffic monitoring, redacted findings, and container-safe MCP status surfaces.
 
-## Reference(s): <br>
-- [ClawSec homepage](https://clawsec.prompt.security) <br>
-- [ClawHub skill page](https://clawhub.ai/davida-ps/skills/clawsec-nanoclaw-traffic-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and JSON schema examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Specification-only scaffold; no active proxy or runtime monitor is shipped in this release.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.1-beta5 (source: server release evidence, frontmatter, skill.json, CHANGELOG released 2026-06-23) <br>
+Risk: Installing an unverified or floating release could expose users to tampered skill metadata or archives.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the signed release verification workflow or use a pinned, trusted version of the Skills CLI before installation.
+
+Risk: Future traffic proxying or optional HTTPS inspection could expose sensitive request data.
+
+Mitigation: Keep monitoring opt-in, redact snippets before logs or MCP responses, and keep CA private key material on the host side.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davida-ps/skills/clawsec-nanoclaw-traffic-guardian)
+- [ClawSec Homepage](https://clawsec.prompt.security)
+- [NanoClaw Traffic Guardian Specification](artifact/SPEC.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces implementation guidance and safe operating constraints; this release is a specification scaffold with no active runtime proxy code.]
+
+## Skill Version(s):
+
+0.0.2 (source: server release metadata, SKILL.md frontmatter, skill.json, CHANGELOG released 2026-09-07)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

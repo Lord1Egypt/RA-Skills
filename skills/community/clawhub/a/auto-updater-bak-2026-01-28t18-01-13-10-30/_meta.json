@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7b944nr4v3gv0bn25f68qqyn803vh4",
-  "slug": "auto-updater-bak-2026-01-28t18-01-13-10-30",
-  "version": "1.0.0",
-  "publishedAt": 1769585529731
+  "owner": "maximeprades",
+  "slug": "auto-updater",
+  "displayName": "Auto-Updater Skill",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1768323539453,
+    "commit": "https://github.com/clawdbot/skills/commit/f957e845178b2329445136d099076e9d1ffa19f5"
+  },
+  "history": []
 }

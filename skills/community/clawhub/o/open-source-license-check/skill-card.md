@@ -1,40 +1,58 @@
-## Description: <br>
-Check if referenced bioinformatics software/code licenses allow commercial use (GPL vs MIT, etc.). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Check if referenced bioinformatics software/code licenses allow commercial use, including GPL and MIT-style cases.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-Developers, engineers, and compliance reviewers use this skill to screen referenced bioinformatics tools or Python requirements for commercial-use license concerns before deeper review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: License screening can be incomplete or incorrect for copyleft, unknown, or context-dependent packages. <br>
-Mitigation: Treat results as a screening aid and confirm license obligations with authoritative package metadata or legal review before commercial use. <br>
-Risk: The packaged helper runs local Python code and may read a provided requirements file. <br>
-Mitigation: Run it in a controlled workspace and provide only the intended software names or requirements file. <br>
+## Use Case:
 
+Developers and technical teams use this skill to triage whether referenced bioinformatics tools and Python requirements appear compatible with commercial use. It helps surface copyleft warnings and compliance follow-up items before a final legal review.
 
-## Reference(s): <br>
-- [Audit Reference](references/audit-reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with CLI commands and structured license compatibility notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, commercial-use warnings, compliance recommendations, and manual follow-up checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: License results may be incomplete or stale because the skill uses a bounded license database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify licenses against upstream project sources before relying on commercial-use decisions.
+
+Risk: Copyleft obligations can depend on integration, distribution, and network-use context.
+
+Mitigation: Confirm GPL, LGPL, and AGPL obligations with appropriate counsel before commercial release.
+
+Risk: Results are preliminary triage rather than legal advice.
+
+Mitigation: Treat the report as an input to compliance review, not as the final licensing decision.
+
+## Reference(s):
+
+- [Open Source License Check on ClawHub](https://clawhub.ai/aipoch-ai/skills/open-source-license-check)
+- [Audit Reference](references/audit-reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown or terminal text license compatibility report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes commercial-use status, copyleft warnings, assumptions, and compliance recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

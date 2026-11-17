@@ -1,43 +1,59 @@
-## Description: <br>
-Comprehensive management for Portainer CE environments and stacks. Supports listing environments, managing Docker Compose/Swarm stacks, and executing raw Docker commands via proxy. Use when the user needs to deploy apps, check container status, or manage networks within Portainer. Requires a Portainer API Key configured in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Portainer manages Portainer CE environments and stacks through the Portainer HTTP API, including environment listing, stack deployment and inspection, and raw Docker API proxy commands.
 
-## Publisher: <br>
-[Leventsoft](https://clawhub.ai/user/Leventsoft) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[leventsoft](https://clawhub.ai/user/leventsoft)
 
-## Use Case: <br>
-Developers and infrastructure operators use this skill to manage Portainer CE environments, inspect stacks, deploy Docker Compose content, remove stacks, and proxy selected Docker API requests through Portainer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad Portainer and Docker administration can interrupt services or delete resources. <br>
-Mitigation: Use a least-privilege Portainer token, restrict target environments, and require explicit confirmation before deploy, update, prune, remove, or raw Docker API operations. <br>
-Risk: Weak transport security can expose sensitive API traffic. <br>
-Mitigation: Enable real TLS certificate verification and avoid connecting to Portainer endpoints with untrusted certificates. <br>
-Risk: Raw Docker API proxy operations may bypass normal operational guardrails. <br>
-Mitigation: Add allowlists for permitted Docker API paths and methods before using the skill against production targets. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to inspect Portainer environments, deploy or update Docker Compose stacks, remove stacks, and run advanced Docker API operations through Portainer.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Leventsoft/portainer-skill-openclaw) <br>
-- [Portainer](https://www.portainer.io/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a configured Portainer URL and API token.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: ClawHub release metadata) <br>
+Risk: The skill can perform powerful infrastructure operations through Portainer, including stack deployment, stack removal, and raw Docker API proxy requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privilege Portainer API token, restrict which environments the token can manage, and require explicit operator confirmation before destructive or broad Docker actions.
+
+Risk: The security evidence identifies insecure TLS handling.
+
+Mitigation: Use this only in trusted operator contexts and avoid production infrastructure until TLS certificate verification is fixed.
+
+Risk: Raw Docker proxying can bypass higher-level safety boundaries.
+
+Mitigation: Restrict or remove raw Docker proxy access for normal use and prefer narrowly scoped stack and environment operations.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/leventsoft/skills/portainer-skill-openclaw)
+- [Publisher profile](https://clawhub.ai/user/leventsoft)
+- [Portainer](https://www.portainer.io/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Portainer API URL and API token in the agent runtime environment.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

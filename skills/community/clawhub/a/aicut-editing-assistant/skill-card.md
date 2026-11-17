@@ -1,49 +1,63 @@
-## Description: <br>
-地鼠AI剪辑专业智能剪辑 Skill / Codex 剪辑子智能体入口，用于让 Codex、QwenClaw、OpenClaw 等 AI 代理通过地鼠AI剪辑桌面端 MCP/HTTP/Bridge 完成素材分析、抖音纪实口播剪辑方案、自动排时间线、字幕、预览、校验和导出。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+地鼠AI剪辑标准 Skill helps agents operate the AICut desktop MCP/HTTP/Bridge workflow to analyze media, plan Douyin documentary voiceover edits, build timelines, add captions, preview, validate, and export.
 
-## Publisher: <br>
-[dspiritai](https://clawhub.ai/user/dspiritai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dspiritai](https://clawhub.ai/user/dspiritai)
 
-## Use Case: <br>
-Developers and AI-agent users use this skill to operate the AICut desktop bridge for documentary-style Douyin talking-head video edits, including media analysis, timeline planning, subtitles, preview, validation, and export review. The workflow is designed for AI-assisted rough cuts and structured editing with human final review before export or publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to control AICut through local desktop bridge, MCP, HTTP, and CLI workflows with access to local media. <br>
-Mitigation: Install only when agent control of AICut is intended, use explicit file or folder picker authorization, and avoid broad Desktop or project-root access. <br>
-Risk: Timeline changes, exports, and media imports may affect local projects or produce misleading output if run without review. <br>
-Mitigation: Require user confirmation before timeline overwrite or export, run project validation and export validation, and keep human final review before delivery or publication. <br>
-Risk: Cloud upload and public-frame settings may expose private customer, contract, backend, chat, address, phone, vehicle, or other sensitive media. <br>
-Mitigation: Review cloud upload/public-frame settings, require human confirmation for sensitive footage, and blur, omit, or avoid unconfirmed private material. <br>
-Risk: The artifact references API key environment variables for optional cloud and vision services. <br>
-Mitigation: Keep API keys only in environment variables or server-side configuration and do not write secrets into skill files, frontend code, or public repositories. <br>
+## Use Case:
 
+External users, creators, and developers use this skill to guide AI agents through AICut video-editing workflows for documentary-style Douyin voiceover videos. It supports media analysis, narration-first planning, timeline construction, subtitles, review gates, validation, and export handoff.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dspiritai/aicut-editing-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/dspiritai) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Bridge interface examples](artifact/examples.md) <br>
-- [AICut editing reference](artifact/reference.md) <br>
-- [Douyin documentary editing style JSON](artifact/dishu-douyin-documentary.skill.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON, JavaScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to call AICut MCP, HTTP, Bridge, CLI, local media, cloud upload, transcription, subtitle, validation, and export workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill can guide agents to control local editing projects and access local media through AICut.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when AICut is trusted, authorize narrow project folders, avoid broad Desktop or home-directory roots, and revoke media access when editing is complete.
+
+Risk: Local media or frame data may be shared with cloud vision services or temporary public-frame URLs during optional review workflows.
+
+Mitigation: Confirm any cloud upload, tunnel, or public-frame sharing before use, especially for footage containing customers, contracts, chats, addresses, phone numbers, license plates, or business data.
+
+Risk: Editing plans and captions can misrepresent source footage if generated before full transcript, audio, OCR, and frame review is complete.
+
+Mitigation: Require the documented analysis and review gates before final timelines, use transcript- or user-confirmed captions only, and keep human final review before export or publication.
+
+Risk: Bridge or media access tokens can be exposed if placed in URLs.
+
+Mitigation: Use header-based tokens for local media access and avoid query-string tokens.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dspiritai/skills/aicut-editing-assistant)
+- [Bridge interface examples](artifact/examples.md)
+- [AICut intelligent editing reference](artifact/reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, JavaScript, TypeScript, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce editing plans, subtitle guidance, timeline instructions, validation steps, export commands, and MCP/HTTP/Bridge call sequences for AICut.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

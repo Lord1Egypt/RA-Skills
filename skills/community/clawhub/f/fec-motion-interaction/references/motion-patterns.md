@@ -1,6 +1,6 @@
-# 交互动效实现模式
+#Interactive effect implementation mode
 
-## CSS 微交互
+## CSS Microinteractions
 
 ```css
 .action {
@@ -30,7 +30,7 @@
 }
 ```
 
-## Framer Motion 组件入场
+## Framer Motion component entry
 
 ```tsx
 import { motion, useReducedMotion } from "framer-motion";
@@ -50,7 +50,7 @@ export function MotionPanel({ children }: { children: React.ReactNode }) {
 }
 ```
 
-## GSAP 时间轴清理
+## GSAP Timeline Cleanup
 
 ```tsx
 import { useLayoutEffect, useRef } from "react";
@@ -87,7 +87,7 @@ export function RevealTimeline() {
 }
 ```
 
-## 重型动效懒加载
+## Heavy animation lazy loading
 
 ```tsx
 import { lazy, Suspense } from "react";
@@ -103,10 +103,10 @@ export function ShowcaseSlot() {
 }
 ```
 
-## 审查清单
+## Review Checklist
 
-- 动画目标能用一句话说明，且服务信息层级或状态反馈。
-- 高吞吐界面不使用滚动劫持或长时间入场遮挡。
-- reduced-motion 下信息仍完整，焦点与阅读顺序不变化。
-- 动画库按需加载，持续动画可暂停或卸载清理。
-- 关键设备上检查掉帧、文字遮挡和首屏 bundle 变化。
+- Animation goals can be described in one sentence and serve information level or status feedback.
+- High throughput interface does not use scroll hijacking or long entry occlusion.
+- The information is still complete under reduced-motion, and the focus and reading order do not change.
+- The animation library is loaded on demand, and continuous animation can be paused or uninstalled for cleaning.
+- Check for frame drops, text occlusion and above-the-fold bundle changes on key devices.

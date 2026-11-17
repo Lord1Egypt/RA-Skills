@@ -1,10 +1,15 @@
----
+﻿---
 name: poyo-video-translator
 description: Video Translator on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `poyo-ai/video-translator`, translating video speech, `video_urls`, `source_language`, `target_language`, async status polling, callbacks, subtitle outputs, and server-side integration.
 metadata: {"openclaw":{"homepage":"https://poyo.ai/models/video-translator","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Video Translator
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/video-translator>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Video Translator jobs on PoYo. It helps agents prepare video translation payloads, submit async tasks, and explain server-side polling or webhook handling.
 

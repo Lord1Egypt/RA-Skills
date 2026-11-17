@@ -1,42 +1,55 @@
-## Description: <br>
-SearchApi (searchapi.io). Use this skill for ANY SearchApi request -- searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SearchApi (searchapi.io). Use this skill for ANY SearchApi request — searching and reading data. Whenever a task involves SearchApi, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agent users use this skill to run SearchApi searches, retrieve cached search results, inspect account usage, and look up canonical locations through an OOMOL-connected SearchApi account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses an OOMOL-connected SearchApi account and may trigger account-authenticated network requests. <br>
-Mitigation: Run only SearchApi actions expected by the user, inspect action schemas before payload construction, and confirm any write or destructive action before execution. <br>
-Risk: First-time setup and connection recovery can involve authentication, credential scope, or billing state. <br>
-Mitigation: Use setup steps only after a matching command failure and rely on OOMOL server-side credential injection rather than handling raw API keys. <br>
+## Use Case:
 
+Agents use this skill to search SearchApi and retrieve search results, cached results, location data, and connected account usage through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [SearchApi homepage](https://www.searchapi.io) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-search-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return SearchApi JSON or HTML data through the oo CLI response envelope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Automatic setup can execute unverified remote code and introduce broader agent changes without clear user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install a verified CLI release yourself before enabling the skill, and check which additional agent skills it installs or updates.
+
+Risk: SearchApi requests involve a connected account, and OOMOL may handle requests and billing.
+
+Mitigation: Connect only the intended SearchApi account and consider OOMOL's role in handling requests and billing.
+
+## Reference(s):
+
+- [SearchApi Google documentation](https://www.searchapi.io/docs/google)
+- [SearchApi](https://www.searchapi.io)
+- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, HTML, Shell commands]
+
+**Output Format:** [oo CLI commands and SearchApi results in JSON, HTML, or text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected SearchApi action and its live input schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

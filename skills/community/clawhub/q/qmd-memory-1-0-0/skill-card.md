@@ -1,46 +1,60 @@
-## Description: <br>
-Qmd Memory 1.0.0 configures local QMD hybrid search for OpenClaw memory, including workspace collections, embeddings, refresh commands, and optional shared MCP serving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enables local hybrid memory search for OpenClaw using QMD with optimized collections, automatic indexing, and optional multi-agent sharing.
 
-## Publisher: <br>
-[Sieyer](https://clawhub.ai/user/Sieyer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[sieyer](https://clawhub.ai/user/sieyer)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to replace API-backed memory search with local indexing, hybrid retrieval, and workspace-specific collections. It is intended for agents that need searchable local project memory and optional multi-agent memory sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Local workspace indexing may ingest sensitive files, private notes, or secrets. <br>
-Mitigation: Review the directories and file masks before setup, exclude sensitive content from scanned paths, and confirm where the local index is stored. <br>
-Risk: Recurring or background indexing can keep collecting new workspace content after initial setup. <br>
-Mitigation: Enable scheduled refresh only after confirming scope, and document how to stop the schedule and delete the local index. <br>
-Risk: The optional MCP server exposes shared memory access on localhost. <br>
-Mitigation: Run the server only when multi-agent sharing is needed, keep it local, and stop it when not in use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to configure local OpenClaw memory search, index Markdown workspaces, refresh embeddings, estimate API cost savings, and optionally expose shared memory through a local MCP server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Sieyer/qmd-memory-1-0-0) <br>
-- [Publisher profile](https://clawhub.ai/user/Sieyer) <br>
-- [QMD project](https://github.com/tobi/qmd) <br>
-- [QMD Memory support issues](https://github.com/asabove/qmd-memory-skill/issues) <br>
-- [As Above Technologies](https://asabove.tech) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and local configuration steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May run local setup, indexing, embedding refresh, cost calculation, and optional MCP server commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact manifest) <br>
+Risk: Setup can globally install an unpinned npm package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or install a pinned QMD version before running setup in a production or sensitive environment.
+
+Risk: The skill can index sensitive OpenClaw Markdown files into a persistent local QMD cache.
+
+Mitigation: Limit OPENCLAW_WORKSPACE to non-sensitive content, remove secrets before indexing, and review retention under ~/.cache/qmd.
+
+Risk: The optional MCP server exposes shared memory access for local or multi-agent use.
+
+Mitigation: Run the MCP server only when localhost or shared-agent access is acceptable.
+
+## Reference(s):
+
+- [QMD Memory 1.0.0 ClawHub skill page](https://clawhub.ai/sieyer/skills/qmd-memory-1-0-0)
+- [QMD project](https://github.com/tobi/qmd)
+- [As Above Technologies](https://asabove.tech)
+- [Declared support issues page](https://github.com/asabove/qmd-memory-skill/issues)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and terminal-oriented guidance with shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local setup instructions, QMD collection configuration, index refresh commands, MCP server commands, and cost-savings estimates.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

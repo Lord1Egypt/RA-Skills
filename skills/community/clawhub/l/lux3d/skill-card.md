@@ -1,44 +1,56 @@
-## Description: <br>
-Use Lux3D to generate 3D models from images or text, or perform material repaint for international users. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents create and edit 3D models and images through Lux3D, including material transfer, retopology, rigging, animation, export, and task tracking.
 
-## Publisher: <br>
-[violalulu](https://clawhub.ai/user/violalulu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[violalulu](https://clawhub.ai/user/violalulu)
 
-## Use Case: <br>
-Developers and artists use this skill to create downloadable 3D assets from images or text prompts, or to regenerate materials for an existing GLB model using Lux3D's remote API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, images, mesh URLs, and the Lux3D API key are sent to the configured Lux3D service. <br>
-Mitigation: Use the skill only with a trusted Lux3D endpoint and avoid submitting confidential designs or private model URLs unless Lux3D's data-handling terms are acceptable. <br>
-Risk: LUX3D_BASE_URL or --base-url can redirect requests, including credentials and submitted assets, to another server. <br>
-Mitigation: Leave the default endpoint in place or verify any custom base URL before use. <br>
-Risk: Generated model download links are time-limited. <br>
-Mitigation: Download generated assets promptly after task completion. <br>
+## Use Case:
 
+Developers and artists use this skill to guide Lux3D image and 3D generation, edit existing GLB assets, animate models, export formats, and check task results.
 
-## Reference(s): <br>
-- [Lux3D Website](https://lux3d.aholo3d.com/) <br>
-- [Lux3D API Key Application](https://labs.aholo3d.com/api-keys) <br>
-- [ClawHub Skill Page](https://clawhub.ai/violalulu/lux3d) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, API Calls, Shell commands, Code, Guidance] <br>
-**Output Format:** [Downloaded 3D model files such as ZIP, GLB, or USDZ, with Python return values and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LUX3D_API_KEY and sends selected prompts, images, mesh URLs, and generation requests to the configured Lux3D service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: Prompts, models, images, and asset URLs submitted to Lux3D may contain confidential information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only material approved for the hosted service; avoid confidential assets and private URLs unless their disclosure is acceptable.
+
+Risk: Exposing the Lux3D API key in logs or shared transcripts may allow unauthorized use.
+
+Mitigation: Keep LUX3D_API_KEY in the environment and out of logs and shared transcripts.
+
+## Reference(s):
+
+- [Lux3D skill release](https://clawhub.ai/violalulu/skills/lux3d)
+- [Lux3D API key](https://labs.aholo.ai/api-keys?from=lux3d)
+- [Lux3D asset upload API documentation](https://labs.aholo.ai/api-docs/en/api-reference#tag/asset)
+- [Lux3D pricing](https://lux3d.aholo.ai/lux3d/home?view=pricing&lang=en_US)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration guidance]
+
+**Output Format:** [Markdown with command examples and links to generated assets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated assets and task results depend on the hosted Lux3D service.]
+
+## Skill Version(s):
+
+4.3.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

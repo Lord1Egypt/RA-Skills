@@ -1,43 +1,54 @@
-## Description: <br>
-Guides an agent through using ZenCreator.pro to generate AI videos from images or videos with model selection, credit awareness, and browser automation steps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through generating NSFW AI videos with ZenCreator.pro using image-to-video, video-to-video, and lipsync workflows.
 
-## Publisher: <br>
-[Makforce](https://clawhub.ai/user/Makforce) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[makforce](https://clawhub.ai/user/makforce)
 
-## Use Case: <br>
-Agent users and developers use this skill to operate a logged-in ZenCreator.pro session for image-to-video, video-to-video, and lipsync generation. It is most relevant when the user has a ZenCreator account, available credits, and media prompts or files ready for generation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks an agent to operate a logged-in ZenCreator browser session. <br>
-Mitigation: Use a dedicated Chrome profile logged into only ZenCreator and review each browser action before it is performed. <br>
-Risk: The workflow can involve sensitive media uploads and adult-content generation. <br>
-Mitigation: Confirm the exact media file and prompt before upload, and avoid identifying, non-consensual, regulated, or otherwise sensitive content. <br>
-Risk: Generation may spend paid credits. <br>
-Mitigation: Verify the selected model, quality setting, duration, and credit cost before starting generation. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ZenCreator.pro](https://zencreator.pro) <br>
-- [ZenCreator App](https://app.zencreator.pro) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Makforce/zencreator-video-skill) <br>
+## Use Case:
 
+Developers and content operators use this skill to guide an agent in operating a logged-in ZenCreator.pro session for AI video generation and downloading clips. It is relevant when the user intentionally provides source media, prompts, and approval for any credit-spending generation steps.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Browser automation steps] <br>
-**Output Format:** [Markdown with inline shell commands and browser action examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output for operating a browser session, selecting generation options, uploading media, and downloading generated results.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agent operation of a logged-in browser session could upload files, submit prompts, or spend credits unintentionally.
+
+Mitigation: Use only intentionally selected files, keep the session scoped, and require explicit confirmation before uploads, generation, downloads, or credit-spending actions.
+
+Risk: Uploaded media and generated NSFW content may be subject to ZenCreator.pro's current terms and privacy practices.
+
+Mitigation: Review the service's current terms and privacy practices before use, and avoid uploading sensitive material unless those practices are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/makforce/skills/zencreator-video-skill)
+- [ZenCreator.pro](https://zencreator.pro)
+- [ZenCreator app](https://app.zencreator.pro)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown instructions with browser automation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May involve browser actions, local file uploads, and credit-spending steps in an external service.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

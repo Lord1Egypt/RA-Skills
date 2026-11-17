@@ -1,43 +1,58 @@
-## Description: <br>
-Deploys a four-agent Pilot compliance and governance setup for policy evaluation, audit logging, certificate issuance, and reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a four-agent compliance and governance setup with a policy engine, auditor, certifier, and reporter.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to set up coordinated Pilot agents for compliance policy checks, tamper-evident audit trails, compliance certificates, and scheduled reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Incorrect peer or hostname configuration could establish trust with unintended Pilot nodes. <br>
-Mitigation: Verify each handshake peer and hostname before approving or relying on the deployment. <br>
-Risk: Compliance reports, certificates, or audit data may be sent to Slack or webhook destinations. <br>
-Mitigation: Decide what audit and certificate data may be shared externally before enabling reporter integrations. <br>
-Risk: Certifier signing keys can affect the integrity of compliance certificates. <br>
-Mitigation: Protect certifier signing keys and run the setup only on intended nodes. <br>
+## Use Case:
 
+Developers and governance operators use this skill to configure coordinated Pilot Protocol agents for automated policy enforcement, audit trails, compliance certification, and scheduled reporting.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-compliance-governance-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides role-specific setup commands, trust handshakes, manifests, and example Pilot messages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 1.0) <br>
+Risk: The setup installs many dependent skills and relies on external binaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify each dependency before installation, and isolate each role in the deployment.
+
+Risk: The setup creates persistent governance state and trust links between roles.
+
+Mitigation: Inspect the manifest before writing it, confirm peer identities before handshakes, and document key rotation and setup removal procedures.
+
+Risk: Compliance data may be routed to Slack or webhook destinations.
+
+Mitigation: Restrict allowed Slack and webhook destinations, and avoid forwarding sensitive compliance data to unauthorized channels.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-compliance-governance-setup)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash commands and JSON manifest templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Role-specific hostnames, handshakes, skill installation commands, and local manifest content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

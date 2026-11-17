@@ -1,42 +1,58 @@
-## Description: <br>
-Generate videos from text prompts or reference images using OpenAI Sora. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate videos from text prompts or reference images using OpenAI Sora.
 
-## Publisher: <br>
-[PauldeLavallaz](https://clawhub.ai/user/PauldeLavallaz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[pauldelavallaz](https://clawhub.ai/user/pauldelavallaz)
 
-## Use Case: <br>
-Developers and creative operators use this skill to generate MP4 videos from text prompts or animate a reference image through OpenAI Sora, with controls for model, duration, resolution, and output file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts and selected reference images are sent to OpenAI for video generation. <br>
-Mitigation: Avoid sensitive prompts or images and install only when this external API use is acceptable. <br>
-Risk: An OpenAI API key is required and could be exposed if passed directly on the command line. <br>
-Mitigation: Prefer the OPENAI_API_KEY environment variable over the --api-key argument. <br>
-Risk: The requested output filename may overwrite an unintended local file. <br>
-Mitigation: Set --filename to an intended output path before running the script. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/PauldeLavallaz/sora) <br>
-- [OpenAI Videos API Endpoint](https://api.openai.com/v1/videos) <br>
+## Use Case:
 
+Developers and creators use this skill to ask an agent to generate text-to-video or image-to-video MP4 assets with configurable model, duration, and resolution.
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with shell commands; generated videos are saved as MP4 files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an OpenAI API key, a text prompt, an output filename, and optional reference image, duration, model, size, and polling interval settings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Prompts and optional reference images are sent to OpenAI for video generation.
+
+Mitigation: Use the skill only with content approved for transfer to OpenAI under the user's applicable data handling requirements.
+
+Risk: Supplying an API key on the command line can expose credentials through shell history or process inspection.
+
+Mitigation: Set OPENAI_API_KEY through the environment or a secret manager instead of passing --api-key when possible.
+
+Risk: Dependencies are declared with lower bounds rather than locked versions.
+
+Mitigation: Pin and review dependency versions before deploying the skill in sensitive or controlled environments.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/pauldelavallaz/skills/sora)
+- [OpenAI Videos API endpoint](https://api.openai.com/v1/videos)
+- [OpenAI video content endpoint](https://api.openai.com/v1/videos/{video_id}/content)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash commands and generated MP4 video files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an OpenAI API key, Python 3.10 or later, and network access to OpenAI APIs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

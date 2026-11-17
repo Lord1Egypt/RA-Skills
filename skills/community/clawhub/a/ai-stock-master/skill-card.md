@@ -1,43 +1,59 @@
-## Description: <br>
-Professional AI stock and market analysis powered by investment expert models and integrated with the OpenClaw AI Agent. <br>
+## Description:
 
-This skill is for research and development only. <br>
+Professional AI stock analysis for OpenClaw that fetches TTfox market sentiment, sector momentum, stock screening, capital-flow alerts, and individual stock diagnosis.
 
-## Publisher: <br>
-[hengruiyun](https://clawhub.ai/user/hengruiyun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hengruiyun](https://clawhub.ai/user/hengruiyun)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to request delayed market sentiment, sector momentum, capital-flow, quantitative screening, and stock diagnosis reports. It is suited for mid-to-long-term research and strategic verification, not high-frequency or real-time trading. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Market, sector, and ticker queries are sent to the TTfox service. <br>
-Mitigation: Inform users before external calls and avoid sending sensitive, personal, or confidential trading context. <br>
-Risk: Returned buy/sell-style recommendations may be delayed research rather than personalized investment advice. <br>
-Mitigation: Present results as research signals, include the delayed-data limitation, and advise users to verify information before making financial decisions. <br>
-Risk: Broad finance prompts may invoke the skill and trigger external market lookups. <br>
-Mitigation: Only call stock-specific analysis when the user explicitly requests market, sector, or ticker analysis. <br>
+## Use Case:
 
+External users and developers use this skill to ask an OpenClaw agent for stock-market research, including sentiment, sector rankings, high-rating stock screens, and stock-specific risk and recommendation summaries. Outputs should be treated as research support rather than trading advice.
 
-## Reference(s): <br>
-- [AI Stock Master on ClawHub](https://clawhub.ai/hengruiyun/ai-stock-master) <br>
-- [TTFox Intelligence Server](https://master.ttfox.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, API calls] <br>
-**Output Format:** [Markdown-style analyst reports and structured status dictionaries from API calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include market sentiment, sector rankings, stock recommendations, risk levels, and error messages from the TTfox service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Stock symbols, sector names, market parameters, and investment interests are sent to TTfox.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform users before external requests and avoid sending sensitive or unnecessary financial-interest details.
+
+Risk: Documentation makes inconsistent live or real-time claims while evidence warns data may be delayed.
+
+Mitigation: Present outputs as delayed research signals, not current trading data or high-frequency trading guidance.
+
+Risk: Generated recommendations may be mistaken for investment advice.
+
+Mitigation: Label outputs as educational market research and require users to make independent investment decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hengruiyun/skills/ai-stock-master)
+- [Publisher Profile](https://clawhub.ai/user/hengruiyun)
+- [TTfox Intelligence Server](https://master.ttfox.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown and text responses with Python examples and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include fetched JSON-derived market summaries, stock symbols, ratings, recommendations, and risk levels.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

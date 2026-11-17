@@ -1,44 +1,58 @@
-## Description: <br>
-Analyzes fixed-camera video of an elderly person at rest to estimate respiratory rate and return tachypnea or dyspnea risk alerts with structured report output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyzes resting older adults' bedroom videos to estimate breathing rate and flag elevated rates.
 
-## Publisher: <br>
-[18072937735](https://clawhub.ai/user/18072937735) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[18072937735](https://clawhub.ai/user/18072937735)
 
-## Use Case: <br>
-Caregivers, home-care operators, and developers use this skill to analyze elderly resting chest or abdomen video for respiratory-rate estimates, risk flags, structured reports, and report-history lookup. It is an assistive monitoring workflow and should not be treated as a medical diagnosis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive in-home health video and report history through a third-party cloud service. <br>
-Mitigation: Use only with explicit consent from the monitored person or authorized caregiver, avoid unrelated private media, and confirm the publisher's deletion and retention controls before deployment. <br>
-Risk: The skill automatically creates or reuses identity-linked local and cloud state. <br>
-Mitigation: Run it in a dedicated environment, review local token and identity storage, and revoke or delete credentials and reports when monitoring is no longer needed. <br>
-Risk: Respiratory alerts can be incomplete or misleading if video quality, posture, or scene conditions are poor. <br>
-Mitigation: Treat outputs as assistive signals, verify urgent alerts by human contact or clinical follow-up, and do not use the skill as a stand-alone diagnostic system. <br>
+## Use Case:
 
+Caregivers and care-platform operators use this skill to review resting breathing patterns from bedroom video and retrieve prior screening reports. Results are alerts for follow-up, not medical diagnoses.
 
-## Reference(s): <br>
-- [API documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown and JSON text with optional report links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write the analysis output to a user-specified file and can list cloud report history.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: Sensitive bedroom footage or video URLs are sent to configured cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Obtain consent from the monitored person or caregiver and review the service destination before submitting footage.
+
+Risk: The skill automatically creates or reuses locally stored identity tokens.
+
+Mitigation: Review access to the workspace data database and clear stored tokens when the skill is no longer used.
+
+Risk: Breathing-rate alerts could be mistaken for medical diagnoses.
+
+Mitigation: Treat results as non-diagnostic screening and seek qualified medical assessment for concerning symptoms.
+
+## Reference(s):
+
+- [Skill API documentation](references/api_doc.md)
+- [ClawHub skill listing](https://clawhub.ai/18072937735/skills/smyx-elderly-tachypnea-detection-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files]
+
+**Output Format:** [Text or JSON-formatted analysis reports; Markdown tables for report history]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes breathing-rate estimates, risk alerts and report links; reports can be saved to a file.]
+
+## Skill Version(s):
+
+1.0.13 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

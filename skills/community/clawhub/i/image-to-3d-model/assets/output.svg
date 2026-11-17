@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-7 -5 15 10" width="800" height="600" style="background-color: #f8f9fa;">
+  <defs>
+    <!-- 标注箭头样式 -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e74c3c" />
+    </marker>
+  </defs>
+
+  <!-- 辅助网格和中心十字线 -->
+  <g stroke="#d1d8e0" stroke-width="0.05">
+    <line x1="-7" y1="0" x2="8" y2="0" stroke-dasharray="0.2,0.2" />
+    <line x1="0" y1="-5" x2="0" y2="5" stroke-dasharray="0.2,0.2" />
+  </g>
+
+  <!-- 零件主体轮廓 (采用 mm 作为坐标系单位) -->
+  <!-- 
+    外轮廓顺时针绘制：起点为左上切角，经过右侧拨臂，回到左下，再通过闭合左侧圆弧。
+    内轮廓逆时针绘制：绘制正六边形（对边距 2.6mm），使用 evenodd 规则自动镂空。
+  -->
+  <path d="
+    M -1.562 -2.6
+    L 1.562 -2.6
+    A 3 3 0 0 1 2.891 -0.8
+    L 4.7 -0.8
+    A 0.8 0.8 0 0 1 4.7 0.8
+    L 2.891 0.8
+    A 3 3 0 0 1 1.562 2.6
+    L -1.562 2.6
+    A 3 3 0 0 1 -1.562 -2.6
+    Z
+    M 0.866 1.5
+    L 1.732 0
+    L 0.866 -1.5
+    L -0.866 -1.5
+    L -1.732 0
+    L -0.866 1.5
+    Z
+  " fill="#ffffff" stroke="#2c3e50" stroke-width="0.08" stroke-linejoin="round" fill-rule="evenodd"/>
+
+  <!-- ================= 尺寸标注 ================= -->
+  <g fill="#e74c3c" font-family="sans-serif" font-size="0.4">
+    
+    <!-- d1 = 5.2mm (上下平边间距) -->
+    <line x1="-4" y1="-2.6" x2="-4" y2="2.6" stroke="#e74c3c" stroke-width="0.05" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <line x1="-1.5" y1="-2.6" x2="-4.5" y2="-2.6" stroke="#e74c3c" stroke-width="0.02" />
+    <line x1="-1.5" y1="2.6" x2="-4.5" y2="2.6" stroke="#e74c3c" stroke-width="0.02" />
+    <text x="-4.2" y="0.15" text-anchor="end">d1=5.2mm</text>
+
+    <!-- R = 3mm (外圆半径) -->
+    <line x1="0" y1="0" x2="1.8" y2="-2.4" stroke="#e74c3c" stroke-width="0.05" marker-end="url(#arrow)" />
+    <text x="2.0" y="-2.5">R=3mm</text>
+
+    <!-- d2 = 3.0mm (内六边形对边宽度, 含+0.4mm公差) -->
+    <line x1="0" y1="-1.5" x2="0" y2="1.5" stroke="#e74c3c" stroke-width="0.05" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <text x="0.15" y="0.05" text-anchor="start">d2=3.0mm</text>
+
+    <!-- d3 = 2.5mm (拨臂延伸长度) -->
+    <line x1="3" y1="-1.2" x2="3" y2="-1.8" stroke="#7f8c8d" stroke-width="0.03" />
+    <line x1="5.5" y1="-1.2" x2="5.5" y2="-1.8" stroke="#7f8c8d" stroke-width="0.03" />
+    <line x1="3" y1="-1.5" x2="5.5" y2="-1.5" stroke="#e74c3c" stroke-width="0.05" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+    <text x="4.25" y="-1.7" text-anchor="middle">d3=2.5mm</text>
+
+    <!-- 补充说明文字 -->
+    <text x="-6.5" y="-4.2" font-size="0.3" fill="#7f8c8d">Unit: mm (1:1 scale, displayed enlarged)</text>
+  </g>
+</svg>

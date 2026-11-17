@@ -1,44 +1,60 @@
-## Description: <br>
-根据用户的巡检需求推荐心跳场景，并生成可用的 HEARTBEAT.md 巡检清单和 Cron 定时配置。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language agent skill that recommends recurring heartbeat check scenarios and generates ready-to-use HEARTBEAT.md checklist snippets with cron schedule suggestions.
 
-## Publisher: <br>
-[jack-long-2022](https://clawhub.ai/user/jack-long-2022) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jack-long-2022](https://clawhub.ai/user/jack-long-2022)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to choose recurring heartbeat checks for email, calendar, market, code, backup, and similar monitoring needs, then generate concise HEARTBEAT.md snippets and cron schedules. It is most useful when a user wants proactive checks without activating too many recurring tasks at once. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated cron schedules may run at the wrong local time if timezone conversion is not checked. <br>
-Mitigation: Verify the intended local timezone against the generated UTC cron expression before enabling any recurring job. <br>
-Risk: Too many active heartbeat checks can create noisy monitoring and reduce attention to important alerts. <br>
-Mitigation: Keep active heartbeat items at five or fewer and prioritize time-sensitive checks such as email and calendar. <br>
-Risk: Heartbeat plans may involve sensitive accounts, financial data, passwords, backups, or account settings. <br>
-Mitigation: Require explicit user confirmation before applying workflow changes, and avoid putting secrets or sensitive values in HEARTBEAT.md. <br>
+## Use Case:
 
+Developers, operators, and productivity-focused users use this skill to design recurring checks for email, calendars, code quality, backups, market information, and similar workflows. It helps choose suitable heartbeat scenarios, limit overload, and produce cron timing guidance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jack-long-2022/openclaw-heartbeat-designer) <br>
-- [SCENARIOS.md](artifact/SCENARIOS.md) <br>
-- [CRON.md](artifact/CRON.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with HEARTBEAT.md snippets, cron expressions, and inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes scenario recommendations, timing rationale, timezone conversion notes, and overload warnings when more than five heartbeat checks are proposed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: Cron schedules or timezone conversions may trigger checks at the wrong time if copied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated cron expressions, confirm the intended timezone, and test the schedule before enabling recurring checks.
+
+Risk: Heartbeat integrations can touch sensitive services such as email, calendars, billing, passwords, backups, or social accounts.
+
+Mitigation: Grant only the minimum required access and review any integration permissions before connecting the resulting configuration.
+
+Risk: Too many active heartbeat checks can create noisy or ignored alerts.
+
+Mitigation: Keep active heartbeat items to five or fewer and reduce, merge, or remove low-priority checks when schedules become dense.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jack-long-2022/skills/openclaw-heartbeat-designer)
+- [SKILL.md](artifact/SKILL.md)
+- [SCENARIOS.md](artifact/SCENARIOS.md)
+- [CRON.md](artifact/CRON.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with cron expressions and inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory schedule and checklist content for user review before activation.]
+
+## Skill Version(s):
+
+1.1.0 (source: release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

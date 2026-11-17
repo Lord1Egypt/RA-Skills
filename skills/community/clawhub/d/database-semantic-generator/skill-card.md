@@ -1,44 +1,55 @@
-## Description: <br>
-Generate semantic YAML files from databases or Excel workbooks for semantic models, topic configurations, and table structure definitions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates semantic YAML files from MySQL, SQL Server, PostgreSQL, Oracle, or Excel sources so agents can build semantic models and topic configurations.
 
-## Publisher: <br>
-[asksqlai](https://clawhub.ai/user/asksqlai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[asksqlai](https://clawhub.ai/user/asksqlai)
 
-## Use Case: <br>
-Developers and data engineers use this skill to discover database tables or Excel sheets, select relevant sources, and generate OSI-style semantic YAML for AskSQL and text-to-SQL workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Database samples and spreadsheet contents may be sent to AskSQL or another configured API endpoint. <br>
-Mitigation: Use only data the user is allowed to send, prefer redacted test databases or non-sensitive spreadsheets, and confirm the endpoint before generation. <br>
-Risk: Database connection strings may contain credentials that can appear in chat, shell history, or logs. <br>
-Mitigation: Use short-lived or least-privilege credentials and avoid placing real secrets directly in prompts, saved commands, or shared logs. <br>
-Risk: The database upload path prints the table payload before calling the API, which may expose sampled data in terminal output. <br>
-Mitigation: Disable or remove that print before handling sensitive data, or run only with sanitized samples in a controlled terminal. <br>
+## Use Case:
 
+Developers and data engineers use this skill to discover database tables or Excel sheets, select relevant sources, and generate semantic YAML configuration files for downstream text-to-SQL workflows.
 
-## Reference(s): <br>
-- [Open Semantic Interchange Field Specification](references/open_semantic_interchange_description.md) <br>
-- [AskSQL](https://www.asksql.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/asksqlai/database-semantic-generator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [YAML files plus JSON command status and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one topic YAML file per run after a discover, select, and generate workflow; selected tables or sheets can limit scope.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Database metadata, sampled values, enum values, and Excel sheet contents may be sent to AskSQL or a configured Excel API endpoint during YAML generation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use read-only, least-privileged, non-production credentials; avoid sensitive spreadsheets; choose narrow table or sheet selections; and approve API endpoints before running generation.
+
+Risk: Generated semantic YAML may contain incorrect, overly broad, or sensitive metadata derived from sampled source data.
+
+Mitigation: Review generated YAML in a safe output directory before giving it to another AI workflow or using it for text-to-SQL generation.
+
+## Reference(s):
+
+- [Open Semantic Interchange Field Specification](references/open_semantic_interchange_description.md)
+- [AskSQL](https://www.asksql.ai)
+- [ClawHub Skill Page](https://clawhub.ai/asksqlai/skills/database-semantic-generator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated YAML configuration files, and JSON status messages]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated YAML should be reviewed before use in another AI workflow.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

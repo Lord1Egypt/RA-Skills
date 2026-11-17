@@ -1,42 +1,54 @@
-## Description: <br>
-Checks MiniMax API token usage, including hourly request counts and weekly quota remaining. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks MiniMax API token quota usage, including current-hour request counts and weekly remaining quota.
 
-## Publisher: <br>
-[regexl](https://clawhub.ai/user/regexl) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[regexl](https://clawhub.ai/user/regexl)
 
-## Use Case: <br>
-Developers and MiniMax API users use this skill to check local MiniMax API quota status without manually querying the usage endpoint. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads a local MiniMax authentication profile to obtain credentials. <br>
-Mitigation: Install and invoke it only when local MiniMax credential access is intended, and review the configured credential source before use. <br>
-Risk: The skill makes an authenticated request to MiniMax and may be triggered by broad quota-related phrases. <br>
-Mitigation: Use explicit MiniMax-only phrasing when invoking the skill and confirm the endpoint before deployment. <br>
+## Use Case:
 
+External users and developers with MiniMax accounts use this skill to check API token balance, current-hour usage, and weekly quota consumption from their local MiniMax auth profile.
 
-## Reference(s): <br>
-- [MiniMax token_plan remains endpoint](https://www.minimaxi.com/v1/token_plan/remains) <br>
-- [ClawHub skill page](https://clawhub.ai/regexl/mini-token-remains) <br>
-- [Publisher profile](https://clawhub.ai/user/regexl) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [Structured text status report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports hourly and weekly MiniMax token usage and remaining quota, or a failure message if the query fails.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill reads the local MiniMax auth profile and sends a read-only quota request to MiniMax.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this credential access and network request are acceptable, and keep the auth profile limited to the intended MiniMax account.
+
+Risk: Broad quota-related trigger wording could activate the skill for unrelated token-balance questions.
+
+Mitigation: Invoke it with explicit MiniMax wording and review trigger phrases before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/regexl/skills/mini-token-remains)
+- [MiniMax token plan remains endpoint](https://www.minimaxi.com/v1/token_plan/remains)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands]
+
+**Output Format:** [Structured text quota report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports used and remaining hourly and weekly quota; returns a failure message on network or API errors.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

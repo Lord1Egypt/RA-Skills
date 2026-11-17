@@ -1,43 +1,54 @@
-## Description: <br>
-Helps write healthcare education personal statements for medical school, residency, fellowship, and graduate school applications by shaping clinical experiences, research achievements, and career motivations into clear narratives. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when writing medical school personal statements, residency application essays, fellowship statements, or graduate school admissions essays. Crafts compelling narratives highlighting clinical experiences, research achievements, and career motivations for healthcare education applications.
 
-## Publisher: <br>
-[aipoch-ai](https://clawhub.ai/user/aipoch-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External applicants, advisors, and agents use this skill to draft, structure, and review personal statements for healthcare education applications. It supports narrative outlines, experience framing, tone adjustment, length checks, and clear disclosure of assumptions and limits. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Healthcare admissions essays can include patient stories or sensitive personal information. <br>
-Mitigation: De-identify patient stories and avoid unnecessary names, dates, medical details, or other sensitive personal information. <br>
-Risk: Generated admissions content may be inaccurate, overstate experiences, or fail to reflect the applicant's authentic voice. <br>
-Mitigation: Review outputs for accuracy, authenticity, program fit, and applicant ownership before use. <br>
-Risk: Some documented Python examples refer to helper APIs that are not included in the package. <br>
-Mitigation: Use the bundled script as the executable entry point and treat unavailable helper examples as illustrative unless the missing APIs are supplied. <br>
+## Use Case:
 
+External applicants and advisors use this skill to draft and refine healthcare education personal statements for medical school, residency, fellowship, and related graduate applications. It focuses on structuring clinical experiences, research achievements, service, motivation, tone, and length against program-specific constraints.
 
-## Reference(s): <br>
-- [Personal Statement Guidelines](references/guidelines.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/personal-statement) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance and structured JSON or text drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, workflow steps, draft personal-statement text, themes, word counts, risks, and next checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be selected for broad academic-writing prompts outside its intended scope.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it for healthcare admissions personal-statement drafting and route unrelated academic-writing work to a more suitable skill.
+
+Risk: Personal-statement drafts may overstate or invent applicant experiences if required inputs are missing.
+
+Mitigation: Confirm the applicant's experiences, goals, program type, character limits, and constraints before drafting, and preserve unresolved assumptions for review.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aipoch-ai/skills/personal-statement)
+- [Writing Guidelines](references/guidelines.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance and drafted personal-statement text, with optional JSON output from the bundled script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should state inputs, assumptions, workflow, deliverable, risks, limits, and next checks when relevant.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

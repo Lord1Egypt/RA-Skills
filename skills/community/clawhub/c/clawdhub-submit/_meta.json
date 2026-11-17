@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn77qk560nr7ws74b1j9krfng182peax",
   "slug": "clawdhub-submit",
+  "name": "ClawdHub 提交助手",
   "version": "1.0.0",
-  "publishedAt": 1773663927820
+  "description": "帮助诊断和解决 ClawdHub skill 提交问题",
+  "tags": ["工具", "ClawdHub", "skill", "发布"],
+  "author": "mahongting",
+  "homepage": "https://github.com/mahongting/clawdhub-submit-skill"
 }

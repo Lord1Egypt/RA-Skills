@@ -1,40 +1,54 @@
-## Description: <br>
-Search Discord message history stored in a local discrawl SQLite database. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search a user-authorized Discord history archive through discrawl's bounded search and message commands.
 
-## Publisher: <br>
-[jonathanjing](https://clawhub.ai/user/jonathanjing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jonathanjing](https://clawhub.ai/user/jonathanjing)
 
-## Use Case: <br>
-Developers and workspace agents use this skill to search local Discord guild archives for prior messages, channels, authors, and time-bounded context when answering questions about past conversations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad searches over local Discord archives can expose private or sensitive message content. <br>
-Mitigation: Use explicit channel, author, and time filters, and only query archives the user is authorized to inspect. <br>
-Risk: The shell SQL helper is unsafe for untrusted query text unless hardened. <br>
-Mitigation: Review or harden the helper before passing user-supplied strings, and prefer scoped discrawl search filters where possible. <br>
+## Use Case:
 
+Developers and agent users use this skill to retrieve past Discord conversations from a user-authorized local discrawl archive while keeping message content, identifiers, attachments, and raw payloads private.
 
-## Reference(s): <br>
-- [Discrawl Database Schema Reference](references/schema.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, code, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and SQL examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include discrawl CLI commands, SQL query patterns, filters, and concise guidance for searching local Discord archives.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Search results may expose private Discord message content, author identifiers, attachments, or raw payloads from the local archive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Search only the user-requested scope, keep results private, and avoid sending retrieved content to another channel or service without explicit approval.
+
+Risk: User-provided terms copied into SQL examples could produce unsafe or overbroad local archive queries.
+
+Mitigation: Prefer the bounded discrawl search commands or helper script, validate limits, and reserve SQL for fixed read-only queries authored by the operator.
+
+## Reference(s):
+
+- [Discrawl Database Schema Reference](references/schema.md)
+- [Discrawl homepage](https://github.com/openclaw/discrawl)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline bash and SQL examples; bounded discrawl commands can emit JSON results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Searches should stay scoped to the user's request and use tight limits, channel filters, or author filters when available.]
+
+## Skill Version(s):
+
+1.0.1 (source: SKILL.md metadata, artifact _meta.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

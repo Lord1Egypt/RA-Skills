@@ -1,41 +1,54 @@
-## Description: <br>
-Establishes a fact-seeking meta-methodology at the start of top-level agent conversations and routes later work toward related downstream thinking skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Arming Thought is a methodology skill that establishes an evidence-first operating principle at the start of top-level conversations and guides selection of related downstream analysis and planning skills.
 
-## Publisher: <br>
-[arg0](https://clawhub.ai/user/arg0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arg0](https://clawhub.ai/user/arg0)
 
-## Use Case: <br>
-External users and developers use this skill to make an agent begin broad top-level conversations with a stated fact-seeking methodology, persistence norms, and routing guidance for downstream thinking skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill attempts to steer every top-level conversation and includes a priority section that can conflict with normal system behavior. <br>
-Mitigation: Narrow activation to explicit planning or routing tasks and revise the priority section so it clearly defers to system, developer, and safety instructions. <br>
-Risk: The skill can over-broaden ordinary conversations by requiring a meta-methodology before task work begins. <br>
-Mitigation: Enable it only for users who intentionally want this conversation posture, and review its guidance before deployment. <br>
+## Use Case:
 
+External users and agent builders use this skill to steer top-level agent conversations toward an evidence-first methodology and to choose related skills for analysis, investigation, review, strategy, and planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/arg0/arming-thought) <br>
-- [Publisher profile](https://clawhub.ai/user/arg0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown instructions for agent behavior and skill routing] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, shell commands, API calls, or configuration files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill attempts to auto-run broadly and steer top-level conversations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when this methodology is explicitly desired, and review the prompt text before enabling it.
+
+Risk: The skill tries to influence instruction hierarchy and downstream skill loading behavior.
+
+Mitigation: Keep platform, developer, and user policies authoritative, and test behavior in a controlled environment before wider use.
+
+## Reference(s):
+
+- [ClawHub Skill Page: Arming Thought](https://clawhub.ai/arg0/skills/arming-thought)
+- [Publisher Profile: arg0](https://clawhub.ai/user/arg0)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, markdown]
+
+**Output Format:** [Markdown instructions and routing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Non-executable methodology guidance; no API calls, shell commands, or file access.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

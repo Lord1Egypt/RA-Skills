@@ -1,40 +1,56 @@
-## Description: <br>
-Verifies factual claims such as rates, prices, dates, and statistics against live data before an agent relies on them. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+When any factual claim is made - exchange rates, prices, dates, statistics - verify it against live data before using it.
 
-## Publisher: <br>
-[CutTheMustard](https://clawhub.ai/user/CutTheMustard) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cutthemustard](https://clawhub.ai/user/cutthemustard)
 
-## Use Case: <br>
-Agents and developers use this skill to check current factual claims before using them in responses, calculations, reports, or recommendations. It is intended for public, non-sensitive claims where live verification improves accuracy. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Claim text may be sent to an external verification service. <br>
-Mitigation: Use only for public factual claims; do not submit confidential business facts, personal data, regulated information, secrets, or internal claims unless that data sharing has been separately approved. <br>
+## Use Case:
 
+External users and agent developers use this skill to check time-sensitive factual claims before relying on them in responses, reports, calculations, or decisions.
 
-## Reference(s): <br>
-- [Verify Agent Homepage](https://verify.agentutil.net) <br>
-- [Verify Agent Card](https://verify.agentutil.net/.well-known/agent.json) <br>
-- [Verify Agent Service Metadata](https://verify.agentutil.net/.well-known/agent-service.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, JSON, guidance] <br>
-**Output Format:** [Markdown guidance with JSON verdict examples and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use an MCP verifier or an external HTTP verification service; the documented free tier is limited to 25 queries per day.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: ClawHub release metadata) <br>
+Risk: Factual claims submitted for verification may be sent to a third-party verification service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for public, non-sensitive facts and avoid submitting confidential business information, personal data, secrets, or private/internal claims.
+
+Risk: A claim can return an unknown, disputed, stale, or lower-confidence verdict.
+
+Mitigation: Preserve the uncertainty in the response, use the returned current truth when available, and avoid presenting unresolved claims as verified.
+
+## Reference(s):
+
+- [Verify Claim ClawHub Listing](https://clawhub.ai/cutthemustard/skills/claim-verify)
+- [Verification Service Homepage](https://verify.agentutil.net)
+- [Agent Card](https://verify.agentutil.net/.well-known/agent.json)
+- [Service Metadata](https://verify.agentutil.net/.well-known/agent-service.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Guidance, API calls]
+
+**Output Format:** [Markdown guidance with JSON verdict examples and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include verdict, confidence, current truth, freshness, source count, cache status, request ID, and service URL.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter reports 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

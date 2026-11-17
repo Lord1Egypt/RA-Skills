@@ -1,44 +1,61 @@
-## Description: <br>
-Generate persona-consistent selfie images and send to any OpenClaw channel. Supports Gemini, fal, and laozhang.ai providers, multi-reference avatar blending. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate persona-consistent selfies and third-person photos with OpenClaw native image generation; deliver to the current conversation or return image bytes to a same-host plugin.
 
-## Publisher: <br>
-[tower1229](https://clawhub.ai/user/tower1229) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tower1229](https://clawhub.ai/user/tower1229)
 
-## Use Case: <br>
-External OpenClaw users and agent operators use Stella Selfie to generate persona-consistent selfie or third-person photo images from a configured identity, then send the generated media to a selected OpenClaw-connected channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Provider API keys may incur usage cost when the skill generates images. <br>
-Mitigation: Use provider keys with spending limits where possible and install the skill only when image generation through the configured providers is intended. <br>
-Risk: Configured avatar images and prompt text are sent to the selected image provider as part of normal generation. <br>
-Mitigation: Keep avatar directories and public avatar URLs limited to intended reference photos, and choose the provider configuration deliberately before use. <br>
-Risk: Generated images can be sent to shared OpenClaw-connected channels. <br>
-Mitigation: Verify the target channel and recipient before sending images, especially in shared spaces. <br>
+## Use Case:
 
+OpenClaw agents use this skill to create persona-consistent selfies and third-person photos from a user's scene or camera request, delivering an image to the current conversation or returning image bytes to a same-host plugin.
 
-## Reference(s): <br>
-- [Timeline Integration](references/timeline-integration.md) <br>
-- [Stella homepage](https://github.com/tower1229/Stella) <br>
-- [ClawHub skill page](https://clawhub.ai/tower1229/stella-selfie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Image media, Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Generated images sent through OpenClaw, with concise text confirmations or actionable failure messages and Markdown setup guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provider-specific API calls may use local avatar files, public avatar URLs, prompt text, target channel details, and caption text; Gemini and laozhang.ai generated files are written locally and deleted after successful send.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata and package.json) <br>
+Risk: Prompts and selected avatar images are sent to the configured image provider; provider charges and retention practices apply.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only images and scene details you are comfortable sharing, and review the configured provider's terms and retention practices.
+
+Risk: Local avatar access can expose personal images if authorized directories are broader than needed.
+
+Mitigation: Keep authorized directories narrow, provide only intended avatar images, and retain the default reference count.
+
+Risk: Reference-file cleanup may report an incomplete cleanup diagnostic.
+
+Mitigation: Review and follow any cleanup diagnostic returned by the skill.
+
+## Reference(s):
+
+- [Timeline integration](references/timeline-integration.md)
+- [Plugin integration](references/plugin-integration.md)
+- [OpenClaw image generation](https://docs.openclaw.ai/tools/image-generation)
+- [OpenClaw plugin runtime image generation](https://docs.openclaw.ai/plugins/sdk-runtime/media#api-runtime-imagegeneration)
+- [ClawHub skill page](https://clawhub.ai/tower1229/skills/stella-selfie)
+
+## Skill Output:
+
+**Output Type(s):** [Images, Guidance]
+
+**Output Format:** [A generated image delivered in the conversation or returned as image bytes to a same-host plugin]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [One image per request; persona-consistent selfie or third-person photo]
+
+## Skill Version(s):
+
+2.1.0 (source: package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

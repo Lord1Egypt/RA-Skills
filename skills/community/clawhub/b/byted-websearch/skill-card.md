@@ -1,50 +1,64 @@
-## Description: <br>
-火山引擎联网搜索 API，返回网页/图片结果。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Volcengine web and image search APIs so agents can ground answers that depend on current facts, verification, sources, recommendations, prices, comparisons, or other online evidence.
 
-## Publisher: <br>
-[volcengine-skills](https://clawhub.ai/user/volcengine-skills) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[volcengine-skills](https://clawhub.ai/user/volcengine-skills)
 
-## Use Case: <br>
-Developers and agent users use this skill to retrieve current web or image search results from Volcengine when answers need live facts, source links, verification, or recent information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys may be exposed if users paste credentials into chat. <br>
-Mitigation: Configure WEB_SEARCH_API_KEY through a protected skill setting, secret store, or local environment variable, and rotate any key already shared in a transcript. <br>
-Risk: Search queries are sent to Volcengine as an external provider. <br>
-Mitigation: Install and use the skill only when external query sharing is acceptable for the workspace and data involved. <br>
-Risk: Broad search triggers may send vague questions or recommendations externally sooner than expected. <br>
-Mitigation: Limit when the skill may search, especially for vague, recommendation-oriented, or sensitive prompts. <br>
+## Use Case:
 
+Developers and external agent users use this skill to run web or image searches through Volcengine when answers require fresh information, source links, authority filtering, time ranges, or query rewriting.
 
-## Reference(s): <br>
-- [Skill release page](https://clawhub.ai/volcengine-skills/byted-websearch) <br>
-- [Publisher profile](https://clawhub.ai/user/volcengine-skills) <br>
-- [Volcengine Web Search API](https://www.volcengine.com/docs/85508/1650263) <br>
-- [Volcengine API reference](https://www.volcengine.com/docs/87772/2272953) <br>
-- [Volcengine product introduction](https://www.volcengine.com/docs/87772/2272949) <br>
-- [Volcengine billing documentation](https://www.volcengine.com/docs/87772/2272951) <br>
-- [Docs index](references/docs-index.md) <br>
-- [Setup guide](references/setup-guide.md) <br>
-- [Product docs gap review](references/product-docs-gap.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text search results with source URLs, snippets, image links, and setup or troubleshooting guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports web and image search, result-count limits, time-range filters, authority filtering, and query rewrite options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Users may expose API keys by pasting credentials into chat.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated skill credential setting or tightly scoped environment variable; rotate any key already pasted into a conversation.
+
+Risk: Search queries and bearer API keys may be sent to open.feedcoopapi.com in the API-key flow.
+
+Mitigation: Avoid sensitive queries and review the destination and credential handling before installation or use.
+
+Risk: The skill can read legacy OpenClaw .env files, which may contain unrelated secrets.
+
+Mitigation: Run it with isolated environment files and avoid shared .env files that contain credentials for other systems.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/volcengine-skills/skills/byted-websearch)
+- [Volcengine Web Search API Documentation](https://www.volcengine.com/docs/85508/1650263)
+- [Volcengine API Reference](https://www.volcengine.com/docs/87772/2272953)
+- [Volcengine Product Introduction](https://www.volcengine.com/docs/87772/2272949)
+- [Volcengine Pricing](https://www.volcengine.com/docs/87772/2272951)
+- [Docs Index](references/docs-index.md)
+- [Setup Guide](references/setup-guide.md)
+- [Product Docs Gap Review](references/product-docs-gap.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown text with search-result summaries, source URLs, image URLs, and command/configuration guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search output may include result counts, latency, titles, site metadata, URLs, summaries, image dimensions, and service error guidance.]
+
+## Skill Version(s):
+
+1.3.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,51 @@
-## Description: <br>
-Design a revenue model for a solopreneur business: how money flows in, from whom, and on what cadence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Designs a revenue model for a solopreneur business by comparing monetization options, revenue stream stacks, payment flows, projections, and validation methods.
 
-## Publisher: <br>
-[JK-0001](https://clawhub.ai/user/JK-0001) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jk-0001](https://clawhub.ai/user/jk-0001)
 
-## Use Case: <br>
-Solopreneurs and business builders use this skill to choose monetization approaches, compare recurring, one-time, usage-based, and commission models, design payment flows, and build simple revenue projections. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Revenue model recommendations may be incomplete or unsuitable for a specific business, market, tax position, or legal context. <br>
-Mitigation: Treat the output as business strategy support, validate assumptions with customers, and consult qualified financial, legal, or tax professionals before relying on it for material decisions. <br>
-Risk: Users may share confidential business details while working through revenue projections or payment-flow design. <br>
-Mitigation: Avoid sharing sensitive business information unless the agent environment is trusted and appropriate for that data. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Revenue Model Design skill page](https://clawhub.ai/JK-0001/revenue-model-design) <br>
+## Use Case:
+
+External builders, founders, and business operators use this skill to choose and validate monetization strategies for solopreneur products or services. It helps compare recurring, one-time, usage-based, marketplace, and stacked revenue streams before committing to billing flows or product design choices.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Payment-flow or checkout experiments can create legal, tax, billing, or customer-transparency obligations.
+
+Mitigation: Review billing flows with appropriate legal, tax, and customer-support judgment before launching them.
+
+Risk: Revenue projections and monetization recommendations may be directionally useful but wrong for a specific market or customer segment.
+
+Mitigation: Validate assumptions with pre-sales, manual delivery, checkout tests, and customer feedback before investing heavily.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text, Markdown] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces business-planning guidance for revenue model selection, stream stacking, payment flow design, projection setup, and validation steps.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with tables, checklists, and planning templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Business planning guidance should be reviewed for legal, tax, customer-transparency, and market-fit considerations before launch.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

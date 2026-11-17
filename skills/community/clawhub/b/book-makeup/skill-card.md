@@ -1,41 +1,53 @@
-## Description: <br>
-Book Makeup helps agents search makeup services, check availability, and create bookings through Lokuli's MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book makeup services through Lokuli MCP for service searches, availability checks, and booking creation.
 
-## Publisher: <br>
-[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[edwardrodriguez703-design](https://clawhub.ai/user/edwardrodriguez703-design)
 
-## Use Case: <br>
-External users can use this skill to find makeup providers, review availability, and request appointment bookings with their contact details. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The booking flow can send personal contact details and create an appointment. <br>
-Mitigation: Before creating a booking, confirm the provider, service, date and time, price or cancellation terms, and the exact name, email, and phone number to be sent. <br>
-Risk: Search and availability results may not fully capture provider suitability or terms. <br>
-Mitigation: Review provider details and service terms with the user before proceeding from search to booking. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/book-makeup) <br>
-- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse) <br>
-- [Publisher profile](https://clawhub.ai/user/edwardrodriguez703-design) <br>
+## Use Case:
 
+External users and agents use this skill to find makeup service providers, check appointment availability, and create bookings through Lokuli's MCP server.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, configuration] <br>
-**Output Format:** [Markdown and JSON-RPC request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May involve service search details, availability information, and booking contact fields supplied by the user.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send customer name, email, and phone number to an external booking service.
+
+Mitigation: Confirm the user wants to share those contact details with Lokuli before creating a booking.
+
+Risk: The skill can create bookings without clear in-skill confirmation guidance.
+
+Mitigation: Verify provider, service, time, price, cancellation terms, and user intent before calling create_booking.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/edwardrodriguez703-design/skills/book-makeup)
+- [Lokuli MCP endpoint](https://lokuli.com/mcp/sse)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Guidance]
+
+**Output Format:** [Markdown guidance with JSON-RPC tool call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include provider, service, time slot, and customer contact details when creating a booking.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

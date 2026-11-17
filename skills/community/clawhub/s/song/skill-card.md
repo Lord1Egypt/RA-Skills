@@ -1,42 +1,54 @@
-## Description: <br>
-Write original songs with guided lyric development, chord progressions, melody contours, and AI music generator prompts for composers at any level. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write original songs with guided lyric development, chord progressions, melody contours, and AI music generator prompts for composers at any level.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users and composers use this skill to plan and draft original songs, including structure, lyrics, harmony, polish passes, and prompts for AI music generators. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Song drafts and style preferences may include private themes or personal details stored under ~/songs. <br>
-Mitigation: Avoid putting secrets or highly private details in drafts or preferences, and review or delete ~/songs when old themes or style choices should not be reused. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Song ClawHub Page](https://clawhub.ai/ivangdavila/song) <br>
-- [Song Creation Phases](artifact/phases.md) <br>
-- [Lyric Writing Techniques](artifact/lyrics.md) <br>
-- [Chord Progressions by Mood](artifact/harmony.md) <br>
-- [AI Music Generator Prompts](artifact/prompts.md) <br>
-- [Song Structure Patterns](artifact/structure.md) <br>
+## Use Case:
 
+External users and creators use this skill to plan, draft, polish, and iterate original songs, including lyrics, structure, chord progressions, and prompts for AI music generators such as Suno and Udio.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown prose with song sections, lyric drafts, chord suggestions, and AI generator prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference and update local song drafts and style preferences under ~/songs.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Saved song drafts, generator prompts, and style preferences under ~/songs may contain personal creative details or preferences.
+
+Mitigation: Review or delete ~/songs/preferences.md and related draft files when you do not want past preferences or drafts reused.
+
+## Reference(s):
+
+- [Song Skill Page](https://clawhub.ai/ivangdavila/skills/song)
+- [Publisher Profile](https://clawhub.ai/user/ivangdavila)
+- [Songwriting Phases](artifact/phases.md)
+- [Lyric Writing Techniques](artifact/lyrics.md)
+- [Chord Progressions by Mood](artifact/harmony.md)
+- [AI Music Generator Prompts](artifact/prompts.md)
+- [Song Structure Patterns](artifact/structure.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown song drafts with lyrics, chord progressions, section tags, and AI music generator prompt text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local song drafts, prompts, metadata, and preference notes under ~/songs.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

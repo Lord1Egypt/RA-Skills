@@ -1,44 +1,58 @@
-## Description: <br>
-Interact with a MongoDB database for persistent document storage, including CRUD operations, aggregation pipelines, collection management, and index creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Mongo Db Client Tool lets agents use a Python CLI to store, query, update, aggregate, and manage documents in MongoDB.
 
-## Publisher: <br>
-[JithinM](https://clawhub.ai/user/JithinM) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jithinm](https://clawhub.ai/user/jithinm)
 
-## Use Case: <br>
-Developers and agents use this skill to connect to MongoDB, persist structured documents, query records, run aggregations, and manage collections or indexes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can read, write, and persist MongoDB records. <br>
-Mitigation: Use a dedicated least-privilege MongoDB user scoped to the intended database and collections. <br>
-Risk: Bulk updates, upserts, schema or index changes, deletes, and collection drops can significantly alter stored data. <br>
-Mitigation: Require explicit review before these operations and only pass confirmation flags after the user has approved the action. <br>
-Risk: Database content may include secrets, personal data, or regulated records. <br>
-Mitigation: Avoid storing sensitive or regulated data unless retention, access control, and deletion requirements are already defined. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/JithinM/mongo-db) <br>
-- [Publisher profile](https://clawhub.ai/user/JithinM) <br>
-- [MongoDB Ubuntu installation notes](INSTALL-UBUNTU.md) <br>
-- [MongoDB Community Server package repository](https://repo.mongodb.org/apt/ubuntu) <br>
+## Use Case:
 
+Developers and agents use this skill to persist structured data in MongoDB, query collections, run aggregation pipelines, and manage collections or indexes across sessions.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown instructions with JSON payloads, shell commands, and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The MongoDB client returns JSON success or error objects and serializes ObjectId fields as strings.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access data and perform writes allowed by the configured MongoDB account.
+
+Mitigation: Use a dedicated least-privilege MongoDB user and review operations before enabling write or destructive access.
+
+Risk: Database credentials may be placed in local configuration files.
+
+Mitigation: Prefer environment variables or a secret manager over config.json and keep local configuration files out of version control.
+
+Risk: The Ubuntu setup guidance can enable MongoDB as a persistent system service.
+
+Mitigation: Enable mongod at boot only when needed after checking local binding, authentication, and firewall settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jithinm/skills/mongo-db)
+- [INSTALL-UBUNTU.md](INSTALL-UBUNTU.md)
+- [MongoDB Ubuntu APT repository](https://repo.mongodb.org/apt/ubuntu)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, shell commands, configuration, guidance]
+
+**Output Format:** [JSON results and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Destructive database operations require explicit confirmation in the JSON payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

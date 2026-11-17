@@ -1,7 +1,7 @@
 ---
 name: curiosity-learning-curve
 description: "Activate when: user says 'I used to love this but don't anymore', 'I feel like I've stopped learning', 'I go through the motions but nothing excites me', 'how do I stay curious as I get older', or a domain expert's knowledge has visibly stagnated despite continued effort.
-  Do NOT activate when: the problem is burnout rather than curiosity deficit (burnout requires recovery first); the issue is capability or skill gap rather than curiosity; structural causes (bad environment, financial stress) are driving the motivation problem."
+  Do NOT activate when: the problem is burnout rather than curiosity deficit (burnout requires recovery first); the issue is capability or skill gap rather than curiosity; structural causes (bad environment, financial stress) are driving the motivation problem. More: deciqai.com/c/curiosity-learning-curve"
 ---
 
 # Curiosity Learning Curve
@@ -117,4 +117,6 @@ Terminal Transition: Domain | Exit date | Destination | What carries forward
 - [ ] 30-day check-in scheduled to evaluate reactivation experiment outcome
 
 ---
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/curiosity-learning-curve** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/curiosity-learning-curve.json*

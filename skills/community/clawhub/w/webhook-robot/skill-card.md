@@ -1,40 +1,58 @@
-## Description: <br>
-Send messages to various webhook-based bots (WeCom, DingTalk, Feishu, etc.). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Send messages to various webhook-based bots and notification services.
 
-## Publisher: <br>
-[takedwind](https://clawhub.ai/user/takedwind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[takedwind](https://clawhub.ai/user/takedwind)
 
-## Use Case: <br>
-Developers and operators use this skill to send notifications through webhook-based chat bots and push services they control, including WeCom, DingTalk, Feishu, Bark, Telegram, PushDeer, ServerChan, GoCqHttp, and Gotify. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Messages and destination identifiers may expose sensitive information if sent to the wrong webhook, chat, or group. <br>
-Mitigation: Verify destination URLs, chat IDs, group IDs, and message contents before sending, and avoid sending secrets or sensitive documents. <br>
-Risk: Webhook keys and bot tokens can be exposed through shared logs, command history, or copied command lines. <br>
-Mitigation: Avoid exposing credentials in shared logs or shell history, and rotate any webhook key or bot token that may have been exposed. <br>
+## Use Case:
 
+Developers and automation agents use this skill to send selected notification text to configured webhook-based chat bots and notification services.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/takedwind/webhook-robot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Text, Markdown, API calls, Configuration] <br>
-**Output Format:** [Shell commands that send text or markdown message payloads to webhook APIs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and user-supplied webhook URLs, keys, bot tokens, chat IDs, or group IDs for the selected service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata and package.json) <br>
+Risk: Message content can be sent to external bot and notification services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use approved destinations only, verify recipients before sending, and avoid confidential or regulated content unless the destination is authorized.
+
+Risk: Webhook keys, bot tokens, secrets, chat IDs, and full webhook URLs are sensitive credentials.
+
+Mitigation: Store credentials in controlled secret storage, pass them only at execution time, and avoid logging or committing them.
+
+Risk: Custom or user-provided URLs can direct messages to unintended endpoints.
+
+Mitigation: Prefer tightly controlled destination URLs or allowlisted services when deploying the skill.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/takedwind/skills/webhook-robot)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [shell commands, text, guidance]
+
+**Output Format:** [Markdown with inline shell command examples and plain-text command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3 and user-provided webhook keys, bot tokens, chat IDs, or destination URLs.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

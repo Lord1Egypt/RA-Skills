@@ -1,7 +1,7 @@
 ---
 name: rule-catalog
 description: Browse hookify rule catalog
-version: 1.9.8
+version: 1.10.3
 triggers:
   - hookify
   - rules
@@ -14,7 +14,7 @@ source: claude-night-market
 source_plugin: hookify
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/hookify](https://github.com/athola/claude-night-market/tree/master/plugins/hookify). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
+> **Night Market Skill**: ported from [claude-night-market/hookify](https://github.com/athola/claude-night-market/tree/master/plugins/hookify). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 ## When To Use
@@ -25,28 +25,9 @@ source_plugin: hookify
 
 ## When NOT To Use
 
-- Writing custom rules from scratch — use `hookify:writing-rules` instead
+- Writing custom rules from scratch: use `hookify:writing-rules` instead
 - Debugging or modifying existing installed rules
-- Converting Python SDK hooks — use `hookify:from-hook` instead
-
-## Table of Contents
-
-- [Quick Install](#quick-install)
-- [Available Rules](#available-rules)
-- [git/ - Git Safety](#git----git-safety)
-- [python/ - Python Quality](#python----python-quality)
-- [security/ - Security Gates](#security----security-gates)
-- [workflow/ - Workflow Enforcement](#workflow----workflow-enforcement)
-- [performance/ - Resource Management](#performance----resource-management)
-- [Installation Instructions](#installation-instructions)
-- [Method 1: Claude-Assisted (Recommended)](#method-1:-claude-assisted-(recommended))
-- [Method 2: Python Script](#method-2:-python-script)
-- [Method 3: Manual Copy](#method-3:-manual-copy)
-- [Rule File Locations](#rule-file-locations)
-- [Customizing Rules](#customizing-rules)
-- [Creating Pull Requests for New Rules](#creating-pull-requests-for-new-rules)
-- [Related](#related)
-
+- Converting Python SDK hooks: use `hookify:from-hook` instead
 
 # Hookify Rule Catalog
 
@@ -84,7 +65,7 @@ python3 plugins/hookify/scripts/install_rule.py --all
 ### security/ - Security Gates
 | Rule | Action | Default | Description |
 |------|--------|---------|-------------|
-| `require-security-review` | block | enabled | Require review for auth code |
+| `require-security-review` | warn | enabled | Require review for auth code |
 | `destructive-command-guard` | warn | enabled | Warn on destructive commands targeting prod-shaped paths |
 
 ### workflow/ - Workflow Enforcement
@@ -202,3 +183,17 @@ To add rules to the catalog:
 - `Skill(hookify:writing-rules)` - Create custom rules
 - `/hookify:list` - Show installed rules
 - `/hookify:configure` - Manage installed rules
+
+## Exit Criteria
+
+- [ ] Installed rule file exists at
+  `.claude/hookify.<rule-name>.local.md` with `enabled: true`
+  in its frontmatter
+- [ ] Rule activates without requiring a session restart; verified
+  by triggering a matching pattern and observing the warn or
+  block response
+- [ ] When installing via Python script, exit code 0 is returned
+  and the rule file is present at the target path
+- [ ] Rule file structure matches the catalog source at
+  `skills/rule-catalog/rules/<category>/<rule>.md`; no fields
+  silently dropped during installation

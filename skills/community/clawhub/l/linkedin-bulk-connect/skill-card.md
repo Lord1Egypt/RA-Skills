@@ -1,43 +1,57 @@
-## Description: <br>
-Send LinkedIn connection requests to a list of people via browser automation and track status in a CSV/TSV file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Sends LinkedIn connection requests to a list of people through browser automation, handles profile-discovery fallbacks, and tracks connection status in a CSV or TSV file.
 
-## Publisher: <br>
-[10Madh](https://clawhub.ai/user/10Madh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[10madh](https://clawhub.ai/user/10madh)
 
-## Use Case: <br>
-External users and operators use this skill to send reviewed LinkedIn connection requests from a spreadsheet or list of profile URLs, then track each person's status in a CSV/TSV file. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill operates a logged-in LinkedIn session and can send real connection requests from the user's account. <br>
-Mitigation: Use small reviewed batches, confirm recipients or batches before sending, and stop if the account receives platform warnings or reaches LinkedIn limits. <br>
-Risk: The workflow uses bulk outreach data that may contain confidential lead lists or personal information. <br>
-Mitigation: Avoid confidential lists unless the user has approved their use, keep a backup of the spreadsheet, and review file changes before continuing. <br>
-Risk: The artifact includes anti-detection steps for LinkedIn automation. <br>
-Mitigation: Do not use the workflow to bypass LinkedIn warnings, limits, or platform rules; pause or stop when the platform signals concern. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [LinkedIn Connect browser workflow](references/browser-workflow.md) <br>
-- [ClawHub skill page](https://clawhub.ai/10Madh/linkedin-bulk-connect) <br>
-- [Publisher profile](https://clawhub.ai/user/10Madh) <br>
+## Use Case:
 
+External users and agents use this skill to send LinkedIn connection requests from a prepared recipient list while recording per-person outcomes. It is intended for browser-mediated outreach workflows that need profile URL fallback, connection-status detection, and incremental CSV or TSV progress tracking.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Files] <br>
-**Output Format:** [Markdown guidance with inline browser commands, Python snippets, and CSV/TSV or JSON status updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational steps for browser automation and updates tracking files such as the source CSV/TSV and linkedin_progress.json.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill automates bulk LinkedIn outreach from a real logged-in account and can send actual connection requests.
+
+Mitigation: Review each recipient list before use, keep batches small, and require confirmation before sending requests when account impact matters.
+
+Risk: The security evidence flags anti-detection behavior and recommends careful review.
+
+Mitigation: Use the skill only when the user accepts the account-risk tradeoff, avoid accounts already warned for automation, and stop before exceeding the documented session cap.
+
+Risk: The skill can modify CSV or TSV tracking files and create a progress sidecar file.
+
+Mitigation: Confirm the input file path and columns before running, and keep a backup of the tracking file before automated updates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/10madh/skills/linkedin-bulk-connect)
+- [LinkedIn Connect Browser Automation Workflow](artifact/references/browser-workflow.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with browser commands, Python snippets, JSON examples, and CSV or TSV status updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May modify the user's tracking file by adding or updating connection-status fields and may maintain a linkedin_progress.json sidecar file.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

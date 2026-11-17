@@ -1,44 +1,59 @@
-## Description: <br>
-Autonomous overnight work agent that accepts a task before sleep and returns structured results by morning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Autonomous overnight work agent that decomposes research, writing, data, and code-review tasks, works through them with progress logging, and returns structured morning deliverables.
 
-## Publisher: <br>
-[fullstackcrew-alpha](https://clawhub.ai/user/fullstackcrew-alpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fullstackcrew-alpha](https://clawhub.ai/user/fullstackcrew-alpha)
 
-## Use Case: <br>
-Developers, operators, and productivity-focused users use this skill to delegate research, writing, data organization, and code review tasks for unattended execution with a morning summary and deliverables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unattended execution may read task-relevant files, perform web research, and write reports without real-time user review. <br>
-Mitigation: Run the skill only on tasks and workspaces appropriate for unattended processing, and review generated summaries and deliverables before relying on them. <br>
-Risk: Telegram or webhook notifications may expose task names, summaries, and output paths to third-party services. <br>
-Mitigation: Use local macOS notifications for sensitive work, and avoid external notification channels when task metadata or output locations are confidential. <br>
-Risk: The artifact describes a /tmp fallback on file-write failure even though normal operation is intended to stay under the work directory. <br>
-Mitigation: Confirm output locations after each run and restrict deployment policy to the documented ~/overnight-output work directory when sensitive files are involved. <br>
+## Use Case:
 
+External users and developers use this skill to queue longer-running research, drafting, data cleanup, or code-review work and receive a morning summary plus task-specific deliverables.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fullstackcrew-alpha/overnight-worker) <br>
-- [Output format specifications](references/output-formats.md) <br>
-- [Task templates](references/task-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, CSV, JSON, shell commands, progress logs, and notification payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates timestamped work directories under ~/overnight-output with PLAN.md, progress.log, morning-summary.md, and task-specific deliverables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Overnight autonomous execution can produce incorrect research, writing, data, or code-review conclusions without real-time supervision.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the morning summary and final deliverables before relying on them for decisions or publishing them.
+
+Risk: Telegram and webhook notifications can expose task names, paths, or summaries to third-party services.
+
+Mitigation: Keep notifications local unless the Telegram bot and webhook endpoint are trusted, and avoid sensitive task details in notification text.
+
+Risk: The security scan reports privacy and local-execution concerns around notification handling and fallback behavior.
+
+Mitigation: Review and harden webhook validation, Telegram token handling, osascript notification construction, and fallback paths before unattended overnight use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fullstackcrew-alpha/skills/overnight-worker)
+- [Task templates](artifact/references/task-templates.md)
+- [Output format specifications](artifact/references/output-formats.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, CSV, JSON, progress logs, and notification messages depending on the requested task.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a timestamped work directory with PLAN.md, progress.log, morning-summary.md, and final task deliverables.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

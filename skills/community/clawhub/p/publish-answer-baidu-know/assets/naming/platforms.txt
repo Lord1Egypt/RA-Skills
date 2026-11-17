@@ -1,0 +1,15 @@
+amazon
+shopee
+xinghang
+alibaba
+kingdee
+icbc
+pingpong
+worldfirst
+paypal
+lianlian
+single-window
+export-rebate
+etax
+baidu-know
+baidu-zhidao

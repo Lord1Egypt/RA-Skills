@@ -1,54 +1,69 @@
-## Description: <br>
-Navigate Baidu Search, Maps, Baike, Wenku, and Qianfan with region-aware routing, official-source checks, and China-specific guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Baidu Search, Maps, Baike, Wenku, and Qianfan with region-aware routing, official-source checks, and China-specific guidance.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, researchers, and operators use this skill to route Baidu-related work across search, knowledge, maps, AI Cloud, and Qianfan surfaces while making region, language, source-quality, and approval assumptions explicit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with explicit mainland China, Chinese-language, or cross-border assumptions stated for each non-trivial task. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Baidu queries and page requests can leave the local machine and may reveal research intent to Baidu-owned services. <br>
-Mitigation: Avoid sending secrets or sensitive business data in queries; prefer official Baidu documentation for verification and use approved supporting sources only when needed. <br>
-Risk: Optional local memory under ~/baidu/ could capture sensitive account, region, or project context if used carelessly. <br>
-Mitigation: Store only durable non-secret preferences, source notes, approval boundaries, and decision records; do not store credentials, tokens, billing exports, or raw customer data. <br>
-Risk: Account-level Baidu Maps, AI Cloud, Qianfan, key, resource, or billing actions can affect live services or costs. <br>
-Mitigation: Require explicit user approval and correct account context before any console, key, cloud-resource, or billing action proceeds. <br>
+## Use Case:
 
+Developers, researchers, and teams use this skill to route Baidu-related requests across search, maps, knowledge, cloud, and Qianfan workflows while keeping mainland-versus-global assumptions and source quality visible.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ivangdavila/baidu) <br>
-- [Skill homepage](https://clawic.com/skills/baidu) <br>
-- [Baidu Search](https://www.baidu.com) <br>
-- [Baidu Baike](https://baike.baidu.com) <br>
-- [Baidu Wenku](https://wenku.baidu.com) <br>
-- [Baidu Maps](https://map.baidu.com) <br>
-- [Baidu Maps Open Platform](https://lbsyun.baidu.com) <br>
-- [Baidu AI Cloud](https://cloud.baidu.com) <br>
-- [Baidu Qianfan](https://qianfan.cloud.baidu.com) <br>
-- [Baidu Ecosystem Map](artifact/ecosystem-map.md) <br>
-- [Mainland Versus Global](artifact/mainland-vs-global.md) <br>
-- [Source Validation Ladder](artifact/source-validation.md) <br>
-- [Qianfan and Baidu AI Cloud](artifact/qianfan-cloud.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with occasional shell command blocks and local markdown file templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May maintain optional local markdown memory under ~/baidu/ when the user approves setup; does not require credentials for planning, research, or source verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Baidu-related searches, page requests, and product checks may send query text to Baidu services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when that data sharing is acceptable, and avoid sending secrets, credentials, tokens, customer data, or sensitive account details in chat.
+
+Risk: Account-specific actions in Baidu Maps Open Platform, Baidu AI Cloud, Qianfan, or other Baidu consoles can affect resources, keys, billing, or permissions.
+
+Mitigation: Keep account-level execution manual and require explicit user approval before any login, console change, key operation, billing action, or resource modification.
+
+Risk: The skill can keep local Baidu workflow notes under ~/baidu.
+
+Mitigation: Store only durable routing preferences, source notes, decisions, and approved account labels; do not store passwords, cookies, access keys, billing exports, or raw customer data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/baidu)
+- [Baidu skill homepage](https://clawic.com/skills/baidu)
+- [Baidu Search](https://www.baidu.com)
+- [Baidu Baike](https://baike.baidu.com)
+- [Baidu Wenku](https://wenku.baidu.com)
+- [Baidu Maps](https://map.baidu.com)
+- [Baidu Maps Open Platform](https://lbsyun.baidu.com)
+- [Baidu AI Cloud](https://cloud.baidu.com)
+- [Qianfan](https://qianfan.cloud.baidu.com)
+- [Baidu Ecosystem Map](artifact/ecosystem-map.md)
+- [Mainland Versus Global](artifact/mainland-vs-global.md)
+- [Source Validation Ladder](artifact/source-validation.md)
+- [Qianfan and Baidu AI Cloud](artifact/qianfan-cloud.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with optional inline shell commands and local configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update local Baidu workflow notes under ~/baidu when the user approves durable memory.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:skill-hub:deep-research-forge:research-envelope.schema",
+  "title": "Research Envelope",
+  "description": "Task envelope for parallel research sprint, defining research question, quality gates, and execution contract",
+  "type": "object",
+  "required": [
+    "task_id",
+    "research_question",
+    "research_dimension",
+    "researcher_role",
+    "verifier_role",
+    "evidence_quality_gates",
+    "max_cycles"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "Unique identifier for this research task"
+    },
+    "research_question": {
+      "type": "string",
+      "description": "Specific research question this task must answer"
+    },
+    "research_dimension": {
+      "type": "string",
+      "enum": [
+        "evidence-triangulation",
+        "historical-lineage",
+        "competitive-analysis",
+        "ecosystem-mapping",
+        "user-signal-analysis",
+        "causal-mechanism-analysis",
+        "red-team-dissent",
+        "decision-analysis"
+      ],
+      "description": "Research method dimension from methodology atlas"
+    },
+    "researcher_role": {
+      "type": "string",
+      "enum": [
+        "source-scout",
+        "timeline-analyst",
+        "competitive-analyst",
+        "user-signal-analyst",
+        "dissent-reviewer",
+        "decision-analyst",
+        "ecosystem-analyst"
+      ],
+      "description": "Researcher role assigned to this task"
+    },
+    "verifier_role": {
+      "type": "string",
+      "enum": [
+        "evidence-verifier",
+        "source-reliability-checker",
+        "conflict-detector"
+      ],
+      "description": "Verifier role for quality assurance",
+      "default": "evidence-verifier"
+    },
+    "input_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "artifact_name": {
+            "type": "string"
+          },
+          "artifact_path": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "required": ["artifact_name", "artifact_path"]
+      },
+      "description": "Input artifacts for this research task"
+    },
+    "output_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Expected output artifact names"
+    },
+    "evidence_quality_gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gate", "threshold"],
+        "properties": {
+          "gate": {
+            "type": "string",
+            "enum": [
+              "source_reliability",
+              "recency",
+              "completeness",
+              "independence",
+              "corroboration"
+            ]
+          },
+          "threshold": {
+            "type": "string",
+            "description": "Human-readable threshold description"
+          },
+          "quantitative_threshold": {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "Quality gates for evidence validation"
+    },
+    "research_scope": {
+      "type": "object",
+      "properties": {
+        "time_range": {
+          "type": "string",
+          "description": "Time range for evidence (e.g., '2023-2024', 'last 6 months')"
+        },
+        "geographic_scope": {
+          "type": "string",
+          "description": "Geographic scope (e.g., 'global', 'US only', 'China')"
+        },
+        "industry_focus": {
+          "type": "string",
+          "description": "Industry or domain focus"
+        }
+      }
+    },
+    "dependency_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Task IDs that must complete before this task can start"
+    },
+    "max_cycles": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Maximum number of Researcher-Verifier cycles before escalation"
+    },
+    "conflict_resolution_policy": {
+      "type": "object",
+      "required": ["strategy", "auto_resolve"],
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": [
+            "evidence-conflict-resolution-protocol",
+            "time-based-priority",
+            "source-reliability-priority",
+            "manual-only"
+          ],
+          "description": "Conflict resolution strategy to use"
+        },
+        "auto_resolve": {
+          "type": "boolean",
+          "description": "Whether to attempt automatic conflict resolution"
+        },
+        "escalate_threshold": {
+          "type": "string",
+          "description": "Conditions that trigger human escalation"
+        }
+      }
+    },
+    "human_escalation_policy": {
+      "type": "object",
+      "required": ["escalate_on"],
+      "properties": {
+        "escalate_on": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "max_cycles_reached",
+              "unresolvable_conflict",
+              "insufficient_evidence",
+              "quality_gate_failed",
+              "researcher_verifier_deadlock",
+              "ambiguous_requirement"
+            ]
+          },
+          "description": "Conditions that trigger human escalation"
+        },
+        "escalation_message": {
+          "type": "string",
+          "description": "Message to show when escalating"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Lead integrator or role that created this envelope"
+        },
+        "research_sprint_id": {
+          "type": "string",
+          "description": "Parent research sprint ID"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

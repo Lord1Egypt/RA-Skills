@@ -1,39 +1,53 @@
-## Description: <br>
-Provides daily check-ins, streak tracking, and motivational support to help users stay consistent with learning goals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides daily check-ins, streak tracking, and motivational support to help users stay consistent with learning goals.
 
-## Publisher: <br>
-[thinktankglobalbot](https://clawhub.ai/user/thinktankglobalbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thinktankglobalbot](https://clawhub.ai/user/thinktankglobalbot)
 
-## Use Case: <br>
-Learners and self-directed users use this skill to set a learning goal, log daily progress, review streaks, and receive supportive check-ins that encourage consistency. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Learning topics, goals, check-ins, and notes are stored locally in progress.json. <br>
-Mitigation: Avoid entering sensitive personal information in progress notes and review or remove the local progress file when it is no longer needed. <br>
-Risk: Manual installation from a repository URL depends on the user choosing the intended source. <br>
-Mitigation: Prefer the ClawHub install path, or verify the repository before using the manual clone option. <br>
+## Use Case:
 
+External users use this skill as an accountability partner for learning goals, including daily check-ins, progress logging, streak tracking, and weekly review support.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Conversational Markdown with optional shell command guidance and local JSON progress updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores topic, daily goal, check-ins, streaks, and notes locally in progress.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Progress notes may contain sensitive personal details because the skill stores learning goals, streaks, and check-in notes locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering sensitive personal information in progress notes and review the local progress.json file before sharing logs or backups.
+
+Risk: Broad accountability trigger phrases could activate the skill in conversations where progress tracking is not intended.
+
+Mitigation: Narrow trigger phrases or invoke the skill explicitly when accidental activation would be disruptive.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thinktankglobalbot/skills/accountability-buddy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional shell commands and local JSON progress data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May store learning goals, streaks, and check-in notes locally in progress.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

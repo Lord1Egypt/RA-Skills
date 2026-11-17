@@ -171,8 +171,8 @@ After `fetch` completes:
    - Audience geography → `ip_location` histogram
    - Feedback timeline → bucket `ctime_iso` by day/week
 
-The `summary.json` schema is documented in `references/agent-contract.md`.
-Run the skill against any video to produce a real sample locally.
+The `summary.json` schema is documented in `DESIGN.md § 6`. Run the skill
+against any video to produce a real sample locally.
 
 ## Safety tier
 
@@ -184,6 +184,7 @@ message sending. Dry-run available for all fetch commands.
 - `references/api-endpoints.md` — Bilibili API fields used
 - `references/cookie-extraction.md` — per-browser cookie decryption
 - `references/agent-contract.md` — full envelope + schema contract
+- `DESIGN.md` — design decisions and rationale
 
 ## Limitations
 

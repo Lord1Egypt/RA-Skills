@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import math
+import shlex
 import sys
 import time
 from collections import Counter
@@ -8,11 +10,17 @@ from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Callable, TextIO
 
-from .audible_auth import authenticated_product_pricing
+from .audible_auth import authenticated_product_pricing, load_ready_auth
 from .audible_catalog import AudibleCatalogClient, RequestBudgetExceeded, deterministic_shuffle
 from .goodreads_csv import effective_shelf, load_goodreads_csv
 from .goodreads_rating import lookup_goodreads_rating
-from .settings import default_config_path, default_storage_dir, load_config, validate_marketplace
+from .settings import (
+    default_config_path,
+    default_storage_dir,
+    load_config,
+    resolve_configured_path,
+    validate_marketplace,
+)
 from .shared import normalize_author_key, normalize_space, normalized_key, write_json_atomic
 
 
@@ -176,7 +184,8 @@ def rank_results(results: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def _dedupe_key(result: dict[str, Any]) -> str:
-    audible = result.get("audible") if isinstance(result.get("audible"), dict) else {}
+    audible_value = result.get("audible")
+    audible = audible_value if isinstance(audible_value, dict) else {}
     product_id = normalize_space(str(audible.get("productId") or ""))
     if product_id:
         return f"product:{product_id.casefold()}"
@@ -243,7 +252,8 @@ def enrich_goodreads_ratings(
     for result in results:
         if result.get("status") != "discounted":
             continue
-        goodreads = result.get("goodreads") if isinstance(result.get("goodreads"), dict) else {}
+        goodreads_value = result.get("goodreads")
+        goodreads = goodreads_value if isinstance(goodreads_value, dict) else {}
         if goodreads.get("averageRating") is not None:
             stats["skippedExisting"] += 1
             continue
@@ -453,19 +463,23 @@ def render_markdown(report: dict[str, Any], *, include_non_deals: bool = False, 
     if limit is not None and next_offset < total_to_read:
         next_parts = [
             "scan-want-to-read",
-            f"--scan-order {selection.get('order') or DEFAULT_SCAN_ORDER}",
-            f"--offset {next_offset}",
-            f"--limit {limit}",
-            f"--max-requests {budget.get('max', 0)}",
+            "--config-path",
+            str(metadata.get("configPath") or default_config_path()),
+            "--scan-order",
+            str(selection.get("order") or DEFAULT_SCAN_ORDER),
+            "--offset",
+            str(next_offset),
+            "--limit",
+            str(limit),
+            "--max-requests",
+            str(budget.get("max", 0)),
         ]
-        if authenticated:
-            next_parts.append("--audible-auth-path <auth-path>")
         lines.extend(
             [
                 "Next batch:",
                 "",
                 "```bash",
-                " ".join(next_parts),
+                shlex.join(next_parts),
                 "```",
                 "",
             ]
@@ -565,6 +579,17 @@ def scan_want_to_read(
     config_path = Path(str(options.get("configPath") or default_config_path())).expanduser().resolve()
     try:
         resolved_config_path, file_config = load_config(config_path)
+        for key in (
+            "artifactDir",
+            "audibleAuthPath",
+            "goodreadsCsvPath",
+            "offlineFixtures",
+            "outputJson",
+            "outputMd",
+        ):
+            resolved = resolve_configured_path(resolved_config_path, file_config.get(key))
+            if resolved is not None:
+                file_config[key] = str(resolved)
         config = {**file_config, **{key: value for key, value in options.items() if value is not None}}
         marketplace = normalize_space(str(config.get("audibleMarketplace") or "us")).lower() or "us"
         if marketplace != "us":
@@ -572,19 +597,39 @@ def scan_want_to_read(
         validate_marketplace(marketplace)
         scan_order = normalize_space(str(config.get("scanOrder") or DEFAULT_SCAN_ORDER)).lower() or DEFAULT_SCAN_ORDER
         seed = normalize_space(str(config.get("seed") or date.today().isoformat()))
-        offset = int(config.get("offset") or 0)
+        offset_raw = config.get("offset")
+        offset = int(0 if offset_raw is None else offset_raw)
         limit = config.get("limit")
         limit_value = None if limit in (None, "") else int(limit)
-        max_requests = int(config.get("maxRequests") or 40)
-        request_delay = float(config.get("requestDelay") if config.get("requestDelay") is not None else 1.0)
+        max_requests_raw = config.get("maxRequests")
+        request_delay_raw = config.get("requestDelay")
+        max_requests = int(40 if max_requests_raw is None else max_requests_raw)
+        request_delay = float(1.0 if request_delay_raw is None else request_delay_raw)
         progress_mode = normalize_space(str(config.get("progress") or "none")).lower() or "none"
         if progress_mode not in PROGRESS_MODES:
             raise ValueError("--progress must be one of: json, none, plain.")
-        progress_interval = float(config.get("progressInterval") if config.get("progressInterval") is not None else 5.0)
-        min_discount_percent = int(config.get("minDiscountPercent") or 10)
+        progress_interval_raw = config.get("progressInterval")
+        min_discount_raw = config.get("minDiscountPercent")
+        progress_interval = float(5.0 if progress_interval_raw is None else progress_interval_raw)
+        min_discount_percent = int(10 if min_discount_raw is None else min_discount_raw)
         enrich_ratings = config.get("enrichGoodreadsRatings")
         enrich_goodreads_ratings_enabled = not bool(config.get("offlineFixtures")) if enrich_ratings is None else bool(enrich_ratings)
-        goodreads_rating_limit = int(config.get("goodreadsRatingLimit") or 20)
+        goodreads_rating_limit_raw = config.get("goodreadsRatingLimit")
+        goodreads_rating_limit = int(20 if goodreads_rating_limit_raw is None else goodreads_rating_limit_raw)
+        if offset < 0:
+            raise ValueError("offset must be zero or greater.")
+        if limit_value is not None and limit_value < 0:
+            raise ValueError("limit must be zero or greater.")
+        if max_requests < 0:
+            raise ValueError("maxRequests must be zero or greater.")
+        if not math.isfinite(request_delay) or request_delay < 0:
+            raise ValueError("requestDelay must be a finite number zero or greater.")
+        if not 0 <= min_discount_percent <= 100:
+            raise ValueError("minDiscountPercent must be between 0 and 100.")
+        if goodreads_rating_limit < 0:
+            raise ValueError("goodreadsRatingLimit must be zero or greater.")
+        if not math.isfinite(progress_interval) or progress_interval < 0:
+            raise ValueError("progressInterval must be a finite number zero or greater.")
         audible_auth_path = normalize_space(str(config.get("audibleAuthPath") or ""))
         title = normalize_space(str(config.get("title") or ""))
         author = normalize_space(str(config.get("author") or ""))
@@ -611,12 +656,23 @@ def scan_want_to_read(
 
     storage_dir = _storage_dir_for(resolved_config_path, config)
     cache_dir = storage_dir / "cache" / "audible"
-    authenticated_price_lookup = None
+    authenticated_price_lookup: Callable[[str, int], dict[str, Any]] | None = None
     if audible_auth_path:
         auth_path = Path(audible_auth_path).expanduser()
+        try:
+            load_ready_auth(auth_path)
+        except Exception as exc:
+            report = _error_report(
+                "error_audible_auth_unavailable",
+                str(exc),
+                config_path=resolved_config_path,
+            )
+            return report, "", 1
 
-        def authenticated_price_lookup(product_id: str, threshold: int) -> dict[str, Any]:
+        def lookup_authenticated_price(product_id: str, threshold: int) -> dict[str, Any]:
             return authenticated_product_pricing(auth_path, product_id, threshold=threshold)
+
+        authenticated_price_lookup = lookup_authenticated_price
 
     client = AudibleCatalogClient(
         cache_dir=cache_dir,
@@ -707,6 +763,7 @@ def scan_want_to_read(
         if client.should_abort_for_ordinary_failures():
             status = "partial"
             reason_code = "ordinary_fetch_failure_limit"
+            exit_code = 2
             warnings.append("Stopped early after repeated ordinary network failures.")
             emit_progress(
                 "partial",
@@ -744,6 +801,7 @@ def scan_want_to_read(
     counts["duplicateAudibleProducts"] = int(deduplication.get("suppressedDuplicateCount") or 0)
     report = {
         "schemaVersion": 1,
+        "ok": status == "completed",
         "status": status,
         "reasonCode": reason_code,
         "generatedAt": _now_iso(),

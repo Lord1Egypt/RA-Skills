@@ -1,44 +1,62 @@
-## Description: <br>
-Generates a business opportunity Skills report from ClawHub data, opens it in Chromium, and saves a full-page screenshot. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a business-opportunity skills report from ClawHub data, opens it in Chromium, and captures a full-page screenshot.
 
-## Publisher: <br>
-[JakLiao](https://clawhub.ai/user/JakLiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jakliao](https://clawhub.ai/user/jakliao)
 
-## Use Case: <br>
-Developers and business analysts can use this skill to create a shareable visual report of business opportunity-related ClawHub skills. It is useful when a lightweight HTML report and screenshot are needed for review or presentation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Unsafe shell execution can be affected by arbitrary query or output-name text. <br>
-Mitigation: Run only in a controlled workspace and avoid passing untrusted or arbitrary input values. <br>
-Risk: The script may kill existing Chromium remote-debugging sessions and opens a browser on a debuggable local port. <br>
-Mitigation: Close unrelated browser debugging sessions first and run the skill in an isolated browser/workspace environment. <br>
-Risk: The skill writes HTML reports and screenshot files locally. <br>
-Mitigation: Review the output path and generated files before sharing or committing them. <br>
+## Use Case:
 
+Developers and business users can use this skill to generate a categorized report of business-opportunity-related ClawHub skills and save a shareable full-page screenshot.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/JakLiao/business-opportunity-screenshot) <br>
-- [Skill Instructions](artifact/SKILL.md) <br>
-- [Screenshot Script](artifact/scripts/screenshot.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [HTML, Files, Screenshots, Shell commands] <br>
-**Output Format:** [HTML report file and JPG screenshot, with command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Accepts an optional search query and output name; saves files locally.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: Crafted inputs may cause unintended system command execution or writes outside intended folders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in a restricted workspace with trusted arguments; validate slugs and filenames; replace shell-string execution with argument-array process calls.
+
+Risk: Browser automation may expose sensitive sessions if it connects to a reused Chromium profile.
+
+Mitigation: Use a clean ephemeral browser profile without sensitive sessions and close Chromium after capture.
+
+Risk: Search-derived text is inserted into generated HTML.
+
+Mitigation: Escape HTML output before rendering report content.
+
+Risk: Dependency behavior may change across installs.
+
+Mitigation: Install dependencies from an approved registry and update or pin them according to release policy.
+
+## Reference(s):
+
+- [Business Opportunity Screenshot on ClawHub](https://clawhub.ai/jakliao/skills/business-opportunity-screenshot)
+- [Publisher profile: jakliao](https://clawhub.ai/user/jakliao)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Code]
+
+**Output Format:** [HTML report file, JPEG screenshot, and terminal status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The script accepts an optional search query and output filename.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

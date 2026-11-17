@@ -1,44 +1,51 @@
-## Description: <br>
-Start every day focused with a morning briefing that summarizes overdue tasks, today's priorities, calendar overview, and context from recent meetings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Daily Briefing generates a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings.
 
-## Publisher: <br>
-[tigertamvip](https://clawhub.ai/user/tigertamvip) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tigertamvip](https://clawhub.ai/user/tigertamvip)
 
-## Use Case: <br>
-Employees, operators, and productivity-focused agent users use this skill to turn local task lists, meeting notes, memory files, and calendar context into a concise daily or weekly briefing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefings may expose private work context from local task lists, meeting notes, memory files, user files, and calendar entries. <br>
-Mitigation: Install only in sessions where the agent is allowed to read and summarize that productivity context, and avoid shared sessions unless private context may appear in the response. <br>
-Risk: The briefing can be incomplete or misleading when source files or calendar data are missing, stale, or inconsistent. <br>
-Mitigation: Review the generated priorities before acting on them and keep task, meeting, memory, and calendar sources current. <br>
+## Use Case:
 
+Individuals and teams use this skill to start the day with a concise view of overdue work, today's priorities, calendar commitments, and recent meeting context. It is intended for personal productivity and daily planning workflows in an agent workspace.
 
-## Reference(s): <br>
-- [AI Daily Briefing on ClawHub](https://clawhub.ai/tigertamvip/ai-daily-briefing-1-0-0) <br>
-- [Creator homepage](https://jeffjhunter.com) <br>
-- [Quick Start](examples/quick-start.md) <br>
-- [Example Output](examples/output-example.md) <br>
-- [Briefing Preferences Template](assets/PREFERENCES-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown daily briefing with ordered sections, task lists, calendar items, and a focus statement] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes available local productivity context; no code, shell commands, or configuration files are produced.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Broad trigger phrases can cause the skill to read and summarize sensitive task, meeting, calendar, memory, and profile context without a clear consent step.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit source-scoped prompts such as 'daily briefing from todo only' or 'skip calendar and memory,' and avoid using the skill on shared screens or in workspaces containing secrets or unrelated private information.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tigertamvip/skills/ai-daily-briefing-1-0-0)
+- [Publisher profile](https://clawhub.ai/user/tigertamvip)
+- [Jeff J Hunter homepage](https://jeffjhunter.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-style briefing in a single chat response]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May summarize local task lists, meeting notes, calendar entries, memory files, and profile context when those sources are present.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

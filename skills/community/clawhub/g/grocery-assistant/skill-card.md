@@ -1,46 +1,60 @@
-## Description: <br>
-Persistent pantry-backed grocery checklist for OpenClaw, intended for normal conversational use with Telegram shopping-list UI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent pantry-backed grocery checklist for OpenClaw, intended for normal conversational use with Telegram shopping-list UI.
 
-## Publisher: <br>
-[serdarsalim](https://clawhub.ai/user/serdarsalim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[serdarsalim](https://clawhub.ai/user/serdarsalim)
 
-## Use Case: <br>
-External users and OpenClaw agents use this skill to maintain a pantry-backed grocery list, update needed and have states from conversational requests, and optionally render a Telegram shopping checklist. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send stored grocery-list contents through a configured Telegram bot. <br>
-Mitigation: Use a dedicated grocery-only Telegram bot and restrict allowed senders before enabling Telegram integration. <br>
-Risk: Broad script allowlisting may grant more execution access than the skill needs. <br>
-Mitigation: Allowlist only the specific grocery wrapper and reviewed scripts needed for the deployment. <br>
-Risk: The bundled session-pruning script can alter grocery agent session files. <br>
-Mitigation: Review or remove the session-pruning script if session archival and reset behavior is not desired. <br>
+## Use Case:
 
+External users and OpenClaw operators use this skill to maintain a persistent grocery checklist, update pantry status through normal conversation, and render Telegram shopping-list controls.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/serdarsalim/grocery-assistant) <br>
-- [Publisher Profile](https://clawhub.ai/user/serdarsalim) <br>
-- [README](artifact/README.md) <br>
-- [Setup Guide](artifact/SETUP.md) <br>
-- [Agent Notes](artifact/AGENTS.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and conversational text with inline shell commands and local configuration paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can update local JSON grocery state and render Telegram checklist interactions when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.3 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The skill connects grocery state changes to Telegram and reads the user's OpenClaw Telegram configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated grocery Telegram account or bot, bind it only to the grocery workflow, and review the Telegram account allowlist before enabling the integration.
+
+Risk: Broad exec approvals such as scripts/*.py would also approve utilities beyond the primary grocery wrapper.
+
+Mitigation: Approve the specific grocery wrapper needed for normal use instead of approving every Python script in the skill directory.
+
+Risk: The bundled session-pruning utility is overbroad for this grocery skill and can move session files.
+
+Mitigation: Do not run the pruning utility unless it is fixed with path containment checks and a dry-run or confirmation flow.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/serdarsalim/skills/grocery-assistant)
+- [README](artifact/README.md)
+- [Setup guide](artifact/SETUP.md)
+- [Agent notes](artifact/AGENTS.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Files]
+
+**Output Format:** [Markdown or plain-text grocery responses, Telegram checklist interactions, shell command invocations, and local JSON state updates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads OpenClaw Telegram configuration and writes grocery checklist and Telegram polling state under the user's OpenClaw data directory.]
+
+## Skill Version(s):
+
+1.1.3 (source: server release, SKILL.md frontmatter, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-AI Dev Runtime helps developers automate coding, debugging, codebase analysis, terminal execution, and test workflows through a local runtime with optional memory-assisted search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Super Ai Dev Runtime helps agents work on software projects by using AI Dev Runtime tools for file operations, code search, editing, terminal execution, test running, bug fixing, and codebase analysis.
 
-## Publisher: <br>
-[molexazwo](https://clawhub.ai/user/molexazwo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[molexazwo](https://clawhub.ai/user/molexazwo)
 
-## Use Case: <br>
-Developers and engineers use this skill to delegate code reading, search, editing, patching, terminal execution, test running, bug fixing, and codebase analysis to a trusted AiDevRuntime service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can delegate code edits, terminal commands, and test execution to an external development runtime. <br>
-Mitigation: Use it only with a trusted AiDevRuntime service and review requested tasks, generated edits, and command results before relying on them. <br>
-Risk: Configured runtime API keys and repository contents may be exposed to the connected service. <br>
-Mitigation: Treat AI_DEV_RUNTIME_API_KEY as a credential and avoid sensitive repositories unless the runtime and its memory behavior are trusted. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to automate coding workflows that need repository search, file edits, terminal commands, tests, bug-fix loops, and codebase analysis through a configured AI Dev Runtime server.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/molexazwo/skills/super-ai-dev-runtime) <br>
-- [Project homepage from metadata](https://github.com/your-org/AiDevRuntime) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text responses with code, shell commands, configuration guidance, and task results from the connected runtime.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AI_DEV_RUNTIME_URL and may use AI_DEV_RUNTIME_API_KEY when the connected runtime requires authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill can route powerful repository actions, terminal execution, edits, patches, tests, and memory-assisted workflows through the configured runtime.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only with a trusted runtime endpoint, keep the endpoint local or otherwise controlled, and review commands and patches before applying them.
+
+Risk: Using the runtime on repositories containing secrets may expose sensitive content through runtime memory or data retention behavior.
+
+Mitigation: Avoid using the skill on repositories with secrets unless the runtime's memory and retention behavior has been reviewed and approved.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/molexazwo/skills/super-ai-dev-runtime)
+- [AI Dev Runtime homepage](https://github.com/your-org/AiDevRuntime)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or text responses with code, shell command, configuration, and patch guidance as needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May depend on a configured AI Dev Runtime endpoint and optional API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

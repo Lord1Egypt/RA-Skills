@@ -1,46 +1,54 @@
-## Description: <br>
-AI Editor Rules provides reusable project-rule templates for Cursor, Windsurf, Claude Code, Cline, and OpenCode across common web, mobile, Java, and Python stacks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI editor rules template collection that provides project rule configurations for Cursor, Windsurf, Claude Code, Cline, OpenCode, and common web, mobile, Vue/Spring Boot, and Python backend stacks.
 
-## Publisher: <br>
-[yinjin](https://clawhub.ai/user/yinjin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[yinjin](https://clawhub.ai/user/yinjin)
 
-## Use Case: <br>
-Developers use this skill to add or adapt AI coding-assistant rule files for projects that use Cursor, Windsurf, Claude Code, Cline, OpenCode, or AGENTS.md-compatible workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generic editor rules may introduce incorrect or mismatched guidance if copied into a project without review. <br>
-Mitigation: Read and adapt each template to the target project before installation. <br>
-Risk: The templates mention global npm installation of crossrule, which changes the developer environment. <br>
-Mitigation: Verify crossrule and the installation approach before running a global npm install. <br>
-Risk: Memory or tool-note files can accidentally contain committed secrets. <br>
-Mitigation: Do not store secrets in MEMORY.md, TOOLS.md, or similar files that may be committed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yinjin/ai-editor-rules) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/yinjin) <br>
-- [SKILL.md](SKILL.md) <br>
-- [AGENTS.md - Agent Best Practices](references/agents-md.txt) <br>
-- [Cursor Rules - Full-Stack Web Application](references/cursor-rules.txt) <br>
-- [Windsurf Rules - Mobile App](references/windsurf-rules.txt) <br>
+## Use Case:
 
+Developers and engineers use this skill to copy, adapt, and convert AI coding assistant rule templates for project workspaces across supported editors and technology stacks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance, shell commands] <br>
-**Output Format:** [Markdown and plain-text rule templates with inline shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static templates intended to be reviewed and adapted before copying into a project.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The included templates encourage persistent agent memory or credential notes in project files.
+
+Mitigation: Review and edit the templates before use, remove or tighten memory rules, and do not store credentials or sensitive operational notes in project files.
+
+Risk: The quick-start flow recommends an unpinned global npm install for crossrule.
+
+Mitigation: Verify and pin a trusted crossrule version, prefer a local project install, or use a manual conversion path when supply-chain controls are required.
+
+## Reference(s):
+
+- [AGENTS.md Agent Best Practices Template](artifact/references/agents-md.txt)
+- [Cursor Rules Full-Stack Web Template](artifact/references/cursor-rules.txt)
+- [Windsurf Rules Mobile App Template](artifact/references/windsurf-rules.txt)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, configuration, shell commands, guidance]
+
+**Output Format:** [Markdown and plain-text rule templates with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces editor rule files intended to be reviewed and adapted before placement in a project workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

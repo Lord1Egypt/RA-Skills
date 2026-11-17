@@ -1,44 +1,58 @@
-## Description: <br>
-Use the favicons Node.js library to generate multi-platform website icons. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the favicons Node.js library to generate multi-platform website icons (Favicons).
 
-## Publisher: <br>
-[openlark](https://clawhub.ai/user/openlark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[openlark](https://clawhub.ai/user/openlark)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate favicon, PWA, mobile platform, and app icon assets from a source image for website or application releases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The bundled script writes generated assets into the output directory selected by the user. <br>
-Mitigation: Choose a dedicated output directory and review its contents before copying generated assets into an application. <br>
-Risk: Generated manifest and HTML tag output may affect how browsers and platforms present the site or app. <br>
-Mitigation: Review the generated manifest, browser configuration, and HTML tags before publishing them. <br>
-Risk: The workflow depends on the npm favicons package being installed in the project environment. <br>
-Mitigation: Install and use the dependency only in environments where that package is acceptable under the project's dependency policy. <br>
+## Use Case:
 
+Developers and website maintainers use this skill to generate favicon, app icon, PWA manifest, browser configuration, and HTML tag outputs from a source logo image.
 
-## Reference(s): <br>
-- [Favicons Configuration Reference](references/config_reference.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/openlark/favicons) <br>
-- [OpenLark Publisher Profile](https://clawhub.ai/user/openlark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, files] <br>
-**Output Format:** [Markdown guidance with JavaScript and shell command examples; generated PNG, ICO, JSON, XML, and HTML tag files when the bundled script is run.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a clear source image and a user-selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The generator writes many image, manifest, browser configuration, and HTML tag files into the chosen output directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it against a dedicated output directory and review generated files before merging them into an existing site.
+
+Risk: The skill depends on the external favicons Node.js package.
+
+Mitigation: Pin favicons to a reviewed exact version and use a lockfile in projects where dependency integrity matters.
+
+Risk: Invalid source images or malformed JSON configuration can cause generation failure.
+
+Mitigation: Use a clear PNG or SVG source image, validate JSON configuration before execution, and confirm Node.js and favicons are installed.
+
+## Reference(s):
+
+- [Favicons Configuration Reference](references/config_reference.md)
+- [ClawHub Skill Page](https://clawhub.ai/openlark/skills/favicons)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with shell commands and JSON configuration examples; generated assets include PNG/ICO files, manifest.json, browserconfig.xml, and favicon-tags.html.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js >= 14, an installed favicons package, a source image, an output directory, and optional JSON configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

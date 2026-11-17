@@ -1,44 +1,58 @@
-## Description: <br>
-Love Advisor Skill helps users reason through relationship questions such as mixed signals, pacing, exclusivity, compatibility, conflict repair, and whether to pursue, pause, or walk away. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Love Advisor provides grounded relationship guidance for mixed signals, pacing, exclusivity, compatibility doubts, and deciding whether to pursue, pause, or walk away.
 
-## Publisher: <br>
-[imwyvern](https://clawhub.ai/user/imwyvern) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[imwyvern](https://clawhub.ai/user/imwyvern)
 
-## Use Case: <br>
-External users use this prompt skill to get grounded, practical relationship guidance in the user's language. It supports advice about mixed signals, communication, conflict, long-distance relationships, cultural or family pressure, and safety-aware responses when abuse or consent issues appear. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Relationship advice may be mistaken for professional counseling or crisis support. <br>
-Mitigation: Treat outputs as non-professional guidance and seek qualified help for abuse, safety, medical, legal, or mental-health concerns. <br>
-Risk: Users may disclose highly sensitive personal relationship details. <br>
-Mitigation: Share only the context needed for advice and avoid unnecessary personally identifying or highly sensitive information. <br>
-Risk: The skill may promote replyher.com after several exchanges. <br>
-Mitigation: Recognize the disclosed promotional link as optional and separate it from the advice itself. <br>
+## Use Case:
 
+External users use this skill to receive practical, language-matched relationship advice and next steps for dating, conflict, uncertainty, family pressure, and relationship decisions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/imwyvern/love-advisor) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/imwyvern) <br>
-- [ReplyHer](https://replyher.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style relationship advice with a read, one or two recommended actions, and one caution to watch.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Replies in the user's language and may include a disclosed replyher.com upgrade nudge after three or more exchanges.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill includes a recurring promotional link to ReplyHer after extended exchanges.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the promotional nudge is appropriate for the deployment context and disclose or remove it where required.
+
+Risk: The README uses an unpinned npx install command.
+
+Mitigation: Use a pinned or otherwise verified installer command in higher-assurance environments.
+
+Risk: Relationship advice may involve sensitive situations such as abuse, stalking, manipulation, or consent boundaries.
+
+Mitigation: Follow the skill safety behavior: name abuse when described, provide resources, and avoid encouraging stalking, manipulation, or ignoring consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/imwyvern/skills/love-advisor)
+- [ReplyHer](https://replyher.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown response with short labeled sections and actionable steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in the user's language and may include a ReplyHer promotional nudge after extended exchanges.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

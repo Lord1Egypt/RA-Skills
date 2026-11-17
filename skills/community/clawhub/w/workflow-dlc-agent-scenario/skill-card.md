@@ -1,41 +1,52 @@
-## Description: <br>
-Guides AI agent product teams through interaction-model selection, core scenario definition, user persona framing, and PageContext design before implementation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps product teams define an AI Agent product by choosing one interaction model, narrowing to 1-3 core scenarios, and specifying the context the agent needs.
 
-## Publisher: <br>
-[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[mistyhuqwq-art](https://clawhub.ai/user/mistyhuqwq-art)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Product managers, designers, and developers use this skill to plan new AI Agent products by selecting a single interaction model, defining concrete user scenarios, and designing PageContext inputs that reduce ambiguity.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill references an external lesson and related follow-on skills that are not bundled in this artifact.
+
+Mitigation: Review those external materials separately before relying on them in a controlled workflow.
+
+Risk: Scenario planning guidance can produce overly broad or ambiguous agent designs if outputs are accepted without review.
+
+Mitigation: Use the skill's gate checks to require one interaction model, 1-3 concrete scenarios, explicit personas, and defined PageContext fields before implementation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, product managers, and agent designers use this skill to define a focused AI agent product concept before implementation. It helps them choose one interaction model, describe 1-3 concrete user scenarios, and specify the context the agent needs. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, Configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Design notes, PageContext examples, or logs may include secrets, personal data, or sensitive business plans. <br>
-Mitigation: Review generated scenario documents and logs before sharing, and avoid placing secrets, personal data, or sensitive plans in PageContext or log examples. <br>
-Risk: The skill references an external lesson file that may not exist in every installation. <br>
-Mitigation: Confirm the referenced lesson file exists before relying on it; otherwise use the workflow in the skill artifact as the source of guidance. <br>
+**Output Format:** [Markdown guidance with decision matrices, scenario templates, context checklists, and JSON logging examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mistyhuqwq-art/workflow-dlc-agent-scenario) <br>
-- [Referenced agent lessons path](../../lessons/by-role/agent.md) <br>
+**Other Properties Related to Output:** [Chinese-language workflow; produces planning guidance and structured scenario/context descriptions rather than executable code.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Structured text] <br>
-**Output Format:** [Markdown guidance with templates, decision tables, and JSON log examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces product-design guidance and structured scenario/log templates; it does not execute code or perform privileged actions.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

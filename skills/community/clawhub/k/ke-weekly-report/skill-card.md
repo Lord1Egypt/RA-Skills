@@ -1,40 +1,55 @@
-## Description: <br>
-Generates structured workplace weekly, monthly, review, and project reports from user-provided work notes, with the included implementation producing local Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured Chinese workplace weekly reports from user-provided work notes and outputs them as Markdown.
 
-## Publisher: <br>
-[xiaoheizp](https://clawhub.ai/user/xiaoheizp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaoheizp](https://clawhub.ai/user/xiaoheizp)
 
-## Use Case: <br>
-Employees, managers, freelancers, and students can use this skill to turn work-log notes into structured status reports for weekly updates, monthly summaries, review materials, and project closeout reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Work-log inputs may contain confidential project, customer, or personnel information. <br>
-Mitigation: Review or redact sensitive details before pasting work logs into an agent workflow. <br>
-Risk: The documentation advertises Word/PPT, batch, file-input, style, and output-path features that the included code does not implement in this version. <br>
-Mitigation: Use this release as a basic local Markdown report formatter and verify generated reports before relying on them. <br>
+## Use Case:
 
+Employees, team leads, freelancers, and students can use this skill to turn short work notes into a structured weekly status report for workplace or project reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xiaoheizp/ke-weekly-report) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands] <br>
-**Output Format:** [Markdown report text with optional command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The included code reads a command-line text argument and prints a Markdown weekly report; Pandoc is documented as an optional dependency for conversions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The release overstates functionality by advertising monthly reports, Word/PPT output, charts, and file-output options that the current code does not implement.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the current release as a basic Markdown weekly-report generator and verify advertised features before relying on them.
+
+Risk: The package may install Pandoc even though the current code does not use it.
+
+Mitigation: Review the Pandoc dependency before installation and omit it where the deployment only needs Markdown text output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/xiaoheizp/skills/ke-weekly-report)
+- [Artifact README](artifact/README.md)
+- [Artifact skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown]
+
+**Output Format:** [Markdown report text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The current code emits a basic weekly report; server security evidence notes that advertised Word/PPT, monthly, chart, and file-output features are not implemented.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

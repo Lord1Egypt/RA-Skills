@@ -1,40 +1,54 @@
-## Description: <br>
-Voice Note Polisher rewrites informal transcript text and dictated notes into clearer written formats such as memos, task lists, email replies, chat drafts, natural English phrasing, and article outlines. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transforms oral or transcribed notes into polished written formats such as memos, task lists, email replies, message drafts, natural English phrasing, and article outlines.
 
-## Publisher: <br>
-[naplesblue](https://clawhub.ai/user/naplesblue) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[naplesblue](https://clawhub.ai/user/naplesblue)
 
-## Use Case: <br>
-Employees, external users, and writers use this skill to clean up dictated notes, meeting recaps, rough ideas, and informal messages while preserving intent and tone. It is useful when a transcript needs to become a memo, TODO list, Chinese or English email reply, chat draft, natural spoken English, or article outline. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may rewrite content too broadly when Chinese trigger phrases or informal text patterns are detected. <br>
-Mitigation: Review the rewritten output before using it in emails, public posts, or other consequential communications. <br>
-Risk: Text rewriting can unintentionally change nuance, tone, or low-confidence transcript details. <br>
-Mitigation: Compare the final text against the original note when accuracy matters, especially for dates, names, commitments, and multilingual content. <br>
+## Use Case:
 
+External users, employees, and other writers use this skill to turn dictated or informal spoken notes into directly usable written text while preserving intent, tone, and key details.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/naplesblue/voice-note-polisher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text or Markdown-style structured text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rewrites user-provided transcript text only; it does not process audio.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Broad trigger behavior may cause generic editing requests or mixed-language notes to be rewritten as voice-note cleanup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke the skill deliberately and state the target format and language when the desired output is specific.
+
+Risk: Transcription ambiguity can leave unclear facts, names, dates, or decisions in the polished output.
+
+Mitigation: Review the final text before sending or publishing, and confirm any low-confidence or materially ambiguous details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/naplesblue/skills/voice-note-polisher)
+- [Publisher profile](https://clawhub.ai/user/naplesblue)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Direct written text, lists, email drafts, message drafts, or outlines]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No audio processing; outputs are generated from user-provided text transcripts or oral-style notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

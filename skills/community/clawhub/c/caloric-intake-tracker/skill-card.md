@@ -1,42 +1,56 @@
-## Description: <br>
-Log and track daily calorie intake, macronutrients, body weight, and waist measurements locally in a SQLite database with granular statistics, weekly averages, and future calorie budgets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log and track daily calorie intake, macronutrients, body weight, and waist measurements locally in a SQLite database, with daily and weekly statistics, rolling averages, and future calorie budgets.
 
-## Publisher: <br>
-[patello](https://clawhub.ai/user/patello) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[patello](https://clawhub.ai/user/patello)
 
-## Use Case: <br>
-External users and agents use this skill to log meals, calorie and macronutrient targets, body weight, waist circumference, and custom measurements into a local SQLite database. They can review daily breakdowns, weekly summaries, rolling trends, body-measurement reports, and future calorie budgets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Calorie, weight, waist, and other body measurement data is stored in a local SQLite file that may expose sensitive health information if placed in a shared or synced directory. <br>
-Mitigation: Use --database to place the database in a private directory, and avoid shared or synced folders when privacy matters. <br>
-Risk: Existing health_data.db files can be changed by migrations and by update, delete, and measurement-type delete commands. <br>
-Mitigation: Back up existing database files before first use or upgrades, and use list or stats day to identify entries before changing or deleting them. <br>
+## Use Case:
 
+External users and agents use this skill to record food intake, body measurements, goals, and completion status in a local tracker. It supports health coaching and personal tracking workflows by producing local CLI commands and readable reports for daily, weekly, trend, weight, waist, and custom measurement views.
 
-## Reference(s): <br>
-- [Calorie Tracker ClawHub Skill Page](https://clawhub.ai/patello/skills/caloric-intake-tracker) <br>
-- [README.md](README.md) <br>
-- [SKILL.md](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output with inline shell commands and local SQLite state changes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes health_data.db by default; --database can direct storage to another local SQLite file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.2 (source: evidence.release.version and artifact/_meta.json) <br>
+Risk: The skill stores food, weight, waist, and related notes in a local SQLite database that may contain sensitive health data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a private database location with --database, track where health_data.db is created, and manage file permissions and backups accordingly.
+
+Risk: Generated log commands can include stored food names from the local database, which may be unsafe to copy if existing database content is untrusted or unusual.
+
+Mitigation: Review generated Log command output before pasting or running it.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/patello/skills/caloric-intake-tracker)
+- [Publisher Profile](https://clawhub.ai/user/patello)
+- [Skill Documentation](artifact/SKILL.md)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for a local Python CLI and local SQLite database; no external service output is produced.]
+
+## Skill Version(s):
+
+1.4.4 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

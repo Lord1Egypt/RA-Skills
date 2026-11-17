@@ -1,0 +1,341 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+    <!--
+    Three Columns 模板
+    用途: 三列并列——三个并列要点/方案/维度对比
+    适用场景: 三大战略/产品/方案对比、三个阶段、三大能力、三维框架
+    布局: 顶部标题 + 三列等宽卡片（各带序号、标题、说明、数据亮点）
+    -->
+
+    <defs>
+        <!-- 背景渐变 -->
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#F8F9FA;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#EEF1F5;stop-opacity:1" />
+        </linearGradient>
+
+        <!-- 卡片阴影 -->
+        <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+            <feOffset dx="0" dy="3" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.12"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- 列1 蓝色头部渐变 -->
+        <linearGradient id="col1Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1565C0;stop-opacity:1" />
+        </linearGradient>
+
+        <!-- 列2 橙色头部渐变 -->
+        <linearGradient id="col2Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#FF9800;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#E65100;stop-opacity:1" />
+        </linearGradient>
+
+        <!-- 列3 绿色头部渐变 -->
+        <linearGradient id="col3Grad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1B5E20;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="1280" height="720" fill="url(#bgGrad)"/>
+
+    <!-- 顶部页面标题 -->
+    <text x="640" y="62" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="36" font-weight="700" fill="#1A252F" letter-spacing="-0.5">
+        <tspan>三大核心战略支柱</tspan>
+    </text>
+    <text x="640" y="92" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="16" fill="#7F8C8D">
+        <tspan>Three Strategic Pillars · 支撑2025年战略目标的三大核心能力</tspan>
+    </text>
+
+    <!-- 标题下分隔线 -->
+    <line x1="540" y1="108" x2="740" y2="108" stroke="#E0E0E0" stroke-width="1.5"/>
+
+    <!-- ===================== 列1：蓝色（用户增长） ===================== -->
+    <g filter="url(#cardShadow)">
+        <!-- 卡片主体 -->
+        <rect x="60" y="128" width="360" height="548" rx="16" fill="#FFFFFF"/>
+
+        <!-- 顶部色块头部区域 -->
+        <rect x="60" y="128" width="360" height="130" rx="16" fill="url(#col1Grad)"/>
+        <rect x="60" y="242" width="360" height="16" fill="#FFFFFF"/>
+
+        <!-- 序号 ① -->
+        <circle cx="110" cy="178" r="28" fill="#FFFFFF" fill-opacity="0.2"/>
+        <text x="110" y="186" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="26" font-weight="800" fill="#FFFFFF">
+            <tspan>①</tspan>
+        </text>
+
+        <!-- 列1 标题 -->
+        <text x="155" y="170"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="22" font-weight="700" fill="#FFFFFF">
+            <tspan>用户规模增长</tspan>
+        </text>
+        <text x="155" y="196"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="13" fill="#FFFFFF" fill-opacity="0.8">
+            <tspan>User Growth</tspan>
+        </text>
+        <text x="155" y="218"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="13" fill="#FFFFFF" fill-opacity="0.7">
+            <tspan>目标：年底DAU突破5000万</tspan>
+        </text>
+
+        <!-- 列1 说明文字 -->
+        <text x="88" y="290"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>聚焦下沉市场与年轻用户群，</tspan>
+        </text>
+        <text x="88" y="316"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>通过差异化产品体验和精准</tspan>
+        </text>
+        <text x="88" y="342"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>营销投放加速用户获取。</tspan>
+        </text>
+
+        <!-- 列1 子要点 -->
+        <rect x="80" y="364" width="6" height="6" rx="3" fill="#2196F3"/>
+        <text x="98" y="374"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>下沉市场专项团队组建</tspan>
+        </text>
+        <rect x="80" y="394" width="6" height="6" rx="3" fill="#2196F3"/>
+        <text x="98" y="404"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>新客激活链路全面优化</tspan>
+        </text>
+        <rect x="80" y="424" width="6" height="6" rx="3" fill="#2196F3"/>
+        <text x="98" y="434"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>社交裂变增长机制上线</tspan>
+        </text>
+        <rect x="80" y="454" width="6" height="6" rx="3" fill="#2196F3"/>
+        <text x="98" y="464"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>投放ROI提升策略落地</tspan>
+        </text>
+
+        <!-- 列1 底部数据亮点 -->
+        <line x1="80" y1="494" x2="400" y2="494" stroke="#E8EAED" stroke-width="1"/>
+        <text x="88" y="526"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="32" font-weight="800" fill="#2196F3">
+            <tspan>+42%</tspan>
+        </text>
+        <text x="88" y="550"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="13" fill="#9AA0A6">
+            <tspan>较去年同期 DAU 增长</tspan>
+        </text>
+    </g>
+
+    <!-- ===================== 列2：橙色（商业变现） ===================== -->
+    <g filter="url(#cardShadow)">
+        <rect x="460" y="128" width="360" height="548" rx="16" fill="#FFFFFF"/>
+
+        <rect x="460" y="128" width="360" height="130" rx="16" fill="url(#col2Grad)"/>
+        <rect x="460" y="242" width="360" height="16" fill="#FFFFFF"/>
+
+        <!-- 序号 ② -->
+        <circle cx="510" cy="178" r="28" fill="#FFFFFF" fill-opacity="0.2"/>
+        <text x="510" y="186" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="26" font-weight="800" fill="#FFFFFF">
+            <tspan>②</tspan>
+        </text>
+
+        <!-- 列2 标题 -->
+        <text x="555" y="170"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="22" font-weight="700" fill="#FFFFFF">
+            <tspan>商业变现提效</tspan>
+        </text>
+        <text x="555" y="196"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="13" fill="#FFFFFF" fill-opacity="0.8">
+            <tspan>Monetization</tspan>
+        </text>
+        <text x="555" y="218"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="13" fill="#FFFFFF" fill-opacity="0.7">
+            <tspan>目标：ARPU提升30%</tspan>
+        </text>
+
+        <!-- 列2 说明文字 -->
+        <text x="488" y="290"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>深化高价值用户服务体系，</tspan>
+        </text>
+        <text x="488" y="316"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>拓展B端企业服务边界，</tspan>
+        </text>
+        <text x="488" y="342"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>构建多元化收入结构。</tspan>
+        </text>
+
+        <!-- 列2 子要点 -->
+        <rect x="480" y="364" width="6" height="6" rx="3" fill="#FF9800"/>
+        <text x="498" y="374"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>会员体系深度重构升级</tspan>
+        </text>
+        <rect x="480" y="394" width="6" height="6" rx="3" fill="#FF9800"/>
+        <text x="498" y="404"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>B端SaaS产品线正式商业化</tspan>
+        </text>
+        <rect x="480" y="424" width="6" height="6" rx="3" fill="#FF9800"/>
+        <text x="498" y="434"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>广告智能投放系统迭代</tspan>
+        </text>
+        <rect x="480" y="454" width="6" height="6" rx="3" fill="#FF9800"/>
+        <text x="498" y="464"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>企业大客户专属服务上线</tspan>
+        </text>
+
+        <!-- 列2 底部数据亮点 -->
+        <line x1="480" y1="494" x2="800" y2="494" stroke="#E8EAED" stroke-width="1"/>
+        <text x="488" y="526"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="32" font-weight="800" fill="#FF9800">
+            <tspan>¥2.45亿</tspan>
+        </text>
+        <text x="488" y="550"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="13" fill="#9AA0A6">
+            <tspan>Q4 总营收，同比 +38%</tspan>
+        </text>
+    </g>
+
+    <!-- ===================== 列3：绿色（技术基础设施） ===================== -->
+    <g filter="url(#cardShadow)">
+        <rect x="860" y="128" width="360" height="548" rx="16" fill="#FFFFFF"/>
+
+        <rect x="860" y="128" width="360" height="130" rx="16" fill="url(#col3Grad)"/>
+        <rect x="860" y="242" width="360" height="16" fill="#FFFFFF"/>
+
+        <!-- 序号 ③ -->
+        <circle cx="910" cy="178" r="28" fill="#FFFFFF" fill-opacity="0.2"/>
+        <text x="910" y="186" text-anchor="middle"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="26" font-weight="800" fill="#FFFFFF">
+            <tspan>③</tspan>
+        </text>
+
+        <!-- 列3 标题 -->
+        <text x="955" y="170"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="22" font-weight="700" fill="#FFFFFF">
+            <tspan>技术基础夯实</tspan>
+        </text>
+        <text x="955" y="196"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="13" fill="#FFFFFF" fill-opacity="0.8">
+            <tspan>Tech Foundation</tspan>
+        </text>
+        <text x="955" y="218"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="13" fill="#FFFFFF" fill-opacity="0.7">
+            <tspan>目标：系统可用性 99.99%</tspan>
+        </text>
+
+        <!-- 列3 说明文字 -->
+        <text x="888" y="290"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>升级核心系统架构，提升</tspan>
+        </text>
+        <text x="888" y="316"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>平台稳定性与研发效率，</tspan>
+        </text>
+        <text x="888" y="342"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="16" fill="#5F6368">
+            <tspan>为业务高速增长提供支撑。</tspan>
+        </text>
+
+        <!-- 列3 子要点 -->
+        <rect x="880" y="364" width="6" height="6" rx="3" fill="#4CAF50"/>
+        <text x="898" y="374"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>微服务架构全面迁移完成</tspan>
+        </text>
+        <rect x="880" y="394" width="6" height="6" rx="3" fill="#4CAF50"/>
+        <text x="898" y="404"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>AI推荐引擎2.0版本上线</tspan>
+        </text>
+        <rect x="880" y="424" width="6" height="6" rx="3" fill="#4CAF50"/>
+        <text x="898" y="434"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>数据中台建设与打通</tspan>
+        </text>
+        <rect x="880" y="454" width="6" height="6" rx="3" fill="#4CAF50"/>
+        <text x="898" y="464"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="14" fill="#7F8C8D">
+            <tspan>安全体系合规认证通过</tspan>
+        </text>
+
+        <!-- 列3 底部数据亮点 -->
+        <line x1="880" y1="494" x2="1200" y2="494" stroke="#E8EAED" stroke-width="1"/>
+        <text x="888" y="526"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+              font-size="32" font-weight="800" fill="#4CAF50">
+            <tspan>99.97%</tspan>
+        </text>
+        <text x="888" y="550"
+              font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              font-size="13" fill="#9AA0A6">
+            <tspan>年度系统可用性</tspan>
+        </text>
+    </g>
+
+    <!-- 底部数据来源 -->
+    <text x="640" y="706" text-anchor="middle"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+          font-size="13" fill="#BDC3C7">
+        <tspan>数据来源：战略规划部 · 2025年度战略回顾报告</tspan>
+    </text>
+</svg>

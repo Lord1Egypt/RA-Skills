@@ -1,40 +1,57 @@
-## Description: <br>
-Generates an A-share premarket briefing by guiding recent market-news searches and summarizing key narratives, market bias, sector themes, watchlist stocks, and source links. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates a premarket A-share briefing before trading days by collecting market news and macro events and structuring investment-reference analysis with source links.
 
-## Publisher: <br>
-[chenchaoqun](https://clawhub.ai/user/chenchaoqun) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenchaoqun](https://clawhub.ai/user/chenchaoqun)
 
-## Use Case: <br>
-Investors, analysts, and agents preparing A-share market research use this skill before trading sessions to assemble recent news, macro events, market direction, sector themes, and watchlist ideas for review. The output is research support and not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial briefings can be incomplete, stale, or incorrect and may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as research support, verify source links and market data independently, and use qualified review before making investment decisions. <br>
-Risk: The skill may require local setup commands and external web searches. <br>
-Mitigation: Review commands before running them, install dependencies from trusted sources, and only fetch URLs intended for analysis. <br>
+## Use Case:
 
+External users and agents use this skill before A-share market open to assemble a concise premarket briefing with key news, market-bias framing, likely leading sectors, watchlist ideas, and source links. The output is informational and should not be treated as financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenchaoqun/a-stock-premarket-briefing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style plain text briefing with optional JSON briefing framework] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes search instructions, analysis prompts, source links, confidence estimates, sector themes, and watchlist ideas; depends on current web results and summarize output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact documentation lists v1.0.0) <br>
+Risk: Generated market-bias and watchlist content may be incomplete, stale, or mistaken.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the briefing as informational only, verify material claims against primary market sources, and avoid using it as the sole basis for investment decisions.
+
+Risk: The workflow depends on networked market-news searches and a locally installed summarize executable.
+
+Mitigation: Use trusted installation sources, pin or verify dependency versions where possible, and run the skill in an environment appropriate for outbound web access.
+
+Risk: The artifact's trading-day check only excludes weekends and may not account for market holidays.
+
+Mitigation: Confirm the relevant exchange calendar before relying on a generated premarket briefing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenchaoqun/skills/a-stock-premarket-briefing)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style briefing with optional JSON framework]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes search queries, market-bias framing, sector and watchlist guidance, source-link requirements, and an investment-risk disclaimer.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

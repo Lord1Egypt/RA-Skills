@@ -1,0 +1,8 @@
+# AstraFlow Remote Lab Artifacts & Verification
+
+This directory contains visual confirmation and architecture assets demonstrating verified remote executions.
+
+## Verified Visuals
+
+- `novnc-windows-active.png`: Verified visual proof of Windows Server 2022 English Edition desktop running on a Los Angeles UHost instance, bridged into an AstraFlow Desktop Sandbox and streamed via browser-based noVNC.
+- Web entry resolution: 1920x1080 with dynamic scaling and clipboard synchronization.

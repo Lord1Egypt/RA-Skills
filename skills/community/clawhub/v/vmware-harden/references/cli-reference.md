@@ -38,7 +38,20 @@ vmware-harden scan --target prod-vc --baseline dengbao-2.0-level3-vmware
 
 # Custom DB path (e.g. CI artifact)
 vmware-harden scan --target lab-vc01 --db /tmp/ci-twin.duckdb
+
+# Known vulnerabilities: ESXi + vCenter builds against the offline VMSA catalog
+vmware-harden scan --target prod-vc --baseline vmsa-advisories
 ```
+
+`vmsa-advisories` is generated from the catalog shipped in the package
+(`vmware_harden/advisories/catalog.yaml`), not from a YAML file; the id is
+reserved, so a user baseline of that name is not consulted. Each rule is one
+advisory. A component is **affected** (violation, with the fixing release),
+**fixed**, or **unknown** (listed per node with the reason — unreadable build,
+line not listed or past end of support, branch the sources disagree on, product
+not catalogued). Builds are compared only within one `major.minor` line. The
+catalog date is printed in every rule: a clean result means no open advisory
+known as of that date.
 
 The scan prints one line per collector with the count of entities
 gathered, then the total violation count. Drift events versus the prior
@@ -52,7 +65,7 @@ Show the most recent snapshot's violations.
 ### Synopsis
 
 ```bash
-vmware-harden report [--db <path>] [--format text|json]
+vmware-harden report [--db <path>] [--format text|json|csv]
 ```
 
 ### Options
@@ -60,7 +73,7 @@ vmware-harden report [--db <path>] [--format text|json]
 | Flag | Description | Default |
 |------|-------------|---------|
 | `--db` | Twin DuckDB path. | `~/.vmware-harden/twin.duckdb` |
-| `--format` | Output format — `text` or `json`. | `text` |
+| `--format` | Output format — `text`, `json` or `csv`. Any other value exits 2. | `text` |
 
 > HTML rendering is **not** a CLI flag; use `vmware-harden web` for the
 > rendered dashboard.
@@ -70,6 +83,7 @@ vmware-harden report [--db <path>] [--format text|json]
 ```bash
 vmware-harden report
 vmware-harden report --format json > violations.json
+vmware-harden report --format csv > violations.csv   # one row per violation; advisory columns: status, version, build, fixed_in, kev, cves, catalog_as_of, reason
 ```
 
 If no scans have run yet, the command prints a hint to run
@@ -123,6 +137,46 @@ vmware-harden baseline list
 vmware-harden baseline validate ./my-corp.yaml
 vmware-harden baseline import ./my-corp.yaml --name corp-prod
 ```
+
+## advisories
+
+For explicitly scoped mixed-product entries, node evidence lists only affected CVEs in `cves` and
+retains every applicable CVE's verdict/CVSS in `cve_results`, plus `max_affected_cvss`. KEV applies to
+affected CVEs of that product. Rule severity remains the advisory's severity. Shipped KEV snapshot
+metadata and a user's optional online-refresh timestamp are reported separately.
+
+Inspect, and optionally refresh, the VMSA catalog the `vmsa-advisories`
+baseline judges against.
+
+```bash
+vmware-harden advisories show
+vmware-harden advisories update [--nvd]
+```
+
+`show` (local) prints the catalog date, its advisories, and whether KEV flags
+were ever refreshed. `update` (audited, outbound HTTPS) downloads the CISA KEV
+feed and, with `--nvd`, one NVD record per catalogued CVE (spaced 6.5 s for
+NVD's public rate limit), then writes `~/.vmware-harden/advisories-cache.json`
+atomically (unique temp file, fsync, rename). The cache keeps the whole KEV set, so a
+newer catalog is flagged from it too. Redirects are followed only to https. A running
+MCP server sees a new cache on its next call (the loader keys on the file's mtime). What it changes, and what it does not:
+
+| | |
+|---|---|
+| KEV flag | Added when KEV lists a catalogued CVE; never removed |
+| CVSS | Filled only where the catalog has none; a different NVD score is printed, not applied |
+| Affected versions / fixed builds | Never — they come only from the shipped catalog (NVD's lists can be incomplete) |
+
+It also lists ESXi / vCenter-scope CVEs that KEV carries but no catalogued
+advisory covers — the catalog cannot judge those — and counts other
+VMware/Broadcom KEV entries (Spring, Aria, …). A KEV failure (HTTP error, an HTML
+challenge page, a body that is not the expected JSON, an empty feed, a cache write
+error) exits 1 with the reason on stderr, and the previous cache is left as it was.
+An NVD record that cannot be read is listed and does not block the KEV refresh.
+Each run replaces the whole cache: a run without `--nvd` drops CVSS scores a previous
+`--nvd` run had filled (the shipped catalog has every score today, so nothing changes). A cache that cannot
+be read is ignored with a warning; the shipped catalog still answers. Broadcom's
+own advisory pages are behind a bot challenge and are not fetched.
 
 ## drift
 
@@ -257,19 +311,20 @@ Source of truth: `vmware_harden/doctor.py::run_diagnostics`.
 
 ### Example output
 
+<!-- install-pin: program-output -->
 ```
   ✓ Python version                  Python 3.12.7
   ✓ Twin DB                         /Users/me/.vmware-harden/twin.duckdb
   ✓ Built-in baselines              6 loaded
   ✓ vmware-aiops                    vmware_aiops available
-  ⚠ vmware-storage                  install: `uv tool install vmware-storage` (datastore collector)
-  ⚠ vmware-nsx-security             install: `uv tool install vmware-nsx-security` (DFW collector)
+  ⚠ vmware-storage                  not importable — run: uv tool install "vmware-harden[collectors]" (datastore collector). Installing it as a tool of its own puts it in a separate environment vmware-harden cannot import from.
+  ⚠ vmware-nsx-security             not importable — run: uv tool install "vmware-harden[collectors]" (DFW collector). Installing it as a tool of its own puts it in a separate environment vmware-harden cannot import from.
   ✓ vmware-policy                   vmware_policy available
   ⚠ ANTHROPIC_API_KEY               unset — Advisor will use MockProvider
-  i vmware-pilot                    optional — `vmware-harden apply --pilot real` requires it
+  i vmware-pilot                    optional — `vmware-harden apply --pilot real` needs it: uv tool install "vmware-harden[remediation]"
   ✓ Audit DB dir                    /Users/me/.vmware
 
-  All checks passed (3 warning(s))
+  No errors. 3 warning(s) above — each names something harden cannot do until it is resolved.
 ```
 
 ### Exit codes
@@ -282,11 +337,13 @@ Use `doctor` as a non-zero gate in CI before running `scan` in pipelines.
 
 ## MCP server entry point
 
-Registered as a separate console script:
+Started as a CLI subcommand (a standalone console script is also registered
+for backward compatibility):
 
 ```bash
-vmware-harden-mcp        # FastMCP stdio server (used by MCP clients)
+vmware-harden mcp        # FastMCP stdio server (used by MCP clients)
+vmware-harden-mcp        # legacy alias — equivalent
 ```
 
-Configure your MCP client to spawn `vmware-harden-mcp` directly. See
+Configure your MCP client to spawn `vmware-harden` with `args: ["mcp"]`. See
 `references/setup-guide.md` for full client configurations.

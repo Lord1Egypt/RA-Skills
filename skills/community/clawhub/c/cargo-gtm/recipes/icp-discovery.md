@@ -1,6 +1,6 @@
 # Recipe — Surface ICP signals from Closed-Won vs Closed-Lost
 
-Use this skill when the user wants to **discover their real ICP from conversion data**, not from gut feel. The skill pulls Closed-Won and Closed-Lost segments via `storage query execute`, enriches both with the same firmographic and tech signals, and surfaces the features that differ most between them. Output: a ranked list of "high-fit signals" the user can use to filter prospecting.
+Use this recipe when the user wants to **discover their real ICP from conversion data**, not from gut feel. The recipe pulls Closed-Won and Closed-Lost segments via `storage query execute`, enriches both with the same firmographic and tech signals, and surfaces the features that differ most between them. Output: a ranked list of "high-fit signals" the user can use to filter prospecting.
 
 **Trigger phrases:**
 - *"What does our ideal customer look like?"*
@@ -13,7 +13,7 @@ Use this skill when the user wants to **discover their real ICP from conversion 
 Most prospecting skills are forward-looking ("find me X" / "enrich Y"). ICP discovery is **backward-looking** — analyze what worked, then turn the patterns into filters. It exercises:
 
 - Storage (`cargo-ai storage query execute`) to pull Won/Lost segments.
-- Cargo native enrichments (`enrichBusinessFirmographics`, `…Technographics`, `…FundingAndAcquisitions`) to fill comparison signals.
+- Enrichment (`aiArk.enrichCompany`, `builtwith.getDomainSummary`, `enrichCrm.getFunding`) to fill comparison signals.
 - LLM analysis (`anthropic.instruct`) to surface non-obvious patterns.
 
 ## Recipe
@@ -53,86 +53,87 @@ cargo-ai storage query execute "
 
 (Swap `default` for the user's dataset slug if it differs, and adjust the stage filter to match the user's pipeline stage labels.)
 
-### Step 2 — Match each company to cargo
+### Step 2 — Enrich both segments with the SAME signals
+
+Every action below keys on `domain`, so there is no match step — the domain from
+step 1 is the join key throughout. Run the same set on both segments so the diff
+is apples-to-apples:
 
 ```bash
 for src in won lost; do
-  cargo-ai orchestration action execute-batch \
-    --action '{"kind":"connector","integrationSlug":"cargo","actionSlug":"matchBusiness","config":{}}' \
-    --records "$(jq -c '[.[] | {domain}]' /tmp/$src.json)" \
-    --wait-until-finished > /tmp/$src-matched.json
-done
-```
-
-### Step 3 — Enrich both segments with the SAME signals
-
-Run the same enrichments on both segments so the diff is apples-to-apples:
-
-```bash
-for src in won lost; do
-  for action in enrichBusinessFirmographics enrichBusinessTechnographics enrichBusinessFundingAndAcquisitions enrichBusinessFinancialMetrics; do
+  for pair in "aiArk:enrichCompany" "builtwith:getDomainSummary" "enrichCrm:getFunding"; do
+    slug="${pair%%:*}"; action="${pair##*:}"
     cargo-ai orchestration action execute-batch \
-      --action "$(jq -nc --arg a "$action" '{kind:"connector",integrationSlug:"cargo",actionSlug:$a,config:{}}')" \
-      --records "$(jq -c '[.results[] | select(.business_id) | {business_id}]' /tmp/$src-matched.json)" \
+      --action "$(jq -nc --arg i "$slug" --arg a "$action" \
+                    '{kind:"connector",integrationSlug:$i,actionSlug:$a}')" \
+      --records "$(jq -c '[.rows[] | {domain}]' /tmp/$src.json)" \
       --wait-until-finished > /tmp/$src-$action.json
   done
 done
 ```
 
-### Step 4 — Diff feature distributions
+`builtwith.getDomainSummary` is free, so the technographic axis costs nothing to
+add. `enrichCrm.getFunding` at 1/record is the expensive one — drop it when
+funding stage isn't plausibly an ICP signal for this business.
+
+### Step 3 — Diff feature distributions
 
 For each feature (industry, size band, tech, funding stage, …), compute the % of Won vs % of Lost showing that feature, then sort by absolute difference. Largest deltas = strongest ICP signals.
 
-This is best done in Python or via `anthropic.instruct` with structured output:
+This is best done in Python or via `anthropic.instruct` with a JSON-only prompt:
+
+The six step-2 files hold batch objects, not rows. Each batch's rows are a CSV
+behind `batch download`: the input `domain` column plus every output key as
+`cargo_<key>`.
 
 ```bash
-# Concatenate enrichment results into a structured comparison input
-jq -s '{
-  won: [.[0].results[], .[1].results[], .[2].results[], .[3].results[]] | group_by(.business_id) | map(reduce .[] as $r ({}; . * $r)),
-  lost: [.[4].results[], .[5].results[], .[6].results[], .[7].results[]] | group_by(.business_id) | map(reduce .[] as $r ({}; . * $r))
-}' \
-  /tmp/won-enrichBusinessFirmographics.json \
-  /tmp/won-enrichBusinessTechnographics.json \
-  /tmp/won-enrichBusinessFundingAndAcquisitions.json \
-  /tmp/won-enrichBusinessFinancialMetrics.json \
-  /tmp/lost-enrichBusinessFirmographics.json \
-  /tmp/lost-enrichBusinessTechnographics.json \
-  /tmp/lost-enrichBusinessFundingAndAcquisitions.json \
-  /tmp/lost-enrichBusinessFinancialMetrics.json > /tmp/comparison.json
+rows() {  # rows <file written by execute-batch> → JSON array of CSV rows
+  curl -fsSL "$(cargo-ai orchestration batch download --uuid "$(jq -r .batch.uuid "$1")" | jq -r .url)" \
+    | python3 -c 'import csv,json,sys; json.dump(list(csv.DictReader(sys.stdin)), sys.stdout)'
+}
+
+# Merge the three enrichments per domain, then build the comparison input
+for src in won lost; do
+  for action in enrichCompany getDomainSummary getFunding; do rows /tmp/$src-$action.json; done \
+    | jq -s 'add | group_by(.domain) | map(reduce .[] as $r ({}; . * $r))' > /tmp/$src-merged.json
+done
+jq -n --slurpfile won /tmp/won-merged.json --slurpfile lost /tmp/lost-merged.json \
+  '{won: $won[0], lost: $lost[0]}' > /tmp/comparison.json
 
 # Use anthropic to surface differentiating signals
 cargo-ai orchestration action execute \
-  --action '{"kind":"connector","integrationSlug":"anthropic","actionSlug":"instruct","config":{}}' \
+  --action '{"kind":"connector","integrationSlug":"anthropic","actionSlug":"instruct"}' \
   --data '{
     "model": "claude-sonnet-4-6",
-    "prompt": "Two arrays: Closed-Won companies and Closed-Lost companies. Compare feature distributions and surface the top 10 signals that differentiate Won from Lost. Return JSON: [{signal, won_rate, lost_rate, difference_pct, why_it_matters}]. Data: <paste /tmp/comparison.json>",
-    "output": {"type": "jsonSchema", "jsonSchema": {"type": "array", "items": {"type": "object"}}}
+    "prompt": "Two arrays: Closed-Won companies and Closed-Lost companies. Compare feature distributions and surface the top 10 signals that differentiate Won from Lost. Return ONLY a JSON array: [{signal, won_rate, lost_rate, difference_pct, why_it_matters}]. Data: <paste /tmp/comparison.json>"
   }' \
   --wait-until-finished
 ```
 
+`anthropic.instruct` takes `model`, `prompt` and optional `advancedSettings`; it has no structured-output field, so the JSON shape is enforced in the prompt.
+
 For deal sets > 100 records, do the diff in Python directly — LLM is more reliable for pattern *interpretation* on small samples than for *aggregation* on large ones.
 
-### Step 5 — Validate signals (optional)
+### Step 4 — Validate signals (optional)
 
 For each surfaced signal, validate by running it as a filter against the Won segment and checking hit rate:
 
 ```bash
-# Example: signal is "uses Snowflake" → query storage + cargo technographics
+# Example: signal is "uses Snowflake" → confirm it's a catalog-recognized technology
 cargo-ai orchestration action execute \
-  --action '{"kind":"connector","integrationSlug":"theirStack","actionSlug":"searchTechnologies","config":{}}' \
-  --data '{"fields":{"keywords":"snowflake"},"limit":1}' \
+  --action '{"kind":"connector","integrationSlug":"theirStack","actionSlug":"searchTechnologies"}' \
+  --data '{"fields":{"technology_slug_or":["snowflake"]},"limit":1}' \
   --wait-until-finished
 ```
 
-If the technology is in theirStack's catalog and the Won-rate is significantly higher than Lost-rate, lock the signal in for prospecting.
+If that slug returns a row (`technology.slug`), the technology is in theirStack's catalog; if it is and the Won-rate is significantly higher than Lost-rate, lock the signal in for prospecting.
 
-### Step 6 — Encode signals as ICP filters
+### Step 5 — Encode signals as ICP filters
 
 Take the top 5–10 signals and translate them into filter syntax for prospecting providers:
 - Industry / size / geo → `salesNavigator.searchAccounts` filters.
-- Tech stack → `theirStack.searchCompanies.techFields.technologies`.
-- Funding range → `peopleDataLabs.queryCompanies` ES query.
+- Tech stack → `theirStack.searchCompanies` `fields.company_technology_slug_or`.
+- Funding range → `peopleDataLabs.queryCompanies` PDL SQL query (`latest_funding_stage`, `total_funding_raised`).
 
 Hand the encoded filters to `cargo-tam-build` to build the next prospecting list.
 
@@ -140,15 +141,13 @@ Hand the encoded filters to `cargo-tam-build` to build the next prospecting list
 
 | Step | Cost per Won/Lost record | Records (assume 100 each) | Subtotal |
 |---|---|---|---|
-| matchBusiness | 0.5 | 200 | 100 |
-| enrichBusinessFirmographics | 0.5 | 200 | 100 |
-| enrichBusinessTechnographics | 1 | 200 | 200 |
-| enrichBusinessFundingAndAcquisitions | 0.5 | 200 | 100 |
-| enrichBusinessFinancialMetrics | 0.5 | 200 | 100 |
+| aiArk.enrichCompany | 0.01 | 200 | 2 |
+| builtwith.getDomainSummary | 0 | 200 | 0 |
+| enrichCrm.getFunding | 1 | 200 | 200 |
 | anthropic.instruct (Sonnet, one call) | ~2 | 1 | 2 |
-| **Total** | | | **~602 credits for full Won/Lost analysis on 200 deals** |
+| **Total** | | | **~204 credits for full Won/Lost analysis on 200 deals** (~4 without the funding axis) |
 
-The skill is one-shot — run it once when the user wants to refine ICP, then use the output to drive prospecting going forward. Re-run quarterly to capture pipeline drift.
+The recipe is one-shot — run it once when the user wants to refine ICP, then use the output to drive prospecting going forward. Re-run quarterly to capture pipeline drift.
 
 ## Required inputs
 
@@ -161,15 +160,15 @@ If any are missing, ask **once** before running — don't guess on the SQL.
 
 ## Action shape
 
-`{"kind":"connector","integrationSlug":"<slug>","actionSlug":"<slug>","config":{}}`. **No `connectorUuid` in `config`.**
+`{"kind":"connector","integrationSlug":"<slug>","actionSlug":"<slug>"}`. **No `connectorUuid` in `config`.**
 
 ## Output retrieval
 
-For batch enrichments, use `cargo-ai orchestration run download-outputs --workflow-uuid <uuid> --output-node-slug <slug>`.
+For `execute-batch` enrichments, use `cargo-ai orchestration batch download --uuid <batch-uuid>` (signed CSV URL, step 3). For a saved play or tool, use `cargo-ai orchestration run download-outputs --workflow-uuid <uuid> --output-node-slug <slug>`.
 
 ## Output deliverable
 
-The skill's final output is a markdown table the agent presents to the user:
+The recipe's final output is a markdown table the agent presents to the user:
 
 ```
 Top differentiating ICP signals (Won vs Lost):

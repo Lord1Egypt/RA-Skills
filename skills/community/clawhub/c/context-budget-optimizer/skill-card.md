@@ -1,38 +1,47 @@
-## Description: <br>
-Audits an agent's context token usage, identifies waste, and produces a 3-week roadmap to reduce AI costs without quality loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits an agent's context token usage, identifies waste across context layers, and produces a 3-week roadmap for reducing AI costs without quality loss.
 
-## Publisher: <br>
-[flynndavid](https://clawhub.ai/user/flynndavid) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[flynndavid](https://clawhub.ai/user/flynndavid)
 
-## Use Case: <br>
-Power users, developers, and teams use this skill to inventory agent context, score token cost against value, and plan concrete reductions in AI usage costs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can lead users to delete, archive, or rewrite memories, prompts, project files, and other context that may still be useful. <br>
-Mitigation: Decide the audit scope first, back up or archive important context before changing it, and avoid including secrets or private documents unless they are needed for the audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Context Budget Optimizer on ClawHub](https://clawhub.ai/flynndavid/context-budget-optimizer) <br>
-- [Source artifact](artifact/SKILL.md) <br>
+## Use Case:
+
+Developers, agent operators, and power users use this skill to inventory context sources, score token cost against value, and create a prioritized plan for reducing context and model spend.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Following context reduction recommendations without review could remove, archive, summarize, or make harder to access information that is important for agent quality.
+
+Mitigation: Review proposed deletions, archives, memory summaries, system-prompt edits, skill-loading changes, and AGENTS.md model-routing changes before applying them.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown with tables, checklists, and planning templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May ask the user for context inventory and cost details before tailoring recommendations.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown guidance with tables, checklists, rubrics, and implementation examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces human-reviewed recommendations for context pruning, memory tiering, lazy loading, model routing, and cost tracking.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

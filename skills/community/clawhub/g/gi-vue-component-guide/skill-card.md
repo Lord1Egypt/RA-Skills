@@ -1,38 +1,48 @@
-## Description: <br>
-Design and implement Vue 3 components following best practices. Use when creating Vue components, defining props/emits, or when the user asks for Vue component structure or composition API patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design and implement Vue 3 components following best practices. Use when creating Vue components, defining props/emits, or when the user asks for Vue component structure or composition API patterns.
 
-## Publisher: <br>
-[laimiaohua](https://clawhub.ai/user/laimiaohua) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[laimiaohua](https://clawhub.ai/user/laimiaohua)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to create Vue 3 components with Composition API, typed props and emits, slots, scoped styles, service calls, and Ant Design integration patterns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The component conventions may differ from a team's existing Vue 3 or Ant Design standards.
+
+Mitigation: Review generated component structure, props, emits, and styling conventions against the target project's standards before adoption.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design Vue 3 components, define props, emits, and slots, organize Composition API logic, and integrate Ant Design components. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Code, Markdown]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill's Vue, TypeScript, or Ant Design conventions may not match a consuming project's local standards. <br>
-Mitigation: Review generated component guidance against the project's established frontend conventions before applying it. <br>
+**Output Format:** [Markdown with Vue and TypeScript code examples]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/laimiaohua/gi-vue-component-guide) <br>
+**Other Properties Related to Output:** [None]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with Vue, TypeScript, and shell-style project structure examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces coding guidance and example snippets; it does not execute code.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

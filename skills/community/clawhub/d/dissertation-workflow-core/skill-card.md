@@ -1,39 +1,57 @@
-## Description: <br>
-Coordinates dissertation writing, editing, translation, review, and theory workflows for a Sociology of Education dissertation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinates dissertation drafting, editing, translation, review, and theory-alignment workflows for a Sociology of Education PhD project.
 
-## Publisher: <br>
-[zhchelly-netizen](https://clawhub.ai/user/zhchelly-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[zhchelly-netizen](https://clawhub.ai/user/zhchelly-netizen)
 
-## Use Case: <br>
-Ryan Tang and assistants working on his PhD dissertation use this skill to draft, edit, translate, and review dissertation sections while checking research-question alignment, theoretical consistency, evidence use, mentor standards, and APA7 citation formatting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill asks the agent to access sensitive dissertation folders, interview excerpts, mentor feedback, and a Zotero library. <br>
-Mitigation: Install only with an access scope appropriate for those materials and avoid exposing private dissertation or interview data outside the intended workspace. <br>
-Risk: The skill references helper scripts for status tracking and Zotero operations that are not bundled in the artifact. <br>
-Mitigation: Verify any referenced helper scripts before use and require explicit confirmation before Zotero updates or other project-state changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhchelly-netizen/dissertation-workflow-core) <br>
+## Use Case:
 
+A dissertation author uses this skill for full-cycle academic writing support, including generating dissertation sections, polishing drafts, translating Chinese academic text into English, reviewing logic and research-question alignment, and deepening sociological theory analysis.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown with role, mode, chapter, draft or review content, quality notes, and citation-update sections.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include literature or Zotero update recommendations that require user confirmation before project-state changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intended to work with potentially sensitive dissertation materials, including interview data, mentor feedback, Google Drive project files, and Zotero references.
+
+Mitigation: Install and use it only for the intended dissertation workflow, and handle private research data according to the user's access and consent boundaries.
+
+Risk: Zotero additions and broader literature searches can change the user's reference workflow.
+
+Mitigation: Confirm with the user before adding records to Zotero or expanding searches beyond the requested scope.
+
+Risk: The skill applies default academic English and style constraints that may not fit every dissertation task.
+
+Mitigation: Treat those constraints as workflow defaults that the user can override in the prompt.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhchelly-netizen/skills/dissertation-workflow-core)
+- [Artifact SKILL.md](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown with role, mode, chapter, research-question, draft/edit/translation, quality notes, and Zotero citation sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dissertation prose, translations, review feedback, literature suggestions, and Zotero actions requiring user confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,22 +1,48 @@
 ---
 name: rotifer-self-evolving-agent
-version: 2.2.1
-description: Your Agent evolves itself — scans capabilities, benchmarks against Arena rankings, and upgrades automatically
-author: rotifer-protocol
-permissions:
-  - network:outbound
-triggers:
-  - command: /evolve
-mcp:
-  server:
-    command: npx
-    args:
-      - "@rotifer/mcp-server@0.8.1"
+description: Rank an Agent's Rotifer Genes against the Arena and swap in stronger ones, and create and run the local Agents built from those Genes. Invoked explicitly via /evolve — scan local capabilities, compare Genes, inspect fitness scores, replace weak ones with user approval (each replacement can be rolled back), write an Agent definition into the project (/evolve create-agent), and execute a local Agent's Genes in the WASM sandbox (/evolve run-agent). Not for capabilities outside Rotifer.
+license: Apache-2.0
+compatibility: Requires network access and Node.js. Launches `npx -y @rotifer/mcp-server@0.20.2 --tools=evolve` for Arena rankings and Gene metadata.
+metadata:
+  author: rotifer-protocol
+  version: "2.4.18"
+  command: /evolve
+  mcp-package: "@rotifer/mcp-server@0.20.2"
 ---
 
-# Rotifer Self Evolving Agent
+# Rotifer Self-Evolving Agent
 
 Your Agent gets stronger by competing, not by configuring. Scan capabilities, benchmark against [Arena rankings](https://rotifer.dev), and upgrade to fitter alternatives — driven by objective performance data, not opinions.
+
+## Runtime Integration
+
+This skill is invoked with `/evolve` and uses the Rotifer MCP Server at runtime:
+
+```bash
+npx -y @rotifer/mcp-server@0.20.2 --tools=evolve
+```
+
+`--tools=evolve` is not decoration. The server can expose 31 tools, including
+`publish_gene`, `login` and `arena_submit`; this Skill needs ten, so ten is what
+it asks for. The rest are not listed and are refused if called. Nothing here can
+publish on your behalf or log you in.
+
+The launch line also omits `--allow`, so the sandbox escapes (`no_sandbox`,
+`trust_unsigned`) are refused. Ten tools with an escape hatch in one of them
+would not be ten tools.
+
+Your MCP host runs this line when it starts the server, and nothing in it asks
+first: `-y` answers npx's own install prompt, so the first start downloads the
+package from npm and runs it. The approvals this Skill asks for (`/evolve upgrade`,
+`/evolve create-agent`) cover what it does once the server is running, not this
+download. To review the server before it ever runs, install that exact version
+yourself and point the MCP config at the installed binary, with the same
+`--tools=evolve`; then nothing is fetched at start-up:
+
+```bash
+npm i -g @rotifer/mcp-server@0.20.2
+rotifer-mcp-server --tools=evolve
+```
 
 ## Quick Start
 
@@ -39,7 +65,18 @@ Replace a capability with a stronger alternative:
 ```bash
 /evolve upgrade <name>
 ```
-Finds the top-ranked alternative in the same domain and installs it.
+Finds the top-ranked alternative in the same domain, shows you the swap, and installs it **only after you approve**. This is the one command that changes what is installed: it replaces a Gene in the project's `genes/` directory with third-party code from the marketplace, which changes what your Agent does at runtime. `create-agent` writes an Agent definition and `run-agent` executes one; every other `/evolve` command is read-only.
+
+**What you approve is unsigned third-party code.** Genes carry no signature today, so there is nothing to verify cryptographically — the checks that exist are the ones you make before saying yes: who published it, what its Arena grade and V(g) safety scan report, and the source itself, which is written into your project where you can read it. Treat an upgrade the way you treat adding a dependency, not the way you treat a version bump.
+
+Genes are project files, not global ones. Install into the project the user is in — do not pass `project_root` to `install_gene` unless the user names a different project, and say which directory the Gene is going into when you propose the swap.
+
+> **Overwriting is now undoable, so it is allowed again.** `install_gene` with
+> `force: true` moves the replaced Gene into `<genes>/.snapshots/` before
+> writing. Say so when you use it, and tell the user the two ways back:
+> `rollback_gene` here, or `rotifer rollback <name>` in a terminal. One snapshot
+> per Gene — the next overwrite of the same Gene supersedes it, and a rollback
+> consumes it, so this undoes the last upgrade rather than a history.
 
 ## Discovery & Comparison
 
@@ -72,23 +109,39 @@ Full technical details for a specific capability:
 
 ## Agent Management
 
+`/evolve` assesses an Agent, so it needs one. These two commands make an Agent from
+Genes already in the project, and run it, so you can see what it does before and
+after an upgrade. Neither installs, replaces or removes a Gene.
+
 ### Create a New Agent
 ```bash
 /evolve create-agent <name>
 ```
+
+This writes one Agent definition into the project's `.rotifer/agents/`
+(`create_agent`). The assistant first shows the Agent's name, the local Genes it
+composes and the composition strategy, and writes the file after you approve. The
+Genes must already be in the project's `genes/`: this command does not fetch,
+install or change any of them. It makes no network request of its own; when you
+are logged in, the call is logged like every other tool call (see [Network requests](#network-requests)),
+after the session token is renewed if it has expired (see Credentials).
 
 ### Run Your Agent
 ```bash
 /evolve run-agent <name>
 ```
 
+This **executes** the Agent's Genes — it is not a read-only command, so it runs only when you ask for it, on the Agent you name. Execution goes through the `rotifer` CLI (or an `npx -y @rotifer/playground@0.38.0` fallback) and stays inside the WASM sandbox. That fallback belongs to the server, not to this Skill; server 0.20.2 pins it to `@rotifer/playground@0.38.0` (an exact version since server 0.19.3, asserted by the server's own tests). Install the CLI yourself at a version you have reviewed (`npm i -g @rotifer/playground@0.38.0`) and it never has to fetch anything. It also leaves traces on disk: a line per Gene execution in `~/.rotifer/run-logs/<gene>.jsonl`, a fitness state file next to the Agent definition, and the CLI's own state under `~/.rotifer/` (a local database and a telemetry setting holding a random machine id). All of it stays local. The CLI does send one thing of its own: an anonymous heartbeat each time it runs a Gene, carrying that machine id, the channel it ran from and the CLI version, nothing about the Gene or your files; `ROTIFER_TELEMETRY=0`, `DO_NOT_TRACK=1` or `rotifer telemetry off` stops it. **Never pass `no_sandbox`**: the server refuses it unless launched with `--allow=no-sandbox`, which this Skill does not do. Running a Gene as plain Node.js is something the user does themselves, with `rotifer agent run <name> --no-sandbox`.
+
 ## How it Works
 
-Under the hood, Rotifer uses **Genes** — atomic, transferable AI capabilities that compete in an **Arena**. The fittest Genes (measured by the fitness function **F(g)**) survive and are automatically selected.
+Under the hood, Rotifer uses **Genes** — atomic, transferable AI capabilities that compete in an **Arena**. The fittest Genes (measured by the fitness function **F(g)**) rise to the top of the rankings automatically. Ranking is the automatic part; putting a Gene on your machine is not.
 
 ```text
-F(g) = [S_r · ln(1 + C_util) · (1 + R_rob)] / [L · Resource_Cost]
+F(g) = S_r · log₂(1 + C_util) · (1 + R_rob)/2 · L_score · Cost_score
 ```
+
+Each of the five factors lies in [0, 1], so F(g) does too: a perfect score is 1.
 
 No voting, no human preference — pure runtime performance metrics determine which capabilities win.
 
@@ -115,24 +168,64 @@ No Gene is replaced without your confirmation.
 ## Security & Transparency
 
 ### Runtime dependency
-This Skill runs [`@rotifer/mcp-server@0.8.1`](https://www.npmjs.com/package/@rotifer/mcp-server/v/0.8.1) via `npx` at runtime. The package is **fetched from npm on first use** and cached locally. This is a standard MCP Skill pattern but means you are trusting remote code — review the source before use.
+This Skill runs [`@rotifer/mcp-server@0.20.2`](https://www.npmjs.com/package/@rotifer/mcp-server/v/0.20.2) at runtime, launched as `npx -y @rotifer/mcp-server@0.20.2`. The package is **fetched from npm on first use** and cached locally — by your MCP host when it starts the server, with no prompt (`-y`). Installing it yourself first, as under Runtime Integration, means it is never fetched at start-up. This is a standard MCP Skill pattern but means you are trusting remote code — review the source before use.
+
+`/evolve run-agent` is a second such path: it invokes the `rotifer` CLI, and when that is not on `PATH` it falls back to `npx -y @rotifer/playground@0.38.0`. That fallback lives in the server rather than here; server versions before 0.19.3 left it unpinned. This Skill requires 0.19.5: it reports usage with your sign-in (calls from servers older than 0.19.4 are no longer counted), and it stops reporting when you run `rotifer telemetry off`, reading the same `~/.rotifer/telemetry.json` as the CLI. Installing the CLI at a version you have reviewed (`npm i -g @rotifer/playground@0.38.0`) means `run-agent` never fetches anything.
+
+Pinning is the point of the `@0.20.2` above: an unversioned `npx` would resolve to whatever the registry serves at that moment, so the code you run would not be the code you reviewed. A lockfile is stronger than a pinned `npx` call — `npm install --save-dev --save-exact @rotifer/mcp-server@0.20.2`, commit the lockfile, and use `npm ci` in automation. Moving this pin is a deliberate, repository-wide step, not a per-file edit; review what changed first and record what you are accepting with the `npm view` command below.
 
 - **Source code**: [github.com/rotifer-protocol/rotifer-mcp-server](https://github.com/rotifer-protocol/rotifer-mcp-server)
-- **Verify**: `npm view @rotifer/mcp-server@0.8.1 dist.integrity`
+- **Verify**: `npm view @rotifer/mcp-server@0.20.2 dist.integrity`
 
 ### Network requests
-All API calls go to the Rotifer public API at `rotifer.dev` (hosted on Supabase). The MCP server is designed to contact only this endpoint. You can verify by capturing network traffic on first use.
+Gene, Arena and profile queries go to the Rotifer public API at `rotifer.dev` (hosted on Supabase). Beyond that the MCP server makes one version check per day against `registry.npmjs.org`, caching the answer in `~/.config/rotifer/update-check.json`; npm reaches the same registry when it fetches or refreshes a package.
+
+**Usage telemetry.** When you are **logged in**, the MCP server reports each tool call to Rotifer Cloud, fire-and-forget: the tool's name, the Gene id the call acted on (when there is one), whether it succeeded, its latency in milliseconds, and your Rotifer user id. That is what `get_mcp_stats` reads back. Running a Gene while logged in also records that invocation, as the protocol's anti-manipulation metrics depend on it.
+
+**Logged out, no usage record is sent.** One thing goes out either way: installing a Gene bumps that Gene's public install counter — a single request carrying the Gene id and nothing else, no user id and no session. It is how the Arena counts installs.
+
+**`ROTIFER_TELEMETRY=0` stops all three** (`false` and `off` work too; any other value is not an opt-out). Until `0.16.1` it did not stop the install counter, and this section said "logged out, nothing is reported", which was not true of an install.
+
+What is **not** sent: the arguments you pass, the contents of any file, your environment variables, and your local configuration. The three are `logMcpCall`, `logGeneInvocation` and the `track_download` call inside `installGene`, all in the server repository's [`cloud.ts`](https://github.com/rotifer-protocol/rotifer-mcp-server/blob/main/src/cloud.ts) — short enough to read in full. Nothing else in the server reports on its own initiative: every other outbound call is a tool you invoked doing its job, the WASM artifact download, the token renewal described under Credentials, or the daily version check above. `run-agent` also goes through the `rotifer` CLI, whose anonymous heartbeat is described under Run Your Agent.
 
 ### Credentials
-The MCP server uses only the **Supabase anon key** (a public, client-safe key protected by Row Level Security). It does not request, store, or transmit any user secrets, API tokens, or environment variables.
+Public Gene and Arena data needs no login: the MCP server reads it with the **Supabase anon key** (a public, client-safe key protected by Row Level Security). It does not read your environment variables, nor secrets belonging to any other tool.
+
+This Skill cannot log you in or out: neither `login` nor `logout` is in its tool set, and none of its ten tools hands a token to the assistant. Logging in happens outside it, with `rotifer login` in a terminal, which saves a session token to `~/.rotifer/credentials.json` with `0600` permissions; `rotifer logout` deletes it. When that file exists, the MCP server uses it for three things and nothing else: it attaches the token to its requests to the Rotifer API (so your own unpublished Genes are visible to you), it labels the usage record described above with your user id, and when the token has expired it renews it at the Rotifer API's sign-in endpoint and writes the renewed token back to the same file. The token is sent nowhere else. Genes and Agents do not live there — they are project files, described below. Being logged in is what turns usage reporting on; see above.
 
 ### Local data access
-- **Reads** your local Agent configuration (`~/.rotifer/`) to generate upgrade recommendations.
-- Local configuration is **designed not to be transmitted** to any server. Comparison logic runs locally against data fetched from the public API. You can verify this by inspecting the [source code](https://github.com/rotifer-protocol/rotifer-mcp-server).
-- **Write operations** (`install_gene`) only modify files under `~/.rotifer/` and require explicit user confirmation — no Gene is replaced silently.
+- **Reads** installed Genes under `genes/`, and Agent definitions under `.rotifer/agents/` — both in the current project — to generate upgrade recommendations.
+- Local configuration is **designed not to be transmitted** to any server. Comparison logic runs locally against data fetched from the public API. Beyond your queries, what leaves the machine is listed under [Network requests](#network-requests) and nothing beyond it: the usage record (tool name, Gene id, outcome, latency, user id) while you are logged in, the install counter, the token renewal described under Credentials, and, through `run-agent`, the CLI's anonymous heartbeat. You can verify both by inspecting the [source code](https://github.com/rotifer-protocol/rotifer-mcp-server).
+- **Writes** through the MCP server are these, and nothing else:
+  - Genes into `genes/` (`install_gene`), and the copy an overwrite replaces into `genes/.snapshots/`
+  - Agent definitions into `.rotifer/agents/` (`create_agent`), and a fitness state file beside them when you run one
+  - a run log at `~/.rotifer/run-logs/<gene>.jsonl` (`agent_run`) — one line per Gene execution, mode `0600`, rotated at 10 MB, never transmitted
+  - the update-check cache above, and the renewed session token when you are logged in (see Credentials)
+
+  `run-agent` additionally runs the `rotifer` CLI, which keeps its own state under `~/.rotifer/` as described under Run Your Agent.
+
+  The first two are **project files, written under a project root — not into your home directory**. That root defaults to the directory the server was started in, `rotifer.json`'s `genes_dir` can rename `genes/`, and `install_gene` takes a `project_root` argument, so the destination is whichever project the call names; these commands name the current one. Nothing else on disk is modified, and no Gene is installed, replaced, or removed without explicit user confirmation.
+- **An overwrite is recoverable.** `install_gene` with `force` moves the replaced copy into `<genes>/.snapshots/` before writing; `rollback_gene` restores it, and so does `rotifer rollback <name>` from a terminal — both write the same format. One snapshot per Gene: the next overwrite supersedes it, a rollback consumes it.
+- Removing this Skill does **not** uninstall Genes it installed. They stay in that project's `genes/` directory as ordinary Genes; `rotifer uninstall <name>` removes one, and that is undoable through the same snapshot.
+
+### Tool surface
+The MCP server can expose 31 tools, covering compiling, publishing, Arena submission and login. This Skill launches it with `--tools=evolve`, which exposes ten:
+
+`search_genes` · `get_gene_detail` · `get_arena_rankings` · `compare_genes` · `install_gene` · `rollback_gene` · `list_local_genes` · `list_local_agents` · `create_agent` · `agent_run`
+
+The other 21 are not listed and are refused if called anyway, so what the assistant can reach through this Skill is the ten above and nothing else. Until version 2.4.0 all 31 were reachable — if you have an older copy, that is what it does.
+
+The ten cover the whole surface, not just the tool list. The server also serves **resources** — read-only URIs returning the same data as tools of the same name — and those travel with the set: three of the seven (`rotifer://genes/{id}/stats`, `rotifer://developers/{name}`, `rotifer://leaderboard`) are dropped from the listing and refused if read directly, because their tools were not asked for. Until `0.16.1` they were readable whatever the tool set said. **Prompts** are not restricted, and are not meant to be: a prompt returns text and reaches nothing — no query, no file, no process.
+
+You can check rather than take our word for it: `npx -y @rotifer/mcp-server@0.20.2 --tools=evolve` and ask it to list its tools.
 
 ### Permission justification
-- `network:outbound` — required to query Arena rankings, Gene metadata, and fitness scores from the Rotifer public API.
+- `network:outbound` — query Arena rankings, Gene metadata and fitness scores from the Rotifer public API, and fetch the MCP server package itself from npm.
+- `filesystem:read` — read the project's installed Genes and Agent definitions, which is what an upgrade recommendation is computed from.
+- `filesystem:write` — install and roll back Genes, write Agent definitions, and append the run log and update-check cache described above.
+- `process:exec` — `run-agent` executes through the `rotifer` CLI, or the server's `npx -y @rotifer/playground@0.38.0` fallback when the CLI is not installed.
+
+Until version 2.4.3 this list said `network:outbound` and nothing else, while the Skill already read and wrote project files and shelled out to a CLI. The behaviour was described in the sections above but the declaration was narrower than the behaviour, which is the same defect as asking for ten tools and being able to reach thirty-one.
 
 ## Links
 

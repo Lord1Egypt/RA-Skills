@@ -1,0 +1,19 @@
+{
+  "header": {
+    "task_type": "text_to_llm",
+    "biz_type": "guide_chat",
+    "session_id": "",
+    "image_list": [
+      "https://gulangyu.migudm.cn/trip-agent/mediaFile/img/c/c1aceca77c8550f55f15dbe580f92b2c.jpg"
+    ]
+  },
+  "body": {
+    "session_id": "",
+    "question": "",
+    "prompt": "讲解图片中的内容",
+    "title": "【图片】",
+    "image_list": [
+      "https://gulangyu.migudm.cn/trip-agent/mediaFile/img/c/c1aceca77c8550f55f15dbe580f92b2c.jpg"
+    ]
+  }
+}

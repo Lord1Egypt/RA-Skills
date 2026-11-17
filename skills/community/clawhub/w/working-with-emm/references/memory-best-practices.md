@@ -98,6 +98,15 @@ Each result includes a `relevance_score` (0–100) and a `match_type` (semantic,
 
 **When the preview disagrees with the body.** If a search result's `short_description` contradicts its `full_description` — e.g. preview says "Done:" but the body header says "Ready:" — treat the body as canonical. The preview can lag the body briefly after an external edit (web app, owner-tool flip). Don't log a "server bug" finding off a stale preview; read the body and act on what it says.
 
+## Cross-Referencing Other Memories
+
+When one memory's body refers to another (or to an output / instruction), use the **canonical token** form, not free-text prose:
+
+- Good: "Supersedes `memory_work:40`" or "see `work:40`"
+- Bad: "supersedes memory 40", "see memory ID 40"
+
+Why it matters: per-category IDs change when an item is recategorised with `memory_move`. Emm automatically rewrites canonical tokens (`work:40`, `memory:memory_work/40` wiki links, `app/memory#memory_work-40` URLs) across every memory, output, and instruction when an item moves — so a canonical reference stays correct for free. **Prose mentions ("memory 40") carry no category and cannot be rewritten safely** — after a move they silently point at the wrong item. The `memory_move` response returns a `prose_candidates` list of documents that still mention a moved ID in prose so you can fix them by hand, but you avoid the cleanup entirely by writing canonical tokens from the start.
+
 ## What NOT to Store
 
 - Full documents or raw meeting transcripts

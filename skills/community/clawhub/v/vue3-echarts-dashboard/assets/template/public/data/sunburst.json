@@ -1,0 +1,30 @@
+{
+  "title": "流量来源旭日",
+  "data": {
+    "name": "总访问",
+    "value": 14000,
+    "children": [
+      {
+        "name": "自然流量",
+        "value": 8600,
+        "children": [
+          { "name": "直接访问", "value": 3200 },
+          { "name": "搜索引擎", "value": 5400 }
+        ]
+      },
+      {
+        "name": "付费流量",
+        "value": 2600,
+        "children": [
+          { "name": "广告投放", "value": 1900 },
+          { "name": "其他", "value": 700 }
+        ]
+      },
+      {
+        "name": "社交媒体",
+        "value": 2800,
+        "children": [{ "name": "社交媒体", "value": 2800 }]
+      }
+    ]
+  }
+}

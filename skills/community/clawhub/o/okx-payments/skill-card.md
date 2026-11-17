@@ -1,44 +1,58 @@
-## Description: <br>
-Interactive setup guide that helps agents configure x402 payment-gated APIs for buyer integrations or seller implementations using OKX payments. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Okx Payments guides agents through buyer or seller setup for x402 payment-gated APIs, including OnchainOS installation, language-specific seller references, and OKX payment constraints.
 
-## Publisher: <br>
-[ok-james-01](https://clawhub.ai/user/ok-james-01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ok-james-01](https://clawhub.ai/user/ok-james-01)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up or consume x402 payment-gated APIs. It guides buyer installation of OnchainOS tools and seller implementation for TypeScript, Go, or Rust services. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The buyer path references remote installer commands for payment tooling. <br>
-Mitigation: Inspect the referenced install scripts or use pinned trusted versions before running them. <br>
-Risk: Seller setup uses OKX credentials and payment-related configuration. <br>
-Mitigation: Use least-privilege credentials, keep .env files out of source control, and review generated code for secret logging or exposure. <br>
+## Use Case:
 
+Developers and engineers use this skill to integrate x402 payment-gated APIs as buyers or add OKX x402 payments to their own APIs as sellers. It guides role selection, installation, reference retrieval, credential handling, and implementation constraints for TypeScript, Go, or Rust.
 
-## Reference(s): <br>
-- [OKX Web3](https://web3.okx.com) <br>
-- [OnchainOS Skills](https://github.com/okx/onchainos-skills) <br>
-- [OKX x402 docs](https://web3.okx.com/onchainos/dev-docs/payments/overview) <br>
-- [OKX Payments SDK](https://github.com/okx/payments) <br>
-- [OKX Developer Portal](https://web3.okx.com/onchain-os/dev-portal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, environment variables, and implementation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to fetch language-specific seller reference files before generating implementation code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence and frontmatter) <br>
+Risk: The skill may ask an agent to run mutable remote installer scripts or install unpinned agent skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the remote installer scripts and resolved source before installation; prefer pinned releases or commit hashes with checksum or signature verification.
+
+Risk: Seller setup involves OKX API credentials, wallet addresses, and generated payment code.
+
+Mitigation: Do not provide credentials or wallet-related values until the generated code, dependencies, and payment configuration have been reviewed.
+
+## Reference(s):
+
+- [OKX Web3 Homepage](https://web3.okx.com)
+- [OKX x402 Docs](https://web3.okx.com/onchainos/dev-docs/payments/overview)
+- [OKX Payments SDK](https://github.com/okx/payments)
+- [OnchainOS Skills](https://github.com/okx/onchainos-skills)
+- [OKX Developer Portal](https://web3.okx.com/onchain-os/dev-portal)
+- [ClawHub Skill Page](https://clawhub.ai/ok-james-01/skills/okx-payments)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, configuration snippets, and generated implementation code when seller references are available]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May fetch language-specific seller reference files before generating code; should stop rather than write seller code from memory if reference retrieval fails.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

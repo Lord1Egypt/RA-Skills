@@ -1,0 +1,12 @@
+{
+  "name": "omnipub-content-engine",
+  "display_name": "全平台内容同步发布引擎 v2",
+  "description": "AI 驱动的内容生命周期管理技能，覆盖选题→生成→查证→图表→文末→风格→信息图→GEO→发布→复盘完整闭环。v2：公众号列表布局从flex改为table（微信渲染器不执行flexbox），新增推送回读验证/--force-upload强制重传/IP白名单自动重试；头条号5脚本套件（inject+batch_upload+check_cover+check_missing+insert_fallback）。",
+  "author": "心明增长实验室",
+  "version": "2.0.0",
+  "category": "content",
+  "tags": ["公众号", "头条", "内容发布", "GEO", "选题", "复盘", "多平台", "微信CSS兼容", "草稿箱验证"],
+  "platforms": ["wechat", "toutiao"],
+  "language": "zh-CN",
+  "license": "MIT"
+}

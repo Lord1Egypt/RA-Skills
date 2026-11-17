@@ -1,39 +1,53 @@
-## Description: <br>
-Generate a complete HTML tutorial that explains one or more problems with clear reasoning and embedded SVG or Canvas visuals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate a complete HTML tutorial that explains one or more problems with clear reasoning and embedded SVG or Canvas visuals.
 
-## Publisher: <br>
-[vaintwyt](https://clawhub.ai/user/vaintwyt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[vaintwyt](https://clawhub.ai/user/vaintwyt)
 
-## Use Case: <br>
-Students, educators, and external users use this skill to turn question images, worksheets, exam problems, homework problems, or pasted problem text into a self-contained HTML tutorial with reasoning, solution walkthroughs, and embedded SVG or Canvas visuals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill writes local HTML files, which can overwrite prior output if the same filename is reused. <br>
-Mitigation: Ask the agent to use a unique filename or a dedicated output folder for each generated tutorial. <br>
-Risk: Generated HTML may include active JavaScript or visual content derived from user-provided question material. <br>
-Mitigation: Open generated HTML only when the input content is trusted enough to render locally. <br>
+## Use Case:
 
+Students, educators, and agents assisting with problem solving use this skill to turn question images, screenshots, worksheets, exam problems, homework prompts, or pasted problem text into a self-contained HTML tutorial with step-by-step reasoning and visual explanations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration] <br>
-**Output Format:** [A saved, self-contained HTML file with embedded CSS, JavaScript, SVG, and Canvas content, followed by a concise completion message.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is intended to be directly viewable locally and uses SVG or Canvas rather than external image assets for teaching visuals.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: release evidence) <br>
+Risk: The skill can silently create or overwrite local HTML files when the user only expected a chat explanation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the user explicitly wants an HTML tutorial file, and use unique filenames or ask before overwriting existing files.
+
+Risk: The trigger scope may be broader than desired for normal question-answering workflows.
+
+Mitigation: Review the skill before installation and limit activation to requests for generated HTML tutorials.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vaintwyt/skills/question-explanation)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, guidance, files]
+
+**Output Format:** [Self-contained HTML with embedded CSS, JavaScript, SVG, and Canvas]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a local .html tutorial file and responds once after the file is saved and sent.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

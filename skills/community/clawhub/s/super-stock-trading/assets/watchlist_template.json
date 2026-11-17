@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "watchlist_name": "默认自选股清单",
+    "last_updated": "{{last_updated}}",
+    "owner": "{{owner}}",
+    "description": "自选股模板，用于盘前关注与日常跟踪"
+  },
+  "stocks": [
+    {
+      "stock_code": "600519",
+      "stock_name": "贵州茅台",
+      "sector": "食品饮料-白酒",
+      "position": "持有",
+      "cost_price": 1680.50,
+      "notes": "高端白酒龙头，关注批价与库存周期"
+    },
+    {
+      "stock_code": "000858",
+      "stock_name": "五粮液",
+      "sector": "食品饮料-白酒",
+      "position": "观察",
+      "cost_price": null,
+      "notes": "二线白酒龙头，等待估值回落至合理区间"
+    },
+    {
+      "stock_code": "300750",
+      "stock_name": "宁德时代",
+      "sector": "电力设备-锂电池",
+      "position": "持有",
+      "cost_price": 215.80,
+      "notes": "动力电池龙头，跟踪排产与海外订单"
+    },
+    {
+      "stock_code": "002594",
+      "stock_name": "比亚迪",
+      "sector": "汽车-新能源汽车",
+      "position": "观察",
+      "cost_price": null,
+      "notes": "新能源整车龙头，关注月度销量数据"
+    },
+    {
+      "stock_code": "601318",
+      "stock_name": "中国平安",
+      "sector": "非银金融-保险",
+      "position": "持有",
+      "cost_price": 48.20,
+      "notes": "保险龙头，跟踪新业务价值与投资端表现"
+    }
+  ]
+}

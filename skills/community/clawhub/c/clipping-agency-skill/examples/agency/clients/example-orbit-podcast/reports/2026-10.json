@@ -1,0 +1,23 @@
+{
+ "month": "2026-10",
+ "clips_live": 3,
+ "agreed": 6,
+ "platforms": {
+  "TIKTOK": {
+   "posts": 3,
+   "views": 68400,
+   "median": 18400
+  },
+  "INSTAGRAM": {
+   "posts": 3,
+   "views": 28800,
+   "median": 9100
+  },
+  "YOUTUBE": {
+   "posts": 3,
+   "views": 20700,
+   "median": 6200
+  }
+ },
+ "label": "October 2026"
+}

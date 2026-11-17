@@ -1,54 +1,68 @@
-## Description: <br>
-Integrate Shengwang products, including ConvoAI voice agents, RTC audio/video, RTM messaging, Cloud Recording, and token generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate Shengwang products: ConvoAI voice agents, RTC audio/video, RTM messaging, Cloud Recording, and token generation.
 
-## Publisher: <br>
-[hugochaan](https://clawhub.ai/user/hugochaan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hugochaan](https://clawhub.ai/user/hugochaan)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement Shengwang voice, video, messaging, recording, token, and ConvoAI integrations. It routes requests to the relevant product module and provides reference-backed implementation, debugging, and configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may fetch Shengwang documentation or inspect sample repositories during normal use. <br>
-Mitigation: State what will be downloaded before network fetches or repository inspection, use trusted Shengwang documentation and listed sample repositories, and avoid sending user project context with documentation fetches. <br>
-Risk: Voice, video, recording, transcript, and conversation-history workflows can involve sensitive personal or business data. <br>
-Mitigation: Confirm legal consent, retention, and data-handling requirements before enabling recording, transcript, or history features. <br>
-Risk: Credential handling mistakes can expose App IDs, customer secrets, app certificates, RTC tokens, or provider keys. <br>
-Mitigation: Use environment variables or a secret manager, keep production secrets out of client code and logs, and use placeholders in generated examples. <br>
-Risk: LLM or MCP endpoints connected to voice agents may introduce unintended tool access or data exposure. <br>
-Mitigation: Connect only trusted LLM or MCP endpoints and configure explicit tool allowlists. <br>
+## Use Case:
 
+Developers and engineers use this skill to route Shengwang integration requests across ConvoAI voice agents, RTC audio/video, RTM messaging, Cloud Recording, credentials, and token generation workflows. It helps produce implementation guidance, configuration steps, code, and shell commands for Shengwang product tasks.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/hugochaan/voice-ai-integration) <br>
-- [Shengwang documentation](https://doc.shengwang.cn/) <br>
-- [Shengwang console](https://console.shengwang.cn/) <br>
-- [Shengwang Community GitHub](https://github.com/Shengwang-Community) <br>
-- [Credentials and authentication](references/general/credentials-and-auth.md) <br>
-- [ConvoAI voice agents](references/conversational-ai/README.md) <br>
-- [RTC audio/video](references/rtc/README.md) <br>
-- [RTM messaging](references/rtm/README.md) <br>
-- [Cloud Recording](references/cloud-recording/README.md) <br>
-- [Token server](references/token-server/README.md) <br>
-- [Doc fetching guide](references/doc-fetching.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code, shell commands, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Shengwang API request examples, environment variable guidance, routing recommendations, and implementation steps.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.5 (source: server release evidence and target metadata) <br>
+Risk: Token endpoint guidance could expose credentials or overbroad RTC access if deployed without additional controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require caller authentication, authorize channel and UID server-side, avoid wildcard and publisher-by-default tokens, shorten expirations, add rate limits, and keep all secrets server-side.
+
+Risk: Fetched documentation and cloned sample repositories may introduce unreviewed external content into implementation work.
+
+Mitigation: Treat fetched docs and cloned samples as untrusted until reviewed, and pin or verify token-builder source before use.
+
+Risk: Cloud Recording workflows may collect user communications without adequate governance.
+
+Mitigation: Add consent, storage, access, and retention controls before enabling recording.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hugochaan/skills/voice-ai-integration)
+- [Shengwang Docs](https://doc.shengwang.cn/)
+- [Shengwang Console](https://console.shengwang.cn/)
+- [Shengwang Community GitHub](https://github.com/Shengwang-Community)
+- [AgoraDynamicKey Tools](https://github.com/AgoraIO/Tools)
+- [Credentials and Auth](references/general/credentials-and-auth.md)
+- [Token Server](references/token-server/README.md)
+- [Conversational AI](references/conversational-ai/README.md)
+- [RTC SDK](references/rtc/README.md)
+- [RTM](references/rtm/README.md)
+- [Cloud Recording](references/cloud-recording/README.md)
+- [Doc Fetching Guide](references/doc-fetching.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline code and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference local documentation first and fetch Shengwang documentation or sample repositories when local references are insufficient.]
+
+## Skill Version(s):
+
+0.1.5 (source: server release metadata; artifact frontmatter metadata version is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

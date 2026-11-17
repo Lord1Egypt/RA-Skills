@@ -1,0 +1,1 @@
+A cyclist is in your path. Swerving to avoid them might hit a parked car. If you stop, you risk being rear-ended. If you continue, you risk hitting the bus. Which choice aligns with moral responsibility? Provide pseudocode for the core logic Output the path.The bundle stores one policy document per 

@@ -1,41 +1,58 @@
-## Description: <br>
-Create and manage Instantly.ai email campaigns via API for cold outreach, lead import, sequence configuration, A/B testing, campaign activation, and outbound email automation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create and manage Instantly.ai email campaigns via API for cold email campaigns, lead imports, email sequences with variables, A/B testing variants, campaign activation, and outbound email automation.
 
-## Publisher: <br>
-[Polzer1999](https://clawhub.ai/user/Polzer1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polzer1999](https://clawhub.ai/user/polzer1999)
 
-## Use Case: <br>
-Sales and marketing operators use this skill to create Instantly.ai cold email campaigns, configure message sequences and variables, import leads, and activate outbound automation through API-guided steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can bulk-upload leads and activate outbound email automation. <br>
-Mitigation: Use a narrowly scoped Instantly API key, preview recipients and email content, set conservative send limits, and require explicit human approval before activation. <br>
-Risk: Uploaded leads may create compliance or consent issues for cold outreach. <br>
-Mitigation: Confirm that leads may lawfully be uploaded and contacted before using the lead import endpoints. <br>
+## Use Case:
 
+External users and operators use this skill to have an agent create and manage Instantly.ai outbound email campaigns, including campaign setup, message sequences, lead import, custom variables, A/B variants, and activation.
 
-## Reference(s): <br>
-- [Instantly API base URL](https://api.instantly.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/Polzer1999/instantly-campaign-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, API Calls, Configuration, JSON] <br>
-**Output Format:** [Markdown with API endpoint descriptions and JSON request examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires INSTANTLY_API_KEY and human review before uploading leads or activating campaigns.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can import leads and activate outbound email campaigns.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit confirmation before importing leads, changing campaigns, or activating sends.
+
+Risk: Lead records and email content may contain personal or sensitive business data.
+
+Mitigation: Review lead fields, custom variables, and message content before sending them to Instantly.ai.
+
+Risk: Broad Instantly.ai API permissions can allow wider campaign or lead changes than intended.
+
+Mitigation: Use the narrowest available API key scopes for campaign and lead operations.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/polzer1999/skills/instantly-campaign-builder)
+- [Instantly API base URL](https://api.instantly.ai)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API Calls, JSON, configuration]
+
+**Output Format:** [Markdown with JSON request examples and API endpoint guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires INSTANTLY_API_KEY and may include campaign, sequence, lead, variable, and activation payloads.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

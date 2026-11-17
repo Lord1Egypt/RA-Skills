@@ -1,41 +1,54 @@
-## Description: <br>
-段永平视角 - 中国巴菲特，本分哲学践行者。触发词：段永平、大道、本分、价值投资。6个心智模型，100分评估。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+段永平视角 - 中国巴菲特，本分哲学践行者。触发词：段永平、大道、本分、价值投资。6个心智模型，100分评估。
 
-## Publisher: <br>
-[sjj2026](https://clawhub.ai/user/sjj2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sjj2026](https://clawhub.ai/user/sjj2026)
 
-## Use Case: <br>
-External users can invoke this Chinese-language prompt skill to analyze business, investing, and life-decision questions through a Duan Yongping-style value-investing lens. It is intended for perspective and reasoning support, not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Responses may be mistaken for investment advice or may rely on stale or incorrect financial facts. <br>
-Mitigation: Treat outputs as perspective only and verify financial facts independently before making decisions. <br>
-Risk: Generic terms such as value investing or long-term holding may trigger the persona unintentionally. <br>
-Mitigation: Invoke the skill only when a Duan Yongping-style lens is desired, and disable or avoid trigger phrases for unrelated analysis. <br>
+## Use Case:
 
+External users can use this skill to have an agent frame investment, business, and life-decision questions through a Duan Yongping-style value-investing perspective. It is intended for perspective and analysis, not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sjj2026/duanyongping-perspective) <br>
-- [Publisher profile](https://clawhub.ai/user/sjj2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text Chinese-language analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May suggest research before answering fact-dependent questions; users should independently verify financial facts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Investment questions may be answered through a persona-style value-investing lens and could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as perspective and analysis only; users should verify facts and consult qualified financial professionals before making investment decisions.
+
+Risk: Broad trigger phrases may steer ordinary investment questions into the Duan Yongping-style persona.
+
+Mitigation: Review prompts and responses to confirm the persona framing is intended for the user request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sjj2026/skills/duanyongping-perspective)
+- [Skill definition](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Analysis]
+
+**Output Format:** [Markdown text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Persona-style value-investing framing; no executable code or install actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

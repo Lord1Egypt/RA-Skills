@@ -1,44 +1,60 @@
-## Description: <br>
-AppGrowing advertising-material analysis assistant for strategy exploration and creative inspiration workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AppGrowing intelligent ad creative analysis assistant with Strategy Exploration and Inspiration modes for ad creative analysis.
 
-## Publisher: <br>
-[youcloud](https://clawhub.ai/user/youcloud) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[youcloud](https://clawhub.ai/user/youcloud)
 
-## Use Case: <br>
-Developers, marketers, and advertising teams use this skill to send campaign-analysis prompts to AppGrowing/YouCloud, select the appropriate analysis mode, and receive advertising-material insights or creative direction as Markdown. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts and advertising-analysis requests are sent to the AppGrowing/YouCloud service. <br>
-Mitigation: Install only when that service use matches the organization's data-sharing policy, and avoid submitting confidential campaign or business data unless approved. <br>
-Risk: The skill requires an AppGrowing/YouCloud API key and can accept a pasted key for a single request. <br>
-Mitigation: Prefer configuring YOUCLOUD_API_KEY as an environment variable and avoid pasting credentials into chat unless the environment is trusted. <br>
-Risk: The skill is available only to AppGrowing plans with API access. <br>
-Mitigation: Confirm account entitlement and quota before relying on the workflow for production advertising analysis. <br>
+## Use Case:
 
+External users and marketing teams use this skill to analyze AppGrowing ad creative data, explore campaign strategy, and generate creative inspiration through the AppGrowing/YouCloud analysis service.
 
-## Reference(s): <br>
-- [agclaw on ClawHub](https://clawhub.ai/youcloud/skills/agclaw) <br>
-- [AppGrowing](https://appgrowing.cn/) <br>
-- [Usage Examples](references/example.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown responses with API-call guidance and returned analysis content] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an AppGrowing/YouCloud API key and may wait up to 600 seconds for the external analysis response.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server-resolved release metadata and openclaw metadata) <br>
+Risk: Prompts and analysis requests may be sent to the external AppGrowing/YouCloud service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for intended AppGrowing ad creative analysis and avoid sending confidential business data unless approved for that service.
+
+Risk: The skill requires a YOUCLOUD_API_KEY and may accept API keys pasted into chat.
+
+Mitigation: Configure YOUCLOUD_API_KEY securely as an environment variable and avoid pasting API keys into chat.
+
+Risk: The security evidence marks the release as suspicious and recommends review before installation.
+
+Mitigation: Review the skill and its external-service behavior before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/youcloud/skills/agclaw)
+- [Publisher profile](https://clawhub.ai/user/youcloud)
+- [AppGrowing homepage](https://appgrowing.cn/)
+- [Usage examples](references/example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown analysis returned from the AppGrowing/YouCloud service]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include ad creative summaries, strategy observations, creative scripts, and material links when returned by the service.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata; artifact frontmatter reports 1.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,54 @@
-## Description: <br>
-Persistent context survival for OpenClaw that reads local memory notes and writes short, user-triggered anchors to memory/anchors/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Context Brief helps OpenClaw agents preserve and restore short, user-directed context anchors across sessions by reading local memory files and writing only to memory/anchors/.
 
-## Publisher: <br>
-[tommot2](https://clawhub.ai/user/tommot2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommot2](https://clawhub.ai/user/tommot2)
 
-## Use Case: <br>
-Developers and agent users use this skill to preserve compact task context across long conversations, compaction, or later resume points. It helps record active state, decisions, pending work, and important paths without modifying MEMORY.md, HEARTBEAT.md, or daily logs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local memory files can contain sensitive project context, and anchors persist after the conversation. <br>
-Mitigation: Do not save secrets, rely on the skill's redaction rules, and periodically review or delete old files under memory/anchors/. <br>
-Risk: Saved anchors can become stale as project decisions change. <br>
-Mitigation: Review recent anchors when resuming work and replace outdated context with a new user-triggered anchor. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to checkpoint active work, decisions, pending items, and key paths before conversation compaction or when resuming after time away. It is intended for user-initiated context notes and anchor files, not automatic logging.
 
-## Reference(s): <br>
-- [Context Brief on ClawHub](https://clawhub.ai/tommot2/context-brief) <br>
-- [TommoT2 publisher profile](https://clawhub.ai/user/tommot2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Markdown text and optional local anchor files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Anchor files are limited to concise context summaries and are written only after a user trigger or explicit consent.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: server release metadata) <br>
+Risk: Anchor files may preserve sensitive workspace context if the user asks the agent to save private details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid asking the skill to save secrets or confidential details; review anchors under memory/anchors/ when working in private projects.
+
+Risk: Saved context could become stale and mislead later work after project decisions change.
+
+Mitigation: Treat restored anchors as a concise checkpoint and confirm important decisions against current project files before acting.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tommot2/skills/context-brief)
+- [Context Brief Homepage](https://clawhub.ai/skills/context-brief)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown notes and brief natural-language status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Anchor files are capped at 20 lines and written only to memory/anchors/ when requested or consented.]
+
+## Skill Version(s):
+
+3.0.0 (source: server release metadata, target metadata, SKILL.md H1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

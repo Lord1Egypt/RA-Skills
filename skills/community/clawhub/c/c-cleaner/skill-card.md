@@ -1,41 +1,58 @@
-## Description: <br>
-C-drive space analysis and cleanup skill for scanning Windows C-drive usage, identifying junk and large files, and helping the user run confirmed cleanup actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+c-cleaner helps an agent analyze Windows C-drive storage, identify temporary files, caches, large files, and migration candidates, and guide or execute cleanup workflows with user confirmation.
 
-## Publisher: <br>
-[jjflydudu](https://clawhub.ai/user/jjflydudu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jjflydudu](https://clawhub.ai/user/jjflydudu)
 
-## Use Case: <br>
-Windows users and support agents use this skill to inspect C-drive storage pressure, identify temporary files, caches, large files, and migration candidates, and produce cleanup recommendations or commands after review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can inspect broad local folders and guide cleanup actions on Windows systems. <br>
-Mitigation: Start with read-only or dry-run scanning, review every listed path and command, and proceed only after explicit user confirmation. <br>
-Risk: Aggressive cleanup can cause irreversible removal of data or system state such as recycle bin contents, WSL distributions, Docker data, or shadow copies. <br>
-Mitigation: Avoid aggressive cleanup unless the user explicitly intends those effects, and prefer the documented safe cleanup level for routine use. <br>
+## Use Case:
 
+Developers, support staff, and Windows power users can use this skill to inspect C-drive disk usage, find large or cleanable files, generate cleanup recommendations, and run cautious cleanup steps after review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jjflydudu/c-cleaner) <br>
-- [C-drive cleanup guide](references/cleanup-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline PowerShell and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scan summaries, cleanup reports, path lists, and user-confirmed cleanup recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Cleanup actions can permanently delete files, including cache contents and Recycle Bin contents in aggressive mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scan or dry-run mode first, inspect the exact paths and item list, and avoid --yes or aggressive mode unless the user explicitly accepts the deletion impact.
+
+Risk: The security summary notes that promised preview, backup, and confirmation safeguards are not fully enforced by the cleanup script.
+
+Mitigation: Require a preview-before-clean workflow, remove or restrict confirmation bypass, and add an exact deletion manifest before relying on automated cleanup.
+
+Risk: Reports can expose local filesystem paths and storage details that may be sensitive.
+
+Mitigation: Review generated reports before sharing them and redact user names, project names, and sensitive paths.
+
+## Reference(s):
+
+- [C-drive cleanup guide](references/cleanup-guide.md)
+- [ClawHub skill page](https://clawhub.ai/jjflydudu/skills/c-cleaner)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline PowerShell or Python commands and optional JSON reports from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include filesystem paths, estimated cleanable space, cleanup summaries, and follow-up optimization recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,50 @@
-## Description: <br>
-Audits Rust code for unsafe blocks, ownership issues, and Cargo dependency risks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audits Rust code for unsafe blocks, ownership issues, and Cargo dependency risks
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineers use this skill to review Rust changes for ownership, error handling, concurrency, unsafe and FFI usage, dependency risk, performance, idioms, tests, and security patterns before merging or shipping. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad Rust-related terms and produce review guidance outside the intended scope. <br>
-Mitigation: Confirm that the current task is a Rust code review before applying its findings. <br>
-Risk: The skill may suggest cargo commands or tool installation commands during review. <br>
-Mitigation: Review suggested commands before execution and run them only in a trusted development environment. <br>
+## Use Case:
 
+Developers use this skill to review Rust changes for safety, correctness, concurrency, dependency, performance, and idiom issues before merging.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-rust-review) <br>
-- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown audit report with structured findings and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include recommendations and an approve, approve with actions, or block disposition.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: The security review reports behavior that may not match the Rust-auditing purpose, install guidance that may change the environment, and incomplete inspection of some files and references.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the flagged behavior and install steps, and inspect the files and references that were not fully analyzed before installation.
+
+## Reference(s):
+
+- [ClawHub rust-review release](https://clawhub.ai/athola/skills/nm-pensive-rust-review)
+- [Claude Night Market Pensive plugin (metadata homepage)](https://github.com/athola/claude-night-market/tree/master/plugins/pensive)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Markdown Rust audit report with findings, recommendations, and evidence anchors]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings should include source locations and verbatim anchors when reported.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://github.com/maojiebc/majia-chatcut-koubo/schemas/runtime/source-inventory.schema.json",
+  "schemaVersion": "majia.koubo.sources.v1",
+  "runId": "run-demo-stable",
+  "projectRef": "logical:project-current",
+  "timelineRef": "logical:timeline-current",
+  "mainSourceRef": "logical:aroll-main",
+  "assets": [
+    {"logicalRef": "logical:aroll-main", "role": "aroll", "mediaType": "video", "durationSec": 180, "alreadyImported": true, "transcriptStatus": "ready"}
+  ],
+  "capturedAt": "2026-08-10T00:01:00Z"
+}

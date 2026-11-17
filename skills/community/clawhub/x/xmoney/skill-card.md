@@ -1,41 +1,53 @@
-## Description: <br>
-Turn messy monetization ideas into clearer revenue decisions by analyzing pricing, payout logic, conversion friction, and revenue model fit. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn messy monetization ideas into clearer revenue decisions by analyzing pricing, payout logic, conversion friction, and revenue model fit for creators, operators, and digital businesses.
 
-## Publisher: <br>
-[Duclawbot](https://clawhub.ai/user/Duclawbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[duclawbot](https://clawhub.ai/user/duclawbot)
 
-## Use Case: <br>
-External users, creators, operators, founders, and digital businesses use this skill to assess monetization strategy, compare pricing options, clarify payout logic, and identify conversion friction before making revenue decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat monetization analysis as legal, tax, accounting, compliance, banking, investment, or payment-processing advice. <br>
-Mitigation: Present outputs as business analysis only and recommend specialist review when regulated payments, custody, tax, legal, or compliance obligations are central. <br>
-Risk: Incomplete business context can lead to overconfident pricing or revenue recommendations. <br>
-Mitigation: Identify missing information before recommending changes, and frame friction scores and value-price gaps as judgment aids rather than precise measurements. <br>
+## Use Case:
 
+Creators, operators, founders, and digital businesses use XMoney to assess monetization strategy, compare pricing or payout models, diagnose conversion friction, and choose clearer next steps for revenue design.
 
-## Reference(s): <br>
-- [XMoney on ClawHub](https://clawhub.ai/Duclawbot/xmoney) <br>
-- [ClawHub](https://clawhub.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown assessment with monetization issues, model options, tradeoffs, and recommended next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; no payment processing, credential handling, persistence, or regulated financial execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter, skill.json, release evidence) <br>
+Risk: Users may treat monetization strategy output as financial, tax, legal, payment-processing, banking, treasury, or compliance advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep outputs framed as advisory commercial analysis, decline regulated sign-off, and recommend specialist review when those topics are central.
+
+Risk: Users may share unnecessary sensitive business or customer data while requesting revenue analysis.
+
+Mitigation: Request only the context needed for the assessment and avoid collecting or including sensitive data that is not required.
+
+## Reference(s):
+
+- [XMoney ClawHub Skill Page](https://clawhub.ai/duclawbot/skills/xmoney)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Structured Markdown assessment]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes monetization friction scoring, value-price gap assessment, model options, tradeoffs, and recommended next steps; does not execute payments or provide regulated financial, legal, tax, banking, or compliance advice.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, skill.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

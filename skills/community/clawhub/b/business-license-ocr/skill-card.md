@@ -1,43 +1,56 @@
-## Description: <br>
-Recognizes mainland China business licenses with Sugon-Scnet OCR and extracts structured fields such as unified social credit code, company name, legal representative, registered capital, establishment date, business scope, and address. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts structured fields from Chinese mainland business-license images using the Scnet OCR service.
 
-## Publisher: <br>
-[scnet-sugon](https://clawhub.ai/user/scnet-sugon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[scnet-sugon](https://clawhub.ai/user/scnet-sugon)
 
-## Use Case: <br>
-External users and developers use this skill to send a local business-license image, PDF, or archive to the Scnet OCR API and receive structured JSON fields for review, data entry, or downstream automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; intended document type is mainland China business licenses. <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected documents are sent to an external Scnet OCR API and may include sensitive business or identity information. <br>
-Mitigation: Confirm the file path, document type, and endpoint before use; avoid routing IDs, invoices, or other sensitive documents unless that broader processing is intentional and acceptable under privacy requirements. <br>
-Risk: The skill requires an SCNET_API_KEY credential for API access. <br>
-Mitigation: Store the credential in the documented environment variable or local .env file with restricted permissions, and do not paste API keys into chat. <br>
+## Use Case:
 
+External users, employees, and developers use this skill to submit authorized business-license documents and receive structured OCR results such as company name, unified social credit code, legal representative, registered capital, business scope, and address.
 
-## Reference(s): <br>
-- [Sugon-Scnet OCR API Documentation Summary](artifact/references/api-docs.md) <br>
-- [Business License Field Summary](artifact/assets/templates/fields-summary.md) <br>
-- [Scnet Website](https://www.scnet.cn) <br>
-- [ClawHub Skill Page](https://clawhub.ai/scnet-sugon/business-license-ocr) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, text, shell commands, configuration] <br>
-**Output Format:** [JSON data on stdout with human-readable error text on failure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SCNET_API_KEY and sends selected files to the Scnet OCR API; the skill documents a 10 QPS rate limit and retry behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release, SKILL.md frontmatter, skill.yaml) <br>
+Risk: Business-license documents are uploaded to the Scnet OCR service and may contain sensitive company identity, address, registration, finance, and operating information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Process only documents you are authorized to upload, inform users that files leave the local environment, and delete local copies or caches after results are captured when retention is not required.
+
+Risk: The API key and selected document are sent to a configurable remote endpoint.
+
+Mitigation: Keep SCNET_API_BASE set to the documented HTTPS endpoint, store SCNET_API_KEY outside chat transcripts, restrict credential file permissions, and confirm the file path and destination before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/scnet-sugon/skills/business-license-ocr)
+- [Scnet website](https://www.scnet.cn)
+- [Sugon-Scnet OCR API docs](artifact/references/api-docs.md)
+- [Business license OCR field summary](artifact/assets/templates/fields-summary.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [JSON results and concise text guidance for configuration, invocation, and errors.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SCNET_API_KEY and uploads the selected document to the configured Scnet OCR API endpoint.]
+
+## Skill Version(s):
+
+1.0.5 (source: SKILL.md frontmatter, skill.yaml, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

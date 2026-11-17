@@ -1,41 +1,52 @@
-## Description: <br>
-Generate optimized prompts for AI models including ChatGPT, Midjourney, and code generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates optimized prompts for ChatGPT, Midjourney, code generation, writing, design, research, marketing, and analysis workflows.
 
-## Publisher: <br>
-[ouyangAbel](https://clawhub.ai/user/ouyangAbel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ouyangabel](https://clawhub.ai/user/ouyangabel)
 
-## Use Case: <br>
-External users and developers use this skill to generate, adapt, and evaluate prompts for writing, coding, design, research, ChatGPT-style role prompts, Midjourney image prompts, and code-generation tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated prompts may contain incorrect, incomplete, or misleading task framing when reused with other AI systems. <br>
-Mitigation: Review generated prompts before use, especially for high-stakes topics. <br>
-Risk: Generated prompts often default to Chinese phrasing, which may not fit the intended audience or target model workflow. <br>
-Mitigation: Edit the generated prompt language, context, and constraints before sending it to a downstream AI system. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI Prompt Generator on ClawHub](https://clawhub.ai/ouyangAbel/ai-prompt-gen) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Prompt generator script](artifact/scripts/ai-prompt-gen.py) <br>
+## Use Case:
 
+Developers, creators, marketers, designers, and analysts use this skill to generate prompt text and prompt-quality feedback for writing, coding, art, research, and analysis tasks.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Console text with generated prompts, prompt-quality feedback, and command usage output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs commonly use Chinese phrasing and are intended for review before reuse with downstream AI systems.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Broad activation wording may trigger the skill for general prompt-related requests where the user did not intend to run a helper.
+
+Mitigation: Invoke it only for explicit prompt generation, prompt optimization, or prompt-quality analysis requests.
+
+Risk: The generated prompts and analysis are template-based and mostly Chinese-language, which may not fit every audience or task.
+
+Mitigation: Review and adapt outputs before using them in customer-facing, regulated, or safety-sensitive workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ouyangabel/skills/ai-prompt-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Command-line text with generated prompts and prompt-analysis feedback]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primarily Chinese-language template output; no network access, hidden access, persistence, or destructive behavior reported by security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

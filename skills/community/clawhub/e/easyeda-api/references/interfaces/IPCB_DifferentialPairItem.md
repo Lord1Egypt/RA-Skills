@@ -1,11 +1,11 @@
 # IPCB\_DifferentialPairItem interface
 
-差分对属性
+Differential pair properties
 
 ## Signature
 
 ```typescript
-interface IPCB_DifferentialPairItem 
+interface IPCB_DifferentialPairItem
 ```
 
 ## Properties
@@ -14,78 +14,62 @@ interface IPCB_DifferentialPairItem
 
 Property
 
-
 </th><th>
 
 Modifiers
-
 
 </th><th>
 
 Type
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 [name](./IPCB_DifferentialPairItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-差分对名称
-
+Differential pair name
 
 </td></tr>
 <tr><td>
 
 [negativeNet](./IPCB_DifferentialPairItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-负网络
-
+Negative net
 
 </td></tr>
 <tr><td>
 
 [positiveNet](./IPCB_DifferentialPairItem.md)
 
-
 </td><td>
-
 
 </td><td>
 
 string
 
-
 </td><td>
 
-正网络
-
+Positive net
 
 </td></tr>
 </tbody></table>
@@ -98,7 +82,7 @@ string
 
 # IPCB\_DifferentialPairItem.name property
 
-差分对名称
+Differential pair name
 
 ## Signature
 
@@ -110,7 +94,7 @@ name: string;
 
 # IPCB\_DifferentialPairItem.negativeNet property
 
-负网络
+Negative net
 
 ## Signature
 
@@ -122,7 +106,7 @@ negativeNet: string;
 
 # IPCB\_DifferentialPairItem.positiveNet property
 
-正网络
+Positive net
 
 ## Signature
 

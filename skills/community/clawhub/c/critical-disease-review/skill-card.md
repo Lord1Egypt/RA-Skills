@@ -1,40 +1,58 @@
-## Description: <br>
-Assesses structured hospitalization records against 28 critical-disease insurance claim criteria and returns raw JSON plus a natural-language conclusion with supporting evidence. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assesses structured inpatient medical records against 28 critical-disease insurance claim categories and returns the raw JSON result plus a natural-language conclusion with supporting evidence.
 
-## Publisher: <br>
-[aaiccee](https://clawhub.ai/user/aaiccee) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aaiccee](https://clawhub.ai/user/aaiccee)
 
-## Use Case: <br>
-Insurance claims reviewers and claim automation agents use this skill to evaluate structured hospitalization records against supported critical-disease claim criteria and organize the resulting conclusion, reasons, and evidence. Its output is claim-assessment support, not medical diagnosis or treatment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Structured medical records may be sent to the configured assessment service, and the server security summary notes that the privacy claims do not match the code behavior. <br>
-Mitigation: Use only with an organization-approved endpoint and real patient or claims data after confirming redaction, transfer, and privacy controls. <br>
-Risk: Assessment outputs are saved to disk by default, which can retain medical or claims information after the run. <br>
-Mitigation: Use controlled output paths, define retention and cleanup controls, and prefer a corrected release that makes persistence opt-in. <br>
+## Use Case:
 
+Claims reviewers and agent workflows use this skill to evaluate structured inpatient records against critical-disease claim criteria and collect condition-level evidence for review. Its conclusions are claim-assessment support, not medical diagnosis or treatment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aaiccee/critical-disease-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands] <br>
-**Output Format:** [Raw JSON response files and plain-text natural-language assessment summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports a disease selector, model type, timeout, input JSON path, and optional output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Sensitive patient and claims data may be transmitted to an external assessment service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only after endpoint approval, explicit consent, and field minimization or redaction of patient-identifying data.
+
+Risk: Assessment results are written to disk by default despite privacy claims that state there is no local persistence.
+
+Mitigation: Remove default disk writes or make them opt-in with documented retention controls and secured output paths.
+
+Risk: The natural-language conclusion can influence claims decisions but is not clinical advice.
+
+Mitigation: Require qualified human review before relying on outputs for claims adjudication or clinical interpretation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aaiccee/skills/critical-disease-review)
+- [Publisher profile](https://clawhub.ai/user/aaiccee)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, files, shell commands, guidance]
+
+**Output Format:** [Raw JSON assessment response and plain-text natural-language summary]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Default execution writes raw JSON and text outputs to disk and prints a preview to stdout.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

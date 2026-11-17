@@ -1,39 +1,53 @@
-## Description: <br>
-Provides guidance for selecting popular online bakery products, customizing holiday cakes, and using member delivery services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+提供网红面包店在线选品、节日蛋糕定制及专属会员配送服务指引。
 
-## Publisher: <br>
-[CodeKungfu](https://clawhub.ai/user/CodeKungfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codekungfu](https://clawhub.ai/user/codekungfu)
 
-## Use Case: <br>
-External shoppers use Bakery to compare bakery products, customize holiday cakes, review discounts and delivery options, and understand after-sales details before ordering. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shopping guidance may involve payment, delivery, or order information. <br>
-Mitigation: Avoid sharing payment details or precise delivery information unless it is intentionally needed and the environment is trusted. <br>
-Risk: Prices, discounts, inventory, and delivery timing may change quickly. <br>
-Mitigation: Verify merchant terms, coupons, stock, delivery estimates, and product condition before purchase or receipt. <br>
+## Use Case:
 
+External shoppers and shopping assistants use this skill to compare bakery and dessert options, customize cakes, and surface order, delivery, after-sales, and review details before purchase.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text shopping guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, install scripts, credentials, persistence, or automatic purchasing authority are included.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The skill is intended for Chinese-language bakery shopping assistance and may be less useful outside that context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it where Chinese-language bakery shopping assumptions are appropriate, and adapt prompts for local merchants, delivery options, and buyer protections.
+
+Risk: Shopping offers, stock, logistics, and review signals can change frequently.
+
+Mitigation: Verify coupons, final prices, inventory, delivery timing, and product condition before purchase confirmation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/codekungfu/skills/bakery)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text shopping guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language bakery shopping recommendations and order-support details; no executable output.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,55 @@
-## Description: <br>
-Retrieve real founder experiences, decisions, and outcomes from Echomindr using 1,150+ moments from top startup podcasts to ground founder advice in real cases. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Retrieve real founder experiences, decisions, and outcomes from Echomindr - 1,150+ moments from top startup podcasts.
 
-## Publisher: <br>
-[voxbase](https://clawhub.ai/user/voxbase) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[voxbase](https://clawhub.ai/user/voxbase)
 
-## Use Case: <br>
-External users and agents use this skill when a founder or business operator asks about startup decisions, tensions, or uncertainty and would benefit from comparable founder experiences. The skill reformulates the situation, retrieves relevant Echomindr moments, and presents founder names, decisions, outcomes, lessons, and source links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Business situations sent to Echomindr could reveal private company, customer, employee, fundraising, or metric details if prompts include them. <br>
-Mitigation: Send only short anonymized situation descriptions and omit names, confidential metrics, fundraising terms, and other identifying details. <br>
-Risk: Retrieved founder examples may be over-applied as direct advice for a different business context. <br>
-Mitigation: Use the results as comparative examples, include the source links, and review fit before relying on any lesson or pattern. <br>
+## Use Case:
 
+External founders, operators, and advisors use this skill to retrieve relevant public founder examples for startup dilemmas, decisions, and uncertainty. It helps ground advice in comparable founder moments with decisions, outcomes, lessons, and source links.
 
-## Reference(s): <br>
-- [Echomindr homepage](https://echomindr.com) <br>
-- [Echomindr API docs](https://echomindr.com/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown summary with retrieved founder moments, lessons, and source links] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; sends short anonymized business situations to echomindr.com.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.0 (source: frontmatter and server release evidence) <br>
+Risk: Founder situation prompts are sent to echomindr.com for lookup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Send only short, anonymized business-situation summaries and exclude names, emails, company-identifying facts, secrets, customer data, and confidential strategy.
+
+Risk: Retrieved founder examples may be mistaken for directly applicable advice.
+
+Mitigation: Use returned examples as context, compare them against the user's actual situation, and preserve source links so readers can inspect the underlying public founder moment.
+
+## Reference(s):
+
+- [Echomindr homepage](https://echomindr.com)
+- [Echomindr API documentation](https://echomindr.com/docs)
+- [ClawHub skill page](https://clawhub.ai/voxbase/skills/echomindr-founder-retrieval)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with founder examples, source links, and optional inline curl commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include matched founder summaries, decisions, outcomes, lessons, and podcast timestamp links returned by Echomindr.]
+
+## Skill Version(s):
+
+1.3.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-Deliver real-time websocket updates for intent, quote, negotiation, order, and payment events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deliver real-time websocket updates for intent, quote, negotiation, order, and payment events.
 
-## Publisher: <br>
-[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[luoqianchenguni-max](https://clawhub.ai/user/luoqianchenguni-max)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to add websocket push channels, subscription authorization, event replay, and connection lifecycle handling for market clients.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The release evidence describes this as implementation guidance rather than a complete runtime package.
+
+Mitigation: Verify referenced runtime files and tests separately before relying on the implementation in production.
+
+Risk: Unauthorized websocket subscriptions could expose market events to the wrong client or role.
+
+Mitigation: Validate channel permissions for every subscription and return structured errors for unauthorized attempts.
+
+Risk: Unbounded websocket queues can cause memory growth during slow-client or reconnect scenarios.
+
+Mitigation: Enforce per-connection queue limits, heartbeat-based cleanup, and replay retention windows.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and engineers use this skill to design market WebSocket channels, authorization checks, event delivery, replay cursors, and connection lifecycle behavior for buyer, operator, node, and admin clients. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: A separate runtime package may differ from the instruction-only skill evidence. <br>
-Mitigation: Review and test any runtime package before relying on the claimed implementation. <br>
-Risk: Market event streams can expose sensitive order or payment data if channel authorization is too broad. <br>
-Mitigation: Enforce per-user and per-role subscription authorization and minimize order and payment payloads. <br>
-Risk: Replay windows can retain sensitive event data longer than needed. <br>
-Mitigation: Keep replay retention tightly bounded and use cursor replay only within the required retention window. <br>
+**Output Format:** [Markdown guidance with code-oriented contracts and configuration notes]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/luoqianchenguni-max/a2a-market-websocket-realtime) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/luoqianchenguni-max) <br>
+**Other Properties Related to Output:** [Focuses on websocket event contracts, channel authorization, replay cursors, and lifecycle guardrails.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with implementation contracts, project layout guidance, and event coverage requirements] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on WebSocket channel design, subscription authorization, replay behavior, and event payload guardrails.] <br>
+0.2.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

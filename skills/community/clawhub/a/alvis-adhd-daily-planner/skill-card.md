@@ -1,42 +1,54 @@
-## Description: <br>
-Provides ADHD-friendly daily planning with flexible time blocking, executive function support, and dopamine-aware task design to aid realistic goal completion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides ADHD-friendly daily planning with flexible time blocking, executive function support, and dopamine-aware task design to aid realistic goal completion.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users and agents use this skill to create ADHD-friendly daily plans, task breakdowns, time blocks, dopamine-aware motivation options, and executive function supports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: ADHD and medication-related prompts may be mistaken for medical advice. <br>
-Mitigation: Use the skill's templates only to record observations and discuss medication or treatment decisions with a qualified clinician. <br>
-Risk: Daily planning notes can include sensitive health, work, or personal information. <br>
-Mitigation: Avoid entering unnecessary sensitive details and handle generated plans according to the user's privacy requirements. <br>
+## Use Case:
 
+External users and agents use this skill to produce ADHD-friendly daily plans, time blocks, task breakdowns, executive-function supports, and dopamine-aware planning prompts. It is suited for organizational coaching and self-management support, not clinical diagnosis or treatment.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/alvisdunlop/alvis-adhd-daily-planner) <br>
-- [Dopamine Menu](artifact/references/dopamine-menu.md) <br>
-- [Executive Function Toolkit](artifact/references/executive-function-toolkit.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance, templates, checklists, and structured planning prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Plain markdown only; no code execution or credential access] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Users may treat ADHD, medication, therapy, dopamine, or crisis-management content as clinical advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as organizational support and direct medication changes, severe symptoms, functional impairment, or crisis concerns to a qualified clinician.
+
+Risk: Planning guidance may be unrealistic for a user's current executive-function capacity.
+
+Mitigation: Favor smallest viable next actions, transition buffers, flexible pivots, and user review before relying on a plan.
+
+## Reference(s):
+
+- [Dopamine Menu](references/dopamine-menu.md)
+- [Executive Function Toolkit](references/executive-function-toolkit.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose, checklists, planning templates, and structured prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory planning content; no code execution.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

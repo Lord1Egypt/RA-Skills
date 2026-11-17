@@ -1,0 +1,9 @@
+{
+  "name": "offline-knowledge-alignment",
+  "normalizedName": "offline-knowledge-alignment",
+  "description": "离线知识库对齐工程方法论（离线查询 = 在线查询）。当用户要让离线/本地知识库（品类实证、法规库、专家包 references 等）达到与在线检索一致的查询质量、要对知识库做证号/标准/法规的在线复核升级、要\"喂料\"补齐知识差距、或做知识库质量终检时使用。覆盖五步闭环：差距清单 → 分轮复核（证号三态/openFDA/省局公告/标准消核）→ 台账管理 → 批量回填 → 离线问答终检（≥90% 验收）+ 每轮 PDCA 复盘。",
+  "author": "诺声(Logos)@SynomosAI",
+  "copyright": "SynomosAI",
+  "version": "1.0.0",
+  "license": "MIT"
+}

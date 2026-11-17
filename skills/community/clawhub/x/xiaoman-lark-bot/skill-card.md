@@ -1,48 +1,59 @@
-## Description: <br>
-Lark Bot helps agents integrate with Feishu/Lark for message sending and receiving, Wiki knowledge base operations, and Bitable task management using environment-based configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lark Bot provides a Feishu/Lark bot integration workflow for sending and receiving messages, managing Wiki knowledge base content, and managing Bitable tasks with sensitive configuration read from environment variables.
 
-## Publisher: <br>
-[griffithkk3-del](https://clawhub.ai/user/griffithkk3-del) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[griffithkk3-del](https://clawhub.ai/user/griffithkk3-del)
 
-## Use Case: <br>
-Developers and operations teams use this skill to connect an agent to a configured Lark workspace for chat notifications, webhook message handling, Wiki document work, and Bitable task updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send messages and create or update content in a real Lark workspace. <br>
-Mitigation: Use a least-privileged test app first and require explicit confirmation before creating, updating, or deleting Bitable or Wiki content. <br>
-Risk: Credential and tenant access token handling can expose sensitive Lark app access if logged or shared. <br>
-Mitigation: Keep LARK_APP_SECRET in environment-only storage, do not print or share tenant access tokens, and limit app permissions to the minimum required. <br>
-Risk: The webhook server may accept unauthenticated events if LARK_APP_SECRET is not configured. <br>
-Mitigation: Require LARK_APP_SECRET before running webhook handling and bind the server only where needed. <br>
+## Use Case:
 
+Developers and automation engineers use this skill to connect agents or scripts to Lark chat, event callbacks, Bitable task records, and Wiki documents. It is suited for workflow automation where the operator controls Lark app credentials and permissions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/griffithkk3-del/xiaoman-lark-bot) <br>
-- [Lark Open Platform](https://open.larksuite.com/) <br>
-- [Lark app permissions](https://open.larksuite.com/document/server-docs/getting-started/overview) <br>
-- [Lark IM message API](https://open.larksuite.com/document/server-docs/im-v1/message-content-description) <br>
-- [Lark Bitable API](https://open.larksuite.com/document/server-docs/bitable-v1) <br>
-- [Lark Wiki API](https://open.larksuite.com/document/server-docs/wiki-v2) <br>
-- [Lark webhooks](https://open.larksuite.com/document/server-docs/getting-started/using-webhooks) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples, shell commands, and JSON configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Lark credentials and workspace identifiers from environment variables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The webhook receiver may accept unauthenticated requests when LARK_APP_SECRET is missing or signature checks are not enforced.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require LARK_APP_SECRET, reject missing or invalid signatures, bind locally unless deliberately exposed, and review the webhook implementation before using it on a reachable network.
+
+Risk: The skill can send messages and modify Bitable tables or Wiki documents using the configured Lark app credentials.
+
+Mitigation: Limit the Lark app permissions to the specific chats, Bitable tables, and Wiki spaces intended for automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/griffithkk3-del/skills/xiaoman-lark-bot)
+- [Lark Open Platform](https://open.larksuite.com/)
+- [Lark app permissions overview](https://open.larksuite.com/document/server-docs/getting-started/overview)
+- [Lark IM message API](https://open.larksuite.com/document/server-docs/im-v1/message-content-description)
+- [Lark Bitable API](https://open.larksuite.com/document/server-docs/bitable-v1)
+- [Lark Wiki API](https://open.larksuite.com/document/server-docs/wiki-v2)
+- [Lark webhooks](https://open.larksuite.com/document/server-docs/getting-started/using-webhooks)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples, shell command usage, and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and Lark app credentials supplied through environment variables.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

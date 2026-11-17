@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7cwyamm34vbpzwmza9av88ws82gqp1",
   "slug": "fastlane",
+  "name": "Fastlane",
   "version": "1.0.0",
-  "publishedAt": 1773006073098
+  "description": "iOS and macOS app automation — builds, signing, TestFlight, and App Store submissions via Fastlane CLI",
+  "author": "alexissantosperez",
+  "tags": ["ios", "macos", "xcode", "testflight", "appstore", "cicd", "signing"],
+  "requires": ["fastlane"],
+  "install": "brew install fastlane",
+  "license": "MIT"
 }

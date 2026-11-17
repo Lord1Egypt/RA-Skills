@@ -1,39 +1,56 @@
-## Description: <br>
-Transform PubMed papers into SEO-optimized healthcare blog articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert PubMed research papers into SEO-optimized, patient-friendly healthcare blog articles using a discover-extract-generate pipeline.
 
-## Publisher: <br>
-[Holic101](https://clawhub.ai/user/Holic101) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[holic101](https://clawhub.ai/user/holic101)
 
-## Use Case: <br>
-Healthcare content teams and agents use this skill to discover PubMed studies, extract paper details, and draft patient-facing or research-explainer blog articles. Generated medical or healthcare content should be reviewed before publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The security review notes under-disclosed recurring cron automation and credential-backed generation risks. <br>
-Mitigation: Review before installing, verify the npm package and publisher, prefer a pinned or sandboxed install, use limited provider API keys, and enable cron scheduling only when recurring unattended generation is intended and can be disabled. <br>
-Risk: Generated healthcare blog content may be incorrect, misleading, or unsuitable for publication without review. <br>
-Mitigation: Review all medical or healthcare content before publishing and apply appropriate clinical, editorial, and compliance checks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Holic101/pubmed2blog) <br>
+## Use Case:
 
+External users, healthcare content teams, and agents use this skill to find relevant PubMed studies, extract paper details, and generate accessible healthcare blog articles or saved drafts.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown and CLI output from the pubmed2blog discover, extract, generate, pipeline, and init commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save generated article files when invoked with --save.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The default workflow suggests recurring cron-based content generation, which can run unexpectedly or use credentials, storage, and paid provider calls without adequate review.
+
+Mitigation: Require explicit human approval for any cron command, schedule, credential source, output location, cost expectation, and removal process before enabling recurring execution.
+
+Risk: The installation command uses a mutable global npm install, so future installs may resolve to different code and affect the broader agent environment.
+
+Mitigation: Prefer a pinned CLI version installed in a locally isolated workspace before use.
+
+Risk: Generated healthcare content may be inaccurate, incomplete, or unsuitable for patient-facing publication without domain review.
+
+Mitigation: Review source paper extraction and generated article text with qualified editorial or clinical oversight before publication.
+
+## Reference(s):
+
+- [ClawHub skill page: pubmed2blog](https://clawhub.ai/holic101/skills/pubmed2blog)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and CLI-oriented guidance with optional saved article files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on selected article type, language options, PubMed paper metadata, and configured AI provider.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

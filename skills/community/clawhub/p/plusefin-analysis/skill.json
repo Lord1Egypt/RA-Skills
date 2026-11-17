@@ -1,0 +1,25 @@
+{
+  "name": "plusefin-analysis",
+  "version": "2.0.0",
+  "description": "Financial data research via PlusE API - stock fundamentals, options analysis, market sentiment, institutional holdings, insider trades, financial statements, macroeconomic data (FRED), and ML price predictions.",
+  "author": "wanghsinche",
+  "license": "MIT",
+  "tags": [
+    "finance",
+    "stocks",
+    "options",
+    "market-data",
+    "macro",
+    "sentiment",
+    "cli"
+  ],
+  "requiredTools": [
+    "command",
+    "execute"
+  ],
+  "config": {
+    "env": [
+      "PLUSEFIN_API_KEY"
+    ]
+  }
+}

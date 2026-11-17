@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>模型智力测试 · model-intel-check</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;overflow-x:hidden}
+.hidden{display:none}
+
+/* ---------- 三页横向滑动骨架 ---------- */
+.track{display:flex;width:100vw;transition:transform .65s cubic-bezier(.22,.9,.3,1);will-change:transform}
+.panel{flex:0 0 100vw;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:34px 18px 60px}
+.panel .inner{width:100%;max-width:880px}
+
+/* ---------- 卡通"智力测试"主题（默认） ---------- */
+body{background:#fff6ec;color:#3d3052}
+header{text-align:center;padding:10px 0 20px}
+header h1{font-size:30px;color:#ff6b6b;letter-spacing:2px}
+header .sub{margin-top:8px;color:#a58fb5;font-size:13px;letter-spacing:1px}
+.en-tag{font-family:Consolas,monospace;font-size:11px;letter-spacing:6px;color:#c9b8d6;
+  margin-bottom:6px}
+.book-card .name{font-family:Georgia,"Songti SC","SimSun",serif;font-size:16px}
+.num,.prog-txt b,.stats b,.scoreline{font-family:Consolas,monospace}
+.stamp{font-family:Consolas,"Microsoft YaHei",monospace}
+.card{background:#fff;border-radius:20px;padding:24px;box-shadow:0 4px 0 #f0ddc8}
+.card h2{font-size:15px;color:#4ecdc4;margin-bottom:16px;letter-spacing:2px}
+.badge{border-radius:999px;background:#fff0f6;color:#ff6b9d;padding:5px 14px;font-size:12px}
+.hero-line{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:14px}
+
+/* 题集书本卡 */
+.books{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:16px}
+.book-card{background:#f8fbff;border-radius:16px;padding:18px 14px;text-align:center;
+  position:relative;transition:transform .25s;cursor:default}
+.book-card:hover{transform:translateY(-5px) rotate(-1.2deg)}
+.book-card .name{margin-top:10px;font-size:15px}
+.book-card .meta{margin-top:4px;font-size:12px;color:#a58fb5}
+.book-card .stars{color:#ffd93d;letter-spacing:3px;font-size:14px;margin-top:5px}
+.book-card .ref{position:absolute;top:10px;right:12px;font-size:11px;color:#4ecdc4}
+.book{animation:float 3s ease-in-out infinite}
+.book-card:nth-child(2n) .book{animation-delay:.7s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}
+
+/* 大按钮 */
+.start{display:block;width:100%;margin-top:20px;padding:17px;font-size:18px;letter-spacing:4px;
+  font-weight:700;font-family:inherit;color:#fff;background:#ff6b6b;border:0;border-radius:999px;
+  cursor:pointer;box-shadow:0 5px 0 #e85555}
+.start:hover:not(:disabled){background:#ff8585}
+.start:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #e85555}
+.start:disabled{background:#d8cfc0;box-shadow:0 5px 0 #c0b5a5;cursor:not-allowed}
+
+/* ---------- 机器人答题动画 ---------- */
+.stage{display:flex;flex-direction:column;align-items:center;min-height:62vh;justify-content:center}
+.robot-scene{position:relative;width:300px;height:280px}
+.robot{position:absolute;left:50%;top:26px;transform:translateX(-50%);animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+.robot .eye{animation:blink 4s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+.robot .arm{transform-origin:142px 118px;animation:scribble .3s ease-in-out infinite alternate}
+@keyframes scribble{from{transform:rotate(-7deg)}to{transform:rotate(5deg)}}
+.robot .ant-dot{animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{fill:#4ecdc4}50%{fill:#ff6b6b}}
+.desk{width:300px;height:14px;border-radius:7px;background:#e8b04b;position:absolute;bottom:26px;left:0}
+.desk::after{content:"";position:absolute;left:24px;right:24px;top:14px;height:34px;
+  background:#d19a3f;border-radius:0 0 8px 8px}
+.sym{position:absolute;font-size:20px;font-weight:700;color:#4ecdc4;opacity:0;
+  animation:floatUp 3.4s linear infinite}
+.sym:nth-child(2){animation-delay:.6s;color:#ff6b6b}
+.sym:nth-child(3){animation-delay:1.2s;color:#ffd93d}
+.sym:nth-child(4){animation-delay:1.8s;color:#6c8cff}
+.sym:nth-child(5){animation-delay:2.4s;color:#ff9ff3}
+.sym:nth-child(6){animation-delay:3s;color:#4ecdc4}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}12%{opacity:1}
+  80%{opacity:.9}100%{transform:translateY(-120px) rotate(24deg);opacity:0}}
+.paper-line{stroke:#c9c2d6;stroke-width:3;stroke-linecap:round;stroke-dasharray:46;
+  animation:write 1.1s linear infinite}
+.paper-line:nth-of-type(2){animation-delay:.35s}
+.paper-line:nth-of-type(3){animation-delay:.7s}
+@keyframes write{0%{stroke-dashoffset:46}100%{stroke-dashoffset:-46}}
+
+/* 进度条（可点击展开） */
+.prog-zone{width:100%;max-width:620px;margin-top:34px;cursor:pointer;user-select:none}
+.prog{height:22px;border-radius:999px;background:#f3e9dc;position:relative;overflow:visible}
+.prog>i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:#4ecdc4;
+  transition:width .4s}
+.prog>i::after{content:"";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;border-radius:50%;background:#3dbdb4;box-shadow:0 0 0 4px #d9f4f1}
+.prog-txt{text-align:center;margin-top:12px;font-size:13px;color:#a58fb5}
+.prog-txt b{color:#3d3052;font-size:16px}
+.prog-hint{text-align:center;font-size:11px;color:#c9b8d6;margin-top:6px}
+
+/* 展开的题目明细抽屉 */
+.drawer{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.prog-zone.open .drawer{max-height:44vh;overflow-y:auto;margin-top:14px}
+.drawer-inner{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 0 #f0ddc8}
+.suite-line{font-size:12px;color:#4ecdc4;letter-spacing:2px;margin:10px 0 8px}
+.tiles{display:flex;flex-wrap:wrap;gap:6px}
+.t{width:30px;height:30px;border-radius:50%;background:#f3e9dc;color:#c9b8d6;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.t.ok{background:#d8f5d0;color:#2f9e44}
+.t.miss{background:#ffe0e0;color:#e03131}
+.t.error{background:#fff3c4;color:#f08c00}
+.t.pop{animation:pop .3s}
+@keyframes pop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+.d-stats{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:#a58fb5;margin-bottom:4px}
+.d-stats b{color:#3d3052}
+
+/* ---------- 结算页 ---------- */
+.result{text-align:center;padding-top:8vh}
+.stamp{display:inline-block;border:4px solid;border-radius:14px;padding:14px 34px;
+  font-size:24px;letter-spacing:4px;font-weight:700;transform:rotate(-3deg);
+  animation:stampIn .45s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes stampIn{0%{transform:rotate(-3deg) scale(2.4);opacity:0}100%{transform:rotate(-3deg) scale(1);opacity:1}}
+.stamp.full{color:#2f9e44;border-color:#2f9e44;background:#d8f5d0}
+.stamp.doubt{color:#f08c00;border-color:#f08c00;background:#fff3c4}
+.stamp.shrink{color:#e03131;border-color:#e03131;background:#ffe0e0}
+.stamp.manual{color:#6c8cff;border-color:#6c8cff;background:#e8edff}
+.scoreline{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin:26px 0 8px;font-size:15px}
+.scoreline .num{font-size:22px;font-weight:700}
+.mini{width:170px;height:10px;border-radius:999px;background:#f3e9dc;display:inline-block;
+  vertical-align:middle;margin-left:10px;overflow:hidden}
+.mini>i{display:block;height:100%;background:#ff9ff3;border-radius:999px}
+.foot{font-size:12px;color:#a58fb5;text-align:center;margin-top:22px}
+.back{background:none;border:2px solid #d8cfc0;color:#a58fb5;border-radius:999px;
+  padding:9px 26px;font-size:13px;cursor:pointer;margin-top:18px;font-family:inherit}
+.back:hover{border-color:#ff6b6b;color:#ff6b6b}
+
+#skin-bar{display:none}
+</style>
+</head>
+<body>
+<div class="track" id="track">
+
+  <!-- ============ 页 1: 首页（方案预览） ============ -->
+  <section class="panel" id="p-home">
+    <div class="inner">
+      <header>
+        <div class="en-tag">MODEL INTELLIGENCE CHECK</div>
+        <h1>模型智力测试</h1>
+        <div class="sub">断网做题 · 固定协议 · 与官方参考分对照</div>
+      </header>
+      <div class="card">
+        <h2>测试方案（已锁定）</h2>
+        <div class="hero-line" id="hero-line"></div>
+        <div class="books" id="books"></div>
+        <button class="start" id="go">开始测试</button>
+      </div>
+      <div class="foot">model-intel-check · temp=1.0 / top_p=0.95 / thinking=high / 无工具无联网</div>
+    </div>
+  </section>
+
+  <!-- ============ 页 2: 机器人答题中 ============ -->
+  <section class="panel" id="p-run">
+    <div class="inner">
+      <div class="stage">
+        <div class="robot-scene">
+          <span class="sym" style="left:6px;top:80px">π</span>
+          <span class="sym" style="left:36px;top:130px">√</span>
+          <span class="sym" style="left:250px;top:70px">∫</span>
+          <span class="sym" style="left:272px;top:130px">Σ</span>
+          <span class="sym" style="left:20px;top:40px">÷</span>
+          <span class="sym" style="left:264px;top:26px">≈</span>
+          <svg class="robot" width="220" height="190" viewBox="0 0 220 190">
+            <line x1="110" y1="14" x2="110" y2="30" stroke="#a58fb5" stroke-width="4"/>
+            <circle class="ant-dot" cx="110" cy="11" r="6" fill="#4ecdc4"/>
+            <rect x="68" y="30" width="84" height="62" rx="16" fill="#fff" stroke="#3d3052" stroke-width="3"/>
+            <circle class="eye" cx="94" cy="58" r="7" fill="#3d3052"/>
+            <circle class="eye" cx="126" cy="58" r="7" fill="#3d3052"/>
+            <rect x="100" y="74" width="20" height="5" rx="2.5" fill="#4ecdc4"/>
+            <rect x="76" y="96" width="68" height="48" rx="14" fill="#fff" stroke="#3d3052" stroke-width="3"/>
+            <circle cx="110" cy="120" r="8" fill="#ffd93d" stroke="#3d3052" stroke-width="2.5"/>
+            <g class="arm">
+              <rect x="140" y="112" width="36" height="11" rx="5.5" fill="#fff" stroke="#3d3052" stroke-width="3"/>
+              <rect x="170" y="104" width="7" height="30" rx="2" fill="#ff6b6b" stroke="#3d3052" stroke-width="2"/>
+            </g>
+            <rect x="98" y="150" width="96" height="34" rx="5" fill="#fff" stroke="#d9d2e3" stroke-width="2"/>
+            <line class="paper-line" x1="108" y1="161" x2="178" y2="161"/>
+            <line class="paper-line" x1="108" y1="170" x2="170" y2="170"/>
+            <line class="paper-line" x1="108" y1="179" x2="160" y2="179"/>
+          </svg>
+          <div class="desk"></div>
+        </div>
+
+        <div class="prog-zone" id="prog-zone" title="点击展开题目明细">
+          <div class="prog"><i id="hp"></i></div>
+          <div class="prog-txt">答题进度 <b id="hp-txt">0 / 0</b> · <span id="s-time">0:00</span></div>
+          <div class="prog-hint" id="prog-hint">▾ 点击进度条查看题目明细</div>
+          <div class="drawer">
+            <div class="drawer-inner">
+              <div class="d-stats">
+                <span>通过 <b id="s-ok" style="color:#2f9e44">0</b></span>
+                <span>未达 <b id="s-miss" style="color:#e03131">0</b></span>
+                <span>异常 <b id="s-err" style="color:#f08c00">0</b></span>
+                <span>上游 <b id="s-echo" style="font-size:11px">…</b></span>
+              </div>
+              <div id="arena"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 页 3: 测试结果 ============ -->
+  <section class="panel" id="p-result">
+    <div class="inner">
+      <div class="card result">
+        <div style="font-size:13px;color:#a58fb5;letter-spacing:3px;margin-bottom:18px">测 试 结 果</div>
+        <div><span class="stamp full" id="r-stamp">…</span></div>
+        <div class="scoreline" id="r-scores"></div>
+        <div class="foot" id="r-msg"></div>
+        <div class="foot" style="margin-top:8px">失分题人工复核见 results/ · 判定标准 references/anti-cheat.md</div>
+        <button class="back" id="back">← 返回首页</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const BOOK_COLORS=[['#ff6b6b','#e85555'],['#4ecdc4','#3dbdb4'],['#ffd93d','#e8c020'],['#6c8cff','#5470e8']];
+let CFG=null,prevItems={},pollTimer=null,suiteMeta={};
+
+function slideTo(i){$('track').style.transform=`translateX(${-100*i}vw)`;}
+
+function bookSVG(c1,c2){return `<svg class="book" width="46" height="58" viewBox="0 0 48 60">
+  <rect x="5" y="3" width="38" height="54" rx="5" fill="${c1}" stroke="#3d3052" stroke-width="2.5"/>
+  <rect x="5" y="3" width="10" height="54" rx="5" fill="${c2}" stroke="#3d3052" stroke-width="2.5"/>
+  <line x1="22" y1="16" x2="36" y2="16" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="22" y1="25" x2="36" y2="25" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  <line x1="22" y1="34" x2="32" y2="34" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+</svg>`;}
+
+async function boot(){
+  CFG=await(await fetch('/api/config')).json();
+  CFG.suites.forEach((s,i)=>{s.color=BOOK_COLORS[i%BOOK_COLORS.length];suiteMeta[s.kind]=s;});
+  $('hero-line').innerHTML=
+    `<span class="badge">被测模型 · ${CFG.model}</span>`+
+    `<span class="badge">thinking ${CFG.no_thinking?'关':'开'}</span>`+
+    `<span class="badge">并发 ${CFG.concurrency}</span>`;
+  $('books').innerHTML=CFG.suites.map(s=>`
+    <div class="book-card">
+      ${s.ref_pct!=null?`<div class="ref">官方参考 ${s.ref_pct}%</div>`:''}
+      ${bookSVG(s.color[0],s.color[1])}
+      <div class="name">${s.name}</div>
+      <div class="meta">共 ${s.count} 题</div>
+      <div class="stars">${'★'.repeat(s.stars)}${'☆'.repeat(5-s.stars)}</div>
+    </div>`).join('');
+}
+
+$('prog-zone').onclick=()=>{
+  const z=$('prog-zone');z.classList.toggle('open');
+  $('prog-hint').textContent=z.classList.contains('open')?'▴ 点击收起题目明细':'▾ 点击进度条查看题目明细';
+};
+
+$('go').onclick=async()=>{
+  const r=await fetch('/api/start',{method:'POST',body:'{}'});
+  const d=await r.json();
+  if(!d.ok){alert(d.error||'启动失败');return}
+  prevItems={};
+  slideTo(1);
+  pollTimer=setInterval(poll,1500);poll();
+};
+
+$('back').onclick=()=>{slideTo(0);};
+
+async function poll(){
+  const s=await(await fetch('/api/state')).json();
+  if(s.status==='idle')return;
+  $('hp').style.width=s.total?(100*s.done/s.total).toFixed(1)+'%':'0';
+  $('hp-txt').textContent=`${s.done} / ${s.total}`;
+  let ok=0,miss=0,err=0;
+  for(const v of Object.values(s.items)){if(v.status==='ok')ok++;else if(v.status==='miss')miss++;else if(v.status==='error')err++;}
+  $('s-ok').textContent=ok;$('s-miss').textContent=miss;$('s-err').textContent=err;
+  $('s-echo').textContent=s.endpoint_echo||'…';
+  if(s.elapsed!=null){const e=Math.floor(s.elapsed);$('s-time').textContent=`${Math.floor(e/60)}:${String(e%60).padStart(2,'0')}`;}
+  const groups={};
+  for(const[k,v]of Object.entries(s.items)){(groups[v.kind]??=[]).push([k,v])}
+  let html='';
+  for(const[kind,arr]of Object.entries(groups)){
+    const meta=suiteMeta[kind]||{};
+    html+=`<div class="suite-line">${meta.name||kind} · ${arr.length} 题</div><div class="tiles">`;
+    for(const[k,v]of arr){
+      const changed=prevItems[k]&&prevItems[k].status!==v.status;
+      const ch=v.status==='ok'?'✓':v.status==='miss'?'✗':v.status==='error'?'!':'·';
+      html+=`<div class="t ${v.status}${changed?' pop':''}" title="${k} ${v.extracted??''}">${ch}</div>`;
+    }
+    html+='</div>';
+  }
+  $('arena').innerHTML=html;
+  prevItems=JSON.parse(JSON.stringify(s.items));
+  if(s.status==='done'||s.status==='failed'){clearInterval(pollTimer);setTimeout(()=>showResult(s),900);}
+}
+
+function showResult(s){
+  if(s.status==='failed'){
+    $('r-stamp').className='stamp shrink';$('r-stamp').textContent='运行失败';
+    $('r-scores').innerHTML='';$('r-msg').textContent=s.message||'';
+  }else{
+    let scores='',worst=null,hasRef=false;
+    for(const[k,[ok,n]]of Object.entries(s.summary)){
+      const pct=100*ok/n,meta=suiteMeta[k]||{};
+      scores+=`<span>${meta.name||k}<br><span class="num">${ok}/${n}</span> ${pct.toFixed(1)}%
+        <span class="mini"><i style="width:${pct}%"></i></span></span>`;
+      if(meta.ref_pct!=null){hasRef=true;
+        const band=(k==='aime'?(n>20?10:13.3):5);
+        const d=pct-(meta.ref_pct-band);
+        worst=worst==null?d:Math.min(worst,d);}
+    }
+    $('r-scores').innerHTML=scores;
+    $('r-msg').textContent=s.message||'';
+    let key,txt;
+    if(!hasRef){key='manual';txt='测试完成 · 请人工对照官方参考分';}
+    else if(worst>=0){key='full';txt='满血 · 与官方参考一致';}
+    else if(worst>=-15){key='doubt';txt='存疑 · 建议复测确认';}
+    else{key='shrink';txt='疑似缩水 · 启动 anti-cheat B 组检查';}
+    $('r-stamp').className='stamp '+key;$('r-stamp').textContent=txt;
+  }
+  slideTo(2);
+}
+
+boot();
+</script>
+</body>
+</html>

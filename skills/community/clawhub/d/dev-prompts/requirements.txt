@@ -1,0 +1,3 @@
+# dev-prompts is a markdown prompt pack (PROMPTS.md); no Python dependencies.
+# This file marks the folder as an external/documentation skill for the
+# portfolio harness (ci/verify_product.py structure check).

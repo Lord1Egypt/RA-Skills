@@ -1,44 +1,57 @@
-## Description: <br>
-Turns financial-services outputs into slides or a PowerPoint deck for strips, teasers, pitch materials, refreshed decks, and banker-ready .pptx deliverables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turn financial-services outputs into slides or a PowerPoint deck. Use when the user wants a strip, teaser, pitch material, refreshed deck, or a banker-ready .pptx generated from this plugin.
 
-## Publisher: <br>
-[jackdark425](https://clawhub.ai/user/jackdark425) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jackdark425](https://clawhub.ai/user/jackdark425)
 
-## Use Case: <br>
-Developers, analysts, and financial-services teams use this skill to convert analysis, templates, or existing materials into editable PowerPoint deliverables. It is especially suited for banker-style strips, teasers, pitch materials, refreshed decks, and China-market decks that require stricter provenance and typo checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow routes work to companion PPT or China-market investigation skills. <br>
-Mitigation: Confirm those companion skills are trusted in the deployment environment before installing or using this skill. <br>
-Risk: Refreshing templates or existing presentations can modify PowerPoint deliverables. <br>
-Mitigation: Use copies of important decks before running refresh or editing workflows. <br>
-Risk: Presentation data can be unsuitable for external use if source numbers or dates are stale or unverified. <br>
-Mitigation: Review the delivered deck for number/date consistency and flag any data points that still need verification before external use. <br>
+## Use Case:
 
+Financial-services analysts and agents use this skill to turn analysis, source tables, templates, or existing decks into editable, presentation-ready PowerPoint deliverables such as strip profiles, teasers, process letters, and refreshed banker decks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jackdark425/ppt-deliverable) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [CN client investigation skill](../cn-client-investigation/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Editable PowerPoint .pptx with concise Markdown delivery notes and, when needed, slide-generation code or shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should preserve editable PowerPoint structure, remove placeholders, keep numbers internally consistent, and call out data points that still need verification before external use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.6 (source: server release metadata) <br>
+Risk: Generated financial decks may contain incorrect, stale, or insufficiently sourced numbers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated decks and verify material financial numbers against the source model or data provenance before external use.
+
+Risk: China-market deliverables may be affected by character drift, missing data provenance, or unavailable source data.
+
+Mitigation: Apply the skill's China-market pre-flight, use literal Chinese text safeguards, require provenance for hard numbers, and label unavailable data clearly.
+
+Risk: PowerPoint output may contain text overflow, placeholders, flattened screenshots, or layout mismatches.
+
+Mitigation: Inspect the final .pptx for editable objects, template alignment, meaningful slide titles, no overflow, and no draft placeholders before delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jackdark425/skills/ppt-deliverable)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with generated PowerPoint files and supporting implementation artifacts when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Primary deliverable is an editable .pptx with a brief coverage summary and any data points needing verification.]
+
+## Skill Version(s):
+
+0.9.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

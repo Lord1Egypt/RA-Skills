@@ -1,44 +1,59 @@
-## Description: <br>
-Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series.
 
-## Publisher: <br>
-[ImpKind](https://clawhub.ai/user/ImpKind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[impkind](https://clawhub.ai/user/impkind)
 
-## Use Case: <br>
-Developers and agent users use this skill to add a persistent motivation and reward-state layer to OpenClaw-style agents, including drive tracking, reward logging, anticipation, and session state summaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent motivation and memory files may contain sensitive or unwanted conversation-derived content. <br>
-Mitigation: Install only when persistent agent-wide motivation state is desired, and review or delete ~/.openclaw/workspace/memory/*, ~/.openclaw/workspace/VTA_STATE.md, and ~/.openclaw/workspace/brain-dashboard.html when needed. <br>
-Risk: Auto-injected motivation state can shape future agent behavior. <br>
-Mitigation: Inspect the generated VTA_STATE.md before relying on it in sessions, and remove or edit it if the behavior influence is unwanted. <br>
-Risk: The optional --with-cron install path can run recurring transcript and reward processing. <br>
-Mitigation: Avoid --with-cron unless recurring processing is acceptable, and review any created OpenClaw cron jobs after installation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add persistent reward, drive, seeking, and anticipation state to OpenClaw agents, including scripts for logging rewards, reading drive state, processing reward signals, and generating a local dashboard.
 
-## Reference(s): <br>
-- [Vta Memory on ClawHub](https://clawhub.ai/ImpKind/vta-memory) <br>
-- [README.md](README.md) <br>
-- [VTA: Encode Reward Signals](prompts/encode-rewards.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance, shell command output, JSON/JSONL state files, and an HTML dashboard] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes persistent motivation state under ~/.openclaw/workspace and can optionally register recurring OpenClaw cron jobs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release and OpenClaw metadata) <br>
+Risk: Persistent motivation state can influence future OpenClaw sessions through generated auto-loaded context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when persistent motivation behavior is intended, review VTA_STATE.md, and delete or disable generated state if it should not be retained or auto-loaded.
+
+Risk: Optional cron setup can run recurring agent jobs that process local transcripts and update memory files.
+
+Mitigation: Avoid --with-cron unless recurring transcript processing is acceptable; prefer manual runs for tighter control.
+
+Risk: Generated files can contain conversation-derived state and local memory summaries.
+
+Mitigation: Treat VTA_STATE.md, reward-signals.jsonl, reward-log.jsonl, brain-events.jsonl, and brain-dashboard.html as sensitive local files and remove them when no longer needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/impkind/skills/vta-memory)
+- [README](artifact/README.md)
+- [Encode reward signals prompt](artifact/prompts/encode-rewards.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance, Files]
+
+**Output Format:** [Markdown instructions, shell commands, JSON/JSONL state files, and an HTML dashboard]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Bash plus jq, awk, and bc on Linux or macOS; optional cron setup creates recurring OpenClaw jobs.]
+
+## Skill Version(s):
+
+1.2.0 (source: OpenClaw metadata and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

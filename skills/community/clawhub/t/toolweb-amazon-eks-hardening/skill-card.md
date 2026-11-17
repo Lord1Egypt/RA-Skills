@@ -1,47 +1,61 @@
-## Description: <br>
-Professional Amazon EKS security configuration generator based on CIS Benchmarks for automated Kubernetes cluster hardening. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional Amazon EKS security configuration generator based on CIS Benchmarks for automated Kubernetes cluster hardening.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Developers, DevOps teams, Kubernetes security architects, and cloud infrastructure engineers use this skill to generate Amazon EKS hardening configurations, deployment guidance, and security recommendations aligned with CIS Benchmark practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API request can include session identifiers and optional user identifiers. <br>
-Mitigation: Use opaque, short-lived session IDs where possible and avoid sending stable personal user IDs unless needed. <br>
-Risk: Generated Kubernetes manifests may affect production EKS cluster security posture if applied without review. <br>
-Mitigation: Review generated manifests and deployment guidance before applying them to production clusters. <br>
+## Use Case:
 
+Developers, DevOps engineers, Kubernetes security architects, and cloud infrastructure teams use this skill to generate Amazon EKS hardening configurations, deployment guidance, and security recommendations for cluster security domains such as RBAC, network policies, audit logging, pod security, encryption, and image security.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-amazon-eks-hardening) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
-- [ToolWeb hub](https://hub.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [RapidAPI publisher profile](https://rapidapi.com/user/mkrishna477) <br>
-- [Amazon EKS hardening API route](https://api.mkkpro.com/hardening/amazon-eks) <br>
-- [Amazon EKS hardening API docs](https://api.mkkpro.com:8150/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [JSON responses containing Kubernetes YAML manifest strings, deployment guidance, and security recommendations.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated configurations are based on selected hardening categories such as RBAC, network policies, audit logging, pod security, encryption, and image security.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and openapi.json) <br>
+Risk: Generated Kubernetes manifests may contain unsafe configurations or weaken an EKS cluster if trusted or applied directly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have a qualified Kubernetes operator review every generated manifest before use and validate it against the target EKS and Kubernetes versions.
+
+Risk: Sample output includes configurations called out by the security evidence, including body-level audit logging for secrets and broad roles for default service accounts.
+
+Mitigation: Avoid applying sample output directly to production; revise audit policies, RBAC, and service-account bindings before deployment.
+
+Risk: Requests may send user or session metadata and hardening details to an external API.
+
+Mitigation: Confirm what metadata is sent to the service and avoid submitting sensitive operational details unless approved for the deployment context.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-amazon-eks-hardening)
+- [API Docs](https://api.mkkpro.com:8150/docs)
+- [Kong Route](https://api.mkkpro.com/hardening/amazon-eks)
+- [ToolWeb](https://toolweb.in)
+- [OpenAPI Specification](artifact/openapi.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, API Calls]
+
+**Output Format:** [JSON responses containing YAML manifest text, deployment guidance, and security recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The generation endpoint requires hardeningOptions, sessionId, and timestamp, with optional userId.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and OpenAPI info.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

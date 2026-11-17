@@ -38,6 +38,8 @@ ZH_WORLD_DEFAULTS = {
     "yitian": "zh-CN-XiaoxiaoNeural",         # wuxia / romance tension
     "sengoku": "zh-CN-XiaoyiNeural",          # dramatic, slightly lively alt-history
     "journey-to-west": "zh-CN-XiaoyiNeural",  # playful mythic energy
+    "ramayana": "zh-CN-XiaoxiaoNeural",   # Indian epic narration in Chinese
+    "xuanzang": "zh-CN-XiaoxiaoNeural",  # historical travelogue in Chinese
     "lobster-sanguo": "zh-TW-HsiaoChenNeural",# humorous / strategic
     "captain-underpants": "zh-CN-XiaoyiNeural"# chaotic comedy
 }

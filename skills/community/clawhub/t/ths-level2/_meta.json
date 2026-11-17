@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn7a7xbshwh2w3gbx8g1ejhn6h826ew4",
-  "slug": "ths-level2",
+  "name": "ths-level2",
   "version": "1.0.0",
-  "publishedAt": 1774622832194
+  "description": "同花顺Level2数据获取与深度分析工具",
+  "author": "TE",
+  "entry": "ths_local_analysis.py",
+  "tools": [],
+  "dependencies": ["akshare", "pandas", "numpy"],
+  "categories": ["finance", "stock", "analysis"],
+  "license": "MIT"
 }

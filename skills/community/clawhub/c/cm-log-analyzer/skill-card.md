@@ -1,39 +1,58 @@
-## Description: <br>
-Analyze application logs to produce actionable error digests with pattern detection, severity classification, trend analysis, and remediation recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze application logs to produce actionable error digests with pattern detection, severity classification, trend analysis, and remediation recommendations.
 
-## Publisher: <br>
-[charlie-morrison](https://clawhub.ai/user/charlie-morrison) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[charlie-morrison](https://clawhub.ai/user/charlie-morrison)
 
-## Use Case: <br>
-Developers, SREs, and incident responders use this skill to parse application or server logs, group recurring errors, classify severity, detect trends, and produce remediation-focused reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Logs and generated reports may contain tokens, user data, IP addresses, internal errors, or other sensitive operational details. <br>
-Mitigation: Only provide intended log files or folders, avoid supplying credentials, and review or redact reports before sharing them. <br>
+## Use Case:
 
+Developers, site reliability engineers, and operations teams use this skill to inspect application or server logs, group recurring failures, classify severity, identify trends, and get remediation guidance during incidents or health checks.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/charlie-morrison/cm-log-analyzer) <br>
-- [Error Pattern Reference](references/error-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Text, JSON, or Markdown log-analysis reports with remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May return CI-friendly exit codes based on whether warnings, errors, or fatal log entries are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Analyzed logs and generated reports may contain sensitive operational or personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the skill only on selected log files or directories and limit access to generated reports.
+
+Risk: Untrusted log content may be included in generated Markdown reports.
+
+Mitigation: Prefer JSON or text output for untrusted logs, or review Markdown output before sharing or rendering it.
+
+Risk: CI or scheduled usage can affect operational workflows through nonzero exit codes.
+
+Mitigation: Review filters, severity thresholds, and exit-code handling before wiring the skill into CI, cron, or alerting workflows.
+
+## Reference(s):
+
+- [Error Pattern Reference](references/error-patterns.md)
+- [ClawHub release page](https://clawhub.ai/charlie-morrison/skills/cm-log-analyzer)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Text, JSON, or Markdown log analysis reports with remediation recommendations.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use exit codes 0, 1, or 2 to reflect clean, error, or fatal findings in automation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

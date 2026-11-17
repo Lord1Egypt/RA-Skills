@@ -1,42 +1,62 @@
-## Description: <br>
-Agent S Bridge lets DeepSeek TUI launch Agent-S to control a browser or desktop GUI from natural-language instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agent S Bridge lets DeepSeek TUI launch Agent-S to control browser and desktop GUI workflows from natural-language commands.
 
-## Publisher: <br>
-[huangxianzhan](https://clawhub.ai/user/huangxianzhan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangxianzhan](https://clawhub.ai/user/huangxianzhan)
 
-## Use Case: <br>
-Developers and agent operators can use this skill to check Agent-S setup and launch desktop or browser automation tasks from DeepSeek TUI through shell commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is designed to enable AI-controlled desktop and browser automation, which can act on files, accounts, forms, and other GUI surfaces. <br>
-Mitigation: Use a sandbox, virtual machine, or test browser profile, and manually approve file changes, submissions, purchases, and account actions. <br>
-Risk: The skill requires sensitive API credentials for model access. <br>
-Mitigation: Use dedicated API keys with limited scope, avoid entering passwords, MFA codes, or payment data during automation, and rotate keys if exposed. <br>
-Risk: The security review notes that the wrapper's authority is under-scoped and instruction forwarding is unclear. <br>
-Mitigation: Ask the publisher to document safety boundaries and fix instruction forwarding before relying on it for sensitive or unattended workflows. <br>
+## Use Case:
 
+Developers and external users use this skill to route natural-language desktop and browser automation requests from DeepSeek TUI to Agent-S. It is intended for controlled GUI automation tasks that may span browsers, editors, file managers, and other desktop applications.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/huangxianzhan/agent-s-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Launches Agent-S locally and may open a new automation window; requires OpenAI or Anthropic API credentials and optional UI grounding endpoint configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill can hand off broad desktop-control tasks that may affect files, applications, browser sessions, and other local resources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a sandbox, VM, or low-privilege account with a test browser profile and no access to production systems.
+
+Risk: The documented browser mode is not technically enforced as browser-only containment.
+
+Mitigation: Do not rely on browse mode for isolation; enforce boundaries with the operating system, account permissions, and browser profile separation.
+
+Risk: The bridge depends on an unpinned third-party desktop-control package.
+
+Mitigation: Pin and verify the gui-agents package before use and review updates before deploying them.
+
+Risk: The workflow requires API keys and may run in logged-in or sensitive user environments.
+
+Mitigation: Use test credentials where possible and avoid payment flows, sensitive files, logged-in personal accounts, and production data.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/huangxianzhan/skills/agent-s-bridge)
+- [Publisher Profile](https://clawhub.ai/user/huangxianzhan)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs operational guidance for running Agent-S commands and setting required environment variables.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, _meta.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

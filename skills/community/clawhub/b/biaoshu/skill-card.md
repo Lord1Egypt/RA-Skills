@@ -1,43 +1,60 @@
-## Description: <br>
-专业标书撰写技能体系，支持从招标文件解读到文档质量控制的全流程工作。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+专业标书撰写技能体系，支持从招标文件解读到文档质量控制的全流程工作。
 
-## Publisher: <br>
-[mengzi53](https://clawhub.ai/user/mengzi53) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mengzi53](https://clawhub.ai/user/mengzi53)
 
-## Use Case: <br>
-Business, procurement, and proposal teams use this skill to analyze tender requirements, plan bid document structure, draft proposal sections, review compliance, and improve document quality before submission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Tender files, pricing, qualifications, and competitor analysis may contain sensitive business information. <br>
-Mitigation: Treat input materials and generated drafts as confidential and share them only with authorized bid, legal, or procurement reviewers. <br>
-Risk: Generated bid commitments or compliance claims may be inaccurate, unsupported, or difficult to fulfill. <br>
-Mitigation: Have legal, procurement, and subject matter experts verify compliance claims, pricing assumptions, technical commitments, and service promises before submission. <br>
+## Use Case:
 
+Employees, external proposal teams, and business development users use this skill to interpret tender documents, organize bid responses, draft proposal content, check compliance, and improve document quality.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mengzi53/biaoshu) <br>
-- [Publisher profile](https://clawhub.ai/user/mengzi53) <br>
-- [OpenClaw标书撰写技能体系.md](artifact/OpenClaw标书撰写技能体系.md) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown prose, outlines, checklists, tables, and optional Mermaid diagrams] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be reviewed against tender documents and organizational commitments before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Bid responses may include incorrect qualifications, pricing, compliance interpretations, or commitments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify generated content with responsible business, legal, pricing, and subject matter reviewers before relying on it for a real submission.
+
+Risk: Tender documents and company materials may contain confidential information.
+
+Mitigation: Use the skill only in an environment approved for that data and avoid providing confidential materials where that approval is absent.
+
+Risk: The skill can guide compliance checks but does not replace authoritative review of tender requirements.
+
+Mitigation: Cross-check all compliance conclusions against the original tender documents and applicable organizational review processes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mengzi53/skills/biaoshu)
+- [Publisher profile](https://clawhub.ai/user/mengzi53)
+- [Skill instructions](artifact/SKILL.md)
+- [OpenClaw bid document writing system](artifact/OpenClaw标书撰写技能体系.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown or plain text with outlines, tables, Mermaid snippets, checklists, and drafting guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should be reviewed against the tender source text and approved business, legal, pricing, and qualification records before submission.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

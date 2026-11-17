@@ -1,46 +1,63 @@
-## Description: <br>
-Use this skill when the task should be done through the apitweet command-line client, including installing the CLI, configuring Twitter/X app or profile auth, previewing requests, and calling apitweet endpoints through convenience commands or raw paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apitweet CLI helps agents install, configure, preview, and run ApiTweet Twitter/X workflows from the terminal.
 
-## Publisher: <br>
-[aliraza948](https://clawhub.ai/user/aliraza948) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[aliraza948](https://clawhub.ai/user/aliraza948)
 
-## Use Case: <br>
-Developers, AI agent builders, growth teams, content operators, and automation workflows use this skill to run ApiTweet CLI commands for Twitter/X data retrieval, credential setup, dry-run previews, write actions, and Markdown-to-X-Article publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can enable credentialed Twitter/X automation, including write actions. <br>
-Mitigation: Use --dry-run before write actions, verify the active profile or account, and execute only after the user clearly authorizes the action. <br>
-Risk: Saved app and profile configuration can contain API keys, cookies, auth_token values, or ct0 values in plain JSON on disk. <br>
-Mitigation: Avoid storing long-lived credentials on shared machines or CI runners and isolate APITWEET_CONFIG_DIR for testing or multi-user environments. <br>
-Risk: Raw absolute URLs or untrusted endpoint paths may send saved credentials to unintended request targets. <br>
-Mitigation: Use convenience commands where possible and avoid raw absolute URLs or untrusted endpoint paths when credentials are configured. <br>
-Risk: The auth cookie workflow places an auth_token in a request path. <br>
-Mitigation: Treat logs, traces, and network boundaries as sensitive when using auth cookie commands. <br>
+## Use Case:
 
+Developers, AI agent builders, growth teams, and content operators use this skill to fetch Twitter/X data, manage ApiTweet credentials, preview requests, and perform account workflows through the apitweet CLI.
 
-## Reference(s): <br>
-- [ApiTweet](https://apitweet.com) <br>
-- [ApiTweet dashboard](https://apitweet.com/dashboard) <br>
-- [ClawHub skill page](https://clawhub.ai/aliraza948/apitweet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output expectations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides an agent to prefer dry-run previews before write actions and to avoid echoing raw credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release evidence; package.json in artifact reports 0.1.6) <br>
+Risk: The CLI handles persistent ApiTweet and Twitter/X credentials, including API keys, cookies, auth_token values, and ct0 values.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use isolated config directories, avoid shared machines and CI runners, and do not echo or log raw credentials.
+
+Risk: The CLI can perform live social-account actions such as publishing, liking, following, profile updates, direct messages, and article publishing.
+
+Mitigation: Use dry-run previews before write actions and require clear user confirmation before sending live requests.
+
+Risk: Saved credentials can be forwarded to broad or arbitrary request destinations when custom base URLs or full URLs are used.
+
+Mitigation: Avoid custom base URLs or full URLs with saved credentials unless the destination has been explicitly verified.
+
+Risk: Unpinned npx install paths can make package provenance harder to verify.
+
+Mitigation: Prefer pinned or otherwise verified installation sources before installing or executing the CLI.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aliraza948/skills/apitweet)
+- [ApiTweet](https://apitweet.com)
+- [ApiTweet dashboard](https://apitweet.com/dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON-oriented CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run previews and credential-aware command guidance for ApiTweet and Twitter/X workflows.]
+
+## Skill Version(s):
+
+0.1.4 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

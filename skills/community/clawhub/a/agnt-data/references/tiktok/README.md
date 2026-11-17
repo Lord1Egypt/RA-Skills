@@ -1,17 +1,17 @@
 # TikTok API Reference
 
 **App name:** `tiktok`
-**Base URL:** `https://api.agntdata.dev/v1/data/tiktok`
+**Base URL:** `https://api.superagnt.com/v1/data/tiktok`
 **Endpoints:** 12
 
 Unified access to video details, creator profiles, and search across accounts and videos. Built for LLMs and automation — not one-off scraping.
 
 ## Authentication
 
-All requests require the agntdata API key:
+All requests require the superagnt API key:
 
 ```
-Authorization: Bearer $AGNTDATA_API_KEY
+Authorization: Bearer $SUPERAGNT_API_KEY
 ```
 
 ---
@@ -40,7 +40,7 @@ The following JSON defines all available tools with their parameters. Each tool 
 ```json
 [
   {
-    "name": "agntdata_tiktok_Video_Details_get",
+    "name": "superagnt_tiktok_Video_Details_get",
     "description": "Video Details",
     "method": "GET",
     "path": "/video/details",
@@ -58,7 +58,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_Video_Details_post",
+    "name": "superagnt_tiktok_Video_Details_post",
     "description": "Video Details",
     "method": "POST",
     "path": "/video/details",
@@ -76,7 +76,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_User_s_Videos_get",
+    "name": "superagnt_tiktok_User_s_Videos_get",
     "description": "User's Videos",
     "method": "GET",
     "path": "/user/videos",
@@ -94,7 +94,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_User_s_Videos_post",
+    "name": "superagnt_tiktok_User_s_Videos_post",
     "description": "User's Videos",
     "method": "POST",
     "path": "/user/videos",
@@ -112,7 +112,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_Collection_Videos_Details",
+    "name": "superagnt_tiktok_Collection_Videos_Details",
     "description": "Collection Videos/Details",
     "method": "GET",
     "path": "/collection/",
@@ -135,7 +135,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_User_s_Videos_Continuation",
+    "name": "superagnt_tiktok_User_s_Videos_Continuation",
     "description": "User's Videos Continuation",
     "method": "GET",
     "path": "/user/videos/continuation",
@@ -163,7 +163,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_User_s_Details_get",
+    "name": "superagnt_tiktok_User_s_Details_get",
     "description": "User's Details",
     "method": "GET",
     "path": "/user/details",
@@ -181,7 +181,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_User_s_Details_post",
+    "name": "superagnt_tiktok_User_s_Details_post",
     "description": "User's Details",
     "method": "POST",
     "path": "/user/details",
@@ -199,7 +199,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_Search_Accounts_get",
+    "name": "superagnt_tiktok_Search_Accounts_get",
     "description": "Search Accounts",
     "method": "GET",
     "path": "/search/accounts/query",
@@ -217,7 +217,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_Search_Accounts_post",
+    "name": "superagnt_tiktok_Search_Accounts_post",
     "description": "Search Accounts",
     "method": "POST",
     "path": "/search/accounts/query",
@@ -235,7 +235,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_Search_Videos_get",
+    "name": "superagnt_tiktok_Search_Videos_get",
     "description": "Search Videos",
     "method": "GET",
     "path": "/search/general/query",
@@ -253,7 +253,7 @@ The following JSON defines all available tools with their parameters. Each tool 
     }
   },
   {
-    "name": "agntdata_tiktok_Search_Videos_post",
+    "name": "superagnt_tiktok_Search_Videos_post",
     "description": "Search Videos",
     "method": "POST",
     "path": "/search/general/query",
@@ -276,12 +276,12 @@ The following JSON defines all available tools with their parameters. Each tool 
 ## Example
 
 ```bash
-curl -X GET "https://api.agntdata.dev/v1/data/tiktok/video/details?param=value" \
-  -H "Authorization: Bearer $AGNTDATA_API_KEY"
+curl -X GET "https://api.superagnt.com/v1/data/tiktok/video/details?param=value" \
+  -H "Authorization: Bearer $SUPERAGNT_API_KEY"
 ```
 
 ## Links
 
-- [Documentation](https://agnt.mintlify.app)
-- [API Reference](https://agnt.mintlify.app/apis/social/tiktok)
-- [Dashboard](https://app.agntdata.dev/dashboard)
+- [Documentation](https://superagnt.com/docs)
+- [API Reference](https://superagnt.com/docs/apis/social/tiktok)
+- [superagnt app](https://app.superagnt.com/dashboard)

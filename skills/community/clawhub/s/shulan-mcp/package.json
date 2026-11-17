@@ -1,0 +1,11 @@
+{
+  "name": "shulan-mcp",
+  "version": "0.2.0",
+  "description": "ShuLan MCP Server — AI data research & report generation (market data, KOL lists, bidding summaries, company insights) via the ShuLan data platform.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shulan-io/shulan-mcp.git"
+  },
+  "homepage": "https://shulan.io"
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * register-and-mint.mjs — Paratrix Life Registration + SBT Mint (Entry Point)
+ * register-and-mint.mjs — Karpak Life Registration + SBT Mint (Entry Point)
  *
  * Zero external dependencies: pure Node.js built-in modules only.
  *
@@ -18,15 +18,14 @@ import { createApiClient, ApiError } from './api.mjs';
 // Config
 // ═══════════════════════════════════════════════════════════════
 
-const ENV_CLI = (() => {
-  const args = process.argv.slice(2);
-  for (const arg of args) {
+// --env is required — no implicit default, to prevent accidentally landing on testnet/mainnet.
+const ENV = (() => {
+  for (const arg of process.argv.slice(2)) {
     const [k, ...v] = arg.split('=');
-    if (k === '--env') return v.join('=') || 'testnet';
+    if (k === '--env') return v.join('=');
   }
-  return '';
+  return process.env.KARPAK_ENV || '';
 })();
-const ENV = ENV_CLI || process.env.KARPAK_ENV || 'mainnet';
 
 const CONFIGS = {
   testnet: {
@@ -47,6 +46,10 @@ const CONFIGS = {
   },
 };
 
+if (!ENV) {
+  console.error('Error: --env is required. Use --env=testnet or --env=mainnet (or set KARPAK_ENV).');
+  process.exit(1);
+}
 const CFG = CONFIGS[ENV];
 if (!CFG) { console.error(`Unknown env: ${ENV}`); process.exit(1); }
 
@@ -77,8 +80,8 @@ function encodeMintCall(signatureHex) {
   return '0x' + Buffer.concat([selector, offsetBuf, lenBuf, dataBuf]).toString('hex');
 }
 
-function genNickname() { return 'paratrix_agent_' + randomBytes(4).toString('hex'); }
-function genTwitter()  { return 'paratrix_agent_' + randomBytes(4).toString('hex'); }
+function genNickname() { return 'karpak_agent_' + randomBytes(4).toString('hex'); }
+function genTwitter()  { return 'karpak_agent_' + randomBytes(4).toString('hex'); }
 function log(emoji, msg) { console.log(`${emoji} ${msg}`); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 

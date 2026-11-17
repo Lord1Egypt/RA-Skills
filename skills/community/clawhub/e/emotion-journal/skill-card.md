@@ -1,42 +1,50 @@
-## Description: <br>
-Help users record emotions, identify triggers, notice patterns, and build a gentle self-observation habit <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Help users record emotions, identify triggers, notice patterns, and build a gentle self-observation habit.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
 
-## Use Case: <br>
-External users use this skill to log recent emotional experiences, reflect on feelings and triggers, recognize recurring patterns, and choose one small grounded next step. It supports self-observation and reflective journaling only, not diagnosis, psychotherapy, psychiatric evaluation, or medical advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may mistake emotional reflection for diagnosis, psychotherapy, psychiatric evaluation, or medical advice. <br>
-Mitigation: Keep outputs framed as self-observation and reflective support, avoid diagnostic claims, and recommend licensed professional care when distress is severe or persistent. <br>
-Risk: Self-harm, suicide, intent to harm others, or inability to stay safe can make ordinary journaling inappropriate. <br>
-Mitigation: Stop the normal journaling flow and focus on immediate safety by directing the user to a trusted person, local emergency care, a crisis line, a hospital, or a licensed professional. <br>
-Risk: Reflective summaries can over-interpret one emotional event into a fixed identity or certainty claim. <br>
-Mitigation: Use tentative, non-judgmental language and present observations as preliminary patterns rather than definitive explanations. <br>
+## Use Case:
 
+External users use this skill for guided emotional self-reflection: logging recent experiences, identifying emotions and triggers, noticing recurring patterns, and choosing one grounded next step. It is reflective support only and is not diagnosis, psychotherapy, psychiatric evaluation, or medical advice.
 
-## Reference(s): <br>
-- [Emotion Journal on ClawHub](https://clawhub.ai/harrylabsj/emotion-journal) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style structured reflection with short prompts and summary fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically includes event, emotion, intensity, trigger, thought, action, and one small next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Users may treat reflective journaling prompts as clinical mental-health care during severe distress or crisis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as self-observation only, avoid diagnosis or treatment claims, and direct users in crisis or severe distress to professional, emergency, or crisis support.
+
+## Reference(s):
+
+- [Emotion Journal on ClawHub](https://clawhub.ai/harrylabsj/skills/emotion-journal)
+- [Publisher profile: harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown with structured reflection prompts and summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include event, emotion, intensity, trigger, thought, action, and next-step fields; no code execution, data access, persistence, or hidden behavior was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

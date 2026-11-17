@@ -1,0 +1,279 @@
+{
+  "schema_version": "2.0",
+  "model": "offer_snapshot",
+  "case_id": "generic-beauty-serum-30ml",
+  "example_only": true,
+  "locale_policy": {
+    "language": "user_selected",
+    "region": "configurable",
+    "example_locale": "zh-CN",
+    "note": "本文件仅演示一个中国大陆地区样本；实际语言、地区、币种和渠道必须按用户选择替换。"
+  },
+  "snapshot": {
+    "captured_at": "2026-01-15T10:00:00+08:00",
+    "freshness": "sample",
+    "freshness_note": "虚构示例，仅用于演示结构与公式，不代表任何真实或当前报价。",
+    "currency": "CNY",
+    "region": "中国大陆"
+  },
+  "normalized_product": {
+    "brand": "示例品牌",
+    "product_name": "示例修护精华",
+    "variant": "国行常规版",
+    "spec": "30ml",
+    "comparison_unit": "1件30ml正装"
+  },
+  "user_requirements": {
+    "required_quantity": 1,
+    "accepts_bundle": true,
+    "gift_preference": "only_if_used",
+    "needs_invoice": true,
+    "minimum_expiry_months": 12
+  },
+  "formula_policy": {
+    "cash_landed_price": "display_price - confirmed_discount + mandatory_cost",
+    "bundle_allocation": "cash_landed_price * required_item_reference_value / bundle_reference_value_total",
+    "gift_net_value": "sum(reference_value * quantity * realization_rate)",
+    "net_effective_cost": "cash_landed_price - gift_net_value",
+    "gap_amount": "reference_cash_landed_price - candidate_cash_landed_price",
+    "gap_rate": "gap_amount / reference_cash_landed_price"
+  },
+  "evidence_grade_policy": {
+    "A": "一手商品、活动与结算证据完整",
+    "B": "一手页面但关键条件有缺口",
+    "C": "搜索片段、聚合页或二手线索",
+    "D": "历史回顾或上下文严重缺失",
+    "minimum_grade_for_price_comparison": "B",
+    "minimum_grade_for_purchase_recommendation": "A"
+  },
+  "offers": [
+    {
+      "offer_id": "O-CURRENT-SINGLE",
+      "period": "current",
+      "event_year": null,
+      "channel": "示例品牌官网",
+      "offer_type": "single",
+      "product_match": "exact",
+      "display_price": 429.0,
+      "confirmed_discount": 30.0,
+      "mandatory_cost": 0.0,
+      "cash_landed_price": 399.0,
+      "bundle": null,
+      "gift": {
+        "composition_known": true,
+        "items": [
+          {
+            "sku": "G-SAMPLE-5ML",
+            "name": "示例精华小样",
+            "reference_value": 40.0,
+            "quantity": 2,
+            "realization_rate": 0.4
+          }
+        ],
+        "gift_net_value": 32.0
+      },
+      "net_effective_cost": 367.0,
+      "evidence_refs": [
+        "E-CURRENT-SINGLE"
+      ],
+      "evidence_grade": "A",
+      "price_comparison_eligible": true,
+      "purchase_recommendation_eligible": true,
+      "exclusion_reasons": []
+    },
+    {
+      "offer_id": "O-CURRENT-BUNDLE",
+      "period": "current",
+      "event_year": null,
+      "channel": "示例平台旗舰店",
+      "offer_type": "bundle",
+      "product_match": "exact",
+      "display_price": 420.0,
+      "confirmed_discount": 50.0,
+      "mandatory_cost": 10.0,
+      "cash_landed_price": 380.0,
+      "bundle": {
+        "composition_known": true,
+        "components": [
+          {
+            "sku": "P-SERUM-30ML",
+            "name": "示例修护精华30ml",
+            "quantity": 1,
+            "required": true,
+            "reference_value": 300.0
+          },
+          {
+            "sku": "P-CLEANSER-100ML",
+            "name": "示例洁面100ml",
+            "quantity": 1,
+            "required": false,
+            "reference_value": 200.0
+          }
+        ],
+        "bundle_reference_value_total": 500.0,
+        "required_item_reference_value": 300.0,
+        "required_item_allocated_cost": 228.0
+      },
+      "gift": {
+        "composition_known": false,
+        "items": [],
+        "gift_net_value": null,
+        "reason": "赠品活动只写随机小样，SKU与数量未知"
+      },
+      "net_effective_cost": null,
+      "evidence_refs": [
+        "E-CURRENT-BUNDLE"
+      ],
+      "evidence_grade": "B",
+      "price_comparison_eligible": true,
+      "purchase_recommendation_eligible": false,
+      "exclusion_reasons": [
+        "赠品构成未知",
+        "批次与有效期待确认"
+      ]
+    },
+    {
+      "offer_id": "O-CURRENT-CLUE",
+      "period": "current",
+      "event_year": null,
+      "channel": "示例聚合页",
+      "offer_type": "single",
+      "product_match": "claimed_exact",
+      "display_price": 299.0,
+      "confirmed_discount": null,
+      "mandatory_cost": null,
+      "cash_landed_price": null,
+      "bundle": null,
+      "gift": {
+        "composition_known": false,
+        "items": [],
+        "gift_net_value": null,
+        "reason": "无赠品明细"
+      },
+      "net_effective_cost": null,
+      "evidence_refs": [
+        "E-CURRENT-CLUE"
+      ],
+      "evidence_grade": "C",
+      "price_comparison_eligible": false,
+      "purchase_recommendation_eligible": false,
+      "exclusion_reasons": [
+        "仅有聚合页价格线索",
+        "结算条件与销售主体未知"
+      ]
+    },
+    {
+      "offer_id": "O-HISTORY-2025",
+      "period": "history",
+      "event_year": 2025,
+      "channel": "示例活动回顾",
+      "offer_type": "multi_pack",
+      "product_match": "mismatch",
+      "display_price": 499.0,
+      "confirmed_discount": null,
+      "mandatory_cost": null,
+      "cash_landed_price": null,
+      "bundle": null,
+      "gift": {
+        "composition_known": false,
+        "items": [],
+        "gift_net_value": null,
+        "reason": "历史赠品描述不完整"
+      },
+      "net_effective_cost": null,
+      "evidence_refs": [
+        "E-HISTORY-2025"
+      ],
+      "evidence_grade": "D",
+      "price_comparison_eligible": false,
+      "purchase_recommendation_eligible": false,
+      "exclusion_reasons": [
+        "历史活动不证明当前可得",
+        "两件装与目标单件口径不一致"
+      ]
+    }
+  ],
+  "comparison": {
+    "reference_offer_id": "O-CURRENT-SINGLE",
+    "candidate_offer_id": "O-CURRENT-BUNDLE",
+    "basis": "cash_landed_price",
+    "reference_amount": 399.0,
+    "candidate_amount": 380.0,
+    "gap_amount": 19.0,
+    "gap_rate": 0.047619,
+    "net_value_comparison_available": false,
+    "reason": "两项可按购买方案现金总成本比较；套装赠品未知，不能比较净有效成本。"
+  },
+  "decision": {
+    "result": "建议采购",
+    "recommended_offer_id": "O-CURRENT-SINGLE",
+    "statement": "当前虚构样本中，官网单品满足 A 级证据与用户约束；平台套装现金总成本较低，但关键履约字段仍待核验。",
+    "limitations": [
+      "示例数据不对应真实商品或当前活动",
+      "不同方案所含商品不同，需结合实际需求解释"
+    ],
+    "next_checks": [
+      "重新核对同一时点结算页",
+      "确认套装批次、有效期和赠品明细"
+    ]
+  },
+  "evidence": [
+    {
+      "evidence_id": "E-CURRENT-SINGLE",
+      "source_type": "synthetic_checkout_record",
+      "grade": "A",
+      "title": "虚构官网商品与结算证据",
+      "url": "https://example.com/offers/single",
+      "captured_at": "2026-01-15T10:00:00+08:00",
+      "supports": [
+        "单品身份与现金到手价",
+        "赠品组成与获得条件"
+      ],
+      "limitations": [
+        "仅为结构演示"
+      ]
+    },
+    {
+      "evidence_id": "E-CURRENT-BUNDLE",
+      "source_type": "synthetic_product_page",
+      "grade": "B",
+      "title": "虚构平台套装商品页",
+      "url": "https://example.com/offers/bundle",
+      "captured_at": "2026-01-15T10:00:00+08:00",
+      "supports": [
+        "套装组成与页面价格"
+      ],
+      "limitations": [
+        "缺少批次、有效期和赠品明细"
+      ]
+    },
+    {
+      "evidence_id": "E-CURRENT-CLUE",
+      "source_type": "synthetic_aggregator",
+      "grade": "C",
+      "title": "虚构聚合页线索",
+      "url": "https://example.com/clues/low-price",
+      "captured_at": "2026-01-15T10:00:00+08:00",
+      "supports": [
+        "存在低价线索"
+      ],
+      "limitations": [
+        "不能确认商品身份、主体或结算可得性"
+      ]
+    },
+    {
+      "evidence_id": "E-HISTORY-2025",
+      "source_type": "synthetic_retrospective",
+      "grade": "D",
+      "title": "虚构历史活动回顾",
+      "url": "https://example.com/history/2025",
+      "captured_at": null,
+      "supports": [
+        "曾有两件装活动描述"
+      ],
+      "limitations": [
+        "历史二手内容且规格不同"
+      ]
+    }
+  ]
+}

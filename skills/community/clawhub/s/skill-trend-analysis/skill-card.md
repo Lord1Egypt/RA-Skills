@@ -1,44 +1,55 @@
-## Description: <br>
-Skill Trend Analysis helps agents query and interpret ClawHub Skills growth trends, rankings, search results, statistics, tags, authors, time ranges, and export data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents analyze ClawHub Skills growth trends, ranking changes, search filters, statistics, tags, authors, time windows, exports, and related API data.
 
-## Publisher: <br>
-[dingdingdemao](https://clawhub.ai/user/dingdingdemao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingdingdemao](https://clawhub.ai/user/dingdingdemao)
 
-## Use Case: <br>
-Developers and analysts use this skill to inspect ClawHub Skills trend data, compare leaderboards across time windows, search and filter skills, and turn API responses into concise trend conclusions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries are sent to a disclosed third-party API endpoint. <br>
-Mitigation: Avoid sensitive text in search parameters and use a trusted HTTPS BASE_URL when confidentiality matters. <br>
-Risk: Trend conclusions can be misleading if the selected metric, rank limit, or time window is too narrow. <br>
-Mitigation: State the metric, date range, rank limit, and sample size with each conclusion, and note when data is insufficient. <br>
-Risk: The API rate limit can return HTTP 429 responses during repeated analysis. <br>
-Mitigation: Wait at least three seconds before retrying the same endpoint. <br>
+## Use Case:
 
+Developers and agents use this skill to query read-only ClawHub trend endpoints, compare skill rankings over time, and summarize growth, search, author, tag, and statistics results with supporting parameters.
 
-## Reference(s): <br>
-- [API Endpoints Reference](references/api-endpoints.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/dingdingdemao/skill-trend-analysis) <br>
-- [ClawHub Skills API](http://skills.easytoken.cc/api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with concise analysis, supporting data, and optional curl or jq command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include selected JSON fields from read-only API responses; avoids presenting raw JSON without interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Trend-analysis queries and query parameters are sent to skills.easytoken.cc, and the default endpoint uses unencrypted HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive search terms or query parameters, prefer HTTPS or a trusted network where available, and review generated commands before execution.
+
+Risk: API rate limiting may return HTTP 429 responses during repeated trend queries.
+
+Mitigation: Wait at least 3 seconds before retrying the same endpoint and keep requests focused on the necessary time window and metric.
+
+## Reference(s):
+
+- [Skill Trend Analysis API Endpoints](references/api-endpoints.md)
+- [Skill Trend Analysis on ClawHub](https://clawhub.ai/dingdingdemao/skills/skill-trend-analysis)
+- [ClawHub Skills Trend API](http://skills.easytoken.cc/api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with concise conclusions, supporting data, and optional curl, jq, or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API endpoint names, query parameters, time windows, metrics, rank limits, and rate-limit retry guidance.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

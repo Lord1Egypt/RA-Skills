@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sceneKey": "self-test-practice",
+  "version": "1.0.0",
+  "kind": "page",
+  "audience": "study",
+  "license": "MIT-0",
+  "minimumCreatorVersion": "0.2.0",
+  "artifactProtocolVersion": 1,
+  "dataModes": [
+    "local",
+    "controlled-cloud"
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "自测练习",
+      "goal": "把知识点变成有解释反馈的练习页面。",
+      "optionalInputs": [
+        {
+          "key": "objectives",
+          "question": "要检查哪些知识点或技能？"
+        },
+        {
+          "key": "level",
+          "question": "练习者的水平和难度偏好是什么？"
+        },
+        {
+          "key": "questions",
+          "question": "是否有题库、答案或评分标准？"
+        },
+        {
+          "key": "feedback",
+          "question": "希望立即反馈还是完成后统一查看？"
+        }
+      ],
+      "sections": [
+        "练习范围",
+        "题目与作答",
+        "结果与解释",
+        "错题回顾",
+        "重新练习"
+      ],
+      "qualityChecks": [
+        "答案与解析必须一致，多选、未答和重试状态需明确。",
+        "题目没有唯一答案时用评分量表，不伪造精确分数或通过认证。",
+        "本地自测不要声称防作弊；收集班级成绩需明确受控分享和数据范围。"
+      ],
+      "missingInformationPolicy": "所有问题均可跳过；使用已有资料，显式列出影响结果的假设，未知事实保留待确认。"
+    },
+    "en": {
+      "title": "Self-test practice",
+      "goal": "Create practice with explanatory feedback for each learning objective.",
+      "optionalInputs": [
+        {
+          "key": "objectives",
+          "question": "Which concepts or skills should the practice assess?"
+        },
+        {
+          "key": "level",
+          "question": "What is the learner’s level and desired difficulty?"
+        },
+        {
+          "key": "questions",
+          "question": "Are questions, answers or grading criteria provided?"
+        },
+        {
+          "key": "feedback",
+          "question": "Should feedback appear immediately or after completion?"
+        }
+      ],
+      "sections": [
+        "Practice scope",
+        "Questions and answers",
+        "Results and explanations",
+        "Review mistakes",
+        "Try again"
+      ],
+      "qualityChecks": [
+        "Keep answers and explanations consistent; define multi-select, skipped and retry states.",
+        "Use a rubric for open-ended answers; do not invent precise grades or certifications.",
+        "Local practice does not prevent cheating; class results require an explicit controlled collection flow."
+      ],
+      "missingInformationPolicy": "All questions may be skipped. Use known material, state consequential assumptions, and leave unknown facts unresolved."
+    }
+  }
+}

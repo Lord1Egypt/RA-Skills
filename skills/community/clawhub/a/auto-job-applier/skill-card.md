@@ -1,47 +1,67 @@
-## Description: <br>
-Automatically finds resume-matched jobs, presents candidates for approval, fills approved applications, drafts cover letters, answers screening questions, and logs application status through ResumeX. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Job Application helps an agent find resume-matched jobs, present an approval list, fill approved application forms, draft cover letters, submit applications, and log outcomes through resumex.dev.
 
-## Publisher: <br>
-[atharva-badgujar](https://clawhub.ai/user/atharva-badgujar) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[atharva-badgujar](https://clawhub.ai/user/atharva-badgujar)
 
-## Use Case: <br>
-Job seekers use this skill to search for relevant job postings, compare matches against their ResumeX resume, and apply to selected jobs with guided browser automation after approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can access ResumeX resume data and store sensitive answers such as salary, work authorization, demographic, or compliance-related fields locally. <br>
-Mitigation: Keep RESUMEX_API_KEY in environment variables only, restrict or delete data/user_preferences.json, and avoid saving optional sensitive answers unless needed. <br>
-Risk: The skill can submit applications and screening answers under the user's identity. <br>
-Mitigation: Review the approval list, job details, cover letters, and screening answers before submission, and limit early runs with MAX_APPLICATIONS. <br>
-Risk: Some job-board automation may require login or conflict with site expectations for manual submission. <br>
-Mitigation: Treat LinkedIn Easy Apply and external redirects as manual-review flows unless the user explicitly chooses otherwise. <br>
+## Use Case:
 
+External users and job seekers use this skill to search for current roles that match their resume, review ranked recommendations, and apply to approved jobs with agent-assisted form filling and cover-letter drafting.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/atharva-badgujar/auto-job-applier) <br>
-- [ResumeX Agent API](https://resumex.dev/api/v1/agent) <br>
-- [ResumeX Privacy Policy](https://resumex.dev/privacy) <br>
-- [Form Field Mappings Reference](references/form_field_mappings.md) <br>
-- [Job Boards Reference](references/job_boards.md) <br>
-- [Screening Questions Reference](references/screening_questions.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, approval tables, command snippets, JSON helper output, and browser-action guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RESUMEX_API_KEY and may create local user preference data during application workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: server release evidence) <br>
+Risk: The skill can submit job applications and transmit personal resume data to job application websites.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user approval before any application is submitted, review the completed form before submission, and use a low MAX_APPLICATIONS value for testing.
+
+Risk: The ResumeX API key and local preferences can expose sensitive personal data.
+
+Mitigation: Store RESUMEX_API_KEY only as an environment variable, restrict data/user_preferences.json permissions, avoid saving sensitive legal-consent answers for reuse, and delete preferences after use when appropriate.
+
+Risk: Saved or generated screening responses may be inaccurate, outdated, or inappropriate for a specific application.
+
+Mitigation: Confirm sensitive and material screening answers with the user, allow the user to decline optional fields, and review generated cover letters or free-text answers before submitting.
+
+Risk: Some job boards, login pages, CAPTCHA flows, or file upload steps may not be suitable for automation.
+
+Mitigation: Use manual handling for LinkedIn Easy Apply, CAPTCHA, login-gated applications, external redirects, and resume or CV upload fields.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/atharva-badgujar/skills/auto-job-applier)
+- [ResumeX](https://resumex.dev)
+- [ResumeX API Docs](https://resumex.dev/api-docs)
+- [OpenClaw](https://openclaw.dev)
+- [Form Field Mappings Reference](references/form_field_mappings.md)
+- [Job Boards Reference](references/job_boards.md)
+- [Screening Questions Reference](references/screening_questions.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON helper output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a required RESUMEX_API_KEY environment variable, requests>=2.28.0, and local preference files for reusable application details.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release metadata and README changelog, released 2026-04-14)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

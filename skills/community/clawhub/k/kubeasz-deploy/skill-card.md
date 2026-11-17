@@ -1,47 +1,59 @@
-## Description: <br>
-为 K8s 初学者提供 Kubernetes 集群部署指导，支持 AllinOne 快速体验和生产环境高可用部署。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides K8s beginners through Kubernetes cluster deployment with kubeasz, covering AllinOne quickstarts and high-availability production deployments.
 
-## Publisher: <br>
-[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cn-big-cabbage](https://clawhub.ai/user/cn-big-cabbage)
 
-## Use Case: <br>
-Developers and platform engineers use this skill to plan, configure, deploy, validate, and troubleshoot Kubernetes clusters with kubeasz for both single-node learning environments and multi-node high-availability deployments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can propose powerful Kubernetes and Linux administration commands for real nodes. <br>
-Mitigation: Review each command before execution, confirm the target hosts and cluster context, and use backups plus a maintenance plan for production systems. <br>
-Risk: SSH keys, service tokens, and cluster-admin Dashboard access can grant broad control over a cluster. <br>
-Mitigation: Use dedicated and revocable SSH keys, restrict token scope and lifetime, and avoid cluster-admin Dashboard tokens unless explicitly required. <br>
-Risk: Downloaded scripts, manifests, and container assets may affect node or cluster integrity. <br>
-Mitigation: Verify source URLs and downloaded artifacts before use, especially when pulling scripts or manifests from external locations. <br>
-Risk: Firewall changes and destroy or redeploy steps can interrupt or remove production workloads. <br>
-Mitigation: Avoid disabling firewalls outside isolated test networks and do not run destroy, restore, or redeploy steps on production clusters without backups and explicit approval. <br>
+## Use Case:
 
+Developers and platform engineers use this skill to plan prerequisites, generate kubeasz configuration, run deployment commands, and validate Kubernetes clusters for lab or production scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/kubeasz-deploy) <br>
-- [kubeasz project homepage](https://github.com/easzlab/kubeasz) <br>
-- [kubeasz documentation](https://github.com/easzlab/kubeasz/tree/master/docs) <br>
-- [kubeasz issues](https://github.com/easzlab/kubeasz/issues) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include privileged Kubernetes, Docker, SSH, firewall, and node administration commands that should be reviewed before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: AI-assisted Kubernetes deployment guidance may lead to root SSH setup, remote installer execution, cluster-wide RBAC changes, and other high-impact host or cluster administration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use first in a disposable lab, require explicit approval before commands run, verify downloaded tools and images, avoid cluster-admin Dashboard tokens, and protect or remove deployment SSH keys.
+
+Risk: Destructive operations such as delete, drain, destroy, restore, or reboot can disrupt workloads or cause data loss when aimed at the wrong environment.
+
+Mitigation: Confirm backups, target cluster names, node identities, and maintenance windows before running destructive cluster or host operations.
+
+## Reference(s):
+
+- [kubeasz project homepage](https://github.com/easzlab/kubeasz)
+- [Prerequisites guide](guides/01-prerequisites.md)
+- [AllinOne quickstart guide](guides/02-allinone-quickstart.md)
+- [Production deployment guide](guides/03-production-deploy.md)
+- [Post-deployment verification guide](guides/04-post-deploy.md)
+- [Troubleshooting guide](troubleshooting.md)
+- [ClawHub skill page](https://clawhub.ai/cn-big-cabbage/skills/kubeasz-deploy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include commands that alter Kubernetes clusters and host configuration; commands should require user approval before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,20 @@
+# secrets / credentials
+.env
+*.netrc
+
+# runtime artifacts
+.last_refresh
+*.lock
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# internal / not for public repo
+.superpowers/
+AGENTS.md
+docs/superpowers/
+docs/MANUAL_STAGENET_TEST.md

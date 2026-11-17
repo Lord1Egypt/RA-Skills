@@ -1,47 +1,60 @@
-## Description: <br>
-AI Agent team skill that provides persona-driven specialist agents and an orchestrator for engineering, marketing, project management, testing, support, product, design, and specialized workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent team skill that provides specialized agents across business departments for single-agent tasks, multi-agent orchestration, and department-level collaboration.
 
-## Publisher: <br>
-[gyzx](https://clawhub.ai/user/gyzx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gyzx](https://clawhub.ai/user/gyzx)
 
-## Use Case: <br>
-Developers, operators, and business users can use this skill to request specialist agent guidance, generated implementation artifacts, project plans, marketing strategy, QA review, and orchestrated multi-agent task breakdowns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release may overstate the number or completeness of included agents. <br>
-Mitigation: Treat the package as a prompt and persona bundle until the installed files are reviewed against the claimed agent inventory. <br>
-Risk: Orchestrated workflows may suggest file changes, deployment steps, public posts, or business decisions without enough built-in controls. <br>
-Mitigation: Require explicit human approval before applying changes, deploying outputs, publishing content, or relying on business recommendations. <br>
-Risk: The artifact includes placeholder manual-install source references. <br>
-Mitigation: Install from the ClawHub release page or another verified source rather than placeholder repository URLs. <br>
-Risk: Outputs may be saved locally or contain sensitive task context. <br>
-Mitigation: Do not provide secrets, regulated data, or confidential business data unless local retention and downstream handling are acceptable. <br>
+## Use Case:
 
+Developers, operators, and teams use this skill to select specialized agents for engineering, marketing, project management, testing, and related workflow tasks, or to coordinate several agents through an orchestrator for larger projects.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/gyzx/agency-agents-1-0-2) <br>
-- [Quickstart guide](docs/QUICKSTART.md) <br>
-- [README](README.md) <br>
-- [Package metadata](package.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline code blocks, task plans, implementation snippets, reports, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by selected agent or orchestrated workflow and may include project status, deliverable lists, QA findings, and follow-up recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: Manual clone installation can bypass the server-resolved release path and increase provenance uncertainty.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install through ClawHub and verify the release hash and publisher profile before deployment.
+
+Risk: Backend deployment examples include placeholder credentials, plaintext service URLs, Kafka plaintext listeners, and unpinned container images.
+
+Mitigation: Replace example credentials, require secure transport, pin reviewed images, and run a deployment security review before using generated infrastructure examples.
+
+Risk: Agent outputs may be retained under ~/clawd/agency-agents, which can preserve sensitive project data locally.
+
+Mitigation: Avoid submitting secrets or regulated data unless storage, access controls, retention, and cleanup behavior have been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gyzx/skills/agency-agents-1-0-2)
+- [Publisher profile](https://clawhub.ai/user/gyzx)
+- [README](README.md)
+- [Quickstart guide](docs/QUICKSTART.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with code blocks and task-specific deliverables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include implementation plans, project reports, code snippets, configuration examples, quality checks, and follow-up recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json; display metadata: Agency Agents 1.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

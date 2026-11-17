@@ -1,0 +1,9 @@
+{"ts":"2026-11-01T10:00:00Z","session":"s1","tool":"search","ok":true}
+{"ts":"2026-11-01T10:00:20Z","session":"s1","tool":"fetch","ok":true}
+{"ts":"2026-11-01T10:01:00Z","session":"s1","checkpoint":true,"user_visible":true}
+{"ts":"2026-11-01T11:00:00Z","session":"s2","tool":"exec","ok":false,"outcome":"error"}
+{"ts":"2026-11-01T11:00:30Z","session":"s2","tool":"exec","ok":false,"outcome":"error"}
+{"ts":"2026-11-01T11:01:00Z","session":"s2","tool":"exec","ok":false,"outcome":"error"}
+{"ts":"2026-11-01T11:12:00Z","session":"s2","tool":"exec","ok":true,"outcome":"ok"}
+{"ts":"2026-11-01T12:00:00Z","session":"s3","tool":"search","ok":false,"outcome":"error"}
+{"ts":"2026-11-01T13:00:00Z","session":"s4","claims":true,"outcome":"ok","user_visible":true}

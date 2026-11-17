@@ -1,45 +1,60 @@
-## Description: <br>
-Use AgentPMT without an account: connect OpenClaw and autonomous AI agents to AgentPMT tools, workflows, skills, agent-to-agent work, and paid capabilities through a revocable AgentAddress with credits or a funded x402 wallet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use AgentPMT without an account: connect OpenClaw and autonomous AI agents to AgentPMT tools, workflows, skills, agent-to-agent work, and paid capabilities through a revocable AgentAddress with credits or a funded x402 wallet.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-Developers and autonomous-agent operators use this skill to configure no-account access to AgentPMT tools and workflows through a revocable AgentAddress or a funded x402-capable wallet, with approval and spending controls before paid calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill enables agents to interact with paid AgentPMT tools through wallet-backed or credit-backed payment flows. <br>
-Mitigation: Use it only for intended paid AgentPMT access, enforce product, action, network, token, payee, and amount allowlists, and require human approval or a tightly defined policy before signing payments. <br>
-Risk: Private keys, payment headers, signatures, nonces, or wallet credentials could expose payment authority if logged or pasted into prompts. <br>
-Mitigation: Store credentials and generated payment material in a real secret manager and keep them out of prompts, logs, commits, transcripts, and generated files. <br>
-Risk: Direct x402 payments can spend from an on-chain wallet if a payment challenge is approved incorrectly. <br>
-Mitigation: Use a dedicated low-balance wallet or revocable AgentAddress, select only approved challenge entries, and generate a fresh nonce for every payment. <br>
+## Use Case:
 
+Developers and operators use this skill to let agents call AgentPMT tools and workflows without an account bearer token, using signed AgentAddress credit requests or direct x402 payments. It focuses on payment setup, approval gates, request signing, endpoint usage, and safe handling of wallet-backed access.
 
-## Reference(s): <br>
-- [AgentPMT AgentAddress](https://www.agentpmt.com/agentaddress) <br>
-- [ClawHub Skill Page](https://clawhub.ai/agentpmt/agentpmt-no-account-agentaddress-x402) <br>
-- [AgentPMT External Tools API](https://www.agentpmt.com/api/external/tools) <br>
-- [AgentPMT External Workflows API](https://www.agentpmt.com/api/external/workflows) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with Python, JavaScript, shell, text, and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes endpoint patterns, signing flows, payment policy checks, and error-handling guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Wallet keys, signatures, payment headers, or session nonces could expose spending authority if copied into prompts, logs, commits, transcripts, or generated files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store secrets in a real secret manager and pass only scoped secret references to the agent runtime.
+
+Risk: Direct x402 payments or signed AgentAddress requests can spend funds or credits if an agent signs unapproved actions, payees, networks, tokens, or amounts.
+
+Mitigation: Use a dedicated low-balance wallet or AgentAddress and enforce allowlists, per-call spending limits, and explicit approval or a pre-approved policy before signing.
+
+Risk: Unpinned install commands may pull changed package versions into privileged or shared environments.
+
+Mitigation: Install from ClawHub/OpenClaw or pinned reviewed sources, and use hash-pinned dependencies in isolated environments for production.
+
+## Reference(s):
+
+- [AgentPMT AgentAddress](https://www.agentpmt.com/agentaddress)
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/agentpmt-no-account-agentaddress-x402)
+- [AgentPMT Account MCP/REST Setup Skill](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup)
+- [What AgentPMT Is Skill](https://clawhub.ai/agentpmt/what-is-agentpmt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python, JavaScript, shell, text, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes endpoint patterns, signing examples, payment approval checks, and error-handling guidance.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

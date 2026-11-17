@@ -1,39 +1,53 @@
-## Description: <br>
-Manage brand tone/style for all writing skills <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage brand tone/style for all writing skills.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Content creators and teams use this skill to select and maintain consistent brand voice profiles for captions, emails, social posts, and other writing workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local profile, hook, learning, or usage-log behavior may retain writing workflow history. <br>
-Mitigation: Review or disable local event logging and learning behavior when usage history should not be retained. <br>
-Risk: A mismatched voice profile could produce public posts, emails, or other content in the wrong tone. <br>
-Mitigation: Confirm the selected voice profile and review generated content before publishing or sending. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/brand-voice) <br>
+## Use Case:
 
+Content creators, marketers, and agents use this skill to select and maintain brand voice profiles for writing workflows such as captions, emails, posts, and card news.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance, profile templates, and optional JSON usage log records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local brand profile files and usage log records; users should review selected voice settings before publishing public-facing content.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can influence tone across supported writing workflows, which may cause unintended style changes when prompts are broad.
+
+Mitigation: Use explicit `--voice` selections and review generated content against the intended brand profile before publishing.
+
+Risk: Workspace-local brand profile and voice event files may contain brand, campaign, or customer context.
+
+Mitigation: Keep profile and event files scoped to the workspace and review them before sharing, syncing, or committing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/brand-voice)
+- [Publisher profile](https://clawhub.ai/user/mupengi-bot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with profile examples and optional workspace-local profile or event JSON files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May influence tone selection across supported writing workflows.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

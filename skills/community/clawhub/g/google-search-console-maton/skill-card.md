@@ -1,45 +1,59 @@
-## Description: <br>
-Access Google Search Console API via cURL with OAuth to manage sites, sitemaps, and query search analytics including clicks, impressions, and rankings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access Google Search Console API via cURL with managed OAuth through Maton to manage sites, sitemaps, and search analytics.
 
-## Publisher: <br>
-[otman-ai](https://clawhub.ai/user/otman-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[otman-ai](https://clawhub.ai/user/otman-ai)
 
-## Use Case: <br>
-Developers and site operators use this skill to call Google Search Console through Maton-managed OAuth, inspect site performance, query search analytics, and manage sitemap entries from cURL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API keys and OAuth connection details can be exposed if pasted into shared terminals, logs, or screenshots. <br>
-Mitigation: Use a private Maton API key, keep it in an environment variable, and avoid echoing or sharing secret values. <br>
-Risk: PUT and DELETE examples can change sitemap configuration or remove an OAuth connection. <br>
-Mitigation: Replace sample IDs with verified connection and site values, then review administrative commands before running them. <br>
-Risk: Requests are routed through Maton as a gateway to Google Search Console. <br>
-Mitigation: Install and use this skill only when Maton is the intended gateway for Google Search Console access. <br>
+## Use Case:
 
+Developers, site owners, and SEO operators use this skill to issue cURL requests through Maton for Google Search Console workflows such as listing sites, querying search analytics, and managing sitemaps.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/otman-ai/google-search-console-maton) <br>
-- [Maton](https://maton.ai) <br>
-- [Maton Settings](https://maton.ai/settings) <br>
-- [Maton Connection Management](https://ctrl.maton.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with cURL commands, JSON request examples, and endpoint notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses Maton API key and OAuth connection identifiers supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: MATON_API_KEY exposure could disclose access to the user's Maton-connected services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Store the key in an environment variable and avoid pasting or printing the full value in chats, logs, or support tickets.
+
+Risk: DELETE and PUT examples can change connections or sitemap state when placeholders are replaced with real values.
+
+Mitigation: Verify connection IDs, site URLs, and sitemap feed paths before running write or delete requests.
+
+Risk: Incorrectly encoded site URLs or paths can query or modify the wrong Search Console resource.
+
+Mitigation: URL-encode site URLs and review generated request URLs before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/otman-ai/skills/google-search-console-maton)
+- [Maton](https://maton.ai)
+- [Maton control console](https://ctrl.maton.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with cURL commands, JSON request bodies, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a MATON_API_KEY and valid Google Search Console connection.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

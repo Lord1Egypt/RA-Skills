@@ -1,0 +1,41 @@
+{
+  "id": "senior-female-50plus",
+  "label": "Senior Female 50+",
+  "emoji": "👵",
+  "demographics": {
+    "gender": "female",
+    "age_range": [50, 99],
+    "tier": "boomer-silent"
+  },
+  "active_hours": {
+    "description": "Early bird — morning to early evening",
+    "peak": [6, 10, 14, 17],
+    "off_peak_min": 8
+  },
+  "typing": {
+    "description": "Slow, careful, one-finger possible, many corrections",
+    "wpm": { "min": 30, "max": 55 },
+    "profile": "careful",
+    "think_prob": 0.03,
+    "think_ms": [800, 3000],
+    "backspace_freq": 0.06
+  },
+  "scroll": {
+    "passes": 1,
+    "description": "Very slow, reads everything, rarely scrolls far",
+    "speed_px_per_ms": { "min": 8, "max": 25 },
+    "pause_between_passes_ms": { "min": 1000, "max": 4000 },
+    "depth_per_pass": { "min": 0.3, "max": 0.5 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 3000, "max": 8000 },
+    "pre_click_pause_ms": { "min": 500, "max": 1500 },
+    "inter_action_pause_ms": { "min": 800, "max": 3000 }
+  },
+  "mouse": {
+    "speed": 0.5,
+    "curvature": 0.2,
+    "jitter": 0.25,
+    "description": "Slow, deliberate, may over/under-shoot"
+  }
+}

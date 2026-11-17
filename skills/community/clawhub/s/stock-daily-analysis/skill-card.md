@@ -1,44 +1,60 @@
-## Description: <br>
-LLM-driven daily stock analysis for A-share, Hong Kong, and U.S. watchlists, producing technical indicators, trend judgments, buy-signal scores, decision dashboards, and market review reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stock Daily Analysis helps agents analyze A-share, Hong Kong, and U.S. stocks with technical indicators, trend signals, and optional LLM-generated decision reports.
 
-## Publisher: <br>
-[robottk](https://clawhub.ai/user/robottk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[robottk](https://clawhub.ai/user/robottk)
 
-## Use Case: <br>
-Developers and analysts use this skill to fetch market data, compute technical indicators, and generate AI-assisted daily stock analysis for selected A-share, Hong Kong, and U.S. securities. The resulting reports are for analysis support and are not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Helper scripts can download, update, and run mutable external code that was not part of the reviewed package. <br>
-Mitigation: Review helper scripts before installation and prefer the bundled analyzer modules directly, or pin and inspect the external repository before running setup.sh, run.sh, or update.sh. <br>
-Risk: Configured AI providers may receive portfolio, watchlist, and technical-analysis data. <br>
-Mitigation: Use a revocable AI API key, keep config files private, and avoid sending sensitive portfolio or watchlist data to an AI provider you do not trust. <br>
-Risk: Generated analysis can be mistaken for investment advice. <br>
-Mitigation: Treat outputs as analysis support only and require human review before making financial decisions. <br>
+## Use Case:
 
+Developers and external users use this skill to build daily stock watchlist workflows that fetch market data, calculate technical indicators, and produce decision-oriented reports. The artifact states that the analysis is not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/robottk/stock-daily-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/robottk) <br>
-- [OpenClaw market-data integration](https://github.com/chjm-ai/openclaw-market-data) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Python dictionaries and formatted text or Markdown reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call external market-data and AI-provider APIs when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Install and update scripts can pull and run changing GitHub code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review scripts before execution, avoid privileged accounts, and pin the upstream repository and Python dependencies for controlled deployments.
+
+Risk: AI integrations can send stock symbols and technical-analysis data to external services.
+
+Mitigation: Configure only approved AI providers or proxies, and avoid sending data that policy or users consider sensitive.
+
+Risk: API keys and environment backups can be exposed through shared directories or unmanaged .env copies.
+
+Mitigation: Keep API keys outside shared directories, restrict file permissions, and remove stale .env backups.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/robottk/skills/stock-daily-analysis)
+- [AkShare market data library](https://github.com/akfamily/akshare)
+- [OpenClaw market-data skill](https://github.com/chjm-ai/openclaw-market-data)
+- [Daily stock analysis project cited by artifact](https://github.com/ZhuLinsen/daily_stock_analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown and text reports with JSON-like stock analysis results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include technical indicators, trend status, signal scores, LLM commentary, target prices, stop-loss values, and risk warnings.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

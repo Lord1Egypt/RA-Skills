@@ -1,6 +1,6 @@
 {
   "name": "xiaozhi-mcp-server",
-  "version": "2.0.8",
+  "version": "2.0.6",
   "description": "Connect xiaozhi smart speaker to OpenClaw AI assistant - MCP Server with WebSocket support",
   "main": "scripts/server.py",
   "scripts": {

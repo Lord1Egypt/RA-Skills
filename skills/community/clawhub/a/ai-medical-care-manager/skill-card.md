@@ -1,44 +1,66 @@
-## Description: <br>
-面向C端门诊就医全流程。先做症状分流和挂号科室判断，再推荐医院/医生 Top 3，并继续完成挂号引导、就医准备卡、提醒、诊后解释，以及基于高德地图的到院路线规划。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+An outpatient care workflow assistant that triages symptoms, suggests departments and top hospital/doctor matches, guides appointment booking, prepares visit cards and reminders, explains post-visit materials, and can plan AMap routes to the hospital.
 
-## Publisher: <br>
-[sunlinlin-aragon](https://clawhub.ai/user/sunlinlin-aragon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sunlinlin-aragon](https://clawhub.ai/user/sunlinlin-aragon)
 
-## Use Case: <br>
-External users can use this skill to plan and manage an outpatient medical visit, from symptom triage and department selection through hospital or doctor recommendations, appointment preparation, reminders, route planning, and post-visit explanation. It is intended as visit workflow support and plain-language interpretation, not as a replacement for clinician diagnosis or emergency care. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Medical and appointment details are sensitive, and route planning can share location data with AMap. <br>
-Mitigation: Use routing only when needed, configure a restricted AMap key, and prefer a manually provided rough starting point instead of IP-based location. <br>
-Risk: Users may mistake workflow support or plain-language explanations for medical diagnosis. <br>
-Mitigation: Keep outputs framed as triage and visit support, prioritize emergency guidance for high-risk symptoms, and defer clinical decisions to qualified medical professionals. <br>
+## Use Case:
 
+External users use this skill to manage a complete outpatient visit workflow, from symptom triage and department selection through booking preparation, reminders, route planning, and post-visit explanation. It is an operational care-navigation aid and should not be used as a substitute for clinical diagnosis, emergency assessment, or official hospital confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sunlinlin-aragon/ai-medical-care-manager) <br>
-- [OpenClaw skills documentation](https://docs.openclaw.ai/skills) <br>
-- [flow_playbook.md](references/flow_playbook.md) <br>
-- [response_templates.md](references/response_templates.md) <br>
-- [triage_rules.md](references/triage_rules.md) <br>
+### Deployment Geography for Use:
 
+China, with Beijing-specific hospital data and booking guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and structured text with optional JSON outputs from helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include AMap route links when routing is configured with an AMap Web Service key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Sensitive healthcare-route location data may be sent to AMap during IP geolocation, geocoding, or route planning.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user consent before using IP geolocation or sending addresses/coordinates to AMap, and prefer a coarse origin instead of a home address when that is sufficient.
+
+Risk: Hospital, department, or doctor recommendations may be affected by polluted provider data.
+
+Mitigation: Ask users to verify recommended doctors, departments, schedules, and booking availability through official hospital or registration channels before acting.
+
+Risk: Users may over-rely on the skill for diagnosis or emergency decisions.
+
+Mitigation: Present outputs as care-navigation support only, prioritize emergency care for high-risk symptoms, and state that the skill does not replace clinicians or emergency services.
+
+Risk: AMap credentials could be exposed if stored in local plaintext configuration.
+
+Mitigation: Keep the AMap Web Service key in environment configuration and avoid pasting credentials into prompts, logs, or generated files.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/sunlinlin-aragon/skills/ai-medical-care-manager)
+- [OpenClaw Skill Documentation](https://docs.openclaw.ai/skills)
+- [Care Flow Playbook](references/flow_playbook.md)
+- [Triage Rules](references/triage_rules.md)
+- [Response Templates](references/response_templates.md)
+- [AMap Web Service API](https://restapi.amap.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON outputs from helper scripts and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call local Python and Node.js scripts; AMap route features require an AMap Web Service key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

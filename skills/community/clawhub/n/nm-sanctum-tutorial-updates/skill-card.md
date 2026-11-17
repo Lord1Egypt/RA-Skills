@@ -1,41 +1,58 @@
-## Description: <br>
-Generates or updates tutorials from VHS tapes and Playwright specs with dual-tone markdown and GIF recording. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates or updates tutorials from VHS tapes and Playwright specs with dual-tone markdown and GIF recording.
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and documentation maintainers use this skill to refresh user-facing tutorials, recordings, GIF assets, README demo sections, and docs or book markdown from VHS tapes, Playwright specs, and tutorial manifests. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can run project-provided tape, manifest, build, and local service commands while generating tutorial assets. <br>
-Mitigation: Use it only in trusted repositories, review tape files and manifest requires entries before execution, and avoid skip-validation options unless the inputs are already trusted. <br>
-Risk: The skill can rebuild or install local binaries and modify documentation, README, book summary, and generated media files. <br>
-Mitigation: Review generated diffs and asset changes before relying on or publishing them, and confirm rebuild commands are appropriate for the project. <br>
+## Use Case:
 
+Developers use this skill to create or refresh user-facing tutorials from terminal tapes and browser specs, including demo recordings and documentation for project docs and a technical book.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-tutorial-updates) <br>
-- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated documentation or asset paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update tutorial markdown, README demo sections, book summaries, and GIF assets in the target repository.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release metadata) <br>
+Risk: ClawScan marks the release suspicious and reports incomplete analysis, including behaviors beyond the stated tutorial-generation purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill and the partially analyzed validation material before installing, and decide whether the reported behavior is acceptable.
+
+Risk: Tape commands run with the user's permissions, and a rebuild can affect normally installed Cargo commands.
+
+Mitigation: Inspect tape commands and rebuild targets before execution; use a disposable workspace and toolchain where practical.
+
+Risk: Terminal or browser recordings may capture sensitive information.
+
+Mitigation: Use sanitized demo data and review recordings before sharing or publishing them.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum)
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-sanctum-tutorial-updates)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, GIF images]
+
+**Output Format:** [Markdown tutorial files and GIF recordings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update tutorial assets and README demo sections; produces brief project docs and detailed book documentation.]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

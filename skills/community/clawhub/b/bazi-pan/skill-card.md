@@ -1,40 +1,53 @@
-## Description: <br>
-Produces Bazi Four Pillars charting from user-supplied lunar birth year, month, day, and hour, including Five Elements distribution, day master analysis, useful-god suggestions, and major luck cycles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+八字排盘，根据出生年月日时排八字、大运、流年，分析五行强弱与命理特点
 
-## Publisher: <br>
-[Mingo-318](https://clawhub.ai/user/Mingo-318) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mingo-318](https://clawhub.ai/user/mingo-318)
 
-## Use Case: <br>
-External users and agents use this skill to generate informal Bazi astrology charts and explanatory fortune-telling guidance from birth-date inputs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Bazi charting and fortune guidance may be inaccurate or incomplete, including possible mismatch around lunar dates or annual fortune calculations. <br>
-Mitigation: Treat outputs as entertainment or informal reference and avoid using them for serious personal, financial, medical, legal, or life decisions. <br>
-Risk: The skill executes a local Python script to produce the chart. <br>
-Mitigation: Run it only in an environment where python3 execution is expected and review local script behavior before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Mingo-318/bazi-pan) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/Mingo-318) <br>
+## Use Case:
 
+People interested in Chinese astrology use this skill to generate a Bazi chart from a lunar birth date and hour, then review four pillars, Five Elements distribution, day master strength, useful god suggestions, and major luck cycles. The output is for reference or entertainment rather than authoritative decision-making.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style text with Chinese section headings and local Python command execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3; results are informal reference output and should not be treated as authoritative advice.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill processes sensitive birth date and time details in the local agent workflow.
+
+Mitigation: Share only birth information you are comfortable using with the local agent, and avoid adding unnecessary personal identifiers.
+
+Risk: The security evidence says the documentation overstates precise lunar-calendar conversion and annual fortune-analysis capabilities.
+
+Mitigation: Treat results as reference or entertainment and do not rely on this skill for precise lunar-calendar conversion, annual fortune analysis, or important decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mingo-318/skills/bazi-pan)
+- [Publisher profile](https://clawhub.ai/user/mingo-318)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-like text with Chinese Bazi chart sections and inline command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and user-supplied lunar birth year, month, day, and hour.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

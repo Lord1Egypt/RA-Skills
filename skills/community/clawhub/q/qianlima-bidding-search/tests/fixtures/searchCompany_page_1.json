@@ -1,0 +1,19 @@
+{
+  "code": 200,
+  "msg": "",
+  "data": {
+    "total": 2,
+    "currentPage": 1,
+    "pageSize": 1,
+    "list": [
+      {
+        "companyId": 1,
+        "companyName": "测试企业1有限公司",
+        "registeredAddress": "北京市",
+        "winningCount": 0,
+        "tenderingCount": 1
+      }
+    ]
+  },
+  "success": true
+}

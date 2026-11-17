@@ -1,0 +1,15 @@
+# github-workflow-integration
+
+> This file is the AI-readable skill index (llms.txt convention). AI agents should read `SKILL.md` first.
+> 本文件是 AI 可读的技能索引（llms.txt 惯例）。AI 代理优先读 `SKILL.md`。
+
+## Key files / 关键文件
+
+- [SKILL.md](SKILL.md)：主说明书（frontmatter + 触发条件 + 认证边界 + 流程）
+- [README.md](README.md)：human overview / 人类总览
+- [scripts/gh_workflow.py](scripts/gh_workflow.py)：CLI entry / CLI 入口
+
+## One-line positioning / 一句话定位
+
+Pure-stdlib GitHub REST CLI: PR list/create, commit status, Git Data push-file; PAT from env, no OAuth.
+纯 stdlib GitHub REST CLI：开 PR/列 PR/查 status/Git Data 推单文件；令牌走环境变量，不走 OAuth。

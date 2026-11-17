@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gemini Web MCP"
+  short_description: "Extend an agent with Gemini assistance, multimodal creation, and explicit account workflows."
+  default_prompt: "Use $gemini-web-mcp to choose one user-intent lane: assist/understand/research, create an Artifact, or explicitly manage Gemini account data. Prefer the low-token server when it can finish the task, use a narrow primary profile for files, URLs, or Deep Research, inspect structured results, and continue the user's workflow with returned information or files. Use the manifest only for discovery or recovery."

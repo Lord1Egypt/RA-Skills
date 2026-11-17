@@ -1,0 +1,10 @@
+{
+  "name": "evolver-open-space-bridge",
+  "version": "0.1.0",
+  "description": "Bridge Evolver GEP prompts to OpenSpace MCP execute_task",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/path-mapper.js --test"
+  },
+  "dependencies": {}
+}

@@ -1,0 +1,15 @@
+{
+  "asOf": "2026-10-27T00:00:00Z",
+  "facts": [
+    {
+      "key": "city",
+      "value": "A",
+      "source": "user note1"
+    },
+    {
+      "key": "city",
+      "value": "B",
+      "source": "user note2"
+    }
+  ]
+}

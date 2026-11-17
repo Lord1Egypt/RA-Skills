@@ -1,43 +1,57 @@
-## Description: <br>
-Checks whether an email address appears in known data breaches and returns breach history, exposed data types, severity, paste exposure, and remediation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Checks whether an email address appears in known data breaches and returns breach history, exposed data types, severity, paste exposure, and remediation guidance.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security practitioners, developers, and administrators use this skill to check authorized email addresses for breach exposure during onboarding, employee audits, threat assessments, password reset decisions, and security awareness workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted email addresses and returned breach intelligence are sensitive security data. <br>
-Mitigation: Use the skill only for email addresses you own or are authorized to check, and restrict access to generated results. <br>
-Risk: The skill depends on ToolWeb handling submitted emails and breach lookup results. <br>
-Mitigation: Install only if you trust ToolWeb for this data flow, and use a scoped, revocable API key where possible. <br>
+## Use Case:
 
+Developers, security teams, and enterprise security practitioners use this skill to check onboarding, employee audit, and threat exposure workflows for email addresses that may have appeared in breaches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-breached-email-check) <br>
-- [ToolWeb breach email check API](https://portal.toolweb.in/apis/security/breached-email-check) <br>
-- [ToolWeb](https://toolweb.in) <br>
-- [ToolWeb portal](https://portal.toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Text, JSON, Guidance] <br>
-**Output Format:** [JSON response with breach status, breach details, severity, paste exposure, and remediation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may contain sensitive breach intelligence and should be protected accordingly.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Checked email addresses are sent to ToolWeb.in's breach-check service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for addresses covered by an approved security workflow with consent and data-handling review.
+
+Risk: Breach results and remediation guidance can affect user security decisions.
+
+Mitigation: Review results before taking account actions, especially for employee, customer, or third-party addresses.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-breached-email-check)
+- [ToolWeb Breached Email Check API](https://portal.toolweb.in/apis/security/breached-email-check)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [ToolWeb MCP Server](https://hub.toolweb.in)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, API Calls]
+
+**Output Format:** [Markdown with JSON examples and remediation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends checked email addresses to ToolWeb.in and may require an API key.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

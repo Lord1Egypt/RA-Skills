@@ -1,44 +1,59 @@
-## Description: <br>
-Edit images with Alibaba Cloud Model Studio Qwen Image Edit models (qwen-image-edit, qwen-image-edit-plus, qwen-image-edit-max and snapshots). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Edit images with Alibaba Cloud Model Studio Qwen Image Edit models (qwen-image-edit, qwen-image-edit-plus, qwen-image-edit-max and snapshots).
 
-## Publisher: <br>
-[cinience](https://clawhub.ai/user/cinience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cinience](https://clawhub.ai/user/cinience)
 
-## Use Case: <br>
-Developers and image-workflow builders use this skill to prepare and document Alibaba Cloud Qwen Image Edit requests for inpainting, replacement, style transfer, local edits, and subject-consistent modifications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Alibaba Cloud DashScope credentials may be exposed through source control, logs, or shared environments. <br>
-Mitigation: Use a dedicated API key where possible, provide it through DASHSCOPE_API_KEY or the Alibaba Cloud credentials file, and keep credentials out of source control and logs. <br>
-Risk: Local output files may contain private prompts, image URLs, model parameters, or generated result references. <br>
-Mitigation: Review output files before sharing, store generated assets in appropriate object storage, and persist only URLs or sanitized metadata when possible. <br>
-Risk: Unpinned DashScope SDK installs can change behavior across environments. <br>
-Mitigation: Pin the dashscope SDK version for reproducible installs when deploying the skill in a managed workflow. <br>
+## Use Case:
 
+Developers and image-workflow operators use this skill to prepare and document instruction-based edits against Alibaba Cloud Model Studio Qwen Image Edit models, including inpainting, replacement, style transfer, local edits, and subject-consistency workflows.
 
-## Reference(s): <br>
-- [Artifact reference sources](references/sources.md) <br>
-- [Alibaba Cloud Model Studio Qwen Image Edit guide](https://help.aliyun.com/zh/model-studio/qwen-image-edit-guide) <br>
-- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, JSON, Files] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON request files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save edit request payloads, result URLs, model parameters, and image output references under output/alicloud-ai-image-qwen-image-edit/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0) <br>
+Risk: Alibaba Cloud credentials can be exposed if API keys or credential files are stored or shared carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a narrowly scoped and revocable DASHSCOPE_API_KEY or credentials entry, keep it out of committed files, and rotate it after suspected exposure.
+
+Risk: Saved request payloads, prompts, result URLs, and image references may contain sensitive user content.
+
+Mitigation: Write artifacts only to controlled output locations, retain only what is needed for reproducibility, and clean the output directory after use.
+
+Risk: Unpinned SDK installation can reduce reproducibility across environments.
+
+Mitigation: Install the dashscope dependency in an isolated virtual environment and pin or lock the dependency when reproducible runs matter.
+
+## Reference(s):
+
+- [Artifact sources](references/sources.md)
+- [Alibaba Cloud Model Studio Qwen Image Edit guide](https://help.aliyun.com/zh/model-studio/qwen-image-edit-guide)
+- [Alibaba Cloud Model Studio newly released models](https://help.aliyun.com/zh/model-studio/newly-released-models)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, JSON]
+
+**Output Format:** [Markdown guidance with bash examples and JSON request or response artifacts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save request payloads, result URLs, model parameters, and output image references under the configured output directory.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

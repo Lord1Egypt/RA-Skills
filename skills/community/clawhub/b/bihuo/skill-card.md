@@ -1,41 +1,54 @@
-## Description: <br>
-比货全网商品对比工具，从价格、品质、评价、返利等多维度对比同类商品，帮助用户做出最优购买决策。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+比货全网商品对比工具，从价格、品质、评价、返利等多维度对比同类商品，帮助用户做出最优购买决策。
 
-## Publisher: <br>
-[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fangshan101-coder](https://clawhub.ai/user/fangshan101-coder)
 
-## Use Case: <br>
-External shoppers use this skill to compare similar products across price, quality, reviews, rebates, after-sales support, and overall value before making a purchase decision. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Product prices, reviews, rebate claims, and seller terms may be incomplete, outdated, or misleading. <br>
-Mitigation: Verify price, review, rebate, and seller policy information independently before purchasing. <br>
-Risk: Broad trigger phrases such as product comparison questions may activate the skill when the user did not intend a shopping workflow. <br>
-Mitigation: Narrow the trigger phrases during deployment if accidental activation would disrupt normal agent use. <br>
+## Use Case:
 
+External users use this skill to compare similar products across price, quality, ratings, rebates, sales, brand reputation, and after-sales factors before making purchase decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/bihuo) <br>
-- [Publisher profile](https://clawhub.ai/user/fangshan101-coder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown product comparison report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes ranked product comparisons, detailed factor-by-factor comparison, and purchase guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and release evidence) <br>
+Risk: Broad Chinese shopping-comparison triggers could activate the skill during adjacent purchase discussions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use scoped trigger phrases and confirm that the user wants a product comparison before producing buying guidance.
+
+Risk: Shopping recommendations may be misleading when product prices, ratings, rebate rates, or availability are outdated or incomplete.
+
+Mitigation: State when current marketplace data is unavailable and ask the user to provide product links or recent prices before ranking options.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fangshan101-coder/skills/bihuo)
+- [ClawHub publisher profile](https://clawhub.ai/user/fangshan101-coder)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown shopping comparison report with ranked recommendations and concise analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language consumer shopping comparison guidance]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

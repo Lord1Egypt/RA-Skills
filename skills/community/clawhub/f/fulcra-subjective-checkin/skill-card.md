@@ -1,43 +1,59 @@
-## Description: <br>
-Runs a short conversational morning check-in that captures mood, energy, social battery, physical state, and daily intention, then saves the result to Fulcra as structured annotations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Run a short conversational morning check-in that captures mood, energy, social battery, physical state, daily intention, and optional Fulcra sleep and calendar context, then saves the result as structured Fulcra annotations.
 
-## Publisher: <br>
-[keng009](https://clawhub.ai/user/keng009) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[keng009](https://clawhub.ai/user/keng009)
 
-## Use Case: <br>
-People who use Fulcra can ask their agent to run a warm morning check-in, reflect on how they feel, and store the subjective record next to sleep and calendar context for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can read Fulcra sleep and calendar context and save intimate wellness reflections to Fulcra. <br>
-Mitigation: Install only if this data access is acceptable, invoke the skill explicitly, and review dry-run payloads before saving sensitive check-ins. <br>
-Risk: The save flow may persist check-in data without a separate final confirmation after the conversation. <br>
-Mitigation: Ask the agent to confirm before running the save command or to use dry-run mode when testing the flow. <br>
-Risk: Changing FULCRA_API_BASE or FULCRA_CLI_COMMAND can redirect Fulcra access through an untrusted endpoint or command. <br>
-Mitigation: Leave those settings unset unless the target endpoint or command is fully trusted. <br>
+## Use Case:
 
+Individuals using Fulcra with an agent use this skill to conduct a brief morning wellness journal, compare subjective state with sleep and calendar context, and store the result for later reflection or trend analysis.
 
-## Reference(s): <br>
-- [Subjective Check-In README](README.md) <br>
-- [Fulcra read/write notes](references/fulcra-write-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Conversational text with inline shell commands and JSON helper output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write Fulcra annotations for the morning check-in; dry-run mode can preview payloads before saving.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill handles and stores sensitive wellness, physical, sleep, calendar, and intention data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only in a private user context, avoid sharing check-in details outside Fulcra, summarize calendar context rather than exposing event titles, and ask before saving.
+
+Risk: Runtime Fulcra API and CLI command overrides can change where the helper reads or writes data.
+
+Mitigation: Review FULCRA_API_BASE and FULCRA_CLI_COMMAND before use; prefer the default Fulcra API endpoint and a pinned Fulcra CLI version.
+
+Risk: Fulcra ingest can be eventually consistent, and repeating a save to force confirmation may create duplicate check-in records.
+
+Mitigation: Do not rerun save solely because readback confirmation is delayed; wait for Fulcra Timeline or readback indexing to catch up.
+
+## Reference(s):
+
+- [Fulcra read/write notes](references/fulcra-write-notes.md)
+- [Subjective Check-In ClawHub listing](https://clawhub.ai/keng009/skills/fulcra-subjective-checkin)
+- [Fulcra API endpoint](https://api.fulcradynamics.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, json, guidance]
+
+**Output Format:** [Conversational Markdown with shell commands and JSON helper output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write Fulcra moment and scale annotations after gathering user-provided check-in details.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

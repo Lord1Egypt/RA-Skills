@@ -1,42 +1,54 @@
-## Description: <br>
-Monitor ClawHub skill performance with file-based state tracking, public stat lookups, recommendation outcome tracking, anti-repetition checks, and rotating daily analysis focus. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Skill Analytics monitors ClawHub skill performance, fetches public skill metrics, tracks recommendations, and avoids repeating prior suggestions.
 
-## Publisher: <br>
-[tommot2](https://clawhub.ai/user/tommot2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommot2](https://clawhub.ai/user/tommot2)
 
-## Use Case: <br>
-ClawHub skill publishers and maintainers use this skill to monitor public skill performance, summarize portfolio metrics, and generate concise adoption or growth recommendations without repeating prior advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses public web lookups, so reported skill metrics or competitive observations can be stale, incomplete, or unavailable. <br>
-Mitigation: Review the source links and numbers before acting on recommendations, especially for release, pricing, or promotion decisions. <br>
-Risk: The skill keeps persistent local recommendation state that can become stale over time. <br>
-Mitigation: Review or clear memory/skill-analytics/ when recommendations no longer reflect current goals or portfolio status. <br>
-Risk: The skill text includes an optional command to install related skills in the publisher suite. <br>
-Mitigation: Treat any related-skill install command as a separate user choice and review each additional skill before installation. <br>
+## Use Case:
 
+External skill publishers and developers use this skill to review public ClawHub performance metrics, track adoption recommendations, and rotate analysis focus across growth topics.
 
-## Reference(s): <br>
-- [Skill Analytics on ClawHub](https://clawhub.ai/tommot2/skill-analytics) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown report with dashboard tables, concise analysis, recommendation status, and next-run focus] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Maintains local state under memory/skill-analytics/ to track rotation day, prior recommendations, and tried ideas.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release evidence) <br>
+Risk: The skill maintains local analytics state and may update files after a run.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the files under memory/skill-analytics/ before and after use, especially recommendations.md, ideas-tried.md, and state.json.
+
+Risk: Analytics and recommendations are based on public ClawHub metrics and may be incomplete or stale.
+
+Mitigation: Treat recommendations as planning guidance and verify important adoption or growth decisions against current ClawHub pages.
+
+## Reference(s):
+
+- [Skill Analytics on ClawHub](https://clawhub.ai/tommot2/skills/skill-analytics)
+- [Skill Analytics homepage](https://clawhub.ai/skills/skill-analytics)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Files]
+
+**Output Format:** [Markdown analytics report with tables and concise recommendations; local JSON and Markdown state files may be updated.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Keeps local state under memory/skill-analytics/ and limits reports to 40 lines.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

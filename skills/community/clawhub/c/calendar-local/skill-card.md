@@ -1,42 +1,52 @@
-## Description: <br>
-Reads Google Calendar events from the local host through a configured wrapper and summarizes agendas for today, this week, upcoming days, or broader calendar requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read Google Calendar from the local host using the configured gog wrapper for agenda, schedule, upcoming appointment, and calendar summary requests on a configured OpenClaw host.
 
-## Publisher: <br>
-[jgf78](https://clawhub.ai/user/jgf78) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[jgf78](https://clawhub.ai/user/jgf78)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users and operators use this skill to retrieve and summarize Google Calendar events from a configured OpenClaw host for daily agendas, weekly events, upcoming appointments, and calendar summaries.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can expose the configured host Google Calendar through local credentials, including from Telegram or shared chat deployments, without an explicit authorization step.
+
+Mitigation: Install only on trusted OpenClaw hosts and restrict triggering chat channels to users authorized to view the configured calendar; consider adding confirmation or authorization before returning events.
+
+Risk: Calendar access depends on the local wrapper, the GOG_KEYRING_PASSWORD environment variable, and an available local Google token or keyring.
+
+Mitigation: Confirm the OpenClaw service environment and keyring are available before relying on the skill, and report credential or keyring failures plainly instead of re-running OAuth setup by default.
+
+## Reference(s):
 
 
-## Use Case: <br>
-OpenClaw users and agent operators use this skill to answer agenda, schedule, upcoming appointment, and calendar-summary questions by reading the configured local Google Calendar wrapper and returning concise grouped summaries. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent ongoing access to private calendar data through a local credentialed wrapper. <br>
-Mitigation: Install only on trusted hosts, verify the calendar.sh wrapper and target Google account before use, and limit access to calendars appropriate for agent-assisted summaries. <br>
-Risk: Calendar details may be summarized through connected chat surfaces, including Telegram. <br>
-Mitigation: Avoid using the skill for sensitive calendars unless the user accepts disclosure through the connected chat channel. <br>
-Risk: The wrapper depends on local keyring credentials and GOG_KEYRING_PASSWORD. <br>
-Mitigation: Protect the runtime environment, keep credentials out of shared logs or prompts, and treat keyring failures as authorization failures rather than prompting broad reconfiguration. <br>
+**Output Format:** [Concise natural language or Markdown agenda summaries, with local shell wrapper commands used by the agent when needed.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Calendar Local on ClawHub](https://clawhub.ai/jgf78/calendar-local) <br>
+**Other Properties Related to Output:** [Can group all-day events, timed events, and birthdays or tasks when useful.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain-text or Markdown agenda summaries with brief shell-command and failure-handling guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a local calendar.sh wrapper with GOG_KEYRING_PASSWORD and may summarize all-day events, timed events, birthdays, tasks, or no-match results.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

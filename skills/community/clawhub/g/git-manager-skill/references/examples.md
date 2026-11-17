@@ -46,7 +46,7 @@ python scripts/batch_clone.py \
   --host https://gitlab.com \
   --type group \
   --id 1234567 \
-  --token glpat-xxxxxxxxxxxxxxxxxxxx \
+  --token REDACTED-SECRET \
   --output ./gitlab-group-repos
 
 # 私有 GitLab 实例
@@ -55,7 +55,7 @@ python scripts/batch_clone.py \
   --host https://gitlab.yourcompany.com \
   --type group \
   --id my-team \
-  --token glpat-xxxxxxxxxxxxxxxxxxxx \
+  --token REDACTED-SECRET \
   --output ./company-repos
 
 # 克隆单个 GitLab 项目（按 project_id）
@@ -64,7 +64,7 @@ python scripts/batch_clone.py \
   --host https://gitlab.com \
   --type project \
   --id 987654 \
-  --token glpat-xxxxxxxxxxxxxxxxxxxx \
+  --token REDACTED-SECRET \
   --output ./single-project
 
 # 包含已归档项目
@@ -73,7 +73,7 @@ python scripts/batch_clone.py \
   --host https://gitlab.com \
   --type group \
   --id 1234567 \
-  --token glpat-xxxxxxxxxxxxxxxxxxxx \
+  --token REDACTED-SECRET \
   --archived \
   --output ./all-repos
 ```

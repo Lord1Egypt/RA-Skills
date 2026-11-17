@@ -1,44 +1,54 @@
-## Description: <br>
-Korean Holiday CLI helps agents answer Korean public holiday questions, calculate business days, convert between Korean lunar and solar dates, and render monthly calendar output without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Korean public holidays, business-day calculations, and Korean lunar-solar date conversion through a local CLI.
 
-## Publisher: <br>
-[chloepark85](https://clawhub.ai/user/chloepark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill for Korean scheduling workflows such as payroll, delivery SLAs, billing cycles, appointment reminders, marketing sends, and date conversion tasks that must account for Korean public holidays and lunar calendar dates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Holiday or business-day results can drift when dependency rules change or when ad-hoc government holiday announcements are not yet reflected upstream. <br>
-Mitigation: Use a virtual environment, pin or review dependencies for reproducible installs, and update the holidays package deliberately when current statutory rules are needed. <br>
-Risk: Server metadata includes crypto, purchase, and sensitive-credential capability tags that do not match the scanned code behavior. <br>
-Mitigation: Treat those tags as a labeling issue and confirm or correct capability metadata before using it for policy decisions. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to answer Korean public-holiday questions, calculate business days for scheduling workflows, and convert Korean lunar and solar dates without a runtime API key.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chloepark85/kr-holiday-cli) <br>
-- [README](README.md) <br>
-- [Skill usage guide](SKILL.md) <br>
-- [holidays package](https://pypi.org/project/holidays/) <br>
-- [korean-lunar-calendar package](https://pypi.org/project/korean-lunar-calendar/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, JSON, text] <br>
-**Output Format:** [Markdown guidance with shell commands; the CLI emits compact UTF-8 JSON by default and optional text calendar output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No API key is required. Runtime depends on the holidays and korean-lunar-calendar Python packages.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: Dependency updates can change holiday or lunar-calendar calculations over time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a virtual environment and pin or lock the holidays and korean-lunar-calendar dependencies for reproducible scheduling.
+
+Risk: Ad-hoc Korean public holidays or legislative changes may not appear until the underlying holiday data is updated.
+
+Mitigation: For high-impact scheduling, verify dates against official Korean holiday notices and update the holidays dependency before use.
+
+## Reference(s):
+
+- [holidays Python package](https://pypi.org/project/holidays/)
+- [korean-lunar-calendar Python package](https://pypi.org/project/korean-lunar-calendar/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text, Guidance]
+
+**Output Format:** [JSON responses and plain-text calendar output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [UTF-8 output with Korean holiday names preserved; no runtime network access or API key required.]
+
+## Skill Version(s):
+
+0.1.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

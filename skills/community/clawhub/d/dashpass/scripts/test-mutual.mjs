@@ -236,7 +236,7 @@ console.log('4. executeDecrypt with Scheme C data');
 
 // Generate a test private key and encrypt some data
 const testPrivKey = randomBytes(32);
-const testPayload = { value: 'sk-test-mutual-secret-12345' };
+const testPayload = { value: 'REDACTED-SECRET' };
 const { encryptedBlob, salt, nonce } = testEncrypt(testPrivKey, testPayload);
 
 // Split the private key

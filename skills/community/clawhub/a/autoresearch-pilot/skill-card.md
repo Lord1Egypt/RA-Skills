@@ -1,39 +1,58 @@
-## Description: <br>
-Guides developers through setting up Karpathy's autoresearch, drafting program.md instructions, interpreting val_bpb results, and tuning experiments for available GPU capacity. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides users through setting up and running Karpathy's autoresearch experiments, writing program.md instructions, interpreting training results, and tuning configurations for different GPU sizes.
 
-## Publisher: <br>
-[tommot2](https://clawhub.ai/user/tommot2) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tommot2](https://clawhub.ai/user/tommot2)
 
-## Use Case: <br>
-Developers and engineers use this skill to set up and operate autoresearch workflows, write agent-facing experiment instructions, interpret training metrics, and choose smaller-GPU configuration adjustments. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security evidence marks the bundle suspicious because a bundled review helper can invoke local CLIs and send code diffs to fallback reviewer tools. <br>
-Mitigation: Install only if that authority is acceptable; for autoreview, prefer no-yolo mode and disable fallback reviewers unless sharing diffs with another reviewer CLI is intended. <br>
+## Use Case:
 
+Developers and engineers use this skill for advisory help with autoresearch setup, experiment planning, program.md drafting, result interpretation, and small-GPU configuration choices.
 
-## Reference(s): <br>
-- [Autoresearch GitHub repository](https://github.com/karpathy/autoresearch) <br>
-- [Autoresearch Pilot on ClawHub](https://clawhub.ai/tommot2/autoresearch-pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only advisory output; the skill text states that it does not run training commands, modify files, access credentials, or write files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md heading) <br>
+Risk: Following the skill's setup guidance can lead users to run training jobs that consume GPU compute.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the external autoresearch repository and estimate compute cost before running experiments.
+
+Risk: Allowing an agent to modify train.py can change project behavior or overwrite local experiment work.
+
+Mitigation: Use version control or a disposable branch and review proposed changes before letting an agent continue experiments.
+
+Risk: The skill provides experiment guidance rather than executing or validating commands itself.
+
+Mitigation: Treat commands and configuration suggestions as advisory and verify them in the target environment before use.
+
+## Reference(s):
+
+- [Autoresearch GitHub repository](https://github.com/karpathy/autoresearch)
+- [Autoresearch Pilot ClawHub page](https://clawhub.ai/tommot2/skills/autoresearch-pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with explanatory text, tables, and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output only; the skill says not to run training commands or modify files directly.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AIPOU Farming"
+  short_description: "Record AI work and claim AIPOU on Base"
+  default_prompt: "Record this AI task with AIPOU and show the farming identity."

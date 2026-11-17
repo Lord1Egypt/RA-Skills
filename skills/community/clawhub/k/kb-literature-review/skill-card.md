@@ -1,44 +1,54 @@
-## Description: <br>
-Produce a focused literature/knowledge review using only selected Research KB contents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Produce a focused literature/knowledge review using only selected Research KB contents.
 
-## Publisher: <br>
-[myd2002](https://clawhub.ai/user/myd2002) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[myd2002](https://clawhub.ai/user/myd2002)
 
-## Use Case: <br>
-Developers and knowledge-base users use this skill to synthesize selected personal or team Research KB repositories into source-grounded literature reviews, method comparisons, thematic surveys, and research-gap analyses. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can write generated review pages into a selected repository by default. <br>
-Mitigation: Require explicit user confirmation before writes and consider setting writeReview to false by default. <br>
-Risk: The skill uses a Gitea admin token for repository access. <br>
-Mitigation: Use a narrowly scoped bot token with only the repository permissions needed for the selected task. <br>
-Risk: Unpinned dependencies may change behavior across installations. <br>
-Mitigation: Pin production dependencies and review updates before deployment. <br>
+## Use Case:
 
+Developers and Research KB users use this skill to generate source-grounded literature reviews, thematic syntheses, method comparisons, and research-gap analyses from selected personal or team knowledge bases.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/myd2002/skills/kb-literature-review) <br>
-- [Skill definition](artifact/SKILL.md) <br>
-- [Sample literature review task](artifact/tests/sample_literature_review_task.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, files] <br>
-**Output Format:** [JSON result containing a concise answer, citations, read page traceability, and an optional generated Markdown review path.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a Markdown review page to reviews/<topic>-专项综述.md when writeReview is enabled.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and artifact metadata) <br>
+Risk: The skill uses an admin Gitea token and can write generated review files to caller-selected repositories by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a tightly scoped Gitea service token, enforce server-side validation of allowed knowledge-base repositories, and require explicit opt-in before writing review files.
+
+Risk: Dependency and environment setup may drift before deployment.
+
+Mitigation: Pin dependencies and remove unused python-dotenv before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/myd2002/skills/kb-literature-review)
+- [Publisher profile](https://clawhub.ai/user/myd2002)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON]
+
+**Output Format:** [Single JSON object containing a source-grounded answer, citations, used scopes, read pages, mode, and optional generated review path.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write a Markdown review file to the first selected knowledge-base repository when writeReview is not false.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

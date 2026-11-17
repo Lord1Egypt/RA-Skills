@@ -1,0 +1,1 @@
+PyYAML>=6.0  # analyze_project_profile.py 必需；collect/audit 脚本可选降级

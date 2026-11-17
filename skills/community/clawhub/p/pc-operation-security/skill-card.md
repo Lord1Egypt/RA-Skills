@@ -1,37 +1,53 @@
-## Description: <br>
-Classifies personal computer operations by security risk level and helps agents assess local and browser actions using the PC-OCS v1.0 rubric. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Classifies and grades personal computer operations by security risk using the PC-OCS v1.0 standard for local and browser activity.
 
-## Publisher: <br>
-[huaiyu](https://clawhub.ai/user/huaiyu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huaiyu](https://clawhub.ai/user/huaiyu)
 
-## Use Case: <br>
-Agents and developers use this skill to classify requested PC operations into L1-L4 risk levels, explain the likely impact, and recommend safeguards before local, browser, identity, data, system, finance, or communication actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Risk ratings are advisory and may over- or under-classify ambiguous operations because the helper script uses simple keyword matching. <br>
-Mitigation: Review the operation context manually, prefer the higher risk level when uncertainty remains, and do not treat the shell helper as an authoritative security decision system. <br>
+## Use Case:
 
+External users and developers use this skill to assess individual or batches of PC operations for L1-L4 risk, audit operation safety, and get protective recommendations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance and optional shell command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Risk assessments include operation description, L1-L4 level, rationale, recommended safeguards, and related high-risk scenarios.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Advisory keyword-based classification can misclassify ambiguous or context-dependent operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review high-impact decisions manually and apply the skill's rule of treating uncertain or combined operations at the highest applicable level.
+
+Risk: The shell helper echoes user-provided operation text in terminal output, and evidence.security cautions against untrusted strings containing terminal control characters.
+
+Mitigation: Avoid passing untrusted terminal-control input to evaluate.sh until output escaping or sanitization is added; treat the helper as advisory only.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huaiyu/skills/pc-operation-security)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown or terminal text with risk level, rationale, suggested mitigations, and related scenarios.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory classification output; shell helper accepts a single operation description.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

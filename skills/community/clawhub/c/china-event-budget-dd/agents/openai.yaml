@@ -1,0 +1,4 @@
+interface:
+  display_name: "中国活动预算逐项DD"
+  short_description: "逐行审核大型线下活动预算，识别软硬成本异常与潜在增项"
+  default_prompt: "使用 $china-event-budget-dd 逐行审核这份活动预算，并列出每项可能存在的异常。"

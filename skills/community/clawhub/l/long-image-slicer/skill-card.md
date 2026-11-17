@@ -1,40 +1,53 @@
-## Description: <br>
-Long Image Slicer slices long screenshots into 9:16 image segments and can produce sliced images, ZIP archives, DOCX files, and A4 PDFs while trying to avoid cutting through text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Long Image Slicer helps agents split long screenshots or chat captures into text-aware image slices and produce printable PDF, ZIP, and document outputs.
 
-## Publisher: <br>
-[yunkai](https://clawhub.ai/user/yunkai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunkai](https://clawhub.ai/user/yunkai)
 
-## Use Case: <br>
-Developers and agents use this skill when a user provides a long screenshot, chat log image, image URL, or local image path and asks for slicing, PDF conversion, or printable document output. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Screenshots and generated slices, ZIP archives, DOCX files, or PDFs may contain private user content saved on disk. <br>
-Mitigation: Use only the needed input files, choose an appropriate output directory, and delete sensitive generated files when they are no longer needed. <br>
-Risk: Optional image URL and local path handling can process untrusted images or unintended sensitive local files. <br>
-Mitigation: Use trusted image URLs and explicit non-sensitive local paths supplied for the task. <br>
+## Use Case:
 
+External users and agents use this skill to process long screenshots, chat records, or other tall images into readable slices and print-ready documents without cutting through detected text regions.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/yunkai/long-image-slicer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; generated image, ZIP, DOCX, and PDF files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Processes local images or trusted image URLs and writes generated artifacts to the selected output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: User-provided image URLs or local paths may introduce untrusted input.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted image sources and run the skill in an isolated virtual environment with reviewed or pinned dependencies.
+
+Risk: Generated JPG, ZIP, DOCX, and PDF files may overwrite or clutter important directories if the output path is chosen poorly.
+
+Mitigation: Choose a dedicated output directory and review the destination before running the scripts.
+
+## Reference(s):
+
+- [Long Image Slicer on ClawHub](https://clawhub.ai/yunkai/skills/long-image-slicer)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and generated JPG, ZIP, DOCX, and PDF files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated outputs are written to the selected output directory, including a slices_v7 image folder, ZIP archive, Word document, and optional A4 PDF.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

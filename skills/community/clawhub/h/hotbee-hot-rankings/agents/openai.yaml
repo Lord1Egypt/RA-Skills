@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee 全网热榜"
+  short_description: "获取小红书、抖音、百度、微博、B站热榜。"
+  default_prompt: "使用 HotBee 全网热榜技能，根据中文平台词选择已确认的热榜接口；其他平台缺少合同则说明范围。"

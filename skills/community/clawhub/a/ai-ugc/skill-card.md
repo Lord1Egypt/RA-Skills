@@ -1,41 +1,61 @@
-## Description: <br>
-Calls the RawUGC API to generate AI videos, images, and music, manage creative assets, schedule social media posts, research TikTok content, and analyze viral videos. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI UGC helps agents call RawUGC API endpoints to generate AI videos, images, and music, manage creative assets, schedule social posts, research TikTok content, and analyze viral videos.
 
-## Publisher: <br>
-[tfcbot](https://clawhub.ai/user/tfcbot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tfcbot](https://clawhub.ai/user/tfcbot)
 
-## Use Case: <br>
-Developers and agents use this skill to call RawUGC endpoints for media generation, content management, TikTok research, viral video analysis, and social post scheduling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide actions that publish or schedule social media posts, disconnect social accounts, delete resources, spend credits, or upload media that may become publicly accessible. <br>
-Mitigation: Use a dedicated RawUGC API key when possible, avoid sensitive uploads unless public access is acceptable, and require explicit confirmation before destructive, publishing, account, or credit-spending actions. <br>
+## Use Case:
 
+Developers and agents use this skill to integrate RawUGC workflows for AI media generation, media management, social scheduling, and TikTok research through authenticated API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tfcbot/ai-ugc) <br>
-- [Project homepage](https://github.com/tfcbot/rawugc-skills) <br>
-- [RawUGC API base URL](https://rawugc.com/api/v1) <br>
-- [Request/response reference](reference.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, API calls, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires RAWUGC_API_KEY and uses RawUGC-Version 2026-03-06.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.4 (source: server release evidence) <br>
+Risk: The skill requires access to a RawUGC API key and RawUGC-connected social accounts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when that access is acceptable, keep RAWUGC_API_KEY secret, and avoid logging or hardcoding the key.
+
+Risk: The skill can disconnect accounts, delete resources, change scheduled posts, or publish immediately.
+
+Mitigation: Require explicit user confirmation before deletes, account disconnects, scheduling changes, and publish-now actions.
+
+Risk: Uploaded media may become public URLs and is processed by RawUGC.
+
+Mitigation: Avoid uploading sensitive media and review any media URL before using it in generation or analysis workflows.
+
+## Reference(s):
+
+- [RawUGC API base URL](https://rawugc.com/api/v1)
+- [ClawHub skill page](https://clawhub.ai/tfcbot/skills/ai-ugc)
+- [ClawHub publisher profile](https://clawhub.ai/user/tfcbot)
+- [Clawdis homepage](https://github.com/tfcbot/rawugc-skills)
+- [RawUGC request and response reference](reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with API request details, JSON shapes, and command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires RAWUGC_API_KEY and may produce authenticated RawUGC API calls that create, edit, upload, delete, schedule, publish, or analyze media.]
+
+## Skill Version(s):
+
+0.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

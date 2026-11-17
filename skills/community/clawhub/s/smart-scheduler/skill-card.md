@@ -1,44 +1,55 @@
-## Description: <br>
-Coordinate meeting requests, proposed time slots, confirmations, and ICS exports from a local scheduling ledger. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coordinate meeting requests, proposed time slots, confirmations, and ICS exports from a local scheduling ledger.
 
-## Publisher: <br>
-[mehulupase01](https://clawhub.ai/user/mehulupase01) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mehulupase01](https://clawhub.ai/user/mehulupase01)
 
-## Use Case: <br>
-Developers and agent users use this skill to create scheduling requests, record participant time-slot proposals, confirm explicit choices, and export shareable calendar files from a local ledger. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Meeting and participant details are stored in a local runtime database. <br>
-Mitigation: Use the skill only where local storage of scheduling data is acceptable, and avoid entering sensitive participant details unless the workspace handling is approved. <br>
-Risk: Calendar exports are written to the default ICS location or to a user-selected path. <br>
-Mitigation: Choose output paths deliberately and review generated calendar files before sharing or importing them. <br>
-Risk: A slot can be marked confirmed even when the scheduling conversation is ambiguous. <br>
-Mitigation: Confirm slots only after explicit user or participant agreement, and present unresolved options instead of inventing agreement. <br>
+## Use Case:
 
+External users and developers use this skill to coordinate scheduling requests, record candidate meeting times, confirm agreed slots, and export calendar files from a local ledger.
 
-## Reference(s): <br>
-- [Message Templates](references/message-templates.md) <br>
-- [Project Homepage](https://github.com/Mehulupase01/openclaw-skill-suite/tree/main/skills/smart-scheduler) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mehulupase01/smart-scheduler) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [Markdown guidance with shell commands; the helper CLI returns JSON and writes SQLite and ICS files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores meeting and participant details in .runtime/smart-scheduler.db and writes ICS calendar files to the requested output path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: Calendar export can write to arbitrary local paths and overwrite writable files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep exports under the skill's .runtime directory and review output paths before running export commands.
+
+Risk: Scheduling text can contain ambiguous or untrusted meeting details.
+
+Mitigation: Confirm participant acceptance explicitly, preserve provided time zones, and present unresolved options instead of inventing agreement.
+
+## Reference(s):
+
+- [Message Templates](references/message-templates.md)
+- [ClawHub Skill Page](https://clawhub.ai/mehulupase01/skills/smart-scheduler)
+- [Project Homepage](https://github.com/Mehulupase01/openclaw-skill-suite/tree/main/skills/smart-scheduler)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Files]
+
+**Output Format:** [Markdown guidance with shell commands; helper commands emit JSON and can write ICS calendar files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses a local SQLite ledger under .runtime by default; ICS export paths should be reviewed before writing.]
+
+## Skill Version(s):
+
+0.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,58 @@
-## Description: <br>
-AGENTS.md/IDENTITY/SOUL/USER periodic reload skill to keep context fresh (.md-only v1.1.2), prevent confusion in long sessions, edit HEARTBEAT.md, add a cron task, and auto-summarize MEMORY and ToDo state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents periodically reload markdown context files, distill recent memory logs into MEMORY.md, and maintain HEARTBEAT.md or cron refresh tasks.
 
-## Publisher: <br>
-[kentaroid-bot](https://clawhub.ai/user/kentaroid-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kentaroid-bot](https://clawhub.ai/user/kentaroid-bot)
 
-## Use Case: <br>
-Developers and agent users use this skill to keep long-running sessions oriented by periodically rereading identity, project, and user context files and distilling recent logs into persistent memory and prioritized tasks. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Recurring automation can repeatedly read personal or project context logs and rewrite persistent memory files. <br>
-Mitigation: Install only when scheduled memory maintenance is intended, review the exact file permissions before enabling the cron task, and keep MEMORY.md and HEARTBEAT.md under version control or backup. <br>
-Risk: Memory summaries may drift or preserve sensitive details from USER.md, identity files, or memory logs. <br>
-Mitigation: Avoid storing secrets or sensitive personal details in files the skill reads, and periodically inspect or disable the scheduled job if summaries are no longer accurate or wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/kentaroid-bot/agents-refresh-md) <br>
-- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills) <br>
-- [Usage Examples](references/examples.md) <br>
+## Use Case:
 
+Developers and external ClawHub users use this skill to maintain long-running agent context by scheduling markdown-only refreshes and summarizing recent memory logs into project memory.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline cron JSON and file-edit examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide edits to MEMORY.md and HEARTBEAT.md and schedule a recurring refresh task.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: server release metadata and manifest.yaml) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Recurring refresh jobs may repeatedly read identity, user, and memory files and summarize them into persistent MEMORY.md.
+
+Mitigation: Enable the skill only in workspaces where persistent memory maintenance is intended, and review the scheduled jobs and HEARTBEAT.md entries before allowing them to run.
+
+Risk: Scheduled refresh tasks may remain active without clear stop or rollback controls.
+
+Mitigation: Record created cron job names or IDs, keep HEARTBEAT.md changes reviewable, and remove or disable the jobs when ongoing refreshes are no longer needed.
+
+Risk: Memory distillation may introduce incorrect or unwanted summaries into MEMORY.md.
+
+Mitigation: Review MEMORY.md updates before relying on them, and preserve source logs so incorrect summaries can be corrected.
+
+## Reference(s):
+
+- [Agents Refresh MD ClawHub Skill Page](https://clawhub.ai/kentaroid-bot/skills/agents-refresh-md)
+- [examples.md](references/examples.md)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with inline cron JSON and shell-style tool commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update MEMORY.md and HEARTBEAT.md when run by an agent with appropriate workspace permissions.]
+
+## Skill Version(s):
+
+1.1.2 (source: server release metadata and manifest.yaml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

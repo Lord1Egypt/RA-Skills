@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn77agyes33q7fsgcg7an72kp983zbgq",
-  "slug": "clawexpert",
+  "name": "clawexpert",
   "version": "1.0.0",
-  "publishedAt": 1775052177420
+  "description": "Turn OpenClaw into a self-evolving domain expert. Autonomously researches a topic for hours, builds a local indexed knowledge base, and answers future questions with citations from real sources.",
+  "author": "EdgePro001",
+  "license": "MIT",
+  "tags": ["learning", "knowledge", "research", "expert", "domain"],
+  "openclaw": {
+    "emoji": "🧠",
+    "skillKey": "clawexpert",
+    "homepage": "https://github.com/EdgePro001/ClawExpert",
+    "always": true
+  }
 }

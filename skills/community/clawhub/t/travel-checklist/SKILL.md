@@ -1,6 +1,6 @@
 ---
 name: travel-checklist
-description: Use when the user asks in Chinese or English what to pack, what to bring, what to prepare before leaving, or wants a trip-specific packing list/pre-departure checklist. 适用于旅行要带什么、行李清单、出门检查清单、packing list、travel checklist、亲子旅行、自驾、国外旅行、国内旅游、主题乐园、露营、徒步、雪山、高原、老人儿童同行等清单类请求。
+description: Create trip-specific packing and pre-departure checklists. Use for 行李清单、出门检查、packing lists, family, road, outdoor, or international trips.
 ---
 
 # Travel Checklist
@@ -24,10 +24,10 @@ Use this skill to produce packing lists and pre-departure checklists. Do not cre
    - Destination and region: country, city, scenic area, theme park, beach, mountain, desert, border area.
    - Duration and season: number of days, month, weekday/weekend, likely weather.
    - Travelers: adults, children, infants, older adults, pets, medical needs.
-   - Transport and lodging: international flight, domestic flight, train, self-driving, hotel, camping, cruise.
+   - Transport and lodging: international flight, domestic flight, train, self-driving, hotel, camping, cruise; bag capacity, checked/carry-on constraints, laundry access, and drying time.
    - Activity profile: city sightseeing, hiking, theme park, photography, shopping, business, skiing, swimming.
 
-2. If key facts are missing, make conservative assumptions instead of blocking. Ask at most one concise follow-up only when the checklist would be materially wrong without it, such as unknown child age, winter/summer ambiguity, or whether travel is international.
+2. If key facts are missing, make conservative assumptions instead of blocking. Ask at most one concise follow-up only when the checklist would be materially wrong without it, such as unknown child age, winter/summer ambiguity, or whether travel is international. For a high-risk outdoor trip with unknown route, season, experience, or team, do not infer route-specific equipment or go/no-go advice: give only universal risk-preparation items, state the missing factor, and ask exactly one question about the highest-impact gap; do not combine unrelated gaps in that question.
 
 3. Produce a checklist that is specific to the destination and travelers, not a generic packing list. Include both packing items and pre-departure tasks.
 
@@ -41,13 +41,19 @@ Match the user's language by default:
 - If the user explicitly requests Chinese or English, use the requested language.
 - If the request is mixed or language preference is unclear, default to Chinese.
 
-Use the same language for the assumptions line, section headings, checklist items, optional labels, cautions, and "can buy locally" notes. Keep proper nouns, app names, document names, and destination names in their common form when clearer.
+Use the same language for the context line, any assumptions, section headings, checklist items, optional labels, cautions, and "can buy locally" notes. Keep proper nouns, app names, document names, and destination names in their common form when clearer.
 
-Start with a short assumptions line:
+Start with a short context line. State assumptions only when a material fact was inferred:
 
 `按你的描述，我按「2名成人 / 日本 / 7天 / 酒店住宿 / 常规城市观光」来生成；如人数、季节或孩子年龄不同，清单需要微调。`
 
 `Based on your request, I am assuming "2 adults / Japan / 7 days / hotel stay / regular city sightseeing"; if the season, group size, or child age differs, adjust the checklist.`
+
+When no material fact was inferred, acknowledge the supplied details instead:
+
+`按你提供的「2名成人 / 日本 / 7天 / 酒店住宿 / 常规城市观光」整理如下。`
+
+`Using your details — "2 adults / Japan / 7 days / hotel stay / regular city sightseeing" — here is the checklist.`
 
 Then use sections with checkboxes. Use Chinese headings for Chinese output and English headings for English output:
 
@@ -72,6 +78,11 @@ For international trips:
 - Include passport validity, visa or entry permit, customs restrictions, roaming/eSIM, travel insurance, overseas payment backup, plug adapter, emergency contact, and copies of key documents.
 - Mention that rules can change and should be checked against official sources close to departure if the user asks for visa, customs, medication import, or entry policy details.
 
+For policy-sensitive questions:
+- Do not decide whether an item, document, medicine, battery, or bag is allowed by an airline, border authority, cruise line, venue, or attraction.
+- If official live sources are available, verify only the relevant authority's current source before stating a rule. Otherwise say the rule is unverified and direct the user to that authority; provide only non-rule packing precautions.
+- Read `references/rule-sensitive-checks.md` before answering a policy-sensitive question or adding an airline-specific packing instruction.
+
 For domestic China trips:
 - Include ID card, health/insurance basics, local climate layers, sunscreen or cold protection, local transport apps or offline maps, and region-specific safety.
 - For Xinjiang, Tibet, border regions, deserts, high altitude, or long-distance routes, add ID checks, sun/wind protection, dry climate care, larger power bank planning within airline limits, and long transfer snacks/water.
@@ -87,23 +98,26 @@ For children:
 For outdoor or climate-heavy trips:
 - Match the list to likely conditions: rain, cold, snow, heat, sun exposure, insects, dry air, altitude, hiking distance.
 - Include safety and layering items before optional comfort items.
+- For hikes that leave developed areas, include an official closure/alert check, a turnaround trigger, and a Plan B when conditions are uncertain.
 
 ## High-Risk Outdoor Trips
 
 For snow mountains, high-altitude trekking, wilderness crossings, desert crossings, routes with river crossings, unsupported remote routes, or trips where rescue and evacuation may be difficult, read `references/high-risk-outdoor.md` before answering.
+
+When the route or conditions are not sufficiently known, keep the answer to risk controls and general preparation. Do not present a route-specific kit, technical system, or departure recommendation as safe to follow.
 
 ## Scenario Coverage
 
 Add scenario-specific sections only when relevant. Do not include every section by default.
 
 Climate and season:
-- Cold or snow: thermal layers, gloves, hat, scarf, snow boots or anti-slip covers, hand warmers, moisturizer, lip balm.
+- Cold or snow: thermal layers, gloves, hat, scarf, snow boots or anti-slip covers, hand warmers, moisturizer, lip balm. For cold or wet hiking, use moisture-managing layers, keep a dry base layer and socks in waterproof storage, and do not rely on cotton as the only insulating layer.
 - Heat or beach: sunscreen, sunglasses, hat, swimsuit, quick-dry towel, sandals, after-sun care, waterproof phone pouch.
 - Rainy season or typhoon risk: raincoat, waterproof shoe covers or spare shoes, waterproof bags, itinerary flexibility, weather alerts.
 - Dry, windy, high-UV regions: moisturizer, lip balm, sunglasses, sun hat, long sleeves, nasal spray if useful, extra water planning.
 
 Transport:
-- Flight: ID/passport, boarding documents, airline luggage limits, liquids in carry-on, power bank in carry-on, neck pillow or earplugs for long flights.
+- Flight: ID/passport, boarding documents, airline luggage limits, liquids in carry-on, power bank in an easy-access carry-on item, neck pillow or earplugs for long flights. For the operating carrier's battery, baggage, or in-flight-use rules, read `references/rule-sensitive-checks.md` and verify live official sources.
 - Train or long-distance bus: ID, easy-access snacks, water, tissues, wet wipes, light blanket or jacket, entertainment, compact wash kit for overnight rides.
 - Self-driving: driver's license, vehicle documents, insurance, offline maps, car charger, tire pressure check, emergency triangle, reflective vest, fuel and rest-stop planning.
 - Cruise, RV, or camping: motion sickness medicine, compact storage, power adapters, quick-dry items, flashlight or headlamp, campsite or cabin-specific supplies.
@@ -127,7 +141,7 @@ Activities:
 - Shopping trips: foldable bag, luggage weight allowance, payment backup, customs allowance awareness for international travel.
 
 Luggage strategy:
-- Carry-on only: reduce liquids, prioritize quick-dry clothing, use solid toiletries, avoid bulky backups.
+- Carry-on only: use the actual bag capacity and carrier constraints, reduce liquids, prioritize quick-dry clothing, use solid toiletries, avoid bulky backups, and plan laundry and drying rather than packing speculative duplicates for longer trips.
 - Checked luggage: separate one-day essentials and important documents into carry-on, protect liquids, leave room for return items.
 - Minimal packing: separate "must bring" from "can buy locally" aggressively.
 - Multi-city trip: favor mix-and-match clothes, packing cubes, laundry plan, smaller luggage, easy-access daily essentials.
@@ -141,6 +155,7 @@ Home pre-departure:
 - Avoid vague filler such as "生活用品若干", "miscellaneous items", or "etc.". Name the items.
 - Separate "must bring" from "can buy locally" when the destination has easy shopping access.
 - Include quantities when duration matters, for example underwear/socks by day count plus one spare set.
+- For multi-day carry-on-only travel, make the clothing quantity consistent with a stated laundry and drying plan.
 - Include pre-departure tasks, not only luggage contents.
 - Avoid claiming current entry rules, airline battery rules, or attraction policies unless verified live from official/current sources.
 
@@ -148,7 +163,7 @@ Home pre-departure:
 
 Before answering, verify:
 
-- [ ] The response starts with an assumptions line in the user's language.
+- [ ] The response starts with a concise context line in the user's language and names material assumptions only when facts were inferred.
 - [ ] The checklist includes both packing items and pre-departure checks.
 - [ ] The sections are relevant to the trip; irrelevant sections are omitted.
 - [ ] At least one destination, traveler, transport, activity, climate, or luggage strategy detail is reflected.
@@ -174,12 +189,17 @@ Use these scenarios to spot-check future edits:
 
 | Scenario | Expected behavior |
 | --- | --- |
-| 中文普通旅行："去成都玩4天要带什么？" | Chinese checklist, conservative assumptions, city-weather and pre-departure checks |
-| English carry-on only: "What should I pack for 10 days in Italy with carry-on only?" | English checklist, carry-on constraints, can-buy-locally split |
-| Mixed language: "去新加坡 5 days with toddler, packing list please" | Default Chinese unless user clearly asks English; include toddler and international items |
-| Parent/child beach trip | Child safety, sun, water, spare clothes, cleanup, and pre-departure checks first |
-| High-risk outdoor route | Read `references/high-risk-outdoor.md`; risk controls before gear |
-| Rule-sensitive request: "Can I bring this medicine into Japan?" | Do not decide legality; give packing precautions and tell user to verify official sources |
+| 中文普通旅行："去成都玩4天要带什么？" | Chinese output; inferred season is stated; city-weather and pre-departure checks are present |
+| Fully specified city trip | No invented assumptions; start by acknowledging supplied details |
+| English carry-on only: "What should I pack for 10 days in Italy with carry-on only?" | English output; carry-on constraints and can-buy-locally split |
+| Mixed language: "去新加坡 5 days with toddler, packing list please" | Chinese by default; toddler and international items are present |
+| Parent/child beach trip | Child safety, sun, water, spare clothes, cleanup, and pre-departure checks precede optional items |
+| Cold or wet day hike | Moisture-managing layers and dry backup items are included; closure/alert check, turnaround trigger, and Plan B are present |
+| High-risk outdoor route with unknown season or team | Read `references/high-risk-outdoor.md`; give risk controls, avoid route-specific kit, and ask one single-fact question about the highest-impact gap |
+| High-altitude or remote outdoor trip | Include acclimatization time margin, descent/evacuation plan, and activity-specific insurance checks; do not prescribe medication or diagnose symptoms |
+| Multi-day carry-on-only trip | Clothing quantity matches bag capacity plus a laundry/drying plan, not speculative duplicate items |
+| Rule-sensitive request: "Can I bring this medicine into Japan?" | Do not decide legality; use only a verified official source or state that the rule is unverified |
+| Airline power bank request | Read `references/rule-sensitive-checks.md`; verify the operating carrier rather than quoting fixed capacity or use rules |
 
 ## Example Prompts
 

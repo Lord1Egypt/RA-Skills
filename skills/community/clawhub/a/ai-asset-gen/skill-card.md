@@ -1,40 +1,57 @@
-## Description: <br>
-AI-powered game asset generation guide covering 2D sprites, tilemaps, UI elements, audio, music, and 3D models. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered game asset generation guide covering 2D sprites, tilemaps, UI elements, audio, music, and 3D models.
 
-## Publisher: <br>
-[thb32133451](https://clawhub.ai/user/thb32133451) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thb32133451](https://clawhub.ai/user/thb32133451)
 
-## Use Case: <br>
-Game developers and content creators use this skill to draft prompts, choose AI asset tools, and plan post-processing workflows for game sprites, tilemaps, UI elements, audio, music, and simple 3D models. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Prompts, reference images, or proprietary art may be uploaded to third-party AI services recommended by the guide. <br>
-Mitigation: Review each service's terms and privacy behavior before use, and avoid uploading confidential assets unless approved. <br>
-Risk: Example file-processing commands may modify many asset files when run in the wrong directory. <br>
-Mitigation: Run commands only in the intended asset folder and keep backups before batch processing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Prompt Library](references/prompt-library.md) <br>
-- [ClawHub skill page](https://clawhub.ai/thb32133451/ai-asset-gen) <br>
+## Use Case:
 
+Developers and game creators use this skill to generate prompts, workflow guidance, and integration notes for 2D sprites, tilemaps, UI assets, audio, music, and simple 3D game assets.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with prompt templates, code snippets, shell commands, and configuration notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Agent output may include third-party AI tool recommendations and example asset-processing commands.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Chinese-language instructions may be misunderstood by reviewers or users who do not read Chinese.
+
+Mitigation: Review or translate the instructions before relying on the workflow.
+
+Risk: Example image-processing commands and scripts can modify asset files in the selected directory.
+
+Mitigation: Run examples only on intended asset directories and keep backups or version control before batch processing.
+
+Risk: The skill references optional tool-comparison and workflow documents that are not included in the artifact.
+
+Mitigation: Treat those missing links as unavailable and rely on the included prompt library and main skill instructions.
+
+## Reference(s):
+
+- [AI asset prompt library](references/prompt-library.md)
+- [ClawHub skill page](https://clawhub.ai/thb32133451/skills/ai-asset-gen)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with prompt templates, code examples, shell commands, and configuration notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include prompts for third-party image, audio, music, and 3D asset generation tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

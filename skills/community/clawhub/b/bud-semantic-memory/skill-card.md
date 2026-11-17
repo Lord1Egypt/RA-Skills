@@ -1,41 +1,58 @@
-## Description: <br>
-Vector-based semantic search for OpenClaw memories. Indexes memory files and enables meaning-based search instead of keyword matching. Uses ChromaDB for local vector storage. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Vector-based semantic search for OpenClaw memories. Indexes memory files and enables meaning-based search instead of keyword matching. Uses ChromaDB for local vector storage.
 
-## Publisher: <br>
-[stigg86](https://clawhub.ai/user/stigg86) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stigg86](https://clawhub.ai/user/stigg86)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to index local memory files, add new notes, and search memories by semantic meaning rather than exact keywords. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Memory content may include secrets, personal records, or confidential notes, and the security evidence flags possible embedding or external API handling risk. <br>
-Mitigation: Review before installing, avoid storing sensitive memory content, and confirm whether embeddings stay local before using the skill with confidential data. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to index local markdown memory files, search them by meaning or fallback text matching, add memory entries, and inspect memory statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stigg86/bud-semantic-memory) <br>
-- [Publisher profile](https://clawhub.ai/user/stigg86) <br>
-- [Skill homepage](https://github.com/stigg86/semantic-memory) <br>
-- [Gemini API key page](https://makersuite.google.com/app/apikey) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Command-line text output and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results include memory snippets, source filenames, and local paths when matches are found.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill persists long-term memory content and creates searchable local copies that may contain sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict permissions on ~/.openclaw/semantic-memory/ and ~/.openclaw/workspace/memory/, and review stored content before use on shared systems.
+
+Risk: The documentation asks users to create a Gemini credential file that the security evidence identifies as unused for this version.
+
+Mitigation: Do not create ~/.openclaw/credentials/gemini.json for this version unless a reviewed update requires it.
+
+Risk: The skill depends on ChromaDB, which may change behavior across releases if installed without version controls.
+
+Mitigation: Pin and install chromadb in a controlled environment before deployment.
+
+## Reference(s):
+
+- [Bud Semantic Memory ClawHub listing](https://clawhub.ai/stigg86/skills/bud-semantic-memory)
+- [Semantic Memory project homepage](https://github.com/stigg86/semantic-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands; runtime commands print plain-text search results, additions, and stats.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reads local OpenClaw memory markdown files and may persist indexed memory data under the user's home directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Manages GitHub pull request workflows by tracking PR status, checking CI, handling review feedback, fixing routine issues, and preparing replies through merge. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub PR Manager helps an agent manage pull request lifecycles, including PR setup, CI monitoring, review handling, issue replies, and follow-up until merge.
 
-## Publisher: <br>
-[godnight](https://clawhub.ai/user/godnight) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[godnight](https://clawhub.ai/user/godnight)
 
-## Use Case: <br>
-Developers and maintainers use this skill to have an agent monitor and manage GitHub pull requests, respond to CI and reviewer feedback, and keep the user informed until merge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can make high-impact GitHub changes using the user's GitHub identity, including pushes, force-pushes, comments, branch deletion, and issue updates. <br>
-Mitigation: Use a fine-grained token limited to the specific repository and require explicit confirmation before any high-impact GitHub operation. <br>
-Risk: Recurring PR tracking can continue after the user's immediate task is complete. <br>
-Mitigation: Remove scheduled tracking when the PR is closed or merged, and keep tracking state visible in the workspace. <br>
+## Use Case:
 
+Developers and maintainers use this skill to delegate routine GitHub pull request management, including status checks, reviewer feedback triage, small fixes, comments, and tracking until the PR is merged.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/godnight/github-pr-manager) <br>
-- [GitHub PR management workflow](artifact/references/workflow.md) <br>
-- [PR reply templates](artifact/references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, GitHub CLI/API command examples, reply templates, and task tracking notes.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create PR tracking notes and schedule recurring checks when configured by the agent environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent PR automation may use broad GitHub credentials for repository-changing actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an existing gh login or a short-lived fine-grained token limited to the target repository, and require explicit manual approval for commits, pushes, force-pushes, workflow changes, scheduled jobs, and public replies.
+
+Risk: Scheduled PR tracking can continue after it is no longer needed.
+
+Mitigation: Avoid or remove cron-based tracking unless there is a clear cleanup plan, and disable tracking when the PR closes or merges.
+
+Risk: Prepared reviewer replies or issue comments may be posted publicly on behalf of the user.
+
+Mitigation: Review comment text and target threads before posting, especially when the skill suggests clarifications, disagreement, or maintainer-facing requests.
+
+## Reference(s):
+
+- [GitHub PR management workflow](references/workflow.md)
+- [PR reply templates](references/templates.md)
+- [GitHub PR Manager on ClawHub](https://clawhub.ai/godnight/skills/github-pr-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, GitHub CLI/API examples, status summaries, and prepared PR comments]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs can include repository-changing commands and public reply text, so users should review them before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

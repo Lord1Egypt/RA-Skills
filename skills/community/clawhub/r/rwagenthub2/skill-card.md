@@ -1,45 +1,62 @@
-## Description: <br>
-Call 32 real-world APIs for travel, weather, finance, web search, geocoding, IP reputation, blockchain data, code execution, and email, paying per call in USDC on Base via x402. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AgentHub lets agents call 32 paid real-world APIs for travel, web search, weather, finance, blockchain, code execution, and email using USDC payments on Base via x402.
 
-## Publisher: <br>
-[marcelo-rowship](https://clawhub.ai/user/marcelo-rowship) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[marcelo-rowship](https://clawhub.ai/user/marcelo-rowship)
 
-## Use Case: <br>
-External users and developers use this skill to make paid AgentHub API calls from an agent workflow after configuring Node.js, the SDK, and a dedicated Base wallet. It is suited for retrieving real-world data, sending email, and running code through the listed gateway APIs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to a Base wallet private key for USDC micropayments. <br>
-Mitigation: Use a dedicated wallet with only a small USDC balance and do not reuse a primary wallet key. <br>
-Risk: Paid API calls may execute without clear spending or confirmation controls. <br>
-Mitigation: Require explicit approval before each paid call and monitor wallet balance and transaction history. <br>
-Risk: The skill can call email sending and code execution APIs. <br>
-Mitigation: Review request parameters before execution, especially email recipients, message content, code, language, and timeout. <br>
-Risk: The installed SDK dependency controls how calls and wallet signing are performed. <br>
-Mitigation: Review or pin the rwagenthub-sdk dependency before use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/marcelo-rowship/rwagenthub2) <br>
-- [AgentHub gateway](https://agents-production-73c1.up.railway.app) <br>
-- [rwagenthub-sdk package](https://www.npmjs.com/package/rwagenthub-sdk) <br>
+## Use Case:
 
+External developers and agents use AgentHub to retrieve real-world data, send email, and execute code through a paid API gateway. It is intended for workflows that can supply Node.js, npm, a Base wallet funded with USDC, and the MCP_WALLET_PRIVATE_KEY credential.
 
-## Skill Output: <br>
-**Output Type(s):** [API calls, JSON, Shell commands, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with bash and JavaScript snippets; API results are returned as JSON.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js, npm, rwagenthub-sdk, MCP_WALLET_PRIVATE_KEY, and a funded Base wallet for paid calls.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill requires a wallet private key for paid API calls.
+
+Mitigation: Use only a dedicated low-balance Base wallet and never reuse a main wallet private key.
+
+Risk: The documented SDK installation does not pin a reviewed package version.
+
+Mitigation: Review and pin the SDK version before installation in managed or sensitive environments.
+
+Risk: The documented shell template writes request data into a temporary script and can be unsafe if inputs are interpolated directly.
+
+Mitigation: Prefer a reviewed static script that passes request data as JSON without shell interpolation.
+
+Risk: API inputs may be sent to external services and the skill supports actions such as code execution, web extraction, and email sending.
+
+Mitigation: Avoid secrets or sensitive business data in API inputs, and review each call before spending USDC or triggering external actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marcelo-rowship/skills/rwagenthub2)
+- [AgentHub gateway](https://agents-production-73c1.up.railway.app)
+- [rwagenthub-sdk package](https://www.npmjs.com/package/rwagenthub-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance, JSON]
+
+**Output Format:** [Markdown guidance with shell and JavaScript snippets; API calls return JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js, npm, MCP_WALLET_PRIVATE_KEY, and a Base wallet with USDC; API calls may spend USDC per request.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

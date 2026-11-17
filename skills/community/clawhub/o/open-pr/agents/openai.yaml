@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Pull Request"
+  short_description: "Build, validate, and open a review-ready PR"
+  default_prompt: "Use $open-pr to build the requested change in a worktree and open a validated PR."

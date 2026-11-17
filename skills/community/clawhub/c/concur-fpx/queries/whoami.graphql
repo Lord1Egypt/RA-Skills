@@ -1,0 +1,3 @@
+query Whoami {
+  employee(userId: "", contextRole: TRAVELER) { userId contextRole }
+}

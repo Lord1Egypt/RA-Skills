@@ -1,0 +1,40 @@
+{
+  "name": "@yottameta/yotta-workflow",
+  "version": "0.4.5",
+  "description": "Cross-session / cross-project workflow standard for all AI agents: read the state on start, keep .workflow at the project root, persist logs/tasks/decisions while working, and leave a self-contained handoff anchor on finish. The project root is the state anchor; source directories may be nested and .git alone does not define the project root.",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "yotta-workflow",
+    "workflow",
+    "project-state",
+    "handoff"
+  ],
+  "files": [
+    "SKILL.md",
+    "skill-manifest.json",
+    "LICENSE",
+    "README.md",
+    "install.sh",
+    "agents",
+    "references",
+    "scripts",
+    "assets",
+    "bin",
+    "README.zh-CN.md",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YottaMeta/yotta-workflow.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "yotta-workflow": "bin/install.js"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\""
+  }
+}

@@ -1,43 +1,57 @@
-## Description: <br>
-Uses optimized prompts to screen batches of football matches and produce single-match win/draw/loss predictions with confidence scores, CLV estimates, and risk factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents screen batches of football matches and produce single-match win/draw/loss predictions with confidence, CLV estimates, reasoning, and risk factors.
 
-## Publisher: <br>
-[kingvergil](https://clawhub.ai/user/kingvergil) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kingvergil](https://clawhub.ai/user/kingvergil)
 
-## Use Case: <br>
-External users and analysts use this skill to rank daily football fixtures for prediction quality and to analyze individual matches for outcome, confidence, CLV, and risk signals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends match feature text to DeepSeek or a configured DeepSeek-compatible endpoint, which may expose private or proprietary notes. <br>
-Mitigation: Use a dedicated API key, verify DEEPSEEK_BASE_URL before running, and exclude private or proprietary material from input files. <br>
-Risk: The skill requires a DEEPSEEK_API_KEY credential. <br>
-Mitigation: Store the key in environment variables or a secret manager, rotate it as needed, and do not commit it in files or logs. <br>
-Risk: Predictions and CLV estimates may be inaccurate or misleading for betting or other financial decisions. <br>
-Mitigation: Review predictions independently and do not rely on the skill as the sole basis for wagering or financial decisions. <br>
+## Use Case:
 
+External users and developers use this skill to compare football matches for prediction quality, select promising fixtures, and generate structured match predictions. It is intended for advisory analysis and should not be treated as validated financial advice.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kingvergil/football-prediction-optimized) <br>
-- [Publisher profile](https://clawhub.ai/user/kingvergil) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, guidance] <br>
-**Output Format:** [JSON prediction and screening results, with text guidance when invoked through an agent.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stage1 returns ranked match screening results; Stage2 returns a single-match prediction, confidence, CLV estimates, risk factors, and timestamp.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Match feature text and related user-provided data may be sent to DeepSeek or another configured compatible endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with data appropriate for that endpoint, and avoid proprietary betting, account, or sensitive personal data in inputs.
+
+Risk: A configurable API base URL can receive the DeepSeek API credential if set to an untrusted endpoint.
+
+Mitigation: Leave DEEPSEEK_BASE_URL unset or set it only to a trusted HTTPS endpoint intended to receive the credential.
+
+Risk: Football predictions and CLV estimates can be incorrect or misleading if treated as financial advice.
+
+Mitigation: Treat outputs as advisory analysis, independently review assumptions and risk factors, and avoid automated betting decisions based solely on the skill output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kingvergil/skills/football-prediction-optimized)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Analysis, API Calls, Shell commands, Guidance]
+
+**Output Format:** [JSON objects for batch screening or single-match prediction, with optional Markdown and shell-command guidance from the agent.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires football match feature text as input and a DeepSeek-compatible API key when running the bundled Python script.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

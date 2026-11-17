@@ -1,49 +1,70 @@
-## Description: <br>
-Professional quantitative investment analysis system based on TradingView data that provides intelligent stock screening, technical pattern recognition, market review, risk management, event-driven analysis, multi-factor scoring, and trading strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional quantitative investment analysis system based on TradingView data that provides stock screening, technical pattern recognition, market review, risk management, and event-driven analysis with multi-factor scoring and trading strategies.
 
-## Publisher: <br>
-[hypier](https://clawhub.ai/user/hypier) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hypier](https://clawhub.ai/user/hypier)
 
-## Use Case: <br>
-External users and developers use this skill to analyze markets, screen securities, review technical and fundamental signals, monitor news and events, and produce risk-aware trading research from TradingView data through a configured MCP service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can produce buy/sell, options, stop-loss, target-price, or position-sizing outputs that may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as research prompts, verify conclusions independently, and make investment decisions cautiously. <br>
-Risk: Using the configured MCP service may send market symbols, news queries, and related analysis requests to TradingView or RapidAPI. <br>
-Mitigation: Install only when this data sharing is acceptable, and review applicable external service terms and privacy practices. <br>
-Risk: RapidAPI or service tokens can be exposed if placed directly in shared configuration files or logs. <br>
-Mitigation: Keep API keys private, prefer environment variables or protected configuration files, and avoid committing credentials to version control. <br>
+## Use Case:
 
+External users and developers use this skill to query TradingView-backed market data and produce stock screening, technical analysis, market review, news and event analysis, and risk-management reports.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/hypier/tradingview-quantitative-skills) <br>
-- [Publisher Profile](https://clawhub.ai/user/hypier) <br>
-- [TradingView Data API on RapidAPI](https://rapidapi.com/hypier/api/tradingview-data1) <br>
-- [TradingView Data API](references/api-documentation.md) <br>
-- [MCP Tools Usage Guide](references/mcp-tools-guide.md) <br>
-- [Technical Analysis Methodology](references/technical-analysis.md) <br>
-- [Technical Pattern Recognition Library](references/pattern-library.md) <br>
-- [Risk Management System](references/risk-management.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline tool-call examples, JSON configuration snippets, and natural-language analysis] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces research-oriented market analysis, screening results, risk notes, and configuration guidance; outputs are not personalized financial advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: ClawHub release evidence) <br>
+Risk: Credential exposure through MCP setup or example endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a verified MCP endpoint, keep API keys and JWTs in a secret store or environment variable, and do not send bearer tokens to example hosts.
+
+Risk: Mutable npm execution can resolve different package code over time.
+
+Mitigation: Prefer pinned npm package versions and review resolved packages before installing or updating the MCP configuration.
+
+Risk: Market analysis outputs can be mistaken for personalized investment advice.
+
+Mitigation: Treat buy, sell, options, crypto, and position-size outputs as educational market analysis and independently verify data before trading.
+
+Risk: External market-data services receive symbols, queries, authentication headers, and API requests.
+
+Mitigation: Send only necessary market queries, review RapidAPI and provider terms, monitor API usage, and stay within rate limits.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/hypier/skills/tradingview-quantitative-skills)
+- [TradingView Data API](references/api-documentation.md)
+- [MCP Tools Usage Guide](references/mcp-tools-guide.md)
+- [Technical Analysis Methodology](references/technical-analysis.md)
+- [Technical Pattern Recognition Library](references/pattern-library.md)
+- [Risk Management System](references/risk-management.md)
+- [US Stock Practical Examples](references/us-stock-examples.md)
+- [China A-Share Practical Examples](references/china-a-stock-examples.md)
+- [Security Policy](SECURITY.md)
+- [RapidAPI TradingView Data API](https://rapidapi.com/hypier/api/tradingview-data1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports with inline JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include educational trading recommendations, position sizing, and risk warnings based on external market data.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

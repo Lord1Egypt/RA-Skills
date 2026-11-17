@@ -1,0 +1,2399 @@
+{
+  "schema_version": 1,
+  "built_at": "2026-08-16T14:08:01",
+  "built_by": "build_guidelines.py",
+  "corpus_dir": "references\\guidelines",
+  "total_sources": 13,
+  "api_sources": 7,
+  "portal_sources": 6,
+  "entries": [
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Clinical practice guidelines and consensus statements integrating periodontal disease into cardiology, diabetes care and dementia: A scoping review and gap analysis.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41578910",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Periodontal disease (PD) is a prevalent chronic inflammatory condition linked to cardiovascular disease, diabetes mellitus and dementia, yet it is unclear how far medical specialty guidelines translate this evidence into concrete recommendations for assessment, referral and shared care.<h4>Objective</h4>To map clinical practice guidelines, consensus statements and position paper",
+      "update_date": "2026-05-01",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "41578910",
+        "pmcid": "PMC13135285",
+        "doi": "10.4317/medoral.27981",
+        "publication": "Medicina oral, patologia oral y cirugia bucal"
+      },
+      "id": "EuropePMC:10_4317_medoral_27981",
+      "version": null,
+      "date": "2026-05-01",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Guideline on treatment intensification with injectable therapies beyond GLP-1 RA based therapies in type 2 diabetes.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42543082",
+      "org_url": "https://europepmc.org",
+      "summary": "Guideline on Treatment Intensification with Injectable Therapies Beyond GLP-1 RA Monotherapy in Type 2 Diabetes.<h4>Aims</h4>To provide evidence-based recommendations for selecting injectable therapies in adults with type 2 diabetes (T2DM) who have suboptimal response to GLP‑1 receptor agonists (GLP‑1 RAs).<h4>Methods</h4>Using the GRADE framework, a systematic search (updated November 2025) ident",
+      "update_date": "2026-08-02",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "42543082",
+        "pmcid": null,
+        "doi": "10.1016/j.diabres.2026.113474",
+        "publication": "Diabetes research and clinical practice"
+      },
+      "id": "EuropePMC:10_1016_j_diabres_2026_113474",
+      "version": null,
+      "date": "2026-08-02",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Bridging gaps in diabetic neuropathy care: A Delphi-based regional consensus from the Gulf Cooperation Council.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42557853",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Aims/introduction</h4>Diabetic peripheral neuropathy (DPN) is a common complication of diabetes in the Gulf Cooperation Council (GCC) region, associated with delayed diagnosis, significant pain burden, and preventable complications. This Delphi-based consensus aimed to identify regional gaps in screening and management to develop practical, evidence-based recommendations tailored to GCC health",
+      "update_date": "2026-08-05",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "42557853",
+        "pmcid": null,
+        "doi": "10.1111/jdi.70411",
+        "publication": "Journal of diabetes investigation"
+      },
+      "id": "EuropePMC:10_1111_jdi_70411",
+      "version": null,
+      "date": "2026-08-05",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "A Survey of German Dentists on the Prophylactic Use of Antibacterial Drugs in Patients in Risk Groups: Diabetes, Joint Replacement, Risk of Endocarditis, and Immunosuppression or Organ Transplantation.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42325694",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Introduction</h4>Antibacterial drugs (ABDs) prescribed by dentists account for a significant proportion of all prescriptions for such drugs in Germany. The number of prescriptions is by no means uncontroversial, as guidelines are often lacking and antibacterial stewardship (antibiotic stewardship) calls for greater caution in the use of ABD. A survey was therefore conducted to answer the quest",
+      "update_date": "2026-06-19",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "42325694",
+        "pmcid": "PMC13280459",
+        "doi": "10.1155/ijod/8452465",
+        "publication": "International journal of dentistry"
+      },
+      "id": "EuropePMC:10_1155_ijod_8452465",
+      "version": null,
+      "date": "2026-06-19",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Bridging Mouth and Metal: Dental Hygiene and the Risk of Periprosthetic Joint Infection.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42358612",
+      "org_url": "https://europepmc.org",
+      "summary": "Periprosthetic joint infection (PJI) is one of the most serious complications of total joint arthroplasty (TJA), carrying both severe functional consequences and substantial economic costs. PJIs most commonly result from microbial contamination at the time of surgery or during the early postoperative period, while haematogenous seeding from distant infection sources accounts for a smaller proporti",
+      "update_date": "2026-06-22",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "42358612",
+        "pmcid": "PMC13293608",
+        "doi": "10.52965/001c.163041",
+        "publication": "Orthopedic reviews"
+      },
+      "id": "EuropePMC:10_52965_001c_163041",
+      "version": null,
+      "date": "2026-06-22",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Guidelines for Verification of Gastric Tube Location in Adult Hospitalised Patients: A Systematic Review.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41913447",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Verification of correct gastric tube placement is a major patient safety issue. Guidelines recommend different procedures.<h4>Aim</h4>To evaluate international guidelines for verifying correct gastric tube placement in adult hospitalised patients, identifying recommended practices and methodological quality.<h4>Study design</h4>Systematic review with searches conducted in Medlin",
+      "update_date": "2026-05-01",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "41913447",
+        "pmcid": "PMC13036308",
+        "doi": "10.1111/nicc.70466",
+        "publication": "Nursing in critical care"
+      },
+      "id": "EuropePMC:10_1111_nicc_70466",
+      "version": null,
+      "date": "2026-05-01",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "From guidelines to practice: general practitioners' consensus on indicators for managing selected multimorbidity in primary care in Western Australia.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42485647",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Multimorbidity is rising in primary care, yet adherence to guidelines is hindered by fragmented, disease-specific recommendations. This study sought to establish consensus among general practitioners (GPs) on indicators of adherence to Australian guidelines in managing five common chronic conditions [type 2 diabetes mellitus (T2DM), obesity, hypertension, cardiovascular disease,",
+      "update_date": "2026-06-01",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "42485647",
+        "pmcid": null,
+        "doi": "10.1093/fampra/cmag055",
+        "publication": "Family practice"
+      },
+      "id": "EuropePMC:10_1093_fampra_cmag055",
+      "version": null,
+      "date": "2026-06-01",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "The 2024 Endocrine Society Guideline on Vitamin D: Comprehensive Summary and Critical Appraisal.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42124073",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background/objectives</h4>An Endocrine Society Clinical Practice Guideline on vitamin D was published in 2024. Its main objective was the use of vitamin D to lower the risk of disease in individuals without established indications for vitamin D treatment or 25-hydroxavitamin D (25(OH)D) testing. The methodology followed the Grading of Recommendations, Assessment, Development, and Evaluation (G",
+      "update_date": "2026-05-05",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "42124073",
+        "pmcid": "PMC13164739",
+        "doi": "10.3390/nu18091472",
+        "publication": "Nutrients"
+      },
+      "id": "EuropePMC:10_3390_nu18091472",
+      "version": null,
+      "date": "2026-05-05",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "[Management of Antidiabetic Therapy in Patients Undergoing [18F]FDG PET].",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42184428",
+      "org_url": "https://europepmc.org",
+      "summary": "Positron emission tomography (PET) with fluorodeoxyglucose {[18F]FDG} is a technique used to identify areas of increased glycolytic metabolism, aiding in the diagnosis, staging, and follow-up of neoplastic, infectious, or inflammatory disease. In people with diabetes mellitus (DM), hyperglycemia and hyperinsulinemia alter the radiotracer biodistribution, compromising the diagnostic accuracy of thi",
+      "update_date": "2026-05-25",
+      "topic": "diabetes",
+      "extra": {
+        "pmid": "42184428",
+        "pmcid": null,
+        "doi": "10.20344/amp.24274",
+        "publication": "Acta medica portuguesa"
+      },
+      "id": "EuropePMC:10_20344_amp_24274",
+      "version": null,
+      "date": "2026-05-25",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "KDIGO 2022 Clinical Practice Guideline for Diabetes Management in Chronic Kidney Disease",
+      "year": 2022,
+      "url": "https://curis.ku.dk/ws/files/345510128/1_s2.0_S0085253822005075_main.pdf",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2022-10-19",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "Kidney International",
+        "doi": "https://doi.org/10.1016/j.kint.2022.06.008",
+        "pdf_url": "https://curis.ku.dk/ws/files/345510128/1_s2.0_S0085253822005075_main.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_kint_2022_06_008",
+      "version": null,
+      "date": "2022-10-19",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "KDIGO 2020 Clinical Practice Guideline for Diabetes Management in Chronic Kidney Disease",
+      "year": 2020,
+      "url": "https://curis.ku.dk/ws/files/259830341/PIIS0085253820307183.pdf",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2020-09-30",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "Kidney International",
+        "doi": "https://doi.org/10.1016/j.kint.2020.06.019",
+        "pdf_url": "https://curis.ku.dk/ws/files/259830341/PIIS0085253820307183.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_kint_2020_06_019",
+      "version": null,
+      "date": "2020-09-30",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Japanese Clinical Practice Guideline for Diabetes 2019",
+      "year": 2020,
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7378414",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2020-07-01",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "Diabetology International",
+        "doi": "https://doi.org/10.1007/s13340-020-00439-5",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1007_s13340_020_00439_5",
+      "version": null,
+      "date": "2020-07-01",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Treatment of Diabetes in Older Adults: An Endocrine Society* Clinical Practice Guideline",
+      "year": 2019,
+      "url": "https://academic.oup.com/jcem/article-pdf/104/5/1520/33345080/jc.2019-00198.pdf",
+      "org_url": "https://openalex.org",
+      "summary": "OBJECTIVE: The objective is to formulate clinical practice guidelines for the treatment of diabetes in older adults. CONCLUSIONS: Diabetes, particularly type 2, is becoming more prevalent in the general population, especially in individuals over the age of 65 years. The underlying pathophysiology of the disease in these patients is exacerbated by the direct effects of aging on metabolic regulation",
+      "update_date": "2019-03-23",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "The Journal of Clinical Endocrinology & Metabolism",
+        "doi": "https://doi.org/10.1210/jc.2019-00198",
+        "pdf_url": "https://academic.oup.com/jcem/article-pdf/104/5/1520/33345080/jc.2019-00198.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1210_jc_2019_00198",
+      "version": null,
+      "date": "2019-03-23",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Global Guideline for Type 2 Diabetes",
+      "year": 2014,
+      "url": "http://www.diabetesresearchclinicalpractice.com/article/S0168822712003683/pdf",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2014-02-05",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "Diabetes Research and Clinical Practice",
+        "doi": "https://doi.org/10.1016/j.diabres.2012.10.001",
+        "pdf_url": "http://www.diabetesresearchclinicalpractice.com/article/S0168822712003683/pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_diabres_2012_10_001",
+      "version": null,
+      "date": "2014-02-05",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Diabetes and Pregnancy: An Endocrine Society Clinical Practice Guideline",
+      "year": 2013,
+      "url": "https://academic.oup.com/jcem/article-pdf/98/11/4227/20288359/jcem4227.pdf",
+      "org_url": "https://openalex.org",
+      "summary": "OBJECTIVE: Our objective was to formulate a clinical practice guideline for the management of the pregnant woman with diabetes. PARTICIPANTS: The Task Force was composed of a chair, selected by the Clinical Guidelines Subcommittee of The Endocrine Society, 5 additional experts, a methodologist, and a medical writer. EVIDENCE: This evidence-based guideline was developed using the Grading of Recomme",
+      "update_date": "2013-11-01",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "The Journal of Clinical Endocrinology & Metabolism",
+        "doi": "https://doi.org/10.1210/jc.2013-2465",
+        "pdf_url": "https://academic.oup.com/jcem/article-pdf/98/11/4227/20288359/jcem4227.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1210_jc_2013_2465",
+      "version": null,
+      "date": "2013-11-01",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "2014 Evidence-Based Guideline for the Management of High Blood Pressure in Adults",
+      "year": 2013,
+      "url": "https://doi.org/10.1001/jama.2013.284427",
+      "org_url": "https://openalex.org",
+      "summary": "Hypertension is the most common condition seen in primary care and leads to myocardial infarction, stroke, renal failure, and death if not detected early and treated appropriately. Patients want to be assured that blood pressure (BP) treatment will reduce their disease burden, while clinicians want guidance on hypertension management using the best scientific evidence. This report takes a rigorous",
+      "update_date": "2013-12-18",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "JAMA",
+        "doi": "https://doi.org/10.1001/jama.2013.284427",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1001_jama_2013_284427",
+      "version": null,
+      "date": "2013-12-18",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "2013 ACCF/AHA Guideline for the Management of Heart Failure",
+      "year": 2013,
+      "url": "https://www.sciencedirect.com/science/article/pii/S0735109713021141/pdf",
+      "org_url": "https://openalex.org",
+      "summary": "In an effort to maintain relevance at the point of care for practicing clinicians",
+      "update_date": "2013-06-05",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "Journal of the American College of Cardiology",
+        "doi": "https://doi.org/10.1016/j.jacc.2013.05.019",
+        "pdf_url": "https://www.sciencedirect.com/science/article/pii/S0735109713021141/pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_jacc_2013_05_019",
+      "version": null,
+      "date": "2013-06-05",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "KDOQI Clinical Practice Guideline for Diabetes and CKD: 2012 Update",
+      "year": 2012,
+      "url": "https://doi.org/10.1053/j.ajkd.2012.07.005",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2012-10-13",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "American Journal of Kidney Diseases",
+        "doi": "https://doi.org/10.1053/j.ajkd.2012.07.005",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1053_j_ajkd_2012_07_005",
+      "version": null,
+      "date": "2012-10-13",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "NHS Diabetes guideline for the perioperative management of the adult patient with diabetes<sup>*</sup>",
+      "year": 2012,
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1464-5491.2012.03582.x",
+      "org_url": "https://openalex.org",
+      "summary": "These Joint British Diabetes Societies guidelines, commissioned by NHS Diabetes, for the perioperative management of the adult patient undergoing surgery are available in full in the Supporting Information. This document goes through the seven stages of the patient journey when having surgery. These are: primary care referral; surgical outpatients; preoperative assessment; hospital admission; surg",
+      "update_date": "2012-01-31",
+      "topic": "diabetes",
+      "extra": {
+        "publication": "Diabetic Medicine",
+        "doi": "https://doi.org/10.1111/j.1464-5491.2012.03582.x",
+        "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1464-5491.2012.03582.x"
+      },
+      "id": "OpenAlex:https_doi_org_10_1111_j_1464_5491_2012_03582_x",
+      "version": null,
+      "date": "2012-01-31",
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "NCCN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "NCCN — 在 NCCN 官方门户检索「diabetes」",
+      "year": null,
+      "url": "https://www.nccn.org/professionals/physician_gls",
+      "org_url": "https://www.nccn.org/professionals/physician_gls",
+      "summary": null,
+      "update_date": null,
+      "topic": "diabetes",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "NCCN:diabetes:nccn_在_nccn_官方门户检索_diabetes",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "ADA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "ADA — 在 ADA 官方门户检索「diabetes」",
+      "year": null,
+      "url": "https://diabetesjournals.org/clinicalcare",
+      "org_url": "https://diabetesjournals.org/clinicalcare",
+      "summary": null,
+      "update_date": null,
+      "topic": "diabetes",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "ADA:diabetes:ada_在_ada_官方门户检索_diabetes",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "AHA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "AHA — 在 AHA 官方门户检索「diabetes」",
+      "year": null,
+      "url": "https://www.ahajournals.org",
+      "org_url": "https://www.ahajournals.org",
+      "summary": null,
+      "update_date": null,
+      "topic": "diabetes",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "AHA:diabetes:aha_在_aha_官方门户检索_diabetes",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "SIGN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "SIGN — 在 SIGN 官方门户检索「diabetes」",
+      "year": null,
+      "url": "https://www.sign.ac.uk/our-guidelines",
+      "org_url": "https://www.sign.ac.uk/our-guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "diabetes",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "SIGN:diabetes:sign_在_sign_官方门户检索_diabetes",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CMA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CMA — 在 CMA 官方门户检索「diabetes」",
+      "year": null,
+      "url": "https://www.cma.org.cn",
+      "org_url": "https://www.cma.org.cn",
+      "summary": null,
+      "update_date": null,
+      "topic": "diabetes",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CMA:diabetes:cma_在_cma_官方门户检索_diabetes",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CPIC",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CPIC — 在 CPIC 官方门户检索「diabetes」",
+      "year": null,
+      "url": "https://cpicpgx.org/guidelines",
+      "org_url": "https://cpicpgx.org/guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "diabetes",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CPIC:diabetes:cpic_在_cpic_官方门户检索_diabetes",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "diabetes"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Breast Cancer Follow-Up and Surveillance After Primary Treatment: ASCO Guideline Update.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42462191",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Purpose</h4>To offer clinicians recommendations concerning breast cancer follow-up and surveillance after primary treatment.<h4>Methods</h4>ASCO convened an Expert Panel to develop recommendations based on a systematic review and a formal consensus process.<h4>Results</h4>One randomized controlled trial (RCT) was identified and formed the evidentiary basis for the surveillance mammography guid",
+      "update_date": "2026-07-16",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42462191",
+        "pmcid": null,
+        "doi": "10.1200/jco-26-01700",
+        "publication": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology"
+      },
+      "id": "EuropePMC:10_1200_jco_26_01700",
+      "version": null,
+      "date": "2026-07-16",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Clinical practice guidelines for prognosis and follow-up of early-stage breast cancer patients: Chinese Society of Breast Surgery (CSBrS) practice guidelines (2026 edition) Chinese Society of Breast Surgery, Chinese Society of Surgery, Chinese Medical Association.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42170568",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Long-term survival in early-stage breast cancer patients has markedly improved, making follow-up an increasingly prolonged phase of care. Accurate prognosis assessment and a scientifically grounded follow-up plan are essential for achieving effective and individualized chronic disease management. This guideline aims to standardize these practices in China.<h4>Methods</h4>The Chi",
+      "update_date": "2026-04-27",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42170568",
+        "pmcid": "PMC13187551",
+        "doi": "10.21037/tbcr-2025-1-64",
+        "publication": "Translational breast cancer research : a journal focusing on translational research in breast cancer"
+      },
+      "id": "EuropePMC:10_21037_tbcr_2025_1_64",
+      "version": null,
+      "date": "2026-04-27",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Nutrition Recommendations for People Living After Cancer: A Systematic Review and Critical Appraisal of Clinical Practice Guidelines.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42196976",
+      "org_url": "https://europepmc.org",
+      "summary": "<b>Background/Objectives</b>: Clinical practice guidelines are essential tools for ensuring evidence-based, standardised care for people living after cancer; however, the quality of international clinical practice guidelines with nutrition recommendations for this population has not been assessed. This systematic review aimed to critically appraise the quality of international clinical practice gu",
+      "update_date": "2026-05-09",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42196976",
+        "pmcid": "PMC13210353",
+        "doi": "10.3390/nu18101516",
+        "publication": "Nutrients"
+      },
+      "id": "EuropePMC:10_3390_nu18101516",
+      "version": null,
+      "date": "2026-05-09",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Guidance on physical activity from cancer survivorship to pregnancy: a scoping review.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42293667",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Improvements in cancer survival have resulted in a growing number of women of reproductive age who plan pregnancy or become pregnant after cancer. Physical activity is widely recommended during pregnancy and across the cancer survivorship continuum; however, there is currently no existing guidance adequately addressing women who fall at the intersection of these contexts. This s",
+      "update_date": "2026-05-29",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42293667",
+        "pmcid": "PMC13262188",
+        "doi": "10.3389/fpubh.2026.1801672",
+        "publication": "Frontiers in public health"
+      },
+      "id": "EuropePMC:10_3389_fpubh_2026_1801672",
+      "version": null,
+      "date": "2026-05-29",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Association of the European Society for Medical Oncology Magnitude of Clinical Benefit Scale (ESMO-MCBS) Scores with Guideline Recommendations in Breast Cancer.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42041746",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Objectives</h4>To evaluate the association between European Society for Medical Oncology Magnitude of Clinical Benefit Scale (ESMO-MCBS) scores and treatment recommendations from European Society for Medical Oncology, National Comprehensive Cancer Network (NCCN), and American Society of Clinical Oncology (ASCO) in curative and metastatic breast cancer (BC), and to assess inter-guideline concor",
+      "update_date": "2026-04-17",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42041746",
+        "pmcid": "PMC13114725",
+        "doi": "10.3390/curroncol33040227",
+        "publication": "Current oncology (Toronto, Ont.)"
+      },
+      "id": "EuropePMC:10_3390_curroncol33040227",
+      "version": null,
+      "date": "2026-04-17",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Cardiovascular care in adult cancer survivorship post-therapy: a cross-sectional analysis of clinical practice guidelines.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42057201",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background/objective</h4>Cardiovascular disease (CVD) is a major and potentially life-threatening late effect in cancer survivors, in some populations surpassing the risk of cancer recurrence as a leading cause of mortality. The aim of this study was to compare and critically appraise existing guidelines on CVD in cancer survivorship and to synthesize evidence-informed recommendations for the",
+      "update_date": "2026-04-29",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42057201",
+        "pmcid": "PMC13281353",
+        "doi": "10.1186/s40959-026-00493-z",
+        "publication": "Cardio-oncology (London, England)"
+      },
+      "id": "EuropePMC:10_1186_s40959_026_00493_z",
+      "version": null,
+      "date": "2026-04-29",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Benchmarking large language models in breast cancer care: agreement with radiology-led multidisciplinary tumor board decisions.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42121209",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Multidisciplinary tumor boards (MDTBs) play a central role in breast cancer management by integrating imaging findings with clinical and pathological information to guide treatment decisions. The increasing integration of artificial intelligence into clinical workflows has raised interest in the potential role of large language models (LLMs) as supportive tools in oncologic deci",
+      "update_date": "2026-05-12",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42121209",
+        "pmcid": null,
+        "doi": "10.1186/s12911-026-03556-4",
+        "publication": "BMC medical informatics and decision making"
+      },
+      "id": "EuropePMC:10_1186_s12911_026_03556_4",
+      "version": null,
+      "date": "2026-05-12",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Balancing global standards and regional nuances in breast cancer care: the role of guidelines, clinical research, precision medicine, and artificial intelligence in advancing quality of care for patients worldwide.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41968993",
+      "org_url": "https://europepmc.org",
+      "summary": null,
+      "update_date": "2026-04-01",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "41968993",
+        "pmcid": "PMC13059880",
+        "doi": "10.20892/j.issn.2095-3941.2025.0674",
+        "publication": "Cancer biology & medicine"
+      },
+      "id": "EuropePMC:10_20892_j_issn_2095_3941_2025_0674",
+      "version": null,
+      "date": "2026-04-01",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Applications of large language models in tumor boards: a systematic review.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42245825",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Multidisciplinary tumor boards (MDTs) are the gold standard for cancer care but currently face significant pressure from rising case volumes and the increasing complexity of precision medicine. Large Language Models (LLMs) offer potential as Clinical Decision Support Systems (CDSS) to augment these workflows. This systematic review evaluates the current applications, accuracy, a",
+      "update_date": "2026-05-20",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "42245825",
+        "pmcid": "PMC13230141",
+        "doi": "10.3389/or.2026.1757059",
+        "publication": "Oncology reviews"
+      },
+      "id": "EuropePMC:10_3389_or_2026_1757059",
+      "version": null,
+      "date": "2026-05-20",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Feasibility of quality indicators to assess the prevalence of guideline adherence in a german cohort of patients with advanced or metastatic breast cancer: Results of the BRE-BY-MED study.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41955827",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>In Germany, the national evidence- and consensus-based S3-Guideline guide treating physicians on effective therapies. Data on guideline adherence in patients with advanced or mBC in everyday clinical practice are lacking for Germany. The aim of the present study was to test the feasibility of quality indicators (QIs) to assess guideline adherence in a German cohort of patients w",
+      "update_date": "2026-04-03",
+      "topic": "breast cancer",
+      "extra": {
+        "pmid": "41955827",
+        "pmcid": null,
+        "doi": "10.1016/j.ctarc.2026.101200",
+        "publication": "Cancer treatment and research communications"
+      },
+      "id": "EuropePMC:10_1016_j_ctarc_2026_101200",
+      "version": null,
+      "date": "2026-04-03",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "ESMO Clinical Practice Guideline for the diagnosis, staging and treatment of patients with metastatic breast cancer",
+      "year": 2021,
+      "url": "https://www.annalsofoncology.org/article/S0923-7534(21)04498-7/pdf",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2021-10-20",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Annals of Oncology",
+        "doi": "https://doi.org/10.1016/j.annonc.2021.09.019",
+        "pdf_url": "https://www.annalsofoncology.org/article/S0923-7534(21)04498-7/pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_annonc_2021_09_019",
+      "version": null,
+      "date": "2021-10-20",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Neoadjuvant Chemotherapy, Endocrine Therapy, and Targeted Therapy for Breast Cancer: ASCO Guideline",
+      "year": 2021,
+      "url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.20.03399",
+      "org_url": "https://openalex.org",
+      "summary": "PURPOSE: To develop guideline recommendations concerning optimal neoadjuvant therapy for breast cancer. METHODS: ASCO convened an Expert Panel to conduct a systematic review of the literature on neoadjuvant therapy for breast cancer and provide recommended care options. RESULTS: A total of 41 articles met eligibility criteria and form the evidentiary basis for the guideline recommendations. RECOMM",
+      "update_date": "2021-01-28",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.20.03399",
+        "pdf_url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.20.03399"
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_20_03399",
+      "version": null,
+      "date": "2021-01-28",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Estrogen and Progesterone Receptor Testing in Breast Cancer: ASCO/CAP Guideline Update",
+      "year": 2020,
+      "url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.19.02309",
+      "org_url": "https://openalex.org",
+      "summary": "PURPOSE: To update key recommendations of the American Society of Clinical Oncology/College of American Pathologists estrogen (ER) and progesterone receptor (PgR) testing in breast cancer guideline. METHODS: A multidisciplinary international Expert Panel was convened to update the clinical practice guideline recommendations informed by a systematic review of the medical literature. RECOMMENDATIONS",
+      "update_date": "2020-01-13",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.19.02309",
+        "pdf_url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.19.02309"
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_19_02309",
+      "version": null,
+      "date": "2020-01-13",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Human Epidermal Growth Factor Receptor 2 Testing in Breast Cancer: American Society of Clinical Oncology/College of American Pathologists Clinical Practice Guideline Focused Update",
+      "year": 2018,
+      "url": "https://nottingham-repository.worktribe.com/output/1380167",
+      "org_url": "https://openalex.org",
+      "summary": "Purpose To update key recommendations of the American Society of Clinical Oncology/College of American Pathologists human epidermal growth factor receptor 2 (HER2) testing in breast cancer guideline. Methods Based on the signals approach, an Expert Panel reviewed published literature and research survey results on the observed frequency of less common in situ hybridization (ISH) patterns to update",
+      "update_date": "2018-05-30",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.2018.77.8738",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_2018_77_8738",
+      "version": null,
+      "date": "2018-05-30",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "American Cancer Society/American Society of Clinical Oncology Breast Cancer Survivorship Care Guideline",
+      "year": 2015,
+      "url": "https://doi.org/10.1200/jco.2015.64.3809",
+      "org_url": "https://openalex.org",
+      "summary": "The purpose of the American Cancer Society/American Society of Clinical Oncology Breast Cancer Survivorship Care Guideline is to provide recommendations to assist primary care and other clinicians in the care of female adult survivors of breast cancer. A systematic review of the literature was conducted using PubMed through April 2015. A multidisciplinary expert workgroup with expertise in primary",
+      "update_date": "2015-12-08",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.2015.64.3809",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_2015_64_3809",
+      "version": null,
+      "date": "2015-12-08",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Recommendations for Human Epidermal Growth Factor Receptor 2 Testing in Breast Cancer: American Society of Clinical Oncology/College of American Pathologists Clinical Practice Guideline Update",
+      "year": 2013,
+      "url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2013.50.9984?role=tab",
+      "org_url": "https://openalex.org",
+      "summary": "PURPOSE: To update the American Society of Clinical Oncology (ASCO)/College of American Pathologists (CAP) guideline recommendations for human epidermal growth factor receptor 2 (HER2) testing in breast cancer to improve the accuracy of HER2 testing and its utility as a predictive marker in invasive breast cancer. METHODS: ASCO/CAP convened an Update Committee that included coauthors of the 2007 g",
+      "update_date": "2013-10-08",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.2013.50.9984",
+        "pdf_url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2013.50.9984?role=tab"
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_2013_50_9984",
+      "version": null,
+      "date": "2013-10-08",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "American Society of Clinical Oncology/College of American Pathologists Guideline Recommendations for Immunohistochemical Testing of Estrogen and Progesterone Receptors in Breast Cancer",
+      "year": 2010,
+      "url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2009.25.6529?role=tab",
+      "org_url": "https://openalex.org",
+      "summary": "PURPOSE: To develop a guideline to improve the accuracy of immunohistochemical (IHC) estrogen receptor (ER) and progesterone receptor (PgR) testing in breast cancer and the utility of these receptors as predictive markers. METHODS: The American Society of Clinical Oncology and the College of American Pathologists convened an international Expert Panel that conducted a systematic review and evaluat",
+      "update_date": "2010-04-19",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.2009.25.6529",
+        "pdf_url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2009.25.6529?role=tab"
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_2009_25_6529",
+      "version": null,
+      "date": "2010-04-19",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "American Society of Clinical Oncology/College of American Pathologists Guideline Recommendations for Human Epidermal Growth Factor Receptor 2 Testing in Breast Cancer",
+      "year": 2006,
+      "url": "http://eprints.uwe.ac.uk/5799/",
+      "org_url": "https://openalex.org",
+      "summary": "PURPOSE: To develop a guideline to improve the accuracy of human epidermal growth factor receptor 2 (HER2) testing in invasive breast cancer and its utility as a predictive marker. METHODS: The American Society of Clinical Oncology and the College of American Pathologists convened an expert panel, which conducted a systematic review of the literature and developed recommendations for optimal HER2",
+      "update_date": "2006-12-12",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.2006.09.2775",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_2006_09_2775",
+      "version": null,
+      "date": "2006-12-12",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "American Society of Clinical Oncology Guideline Recommendations for Sentinel Lymph Node Biopsy in Early-Stage Breast Cancer",
+      "year": 2005,
+      "url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2005.08.001?role=tab",
+      "org_url": "https://openalex.org",
+      "summary": "PURPOSE: To develop a guideline for the use of sentinel node biopsy (SNB) in early stage breast cancer. METHODS: An American Society of Clinical Oncology (ASCO) Expert Panel conducted a systematic review of the literature available through February 2004 on the use of SNB in early-stage breast cancer. The panel developed a guideline for clinicians and patients regarding the appropriate use of a sen",
+      "update_date": "2005-09-13",
+      "topic": "breast cancer",
+      "extra": {
+        "publication": "Journal of Clinical Oncology",
+        "doi": "https://doi.org/10.1200/jco.2005.08.001",
+        "pdf_url": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2005.08.001?role=tab"
+      },
+      "id": "OpenAlex:https_doi_org_10_1200_jco_2005_08_001",
+      "version": null,
+      "date": "2005-09-13",
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "NCCN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "NCCN — 在 NCCN 官方门户检索「breast cancer」",
+      "year": null,
+      "url": "https://www.nccn.org/professionals/physician_gls",
+      "org_url": "https://www.nccn.org/professionals/physician_gls",
+      "summary": null,
+      "update_date": null,
+      "topic": "breast cancer",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "NCCN:breast_cancer:nccn_在_nccn_官方门户检索_breast_cancer",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "ADA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "ADA — 在 ADA 官方门户检索「breast cancer」",
+      "year": null,
+      "url": "https://diabetesjournals.org/clinicalcare",
+      "org_url": "https://diabetesjournals.org/clinicalcare",
+      "summary": null,
+      "update_date": null,
+      "topic": "breast cancer",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "ADA:breast_cancer:ada_在_ada_官方门户检索_breast_cancer",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "AHA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "AHA — 在 AHA 官方门户检索「breast cancer」",
+      "year": null,
+      "url": "https://www.ahajournals.org",
+      "org_url": "https://www.ahajournals.org",
+      "summary": null,
+      "update_date": null,
+      "topic": "breast cancer",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "AHA:breast_cancer:aha_在_aha_官方门户检索_breast_cancer",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "SIGN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "SIGN — 在 SIGN 官方门户检索「breast cancer」",
+      "year": null,
+      "url": "https://www.sign.ac.uk/our-guidelines",
+      "org_url": "https://www.sign.ac.uk/our-guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "breast cancer",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "SIGN:breast_cancer:sign_在_sign_官方门户检索_breast_cancer",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CMA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CMA — 在 CMA 官方门户检索「breast cancer」",
+      "year": null,
+      "url": "https://www.cma.org.cn",
+      "org_url": "https://www.cma.org.cn",
+      "summary": null,
+      "update_date": null,
+      "topic": "breast cancer",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CMA:breast_cancer:cma_在_cma_官方门户检索_breast_cancer",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CPIC",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CPIC — 在 CPIC 官方门户检索「breast cancer」",
+      "year": null,
+      "url": "https://cpicpgx.org/guidelines",
+      "org_url": "https://cpicpgx.org/guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "breast cancer",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CPIC:breast_cancer:cpic_在_cpic_官方门户检索_breast_cancer",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "breast_cancer"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Identification and management of sarcopenia in patients with multimorbidity: An EFIM critically appraised and adapted guideline.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42595648",
+      "org_url": "https://europepmc.org",
+      "summary": "Sarcopenia is highly prevalent among adults with multimorbidity and contributes substantially to frailty, disability, prolonged hospitalization, and mortality. International guidelines offer robust diagnostic and therapeutic frameworks for sarcopenia, but rarely incorporate the clinical complexity of patients with multimorbidity (MM). The European Federation of Internal Medicine (EFIM) undertook a",
+      "update_date": "2026-08-13",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42595648",
+        "pmcid": null,
+        "doi": "10.1016/j.ejim.2026.107121",
+        "publication": "European journal of internal medicine"
+      },
+      "id": "EuropePMC:10_1016_j_ejim_2026_107121",
+      "version": null,
+      "date": "2026-08-13",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Atrial Fibrillation Screening in Those with Rheumatic Heart Disease: A Narrative Policy Content Review.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42221680",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Rheumatic heart disease (RHD) and atrial fibrillation (AF) are major global health burdens. AF affects up to one-third of individuals with RHD, yet clinical guidelines lack recommendations for AF screening in this population.<h4>Aim</h4>To identify and review current guidelines/policies for AF and RHD to assess whether recommendations are made for AF screening in patients with R",
+      "update_date": "2026-04-28",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42221680",
+        "pmcid": "PMC13218348",
+        "doi": "10.5334/gh.1552",
+        "publication": "Global heart"
+      },
+      "id": "EuropePMC:10_5334_gh_1552",
+      "version": null,
+      "date": "2026-04-28",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Cardiac MRI Across ESC Guidance in the Last Decade.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42145176",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Aims</h4>Cardiovascular magnetic resonance (CMR) has shifted from a problem-solving modality to a foundational, first-line test in European Society of Cardiology (ESC) guidance. This review synthesises how CMR is positioned within ESC guidelines (2015-2025) and allied EACVI/EHRA statements, emphasizing its decision-shaping role through accurate biventricular volumetry, tissue characterization",
+      "update_date": "2026-05-01",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42145176",
+        "pmcid": "PMC13181430",
+        "doi": "10.1002/clc.70329",
+        "publication": "Clinical cardiology"
+      },
+      "id": "EuropePMC:10_1002_clc_70329",
+      "version": null,
+      "date": "2026-05-01",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "The Society of Thoracic Surgeons / World Society for Pediatric and Congenital Heart Surgery / European Congenital Heart Surgeons Association 2026 Expert Consensus Document on Timing, Indications, and Options for Pulmonary Valve Replacement in Children with Repaired Tetralogy of Fallot.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42508675",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Contemporary surgical and medical management has enabled excellent long-term survival and quality of life for children following repair of tetralogy of Fallot. However, most patients are left with residual pulmonary regurgitation that requires long-term surveillance and eventual pulmonary valve replacement to prevent right ventricular failure. Guidelines have been developed rega",
+      "update_date": "2026-07-27",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42508675",
+        "pmcid": null,
+        "doi": "10.1016/j.athoracsur.2026.07.010",
+        "publication": "The Annals of thoracic surgery"
+      },
+      "id": "EuropePMC:10_1016_j_athoracsur_2026_07_010",
+      "version": null,
+      "date": "2026-07-27",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Korean Society of Heart Failure Guidelines for the Palliative Care and Hospice for Heart Failure Patients.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42110709",
+      "org_url": "https://europepmc.org",
+      "summary": "Heart failure (HF) is a leading cause of mortality and morbidity in South Korea and imposes substantial physical, emotional, and economic burdens on patients, families, and society. Despite the high symptom burden and complex care needs of patients with HF, palliative care and hospice services remain underutilized owing to cultural, institutional, and knowledge-related barriers. This guideline fro",
+      "update_date": "2026-04-22",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42110709",
+        "pmcid": "PMC13150461",
+        "doi": "10.36628/ijhf.2026.0037",
+        "publication": "International journal of heart failure"
+      },
+      "id": "EuropePMC:10_36628_ijhf_2026_0037",
+      "version": null,
+      "date": "2026-04-22",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Adaptation of a clinical practice guideline for home care nursing in heart failure patients: a multi-method study.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42401885",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>The demand for home healthcare services for chronic conditions has increased due to the transition of care from hospitals to the home. This study aimed to adapt a Clinical Practice Guideline (CPG) for home-based nursing care of adult patients with heart failure in the healthcare system of Iran.<h4>Methods</h4>This study was conducted using a multi-method design within the 10-ste",
+      "update_date": "2026-07-04",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42401885",
+        "pmcid": null,
+        "doi": "10.1186/s12912-026-04774-x",
+        "publication": "BMC nursing"
+      },
+      "id": "EuropePMC:10_1186_s12912_026_04774_x",
+      "version": null,
+      "date": "2026-07-04",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Best Evidence Summary for Volume Management of Patients With Heart and Kidney Comorbidity.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42186083",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Objective</h4>To summarise the best evidence of volume management of patients with coexisting cardiac and renal disorders.<h4>Design</h4>An evidence summary, a form of rapid review.<h4>Methods</h4>A systematic search was conducted in guideline websites, professional association websites and six databases included Web of Science, Embase, CIHAHL, PubMed, CNKI, SinoMed from their inception to 1 A",
+      "update_date": "2026-05-01",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42186083",
+        "pmcid": "PMC13240300",
+        "doi": "10.1002/nop2.70544",
+        "publication": "Nursing open"
+      },
+      "id": "EuropePMC:10_1002_nop2_70544",
+      "version": null,
+      "date": "2026-05-01",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Closing the Guideline Gap: AI and the Rise of Living Cardiovascular Recommendations.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41759226",
+      "org_url": "https://europepmc.org",
+      "summary": null,
+      "update_date": "2026-02-26",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "41759226",
+        "pmcid": "PMC12955665",
+        "doi": "10.1016/j.jacadv.2026.102639",
+        "publication": "JACC. Advances"
+      },
+      "id": "EuropePMC:10_1016_j_jacadv_2026_102639",
+      "version": null,
+      "date": "2026-02-26",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Expert Opinion on Optimising Guideline-Directed Medical Therapy and Expanding the Role of Angiotensin Receptor-Neprilysin Inhibitors (ARNIs) for Heart Failure Management in India.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42211603",
+      "org_url": "https://europepmc.org",
+      "summary": "Strong clinical evidence and clear guideline recommendations support the use of guideline-directed medical therapy (GDMT) - particularly angiotensin receptor-neprilysin inhibitors (ARNIs) - in heart failure (HF) management, yet real-world adoption in India remains limited. Indian registry data indicate that just one quarter of patients leave the hospital with complete GDMT, and less than 5% receiv",
+      "update_date": "2026-04-26",
+      "topic": "heart failure",
+      "extra": {
+        "pmid": "42211603",
+        "pmcid": "PMC13213322",
+        "doi": "10.7759/cureus.107772",
+        "publication": "Cureus"
+      },
+      "id": "EuropePMC:10_7759_cureus_107772",
+      "version": null,
+      "date": "2026-04-26",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure",
+      "year": 2022,
+      "url": "https://doi.org/10.1016/j.jacc.2021.12.012",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2022-04-01",
+      "topic": "heart failure",
+      "extra": {
+        "publication": "Journal of the American College of Cardiology",
+        "doi": "https://doi.org/10.1016/j.jacc.2021.12.012",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_jacc_2021_12_012",
+      "version": null,
+      "date": "2022-04-01",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines",
+      "year": 2022,
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001063",
+      "org_url": "https://openalex.org",
+      "summary": "AIM: The \"2022 AHA/ACC/HFSA Guideline for the Management of Heart Failure\" replaces the \"2013 ACCF/AHA Guideline for the Management of Heart Failure\" and the \"2017 ACC/AHA/HFSA Focused Update of the 2013 ACCF/AHA Guideline for the Management of Heart Failure.\" The 2022 guideline is intended to provide patient-centric recommendations for clinicians to prevent, diagnose, and manage patients with hea",
+      "update_date": "2022-04-01",
+      "topic": "heart failure",
+      "extra": {
+        "publication": "Circulation",
+        "doi": "https://doi.org/10.1161/cir.0000000000001063",
+        "pdf_url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000001063"
+      },
+      "id": "OpenAlex:https_doi_org_10_1161_cir_0000000000001063",
+      "version": null,
+      "date": "2022-04-01",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "2017 ACC/AHA/HFSA Focused Update of the 2013 ACCF/AHA Guideline for the Management of Heart Failure",
+      "year": 2017,
+      "url": "https://doi.org/10.1016/j.jacc.2017.04.025",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2017-04-28",
+      "topic": "heart failure",
+      "extra": {
+        "publication": "Journal of the American College of Cardiology",
+        "doi": "https://doi.org/10.1016/j.jacc.2017.04.025",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_jacc_2017_04_025",
+      "version": null,
+      "date": "2017-04-28",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "2017 ACC/AHA/HFSA Focused Update of the 2013 ACCF/AHA Guideline for the Management of Heart Failure: A Report of the American College of Cardiology/American Heart Association Task Force on Clinical Practice Guidelines and the Heart Failure Society of America",
+      "year": 2017,
+      "url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000000509",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2017-04-29",
+      "topic": "heart failure",
+      "extra": {
+        "publication": "Circulation",
+        "doi": "https://doi.org/10.1161/cir.0000000000000509",
+        "pdf_url": "https://www.ahajournals.org/doi/pdf/10.1161/CIR.0000000000000509"
+      },
+      "id": "OpenAlex:https_doi_org_10_1161_cir_0000000000000509",
+      "version": null,
+      "date": "2017-04-29",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "2013 ACCF/AHA Guideline for the Management of Heart Failure: Executive Summary",
+      "year": 2013,
+      "url": "https://doi.org/10.1161/cir.0b013e31829e8807",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2013-06-06",
+      "topic": "heart failure",
+      "extra": {
+        "publication": "Circulation",
+        "doi": "https://doi.org/10.1161/cir.0b013e31829e8807",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1161_cir_0b013e31829e8807",
+      "version": null,
+      "date": "2013-06-06",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "HFSA 2010 Comprehensive Heart Failure Practice Guideline",
+      "year": 2010,
+      "url": "https://doi.org/10.1016/j.cardfail.2010.04.004",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2010-06-01",
+      "topic": "heart failure",
+      "extra": {
+        "publication": "Journal of Cardiac Failure",
+        "doi": "https://doi.org/10.1016/j.cardfail.2010.04.004",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_cardfail_2010_04_004",
+      "version": null,
+      "date": "2010-06-01",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "ACC/AHA 2005 Guideline Update for the Diagnosis and Management of Chronic Heart Failure in the Adult",
+      "year": 2005,
+      "url": "https://doi.org/10.1016/j.jacc.2005.08.022",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2005-09-01",
+      "topic": "heart failure",
+      "extra": {
+        "publication": "Journal of the American College of Cardiology",
+        "doi": "https://doi.org/10.1016/j.jacc.2005.08.022",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_jacc_2005_08_022",
+      "version": null,
+      "date": "2005-09-01",
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "NCCN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "NCCN — 在 NCCN 官方门户检索「heart failure」",
+      "year": null,
+      "url": "https://www.nccn.org/professionals/physician_gls",
+      "org_url": "https://www.nccn.org/professionals/physician_gls",
+      "summary": null,
+      "update_date": null,
+      "topic": "heart failure",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "NCCN:heart_failure:nccn_在_nccn_官方门户检索_heart_failure",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "ADA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "ADA — 在 ADA 官方门户检索「heart failure」",
+      "year": null,
+      "url": "https://diabetesjournals.org/clinicalcare",
+      "org_url": "https://diabetesjournals.org/clinicalcare",
+      "summary": null,
+      "update_date": null,
+      "topic": "heart failure",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "ADA:heart_failure:ada_在_ada_官方门户检索_heart_failure",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "AHA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "AHA — 在 AHA 官方门户检索「heart failure」",
+      "year": null,
+      "url": "https://www.ahajournals.org",
+      "org_url": "https://www.ahajournals.org",
+      "summary": null,
+      "update_date": null,
+      "topic": "heart failure",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "AHA:heart_failure:aha_在_aha_官方门户检索_heart_failure",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "SIGN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "SIGN — 在 SIGN 官方门户检索「heart failure」",
+      "year": null,
+      "url": "https://www.sign.ac.uk/our-guidelines",
+      "org_url": "https://www.sign.ac.uk/our-guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "heart failure",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "SIGN:heart_failure:sign_在_sign_官方门户检索_heart_failure",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CMA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CMA — 在 CMA 官方门户检索「heart failure」",
+      "year": null,
+      "url": "https://www.cma.org.cn",
+      "org_url": "https://www.cma.org.cn",
+      "summary": null,
+      "update_date": null,
+      "topic": "heart failure",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CMA:heart_failure:cma_在_cma_官方门户检索_heart_failure",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CPIC",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CPIC — 在 CPIC 官方门户检索「heart failure」",
+      "year": null,
+      "url": "https://cpicpgx.org/guidelines",
+      "org_url": "https://cpicpgx.org/guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "heart failure",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CPIC:heart_failure:cpic_在_cpic_官方门户检索_heart_failure",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "heart_failure"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "2025 guideline updates for community-acquired pneumonia diagnosis and management.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42127879",
+      "org_url": "https://europepmc.org",
+      "summary": "Community-acquired pneumonia (CAP) is a common condition evaluated and managed in the emergency department (ED) setting. Guidelines published in 2007 and 2019 from the American Thoracic Society (ATS) and Infectious Diseases Society of America provide recommendations for CAP, but there are a variety of studies that have been published since the release of these guidelines. The ATS published updated",
+      "update_date": "2026-05-14",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": "42127879",
+        "pmcid": null,
+        "doi": "10.1016/j.ajem.2026.05.020",
+        "publication": "The American journal of emergency medicine"
+      },
+      "id": "EuropePMC:10_1016_j_ajem_2026_05_020",
+      "version": null,
+      "date": "2026-05-14",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Interruption of enteral tube feeding during chest physiotherapy in critically ill adults: A scoping review.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41704337",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Introduction</h4>Numerous reports indicate that the nutritional targets of critically ill patients are frequently not met. In daily clinical practice, it is often recommended to temporarily stop enteral tube feeding in patients on mechanical ventilation (MV) who are undergoing chest physiotherapy. This is because adverse events can occur and potentially cause vomiting and increase the risk of",
+      "update_date": "2026-01-30",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": "41704337",
+        "pmcid": "PMC12908989",
+        "doi": "10.2478/jccm-2026-0002",
+        "publication": "Journal of critical care medicine (Universitatea de Medicina si Farmacie din Targu-Mures)"
+      },
+      "id": "EuropePMC:10_2478_jccm_2026_0002",
+      "version": null,
+      "date": "2026-01-30",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Evaluation of multifaceted interventions on antibiotic prescribing in community-acquired pneumonia.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42205877",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Objective</h4>To evaluate the impact of systemwide antimicrobial stewardship interventions on antibiotic prescribing patterns for community-acquired pneumonia(CAP) in a community health system.<h4>Design</h4>Retrospective pre-post implementation study.<h4>Setting</h4>Adult acute care hospitals in a community health system.<h4>Patients</h4>Adults 18 years or older admitted to an acute care hosp",
+      "update_date": "2026-05-25",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": "42205877",
+        "pmcid": "PMC13202491",
+        "doi": "10.1017/ash.2026.10333",
+        "publication": "Antimicrobial stewardship & healthcare epidemiology : ASHE"
+      },
+      "id": "EuropePMC:10_1017_ash_2026_10333",
+      "version": null,
+      "date": "2026-05-25",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Assessment of Compliance with National and International Guidelines in the Empirical Management of Community-Acquired Pneumonia (CAP) in Lebanese Hospitals: A Multicenter Retrospective Cohort Study",
+      "year": 2026,
+      "url": null,
+      "org_url": "https://europepmc.org",
+      "summary": null,
+      "update_date": "2026-05-30",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": null,
+        "pmcid": "PMC13295471",
+        "doi": null,
+        "publication": "Antibiotics (Basel, Switzerland)"
+      },
+      "id": "EuropePMC:pmc13295471",
+      "version": null,
+      "date": "2026-05-30",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "The effectiveness of intravenous (IV) to oral (PO) antibiotic switch (IVOS) interventions in managing community- and hospital-acquired pneumonia-a systematic review.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42130775",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Prolonged intravenous (IV) antibiotic therapy in hospitalized patients with pneumonia increases healthcare costs and hospital length of stay compared to oral (PO) therapy. Antimicrobial stewardship (AMS) interventions promoting timely IV-to-PO antibiotic conversion may reduce healthcare burden without compromising patient outcomes. Optimal design and implementation of such inter",
+      "update_date": "2026-05-12",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": "42130775",
+        "pmcid": "PMC13160672",
+        "doi": "10.1093/jacamr/dlag065",
+        "publication": "JAC-antimicrobial resistance"
+      },
+      "id": "EuropePMC:10_1093_jacamr_dlag065",
+      "version": null,
+      "date": "2026-05-12",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "The Saudi Thoracic Society guidelines for community acquired pneumonia: A model for translating evidence into national practice.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41696410",
+      "org_url": "https://europepmc.org",
+      "summary": null,
+      "update_date": "2025-12-04",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": "41696410",
+        "pmcid": "PMC12904512",
+        "doi": "10.4103/atm.atm_348_25",
+        "publication": "Annals of thoracic medicine"
+      },
+      "id": "EuropePMC:10_4103_atm_atm_348_25",
+      "version": null,
+      "date": "2025-12-04",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Clinical Practice Guideline by the Infectious Diseases Society of America and the Pediatric Infectious Diseases Society: 2026 Guideline Update on The Management of Community-Acquired Pneumonia in Infants and Children Older than 3 Months of Age.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/41839546",
+      "org_url": "https://europepmc.org",
+      "summary": "As the first part of an update to the clinical practice guideline on the management of community-acquired pneumonia in infants and children older than 3 months of age, we present six updated recommendations. The updated recommendations span the characterization and management of pneumonia with parapneumonic effusion. The panel's recommendations are based on evidence derived from systematic literat",
+      "update_date": "2026-03-16",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": "41839546",
+        "pmcid": null,
+        "doi": "10.1093/cid/ciag186",
+        "publication": "Clinical infectious diseases : an official publication of the Infectious Diseases Society of America"
+      },
+      "id": "EuropePMC:10_1093_cid_ciag186",
+      "version": null,
+      "date": "2026-03-16",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "EuropePMC",
+      "access": "api",
+      "retrieved": true,
+      "title": "Design and validation of revised medication assessment tool for community-acquired Pneumonia: rMAT-CAP.",
+      "year": 2026,
+      "url": "https://europepmc.org/article/MED/42218404",
+      "org_url": "https://europepmc.org",
+      "summary": "<h4>Background</h4>Evaluating therapeutic appropriateness is a cornerstone of antimicrobial stewardship. The original Medication Assessment Tool for Community-Acquired Pneumonia (MAT-CAP), developed in Norway, requires adaptation to account for evolving IDSA/ATS recommendations and region-specific antimicrobial resistance patterns in the UAE. To revise, adapt, and validate a Medication Assessment",
+      "update_date": "2026-05-30",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "pmid": "42218404",
+        "pmcid": null,
+        "doi": "10.1186/s12879-026-13681-0",
+        "publication": "BMC infectious diseases"
+      },
+      "id": "EuropePMC:10_1186_s12879_026_13681_0",
+      "version": null,
+      "date": "2026-05-30",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "International Perspective on the New 2019 American Thoracic Society/Infectious Diseases Society of America Community-Acquired Pneumonia Guideline",
+      "year": 2020,
+      "url": "http://journal.chestnet.org/article/S001236922034280X/pdf",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2020-08-25",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "CHEST Journal",
+        "doi": "https://doi.org/10.1016/j.chest.2020.07.089",
+        "pdf_url": "http://journal.chestnet.org/article/S001236922034280X/pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_chest_2020_07_089",
+      "version": null,
+      "date": "2020-08-25",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Diagnosis and Treatment of Adults with Community-acquired Pneumonia. An Official Clinical Practice Guideline of the American Thoracic Society and Infectious Diseases Society of America",
+      "year": 2019,
+      "url": "https://doi.org/10.1164/rccm.201908-1581st",
+      "org_url": "https://openalex.org",
+      "summary": "Abstract Background This document provides evidence-based clinical practice guidelines on the management of adult patients with community-acquired pneumonia. Methods A multidisciplinary panel conducted pragmatic systematic reviews of the relevant research and applied Grading of Recommendations, Assessment, Development, and Evaluation methodology for clinical recommendations. Results The panel addr",
+      "update_date": "2019-10-01",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "American Journal of Respiratory and Critical Care Medicine",
+        "doi": "https://doi.org/10.1164/rccm.201908-1581st",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1164_rccm_201908_1581st",
+      "version": null,
+      "date": "2019-10-01",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "British Thoracic Society community acquired pneumonia guideline and the NICE pneumonia guideline: how they fit together",
+      "year": 2015,
+      "url": "https://thorax.bmj.com/content/thoraxjnl/70/7/698.full.pdf",
+      "org_url": "https://openalex.org",
+      "summary": "The British Thoracic Society (BTS) guideline for the management of adults with community acquired pneumonia (CAP) published in 2009 was compared with the 2014 National Institute for Health and Care Excellence (NICE) Pneumonia Guideline. Of the 36 BTS recommendations that overlapped with NICE recommendations, no major differences were found in 31, including those covering key aspects of CAP managem",
+      "update_date": "2015-05-14",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "Thorax",
+        "doi": "https://doi.org/10.1136/thoraxjnl-2015-206881",
+        "pdf_url": "https://thorax.bmj.com/content/thoraxjnl/70/7/698.full.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1136_thoraxjnl_2015_206881",
+      "version": null,
+      "date": "2015-05-14",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "British Thoracic Society guidelines for the management of community acquired pneumonia in children: update 2011",
+      "year": 2011,
+      "url": "https://thorax.bmj.com/content/thoraxjnl/66/Suppl_2/ii1.full.pdf",
+      "org_url": "https://openalex.org",
+      "summary": "The British Thoracic Society first published management guidelines for community acquired pneumonia in children in 2002 and covered available evidence to early 2000. These updated guidelines represent a review of new evidence since then and consensus clinical opinion where evidence was not found. This document incorporates material from the 2002 guidelines and supersedes the previous guideline doc",
+      "update_date": "2011-09-08",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "Thorax",
+        "doi": "https://doi.org/10.1136/thoraxjnl-2011-200598",
+        "pdf_url": "https://thorax.bmj.com/content/thoraxjnl/66/Suppl_2/ii1.full.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1136_thoraxjnl_2011_200598",
+      "version": null,
+      "date": "2011-09-08",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Guideline-Concordant Therapy and Reduced Mortality and Length of Stay in Adults With Community-Acquired Pneumonia",
+      "year": 2009,
+      "url": "https://doi.org/10.1001/archinternmed.2009.259",
+      "org_url": "https://openalex.org",
+      "summary": "BACKGROUND: Community-acquired pneumonia (CAP) is a major cause of morbidity and mortality worldwide. Clinical practice guidelines for empirical CAP treatment, formulated jointly by the Infectious Diseases Society of America (IDSA) and American Thoracic Society (ATS), remain controversial and inconsistently applied. We evaluated the impact of guideline-concordant therapy on in-hospital survival an",
+      "update_date": "2009-09-12",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "Archives of Internal Medicine",
+        "doi": "https://doi.org/10.1001/archinternmed.2009.259",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1001_archinternmed_2009_259",
+      "version": null,
+      "date": "2009-09-12",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Infectious Diseases Society of America/American Thoracic Society Consensus Guidelines on the Management of Community-Acquired Pneumonia in Adults",
+      "year": 2007,
+      "url": "https://academic.oup.com/cid/article-pdf/44/Supplement_2/S27/20907377/44-Supplement_2-S27.pdf",
+      "org_url": "https://openalex.org",
+      "summary": "priate starting point for consultation by specialists. Substantial overlap exists among the patients whom these guidelines address and those discussed in the recently published guidelines for health care-associated pneumonia (HCAP). Pneumonia in nonambulatory residents of nursing homes and other long-term care facilities epidemiologically mirrors hospital-acquired pneumonia and should be treated a",
+      "update_date": "2007-02-03",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "Clinical Infectious Diseases",
+        "doi": "https://doi.org/10.1086/511159",
+        "pdf_url": "https://academic.oup.com/cid/article-pdf/44/Supplement_2/S27/20907377/44-Supplement_2-S27.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1086_511159",
+      "version": null,
+      "date": "2007-02-03",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Improved Clinical Outcomes With Utilization of a Community-Acquired Pneumonia Guideline",
+      "year": 2006,
+      "url": "https://doi.org/10.1378/chest.130.3.794",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2006-09-01",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "CHEST Journal",
+        "doi": "https://doi.org/10.1378/chest.130.3.794",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1378_chest_130_3_794",
+      "version": null,
+      "date": "2006-09-01",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Impact of Guideline-Concordant Empiric Antibiotic Therapy in Community-Acquired Pneumonia",
+      "year": 2006,
+      "url": "https://doi.org/10.1016/j.amjmed.2006.02.014",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2006-09-24",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "The American Journal of Medicine",
+        "doi": "https://doi.org/10.1016/j.amjmed.2006.02.014",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_j_amjmed_2006_02_014",
+      "version": null,
+      "date": "2006-09-24",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Decreased mortality after implementation of a treatment guideline for community-acquired pneumonia",
+      "year": 2001,
+      "url": "https://doi.org/10.1016/s0002-9343(00)00744-0",
+      "org_url": "https://openalex.org",
+      "summary": null,
+      "update_date": "2001-04-01",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "The American Journal of Medicine",
+        "doi": "https://doi.org/10.1016/s0002-9343(00)00744-0",
+        "pdf_url": null
+      },
+      "id": "OpenAlex:https_doi_org_10_1016_s0002_9343_00_00744_0",
+      "version": null,
+      "date": "2001-04-01",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "OpenAlex",
+      "access": "api",
+      "retrieved": true,
+      "title": "Practice Guidelines for the Management of Community-Acquired Pneumonia in Adults",
+      "year": 2000,
+      "url": "https://academic.oup.com/cid/article-pdf/31/2/347/17849515/31-2-347.pdf",
+      "org_url": "https://openalex.org",
+      "summary": "Guidelines for the management of community-acquired pneumonia were issued on behalf of the Infectious Diseases Society of America in April 1998. The present version represents a revision of these guidelines issued in February 2000; updates at 6- to 12-month intervals are anticipated. A summary of these guidelines follows. Grading system. Recommendations are categorized by the letters A–D, accordin",
+      "update_date": "2000-08-01",
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "publication": "Clinical Infectious Diseases",
+        "doi": "https://doi.org/10.1086/313954",
+        "pdf_url": "https://academic.oup.com/cid/article-pdf/31/2/347/17849515/31-2-347.pdf"
+      },
+      "id": "OpenAlex:https_doi_org_10_1086_313954",
+      "version": null,
+      "date": "2000-08-01",
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "NCCN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "NCCN — 在 NCCN 官方门户检索「community-acquired pneumonia」",
+      "year": null,
+      "url": "https://www.nccn.org/professionals/physician_gls",
+      "org_url": "https://www.nccn.org/professionals/physician_gls",
+      "summary": null,
+      "update_date": null,
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "NCCN:community_acquired_pneumonia:nccn_在_nccn_官方门户检索_community_acquired_pneumonia",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "ADA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "ADA — 在 ADA 官方门户检索「community-acquired pneumonia」",
+      "year": null,
+      "url": "https://diabetesjournals.org/clinicalcare",
+      "org_url": "https://diabetesjournals.org/clinicalcare",
+      "summary": null,
+      "update_date": null,
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "ADA:community_acquired_pneumonia:ada_在_ada_官方门户检索_community_acquired_pneumonia",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "AHA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "AHA — 在 AHA 官方门户检索「community-acquired pneumonia」",
+      "year": null,
+      "url": "https://www.ahajournals.org",
+      "org_url": "https://www.ahajournals.org",
+      "summary": null,
+      "update_date": null,
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "AHA:community_acquired_pneumonia:aha_在_aha_官方门户检索_community_acquired_pneumonia",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "SIGN",
+      "access": "portal",
+      "retrieved": false,
+      "title": "SIGN — 在 SIGN 官方门户检索「community-acquired pneumonia」",
+      "year": null,
+      "url": "https://www.sign.ac.uk/our-guidelines",
+      "org_url": "https://www.sign.ac.uk/our-guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "SIGN:community_acquired_pneumonia:sign_在_sign_官方门户检索_community_acquired_pneumonia",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CMA",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CMA — 在 CMA 官方门户检索「community-acquired pneumonia」",
+      "year": null,
+      "url": "https://www.cma.org.cn",
+      "org_url": "https://www.cma.org.cn",
+      "summary": null,
+      "update_date": null,
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CMA:community_acquired_pneumonia:cma_在_cma_官方门户检索_community_acquired_pneumonia",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    },
+    {
+      "source": "Guidelines",
+      "guideline_org": "CPIC",
+      "access": "portal",
+      "retrieved": false,
+      "title": "CPIC — 在 CPIC 官方门户检索「community-acquired pneumonia」",
+      "year": null,
+      "url": "https://cpicpgx.org/guidelines",
+      "org_url": "https://cpicpgx.org/guidelines",
+      "summary": null,
+      "update_date": null,
+      "topic": "community-acquired pneumonia",
+      "extra": {
+        "note": "portal-only: no free keyword API; navigate the org portal to retrieve"
+      },
+      "id": "CPIC:community_acquired_pneumonia:cpic_在_cpic_官方门户检索_community_acquired_pneumonia",
+      "version": null,
+      "date": null,
+      "topic_tags": [
+        "community_acquired_pneumonia"
+      ],
+      "file": null
+    }
+  ]
+}

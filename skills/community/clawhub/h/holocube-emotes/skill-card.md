@@ -1,44 +1,56 @@
-## Description: <br>
-Control a GeekMagic holocube display as an AI emote system, generate holographic sprite kits with Gemini, upload them to the device, and swap expressions based on agent state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Control a GeekMagic holocube display as an AI emote system. Generate holographic sprite kits with Gemini, upload to device, and swap expressions based on agent state (idle, working, error, etc.). Use when the user has a GeekMagic holocube (HelloCubic-Lite or similar) and wants their AI assistant to have a physical face that reacts to conversation context.
 
-## Publisher: <br>
-[thrive-spencerj](https://clawhub.ai/user/thrive-spencerj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[thrive-spencerj](https://clawhub.ai/user/thrive-spencerj)
 
-## Use Case: <br>
-Developers and agent operators with a GeekMagic HelloCubic-Lite or compatible display use this skill to create emote sprites, upload them to the device, and drive the display from agent session state. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can scan the local subnet for holocube devices. <br>
-Mitigation: Prefer passing a known --ip and run discovery only on trusted local networks. <br>
-Risk: The skill can control and clear images on a GeekMagic holocube. <br>
-Mitigation: Back up device images before setup and verify the target device before running onboarding or setup. <br>
-Risk: The skill can reuse a Gemini API key from OpenClaw config. <br>
-Mitigation: Use a dedicated Gemini API key where possible and avoid sharing the config with untrusted workspaces. <br>
-Risk: Onboarding can delete existing device images without a clear final confirmation. <br>
-Mitigation: Avoid running onboarding against an untrusted or wrong device, and review destructive setup steps before continuing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Holocube TOOLS.md Example](references/tools-example.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/thrive-spencerj/holocube-emotes) <br>
+## Use Case:
 
+Developers and agent operators use this skill to generate, upload, and switch Holocube emote sprites so an assistant can show physical expressions tied to session state.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Code] <br>
-**Output Format:** [Markdown guidance with inline bash commands and Python scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands can generate local sprite image files and send HTTP requests to a configured holocube device.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup tooling can delete existing Holocube images during device setup.
+
+Mitigation: Use the skill only with a Holocube you control and make an independent backup before clearing or onboarding the device.
+
+Risk: A malicious or compromised device could cause unsafe local backup writes.
+
+Mitigation: Avoid pointing --ip at untrusted hosts and review backup output paths before relying on generated backups.
+
+Risk: Gemini credentials may be exposed if passed as command-line arguments.
+
+Mitigation: Provide Gemini credentials through the environment or local configuration instead of the --api-key argument.
+
+## Reference(s):
+
+- [TOOLS.md Example - Holocube Section](references/tools-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python helper scripts, and generated JPG/GIF sprite files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a compatible GeekMagic Holocube on the local network; sprite generation uses Gemini credentials when enabled.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,65 @@
-## Description: <br>
-成都升学专家技能，覆盖小升初（小五小六）和初升高（中考）两大阶段，根据用户户籍、学籍、成绩等信息提供升学分析和志愿填报建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chengdu school-admissions planning guidance for primary-to-junior and junior-to-senior transitions using household registration, school status, scores, policy notes, and school reference data.
 
-## Publisher: <br>
-[jingwanjuan](https://clawhub.ai/user/jingwanjuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jingwanjuan](https://clawhub.ai/user/jingwanjuan)
 
-## Use Case: <br>
-Families, students, and education advisors use this skill to plan Chengdu school transitions, interpret district placement and admissions policies, position scores against school data, and build cautious application strategies. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global; guidance is specific to Chengdu, China school admissions. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Admissions policies, district maps, and cutoff scores can change and may be inconsistent with packaged reference data. <br>
-Mitigation: Verify current Chengdu education policies, district maps, and cutoff scores with official sources before relying on the guidance for enrollment or housing decisions. <br>
-Risk: Personal education planning can involve sensitive student, school, household-registration, and score details. <br>
-Mitigation: Avoid sharing unnecessary personal identifiers and use de-identified notes only when they fit the user's privacy expectations. <br>
-Risk: The skill provides planning guidance, not guaranteed admissions outcomes. <br>
-Mitigation: Treat recommendations as decision support and confirm final choices against official admissions plans and school consultation channels. <br>
+## Use Case:
 
+Families, students, and advisors use this skill to interpret Chengdu school-admissions options, compare mapped junior-high or senior-high paths, and form cautious volunteer application strategies. The guidance is advisory and should be checked against current official education bureau and school notices before action.
 
-## Reference(s): <br>
-- [成都小升初政策详解](references/primary-school-policy.md) <br>
-- [成都各区小学初中划片对应关系](references/school-district-map.md) <br>
-- [2025年锦江区小学毕业生初中入学划片范围](references/jinjiang-district-map-2025.md) <br>
-- [成都各高中历年录取分数线与学校信息](references/school-data.md) <br>
-- [2026年成都中考政策解读](references/policy-2026.md) <br>
-- [成都初升高志愿填报策略深度解析](references/volunteer-strategy.md) <br>
-- [2025年成都中考各区分段成绩统计](references/district-score-stats-2025.md) <br>
-- [成都市教育局官网](http://edu.chengdu.gov.cn) <br>
-- [成都招生考试网](http://www.cdzk.com) <br>
+### Deployment Geography for Use:
 
+China (Chengdu-focused)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with structured analysis, checklists, score positioning, and school comparisons] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include de-identified temporary notes when the user asks to record an analysis case.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Admissions policies, deadlines, eligibility rules, and score cutoffs may change or differ by district.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify recommendations against current official education bureau and school notices before making enrollment or application decisions.
+
+Risk: Personal student, household registration, address, or school information may be sensitive.
+
+Mitigation: Share only the minimum needed details, avoid names, ID numbers, exact addresses, and unnecessary school identifiers, and approve any case logging first.
+
+Risk: Advice may be mistaken for an official or guaranteed admissions result.
+
+Mitigation: Present results as planning support only, avoid absolute admission promises, and state that final outcomes depend on official policy and current-year admissions data.
+
+## Reference(s):
+
+- [2025 Chengdu District Score Statistics](references/district-score-stats-2025.md)
+- [2025 Jinjiang District Junior-High Assignment Map](references/jinjiang-district-map-2025.md)
+- [2026 Chengdu Senior-High Entrance Policy](references/policy-2026.md)
+- [2026 Chengdu Primary-to-Junior Policy](references/primary-school-policy.md)
+- [Chengdu Senior-High Score and School Data](references/school-data.md)
+- [Chengdu Primary-to-Junior District Map](references/school-district-map.md)
+- [Chengdu Senior-High Volunteer Strategy](references/volunteer-strategy.md)
+- [Chengdu Education Bureau](http://edu.chengdu.gov.cn)
+- [Chengdu Admissions Examination Network](http://www.cdzk.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown advisory analysis with summary sections, ranked recommendations, risk notes, and checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include score-positioning ranges, school comparisons, application-path options, and reminders to verify time-sensitive policy details.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

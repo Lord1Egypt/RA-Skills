@@ -1,6 +1,6 @@
 {
   "workspace": "E:\\cursor\\workspace",
-  "github_token": "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",
+  "github_token": "REDACTED-SECRET",
   "github_org": "DesignLibro",
   "repos": {
     "cloud-chat": { "dir": "cloud-chat", "repo": "cloud-chat" },

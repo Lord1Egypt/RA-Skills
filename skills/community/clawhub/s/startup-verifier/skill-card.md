@@ -1,38 +1,54 @@
-## Description: <br>
-Evaluates startup candidates for adaptation to the Russian market against 14 criteria and returns a GREEN, YELLOW, or RED verdict. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluates startup candidates across 14 criteria for adaptation to the Russian market and returns a GREEN, YELLOW, or RED verdict.
 
-## Publisher: <br>
-[reactlab23](https://clawhub.ai/user/reactlab23) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[reactlab23](https://clawhub.ai/user/reactlab23)
 
-## Use Case: <br>
-Developers, founders, and analysts use the skill to review startup ideas for Russian-market adaptation, score 14 feasibility and market criteria, and decide whether to proceed, continue analysis, or reject the candidate. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Russia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/reactlab23/startup-verifier) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/reactlab23) <br>
+Developers, founders, and market researchers use this skill to review startup ideas against a structured market-adaptation checklist and summarize whether a candidate should proceed, need more analysis, or be rejected.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown table with a verdict summary and explanatory notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a 14-criterion scoring rubric and GREEN/YELLOW/RED verdict labels; startup scoring is advisory and not legal, financial, or market-certainty advice.] <br>
+Global
 
-## Skill Version(s): <br>
-2.1.0 (source: server release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The checklist can influence business decisions through fixed scoring thresholds and GREEN, YELLOW, or RED verdicts.
+
+Mitigation: Review the thresholds and final verdict against current market evidence before acting on the recommendation.
+
+Risk: The workflow relies on external market research sources and an MCP/API result.
+
+Mitigation: Verify important claims across multiple trusted sources and treat unavailable or stale evidence as a reason for additional review.
+
+## Reference(s):
+
+- [Startup Verifier on ClawHub](https://clawhub.ai/reactlab23/skills/startup-verifier)
+- [Publisher profile](https://clawhub.ai/user/reactlab23)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Guidance]
+
+**Output Format:** [Markdown table with counts, verdict, and explanatory notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Russian-language checklist output with GREEN, YELLOW, or RED decision labels.]
+
+## Skill Version(s):
+
+2.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -100,8 +100,7 @@ Optimized for accuracy and post-processing features.
   },
   "post_processing": {
     "summarization": true,
-    "summarization_config": { "type": "bullet_points" },
-    "chapterization": true
+    "summarization_config": { "type": "bullet_points" }
   }
 }
 ```

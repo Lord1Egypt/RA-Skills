@@ -1,43 +1,53 @@
-## Description: <br>
-Helps create and manage OpenClaw subagents with independent workspaces, dedicated skill directories, configuration files, and Feishu channel integration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers create and manage OpenClaw subagents by setting up independent workspaces, local skill directories, Feishu channel integration, and message-prefix conventions.
 
-## Publisher: <br>
-[google-q-dot](https://clawhub.ai/user/google-q-dot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[google-q-dot](https://clawhub.ai/user/google-q-dot)
 
-## Use Case: <br>
-Developers and OpenClaw operators use this skill to scaffold subagent workspaces, copy required skills, configure OpenClaw agent settings, and connect each subagent to a Feishu bot/channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Created agents may forward all messages to Feishu without filtering, which can expose sensitive task content or status updates. <br>
-Mitigation: Modify the generated messaging rules before use so only approved, non-sensitive updates are sent to Feishu. <br>
-Risk: Feishu app credentials and bot bindings may be copied into shared configuration without clear access or rotation controls. <br>
-Mitigation: Use least-privilege Feishu credentials, avoid shared plaintext secrets where possible, and document credential rotation and per-agent controls. <br>
-Risk: Users may not expect all subagent communications to be relayed to an external chat channel. <br>
-Mitigation: Document consent, redaction, and channel-scoping requirements before enabling Feishu bindings for created agents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to create OpenClaw subagents with dedicated workspaces, local skill copies, configuration files, and Feishu bot/channel bindings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/google-q-dot/subagent-creator) <br>
-- [Publisher profile](https://clawhub.ai/user/google-q-dot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with JSON, bash, Python, and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-readable setup guidance for creating subagent directories, OpenClaw configuration entries, Feishu bot bindings, and invocation examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter, artifact/_meta.json, release evidence) <br>
+Risk: Created subagents may forward every message to a Feishu group without filtering.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only controlled Feishu destinations and limit syncing to explicit, sanitized status updates.
+
+Risk: Session data or secrets may be stored in plaintext MEMORY.md files.
+
+Mitigation: Do not store sessions, app secrets, or credentials in memory files; use a secret manager or protected runtime configuration.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/google-q-dot/skills/subagent-creator)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON, shell, Python, and filesystem examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes example OpenClaw directory structures and Feishu configuration snippets.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,17 @@
 {
-  "ownerId": "kn70b43fjwpsc1gn7mnrfx5y8x81xepa",
-  "slug": "a-share-short-decision-bak",
-  "version": "1.0.0",
-  "publishedAt": 1773778022858
+  "owner": "kenera",
+  "slug": "a-share-short-decision",
+  "displayName": "A股短线交易决策 A Share Short Term Decision",
+  "latest": {
+    "version": "1.2.0",
+    "publishedAt": 1771041578079,
+    "commit": "https://github.com/openclaw/skills/commit/9ee1538b1e3779cb28ddec8811e73628b36ddc01"
+  },
+  "history": [
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770979998259,
+      "commit": "https://github.com/openclaw/skills/commit/73a5f6d0898deb315f5ad12dc69621868fc75aa6"
+    }
+  ]
 }

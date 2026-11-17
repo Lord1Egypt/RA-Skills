@@ -1,0 +1,13 @@
+{
+  "name": "training-teacher-mgmt",
+  "displayName": "师资管理",
+  "version": "1.0.0",
+  "description": "管理讲师资源库：讲师信息登记、资质审核、授课领域分类、授课记录、评价评级、课酬标准、档期管理。区别于培训计划编排中的'讲师邀约'，本Skill聚焦讲师资源库建设与长期管理。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": ["training", "teacher", "human-resource", "lecture-management", "education"],
+  "minOpenClawVersion": "1.2.0"
+}

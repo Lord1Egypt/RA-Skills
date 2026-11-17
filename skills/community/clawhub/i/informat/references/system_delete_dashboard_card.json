@@ -1,0 +1,24 @@
+{
+	"type": "function",
+	"function": {
+		"name": "_delete_dashboard_card",
+		"description": "Delete a specific dashboard card in the application. Before deleting, call _query_dashboard_card_list to confirm dashboardId and cardId to avoid deleting the wrong card. Returns: success",
+		"parameters": {
+			"type": "object",
+			"properties": {
+				"dashboardId": {
+					"description": "Dashboard ID",
+					"type": "string"
+				},
+				"cardId": {
+					"description": "Dashboard card ID to delete",
+					"type": "string"
+				}
+			},
+			"required": [
+				"dashboardId",
+				"cardId"
+			]
+		}
+	}
+}

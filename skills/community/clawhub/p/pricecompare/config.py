@@ -70,7 +70,7 @@ DEFAULT_SEARCH_PAGE_SIZE = 10  # 拼多多要求 >= 10
 MAX_SEARCH_RESULTS = 10
 
 # Skill 本地版本，发布时需同步更新
-SKILL_VERSION = "1.5.1"
+SKILL_VERSION = "1.5.6"
 
 ERROR_MESSAGES = {
     'parse_failed': '口令解析失败',

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Galleon DeFi Routing"
+  short_description: "Compare swaps and track bridge settlement"
+  default_prompt: "Use $galleon-defi-routing to compare swaps and bridges with official tools, prepare bounded transaction handoffs, and reconcile fills, partial outcomes and refunds."

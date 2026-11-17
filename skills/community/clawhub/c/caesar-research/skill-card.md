@@ -1,43 +1,58 @@
-## Description: <br>
-Deep research using the Caesar API - run queries, follow up with chat, brainstorm, and manage collections. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deep research using the Caesar API to run queries, follow up with chat, brainstorm, and manage collections.
 
-## Publisher: <br>
-[alexrudloff](https://clawhub.ai/user/alexrudloff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[alexrudloff](https://clawhub.ai/user/alexrudloff)
 
-## Use Case: <br>
-Developers and researchers use this skill to run Caesar research jobs, ask follow-up questions, brainstorm clarifying questions, and organize collection context from the command line. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill requires CAESAR_API_KEY for access to Caesar's remote service. <br>
-Mitigation: Store the API key securely, avoid committing it to source control, and rotate it if it may have been exposed. <br>
-Risk: Research prompts, chat messages, and collection context may be sent to Caesar's remote service. <br>
-Mitigation: Do not submit secrets, regulated data, or confidential documents unless organizational policy and Caesar's terms permit it. <br>
-Risk: A compromised or untrusted Caesar CLI installation could affect command behavior. <br>
-Mitigation: Install the Caesar CLI only from a trusted source and review the command output before using it in downstream workflows. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Caesar](https://www.caesar.org/) <br>
-- [Caesar API endpoint](https://api.caesar.xyz) <br>
-- [Deep Research with Caesar.org on ClawHub](https://clawhub.ai/alexrudloff/caesar-research) <br>
+## Use Case:
 
+Developers and research-focused agents use this skill to run Caesar research jobs, collect cited results, ask follow-up questions, brainstorm clarifying prompts, and manage research collections from a CLI workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include synthesized research answers, citations, source lists, job status JSON, brainstorm questions, chat responses, and collection metadata.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installing the Caesar CLI with a mutable version target can change what code is installed over time.
+
+Mitigation: Install a pinned Caesar CLI version that has been reviewed and is trusted for the deployment environment.
+
+Risk: API keys can be exposed through shell history or plaintext environment files.
+
+Mitigation: Use a secret manager or restrictive file permissions, and avoid entering real keys directly into shell history.
+
+Risk: Research prompts may contain confidential or regulated information sent to Caesar.
+
+Mitigation: Do not send confidential or regulated data unless Caesar's data handling is acceptable for that use case.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexrudloff/skills/caesar-research)
+- [Caesar](https://www.caesar.org/)
+- [Go Downloads](https://go.dev/dl/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, JSON]
+
+**Output Format:** [Markdown guidance with shell commands and JSON output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the caesar CLI binary and CAESAR_API_KEY; Caesar research responses include synthesized content and citation-indexed source results.]
+
+## Skill Version(s):
+
+0.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

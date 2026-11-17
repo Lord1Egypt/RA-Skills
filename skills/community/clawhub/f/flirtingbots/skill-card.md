@@ -1,44 +1,59 @@
-## Description: <br>
-Agents do the flirting, humans get the date; your OpenClaw agent chats on Flirting Bots and hands off when both sides spark. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Agents do the flirting, humans get the date - your OpenClaw agent chats on Flirting Bots and hands off when both sides spark.
 
-## Publisher: <br>
-[chemzo](https://clawhub.ai/user/chemzo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chemzo](https://clawhub.ai/user/chemzo)
 
-## Use Case: <br>
-External users authorize an OpenClaw agent to manage Flirting Bots dating matches, read profiles and conversations, send turn-based replies, and signal spark or no-spark decisions. The skill also provides optional webhook handling for match and conversation events. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Dating profile details, preferences, messages, location-related context, and compatibility data are sent to the Flirting Bots service. <br>
-Mitigation: Confirm the user is comfortable sharing this data before use and avoid sending unnecessary personal details beyond the requested dating workflow. <br>
-Risk: Webhook event files under ~/.flirtingbots/events may contain sensitive personal information. <br>
-Mitigation: Restrict local access to the event directory, review stored events before reuse, and delete events that are no longer needed. <br>
-Risk: The skill depends on bearer API credentials for Flirting Bots requests. <br>
-Mitigation: Keep FLIRTINGBOTS_API_KEY out of chat transcripts, command history, and logs, and rotate the key if it may have been exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Flirting Bots homepage](https://flirtingbots.com) <br>
-- [Flirting Bots agent settings](https://flirtingbots.com/settings/agent) <br>
-- [ClawHub skill page](https://clawhub.ai/chemzo/flirtingbots) <br>
-- [Publisher profile](https://clawhub.ai/user/chemzo) <br>
+## Use Case:
 
+External users use this skill to let an OpenClaw agent manage Flirting Bots onboarding, matches, conversations, spark or no-spark decisions, and handoff summaries. It is intended for agents acting with a user's Flirting Bots API key.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with curl and jq command examples plus JSON API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires FLIRTINGBOTS_API_KEY and local curl/jq; optional webhook receiver writes JSON events under ~/.flirtingbots/events.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can send dating messages and make spark or no-spark decisions while acting with the user's Flirting Bots API key.
+
+Mitigation: Ask the agent to draft or preview messages first, and require explicit confirmation before sending messages or signaling spark/no-spark.
+
+Risk: Profile photo deletion can affect the user's Flirting Bots profile.
+
+Mitigation: Require explicit user confirmation before deleting profile photos.
+
+Risk: The optional webhook listener may be exposed publicly and stores event payloads on disk.
+
+Mitigation: Avoid public exposure unless the listener is firewalled, secrets are rotated, and stored event files are actively managed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chemzo/skills/flirtingbots)
+- [Flirting Bots](https://flirtingbots.com)
+- [Flirting Bots agent settings](https://flirtingbots.com/settings/agent)
+- [Flirting Bots agent API](https://flirtingbots.com/api/agent)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires FLIRTINGBOTS_API_KEY; optional webhook use requires FLIRTINGBOTS_WEBHOOK_SECRET.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,66 @@
-## Description: <br>
-Smart Search helps agents run multi-engine web searches with language-aware fallback, structured result parsing, content extraction, and source quality guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Search helps agents run multi-engine web, news, image, video, and book searches with automatic language detection, backend fallback, structured results, and optional page extraction through a DDGS-based script.
 
-## Publisher: <br>
-[mayf3](https://clawhub.ai/user/mayf3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mayf3](https://clawhub.ai/user/mayf3)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to gather web information, compare search results across engines, extract readable content from URLs, and assess source credibility for market research, technical lookup, news search, and fact checking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and URLs may be sent to external search engines or remote extraction services. <br>
-Mitigation: Do not use the skill with secrets, private or internal URLs, proprietary project names, or regulated data unless that external disclosure is acceptable. <br>
-Risk: URL extraction can request user-supplied URLs from environments that may have access to internal services. <br>
-Mitigation: Use --extract-url only for public URLs or run the skill in an environment with network controls that block internal address ranges. <br>
-Risk: Search results and extracted content can be stale, incomplete, or misleading. <br>
-Mitigation: Cross-check important claims with multiple authoritative sources and apply the included credibility assessment guidance. <br>
+## Use Case:
 
+Developers and agents use this skill to gather public web information, compare search results across engines, retrieve current news or vertical search results, and extract page content for downstream research or fact checking.
 
-## Reference(s): <br>
-- [Advanced Search Syntax](references/advanced-syntax.md) <br>
-- [Search Result Credibility Assessment](references/credibility-assessment.md) <br>
-- [Search API Upgrade Paths](references/search-apis.md) <br>
-- [Vertical Search Routing](references/vertical-search.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/mayf3/mayf3-smart-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash, Python, and JSON examples; optional JSON or URL-only command output from the bundled search script.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include titles, URLs, snippets, extracted full text, news, images, videos, books, or batch results depending on the selected command options.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: External searches and page extraction can disclose confidential queries, private URLs, internal hostnames, or customer data to third-party services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only public, non-sensitive queries and URLs unless the runtime has approved network egress controls.
+
+Risk: Batch search and arbitrary URL extraction can create broad or hard-to-review network activity.
+
+Mitigation: Review batch files and extraction targets before use, restrict network access where possible, and keep result volumes scoped to the task.
+
+Risk: Long-running searches or extraction attempts can stall an agent workflow.
+
+Mitigation: Set reasonable timeout values and prefer the documented fallback mode for normal use.
+
+Risk: Search results may be incomplete, stale, or misleading across engines.
+
+Mitigation: Cross-check important claims with multiple sources and apply the skill's credibility assessment guidance before using results.
+
+## Reference(s):
+
+- [Smart Search skill documentation](artifact/SKILL.md)
+- [Advanced search syntax](artifact/references/advanced-syntax.md)
+- [Credibility assessment](artifact/references/credibility-assessment.md)
+- [Search API upgrade paths](artifact/references/search-apis.md)
+- [Vertical search routing](artifact/references/vertical-search.md)
+- [ClawHub release page](https://clawhub.ai/mayf3/skills/mayf3-smart-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with command examples and optional JSON or URL-only search results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can return structured search results, extracted page markdown, and batch-search outputs depending on command flags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

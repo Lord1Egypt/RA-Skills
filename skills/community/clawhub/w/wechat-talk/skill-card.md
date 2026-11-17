@@ -1,41 +1,61 @@
-## Description: <br>
-Windows desktop WeChat message automation skill that uses keyboard simulation to send messages to specified contacts or groups with the wt shortcut. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Windows desktop WeChat message automation that uses keyboard simulation to send messages to specified contacts or groups.
 
-## Publisher: <br>
-[zhangpuego123](https://clawhub.ai/user/zhangpuego123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangpuego123](https://clawhub.ai/user/zhangpuego123)
 
-## Use Case: <br>
-External users and operators with WeChat for Windows installed and logged in use this skill to send one-off or batch messages to named contacts or groups from an agent-controlled desktop session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send real WeChat messages from the user's logged-in desktop session with limited safeguards. <br>
-Mitigation: Install only from trusted publishers, watch the WeChat window during use, test with harmless contacts first, and add manual confirmation before live sends when possible. <br>
-Risk: Interrupted batch sends may leave queued contact and message content in local state. <br>
-Mitigation: Delete send_queue.json after interrupted batches and avoid sensitive batch content. <br>
+## Use Case:
 
+People who use WeChat on Windows can ask an agent to send a single message or step through a batch of messages to named contacts or groups using the local WeChat desktop client.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangpuego123/wechat-talk) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/zhangpuego123) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text status messages and CLI or MCP tool responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Batch sends can create a local send_queue.json state file until the queue completes or is cleared.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: Desktop automation can send a message to the wrong active window, contact, or group if focus changes or WeChat search resolves unexpectedly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only in a controlled Windows session with WeChat visible, and prefer a version with recipient verification and preview or confirmation before sending.
+
+Risk: The skill can send messages immediately as the signed-in WeChat user.
+
+Mitigation: Review contacts and message content before each run, especially in batch mode.
+
+Risk: Message bodies and contact names pass through local queue files and the clipboard.
+
+Mitigation: Avoid sensitive message bodies in batch mode, clear temporary queue state when finished, and prefer clipboard cleanup after sending.
+
+Risk: Unpinned or broad dependency ranges can change desktop automation behavior over time.
+
+Mitigation: Pin and review dependencies before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhangpuego123/skills/wechat-talk)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Plain text and JSON status messages, with command-line usage examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces external side effects by sending WeChat messages through the local Windows desktop client.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence; artifact frontmatter lists 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

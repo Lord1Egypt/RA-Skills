@@ -1,42 +1,62 @@
-## Description: <br>
-Bridge is an Agent-to-Human (A2H) verification and escrow platform where agents request physical-world tasks, define proof criteria, and escrow is released only when all criteria pass. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Bridge provides an Agent-to-Human verification API where agents create physical-world tasks, define proof criteria, submit evidence, and receive escrow status decisions.
 
-## Publisher: <br>
-[mirni](https://clawhub.ai/user/mirni) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mirni](https://clawhub.ai/user/mirni)
 
-## Use Case: <br>
-Developers and external agent operators use Bridge to run a local FastAPI service for creating human-work tasks, collecting GPS, photo, timestamp, or signature proofs, and holding or releasing escrow state based on those checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The API models escrow and payments but the security evidence says it is not suitable for real payments or production escrow. <br>
-Mitigation: Limit use to local experimentation or review until real authentication, authorization, HTTPS deployment guidance, and stricter escrow state handling are added. <br>
-Risk: The workflow can involve sensitive human-location and photo proof data. <br>
-Mitigation: Avoid sensitive location or photo workflows until privacy controls and deployment guidance are defined. <br>
-Risk: Signature proof is represented as presence of a non-empty signature rather than cryptographic verification. <br>
-Mitigation: Require real cryptographic signature verification before relying on signature proofs for payment or task completion decisions. <br>
+## Use Case:
 
+Developers and agents use Bridge to prototype human task requests that require GPS, photo, timestamp, or signature-style proof before a simulated escrow status changes. Server security guidance limits this release to local demo use unless production controls are added.
 
-## Reference(s): <br>
-- [Bridge ClawHub release](https://clawhub.ai/mirni/gh-bridge) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, API calls] <br>
-**Output Format:** [Markdown with shell commands and JSON HTTP examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Describes a local FastAPI service, REST endpoints, proof submission payloads, and escrow status behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill describes escrow and proof verification in terms that could be mistaken for production-ready financial custody or real-world attestation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only as a local demo unless real payment custody, strong proof attestation, authentication, authorization, privacy controls, and durable storage are added.
+
+Risk: Task, proof, and dispute state is in memory and can be lost when the server restarts.
+
+Mitigation: Add durable storage and audit logging before using Bridge for meaningful work assignment or payment decisions.
+
+Risk: Proof checks accept submitted coordinates, photo hashes, timestamps, and non-empty signatures without independent attestation.
+
+Mitigation: Require trusted capture, signature validation, anti-tamper controls, and human review for sensitive physical-world evidence.
+
+Risk: The demo API does not show authentication or authorization around task creation, proof submission, disputes, or stats.
+
+Mitigation: Add identity, authorization checks, rate limits, and access controls before exposing the service beyond a local environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mirni/skills/gh-bridge)
+- [Publisher profile](https://clawhub.ai/user/mirni)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API calls, JSON, Code, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands, curl examples, and JSON API payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local FastAPI server usage guidance and structured API responses for task, verification, dispute, platform, and statistics endpoints.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Use this skill for Crowdin requests that read, create, or update project data through the OOMOL Crowdin connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Crowdin (crowdin.com). Use this skill for ANY Crowdin request — reading, creating, and updating data. Whenever a task involves Crowdin, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers, localization managers, and agent users use this skill to inspect Crowdin projects and perform controlled project updates such as creating branches, creating directories, and uploading source files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Crowdin project changes can be made by write actions such as creating branches, creating directories, and uploading source files. <br>
-Mitigation: Confirm the exact payload and expected effect with the user before running write actions. <br>
-Risk: The setup flow can install the OOMOL CLI from a remote installer. <br>
-Mitigation: Review the OOMOL CLI installer or use manually verified installation steps before setup. <br>
-Risk: Crowdin operations are mediated through OOMOL-connected credentials. <br>
-Mitigation: Install only when using OOMOL as an intermediary is acceptable for the workspace and project. <br>
+## Use Case:
 
+Developers and localization teams use this skill to inspect Crowdin projects, branches, directories, and files, and to create branches, directories, or upload source files through their connected Crowdin account. It checks the live action schema before preparing requests and requires confirmation for actions marked as writes.
 
-## Reference(s): <br>
-- [Crowdin homepage](https://crowdin.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub Crowdin skill page](https://clawhub.ai/oomol/oo-crowdin) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce Crowdin connector JSON responses when actions are run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: Setup may execute downloaded CLI software without clear approval for broader local changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately; prefer a verified, fixed release over executing downloaded scripts.
+
+Risk: The connected Crowdin account may expose more data or write permissions than needed.
+
+Mitigation: Connect only the account and permissions required for the task, and keep the documented confirmation steps for write actions.
+
+## Reference(s):
+
+- [Crowdin](https://crowdin.com)
+- [Crowdin API v2 documentation](https://developer.crowdin.com/api/v2/)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Text, Guidance]
+
+**Output Format:** [Crowdin connector results and JSON action payloads, with shell command examples and Markdown guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Action inputs depend on the live Crowdin schema; write actions require user confirmation.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

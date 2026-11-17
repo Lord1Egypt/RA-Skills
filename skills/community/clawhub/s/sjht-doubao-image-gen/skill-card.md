@@ -1,43 +1,63 @@
-## Description: <br>
-Generates text-to-image outputs with the Doubao Seedream model, supports concurrent batch generation, and creates a local gallery preview page. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-image generation using the Doubao Seedream model, with concurrent batch generation and gallery output.
 
-## Publisher: <br>
-[aowind](https://clawhub.ai/user/aowind) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aowind](https://clawhub.ai/user/aowind)
 
-## Use Case: <br>
-Developers and agent users use this skill to turn text prompts into one or more Doubao Seedream images, save JPEG outputs, record prompt mappings, and open a generated gallery preview. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image prompts are sent to Doubao/Volcengine and may expose sensitive prompt content. <br>
-Mitigation: Avoid secrets and sensitive personal data in prompts before running the skill. <br>
-Risk: Batch generation can incur API costs, especially with higher count and worker settings. <br>
-Mitigation: Review count, workers, model, and dry-run settings before making API calls. <br>
-Risk: API keys can be exposed if pasted into chat or command history. <br>
-Mitigation: Prefer ARK_API_KEY environment variables or a local ~/.doubao-image-gen/.env file over sharing keys in chat. <br>
+## Use Case:
 
+Developers and external users use this skill to generate one or more images from text prompts through Doubao Seedream and receive saved image files plus a local gallery preview.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aowind/sjht-doubao-image-gen) <br>
-- [Volcengine ARK console](https://console.volcengine.com/ark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell commands and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces JPEG images, prompts.json mappings, index.html gallery previews, and GENERATED_IMAGE path lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and changelog, released 2026-03-17) <br>
+Risk: Prompts are sent to the external Volcengine/Doubao service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid secrets, personal data, or sensitive business information in prompts.
+
+Risk: The skill handles an ARK API key.
+
+Mitigation: Prefer ARK_API_KEY from a protected environment over passing keys on the command line.
+
+Risk: The generated gallery page has a reported HTML-injection flaw.
+
+Mitigation: Open generated index.html only for prompts you controlled or reviewed.
+
+Risk: Dependencies are not pinned in the artifact.
+
+Mitigation: Pin and review dependencies before routine use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/aowind/skills/sjht-doubao-image-gen)
+- [Volcengine Ark Console](https://console.volcengine.com/ark)
+- [Volcengine Ark API endpoint](https://ark.cn-beijing.volces.com/api/v3)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Markdown, Shell commands, Configuration instructions]
+
+**Output Format:** [JPEG image files, prompts.json, index.html gallery, and Markdown image links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an ARK API key for live generation; dry-run mode prints parameters without calling the API.]
+
+## Skill Version(s):
+
+1.0.0 (source: changelog and server release metadata, released 2026-03-17)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

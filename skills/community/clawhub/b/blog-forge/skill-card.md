@@ -1,46 +1,58 @@
-## Description: <br>
-Blog Forge helps agents generate SEO-oriented Markdown blog drafts, analyze readability, suggest images, and optionally publish drafts to Medium, WordPress, or Ghost. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Blog Forge helps agents generate SEO-oriented blog drafts, readability metadata, image suggestions, platform-formatted content, and optional draft publishing workflows for Medium, WordPress, Ghost, Dev.to, and Markdown.
 
-## Publisher: <br>
-[TheShadowRose](https://clawhub.ai/user/TheShadowRose) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[theshadowrose](https://clawhub.ai/user/theshadowrose)
 
-## Use Case: <br>
-Developers, content teams, and agent builders can use this skill to turn topics and keywords into blog drafts with SEO metadata, readability scoring, image suggestions, and platform-specific draft publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes humanization behavior associated with AI-detection evasion. <br>
-Mitigation: Use generated drafts transparently and do not use humanization to mislead readers or bypass disclosure, platform, or institutional rules. <br>
-Risk: The skill can create drafts on connected Medium, WordPress, or Ghost publishing accounts. <br>
-Mitigation: Use revocable least-privilege publishing tokens, keep generated posts in draft status, and require human review before publication. <br>
-Risk: Topics, prompts, and generated drafts may be sent to cloud model providers when Anthropic or OpenAI models are configured. <br>
-Mitigation: Do not provide confidential topics or drafts unless that provider data sharing is acceptable for the user or organization. <br>
-Risk: Generated claims, statistics, and SEO guidance may be inaccurate or only illustrative. <br>
-Mitigation: Fact-check claims and independently verify statistics, citations, and platform compliance before publishing. <br>
+## Use Case:
 
+Developers, content teams, and publishing-focused agents can use Blog Forge to turn topics and style settings into draft blog content with SEO metadata, readability analysis, suggested images, and platform-specific formatting. Users can also configure publishing credentials to create draft posts on supported blogging platforms.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/TheShadowRose/blog-forge) <br>
-- [Publisher profile](https://clawhub.ai/user/TheShadowRose) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown blog content with JSON-like metadata objects and JavaScript usage patterns] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May call configured LLM providers and publishing APIs; publishing methods create draft posts by default.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Prompts, drafts, and API keys may be sent to configured external model or publishing providers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted providers, prefer narrowly scoped tokens, and review provider settings before running generation or publishing flows.
+
+Risk: Publishing credentials can be sent over plaintext HTTP when WordPress or Ghost URLs are configured that way.
+
+Mitigation: Use HTTPS-only WordPress and Ghost URLs and avoid passing credentials to unencrypted endpoints.
+
+Risk: Humanization features may be used to obscure AI involvement where disclosure is required.
+
+Mitigation: Review generated drafts and follow applicable platform, organizational, and legal disclosure requirements before publishing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/theshadowrose/skills/blog-forge)
+- [Publisher Profile](https://clawhub.ai/user/theshadowrose)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [JavaScript objects containing blog content, titles, SEO metadata, image prompts, readability scores, formatted Markdown or HTML, and publishing results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated drafts should be reviewed before publication; publishing integrations use user-supplied provider credentials.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

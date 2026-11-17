@@ -1,11 +1,11 @@
 # EDMT\_ItemType enum
 
-文档树项目类型
+Document tree project type
 
 ## Signature
 
 ```typescript
-declare enum EDMT_ItemType 
+enum EDMT_ItemType
 ```
 
 ## Enumeration Members
@@ -14,208 +14,145 @@ declare enum EDMT_ItemType
 
 Member
 
-
 </th><th>
 
 Value
 
-
 </th><th>
 
 Description
-
 
 </th></tr></thead>
 <tbody><tr><td>
 
 BOARD
 
-
 </td><td>
 
-`"Board"`
-
+`'Board'`
 
 </td><td>
-
-板子
-
 
 </td></tr>
 <tr><td>
 
 CBB\_PCB
 
-
 </td><td>
 
-`"CBB PCB"`
-
+`'CBB PCB'`
 
 </td><td>
-
-复用模块 PCB
-
 
 </td></tr>
 <tr><td>
 
 CBB\_PROJECT
 
-
 </td><td>
 
-`"CBB Project"`
-
+`'CBB Project'`
 
 </td><td>
-
-复用模块工程
-
 
 </td></tr>
 <tr><td>
 
 CBB\_SCHEMATIC
 
-
 </td><td>
 
-`"CBB Schematic"`
-
+`'CBB Schematic'`
 
 </td><td>
-
-复用模块原理图
-
 
 </td></tr>
 <tr><td>
 
 FOLDER
 
-
 </td><td>
 
-`"Folder"`
-
+`'Folder'`
 
 </td><td>
-
-文件夹
-
 
 </td></tr>
 <tr><td>
 
 PANEL
 
-
 </td><td>
 
-`"Panel"`
-
+`'Panel'`
 
 </td><td>
-
-面板
-
 
 </td></tr>
 <tr><td>
 
 PCB
 
-
 </td><td>
 
-`"PCB"`
-
+`'PCB'`
 
 </td><td>
-
-PCB
-
 
 </td></tr>
 <tr><td>
 
 PROJECT
 
-
 </td><td>
 
-`"Project"`
-
+`'Project'`
 
 </td><td>
-
-工程
-
 
 </td></tr>
 <tr><td>
 
 SCHEMATIC
 
-
 </td><td>
 
-`"Schematic"`
-
+`'Schematic'`
 
 </td><td>
-
-原理图
-
 
 </td></tr>
 <tr><td>
 
 SCHEMATIC\_PAGE
 
-
 </td><td>
 
-`"Schematic Page"`
-
+`'Schematic Page'`
 
 </td><td>
-
-原理图图页
-
 
 </td></tr>
 <tr><td>
 
 TEAM
 
-
 </td><td>
 
-`"Team"`
-
+`'Team'`
 
 </td><td>
-
-团队
-
 
 </td></tr>
 <tr><td>
 
 WORKSPACE
 
-
 </td><td>
 
-`"Workspace"`
-
+`'Workspace'`
 
 </td><td>
-
-工作区
-
 
 </td></tr>
 </tbody></table>

@@ -1,45 +1,58 @@
-## Description: <br>
-Automates a WeChat Official Account article workflow from topic planning through drafting, humanized editing, formatting, cover handling, and draft creation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Plans, drafts, humanizes, formats, and saves WeChat public account articles to a configured account's draft box.
 
-## Publisher: <br>
-[chenjiahui11](https://clawhub.ai/user/chenjiahui11) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenjiahui11](https://clawhub.ai/user/chenjiahui11)
 
-## Use Case: <br>
-Content creators and WeChat Official Account operators use this skill to turn a topic into a planned, polished article draft that can be saved to the WeChat backend. It requires WeChat app credentials, IP allowlisting, Python dependencies, and the included license-check flow before automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The included license flow sends a paid card key and stable device fingerprint to a plain-HTTP licensing server. <br>
-Mitigation: Install only if the publisher is trusted; prefer HTTPS licensing or a trusted override via TMO_LICENSE_SERVER before entering a card key. <br>
-Risk: The workflow requires WeChat App ID and App Secret configuration, which can enable account access if mishandled. <br>
-Mitigation: Protect WECHAT_APPID and WECHAT_APPSECRET, restrict execution to approved environments, and verify WeChat IP allowlisting before use. <br>
-Risk: Automated draft and media creation can publish or prepare account content that has not been reviewed. <br>
-Mitigation: Require explicit operator approval and review generated article, cover, and draft details before creating or using WeChat drafts. <br>
+## Use Case:
 
+External publishers and content operators use this skill to plan, draft, humanize, format, and save WeChat public account articles as drafts in a configured WeChat account.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chenjiahui11/weixin-wechat-channel) <br>
-- [Publisher profile](https://clawhub.ai/user/chenjiahui11) <br>
-- [Artifact README](artifact/README.md) <br>
-- [Artifact skill instructions](artifact/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and status messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or prepare WeChat draft content after credentials, network access, and license checks are configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact _meta.json) <br>
+Risk: The license gate sends a stable device fingerprint and license key to a default plaintext HTTP licensing server.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when the publisher and licensing server are trusted, prefer an HTTPS license endpoint through TMO_LICENSE_SERVER, and avoid sharing reusable card keys.
+
+Risk: The license key is saved locally in plaintext for reuse.
+
+Mitigation: Restrict access to the local license file and rotate or revoke any card key that may have been exposed.
+
+Risk: The workflow can create drafts in a connected WeChat public account using configured app credentials.
+
+Mitigation: Protect WeChat app credentials and verify the selected account and draft content before publishing or allowing external writes.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenjiahui11/skills/weixin-wechat-channel)
+- [Artifact README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown article content, command snippets, and status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a WeChat public account draft and return a Media ID after credentialed execution.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

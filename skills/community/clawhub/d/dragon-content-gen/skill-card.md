@@ -1,41 +1,55 @@
-## Description: <br>
-Generate high-quality content across multiple formats, including articles, reports, social media posts, marketing copy, and documentation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate high-quality content across multiple formats, including articles, reports, social media posts, marketing copy, and other written content.
 
-## Publisher: <br>
-[dragon015](https://clawhub.ai/user/dragon015) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[dragon015](https://clawhub.ai/user/dragon015)
 
-## Use Case: <br>
-Writers, marketers, and teams use this skill to draft, adapt, optimize, and review written content for blogs, social platforms, marketing campaigns, reports, email newsletters, and documentation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Broad writing triggers may activate the skill during many ordinary content tasks. <br>
-Mitigation: Review the proposed content workflow before relying on it, especially when the task involves sensitive, unpublished, or regulated material. <br>
-Risk: Research-assisted content generation may send prompts or source material to external research tooling that uses a Brave API key. <br>
-Mitigation: Use a limited API key where possible and avoid including confidential unpublished content in research workflows. <br>
-Risk: Generated content can contain inaccurate, outdated, or misleading claims. <br>
-Mitigation: Fact-check substantive claims and source-dependent statements before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dragon015/dragon-content-gen) <br>
+## Use Case:
+
+External users and content teams use this skill to plan, draft, edit, and optimize written content for articles, marketing copy, social posts, reports, newsletters, product descriptions, and documentation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill requests external tools, a Brave API key, and an npm dependency without explaining why they are needed.
+
+Mitigation: Review the requested capabilities before installing, withhold unnecessary credentials, and require clear publisher documentation before enabling external access.
+
+Risk: Drafting workflows can produce inaccurate claims, outdated facts, or content that does not match brand or audience requirements.
+
+Mitigation: Fact-check claims, verify sources, and review tone, style, and brand alignment before publication.
+
+Risk: User prompts and drafts may contain confidential or sensitive material.
+
+Mitigation: Avoid using confidential content unless the external tool behavior and data handling expectations are documented and approved.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text content drafts, outlines, templates, editing guidance, and optimization recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May incorporate research, SEO, platform-formatting, and fact-checking guidance when relevant.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown or plain text content drafts, outlines, templates, and editorial guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May require review when content depends on current facts, external research, brand requirements, or confidential source material.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Backs up an OpenClaw workspace to a private GitHub repository with guided setup, manual backup, restore, status checks, and scheduled backup support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Backs up an OpenClaw workspace to a private GitHub repository and guides setup for manual backups, scheduled backups, status checks, and restore steps.
 
-## Publisher: <br>
-[ziqi-jin](https://clawhub.ai/user/ziqi-jin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ziqi-jin](https://clawhub.ai/user/ziqi-jin)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to configure private GitHub backups for workspace files, run manual backups, inspect backup status, and restore from a repository. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles GitHub tokens during setup and backup operations. <br>
-Mitigation: Use a fine-grained, revocable GitHub token limited to one private backup repository, and avoid pasting tokens into chat. <br>
-Risk: The backup workflow can commit workspace memory, identity, and configuration files that may contain private data. <br>
-Mitigation: Inspect exactly what will be committed before pushing, and exclude or encrypt memory and identity files if they contain private data. <br>
-Risk: Scheduled backups may continue pushing sensitive changes after initial setup. <br>
-Mitigation: Confirm how to list, disable, or remove the scheduled backup before enabling automated runs. <br>
+## Use Case:
 
+OpenClaw users and workspace maintainers use this skill to configure GitHub-based backups, trigger manual backups, schedule recurring backups, inspect backup status, and follow restore steps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ziqi-jin/alfred-github-backup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and interactive setup prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces operational backup and restore instructions; may also invoke or propose Git and OpenClaw cron commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: GitHub credentials could be exposed if pasted into chat or embedded in a remote URL.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use GitHub CLI, SSH, a credential helper, or a fine-grained repository-specific token stored outside the conversation.
+
+Risk: Backups may include sensitive workspace memory, configuration, or user information.
+
+Mitigation: Review staged files before pushing, add exclusions for secrets, and enable secret scanning on the destination repository.
+
+Risk: Restore steps can overwrite existing workspace files.
+
+Mitigation: Restore into a temporary directory first, compare changes, and copy only the files that should replace the current workspace.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ziqi-jin/skills/alfred-github-backup)
+- [Publisher profile](https://clawhub.ai/user/ziqi-jin)
+- [GitHub token settings](https://github.com/settings/tokens)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-provided GitHub account, repository name, backup schedule, and credential method.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

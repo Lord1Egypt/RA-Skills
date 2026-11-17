@@ -1,46 +1,67 @@
-## Description: <br>
-Synchronizes an OpenClaw workspace, including memory, identity, tool configuration, custom skills, and related files, to a GitHub repository for backup, version control, restore, and server migration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+GitHub Memory Sync helps OpenClaw users sync workspace configuration, memory files, selected skills, and related workspace assets to GitHub for backup, version control, restore, and server migration.
 
-## Publisher: <br>
-[davinwang](https://clawhub.ai/user/davinwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-GNU General Public License v3.0 <br>
+## Publisher:
 
+[davinwang](https://clawhub.ai/user/davinwang)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to back up, restore, inspect, and migrate workspace memory and configuration through a GitHub repository. It is intended for users who intentionally want full or memory-only workspace synchronization. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can upload sensitive OpenClaw identity, memory, tool configuration, skills, and related workspace files to GitHub. <br>
-Mitigation: Use only a private repository that you own, review the exact files before pushing, and choose memory-only mode when a full workspace backup is not required. <br>
-Risk: GitHub tokens may be exposed if they are placed in shell profiles, inline cron entries, logs, or shared configuration. <br>
-Mitigation: Use a fine-grained token limited to the target repository, avoid storing the token in shared dotfiles or inline cron commands, and rotate tokens regularly. <br>
-Risk: The cron helper includes a default repository value that may not match the user's intended backup destination. <br>
-Mitigation: Set GITHUB_REPO explicitly before enabling scheduled backups and confirm the destination repository in logs before relying on automation. <br>
-Risk: Restore operations can overwrite local workspace files. <br>
-Mitigation: Keep a local backup before pulling or migrating, inspect differences first, and test restore into a temporary workspace when possible. <br>
+## Use Case:
 
+External OpenClaw users and operators use this skill to back up, compare, restore, or migrate workspace memory and configuration files through a GitHub repository. It is intended for workflows where workspace state needs private versioned storage and controlled recovery across servers.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/davinwang/github-memory-sync) <br>
-- [README.md](README.md) <br>
-- [CRON.md](CRON.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or run Git operations against the configured repository and may write restored files into the configured workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: release evidence and clawhub.yaml) <br>
+Risk: Full sync can upload sensitive OpenClaw workspace data to GitHub.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated private repository, inspect files before full sync, and prefer narrower sync modes unless full workspace backup is required.
+
+Risk: GitHub token exposure or overbroad token permissions could grant unintended repository access.
+
+Mitigation: Use a fine-grained, short-lived token limited to the dedicated repository and rotate it regularly.
+
+Risk: Scheduled backups can repeatedly push to an unintended destination if repository, branch, or workspace settings are wrong.
+
+Mitigation: Do not enable cron until the destination repository, branch, workspace path, and token scope are explicit and verified.
+
+Risk: Restore operations can overwrite active agent instructions, memory, skills, and workspace files from remote content.
+
+Mitigation: Treat pull and migration as high risk; review remote contents and back up the current workspace before restore.
+
+Risk: License evidence is inconsistent across server metadata and artifact files.
+
+Mitigation: Confirm the effective release license before redistribution or commercial deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/davinwang/skills/github-memory-sync)
+- [README.md](artifact/README.md)
+- [CRON.md](artifact/CRON.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, files]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided GitHub repository and token configuration before execution.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata; matches clawhub.yaml and README.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

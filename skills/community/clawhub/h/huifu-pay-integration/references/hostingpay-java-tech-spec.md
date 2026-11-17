@@ -124,7 +124,7 @@
 |------|------|------|
 | 请求日期 | yyyyMMdd | 20240514 |
 | 交易失效时间 | yyyyMMddHHmmss | 20240514165442 |
-| 交易完成时间 | yyyyMMddHHmmss | 20240514170000 |
+| 交易完成时间 | yyyyMMddHHmmss | 1791598928000 |
 
 ## Spring Boot 兼容性
 
@@ -162,11 +162,13 @@
 ```json
 {
     "sign": "返回签名串",
-    "resp_data": "{\"resp_code\":\"00000000\",\"resp_desc\":\"交易成功\",\"huifu_id\":\"6666000109133323\",\"req_date\":\"20240514\",\"req_seq_id\":\"20240514165442868h32ss2g3s7vnxq\",\"hf_seq_id\":\"00290TOP1A240514165442P385ac131b5d00000\",\"trans_type\":\"T_MINIAPP\",\"trans_amt\":\"1.00\",\"trans_stat\":\"S\",\"trans_finish_time\":\"20240514170000\",\"is_div\":\"N\",\"is_delay_acct\":\"N\"}"
+    "resp_data": "{\"resp_code\":\"00000000\",\"resp_desc\":\"交易成功\",\"huifu_id\":\"6666000109133323\",\"req_date\":\"20240514\",\"req_seq_id\":\"20240514165442868h32ss2g3s7vnxq\",\"hf_seq_id\":\"00290TOP1A240514165442P385ac131b5d00000\",\"trans_type\":\"T_MINIAPP\",\"trans_amt\":\"1.00\",\"trans_stat\":\"S\",\"trans_finish_time\":\"1791598928000\",\"is_div\":\"N\",\"is_delay_acct\":\"N\"}"
 }
 ```
 
 ### `resp_data` 字段说明
+
+本表用于已明确编码的托管支付通知。`end_time` 和退款完成时间仍按所属接口的14位日期串；抖音直连页仅明确外层名称，编码、签验适配独立核对，不因同名容器复用本示例。
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
@@ -179,7 +181,7 @@
 | trans_type | String(20) | 交易类型（T_MINIAPP / A_JSAPI / WECHAT_NATIVE 等） |
 | trans_amt | String(12) | 交易金额 |
 | trans_stat | String(1) | 交易状态：S=成功、F=失败 |
-| trans_finish_time | String(14) | 交易完成时间 yyyyMMddHHmmss |
+| trans_finish_time | String(13) | 四类预下单通知的汇付侧完成时间，毫秒时间戳 |
 | is_div | String(1) | 是否分账交易 |
 | is_delay_acct | String(1) | 是否延迟入账 |
 
@@ -245,6 +247,7 @@ public class HuifuNotifyController {
 | 数据库唯一索引 | `hf_seq_id` | 通知记录表 `hf_seq_id` 列设唯一索引，INSERT 去重 | 通用场景 |
 | 订单状态机 | `req_seq_id` + 状态 | 仅在订单状态为"待支付"时处理，已终态则跳过 | 强状态管理场景 |
 
+> 上述方案以 `hf_seq_id` 为最简幂等键。完整幂等键口径以 `references/shared-async-notify.md` 为准，建议复合键至少包含 `huifu_id`、`req_seq_id` / `hf_seq_id`、`notify_type` / `trans_type`、`trans_stat` / `event_type`。
 ### 通知重试策略
 
 | 项目 | 说明 |

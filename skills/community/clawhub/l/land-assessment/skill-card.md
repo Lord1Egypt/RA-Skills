@@ -1,44 +1,56 @@
-## Description: <br>
-Helps users evaluate and purchase rural or semi-rural property by checking water, soil and septic, access, zoning, flood risk, utilities, and hidden development costs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluating and purchasing rural or semi-rural property. Use when someone is considering buying land, wants to homestead, is evaluating a property for food production potential, or needs to understand what to look for in rural real estate.
 
-## Publisher: <br>
-[howtousehumans](https://clawhub.ai/user/howtousehumans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[howtousehumans](https://clawhub.ai/user/howtousehumans)
 
-## Use Case: <br>
-External land buyers, homesteaders, small farmers, and rural property evaluators use this skill as a due-diligence checklist before purchasing or developing land. It helps structure questions and next steps around local records, inspections, legal access, water availability, environmental risk, and total ownership cost. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with local legal, environmental, water-rights, zoning, and conveyancing requirements verified in the relevant jurisdiction. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Real-estate due-diligence guidance can be incomplete or incorrect for a specific jurisdiction. <br>
-Mitigation: Use the skill as a checklist and verify decisions with local officials, a real estate attorney, and qualified local professionals. <br>
-Risk: Property condition, water, septic, environmental, and cost assumptions may be inaccurate without inspection or official records. <br>
-Mitigation: Confirm findings through county records, licensed inspectors, written utility estimates, soil and water tests, and legally reviewed purchase contingencies. <br>
+## Use Case:
 
+External users use this skill to evaluate rural or semi-rural property before purchase, with emphasis on water, soil and septic feasibility, access, zoning, flood risk, utilities, and full ownership costs.
 
-## Reference(s): <br>
-- [ClawHub release: Land Assessment](https://clawhub.ai/howtousehumans/land-assessment) <br>
-- [USDA Web Soil Survey](https://websoilsurvey.nrcs.usda.gov/) <br>
-- [FEMA Flood Map Service Center](https://msc.fema.gov/) <br>
-- [EPA Brownfields Program](https://www.epa.gov/brownfields) <br>
-- [USDA Plant Hardiness Zone Map](https://planthardiness.ars.usda.gov/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown checklists and structured advisory responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include due-diligence state fields, localized source suggestions, and purchase-contingency checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill requests filesystem access even though the available behavior is advisory guidance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Remove the filesystem requirement unless a specific file feature is added, and avoid granting broad local file access during installation or use.
+
+Risk: The install path uses an unpinned npx command, which can change across installations.
+
+Mitigation: Pin or integrity-protect the install target and review the package before installing, especially in commercial environments.
+
+## Reference(s):
+
+- [USDA Web Soil Survey](https://websoilsurvey.nrcs.usda.gov/)
+- [FEMA Flood Maps](https://msc.fema.gov/)
+- [EPA Brownfields Program](https://www.epa.gov/brownfields)
+- [USDA Plant Hardiness Zone Map](https://planthardiness.ars.usda.gov/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Text]
+
+**Output Format:** [Markdown checklists and advisory guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include jurisdiction-specific prompts and due diligence checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

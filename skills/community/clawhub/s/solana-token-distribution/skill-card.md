@@ -1,45 +1,67 @@
-## Description: <br>
-For token distribution on Solana 5000x cheaper than SPL (rewards, airdrops, depins, ...). @lightprotocol/compressed-token (TypeScript). Reference examples for custom claim support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Solana compressed-token distribution using TypeScript examples for simple airdrops, batched airdrops, and custom claim flows.
 
-## Publisher: <br>
-[tilo-14](https://clawhub.ai/user/tilo-14) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tilo-14](https://clawhub.ai/user/tilo-14)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan and implement Solana compressed-token distributions, including small airdrops, large batched distributions, and claim-based distribution patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Example code can submit real Solana blockchain transactions if copied and run against mainnet. <br>
-Mitigation: Confirm the network, mint, recipients, amounts, fees, and preflight settings before execution; test on devnet or localnet first. <br>
-Risk: Production use requires RPC credentials and a payer keypair, which can expose funds or infrastructure access if mishandled. <br>
-Mitigation: Keep private keys and HELIUS_API_KEY out of source and chat, use a secrets manager, and use a limited-balance payer wallet. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Simple Airdrop](references/simple-airdrop.md) <br>
-- [Batched Airdrop](references/batched-airdrop.md) <br>
-- [ZK Compression Documentation](https://www.zkcompression.com) <br>
-- [Compressed Tokens Airdrop Guide](https://www.zkcompression.com/compressed-tokens/airdrop) <br>
-- [@lightprotocol/stateless.js API Docs](https://lightprotocol.github.io/light-protocol/stateless.js/index.html) <br>
-- [@lightprotocol/compressed-token API Docs](https://lightprotocol.github.io/light-protocol/compressed-token/index.html) <br>
-- [Light Protocol Audits](https://github.com/Lightprotocol/light-protocol/tree/main/audits) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and generate TypeScript patterns for distributing compressed Solana tokens to small or large recipient sets. It also points agents to claim-based distribution references for vesting, clawback, and user-initiated claim workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with TypeScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference required environment variables and runtime dependencies for Solana RPC access and transaction signing.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Examples can sign and submit Solana mainnet transactions with a payer keypair.
+
+Mitigation: Test on devnet or localnet first, keep payer keys in a secrets manager, confirm recipients and total amounts, and simulate or enable preflight before batch execution.
+
+Risk: RPC API keys and payer keys may be exposed if copied directly into scripts.
+
+Mitigation: Load HELIUS_API_KEY and keypairs from managed secrets; do not hard-code them or commit them.
+
+Risk: Token amount arithmetic can be wrong when JavaScript numbers are used for token quantities.
+
+Mitigation: Use bigint or BN-style token amounts and verify mint decimals before sending.
+
+Risk: Large batched distributions can send unintended totals when recipient data or retry settings are wrong.
+
+Mitigation: Deduplicate and review recipient lists, cap batch sizes, log transaction signatures, and reconcile balances after distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tilo-14/skills/solana-token-distribution)
+- [ZK Compression documentation](https://www.zkcompression.com)
+- [ZK Compression airdrop guide](https://www.zkcompression.com/compressed-tokens/airdrop)
+- [Simple Airdrop](references/simple-airdrop.md)
+- [Batched Airdrop](references/batched-airdrop.md)
+- [@lightprotocol/stateless.js API docs](https://lightprotocol.github.io/light-protocol/stateless.js/index.html)
+- [@lightprotocol/compressed-token API docs](https://lightprotocol.github.io/light-protocol/compressed-token/index.html)
+- [Light Protocol audit reports](https://github.com/Lightprotocol/light-protocol/tree/main/audits)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with TypeScript code blocks and inline configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node for example execution and HELIUS_API_KEY for Helius RPC-backed examples; production use also requires a payer keypair.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

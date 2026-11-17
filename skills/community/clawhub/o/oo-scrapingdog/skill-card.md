@@ -1,42 +1,55 @@
-## Description: <br>
-Scrapingdog helps agents search and read web, Google Search, Google Maps, and Google Scholar data through an OOMOL-connected Scrapingdog account. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scrapingdog (scrapingdog.com). Use this skill for ANY Scrapingdog request — searching and reading data. Whenever a task involves Scrapingdog, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and external users use this skill to route Scrapingdog scraping, search, Maps, Scholar, and account-usage requests through the OOMOL connector without handling raw API keys. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scrapingdog requests and results flow through the OOMOL connector account, and queried URLs or search terms may be sensitive. <br>
-Mitigation: Install only after trusting OOMOL and the oo CLI, and avoid sending confidential targets or queries unless the connected account and data handling are approved. <br>
-Risk: The skill depends on a signed-in OOMOL account, a connected Scrapingdog credential, and sufficient account credit. <br>
-Mitigation: Use the documented authentication, connection-renewal, and billing-error paths only when commands fail for those reasons. <br>
+## Use Case:
 
+External users and developers use this skill through the oo CLI to search Scrapingdog and retrieve web, Google Search, Google Maps, Google Scholar, and account usage data using their connected accounts.
 
-## Reference(s): <br>
-- [Scrapingdog homepage](https://www.scrapingdog.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/oo-scrapingdog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples and JSON connector responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses include data and meta.executionId when run with --json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: artifact frontmatter and server release metadata) <br>
+Risk: The setup fallback instructs the agent to execute downloaded CLI installer code without an explicit approval step; the CLI implementation and external installer were not verified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve the CLI installation separately before enabling the setup fallback.
+
+Risk: Searches use connected OOMOL and Scrapingdog accounts and may consume credits.
+
+Mitigation: Check the connected account and available credit before running searches, and monitor usage through the account usage action.
+
+## Reference(s):
+
+- [Scrapingdog API documentation](https://docs.scrapingdog.com/)
+- [Scrapingdog](https://www.scrapingdog.com)
+- [oo CLI repository](https://github.com/oomol-lab/oo-cli)
+
+## Skill Output:
+
+**Output Type(s):** [API results, JSON, Text]
+
+**Output Format:** [JSON responses containing retrieved page HTML, parsed search results, place details, or account usage data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The response fields depend on the selected Scrapingdog action.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

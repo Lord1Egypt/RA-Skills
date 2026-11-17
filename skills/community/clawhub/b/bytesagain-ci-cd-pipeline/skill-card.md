@@ -1,41 +1,54 @@
-## Description: <br>
-Generate CI/CD pipeline configs for GitHub Actions, GitLab CI, and Jenkins. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate CI/CD pipeline configs for GitHub Actions, GitLab CI, and Jenkins for Node.js, Python, Go, Docker, and Kubernetes projects.
 
-## Publisher: <br>
-[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[loutai0307-prog](https://clawhub.ai/user/loutai0307-prog)
 
-## Use Case: <br>
-Developers and engineers use this skill to generate starter CI/CD workflows, pre-deployment checklists, and rollback guidance for Node.js, Python, Go, Docker, Kubernetes, GitHub Actions, GitLab CI, and Jenkins projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated CI/CD examples may include deployment steps, secret references, branch triggers, and publish workflows that are unsafe if copied into a repository without review. <br>
-Mitigation: Review generated workflows before use, restrict CI secrets to least privilege, add protected environments or manual approvals for production, and confirm branch and tag triggers match the intended release process. <br>
-Risk: Generated deployment snippets contain placeholders for project-specific commands, infrastructure names, registries, and rollback operations. <br>
-Mitigation: Replace placeholders with reviewed project values and test generated workflows in a non-production environment before enabling production deployment. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to generate starter CI/CD workflows, deployment checklists, and rollback guidance when setting up or reviewing release automation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/bytesagain-ci-cd-pipeline) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and plain text containing CI/CD YAML, Jenkinsfile snippets, shell commands, deployment checklists, and rollback steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated examples include placeholders for deployment scripts, secrets, registries, Kubernetes resources, and project-specific commands that must be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+Risk: Generated deployment templates can handle production credentials and deployment permissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and harden generated workflows before installing them; use least-privilege tokens and Kubernetes RBAC, job-scoped temporary kubeconfig files with mode 0600, and production branch or environment approvals.
+
+Risk: Generated workflows may include mutable third-party CI dependencies.
+
+Mitigation: Pin third-party actions and reusable CI dependencies to reviewed commit SHAs before production use.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub skill page](https://clawhub.ai/loutai0307-prog/skills/bytesagain-ci-cd-pipeline)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with YAML, Jenkinsfile, shell command, checklist, and rollback strategy content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated templates vary by CI platform and stack and should be reviewed before installation.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -13,7 +13,7 @@
 Nutrigenomics generates **personalised nutrition recommendations** based on your genetic profile. Upload your DNA file from 23andMe, AncestryDNA, or as a VCF file, and receive:
 
 - 📊 **Nutrient Risk Assessment** — How your genes affect nutrient absorption and metabolism
-- 🔍 **Gene-by-Gene Breakdown** — 40+ genes across 8 nutrient categories
+- 🔍 **Gene-by-Gene Breakdown** — 24 genes across 12 nutrient domains
 - 📈 **Visual Reports** — Radar charts and interaction heatmaps
 - 💡 **Actionable Recommendations** — Dietary optimisation and supplementation guidance
 - 🔒 **100% Private** — All processing happens locally on your device
@@ -24,8 +24,8 @@ Nutrigenomics generates **personalised nutrition recommendations** based on your
 
 | Feature | Description |
 |---------|-------------|
-| **40+ Genes** | MTHFR, APOE, FTO, FADS1/2, VDR, CYP1A2, and more |
-| **8 Nutrient Categories** | Micronutrients, macronutrients, omega-3s, caffeine, alcohol, sensitivities, antioxidants, detox |
+| **24 Genes / 28 SNPs** | MTHFR, APOE, FTO, FADS1/2, VDR, CYP1A2, and more |
+| **12 Nutrient Domains** | Folate, vitamin D, omega-3, vitamin A/C/B6, carbohydrate, fat metabolism, caffeine, alcohol, lactose, antioxidant |
 | **Multi-Format Support** | 23andMe (.txt, .csv), AncestryDNA (.csv), VCF |
 | **Risk Scoring** | 0-10 scale per nutrient with evidence-based recommendations |
 | **Visualisations** | Radar chart (nutrient profile) + heatmap (gene-nutrient interactions) |
@@ -166,7 +166,7 @@ See [ATTRIBUTION.md](ATTRIBUTION.md) for more information.
 ✅ **All processing is local** — Your genetic data never leaves your device
 ✅ **No external API calls** — No data transmission to third parties
 ✅ **No account required** — Complete anonymity
-✅ **Reports are local** — Contains per-SNP genotype calls for the 58 analysed SNPs only; full raw genome data is never reproduced
+✅ **Reports are local** — Contains per-SNP genotype calls for the 28 analysed SNPs only; full raw genome data is never reproduced
 ✅ **Open source** — Code is auditable
 
 ---

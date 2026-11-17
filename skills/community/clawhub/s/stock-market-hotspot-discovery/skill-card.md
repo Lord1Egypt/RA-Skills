@@ -1,43 +1,54 @@
-## Description: <br>
-Discovers A-share market hotspots from natural-language questions and returns a structured Markdown report covering current news, events, topics, and active stocks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill answers broad A-share market hotspot questions by calling EastMoney's hotspot discovery service and returning a structured Markdown report covering market news, themes, and active stocks.
 
-## Publisher: <br>
-[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[financial-ai-analyst](https://clawhub.ai/user/financial-ai-analyst)
 
-## Use Case: <br>
-External users and financial-analysis agents use this skill to answer broad A-share market hotspot questions such as today's market themes, active sectors, and popular stocks. It is not intended for single-security diagnosis, fund analysis, quantitative modeling, or investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends market-hotspot questions to East Money using an EM_API_KEY. <br>
-Mitigation: Use an API key that can be rotated or revoked, keep it in the environment, and avoid including confidential trading plans or personal data in queries. <br>
-Risk: Returned hotspot reports can be saved as local Markdown files. <br>
-Mitigation: Use --no-save when local persistence is not desired and review generated files before sharing them. <br>
-Risk: Market hotspot information is time-sensitive and can be mistaken for investment advice. <br>
-Mitigation: Present results as point-in-time reference information, include a risk reminder, and do not fabricate conclusions when the API fails or returns empty content. <br>
+## Use Case:
 
+External users and analysts use this skill to ask general market-level questions such as today's hotspots, currently active stocks, or popular investment themes and receive a Markdown hotspot report. It is not intended for single-security diagnosis, fund diagnosis, quantitative modeling, or investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/stock-market-hotspot-discovery) <br>
-- [East Money Miaoxiang API key registration](https://ai.eastmoney.com/mxClaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Files, Shell commands, Configuration] <br>
-**Output Format:** [Markdown report with optional local .md file and CLI status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires EM_API_KEY; --no-save suppresses local file output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends hotspot queries and the EM_API_KEY credential to EastMoney's service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if EastMoney is trusted with the API key and submitted queries; prefer a revocable key with limited scope where available.
+
+Risk: Stock-market hotspot reports are time-sensitive and may be mistaken for investment advice.
+
+Mitigation: Present reports as informational, keep risk notices visible, and return a clear error or uncertainty statement instead of fabricating content when the API fails.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/financial-ai-analyst/skills/stock-market-hotspot-discovery)
+- [EastMoney Miaoxiang service](https://ai.eastmoney.com/mxClaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown report, optionally saved as a local .md file; errors are returned as short text messages.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires EM_API_KEY. The runtime prefers data.displayData from the EastMoney response and only saves a Markdown file when the API response contains valid report content.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

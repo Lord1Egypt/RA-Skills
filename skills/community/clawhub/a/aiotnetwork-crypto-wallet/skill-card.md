@@ -1,44 +1,58 @@
-## Description: <br>
-Discover supported cryptocurrencies, generate deposit addresses, and withdraw crypto to external wallets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Discover supported cryptocurrencies, generate deposit addresses, and withdraw crypto to external wallets.
 
-## Publisher: <br>
-[D9m1n1c](https://clawhub.ai/user/D9m1n1c) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[d9m1n1c](https://clawhub.ai/user/d9m1n1c)
 
-## Use Case: <br>
-External wallet users and agents use this skill to list supported crypto assets, create deposit addresses, quote withdrawals, initiate withdrawals, and confirm pending withdrawals with a transaction PIN. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Withdrawals through the authenticated wallet API can be irreversible if the user chooses the wrong coin, network, destination address, amount, or fee quote. <br>
-Mitigation: Require the user to manually verify the coin, network, destination address, amount, fee quote, and withdrawal confirmation before confirming a withdrawal. <br>
-Risk: The configured API base URL may point to a development or unverified endpoint. <br>
-Mitigation: Install only after verifying the AIOT wallet provider and AIOT_API_BASE_URL, and do not use real funds against development or unverified endpoints. <br>
-Risk: The skill handles authenticated wallet operations and a transaction PIN. <br>
-Mitigation: Verify a valid bearer token before authenticated calls, request the transaction PIN fresh for each confirmation, and never cache, log, or persist secrets. <br>
+## Use Case:
 
+External users and developers use this skill to discover supported coins and networks, generate crypto deposit addresses, and perform quote-based withdrawals to external wallet addresses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/D9m1n1c/aiotnetwork-crypto-wallet) <br>
-- [Publisher profile](https://clawhub.ai/user/D9m1n1c) <br>
-- [AIOT wallet API base URL](https://payment-api-dev.aiotnetwork.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Guidance, Configuration instructions, Markdown] <br>
-**Output Format:** [Markdown with API request details and user-facing guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AIOT_API_BASE_URL endpoint configuration and authenticated wallet API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
+Risk: Crypto withdrawals can transfer funds to an unintended destination if the API endpoint, coin, network, address, amount, fees, or quote are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before withdrawing, verify the API endpoint, coin, network, destination address, amount, fees, and quote.
+
+Risk: Depositing on the wrong blockchain network can result in permanent loss of funds.
+
+Mitigation: Confirm the selected blockchain network before generating or using a deposit address.
+
+Risk: A transaction PIN authorizes withdrawal confirmation.
+
+Mitigation: Ask for the transaction PIN only at confirmation time, never cache it, and use it only when the user intends to confirm the withdrawal.
+
+## Reference(s):
+
+- [Crypto Wallet ClawHub Skill Page](https://clawhub.ai/d9m1n1c/skills/aiotnetwork-crypto-wallet)
+- [AIOT Payment API Base URL](https://payment-api-dev.aiotnetwork.io)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, shell commands, configuration]
+
+**Output Format:** [Markdown with endpoint references and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AIOT_API_BASE_URL for endpoint selection and authenticated wallet API access for protected operations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

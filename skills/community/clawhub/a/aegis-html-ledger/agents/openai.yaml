@@ -1,0 +1,7 @@
+interface:
+  display_name: "Aegis HTML Ledger"
+  short_description: "Maintain local ledgers with optional approved cloud copies"
+  default_prompt: "Use $aegis-html-ledger to keep project checkpoint state in a compact local HTML ledger, with a cloud copy only when project content and its destination are already authorized."
+
+policy:
+  allow_implicit_invocation: false

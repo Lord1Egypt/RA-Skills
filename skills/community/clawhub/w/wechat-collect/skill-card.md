@@ -1,40 +1,53 @@
-## Description: <br>
-Fetch a public WeChat article URL, archive the raw HTML, and convert the article into a stage-1 compatible brief in content-production/inbox/. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch a public WeChat article URL, archive the raw HTML, and convert the article into a stage-1 compatible brief in `content-production/inbox/`.
 
-## Publisher: <br>
-[abigale-cyber](https://clawhub.ai/user/abigale-cyber) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[abigale-cyber](https://clawhub.ai/user/abigale-cyber)
 
-## Use Case: <br>
-Developers and content-production agents use this skill to turn a public mp.weixin.qq.com article URL into a reusable writing brief and raw HTML archive for downstream collect-to-create workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Briefs and raw HTML archives may retain source content in the workspace. <br>
-Mitigation: Use only public article URLs, avoid private or sensitive pages, review retained files, and clean up content-production/inbox/raw/wechat/ when archives are no longer needed. <br>
-Risk: Deleted, blocked, or anti-crawl WeChat pages may fail or produce reduced-quality extraction. <br>
-Mitigation: Review the generated brief before downstream reuse and retry only after resolving any public-page access challenge. <br>
+## Use Case:
 
+Developers and content workflow operators use this skill to collect a publicly reachable WeChat article from a `mp.weixin.qq.com` URL, extract article metadata and candidate body text, and prepare a reusable brief for downstream writing workflows.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/abigale-cyber/wechat-collect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, text, files] <br>
-**Output Format:** [Markdown brief plus archived HTML file] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes a brief under content-production/inbox/ and archives raw HTML under content-production/inbox/raw/wechat/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill contacts user-supplied external URLs without an artifact-backed allowlist.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted public WeChat article URLs and avoid feeding arbitrary links.
+
+Risk: The skill preserves untrusted article text and raw HTML for downstream agent workflows.
+
+Mitigation: Review generated briefs before passing them to other agents because source article text may contain misleading instructions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/abigale-cyber/skills/wechat-collect)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Files, Guidance]
+
+**Output Format:** [Markdown brief plus archived HTML file]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a stage-1 compatible brief under `content-production/inbox/` and raw article HTML under `content-production/inbox/raw/wechat/`.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

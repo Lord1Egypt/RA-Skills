@@ -1,6 +1,5 @@
 {
-  "ownerId": "kn7dtmyd3zhcg0k08a9fe0gdbn87e4cp",
   "slug": "12306-android-adb",
-  "version": "1.0.1",
-  "publishedAt": 1780271601128
+  "version": "2.2.5",
+  "description": "Book train tickets on the 12306 Android app via USB ADB. Battle-tested 2026-08-30 (two successful bookings: G3314 上海→苏州 and D203 上海松江→杭州南). Primary method: direct uiautomator2 + RapidOCR via ocr_bridge.py, shipped by the appium-android-adb base skill (install it alongside — ClawHub has no dependency resolver). Covers the UC WebView virtual-list traps, the card-expand UI, departure-station filter (一车多站 time disorder), scroll-unsticking, clipboard Chinese input, and 车票信息已过期 (M0013) recovery."
 }

@@ -1,48 +1,61 @@
-## Description: <br>
-Explains, implements, and debugs TqSdk Python workflows for market data, update loops, account selection, orders, positions, simulation, backtesting, and common TqSdk errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents in explaining, implementing, or debugging TqSdk Python workflows for update loops, market data, historical downloads, account selection, trading, simulation, backtesting, and common errors.
 
-## Publisher: <br>
-[shinny-xuyida](https://clawhub.ai/user/shinny-xuyida) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shinny-xuyida](https://clawhub.ai/user/shinny-xuyida)
 
-## Use Case: <br>
-Developers and engineers use this skill to answer TqSdk questions and produce concise Python guidance or snippets for market data, trading account workflows, order lifecycle handling, simulation, backtesting, and troubleshooting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated trading examples may affect a real broker account if run with live account credentials or order and cancellation calls. <br>
-Mitigation: Before running generated code, confirm whether it targets local simulation, Quick simulation, backtest, or a real broker account, and execute live order code only when that account action is intended. <br>
-Risk: Trading workflows can expose or misuse account credentials if copied directly into scripts or shared prompts. <br>
-Mitigation: Protect TqAuth and broker credentials, keep secrets out of shared code, and review generated snippets before execution. <br>
+## Use Case:
 
+Developers and trading-system builders use this skill to answer TqSdk questions, produce focused Python examples, choose account modes, and troubleshoot data, order, simulation, and backtest behavior.
 
-## Reference(s): <br>
-- [Account Type Matrix](references/account-type-matrix.md) <br>
-- [Accounts And Trading](references/accounts-and-trading.md) <br>
-- [Error FAQ](references/error-faq.md) <br>
-- [Example Map](references/example-map.md) <br>
-- [Market Data](references/market-data.md) <br>
-- [Object Fields](references/object-fields.md) <br>
-- [Order Functions And Position Tools](references/order-functions-and-position-tools.md) <br>
-- [Simulation And Backtest](references/simulation-and-backtest.md) <br>
-- [wait_update And The Update Loop](references/wait-update-and-update-loop.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and concise explanatory text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include runnable TqSdk snippets, API call recommendations, troubleshooting steps, and account-mode cautions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release evidence) <br>
+Risk: Examples may be adapted into code that places or cancels real orders.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use simulation or backtest first, confirm the intended account type, and review any order code before running it against a live brokerage account.
+
+Risk: Brokerage or Quick credentials could be copied into source files while testing examples.
+
+Mitigation: Keep real credentials out of source files and use local secret handling for any TqAuth or brokerage account values.
+
+## Reference(s):
+
+- [Account Type Matrix](references/account-type-matrix.md)
+- [Accounts And Trading](references/accounts-and-trading.md)
+- [Error FAQ](references/error-faq.md)
+- [Example Map](references/example-map.md)
+- [Market Data](references/market-data.md)
+- [Object Fields](references/object-fields.md)
+- [Order Functions And Position Tools](references/order-functions-and-position-tools.md)
+- [Simulation And Backtest](references/simulation-and-backtest.md)
+- [wait_update And The Update Loop](references/wait-update-and-update-loop.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with concise explanations and Python code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Answers should distinguish futures and stock workflows, choose the account mode explicitly, and identify live-order risks before code is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,65 @@
-## Description: <br>
-Apple iCloud Suite helps agents work with iCloud calendars, photos, iCloud Drive, Find My devices, and reminders through documented command-line workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agent guidance and scripts for using Apple iCloud Calendar, Photos, Drive, Find My devices, Reminders, and related status-wall workflows from the command line.
 
-## Publisher: <br>
-[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lovensky1992-wk](https://clawhub.ai/user/lovensky1992-wk)
 
-## Use Case: <br>
-External users and agents use this skill to inspect and manage Apple iCloud calendars, photos, files, device location, and reminders. It is also used for household coordination workflows that publish status or schedule information to shared calendars. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may require broad iCloud account credentials and cached sessions. <br>
-Mitigation: Avoid pasting a primary Apple ID password into chat, prefer app-specific credentials where supported, and review or clear local iCloud session files after use. <br>
-Risk: The status-wall workflow can continuously track and publish personal location or schedule status. <br>
-Mitigation: Keep the daemon disabled unless deliberately needed and confirm every tracked person has consented. <br>
-Risk: Precise location data may be sent to AMap for reverse geocoding. <br>
-Mitigation: Use the AMap integration only with informed consent and avoid it when precise location sharing is not acceptable. <br>
-Risk: Shared-calendar publishing can expose private schedule or location-derived status. <br>
-Mitigation: Limit shared-calendar access and review generated events before sharing them with household or team members. <br>
+## Use Case:
 
+Agents use this skill to help a user inspect and modify iCloud calendars, browse or download iCloud Photos and Drive files, locate Apple devices, manage reminders, and optionally publish personal status into a shared calendar.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/lovensky1992-wk/apple-icloud-suite) <br>
-- [Calendar reference](references/calendar.md) <br>
-- [Photos reference](references/photos.md) <br>
-- [Find My reference](references/findmy.md) <br>
-- [iCloud Drive reference](references/drive.md) <br>
-- [Script reference](references/scripts.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct agents to read service-specific reference files before proposing iCloud actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: The skill can access sensitive iCloud account data, including calendars, photos, Drive files, device location, reminders, and account sessions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use local interactive authentication, avoid sharing primary Apple ID passwords in chat, prefer secure keychain storage, and install only when the publisher is trusted with this account access.
+
+Risk: The status-wall workflow can poll device location in the background, send coordinates to AMap for reverse geocoding, and publish personal status to a shared calendar.
+
+Mitigation: Enable the status wall only with explicit consent from every tracked person, confirm the shared calendar audience, and document how to stop the daemon and remove config, log, and session files.
+
+Risk: Calendar deletion and photo download commands can modify user data or copy private media to local storage.
+
+Mitigation: Review matching criteria and target calendars before deletion, use an isolated working directory for downloads, and require user confirmation before running destructive or bulk actions.
+
+## Reference(s):
+
+- [Skill page](https://clawhub.ai/lovensky1992-wk/skills/apple-icloud-suite)
+- [Calendar reference](references/calendar.md)
+- [Photos reference](references/photos.md)
+- [Drive reference](references/drive.md)
+- [Find My reference](references/findmy.md)
+- [Scripts reference](references/scripts.md)
+- [Apple ID account management](https://appleid.apple.com)
+- [iCloud CalDAV endpoint](https://caldav.icloud.com/)
+- [AMap Web Service API](https://lbs.amap.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, Python snippets, and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user-controlled Apple ID authentication, app-specific passwords for CalDAV, and an optional AMap API key for location naming.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

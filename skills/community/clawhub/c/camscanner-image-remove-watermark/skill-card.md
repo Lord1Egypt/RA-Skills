@@ -1,42 +1,55 @@
-## Description: <br>
-Uses CamScanner's image enhancement API to remove watermarks, stamps, and translucent logos from images while preserving underlying content and layout. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses CamScanner's hosted image enhancement service to remove watermarks, stamps, and translucent logos from images while preserving the underlying content and layout.
 
-## Publisher: <br>
-[camscanner-ai](https://clawhub.ai/user/camscanner-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[camscanner-ai](https://clawhub.ai/user/camscanner-ai)
 
-## Use Case: <br>
-External users and developers use this skill to prepare curl and jq workflows for uploading an authorized image to CamScanner, applying the remove-watermark enhancement, and saving a cleaned JPG locally. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill removes watermarks, stamps, and similar marks, which can be misused on copyrighted images or documents where marks indicate authenticity or provenance. <br>
-Mitigation: Use only on images the user owns or is authorized to edit, and avoid IDs, contracts, certificates, signatures, seals, official records, or copyrighted third-party images. <br>
-Risk: Image files are sent to CamScanner's servers for processing. <br>
-Mitigation: Confirm third-party upload and processing are acceptable before use, especially for sensitive, regulated, or confidential documents. <br>
+## Use Case:
 
+External users and developers use this skill to create curl and jq workflows that upload an image to CamScanner, remove a watermark, and save the cleaned JPG locally.
 
-## Reference(s): <br>
-- [CamScanner homepage](https://www.camscanner.com) <br>
-- [CamScanner AI tools API base URL](https://ai-tools.camscanner.com) <br>
-- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-image-remove-watermark) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with bash and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; when executed, the generated workflow uploads an image to CamScanner and writes the processed JPG to a local path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Images processed with this skill are sent to CamScanner's servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid using it on IDs, contracts, confidential business documents, copyrighted media you do not control, or other sensitive files.
+
+Risk: Watermark or stamp removal can alter the meaning or authenticity of official or protected documents.
+
+Mitigation: Use the workflow only when you have the right to modify the image, and review the resulting file before relying on or sharing it.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-image-remove-watermark)
+- [CamScanner homepage](https://www.camscanner.com)
+- [CamScanner AI tools API base URL](https://ai-tools.camscanner.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl and jq; generated commands upload selected images to CamScanner servers and save processed JPG files locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

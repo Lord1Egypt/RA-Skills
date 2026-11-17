@@ -1,8 +1,8 @@
 ---
-name: travel-telecom-guide
-display_name: 出境旅行通讯助手
-description: 帮旅行者对比漫游/当地SIM/eSIM/WiFi蛋方案，推荐最划算的出境上网通话方式。含漫游资费、eSIM推荐、当地SIM卡购买指引。
-version: 1.0.1
+name: 出境旅行通讯助手
+display_name: "出境旅行通讯助手"
+description: 帮旅行者对比漫游/当地SIM/eSIM/WiFi蛋方案，推荐最划算的出境上网通话方式。含漫游资费、eSIM推荐、当地SIM卡购买指引。暑假出境通讯指南，电话卡WiFi全覆盖
+version: 1.0.3
 tags: [出境上网, 漫游, eSIM, 境外通讯, 旅行WiFi]
 tools:
   - name: query_telecom

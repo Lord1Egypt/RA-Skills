@@ -1,43 +1,55 @@
-## Description: <br>
-MaintainX (getmaintainx.com). Use this skill for any MaintainX request, including reading, creating, updating, and deleting data through the OOMOL MaintainX connector. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill to read, create, update, or delete MaintainX data through an OOMOL-connected account.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and operators use this skill to let an agent retrieve and manage MaintainX locations, users, work orders, comments, and work order status through an OOMOL-connected account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change MaintainX data, including records, users, work order status, comments, and locations. <br>
-Mitigation: Require explicit user confirmation before write actions and destructive actions, including the exact target, payload, and expected effect. <br>
-Risk: The skill operates a MaintainX account through OOMOL. <br>
-Mitigation: Install it only for users who intend agent-operated MaintainX access through OOMOL, and review the oo CLI installation and OOMOL connection steps before approving setup. <br>
+## Use Case:
 
+External users and developers use the skill to manage MaintainX locations, users, work orders, and work order comments through an OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub MaintainX skill page](https://clawhub.ai/oomol/skills/oo-maintainx) <br>
-- [OOMOL oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [MaintainX homepage](https://www.getmaintainx.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before running MaintainX actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md metadata.version) <br>
+Risk: Setup can execute unchecked remote code; installer contents are unverified.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and verify the CLI installation before allowing automatic setup.
+
+Risk: The CLI documents automatic skill syncing across agent apps.
+
+Mitigation: Review or disable that behavior using the documented CLI controls.
+
+## Reference(s):
+
+- [MaintainX](https://www.getmaintainx.com/)
+- [MaintainX API documentation](https://api.getmaintainx.com/v1/docs)
+- [oo CLI command controls](https://github.com/oomol-lab/oo-cli/blob/main/docs/commands.md)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Guidance]
+
+**Output Format:** [JSON results from MaintainX actions with concise action guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the selected read or write action and its input schema.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

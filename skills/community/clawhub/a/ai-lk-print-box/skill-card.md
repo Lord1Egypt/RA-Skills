@@ -1,43 +1,59 @@
-## Description: <br>
-Lianke Print Box helps agents use the lk-print CLI to authenticate with a Lianke cloud print box, check printer and task status, submit print jobs, and scan documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lianke Print Box guides agents through remote printing, printer status checks, print job management, and document scanning for Lianke cloud print box devices using the lk-print CLI.
 
-## Publisher: <br>
-[NullYing](https://clawhub.ai/user/NullYing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nullying](https://clawhub.ai/user/nullying)
 
-## Use Case: <br>
-External users and developers use this skill to operate Lianke cloud print box devices through lk-print, including printer discovery, print submission, print job status checks, scan task creation, and scan result checks. It is not intended for local directly connected printers or non-Lianke devices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cloud printing and scanning can expose sensitive credentials, printed files, scanned documents, printer IDs, scanner IDs, and task IDs. <br>
-Mitigation: Treat ApiKey, DeviceId, DeviceKey, document contents, device identifiers, and task identifiers as sensitive, and use the skill only with a trusted Lianke lk-print source and Lianke cloud service. <br>
-Risk: A print, scan, cancel, or delete command can affect a real device or task. <br>
-Mitigation: Confirm the exact file, printer or scanner, copy count, task ID, and intended action before running lk-print commands. <br>
+## Use Case:
 
+External users and developers with Lianke cloud print box devices use this skill to install and authenticate the lk-print CLI, check device and printer status, submit or cancel print jobs, and create or retrieve scans.
 
-## Reference(s): <br>
-- [Lianke Print Box ClawHub listing](https://clawhub.ai/NullYing/ai-lk-print-box) <br>
-- [NullYing publisher profile](https://clawhub.ai/user/NullYing) <br>
-- [lk-print install package from ClawHub metadata](https://github.com/liankenet/ai-lk-print-box.git) <br>
-- [Lianke Open Platform](https://open.liankenet.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and CLI output interpretation] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference JSON output from lk-print commands when status or device details are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: The documented install command uses a mutable third-party Git package for lk-print.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer a pinned or independently verified lk-print release before installing or running commands.
+
+Risk: The skill handles ApiKey, DeviceId, and DeviceKey credentials.
+
+Mitigation: Treat printer credentials as secrets and provide them only through trusted authentication or environment-variable flows.
+
+Risk: The skill can submit print jobs and scan documents through Lianke devices.
+
+Mitigation: Use it only with Lianke devices you control and only for documents you are authorized to print or scan.
+
+## Reference(s):
+
+- [Lianke open platform](https://open.liankenet.com)
+- [lk-print install package from ClawHub metadata](https://github.com/liankenet/ai-lk-print-box.git)
+- [ClawHub skill page](https://clawhub.ai/nullying/skills/ai-lk-print-box)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the lk-print CLI plus ApiKey, DeviceId, and DeviceKey credentials for Lianke devices.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

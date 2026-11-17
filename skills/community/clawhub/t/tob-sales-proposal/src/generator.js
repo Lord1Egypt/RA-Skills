@@ -272,15 +272,15 @@ class ProposalGenerator {
   getDefaultCases() {
     return [
       {
-        name: '中信集团数字化转型',
-        client: '中信集团',
+        name: '某大型集团数字化转型',
+        client: '某大型集团',
         industry: '综合金融',
         solutions: ['业务中台', '数据中台'],
         keyResults: '实现数据互通，业务流程系统化'
       },
       {
-        name: '力方力合供应链升级',
-        client: '力方力合',
+        name: '某科技公司供应链升级',
+        client: '某科技公司',
         industry: '服装鞋帽',
         solutions: ['供应链系统', '智能排产'],
         keyResults: '交付周期从45天缩短至30天'

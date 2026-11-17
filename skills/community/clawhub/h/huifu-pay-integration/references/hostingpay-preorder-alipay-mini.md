@@ -14,7 +14,7 @@
 
 # 支付宝小程序预下单
 
-> 本文依据 2026-05-26 官方文档整理，适用于 `v2/trade/hosting/payment/preorder` 的支付宝小程序场景。
+> 本文依据 2026-10-10 官方文档整理，适用于 `v2/trade/hosting/payment/preorder` 的支付宝小程序场景。
 
 ## 接口概述
 
@@ -81,6 +81,8 @@
 |------|--------|------|------|------|------|
 | huifu_id | 商户号 | String | 32 | Y | 开户自动生成 |
 | acct_id | 收款汇付账户号 | String | 32 | N | 仅支持基本户、现金户；不填默认基本户；仅微信、支付宝、网银支持指定收款账户 |
+| channel_no | 通道号 | String | 32 | N | 指定路由通道时传真实通道号；不要传空字符串 |
+| pay_scene | 支付场景 | String | 2 | N | 官网列值为 N；指定 `channel_no` 时条件必填 |
 | req_date | 请求日期 | String | 8 | Y | `yyyyMMdd` |
 | req_seq_id | 请求流水号 | String | 64 | Y | 同一 `huifu_id` 下当天唯一 |
 | pre_order_type | 预下单类型 | String | 1 | Y | 支付宝预下单固定为 `2` |
@@ -88,7 +90,7 @@
 | goods_desc | 商品描述 | String | 40 | Y | 商品描述 |
 | delay_acct_flag | 是否延迟交易 | String | 1 | N | `Y`=延迟，`N`=不延迟，默认 `N` |
 | acct_split_bunch | 分账对象 | String(JSON Object) | 2000 | N | 分账对象 |
-| hosting_data | 统一收银台扩展参数集合 | String(JSON Object) | 2000 | N | 可传项目号等托管扩展 |
+| hosting_data | 统一收银台扩展参数集合 | String(JSON Object) | 2000 | N | 可传项目号等托管扩展；不得因 H5/PC 为 Y 而提升为必填 |
 | app_data | app 扩展参数集合 | String(JSON Object) | 2000 | Y | app 扩展参数集合 |
 | time_expire | 交易失效时间 | String | 14 | N | `yyyyMMddHHmmss`；默认 10 分钟 |
 | biz_info | 业务信息 | String(JSON Object) | 2000 | N | 交易相关信息 |
@@ -285,7 +287,7 @@
 | settlement_amt | 结算金额 | String | 16 | N | 单位元，保留两位小数 |
 | fee_amount | 手续费金额 | String | 16 | N | 单位元，保留两位小数 |
 | trans_stat | 交易状态 | String | 1 | N | `S`=成功，`F`=失败 |
-| trans_finish_time | 汇付侧交易完成时间 | String | 6 | N | 文档原表长度列为 `6`，格式说明为 `yyyyMMddHHmmss` |
+| trans_finish_time | 汇付侧交易完成时间 | String | 13 | N | 毫秒时间戳；String(13)，示例1791598928000 |
 | end_time | 支付完成时间 | String | 14 | N | `yyyyMMddHHmmss` |
 | acct_date | 入账时间 | String | 8 | N | `yyyyMMdd` |
 | debit_flag | 借贷记标识 | String | 1 | N | `D`=借记卡，`C`=信用卡，`Z`=借贷合一卡 |
@@ -400,6 +402,27 @@
 ## 文档勘误与实现备注
 
 - 请求示例里出现了 `checkout_id`，但参数表没有定义该字段；当前 skill 不将其视为正式接入参数。
-- 异步字段 `trans_finish_time` 的长度列写为 `6`，但格式说明为 `yyyyMMddHHmmss`；实现时按 14 位时间串处理更合理。
+- 2026-10-10官网已明确通知 `trans_finish_time:String(13)` 为毫秒时间戳；`end_time:String(14)` 仍为 `yyyyMMddHHmmss`，分别解析。
 - `alipay_response`、`trans_fee_allowance_info` 在父表中写成 `String` 且说明为 Json 格式，同时又展开了子字段；当前文档按“JSON 字符串承载对象”的方式描述。
 - `app_schema` 限长 100 字符，且含 `+/?%#&=` 时必须编码，否则容易导致无法唤起收银台。
+
+## 2026-10-08 字段复核
+
+官方新增 `request.data.alipay_data.fq_mer_discount_flag`：String(1)，N，商户贴息标记，Y 为商家全部贴息，P 为商家部分贴息；选 P 时必须在 `ali_business_params` 传入支付宝约定的活动参数。编码位置和完整说明见 `payment-complete-field-catalog.md`，位于一层 String(JSON Object) 的 `alipay_data` 内；不传为非商户贴息（默认），不能放进 `hosting_data`。
+
+## 2026-10-25 官网更新同步
+
+本地当前来源SHA-256：`3082194cef49961ec70fde375efd96f8a36f9427d64f9a8cfef325c48a429ef5`。
+
+本轮新增合单/子单请求、查询或通知字段；同名父容器按本接口和方向建模。官网通知中的`sub_trams_amt`拼写原样保留，不更改为其他字段名；split_fee_details的Object/String/数组语义也不得跨接口外推。完整嵌套类型、长度、条件和解码路径见 `payment-complete-field-catalog.md` 对应接口。
+
+| 新增完整合同路径 | 中文名 | 类型 | 长度 | 必填 | 说明 |
+| --- | --- | --- | --- | --- | --- |
+| `request.data.merge_pay_flag` | 是否合单支付 | `String` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[]` | 子单信息列表 | `String` | `—` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].delay_acct_flag` | 是否延迟交易 | `String` | `1` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_acct_id` | 子单账户号 | `String` | `9` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_huifu_id` | 子单商户号 | `String` | `32` | `Y` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_remark` | 子单备注 | `String` | `255` | `N` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_req_seq_id` | 子单请求流水号 | `String` | `128` | `Y` | 条件与完整原文见对应完整目录 |
+| `request.data.sub_orders_request[].sub_trans_amt` | 子单交易金额 | `String` | `18` | `Y` | 条件与完整原文见对应完整目录 |

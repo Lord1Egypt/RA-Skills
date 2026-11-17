@@ -1,41 +1,52 @@
-## Description: <br>
-Deploy OHIF medical imaging viewer with Docker and configure DICOMweb data sources. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploy OHIF medical imaging viewer with Docker and configure DICOMweb data sources.
 
-## Publisher: <br>
-[Sunshine-del-ux](https://clawhub.ai/user/Sunshine-del-ux) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
+
+[sunshine-del-ux](https://clawhub.ai/user/sunshine-del-ux)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and deployment engineers use this skill to deploy the OHIF medical imaging viewer with Docker and configure DICOMweb data sources for medical imaging workflows.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The deployment configuration includes hardcoded external DICOMweb endpoints for medical imaging data.
+
+Mitigation: Replace the endpoints with approved DICOMweb servers and do not use real patient or regulated medical data until the endpoints are verified and intentionally accepted.
+
+Risk: Generated Docker Compose and JSON configuration can affect the runtime environment for the viewer.
+
+Mitigation: Pin reviewed container images and inspect generated docker-compose.yml and config/hosting.json before starting containers.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and imaging platform operators use this skill to deploy an OHIF viewer with Docker and connect it to DICOMweb-compatible sources such as Orthanc, DCM4CHEE, AWS S3, or custom services. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The deployment helper hard-codes external DICOMweb endpoints, which could send viewer traffic to unintended services. <br>
-Mitigation: Replace the default DICOMweb URLs with the intended server endpoints before using the deployment around medical data. <br>
-Risk: The documented SSL and domain flags are not implemented by the script, so users may assume protections that are not configured. <br>
-Mitigation: Verify the generated Docker, NGINX, and OHIF configuration manually and configure TLS/domain handling outside the script when needed. <br>
-Risk: The script uses unpinned Docker images and writes deployment files in the working directory. <br>
-Mitigation: Review and pin container images, run from a dedicated directory, and check generated files before starting the stack. <br>
+**Output Format:** [Markdown with inline bash and configuration snippets]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [May include Docker Compose and OHIF DICOMweb configuration details.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and deployment configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify Docker Compose, NGINX, and OHIF hosting configuration files when its deployment script is used.] <br>
+1.0.0 (source: server release metadata and artifact/_meta.json)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

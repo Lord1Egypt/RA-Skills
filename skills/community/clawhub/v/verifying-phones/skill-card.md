@@ -1,42 +1,61 @@
-## Description: <br>
-Verifies phone numbers via SMS OTP using the Sendly Verify API. Sends codes, checks codes, handles expiry, and provides hosted verification sessions. Applies for phone verification, OTP, 2FA, or passwordless login flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Verifies phone numbers via SMS OTP using the Sendly Verify API. Sends codes, checks codes, handles expiry, and provides hosted verification sessions. Applies for phone verification, OTP, 2FA, or passwordless login flows.
 
-## Publisher: <br>
-[sendly-live](https://clawhub.ai/user/sendly-live) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sendly-live](https://clawhub.ai/user/sendly-live)
 
-## Use Case: <br>
-Developers use this skill to add Sendly-backed phone number verification, OTP, 2FA, and passwordless login flows to applications. It provides REST and Node.js SDK examples for sending, checking, resending, expiring, and validating verification sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Use of a Sendly API key and verification tokens could expose credentials or sensitive verification data if copied into prompts, logs, or client-side code. <br>
-Mitigation: Keep the Sendly API key and verification tokens server-side, out of prompts and logs, and review Sendly's handling of phone numbers and tokens for the deployment. <br>
-Risk: Sending or resending real SMS messages can create user impact and provider cost if run unintentionally. <br>
-Mitigation: Use sandbox keys while testing and require confirmation before sending or resending real SMS messages. <br>
+## Use Case:
 
+Developers use this skill to add Sendly-backed phone verification, OTP, 2FA, or passwordless login flows to applications. It provides concise REST API and Node.js SDK examples for sending, checking, resending, and validating hosted verification sessions.
 
-## Reference(s): <br>
-- [Verify API docs](https://sendly.live/docs/verify) <br>
-- [OTP tutorial](https://sendly.live/docs/tutorials/otp) <br>
-- [Error handling guide](https://sendly.live/docs/how-to/handle-otp-errors) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with TypeScript, JSON, and bash examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes API-key, sandbox testing, SMS send/resend, OTP checking, expiry, and hosted-session validation guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill uses an external SMS verification provider and requires a Sendly API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm Sendly is the intended provider, protect SENDLY_API_KEY, and avoid exposing credentials in client code or logs.
+
+Risk: Phone numbers, OTPs, and hosted session tokens are sensitive verification data.
+
+Mitigation: Avoid logging OTPs or session tokens, validate hosted-session tokens server-side, and apply consent and retention rules for phone number data.
+
+Risk: Real SMS messages may be sent during testing when production credentials are used.
+
+Mitigation: Use Sendly sandbox keys for test workflows when real SMS delivery is not intended.
+
+## Reference(s):
+
+- [Verify API docs](https://sendly.live/docs/verify)
+- [OTP tutorial](https://sendly.live/docs/tutorials/otp)
+- [Error handling guide](https://sendly.live/docs/how-to/handle-otp-errors)
+- [ClawHub skill page](https://clawhub.ai/sendly-live/skills/verifying-phones)
+- [Publisher profile](https://clawhub.ai/user/sendly-live)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with TypeScript, Bash, JSON, and API workflow examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes REST and Node.js examples, environment variable guidance for SENDLY_API_KEY, sandbox testing notes, status handling, and error remediation guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-AI business coach for Uzbek startups offering tailored advice on idea validation, product development, sales, China sourcing, fundraising, and CIS expansion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI business coach for Uzbek startups offering tailored advice on idea validation, product development, sales, China sourcing, fundraising, and CIS expansion.
 
-## Publisher: <br>
-[stevensabiro](https://clawhub.ai/user/stevensabiro) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[stevensabiro](https://clawhub.ai/user/stevensabiro)
 
-## Use Case: <br>
-Entrepreneurs and startup operators use this skill in Telegram to get practical coaching for Uzbekistan and CIS-focused startup work, including validation, MVP planning, sales, sourcing, expansion, fundraising preparation, and consent-based check-ins. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with guidance focused on Uzbekistan and CIS markets. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Telegram bot credentials could be exposed or overused if shared across unrelated deployments. <br>
-Mitigation: Use a dedicated Telegram bot token for this skill and rotate it if access is no longer needed. <br>
-Risk: Uploaded pitch decks or business plans may contain confidential business information. <br>
-Mitigation: Avoid uploading sensitive documents unless necessary and review what is shared before file-reading workflows. <br>
-Risk: The skill stores personal startup context locally for continuity. <br>
-Mitigation: Use the documented `/mydata` and `/deletedata` commands to review or remove stored local context. <br>
-Risk: Broad trigger words such as "coach" or "mentor" may activate the skill unintentionally. <br>
-Mitigation: Confirm intent before relying on startup-coaching output, especially in mixed-purpose Telegram conversations. <br>
-Risk: Scheduled follow-up messages can contact users proactively. <br>
-Mitigation: Enable reminders only after explicit opt-in and confirm consent before the first scheduled check-in. <br>
+## Use Case:
 
+External entrepreneurs and startup operators use this Telegram-oriented agent for practical coaching tailored to Uzbekistan and CIS markets, including validation, customer acquisition, sourcing, fundraising, and expansion planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/stevensabiro/uzstartup-coach) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance, markdown] <br>
-**Output Format:** [Concise Telegram-ready coaching responses with short paragraphs, bullets, commands, and optional follow-up prompts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use uploaded files, web search results, locally stored user context, and consent-gated scheduled reminders when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill uses a Telegram bot token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Deploy only in a trusted host environment and keep the bot token private.
+
+Risk: Uploaded files such as pitch decks or plans may contain confidential business information.
+
+Mitigation: Upload only files intended for review in the configured environment, and avoid sensitive decks unless the host is trusted.
+
+Risk: The skill stores basic startup-coaching context locally.
+
+Mitigation: Use /mydata to audit stored information and /deletedata to remove it.
+
+Risk: Scheduled Telegram follow-ups can contact users proactively.
+
+Mitigation: Enable scheduled check-ins only after explicit user consent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/stevensabiro/skills/uzstartup-coach)
+- [ClawHub publisher profile](https://clawhub.ai/user/stevensabiro)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise conversational guidance in Telegram-style Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responds in Uzbek, Russian, or English to match the user; may produce short plans, questions, scripts, check-in prompts, and resource recommendations.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

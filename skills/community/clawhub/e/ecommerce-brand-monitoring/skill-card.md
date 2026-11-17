@@ -1,41 +1,62 @@
-## Description: <br>
-Brand Monitoring tracks brand mentions across Reddit, Google News, YouTube, and DuckDuckGo and produces sentiment, trend, crisis, competitor, keyword, and report outputs. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+Brand monitoring tool for tracking mentions across social media platforms, including Reddit, Google News, YouTube, and DuckDuckGo, with sentiment analysis, trend tracking, crisis detection, and competitor comparison.
 
-## Publisher: <br>
-[phheng](https://clawhub.ai/user/phheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[phheng](https://clawhub.ai/user/phheng)
 
-## Use Case: <br>
-E-commerce sellers, brand managers, and developers use this skill to generate brand mention reports, sentiment summaries, trend views, crisis alerts, and competitor comparisons for selected brands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may present demo or hardcoded brand-monitoring results as if they were live platform data. <br>
-Mitigation: Treat reports as illustrative until live collection is confirmed; independently verify data sources before using alerts, sentiment, trend, or competitor outputs for business decisions. <br>
-Risk: Public platform collection may be incomplete, rate limited, or disabled in production paths. <br>
-Mitigation: Review platform terms and implementation status before relying on coverage, and confirm production collection is enabled and documented. <br>
+## Use Case:
 
+E-commerce sellers and brand operators use this skill to generate brand mention summaries, sentiment breakdowns, trend indicators, crisis alerts, competitor comparisons, and reporting guidance from configured brand keywords.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/phheng/ecommerce-brand-monitoring) <br>
-- [Nexscope AI](https://www.nexscope.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-style terminal report with status text and alert recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include demo or hardcoded results; verify data sources before relying on sentiment, trend, alert, or competitor conclusions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release evidence; artifact frontmatter reports 1.0.0) <br>
+Risk: The security review says the skill presents mostly demo or stub monitoring as real monitoring.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat generated reports as preliminary examples until live platform collection is implemented and verified against representative searches.
+
+Risk: The security guidance warns against an unpinned global npx installer command.
+
+Mitigation: Use a pinned, verifiable installer or inspect the package source before installation, and avoid elevated privileges for global installs.
+
+Risk: Several scraper paths print notes to enable real API calls or RSS parsing before production use.
+
+Mitigation: Validate each enabled platform connector, rate-limit handling, and source terms before relying on results for operational brand decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/phheng/skills/ecommerce-brand-monitoring)
+- [Publisher Profile](https://clawhub.ai/user/phheng)
+- [Nexscope AI](https://www.nexscope.ai/)
+- [Reddit Search JSON Endpoint](https://www.reddit.com)
+- [Google News RSS Search](https://news.google.com/rss/search)
+- [DuckDuckGo Instant Answer API](https://api.duckduckgo.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown report with command-line usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports can include sentiment summaries, alert recommendations, keyword lists, platform breakdowns, and competitor comparisons.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

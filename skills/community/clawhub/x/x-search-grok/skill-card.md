@@ -1,44 +1,59 @@
-## Description: <br>
-Search X (Twitter) for account posts, trending topics, or topic discussions using Grok API. Outputs Obsidian-ready Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search X (Twitter) for account posts, trending topics, or topic discussions using Grok API. Outputs Obsidian-ready Markdown.
 
-## Publisher: <br>
-[wangyue55](https://clawhub.ai/user/wangyue55) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wangyue55](https://clawhub.ai/user/wangyue55)
 
-## Use Case: <br>
-Developers, analysts, and other external users use this skill to search X/Twitter accounts, trends, and topics through the Grok API, then receive concise Markdown summaries that can be saved or scheduled for watchlist monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: X/Twitter queries and returned content may be sent to xAI through the user's API key. <br>
-Mitigation: Use the skill only for searches whose query text and returned content are acceptable to process through xAI, and provide credentials through XAI_API_KEY. <br>
-Risk: Saved Markdown output can overwrite same-day files at the selected output path. <br>
-Mitigation: Use a dedicated output directory or explicit file path and review saved files when running repeated searches. <br>
-Risk: Scheduled watchlist results can be stored locally or delivered to Telegram, Slack, or Discord channels. <br>
-Mitigation: Enable scheduled runs and delivery channels only for searches whose results are appropriate to store or share in those services. <br>
+## Use Case:
 
+External users and developers use this skill to search X accounts, trends, and topics through the xAI Grok API, then receive concise Markdown suitable for review or Obsidian notes. It also supports watchlist and scheduled monitoring workflows.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/wangyue55/x-search-grok) <br>
-- [Declared source repository](https://github.com/wangyue55/x-search-skill) <br>
-- [xAI Responses API endpoint](https://api.x.ai/v1/responses) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with optional saved Markdown files and brief progress summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires XAI_API_KEY; optional output paths can create or overwrite Markdown files for same-day runs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and OpenClaw metadata) <br>
+Risk: X search prompts and the xAI API key are sent to xAI during execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, keep the key in environment variables, and use a virtual environment with reviewed dependencies.
+
+Risk: Saved Markdown output can overwrite an existing same-day file at the chosen output path.
+
+Mitigation: Choose output paths deliberately and use unique filenames when preserving earlier runs matters.
+
+Risk: Scheduled runs can forward results to Telegram, Slack, or Discord channels.
+
+Mitigation: Review cron announcements, destination channels, and recipient identifiers before enabling scheduled delivery.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wangyue55/skills/x-search-grok)
+- [Source repository from skill metadata](https://github.com/wangyue55/x-search-skill)
+- [xAI Responses API endpoint used by the skill](https://api.x.ai/v1/responses)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with optional saved Markdown files and brief progress text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Obsidian-ready output can include summaries, translations, and keyword explanations; same-day output files may be overwritten when the same resolved path is reused.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

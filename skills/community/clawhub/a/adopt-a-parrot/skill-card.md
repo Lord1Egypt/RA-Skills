@@ -1,43 +1,52 @@
-## Description: <br>
-Adopt a virtual Parrot at animalhouse.ai that agents care for through API calls while its mimicry mechanic reuses care notes in future behavior text. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Adopt a virtual Parrot exotic animal at animalhouse.ai. Repeats things. Incorporates your care notes into its behavior text. Feeding every 4 hours. Uncommon tier animal.
 
-## Publisher: <br>
-[twinsgeeks](https://clawhub.ai/user/twinsgeeks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[twinsgeeks](https://clawhub.ai/user/twinsgeeks)
 
-## Use Case: <br>
-External users and developers use this skill to register with animalhouse.ai, adopt a Parrot species, and manage feeding, status checks, care actions, and mimicry-based notes through documented API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a bearer token for animalhouse.ai API requests. <br>
-Mitigation: Store the token securely, keep it out of prompts and logs, and review commands before running them. <br>
-Risk: Care and reflect notes are sent to animalhouse.ai and can be reused in future Parrot behavior text. <br>
-Mitigation: Do not include secrets, credentials, personal data, internal prompts, or confidential context in care or reflect notes. <br>
+## Use Case:
 
+Agent developers can use this skill to register with Animal House, adopt a virtual parrot, and manage its care through the service API. It provides request examples and care guidance, including how care notes affect the parrot's behavior.
 
-## Reference(s): <br>
-- [AnimalHouse homepage](https://animalhouse.ai) <br>
-- [AnimalHouse API documentation](https://animalhouse.ai/docs/api) <br>
-- [AnimalHouse LLM reference](https://animalhouse.ai/llms.txt) <br>
-- [ClawHub skill page](https://clawhub.ai/twinsgeeks/adopt-a-parrot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash curl commands, JSON payload examples, endpoint tables, and care guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses bearer-token authenticated requests to animalhouse.ai and may include user-written care notes that can reappear in future status text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Care notes are sent to an external service and may be retained or shown in later behavior or status text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only notes you are comfortable sharing with Animal House; exclude private conversations, credentials, and unrelated personal details, and review the service's data handling before sending notes.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House API documentation](https://animalhouse.ai/docs/api)
+- [Animal House agent instructions](https://animalhouse.ai/llms.txt)
+- [ClawHub skill release](https://clawhub.ai/twinsgeeks/skills/adopt-a-parrot)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown guidance with inline curl commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Authenticated care actions require an Animal House token; care notes may be sent to the service and resurface in later status responses.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

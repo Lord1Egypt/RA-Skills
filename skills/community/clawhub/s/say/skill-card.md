@@ -1,38 +1,49 @@
-## Description: <br>
-Text-to-speech via the macOS say command with Siri Natural Voices for generating speech audio, TTS clips, or spoken text on macOS. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Text-to-Speech via macOS say command with Siri Natural Voices. Use for generating speech audio, TTS clips, or speaking text aloud on macOS.
 
-## Publisher: <br>
-[tobihagemann](https://clawhub.ai/user/tobihagemann) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[tobihagemann](https://clawhub.ai/user/tobihagemann)
 
-## Use Case: <br>
-Developers and agents use this skill on macOS to generate on-device text-to-speech audio, speak text aloud, and convert native AIFF output with ffmpeg. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Siri Natural Voice language examples can change a persistent macOS speech preference that affects later speech output. <br>
-Mitigation: Note the current speech language before changing it, set the intended language deliberately for batch generation, and switch it back when finished. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobihagemann/say) <br>
-- [Publisher profile](https://clawhub.ai/user/tobihagemann) <br>
+## Use Case:
 
+Developers and content creators use this skill on macOS to generate spoken audio, preview text aloud, and create AIFF or converted WAV/MP3 text-to-speech clips.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [macOS only; requires the say and ffmpeg binaries.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Siri language-switch examples change a persistent macOS speech preference.
+
+Mitigation: Record the current speech language before using defaults write, restore it after batch generation, and prefer say -v for non-Siri voices when suitable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tobihagemann/skills/say)
+- [Publisher profile](https://clawhub.ai/user/tobihagemann)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent guidance may produce macOS say invocations and ffmpeg conversion commands for generated audio files.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

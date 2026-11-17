@@ -1,39 +1,48 @@
-## Description: <br>
-Provides Chinese-language daily horoscope responses for user questions about any of the 12 zodiac signs. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询今日星座运势。用于用户询问今日星座运势时使用，支持12星座。
 
-## Publisher: <br>
-[KrisLiu16](https://clawhub.ai/user/KrisLiu16) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[krisliu16](https://clawhub.ai/user/krisliu16)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can ask for a lighthearted daily horoscope in Chinese for any of the 12 zodiac signs. The skill guides the agent to return a structured entertainment response with ratings, lucky details, and a short next-day tip.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Users may treat horoscope content as factual, financial, medical, or relationship advice.
+
+Mitigation: Keep the response framed as entertainment-only content and avoid presenting predictions or tips as professional advice.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External Chinese-speaking users use this skill to receive concise, entertainment-oriented daily horoscope guidance for a requested zodiac sign. Responses cover overall, love, work, wealth, lucky number, lucky color, and tomorrow's tip. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Text, Markdown, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat entertainment horoscope content, including wealth-related wording, as factual or decision-grade advice. <br>
-Mitigation: Present horoscope output as entertainment only and avoid using it for financial, medical, legal, or other material decisions. <br>
+**Output Format:** [Markdown-formatted Chinese text response]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/KrisLiu16/daily-horoscope-cn) <br>
-- [Publisher profile](https://clawhub.ai/user/KrisLiu16) <br>
+**Other Properties Related to Output:** [Entertainment-only horoscope content for the requested zodiac sign.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown/text response with structured horoscope sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Entertainment content only; no files, credentials, external services, persistence, or install hooks are required.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

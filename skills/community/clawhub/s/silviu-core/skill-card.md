@@ -1,41 +1,53 @@
-## Description: <br>
-Implements Silviu-specific guardrails and runbooks to enforce validation, prevent common operational errors, and manage browser and GitHub interactions in OpenClaw. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements Silviu-specific guardrails and runbooks to enforce validation, prevent common errors, and manage browser and GitHub interactions in OpenClaw.
 
-## Publisher: <br>
-[unknoOwnd](https://clawhub.ai/user/unknoOwnd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[unknoownd](https://clawhub.ai/user/unknoownd)
 
-## Use Case: <br>
-Developers and operators use this skill to follow OpenClaw operational guardrails, confirm browser attachment before automation, and verify repository access before cloning or auditing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The repo-audit preflight contacts GitHub or another selected repository host. <br>
-Mitigation: Review the repository URL before running connectivity or ls-remote checks. <br>
-Risk: The browser attach doctor inspects the active browser tab through OpenClaw browser attachment. <br>
-Mitigation: Confirm the active tab is intended for OpenClaw inspection before enabling the browser relay. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Silviu Core ClawHub Release](https://clawhub.ai/unknoOwnd/silviu-core) <br>
-- [Browser Attach Doctor](browser_attach_doctor.md) <br>
-- [Repo Audit Preflight](repo_audit_preflight.md) <br>
+## Use Case:
 
+Developers and operators use this skill to keep OpenClaw workflows disciplined when validating tasks, attaching a browser tab, and checking GitHub repository availability before audits.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only runbooks; no generated files or persistent runtime behavior.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Repo audit preflight commands contact GitHub and may reveal the target repository URL or metadata to GitHub.
+
+Mitigation: Run the preflight only for repositories the operator intends to check, and treat the repository URL as information shared with GitHub.
+
+Risk: Browser attach steps require an active Chrome tab with the OpenClaw Browser Relay intentionally enabled.
+
+Mitigation: Enable the relay only on the intended active tab and verify attached tabs before browser automation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unknoownd/skills/silviu-core)
+- [Publisher profile](https://clawhub.ai/user/unknoownd)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Operational runbooks and guardrails for validation, browser attachment, and repository audit preflight checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

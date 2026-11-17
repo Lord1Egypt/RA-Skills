@@ -1,44 +1,57 @@
-## Description: <br>
-Estimate Builder helps create construction project estimates with line-item cost categories, markups, totals, validation warnings, and export-oriented reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds construction project estimates with category-level cost breakdowns, markups, validation warnings, and tabular reporting.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Construction estimators, cost engineers, and project teams use this skill to assemble and review project estimates, categorize labor, material, equipment, subcontractor, and other costs, apply markups or rates, and produce summary tables with validation warnings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with source behavior focused on Chinese construction cost standards such as GB/T 50500-2024. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated estimates may contain incorrect quantities, unit costs, standards, markups, taxes, or currency assumptions. <br>
-Mitigation: Independently verify all estimate inputs, formulas, standards, rates, taxes, and currency before using outputs for real project decisions. <br>
-Risk: The skill requests filesystem access and can help import or export estimate documents. <br>
-Mitigation: Restrict file access to the intended project documents and review exported files before sharing or relying on them. <br>
-Risk: Release metadata is inconsistent across evidence sources. <br>
-Mitigation: Confirm the publisher, version, and license before installation or production use. <br>
+## Use Case:
 
+Construction estimators, project managers, and cost engineers use this skill to assemble line-item construction estimates, apply markups, summarize costs by category, and flag basic estimate issues before review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ruiyongwang/cn-estimate-builder) <br>
-- [Publisher profile](https://clawhub.ai/user/ruiyongwang) <br>
-- [Project homepage](https://datadrivenconstruction.io) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown tables, explanatory text, and optional Python-oriented estimate structures or export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Rounds monetary values to two decimal places and includes cost category summaries, markup breakdowns, grand totals, and validation warnings when applicable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Construction estimates, standards, rates, currencies, and category mappings may be incorrect or incomplete for bids, contracts, or regulatory submissions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as draft calculations and verify applicable standards, rates, currency, category mappings, and project assumptions with qualified reviewers before use.
+
+Risk: Spreadsheet export paths can write files to user-selected locations.
+
+Mitigation: Use deliberate, trusted export paths and inspect generated workbooks before sharing or relying on them.
+
+Risk: The release has reliability and scope-documentation issues according to the security summary.
+
+Mitigation: Use the skill within its construction-estimating scope and reconcile results with local estimate formats and project requirements.
+
+## Reference(s):
+
+- [DataDrivenConstruction homepage](https://datadrivenconstruction.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, guidance]
+
+**Output Format:** [Markdown tables and narrative guidance with optional Python code examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs include category totals, markup breakdowns, grand totals, and validation warnings rounded to two decimal places.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

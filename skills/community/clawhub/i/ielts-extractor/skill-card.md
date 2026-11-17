@@ -1,41 +1,54 @@
-## Description: <br>
-Extracts IELTS reading passages and question data from Cambridge IELTS PDFs, including multi-page and two-column layouts, into structured JSON. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts IELTS reading passages and questions from Cambridge IELTS PDFs into structured JSON, with guidance for multi-page extraction and two-column layouts.
 
-## Publisher: <br>
-[lava-chen](https://clawhub.ai/user/lava-chen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lava-chen](https://clawhub.ai/user/lava-chen)
 
-## Use Case: <br>
-Developers and content maintainers use this skill to extract IELTS reading passages and grouped questions from Cambridge IELTS PDFs, then save the results as structured JSON and supporting images for an IELTS practice application. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can write extracted JSON and image files to local project paths. <br>
-Mitigation: Confirm where JSON and images will be written, and review generated files before committing or publishing them. <br>
-Risk: PDF inputs may contain content the user is not allowed to process or redistribute. <br>
-Mitigation: Use the skill only on PDFs the user is authorized to process. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [JSON Format Specification](references/json-format.md) <br>
-- [PDF Extraction Guide](references/pdf-extraction.md) <br>
-- [Question Type Standards](references/question-types.md) <br>
+## Use Case:
 
+Developers and content maintainers use this skill to convert Cambridge IELTS reading PDF content into local structured test JSON and related image assets for IELTS practice applications.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, JSON, Files] <br>
-**Output Format:** [Markdown guidance with Python snippets and structured JSON file output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local IELTS tracker JSON files and image assets.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The workflow reads local IELTS PDFs and writes JSON or image assets into project paths.
+
+Mitigation: Run it only on intended local files and review generated JSON and images before committing or publishing them.
+
+Risk: Source PDFs may be copyrighted or otherwise restricted.
+
+Mitigation: Confirm rights to use the PDFs and extracted content before publishing or sharing outputs.
+
+## Reference(s):
+
+- [JSON format guide](references/json-format.md)
+- [PDF extraction guide](references/pdf-extraction.md)
+- [Question type standards](references/question-types.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON snippets, Python examples, and local file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces structured IELTS reading JSON content and may create referenced image assets in local project paths.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

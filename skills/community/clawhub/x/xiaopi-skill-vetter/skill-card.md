@@ -1,41 +1,54 @@
-## Description: <br>
-Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.
 
-## Publisher: <br>
-[a-din](https://clawhub.ai/user/a-din) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[a-din](https://clawhub.ai/user/a-din)
 
-## Use Case: <br>
-Developers and agent users use this skill to review third-party skills before installation, checking source, permission scope, suspicious patterns, and risk level. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Example shell commands may fetch data from repositories that are not the intended review target. <br>
-Mitigation: Run commands only against repositories you intend to inspect and verify the repository owner, name, and skill path before using fetched content. <br>
-Risk: Checklist guidance may be over-relied on for high-risk skills or skills requesting sensitive access. <br>
-Mitigation: Treat the skill as a review aid and require human approval for skills involving credentials, privileged access, external data transfer, or system-level changes. <br>
+## Use Case:
 
+Developers, engineers, and agent operators use this skill to review agent skills before installation, document red flags, classify risk, and produce a concise vetting report.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/a-din/xiaopi-skill-vetter) <br>
-- [Publisher profile](https://clawhub.ai/user/a-din) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown checklist and vetting report with optional shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces review guidance only; it does not include executable skill code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Example GitHub commands may disclose repository names, paths, or URLs to external GitHub endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the commands only for repositories whose details may be shared with GitHub, and avoid private repository names or sensitive URLs unless disclosure is approved.
+
+Risk: The skill produces conservative vetting guidance that can flag issues requiring human judgment.
+
+Mitigation: Treat the generated report as review support and have a human confirm high-risk findings before installation decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/a-din/skills/xiaopi-skill-vetter)
+- [Publisher profile](https://clawhub.ai/user/a-din)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown vetting report with optional inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No bundled code, persistence, or hidden data handling was reported by the authoritative security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

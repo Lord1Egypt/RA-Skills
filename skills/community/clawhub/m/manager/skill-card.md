@@ -1,41 +1,50 @@
-## Description: <br>
-Reference tool for devtools — covers intro, quickstart, patterns and more. Quick lookup for Manager concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools - covers intro, quickstart, patterns and more, with quick lookup for Manager concepts, best practices, and implementation patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-Developers and engineers use this skill to retrieve concise Manager reference material for devtools workflows, including quickstart, patterns, debugging, performance, security, migration, and cheatsheet guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reference guidance may be too generic for a specific Manager implementation or production environment. <br>
-Mitigation: Review the generated guidance against the target environment's official documentation and operational requirements before relying on it. <br>
-Risk: The skill is exposed through a shell command interface. <br>
-Mitigation: Review commands before running them, especially when adapting the reference material to workflows that use authenticated tools, repository changes, or live services. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local plain-text reference for Manager concepts, quickstart guidance, patterns, debugging, performance, security, migration, and cheatsheet material.
 
-## Reference(s): <br>
-- [Manager on ClawHub](https://clawhub.ai/xueyetianya/manager) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown reference documentation from command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external API calls, credentials, or network access are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: SKILL.md frontmatter and server release evidence) <br>
+Risk: A cheatsheet entry may refer to a troubleshooting command that is not implemented.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the implemented debugging command for troubleshooting guidance and verify command names with manager help before relying on a cheatsheet entry.
+
+## Reference(s):
+
+- [BytesAgain homepage](https://bytesagain.com)
+- [ClawHub Manager skill page](https://clawhub.ai/xueyetianya/skills/manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown reference content emitted by shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local reference output only; no external API calls, credentials, network access, or persistent system changes are reported in the evidence.]
+
+## Skill Version(s):
+
+2.0.4 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

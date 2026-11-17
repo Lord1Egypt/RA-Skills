@@ -1,0 +1,37 @@
+# Project Plan Builder - starting point
+# Copy this file, replace every empty value with your own data, keep the field names.
+project_name: ""
+sponsor_role: ""
+project_manager_role: ""
+goal: ""
+fixed_end_date: ""
+budget_cap_usd: ""
+work_locations:
+  - city: ""
+    state: ""
+milestones:
+  - milestone_id: ""
+    name: ""
+    owner_role: ""
+    duration_days: ""
+    depends_on:
+      - ""
+    definition_of_done: ""
+    target_date: ""
+    confidence: "high, medium or low"
+risks:
+  - risk: ""
+    owner_role: ""
+    trigger: ""
+    mitigation: ""
+    review_date: ""
+assumptions:
+  - ""
+state_flags:
+  - item: ""
+    state: ""
+    source_to_check: ""
+change_log:
+  - date: ""
+    change: ""
+    requested_by_role: ""

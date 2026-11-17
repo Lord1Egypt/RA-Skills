@@ -1,43 +1,55 @@
-## Description: <br>
-Generates customized ISO 27001:2022-aligned information security policy documents from an organization's profile, infrastructure, data handling, and compliance requirements. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate customized ISO 27001:2022 aligned information security policy documents based on a company's profile, infrastructure, and compliance needs.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Compliance, security, and governance teams use this skill to draft ISO 27001:2022 policy documents, Annex A mappings, implementation checklists, ownership guidance, and review cycles from organization-specific context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends organization profile, infrastructure, data handling, and compliance details to an external ToolWeb API, which can be privacy-sensitive. <br>
-Mitigation: Confirm ToolWeb is an approved provider, use a dedicated revocable API key, and avoid submitting secrets or unnecessary internal details. <br>
-Risk: Generated ISO 27001 policies may be incomplete, overbroad, or misaligned with the organization's legal and compliance obligations. <br>
-Mitigation: Treat generated policies as drafts and require review by legal, compliance, security, and management stakeholders before adoption. <br>
+## Use Case:
 
+Compliance, security, and engineering teams use this skill to draft organization-specific ISO/IEC 27001:2022 policy documents, Annex A control mappings, implementation checklists, ownership guidance, and review cycles from structured company and infrastructure inputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/toolweb-iso27001-policy-generator) <br>
-- [ToolWeb API Portal](https://portal.toolweb.in) <br>
-- [ToolWeb OpenClaw](https://toolweb.in/openclaw/) <br>
-- [ToolWeb Homepage](https://toolweb.in) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Structured policy drafts with ISO 27001 control mappings, compliance alignment, checklists, ownership guidance, and review cycles.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated policies are drafts that require legal, compliance, and management review before adoption.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Organization profile, infrastructure summary, compliance requirements, and data-type details may be shared with ToolWeb when using the generator.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the data-sharing posture before installation and use generalized or sanitized values when exact internal details are not required.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/toolweb-iso27001-policy-generator)
+- [ToolWeb](https://toolweb.in)
+- [ToolWeb Portal](https://portal.toolweb.in)
+- [ToolWeb MCP Server](https://hub.toolweb.in)
+- [ToolWeb OpenClaw](https://toolweb.in/openclaw/)
+- [RapidAPI ToolWeb Publisher](https://rapidapi.com/user/mkrishna477)
+- [ToolWeb YouTube Channel](https://youtube.com/@toolweb-009)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [JSON and generated policy-document text suitable for review and adoption]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include policy documents, ISO 27001 Annex A control mappings, compliance alignment notes, ownership guidance, review cycles, and implementation checklists.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

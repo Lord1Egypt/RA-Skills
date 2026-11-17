@@ -1,48 +1,61 @@
-## Description: <br>
-Offline speech-to-text (ASR) using whisper.cpp (whisper-cli) + ffmpeg. Supports batch transcription, timestamps, SRT/TXT/JSON outputs, and model download. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Offline speech-to-text (ASR) using whisper.cpp (whisper-cli) + ffmpeg. Supports batch transcription, timestamps, SRT/TXT/JSON outputs, and model download. Cross-platform: macOS/Linux; Windows via WSL2 (recommended).
 
-## Publisher: <br>
-[vvusu](https://clawhub.ai/user/vvusu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[vvusu](https://clawhub.ai/user/vvusu)
 
-## Use Case: <br>
-Developers, creators, and operators use this skill to transcribe local audio or video-derived audio into text, subtitles, or JSON without sending the media to a hosted transcription service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The setup flow may install local packages and download Whisper model files from Hugging Face. <br>
-Mitigation: Review the installer before running it, pre-download approved models in restricted environments, and use checksum verification where available. <br>
-Risk: Audio files and transcripts can contain sensitive or regulated information. <br>
-Mitigation: Get consent before transcription, restrict transcript access, and avoid unnecessary retention of audio or transcript files. <br>
-Risk: Automatic speech recognition can produce incorrect transcripts, especially on noisy or high-stakes audio. <br>
-Mitigation: Have a human review important transcripts and compare model choices when accuracy matters. <br>
+## Use Case:
 
+Developers, creators, and operators use this skill to transcribe local audio files or directories with whisper.cpp and ffmpeg, producing transcripts, subtitles, or structured text for review and downstream workflows.
 
-## Reference(s): <br>
-- [Whisper.cpp documentation](artifact/references/WHISPER_DOCS.md) <br>
-- [Available Whisper models](artifact/references/AVAILABLE_MODELS.md) <br>
-- [Whisper.cpp GitHub](https://github.com/ggml-org/whisper.cpp) <br>
-- [Whisper.cpp model repository](https://huggingface.co/ggerganov/whisper.cpp) <br>
-- [OpenClaw Skill System](https://docs.openclaw.ai/skills) <br>
-- [ClawHub release page](https://clawhub.ai/vvusu/whisper-transcriber) <br>
-- [Publisher profile](https://clawhub.ai/user/vvusu) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Files, Shell commands, Configuration] <br>
-**Output Format:** [Plain text transcripts, SRT subtitles, JSON output, and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports single-file and batch transcription with configurable model, language, output path, and temporary directory settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Installer scripts can change system packages using sudo or package-manager commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before running it, or install ffmpeg and whisper-cli manually from trusted package sources.
+
+Risk: Whisper model files may be downloaded without effective integrity checks when configured hashes are empty.
+
+Mitigation: Pin model filenames and verify model checksums before using downloaded binaries.
+
+Risk: Transcript outputs can contain sensitive speech content.
+
+Mitigation: Store transcript files in access-controlled locations and delete local outputs when they are no longer needed.
+
+## Reference(s):
+
+- [Whisper.cpp GitHub](https://github.com/ggml-org/whisper.cpp)
+- [Whisper.cpp Model Repository](https://huggingface.co/ggerganov/whisper.cpp)
+- [OpenClaw Skills Documentation](https://docs.openclaw.ai/skills)
+- [Whisper Docs](artifact/references/WHISPER_DOCS.md)
+- [Available Models](artifact/references/AVAILABLE_MODELS.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands; runtime outputs include TXT, SRT, and JSON transcript files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local transcript files and download Whisper model binaries into assets/models or configured model directories.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact config.json; released 2026-03-08)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

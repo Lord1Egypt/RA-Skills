@@ -1,38 +1,54 @@
-## Description: <br>
-Design Agent workflows, state machines, and technology architecture with best practice patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design Agent workflows, state machines, and technology architecture with best practice patterns.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Developers and architects use this skill to design or review AI agent architectures, including workflows, state machines, technology choices, design decisions, and non-functional requirements. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated architecture documents may contain internal system design details when saved to the local workspace. <br>
-Mitigation: Control the output path and review generated Markdown before sharing or publishing it, especially for sensitive repositories. <br>
+## Use Case:
 
+Developers and engineers use this skill to design or review AI agent architectures, including workflow orchestration, state machines, technology stack choices, design decisions, and non-functional requirements.
 
-## Reference(s): <br>
-- [Agent 技术选型矩阵](references/tech-stack.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Code, Files] <br>
-**Output Format:** [Markdown with Mermaid diagrams and architecture tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a local Markdown architecture document in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill may create local architecture documents or publish through connected document collaboration tools without clearly requiring confirmation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, instruct the agent to keep output in chat unless you explicitly approve a file path or publication destination.
+
+Risk: Connected Notion, Feishu, or Figma accounts could expose sensitive project context to third-party tools during architecture work.
+
+Mitigation: Use the skill only with accounts and project data approved for this workflow, and disconnect integrations that are not needed.
+
+## Reference(s):
+
+- [Agent 技术选型矩阵](references/tech-stack.md)
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/architecture-design)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown with Mermaid diagrams and decision tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May save architecture documents locally or publish them through connected document collaboration tools when available.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

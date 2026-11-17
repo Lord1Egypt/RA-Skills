@@ -1,40 +1,58 @@
-## Description: <br>
-AI智能交易Agent helps agents draft Chinese-language market scans, strategy matching, trading-signal style analysis, Kelly position sizing, risk controls, and TradingView Pine Script guidance for A-share, Hong Kong, U.S. equity, and crypto markets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI智能交易Agent produces Chinese-language systematic trading analysis using seven quantitative strategies, Kelly position sizing, risk controls, and TradingView/Pine Script guidance; it is for reference only and not investment advice.
 
-## Publisher: <br>
-[qqyougitcom](https://clawhub.ai/user/qqyougitcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qqyougitcom](https://clawhub.ai/user/qqyougitcom)
 
-## Use Case: <br>
-External users and agents use this skill to produce structured trading-analysis drafts, including market state summaries, strategy selection, entry and exit levels, stop-loss and take-profit framing, position sizing, and risk reminders. Its outputs are educational analysis prompts and are not professional financial advice or instructions to trade. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trading-signal, stop-loss, take-profit, and position-size suggestions can be mistaken for professional financial advice. <br>
-Mitigation: Treat outputs as educational analysis drafts only; users should independently review assumptions and consult qualified professionals before making financial decisions. <br>
-Risk: Backtests, technical indicators, and Kelly sizing can overstate confidence because market conditions, fees, slippage, and liquidity can change. <br>
-Mitigation: Review market context, transaction costs, liquidity, and risk limits before relying on any generated analysis. <br>
+## Use Case:
 
+External users and developers use this skill to request Chinese-language market scans, strategy matching, trading signal templates, position sizing, risk-control summaries, and TradingView indicator guidance for equities and crypto analysis.
 
-## Reference(s): <br>
-- [ai-trading-agent detailed reference](references/details.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Chinese Markdown text with trading-signal templates and optional Pine Script guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should retain the artifact's disclaimer that analysis is for reference only and does not constitute investment advice.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.6.3 (source: server release evidence; artifact frontmatter lists 1.6.0) <br>
+Risk: Trading analysis may be misunderstood as financial advice or used without independent verification.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only as an educational trading-analysis aid and independently verify prices, risks, position sizes, and legal or tax implications before making decisions.
+
+Risk: Backtests, technical indicators, and Kelly sizing can produce misleading confidence if market conditions, costs, liquidity, or drawdowns are not considered.
+
+Mitigation: Treat historical performance as non-predictive, account for slippage and fees, and apply the documented per-trade, daily, weekly, and correlation risk limits conservatively.
+
+Risk: The skill outputs Chinese-language analysis, which may be misread by users who cannot fully understand the output.
+
+Mitigation: Confirm that the Chinese output is understood before relying on the analysis.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qqyougitcom/skills/ai-trading-agent)
+- [Detailed strategy reference](references/details.md)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
+
+**Output Format:** [Chinese-language Markdown with trading signal templates and optional Pine Script guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes explicit reference-only and non-investment-advice caveats.]
+
+## Skill Version(s):
+
+1.6.3 (source: ClawHub server release metadata; artifact frontmatter reports 1.6.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

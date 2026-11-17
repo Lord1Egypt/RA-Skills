@@ -1,45 +1,60 @@
-## Description: <br>
-Manage contacts, companies, products, tags, documents, brands, automations, team members, and organization data on an erxes instance through GraphQL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage contacts, companies, products, tags, documents, brands, automations, team members, and organization data on an erxes instance through GraphQL.
 
-## Publisher: <br>
-[wlkr123](https://clawhub.ai/user/wlkr123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wlkr123](https://clawhub.ai/user/wlkr123)
 
-## Use Case: <br>
-Developers and operators use this skill to authenticate to an erxes workspace, call its GraphQL API, and view, create, update, merge, or remove CRM and organization records. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an erxes workspace with the authority of the OAuth account and may change business or user-account data. <br>
-Mitigation: Use a least-privilege account where possible and require explicit confirmation before deletes, merges, team-member changes, organization changes, and automation changes. <br>
-Risk: The login flow prints session JSON that contains access and refresh tokens. <br>
-Mitigation: Treat the session JSON as secret, keep it only in memory for the current task, and do not save it to project files. <br>
-Risk: A wrong or untrusted erxes endpoint could receive authentication requests or API calls. <br>
-Mitigation: Verify the erxes endpoint before login and before sending GraphQL requests. <br>
+## Use Case:
 
+Developers and operations teams use this skill to authenticate to an erxes workspace and perform GraphQL-backed CRM and organization administration tasks, including listing, creating, updating, merging, and removing business records.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wlkr123/erxes-next) <br>
-- [erxes Quick Login](artifact/erxes-app-token-auth.md) <br>
-- [erxes GraphQL API](artifact/erxes-graphql-api.md) <br>
-- [Browser login helper](artifact/scripts/login.sh) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands, GraphQL examples, JSON payloads, and HTTP headers] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses ERXES_BASE_URL and optional ERXES_CLIENT_ID; OAuth session JSON is printed to stdout and should be treated as secret.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The login flow prints session JSON containing bearer and refresh tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the session payload as a secret, keep it only in memory for the current task, and do not write it to project files, prompts, logs, or examples.
+
+Risk: The skill can perform live mutations that delete, merge, invite, deactivate, automate, or change organization structure.
+
+Mitigation: Require explicit user confirmation and show the target records and intended mutation before executing destructive or administrative changes.
+
+Risk: Untrusted or non-HTTPS gateway URLs can expose credentials or direct API calls to the wrong erxes instance.
+
+Mitigation: Use only trusted HTTPS erxes gateway URLs for real work and avoid remote http:// endpoints.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/wlkr123/skills/erxes-next)
+- [erxes Quick Login](artifact/erxes-app-token-auth.md)
+- [erxes GraphQL API reference](artifact/erxes-graphql-api.md)
+- [Browser login helper](artifact/scripts/login.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, GraphQL examples, JSON payloads, and operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce authenticated GraphQL request examples and task-specific execution guidance for a live erxes workspace.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

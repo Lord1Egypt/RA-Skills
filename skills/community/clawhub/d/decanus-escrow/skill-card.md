@@ -1,43 +1,55 @@
-## Description: <br>
-Decanus Escrow provides an MCP server for onchain dual-deposit escrow between agents on Base L2, covering creation, acceptance, delivery proof, completion, disputes, refunds, and status checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decanus Escrow helps agents create, accept, deliver, complete, dispute, refund, and inspect dual-deposit ETH escrow agreements on Base Sepolia through an MCP server.
 
-## Publisher: <br>
-[manueltarouca](https://clawhub.ai/user/manueltarouca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manueltarouca](https://clawhub.ai/user/manueltarouca)
 
-## Use Case: <br>
-Developers and external agents use this skill to run Base Sepolia escrow workflows through MCP, including creating escrows, accepting contracts, submitting delivery proof, releasing funds, disputing terms, refunding expired escrows, and checking escrow state. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The MCP server can sign value-moving escrow transactions from the configured wallet. <br>
-Mitigation: Use a dedicated low-balance Base Sepolia wallet and manually verify every escrow ID, address, amount, network, and transaction before approval. <br>
-Risk: The required PRIVATE_KEY can expose wallet control if placed in shared configuration, logs, or primary wallets. <br>
-Mitigation: Keep the private key out of shared files and logs, avoid production or primary keys, and rotate the wallet key if exposure is suspected. <br>
-Risk: The skill starts an npm-distributed MCP package that can affect wallet signing behavior after install or update. <br>
-Mitigation: Pin and review the @decanus-labs/escrow-mcp package before use or upgrade. <br>
+## Use Case:
 
+Developers and agent operators use this skill to run an MCP escrow server for agent-to-agent task settlement, including escrow creation, seller acceptance, delivery proof submission, release, dispute, refund, and status checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manueltarouca/decanus-escrow) <br>
-- [Escrow MCP homepage](https://github.com/decanus-labs/escrow-mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with MCP tool names, parameter tables, bash commands, and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Write-tool responses can include transaction hashes and explorer URLs; read tools return escrow state, participants, amounts, deadlines, delivery hashes, and suggested next actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata) <br>
+Risk: The skill asks users to run unpinned npm code with a wallet private key capable of signing onchain transactions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-value testnet key, avoid production or reused wallet keys, pin the npm package version when possible, and review before installing.
+
+Risk: Write actions can create, accept, complete, dispute, or refund escrows and may move or lock ETH on Base Sepolia.
+
+Mitigation: Require explicit human review before state-changing escrow transactions and verify addresses, amounts, deadlines, arbiter, and escrow state before signing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/manueltarouca/skills/decanus-escrow)
+- [Project Homepage](https://github.com/decanus-labs/escrow-mcp)
+- [Base Sepolia RPC](https://sepolia.base.org)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Tool calls]
+
+**Output Format:** [Markdown with inline shell and YAML snippets plus MCP tool parameter guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce state-changing Base Sepolia transaction requests and escrow status summaries.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

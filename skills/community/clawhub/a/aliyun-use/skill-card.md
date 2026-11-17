@@ -1,42 +1,60 @@
-## Description: <br>
-Aliyun Bailian(百炼) for LLM chat, and language translation. Use when you need to generate code, generate text with LLMs, or translate between languages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aliyun Use connects an agent to Alibaba Cloud Bailian LLMs for chat, code-oriented generation, model listing, and language translation.
 
-## Publisher: <br>
-[cnlangzi](https://clawhub.ai/user/cnlangzi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cnlangzi](https://clawhub.ai/user/cnlangzi)
 
-## Use Case: <br>
-Developers and agent users use this skill to call Alibaba Cloud Bailian/DashScope LLMs for chat, code generation, and translation after configuring an Aliyun Bailian API key. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, subject to Alibaba Cloud service availability and the user's selected regional endpoint. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prompts, code snippets, and translation text are sent to Alibaba Cloud Bailian or the endpoint configured by ALIYUN_BAILIAN_API_HOST. <br>
-Mitigation: Use only approved endpoints, use a dedicated API key, and avoid submitting secrets, regulated data, or confidential source code unless that provider is approved for the data. <br>
-Risk: Region-bound API keys or an unintended API host can route requests to the wrong service endpoint. <br>
-Mitigation: Set ALIYUN_BAILIAN_API_HOST deliberately and match it to the API key's region before using the skill. <br>
+## Use Case:
 
+Developers and agent users use this skill to call Aliyun Bailian models from an agent workflow for chat, code-oriented text generation, translation, and model discovery. It requires an ALIYUN_BAILIAN_API_KEY and can route requests through a configured Bailian API host.
 
-## Reference(s): <br>
-- [AliYun Bailian API Reference](references/API.md) <br>
-- [Available models](assets/models.json) <br>
-- [Alibaba Cloud Bailian Console](https://bailian.console.aliyun.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Code, JSON, Shell commands, Guidance] <br>
-**Output Format:** [JSON success/error objects and plain-text or streaming CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires ALIYUN_BAILIAN_API_KEY; ALIYUN_BAILIAN_API_HOST can select a compatible endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill can send API keys, prompts, translation text, and generated context to a configured API host.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only trusted HTTPS Alibaba Cloud Bailian endpoints, keep ALIYUN_BAILIAN_API_HOST fixed in trusted environments, and do not allow untrusted workflows to set --base-url or the API host environment variable.
+
+Risk: Prompts or translation inputs may contain secrets, confidential code, or sensitive business data.
+
+Mitigation: Review inputs before use and avoid sending secrets, credentials, confidential code, or regulated data through the skill.
+
+Risk: The server security verdict is suspicious because host configuration can redirect requests.
+
+Mitigation: Review the skill before installing and deploy it only where outbound API destinations and environment variables are controlled.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/cnlangzi/skills/aliyun-use)
+- [AliYun Bailian API Reference](artifact/references/API.md)
+- [Available models](artifact/assets/models.json)
+- [Aliyun Bailian console](https://bailian.console.aliyun.com/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, JSON, Shell commands, Configuration]
+
+**Output Format:** [JSON command responses and streamed or returned model text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chat requests accept Anthropic-style message arrays, model selection, temperature, max token limits, streaming, and configurable API host settings.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,54 @@
-## Description: <br>
-Ruofan Bargain Arena helps users join Ruofan's bargain event and negotiate with Ruofan's shop assistant for a dedicated discount code. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ruofan Bargain Arena helps users bargain with Ruofan's AI shopkeeper to try to earn a dedicated promo code.
 
-## Publisher: <br>
-[ruffood](https://clawhub.ai/user/ruffood) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruffood](https://clawhub.ai/user/ruffood)
 
-## Use Case: <br>
-External users use this skill to participate in Ruofan's public bargain event, relay their chosen messages to the Ruofan service, track remaining rounds and offers, and receive any resulting discount code. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Outbound API calls send the user's nickname and bargain messages to the Ruofan service, and the artifact notes that bargain conversations may be publicly displayed on Ruofan's activity page. <br>
-Mitigation: Ask for the user's nickname before joining, avoid sending sensitive personal information, and review the message content before relaying it to the service. <br>
-Risk: The skill can surface coupon codes and commercial offer details returned by the Ruofan service. <br>
-Mitigation: Display returned coupon details clearly to the user and avoid sending further bargain messages after the service reports a deal or no-deal terminal status. <br>
-Risk: Server security evidence reports no artifact-backed malicious or materially suspicious behavior, but still recommends review before running actions. <br>
-Mitigation: Review the network calls and user-visible messages before use, especially when running the included shell command examples. <br>
+## Use Case:
 
+External shoppers use this skill to join Ruofan's bargaining promotion, send bargaining messages, track offers and remaining rounds, and receive the final promo-code result when a deal is reached.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ruffood/bargins) <br>
-- [Publisher Profile](https://clawhub.ai/user/ruffood) <br>
-- [Ruofan Bargain Join API](https://www.ruffood.com/api/bargain/join) <br>
-- [Ruofan Bargain Message API](https://www.ruffood.com/api/bargain/message) <br>
-- [Ruofan Bargain Session API](https://www.ruffood.com/api/bargain/session) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with API response summaries and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May display discount amounts, session status, remaining rounds, and coupon codes returned by the Ruofan service.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.0 (source: frontmatter and server release evidence) <br>
+Risk: User-provided nicknames and bargaining messages are sent to Ruofan's website for the promotion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users what will be sent before joining or messaging, and avoid sending sensitive personal information.
+
+Risk: The bargaining process may be publicly displayed on Ruofan's activity page.
+
+Mitigation: Keep bargain text friendly and non-private, and warn users not to include confidential details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruffood/skills/bargins)
+- [ClawHub publisher profile: ruffood](https://clawhub.ai/user/ruffood)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Conversational Markdown with API request examples, offer status, and promo-code details when available.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Sends user-provided nickname and bargaining messages to Ruofan's website during the promotion.]
+
+## Skill Version(s):
+
+2.1.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

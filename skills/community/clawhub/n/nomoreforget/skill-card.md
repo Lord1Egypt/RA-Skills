@@ -1,47 +1,61 @@
-## Description: <br>
-Helps OpenClaw users diagnose and reduce memory loss, high token usage, and weak memory retrieval by configuring Memory Flush, memory templates, backups, and maintenance scripts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+NoMoreForget helps OpenClaw users configure Memory Flush, organize memory files, and run diagnostic, backup, restore, and optimization scripts to reduce memory loss, token waste, and search failures.
 
-## Publisher: <br>
-[steventsang18](https://clawhub.ai/user/steventsang18) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[steventsang18](https://clawhub.ai/user/steventsang18)
 
-## Use Case: <br>
-External OpenClaw users and developers use this skill to configure persistent memory behavior, check memory health, back up and restore local memory files, and get guidance for reducing token-heavy memory usage. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer changes persistent OpenClaw memory and compaction settings. <br>
-Mitigation: Review scripts/install.sh before running it and keep a current backup of ~/.openclaw so configuration changes can be reversed. <br>
-Risk: Memory files, daily logs, and backup folders may preserve session notes or sensitive information. <br>
-Mitigation: Avoid storing API keys, passwords, or private data in OpenClaw memory, and periodically review or delete memory backups that are no longer needed. <br>
-Risk: The restore script can overwrite current local memory files with backup contents. <br>
-Mitigation: Confirm the selected backup before restore and make a fresh backup of the current workspace memory before replacing it. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to set up Memory Flush, organize long-term and daily memory files, and diagnose, back up, restore, or optimize memory state.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/steventsang18/nomoreforget) <br>
-- [Publisher profile](https://clawhub.ai/user/steventsang18) <br>
-- [OpenClaw memory architecture](references/architecture.md) <br>
-- [OpenClaw memory plugin comparison](references/plugins.md) <br>
-- [OpenClaw memory troubleshooting guide](references/troubleshooting.md) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash commands, JSON configuration examples, local memory templates, and shell scripts.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Scripts operate on the user's local ~/.openclaw configuration, workspace memory files, daily logs, and backup folders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: restore_memory.sh can overwrite persistent OpenClaw memory files and server security evidence flags unsafe command handling.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid restore_memory.sh until input validation is fixed; if recovery is required, review the script and restore target first, then run it only from a trusted local copy.
+
+Risk: The install and restore flows can modify ~/.openclaw configuration and workspace memory files.
+
+Mitigation: Back up ~/.openclaw before installation or restore, and verify openclaw.json, MEMORY.md, and daily logs after changes.
+
+Risk: Enabling Memory Flush can save selected conversation details into persistent OpenClaw memory files across sessions.
+
+Mitigation: Do not store secrets or private data in memory files, and periodically review MEMORY.md and daily logs for sensitive content.
+
+## Reference(s):
+
+- [NoMoreForget ClawHub page](https://clawhub.ai/steventsang18/skills/nomoreforget)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+- [OpenClaw memory architecture](references/architecture.md)
+- [OpenClaw memory plugin ecosystem](references/plugins.md)
+- [OpenClaw memory troubleshooting guide](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline bash commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose local OpenClaw configuration and memory-file maintenance actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,61 @@
-## Description: <br>
-PM skill for Claude Code, Codex, Cursor, and Windsurf that diagnoses SaaS metrics, critiques PRDs, plans roadmaps, runs discovery, coaches PM career transitions, pressure-tests AI product decisions, and designs PLG growth strategies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Product Manager Skills helps Claude Code, Codex, Cursor, and Windsurf diagnose SaaS metrics, critique PRDs, plan roadmaps, run discovery, coach PM career moves, pressure-test AI product decisions, and design PLG growth strategies using seven knowledge domains, 12 templates, and 40+ frameworks.
 
-## Publisher: <br>
-[digidai](https://clawhub.ai/user/digidai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[digidai](https://clawhub.ai/user/digidai)
 
-## Use Case: <br>
-Product managers, founders, product leads, and technical teams use this skill inside AI coding tools to turn rough product context into sharper PM work: PRDs, user stories, SaaS diagnostics, roadmaps, discovery plans, PLG experiments, AI product critiques, and career coaching. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may reuse product metrics, strategy details, or team context later in the same conversation. <br>
-Mitigation: Avoid sharing confidential business details unless in-session reuse is acceptable, and clear or restart the session when context should no longer influence answers. <br>
-Risk: Manual update helpers could be mistaken for actions the agent should run automatically. <br>
-Mitigation: Treat update checks and installation commands as user-approved maintenance actions only. <br>
-Risk: Direct PM pushback may shape product decisions from incomplete context. <br>
-Mitigation: Review strategic recommendations against actual customer evidence, business constraints, and internal decision owners before acting. <br>
+## Use Case:
 
+Product managers, founders, product leads, and technical teams use this skill inside AI coding tools to critique PRDs, diagnose SaaS metrics, plan roadmaps, run discovery, create product artifacts, and pressure-test product strategy with explicit assumptions and tradeoffs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/digidai/product-manager-skills) <br>
-- [README](README.md) <br>
-- [Release v0.5 notes](docs/release-v0.5.md) <br>
-- [Starter prompts](STARTER-PROMPTS.md) <br>
-- [Core philosophy](ETHOS.md) <br>
-- [SaaS health diagnostic example](examples/saas-health-diagnostic.md) <br>
-- [PRD review example](examples/prd-review.md) <br>
-- [Director coaching example](examples/director-coaching.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Code, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown, plain text, and occasional inline code or shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs often include PM artifacts, assumptions, tradeoffs, decisions made, validation notes, and a recommended next step.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.5.4 (source: server release evidence, package.json, CHANGELOG, released 2026-04-12) <br>
+Risk: Generated product guidance or deliverables can be wrong, incomplete, or too confident for a specific business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review outputs against source evidence, current business metrics, user research, and decision owner judgment before sharing or acting on them.
+
+Risk: Generated deliverables may include attribution footer text from the artifact templates.
+
+Mitigation: Review generated artifacts for attribution footer handling before sharing them externally.
+
+Risk: Installing an unpinned or untrusted copy could differ from the reviewed ClawHub release.
+
+Mitigation: Install through ClawHub or use a pinned trusted version when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/digidai/skills/product-manager-skills)
+- [README](README.md)
+- [Starter prompts](STARTER-PROMPTS.md)
+- [Release v0.5 notes](docs/release-v0.5.md)
+- [Changelog](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, code, shell commands, configuration]
+
+**Output Format:** [Markdown and plain text, with structured product artifacts and occasional inline code or shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended for human review and may include assumptions, decisions made, validation items, recommended next steps, and completion status.]
+
+## Skill Version(s):
+
+0.5.4 (source: server release evidence, package.json, and CHANGELOG, released 2026-04-12)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

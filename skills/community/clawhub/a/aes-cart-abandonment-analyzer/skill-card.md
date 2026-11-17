@@ -1,45 +1,56 @@
-## Description: <br>
-Identify reasons for cart abandonment and build multi-touch recovery sequences across email, SMS, and push. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Identify reasons for cart abandonment and build multi-touch recovery sequences across email, SMS, and push.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce operators and marketing teams use this skill to diagnose checkout abandonment causes and produce recovery plans, message copy, segmentation rules, incentive ladders, and measurement frameworks for email, SMS, and push campaigns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated recovery campaigns may be used without proper customer consent or suppression handling. <br>
-Mitigation: Confirm channel consent, honor unsubscribes and suppression lists, and review every email, SMS, and push sequence before launch. <br>
-Risk: SMS or push messages may violate recipient expectations, quiet hours, or local marketing rules. <br>
-Mitigation: Send SMS and push only to opted-in recipients, include required opt-out language, respect recipient local quiet hours, and check applicable laws before deployment. <br>
-Risk: Campaign plans may use more customer data than needed for abandoned-cart recovery. <br>
-Mitigation: Minimize customer data used in segmentation and personalization, and retain only data needed to operate and measure the recovery program. <br>
+## Use Case:
 
+External ecommerce operators and marketing teams use this skill to diagnose cart abandonment causes, design segmented recovery sequences, draft email, SMS, and push copy, and plan measurement for recovered revenue.
 
-## Reference(s): <br>
-- [Cart Abandonment Analyzer](https://clawhub.ai/leooooooow/aes-cart-abandonment-analyzer) <br>
-- [Output Template](references/output-template.md) <br>
-- [Cart Recovery Email & SMS Templates](references/email-templates.md) <br>
-- [Cart Recovery Program Audit Checklist](assets/recovery-audit-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, guidance] <br>
-**Output Format:** [Markdown reports, tables, campaign copy, checklists, and planning guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include multi-touch email, SMS, and push sequence recommendations with segmentation, incentive, and measurement details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Cart recovery campaigns can create compliance risk if customer data, unsubscribe handling, SMS consent, push permission, quiet hours, or jurisdiction-specific marketing rules are not satisfied.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify applicable marketing consent, unsubscribe, permission, quiet-hours, and jurisdictional requirements before using generated templates in real campaigns.
+
+Risk: Generated recovery copy and incentive plans are planning material and may not be appropriate for every audience, product margin, or customer segment.
+
+Mitigation: Review all messages, suppression rules, incentive thresholds, and measurement plans before launch, and treat the output as guidance rather than approval to contact customers.
+
+## Reference(s):
+
+- [Cart Abandonment Analyzer](https://clawhub.ai/leooooooow/skills/aes-cart-abandonment-analyzer)
+- [Output Template](references/output-template.md)
+- [Cart Recovery Email & SMS Templates](references/email-templates.md)
+- [Cart Recovery Program Audit Checklist](assets/recovery-audit-checklist.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports, sequence tables, message templates, checklists, and planning guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces planning material for marketing analysis and campaign design; it does not execute outreach or access systems by itself.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,62 @@
-## Description: <br>
-Trade crypto options on Thetanuts Finance with orderbook fills, RFQ lifecycle, multi-strike structures, real-time WebSocket, wallet management, early settlement, and referrer fees. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trade crypto options on Thetanuts Finance with orderbook fills, RFQ lifecycle support, multi-strike structures, real-time market data, wallet management, early settlement, and referrer fees.
 
-## Publisher: <br>
-[goheesheng](https://clawhub.ai/user/goheesheng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goheesheng](https://clawhub.ai/user/goheesheng)
 
-## Use Case: <br>
-External OpenClaw users use this skill to manage a dedicated crypto wallet, inspect Thetanuts Finance option markets and positions, and prepare or execute crypto options trades. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores wallet seeds in plaintext and requires sensitive wallet credentials. <br>
-Mitigation: Use only a fresh, low-value dedicated wallet, never import a primary seed, and treat ~/.openclaw/wdk-mcp/.env as a full wallet secret. <br>
-Risk: The skill can approve tokens, sign messages, and broadcast wallet transactions on mainnet. <br>
-Mitigation: Review every approval, signature, and transaction before broadcast because mainnet actions can cause irreversible financial loss. <br>
-Risk: The release evidence flags an unsafe remote updater. <br>
-Mitigation: Run updates only after explicit user consent and manually inspect update output and changed code before applying it. <br>
-Risk: Logs or shared transcripts may expose seed phrases, wallet balances, or other financial information. <br>
-Mitigation: Avoid sharing logs or conversation excerpts that contain wallet secrets, addresses, balances, or transaction details. <br>
+## Use Case:
 
+External users and developers use this skill to explore Thetanuts Finance crypto options markets, manage a local wallet, inspect balances and positions, build RFQs, prepare approvals, and execute supported orderbook or RFQ trading workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/goheesheng/thetanuts) <br>
-- [Thetanuts Finance](https://thetanuts.finance) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Code, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and transaction review guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce wallet, balance, market, RFQ, approval, signature, and transaction guidance for a local OpenClaw environment.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.5.4 (source: ClawHub release evidence) <br>
+Risk: The skill handles wallet seeds and can prepare or run transaction-signing flows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only a dedicated low-value wallet, treat the local .env seed as highly sensitive, and review transaction details before signing or broadcasting.
+
+Risk: The updater can change code that signs transactions.
+
+Mitigation: Run updates only after explicit user consent and verify the update source and changes before applying them.
+
+Risk: Token approvals may allow contracts to spend more funds than the immediate trade requires.
+
+Mitigation: Prefer exact approval amounts, verify spender addresses, and review approvals carefully before confirming.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/goheesheng/skills/thetanuts)
+- [Thetanuts Finance](https://thetanuts.finance)
+- [Thetanuts SDK](https://github.com/Thetanuts-Finance/thetanuts-sdk)
+- [Thetanuts OpenClaw Repository](https://github.com/Thetanuts-Finance/thetanuts-openclaw)
+- [Tether WDK](https://docs.wdk.tether.io)
+- [OpenClaw Docs](https://docs.openclaw.ai/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and structured command output summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide wallet, approval, RFQ, and trade execution flows; transaction-related actions require user review and explicit confirmation.]
+
+## Skill Version(s):
+
+1.5.4 (source: server release metadata and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

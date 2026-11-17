@@ -1,44 +1,55 @@
-## Description: <br>
-Max Auth provides a local OpenClaw authentication gate with WebAuthn passkeys, a master password, session-scoped authorization, and one-time browser-based secret handoff. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Max Auth is a security authentication gate for OpenClaw sensitive actions that deploys a local Node.js auth server with biometric passkeys, master password login, session-scoped auth, one-time secret submission URLs, and a browser UI in Portuguese, English, and Spanish.
 
-## Publisher: <br>
-[felipematos](https://clawhub.ai/user/felipematos) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[felipematos](https://clawhub.ai/user/felipematos)
 
-## Use Case: <br>
-Developers and operators use Max Auth to require session-scoped authentication before sensitive OpenClaw actions and to collect credentials through short-lived browser forms instead of chat. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local server exposes session-token and secret-handling flows that need review before installation. <br>
-Mitigation: Review and harden the deployment before use, and keep the server local or behind a tightly restricted reverse proxy. <br>
-Risk: Master passwords, session tokens, grant records, and secret-form tokens are sensitive credentials. <br>
-Mitigation: Avoid passing the master password on the command line, protect token-bearing records, and do not echo retrieved secrets back into chat. <br>
-Risk: Publicly exposed auth or secret endpoints could expand credential exposure. <br>
-Mitigation: Do not expose secret endpoints publicly, require HTTPS for browser flows, and restrict returnUrl handling. <br>
+## Use Case:
 
+Developers and engineers use Max Auth to require local authentication before sensitive OpenClaw actions and to collect secrets through one-time HTTPS forms instead of chat.
 
-## Reference(s): <br>
-- [Max Auth - Setup & API Reference](references/api.md) <br>
-- [OpenClaw Agent Integration Guide](references/integration.md) <br>
-- [Max Auth on ClawHub](https://clawhub.ai/felipematos/max-auth) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash, JSON, and JavaScript examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes local HTTP API routes, session-key patterns, and one-time secret handoff guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release metadata) <br>
+Risk: The shipped server does not enforce several advertised protections for sensitive-action authentication.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not use the skill to protect real sensitive actions or collect real credentials until the security guidance items are fixed and retested.
+
+Risk: SessionKey isolation, returnUrl token handling, secret API authorization, CORS, XSS-safe rendering, and dependency locking require remediation according to the release security guidance.
+
+Mitigation: Restrict use to non-sensitive evaluation until those controls are reviewed, fixed, and retested.
+
+## Reference(s):
+
+- [Max Auth ClawHub Skill Page](https://clawhub.ai/felipematos/skills/max-auth)
+- [Max Auth - Setup & API Reference](references/api.md)
+- [OpenClaw Agent Integration Guide](references/integration.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, code, API calls]
+
+**Output Format:** [Markdown with inline shell, JSON, and JavaScript examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return local auth URLs, one-time secret submission URLs, auth status checks, and deployment configuration guidance.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

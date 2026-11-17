@@ -1,41 +1,58 @@
-## Description: <br>
-Provides guidance for using OpenClaw's Signal channel via signal-cli to send messages and reactions, manage DM and group behavior, and configure channel safeguards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive Signal channel integration via signal-cli for sending messages, reactions, handling group chat interactions, and configuring Signal access for OpenClaw.
 
-## Publisher: <br>
-[blake-lucas](https://clawhub.ai/user/blake-lucas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[blake-lucas](https://clawhub.ai/user/blake-lucas)
 
-## Use Case: <br>
-Developers and operators use this skill to configure and operate OpenClaw's Signal channel, including sending messages and reactions, approving DM pairings, and applying group-chat safeguards. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to connect OpenClaw to a Signal account that can send messages and reactions. <br>
-Mitigation: Use a dedicated bot number, keep DM and group allowlists narrow, and review signal-cli download commands before running them. <br>
-Risk: Signal-based configuration writes can change channel behavior when enabled. <br>
-Mitigation: Disable configWrites unless specifically needed and require explicit owner confirmation for destructive or externally visible group requests. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Signal Skill](https://clawhub.ai/blake-lucas/signal) <br>
-- [OpenClaw Signal docs](https://docs.openclaw.ai/channels/signal) <br>
-- [signal-cli project and docs](https://github.com/AsamK/signal-cli) <br>
+## Use Case:
 
+Developers and operators use this skill to configure and operate Signal messaging for OpenClaw agents, including direct messages, group safeguards, reactions, diagnostics, and signal-cli installation guidance.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline bash commands and JSON configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes Signal command examples, setup diagnostics, and operational safeguards.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Installation guidance downloads signal-cli release artifacts without checksum or signature verification.
+
+Mitigation: Prefer an OS package manager or a pinned signal-cli release with checksum or signature verification before placing binaries on PATH.
+
+Risk: Installation examples append PATH changes to shell startup files, creating persistent environment changes.
+
+Mitigation: Review shell profile edits before running them and apply persistent PATH changes only when intended.
+
+Risk: Signal messaging can expose agent actions to direct-message or group-chat participants.
+
+Mitigation: Use a separate Signal bot number, pairing or allowlist policies, group allowlists, and direct owner confirmation for destructive or externally visible actions.
+
+## Reference(s):
+
+- [Signal Skill Release Page](https://clawhub.ai/blake-lucas/skills/signal)
+- [OpenClaw Signal Docs](https://docs.openclaw.ai/channels/signal)
+- [signal-cli Project and Documentation](https://github.com/AsamK/signal-cli)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash and JSON code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Signal target formats, group safety guidance, configuration options, diagnostics, and installation commands.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

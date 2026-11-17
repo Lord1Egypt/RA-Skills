@@ -1,40 +1,57 @@
-## Description: <br>
-AI店长为电商卖家提供竞品监控、爆款文案、客服话术、选品建议及每日数据分析，支持多平台内容生成。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI店长为电商卖家提供竞品监控、爆款文案、客服话术、选品建议及每日数据分析，支持多平台内容生成。
 
-## Publisher: <br>
-[Xdd-xund](https://clawhub.ai/user/Xdd-xund) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xdd-xund](https://clawhub.ai/user/xdd-xund)
 
-## Use Case: <br>
-E-commerce sellers, small shop operators, and marketplace teams use this skill to research public competitor signals, generate platform-specific product copy, draft customer-service responses, receive daily monitoring summaries, and explore product-selection ideas. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Monitoring terms or product descriptions may expose confidential launch plans or sensitive commercial intent if entered directly. <br>
-Mitigation: Use non-confidential search terms, define the exact products and platforms to monitor, set a clear schedule, and stop monitoring when it is no longer needed. <br>
-Risk: Generated prices, inventory claims, scarcity language, and promotional copy may be inaccurate or compliance-sensitive. <br>
-Mitigation: Review generated claims against current platform rules, public evidence, and internal policies before publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AI店长 - 电商文案速查表](references/cheatsheet.md) <br>
-- [ClawHub release page](https://clawhub.ai/Xdd-xund/ai-dianzhang) <br>
+## Use Case:
 
+Chinese-market e-commerce sellers and operators use this skill to analyze public marketplace signals, draft multi-platform sales content, prepare customer-service responses, identify product opportunities, and produce advisory monitoring reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Chinese Markdown reports, product copy drafts, customer-service scripts, selection guidance, and cron-style monitoring suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public web search and public page fetching when available; no platform credentials are required according to the release evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Public marketplace search results can contain misleading or instruction-like text that affects generated reports or recommendations.
+
+Mitigation: Review source quality and treat pricing, product-selection, and competitor-monitoring outputs as advisory before business decisions.
+
+Risk: Recurring monitoring can continue to run on stale keywords or schedules if enabled without review.
+
+Mitigation: Confirm monitored categories, competitors, cadence, and timezone before enabling scheduled reports, then review them periodically.
+
+Risk: Generated marketing or customer-service content can include claims that violate marketplace rules or advertising standards.
+
+Mitigation: Check generated copy against platform policies and the provided prohibited-word cheatsheet before publishing.
+
+## Reference(s):
+
+- [AI店长 - 电商文案速查表](references/cheatsheet.md)
+- [ClawHub release page](https://clawhub.ai/xdd-xund/skills/ai-dianzhang)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Configuration, Guidance]
+
+**Output Format:** [Chinese Markdown reports, copy drafts, customer-service scripts, product-selection guidance, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and may depend on public web data when search is used.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

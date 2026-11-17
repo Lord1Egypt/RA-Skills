@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Properties</title>
+<link rel="stylesheet" href="vendor/leaflet.css">
+<style>
+  :root {
+    --bg: #f6f5f3;
+    --ink: #1c1a17;
+    --muted: #6f6a63;
+    --line: #e0ddd7;
+    --card: #fffefc;
+    --shadow: 0 1px 2px rgba(28,26,23,.10), 0 6px 20px rgba(28,26,23,.10);
+
+    --status-new: #8a8279;
+    --status-interested: #c98a1b;
+    --status-toured: #2f6f8f;
+    --status-passed: #b4574d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161513;
+      --ink: #f0ede8;
+      --muted: #9d968d;
+      --line: #322f2b;
+      --card: #201e1b;
+      --shadow: 0 1px 2px rgba(0,0,0,.5), 0 6px 20px rgba(0,0,0,.45);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.45 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    flex: none;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    background: var(--card);
+  }
+  header h1 { font-size: 16px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  header .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .legend { display: flex; gap: 14px; margin-left: auto; flex-wrap: wrap; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; }
+  .legend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+  #map { flex: 1 1 auto; min-height: 320px; background: var(--bg); }
+
+  /* Notices — an empty map must always say why it is empty. */
+  .notice {
+    flex: none;
+    padding: 12px 18px;
+    border-top: 1px solid var(--line);
+    background: var(--card);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .notice strong { color: var(--ink); font-weight: 600; }
+  .notice ul { margin: 6px 0 0; padding-left: 18px; }
+  .notice.error { color: #b4574d; }
+
+  /* --- Map pins: photo + price + beds, per the "what house is where" ask --- */
+  .pin { width: 96px; text-align: center; cursor: pointer; }
+  .pin .shot {
+    width: 52px; height: 52px; margin: 0 auto;
+    border-radius: 50%;
+    background: var(--card) center/cover no-repeat;
+    border: 3px solid var(--ring, var(--status-new));
+    box-shadow: var(--shadow);
+    display: grid; place-items: center;
+    font-size: 20px; color: var(--muted);
+  }
+  .pin .chip {
+    display: inline-block; margin-top: 4px; padding: 2px 7px;
+    background: var(--card); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 999px;
+    font-size: 11.5px; font-weight: 600; white-space: nowrap;
+    box-shadow: var(--shadow);
+    font-variant-numeric: tabular-nums;
+  }
+  .pin.passed .shot, .pin.passed .chip { opacity: .55; }
+
+  /* --- Popup --- */
+  .leaflet-popup-content { margin: 0; width: 260px !important; }
+  .leaflet-popup-content-wrapper { border-radius: 12px; padding: 0; overflow: hidden; background: var(--card); color: var(--ink); }
+  .leaflet-popup-tip { background: var(--card); }
+  .card img { width: 100%; height: 150px; object-fit: cover; display: block; background: var(--line); }
+  .card .body { padding: 12px 14px 14px; }
+  .card .price { font-size: 19px; font-weight: 650; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .card .facts { color: var(--muted); font-size: 13px; margin-top: 1px; font-variant-numeric: tabular-nums; }
+  .card .addr { margin-top: 7px; font-size: 13.5px; line-height: 1.35; }
+  .card .meta { margin-top: 9px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
+  .card .tag { padding: 2px 8px; border-radius: 999px; background: var(--ring, var(--status-new)); color: #fff; font-weight: 600; }
+  .card .stars { color: #c98a1b; letter-spacing: 1px; }
+  .card .notes { margin-top: 9px; font-size: 13px; color: var(--muted); font-style: italic; }
+  .card a.go {
+    display: block; margin-top: 12px; padding: 8px; border-radius: 8px;
+    background: var(--ink); color: var(--bg);
+    text-align: center; text-decoration: none; font-size: 13px; font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Properties</h1>
+  <span class="count" id="count"></span>
+  <div class="legend" id="legend"></div>
+</header>
+
+<div id="map"></div>
+<div id="notices"></div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="data.js"></script>
+<script>
+(function () {
+  var STATUS_COLORS = {
+    new: 'var(--status-new)',
+    interested: 'var(--status-interested)',
+    toured: 'var(--status-toured)',
+    passed: 'var(--status-passed)'
+  };
+
+  var notices = document.getElementById('notices');
+
+  function notice(html, isError) {
+    var el = document.createElement('div');
+    el.className = 'notice' + (isError ? ' error' : '');
+    el.innerHTML = html;
+    notices.appendChild(el);
+  }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // Compact enough to sit under a map pin without covering the next house.
+  function shortPrice(n) {
+    if (n == null) return '—';
+    if (n >= 1e6) return '$' + String(+(n / 1e6).toFixed(2)) + 'M';
+    if (n >= 1e3) return '$' + Math.round(n / 1e3) + 'K';
+    return '$' + n;
+  }
+
+  function fullPrice(n) {
+    return n == null ? 'Price unlisted' : '$' + n.toLocaleString('en-US');
+  }
+
+  function facts(s) {
+    var parts = [];
+    if (s.beds != null) parts.push(s.beds + ' bd');
+    if (s.baths != null) parts.push(s.baths + ' ba');
+    if (s.sqft != null) parts.push(s.sqft.toLocaleString('en-US') + ' sqft');
+    return parts.join('  ·  ');
+  }
+
+  // A store that failed to load must say so — never a blank page.
+  if (typeof window.PROPERTIES === 'undefined') {
+    // Deliberately not "add a property and it will rebuild this": that is only
+    // true when the file is absent. If it exists but is damaged, init keeps it
+    // and every read fails the same way — so the honest ask is to look at it.
+    notice('<strong>Could not load data.js.</strong> The store is missing or damaged, so nothing can be shown. ' +
+           'Ask Plow to check it before adding anything else.', true);
+    return;
+  }
+
+  try {
+  var rows = window.PROPERTIES;
+  var mapped = rows.filter(function (r) { return r.scraped.lat != null && r.scraped.lng != null; });
+  var unmapped = rows.filter(function (r) { return r.scraped.lat == null || r.scraped.lng == null; });
+
+  document.getElementById('count').textContent =
+    rows.length === 0 ? 'nothing saved yet' : rows.length + (rows.length === 1 ? ' property' : ' properties');
+
+  var seen = {};
+  rows.forEach(function (r) { seen[r.mine.status] = true; });
+  document.getElementById('legend').innerHTML = Object.keys(seen).map(function (st) {
+    return '<span><i style="background:' + (STATUS_COLORS[st] || STATUS_COLORS.new) + '"></i>' + esc(st) + '</span>';
+  }).join('');
+
+  var map = L.map('map', { scrollWheelZoom: true });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Units in one building geocode to the same point, so their markers land
+  // exactly on top of each other and only the top one is clickable. Fan any
+  // collided group out — in *screen* space, by shifting each icon's anchor, so
+  // the separation stays constant at every zoom and no marker is moved off its
+  // real coordinate. A geographic offset can't do this: the metres needed to
+  // separate two 52px pins depend entirely on how far you're zoomed in.
+  // Deterministic by index, so pins don't shuffle between reloads.
+  var PIN_W = 96, PIN_H = 78, FAN_RADIUS = 34;
+  var atPoint = {};
+  mapped.forEach(function (r) {
+    var key = r.scraped.lat.toFixed(5) + ',' + r.scraped.lng.toFixed(5);
+    (atPoint[key] = atPoint[key] || []).push(r);
+  });
+  var anchorShift = {};
+  Object.keys(atPoint).forEach(function (key) {
+    var group = atPoint[key];
+    if (group.length < 2) return;
+    group.forEach(function (r, i) {
+      var angle = (2 * Math.PI * i) / group.length - Math.PI / 2;
+      anchorShift[r.id] = [FAN_RADIUS * Math.cos(angle), FAN_RADIUS * Math.sin(angle)];
+    });
+  });
+
+  mapped.forEach(function (r) {
+    var s = r.scraped;
+    var shift = anchorShift[r.id] || [0, 0];
+    var color = STATUS_COLORS[r.mine.status] || STATUS_COLORS.new;
+    var shot = s.photo
+      ? '<div class="shot" style="background-image:url(\'' + esc(s.photo) + '\')"></div>'
+      : '<div class="shot">⌂</div>';
+    var chipBits = [shortPrice(s.price)];
+    if (s.beds != null) chipBits.push(s.beds + 'bd');
+
+    var marker = L.marker([s.lat, s.lng], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div class="pin ' + esc(r.mine.status) + '" style="--ring:' + color + '">' +
+              shot + '<span class="chip">' + chipBits.join(' · ') + '</span></div>',
+        iconSize: [PIN_W, PIN_H],
+        // Anchored at the photo's centre so the pin sits on its coordinate.
+        // Leaflet owns the positioning; CSS margins would fight it.
+        iconAnchor: [PIN_W / 2 - shift[0], 26 - shift[1]]
+      })
+    }).addTo(map);
+
+    var stars = r.mine.rating == null ? '' : '<span class="stars">' + '★'.repeat(r.mine.rating) + '</span>';
+    marker.bindPopup(
+      '<div class="card" style="--ring:' + color + '">' +
+        (s.photo ? '<img src="' + esc(s.photo) + '" alt="">' : '') +
+        '<div class="body">' +
+          '<div class="price">' + fullPrice(s.price) + '</div>' +
+          '<div class="facts">' + esc(facts(s)) + '</div>' +
+          '<div class="addr">' + esc(s.address) + '<br>' + esc(s.city) + ', ' + esc(s.state) + ' ' + esc(s.zip) + '</div>' +
+          '<div class="meta"><span class="tag">' + esc(r.mine.status) + '</span>' + stars + '</div>' +
+          (r.mine.notes ? '<div class="notes">' + esc(r.mine.notes) + '</div>' : '') +
+          '<a class="go" href="' + esc(s.listing_url) + '" target="_blank" rel="noopener">View on ' + esc(s.listing_source) + '</a>' +
+        '</div>' +
+      '</div>'
+    );
+  });
+
+  if (mapped.length > 0) {
+    map.fitBounds(L.latLngBounds(mapped.map(function (r) { return [r.scraped.lat, r.scraped.lng]; })), {
+      padding: [70, 70],
+      maxZoom: 15
+    });
+  } else {
+    map.setView([37.7749, -122.4194], 11);
+  }
+
+  // A property that cannot be placed must be visible as missing, never dropped.
+  if (unmapped.length > 0) {
+    notice('<strong>' + unmapped.length + ' not on the map</strong> (no coordinates from the listing):<ul>' +
+      unmapped.map(function (r) {
+        return '<li><a href="' + esc(r.scraped.listing_url) + '" target="_blank" rel="noopener">' +
+               esc(r.scraped.address) + ', ' + esc(r.scraped.city) + '</a></li>';
+      }).join('') + '</ul>');
+  }
+
+  if (rows.length === 0) {
+    notice('Text Plow a photo of a listing to add the first one.');
+  }
+  } catch (err) {
+    // One malformed row must not leave a blank page with no explanation.
+    notice('<strong>Could not draw the map.</strong> data.js loaded but a property is malformed: ' +
+           esc(String((err && err.message) || err)), true);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "type": "function",
+  "function": {
+    "name": "_app_doc",
+    "description": "Query the official documentation and specification for Informat applications.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "base": {
+    "chainId": 8453,
+    "address": "0xA741eFf41Bcf14793E61CEbB4179E05C9124D3f6",
+    "codeHash": "0x37511060fbbd00c75212ac5b433c81cfce7531627809b32908bbc2f7ba2d0da3",
+    "observedAt": "2026-09-28T18:58:42.752Z",
+    "docsUrl": "https://bounties.verdikta.org/api/docs"
+  },
+  "base-sepolia": {
+    "chainId": 84532,
+    "address": "0x1B4F0e43256d435DfcD5C0883799F0Eb3943e08f",
+    "codeHash": "0xc604dbb65559e4bebe2d8dfaa9b3ef4501059e7d83d828d677673f3e13641fb8",
+    "observedAt": "2026-09-28T18:58:42.828Z",
+    "docsUrl": "https://bounties-testnet.verdikta.org/api/docs"
+  }
+}

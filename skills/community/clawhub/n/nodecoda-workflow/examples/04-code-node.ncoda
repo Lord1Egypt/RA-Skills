@@ -1,0 +1,24 @@
+@language nodecoda/1
+@mode workflow
+
+// 演示 foreign code python3(Code node 降级)
+// 接收一段文本,返回单词数和归一化形式
+type TextStats = {
+    int count;
+    string normalized;
+}
+
+function main(string text) -> TextStats {
+    let stats = foreign code python3(
+        string text = text
+    ) -> {
+        count: int;
+        normalized: string;
+    } {
+        source `def main(text: str) -> dict:
+    words = text.split()
+    return {"count": len(words), "normalized": " ".join(words).lower()}`;
+    };
+
+    return stats;
+}

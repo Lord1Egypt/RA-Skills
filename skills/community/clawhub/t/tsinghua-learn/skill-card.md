@@ -1,43 +1,58 @@
-## Description: <br>
-Automates Tsinghua Learn tasks including login, todo review, courseware downloads, homework submission, PDF preparation, and marking course items as read. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+清华网络学堂（learn.tsinghua.edu.cn）自动化。要求用户提供网络学堂登录密码（本地 DPAPI 加密存储），自动登录、查看待办、下载课件、提交作业、批量标记已读。当需要操作网络学堂完成日常学习任务时使用。
 
-## Publisher: <br>
-[tomuiv](https://clawhub.ai/user/tomuiv) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tomuiv](https://clawhub.ai/user/tomuiv)
 
-## Use Case: <br>
-Students or authorized users with Tsinghua Learn accounts use this skill to manage routine coursework tasks, such as checking todos, downloading materials, submitting homework, and reviewing course updates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores reusable local login material, including credentials, browser profile state, and session data. <br>
-Mitigation: Install only on a trusted Windows machine, treat stored account state as sensitive, and use the reset flow when local account state should be removed. <br>
-Risk: The skill can mark course announcements or materials as read during normal coursework management. <br>
-Mitigation: Review or disable auto_mark_read before routine use if todo checks should remain read-only. <br>
-Risk: Homework submission is a high-impact action for the user. <br>
-Mitigation: Review the submission preview before confirming and verify important submissions on the official Tsinghua Learn site. <br>
+## Use Case:
 
+Students and agents use this skill to automate routine Tsinghua Learn tasks such as login, todo review, courseware download, homework submission, PDF preparation, cleanup, and marking notices or files as read.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tomuiv/tsinghua-learn) <br>
-- [Tsinghua Learn](https://learn.tsinghua.edu.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Conversational Markdown with JSON-backed status summaries and generated local files when downloading, merging PDFs, or preparing homework submissions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Windows and a Tsinghua Learn credential supplied through CAS_PASSWORD.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.17 (source: server release evidence) <br>
+Risk: The skill requires a Tsinghua Learn login and stores local credentials, browser profile data, and session files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the publisher is trusted, protect the local account and skill directory, and clear stored account state when the skill is no longer needed.
+
+Risk: The skill can change account state, including marking notices or files as read during todo checks.
+
+Mitigation: Disable automatic mark-read unless that behavior is intended, and review account-changing actions before allowing the agent to execute them.
+
+Risk: Plaintext temporary credential workflows can expose account secrets.
+
+Mitigation: Avoid workflows that place credentials in plaintext temporary files and remove any temporary credential material immediately after initialization.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/tomuiv/skills/tsinghua-learn)
+- [Tsinghua Learn](https://learn.tsinghua.edu.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with JSON-backed status summaries, shell command execution, configuration updates, and generated or downloaded files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Windows and CAS_PASSWORD; stores local login, browser profile, and session state for Tsinghua Learn automation.]
+
+## Skill Version(s):
+
+1.0.17 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

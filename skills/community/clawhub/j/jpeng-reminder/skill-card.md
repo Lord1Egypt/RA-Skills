@@ -1,39 +1,53 @@
-## Description: <br>
-Reminder and scheduling skill. Set one-time or recurring reminders, manage tasks, and send notifications. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reminder and scheduling skill. Set one-time or recurring reminders, manage tasks, and send notifications.
 
-## Publisher: <br>
-[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jpengcheng523-netizen](https://clawhub.ai/user/jpengcheng523-netizen)
 
-## Use Case: <br>
-External users and developers use this skill to set one-time or recurring reminders, manage task reminders, and request timed notifications through natural language or command-oriented workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Reminder text may be saved locally across restarts and could expose sensitive details if users store secrets or confidential information. <br>
-Mitigation: Avoid placing secrets or highly sensitive details in reminders, and review any provided reminder.py implementation before running documented commands. <br>
+## Use Case:
 
+External users and agents use this skill to create one-time or recurring reminders, list reminder tasks, mark them complete, delete them, and receive scheduled notifications.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jpengcheng523-netizen/jpeng-reminder) <br>
-- [Publisher Profile](https://clawhub.ai/user/jpengcheng523-netizen) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash command examples and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reminder entries may be persisted locally in ~/.openclaw/reminders.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Reminder messages and schedules are documented as locally persisted data in ~/.openclaw/reminders.json.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid storing highly sensitive reminder details on shared or backed-up machines.
+
+Risk: The package documents commands for scripts/reminder.py, but the executable script is not included in the package.
+
+Mitigation: Verify any separate reminder.py implementation before running the documented commands.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jpengcheng523-netizen/skills/jpeng-reminder)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Guidance]
+
+**Output Format:** [Markdown with bash command examples and JSON output examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documents local persistence in ~/.openclaw/reminders.json; the package does not include the referenced reminder.py script.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

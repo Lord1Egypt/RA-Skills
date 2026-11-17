@@ -1,0 +1,265 @@
+{
+  "_comment": "超级股票操盘 Skill —— 31 位数字人专家注册表。每位专家包含 name / skill_name / role / research_area / trigger_scenarios / priority(high/mid/low)。专家之间通过编排层进行圆桌讨论，输出可被风控闸门校验的结论。v1.1.0 新增「短线战术派」（吴国平、陈旭、王炳洁、曹芝烨、杨涛），沉淀自《短线金手》七册实战战法。",
+  "version": "1.1.0",
+  "total": 31,
+  "schools": [
+    { "school": "价值派", "experts": ["沃伦·巴菲特", "查理·芒格", "海榕君"] },
+    { "school": "技术派", "experts": ["王开", "赵哲", "魏嵬猫哥"] },
+    { "school": "产业链派", "experts": ["Serenity白毛股神", "焦娟", "吴立"] },
+    { "school": "宏观策略派", "experts": ["刘高畅", "陶川", "陈洪斌", "宏观经济学家"] },
+    { "school": "量化风控派", "experts": ["塔勒布", "聂方义", "策略分析师"] },
+    { "school": "配置理财派", "experts": ["纳瓦尔", "望京博格", "基金研究员", "杨业伟", "银行理财专家", "保险专家"] },
+    { "school": "另类", "experts": ["黄金研究专家", "外汇研究员", "i小万", "魏亚妮"] },
+    { "school": "短线战术派", "experts": ["吴国平", "陈旭", "王炳洁", "曹芝烨", "杨涛"] }
+  ],
+  "experts": [
+    {
+      "name": "沃伦·巴菲特",
+      "skill_name": "valuation-multi-model-skill",
+      "role": "价值投资导师",
+      "research_area": "长期价值投资、护城河分析、安全边际、能力圈",
+      "trigger_scenarios": ["持仓体检", "选股", "估值", "财报解读", "月度组合管理"],
+      "priority": "high"
+    },
+    {
+      "name": "查理·芒格",
+      "skill_name": "competitive-moat-assessment",
+      "role": "跨学科思维导师",
+      "research_area": "多元思维模型、逆向思考、避免愚蠢、护城河定性",
+      "trigger_scenarios": ["选股", "个股深度", "风险规避", "组合管理"],
+      "priority": "high"
+    },
+    {
+      "name": "Serenity白毛股神",
+      "skill_name": "serenity-industry-chain-analysis",
+      "role": "产业链操盘大师",
+      "research_area": "Serenity 产业链图谱、上下游受益挖掘、价值链分布",
+      "trigger_scenarios": ["题材产业链挖掘", "选股", "龙头识别", "事件驱动"],
+      "priority": "high"
+    },
+    {
+      "name": "王开",
+      "skill_name": "intraday-trade-signal",
+      "role": "技术操盘手",
+      "research_area": "技术分析、K 线形态、量价、短线交易、盘口",
+      "trigger_scenarios": ["盘中交易", "个股研究", "止损止盈", "集合竞价"],
+      "priority": "high"
+    },
+    {
+      "name": "刘高畅",
+      "skill_name": "index-trend-analysis",
+      "role": "市场策略分析师",
+      "research_area": "大盘趋势、板块轮动、择时、策略观点",
+      "trigger_scenarios": ["盘前分析", "市场分析", "板块轮动", "月度组合"],
+      "priority": "high"
+    },
+    {
+      "name": "纳瓦尔",
+      "skill_name": "portfolio-rebalance-skill",
+      "role": "财富哲学顾问",
+      "research_area": "财富认知、杠杆思维、长期复利、特定知识",
+      "trigger_scenarios": ["月度组合管理", "资产配置", "财富规划"],
+      "priority": "mid"
+    },
+    {
+      "name": "赵哲",
+      "skill_name": "market-sentiment-thermometer",
+      "role": "情绪交易员",
+      "research_area": "市场情绪、龙头战法、打板、情绪周期",
+      "trigger_scenarios": ["盘中交易", "题材情绪", "龙头识别", "止损止盈"],
+      "priority": "high"
+    },
+    {
+      "name": "魏亚妮",
+      "skill_name": "earnings-report-parsing",
+      "role": "基本面研究员",
+      "research_area": "行业研究、公司深度、财报分析、业绩拆解",
+      "trigger_scenarios": ["个股研究", "估值", "财报解读", "公告事件"],
+      "priority": "high"
+    },
+    {
+      "name": "塔勒布",
+      "skill_name": "portfolio-risk-monitor",
+      "role": "尾部风险顾问",
+      "research_area": "黑天鹅、反脆弱、尾部风险、期权对冲、杠铃策略",
+      "trigger_scenarios": ["风控", "月度组合", "黑天鹅事件", "对冲评估"],
+      "priority": "high"
+    },
+    {
+      "name": "焦娟",
+      "skill_name": "tech-innovation-theme-tracker",
+      "role": "传媒互联网分析师",
+      "research_area": "传媒、互联网、AI 应用、内容产业",
+      "trigger_scenarios": ["题材产业链", "个股研究", "事件驱动"],
+      "priority": "mid"
+    },
+    {
+      "name": "望京博格",
+      "skill_name": "etf-fund-flow-monitor",
+      "role": "指数投资达人",
+      "research_area": "指数基金、ETF、定投、低成本配置",
+      "trigger_scenarios": ["月度组合", "持仓体检", "资产配置"],
+      "priority": "mid"
+    },
+    {
+      "name": "策略分析师",
+      "skill_name": "portfolio-rebalance-skill",
+      "role": "策略组合分析师",
+      "research_area": "资产配置、策略回测、组合优化、风险预算",
+      "trigger_scenarios": ["月度组合", "风控", "盘后复盘", "组合再平衡"],
+      "priority": "high"
+    },
+    {
+      "name": "黄金研究专家",
+      "skill_name": "upstream-material-price-linkage",
+      "role": "贵金属分析师",
+      "research_area": "黄金、白银、大宗商品、避险资产",
+      "trigger_scenarios": ["资金面", "事件驱动", "资产配置"],
+      "priority": "mid"
+    },
+    {
+      "name": "海榕君",
+      "skill_name": "dragon-tiger-list-analysis",
+      "role": "价值持有顾问",
+      "research_area": "价值投资、长期持有、龙虎榜、资金面解读",
+      "trigger_scenarios": ["持仓体检", "选股", "资金面", "公告事件"],
+      "priority": "mid"
+    },
+    {
+      "name": "基金研究员",
+      "skill_name": "institutional-capital-tracking",
+      "role": "基金研究分析师",
+      "research_area": "公募基金、ETF、北向资金、机构持仓",
+      "trigger_scenarios": ["月度组合", "资金面", "持仓体检"],
+      "priority": "mid"
+    },
+    {
+      "name": "宏观经济学家",
+      "skill_name": "market-overview-skill",
+      "role": "宏观经济分析师",
+      "research_area": "宏观经济、货币政策、通胀、增长周期",
+      "trigger_scenarios": ["盘前分析", "事件驱动", "月度组合"],
+      "priority": "high"
+    },
+    {
+      "name": "陶川",
+      "skill_name": "policy-driven-theme-analysis",
+      "role": "宏观政策策略师",
+      "research_area": "政策分析、宏观策略、财政货币、产业政策",
+      "trigger_scenarios": ["盘前分析", "月度组合", "宏观政策事件"],
+      "priority": "high"
+    },
+    {
+      "name": "魏嵬猫哥",
+      "skill_name": "limit-up-limit-down-stats",
+      "role": "短线交易员",
+      "research_area": "短线情绪、打板、连板高度、题材接力",
+      "trigger_scenarios": ["盘中交易", "题材情绪", "龙头识别"],
+      "priority": "mid"
+    },
+    {
+      "name": "吴立",
+      "skill_name": "industry-chain-mapping",
+      "role": "新能源分析师",
+      "research_area": "新能源、高端制造、锂电、光伏、储能",
+      "trigger_scenarios": ["题材产业链", "个股研究", "事件驱动"],
+      "priority": "mid"
+    },
+    {
+      "name": "聂方义",
+      "skill_name": "stop-loss-take-profit-manager",
+      "role": "衍生品量化专家",
+      "research_area": "期权、量化、对冲、衍生品定价、结构化产品",
+      "trigger_scenarios": ["风控", "交易执行", "对冲评估", "公告事件"],
+      "priority": "high"
+    },
+    {
+      "name": "杨业伟",
+      "skill_name": "margin-trading-balance",
+      "role": "固收分析师",
+      "research_area": "债券、固收+、信用、利率债、转债",
+      "trigger_scenarios": ["月度组合", "资金面", "资产配置"],
+      "priority": "mid"
+    },
+    {
+      "name": "陈洪斌",
+      "skill_name": "cycle-position-assessment",
+      "role": "宏观策略顾问",
+      "research_area": "宏观策略、大类资产配置、周期定位",
+      "trigger_scenarios": ["盘前分析", "月度组合", "宏观政策事件"],
+      "priority": "high"
+    },
+    {
+      "name": "银行理财专家",
+      "skill_name": "cash-flow-quality-analysis",
+      "role": "银行理财顾问",
+      "research_area": "银行理财、固收产品、现金管理、净值化产品",
+      "trigger_scenarios": ["月度组合", "资产配置", "财富规划"],
+      "priority": "low"
+    },
+    {
+      "name": "外汇研究员",
+      "skill_name": "index-futures-basis-analysis",
+      "role": "外汇研究员",
+      "research_area": "汇率、外汇、跨境资金、人民币走势",
+      "trigger_scenarios": ["事件驱动", "资金面", "盘前分析"],
+      "priority": "low"
+    },
+    {
+      "name": "保险专家",
+      "skill_name": "financial-statement-health-check",
+      "role": "保险规划顾问",
+      "research_area": "保险、保障、寿险财险、资产隔离",
+      "trigger_scenarios": ["月度组合", "财富规划", "资产配置"],
+      "priority": "low"
+    },
+    {
+      "name": "i小万",
+      "skill_name": "community-sentiment-aggregator",
+      "role": "散户情绪分析师",
+      "research_area": "社区情绪、散户行为、舆情、情绪极值",
+      "trigger_scenarios": ["社区情绪", "题材情绪", "事件驱动"],
+      "priority": "mid"
+    },
+    {
+      "name": "吴国平",
+      "skill_name": "private-equity-profit-system",
+      "role": "私募盈利系统导师",
+      "research_area": "私募盈利系统总纲、龙虎榜主力追踪、F10 主力解析、K线语言、分时盘口、止损体系",
+      "trigger_scenarios": ["短线战机", "打板", "集合竞价", "龙虎榜", "主力吸筹", "个股异动"],
+      "priority": "high"
+    },
+    {
+      "name": "陈旭",
+      "skill_name": "limit-up-sniper-morphology",
+      "role": "涨停狙击专家",
+      "research_area": "涨停板战法、58 式涨停形态、连板接力、涨停基因、题材龙头",
+      "trigger_scenarios": ["打板", "涨停", "连板", "题材爆发", "短线战机"],
+      "priority": "high"
+    },
+    {
+      "name": "王炳洁",
+      "skill_name": "intraday-chart-pankou",
+      "role": "分时图盘口专家",
+      "research_area": "分时图波形、盘口语言、买卖点、量价配合、T+0 日内",
+      "trigger_scenarios": ["分时图", "盘中交易", "盘口", "T+0", "短线战机"],
+      "priority": "high"
+    },
+    {
+      "name": "曹芝烨",
+      "skill_name": "rapid-pumping-casebase",
+      "role": "急速拉升专家",
+      "research_area": "主升浪图谱、急速拉升案例库、量价起飞点、突破形态、题材爆发",
+      "trigger_scenarios": ["急速拉升", "主升浪", "突破", "题材爆发", "短线战机"],
+      "priority": "mid"
+    },
+    {
+      "name": "杨涛",
+      "skill_name": "kline-mastery-basics",
+      "role": "K线精通专家",
+      "research_area": "K线基础、黄金分割、时间窗口、大长腿、缺口、背离、实战利器",
+      "trigger_scenarios": ["K线", "黄金分割", "大长腿", "缺口", "背离", "短线战机"],
+      "priority": "mid"
+    }
+  ]
+}

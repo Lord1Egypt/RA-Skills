@@ -1,39 +1,48 @@
-## Description: <br>
-Convert any learning material into Anki flashcards with Bloom's taxonomy-powered card design. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Convert any learning material into Anki flashcards - Bloom's taxonomy powered card design.
 
-## Publisher: <br>
-[harrylabsj](https://clawhub.ai/user/harrylabsj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[harrylabsj](https://clawhub.ai/user/harrylabsj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Students, educators, and developers use this skill to convert PDFs, web pages, Markdown notes, textbook chapters, and raw text into Anki flashcards organized by Bloom's taxonomy and Anki card type.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill can ingest web pages and user-provided learning files, which may contain untrusted or unwanted content.
+
+Mitigation: Use trusted PDFs, text, and URLs, and review generated cards before importing them into Anki.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students, educators, and developers use this skill to convert PDFs, web articles, Markdown notes, textbook chapters, or raw text into Anki flashcards with preview/edit support and study statistics. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Input PDFs, notes, raw text, or generated Anki decks may contain sensitive study material. <br>
-Mitigation: Use appropriate source material, review generated cards before sharing, and choose output locations deliberately. <br>
-Risk: Using web URLs may contact third-party sites while gathering source material. <br>
-Mitigation: Review URLs before use and avoid sources that should not receive traffic or disclose browsing context. <br>
+**Output Format:** [Markdown guidance describing Anki card content, preview edits, .apkg export expectations, and card statistics.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Produces flashcard content, card metadata, a preview/edit workflow, and summary statistics for Anki import.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration, files] <br>
-**Output Format:** [Markdown preview and Anki .apkg file with card statistics] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces tagged flashcards, priorities, hints or mnemonics, a five-card preview, and card statistics by type and Bloom level.] <br>
+1.0.0 (source: server-resolved release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

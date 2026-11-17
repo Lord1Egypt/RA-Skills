@@ -1,42 +1,60 @@
-## Description: <br>
-Fetches health data from the Withings API for multiple family members, including weight, body composition, activity, and sleep. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches health data from the Withings API for multiple family members including weight, body composition (fat, muscle, bone, water), activity, and sleep.
 
-## Publisher: <br>
-[odrobnik](https://clawhub.ai/user/odrobnik) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[odrobnik](https://clawhub.ai/user/odrobnik)
 
-## Use Case: <br>
-External users and agents use this skill to authenticate family members' Withings accounts and retrieve weight, body composition, activity, and sleep data for health-history questions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Withings health data and OAuth tokens are sensitive personal data. <br>
-Mitigation: Install only for accounts whose owners have authorized access, keep the local skill directory and token files private, and delete token files or revoke Withings app access when access is no longer needed. <br>
-Risk: Body-composition history can expose broad historical health information. <br>
-Mitigation: Use explicit limits for body-composition history when broad historical output is not needed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/odrobnik/withings-family) <br>
-- [Withings Developer Portal](https://developer.withings.com/) <br>
-- [Withings OAuth authorization endpoint](https://account.withings.com/oauth2_user/authorize2) <br>
-- [Withings OAuth token endpoint](https://wbsapi.withings.net/v2/oauth2) <br>
+## Use Case:
 
+External users and their authorized family members use this skill to retrieve Withings health measurements, activity data, and sleep summaries through an agent workflow.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns Withings account data only after OAuth authorization; activity and sleep commands accept day-count limits, and body composition can be limited or requested in full.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.2 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill retrieves sensitive personal and family health records.
+
+Mitigation: Use it only for accounts whose owners have explicitly authorized access, and avoid running it on shared or untrusted machines.
+
+Risk: OAuth refresh tokens are stored persistently on the local machine.
+
+Mitigation: Treat the local token directory as sensitive, keep token files private, delete tokens when access is no longer needed, and revoke Withings access if a device may be compromised.
+
+Risk: Multiple family members can be configured, which can create consent and data-boundary confusion.
+
+Mitigation: Authenticate each family member separately and use clear per-user identifiers so requests retrieve only the intended person's data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/odrobnik/skills/withings-family)
+- [Publisher profile](https://clawhub.ai/user/odrobnik)
+- [Withings Developer Portal](https://developer.withings.com/)
+- [Withings OAuth authorization endpoint](https://account.withings.com/oauth2_user/authorize2)
+- [Withings OAuth token endpoint](https://wbsapi.withings.net/v2/oauth2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON API results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python 3, Withings API credentials, and local per-user OAuth token files.]
+
+## Skill Version(s):
+
+1.1.2 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

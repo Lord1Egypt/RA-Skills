@@ -1,45 +1,57 @@
-## Description: <br>
-Manage LinkedIn and Twitter/X content with Reepl, including drafts, publishing, scheduling, contacts, collections, AI images, carousels, and voice-profile maintenance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage your LinkedIn presence with Reepl -- create drafts, publish and schedule posts, manage contacts and collections, generate AI images, create carousels, post to Twitter/X, and maintain your voice profile.
 
-## Publisher: <br>
-[abhibavishi](https://clawhub.ai/user/abhibavishi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[abhibavishi](https://clawhub.ai/user/abhibavishi)
 
-## Use Case: <br>
-External users and creators use this skill to draft, schedule, publish, and organize LinkedIn and Twitter/X content through their Reepl account. It also helps maintain writing style guidance, contacts, saved content, AI-generated images, and carousel drafts. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can publish, schedule, comment on, delete, and update content or profile state in connected social accounts. <br>
-Mitigation: Require explicit user confirmation of exact content, account, target IDs or titles, visibility, and timing before any publish, schedule, comment, delete, contact-list, or voice-profile update. <br>
-Risk: The skill requires trusting Reepl with connected LinkedIn and Twitter/X workflows and stored account context. <br>
-Mitigation: Install only when the user trusts Reepl for those workflows, and review connected accounts and permissions before using the MCP key. <br>
-Risk: Voice-profile updates can persistently change how future content is generated. <br>
-Mitigation: Show proposed voice-profile changes before saving them, and do not update locked or user-controlled voice-profile fields unless the user explicitly asks. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/abhibavishi/reepl) <br>
-- [Reepl](https://reepl.io) <br>
-- [Reepl Help Center](https://help.reepl.io) <br>
-- [MCP Setup Guide](https://mcp.reepl.io) <br>
-- [Reepl Chrome Extension](https://chromewebstore.google.com/detail/reepl/geomampobbapgnflneaofdplfomdkejn) <br>
+## Use Case:
 
+External users and social content teams use this skill to draft, publish, schedule, and repurpose LinkedIn and Twitter/X content through Reepl while preserving the user's voice profile and saved content library.
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [Plain text and Markdown guidance with JSON-style tool arguments] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a Reepl MCP key via REEPL_MCP_KEY; AI image generation may require a linked Gemini API key in Reepl.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The Reepl MCP key can grant broad access to read and manage LinkedIn and connected Twitter/X content.
+
+Mitigation: Use secret or environment-based credential handling when supported, and avoid sharing logs or screenshots that contain the configured MCP URL.
+
+Risk: Publish, comment, schedule, delete, and profile-update actions can affect real social accounts.
+
+Mitigation: Require explicit user approval before invoking any action that publishes, comments, schedules, deletes, or updates a profile.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/abhibavishi/skills/reepl)
+- [Reepl](https://reepl.io)
+- [Reepl Help Center](https://help.reepl.io)
+- [MCP Setup Guide](https://mcp.reepl.io)
+- [Reepl AI model settings](https://app.reepl.io/settings/ai-models-api)
+- [Reepl Chrome Extension](https://chromewebstore.google.com/detail/reepl/geomampobbapgnflneaofdplfomdkejn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, API calls, configuration, guidance]
+
+**Output Format:** [Markdown guidance with JSON tool-call examples and plain-text social content.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Reepl MCP connection using REEPL_MCP_KEY; LinkedIn content is plain text and Twitter/X tweets are limited to 280 characters each.]
+
+## Skill Version(s):
+
+1.3.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -18,7 +18,8 @@
 
 1. **向用户展示**：拟用标题、项目类型（`survey` / `assess` / `vote` / `form`）、题目来源（如 `examples/…json`、URL 或 stdin 概要）、以及「将变为收集中 / 产生答题入口」这一事实。  
 2. **取得明确同意**：仅当用户用自然语言**确认可以发布/上线**（或等价明确指令）后，再在会话内执行上述命令，并汇报终端关键输出（成功/失败、审核状态等）。  
-3. **草稿阶段**：若用户只要「先出题 / 只写 JSON」，Agent 可只维护本地题目文件，**不得**擅自执行会改账号侧状态或对外开收的命令。
+3. **草稿阶段**：若用户只要「先出题 / 只写 JSON」，Agent **只维护本地题目文件**，**不得**执行 `textproject` / `import_project.js` / `workflow_create_and_publish.js`（含 `--no-publish`）。账号里的「未发布草稿」同样占配额，调试不得往账号堆 exp/t1/基线/验证项目。
+4. **同一主题最多 1 个线上项目**：用户确认创建/发布后只导入一次。题型或 `custom_attr` 不对，应改本地 JSON 后在**同一项目**上改题，或等用户明确要求删除旧项目后再重建。禁止连续创建 10+ 份实验问卷。
 
 用户也可选择在审阅后**自行在终端**执行相同命令；Agent 可提供完整命令行供复制。
 
@@ -151,6 +152,8 @@ POST /edit/api/update_project_status/   # 发布项目
 | `--text-file` / `--text` | string | 否 | 同 `--file`（内容为 UTF-8 JSON） |
 | `--url` / `-u` | string | 否 | 可 GET 的 http(s) 链接，响应体为 JSON |
 | `--stdin` | flag | 否 | 从标准输入读取 JSON（与 `--file`/`--url` 互斥） |
+| `--ai-source` | integer | 否 | 项目 AI 来源；Agent 按 `SKILL.md` 显式传 `12`，未传时 JS 兼容默认 `12` |
+| `--reg-source` | string | 否 | 扫码注册来源；Agent按 `SKILL.md` 显式传 `ai_skills`，未传时 JS 兼容默认 `ai_skills` |
 
 ## 返回
 
@@ -204,6 +207,12 @@ POST /edit/api/update_project_status/   # 发布项目
 4. 调用 update_project_status API 发布项目
 5. 如遇 NOT_BIND_MOBILE 错误，自动引导绑定手机号后重试发布
 6. 发布成功后始终轮询：需平台审核时轮询审核/项目状态；随后轮询项目详情直至状态稳定（含 short_id）
+7. 使用最终答题链接生成二维码海报，保存到 `~/.wenjuan/posters/`
+8. **面向用户的最终回复**必须可见地输出固定信息块，并将 `poster_path` 以文件附件/产物卡片附在下方（不要用 Markdown/HTML 内联大图）：
+   **项目标题：** / **项目 ID：** / **题目数量：** N 道 / **当前状态：** 收集中 / **答题链接：** / **二维码海报：** 已生成并展示，可直接扫码填写。
+   **禁止**只把上述内容写在工具/过程消息里而不在最终回复展示；禁止用“详见产物/过程”代替。
+   **复用已有同主题项目（未新建）时同样适用**：须先用已有答题链接生成海报再按同一格式回复，不得省略海报。
+   海报失败时说明原因、不附文件，并保留答题链接；审核中则状态写「审核中」
 ```
 
 命令行中的 `--poll` / `--no-poll` / `-p`（旧「轮询」开关）**已忽略**，行为固定为上述轮询。
@@ -218,6 +227,8 @@ POST /edit/api/update_project_status/   # 发布项目
 | vote | 单选投票题（选项A/B/C/D） |
 | form | 姓名（填空）、手机号（填空）、邮箱（填空）、备注（填空） |
 | assess | 单选题（带正确答案和分值） |
+
+**测评硬性要求**：必须按题型显式提供正确答案。单选/多选/判断题至少一个正确选项含 `custom_attr.is_correct: "1"`；填空题在填空项中设置 `custom_attr.correct_answer`，不使用 `is_correct`。`custom_attr.answer_analysis` 只用于答题后的解析展示，不能替代正确答案；只有解析、没有正确答案时，导入会报错并停止发布。
 
 ## CLI 调用示例
 
@@ -359,7 +370,12 @@ cat questions.json | node "${SKILL_DIR}/scripts/workflow_create_and_publish.js" 
 | 填空题 | QUESTION_TYPE_BLANK |
 | 性别 | QUESTION_TYPE_SEX |
 | 评分题 | QUESTION_TYPE_SCORE |
-| 矩阵单选 | QUESTION_TYPE_MATRIX_SINGLE |
+| 打分题 | QUESTION_TYPE_SCORE（最小结构，见 project_json_structure_guide.md §4 ·5） |
+| 量表题 | QUESTION_TYPE_SCORE + disp_type: scale（见 §4 ·6） |
+| 评价题 | QUESTION_TYPE_SCORE + disp_type: evaluation + score_display: star + 分数/标签（见 §4 ·7） |
+| NPS题 | QUESTION_TYPE_SCORE + disp_type: nps_score + min 0 / max 10（见 §4 ·8） |
+
+**不支持矩阵题型**（矩阵单选/多选等）。多维度评价请拆成多道量表题/评价题/单选题。
 
 更多题型请参考 `references/project_json_structure_guide.md`。
 

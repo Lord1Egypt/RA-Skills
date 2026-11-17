@@ -1,53 +1,66 @@
-## Description: <br>
-Shopify Theme Development Pro supports Shopify theme development, deployment, and design system management for OpenClaw agents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Shopify Theme Pro helps agents build, refactor, optimize, and deploy Shopify themes using Liquid, Online Store 2.0 patterns, Shopify CLI workflows, and design system guidance.
 
-## Publisher: <br>
-[avmw2025](https://clawhub.ai/user/avmw2025) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[avmw2025](https://clawhub.ai/user/avmw2025)
 
-## Use Case: <br>
-Developers and engineers use this skill to build, review, optimize, and deploy Shopify Online Store 2.0 themes, Liquid templates, storefront sections, and theme design systems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Deployment guidance may expose a write-capable Shopify theme token if token checks print secret values. <br>
-Mitigation: Use redacted existence checks for SHOPIFY_CLI_THEME_TOKEN and never print, log, or paste the token into agent-visible output. <br>
-Risk: Shopify push or publish commands can change a customer-facing storefront. <br>
-Mitigation: Verify the target store and theme ID, test on a development theme first, and require explicit approval before push, publish, or analytics changes go live. <br>
-Risk: Pushing config/settings_data.json can overwrite merchant customizations. <br>
-Mitigation: Ignore config/settings_data.json by default unless the operator explicitly intends to reset theme editor state. <br>
+## Use Case:
 
+Developers and agents supporting Shopify merchants use this skill to create Liquid templates, manage Online Store 2.0 theme architecture, optimize performance and accessibility, and prepare theme deployments. It is also useful for maintaining theme design systems and reviewing Shopify theme code before store pushes.
 
-## Reference(s): <br>
-- [Shopify Theme Pro on ClawHub](https://clawhub.ai/avmw2025/shopify-theme-pro) <br>
-- [Publisher Profile](https://clawhub.ai/user/avmw2025) <br>
-- [Liquid Patterns](references/liquid-patterns.md) <br>
-- [Theme Deployment](references/deployment.md) <br>
-- [Design System](references/design-system.md) <br>
-- [Performance Optimization](references/performance.md) <br>
-- [Shopify Themes Documentation](https://shopify.dev/docs/themes) <br>
-- [Shopify Liquid Reference](https://shopify.dev/docs/api/liquid) <br>
-- [Shopify Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check) <br>
-- [Shopify CLI](https://shopify.dev/docs/themes/tools/cli) <br>
-- [Shopify Ajax API](https://shopify.dev/docs/api/ajax) <br>
-- [Shopify Theme Best Practices](https://shopify.dev/docs/themes/best-practices) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with Liquid, JSON, CSS, JavaScript, and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose Shopify CLI commands, Liquid templates, section schemas, theme settings, CSS design tokens, and deployment checklists.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: Deployment commands can expose write-capable Shopify theme tokens if environment files or command output are handled carelessly.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not print `.env.local` token values and review deployment steps before allowing an agent to execute them.
+
+Risk: Pushing or publishing a live Shopify theme can immediately affect customer-facing storefront pages.
+
+Mitigation: Require explicit approval before any live `theme push` or `theme publish`, and prefer tested development-theme deployments first.
+
+Risk: Mutable project-controlled commands or npm tooling can change deployment behavior.
+
+Mitigation: Prefer direct, reviewed Shopify CLI commands and pin or preinstall npm tooling in a controlled environment.
+
+## Reference(s):
+
+- [Shopify Theme Deployment](artifact/references/deployment.md)
+- [Design System for Shopify Themes](artifact/references/design-system.md)
+- [Liquid Patterns Reference](artifact/references/liquid-patterns.md)
+- [Shopify Theme Performance Optimization](artifact/references/performance.md)
+- [Shopify Theme Documentation](https://shopify.dev/docs/themes)
+- [Shopify Liquid Reference](https://shopify.dev/docs/api/liquid)
+- [Shopify Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check)
+- [Shopify CLI Reference](https://shopify.dev/docs/themes/tools/cli)
+- [Shopify Ajax API](https://shopify.dev/docs/api/ajax)
+- [Shopify Theme Best Practices](https://shopify.dev/docs/themes/best-practices)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Liquid, JSON, CSS, JavaScript, and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include deployment checklists and review prompts before live Shopify pushes.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

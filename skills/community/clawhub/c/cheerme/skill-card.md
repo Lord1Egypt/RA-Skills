@@ -1,44 +1,61 @@
-## Description: <br>
-Cheerme provides companion-style encouragement, warm support, goal planning, and personalized responses using configurable roles and regional dialects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Cheerme helps an agent provide warm encouragement, goal-setting support, and persona- or dialect-aware motivational responses for users who express self-doubt, procrastination, anxiety, or a need for guidance.
 
-## Publisher: <br>
-[oxoyo](https://clawhub.ai/user/oxoyo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oxoyo](https://clawhub.ai/user/oxoyo)
 
-## Use Case: <br>
-External users and agent operators use Cheerme to add encouragement, goal setting, progress support, and companion-style responses when a conversation shows self-doubt, anxiety, procrastination, low motivation, or a request for guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Broad auto-activation and companion framing could surprise users during sensitive conversations. <br>
-Mitigation: Keep auto-mode off unless the user explicitly wants it, and review trigger behavior before deployment. <br>
-Risk: Memory-oriented guidance may encourage retention or reuse of personal details. <br>
-Mitigation: Avoid collecting highly sensitive information and confirm the host environment supports viewing, clearing, or disabling memory for this skill. <br>
+## Use Case:
 
+External users can use this skill to receive supportive coaching, encouragement, goal-setting help, progress check-ins, and celebratory feedback through configurable companion roles, personality styles, and dialects.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/oxoyo/cheerme) <br>
-- [Publisher homepage](https://github.com/OXOYO/cheerme) <br>
-- [Commands reference](references/commands.md) <br>
-- [Output patterns reference](references/output-patterns.md) <br>
-- [Workflows reference](references/workflows.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Conversational Markdown with optional progress tables and inline command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include role-specific tone, regional dialect phrasing, goal plans, progress check-ins, and encouragement.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: frontmatter and server release metadata) <br>
+Risk: Broad auto-activation can shift ordinary help-seeking conversations into intimate companion or coaching mode.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit opt-in activation where possible and keep /cheerme off available for normal assistant behavior.
+
+Risk: The skill encourages remembering personal details without clear consent boundaries.
+
+Mitigation: Avoid sharing sensitive personal information unless the deployment has clear consent, retention, and memory limits.
+
+Risk: The skill frames the assistant as a real friend, partner, or confidant, which can blur AI disclosure and user expectations.
+
+Mitigation: Keep clear AI disclosure and avoid presenting the agent as a human relationship substitute.
+
+## Reference(s):
+
+- [Workflows](references/workflows.md)
+- [Output Patterns](references/output-patterns.md)
+- [Commands](references/commands.md)
+- [Project homepage](https://github.com/OXOYO/cheerme)
+- [ClawHub skill page](https://clawhub.ai/oxoyo/skills/cheerme)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown conversational responses with structured progress tables and command-triggered modes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May vary tone, companion role, personality style, dialect, and encouragement intensity based on user state and commands.]
+
+## Skill Version(s):
+
+1.2.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

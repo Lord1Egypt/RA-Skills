@@ -1,43 +1,56 @@
-## Description: <br>
-vLLM inference assistant for high-performance LLM deployment, PagedAttention, and OpenAI-compatible API serving. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+vLLM inference engine assistant for high-performance LLM deployment, PagedAttention, and OpenAI-compatible APIs.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineers use this skill to plan and operate high-throughput vLLM-based LLM serving, including installation, OpenAI-compatible API startup, GPU parallelism, model selection, quantization, and troubleshooting.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Mutable package versions and container tags can change installed behavior over time.
+
+Mitigation: Pin vLLM package versions and container image digests before using the commands.
+
+Risk: The sample serving commands can expose an unauthenticated GPU-backed inference service.
+
+Mitigation: Bind the service to localhost or a private interface unless intentionally public, and require API authentication.
+
+Risk: Mounting a broad Hugging Face cache can expose unrelated tokens or private model artifacts.
+
+Mitigation: Mount only the required model cache or use scoped credentials with least privilege.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and platform engineers use this skill to get practical guidance for deploying and tuning vLLM inference servers, including OpenAI-compatible serving, GPU memory settings, model choices, quantization, and troubleshooting. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Unpinned vLLM packages or Docker images can change behavior across installs. <br>
-Mitigation: Pin package and container image versions before using generated setup commands in production. <br>
-Risk: Mounting a broad Hugging Face cache into a container can expose more local model data than intended. <br>
-Mitigation: Mount only the cache paths required for the selected model and deployment. <br>
-Risk: An OpenAI-compatible API server exposed on port 8000 can be accessed by unauthorized clients if deployed without network controls. <br>
-Mitigation: Bind the service behind appropriate authentication, firewall rules, and private networking before exposing it. <br>
+**Output Format:** [Markdown guidance with tables and bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhangifonly/vllm) <br>
-- [Publisher profile](https://clawhub.ai/user/zhangifonly) <br>
+**Other Properties Related to Output:** [Commands may install vLLM, run containers, and start GPU-backed inference services; review and adapt before execution.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tools, MCP servers, or credential environment variables are declared.] <br>
+1.0.0 (source: artifact frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

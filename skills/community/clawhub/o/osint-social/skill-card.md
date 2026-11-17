@@ -1,43 +1,59 @@
-## Description: <br>
-Investigates a username across 1000+ social media platforms and websites using social-analyzer, with additional lookup support for Bilibili, Zhihu, and Weibo. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Investigates a username across 1000+ social media platforms and websites using social-analyzer, with supplemental checks for Bilibili, Zhihu, and Weibo.
 
-## Publisher: <br>
-[guleguleguru](https://clawhub.ai/user/guleguleguru) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[guleguleguru](https://clawhub.ai/user/guleguleguru)
 
-## Use Case: <br>
-External users and investigators use this skill to check whether a username appears on public social platforms, summarize likely profile matches, and support lawful self-auditing, security research, journalism, or similar public OSINT workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Username queries may be sent to many public websites where requests can be logged or rate-limited. <br>
-Mitigation: Use the skill only for lawful, consent-aware public OSINT and limit scan scope when appropriate. <br>
-Risk: Installing social-analyzer can modify the user's Python environment. <br>
-Mitigation: Prefer installing dependencies in an isolated Python environment. <br>
-Risk: Public profile matches can be misinterpreted as identity confirmation. <br>
-Mitigation: Present confidence tiers and require human confirmation before treating a match as the same person. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guleguleguru/osint-social) <br>
-- [Platform coverage reference](references/platforms.md) <br>
-- [social-analyzer](https://github.com/qeeqbox/social-analyzer) <br>
+## Use Case:
 
+External users, security researchers, journalists, and developers use this skill to check whether a public username appears across social platforms and to summarize likely matches for legitimate OSINT or self-audit workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with shell commands and structured findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summaries should prioritize confidence tiers, public profile links, relevant metadata, failed-request notes, and a privacy and ethics reminder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Username lookups are sent to many external services and may be sensitive when the target or purpose is ambiguous.
+
+Mitigation: Use the skill only for legitimate public-profile checks, avoid ambiguous third-party lookups, and include a reminder that results are public information and must be used lawfully.
+
+Risk: The setup guidance installs an unpinned package into the system Python environment with --break-system-packages.
+
+Mitigation: Prefer installing social-analyzer in a pinned virtual environment before running investigations.
+
+Risk: Broad cross-platform profile searches can produce uncertain matches.
+
+Mitigation: Treat confidence scores as triage signals and require manual confirmation for medium or approximate matches.
+
+## Reference(s):
+
+- [Platform Coverage Reference](references/platforms.md)
+- [social-analyzer](https://github.com/qeeqbox/social-analyzer)
+- [OSINT Social Analyzer on ClawHub](https://clawhub.ai/guleguleguru/skills/osint-social)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown-style conversational summaries with profile links, confidence scores, and setup or command guidance when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include confidence tiers, public profile metadata, and privacy or legality reminders.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

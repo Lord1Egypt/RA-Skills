@@ -1,42 +1,56 @@
-## Description: <br>
-Access 37+ datasets from the City of Quebec open data portal. Search, fetch, and analyze city data on streets, permits, trees, infrastructure, and more via the CKAN API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Access 37+ datasets from the City of Quebec open data portal, including streets, permits, trees, infrastructure, and related city data via the CKAN API.
 
-## Publisher: <br>
-[raychanpmp](https://clawhub.ai/user/raychanpmp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[raychanpmp](https://clawhub.ai/user/raychanpmp)
 
-## Use Case: <br>
-Developers, analysts, and civic-data users use this skill to discover Ville de Québec datasets, inspect dataset metadata, and fetch CKAN datastore records for analysis or export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a Python CLI through Bash, performs public web requests to donneesquebec.ca, and writes a small cached catalog under the OpenClaw workspace data directory. <br>
-Mitigation: Install and run it only in environments where Bash execution, public CKAN API access, and local cache storage are acceptable. <br>
+## Use Case:
 
+External users, analysts, and developers use this skill to discover Ville de Quebec open datasets, inspect dataset metadata, and fetch queryable CKAN records for civic data analysis.
 
-## Reference(s): <br>
-- [Ville de Québec Open Data Portal](https://www.ville.quebec.qc.ca/services/donnees-services-ouverts/) <br>
-- [Ville de Québec Data Hub](https://www.donneesquebec.ca/organisation/ville-de-quebec/) <br>
-- [CKAN API endpoint](https://www.donneesquebec.ca/api/3/action) <br>
-- [Dataset reference](references/datasets.md) <br>
-- [ClawHub skill page](https://clawhub.ai/raychanpmp/quebec-city-opendata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, JSON, CSV, analysis] <br>
-**Output Format:** [Markdown guidance with CLI commands and JSON or CSV data output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public CKAN API requests and may cache the dataset catalog locally for one hour.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The Bash-backed helper contacts donneesquebec.ca and caches the public dataset catalog locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in environments where outbound access to donneesquebec.ca and a local public-data cache are acceptable.
+
+Risk: CSV exports contain untrusted public data.
+
+Mitigation: Inspect CSV output or import it as text before opening it in spreadsheet software.
+
+## Reference(s):
+
+- [Dataset Reference](references/datasets.md)
+- [Ville de Quebec Open Data Portal](https://www.ville.quebec.qc.ca/services/donnees-services-ouverts/)
+- [Donnees Quebec - Ville de Quebec](https://www.donneesquebec.ca/organisation/ville-de-quebec/)
+- [Donnees Quebec CKAN API](https://www.donneesquebec.ca/api/3/action)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON or CSV command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The helper can contact donneesquebec.ca, cache the public dataset catalog locally, and print fetched records as JSON or CSV.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

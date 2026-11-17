@@ -1,40 +1,53 @@
-## Description: <br>
-Fetches webpage content with a stealth-enabled headless browser and converts the captured HTML into readable Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches webpage content with a stealth-enabled headless browser and converts captured HTML into readable Markdown.
 
-## Publisher: <br>
-[dlutwuwei](https://clawhub.ai/user/dlutwuwei) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dlutwuwei](https://clawhub.ai/user/dlutwuwei)
 
-## Use Case: <br>
-Developers and agents use this skill to retrieve authorized webpages, including news, finance pages, and long-form pages, and receive the page title plus Markdown content for downstream reading or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses stealth browser automation against arbitrary URLs and disables Chromium sandboxing. <br>
-Mitigation: Use it only for authorized sites, avoid secrets or internal addresses in URLs, and run it in an isolated environment. <br>
-Risk: The skill is designed to bypass basic anti-crawling checks. <br>
-Mitigation: Confirm that automated access is permitted for the target site before use. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve webpages that need browser execution or basic anti-crawl handling, then inspect the page title and extracted Markdown content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dlutwuwei/web-anti-crawl-fetch) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Console text with progress messages, page title, and Markdown body content.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown output is truncated to 20,000 characters by the script.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and scripts/package.json) <br>
+Risk: Opening user-provided URLs in an unsandboxed browser without URL safeguards can expose internal resources if misused.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in an isolated, non-privileged environment with no sensitive files, credentials, or internal network access, and use only URLs the operator is authorized to contact.
+
+Risk: The skill does not validate public HTTP or HTTPS targets or block local and private addresses across redirects.
+
+Mitigation: Prefer a revised version that validates public http/https URLs, blocks local and private address ranges across redirects, enables browser sandboxing, and pins dependencies with a lockfile.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dlutwuwei/skills/web-anti-crawl-fetch)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, shell commands, guidance]
+
+**Output Format:** [Console text with progress messages, page title, and Markdown content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown output is truncated by the script after 20000 characters.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

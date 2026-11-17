@@ -1,42 +1,57 @@
-## Description: <br>
-Conduct open-ended research on a topic, building a living markdown document. Supports interactive and deep research modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Conduct open-ended research on a topic, building a living markdown document. Supports interactive and deep research modes.
 
-## Publisher: <br>
-[BrennerSpear](https://clawhub.ai/user/BrennerSpear) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[brennerspear](https://clawhub.ai/user/brennerspear)
 
-## Use Case: <br>
-Developers and agent users use this skill to research questions, compare options, maintain a living markdown research document, and optionally run deeper asynchronous research through the Parallel AI workflow. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Setup references helper commands for deep research and PDF export that should be verified before use. <br>
-Mitigation: Verify the parallel-research and export-pdf scripts from a trusted source before enabling deep research or PDF export. <br>
-Risk: Setup asks users to persist a Parallel AI API key locally. <br>
-Mitigation: Use a scoped or revocable API key, store it with restrictive file permissions, and rotate it if exposed. <br>
-Risk: The setup flow includes system-wide symlink and shell installation options. <br>
-Mitigation: Prefer user-local symlinks and a trusted uv installation method unless system-wide installation is required. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [OpenClaw](https://openclaw.ai) <br>
-- [ClawHub Skill Page](https://clawhub.ai/BrennerSpear/parallel-ai-research) <br>
+## Use Case:
 
+Developers, researchers, and other agent users use this skill to investigate open-ended questions, maintain a living markdown research document, and optionally run longer Parallel AI deep research jobs.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown research notes with optional shell commands and PDF export guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local prompt, research, and PDF files in a per-topic research folder.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Setup guidance asks users to run a remote installer and broadly persist a Parallel AI API key in shell startup files.
+
+Mitigation: Review setup before installation; prefer a pinned or package-manager uv install, use a command-scoped environment variable or secret manager, and avoid adding the API key loader to shell startup files.
+
+Risk: Deep research prompts and findings may be saved locally and may be sent to Parallel AI.
+
+Mitigation: Avoid entering sensitive data unless the deployment has approved Parallel AI use, and review local research folders for data-retention requirements.
+
+Risk: System-wide installation uses elevated privileges when the user chooses that setup path.
+
+Mitigation: Use the user-scoped ~/.local/bin symlink unless system-wide installation is intentionally required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/brennerspear/skills/parallel-ai-research)
+- [OpenClaw](https://openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown research documents with inline shell commands and optional JSON snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local prompt.md, research.md, and research.pdf files in a per-topic research folder.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

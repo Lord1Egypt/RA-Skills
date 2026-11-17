@@ -1,0 +1,31 @@
+name: Publish Skill to ClawHub
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate SKILL.md and Manifests
+        run: |
+          test -f skills/agent-factory/SKILL.md
+          test -f skills/agent-factory/clawhub.json
+          python3 -c "import json; json.load(open('skills/agent-factory/clawhub.json'))"
+
+      - name: Install ClawHub CLI & Publish
+        env:
+          CLAWHUB_API_TOKEN: ${{ secrets.CLAWHUB_API_TOKEN }}
+        run: |
+          npx -y clawhub skill publish ./skills/agent-factory --token "$CLAWHUB_API_TOKEN"

@@ -1,40 +1,58 @@
-## Description: <br>
-OpenShow converts Markdown, Word, PDF, text, local HTML, and web URLs into a single fullscreen playable HTML slideshow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenShow turns Markdown, Word, PDF, text, local HTML, and URL inputs into a single full-screen playable HTML slideshow.
 
-## Publisher: <br>
-[lumacoder](https://clawhub.ai/user/lumacoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lumacoder](https://clawhub.ai/user/lumacoder)
 
-## Use Case: <br>
-Developers, creators, and presentation authors use this skill to turn source documents or web pages into portable single-file HTML decks for browser playback, projection, or sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports that web-fetching code silently falls back to insecure HTTPS handling. <br>
-Mitigation: Use trusted public URLs only, avoid sensitive internal URLs or private documents, and review generated HTML before sharing or deploying. <br>
+## Use Case:
 
+Developers, creators, and agent users use OpenShow to convert documents, notes, PDFs, local HTML, or web articles into offline, full-screen HTML decks that can be opened in a browser or OpenClaw.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lumacoder/open-show) <br>
-- [Artifact README](README.md) <br>
-- [Skill definition](SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated HTML file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces single-file HTML slideshows and may optionally open them in a browser.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.3 (source: server release metadata; artifact frontmatter reports 0.1.1) <br>
+Risk: Generated slides from untrusted local HTML or web pages may carry unsafe or misleading content into the browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted documents and public URLs, review generated HTML before presentation, and avoid automatic opening for untrusted inputs.
+
+Risk: Outbound URL and image fetching can retrieve unexpected remote content or leave retained remote URLs when image download fails.
+
+Mitigation: Prefer trusted local files for sensitive work, verify external media sources, and check the generated deck for missing or remote assets.
+
+Risk: Installing runtime dependencies directly into a shared Python environment can affect other projects.
+
+Mitigation: Install dependencies in a virtual environment before running the converter.
+
+## Reference(s):
+
+- [OpenShow ClawHub listing](https://clawhub.ai/lumacoder/skills/open-show)
+- [OpenShow README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, files, guidance]
+
+**Output Format:** [Markdown response with shell commands, generated HTML file paths, and presentation controls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates a single self-contained HTML slideshow file; optional flags can open it in a browser or OpenClaw.]
+
+## Skill Version(s):
+
+0.1.3 (source: server release metadata; artifact frontmatter says 0.1.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

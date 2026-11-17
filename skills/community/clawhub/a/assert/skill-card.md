@@ -1,38 +1,54 @@
-## Description: <br>
-Assertion patterns reference for guard clauses, preconditions, invariants, and contract programming when writing defensive code or implementing design-by-contract. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Assertion patterns reference for guard clauses, preconditions, invariants, and contract programming.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and engineers use this skill as a quick reference for assertion techniques, including preconditions, postconditions, invariants, language-specific assertion behavior, and common assertion antipatterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes a bundled Bash script. <br>
-Mitigation: Review the script before running it in tightly controlled environments; the security review found that it prints assertion-programming guidance and does not show hidden data access, network use, persistence, or destructive behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill as a quick reference for applying assertion patterns, design-by-contract checks, and defensive-programming guidance across codebases.
 
-## Reference(s): <br>
-- [BytesAgain](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown-style reference text printed by shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Command topics include intro, preconditions, postconditions, invariants, languages, contracts, antipatterns, strategies, help, and version.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The skill includes a shell script, so use involves local command execution.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the bundled script before use; server security evidence reports that it prints static guidance, requests no sensitive access, and does not modify the system.
+
+Risk: Assertion guidance can be misapplied to production input validation or security checks.
+
+Mitigation: Keep security, authorization, and public input validation in always-on checks rather than relying on disableable assertions.
+
+## Reference(s):
+
+- [Assert on ClawHub](https://clawhub.ai/bytesagain3/skills/assert)
+- [BytesAgain](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Plain text and Markdown-style guidance with code examples and shell command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static command-selected reference output; no external services or credentials required.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

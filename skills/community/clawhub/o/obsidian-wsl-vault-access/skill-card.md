@@ -1,42 +1,56 @@
-## Description: <br>
-Work with an Obsidian vault stored on Windows and accessed from WSL. Read, search, create, and edit markdown notes directly through mounted paths such as /mnt/c, /mnt/d, or other /mnt/<drive> locations. Use when the user wants note operations against a Windows-hosted Obsidian vault from WSL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Work with an Obsidian vault stored on Windows and accessed from WSL to read, search, create, and edit markdown notes through mounted paths such as /mnt/c or /mnt/d.
 
-## Publisher: <br>
-[wufei-png](https://clawhub.ai/user/wufei-png) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[wufei-png](https://clawhub.ai/user/wufei-png)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and note-taking users use this skill to let an agent operate on a Windows-hosted Obsidian vault from WSL while preserving Obsidian markdown conventions.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Vault notes may contain private personal data that could be exposed during broad searches or review.
+
+Mitigation: Provide the vault path explicitly and review requested broad searches before execution.
+
+Risk: Bulk edits or incorrect vault-root selection could change unintended notes.
+
+Mitigation: Confirm the vault root before broad operations and prefer targeted edits over full-file rewrites.
+
+Risk: Incorrect Windows-to-WSL path translation could direct work to the wrong location.
+
+Mitigation: Verify translated /mnt/<drive> paths before reading, creating, or editing notes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, knowledge workers, and agents use this skill to operate on a Windows-hosted Obsidian vault from WSL. It supports reading, searching, creating, and targeted editing of markdown notes while preserving Obsidian conventions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The agent may read or edit more notes than intended if it is given a broad /mnt path or whole-drive root. <br>
-Mitigation: Provide the exact vault root and require confirmation before broad searches, bulk edits, or important note changes. <br>
-Risk: Markdown edits can break Obsidian frontmatter, wiki-links, embeds, headings, or folder conventions. <br>
-Mitigation: Use targeted edits and preserve existing Obsidian structures unless the user explicitly asks to change them. <br>
-Risk: Filesystem shell commands operate directly on local vault files. <br>
-Mitigation: Review shell commands before execution and avoid destructive operations unless the requested file scope is clear. <br>
+**Output Format:** [Markdown text with optional shell command snippets and note content.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wufei-png/obsidian-wsl-vault-access) <br>
+**Other Properties Related to Output:** [May create or edit markdown files in a user-provided vault path.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and filesystem paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guidance assumes a user-provided vault root and WSL-mounted Windows paths.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

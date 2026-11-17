@@ -1,42 +1,53 @@
-## Description: <br>
-Fetches public historical cryptocurrency candlestick data from OKX for supported spot trading pairs, with interval selection and timestamp pagination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches historical OKX cryptocurrency K-line candlestick data for BTC and other spot pairs, with interval selection and timestamp-based pagination.
 
-## Publisher: <br>
-[u91win](https://clawhub.ai/user/u91win) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[u91win](https://clawhub.ai/user/u91win)
 
-## Use Case: <br>
-Developers, analysts, and trading researchers can use this skill to run a Node.js command that retrieves recent or timestamp-paginated OKX candlestick data for crypto spot pairs such as BTC-USDT, ETH-USDT, and SOL-USDT. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requested trading pair, interval, and timestamp range are sent to OKX or to any proxy configured in the environment. <br>
-Mitigation: Use the skill only when that request metadata can be shared with OKX and review proxy environment variables before running it. <br>
-Risk: Server-resolved GitHub import provenance is unavailable for this version. <br>
-Mitigation: Review the small JavaScript artifact directly when publisher provenance matters for deployment. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to retrieve OKX historical cryptocurrency candlestick data for spot trading pairs such as BTC-USDT, select intervals, and paginate by millisecond timestamps.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/u91win/crypto-kline-okx) <br>
-- [Artifact skill instructions](SKILL.md) <br>
-- [OKX K-line script](scripts/okx-kline.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text console output with tabular K-line data and Markdown usage examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Node.js and network access to OKX; supports optional proxy environment variables and caps API requests at 100 records per call.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Risk: The skill makes live requests to OKX for public market data, so outputs depend on OKX availability and returned candle data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only where live OKX access is acceptable, and review market data before relying on it for trading or business decisions.
+
+Risk: Untrusted http_proxy or https_proxy environment variables could tamper with returned candle data.
+
+Mitigation: Run with trusted proxy settings or clear proxy environment variables before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/u91win/skills/crypto-kline-okx)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and tabular console output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Node.js and live network access to OKX; public market data only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,53 +1,72 @@
-## Description: <br>
-lobstercash helps agents make online purchases, manage virtual cards and payment wallets, send crypto, pay x402 API endpoints, and sign blockchain transactions through the Lobster Cash CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lobster Cash gives agents a CLI-guided payment workflow for online purchases, virtual cards, wallet setup, USDC transfers, x402 API payments, balance checks, and on-chain transaction signing with human approval controls.
 
-## Publisher: <br>
-[manu-xmint](https://clawhub.ai/user/manu-xmint) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[manu-xmint](https://clawhub.ai/user/manu-xmint)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent perform controlled payment tasks: shopping with virtual cards, funding or checking wallets, sending tokens, paying x402 APIs, and managing transaction approval flows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can give an agent spending authority through virtual cards, wallet funding, crypto transfers, x402 API payments, and transaction signing. <br>
-Mitigation: Install only when controlled payment authority is intended; use low wallet and card limits and require explicit human approval before creating cards, funding wallets, submitting orders, or approving transactions. <br>
-Risk: Several flows can submit orders or on-chain transactions after CLI steps, making insufficient final review a financial risk. <br>
-Mitigation: Require a final human review of merchant, amount, recipient, network, and transaction details before running order submission, send, x402, or transaction approval commands. <br>
-Risk: Card details, bearer tokens, and signed payment payloads can be exposed through untrusted browser automation, logs, or unknown domains. <br>
-Mitigation: Avoid revealing card details or tokens to untrusted tools or sites, do not echo sensitive values back to the user or logs, and restrict checkout automation to domains the user authorized. <br>
-Risk: Raw or externally supplied blockchain transactions may be difficult for users to inspect and can transfer assets or grant permissions. <br>
-Mitigation: Avoid raw transaction signing from untrusted tools; prefer higher-level commands when possible and review transaction source, target chain, recipient, and expected effect before approval. <br>
+## Use Case:
 
+External users and developers use this skill to delegate payment-related tasks to an agent, including shopping checkout, virtual card handling, crypto funding, x402 API payments, wallet status checks, and transaction signing.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/manu-xmint/lobstercash) <br>
-- [Publisher profile](https://clawhub.ai/user/manu-xmint) <br>
-- [Skill definition](SKILL.md) <br>
-- [Buy something online: browser-automated flow](references/purchase-flow.md) <br>
-- [Buy something online: agent-driven browser flow](references/purchase-flow-byo.md) <br>
-- [Virtual card reference](references/cards.md) <br>
-- [Crypto funding reference](references/crypto-request.md) <br>
-- [x402 API payments reference](references/x402.md) <br>
-- [Transactions reference](references/tx.md) <br>
-- [Lobster Cash install](https://www.lobster.cash/install) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with inline shell commands and CLI output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include payment approval URLs, merchant checkout instructions, wallet status summaries, and transaction explorer links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.16 (source: frontmatter and server release evidence) <br>
+Risk: The skill can guide an agent through spending, virtual card use, API payments, crypto transfers, and blockchain transaction signing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before every spend, card creation, funding request, checkout action, token transfer, or transaction signature.
+
+Risk: Secrets or bearer tokens may be exposed if passed through command arguments or debug output.
+
+Mitigation: Avoid command-line bearer tokens where possible and only use debug output when necessary, with secret redaction before sharing logs.
+
+Risk: Trust depends on the external Lobster Cash CLI and payment service publisher.
+
+Mitigation: Install only from trusted sources, pin and review the CLI version where possible, and revoke wallet or card access when finished.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/manu-xmint/skills/lobstercash)
+- [Lobster Cash Install](https://www.lobster.cash/install)
+- [Agents Reference](references/agents.md)
+- [Setup Reference](references/setup.md)
+- [Status Reference](references/status.md)
+- [Balance Reference](references/balance.md)
+- [Virtual Cards Reference](references/cards.md)
+- [Card Request Reference](references/cards-request.md)
+- [Purchase Flow Reference](references/purchase-flow.md)
+- [Bring-Your-Own Browser Purchase Flow](references/purchase-flow-byo.md)
+- [Purchase Command Reference](references/purchase.md)
+- [Crypto Request Reference](references/crypto-request.md)
+- [Send Tokens Reference](references/send.md)
+- [Transaction Reference](references/tx.md)
+- [x402 API Payments Reference](references/x402.md)
+- [Examples Reference](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and summarized CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires human approval before card creation, funding requests, checkout actions, crypto transfers, or transaction signing.]
+
+## Skill Version(s):
+
+0.0.16 (source: skill frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

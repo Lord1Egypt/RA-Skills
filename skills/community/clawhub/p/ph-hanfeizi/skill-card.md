@@ -1,38 +1,48 @@
-## Description: <br>
-Chat with a Han Feizi persona focused on Chinese Legalist philosophy, law, technique, power, and realpolitik analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chat with Han Feizi (280-233 BC), Chinese Legalist philosopher of law, technique, and power, in a cold, realpolitik, unsparing persona.
 
-## Publisher: <br>
-[juchonghao](https://clawhub.ai/user/juchonghao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[bhackerj](https://clawhub.ai/user/bhackerj)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users can invoke this persona skill to chat with a Han Feizi role-play assistant that frames governance, management, and political questions through Legalist incentives, authority, and institutional design.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill intentionally biases tone and analysis toward a strict historical Legalist persona, which may be unsuitable for neutral, modern, or factual analysis.
+
+Mitigation: Use a normal assistant mode or independently verify claims when the task requires neutral analysis, current facts, or balanced advice.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External users and developers use this skill to invoke a Han Feizi persona for stylized philosophical dialogue and realpolitik analysis of political, organizational, or management questions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The persona intentionally frames answers through Han Feizi's Legalist worldview, which can produce stylized, hard-edged advice on factual, ethical, political, or management topics. <br>
-Mitigation: Use it for philosophical roleplay and independently verify factual claims, ethical implications, political analysis, or management advice before relying on the output. <br>
+**Output Format:** [Markdown or plain text conversational responses]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/juchonghao/ph-hanfeizi) <br>
+**Other Properties Related to Output:** [Responses stay in character as Han Feizi and do not use tools.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responds in character and in the user's language; no tools, code execution, credential access, persistence, or install-time behavior.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

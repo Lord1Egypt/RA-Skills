@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "root": "https://api.we-media.cn",
+    "auth_header": "X-API-Key",
+    "source_header": "X-WM-Source",
+    "official_site": "https://api.we-media.cn"
+  },
+  "endpoints": [
+    {
+      "key": "ch-download-url",
+      "name": "视频号播放地址",
+      "cat": "ch",
+      "method": "POST",
+      "path": "/openapi/wechat-native-channel-download-url/videos/download-url",
+      "price": 0.05,
+      "params": [
+        "url",
+        "shortUri",
+        "exportId",
+        "objectId",
+        "objectNonceId"
+      ],
+      "purpose": "短期播放地址",
+      "param_types": {
+        "url": "string",
+        "shortUri": "string",
+        "exportId": "string",
+        "objectId": "string",
+        "objectNonceId": "string"
+      },
+      "product_slug": "wechat-native-channel-download-url"
+    },
+    {
+      "key": "video-understanding",
+      "name": "视频视觉理解",
+      "cat": "ai",
+      "method": "POST",
+      "path": "/openapi/video-understanding/analyze",
+      "price": 0.12,
+      "params": [
+        "videoUrl",
+        "analysisMode",
+        "extraPrompt"
+      ],
+      "purpose": "多模态画面/时间线/OCR",
+      "mode_price": {
+        "summary": 0.12,
+        "timeline": 0.18,
+        "decompose": 0.24
+      },
+      "param_types": {
+        "videoUrl": "string",
+        "analysisMode": "string",
+        "extraPrompt": "string"
+      },
+      "product_slug": "video-understanding"
+    }
+  ]
+}

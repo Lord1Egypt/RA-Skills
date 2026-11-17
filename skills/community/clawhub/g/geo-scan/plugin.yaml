@@ -1,0 +1,21 @@
+name: geo-scan
+label: GEO Scan
+version: 1.2.7
+author: Aurelius
+homepage: https://github.com/AureliusClaw/geo-scan
+description: >
+  Answer-engine readiness audit for any public website, with no API key and no
+  account. Scores a site 0-100 on six axes: crawler access for search/retrieval
+  agents (20, a gate), machine readability (15), snippet permissions (10),
+  structure (25), quotability (20) and freshness (10). Every score carries the
+  evidence line that produced it. Returns a compact JSON report with a
+  prioritised action list. Scanning is read-only HTTP(S) GETs obeying robots.txt
+  (RFC 9309 matching, incl. wildcards, end anchors and Crawl-delay) at one
+  request per second, 90 s cap, public hosts only; ftp:, file: and all other
+  schemes are refused. With save=true it writes the full Markdown and JSON
+  report into out_dir, confined to ~/.hermes/cache or the working directory.
+  stdlib only.
+requires_hermes: ">=0.21.5"
+provides_tools:
+  - geo_scan
+provides_hooks: []

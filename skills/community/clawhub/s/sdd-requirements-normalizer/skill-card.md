@@ -1,43 +1,55 @@
-## Description: <br>
-将零散、模糊、非标准化的产品需求转化为符合 Spec Driven Development（SDD）模式的 requirement 文档，用于原型设计、方案评审与后续实现。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Turns rough or fragmented product requirements into Chinese-first Spec Driven Development requirement documents for prototyping, review, and implementation planning.
 
-## Publisher: <br>
-[ysredcity](https://clawhub.ai/user/ysredcity) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ysredcity](https://clawhub.ai/user/ysredcity)
 
-## Use Case: <br>
-Product managers, designers, founders, and prototype builders use this skill to turn rough product ideas, meeting notes, PRDs, screenshots, and partial requirements into structured SDD requirement documents. It emphasizes user flows, interaction rules, layout requirements, states, edge cases, prototype generation requirements, acceptance criteria, and explicit assumptions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated requirements may include assumptions that shape product scope or prototype direction. <br>
-Mitigation: Review the assumptions and open questions before using the document for design, implementation, or stakeholder approval. <br>
-Risk: The skill defaults to Chinese output, which may not match every team's review language. <br>
-Mitigation: Specify the preferred output language when requesting the requirements document. <br>
+## Use Case:
 
+Product managers, designers, founders, and developers use this skill to turn chats, notes, PRDs, screenshots, feature ideas, or partial requirements into structured SDD requirement documents. It is most useful before prototyping, design review, Figma work, UI generation, or frontend implementation planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ysredcity/sdd-requirements-normalizer) <br>
-- [SDD requirements template](references/sdd-requirements-template.md) <br>
-- [Interaction and layout checklist](references/interaction-layout-checklist.md) <br>
-- [Design foundations](references/design-foundations.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown requirement document, usually in Chinese unless the user requests another language] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes feature tables, interaction and layout requirements, prototype generation requirements, acceptance criteria, and a section for assumptions or open questions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill may add reasonable assumptions to incomplete product requirements.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the documented assumptions and open questions before using the output for design, prototyping, or implementation.
+
+Risk: The default Chinese-first output may not match teams that need English or bilingual requirements.
+
+Mitigation: Request English or bilingual output explicitly when that is required.
+
+## Reference(s):
+
+- [SDD requirements template](references/sdd-requirements-template.md)
+- [Interaction and layout checklist](references/interaction-layout-checklist.md)
+- [Design foundations](references/design-foundations.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Chinese-first Markdown requirement document with headings, tables, and bullet lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to Chinese unless the user explicitly requests English or bilingual output.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

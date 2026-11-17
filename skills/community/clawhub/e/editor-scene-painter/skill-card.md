@@ -1,40 +1,53 @@
-## Description: <br>
-Helps screenplay editors add memorable visual anchors and richer sensory action detail to scenes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides Chinese-language screenplay editing guidance for adding memorable visual anchors, sensory details, and emotionally aligned action descriptions to each scene.
 
-## Publisher: <br>
-[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[huangliujiao-tal](https://clawhub.ai/user/huangliujiao-tal)
 
-## Use Case: <br>
-Screenwriters and story editors use this skill after drafting a scene or during story-impact review to create visual memory points, add sensory action details, and annotate visual anchors for later review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Visual-anchor suggestions may conflict with the scene's emotional intent or distract from the draft. <br>
-Mitigation: Review suggestions before applying them and keep anchors aligned with the scene's emotional arc and tone. <br>
-Risk: The skill may encourage overly dense visual annotation if used mechanically. <br>
-Mitigation: Keep each scene focused on at most two visual anchors and use the annotations as editorial review aids. <br>
+## Use Case:
 
+Screenwriters, editors, and story-development agents use this skill to strengthen scene action lines with visual memory points, sensory texture, and visual-anchor tags during drafting or review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/editor-scene-painter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style screenplay guidance with annotated action-line examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces editorial suggestions and visual-anchor labels; it does not edit files or access external systems.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill is written for Chinese-language screenplay workflows, so outputs may need adaptation for other languages or screenplay conventions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent to preserve the visual-anchor structure while adapting wording, examples, and formatting to the target language or production standard.
+
+Risk: Visual detail suggestions can conflict with a scene's emotional tone or overcrowd action lines if applied too heavily.
+
+Mitigation: Review anchors against the scene intent, keep visual information in action-description lines, and limit each scene to at most two visual anchors.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/huangliujiao-tal/skills/editor-scene-painter)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown prose with screenplay action-line examples and visual-anchor tags]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language guidance focused on screenplay action descriptions; no code execution or file generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

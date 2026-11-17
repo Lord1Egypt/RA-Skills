@@ -1,42 +1,55 @@
-## Description: <br>
-根据用户描述的法律问题，自动检索相关法规、司法解释、典型案例和操作指南，覆盖债务纠纷、劳动争议、合同纠纷三大场景。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+根据用户描述的法律问题，自动检索相关法规、司法解释、典型案例和操作指南，覆盖债务纠纷、劳动争议、合同纠纷三大场景。
 
-## Publisher: <br>
-[hjfl888](https://clawhub.ai/user/hjfl888) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hjfl888](https://clawhub.ai/user/hjfl888)
 
-## Use Case: <br>
-External legal, consulting, and operations users can use this skill to gather Chinese-language legal reference material for debt, labor, and contract questions. Outputs should be treated as research aids and checked against current law, cited authorities, and the relevant jurisdiction before action. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Legal answers may be incomplete, outdated, or mismatched to the user's jurisdiction. <br>
-Mitigation: Verify cited laws, judicial interpretations, cases, and local procedural rules before relying on the output. <br>
-Risk: The artifact includes self-asserted CLEAN and verified claims plus consulting contact information. <br>
-Mitigation: Rely on the server security evidence for risk posture and treat contact details as publisher-provided promotional information. <br>
+## Use Case:
 
+Legal professionals, consultants, and external users can use this Chinese-language skill to turn a described legal issue into relevant statutes, judicial interpretations, case references, and practical guidance for debt disputes, labor disputes, contract disputes, and general legal lookup.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hjfl888/legal-research-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/hjfl888) <br>
-- [Publisher website](https://flzwcz.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Chinese-language legal research summary with statutes, judicial interpretation notes, case references, and practical guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable output; legal references and jurisdiction-specific conclusions require independent verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server release evidence and skill.json; SKILL.md frontmatter lists 2.1.0) <br>
+Risk: Legal citations or practical guidance may be outdated, incomplete, or inaccurate for a user's jurisdiction or facts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify legal citations with authoritative current sources before acting on them.
+
+Risk: The artifact includes self-asserted CLEAN, verified, and local-only labels that should not be treated as legal or platform assurance.
+
+Mitigation: Use the server security evidence as the authoritative risk source and review the artifact before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hjfl888/skills/legal-research-assistant)
+- [Publisher profile](https://clawhub.ai/user/hjfl888)
+- [泓景咨询 website](https://flzwcz.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style Chinese legal research notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+2.3.1 (source: server release evidence and skill.json; SKILL.md frontmatter says 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

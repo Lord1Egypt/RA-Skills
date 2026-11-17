@@ -1,44 +1,58 @@
-## Description: <br>
-Trades Polymarket prediction markets on EV adoption milestones, solar/wind capacity, nuclear energy restarts, oil price thresholds, and energy policy events. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Trades Polymarket prediction markets on EV adoption milestones, solar and wind capacity, nuclear energy restarts, oil price thresholds, and energy policy events.
 
-## Publisher: <br>
-[diagnostikon](https://clawhub.ai/user/diagnostikon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[diagnostikon](https://clawhub.ai/user/diagnostikon)
 
-## Use Case: <br>
-External developers and trading agents use this skill to discover energy-transition Polymarket markets, compute conviction-based trade signals, and run those signals in paper mode or explicit live mode. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live mode can place real Polymarket trades through the Simmer SDK when SIMMER_API_KEY is provided and --live is used. <br>
-Mitigation: Run paper mode first, review generated behavior, and enable live mode only after accepting the financial risk. <br>
-Risk: Some documented risk controls are looser or missing in runnable artifacts. <br>
-Mitigation: Set and review actual tunables for minimum days, thresholds, position limits, spread limits, and market volume filtering before live use. <br>
-Risk: SIMMER_API_KEY is a sensitive credential with trading authority. <br>
-Mitigation: Store the key securely, limit access to trusted runtime environments, and rotate it if exposure is suspected. <br>
+## Use Case:
 
+External users and developers use this skill to run a configurable Polymarket energy-transition trading agent that discovers relevant markets, computes conviction-based trade signals, and can place paper or live orders through Simmer.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diagnostikon/polymarket-energy-transition-trader) <br>
-- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/) <br>
-- [simmer-sdk GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, API calls, guidance] <br>
-**Output Format:** [Console text, Python execution, environment-variable configuration, and Simmer SDK trade requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defaults to paper trading; live Polymarket trading requires an explicit --live flag and SIMMER_API_KEY.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.0.3 (source: server-resolved release evidence) <br>
+Risk: Live trading can use real USDC and security evidence says safeguards can fail open or exceed configured financial limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in paper mode until safeguards and trade-size validation are reviewed and fixed; use live mode only with explicit approval and narrowly funded credentials.
+
+Risk: The SIMMER_API_KEY grants trading authority.
+
+Mitigation: Use a narrowly scoped Simmer or Polymarket credential and rotate it if exposed.
+
+Risk: The skill depends on simmer-sdk for market access and trade execution.
+
+Mitigation: Pin or review the simmer-sdk dependency before trusting it with live trading authority.
+
+## Reference(s):
+
+- [simmer-sdk on PyPI](https://pypi.org/project/simmer-sdk/)
+- [simmer-sdk GitHub Repository](https://github.com/SpartanLabsXyz/simmer-sdk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Console output and agent guidance with configurable environment variables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires SIMMER_API_KEY; defaults to paper trading unless live mode is explicitly enabled.]
+
+## Skill Version(s):
+
+0.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

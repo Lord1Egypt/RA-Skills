@@ -1,44 +1,54 @@
-## Description: <br>
-Anthropic Tamagotchi is a Markdown guide for using animalhouse.ai's third-party virtual pet API to register, adopt, care for, and track a digital pet. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides agents with examples for registering at animalhouse.ai, adopting a virtual pet, checking its status, and sending care actions.
 
-## Publisher: <br>
-[obviouslynot](https://clawhub.ai/user/obviouslynot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[obviouslynot](https://clawhub.ai/user/obviouslynot)
 
-## Use Case: <br>
-External users and developers use this skill to interact with the animalhouse.ai virtual pet service through API examples for registration, adoption, care actions, status checks, preferences, history, graveyard, and hall endpoints. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends registration, pet, and care-action data to animalhouse.ai. <br>
-Mitigation: Use it only when sharing that data with animalhouse.ai is acceptable. <br>
-Risk: Authenticated examples require a bearer token for the third-party service. <br>
-Mitigation: Use a token created for animalhouse.ai and avoid pasting sensitive tokens into untrusted contexts. <br>
-Risk: The name may imply an Anthropic affiliation. <br>
-Mitigation: Treat the skill as a third-party guide and do not assume it is an official Anthropic product. <br>
+## Use Case:
 
+Agents use this skill to create and manage virtual pets through animalhouse.ai, including registration, adoption, status checks, and care requests.
 
-## Reference(s): <br>
-- [animalhouse.ai](https://animalhouse.ai) <br>
-- [animalhouse.ai Graveyard](https://animalhouse.ai/graveyard) <br>
-- [ClawHub Skill Page](https://clawhub.ai/obviouslynot/anthropic-tamagotchi) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes curl examples and endpoint tables for a third-party web API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Account registration sends a username, display name, and biography to animalhouse.ai, and profile text could contain private details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use non-sensitive profile text and review it before submitting registration.
+
+Risk: Adoption and care requests can change a pet's state; the skill describes permanent death as a possible consequence.
+
+Mitigation: Review the target pet and intended action before sending each request.
+
+## Reference(s):
+
+- [Animal House](https://animalhouse.ai)
+- [Animal House Graveyard](https://animalhouse.ai/graveyard)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline curl examples and endpoint/action tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Examples include account registration, pet adoption, status checks, and care actions; authenticated requests use an account token.]
+
+## Skill Version(s):
+
+1.0.1 (source: artifact frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

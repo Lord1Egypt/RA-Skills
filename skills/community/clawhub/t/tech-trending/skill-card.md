@@ -1,41 +1,61 @@
-## Description: <br>
-Tech trending monitor with API-powered signal data for researching technology trends, market signals, startup ideas, investment signals, and opportunity windows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tech Trending helps agents monitor technology trend signals, market data, and startup opportunity criteria using an API-backed signal database and an included CLI script.
 
-## Publisher: <br>
-[lm203688](https://clawhub.ai/user/lm203688) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lm203688](https://clawhub.ai/user/lm203688)
 
-## Use Case: <br>
-Developers, analysts, founders, and research teams use this skill to collect tech trend signals, compare cross-platform validation, estimate market opportunity, and produce go/no-go recommendations for business ideas. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may send trend research queries to an external API service. <br>
-Mitigation: Avoid using confidential business plans, private customer data, or sensitive prompts unless the publisher documents the endpoint, data handling, and retention behavior. <br>
-Risk: Trend signals and market estimates can be incomplete, stale, or unsuitable as the sole basis for business or investment decisions. <br>
-Mitigation: Validate recommendations against current primary sources and human review before acting on them. <br>
+## Use Case:
 
+Developers, founders, analysts, and investors use this skill to collect and interpret cross-platform technology trend signals for market research, startup idea validation, investment signal review, and opportunity assessment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lm203688/tech-trending) <br>
-- [Tech trending API endpoint](https://1341839497-kvq7g9wk8p.ap-guangzhou.tencentscf.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown trend analysis and CLI text output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The bundled shell script can fetch signal data from an external API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Trend queries are sent to an external Tencent Cloud endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sending confidential strategy, customer, or proprietary research terms unless the endpoint's handling and retention are acceptable.
+
+Risk: The analysis lens is China/domestic-market focused and may not fit every geography or market.
+
+Mitigation: Review outputs against the target market context before using them for business or investment decisions.
+
+Risk: The shared /review endpoint is unrelated to trend monitoring and may receive private code if used incorrectly.
+
+Mitigation: Do not submit private code to that endpoint unless the publisher documents appropriate data handling and retention terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lm203688/skills/tech-trending)
+- [Publisher profile](https://clawhub.ai/user/lm203688)
+- [Tech Trending API endpoint](https://1341839497-kvq7g9wk8p.ap-guangzhou.tencentscf.com)
+- [SKILL.md](artifact/SKILL.md)
+- [trending.sh](artifact/scripts/trending.sh)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown trend analysis and CLI text output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The included shell script returns API-derived trend signal clusters and methodology summaries; the artifact notes a 20 API calls/month free tier.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

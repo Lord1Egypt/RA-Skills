@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hyperliquid Wallet Audit"
+  short_description: "Audit public wallet outcomes, costs and evidence"
+  default_prompt: "Use $hyperliquid-wallet-audit to produce a read-only public-wallet diagnostic with signed costs, current exposure and explicit evidence gaps."

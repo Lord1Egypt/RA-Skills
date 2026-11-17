@@ -4,20 +4,53 @@ Detailed storage analysis: by year, type, source, growth trends, storage hogs.
 """
 
 import sys
-from typing import Any, Optional
+from typing import Any
 
-from _common import PhotosDB, coredata_to_datetime, format_size, get_asset_kind_name, run_script
+from _common import (
+    SCREEN_RECORDING_SQL,
+    SCREENSHOT_SQL,
+    PhotosDB,
+    coredata_to_local,
+    display_name,
+    format_size,
+    get_asset_kind_name,
+    has_timezone_offset,
+    local_datetime_sql,
+    original_filename_sql,
+    run_script,
+    tz_offset_sql,
+)
+from _schema import FILE_SIZE, ORIGINAL_FILENAME, Degradation, get_schema
+
+# Schema contract (T1.4): see _schema. Missing required → exit 5; missing optional → `degraded`.
+REQUIRED_COLUMNS: tuple[str, ...] = (
+    "ZASSET.ZDATECREATED",
+    "ZASSET.ZFILENAME",
+    "ZASSET.ZISDETECTEDSCREENSHOT",
+    "ZASSET.ZKIND",
+    "ZASSET.ZTRASHEDSTATE",
+    "ZASSET.ZUNIFORMTYPEIDENTIFIER",
+    *FILE_SIZE,
+    "ZADDITIONALASSETATTRIBUTES.ZORIGINALWIDTH",
+    "ZADDITIONALASSETATTRIBUTES.ZORIGINALHEIGHT",
+)
+OPTIONAL_COLUMNS: dict[str, tuple[str, ...]] = {"original_filenames": ORIGINAL_FILENAME}
 
 
-def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
+def analyze_storage(db_path: str | None = None) -> dict[str, Any]:
     """
     Perform detailed storage analysis.
 
     Returns:
         Storage analysis dictionary
     """
-    with PhotosDB(db_path) as conn:
+    with PhotosDB(db_path, require=REQUIRED_COLUMNS, operation="Storage analysis") as conn:
+        name_col = original_filename_sql(get_schema(conn))
+        degraded = Degradation(get_schema(conn))
+        degraded.check("original_filenames", *OPTIONAL_COLUMNS["original_filenames"])
         cursor = conn.cursor()
+        tz_available = has_timezone_offset(cursor)
+        local_dt = local_datetime_sql(tz_available)
 
         # Total storage
         cursor.execute("""
@@ -54,9 +87,9 @@ def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
             }
 
         # By year
-        cursor.execute("""
+        cursor.execute(f"""
             SELECT
-                strftime('%Y', datetime(a.ZDATECREATED + 978307200, 'unixepoch')) as year,
+                strftime('%Y', {local_dt}) as year,
                 COUNT(*) as count,
                 SUM(aa.ZORIGINALFILESIZE) as total_bytes
             FROM ZASSET a
@@ -78,9 +111,9 @@ def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
             }
 
         # By year and month (for growth analysis)
-        cursor.execute("""
+        cursor.execute(f"""
             SELECT
-                strftime('%Y-%m', datetime(a.ZDATECREATED + 978307200, 'unixepoch')) as year_month,
+                strftime('%Y-%m', {local_dt}) as year_month,
                 COUNT(*) as count,
                 SUM(aa.ZORIGINALFILESIZE) as total_bytes
             FROM ZASSET a
@@ -106,21 +139,25 @@ def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
                 }
             )
 
-        # Screenshots vs non-screenshots
-        cursor.execute("""
+        # Screenshots vs screen recordings vs everything else
+        cursor.execute(f"""
             SELECT
-                a.ZISDETECTEDSCREENSHOT,
+                CASE
+                    WHEN {SCREENSHOT_SQL} THEN 'screenshots'
+                    WHEN {SCREEN_RECORDING_SQL} THEN 'screen_recordings'
+                    ELSE 'photos_videos'
+                END AS source,
                 COUNT(*) as count,
                 SUM(aa.ZORIGINALFILESIZE) as total_bytes
             FROM ZASSET a
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
             WHERE a.ZTRASHEDSTATE != 1
-            GROUP BY a.ZISDETECTEDSCREENSHOT
+            GROUP BY source
         """)
 
         by_source = {}
         for row in cursor.fetchall():
-            source = "screenshots" if row["ZISDETECTEDSCREENSHOT"] else "photos_videos"
+            source = row["source"]
             total_bytes = row["total_bytes"] or 0
             by_source[source] = {
                 "count": row["count"],
@@ -130,15 +167,17 @@ def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
             }
 
         # Storage hogs (top 20 largest files)
-        cursor.execute("""
+        cursor.execute(f"""
             SELECT
                 a.Z_PK,
                 a.ZFILENAME,
+                {name_col},
                 a.ZDATECREATED,
                 a.ZKIND,
                 aa.ZORIGINALFILESIZE,
                 aa.ZORIGINALWIDTH,
-                aa.ZORIGINALHEIGHT
+                aa.ZORIGINALHEIGHT,
+                {tz_offset_sql(tz_available)} AS tz_offset
             FROM ZASSET a
             LEFT JOIN ZADDITIONALASSETATTRIBUTES aa ON a.Z_PK = aa.ZASSET
             WHERE a.ZTRASHEDSTATE != 1
@@ -149,11 +188,12 @@ def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
 
         storage_hogs = []
         for row in cursor.fetchall():
-            created = coredata_to_datetime(row["ZDATECREATED"])
+            created = coredata_to_local(row["ZDATECREATED"], row["tz_offset"])
             storage_hogs.append(
                 {
                     "id": row["Z_PK"],
                     "filename": row["ZFILENAME"],
+                    "original_filename": row["original_filename"],
                     "created": created.isoformat() if created else None,
                     "kind": get_asset_kind_name(row["ZKIND"]),
                     "size": row["ZORIGINALFILESIZE"],
@@ -192,6 +232,7 @@ def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
             )
 
         return {
+            "degraded": degraded.entries,
             "summary": {
                 "total_storage": total_storage,
                 "total_formatted": format_size(total_storage),
@@ -203,6 +244,13 @@ def analyze_storage(db_path: Optional[str] = None) -> dict[str, Any]:
             "growth": growth,
             "storage_hogs": storage_hogs,
         }
+
+
+SOURCE_LABELS = {
+    "screenshots": "Screenshots",
+    "screen_recordings": "Screen Recordings",
+    "photos_videos": "Photos & Videos",
+}
 
 
 def format_summary(analysis: dict[str, Any]) -> str:
@@ -226,7 +274,7 @@ def format_summary(analysis: dict[str, Any]) -> str:
     if analysis["by_source"]:
         lines.append("By Source:")
         for source, data in analysis["by_source"].items():
-            source_name = "Screenshots" if source == "screenshots" else "Photos & Videos"
+            source_name = SOURCE_LABELS.get(source, source)
             lines.append(f"  {source_name}: {data['total_formatted']} ({data['percent']:.1f}%)")
         lines.append("")
 
@@ -242,7 +290,7 @@ def format_summary(analysis: dict[str, Any]) -> str:
         lines.append("Top 10 Largest Files:")
         for i, item in enumerate(analysis["storage_hogs"][:10], 1):
             kind_emoji = "📹" if item["kind"] == "video" else "📸"
-            lines.append(f"  {i}. {kind_emoji} {item['size_formatted']} - {item['filename']}")
+            lines.append(f"  {i}. {kind_emoji} {item['size_formatted']} - {display_name(item)}")
             if item["dimensions"]:
                 lines.append(f"      {item['dimensions']}, {item['kind']}")
         lines.append("")

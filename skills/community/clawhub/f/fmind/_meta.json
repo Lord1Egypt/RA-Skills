@@ -1,0 +1,7 @@
+{
+  "slug": "fmind",
+  "version": "2.0.0",
+  "license": "MIT-0",
+  "description": "FMind knowledge and external-memory gateway skill with unified user and Agent Binding credentials.",
+  "entry": "SKILL.md"
+}

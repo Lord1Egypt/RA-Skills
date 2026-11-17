@@ -1,43 +1,59 @@
-## Description: <br>
-Install and enroll the Wazuh agent inside Windows VMs hosted on Proxmox VE using QEMU guest agent execution without requiring WinRM, SSH, RDP, GPO, or Active Directory credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and enrolls the Wazuh agent inside Windows VMs hosted on Proxmox VE through QEMU guest agent execution, without requiring WinRM, SSH, RDP, GPO, or AD credentials.
 
-## Publisher: <br>
-[eddygk](https://clawhub.ai/user/eddygk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[eddygk](https://clawhub.ai/user/eddygk)
 
-## Use Case: <br>
-Infrastructure and security operators use this skill to enroll specific Windows Proxmox guests into a Wazuh manager through QEMU guest agent execution. It helps plan the manager-side group setup, in-guest agent installation, connection restart, and manager-side verification steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow performs privileged, state-changing software installation inside Windows VMs through QEMU guest agent execution. <br>
-Mitigation: Use it only for intentional Wazuh deployment on confirmed VM IDs during an approved change window, and review commands before execution. <br>
-Risk: Registration passwords, Proxmox API tokens, and QGA execution can expose secrets or grant administrative access if mishandled. <br>
-Mitigation: Do not paste registration passwords into chat or command examples; prefer stdin-based secret passing or the documented authd.pass alternative with prompt deletion. <br>
+## Use Case:
 
+Developers and infrastructure operators use this skill to enroll Windows Proxmox guests into a Wazuh manager through QEMU guest agent commands, including group preparation, silent MSI installation, service restart, and manager-side verification.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/eddygk/skills/proxmox-wazuh-enroll) <br>
-- [Project homepage](https://github.com/eddygk/proxmox-wazuh-enroll) <br>
-- [QGA execution reference](references/qga-exec.md) <br>
-- [Wazuh agent enrollment reference](references/wazuh-agent-enroll.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline bash, Windows command, JSON, and PowerShell examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [State-changing workflow that requires confirmed VM IDs, manager address, agent group, and registration-secret handling before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Guest execution runs with very high Windows privileges and can install software on live servers.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Limit use to trusted operators, require explicit confirmation of the target VM and change window, and verify the manager address, agent group, and intended action before running guest commands.
+
+Risk: Installer and Proxmox API-token handling can become unsafe if TLS verification is disabled or installer integrity is not checked.
+
+Mitigation: Do not use curl -k with Proxmox API tokens, and pin and verify the Wazuh MSI hash and publisher signature before installation.
+
+Risk: The Wazuh registration password could be exposed through command lines, logs, or chat.
+
+Mitigation: Pass the registration password through QGA stdin or a short-lived in-guest file that is deleted immediately, and keep the value out of logs and chat.
+
+## Reference(s):
+
+- [QGA execution - running the install in a Windows guest](references/qga-exec.md)
+- [Wazuh agent enrollment on a Windows Proxmox VM (via QGA)](references/wazuh-agent-enroll.md)
+- [Project homepage](https://github.com/eddygk/proxmox-wazuh-enroll)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell, PowerShell, batch, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces operational guidance for state-changing Wazuh enrollment through Proxmox QEMU guest agent execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

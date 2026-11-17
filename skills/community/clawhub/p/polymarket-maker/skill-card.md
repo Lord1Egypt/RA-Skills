@@ -1,44 +1,61 @@
-## Description: <br>
-Continuous Static Market Making execution skill for Polymarket. Sells BOTH sides of 5-minute binary markets at $0.52. Features multi-asset support and an automated 8% Stop-Loss. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Runs a continuous static market-making loop for Polymarket 5-minute crypto markets by placing fixed-price limit sell orders on both UP and DOWN tokens.
 
-## Publisher: <br>
-[thony32](https://clawhub.ai/user/thony32) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[thony32](https://clawhub.ai/user/thony32)
 
-## Use Case: <br>
-External users who intentionally operate Polymarket 5-minute crypto market-making use this skill to start a continuous trading loop and choose the initial asset and share allocation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate an autonomous real-money Polymarket trading process. <br>
-Mitigation: Use a dedicated low-balance wallet and keep LIVE_TRADING unset unless deliberately testing live orders. <br>
-Risk: The suggested background process can continue running unattended. <br>
-Mitigation: Define maximum runtime and exposure limits before launch, and know how to find and stop the node process. <br>
-Risk: The security scan notes weak user controls and an overclaimed stop-loss. <br>
-Mitigation: Monitor balances and open orders independently, and do not rely on the built-in stop-loss as the only loss control. <br>
-Risk: Runtime dependencies and remote market APIs affect execution behavior. <br>
-Mitigation: Inspect and pin dependencies before use, then run with the minimum wallet balance needed for the intended test. <br>
+## Use Case:
 
+External developers and trading operators use this skill to start a Polymarket 5-minute crypto market-making bot, choose the asset scope, and set the initial share allocation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/thony32/polymarket-maker) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands may start a long-running background Node.js trading process and write logs to bot_log.json.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and package.json) <br>
+Risk: Live mode can place real-money Polymarket orders continuously when run with a funded wallet.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing or running with funds, use strict share and notional caps, and keep active monitoring in place.
+
+Risk: Background execution may continue until manually stopped.
+
+Mitigation: Prefer foreground or bounded execution for review, and define clear stop and monitoring commands before use.
+
+Risk: The advertised 8% stop-loss should not be treated as account-level protection.
+
+Mitigation: Use independent account controls and authenticated fill and balance reconciliation.
+
+Risk: Dependencies are version-ranged rather than pinned.
+
+Mitigation: Pin dependencies and review updates before running the skill in a live trading environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/thony32/skills/polymarket-maker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash command examples and JSON runtime status output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The skill can initiate a continuous trading loop and requires operator-controlled allocation and monitoring.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

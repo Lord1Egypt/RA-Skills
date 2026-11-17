@@ -1,41 +1,53 @@
-## Description: <br>
-Science-based running coach with HD visual training plans and Garmin sync for runners from 5K fitness to marathon. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A running coach that logs training, offers evidence-driven guidance, and sends visual training plans through Telegram, with optional local Garmin data sync.
 
-## Publisher: <br>
-[ENAwareness](https://clawhub.ai/user/ENAwareness) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[enawareness](https://clawhub.ai/user/enawareness)
 
-## Use Case: <br>
-External runners use this skill through Telegram to log runs, request training plans, review trends, and optionally sync Garmin data for coaching feedback. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The image feature may process untrusted or HTML-like text while generating Telegram images. <br>
-Mitigation: Review generated content before sending images and avoid routing untrusted or HTML-like text through the image feature until escaping is fixed. <br>
-Risk: The skill can store persistent fitness data and use Telegram bot access plus optional Garmin account access. <br>
-Mitigation: Keep tokens and passwords out of logs and repositories, limit use to trusted accounts, and periodically review or delete MEMORY.md, garmin/.garth, and local Garmin activity files. <br>
+## Use Case:
 
+Runners use this skill to track workouts, review training and optional Garmin health metrics, and receive personalized coaching and visual weekly plans in Telegram.
 
-## Reference(s): <br>
-- [Run Coach on ClawHub](https://clawhub.ai/ENAwareness/run-coach) <br>
-- [garminconnect releases](https://github.com/cyberjunky/python-garminconnect/releases) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command snippets and optional generated image delivery through Telegram.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Telegram bot credentials for image delivery; Garmin sync is optional and depends on user-provided Garmin credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: Garmin credentials, session tokens, and sensitive health metrics remain on the local machine until deleted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable Garmin sync only if local storage is acceptable; protect the skill data directory and delete saved Garmin data and tokens when no longer needed.
+
+Risk: Sending a plan uploads its images to the configured Telegram chat.
+
+Mitigation: Check the configured chat ID and review plan images before running send commands.
+
+## Reference(s):
+
+- [Run Coach on ClawHub](https://clawhub.ai/enawareness/skills/run-coach)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, Images]
+
+**Output Format:** [Telegram coaching messages and training-plan image albums]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Optional Garmin sync stores activity and health summaries locally.]
+
+## Skill Version(s):
+
+1.1.8 (source: frontmatter, CHANGELOG, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

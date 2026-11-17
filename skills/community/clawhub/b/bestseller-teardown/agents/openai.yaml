@@ -1,0 +1,4 @@
+interface:
+  display_name: "Amazon 热销商品页拆解"
+  short_description: "拆解已提供竞品商品页的结构与证据"
+  default_prompt: "使用 $amazon-best-seller-teardown 拆解主 ASIN 与已授权竞品商品页的结构、证据和可借鉴项。"

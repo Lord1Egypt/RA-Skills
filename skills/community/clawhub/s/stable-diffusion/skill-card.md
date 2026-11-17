@@ -1,39 +1,51 @@
-## Description: <br>
-Stable Diffusion AI painting helper for SD WebUI, ComfyUI, prompt engineering, and LoRA training. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Stable Diffusion AI drawing assistant for SD WebUI, ComfyUI, prompt engineering, and LoRA training guidance.
 
-## Publisher: <br>
-[zhangifonly](https://clawhub.ai/user/zhangifonly) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangifonly](https://clawhub.ai/user/zhangifonly)
 
-## Use Case: <br>
-Developers, artists, and image-generation practitioners use this skill for Stable Diffusion setup guidance, model and sampler selection, prompt construction, LoRA training tips, ControlNet usage, and hardware planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Referenced setup commands may install large third-party dependencies and model assets. <br>
-Mitigation: Verify the referenced repositories before use and run setup in a virtual environment or isolated machine where practical. <br>
+## Use Case:
 
+External users and developers use this skill for practical Stable Diffusion guidance, including model selection, SD WebUI and ComfyUI setup, prompt construction, sampler and parameter choices, LoRA and ControlNet use, and hardware planning.
 
-## Reference(s): <br>
-- [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) <br>
-- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with tables, examples, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces human-facing recommendations and setup snippets; it does not run tools or require credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: Copy-paste installation commands require review before use.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Harden installation steps by entering cloned project directories explicitly, using trusted pinned releases or commits where practical, installing in a virtual environment or container, and avoiding elevated privileges.
+
+## Reference(s):
+
+- [Stable Diffusion skill page on ClawHub](https://clawhub.ai/zhangifonly/skills/stable-diffusion)
+- [AUTOMATIC1111 Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language instructional content covering image generation workflows and setup guidance]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

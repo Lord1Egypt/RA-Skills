@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: GitHub Novel Serialization Skill
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Community
+    name: community contributors
+    alias: JohnSmithfan
+repository-code: 'https://github.com/JohnSmithfan/github-novel-serialization-skill'
+url: 'https://github.com/JohnSmithfan/github-novel-serialization-skill'
+abstract: >-
+  A modular, harness-engineered Skill that orchestrates AI-assisted novel writing and
+  GitHub-based serialization: world-building, character design, chapter drafting,
+  continuity verification and Git-based publishing, with shared automation scripts.
+keywords:
+  - novel
+  - serialization
+  - creative-writing
+  - worldbuilding
+  - continuity
+  - ai-skill
+  - harness-engineering
+license:
+  - GPL-3.0
+  - CC-BY-NC-SA-4.0
+license-url: 'https://github.com/JohnSmithfan/github-novel-serialization-skill/blob/main/LICENSE'
+version: 1.4.0
+date-released: '2026-10-17'

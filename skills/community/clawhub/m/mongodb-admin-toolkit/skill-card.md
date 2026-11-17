@@ -1,39 +1,53 @@
-## Description: <br>
-Comprehensive MongoDB administration including connection management, backup/restore operations, performance analysis, index management, user administration, and replica set configuration. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive MongoDB administration including connection management, backup/restore operations, performance analysis, index management, user administration, and replica set configuration.
 
-## Publisher: <br>
-[qoohsuan](https://clawhub.ai/user/qoohsuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qoohsuan](https://clawhub.ai/user/qoohsuan)
 
-## Use Case: <br>
-Developers and database administrators use this skill to generate MongoDB administration guidance and command examples for connection management, backups, restores, performance analysis, indexes, user administration, replica sets, import/export, maintenance, and monitoring. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: MongoDB administration commands can alter or delete databases, collections, users, roles, backups, replica set configuration, and production data if applied to the wrong target. <br>
-Mitigation: Confirm the host, database, collection, credentials, backup state, and production status before running commands; require explicit approval for destructive, restore/import, user/role, replica set, maintenance, and backup-deletion operations. <br>
-Risk: Connection string examples can expose credentials when real passwords are placed directly in shell-visible commands. <br>
-Mitigation: Avoid embedding real passwords in command history or process-visible connection strings; use safer credential handling supported by the local MongoDB tooling. <br>
+## Use Case:
 
+Developers, database administrators, and operations teams use this skill as a MongoDB administration reference for connection management, backups and restores, performance checks, index work, user administration, import/export, maintenance, and replica set operations.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, code, configuration] <br>
-**Output Format:** [Markdown with shell and JavaScript command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only output; generated commands should be reviewed against the target MongoDB environment before execution.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and clawhub.json) <br>
+Risk: The skill includes irreversible database, access-control, and replica-set commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use explicit operator confirmation for destructive or topology-changing commands, verify the active connection string and database first, and take fresh backups or configuration exports before proceeding.
+
+Risk: Restore, import, repair, and maintenance workflows can affect production data integrity or availability.
+
+Mitigation: Prefer test or temporary databases for restore, import, and repair workflows before applying commands to production systems.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qoohsuan/skills/mongodb-admin-toolkit)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with bash and JavaScript command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes MongoDB shell commands, database administration snippets, backup and restore examples, monitoring scripts, and operational guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: clawhub.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

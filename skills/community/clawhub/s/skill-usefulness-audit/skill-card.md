@@ -1,44 +1,56 @@
-## Description: <br>
-Audits installed agent-skill packages using usage, overlap, burden, risk, and optional ablation or community evidence to recommend cleanup actions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review your installed agent skills to see what you actually use, what overlaps, and what may no longer be worth keeping.
 
-## Publisher: <br>
-[gongyu0918-debug](https://clawhub.ai/user/gongyu0918-debug) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gongyu0918-debug](https://clawhub.ai/user/gongyu0918-debug)
 
-## Use Case: <br>
-Developers and agent administrators use this skill to inventory installed agent skills, evaluate usage and overlap, review risk signals, and produce conservative cleanup recommendations before removing or merging skills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution (MIT-0)
 
-## Known Risks and Mitigations: <br>
-Risk: Usage and history inputs can contain sensitive conversation content, local paths, project names, or customer data. <br>
-Mitigation: Provide the narrowest skills root and avoid passing history files unless the user is comfortable with the tool reading those exports. <br>
-Risk: Cleanup recommendations could cause loss of useful skills if treated as automatic actions. <br>
-Mitigation: Review report recommendations manually before deleting, merging, or quarantining any skill. <br>
+## Use Case:
 
+Developers and agent operators use this skill to audit installed agent skills for usage, overlap, cleanup options, bundle burden, and conservative ablation planning. It helps produce short user-facing reports and optional detailed evidence files without automatically deleting or disabling skills.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gongyu0918-debug/skills/skill-usefulness-audit) <br>
-- [Project homepage](https://github.com/gongyu0918-debug/skill-usefulness-audit) <br>
-- [Ablation Protocol](references/ablation-protocol.md) <br>
-- [Scoring Rubric](references/scoring-rubric.md) <br>
-- [Report Narration Prompt](references/report-narration-prompt.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown report with optional JSON audit data and ablation plan files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Recommendations are manual-review guidance; the skill does not automatically delete, merge, or quarantine installed skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.7 (source: frontmatter and server release metadata) <br>
+Risk: The skill reads installed skill folders and user-provided evidence files during local audits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pass --skills-root to limit the audited scope and review which evidence files are provided.
+
+Risk: Usage or history files may contain conversation details, local paths, project names, or customer data.
+
+Mitigation: Provide only necessary evidence files and review or redact sensitive data before running the audit.
+
+## Reference(s):
+
+- [Project homepage](https://github.com/gongyu0918-debug/skill-usefulness-audit)
+- [Ablation Protocol](references/ablation-protocol.md)
+- [Report Narration Prompt](references/report-narration-prompt.md)
+- [Scoring Rubric](references/scoring-rubric.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance]
+
+**Output Format:** [Natural-language report, Markdown evidence report, and optional JSON audit or ablation-plan files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can consume user-provided usage, history, ablation, and community evidence files; supports English or Chinese reports.]
+
+## Skill Version(s):
+
+0.3.24 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

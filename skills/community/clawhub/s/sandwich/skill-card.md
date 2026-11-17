@@ -1,44 +1,58 @@
-## Description: <br>
-Sandwich is advertised for blockchain sandwich-operation analysis, but server security review identifies the artifact as a local data-entry CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill claims to analyze blockchain sandwich operations, but the packaged shell tool behaves as a local note and configuration manager.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-External users and developers can use this release as a simple local CLI for adding, listing, searching, removing, and exporting text entries. It should not be relied on as blockchain sandwich-analysis tooling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The release is advertised as blockchain sandwich analysis, but the server security review identifies the included script as a local note database. <br>
-Mitigation: Install only when the intended use is simple local text entry, listing, search, deletion, and export. <br>
-Risk: Added content is stored unencrypted under ~/.sandwich by default and exports are written as plaintext files in the current directory. <br>
-Mitigation: Do not enter secrets, wallet data, private research, or incident details; configure SANDWICH_DIR to an appropriate local path and review exported files before sharing. <br>
-Risk: The remove command can delete entries without confirmation. <br>
-Mitigation: Review entry numbers before deleting and keep backups of data that must be retained. <br>
+## Use Case:
 
+Developers and security reviewers can use this skill to inspect or run the packaged local storage commands while accounting for the mismatch with the stated blockchain-analysis purpose.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ckchzh/sandwich) <br>
-- [Publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Plain text CLI output and Markdown command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local JSONL data under the configured SANDWICH_DIR and can export plaintext JSON or CSV files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+Risk: The release is mislabeled: it claims blockchain sandwich analysis, while the packaged behavior is local note and configuration management.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the purpose before installation and do not rely on it for protocol security analysis until the documentation and behavior are aligned.
+
+Risk: The tool persists user-entered data under ~/.sandwich by default and can export local files.
+
+Mitigation: Avoid sensitive inputs, set SANDWICH_DIR to a reviewed location, and review exported files before sharing.
+
+Risk: The remove command deletes stored records by line number.
+
+Mitigation: Verify the target line or back up the data file before removal.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ckchzh/skills/sandwich)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Files]
+
+**Output Format:** [Plain text command output with JSONL or CSV export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and reads local data under SANDWICH_DIR, defaulting to ~/.sandwich.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

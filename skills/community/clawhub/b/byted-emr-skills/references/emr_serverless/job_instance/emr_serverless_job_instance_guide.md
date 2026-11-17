@@ -2,7 +2,7 @@
 
 本指南描述在 EMR Serverless 场景下的作业实例能力，包括：
 - 任务提交：包含提交SparkSQL、PrestoSQL、SparkJar、PySpark、RayJob。
-- 作业实例提交后的运维操作，包括：查询作业实例状态、获取结果、tracking url、提交日志（submission log）与执行日志（driver log）
+- 作业实例提交后的运维操作，包括：查询作业实例状态、获取结果等
 
 ## 前置条件
 

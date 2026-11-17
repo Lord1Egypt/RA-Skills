@@ -2,7 +2,7 @@
 
 ## Intent
 
-`ia-verification-before-completion` is a `discipline`-class skill (an engineering practice not tied to one stack). Enforces fresh verification evidence before any completion claim. Use when about to claim "tests pass", "bug fixed", "done", "ready to merge", or handing off work.
+`ia-verification-before-completion` is a `discipline`-class skill (an engineering practice not tied to one stack). It requires fresh, claim-matched evidence, rejects weakened proof and proof-class inflation, and keeps partial or refusal-only behavior visibly incomplete without imposing a fixed report template.
 
 ## Scope
 
@@ -32,11 +32,11 @@ Out of scope:
 
 Authoritative sources:
 
-- `SKILL.md` -- runtime instructions and reference routing.
-- `references/*.md` -- bundled supplementary content (1 file(s)).
-- `distillery/tests/fixtures/triggers/ia-verification-before-completion.jsonl` -- positive and negative trigger phrasings under regression test.
-- `plugins/whetstone/hooks/skill-patterns.sh` -- regex pattern that fires this skill.
-- `distillery/.eval-data/ia-verification-before-completion/` -- harvested session examples (when present).
+- `SKILL.md`: runtime instructions and reference routing.
+- `references/*.md`: bundled supplementary content (7 file(s)).
+- `distillery/tests/fixtures/triggers/ia-verification-before-completion.jsonl`: positive and negative trigger phrasings under regression test.
+- `plugins/whetstone/hooks/skill-patterns.sh`: regex pattern that fires this skill.
+- `distillery/.eval-data/ia-verification-before-completion/`: harvested session examples (when present).
 
 Data that must not be stored in this skill or its references:
 
@@ -50,7 +50,8 @@ Data that must not be stored in this skill or its references:
 |---|---|---|
 | Trigger fixtures | complete | distillery/tests/fixtures/triggers/ia-verification-before-completion.jsonl (>=5 should_trigger, >=5 should_not_trigger) |
 | Hook regex pattern | complete | plugins/whetstone/hooks/skill-patterns.sh (`SKILL_PATTERNS[ia-verification-before-completion]`) |
-| Reference architecture | complete | 1 file(s) under references/ |
+| Reference architecture | complete | 7 file(s) under references/ |
+| Proof integrity and honest completion | complete | `SKILL.md` The Rule, Red Flags, and Completion Reporting |
 | Real-usage signal | <!-- populated by harvest-sessions when sessions exist --> | distillery/.eval-data/ia-verification-before-completion/ (created by harvest-sessions) |
 
 ## Evaluation
@@ -76,9 +77,8 @@ Acceptance gates:
 
 ## Known Limitations
 
-<!-- to fill in over time as drift surfaces. Default rule: any time diagnose-negatives
-     surfaces a recurring failure pattern, document it here so future maintainers
-     understand the trade-off the current implementation accepts. -->
+- Whether evidence is genuinely live can depend on repository-specific runtime boundaries that this portable skill cannot infer.
+- Scope confirmation remains judgment-based; inspection should resolve safe defaults, while material ambiguity still requires user input.
 
 ## Maintenance Notes
 
@@ -86,4 +86,4 @@ Acceptance gates:
 - Update this `SPEC.md` when intent, scope, evidence model, evaluation gates, or maintenance expectations change.
 - Update the trigger fixture when adding new positive phrasings, removing stale ones, or expanding scope (the 5/5 floor is a hard validator gate).
 - Update the hook regex in `skill-patterns.sh` whenever fixture positives expose a missed phrasing; verify F1 = 1.0 with `eval-triggers` before committing.
-- Run the full release pipeline via `/release` -- never bump versions or update CHANGELOG.md from a per-skill edit.
+- Run the full release pipeline via `/release`; never bump versions or update CHANGELOG.md from a per-skill edit.

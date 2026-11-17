@@ -1,47 +1,64 @@
-## Description: <br>
-Read the user's personal Telegram account in a controlled, read-only way via Telethon/MTProto for inspecting chats, listing dialogs, reading recent messages, and searching messages without using the Telegram Bot API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read the user's personal Telegram account in a controlled, read-only way via Telethon/MTProto for listing dialogs, reading recent messages, and searching Telegram messages without relying on the Telegram Bot API.
 
-## Publisher: <br>
-[ropl-btc](https://clawhub.ai/user/ropl-btc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ropl-btc](https://clawhub.ai/user/ropl-btc)
 
-## Use Case: <br>
-Developers and agent operators use this skill when they need controlled, local, read-only access to a user's personal Telegram account for chat inspection, dialog listing, recent-message retrieval, or targeted message search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a reusable full-account Telegram session, so compromise of the local session config can enable continued account access. <br>
-Mitigation: Treat ~/.config/telegram-readonly/config.json like a password, restrict local access to it, revoke the Telegram session or delete the config when no longer needed, and avoid exposing the session string in logs or shared outputs. <br>
-Risk: The documented installation path can install external GitHub code without a pinned commit. <br>
-Mitigation: Review the exact code before authenticating and pin a trusted commit or package version for repeatable installation. <br>
-Risk: Broad Telegram reads or exports can expose sensitive personal or third-party conversations. <br>
-Mitigation: Use small, specific reads, prefer targeted chats or searches, and ask before broad history exports or background monitoring. <br>
-Risk: Unread-state preservation is best effort and may vary with Telegram client behavior. <br>
-Mitigation: Test on a low-risk chat before broad use and stop if the wrapper changes unread state unexpectedly. <br>
+## Use Case:
 
+Developers and agents use this skill to inspect a user's Telegram dialogs and messages through a local read-only CLI. It is suited to narrow, user-directed read tasks such as finding chats, reviewing recent messages, checking unread conversations, or searching message text.
 
-## Reference(s): <br>
-- [Setup and safety](references/setup-and-safety.md) <br>
-- [Telegram API development tools](https://my.telegram.org) <br>
-- [ClawHub skill page](https://clawhub.ai/ropl-btc/telegram-readonly) <br>
-- [Publisher profile](https://clawhub.ai/user/ropl-btc) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands; the Telegram CLI returns JSON] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only Telegram operations; session handling requires user-controlled credentials and local configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.2 (source: server release metadata) <br>
+Risk: The install command references mutable remote code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the CLI source to a specific audited commit or signed release before installation.
+
+Risk: Telegram API credentials and the local session config are high-value secrets.
+
+Mitigation: Keep TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_SESSION_STRING, and ~/.config/telegram-readonly/config.json out of commits, logs, prompts, and shared tool contexts.
+
+Risk: A reusable Telegram session can continue to access the user's account if exposed.
+
+Mitigation: Use the skill only for narrow read tasks and revoke the Telegram session if the config file or session string may have been exposed.
+
+Risk: Unread preservation is best-effort and can depend on Telegram client behavior.
+
+Mitigation: Test unread-state behavior on a low-risk chat before broader use, and stop if reads unexpectedly mark messages as read.
+
+## Reference(s):
+
+- [Setup and safety](references/setup-and-safety.md)
+- [Telegram API development tools](https://my.telegram.org)
+- [ClawHub skill page](https://clawhub.ai/ropl-btc/skills/telegram-readonly)
+- [ClawHub publisher profile](https://clawhub.ai/user/ropl-btc)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON CLI output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The referenced CLI emits JSON for dialogs, messages, searches, unread dialogs, authentication status, and help output.]
+
+## Skill Version(s):
+
+0.1.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

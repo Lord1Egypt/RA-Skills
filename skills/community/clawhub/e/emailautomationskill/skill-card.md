@@ -1,42 +1,54 @@
-## Description: <br>
-Use when Codex, Hermes, OpenClaw, Claude Code, Cowork, or another AI agent needs to plan, review, implement, audit, or improve email work focused on behavioral triggers, lifecycle journeys, automation governance, and operational safeguards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents plan, review, implement, audit, and improve email automation work focused on behavioral triggers, lifecycle journeys, governance, and operational safeguards.
 
-## Publisher: <br>
-[polnikale](https://clawhub.ai/user/polnikale) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[polnikale](https://clawhub.ai/user/polnikale)
 
-## Use Case: <br>
-External users, developers, and agents use this skill to plan, audit, and improve email automation workflows, including trigger inventories, QA plans, overlap audits, governance checklists, and journey optimization recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live email sends, contact imports, suppression changes, DNS/authentication changes, and production automation edits can affect customers or compliance-sensitive systems. <br>
-Mitigation: Require explicit human approval before execution and keep recommendations separate from live-system actions. <br>
-Risk: Incomplete event, consent, suppression, or frequency-cap data can lead to incorrect automation recommendations. <br>
-Mitigation: Confirm source material and data freshness before recommending branches, personalization, imports, or production changes. <br>
-Risk: Overlapping or stale automations can create duplicate sends, contradictory offers, or contacts that remain enrolled too long. <br>
-Mitigation: Audit overlaps, exits, suppression checks, rollback steps, and test contacts before activating or changing journeys. <br>
+## Use Case:
 
+Developers, lifecycle marketers, and email operations teams use this skill to plan, audit, and improve behavioral and lifecycle email automations with clear QA checks, governance gates, and approval boundaries.
 
-## Reference(s): <br>
-- [Email Automation Skill Operating Checklist](references/operating-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with checklists, audits, plans, and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Separates analysis from live-system actions and requires explicit approval before high-risk email automation changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Recommendations could affect live sends, contact imports, suppression rules, DNS or authentication settings, or production journeys if executed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit approval and confirm the human owner, approval process, rollback plan, consent state, suppression state, and production impact before any real provider change.
+
+Risk: Missing, stale, or delayed automation data could produce duplicate, late, irrelevant, or non-compliant messages.
+
+Mitigation: Verify event schema, data freshness, suppression rules, consent state, frequency caps, test contacts, and rollback steps before recommending automation changes.
+
+## Reference(s):
+
+- [Email Automation Skill Operating Checklist](references/operating-checklist.md)
+- [ClawHub Skill Page](https://clawhub.ai/polnikale/skills/emailautomationskill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with automation contracts, trigger inventories, QA plans, overlap audits, governance checklists, and journey optimization recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Separates recommendations from live-system actions and requires explicit approval before provider changes, sends, imports, suppression edits, DNS changes, or production automation edits.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

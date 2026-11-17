@@ -1,0 +1,24 @@
+{
+  "_note": "演示用示例数据：展示导入契约的结构与字段写法，仅用于向未安装用户说明“导进去之后是什么样”，不代表任何真实库存或订单。",
+  "data": {
+    "materials": [
+      { "code": "RES-001", "name": "10K电阻", "spec": "0805 ±1%", "unit": "个", "category": "电阻", "supplier": "深圳华强", "unitPrice": 0.01 },
+      { "code": "CAP-002", "name": "100nF电容", "spec": "0603 16V", "unit": "个", "category": "电容", "supplier": "深圳华强", "unitPrice": 0.02 },
+      { "name": "M3×8 螺丝", "spec": "不锈钢", "category": "五金" }
+    ],
+    "products": [
+      { "code": "PROD-001", "name": "智能手表X100", "type": "finished" }
+    ],
+    "bomItems": [
+      { "productCode": "PROD-001", "type": "material", "materialCode": "RES-001", "quantity": 4 },
+      { "productCode": "PROD-001", "type": "material", "materialCode": "CAP-002", "quantity": 2 }
+    ],
+    "workOrders": [
+      { "orderNumber": "WO-001", "productCode": "PROD-001", "quantity": 500, "priority": "高", "assignedLine": "SMT产线A", "scheduledStart": "2026-11-20", "scheduledEnd": "2026-11-28" }
+    ],
+    "inventory": [
+      { "materialCode": "RES-001", "quantity": 12000, "location": "A-01-03" }
+    ]
+  },
+  "preview_hint": "第三条物料沒给编码、也没给单位：系统会生成 AUTO-MAT-XXXXX 编码，并把单位默认为「个」在回执里提示——这两件事都属于正常行为，不是错误。"
+}

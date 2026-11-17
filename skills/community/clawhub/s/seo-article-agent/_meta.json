@@ -1,6 +1,14 @@
-{
-  "ownerId": "kn7dhm0pdfb2zytqww2h7bxped831gne",
-  "slug": "seo-article-agent",
+﻿{
+  "name": "seo-article-agent",
+  "displayName": "SEO Article Agent",
+  "description": "Generate SEO optimized long-form articles with keyword strategy and structured outlines",
+  "author": "nguyet601",
   "version": "1.0.0",
-  "publishedAt": 1773689994951
+  "tags": [
+    "seo",
+    "content",
+    "blog",
+    "marketing",
+    "ai"
+  ]
 }

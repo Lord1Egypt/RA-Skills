@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClawMarkDown Preview</title>
+  <link rel="stylesheet" href="preview.css?v=1.4.2">
+  <link rel="stylesheet" id="themeStylesheet" href="styles/docsify.css">
+  <link rel="stylesheet" id="codeThemeStylesheet" href="code-themes/github.css">
+</head>
+<body>
+  <div class="app-layout">
+    <div class="brand-header">
+      <div class="app-brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+          </svg>
+          <h2>Claw Markdown Preview</h2>
+      </div>
+      <span class="brand-subtitle">由 <a href="https://webkixi.github.io/clawmarkdown-home/" target="_blank" rel="noopener noreferrer">clawMarkDown</a> 提供支持</span>
+    </div>
+    <div class="app-header">
+      <div class="tab-bar" id="tabBar">
+          <button class="tab-btn" data-tab="mobile" title="手机预览">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <span class="tab-label">手机</span>
+          </button>
+          <button class="tab-btn" data-tab="preview" title="预览">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="tab-label">预览</span>
+          </button>
+          <button class="tab-btn" data-tab="edit" title="编辑">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span class="tab-label">编辑</span>
+          </button>
+          <button class="tab-btn active" data-tab="split" title="双栏">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
+            <span class="tab-label">双栏</span>
+          </button>
+        </div>
+      <div class="app-header-right">
+        <select class="select select-sm" id="previewStyleSelect">
+          <option value="docsify" selected>Docsify 文档</option>
+          <option value="github">GitHub 经典</option>
+          <option value="github-dark">GitHub Dark</option>
+          <option value="star-planet">星球风格</option>
+          <option value="star-blood">血色风格</option>
+          <option value="star-pure">纯净风格</option>
+          <option value="notion">Notion 风格</option>
+          <option value="orange-heart">橙心</option>
+          <option value="purple-red">姹紫</option>
+          <option value="cyan-green">嫩青</option>
+          <option value="green">绿意</option>
+          <option value="red-fresh">红绯</option>
+          <option value="blue-ying">蓝莹</option>
+          <option value="lan-qing">兰青</option>
+          <option value="mountain-blush">山吹</option>
+          <option value="frontend-top">前端之巅</option>
+          <option value="geek-black">极客黑</option>
+          <option value="rose-purple">蔷薇紫</option>
+          <option value="cute-green">萌绿风</option>
+          <option value="fullstack-blue">全栈蓝</option>
+          <option value="minimalist-black">极简黑</option>
+          <option value="orange-blue">橙蓝风</option>
+          <option value="grid-black">网格黑</option>
+        </select>
+        <select class="select select-sm" id="codeThemeSelect">
+          <option value="github" selected>GitHub 代码</option>
+          <option value="github-dark">GitHub Dark</option>
+          <option value="atom-one-dark">Atom Dark</option>
+          <option value="dracula">Dracula</option>
+          <option value="monokai">Monokai</option>
+          <option value="vs2015">VS 2015</option>
+          <option value="vscode-light">VS Code Light</option>
+          <option value="xcode">Xcode</option>
+        </select>
+          <button id="saveBtn" title="保存 (Cmd+S)" style="display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;margin-left:2px;border:1px solid #eab308;border-radius:6px;background:#fef08a;color:#a16207;font-size:12px;font-weight:600;cursor:pointer;flex-shrink:0;outline:none;transition:all .2s;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;flex-shrink:0;"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+            save
+          </button>
+      </div>
+    </div>
+
+    <div class="editor-body split" id="editorBody">
+      <div class="editor-preview active" id="editorPreview">
+        <div class="editor-actions">
+          <button class="action-btn" id="copyRichBtn" title="复制富文本">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            复制富文本
+          </button>
+        </div>
+        <div class="editor-preview-content" id="editorPreviewContent"></div>
+        <div class="editor-status-bar" id="editorStatusBar">
+          <span class="status-item">字数: <strong id="wordCount">0</strong></span>
+        </div>
+      </div>
+
+      <div class="editor-edit active" id="editorEdit">
+        <div id="codemirrorContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="saveIndicator" class="save-indicator">已保存 ✓</div>
+  <script>var MD_CONTENT = null;</script>
+  <script>var SAVED_PREFS = null;</script>
+
+  <script src="lib/markdown-it.min.js"></script>
+  <script src="lib/markdown-it-span.js"></script>
+  <script src="lib/markdown-it-implicit-figures.js"></script>
+  <script src="lib/markdown-it-urlspan.js"></script>
+  <script src="lib/markdown-it-table-container.js"></script>
+  <script src="lib/markdown-it-math.js"></script>
+  <script src="lib/markdown-it-li.js"></script>
+  <script src="lib/markdown-it-imageflow.js"></script>
+  <script src="lib/markdown-it-linkfoot.js"></script>
+  <script src="lib/markdown-it-ruby.js"></script>
+  <script src="lib/markdown-it-deflist.js"></script>
+  <script src="lib/highlight.min.js"></script>
+  <script src="lib/mermaid.min.js"></script>
+  <script src="lib/converter.js"></script>
+  <script src="lib/codemirror.bundle.min.js"></script>
+  <script>
+(function () {
+
+var syncScrollLock = false;
+var previewScrollHandler = null;
+var cmEditor = null;
+var hasUnsavedChanges = false;
+var saveTimer = null;
+var isSaving = false;
+
+function getMarkdownContent() {
+  return MD_CONTENT || '';
+}
+
+function getEditorContent() {
+  if (cmEditor) {
+    return cmEditor.state.doc.toString();
+  }
+  return getMarkdownContent();
+}
+
+function saveToFile(silent) {
+  isSaving = true;
+  var content = getEditorContent();
+  fetch('/api/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: content })
+  })
+  .then(function (r) { return r.json(); })
+  .then(function (data) {
+    hasUnsavedChanges = false;
+    isSaving = false;
+    if (data && data.hash) lastHash = data.hash;
+    if (!silent) { showToast('已保存'); showSaveIndicator(); }
+  })
+  .catch(function () { isSaving = false; });
+}
+
+function showSaveIndicator() {
+  var el = document.getElementById('saveIndicator');
+  if (!el) return;
+  el.classList.add('visible');
+  clearTimeout(el._hideTimer);
+  el._hideTimer = setTimeout(function () {
+    el.classList.remove('visible');
+  }, 1000);
+}
+
+function showToast(msg) {
+  var existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(function () { if (toast.parentNode) toast.remove(); }, 2000);
+}
+
+function switchCss(id, href) {
+  var link = document.getElementById(id);
+  if (link) link.href = href;
+}
+
+function switchPreviewTheme() {
+  var themeSelect = document.getElementById('previewStyleSelect');
+  var themeKey = themeSelect ? themeSelect.value : 'docsify';
+  switchCss('themeStylesheet', 'styles/' + themeKey + '.css');
+}
+
+function switchCodeTheme() {
+  var select = document.getElementById('codeThemeSelect');
+  var name = select ? select.value : 'github';
+  switchCss('codeThemeStylesheet', 'code-themes/' + name + '.css');
+}
+
+function applySavedPrefs() {
+  if (!window.SAVED_PREFS) return;
+  var ps = document.getElementById('previewStyleSelect');
+  if (ps && SAVED_PREFS.previewStyle) ps.value = SAVED_PREFS.previewStyle;
+  var cs = document.getElementById('codeThemeSelect');
+  if (cs && SAVED_PREFS.codeTheme) cs.value = SAVED_PREFS.codeTheme;
+}
+
+function persistPrefs() {
+  var ps = document.getElementById('previewStyleSelect');
+  var cs = document.getElementById('codeThemeSelect');
+  fetch('/api/prefs', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      previewStyle: ps ? ps.value : 'docsify',
+      codeTheme: cs ? cs.value : 'github'
+    })
+  }).catch(function () {});
+}
+
+function updatePreview() {
+  var md = getEditorContent();
+  var html = window.CPM ? window.CPM.renderToHtml(md) : md;
+  var themeSelect = document.getElementById('previewStyleSelect');
+  var themeKey = themeSelect ? themeSelect.value : 'docsify';
+  var previewEl = document.getElementById('editorPreviewContent');
+  previewEl.innerHTML = '<div class="markdown-body ' + themeKey + '">' + html + '</div>';
+
+  if (window.CPM && window.CPM.renderMermaidBlocks) {
+    window.CPM.renderMermaidBlocks(previewEl);
+  }
+
+  // 图片加载失败时显示占位提示
+  previewEl.querySelectorAll('img').forEach(function (img) {
+    img.addEventListener('error', function () {
+      if (img.dataset.errorHandled) return;
+      img.dataset.errorHandled = '1';
+      var placeholder = document.createElement('div');
+      placeholder.className = 'img-error-placeholder';
+      placeholder.textContent = '⚠ 图片加载失败';
+      img.style.display = 'none';
+      img.parentNode.insertBefore(placeholder, img.nextSibling);
+    });
+  });
+
+  var plainText = previewEl.textContent || '';
+  var charCount = plainText.replace(/\s+/g, '').length;
+  var wordCountEl = document.getElementById('wordCount');
+  if (wordCountEl) wordCountEl.textContent = charCount;
+}
+
+function initCodeMirror(content) {
+  var container = document.getElementById('codemirrorContainer');
+  if (!container) return;
+  if (cmEditor) { cmEditor.destroy(); cmEditor = null; }
+  container.innerHTML = '';
+
+  if (window.ClawMark && window.ClawMark.createEditor) {
+    cmEditor = window.ClawMark.createEditor(container, {
+      content: content || '',
+        onChange: function (newContent) {
+          if (window._previewTimer) clearTimeout(window._previewTimer);
+          window._previewTimer = setTimeout(updatePreview, 300);
+          hasUnsavedChanges = true;
+          clearTimeout(saveTimer);
+          saveTimer = setTimeout(function () { saveToFile(true); }, 5000);
+        },
+    });
+
+    var editorEdit = document.getElementById('editorEdit');
+    var editorScroller = container.querySelector('.cm-scroller') || editorEdit;
+    if (editorEdit._scrollSyncHandler && editorEdit._scrollSyncTarget) {
+      editorEdit._scrollSyncTarget.removeEventListener('scroll', editorEdit._scrollSyncHandler);
+    }
+    editorEdit._scrollSyncTarget = editorScroller;
+    editorEdit._scrollSyncHandler = function () {
+      if (syncScrollLock) return;
+      var body = document.getElementById('editorBody');
+      if (!body || !body.classList.contains('split')) return;
+      var previewContent = document.getElementById('editorPreviewContent');
+      if (!previewContent) return;
+      syncScrollLock = true;
+      var maxScroll = editorScroller.scrollHeight - editorScroller.clientHeight;
+      var ratio = maxScroll > 0 ? editorScroller.scrollTop / maxScroll : 0;
+      previewContent.scrollTop = ratio * (previewContent.scrollHeight - previewContent.clientHeight);
+      requestAnimationFrame(function () { syncScrollLock = false; });
+    };
+    editorScroller.addEventListener('scroll', editorEdit._scrollSyncHandler);
+  } else {
+    var textarea = document.createElement('textarea');
+    textarea.id = 'editorTextarea';
+    textarea.spellcheck = false;
+    textarea.value = content || '';
+    textarea.style.cssText = 'width:100%;height:100%;border:none;padding:24px 32px;font-family:monospace;font-size:15px;line-height:1.8;resize:none;outline:none;background:var(--color-bg);color:var(--color-text);';
+    textarea.addEventListener('input', function () {
+      if (window._previewTimer) clearTimeout(window._previewTimer);
+      window._previewTimer = setTimeout(updatePreview, 300);
+      hasUnsavedChanges = true;
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () { saveToFile(true); }, 5000);
+    });
+    cmEditor = null;
+    container.appendChild(textarea);
+  }
+}
+
+function setupPreviewScrollSync() {
+  var previewContent = document.getElementById('editorPreviewContent');
+  if (!previewContent) return;
+  if (previewScrollHandler) {
+    previewContent.removeEventListener('scroll', previewScrollHandler);
+  }
+  previewScrollHandler = function () {
+    if (syncScrollLock) return;
+    var body = document.getElementById('editorBody');
+    if (!body || !body.classList.contains('split')) return;
+    var scroller = document.querySelector('#codemirrorContainer .cm-scroller');
+    if (!scroller) {
+      var ta = document.getElementById('editorTextarea');
+      if (!ta) return;
+      scroller = ta;
+    }
+    syncScrollLock = true;
+    var maxScroll = previewContent.scrollHeight - previewContent.clientHeight;
+    var ratio = maxScroll > 0 ? previewContent.scrollTop / maxScroll : 0;
+    scroller.scrollTop = ratio * (scroller.scrollHeight - scroller.clientHeight);
+    requestAnimationFrame(function () { syncScrollLock = false; });
+  };
+  previewContent.addEventListener('scroll', previewScrollHandler);
+}
+
+function teardownPreviewScrollSync() {
+  var previewContent = document.getElementById('editorPreviewContent');
+  if (previewContent && previewScrollHandler) {
+    previewContent.removeEventListener('scroll', previewScrollHandler);
+  }
+  previewScrollHandler = null;
+}
+
+function switchEditorTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+  });
+
+  var preview = document.getElementById('editorPreview');
+  var edit = document.getElementById('editorEdit');
+  var body = document.getElementById('editorBody');
+
+  if (tab === 'split') {
+    preview.classList.add('active');
+    edit.classList.add('active');
+    body.classList.add('split');
+    updatePreview();
+    setupPreviewScrollSync();
+  } else {
+    preview.classList.toggle('active', tab === 'preview' || tab === 'mobile');
+    edit.classList.toggle('active', tab === 'edit');
+    preview.classList.toggle('mobile', tab === 'mobile');
+    body.classList.remove('split');
+    teardownPreviewScrollSync();
+    if (tab === 'preview' || tab === 'mobile') {
+      updatePreview();
+    }
+  }
+}
+
+async function copyRichText() {
+  try {
+    var md = getEditorContent();
+    if (!md) { showToast('没有可复制的内容'); return; }
+    await window.CPM.copyRichText(md);
+    showToast('富文本已复制（本地图片已内联）');
+  } catch (e) {
+    console.error('[copyRichText]', e.message);
+    showToast('复制失败: ' + e.message);
+  }
+}
+
+function init() {
+  var md = getMarkdownContent();
+  initCodeMirror(md);
+
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      switchEditorTab(btn.dataset.tab);
+    });
+  });
+
+  document.getElementById('previewStyleSelect').addEventListener('change', function () {
+    switchPreviewTheme();
+    updatePreview();
+    persistPrefs();
+  });
+
+  document.getElementById('codeThemeSelect').addEventListener('change', function () {
+    switchCodeTheme();
+    persistPrefs();
+  });
+
+  document.getElementById('copyRichBtn').addEventListener('click', copyRichText);
+
+  var saveBtn = document.getElementById('saveBtn');
+  if (saveBtn) saveBtn.addEventListener('click', function () { saveToFile(false); });
+
+  /* Cmd/Ctrl+S 保存快捷键 */
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+      e.preventDefault();
+      saveToFile(false);
+    }
+  });
+
+  /* 粘贴图片：监听编辑区 paste 事件 */
+  setupPasteHandler();
+
+  applySavedPrefs();
+
+  if (md) {
+    switchPreviewTheme();
+    updatePreview();
+    setupPreviewScrollSync();
+  }
+
+  startHeartbeat();
+  startHotReload();
+}
+
+/* ========== 心跳：保活服务 + 关闭通知 ========== */
+
+var heartbeatTimer = null;
+
+function startHeartbeat() {
+  // 立即发一次心跳
+  sendHeartbeat();
+  // 每 5 秒发一次
+  heartbeatTimer = setInterval(sendHeartbeat, 5000);
+
+  // 页面关闭/刷新时不发 /api/close（避免刷新时杀掉服务），靠心跳超时（300s）回收
+  window.addEventListener('beforeunload', function (e) {
+    if (hasUnsavedChanges) {
+      e.preventDefault();
+      e.returnValue = '';
+    }
+  });
+}
+
+function sendHeartbeat() {
+  try {
+    fetch('/api/heartbeat', { method: 'POST' }).catch(function () {});
+  } catch (e) {}
+}
+
+/* ========== 热更新：轮询文件变化 ========== */
+
+var lastHash = null;
+var hashTimer = null;
+
+/* ========== 粘贴图片 ========== */
+
+var MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+
+function setupPasteHandler() {
+  var editEl = document.getElementById('editorEdit');
+  var cmContainer = document.getElementById('codemirrorContainer');
+  var target = cmContainer || editEl;
+  if (!target) return;
+
+  target.addEventListener('paste', function (e) {
+    var items = e.clipboardData && e.clipboardData.items;
+    if (!items) return;
+
+    var imageItem = null;
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf('image/') === 0) {
+        imageItem = items[i];
+        break;
+      }
+    }
+
+    if (!imageItem) return;
+
+    e.preventDefault();
+    var blob = imageItem.getAsFile();
+    if (!blob) return;
+
+    if (blob.size > MAX_IMAGE_SIZE) {
+      showToast('图片过大（' + Math.round(blob.size / 1024 / 1024 * 10) / 10 + 'MB），请压缩后粘贴（上限 5MB）');
+      return;
+    }
+
+    uploadImage(blob);
+  });
+}
+
+function uploadImage(blob) {
+  showToast('正在上传图片...');
+  fetch('/api/image', {
+    method: 'POST',
+    headers: { 'Content-Type': blob.type },
+    body: blob,
+  })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (!data.path) throw new Error('上传失败');
+      var md = '![](' + data.path + ')';
+      insertAtCursor(md);
+      showToast('图片已保存到 images/ 目录并插入');
+    })
+    .catch(function (err) {
+      showToast('图片上传失败: ' + err.message);
+    });
+}
+
+function insertAtCursor(text) {
+  if (cmEditor) {
+    var sel = cmEditor.state.selection.main;
+    cmEditor.dispatch({
+      changes: { from: sel.from, to: sel.to, insert: text },
+      selection: { anchor: sel.from + text.length },
+    });
+    cmEditor.focus();
+  } else {
+    var ta = document.getElementById('editorTextarea');
+    if (ta) {
+      var start = ta.selectionStart;
+      var end = ta.selectionEnd;
+      ta.value = ta.value.substring(0, start) + text + ta.value.substring(end);
+      ta.selectionStart = ta.selectionEnd = start + text.length;
+      ta.focus();
+      ta.dispatchEvent(new Event('input'));
+    }
+  }
+}
+
+function startHotReload() {
+  // 3 秒后开始轮询（等首次渲染完成）
+  setTimeout(function () {
+    // 先获取当前 hash 作为基线
+    fetch('/api/markdown-hash')
+      .then(function (r) { return r.json(); })
+      .then(function (data) { lastHash = data.hash; })
+      .catch(function () {})
+      .finally(function () {
+        hashTimer = setInterval(checkHash, 3000);
+      });
+  }, 3000);
+}
+
+function checkHash() {
+  if (hasUnsavedChanges) return;  // 用户正在编辑，跳过热更新
+  if (isSaving) return;          // 保存中，等回包同步 hash 后再查
+  fetch('/api/markdown-hash')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (lastHash && data.hash !== lastHash) {
+        lastHash = data.hash;
+        reloadContent();
+      } else {
+        lastHash = data.hash;
+      }
+    })
+    .catch(function () {});
+}
+
+function reloadContent() {
+  fetch('/api/markdown')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var newMd = data.content;
+      if (!newMd) return;
+
+      // 更新编辑器
+      if (cmEditor) {
+        cmEditor.dispatch({
+          changes: { from: 0, to: cmEditor.state.doc.length, insert: newMd }
+        });
+      }
+
+      // 更新预览
+      updatePreview();
+      hasUnsavedChanges = false;
+      showToast('外部内容已更新');
+    })
+    .catch(function () {});
+}
+
+init();
+
+})();
+  </script>
+</body>
+</html>

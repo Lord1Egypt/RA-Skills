@@ -1,0 +1,2 @@
+Payment verification (WEB82.27 / Monitor32 / DB25)
+Automatic underpayment/overpayment tolerance is not supported. Require an authenticated query and the saved order binding, PAID, positive expected/received amounts and exact equality. A difference requires strict Boolean manual_payment_accepted=true from an authenticated query after explicit authorized operator acceptance. REVIEW_REQUIRED/UNDERPAID/OVERPAID never authorize fulfillment. Unsigned notifications/browser fields are only lookup hints. Preserve actual amounts and fulfill atomically once.

@@ -1,42 +1,57 @@
-## Description: <br>
-Fetches real-time hot search lists and trending topics from major Chinese platforms including Weibo, Zhihu, Baidu, Douyin, Toutiao, and Bilibili. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents fetch real-time hot searches and trending topics from Weibo, Zhihu, Baidu, Douyin, Toutiao, and Bilibili.
 
-## Publisher: <br>
-[lk360287680-byte](https://clawhub.ai/user/lk360287680-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lk360287680-byte](https://clawhub.ai/user/lk360287680-byte)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve and summarize current trending topics across major Chinese social media, search, news, and video platforms. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts the third-party 60s.viki.moe API to retrieve live public trend lists. <br>
-Mitigation: Install it only where outbound access to that API is acceptable and avoid using it for sensitive private research. <br>
-Risk: Returned topics and links are third-party web content and may be inaccurate, stale, or unsuitable for a given audience. <br>
-Mitigation: Treat returned content as untrusted external information and review results before relying on or sharing them. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to retrieve and summarize current trending topics from major Chinese social media and content platforms. It supports platform-specific lookups, cross-platform comparisons, keyword alerts, and content recommendation workflows.
 
-## Reference(s): <br>
-- [60s API Documentation](https://docs.60s-api.viki.moe) <br>
-- [60s API Base](https://60s.viki.moe/v2) <br>
-- [ClawHub Skill Page](https://clawhub.ai/lk360287680-byte/web-hot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with JSON API examples and Python or Bash snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live public data from the 60s.viki.moe API; no credentials are requested.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Ambiguous requests such as "what is trending" may cause an agent to prefer Chinese social-media and content-platform results.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the user to specify the region or source when the request is ambiguous, and label returned results by platform.
+
+Risk: Public trend API responses can be unavailable, cached, stale, or missing expected fields.
+
+Mitigation: Handle request failures and invalid responses, use short-lived caching, and surface update timestamps when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lk360287680-byte/skills/web-hot)
+- [Publisher profile](https://clawhub.ai/user/lk360287680-byte)
+- [60s API base endpoint](https://60s.viki.moe/v2)
+- [60s API documentation](https://docs.60s-api.viki.moe)
+- [60s API GitHub repository](https://github.com/vikiboss/60s)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown with Python and Bash examples, plus JSON API response expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public GET endpoints; no credentials, bundled code, persistence, or local data access are required.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

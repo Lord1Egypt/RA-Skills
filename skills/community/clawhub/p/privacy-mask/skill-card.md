@@ -1,44 +1,58 @@
-## Description: <br>
-Mask, redact, anonymize and censor sensitive information in screenshots and images using local OCR, regex rules, and optional NER before images are shared. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy Mask helps agents detect and locally redact sensitive information in screenshots and images using OCR, regex rules, and optional NER before further analysis or sharing.
 
-## Publisher: <br>
-[fullstackcrew-alpha](https://clawhub.ai/user/fullstackcrew-alpha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fullstackcrew-alpha](https://clawhub.ai/user/fullstackcrew-alpha)
 
-## Use Case: <br>
-Developers and other users handling screenshots use this skill to detect and mask private data before image analysis or prompt submission. It supports privacy, compliance, secret detection, and data loss prevention workflows that require local redaction. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Automatic prompt hooks may run broadly and modify images before submission without clear user confirmation. <br>
-Mitigation: Confirm whether hook execution is opt-in, preview dry-run detections when possible, and avoid in-place edits unless the user explicitly requests them. <br>
-Risk: Redaction quality depends on OCR, regex, and optional NER coverage, so sensitive data may be missed. <br>
-Mitigation: Review dry-run detections, use custom configuration for domain-specific identifiers, and manually inspect masked images before sharing externally. <br>
-Risk: The skill requires local dependencies such as tesseract, Python 3.10+, and the privacy-mask CLI. <br>
-Mitigation: Verify required binaries and CLI installation before relying on the skill in a workflow. <br>
+## Use Case:
 
+Developers, support engineers, and other users handling screenshots use this skill to detect PII or secrets in image files, generate masked copies, and avoid sending unredacted images to external services.
 
-## Reference(s): <br>
-- [Privacy Mask homepage](https://github.com/fullstackcrew-alpha/privacy-mask) <br>
-- [ClawHub listing](https://clawhub.ai/fullstackcrew-alpha/privacy-mask) <br>
-- [Publisher profile](https://clawhub.ai/user/fullstackcrew-alpha) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON CLI output examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local redaction guidance and may result in masked image files written beside the input image or to a user-specified path.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.3.5 (source: server release metadata and frontmatter) <br>
+Risk: The skill relies on unpinned external code through the privacy-mask CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only from a trusted source, pin a reviewed privacy-mask version, and verify the package before enabling the skill.
+
+Risk: The reviewed artifact references an automatic prompt-submit image-processing hook, but the hook script is missing from the artifact.
+
+Mitigation: Review the hook script and confirm its behavior before enabling automatic prompt-submit masking.
+
+Risk: The skill reads and writes screenshots or cached prompt images that may contain sensitive data.
+
+Mitigation: Run processing locally, preserve originals unless in-place masking is explicitly intended, and review masked output before sharing.
+
+## Reference(s):
+
+- [Privacy Mask homepage](https://github.com/fullstackcrew-alpha/privacy-mask)
+- [ClawHub Privacy Mask skill page](https://clawhub.ai/fullstackcrew-alpha/skills/privacy-mask)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands, JSON CLI output, and masked image files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local tesseract, python3, and privacy-mask binaries; masked files are written locally.]
+
+## Skill Version(s):
+
+0.3.5 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

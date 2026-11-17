@@ -1,47 +1,69 @@
-## Description: <br>
-Helps agents use LinkFox-forwarded Temu Global cancel-order APIs for buyer after-sales cancellation and seller appeal or out-of-stock cancellation workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Temu 全球站（非 US/EU）取消订单 API（买家+卖家合一），经 LinkFox 网关转发 6 个接口：买家售后取消(bg.aftersales.cancel.*)、卖家申诉/缺货取消(temu.order.cancel.*)等，默认 site=global、tokenPurpose=order-shipping。
 
-## Publisher: <br>
-[linkfox-ai](https://clawhub.ai/user/linkfox-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linkfox-ai](https://clawhub.ai/user/linkfox-ai)
 
-## Use Case: <br>
-External Temu sellers and operators use this skill to list pending buyer cancellation requests, agree to buyer cancellations, submit seller cancellation appeals, submit out-of-stock cancellations, and check cancellation results for Temu Global orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, for Temu Global and Partner-region cancellation workflows outside the separate US and EU variants. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles LinkFox credentials and Temu seller access tokens that can authorize sensitive seller operations. <br>
-Mitigation: Use least-privilege, short-lived tokens; avoid local token storage where possible; and protect or delete ~/.linkfox/temu-access-tokens.json after use. <br>
-Risk: Cancellation calls can change order or after-sales state. <br>
-Mitigation: Require explicit human confirmation and verify order identifiers, store context, site, and token purpose before executing any state-changing call. <br>
-Risk: The artifact includes broader Temu gateway and file-download helpers beyond the named cancel-order workflow. <br>
-Mitigation: Restrict use to documented cancel-order API types unless the operator has reviewed and approved the broader gateway or file-download action. <br>
+## Use Case:
 
+External Temu sellers, operations teams, and developers use this skill to call LinkFox-assisted Temu Global cancellation workflows for buyer aftersales cancellations and seller appeal or out-of-stock cancellation requests.
 
-## Reference(s): <br>
-- [API Reference](references/api.md) <br>
-- [Temu Access Token Authorization](references/access-token.md) <br>
-- [Authorization Flow](references/authorization-flow.md) <br>
-- [Partner Global Cancel Order Catalog](references/partner-global-catalog.md) <br>
-- [Cancel Order API Index](references/apis/README.md) <br>
-- [Temu Partner Global Documentation](https://partner-global.temu.com/documentation) <br>
+### Deployment Geography for Use:
 
+Global, excluding US and EU Temu cancellation workflows
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, JSON] <br>
-**Output Format:** [Markdown guidance with bash examples and JSON request or response payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires LINKFOXAGENT_API_KEY plus a Temu accessToken or storeKey; some scripts can change order state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: evidence.release.version and SKILL.md frontmatter) <br>
+Risk: The skill uses real LinkFox and Temu seller credentials and can store Temu access tokens locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted LinkFox endpoints, prefer short-lived and least-privileged Temu tokens, and avoid exposing unmasked token output.
+
+Risk: Gateway override environment variables can redirect requests away from the expected LinkFox endpoint.
+
+Mitigation: Avoid setting gateway override variables unless the endpoint is explicitly trusted and reviewed.
+
+Risk: Billing-related onboarding commands can create payment orders.
+
+Mitigation: Confirm plan and payment method with the user before running billing commands.
+
+Risk: Full API responses are saved locally and may contain order or seller account data.
+
+Mitigation: Review local output locations and handle saved response files as sensitive operational data.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linkfox-ai/skills/linkfox-temu-cancel-order-global)
+- [API reference](references/api.md)
+- [Partner Global catalog](references/partner-global-catalog.md)
+- [Access token guide](references/access-token.md)
+- [Authorization flow](references/authorization-flow.md)
+- [Onboarding guide](references/onboarding.md)
+- [Cancel Order API index](references/apis/README.md)
+- [Temu Partner Global documentation](https://partner-global.temu.com/documentation?menu_code=dbd3d395963a408984b8ae7dbc5f64f9)
+- [Temu Global OpenAPI router](https://openapi-b-global.temu.com/openapi/router)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python CLI commands and JSON API responses saved to local files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scripts may print small JSON responses inline; larger responses are summarized after the full response is saved locally.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

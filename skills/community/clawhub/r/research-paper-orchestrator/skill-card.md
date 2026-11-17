@@ -1,42 +1,55 @@
-## Description: <br>
-Master Orchestrator coordinating 10 specialized subagents to produce complete doctorate-level research papers (12,000-15,000 words) in Word document format (.docx). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master Orchestrator coordinating 10 specialized subagents to produce complete doctorate-level research papers (12,000-15,000 words) in Word document format (.docx).
 
-## Publisher: <br>
-[selormofmars](https://clawhub.ai/user/selormofmars) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[selormofmars](https://clawhub.ai/user/selormofmars)
 
-## Use Case: <br>
-External users can use this skill for legitimate research support, including planning, outlining, drafting assistance, citation formatting, and document structuring for long-form academic papers. Users remain responsible for authorship, source verification, and compliance with institutional rules. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow could be misused for academic ghostwriting. <br>
-Mitigation: Use it only for legitimate research support and ensure the final submission reflects the user's own work and complies with institutional rules. <br>
-Risk: Generated citations, sources, or claims may be incomplete or inaccurate. <br>
-Mitigation: Independently verify all citations, source quality, and factual claims before relying on or submitting any output. <br>
-Risk: A polished long-form draft may obscure gaps in reasoning, methodology, or evidence. <br>
-Mitigation: Review each phase output, quality gate result, and final document for academic rigor before delivery or use. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/selormofmars/research-paper-orchestrator) <br>
-- [Publisher profile](https://clawhub.ai/user/selormofmars) <br>
+## Use Case:
 
+Students, researchers, and academic writers use this skill to coordinate planning, literature discovery, synthesis, drafting, quality review, citation support, and Word document production for comprehensive research papers, dissertations, theses, or thesis chapters.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, files] <br>
-**Output Format:** [Structured academic manuscript guidance and a final Word document (.docx).] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coordinates a 10-phase workflow with citation-system selection, research planning, literature discovery, synthesis, quality review, and final document formatting.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Full-paper generation can create academic integrity concerns if users submit generated work as their own where that is prohibited.
+
+Mitigation: Use the skill for planning, research organization, citation help, drafting support, and review within the applicable institutional rules.
+
+Risk: Academic writing outputs may contain unsupported claims, citation mistakes, or formatting issues.
+
+Mitigation: Review sources, citations, and final document content before relying on or submitting the output.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/selormofmars/skills/research-paper-orchestrator)
+- [Publisher Profile](https://clawhub.ai/user/selormofmars)
+- [Skill Definition](artifact/SKILL.md)
+- [Subagent Definitions](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown workflow outputs and a formatted Word document (.docx) final deliverable]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Coordinates a phased academic writing workflow with citation-style selection, quality gates, and final document formatting.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

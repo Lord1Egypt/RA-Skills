@@ -1,44 +1,52 @@
-## Description: <br>
-A higher mathematics tutoring skill for Tongji 7th edition calculus chapters 1-12, with concept explanations, knowledge-graph skillId alignment, high-order exercise generation, and rubric-style grading feedback. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calculuslobt is a Chinese higher-mathematics teaching assistant for Tongji seventh-edition calculus topics, high-order learning tasks, exercise generation, and answer feedback.
 
-## Publisher: <br>
-[daigxok](https://clawhub.ai/user/daigxok) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daigxok](https://clawhub.ai/user/daigxok)
 
-## Use Case: <br>
-External educators, students, and learning-product builders use this skill to explain calculus concepts, generate high-order practice or exams, and provide structured feedback on student work within the Tongji 7th edition higher mathematics scope. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sample exam reference files contain leftover internal editing fragments that could confuse downstream agents or students. <br>
-Mitigation: Remove or review the affected sample reference content before using it in student-facing materials. <br>
-Risk: Generated tutoring, exam, and grading feedback can be mathematically incomplete or misaligned with a specific course edition or page reference. <br>
-Mitigation: Have an instructor review generated problems, solutions, rubric comments, and textbook citations before classroom or assessment use. <br>
+## Use Case:
 
+External learners, instructors, and tutoring agents use this skill to explain Tongji seventh-edition higher-mathematics topics, design Bloom-aligned exercises, and provide structured feedback on calculus work.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/daigxok/calculus-lobster-teacher) <br>
-- [Publisher profile](https://clawhub.ai/user/daigxok) <br>
-- [Higher Mathematics Topic Summary](references/calculus-topics.md) <br>
-- [Sample Comprehensive Exam](references/sample-exam-v2.1.0.md) <br>
-- [Sample Chapter 8 Spatial Analytic Geometry Exam](references/sample-exam-ch8-spatial-analytic-geometry.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include formulas, tables, knowledge-point labels, practice questions, grading rubrics, and stepwise feedback.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: server release metadata and SKILL.md version table) <br>
+Risk: Two sample exam reference files contain stray agent-control and tool-call text, which could confuse agents that load references as context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and remove the stray `</think>` and `StrReplace` blocks from both sample exam references before using the skill in agents that can edit files or follow loaded reference text.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/daigxok/skills/calculus-lobster-teacher)
+- [Calculus topics reference](artifact/references/calculus-topics.md)
+- [High-order comprehensive sample exam](artifact/references/sample-exam-v2.1.0.md)
+- [Spatial analytic geometry sample exam](artifact/references/sample-exam-ch8-spatial-analytic-geometry.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with structured explanations, exercise prompts, grading rubrics, and feedback notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are educational guidance and should preserve textbook boundaries and uncertainty notes when page or theorem references need verification.]
+
+## Skill Version(s):
+
+2.1.1 (source: server release evidence and SKILL.md version table)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

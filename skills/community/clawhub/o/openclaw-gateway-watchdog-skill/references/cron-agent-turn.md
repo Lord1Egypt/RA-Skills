@@ -8,7 +8,7 @@ Run bash {baseDir}/scripts/gateway-watchdog.sh.
 Rules:
 1) Do not send normal "all good" heartbeats.
 2) Only announce when status changes to degraded/critical or recovers to healthy.
-3) Include: source, reason, consecutive failures, and whether restart was attempted.
+3) Include: source, affected target, consecutive failures, and confirm that no restart was attempted.
 4) Keep output short and ops-friendly.
 ```
 

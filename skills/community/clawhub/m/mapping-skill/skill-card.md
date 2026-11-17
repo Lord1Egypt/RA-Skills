@@ -1,54 +1,72 @@
-## Description: <br>
-Supports AI/ML talent discovery from lab pages, conference authors, GitHub networks, and public profiles, then structures candidate data and drafts personalized outreach. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI/ML talent discovery and outreach workflow for finding researchers from papers, labs, GitHub networks, and web pages, extracting structured profiles, deduplicating candidates, generating personalized recruiting emails, and supporting Feishu table workflows.
 
-## Publisher: <br>
-[16miku](https://clawhub.ai/user/16miku) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[16miku](https://clawhub.ai/user/16miku)
 
-## Use Case: <br>
-Recruiters, sourcers, and research team operators use this skill to find AI/ML candidates from papers, lab pages, GitHub networks, and public profiles, structure and deduplicate candidate data, and generate personalized recruiting emails. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can collect personal data such as contact details, affiliations, research profiles, and candidate classifications at scale. <br>
-Mitigation: Limit use to authorized recruiting workflows, collect only necessary public data, document the lawful basis for processing, and apply retention limits before exporting or sharing results. <br>
-Risk: The artifact includes workflows for identifying Chinese candidates, which may create protected-attribute or proxy-attribute targeting risk. <br>
-Mitigation: Disable ethnicity, nationality, or surname-based targeting unless reviewed and approved for a lawful, policy-compliant use case. <br>
-Risk: Bulk outreach and Feishu table updates can expose scraped contact data to broad workspaces or trigger unsolicited messaging. <br>
-Mitigation: Restrict Feishu permissions and workspace access, review generated messages before sending, and keep outreach volume and content within applicable platform, legal, and organizational policies. <br>
-Risk: Scraping conference, lab, GitHub, LinkedIn, or other public sites may conflict with site terms, robots policies, or rate limits. <br>
-Mitigation: Review each source's terms and robots policy, prefer official APIs where available, use conservative rate limits, and avoid scraping sources that disallow the intended use. <br>
-Risk: External APIs and MCP services may require credentials with access to search, scraping, OpenReview, BrightData, or Feishu resources. <br>
-Mitigation: Use the minimum required scopes, store credentials outside shared artifacts, rotate tokens regularly, and avoid embedding secrets in prompts, scripts, CSV files, or Feishu records. <br>
+## Use Case:
 
+Developers, recruiters, and recruiting operations teams use this skill to discover AI/ML candidates from conferences, labs, GitHub networks, and supplied URLs, then structure contact data and generate personalized outreach. It can also support CSV export and Feishu table workflows for batch import, email generation, and record updates.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/16miku/mapping-skill) <br>
-- [Project link](https://github.com/16Miku/Mapping-Skill) <br>
-- [README](artifact/README.md) <br>
-- [Scripts README](artifact/scripts/README.md) <br>
-- [Python scraping guide](artifact/references/python-scraping-guide.md) <br>
-- [Anti-scraping solutions](artifact/references/anti-scraping-solutions.md) <br>
-- [Conference paper scraping](artifact/references/conference-paper-scraping.md) <br>
-- [Profile schema](artifact/references/profile-schema.md) <br>
-- [Email templates](artifact/references/email-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance, Files] <br>
-**Output Format:** [Markdown, structured tables, CSV or spreadsheet-ready records, Python snippets, shell commands, and email drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local CSV or Excel files and may update Feishu tables when the user provides authorized access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: The skill collects personal contact data during recruiting and scraping workflows.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a supervised, sandboxed environment, collect the minimum necessary data, and avoid public redistribution of personal contact details.
+
+Risk: The skill includes Chinese-identity inference for candidate classification.
+
+Mitigation: Do not use inferred identity as a recruiting selection or outreach-targeting criterion; limit use to user-reviewed context where legally and ethically appropriate.
+
+Risk: The skill can write candidate and email data to Feishu with broad permissions.
+
+Mitigation: Use least-privilege Feishu credentials, require dry runs before writes, and review table fields and record updates before batch operations.
+
+Risk: Scraping workflows may interact with protected, rate-limited, or internal network resources.
+
+Mitigation: Block local and internal network targets, respect site access rules, rate-limit requests, and prefer official APIs such as OpenReview when available.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/16miku/skills/mapping-skill)
+- [README](README.md)
+- [Profile schema](references/profile-schema.md)
+- [Search templates](references/search-templates.md)
+- [Conference paper scraping](references/conference-paper-scraping.md)
+- [Python scraping guide](references/python-scraping-guide.md)
+- [Anti-scraping solutions](references/anti-scraping-solutions.md)
+- [Candidate classifier](references/candidate-classifier.md)
+- [Deduplication rules](references/deduplication-rules.md)
+- [Field mappings](references/field-mappings.md)
+- [Email templates](references/email-templates.md)
+- [Talk tracks](references/talk-tracks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, structured tables, CSV-oriented data, code snippets, shell commands, and Feishu workflow guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce candidate profiles, contact fields, scraping plans, reusable Python command guidance, personalized outreach drafts, import/update summaries, and failure statistics.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

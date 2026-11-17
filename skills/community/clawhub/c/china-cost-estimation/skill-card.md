@@ -1,42 +1,59 @@
-## Description: <br>
-Provides China construction cost estimation, cost composition analysis, and fee calculations based on GB/T 50500-2024, Jianbiao [2013] No. 44, and Jiangsu 2024 fee standards. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Quick construction cost estimation system based on GB/T 50500-2024, providing investment estimates, cost composition analysis, and fee calculations for feasibility and preliminary design budgeting.
 
-## Publisher: <br>
-[ruiyongwang](https://clawhub.ai/user/ruiyongwang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ruiyongwang](https://clawhub.ai/user/ruiyongwang)
 
-## Use Case: <br>
-Cost engineers, project investors, and agents supporting feasibility or preliminary design work use this skill to estimate China construction investment, break down construction and installation costs, and cite applicable standards or rate bases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Construction cost estimates and referenced rates may be approximate or outdated for financial decisions. <br>
-Mitigation: Treat outputs as advisory, verify current standards and rates, and consult qualified cost professionals before investment or procurement decisions. <br>
-Risk: The manifest includes a UTF-8 byte order mark that strict JSON parsers may reject. <br>
-Mitigation: Remove the byte order mark or use tooling that handles UTF-8 BOMs before automated manifest ingestion. <br>
+## Use Case:
 
+External cost engineers, project investors, and construction planners use this skill to estimate China construction project costs, break down fee components, and check cost composition against bundled national and Jiangsu reference data.
 
-## Reference(s): <br>
-- [China Cost Estimation on ClawHub](https://clawhub.ai/ruiyongwang/china-cost-estimation) <br>
-- [Cost Composition Rules](artifact/references/cost-composition-rules.json) <br>
-- [Estimation Indices](artifact/references/estimation-indices.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, guidance] <br>
-**Output Format:** [Markdown estimates and analysis with tables and calculation steps; the bundled Python calculator emits plain-text reports.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local JSON reference data; outputs are advisory estimates that should be verified against current standards and rates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata and manifest.json; SKILL.md frontmatter lists 1.0) <br>
+Risk: Construction standards, regional fee schedules, and local rates can change after the bundled reference data was prepared.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current standards and local rates before relying on estimates for real projects.
+
+Risk: Preliminary estimates may be mistaken for final budget or procurement figures.
+
+Mitigation: Treat outputs as reference estimates and use a construction drawing budget or a qualified cost consultant for major investment decisions.
+
+Risk: Bundled defaults may not reflect project-specific site, design, or market conditions.
+
+Mitigation: Provide project-specific inputs and review assumptions before using calculated ranges.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ruiyongwang/skills/china-cost-estimation)
+- [cost-composition-rules.json](references/cost-composition-rules.json)
+- [estimation-indices.json](references/estimation-indices.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown-style reports with estimates, cost breakdowns, calculation steps, cited standards, and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include calculated cost ranges, fee tables, and reminders to verify current local rates.]
+
+## Skill Version(s):
+
+1.0.1 (source: release evidence and manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

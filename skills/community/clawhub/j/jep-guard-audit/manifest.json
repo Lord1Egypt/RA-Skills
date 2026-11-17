@@ -1,0 +1,32 @@
+{
+  "name": "jep-guard-audit",
+  "version": "2.0.1",
+  "description": "Verify signed audit evidence and inspect tenant-scoped event references.",
+  "author": "Cognitive Emergence Lab <yuqiang@humanjudgment.org>",
+  "license": "MIT",
+  "protocol": "JEP",
+  "entrypoint": "skill.api:app",
+  "host_targets": [
+    "mcp",
+    "api",
+    "python"
+  ],
+  "dependencies": [
+    "requirements.txt (exact versions and hashes)"
+  ],
+  "tags": [
+    "jep",
+    "jac",
+    "audit",
+    "compliance",
+    "ai-act",
+    "guard",
+    "accountability"
+  ],
+  "environment_variables": [
+    "JEP_CLIENTS",
+    "JEP_TRUSTED_KEYS",
+    "JEP_AUDIT_DB",
+    "JEP_AUDIT_TENANT_QUOTAS"
+  ]
+}

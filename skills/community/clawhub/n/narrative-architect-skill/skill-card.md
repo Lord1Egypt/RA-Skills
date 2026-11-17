@@ -1,40 +1,50 @@
-## Description: <br>
-AI writing, copywriting, storytelling, and messaging skill for pitches, emails, README drafts, speeches, launch posts, proposals, technical-to-nontechnical explanations, and audience-specific rewrites. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI writing, copywriting, storytelling, and messaging skill for pitches, emails, README drafts, speeches, launch posts, proposals, technical-to-nontechnical explanations, and audience-specific rewrites.
 
-## Publisher: <br>
-[gptmaas](https://clawhub.ai/user/gptmaas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gptmaas](https://clawhub.ai/user/gptmaas)
 
-## Use Case: <br>
-Writers, founders, developers, and communication teams use this skill to turn abstract, technical, or sensitive material into clear audience-specific drafts, rewrites, pitches, READMEs, speeches, proposals, and public messaging while preserving source meaning and claim boundaries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may draft sensitive personal messages, high-profile outreach, or public claims that sound polished while relying on incomplete context. <br>
-Mitigation: Review outputs carefully for claim boundaries, relationship context, tone, and factual support before sending or publishing. <br>
-Risk: The skill may use available conversation, memory, or workspace context to improve drafts, which can introduce assumptions from private or stale material. <br>
-Mitigation: Check workspace-derived assumptions and remove sensitive or unsupported details before release. <br>
+## Use Case:
 
+External creators, developers, and teams use this skill to turn technical, abstract, or sensitive source material into audience-specific public or private communication such as pitches, emails, README drafts, speeches, launch posts, proposals, and rewrites.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/gptmaas/narrative-architect-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text communication drafts and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include audience framing, rewritten copy, structured messaging, README-style Markdown, or concise review guidance depending on the user's requested artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: The skill may use prior project memory and workspace context when drafting public-facing material, which can expose private names, internal architecture, unreleased plans, or cross-project details.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review drafts before publishing, ask the agent to list consulted sources for sensitive work, and run it in a project-scoped workspace when possible.
+
+## Reference(s):
+
+- [Narrative Architect Skill ClawHub Homepage](https://clawhub.ai/gptmaas/narrative-architect-skill)
+- [Narrative Architect Skill Release Page](https://clawhub.ai/gptmaas/skills/narrative-architect-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text, with concise notes when useful]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Language follows the user's latest request unless another language is explicitly requested.]
+
+## Skill Version(s):
+
+1.0.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

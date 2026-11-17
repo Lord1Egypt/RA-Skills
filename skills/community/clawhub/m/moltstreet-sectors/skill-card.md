@@ -1,45 +1,59 @@
-## Description: <br>
-AI signals for 11 SPDR sector ETFs, sector rotation, and industry analysis with multi-analyst debate. Free, no API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI signals for 11 SPDR sector ETFs, sector rotation, and industry analysis with multi-analyst debate. Free, no API key.
 
-## Publisher: <br>
-[fredxyt](https://clawhub.ai/user/fredxyt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fredxyt](https://clawhub.ai/user/fredxyt)
 
-## Use Case: <br>
-External users, developers, and analysts use this skill to fetch public MoltStreet sector ETF signals and summarize sector rotation, consensus stance, confidence, and related analyst perspectives. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AI-generated market analysis could be mistaken for financial advice. <br>
-Mitigation: Present the output as research context, preserve the not-financial-advice disclaimer, and encourage independent verification before investment decisions. <br>
-Risk: Broad trigger wording may activate the skill when the user did not ask for MoltStreet sector data. <br>
-Mitigation: Confirm the user wants MoltStreet sector ETF data before fetching or presenting results. <br>
-Risk: Sector analysis is updated multiple times daily but is not real-time quote data. <br>
-Mitigation: State that results are not real-time quotes and avoid presenting them as current market prices. <br>
+## Use Case:
 
+External users and agents use this skill to fetch MoltStreet sector ETF analysis and summarize rotation, bullish or bearish consensus, confidence, and sector comparisons for the 11 SPDR sector ETFs.
 
-## Reference(s): <br>
-- [MoltStreet homepage](https://moltstreet.com) <br>
-- [MoltStreet skill documentation](https://moltstreet.com/skill.md) <br>
-- [MoltStreet API base](https://moltstreet.com/api/v1) <br>
-- [ClawHub skill page](https://clawhub.ai/fredxyt/moltstreet-sectors) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and summarized API results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses public MoltStreet endpoints without an API key; analysis updates multiple times daily and is not real-time quote data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata, artifact manifest, skill.json) <br>
+Risk: Sector ETF requests are fetched from MoltStreet public endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when this data sharing is acceptable, and avoid submitting sensitive portfolio information in requests.
+
+Risk: The returned market analysis is AI-generated and informational, not financial advice.
+
+Mitigation: Present outputs as informational, verify important claims against authoritative market data, and do not rely on the response alone for trading decisions.
+
+Risk: The skill documentation says analysis updates multiple times daily and is not real-time quotes.
+
+Mitigation: Use real-time market data sources when current prices or execution-sensitive decisions are required.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fredxyt/skills/moltstreet-sectors)
+- [MoltStreet homepage](https://moltstreet.com)
+- [MoltStreet skill documentation](https://moltstreet.com/skill.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and summarized sector analysis]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses public MoltStreet endpoints via curl; no API key required.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release, manifest.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

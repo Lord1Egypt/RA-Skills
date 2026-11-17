@@ -1,45 +1,60 @@
-## Description: <br>
-Deep Research Pro helps agents run multi-source web and news research through SkillBoss API Hub, synthesize findings, and deliver cited reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-source deep research agent. Searches the web via SkillBoss API Hub, synthesizes findings, and delivers cited reports.
 
-## Publisher: <br>
-[marjoriebroad](https://clawhub.ai/user/marjoriebroad) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[marjoriebroad](https://clawhub.ai/user/marjoriebroad)
 
-## Use Case: <br>
-External users, developers, and agent operators use this skill to plan research questions, search multiple web and news sources, fetch selected pages for deeper reading, and produce cited reports for decision support or writing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research queries, URLs, and selected page-fetch requests are sent to SkillBoss API Hub. <br>
-Mitigation: Use the skill only when that third-party data flow is acceptable, and avoid confidential, regulated, secret, or internal-only topics unless approved. <br>
-Risk: The skill requires a SkillBoss API key. <br>
-Mitigation: Provide SKILLBOSS_API_KEY through a secure environment variable and avoid putting the key in prompts, reports, or checked-in files. <br>
-Risk: Generated reports may be saved to local disk and can contain sensitive research topics or conclusions. <br>
-Mitigation: Review saved files before sharing, choose an appropriate storage location, and remove reports that should not remain in the workspace. <br>
-Risk: Web-derived research can be incomplete, stale, or misleading. <br>
-Mitigation: Review cited sources, cross-check important claims, and treat unverified single-source findings as lower confidence. <br>
+## Use Case:
 
+External users and developers use this skill to plan multi-source web research, read selected sources, and produce cited reports with summaries, takeaways, sources, and methodology.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/marjoriebroad/abe-deep-research-pro) <br>
-- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with inline citations; optional JSON or saved Markdown files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SKILLBOSS_API_KEY and may save full reports under ~/clawd/research/[slug]/report.md.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, SKILL.md frontmatter, package.json) <br>
+Risk: The install and CLI documentation points users toward unaudited external code from an inconsistent source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify the authoritative repository and inspect the advertised scripts/research CLI before running it.
+
+Risk: Research queries, URLs, and fetched content are sent to SkillBoss API Hub.
+
+Mitigation: Avoid sending secrets, internal URLs, or sensitive investigations unless SkillBoss API Hub is approved for that data.
+
+Risk: The skill requires SKILLBOSS_API_KEY for search and scraping.
+
+Mitigation: Provide the API key through a managed environment variable or secret store and keep it out of prompts, logs, and generated reports.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/marjoriebroad/skills/abe-deep-research-pro)
+- [Publisher profile](https://clawhub.ai/user/marjoriebroad)
+- [OpenClaw project](https://github.com/openclaw/openclaw)
+- [SkillBoss API Hub endpoint](https://api.heybossai.com/v1/pilot)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown reports with citations, optional JSON output, and inline shell or Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated reports may be saved to disk and should include source links, methodology, and confidence notes.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, package.json, server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

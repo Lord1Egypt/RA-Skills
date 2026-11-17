@@ -1,43 +1,56 @@
-## Description: <br>
-Maximize CTR (Click-Through Rate) by leveraging emotional hooks and platform algorithms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Maximize CTR (Click-Through Rate) by leveraging emotional hooks and platform algorithms.
 
-## Publisher: <br>
-[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tobeyrebecca](https://clawhub.ai/user/tobeyrebecca)
 
-## Use Case: <br>
-External creators and content strategists use this skill to turn a raw topic or short product note into five Xiaohongshu/RedNote-style title candidates with strategy tags and brief cover-image advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated titles may overstate claims or use terms that create advertising-law or platform-policy risk. <br>
-Mitigation: Review every title before posting and reject claims that are inaccurate, absolute, medical, superstitious, or otherwise noncompliant. <br>
-Risk: The skill intentionally favors emotional hooks and urgency, which may conflict with a brand's desired tone. <br>
-Mitigation: Apply brand and editorial review before publishing, especially for regulated products or sensitive topics. <br>
+## Use Case:
 
+Creators, marketers, and content teams use this skill to turn raw topics or draft copy into five Xiaohongshu/RedNote-style title candidates plus brief cover image advice. The workflow emphasizes category matching, emotional hooks, concise wording, emojis or punctuation, and compliance filtering.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tobeyrebecca/godfery-title) <br>
-- [examples.md](artifact/examples.md) <br>
-- [references.md](artifact/references.md) <br>
-- [validator.py](artifact/validator.py) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown list of title candidates with strategy tags and brief visual guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates five concise, emoji-rich Xiaohongshu/RedNote title candidates after filtering for length, banned terms, and visual hooks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill intentionally optimizes for persuasive, platform-specific marketing language, including urgency, emotional hooks, emojis, and engagement-oriented phrasing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Invoke it deliberately for Xiaohongshu/RedNote marketing use cases and review outputs for brand voice, accuracy, and suitability before publication.
+
+Risk: Generated title candidates may include exaggerated or non-neutral wording that is inappropriate for informational, multilingual, or compliance-sensitive contexts.
+
+Mitigation: Use the included banned-word and length checks as a first-pass filter, then apply human review for advertising compliance and factual claims.
+
+## Reference(s):
+
+- [Skill release page](https://clawhub.ai/tobeyrebecca/skills/godfery-title)
+- [Few-Shot Examples Library](artifact/examples.md)
+- [Strategic Assets](artifact/references.md)
+- [Title Validator](artifact/validator.py)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown list of title candidates with strategy tags and brief cover image advice]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generates five short Xiaohongshu/RedNote-style titles selected from ten candidates after applying length, banned-word, and visual-hook checks.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,49 @@
-## Description: <br>
-Generates Chinese storyboard tables, character settings, and visual prompts from video transcripts or new creative themes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+视频提示词生成系统V1，可将视频内容拆解为分镜表、角色设定、画面提示词，支持二次创作生成新分镜。
 
-## Publisher: <br>
-[muerjie](https://clawhub.ai/user/muerjie) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[muerjie](https://clawhub.ai/user/muerjie)
 
-## Use Case: <br>
-External creators and agent users can use this skill to analyze video transcript content into character settings, shot-by-shot storyboard tables, and AI image prompts. They can also use keywords or themes to generate new storyboard scripts for secondary creative work. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Video transcripts or creative briefs may contain private or sensitive content. <br>
-Mitigation: Avoid pasting private or sensitive material unless the user is comfortable having the agent process it. <br>
-Risk: Generated prompts may be inaccurate, unsuitable, or poorly aligned with a downstream image or video tool. <br>
-Mitigation: Review generated prompts before sending them to third-party image or video generation tools. <br>
+## Use Case:
 
+Creators, marketers, and video teams use this skill to turn video transcripts or story ideas into Chinese storyboard tables, character settings, and AI image prompts for video analysis or secondary creative production.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/muerjie/video-prompt-generation-system-v1) <br>
-- [Publisher profile](https://clawhub.ai/user/muerjie) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese Markdown with structured tables and copy-ready prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include character setting tables, storyboard tables, visual prompt text, and video structure analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill is designed for structured Chinese storyboard and image-prompt outputs, which may not match users who expect another language.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Ask the agent for the preferred output language before or during use when multilingual output is needed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/muerjie/skills/video-prompt-generation-system-v1)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Guidance]
+
+**Output Format:** [Chinese Markdown tables and concise prompt text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are intended to be directly copied into mainstream AI image-generation tools.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

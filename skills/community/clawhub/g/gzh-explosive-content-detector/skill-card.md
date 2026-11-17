@@ -1,44 +1,63 @@
-## Description: <br>
-Searches recent popular WeChat Official Account articles by keyword, ranks results by relevance, popularity, and recency, and presents trend-focused article recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches recent WeChat Official Account articles with 5,000+ reads by keyword, ranks results by relevance, heat, and timeliness, and helps content creators find trend and topic inspiration.
 
-## Publisher: <br>
-[yuanyi-github](https://clawhub.ai/user/yuanyi-github) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yuanyi-github](https://clawhub.ai/user/yuanyi-github)
 
-## Use Case: <br>
-Content creators, WeChat operators, brand teams, and self-media learners use this skill to discover recent high-performing WeChat articles, compare topic trends, and gather writing inspiration. It can also guide keyword-based recurring subscription workflows when the user explicitly wants scheduled tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a hardcoded Redfox API key in the release. <br>
-Mitigation: Install only after the publisher removes and rotates the exposed key; configure your own REDFOX_API_KEY through environment variables and avoid placing it in prompts, code, logs, or output files. <br>
-Risk: Search keywords and date ranges are sent to redfox.hk for article lookup. <br>
-Mitigation: Use only queries that are acceptable to share with RedFoxHub, and avoid confidential topics or sensitive personal data. <br>
-Risk: The skill includes optional calendar-style subscription behavior for recurring keyword reminders. <br>
-Mitigation: Approve subscription creation only when recurring reminders are intended, and review the schedule and destination before enabling it. <br>
+## Use Case:
 
+External content creators, WeChat operators, and brand teams use this skill to search recent viral WeChat articles, compare content trends, and schedule recurring topic checks.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yuanyi-github/gzh-explosive-content-detector) <br>
-- [WeChat trend data format reference](references/gzh_trend_data_format.md) <br>
-- [RedFoxHub API key settings](https://redfox.hk/settings/api-keys?source=clawhub) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, json, html, shell commands, configuration guidance] <br>
-**Output Format:** [Markdown article tables and recommendations, with optional JSON or HTML output from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses REDFOX_API_KEY for RedFoxHub requests; query results are limited to recent indexed WeChat articles and may include recurring subscription guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The artifact exposes a credential-like API key.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: The publisher should remove and rotate the exposed key; users should configure their own scoped REDFOX_API_KEY.
+
+Risk: Search terms are sent to the RedFox service.
+
+Mitigation: Use the skill only when sending those terms to RedFox is acceptable, and avoid sensitive queries.
+
+Risk: Optional HTML reports may be unsafe to open until escaping is fixed.
+
+Mitigation: Avoid opening generated HTML reports unless the HTML escaping issue is resolved.
+
+Risk: Recurring subscriptions can store search parameters and run on a schedule.
+
+Mitigation: Review the recurrence, push time, and stored query details before creating a calendar subscription.
+
+## Reference(s):
+
+- [Data format reference](references/gzh_trend_data_format.md)
+- [ClawHub skill release page](https://clawhub.ai/yuanyi-github/skills/gzh-explosive-content-detector)
+- [RedFox API key settings](https://redfox.hk/settings/api-keys?source=clawhub)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown tables and prompts, JSON from stdout, and optional HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires REDFOX_API_KEY; can create recurring calendar subscriptions when the user chooses scheduled pushes.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

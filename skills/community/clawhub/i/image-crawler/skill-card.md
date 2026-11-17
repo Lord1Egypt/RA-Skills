@@ -1,40 +1,64 @@
-## Description: <br>
-Image-crawler helps an agent collect images from Baidu and Bing image search using keyword expansion, URL and content deduplication, progress monitoring, and JSON status output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Image-crawler helps agents collect images from Baidu and Bing image search using keywords, optional keyword expansion, duplicate detection, progress monitoring, and JSON status output.
 
-## Publisher: <br>
-[mx2013713828](https://clawhub.ai/user/mx2013713828) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mx2013713828](https://clawhub.ai/user/mx2013713828)
 
-## Use Case: <br>
-Developers and agents use this skill to plan and run keyword-based image collection jobs, monitor JSON progress events, and report download results for local datasets or asset-gathering workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image downloads and deduplication state are written to a local output directory, which can expose private search terms or mix generated files with unrelated content if a shared or sensitive folder is used. <br>
-Mitigation: Use a dedicated output directory for each crawl and avoid shared or sensitive folders when search terms are private. <br>
-Risk: The persistent .dedup_hashes.json file retains URL and content-hash history across runs. <br>
-Mitigation: Delete .dedup_hashes.json in the output folder when retained deduplication history should be removed or reset. <br>
+## Use Case:
 
+Developers and external users can use this skill to have an agent plan and run bounded image collection jobs, monitor progress, and report downloaded image counts and output locations.
 
-## Reference(s): <br>
-- [Customization and interface guide](references/customization.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, JSON, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and JSONL crawler events] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Downloads image files to a local output directory and can maintain persistent deduplication state in that directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and target metadata) <br>
+Risk: Bulk image collection may download content the user does not have rights to collect or reuse.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm rights and applicable site terms before collection, and collect only content the user is permitted to store or use.
+
+Risk: Large scraping jobs can consume disk space or run beyond the intended scope.
+
+Mitigation: Keep counts small, choose a dedicated quota-limited output folder, and monitor JSON progress and stall events.
+
+Risk: Downloaded files may be untrusted or malformed.
+
+Mitigation: Treat downloaded files as untrusted until they are validated before opening, processing, or sharing.
+
+Risk: Anti-scraping guidance could be misused to bypass site rules or terms of service.
+
+Mitigation: Use troubleshooting only for legitimate access issues and do not use the skill to bypass access controls, rate limits, or terms.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mx2013713828/skills/image-crawler)
+- [Customization and interface guide](references/customization.md)
+- [Baidu image search endpoint](https://image.baidu.com/search/acjson)
+- [Bing image search endpoint](https://www.bing.com/images/async)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, JSON, Files, Markdown, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSONL progress events; downloaded image files are written to the configured output directory.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses --json mode for machine-readable start, info, search, progress, stall, error, and done events.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

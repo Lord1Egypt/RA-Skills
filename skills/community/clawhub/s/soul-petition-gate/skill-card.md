@@ -1,43 +1,56 @@
-## Description: <br>
-Gives an AI agent a formal, human-reviewed channel to propose changes to protected identity files without allowing self-editing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Gives an AI agent a formal, human-reviewed channel to propose changes to SOUL.md, IDENTITY.md, or other protected workspace files without allowing self-edits.
 
-## Publisher: <br>
-[waitinchen](https://clawhub.ai/user/waitinchen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[waitinchen](https://clawhub.ai/user/waitinchen)
 
-## Use Case: <br>
-Developers and agent operators use this skill to give an AI agent a structured petition workflow for proposed changes to SOUL.md, IDENTITY.md, or other protected workspace files while preserving human approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local backend can read, store, modify, and roll back sensitive soul or identity files. <br>
-Mitigation: Require authentication on petition routes, expose the service only in a trusted local environment, and keep protected files on an explicit allowlist. <br>
-Risk: Petition history and backups may retain sensitive identity content. <br>
-Mitigation: Store petition and backup files in protected local paths, restrict filesystem permissions, and review retention needs before deployment. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a human-reviewed petition workflow for proposed changes to protected agent identity files. It is intended for teams that want agents to propose self-improvements while keeping final approval, audit history, backup, and rollback under human control.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/waitinchen/soul-petition-gate) <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [Flask Petition Routes](artifact/assets/soul_petition_routes.py) <br>
-- [Petition Examples](artifact/examples/petition_examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JSON, Python, TypeScript, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes a Flask blueprint, OpenClaw bootstrap hook guidance, and structured petition examples.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The included backend does not enforce that only a human reviewer can approve or roll back persistent identity-file changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add authentication and reviewer/admin authorization before enabling approval or rollback endpoints.
+
+Risk: Exposing the blueprint on a reachable network as-is could allow unauthorized changes to protected identity files.
+
+Mitigation: Keep the blueprint private until it has CSRF protection where browser cookies are used, strict rollback allowlisting from server-side backup metadata, unique petition IDs, and atomic storage.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/waitinchen/skills/soul-petition-gate)
+- [Publisher profile](https://clawhub.ai/user/waitinchen)
+- [Skill README](artifact/SKILL.md)
+- [Petition examples](artifact/examples/petition_examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON examples, Python Flask blueprint code, and OpenClaw hook code]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes a six-field petition format, audit trail behavior, backup and rollback workflow, and an optional bootstrap reminder hook.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

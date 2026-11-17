@@ -1,44 +1,53 @@
-## Description: <br>
-使用微软 Edge TTS 生成高质量中文语音，默认使用 XiaoxiaoNeural 语音。当用户需要语音回复时自动触发。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+使用微软 Edge TTS 生成高质量中文语音，默认使用 XiaoxiaoNeural 语音。当用户需要语音回复时自动触发。
 
-## Publisher: <br>
-[nufeng1999](https://clawhub.ai/user/nufeng1999) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nufeng1999](https://clawhub.ai/user/nufeng1999)
 
-## Use Case: <br>
-Developers and agent operators use this skill to add Chinese voice-reply behavior that converts text responses into WAV audio for QQ media delivery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Voice-reply behavior may activate too broadly from voice-related prompts. <br>
-Mitigation: Use explicit opt-in wording and confirm the user's intent before entering voice or TTS mode. <br>
-Risk: Text sent for synthesis may be processed by an external TTS service. <br>
-Mitigation: Confirm before sending sensitive text to external TTS services and avoid using the skill for confidential content unless the deployment has approved that service. <br>
-Risk: The skill depends on local Python, pip, and edge-tts availability. <br>
-Mitigation: Verify the required binaries and package installation path before relying on voice output in production workflows. <br>
+## Use Case:
 
+External users and agent operators use this skill to turn Chinese text responses into Microsoft Edge TTS voice output for QQ media delivery.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/nufeng1999/chinese-voice-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/nufeng1999) <br>
-- [Aliyun PyPI mirror used for edge-tts installation](https://mirrors.aliyun.com/pypi/simple/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and QQ media tags referencing generated WAV files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces or references WAV audio generated from text through edge-tts when available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: Text provided for voice generation may be sent to Microsoft TTS services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for content that may be processed by the external TTS service.
+
+Risk: The documented edge-tts installation command uses an unpinned user-level install from a third-party package mirror.
+
+Mitigation: Install edge-tts in an isolated environment from a trusted, pinned package source before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/nufeng1999/skills/chinese-voice-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Configuration, Audio file references]
+
+**Output Format:** [Markdown with qqmedia audio-file tags and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces WAV voice media using Chinese Microsoft Edge TTS voices when edge-tts is available.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

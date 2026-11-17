@@ -1,40 +1,53 @@
-## Description: <br>
-Devil's Advocate guides an agent to self-refute, compare pro and con perspectives, and refine answers before responding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Devil's Advocate guides an agent to self-refute, challenge assumptions, consider risks and alternatives, and produce more balanced responses.
 
-## Publisher: <br>
-[UyNewNas](https://clawhub.ai/user/UyNewNas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[uynewnas](https://clawhub.ai/user/uynewnas)
 
-## Use Case: <br>
-Developers, reviewers, and other users can apply this skill when they want an agent to produce more balanced recommendations, challenge assumptions, identify risks, and consider alternatives before giving a final answer. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad activation may steer routine answers toward unnecessary critique or slower responses. <br>
-Mitigation: Enable it for contexts where adversarial review, trade-off analysis, or quality checks are useful, and disable it when concise direct responses are preferred. <br>
-Risk: Uninstall instructions include recursive delete commands that can remove files if pointed at the wrong directory. <br>
-Mitigation: Confirm the path is exactly the installed devil-advocate skill directory before running any recursive delete command. <br>
+## Use Case:
 
+Developers, reviewers, and other agent users can use this skill when they want responses to include stronger assumption checks, trade-off analysis, risks, counterexamples, and alternatives before arriving at a recommendation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/UyNewNas/devil-advocate) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text responses that surface limitations, risks, alternatives, and verification needs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Internal self-refutation is not expected to be shown; the final answer should reflect the critique.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: The skill can broadly change an agent's response style while it is installed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when Devil's Advocate review behavior is desired, and remove or disable it when that posture is no longer appropriate.
+
+Risk: The documented uninstall command permanently deletes the selected skill directory.
+
+Mitigation: Verify the exact directory path before removal and preserve any local changes that should not be deleted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/uynewnas/skills/devil-advocate)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text responses with balanced recommendations, caveats, risks, and alternatives]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable output; the skill changes response posture while installed.]
+
+## Skill Version(s):
+
+1.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,57 @@
-## Description: <br>
-Builds AI-powered customer service knowledge bases by extracting FAQs from local documents or website URLs, testing answer matching, and exporting results in common formats. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build AI-powered customer service knowledge bases by extracting FAQs from documents or websites, enabling automated replies and multi-format exports.
 
-## Publisher: <br>
-[dagangtj](https://clawhub.ai/user/dagangtj) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[dagangtj](https://clawhub.ai/user/dagangtj)
 
-## Use Case: <br>
-Developers, operators, and small-business support teams use this skill to turn FAQ documents or help pages into a local customer-service knowledge base and test automated replies before use with customers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The local CLI can read user-selected files and write to user-selected output paths. <br>
-Mitigation: Run it only on intended FAQ sources, avoid sensitive files, and choose output paths that will not overwrite important data. <br>
-Risk: Generated or matched answers may be incomplete or misleading for customer support use. <br>
-Mitigation: Review the generated knowledge base and test replies before publishing or connecting them to customer-facing workflows. <br>
-Risk: Website scraping depends on the URL provided by the user and the code does not enforce site permissions. <br>
-Mitigation: Confirm site permissions and robots.txt expectations before scraping external help pages. <br>
+## Use Case:
 
+Customer service teams and developers use this skill to turn FAQ documents or website FAQ pages into searchable knowledge bases, test answer matching, and export support content for automation workflows.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dagangtj/ai-customer-service) <br>
-- [Publisher Profile](https://clawhub.ai/user/dagangtj) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated JSON, CSV, or Markdown knowledge-base files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs as a local Node.js CLI that reads user-selected files or URLs and writes user-selected output paths.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Website scraping accepts user-supplied URLs, which can expose users to unsafe or unintended network requests.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only scrape trusted URLs, prevent untrusted users or prompts from choosing URLs, and use extra controls in cloud or corporate networks.
+
+Risk: CSV exports created from scraped or third-party FAQ content may be unsafe when opened in spreadsheet software.
+
+Mitigation: Treat CSV exports as untrusted, review or sanitize spreadsheet-sensitive cells, and avoid opening unreviewed exports in privileged environments.
+
+Risk: The CLI reads local FAQ files and writes output paths selected by the user.
+
+Mitigation: Run the tool in a controlled working directory and review input and output paths before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dagangtj/skills/ai-customer-service)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown guidance with shell commands plus JSON, CSV, or Markdown knowledge base exports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local CLI workflow that reads FAQ inputs, writes selected output files, and can optionally use enhanced matching when configured.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

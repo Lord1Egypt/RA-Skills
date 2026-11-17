@@ -1,48 +1,59 @@
-## Description: <br>
-Guides an agent through collecting product keywords and company information, generating an ideal customer profile, recommending English article titles, and drafting batches of English marketing articles. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent from product keywords and company information through ICP generation, English title recommendations, article outlines, and batch English marketing article creation.
 
-## Publisher: <br>
-[liuzhirui6-max](https://clawhub.ai/user/liuzhirui6-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuzhirui6-max](https://clawhub.ai/user/liuzhirui6-max)
 
-## Use Case: <br>
-Marketing and content teams use this skill to turn product keywords and company information into a structured ICP, English title recommendations, article outlines, and batches of English marketing articles. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may provide confidential product, customer, or company details as generation context. <br>
-Mitigation: Avoid sharing confidential business information unless it is approved for use as content-generation context. <br>
-Risk: The workflow is optimized for English titles and articles, so localized output may not match user expectations. <br>
-Mitigation: Explicitly override the language requirement when non-English or localized content is needed. <br>
-Risk: Generated marketing copy can contain inaccurate, unsupported, or off-brand claims. <br>
-Mitigation: Review ICP assumptions, titles, article drafts, and calls to action before publication. <br>
+## Use Case:
 
+Marketing teams, content operators, and business users use this skill to turn product keywords and company information into an ideal customer profile, English title recommendations, article outlines, and batch English marketing articles.
 
-## Reference(s): <br>
-- [ICP Framework](references/icp-framework.md) <br>
-- [Article Title Generation Guide](references/title-generation-guide.md) <br>
-- [Article Structures](references/article-structures.md) <br>
-- [Content Strategy Guide](references/content-strategy-guide.md) <br>
-- [Article Quality Standards](references/quality-standards.md) <br>
-- [ICP Template](assets/icp-template.md) <br>
-- [Article Outline Template](assets/article-outline-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown and plain text drafts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ICP documents, English title lists, article outlines, and complete English marketing articles.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Generated marketing articles can include unsupported claims, invented examples, or weak evidence when the user provides incomplete source material.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review factual claims before publication and provide verified product details, customer examples, and supporting data during drafting.
+
+Risk: The workflow is optimized for English marketing articles and may be unsuitable for general writing, translation-only tasks, or non-English content.
+
+Mitigation: Use it for English marketing article workflows, or explicitly revise the language, audience, and content requirements before relying on the output.
+
+## Reference(s):
+
+- [ICP Creation Methodology](references/icp-framework.md)
+- [Article Title Generation Guide](references/title-generation-guide.md)
+- [Article Structure Templates](references/article-structures.md)
+- [Content Strategy Guide](references/content-strategy-guide.md)
+- [Article Quality Standards](references/quality-standards.md)
+- [ICP Template](assets/icp-template.md)
+- [Article Outline Template](assets/article-outline-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown documents and plain text recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce multiple article drafts in one workflow when the user selects batch generation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

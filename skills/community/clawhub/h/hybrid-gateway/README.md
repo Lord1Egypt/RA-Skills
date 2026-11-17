@@ -1,47 +1,30 @@
-# Hybrid Gateway — VPS + Local Node for OpenClaw
+# Hybrid Gateway: VPS + Local Node for OpenClaw
 
-Run your OpenClaw gateway on a cloud VPS and connect a local machine (Mac Mini, desktop, Raspberry Pi) as a node — getting the best of both worlds.
+Run the OpenClaw Gateway on a VPS and pair a local machine (Mac Mini, desktop, Raspberry Pi) as a node for the hardware a VPS lacks: GPU and local models, a real browser on a residential IP, macOS tools, local files.
 
-## Why?
+## Security-first (1.1.0)
 
-Most OpenClaw users start on a VPS. It's cheap, always online, and handles messaging (Telegram, Discord, etc.) well. But VPS machines can't do everything:
+- Gateway stays on loopback; Tailscale Serve publishes it as `wss://` on the tailnet only. No public port, no Funnel.
+- Pairing uses a single-use Node-host join link (Control UI or `openclaw devices join-code`). Tokens and setup codes never go through chat.
+- Approve the exact pending request id; capability expansions (including post-upgrade reapproval) are separate approvals.
+- Node exec is allowlist + approval gates with absolute-path binaries. No shell in any allowlist.
+- SSH is an optional, separately secured fallback, set up in the companion skill.
 
-- **No GPU** — can't run local models (Ollama, Whisper) efficiently
-- **Cloud IP** — gets blocked by services that detect datacenter IPs
-- **No macOS** — can't use macOS-only tools (Xcode, native apps, etc.)
-- **No browser automation** — headless Chrome on a VPS is limited
+Every step ends with a verifiable **Done when** check. Full walkthrough in [SKILL.md](./SKILL.md); upgrade procedure in [references/upgrade-notes.md](./references/upgrade-notes.md).
 
-The hybrid gateway setup solves this: keep the gateway on your VPS for reliability, and add a local node for hardware capabilities.
+## Companion
 
-## What you get
-
-- **VPS handles**: messaging, agent orchestration, model API calls, always-on reliability
-- **Local node handles**: GPU inference, browser automation, Whisper transcription, residential IP access, macOS tools
-- **Tailscale connects them**: encrypted, zero-config VPN mesh
-
-## Quick start
-
-1. Install Tailscale on both machines
-2. Set `gateway.bind: "lan"` on the VPS
-3. Run `openclaw node run` on the local machine
-4. Approve the device pairing
-5. Set `tools.exec.node` to route commands
-
-Full walkthrough in [SKILL.md](./SKILL.md).
-
-## Common gotchas this skill covers
-
-- `gateway.bind` wrong mode breaks local agents OR remote node (use `lan`)
-- `ws://` security block on non-loopback (fix: `OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1` on Tailscale)
-- Node `system.run` uses minimal PATH (fix: full binary paths or SSH fallback)
-- Device pairing approval required after first connect
-- Auto-start setup for macOS (LaunchAgent) and Linux (systemd)
+[`remote-node-ssh`](https://github.com/jkfaris94/remote-node-ssh) for SSH setup, day-to-day exec, and file transfer once the topology is secure.
 
 ## Install
 
 ```bash
 clawhub install hybrid-gateway
 ```
+
+## Tested with
+
+OpenClaw 2026.9.3, Node 24, Tailscale 1.x, macOS 26 node, Ubuntu 24.04 VPS.
 
 ## License
 

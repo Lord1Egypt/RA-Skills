@@ -1,41 +1,54 @@
-## Description: <br>
-Provides Japan and Korea market policy and certification guidance for trade, customs, and product compliance questions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents answer Japan and South Korea market policy and trade compliance questions, including METI, Korea Customs Service, K-REACH, K-ICS, J-MOSS, FTA origin rules, PSE, and KC certification.
 
-## Publisher: <br>
-[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yezhaowang888-stack](https://clawhub.ai/user/yezhaowang888-stack)
 
-## Use Case: <br>
-Trade operators, exporters, cross-border sellers, and compliance teams use this skill to check Japan and Korea policy, customs, certification, and product compliance requirements before market entry or shipment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, focused on Japan and South Korea market policy <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Regulatory guidance may be incomplete or outdated for important trade, customs, or certification decisions. <br>
-Mitigation: Verify material decisions against official Japanese and Korean government sources and treat the skill output as guidance rather than legal advice. <br>
-Risk: Users may install a similarly named or unintended ClawHub package. <br>
-Mitigation: Confirm the exact package slug and version before installation: huimai-japan-korea-policy version 2.0.0. <br>
+## Use Case:
 
+External trade operators, exporters, cosmetics and electronics sellers, and cross-border ecommerce teams use this skill to query Japan and South Korea regulatory requirements before import, export, certification, and customs workflows.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/yezhaowang888-stack/huimai-japan-korea-policy) <br>
-- [Publisher profile](https://clawhub.ai/user/yezhaowang888-stack) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Natural-language Markdown responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include regulatory caveats and reminders to verify decisions against official Japanese and Korean government sources.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: server release metadata) <br>
+Risk: Japan and South Korea trade, customs, and certification rules can change frequently, making advisory answers stale or incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify answers against official Japanese and Korean authority publications before relying on them for clearance, registration, or certification decisions.
+
+Risk: The skill artifact is primarily written in Chinese, and some referenced Japanese standards may only be available in Japanese, which can introduce translation ambiguity.
+
+Mitigation: Ask the agent for the required working language and confirm translated regulatory terms against official source language materials when precision matters.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yezhaowang888-stack/skills/huimai-japan-korea-policy)
+- [ClawHub publisher profile](https://clawhub.ai/user/yezhaowang888-stack)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance with policy summaries, certification checklists, and risk notes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Advisory output; users should verify legal, customs, and certification requirements against official Japanese and Korean authorities.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release evidence and artifact changelog, released 2026-05-03)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

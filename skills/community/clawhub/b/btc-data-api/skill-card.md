@@ -1,40 +1,54 @@
-## Description: <br>
-查询比特币链上结构数据（UTXO、大额流出、筹码分布、持仓结构、链上指标等）。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries Bitcoin on-chain structural data, including UTXO, large-output, chip-distribution, holder-structure, and chain-metric data.
 
-## Publisher: <br>
-[fengcheche-0](https://clawhub.ai/user/fengcheche-0) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengcheche-0](https://clawhub.ai/user/fengcheche-0)
 
-## Use Case: <br>
-Developers and analysts use this skill to query Bitcoin on-chain structure and metric tables from a command-line API helper. It supports latest-record, recent-limit, date-based, field, field-limit, and field-date queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill calls a disclosed HTTP API endpoint without transport encryption. <br>
-Mitigation: Use it only when you trust and intend to use the API at 10.168.1.162:9000, and avoid passing unrelated sensitive values in query arguments. <br>
-Risk: The helper depends on the Python requests package being available. <br>
-Mitigation: Confirm the runtime has python3 and requests installed before relying on the skill. <br>
+## Use Case:
 
+Developers and analysts use this skill to query Bitcoin on-chain tables by table name, field, limit, or date and inspect returned chain-structure metrics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/fengcheche-0/btc-data-api) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; API helper prints JSON responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the Python requests package; calls a disclosed HTTP API endpoint.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill relies on a hardcoded private plain-HTTP API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when the endpoint is trusted, reachable from the user's environment, and protected by appropriate network controls.
+
+Risk: Bitcoin query parameters and returned metrics may be unsuitable for sensitive or decision-critical financial workflows.
+
+Mitigation: Review API responses before relying on them and avoid sensitive financial use unless the endpoint and data quality are independently trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengcheche-0/skills/btc-data-api)
+- [Private BTC API endpoint](http://10.168.1.162:9000)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, JSON]
+
+**Output Format:** [Markdown guidance with command examples and JSON API responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and access to the configured private HTTP API endpoint.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

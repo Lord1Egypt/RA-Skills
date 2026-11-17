@@ -1,0 +1,8 @@
+# Liquid Neural Network (LNN) Skill - Python dependencies
+# Python 3.9+ recommended.
+ncps>=1.0.1
+torch>=2.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+# Optional (only needed for inspect_wiring.py --draw):
+matplotlib>=3.7.0

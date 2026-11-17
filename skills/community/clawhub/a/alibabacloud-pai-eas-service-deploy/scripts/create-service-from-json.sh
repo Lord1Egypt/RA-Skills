@@ -10,9 +10,31 @@
 #
 # Output:
 #   JSON format, containing service creation result
+#
+# Dependencies (pinned minimum versions):
+#   - aliyun CLI >= 3.3.3   (Alibaba Cloud CLI)
+#   - jq        >= 1.6      (command-line JSON processor)
+#   - openssl   >= 1.1.1    (used to generate the session-id)
 # ==============================================================================
 
 set -euo pipefail
+
+# Verify pinned dependency versions before doing anything else.
+REQUIRED_ALIYUN="3.3.3"
+REQUIRED_JQ="1.6"
+command -v aliyun >/dev/null 2>&1 || { echo "aliyun CLI (>= ${REQUIRED_ALIYUN}) is required" >&2; exit 1; }
+command -v jq     >/dev/null 2>&1 || { echo "jq (>= ${REQUIRED_JQ}) is required" >&2; exit 1; }
+command -v openssl >/dev/null 2>&1 || { echo "openssl is required" >&2; exit 1; }
+
+# Observability: unified user-agent with a per-session trace id.
+# Generate SKILL_SESSION_ID once per session (32-char lowercase hex) and reuse
+# it across every CLI/SDK/Terraform call so all requests share one trace id.
+SKILL_NAME="alibabacloud-pai-eas-service-deploy"
+if [ -z "${SKILL_SESSION_ID:-}" ]; then
+  SKILL_SESSION_ID="$(openssl rand -hex 16)"
+  export SKILL_SESSION_ID
+fi
+USER_AGENT="AlibabaCloud-Agent-Skills/${SKILL_NAME}/${SKILL_SESSION_ID}"
 
 # Parameter parsing
 CONFIG_FILE=""
@@ -135,7 +157,7 @@ echo "Creating service..." >&2
 CREATE_RESULT=$(aliyun eas create-service \
   --cluster-id "$REGION" \
   --body "$FIXED_CONFIG" \
-  --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy \
+  --user-agent "$USER_AGENT" \
   2>&1)
 
 # Check creation result
@@ -161,7 +183,7 @@ if echo "$CREATE_RESULT" | jq -e '.ServiceId' > /dev/null 2>&1; then
       SERVICE_INFO=$(aliyun eas describe-service \
         --cluster-id "$REGION" \
         --service-name "$SERVICE_NAME" \
-        --user-agent AlibabaCloud-Agent-Skills/alibabacloud-pai-eas-service-deploy \
+        --user-agent "$USER_AGENT" \
         2>&1)
       
       if ! echo "$SERVICE_INFO" | jq -e '.Status' > /dev/null 2>&1; then

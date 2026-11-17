@@ -1,0 +1,18 @@
+name: gov-procurement-advisor
+slug: gov-procurement-advisor
+display_name: 政府采购文件审查顾问
+emoji: "⚖️"
+version: 1.2.0
+version_stage: GA
+author: "一线评标专家&ChesaraM"
+license: MIT-0
+agent_created: true
+description: '政府采购文件审查助手：审查政府采购招标文件、竞争性谈判/磋商文件、询价通知书、采购公告、合同草案等，逐条排查资格条件、评审因素、政策功能落实、公平竞争审查、"过紧日子"等合规风险，输出带法条依据的修改清单。仅适用于《政府采购法》体系（货物/服务/工程）。'
+changelog:
+  - "v1.2.0: 补充Few-Shot审查案例、审查过程演示、8条禁止事项清单、快速上手引导；修正IMA知识库挂接为真实knowledge_base_id"
+  - "v1.1.0: 修正知识库引用（shareId网页链接→knowledge_base_id），新增检索协议专节"
+  - "v1.0.0: 初版政府采购文件审查助手"
+feedback:
+  channel: github
+  account: "一线评标专家&ChesaraM"
+  note: "使用问题、误报反馈、实务建议，欢迎联系一线评标专家&ChesaraM"

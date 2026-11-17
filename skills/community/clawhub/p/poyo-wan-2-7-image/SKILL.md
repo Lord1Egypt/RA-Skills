@@ -1,10 +1,16 @@
----
+﻿---
 name: poyo-wan-2-7-image
 description: Wan 2.7 image generation and editing on PoYo / poyo.ai via `https://api.poyo.ai/api/generate/submit`; use for `wan-2.7-image`, text-to-image, image editing with one to four reference images, size presets, custom size objects, batch count, seeded output, polling, and webhooks.
-metadata: {"openclaw":{"homepage":"https://docs.poyo.ai/api-manual/image-series/wan-2-7-image","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
+metadata: {"openclaw":{"homepage":"https://poyo.ai/models/wan-2-7-image","requires":{"bins":["curl"],"env":["POYO_API_KEY"]},"primaryEnv":"POYO_API_KEY"}}
 ---
 
 # PoYo Wan 2.7 Image Generation and Editing
+## PoYo Links
+
+- Model page: <https://poyo.ai/models/wan-2-7-image>
+- API docs: <https://docs.poyo.ai/api-manual/image-series/wan-2-7-image>
+- API key page: <https://poyo.ai/dashboard/api-key>
+
 
 Use this skill for Wan 2.7 image generation and image editing jobs on PoYo. It helps agents prepare text-to-image and reference-image editing payloads, submit async tasks, and explain polling or webhook follow-up.
 

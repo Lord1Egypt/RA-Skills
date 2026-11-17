@@ -1,42 +1,57 @@
-## Description: <br>
-Search and answer questions over documents already uploaded to NotebookLM using the nlm CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search and answer questions over documents already uploaded to NotebookLM using the nlm CLI.
 
-## Publisher: <br>
-[lhquangit](https://clawhub.ai/user/lhquangit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[lhquangit](https://clawhub.ai/user/lhquangit)
 
-## Use Case: <br>
-OpenClaw users and operators use this skill to query existing NotebookLM notebooks from an agent workflow, including Telegram-driven questions and source lookups. It is intended for environments where the NotebookLM CLI and authentication storage have already been configured. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Raw Telegram `/nlm` input can be forwarded to the NotebookLM CLI. <br>
-Mitigation: Limit access to trusted users, review commands before enabling broad use, and prefer read-only NotebookLM query workflows. <br>
-Risk: The release includes privileged VPS bootstrap scripts. <br>
-Mitigation: Review the bootstrap before running it with sudo and install only on controlled systems. <br>
-Risk: NotebookLM authentication uses reusable Google session cookies. <br>
-Mitigation: Store auth files with restrictive permissions, never commit or share them, and rotate or revoke cookies if exposure is suspected. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lhquangit/notebooklm-cli-cookies) <br>
-- [NotebookLM CLI skill guide](docs/GUIDELINE.md) <br>
+## Use Case:
 
+External users and developers use this skill to query existing NotebookLM notebooks from an agent runtime, including Telegram-triggered workflows, and return concise answers grounded in NotebookLM results.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command output summaries with inline shell commands when setup or verification is needed] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Responses should identify the queried notebook when available and should report when NotebookLM does not contain an answer.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.4 (source: ClawHub release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill handles Google and NotebookLM session cookies that can grant access to notebook content.
+
+Mitigation: Use a dedicated low-privilege Google account or profile, protect cookie files and secrets, and rotate cookies when access changes.
+
+Risk: Bundled setup scripts can perform privileged VPS changes, package installs, OpenClaw config edits, group changes, and optional systemd integration.
+
+Mitigation: Review scripts before installation, avoid running the bootstrap as root unless those changes are acceptable, and prefer a pinned, least-privilege manual setup for production environments.
+
+Risk: Exposing the Telegram /nlm workflow to untrusted users can allow unintended NotebookLM queries.
+
+Mitigation: Limit access to trusted Telegram users and review NotebookLM CLI actions before enabling the workflow on a shared runtime.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lhquangit/skills/notebooklm-cli-cookies)
+- [VPS installation guide](artifact/docs/GUIDELINE.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and concise text responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include NotebookLM notebook identity, query results, setup guidance, and troubleshooting steps.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

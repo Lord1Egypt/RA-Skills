@@ -1,39 +1,48 @@
-## Description: <br>
-Build and launch profitable SAAS products. Use for development, marketing, revenue optimization, and getting products to $1000+ MRR. The worker bee skill for SAAS factory operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build and launch profitable SaaS products through development, marketing, revenue optimization, and launch guidance.
 
-## Publisher: <br>
-[JuniorXcoder](https://clawhub.ai/user/JuniorXcoder) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[juniorxcoder](https://clawhub.ai/user/juniorxcoder)
 
-## Use Case: <br>
-Developers and founders use this skill for SaaS product planning, MVP development choices, launch tactics, customer acquisition, pricing, and revenue optimization guidance. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill provides broad SaaS business, marketing, revenue, and development advice that may be unsuitable for a specific product, market, or customer segment. <br>
-Mitigation: Review recommendations against your product requirements, customer evidence, legal constraints, and business goals before acting on them. <br>
-Risk: The artifact contains placeholder helper code and reference material rather than finished automation. <br>
-Mitigation: Treat generated implementation steps or code as advisory drafts and test any changes before using them in a product workflow. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Reference Documentation for Saas Worker](references/api_reference.md) <br>
+## Use Case:
 
+Developers, founders, and product teams use this skill to plan, build, launch, price, and iterate SaaS products toward early recurring revenue.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown, with code blocks or command snippets when implementation work is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory outputs should be reviewed before applying business, marketing, revenue, or code changes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Agent outputs may propose payments, customer outreach, public posting, or production changes that affect the business or customers.
+
+Mitigation: Review and approve those actions manually before execution.
+
+## Reference(s):
+
+- [Reference Documentation for Saas Worker](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration]
+
+**Output Format:** [Markdown or plain text with optional code, command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are advisory and should be reviewed before business-impacting actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

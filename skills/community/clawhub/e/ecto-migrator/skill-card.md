@@ -1,40 +1,57 @@
-## Description: <br>
-Generate Ecto migrations from natural language or schema descriptions, including tables, columns, indexes, constraints, references, enums, partitioning, reversible migrations, data migrations, and multi-tenant patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate Ecto migrations from natural language or schema descriptions, including tables, columns, indexes, constraints, references, enums, partitioning, reversible migrations, data migrations, and multi-tenant patterns.
 
-## Publisher: <br>
-[gchapim](https://clawhub.ai/user/gchapim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gchapim](https://clawhub.ai/user/gchapim)
 
-## Use Case: <br>
-Developers and engineers use this skill to draft and review Ecto database migrations for Elixir projects, including schema changes, indexes, constraints, references, enums, data migrations, and multi-tenant patterns. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated migrations can change or remove database data when users run operations such as dropping columns, changing data, cascading deletes, extensions, or raw SQL. <br>
-Mitigation: Review every generated migration before running it, test database-impacting changes outside production first, and pay special attention to destructive or raw SQL operations. <br>
-Risk: Data migrations and schema migrations may be unsafe when combined or run against large production tables without operational planning. <br>
-Mitigation: Keep data migrations separate from schema migrations and use staged or batched approaches for large tables. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Column Types Reference](references/column-types.md) <br>
-- [Index Patterns Reference](references/index-patterns.md) <br>
+## Use Case:
 
+Developers and engineers use this skill to draft and review Ecto database migrations for Elixir applications, including schema changes, indexing, constraints, foreign keys, enum handling, data migrations, and multi-tenant patterns.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with Elixir and shell code snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only guidance; generated migrations should be reviewed before execution.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated migrations may include destructive operations such as dropping columns, dropping tables, renames, or cascading deletes.
+
+Mitigation: Treat generated migrations as draft code; review destructive operations and confirm backups and rollback plans before applying them to production.
+
+Risk: Schema changes and index creation can lock or slow production databases when applied without an appropriate migration strategy.
+
+Mitigation: Review large-table changes, use separate migrations for concurrent indexes when appropriate, and validate rollback behavior before deployment.
+
+Risk: Data migrations can be irreversible or unsafe when mixed with schema changes.
+
+Mitigation: Keep schema changes and data changes in separate migrations and define explicit up/down behavior for irreversible operations.
+
+## Reference(s):
+
+- [Column Types Reference](references/column-types.md)
+- [Index Patterns Reference](references/index-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with Elixir, SQL, and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces draft migration guidance and examples for human review before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

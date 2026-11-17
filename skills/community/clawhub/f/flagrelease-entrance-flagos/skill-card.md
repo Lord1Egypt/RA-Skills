@@ -1,43 +1,54 @@
-## Description: <br>
-Full FlagRelease pipeline orchestrator for LLM deployment, verification, and benchmarking on multi-chip GPU backends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+FlagRelease pipeline orchestrator that runs LLM deployment, verification, and benchmarking stages for multi-chip GPU backends and produces a structured final report.
 
-## Publisher: <br>
-[wbavon](https://clawhub.ai/user/wbavon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wbavon](https://clawhub.ai/user/wbavon)
 
-## Use Case: <br>
-Developers and infrastructure engineers use this skill to run a structured LLM deployment pipeline inside an existing GPU Docker container, verify model serving, and collect benchmark results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow runs Docker and package installation steps inside a GPU container. <br>
-Mitigation: Run it only against a known, disposable or recoverable non-production container and confirm the container name before execution. <br>
-Risk: Model downloads, serving checks, and benchmarks can consume GPU, disk, network, and runtime budget. <br>
-Mitigation: Confirm the model path, expected tensor parallel settings, and available resources before starting the pipeline. <br>
-Risk: The orchestrator delegates detailed install and test behavior to referenced sibling skills. <br>
-Mitigation: Review the sibling skills before installation because they contain the package installation, model verification, and benchmarking logic. <br>
+## Use Case:
 
+Developers and infrastructure engineers use this skill to coordinate a GPU-container FlagRelease pipeline for installing and validating the LLM stack, verifying target models, running benchmarks, and collecting PASS, PARTIAL, or FAIL diagnostics.
 
-## Reference(s): <br>
-- [Pipeline State Schema](references/pipeline-state.md) <br>
-- [ClawHub skill page](https://clawhub.ai/wbavon/flagrelease-entrance-flagos) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summary with structured JSON report content and shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports PASS, PARTIAL, or FAIL status with step diagnostics, package results, model verification details, errors, and benchmark tables.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill delegates execution to unbundled sibling skills that cannot be fully reviewed from this package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or pin the four referenced sibling SKILL.md files before use.
+
+Risk: The skill has broad command, file, network, and agent authority in a GPU container workflow.
+
+Mitigation: Run it in a disposable or test GPU container, avoid mounting secrets or sensitive host paths, and require explicit approval before package installation, downloads, mirror use, or service startup.
+
+## Reference(s):
+
+- [Pipeline State Schema](artifact/references/pipeline-state.md)
+- [ClawHub Skill Page](https://clawhub.ai/wbavon/skills/flagrelease-entrance-flagos)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell command snippets and structured JSON-style status summaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports PASS, PARTIAL, or FAIL status with step diagnostics, error details, and performance tables.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

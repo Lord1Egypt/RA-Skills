@@ -4,7 +4,7 @@
 
 - **请求地址**：`${LINKFOX_TOOL_GATEWAY}/amazon/product/detail`
 - **请求方式**：POST，Content-Type: application/json
-- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置，提示用户前往 https://skill.linkfox.com/linkfoxskills/guide.htm 申请）
+- **认证方式**：Header `Authorization: <api_key>`，api_key 从环境变量 `LINKFOX_AGENT_API_KEY` 或 `LINKFOXAGENT_API_KEY` 读取（如未配置 按 SKILL.md 的 **## 解决认证和算力问题** 处理）
 
 ## 请求参数
 
@@ -73,7 +73,10 @@ POST Body（JSON）：
 | reviewsImages | array | 评论图片列表 |
 | sourceTool | string | 来源工具 |
 | sourceType | string | 来源类型：amazon |
-| pageFileUrl | string | 完整页面文件url |
+| pageFileUrl | string | 处理后的商品详情 JSON 文件 URL，非原始 HTML，不能用于提取 JSON 未包含的页面内容 |
+| rawHtmlFile | string | SerpApi 原始亚马逊商品页 HTML 地址；可能为空或缺失，按同一产品对象的 `asin` 对应商品 |
+
+调用 LinkFox 接口时，从 `products[].rawHtmlFile` 读取原始 HTML 地址；只有直接处理 SerpApi 原始响应时才读取 `search_metadata.raw_html_file`（见 [官方文档](https://serpapi.com/amazon-product-api)）。取得对应原始 HTML 后，按 `SKILL.md` 的 Item Highlights 流程尝试解析，不要把 `pageFileUrl` 当作 HTML。
 
 ### 嵌套对象
 
@@ -179,7 +182,8 @@ POST Body（JSON）：
 | errcode | 含义 | 处理建议 |
 |---------|------|----------|
 | 200 | 成功 | 正常解析业务字段 |
-| 401 | 认证失败 | 检查请求头 `Authorization` 是否正确携带 API Key；API Key 申请方式请参考上述[调用规范](#调用规范)下的认证方式。|
+| 401 | 认证失败 | HTTP 401 或 authorized error：按 SKILL.md 的 **## 解决认证和算力问题** 处理。|
+| 402 | 算力不足 | HTTP 402：按 SKILL.md 的 **## 解决认证和算力问题** 处理。|
 | 其他非200值 | 业务异常 | 参考 `errmsg` 字段获取具体错误原因 |
 
 错误响应示例：

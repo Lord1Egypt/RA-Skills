@@ -1,44 +1,62 @@
-## Description: <br>
-ByteRover helps agents query and curate project memory with the `brv` CLI, storing project patterns, decisions, and architectural rules under `.brv/context-tree` through a configured LLM provider. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ByteRover provides `brv` CLI workflows for agents to query and curate project knowledge stored as Markdown in `.brv/context-tree` using a configured LLM provider.
 
-## Publisher: <br>
-[qxbcn](https://clawhub.ai/user/qxbcn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[qxbcn](https://clawhub.ai/user/qxbcn)
 
-## Use Case: <br>
-Developers and agent operators use this skill to retrieve existing project knowledge before work and save durable implementation patterns or decisions after work. It also guides LLM provider setup and optional cloud sync for shared ByteRover spaces. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries, curation text, and attached file contents may be sent to the configured LLM provider. <br>
-Mitigation: Require explicit approval before querying or curating sensitive context, avoid secrets, and review provider settings before use. <br>
-Risk: Cloud sync can send local knowledge to ByteRover cloud spaces. <br>
-Mitigation: Use cloud sync only with authenticated, intended spaces and require approval before running `brv push`, `brv pull`, or `brv space` commands. <br>
-Risk: Agent-managed project memory can persist incorrect or sensitive facts in `.brv/context-tree`. <br>
-Mitigation: Review stored Markdown before committing or sharing it and decide whether `.brv` belongs in version control for the project. <br>
-Risk: The skill depends on the external `byterover-cli` package. <br>
-Mitigation: Verify the package source and installed version before use. <br>
+## Use Case:
 
+Developers and agent operators use this skill to retrieve project-specific memory before work and save durable implementation patterns or decisions after work. It supports local Markdown storage and optional authenticated cloud sync for team knowledge sharing.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/qxbcn/byterover-2-0-0) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to run `brv query`, `brv curate`, provider setup, and optional cloud sync commands; curation can attach up to 5 project-scoped files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact _meta.json version is 2.0.0) <br>
+Risk: The skill directs agents to query and persist project memory broadly, which can create or rely on context without an explicit consent boundary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only when project memory is intentionally needed, and confirm before saving new or sensitive project knowledge.
+
+Risk: LLM-backed query and curate commands may send prompts, context, and attached file contents to the configured provider.
+
+Mitigation: Avoid secrets, credentials, regulated data, and unnecessary file attachments; inspect selected files before running `brv curate`.
+
+Risk: The documented installation command installs the latest global CLI package, which may change over time.
+
+Mitigation: Prefer a pinned or otherwise verified `byterover-cli` installation before using the skill in sensitive repositories.
+
+Risk: Optional cloud sync sends local knowledge to ByteRover cloud spaces when authenticated push or pull commands are used.
+
+Mitigation: Use cloud sync only with approved accounts and spaces, and review `.brv/context-tree/` contents before syncing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/qxbcn/skills/byterover-2-0-0)
+- [Publisher profile](https://clawhub.ai/user/qxbcn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create or update human-readable Markdown knowledge files under `.brv/context-tree/`; file attachments are limited to five project-scoped files per curate command.]
+
+## Skill Version(s):
+
+2.0.0 (source: artifact/_meta.json); ClawHub release 1.0.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,6 +1,6 @@
 {
   "name": "garmin-connect-health",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "Comprehensive Garmin Connect health data skill -- fetches sleep, HRV, stress, body battery, SpO2, VO2 Max, training status, race predictions and more",
   "author": "dw1161",
   "license": "MIT-0",
@@ -52,7 +52,7 @@
   "dependencies": {
     "python": ">=3.10",
     "pip": [
-      "garminconnect"
+      "garminconnect>=0.3.11"
     ]
   }
 }

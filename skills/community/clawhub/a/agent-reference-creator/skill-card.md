@@ -1,40 +1,55 @@
-## Description: <br>
-Creates normative OpenClaw reference files that define narrow agent professions, responsibilities, boundaries, routing cues, and required documentation structure. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates normative OpenClaw Reference files that describe narrow agent professions for agent creation and management.
 
-## Publisher: <br>
-[rodrigo09313](https://clawhub.ai/user/rodrigo09313) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rodrigo09313](https://clawhub.ai/user/rodrigo09313)
 
-## Use Case: <br>
-Developers, agent architects, and OpenClaw knowledge-base maintainers use this skill to interview users, validate specialization boundaries, and produce reusable reference documents for agent professions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reference files can influence future OpenClaw agent behavior, specialization boundaries, and routing. <br>
-Mitigation: Review generated reference files before relying on them in the OpenClaw knowledge base. <br>
-Risk: The installer can copy files into an OpenClaw KB skill directory and overwrite an existing installation after user confirmation. <br>
-Mitigation: Run the installer only against the intended OpenClaw KB path and inspect the target directory before confirming overwrite. <br>
+## Use Case:
 
+Developers and OpenClaw agent architects use this skill to interview users, validate specialization boundaries, and generate structured Reference Markdown for new agent professions. It is intended for Russian-language OpenClaw knowledge bases where references drive agent creation, routing, and role separation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rodrigo09313/agent-reference-creator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reference files with YAML frontmatter and structured sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are intended for OpenClaw KB/references/[specialization].md and should be reviewed before they shape agent creation or routing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: Generated references are intended to be saved under OpenClaw KB/references/[specialization].md and could collide with an existing specialization path.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated reference path and compare it with existing references before saving.
+
+Risk: The workflow is Russian-language and OpenClaw-specific, so it may produce unsuitable guidance outside that knowledge base structure.
+
+Mitigation: Install and use it only for OpenClaw specialization-reference authoring workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rodrigo09313/skills/agent-reference-creator)
+- [README](artifact/README.md)
+- [Skill source](artifact/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance, shell commands]
+
+**Output Format:** [Markdown reference file with YAML frontmatter and ordered Russian-language sections]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated references target OpenClaw KB/references/[specialization].md and should be reviewed before saving.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

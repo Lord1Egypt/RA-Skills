@@ -1,0 +1,29 @@
+{
+  "language": "nodecoda/1",
+  "pack_version": "1.0.0",
+  "generated_at": "2026-08-15T00:00:00Z",
+  "source_docs": [
+    "references/grammar-reference.md",
+    "references/language-reference.md",
+    "references/target-capabilities.md",
+    "references/diagnostics.md",
+    "references/diagnostics-map.md",
+    "references/gotchas.md"
+  ],
+  "hashes": {
+    "grammar.ebnf": "227ad3fa247e9b9a8beca533ced6f1528dc0e43af353e4e6ee42a783fe3179cb",
+    "builtins.json": "4a9f8ce2f130bbec4f3e8a3d709eca38bd0fb9a27abea8ab3a49070c8671338a",
+    "diagnostics.json": "27cc5ccfc74b52c1da51ed9539efc472d958880c8c7a6a57630bf9be6919bcc4",
+    "targets/dify-1.16-graphon-0.6.json": "5cc722dc34a52cfd5abc165f0a669baffa56ba56d9bc6a9d356dc209a279c777",
+    "antipatterns.json": "a8d994244c23bf7f2b7256bfeec09a1a1c54b032aa145fca15c4c06f46e7a6ff"
+  },
+  "note": "hashes = sha256 of sorted-key JSON (grammar.ebnf hashed as text); source_hashes = raw-text sha256 of each references/*.md source",
+  "source_hashes": {
+    "references/grammar-reference.md": "b6674b66f6593df76ebf2ed2a265e53bcdbef2fe7a67c79ee10f96e3a75dba04",
+    "references/language-reference.md": "c509496e77924beaab1eeda36d658ffbf357512fb3f4f52327eff15998122afc",
+    "references/target-capabilities.md": "a4f39442aac99b6e44e5c882c23957354cef410203351e0fc81f34044f6c6315",
+    "references/diagnostics.md": "dc5aaacbfb14ce3dba0c6a105d7ed4c157ae569b52e84ebfaa330aa6dc41a135",
+    "references/diagnostics-map.md": "c287239282965c92b002eebadffdddd2e61753c6114b2b651c58deefee1d8686",
+    "references/gotchas.md": "8c024a9591a20dec0233ded992a8fa391ef9256de9aeaacbf28fb8061281f4a3"
+  }
+}

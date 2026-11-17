@@ -1,40 +1,49 @@
-## Description: <br>
-Review a proposal through separated governance roles: strategist, operator, censor, historian, and sovereign. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Review a proposal through separated governance roles: strategist, operator, censor, historian, and sovereign.
 
-## Publisher: <br>
-[malleus35](https://clawhub.ai/user/malleus35) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[malleus35](https://clawhub.ai/user/malleus35)
 
-## Use Case: <br>
-Employees, external reviewers, and governance stakeholders use this skill to review proposals through distinct strategic, operational, oversight, historical, and decision-owner perspectives before approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat the structured verdict as automatic approval authority. <br>
-Mitigation: Use the output as decision support and require a responsible decision owner to review the verdict, conditions, and ownership before acting. <br>
-Risk: Tools or permissions granted to an agent outside this skill may change the operational risk profile. <br>
-Mitigation: Review any external tools, permissions, and execution authority separately before deploying the skill in an agent workflow. <br>
+## Use Case:
 
+Employees, external reviewers, and decision owners use this skill to evaluate proposals through separate strategic, operational, oversight, historical, and final decision perspectives before approval.
 
-## Reference(s): <br>
-- [Agora Court Review on ClawHub](https://clawhub.ai/malleus35/agora-court-review) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Structured court review with strategist, operator, censor, historian, and sovereign verdict sections.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.2.0 (source: server release evidence; artifact frontmatter lists 0.1.0) <br>
+Risk: The skill asks the agent to produce a governance verdict and decision owner, which could be mistaken for formal approval authority.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as structured advice and require accountable human review before acting on the verdict.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/malleus35/skills/agora-court-review)
+
+## Skill Output:
+
+**Output Type(s):** [analysis, markdown, guidance]
+
+**Output Format:** [Markdown with role-separated review sections and a sovereign verdict]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires explicit responsibility, conditions, verdict, and decision owner.]
+
+## Skill Version(s):
+
+2.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

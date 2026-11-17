@@ -10,7 +10,7 @@ providers:
     priority: 2
     base_url: https://api.openai.com/v1
     api_key_env: OPENAI_API_KEY  # ✅ 推荐使用环境变量
-    # api_key: sk-proj-XXXXXXXXXXXXXXXXXXXXXXXX  # ⚠️ 或临时测试用（不要提交）
+    # api_key: REDACTED-SECRET  # ⚠️ 或临时测试用（不要提交）
     timeout: 30
     retry_count: 3
     models:
@@ -57,4 +57,4 @@ agents:
 
 # 环境变量设置说明
 # 在 .env.local 文件中设置（不要提交到 Git）:
-# OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx
+# OPENAI_API_KEY=REDACTED-SECRET

@@ -1,43 +1,60 @@
-## Description: <br>
-A bilingual social-coaching skill that helps users record, review, and improve dating and invitation attempts while rejecting manipulative PUA tactics. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Liaomei Skill is a social coaching skill that helps users record dating interactions, review outcomes, practice low-pressure conversations, and track progress while rejecting manipulative tactics.
 
-## Publisher: <br>
-[wnzzer](https://clawhub.ai/user/wnzzer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wnzzer](https://clawhub.ai/user/wnzzer)
 
-## Use Case: <br>
-External users use this skill as a respectful dating and social-growth coach for logging social attempts, practicing conversations, reviewing outcomes, and tracking progress over time. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill records sensitive dating and social-coaching details in local files. <br>
-Mitigation: Use aliases instead of real names, check the reported DATA_DIR path on first use, and periodically review or delete generated files and backups. <br>
-Risk: The skill can save information during journaling workflows. <br>
-Mitigation: State clearly when something should not be saved and review proposed records before confirming persistence. <br>
+## Use Case:
 
+External users can use this skill as a social-growth coach for recording invitations, icebreakers, conversations, reviews, mood interventions, and progress statistics. It is intended for respectful dating practice and personal reflection, not manipulation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wnzzer/liaomei-skill) <br>
-- [Field Guide](references/field-guide.md) <br>
-- [Analytics](references/analytics.md) <br>
-- [Mindset](references/mindset.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local JSON and JSONL records after user confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: release evidence) <br>
+Risk: The skill stores intimate relationship interactions and mood notes in long-lived local files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Choose a storage directory under user control, avoid real names or contact details, and regularly review or delete saved files and backups.
+
+Risk: The skill uses shell-based write instructions for local records.
+
+Mitigation: Review proposed file operations before execution and prefer safer write patterns with explicit confirmation for sensitive records.
+
+Risk: Error handling may echo raw sensitive records when a write fails.
+
+Mitigation: Redact sensitive details before sharing errors and add purge or redaction controls before broad use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/wnzzer/skills/liaomei-skill)
+- [Analytics Reference](references/analytics.md)
+- [Field Guide](references/field-guide.md)
+- [Mindset Reference](references/mindset.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with structured records and inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May write local JSON and JSONL memory files for user profiles, invitations, interactions, conversations, and reviews.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

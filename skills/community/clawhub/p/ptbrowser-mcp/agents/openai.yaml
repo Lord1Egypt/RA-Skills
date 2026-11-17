@@ -1,0 +1,4 @@
+interface:
+  display_name: "PTBrowser 浏览器环境管理 · Chromium Profiles MCP"
+  short_description: "PTBrowser 浏览器环境管理：Chromium profiles、代理、扩展与本机 MCP"
+  default_prompt: "使用 $ptbrowser-mcp 检查客户端连接并列出我的 PTBrowser 环境和分组。"

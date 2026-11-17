@@ -1,0 +1,76 @@
+[
+  {
+    "id": "fetch-price-self",
+    "name": "fetch-price Direct",
+    "owner": "Policyandplay Ltd",
+    "networks": {
+      "amazon_uk": {
+        "tag": "mindplay0c-21",
+        "rate": 0.045
+      },
+      "ebay_uk": {
+        "campaign_id": "5338712345",
+        "rate": 0.04
+      }
+    },
+    "commission_split": 0.0,
+    "endpoint": "https://fetch-price.com/api/self/query",
+    "status": "active",
+    "registered": "2026-07-26T15:19:22.722380",
+    "tier": "internal"
+  },
+  {
+    "id": "agent-b44ccf6b",
+    "name": "PriceScout",
+    "owner": "TestCorp",
+    "networks": {
+      "amazon_uk": {
+        "tag": "test-21"
+      }
+    },
+    "commission_split": 0.3,
+    "endpoint": "https://example.com/api",
+    "api_key": "fp_bc4e41694b744f58",
+    "status": "active",
+    "registered": "2026-07-26T15:19:43.739294",
+    "tier": "free",
+    "queries_this_month": 1,
+    "query_limit": 50
+  },
+  {
+    "id": "agent-bffd44a0",
+    "name": "T",
+    "owner": "T",
+    "networks": {
+      "amazon_uk": {
+        "tag": "t"
+      }
+    },
+    "commission_split": 0.3,
+    "endpoint": "http://t.com",
+    "api_key": "fp_ea4421f787124a28",
+    "status": "active",
+    "registered": "2026-07-26T15:32:01.992071",
+    "tier": "free",
+    "queries_this_month": 0,
+    "query_limit": 50
+  },
+  {
+    "id": "agent-59bc19ab",
+    "name": "E2E Test Agent",
+    "owner": "Policyandplay",
+    "networks": {
+      "amazon_uk": {
+        "tag": "mindplay0c-21"
+      }
+    },
+    "commission_split": 0.3,
+    "endpoint": "https://api.fetch-price.com/api/self/query",
+    "api_key": "fp_c3250ece1fc74de1",
+    "status": "active",
+    "registered": "2026-07-26T15:41:04.963847",
+    "tier": "free",
+    "queries_this_month": 1,
+    "query_limit": 50
+  }
+]

@@ -7,45 +7,25 @@ description: >
   predinig rate cut (3.0%) impact on sales scripts, new health insurance regulation, PIPL-compliant
   customer communication, and benchmark against AIA, Ping An, and Alibaba Cloud training systems.
   Keywords: 智能陪练, 代理人培训, 保险训练, 产品陪练, 话术训练, 角色扮演, 技能评估, AIA培训, 平安培训, 代理人展业, 保险销售, 客户面谈, 异议处理, 保险培训系统, 学习路径.
-slug: insurance-agent-trainer
-version: 5.2.2
-allowed-tools: []
-capabilities:
-  - educational-reference
-  - advisory-only
-  - requires-human-review
-  - no-executable-code
+slug: insurance-agent-coach
+version: "5.0.0"
+---
+version: "5.0.0"
 ---
 
 # Insurance Agent Intelligent Trainer / 保险代理人智能陪练系统
 
-> **⚠️ SECURITY NOTICE / 安全声明**
-> - **Type:** Educational reference / analytical framework ONLY
-> - **No executable code, scripts, or binaries are included in this skill**
-> - **No persistent storage, network calls, background execution, or credential collection**
-> - **All outputs are for reference only and require human review before real-world application**
-> - **This skill does NOT provide financial, legal, or insurance advice**
-> - **Users must exercise their own judgment and consult qualified professionals**
->
-> **⚠️ 数据安全警告**
-> - 本技能仅提供保险代理人的培训辅导参考框架，**不执行任何代码或脚本**
-> - 所有文档解析、日程分析、画像评估的描述均为**教学参考框架**，**不包含实际的OCR或PDF解析引擎**
-> - 不会自动访问、存储或处理用户的任何培训数据或个人信息
-> - 培训计划和话术建议需结合用户实际业务场景调整，**不能替代专业培训师**
-> - **销售话术和异议处理仅为培训参考，实际使用须遵守《保险法》及相关监管规定，不得以AI输出替代合规审核**
 
-### 保险监管最新动态 [2026-06-15更新]
+### 保险监管最新动态 [2026-05-25更新]
 
-| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
-|---------|---------|---------|---------|
-| 监管发布 | NFRA 2026年第2号令：《银行保险机构许可证管理办法》6月1日施行 | 2026-06 | 代理人培训需新增许可证管理知识模块 |
-| 监管发布 | 许可证换证过渡期2026.6-2028.5，换证流程纳入培训 | 2026-06 | 代理人换证操作培训 |
-| 监管动态 | 2026年Q1监管处罚个人追责条款落地 | 2026-Q1 | 代理人合规培训需强化个人责任意识 |
+| 动态类型 | 内容摘要 | 影响范围 |
+|---------|---------|---------|
+| 保险监管 | 2026年4月：销售人员分级制度（一级至四级），四级仅可售P1-P2基础保障产品 | 代理人培训体系需纳入分级资质和合规销售模块 |
+| 保险监管 | 投保流程强制要求：风险测评→产品分级告知→全程双录（录音录像） | 代理人培训体系需纳入分级资质和合规销售模块 |
+| 保险监管 | 严打违规：禁止返佣、隐瞒风险，违规追回佣金，严重吊销资质 | 代理人培训体系需纳入分级资质和合规销售模块 |
 
-> **数据截止**: 2026-06-15 | 来源：国家金融监督管理总局、政府网、金融新闻网
+> **数据截止**: 2026-05-25 | 来源：国家金融监督管理总局、安永Q1分析、行业公开信息
 > **声明**: 以上动态供参考，具体以官方最新发布为准
-
-
 
 > **English:** AI-powered insurance agent coaching system — parses product documents, generates
 > personalized question banks, assesses agent competency levels, schedules daily training based on
@@ -59,18 +39,14 @@ capabilities:
 
 ## Trigger Keywords / 触发关键词
 
-**⚠️ 精确触发规则**：仅当用户明确提到保险代理人培训/陪练相关需求时激活。日常对话中提及"培训"、"训练"、"coaching"、"agent training"等通用词汇时**不会自动触发**。
-
-**用户确认规则**：当用户输入匹配以下关键词时，必须先确认用户意图：
-- "您需要保险代理人陪练/培训服务吗？"
-- 仅在用户明确确认后，才进入陪练模式
-
-激活关键词（需用户确认后生效）：
+Immediately activate when user mentions:
 
 - 保险陪练 / 产品陪练 / 智能陪练 / 代理人训练
 - 代理人培训 / 新人培训 / 保险话术训练
 - 产品演练 / 客户异议处理 / 保险销售训练
-- insurance agent training / insurance coaching / insurance product drill
+- agent training / insurance coaching / product drill / sales training
+- skill assessment / competency evaluation / agent profiling
+- daily training plan / training schedule / personalized coaching
 
 ---
 
@@ -122,27 +98,13 @@ capabilities:
 
 ---
 
-
-### 保险监管最新动态 [2026-06-28更新]
-
-| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
-|---------|---------|---------|---------|
-| 监管发布 | 金融监管总局发布《关于银行业保险业人工智能安全开发应用的指导意见》，界定承保理赔、风险管理等为AI高风险应用场景 | 2026-06-18 | 保险AI应用合规与风险管控 |
-| 监管计划 | NFRA发布《2026年规章制定工作计划》：保险资金运用管理办法、偿付能力管理办法纳入修订，流动性风险、网络安全管理办法新制定 | 2026-06-23 | 保险监管全链条 |
-| 监管施行 | NFRA 2026年第2号令《银行保险机构许可证管理办法》6月1日起施行，取消保险许可证统一为金融许可证 | 2026-06-01 | 保险业务资质与合规管理 |
-
-> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
-> **声明**: 以上动态供参考，具体以官方最新发布为准
-
 ## Core Capabilities / 核心能力
 
-### 1. Product Document Parser / 产品文档解析引擎（教学演示）
+### 1. Product Document Parser / 产品文档解析引擎
 
-> **⚠️ 教学演示**：以下展示产品文档解析的**概念性教学方法论**，仅说明AI可如何辅助理解产品结构。**本技能不执行任何实际的PDF解析、OCR识别或文档提取操作。** 所有"解析流程"均为逻辑示意，实际应用需由具体的工程实现完成。
+**Supported formats:** PDF, Word (.docx), scanned images (with OCR), plain text
 
-**Supported formats (conceptual):** PDF, Word (.docx), scanned images (with OCR), plain text
-
-**Conceptual parsing pipeline (for reference):**
+**Parsing pipeline:**
 
 ```
 Document Upload
@@ -201,8 +163,6 @@ Document Upload
 
 ### 2. Agent Profile & Skill Assessment / 代理人画像与能力评估
 
-> **⚠️ 数据处理提醒**：以下代理人画像和日程数据为**演示示例**。实际使用时，用户应自行管理代理人数据的收集和存储，确保符合《个人信息保护法》及保险行业合规要求。请勿输入真实客户PII信息。
-
 **Three skill tiers:**
 
 | Tier | Level | Description | Training Focus |
@@ -256,9 +216,7 @@ Document Upload
 
 ---
 
-### 3. Question Bank Generation / 问题库自动生成（教学模板）
-
-> **⚠️ 教学演示**：以下问题库和话术为**培训场景的教学参考模板**，展示如何结构化设计代理人训练内容。所有涉及销售话术、竞品对比、异议处理的内容均为**培训素材**，实际销售行为须遵循《保险法》及相关监管规定，并经持牌保险专业人士审核后方可执行。
+### 3. Question Bank Generation / 问题库自动生成
 
 **Generated from product profile + agent level + training objectives**
 
@@ -312,9 +270,7 @@ Based on the product profile provided, generate a question bank with:
 
 ---
 
-### 4. Personalized Training Scheduler / 个性化训练调度引擎（方法论演示）
-
-> **⚠️ 教学演示**：以下调度算法、代理人画像及日程数据均为**教学方法论的概念性展示**。**本技能不实际采集、存储或处理任何代理人或客户数据**。所有姓名、日程、业绩数据均为虚构示例，仅用于说明逻辑框架。
+### 4. Personalized Training Scheduler / 个性化训练调度引擎
 
 **Input factors:**
 
@@ -512,8 +468,6 @@ Agent Response
 
 ## Workflow / 标准工作流程
 
-> **⚠️ 重要提示**：以下工作流展示的是**培训场景的教学参考**。所有销售话术和异议处理内容均为培训素材，实际销售行为须遵循《保险法》及相关监管规定，经持牌保险专业人士审核。
-
 ### Mode 1: Quick Start (已知产品 + 快速训练)
 
 ```
@@ -537,7 +491,7 @@ User: [上传 XX保险公司福享人生终身寿险 产品手册 PDF]
 [Step 1] 解析文档 → 提取产品结构、条款、卖点
 [Step 2] 生成产品画像 → Structured JSON Profile
 [Step 3] 生成问题库 → 65+道题目（5难度×8类别）
-[Step 4] 生成参考题库 → 作为AI对话上下文，**不持久存储**
+[Step 4] 与现有产品库合并 → 更新知识库
 [Step 5] 等待选择 → "请选择训练模式：快问快答 / 情景对练 / 案例研讨"
 ```
 
@@ -602,3 +556,87 @@ User: "帮我评估代理人李华的综合能力，她入职8个月，主要卖
 > compliance decisions, and product recommendations must be reviewed by licensed
 > insurance professionals and comply with CBIRC regulations. Model answers represent
 > reference best practices, not guaranteed outcomes.
+
+---
+
+## 附录G：阿里点金(Dianjin)融合精华 — 客户画像与保障缺口分析
+
+### G.1 核心工作流程（Dianjin融合版）
+
+#### 步骤1：客户画像构建
+| 画像维度 | 分析要点 | 输出成果 |
+|---------|---------|---------|
+| **人口统计** | 年龄、性别、职业、收入、家庭结构 | 客户基础画像报告 |
+| **风险偏好** | 风险承受能力、投资经验、理财目标 | 风险偏好评级（保守/稳健/进取） |
+| **保险需求** | 保障缺口、责任负担、未来规划 | 保险需求分析报告 |
+| **购买行为** | 历史购买、决策风格、信息渠道 | 销售策略建议 |
+
+#### 步骤2：保障缺口分析
+| 缺口类型 | 计算方法 | 建议策略 |
+|---------|---------|---------|
+| **寿险缺口** | 责任负担-已有保额-可变现资产 | 定期寿险/终身寿险建议 |
+| **重疾缺口** | 治疗费用+收入损失-已有保额 | 重疾险/医疗险建议 |
+| **医疗缺口** | 预期医疗费-社保报销-已有保险 | 百万医疗/高端医疗建议 |
+| **养老缺口** | 预期养老支出-社保养老金-个人储蓄 | 年金险/养老社区建议 |
+
+#### 步骤3：计划书生成
+- **计划书结构**：客户画像 → 保障缺口 → 产品方案 → 利益演示 → 对比分析
+- **方案设计**：主险+附加险组合、保额/期限/缴费期设计
+- **利益演示**：现金价值表、保障利益表、分红/万能演示
+
+#### 步骤4：异议处理与成交
+- **异议类型**：价格异议、需求异议、产品异议、公司异议
+- **处理话术**：同理心+专业解释+案例佐证+促成技巧
+- **成交信号**：肢体语言、提问细节、主动要求方案
+
+---
+
+### G.2 风险评分机制（Dianjin精髓）
+
+| 风险维度 | 评分指标 | 权重 | 风险阈值 |
+|---------|---------|------|---------|
+| 需求匹配 | 产品与客户需求匹配度 | 30% | 匹配度<60% |
+| 负担能力 | 保费/收入比、续保能力 | 25% | 保费/收入比>20% |
+| 诚信风险 | 告知真实性、历史记录 | 20% | 告知不实或历史违规 |
+| 合规风险 | 销售合规、适当性管理 | 15% | 销售过程不合规 |
+| 声誉风险 | 客户满意度、投诉记录 | 10% | 客户投诉或负面评价 |
+
+**综合风险等级**：
+- 低风险（0-20分）：需求匹配，正常承保
+- 中风险（21-40分）：需求基本匹配，关注负担能力
+- 高风险（41-60分）：需求不匹配或负担能力不足，审慎承保
+- 极高风险（61-80分）：诚信风险或合规风险，拒绝承保或报警
+
+---
+
+### G.3 合规约束（Dianjin精髓）
+
+1. **不适用边界**：本技能不适用于医学诊断、法律建议，此类需求需转交医疗或法律专业人士
+2. **禁止承诺**：不使用"一定赔付""guaranteed payout"等承诺性表述
+3. **禁止替代决策**：仅输出分析建议，最终承保决策由核保师/核保主管出具
+4. **数据溯源**：客户数据、健康状况必须标注来源和获取日期
+5. **隐私保护**：客户信息、健康状况必须保密
+6. **客观中立**：销售不得误导客户，须客观呈现产品利弊
+
+---
+
+### G.4 测试用例（Dianjin精髓）
+
+| 用例ID | 输入场景 | 预期输出 | 验证点 |
+|--------|---------|---------|---------|
+| TC001 | 客户35岁，家庭年收入50万，有房贷200万，已有寿险100万 | 寿险缺口100万，建议加保100万定期寿险 | 缺口计算准确 |
+| TC002 | 客户45岁，家庭年收入30万，保费预算5万/年 | 保费/收入比16.7%，建议控制在4-6万/年 | 负担能力评估合理 |
+| TC003 | 客户55岁，有高血压糖尿病史，未如实告知 | 极高风险（70分），建议如实告知或拒保 | 诚信风险评估准确 |
+
+---
+
+### G.5 关联技能（Dianjin精髓）
+
+- **保险理赔专家**（`insurance-claims-intelligence`）：提供理赔材料分析、责任认定、欺诈检测
+- **保险反欺诈**（`insurance-anti-fraud`）：提供欺诈检测、风险评分、异常模式识别
+- **保险核保专家**（`insurance-actuarial-cn`）：提供核保规则、健康核验、风险分类
+
+---
+
+*融合来源：阿里点金(Dianjin) insurance-agent*
+*融合时间：2026-05-31*

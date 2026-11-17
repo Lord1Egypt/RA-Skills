@@ -1,46 +1,64 @@
-## Description: <br>
-Converts Markdown documents into WeChat Official Account-ready HTML with configurable themes, fonts, colors, code highlighting, math rendering, and diagram support. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Md Wechat converts Markdown files into WeChat Official Account-ready HTML with inline styling, themes, code highlighting, math rendering, diagrams, and reusable configuration.
 
-## Publisher: <br>
-[italks](https://clawhub.ai/user/italks) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[italks](https://clawhub.ai/user/italks)
 
-## Use Case: <br>
-Developers, content teams, and automation workflows use this skill to convert Markdown articles into styled HTML that can be copied into the WeChat Official Account editor. It is suited for repeatable article formatting, custom theme reuse, and batch-oriented publishing workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The formatter may automatically install dependencies during normal conversion. <br>
-Mitigation: Review package.json and package-lock.json, install dependencies manually, and run conversion with --no-auto-install. <br>
-Risk: Browser-based rendering and Markdown input processing can increase exposure when handling untrusted files. <br>
-Mitigation: Run the skill in an isolated project, container, or sandbox, especially for untrusted Markdown content. <br>
+## Use Case:
 
+Developers, content teams, and automation workflows use this skill to convert Markdown articles into styled HTML that can be copied into the WeChat Official Account editor. It also helps reuse article styling by extracting configuration from previously rendered HTML.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/italks/md-wechat) <br>
-- [Configuration reference](references/config-reference.md) <br>
-- [Theme reference](references/theme-reference.md) <br>
-- [marked Markdown parser](https://marked.js.org/) <br>
-- [KaTeX math rendering](https://katex.org/) <br>
-- [Mermaid diagram rendering](https://mermaid.js.org/) <br>
-- [doocs/md inspiration project](https://github.com/doocs/md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with shell commands and generated HTML or JSON configuration files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated HTML is intended for WeChat Official Account copy-paste workflows; configuration extraction can produce reusable JSON style settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: Normal use can automatically install npm or pip dependencies.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review package metadata and lockfiles, install dependencies manually where possible, and run conversions with --no-auto-install.
+
+Risk: Mermaid rendering uses a headless browser and remote JavaScript with the browser sandbox disabled.
+
+Mitigation: Process Mermaid content only in an isolated environment and avoid rendering untrusted Markdown diagrams.
+
+Risk: Untrusted Markdown or extracted HTML configuration can influence generated output.
+
+Mitigation: Use trusted source documents and reviewed configuration files, then inspect generated HTML before publishing or pasting into WeChat.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/italks/skills/md-wechat)
+- [Configuration reference](references/config-reference.md)
+- [Theme reference](references/theme-reference.md)
+- [marked](https://marked.js.org/)
+- [KaTeX](https://katex.org/)
+- [highlight.js](https://highlightjs.org/)
+- [Mermaid](https://mermaid.js.org/)
+- [doocs/md](https://github.com/doocs/md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command examples, configuration JSON, and generated HTML file outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create a styled HTML output file and, on first use, a default md-config.json file.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

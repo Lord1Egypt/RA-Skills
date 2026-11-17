@@ -1,45 +1,58 @@
-## Description: <br>
-Protect long-running OpenClaw gateways from unsafe restarts with preflight checks, watchdog diagnosis, and evidence capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Protect long-running OpenClaw gateways from unsafe restarts with preflight checks, watchdog diagnosis, and evidence capture.
 
-## Publisher: <br>
-[jiepu110](https://clawhub.ai/user/jiepu110) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiepu110](https://clawhub.ai/user/jiepu110)
 
-## Use Case: <br>
-Developers and operators use this skill to triage OpenClaw gateway instability, decide whether a restart is safe, run guarded diagnostic commands, and capture evidence before making changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A blind gateway restart can interrupt active OpenClaw tasks or embedded runs. <br>
-Mitigation: Run the required restart preflight, honor BLOCK results, and use --force only after the user explicitly accepts interruption risk. <br>
-Risk: A single CLI timeout can be mistaken for a dead gateway. <br>
-Mitigation: Separate process liveness from RPC readiness by checking status, health, logs, and watchdog evidence before recommending restart. <br>
-Risk: Editing core configuration during incident response can create avoidable instability. <br>
-Mitigation: Do not edit core config unless the user explicitly approves a minimal candidate change. <br>
-Risk: Diagnostic review can expose secrets or identifiers in draft public materials or logs. <br>
-Mitigation: Use the skill on content intended for review and verify any rewritten or summarized output before publishing. <br>
+## Use Case:
 
+Developers and operators use this skill to diagnose OpenClaw gateway instability, decide whether a restart is safe, and capture evidence before taking disruptive action.
 
-## Reference(s): <br>
-- [OpenClaw Gateway Guardian Failure Modes](references/failure_modes.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiepu110/oc-gateway-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and diagnostic report paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May reference report files under $OPENCLAW_ROOT/workspace/diagnostics/gateway-guardian/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill can guide an agent to run diagnostics and, with user direction, restart an OpenClaw gateway.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the referenced OpenClaw guardian scripts are the expected workspace scripts before installing or using the skill, and require explicit user acceptance before forced restarts.
+
+Risk: A gateway restart can interrupt active OpenClaw tasks or embedded runs.
+
+Mitigation: Run the documented preflight check before restart, honor BLOCK results, and prefer diagnosis or cooldown when active work or recent stability heartbeats are present.
+
+Risk: Generated diagnostic reports may include local gateway status, task, or log evidence.
+
+Mitigation: Treat diagnostic reports as sensitive operational material and review them before sharing outside the local workspace.
+
+## Reference(s):
+
+- [OpenClaw Gateway Guardian Failure Modes](references/failure_modes.md)
+- [ClawHub Skill Page](https://clawhub.ai/jiepu110/skills/oc-gateway-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Markdown, Configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and diagnostic interpretation]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct agents to produce diagnostic reports under the configured OpenClaw diagnostics directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

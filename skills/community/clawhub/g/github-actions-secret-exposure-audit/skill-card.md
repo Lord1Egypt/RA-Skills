@@ -1,39 +1,48 @@
-## Description: <br>
-Audit GitHub Actions workflow files for secret exposure risks like pull_request_target secret usage, secret echo commands, and unpinned action secret passing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Audit GitHub Actions workflow files for secret exposure risks like pull_request_target secret usage, secret echo commands, and unpinned action secret passing.
 
-## Publisher: <br>
-[daniellummis](https://clawhub.ai/user/daniellummis) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[daniellummis](https://clawhub.ai/user/daniellummis)
 
-## Use Case: <br>
-Developers and security engineers use this skill to audit GitHub Actions workflow YAML for risky secret handling before credentials leak or unsafe token use reaches CI. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated audit reports may include real secret-looking workflow lines from the repository. <br>
-Mitigation: Treat reports as sensitive and avoid publishing or storing them in public logs. <br>
-Risk: Over-broad file matching could scan files outside intended GitHub Actions workflow YAML. <br>
-Mitigation: Keep WORKFLOW_GLOB scoped to workflow YAML and use WORKFLOW_FILE_MATCH or WORKFLOW_FILE_EXCLUDE when narrowing the audit. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daniellummis/github-actions-secret-exposure-audit) <br>
+## Use Case:
 
+Developers and security engineers use this skill to audit GitHub Actions workflow YAML for secret exposure patterns before credentials leak or unsafe token use reaches CI. It helps prioritize risky workflows and optionally fail CI on critical findings.
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, guidance] <br>
-**Output Format:** [Text report or JSON summary with ranked workflow findings and optional CI fail gate.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires bash and python3; configurable with WORKFLOW_GLOB, OUTPUT_FORMAT, score thresholds, filters, and FAIL_ON_CRITICAL.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: JSON reports may include full workflow lines containing suspected hardcoded credentials.
+
+Mitigation: Prefer text output for shared logs. If JSON output is required, redact sensitive fields before publishing CI artifacts or logs.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/daniellummis/skills/github-actions-secret-exposure-audit)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, guidance]
+
+**Output Format:** [Text or JSON audit report with optional shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bash and python3. JSON reports may include matched workflow lines.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter, release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

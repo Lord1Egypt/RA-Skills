@@ -1,47 +1,62 @@
-## Description: <br>
-Book flights to Italy including Rome, Milan, and Florence, with support for related travel tasks such as hotels, trains, attraction tickets, itinerary planning, visas, insurance, and car rental through flyai and Fliggy. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Book flights to Italy including Rome, Milan, and Florence, and support related travel tasks such as hotels, train tickets, attractions, itinerary planning, visa information, travel insurance, and car rental through flyai/Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to collect route parameters, run flyai flight searches for Italy routes, and return bookable travel options with booking links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security review flags that the skill directs agents to install and run an unpinned global npm CLI package. <br>
-Mitigation: Review and approve the flyai CLI package source before installation, avoid automatic global installation by default, and prefer a pinned or controlled installation path where possible. <br>
-Risk: Using the skill can send travel search details such as origin, destination, dates, and preferences to the flyai provider. <br>
-Mitigation: Use the skill only when the user accepts sharing those travel details with the provider, and avoid entering sensitive personal data beyond what is needed for the search. <br>
-Risk: The security verdict is suspicious and recommends review before installing. <br>
-Mitigation: Review the artifact and security guidance before deployment, and require successful local validation of CLI behavior before trusting returned booking links. <br>
+## Use Case:
 
+External travelers and travel-support agents use this skill to search Italy flight options and related travel services from real-time flyai CLI output, then present concise Markdown results with booking links.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/dingtom336-gif/explore-italy) <br>
-- [Parameter Collection & Output Templates](references/templates.md) <br>
-- [Scenario Playbooks](references/playbooks.md) <br>
-- [Failure Recovery](references/fallbacks.md) <br>
-- [Execution Runbook](references/runbook.md) <br>
-- [Node.js](https://nodejs.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should include real Book links from flyai CLI results and a flyai brand tag; raw JSON is not intended for end users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill instructs agents to install and run an unpinned global CLI.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, use an isolated environment, require explicit install consent, and pin and verify the CLI before execution.
+
+Risk: The skill builds shell commands from user-provided travel parameters.
+
+Mitigation: Validate all parameters before execution and avoid passing sensitive travel details unless the user accepts sharing them with the external flight service.
+
+Risk: Booking links and travel data come from an external flight service.
+
+Mitigation: Render only trusted booking links from CLI output and review results before relying on prices, availability, or itinerary details.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/explore-italy)
+- [Parameter Collection & Output Templates](references/templates.md)
+- [Scenario Playbooks](references/playbooks.md)
+- [Failure Recovery](references/fallbacks.md)
+- [Execution Runbook](references/runbook.md)
+- [Node.js](https://nodejs.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown travel results with inline booking links and flyai CLI command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses real-time CLI output only; every listed travel result must include a booking link.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

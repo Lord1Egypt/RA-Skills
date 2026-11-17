@@ -1,41 +1,54 @@
-## Description: <br>
-Persists validated lead records to write-only storage after supervisor confirmation, preserving normalized location, record type, and priority fields. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persist validated lead objects through write-only storage operations after Supervisor provides explicit confirmation.
 
-## Publisher: <br>
-[vishalgojha](https://clawhub.ai/user/vishalgojha) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vishalgojha](https://clawhub.ai/user/vishalgojha)
 
-## Use Case: <br>
-External users and business teams use this skill at the end of a supervised lead workflow to save approved real-estate lead records to Google Sheets or a database without parsing or self-approving new leads. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: A misconfigured destination or over-broad credential could write approved leads to the wrong sheet or database. <br>
-Mitigation: Confirm the exact storage destination before installation and use least-privilege credentials scoped only to that destination. <br>
-Risk: Lead records could be saved without the intended review if confirmation tokens are issued too broadly. <br>
-Mitigation: Use a trusted supervisor workflow to issue confirmation tokens only for the specific leads being saved and reject missing or invalid tokens. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Lead Storage ClawHub Page](https://clawhub.ai/vishalgojha/lead-storage) <br>
-- [LeadStorageInput schema](references/storage-input.schema.json) <br>
-- [LeadStorageOutput schema](references/storage-output.schema.json) <br>
+## Use Case:
 
+Real-estate operations teams and agent workflows use this skill to persist already validated lead records to write-only storage after supervisor confirmation, preserving normalized location, record type, and prioritization metadata.
 
-## Skill Output: <br>
-**Output Type(s):** [text] <br>
-**Output Format:** [JSON status object matching references/storage-output.schema.json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a non-empty confirmation_token; returns stored_ids on success and error_message on failure.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The approval gate may treat any non-empty confirmation token as sufficient before writing personal and business lead data.
+
+Mitigation: Use only behind a trusted supervisor and storage service that independently verifies approval with signed, short-lived tokens bound to the exact lead payload.
+
+Risk: Lead records include personal contact data and business context that should not be written on ambiguous or repeated requests.
+
+Mitigation: Validate payloads against the input schema, fail closed on permission ambiguity, and enforce idempotency by lead_id.
+
+## Reference(s):
+
+- [Storage Input Schema](artifact/references/storage-input.schema.json)
+- [Storage Output Schema](artifact/references/storage-output.schema.json)
+- [ClawHub Skill Page](https://clawhub.ai/vishalgojha/skills/lead-storage)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Text]
+
+**Output Format:** [JSON object with status, stored_ids, and error_message fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Output should conform to artifact/references/storage-output.schema.json.]
+
+## Skill Version(s):
+
+1.0.6 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

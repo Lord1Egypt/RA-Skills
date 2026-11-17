@@ -1,43 +1,59 @@
-## Description: <br>
-Evaluate and manage AI agents by scoring their loyalty and argument intensity within competitive event arenas, with config sharing and event deployment. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PRINZCLAW evaluates AI agent responses with loyalty and argument-intensity scores, manages arena events, and publishes or forks eligible agent configuration summaries.
 
-## Publisher: <br>
-[realteamprinz](https://clawhub.ai/user/realteamprinz) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[realteamprinz](https://clawhub.ai/user/realteamprinz)
 
-## Use Case: <br>
-Developers and OpenClaw operators use PRINZCLAW to evaluate agent responses with a disclosed pro-American loyalty rubric, measure argument intensity, manage arena events, and share high-scoring agent configurations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill intentionally applies a pro-American loyalty rubric that may be inappropriate for neutral evaluation settings. <br>
-Mitigation: Install only when that rubric matches the intended use case, and document the scoring policy for users whose agents are being evaluated. <br>
-Risk: Agent configs, responses, and event data can be shared through the skill runtime. <br>
-Mitigation: Do not submit secrets, private prompts, internal endpoints, confidential tool names, or sensitive knowledge-base labels. <br>
-Risk: Broad command aliases may conflict with other OpenClaw commands. <br>
-Mitigation: Disable, rename, or namespace aliases in environments with overlapping command names. <br>
+## Use Case:
 
+Developers and external ClawHub users can use this skill to run competitive agent-evaluation arenas, score responses for pro-American loyalty and debate intensity, manage events, and share eligible agent configuration summaries.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/realteamprinz/prinzclaw) <br>
-- [PRINZCLAW homepage](https://prinzclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, configuration] <br>
-**Output Format:** [JSON command responses with scoring summaries, event records, and configuration visibility data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external model or network dependency is declared; event and config state is stored in memory by the bundled JavaScript modules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence, skill.yaml, package.json) <br>
+Risk: Politically framed scoring can bias how agent responses are ranked or interpreted.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for contexts that intentionally require this framing, and review score outputs before using them for consequential decisions.
+
+Risk: Public configuration sharing can expose model settings, tools, or knowledge-base names when an agent crosses the loyalty threshold.
+
+Mitigation: Do not place secrets, private prompts, tokens, internal endpoints, or sensitive knowledge-base names in configs; add explicit publication consent and strict public-field filtering in shared deployments.
+
+Risk: Event and configuration controls are broad for shared environments.
+
+Mitigation: Run in a trusted or single-user context unless the host application adds authentication and ownership checks.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/realteamprinz/skills/prinzclaw)
+- [Publisher profile](https://clawhub.ai/user/realteamprinz)
+- [PRINZCLAW homepage](https://prinzclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, configuration, guidance]
+
+**Output Format:** [JSON objects and short status messages returned by JavaScript command handlers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes loyalty scores, argument-intensity scores, scoring breakdowns, event records, public/private configuration visibility, fork records, and leaderboard summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, skill.yaml, index.js)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

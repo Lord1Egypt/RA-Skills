@@ -1,41 +1,53 @@
-## Description: <br>
-Tracks connection activity across human, resource, and memory interactions, scores connection value, and produces local Markdown dashboards and reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks local connection records across people, tools, resources, and Memory events, then generates tracker dashboards and daily or weekly summaries.
 
-## Publisher: <br>
-[largetool](https://clawhub.ai/user/largetool) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[largetool](https://clawhub.ai/user/largetool)
 
-## Use Case: <br>
-Developers and agent users use this skill to record and review connection-building activity across social, tool, resource, and memory workflows. It helps summarize activity into daily and weekly Markdown reports while keeping records local to the OpenClaw workspace. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent local activity logs may capture sensitive or private connection details if users enter them. <br>
-Mitigation: Keep entries high level and avoid secrets, private conversation text, account details, API keys, or other sensitive content. <br>
-Risk: Automatic triggers or cron jobs can create ongoing records beyond a one-time manual action. <br>
-Mitigation: Enable scheduled reporting only when persistent tracking is intentional and periodically review the generated files. <br>
+## Use Case:
 
+External users and agents use this skill to log interaction, research, tool, and Memory connections locally, score their value, and review daily or weekly activity summaries.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/largetool/connection-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/largetool) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown dashboards and reports, with JSON summaries from CLI commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes local connection records under ~/.openclaw/workspace/connections when the handler is used.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Persistent local tracking may collect interaction, research activity, and selected Memory event metadata.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when local tracking is intended, configure automatic triggers narrowly, and periodically review or delete generated files under ~/.openclaw/workspace/connections.
+
+Risk: Untrusted or sensitive record text could be written into local Markdown reports.
+
+Mitigation: Avoid passing untrusted text, API keys, private conversations, or other sensitive data into connection record fields.
+
+## Reference(s):
+
+- [Connection Tracker ClawHub release](https://clawhub.ai/largetool/skills/connection-tracker)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown tracker and report files, JSON CLI summaries, and command-line usage examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes local tracker, daily report, and weekly report files under ~/.openclaw/workspace/connections.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

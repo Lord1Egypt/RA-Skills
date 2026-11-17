@@ -36,7 +36,7 @@ describe('FileChat RAG Skill', () => {
     // The environment variables configure GWS CLI to use our provided credentials.
     const env = {
       ...process.env,
-      GEMINI_API_KEY: 'AIzaSyAOx5NDLxsyRjd0qWT33LXZ_KKwMtyzOe4'
+      GEMINI_API_KEY: 'REDACTED-SECRET'
     };
 
     try {
@@ -65,7 +65,7 @@ describe('FileChat RAG Skill', () => {
 
     const env = {
       ...process.env,
-      GEMINI_API_KEY: 'AIzaSyAOx5NDLxsyRjd0qWT33LXZ_KKwMtyzOe4'
+      GEMINI_API_KEY: 'REDACTED-SECRET'
     };
 
     // Clean up previous runs so it actually tests the download/embed process

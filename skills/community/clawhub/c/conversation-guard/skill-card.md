@@ -1,43 +1,56 @@
-## Description: <br>
-Automatically records and backs up conversations with importance tagging to preserve emotional and technical context independently from OpenClaw internals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically records and backs up OpenClaw conversations with importance tagging to preserve emotional and technical context outside OpenClaw internals.
 
-## Publisher: <br>
-[zfanmy](https://clawhub.ai/user/zfanmy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zfanmy](https://clawhub.ai/user/zfanmy)
 
-## Use Case: <br>
-OpenClaw users and agent developers use this skill when they intentionally want local transcript backup, importance tagging, and recovery helpers for conversations. It is suited to preserving technical decisions and personal context in local Markdown and JSONL files. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can automatically save full chats, including sensitive personal content and passwords, in plaintext local files. <br>
-Mitigation: Install only when continuous local transcript logging is intended; set restrictive file permissions and periodically review or delete memory and .guardian files. <br>
-Risk: Importance rules may encourage saving secrets or password-related messages. <br>
-Mitigation: Remove password and secret keywords from importance rules and avoid recording credentials or private data. <br>
-Risk: Users may source a local shell script that writes persistent files. <br>
-Mitigation: Pin or verify the script before sourcing it, and review the configured memory paths before enabling automatic recording. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to install and configure local conversation backups. It records agent exchanges with importance tags and keeps recovery-friendly Markdown and JSONL history files.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zfanmy/conversation-guard) <br>
-- [Publisher profile](https://clawhub.ai/user/zfanmy) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and local file outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Markdown conversation logs, JSONL backups, emergency backup files, and status or recovery text when its shell functions are invoked.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+Risk: Complete agent exchanges may be copied into local plaintext history, including passwords, tokens, or private data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Add redaction rules before recording sensitive content, restrict file permissions on the memory directory, and define a retention policy for backups.
+
+Risk: The installation instructions include downloading executable shell code from a mutable remote URL without an integrity check.
+
+Mitigation: Use the bundled script or a pinned verified release, review the shell commands before installation, and verify checksums where available.
+
+## Reference(s):
+
+- [Conversation Guard ClawHub Page](https://clawhub.ai/zfanmy/skills/conversation-guard)
+- [README.md](artifact/README.md)
+- [SKILL.md](artifact/SKILL.md)
+- [VERSION-ISOLATION.md](artifact/VERSION-ISOLATION.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Files]
+
+**Output Format:** [Markdown guidance with bash snippets; generated local Markdown and JSONL conversation logs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local plaintext history files are written under the configured memory directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: ClawHub release metadata; artifact documentation and script state 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

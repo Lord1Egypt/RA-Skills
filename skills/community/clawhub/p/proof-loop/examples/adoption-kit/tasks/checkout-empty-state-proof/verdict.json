@@ -1,0 +1,24 @@
+{
+  "task_id": "checkout-empty-state-proof",
+  "phase": "verify",
+  "agent": "fresh-verifier",
+  "timestamp": "2026-09-01T00:40:00Z",
+  "overall": "PASS",
+  "criteria": [
+    {
+      "id": "AC1",
+      "status": "PASS",
+      "note": "Returning empty-cart proof log shows Restore saved cart."
+    },
+    {
+      "id": "AC2",
+      "status": "PASS",
+      "note": "New empty-cart proof log shows Continue shopping remains visible."
+    },
+    {
+      "id": "AC3",
+      "status": "PASS",
+      "note": "Checkout regression proof log records a passing command."
+    }
+  ]
+}

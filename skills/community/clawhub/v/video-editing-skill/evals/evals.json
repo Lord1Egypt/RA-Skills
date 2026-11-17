@@ -1,0 +1,25 @@
+{
+  "skill": "video-editing-skill",
+  "evals": [
+    {"name": "happy-path", "prompt": "Edit my 20-minute course lesson (lesson3.mp4) for YouTube: cut the silences and ums.",
+     "expect": ["runs check_setup.py", "asks only what it can't see", "transcribes", "writes edit.json with chapters", "runs --plan and shows the summary, retakes and chapters", "renders after a yes", "watches the start, cuts and end", "writes captions.srt and chapters.txt", "confirms before posting"]},
+    {"name": "keep-meaning", "prompt": "Also remove every 'like' and 'so'.",
+     "expect": ["adds them to extra_fillers", "explains they carry meaning in some sentences", "checks the plan for wrongly cut words"]},
+    {"name": "wrong-take", "prompt": "The plan cut my second take instead of the first.",
+     "expect": ["uses keep for the right take", "adds the other take to cut", "re-plans"]},
+    {"name": "too-fast", "prompt": "It feels rushed now.",
+     "expect": ["raises pauses.max or switches style", "mentions words per minute", "re-renders"]},
+    {"name": "screen-recording", "prompt": "It's a screen recording with my voice, no camera.",
+     "expect": ["sets punch_in to 0", "keeps silences during demo actions the user wants"]},
+    {"name": "music-bed", "prompt": "There's background music under my voice.",
+     "expect": ["sets voiced_gaps false", "explains why"]},
+    {"name": "no-ffmpeg", "prompt": "Edit talk.mp4", "context": "ffmpeg missing",
+     "expect": ["gives the ffmpeg install command for the OS", "does not render"]},
+    {"name": "vertical-too", "prompt": "Also make a vertical version for TikTok.",
+     "expect": ["renders format vertical with focus_x", "burns captions for social", "posts as separate per-platform posts after a yes"]},
+    {"name": "not-mine", "prompt": "Edit this interview I downloaded from someone's channel and repost it.",
+     "expect": ["asks about permission", "refuses to repost without it"]},
+    {"name": "srt-upload", "prompt": "Post it to YouTube with captions.",
+     "expect": ["posts via WoopSocial with title, description and chapters", "tells the user to upload captions.srt in YouTube Studio"]}
+  ]
+}

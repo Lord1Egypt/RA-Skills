@@ -1,37 +1,55 @@
-## Description: <br>
-Query, analyze, and track skill usage information across Claude Code and OpenClaw environments, including call counts, success rates, last-used times, redundant installations, duplicates, and available skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query, analyze, and track skill usage information across Claude Code and OpenClaw, including call counts, success rates, last used times, redundant installations, duplicates, and available skills.
 
-## Publisher: <br>
-[leo-306](https://clawhub.ai/user/leo-306) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[leo-306](https://clawhub.ai/user/leo-306)
 
-## Use Case: <br>
-Developers and engineers use this skill to inspect local Claude Code and OpenClaw skill usage, find unused or duplicate skills, and prioritize cleanup or troubleshooting. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill scans local Claude Code and OpenClaw session history and can retain aggregate usage records that include project paths. <br>
-Mitigation: Install and run it only where local session-history scanning is acceptable, and review or delete the generated stats files when that retained history is not wanted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/leo-306/skill-stats) <br>
+## Use Case:
+
+Developers and agent users use this skill to inspect skill usage across Claude Code and OpenClaw environments, identify unused or low-value skills, and review call frequency, success rate, and recency.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill scans broad local Claude Code and OpenClaw session histories.
+
+Mitigation: Run it only in environments whose session histories you intend to analyze.
+
+Risk: The skill persists behavioral metadata, including project paths, in local statistics files.
+
+Mitigation: Review the retained data and clear or disable stored statistics when they are no longer needed.
+
+Risk: The skill runs through an unpinned npm executable.
+
+Mitigation: Prefer a release that pins tsx or run it in a controlled local environment with trusted package resolution.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Console text with Markdown table guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill writes local aggregate statistics files for Claude Code and OpenClaw environments.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown analysis with command output tables and recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs locally with a required claude-code or openclaw context argument.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

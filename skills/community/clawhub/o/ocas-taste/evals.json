@@ -1,0 +1,48 @@
+{
+  "skill": "ocas-taste",
+  "version": "3.6.0",
+  "evals": [
+    {
+      "id": "taste-scan-basic",
+      "input": "Scan my email for restaurant reservations this week",
+      "expected_output": "Runs taste.scan, extracts restaurant reservations from email, creates ConsumptionSignals, reports count of new signals and any duplicates found",
+      "description": "Basic email scan for consumption signals",
+      "tags": ["scan", "email"]
+    },
+    {
+      "id": "taste-recommend-evidence",
+      "input": "Recommend a restaurant I haven't been to yet",
+      "expected_output": "Returns recommendations with evidence-linked explanations citing specific consumed items, respects dietary restrictions, excludes previously visited places",
+      "description": "Recommendation with evidence",
+      "tags": ["recommend", "evidence"]
+    },
+    {
+      "id": "taste-cron-fallback",
+      "input": "Taste scan fails with invalid_grant error",
+      "expected_output": "Outputs failure report with auth diagnosis and re-auth URL. Does NOT silently fail. Reports current data quality stats from existing signals.jsonl.",
+      "description": "Cron failure fallback behavior",
+      "tags": ["error-handling", "cron"]
+    },
+    {
+      "id": "taste-enrichment-dedup",
+      "input": "Enrich items where venue_name is 'Big Lantern' and name is 'Big Lantern Restaurant'",
+      "expected_output": "Dedup check uses venue_name field, not name. Item is matched correctly without creating duplicates.",
+      "description": "Enrichment dedup uses venue_name",
+      "tags": ["enrichment", "dedup"]
+    },
+    {
+      "id": "taste-calendar-scan",
+      "input": "Scan calendar for dining events",
+      "expected_output": "Enumerates writable calendars via calendarList(), filters accessRole, normalizes venue names by stripping 'Reservation at' prefix and city suffixes",
+      "description": "Calendar scan with normalization",
+      "tags": ["scan", "calendar"]
+    },
+    {
+      "id": "taste-scope-boundary",
+      "input": "Search the web for best restaurants in Tokyo",
+      "expected_output": "Refers to Sift for generic web research. Taste only works with personalized consumption signals, not generic search.",
+      "description": "Scope boundary - no generic search",
+      "tags": ["scope", "boundary"]
+    }
+  ]
+}

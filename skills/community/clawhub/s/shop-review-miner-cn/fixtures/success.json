@@ -1,0 +1,93 @@
+{
+  "product_name": "云朵颈枕（标准款）",
+  "category": "旅行用品",
+  "reviews": [
+    {
+      "rating": 5,
+      "text": "高铁上用了两小时，脖子有支撑，收纳袋也方便。"
+    },
+    {
+      "rating": 4,
+      "text": "柔软不勒脖子，不过我想知道适合多高的人。"
+    },
+    {
+      "rating": 2,
+      "text": "夏天戴着有点闷，详情页没说面料透气性。"
+    }
+  ],
+  "expected_result": {
+    "analysis_status": "complete_with_limited_sample",
+    "sample_note": "仅有 3 条评价，结论限于本次材料。",
+    "common_needs": [],
+    "one_off_signals": [
+      "适合身高范围说明",
+      "面料透气性说明"
+    ],
+    "facts_or_feedback": [
+      "1条评分5评价提到高铁使用两小时颈部有支撑",
+      "同一条评分5评价提到收纳袋方便",
+      "1条评分4评价提到柔软不勒脖子，并询问适配身高",
+      "1条评分2评价反映夏天佩戴有点闷，并指出详情页未说明面料透气性"
+    ],
+    "recommendations": [
+      "建议在详情页补充适合身高范围及测量方法",
+      "建议说明面料透气性、夏季使用边界或体感差异"
+    ],
+    "positive_feedback_themes": [
+      {
+        "theme": "支撑感",
+        "evidence_review_numbers": [
+          1
+        ],
+        "feedback": "高铁上用了两小时，脖子有支撑",
+        "count": 1
+      },
+      {
+        "theme": "收纳方便",
+        "evidence_review_numbers": [
+          1
+        ],
+        "feedback": "收纳袋也方便",
+        "count": 1
+      },
+      {
+        "theme": "柔软与佩戴感",
+        "evidence_review_numbers": [
+          2
+        ],
+        "feedback": "柔软不勒脖子",
+        "count": 1
+      }
+    ],
+    "negative_feedback_themes": [
+      {
+        "theme": "夏季闷热体验",
+        "evidence_review_numbers": [
+          3
+        ],
+        "feedback": "夏天戴着有点闷",
+        "count": 1,
+        "recommendation": "建议核实实际面料与不同使用条件，说明个体体感差异，不保证透气效果"
+      },
+      {
+        "theme": "身高适配信息需求",
+        "evidence_review_numbers": [
+          2
+        ],
+        "feedback": "想知道适合多高的人",
+        "count": 1,
+        "recommendation": "建议补真实尺寸、佩戴示意与核实后的适配依据，不编身高范围"
+      },
+      {
+        "theme": "透气性说明缺口",
+        "evidence_review_numbers": [
+          3
+        ],
+        "feedback": "详情页没说面料透气性",
+        "count": 1,
+        "recommendation": "建议核实面料后补说明"
+      }
+    ],
+    "forward_reference": "fixtures/forward-success.md"
+  }
+}

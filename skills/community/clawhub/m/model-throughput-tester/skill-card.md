@@ -1,40 +1,60 @@
-## Description: <br>
-Benchmarks LLM throughput by measuring tokens per second, latency, output speed, and error rate in OpenClaw auto mode or OpenAI-compatible API mode. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Benchmark LLM model throughput by measuring tokens per second, latency, and output speed through auto mode with OpenClaw or direct API mode for OpenAI-compatible endpoints.
 
-## Publisher: <br>
-[tsag1](https://clawhub.ai/user/tsag1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tsag1](https://clawhub.ai/user/tsag1)
 
-## Use Case: <br>
-Developers and AI practitioners use this skill to compare model throughput and latency before selecting or changing LLM endpoints. It supports quick OpenClaw auto-mode tests and direct OpenAI-compatible API benchmarks across one or more models. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: API mode can send prompts to a user-provided endpoint with a user-provided API key. <br>
-Mitigation: Use trusted endpoints, use appropriately scoped keys, and prefer auto mode when an API key is not needed. <br>
-Risk: Generated reports can include the model, API URL, test prompt, and benchmark results. <br>
-Mitigation: Use non-sensitive test prompts and review or redact reports before sharing them. <br>
+## Use Case:
 
+Developers and engineers use this skill to benchmark and compare LLM response throughput, latency, token output, and error rate before selecting or switching models.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/tsag1/model-throughput-tester) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands] <br>
-**Output Format:** [Markdown benchmark report with terminal status output and optional CSV] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include model, API URL when supplied, test prompt, latency, output token counts or estimates, tokens per second, and error rate.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.6 (source: server release evidence) <br>
+Risk: API mode can send API keys and benchmark prompts to any configured endpoint, including insecure HTTP endpoints.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer auto mode when possible; in API mode, use trusted HTTPS endpoints and avoid placing real keys directly in shell history.
+
+Risk: Generated reports can store the benchmark prompt and API URL locally.
+
+Mitigation: Use non-sensitive benchmark prompts and review generated Markdown or CSV reports before sharing them.
+
+Risk: Auto mode estimates token counts and cannot enforce the max token limit, which can make slow models appear to fail by timeout.
+
+Mitigation: Use API mode for precise completion-token counts and max-token control, or raise the timeout and use a shorter prompt for slow models in auto mode.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tsag1/skills/model-throughput-tester)
+- [README](artifact/README.md)
+- [Skill definition](artifact/SKILL.md)
+- [Release evidence](evidence.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration]
+
+**Output Format:** [Terminal summary text plus a Markdown throughput report, with optional CSV output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Auto mode estimates token counts and excludes warmup from summary by default; API mode uses reported completion tokens when available.]
+
+## Skill Version(s):
+
+1.0.8 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

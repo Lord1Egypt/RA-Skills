@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "omni-ecom://schemas/action-policy-decision-2.0.json",
+  "title": "Omni E-commerce Action Policy Decision",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_type", "contract_name", "contract_version", "created_by_team_version", "legacy_compatibility", "action_id", "request_sha256", "decision", "reason", "bindings", "executed", "evaluated_at"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "artifact_type": {"const": "action_policy_decision"},
+    "contract_name": {"const": "omni-ecom.action-policy-decision"},
+    "contract_version": {"const": "2.0"},
+    "created_by_team_version": {"type": "string", "minLength": 1},
+    "legacy_compatibility": {"const": {"read_only_import": ["omni-ecom.action-policy-decision@1.0"], "current_execution_authority": false}},
+    "action_id": {"type": "string", "minLength": 1},
+    "request_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "decision": {"enum": ["denied", "requires_approval", "assisted_plan_only", "eligible_for_execution"]},
+    "reason": {"type": "string", "minLength": 1},
+    "bindings": {"type": "object"},
+    "executed": {"const": false},
+    "evaluated_at": {"type": "string", "format": "date-time"}
+  }
+}

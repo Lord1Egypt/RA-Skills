@@ -1,41 +1,53 @@
-## Description: <br>
-Runs local Ollama prompt tests against dataset samples so developers can compare model and prompt behavior without using cloud services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps developers tune local Ollama prompts, model files, and evaluation runs against custom datasets without requiring cloud resources.
 
-## Publisher: <br>
-[GBlockChainNetwork](https://clawhub.ai/user/GBlockChainNetwork) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[gblockchainnetwork](https://clawhub.ai/user/gblockchainnetwork)
 
-## Use Case: <br>
-Developers use this skill to run local Ollama prompt or model checks on dataset samples, inspect short responses, and iterate on prompts or Modelfiles before adopting broader tuning workflows. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill describes model and LoRA tuning, while the artifact behavior is a lightweight local prompt-evaluation helper. <br>
-Mitigation: Treat it as prompt-testing guidance unless a separate, reviewed fine-tuning workflow is provided. <br>
-Risk: Dataset prompts are sent to the configured Ollama service during local evaluation. <br>
-Mitigation: Use only datasets approved for that Ollama environment and avoid sensitive data unless local service controls are acceptable. <br>
-Risk: Execution depends on the local runnable command and the Python ollama package. <br>
-Mitigation: Review dependencies and run the helper in a controlled local environment before using it with important datasets. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/GBlockChainNetwork/ollama-model-tuner) <br>
+## Use Case:
 
+Developers and engineers use this skill to iterate on local Ollama model behavior with prompt experiments, Modelfile customization, dataset-driven checks, and benchmarking.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local Ollama command suggestions and short prompt-evaluation notes.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Datasets may contain secrets, personal data, or proprietary text that would be processed through the user's local Ollama setup.
+
+Mitigation: Use only datasets approved for the local Ollama environment and remove sensitive fields before tuning or evaluation.
+
+Risk: The documented command wrapper and prompts/system.md reference are not present in the artifact.
+
+Mitigation: Confirm available files and command paths before relying on the quick-start command or prompt references.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gblockchainnetwork/skills/ollama-model-tuner)
+- [Publisher profile](https://clawhub.ai/user/gblockchainnetwork)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and Python-oriented guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include local Ollama tuning steps, dataset handling guidance, and short sampled model outputs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,61 @@
-## Description: <br>
-Builds reviewable cross-team dependency maps, key paths, fragile nodes, escalation points, and risk chains from user-provided project materials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds cross-team dependency maps, identifies critical paths and fragile nodes, and produces textual dependency diagrams and risk chains.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-External users, employees, and project coordinators use this skill to organize task lists, owning teams, and predecessor relationships into dependency lists, critical paths, fragile-node analysis, escalation conditions, and reviewable follow-up guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive project details or personal information in input files may be copied into generated reports. <br>
-Mitigation: Review and redact sensitive material before use, and prefer stdout or --dry-run when handling sensitive inputs. <br>
-Risk: Supplying the wrong output path could write a report to an unintended local file. <br>
-Mitigation: Review input and output paths before running the helper script. <br>
-Risk: Generated dependency maps may reflect incomplete or incorrect source material. <br>
-Mitigation: Treat outputs as reviewable drafts and confirm missing task, ownership, and dependency details before acting on them. <br>
+## Use Case:
 
+Developers, engineering managers, and program leads use this skill to turn task lists, owner teams, and sequencing constraints into reviewable dependency maps, critical-path notes, escalation points, and follow-up checklists.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/dependency-map-builder) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown reports with optional Mermaid draft diagrams and optional JSON output from the local helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write a local output file when an output path is supplied; supports dry-run/stdout usage for sensitive material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: Sensitive project details or personal data in local input files may appear in generated dependency maps.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only files intended for analysis, redact sensitive content before sharing outputs, and prefer dry-run or stdout for sensitive inputs.
+
+Risk: Shell examples can be misused when paths are interpolated unsafely.
+
+Mitigation: Quote paths or invoke the helper script through an argument-array API instead of concatenating shell strings.
+
+Risk: Changing resources/spec.json to an audit mode can broaden local scanning beyond the normal dependency-map workflow.
+
+Mitigation: Keep the default structured_brief mode unless broader local scanning is explicitly desired and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/52yuanchangxing/skills/dependency-map-builder)
+- [Skill manifest](artifact/SKILL.md)
+- [Specification](artifact/resources/spec.json)
+- [Output template](artifact/resources/template.md)
+- [Smoke test](artifact/tests/smoke-test.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown dependency reports with optional JSON output from the local helper script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Mermaid drafts, review checklists, escalation points, and explicit items needing confirmation.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

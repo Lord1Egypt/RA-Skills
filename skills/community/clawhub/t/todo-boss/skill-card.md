@@ -1,39 +1,52 @@
-## Description: <br>
-Capture and track tasks with owner and due date, mark done, list open or delegated tasks, and get daily reports via Telegram commands. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Capture and track tasks with owner and due date, mark done, list open or delegated tasks, and get daily reports via Telegram commands.
 
-## Publisher: <br>
-[ukraecho](https://clawhub.ai/user/ukraecho) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ukraecho](https://clawhub.ai/user/ukraecho)
 
-## Use Case: <br>
-Developers and teams use this skill to capture Telegram task requests, require owner and due date fields, track delegated work, and produce concise remaining-work reports. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Crafted task text could cause unintended local Python execution or corrupt the task log. <br>
-Mitigation: Fix the add-task script to pass task fields as data, such as argv, stdin, or environment variables with proper JSON serialization, before installation. <br>
-Risk: Task contents are stored on disk in a local JSONL log. <br>
-Mitigation: Use only in environments where local task persistence is acceptable and review the stored task data path before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ukraecho/todo-boss) <br>
+## Use Case:
 
+Employees and team leads use this skill in Telegram to capture tasks, assign owners and due dates, track delegated work, and get concise daily remaining-work reports.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Concise Telegram-facing text with local shell command execution for task logging] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses an append-only local JSONL task log under the user's home directory.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Crafted /todo input can execute local code through task input handling.
+
+Mitigation: Do not install this version where untrusted Telegram users can send /todo messages, and fix the script to pass user text as data rather than Python source before broader deployment.
+
+Risk: Task records are persisted locally in an append-only log.
+
+Mitigation: Define retention and access-control expectations for the local task log before using the skill with sensitive work data.
+
+## Reference(s):
+
+- [Todo Boss ClawHub page](https://clawhub.ai/ukraecho/skills/todo-boss)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Short Telegram-ready text responses and local JSONL task events]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates append-only local task records under the user's OpenClaw workspace data directory.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,58 @@
-## Description: <br>
-Automates bookkeeping workflows including EÜR preparation, DATEV CSV export, PDF receipt analysis, invoice generation, and tax preparation support for freelancers and small businesses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates bookkeeping workflows for freelancers and small and medium-sized businesses with receipt analysis, income-surplus reporting, DATEV CSV export, invoice generation, and tax-preparation support.
 
-## Publisher: <br>
-[akkualle](https://clawhub.ai/user/akkualle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[akkualle](https://clawhub.ai/user/akkualle)
 
-## Use Case: <br>
-External users such as freelancers and small businesses use this skill to analyze receipts, categorize bookkeeping entries, create EÜR reports, export DATEV-compatible CSV files, and draft invoices for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security summary reports under-disclosed invoice-generation scripts with hard-coded company, tax, and bank details. <br>
-Mitigation: Review the scripts and replace all embedded company, tax, and bank details before generating invoices. <br>
-Risk: The security guidance warns that DATEV command behavior can write financial files unexpectedly. <br>
-Mitigation: Run DATEV exports only against intended input and output paths, preferably on copies of bookkeeping data. <br>
-Risk: The security guidance states that tax and accounting outputs are drafts. <br>
-Mitigation: Have EÜR, DATEV, invoice, and tax-preparation outputs reviewed by a qualified professional before filing or business use. <br>
+## Use Case:
 
+External freelancers and small and medium-sized businesses use this skill to analyze accounting PDFs, categorize income and expenses, prepare income-surplus reports, export DATEV-compatible CSV data, and generate invoice PDFs for tax workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/akkualle/akkualle-accounting-assistant) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/akkualle) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python scripts that produce JSON, CSV, Markdown reports, and PDF invoice files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should be treated as accounting drafts that require review before use with real business records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill handles sensitive financial records and generated accounting outputs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in a trusted local workspace, limit access to input and output folders, and review generated files before sharing them.
+
+Risk: CSV exports may preserve spreadsheet formula-like values from input data.
+
+Mitigation: Sanitize or neutralize formula-leading characters before opening exported CSV files in spreadsheet software.
+
+Risk: Scripts can process broad folders and write to caller-provided output paths without strong path containment or overwrite protection.
+
+Mitigation: Use explicit safe input and output directories, avoid broad folder targets, and keep backups of existing accounting files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/akkualle/skills/akkualle-accounting-assistant)
+- [ClawHub publisher profile](https://clawhub.ai/user/akkualle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with inline shell commands; scripts can produce JSON receipt analysis, Markdown or CSV reports, DATEV CSV exports, and PDF invoices.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated artifacts may contain sensitive financial data and should be reviewed before sharing or opening in spreadsheet software.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

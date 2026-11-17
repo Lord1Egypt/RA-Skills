@@ -1,44 +1,57 @@
-## Description: <br>
-Idea Storm orchestrates engineering experiments by researching approaches, designing an implementation, validating results, iterating improvements, and recording outcomes in Notion. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Idea Storm automates an engineering experiment loop that researches approaches, designs and implements solutions, validates results, iterates improvements, and records outcomes in Notion.
 
-## Publisher: <br>
-[c4chuan](https://clawhub.ai/user/c4chuan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[c4chuan](https://clawhub.ai/user/c4chuan)
 
-## Use Case: <br>
-Developers and engineers use Idea Storm to run structured engineering idea experiments from problem definition through research, implementation, validation, iteration, and final reporting. It is intended for workflows where experiment state should be preserved locally and, when configured, synchronized to Notion. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can give a sandboxed coding agent broad authority while using real model and Notion credentials. <br>
-Mitigation: Use disposable or tightly scoped tokens, require explicit user approval before running the sandbox or syncing to Notion, and revoke credentials after the experiment if they are no longer needed. <br>
-Risk: The coding sandbox depends on a Docker image and command path that the user must trust before execution. <br>
-Mitigation: Verify or rebuild the Docker image locally before use and run experiments only in isolated, non-sensitive workspaces. <br>
-Risk: Experiment prompts, generated code, validation data, and reports may contain sensitive project details. <br>
-Mitigation: Avoid sensitive experiment content unless the storage, Notion workspace, and model provider configuration are approved for that data. <br>
-Risk: Generated implementation changes and shell commands may be incorrect or unsafe for the target project. <br>
-Mitigation: Review generated files, commands, and validation results before applying them to production code or infrastructure. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/c4chuan/idea-storm) <br>
-- [Notion Setup](references/notion-setup.md) <br>
+## Use Case:
 
+Developers and engineers use Idea Storm to run automated engineering experiments from problem definition through research, implementation, validation, iteration, and final reporting. It is suited for workflows that need persistent experiment state, validation artifacts, and Notion-based records.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML experiment state, code files, shell command invocations, and Notion API payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update experiment workspace files and Notion records when the required credentials and database configuration are provided.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: ClawHub release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can place model and Notion credentials inside a Docker-based coding environment.
+
+Mitigation: Use dedicated low-privilege model and Notion credentials, avoid sensitive source or data unless redacted, and rotate credentials after use.
+
+Risk: The automated coding workflow can run Docker, spawn background agents, and write persistent experiment files.
+
+Mitigation: Run it only in a dedicated workspace with limited permissions, review generated commands and artifacts, and keep experiment scope narrow.
+
+Risk: The evidence flags shell quoting, chmod 777, unpinned image/dependencies, and --dangerously-skip-permissions as issues to fix before use.
+
+Mitigation: Pin container images and dependencies, replace broad writable permissions with least-privilege access, fix shell quoting, and avoid skipped permission checks unless the environment is isolated.
+
+## Reference(s):
+
+- [Notion setup](references/notion-setup.md)
+- [Notion integrations](https://www.notion.so/my-integrations)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown reports, YAML experiment state, code files, shell commands, JSON validation results, and Notion page content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create experiment workspaces, update experiment.yaml, run validation tools, invoke a Docker-based coding environment, and write experiment records to Notion.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

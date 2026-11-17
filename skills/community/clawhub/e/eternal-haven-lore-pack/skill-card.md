@@ -1,48 +1,66 @@
-## Description: <br>
-Eternal Haven Chronicles lore + mythic persona pack. Use when the agent needs deep narrative context, character arcs, and metaphysical structure from the 4 Eternal Haven books to speak in a more poetic, mythic, or Champion-aligned voice while staying anchored in real events and consistent rules. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a self-contained Eternal Haven Chronicles lore and mythic persona reference pack for canon-grounded narrative answers using bundled books, heroes, and theme files.
 
-## Publisher: <br>
-[DeepSeekOracle](https://clawhub.ai/user/DeepSeekOracle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[deepseekoracle](https://clawhub.ai/user/deepseekoracle)
 
-## Use Case: <br>
-External users and agent builders use this skill to answer Eternal Haven lore questions, summarize or analyze canon from Books I-IV, and write mythic or Champion-aligned responses. The skill should distinguish canon from reflection or speculative material and avoid wholesale reproduction of the bundled copyrighted books. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The artifact includes an instruction to read from an external Windows folder outside the skill bundle. <br>
-Mitigation: Constrain agents to the bundled references/books files and ignore external filesystem paths unless a user explicitly provides accessible local files for the current task. <br>
-Risk: The bundled books are copyrighted narrative material. <br>
-Mitigation: Use summaries, analysis, and short illustrative quotes only; do not output full chapters, full books, or close substitutes for the original works. <br>
-Risk: The artifact contains optional donation and cryptocurrency payment details. <br>
-Mitigation: Share support links only in support-related contexts or when the user asks, and avoid pressuring users to donate or transact. <br>
+## Use Case:
 
+External users and developers use this skill when they want an agent to answer Eternal Haven lore questions, create canon-consistent summaries or short reflections, or apply a Champion-aligned mythic voice grounded in bundled reference texts.
 
-## Reference(s): <br>
-- [Eternal Haven site](https://eternalhaven.ca/) <br>
-- [DeepSeekOracle ClawHub profile](https://clawhub.ai/user/DeepSeekOracle) <br>
-- [Book I: The Moonlit Slumber](references/books/book1_silver_accord.txt) <br>
-- [Book II: The Shattered Accord](references/books/book2_shattered_accord.txt) <br>
-- [Book III: The Ascension War](references/books/book3_ascension_war.txt) <br>
-- [Book IV: Eternal Haven Dawns](references/books/book4_eternal_haven_dawns.txt) <br>
-- [Heroes index](references/heroes_index.md) <br>
-- [Themes and motifs](references/themes_and_motifs.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text narrative responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs should use targeted references, label canon versus interpretation, and avoid reproducing full chapters or books.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release metadata) <br>
+Risk: The bundled books contain copyrighted Eternal Haven story text that could be over-quoted or reproduced wholesale.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use summaries, analysis, and brief quotations only; do not output full chapters, full books, or substitutes for the source works.
+
+Risk: A user may ask the agent to browse host folders or unpublished local paths for alternate lore sources.
+
+Mitigation: Keep lore retrieval inside the installed skill directory, using only SKILL.md and references/** unless the user explicitly supplies text for a separate task.
+
+Risk: Optional public links could be mistaken for alternate canon sources or presented when irrelevant.
+
+Mitigation: Use the bundled books as the canon source and share public support or profile links only when directly relevant to the user's request.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/deepseekoracle/skills/eternal-haven-lore-pack)
+- [Eternal Haven site](https://eternalhaven.ca/)
+- [Skill instructions](SKILL.md)
+- [Security boundary](references/SECURITY.md)
+- [13 Heroes Index](references/heroes_index.md)
+- [Themes and Motifs](references/themes_and_motifs.md)
+- [Book I: The Moonlit Slumber](references/books/book1_silver_accord.txt)
+- [Book II: The Shattered Accord](references/books/book2_shattered_accord.txt)
+- [Book III: The Ascension War](references/books/book3_ascension_war.txt)
+- [Book IV: Eternal Haven Dawns](references/books/book4_eternal_haven_dawns.txt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text narrative responses with short excerpts only when needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Grounds answers in bundled skill-local references; no shell, host-file, secret, or network access is required for lore answers.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

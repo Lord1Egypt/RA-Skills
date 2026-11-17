@@ -1,41 +1,59 @@
-## Description: <br>
-Creates WeChat Official Account article drafts from copy and images, with guidance for generating assets, uploading them to WeChat materials, and publishing when the account supports it. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through preparing copy and images, uploading assets to WeChat's material library, and creating WeChat Official Account article drafts for publication.
 
-## Publisher: <br>
-[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhuchenggong19851114-design](https://clawhub.ai/user/zhuchenggong19851114-design)
 
-## Use Case: <br>
-Content teams and agents use this skill to prepare illustrated articles, upload required media to WeChat, and create WeChat Official Account drafts for review or publication. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The workflow uses WeChat credentials to upload permanent media and create or submit public content. <br>
-Mitigation: Keep AppID, App Secret, and access tokens out of logs and shell history, and limit credential use to the intended WeChat account. <br>
-Risk: Generated text or images could be published before a human verifies accuracy, rights, and account suitability. <br>
-Mitigation: Review the generated draft and uploaded images in WeChat, and require explicit approval before any public publish command is run. <br>
+## Use Case:
 
+Content creators and account operators use this skill to assemble illustrated WeChat Official Account articles, generate or prepare images, upload required assets to WeChat, create drafts, and choose API or manual publication based on account capability.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/wechat-publish) <br>
-- [WeChat Official Accounts platform](https://mp.weixin.qq.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with bash, JSON, and HTML examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires WeChat AppID, App Secret, access token, and account permissions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow handles WeChat app credentials and short-lived access tokens.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test or least-privilege credentials, avoid pasting real secrets into shell commands, and rotate tokens or credentials if exposed.
+
+Risk: The workflow can upload media, create article drafts, and proposes an API publication path for eligible accounts.
+
+Mitigation: Require human review and explicit approval before upload or publication steps, especially when using production accounts.
+
+Risk: Generated images and article HTML may contain errors, broken assets, or unsuitable content.
+
+Mitigation: Review generated images, HTML, and WeChat material URLs before draft creation or publication.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhuchenggong19851114-design/skills/wechat-publish)
+- [Publisher profile](https://clawhub.ai/user/zhuchenggong19851114-design)
+- [WeChat Official Account platform](https://mp.weixin.qq.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell, HTML, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce WeChat API request payloads, article HTML, image-generation prompts, and operational checklists for a single article workflow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

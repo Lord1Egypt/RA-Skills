@@ -1,47 +1,69 @@
-## Description: <br>
-ChainAware Behavioral Prediction helps agents evaluate blockchain wallets, smart contracts, tokens, liquidity pools, and AI agent wallets for fraud risk, rug-pull risk, behavioral intent, creditworthiness, community quality, and trustworthiness using ChainAware's remote MCP service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connects agents to ChainAware's remote MCP service for wallet fraud screening, behavioral profiling, rug-pull prediction, crypto credit scoring, token holder ranking, token auditing, and AI-agent trust scoring.
 
-## Publisher: <br>
-[chainaware](https://clawhub.ai/user/chainaware) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chainaware](https://clawhub.ai/user/chainaware)
 
-## Use Case: <br>
-External developers, DeFi teams, compliance analysts, and agent builders use this skill to screen wallets and contracts, personalize DeFi interactions, rank token communities, and support lending or onboarding decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Wallet addresses, contract or LP addresses, network identifiers, and the ChainAware API key are sent to ChainAware's remote service. <br>
-Mitigation: Use a restricted API key where possible, keep keys in environment variables, and avoid submitting private keys, seed phrases, or off-chain personal data. <br>
-Risk: Predictive fraud, rug-pull, behavioral, or credit scores can be incomplete or incorrect if used as the sole basis for financial, compliance, onboarding, or investment decisions. <br>
-Mitigation: Treat results as decision support, review supporting signals, and add human or compliance review before taking high-impact action. <br>
-Risk: Unsupported network and tool combinations can lead to failed or misleading requests. <br>
-Mitigation: Confirm the address type and network before calling tools, and use only the documented network support for each capability. <br>
+## Use Case:
 
+External developers and operators use this skill to integrate ChainAware's MCP endpoint into agent workflows that assess blockchain wallets, contracts, tokens, launch activity, and AI-agent wallet trust. It supports risk triage, DeFi personalization, compliance screening, token community analysis, and integration setup.
 
-## Reference(s): <br>
-- [ChainAware Behavioral Prediction MCP](https://github.com/ChainAware/behavioral-prediction-mcp) <br>
-- [ChainAware MCP Server Endpoint](https://prediction.mcp.chainaware.ai/sse) <br>
-- [ChainAware Privacy Policy](https://chainaware.ai/privacy) <br>
-- [Fraud Detection Accuracy](https://chainaware.ai/scam-db) <br>
-- [Rug Pull Detection Accuracy](https://chainaware.ai/resources/rugpull-verification) <br>
-- [ChainAware Pricing and API Key](https://chainaware.ai/pricing) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
-**Output Format:** [Markdown or plain text summaries with risk scores, recommendations, and MCP result interpretation.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires CHAINAWARE_API_KEY for predictive and scoring calls; batch workflows use job_id and signature for result retrieval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill sends wallet addresses, contract or LP addresses, network identifiers, and the ChainAware credential to ChainAware's remote scoring service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where that data sharing is acceptable, and perform any required data protection review for wallets linked to identified users.
+
+Risk: Some web integrations place the API key in the MCP URL, where it may be visible in browser or network tooling.
+
+Mitigation: Prefer integrations that pass the key in a header; for URL-based setups use restricted-scope or low-limit keys and rotate them if exposed.
+
+Risk: x402 pay-per-call behavior can create payment or quota exposure if used without limits.
+
+Mitigation: Set payment, quota, or rate limits before relying on x402-based access.
+
+Risk: Fraud, credit, and compliance-oriented outputs may influence high-impact onboarding, lending, or blocking decisions.
+
+Mitigation: Use the scores as decision-support signals, surface the cited wallet or contract evidence, and require human review for consequential actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chainaware/skills/chainaware-behavioral-prediction)
+- [ChainAware profile](https://clawhub.ai/user/chainaware)
+- [ChainAware Behavioral Prediction MCP repository](https://github.com/ChainAware/behavioral-prediction-mcp)
+- [ChainAware MCP endpoint](https://prediction.mcp.chainaware.ai/sse)
+- [ChainAware website](https://chainaware.ai)
+- [Pricing and API key access](https://chainaware.ai/pricing)
+- [Fraud detection backtesting](https://chainaware.ai/scam-db)
+- [Rug pull detection backtesting](https://chainaware.ai/resources/rugpull-verification)
+- [ChainAware privacy policy](https://chainaware.ai/privacy)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and plain text with optional JSON, code blocks, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include wallet or contract risk scores, behavioral profiles, batch job IDs, network support notes, and integration snippets.]
+
+## Skill Version(s):
+
+1.0.7 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,64 @@
-## Description: <br>
-Use this skill when the user wants to create or manage on-chain maker trading strategies on Carbon DeFi across Ethereum, Sei, Celo, TAC, or COTI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user wants to create or manage on-chain maker trading strategies on Carbon DeFi across Ethereum, Sei, Celo, TAC, or COTI.
 
-## Publisher: <br>
-[ashachaf](https://clawhub.ai/user/ashachaf) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ashachaf](https://clawhub.ai/user/ashachaf)
 
-## Use Case: <br>
-External users and developers use this skill to explore, create, trade against, and manage Carbon DeFi on-chain maker strategies. It prepares guidance, API calls, and unsigned transactions that require explicit user approval and wallet signing before funds move. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ashachaf/carbon-defi) <br>
-- [Carbon DeFi Documentation](https://docs.carbondefi.xyz) <br>
-- [AI Agents and MCP Integration](https://docs.carbondefi.xyz/ai-agents-and-mcp-integration) <br>
-- [Transaction Encoding Verification](https://docs.carbondefi.xyz/developer-guides/carbon-defi-transaction-encoding) <br>
-- [Carbon DeFi OpenAPI Spec](https://mcp.carbondefi.xyz/openapi.json) <br>
-- [Carbon DeFi Litepaper](https://carbondefi.xyz/litepaper) <br>
+External users and developers use this skill to inspect Carbon DeFi positions, plan maker trading strategies, retrieve quotes, and prepare unsigned on-chain transactions for user review and signing.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces strategy guidance and unsigned transaction details; users must verify chain, token addresses, amounts, destination contracts, approvals, and strategy persistence before signing.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The skill uses a remote Carbon DeFi MCP service and local npx execution in a financial workflow.
+
+Mitigation: Install only when the remote service and local MCP launcher are acceptable, and pin and verify the MCP client package where possible.
+
+Risk: The skill can produce unsigned transactions for on-chain trading and strategy management.
+
+Mitigation: Independently verify each transaction's destination, calldata, value, token allowances, and warnings before signing.
+
+Risk: Broad curl access can reach network endpoints during use.
+
+Mitigation: Restrict network access to Carbon DeFi domains when deploying the skill.
+
+## Reference(s):
+
+- [Carbon DeFi ClawHub Skill Page](https://clawhub.ai/ashachaf/skills/carbon-defi)
+- [Carbon DeFi App](https://app.carbondefi.xyz)
+- [Carbon DeFi Documentation](https://docs.carbondefi.xyz)
+- [AI Agents and MCP Integration](https://docs.carbondefi.xyz/ai-agents-and-mcp-integration)
+- [Carbon DeFi Transaction Encoding](https://docs.carbondefi.xyz/developer-guides/carbon-defi-transaction-encoding)
+- [Carbon DeFi MCP Endpoint](https://mcp.carbondefi.xyz/mcp)
+- [Carbon DeFi OpenAPI Specification](https://mcp.carbondefi.xyz/openapi.json)
+- [Carbon DeFi Litepaper](https://carbondefi.xyz/litepaper)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, API calls, Guidance]
+
+**Output Format:** [Markdown with JSON and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Write operations prepare unsigned transaction data for user verification, signing, and broadcast outside the skill.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

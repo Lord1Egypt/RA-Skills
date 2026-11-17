@@ -116,7 +116,7 @@ All runtime parameters live in [`config.json`](./config.json). CLI arguments and
 ### KamiClaw API Key
 
 1. Register at <https://kamiclaw-skill.kamihome.com>.
-2. Copy your API key from the dashboard (format: `sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`).
+2. Copy your API key from the dashboard (format: `REDACTED-SECRET`).
 3. Set it via one of:
    - `config.json` → `"api_key": "sk_live_..."`
    - CLI: `--api_key sk_live_...`

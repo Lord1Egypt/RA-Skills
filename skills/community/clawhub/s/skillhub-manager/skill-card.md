@@ -1,43 +1,57 @@
-## Description: <br>
-Manage and publish agent skills on SkillHub and ClawHub. Best for developers and operators who need a repeatable workflow to search skills, inspect packages, authenticate securely, and publish local skill folders to a registry. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage and publish agent skills on SkillHub and ClawHub. Best for developers and operators who need a repeatable workflow to search skills, inspect packages, authenticate securely, and publish local skill folders to a registry.
 
-## Publisher: <br>
-[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codeblackhole1024](https://clawhub.ai/user/codeblackhole1024)
 
-## Use Case: <br>
-Developers, operators, and agents use this skill to search, inspect, authenticate to, and publish local skill folders to SkillHub-compatible registries while confirming the intended registry before live actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Registry actions could target the wrong SkillHub or ClawHub instance. <br>
-Mitigation: Ask for the registry address, repeat it back, and use CLAWHUB_REGISTRY for custom registries before login, search, inspect, explore, or publish. <br>
-Risk: Publishing can expose secrets or private files from the selected local skill folder. <br>
-Mitigation: Inspect the folder contents before publishing and confirm the registry account with whoami before upload. <br>
-Risk: API tokens can be exposed through shared terminals, command history, or logs. <br>
-Mitigation: Prefer scoped or short-lived tokens, avoid pasting tokens into shared contexts, and use safer interactive or environment-based login methods when supported. <br>
+## Use Case:
 
+Developers, operators, and agents use this skill to search, inspect, authenticate with, and publish skills to SkillHub-compatible registries such as ClawHub through a repeatable CLI workflow.
 
-## Reference(s): <br>
-- [SkillHub Manager Workflows](references/workflows.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/codeblackhole1024/skillhub-manager) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Prompts for a target registry before registry actions and may include environment-variable command prefixes for custom registries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill can guide authenticated registry publishing with tokens and local skill files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a least-privileged environment and confirm authentication state before publishing.
+
+Risk: The skill uses unpinned `npx clawhub` CLI commands.
+
+Mitigation: Use a vetted or pinned `clawhub` CLI version for publishing workflows.
+
+Risk: The skill accepts custom registry URLs before login, search, inspect, or publish actions.
+
+Mitigation: Verify the registry URL before sending credentials or source content.
+
+## Reference(s):
+
+- [SkillHub Manager Workflows](references/workflows.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown with inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Prompts the user to confirm the target SkillHub registry before registry actions.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

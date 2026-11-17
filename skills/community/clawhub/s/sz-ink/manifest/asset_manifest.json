@@ -1,0 +1,115 @@
+{
+  "skill": "sz-ink",
+  "version": "0.4.2",
+  "updated": "2026-10-28",
+  "lexicon": {
+    "cliche_common.txt": {
+      "status": "seed_v0",
+      "entries": 43,
+      "source": "前期研究第二节+humanizer-chinese"
+    },
+    "modal_common.txt": {
+      "status": "seed_v0",
+      "entries": 23,
+      "source": "前期研究G模块"
+    },
+    "hedge_common.txt": {
+      "status": "seed_v0",
+      "entries": 25,
+      "source": "前期研究G模块"
+    },
+    "cliche_official_doc.txt": {
+      "status": "v1_batch2",
+      "entries": 30,
+      "source": "sz-writer-enjoy三层词表移植"
+    },
+    "cliche_colloquial_media.txt": {
+      "status": "v1_batch2",
+      "entries": 33,
+      "source": "市面词表+新媒体重灾区"
+    },
+    "cliche_explanatory.txt": {
+      "status": "v1_batch2",
+      "entries": 19,
+      "source": "语体混入检测（从严收集）"
+    },
+    "swap_pairs.md": {
+      "status": "active_v1",
+      "pairs": 84,
+      "source": "[新拟·黄廖原则]——ima检索摘要提供原则（同义词差别/语体色彩/词语锤炼）但无词对原文，如实标注，未冒充库内引文",
+      "note": "与cliche词表配套：词表查病，本表换药"
+    }
+  },
+  "prescription": {
+    "status": "active_v1",
+    "card_count": 45,
+    "files": [
+      "prescription_word.md",
+      "prescription_sentence.md",
+      "prescription_discourse.md",
+      "prescription_structure.md"
+    ],
+    "rule": "无对照例不进库",
+    "compliance": "40卡全部含症状/判据/动作/对照例/禁区五件套（脚本验证2026-10-28）",
+    "experience_cards": "41-45（视角层，两次盲评校准产物）"
+  },
+  "examples": {
+    "status": "active_v1",
+    "paragraph_pairs": 12,
+    "in_card_pairs": 51,
+    "total": 63,
+    "file": "assets/examples/paragraph_pairs.md",
+    "note": "段级对照例含2组警示例（改坏的样子），供S6/S7培训",
+    "positive_features": {
+      "status": "active_v1",
+      "file": "assets/examples/positive_features.md",
+      "count": 12,
+      "note": "\"人味\"正向特征-例证对（汪曾祺5/杨绛2/老舍1/转写4），特征有课件出处，例证不伪造引文"
+    }
+  },
+  "register": {
+    "colloquial_media.md": {
+      "status": "v1_batch2",
+      "note": "特征指纹+阈值要点+禁区白名单，阈值待批次5校准"
+    },
+    "official_doc.md": {
+      "status": "v1_batch2",
+      "note": "继承sz-writer-enjoy，五指标降权/禁用清单+公文体放行规则"
+    },
+    "explanatory.md": {
+      "status": "active_batch2",
+      "note": "85篇真人转写校准，唯一active语体；含术语豁免/词频豁免/语气词条件性三特殊规则"
+    }
+  },
+  "structure": {
+    "status": "active_v1",
+    "file": "assets/structure/structure_samples.md",
+    "sample_count": 7,
+    "note": "7个人写结构骨架（职能序列+AI同题对照）；来源=ima范文课件特征[推演]+85篇转写实测"
+  },
+  "tools": {
+    "check_metrics.py": {
+      "status": "v0.2.2_9of9",
+      "note": "九项指标全部实现：rhythm/short_burst/cliche/modal/hedge/para + pattern_entropy/lex_rotation代理/struct(para_cv+list_markers)；v0.2.1新增：套话计数豁免引号内引用语境（引用反例≠使用）+ cliche_detail命中明细输出；self-test 5用例；v0.2.2新增sample_sufficiency片段模式样本量标注（防短文本静默0分）"
+    },
+    "check_numbers.py": {
+      "status": "v0.1_实测通过",
+      "note": "S6第四查数字自洽：提取全文数字+量词声明（含表格），同一主体+量词取值冲突报警；博客稿实测90声明抓出4/5矛盾，修复后清零；self-test 2用例"
+    },
+    "build_profile.py": {
+      "status": "v0.1_实测通过",
+      "note": "风格档案L6提取：句长分布/指标基线/词汇偏好/语体猜测"
+    },
+    "audit_semantic.py": {
+      "status": "v0.1_实测通过",
+      "note": "S6锚点核查机械项：数字/专名/否定词守恒/锚点串；漂移案例实测FAIL正确"
+    }
+  },
+  "audit": {
+    "date": "2026-10-28",
+    "method": "REA方法论（sz-check+_audit_skill机器体检+人工八铁律/四不变式/三硬判据审计）",
+    "result": "sz-check 11/0/0；8项发现全部修复；self-test实跑5断言全绿",
+    "report": ".agent/harness/sz-ink-验收报告-20261028.md",
+    "unresolved": "改写全闭环（S1档案落盘+S6独立盲审）待一次正式完整任务验证"
+  }
+}

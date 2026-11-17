@@ -1,28 +1,47 @@
 ---
 name: xiaozhi-cross-subject-detective
+description: '用一个真实主题在一周内串联多门学科，找出学科之间的联结。学生说"跨学科侦探周"、"帮我联系不同学科的知识"、"丝绸之路能串哪些学科"、"我想做一个主题研究"、"历史和地理有什么关系"时可激活。流程是选题→多视角→逐科深潜→建立联结→整理项目记录，产出写进概念图谱。它不做单科解题（转对应学科教练）、不做错题分析（转错题本）、不替学生写研究报告。'
+compatibility: WorkBuddy / SkillHub / OpenClaw / ClawHub
+license: MIT
 display_name: 🔭 跨学科侦探周
-version: 1.0.0
+version: 2.12.7
 author: 小智伴学
 category: 通用核心
-tags: [跨学科, 侦探周, 知识联结, 项目学习, 联结力, 知识积累树]
-description: >
-  用一个真实主题，在一周内串联多门学科——打破学科孤岛，让知识真正生长。
-  当学生说"跨学科侦探周"、"帮我联系不同学科的知识"、"丝绸之路能串哪些学科"、
-  "我想做一个主题研究"、"帮我做项目学习"、"历史和地理有什么关系"时，
-  必须激活此SKILL。
-  核心方法：五步操作流程（选题→多视角→逐科深潜→建立连接→项目DNA）
-  + 项目DNA四模块 + 跨项目复利（不同侦探周之间的规律比较）。
-  真正的深度学习发生在知识与知识之间的边界上——这个SKILL就是建桥的工具。
-  凡是涉及跨学科联结、主题研究、知识网络构建的场景，务必调用此SKILL。
-compatibility: OpenClaw / ClawHub
-depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
+grade_bands:
+  - 小学高段
+  - 初中
+  - 高中
+tags: [跨学科, 侦探周, 知识联结, 项目学习, 联结力, 概念图谱]
+depends_on:
+  - xiaozhi-learning-dna
+  - xiaozhi-cornell-notes
+slug: xiaozhi-cross-subject-detective
+displayName: 🔭 跨学科侦探周
+summary: '用一个真实主题在一周内串联多门学科，找出学科之间的联结。'
 ---
 
 # 🔭 跨学科侦探周 SKILL
 
 > **一句话定位：** 每一门学科单独学，你得到的是碎片。  
-> 当历史遇上地理、地理遇上政治、政治遇上语文，  
-> 你突然发现：知识本来就是一体的，是分科制度把它切碎了。
+> 当历史遇上地理、地理遇上语文、语文遇上数学，  
+> 你会发现知识本来就是连着的，是分科把它切开了。
+
+> 技术边界：本 SKILL 依赖能力 [M, K]，无该能力时按 shared/platform-conventions.md 降级。
+> 特有降级：无跨会话记忆时，只做当次的联结讨论，不承诺"我会帮你记住整周的轨迹"，改为每天给学生一段可自己保存的记录。
+> 使用前提：小学学段须有家长或老师在场陪同使用（shared/vocab.md §8 规则 4）；学生说明正在考试或测验中时，不讲该题、不给提示，约好考完再复盘（shared/hint-ladder.md §〇）。
+
+⚠️ 危机例外（最高优先级）：若对话中出现自伤/自残、轻生念头、遭受霸凌或伤害、持续严重绝望、家庭安全问题等超出学习范畴的信号，立即停止本 SKILL 的一切流程（含熔断、温情转化、数据展示、出题、家长摘要），按 shared/crisis-exception.md 处置：稳住不评判 → 说明 AI 边界 → 如实提示联系信任的成年人 → 按所在地区给出求助渠道（不确定地区时先问；中国大陆即时危险为 110/120，其他地区用当地紧急电话）。宁可误报，不可漏报；档案只记"已转介"的处置事实。
+
+### 隐私与数据控制入口
+
+```text
+- 查看：「查看我的项目记录」/「查看我的档案」
+- 更正：「更正我的项目记录」
+- 删除：「删除我的项目记录」（删除后不可恢复，会先确认一次）
+- 暂停：「这次不要记忆」（本次会话不读取、不保存任何记录，也不发起回写与交接）/「暂停提醒」
+- 共享控制：「不要共享给其他SKILL」/「不要给家长看」
+- 导出：「导出我的项目记录」（以文本形式给出，便于转存）
+```
 
 ---
 
@@ -52,7 +71,9 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 ↓
 像侦探一样，从不同学科的视角去拼凑完整图景
 ↓
-小龙虾是"线索提供者"——不直接给答案，通过追问引导你一步步发现连接
+小智是"线索提供者"——铁律：不在学生尝试之前给原题答案；
+提示按 `shared/hint-ladder.md` 逐级升，本 SKILL 默认最高级 **L3（指出题中哪个条件还没用到）**，
+因为这里要练的就是学生自己发现联结的能力；到 L3 仍卡住就换一个更小的问题重来
 ↓
 每天结束前，主动找本天学到的内容和前几天的联系
 ```
@@ -90,7 +111,7 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
  请告诉我这个主题可以从哪几门学科研究，
  每个学科最值得挖掘的核心问题是什么？"
 
-小龙虾输出：
+小智输出：
 "[主题]可以从以下学科视角研究——
  
  📚 历史：[核心问题]
@@ -107,10 +128,10 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 ### Step 2：列出学科视角
 
 ```
-对小龙虾说：
+对小智说：
 "这个主题分别可以从哪几门学科来研究？每个学科能告诉我什么？"
 
-小龙虾的回应方式：
+小智的回应方式：
 · 不直接给出全部内容（避免信息过载）
 · 每个学科只给"一个最让人意外的视角"
 · 留白，等学生去挖掘
@@ -130,8 +151,10 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 
 ```
 ① 选定今天的学科视角
-② 用CLAW公式向小龙虾提问
-   重点在W部分：要求追问，不要直接给答案
+② 直接用大白话问小智就行——不需要背任何提问格式
+   小智会在内部把你的问题理解成四件事：
+     你在看什么主题、你已经知道什么、你想弄清什么、你希望我怎么帮你（讲还是追问）
+   你只要说清楚"我想知道什么"，缺的部分小智会问你一句
 ③ 每天至少提3个延伸问题
    不只是"这是什么"，要问"为什么""怎么可能""如果换一种情况会怎样"
 
@@ -148,7 +171,7 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 ```
 当学生说"我感觉这个主题被我挖完了，没什么好问的了"：
 
-小龙虾追问：
+小智追问：
 "你觉得挖完了，是因为你已经把这个主题研究透彻了，
  还是因为你还没有换一个视角？
  
@@ -164,10 +187,10 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 ### Step 4：建立连接（每天结束前）
 
 ```
-每天学习结束前，对小龙虾说：
+每天学习结束前，对小智说：
 "今天学到的内容和前几天的哪个知识点有关联？"
 
-小龙虾帮助识别：
+小智帮助识别：
 "你今天在[学科A]里发现了[内容A]，
  这和第二天在[学科B]里的[内容B]有一个有意思的连接——
  [描述连接]
@@ -211,7 +234,7 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
   [……]
 
 【模块二：跨学科连接图】
-自动标注在哪一天、哪个对话节点，你第一次成功连接了哪两个学科：
+记下在哪一天、哪个对话节点，你第一次成功连接了哪两个学科：
   连接①：[学科A] × [学科B]
     发现日期：[日期]
     连接类型：[表层/中层/深层]
@@ -226,10 +249,13 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
   
   处理情况：[已解决/待深入]
 
-【模块四：知识积累树新增分支】
-将本次研究成果并入全局知识积累树：
-  新增节点：[知识点列表]
-  新增跨科关联：[关联描述]
+【模块四：概念图谱新增分支】
+将本次研究成果并入学习DNA的 growthMap.conceptGraph：
+  新增节点（nodes）：[conceptName + subject + masteryLevel]
+  新增有向边（edges）：[sourceNodeId --relationType--> targetNodeId]
+    relationType 只能取 requires / isParentOf / appliesTo / correlatesWith
+  discoverySource 填 "跨学科侦探周"
+  可参考的联结模板见 shared/cross-subject-connections.md
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -237,7 +263,7 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 
 ## 三、跨项目复利（多次侦探周后）
 
-**当完成第二次侦探周时，小龙虾开始跨项目比较：**
+**当完成第二次侦探周时，小智开始跨项目比较：**
 
 ```
 "你在[主题A]项目里发现了[规律X]，
@@ -275,11 +301,13 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 
 ## 五、年龄适配
 
-| 年龄段 | 简化版本 | 操作方式 |
+| 学段 | 简化版本 | 操作方式 |
 |-------|---------|---------|
-| 7-9岁 | 浓缩为一句提问 | "今天我想知道：[主题]和[另一件事]有什么关系？"家长帮引导，画图记录 |
-| 10-12岁 | 跨2-3科即可 | 选一个主题，挑历史+地理+语文找联系，项目DNA由家长协助整理 |
-| 13-16岁 | 完整五步流程 | 五科全部串联，项目DNA自主管理 |
+| 小学低段 / 中段 | 不适用 | 直接说明，建议由家人或老师带着做一次"这两件事有什么关系"的聊天，不建项目记录 |
+| 小学高段 | 跨 2-3 科即可 | 选一个主题，挑历史+地理+语文找联系；项目记录由学生口述、小智整理成一页 |
+| 初中 / 高中 | 完整五步流程 | 多科串联，项目记录自主管理，写入概念图谱 |
+
+学段适用性以 `shared/grade-bands.md` 为准。
 
 ---
 
@@ -288,15 +316,28 @@ depends_on: xiaozhi-learning-dna, xiaozhi-cornell-notes
 ```
 跨学科侦探周 SKILL
     ←── 学习DNA（读取各科知识点掌握状态）
-    ──→ 康奈尔笔记（将探索内容存入笔记库）
-    ──→ 学习DNA（知识积累树新增分支）
-    ──→ 每周学习复盘SKILL（提供本周跨科联结数据）
-    ──→ 兴趣成长探索计划（发现跨科联结中的真实兴趣信号）
+    ──→ 康奈尔笔记（将探索内容存入笔记库，带跨科标签）
+    ──→ 学习DNA（profile_writeback → growthMap.conceptGraph，updateTarget: "concept_graph"）
+    ──→ 学习DNA（subject_profile_writeback → extensions.projects[]）
+    ──→ 每周学习复盘SKILL（提供本周跨科联结摘要）
+    ──→ 兴趣成长探索计划（跨科联结中出现的兴趣信号）
 ```
+
+项目本身写入 `extensions.projects[]`（`projectId` / `theme` / `subjects[]` / `stage` / `startDate`，`stage` 取 选题/调查/联结/展示/完成）；联结写入 `growthMap.conceptGraph`。交接格式见 `shared/handover-protocol.schema.json`。
 
 ---
 
-> 🦞 **小龙虾说：**  
+## 参考资源
+
+- `references/detective-project-template.md` - 项目记录模板（五步流程、联结分级、写回字段对照）
+- `shared/cross-subject-connections.md` - 可直接引用的跨科联结模板库
+- `shared/hint-ladder.md` - 提示阶梯（本 SKILL 默认最高级 L3）
+- `shared/grade-bands.md` - 各学段适用性
+- `shared/ai-item-check.md` - 深潜时若临时出一道验证题，生成前按此协议自检
+
+---
+
+> 💡 **小智说：**  
 > "那个'愣了一下'的瞬间——  
 >  你在丝绸之路里发现了贸易与地形的关系，  
 >  然后突然想到：等等，工业革命里好像也有类似的逻辑……  

@@ -1,38 +1,50 @@
-## Description: <br>
-A test skill for validating skill creation, version update, and deletion workflows via the TOSR ClawHub REST API. <br>
+## Description:
 
-This skill is for demonstration purposes and not for production usage. <br>
+A test skill for validating skill creation, version update, and deletion workflows via the TOSR ClawHub REST API.
 
-## Publisher: <br>
-[simonlei](https://clawhub.ai/user/simonlei) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simonlei](https://clawhub.ai/user/simonlei)
 
-## Use Case: <br>
-ClawHub maintainers and test automation use this skill to validate publish, update, and delete lifecycle workflows. It is intended for temporary integration testing, not end-user task assistance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill is a temporary integration-test artifact rather than an end-user tool. <br>
-Mitigation: Install it only in environments where ClawHub publish, update, and delete workflow testing is intended. <br>
+## Use Case:
 
+Developers and automated release-test systems use this skill to exercise ClawHub skill creation, version update, and deletion workflows in an intended test environment.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simonlei/tosr-test-skill-1774319824) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown skill instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only artifact with no executable code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server evidence and artifact Version section) <br>
+Risk: The skill is designed around creating, updating, and deleting remote skill records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install or run it only in an intended ClawHub test environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simonlei/skills/tosr-test-skill-1774319824)
+- [Publisher profile](https://clawhub.ai/user/simonlei)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls]
+
+**Output Format:** [Markdown guidance describing REST API lifecycle checks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Intended for automated ClawHub integration testing.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

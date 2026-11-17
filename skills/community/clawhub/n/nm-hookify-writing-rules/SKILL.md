@@ -1,45 +1,21 @@
 ---
 name: writing-rules
 description: |
-  Creates behavioral rules in markdown to block dangerous commands or restrict AI behavior
-version: 1.9.8
+  Writes hookify rules in markdown that block dangerous commands or restrict AI behavior
+version: 1.10.3
 triggers:
   - hookify
   - rules
   - patterns
   - validation
   - safety
-  - adding safety guardrails or preventing specific commands
+  - adding guardrails
 metadata: {"openclaw": {"homepage": "https://github.com/athola/claude-night-market/tree/master/plugins/hookify", "emoji": "\ud83e\udd9e"}}
 source: claude-night-market
 source_plugin: hookify
 ---
 
-> **Night Market Skill** — ported from [claude-night-market/hookify](https://github.com/athola/claude-night-market/tree/master/plugins/hookify). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
-
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Quick Start](#quick-start)
-- [Rule File Format](#rule-file-format)
-- [Frontmatter Fields](#frontmatter-fields)
-- [Event Types](#event-types)
-- [Advanced Conditions](#advanced-conditions)
-- [Operators](#operators)
-- [Field Reference](#field-reference)
-- [Pattern Writing](#pattern-writing)
-- [Regex Basics](#regex-basics)
-- [Examples](#examples)
-- [Test Patterns](#test-patterns)
-- [Example Rules](#example-rules)
-- [Block Destructive Commands](#block-destructive-commands)
-- [Warn About Debug Code](#warn-about-debug-code)
-- [Require Tests](#require-tests)
-- [Protect Production Files](#protect-production-files)
-- [Management](#management)
-- [Related Skills](#related-skills)
-- [Best Practices](#best-practices)
+> **Night Market Skill**: ported from [claude-night-market/hookify](https://github.com/athola/claude-night-market/tree/master/plugins/hookify). For the full experience with agents, hooks, and commands, install the Claude Code plugin.
 
 
 # Hookify Rule Writing Guide
@@ -205,8 +181,8 @@ event: stop
 action: warn
 conditions:
   - field: transcript
-    operator: not_contains
-    pattern: pytest|npm test
+    operator: regex_match
+    pattern: \A(?![\s\S]*(?:pytest|npm test))
 ---
 
 ⚠️ **Tests not run!**
@@ -265,3 +241,16 @@ rm .claude/hookify.my-rule.local.md
 ### Common Issues
 
 If a rule doesn't trigger, verify that the `event` type matches the tool being used (e.g., use `bash` for command line tools). Check that the regex `pattern` is valid and matches the target text by testing it with a short Python script. If you encounter permission errors when creating rule files in `.claude/`, ensure that the directory is writable by your user.
+
+## Exit Criteria
+
+- [ ] Rule file exists at `.claude/hookify.<rule-name>.local.md`
+  with all required frontmatter fields present: `name` (kebab-case),
+  `enabled`, `event`, and either `pattern` or `conditions`
+- [ ] Regex pattern validated with
+  `python3 -c "import re; print(re.search(r'<pattern>', '<test>'))"
+  before the rule is saved; no untested patterns shipped
+- [ ] Rule triggers correctly on a matching input: `warn` action
+  shows the message body, `block` action prevents the operation
+- [ ] Rule does not fire on a non-matching input; false positive
+  tested with at least one known-safe example

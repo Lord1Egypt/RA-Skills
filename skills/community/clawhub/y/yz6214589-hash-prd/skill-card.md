@@ -1,43 +1,54 @@
-## Description: <br>
-PRD helps turn vague product ideas into structured product requirements documents through iterative clarification, scope definition, and template-based Markdown output. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+PRD helps turn vague product ideas into high-quality product requirements documents through iterative clarification, requirement diagnosis, logic building, and detail completion.
 
-## Publisher: <br>
-[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yz6214589-hash](https://clawhub.ai/user/yz6214589-hash)
 
-## Use Case: <br>
-Product managers, founders, and development teams use this skill to clarify product ideas, define scope, and generate PRD Markdown files that can guide implementation and testing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create Markdown PRD files in the current workspace, which may overwrite expected filenames or add workspace clutter. <br>
-Mitigation: Review or request confirmation of generated filenames before file creation when overwrites or workspace organization matter. <br>
-Risk: PRD content may include confidential product plans, customer details, or business strategy supplied during clarification. <br>
-Mitigation: Use the skill only in workspaces appropriate for the sensitivity of the product information being captured. <br>
-Risk: Generated requirements may reflect incomplete or misunderstood inputs. <br>
-Mitigation: Review the generated PRD, feature boundaries, and acceptance criteria with product and engineering stakeholders before relying on them. <br>
+## Use Case:
 
+External users, product managers, and product teams use this skill to clarify ambiguous product ideas and produce structured PRD Markdown documents. It guides requirement diagnosis, feature boundary definition, business logic mapping, and final PRD drafting.
 
-## Reference(s): <br>
-- [PRD template](artifact/assets/prd_template.md) <br>
-- [ClawHub skill page](https://clawhub.ai/yz6214589-hash/yz6214589-hash-prd) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown documents and conversational clarification prompts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create requirement diagnosis, feature boundary, and PRD Markdown files in the current workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and SKILL.md frontmatter) <br>
+Risk: The skill may create Markdown planning files in the workspace, which can overwrite or conflict with existing documents if filenames are not checked.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm output filenames before running the workflow in a shared repository and preserve existing planning documents before writing new files.
+
+Risk: Generated PRDs can contain incorrect assumptions when product requirements remain incomplete or ambiguous.
+
+Mitigation: Review the clarified requirements, feature boundaries, acceptance criteria, and success metrics before using the PRD for planning or implementation.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yz6214589-hash/skills/yz6214589-hash-prd)
+- [PRD template](assets/prd_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, files, guidance]
+
+**Output Format:** [Markdown documents and conversational clarification prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create requirement diagnosis, feature boundary, and PRD Markdown files in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

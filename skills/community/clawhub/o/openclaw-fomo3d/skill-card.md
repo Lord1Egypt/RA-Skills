@@ -1,48 +1,59 @@
-## Description: <br>
-Openclaw Fomo3d provides a CLI for interacting with Fomo3D, slot-machine, token-trading, and prediction-market flows on BNB Chain. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a CLI for interacting with Fomo3D, Slot Machine, and Prediction Market contracts on BNB Chain, including status checks, wallet setup, token trades, game actions, and market settlement.
 
-## Publisher: <br>
-[ErenVance](https://clawhub.ai/user/ErenVance) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[erenvance](https://clawhub.ai/user/erenvance)
 
-## Use Case: <br>
-External users and developers use this skill to configure a BNB Chain wallet, query Fomo3D game state, trade FOMO tokens, run slot-machine actions, and create or participate in prediction markets. Agents should use it when the user asks for Fomo3D gameplay, token trading, prediction-market operations, or wallet status workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a private key for signing BNB Chain transactions. <br>
-Mitigation: Use a dedicated low-balance wallet, prefer environment variables over saved config files, and avoid using wallets that hold valuable assets. <br>
-Risk: Buy, sell, bet, deposit, propose, and dispute commands can submit irreversible live transactions that may lose funds. <br>
-Mitigation: Start on testnet, inspect command parameters before execution, use small amounts, and confirm the selected network before submitting transactions. <br>
-Risk: The buy and sell flows document zero minimum output, which means there is no slippage protection. <br>
-Mitigation: Avoid large trades through this skill unless slippage controls are added or the transaction is independently reviewed. <br>
-Risk: Slot prize-pool deposits are documented as permanently locked. <br>
-Mitigation: Warn users before running slot deposit commands and require explicit confirmation of the amount and permanence. <br>
-Risk: Automatic token approvals may leave allowances after use. <br>
-Mitigation: Review and revoke token allowances after completing game, trading, or prediction-market actions. <br>
+## Use Case:
 
+External users and developers use this skill to have an agent prepare and run Fomo3D CLI commands for wallet checks, game participation, token trading, slot actions, and prediction-market creation, betting, dispute, and settlement workflows on BNB Chain.
 
-## Reference(s): <br>
-- [Fomo3D Homepage](https://fomo3d.app) <br>
-- [Openclaw Fomo3d on ClawHub](https://clawhub.ai/ErenVance/openclaw-fomo3d) <br>
-- [BNB Chain Testnet Faucet](https://www.bnbchain.org/en/testnet-faucet) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [CLI commands should normally include --json for machine-readable output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The skill can sign real-wallet blockchain transactions, which may irreversibly move funds.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-value wallet and test on BNB Chain testnet before any mainnet use.
+
+Risk: Private keys may be exposed if stored in local configuration.
+
+Mitigation: Prefer the FOMO3D_PRIVATE_KEY environment variable and avoid saving private keys in config.json.
+
+Risk: Trading commands may use unlimited approvals or execute with no slippage protection.
+
+Mitigation: Review approvals and trade parameters before execution, and avoid mainnet trading unless the user understands the transaction terms.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/erenvance/skills/openclaw-fomo3d)
+- [Fomo3D homepage](https://fomo3d.app)
+- [BNB Chain testnet faucet](https://www.bnbchain.org/en/testnet-faucet)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with CLI commands and JSON command-output expectations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [CLI actions may sign irreversible blockchain transactions when configured with a funded wallet.]
+
+## Skill Version(s):
+
+1.3.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

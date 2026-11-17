@@ -1,42 +1,51 @@
-## Description: <br>
-AI-optimized web search with structured summarization, combining Tavily Search API + proven summarization methodology from summarize. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-optimized web search with structured summarization, combining Tavily Search API + proven summarization methodology from summarize.
 
-## Publisher: <br>
-[liuxiaolong1988](https://clawhub.ai/user/liuxiaolong1988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuxiaolong1988](https://clawhub.ai/user/liuxiaolong1988)
 
-## Use Case: <br>
-Developers and agent operators use this skill to run Tavily-backed web searches or URL extraction, then present concise Markdown summaries with source-oriented context. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries and submitted URLs are sent to Tavily for processing. <br>
-Mitigation: Use a dedicated Tavily API key and avoid confidential search terms, private documents, internal URLs, or secret-bearing links unless that sharing is approved. <br>
-Risk: Web search summaries can reflect stale, incomplete, or third-party source content. <br>
-Mitigation: Review cited sources and use the summary as research assistance rather than as sole authority for high-impact decisions. <br>
+## Use Case:
 
+Developers and agents use this skill to run Tavily-backed web searches, summarize search results into readable Markdown, and extract page content from supplied URLs.
 
-## Reference(s): <br>
-- [ClawHub Tavily Summary](https://clawhub.ai/liuxiaolong1988/tavily-summary) <br>
-- [Tavily](https://tavily.com) <br>
-- [Summarize methodology reference](https://github.com/steipete/summarize) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text from Node.js command-line scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search accepts result count, depth, topic, and news recency options; URL extraction prints extracted page content and failed URL details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release evidence and metadata.json) <br>
+Risk: Search queries, submitted URLs, and the Tavily API key are sent to Tavily.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only with data approved for Tavily in the deployment environment; avoid secrets, private internal URLs, regulated data, and sensitive research terms unless approved.
+
+## Reference(s):
+
+- [Tavily](https://tavily.com)
+- [summarize methodology reference](https://github.com/steipete/summarize)
+- [ClawHub skill page](https://clawhub.ai/liuxiaolong1988/skills/tavily-summary)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown]
+
+**Output Format:** [Markdown summaries, source lists, and extracted URL content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search result count is capped at 20; search and extraction require TAVILY_API_KEY.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact metadata.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

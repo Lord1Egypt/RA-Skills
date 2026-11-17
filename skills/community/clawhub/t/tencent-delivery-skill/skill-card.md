@@ -1,49 +1,64 @@
-## Description: <br>
-Books same-city on-demand courier deliveries in China through Tencent Mobility MCP, including pickup and delivery booking, order queries, rider tracking, and cancellation guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Books same-city on-demand courier deliveries in China via Tencent Mobility MCP and supports order status, rider tracking, cancellation, and token setup.
 
-## Publisher: <br>
-[tencent-adm](https://clawhub.ai/user/tencent-adm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tencent-adm](https://clawhub.ai/user/tencent-adm)
 
-## Use Case: <br>
-External users use this skill to guide an agent through same-city courier booking, payment, status lookup, rider tracking, and cancellation for Tencent Mobility delivery tasks in China. It is intended for runner-style parcel delivery, not cross-city shipping, food delivery, ride hailing, or finance queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill stores a Tencent delivery token and delivery session details on disk. <br>
-Mitigation: Use only in a trusted local environment, avoid sharing the workspace, and delete or rotate the token when access is no longer needed. <br>
-Risk: Authenticated MCP access can book, query, and cancel courier orders. <br>
-Mitigation: Confirm user intent before order-changing actions, rely on the documented workflow gates, and avoid using real payment links or sensitive addresses until the skill has been reviewed. <br>
-Risk: Payment QR generation uses a third-party QR endpoint for payment URLs. <br>
-Mitigation: Review the QR generation path before real transactions and prefer trusted payment handling where required by policy. <br>
+## Use Case:
 
+External users in China use this skill to book and manage same-city courier pickup-and-deliver errands through an agent. It guides address collection, quote selection, payment handoff, order tracking, rider status checks, and cancellation.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/tencent-adm/tencent-delivery-skill) <br>
-- [Tencent Delivery Skill Instructions](SKILL.md) <br>
-- [Delivery Workflow](references/delivery-workflow.md) <br>
-- [Order Workflow](references/order-workflow.md) <br>
-- [Quick Start Workflow](references/quick-start-workflow.md) <br>
-- [MCP API Contract](references/api-contract.md) <br>
-- [Session State](references/session-state.md) <br>
-- [Error Handling](references/error-handling.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, API Calls, Configuration guidance] <br>
-**Output Format:** [Markdown replies with inline shell commands and Tencent MCP-derived order information] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include payment QR markdown and sanitized courier status text; sensitive token, session, SKU, and internal identifier fields are not intended for user output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill requires a Tencent delivery token and can store delivery names, phone numbers, precise addresses, and coordinates locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only on trusted devices, avoid shared machines, and delete token, session, and address-book data when no longer needed.
+
+Risk: Booking, cancellation, and payment flows can create charges or modify active courier orders.
+
+Mitigation: Confirm addresses, service option, fees, cancellation fees, and payment links in WeChat or Tencent before paying or cancelling.
+
+Risk: The server security summary marks the release suspicious because it handles tokens, precise addresses, cancellations, and payment links.
+
+Mitigation: Review the skill before installing and use it only if that data access and payment handling are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/tencent-adm/skills/tencent-delivery-skill)
+- [Delivery workflow](references/delivery-workflow.md)
+- [Order workflow](references/order-workflow.md)
+- [Quick start and token workflow](references/quick-start-workflow.md)
+- [MCP API contract](references/api-contract.md)
+- [Error handling](references/error-handling.md)
+- [Session state](references/session-state.md)
+- [Address book preferences](assets/PREFERENCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown responses with inline shell commands and structured JSON tool results.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include WeChat payment handoff, order status text, masked contact details, and address-selection prompts; token values and internal booking identifiers should not be shown to users.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

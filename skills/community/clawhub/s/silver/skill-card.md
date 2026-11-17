@@ -1,45 +1,59 @@
-## Description: <br>
-查询国内白银期货/现货相关及伦敦银等参考行情。当用户说：白银现在什么价？伦敦银涨跌多少？或类似白银价格问题时，使用本技能。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+查询国内白银期货/现货相关及伦敦银等参考行情。当用户说：白银现在什么价？伦敦银涨跌多少？或类似白银价格问题时，使用本技能。
 
-## Publisher: <br>
-[jisuapi](https://clawhub.ai/user/jisuapi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jisuapi](https://clawhub.ai/user/jisuapi)
 
-## Use Case: <br>
-External users and agents use this skill to retrieve current and historical silver price data from JisuAPI for Shanghai gold exchange silver, Shanghai futures silver, London silver, and supported historical market queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a JISU_API_KEY for a third-party market data service. <br>
-Mitigation: Store the key only in the environment, avoid pasting it into prompts or logs, and install the skill only if JisuAPI is an acceptable data provider. <br>
-Risk: Authenticated requests may fail in this version because server evidence reports a likely request parameter handling bug. <br>
-Mitigation: Expect possible API errors and verify returned data before relying on it until the request parameter handling is corrected. <br>
-Risk: Silver price data can be unavailable or incomplete for a requested market, product, or date range. <br>
-Mitigation: Handle API error responses and no-data responses explicitly before summarizing prices or trends to users. <br>
+## Use Case:
 
+External users and agents use this skill to query current and historical silver market prices from JisuAPI, including Shanghai Gold Exchange, Shanghai Futures Exchange, London silver, and historical price ranges.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/silver) <br>
-- [JisuAPI](https://www.jisuapi.com/) <br>
-- [JisuAPI Silver API documentation](https://www.jisuapi.com/api/silver/) <br>
-- [JisuAPI Silver API endpoint](https://api.jisuapi.com/silver) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [JSON API results and concise text guidance, with shell commands for agent execution] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and the JISU_API_KEY environment variable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server release evidence) <br>
+Risk: The skill sends silver-price query parameters to the third-party JisuAPI service and requires access to a JisuAPI AppKey.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the user or deploying organization is comfortable sharing those query parameters with JisuAPI, store JISU_API_KEY securely, and avoid logging the key.
+
+Risk: Authenticated results may fail because the code constructs appkey parameters but must be corrected to send them reliably.
+
+Mitigation: Verify and correct API request parameter handling before deployment, then test each endpoint with a valid JISU_API_KEY.
+
+Risk: Market data can be unavailable, delayed, or incomplete for a requested market, instrument, or date range.
+
+Mitigation: Surface API error codes and update timestamps to users, and avoid presenting returned prices as financial advice.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jisuapi/skills/silver)
+- [JisuAPI silver price API](https://www.jisuapi.com/api/silver/)
+- [JisuAPI website](https://www.jisuapi.com/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Configuration guidance]
+
+**Output Format:** [JSON returned by command-line API queries, with stderr messages for missing configuration or invalid input.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires python3 and JISU_API_KEY; history queries require market, startdate, enddate, and type.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

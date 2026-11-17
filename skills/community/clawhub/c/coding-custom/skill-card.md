@@ -1,45 +1,53 @@
-## Description: <br>
-Coding style memory that adapts to your preferences, conventions, and patterns for consistent coding. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Coding style memory that adapts to your preferences, conventions, and patterns for consistent coding.
 
-## Publisher: <br>
-[alexbingquanxu-cpu](https://clawhub.ai/user/alexbingquanxu-cpu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alexbingquanxu-cpu](https://clawhub.ai/user/alexbingquanxu-cpu)
 
-## Use Case: <br>
-Developers and coding agents use this skill to remember explicitly confirmed coding preferences, apply them to future code output, and let users inspect or forget stored preferences. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stale or overly broad coding preferences could steer future code output away from current intent. <br>
-Mitigation: Review ~/coding/memory.md periodically and use the documented forget behavior to remove stale preferences. <br>
-Risk: Preference memory is intended to stay within the local ~/coding/ storage boundary. <br>
-Mitigation: Treat ~/coding/ as the storage boundary and keep entries limited to concise, confirmed coding preferences. <br>
+## Use Case:
 
+Developers and coding agents use this skill to store explicitly confirmed coding preferences in local memory and apply them to future code, guidance, and project-structure decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alexbingquanxu-cpu/coding-custom) <br>
-- [Publisher profile](https://clawhub.ai/user/alexbingquanxu-cpu) <br>
-- [Skill homepage](https://clawic.com/skills/coding) <br>
-- [Preference criteria](artifact/criteria.md) <br>
-- [Preference dimensions](artifact/dimensions.md) <br>
-- [Memory templates](artifact/memory-template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and concise text guidance with inline shell commands and local file paths] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores confirmed preferences in ~/coding/memory.md and archives older entries in ~/coding/history.md; memory.md is limited to 100 lines.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A referenced criteria file contradicts the main skill boundary by mentioning updates to SKILL.md or other skill source files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat local preference files under ~/coding/ as the only allowed storage target and do not update skill source files when recording preferences.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/alexbingquanxu-cpu/skills/coding-custom)
+- [Skill Homepage](https://clawic.com/skills/coding)
+- [Preference Criteria](artifact/criteria.md)
+- [Preference Dimensions](artifact/dimensions.md)
+- [Memory Templates](artifact/memory-template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and local memory entries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and reads confirmed coding preferences from local files under ~/coding/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 1.0.3)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

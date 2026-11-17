@@ -354,7 +354,7 @@ To create a task list, preface list items with a hyphen and space followed by `[
 - [ ] Add delight to the experience when all tasks are complete :tada:
 ```
 
-![Screenshot showing the rendered version of the markdown. The references to issues are rendered as issue titles.](https://docs.github.com/assets/images/help/writing/task-list-rendered-simple.png)
+![Screenshot showing the rendered version of the markdown. The references to issues are rendered as issue titles.](https://docs.github.com/assets/images/help/writing/taREDACTED-SECRET.png)
 
 If a task list item description begins with a parenthesis, you'll need to escape it with <kbd>\\</kbd>:
 

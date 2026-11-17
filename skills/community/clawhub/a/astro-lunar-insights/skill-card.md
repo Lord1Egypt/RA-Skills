@@ -1,43 +1,65 @@
-## Description: <br>
-Calculates lunar phases, Moon transits, aspects to natal planets, lunar days, personal solar-lunar phases, and chart/text analysis using Swiss Ephemeris. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Lunar phase analysis and Moon influence on a person using Swiss Ephemeris (pyswisseph), producing bilingual astrological analysis, structured lunar metrics, and rendered charts.
 
-## Publisher: <br>
-[dynamicsalex](https://clawhub.ai/user/dynamicsalex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dynamicsalex](https://clawhub.ai/user/dynamicsalex)
 
-## Use Case: <br>
-External users and agents use this skill to calculate bilingual lunar astrology metrics for a birth profile and target date, then produce text, JSON, or chart output for entertainment and educational interpretation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs a bundled Windows native Swiss Ephemeris binary renamed as a data file. <br>
-Mitigation: Review or replace the bundled binary and run the skill in a sandboxed Windows environment before trusting generated output. <br>
-Risk: The renderer may install Pillow if it is missing. <br>
-Mitigation: Preinstall dependencies from trusted sources and restrict package installation during execution. <br>
-Risk: Generated charts include a default donation QR image. <br>
-Mitigation: Review or replace the bundled QR frame before sharing generated charts. <br>
+## Use Case:
 
+External users and agents use this skill to calculate personal lunar astrology metrics from birth details and a target date, then generate text, JSON, or chart outputs for entertainment and educational interpretation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dynamicsalex/skills/astro-lunar-insights) <br>
-- [Publisher profile](https://clawhub.ai/user/dynamicsalex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands; runtime output may be plain text, JSON, or PNG chart files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Bilingual RU/EN output; Windows x64 runtime; generated charts include a bundled default donation QR image.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.3 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The skill copies and runs bundled executable dependency files, including a Windows Swiss Ephemeris binary.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated Python environment and use the bundled native binary only when the publisher and package source are trusted.
+
+Risk: The chart renderer may install Pillow automatically at runtime.
+
+Mitigation: Preinstall a pinned Pillow version in the environment before running the skill.
+
+Risk: Birth details can be written to temporary JSON files and generated chart files.
+
+Mitigation: Avoid using sensitive personal data unless needed, restrict access to the workspace and temp directory, and remove generated files after use.
+
+Risk: Generated charts include donation or promotional QR content by default.
+
+Mitigation: Inspect generated images before sharing and override or remove the frame asset when promotional content is not appropriate.
+
+Risk: Astrological output may be mistaken for decision-grade advice.
+
+Mitigation: Present results as entertainment or educational interpretation and do not rely on them for medical, financial, or other high-impact decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dynamicsalex/skills/astro-lunar-insights)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Image files, Guidance]
+
+**Output Format:** [Plain text analysis, structured JSON lunar metrics, and PNG chart files with optional AI conclusion JSON.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports Russian and English output; chart renderer produces a 5760x2880 PNG.]
+
+## Skill Version(s):
+
+1.3.3 (source: server release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

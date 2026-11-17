@@ -1,0 +1,10 @@
+{
+  "name": "dy-profile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "抖音用户主页视频采集 Skill CLI (主页链接, 一页约 20 条 = 5 点数, 按实采结算退差)",
+  "main": "cli.js",
+  "engines": {
+    "node": ">=18"
+  }
+}

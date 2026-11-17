@@ -1,37 +1,49 @@
-## Description: <br>
-Rubber Duck Deluxe helps developers debug by using selectable personality modes that prompt them to explain problems, question assumptions, and find root causes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Rubber Duck Deluxe turns rubber duck debugging into personality-driven prompting modes that question assumptions, force specificity, and help users reason toward root causes.
 
-## Publisher: <br>
-[jcools1977](https://clawhub.ai/user/jcools1977) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jcools1977](https://clawhub.ai/user/jcools1977)
 
-## Use Case: <br>
-Developers and engineers use this skill during debugging sessions when they are stuck, need to clarify a problem, or want a structured prompt style for questioning assumptions and tracing root causes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill may suggest ordinary debugging commands as part of examples or guidance. <br>
-Mitigation: Review each command before running it, and only execute commands you understand and intend to run in the target environment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rubber Duck Deluxe on ClawHub](https://clawhub.ai/jcools1977/rubber-duck-deluxe) <br>
+## Use Case:
 
+Developers and technical users invoke this skill when they are stuck debugging code, tests, APIs, containers, or design assumptions and want a conversational prompt partner. It provides structured questioning styles, persona-based feedback, and occasional illustrative commands to help the user articulate the problem and identify likely root causes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
-**Output Format:** [Conversational Markdown with optional inline command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no external dependencies, API calls, credential requests, or installation steps were identified in the security evidence.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Illustrative shell snippets may include unsafe force-termination advice.
+
+Mitigation: Verify the target process, prefer graceful shutdown or changing ports, and require explicit approval before terminating processes.
+
+## Reference(s):
+
+- [Rubber Duck Deluxe on ClawHub](https://clawhub.ai/jcools1977/skills/rubber-duck-deluxe)
+- [Publisher profile](https://clawhub.ai/user/jcools1977)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Analysis, Shell commands]
+
+**Output Format:** [Markdown conversational responses with occasional inline shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only skill with no API requirement or external dependencies; shell snippets should be treated as illustrative.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

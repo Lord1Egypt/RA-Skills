@@ -283,6 +283,24 @@ function renderMemoryBlock(profile) {
 <!-- /yunshi:profile -->`;
 }
 
+// ── 输入清洗：避免把用户输入原样拼进 shell 命令 / markdown 区块 ──
+/** 文本清洗：去换行/制表/反引号/尖括号，防破坏 MEMORY.md 注释块与协议行，并限长 */
+function sanitizeText(s) {
+  return String(s == null ? '' : s)
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/[`<>]/g, '')
+    .trim()
+    .slice(0, 64);
+}
+/** ID 清洗：仅保留字母数字与 _-:. */
+function sanitizeId(s) {
+  return String(s == null ? '' : s).replace(/[^\w\-:.]/g, '').slice(0, 64);
+}
+/** shell 单引号安全包裹，供打印建议命令时使用 */
+function shq(s) {
+  return `'${String(s == null ? '' : s).replace(/'/g, `'\\''`)}'`;
+}
+
 // 主入口
 const args = process.argv.slice(2);
 
@@ -314,12 +332,12 @@ if (args.length < 5) {
   process.exit(1);
 }
 
-const userId = args[0];
-const name = args[1];
+const userId = sanitizeId(args[0]);
+const name = sanitizeText(args[1]);
 const gender = args[2];
 const birthDate = args[3];
 const birthTime = args[4];
-const birthPlace = args[5] || '上海';
+const birthPlace = sanitizeText(args[5] || '上海');
 const sect = parseInt(args[6] || '1');
 
 // 验证
@@ -383,9 +401,9 @@ console.log(renderMemoryBlock(profile));
 console.log('```');
 console.log('');
 console.log('💡 开启每日运程推送（把上面的八字/关注领域作为参数传入）：');
-console.log(`   node scripts/push-toggle.js on ${userId} --name "${name}" \\`);
-console.log(`     --bazi "${profile.bazi.year} ${profile.bazi.month} ${profile.bazi.day} ${profile.bazi.hour}" \\`);
-console.log(`     --daystem ${profile.bazi.dayStem} --focus 事业,财运,健康 --channel telegram`);
+console.log(`   node scripts/push-toggle.js on ${shq(userId)} --name ${shq(name)} \\`);
+console.log(`     --bazi ${shq(`${profile.bazi.year} ${profile.bazi.month} ${profile.bazi.day} ${profile.bazi.hour}`)} \\`);
+console.log(`     --daystem ${shq(profile.bazi.dayStem)} --focus 事业,财运,健康 --channel telegram`);
 console.log('');
 
 module.exports = { createProfile, renderMemoryBlock };

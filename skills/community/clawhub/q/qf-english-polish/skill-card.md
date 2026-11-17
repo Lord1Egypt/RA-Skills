@@ -1,40 +1,54 @@
-## Description: <br>
-Refines non-native English writing for grammar, fluency, tone, and idiomatic expression across academic, business, creative, and casual contexts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Refines non-native English writing for grammar, fluency, tone, idiomatic expression, and register across academic, business, creative, and casual contexts.
 
-## Publisher: <br>
-[371166758-qq](https://clawhub.ai/user/371166758-qq) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[371166758-qq](https://clawhub.ai/user/371166758-qq)
 
-## Use Case: <br>
-Developers, writers, students, and business users can use this skill to polish English drafts while preserving meaning, voice, and the intended register. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security verdict notes that review can be incomplete if the installed package or manifest differs from the reviewed artifact. <br>
-Mitigation: Before installation, confirm the package and manifest are present and match the reviewed English Polish artifact. <br>
-Risk: Polishing may unintentionally change nuance, tone, or authorial voice. <br>
-Mitigation: Review proposed revisions against the original meaning before using them in academic, business, or public communications. <br>
+## Use Case:
 
+Writers, students, job seekers, and business users use this skill to polish English text, receive concise correction notes, and preserve an appropriate voice for the context.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/371166758-qq/qf-english-polish) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown with categorized corrections, explanations, and a refined version of the input text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Preserves the author's voice and avoids unnecessary edits when the original text is already near-native.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: Polishing may standardize phrasing toward native-sounding English and reduce a distinctive personal or cultural voice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the refined text before use and keep original wording where voice, identity, or multilingual expression is important.
+
+Risk: Suggested corrections may be inappropriate for specialized academic, legal, medical, or business contexts.
+
+Mitigation: Treat correction notes as drafting guidance and have domain-sensitive material reviewed by a qualified person before publication or submission.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/371166758-qq/skills/qf-english-polish)
+- [Publisher Profile](https://clawhub.ai/user/371166758-qq)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown with correction notes and a refined English version]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include an overall level, primary issue categories, explanations for corrections, and the polished text.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

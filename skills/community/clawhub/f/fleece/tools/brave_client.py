@@ -16,6 +16,7 @@ PRIORITY_SITES = [
     "doctorofcredit.com",
     "bankrate.com",
     "onemileatatime.com",
+    "uscreditcardguide.com",
 ]
 
 

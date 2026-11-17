@@ -1,40 +1,53 @@
-## Description: <br>
-Multi Agent Workflow helps an agent split complex work into subtasks, assign content, research, development, or review roles, and aggregate task status and results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A Chinese-language workflow helper that splits complex tasks, assigns agent roles, and summarizes task status for multi-agent collaboration.
 
-## Publisher: <br>
-[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dxie48892-jpg](https://clawhub.ai/user/dxie48892-jpg)
 
-## Use Case: <br>
-Developers and agent operators use this skill to turn a complex prompt into smaller assigned work items, then use the generated role and task data to coordinate follow-on agent execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or secret information placed in task prompts could be carried into later agent sessions if the generated output is reused. <br>
-Mitigation: Avoid including secrets or highly sensitive data in prompts, and review generated subtasks before passing them to other agents. <br>
+## Use Case:
 
+Developers and agent operators use this skill to turn a user task into subtasks, select an appropriate role such as content expert, researcher, developer, or reviewer, and prepare structured task status output.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/dxie48892-jpg/multi-agent-workflow) <br>
-- [Skill Definition](artifact/SKILL.md) <br>
-- [Usage README](artifact/README.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [json, guidance, shell commands] <br>
-**Output Format:** [JSON responses and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs local task splits, role assignments, role capabilities, and task status summaries.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: frontmatter and server release evidence) <br>
+Risk: Users may expect a full multi-agent executor, while the artifact evidence shows a lightweight task splitter and role-assignment helper.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the generated task plan and perform any actual agent spawning separately in the host environment.
+
+Risk: Keyword-based role assignment can select an unsuitable role for ambiguous or mixed-language tasks.
+
+Mitigation: Review assigned roles before execution and override the role when the task requires a different specialist.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dxie48892-jpg/skills/multi-agent-workflow)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Chinese-language task, role, capability, and status fields for downstream review or execution.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

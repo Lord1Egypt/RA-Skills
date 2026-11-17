@@ -1,43 +1,54 @@
-## Description: <br>
-Ecommerce Bundle is an ecommerce operations assistant for competitor monitoring, automated customer replies, review management, and product selection analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ecommerce Bundle helps e-commerce sellers and operators monitor competitors, configure customer auto-replies, manage reviews, and analyze product opportunities.
 
-## Publisher: <br>
-[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[daimingvip-a11y](https://clawhub.ai/user/daimingvip-a11y)
 
-## Use Case: <br>
-External ecommerce sellers, operations staff, and dropshippers use this skill to configure and run workflows for competitor monitoring, customer-service replies, review tracking, and product research. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad shop and messaging automation could affect customer conversations or store operations without enough review. <br>
-Mitigation: Use test or least-privilege platform accounts first, keep automated replies in approval mode, and define clear limits, logs, and a reliable stop switch. <br>
-Risk: The release points users to an unreviewed installer. <br>
-Mitigation: Review the referenced repository and install.ps1 before running anything. <br>
-Risk: Monitoring and bot workflows may conflict with marketplace, platform, or privacy rules. <br>
-Mitigation: Confirm compliance with applicable marketplace and privacy rules before enabling monitoring, scraping, messaging, or bot workflows. <br>
+## Use Case:
 
+External e-commerce sellers, operators, and dropshippers use this skill to plan and run store operations such as competitor monitoring, customer-message automation, review tracking, and product research.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/daimingvip-a11y/ecommerce-bundle) <br>
-- [Ecommerce documentation](https://docs.clawhub.com/ecommerce) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose ecommerce monitoring, reply, review, and product-analysis workflows; automation should remain bounded by platform permissions and approval settings.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and release evidence) <br>
+Risk: The install flow references a remote repository and installer script.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and pin the repository and inspect install.ps1 before installation; avoid elevated privileges.
+
+Risk: Referenced skills and platform automations can affect shop operations, customer messaging, or review responses.
+
+Mitigation: Review and pin referenced skills, configure only approved shops and channels, and require human review before automated replies or review responses go live.
+
+## Reference(s):
+
+- [Ecommerce Bundle documentation](https://docs.clawhub.com/ecommerce)
+- [ClawHub skill page](https://clawhub.ai/daimingvip-a11y/skills/ecommerce-bundle)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include operational recommendations, monitoring rules, customer-response drafts, and product-analysis summaries.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

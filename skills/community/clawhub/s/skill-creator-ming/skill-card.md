@@ -1,44 +1,58 @@
-## Description: <br>
-Create new skills, modify and improve existing skills, and measure skill performance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Creates, edits, evaluates, benchmarks, and optimizes agent skills through guided drafting, test runs, review workflows, and description tuning.
 
-## Publisher: <br>
-[wm-zqbx](https://clawhub.ai/user/wm-zqbx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-Apache 2.0 <br>
+## Publisher:
 
+[wm-zqbx](https://clawhub.ai/user/wm-zqbx)
 
-## Use Case: <br>
-Developers and skill authors use this skill to draft, revise, evaluate, benchmark, and package agent skills through an iterative review workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+Apache 2.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can create and modify skill files and produce generated descriptions or guidance that may be incorrect or overly broad. <br>
-Mitigation: Review generated skill content, descriptions, and benchmark outputs before deployment. <br>
-Risk: The bundled workflow can run local Python helpers, call the local Claude CLI, and launch a localhost review viewer. <br>
-Mitigation: Use a dedicated workspace, avoid secrets in eval prompts or outputs, prefer static viewer mode when possible, and choose an unused viewer port. <br>
-Risk: The security review marked the release suspicious because local automation can stop unrelated services and encourages broad skill triggering. <br>
-Mitigation: Inspect local automation behavior before use and keep trigger descriptions specific enough to avoid unrelated activations. <br>
+## Use Case:
 
+Developers and skill authors use this skill to create new agent skills, improve existing skills, run qualitative and quantitative evaluations, review results, and optimize skill descriptions for better triggering.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/wm-zqbx/skill-creator-ming) <br>
-- [Publisher Profile](https://clawhub.ai/user/wm-zqbx) <br>
-- [Schemas Reference](references/schemas.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, JSON schemas, generated files, benchmark reports, and review viewer output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify skill files, evaluation workspaces, packaged skill archives, benchmark artifacts, and local/static review viewer files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+Risk: The local review server can stop unrelated local processes or expose or corrupt review data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review or patch the viewer before use, remove automatic port killing, and prefer static output or a short-lived foreground server for sensitive evaluation outputs.
+
+Risk: Generated review pages may include untrusted evaluation outputs and third-party CDN resources.
+
+Mitigation: Avoid third-party CDN resources and do not open generated review pages containing untrusted outputs until script-embedding concerns are fixed.
+
+Risk: The skill runs local Python tools, launches Claude CLI subprocesses, creates evaluation files, and opens a local review UI.
+
+Mitigation: Install only when this local execution behavior is acceptable, and review generated files and commands before deployment.
+
+## Reference(s):
+
+- [Evaluation and Benchmark Schemas](references/schemas.md)
+- [ClawHub Skill Page](https://clawhub.ai/wm-zqbx/skills/skill-creator-ming)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JSON examples, shell commands, generated skill files, evaluation artifacts, and review reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local files for skills, evaluations, benchmark summaries, and review UI output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,39 +1,53 @@
-## Description: <br>
-REST API Tester helps agents test REST endpoints, validate responses, benchmark performance, run OpenAPI-based checks, and generate HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+REST API Tester helps agents test REST endpoints, validate responses, benchmark performance, debug HTTP responses, and generate HTML API test reports.
 
-## Publisher: <br>
-[ericlooi504](https://clawhub.ai/user/ericlooi504) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericlooi504](https://clawhub.ai/user/ericlooi504)
 
-## Use Case: <br>
-Developers and agents use this skill to exercise REST endpoints, validate status, timing, and response keys, benchmark latency, test OpenAPI specs, and create shareable reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Requests can send Authorization headers, request bodies, or state-changing methods to the wrong endpoint. <br>
-Mitigation: Use staging endpoints and least-privilege test tokens when possible, verify URLs before sending sensitive data, and review POST, PUT, PATCH, DELETE, benchmark, and test-all runs before execution. <br>
-Risk: Verbose output or generated HTML reports can contain secrets, personal data, or internal API details. <br>
-Mitigation: Review generated reports before sharing them and delete report files when they may contain sensitive response data. <br>
+## Use Case:
 
+Developers and API engineers use this skill to exercise REST API endpoints, validate expected status codes and JSON keys, benchmark response times, test OpenAPI paths, and produce HTML reports.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance, Files] <br>
-**Output Format:** [Markdown with inline bash commands and optional HTML report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May generate local HTML reports that include API response data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill sends requests to URLs with headers and bodies supplied by the user, which can expose credentials or sensitive data to target services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use test credentials where possible, avoid production secrets, confirm target URLs before execution, and be cautious with redirects.
+
+Risk: Generated HTML reports may include untrusted API response content and sensitive request or response data.
+
+Mitigation: Do not open or share reports from untrusted endpoints until escaping and redaction are confirmed, and review generated reports before distribution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ericlooi504/skills/rest-api-test-cli)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can emit console summaries, validation results, benchmark statistics, and local HTML reports.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

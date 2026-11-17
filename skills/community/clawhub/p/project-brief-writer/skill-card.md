@@ -1,45 +1,60 @@
-## Description: <br>
-Project Brief Writer turns scattered requirements, chat notes, and meeting content into a structured project brief with scope, acceptance criteria, risks, and milestones. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Organizes scattered requirements, conversations, and meeting notes into a structured project brief with scope, acceptance criteria, risks, and milestones.
 
-## Publisher: <br>
-[52YuanChangXing](https://clawhub.ai/user/52YuanChangXing) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[52yuanchangxing](https://clawhub.ai/user/52yuanchangxing)
 
-## Use Case: <br>
-Developers, product teams, and project leads use this skill to convert raw requirements, goals, constraints, and related conversations into a reviewable project brief. It is intended for drafting objectives, scope, requirements, acceptance criteria, dependencies, risks, milestones, and clarification items before formal approval. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The local helper can read the input path selected by the user and can write to the selected output path. <br>
-Mitigation: Run it only on intended project materials, avoid broad sensitive directories, and inspect the chosen output path before writing. <br>
-Risk: Generated briefs may reflect incomplete, ambiguous, or sensitive source material. <br>
-Mitigation: Review the draft before using it for decisions, approvals, external sharing, or execution planning; redact sensitive inputs where appropriate. <br>
-Risk: The skill is not suitable for legal contracts or replacing formal requirements approval. <br>
-Mitigation: Use the output as a reviewable draft and route legal, compliance, or final approval decisions through the appropriate formal process. <br>
+## Use Case:
 
+External users and teams use this skill to turn raw requirements, meeting notes, constraints, and chat context into reviewable project briefs. It is intended for project kickoff, requirements organization, delivery definition, and explicit clarification tracking.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/52YuanChangXing/project-brief-writer) <br>
-- [Skill specification](artifact/resources/spec.json) <br>
-- [Output template](artifact/resources/template.md) <br>
-- [Example output](artifact/examples/example-output.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown brief, or JSON containing the generated report when the local helper is run with JSON output.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write the generated brief to a user-selected output file when the local Python helper is run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The bundled script contains local audit and secret-pattern scanning modes outside the stated brief-writing purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill for structured brief generation unless the user explicitly requests local auditing, and scope any audit input to intended, non-private paths.
+
+Risk: Generated project briefs may include assumptions or unconfirmed requirements when source material is incomplete.
+
+Mitigation: Treat output as a review draft and resolve listed clarification items before approval, execution, publication, or system changes.
+
+Risk: Input materials can contain personal, confidential, or sensitive project information.
+
+Mitigation: Redact sensitive content before processing and avoid enabling directory or pattern scans on private directories without explicit user intent.
+
+## Reference(s):
+
+- [Project Brief Writer on ClawHub](https://clawhub.ai/52yuanchangxing/skills/project-brief-writer)
+- [Publisher Profile](https://clawhub.ai/user/52yuanchangxing)
+- [README](artifact/README.md)
+- [Skill Specification](artifact/resources/spec.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Structured Markdown, with optional JSON output when the local script is invoked with --format json.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Draft outputs emphasize reviewable assumptions, open questions, boundaries, dependencies, risks, and milestones.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

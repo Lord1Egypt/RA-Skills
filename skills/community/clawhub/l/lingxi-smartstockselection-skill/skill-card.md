@@ -1,43 +1,62 @@
-## Description: <br>
-国泰海通证券-灵犀智能选股 supports natural-language multi-factor A-share stock screening and historical backtesting of screening results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides natural-language A-share stock screening across market, financial, valuation, and technical indicators, and can run historical backtests for screening conditions.
 
-## Publisher: <br>
-[gtht-tech](https://clawhub.ai/user/gtht-tech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gtht-tech](https://clawhub.ai/user/gtht-tech)
 
-## Use Case: <br>
-External users and agents use this skill to screen A-share stocks with natural-language financial criteria and run historical backtests for selected strategies. The skill returns objective financial data and explicitly states that generated content is not investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles finance-related API keys and may store a GuoTai HaiTong/Lingxi API key in gtht-entry.json. <br>
-Mitigation: Prefer the QR/cloud authorization path, review where gtht-entry.json is stored, and revoke or rotate any key shared in conversation or exposed in logs. <br>
-Risk: Stock screening and historical backtesting outputs can be mistaken for investment advice or future return predictions. <br>
-Mitigation: Preserve the required disclaimers and treat outputs as objective data or simulated historical results, not recommendations or promises of future performance. <br>
+## Use Case:
 
+External users can ask an agent to screen A-share stocks with natural-language criteria and request historical backtests of screening conditions. Outputs are informational and must not be treated as investment advice or a promise of future returns.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gtht-tech/lingxi-smartstockselection-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gtht-tech) <br>
-- [Lingxi authorization page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=lingxi&webEnv=web2&islingxishare=1) <br>
-- [Junhong authorization page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=junhong&webEnv=web2&isyyzshare=1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, API calls, guidance] <br>
-**Output Format:** [Markdown and JSON responses from Node.js tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Financial-search responses must include the required no-investment-advice disclaimer; backtest responses must include the required simulated-results disclaimer.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.11.3 (source: frontmatter, server release evidence) <br>
+Risk: A reusable API key may be stored locally in plaintext.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only on trusted machines and clear or revoke the API key when the workspace or machine is shared.
+
+Risk: Mutable gateway configuration or GTHT_GATEWAY_CONFIG can redirect service requests.
+
+Mitigation: Review gateway-config.json and the GTHT_GATEWAY_CONFIG environment variable before using the skill.
+
+Risk: Stock-screening and backtest outputs may be mistaken for investment advice.
+
+Mitigation: Keep the required disclaimers in user-facing responses and treat results as informational data, not trading recommendations or performance promises.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/gtht-tech/skills/lingxi-smartstockselection-skill)
+- [ClawHub publisher profile](https://clawhub.ai/user/gtht-tech)
+- [Lingxi app API key page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=lingxi&webEnv=web2&islingxishare=1)
+- [Junhong app API key page](https://apicdn.app.gtht.com/web2/jh-news-skill/?fullscreen=1#/?share=1&sourceApp=junhong&webEnv=web2&isyyzshare=1)
+- [Financial screening gateway](https://zx.app.gtja.com:8443/mcp/lingxi/financial)
+- [Backtest gateway](https://zx.app.gtja.com:8443/mcp/lingxi/backtest)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with inline command examples and JSON tool results from MCP calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires API key authorization; stock-screening and backtest outputs must include the skill's non-investment-advice disclaimers.]
+
+## Skill Version(s):
+
+1.11.3 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,57 @@
-## Description: <br>
-Talk to a user's Hardcover bookshelf via the Hardcover GraphQL API to manage reading activity in natural language. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Talk to a user's Hardcover bookshelf via the Hardcover GraphQL API to manage reading activity in natural language.
 
-## Publisher: <br>
-[diwakergupta](https://clawhub.ai/user/diwakergupta) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT No Attribution <br>
+## Publisher:
 
+[diwakergupta](https://clawhub.ai/user/diwakergupta)
 
-## Use Case: <br>
-External users and developers use this skill to let an agent view and update their Hardcover bookshelf, including listing Want to Read books, marking books as started or finished, and counting books read in the previous year. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses HARDCOVER_TOKEN to view and update the user's Hardcover bookshelf. <br>
-Mitigation: Install it only for intended Hardcover account use, keep the token scoped to the user, and revoke or rotate the token when the skill is no longer needed. <br>
-Risk: Start and finish actions can change reading status in the user's Hardcover account. <br>
-Mitigation: Treat those prompts as account-changing actions; the skill asks for disambiguation before mutating ambiguous title matches and echoes the final title and state after successful writes. <br>
+## Use Case:
 
+External users and agents use this skill to inspect and update a user's Hardcover reading account, including Want to Read items, Currently Reading status, Read status, and previous-year reading counts.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/diwakergupta/hardcover-bookshelf) <br>
-- [Hardcover API Settings](https://hardcover.app/account/api) <br>
-- [Hardcover GraphQL Endpoint](https://api.hardcover.app/v1/graphql) <br>
-- [Hardcover GraphQL Patterns](references/graphql-patterns.md) <br>
-- [Hardcover Schema Quirks](references/schema-quirks.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, JSON] <br>
-**Output Format:** [Markdown responses with shell command execution and optional JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires HARDCOVER_TOKEN with the full Bearer value before API calls.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill uses a Hardcover API token and can change account reading status.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require the user to provide HARDCOVER_TOKEN intentionally, confirm start and finish actions before execution, and avoid mutating when title resolution is ambiguous.
+
+Risk: Runtime commands use npx-based dependencies that may be downloaded or resolved at execution time.
+
+Mitigation: Prefer a lockfile-pinned install and run the packaged local CLI from installed dependencies instead of allowing ad hoc runtime downloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/diwakergupta/skills/hardcover-bookshelf)
+- [Hardcover API settings](https://hardcover.app/account/api)
+- [Hardcover GraphQL endpoint](https://api.hardcover.app/v1/graphql)
+- [Hardcover GraphQL Patterns](references/graphql-patterns.md)
+- [Hardcover schema quirks](references/schema-quirks.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or plain text responses, with optional JSON from CLI commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires HARDCOVER_TOKEN and may execute local TypeScript CLI commands that call the Hardcover GraphQL API.]
+
+## Skill Version(s):
+
+0.1.0 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

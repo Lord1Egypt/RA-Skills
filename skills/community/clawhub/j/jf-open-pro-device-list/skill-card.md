@@ -1,43 +1,53 @@
-## Description: <br>
-杰峰设备列表查询技能（开发版）。查询开发者账号下绑定的设备列表，支持分页查询和按设备序列号条件查询。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries JFTech developer-account device lists with pagination and optional device serial-number filters.
 
-## Publisher: <br>
-[jftech](https://clawhub.ai/user/jftech) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jftech](https://clawhub.ai/user/jftech)
 
-## Use Case: <br>
-Developers and operators with a JFTech Open Platform account use this skill to list bound devices, page through device records, or query up to 100 devices by serial number. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China mainland, Asia, Europe, and North America <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can expose device passwords or login tokens in terminal output or JSON logs. <br>
-Mitigation: Run it only in trusted terminals, avoid shared logs for JSON output, and rotate affected credentials if output may have been exposed. <br>
-Risk: The API host is controlled by the JF_ENDPOINT environment variable. <br>
-Mitigation: Set JF_ENDPOINT only to official JFTech API hosts before execution. <br>
-Risk: Signed requests use developer-account credentials. <br>
-Mitigation: Use credentials for an account you control and store JF_UUID, JF_APP_KEY, and JF_APP_SECRET outside shared shell history or committed files. <br>
+## Use Case:
 
+Developers and operators use this skill to list devices bound to a JFTech open-platform account, either page by page or by supplying specific device serial numbers.
 
-## Reference(s): <br>
-- [JFTech Open Platform documentation](https://docs.jftech.com) <br>
-- [ClawHub skill page](https://clawhub.ai/jftech/jf-open-pro-device-list) <br>
+### Deployment Geography for Use:
 
+Global, with documented JFTech API endpoints for China Mainland, Asia, Europe, and North America.
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Shell commands, Configuration instructions, Text, JSON] <br>
-**Output Format:** [Command-line output in simple text, table, or JSON formats] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires JFTech credentials and may return device serial numbers, usernames, passwords, nicknames, and login tokens.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release and frontmatter) <br>
+Risk: Routine runs may expose device login tokens or full device credential fields in logs or transcripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only in trusted agent sessions, avoid sharing transcripts that contain device output, and prefer a version or wrapper that redacts password and loginToken fields by default.
+
+Risk: The skill can send signed account requests to an arbitrary host when JF_ENDPOINT is changed.
+
+Mitigation: Use only trusted JFTech endpoints and restrict or review JF_ENDPOINT before execution.
+
+## Reference(s):
+
+- [JFTech Open Platform Documentation](https://docs.jftech.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, json, shell commands, guidance]
+
+**Output Format:** [Plain text, table, or JSON device-list output with Markdown usage guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires JFTech account credentials and can include device identifiers, usernames, passwords, or login tokens in command output.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata; artifact frontmatter metadata says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

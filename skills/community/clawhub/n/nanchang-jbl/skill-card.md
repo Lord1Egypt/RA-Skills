@@ -1,50 +1,71 @@
-## Description: <br>
-Nanchang Jbl is a customer-service skill for Nanchang Carpoly paint and coatings inquiries, covering product guidance, promotions, construction service information, after-sales routing, and store recommendations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language customer-service skill for a Nanchang Carpoly paint distributor, helping answer questions about products, recommendations, promotions, after-sales policy, construction services, and store navigation.
 
-## Publisher: <br>
-[liubuq-sys](https://clawhub.ai/user/liubuq-sys) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liubuq-sys](https://clawhub.ai/user/liubuq-sys)
 
-## Use Case: <br>
-External customers and store staff use this skill to answer paint, coating, renovation, construction, promotion, after-sales, and nearby-store questions for Nanchang Carpoly and Jiangxi Taolejia retail scenarios. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-China (Nanchang, Jiangxi focused) <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installers configure persistent daily auto-updates from a remote repository through cron or Windows Task Scheduler. <br>
-Mitigation: Prefer the ClawHub install path or a manually reviewed install, and remove or disable the scheduled auto-update task if recurring remote updates are not desired. <br>
-Risk: Auto-updates can replace the skill directory with newly fetched content. <br>
-Mitigation: Review updates before deployment and pin or manually update the skill in environments that require change control. <br>
+## Use Case:
 
+External customers and retail service agents use this skill to handle Chinese-language paint and renovation inquiries for the Nanchang Carpoly distributor, including product guidance, pricing caveats, promotions, after-sales routing, construction-service explanations, and nearby store recommendations.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/liubuq-sys/nanchang-jbl) <br>
-- [Publisher profile](https://clawhub.ai/user/liubuq-sys) <br>
-- [Business information](references/business-info.md) <br>
-- [Services](references/services.md) <br>
-- [Recommendations](references/recommendations.md) <br>
-- [Promotions](references/promotions.md) <br>
-- [After-sales](references/after-sales.md) <br>
-- [Construction](references/construction.md) <br>
-- [Stores](references/stores.md) <br>
-- [Brand](references/brand.md) <br>
-- [Images](references/images.md) <br>
+### Deployment Geography for Use:
 
+China (Nanchang, Jiangxi)
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Conversational text or Markdown grounded in local reference files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Business details, prices, promotions, and store information should be treated as reference-grounded and subject to store confirmation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.7 (source: server release evidence) <br>
+Risk: The skill can respond to broad renovation or paint terms outside the intended distributor context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable it only for the Nanchang Carpoly distributor use case and confirm user intent before giving store, product, or promotion guidance.
+
+Risk: Prices, promotions, stock, and store details may become stale.
+
+Mitigation: Use the packaged reference files for current details and tell users final pricing, availability, and activity terms are confirmed by the store.
+
+Risk: Users may ask the assistant to perform refunds, after-sales actions, appointments, or service dispatch.
+
+Mitigation: Keep responses informational and route operational requests to the listed store phone or in-store process.
+
+Risk: Unpinned package installation can introduce supply-chain uncertainty.
+
+Mitigation: Use a trusted ClawHub installation path or pinned installer version, especially when running from privileged environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/liubuq-sys/skills/nanchang-jbl)
+- [门店基础信息](references/business-info.md)
+- [商品信息](references/services.md)
+- [商品推荐逻辑](references/recommendations.md)
+- [促销活动与会员权益](references/promotions.md)
+- [售后处理与服务](references/after-sales.md)
+- [到店引导与体验](references/experience.md)
+- [施工/安装服务](references/construction.md)
+- [企业文化与信任背书](references/brand.md)
+- [渠道商门店信息（南昌及周边）](references/stores.md)
+- [图片素材](references/images.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational Chinese Markdown responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses should use the packaged reference files for product, price, promotion, store, construction, and after-sales details.]
+
+## Skill Version(s):
+
+1.0.10 (source: server release metadata; artifact metadata lists 1.0.9)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

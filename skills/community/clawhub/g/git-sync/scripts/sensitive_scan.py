@@ -46,6 +46,58 @@ EXCLUDE_FILES = {
     "config.json",  # 本地配置文件，不含真实敏感信息（值为占位符或用户本地值）
 }
 
+# ── 非敏感豁免：在扫描阶段就不产出 finding ─────────────────────────────
+# 脱敏的目标是「秘密」，不是「公开信息」。三类一律不算敏感：
+#   ① 已是占位符 / your-* 前缀的模板文本——再替换一次没有意义
+#   ② RFC 2606 / RFC 6761 保留域名下的地址（example.com、*.test 等）——
+#      文档与测试里的示例邮箱，不属于任何真实个人
+#   ③ 取值为「代码引用」的凭据赋值（api_key = config.llm_api_key、
+#      token = _get_github_token）——不带数字的全小写标识符/属性路径没有
+#      密钥该有的熵，它是调用方而不是字面量，判定见 _CODE_REF_RE
+# 另有第三方目录整目录不扫，见 THIRD_PARTY_DIRS。
+_RESERVED_EMAIL_DOMAINS = frozenset({"example.com", "example.net", "example.org"})
+_RESERVED_TLDS = (".test", ".example", ".invalid", ".localhost")
+REDACTED_TOKENS = frozenset({
+    "[email-redacted]", "[internal-ip-redacted]", "[credential-redacted]",
+    "[private-key-redacted]", "[local-path-redacted]", "[username-redacted]",
+})
+# 「取值是代码引用」的判定：全小写字母 / 下划线 / 点的标识符或属性路径，
+# 且**一个数字都没有**——`config.llm_api_key`、`_get_github_token` 这类是调用方，
+# 不是字面量。真密钥几乎必然带数字（sk-live9F2k…、ghp_…），这条不会放过它们。
+_CODE_REF_RE = re.compile(r"^[a-z_]+(?:\.[a-z_]+)*$")
+
+# 原样搬运的第三方代码与许可：脱敏等于篡改他人的版权署名，且这些地址本就公开。
+# 这个约定属于「常识部分」——它不是用户数据，是一个工程边界。
+THIRD_PARTY_DIRS = frozenset({"vendor", "third_party", "thirdparty",
+                              "node_modules", "site-packages"})
+_THIRD_PARTY_SUFFIXES = (".dist-info", ".egg-info")
+
+
+def _is_third_party_dir(name):
+    """第三方目录：vendor / node_modules / site-packages / *.dist-info。"""
+    low = name.lower()
+    return low in THIRD_PARTY_DIRS or low.endswith(_THIRD_PARTY_SUFFIXES)
+
+
+def _is_example_email(text):
+    """保留域名下的地址 → 示例占位，不是真实个人信息。"""
+    _, _, domain = text.rpartition("@")
+    domain = domain.strip().lower()
+    if not domain:
+        return False
+    return domain in _RESERVED_EMAIL_DOMAINS or domain.endswith(_RESERVED_TLDS)
+
+
+def _exempt_from_scan(text, label):
+    """已知的非敏感内容：显式占位符、示例域名邮箱、代码引用式取值。"""
+    if text.startswith("your-") or text in REDACTED_TOKENS:
+        return True
+    if label == "邮箱地址" and _is_example_email(text):
+        return True
+    if label == "Token/API密钥" and _CODE_REF_RE.match(text):
+        return True
+    return False
+
 # 敏感信息正则规则（按优先级排序）
 SENSITIVE_PATTERNS = [
     # 1. 邮箱地址
@@ -90,10 +142,10 @@ SENSITIVE_PATTERNS = [
         "severity": "critical",
         "flags": re.DOTALL,
     },
-    # 5. 本地绝对路径（Windows + Unix）
+    # 5. 本地绝对路径（Windows 反斜杠格式 + Git Bash 格式）
     {
         "label": "本地绝对路径",
-        "regex": r"""(?i)[a-zA-Z]:\\[Users|home|root]\\[a-zA-Z0-9._-]+""",
+        "regex": r"""(?i)([a-zA-Z]:\\[Users|home|root]\\[a-zA-Z0-9._-]+|/[a-zA-Z]/[Uu]sers/[a-zA-Z0-9._-]+)""",
         "replace": "[local-path-redacted]",
         "severity": "medium",
     },
@@ -124,6 +176,11 @@ def scan_file(file_path, config=None):
     每个条目：{"label", "severity", "line", "match", "replace"}
     """
     results = []
+    # 第三方目录下的文件一律不扫（见 THIRD_PARTY_DIRS）：判定下沉到本函数，
+    # 无论从哪个入口调进来都挡住，不靠调用方自律。
+    if any(_is_third_party_dir(seg)
+           for seg in os.path.normpath(str(file_path)).split(os.sep)):
+        return results
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -137,12 +194,8 @@ def scan_file(file_path, config=None):
         for m in re.finditer(rule["regex"], content, flags):
             group_idx = rule.get("group", 0)
             matched_text = m.group(group_idx) if group_idx else m.group(0)
-            # 跳过占位符（如 your-name-here）
-            if matched_text.startswith("your-") or matched_text in (
-                "[email-redacted]", "[internal-ip-redacted]",
-                "[credential-redacted]", "[private-key-redacted]",
-                "[local-path-redacted]",
-            ):
+            # 跳过占位符与已知非敏感内容（示例域名邮箱、代码引用式取值）
+            if _exempt_from_scan(matched_text, rule["label"]):
                 continue
             results.append({
                 "label": rule["label"],
@@ -203,8 +256,10 @@ def scan_skill(skill_dir, config=None):
     results = []
 
     for root, dirs, files in os.walk(skill_dir):
-        # 排除 __pycache__ 等
-        dirs[:] = [d for d in dirs if d != "__pycache__" and not d.startswith(".")]
+        # 排除 __pycache__、隐藏目录，以及第三方代码目录（见 THIRD_PARTY_DIRS）
+        dirs[:] = [d for d in dirs
+                   if d != "__pycache__" and not d.startswith(".")
+                   and not _is_third_party_dir(d)]
         for fname in files:
             ext = os.path.splitext(fname)[1].lower()
             if ext not in SCAN_EXTENSIONS:
@@ -272,10 +327,10 @@ def sanitize_file(file_path, replacements, backup=True):
         import shutil
 
         shutil.copy2(file_path, backup_path)
-    with open(file_path, "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8", newline="") as f:
         content = f.read()
     new_content = sanitize_content(content, replacements)
-    with open(file_path, "w", encoding="utf-8") as f:
+    with open(file_path, "w", encoding="utf-8", newline="") as f:
         f.write(new_content)
     return backup_path if backup else None
 
@@ -458,7 +513,13 @@ def cmd_interactive(args):
         print(json.dumps(decisions, ensure_ascii=False, indent=2))
 
 def cmd_apply(args):
-    """根据决策 JSON，对技能目录中的文件执行脱敏/保留"""
+    """根据决策 JSON，对技能目录中的文件执行脱敏/保留
+
+    v2.44.0 硬约束（方案 A）：severity=critical/high 的发现禁止 keep。
+    邮箱（high）、Token/私钥（critical）必须 sanitize——"脱敏强制"是代码级
+    铁律，不是 LLM 可选项。keep 仅允许 medium 及以下的公开署名类豁免
+    （如 LICENSE/README 的 wUwproject 署名、占位符）。
+    """
     with open(args.decisions, "r", encoding="utf-8") as f:
         decisions = json.load(f)
     with open(args.scan_result, "r", encoding="utf-8") as f:
@@ -466,31 +527,86 @@ def cmd_apply(args):
     skill_dir = normalize_path(args.skill_dir)
     # 构建 file → findings 映射
     file_findings = {e["file"]: e["findings"] for e in results}
+
+    # 统计（审计用）
+    stat = {"forced": 0, "kept": 0, "sanitized": 0, "skipped": 0}
+
+    FORBIDDEN_KEEP = {"critical", "high"}  # 这些 severity 禁止 keep（硬约束）
+
     for file_rel, decision in decisions.items():
         if file_rel.startswith("__"):
             continue
         fpath = os.path.join(skill_dir, file_rel)
         if not os.path.exists(fpath):
             print(f"  ⚠️  文件不存在，跳过: {file_rel}")
+            stat["skipped"] += 1
             continue
+
+        findings = file_findings.get(file_rel, [])
+        # ── 硬约束：critical/high 发现禁止 keep，强制转为 sanitize ──
+        forbidden = [f for f in findings if f.get("severity") in FORBIDDEN_KEEP]
+        forced = False
+        if decision == "keep" and forbidden:
+            print(f"  🔒 强制脱敏（{forbidden[0]['severity']}: {forbidden[0]['label']}）: {file_rel}")
+            decision = "sanitize"
+            forced = True
+            stat["forced"] += 1
+
         if decision == "keep":
             print(f"  ⏭️  保留（不脱敏）: {file_rel}")
+            stat["kept"] += 1
             continue
         if decision == "sanitize":
-            findings = file_findings.get(file_rel, [])
-            replacements = build_replacements(findings)
-            new_content = sanitize_content(open(fpath, "r", encoding="utf-8").read(), replacements)
-            with open(fpath, "w", encoding="utf-8") as f:
+            # 强制场景只替换 critical/high 的 match（medium 及以下保持原样）
+            target = forbidden if forced else findings
+            replacements = build_replacements(target) if target else {}
+            # newline=""：读写都不做换行转换。脱敏只该改内容，
+            # 不该顺手把整份文件的换行风格换掉（Windows 文本模式写会把 LF 全变 CRLF）。
+            with open(fpath, "r", encoding="utf-8", newline="") as f:
+                new_content = sanitize_content(f.read(), replacements)
+            with open(fpath, "w", encoding="utf-8", newline="") as f:
                 f.write(new_content)
             print(f"  ✅ 已脱敏: {file_rel}")
+            stat["sanitized"] += 1
         elif isinstance(decision, dict) and decision.get("mode") == "custom":
             # 用户逐项选择的结果
             replacements = decision.get("replacements", {})
-            new_content = sanitize_content(open(fpath, "r", encoding="utf-8").read(), replacements)
-            with open(fpath, "w", encoding="utf-8") as f:
+            # newline=""：读写都不做换行转换。脱敏只该改内容，
+            # 不该顺手把整份文件的换行风格换掉（Windows 文本模式写会把 LF 全变 CRLF）。
+            with open(fpath, "r", encoding="utf-8", newline="") as f:
+                new_content = sanitize_content(f.read(), replacements)
+            with open(fpath, "w", encoding="utf-8", newline="") as f:
                 f.write(new_content)
             print(f"  ✅ 已脱敏（部分）: {file_rel}")
+            stat["sanitized"] += 1
+        else:
+            # v2.47.0：非法决策值 fail-closed，不再静默跳过
+            print(f"  ❌ 非法决策值: {file_rel} → {decision!r}（应为 keep/sanitize/custom）")
+            sys.exit(2)
+
     print(f"\n  ✅ 处理完成，技能目录: {skill_dir}")
+    print(f"     统计: 强制脱敏 {stat['forced']} / 正常脱敏 {stat['sanitized']} / 保留 {stat['kept']} / 跳过 {stat['skipped']}")
+    # 硬约束兜底：处理后文件仍含 critical/high 的原始 match（说明脱敏未生效）→ 阻断
+    remain = []
+    for file_rel, findings in file_findings.items():
+        fpath = os.path.join(skill_dir, file_rel)
+        if not os.path.exists(fpath) or file_rel.startswith("__"):
+            continue
+        forbidden = [x for x in findings if x.get("severity") in FORBIDDEN_KEEP]
+        if not forbidden:
+            continue
+        try:
+            content = open(fpath, "r", encoding="utf-8").read()
+        except Exception:
+            continue
+        leaked = [x["match"] for x in forbidden if x.get("match") and x["match"] in content]
+        if leaked:
+            remain.append((file_rel, leaked))
+    if remain:
+        print(f"  ❌ 硬约束失败：处理后仍残留 critical/high 敏感信息:")
+        for f, leaked in remain:
+            print(f"     {f}: {leaked}")
+        sys.exit(1)
 
 def main():
     parser = argparse.ArgumentParser(description="敏感信息扫描与脱敏")

@@ -1,42 +1,57 @@
-## Description: <br>
-Feishu Cache Guardian checks and repairs the OpenClaw Feishu plugin probe cache settings so health-check responses use a 60-minute cache and avoid rapidly consuming Feishu API quota. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Feishu Cache Guardian checks and restores the OpenClaw Feishu plugin probe cache settings to 60 minutes so health checks do not quickly exhaust Feishu API quota.
 
-## Publisher: <br>
-[zhs0430-sudo](https://clawhub.ai/user/zhs0430-sudo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[zhs0430-sudo](https://clawhub.ai/user/zhs0430-sudo)
 
-## Use Case: <br>
-Developers and operators maintaining OpenClaw Feishu integrations use this skill to check whether plugin upgrades reset probe cache timings and to reapply the intended 60-minute cache behavior. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can edit a system-installed OpenClaw Feishu plugin file. <br>
-Mitigation: Review the target file and keep a backup before applying repairs. <br>
-Risk: The repair script can restart the OpenClaw Gateway. <br>
-Mitigation: Run it manually first and schedule recurring execution only after the restart behavior is understood. <br>
-Risk: Recurring automation can repeatedly reapply changes after OpenClaw upgrades. <br>
-Mitigation: Use a cadence and review process that fits the deployment's change-management practices. <br>
+## Use Case:
 
+Developers and operators running OpenClaw with the Feishu extension use this skill to inspect and repair probe.ts cache TTL settings after upgrades or plugin overwrites, then restart Gateway when a repair is applied.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhs0430-sudo/feishu-cache-guardian) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell commands and configuration details] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute a local Node.js repair script that edits an OpenClaw installation file and restarts the Gateway.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill can persistently modify an installed OpenClaw Feishu plugin file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the script and run it manually first; keep a recovery plan or backup for the modified probe.ts file.
+
+Risk: The skill can restart OpenClaw Gateway after applying a fix.
+
+Mitigation: Run it during an acceptable maintenance window and be prepared to restart Gateway manually if automation fails.
+
+Risk: Scheduled use can repeatedly apply local changes if the skill directory or target installation is not protected.
+
+Mitigation: Avoid cron until the skill directory is protected and the behavior has been validated in the target environment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhs0430-sudo/skills/feishu-cache-guardian)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance]
+
+**Output Format:** [Markdown with inline bash commands and concise operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to modify a local OpenClaw Feishu probe.ts file and restart OpenClaw Gateway.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

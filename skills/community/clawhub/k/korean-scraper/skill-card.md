@@ -1,45 +1,60 @@
-## Description: <br>
-Korean website specialized scraper with anti-bot protection (Naver, Coupang, Daum, Instagram). <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Korean website specialized scraper with anti-bot protection for major Korean sites including Naver, Coupang, and Daum.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers and agents use this skill to collect structured JSON from Korean public web sources, including Naver blogs, cafes and news, Daum news, and Coupang product pages. It is suited for authorized scraping, search-result collection, article extraction, and product-data extraction workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts third-party sites using stealth browsing and has insufficient destination controls. <br>
-Mitigation: Run only against authorized public URLs, verify site terms before use, avoid private or internal URLs, and apply network egress controls where possible. <br>
-Risk: The browser launch configuration weakens Chromium isolation for scraping. <br>
-Mitigation: Run in a disposable sandbox or isolated container without secrets, and avoid reusing browser profiles or sensitive credentials. <br>
-Risk: The dependency set includes Playwright and stealth plugins that execute browser automation code. <br>
-Mitigation: Pin and review dependencies before installation, use a patched Playwright release, and scan the installed package tree before deployment. <br>
+## Use Case:
 
+Developers and agents use this skill to collect structured JSON from public Korean blog, cafe, product, and news pages through Playwright-based CLI scripts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/korean-scraper) <br>
-- [Playwright official docs](https://playwright.dev/) <br>
-- [playwright-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) <br>
-- [Naver Developers](https://developers.naver.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Code, JSON, Configuration] <br>
-**Output Format:** [Structured JSON emitted by Node.js command-line scripts, with Markdown usage guidance and shell command examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs vary by scraper target and may include titles, URLs, authors, dates, snippets, article text, product prices, ratings, review counts, image URLs, and status/error fields.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and package.json) <br>
+Risk: The skill uses anti-bot behavior and weakens browser protections while running Playwright.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it only in an isolated, unprivileged container or VM and review the behavior before installation.
+
+Risk: The CLI scripts can load user-supplied URLs for extraction.
+
+Mitigation: Limit outbound network access to the intended public Korean domains and avoid running it on networks with sensitive internal web services.
+
+Risk: Scraping public web content can create terms-of-service, copyright, privacy, or account-risk concerns.
+
+Mitigation: Review site terms, copyright, privacy, robots.txt, and account policies before collecting or reusing data.
+
+## Reference(s):
+
+- [ClawHub Korean Scraper release](https://clawhub.ai/mupengi-bot/skills/korean-scraper)
+- [Playwright Official Docs](https://playwright.dev/)
+- [playwright-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth)
+- [Naver Developer Center](https://developers.naver.com/)
+
+## Skill Output:
+
+**Output Type(s):** [JSON, Shell commands, Guidance]
+
+**Output Format:** [Structured JSON emitted by CLI scripts with Markdown usage guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Scraped result fields vary by target site and command.]
+
+## Skill Version(s):
+
+1.0.0 (source: SKILL.md frontmatter, package.json, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,63 +1,83 @@
-## Description: <br>
-Activates an AI product manager persona that owns product decisions, requirements, prioritization, PRDs, roadmap planning, data questions, go-to-market coordination, stakeholder alignment, and project tracking. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Acts as an AI product manager that makes product decisions, writes requirements and PRDs, prioritizes roadmaps, analyzes data, coordinates launches, and aligns stakeholders.
 
-## Publisher: <br>
-[lika94](https://clawhub.ai/user/lika94) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lika94](https://clawhub.ai/user/lika94)
 
-## Use Case: <br>
-Employees, founders, product teams, engineers, designers, operators, and stakeholders use this skill when they need an AI agent to act as a product manager: making product calls, writing product documents, aligning teams, analyzing data, and driving follow-up actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Broad workplace monitoring can expose sensitive business or people information. <br>
-Mitigation: Scope connected tools to approved repositories, channels, documents, and dashboards, and restrict access to the minimum workspace data needed for the product task. <br>
-Risk: The skill may draft or recommend outreach, document updates, scans, or product decisions that affect real teams. <br>
-Mitigation: Require human confirmation before scans, outreach, document updates, roadmap changes, or other externally visible actions. <br>
-Risk: Maintaining people or relationship records can create privacy and retention concerns. <br>
-Mitigation: Do not store sensitive personal judgments about coworkers unless the organization has explicit privacy, access, retention, and deletion rules. <br>
+## Use Case:
 
+Employees, product teams, founders, engineers, designers, operators, and business stakeholders use this skill when they need an acting product manager to make decisions, define requirements, prioritize work, prepare launch or stakeholder materials, and keep product work moving.
 
-## Reference(s): <br>
-- [Business & Market Analysis](artifact/references/business-analysis.md) <br>
-- [Business Strategy Frameworks](artifact/references/business-strategy.md) <br>
-- [Change Sensing](artifact/references/change-sensing.md) <br>
-- [Cross-Team Alignment](artifact/references/cross-team-alignment.md) <br>
-- [Data Analysis](artifact/references/data-analysis.md) <br>
-- [External Presentations & Leadership Updates](artifact/references/external-presentation.md) <br>
-- [PM Knowledge Base & Document Management](artifact/references/knowledge-base.md) <br>
-- [Launch](artifact/references/launch.md) <br>
-- [Market Intelligence](artifact/references/market-intelligence.md) <br>
-- [PM Onboarding Protocol](artifact/references/onboarding.md) <br>
-- [People Registry](artifact/references/people-registry.md) <br>
-- [PM Playbooks](artifact/references/playbooks.md) <br>
-- [PM Integrity](artifact/references/pm-integrity.md) <br>
-- [PRD Writing Guide](artifact/references/prd-template.md) <br>
-- [Prioritization](artifact/references/prioritization.md) <br>
-- [Proactive PM Agenda](artifact/references/proactive-agenda.md) <br>
-- [Problem Analysis & Resolution](artifact/references/problem-analysis.md) <br>
-- [Progress Tracking & Reporting](artifact/references/progress-tracking.md) <br>
-- [Requirements Intake & Refinement](artifact/references/requirements.md) <br>
-- [PM Recurring Rituals](artifact/references/rituals.md) <br>
-- [Session Handoff](artifact/references/session-handoff.md) <br>
-- [Stakeholder Communication](artifact/references/stakeholder-comms.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis, Configuration] <br>
-**Output Format:** [Markdown or structured plain text with product decisions, PRDs, briefs, plans, checklists, and stakeholder messages] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May request missing context or source data before making a product call; cannot directly access live workplace systems or send messages without connected tools and human approval.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can encourage broad review of sensitive product, repository, chat, analytics, document, and stakeholder information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Set explicit source and data boundaries before use, and provide only the product context needed for the current decision or workflow.
+
+Risk: The skill can recommend writing, deleting, reorganizing, or retaining operational records.
+
+Mitigation: Require human confirmation before any persistent record, document, tracker, repository, or workspace change is made.
+
+Risk: The people-registry behavior may capture personal relationship judgments or stakeholder details.
+
+Mitigation: Store such information only when it fits the team's privacy policy, minimize what is retained, and review it regularly.
+
+Risk: Product decisions may be wrong or stale when live system data is unavailable.
+
+Mitigation: Provide current data exports or summaries, review stated assumptions, and validate recommendations before acting on high-impact roadmap or launch decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lika94/skills/product-manager-proactive)
+- [Business & Market Analysis](references/business-analysis.md)
+- [Business Strategy Frameworks](references/business-strategy.md)
+- [Change Sensing](references/change-sensing.md)
+- [Cross-Team Alignment](references/cross-team-alignment.md)
+- [Data Analysis](references/data-analysis.md)
+- [External Presentations & Leadership Updates](references/external-presentation.md)
+- [PM Knowledge Base & Document Management](references/knowledge-base.md)
+- [Launch](references/launch.md)
+- [Market Intelligence](references/market-intelligence.md)
+- [PM Onboarding Protocol](references/onboarding.md)
+- [People Registry](references/people-registry.md)
+- [PM Playbooks](references/playbooks.md)
+- [PM Integrity](references/pm-integrity.md)
+- [PRD Writing Guide](references/prd-template.md)
+- [Prioritization](references/prioritization.md)
+- [Proactive PM Agenda](references/proactive-agenda.md)
+- [Problem Analysis & Resolution](references/problem-analysis.md)
+- [Progress Tracking & Reporting](references/progress-tracking.md)
+- [Requirements Intake & Refinement](references/requirements.md)
+- [PM Recurring Rituals](references/rituals.md)
+- [Session Handoff](references/session-handoff.md)
+- [Stakeholder Communication](references/stakeholder-comms.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown or plain text with structured product decisions, PRDs, briefs, plans, checklists, messages, and analysis summaries.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include explicit assumptions, decision rationale, owners, deadlines, requested evidence, and next actions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,53 @@
-## Description: <br>
-Md2mindmap converts Markdown documents into interactive mind maps with HTML output and optional PDF export. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Md2mindmap converts Markdown documents into interactive mind maps with HTML output and optional PDF export.
 
-## Publisher: <br>
-[sukimgit](https://clawhub.ai/user/sukimgit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sukimgit](https://clawhub.ai/user/sukimgit)
 
-## Use Case: <br>
-Developers, educators, learners, trainers, and knowledge workers use this skill to turn Markdown notes, course outlines, and project plans into visual mind maps for review, presentation, and sharing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated HTML loads JavaScript and CSS from unpkg, so viewing or exporting may depend on third-party CDN availability and policy. <br>
-Mitigation: Use the skill only where CDN loading is acceptable, or vendor and review the assets locally before using sensitive Markdown. <br>
-Risk: PDF export uses Playwright/Chromium and writes local output files. <br>
-Mitigation: Run the converter in a controlled workspace and review input and output paths before execution. <br>
+## Use Case:
 
+Learners, instructors, knowledge workers, writers, and developers use this skill to turn Markdown outlines, lists, and tables into visual mind maps for review, planning, presentations, or sharing.
 
-## Reference(s): <br>
-- [Md2mindmap ClawHub page](https://clawhub.ai/sukimgit/md2mindmap) <br>
-- [Skill documentation](artifact/SKILL.md) <br>
-- [README](artifact/README.md) <br>
-- [Test report](artifact/TEST_REPORT.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated HTML/PDF files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reads Markdown input from a file or command-line argument; writes an interactive HTML mind map and can optionally export PDF via Playwright/Chromium.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release, SKILL.md frontmatter, and changelog) <br>
+Risk: Generated HTML fetches and executes third-party browser code from unpkg.com by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an isolated environment for conversion, avoid sensitive Markdown unless dependencies are bundled locally or network access is blocked, and review generated HTML before sharing.
+
+Risk: PDF export depends on Playwright and Chromium installed from the local environment.
+
+Mitigation: Install and pin dependencies from trusted sources, keep the browser runtime updated, and run PDF generation with least-privilege file access.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sukimgit/skills/md2mindmap)
+
+## Skill Output:
+
+**Output Type(s):** [files, shell commands, guidance]
+
+**Output Format:** [HTML files and optional PDF files, with concise text status or troubleshooting guidance.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Generated HTML is interactive and uses browser-side Markmap libraries; PDF export requires Playwright and Chromium.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

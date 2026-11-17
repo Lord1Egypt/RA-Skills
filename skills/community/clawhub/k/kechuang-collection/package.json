@@ -1,7 +1,7 @@
 {
   "name": "kechuang-collection",
-  "version": "1.0.1",
-  "description": "科创线索采集Skill — 7×24自动监控全网科创公开信息，基于公司KPI智能筛选有效线索，替代人工筛取的低效工作",
+  "version": "1.0.2",
+  "description": "从固定政府网站白名单检索公开科创信息并按 KPI 分类",
   "keywords": [
     "claude-code",
     "claude-code-skill",
@@ -20,7 +20,9 @@
   "files": [
     "SKILL.md",
     ".claude-plugin/plugin.json",
-    "references/*.md"
+    "references/*.md",
+    "scripts/mock-data.js",
+    "examples/*.md"
   ],
   "claude-code": {
     "skill": true,

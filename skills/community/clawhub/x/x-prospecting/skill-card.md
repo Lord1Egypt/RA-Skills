@@ -1,41 +1,55 @@
-## Description: <br>
-Find and engage potential leads on X (Twitter) by searching for keywords and buying-intent posts via Brave Search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find and engage potential leads on X (Twitter) by searching for keywords and buying-intent posts via Brave Search.
 
-## Publisher: <br>
-[3rdbrain](https://clawhub.ai/user/3rdbrain) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[3rdbrain](https://clawhub.ai/user/3rdbrain)
 
-## Use Case: <br>
-Sales, growth, and founder-operator agents use this skill to find public X posts that match buying-intent keywords through Brave Search, score prospects, and draft engagement or DM outreach. It is intended for lead generation workflows where a human reviews outputs before contacting prospects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Prospecting search terms are sent to Brave Search and may consume Brave API quota. <br>
-Mitigation: Avoid confidential customer lists, internal campaign names, and sensitive business intelligence in search keywords. <br>
-Risk: Generated outreach may be inaccurate, overly promotional, or inappropriate for the recipient. <br>
-Mitigation: Review and edit generated replies, threads, and DM sequences before contacting prospects. <br>
+## Use Case:
 
+External sales, growth, and agent users use this skill to search public X posts via Brave Search, prioritize prospects by buying-intent and fit signals, and draft outreach sequences or thread content for review.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/3rdbrain/x-prospecting) <br>
-- [Brave Search API endpoint](https://api.search.brave.com/res/v1/web/search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain-text CLI output, with structured result objects from exported JavaScript functions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRAVE_API_KEY for live Brave Search queries; generated outreach should be reviewed before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence, SKILL.md frontmatter, package.json) <br>
+Risk: The skill requires a Brave Search API key and sends X search keywords to Brave.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when that data flow is acceptable, and manage the API key according to local credential-handling policy.
+
+Risk: Generated outreach, reply suggestions, or thread drafts could conflict with X rules, privacy expectations, or anti-spam requirements.
+
+Mitigation: Review generated content before use and confirm campaigns comply with platform rules and applicable requirements.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/3rdbrain/skills/x-prospecting)
+- [ModelFitAI homepage](https://modelfitai.com)
+- [Brave Search API endpoint example](https://api.search.brave.com/res/v1/web/search?q=site:x.com+%22looking+for+AI+tools%22&count=10)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Console text and structured JavaScript objects, with Markdown-style outreach and thread drafts.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search requires BRAVE_API_KEY; generated outreach should be reviewed before use.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, artifact frontmatter, and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

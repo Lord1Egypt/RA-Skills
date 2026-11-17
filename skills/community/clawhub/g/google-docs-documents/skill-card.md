@@ -1,43 +1,61 @@
-## Description: <br>
-Google Docs API integration with managed OAuth for searching, reading, creating, and updating Google Docs documents. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Google Docs API integration with managed OAuth for searching, reading, creating, and updating Google Docs documents.
 
-## Publisher: <br>
-[hith3sh](https://clawhub.ai/user/hith3sh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hith3sh](https://clawhub.ai/user/hith3sh)
 
-## Use Case: <br>
-External users and developers use this skill to connect an OpenClaw agent to Google Docs through ClawLink, then search, read, create, and update documents with confirmation before writes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The connected Google account grants this integration access to documents available to that account. <br>
-Mitigation: Install only when ClawLink is trusted, review the Google consent scopes, and connect the intended Google account. <br>
-Risk: Create, update, and delete actions can change Google Docs content or structure. <br>
-Mitigation: Preview changes and confirm the target document and intended effect before executing any write or destructive action. <br>
+## Use Case:
 
+External users and developers use this skill to let an agent find, read, create, and update Google Docs documents through a connected Google account.
 
-## Reference(s): <br>
-- [Google Docs API Overview](https://developers.google.com/docs/api) <br>
-- [Google Docs Documents Resource](https://developers.google.com/docs/api/reference/rest/v1/documents) <br>
-- [ClawLink OpenClaw Docs](https://docs.claw-link.dev/openclaw) <br>
-- [Google Docs Skill on ClawHub](https://clawhub.ai/hith3sh/google-docs-documents) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and tool-call examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live ClawLink tool catalogs and requires explicit confirmation before create, update, or delete actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server evidence) <br>
+Risk: The skill relies on ClawLink as an external OAuth bridge for Google Docs access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing ClawLink verification or source information where available, and use the least-privileged Google account suitable for the task.
+
+Risk: Connected tools can modify Google Docs content.
+
+Mitigation: Preview and explicitly confirm create, update, delete, and other write operations before execution.
+
+Risk: OAuth access may remain available after the immediate task is complete.
+
+Mitigation: Revoke the Google authorization or remove the plugin allowlist entry when the integration is no longer needed.
+
+## Reference(s):
+
+- [Google Docs API Overview](https://developers.google.com/docs/api)
+- [Google Docs Documents Resource](https://developers.google.com/docs/api/reference/rest/v1/documents)
+- [ClawLink Docs](https://docs.claw-link.dev/openclaw)
+- [ClawLink Verification](https://claw-link.dev/verify)
+- [ClawHub Skill Page](https://clawhub.ai/hith3sh/skills/google-docs-documents)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and tool-call examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Google Docs document identifiers, previews, document text, and confirmation prompts before write operations.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,54 @@
-## Description: <br>
-Helps users interpret clear or vague feedback and turn it into practical revision plans, clarification questions, and safer revised drafts when enough source text is available. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps users interpret clear or vague feedback, diagnose revision needs, plan practical changes, ask clarification questions, and produce safer revised drafts when enough source text is available.
 
-## Publisher: <br>
-[yeon-dyjs](https://clawhub.ai/user/yeon-dyjs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yeon-dyjs](https://clawhub.ai/user/yeon-dyjs)
 
-## Use Case: <br>
-Writers, students, reviewers, and workplace collaborators use this skill to understand feedback on drafts, distinguish confirmed requirements from possible interpretations, and plan revisions that preserve the original meaning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive draft content may be exposed to the agent during revision planning. <br>
-Mitigation: Avoid pasting highly sensitive drafts unless the user is comfortable having the agent process that text. <br>
-Risk: A revised draft or plan may over-interpret vague feedback or introduce misleading changes. <br>
-Mitigation: Review the plan and draft before use, preserve the original meaning unless a stronger rewrite is requested, and ask clarification questions when feedback is unclear. <br>
+## Use Case:
 
+Writers, students, employees, and collaborators use this skill to turn vague or specific feedback on drafts, messages, reports, proposals, essays, and workplace documents into concrete revision plans and revised text. It is especially suited to preserving meaning while separating confirmed requirements from interpretations and missing information.
 
-## Reference(s): <br>
-- [Feedback Revision Planner on ClawHub](https://clawhub.ai/yeon-dyjs/feedback-revision-planner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown response with feedback diagnosis, possible interpretations, required revisions, optional improvements, a revision plan, clarification questions, and a revised draft when enough source text is available.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Text-only; no tools, code execution, credentials, or persistence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users may paste confidential or sensitive drafts into the agent session while asking for revision help.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing confidential, private, regulated, or sensitive documents unless the user is comfortable exposing that text in the agent session.
+
+Risk: Vague feedback can be over-interpreted, causing revisions that change the user's intended meaning.
+
+Mitigation: Treat uncertain feedback as an interpretation, preserve the original meaning by default, and ask clarification questions when the draft or feedback is incomplete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yeon-dyjs/skills/feedback-revision-planner)
+- [Publisher profile](https://clawhub.ai/user/yeon-dyjs)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include feedback diagnosis, possible interpretations, required and optional revisions, clarification questions, revised drafts, and explanations of changes.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

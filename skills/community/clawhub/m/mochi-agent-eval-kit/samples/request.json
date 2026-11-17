@@ -1,0 +1,19 @@
+{
+  "cases": [
+    {
+      "id": "timezone",
+      "actual": "09:00 UTC",
+      "mustContain": [
+        "UTC"
+      ],
+      "mustNotContain": [
+        "API_KEY"
+      ]
+    },
+    {
+      "id": "exact",
+      "actual": "done",
+      "exact": "done"
+    }
+  ]
+}

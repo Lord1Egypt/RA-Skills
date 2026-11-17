@@ -1,0 +1,51 @@
+# 图片转知识库系统 - 参考配置文件
+#
+# ⚠️ 注意：V9.5 主脚本 (auto_process_all_v9_4.py) 硬编码了中文目录名，
+# 此文件中的路径配置仅供参考，不会被主脚本读取。
+# 实际使用的目录结构如下：
+#   待处理图片/    ← 放入待处理的截图/图片
+#   已处理图片/    ← 处理完成后图片归档于此
+#   处理结果/      ← 生成的 Markdown/Word 文档
+#   config/        ← 配置文件（api_keys.yaml 等）
+#
+# API 密钥配置请编辑：config/api_keys.yaml
+
+system:
+  name: "图片转知识库系统"
+  version: "9.5"
+  debug: false
+  log_level: "INFO"
+
+# 路径配置（仅供参考，V9.5 使用硬编码中文目录名）
+paths:
+  image_input: "待处理图片"
+  processed_images: "已处理图片"
+  output: "处理结果"
+  config: "config"
+  logs: "处理结果"
+
+# OCR配置（V9.5 多引擎自动切换）
+ocr:
+  engines:
+    - "tencent"    # 腾讯云 OCR（优先）
+    - "baidu"      # 百度 OCR（次要）
+    - "tesseract"  # 本地 Tesseract（兜底）
+  engine: "auto"
+  language: "chi_sim+eng"
+
+# 分类配置（V9.5 使用 LLM 动态分类，不再使用关键词/ML 分类）
+classification:
+  method: "llm"          # V9.5 动态分类
+  preset_categories:     # LLM 优先复用已有分类
+    - "历史文化"
+    - "营养健康"
+    - "生活方式"
+    - "教育育儿"
+    - "旅游攻略"
+  # 如需关键词匹配分类，请编辑 config/categories.yaml
+
+# 性能配置
+performance:
+  max_workers: 4
+  batch_size: 10
+  timeout: 300

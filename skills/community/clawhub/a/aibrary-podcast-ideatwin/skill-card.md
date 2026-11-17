@@ -1,39 +1,51 @@
-## Description: <br>
-[Aibrary] Generates a book Idea Twin podcast script: an intellectually stimulating debate between the user's AI twin and a book expert. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Aibrary Podcast Ideatwin generates a book-focused Idea Twin podcast script in which a user's AI twin debates a book expert through progressively challenging rounds.
 
-## Publisher: <br>
-[asoiso](https://clawhub.ai/user/asoiso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[asoiso](https://clawhub.ai/user/asoiso)
 
-## Use Case: <br>
-External users and creators use this skill to generate a structured debate podcast script about a book, with one speaker mirroring the user's perspective and another challenging it as a book expert. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: User background, opinions, and reading context can be reflected in the generated script. <br>
-Mitigation: Provide only personal context that is appropriate to appear in the output, and review the script before sharing it. <br>
-Risk: The generated debate may misstate book details or overconfidently analyze an unfamiliar work. <br>
-Mitigation: Provide the author, focus areas, or relevant excerpts when precision matters, and verify claims against the source book. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/asoiso/aibrary-podcast-ideatwin) <br>
+## Use Case:
+
+External users use this skill to turn a book title, optional author, personal stance, background, and focus areas into a 10-15 minute debate-style podcast script for deeper book exploration.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate for broad book-debate requests and adds an Aibrary-branded line to generated scripts.
+
+Mitigation: Review generated scripts before publication and remove or adjust branding when it is not appropriate.
+
+Risk: Generated book analysis or debate content may be incorrect or misleading if the model lacks reliable knowledge of the requested book.
+
+Mitigation: Check factual claims against the book or trusted references, and follow the skill's instruction to acknowledge unknown books rather than fabricate details.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown] <br>
-**Output Format:** [Markdown podcast script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates a 10-15 minute, 2,500-3,000 word debate script in the user's input language when possible.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown podcast script]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses the user's input language and targets roughly 2,500-3,000 words when enough book context is available.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

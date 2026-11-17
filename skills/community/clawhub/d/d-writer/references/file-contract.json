@@ -1,0 +1,172 @@
+{
+  "$schema": "https://dragon-writer.github.io/schemas/file-contract.json",
+  "version": "1.0.0",
+  "description": "Dragon Writer 文件契约的机器可读版本。文档、脚本、仪表盘共用这一份，避免多处重复维护。",
+
+  "files": {
+    "book.json": {
+      "path": "book.json",
+      "required": true,
+      "layer": "foundation",
+      "consumer": ["dashboard", "scripts"],
+      "description": "书籍元数据"
+    },
+    "story/outline/story_frame.md": {
+      "path": "story/outline/story_frame.md",
+      "required": false,
+      "layer": "foundation",
+      "consumer": ["dashboard", "scripts"],
+      "description": "故事框架"
+    },
+    "story/outline/volume_map.md": {
+      "path": "story/outline/volume_map.md",
+      "required": false,
+      "layer": "foundation",
+      "consumer": ["dashboard", "scripts"],
+      "description": "卷纲"
+    },
+    "story/book_rules.md": {
+      "path": "story/book_rules.md",
+      "required": false,
+      "layer": "foundation",
+      "consumer": ["dashboard", "scripts"],
+      "description": "规则书"
+    },
+    "story/author_intent.md": {
+      "path": "story/author_intent.md",
+      "required": false,
+      "layer": "foundation",
+      "consumer": ["dashboard", "scripts"],
+      "description": "作者方向"
+    },
+    "story/current_focus.md": {
+      "path": "story/current_focus.md",
+      "required": false,
+      "layer": "runtime",
+      "consumer": ["dashboard"],
+      "description": "近期焦点"
+    },
+    "story/current_state.md": {
+      "path": "story/current_state.md",
+      "required": false,
+      "layer": "runtime",
+      "consumer": ["dashboard"],
+      "description": "当前状态"
+    },
+    "story/pending_hooks.md": {
+      "path": "story/pending_hooks.md",
+      "required": false,
+      "layer": "runtime",
+      "consumer": ["scripts"],
+      "description": "钩子账本"
+    },
+    "story/chapter_summaries.md": {
+      "path": "story/chapter_summaries.md",
+      "required": false,
+      "layer": "runtime",
+      "consumer": ["dashboard"],
+      "description": "章节摘要"
+    },
+    "story/style_guide.md": {
+      "path": "story/style_guide.md",
+      "required": false,
+      "layer": "foundation",
+      "consumer": ["dashboard"],
+      "description": "风格指南"
+    },
+    "story/audit-drift.md": {
+      "path": "story/audit-drift.md",
+      "required": false,
+      "layer": "runtime",
+      "consumer": ["dashboard"],
+      "description": "审计漂移"
+    },
+    "story/roles/{major|minor}/{name}.md": {
+      "path": "story/roles/{major|minor}/{name}.md",
+      "required": false,
+      "layer": "foundation",
+      "consumer": ["dashboard", "scripts"],
+      "description": "角色档案（一个角色一份文件）：稳定属性 + 物理/逻辑数据时间线（章节锚定追加式，见 templates.md）"
+    },
+    "chapters/{nnnn}_{title}.md": {
+      "path": "chapters/{nnnn}_{title}.md",
+      "required": true,
+      "layer": "runtime",
+      "consumer": ["dashboard"],
+      "description": "章节正文"
+    },
+    "chapters/index.json": {
+      "path": "chapters/index.json",
+      "required": false,
+      "layer": "runtime",
+      "consumer": ["scripts"],
+      "description": "章节索引（可重建，正文文件为权威来源）"
+    }
+  },
+
+  "aliases": {
+    "story/outline/story_frame.md": ["story/story_bible.md", "story/setting.md", "story/world.md"],
+    "story/outline/volume_map.md": ["story/volume_outline.md", "story/outline.md", "story/plot.md"],
+    "story/book_rules.md": ["story/rules.md", "story/writing_rules.md"],
+    "story/author_intent.md": ["story/author.md", "story/intent.md"],
+    "story/current_focus.md": ["story/focus.md", "story/next.md"],
+    "story/current_state.md": ["story/state.md", "story/truth.md"],
+    "story/pending_hooks.md": ["story/hooks.md", "story/foreshadowing.md"],
+    "story/chapter_summaries.md": ["story/summaries.md"],
+    "story/style_guide.md": ["story/style.md", "story/writing_style.md"],
+    "story/audit-drift.md": ["story/audit_drift.md"]
+  },
+
+  "excludedPaths": {
+    "description": "这些目录下的文件不会被读取为权威数据（快照、备份、rewrite 候选等）。路径相对书根，均位于 story/ 下。",
+    "patterns": [
+      "^story/snapshots/",
+      "^story/runtime/rewrites/",
+      "^story/runtime/rewrite/",
+      "^story/rewrite/",
+      "^story/rewrites/",
+      "^story/backup/",
+      "^story/backups/",
+      "^story/快照/",
+      "^story/备份/"
+    ]
+  },
+
+  "characterLegacyFiles": {
+    "description": "旧版单文件多角色格式（暂不支持，需明确提示用户）",
+    "paths": ["story/character_matrix.md", "story/characters.md"],
+    "supported": false,
+    "message": "旧角色文件格式暂不支持。请迁移到 story/roles/{major|minor}/{name}.md 的单文件单角色格式。"
+  },
+
+  "requiredFiles": [
+    "book.json",
+    "chapters/index.json",
+    "story/author_intent.md",
+    "story/current_focus.md",
+    "story/book_rules.md",
+    "story/current_state.md",
+    "story/pending_hooks.md",
+    "story/chapter_summaries.md",
+    "story/outline/story_frame.md",
+    "story/outline/volume_map.md"
+  ],
+
+  "recommendedFiles": [
+    "story/style_guide.md",
+    "story/audit-drift.md"
+  ],
+
+  "snapshotFiles": {
+    "description": "每个快照目录必须包含的运行时文件（书根相对路径）。支持 glob 通配（story/roles/**）。snapshot_book / rollback_book 共用本字段，避免路径解析漂移。",
+    "paths": [
+      "story/current_state.md",
+      "story/pending_hooks.md",
+      "story/chapter_summaries.md",
+      "story/current_focus.md",
+      "story/audit-drift.md",
+      "chapters/index.json",
+      "story/roles/**"
+    ]
+  }
+}

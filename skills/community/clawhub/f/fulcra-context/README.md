@@ -14,6 +14,12 @@ The published ClawHub package intentionally does not include executable helper s
 
    For remote agents, share only the device URL and user code with the intended user. Never share token output or credential files.
 
+   Check live help before relying on new auth options:
+
+   ```bash
+   uv tool run fulcra-api auth login --help
+   ```
+
 2. Verify access:
 
    ```bash
@@ -27,6 +33,7 @@ The published ClawHub package intentionally does not include executable helper s
    uv tool run fulcra-api get-records HeartRate "2 hours"
    uv tool run fulcra-api sleep-stages "12 hours"
    uv tool run fulcra-api calendar-events "1 day"
+   uv tool run fulcra-api metric-time-series --help
    ```
 
 ## Privacy Rules
@@ -56,6 +63,8 @@ Hosted MCP endpoint:
 https://mcp.fulcradynamics.com/mcp
 ```
 
+MCP tokens are not Fulcra API tokens. Do not send MCP tokens to `api.fulcradynamics.com`; restart the MCP OAuth flow if a hosted MCP client gets 401/auth failures after token expiry or a server redeploy.
+
 Claude Desktop example:
 
 ```json
@@ -76,6 +85,6 @@ The GitHub repository may contain optional source helper scripts for maintainers
 ## Links
 
 - Fulcra Platform: <https://fulcradynamics.com>
-- Developer Docs: <https://fulcradynamics.github.io/developer-docs/>
+- Developer Docs: <https://docs.fulcradynamics.com>
 - Python Client: <https://github.com/fulcradynamics/fulcra-api-python>
 - MCP Server: <https://github.com/fulcradynamics/fulcra-context-mcp>

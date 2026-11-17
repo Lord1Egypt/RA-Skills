@@ -1,6 +1,19 @@
 {
-  "ownerId": "kn7d21prbsn9ze6jj0gsem4jms835q94",
-  "slug": "nova-self-improver",
+  "name": "nova-self-improver",
   "version": "1.0.0",
-  "publishedAt": 1775305359399
+  "description": "Complete self-improvement system for AI agents with four-layer memory and autonomous learning",
+  "author": "Nova 🧠",
+  "keywords": ["self-improvement", "memory", "learning-loop", "autonomous", "four-layer-memory", "ai-agent"],
+  "license": "MIT",
+  "platform": ["openclaw"],
+  "dependencies": [],
+  "triggers": [
+    "build self-improvement",
+    "make me learn from mistakes", 
+    "implement memory layers",
+    "autonomous agent",
+    "self-improving system",
+    "add learning loop",
+    "implement four-layer memory"
+  ]
 }

@@ -1,41 +1,54 @@
-## Description: <br>
-Reference tool for devtools - covers intro, quickstart, patterns and more. Quick lookup for Linecount concepts, best practices, and implementation patterns. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Linecount provides local plain-text reference documentation for linecount concepts, quickstart steps, patterns, debugging, performance, security, migration, and cheat-sheet topics in devtools contexts.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-Developers and coding assistants use Linecount to retrieve static reference guidance for linecount concepts, quickstarts, patterns, debugging, performance, security, migration, and cheatsheets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Third-party static reference guidance may be incomplete or out of date for a user's environment. <br>
-Mitigation: Confirm the BytesAgain publisher is trusted and review the guidance against project-specific documentation before acting on it. <br>
-Risk: The artifact includes executable shell code, even though security evidence reports no file, credential, network, or account access. <br>
-Mitigation: Review and scan the artifact before installation, and run only the documented Linecount commands from a trusted copy. <br>
+## Use Case:
 
+Developers and technical users use Linecount as a local reference stub for linecount concepts, quickstart material, troubleshooting, performance, security, migration, and cheat-sheet guidance in devtools contexts.
 
-## Reference(s): <br>
-- [Linecount on ClawHub](https://clawhub.ai/bytesagain3/linecount) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Plain text reference documentation with Markdown headings and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static heredoc content; security evidence reports no file, credential, network, or account access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+Risk: The artifact contains generic reference documentation and a script version that differs from the release version.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as lightweight reference guidance and verify operational details, command behavior, and version-sensitive information before relying on it.
+
+Risk: The security topic output contains general security advice that may not match a user's specific environment.
+
+Mitigation: Use local policy and system-specific review for security decisions; do not treat the generated reference text as authoritative security policy.
+
+## Reference(s):
+
+- [Linecount ClawHub listing](https://clawhub.ai/bytesagain3/skills/linecount)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown headings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Local heredoc output; no artifact evidence of credentials, network access, persistence, or privileged actions.]
+
+## Skill Version(s):
+
+2.0.3 (source: release evidence and SKILL.md frontmatter; script reports 2.0.2)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

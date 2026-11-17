@@ -1,6 +1,14 @@
 {
-  "ownerId": "kn72f76wazjp7rqahdhnhkyzb1841mep",
-  "slug": "baseline-rag",
-  "version": "1.0.2",
-  "publishedAt": 1775367044765
+  "name": "baseline-rag",
+  "displayName": "Baseline-RAG",
+  "description": "Fact-checking with CI-Level 1 confidence scoring. Gives baseline confidence (50-70%) with embedded upsell for CI-95 verification.",
+  "version": "1.0.0",
+  "triggers": ["verify", "fact-check", "is this true", "check claim", "confirm"],
+  "author": "agentkilox",
+  "license": "MIT-0",
+  "tags": ["fact-check", "verification", "confidence", "rag"],
+  "stats": {
+    "downloads": 0,
+    "stars": 0
+  }
 }

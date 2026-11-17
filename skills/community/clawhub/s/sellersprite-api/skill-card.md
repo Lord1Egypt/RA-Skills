@@ -1,43 +1,56 @@
-## Description: <br>
-Fetch Amazon market data through the SellerSprite API for product research, keyword analysis, competitor lookup, ASIN details, and Blue Ocean Index scoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SellerSprite Product Research fetches Amazon market data through the SellerSprite API for product research, keyword analysis, competitor lookup, ASIN details, and Blue Ocean Index scoring.
 
-## Publisher: <br>
-[boyd4y](https://clawhub.ai/user/boyd4y) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[boyd4y](https://clawhub.ai/user/boyd4y)
 
-## Use Case: <br>
-Developers, marketplace analysts, and Amazon sellers use this skill to run SellerSprite-backed Amazon product, keyword, ASIN, competitor, market, and quota research from an agent workflow. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Research inputs such as product plans, private ASIN lists, keywords, or market terms may be sent to SellerSprite through the configured API key. <br>
-Mitigation: Use this skill only when SellerSprite-backed research is intended and avoid submitting confidential research inputs unless they are approved for sharing with SellerSprite. <br>
-Risk: A SellerSprite Open API key is required for authenticated API calls. <br>
-Mitigation: Provide the key through SELLERSPRITE_SECRET_KEY or the documented CLI config path, and avoid exposing the key in prompts, shared logs, or generated artifacts. <br>
+## Use Case:
 
+External sellers, analysts, and developers use this skill to query SellerSprite-powered Amazon product, category, keyword, competitor, ASIN, and quota data from an agent workflow.
 
-## Reference(s): <br>
-- [API Endpoints](artifact/references/api-endpoints.md) <br>
-- [Marketplace Codes](artifact/references/marketplace-codes.md) <br>
-- [Error Handling](artifact/references/error-handling.md) <br>
-- [SellerSprite Open API](https://open.sellersprite.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and optional text or JSON CLI output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bun, @teamclaw/sellersprite-cli, and a SellerSprite Open API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: artifact frontmatter and server release evidence) <br>
+Risk: The skill runs an unpinned external CLI package that can receive SellerSprite API keys and product research queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned and reviewed @teamclaw/sellersprite-cli version before deployment, and only expose the SellerSprite key required for the current workflow.
+
+Risk: SellerSprite API credentials could be exposed through local configuration or project files.
+
+Mitigation: Prefer environment-scoped secrets, avoid committing or storing keys in project files, and rotate the key if the dependency or local config may have been exposed.
+
+## Reference(s):
+
+- [API Endpoints](references/api-endpoints.md)
+- [Error Handling](references/error-handling.md)
+- [Marketplace Codes](references/marketplace-codes.md)
+- [SellerSprite Open API Portal](https://open.sellersprite.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires bun, the @teamclaw/sellersprite-cli package, and a SellerSprite API key supplied through environment variable or CLI configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

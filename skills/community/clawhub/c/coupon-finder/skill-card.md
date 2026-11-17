@@ -1,42 +1,55 @@
-## Description: <br>
-优惠券查询与领取技能，覆盖外卖券、酒店券、打车券、咖啡券、电影票、超市券等多场景，并根据用户需求匹配活动链接。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finds China-market coupon and promotion links for user-described shopping, delivery, travel, dining, entertainment, and local-service scenarios.
 
-## Publisher: <br>
-[ayue-oss](https://clawhub.ai/user/ayue-oss) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ayue-oss](https://clawhub.ai/user/ayue-oss)
 
-## Use Case: <br>
-External users and agents use this skill to match coupon, discount, and promotional-link requests against a bundled activity list for food delivery, travel, rides, coffee, movies, retail, and related scenarios. It can also return a Feishu form link for users who want to submit new coupon activities for review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill returns third-party promotional links and an external Feishu submission form. <br>
-Mitigation: Verify link destinations before opening them or entering information, and treat the submission form as an external site for voluntary coupon details. <br>
-Risk: Coupon data may become stale or may not match a user's current eligibility, location, or platform account conditions. <br>
-Mitigation: Confirm promotional terms on the destination platform before relying on the offer. <br>
+## Use Case:
 
+External users and agents use this skill to match a coupon-related request to known activities and return usable promotion links. It is suited for coupon discovery across food delivery, hotels, ride hailing, coffee, movies, retail, travel, and similar consumer scenarios.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/ayue-oss/coupon-finder) <br>
-- [Publisher profile](https://clawhub.ai/user/ayue-oss) <br>
-- [Activity submission form](https://my.feishu.cn/share/base/form/shrcn4ERBYeALeE2cF8SMPIqHUE) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown-formatted text or JSON query results containing matching activity names, descriptions, tags, and promotional links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results are ranked from a local bundled activity dataset and limited by the query limit parameter, defaulting to 5.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.5 (source: server-resolved release metadata) <br>
+Risk: Coupon results can include affiliate-style offers, short links, deep links, mini-program paths, and broad promotional links.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and use the skill only when those external promotion destinations are expected, and review links before following or sharing them.
+
+Risk: The skill promotes a Feishu form for activity submissions and may point users toward external private-domain promotions.
+
+Mitigation: Treat submission forms and external promotion destinations as third-party services, and avoid submitting personal information unless the operator is trusted.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ayue-oss/skills/coupon-finder)
+- [Publisher Profile](https://clawhub.ai/user/ayue-oss)
+- [Activity Submission Form](https://my.feishu.cn/share/base/form/shrcn4ERBYeALeE2cF8SMPIqHUE)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
+
+**Output Format:** [Markdown-style coupon result summaries or JSON arrays of matched activities]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include official short links, H5 links, mini-program paths, deep links, coupon passphrases, and an external Feishu submission form.]
+
+## Skill Version(s):
+
+1.0.5 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

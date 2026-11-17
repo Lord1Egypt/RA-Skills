@@ -1,43 +1,55 @@
-## Description: <br>
-龙虾角色，专业学习周易与传统命理知识。每日19:00定时推送一个知识点，以严谨、学术化、非迷信的方式解读传统文化。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+龙虾角色，专业学习周易与传统命理知识。每日19:00定时推送一个知识点，以严谨、学术化、非迷信的方式解读传统文化。
 
-## Publisher: <br>
-[112297720](https://clawhub.ai/user/112297720) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[112297720](https://clawhub.ai/user/112297720)
 
-## Use Case: <br>
-Chinese-language learners and cultural researchers use this skill to receive concise, scholarly Zhouyi and traditional fate-study learning notes. It frames the material as traditional culture and philosophy rather than scientific prediction or personal decision guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Scheduled delivery is described by the skill, but cron or Enterprise WeChat setup is not included in this package. <br>
-Mitigation: Review and configure any separate scheduling or messaging integration before enabling daily pushes. <br>
-Risk: Traditional命理 material can be mistaken for personal prediction or decision advice. <br>
-Mitigation: Keep responses framed as cultural and philosophical interpretation, avoid absolute predictions, and do not use the skill for life, financial, medical, or safety decisions. <br>
+## Use Case:
 
+External users use this skill to generate concise daily learning entries about Zhouyi and traditional fate-study texts as cultural and academic material. The skill frames responses as non-predictive interpretation and avoids using traditional divination content for life decisions.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/112297720/lobster-zhouyi) <br>
-- [中国哲学书电子化计划：周易](https://ctext.org/zhouyi) <br>
-- [learning-log.md](references/learning-log.md) <br>
-- [day2-content.md](references/day2-content.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-language daily learning notes with source citations and culturally framed interpretation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Scheduled Enterprise WeChat delivery could send learning content to an unintended destination or at an unintended time.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before connecting a scheduler or Enterprise WeChat integration, verify the destination, schedule, timezone, and exact content to be sent.
+
+Risk: Traditional fate-study content can be misread as predictive advice.
+
+Mitigation: Keep outputs limited to cultural and academic interpretation, include the non-scientific limitation, and avoid predictions or decision guidance.
+
+## Reference(s):
+
+- [Learning log](references/learning-log.md)
+- [Day 2 content](references/day2-content.md)
+- [Chinese Text Project: Zhouyi](https://ctext.org/zhouyi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown daily learning entry]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Educational cultural interpretation with cited classical or scholarly sources; no executable output.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

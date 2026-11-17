@@ -1,55 +1,55 @@
-# Alchemy 信息收集模板
+#Alchemy information collection template
 
-## 目标项目
+## Target project
 
-- 路径 / URL：
-- 项目定位：
-- 项目类型：
-- 主要用户：
-- 技术栈：
-- 当前相关模块：
-- 已有类似能力：
-- 目标项目适配边界：
-- 验证命令：
-- 约束条件：
+- Path/URL:
+- Project positioning:
+- Project type:
+- Main users:
+- Technology stack:
+- Current relevant modules:
+- Already have similar capabilities:
+- Target project adaptation boundary:
+- Verification command:
+- Constraints:
 
-## 参考项目
+## Reference project
 
-- 路径 / URL：
-- 项目定位：
-- 项目类型：
-- 主要用户：
-- 技术栈：
-- 重点模块：
-- 特色能力：
-- 许可证 / 来源：
-- 风险：
+- Path/URL:
+- Project positioning:
+- Project type:
+- Main users:
+- Technology stack:
+- Key modules:
+- Featured abilities:
+- License/Source:
+- Risks:
 
-## 能力域清单
+## List of capability domains
 
-- 产品能力：
-- 架构模式：
-- 领域模型：
-- 接口协议：
-- 数据流：
-- 运行时行为：
-- 开发体验：
-- 质量体系：
-- 交付流程：
-- 文档知识：
-- 生态扩展：
+- Product capabilities:
+- Architecture pattern:
+- Domain model:
+- Interface protocol:
+- Data flow:
+- Runtime behavior:
+- Development experience:
+- Quality system:
+- Delivery process:
+- Document knowledge:
+- Ecological expansion:
 
-## 项目形态探针
+## Project shape probe
 
-- 前端项目（页面 / 组件 / 路由 / 状态 / 数据请求 / 表单 / 设计系统 / 可访问性 / 性能 / 构建）：
-- 后端项目（API / 服务边界 / 数据库 / 队列 / 缓存 / 认证授权 / 任务调度 / 可观测性 / 部署）：
-- 工具或 CLI 项目（命令模型 / 配置 / 插件机制 / 错误输出 / 安装分发 / 模板）：
-- AI/Agent 项目（skills / commands / hooks / rules / agents / MCP / prompt / workflow）：
-- 库项目（公开 API / 类型 / 兼容性 / 构建产物 / 示例 / 版本策略）：
-- 文档或知识库项目（信息架构 / 导航 / 示例 / 搜索 / 版本化 / 贡献流程 / 发布节奏）：
+- Front-end projects (Pages/Components/Routing/State/Data Requests/Forms/Design System/Accessibility/Performance/Build):
+- Back-end projects (API / service boundary / database / queue / cache / authentication and authorization / task scheduling / observability / deployment):
+- Tool or CLI project (command model / configuration / plug-in mechanism / error output / installation distribution / template):
+- AI/Agent project (skills/commands/hooks/rules/agents/MCP/prompt/workflow):
+- Library project (Public API/Types/Compatibility/Build Artifacts/Examples/Version Policy):
+- Documentation or knowledge base project (information architecture / navigation / examples / search / versioning / contribution process / release cadence):
 
-## 不吸收范围
+## No absorption range
 
-- 明确拒绝：
-- 延后观察：
-- 只作为灵感不落地：
+- Explicit rejection:
+- Delayed observation:
+- Only as inspiration but not implemented:

@@ -1,43 +1,60 @@
-## Description: <br>
-Dropspace Content Engine helps set up and operate an autonomous content pipeline that analyzes engagement data, generates AI-assisted social posts, and schedules them across connected platforms through the Dropspace API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Self-improving autonomous content pipeline that analyzes post performance across six platforms, generates AI content, schedules posts via the Dropspace API, and improves from engagement data over time.
 
-## Publisher: <br>
-[jclvsh](https://clawhub.ai/user/jclvsh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jclvsh](https://clawhub.ai/user/jclvsh)
 
-## Use Case: <br>
-Developers, creators, and social media operators use this skill to configure and run a Dropspace-based workflow that turns engagement analytics into new posts and scheduled multi-platform content. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The configured workflow can schedule or publish through connected social accounts. <br>
-Mitigation: Use scoped API keys, start with test or low-risk accounts, and confirm a draft or review workflow before enabling live scheduling. <br>
-Risk: The setup uses live service credentials for Dropspace, Anthropic, and Fal. <br>
-Mitigation: Keep credentials in a local .env file, keep .env out of source control, and rotate keys if they are exposed. <br>
+## Use Case:
 
+External users and developers use this skill to set up and operate an autonomous social-content pipeline that analyzes engagement, generates new posts, and schedules content across supported social platforms.
 
-## Reference(s): <br>
-- [Dropspace Content Engine community page](https://www.dropspace.dev/community/dropspace-content-engine) <br>
-- [Dropspace API docs](https://www.dropspace.dev/docs) <br>
-- [dropspace-agents repository](https://github.com/joshchoi4881/dropspace-agents) <br>
-- [Dropspace case study](https://www.dropspace.dev/case-studies/march-2026) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DROPSPACE_API_KEY, ANTHROPIC_API_KEY, and FAL_KEY for full operation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The setup flow asks users to install external code before the repository and dependencies have been reviewed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated project directory, inspect the repository and lockfile first, and prefer npm ci with reviewed dependencies.
+
+Risk: The workflow uses live API keys and social account permissions.
+
+Mitigation: Use narrowly scoped, revocable credentials and avoid sourcing .env files in broad shell sessions.
+
+Risk: Nightly automation can schedule public posts without clear guardrails.
+
+Mitigation: Do not connect live social accounts or enable scheduled posting until generated content, cleanup behavior, and posting permissions have been confirmed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jclvsh/skills/dropspace-content-engine)
+- [Dropspace Content Engine community page](https://www.dropspace.dev/community/dropspace-content-engine)
+- [Dropspace API docs](https://www.dropspace.dev/docs)
+- [Dropspace March 2026 case study](https://www.dropspace.dev/case-studies/march-2026)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and environment variable configuration]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes setup, validation, execution, and scheduling instructions for a credentialed content automation workflow.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

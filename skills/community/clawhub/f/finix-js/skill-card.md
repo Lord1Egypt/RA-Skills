@@ -1,48 +1,58 @@
-## Description: <br>
-Finix.js integration for accepting card and ACH bank payments on the web, including hosted payment form embedding, browser tokenization, and server-side token exchange for Buyer Identities, Payment Instruments, Transfers, and Authorizations via the Finix Payments API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Finix.js integration for accepting card and ACH bank payments on the web.
 
-## Publisher: <br>
-[jbryant](https://clawhub.ai/user/jbryant) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jbryant](https://clawhub.ai/user/jbryant)
 
-## Use Case: <br>
-Developers and engineers use this skill to add Finix checkout flows to websites, including hosted card or ACH collection, payment tokenization, fraud session forwarding, and backend charge or authorization handling. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated payment-flow guidance or code could create real charges or transfers when paired with live Finix credentials. <br>
-Mitigation: Start in sandbox, review charge and transfer logic before production use, and restrict or rotate payment credentials as live payment API secrets. <br>
-Risk: FINIX_USERNAME and FINIX_PASSWORD are sensitive credentials. <br>
-Mitigation: Keep API credentials strictly server-side, store them in protected environment variables or a secrets manager, and never include them in browser-delivered code. <br>
-Risk: Incorrect handling of card or bank data can increase payment-compliance exposure. <br>
-Mitigation: Use Finix.js hosted tokenization so raw card and bank data does not touch merchant servers, serve production pages over HTTPS, and verify the final integration against Finix documentation. <br>
+## Use Case:
 
+Developers and engineers use this skill to add Finix-hosted card and ACH payment collection to web checkout flows and connect browser tokenization with server-side Finix API calls.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jbryant/finix-js) <br>
-- [Finix homepage](https://finix.com) <br>
-- [Finix.js tokenization guide](https://docs.finix.com/guides/online-payments/payment-tokenization/tokenization-forms) <br>
-- [Create an Identity](https://docs.finix.com/api/identities/createidentity) <br>
-- [Create a Payment Instrument](https://docs.finix.com/api/payment-instruments/createpaymentinstrument) <br>
-- [Create a Transfer](https://docs.finix.com/api/transfers/createtransfer) <br>
-- [Create an Authorization](https://docs.finix.com/api/authorizations/createauthorization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with JavaScript, HTML, JSON, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Finix sandbox and production configuration guidance plus environment-variable names for server-side credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: Finix credentials or sandbox credential examples may be copied into browser code, logs, shell history, CI output, or command lines.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use sandbox examples only for local testing, keep live credentials server-side, and store production secrets in a secret manager or protected configuration.
+
+Risk: Payment-flow examples can affect live card or ACH processing if copied directly into production without merchant-specific review.
+
+Mitigation: Test with sandbox Application and Merchant IDs first, then review environment, amount, credential, and fraud-session handling before switching to live Finix endpoints.
+
+## Reference(s):
+
+- [Finix homepage](https://finix.com)
+- [Finix.js tokenization guide](https://docs.finix.com/guides/online-payments/payment-tokenization/tokenization-forms)
+- [Create an Identity](https://docs.finix.com/api/identities/createidentity)
+- [Create a Payment Instrument](https://docs.finix.com/api/payment-instruments/createpaymentinstrument)
+- [Create a Transfer](https://docs.finix.com/api/transfers/createtransfer)
+- [Create an Authorization](https://docs.finix.com/api/authorizations/createauthorization)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with HTML, JavaScript, JSON, and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces integration guidance rather than executable skill code; examples require merchant-specific Finix identifiers and server-side credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

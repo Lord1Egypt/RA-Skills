@@ -1,43 +1,56 @@
-## Description: <br>
-Implements HTTP request retries with exponential backoff and a configurable circuit breaker to reduce transient failures and prevent cascading errors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Implements HTTP request retries with exponential backoff and a configurable circuit breaker to reduce transient failures and limit cascading errors.
 
-## Publisher: <br>
-[qwe123sddfsdfs](https://clawhub.ai/user/qwe123sddfsdfs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[qwe123sddfsdfs](https://clawhub.ai/user/qwe123sddfsdfs)
 
-## Use Case: <br>
-Developers and engineers use this skill to add retry handling, exponential backoff, timeouts, circuit breaker state management, and failure statistics to JavaScript HTTP clients that call unreliable services or third-party APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Retries can repeat requests that change data, especially POST, PUT, PATCH, delete, payment, account-change, or publishing operations. <br>
-Mitigation: Use idempotency keys where possible, restrict retries to safe or explicitly idempotent operations, and avoid sending sensitive data to untrusted endpoints. <br>
-Risk: Aggressive retry settings can add latency or increase load on an already degraded dependency. <br>
-Mitigation: Tune retry counts, delays, jitter, timeouts, and circuit breaker thresholds for the service, and monitor failure rate, retry rate, and circuit state before production rollout. <br>
+## Use Case:
 
+Developers and engineers use this skill to add configurable retry, timeout, jitter, and circuit breaker behavior around HTTP calls to unreliable services. It is most appropriate for idempotent or explicitly safeguarded requests where retry behavior is acceptable.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/qwe123sddfsdfs/http-retry-circuit-breaker) <br>
-- [README](artifact/README.md) <br>
-- [Skill usage guide](artifact/SKILL.md) <br>
-- [Performance guide](artifact/PERFORMANCE.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with JavaScript and shell code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes configurable retry counts, backoff delays, timeout values, retryable status codes, circuit breaker thresholds, event hooks, and runtime statistics.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, manifest.json, package.json) <br>
+Risk: Retry and timeout behavior can make state-changing API calls unsafe if repeated requests are not acceptable.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only where repeated requests are safe, or add idempotency keys and explicit retry controls for POST, PUT, DELETE, payments, submissions, account changes, and deletes.
+
+Risk: A request timeout does not prove that the remote service stopped processing the operation.
+
+Mitigation: Treat timed-out state-changing requests as uncertain, reconcile with the remote system, and avoid automatic blind retries unless the operation is idempotent.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/qwe123sddfsdfs/skills/http-retry-circuit-breaker)
+- [SKILL.md](artifact/SKILL.md)
+- [README.md](artifact/README.md)
+- [PERFORMANCE.md](artifact/PERFORMANCE.md)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with JavaScript examples, configuration snippets, and npm test commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Targets Node.js >=14.0.0 and has no package dependencies; retry behavior should be reviewed before use with state-changing requests.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, package.json, manifest.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

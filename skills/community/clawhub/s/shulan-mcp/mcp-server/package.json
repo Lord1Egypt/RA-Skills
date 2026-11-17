@@ -1,0 +1,40 @@
+{
+  "name": "shulan-mcp",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "数懒 ShuLan MCP Server — 把 AI 数据中台 REST API 包装为 MCP 工具，供 Claude Code / Cursor / ChatGPT Actions 调用。",
+  "bin": {
+    "shulan-mcp": "server.js"
+  },
+  "files": [
+    "server.js",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai",
+    "data",
+    "report",
+    "shulan",
+    "数懒"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shulan-io/shulan.git"
+  },
+  "homepage": "https://shulan.io",
+  "scripts": {
+    "start": "node server.js",
+    "prepublishOnly": "npm pack --dry-run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.24.1"
+  }
+}

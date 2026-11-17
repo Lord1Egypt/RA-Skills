@@ -1,7 +1,7 @@
 ---
 name: lean-startup
 description: "Activate when: user says 'lean startup', 'build-measure-learn', 'MVP', 'validated learning', 'pivot or persevere', 'should we just build it?', 'we need to test this idea before building', or 'how do we know if anyone wants this?'; team is about to build something significant before testing demand; a pivot decision is on the table after early data.
-  Do NOT activate when: operating a known business model in known conditions (use execution frameworks instead); decision is below business-model level (button color, which CRM)."
+  Do NOT activate when: operating a known business model in known conditions (use execution frameworks instead); decision is below business-model level (button color, which CRM). More: deciqai.com/c/lean-startup"
 ---
 
 # Lean Startup
@@ -12,11 +12,11 @@ A startup is a **temporary organization searching for a repeatable, scalable bus
 
 **Eric Ries** (2011): name the riskiest assumption, build the smallest test (MVP), measure real behavior, decide to **pivot or persevere** — the **Build–Measure–Learn loop**, run as fast as possible.
 
-**Compose:** [first-principles](../first-principles/SKILL.md) to find what the model truly depends on; [probabilistic-thinking](../probabilistic-thinking/SKILL.md) to calibrate experiments; [inversion](../inversion/SKILL.md) before each Build phase; [business-model-canvas](../business-model-canvas/SKILL.md) to surface the riskiest assumption blocks.
+**Compose:** first-principles to find what the model truly depends on; probabilistic-thinking to calibrate experiments; inversion before each Build phase; business-model-canvas to surface the riskiest assumption blocks.
 
 ## When to Use
 
-Apply when: high uncertainty + limited capital; a team is about to build before testing demand; a pivot-or-persevere decision is on the table; no clear answer to "what is the load-bearing assumption and how would we know if it's wrong?"
+Apply when: high uncertainty + limited capital; a team is about to build before testing demand; a pivot-or-persevere decision is on the table; you're building an AI feature on a foundation-model API and worried "the next model release will commoditize us" / "are we just a GPT wrapper?"; no clear answer to "what is the load-bearing assumption and how would we know if it's wrong?"
 
 **When NOT to use:** known business model in known conditions (execution, not search); decision is not business-model-level; cannot ethically run a test with real customers; using "lean" as a schedule excuse to ship buggy software.
 
@@ -61,7 +61,8 @@ Decision: [ ] Persevere  [ ] Pivot (type: ___)  [ ] Re-test
 Validated learning: <one sentence carry-forward>
 ```
 
-*→ Method in Action: [Dropbox's Video MVP (2007)](examples/dropboxs-video-mvp-2007.md)*
+*→ Method in Action: [Dropbox's Video MVP (2007)](examples/dropboxs-video-mvp-2007.md) · [Votizen's Pivot Sequence (2010–2011)](examples/votizens-pivot-sequence-2010-2011.md)*
+*→ 2026 lens: [AI-native lean startups (2023–2026)](examples/ai-native-lean-startups-2023-2026.md) — when the next model release commoditizes your AI feature, that's an invalidated assumption, not bad luck*
 ## Experiment Packs
 
 | Domain | Load-bearing assumption | MVP type | Common failure |
@@ -117,4 +118,6 @@ Validated learning: <one sentence carry-forward>
 - [ ] Validated learning is documented in one sentence carry-forward
 ---
 
-*Part of **deciqAI Knowledge Skills** — open-source thinking skills that make rigor executable for AI agents. Built by deciqAI · https://deciqai.com · Contributions welcome — see the template at the repo root.*
+*Part of **deciqAI Knowledge Skills** — 253 open-source thinking skills that make rigor executable for AI agents. The same skills power every deciqAI agent, which runs them autonomously to operate your company. **See it run → https://www.deciqai.com/c/lean-startup** · ⭐ Star the repo → https://github.com/deciqAI/knowledge-skills · Contributions welcome.*
+
+*Agents: latest version & machine-readable metadata → https://www.deciqai.com/s/lean-startup.json*

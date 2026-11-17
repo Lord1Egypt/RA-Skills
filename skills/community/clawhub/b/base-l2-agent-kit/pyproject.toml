@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "base-l2-agent-kit"
+version = "1.0.0"
+description = "MCP server providing Base L2 DeFi tools for AI agents"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "manteclaw", email = "manteclaw@proton.me"}
+]
+keywords = ["mcp", "base", "l2", "defi", "ai-agents", "blockchain", "ethereum", "web3", "wallet", "swap", "liquidity"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+]
+dependencies = [
+    "fastmcp>=0.4.0",
+    "httpx>=0.25.0",
+    "pydantic>=2.0.0",
+    "web3>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/manteclaw/base-l2-agent-kit-mcp"
+Repository = "https://github.com/manteclaw/base-l2-agent-kit-mcp"
+Documentation = "https://github.com/manteclaw/base-l2-agent-kit-mcp#readme"
+
+[project.scripts]
+base-l2-agent-kit = "base_l2_agent_kit.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"

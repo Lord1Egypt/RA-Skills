@@ -4,11 +4,12 @@ set -euo pipefail
 if [[ $# -lt 1 ]]; then
   cat <<'EOF' >&2
 Usage:
-  POYO_API_KEY=... submit_sora_2.sh <payload.json>
+  export POYO_API_KEY
+  submit_sora_2.sh <payload.json>
   submit_sora_2.sh <api_key> <payload.json>
 
 Examples:
-  POYO_API_KEY="$POYO_API_KEY" submit_sora_2.sh payload.json
+  submit_sora_2.sh payload.json
   submit_sora_2.sh "$POYO_API_KEY" payload.json
 EOF
   exit 1

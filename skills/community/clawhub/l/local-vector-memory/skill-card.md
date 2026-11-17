@@ -1,41 +1,59 @@
-## Description: <br>
-Store, search, and manage local vector memories using Ollama embeddings with Qdrant, supporting Chinese and English text without cloud dependencies. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Store, search, and manage local vector memories using Ollama embeddings with Qdrant, supporting Chinese and English text without cloud dependencies.
 
-## Publisher: <br>
-[jancong](https://clawhub.ai/user/jancong) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jancong](https://clawhub.ai/user/jancong)
 
-## Use Case: <br>
-Developers and agent users use this skill to add local semantic memory backed by Ollama embeddings and Qdrant storage. It is useful for storing, searching, reindexing, and deleting local text memories without cloud APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on an external PyPI package and a local Ollama embedding model. <br>
-Mitigation: Install it only after reviewing those dependencies and confirming they are appropriate for your environment. <br>
-Risk: Reindexing broad local directories can make unintended files searchable in the local vector store. <br>
-Mitigation: Index only deliberately approved directories and enable periodic reindexing only for paths you intend to search. <br>
+## Use Case:
 
+Developers and agent operators use this skill to install and operate a local semantic memory layer backed by Ollama embeddings and Qdrant. It supports adding memories, searching them, reindexing local Markdown directories, and integrating local recall into OpenClaw workflows without cloud APIs.
 
-## Reference(s): <br>
-- [PyPI project: local-vector-memory](https://pypi.org/project/local-vector-memory/) <br>
-- [GitHub repository: JanCong/local-vector-memory](https://github.com/JanCong/local-vector-memory) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Code, Configuration, JSON] <br>
-**Output Format:** [Markdown with inline bash, Python, environment variable tables, and JSON-capable CLI examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local-only usage guidance for Ollama and Qdrant workflows; no cloud API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill installs an unpinned PyPI package.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in an isolated virtual environment and pin or review the local-vector-memory package before use.
+
+Risk: Reindexing local directories can store private notes or OpenClaw memory in a local vector database.
+
+Mitigation: Only reindex directories approved for local vector storage and review retention expectations for the Qdrant database path.
+
+Risk: Optional cron or HEARTBEAT.md reindexing creates persistent refresh behavior for indexed content.
+
+Mitigation: Enable periodic reindexing only when ongoing local content refresh is intended and documented for the operator.
+
+## Reference(s):
+
+- [Local Vector Memory skill page](https://clawhub.ai/jancong/skills/local-vector-memory)
+- [PyPI: local-vector-memory](https://pypi.org/project/local-vector-memory/)
+- [GitHub: JanCong/local-vector-memory](https://github.com/JanCong/local-vector-memory)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands, Python examples, configuration tables, and CLI output guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce JSON-formatted search results when using the documented lvm search --json command.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

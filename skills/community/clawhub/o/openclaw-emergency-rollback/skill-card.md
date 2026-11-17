@@ -1,44 +1,66 @@
-## Description: <br>
-OpenClaw Emergency Rollback provides a local dead man's switch for OpenClaw configuration changes, using snapshots, watchdog timers, and startup recovery to restore a known-good config if changes are not accepted. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw Emergency Rollback gives OpenClaw users a local dead man's switch for snapshotting known-good configuration, arming a rollback timer, and restoring that snapshot if risky configuration changes break access.
 
-## Publisher: <br>
-[encryptshawn](https://clawhub.ai/user/encryptshawn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[encryptshawn](https://clawhub.ai/user/encryptshawn)
 
-## Use Case: <br>
-Developers and operators use this skill before risky OpenClaw config or agent workspace changes to create snapshots, arm or extend rollback timers, restore snapshots, and test emergency recovery. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The rollback system can persist across restarts, overwrite OpenClaw configuration, and restart the gateway automatically. <br>
-Mitigation: Install only when this behavior is intended, verify rollback-config.json contains the correct restart command, and restrict permissions on ~/.openclaw/rollback. <br>
-Risk: Restoring a snapshot can replace the current OpenClaw config and agent workspace config files. <br>
-Mitigation: Inspect snapshot contents and confirm the target snapshot before restoring; keep manual shell access available for recovery. <br>
-Risk: The recovery test deliberately breaks OpenClaw configuration and can interrupt active sessions. <br>
-Mitigation: Run the destructive test only with terminal access and a manual recovery copy ready. <br>
+## Use Case:
 
+Developers and operators use this skill when changing OpenClaw configuration and needing a recovery path that can save local snapshots, arm or extend an automatic rollback timer, manually restore a snapshot, and explain or test the recovery workflow.
 
-## Reference(s): <br>
-- [One-Time Setup](references/SETUP.md) <br>
-- [Manual Recovery](references/RESTORE.md) <br>
-- [Emergency Recovery Test](references/TESTING.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and configuration references] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local rollback instructions and command outputs for snapshots, watchdog timers, restores, status checks, and recovery testing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The rollback system can overwrite OpenClaw configuration and restart the gateway after a timer expires.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and arm it only when intentional; create and validate a known-good snapshot before making changes, and confirm the configured restart command before relying on automatic recovery.
+
+Risk: Persistent rollback files and hooks can affect future OpenClaw startups.
+
+Mitigation: Restrict permissions on the rollback directory, review the installed startup hook, and disarm the watchdog after accepting changes or completing manual recovery.
+
+Risk: A recovery test intentionally interrupts OpenClaw access and active sessions.
+
+Mitigation: Run destructive tests only after the user confirms terminal or SSH access and has a manual recovery copy and restart command available.
+
+Risk: Arbitrary or incorrect restart commands can fail recovery or execute unintended shell behavior.
+
+Mitigation: Use the narrowest restart command appropriate for the deployment and avoid broad shell patterns when OpenClaw is running in containers or managed process trees.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/encryptshawn/skills/openclaw-emergency-rollback)
+- [EncryptShawn publisher profile](https://clawhub.ai/user/encryptshawn)
+- [OpenClaw Emergency Rollback setup guide](references/SETUP.md)
+- [Emergency recovery test procedure](references/TESTING.md)
+- [Manual recovery guide](references/RESTORE.md)
+- [Watchdog recovery hook](hooks/watchdog-recovery/HOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and procedural guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May direct the agent to run bundled local Node.js scripts and install an OpenClaw startup hook for rollback recovery.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,64 @@
-## Description: <br>
-Publishes finished Markdown articles to X Articles drafts by parsing content, preparing rich text, mapping images and dividers, and syncing local X/Twitter cookies for Playwright session reuse. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Publishes existing Markdown articles to X Articles drafts by preparing rich text, media placement, clipboard content, and reusable Playwright login state.
 
-## Publisher: <br>
-[cellinlab](https://clawhub.ai/user/cellinlab) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cellinlab](https://clawhub.ai/user/cellinlab)
 
-## Use Case: <br>
-Developers and content operators use this skill to move an already finished Markdown long-form article into an X Articles draft while preserving title, cover, body images, dividers, and rich-text formatting. It also prepares Playwright storage state from local X/Twitter cookies when available, without auto-publishing. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill reads and persists local X/Twitter session cookies, which can expose account access if the storage-state file is shared, committed, or synced. <br>
-Mitigation: Keep the storage-state file private, avoid committing or syncing it, use a dedicated browser profile when possible, and delete it after publishing if session reuse is not needed. <br>
-Risk: Draft content can include remote image URLs or matched local image filenames that may not be the intended upload assets. <br>
-Mitigation: Review Markdown image URLs, downloaded remote images, and matched local filenames before creating the draft. <br>
-Risk: Browser automation may operate with an unintended logged-in X account if reused cookies come from the wrong browser profile. <br>
-Mitigation: Confirm the active X account after storage-state injection and choose or refresh the browser cookie source before drafting. <br>
+## Use Case:
 
+Developers and operators use this skill when they already have a finished Markdown long-form article and need an agent to prepare and save it as an X Articles draft. It helps parse article structure, handle images and dividers, prepare rich-text clipboard content, and reuse local login state when available.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/cellinlab/cell-x-article-publisher) <br>
-- [Homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/x-article-publisher) <br>
-- [Workflow](references/workflow.md) <br>
-- [Cookie Sync](references/cookie-sync.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON parsing output, generated HTML, image files, and Playwright storage-state configuration] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local intermediate files for HTML, images, clipboard transfer, table images, and X/Twitter cookie storage state.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata) <br>
+Risk: The skill can read local X/Twitter browser cookies and create a reusable Playwright login-state file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only on trusted machines and treat ~/.cache/x-article-publisher/x-storage-state.json like a password; do not share, commit, sync, or log it, and delete it after use.
+
+Risk: Markdown image handling can download remote HTTPS images and may match missing filenames from common personal folders.
+
+Mitigation: Review Markdown from untrusted sources before parsing, prefer known local image paths, and inspect generated asset paths before browser automation.
+
+Risk: Fresh dependency installation can pull current package versions at runtime.
+
+Mitigation: Pin and review dependencies before use in controlled or production environments.
+
+Risk: Automating a logged-in X/Twitter browser session can affect the user's account if the workflow is expanded beyond draft saving.
+
+Mitigation: Keep the default draft-only boundary, avoid automatic final publishing, and use a dedicated browser profile or manual login when appropriate.
+
+## Reference(s):
+
+- [OpenClaw homepage](https://github.com/cellinlab/cell-skills/tree/main/skills/x-article-publisher)
+- [Workflow](artifact/references/workflow.md)
+- [Cookie Sync](artifact/references/cookie-sync.md)
+- [Troubleshooting](artifact/references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands, JSON parse output, HTML clipboard content, generated image files, and Playwright storage-state configuration.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce temporary local image assets, copied clipboard content, and a local Playwright storage-state JSON file for X/Twitter authentication reuse.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

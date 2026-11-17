@@ -1,41 +1,54 @@
-## Description: <br>
-Guides users buying a pillow through sleep position, body size, fill material, loft, and firmness questions to determine the exact specs they need in a brand-neutral, region-aware way. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guide users buying a pillow through sleep position, body size, fill material, loft, and firmness questions to determine the exact specs they need -- unbiased, brand-neutral, region-aware.
 
-## Publisher: <br>
-[arbazex](https://clawhub.ai/user/arbazex) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[arbazex](https://clawhub.ai/user/arbazex)
 
-## Use Case: <br>
-External users use this skill to choose pillow specifications before buying, including loft, firmness, fill material, size, and region-specific certification considerations. The skill is intended for shopping guidance, not medical diagnosis or treatment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The consultation asks for location and health-related sleep context, which can be sensitive if collected too precisely. <br>
-Mitigation: Use a broad region or climate zone instead of city-level location when possible, and share only health details needed for shopping specs. <br>
-Risk: Users with significant pain, sleep apnea, reflux, or diagnosed conditions may treat shopping guidance as medical advice. <br>
-Mitigation: Use the skill only to identify purchasing specifications and consult a qualified medical professional for clinical concerns. <br>
+## Use Case:
 
+External users use this skill to run a structured pillow-buying consultation and receive brand-neutral guidance on loft, firmness, fill material, pillow size, certifications, and matched product types.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/arbazex/pillow-buying-consultant) <br>
-- [Publisher Profile](https://clawhub.ai/user/arbazex) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured Markdown consultation questions, specification recommendations, risk flags, and product suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces non-brand-first buying guidance with up to 5 matched product suggestions after required consultation inputs are collected.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The consultation may ask for sleep habits, allergies or sensitivities, possible sleep-related conditions, and location.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Share only what is needed for a useful recommendation; country or region and general comfort needs are usually enough.
+
+Risk: Users may treat pillow guidance as medical advice for neck pain or diagnosed sleep-related conditions.
+
+Mitigation: Use the skill for buying guidance only, and consult a physician or physiotherapist for diagnosis or treatment decisions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/arbazex/skills/pillow-buying-consultant)
+- [Declared Project Homepage](https://github.com/arbazex/bedroom-essentials-buying-consultants/tree/master/pillow-buying-consultant)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Conversational text followed by structured Markdown recommendation lists and up to five product suggestions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Brand-neutral, region-aware buying guidance; no external APIs, environment variables, or runtime dependencies.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

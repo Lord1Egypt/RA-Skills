@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowclawlab.dev/pptsmith/visual-plan.schema.json",
+  "title": "PPT Smith Visual Narrative Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "selected_route",
+    "style_id",
+    "display_name_zh",
+    "display_name_en",
+    "slides"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "selected_route": {
+      "type": "string",
+      "minLength": 1
+    },
+    "professional_route": {
+      "type": "string",
+      "enum": [
+        "strategic_decision",
+        "investor_commercial",
+        "product_prd",
+        "technical_architecture",
+        "project_governance",
+        "research_insight",
+        "education_explanation",
+        "brand_content_communication"
+      ]
+    },
+    "professional_narrative_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence"],
+      "properties": {
+        "sequence": {
+          "type": "array",
+          "minItems": 3,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "style_id": {
+      "const": "azure-insight-architecture"
+    },
+    "display_name_zh": {
+      "const": "澄蓝智构"
+    },
+    "display_name_en": {
+      "const": "Azure Insight Architecture"
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/pageDesignIntent"
+      }
+    }
+  },
+  "$defs": {
+    "pageDesignIntent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "slide_id",
+        "slide_role",
+        "audience_question",
+        "message",
+        "evidence_refs",
+        "priority",
+        "primary_expression",
+        "page_archetype",
+        "semantic_component",
+        "visual_anchor",
+        "layout",
+        "density",
+        "editability",
+        "delivery",
+        "style_system",
+        "forbidden_patterns",
+        "qa_focus"
+      ],
+      "properties": {
+        "schema_version": {"const": "1.0.0"},
+        "slide_id": {"type": "string", "minLength": 1},
+        "slide_role": {"type": "string", "minLength": 1},
+        "audience_question": {"type": "string", "minLength": 1},
+        "message": {"type": "string", "minLength": 1},
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {"type": "string", "minLength": 1},
+              {"type": "object", "minProperties": 1}
+            ]
+          }
+        },
+        "priority": {"enum": ["key", "supporting"]},
+        "primary_expression": {"type": "string", "minLength": 1},
+        "page_archetype": {"type": "string", "minLength": 1},
+        "semantic_component": {"type": "string", "minLength": 1},
+        "visual_anchor": {"type": "string", "minLength": 1},
+        "causal_data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nodes"],
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "minItems": 3,
+              "items": {
+                "type": "object",
+                "required": ["label"],
+                "properties": {
+                  "label": {"type": "string", "minLength": 1},
+                  "role": {"type": "string"},
+                  "priority": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "visual_data": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rows", "columns", "values"],
+          "properties": {
+            "rows": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+            "columns": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+            "values": {"type": "array", "minItems": 1, "items": {"type": "array", "minItems": 1, "items": {"type": "number"}}},
+            "value_suffix": {"type": "string"},
+            "highlighted_cells": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}}}
+          }
+        },
+        "layout": {"type": "object"},
+        "density": {"type": "object"},
+        "editability": {"type": "object"},
+        "delivery": {"type": "object"},
+        "style_system": {"type": "object"},
+        "forbidden_patterns": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "qa_focus": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+# Vendor contact info (Ontology Agent)
+# This file is the AI-readable "single source of truth": referenced by SKILL.md's file map and the expert system_prompt.
+# To change contact details, edit only this file; keep the user-level / project-level / source / embedded-expert copies consistent.
+# (Note: in a pure-prompt skill "the spec is the code"; installers can see this file. This is public contact channel info, not confidential.)
+
+company: 天津市微数人工智能科技有限责任公司
+company_en: Tianjin Weishu Artificial Intelligence Technology Co., Ltd.
+short_name: 微数 AI
+short_name_en: Weishu AI
+credit_code: 91120101MA82QPB89J
+official_website: https://ontoagent.net
+contact_email: 378330966@qq.com
+contact_phone: "15555555966"
+
+# Guidance shown when a user, having experienced the value via the free skill, wants to upgrade or get support
+support_hint: >-
+  This skill is the free edition and can fully build the enterprise ontology and AI expert team. For a more professional
+  enterprise-grade solution (custom build / edge-cloud sync / Palantir-style air-gapped private digital-company system
+  with local compute), contact Weishu AI via the official site, email, or phone above for technical support. Edge-cloud
+  sync and fully on-prem deployment require the enterprise to provide its own local compute server and related hardware.

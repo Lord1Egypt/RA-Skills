@@ -1,0 +1,100 @@
+{
+  "恶意函数": [
+    "eval",
+    "exec",
+    "source",
+    ".",
+    "trap",
+    "enable",
+    "builtin",
+    "command",
+    "alias",
+    "declare -f",
+    "typeset -f"
+  ],
+  "恶意命令": [
+    "chmod u+s",
+    "chmod 4755",
+    "useradd -u 0",
+    "usermod -aG sudo",
+    "iptables -F",
+    "rm -rf /",
+    "dd if=/dev/urandom of=/dev/sda",
+    "mkfs",
+    "systemctl stop firewalld",
+    "nc -e /bin/bash",
+    "base64 -d | bash",
+    "curl | bash",
+    "wget | sh",
+    "kill -9",
+    "nmap",
+    "arpspoof",
+    "sshpass",
+    "StrictHostKeyChecking=no"
+  ],
+  "恶意变量": [
+    "LD_PRELOAD",
+    "LD_LIBRARY_PATH",
+    "LD_AUDIT",
+    "BASH_ENV",
+    "ENV=",
+    "IFS=",
+    "PATH=",
+    "HISTFILE=/dev/null",
+    "PROMPT_COMMAND"
+  ],
+  "恶意文件写入": [
+    "authorized_keys",
+    ".bashrc",
+    "/etc/crontab",
+    "/etc/cron.",
+    "/etc/ld.so.preload",
+    "/etc/passwd",
+    "/etc/shadow",
+    "ssh_config",
+    "systemd/system",
+    "/etc/profile.d",
+    "rc.local"
+  ],
+  "自我复制": [
+    "cp $0",
+    "cp $BASH_SOURCE",
+    "cat $0 >",
+    "tee $0",
+    "dd if=$0",
+    "cp \"$0\""
+  ],
+  "反弹Shell": [
+    "/dev/tcp/",
+    "/dev/udp/",
+    "bash -i",
+    "exec 5<>/dev/tcp/",
+    "nc -e",
+    "mkfifo",
+    "0<&196;exec 196<>/dev/tcp/"
+  ],
+  "代码解密/混淆还原": [
+    "base64 -d",
+    "printf '\\x",
+    "$(printf",
+    "xxd -r",
+    "openssl enc -d",
+    "rev |"
+  ],
+  "网络外带/SSRF": [
+    "curl -X POST -d @",
+    "wget --post-file",
+    "/etc/shadow",
+    "http://",
+    "nc -e /bin/bash",
+    "telnet",
+    "scp "
+  ],
+  "权限维持/常驻": [
+    ">> ~/.bashrc",
+    "crontab -e",
+    "systemctl enable",
+    "chmod u+s",
+    "@reboot"
+  ]
+}

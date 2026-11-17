@@ -1,46 +1,62 @@
-## Description: <br>
-Query Australian Bureau of Statistics (ABS) datasets via natural language and return live data with citations, tables, JSON or CSV, charts, summaries, and macro snapshots. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Query Australian Bureau of Statistics (ABS) datasets via natural language and return data with citations.
 
-## Publisher: <br>
-[BillyBodean](https://clawhub.ai/user/BillyBodean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[billybodean](https://clawhub.ai/user/billybodean)
 
-## Use Case: <br>
-Analysts, journalists, researchers, and developers use this skill to find ABS datasets, query Australian economic and demographic time series, and produce cited outputs for reporting or analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill runs local Python scripts that contact the public ABS API and cache ABS metadata locally. <br>
-Mitigation: Review the bundled scripts before deployment and run them in an environment where outbound public API access and local cache writes are acceptable. <br>
-Risk: Broad ABS queries or use of the all key can return large result sets or require precise SDMX dimension keys. <br>
-Mitigation: Prefer validated presets, narrow date ranges, and inspect dataset structure before running unfamiliar direct queries. <br>
-Risk: Some datasets are discontinued, stale, or better handled by a dedicated Census workflow. <br>
-Mitigation: Follow the skill's replacement guidance for RT and RPPI, and route Census DataPacks or complex Census work to a dedicated census skill. <br>
+## Use Case:
 
+Developers, analysts, and agents use this skill to find and query ABS time-series datasets, compare Australian economic indicators, and return sourced tables, summaries, JSON, CSV, or charts.
 
-## Reference(s): <br>
-- [ABS Data API Quick Reference Guide](references/api-guide.md) <br>
-- [ABS Data API Dataset Catalog](references/dataset-catalog.md) <br>
-- [ABS SDMX Dimension Patterns](references/sdmx-patterns.md) <br>
-- [ABS Data API](https://data.api.abs.gov.au/rest) <br>
-- [ABS Dataflow List](https://data.api.abs.gov.au/rest/dataflow/ABS) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, CSV, PNG charts, shell commands, guidance] <br>
-**Output Format:** [Human-readable text, Markdown tables, CSV, JSON with labels, PNG charts, and cited analyst summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs include ABS source citations; chart output requires matplotlib and falls back to text when unavailable.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata and artifact changelog) <br>
+Risk: The skill calls the public ABS API and creates a local metadata cache in ~/.cache/abs-data-api.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install it only when an Australia/ABS-specific data helper is needed, and expect public API calls plus cached public metadata.
+
+Risk: User-requested --out or --chart operations can write files and may overwrite existing paths.
+
+Mitigation: Choose output paths deliberately and review generated file locations before running write-producing commands.
+
+Risk: Broad queries, especially all-dimension requests, may return large or hard-to-interpret result sets.
+
+Mitigation: Prefer validated presets, --latest, date ranges, or structure inspection before broad direct queries.
+
+## Reference(s):
+
+- [ABS Data API - Quick Reference Guide](artifact/references/api-guide.md)
+- [ABS Data API - Dataset Catalog](artifact/references/dataset-catalog.md)
+- [ABS SDMX Dimension Patterns](artifact/references/sdmx-patterns.md)
+- [ABS Data API base endpoint](https://data.api.abs.gov.au/rest)
+- [ABS dataflow endpoint](https://data.api.abs.gov.au/rest/dataflow/ABS)
+- [ClawHub skill page](https://clawhub.ai/billybodean/skills/abs-data-api)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown, text, CSV, JSON, and PNG chart outputs with ABS citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can write user-requested output files with --out or --chart; chart output requires matplotlib and falls back to text when unavailable.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

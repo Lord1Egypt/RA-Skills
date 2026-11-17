@@ -1,39 +1,55 @@
-## Description: <br>
-Generate and manage multiple programming tasks by analyzing, planning, executing, validating, and summarizing code projects efficiently. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate and manage multiple programming tasks by analyzing, planning, executing, validating, and summarizing code projects efficiently.
 
-## Publisher: <br>
-[jason513597](https://clawhub.ai/user/jason513597) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jason513597](https://clawhub.ai/user/jason513597)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to coordinate multi-task programming work by turning a task, optional context, and constraints into a plan, execution summary, report, and logs. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated code, plans, or proposed file changes may be incorrect or unsuitable for the user's project. <br>
-Mitigation: Review generated code and proposed changes before applying or relying on them. <br>
-Risk: Destructive operations, deployments, or external actions may have irreversible effects if approved without review. <br>
-Mitigation: Require explicit authorization before destructive operations and double-confirmation before deployments or external actions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jason513597/ai-codefactory) <br>
+## Use Case:
+
+Developers and engineers use this skill to coordinate multi-task programming work by turning a task, optional context, and optional constraints into a plan, result or report, logs, and a final summary.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Generated code, plans, or reports may be incorrect or unsuitable for the target project.
+
+Mitigation: Review generated outputs before running, merging, deploying, or relying on them.
+
+Risk: Workflow content written partly in Traditional Chinese may be misunderstood by users who cannot review it directly.
+
+Mitigation: Confirm the workflow text is understood before installation or have it reviewed by someone who can read it.
+
+Risk: External actions such as sending changes or deploying to production can affect systems outside the local workspace.
+
+Mitigation: Require explicit confirmation before external operations, matching the artifact's stated safety posture.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or JSON summaries with plans, results, reports, logs, and final summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated or proposed code and commands should be reviewed before use.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata) <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown-style agent responses and JSON runner output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The runner accepts a required task plus optional context and constraints, then returns a timestamped template pipeline summary.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

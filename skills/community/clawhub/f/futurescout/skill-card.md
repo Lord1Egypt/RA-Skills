@@ -1,40 +1,53 @@
-## Description: <br>
-Produces recurring five-year trend reports focused on structural shifts across technology, economics, politics, wealth patterns, and five defined investment sectors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Elvis Future Scout produces recurring long-term trend reports focused on 2026-2031 structural shifts across technology, economics, politics, wealth migration, and five specified investment sectors.
 
-## Publisher: <br>
-[elvisbim](https://clawhub.ai/user/elvisbim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[elvisbim](https://clawhub.ai/user/elvisbim)
 
-## Use Case: <br>
-Investors and strategy researchers use this skill to generate a structured weekly view of 2026-2031 trends and translate those trends into sector-screening criteria. It explicitly avoids individual stock recommendations, buy or sell advice, short-term price forecasts, and market-sentiment scoring. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill has a recurring Monday reporting cadence. <br>
-Mitigation: Confirm that scheduled behavior is desired and that the client can pause or disable it before installation. <br>
-Risk: The skill is investment-themed and could be mistaken for personalized financial advice. <br>
-Mitigation: Use it as trend research only; the skill's stated boundaries exclude stock picks, buy or sell advice, sentiment scoring, and short-term price predictions. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/elvisbim/futurescout) <br>
-- [Publisher profile](https://clawhub.ai/user/elvisbim) <br>
+## Use Case:
 
+External ClawHub users can use this skill to activate a Future Scout persona that prepares structured weekly trend reports and sector-positioning guidance for long-term investment research. The skill is not a personalized financial adviser and should not be used for individual stock recommendations or short-term trading decisions.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown trend report with structured sections and screening guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Weekly cadence; activated by the /future command according to the artifact.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may treat sector-level trend guidance as personalized financial advice.
+
+Mitigation: Present outputs as long-term research support only and require users to consult qualified financial professionals before acting on investment decisions.
+
+Risk: The skill describes weekly automatic reporting behavior that could continue without clear user consent.
+
+Mitigation: Enable recurring reports only after explicit opt-in and provide a visible way to pause or disable the behavior.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/elvisbim/skills/futurescout)
+- [ClawHub publisher profile](https://clawhub.ai/user/elvisbim)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown-formatted weekly trend report]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Recurring weekly report behavior should require explicit user opt-in and a clear pause or disable path.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,20 @@
+{
+  "schema": "neomorphic.received-useful-work.request.v1",
+  "task": "grantless-retained-read",
+  "inputs": {
+    "grant": false,
+    "wallet": false
+  },
+  "expectedOutput": "grant-refusal",
+  "authority": {
+    "reuse": true,
+    "owner": "other-publisher",
+    "version": "0.0.0",
+    "input": "other-input",
+    "expiresAt": "2020-01-01T00:00:00.000Z"
+  },
+  "budget": {
+    "maxUsd": 0,
+    "pay": false
+  }
+}

@@ -1,41 +1,58 @@
-## Description: <br>
-MONK-EYE Engine helps an agent generate forum-focused research queries and synthesize claimed forum intelligence into strategic reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+MONK-EYE Engine generates site-targeted forum research queries and report-style scaffolds for niche forum intelligence workflows.
 
-## Publisher: <br>
-[balkanblbn](https://clawhub.ai/user/balkanblbn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[balkanblbn](https://clawhub.ai/user/balkanblbn)
 
-## Use Case: <br>
-External users and developers use this skill to plan broad forum searches across regional communities and produce concise strategic research reports from the resulting findings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Reports may overstate scan depth, completion, or evidence quality. <br>
-Mitigation: Treat each report as untrusted unless it includes real, verifiable source URLs and supporting evidence. <br>
-Risk: Hard-coded local paths can cause installation failures or dependency on files outside the bundled skill. <br>
-Mitigation: Review paths before installing and prefer configurable paths that point to bundled files. <br>
-Risk: Broad forum search behavior can produce noisy or unsupported conclusions. <br>
-Mitigation: Require explicit source, language, and depth limits before relying on results. <br>
+## Use Case:
 
+Developers and external users can use this skill to prepare forum-specific research queries and draft strategic report-style outputs from niche community sources. Review is required before operational use because server security evidence flags misleading deep-crawling claims, high-risk source targeting without guardrails, and unsafe fixed-path configuration reads.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown or plain text reports, plus JSON-formatted search query lists from the helper script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports should be treated as untrusted unless they include real, verifiable source URLs and evidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact/package.json) <br>
+Risk: The skill makes broad deep-research and large-scale crawling claims that server security evidence says are misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as query planning and report scaffolding unless runtime evidence proves actual source collection, filtering, and attribution.
+
+Risk: The configured sources include high-risk forums and do not define explicit topic, depth, source, or safety limits.
+
+Mitigation: Set explicit allowed sources, topics, recursion depth, and review criteria before using generated queries or reports.
+
+Risk: The scripts read configuration from fixed paths outside the package-local skill directory.
+
+Mitigation: Correct configuration loading to use package-local files and validate paths before installation or execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/balkanblbn/skills/monk-eye-engine)
+- [ClawHub publisher profile](https://clawhub.ai/user/balkanblbn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or terminal text, with optional JSON search-query lists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May emit status logs, generated site-specific search queries, and report-style summaries; source attribution and depth claims require reviewer validation.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata, artifact/package.json, and artifact/monk_eye_config.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

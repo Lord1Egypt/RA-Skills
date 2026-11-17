@@ -1,41 +1,61 @@
-## Description: <br>
-Monitor GitHub Actions CI pipelines for failures and automatically fix common issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor GitHub Actions CI pipelines for failures and automatically fix common issues.
 
-## Publisher: <br>
-[danielgrobelny](https://clawhub.ai/user/danielgrobelny) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[danielgrobelny](https://clawhub.ai/user/danielgrobelny)
 
-## Use Case: <br>
-Developers and engineers use this skill to monitor GitHub Actions failures, inspect logs, apply common CI fixes, and report issues that require human intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can drive recurring automated repository changes and pushes using the user's GitHub access. <br>
-Mitigation: Set CI_REPOS explicitly, use a least-privilege GitHub token, run the skill on demand before enabling cron, and require human approval or pull request review before any commit or push. <br>
-Risk: The skill reads GitHub Actions logs, which may expose sensitive build details. <br>
-Mitigation: Install only where access to GitHub Actions logs is acceptable, and scope credentials to the repositories that need CI monitoring. <br>
+## Use Case:
 
+Developers and engineers use this skill to watch GitHub Actions runs, diagnose failed builds, apply known safe fixes for common failure patterns, and report cases that need human review.
 
-## Reference(s): <br>
-- [CI Failure Fix Patterns](references/fix-patterns.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/danielgrobelny/ci-failure-fixer) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline bash commands and diagnosis text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an authenticated GitHub CLI and may read GitHub Actions logs or propose repository changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can lead agents to make and push unattended repository changes with weak scope controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated low-privilege GitHub identity, set an explicit CI_REPOS allowlist, avoid unattended cron auto-repair, and require human review before commits or pushes.
+
+Risk: The security scan reports a real script injection flaw.
+
+Mitigation: Review and harden script inputs before deployment, and run the skill only in trusted repositories until the issue is fixed.
+
+Risk: Token and authentication failures require secret rotation or updates that should not be automated by the skill.
+
+Mitigation: Report credential failures for manual handling by an authorized operator.
+
+Risk: An attacker-controlled CI_STATE_FILE path could affect local state handling.
+
+Mitigation: Keep CI_STATE_FILE controlled by trusted operators and do not expose it to untrusted input.
+
+## Reference(s):
+
+- [CI Failure Fix Patterns](references/fix-patterns.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands and diagnostic text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include repository-specific CI status, proposed fixes, pushed changes, or report-only diagnoses.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

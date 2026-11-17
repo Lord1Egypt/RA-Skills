@@ -1,6 +1,6 @@
 {
   "name": "@beauty-diagram/skill",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "private": true,
   "description": "Beauty Diagram agent skill — instructs LLM agents how to call the bd CLI for sleek, modern diagrams.",
   "files": [

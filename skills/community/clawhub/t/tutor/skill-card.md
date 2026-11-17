@@ -1,46 +1,48 @@
-## Description: <br>
-Personalized tutoring for any age and subject with adaptive teaching, progress tracking, and parent oversight. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Personalized tutoring for any age and subject with adaptive teaching, progress tracking, and parent oversight.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External learners, parents, and educators use this skill for adaptive tutoring across school, university, adult-learning, test-prep, and technical subjects while tracking learner progress over time. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Local learner records may contain personal educational information, especially for minors. <br>
-Mitigation: Get parent or guardian consent for minors, keep ~/tutor/ private, avoid unnecessary identifiers or sensitive inferences, and delete records when no longer needed. <br>
-Risk: Progress reports or learner notes may be shared beyond the intended audience. <br>
-Mitigation: Review reports before sharing and limit disclosure to the learner or appropriate parent, guardian, or educator. <br>
-Risk: Tutoring could cross into academic-integrity or sensitive-support situations. <br>
-Mitigation: Use the skill to teach concepts rather than provide direct answers, and escalate harm, abuse, distress, or serious mental-health concerns to an appropriate adult or support resource. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/ivangdavila/tutor) <br>
-- [Teaching by Age Group](artifact/ages.md) <br>
-- [Progress Tracking](artifact/progress.md) <br>
-- [Safety and Escalation](artifact/safety.md) <br>
-- [Session Structure](artifact/sessions.md) <br>
-- [Subject-Specific Strategies](artifact/subjects.md) <br>
+## Use Case:
 
+Learners, parents, and educators use this skill to run age-appropriate tutoring sessions across school, university, adult-learning, test-prep, language, writing, science, math, reading, and technical subjects. It guides an agent to teach through questions, adapt pacing, track progress, generate reports, and escalate safety concerns when needed.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, JSON, Files] <br>
-**Output Format:** [Conversational tutoring guidance, Markdown progress reports, and local JSON/JSONL learner records] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local learner records under ~/tutor/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can persist sensitive learner and minor education records in predictable local plaintext files under ~/tutor/.
+
+Mitigation: Use explicit consent, sanitized learner identifiers, owner-only file permissions, retention and deletion rules, and limits on sensitive notes before real learner use.
+
+## Reference(s):
+
+- [ClawHub Tutor Skill Page](https://clawhub.ai/ivangdavila/skills/tutor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Conversational text and Markdown, with JSON and JSONL learner records when progress is saved]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores learner profiles, session logs, progress records, subject notes, and reports under ~/tutor/ when used as written.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

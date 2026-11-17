@@ -1,45 +1,60 @@
-## Description: <br>
-Queries A-share and Hong Kong stock valuation data, including PE, PB, PS, discounted cash flow style measures, fair price, margin of safety, and valuation labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+A stock valuation lookup for A-share and Hong Kong equities that returns valuation metrics, fair-price estimates, margin of safety, and under/fair/overvaluation labels.
 
-## Publisher: <br>
-[chenfei619](https://clawhub.ai/user/chenfei619) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chenfei619](https://clawhub.ai/user/chenfei619)
 
-## Use Case: <br>
-External users and finance-focused agent workflows use this skill to retrieve structured valuation reports for supported A-share and Hong Kong stock codes. The reports are for informational research and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Queries send stock codes, and any configured STOCK_VALUATION_AUTH token, to tz.smxqx.tech. <br>
-Mitigation: Install only when that data sharing is acceptable, and use a dedicated token with limited exposure where possible. <br>
-Risk: Valuation reports may be mistaken for investment advice. <br>
-Mitigation: Treat outputs as informational research and require human financial judgment before making investment decisions. <br>
-Risk: The artifact includes a public fallback API token that may be rate-limited or unsuitable for private deployments. <br>
-Mitigation: Configure STOCK_VALUATION_AUTH explicitly and monitor failures or rate-limit responses. <br>
+## Use Case:
 
+External users and agents use this skill to query supported A-share and Hong Kong stock codes and generate informational valuation summaries. The output is useful for financial research workflows, but it is not investment advice.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/chenfei619/sz-stock-valuation) <br>
-- [API field reference](references/api_fields.md) <br>
-- [Stock code format reference](references/stock_code_format.md) <br>
-- [Stock valuation API endpoint](https://tz.smxqx.tech/api/stock/valuation/detail) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Analysis, API Calls] <br>
-**Output Format:** [Markdown valuation report] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes current quote metrics, valuation ratios, fair value estimates, margin of safety, valuation labels, and an investment-advice disclaimer when data is available.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.0) <br>
+Risk: Queried stock codes are sent to tz.smxqx.tech with either a user-provided token or the bundled shared public token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a scoped STOCK_VALUATION_AUTH token when available and avoid querying sensitive watchlists through the shared public token.
+
+Risk: Valuation output may be mistaken for investment advice.
+
+Mitigation: Present results as informational research, keep the disclaimer visible, and require human judgment before any financial decision.
+
+Risk: Broad finance triggers may activate the skill for ambiguous valuation or investment prompts.
+
+Mitigation: Confirm the intended stock code and market suffix before running the valuation query.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chenfei619/skills/sz-stock-valuation)
+- [API returned fields](references/api_fields.md)
+- [Stock code format](references/stock_code_format.md)
+- [Valuation API endpoint](https://tz.smxqx.tech/api/stock/valuation/detail)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Structured Markdown report with valuation tables and a disclaimer]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a supported stock code and may use STOCK_VALUATION_AUTH or a bundled shared public token.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter is 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,59 @@
-## Description: <br>
-Set up and query business data across 100+ sources, including Stripe, HubSpot, and Salesforce, via SQL with agent-driven setup, cross-source joins, and mutations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Set up and query business data across 100+ sources (Stripe, HubSpot, Salesforce, etc.) via SQL. Agent-driven setup, cross-source joins, mutations.
 
-## Publisher: <br>
-[kappa90](https://clawhub.ai/user/kappa90) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kappa90](https://clawhub.ai/user/kappa90)
 
-## Use Case: <br>
-Developers and agents use Dinobase to initialize local or cloud-backed business data connections, sync source data, inspect schemas, run SQL queries across tools, and preview write-back mutations before confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Dinobase connects to business systems using API keys or OAuth, so credentials and source permissions can expose sensitive account data if over-scoped or handled carelessly. <br>
-Mitigation: Use least-privilege or test credentials where possible, avoid pasting production secrets into visible command lines when a safer secret mechanism is available, and review connected sources before sync or query work. <br>
-Risk: Dinobase can write data back to upstream systems through UPDATE or INSERT workflows. <br>
-Mitigation: Treat mutation previews as the approval point and confirm only changes the user explicitly intends to apply. <br>
+## Use Case:
 
+Developers and agent users use this skill to initialize Dinobase, connect SaaS and business data sources, sync data, query it with SQL, and perform previewed write-back mutations when appropriate.
 
-## Reference(s): <br>
-- [Dinobase homepage](https://dinobase.ai) <br>
-- [ClawHub skill page](https://clawhub.ai/kappa90/dinobase) <br>
-- [Publisher profile](https://clawhub.ai/user/kappa90) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration instructions, Code] <br>
-**Output Format:** [Markdown with inline bash, JSON, and SQL code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill guides agents through Dinobase CLI setup, source connection, sync, schema discovery, SQL querying, and mutation preview or confirmation workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may guide agents to pass SaaS API keys to CLI commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use narrowly scoped, revocable API keys and avoid exposing live secrets directly in visible agent commands when possible.
+
+Risk: The skill installs and relies on an unpinned external CLI package.
+
+Mitigation: Review the package before installation and install from a trusted, controlled environment.
+
+Risk: Write-back mutations can change connected business systems.
+
+Mitigation: Confirm mutation previews carefully before running the final confirmation command.
+
+## Reference(s):
+
+- [Dinobase homepage](https://dinobase.ai)
+- [ClawHub skill page](https://clawhub.ai/kappa90/skills/dinobase)
+- [Publisher profile](https://clawhub.ai/user/kappa90)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON command outputs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Commands generally produce JSON by default; write-back mutations use a preview and confirmation flow.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

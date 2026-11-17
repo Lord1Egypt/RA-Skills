@@ -1,42 +1,59 @@
-## Description: <br>
-Use when the user wants to connect to, test, or use the McDonalds service at mcp.mcd.cn, including checking authentication, probing MCP endpoints, listing tools, or calling McDonalds MCP tools through a reusable local CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to connect to, test, or use the McDonalds service at mcp.mcd.cn, including checking authentication, probing MCP endpoints, listing tools, or calling McDonalds MCP tools through a reusable local CLI.
 
-## Publisher: <br>
-[1052666](https://clawhub.ai/user/1052666) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[1052666](https://clawhub.ai/user/1052666)
 
-## Use Case: <br>
-Developers and agent operators use this skill to test connectivity and authentication for the McDonalds MCP service, list available tools, and invoke selected tools through a local Python CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: A live McDonalds MCP token can be used to create orders or change account data without clear built-in confirmation safeguards. <br>
-Mitigation: Require explicit user confirmation before order creation, coupon binding, points redemption, or address changes, and review every tool name and JSON argument before execution. <br>
-Risk: Terminal output and saved JSON reports may contain sensitive account data. <br>
-Mitigation: Treat command output and report files as sensitive, avoid sharing them, and remove reports when they are no longer needed. <br>
+## Use Case:
 
+Developers and operators use this skill to connect an agent to the McDonalds MCP service, verify credentials and endpoint health, list available tools, and invoke selected MCP tools through a local CLI.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/1052666/mcdonalds-skill) <br>
-- [McDonalds MCP service endpoint](https://mcp.mcd.cn) <br>
-- [McDonalds MCP token portal](https://open.mcd.cn/mcp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, JSON, API calls, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save smoke-test reports as JSON files; uses bearer-token authentication.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: A real McDonald's MCP token may authorize live account or ordering actions.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a token only after review, keep it in the environment or command line as intended, and run account-changing tools only when the user explicitly requests those changes.
+
+Risk: A custom MCP URL could receive the bearer token.
+
+Mitigation: Prefer the default https://mcp.mcd.cn endpoint and avoid overriding MCDONALDS_MCP_URL unless the endpoint is trusted.
+
+Risk: Some available tools can create orders, create delivery addresses, or bind coupons.
+
+Mitigation: Treat create-order, delivery-create-address, auto-bind-coupons, and mall-create-order as live-action tools requiring explicit confirmation before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1052666/skills/mcdonalds-skill)
+- [McDonalds MCP service endpoint](https://mcp.mcd.cn)
+- [McDonalds MCP credential portal](https://open.mcd.cn/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI can print JSON responses and optionally write smoke-test reports to a JSON file.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

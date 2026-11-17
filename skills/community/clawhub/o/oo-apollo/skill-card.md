@@ -1,43 +1,57 @@
-## Description: <br>
-Apollo. Use this skill for ANY Apollo request - searching and reading data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Apollo. Use this skill for ANY Apollo request — searching and reading data. Whenever a task involves Apollo, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users and developers use this skill to run Apollo prospecting and enrichment workflows through the OOMOL-connected oo CLI, including people search, organization search, entity enrichment, and API usage checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Apollo actions use an OOMOL-connected account and may access account or team data through server-side credentials. <br>
-Mitigation: Use only the intended signed-in OOMOL account, inspect the live connector schema before building payloads, and run setup steps only after matching authentication or connection failures. <br>
-Risk: Connector actions tagged as write or destructive could change or remove Apollo data if such actions are added or used. <br>
-Mitigation: Confirm the exact payload and effect with the user before write actions, and require explicit approval for destructive actions. <br>
+## Use Case:
 
+People using Apollo can search for people and organizations, enrich person or organization records, and check API usage through their OOMOL-connected account.
 
-## Reference(s): <br>
-- [ClawHub Apollo Skill Page](https://clawhub.ai/oomol/oo-apollo) <br>
-- [OOMOL Publisher Profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI Install Guide](https://cli.oomol.com/install-guide.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, API Calls, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash commands and JSON payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Connector responses are JSON objects containing data and meta.executionId when actions run successfully.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and release evidence) <br>
+Risk: CLI setup may execute downloaded code and make persistent changes to other agents’ skills.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and approve CLI installation separately; consider setting OO_SKILLS_SYNC_DISABLED=1 before using it.
+
+Risk: Apollo requests through the connected account may consume credits.
+
+Mitigation: Check the connected account and OOMOL credit status before running actions.
+
+## Reference(s):
+
+- [Apollo API documentation](https://docs.apollo.io/reference/authentication)
+- [oo CLI project](https://github.com/oomol-lab/oo-cli)
+- [oo CLI installation guide](https://cli.oomol.com/install-guide.md)
+- [Connect Apollo in OOMOL](https://console.oomol.com/connections/apollo)
+- [OOMOL billing and token recharge](https://console.oomol.com/billing/token-recharge)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, JSON, Text]
+
+**Output Format:** [Structured JSON responses with text summaries or guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Apollo actions may return account and prospecting data; API calls may consume credits.]
+
+## Skill Version(s):
+
+1.0.5 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

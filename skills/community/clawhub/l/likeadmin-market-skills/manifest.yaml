@@ -1,0 +1,52 @@
+schemaVersion: 1
+name: likeadmin-market-skills
+version: 1.1.0
+vendor: likeadmin
+runtime:
+  interpreter: node
+  minimumVersion: 20
+env:
+  required: []
+  optional:
+    - LIKEADMIN_MARKET_BASE_URL
+    - LIKEADMIN_MARKET_API_KEY
+environment:
+  variables:
+    - name: LIKEADMIN_MARKET_BASE_URL
+      required: false
+      setupOnly: true
+      description: Tenant API origin copied by the installer and imported into local credentials; never used as a runtime default.
+    - name: LIKEADMIN_MARKET_API_KEY
+      required: false
+      setupOnly: true
+      sensitive: true
+      description: Tenant API key copied by the installer and imported into local credentials; never printed or read at runtime.
+credentials:
+  model: credentials_json
+  defaultPath: ~/.likeadmin-market-skills/credentials.json
+  fileName: credentials.json
+  requiredFields:
+    - base_url
+    - api_key
+  sensitiveFields:
+    - api_key
+  persistAccessTokenOnDisk: false
+  doNotCommitToVcs:
+    - credentials.json
+clientPermissions:
+  network:
+    httpsOutbound: true
+    configuredHostOnly: true
+  filesystem:
+    read:
+      - user_supplied_media_paths
+      - ~/.likeadmin-market-skills/credentials.json
+    write:
+      - ~/.likeadmin-market-skills/credentials.json
+      - user_selected_workflow_state_file
+  userContent:
+    localMediaMustUseUploadApi: true
+    mayDownloadOnlyWhenUserRequestsIt: true
+agentPolicy:
+  alwaysSkill: false
+  modifiesOtherSkillsOrGlobalAgent: false

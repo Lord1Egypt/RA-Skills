@@ -1,48 +1,62 @@
-## Description: <br>
-2-agent collaborative software development workflow for OpenClaw <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+2-agent collaborative software development workflow for OpenClaw
 
-## Publisher: <br>
-[ChloePark85](https://clawhub.ai/user/ChloePark85) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[chloepark85](https://clawhub.ai/user/chloepark85)
 
-## Use Case: <br>
-Developers and builders use this skill to turn project requests into implemented software by coordinating a PM agent that plans work and a Dev agent that writes, tests, documents, and commits code. It is aimed at landing pages, small web applications, prototypes, documentation sites, and similar code generation projects. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can coordinate agents that create and modify project files, run development commands, install packages, start processes, and make Git commits. <br>
-Mitigation: Use a dedicated or backed-up project workspace and review generated changes before commits, pushes, or deployment. <br>
-Risk: Repository or deployment credentials could give the agents broader access than the intended project. <br>
-Mitigation: Provide GitHub or deployment credentials only for the specific repository or service the agents should modify. <br>
+## Use Case:
 
+Developers use this skill to coordinate a project-manager agent and developer agent that plan, implement, test, and package small software projects from a written request. It is best suited for landing pages, React or Next.js applications, prototypes, component libraries, developer tools, and documentation sites.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/ChloePark85/multi-agent-dev-team) <br>
-- [Publisher profile](https://clawhub.ai/user/ChloePark85) <br>
-- [UBIK Collective homepage](https://ubik.systems) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
-- [OpenClaw GitHub repository](https://github.com/openclaw/openclaw) <br>
-- [Skill guide](SKILL.md) <br>
-- [Project specification template](templates/project-spec-template.md) <br>
-- [PM Agent SOUL](agents/pm-agent/SOUL.md) <br>
-- [Dev Agent SOUL](agents/dev-agent/SOUL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown responses with task specifications, code deliverables, setup commands, configuration snippets, and completion summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or modify project files and Git commits when used by configured OpenClaw agents.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and package.json) <br>
+Risk: The skill gives agents broad ability to modify files, run shell commands, install dependencies, use Git, and prepare deployments.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only in a dedicated project workspace, review planned commands and diffs, and confirm Git remotes or deployment targets before publication.
+
+Risk: Generated projects can include incorrect code, vulnerable dependencies, or incomplete tests.
+
+Mitigation: Run builds, tests, dependency audits, and human code review before using generated output in production.
+
+Risk: Credentials or production secrets could be exposed if the agents work inside a sensitive repository.
+
+Mitigation: Keep production secrets out of the workspace and use isolated credentials or environment files that are reviewed before command execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/chloepark85/skills/multi-agent-dev-team)
+- [OpenClaw Documentation](https://docs.openclaw.ai)
+- [OpenClaw](https://openclaw.ai)
+- [Skill README](artifact/README.md)
+- [Project Specification Template](artifact/templates/project-spec-template.md)
+- [Landing Page Example](artifact/examples/landing-page-example.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses, generated project files, shell commands, configuration snippets, and code changes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May initialize Git repositories, install dependencies, run tests, and prepare deployment-oriented deliverables when the agent environment permits.]
+
+## Skill Version(s):
+
+1.0.0 (source: package.json and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

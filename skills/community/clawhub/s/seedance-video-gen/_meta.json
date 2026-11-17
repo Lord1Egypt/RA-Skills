@@ -1,6 +1,22 @@
 {
-  "ownerId": "kn7cy12yzara9p2s370vsanfe9824vnm",
-  "slug": "seedance-video-gen",
-  "version": "1.0.3",
-  "publishedAt": 1778048951655
+  "owner": "jackycser",
+  "slug": "seedance-video-generation",
+  "displayName": "Seedance Video Generation",
+  "latest": {
+    "version": "1.0.3",
+    "publishedAt": 1770883878648,
+    "commit": "https://github.com/openclaw/skills/commit/53614a4c78e72d4c77387377386d6376c8edfb61"
+  },
+  "history": [
+    {
+      "version": "1.0.1",
+      "publishedAt": 1770868206406,
+      "commit": "https://github.com/openclaw/skills/commit/2a8fe9fd6b94793f454044beab15fef75a8e7c56"
+    },
+    {
+      "version": "1.0.0",
+      "publishedAt": 1770701416300,
+      "commit": "https://github.com/openclaw/skills/commit/29b89f955b2c41049532356fea634ae5938a8f54"
+    }
+  ]
 }

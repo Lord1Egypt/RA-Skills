@@ -1,42 +1,58 @@
-## Description: <br>
-Monitor new papers on arXiv by category, fetch formatted paper summaries, and manage starred papers for later reference. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetch and monitor latest arXiv papers by category, generate summaries, and manage starred papers for easy reference.
 
-## Publisher: <br>
-[constx1337](https://clawhub.ai/user/constx1337) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[constx1337](https://clawhub.ai/user/constx1337)
 
-## Use Case: <br>
-Developers, researchers, and research-focused users use this skill to check recent arXiv papers by category, review concise Markdown summaries, and keep a local starred-paper reading list. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill contacts arXiv and displays external paper metadata and abstracts. <br>
-Mitigation: Use explicit arXiv-related prompts and verify paper details before relying on summaries or links. <br>
-Risk: Starred paper metadata is saved locally in the skill artifact's assets/starred.json file. <br>
-Mitigation: Review or clear the local starred-paper list when working in shared or sensitive environments. <br>
+## Use Case:
 
+Researchers, developers, and technical readers use this skill to check recent arXiv papers in selected categories, review Markdown summaries, and maintain a local starred-paper reading list.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/constx1337/arxiv-watch) <br>
-- [arXiv category taxonomy](https://arxiv.org/category_taxonomy) <br>
-- [arXiv API query endpoint](http://export.arxiv.org/api/query) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Shell commands, Configuration] <br>
-**Output Format:** [Markdown paper summaries with command output and local JSON starred-paper data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetch results include arXiv IDs, authors, categories, submitted dates, abstract previews, and paper links.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Fetched paper titles, abstracts, authors, and links are external content that may be inaccurate or misleading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat displayed metadata as untrusted reference material and verify important claims against the linked arXiv paper before relying on them.
+
+Risk: Paper links and PDF URLs may lead users to external content.
+
+Mitigation: Avoid following suspicious links and do not treat paper metadata or linked content as instructions.
+
+Risk: The skill saves starred-paper metadata locally.
+
+Mitigation: Review local starred-paper data before sharing the skill directory or generated artifacts.
+
+## Reference(s):
+
+- [arXiv Category Taxonomy](https://arxiv.org/category_taxonomy)
+- [ClawHub Skill Page](https://clawhub.ai/constx1337/skills/arxiv-watch)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Files, Guidance]
+
+**Output Format:** [Markdown paper summaries with arXiv links, plus JSON metadata for starred papers]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Fetches paper metadata from arXiv and stores starred-paper metadata locally in assets/starred.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

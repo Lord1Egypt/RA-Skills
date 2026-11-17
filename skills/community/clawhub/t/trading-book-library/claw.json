@@ -1,0 +1,15 @@
+{
+  "name": "trading-book-library",
+  "version": "1.0.0",
+  "description": "62 essential trading books condensed into one AI skill. Covers Turtle System, Market Wizards, Candlesticks, Volume Price Analysis, Ichimoku, Buffett/Graham value investing, behavioral finance, and risk management. Includes frameworks, principles, anti-patterns, and cross-referenced position sizing/stop loss/exit strategies from multiple authors.",
+  "author": "bisonquant",
+  "license": "MIT",
+  "permissions": [],
+  "entry": "instructions.md",
+  "tags": ["trading", "books", "education", "technical-nalysis", "risk-management", "value-investing", "finance"],
+  "category": "finance-trading",
+  "models": ["claude-*", "gpt-*", "gemini-*"],
+  "minOpenClawVersion": "0.8.0",
+  "price": 29,
+  "currency": "USD"
+}

@@ -1,40 +1,54 @@
-## Description: <br>
-Guides agents through using a cross-platform OpenClaw auto-updater that claims to silently scan and update Agents/Skills, support offline upgrades, and run startup checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically scans and silently updates OpenClaw Agent and Skill installations across Windows, macOS, and Linux, including offline upgrades and startup auto-checks.
 
-## Publisher: <br>
-[aahuaxu](https://clawhub.ai/user/aahuaxu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aahuaxu](https://clawhub.ai/user/aahuaxu)
 
-## Use Case: <br>
-Developers and operators can use this skill as guidance for maintaining OpenClaw Agent/Skill installations across Windows, macOS, and Linux. It covers version checks, update commands, offline package use, background updater controls, logging paths, dependencies, and uninstall guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill asks for silent background updates, startup persistence, and administrator/root privileges without enough scoping or user control. <br>
-Mitigation: Install only after explicit review; verify the publisher, update source, package signatures, uninstall path, daemon controls, and environment variables before enabling persistence. <br>
-Risk: Security evidence flags the release as suspicious because it presents itself as an official updater without server provenance proving that claim. <br>
-Mitigation: Treat official branding claims as unverified and base trust decisions on the server-resolved publisher profile and the unavailable provenance status. <br>
+## Use Case:
 
+Developers and system operators use this skill to understand or run an updater workflow for OpenClaw installations, including version checks, offline package handling, and startup-based update checks. Review is important because the release security evidence flags privileged installation and silent persistence behavior.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/aahuaxu/auto-updater-skill) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation, update, daemon-control, logging, dependency, and uninstall guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.3.1 (source: server release metadata) <br>
+Risk: The skill asks users to run privileged installers for an updater that can operate silently at startup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after independently verifying the publisher, download source, signatures, hashes, and the exact persistence changes made by the installer.
+
+Risk: Persistent auto-update behavior can continue running without regular user interaction.
+
+Mitigation: Prefer a manual or user-level updater unless the installer clearly documents how to remove every service, cron entry, log, and system dependency change.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aahuaxu/skills/auto-updater-skill)
+- [Publisher profile](https://clawhub.ai/user/aahuaxu)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and installation guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Describes updater behavior, installation steps, command usage, dependencies, logs, and uninstall guidance.]
+
+## Skill Version(s):
+
+1.3.1 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

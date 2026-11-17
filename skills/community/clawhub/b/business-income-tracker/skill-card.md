@@ -1,42 +1,54 @@
-## Description: <br>
-Tracks daily business income and expenses, calculates weekly and monthly ROI, monitors channels, and compares expected versus actual revenue. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks daily income and expenses, calculates weekly and monthly ROI, monitors revenue channels, and compares expected versus actual business revenue.
 
-## Publisher: <br>
-[gdp6539](https://clawhub.ai/user/gdp6539) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[gdp6539](https://clawhub.ai/user/gdp6539)
 
-## Use Case: <br>
-Business owners, creators, and finance-focused teams use this skill to keep daily income and expense records, summarize weekly and monthly performance, and review ROI and expected-versus-actual revenue by source. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may enter sensitive financial details into the agent workflow. <br>
-Mitigation: Only enter financial details suitable for the workflow, and avoid bank credentials, tax identifiers, customer secrets, or unnecessary private notes. <br>
-Risk: A recurring daily reminder could create unintended data collection or workflow activity if enabled without review. <br>
-Mitigation: Confirm any recurring 09:00 reminder before enabling it. <br>
+## Use Case:
 
+Business owners and operators use this skill to maintain daily income and expense records, calculate ROI over weekly and monthly periods, and review variance between expected and actual revenue.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gdp6539/business-income-tracker) <br>
-- [Tracking Templates](artifact/references/templates.md) <br>
-- [Tracking Examples](artifact/references/examples.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown report with tables and short summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include financial amounts, source and category labels, ROI calculations, and expected-versus-actual variance notes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact documentation) <br>
+Risk: The skill may process sensitive business financial records.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid entering account numbers, credentials, tax identifiers, or unnecessary sensitive details.
+
+Risk: Broad trigger phrases and daily-check language could cause unintended handling of financial records.
+
+Mitigation: Enable any scheduled check only after defining exactly what records it may access and how it can be turned off.
+
+## Reference(s):
+
+- [Income Tracking Templates](references/templates.md)
+- [Tracking Examples](references/examples.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, text, code, guidance]
+
+**Output Format:** [Markdown reports with income, expense, ROI, channel status, and variance sections; optional Python helper code.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Inputs may include dates, income amounts, expense amounts, sources, categories, expected revenue, and actual revenue.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact documentation)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

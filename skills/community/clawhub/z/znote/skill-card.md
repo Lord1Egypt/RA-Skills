@@ -1,41 +1,53 @@
-## Description: <br>
-Create, manage, and operate a local Zettelkasten slip-box note system using the bundled Python zk.py CLI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create, manage, and operate a Zettelkasten slip-box note system using the zk.py CLI script.
 
-## Publisher: <br>
-[goog](https://clawhub.ai/user/goog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[goog](https://clawhub.ai/user/goog)
 
-## Use Case: <br>
-External users and developers use this skill to create and maintain a local Markdown-based Zettelkasten vault, including fleeting notes, literature notes, permanent notes, Maps of Content, links, search, and vault statistics. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The helper script can run an environment-controlled editor command through the shell. <br>
-Mitigation: Review before installing and prefer --no-edit or a controlled EDITOR setting until the script uses a safer subprocess call. <br>
-Risk: The skill creates and manages persistent filesystem content in a note vault. <br>
-Mitigation: Use only a vault path you choose and avoid persistent shell-profile changes unless they are intended. <br>
+## Use Case:
 
+External users and developers use this skill to create and maintain a local Markdown Zettelkasten vault, including fleeting, literature, permanent, and Map of Content notes. It supports note creation, linking, orphan detection, search, graph inspection, promotion, and vault statistics.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/goog/znote) <br>
-- [Publisher profile](https://clawhub.ai/user/goog) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, Python CLI code, and generated local Markdown note files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces and manages a local Markdown vault; no external services or API keys are required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The bundled CLI can run unintended shell commands through editor settings.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installation, use --no-edit until editor launch is fixed, and only use a trusted EDITOR value.
+
+Risk: The CLI creates and scans a local Markdown vault.
+
+Mitigation: Use a trusted ZK_VAULT path and review any proposed shell profile changes before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/goog/skills/znote)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and generated Python or Markdown files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local vault files and may open an editor unless note commands are run with --no-edit.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

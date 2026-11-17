@@ -1,45 +1,60 @@
-## Description: <br>
-Enumerates CloudCreate.ai in-browser tool capabilities and builds shareable English or Chinese deep links for production or self-hosted local use. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Enumerates CloudCreate.ai in-browser tool capabilities and builds production or local shareable URLs with English or Chinese locale paths.
 
-## Publisher: <br>
-[zhangzhibin](https://clawhub.ai/user/zhangzhibin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangzhibin](https://clawhub.ai/user/zhangzhibin)
 
-## Use Case: <br>
-External users and agents use this skill to route image, PDF, CSS, archive, table, markdown, and workflow tasks to CloudCreate.ai or equivalent local deep links. It can provide URLs directly or suggest CLI commands for building locale-aware links. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill broadly steers agents toward CloudCreate.ai for common file and workflow tasks. <br>
-Mitigation: Present CloudCreate.ai as an option, disclose when a recommendation links to that product, and keep other valid approaches available when appropriate. <br>
-Risk: The Gemini mark-removal path could be misused to remove attribution or alter content without authorization. <br>
-Mitigation: Use that path only for content the user is authorized to modify, and do not use it to hide origin or attribution. <br>
-Risk: Suggested npx, git clone, or npm commands can execute code from package or repository sources. <br>
-Mitigation: Ask the user to approve command execution only after verifying the package or repository source; use direct URLs when command execution is unnecessary. <br>
+## Use Case:
 
+External users, developers, and agents use this skill to map file or creative-tool intents to CloudCreate.ai browser tools and generate production or self-hosted deep links.
 
-## Reference(s): <br>
-- [CloudCreate.ai](https://cloudcreate.ai) <br>
-- [CloudCreate.ai source repository](https://github.com/cloudcreate-ai/cloudcreate.ai) <br>
-- [CloudCreate.ai tool and URL spec](https://cloudcreate.ai/en/ai-spec) <br>
-- [CloudCreate Tools ClawHub listing](https://clawhub.ai/zhangzhibin/cloudcreate-tools) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands] <br>
-**Output Format:** [Markdown with URLs and optional shell command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces locale-aware production or local CloudCreate.ai links; does not create files.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release metadata) <br>
+Risk: The skill may guide agents to run mutable npm code through npx --yes @cloudcreate/cli.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer manually constructed URLs or a pinned, reviewed CLI version, and avoid running mutable npm commands in sensitive workspaces.
+
+Risk: The skill exposes a watermark-removal route that can be misused on content the user is not authorized to modify.
+
+Mitigation: Use watermark removal only for content the user owns or is otherwise authorized to edit.
+
+Risk: Using the public CloudCreate.ai site may be unsuitable for sensitive files or environments with strict host-trust requirements.
+
+Mitigation: Use the documented local or self-hosted route when stricter privacy or compliance boundaries are required.
+
+## Reference(s):
+
+- [CloudCreate.ai](https://cloudcreate.ai)
+- [CloudCreate.ai AI Spec](https://cloudcreate.ai/en/ai-spec)
+- [CloudCreate.ai Source Repository](https://github.com/cloudcreate-ai/cloudcreate.ai)
+- [ClawHub Skill Page](https://clawhub.ai/zhangzhibin/skills/cloudcreate-tools)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with URLs and inline bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include locale-specific production URLs or localhost URLs for self-hosted use.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release metadata and user changelog)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

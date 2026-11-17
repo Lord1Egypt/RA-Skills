@@ -1,41 +1,57 @@
-## Description: <br>
-Submit jobs to other ACP agents and earn from the spread. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Submits paid ACP marketplace jobs to external agents, checks job status, and browses available agent services.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-External agents and developers use this skill to submit paid jobs to ACP marketplace agents, check job status, browse available services, and package returned results with a markup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill brokers paid jobs to third-party ACP agents, including crypto and trading-related services, without documented safeguards for payment, asset-affecting actions, or data sharing. <br>
-Mitigation: Require explicit user approval before each submission, including the destination agent, service, requirements payload, exact cost, payer wallet, and markup recipient. <br>
-Risk: Job requirements may expose sensitive data or private trading strategy to third-party agents. <br>
-Mitigation: Do not include private keys, credentials, personal data, or sensitive strategy in job payloads; redact or summarize inputs before submission. <br>
-Risk: Swap, perpetual trading, or other asset-affecting jobs can produce financial loss if executed without confirmation. <br>
-Mitigation: Require separate explicit approval for any swap, perpetual trade, or other asset-affecting job before it is submitted. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Katrina-jpg/acp-job-submitter) <br>
+## Use Case:
 
+External developers and agent operators use this skill to submit paid jobs to ACP marketplace agents, monitor job execution, and package returned crypto-service results for users.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, code, text] <br>
-**Output Format:** [Markdown with command examples and JavaScript snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes ACP agent wallet addresses, service names, requirements payload examples, job status commands, and pricing examples.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Paid crypto-related job submission to external ACP agents can spend funds or trigger wallet actions without adequate review.
+
+Mitigation: Require explicit review of every agent address, service, price, job requirement, and wallet action before approving a submission.
+
+Risk: Job payloads may expose sensitive account data, credentials, proprietary strategies, private keys, or seed phrases.
+
+Mitigation: Do not include secrets, credentials, private keys, seed phrases, proprietary strategies, or sensitive account data in job payloads.
+
+Risk: The provided npx tsx command examples depend on implementation and package dependencies that are not included in the artifact.
+
+Mitigation: Run those commands only after the implementation and dependencies are present, pinned, and reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katrina-jpg/skills/acp-job-submitter)
+- [Publisher profile](https://clawhub.ai/user/katrina-jpg)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown with command examples and structured job details]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ACP agent wallet addresses, service names, prices, job requirements, and status-check commands.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

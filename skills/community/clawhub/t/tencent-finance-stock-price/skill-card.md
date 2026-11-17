@@ -1,42 +1,58 @@
-## Description: <br>
-Query real-time stock data using Tencent Finance API for Chinese A-shares, Hong Kong stocks, US stocks, and indices, including market cap, valuation, volume, turnover, total shares, and 52-week range. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Queries real-time stock data from the Tencent Finance API for Chinese A-shares, Hong Kong stocks, and US stocks, including price, change, market capitalization, valuation ratios, volume, turnover, shares, and 52-week range.
 
-## Publisher: <br>
-[yangzhe1991](https://clawhub.ai/user/yangzhe1991) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yangzhe1991](https://clawhub.ai/user/yangzhe1991)
 
-## Use Case: <br>
-External users and developers use this skill to retrieve current quote data and basic market metrics for supported A-share, Hong Kong, US, and index symbols from Tencent Finance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Ticker symbols queried by the user are sent to Tencent Finance over an unencrypted HTTP request. <br>
-Mitigation: Use only when sending requested ticker symbols to Tencent Finance over HTTP is acceptable. <br>
-Risk: Market quotes and valuation metrics can be incomplete, stale, or unsuitable as the sole basis for financial decisions. <br>
-Mitigation: Treat returned quote data as informational and verify important financial decisions with authoritative market data sources. <br>
+## Use Case:
 
+Agents supporting analysts, developers, or finance-oriented users can use this skill to fetch quote snapshots and market metrics for supported A-share, Hong Kong, US stock, and index symbols. Results are informational and should be verified before financial decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yangzhe1991/tencent-finance-stock-price) <br>
-- [Tencent Finance quote endpoint](http://qt.gtimg.cn) <br>
-- [Publisher profile](https://clawhub.ai/user/yangzhe1991) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Terminal text table with optional detailed quote sections] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are derived from live Tencent Finance responses for the ticker symbols supplied by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.4 (source: server release evidence) <br>
+Risk: Queried stock symbols are sent to Tencent Finance over plaintext HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only when plaintext quote lookups are acceptable and avoid submitting sensitive watchlists or symbols.
+
+Risk: Stock prices and financial metrics may be unauthenticated, stale, incomplete, or unsuitable for trading decisions.
+
+Mitigation: Treat results as informational and verify prices and metrics with an authenticated financial data source before making financial decisions.
+
+Risk: Parts of the command-line output are in Chinese.
+
+Mitigation: Confirm downstream users or agents can interpret the Chinese labels before relying on the output in workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yangzhe1991/skills/tencent-finance-stock-price)
+- [Tencent Finance quote endpoint](http://qt.gtimg.cn/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Terminal text output in compact or detailed tabular form]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports compact and detail modes; some command-line output is in Chinese.]
+
+## Skill Version(s):
+
+2.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,48 @@
-## Description: <br>
-Design custom workflow cycles for any domain. Create structured, repeatable processes that become persistent skills. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design custom workflow cycles for any domain. Create structured, repeatable processes that become persistent skills.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to design repeatable multi-phase workflows for recurring tasks, including defining triggers, completion criteria, phase handoffs, validation points, and persistent preferences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Persistent cycle state can accidentally capture secrets, credentials, private account details, or instructions that should not influence future work. <br>
-Mitigation: Review proposed state files before use and exclude sensitive or inappropriate information from persistent preferences, patterns, and constraints. <br>
-Risk: A generated workflow cycle may encode misleading process guidance if it is used for publishing, approvals, or merges without review. <br>
-Mitigation: Review each generated cycle and its validation checkpoints before relying on it for approval-sensitive or release-sensitive work. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
+## Use Case:
 
+Developers, operators, and other agent users use this skill to design repeatable multi-phase workflows for recurring processes, including phases, validation points, handoffs, and persistent preferences.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance and workflow structure] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces proposed cycle phases, validation checkpoints, handoff guidance, and optional persistent state structure.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Generated cycle or state content may include personal preferences, business processes, or sensitive project details.
+
+Mitigation: Review generated cycle and state files before saving, sharing, or deploying them, and remove sensitive details that should not persist.
+
+## Reference(s):
+
+- [Cycle Skill Page](https://clawhub.ai/ivangdavila/skills/cycle)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance, configuration]
+
+**Output Format:** [Markdown guidance and structured workflow templates]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create persistent cycle skill files such as SKILL.md, phase documents, and state.md.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

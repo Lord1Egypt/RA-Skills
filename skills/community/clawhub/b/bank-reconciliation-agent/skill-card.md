@@ -1,39 +1,52 @@
-## Description: <br>
-Automates bank statement reconciliation against general ledger records by matching transactions, flagging discrepancies, suggesting adjusting entries, and producing reconciliation reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates bank statement reconciliation against general ledger records by matching transactions, flagging discrepancies, suggesting adjusting entries, and producing reconciliation reports.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Accounting and finance teams use this skill during month-end close to reconcile bank statements against GL exports, investigate discrepancies, and prepare reconciliation worksheets and adjusting entry suggestions for review.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill handles sensitive financial records that may contain account numbers, transaction details, and personal information.
+
+Mitigation: Provide only the minimum financial data needed and redact full account numbers and personal information where possible.
+
+Risk: Generated reconciliation reports may include fixed preparer, reviewer, or approval fields that could be mistaken for final audit workpapers.
+
+Mitigation: Treat generated reports as drafts and replace or verify preparer, reviewer, approval, and sign-off fields before audit or close use.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Accounting and finance users use this skill during month-end close to reconcile bank statements against GL exports, investigate discrepancies, and prepare audit-ready reconciliation worksheets. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, CSV, JSON, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Bank statements and ledger exports can contain sensitive financial data and personal information. <br>
-Mitigation: Use only in approved settings, share the minimum needed files, redact full account numbers and unrelated PII where possible, never provide banking credentials, and require qualified review before posting matches or journal entries. <br>
+**Output Format:** [Markdown or plain text reconciliation report, with optional CSV or JSON structured export and journal entry templates.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/bank-reconciliation-agent) <br>
-- [Publisher profile](https://clawhub.ai/user/samledger67-dotcom) <br>
+**Other Properties Related to Output:** [May include reconciliation worksheets, match-status detail, discrepancy analysis, audit trail fields, and adjusting journal entry suggestions.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, configuration, guidance] <br>
-**Output Format:** [Markdown report with structured CSV or JSON examples and journal-entry templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include reconciliation worksheets, discrepancy lists, match confidence labels, adjusting entry suggestions, and audit trail details.] <br>
+1.0.0 (source: release evidence and frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

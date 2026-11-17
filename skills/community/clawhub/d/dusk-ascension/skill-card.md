@@ -1,41 +1,55 @@
-## Description: <br>
-Generates product or concept hero-shot prompts in a dreamy dusk aesthetic with 1990s film photography, analog grain, starburst lens flare, and a midnight-blue-to-amber gradient. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates product and concept image prompts for centered, floating hero shots in a dreamy dusk aesthetic with analog film grain, lens flare, and a midnight-blue-to-amber gradient.
 
-## Publisher: <br>
-[guiweb3](https://clawhub.ai/user/guiweb3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guiweb3](https://clawhub.ai/user/guiweb3)
 
-## Use Case: <br>
-External creators, marketers, and developers use this skill to turn a subject into a structured image-generation prompt for portrait product or concept hero shots in the Dusk Ascension style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated image outputs can still include unwanted text, watermarks, clipping, or off-style details despite the prompt's negative constraints. <br>
-Mitigation: Review generated images before publication and regenerate or revise the subject prompt when outputs violate the stated constraints. <br>
-Risk: The skill is third-party content and the server security verdict is clean, but deployment decisions still depend on local policy and the selected image model. <br>
-Mitigation: Use approved image-generation providers, follow the provider's content and rights policies, and keep the skill prompt visible for reviewer inspection. <br>
+## Use Case:
 
+External users and creative developers use this skill to turn product or concept subjects into image-generation prompts for ethereal dusk-themed editorial hero shots.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/guiweb3/dusk-ascension) <br>
-- [OpenClaw project](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown with JSON prompt template and reusable prompt text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces 4:5 portrait-oriented image-prompt guidance with explicit visual style and negative constraints.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The installed skill persists as an available OpenClaw image style until removed.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review whether the dusk/ethereal style should remain available before installation and remove the skill when it is no longer needed.
+
+Risk: The skill is narrowly tailored to a dusk/ethereal aesthetic that may be unsuitable for some product or brand requirements.
+
+Mitigation: Confirm that the fixed aesthetic constraints fit the intended campaign or image task before using generated prompts.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/guiweb3/skills/dusk-ascension)
+- [OpenClaw Project](https://github.com/openclaw/openclaw)
+- [Creator Profile](https://linkedin.com/in/oliverweb3builder/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown with JSON prompt template and plain-text prompt guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces 4:5 portrait-oriented image prompt guidance with fixed aesthetic constraints.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

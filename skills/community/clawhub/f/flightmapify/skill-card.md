@@ -1,43 +1,63 @@
-## Description: <br>
-Find cheapest flights and create interactive flight route maps with real-time flight search. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Find cheapest flights and create interactive flight route maps with real-time flight search.
 
-## Publisher: <br>
-[rudy2steiner](https://clawhub.ai/user/rudy2steiner) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[rudy2steiner](https://clawhub.ai/user/rudy2steiner)
 
-## Use Case: <br>
-External users and travel-planning agents use this skill to generate an interactive HTML flight map, search direct and connecting flights between cities, and inspect route, price, duration, and booking information. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill starts local background servers and serves files from the OpenClaw workspace. <br>
-Mitigation: Run it in a limited workspace, avoid important occupied ports, and stop spawned servers manually after use. <br>
-Risk: The skill uses FlyAI credentials from environment variables or local configuration. <br>
-Mitigation: Use a dedicated FlyAI key with limited scope and avoid sharing important or personal credentials with the skill environment. <br>
-Risk: The server-resolved security verdict is suspicious because of broad local server, credential, and process-control behavior. <br>
-Mitigation: Review and scan the skill before deployment, and install only when those behaviors match the intended use. <br>
+## Use Case:
 
+External users and developers use Flightmapify to generate interactive HTML flight maps for origin, destination, and travel-date queries, including route visualization and flight-search links.
 
-## Reference(s): <br>
-- [FlightMapify ClawHub release](https://clawhub.ai/rudy2steiner/flightmapify) <br>
-- [FlyAI API key console](https://flyai.open.fliggy.com/console) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands and generated interactive HTML files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces a local HTML flight map and starts local background servers for map display and flight-search API access.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.6 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: The skill starts local HTTP services and manages ports while generating the flight-map experience.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run it in a constrained workspace, choose ports that are not used by important services, and avoid exposing sensitive workspace files while the local server is active.
+
+Risk: The artifact includes process-management behavior that can terminate a process on a selected port.
+
+Mitigation: Review the process-handling code before installation and prefer a version that removes automatic kill -9 behavior.
+
+Risk: Flight search subprocesses may receive environment variables containing FlyAI credentials.
+
+Mitigation: Pass only the required FlyAI credential to subprocesses and avoid running the skill with elevated privileges.
+
+Risk: The skill depends on external FlyAI tooling and map services for live search and visualization.
+
+Mitigation: Pin and review external dependencies, use a personal FlyAI API key where appropriate, and expect rate limits or service availability issues.
+
+## Reference(s):
+
+- [Flightmapify ClawHub page](https://clawhub.ai/rudy2steiner/skills/flightmapify)
+- [rudy2steiner ClawHub publisher profile](https://clawhub.ai/user/rudy2steiner)
+- [FlyAI API key console](https://flyai.open.fliggy.com/console)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance]
+
+**Output Format:** [HTML files and terminal text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a local interactive flight-map HTML file and localhost access URL; flight search may use FlyAI and Amap credentials from environment variables.]
+
+## Skill Version(s):
+
+1.4.6 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

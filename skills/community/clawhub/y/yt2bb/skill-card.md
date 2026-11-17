@@ -1,42 +1,58 @@
-## Description: <br>
-Use when the user wants to repurpose a YouTube video for Bilibili, add bilingual English-Chinese subtitles to a video, or create hardcoded subtitle versions for Chinese platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when the user wants to repurpose a YouTube video for Bilibili, add bilingual (English-Chinese) subtitles to a video, or create hardcoded subtitle versions for Chinese platforms.
 
-## Publisher: <br>
-[agents365-ai](https://clawhub.ai/user/agents365-ai) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agents365-ai](https://clawhub.ai/user/agents365-ai)
 
-## Use Case: <br>
-Developers and creators use this skill to turn YouTube videos or playlists into Bilibili-ready MP4s with bilingual subtitles and Chinese publish metadata. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The default download workflow can use a logged-in Chrome YouTube session for cookie-backed downloads. <br>
-Mitigation: Prefer public downloads without cookies, use a separate low-privilege browser profile or scoped cookie file when cookies are needed, and require confirmation before cookie-backed download or playlist processing. <br>
+## Use Case:
 
+Developers, creators, and localization teams use this skill to turn YouTube videos or playlists into Bilibili-ready MP4 files with bilingual EN/ZH subtitles and Chinese upload metadata.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/agents365-ai/yt2bb) <br>
-- [ffmpeg documentation](https://ffmpeg.org/) <br>
-- [yt-dlp documentation](https://github.com/yt-dlp/yt-dlp) <br>
-- [OpenAI Whisper](https://github.com/openai/whisper) <br>
-- [Aegisub subtitle editor](https://aegisub.org/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files] <br>
-**Output Format:** [Markdown guidance with shell commands and generated media/subtitle files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces MP4, SRT, ASS, and publish_info.md outputs; utility commands can emit JSON for agent-friendly validation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.0 (source: server release metadata and skill metadata) <br>
+Risk: The skill can ask local tools to access a Chrome YouTube session and may leave exported cookies in cookies.txt.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer unauthenticated yt-dlp downloads first; when cookies are needed, use a dedicated browser profile or temporary cookie file and delete cookies.txt after use.
+
+Risk: The release requires local dependency and update-check commands that affect the user's execution environment.
+
+Mitigation: Review the update-check and dependency-install commands before running them, and install only the required tools from trusted sources.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/agents365-ai/skills/yt2bb)
+- [Publisher profile](https://clawhub.ai/user/agents365-ai)
+- [ffmpeg](https://ffmpeg.org/)
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp)
+- [OpenAI Whisper](https://github.com/openai/whisper)
+- [Aegisub](https://aegisub.org/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, SRT/ASS subtitle files, MP4 video outputs, JSON-capable utility command results, and publish_info.md metadata.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local media and subtitle files under a video-specific output directory; utility subcommands support --format json and dry-run checks where documented.]
+
+## Skill Version(s):
+
+2.5.0 (source: server release evidence and artifact metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

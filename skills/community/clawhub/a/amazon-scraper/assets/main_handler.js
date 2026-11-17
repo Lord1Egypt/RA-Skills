@@ -1,6 +1,13 @@
-const { chromium } = require('playwright-extra');
-const stealth = require('puppeteer-extra-plugin-stealth')();
-chromium.use(stealth);
+const { chromium } = require('playwright');
+const {
+    fingerprintForProxy,
+    createFingerprintedContext,
+    warmupAmazon,
+    humanizeMouse,
+    saveFingerprintState,
+    LAUNCH_ARGS
+} = require('./fingerprint');
+const { createProxyPool, redact } = require('./proxy');
 
 const fs = require('fs');
 const path = require('path');
@@ -14,125 +21,71 @@ if (!targetUrl) {
     process.exit(1);
 }
 
+const OUTPUT_ROOT = process.env.AMAZON_OUTPUT_DIR || '/data';
+
+function resolveOutputPath(name) {
+    const outPath = path.resolve(OUTPUT_ROOT, name);
+    const root = path.resolve(OUTPUT_ROOT);
+    if (outPath !== root && !outPath.startsWith(root + path.sep)) {
+        throw new Error(`--output must stay inside ${root} (got "${name}")`);
+    }
+    return outPath;
+}
+
 function saveResult(data) {
     if (outputFile) {
-        const outPath = path.isAbsolute(outputFile) ? outputFile : path.join('/data', outputFile);
-        const dir = path.dirname(outPath);
-        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        const outPath = resolveOutputPath(outputFile);
+        fs.mkdirSync(path.dirname(outPath), { recursive: true });
         fs.writeFileSync(outPath, JSON.stringify(data, null, 2));
         console.error(`Result saved to: ${outPath}`);
     }
 }
 
-// ---- Proxy rotation setup ----
-// Load built-in proxy config, allow env vars to override
-function loadProxies() {
-    try {
-        const configPath = path.join(__dirname, '..', 'config', 'proxies.json');
-        if (fs.existsSync(configPath)) {
-            const cfg = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-            if (cfg.proxies && cfg.proxies.length > 0) {
-                return cfg.proxies;
-            }
-        }
-    } catch (e) {
-        console.error('Failed to load config/proxies.json:', e.message);
-    }
-    const single = process.env.AMAZON_PROXY;
-    const multi = process.env.AMAZON_PROXIES;
-    if (multi) return multi.split(',').map(s => s.trim()).filter(Boolean);
-    if (single) return [single];
-    return [];
-}
-
-const PROXY_LIST = loadProxies();
-
-let proxyIdx = 0;
-function getNextProxy() {
-    if (PROXY_LIST.length === 0) return null;
-    const p = PROXY_LIST[proxyIdx % PROXY_LIST.length];
-    proxyIdx++;
-    return p;
-}
-
-function parseProxy(proxyUrl) {
-    try {
-        const url = new URL(proxyUrl);
-        return {
-            server: `${url.protocol}//${url.host}`,
-            username: decodeURIComponent(url.username),
-            password: decodeURIComponent(url.password)
-        };
-    } catch (e) {
-        console.error('Invalid proxy URL format:', proxyUrl);
-        return null;
-    }
+let PROXY_POOL;
+try {
+    PROXY_POOL = createProxyPool();
+} catch (e) {
+    console.log(JSON.stringify({ status: 'ERROR', message: e.message }));
+    console.error(e.message);
+    process.exit(1);
 }
 
 async function createContext(browser) {
-    const proxyUrl = getNextProxy();
-    const contextOptions = {
-        viewport: { width: 1920, height: 1080 },
-        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-        extraHTTPHeaders: {
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-            'Accept-Encoding': 'identity',
-            'Sec-Ch-Ua': '"Google Chrome";v="123", "Not:A-Brand";v="8"',
-            'Sec-Ch-Ua-Mobile': '?0',
-            'Sec-Ch-Ua-Platform': '"macOS"',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Site': 'none',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-User': '?1',
-            'Sec-Fetch-Dest': 'document'
-        }
-    };
-    if (proxyUrl) {
-        const parsed = parseProxy(proxyUrl);
-        if (parsed) {
-            contextOptions.proxy = parsed;
-            console.error(`Using proxy: ${parsed.server} (user: ${parsed.username})`);
-        }
-    }
-    const context = await browser.newContext(contextOptions);
-    await context.setExtraHTTPHeaders({
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'identity',
-        'Cache-Control': 'max-age=0',
-        'Sec-Ch-Ua': '"Google Chrome";v="123", "Not:A-Brand";v="8"',
-        'Sec-Ch-Ua-Mobile': '?0',
-        'Sec-Ch-Ua-Platform': '"macOS"',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1'
-    });
-    return context;
+    const entry = PROXY_POOL.next();
+    const proxyUrl = entry ? entry.raw : null;
+    const fp = fingerprintForProxy(proxyUrl);
+    console.error(`Using proxy: ${redact(proxyUrl)} fp=${fp.label}`);
+    const namespace = `generic-${new URL(targetUrl).hostname}`;
+    return createFingerprintedContext(browser, proxyUrl, entry ? entry.parsed : null, namespace);
 }
 
 (async () => {
     const browser = await chromium.launch({
         headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: LAUNCH_ARGS
     });
 
     let context = null;
     let page = null;
 
     try {
+        // Only warm up on amazon.com. Warming up unconditionally sent every
+        // third-party target a `Referer: https://www.amazon.com/` and burned a
+        // request on a host that has nothing to do with the target.
+        const isAmazonTarget = /(^|\.)amazon\.[a-z.]+$/i.test(new URL(targetUrl).hostname);
+
         let success = false;
         let lastErr = null;
-        for (let attempt = 0; attempt < Math.max(PROXY_LIST.length, 1); attempt++) {
+        for (let attempt = 0; attempt < Math.max(PROXY_POOL.size, 1); attempt++) {
             try {
                 if (context) await context.close();
                 context = await createContext(browser);
                 page = await context.newPage();
-
+                if (isAmazonTarget) await warmupAmazon(page);
                 await page.goto(targetUrl, { waitUntil: 'networkidle', timeout: 60000 });
                 await page.waitForTimeout(2000);
+                await humanizeMouse(page);
+                await saveFingerprintState(context);
 
                 success = true;
                 break;
@@ -162,7 +115,8 @@ async function createContext(browser) {
 
     } catch (err) {
         const errorResult = { status: 'ERROR', message: err.message };
-        console.error(JSON.stringify(errorResult));
+        console.log(JSON.stringify(errorResult));
+        console.error(err.stack || err.message);
         saveResult(errorResult);
         process.exit(1);
     } finally {

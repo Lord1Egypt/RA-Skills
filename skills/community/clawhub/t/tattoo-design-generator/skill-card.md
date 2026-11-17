@@ -1,41 +1,58 @@
-## Description: <br>
-Generates tattoo concept art, ink illustrations, and reference sheets from text prompts using the Neta AI image generation API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI tattoo design generator for creating custom tattoo concept art, ink illustrations, tattoo reference sheets, flash designs, sleeve ideas, minimalist tattoo art, tribal patterns, and fine line sketches through the Neta AI image generation API.
 
-## Publisher: <br>
-[omactiengartelle](https://clawhub.ai/user/omactiengartelle) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[omactiengartelle](https://clawhub.ai/user/omactiengartelle)
 
-## Use Case: <br>
-Tattoo artists, studios, and individuals use this skill to turn tattoo ideas into generated concept art, flash designs, sleeve concepts, and reference images. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends tattoo prompts, optional reference UUIDs, and the Neta API token to the external Neta/TalesOfAI service. <br>
-Mitigation: Use a trusted token source such as an environment variable and avoid submitting sensitive client or personal reference material unless the provider's data handling is acceptable. <br>
+## Use Case:
 
+External users, tattoo artists, and studios use this skill to generate tattoo concept images and reference sheets from text prompts, with optional size selection and reference-image style inheritance.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/omactiengartelle/tattoo-design-generator) <br>
-- [Publisher profile](https://clawhub.ai/user/omactiengartelle) <br>
-- [Neta API access](https://www.neta.art/open/) <br>
-- [TalesOfAI image generation endpoint](https://api.talesofai.com/v3/make_image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands] <br>
-**Output Format:** [Plain text image URL returned by a Node CLI command] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a tattoo prompt, a Neta API token, and optional size or reference-image UUID arguments.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: An unpinned npx install path can install a changed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Prefer the ClawHub install path or a pinned, trusted installer, and review the skill before running it.
+
+Risk: Passing a real API token directly on the command line can expose it in shell history or shared logs.
+
+Mitigation: Pass tokens through secure local practices, avoid literal tokens in command history, and do not share logs that may contain credentials.
+
+Risk: Prompts and optional reference image identifiers are sent to an external image generation service.
+
+Mitigation: Avoid sensitive or regulated prompts and review the external service terms before use.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/omactiengartelle/skills/tattoo-design-generator)
+- [Neta API Access](https://www.neta.art/open/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Text]
+
+**Output Format:** [Markdown with inline bash commands and a direct image URL]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Neta API token; supports portrait, landscape, square, and tall sizes plus an optional reference image UUID.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence release, package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

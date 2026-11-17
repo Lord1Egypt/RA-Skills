@@ -1,47 +1,61 @@
-## Description: <br>
-Generates Taobao advertising plans, optimization suggestions, review reports, and lifecycle guidance for men's apparel campaigns without executing ad operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Taobao Advisor generates read-only Taobao advertising plans, optimization suggestions, review reports, and lifecycle guidance for men's apparel campaigns.
 
-## Publisher: <br>
-[guowaa223](https://clawhub.ai/user/guowaa223) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[guowaa223](https://clawhub.ai/user/guowaa223)
 
-## Use Case: <br>
-E-commerce operators and marketing analysts use this skill to generate Taobao campaign planning spreadsheets, optimization review sheets, periodic performance reports, and lifecycle guidance for men's apparel products. The outputs are proposals for manual review and execution in official Taobao tools. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated advertising plans and optimization suggestions may be incorrect or unsuitable for a specific campaign. <br>
-Mitigation: Review every recommendation manually before applying changes in Taobao advertising tools. <br>
-Risk: The skill writes local report and log files that may contain campaign identifiers or operational data. <br>
-Mitigation: Run it in a controlled workspace and manage permissions, retention, and sharing for generated reports and logs. <br>
-Risk: Python dependencies are unpinned, which creates normal supply-chain and reproducibility risk. <br>
-Mitigation: Install dependencies in a virtual environment and pin or review package versions before production use. <br>
-Risk: Evidence notes syntax and reliability issues that may prevent the script or configuration from running as documented. <br>
-Mitigation: Validate the script and configuration in a test environment before relying on generated artifacts. <br>
-Risk: If API-backed functionality is added or enabled, credential scope could affect account exposure. <br>
-Mitigation: Use only a dedicated read-only Taobao API key and avoid granting write permissions. <br>
+## Use Case:
 
+E-commerce operators and marketing teams use this skill to draft Taobao advertising test plans, adjustment review sheets, periodic performance reports, and product lifecycle guidance. The skill is advisory only, with all campaign and budget changes reviewed and executed manually outside the skill.
 
-## Reference(s): <br>
-- [Taobao Advisor ClawHub release](https://clawhub.ai/guowaa223/taobao-advisor) <br>
-- [guowaa223 ClawHub publisher profile](https://clawhub.ai/user/guowaa223) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance, files] <br>
-**Output Format:** [Markdown guidance, terminal commands, and locally written Excel or Markdown report files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local recommendation artifacts intended for human review before any campaign changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Advertising recommendations could be mistaken for approved campaign changes.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in advisory mode and require manual review before any budget, bid, targeting, or campaign status change is executed in Taobao systems.
+
+Risk: Runtime dependencies may change behavior if installed without version control.
+
+Mitigation: Install in a virtual environment and pin or review dependencies before operational use.
+
+Risk: The skill writes local logs and report files that may contain campaign identifiers or business metrics.
+
+Mitigation: Run it in a controlled workspace and handle generated logs and reports according to the user's data retention and access policies.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/guowaa223/skills/taobao-advisor)
+- [Publisher profile](https://clawhub.ai/user/guowaa223)
+- [Skill definition](artifact/SKILL.md)
+- [Usage README](artifact/README.md)
+- [Runtime requirements](artifact/requirements.txt)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance]
+
+**Output Format:** [Markdown, terminal text, and local Excel report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates local reports and logs; all advertising actions require human review and manual execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

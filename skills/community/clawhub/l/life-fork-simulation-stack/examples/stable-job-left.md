@@ -1,5 +1,7 @@
 # 示例：如果当年没有离开上一家公司
 
+> Language scope: Simplified Chinese reference material by design. Adapt conversational reports to the user's chosen language; the optional bundled HTML layout targets Chinese readers.
+
 ## 用户输入
 
 ```text

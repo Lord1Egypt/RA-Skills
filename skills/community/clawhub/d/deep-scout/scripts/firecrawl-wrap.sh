@@ -24,8 +24,13 @@ if [[ ! "$URL" =~ ^https?:// ]]; then
   exit 1
 fi
 
-# Run firecrawl with timeout (-- prevents URL from being parsed as flags)
-result=$(timeout 30 firecrawl scrape -- "$URL" --format markdown 2>/dev/null || echo "")
+# Run Firecrawl only when a bounded timeout command is available.
+TIMEOUT_BIN="$(command -v timeout 2>/dev/null || command -v gtimeout 2>/dev/null || true)"
+if [[ -z "$TIMEOUT_BIN" ]]; then
+  echo "FIRECRAWL_UNAVAILABLE"
+  exit 0
+fi
+result=$("$TIMEOUT_BIN" 30 firecrawl scrape -- "$URL" --format markdown 2>/dev/null || echo "")
 
 if [[ -z "$result" || ${#result} -lt 100 ]]; then
   echo "FIRECRAWL_EMPTY"

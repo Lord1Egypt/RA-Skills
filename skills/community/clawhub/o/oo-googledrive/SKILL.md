@@ -5,7 +5,7 @@ allowed-tools: [Bash(oo *)]
 metadata:
   title: "Google Drive"
   author: "OOMOL"
-  version: "1.0.3"
+  version: "1.0.10"
   services: ["googledrive"]
   icon: "https://static.oomol.com/logo/third-party/Google%20Drive.svg"
 ---
@@ -51,21 +51,21 @@ Each action is listed below with a one-line description; actions that change sta
 - `drives.create` — Create a new shared drive. [write]
 - `drives.delete` — Permanently delete a shared drive. [destructive]
 - `drives.get` — Get a shared drive by drive ID.
-- `drives.hide` — Hide a shared drive from the default Drive view. [write]
+- `drives.hide` — Hide a shared drive from the default Drive view. [destructive]
 - `drives.list` — List shared drives accessible to the connected account.
 - `drives.unhide` — Unhide a shared drive and restore it to the default Drive view. [write]
 - `drives.update` — Update metadata or restrictions on a shared drive. [write]
 - `files.copy` — Copy a Drive file and optionally override official File metadata. [write]
 - `files.create` — Create a Drive file with official File metadata and optional connector media upload content. [write]
 - `files.delete` — Permanently delete a Drive file or folder by ID. [destructive]
-- `files.emptyTrash` — Permanently empty the user's trash or a shared drive's trash. [write]
+- `files.emptyTrash` — Permanently empty the user's trash or a shared drive's trash. [destructive]
 - `files.export` — Export a Google Workspace file to the requested MIME type and return a transit URL for the exported content.
 - `files.generateIds` — Generate one or more Drive file IDs for later create or copy requests. [write]
-- `files.get` — Get metadata for a Drive file by ID.
-- `files.list` — List Google Drive files using the official Drive query and pagination parameters.
+- `files.get` — Get metadata for a Drive file by ID, or download stored file content with alt=media.
+- `files.list` — List Google Drive files using the official Drive query and pagination parameters. With drive.file, only files authorized for this app are returned; use Google Picker in the host application to select additional files.
 - `files.listLabels` — List the Drive labels currently applied to a file.
-- `files.modifyLabels` — Add, update, or remove Drive labels on a file. [write]
-- `files.update` — Patch a Drive file with official metadata, parent query parameters, and optional connector media upload content. [write]
+- `files.modifyLabels` — Add, update, or remove Drive labels on a file. [destructive]
+- `files.update` — Patch a Drive file with official metadata, parent query parameters, and optional connector media upload content. [destructive]
 - `permissions.create` — Create a permission on a Drive file or shared drive. [write]
 - `permissions.delete` — Delete a permission from a Drive file or shared drive. [destructive]
 - `permissions.get` — Get a specific permission on a Drive file or shared drive by permission ID.
@@ -110,11 +110,14 @@ These are **one-time** steps — do not repeat them on every call. Run a step on
 - **`scope_missing` / `credential_expired` / `app_not_ready` / `app_not_found`** — Google Drive is not connected, or the connection expired or lacks a scope. Connect once (auth type: OAuth2) at:
 
   ```text
-  https://console.oomol.com/app-connections?provider=googledrive
+  https://console.oomol.com/connections/googledrive
   ```
 
-- **HTTP 402 / `OOMOL_INSUFFICIENT_CREDIT`** — billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+- **`OOMOL_INSUFFICIENT_CREDIT`** — OOMOL billing stop. Recharge at `https://console.oomol.com/billing/token-recharge` before retrying.
+
+- **HTTP 402 without `OOMOL_INSUFFICIENT_CREDIT`** — the third-party account itself has no active plan or credit. Report the provider error message as is; do not ask the user to recharge OOMOL.
 
 ## Resources
 
 - Google Drive homepage: https://workspace.google.com/products/drive/
+- API documentation: https://developers.google.com/workspace/drive/api/guides/about-sdk

@@ -1,40 +1,55 @@
-## Description: <br>
-Security-first behavioral guidelines for cautious agent operation for actions involving external resources, installations, credentials, or other external effects. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Security-first behavioral guidelines for cautious agent operation around external resources, installations, credentials, and other actions with external effects.
 
-## Publisher: <br>
-[doonot](https://clawhub.ai/user/doonot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[doonot](https://clawhub.ai/user/doonot)
 
-## Use Case: <br>
-Developers and agent operators use this skill as a behavioral safety checklist before package installs, credential handling, URL interactions, messages, uploads, API calls, financial operations, and other actions with external effects. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill names a specific approver, "Pat", which may not match the installing user's organization or authority model. <br>
-Mitigation: Confirm and replace the approver reference with the actual authorized person or process before relying on the checklist. <br>
-Risk: Broad activation can slow normal work involving installs, links, API calls, uploads, messages, posts, credentials, or financial operations. <br>
-Mitigation: Use the checklist for high-risk or externally visible actions and define local approval thresholds for routine trusted operations. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/doonot/zero-trust) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/doonot) <br>
+## Use Case:
+
+Developers and agent users can use this skill to guide cautious operation before interacting with links, installing packages, handling credentials, or taking actions that may expose data or have external effects.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The artifact names a specific approver, Pat, which may not match the actual authorized user or administrator.
+
+Mitigation: Replace the named approver with the authenticated user or configured administrator before installation.
+
+Risk: The no-approval allowance for local file operations is broad and could cover sensitive workspace activity.
+
+Mitigation: Limit no-approval local file activity to non-sensitive read-only workspace operations.
+
+Risk: The artifact does not explicitly state that platform and system policies take precedence.
+
+Mitigation: Add a clear precedence rule so platform and system policies override the skill when they conflict.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown] <br>
-**Output Format:** [Markdown safety checklist and operational instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; does not define tools, scripts, API calls, or generated files.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [Guidance, Markdown]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Markdown behavioral protocol and checklist guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces safety-oriented instructions for human review and agent behavior; no executable payload.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

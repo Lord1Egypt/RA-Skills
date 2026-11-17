@@ -1,51 +1,65 @@
-## Description: <br>
-FFmpeg Master Pro helps agents plan and run local FFmpeg workflows for video conversion, compression, editing, subtitle handling, optimization, batch processing, GIF conversion, audio extraction, merging, aspect-ratio changes, screenshots, and frame extraction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ffmpeg Master Pro helps agents plan and run FFmpeg and ffprobe workflows for video conversion, compression, editing, subtitles, batching, GIF creation, audio extraction, merging, screenshots, frame extraction, and output validation.
 
-## Publisher: <br>
-[aqbjqtd](https://clawhub.ai/user/aqbjqtd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aqbjqtd](https://clawhub.ai/user/aqbjqtd)
 
-## Use Case: <br>
-Developers, media engineers, and content operations teams use this skill to choose FFmpeg commands, presets, and validation steps for routine and advanced video-processing tasks. It is useful when an agent needs to analyze input media, optimize encoding parameters, handle subtitles, perform precise cuts, or process videos in batches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Local FFmpeg commands can overwrite files or write processed media to unintended locations. <br>
-Mitigation: Confirm the exact input files, output path, and overwrite behavior before execution. <br>
-Risk: Untrusted media, subtitle files, custom presets, or raw batch commands can increase local processing risk. <br>
-Mitigation: Process untrusted inputs in a sandbox and avoid untrusted custom preset names or raw batch commands. <br>
-Risk: Generated encoding or editing commands can produce unexpected quality, timing, or compatibility results. <br>
-Mitigation: Review proposed commands and validate outputs with ffprobe, playback checks, and quality metrics where appropriate. <br>
+## Use Case:
 
+Developers, media engineers, and content operators use this skill to inspect media, choose encoding parameters, build FFmpeg commands, and validate or troubleshoot video-processing outputs.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/aqbjqtd/ffmpeg-master-pro) <br>
-- [FFmpeg](https://ffmpeg.org) <br>
-- [Detailed Workflows](references/detailed_workflows.md) <br>
-- [Smart Cut Guide](references/smart_cut_guide.md) <br>
-- [Keyframe Analysis](references/keyframe_analysis.md) <br>
-- [Optimization Guide](references/optimization_guide.md) <br>
-- [Best Practices](references/best_practices.md) <br>
-- [API Reference](references/api_reference.md) <br>
-- [Quickstart](references/quickstart.md) <br>
-- [Troubleshooting](references/troubleshooting.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration instructions, Guidance] <br>
-**Output Format:** [Markdown with inline bash and Python code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include FFmpeg or ffprobe commands, preset choices, output-path guidance, batch-processing steps, and validation checks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.1 (source: server release metadata) <br>
+Risk: Some documented workflows can silently overwrite files.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated FFmpeg commands before execution, choose output paths deliberately, and remove or avoid overwrite flags unless replacement is intentional.
+
+Risk: A referenced frame-rate example uses unsafe Python evaluation on media metadata.
+
+Mitigation: Do not copy that eval() example into runnable code; parse frame-rate values with a safe numeric parser instead.
+
+Risk: The skill may probe local hardware and create a small user configuration directory for presets.
+
+Mitigation: Install only in environments where local GPU probes and user-level preset configuration are acceptable.
+
+## Reference(s):
+
+- [FFmpeg](https://ffmpeg.org)
+- [Detailed Workflows](references/detailed_workflows.md)
+- [Smart Cut Guide](references/smart_cut_guide.md)
+- [Keyframe Analysis Guide](references/keyframe_analysis.md)
+- [Optimization Guide](references/optimization_guide.md)
+- [Best Practices](references/best_practices.md)
+- [API Reference](references/api_reference.md)
+- [Quickstart](references/quickstart.md)
+- [Troubleshooting](references/troubleshooting.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline FFmpeg shell commands and Python code examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce local media files when the proposed commands are executed by the agent.]
+
+## Skill Version(s):
+
+2.3.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,62 @@
-## Description: <br>
-Family Health Tracker helps users maintain local family health records, including profiles, allergies, medications, visits, immunizations, insurance basics, growth logs, providers, and reminders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Family Health Tracker helps an assistant log, retrieve, summarize, and prepare household health records, including visits, allergies, medications, immunizations, insurance basics, growth logs, providers, and reminders, in a local JSON file.
 
-## Publisher: <br>
-[chris-openclaw](https://clawhub.ai/user/chris-openclaw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[chris](https://clawhub.ai/user/chris)
 
-## Use Case: <br>
-External users use this skill to organize family health records in a local file, prepare for appointments, look up allergies and medications, and track due dates for visits, immunizations, dental cleanings, and refills. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles family health information in a local health-data.json file. <br>
-Mitigation: Install only if local storage is acceptable, protect the workspace, and avoid entering SSNs, full insurance IDs, financial account numbers, or detailed therapy notes. <br>
-Risk: Health schedules and reminders may be incomplete or unsuitable for a specific person. <br>
-Mitigation: Use reminders as organization aids and verify medical decisions, immunization timing, and treatment questions with a clinician. <br>
+## Use Case:
 
+External users and household caregivers use this skill to keep family health records organized, look up key details quickly, prepare for appointments, and receive simple reminders for checkups, refills, dental cleanings, and immunizations. The skill is for recordkeeping and scheduling context, not diagnosis, treatment decisions, or medical advice.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/chris-openclaw/family-health-tracker) <br>
-- [Publisher profile](https://clawhub.ai/user/chris-openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Guidance] <br>
-**Output Format:** [Conversational text, markdown summaries, and local JSON record updates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update health-data.json in the user's working directory when the user logs records.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: frontmatter, changelog, server release metadata) <br>
+Risk: Family health records are stored in a local plaintext health-data.json file and should be treated as sensitive.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the file in a private, non-shared, non-synced, non-version-controlled location and avoid entering full policy numbers, financial account details, SSNs, or detailed therapy notes.
+
+Risk: The skill tracks health information but is not a medical advisor.
+
+Mitigation: Use it for recordkeeping and preparation only; questions about symptoms, safety, diagnosis, or treatment should be redirected to the user's healthcare provider.
+
+Risk: Printable summaries, emergency cards, or school forms may expose sensitive records if shared without review.
+
+Mitigation: Generate exports locally or in chat for user review first, and do not send full tracker contents to third parties unless the user explicitly approves the reviewed output.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/chris/skills/family-health-tracker)
+- [README](artifact/README.md)
+- [Skill instructions](artifact/SKILL.md)
+- [Changelog](artifact/CHANGELOG.md)
+- [Privacy boundary evaluation](artifact/evals/eval-07-privacy-handling.md)
+- [Medical advice boundary evaluation](artifact/evals/eval-08-no-medical-advice.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Conversational text and Markdown summaries, with local JSON record updates when the assistant has filesystem access]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces concise health-record confirmations, lookups, family summaries, appointment prep notes, reminders, and safe local-file updates; it should avoid medical advice and refuse highly sensitive identifiers.]
+
+## Skill Version(s):
+
+1.0.2 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

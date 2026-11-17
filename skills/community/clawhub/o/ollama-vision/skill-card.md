@@ -1,41 +1,61 @@
-## Description: <br>
-Ollama Vision uses a local Ollama qwen3-vl:4b vision model to describe images, extract text with OCR, and return custom image analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Ollama Vision analyzes local image files with Ollama's qwen3-vl:4b model for image description, OCR, and custom information extraction.
 
-## Publisher: <br>
-[LZM2023](https://clawhub.ai/user/LZM2023) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lzm2023](https://clawhub.ai/user/lzm2023)
 
-## Use Case: <br>
-Developers and agent users can use this skill to analyze local image files through Ollama while keeping the primary conversation model separate. It is useful for image description, OCR, and targeted extraction from screenshots, documents, and photos. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Image analysis may involve confidential local images and local Ollama behavior outside the skill package. <br>
-Mitigation: Use the skill only with images appropriate for the local Ollama installation, its logging or retention behavior, and other users or processes on the same machine. <br>
-Risk: First use may download a multi-gigabyte qwen3-vl:4b model and depends on local Ollama availability. <br>
-Mitigation: Confirm Ollama is installed, running, and approved for local model downloads before deployment. <br>
+## Use Case:
 
+Developers and agent users use this skill to route selected images to a local Ollama vision model and receive descriptions, OCR text, or prompted extraction results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/LZM2023/ollama-vision) <br>
-- [Publisher profile](https://clawhub.ai/user/LZM2023) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, guidance] <br>
-**Output Format:** [Plain text string] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may contain image descriptions, OCR text, or custom extracted information; images larger than 2 MB may be compressed before analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Selected images are sent to the user's local Ollama service for analysis.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run Ollama only in a trusted local environment and avoid using the skill on sensitive images unless local service access is controlled.
+
+Risk: Compressed temporary image files may be unsuitable for sensitive images in multi-user environments.
+
+Mitigation: Avoid sensitive images in shared environments until temporary-file handling uses unique private files.
+
+Risk: First use may trigger a qwen3-vl:4b model download of about 2-3GB.
+
+Mitigation: Confirm bandwidth, storage, and operational approval before first use or pre-install the model.
+
+Risk: Prompts and user-facing messages are Chinese-only.
+
+Mitigation: Confirm the deployment audience can review and operate Chinese-language prompts and diagnostics.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/lzm2023/skills/ollama-vision)
+
+## Skill Output:
+
+**Output Type(s):** [text, guidance]
+
+**Output Format:** [Plain text image analysis, OCR text, extraction results, or environment guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May compress large images before analysis; first use may download the qwen3-vl:4b model locally.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,53 @@
-## Description: <br>
-Searches Feishu and Telegram chat history with semantic matching, similarity scores, and message source labels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches Feishu and Telegram chat history using semantic search with similarity scores and message source labels.
 
-## Publisher: <br>
-[fhqoopp](https://clawhub.ai/user/fhqoopp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fhqoopp](https://clawhub.ai/user/fhqoopp)
 
-## Use Case: <br>
-Employees, external users, and developers use this skill to find relevant prior messages in Feishu or Telegram chat history through semantic search. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may search or persist private Feishu or Telegram chat history without enough scope, permission, or cleanup guidance. <br>
-Mitigation: Before use, confirm which chat data is indexed, how access is authorized, where Qdrant stores data, and how indexed records can be deleted. <br>
-Risk: Vague search requests could expose broader private chat results than intended. <br>
-Mitigation: Require explicit confirmation for vague searches and limit queries to the minimum necessary sources. <br>
+## Use Case:
 
+Developers and agents use this skill to retrieve prior Feishu or Telegram conversations from a configured private chat-history corpus. It is intended for explicit chat-history lookup workflows where message content, source labels, and similarity scores are shown to the user.
 
-## Reference(s): <br>
-- [Chat Search on ClawHub](https://clawhub.ai/fhqoopp/chat-search) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with search results, similarity scores, source labels, and setup commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search output may include private chat content from Feishu or Telegram indexes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Private Feishu or Telegram messages may be surfaced too broadly because the security evidence flags broad automatic triggers and under-scoped handling of private message content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Narrow activation to explicit chat-history requests, require confirmation before showing messages, and choose the source or corpus before searching.
+
+Risk: Local search dependencies may expose chat-history data if Qdrant or dependencies are installed with unsafe defaults.
+
+Mitigation: Bind Qdrant to local-only access where possible and pin reviewed Docker and Python dependency versions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fhqoopp/skills/chat-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown search results with source labels, timestamps, similarity scores, and optional setup commands.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include private chat-message excerpts from Feishu or Telegram search results.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

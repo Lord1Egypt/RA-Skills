@@ -1,45 +1,60 @@
-## Description: <br>
-SenseAudio Voice provides text-to-speech and automatic speech recognition workflows with automatic language-based engine selection for Chinese, English, and Japanese. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+SenseAudio Voice CN provides text-to-speech and speech-to-text workflows with automatic language-based switching across SenseAudio and Edge TTS.
 
-## Publisher: <br>
-[cowboy231](https://clawhub.ai/user/cowboy231) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[cowboy231](https://clawhub.ai/user/cowboy231)
 
-## Use Case: <br>
-External users, developers, and agent builders use this skill to add speech synthesis, speech playback, and audio transcription workflows to OpenClaw agents. It is suited for multilingual voice interaction where Chinese requests use SenseAudio services and English or Japanese requests use Edge TTS. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill sends text and audio data to external voice services. <br>
-Mitigation: Avoid confidential recordings or prompts unless third-party processing is acceptable for the deployment. <br>
-Risk: The skill can reuse a SenseAudio API key from existing OpenClaw configuration files. <br>
-Mitigation: Use a dedicated SenseAudio API key for this skill and review shared OpenClaw configs before installing. <br>
-Risk: Generated audio files and filename previews can expose sensitive content locally. <br>
-Mitigation: Delete generated audio files when their content or filenames contain sensitive information. <br>
+## Use Case:
 
+Developers and agents use this skill to synthesize speech from text, transcribe audio to text, and configure multilingual voice workflows for Chinese, English, and Japanese content.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/cowboy231/senseaudio-voice-cn) <br>
-- [SenseAudio text-to-speech API documentation](https://senseaudio.cn/docs/text_to_speech_api) <br>
-- [SenseAudio speech recognition HTTP API documentation](https://senseaudio.cn/docs/speech_recognition/http_api) <br>
-- [SenseAudio website](https://senseaudio.cn) <br>
+### Deployment Geography for Use:
 
+Global, with SenseAudio account setup and free-use requirements documented for users in mainland China.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and generated audio or transcription files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local audio files and may print transcription text or save transcription output to a user-specified file.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Text or audio may be sent to SenseAudio or Microsoft Edge TTS cloud services.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sensitive recordings or text, confirm the service terms, and use the skill only where cloud speech processing is acceptable.
+
+Risk: Generated audio and transcript files may be stored locally.
+
+Mitigation: Review the local audio and transcript directories, apply appropriate file permissions, and remove retained files when no longer needed.
+
+Risk: Setup installs Python dependencies and reads OpenClaw configuration paths for API credentials.
+
+Mitigation: Install dependencies in a virtual environment with pinned versions, prefer a dedicated SENSE_API_KEY, and review configuration lookup before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/cowboy231/skills/senseaudio-voice-cn)
+- [SenseAudio Text-to-Speech API](https://senseaudio.cn/docs/text_to_speech_api)
+- [SenseAudio Speech Recognition HTTP API](https://senseaudio.cn/docs/speech_recognition/http_api)
+- [SenseAudio](https://senseaudio.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated or transcribed text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local WAV or MP3 audio files and optional transcript files.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter reports 2.1.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

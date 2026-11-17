@@ -1,44 +1,60 @@
-## Description: <br>
-Build, test, and deploy MCP (Model Context Protocol) tools for developer workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build, test, and deploy MCP (Model Context Protocol) tools for developer workflows, including TypeScript and Python MCP server scaffolding, tool registration, transport configuration, and testing patterns.
 
-## Publisher: <br>
-[evezart](https://clawhub.ai/user/evezart) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[evezart](https://clawhub.ai/user/evezart)
 
-## Use Case: <br>
-Developers and engineers use this skill to scaffold Python or TypeScript MCP servers, define tools, choose transports, and apply database, file, and API integration patterns. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated MCP servers may expose broad file, API, or database access if deployed without scoping. <br>
-Mitigation: Review generated tools before deployment, restrict file paths and API domains, and use least-privilege database credentials. <br>
-Risk: Dependency choices in scaffolded Python or TypeScript servers may drift over time. <br>
-Mitigation: Use lockfiles or pinned dependency review before installing or deploying scaffolded servers. <br>
+## Use Case:
 
+Developers and engineers use this skill to scaffold MCP servers and add database, file-management, API, transport, and local testing patterns for agent-facing tools.
 
-## Reference(s): <br>
-- [Database MCP Tool Patterns](references/database-tools.md) <br>
-- [File Management MCP Tool Patterns](references/file-tools.md) <br>
-- [API Integration MCP Tool Patterns](references/api-tools.md) <br>
-- [ClawHub skill page](https://clawhub.ai/evezart/mcp-dev-toolkit) <br>
-- [Publisher profile](https://clawhub.ai/user/evezart) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include scaffolded MCP server files when the included scaffold script is executed by the user.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+Risk: The examples can create MCP tools with broad filesystem, network, and database access without strong safety boundaries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Restrict filesystem tools to explicit workspaces, allowlist API destinations, use least-privilege database credentials, and require user confirmation before enabling write or broad data-access tools.
+
+Risk: Generated scaffolds may depend on unpinned or loosely pinned packages.
+
+Mitigation: Pin package versions before production use and review dependency updates as part of release hardening.
+
+Risk: Unvalidated scaffold names or copied tool definitions can introduce fragile or unsafe server behavior.
+
+Mitigation: Validate scaffold names, review generated tool schemas, and test MCP servers locally before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/evezart/skills/mcp-dev-toolkit)
+- [API Integration MCP Tool Patterns](references/api-tools.md)
+- [Database MCP Tool Patterns](references/database-tools.md)
+- [File Management MCP Tool Patterns](references/file-tools.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with code blocks and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce scaffolded Python or TypeScript MCP server files and tool-pattern examples when applied by an agent.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

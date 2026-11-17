@@ -1,0 +1,48 @@
+{
+  "url": "https://www.isbn-international.org/content/what-isbn/10",
+  "title": "What is an ISBN? | International ISBN Agency",
+  "observed_at": "2026-10-09T13:10:35.903Z",
+  "method": "Playwright JavaScript library / visible Google Chrome",
+  "excerpts": [
+    "International Standard Book Number",
+    "The ISBN identifies the registrant as well as the specific title, edition and format.",
+    "each different product form"
+  ],
+  "sections": [
+    {
+      "section": null,
+      "locator": "p filtered by /^An ISBN is an International Standard Book Number/",
+      "excerpt": "International Standard Book Number",
+      "screenshot": "isbn-basics-identity.png",
+      "visible": true
+    },
+    {
+      "section": null,
+      "locator": "p filtered by /^An ISBN is essentially a product identifier/",
+      "excerpt": "The ISBN identifies the registrant as well as the specific title, edition and format.",
+      "screenshot": "isbn-basics-product.png",
+      "visible": true
+    },
+    {
+      "section": null,
+      "locator": "p filtered by /^With regard to the various media available/",
+      "excerpt": "each different product form",
+      "screenshot": "isbn-basics-formats.png",
+      "visible": true
+    }
+  ],
+  "claims_basis": {
+    "meaning": {
+      "summary": "ISBN 是 International Standard Book Number，即国际标准书号。",
+      "kind": "paraphrase of observed definition"
+    },
+    "product": {
+      "summary": "ISBN 标识注册者以及具体题名、版本和产品格式；它的识别粒度不是图书馆内某一个实体复本。",
+      "kind": "bounded interpretation of observed definition"
+    },
+    "formats": {
+      "summary": "同一内容的不同产品形式（例如平装、EPUB、PDF）应分别标识，不能因为题名相同就视为同一 ISBN。",
+      "kind": "paraphrase of observed definition"
+    }
+  }
+}

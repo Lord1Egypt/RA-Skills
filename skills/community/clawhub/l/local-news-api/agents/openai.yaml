@@ -1,0 +1,11 @@
+# Catalog presentation: the name and summary a skill registry shows in its listing.
+# SKILL.md's `description` is the agent's trigger and stays written for that job;
+# this file is written for the person browsing a catalog. Limits (ClawHub):
+# display_name 120 characters, short_description 300. Tests hold both.
+interface:
+  display_name: "Local News API: Search Articles, Sources, Meeting Transcripts & Events"
+  short_description: >-
+    Local news API: articles on local government, city council, elections, courts, public
+    safety, schools and health, their sources (meeting transcripts, people quoted, video
+    clips) and a local events and public hearing calendar. Read-only. Communities News
+    platform; live for Alaska News.

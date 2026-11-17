@@ -1,44 +1,50 @@
-## Description: <br>
-Write detailed, academically rigorous Chinese introduction chapters or introduction sections for theses, dissertations, and undergraduate papers from a user's topic, study background, research content, method, variables/concepts, population, theory, and extra information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Writes detailed Chinese thesis, dissertation, and undergraduate paper introduction chapters or sections from user-provided research topic, background, method, concepts, population, theory, and formatting requirements.
 
-## Publisher: <br>
-[junwugit](https://clawhub.ai/user/junwugit) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[junwugit](https://clawhub.ai/user/junwugit)
 
-## Use Case: <br>
-Students, researchers, and academic writers use this skill to draft, expand, polish, or structure Chinese thesis introduction chapters and introduction sections. It helps organize background, problem statement, purpose, significance, concepts, theoretical framework, questions or hypotheses, limitations, delimitations, assumptions, and chapter organization from user-supplied study details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The generated introduction may include citation placeholders or unsupported academic claims if the user has not provided sources. <br>
-Mitigation: Verify all citations and sources before use and replace placeholders with institutionally acceptable references. <br>
-Risk: Using generated thesis text without review may conflict with academic integrity requirements. <br>
-Mitigation: Review and adapt the draft according to the user's institution, adviser guidance, and academic integrity rules. <br>
-Risk: Research topics may involve confidential participant data or unpublished sensitive details. <br>
-Mitigation: Avoid providing confidential participant data or unpublished sensitive research details to the skill. <br>
+## Use Case:
 
+Students, researchers, and academic writing assistants use this skill to draft, expand, polish, or structure the introduction or Chapter One of Chinese academic papers while preserving method-specific section logic and placeholders for missing sources or context.
 
-## Reference(s): <br>
-- [Chinese Thesis Introduction Writing Guide](references/introduction-writing-guide.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/junwugit/thesis-introduction-writer) <br>
-- [Publisher Profile](https://clawhub.ai/user/junwugit) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown prose in Chinese with numbered academic headings, placeholders, and a revision checklist when appropriate] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include assumptions, missing-item notes, citation placeholders, and academic-integrity reminders.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Drafted academic claims or citation placeholders may be incomplete or inaccurate if the user has not supplied sources.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify generated academic claims, replace placeholders with real citations, and review the draft against school format and citation requirements before submission.
+
+## Reference(s):
+
+- [Chinese Thesis Introduction Writing Guide](artifact/references/introduction-writing-guide.md)
+- [ClawHub Skill Page](https://clawhub.ai/junwugit/skills/thesis-introduction-writer)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Guidance]
+
+**Output Format:** [Markdown with Chinese academic prose, numbered headings, placeholders, and a revision checklist when appropriate]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include assumptions, missing-item notes, citation placeholders, and method-specific wording.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

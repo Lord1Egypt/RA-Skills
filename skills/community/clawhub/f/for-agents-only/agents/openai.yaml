@@ -1,0 +1,4 @@
+interface:
+  display_name: "FOR AGENTS ONLY"
+  short_description: "Create and exhibit an AI agent self-portrait"
+  default_prompt: "Use $for-agents-only to create your self-portrait and submit it to the exhibition."

@@ -1,44 +1,60 @@
-## Description: <br>
-CLI tool to search, download, and parse academic papers from arXiv into AI-friendly Markdown using MinerU API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+CLI tool to search, download, and parse academic papers from arXiv into AI-friendly Markdown using MinerU API.
 
-## Publisher: <br>
-[kaihangyang](https://clawhub.ai/user/kaihangyang) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[kaihangyang](https://clawhub.ai/user/kaihangyang)
 
-## Use Case: <br>
-Developers, researchers, and agents use this skill to find arXiv papers, download PDFs, and convert selected papers into AI-friendly Markdown through the MinerU parsing service. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Installing the third-party PyPI package executes third-party code on the user's system. <br>
-Mitigation: Use a virtual environment or container and confirm the intended package and version before installation. <br>
-Risk: Parsing sends selected PDFs and paper metadata to MinerU for external processing. <br>
-Mitigation: Submit only PDFs the user is allowed to share, avoid sensitive unpublished documents, and review MinerU's data handling terms. <br>
-Risk: The MinerU API token is required for parsing and could expose account access if leaked. <br>
-Mitigation: Use a dedicated revocable token and keep it protected in the local configuration file. <br>
+## Use Case:
 
+Developers, researchers, and agent operators use this skill to find arXiv papers, download paper assets, and convert PDFs into AI-friendly Markdown through the MinerU API.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/kaihangyang/paper-parser-skill) <br>
-- [PyPI package](https://pypi.org/project/paper-parser-skill/) <br>
-- [MinerU parsing service](https://mineru.net/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, markdown] <br>
-**Output Format:** [Markdown with inline shell commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides agents toward local workspace files and asynchronous parsing commands when cloud conversion may take several minutes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: frontmatter and release evidence) <br>
+Risk: Installing the external PyPI package executes third-party code on the user's system.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install in a dedicated virtual environment or container and review the referenced source and exact package version before use.
+
+Risk: The MinerU API token can authorize PDF parsing requests.
+
+Mitigation: Use a dedicated, revocable token and keep it out of shared logs, repositories, and prompts.
+
+Risk: PDFs and paper metadata are submitted to MinerU for processing.
+
+Mitigation: Do not submit confidential, unpublished, or sensitive PDFs unless MinerU processing and data handling are acceptable.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/kaihangyang/skills/paper-parser-skill)
+- [PyPI package](https://pypi.org/project/paper-parser-skill/)
+- [MinerU API service](https://mineru.net/)
+- [Project homepage disclosed in artifact](https://github.com/KaiHangYang/paper-parser-skill)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Markdown, Files, Guidance]
+
+**Output Format:** [Markdown guidance with shell commands and YAML configuration examples; parsed paper outputs are stored as local Markdown files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a local config file at ~/.paper-parser/config.yaml and a MINERU_API_TOKEN for parsing.]
+
+## Skill Version(s):
+
+0.1.4 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,6 @@
+interface:
+  display_name: C4 架构图与架构文档
+  short_description: 用 Mermaid 生成 C4 上下文、容器、组件、代码架构图。
+  default_prompt: 使用 $architect-4c-cn，从当前讨论、设计资料或指定源码中提炼 C4 模型。先明确系统边界、读者与现状或目标，再按需生成 Context、Container、Component、Code 图，并用动态或部署视图检查关键协作与运行位置。
+policy:
+  allow_implicit_invocation: false

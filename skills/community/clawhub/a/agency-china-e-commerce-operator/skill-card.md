@@ -1,40 +1,50 @@
-## Description: <br>
-Provides China e-commerce operations guidance for multi-platform storefronts, campaign planning, live commerce, advertising optimization, and growth analysis. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Expert AI agent specializing in China e-commerce operations across major platforms, campaign strategy, live commerce, advertising optimization, and data-driven growth.
 
-## Publisher: <br>
-[zhouqkt](https://clawhub.ai/user/zhouqkt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhouqkt](https://clawhub.ai/user/zhouqkt)
 
-## Use Case: <br>
-E-commerce operators, agencies, and brand teams use this skill to plan and review China marketplace operations across Taobao, Tmall, Pinduoduo, JD, Douyin Shop, and live commerce channels. It helps structure listings, promotional calendars, advertising plans, campaign reports, and margin-aware growth recommendations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Guidance may influence listings, ad spend, inventory, orders, or customer messages if acted on without review. <br>
-Mitigation: Require explicit confirmation before any separate tool or person changes listings, ad spend, inventory, orders, or customer messages. <br>
-Risk: Users may be tempted to provide platform passwords, cookies, payment credentials, or private customer exports while planning operations. <br>
-Mitigation: Do not provide platform passwords, cookies, payment credentials, or private customer exports unless the agent and surrounding tools are intentionally trusted. <br>
+## Use Case:
 
+External teams and operators use this skill to plan and optimize China-market e-commerce storefronts, campaigns, live commerce operations, advertising, inventory, CRM, and performance reporting across Taobao, Tmall, Pinduoduo, JD, Douyin Shop, and related channels.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouqkt/agency-china-e-commerce-operator) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance, tables, checklists, campaign plans, and analysis templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown-only skill; it does not install code, request credentials, or run commerce actions by itself.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may suggest pricing, campaign, advertising, inventory, or CRM changes that affect real storefront performance.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review business-impacting recommendations against current platform rules, unit economics, inventory, and compliance requirements before applying them.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhouqkt/skills/agency-china-e-commerce-operator)
+- [ClawHub publisher profile](https://clawhub.ai/user/zhouqkt)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured operational guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No install scripts, tool calls, network access, or hidden execution behavior are reported in the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

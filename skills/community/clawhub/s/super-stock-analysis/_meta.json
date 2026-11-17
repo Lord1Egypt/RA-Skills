@@ -1,6 +1,7 @@
 {
-  "ownerId": "kn7daen55nrg54dwy82e815snx83pqe9",
-  "slug": "super-stock-analysis",
+  "ownerId": "marketpulse_dev_team",
+  "slug": "marketpulse-insights",
   "version": "1.0.0",
-  "publishedAt": 1775128724629
+  "publishedAt": 1775127800,
+  "description": "Advanced market intelligence platform for equity and digital asset analysis"
 }

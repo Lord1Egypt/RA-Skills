@@ -1,41 +1,54 @@
-## Description: <br>
-Perform security reviews of code to detect secrets exposure, auth issues, injection risks, unsafe dependencies, and improper execution paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Perform security reviews of code to detect secrets exposure, authentication and authorization issues, injection risks, unsafe dependencies, and improper execution paths.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill before deployment, after auth changes, or when adding dependencies and integrations to review code for security weaknesses and produce evidence-based remediation guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Security review inputs or reports may expose sensitive source code, credentials, or personal data. <br>
-Mitigation: Invoke the skill with a clear scope, avoid pasting live secrets unnecessarily, and verify that any secrets in reports are redacted. <br>
-Risk: Malformed trigger metadata may prevent expected automatic activation. <br>
-Mitigation: Invoke the skill explicitly until the publisher fixes the trigger metadata. <br>
+## Use Case:
 
+Developers and engineers use this skill before deployment, after authentication or authorization changes, or when adding dependencies and integrations to produce evidence-based security review findings with remediation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mzfshark/axodus-security-checks) <br>
-- [security-check.md](artifact/security-check.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [YAML-formatted security findings report in Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings include severity, location, issue, and remediation when evidence supports them.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and skill metadata) <br>
+Risk: Packaging trigger metadata may cause the skill to be invoked unexpectedly or not invoked when intended.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify and correct trigger metadata before relying on automatic invocation.
+
+Risk: Security reviews may encounter secrets or sensitive configuration values.
+
+Mitigation: Keep review scope limited to intended files and redact any discovered secrets in outputs.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/axodus-security-checks)
+- [ClawHub publisher profile](https://clawhub.ai/user/mzfshark)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Configuration, Guidance]
+
+**Output Format:** [Markdown security report with YAML-style findings]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Findings include a summary, severity, issue, location, and remediation; secrets should be redacted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

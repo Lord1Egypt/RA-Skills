@@ -1,0 +1,40 @@
+{
+  "schema": "ownership-attestation/1.0",
+  "package": "cer-equivalence-check",
+  "version": "1.0.0",
+  "author": "注册老炮@MedXpert",
+  "copyright": "MedXpert",
+  "license": "MIT",
+  "year": "2026",
+  "package_fingerprint_sha256": "20ea99485f0e47ac008f348d1a7c8acfcd0bad774fda6d3a7f9946c9d427bf44",
+  "files": [
+    {
+      "path": "ATTESTATION.md",
+      "sha256": "af5b0567342b100a6e8b99b80167a88e6788267e3932b3853fed391d7a3714c5"
+    },
+    {
+      "path": "LICENSE.md",
+      "sha256": "f1b905b5bc63f10fb0edb6992c5f71641ca58a9e4418788036aa009cc4e21487"
+    },
+    {
+      "path": "README.md",
+      "sha256": "603b904113e2aa19a4b7baabdbe381a4dfb00aebc84e27744137a0328e75aa7e"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "40db9998ff0ec5710ddb21bc371faa288bd9dbdf7adcb8488a527f56d8a0e42b"
+    },
+    {
+      "path": "cer-equivalence-check.py",
+      "sha256": "b980f67bd79dccf44d840bed9cf620f1ab9e1d82c301171bd9ddd690348efc9d"
+    },
+    {
+      "path": "llms.txt",
+      "sha256": "1175eaf66f875f0969d2e000a6e796069a61ebef8128ac8737a93f9a5c7e040e"
+    },
+    {
+      "path": "assets/overview.svg",
+      "sha256": "cd812e80a01ad4005698c2ac645abd2254f872b91b290b52403a3575a0a6aa3b"
+    }
+  ]
+}

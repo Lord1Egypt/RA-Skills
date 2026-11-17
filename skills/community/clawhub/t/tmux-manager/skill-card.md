@@ -1,43 +1,58 @@
-## Description: <br>
-Manage tmux sessions using the tmux-manager.py script. Use when asked to create, kill, restart, list, or inspect tmux sessions, send commands to sessions, tail session output, or validate the sessions config file. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage tmux sessions using the tmux-manager.py script to create, kill, restart, list, inspect, send commands to, tail, and validate configured tmux sessions.
 
-## Publisher: <br>
-[rdeangel](https://clawhub.ai/user/rdeangel) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[rdeangel](https://clawhub.ai/user/rdeangel)
 
-## Use Case: <br>
-Developers and engineers use this skill to manage local tmux-based development environments from YAML configuration, including creating, listing, restarting, killing, inspecting, and validating sessions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill has broad local shell control through tmux session commands, hooks, panes, environment variables, and AI CLI flags. <br>
-Mitigation: Review tmux-sessions.yaml before use, especially pre_hook, post_hook, command, panes, env, and AI CLI flags; use --validate and --dry-run before creating or restarting sessions. <br>
-Risk: Destructive tmux actions can terminate managed sessions or, through native tmux commands, all tmux sessions. <br>
-Mitigation: Prefer --list or --dry-run before kill or restart actions, scope selectors narrowly, and avoid tmux kill-server unless all tmux sessions should be terminated. <br>
-Risk: Tailing panes can expose secrets or untrusted terminal output. <br>
-Mitigation: Do not tail panes that may contain secrets or untrusted output. <br>
+## Use Case:
 
+Developers and engineers use this skill to define local development environments in YAML and manage tmux sessions, windows, panes, hooks, commands, and inspection workflows from an agent.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/rdeangel/tmux-manager) <br>
-- [uv documentation](https://docs.astral.sh/uv/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with shell commands and YAML configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires local uv and tmux; commands and hooks may execute on the host shell through tmux-manager.py.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill.json) <br>
+Risk: The skill can start, stop, and restart tmux sessions and run commands from YAML configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review any tmux-sessions.yaml before use, and run --validate, --dry-run, or --list before creating, killing, or restarting sessions.
+
+Risk: Example commands include agent launches that skip approvals.
+
+Mitigation: Remove or replace approval-bypass flags in copied examples unless that behavior is explicitly intended.
+
+Risk: Tailing untrusted or oddly named tmux targets is called out in security guidance.
+
+Mitigation: Avoid --tail on untrusted targets until the temp-file and pipe-pane handling is fixed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/rdeangel/skills/tmux-manager)
+- [uv documentation](https://docs.astral.sh/uv/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and YAML configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires local tmux and uv binaries; actions may affect local terminal sessions.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

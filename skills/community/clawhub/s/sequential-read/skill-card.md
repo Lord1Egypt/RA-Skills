@@ -1,42 +1,58 @@
-## Description: <br>
-Read prose sequentially with structured reflections to simulate the reading experience. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Read prose sequentially with structured reflections to simulate the reading experience
 
-## Publisher: <br>
-[horace-claw](https://clawhub.ai/user/horace-claw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[horace-claw](https://clawhub.ai/user/horace-claw)
 
-## Use Case: <br>
-External users and developers use this skill to have an agent read long-form prose in order, preserve chunk-level reactions, and synthesize the evolving reading experience into a final report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Selected source text and generated reflections are stored locally under memory/sequential_read. <br>
-Mitigation: Use the skill only with documents suitable for local retention, and delete session folders when the retained text or reflections are no longer needed. <br>
-Risk: Hand-crafted path-like session IDs could make local session handling harder to reason about. <br>
-Mitigation: Use generated session IDs and avoid manually supplied path-like identifiers. <br>
+## Use Case:
 
+External users, developers, and reading-focused agents use this skill to read long prose one chunk at a time, capture interim reflections, and produce a final synthesis that preserves the reading arc.
 
-## Reference(s): <br>
-- [Sequential Read release page](https://clawhub.ai/horace-claw/sequential-read) <br>
-- [horace-claw publisher profile](https://clawhub.ai/user/horace-claw) <br>
-- [Agentic Sequential Reading](https://doi.org/10.5281/zenodo.18596456) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown synthesis with local session files, chunk reflections, and command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores per-session chunks, reflections, annotations, state, and final synthesis under memory/sequential_read/<session-id>/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Autonomous sub-agents process untrusted source text, which can expose the reading workflow to adversarial document content.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the skill before installation for private or adversarial documents and run it with filesystem access limited to the chosen source file and its session directory.
+
+Risk: Source-derived chunks and generated reactions are written to persistent workspace memory.
+
+Mitigation: Use the skill only for documents the user is allowed to process, and review or delete the session directory after use when handling sensitive material.
+
+Risk: Longer-lived reader context may be updated from a source document and later reused.
+
+Mitigation: Review any retained reader context before reuse, especially after processing private or adversarial texts.
+
+## Reference(s):
+
+- [Sequential Read ClawHub Listing](https://clawhub.ai/horace-claw/skills/sequential-read)
+- [Agentic Sequential Reading](https://doi.org/10.5281/zenodo.18596456)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown synthesis plus session files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores chunk reflections and the final synthesis under memory/sequential_read/<session-id>/.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

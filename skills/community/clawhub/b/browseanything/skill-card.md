@@ -1,47 +1,65 @@
-## Description: <br>
-Drive a real Chromium browser with an autonomous AI agent to complete web tasks such as booking, scraping, form filling, authenticated data extraction, monitoring pages, and checkout flows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BrowseAnything delegates live web tasks to a hosted Chromium browser agent that can browse sites, fill forms, extract data, and return results with screenshots.
 
-## Publisher: <br>
-[mehdi149](https://clawhub.ai/user/mehdi149) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mehdi149](https://clawhub.ai/user/mehdi149)
 
-## Use Case: <br>
-Developers and skill-aware agent users use this skill to delegate live web workflows to a hosted Chromium browser, including data extraction, form completion, screenshots, monitoring, and authenticated web tasks when they are authorized to automate the target site or account. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate in logged-in browser sessions and may submit forms, purchases, account changes, or private data. <br>
-Mitigation: Use it only on websites and accounts the user is authorized to automate, and require explicit user confirmation before submissions, checkouts, account changes, CAPTCHA or MFA handling, or exporting private data. <br>
-Risk: Prompts, browsing activity, screenshots, and extracted data may be sent to a third-party hosted service. <br>
-Mitigation: Avoid placing passwords or secrets in prompts, prefer scoped saved sessions, and avoid sensitive accounts unless the workflow requires them and the user accepts the exposure. <br>
-Risk: The service requires a sensitive API key for task creation and status access. <br>
-Mitigation: Store BROWSEANYTHING_API_KEY in the environment or a secret manager, do not commit it to files, and rotate it if it is exposed. <br>
+## Use Case:
 
+Developers, operators, and skill-aware agents use this skill to delegate live web workflows such as research, form completion, authenticated data extraction, screenshots, monitoring, and shopping tasks to BrowseAnything's hosted browser automation service.
 
-## Reference(s): <br>
-- [BrowseAnything homepage](https://browseanything.io) <br>
-- [BrowseAnything documentation](https://platform.browseanything.io/docs) <br>
-- [ClawHub skill page](https://clawhub.ai/mehdi149/browseanything) <br>
-- [README](README.md) <br>
-- [API reference](REFERENCE.md) <br>
-- [Prompt examples](EXAMPLES.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Text, Markdown, JSON task objects, PNG screenshots, and shell command output from BrowseAnything helper scripts] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include task IDs, status values, result summaries, extracted fields, URLs, screenshots, errors, or human-input prompts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and SKILL.md metadata) <br>
+Risk: The skill can act in logged-in browser sessions, submit forms or transactions, and export private data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user review before logins, form submissions, purchases, bookings, or private data exports.
+
+Risk: Browser prompts and page contents may send sensitive browsing data to a remote BrowseAnything service.
+
+Mitigation: Install only when the BrowseAnything service is trusted, prefer project-scoped installation, and use limited, revocable API keys.
+
+Risk: Human-in-the-loop prompts may request 2FA codes, secrets, or other sensitive values.
+
+Mitigation: Avoid passing 2FA codes or secrets as command-line arguments; ask the user directly and use safer input handling when sensitive values are required.
+
+Risk: Custom BrowseAnything endpoints can redirect browser automation traffic outside the hosted platform.
+
+Mitigation: Keep custom endpoints HTTPS-only and verify the endpoint owner before using BROWSEANYTHING_API_URL.
+
+## Reference(s):
+
+- [BrowseAnything homepage](https://browseanything.io)
+- [BrowseAnything platform docs](https://platform.browseanything.io/docs)
+- [ClawHub skill page](https://clawhub.ai/mehdi149/skills/browseanything)
+- [Browse Anything API Reference](REFERENCE.md)
+- [Browse Anything prompt patterns](EXAMPLES.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, files]
+
+**Output Format:** [Plain text or JSON task results, Markdown tables when requested, and PNG screenshot files from the screenshot helper.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BROWSEANYTHING_API_KEY; tasks may pause for human input and are subject to tier-dependent step, time, rate, and concurrency limits.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

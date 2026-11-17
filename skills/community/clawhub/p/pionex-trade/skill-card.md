@@ -1,43 +1,54 @@
-## Description: <br>
-This skill guides an agent through Pionex spot order placement, cancellation, and order/fill checks using the `pionex-trade-cli` CLI with API credentials. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when an agent needs to place or cancel Pionex spot orders and review open orders or fills through the `pionex-trade-cli` CLI with configured API credentials.
 
-## Publisher: <br>
-[pibrandon](https://clawhub.ai/user/pibrandon) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[pibrandon](https://clawhub.ai/user/pibrandon)
 
-## Use Case: <br>
-External users and trading automation operators use this skill to prepare, dry-run, confirm, place, cancel, and review Pionex spot orders through the Pionex CLI. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can place or cancel real Pionex spot orders. <br>
-Mitigation: Use dry-run where supported, confirm the exact symbol, side, order type, size or amount, and cancellation scope with the user before any live write action. <br>
-Risk: The skill requires trading-capable API credentials. <br>
-Mitigation: Use least-privilege keys, enable IP whitelisting where possible, never share API secrets, and revoke keys when they are no longer needed. <br>
-Risk: The skill depends on the Pionex CLI package for trading operations. <br>
-Mitigation: Install and use the CLI only when the user trusts the package and its configured account context. <br>
+## Use Case:
 
+External users and agents use this skill to manage Pionex spot trading workflows, including placing market or limit orders, cancelling orders, and checking order status or fills. It is not intended for market-data-only or portfolio-only requests.
 
-## Reference(s): <br>
-- [Pionex API Docs](https://pionex-doc.gitbook.io/apidocs/) <br>
-- [Pionex](https://www.pionex.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include dry-run command proposals, account-balance checks, and confirmation prompts before live trading actions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill installs and relies on an external Pionex CLI package and uses trading API credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only if the Pionex npm package source is trusted, use a dedicated API key with only needed spot-trading permissions, disable withdrawals, and consider IP allowlisting.
+
+Risk: Order placement and cancellation can affect real trading positions.
+
+Mitigation: Use dry-runs where supported, confirm proposed writes with the user before live execution, and do not increase order size or submit additional orders without explicit agreement.
+
+## Reference(s):
+
+- [Pionex API Docs](https://pionex-doc.gitbook.io/apidocs/)
+- [Pionex Homepage](https://www.pionex.com)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include dry-run trading commands, confirmation prompts, balance checks, and order-management guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

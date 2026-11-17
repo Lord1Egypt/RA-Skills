@@ -1,48 +1,67 @@
-## Description: <br>
-并购对接工具，提供并购交易中关键联系人识别、接触策略和谈判路径规划。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+并购对接工具，提供并购交易中关键联系人识别、接触策略和谈判路径规划。
 
-## Publisher: <br>
-[golngod](https://clawhub.ai/user/golngod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[golngod](https://clawhub.ai/user/golngod)
 
-## Use Case: <br>
-External deal teams, project owners, founders, and advisors use this skill to identify M&A decision-makers at target listed companies, plan lawful outreach, prepare pitch materials, and manage follow-up status. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill includes outreach strategies that may obscure acquisition intent or use alternate professional roles to reach decision-makers. <br>
-Mitigation: Disclose the real organization and commercial intent early, and have legal or compliance reviewers approve real M&A outreach before use. <br>
-Risk: Collecting or using contact information can create privacy, scraping, or harassment risk. <br>
-Mitigation: Use only lawful public business contact channels, avoid personal or scraped contact data, honor opt-outs, and limit follow-ups. <br>
+## Use Case:
 
+External founders, technology teams, target companies, and transaction advisers use this skill to identify M&A stakeholders, build contact profiles, prepare outreach materials, and plan follow-up toward diligence.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/golngod/opc-ma-connection) <br>
-- [关键人识别与画像](references/01-关键人识别与画像.md) <br>
-- [联系方式获取渠道](references/02-联系方式获取渠道.md) <br>
-- [接触策略设计](references/03-接触策略设计.md) <br>
-- [推介材料模板](references/04-推介材料模板.md) <br>
-- [推进节奏管理](references/05-推进节奏管理.md) <br>
-- [话术库](references/06-话术库.md) <br>
-- [Skill调用接口](references/07-Skill调用接口.md) <br>
-- [快速入门指南](references/08-快速入门指南.md) <br>
+### Deployment Geography for Use:
 
+China
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown templates and generated text, with optional Python helper outputs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces key-person profiles, contact-channel plans, outreach strategies, pitch-material templates, scripts, and follow-up plans.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Pretext-based outreach may misrepresent a user's role, affiliation, or purpose.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require truthful disclosure of role, affiliation, and purpose in every outreach message before use.
+
+Risk: Collecting or retaining contact details for public-company personnel may create privacy and compliance exposure.
+
+Mitigation: Use only lawful public or authorized business contact data, minimize retained personal data, document sources, and honor opt-outs.
+
+Risk: Strategic-transaction outreach to public-company personnel can carry legal, regulatory, and reputational risk.
+
+Mitigation: Obtain legal or compliance review before contacting public-company personnel about M&A or strategic transactions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/golngod/skills/opc-ma-connection)
+- [Publisher profile](https://clawhub.ai/user/golngod)
+- [README](README.md)
+- [关键人识别与画像](references/01-关键人识别与画像.md)
+- [联系方式获取渠道](references/02-联系方式获取渠道.md)
+- [接触策略设计](references/03-接触策略设计.md)
+- [推介材料模板](references/04-推介材料模板.md)
+- [推进节奏管理](references/05-推进节奏管理.md)
+- [话术库](references/06-话术库.md)
+- [Skill调用接口](references/07-Skill调用接口.md)
+- [快速入门指南](references/08-快速入门指南.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown templates, structured Chinese reports, and optional Python-generated text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes Chinese-language M&A outreach playbooks and helper functions; users should verify compliance before outreach.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

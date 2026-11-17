@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clean Codex Archives"
+  short_description: "Safely purge archived Codex sessions across Windows and Unix"
+  default_prompt: "Use $clean-codex-archives to safely inspect and remove archived Codex conversation data."

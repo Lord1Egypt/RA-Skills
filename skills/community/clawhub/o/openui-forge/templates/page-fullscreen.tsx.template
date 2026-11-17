@@ -1,0 +1,56 @@
+"use client";
+
+// Full stylesheet. The package also exports granular entry points
+// "@openuidev/react-ui/components.css" and "@openuidev/react-ui/defaults.css".
+import "@openuidev/react-ui/index.css";
+
+import { FullScreen } from "@openuidev/react-ui";
+import {
+  openAIAdapter,
+  openAIReadableStreamAdapter,
+  openAIMessageFormat,
+} from "@openuidev/react-headless";
+import { ${LIBRARY_NAME} } from "${LIBRARY_IMPORT_PATH}";
+
+// FullScreen renders a full-viewport chat interface with built-in message
+// history, input field, and streaming display. processMessage connects it
+// to your backend; streamProtocol tells it how to parse the streaming
+// response.
+//
+// Pick streamProtocol to match your backend's output format:
+//   - SSE (lines prefixed with `data: ...\n\n`)    -> openAIAdapter()
+//   - NDJSON (one raw JSON object per line)         -> openAIReadableStreamAdapter()
+
+export default function ${PAGE_NAME}() {
+  return (
+    <FullScreen
+      agentName="${APP_TITLE}"
+      componentLibrary={${LIBRARY_NAME}}
+      // processMessage is called each time the user sends a message.
+      // It must return a Response whose body is the streaming chat output.
+      processMessage={async ({ messages, abortController }) => {
+        return fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: openAIMessageFormat.toApi(messages),
+          }),
+          signal: abortController.signal,
+        });
+      }}
+      // streamProtocol must be CALLED as a function. The default below is SSE.
+      // If your backend emits NDJSON (e.g. via OpenAI's `response.toReadableStream()`),
+      // switch to: streamProtocol={openAIReadableStreamAdapter()}
+      streamProtocol={openAIAdapter()}
+      // NOTE: no messageFormat prop here. When you supply processMessage,
+      // OpenUI hands you the RAW internal messages and does NOT apply
+      // messageFormat to them; messageFormat.toApi() only runs on the
+      // built-in apiUrl path (i.e. when processMessage is omitted). So the
+      // single openAIMessageFormat.toApi(messages) call above is the one and
+      // only conversion. Passing messageFormat as well would be a no-op on
+      // this path (and implies a double-conversion that never happens), so we
+      // drop it. Verified against the compiled @openuidev/react-headless store
+      // (sendMessage = processMessage ?? defaultFetch-with-toApi).
+    />
+  );
+}

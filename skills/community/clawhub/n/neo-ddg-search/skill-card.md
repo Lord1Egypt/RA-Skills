@@ -1,39 +1,56 @@
-## Description: <br>
-Search the web using DuckDuckGo. Free, no API key required. Use when the user asks to search the web, look something up, find information online, research a topic, or when you need to find current information that isn't in your training data. Also use when web_search tool is unavailable or has no API key configured. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search the web using DuckDuckGo through a no-API-key Python command-line helper.
 
-## Publisher: <br>
-[neobotjan2026](https://clawhub.ai/user/neobotjan2026) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[neobotjan2026](https://clawhub.ai/user/neobotjan2026)
 
-## Use Case: <br>
-Developers and agent users use this skill to run DuckDuckGo web searches when current online information is needed and no built-in web search tool is available. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to an external DuckDuckGo-backed service. <br>
-Mitigation: Avoid placing secrets, credentials, private identifiers, or confidential internal content in search queries. <br>
-Risk: The skill depends on the Python ddgs package and its examples mention system-level package installation. <br>
-Mitigation: Install the dependency in a virtual environment instead of modifying the system Python packages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/neobotjan2026/neo-ddg-search) <br>
+## Use Case:
 
+Developers and agents use this skill to run DuckDuckGo searches when current web information is needed and no API-key-backed web search tool is available.
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text search results with titles, URLs, and snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Result count defaults to 5; searches are sent to an external DuckDuckGo-backed service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The documented install command uses --break-system-packages with an unpinned third-party dependency.
+
+Mitigation: Install the dependency in a dedicated virtual environment and pin or review the ddgs package before use.
+
+Risk: Search queries are external network requests and may expose sensitive terms to third-party services.
+
+Mitigation: Keep confidential, personal, and private data out of search queries.
+
+Risk: The skill depends on unofficial DuckDuckGo access through ddgs, so behavior may break or rate-limit under upstream changes or heavy use.
+
+Mitigation: Treat results as availability-dependent, retry or fall back to another search provider when needed, and verify important information from retrieved pages.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/neobotjan2026/skills/neo-ddg-search)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text search results with titles, URLs, and snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results depend on the ddgs Python package and external DuckDuckGo availability.]
+
+## Skill Version(s):
+
+1.0.0 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

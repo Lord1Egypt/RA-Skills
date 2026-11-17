@@ -1,43 +1,63 @@
-## Description: <br>
-A Chinese-language cleaning management agent that helps users plan cleaning work, manage room checklists and supplies, track cleaning records in local SQLite storage, query cleaning guidance, and generate monthly HTML reports. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill helps users plan, record, and review household or office cleaning tasks, including checklists, supply inventory, local SQLite history, cleaning tips, and monthly HTML reports.
 
-## Publisher: <br>
-[bettermen](https://clawhub.ai/user/bettermen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bettermen](https://clawhub.ai/user/bettermen)
 
-## Use Case: <br>
-Individuals, household managers, and office administrators use this skill to organize recurring cleaning tasks, record completed cleaning work, monitor supplies, look up practical cleaning methods, and review monthly activity reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may save cleaning activity from broad natural-language triggers into a local SQLite database. <br>
-Mitigation: Be explicit when asking it to save records, review saved entries, and delete mistaken records when needed. <br>
-Risk: Generated HTML reports load Chart.js from a CDN. <br>
-Mitigation: Open reports only in contexts where the CDN dependency is acceptable, especially when report contents may be sensitive. <br>
-Risk: Cleaning technique guidance may not fit every product, surface, or chemical combination. <br>
-Mitigation: Follow product instructions, use ventilation and protective equipment where appropriate, and verify safety before applying cleaning chemicals. <br>
+## Use Case:
 
+External users can use this skill to manage routine home or office cleaning work: generate room-based plans, record completed work, track cleaning supplies, search cleaning guidance, and create monthly visual reports.
 
-## Reference(s): <br>
-- [Project homepage](https://github.com/bettermen/cleaning-assistant) <br>
-- [Chart.js CDN dependency](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, HTML files, guidance] <br>
-**Output Format:** [Markdown responses with inline shell commands, local SQLite-backed records, and generated HTML reports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python and may create local files under the skill directory, including data/cleaning.db and monthly cleaning_report_<year>_<month>.html reports.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+Risk: Generated monthly reports may execute unsafe HTML or JavaScript and load Chart.js from a third-party CDN.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated reports before opening them, avoid untrusted text in cleaning records, and prefer a version that escapes report fields and bundles Chart.js locally with integrity controls.
+
+Risk: Cleaning records and supply inventory are stored locally in SQLite and may contain household or office routine data.
+
+Mitigation: Install only where local storage is acceptable, avoid sensitive personal details in records, and apply normal device and file-access protections to the skill data directory.
+
+Risk: The skill supports saves and deletes for records, checklists, and supplies.
+
+Mitigation: Confirm destructive actions before execution and keep backups of the local database when records need to be retained.
+
+Risk: The report writer accepts an optional output path.
+
+Mitigation: Restrict report output to the skill data directory unless the user explicitly chooses another trusted location.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bettermen/skills/cleaning-assistant)
+- [Skill homepage from metadata](https://github.com/bettermen/cleaning-assistant)
+- [Chart.js CDN used by generated reports](https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown responses with shell commands, JSON CLI output, SQLite-backed local files, and generated HTML reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates local SQLite data under the skill data directory; monthly reports are written as HTML files.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

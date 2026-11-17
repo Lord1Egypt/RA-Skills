@@ -1,0 +1,24 @@
+name: create-business-plan
+version: 2.0.0
+description: |-
+  跨品类通用的新品类商业计划书（BP）方法论技能：覆盖数据诚信三态标签、市场与行为假设验证、五类竞品矩阵、TAM/SAM/SOM 与增量替代分析、分层首发、单位经济建模、合规认证关键路径、双硬 Gate 放行，以及 PPTX/DOCX 与 aipage 在线可编辑交付；附指标 Glossary 与反馈自迭代机制。
+
+  A reusable, cross-category methodology for building new-product Business Plans (BP) that survive investment review: data-integrity tagging, assumption validation, full competitive matrix, TAM/SAM/SOM with increment-vs-substitution analysis, phased launch, unit-economics modeling, compliance on the critical path, two hard Gates, and editable delivery (PPTX/DOCX or aipage). Includes a metrics Glossary and a self-improving feedback loop.
+category: business-planning
+author: community
+license: MIT
+tags:
+  - business-plan
+  - product-launch
+  - market-research
+  - unit-economics
+  - cross-category
+triggers:
+  - 商业计划书
+  - BP
+  - 新品类立项
+  - 立项评审
+  - 品类调研
+  - 单位经济
+  - product launch plan
+  - business plan

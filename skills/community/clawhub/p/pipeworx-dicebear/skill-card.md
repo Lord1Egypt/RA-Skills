@@ -1,39 +1,55 @@
-## Description: <br>
-Generate unique avatar images from any seed text - 30+ styles including pixel art, initials, and abstract shapes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate unique avatar images from seed text across 30+ styles including pixel art, initials, and abstract shapes.
 
-## Publisher: <br>
-[brucegutman](https://clawhub.ai/user/brucegutman) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[brucegutman](https://clawhub.ai/user/brucegutman)
 
-## Use Case: <br>
-Developers and product teams use this skill to generate deterministic avatar URLs for profile pictures, project icons, placeholders, and chat participants from a chosen seed and DiceBear style. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Avatar seed values may be sent to remote avatar services and appear in URLs. <br>
-Mitigation: Use random, pseudonymous, or hashed seed values instead of raw emails, real usernames, customer IDs, or regulated data. <br>
+## Use Case:
 
+Developers and product teams use this skill to generate deterministic avatar SVG URLs for users, projects, chat participants, and design prototypes without storing generated images.
 
-## Reference(s): <br>
-- [Pipeworx DiceBear pack](https://pipeworx.io/packs/dicebear) <br>
-- [ClawHub skill page](https://clawhub.ai/brucegutman/pipeworx-dicebear) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, Configuration, Guidance] <br>
-**Output Format:** [JSON responses and Markdown guidance with shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces deterministic SVG avatar URLs; requires curl for the documented API example.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The MCP configuration uses a mutable npm package version during setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and review the MCP bridge package version before deployment, or avoid the npx @latest configuration in managed environments.
+
+Risk: Seed text may be sent to external avatar services.
+
+Mitigation: Use non-sensitive pseudonymous seeds instead of emails, tokens, customer IDs, or confidential strings.
+
+## Reference(s):
+
+- [Pipeworx DiceBear pack](https://pipeworx.io/packs/dicebear)
+- [ClawHub Pipeworx dicebear release](https://clawhub.ai/brucegutman/skills/pipeworx-dicebear)
+- [Pipeworx DiceBear MCP endpoint](https://gateway.pipeworx.io/dicebear/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration]
+
+**Output Format:** [JSON responses containing SVG avatar URLs and style metadata, plus Markdown guidance with curl and MCP configuration examples.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses seed text and avatar style inputs; generated avatars are deterministic for the same seed.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

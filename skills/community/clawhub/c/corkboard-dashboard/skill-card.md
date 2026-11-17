@@ -1,45 +1,61 @@
-## Description: <br>
-Post and manage real-time corkboard pins, lamp cues, deleted-history recovery, and multi-track project pipeline work for the Carl's Corkie dashboard. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Post and manage real-time corkboard pins, lamp cues, deleted-history recovery, and multi-track project pipeline work for Carl's Corkie.
 
-## Publisher: <br>
-[zheroz00](https://clawhub.ai/user/zheroz00) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zheroz00](https://clawhub.ai/user/zheroz00)
 
-## Use Case: <br>
-Developers, operators, and agent users use this skill to post actionable tasks, alerts, links, briefings, project handoffs, and recovery actions to a corkboard dashboard through shell helpers or REST API calls. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer clones a project, installs dependencies, builds it, and can start a persistent local dashboard service. <br>
-Mitigation: Install only when the referenced project is trusted, review the install and start steps before use, and check existing installations before reinstalling. <br>
-Risk: The dashboard uses a bearer token and can bind to a network interface, which may expose the API if configured broadly. <br>
-Mitigation: Keep CORKBOARD_TOKEN and .env private, prefer localhost binding unless LAN access is required, and do not expose the dashboard port directly to the public internet. <br>
-Risk: Authentication can be disabled by configuration. <br>
-Mitigation: Avoid CORKBOARD_AUTH=disabled unless a separate reverse-proxy authentication layer is already protecting the API. <br>
+## Use Case:
 
+External users and developers use this skill to send actionable tasks, alerts, links, briefings, package tracking, media summaries, and multi-track project handoffs to a Carl's Corkie dashboard.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zheroz00/corkboard-dashboard) <br>
-- [API Reference](references/api.md) <br>
-- [Setup Guide](references/setup.md) <br>
-- [Pin Types Reference](references/pin-types.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash and curl examples; API calls return JSON responses.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates corkboard pins, projects, lamp states, and deleted-history restore actions through authenticated dashboard API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The installer clones and runs code from an upstream GitHub repository with npm and optional PM2 scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only after reviewing and trusting the upstream repository and local install script.
+
+Risk: The dashboard exposes API routes protected by a shared bearer token.
+
+Mitigation: Keep the service on localhost or a trusted network, place any public access behind an authenticated proxy, and rotate the token if it is exposed.
+
+Risk: The bearer token is stored in the dashboard .env file.
+
+Mitigation: Treat the .env token as a credential and keep the file private.
+
+## Reference(s):
+
+- [Corkboard Dashboard repository](https://github.com/Grooves-n-Grain/carls-corkie)
+- [API Reference](references/api.md)
+- [Setup Guide](references/setup.md)
+- [Pin Types Reference](references/pin-types.md)
+- [ClawHub skill page](https://clawhub.ai/zheroz00/skills/corkboard-dashboard)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with bash commands, curl examples, and JSON request payloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May call a local or trusted-network dashboard API using bearer-token authentication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

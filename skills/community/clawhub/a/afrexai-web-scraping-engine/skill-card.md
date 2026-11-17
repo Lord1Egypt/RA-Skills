@@ -1,39 +1,54 @@
-## Description: <br>
-Complete web scraping methodology for legal compliance, architecture design, anti-detection, data pipelines, and production operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Complete web scraping methodology covering legal compliance, architecture design, anti-detection, data pipelines, and production operations for agents building scrapers and data collection workflows at scale.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers and data teams use this skill to assess scraping legality, choose scraping architecture, draft extraction code patterns, and operate data pipelines for web data collection. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill includes anti-detection and anti-bot bypass guidance that could be misused against third-party sites. <br>
-Mitigation: Install only for owned or explicitly authorized targets; avoid stealth settings, proxy escalation, CAPTCHA solvers, hidden API mining, or large-scale crawling against third-party sites without a documented legal basis. <br>
-Risk: Web scraping workflows can collect personal, copyrighted, login-protected, or terms-restricted data. <br>
-Mitigation: Prefer official APIs, respect robots.txt and site terms, and avoid login-protected or personal data unless there is clear permission and an applicable legal basis. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/1kalin/afrexai-web-scraping-engine) <br>
+## Use Case:
 
+Developers and external users use this skill to assess scraping legality, choose scraper architecture, plan extraction workflows, and operate data pipelines for permitted web data collection.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown with code blocks and YAML/Python snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include legal checklists, architecture briefs, scraper code patterns, storage guidance, and operational runbooks.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill includes anti-bot evasion, Cloudflare bypass, stealth browser, proxy, and CAPTCHA-solving guidance.
+
+Mitigation: Use it only for sites you own, have permission to test, official APIs, or clearly permitted public data; avoid bypassing site protections or terms.
+
+Risk: Scraping workflows may collect personal, copyrighted, authenticated, or otherwise restricted data.
+
+Mitigation: Complete the compliance checklist before scraping, prefer official APIs when available, respect robots.txt and terms, and abandon targets that require unauthorized access.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/1kalin/skills/afrexai-web-scraping-engine)
+- [Artifact README](artifact/README.md)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Configuration]
+
+**Output Format:** [Markdown guidance with YAML and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes compliance checklists, architecture decision aids, scoring rubrics, and operational runbooks.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

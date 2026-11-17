@@ -1,6 +1,12 @@
 {
-  "ownerId": "kn7dbq03fxwk33b6h3nxtr5qbs82vzb6",
-  "slug": "facebook-secure",
-  "version": "1.0.2",
-  "publishedAt": 1774806499962
+  "ownerId": "kn7ehv4at8yekzag31spcarxm180bev0",
+  "slug": "facebook",
+  "version": "1.0.1",
+  "publishedAt": 1770028711580,
+  "openclaw": {
+    "requires": {
+      "env": ["FB_APP_ID", "FB_APP_SECRET", "FB_PAGE_ID", "FB_ACCESS_TOKEN"]
+    },
+    "primaryEnv": "FB_ACCESS_TOKEN"
+  }
 }

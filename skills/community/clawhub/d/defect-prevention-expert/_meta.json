@@ -1,6 +1,20 @@
 {
-  "ownerId": "kn74cfgrabakdyheh812hsdfhx889dxr",
+  "ownerId": "defect-prevention-team",
   "slug": "defect-prevention-expert",
   "version": "4.2.0",
-  "publishedAt": 1781501420054
+  "publishedAt": 1717776000000,
+  "lastUpdated": 1787107200000,
+  "language": "zh",
+  "category": "quality-assurance",
+  "tags": [
+    "quality-gate",
+    "defect-prevention",
+    "review",
+    "quality",
+    "testing",
+    "risk-analysis",
+    "lifecycle",
+    "monitoring",
+    "continuous-improvement"
+  ]
 }

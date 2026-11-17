@@ -1,45 +1,60 @@
-## Description: <br>
-AI-powered Bluesky CLI with multi-user auth, smart content generation, post scheduling, analytics, RSS automation, and growth tools. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI-powered Bluesky CLI with multi-user auth, smart content generation, post scheduling, analytics, RSS automation, and growth tools.
 
-## Publisher: <br>
-[jyothish12345](https://clawhub.ai/user/jyothish12345) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[jyothish12345](https://clawhub.ai/user/jyothish12345)
 
-## Use Case: <br>
-Creators, community managers, and developers use Clawbsky to manage Bluesky accounts, generate social posts and replies, schedule content, inspect timelines, review analytics, automate RSS-driven posts, and perform account maintenance tasks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can store Bluesky login sessions and use credentials to act on public accounts. <br>
-Mitigation: Use a dedicated Bluesky app password, start with a test account when possible, and clear saved sessions after use. <br>
-Risk: Automation features can post, schedule, follow, unfollow, block, mute, or otherwise change account state in bulk. <br>
-Mitigation: Review commands before running them, use dry-run modes where available, and avoid aggressive growth or cleanup automation. <br>
-Risk: Standalone growth and repost discovery scripts may include account or path assumptions that are not appropriate for every user. <br>
-Mitigation: Inspect and edit standalone scripts such as follow-growth and discover-repost before executing them. <br>
+## Use Case:
 
+Developers, creators, and automation-focused Bluesky users use Clawbsky to manage accounts, generate and schedule posts, read timelines, analyze engagement, process RSS feeds, and run growth or moderation workflows from a CLI.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/jyothish12345/skills/clawbsky) <br>
-- [Publisher Profile](https://clawhub.ai/user/jyothish12345) <br>
-- [Bluesky App Passwords](https://bsky.app/settings/app-passwords) <br>
-- [Project Homepage](https://github.com/jyothish12345/Clawbsky) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, CLI text, JSON-capable command output, and shell command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May execute account-changing Bluesky actions when the user runs posting, scheduling, moderation, cleanup, RSS, or growth commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.13 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
+Risk: The skill can perform live Bluesky account actions including posting, following, unfollowing, blocking, muting, reposting, scheduling, RSS fetching, webhook delivery, and LLM-assisted content processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated test account or app password, review actions before running bulk workflows, and prefer dry-run or manual confirmation paths when available.
+
+Risk: The skill handles durable Bluesky credentials and local session state.
+
+Mitigation: Use a Bluesky app password rather than the main account password, limit account privileges where possible, and inspect stored sessions under local .config paths.
+
+Risk: RSS feeds, webhooks, and LLM endpoints can introduce untrusted external content or destinations into automation workflows.
+
+Mitigation: Configure only trusted RSS sources, webhook URLs, and LLM endpoints; review generated content before publishing.
+
+## Reference(s):
+
+- [Clawbsky on ClawHub](https://clawhub.ai/jyothish12345/skills/clawbsky)
+- [Clawbsky GitHub repository](https://github.com/jyothish12345/Clawbsky)
+- [Bluesky app passwords](https://bsky.app/settings/app-passwords)
+- [clawbskyweb dashboard companion](https://github.com/jyothish12345/clawbskyweb)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown and terminal-oriented text with inline shell commands, JSON options, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires BLUESKY_HANDLE, BLUESKY_APP_PASSWORD, ffmpeg, and ffprobe for the documented OpenClaw environment; AI features may use configured LLM providers.]
+
+## Skill Version(s):
+
+2.0.13 (source: frontmatter, package.json, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

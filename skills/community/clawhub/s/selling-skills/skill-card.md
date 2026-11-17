@@ -1,48 +1,59 @@
-## Description: <br>
-Selling Skills is a Hermes skill-pack installer for deploying ClawHub multi-agent swarm capabilities across orchestration, workflow automation, market intelligence, real-time processing, persistent memory, revenue automation, and bug-bounty security research. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Master installer for the ClawHub Swarm Ecosystem, a suite of Hermes skills for deploying and managing multi-agent orchestration, workflow automation, market intelligence, real-time processing, persistent memory, and autonomous revenue-oriented agent workflows.
 
-## Publisher: <br>
-[andscrew8012](https://clawhub.ai/user/andscrew8012) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[andscrew8012](https://clawhub.ai/user/andscrew8012)
 
-## Use Case: <br>
-External developers and operators use this skill pack to prepare Hermes installation guidance and configuration for a broad ClawHub multi-agent ecosystem. The bundled capabilities include workflow orchestration, publishing and outreach automation, trading-related workflows, persistent memory, and bug-bounty/security research modules. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package can enable externally acting automation for publishing, bidding, outreach, trading-related workflows, and other revenue-oriented actions. <br>
-Mitigation: Install only the required tiers, keep auto-action features disabled until manually reviewed, and require human approval before enabling live publishing, bidding, outreach, or trading behavior. <br>
-Risk: The package includes offensive security and bug-bounty automation that may affect third-party systems. <br>
-Mitigation: Run bug-bounty and penetration-testing functions only against targets where explicit authorization and scope are documented. <br>
-Risk: The package expects API credentials for external services and bounty platforms. <br>
-Mitigation: Use dedicated, low-privilege API keys, separate production and test credentials, and review key permissions before installation. <br>
-Risk: Persistent memory and cross-agent knowledge sharing may retain sensitive operational data. <br>
-Mitigation: Review retention settings, use encryption at rest where available, and limit shared memory to data that is appropriate for the deployed agents. <br>
+## Use Case:
 
+Developers and operators use this skill to install and configure a broad ClawHub/Hermes multi-agent skill ecosystem for orchestration, automation, data processing, memory, market intelligence, and related autonomous workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/andscrew8012/skills/selling-skills) <br>
-- [Publisher profile](https://clawhub.ai/user/andscrew8012) <br>
-- [ClawHub Swarm Ecosystem quickstart](https://docs.clawhub.io/swarm-ecosystem/quickstart) <br>
-- [ClawHub API reference](https://docs.clawhub.io/api/v1) <br>
-- [ClawHub troubleshooting](https://docs.clawhub.io/troubleshooting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with YAML-style configuration blocks and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes multi-skill installation phases, prerequisite notes, configuration examples, health checks, rollback guidance, and risk-sensitive operational guidance.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: The skill pack bundles broad autonomous, financial, publishing, credential, browser-session, and offensive security capabilities with weak scoping and dependency controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every referenced dependency, pin trusted versions, and deploy in an isolated workspace before use.
+
+Risk: Autonomous actions such as trades, posts, bids, outreach messages, exploit attempts, or vulnerability submissions may create operational or legal exposure.
+
+Mitigation: Use dry-run or paper modes and require explicit approval before any external action.
+
+Risk: Shared secrets and browser sessions may be exposed across installed skills or agent workflows.
+
+Mitigation: Use least-privilege credentials, separate browser profiles, and avoid placing broad secrets in a shared .env file.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/andscrew8012/skills/selling-skills)
+- [ClawHub publisher profile](https://clawhub.ai/user/andscrew8012)
+- [ClawHub swarm ecosystem quickstart](https://docs.clawhub.io/swarm-ecosystem/quickstart)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown]
+
+**Output Format:** [Markdown with inline shell commands and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes installer-style instructions and operational guidance for multiple referenced Hermes skills.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,42 +1,60 @@
-## Description: <br>
-Search and scrape Indeed job listings and company information using Bright Data's Web Scraper API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches and formats Indeed job listings and company information through Bright Data's Web Scraper API using Bash scripts that require BRIGHTDATA_API_KEY.
 
-## Publisher: <br>
-[foreztgump](https://clawhub.ai/user/foreztgump) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[foreztgump](https://clawhub.ai/user/foreztgump)
 
-## Use Case: <br>
-External users, recruiting teams, and developers use this skill to search Indeed jobs, collect job details from Indeed URLs, look up company information, and format results for recruiting research workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: A modified local history file could cause cleanup to delete an arbitrary file accessible to the user account. <br>
-Mitigation: Review the skill before installation and prefer a version that constrains cleanup deletions to the managed results directory. <br>
-Risk: Indeed search inputs and URLs are sent to Bright Data, and local cache, pending job, history, and result files are stored under ~/.config/indeed-brightdata/. <br>
-Mitigation: Use a scoped Bright Data API key where possible and avoid submitting sensitive search terms or URLs unless sharing them with Bright Data is acceptable. <br>
+## Use Case:
 
+Developers, agents, and recruiting teams use this skill to search Indeed jobs and company pages, collect details from specific Indeed URLs, poll asynchronous Bright Data results, and present formatted recruiting research.
 
-## Reference(s): <br>
-- [Bright Data Indeed API Reference](references/api-reference.md) <br>
-- [Keyword Expansions](references/keyword-expansions.json) <br>
-- [ClawHub Skill Page](https://clawhub.ai/foreztgump/indeed-brightdata) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain-text summaries, shell command examples, JSON result data, and optional CSV exports] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires BRIGHTDATA_API_KEY, curl, and jq; persistent cache, pending jobs, history, and results are stored under ~/.config/indeed-brightdata/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.4 (source: server release metadata) <br>
+Risk: A polling script accepts crafted timing options that can execute local shell commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing and do not allow untrusted prompts or inputs to control polling options until timeout and interval values are strictly validated.
+
+Risk: Job searches, company URLs, and fetched results are sent to Bright Data and cached locally.
+
+Mitigation: Use a narrowly scoped Bright Data API key, avoid sensitive queries where inappropriate, and clear ~/.config/indeed-brightdata/ when cached results should not persist.
+
+Risk: The README includes an optional unpinned npx installation path.
+
+Mitigation: Prefer a reviewed release artifact or pin and verify the installer package before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/foreztgump/skills/indeed-brightdata)
+- [Bright Data Indeed API Reference](references/api-reference.md)
+- [Keyword expansions](references/keyword-expansions.json)
+- [Bright Data](https://brightdata.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, CSV, Shell commands, Configuration]
+
+**Output Format:** [Markdown summaries, JSON result objects, and CSV exports produced by shell scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl, jq, and BRIGHTDATA_API_KEY; stores pending searches, cache history, and fetched results under ~/.config/indeed-brightdata/.]
+
+## Skill Version(s):
+
+0.1.4 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

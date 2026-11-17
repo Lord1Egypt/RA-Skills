@@ -1,39 +1,47 @@
-## Description: <br>
-Provides monthly, zone-specific planting schedules, plant details, and custom entries to help gardeners plan seasonal crops year-round. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides monthly, zone-specific planting schedules, plant details, and custom entries to help gardeners plan seasonal crops year-round.
 
-## Publisher: <br>
-[johstracke](https://clawhub.ai/user/johstracke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[johstracke](https://clawhub.ai/user/johstracke)
 
-## Use Case: <br>
-External gardeners, small farmers, and garden-planning agents use this skill to identify what to plant by month and USDA hardiness zone, inspect plant details, add local custom entries, and optionally export a planting calendar. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Custom plant names and notes are saved locally under ~/.openclaw/workspace. <br>
-Mitigation: Avoid entering sensitive information in custom plant names or notes, and review local files before sharing workspace data. <br>
-Risk: Calendar export can create or overwrite a local Markdown file at the path the user chooses. <br>
-Mitigation: Review the export path before running the command and keep exports within intended workspace, home, or temporary directories. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Seasonal Planting Guide on ClawHub](https://clawhub.ai/johstracke/seasonal-planting-guide) <br>
+## Use Case:
+
+External gardeners, small farmers, and garden planners use this skill to get USDA zone-specific monthly planting calendars, look up plant details, search crops, add custom entries, and export markdown schedules.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Calendar export can overwrite broad home or temporary-directory paths despite stronger safety claims.
+
+Mitigation: Use --export only with a dedicated new file under ~/.openclaw/workspace/ and avoid important existing files, dotfiles, or broad home-directory paths.
+
+## Reference(s):
 
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Plain text CLI output and optional Markdown calendar export] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save custom plant data locally under ~/.openclaw/workspace and may write a Markdown export to a user-selected safe path.] <br>
+## Skill Output:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+**Output Format:** [Command-line text output and optional Markdown export files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes a local planting database for custom entries and can export planting calendars as Markdown.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

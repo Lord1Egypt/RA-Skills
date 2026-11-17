@@ -1,41 +1,60 @@
-## Description: <br>
-arxiv-daily helps agents fetch daily arXiv papers for subscribed categories, organize summaries, and schedule delivery to a configured chat destination. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fetches daily arXiv papers for configured categories, helps schedule paper retrieval and delivery, and guides the agent to summarize and send results to the user.
 
-## Publisher: <br>
-[hislocked](https://clawhub.ai/user/hislocked) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hislocked](https://clawhub.ai/user/hislocked)
 
-## Use Case: <br>
-Developers and research-oriented users use this skill to set up recurring arXiv category fetches, save paper metadata and abstracts, generate concise markdown summaries, and send scheduled updates to a configured chat destination. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Recurring runs can write local configuration and paper data files, and the setup script may install Python dependencies. <br>
-Mitigation: Confirm the arXiv categories, timer schedule, output paths, and dependency installation approach before enabling recurring runs; use a virtual environment or preinstall dependencies when appropriate. <br>
-Risk: Scheduled paper summaries can be sent to the wrong chat destination if the push configuration is incorrect. <br>
-Mitigation: Verify the channel, account, and chat_id before enabling daily delivery, and test with a limited category first. <br>
+## Use Case:
 
+External users and developers use this skill to configure recurring arXiv category subscriptions, fetch recent papers, generate concise paper summaries, and send scheduled paper digests through a configured delivery channel.
 
-## Reference(s): <br>
-- [arXiv](https://arxiv.org/) <br>
-- [arXiv recent category listing](https://arxiv.org/list/cs.CV/recent) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries, configuration snippets, and shell command guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Fetches arXiv pages over HTTPS and can create local preference and paper data files under references/ and data/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.1 (source: server release metadata) <br>
+Risk: The security review notes that the skill may silently install unpinned Python packages.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install reviewed, pinned dependencies in a virtual environment before running the helper script.
+
+Risk: The security review notes recurring timers and persisted delivery identifiers for scheduled pushes.
+
+Mitigation: Review timer settings and remove scheduled jobs and like-*.txt configuration files when the subscription is no longer needed.
+
+Risk: The skill stores fetched paper data, generated summaries, and delivery configuration locally.
+
+Mitigation: Keep output paths inside the skill directory and avoid adding sensitive account or chat identifiers beyond what delivery requires.
+
+## Reference(s):
+
+- [arXiv](https://arxiv.org/)
+- [arXiv recent category listings](https://arxiv.org/list/cs.CV/recent)
+- [ClawHub skill page](https://clawhub.ai/hislocked/skills/arxiv-daily)
+- [Publisher profile](https://clawhub.ai/user/hislocked)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown summaries, configuration text, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local subscription configuration files and daily paper data or summary files.]
+
+## Skill Version(s):
+
+0.9.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

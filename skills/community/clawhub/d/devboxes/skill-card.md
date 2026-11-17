@@ -1,45 +1,62 @@
-## Description: <br>
-Manage development environment containers (devboxes) with web-accessible VSCode, VNC, and app routing via Traefik or Cloudflare Tunnels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages development environment containers with web-accessible VSCode, VNC, and app routing via Traefik or Cloudflare Tunnels.
 
-## Publisher: <br>
-[adshrc](https://clawhub.ai/user/adshrc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[adshrc](https://clawhub.ai/user/adshrc)
 
-## Use Case: <br>
-Developers and engineers use this skill to provision and manage OpenClaw devbox containers with browser-based IDE access, visual desktop access, browser automation, and routable application ports. It supports first-time infrastructure setup, devbox lifecycle tasks, and project setup inside the resulting development environment. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Docker-backed devbox management and includes host-level Docker socket access guidance. <br>
-Mitigation: Install only where an agent is intended to manage containers, and limit Docker access to trusted hosts and users. <br>
-Risk: The setup guidance includes world-writable Docker socket or host-path permissions. <br>
-Mitigation: Avoid world-writable permissions on shared or sensitive machines; prefer least-privilege host paths and access controls. <br>
-Risk: GitHub and Cloudflare tokens may be provided to support private repository cloning and tunnel or DNS setup. <br>
-Mitigation: Use scoped tokens, rotate credentials after use when appropriate, and avoid storing broader permissions than the devbox workflow requires. <br>
-Risk: VSCode, noVNC, browser automation, and application services can be exposed through configured routing. <br>
-Mitigation: Expose IDE and browser services only behind authentication and restrict network access to intended users. <br>
+## Use Case:
 
+Developers and engineers use this skill to set up and manage browser-accessible OpenClaw devbox containers for coding, prototyping, frontend debugging, and project setup. It guides onboarding, routing configuration, container spawning, and URL reporting.
 
-## Reference(s): <br>
-- [Project Setup Script Guide](references/setup-script-guide.md) <br>
-- [OpenClaw + Traefik Setup Guide](https://gist.github.com/adshrc/3cd9e8a714098f414635b7fe1ab5e573#file-openclaw_traefik-md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Code] <br>
-**Output Format:** [Markdown with inline shell commands and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce URLs, environment variable values, and setup instructions for Docker-backed devboxes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.4.0 (source: server release metadata) <br>
+Risk: The setup grants broad host and network authority through Docker control, writable host paths, and public devbox URLs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a dedicated, non-shared environment where those permissions and exposed URLs are acceptable.
+
+Risk: Docker socket permissions and host path write access can create unsafe defaults.
+
+Mitigation: Avoid chmod 666 on the Docker socket where possible, avoid system-directory host mappings, and use isolated infrastructure.
+
+Risk: VSCode, VNC, Cloudflare, and GitHub tokens may be exposed if public endpoints or broad tokens are used.
+
+Mitigation: Put VSCode and VNC behind authentication, keep tokens narrowly scoped, and rotate or remove tokens that are no longer needed.
+
+Risk: Using mutable container images can make deployments harder to audit.
+
+Mitigation: Prefer pinned image versions or digests before production use.
+
+## Reference(s):
+
+- [Project Setup Script Guide](references/setup-script-guide.md)
+- [OpenClaw + Traefik Setup Guide](https://gist.github.com/adshrc/3cd9e8a714098f414635b7fe1ab5e573#file-openclaw_traefik-md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include generated devbox URLs, Docker and OpenClaw configuration steps, routing setup guidance, and project setup script conventions.]
+
+## Skill Version(s):
+
+1.4.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

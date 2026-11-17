@@ -1,44 +1,57 @@
-## Description: <br>
-Links an OpenClaw agent to its wayMint ERC-8004 on-chain identity certificate and helps the agent share a configured verification URL. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Link your OpenClaw agent to its wayMint ERC-8004 on-chain identity certificate and provide the configured identity URL when identity or verification is requested.
 
-## Publisher: <br>
-[maksika](https://clawhub.ai/user/maksika) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maksika](https://clawhub.ai/user/maksika)
 
-## Use Case: <br>
-Developers and external agent operators use this skill to configure an OpenClaw agent with its wayMint chain and agent ID so it can answer identity or trust prompts with a certificate URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: On-chain identity data is public and persistent and may link an agent to an owner address or proof-of-human status. <br>
-Mitigation: Review the identity information before registration and avoid publishing details that should not be permanently public. <br>
-Risk: A certificate link alone could be mistaken for proof that an agent is safe or trustworthy. <br>
-Mitigation: Verify certificate claims manually and evaluate the agent's behavior, source, and operational controls separately. <br>
+## Use Case:
 
+External users and agent operators use this skill to configure an OpenClaw agent's wayMint chain and ERC-8004 agent ID, then share the resulting certificate URL when identity or verification questions arise.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/maksika/waymint) <br>
-- [wayMint identity service](https://8004.way.je) <br>
-- [wayMint agent registration](https://8004.way.je/register) <br>
-- [wayMint agent lookup](https://8004.way.je/agent/{chain}:{id}) <br>
-- [wayMint owner lookup](https://8004.way.je/owner/{address}) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown text with identity URLs and configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses WAYMINT_CHAIN and WAYMINT_AGENT_ID configuration values.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence; artifact frontmatter lists 1.0.0) <br>
+Risk: The security review flags broad, unverified proof-of-human trust claims.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the wayMint certificate as an operator-configured third-party identity link and avoid treating it as automatic proof that an agent is trustworthy or human-operated.
+
+Risk: The artifact text still references the older /8004 command while release notes say the slash command was fixed to /waymint.
+
+Mitigation: Prefer /waymint in user-facing guidance and verify command naming before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maksika/skills/waymint)
+- [wayMint identity service](https://8004.way.je)
+- [wayMint registration](https://8004.way.je/register)
+- [wayMint agent API](https://8004.way.je/api/agent/{chain}/{id})
+- [wayMint owner API](https://8004.way.je/api/owner/{address})
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, configuration, guidance]
+
+**Output Format:** [Markdown text with identity URLs and configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses WAYMINT_CHAIN and WAYMINT_AGENT_ID configuration values to form wayMint identity, agent lookup, and owner lookup URLs.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

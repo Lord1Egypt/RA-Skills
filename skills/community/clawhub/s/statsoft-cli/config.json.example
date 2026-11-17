@@ -1,0 +1,220 @@
+{
+  "R": {
+    "installed": true,
+    "path": "[R_INSTALL_PATH]/bin/Rscript.exe",
+    "version": "[R_VERSION]",
+    "install_path": "[R_INSTALL_PATH]/",
+    "mode": "simple"
+  },
+  "SPSS Statistics": {
+    "installed": true,
+    "version": "[SPSS_VERSION]",
+    "path": "[SPSS_INSTALL_DIR]/stats.exe",
+    "python_plugin": true,
+    "mode": "simple"
+  },
+  "SPSS Modeler": {
+    "installed": true,
+    "version": "[MODELER_VERSION]",
+    "path": "[IBMSPSS_MODELER_INSTALL_PATH]/bin/clemb.exe",
+    "mode": "simple"
+  },
+  "Stata": {
+    "installed": true,
+    "path": "[STATA_INSTALL_PATH]",
+    "edition": "[MP|SE|BE]",
+    "version": "[STATA_VERSION]",
+    "mode": "simple"
+  },
+  "JAGS": {
+    "installed": true,
+    "version": "4.3.0",
+    "path": "/usr/local/bin/jags",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "SHAZAM": {
+    "installed": true,
+    "version": "12.0",
+    "path": "[SHAZAM_INSTALL_PATH]/shazam.exe",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "OxMetrics": {
+    "installed": true,
+    "version": "8.0",
+    "path": "[OXMETRICS_INSTALL_PATH]/oxmetrics.exe",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "TSP": {
+    "installed": true,
+    "version": "5.0",
+    "path": "[TSP_INSTALL_PATH]/tsp.exe",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "Tanagra": {
+    "installed": true,
+    "version": "1.8",
+    "path": "[TANAGRA_INSTALL_PATH]/tanagra.exe",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "Orange": {
+    "installed": true,
+    "version": "3.36",
+    "path": "pip install orange3",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "H2O": {
+    "installed": true,
+    "version": "3.44",
+    "path": "pip install h2o",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "GenStat": {
+    "installed": true,
+    "version": "23.0",
+    "path": "[GENSTAT_INSTALL_PATH]/genstat.exe",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "Rattle": {
+    "installed": true,
+    "version": "5.5",
+    "path": "R: install.packages('rattle')",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "OpenBUGS": {
+    "installed": true,
+    "version": "3.2.3",
+    "path": "[OPENBUGS_INSTALL_PATH]/openbugs.exe",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "LIMDEP": {
+    "installed": true,
+    "version": "11.0",
+    "path": "[LIMDEP_INSTALL_PATH]/limdep.exe",
+    "platform": "windows",
+    "mode": "simple"
+  },
+  "NLOGIT": {
+    "installed": true,
+    "version": "6.0",
+    "path": "[NLOGIT_INSTALL_PATH]/nlogit.exe",
+    "platform": "windows",
+    "mode": "simple"
+  },
+  "Microfit": {
+    "installed": true,
+    "version": "5.0",
+    "path": "[MICROFIT_INSTALL_PATH]/microfit.exe",
+    "platform": "windows",
+    "mode": "simple"
+  },
+  "CmdStan": {
+    "installed": true,
+    "version": "2.30+",
+    "path": "~/.cmdstanpy/cmdstan",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "Weka": {
+    "installed": true,
+    "version": "3.8+",
+    "path": "/usr/local/share/weka",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "KNIME": {
+    "installed": true,
+    "version": "4.7+",
+    "path": "/opt/knime",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "jamovi": {
+    "installed": true,
+    "version": "2.4+",
+    "path": "/usr/bin",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "JASP": {
+    "installed": true,
+    "version": "0.18+",
+    "path": "/usr/bin",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "PSPP": {
+    "installed": true,
+    "version": "2.0+",
+    "path": "/usr/bin",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "Mplus": {
+    "installed": true,
+    "version": "8.11",
+    "path": "C:\\Program Files\\Mplus",
+    "platform": "windows",
+    "mode": "simple"
+  },
+  "Mathematica": {
+    "installed": true,
+    "version": "14.0",
+    "path": "[MATHEMATICA_INSTALL_PATH]/wolframscript.exe",
+    "kernel_path": "[MATHEMATICA_INSTALL_PATH]/MathKernel.exe",
+    "platform": "all",
+    "mode": "simple"
+  },
+  "AMOS": {
+    "installed": true,
+    "version": "29.0",
+    "path": "C:\\Program Files\\IBM\\SPSS\\Amos",
+    "platform": "windows",
+    "mode": "simple"
+  },
+  "Q_MRKS": {
+    "installed": true,
+    "version": "6.0",
+    "path": "C:\\Program Files\\Q Research",
+    "platform": "windows",
+    "mode": "simple"
+  },
+  "StatTransfer": {
+    "installed": true,
+    "version": "[VERSION]",
+    "path": "[STATTRANSFER_INSTALL_PATH]",
+    "mode": "simple",
+    "platform": "windows"
+  },
+  "NCSS": {
+    "installed": true,
+    "version": "2024",
+    "path": "[NCSS_INSTALL_PATH]",
+    "mode": "simple",
+    "platform": "windows"
+  },
+  "Origin": {
+    "installed": true,
+    "version": "2025",
+    "path": "[ORIGIN_INSTALL_PATH]",
+    "mode": "simple",
+    "platform": "windows"
+  },
+  "Minitab": {
+    "installed": true,
+    "version": "[MINITAB_VERSION]",
+    "path": "[MINITAB_INSTALL_PATH]",
+    "exe": "[MINITAB_INSTALL_PATH]\\mtb.exe",
+    "platform": "windows",
+    "mode": "simple"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "case_id": "technical-agent-architecture",
+  "build_id": "build-001",
+  "deck_id": "technical-agent-architecture",
+  "scorer": {
+    "type": "human_reference",
+    "name": "benchmark-reference",
+    "version": "1.0"
+  },
+  "dimensions": [
+    {
+      "dimension": "title_role_and_message_quality",
+      "score": 3,
+      "provisional_score": 3,
+      "evidence": ["Judgment titles state the architectural implication rather than naming a topic."],
+      "automatic_metrics": {},
+      "confidence": 0.9,
+      "manual_review_required": false
+    },
+    {
+      "dimension": "content_fidelity",
+      "score": 3,
+      "provisional_score": 3,
+      "evidence": ["Core claims are sourced and assumptions are explicit."],
+      "automatic_metrics": {},
+      "confidence": 0.9,
+      "manual_review_required": false
+    },
+    {
+      "dimension": "expression_architecture",
+      "score": 3,
+      "provisional_score": 3,
+      "evidence": ["Relationship content is represented as a relationship visual."],
+      "automatic_metrics": {},
+      "confidence": 0.9,
+      "manual_review_required": false
+    },
+    {
+      "dimension": "page_composition",
+      "score": 2,
+      "provisional_score": 3,
+      "evidence": ["Layout is clear with minor density risk."],
+      "automatic_metrics": {},
+      "confidence": 0.8,
+      "manual_review_required": false
+    },
+    {
+      "dimension": "component_craft",
+      "score": 2,
+      "provisional_score": 3,
+      "evidence": ["Components are readable but not yet production-polished."],
+      "automatic_metrics": {},
+      "confidence": 0.8,
+      "manual_review_required": false
+    },
+    {
+      "dimension": "editability_hygiene",
+      "score": 3,
+      "provisional_score": 3,
+      "evidence": ["Message-bearing content remains native and editable."],
+      "automatic_metrics": {},
+      "confidence": 0.9,
+      "manual_review_required": false
+    }
+  ],
+  "automatic_evidence": {},
+  "total_score": 16,
+  "hard_gate_status": "passed",
+  "rubric_quality_status": "passed",
+  "overall_status": "passed",
+  "manual_review_required": false,
+  "notes": ["Example reference scorecard."]
+}

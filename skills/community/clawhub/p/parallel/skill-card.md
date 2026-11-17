@@ -1,45 +1,64 @@
-## Description: <br>
-Parallel provides high-accuracy web search and research via the Parallel.ai API for agent workflows, returning cited excerpts, structured results, and optional multi-step reasoning modes. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Parallel provides high-accuracy web search and research through the Parallel.ai API, returning source URLs, excerpts, citations, and optional multi-step research modes for agents.
 
-## Publisher: <br>
-[mvanhorn](https://clawhub.ai/user/mvanhorn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[mvanhorn](https://clawhub.ai/user/mvanhorn)
 
-## Use Case: <br>
-Developers and external agent users use this skill to perform web research, fact-checking, company and person research, content extraction, structured entity discovery, and monitored web tracking with source links and citations. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports a hidden fallback API key in scripts/search.py. <br>
-Mitigation: Remove or verify the embedded key before installation and configure a user-owned PARALLEL_API_KEY instead. <br>
-Risk: Queries, URLs, objectives, task inputs, monitor events, webhook payloads, and optional authenticated browsing credentials may be sent to external services. <br>
-Mitigation: Treat inputs as data shared with third parties, avoid sensitive data unless approved, and set BROWSERUSE_API_KEY only when authenticated browsing is intended. <br>
-Risk: Monitor creation can leave persistent account state and webhook integrations. <br>
-Mitigation: Create monitors only when there is a plan to review, manage, and delete them when no longer needed. <br>
+## Use Case:
 
+Developers and agents use this skill to perform web research, fact-checking, company and person research, structured entity discovery, content extraction, and monitored web tracking with source-backed outputs.
 
-## Reference(s): <br>
-- [Parallel Skill on ClawHub](https://clawhub.ai/mvanhorn/parallel) <br>
-- [Parallel.ai](https://parallel.ai) <br>
-- [Parallel API Documentation](https://docs.parallel.ai) <br>
-- [Parallel Platform](https://platform.parallel.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON results with source URLs, excerpts, citations, task identifiers, status details, and usage information.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PARALLEL_API_KEY for normal use; optional BrowserUse authentication can be enabled for authenticated browsing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.1 (source: server release metadata; artifact frontmatter reports 1.1.0) <br>
+Risk: Queries, URLs, and task context are sent to Parallel.ai for processing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with research data that is appropriate to share with Parallel.ai, and avoid submitting sensitive or regulated information unless that use has been approved.
+
+Risk: A bundled fallback API key is present in the search helper and should be treated as compromised.
+
+Mitigation: Set a user-controlled PARALLEL_API_KEY before use and do not rely on bundled credentials.
+
+Risk: Authenticated browsing can pass Browser-Use credentials to an external MCP endpoint.
+
+Mitigation: Provide Browser-Use credentials only through approved secret handling, avoid command-line secrets, and restrict authenticated browsing to approved targets.
+
+Risk: Monitor commands can create webhooks, retrieve events, and delete remote monitors.
+
+Mitigation: Review monitor commands before execution, verify webhook destinations, and require approval before deleting or modifying remote monitoring state.
+
+## Reference(s):
+
+- [Parallel.ai](https://parallel.ai)
+- [Parallel API Documentation](https://docs.parallel.ai)
+- [Parallel Platform](https://platform.parallel.ai)
+- [ClawHub Skill Page](https://clawhub.ai/mvanhorn/skills/parallel)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands]
+
+**Output Format:** [Markdown text or JSON containing search results, excerpts, citations, task outputs, monitor events, or API run identifiers.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires PARALLEL_API_KEY; some task flows may also use BROWSERUSE_API_KEY for authenticated browsing.]
+
+## Skill Version(s):
+
+1.2.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

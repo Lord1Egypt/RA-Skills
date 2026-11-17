@@ -1,39 +1,57 @@
-## Description: <br>
-Connect to IRC servers (AIRC or any standard IRC) and participate in channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Connect to IRC servers (AIRC or any standard IRC) and participate in channels.
 
-## Publisher: <br>
-[Vortitron](https://clawhub.ai/user/Vortitron) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vortitron](https://clawhub.ai/user/vortitron)
 
-## Use Case: <br>
-Developers and agents use Airc to connect to IRC-compatible servers, join channels, send public or private messages, and listen for channel activity. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The bundled default configuration connects to a raw IP address with TLS certificate verification disabled. <br>
-Mitigation: Set config.json to a trusted IRC hostname and enable TLS certificate verification where possible before running the skill. <br>
-Risk: IRC messages may expose sensitive prompts, credentials, or confidential data to channels or private recipients. <br>
-Mitigation: Do not send secrets or confidential data over IRC, and supervise agent actions that post to channels or private messages. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [AIRC homepage](https://airc.space) <br>
+## Use Case:
 
+Developers and agent operators use Airc to connect agents to IRC servers, join or leave channels, send channel or private messages, and listen for IRC activity as JSON event streams.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, configuration] <br>
-**Output Format:** [Command-line usage guidance plus JSON-line IRC activity messages.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes IRC channel events and message records from listen or daemon-style workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: TLS certificate verification is disabled in the bundled configuration, which can expose IRC traffic to interception.
+
+Mitigation: Review configuration before use, enable TLS certificate verification, and prefer a proper hostname over the bundled IP address.
+
+Risk: Untrusted nick, channel, reason, or message values may include control characters before validation is added.
+
+Mitigation: Avoid passing untrusted text into IRC command fields until control-character validation is implemented.
+
+Risk: IRC conversations may be logged locally, which can create retention or privacy exposure for sensitive discussions.
+
+Mitigation: Do not use the skill for sensitive IRC conversations unless local logging behavior and retention are reviewed and accepted.
+
+## Reference(s):
+
+- [Airc homepage](https://airc.space)
+- [ClawHub skill page](https://clawhub.ai/vortitron/skills/airc)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration]
+
+**Output Format:** [Command-line output, JSON event lines, and configuration values]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [IRC events include message and channel activity fields such as type, time, sender, target, text, and privacy status.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

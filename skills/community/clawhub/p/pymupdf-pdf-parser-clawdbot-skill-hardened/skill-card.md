@@ -1,46 +1,61 @@
-## Description: <br>
-Fast local PDF parsing with PyMuPDF (fitz) for Markdown/JSON outputs and optional images/tables, intended for single-PDF parsing with per-document output folders. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Fast local PDF parsing with PyMuPDF (fitz) for Markdown/JSON outputs and optional images/tables.
 
-## Publisher: <br>
-[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[snazar-faberlens](https://clawhub.ai/user/snazar-faberlens)
 
-## Use Case: <br>
-Developers and agent users use this skill to extract local PDF content quickly into Markdown or JSON, with optional image extraction and rough table output. It is best suited for speed-focused text extraction where complex layout preservation is not required. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Extracted PDF content is saved as cleartext local files. <br>
-Mitigation: Run the parser only on PDFs intended for extraction and choose an output directory appropriate for the sensitivity of the content. <br>
-Risk: Unsafe shell command construction can mishandle PDF paths. <br>
-Mitigation: Quote file paths safely when running commands and avoid passing unvalidated shell metacharacters. <br>
-Risk: Batch or recursive parsing can expose a large document store as local cleartext output. <br>
-Mitigation: Confirm before batch processing directories or sensitive document stores. <br>
-Risk: Installing parser dependencies from an untrusted source can introduce supply-chain risk. <br>
-Mitigation: Install PyMuPDF only from a trusted package source. <br>
+## Use Case:
 
+Developers and agent users use this skill to parse local PDF files quickly into Markdown or JSON, with optional embedded image extraction and rough table output. It is best suited for fast text extraction when layout fidelity is less important than speed.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/snazar-faberlens/pymupdf-pdf-parser-clawdbot-skill-hardened) <br>
-- [PyMuPDF documentation](https://pymupdf.readthedocs.io/) <br>
-- [PyMuPDF Notes](references/pymupdf-notes.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, JSON, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with bash commands; the parser writes local Markdown, JSON, image, and table files when requested.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates per-document local output directories and can optionally extract embedded images and simple line-based table JSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Parsed PDF content is written to local Markdown, JSON, image, or table files and may contain sensitive source-document text.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a fresh private output directory, treat generated files as copies of the original document contents, and avoid transmitting parsed output to external services.
+
+Risk: Batch or recursive parsing can expose many documents as cleartext on disk.
+
+Mitigation: Confirm the intended file set before batch processing and review whether the target directory may contain sensitive documents.
+
+Risk: Unpinned parser dependencies or elevated execution privileges can increase host risk during local parsing.
+
+Mitigation: Install in a dedicated virtual environment, pin and review the PyMuPDF version, and run as a non-privileged user.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/snazar-faberlens/skills/pymupdf-pdf-parser-clawdbot-skill-hardened)
+- [PyMuPDF Documentation](https://pymupdf.readthedocs.io/)
+- [Clawdbot](https://github.com/clawdbot/clawdbot)
+- [PyMuPDF Notes](references/pymupdf-notes.md)
+- [Faberlens Safety Evaluation](https://faberlens.ai/explore/pymupdf-pdf-parser-clawdbot-skill)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown and JSON files, optional PNG images, optional table JSON, and shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates a per-document output directory containing output.md, output.json when requested, optional images/, and optional tables.json.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

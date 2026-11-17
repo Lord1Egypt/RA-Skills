@@ -1,49 +1,65 @@
-## Description: <br>
-Buddhist-informed AI coaching framework with ICF-aligned methodology, 50+ dialogues, assessments, daily practices, and a 30-day program. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Buddhist-informed AI coaching framework with ICF-aligned methodology, 50+ dialogues, assessments, daily practices, and 30-day program.
 
-## Publisher: <br>
-[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dorjenorbulim](https://clawhub.ai/user/dorjenorbulim)
 
-## Use Case: <br>
-External users, human coaches, and AI-coach builders use this skill as a Buddhist-informed coaching content framework for coaching dialogues, assessments, micro-practices, and a 30-day program. It is coaching support, not therapy, medical advice, spiritual direction, or crisis intervention. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive emotional, crisis, and spiritual information in a coaching context. <br>
-Mitigation: Use explicit informed consent, clear data-handling terms, opt-in tracking, and deletion controls before deployment. <br>
-Risk: Users may treat coaching responses as therapy, medical care, spiritual direction, or crisis support. <br>
-Mitigation: State the coaching-only scope clearly and route high-risk situations to emergency services, crisis resources, or licensed professionals. <br>
-Risk: Crisis or high-risk mental-wellness disclosures may require timely human support. <br>
-Mitigation: Provide locale-aware crisis resources and instruct the agent to stop coaching and refer out when high-risk indicators appear. <br>
+## Use Case:
 
+External users, AI trainers, and human coaches use this skill to apply a Buddhist-informed, ICF-aligned coaching framework. It provides coaching methodology, sample dialogues, assessments, daily micro-practices, and a structured 30-day program for wellness-oriented coaching.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/subhuti-coach-framework) <br>
-- [Publisher profile](https://clawhub.ai/user/dorjenorbulim) <br>
-- [README](artifact/README.md) <br>
-- [Core framework](artifact/01-core-framework.md) <br>
-- [Training content](artifact/02-training-content.md) <br>
-- [Assessment framework](artifact/03-assessment-framework.md) <br>
-- [Daily nudge library](artifact/04-daily-nudge-library.md) <br>
-- [30-day content calendar](artifact/05-content-calendar-30-days.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown coaching framework, dialogue examples, assessment questions, daily practice prompts, and a 30-day content calendar.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No external runtime dependencies or API calls are described by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server evidence release and SKILL.md frontmatter) <br>
+Risk: Users may treat coaching content as therapy, medical advice, spiritual authority, or crisis care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present the skill as coaching only, disclose scope limits before use, and route crisis, severe mental health, medical, or safety concerns to qualified professionals and local crisis resources.
+
+Risk: Assessment answers, session notes, recordings, and nudge engagement can expose sensitive wellness and belief information.
+
+Mitigation: Make consent, recording, data retention, deletion, sharing, and aggregate-use practices explicit before collecting or tracking user data.
+
+Risk: Buddhist framing may be unwanted, culturally inappropriate, or experienced as proselytizing by some users.
+
+Mitigation: Ask about comfort with Buddhist concepts, offer secular language, avoid doctrinal claims, and honor the user's existing beliefs or preference to opt out.
+
+Risk: Scheduled nudges may become intrusive or create pressure around practice adherence.
+
+Mitigation: Provide clear pause, snooze, opt-out, do-not-disturb, and frequency controls, and avoid guilt-based messaging.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/dorjenorbulim/skills/subhuti-coach-framework)
+- [Publisher profile](https://clawhub.ai/user/dorjenorbulim)
+- [README](artifact/README.md)
+- [Subhuti Method core framework](artifact/01-core-framework.md)
+- [Assessment framework](artifact/03-assessment-framework.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown coaching framework with dialogues, assessments, nudges, and program content]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Markdown-only content; no external dependencies, tool calls, MCP references, or credential references detected.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

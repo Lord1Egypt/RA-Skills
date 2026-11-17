@@ -1,44 +1,59 @@
-## Description: <br>
-Processes PDF, DOCX, and XLSX supply chain document packages for conversion, image extraction, OCR-assisted review, dimension verification, and summary report generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Process PDF, DOCX, and XLSX supply chain document packages for conversion, image extraction, OCR-assisted clue review, dimension judgement verification, and review report generation.
 
-## Publisher: <br>
-[jiejingke](https://clawhub.ai/user/jiejingke) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiejingke](https://clawhub.ai/user/jiejingke)
 
-## Use Case: <br>
-Developers, quality engineers, and supply chain reviewers use this skill to organize supplier document packages, extract reviewable images and OCR text, check dimension judgement consistency, and generate manual review reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR fallback may automatically run an unpinned OCR script found in broad local skill directories. <br>
-Mitigation: Prefer HTTP-only OCR or set HERDSMAN_SKILL_DIR to a specific trusted OCR skill before using OCR features. <br>
-Risk: Images from the selected task folder may be sent to the configured OCR endpoint. <br>
-Mitigation: Use the skill only with task folders intended for processing and configure a trusted OCR endpoint for sensitive documents. <br>
-Risk: Seal, stamp, and signature OCR hits can be mistaken for authenticity conclusions. <br>
-Mitigation: Treat OCR hits as review clues only and require manual judgement for final authenticity or compliance decisions. <br>
+## Use Case:
 
+Developers, engineers, and quality reviewers use this skill to organize supplier document packages, extract traceable images and OCR text, check dimension table judgements against measured values, and generate a manual review report.
 
-## Reference(s): <br>
-- [Environment Setup Guide](references/setup-guide.md) <br>
-- [Naming & Directory Conventions](references/naming-conventions.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jiejingke/auto-dimension-report-skill-en) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, OCR markdown files, converted document files, extracted image files, Excel indexes, optional JSON summaries, and agent-facing shell commands.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates output/, image/, imagetomd/, _ImageIndex.xlsx, and ReviewReport.md in the user-provided task folder.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: OCR can send sensitive document images to a configurable OCR endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a trusted local HERDSMAN_BASE_URL and avoid routing supplier documents to untrusted OCR services.
+
+Risk: The OCR workflow can automatically execute a fallback OCR script found in another skill directory.
+
+Mitigation: Use HTTP-only OCR or set HERDSMAN_SKILL_DIR or ocr_script_dir only to a trusted OCR skill path before enabling script fallback.
+
+Risk: Generated reports and indexes may contain sensitive document text, image paths, and local path information.
+
+Mitigation: Store outputs in controlled task folders and review generated Markdown, XLSX indexes, and OCR files before sharing.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jiejingke/skills/auto-dimension-report-skill-en)
+- [Setup Guide](artifact/references/setup-guide.md)
+- [Naming & Directory Conventions](artifact/references/naming-conventions.md)
+
+## Skill Output:
+
+**Output Type(s):** [markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands, generated Markdown reports, copied or converted document files, extracted image files, OCR Markdown files, and XLSX indexes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates output/, image/, imagetomd/, output/_ImageIndex.xlsx, and ReviewReport.md in the user-provided task folder when the corresponding workflow steps run.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

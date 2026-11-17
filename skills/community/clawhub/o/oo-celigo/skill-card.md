@@ -1,43 +1,56 @@
-## Description: <br>
-Celigo (celigo.com). Use this skill for ANY Celigo request: reading, creating, and updating data through an OOMOL-connected Celigo account instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Celigo (celigo.com). Use this skill for ANY Celigo request — searching and reading data. Whenever a task involves Celigo, use this skill instead of calling the API directly.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-External users, developers, and operations teams use this skill to inspect Celigo resources and run Celigo connector actions through an OOMOL-connected account. It supports connection, export, flow, import, and token metadata workflows while prompting schema checks before action payloads are built. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to an OOMOL-connected Celigo account and may expose account-scoped Celigo data through connector responses. <br>
-Mitigation: Install it only for users who need Celigo account access, and review requested Celigo actions and payloads before approval. <br>
-Risk: Actions tagged write or destructive can change, remove, or overwrite Celigo data if run with an incorrect payload. <br>
-Mitigation: Fetch the live action schema first, confirm the exact target and payload with the user, and require explicit approval before write or destructive actions. <br>
+## Use Case:
 
+Teams and operators use this skill to read Celigo connections, exports, flows, imports, and token metadata through an OOMOL-connected account. It guides agents to check each action's schema before sending a request and explains how to handle connection setup issues.
 
-## Reference(s): <br>
-- [Celigo skill page](https://clawhub.ai/oomol/oo-celigo) <br>
-- [OOMOL publisher profile](https://clawhub.ai/user/oomol) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [Celigo homepage](https://www.celigo.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, Guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before building action payloads; command responses may include JSON data and execution metadata.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server evidence and frontmatter) <br>
+Risk: Fallback setup instructions direct the agent to execute downloaded CLI installation code without clear user approval.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and install the CLI separately from a verified release, and require approval before making installation changes.
+
+Risk: Celigo access uses the permissions and data available to the connected account.
+
+Mitigation: Consider the connected account's permissions and the sensitivity of its data before using the skill.
+
+## Reference(s):
+
+- [Celigo skill release](https://clawhub.ai/oomol/skills/oo-celigo)
+- [oo CLI](https://github.com/oomol-lab/oo-cli)
+- [Celigo](https://www.celigo.com)
+- [Celigo standard REST API documentation](https://docs.celigo.com/hc/en-us/articles/360042281231-Getting-started-with-standard-REST-API)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with inline shell commands and JSON request examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+1.0.6 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

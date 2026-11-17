@@ -1,42 +1,57 @@
-## Description: <br>
-Automate Cal.com tasks via Rube MCP (Composio): manage bookings, check availability, configure webhooks, and handle teams. Always search tools first for current schemas. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automate Cal.com tasks via Rube MCP (Composio): manage bookings, check availability, configure webhooks, and handle teams.
 
-## Publisher: <br>
-[sohamganatra](https://clawhub.ai/user/sohamganatra) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sohamganatra](https://clawhub.ai/user/sohamganatra)
 
-## Use Case: <br>
-Developers and operators use this skill to manage Cal.com scheduling workflows through Rube MCP, including bookings, availability checks, webhook configuration, team handling, and organization lookup. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide account-changing Cal.com actions such as creating bookings, changing teams, and updating or deleting webhooks. <br>
-Mitigation: Review booking details, team names, webhook IDs, event triggers, and subscriber URLs before approving changes. <br>
-Risk: Webhook configuration can involve sensitive signing secrets and externally reachable subscriber URLs. <br>
-Mitigation: Treat webhook secrets as sensitive credentials and use only trusted HTTPS endpoints under your control. <br>
-Risk: Cal.com access is brokered through Rube/Composio. <br>
-Mitigation: Install only when you trust Rube/Composio and connect the intended Cal.com account. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Rube MCP server](https://rube.app/mcp) <br>
-- [ClawHub skill page](https://clawhub.ai/sohamganatra/cal-com-automation) <br>
+## Use Case:
 
+Developers, operations teams, and scheduling administrators use this skill to guide agents through Cal.com booking, availability, webhook, team, and organization workflows via Rube MCP.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tool sequences, required parameters, setup steps, pitfalls, and review guidance for Cal.com actions.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: An agent using this skill can create bookings, create teams, and update or delete webhook configurations in a connected Cal.com account.
+
+Mitigation: Review proposed actions before execution and confirm the active Cal.com connection, permissions, event type IDs, team IDs, and target booking details.
+
+Risk: Webhook subscriber URLs may receive booking-event data.
+
+Mitigation: Use only HTTPS webhook endpoints that you control or trust, and configure webhook secrets for payload verification.
+
+Risk: Outdated tool schemas or incorrect date and timezone parameters can cause failed or incorrect scheduling operations.
+
+Mitigation: Search Rube MCP tools first for current schemas, check availability before creating bookings, and provide explicit ISO 8601 or IANA timezone values as required.
+
+## Reference(s):
+
+- [Cal Com Automation on ClawHub](https://clawhub.ai/sohamganatra/skills/cal-com-automation)
+- [Rube MCP Server](https://rube.app/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with tool names, workflow steps, parameter notes, and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an active Rube MCP connection and an authenticated Cal.com connection.]
+
+## Skill Version(s):
+
+0.1.0 (source: evidence.release.version)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,19 @@
+{
+  "name": "Personal Assistant Pack",
+  "version": "1.0.3",
+  "description": "Personal Assistant Pack — Knowledge pack with curated tool installation instructions for Google Workspace. Teaches agents which tools exist and how to install them. Not automation.",
+  "author": "CertainLogic",
+  "license": "MIT",
+  "category": "productivity",
+  "tags": ["personal-assistant", "productivity", "triage", "drafting", "scheduling", "workflow", "agent-stack"],
+  "requirements": {
+    "optional": ["google-calendar-api", "outlook-api", "gmail-api", "imap-access"]
+  },
+  "entry": {
+    "prompts": "scripts/prompts/",
+    "note": "CLI commands exist as see README — see README for details"
+  },
+  "repository": "https://github.com/certainlogic/pa-pack",
+  "homepage": "https://github.com/certainlogic/pa-pack#readme",
+  "bugs": "https://github.com/certainlogic/pa-pack/issues"
+}

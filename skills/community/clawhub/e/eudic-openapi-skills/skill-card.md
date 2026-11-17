@@ -1,43 +1,58 @@
-## Description: <br>
-Provides Eudic OpenAPI guidance for managing vocabulary lists, user corpus entries, notes, and related word data across Eudic, French Assistant, German Assistant, and Spanish Assistant. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents use the Eudic OpenAPI to query, add, update, and delete vocabulary lists, words, corpus entries, and notes.
 
-## Publisher: <br>
-[lulu-trans](https://clawhub.ai/user/lulu-trans) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lulu-trans](https://clawhub.ai/user/lulu-trans)
 
-## Use Case: <br>
-Developers and agents use this skill to prepare Eudic OpenAPI calls for querying, adding, renaming, and deleting vocabulary books, words, notes, and corpus records with a user-provided API token. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses a user API token to access Eudic account data. <br>
-Mitigation: Keep the token private, avoid logging or pasting it into shared contexts, and provide it only when an operation requires authenticated access. <br>
-Risk: Rename, bulk add, and delete operations can change vocabulary books, words, notes, or corpus-related records. <br>
-Mitigation: Review the exact target language, IDs, words, and operation type before running any modifying request. <br>
-Risk: Vocabulary notes and corpus content may include personal information. <br>
-Mitigation: Inspect returned notes and corpus entries before sharing them outside the user's private context. <br>
+## Use Case:
 
+Developers and agents use this skill to manage Eudic, French Assistant, German Assistant, and Spanish Assistant vocabulary data through authenticated OpenAPI calls. It supports account-level read and write workflows for study lists, words, user corpus entries, and notes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lulu-trans/eudic-openapi-skills) <br>
-- [Eudic OpenAPI authorization](https://my.eudic.net/OpenAPI/Authorization) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls, Configuration] <br>
-**Output Format:** [Markdown with curl examples, endpoint descriptions, and parameter notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided Eudic OpenAPI token and language selection for en, fr, de, or es.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: The skill can propose API calls that read or change vocabulary lists, words, user corpus entries, and notes using the user's Eudic OpenAPI token.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Have the agent show the exact target and operation before write or delete requests, and require explicit confirmation for destructive actions.
+
+Risk: An exposed API token may allow account-level access to Eudic data.
+
+Mitigation: Keep the token out of shared logs and prompts where possible, and revoke or rotate it if exposure is suspected.
+
+Risk: Repeated API calls may trigger documented Eudic rate limits and temporary blocking.
+
+Mitigation: Batch requests where supported, avoid retry loops, and slow down calls when rate-limit responses occur.
+
+## Reference(s):
+
+- [ClawHub skill release](https://clawhub.ai/lulu-trans/skills/eudic-openapi-skills)
+- [Eudic OpenAPI authorization](https://my.eudic.net/OpenAPI/Authorization)
+
+## Skill Output:
+
+**Output Type(s):** [API Calls, Shell commands, Guidance]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON request shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a user-provided Eudic OpenAPI token; proposed calls may read or modify account data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

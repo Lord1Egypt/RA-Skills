@@ -1,45 +1,57 @@
-## Description: <br>
-Write clear, concise prose for humans across documentation, READMEs, API docs, commit messages, error messages, UI text, reports, and explanations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Write clear, concise prose for humans, including documentation, READMEs, API docs, commit messages, error messages, UI text, reports, and explanations.
 
-## Publisher: <br>
-[wpank](https://clawhub.ai/user/wpank) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wpank](https://clawhub.ai/user/wpank)
 
-## Use Case: <br>
-Developers, technical writers, and other agent users use this skill to draft and revise human-facing prose for clarity, concision, structure, and audience fit. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Drafts can include confidential text or secrets, especially when using the optional subagent copyediting workflow. <br>
-Mitigation: Avoid sending confidential drafts or secrets through that workflow unless it is acceptable in the user's environment. <br>
-Risk: Writing guidance and proposed revisions can be inappropriate for the audience or may change the intended meaning. <br>
-Mitigation: Review revised prose before publishing and confirm that examples, claims, and tone match the document's audience and purpose. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [README](README.md) <br>
-- [Elements of Style: Introductory](references/elements-of-style/01-introductory.md) <br>
-- [Elements of Style: Elementary Rules of Usage](references/elements-of-style/02-elementary-rules-of-usage.md) <br>
-- [Elements of Style: Elementary Principles of Composition](references/elements-of-style/03-elementary-principles-of-composition.md) <br>
-- [Elements of Style: A Few Matters of Form](references/elements-of-style/04-a-few-matters-of-form.md) <br>
-- [Elements of Style: Words and Expressions Commonly Misused](references/elements-of-style/05-words-and-expressions-commonly-misused.md) <br>
-- [Signs of AI Writing](references/signs-of-ai-writing.md) <br>
+## Use Case:
 
+Developers, technical writers, and agents use this skill to draft and edit documentation, API references, commit messages, UI text, reports, and other human-facing prose.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text guidance with revised prose, writing patterns, checklists, and templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use optional subagent copyediting when context is constrained.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: README install commands include unpinned npx and @latest forms.
+
+Mitigation: Review install commands before use and prefer a pinned ClawHub version or a reviewed local install path.
+
+Risk: Historical Strunk references may conflict with current inclusive-language or house-style guidance.
+
+Mitigation: Apply current organizational style and inclusive-language requirements when using the writing references.
+
+## Reference(s):
+
+- [Introductory](references/elements-of-style/01-introductory.md)
+- [Elementary Rules of Usage](references/elements-of-style/02-elementary-rules-of-usage.md)
+- [Elementary Principles of Composition](references/elements-of-style/03-elementary-principles-of-composition.md)
+- [A Few Matters of Form](references/elements-of-style/04-a-few-matters-of-form.md)
+- [Words and Expressions Commonly Misused](references/elements-of-style/05-words-and-expressions-commonly-misused.md)
+- [Signs of AI Writing](references/signs-of-ai-writing.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Guidance]
+
+**Output Format:** [Markdown prose, edited text, checklists, templates, and inline code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

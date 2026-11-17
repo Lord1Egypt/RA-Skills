@@ -1,43 +1,55 @@
-## Description: <br>
-GetProspect (getprospect.com). Use this skill for ANY GetProspect request - searching and reading data. Whenever a task involves GetProspect, use this skill instead of calling the API directly. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search GetProspect for companies and leads, find or verify business email addresses, and look up saved contact profiles.
 
-## Publisher: <br>
-[oomol](https://clawhub.ai/user/oomol) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oomol](https://clawhub.ai/user/oomol)
 
-## Use Case: <br>
-Developers and agents use this skill to operate GetProspect through an OOMOL-connected account for business email discovery, email verification, contact lookup, and structured company or lead searches. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can operate against a real OOMOL-connected GetProspect account when explicitly used. <br>
-Mitigation: Inspect the live connector schema before constructing payloads, run read actions directly, and confirm exact payloads and effects before any write or destructive action. <br>
-Risk: Setup, connection, credential, or billing failures can block execution or send the user into account-management flows. <br>
-Mitigation: Run first-time setup, reconnection, or billing-related steps only after a command fails with the matching error. <br>
+## Use Case:
 
+External users and developers use the skill to search GetProspect's B2B company and lead data, find or verify business email addresses, and retrieve saved contact details.
 
-## Reference(s): <br>
-- [GetProspect homepage](https://getprospect.com) <br>
-- [oo CLI](https://github.com/oomol-lab/oo-cli) <br>
-- [oo CLI install guide](https://cli.oomol.com/install-guide.md) <br>
-- [ClawHub skill page](https://clawhub.ai/oomol/skills/oo-getprospect) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and JSON payload guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses live connector schemas before action execution and returns connector responses as JSON when commands are run.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and skill frontmatter) <br>
+Risk: Setup may execute a remote CLI installer without verifying a pinned release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the CLI installation separately and use a pinned, verified release before enabling the skill.
+
+Risk: Names, email addresses, and search inputs are processed through OOMOL and GetProspect.
+
+Mitigation: Submit only information appropriate to share with both services.
+
+## Reference(s):
+
+- [GetProspect](https://getprospect.com)
+- [GetProspect API documentation](https://getprospect.com/api-docs)
+- [ClawHub release page](https://clawhub.ai/oomol/skills/oo-getprospect)
+
+## Skill Output:
+
+**Output Type(s):** [Structured data, Text, Shell commands, Guidance]
+
+**Output Format:** [JSON action requests and returned GetProspect data, with Markdown guidance and shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results vary by action and can include company, lead, contact, or email deliverability data.]
+
+## Skill Version(s):
+
+1.0.4 (source: frontmatter, server-resolved release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

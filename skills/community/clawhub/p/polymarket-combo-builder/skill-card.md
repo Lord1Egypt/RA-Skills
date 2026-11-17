@@ -1,44 +1,63 @@
-## Description: <br>
-Build an atomic Polymarket combo (parlay) by selecting 2+ binary market legs, getting live combined odds over RFQ, and optionally placing the whole combo as one signed Polymarket order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Build atomic Polymarket combo orders by helping an agent resolve 2 or more binary market legs, preview a dry-run plan, and optionally place the combo as one signed RFQ order.
 
-## Publisher: <br>
-[simmer](https://clawhub.ai/user/simmer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[simmer](https://clawhub.ai/user/simmer)
 
-## Use Case: <br>
-External users and developers use this skill to construct and review multi-leg Polymarket combo trades, browse eligible legs, create the combo configuration, dry-run the plan, and place a live order only when intentionally requested. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Live use involves wallet credentials and real-money Polymarket orders. <br>
-Mitigation: Run dry-run first, verify every leg and stake, and use --live only for trades the user explicitly intends to place. <br>
-Risk: A combo loses the entire stake if any single leg loses. <br>
-Mitigation: Confirm each leg's exact resolution condition and the total-loss exposure before live placement. <br>
-Risk: The skill depends on a Simmer API key and, for live trading, a local Polymarket wallet private key. <br>
-Mitigation: Install only when comfortable providing those credentials, keep the wallet key local, and consider pinning or reviewing dependencies before using meaningful funds. <br>
+## Use Case:
 
+External users and agents use this skill to configure, review, and run Polymarket combo slips for multi-leg binary market views. The skill supports dry-run planning by default and a live wallet-enabled placement path after user confirmation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/simmer/polymarket-combo-builder) <br>
-- [DISCLAIMER.md](artifact/DISCLAIMER.md) <br>
-- [combo_config.example.json](artifact/combo_config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, JSON configuration, and command output from dry-run, leg browsing, activation, or live placement.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Dry-run is the default; live placement requires an explicit --live flag, a Simmer API key, and wallet configuration.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Live mode can place real-money Polymarket combo orders from user-supplied legs, side, direction, and stake.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run the dry-run path first, use a dedicated low-balance wallet, and verify every leg, side, direction, and stake before using --live.
+
+Risk: The wallet-enabled money path depends on environment secrets, including WALLET_PRIVATE_KEY when live placement is used.
+
+Mitigation: Keep wallet private keys out of shared environments and use only the minimum wallet balance needed for the intended trade.
+
+Risk: Dependency versions are not fully pinned for the live trading path.
+
+Mitigation: Pin and review dependency versions before installation or deployment.
+
+Risk: Polymarket combos are described by the artifact as a beta product whose endpoints and behavior can change.
+
+Mitigation: Label combo behavior as beta to users and re-check live behavior before relying on the skill for production workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/simmer/skills/polymarket-combo-builder)
+- [Disclaimer](artifact/DISCLAIMER.md)
+- [Example combo configuration](artifact/combo_config.example.json)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with shell command snippets and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Dry-run is the default; live placement requires SIMMER_API_KEY and a configured wallet private key.]
+
+## Skill Version(s):
+
+0.1.1 (source: server release metadata and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

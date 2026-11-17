@@ -1,0 +1,4 @@
+interface:
+  display_name: "Datawhale Learning Navigator"
+  short_description: "Learn Datawhale courses and apply AI-native SDLC practices"
+  default_prompt: "Use $datawhale-learning to find relevant Datawhale lessons, diagnose the smallest knowledge gap, and create a project-based or AI-native SDLC learning plan."

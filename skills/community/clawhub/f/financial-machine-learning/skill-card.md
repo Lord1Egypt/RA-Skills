@@ -1,40 +1,50 @@
-## Description: <br>
-Provides local reference documentation for financial machine learning concepts, quickstarts, patterns, troubleshooting, performance, security, migration, and cheatsheets. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reference tool for devtools that provides quick command-line lookup for Financial Machine Learning concepts, practices, troubleshooting, performance, security, migration, and cheat-sheet notes.
 
-## Publisher: <br>
-[bytesagain1](https://clawhub.ai/user/bytesagain1) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain1](https://clawhub.ai/user/bytesagain1)
 
-## Use Case: <br>
-Developers and engineers use this skill as a local reference command for financial machine learning concepts and operational guidance in devtools workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Financial machine learning reference content could be mistaken for financial, trading, investment, or compliance advice. <br>
-Mitigation: Treat the output as generic documentation and review it with qualified domain experts before using it for regulated or production financial decisions. <br>
-Risk: Artifact files contain older internal version strings than the server-resolved release version. <br>
-Mitigation: Use the server release version for the published Skill Card and verify exact version reporting if reproducibility depends on it. <br>
+## Use Case:
 
+Developers and engineers use this skill as a local reference for financial machine learning topics in devtools workflows. It prints static guidance for concepts, setup, patterns, troubleshooting, performance, security, migration, and quick reference tasks.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Plain text with Markdown headings, lists, and tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Local static documentation; no network access or credentials required.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.2 (source: server release metadata) <br>
+Risk: The skill provides generic financial machine learning and devtools reference notes rather than a complete implementation.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat the output as a starting point and review it against project-specific financial, compliance, security, and production requirements before use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/bytesagain1/skills/financial-machine-learning)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Plain text reference documentation with Markdown-style headings and tables]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static local output; no external API calls, credentials, network access, or user-file access reported by server security evidence.]
+
+## Skill Version(s):
+
+2.0.2 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

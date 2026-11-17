@@ -1,0 +1,23 @@
+{
+  "_description": "Request body for POST /social-posts/bulk-delete: removes up to 100 posts from PostFast in one call (any status). Published posts stay live on the platform. Confirm with the user before sending.",
+  "ids": [
+    "YOUR_POST_ID_1",
+    "YOUR_POST_ID_2",
+    "YOUR_POST_ID_3"
+  ],
+  "_exampleResponse": {
+    "deletedIds": [
+      "YOUR_POST_ID_1",
+      "YOUR_POST_ID_2"
+    ],
+    "notFoundIds": [
+      "YOUR_POST_ID_3"
+    ]
+  },
+  "_notes": [
+    "ids: 1-100 post UUIDs; [] returns 400, more than 100 returns 400, a non-UUID returns 400",
+    "notFoundIds = ids that don't exist or belong to another workspace; repeating a call is harmless",
+    "Response status is 200, not 201; one call counts as one request (200/hour)",
+    "To delete everything matching a filter, re-read GET /social-posts?page=0 with the filter and bulk-delete until data is empty"
+  ]
+}

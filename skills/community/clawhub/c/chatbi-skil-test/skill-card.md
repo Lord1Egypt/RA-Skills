@@ -1,43 +1,58 @@
-## Description: <br>
-ChatBI Agent Skill lets an agent call a ChatBI streaming endpoint from the command line to ask natural-language questions over registered enterprise data tables and extract intent, table selection, SQL, execution details, and final answers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+ChatBI Skill Test lets an agent call a ChatBI command-line client to run natural-language data queries, stream progress, and extract intent, table selection, SQL, and final answers.
 
-## Publisher: <br>
-[zhangyukun230](https://clawhub.ai/user/zhangyukun230) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyukun230](https://clawhub.ai/user/zhangyukun230)
 
-## Use Case: <br>
-Developers and data analysts use this skill to run ChatBI natural-language data queries from an agent workflow, monitor the streaming execution path, and retrieve selected tables, generated SQL, data previews, and final natural-language answers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send enterprise questions and embedded workspace or account context to a configured ChatBI service endpoint. <br>
-Mitigation: Install only when the ChatBI service is trusted, use an approved HTTPS endpoint where possible, and configure authorized account and workspace variables before querying data. <br>
-Risk: Raw mode and saved raw event logs can contain sensitive query, SQL, table, or result details. <br>
-Mitigation: Use raw mode and --save-raw only for approved debugging, protect generated files, and clean them up after use. <br>
-Risk: The default configuration includes a production HTTP endpoint and embedded workspace identifiers. <br>
-Mitigation: Review and override CHATBI_API_URL, CHATBI_UIN, CHATBI_OWNER_UIN, CHATBI_APP_ID, CHATBI_WORKSPACE_ID, and CHATBI_ROOM_KEY for the intended deployment. <br>
+## Use Case:
 
+Developers and data analysts use this skill to query registered ChatBI data tables with natural language and receive intent analysis, selected tables, generated SQL, query results, and a final natural-language answer.
 
-## Reference(s): <br>
-- [ChatBI Agent CLI command reference](artifact/references/COMMANDS.md) <br>
-- [ClawHub skill page](https://clawhub.ai/zhangyukun230/chatbi-skil-test) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or terminal text with optional SQL and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports summary, detail, sql-only, and raw output modes; streaming usage expects incremental stdout.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release evidence) <br>
+Risk: Queries, generated SQL, metadata, and result data may be sent to a default cleartext HTTP endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure a trusted HTTPS ChatBI endpoint before use, and avoid submitting confidential prompts or database results unless the service and transport are approved.
+
+Risk: Built-in account, workspace, room, and table identifiers may point to an unintended environment.
+
+Mitigation: Review and override the ChatBI environment variables or command-line endpoint for the intended workspace before running the skill.
+
+Risk: Raw event exports can contain sensitive prompts, SQL, metadata, and result data.
+
+Mitigation: Use --save-raw only for approved debugging, store those files securely, and delete them when they are no longer needed.
+
+## Reference(s):
+
+- [ChatBI Agent CLI command reference](artifact/references/COMMANDS.md)
+- [ClawHub skill page](https://clawhub.ai/zhangyukun230/skills/chatbi-skil-test)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Streaming terminal text with SQL snippets, optional ASCII tables, and optional raw JSON event files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The CLI supports summary, detail, sql-only, and raw output modes; raw event files can include prompts, SQL, metadata, and result data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence; artifact metadata lists 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

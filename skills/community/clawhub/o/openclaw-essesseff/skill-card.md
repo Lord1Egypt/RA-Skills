@@ -1,53 +1,73 @@
-## Description: <br>
-Interact with the essesseff DevOps platform to call its public API, manage app lifecycle operations, promote images across environments, configure Argo CD, and use the essesseff onboarding utility. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Interact with the essesseff DevOps platform by calling the essesseff Public API for templates, organizations, apps, deployments, images, environments, retention policies, and packages, and by guiding app creation and Argo CD setup with the essesseff onboarding utility.
 
-## Publisher: <br>
-[adamdurst](https://clawhub.ai/user/adamdurst) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[adamdurst](https://clawhub.ai/user/adamdurst)
 
-## Use Case: <br>
-Developers and DevOps engineers use this skill to manage essesseff apps, deployments, image promotion, Argo CD setup, retention policies, and package cleanup workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide production deployments and app lifecycle changes. <br>
-Mitigation: Require explicit human approval before PROD deployments and other environment promotion actions. <br>
-Risk: The skill can guide repository creation, package deletion, and repository visibility changes. <br>
-Mitigation: Use least-privilege credentials, prefer short-lived tokens, and require human approval before destructive or visibility-changing operations. <br>
-Risk: The skill uses API keys, GitHub PATs, .essesseff files, and notifications-secret.yaml. <br>
-Mitigation: Keep secrets out of Git, logs, prompts, and shared transcripts, and delete temporary secret files after use. <br>
+## Use Case:
 
+Developers and DevOps engineers use this skill to manage essesseff applications, deployment lifecycle actions, Argo CD environment setup, GitHub repository onboarding, package cleanup, and retention policy configuration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/adamdurst/openclaw-essesseff) <br>
-- [essesseff onboarding utility](https://github.com/essesseff/essesseff-onboarding-utility) <br>
-- [essesseff platform](https://www.essesseff.com) <br>
-- [essesseff Public API overview](references/api-overview.md) <br>
-- [Apps API](references/api-apps.md) <br>
-- [Environments API](references/api-environments.md) <br>
-- [Images API](references/api-images.md) <br>
-- [Packages API](references/api-packages.md) <br>
-- [Retention Policies API](references/api-retention-policies.md) <br>
-- [Onboarding Utility](references/onboarding-utility.md) <br>
-- [Prerequisites Reference](references/prerequisites.md) <br>
-- [Non-Subscriber Mode Guide](references/non-subscriber-mode.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline shell commands, curl examples, and configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include environment variables, API request examples, and operational checklists for essesseff workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: The skill can guide production deployment actions, repository creation, package deletion, retention changes, and other DevOps operations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit operator confirmation for production deployment, repository creation, package deletion, and retention policy changes.
+
+Risk: The skill handles powerful essesseff, GitHub, Kubernetes, and Argo CD credentials.
+
+Mitigation: Use short-lived, least-privilege tokens and keep secrets such as .env files and notifications-secret.yaml out of Git working trees.
+
+Risk: Kubernetes and Argo CD setup can affect the wrong environment if local context is misconfigured.
+
+Mitigation: Verify the intended cluster, namespace, and Argo CD target before running kubectl or onboarding commands.
+
+Risk: The onboarding utility is external automation that can create and modify repositories and deployment configuration.
+
+Mitigation: Pin and inspect the onboarding utility before execution, and install only when the publisher is trusted.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/adamdurst/skills/openclaw-essesseff)
+- [essesseff onboarding utility](https://github.com/essesseff/essesseff-onboarding-utility)
+- [essesseff Public API](https://www.essesseff.com/docs/api)
+- [Apps API](references/api-apps.md)
+- [Environments API](references/api-environments.md)
+- [Images API](references/api-images.md)
+- [Organizations API](references/api-organizations.md)
+- [Packages API](references/api-packages.md)
+- [Retention Policies API](references/api-retention-policies.md)
+- [Templates API](references/api-templates.md)
+- [Onboarding Utility](references/onboarding-utility.md)
+- [Prerequisites](references/prerequisites.md)
+- [Non-Subscriber Mode Guide](references/non-subscriber-mode.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands, curl examples, JSON payloads, and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include API request examples, environment variable setup, onboarding command sequences, and operational cautions.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; skill frontmatter says 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

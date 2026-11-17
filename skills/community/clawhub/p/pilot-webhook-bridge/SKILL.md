@@ -74,7 +74,7 @@ pilotctl --json subscribe <source-hostname> <topic> --timeout <seconds> | \
 ```bash
 SOURCE="production-app"
 TOPIC="alerts.*"
-SLACK_WEBHOOK="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+SLACK_WEBHOOK="REDACTED-SECRET"
 TIMEOUT=600
 
 pilotctl --json subscribe "$SOURCE" "$TOPIC" --timeout "$TIMEOUT" | \

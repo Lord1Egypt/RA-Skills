@@ -1,38 +1,49 @@
-## Description: <br>
-Search flights and discover travel destinations using the Jinko MCP server. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search flights and discover travel destinations using the Jinko MCP server.
 
-## Publisher: <br>
-[kevinjinko](https://clawhub.ai/user/kevinjinko) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[kevinjinko](https://clawhub.ai/user/kevinjinko)
 
-## Use Case: <br>
-Travel planners and agents use this skill to discover destinations and compare flight options by origin, destination, budget, dates, cabin class, and trip preferences. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Travel-search and destination-planning details are sent to Jinko's external MCP service. <br>
-Mitigation: Confirm ambiguous travel-planning requests before searching and avoid sending unnecessary itinerary details. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Jinko MCP Server](https://mcp.gojinko.com) <br>
-- [ClawHub Skill Page](https://clawhub.ai/kevinjinko/jinko-flight-search) <br>
+## Use Case:
 
+External users and travel planners use this skill to discover destinations from travel criteria and compare flights between known cities or airports with flexible dates, cabin classes, and budget filters.
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, API calls] <br>
-**Output Format:** [Markdown guidance with MCP tool parameters] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a connection to the Jinko MCP server and may send travel-search details to that external service.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Flight-search inputs and travel preferences may be sent to the Jinko MCP server.
+
+Mitigation: Use the skill for destination discovery or flight search, and avoid sharing sensitive personal travel details unless comfortable with that service.
+
+## Reference(s):
+
+- [Jinko MCP Server](https://mcp.gojinko.com)
+- [ClawHub skill page](https://clawhub.ai/kevinjinko/skills/jinko-flight-search)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, API calls, configuration]
+
+**Output Format:** [Markdown guidance with MCP tool calls and structured flight-search parameters]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a connection to the external Jinko MCP server; responses may include destination discovery and flight comparison results.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

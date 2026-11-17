@@ -1,47 +1,65 @@
-## Description: <br>
-一句话说需求，AI 生成完整前后端网站并自动部署到 EdgeOne Pages。支持电商栈（Auth/购物车/支付）、AI 栈（SSE 流式对话）、管理后台。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scaffolds full-stack EdgeOne Pages websites from a short prompt, including reusable e-commerce, AI chat, admin, multi-tenant, SEO, analytics, and deployment assets.
 
-## Publisher: <br>
-[liuboacean](https://clawhub.ai/user/liuboacean) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liuboacean](https://clawhub.ai/user/liuboacean)
 
-## Use Case: <br>
-Developers and site builders use this skill to scaffold full-stack EdgeOne Pages websites from a short prompt, including e-commerce, AI assistant, and admin-panel variants. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated auth, payment, admin, and analytics scaffolding has security-sensitive behavior that may be unsafe before hardening. <br>
-Mitigation: Install only in a test or review environment until payment signature verification, fail-closed auth middleware, token handling, secret declarations, privacy controls, migrations, cron jobs, and deployment commands have been manually reviewed and hardened. <br>
-Risk: Some generated stacks require sensitive credentials, wallet or payment configuration, OAuth-style tokens, and AI service keys. <br>
-Mitigation: Use least-privilege test credentials during review and configure production secrets only after the generated site passes security and privacy review. <br>
+## Use Case:
 
+Developers and site builders use this skill to generate an EdgeOne Pages website skeleton with front-end pages, edge and cloud functions, database migrations, templates, and deployment guidance for e-commerce, AI assistant, or SaaS admin scenarios.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/liuboacean/website-skeleton) <br>
-- [README](artifact/README.md) <br>
-- [Auth Module Reference](artifact/references/auth-module.md) <br>
-- [Payment Module Reference](artifact/references/payment-module.md) <br>
-- [AI Chat Module Reference](artifact/references/ai-chat-module.md) <br>
-- [Admin Module Reference](artifact/references/admin-module.md) <br>
-- [Deployment Reference](artifact/references/deployment.md) <br>
-- [Multi-Tenant Reference](artifact/references/multi-tenant.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Code, Shell commands, Configuration, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with generated website files, JavaScript, SQL migrations, JSON templates, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require EdgeOne Pages configuration and secrets for JWT, AI, payment, and database features.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.1 (source: frontmatter and server release) <br>
+Risk: Bundled auth, database, payment, and analytics code may put deployed users or transactions at risk.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and fix the auth flow, token responses, cookie flags, D1 async handling, payment transaction behavior, and analytics opt-out or feature gating before using real users, production databases, or payment credentials.
+
+Risk: The server security verdict is suspicious and marks the skill as review-required before real-site use.
+
+Mitigation: Run security review and tests before installation or deployment, and keep credentials and production data disconnected until the review is complete.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liuboacean/skills/website-skeleton)
+- [README](README.md)
+- [Auth module](references/auth-module.md)
+- [Payment module](references/payment-module.md)
+- [AI chat module](references/ai-chat-module.md)
+- [Admin module](references/admin-module.md)
+- [Multi-tenant module](references/multi-tenant.md)
+- [Edge functions](references/edge-functions.md)
+- [Cloud functions](references/cloud-functions.md)
+- [KV storage](references/kv-storage.md)
+- [Middleware](references/middleware.md)
+- [Deployment](references/deployment.md)
+- [Integration tests](references/integration-tests.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with generated project files, JSON templates, JavaScript modules, SQL migrations, and shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a scaffold intended for review, configuration, testing, and deployment through EdgeOne Pages.]
+
+## Skill Version(s):
+
+3.2.1 (source: SKILL.md frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

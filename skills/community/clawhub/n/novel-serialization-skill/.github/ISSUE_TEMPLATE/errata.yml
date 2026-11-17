@@ -1,0 +1,44 @@
+---
+name: Errata
+about: A setting, numeric or continuity error in the Skill's own documentation
+title: '[errata] '
+labels: ['documentation', 'bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For errors inside a novel subproject, open the issue in that subproject's
+        repository — this tracker covers the Skill repository only.
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: File and, if known, line or section.
+      placeholder: references/method-patterns-chapter.md §3.2
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it is wrong
+      description: Cite the spec section, the script behaviour, or the field evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Suggested fix
+  - type: checkboxes
+    id: blast
+    attributes:
+      label: Blast radius
+      options:
+        - label: Appears in more than one file
+        - label: Contradicts SKILL.md or a module contract
+        - label: Affects a subproject already in production

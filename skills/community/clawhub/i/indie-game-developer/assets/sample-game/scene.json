@@ -1,0 +1,10 @@
+{
+  "_note": "示例游戏场景数据 —— 供 scripts/check_asset_refs.py --scan 自检 0 错误。真实项目里引用的是贴图/模型/音频等二进制资源，这里用 json 占位文件演示引用解析机制。",
+  "level": "forest_01",
+  "player": { "sprite": "textures/hero.spritesheet.json", "speed": 3.2 },
+  "audio": { "bgm": "audio/theme.json", "sfx_step": "audio/step.json" },
+  "ui": { "font": "fonts/ui.json" },
+  "props": [
+    { "type": "chest", "sprite": "textures/chest.spritesheet.json" }
+  ]
+}

@@ -1,39 +1,52 @@
-## Description: <br>
-Enables AI agents to adopt a consistent persona, remember user relationships, and express opinions beyond generic assistant responses. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a persona and memory framework for agents to adopt a consistent, opinionated voice and use SOUL.md, USER.md, and MEMORY.md for continuity.
 
-## Publisher: <br>
-[xhrisfu](https://clawhub.ai/user/xhrisfu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[xhrisfu](https://clawhub.ai/user/xhrisfu)
 
-## Use Case: <br>
-External users and agent builders use this skill to shape an agent's persona, relationship memory, and response style using SOUL.md, USER.md, and MEMORY.md conventions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can reshape an agent's persona and response style in strongly opinionated ways. <br>
-Mitigation: Review the persona instructions before installation and confirm that the resulting tone and behavior are appropriate for the intended environment. <br>
-Risk: The skill encourages persistent subjective notes about the user in memory files. <br>
-Mitigation: Require explicit opt-in for memory writes, store only task-relevant non-sensitive information, and keep USER.md and MEMORY.md easy to inspect, edit, and delete. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Soul Framework on ClawHub](https://clawhub.ai/xhrisfu/soul-framework) <br>
+## Use Case:
 
+External users and developers can use this skill to guide an agent toward persona continuity, user-specific memory practices, and a more opinionated conversational style.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with file naming conventions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to read and update SOUL.md, USER.md, and MEMORY.md.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to persist sensitive psychological and relationship inferences about a user over time.
+
+Mitigation: Require explicit consent before writing user or relationship memory, keep memory files reviewable, and provide a clear path to edit or delete stored assumptions.
+
+Risk: Persona and memory guidance may change agent behavior in ways that conflict with user expectations or instruction precedence.
+
+Mitigation: Keep system, developer, safety, privacy, and current user instructions above persona guidance, and review persona files before deployment.
+
+## Reference(s):
+
+- [Soul Framework ClawHub release page](https://clawhub.ai/xhrisfu/skills/soul-framework)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Files]
+
+**Output Format:** [Markdown guidance for persona, user, and memory files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May guide agents to create or update SOUL.md, USER.md, and MEMORY.md files when adopted.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

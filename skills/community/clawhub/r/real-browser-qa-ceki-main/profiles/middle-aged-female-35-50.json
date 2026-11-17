@@ -1,0 +1,41 @@
+{
+  "id": "middle-aged-female-35-50",
+  "label": "Middle-Aged Female 35-50",
+  "emoji": "👩",
+  "demographics": {
+    "gender": "female",
+    "age_range": [35, 50],
+    "tier": "gen-x"
+  },
+  "active_hours": {
+    "description": "Daytime focused, evening social browsing",
+    "peak": [9, 12, 14, 17, 20, 22],
+    "off_peak_min": 6
+  },
+  "typing": {
+    "description": "Measured, careful, reads before sending",
+    "wpm": { "min": 60, "max": 90 },
+    "profile": "careful",
+    "think_prob": 0.02,
+    "think_ms": [500, 1800],
+    "backspace_freq": 0.045
+  },
+  "scroll": {
+    "passes": 2,
+    "description": "Thorough — reads most content before deciding",
+    "speed_px_per_ms": { "min": 15, "max": 40 },
+    "pause_between_passes_ms": { "min": 600, "max": 2500 },
+    "depth_per_pass": { "min": 0.4, "max": 0.7 }
+  },
+  "navigation": {
+    "post_navigate_pause_ms": { "min": 1500, "max": 4000 },
+    "pre_click_pause_ms": { "min": 300, "max": 800 },
+    "inter_action_pause_ms": { "min": 400, "max": 1500 }
+  },
+  "mouse": {
+    "speed": 0.75,
+    "curvature": 0.2,
+    "jitter": 0.3,
+    "description": "Slower, careful"
+  }
+}

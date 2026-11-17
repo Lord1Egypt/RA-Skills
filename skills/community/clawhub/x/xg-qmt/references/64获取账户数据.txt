@@ -1,0 +1,19 @@
+'''
+64获取账户数据
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+#获取账户总权益m_dBalance
+def get_account(c,accountid,datatype):
+	'''
+	获取账户数据
+	'''
+	accounts = get_trade_detail_data(accountid, datatype, 'account')
+	result={}
+	for dt in accounts:
+		result['总资产']=dt.m_dBalance
+		result['净资产']=dt.m_dAssureAsset
+		result['总市值']=dt.m_dInstrumentValue
+		result['总负债']=dt.m_dTotalDebit
+		result['可用金额']=dt.m_dAvailable
+		result['盈亏']=dt.m_dPositionProfit
+	return result

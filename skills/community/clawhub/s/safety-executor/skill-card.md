@@ -1,37 +1,52 @@
-## Description: <br>
-Provides guidance for executing system commands safely while protecting system integrity and avoiding potentially harmful operations. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+This skill provides guidance for safer system command execution, including when commands should be blocked or require user confirmation.
 
-## Publisher: <br>
-[keizikeizi215-beep](https://clawhub.ai/user/keizikeizi215-beep) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[keizikeizi215-beep](https://clawhub.ai/user/keizikeizi215-beep)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent operators use this skill as guidance for reviewing system command execution and deciding when a command should be blocked or require confirmation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill claims to guide command-execution safety while the high-risk and controlled-operation sections are placeholders.
+
+Mitigation: Define explicit blocked command categories and confirmation requirements before relying on the skill for command review.
+
+Risk: Users may treat the guidance as an enforcement mechanism.
+
+Mitigation: Review generated command recommendations manually and pair the skill with actual execution controls where command safety matters.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this skill as operating guidance before proposing or executing system commands that may affect system integrity. It is a lightweight command-safety reminder and should not be treated as a complete safety policy. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: The high-risk principles and controlled-operation sections are empty placeholders, so the skill may not provide complete command-safety control. <br>
-Mitigation: Fill in concrete blocked operations, confirmation requirements, and review steps before relying on the skill for command execution safety. <br>
+**Output Format:** [Markdown guidance with command-safety recommendations]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
+**Other Properties Related to Output:** [Does not define concrete high-risk command categories or controlled-operation rules in the artifact.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands] <br>
-**Output Format:** [Markdown guidance for command execution decisions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only skill; no code, tools, or permissions are included.] <br>
+1.0.0 (source: server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

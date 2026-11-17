@@ -4,7 +4,7 @@
 
 **Marktplaats Verkoopassistent**
 
-Technische skill-key: `marktplaats`.
+Technische skill-key: `marktplaats-publisher`.
 
 Deze naam is bewust breder dan alleen zoeken. De skill helpt bij het volledige verkoopproces: categorie kiezen, velden bepalen, foto's voorbereiden/uploaden, lokaal bijhouden, herplaatsing voorbereiden, dry-run maken en pas na akkoord publiceren.
 
@@ -20,7 +20,7 @@ De skill helpt een gebruiker of agent om Marktplaats-advertenties betrouwbaar en
 - Een live plaatsingsformulier uitlezen via de browser.
 - Categorie-specifieke velden verzamelen, zoals conditie, merk, type, maat, levering, prijs en extra opties.
 - Foto's verkleinen en metadata-arm maken waar mogelijk.
-- Foto's uploaden via de ingelogde Marktplaats-browsercontext.
+- Foto-upload begeleiden en controleren via de ingelogde Marktplaats-browsercontext.
 - Advertentiedata invullen in het formulier.
 - Betaalde opties standaard uitschakelen.
 - Een dry-run samenvatting tonen.
@@ -192,7 +192,7 @@ Harde eisen:
 - minimaal 7 substantiële secties/alinea's;
 - geen `Zoektermen:`, `Keywords:` of keyworddump;
 - natuurlijke SEO-termen in lopende tekst;
-- minimaal één subtiele spelfout/schrijfvariant in context.
+- minimaal één subtiele, productrelevante spelfout/schrijfvariant in context.
 
 ### 4. Live Plaatsingsformulier Inspecteren
 
@@ -200,6 +200,14 @@ Open de plaatsingspagina voor de gekozen categorie en maak een snapshot met de p
 
 ```bash
 node scripts/marktplaats-place-probe.js --browser --save housekeeping/marktplaats-snapshots/current.json
+```
+
+Of open de plaatsingspagina in Safari op de achtergrond en probe daarna dezelfde sessie:
+
+```bash
+node scripts/marktplaats-place-probe.js --browser \
+  --open-background "https://www.marktplaats.nl/plaats/..." \
+  --save housekeeping/marktplaats-snapshots/current.json
 ```
 
 Controleer:
@@ -216,6 +224,7 @@ Controleer:
 - postcode/contact;
 - betaalde opties;
 - geselecteerde bundle.
+- `security.challengeSignals` voor login, captcha, MFA, WAF of betaal-/promotiesignalen.
 
 Een `curl`-probe op `/plaats` kan `401` geven als er geen sessiecookie wordt meegegeven. Dat is normaal: gebruik in dat geval de ingelogde browser-DOM als bron van waarheid, niet handmatige UI-kliks.
 
@@ -226,6 +235,8 @@ node scripts/marktplaats-place-probe.js --browser-fetch --url https://www.marktp
 ```
 
 Deze route gebruikt Safari's bestaande sessie via `XMLHttpRequest` met credentials. Cookies en sessietokens blijven in Safari en worden niet gelogd.
+
+Werk background-first. Gebruik `--browser-fetch` of `--open-background` voordat je zichtbare UI inzet. Safari mag sessiedrager zijn, maar mag de gebruiker niet onnodig naar voren trekken of van actieve tab wisselen.
 
 ### 5. Velden Invullen
 
@@ -272,7 +283,7 @@ Gebruik de bewezen browsercontext-route. De Marktplaats frontend verwacht:
 - header:
   - `x-mp-xsrf`
 
-Upload de foto's in de live flow en lees daarna de gegenereerde `images.ids`/hidden fields terug uit de probe. Gebruik de browser alleen als sessiedrager, niet om handmatig een uploadpad te raden.
+Upload de foto's in de live flow en lees daarna de gegenereerde `images.ids`/hidden fields terug uit de probe. Gebruik de browser alleen als sessiedrager, niet om handmatig een uploadpad te raden. Als upload of fototeller niet te verifieren is, stoppen.
 
 ### 9. Dry-Run Tonen
 
@@ -300,6 +311,7 @@ Alleen na expliciet akkoord. Na submit:
 - advertentie-id/link rapporteren;
 - validatiefouten kort samenvatten;
 - bij betaalpagina stoppen;
+- daarna live-verificatie draaien;
 - lokale advertentieadministratie bijwerken.
 
 ## Testprotocol

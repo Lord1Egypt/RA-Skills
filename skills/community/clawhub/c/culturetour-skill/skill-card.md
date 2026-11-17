@@ -1,43 +1,59 @@
-## Description: <br>
-Helps agents search the data0086.com culture-tourism media catalog, present previewable results, support selection and purchase-style commands, and download selected videos after the configured mock or trade flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through culture and tourism media search on data0086.com, result preview, user-directed selection or purchase, mock transaction handling, and local video download.
 
-## Publisher: <br>
-[fengyily](https://clawhub.ai/user/fengyily) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fengyily](https://clawhub.ai/user/fengyily)
 
-## Use Case: <br>
-Agents assisting tourism, media, or content teams use this skill to search Chinese culture-tourism video materials, compare finished clips and raw materials, preview assets, and download selected videos after an explicit purchase or down-order command. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Purchase or down-order chat commands can immediately download remote media into local storage without a separate confirmation step. <br>
-Mitigation: Use the skill only where this behavior is acceptable, keep downloads constrained to a dedicated folder, and add an explicit confirmation step before deployment if local writes require stronger user control. <br>
-Risk: Misconfigured media or trade endpoints could expand where the agent sends requests or downloads files from. <br>
-Mitigation: Review WENLV_API_ORIGIN, TRADE_API_BASE, and trusted_media_origins before use, and preserve the origin checks in the download script. <br>
+## Use Case:
 
+External users and agents use this skill to search the data0086.com culture-tourism media catalog, inspect previews, select one or more assets, and download selected videos after an explicit purchase command.
 
-## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/fengyily/culturetour-skill) <br>
-- [API Interface Specification](api.md) <br>
-- [Culture-Tourism Search API Reference](references/api_reference.md) <br>
-- [data0086 Platform](https://www.data0086.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, files] <br>
-**Output Format:** [HTML or Markdown tables with preview links, optional JSON details, shell download commands, and local file paths.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Search results are capped by the skill flow, media embedding is limited to configured trusted origins, and downloads are written under downloads/ after purchase-style commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.22 (source: server release metadata) <br>
+Risk: The skill contacts data0086.com, opens media links, and writes downloaded videos locally.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when those network and filesystem behaviors are acceptable, and keep downloads constrained to the configured downloads/ directory.
+
+Risk: HTML result rendering and API-provided media fields can expose users to unsafe or misleading embedded content if origins and fields are not checked.
+
+Mitigation: Validate media origins against the configured trusted list, revalidate redirects, and sanitize API-provided fields before rendering them in HTML.
+
+Risk: Batch purchase commands can trigger multiple local media downloads.
+
+Mitigation: Review selections before issuing purchase commands and consider requiring confirmation before large batch downloads.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/fengyily/skills/culturetour-skill)
+- [文旅素材 API 接口规范](artifact/api.md)
+- [文旅素材搜索 API 参考](artifact/references/api_reference.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown or static HTML tables with inline links, plus shell command guidance and local file paths after downloads]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Search results include structured media fields such as title, category, preview URL, thumbnail URL, commodity code, business code, duration, and download path when purchase is requested.]
+
+## Skill Version(s):
+
+1.0.22 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

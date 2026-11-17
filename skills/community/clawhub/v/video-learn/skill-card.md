@@ -1,40 +1,53 @@
-## Description: <br>
-Enables an agent to analyze video links, collect available metadata, and summarize key points from supported platforms. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents inspect video links, retrieve available metadata, and summarize key information from supported platforms such as YouTube and Bilibili.
 
-## Publisher: <br>
-[Jackeven02](https://clawhub.ai/user/Jackeven02) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[jackeven02](https://clawhub.ai/user/jackeven02)
 
-## Use Case: <br>
-Developers and external users use this skill to have an agent recognize video URLs, gather metadata from supported video platforms, and produce concise summaries, highlights, and viewing focus points. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Video metadata, subtitles, or downloaded media may expose private or sensitive content when agents process user-supplied links. <br>
-Mitigation: Use trusted video URLs and avoid private videos unless the user intends to share them with the selected platform or API tooling. <br>
-Risk: Adapting the yt-dlp command examples with unsafe string interpolation could introduce command execution risk. <br>
-Mitigation: Prefer safe argument-based command execution when adapting downloader examples. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Video Understanding Reference Resources](references/resources.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/Jackeven02/video-learn) <br>
+## Use Case:
 
+External users and developers use this skill to ask an agent what a linked video is about and to extract available titles, descriptions, durations, chapters, subtitles, key points, and viewing priorities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with optional command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs video metadata, summaries, key points, timestamps when available, and viewing recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may fetch video metadata from third-party platforms or use tools such as yt-dlp, which can expose requests to platform policies and external services.
+
+Mitigation: Use vetted tools in an isolated environment, avoid exposing secrets, and fetch or download media only where rights and platform terms allow it.
+
+Risk: Summaries can be incomplete when subtitles, chapters, descriptions, or platform APIs are unavailable, and the artifact states the skill cannot directly understand video frames.
+
+Mitigation: Treat results as metadata-based analysis unless transcript or API content is available, and disclose source limitations in user-facing summaries.
+
+## Reference(s):
+
+- [Video Understanding reference resources](artifact/references/resources.md)
+- [ClawHub skill page](https://clawhub.ai/jackeven02/skills/video-learn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown text with optional shell command examples and API call guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Summaries depend on metadata, descriptions, chapters, subtitles, or API responses available from the source platform; the skill does not directly play video or analyze raw visual frames.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

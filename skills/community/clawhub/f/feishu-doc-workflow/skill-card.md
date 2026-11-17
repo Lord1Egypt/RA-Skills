@@ -1,41 +1,58 @@
-## Description: <br>
-Feishu document writing and formatting workflow for rewriting Feishu docx content, polishing sections, inserting images, positioning block-level edits, adding links, setting public read access, and troubleshooting Feishu document 400/403 write issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through Feishu docx writing, editing, image placement, public sharing, and troubleshooting for 400/403 document errors.
 
-## Publisher: <br>
-[dadaniya99](https://clawhub.ai/user/dadaniya99) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dadaniya99](https://clawhub.ai/user/dadaniya99)
 
-## Use Case: <br>
-OpenClaw users with a configured Feishu integration use this skill to edit, format, illustrate, share, and troubleshoot Feishu docx documents through Feishu document tools and Drive permission APIs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public-link sharing can expose Feishu documents outside the intended audience. <br>
-Mitigation: Before enabling public read access, verify the exact document and confirm it contains no confidential, internal, personal, or regulated data; prefer narrower Feishu sharing when public access is not necessary. <br>
-Risk: Document edits or image insertions can overwrite content or place blocks incorrectly. <br>
-Mitigation: Read the document and list blocks before editing, use localized update or insert operations when possible, and re-read or list blocks after changes to confirm placement. <br>
-Risk: Write failures can occur when Feishu scopes or document-level app permissions are incomplete. <br>
-Mitigation: Verify the documented Feishu scopes and confirm the specific document grants the app edit access before write, append, update, insert, or image operations. <br>
+## Use Case:
 
+External OpenClaw users and developers use this skill to edit and format Feishu docx documents, insert images at block-level positions, configure public read-only sharing, and troubleshoot common Feishu document permission failures.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, API Calls, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with Feishu tool actions, API request details, JSON permission payloads, and troubleshooting steps.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide agents to read, update, append, insert, upload images, delete blocks, and verify Feishu document public permission settings when the user asks.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The workflow can make Feishu documents publicly readable through link sharing.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the document contains no sensitive, internal, personal, or confidential information before using the public-link workflow.
+
+Risk: A Feishu app with document editing and sharing permissions may affect documents beyond the intended workflow if installed in an inappropriate environment.
+
+Mitigation: Install only where the configured Feishu app permissions are intended for document editing and sharing.
+
+Risk: Incorrect block targeting can place images or edits in the wrong part of a document.
+
+Mitigation: Use the documented read/list-blocks workflow before edits and re-read the document after changes.
+
+## Reference(s):
+
+- [Feishu Doc Workflow on ClawHub](https://clawhub.ai/dadaniya99/skills/feishu-doc-workflow)
+- [dadaniya99 ClawHub Profile](https://clawhub.ai/user/dadaniya99)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, markdown, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with inline commands, API request examples, and configuration checklists]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Feishu docx permissions, public sharing settings, and troubleshooting steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

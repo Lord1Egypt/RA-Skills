@@ -1,40 +1,52 @@
-## Description: <br>
-Use this skill when the user asks to publish a release, create a release, "create release", "create-release", "tag a release", or generate a changelog. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use this skill when the user asks to publish a release, create a release, "create release", "create-release", "tag a release", or generate a changelog. Requires Gitee MCP Server to be configured.
 
-## Publisher: <br>
-[oschina](https://clawhub.ai/user/oschina) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[oschina](https://clawhub.ai/user/oschina)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and release managers use this skill to prepare Gitee releases by checking prior releases, collecting merged pull requests, generating a categorized changelog, and creating the release after user confirmation.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: A configured Gitee MCP Server may let the agent inspect or manage repositories beyond the intended release target.
+
+Mitigation: Configure the Gitee MCP Server only for repositories the agent is intended to manage before installing or using the skill.
+
+Risk: An incorrect changelog, version, or prerelease setting could publish a misleading release.
+
+Mitigation: Review the generated changelog, version number, and release settings before approving release creation.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and release maintainers use this skill to review Gitee release history, summarize merged pull requests, generate a changelog, and create a confirmed release through Gitee MCP. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Guidance, Markdown, API Calls, Shell commands]
 
-## Known Risks and Mitigations: <br>
-Risk: A release may be created with the wrong repository, version tag, prerelease status, or changelog content. <br>
-Mitigation: Verify the owner, repository, version tag, prerelease flag, and generated changelog before confirming release creation. <br>
-Risk: The Gitee token used by the MCP server may grant broader repository permissions than needed. <br>
-Mitigation: Use a least-privileged Gitee token where possible and install the skill only for intended release management workflows. <br>
+**Output Format:** [Markdown changelog text, Gitee MCP tool calls, and a release link after publication]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [Create Release on ClawHub](https://clawhub.ai/oschina/gitee-create-release) <br>
+**Other Properties Related to Output:** [Requires a configured Gitee MCP Server and user confirmation before release creation.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, API Calls, Guidance] <br>
-**Output Format:** [Markdown changelog text and Gitee MCP release creation requests] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires configured Gitee MCP tools and user confirmation before creating a release.] <br>
+1.0.0 (source: frontmatter and server release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

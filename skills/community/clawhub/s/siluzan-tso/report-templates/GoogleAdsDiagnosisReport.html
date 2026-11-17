@@ -127,11 +127,7 @@
         height: 3px;
         margin-left: 18px;
         border-radius: 999px;
-        background: linear-gradient(
-          135deg,
-          rgba(59, 104, 249, 0.4),
-          rgba(99, 102, 241, 0.2)
-        );
+        background: linear-gradient(135deg, rgba(59, 104, 249, 0.4), rgba(99, 102, 241, 0.2));
       }
 
       .section-subtitle {
@@ -416,6 +412,18 @@
         border-radius: 12px;
         border: 1px solid #e2e8f0;
         padding: 18px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+
+      .echarts-chart,
+      .chart-card .echarts-chart,
+      .chart-container .echarts-chart {
+        width: 100% !important;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       .keyword-insights .ratio-analysis-section {
@@ -1095,11 +1103,7 @@
       .targeting-dimension {
         padding: 24px;
         border-radius: 16px;
-        background: linear-gradient(
-          145deg,
-          rgba(59, 104, 249, 0.05),
-          rgba(91, 143, 255, 0.08)
-        );
+        background: linear-gradient(145deg, rgba(59, 104, 249, 0.05), rgba(91, 143, 255, 0.08));
         border: 1px solid rgba(148, 163, 184, 0.2);
         box-shadow: 0 16px 32px -24px rgba(15, 23, 42, 0.35);
       }
@@ -1269,10 +1273,7 @@
         margin-bottom: 15px;
       }
 
-      .content-wrapper[data-section-id]
-        .diagnosis-overview
-        .column-header
-        .section-subtitle {
+      .content-wrapper[data-section-id] .diagnosis-overview .column-header .section-subtitle {
         font-size: 18px;
         margin: 0;
         line-height: 1.4;
@@ -1301,10 +1302,7 @@
         background: #f3e8ff;
       }
 
-      .content-wrapper[data-section-id]
-        .diagnosis-overview
-        .list-item
-        .item-number {
+      .content-wrapper[data-section-id] .diagnosis-overview .list-item .item-number {
         font-size: 14px;
         font-weight: 600;
         color: #7c3aed;
@@ -1313,30 +1311,21 @@
         padding-top: 2px;
       }
 
-      .content-wrapper[data-section-id]
-        .diagnosis-overview
-        .list-item
-        .item-content-wrapper {
+      .content-wrapper[data-section-id] .diagnosis-overview .list-item .item-content-wrapper {
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: 6px;
       }
 
-      .content-wrapper[data-section-id]
-        .diagnosis-overview
-        .list-item
-        .item-title {
+      .content-wrapper[data-section-id] .diagnosis-overview .list-item .item-title {
         font-size: 15px;
         font-weight: 600;
         color: #374151;
         line-height: 1.5;
       }
 
-      .content-wrapper[data-section-id]
-        .diagnosis-overview
-        .list-item
-        .item-description {
+      .content-wrapper[data-section-id] .diagnosis-overview .list-item .item-description {
         font-size: 13px;
         color: #6b7280;
         line-height: 1.7;
@@ -1659,12 +1648,7 @@
         white-space: nowrap;
       }
 
-      .kpi-section
-        .key-metrics-section
-        .table-block
-        .data-table
-        thead
-        th:last-child {
+      .kpi-section .key-metrics-section .table-block .data-table thead th:last-child {
         border-right: none;
       }
 
@@ -1672,12 +1656,7 @@
         border-bottom: 1px solid #f0f0f0;
       }
 
-      .kpi-section
-        .key-metrics-section
-        .table-block
-        .data-table
-        tbody
-        tr:last-child {
+      .kpi-section .key-metrics-section .table-block .data-table tbody tr:last-child {
         border-bottom: none;
       }
 
@@ -1689,44 +1668,22 @@
         border-right: 1px solid #f0f0f0;
       }
 
-      .kpi-section
-        .key-metrics-section
-        .table-block
-        .data-table
-        tbody
-        td:last-child {
+      .kpi-section .key-metrics-section .table-block .data-table tbody td:last-child {
         border-right: none;
       }
 
-      .kpi-section
-        .key-metrics-section
-        .table-block
-        .data-table
-        tbody
-        td
-        .cell-text {
+      .kpi-section .key-metrics-section .table-block .data-table tbody td .cell-text {
         display: inline-block;
         max-width: 100%;
         white-space: normal;
         word-break: break-word;
       }
 
-      .kpi-section
-        .key-metrics-section
-        .table-block
-        .data-table
-        tbody
-        tr:nth-child(even) {
+      .kpi-section .key-metrics-section .table-block .data-table tbody tr:nth-child(even) {
         background: #f9fafb;
       }
 
-      .kpi-section
-        .key-metrics-section
-        .table-block
-        .data-table
-        tbody
-        tr:nth-child(even)
-        td {
+      .kpi-section .key-metrics-section .table-block .data-table tbody tr:nth-child(even) td {
         background: transparent;
       }
 
@@ -1755,11 +1712,7 @@
         padding: 36px 24px;
         text-align: center;
         color: #64748b;
-        background: linear-gradient(
-          135deg,
-          rgba(226, 232, 240, 0.6),
-          rgba(248, 250, 252, 0.9)
-        );
+        background: linear-gradient(135deg, rgba(226, 232, 240, 0.6), rgba(248, 250, 252, 0.9));
         border: 1px dashed rgba(148, 163, 184, 0.6);
         border-radius: 12px;
         font-size: 14px;
@@ -1921,8 +1874,7 @@
 
         #report-root {
           padding: max(8px, env(safe-area-inset-left, 0px))
-            max(8px, env(safe-area-inset-right, 0px))
-            max(28px, env(safe-area-inset-bottom, 0px));
+            max(8px, env(safe-area-inset-right, 0px)) max(28px, env(safe-area-inset-bottom, 0px));
           max-width: 100%;
         }
 
@@ -2049,9 +2001,10 @@
           min-width: 520px;
         }
 
-        .chart-card canvas,
-        .chart-container canvas {
+        .chart-card .echarts-chart,
+        .chart-container .echarts-chart {
           max-width: 100%;
+          width: 100%;
         }
 
         .insights-container,
@@ -2087,10 +2040,7 @@
           gap: 15px;
         }
 
-        .content-wrapper[data-section-id]
-          .diagnosis-overview
-          .column-header
-          .section-subtitle {
+        .content-wrapper[data-section-id] .diagnosis-overview .column-header .section-subtitle {
           font-size: 16px;
         }
 
@@ -2106,15 +2056,12 @@
           font-size: 14px;
         }
 
-        .content-wrapper[data-section-id]
-          .diagnosis-overview
-          .item-description {
+        .content-wrapper[data-section-id] .diagnosis-overview .item-description {
           font-size: 13px;
         }
       }
-
     </style>
-    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/chart.umd.min.js"></script>
+    <script src="https://staticpn.siluzan.com/assets/slz/homeCDN/echarts.min.js"></script>
   </head>
   <body>
     <div id="report-root">
@@ -2149,7 +2096,7 @@
         const GOLD_ACCOUNT_ITEMS = [
           { key: "conversionTrackingQualified", name: "转化追踪设置" },
           { key: "gaConfigured", name: "G A与广告账户联结" },
-          { key: "expandedTextAdQualified", name: "文字广告" },
+          // expandedTextAdQualified 已停用，搜索创意只看自适应搜索广告
           { key: "responsiveSearchAdQualified", name: "自适应搜索广告" },
           {
             key: "multiAssetResponsiveDisplayAdQualified",
@@ -2162,7 +2109,7 @@
           { key: "adsSitelinkExtensionQualified", name: "附加链接" },
           { key: "adsCalloutExtensionQualified", name: "附加宣传信息" },
           { key: "adsCallExtensionQualified", name: "附加电话信息" },
-          { key: "adsNegativeQualified", name: "否定词添加" },
+          // collect 未拉取否词数据，不展示「否定词添加」
           { key: "audienceQualified", name: "受众群体设置" },
           { key: "biddingPolicyQualified", name: "出价策略" },
         ];
@@ -2172,23 +2119,7 @@
             return "已达标，继续保持";
           }
 
-          const suggestions = {
-            转化追踪设置: "请设置转化追踪，这是衡量广告效果的基础",
-            "G A与广告账户联结":
-              "请将Google Analytics与Google Ads账户关联，以便更好地分析用户行为",
-            文字广告: "请创建文字广告，这是搜索广告的基础形式",
-            自适应搜索广告: "请使用自适应搜索广告，能够自动优化广告展示",
-            自适应展示广告: "请使用自适应展示广告，提高展示网络的效果",
-            附加结构化信息摘要: "请添加结构化信息摘要，丰富广告信息",
-            附加链接: "请添加附加链接，为用户提供更多访问路径",
-            附加宣传信息: "请添加宣传信息，突出产品优势",
-            附加电话信息: "请添加电话信息，方便用户直接联系",
-            否定词添加: "请添加否定关键词，排除不相关流量",
-            受众群体设置: "请设置受众群体，提高广告精准度",
-            出价策略: "请使用智能出价策略，让Google AI优化出价",
-          };
-
-          return suggestions[itemName] || "请检查并完善此项设置";
+          return "未达到该项黄金账户标准";
         };
 
         const navItems = [
@@ -2323,35 +2254,114 @@
             }
 
             const { desktop = {}, mobile = {} } = rawData;
+            const source = String(
+              rawData.source || (rawData.lighthouseOk === false ? "none" : "api"),
+            );
+            const simple = rawData.simpleDiagnosis || null;
+
+            // TSO Lighthouse 失败后的 CLI 简易诊断：不展示假 0 分，改为说明降级
+            if (
+              source === "simple" ||
+              (source !== "api" && !(Number(desktop.score) > 0 || Number(mobile.score) > 0))
+            ) {
+              if (source === "simple" || simple) {
+                const fetchMs = simple && simple.fetchMs != null ? `${simple.fetchMs} ms` : "—";
+                const https = simple ? (simple.https ? "是" : "否") : "—";
+                const form = simple ? (simple.hasForm ? "有" : "未见") : "—";
+                const track =
+                  simple && Array.isArray(simple.analyticsHints) && simple.analyticsHints.length
+                    ? simple.analyticsHints.join(", ")
+                    : "未见";
+                return [
+                  {
+                    metric: "数据来源 (Data Source)",
+                    reportValue: "CLI 简易诊断（Lighthouse API 失败）",
+                    benchmark: "TSO Lighthouse",
+                    action:
+                      "性能指数/FCP 未测到，勿按 0 分解读。以下为 HTML/下载可达性信号。(Lighthouse unavailable; do not treat zeros as scores.)",
+                  },
+                  {
+                    metric: "首页下载耗时 (HTML fetch time)",
+                    reportValue: fetchMs,
+                    benchmark: "参考信号 ≠ FCP",
+                    action:
+                      "仅为下载耗时粗信号，不能替代 Lighthouse FCP。(Fetch timing only, not FCP.)",
+                  },
+                  {
+                    metric: "HTTPS / 表单 / 追踪",
+                    reportValue: `HTTPS:${https} · 表单:${form} · 追踪:${track}`,
+                    benchmark: "结构信号",
+                    action: simple?.note || "依据 simpleDiagnosis 撰写分析，禁止编造性能分。",
+                  },
+                  {
+                    metric: "手机性能指数 (Mobile Performance Index)",
+                    reportValue: "未测到",
+                    benchmark: "≥ 75",
+                    action:
+                      "P2：稍后重试 Lighthouse；当前勿据此调整出价。(Retry Lighthouse later.)",
+                  },
+                ];
+              }
+            }
+
             const healthStandards = {
               desktopFirstContentfulPaint: 3,
               mobileFirstContentfulPaint: 3,
               score: 75,
             };
 
-            const desktopFirstContentfulPaint =
-              Number(desktop.firstContentfulPaint) || 0;
+            const desktopFirstContentfulPaint = Number(desktop.firstContentfulPaint) || 0;
+            const mobileFirstContentfulPaint = Number(mobile.firstContentfulPaint) || 0;
+            const mobileScore = Number(mobile.score) || 0;
+            const hasMeasuredMetrics =
+              desktopFirstContentfulPaint > 0 || mobileFirstContentfulPaint > 0 || mobileScore > 0;
+
+            // 全 0 = 未测到，禁止当成「0.00s / 0 分 → P1 立即修复」
+            if (!hasMeasuredMetrics) {
+              return [
+                {
+                  metric: "达标率 (Compliance Rate)",
+                  reportValue: "未测到",
+                  benchmark: "100%",
+                  action:
+                    "Lighthouse 测速数据未获取，勿按 0% 解读为全部不达标。(No Lighthouse metrics; do not treat as failed compliance.)",
+                },
+                {
+                  metric: "PC 网站打开速度 (PC Website Opening Speed)",
+                  reportValue: "未测到",
+                  benchmark: `≤ ${healthStandards.desktopFirstContentfulPaint} s`,
+                  action: "数据未获取，禁止按 0.00s 给 P1。(Unavailable — not a P1 speed failure.)",
+                },
+                {
+                  metric: "移动网站打开速度 (Mobile Website Opening Speed)",
+                  reportValue: "未测到",
+                  benchmark: `≤ ${healthStandards.mobileFirstContentfulPaint} s`,
+                  action: "数据未获取，禁止按 0.00s 给 P1。(Unavailable — not a P1 speed failure.)",
+                },
+                {
+                  metric: "手机性能指数 (Mobile Performance Index)",
+                  reportValue: "未测到",
+                  benchmark: `≥ ${healthStandards.score}`,
+                  action:
+                    "数据未获取，禁止按 0 分给 P1；可稍后重试 Lighthouse。(Unavailable — retry later.)",
+                },
+              ];
+            }
+
             const desktopPassed =
               desktopFirstContentfulPaint > 0 &&
-              desktopFirstContentfulPaint <=
-                healthStandards.desktopFirstContentfulPaint;
+              desktopFirstContentfulPaint <= healthStandards.desktopFirstContentfulPaint;
 
-            const mobileFirstContentfulPaint =
-              Number(mobile.firstContentfulPaint) || 0;
             const mobilePassed =
               mobileFirstContentfulPaint > 0 &&
-              mobileFirstContentfulPaint <=
-                healthStandards.mobileFirstContentfulPaint;
+              mobileFirstContentfulPaint <= healthStandards.mobileFirstContentfulPaint;
 
-            const mobileScore = Number(mobile.score) || 0;
             const mobileScorePassed = mobileScore >= healthStandards.score;
 
             const totalMetrics = 3;
-            const passedMetrics = [
-              desktopPassed,
-              mobilePassed,
-              mobileScorePassed,
-            ].filter(Boolean).length;
+            const passedMetrics = [desktopPassed, mobilePassed, mobileScorePassed].filter(
+              Boolean,
+            ).length;
             const passRate = `${((passedMetrics / totalMetrics) * 100).toFixed(1)}%`;
 
             return [
@@ -2368,9 +2378,7 @@
               },
               {
                 metric: "PC 网站打开速度 (PC Website Opening Speed)",
-                reportValue: desktopFirstContentfulPaint
-                  ? `${desktopFirstContentfulPaint.toFixed(2)} s`
-                  : "0.00 s",
+                reportValue: `${desktopFirstContentfulPaint.toFixed(2)} s`,
                 benchmark: `≤ ${healthStandards.desktopFirstContentfulPaint} s`,
                 action: desktopPassed
                   ? "良好。(Good.)"
@@ -2378,9 +2386,7 @@
               },
               {
                 metric: "移动网站打开速度 (Mobile Website Opening Speed)",
-                reportValue: mobileFirstContentfulPaint
-                  ? `${mobileFirstContentfulPaint.toFixed(2)} s`
-                  : "0.00 s",
+                reportValue: `${mobileFirstContentfulPaint.toFixed(2)} s`,
                 benchmark: `≤ ${healthStandards.mobileFirstContentfulPaint} s`,
                 action: mobilePassed
                   ? "良好。(Good.)"
@@ -2388,7 +2394,7 @@
               },
               {
                 metric: "手机性能指数 (Mobile Performance Index)",
-                reportValue: mobileScore ? mobileScore.toFixed(0) : "0",
+                reportValue: mobileScore.toFixed(0),
                 benchmark: `≥ ${healthStandards.score}`,
                 action: mobileScorePassed
                   ? "良好。(Good.)"
@@ -2461,9 +2467,7 @@
           metrics: { limit: 10 },
           conversionGoals: {
             getLimit: (items = []) => {
-              const enabledCount = items.filter((goal) =>
-                isEnabledStatus(goal?.status),
-              ).length;
+              const enabledCount = items.filter((goal) => isEnabledStatus(goal?.status)).length;
               if (enabledCount > 0) {
                 return Math.min(10, enabledCount);
               }
@@ -2559,10 +2563,7 @@
           `;
         };
 
-        const buildTableRows = (
-          items,
-          { tableKey, configKey, emptyRow, rowBuilder },
-        ) => {
+        const buildTableRows = (items, { tableKey, configKey, emptyRow, rowBuilder }) => {
           const list = Array.isArray(items) ? items.slice() : [];
           if (!list.length) {
             registerTableState(tableKey, {
@@ -2579,13 +2580,9 @@
             };
           }
 
-          const { displayItems, remainingItems } = applyTableLimit(
-            list,
-            tableKey,
-            {
-              configKey: configKey || tableKey,
-            },
-          );
+          const { displayItems, remainingItems } = applyTableLimit(list, tableKey, {
+            configKey: configKey || tableKey,
+          });
           const limitedRows = displayItems.map(rowBuilder).join("");
           const remainingRows = remainingItems.map(rowBuilder).join("");
           const remainingCount = remainingItems.length;
@@ -2599,9 +2596,7 @@
 
           return {
             bodyHtml: limitedRows || emptyRow,
-            expandHtml: remainingCount
-              ? buildExpandButton(tableKey, remainingCount)
-              : "",
+            expandHtml: remainingCount ? buildExpandButton(tableKey, remainingCount) : "",
             hasMore: remainingCount > 0,
             remainingCount,
           };
@@ -2637,8 +2632,7 @@
 
         const getItemLabel = (item, key, fallback = "未命名") => {
           const value = item?.[key];
-          if (value === null || value === undefined || value === "")
-            return fallback;
+          if (value === null || value === undefined || value === "") return fallback;
           return String(value);
         };
 
@@ -2652,14 +2646,8 @@
             impressions: Number(item?.impressions) || 0,
           }));
 
-          const totalCost = numericItems.reduce(
-            (sum, item) => sum + item.cost,
-            0,
-          );
-          const totalConversions = numericItems.reduce(
-            (sum, item) => sum + item.conversions,
-            0,
-          );
+          const totalCost = numericItems.reduce((sum, item) => sum + item.cost, 0);
+          const totalConversions = numericItems.reduce((sum, item) => sum + item.conversions, 0);
           const topCost = numericItems.reduce(
             (max, item) => (item.cost > max.cost ? item : max),
             numericItems[0],
@@ -2675,9 +2663,7 @@
           const insights = [];
           if (totalCost > 0 && topCost) {
             const share = ((topCost.cost / totalCost) * 100).toFixed(1);
-            insights.push(
-              `预算主要集中在 ${topCost.label}，占总消耗约 ${share}%。`,
-            );
+            insights.push(`预算主要集中在 ${topCost.label}，占总消耗约 ${share}%。`);
           }
           if (totalConversions > 0) {
             const topConversion = numericItems.reduce(
@@ -2711,10 +2697,7 @@
             ctr: Number(item?.ctr) || 0,
             conversions: Number(item?.conversions) || 0,
           }));
-          const totalCost = numericItems.reduce(
-            (sum, item) => sum + item.cost,
-            0,
-          );
+          const totalCost = numericItems.reduce((sum, item) => sum + item.cost, 0);
           const suggestions = [];
           if (totalCost > 0) {
             const topRegion = numericItems.reduce(
@@ -2733,9 +2716,7 @@
             numericItems[0],
           );
           if (highCtrRegion && highCtrRegion.ctr > 0) {
-            suggestions.push(
-              `${highCtrRegion.label} CTR 表现领先，可适当增加优质素材投放与预算。`,
-            );
+            suggestions.push(`${highCtrRegion.label} CTR 表现领先，可适当增加优质素材投放与预算。`);
           }
           const zeroConversionRegions = numericItems.filter(
             (item) => item.cost > 0 && item.conversions === 0,
@@ -2839,11 +2820,7 @@
             (min, item) => (item.cpa > 0 && item.cpa < min.cpa ? item : min),
             { ...numericItems[0], cpa: numericItems[0].cpa || Infinity },
           );
-          if (
-            lowestCpa &&
-            Number.isFinite(lowestCpa.cpa) &&
-            lowestCpa.cpa > 0
-          ) {
+          if (lowestCpa && Number.isFinite(lowestCpa.cpa) && lowestCpa.cpa > 0) {
             insights.push(
               `${lowestCpa.label} CPA 控制得当（${formatNumber(lowestCpa.cpa, 2)}），适合作为核心受众持续投入。`,
             );
@@ -2873,18 +2850,12 @@
               label: "",
               cpa: Infinity,
             });
-          if (
-            bestCpa &&
-            Number.isFinite(bestCpa.cpa) &&
-            bestCpa.cpa !== Infinity
-          ) {
+          if (bestCpa && Number.isFinite(bestCpa.cpa) && bestCpa.cpa !== Infinity) {
             suggestions.push(
               `对 ${bestCpa.label} 受众保持预算倾斜，其 CPA 为 ${formatNumber(bestCpa.cpa, 2)}，具备扩量空间。`,
             );
           }
-          const zeroConversion = numericItems.filter(
-            (item) => item.conversions === 0,
-          );
+          const zeroConversion = numericItems.filter((item) => item.conversions === 0);
           if (zeroConversion.length) {
             suggestions.push(
               `建议定期清理 ${zeroConversion.length} 类零转化受众，并利用否定受众减少无效曝光。`,
@@ -2951,109 +2922,115 @@
           return suggestions;
         };
 
+        /**
+         * 统一图例布局：卡片已有 HTML chart-title 时不再画 ECharts title，避免与 legend 重叠。
+         * 无 HTML 标题时把 ECharts title 置顶、legend 放底部。
+         */
+        const applyChartChrome = (option, opts = {}) => {
+          const { chartTitle, hasHtmlTitle = false, legendPlacement = "top" } = opts;
+          const next = { ...option };
+          const baseLegend =
+            typeof next.legend === "object" && next.legend ? { ...next.legend } : {};
+
+          if (hasHtmlTitle || !chartTitle) {
+            delete next.title;
+            if (baseLegend.orient === "vertical") {
+              next.legend = {
+                ...baseLegend,
+                orient: "vertical",
+                right: 10,
+                top: "middle",
+                left: undefined,
+                bottom: undefined,
+              };
+            } else if (legendPlacement === "bottom") {
+              next.legend = { ...baseLegend, bottom: 0, top: undefined, left: "center" };
+              if (next.grid) {
+                next.grid = {
+                  ...next.grid,
+                  bottom: Math.max(Number(next.grid.bottom) || 0, 48),
+                };
+              }
+            } else {
+              next.legend = { ...baseLegend, top: 4, left: "center", bottom: undefined };
+              if (next.grid) {
+                next.grid = { ...next.grid, top: 48 };
+              }
+            }
+          } else {
+            next.title = {
+              text: chartTitle,
+              left: "center",
+              top: 0,
+              textStyle: { fontSize: 14, fontWeight: "bold" },
+            };
+            next.legend = { ...baseLegend, bottom: 0, top: undefined, left: "center" };
+            if (next.grid) {
+              next.grid = {
+                ...next.grid,
+                top: 40,
+                bottom: Math.max(Number(next.grid.bottom) || 0, 48),
+              };
+            }
+          }
+          return next;
+        };
+
         const buildGeographicChartConfig = (items) => {
           if (!Array.isArray(items) || !items.length) return null;
           const labels = items.map((item) => getItemLabel(item, "geographic"));
           const dataPoints = items.map((item) => Number(item?.cost) || 0);
           if (!dataPoints.some((value) => value > 0)) return null;
-          return {
-            type: "doughnut",
-            data: {
-              labels,
-              datasets: [
+          return applyChartChrome(
+            {
+              color: ["#3b68f9", "#5b8fff", "#7ba7ff", "#9db9ff", "#bfcbff", "#dce5ff"],
+              tooltip: { trigger: "item" },
+              legend: { type: "scroll" },
+              series: [
                 {
-                  data: dataPoints,
-                  backgroundColor: [
-                    "#3b68f9",
-                    "#5b8fff",
-                    "#7ba7ff",
-                    "#9db9ff",
-                    "#bfcbff",
-                    "#dce5ff",
-                  ],
-                  borderColor: "#ffffff",
-                  borderWidth: 2,
+                  type: "pie",
+                  radius: ["40%", "65%"],
+                  center: ["50%", "46%"],
+                  itemStyle: { borderColor: "#ffffff", borderWidth: 2 },
+                  label: { show: false },
+                  data: labels.map((name, index) => ({ name, value: dataPoints[index] })),
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "bottom",
-                  labels: { usePointStyle: true },
-                },
-                title: {
-                  display: true,
-                  text: "地理位置消费分布",
-                  font: { size: 16, weight: "bold" },
-                },
-              },
-            },
-          };
+            { hasHtmlTitle: true, legendPlacement: "bottom" },
+          );
         };
 
         const buildDeviceChartConfig = (items) => {
           if (!Array.isArray(items) || !items.length) return null;
-          const labels = items.map((item) =>
-            getItemLabel(item, "deviceType", "未识别设备"),
-          );
+          const labels = items.map((item) => getItemLabel(item, "deviceType", "未识别设备"));
           const costData = items.map((item) => Number(item?.cost) || 0);
-          const conversionData = items.map(
-            (item) => Number(item?.conversions) || 0,
-          );
-          if (
-            !costData.some((v) => v > 0) &&
-            !conversionData.some((v) => v > 0)
-          )
-            return null;
-          return {
-            type: "bar",
-            data: {
-              labels,
-              datasets: [
+          const conversionData = items.map((item) => Number(item?.conversions) || 0);
+          if (!costData.some((v) => v > 0) && !conversionData.some((v) => v > 0)) return null;
+          return applyChartChrome(
+            {
+              tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
+              legend: {},
+              grid: { left: "8%", right: "5%", bottom: 30, containLabel: true },
+              xAxis: {
+                type: "category",
+                data: labels,
+                axisLine: { show: false },
+                axisTick: { show: false },
+              },
+              yAxis: { type: "value", splitLine: { lineStyle: { color: "#f0f0f0" } } },
+              series: [
+                { name: "消费", type: "bar", data: costData, itemStyle: { color: "#3b68f9" } },
                 {
-                  label: "消费",
-                  data: costData,
-                  backgroundColor: "#3b68f9",
-                  borderColor: "#3b68f9",
-                  borderWidth: 1,
-                },
-                {
-                  label: "转化次数",
+                  name: "转化次数",
+                  type: "bar",
                   data: conversionData,
-                  backgroundColor: "#5b8fff",
-                  borderColor: "#5b8fff",
-                  borderWidth: 1,
+                  itemStyle: { color: "#5b8fff" },
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "top",
-                  labels: { usePointStyle: true },
-                },
-                title: {
-                  display: true,
-                  text: "设备类型表现对比",
-                  font: { size: 16, weight: "bold" },
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: { color: "#f0f0f0" },
-                },
-                x: {
-                  grid: { display: false },
-                },
-              },
-            },
-          };
+            { hasHtmlTitle: true },
+          );
         };
 
         const buildAudienceChartConfig = (items) => {
@@ -3061,51 +3038,29 @@
           const labels = items.map((item) => getItemLabel(item, "audience"));
           const dataPoints = items.map((item) => Number(item?.cost) || 0);
           if (!dataPoints.some((value) => value > 0)) return null;
-          return {
-            type: "pie",
-            data: {
-              labels,
-              datasets: [
+          return applyChartChrome(
+            {
+              color: ["#ff6b6b", "#4ecdc4", "#45b7d1", "#96ceb4", "#feca57", "#ff9ff3"],
+              tooltip: { trigger: "item" },
+              legend: { orient: "vertical", type: "scroll" },
+              series: [
                 {
-                  data: dataPoints,
-                  backgroundColor: [
-                    "#ff6b6b",
-                    "#4ecdc4",
-                    "#45b7d1",
-                    "#96ceb4",
-                    "#feca57",
-                    "#ff9ff3",
-                  ],
-                  borderColor: "#ffffff",
-                  borderWidth: 2,
+                  type: "pie",
+                  radius: "65%",
+                  center: ["40%", "55%"],
+                  itemStyle: { borderColor: "#ffffff", borderWidth: 2 },
+                  data: labels.map((name, index) => ({ name, value: dataPoints[index] })),
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "right",
-                  labels: { usePointStyle: true },
-                },
-                title: {
-                  display: true,
-                  text: "受众特征消费分布",
-                  font: { size: 16, weight: "bold" },
-                },
-              },
-            },
-          };
+            { hasHtmlTitle: true },
+          );
         };
 
         const buildCustomAudienceChartConfig = (items) => {
           if (!Array.isArray(items) || !items.length) return null;
           const labels = items.map((item) => getItemLabel(item, "audience"));
-          const totalCost = items.reduce(
-            (sum, item) => sum + (Number(item?.cost) || 0),
-            0,
-          );
+          const totalCost = items.reduce((sum, item) => sum + (Number(item?.cost) || 0), 0);
           const totalConversions = items.reduce(
             (sum, item) => sum + (Number(item?.conversions) || 0),
             0,
@@ -3121,64 +3076,44 @@
             if (totalConversions === 0) return 0;
             return Number(((conversions / totalConversions) * 100).toFixed(2));
           });
-          return {
-            type: "bar",
-            data: {
-              labels,
-              datasets: [
+          return applyChartChrome(
+            {
+              tooltip: {
+                trigger: "axis",
+                axisPointer: { type: "shadow" },
+                formatter: (params) =>
+                  params.map((p) => `${p.marker}${p.seriesName}: ${p.value}%`).join("<br/>"),
+              },
+              legend: {},
+              grid: { left: "8%", right: "5%", bottom: 30, containLabel: true },
+              xAxis: {
+                type: "category",
+                data: labels,
+                axisLine: { show: false },
+                axisTick: { show: false },
+              },
+              yAxis: {
+                type: "value",
+                axisLabel: { formatter: "{value}%" },
+                splitLine: { lineStyle: { color: "#f0f0f0" } },
+              },
+              series: [
                 {
-                  label: "花费占比 (%)",
+                  name: "花费占比 (%)",
+                  type: "bar",
                   data: costPercent,
-                  backgroundColor: "#3b68f9",
-                  borderColor: "#3b68f9",
-                  borderWidth: 1,
+                  itemStyle: { color: "#3b68f9" },
                 },
                 {
-                  label: "转化占比 (%)",
+                  name: "转化占比 (%)",
+                  type: "bar",
                   data: conversionPercent,
-                  backgroundColor: "#5b8fff",
-                  borderColor: "#5b8fff",
-                  borderWidth: 1,
+                  itemStyle: { color: "#5b8fff" },
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "top",
-                  labels: { usePointStyle: true },
-                },
-                title: {
-                  display: true,
-                  text: "自定义受众花费与转化占比",
-                  font: { size: 16, weight: "bold" },
-                },
-                tooltip: {
-                  callbacks: {
-                    label: (context) => {
-                      const label = context.dataset?.label || "";
-                      const value = context.raw ?? 0;
-                      return `${label}: ${value}%`;
-                    },
-                  },
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: { color: "#f0f0f0" },
-                  ticks: {
-                    callback: (value) => `${value}%`,
-                  },
-                },
-                x: {
-                  grid: { display: false },
-                },
-              },
-            },
-          };
+            { hasHtmlTitle: true },
+          );
         };
 
         const buildTargetingTableRow = (item, labelKey) => {
@@ -3211,18 +3146,11 @@
             return '<li class="insight-item">暂无相关内容</li>';
           }
           return items
-            .map(
-              (item) =>
-                `<li class="insight-item">${escapeHtml(String(item))}</li>`,
-            )
+            .map((item) => `<li class="insight-item">${escapeHtml(String(item))}</li>`)
             .join("");
         };
 
-        const formatDisplayPercent = (
-          value,
-          fractionDigits = 2,
-          suffix = "%",
-        ) => {
+        const formatDisplayPercent = (value, fractionDigits = 2, suffix = "%") => {
           const num = Number(value);
           if (!Number.isFinite(num)) return "—";
           const digits = Math.max(0, Math.min(4, fractionDigits));
@@ -3269,10 +3197,8 @@
           }
 
           const averageOf = (field) =>
-            validKeywords.reduce(
-              (sum, item) => sum + (Number(item?.[field]) || 0),
-              0,
-            ) / validKeywords.length;
+            validKeywords.reduce((sum, item) => sum + (Number(item?.[field]) || 0), 0) /
+            validKeywords.length;
 
           const avgCtr = averageOf("ctr");
           const avgCvr = averageOf("cvr");
@@ -3282,37 +3208,25 @@
           const suggestionPoints = [];
 
           if (avgCtr < 2) {
-            analysisPoints.push(
-              "整体点击率低于 2%，关键词与广告文案匹配度不足，曝光利用率偏弱。",
-            );
+            analysisPoints.push("整体点击率低于 2%，关键词与广告文案匹配度不足，曝光利用率偏弱。");
             suggestionPoints.push(
               "优化高频关键词广告文案与落地页相关性，并适度提升出价以恢复 CTR。",
             );
           } else if (avgCtr > 5) {
-            analysisPoints.push(
-              "整体点击率高于 5%，流量吸引力良好，需要关注后续转化质量。",
-            );
+            analysisPoints.push("整体点击率高于 5%，流量吸引力良好，需要关注后续转化质量。");
             suggestionPoints.push(
               "保持高 CTR 关键词出价策略，同时配合落地页与转化链路优化，确保效率。",
             );
           }
 
           if (avgCvr < 3) {
-            analysisPoints.push(
-              "整体转化率低于 3%，流量质量或后端承接存在优化空间。",
-            );
-            suggestionPoints.push(
-              "增加否定关键词、优化匹配方式，并梳理落地页体验以提升 CVR。",
-            );
+            analysisPoints.push("整体转化率低于 3%，流量质量或后端承接存在优化空间。");
+            suggestionPoints.push("增加否定关键词、优化匹配方式，并梳理落地页体验以提升 CVR。");
           }
 
           if (avgCpa > 100) {
-            analysisPoints.push(
-              `平均每次转化费用约 ${avgCpa.toFixed(2)}，成本偏高。`,
-            );
-            suggestionPoints.push(
-              "聚焦高效关键词，降低无效点击占比，并及时下调高成本关键词出价。",
-            );
+            analysisPoints.push(`平均每次转化费用约 ${avgCpa.toFixed(2)}，成本偏高。`);
+            suggestionPoints.push("聚焦高效关键词，降低无效点击占比，并及时下调高成本关键词出价。");
           }
 
           const withShares = validKeywords.map((item) => ({
@@ -3322,9 +3236,7 @@
           }));
 
           const highCostLowConv = withShares
-            .filter(
-              (entry) => entry.costShare >= 10 && entry.conversionsShare < 5,
-            )
+            .filter((entry) => entry.costShare >= 10 && entry.conversionsShare < 5)
             .sort((a, b) => b.costShare - a.costShare)
             .slice(0, 5)
             .map(
@@ -3355,12 +3267,8 @@
             );
 
           if (efficient.length) {
-            analysisPoints.push(
-              `也有性价比较高的关键词：${efficient.join("、")}，贡献优质转化。`,
-            );
-            suggestionPoints.push(
-              "适度提升上述高效关键词预算或出价，放大优质转化人群。",
-            );
+            analysisPoints.push(`也有性价比较高的关键词：${efficient.join("、")}，贡献优质转化。`);
+            suggestionPoints.push("适度提升上述高效关键词预算或出价，放大优质转化人群。");
           }
 
           const topCostShare = withShares
@@ -3374,13 +3282,9 @@
               `成本集中度：Top5 关键词合计花费约占 ${topCostShare.toFixed(1)}%。`,
             );
             if (topCostShare >= 60) {
-              suggestionPoints.push(
-                "花费集中度较高，建议分散预算并设置上限，降低单词波动风险。",
-              );
+              suggestionPoints.push("花费集中度较高，建议分散预算并设置上限，降低单词波动风险。");
             } else {
-              suggestionPoints.push(
-                "成本分布较均衡，可保持当前结构并定期复盘关键词表现。",
-              );
+              suggestionPoints.push("成本分布较均衡，可保持当前结构并定期复盘关键词表现。");
             }
           }
 
@@ -3388,9 +3292,7 @@
             analysisPoints.push("关键词表现整体稳定，各项指标在合理范围内。");
           }
           if (!suggestionPoints.length) {
-            suggestionPoints.push(
-              "继续保持当前优化策略，并定期监控关键词表现。",
-            );
+            suggestionPoints.push("继续保持当前优化策略，并定期监控关键词表现。");
           }
 
           return {
@@ -3433,40 +3335,28 @@
             analysis.push("暂无关键词数据，无法计算广泛匹配占比。");
             suggestions.push("请补充关键词结构并重新生成报告。");
           } else if (broadMatchRatio === 0) {
-            analysis.push(
-              "当前未启用广泛匹配关键词，流量覆盖范围可能受到限制。",
-            );
-            suggestions.push(
-              "将广泛匹配占比提升至 20%-30%，在扩大流量的同时配合否定词维持质量。",
-            );
+            analysis.push("当前未启用广泛匹配关键词，流量覆盖范围可能受到限制。");
+            suggestions.push("将广泛匹配占比提升至 20%-30%，在扩大流量的同时配合否定词维持质量。");
           } else if (broadMatchRatio < 20) {
             analysis.push(
               `广泛匹配占比为 ${broadMatchRatio.toFixed(1)}%，策略偏保守，覆盖面有限。`,
             );
-            suggestions.push(
-              "可逐步将广泛匹配占比提升至 25%-35%，获取更多潜在检索。",
-            );
+            suggestions.push("可逐步将广泛匹配占比提升至 25%-35%，获取更多潜在检索。");
           } else if (broadMatchRatio <= 50) {
             analysis.push(
               `广泛匹配占比为 ${broadMatchRatio.toFixed(1)}%，处于合理区间，覆盖与质量较平衡。`,
             );
-            suggestions.push(
-              "维持当前匹配结构，持续关注搜索词表现并及时优化否定关键词。",
-            );
+            suggestions.push("维持当前匹配结构，持续关注搜索词表现并及时优化否定关键词。");
           } else if (broadMatchRatio <= 70) {
             analysis.push(
               `广泛匹配占比为 ${broadMatchRatio.toFixed(1)}%，偏高且存在流量稀释风险。`,
             );
-            suggestions.push(
-              "建议将占比控制在 40% 以下，并加强否定词与出价管控，保障转化效率。",
-            );
+            suggestions.push("建议将占比控制在 40% 以下，并加强否定词与出价管控，保障转化效率。");
           } else {
             analysis.push(
               `广泛匹配占比为 ${broadMatchRatio.toFixed(1)}%，远高于合理范围，流量质量风险显著。`,
             );
-            suggestions.push(
-              "立即调低广泛匹配占比至 30% 内，并密集检查搜索词以筛除低质流量。",
-            );
+            suggestions.push("立即调低广泛匹配占比至 30% 内，并密集检查搜索词以筛除低质流量。");
           }
 
           return {
@@ -3478,21 +3368,14 @@
           };
         };
 
-        const buildKeywordTableRows = (
-          items,
-          metrics,
-          tableKey,
-          sortByConversions = false,
-        ) => {
+        const buildKeywordTableRows = (items, metrics, tableKey, sortByConversions = false) => {
           const sourceItems = Array.isArray(items) ? items.slice() : [];
           if (sortByConversions) {
             sourceItems.sort(
-              (a, b) =>
-                (Number(b?.conversions) || 0) - (Number(a?.conversions) || 0),
+              (a, b) => (Number(b?.conversions) || 0) - (Number(a?.conversions) || 0),
             );
           }
-          const placeholder =
-            '<tr><td colspan="11" class="empty-row">暂无关键词数据</td></tr>';
+          const placeholder = '<tr><td colspan="11" class="empty-row">暂无关键词数据</td></tr>';
           const accountCvr = Number(metrics?.cvr);
           const accountCpa = Number(metrics?.cpa);
           const rowBuilder = (item) => {
@@ -3513,12 +3396,8 @@
               suffix: "",
               label: "账户每次转化费用",
             });
-            const costShare = escapeHtml(
-              formatDisplayPercent(item?.costShare, 2),
-            );
-            const conversionsShare = escapeHtml(
-              formatDisplayPercent(item?.conversionsShare, 2),
-            );
+            const costShare = escapeHtml(formatDisplayPercent(item?.costShare, 2));
+            const conversionsShare = escapeHtml(formatDisplayPercent(item?.conversionsShare, 2));
 
             return `
               <tr>
@@ -3546,8 +3425,7 @@
 
         const buildSearchTermRows = (items, tableKey) => {
           const list = Array.isArray(items) ? items.slice() : [];
-          const placeholder =
-            '<tr><td colspan="7" class="empty-row">暂无搜索词数据</td></tr>';
+          const placeholder = '<tr><td colspan="7" class="empty-row">暂无搜索词数据</td></tr>';
           const rowBuilder = (item) => `
             <tr>
               <td data-label="搜索词">${escapeHtml(String(item?.searchTerm || "未命名"))}</td>
@@ -3569,46 +3447,32 @@
 
         const buildKeywordChartConfig = (items) => {
           if (!Array.isArray(items) || !items.length) {
-            return {
-              type: "bar",
-              data: {
-                labels: ["暂无数据"],
-                datasets: [
+            return applyChartChrome(
+              {
+                tooltip: {
+                  trigger: "axis",
+                  axisPointer: { type: "shadow" },
+                  valueFormatter: (v) => `${v}%`,
+                },
+                legend: {},
+                grid: { left: "8%", right: "5%", containLabel: true },
+                xAxis: { type: "category", data: ["暂无数据"] },
+                yAxis: { type: "value", axisLabel: { formatter: "{value}%" } },
+                series: [
                   {
-                    label: "花费占比 (%)",
+                    name: "花费占比 (%)",
+                    type: "bar",
                     data: [0],
-                    backgroundColor: "rgba(59, 104, 249, 0.6)",
-                    borderRadius: 6,
+                    itemStyle: { color: "rgba(59, 104, 249, 0.6)", borderRadius: 6 },
                   },
                 ],
               },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: { position: "top" },
-                  title: { display: true, text: "关键词表现趋势" },
-                  tooltip: {
-                    callbacks: {
-                      label: (context) =>
-                        `${context.dataset.label || ""}: ${context.raw}%`,
-                    },
-                  },
-                },
-                scales: {
-                  y: {
-                    beginAtZero: true,
-                    ticks: { callback: (value) => `${value}%` },
-                  },
-                },
-              },
-            };
+              { chartTitle: "关键词表现趋势" },
+            );
           }
 
           const topItems = items.slice(0, 20);
-          const labels = topItems.map((item) =>
-            String(item?.keyword || "未命名"),
-          );
+          const labels = topItems.map((item) => String(item?.keyword || "未命名"));
           const costShareValues = topItems.map((item) => {
             const value = Number(item?.costShare) || 0;
             return Number.isFinite(value) ? Number(value.toFixed(2)) : 0;
@@ -3618,139 +3482,95 @@
             return Number.isFinite(value) ? Number(value.toFixed(2)) : 0;
           });
 
-          return {
-            type: "bar",
-            data: {
-              labels,
-              datasets: [
+          return applyChartChrome(
+            {
+              tooltip: {
+                trigger: "axis",
+                axisPointer: { type: "shadow" },
+                valueFormatter: (v) => `${v}%`,
+              },
+              legend: {},
+              grid: { left: "8%", right: "5%", bottom: 60, containLabel: true },
+              xAxis: {
+                type: "category",
+                data: labels,
+                axisLabel: { rotate: 45 },
+              },
+              yAxis: { type: "value", axisLabel: { formatter: "{value}%" } },
+              series: [
                 {
-                  label: "花费占比 (%)",
+                  name: "花费占比 (%)",
+                  type: "bar",
                   data: costShareValues,
-                  backgroundColor: "rgba(59, 104, 249, 0.7)",
-                  borderColor: "rgba(37, 99, 235, 0.9)",
-                  borderWidth: 1,
-                  borderRadius: 6,
+                  itemStyle: { color: "rgba(59, 104, 249, 0.7)", borderRadius: 6 },
                 },
                 {
-                  label: "转化占比 (%)",
+                  name: "转化占比 (%)",
+                  type: "bar",
                   data: conversionShareValues,
-                  backgroundColor: "rgba(16, 185, 129, 0.7)",
-                  borderColor: "rgba(5, 150, 105, 0.9)",
-                  borderWidth: 1,
-                  borderRadius: 6,
+                  itemStyle: { color: "rgba(16, 185, 129, 0.7)", borderRadius: 6 },
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              interaction: { mode: "index", intersect: false },
-              plugins: {
-                legend: { position: "top" },
-                title: { display: true, text: "关键词表现趋势" },
-                tooltip: {
-                  callbacks: {
-                    label: (context) =>
-                      `${context.dataset.label || ""}: ${context.raw}%`,
-                  },
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  ticks: { callback: (value) => `${value}%` },
-                },
-                x: {
-                  ticks: {
-                    maxRotation: 45,
-                    minRotation: 0,
-                  },
-                },
-              },
-            },
-          };
+            { chartTitle: "关键词表现趋势" },
+          );
         };
 
         const buildSearchTermsChartConfig = (items) => {
           if (!Array.isArray(items) || !items.length) {
-            return {
-              type: "bar",
-              data: {
-                labels: ["暂无数据"],
-                datasets: [
+            return applyChartChrome(
+              {
+                tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
+                legend: {},
+                grid: { left: "8%", right: "5%", containLabel: true },
+                xAxis: { type: "category", data: ["暂无数据"] },
+                yAxis: { type: "value" },
+                series: [
                   {
-                    label: "展示次数",
+                    name: "展示次数",
+                    type: "bar",
                     data: [0],
-                    backgroundColor: "rgba(245, 158, 11, 0.7)",
-                    borderRadius: 6,
+                    itemStyle: { color: "rgba(245, 158, 11, 0.7)", borderRadius: 6 },
                   },
                 ],
               },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: { position: "top" },
-                  title: { display: true, text: "搜索词表现趋势" },
-                },
-                scales: {
-                  y: { beginAtZero: true },
-                },
-              },
-            };
+              { chartTitle: "搜索词表现趋势" },
+            );
           }
 
           const topItems = items.slice(0, 10);
-          const labels = topItems.map((item) =>
-            String(item?.keyword || "未命名"),
-          );
-          const impressionsData = topItems.map(
-            (item) => Number(item?.impressions) || 0,
-          );
+          const labels = topItems.map((item) => String(item?.keyword || "未命名"));
+          const impressionsData = topItems.map((item) => Number(item?.impressions) || 0);
           const clicksData = topItems.map((item) => Number(item?.clicks) || 0);
 
-          return {
-            type: "bar",
-            data: {
-              labels,
-              datasets: [
+          return applyChartChrome(
+            {
+              tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
+              legend: {},
+              grid: { left: "8%", right: "5%", bottom: 60, containLabel: true },
+              xAxis: {
+                type: "category",
+                data: labels,
+                axisLabel: { rotate: 45 },
+              },
+              yAxis: { type: "value" },
+              series: [
                 {
-                  label: "展示次数",
+                  name: "展示次数",
+                  type: "bar",
                   data: impressionsData,
-                  backgroundColor: "rgba(245, 158, 11, 0.75)",
-                  borderColor: "rgba(217, 119, 6, 0.9)",
-                  borderWidth: 1,
-                  borderRadius: 6,
+                  itemStyle: { color: "rgba(245, 158, 11, 0.75)", borderRadius: 6 },
                 },
                 {
-                  label: "点击次数",
+                  name: "点击次数",
+                  type: "bar",
                   data: clicksData,
-                  backgroundColor: "rgba(16, 185, 129, 0.75)",
-                  borderColor: "rgba(5, 150, 105, 0.9)",
-                  borderWidth: 1,
-                  borderRadius: 6,
+                  itemStyle: { color: "rgba(16, 185, 129, 0.75)", borderRadius: 6 },
                 },
               ],
             },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              interaction: { mode: "index", intersect: false },
-              plugins: {
-                legend: { position: "top" },
-                title: { display: true, text: "搜索词表现趋势" },
-              },
-              scales: {
-                y: { beginAtZero: true },
-                x: {
-                  ticks: {
-                    maxRotation: 45,
-                    minRotation: 0,
-                  },
-                },
-              },
-            },
-          };
+            { chartTitle: "搜索词表现趋势" },
+          );
         };
 
         const STRATEGY_NAME_MAP = {
@@ -3816,9 +3636,7 @@
             return false;
           };
           const rowBuilder = (item) => {
-            const campaign = escapeHtml(
-              String(item?.campaignName || "未命名系列"),
-            );
+            const campaign = escapeHtml(String(item?.campaignName || "未命名系列"));
             const duration = escapeHtml(formatBiddingDuration(item));
             const currentStrategy = buildStrategyTag(
               item?.biddingStrategyType ?? item?.currentStrategy,
@@ -3859,11 +3677,7 @@
           const value = String(status || "").trim();
           if (value.includes("不达标")) return "is-error";
           if (value.includes("待优化")) return "is-warning";
-          if (
-            value.includes("良好") ||
-            value.includes("达标") ||
-            value.includes("优秀")
-          )
+          if (value.includes("良好") || value.includes("达标") || value.includes("优秀"))
             return "is-ok";
           return "is-warning";
         };
@@ -4008,9 +3822,7 @@
             );
           }
           if (!suggestions.length) {
-            suggestions.push(
-              "广告素材覆盖良好，请持续保持，并定期复盘创意表现。",
-            );
+            suggestions.push("广告素材覆盖良好，请持续保持，并定期复盘创意表现。");
           }
 
           return {
@@ -4035,24 +3847,16 @@
           const list = (Array.isArray(items) ? items : []).filter(
             (item) => String(item?.strategy ?? "") !== "AiMax",
           );
-          const placeholder =
-            '<tr><td colspan="3" class="empty-row">暂无新产品应用数据</td></tr>';
+          const placeholder = '<tr><td colspan="3" class="empty-row">暂无新产品应用数据</td></tr>';
           const rowBuilder = (item) => {
             const name = escapeHtml(
-              String(
-                item?.strategyName ||
-                  item?.feature ||
-                  item?.strategy ||
-                  "未命名功能",
-              ),
+              String(item?.strategyName || item?.feature || item?.strategy || "未命名功能"),
             );
             const enabled = resolveFeatureEnabled(item);
             const status = enabled
               ? '<span class="feature-status is-enabled"><span class="feature-icon">✅</span>已启用</span>'
               : '<span class="feature-status is-disabled"><span class="feature-icon">❌</span>未启用</span>';
-            const recommendation = String(
-              item?.optimizerRecommendation || "",
-            ).trim();
+            const recommendation = String(item?.optimizerRecommendation || "").trim();
             const recommendationHtml = recommendation
               ? `<span class="recommendation-text${enabled ? " is-excellent" : ""}">${escapeHtml(
                   recommendation,
@@ -4116,8 +3920,7 @@
           const list = Array.isArray(items)
             ? items.map((item, index) => normalizeRoadmapItem(item, index))
             : [];
-          const placeholder =
-            '<tr><td colspan="4" class="empty-row">暂无优化路线图数据</td></tr>';
+          const placeholder = '<tr><td colspan="4" class="empty-row">暂无优化路线图数据</td></tr>';
           const rowBuilder = (item) => {
             const priority = escapeHtml(String(item?.priority || "未设置"));
             const focusArea = escapeHtml(String(item?.focusArea || "未设置"));
@@ -4129,9 +3932,7 @@
                   )
                   .join("<br />")
               : `<span class="creative-suggestion-text">${escapeHtml(String(item?.actionItems || "未提供"))}</span>`;
-            const expectedOutcome = escapeHtml(
-              String(item?.expectedOutcome || "未提供"),
-            );
+            const expectedOutcome = escapeHtml(String(item?.expectedOutcome || "未提供"));
 
             return `
               <tr>
@@ -4223,17 +4024,12 @@
         const getStatusText = (status) => {
           if (!status) return "未知";
           const value = String(status);
-          if (value.includes("启用") || value.includes("Enabled"))
-            return "启用";
-          if (value.includes("暂停") || value.includes("Paused"))
-            return "已暂停";
-          if (value.includes("移除") || value.includes("Removed"))
-            return "已移除";
-          if (value.includes("未启用") || value.includes("Disabled"))
-            return "已禁用";
+          if (value.includes("启用") || value.includes("Enabled")) return "启用";
+          if (value.includes("暂停") || value.includes("Paused")) return "已暂停";
+          if (value.includes("移除") || value.includes("Removed")) return "已移除";
+          if (value.includes("未启用") || value.includes("Disabled")) return "已禁用";
           if (value.includes("设置") || value.includes("Set")) return "已设置";
-          if (value.includes("隐藏") || value.includes("Hidden"))
-            return "已隐藏";
+          if (value.includes("隐藏") || value.includes("Hidden")) return "已隐藏";
           const map = {
             Enabled: "启用",
             REMOVED: "已移除",
@@ -4282,6 +4078,7 @@
 
         let chartIdCounter = 0;
         const chartJobs = [];
+        /** @type {Map<string, { chart: any, observer: ResizeObserver | null }>} */
         const chartInstances = new Map();
 
         const generateChartId = () => {
@@ -4289,10 +4086,30 @@
           return `kpi-chart-${chartIdCounter}`;
         };
 
+        const resizeAllCharts = () => {
+          chartInstances.forEach(({ chart }) => {
+            try {
+              if (!chart.isDisposed || !chart.isDisposed()) chart.resize();
+            } catch (_) {}
+          });
+        };
+
+        const disposeChartEntry = (id) => {
+          const entry = chartInstances.get(id);
+          if (!entry) return;
+          try {
+            entry.observer?.disconnect();
+          } catch (_) {}
+          try {
+            entry.chart.dispose();
+          } catch (_) {}
+          chartInstances.delete(id);
+        };
+
         const renderPendingCharts = () => {
           if (!chartJobs.length) return;
 
-          if (typeof window.Chart !== "function") {
+          if (!window.echarts || typeof window.echarts.init !== "function") {
             setTimeout(renderPendingCharts, 400);
             return;
           }
@@ -4300,23 +4117,46 @@
           while (chartJobs.length) {
             const job = chartJobs.shift();
             if (!job) continue;
-            const canvas = document.getElementById(job.id);
-            if (!canvas) continue;
-            const ctx = canvas.getContext("2d");
-            if (!ctx) continue;
-            const existing = chartInstances.get(job.id);
-            if (existing) {
-              existing.destroy();
+            const el = document.getElementById(job.id);
+            if (!el) continue;
+            disposeChartEntry(job.id);
+            const chart = window.echarts.init(el);
+            chart.setOption(job.config);
+            let observer = null;
+            if (typeof ResizeObserver !== "undefined") {
+              observer = new ResizeObserver(() => {
+                try {
+                  if (!chart.isDisposed || !chart.isDisposed()) chart.resize();
+                } catch (_) {}
+              });
+              try {
+                observer.observe(el);
+              } catch (_) {
+                observer = null;
+              }
             }
-            const chart = new window.Chart(ctx, job.config);
-            chartInstances.set(job.id, chart);
+            chartInstances.set(job.id, { chart, observer });
           }
+          // 布局稳定后再 resize，避免首屏按错误宽度绘制导致溢出
+          requestAnimationFrame(() => {
+            requestAnimationFrame(resizeAllCharts);
+          });
         };
 
+        let chartResizeBound = false;
+        const bindChartResize = () => {
+          if (chartResizeBound) return;
+          chartResizeBound = true;
+          let timer = null;
+          window.addEventListener("resize", () => {
+            clearTimeout(timer);
+            timer = setTimeout(resizeAllCharts, 100);
+          });
+        };
+        bindChartResize();
+
         const buildKpiChartConfig = (metrics, conversionCostItems) => {
-          const items = Array.isArray(conversionCostItems)
-            ? conversionCostItems
-            : [];
+          const items = Array.isArray(conversionCostItems) ? conversionCostItems : [];
           const formatDateLabel = (value, index) => {
             if (!value) return `第 ${index + 1} 天`;
             const date = new Date(value);
@@ -4326,9 +4166,7 @@
             return `${month}-${day}`;
           };
           if (items.length) {
-            const labels = items.map((item, index) =>
-              formatDateLabel(item?.date, index),
-            );
+            const labels = items.map((item, index) => formatDateLabel(item?.date, index));
             const totalConversions = items.reduce(
               (sum, item) => sum + (Number(item?.conversions) || 0),
               0,
@@ -4339,129 +4177,111 @@
             if (useCostClickTrend) {
               const costData = items.map((item) => Number(item?.cost) || 0);
               const clicksData = items.map((item) => Number(item?.clicks) || 0);
-              return {
-                type: "line",
-                data: {
-                  labels,
-                  datasets: [
+              return applyChartChrome(
+                {
+                  tooltip: { trigger: "axis" },
+                  legend: { textStyle: { fontSize: 12 } },
+                  grid: { left: "8%", right: "8%", bottom: 30, containLabel: true },
+                  xAxis: { type: "category", data: labels, axisLabel: { fontSize: 11 } },
+                  yAxis: [
                     {
-                      label: "消耗",
-                      data: costData,
-                      borderColor: "#3b82f6",
-                      backgroundColor: "rgba(59, 130, 246, 0.12)",
-                      tension: 0.3,
-                      yAxisID: "y1",
-                      pointRadius: 3,
+                      type: "value",
+                      name: "消耗",
+                      position: "left",
+                      axisLabel: { fontSize: 11 },
+                      nameTextStyle: { fontSize: 12 },
                     },
                     {
-                      label: "点击次数",
+                      type: "value",
+                      name: "点击次数",
+                      position: "right",
+                      splitLine: { show: false },
+                      axisLabel: { fontSize: 11 },
+                      nameTextStyle: { fontSize: 12 },
+                    },
+                  ],
+                  series: [
+                    {
+                      name: "消耗",
+                      type: "line",
+                      data: costData,
+                      smooth: 0.3,
+                      symbolSize: 6,
+                      yAxisIndex: 0,
+                      lineStyle: { color: "#3b82f6" },
+                      itemStyle: { color: "#3b82f6" },
+                      areaStyle: { color: "rgba(59, 130, 246, 0.12)" },
+                    },
+                    {
+                      name: "点击次数",
+                      type: "line",
                       data: clicksData,
-                      borderColor: "#10b981",
-                      backgroundColor: "rgba(16, 185, 129, 0.12)",
-                      tension: 0.3,
-                      yAxisID: "y2",
-                      pointRadius: 3,
+                      smooth: 0.3,
+                      symbolSize: 6,
+                      yAxisIndex: 1,
+                      lineStyle: { color: "#10b981" },
+                      itemStyle: { color: "#10b981" },
+                      areaStyle: { color: "rgba(16, 185, 129, 0.12)" },
                     },
                   ],
                 },
-                options: {
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  interaction: { mode: "index", intersect: false },
-                  stacked: false,
-                  plugins: {
-                    legend: { labels: { font: { size: 12 } } },
-                  },
-                  scales: {
-                    y1: {
-                      type: "linear",
-                      position: "left",
-                      beginAtZero: true,
-                      ticks: { font: { size: 11 } },
-                      title: { display: true, text: "消耗", font: { size: 12 } },
-                    },
-                    y2: {
-                      type: "linear",
-                      position: "right",
-                      beginAtZero: true,
-                      ticks: { font: { size: 11 } },
-                      grid: { drawOnChartArea: false },
-                      title: {
-                        display: true,
-                        text: "点击次数",
-                        font: { size: 12 },
-                      },
-                    },
-                    x: { ticks: { font: { size: 11 } } },
-                  },
-                },
-              };
+                { hasHtmlTitle: true },
+              );
             }
 
             const cpaData = items.map((item) => Number(item?.cpa) || 0);
-            const conversionsData = items.map((item) =>
-              Number(item?.conversions ?? 0),
-            );
+            const conversionsData = items.map((item) => Number(item?.conversions ?? 0));
 
-            return {
-              type: "line",
-              data: {
-                labels,
-                datasets: [
+            return applyChartChrome(
+              {
+                tooltip: { trigger: "axis" },
+                legend: { textStyle: { fontSize: 12 } },
+                grid: { left: "8%", right: "8%", bottom: 30, containLabel: true },
+                xAxis: { type: "category", data: labels, axisLabel: { fontSize: 11 } },
+                yAxis: [
                   {
-                    label: "CPA",
-                    data: cpaData,
-                    borderColor: "#3b82f6",
-                    backgroundColor: "rgba(59, 130, 246, 0.12)",
-                    tension: 0.3,
-                    yAxisID: "y1",
-                    pointRadius: 3,
+                    type: "value",
+                    name: "CPA",
+                    position: "left",
+                    axisLabel: { fontSize: 11 },
+                    nameTextStyle: { fontSize: 12 },
                   },
                   {
-                    label: "转化次数",
+                    type: "value",
+                    name: "转化次数",
+                    position: "right",
+                    splitLine: { show: false },
+                    axisLabel: { fontSize: 11 },
+                    nameTextStyle: { fontSize: 12 },
+                  },
+                ],
+                series: [
+                  {
+                    name: "CPA",
+                    type: "line",
+                    data: cpaData,
+                    smooth: 0.3,
+                    symbolSize: 6,
+                    yAxisIndex: 0,
+                    lineStyle: { color: "#3b82f6" },
+                    itemStyle: { color: "#3b82f6" },
+                    areaStyle: { color: "rgba(59, 130, 246, 0.12)" },
+                  },
+                  {
+                    name: "转化次数",
+                    type: "line",
                     data: conversionsData,
-                    borderColor: "#f97316",
-                    backgroundColor: "rgba(249, 115, 22, 0.12)",
-                    tension: 0.3,
-                    yAxisID: "y2",
-                    pointRadius: 3,
+                    smooth: 0.3,
+                    symbolSize: 6,
+                    yAxisIndex: 1,
+                    lineStyle: { color: "#f97316" },
+                    itemStyle: { color: "#f97316" },
+                    areaStyle: { color: "rgba(249, 115, 22, 0.12)" },
                   },
                 ],
               },
-              options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: { mode: "index", intersect: false },
-                stacked: false,
-                plugins: {
-                  legend: {
-                    labels: { font: { size: 12 } },
-                  },
-                },
-                scales: {
-                  y1: {
-                    type: "linear",
-                    position: "left",
-                    beginAtZero: true,
-                    ticks: { font: { size: 11 } },
-                    title: { display: true, text: "CPA", font: { size: 12 } },
-                  },
-                  y2: {
-                    type: "linear",
-                    position: "right",
-                    beginAtZero: true,
-                    ticks: { font: { size: 11 } },
-                    grid: { drawOnChartArea: false },
-                    title: {
-                      display: true,
-                      text: "转化次数",
-                      font: { size: 12 },
-                    },
-                  },
-                  x: { ticks: { font: { size: 11 } } },
-                },
-              },
-            };
+              { hasHtmlTitle: true },
+            );
           }
 
           const labels = ["消耗", "点击", "转化"];
@@ -4472,34 +4292,21 @@
           ];
 
           return {
-            type: "bar",
-            data: {
-              labels,
-              datasets: [
-                {
-                  label: "指标数值",
-                  data: datasetValues,
-                  backgroundColor: ["#3b82f6", "#10b981", "#f97316"],
+            tooltip: { trigger: "axis", axisPointer: { type: "shadow" } },
+            grid: { left: "8%", right: "5%", top: 20, bottom: 30, containLabel: true },
+            xAxis: { type: "category", data: labels, axisLabel: { fontSize: 11 } },
+            yAxis: { type: "value", axisLabel: { fontSize: 11 } },
+            series: [
+              {
+                name: "指标数值",
+                type: "bar",
+                data: datasetValues,
+                itemStyle: {
                   borderRadius: 6,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { display: false },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  ticks: { font: { size: 11 } },
-                },
-                x: {
-                  ticks: { font: { size: 11 } },
+                  color: (params) => ["#3b82f6", "#10b981", "#f97316"][params.dataIndex],
                 },
               },
-            },
+            ],
           };
         };
 
@@ -4521,9 +4328,7 @@
               const conversions = Number(item?.conversions ?? 0);
               const cpa = Number(item?.cpa);
               const cpaDisplay =
-                conversions > 0 && Number.isFinite(cpa)
-                  ? formatNumber(cpa, 2)
-                  : "—";
+                conversions > 0 && Number.isFinite(cpa) ? formatNumber(cpa, 2) : "—";
               return `
                 <tr>
                   <td data-label="日期">${escapeHtml(String(dateLabel || "—"))}</td>
@@ -4619,12 +4424,8 @@
           if (!reportMain) return null;
 
           const overview = data.diagnosisOverview || {};
-          const advantages = Array.isArray(overview.advantages)
-            ? overview.advantages
-            : [];
-          const disadvantages = Array.isArray(overview.disadvantages)
-            ? overview.disadvantages
-            : [];
+          const advantages = Array.isArray(overview.advantages) ? overview.advantages : [];
+          const disadvantages = Array.isArray(overview.disadvantages) ? overview.disadvantages : [];
 
           const buildListItems = (items) => {
             if (!items.length) {
@@ -4733,9 +4534,7 @@
 
           const flowHtml = metricsFlowItems
             .map((item, index) => {
-              const badge = item.badge
-                ? `<span class="rate-badge">${item.badge}</span>`
-                : "";
+              const badge = item.badge ? `<span class="rate-badge">${item.badge}</span>` : "";
               return `
                 <div class="metric-item">
                   <div class="metric-label">${escapeHtml(item.label)}</div>
@@ -4769,10 +4568,6 @@
               value: structure.extensionCount ?? 0,
             },
             {
-              label: "否定关键字 (Negative Keywords)",
-              value: structure.negativeKeywordCount ?? 0,
-            },
-            {
               label: "有效国家 (Effective Countries)",
               value: structure.countriesWithConversionsCount ?? 0,
             },
@@ -4789,9 +4584,8 @@
             )
             .join("");
 
-          const metricRowTemplates = metricDetectionConfig.map(
-            ({ key, name, benchmarkKey }) => {
-              const row = `
+          const metricRowTemplates = metricDetectionConfig.map(({ key, name, benchmarkKey }) => {
+            const row = `
               <tr>
                 <td data-label="指标 (Metric)">${escapeHtml(name)}</td>
                 <td data-label="数据 (Data)">${formatMetricValue(key, metrics[key])}</td>
@@ -4801,22 +4595,18 @@
                 )}</td>
               </tr>
             `;
-              return row;
-            },
-          );
+            return row;
+          });
           const metricsTable = buildTableRows(metricRowTemplates, {
             tableKey: "metrics",
-            emptyRow:
-              '<tr><td colspan="3" class="empty-row">暂无指标检测数据</td></tr>',
+            emptyRow: '<tr><td colspan="3" class="empty-row">暂无指标检测数据</td></tr>',
             rowBuilder: (row) => row,
           });
           const metricRows = metricsTable.bodyHtml;
 
-          const metricsAnalysisList = toArray(metrics.analysis).map((item) =>
+          const metricsAnalysisList = toArray(metrics.analysis).map((item) => escapeHtml(item));
+          const metricsSuggestionsList = toArray(metrics.suggestions).map((item) =>
             escapeHtml(item),
-          );
-          const metricsSuggestionsList = toArray(metrics.suggestions).map(
-            (item) => escapeHtml(item),
           );
 
           const sortedConversionGoals = [...conversionGoals].sort((a, b) => {
@@ -4854,17 +4644,12 @@
             `;
           };
 
-          const {
-            displayItems: primaryConversionGoals,
-            remainingItems: additionalEnabledGoals,
-          } = applyTableLimit(enabledGoals, "conversion-goals", {
-            configKey: "conversionGoals",
-          });
+          const { displayItems: primaryConversionGoals, remainingItems: additionalEnabledGoals } =
+            applyTableLimit(enabledGoals, "conversion-goals", {
+              configKey: "conversionGoals",
+            });
 
-          const remainingConversionGoals = [
-            ...additionalEnabledGoals,
-            ...disabledGoals,
-          ];
+          const remainingConversionGoals = [...additionalEnabledGoals, ...disabledGoals];
           const limitedConversionRows = primaryConversionGoals
             .map(renderConversionGoalRow)
             .join("");
@@ -4889,12 +4674,7 @@
             remainingConversionGoals.length,
           );
 
-          const buildKeyMetricsSection = (
-            dimensionTitle,
-            columnLabel,
-            dataset,
-            tableKey,
-          ) => {
+          const buildKeyMetricsSection = (dimensionTitle, columnLabel, dataset, tableKey) => {
             if (!dataset) return "";
             const items = Array.isArray(dataset.items) ? dataset.items : [];
             const hasContent =
@@ -5005,26 +4785,22 @@
           };
 
           const chartId = generateChartId();
-          const chartConfig = buildKpiChartConfig(
-            metrics,
-            conversionCost.items,
-          );
+          const chartConfig = buildKpiChartConfig(metrics, conversionCost.items);
           if (chartConfig) {
             chartJobs.push({ id: chartId, config: chartConfig });
           }
 
-          const conversionTrendAnalysisList = toArray(
-            conversionCost.analysis,
-          ).map((item) => `<li class="insight-item">${escapeHtml(item)}</li>`);
-          const conversionTrendSuggestionsList = toArray(
-            conversionCost.suggestions,
-          ).map((item) => `<li class="insight-item">${escapeHtml(item)}</li>`);
+          const conversionTrendAnalysisList = toArray(conversionCost.analysis).map(
+            (item) => `<li class="insight-item">${escapeHtml(item)}</li>`,
+          );
+          const conversionTrendSuggestionsList = toArray(conversionCost.suggestions).map(
+            (item) => `<li class="insight-item">${escapeHtml(item)}</li>`,
+          );
           const conversionCostDailyItems = Array.isArray(conversionCost.items)
             ? conversionCost.items
             : [];
-          const conversionDailyTableHtml = buildConversionCostDailyTableHtml(
-            conversionCostDailyItems,
-          );
+          const conversionDailyTableHtml =
+            buildConversionCostDailyTableHtml(conversionCostDailyItems);
           const conversionTrendContent =
             (chartConfig ||
               conversionCostDailyItems.length ||
@@ -5061,9 +4837,7 @@
                               : "下图展示 CPA 与转化次数按日趋势。"
                           }</p>
                           <div class="chart-card conversion-trend-chart">
-                            <div style="height: 280px;">
-                              <canvas id="${chartId}" height="260"></canvas>
-                            </div>
+                            <div id="${chartId}" class="echarts-chart" style="height: 280px;"></div>
                           </div>
                         `
                       : ""
@@ -5094,24 +4868,14 @@
               </div>
             `;
           const keyMetricsContent = [
-            buildKeyMetricsSection(
-              "广告系列分析",
-              "广告系列",
-              campaigns,
-              "key-metrics-campaigns",
-            ),
+            buildKeyMetricsSection("广告系列分析", "广告系列", campaigns, "key-metrics-campaigns"),
             buildKeyMetricsSection(
               "国家地区分析",
               "国家/地区",
               geographic,
               "key-metrics-geographic",
             ),
-            buildKeyMetricsSection(
-              "关键词分析",
-              "关键词",
-              keywords,
-              "key-metrics-keywords",
-            ),
+            buildKeyMetricsSection("关键词分析", "关键词", keywords, "key-metrics-keywords"),
             conversionTrendContent || "",
           ]
             .filter((html) => html.trim().length)
@@ -5173,9 +4937,7 @@
                   ${
                     metricsAnalysisList.length
                       ? metricsAnalysisList
-                          .map(
-                            (item) => `<li class="insight-item">${item}</li>`,
-                          )
+                          .map((item) => `<li class="insight-item">${item}</li>`)
                           .join("")
                       : '<li class="insight-item">暂无分析内容</li>'
                   }
@@ -5187,9 +4949,7 @@
                   ${
                     metricsSuggestionsList.length
                       ? metricsSuggestionsList
-                          .map(
-                            (item) => `<li class="insight-item">${item}</li>`,
-                          )
+                          .map((item) => `<li class="insight-item">${item}</li>`)
                           .join("")
                       : '<li class="insight-item">暂无建议内容</li>'
                   }
@@ -5239,18 +4999,21 @@
             (count, item) => count + (goldAccount[item.key] ? 1 : 0),
             0,
           );
-          const unqualifiedCount =
-            typeof goldAccount.goldAccountUnqualifiedCount === "number"
-              ? goldAccount.goldAccountUnqualifiedCount
-              : totalItems - qualifiedCount;
-          const scoreValue =
-            goldAccount.goldAccountScore !== undefined &&
-            goldAccount.goldAccountScore !== null
-              ? String(goldAccount.goldAccountScore)
-              : "--";
+          // 按当前展示项重算（已排除否词项），勿用可能含 adsNegativeQualified 的接口计数
+          const unqualifiedCount = totalItems - qualifiedCount;
+          // 接口得分仍含已停用的 expandedTextAdQualified（3 分）。展示时扣掉，只保留自适应搜索广告。
+          const rawScore = Number(goldAccount.goldAccountScore);
+          const legacyTextAdPoints = goldAccount.expandedTextAdQualified === true ? 3 : 0;
+          const scoreValue = Number.isFinite(rawScore)
+            ? String(Math.max(0, rawScore - legacyTextAdPoints))
+            : "--";
 
+          const goldItemSuggestions = goldAccount.goldItemSuggestions || {};
           const goldAccountRows = GOLD_ACCOUNT_ITEMS.map((item) => {
             const isQualified = Boolean(goldAccount[item.key]);
+            const suggestion =
+              goldItemSuggestions[item.name] ||
+              generateGoldAccountSuggestion(item.name, isQualified);
             return `
               <tr>
                 <td>${escapeHtml(item.name)}</td>
@@ -5259,7 +5022,7 @@
                     ${isQualified ? "达标" : "未达标"}
                   </span>
                 </td>
-                <td>${escapeHtml(generateGoldAccountSuggestion(item.name, isQualified))}</td>
+                <td>${escapeHtml(suggestion)}</td>
               </tr>
             `;
           }).join("");
@@ -5540,17 +5303,13 @@
 
           const dimensionSections = dimensionConfigs
             .map((config) => {
-              const items = Array.isArray(config.data?.items)
-                ? config.data.items
-                : [];
+              const items = Array.isArray(config.data?.items) ? config.data.items : [];
               if (!items.length) return "";
 
               const tableResult = buildTableRows(items, {
                 tableKey: config.tableKey,
-                emptyRow:
-                  '<tr><td colspan="9" class="empty-row">暂无数据</td></tr>',
-                rowBuilder: (item) =>
-                  buildTargetingTableRow(item, config.labelKey),
+                emptyRow: '<tr><td colspan="9" class="empty-row">暂无数据</td></tr>',
+                rowBuilder: (item) => buildTargetingTableRow(item, config.labelKey),
               });
               const tableRows = tableResult.bodyHtml;
               const tableExpandHtml = tableResult.expandHtml;
@@ -5575,9 +5334,7 @@
                 chartHtml = `
                   <div class="chart-card">
                     <h4 class="chart-title">${escapeHtml(config.chartTitle)}</h4>
-                    <div style="height: ${chartHeight}px;">
-                      <canvas id="${chartId}" height="${chartHeight}"></canvas>
-                    </div>
+                    <div id="${chartId}" class="echarts-chart" style="height: ${chartHeight}px;"></div>
                   </div>
                 `;
               }
@@ -5679,21 +5436,14 @@
             : [];
           const broadKeywordsCount = data.broadKeywordsCount || {};
 
-          const keywordTable = buildKeywordTableRows(
-            keywordItems,
-            metrics,
-            "keyword-performance",
-          );
+          const keywordTable = buildKeywordTableRows(keywordItems, metrics, "keyword-performance");
           const keywordConversionsTable = buildKeywordTableRows(
             keywordItems,
             metrics,
             "keyword-performance-conversions",
             true,
           );
-          const searchTable = buildSearchTermRows(
-            searchTermItems,
-            "search-term-performance",
-          );
+          const searchTable = buildSearchTermRows(searchTermItems, "search-term-performance");
 
           const keywordInsights = generateKeywordsAnalysis(keywordItems);
           const keywordsAnalysisList = buildAnalysisList(
@@ -5707,8 +5457,7 @@
             () => keywordInsights.suggestions,
           );
 
-          const searchTermInsights =
-            generateSearchTermsAnalysis(searchTermItems);
+          const searchTermInsights = generateSearchTermsAnalysis(searchTermItems);
           const searchAnalysisList = buildAnalysisList(
             data.fullSearchTerms?.analysis,
             "搜索词",
@@ -5742,20 +5491,19 @@
             chartJobs.push({ id: chartId, config: keywordChartConfig });
             keywordChartHtml = `
               <div class="chart-container">
-                <canvas id="${chartId}" height="340"></canvas>
+                <div id="${chartId}" class="echarts-chart" style="height: 340px;"></div>
               </div>
             `;
           }
 
-          const searchChartConfig =
-            buildSearchTermsChartConfig(searchTermItems);
+          const searchChartConfig = buildSearchTermsChartConfig(searchTermItems);
           let searchChartHtml = "";
           if (searchChartConfig) {
             const chartId = generateChartId();
             chartJobs.push({ id: chartId, config: searchChartConfig });
             searchChartHtml = `
               <div class="chart-container">
-                <canvas id="${chartId}" height="340"></canvas>
+                <div id="${chartId}" class="echarts-chart" style="height: 340px;"></div>
               </div>
             `;
           }
@@ -5930,23 +5678,12 @@
           if (!reportMain) return null;
 
           const biddingStrategy = data.biddingStrategy || {};
-          const strategyItems = Array.isArray(biddingStrategy.items)
-            ? biddingStrategy.items
-            : [];
-          const hasStrategyIssues =
-            Array.isArray(strategyItems) && strategyItems.length > 0;
+          const strategyItems = Array.isArray(biddingStrategy.items) ? biddingStrategy.items : [];
+          const hasStrategyIssues = Array.isArray(strategyItems) && strategyItems.length > 0;
           const biddingTable = buildBiddingStrategyRows(strategyItems);
 
-          const headers = [
-            "广告系列",
-            "投放时长",
-            "当前出价策略",
-            "推荐出价策略",
-            "状态",
-          ];
-          const headerHtml = headers
-            .map((header) => `<th>${escapeHtml(header)}</th>`)
-            .join("");
+          const headers = ["广告系列", "投放时长", "当前出价策略", "推荐出价策略", "状态"];
+          const headerHtml = headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("");
 
           const tableHtml = `
             <div class="table-block" data-table-key="bidding-strategy">
@@ -6010,9 +5747,7 @@
           const generatedInsights = generateAdCreativeInsights(items);
 
           const headers = ["广告", "Headlines", "Descriptions", "优化建议"];
-          const headerHtml = headers
-            .map((header) => `<th>${escapeHtml(header)}</th>`)
-            .join("");
+          const headerHtml = headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("");
 
           const tableHtml = `
             <div class="table-block" data-table-key="ad-creative">
@@ -6112,9 +5847,7 @@
           if (!reportMain) return null;
 
           const newFeatures = data.newFeatures || {};
-          const items = Array.isArray(newFeatures.items)
-            ? newFeatures.items
-            : [];
+          const items = Array.isArray(newFeatures.items) ? newFeatures.items : [];
           const newFeaturesTable = buildNewFeaturesRows(items);
 
           const headers = [
@@ -6122,9 +5855,7 @@
             "账户状态 (Account Status)",
             "优化师建议 (Senior Optimizer Recommendation)",
           ];
-          const headerHtml = headers
-            .map((header) => `<th>${escapeHtml(header)}</th>`)
-            .join("");
+          const headerHtml = headers.map((header) => `<th>${escapeHtml(header)}</th>`).join("");
 
           const fragment = document.createDocumentFragment();
           const header = document.createElement("div");
@@ -6166,9 +5897,7 @@
           if (!reportMain) return null;
 
           const summary = data.summary || {};
-          const keyIssues = Array.isArray(summary.keyIssues)
-            ? summary.keyIssues
-            : [];
+          const keyIssues = Array.isArray(summary.keyIssues) ? summary.keyIssues : [];
           const roadmapItems = Array.isArray(summary.optimizationRoadmap)
             ? summary.optimizationRoadmap
             : [];
@@ -6237,9 +5966,7 @@
           const reportMain = document.getElementById("report-main");
           if (!reportMain) return null;
 
-          const landingPageItems = processLandingPageAnalysisData(
-            data.landingPageAnalysis,
-          );
+          const landingPageItems = processLandingPageAnalysisData(data.landingPageAnalysis);
           const landingPageRows = buildLandingPageRows(landingPageItems);
 
           const fragment = document.createDocumentFragment();
@@ -6288,8 +6015,7 @@
           if (!reportMain) return;
 
           chartJobs.length = 0;
-          chartInstances.forEach((chart) => chart.destroy());
-          chartInstances.clear();
+          Array.from(chartInstances.keys()).forEach((id) => disposeChartEntry(id));
           reportMain.innerHTML = "";
 
           const sections = [
@@ -6306,27 +6032,21 @@
             createNewFeaturesSection(),
             createSummarySection(),
           ];
-          sections
-            .filter(Boolean)
-            .forEach((section) => reportMain.appendChild(section));
+          sections.filter(Boolean).forEach((section) => reportMain.appendChild(section));
           renderPendingCharts();
         };
 
         renderSections();
 
         const setupNavigation = () => {
-          const navTags = Array.from(
-            document.querySelectorAll(".diagnosis-navigation .nav-tag"),
-          );
+          const navTags = Array.from(document.querySelectorAll(".diagnosis-navigation .nav-tag"));
           if (!navTags.length) return;
 
           const observedSections = [];
           const observedSet = new Set();
 
           navItems.forEach((item) => {
-            const contentEl = document.querySelector(
-              `[data-section-id="${item.id}"]`,
-            );
+            const contentEl = document.querySelector(`[data-section-id="${item.id}"]`);
             if (contentEl && !observedSet.has(contentEl)) {
               observedSections.push(contentEl);
               observedSet.add(contentEl);
@@ -6339,9 +6059,7 @@
           });
 
           const setActiveTag = (id) => {
-            navTags.forEach((tag) =>
-              tag.classList.toggle("active", tag.dataset.target === id),
-            );
+            navTags.forEach((tag) => tag.classList.toggle("active", tag.dataset.target === id));
           };
 
           const scrollToSection = (id) => {
@@ -6371,8 +6089,7 @@
                 .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
               if (visible.length) {
-                const activeTarget =
-                  visible[0].target.dataset.sectionId || visible[0].target.id;
+                const activeTarget = visible[0].target.dataset.sectionId || visible[0].target.id;
                 if (activeTarget) {
                   setActiveTag(activeTarget);
                 }
@@ -6397,9 +6114,7 @@
         setupNavigation();
 
         const setupTableExpanders = () => {
-          const buttons = document.querySelectorAll(
-            ".expand-button[data-table-key]",
-          );
+          const buttons = document.querySelectorAll(".expand-button[data-table-key]");
           if (!buttons.length) return;
 
           buttons.forEach((button) => {

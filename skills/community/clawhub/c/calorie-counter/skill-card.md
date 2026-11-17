@@ -1,40 +1,60 @@
-## Description: <br>
-Calorie Counter helps agents track daily calorie and protein intake, set calorie goals, log weight, and maintain local SQLite daily totals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tracks daily calorie and protein intake, calorie goals, food entries, and weight logs in a local SQLite database.
 
-## Publisher: <br>
-[cnqso](https://clawhub.ai/user/cnqso) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[cnqso](https://clawhub.ai/user/cnqso)
 
-## Use Case: <br>
-External users and their agents use this skill to manually log food, calories, protein, calorie goals, and weight in a local tracker. It supports quick progress checks, entry deletion, history review, and offline personal tracking. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Food, calorie, protein, goal, and weight history are saved locally in plaintext SQLite storage. <br>
-Mitigation: Install only where local files and backups are acceptable for this data, and avoid shared or synced workspaces unless that exposure is intended. <br>
-Risk: Broad food mentions could cause an agent to persist food or weight information without clear user confirmation. <br>
-Mitigation: Configure or instruct the agent to log entries only when the user explicitly asks to log or track the information. <br>
+## Use Case:
 
+External users and their agents use this skill to record meals, estimate protein when needed, view daily calorie progress, manage goals, and log weight history.
 
-## Reference(s): <br>
-- [Calorie Counter ClawHub listing](https://clawhub.ai/cnqso/calorie-counter) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text and Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates a local SQLite database named calorie_data.db.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and _meta.json) <br>
+Risk: Diet and weight records are stored automatically in a local plaintext SQLite database.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in a trusted private workspace and review where calorie_data.db is stored before logging sensitive information.
+
+Risk: Command templates include user-supplied food names.
+
+Mitigation: Pass arguments without a shell or apply robust escaping before using the skill with untrusted food text.
+
+Risk: Broad food-related phrasing may cause the agent to invoke the skill when a user is only discussing food.
+
+Mitigation: Confirm ambiguous food or weight entries before logging them.
+
+## Reference(s):
+
+- [Calorie Counter on ClawHub](https://clawhub.ai/cnqso/skills/calorie-counter)
+- [Publisher profile](https://clawhub.ai/user/cnqso)
+- [README](artifact/README.md)
+- [Quick Start](artifact/QUICK_START.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output and Markdown guidance with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates and updates a local SQLite database named calorie_data.db.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

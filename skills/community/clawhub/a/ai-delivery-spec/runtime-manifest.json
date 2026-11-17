@@ -1,0 +1,653 @@
+{
+  "schema_version": "5.3.0",
+  "skill_version": "5.5.6",
+  "source_commit": "8eceaf49c3f9a65479decf5100002828bc1a38d9",
+  "source_worktree_dirty": false,
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 18151,
+      "sha256": "4b4028d4d3c056c2b8ae15f87a94d6b4a1f148789e285f9730f46f15a4340d8a"
+    },
+    {
+      "path": "LICENSE",
+      "size": 1064,
+      "sha256": "e7712f465d8d5dd646dcaaeb765451cbb9412945fbd8f6b1450654ab767eab1c"
+    },
+    {
+      "path": "README.md",
+      "size": 9238,
+      "sha256": "65d4afbba89eb15d06ab3c7ec1e80dd90bc202ea8d6133c23c5313d62a550c5e"
+    },
+    {
+      "path": "SKILL.md",
+      "size": 5251,
+      "sha256": "5cc30bf3c13b72f610a32bc5e3d325bf67efae38fb466fea23cf0926f9089ee5"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "size": 394,
+      "sha256": "c2e09f3431a0e90f1fcdd52942a44b444142eda233cf01c0fb0de7500c984189"
+    },
+    {
+      "path": "examples/configuration-to-consumption.md",
+      "size": 12890,
+      "sha256": "3ea6d2be0f22fee688534f7b8be86f8d2b70ca6d71c08dcb47f36dacfe9920b2"
+    },
+    {
+      "path": "examples/medium-review-handoff/requirement.md",
+      "size": 7927,
+      "sha256": "4226df3950d15272b6ecafd1a475672c7f1a3ba55a6f1eee880157eeab95c6df"
+    },
+    {
+      "path": "examples/medium-review-handoff/review-prototype.html",
+      "size": 46121,
+      "sha256": "58a7c50f62d91c3167fdc886b223aad8554228d517b4962edd5b3ca5dfbed7db"
+    },
+    {
+      "path": "examples/minimal-v5/README.md",
+      "size": 887,
+      "sha256": "25f79ef8a3d04ad2806463046b52d094d4353dc49c43f0ecb0d652ec891fd52b"
+    },
+    {
+      "path": "examples/minimal-v5/intake.yaml",
+      "size": 1046,
+      "sha256": "581a09b2a0c19193c42e0d7d23380944a1d081888647118783c1c6dfa4ef6fb2"
+    },
+    {
+      "path": "examples/minimal-v5/requirement-card.md",
+      "size": 2620,
+      "sha256": "9c949f60cf5ef09c3cb0b32f76ca8ced7db014b3cf50af7a2cf1aaa8e098f405"
+    },
+    {
+      "path": "examples/requirements-workflow.png",
+      "size": 1259058,
+      "sha256": "74aff0013c01b44683e6b5833a7a24a3073fd6e0fc4e150efe3320dcce6430c1"
+    },
+    {
+      "path": "examples/spec.config.example.yaml",
+      "size": 1318,
+      "sha256": "628941f56394afeaf476da17fb21301e001f2015c698836592b96fd95e84b15f"
+    },
+    {
+      "path": "references/change-acceptance.md",
+      "size": 4105,
+      "sha256": "fbee32a57051347c5bea8779d092b1eaa7c27f1a17eed89f06c151b6a9c38ab1"
+    },
+    {
+      "path": "references/context.md",
+      "size": 2729,
+      "sha256": "2e4d9be78be785d9df2a5c81670bc78f4b10c203db99345e15a295532618629a"
+    },
+    {
+      "path": "references/discover.md",
+      "size": 3453,
+      "sha256": "04b54147b4d30afdd927622a62986729e825c9be31aa30047a09b1a72dc60e54"
+    },
+    {
+      "path": "references/domain-coverage.yaml",
+      "size": 21890,
+      "sha256": "9364f1bae59514c30c73cf496879b4fc6be74a17ef642c706eb4d39d54043c43"
+    },
+    {
+      "path": "references/domains/domain-ai-native.md",
+      "size": 24587,
+      "sha256": "39dfdabef70273f7f75c1c7f5a6d9c3ddc2cd8592ab170b45b3f4a167e0a83ea"
+    },
+    {
+      "path": "references/domains/domain-crm.md",
+      "size": 21052,
+      "sha256": "90cffe88f2211971cf28f39bddab87e52258c2c80fa674efa8d2692f7c54a962"
+    },
+    {
+      "path": "references/domains/domain-data-mart.md",
+      "size": 51933,
+      "sha256": "9e0b7084830ae9fc620fd953908b3f8d9214ee48fb8c63b30d6164a3819e3121"
+    },
+    {
+      "path": "references/domains/domain-discovery.json",
+      "size": 35255,
+      "sha256": "bfd3522d31a226304b71e0f723f1980b33b76dd651d336b2031ca5b3732d22f9"
+    },
+    {
+      "path": "references/domains/domain-education-it.md",
+      "size": 45490,
+      "sha256": "1997242f7c92fe0daa9ff1bf707f33b268ed32ba106340d67e18f9a53fb41485"
+    },
+    {
+      "path": "references/domains/domain-media-knowledge.md",
+      "size": 32603,
+      "sha256": "0df9cb0dcf0fe8b30a9be0afb379cd92575a2c4a4d8cc58519570542eac86ada"
+    },
+    {
+      "path": "references/domains/domain-medical-hospital-it.md",
+      "size": 30649,
+      "sha256": "dd10186ef49bf96ecf80901e7f5836f63caa92810099555d661d06f370638690"
+    },
+    {
+      "path": "references/domains/domain-oa.md",
+      "size": 33310,
+      "sha256": "0741f48e67b202feda682e708df0e9261b89b179adfb4eef1b99530b8c7e9ee4"
+    },
+    {
+      "path": "references/domains/domain-sources.yaml",
+      "size": 88106,
+      "sha256": "b2a452b2d86382a5522d10fd417136dbf84269145382c3fa1c19891ff628b862"
+    },
+    {
+      "path": "references/domains/domain-traffic.md",
+      "size": 57684,
+      "sha256": "77bcc0b0fab91bcc9cc82ec8824f875b865ec64b5a4cf37f7df37495169200ca"
+    },
+    {
+      "path": "references/domains/中文导览.md",
+      "size": 3709,
+      "sha256": "3eeca627a17e5ea9c7f346388d18fd7d865248d2384e5e3dbd58f6c1b1600c52"
+    },
+    {
+      "path": "references/lifecycle.md",
+      "size": 2500,
+      "sha256": "6e45c8ef587d9fcd2aca0ce151e5952cc3b4b1099f3741f081929083991c62f2"
+    },
+    {
+      "path": "references/patterns/common-requirement-patterns.yaml",
+      "size": 16795,
+      "sha256": "249b53c4e4d92fd53c311fe395c78d8d0ae79a22854049c8ac1b6eb8f1dc17dd"
+    },
+    {
+      "path": "references/patterns/realtime-contract.md",
+      "size": 13616,
+      "sha256": "1ac357f6bfae10e83c32da7c42257ea8159d0de9e01e9e0b1ddc4dbd76659d5f"
+    },
+    {
+      "path": "references/prototype.md",
+      "size": 5555,
+      "sha256": "ab8bd34974def37a49a97386dec0d7544936e8b4db7c9299864eb310c6a0aa54"
+    },
+    {
+      "path": "references/review-workspace.md",
+      "size": 42001,
+      "sha256": "b4239b878afeb68890f64c8949d7f5d4d63db2a09b05be85f40d5314124e9fce"
+    },
+    {
+      "path": "references/scaffolding-terms.yaml",
+      "size": 740,
+      "sha256": "dd9e31a084a9157027760afc178f17fd972f5f56f30a38b2ae486f7d6d86ef97"
+    },
+    {
+      "path": "references/specify.md",
+      "size": 6656,
+      "sha256": "317b32ffdb6c01005264c88bcd2726f6db4762a9774136e518016128005f1541"
+    },
+    {
+      "path": "references/stages.md",
+      "size": 4642,
+      "sha256": "2abe565ea79295a8e72bcab3b8174276f2321430ffe16aae80cb0e4f8ee26365"
+    },
+    {
+      "path": "references/team-customization.md",
+      "size": 6349,
+      "sha256": "4454a3a6e99e5a7b87311f6011b1f73facd3f57381542cf992cc670f18019172"
+    },
+    {
+      "path": "references/templates/acceptance-run-template.yaml",
+      "size": 937,
+      "sha256": "17ec00cf57fa7938cdc2caa34cb83b5f6e5b3519d5618bfe60f861c9f0225056"
+    },
+    {
+      "path": "references/templates/agent-handoff-manifest-template.yaml",
+      "size": 1007,
+      "sha256": "a08eba6c038726578723fee9a09502126f571496fcdd93275ddbdcbf2c2dec5d"
+    },
+    {
+      "path": "references/templates/assumption-register-template.yaml",
+      "size": 970,
+      "sha256": "4341a3cc7e4b4469f134e33fa894b686554bd58f3c93c98c1d26434197556ac7"
+    },
+    {
+      "path": "references/templates/change-request-template.yaml",
+      "size": 1451,
+      "sha256": "7d67b7a2e4fa91e201109a969277ab455099d5e3fb297994ba077613724aeb92"
+    },
+    {
+      "path": "references/templates/decision-record-template.md",
+      "size": 1175,
+      "sha256": "58e42e40d6b12f64471c155f1616bfc141d50682b8d4a7e3fe66ac69ffcdb1e1"
+    },
+    {
+      "path": "references/templates/discovery-contract-template.yaml",
+      "size": 1036,
+      "sha256": "9c15c5d9446081781d98277098695de05fdf4fa7fb7f8e9207e7ae8551ffd964"
+    },
+    {
+      "path": "references/templates/prd-light-template.md",
+      "size": 1853,
+      "sha256": "4e5851154d580cf8dcae170ea054245f4bff729b74ee7907dc87bb0eae74e166"
+    },
+    {
+      "path": "references/templates/problem-brief-template.md",
+      "size": 1985,
+      "sha256": "c2365bdd2c501616639c119047aa1bce93bdaaafcb4153a9a45cff7d29165b44"
+    },
+    {
+      "path": "references/templates/product-truth-core-fragment-template.yaml",
+      "size": 652,
+      "sha256": "eb6946f3aad8604fbbcc56cad509905098107a1a66906e4d28f893d233c47f5a"
+    },
+    {
+      "path": "references/templates/product-truth-index-template.yaml",
+      "size": 676,
+      "sha256": "aef4e648383b85a308beb838e6eae3afe7f3a22477fd94591224e31f026b3009"
+    },
+    {
+      "path": "references/templates/product-truth-module-fragment-template.yaml",
+      "size": 444,
+      "sha256": "b896f7e4a296e5c37637bdf163f3b439888757479623064dfad790d6b7cd2559"
+    },
+    {
+      "path": "references/templates/product-truth-template.yaml",
+      "size": 5992,
+      "sha256": "ba1140092bc8333aee6bdce7ab8d6ea500115390a540aaf16f5bd5a514359757"
+    },
+    {
+      "path": "references/templates/requirement-brief-template.md",
+      "size": 3084,
+      "sha256": "4dad5007850a00462f642a0e3e3dd7963659f3610138f6365f9d524545a56213"
+    },
+    {
+      "path": "references/templates/requirement-intake-template.yaml",
+      "size": 671,
+      "sha256": "fb3d05ecae8fcb097902fd63856aba8eb11923e503369c26136a98f110c6acf5"
+    },
+    {
+      "path": "references/templates/requirement-register-template.yaml",
+      "size": 978,
+      "sha256": "7a609472ca0ae29250f3585a163edbc6f6ba1f84d8fa966793eafc21fee13fc2"
+    },
+    {
+      "path": "references/templates/review-record-template.yaml",
+      "size": 1063,
+      "sha256": "a270f01afc92e145a50d7633ddc376bc85225cb29abb1fadc71e3ebe56ef5e70"
+    },
+    {
+      "path": "references/templates/solution-sketch-template.md",
+      "size": 2015,
+      "sha256": "55480ed87077a6179d8bfa91117396c300c736fa4c5ebaa0fa991b1a766c57d4"
+    },
+    {
+      "path": "references/templates/stage0-inventory-template.yaml",
+      "size": 1158,
+      "sha256": "b6425c345db130cd4a6a236f72648045615e2abff2fcdc16b9961b25a9b7b1b0"
+    },
+    {
+      "path": "references/templates/unified-requirement-prd-template.md",
+      "size": 6006,
+      "sha256": "def0a890176bfe1e02d3ccf1fa2f18811969a198c13b105ae074a0783e2bdc33"
+    },
+    {
+      "path": "references/tool-adapters.md",
+      "size": 2443,
+      "sha256": "982858bfd08fae5f7c7911201a4b4ca70aa8e88eaa38f1fa8707441366a4c74f"
+    },
+    {
+      "path": "references/troubleshooting.md",
+      "size": 5181,
+      "sha256": "105d7c8d7ce2403c47d7e6e7e7c29a8bb18a8ec86dcfbd4f2cb98680a011225a"
+    },
+    {
+      "path": "schemas/acceptance-run.schema.json",
+      "size": 4756,
+      "sha256": "adcffc80e86d048ecd4a5641d35b830e5a9dd018361c3bdde330dd47ed9070eb"
+    },
+    {
+      "path": "schemas/agent-handoff.schema.json",
+      "size": 5407,
+      "sha256": "611cfa189f143e8ac5b391278311e9712ea9f2ab97cf1c6ce831b38a57af03b3"
+    },
+    {
+      "path": "schemas/assumption-register.schema.json",
+      "size": 3560,
+      "sha256": "023312007787c3e157d464e34ae0750211fb5b4979187cb0dbdd8ec3cefeb771"
+    },
+    {
+      "path": "schemas/change-package.schema.json",
+      "size": 7283,
+      "sha256": "449176205d5d27952743c5a4bdbe75823958249ef00ada90296c92004dbd49ca"
+    },
+    {
+      "path": "schemas/clarification-transcript.schema.json",
+      "size": 2130,
+      "sha256": "d47ebd5da2efeabb3dc0446c0b37fe023463423cbe33ed68ae054530b2a7dfce"
+    },
+    {
+      "path": "schemas/context-plan.schema.json",
+      "size": 3712,
+      "sha256": "cd66c699891ae4c2ffb70cd08e15a6e815c8b88a14debd748e7cf91277c0bff6"
+    },
+    {
+      "path": "schemas/discovery-contract.schema.json",
+      "size": 4969,
+      "sha256": "afb06f4a8d744c3199d42910c1440a26139b915d561721dbd5b7785ad277d8da"
+    },
+    {
+      "path": "schemas/domain-candidate.schema.json",
+      "size": 1806,
+      "sha256": "5d136d7e986c6792e2a3101b851b2b18bd73bbfc1410309b9b729e93d1237e31"
+    },
+    {
+      "path": "schemas/domain-usage-log.schema.json",
+      "size": 1029,
+      "sha256": "3f1c741b519a0200f38ab82f6c67fbb999b31357c1a02261e30cf17ce0a1c6fa"
+    },
+    {
+      "path": "schemas/execution-state.schema.json",
+      "size": 5649,
+      "sha256": "d77200ff11b2de76a7f56a4b221b7b0dd1887aebc129d18dc47564d748421c41"
+    },
+    {
+      "path": "schemas/gate-result.schema.json",
+      "size": 4062,
+      "sha256": "e36222d037ef4f7650af2e3c8975ca490917eb1f98a66bf4a4f6d6abc757c7f7"
+    },
+    {
+      "path": "schemas/product-truth-fragment.schema.json",
+      "size": 2576,
+      "sha256": "140beb32fbaeaa7aa67ce03e76fb7927ef2465d810c2f82fc35a9db81dc48e70"
+    },
+    {
+      "path": "schemas/product-truth-index.schema.json",
+      "size": 1728,
+      "sha256": "46a1815b2c9edfa5f5ae0bb890c4465d63b71bb3cac8ef77ac4861471b4ee4fa"
+    },
+    {
+      "path": "schemas/product-truth.schema.json",
+      "size": 21688,
+      "sha256": "fd03c62734f8ef04cca41ed237d191cecf90a645fed0a80051acf349c4e1a801"
+    },
+    {
+      "path": "schemas/project-domain-capsule.schema.json",
+      "size": 6465,
+      "sha256": "383452d02d197bb0e7ffe4414f304c9bd72d973bb7df43ca937162ff9b151264"
+    },
+    {
+      "path": "schemas/requirement-intake.schema.json",
+      "size": 5996,
+      "sha256": "830e120d13c48ad845d97861e2b6100f0e966c24089edd6ba1d3b70f286dc6f6"
+    },
+    {
+      "path": "schemas/requirement-pattern-library.schema.json",
+      "size": 1626,
+      "sha256": "5c08385f2baa48cac25c63734af6679b742139e956ce6ee9255a93907c6e484f"
+    },
+    {
+      "path": "schemas/requirement-register.schema.json",
+      "size": 6064,
+      "sha256": "2702e0ea33b744bc44fa6122f0fb2d8f8634f92699c5ab68afc233472d568767"
+    },
+    {
+      "path": "schemas/review-record.schema.json",
+      "size": 4973,
+      "sha256": "e24003d68b775a6ca5500664813d9ffed7893d24429ea0bffc09f38c21b52569"
+    },
+    {
+      "path": "schemas/review-workspace.schema.json",
+      "size": 53394,
+      "sha256": "e8ff1b1da46d97a0a8ee5e8cf818d3fb31f11d6f7dc9b528f859fc2ba05622f8"
+    },
+    {
+      "path": "schemas/spec-config.schema.json",
+      "size": 5248,
+      "sha256": "31fb938ab484a288b3a0900301fadfa5863500e7642931f04fb9249545b9eab2"
+    },
+    {
+      "path": "schemas/stage0-inventory.schema.json",
+      "size": 12707,
+      "sha256": "50336dd6dce961d5256e22daffb40c23fc229f70754e6d70cb201361b21229c8"
+    },
+    {
+      "path": "schemas/traceability-ledger.schema.json",
+      "size": 2073,
+      "sha256": "5a129665a837534495f1a7a8d88ded073035bbc325f2a6ae05e16624ed026dab"
+    },
+    {
+      "path": "scripts/ai_delivery_spec_cli.py",
+      "size": 74119,
+      "sha256": "bc970ac74f03e36198b9f7c13e9970721b24640cec4dbddb04c9425f4357c0c2"
+    },
+    {
+      "path": "scripts/analyze_change_impact.py",
+      "size": 8006,
+      "sha256": "7cfb9f14f02eb16b75c0d94131fe182620589421957accc28589808e3647af1d"
+    },
+    {
+      "path": "scripts/build_review_workspace.py",
+      "size": 13224,
+      "sha256": "f0bbbe3b4d953b4b2a2f0402de63b6cce5f9976437c932a715fcd78b39243643"
+    },
+    {
+      "path": "scripts/build_traceability_ledger.py",
+      "size": 4304,
+      "sha256": "d833673a3af4b25044546babaad31e89aa0379ec9223512721c927d4eaf26904"
+    },
+    {
+      "path": "scripts/change_package_contract.py",
+      "size": 3255,
+      "sha256": "aa7baedef4a0f306f4b3d4b8c244078de3ca2664a95f92daaadb3507d33fc592"
+    },
+    {
+      "path": "scripts/compile_clarification_transcript.py",
+      "size": 6110,
+      "sha256": "cb56475aab14ce549f7c521c0a940ccfec694b70be82a445911027b17a0ee7de"
+    },
+    {
+      "path": "scripts/compile_product_truth.py",
+      "size": 4670,
+      "sha256": "15f2138b3b8c8bb74e635e1afee4513992ba79dd6341ca39ef5435ae91de7da7"
+    },
+    {
+      "path": "scripts/context_notes.py",
+      "size": 18631,
+      "sha256": "d12ef4633a5125e3e36850ff3caeee6a56840db9c27c54bd4f4f990534ed53ef"
+    },
+    {
+      "path": "scripts/contextual_starter.py",
+      "size": 3570,
+      "sha256": "c11f04cf3a870f681e5879b68f33b3d27c8f8947d119262aefa6a9156b2ce3a3"
+    },
+    {
+      "path": "scripts/extract_interaction_ledger.py",
+      "size": 32508,
+      "sha256": "c93653002cb331af53df5bfccb19c39d46706dab00389a91c2187d2025850607"
+    },
+    {
+      "path": "scripts/manage_execution_state.py",
+      "size": 41771,
+      "sha256": "12c260e25a0f8842950c60a48b16cb600f425f9560a524a1fcfc5ea8fbb1994e"
+    },
+    {
+      "path": "scripts/plan_context.py",
+      "size": 12813,
+      "sha256": "9ada2aaaae1e2ab076f2b02677345968c4f88d21126c075869103e2888e9c469"
+    },
+    {
+      "path": "scripts/quality_gate.py",
+      "size": 138444,
+      "sha256": "5bb8d8def9f393cd1b9e30776059df26ac99ef316f9d685bba7fd419e5a45f55"
+    },
+    {
+      "path": "scripts/query_domain.py",
+      "size": 32615,
+      "sha256": "198084b8165a7a9d2f9ce97230a586a8932ddc2daac95d7231c6af688a3b6e4d"
+    },
+    {
+      "path": "scripts/query_product_truth.py",
+      "size": 5323,
+      "sha256": "a74d4d2cf617a8c16f282bba39de7ca884858e2d1de17cf919472c899b89a1b7"
+    },
+    {
+      "path": "scripts/render_mermaid_flow.py",
+      "size": 896,
+      "sha256": "c0b11d05395d608516539f08b37c846561eeffe67550d065a76cd64b14f9ac43"
+    },
+    {
+      "path": "scripts/requirement_contract.py",
+      "size": 33622,
+      "sha256": "d7b12263b772bfa802561c1e326ff4bd254ad9d8989b13d47bc788cd0b9a5a23"
+    },
+    {
+      "path": "scripts/requirements.txt",
+      "size": 35,
+      "sha256": "3c11cb0435e8c94d57996ea09ab26733ab61aed7c3330327bf2ca3c420cd69bb"
+    },
+    {
+      "path": "scripts/review_runtime_probe.cjs",
+      "size": 4130,
+      "sha256": "106640502ae0665f309d9672b062639af524e17604661195111698f31ed6cf60"
+    },
+    {
+      "path": "scripts/review_target_runtime.js",
+      "size": 2695,
+      "sha256": "3492447f63a8c72ca2b46113d1110e14aed0f8315435488645429a2ebfa8e54b"
+    },
+    {
+      "path": "scripts/scan_prototype_css.py",
+      "size": 10091,
+      "sha256": "7d32223388e6accdff2b4b4d45f42f2db677ad40d7d4d86571fad2a0ffa63b8d"
+    },
+    {
+      "path": "scripts/scan_requirement_ambiguity.py",
+      "size": 33766,
+      "sha256": "5732293f72c4be6bad650c69e569beb4965d4221c60541759c9dbb0e7d699c43"
+    },
+    {
+      "path": "scripts/stage_contract.py",
+      "size": 50839,
+      "sha256": "b8ca4f07c129ad1e60ca1a4e0b5d7fddef4ca5f6df226a488dec7206efdae343"
+    },
+    {
+      "path": "scripts/team_preferences.py",
+      "size": 8017,
+      "sha256": "c159915facb4c51097009ac5ae292852f27283f418b2972a6222e7d3fb723568"
+    },
+    {
+      "path": "scripts/triage_requirement.py",
+      "size": 12668,
+      "sha256": "41e1eb409618aeb4a9abd5a547675fdae25a7b495c28fb4fe84980af0ad8d844"
+    },
+    {
+      "path": "scripts/validators/contextual_review.py",
+      "size": 15236,
+      "sha256": "29d4b07b2c9735cf6013b3647b47c0e4aa656f505ea7893625dec7370f8b621a"
+    },
+    {
+      "path": "scripts/validators/gate_handoff_checks.py",
+      "size": 80541,
+      "sha256": "62892c0af1f4a255a7a4f905a102ed2e51112bc41312d94d6f88b21ede166876"
+    },
+    {
+      "path": "scripts/validators/gate_prd_checks.py",
+      "size": 4257,
+      "sha256": "569afc001e0c709911d5cde5e94a602f0c7a16f458bc1282c90c48144ca6eae2"
+    },
+    {
+      "path": "scripts/validators/gate_prototype_checks.py",
+      "size": 238284,
+      "sha256": "47d0d46836075e072e9b15ac81fbe719d7ea85444374350670fc7dbceefcacc4"
+    },
+    {
+      "path": "scripts/validators/prd_structure.py",
+      "size": 7380,
+      "sha256": "eefc5f6ea6113b4a8da68890f5d92b447cdd31f7df1aafcbb9bb051530ae4f5b"
+    },
+    {
+      "path": "scripts/validators/validate_acceptance_run.py",
+      "size": 6199,
+      "sha256": "b2aec0e50543f110b489271e29750b3be56729762415a31fc7adfd649e0625b4"
+    },
+    {
+      "path": "scripts/validators/validate_capsule_composition.py",
+      "size": 2760,
+      "sha256": "08603137d27897d892af61e028cfab73e36035e0314de95227d87982dee5e006"
+    },
+    {
+      "path": "scripts/validators/validate_change_package.py",
+      "size": 4211,
+      "sha256": "2ea446d65f40072df2ea0a2f7e4f8b4603d5a8efddc012d9d0b528bfb1fd5f82"
+    },
+    {
+      "path": "scripts/validators/validate_coding_agent_contract.py",
+      "size": 9221,
+      "sha256": "7969fe57892c3024759e78716385416db6b961f9c03d3028519f376c35417cea"
+    },
+    {
+      "path": "scripts/validators/validate_ia_skeleton.py",
+      "size": 1486,
+      "sha256": "1fdc48cb08aa28e0de9706f1dce17ff0f5978aa7b1ba31d8fc11815589ff8427"
+    },
+    {
+      "path": "scripts/validators/validate_prd_quality.py",
+      "size": 182,
+      "sha256": "4865c776ea7185420eaa7479f7d3d2bef646ceb528864fe768458a0e40679605"
+    },
+    {
+      "path": "scripts/validators/validate_prd_semantics.py",
+      "size": 47485,
+      "sha256": "9b54e4ebac24f8c2291fb371c91caac954c32bd984743cfdb8a69be84a32ed01"
+    },
+    {
+      "path": "scripts/validators/validate_product_truth.py",
+      "size": 9009,
+      "sha256": "8198e90fe4acfeefd08fe47ff8f959c030ec13611316174f2cf027234e573f3c"
+    },
+    {
+      "path": "scripts/validators/validate_project_domain_capsule.py",
+      "size": 3822,
+      "sha256": "f59db6f88a7b07fc0b160f2b458a2f49ca83f9b74971d9466ea7cb3c70caae07"
+    },
+    {
+      "path": "scripts/validators/validate_projection_consistency.py",
+      "size": 12888,
+      "sha256": "28e5ee6e0715b9e66041d55a4d8726cc06f418591cfa6cbc1613e7b46f05b655"
+    },
+    {
+      "path": "scripts/validators/validate_release_package.py",
+      "size": 3468,
+      "sha256": "1092e6e4e5c40a870a7e873d10737d6eb15c136a647c3298606cf8467bacf85b"
+    },
+    {
+      "path": "scripts/validators/validate_requirement_patterns.py",
+      "size": 1356,
+      "sha256": "80162f038c675c9e274c7e5ef540b304a1cb74ecff109bbd310f19c3b969a28d"
+    },
+    {
+      "path": "scripts/validators/validate_requirement_register.py",
+      "size": 4868,
+      "sha256": "be9880fabebab0151c568e408436d81ade841a5ad719a18eff3ab0aaa9f8b785"
+    },
+    {
+      "path": "scripts/validators/validate_review_record.py",
+      "size": 4417,
+      "sha256": "a75bceef6a6a52c0f8753f9c88cd68f522207dcb9098c1c60b3248647f6be734"
+    },
+    {
+      "path": "scripts/validators/validate_spec_config.py",
+      "size": 1696,
+      "sha256": "48173c7e12adf29584a67d5ceb57810fd8a1a51d7ef8cf83dd62cef6ad092727"
+    },
+    {
+      "path": "scripts/validators/validate_traceability_ledger.py",
+      "size": 1963,
+      "sha256": "70172bf3d45afc5f28eb4c51dce94effd21c829b0a6e1f0874c5394c270a6502"
+    },
+    {
+      "path": "scripts/validators/validate_unified_prd.py",
+      "size": 1331,
+      "sha256": "d925206dbf9fecd763852088c25116e3ba5c46cf4e4b9a9ba9246caa81c1b10d"
+    },
+    {
+      "path": "scripts/validators/validate_validator_wiring.py",
+      "size": 6951,
+      "sha256": "2c66abeeb9b8a512bf50718010efede1f60df324880de049bc55b0710de40ffd"
+    }
+  ]
+}

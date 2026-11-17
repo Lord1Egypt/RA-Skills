@@ -1,44 +1,63 @@
-## Description: <br>
-药撮合品种综合查询技能可根据剂型、产品名称、适应症、治疗领域和医保属性等需求筛选药品转让品种，并查询医保、基药、产量、一致性评价、医院用药排名、国际认证和药品说明书信息。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+药撮合品种综合查询技能。根据客户需求（剂型、产品名称、适应症、治疗领域、医保属性等）从转让目录中筛选匹配品种，同时支持查询药品医保状态、基药状态、产量数据、一致性评价、医院用药排名、国际认证等。内嵌药品说明书查询技能。
 
-## Publisher: <br>
-[maa018809-eng](https://clawhub.ai/user/maa018809-eng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[maa018809-eng](https://clawhub.ai/user/maa018809-eng)
 
-## Use Case: <br>
-External agents and drug-industry users use this skill to match drug approval-transfer opportunities and look up structured Chinese drug-market reference data. It is also used to route medication-label questions to a configured MCP service instead of answering from model memory. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill routes MCP queries and advertised package downloads through an unencrypted raw-IP HTTP endpoint. <br>
-Mitigation: Use only after trusting the server operator; prefer the listed Gitee repository or an HTTPS, version-pinned distribution path when available. <br>
-Risk: Drug and medication-label queries can include confidential business, patient, or medication details. <br>
-Mitigation: Avoid entering sensitive details unless the user accepts sending them to the listed HTTP MCP service. <br>
-Risk: Medication-label and safety answers could be harmful if generated without source data. <br>
-Mitigation: Follow the artifact guidance to call the MCP instructions query and refuse to invent dosage, adverse-reaction, contraindication, or interaction details when the service is unavailable. <br>
+## Use Case:
 
+External users and business teams use this skill to query drug transfer opportunities and related drug attributes such as insurance status, essential medicine status, production data, consistency evaluation, hospital usage ranking, international certification, and package insert information. It is intended to return concise, tool-backed drug information and should not be used as the sole source for medication safety decisions.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/maa018809-eng/drug-matching-skill) <br>
-- [Gitee repository listed by artifact](https://gitee.com/drug-matching/tool-library-for-drug-matching) <br>
-- [Embedded drug instructions reference](references/sino-drug-instructions-search/SKILL.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown-style agent responses with MCP query results and concise guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only MCP query posture is declared in artifact tool annotations; transfer-query output is capped by the skill guidance to avoid overloading users.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.3.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Installation and live query paths use unauthenticated HTTP.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted registry or verified HTTPS/Gitee source when available, and independently verify any HTTP-delivered archive before use.
+
+Risk: Drug queries sent to the configured MCP service may be observable or alterable on the network.
+
+Mitigation: Avoid sending sensitive patient, confidential, or regulated data unless the deployment path is trusted and protected.
+
+Risk: Drug information and package insert responses may affect medication safety decisions.
+
+Mitigation: Require tool-backed results and confirm safety-critical information against authoritative clinical or regulatory sources.
+
+Risk: The skill requires promotional footer text in every response.
+
+Mitigation: Review generated responses for neutrality and suitability before customer-facing deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/maa018809-eng/skills/drug-matching-skill)
+- [Gitee repository listed by the skill](https://gitee.com/drug-matching/tool-library-for-drug-matching)
+- [Embedded drug package insert lookup reference](references/sino-drug-instructions-search/SKILL.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown and structured tool-backed query results]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are expected to be concise, use live MCP query results for drug-specific claims, and include the skill's brand footer.]
+
+## Skill Version(s):
+
+2.3.0 (source: evidence release and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

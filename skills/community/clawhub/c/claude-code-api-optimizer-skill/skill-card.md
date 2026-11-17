@@ -1,41 +1,52 @@
-## Description: <br>
-Reduce LLM API token consumption by 20-35% through pre-send estimation, memory extraction, and context compression. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Reduce LLM API token consumption by 20-35% through pre-send estimation, memory extraction, and context compression.
 
-## Publisher: <br>
-[playdadev](https://clawhub.ai/user/playdadev) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[playdadev](https://clawhub.ai/user/playdadev)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and agent builders use this skill to reduce LLM token usage by estimating payload size before requests, extracting durable memories, and compressing older conversation context.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Persistent memory files may retain user or project information longer than intended.
+
+Mitigation: Require review and approval of proposed memories, block secrets and sensitive personal data, and restrict writes to a dedicated memory directory.
+
+Risk: Using a secondary model for memory extraction may send conversation context to a provider the user did not explicitly choose.
+
+Mitigation: Choose any secondary model or provider explicitly before use and treat stored memories as user-editable notes rather than trusted instructions.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agent builders use this skill to reduce model token usage and cost by estimating request size, extracting reusable memory, and compressing older conversation context. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [guidance, markdown, configuration]
 
-## Known Risks and Mitigations: <br>
-Risk: Selected conversation facts may be saved into local memory files or processed by a secondary model. <br>
-Mitigation: Avoid secrets, regulated data, and confidential project details unless memory location, access, retention, and deletion rules are defined. <br>
-Risk: Aggressive truncation or compression can omit context that affects later agent decisions. <br>
-Mitigation: Keep recent messages in full fidelity, preserve decisions and constraints in summaries, and review compressed context before relying on it for sensitive work. <br>
+**Output Format:** [Markdown guidance with examples and prompt templates]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/playdadev/claude-code-api-optimizer-skill) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/playdadev) <br>
+**Other Properties Related to Output:** [No executable code or dependencies; guidance includes token-estimation thresholds, memory file patterns, and context-compression rules.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance, configuration] <br>
-**Output Format:** [Markdown guidance with token-estimation formulas, compression patterns, memory-file conventions, and JSON prompt examples.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill with no runtime dependencies; outputs depend on the agent applying the documented optimization rules.] <br>
+1.0.0 (source: frontmatter)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

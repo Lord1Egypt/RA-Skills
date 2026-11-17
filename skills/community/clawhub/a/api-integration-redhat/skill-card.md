@@ -1,43 +1,54 @@
-## Description: <br>
-Integrate third-party APIs with auth, retries, timeouts, and logging. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Integrate third-party APIs with auth, retries, timeouts, and logging.
 
-## Publisher: <br>
-[mzfshark](https://clawhub.ai/user/mzfshark) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mzfshark](https://clawhub.ai/user/mzfshark)
 
-## Use Case: <br>
-Developers and engineers use this skill to design reusable API client integrations with explicit authentication, retry, timeout, error-handling, logging, and testing practices. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated API client code could expose or misuse real credentials if adopted without review. <br>
-Mitigation: Review generated code before using real credentials, start with least-privilege test tokens, and keep secrets in configuration or a secret manager. <br>
-Risk: Red Hat affiliation is not verified by the server evidence. <br>
-Mitigation: Verify the publisher and any Red Hat relationship before relying on the branding for trust decisions. <br>
-Risk: Malformed trigger metadata may make skill activation unpredictable. <br>
-Mitigation: Correct the trigger metadata before depending on predictable activation behavior. <br>
+## Use Case:
 
+Developers and engineers use this skill to build reusable REST or WebSocket API clients with explicit authentication, bounded retries, timeouts, normalized errors, logging, and tests.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/mzfshark/api-integration-redhat) <br>
-- [API integration skill documentation](artifact/api-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Configuration, Shell commands] <br>
-**Output Format:** [Markdown guidance with code, configuration, and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May identify client module paths, configuration or environment contracts, usage examples, and mocked test recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and skill frontmatter) <br>
+Risk: Generated API clients may mishandle secrets, timeouts, retry bounds, or logging for authenticated third-party APIs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated clients for configured secret sources, explicit timeouts, bounded retry policy, and log redaction before use.
+
+Risk: Malformed trigger metadata may affect installation or runtime behavior.
+
+Mitigation: Correct the trigger metadata before release or deployment; treat the artifact as non-executable guidance until metadata is fixed.
+
+## Reference(s):
+
+- [API integration skill documentation](artifact/api-integration.md)
+- [ClawHub skill page](https://clawhub.ai/mzfshark/skills/api-integration-redhat)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with code and configuration references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces client module paths, config/env contracts, usage examples, and test guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release and skill.yml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

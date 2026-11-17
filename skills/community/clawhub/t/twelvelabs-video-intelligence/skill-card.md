@@ -1,44 +1,56 @@
-## Description: <br>
-Search inside videos, generate summaries, and analyze video content using TwelveLabs video understanding AI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search inside videos, generate summaries, and analyze video content using TwelveLabs video understanding AI.
 
-## Publisher: <br>
-[james-le-twelve-labs](https://clawhub.ai/user/james-le-twelve-labs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[james-le-twelve-labs](https://clawhub.ai/user/james-le-twelve-labs)
 
-## Use Case: <br>
-Developers and agents use this skill to work with TwelveLabs video understanding workflows, including video upload, indexing, search, summarization, chaptering, highlights, entity search, and embeddings. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can send selected videos, images, prompts, and analysis requests to TwelveLabs under the user's account. <br>
-Mitigation: Use only organization-approved content and a scoped or revocable TwelveLabs API key; avoid confidential meetings, regulated data, or private recordings unless the provider and retention model are approved. <br>
-Risk: Search and analysis results depend on successful asynchronous indexing and can be incomplete if used before assets are ready. <br>
-Mitigation: Poll indexed asset status until it is ready before running search, analysis, entity search, or embedding retrieval. <br>
+## Use Case:
 
+Developers and agents use this skill to set up the TwelveLabs Python SDK, index video assets, search by text, transcription, image, or entity reference, and generate video summaries, chapters, highlights, embeddings, and other analyses.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/james-le-twelve-labs/twelvelabs-video-intelligence) <br>
-- [TwelveLabs Documentation](https://docs.twelvelabs.io) <br>
-- [TwelveLabs API Reference](https://docs.twelvelabs.io/reference) <br>
-- [TwelveLabs Homepage](https://twelvelabs.io) <br>
-- [TwelveLabs Python SDK](https://github.com/twelvelabs-io/twelvelabs-python) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with Python and bash code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python3 and TWELVE_LABS_API_KEY; video content must be indexed before search or analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The skill guides users to upload videos and images to TwelveLabs indexes and assets, which may expose sensitive media to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Only upload videos or images the user is comfortable sending to TwelveLabs and storing in their TwelveLabs account indexes and assets.
+
+Risk: The skill instructs users to install the TwelveLabs Python SDK, introducing normal third-party dependency risk.
+
+Mitigation: Install the SDK in an isolated Python environment and consider pinning the twelvelabs package to a reviewed version.
+
+## Reference(s):
+
+- [TwelveLabs Documentation](https://docs.twelvelabs.io)
+- [TwelveLabs API Reference](https://docs.twelvelabs.io/reference)
+- [TwelveLabs Python SDK](https://github.com/twelvelabs-io/twelvelabs-python)
+- [TwelveLabs Homepage](https://twelvelabs.io)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python and bash code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a TWELVE_LABS_API_KEY and user-selected video assets, indexes, queries, and prompts.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

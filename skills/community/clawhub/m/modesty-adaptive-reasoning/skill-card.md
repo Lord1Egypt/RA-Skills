@@ -1,40 +1,51 @@
-## Description: <br>
-Automatically assesses task complexity and adjusts an agent's reasoning level before answering complex requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically assess task complexity and adjust reasoning level before answering complex questions.
 
-## Publisher: <br>
-[modestyrichards](https://clawhub.ai/user/modestyrichards) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[modestyrichards](https://clawhub.ai/user/modestyrichards)
 
-## Use Case: <br>
-Agents and users use this skill as an always-on preprocessing guide to decide when a request needs fast, standard, or deeper reasoning before composing a response. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can silently choose deeper reasoning and change response behavior for complex or ambiguous requests. <br>
-Mitigation: Use it only where adaptive reasoning behavior is acceptable; avoid it for workflows that require explicit approval before session behavior changes. <br>
-Risk: Visible reasoning indicators and deeper reasoning may interfere with strict output formatting or minimal-token workflows. <br>
-Mitigation: Avoid this skill for strict-format automation, low-token tasks, or contexts where appended indicators would break downstream parsing. <br>
+## Use Case:
 
+Agents and their operators use this skill as a preprocessing policy to assess request complexity and adjust reasoning depth before responding.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/modestyrichards/modesty-adaptive-reasoning) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Text] <br>
-**Output Format:** [Markdown instructions for agent response behavior] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May append a visible reasoning indicator to the final response when the skill judges a request complex.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and ClawHub release evidence) <br>
+Risk: The skill can automatically evaluate every request for reasoning depth and may change response style, token use, and final formatting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only when automatic reasoning-depth control is desired, and honor explicit user controls to enable or disable reasoning escalation.
+
+## Reference(s):
+
+- [Skill artifact](artifact/SKILL.md)
+- [ClawHub skill page](https://clawhub.ai/modestyrichards/skills/modesty-adaptive-reasoning)
+- [Publisher profile](https://clawhub.ai/user/modestyrichards)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown or plain text responses with optional reasoning-status indicators]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May change response style, token use, and final formatting when advanced reasoning is activated.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

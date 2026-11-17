@@ -1,39 +1,52 @@
-## Description: <br>
-Web SaaS service decomposition and AI internalization development plan generation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Decomposes web SaaS products into core functions, scores AI replaceability, and generates internalization roadmaps for replacing SaaS workflows with agent skills.
 
-## Publisher: <br>
-[mupengi-bot](https://clawhub.ai/user/mupengi-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[mupengi-bot](https://clawhub.ai/user/mupengi-bot)
 
-## Use Case: <br>
-Developers, operators, and business planners use this skill to decompose public SaaS services into functions, score AI replaceability, compare competing products, and draft internalization roadmaps. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Analyzing private or logged-in SaaS pages could expose sensitive information or rely on access the skill is not meant to use. <br>
-Mitigation: Use explicit public SaaS targets and avoid private or logged-in pages. <br>
-Risk: Referenced memory files or generated event JSON may introduce stale or unsupported assumptions into downstream planning. <br>
-Mitigation: Review local memory files and generated saas-analysis event files before downstream skills rely on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/mupengi-bot/mupeng-saas-decomposer) <br>
+## Use Case:
 
+Developers, operators, and business teams use this skill to analyze public SaaS services, compare competitors, and plan which workflows can be replaced or internalized with AI agent skills.
 
-## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown reports with decomposition tables, roadmap sections, skill draft guidance, and optional JSON event files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce saas-analysis event JSON for downstream planning skills.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill may fetch third-party SaaS webpages during analysis.
+
+Mitigation: Use public SaaS targets when possible and review fetched content before acting on recommendations.
+
+Risk: The skill may save SaaS analysis event files that contain business strategy details.
+
+Mitigation: Avoid confidential inputs unless local storage, retention, and access controls are appropriate.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mupengi-bot/skills/mupeng-saas-decomposer)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, code, configuration, guidance]
+
+**Output Format:** [Markdown analysis reports, JSON event files, and generated skill specification drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include AI replaceability scores, SaaS comparison tables, cost comparisons, and phased internalization roadmaps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

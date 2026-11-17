@@ -47,7 +47,7 @@
 | --star-ratings | string | ❌ | 星级范围，如 "4.5,5.0" |
 | --distance-in-meter | integer | ❌ | 距离限制（米），景点类地点生效，默认 5000 |
 | --preferred-brand | string | ❌ | 偏好品牌（模糊匹配） |
-| --required-tag | string | ❌ | 必须标签（硬约束，未命中过滤，可多次使用） |
+| --required-tag | string | ❌ | 必须标签（硬约束，未命中过滤） |
 | --max-price-per-night | float | ❌ | 每晚最高价格（人民币） |
 
 **输出**：

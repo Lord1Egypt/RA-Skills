@@ -110,9 +110,25 @@ export async function signSacTransfer(
   }
 
   const latestLedger = sim.latestLedger;
-  const ledgerCloseSeconds = 5;
+  // How long the signed auth entry stays valid, expressed in ledgers.
+  //
+  // A verifying facilitator recomputes this window and rejects an entry
+  // that reaches further than its own — x402's ExactStellarScheme uses
+  // `ceil(maxTimeoutSeconds / measuredCloseTime) + 2` and answers
+  // `invalid_exact_stellar_signature_expiration_too_far` otherwise.
+  // It measures close time live from Horizon; we cannot know that value
+  // without an extra round trip, so we assume a SLOWER ledger than
+  // reality, which yields a SHORTER window than any verifier will allow.
+  //
+  // Erring short is the safe direction: an entry that expires early
+  // fails a payment, while one that reaches too far is refused outright
+  // — and neither can move funds. Mainnet closed at ~5.56s when this was
+  // measured (2026-07-31), where 5 produced 60 ledgers against a limit
+  // of 57 and every x402 payment was rejected.
+  const CONSERVATIVE_LEDGER_CLOSE_SECONDS = 6;
   const validUntilLedger =
-    latestLedger + Math.ceil(req.maxTimeoutSeconds / ledgerCloseSeconds);
+    latestLedger +
+    Math.ceil(req.maxTimeoutSeconds / CONSERVATIVE_LEDGER_CLOSE_SECONDS);
 
   if (!sim.result || !sim.result.auth) {
     throw new Error("Simulation returned no auth entries");

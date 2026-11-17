@@ -1,41 +1,54 @@
-## Description: <br>
-Extracts paper information from citation text, paper links, or social-media posts and helps save the resulting metadata, notes, and supported PDFs to a Zotero library. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Extracts paper information from direct citations, paper links, or social media posts and helps save the resulting metadata, notes, and supported PDFs to a user's Zotero library.
 
-## Publisher: <br>
-[auto-dog](https://clawhub.ai/user/auto-dog) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[auto-dog](https://clawhub.ai/user/auto-dog)
 
-## Use Case: <br>
-External users and researchers use this skill to turn shared paper citations, academic links, or social-media article links into Zotero library entries. It can prepare metadata, summaries, tags, source notes, and arXiv PDF attachments through the bundled Zotero helper script. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires Zotero credentials that can write to a user's library. <br>
-Mitigation: Use a Zotero API key with the minimum permissions needed and store it only in the documented macOS Keychain entry or ZOTERO_CREDENTIALS environment variable. <br>
-Risk: User-provided paper or social-media links may produce ambiguous metadata, notes, or PDF attachments. <br>
-Mitigation: Review generated Zotero metadata, notes, and attachments before saving when a source link is ambiguous or private. <br>
+## Use Case:
 
+External users and research-oriented agents use this skill to turn citations, paper URLs, or social media posts that mention papers into Zotero library entries with metadata, optional summaries, tags, and supported PDF attachments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/auto-dog/social-media-scholar) <br>
-- [Zotero](https://www.zotero.org) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and Zotero item creation through the bundled Python script] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create Zotero journalArticle items, notes, tags, and arXiv PDF attachments when executed with user credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: The skill can use stored Zotero API credentials to create items, notes, and attachments in a user's Zotero library.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for explicit save-to-Zotero requests, keep credentials scoped to the intended Zotero library, and review created records after execution.
+
+Risk: Weakly validated arXiv-style URLs may cause non-paper content to be downloaded and uploaded as an attachment.
+
+Mitigation: Avoid untrusted or shortened paper URLs and review any PDF attachment before relying on or sharing the Zotero entry.
+
+## Reference(s):
+
+- [Zotero](https://www.zotero.org)
+- [ClawHub skill page](https://clawhub.ai/auto-dog/skills/social-media-scholar)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, API calls, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and Zotero item, note, and attachment writes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses Zotero credentials from macOS Keychain or ZOTERO_CREDENTIALS; can create library items, notes, tags, and supported PDF attachments.]
+
+## Skill Version(s):
+
+1.0.3 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

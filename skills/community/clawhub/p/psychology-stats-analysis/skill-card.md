@@ -1,40 +1,53 @@
-## Description: <br>
-Provides statistical analysis helpers for psychology research, including descriptive statistics, t-tests, one-way ANOVA, effect sizes, power analysis, and assumption checks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides comprehensive statistical analysis for psychological research, including descriptive statistics, hypothesis tests, effect sizes, power analysis, and assumption checks.
 
-## Publisher: <br>
-[zhan599](https://clawhub.ai/user/zhan599) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhan599](https://clawhub.ai/user/zhan599)
 
-## Use Case: <br>
-Psychology and behavioral science researchers use this skill to generate local Python-based statistical summaries, hypothesis tests, effect sizes, power estimates, and assumption checks for experimental datasets. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The documentation describes some capabilities that the included Python module does not currently implement. <br>
-Mitigation: Verify the specific analysis function exists in the artifact before relying on it, and validate outputs against the selected statistical method. <br>
-Risk: Statistical helpers can produce misleading conclusions when assumptions, study design, or sample size are inappropriate. <br>
-Mitigation: Check normality, variance assumptions, effect sizes, and power analysis before interpreting results for research claims. <br>
+## Use Case:
 
+Researchers, students, and developers working in psychology and behavioral science can use this skill to run and interpret descriptive statistics, t-tests, ANOVA, correlations, effect sizes, power estimates, and assumption checks. It is especially oriented toward experimental psychology workflows such as gaze-cueing, priming, implicit learning, and social cognition studies.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhan599/psychology-stats-analysis) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with Python code examples and JSON-like result dictionaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are local statistical-analysis guidance and Python helper results; users should verify statistical method fit for their study design.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Statistical results may be misleading if the selected test, assumptions, or study design are inappropriate.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Validate the study design, test assumptions, and reported outputs before using results in research decisions or publications.
+
+Risk: The skill content is primarily Chinese-language, which can make review harder for non-Chinese-speaking teams.
+
+Mitigation: Have a qualified reviewer confirm the workflow and outputs, or translate and validate the guidance before deployment.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zhan599/skills/psychology-stats-analysis)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, json, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples and JSON-like statistical result dictionaries]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs depend on user-supplied data and selected statistical method; statistical conclusions require study-design and assumption validation.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

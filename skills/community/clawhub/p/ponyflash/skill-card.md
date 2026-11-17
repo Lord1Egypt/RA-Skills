@@ -1,54 +1,72 @@
-## Description: <br>
-Generate images, videos, speech audio, and music using the PonyFlash Python SDK, and handle local media editing with FFmpeg for clipping, concatenation, transcoding, audio extraction, frame capture, subtitle checks, and ASS subtitle preparation. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate images, videos, speech audio, and music through the PonyFlash Python SDK, and guide local FFmpeg editing for clips, transcoding, audio extraction, frames, subtitles, and final renders.
 
-## Publisher: <br>
-[leothebravest](https://clawhub.ai/user/leothebravest) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leothebravest](https://clawhub.ai/user/leothebravest)
 
-## Use Case: <br>
-Developers and creative operators use this skill to route agent requests between PonyFlash cloud media generation and local FFmpeg-based editing workflows. It supports end-to-end production tasks such as generating image, video, speech, or music assets, then trimming, combining, transcoding, subtitling, or exporting final media. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill uses PonyFlash as a cloud media processor, so prompts, uploaded media, and generated assets may leave the local machine during cloud generation tasks. <br>
-Mitigation: Use the skill only with media and prompts suitable for PonyFlash processing, and avoid sensitive photos, audio, videos, brand assets, or confidential prompts unless the data-handling implications are acceptable. <br>
-Risk: The artifact asks users to provide a live PonyFlash API key in chat for cloud generation tasks. <br>
-Mitigation: Do not paste API keys into chat; provide PONYFLASH_API_KEY through a secure environment variable or secret manager. <br>
-Risk: Cloud generation can consume account credits and may incur unexpected cost when running expensive generation steps. <br>
-Mitigation: Verify account credits and review generation choices before executing costly image, video, speech, or music requests. <br>
-Risk: Local FFmpeg workflows can overwrite, transcode, or transform user media if commands are run against the wrong paths or formats. <br>
-Mitigation: Use temporary task directories for intermediates, avoid overwriting outputs unless explicitly allowed, and validate final media before cleanup. <br>
+## Use Case:
 
+Developers and creators use this skill to route agent requests for AI media generation, model and account operations, file handling, and local FFmpeg-based media editing. It supports single-step generation or editing requests and multi-step production workflows that combine generated assets with local assembly.
 
-## Reference(s): <br>
-- [PonyFlash ClawHub Release](https://clawhub.ai/leothebravest/ponyflash) <br>
-- [PonyFlash Publisher Profile](https://clawhub.ai/user/leothebravest) <br>
-- [PonyFlash Website](https://www.ponyflash.com) <br>
-- [Models Reference](reference/models.md) <br>
-- [Image Generation Reference](reference/images.md) <br>
-- [Video Generation Reference](reference/video.md) <br>
-- [Speech Generation Reference](reference/speech.md) <br>
-- [Music Generation Reference](reference/music.md) <br>
-- [Local Media Operations Reference](reference/operations.md) <br>
-- [Examples Reference](reference/examples.md) <br>
-- [Creative Playbooks Index](playbooks/INDEX.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline Python and shell command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce cloud generation requests and local media-processing command plans; final media files are task outputs when the agent executes the generated workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact frontmatter reports 0.3.0) <br>
+Risk: API keys could be exposed if entered into chat or stored in shared logs.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Configure PONYFLASH_API_KEY through a secret manager or local terminal and avoid pasting production credentials into agent conversations.
+
+Risk: Sensitive media may be uploaded to PonyFlash for processing during cloud generation, file management, or reference-image workflows.
+
+Mitigation: Use only media the user intends PonyFlash to process, and confirm consent before uploading private, regulated, or third-party content.
+
+Risk: The skill can guide recharge actions, cloud file deletion, and local output overwrites.
+
+Mitigation: Require explicit user approval before spending credits, deleting cloud files, or overwriting local files.
+
+Risk: Runtime SDK installation, FFmpeg execution, and subtitle font downloads add local environment and supply-chain review requirements.
+
+Mitigation: Use an isolated environment with a pinned PonyFlash SDK version, run dependency checks before FFmpeg work, and approve font downloads deliberately.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leothebravest/skills/ponyflash)
+- [Publisher Profile](https://clawhub.ai/user/leothebravest)
+- [PonyFlash](https://ponyflash.com)
+- [Agent Skills Specification](https://agentskills.io/specification)
+- [Operation Strategy](reference/operations.md)
+- [Examples](reference/examples.md)
+- [Available Models](reference/models/INDEX.md)
+- [Files API Reference](reference/files.md)
+- [Account API Reference](reference/account.md)
+- [Subtitle Fonts](assets/fonts.md)
+- [Default Subtitle Style](assets/subtitle-style.md)
+- [Creative Playbooks](playbooks/INDEX.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Files, Guidance]
+
+**Output Format:** [Markdown guidance with Python and shell command blocks, plus generated media file outputs when tasks complete]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May trigger PonyFlash API calls for cloud generation and local FFmpeg commands for media processing; generated outputs depend on user prompts, model parameters, API credits, and local FFmpeg capabilities.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; artifact frontmatter metadata says 0.3.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,60 @@
-## Description: <br>
-Diagnoses and fixes OpenClaw WeCom channel configuration issues, including connection failures, missing bot credentials, plugin ID mismatches, and unsupported multi-account setups. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses and repairs WeCom channel configuration issues in OpenClaw, including connection failures, missing bot credentials, plugin ID mismatches, and unsupported multi-account configurations.
 
-## Publisher: <br>
-[fclwtt](https://clawhub.ai/user/fclwtt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fclwtt](https://clawhub.ai/user/fclwtt)
 
-## Use Case: <br>
-Developers and operators use this skill to inspect WeCom channel status, review OpenClaw configuration, apply plugin ID and single-account configuration fixes, and verify the gateway after changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent to read or modify OpenClaw WeCom configuration that may contain bot secrets. <br>
-Mitigation: Review proposed changes before applying them, keep a backup of openclaw.json, and avoid sharing real secrets in logs or chats. <br>
-Risk: Gateway restart commands may interrupt the current WeCom channel session. <br>
-Mitigation: Run restarts during an acceptable maintenance window and verify channel and gateway status after changes. <br>
+## Use Case:
 
+Developers and operators managing OpenClaw WeCom integrations use this skill to diagnose channel failures and prepare repair guidance, shell commands, and configuration snippets for restoring single-account operation.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fclwtt/skills-5) <br>
-- [WeCom OpenClaw plugin](https://github.com/openclaw/wecom-openclaw-plugin) <br>
-- [Enterprise WeChat AI Bot documentation](https://open.work.weixin.qq.com/help?doc_id=21657) <br>
-- [OpenClaw channel configuration documentation](https://docs.openclaw.ai/channels) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash and JSON code blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose edits to local OpenClaw configuration and gateway restart commands for user review.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: WeCom bot credentials may be exposed if users paste real secrets into chat or run commands that print secret-bearing configuration.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid sharing real secrets in chat, redact command output before review, and enter credentials through safer mechanisms when available.
+
+Risk: The provided configuration template uses open group access, which can broaden who may interact with the WeCom integration.
+
+Mitigation: Replace open group policy with explicit trusted senders or groups unless broad group access is intentional.
+
+Risk: Repair guidance may change live OpenClaw configuration and restart the gateway.
+
+Mitigation: Back up openclaw.json before edits, review proposed changes, and verify channel and gateway status after restart.
+
+## Reference(s):
+
+- [ClawHub release page](https://clawhub.ai/fclwtt/skills/skills-5)
+- [WeCom OpenClaw plugin](https://github.com/openclaw/wecom-openclaw-plugin)
+- [WeCom AI Bot documentation](https://open.work.weixin.qq.com/help?doc_id=21657)
+- [OpenClaw channel configuration documentation](https://docs.openclaw.ai/channels)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and JSON configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [None]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,0 +1,7 @@
+# slug	param_id	display_name	unit	who_24h_guideline	plausibility_max	color		color_dark
+pm25	2	PM2.5	µg/m³	15	2000	#E65100	#FF9800
+pm10	1	PM10	µg/m³	45	3000	#6A1B9A	#BA68C8
+o3	3	O3	µg/m³	100	1000	#0277BD	#29B6F6
+no2	4	NO2	µg/m³	25	2000	#00838F	#26C6DA
+so2	5	SO2	µg/m³	40	2000	#9E9D24	#C0CA33
+co	7	CO	mg/m³	4	100	#5D4037	#8D6E63

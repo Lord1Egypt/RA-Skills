@@ -9,7 +9,7 @@
 **步骤 1：配置模型**
 
 1. 从平台后台网址生成 API Key
-2. 将 API Key 添加到配置文件 `~/.workbuddy/models.json`
+2. 写入环境变量（推荐）或通用台账 `~/.free-model-config/models.json`
 3. 验证配置是否正确
 
 **步骤 2：调用模型**
@@ -33,8 +33,8 @@ curl -X POST https://apihub.agnes-ai.com/v1/chat/completions \
   -H "Authorization: Bearer your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "agnes-2.0-flash",
-    "prompt": "请介绍一下人工智能的发展历史",
+    "model": "agnes-3.0-flash",
+    "messages": [{"role": "user", "content": "请介绍一下人工智能的发展历史"}],
     "max_tokens": 500,
     "temperature": 0.7
   }'
@@ -47,9 +47,10 @@ curl -X POST https://apihub.agnes-ai.com/v1/images/generations \
   -H "Authorization: Bearer your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "agnes-image-2.0-flash",
+    "model": "agnes-image-2.5-flash",
     "prompt": "A beautiful sunset over the ocean, vibrant colors, digital art",
-    "size": "1024x1024",
+    "size": "2K",
+    "ratio": "16:9",
     "extra_body": {
       "response_format": "url"
     }
@@ -126,9 +127,9 @@ python scripts/agnes_gen.py story-video --storyboard storyboard.json --output st
   "style": "cinematic, 4K",
   "seed": 42,
   "scenes": [
-    {"prompt": "清晨森林，阳光透过树叶"},
-    {"prompt": "小鹿溪边饮水，镜头推进"},
-    {"prompt": "夕阳西下，金色光芒"}
+    {"prompt": "清晨森林，阳光透过树叶", "seconds": "6"},
+    {"prompt": "小鹿溪边饮水，镜头推进", "seconds": "8"},
+    {"prompt": "夕阳西下，金色光芒", "seconds": "5"}
   ]
 }
 ```
@@ -140,9 +141,9 @@ python scripts/agnes_gen.py story-video --storyboard storyboard.json --output st
   "base_prompt": "photorealistic, 8K",
   "seed": 100,
   "scenes": [
-    {"prompt": "城市天际线，日出"},
-    {"prompt": "街道行人，慢动作", "image": "street.png"},
-    {"prompt": "夜景霓虹灯"}
+    {"prompt": "城市天际线，日出", "seconds": "6"},
+    {"prompt": "街道行人，慢动作", "image": "street.png", "seconds": "8"},
+    {"prompt": "夜景霓虹灯", "seconds": "5"}
   ]
 }
 ```
@@ -150,15 +151,15 @@ python scripts/agnes_gen.py story-video --storyboard storyboard.json --output st
 - `base_prompt` / `style`：共享描述，添加到每个 prompt 前面（保持风格一致）
 - `seed`：固定随机种子（图片和视频一致性）
 - `scenes[].image`：可选，有则跳过生图直接用，无则自动生成
-- `scenes[].frames`：可选，该场景帧数
+- `scenes[].seconds`：可选，该场景时长（"4"–"12"，默认 "5"）
 
 3. **使用注意事项**：
 
 - API Key 必须从官方后台网址生成
 - 请求参数必须在有效范围内
 - 图像生成的 response_format 必须放在 extra_body 中
-- 视频生成帧数按分辨率受限：1080p ≤169、720p ≤409、480p ≤961，需满足 8n+1
-- 视频生成轮询使用 `task_id`，不要使用 `video_id`
+- 视频生成单段时长 4–12 秒；`size` 只能取 720P/1080P/1K/2K，传 width/height/num_frames 会 400
+- 视频生成轮询使用 `video_id` + `model_name`（不是 `task_id`）
 - 图生视频的图片必须是公网 URL，本地文件需先上传（脚本自动处理）
 
 **可选组件**：
@@ -192,7 +193,7 @@ python scripts/agnes_gen.py story-video --storyboard storyboard.json --output st
 
 ### 步骤 1：配置模型
 1. 从平台后台网址生成 API Key
-2. 将 API Key 添加到配置文件 ~/.workbuddy/models.json
+2. 将 API Key 添加到配置文件 ~/.free-model-config/models.json
 3. 验证配置是否正确
 
 ### 步骤 2：调用模型
@@ -213,8 +214,8 @@ curl -X POST https://apihub.agnes-ai.com/v1/chat/completions \
   -H "Authorization: Bearer your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "agnes-2.0-flash",
-    "prompt": "请介绍一下人工智能的发展历史",
+    "model": "agnes-3.0-flash",
+    "messages": [{"role": "user", "content": "请介绍一下人工智能的发展历史"}],
     "max_tokens": 500,
     "temperature": 0.7
   }'
@@ -226,9 +227,10 @@ curl -X POST https://apihub.agnes-ai.com/v1/images/generations \
   -H "Authorization: Bearer your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "agnes-image-2.0-flash",
+    "model": "agnes-image-2.5-flash",
     "prompt": "A beautiful sunset over the ocean",
-    "size": "1024x1024",
+    "size": "1K",
+    "ratio": "16:9",
     "extra_body": {
       "response_format": "url"
     }
@@ -239,8 +241,8 @@ curl -X POST https://apihub.agnes-ai.com/v1/images/generations \
 1. API Key 必须从官方后台网址生成
 2. 请求参数必须在有效范围内
 3. 图像生成的 response_format 必须放在 extra_body 中
-4. 视频生成帧数按分辨率受限：1080p ≤169、720p ≤409、480p ≤961
-5. 视频生成轮询使用 task_id，不要使用 video_id
+4. 视频生成单段时长 4–12 秒；size 只能取 720P/1080P/1K/2K
+5. 视频生成轮询使用 video_id + model_name，不是 task_id
 6. 图生视频的图片必须是公网 URL，本地文件需先上传
 
 ## 使用技巧
@@ -305,9 +307,10 @@ curl -X POST https://apihub.agnes-ai.com/v1/images/generations \
 | 频率限制 | 调用过于频繁 | 降低调用频率 |
 | 参数错误 | 参数格式不正确 | 检查参数格式 |
 | 配额不足 | 免费额度用完 | 等待额度恢复或升级套餐 |
-| task_not_exist | 用 video_id 轮询 | 改用 task_id 轮询 |
-| num_frames exceeds maximum | 帧数超出分辨率限制 | 降低帧数或降低分辨率 |
-| Invalid base64 | 图片用 data URI 传递 | 改为先上传图片获取 URL |
+| task_not_exist / video not exist | 拿 task_id 去轮询 | 改用返回的 video_id + model_name |
+| 400 unsupported field | 传了 width/height/fps/num_frames | 改用 seconds + size + aspect_ratio |
+| 401（dots） | 用了 Bearer 认证 | 改为请求头 `api-key: KEY` |
+| Invalid reference media | mode 与媒体字段不匹配 | 按 text/keyframe/reference 对应传参 |
 
 **故障排除**：
 

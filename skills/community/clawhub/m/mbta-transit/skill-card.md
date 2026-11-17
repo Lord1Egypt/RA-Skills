@@ -1,41 +1,55 @@
-## Description: <br>
-Query real-time MBTA transit data for next departures, service alerts, live vehicle positions, stop searches, and route listings across subway, bus, commuter rail, and ferry service. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides real-time MBTA transit information including next departures, service alerts, live vehicle locations, stop searches, and route listings for Boston-area subway, bus, commuter rail, and ferry service.
 
-## Publisher: <br>
-[squidpunch](https://clawhub.ai/user/squidpunch) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squidpunch](https://clawhub.ai/user/squidpunch)
 
-## Use Case: <br>
-Developers and agents serving MBTA riders use this skill to look up real-time departures, active service alerts, live vehicle locations, stops, and routes for Boston-area transit. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global use; results are specific to the MBTA service area in Massachusetts. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stop names, route IDs, and any configured MBTA_API_KEY may be sent to MBTA's API. <br>
-Mitigation: Use a dedicated MBTA API key and avoid entering unrelated private or sensitive information. <br>
-Risk: The bundled Python helper makes outbound read-only requests to MBTA's public API. <br>
-Mitigation: Run it only in environments where outbound requests to api-v3.mbta.com are acceptable. <br>
+## Use Case:
 
+Agents use this skill to answer Boston-area transit questions by querying MBTA public API data for departures, alerts, vehicle locations, stops, and routes. It is useful for trip-status checks, station lookup, and service disruption awareness.
 
-## Reference(s): <br>
-- [MBTA V3 API Reference](references/API.md) <br>
-- [MBTA V3 API](https://api-v3.mbta.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Guidance] <br>
-**Output Format:** [Plain text CLI output and concise Markdown guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only MBTA API queries; an optional MBTA_API_KEY increases rate limits and is sent to MBTA's API.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Risk: Configured MBTA_API_KEY values are sent to the MBTA API for rate limiting.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use an MBTA-specific API key, keep it in the environment, and avoid placing unrelated secrets in MBTA_API_KEY.
+
+Risk: Real-time predictions or vehicle data may be unavailable during off-hours, outages, or on routes without tracking.
+
+Mitigation: Use the scheduled-departure fallback when predictions are empty and present results as MBTA-provided status rather than guaranteed service.
+
+## Reference(s):
+
+- [MBTA V3 API Reference](references/API.md)
+- [MBTA V3 API](https://api-v3.mbta.com/)
+- [ClawHub Skill Page](https://clawhub.ai/squidpunch/skills/mbta-transit)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text transit lookup results with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses MBTA public API responses; MBTA_API_KEY is optional for higher rate limits.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

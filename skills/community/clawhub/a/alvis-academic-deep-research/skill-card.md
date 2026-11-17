@@ -1,41 +1,53 @@
-## Description: <br>
-Academic Deep Research helps users run exhaustive, reproducible investigations through user-approved planning, multi-cycle source research, evidence hierarchy, contradiction analysis, and APA-style reporting. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Transparent, rigorous research workflow that guides an agent through user-approved planning, multi-cycle web investigation, source validation, APA 7th citations, and narrative research reporting.
 
-## Publisher: <br>
-[alvisdunlop](https://clawhub.ai/user/alvisdunlop) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[alvisdunlop](https://clawhub.ai/user/alvisdunlop)
 
-## Use Case: <br>
-External users and developers use this skill for literature reviews, competitive intelligence, trend reports, and other complex research tasks that need multi-source verification, explicit limitations, and reproducible methodology. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Sensitive or regulated information may be included in research context that is used with web searches, fetched-source analysis, memory lookup, or parallel research sessions. <br>
-Mitigation: Use public or approved research material, and avoid secrets, regulated data, confidential business plans, and private personal information unless that handling is acceptable for the deployment. <br>
-Risk: Research outputs can still contain incomplete, outdated, or conflicting source conclusions. <br>
-Mitigation: Use the skill's checkpoints, citation requirements, source-quality review, contradiction analysis, and limitations sections before relying on conclusions. <br>
+## Use Case:
 
+Developers, analysts, researchers, and other external users use this skill to direct an agent through literature reviews, competitive intelligence, trend reports, and complex claims-checking that require reproducible methods and cited evidence.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/alvisdunlop/alvis-academic-deep-research) <br>
-- [Publisher profile](https://clawhub.ai/user/alvisdunlop) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Guidance] <br>
-**Output Format:** [Markdown research plans and narrative research reports with APA-style citations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user checkpoints before research planning and final reporting; reports emphasize source quality, contradictions, limitations, and confidence.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: ClawHub release evidence) <br>
+Risk: The skill may automatically consult prior persistent agent memory without clear user consent or topic scope limits.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before use, instruct the agent not to search or retrieve memory unless you explicitly approve the specific records or topic scope.
+
+Risk: The final research report can carry forward misleading conclusions if retrieved sources are stale, weak, or contradictory.
+
+Mitigation: Require the planned source-quality checks, contradiction analysis, confidence labels, and limitation disclosures described by the skill before relying on conclusions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/alvisdunlop/skills/alvis-academic-deep-research)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown research plan and final narrative report with APA 7th citations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include research plans, confidence annotations, source reliability assessments, appendices, and explicit notes on contradictions, limitations, and unresolved gaps.]
+
+## Skill Version(s):
+
+2.0.0 (source: server release metadata, released 2026-04-15)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

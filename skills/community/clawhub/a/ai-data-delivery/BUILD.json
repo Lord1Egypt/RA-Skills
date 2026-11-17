@@ -1,0 +1,584 @@
+{
+  "development_preview": false,
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "b9f4fbf8dc8455bc454cb2eecff97c842850148d422ae8109a5fc40d97a91ea6"
+    },
+    {
+      "path": "README.md",
+      "sha256": "a02e1c2d275010c6b1a229e94febdafc68db22ff83338a1de749cc523c2aaf12"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "7c4222952cceae0164cb4a64237d5c7fd4c811f875edf000bf5abf7007d2fdaf"
+    },
+    {
+      "path": "SKILL.md",
+      "sha256": "23a590c2d3705eae5efd5b4a4d5727deea747606f4c071f67dc950fe1e4274e1"
+    },
+    {
+      "path": "examples/conference-practice/README.md",
+      "sha256": "c14c2f3520b4e7a289ddf77935dea4e72e1d20daa90bce1d12e9899b68c658c8"
+    },
+    {
+      "path": "examples/conference-practice/run_demo.py",
+      "sha256": "41c24eb207a43bf4b4b49069b5346a2d13576879f9f6106524007e4eb7bde38d"
+    },
+    {
+      "path": "examples/human-review/run_demo.py",
+      "sha256": "742cbf371dfcf9cdf5aefe682b9bade6ce06f9134cccd22d55289c72112cb3b8"
+    },
+    {
+      "path": "examples/metadata-reuse/README.md",
+      "sha256": "dff66d5cd772b72d6978b95b5eb2a7b28ae3fb8bf6d183fd9208b0ab93b773e9"
+    },
+    {
+      "path": "examples/metadata-reuse/metadata.yaml",
+      "sha256": "ecfc5a943c5844b401a07cb36c93e265a6f0b6e9b7364425dbbe0e0bd63624af"
+    },
+    {
+      "path": "examples/onboarding/cases.json",
+      "sha256": "0d87f991010db52ac7fb8d369eaaa78f9d1d834a183fb8a4eccabaf8fcf3bf54"
+    },
+    {
+      "path": "examples/onboarding/decisions.yaml",
+      "sha256": "9fd3d3f0f0647974dab73675440f722d3f195bb19486884af52ddab2d3cbec76"
+    },
+    {
+      "path": "examples/onboarding/partial.yaml",
+      "sha256": "55085b8e19970da8a1bd6110a1ffc0181e52f325d02b0c73ab5ce4da0bed86ac"
+    },
+    {
+      "path": "examples/onboarding/run_demo.py",
+      "sha256": "4d8b01b7d9dc3a6de841c682d3332b46b2909f1656943739b22524245ac6e540"
+    },
+    {
+      "path": "examples/onboarding/scope.yaml",
+      "sha256": "d14b820b8422d2a9dc2d764af6396ea7c3891d7e4a2db142f6f63ad5a2db7eed"
+    },
+    {
+      "path": "examples/onboarding/source.sql",
+      "sha256": "d3d293e1e9a8bd94a44fde02d4b75365664517a919361c8905bdd8811a5e958b"
+    },
+    {
+      "path": "mocks/README.md",
+      "sha256": "5993bd0518f51c0f7ea28cfa4f9c7cd3a74a85bceaf5e5e24e47a28fb4b4cf28"
+    },
+    {
+      "path": "mocks/crm/build_db.py",
+      "sha256": "747ddfc6159213794946327321d522f1214b3711e6eada2255cb5248d942e474"
+    },
+    {
+      "path": "mocks/crm/cases.json",
+      "sha256": "e5ac29897b9f7d261c7b581d59fff9a4e0daad32ad3ca84941b0c21e8804d736"
+    },
+    {
+      "path": "mocks/crm/semantic.yaml",
+      "sha256": "b25cc61821134ddb6241d0528f69b810e110190e1c6f7586bb4ec85f5d7afae2"
+    },
+    {
+      "path": "mocks/diag_reform/build_db.py",
+      "sha256": "fe4c35a09c8c5fdfcc6e2ecde31add871b1bbd718ccc2af80054ed393ad679e9"
+    },
+    {
+      "path": "mocks/diag_reform/cases.json",
+      "sha256": "eb7023feb03687897ba63e89eba076a6e8e69a6474aa2daa1fa9a99a4b04589d"
+    },
+    {
+      "path": "mocks/diag_reform/semantic.yaml",
+      "sha256": "463b9133208e6982be6d09655a89b3371d43fc5d751495733c5da405742cf0a4"
+    },
+    {
+      "path": "mocks/edu_assess/build_db.py",
+      "sha256": "e79e8ba50319ba9cc821f5ab29f62714751b0958452da514890eb197aa7ca3ee"
+    },
+    {
+      "path": "mocks/edu_assess/cases.json",
+      "sha256": "84fef163310f83c6e084d3672eae95c2a257fa7b7dc9158edad61093791d1b96"
+    },
+    {
+      "path": "mocks/edu_assess/semantic.yaml",
+      "sha256": "5dc2c3cadeee07b8683e4217ba83b02cfe8519f3a526c43971e39bd8565c15b2"
+    },
+    {
+      "path": "mocks/education/build_db.py",
+      "sha256": "bbb4ff597574a5313a4198fe00208fa8055b0fdca6189912afa03dc09892d4cd"
+    },
+    {
+      "path": "mocks/education/cases.json",
+      "sha256": "83ddd74bd0ea30f4c6e1236984c181a21b1d3241094d486bf336b9a8d6aece5e"
+    },
+    {
+      "path": "mocks/education/semantic.yaml",
+      "sha256": "c0a4148a8d53719a3d7c4ffee8020687a16de1c0322be3abe09b816a9c94b8e6"
+    },
+    {
+      "path": "mocks/elderly_care/build_db.py",
+      "sha256": "8cb3d95ea404b3c37d108c48169e1720e870cb20534b8dbfc362579c28ebb2a2"
+    },
+    {
+      "path": "mocks/elderly_care/cases.json",
+      "sha256": "ce60de90501b503d5986d1235611c706502c58f240e14c88f06049b769f4f017"
+    },
+    {
+      "path": "mocks/elderly_care/semantic.yaml",
+      "sha256": "3b736d56591ee0c57d216ecaa5aaad96343838a889da1a400da2d5683e18ddf3"
+    },
+    {
+      "path": "mocks/finance/build_db.py",
+      "sha256": "e808c5904c9e27c1472b730bcbf3b3701eb33785804326bb008b8f8bb2f98f1e"
+    },
+    {
+      "path": "mocks/finance/cases.json",
+      "sha256": "c73c4c73627cd0d8f66c960617df4452af2a878ebbc55351f3db57cfc39e0db2"
+    },
+    {
+      "path": "mocks/finance/semantic.yaml",
+      "sha256": "5f4bb90749b39b17960cd8a123f77eb4a98735fc6b541b4d93a84f537305fb03"
+    },
+    {
+      "path": "mocks/government/build_db.py",
+      "sha256": "b84616301808d32d1880a8a999e797ec88f8ecf9b3dd8a8fac9d3c62b434c057"
+    },
+    {
+      "path": "mocks/government/cases.json",
+      "sha256": "0011783f6fce01fc6bb195145555e563e53329defe1906c2ff254eec5ab558d4"
+    },
+    {
+      "path": "mocks/government/semantic.yaml",
+      "sha256": "da9b6cff976a9aa2490e7de96cb1653983a7bddaf51e5c2a78aeff3f62180802"
+    },
+    {
+      "path": "mocks/green_factory/build_db.py",
+      "sha256": "44e91b102fdd8518df4dfcbcb069fa5b2d4a37d43dd6d0c9f9e8bbff64cde600"
+    },
+    {
+      "path": "mocks/green_factory/cases.json",
+      "sha256": "ef61bbdadccb05338217045b8b54094619b2ee20bbe9ea969eb19b708aa50c84"
+    },
+    {
+      "path": "mocks/green_factory/semantic.yaml",
+      "sha256": "95935af4346f9a9c3700c073e4a063b6e009aee72f3b5045624cf0497575fc00"
+    },
+    {
+      "path": "mocks/healthcare/build_db.py",
+      "sha256": "4a5efc16e5c6350c078cb1dcf28359e0861330a654a4c054124e7ac85151e60f"
+    },
+    {
+      "path": "mocks/healthcare/cases.json",
+      "sha256": "2630d1be68064bfc381558fdd2127d115bae192b2e747934e7f3cacf202a568c"
+    },
+    {
+      "path": "mocks/healthcare/semantic.yaml",
+      "sha256": "5b88fd96ed07b0f6c72b458e568583044c8cb1dc83e311dcbe20f656d6c108e2"
+    },
+    {
+      "path": "mocks/manufacturing/build_db.py",
+      "sha256": "84eb53777782735e39ac531baf15571d4539606e5ce6ed8273b1a15dc263e6be"
+    },
+    {
+      "path": "mocks/manufacturing/cases.json",
+      "sha256": "96d6c6414933470064520e234c81f05efbba0e40b38b13b0905d00bf74b1ae23"
+    },
+    {
+      "path": "mocks/manufacturing/semantic.yaml",
+      "sha256": "88891f2bdbc893fcdf6b2f0d2aea45846e697ee541efe9e9c6b6fe23d0e976ec"
+    },
+    {
+      "path": "mocks/med_kpi/build_db.py",
+      "sha256": "13641fa07c556491c37fad3b42d088bd91d6df3ab9b01d8c4f7fedf055f744b6"
+    },
+    {
+      "path": "mocks/med_kpi/cases.json",
+      "sha256": "5118ab7211545828656ceb13c2aab1507998a84d6d6b11d9544bcea4c83bcd1d"
+    },
+    {
+      "path": "mocks/med_kpi/semantic.yaml",
+      "sha256": "5ad06862d087c15b1f8dcdbf09bf1379f15f7a2a58d79907fc6f481c3d5f2011"
+    },
+    {
+      "path": "mocks/oa/build_db.py",
+      "sha256": "6803a92223632e586da754801744d522e170345702af59ac43e98e5ec3afd40f"
+    },
+    {
+      "path": "mocks/oa/cases.json",
+      "sha256": "ade3755cc5e829ce44c5f1961f5ccec3511e62c3cc75ca7a9cc7e2883f359b29"
+    },
+    {
+      "path": "mocks/oa/semantic.yaml",
+      "sha256": "ba27beda0892d23c9505dd5591345f9eda4efc9260024cfc936f7cd99650af0b"
+    },
+    {
+      "path": "mocks/retail/build_db.py",
+      "sha256": "722b33a127d70c6caef4d80cf5f12c28c10de52bb68231d821accdaeffcb4859"
+    },
+    {
+      "path": "mocks/retail/cases.json",
+      "sha256": "cd598ef4e54e3db7f42a4da48018878d088c2ed459ea0be9264e8c6878f02755"
+    },
+    {
+      "path": "mocks/retail/semantic.yaml",
+      "sha256": "c0fd9d8501e1a3fb110873beafba4775e18fb8cb9ad655905bd466990be2461d"
+    },
+    {
+      "path": "mocks/run_mock.py",
+      "sha256": "a1b9296708f4d8973179a088f452a6bca0e360edc8ff5c4a4dfb2052c393d516"
+    },
+    {
+      "path": "references/conference-practices-2026.md",
+      "sha256": "57b4aeb3f09919f3c861fa144f082db482c8c3a9463fdc6667c5e79f38cc39e2"
+    },
+    {
+      "path": "references/contract.md",
+      "sha256": "72f86df15113a01f589948d99e612fb97e2ba7b7397eaf1676a3b46739c4136b"
+    },
+    {
+      "path": "references/delivery-playbook.md",
+      "sha256": "5dd53a428e187ebe4375f2719053545573f7478053ea255eb1fbd7e738449fff"
+    },
+    {
+      "path": "references/diagnosis-playbook.md",
+      "sha256": "431b145fca0d4b8ed1bde165ed1d2318622383aeff281e4762e0d32e87612d15"
+    },
+    {
+      "path": "references/evidence/traffic/README.md",
+      "sha256": "4c6d3a90c22342df0de92c863993af3fc6f0e7bf6813827963794dbae22bc2e1"
+    },
+    {
+      "path": "references/evidence/traffic/constraints.json",
+      "sha256": "67cc5bedcf6eee1c7a0cbcfc332e302c3ca9d6848b4d41bcf77f0fe562166a47"
+    },
+    {
+      "path": "references/evidence/traffic/join_graph.json",
+      "sha256": "39c43bf4b4850bd5e4ce81fd1ccd16d7d80b8d43a22a5b1fb805a01e1fd2149f"
+    },
+    {
+      "path": "references/evidence/traffic/quality_history.jsonl",
+      "sha256": "baa8b4076624d8537ce41cbed5b8bb058585bd8dffce8b1760213ba7e5f0b7a9"
+    },
+    {
+      "path": "references/human-review.md",
+      "sha256": "c9a6cecd05ec0cc703a4cec6b45898412838514ab09bbe88f425a84e2f357f5c"
+    },
+    {
+      "path": "references/metadata-to-consumption.md",
+      "sha256": "3add8a0e079be17111cb7383701f498f8439d75b6df8bb96f1eb1d0b4c2c9bc8"
+    },
+    {
+      "path": "references/metric-context.md",
+      "sha256": "fc170bb02e0c96cfd204a336a1c48927981bfbe9755ba1b7fcd0dfcc4d301651"
+    },
+    {
+      "path": "references/onboarding.md",
+      "sha256": "7125008dc91b8f61579662ee11aa29ed5d1a84ff459c822c8382139d271bf3ec"
+    },
+    {
+      "path": "references/quickstart-fde.md",
+      "sha256": "a19746f784b60958194dcdaa0227f21c895f77d7eee197287866e99ca636be25"
+    },
+    {
+      "path": "references/quickstart-infocenter.md",
+      "sha256": "bd5eb8391b2c7ffb5608210f80b4662afeef0bff6cd70b5438f069de00ff577c"
+    },
+    {
+      "path": "references/quickstart-pm.md",
+      "sha256": "d8a061fc8f63c6fc330aceb8a90626cd4a5064f938035601306502a6ae847e6f"
+    },
+    {
+      "path": "references/standards.md",
+      "sha256": "82c3c6d3eecf1097ad799ff165148d99df7dc8872e7deaad8f4d6a416ea790ae"
+    },
+    {
+      "path": "references/story-map.md",
+      "sha256": "b524804f47bd4fbfb8e07625f3cb9cfedbd2c4aac6d4490b69359f502b28a5ed"
+    },
+    {
+      "path": "references/tools.md",
+      "sha256": "050fdab2095e6b298b1d729df758c311d5feec3258bedde9c94367c39460b62f"
+    },
+    {
+      "path": "references/v0.0.10-validation.md",
+      "sha256": "0a9a460857589af84da3392983b7a1aa00b54265a5e1b595218bbc2398b2e19f"
+    },
+    {
+      "path": "references/v0.0.11-validation.md",
+      "sha256": "965599f9fb2975189b06be9818437b4c8de721eeea2a2a99bb4f124e0bbc8117"
+    },
+    {
+      "path": "references/v0.0.12-validation.md",
+      "sha256": "f643c12cda9c72788c044bdf7270f7bdcbf18dada7a3515d32b2822da6e55019"
+    },
+    {
+      "path": "references/v0.0.5-validation.md",
+      "sha256": "56214edbba288e8c848677b6310fe8d1b218dc350dcae10af8e7e9777d52ea3f"
+    },
+    {
+      "path": "references/v0.0.6-validation.md",
+      "sha256": "9aadd8d2c5e74c0a7bc9d582723beeae2ebebdf69173fdeb5c46187818693748"
+    },
+    {
+      "path": "references/v0.0.7-validation.md",
+      "sha256": "96e10ca3a66484a40af215efa920c3f8c591ecce43829f79c50b25b137627ce5"
+    },
+    {
+      "path": "references/v0.0.8-validation.md",
+      "sha256": "3331909351f9d4ac71c46d6195cbe44986723dc643acb98adac0f6489224bfa2"
+    },
+    {
+      "path": "references/v0.0.9-validation.md",
+      "sha256": "a285165467bfc6ec1e191be6be4e79898d49eb849eefbe4f848fb45d59dc7d70"
+    },
+    {
+      "path": "references/v0.1.2-validation.md",
+      "sha256": "6cfd8722aff02f03a6379e3ec015482956ce9ff3e2d17fa6edd4d4f69d5abf1e"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "195d92b82f91999cc32a0a29cf4f1969d11a2d4dac95317dd6cad57b61e1add0"
+    },
+    {
+      "path": "scripts/_contract.py",
+      "sha256": "2c6b28e573fbba16791a5b2f19d3c8538f2cb8e89931ab57231bb0f3535af8a5"
+    },
+    {
+      "path": "scripts/_evaluation.py",
+      "sha256": "8c10ed973f7b73d2725e00bd312328fd90c4e403450938385b1f32f463d3178c"
+    },
+    {
+      "path": "scripts/_network.py",
+      "sha256": "9088244442044fa05bbcc8962f5701551724481cc65ba4639a75a9caba533be9"
+    },
+    {
+      "path": "scripts/_process.py",
+      "sha256": "399bf0849116e35bbbd27793aabab558d86dee40d78eb30fdd1409c0d9f1c63b"
+    },
+    {
+      "path": "scripts/_review.py",
+      "sha256": "55f0127e0e4cfe25c0640c82bb848a29d8397b0ddcd23f6e1ca5bab1cb5d906e"
+    },
+    {
+      "path": "scripts/_sql.py",
+      "sha256": "a3b62ea234f57a68d5766ddedd85ebe406f8a84470e49218efc6cb85a4c9b9ad"
+    },
+    {
+      "path": "scripts/bind_metrics.py",
+      "sha256": "9b11d262ee579d1bd04a6a53cded43aef610237ef22d6e35ef61a18ad5a0406d"
+    },
+    {
+      "path": "scripts/capture_case.py",
+      "sha256": "4729a9a8b1bde963ba8093eaa857cf6a5bb302e09ce924c41514f4d88e1ed778"
+    },
+    {
+      "path": "scripts/check_consistency.py",
+      "sha256": "66e55cbd703b2783c0cb750a8cbefed0424c0df3838fdb4a80f21c5c8aed2382"
+    },
+    {
+      "path": "scripts/check_constraints.py",
+      "sha256": "b045f51bfd200a06ab5f3eebe0dc34b31d02282b71e5c5bf5872b9921cf0572f"
+    },
+    {
+      "path": "scripts/check_join_graph.py",
+      "sha256": "63be165a112e51d430edfd76ab1d97a46ca921b142b09dafcadd790c14ac86b0"
+    },
+    {
+      "path": "scripts/check_model.py",
+      "sha256": "a12ddb32f3a009e695c4a581739db898ed58500f3b58277e73d2aecf43527c74"
+    },
+    {
+      "path": "scripts/coverage_check.py",
+      "sha256": "6972c182c2fe9be06a332910ed6825bc39b3ea4a9c5143e9966b1d5cef6ab25c"
+    },
+    {
+      "path": "scripts/derive_ontology.py",
+      "sha256": "b75e1f7b17e64345a98354c10eb29570c4aa7fdb4827ad40fe70a5d30adca51b"
+    },
+    {
+      "path": "scripts/detect_isomorphic.py",
+      "sha256": "b6664493ef885255d45ee2d3386f1b637874eb3d2ac97631ae80fa557d0443c5"
+    },
+    {
+      "path": "scripts/export_exchange.py",
+      "sha256": "cebd089c9ba5e5579ce9be4f440d600b83b8e1c38421bd74bf5beb5109d90e1b"
+    },
+    {
+      "path": "scripts/gen_dictionary.py",
+      "sha256": "a503b0d2b0c5da45f95dbaab25283cbab8aec63611a7c6de1ebe2010d76991cf"
+    },
+    {
+      "path": "scripts/gen_eval_cases.py",
+      "sha256": "61c0df0955a32841c94742493e300b7757d3cd51a3129a04f894736141b825a0"
+    },
+    {
+      "path": "scripts/gen_metadata.py",
+      "sha256": "5c7348fa9b1a8669e3576f00987238360d73364f271c26ee2407831c810a408d"
+    },
+    {
+      "path": "scripts/gold_lint.py",
+      "sha256": "efa8c7eff1b9217e6d8c6f4fa55c4dbe5aeda6e39882195055913ad16c880331"
+    },
+    {
+      "path": "scripts/gold_seed.py",
+      "sha256": "88ecf7a6118008f2f2d421bd7a71196aebcc63c4be75189c860087ec4f390011"
+    },
+    {
+      "path": "scripts/guide_model.py",
+      "sha256": "950aa00c91b06ba690487cce829dba0e545987063ccbc5d86fdad26b222d45d7"
+    },
+    {
+      "path": "scripts/harvest_metrics.py",
+      "sha256": "c2ca7685547b7ebbae202ae1f83172570de9c047719a8487b6f228b3a102892a"
+    },
+    {
+      "path": "scripts/impact_analysis.py",
+      "sha256": "31220baa45aa5f2dc51045f8312f28f90c5e96f1f8076133247da583426f94fe"
+    },
+    {
+      "path": "scripts/ingest_ddl.py",
+      "sha256": "86b82e19297c5b7f232f2f3c1acd4abd9c56cfb0e8d02ed43c63df527d16d111"
+    },
+    {
+      "path": "scripts/ingest_feedback.py",
+      "sha256": "e930dc93285147b56d4d709518f6845bfa6bc48d1cdd5644648924badf3896a4"
+    },
+    {
+      "path": "scripts/patch_model.py",
+      "sha256": "c39e8391f355bef5341de55cf7f4e847b05f8c17bcb1ed16b7c49ba4da39e135"
+    },
+    {
+      "path": "scripts/plan_stability.py",
+      "sha256": "9c025350f61bde2a9cd4f2d8bde2062893b0d51fbd0213c73b4f75f5b608c83d"
+    },
+    {
+      "path": "scripts/probe_model.py",
+      "sha256": "73010900473a70c84f1936326a5a8e0c866fe726853a2d21e4787635947224a6"
+    },
+    {
+      "path": "scripts/profile_db.py",
+      "sha256": "e2a1cc426e09477fab9e06e3ed4d2f7e1c7075f0fb9d78455b5826b1dcca018a"
+    },
+    {
+      "path": "scripts/promote_draft.py",
+      "sha256": "64f2a8467d52a04bf1107fa801c5ec1a39f74178732ea03e12bbeb877b560b18"
+    },
+    {
+      "path": "scripts/promote_gold.py",
+      "sha256": "878acbf3cffc2d40bcd7fd7640ca9608c5a24b1f256c210c0cebac3b7a614188"
+    },
+    {
+      "path": "scripts/propose_dws.py",
+      "sha256": "d5e111c74aa56ef35ecdc74da6255dc1332bb9ad3948f3b1a274c788565b5685"
+    },
+    {
+      "path": "scripts/query_bundle.py",
+      "sha256": "a56b06db26f6ab4f76a0c6f02671339ee133bc105e59b649cf3197acf43b4b6a"
+    },
+    {
+      "path": "scripts/rebuild.py",
+      "sha256": "7560ad79fe9557ea68888f03b5f0028075641107448f8991a416e96f2081d767"
+    },
+    {
+      "path": "scripts/reconcile_paths.py",
+      "sha256": "4f26304e3cb12705d3fc8120d7b5ae982056c1170e6bf9911f9c7ba9fc2b1d6b"
+    },
+    {
+      "path": "scripts/release_gate.py",
+      "sha256": "9843826cf765372e61afae386664159f66a1e93522116a4b35f127176020d562"
+    },
+    {
+      "path": "scripts/run_eval.py",
+      "sha256": "2e522e5b46e66c9eb3d4562c4ec7e60bed3f71d34ef8695ded06459f8baf6021"
+    },
+    {
+      "path": "scripts/select_context.py",
+      "sha256": "3cbd059847ed1b7f6a8422f671daf7b29cec6d30913ca775625a40fa7c4aaf10"
+    },
+    {
+      "path": "scripts/start.py",
+      "sha256": "2965216332cc86e8f0f8a62f72267dbeaa035801d4e5234611a9e5d5f40093e4"
+    },
+    {
+      "path": "scripts/suggest_card.py",
+      "sha256": "5acc5443ed40ce4696da2ffb97fa193c51c4207b6111045928c2353cd1250b7b"
+    },
+    {
+      "path": "scripts/visualize_model.py",
+      "sha256": "0601bdd8dd772efed98c0a1b0118ac0fb44912b3b077f91bc9847d94d2162c71"
+    },
+    {
+      "path": "starter_packs/README.md",
+      "sha256": "42849c59183be68258a8812a4568332b80d4d3de4738bef1cf27bf2f1c8d5f6c"
+    },
+    {
+      "path": "starter_packs/finance.yaml",
+      "sha256": "8b5bfbbddd3e32521bcfae65049a766e403bdee4f0b7212cdfa225de4d713b1c"
+    },
+    {
+      "path": "starter_packs/general.yaml",
+      "sha256": "b4ab6d4376afc338b36132fd98843cf24f85ecd967cabcea6484676ee28be78a"
+    },
+    {
+      "path": "starter_packs/government.yaml",
+      "sha256": "99011057894f12e5e30f8d4ece6f4262c8d36861c7fdf95725a4e08241b048f6"
+    },
+    {
+      "path": "starter_packs/healthcare.yaml",
+      "sha256": "ee233792fd9a5f89e6263c50e5b332a4c981347519de71800b0a44e0be42bb33"
+    },
+    {
+      "path": "starter_packs/higher_vocational_diagnostic.yaml",
+      "sha256": "ae7df627c9a2cda3acd7fdc80ac6cf5f9834d0504b15b892237c035bd9b2c07b"
+    },
+    {
+      "path": "starter_packs/manufacturing.yaml",
+      "sha256": "09e6746ca6f02584aa5955d45899b6c2935304a5fa6383673ab91c4f56a825cd"
+    },
+    {
+      "path": "starter_packs/retail.yaml",
+      "sha256": "46b2cbe5f889086bb1d0cd0abecde24d1277bc667ed7e4c00848351ce3b531a2"
+    },
+    {
+      "path": "starter_packs/traffic.yaml",
+      "sha256": "ab113c563fb7c55cea70c699e84b7a0051e9e16717ce2666d26d52d00470c5d6"
+    },
+    {
+      "path": "workbench/README.md",
+      "sha256": "4fa3207fd69fc19416d97dee10801368733a130e69111df04712c3c06291bd7f"
+    },
+    {
+      "path": "workbench/__init__.py",
+      "sha256": "529c95fe7b78a57731a6800a8eeafcd7f396653a3b5ed1959ddce0dce78a8e2e"
+    },
+    {
+      "path": "workbench/demo.py",
+      "sha256": "75000306214dd3841fe934b82fd3c4aefd81a109bb00fe8ea74b6e5916ab8735"
+    },
+    {
+      "path": "workbench/serve.py",
+      "sha256": "c2ea59362453db4004bdccc35cce70d90b4c72504df7415aa144403a5f352de4"
+    },
+    {
+      "path": "workbench/service.py",
+      "sha256": "98a816c99aaa2def0b63f6b548c13824879e51bfc92cdfa46c07383ca018fb43"
+    },
+    {
+      "path": "workbench/static/app.js",
+      "sha256": "2742d004d3f62c3553bc2c1330943a62290239d5fff4bd854f61fb9c278c1782"
+    },
+    {
+      "path": "workbench/static/index.html",
+      "sha256": "be39d63b9b8ec09cc9733cb7ff24cc22120adf65a854027821bc8de7832427c6"
+    },
+    {
+      "path": "workbench/static/style.css",
+      "sha256": "b4a7b232a82f4e2a7eedffac0933ab023d62bfac7eb154de291e1ccb581ee193"
+    },
+    {
+      "path": "workbench/store.py",
+      "sha256": "e1c22bf76c9a71bd2402975548b14ae66c9bd4727a09a63f90f590f7211866d5"
+    }
+  ],
+  "name": "ai-data-delivery",
+  "source_commit": "414ab473b2d893de9fe061746f11011b60ff40a3",
+  "version": "0.1.2"
+}

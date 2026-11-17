@@ -1,43 +1,57 @@
-## Description: <br>
-Design multicolor flow cytometry panels minimizing spectral overlap. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Design multicolor flow cytometry panels minimizing spectral overlap.
 
-## Publisher: <br>
-[AIPOCH-AI](https://clawhub.ai/user/AIPOCH-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aipoch-ai](https://clawhub.ai/user/aipoch-ai)
 
-## Use Case: <br>
-External users and developers can use this skill to draft multicolor flow cytometry marker-fluorophore assignments, estimate spectral overlap, and identify compensation needs. The output should be treated as a planning aid rather than validated laboratory guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The panel design output is a simplified planning aid and may not reflect validated laboratory performance. <br>
-Mitigation: Review assignments, overlap estimates, and compensation recommendations with appropriate laboratory validation before use. <br>
-Risk: Some documented CLI options are not implemented by the artifact script. <br>
-Mitigation: Use the implemented options shown by the script help and verify expected behavior before relying on generated output. <br>
-Risk: The skill executes a local Python script. <br>
-Mitigation: Run it in a controlled workspace after reviewing the script and its inputs. <br>
+## Use Case:
 
+Developers and lab practitioners use this skill to draft multicolor flow cytometry panel assignments, estimate spectral overlap, and identify compensation needs for marker-fluorophore planning.
 
-## Reference(s): <br>
-- [Flow Panel Designer on ClawHub](https://clawhub.ai/AIPOCH-AI/flow-panel-designer) <br>
-- [AIPOCH-AI publisher profile](https://clawhub.ai/user/AIPOCH-AI) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text panel assignments with overlap and compensation notes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No extra Python packages required; output is a simplified planning aid.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The release evidence notes a documentation mismatch around advertised output behavior.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Confirm the supported command-line options and capture stdout explicitly before relying on file output in a workflow.
+
+Risk: Panel assignments and overlap estimates are simplified planning assistance.
+
+Mitigation: Have qualified lab personnel review recommendations and validate compensation controls on the target instrument before experimental or clinical use.
+
+Risk: The skill executes a local Python script in the workspace.
+
+Mitigation: Run it in a sandboxed workspace and inspect generated text outputs before using them downstream.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/aipoch-ai/skills/flow-panel-designer)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text panel report with marker-fluorochrome assignments, overlap estimates, and compensation notes.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs as a local Python script with no extra Python packages required.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata and changelog; artifact frontmatter reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

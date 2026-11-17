@@ -1,0 +1,5 @@
+# BidHunter 可选依赖（v2.0+ 招标文件 AI 速读 PDF/Word 需要）
+# 未安装时自动降级为正则抽取，功能仍可用，但结构化解析质量较低。
+# 安装：pip install -r requirements.txt
+PyPDF2>=3.0.0
+python-docx>=0.8.11

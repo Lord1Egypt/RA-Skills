@@ -1,6 +1,6 @@
 {
-  "ownerId": "kn71xfc29hgzt1g5a40h0a6rhh83ewm9",
-  "slug": "youcom-search",
   "version": "0.1.5",
-  "publishedAt": 1780509535815
+  "author": "Crabsticksalad",
+  "tags": ["search", "web", "youcom", "research", "extraction"],
+  "description": "you.com web search, deep research, and content extraction. Free tier for basic search; research and extract require paid API key. Sends queries and URLs to you.com — do not use for internal/private URLs or sensitive data."
 }

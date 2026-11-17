@@ -1,45 +1,60 @@
-## Description: <br>
-AI Agent Skills Manager installs and manages OpenClaw skill packages with an interactive selection flow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Installs and manages OpenClaw skill packages with an interactive selection interface.
 
-## Publisher: <br>
-[linshuikeji](https://clawhub.ai/user/linshuikeji) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linshuikeji](https://clawhub.ai/user/linshuikeji)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to select, install, and manage OpenClaw agent skills from a command-line installer. It supports batch installation and guidance for sharing the installer with other developers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The installer installs unpinned third-party skills into an auto-loaded OpenClaw skills directory. <br>
-Mitigation: Review the external repository and each selected skill folder, prefer a pinned commit or signed release, and scan the installed files before deployment. <br>
-Risk: The documentation describes an optional system-wide installation path that uses sudo. <br>
-Mitigation: Use the default user-level installation unless system-wide access is required, and limit privileged copies to reviewed installer files. <br>
-Risk: Installed skill behavior can change the agent's future responses and workflows. <br>
-Mitigation: Monitor agent behavior after installation and remove unexpected or unwanted skill folders from ~/.openclaw/skills. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to select and install OpenClaw agent skills, including batch installation workflows.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/linshuikeji/ai-agent-skills-manager) <br>
-- [pskoett/pskoett-ai-skills](https://github.com/pskoett/pskoett-ai-skills) <br>
-- [Agent Skills specification](https://agentskills.io/specification) <br>
-- [OpenClaw documentation](https://docs.openclaw.ai) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance, Markdown] <br>
-**Output Format:** [Markdown with inline shell commands and installation guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide users to clone an external repository and copy selected skill folders into ~/.openclaw/skills.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence; artifact metadata reports 1.0.1) <br>
+Risk: Installs unverified third-party skill content into an auto-loaded OpenClaw skill directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the upstream repository and copied skill contents before use; prefer a pinned commit or signed release.
+
+Risk: Uses a shared /tmp/pskoett-ai-skills path for the clone and install workflow.
+
+Mitigation: Use a private temporary directory or clear and recreate the shared path before installation.
+
+Risk: System-wide installation through /usr/local/bin increases trust requirements for the script.
+
+Mitigation: Avoid the sudo installation path unless system-wide access is required and the script has been reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/linshuikeji/skills/ai-agent-skills-manager)
+- [Repository cloned by installer](https://github.com/pskoett/pskoett-ai-skills)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [OpenClaw documentation](https://docs.openclaw.ai)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and interactive terminal prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create files under ~/.openclaw/skills and write installation logs when bundled shell scripts are executed.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

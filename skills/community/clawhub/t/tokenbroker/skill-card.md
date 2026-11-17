@@ -1,53 +1,60 @@
-## Description: <br>
-AI Agent Skill for GitHub project analysis and nad.fun token launch. Analyzes repos, generates token identity/promo, and launches on nad.fun. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI Agent Skill for GitHub project analysis and nad.fun token launch. Analyzes repos, generates token identity/promo, and launches on nad.fun.
 
-## Publisher: <br>
-[starrftw](https://clawhub.ai/user/starrftw) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT <br>
+## Publisher:
 
+[starrftw](https://clawhub.ai/user/starrftw)
 
-## Use Case: <br>
-Developers and builders use Tokenbroker to analyze GitHub projects, generate token identity and promotional materials, and prepare nad.fun launch assets for review and execution. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT
 
-## Known Risks and Mitigations: <br>
-Risk: Mainnet-capable token launch preparation and external upload or transaction steps can create irreversible financial exposure. <br>
-Mitigation: Use testnet first and require explicit approval before external uploads, public posting, or any mainnet transaction. <br>
-Risk: Wallet keys, GitHub tokens, and nad.fun API keys may be exposed if handled outside the intended local environment. <br>
-Mitigation: Avoid primary wallets and raw private keys, restrict GitHub token scope, and keep credentials in local environment variables or an excluded .env file. <br>
-Risk: Generated token metadata and promotional copy may contain unsupported claims or misleading financial language. <br>
-Mitigation: Review all generated token metadata and promotional content before publication. <br>
-Risk: Cross-skill delegation can trigger actions in other skills without enough user awareness. <br>
-Mitigation: Require explicit approval before delegating launch, wallet, posting, or safety-review actions to other skills. <br>
+## Use Case:
 
+Developers and agents use Tokenbroker to analyze GitHub projects, propose token identity and launch metadata, prepare nad.fun upload assets, and draft promotional launch content. The skill supports launch preparation and orchestration, with sensitive wallet and deployment steps requiring explicit review.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/starrftw/tokenbroker) <br>
-- [Tokenbroker Skill Definition](artifact/SKILL.md) <br>
-- [Setup Guide](artifact/SETUP.md) <br>
-- [Project Scan Guide](artifact/PROJECT-SCAN.md) <br>
-- [Token Metadata Guide](artifact/METADATA.md) <br>
-- [Launch Orchestration Guide](artifact/LAUNCH.md) <br>
-- [Promotion Guide](artifact/PROMO.md) <br>
-- [Builder Reputation Guide](artifact/STATS.md) <br>
-- [nad.fun Skill Reference](https://nad.fun/skill.md) <br>
-- [Monad Development Skill Reference](https://gist.github.com/moltilad/31707d0fc206b960f4cbb13ea11954c2) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON-like launch metadata, TypeScript examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces project scan summaries, token metadata proposals, promotional drafts, and launch-preparation guidance for agent review workflows.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release metadata) <br>
+Risk: Credential handling during setup can expose GitHub tokens, API keys, or wallet private keys if copied into shell commands or plaintext files without care.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned, verified installer; avoid exporting real GitHub tokens into install commands; prefer host-injected credentials; and review any .env file and permissions before use.
+
+Risk: nad.fun uploads, mainnet preparation, or delegated token deployment can create externally visible assets or lead to on-chain actions.
+
+Mitigation: Prefer testnet-only configuration and require explicit human confirmation before uploads, mainnet preparation, transaction signing, or downstream deployment.
+
+Risk: Generated token identity, investment thesis, reputation, or promotional text may overstate project quality or launch legitimacy.
+
+Mitigation: Review generated metadata, claims, social drafts, and builder reputation outputs before publishing or using them for launch decisions.
+
+## Reference(s):
+
+- [Tokenbroker ClawHub page](https://clawhub.ai/starrftw/skills/tokenbroker)
+- [nad.fun agent documentation](https://nad.fun/llms.txt)
+- [nad.fun skill documentation](https://nad.fun/skill.md)
+- [monad-development skill reference](https://gist.github.com/moltilad/31707d0fc206b960f4cbb13ea11954c2)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance, TypeScript examples, JSON-style launch metadata, shell commands, and generated social post drafts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include token identity proposals, launch preparation data, nad.fun API upload results, salt mining results, and promotional copy for X, Telegram, Discord, and Reddit.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release metadata; artifact SKILL.md frontmatter reports 1.01 and artifact/_meta.json reports 1.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

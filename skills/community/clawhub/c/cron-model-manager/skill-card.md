@@ -1,41 +1,53 @@
-## Description: <br>
-管理 OpenClaw 定时任务，包括查看、模型切换、启用或禁用、手动触发和删除任务。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manages OpenClaw cron jobs by listing jobs, changing models, enabling or disabling jobs, manually running jobs, and deleting jobs.
 
-## Publisher: <br>
-[lgugeng](https://clawhub.ai/user/lgugeng) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[lgugeng](https://clawhub.ai/user/lgugeng)
 
-## Use Case: <br>
-Developers and OpenClaw users use this skill to inspect and manage scheduled OpenClaw jobs through the OpenClaw CLI. It supports operational changes such as switching task models, enabling or disabling jobs, manually triggering runs, and deleting tasks after confirmation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can change, run, disable, enable, or delete scheduled OpenClaw tasks. <br>
-Mitigation: Require the agent to show the exact task ID and command before executing any task-changing operation. <br>
-Risk: The skill suggests a persistent edit to ~/.openclaw/openclaw.json when a toolCall configuration error appears. <br>
-Mitigation: Do not allow that sed command unless you explicitly approve it and have a backup of the OpenClaw configuration file. <br>
+## Use Case:
 
+Developers and OpenClaw users use this skill to inspect and manage scheduled OpenClaw cron jobs through CLI commands, including model changes and controlled state changes.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/lgugeng/cron-model-manager) <br>
-- [Publisher profile](https://clawhub.ai/user/lgugeng) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires user review of task IDs and commands before edits, runs, enablement changes, disablement changes, or deletion.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can manage OpenClaw scheduled jobs with state-changing commands, including model changes, enable or disable operations, manual runs, and deletion.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit user confirmation before any enable, disable, run, delete, or model-change action.
+
+Risk: The skill can automatically edit persistent OpenClaw configuration when repairing an unsupported toolCall key.
+
+Mitigation: Make a backup before the repair and validate the JSON configuration afterward; avoid the automatic repair if those checks cannot be performed.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/lgugeng/skills/cron-model-manager)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [State-changing actions require user confirmation before execution.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

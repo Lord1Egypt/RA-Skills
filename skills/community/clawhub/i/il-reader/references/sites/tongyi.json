@@ -1,0 +1,838 @@
+{
+  "version": "2.4.0",
+  "source_id": "tongyi",
+  "status": "blocked",
+  "checked_at": "2026-10-09T09:02:31.424Z",
+  "entry": {
+    "url": "https://www.tongyi.com/",
+    "final_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+    "title": "千问-阿里 AI 助手",
+    "status": "redirect_identity_pending",
+    "http_status": 200,
+    "checked_at": "2026-10-09T09:02:31.424Z",
+    "identity": {
+      "declared_name": "通义千问／通义",
+      "hostname": "www.qianwen.com",
+      "domain_matches": false
+    },
+    "links": [],
+    "frames": []
+  },
+  "controls": [
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "收起侧边栏",
+      "label": "",
+      "aria_label": "收起侧边栏",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "收起侧边栏",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "日常",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "日常",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "工作",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "tab",
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "工作",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "div",
+      "type": null,
+      "text": "向千问提问",
+      "label": "",
+      "aria_label": null,
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": "textbox",
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "添加附件",
+      "label": "",
+      "aria_label": "添加附件",
+      "placeholder": null,
+      "name": null,
+      "id": "radix-:rs:",
+      "css": "#radix-\\:rs\\:",
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "快速",
+      "label": "",
+      "aria_label": "快速",
+      "placeholder": null,
+      "name": null,
+      "id": "radix-:rv:",
+      "css": "#radix-\\:rv\\:",
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "PPT创作",
+      "label": "",
+      "aria_label": "PPT创作",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "PPT创作",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "更多",
+      "label": "",
+      "aria_label": "更多",
+      "placeholder": null,
+      "name": null,
+      "id": "radix-:r2c:",
+      "css": "#radix-\\:r2c\\:",
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "快速",
+      "label": "",
+      "aria_label": "快速",
+      "placeholder": null,
+      "name": null,
+      "id": "radix-:r1d:",
+      "css": "#radix-\\:r1d\\:",
+      "role": null,
+      "form_action": null,
+      "locator": null,
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "PPT创作",
+      "label": "",
+      "aria_label": "PPT创作",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "PPT创作",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "AI生视频",
+      "label": "",
+      "aria_label": "AI生视频",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "AI生视频",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "AI生图",
+      "label": "",
+      "aria_label": "AI生图",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "AI生图",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "代码",
+      "label": "",
+      "aria_label": "代码",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "代码",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "翻译",
+      "label": "",
+      "aria_label": "翻译",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "翻译",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "AI写作",
+      "label": "",
+      "aria_label": "AI写作",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "AI写作",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "高考",
+      "label": "",
+      "aria_label": "高考",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "高考",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "实时记录",
+      "label": "",
+      "aria_label": "实时记录",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "实时记录",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "音视频速读",
+      "label": "",
+      "aria_label": "音视频速读",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "音视频速读",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "更多",
+      "label": "",
+      "aria_label": "更多",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "更多",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    },
+    {
+      "tag": "button",
+      "type": "button",
+      "text": "发送消息",
+      "label": "",
+      "aria_label": "发送消息",
+      "placeholder": null,
+      "name": null,
+      "id": "",
+      "css": null,
+      "role": null,
+      "form_action": null,
+      "locator": {
+        "role": "button",
+        "name": "发送消息",
+        "exact": true
+      },
+      "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+      "observed_at": "2026-10-09T09:02:29.304Z"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "tongyi:record-lookup",
+      "source_id": "tongyi",
+      "task_kind": "record-lookup",
+      "status": "blocked",
+      "parameters": [
+        "title_or_identifier",
+        "author",
+        "institution",
+        "date_or_year",
+        "resource_type",
+        "target_field"
+      ],
+      "instructions": [
+        "使用本题实体或唯一标识查找；在真实结果容器内匹配题名、作者、机构、年份或ID，打开详情读取目标字段。"
+      ],
+      "transitions": {},
+      "entry_url": "https://www.tongyi.com/",
+      "controls": [
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "收起侧边栏",
+          "label": "",
+          "aria_label": "收起侧边栏",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "收起侧边栏",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "日常",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "日常",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "工作",
+          "label": "",
+          "aria_label": null,
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": "tab",
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "工作",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "PPT创作",
+          "label": "",
+          "aria_label": "PPT创作",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "PPT创作",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "PPT创作",
+          "label": "",
+          "aria_label": "PPT创作",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "PPT创作",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "AI生视频",
+          "label": "",
+          "aria_label": "AI生视频",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "AI生视频",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "AI生图",
+          "label": "",
+          "aria_label": "AI生图",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "AI生图",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "代码",
+          "label": "",
+          "aria_label": "代码",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "代码",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "翻译",
+          "label": "",
+          "aria_label": "翻译",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "翻译",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "AI写作",
+          "label": "",
+          "aria_label": "AI写作",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "AI写作",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "高考",
+          "label": "",
+          "aria_label": "高考",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "高考",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "实时记录",
+          "label": "",
+          "aria_label": "实时记录",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "实时记录",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "音视频速读",
+          "label": "",
+          "aria_label": "音视频速读",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "音视频速读",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "更多",
+          "label": "",
+          "aria_label": "更多",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "更多",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        },
+        {
+          "tag": "button",
+          "type": "button",
+          "text": "发送消息",
+          "label": "",
+          "aria_label": "发送消息",
+          "placeholder": null,
+          "name": null,
+          "id": "",
+          "css": null,
+          "role": null,
+          "form_action": null,
+          "locator": {
+            "role": "button",
+            "name": "发送消息",
+            "exact": true
+          },
+          "observed_url": "https://www.qianwen.com/?ch=tongyi_redirect",
+          "observed_at": "2026-10-09T09:02:29.304Z"
+        }
+      ],
+      "pending": [
+        "结果容器、完成标志与页面打开方式仍需真实查询确认"
+      ],
+      "result_items": {
+        "status": "pending",
+        "locator": null,
+        "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+      },
+      "record_identity": {
+        "status": "pending",
+        "fields": []
+      },
+      "detail_fields": {
+        "status": "pending",
+        "fields": []
+      },
+      "completion": {
+        "status": "pending",
+        "ready": null,
+        "empty": null,
+        "loading": null,
+        "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+      }
+    }
+  ],
+  "blockers": [
+    {
+      "kind": "redirect_identity_pending",
+      "detail": "入口重定向到目录声明范围外，需根据发布机构核对新身份，未自动授予权威来源身份。"
+    }
+  ],
+  "provenance": {
+    "catalog_source_id": "tongyi",
+    "quiz_entries": [],
+    "example_ids": [],
+    "method": "参数化操作学习；不分发整题、答案或解析",
+    "audit": {
+      "checked_at": "2026-10-09T09:02:31.424Z",
+      "browser": "Google Chrome",
+      "api": "Playwright JavaScript library",
+      "snapshot": "validation/site-audit-v24/tongyi-entry.json",
+      "original_entry_snapshot": "validation/site-audit-v24/tongyi-entry.json",
+      "identity_limit": "匹配来源域名不等于核验所有内容；查询未执行时不得声称检索验证完成。",
+      "published_url_policy": "动态验证码、登录回跳和会话令牌不固化为流程入口；原始现场快照仅在validation留存。"
+    }
+  },
+  "result_items": {
+    "status": "pending",
+    "locator": null,
+    "notes": "仅入口或查询容器已观察；列表重复条目定位器仍待确认"
+  },
+  "record_identity": {
+    "status": "pending",
+    "fields": []
+  },
+  "detail_fields": {
+    "status": "pending",
+    "fields": []
+  },
+  "completion": {
+    "status": "pending",
+    "ready": null,
+    "empty": null,
+    "loading": null,
+    "rule": "首次本题实际检索确认完成、零结果和失败标志；首页可达不等于查询完成"
+  }
+}

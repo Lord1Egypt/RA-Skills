@@ -1,39 +1,58 @@
-## Description: <br>
-Jarvis Stock Price helps agents look up real-time China A-share stock prices with price movement, volume, and 5-day, 10-day, and 20-day moving averages. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Jarvis Stock Price helps agents look up real-time Shanghai and Shenzhen A-share stock prices with change, volume, and 5-day, 10-day, and 20-day moving averages.
 
-## Publisher: <br>
-[15910701838](https://clawhub.ai/user/15910701838) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[15910701838](https://clawhub.ai/user/15910701838)
 
-## Use Case: <br>
-External users and agents can use this skill to retrieve informational A-share stock data by code or name. It is suitable for quick market lookups and should not be treated as investment advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill depends on the @tdx-local package and external/local market data availability. <br>
-Mitigation: Verify the dependency source before installation and confirm data freshness before relying on returned prices. <br>
-Risk: Stock results and the linked paid monitoring offer could be mistaken for investment advice. <br>
-Mitigation: Present outputs as informational only and keep the non-investment-advice limitation visible to users. <br>
+## Use Case:
 
+Developers and agents use this skill to query Chinese A-share stock price data by ticker or name and present current price, change, volume, and moving-average context. Outputs should be treated as informational market data, not investment advice.
 
-## Reference(s): <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, code, guidance] <br>
-**Output Format:** [Structured text object with stock code, name, price, change, volume, moving averages, and update time] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are informational stock data only and may depend on the availability and trustworthiness of the @tdx-local data source.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact documentation) <br>
+Risk: Stock data and moving-average output could be mistaken for financial advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Present outputs as informational only and encourage users to verify data before making financial decisions.
+
+Risk: The skill depends on an external @tdx-local provider that is not included in the artifact.
+
+Mitigation: Confirm the provider is installed, trusted, and configured before using the skill.
+
+Risk: The skill includes a disclosed upsell to a paid stock monitoring service.
+
+Mitigation: Keep the free lookup behavior distinct from paid monitoring features and disclose the service boundary to users.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/15910701838/skills/jarvis-stock-price)
+- [Jarvis stock monitoring service](https://clawhub.ai/15910701838/jarvis-stock-monitor)
+
+## Skill Output:
+
+**Output Type(s):** [text, data]
+
+**Output Format:** [Text or JSON-compatible stock quote fields]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Includes ticker, name, price, change, change percent, volume, moving averages, and update time when data is available.]
+
+## Skill Version(s):
+
+1.0.0 (source: server evidence release.version and artifact SKILL.md)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

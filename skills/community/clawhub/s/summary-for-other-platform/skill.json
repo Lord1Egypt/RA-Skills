@@ -1,0 +1,19 @@
+{
+  "name": "summary-for-other-platform",
+  "version": "1.0.0",
+  "description": "当用户想把当前问题总结后去问其他平台（豆包/DeepSeek等）时，自动输出三段式问题总结：背景、问题、已尝试方案，方便直接复制使用。",
+  "author": "jufangyuan",
+  "metadata": {
+    "tags": [
+      "summary",
+      "question",
+      "cross-platform",
+      "productivity",
+      "chinese"
+    ],
+    "categories": [
+      "Productivity",
+      "Communication"
+    ]
+  }
+}

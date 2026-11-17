@@ -1,0 +1,485 @@
+# ============================================================================
+# Capability Dimensions v1.0 — 能力维度定义与工具映射
+# ============================================================================
+# 用途：
+#   1. 定义统一的能力分类体系（~12 维度）
+#   2. 映射已知工具到各维度的能力评分（0-10）
+#   3. T0（核心工具）手动精标，T1（已知工具）从 tags/description 自动推断
+#   4. T2（新发现工具）由 Phase 3 社区 Feed 自动推断
+#
+# 更新方式：手动维护 base + ④-bis 自动回写 + Phase 3 自动扩展
+# ============================================================================
+
+# ──────────────────────────────────────────────
+# 能力维度定义
+# ──────────────────────────────────────────────
+dimensions:
+  - id: web-search
+    name: "Web 搜索"
+    description: "搜索引擎/网页搜索/信息检索"
+    keywords: ["search", "web-search", "搜索引擎", "信息检索"]
+
+  - id: multi-platform-search
+    name: "多平台搜索"
+    description: "跨多个社交媒体/内容平台的聚合搜索"
+    keywords: ["multi-platform", "cross-platform", "social-search", "聚合搜索"]
+
+  - id: web-scrape
+    name: "网页抓取"
+    description: "从网页提取结构化数据/内容抓取"
+    keywords: ["scrape", "crawler", "extract", "抓取"]
+
+  - id: deep-crawl
+    name: "深度爬取"
+    description: "递归爬取网站链接/批量页面处理"
+    keywords: ["crawl", "recursive", "batch", "爬取"]
+
+  - id: code-analysis
+    name: "代码分析"
+    description: "代码结构分析/符号查询/依赖分析/重构"
+    keywords: ["code-analysis", "symbol", "dependency", "refactor", "代码分析"]
+
+  - id: browser-auto
+    name: "浏览器自动化"
+    description: "浏览器操控/截图/表单填写/UI 测试"
+    keywords: ["browser", "automation", "screenshot", "form", "浏览器"]
+
+  - id: session-management
+    name: "会话管理"
+    description: "会话总结/上下文压缩/token 管理/进度追踪"
+    keywords: ["session", "summary", "context", "token", "compress", "会话"]
+
+  - id: error-harvest
+    name: "错误收割"
+    description: "错误分类/频率追踪/预防规则/自进化"
+    keywords: ["error", "harvest", "classification", "prevention", "错误"]
+
+  - id: skill-audit
+    name: "技能审计"
+    description: "技能库扫描/评分/推荐/健康度检查"
+    keywords: ["audit", "skill-check", "scoring", "health", "审计"]
+
+  - id: memory-write
+    name: "记忆写入"
+    description: "分层持久化/全局/项目级记忆管理"
+    keywords: ["memory", "persist", "write", "分层", "记忆"]
+
+  - id: research
+    name: "调研分析"
+    description: "多源信息收集/对比分析/趋势研判"
+    keywords: ["research", "investigation", "analysis", "trend", "调研"]
+
+  - id: file-ops
+    name: "文件操作"
+    description: "文件读写/搜索/编辑/管理"
+    keywords: ["file", "read", "write", "edit", "search", "文件"]
+
+  - id: reasoning
+    name: "推理思考"
+    description: "链式推理/问题分解/假设验证"
+    keywords: ["reasoning", "thinking", "problem-solving", "chain-of-thought", "推理"]
+
+  - id: integration
+    name: "集成连接"
+    description: "API 集成/工具编排/工作流自动化"
+    keywords: ["integration", "workflow", "orchestration", "api", "mcp", "集成"]
+
+# ──────────────────────────────────────────────
+# T0 核心工具 — 能力映射（手动精标）
+# ──────────────────────────────────────────────
+# level: 0-10 能力评分
+# source: 评分依据
+tools:
+  # ---- 搜索调研类 ----
+  - name: agent-reach
+    type: skill
+    capabilities:
+      multi-platform-search:
+        level: 9
+        source: "13 渠道核心能力，手动精标"
+      social-search:
+        level: 9
+        source: "小红书/B站/知乎等多平台社交搜索"
+      web-search:
+        level: 5
+        source: "通过 WebFetch 后端，成功率约 60%"
+      content-aggregation:
+        level: 7
+        source: "多源汇总与对比分析"
+
+  - name: firecrawl
+    type: mcp-server
+    capabilities:
+      web-search:
+        level: 9
+        source: "原生 web search，144k⭐"
+      web-scrape:
+        level: 9
+        source: "JS 渲染+反反爬，144k⭐"
+      deep-crawl:
+        level: 8
+        source: "递归爬取"
+      extract:
+        level: 8
+        source: "结构化数据提取"
+      agent-research:
+        level: 7
+        source: "自主调研 Agent"
+
+  # ---- 浏览器自动化类 ----
+  - name: playwright
+    type: mcp-server
+    capabilities:
+      browser-auto:
+        level: 9
+        source: "官方 Playwright MCP"
+      screenshot:
+        level: 9
+        source: "页面截图"
+      form-fill:
+        level: 8
+        source: "表单填写与交互"
+
+  # ---- 代码分析类 ----
+  - name: codegraph
+    type: mcp-server
+    capabilities:
+      code-analysis:
+        level: 9
+        source: "代码结构查询/符号定位/调用链分析"
+      dependency-graph:
+        level: 8
+        source: "依赖关系图"
+
+  # ---- 会话管理类 ----
+  - name: summarize
+    type: skill
+    capabilities:
+      session-management:
+        level: 9
+        source: "核心能力：会话精炼+进度追踪"
+      error-harvest:
+        level: 9
+        source: "核心能力：5维分类+频率追踪"
+      memory-write:
+        level: 8
+        source: "分层写入：项目/全局/技能/待确认"
+      compress:
+        level: 8
+        source: "可逆压缩+degrade 降级链"
+
+  # ---- 审计类 ----
+  - name: skills-summarize-audit
+    type: skill
+    capabilities:
+      skill-audit:
+        level: 9
+        source: "核心能力：全量扫描+八维评分"
+      project-profiling:
+        level: 8
+        source: "项目技术栈画像+类型识别"
+      scoring:
+        level: 8
+        source: "八维 S/A/B/C/D 评分"
+      capacity-analysis:
+        level: 7
+        source: "多因子有效容量计算"
+
+  # ---- 推理类 ----
+  - name: sequential-thinking
+    type: mcp-server
+    capabilities:
+      reasoning:
+        level: 9
+        source: "链式推理+问题分解"
+
+  # ---- 集成连接类 ----
+  - name: github
+    type: mcp-server
+    capabilities:
+      repo-read:
+        level: 9
+        source: "GitHub API 仓库读取"
+      pr-manage:
+        level: 8
+        source: "PR 创建/审查/合并"
+      code-search:
+        level: 8
+        source: "GitHub code search"
+
+  - name: windows-mcp
+    type: mcp-server
+    capabilities:
+      file-ops:
+        level: 8
+        source: "Windows 文件系统操作"
+      ui-auto:
+        level: 8
+        source: "UI 自动化：点击/输入/截图"
+      process-manage:
+        level: 7
+        source: "进程管理"
+      registry:
+        level: 7
+        source: "注册表读写"
+
+  # ---- 学习类 ----
+  - name: learn
+    type: skill
+    capabilities:
+      video-transcript:
+        level: 8
+        source: "视频转文字"
+      knowledge-import:
+        level: 7
+        source: "AI 总结+知识入库"
+
+# ──────────────────────────────────────────────
+# T1 已知工具 — 自动推断规则
+# ──────────────────────────────────────────────
+# 从 skill-registry.yaml 的 tags + description 自动映射到能力维度。
+# 映射规则：
+#
+#   tag/keyword → 能力维度
+#   "search"    → web-search
+#   "research"  → research
+#   "audit"     → skill-audit
+#   "browser"   → browser-auto
+#   "scrape"    → web-scrape
+#   "crawl"     → deep-crawl
+#   "memory"    → memory-write
+#   "compress"  → session-management
+#   "code"      → code-analysis
+#   "file"      → file-ops
+#   "reason"    → reasoning
+#   "integrat"  → integration
+#
+# 置信度: tag 直接命中 → 7/10, description 含关键词 → 6/10
+# 自动推断的结果写入 .data/auto-capabilities.json 供下次审计参考
+
+# ──────────────────────────────────────────────
+# v9.0.0 新增：已安装 MCP server 的能力映射
+# 来源：Reasonix mcp/*.json 的 tool schema + 手动评估
+# ──────────────────────────────────────────────
+mcp_tools:
+  - name: firecrawl
+    type: mcp
+    capabilities:
+      web-search:
+        level: 9
+        source: "firecrawl_search 工具，多源并搜"
+      web-scrape:
+        level: 9
+        source: "firecrawl_scrape 单页抓取"
+      deep-crawl:
+        level: 9
+        source: "firecrawl_crawl 递归爬取"
+      research:
+        level: 7
+        source: "firecrawl_research_* 研究工具集"
+
+  - name: playwright
+    type: mcp
+    capabilities:
+      browser-auto:
+        level: 10
+        source: "原生浏览器自动化，全功能覆盖"
+      web-scrape:
+        level: 6
+        source: "通过 browser_snapshot 可提取页面内容"
+
+  - name: codegraph
+    type: mcp
+    capabilities:
+      code-analysis:
+        level: 10
+        source: "代码结构/符号/调用链/影响分析的核心工具"
+      file-ops:
+        level: 4
+        source: "通过 query 可读文件"
+
+  - name: windows-mcp
+    type: mcp
+    capabilities:
+      file-ops:
+        level: 9
+        source: "FileSystem 工具全文件操作"
+      integration:
+        level: 8
+        source: "PowerShell/Process/App 控制系统集成"
+      browser-auto:
+        level: 5
+        source: "Snapshot/Click 可控桌面浏览器"
+
+  - name: github
+    type: mcp
+    capabilities:
+      integration:
+        level: 8
+        source: "GitHub API 集成"
+      code-analysis:
+        level: 5
+        source: "可读 repo 内容做基础分析"
+
+  - name: headroom
+    type: mcp
+    capabilities:
+      session-management:
+        level: 8
+        source: "内容压缩/缓存/检索"
+      memory-write:
+        level: 6
+        source: "持久化存储压缩内容"
+
+  - name: rival-search
+    type: mcp
+    capabilities:
+      web-search:
+        level: 9
+        source: "多引擎并行搜索"
+      research:
+        level: 8
+        source: "research_topic 端到端研究"
+      multi-platform-search:
+        level: 8
+        source: "social_search 多平台社交搜索"
+      web-scrape:
+        level: 7
+        source: "content_operations retrieve 抓取"
+
+  - name: node_repl
+    type: mcp
+    capabilities:
+      reasoning:
+        level: 7
+        source: "JavaScript 执行可做计算推理"
+      integration:
+        level: 6
+        source: "可调用 npm 包做集成"
+
+# ──────────────────────────────────────────────
+# v9.0.0 新增：ZCode 11 种 sub-agent 的能力映射
+# 来源：profile.md 的 description + tools 列表 + 实际观察
+# ──────────────────────────────────────────────
+agent_tools:
+  - name: general-purpose
+    type: agent
+    capabilities:
+      reasoning: {level: 7, source: "通用推理"}
+      file-ops: {level: 8, source: "全工具权限"}
+      code-analysis: {level: 6, source: "通用代码处理"}
+      research: {level: 7, source: "通用调研"}
+
+  - name: Explore
+    type: agent
+    capabilities:
+      research: {level: 8, source: "只读搜索广撒网"}
+      file-ops: {level: 7, source: "Read/Bash/Glob"}
+      web-search: {level: 6, source: "WebFetch/WebSearch"}
+
+  - name: data-worker
+    type: agent
+    capabilities:
+      file-ops: {level: 8, source: "大日志批处理"}
+      integration: {level: 6, source: "仓库索引/结构化转换"}
+
+  - name: docs-worker
+    type: agent
+    capabilities:
+      file-ops: {level: 7, source: "文档读写"}
+      reasoning: {level: 5, source: "文档逻辑组织"}
+
+  - name: implementation-worker
+    type: agent
+    capabilities:
+      code-analysis: {level: 8, source: "按 WorkOrder 写代码"}
+      file-ops: {level: 7, source: "Read/Write/Edit"}
+      reasoning: {level: 6, source: "里程碑记录"}
+
+  - name: test-worker
+    type: agent
+    capabilities:
+      code-analysis: {level: 7, source: "复现问题/运行测试"}
+      file-ops: {level: 6, source: "Read/Glob/Grep"}
+
+  - name: quality-expert
+    type: agent
+    capabilities:
+      skill-audit: {level: 8, source: "完成定义/测试策略/质量门禁"}
+      code-analysis: {level: 7, source: "回归范围分析"}
+      reasoning: {level: 8, source: "冻结验证建议"}
+
+  - name: security-expert
+    type: agent
+    capabilities:
+      skill-audit: {level: 7, source: "权限/注入/秘密检测"}
+      reasoning: {level: 8, source: "数据流/副作用边界分析"}
+
+  - name: solution-architect
+    type: agent
+    capabilities:
+      reasoning: {level: 9, source: "总体方案/模块边界"}
+      code-analysis: {level: 7, source: "替代方案/推荐节点 DAG"}
+      research: {level: 7, source: "实施约束分析"}
+
+  - name: research-worker
+    type: agent
+    capabilities:
+      research: {level: 9, source: "批量机械化信息采集"}
+      web-search: {level: 8, source: "WebFetch/WebSearch"}
+      file-ops: {level: 6, source: "Read/Glob/Grep"}
+
+  - name: glm-adversarial-reviewer
+    type: agent
+    capabilities:
+      reasoning: {level: 8, source: "对抗审查/反证"}
+      skill-audit: {level: 7, source: "找不可实现项/越权假设"}
+      code-analysis: {level: 6, source: "不可测验收检测"}
+
+# ──────────────────────────────────────────────
+# 能力维度冲突/互补判定阈值（v9.0.0）
+# 用于 agent-dispatch-ambiguity.md 的 overlap 计算
+# ──────────────────────────────────────────────
+# [local-patch 2026-08-08] 补充 ZCode 会话历史中出现的 5 个 agent（COLLABORATION.md §8 角色体系）
+  - name: manager
+    type: agent
+    capabilities:
+      planning: {level: 8, source: "出《实施方案》/任务拆解"}
+      reasoning: {level: 7, source: "对抗审查/终审确认"}
+      code-analysis: {level: 5, source: "方案评审"}
+  - name: tech-lead
+    type: agent
+    capabilities:
+      code-analysis: {level: 8, source: "spec+质量双审/技能合规"}
+      reasoning: {level: 7, source: "《审查报告》"}
+      file-ops: {level: 5, source: "读代码与规则"}
+  - name: researcher
+    type: agent
+    capabilities:
+      research: {level: 8, source: "多源检索/只读侦察"}
+      web-search: {level: 7, source: "agent-reach 13 渠道"}
+      file-ops: {level: 5, source: "读文件取证"}
+  - name: doc-writer
+    type: agent
+    capabilities:
+      file-ops: {level: 8, source: "文档撰写/格式化"}
+      code-analysis: {level: 6, source: "测试落码/样板代码"}
+      reasoning: {level: 5, source: "文档结构组织"}
+  - name: debugger
+    type: agent
+    capabilities:
+      code-analysis: {level: 8, source: "根因定位/影响分析"}
+      file-ops: {level: 6, source: "读代码定位"}
+      reasoning: {level: 6, source: "修复建议"}
+
+overlap_thresholds:
+  capability_jaccard:
+    high_conflict: 0.7    # >= 0.7 触发合并建议
+    medium_conflict: 0.5  # >= 0.5 触发边界澄清
+    complementary: 0.3    # < 0.3 且有共同画像词 → 互补
+  weighted_overlap:
+    high_conflict: 0.6
+    medium_conflict: 0.4
+  dispatch_frequency_diff:
+    critical: 0.3         # 调用频次差异 >= 30% 触发风险
+    warning: 0.2

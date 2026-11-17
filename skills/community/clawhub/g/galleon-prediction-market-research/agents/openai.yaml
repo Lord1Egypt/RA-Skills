@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research market identity, rules and bounded order-book depth"
+  short_description: "Inspect prediction markets without a signing key"
+  default_prompt: "Use $galleon-prediction-market-research to research market identity, rules and bounded order-book depth."

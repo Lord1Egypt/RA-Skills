@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI行业周报 | 第XX周 (MM/DD-MM/DD)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b;
+    --accent: #2563eb; --accent2: #7c3aed; --accent3: #059669;
+    --accent4: #dc2626; --accent5: #ea580c; --border: #e2e8f0;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08); --radius: 12px;
+    --chart-bg: #f8fafc; --chart-border: #e2e8f0;
+  }
+  /* ── 暗色模式 ── */
+  [data-theme="dark"] {
+    --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --muted: #94a3b8;
+    --accent: #3b82f6; --accent2: #a78bfa; --accent3: #34d399;
+    --accent4: #f87171; --accent5: #fb923c; --border: #334155;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3); --chart-bg: #1e293b; --chart-border: #334155;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --muted: #94a3b8;
+      --accent: #3b82f6; --accent2: #a78bfa; --accent3: #34d399;
+      --accent4: #f87171; --accent5: #fb923c; --border: #334155;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3); --chart-bg: #1e293b; --chart-border: #334155;
+    }
+    :root:not([data-theme="light"]) .cover {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4c1d95 100%);
+    }
+    :root:not([data-theme="light"]) .chart-box,
+    :root:not([data-theme="light"]) .chart-full {
+      background: var(--chart-bg); border-color: var(--chart-border);
+    }
+    :root:not([data-theme="light"]) .lb-item,
+    :root:not([data-theme="light"]) .trend-card {
+      background: #0f172a; border-color: var(--border);
+    }
+    :root:not([data-theme="light"]) .deal-table th {
+      background: #0f172a;
+    }
+  }
+  [data-theme="dark"] .cover {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4c1d95 100%);
+  }
+  [data-theme="dark"] .chart-box,
+  [data-theme="dark"] .chart-full {
+    background: var(--chart-bg); border-color: var(--chart-border);
+  }
+  [data-theme="dark"] .lb-item,
+  [data-theme="dark"] .trend-card {
+    background: #0f172a; border-color: var(--border);
+  }
+  [data-theme="dark"] .deal-table th {
+    background: #0f172a;
+  }
+  /* ── 主题切换按钮 ── */
+  .theme-toggle {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border);
+    background: var(--card); cursor: pointer; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow); transition: all 0.2s;
+  }
+  .theme-toggle:hover { transform: scale(1.1); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.7;
+    max-width: 1100px; margin: 0 auto; padding: 20px;
+  }
+  .cover {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 40%, #7c3aed 100%);
+    color: white; border-radius: 16px; padding: 48px 40px; margin-bottom: 32px;
+    position: relative; overflow: hidden;
+  }
+  .cover::after { content:''; position:absolute; top:-60px; right:-60px; width:240px; height:240px; background:rgba(255,255,255,0.06); border-radius:50%; }
+  .cover .label { display:inline-block; background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.25); border-radius:20px; padding:4px 14px; font-size:13px; margin-bottom:16px; }
+  .cover h1 { font-size:32px; font-weight:800; margin-bottom:8px; }
+  .cover .subtitle { font-size:16px; opacity:0.85; margin-bottom:24px; }
+  .cover .meta { display:flex; gap:24px; flex-wrap:wrap; font-size:13px; opacity:0.8; }
+  .section { background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px 32px; margin-bottom:24px; }
+  .section-title { font-size:20px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:10px; padding-bottom:12px; border-bottom:2px solid var(--border); }
+  .section-title .icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .kpi-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:16px; margin-bottom:24px; }
+  .kpi { border-radius:10px; padding:18px 20px; border-left:4px solid var(--accent); }
+  .kpi:nth-child(2) { border-left-color:var(--accent2); background:linear-gradient(135deg,#f5f3ff,#ede9fe); }
+  .kpi:nth-child(3) { border-left-color:var(--accent3); background:linear-gradient(135deg,#ecfdf5,#d1fae5); }
+  .kpi:nth-child(4) { border-left-color:var(--accent4); background:linear-gradient(135deg,#fff1f2,#ffe4e6); }
+  .kpi:nth-child(5) { border-left-color:var(--accent5); background:linear-gradient(135deg,#fff7ed,#ffedd5); }
+  .kpi .kpi-label { font-size:12px; color:var(--muted); margin-bottom:4px; }
+  .kpi .kpi-value { font-size:26px; font-weight:800; }
+  .kpi .kpi-delta { font-size:12px; margin-top:2px; }
+  .kpi .kpi-delta.up { color:var(--accent3); }
+  .kpi .kpi-delta.down { color:var(--accent4); }
+  .kpi .kpi-wow { font-size:11px; margin-top:2px; color:var(--muted); display:flex; align-items:center; gap:4px; }
+  .kpi .kpi-wow .wow-up { color:var(--accent3); font-weight:600; }
+  .kpi .kpi-wow .wow-down { color:var(--accent4); font-weight:600; }
+  .kpi .kpi-wow .wow-flat { color:var(--muted); }
+  .chart-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+  .chart-box { background:#f8fafc; border-radius:10px; padding:20px; border:1px solid var(--border); }
+  .chart-box h3 { font-size:14px; font-weight:600; margin-bottom:14px; color:var(--muted); }
+  .chart-full { background:#f8fafc; border-radius:10px; padding:20px; border:1px solid var(--border); margin-bottom:20px; }
+  .chart-full h3 { font-size:14px; font-weight:600; margin-bottom:14px; color:var(--muted); }
+  .news-list { list-style:none; }
+  .news-item { display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); align-items:flex-start; }
+  .news-item:last-child { border-bottom:none; }
+  .news-date { background:var(--accent); color:white; border-radius:8px; padding:6px 10px; font-size:11px; font-weight:700; white-space:nowrap; min-width:72px; text-align:center; flex-shrink:0; }
+  .news-date.purple { background:var(--accent2); }
+  .news-date.green { background:var(--accent3); }
+  .news-date.red { background:var(--accent4); }
+  .news-date.orange { background:var(--accent5); }
+  .news-body h4 { font-size:15px; font-weight:600; margin-bottom:4px; }
+  .news-body p { font-size:13px; color:var(--muted); line-height:1.6; }
+  .news-body .tag { display:inline-block; background:#e0f2fe; color:#0369a1; border-radius:4px; padding:1px 8px; font-size:11px; margin-top:6px; margin-right:6px; }
+  .news-body .tag.purple { background:#ede9fe; color:#6d28d9; }
+  .news-body .tag.green { background:#d1fae5; color:#047857; }
+  .news-body .tag.red { background:#ffe4e6; color:#be123c; }
+  .news-body .tag.orange { background:#ffedd5; color:#9a3412; }
+  .deal-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .deal-table th { background:#f1f5f9; padding:10px 14px; text-align:left; font-weight:600; color:var(--muted); border-bottom:2px solid var(--border); }
+  .deal-table td { padding:10px 14px; border-bottom:1px solid var(--border); }
+  .deal-table tr:last-child td { border-bottom:none; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:600; }
+  .badge.acq { background:#dbeafe; color:#1d4ed8; }
+  .badge.fund { background:#d1fae5; color:#047857; }
+  .badge.ipo { background:#ede9fe; color:#6d28d9; }
+  .leaderboard { list-style:none; }
+  .lb-item { display:flex; align-items:center; gap:14px; padding:12px 16px; border-radius:8px; margin-bottom:8px; background:#f8fafc; border:1px solid var(--border); }
+  .lb-rank { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; flex-shrink:0; }
+  .lb-rank.gold { background:#fef3c7; color:#92400e; }
+  .lb-rank.silver { background:#f1f5f9; color:#475569; }
+  .lb-rank.bronze { background:#fff7ed; color:#9a3412; }
+  .lb-rank.normal { background:#e2e8f0; color:#475569; }
+  .lb-info { flex:1; }
+  .lb-info .name { font-weight:700; font-size:14px; }
+  .lb-info .sub { font-size:12px; color:var(--muted); }
+  .lb-score { font-weight:800; font-size:16px; color:var(--accent); min-width:60px; text-align:right; }
+  .trend-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:16px; }
+  .trend-card { border-radius:10px; padding:20px; border:1px solid var(--border); background:#f8fafc; }
+  .trend-card h4 { font-size:15px; font-weight:700; margin-bottom:8px; }
+  .trend-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+  .trend-card .arrow { font-size:20px; margin-bottom:8px; }
+  .footer { text-align:center; padding:24px; font-size:12px; color:var(--muted); border-top:1px solid var(--border); margin-top:16px; }
+  @media (max-width:700px) {
+    .chart-row { grid-template-columns:1fr; }
+    .cover h1 { font-size:24px; }
+    body { padding:12px; }
+    .section { padding:20px; }
+    .theme-toggle { top:8px; right:8px; width:32px; height:32px; font-size:14px; }
+  }
+  /* ── 打印优化 ── */
+  @media print {
+    body { max-width:100%; padding:0; background:white; color:black; font-size:11pt; }
+    .theme-toggle { display:none; }
+    .cover { border-radius:0; padding:24px 20px; margin-bottom:16px; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .section { box-shadow:none; border:1px solid #ccc; border-radius:4px; padding:16px 20px; margin-bottom:12px; page-break-inside:avoid; }
+    .chart-box, .chart-full { page-break-inside:avoid; }
+    .chart-box canvas, .chart-full canvas { max-height:200px; }
+    .news-item { page-break-inside:avoid; }
+    .lb-item { page-break-inside:avoid; }
+    .trend-card { page-break-inside:avoid; }
+    .deal-table tr { page-break-inside:avoid; }
+    .cover { page-break-after:always; }
+    .footer { page-break-inside:avoid; }
+    a { color:black; text-decoration:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 主题切换按钮 -->
+<button class="theme-toggle" onclick="toggleTheme()" title="切换明/暗主题">🌙</button>
+
+<!-- ============================== -->
+<!-- SECTION 1: COVER               -->
+<!-- 替换：周数、日期范围、报告日期   -->
+<!-- ============================== -->
+<div class="cover">
+  <div class="label">📊 行业周报 · 第XX周</div>
+  <h1>AI 行业周报</h1>
+  <div class="subtitle">YYYY年MM月DD日 — MM月DD日 | 全球人工智能行业动态与数据分析</div>
+  <div class="meta">
+    <span>📅 报告日期：YYYY-MM-DD</span>
+    <span>🌐 覆盖区域：全球 + 中国</span>
+    <span>📌 数据来源：公开市场信息、行业研究机构</span>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 2: KPI DASHBOARD       -->
+<!-- 替换：5个KPI的数值和变化箭头   -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon" style="background:#dbeafe;color:#2563eb;">📈</div>
+    本周核心数据一览
+  </div>
+  <div class="kpi-grid">
+    <!-- KPI 1 -->
+    <div class="kpi">
+      <div class="kpi-label">KPI标签1</div>
+      <div class="kpi-value">$XXXB</div>
+      <div class="kpi-delta up">▲ 变化描述</div>
+      <div class="kpi-wow">vs 上周 <span class="wow-up">+X.X%</span></div>
+    </div>
+    <!-- KPI 2 -->
+    <div class="kpi">
+      <div class="kpi-label">KPI标签2</div>
+      <div class="kpi-value">$XXXB</div>
+      <div class="kpi-delta up">▲ 变化描述</div>
+      <div class="kpi-wow">vs 上周 <span class="wow-up">+X.X%</span></div>
+    </div>
+    <!-- KPI 3 -->
+    <div class="kpi">
+      <div class="kpi-label">KPI标签3</div>
+      <div class="kpi-value">XX%</div>
+      <div class="kpi-delta down">▼ 变化描述</div>
+      <div class="kpi-wow">vs 上周 <span class="wow-down">-X.X%</span></div>
+    </div>
+    <!-- KPI 4 -->
+    <div class="kpi">
+      <div class="kpi-label">KPI标签4</div>
+      <div class="kpi-value">XX%</div>
+      <div class="kpi-delta up">▲ 变化描述</div>
+      <div class="kpi-wow">vs 上周 <span class="wow-flat">持平</span></div>
+    </div>
+    <!-- KPI 5 -->
+    <div class="kpi">
+      <div class="kpi-label">KPI标签5</div>
+      <div class="kpi-value">$XXB+</div>
+      <div class="kpi-delta up">▲ 变化描述</div>
+      <div class="kpi-wow">vs 上周 <span class="wow-up">+X.X%</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 3: MARKET CHARTS       -->
+<!-- 替换：6个图表的标签和数据数组  -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon" style="background:#d1fae5;color:#059669;">🌍</div>
+    AI市场规模与增长趋势
+  </div>
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>全球AI市场规模 (2024-2033F)</h3>
+      <canvas id="marketSizeChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>AI融资季度趋势 (2023Q1-2025Q4)</h3>
+      <canvas id="fundingChart"></canvas>
+    </div>
+  </div>
+  <div class="chart-row">
+    <div class="chart-box">
+      <h3>企业AI应用场景分布 (Top 10)</h3>
+      <canvas id="adoptionChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>AI聊天机器人市场份额 (当年)</h3>
+      <canvas id="marketShareChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 4: MAJOR NEWS          -->
+<!-- 替换：10条新闻的日期/标题/摘要/标签 -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon" style="background:#fef3c7;color:#d97706;">📰</div>
+    本周重大新闻事件
+  </div>
+  <ul class="news-list">
+    <!-- 新闻条目模板 - 重复10次，每次替换内容 -->
+    <li class="news-item">
+      <div class="news-date red">MM/DD</div>
+      <div class="news-body">
+        <h4>新闻标题</h4>
+        <p>新闻摘要（2-3句）</p>
+        <span class="tag red">分类</span><span class="tag">标签2</span><span class="tag">标签3</span>
+      </div>
+    </li>
+    <!-- 结束新闻条目模板 -->
+  </ul>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 5: M&A HIGHLIGHTS      -->
+<!-- 替换：表格行 + 图表数据        -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon" style="background:#ffe4e6;color:#be123c;">🤝</div>
+    本周并购与融资亮点
+  </div>
+  <table class="deal-table">
+    <thead><tr><th>日期</th><th>类型</th><th>收购方/领投方</th><th>标的</th><th>金额</th><th>领域</th></tr></thead>
+    <tbody>
+      <!-- 表格行模板 - 根据实际数据替换 -->
+      <tr>
+        <td>MM/DD</td>
+        <td><span class="badge acq">并购</span></td>
+        <td>收购方</td>
+        <td>标的公司</td>
+        <td><strong>$XXX亿</strong></td>
+        <td>领域</td>
+      </tr>
+      <!-- 结束表格行模板 -->
+    </tbody>
+  </table>
+  <div class="chart-full" style="margin-top:20px;">
+    <h3>AI并购交易规模趋势 (截至当前季度)</h3>
+    <canvas id="maChart"></canvas>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 6: MODEL LEADERBOARD    -->
+<!-- 替换：8款模型的排名/名称/分数  -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon" style="background:#fef9c3;color:#a16207;">🏆</div>
+    大模型能力排行榜 (当年月份)
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">数据来源：Artificial Analysis Intelligence Index / SWE-bench Pro / Terminal-Bench</p>
+  <ul class="leaderboard">
+    <!-- 排行榜条目模板 - 重复8次 -->
+    <li class="lb-item">
+      <div class="lb-rank gold">1</div>
+      <div class="lb-info">
+        <div class="name">模型名称 <span style="font-weight:400;font-size:12px;color:var(--muted);">（开发方 · 开源/闭源）</span></div>
+        <div class="sub">基准测试分数 | 上下文长度 | 其他关键信息</div>
+      </div>
+      <div class="lb-score">XX</div>
+    </li>
+    <!-- 结束排行榜条目模板 -->
+  </ul>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 7: TREND ANALYSIS       -->
+<!-- 替换：6大趋势的图标/标题/分析  -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon" style="background:#ede9fe;color:#6d28d9;">🔮</div>
+    本周趋势深度解析
+  </div>
+  <div class="trend-grid">
+    <!-- 趋势卡片模板 - 重复6次 -->
+    <div class="trend-card">
+      <div class="arrow">🏛️</div>
+      <h4>趋势标题</h4>
+      <p>趋势分析（2-3句，基于事实）</p>
+    </div>
+    <!-- 结束趋势卡片模板 -->
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 8: UPCOMING            -->
+<!-- 替换：下周期待的时间线内容      -->
+<!-- ============================== -->
+<div class="section">
+  <div class="section-title">
+    <div class="icon" style="background:#e0f2fe;color:#0369a1;">📅</div>
+    下周期待与展望
+  </div>
+  <div class="chart-full">
+    <h3>AI智能体市场规模预测 (2024-2030)</h3>
+    <canvas id="agentMarketChart"></canvas>
+  </div>
+  <ul class="news-list" style="margin-top:16px;">
+    <!-- 下周期待条目模板 -->
+    <li class="news-item">
+      <div class="news-date" style="background:#6366f1;color:white;">即将</div>
+      <div class="news-body">
+        <h4>事件标题</h4>
+        <p>事件描述</p>
+      </div>
+    </li>
+    <!-- 结束下周期待条目模板 -->
+  </ul>
+</div>
+
+<!-- ============================== -->
+<!-- SECTION 9: FOOTER              -->
+<!-- 替换：数据来源列表              -->
+<!-- ============================== -->
+<div class="footer">
+  <p><strong>AI行业周报 · 第XX周</strong></p>
+  <p>数据来源：[列出所有使用的来源]</p>
+  <p>本报告由 AI 辅助编制，数据仅供参考，投资决策请以官方公告为准。</p>
+  <p style="margin-top:8px;">© 2026 AI Industry Weekly Report</p>
+</div>
+
+<!-- ============================== -->
+<!-- CHART.JS DATA SECTION           -->
+<!-- 替换：每个图表的数据数组        -->
+<!-- ============================== -->
+<script>
+// 全局配置
+Chart.defaults.font.family = "-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif";
+Chart.defaults.color = '#64748b';
+Chart.defaults.plugins.legend.labels.boxWidth = 12;
+
+// ===== 图表1: 全球AI市场规模 =====
+new Chart(document.getElementById('marketSizeChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2024','2025','2026','2027F','2028F','2029F','2030F','2033F'],
+    datasets: [{
+      label: '市场规模 ($B)',
+      data: [327, 390.9, 514.5, 650, 820, 1030, 1300, 3500], // ← 替换实际数据
+      backgroundColor: 'rgba(37,99,235,0.7)',
+      borderColor: 'rgba(37,99,235,1)',
+      borderWidth: 1, borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y + 'B' } } },
+    scales: { y: { beginAtZero: true, title: { display: true, text: '十亿美元 ($B)' } } }
+  }
+});
+
+// ===== 图表2: AI融资季度趋势 =====
+new Chart(document.getElementById('fundingChart'), {
+  type: 'line',
+  data: {
+    labels: ['23Q1','23Q2','23Q3','23Q4','24Q1','24Q2','24Q3','24Q4','25Q1','25Q2','25Q3','25Q4'],
+    datasets: [{
+      label: 'AI融资额 ($B)',
+      data: [17.4, 13.1, 16.2, 14.9, 13.8, 25.6, 23.5, 47.2, 62.2, 41.8, 45.1, 83.2], // ← 替换实际数据
+      borderColor: 'rgba(124,58,237,1)',
+      backgroundColor: 'rgba(124,58,237,0.1)',
+      fill: true, tension: 0.3,
+      pointRadius: 4, pointBackgroundColor: 'rgba(124,58,237,1)',
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y + 'B' } } },
+    scales: { y: { title: { display: true, text: '十亿美元 ($B)' } } }
+  }
+});
+
+// ===== 图表3: 企业AI应用场景分布 =====
+new Chart(document.getElementById('adoptionChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['客户服务','网络安全','数字助手','CRM','库存管理','内容创作','产品推荐','会计','供应链','招聘'], // ← 替换实际标签
+    datasets: [{
+      data: [56, 51, 47, 46, 40, 35, 33, 30, 30, 26], // ← 替换实际数据
+      backgroundColor: ['#2563eb','#7c3aed','#059669','#dc2626','#ea580c','#0891b2','#4f46e5','#be185d','#65a30d','#ca8a04'],
+      borderWidth: 2, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'right', labels: { font: { size: 11 } } } }
+  }
+});
+
+// ===== 图表4: AI聊天机器人市场份额 =====
+new Chart(document.getElementById('marketShareChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['ChatGPT','Gemini','Claude','其他'], // ← 替换实际标签
+    datasets: [{
+      data: [46.4, 27.7, 10.3, 15.6], // ← 替换实际数据
+      backgroundColor: ['#10a37f','#4285f4','#d97706','#94a3b8'],
+      borderWidth: 3, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { font: { size: 12 } } } }
+  }
+});
+
+// ===== 图表5: 并购交易规模 =====
+new Chart(document.getElementById('maChart'), {
+  type: 'bar',
+  data: {
+    labels: ['交易1','交易2','交易3','交易4','交易5'], // ← 替换实际标签
+    datasets: [{
+      label: '交易金额 ($B)',
+      data: [60, 3.9, 18, 7.4, 0.28], // ← 替换实际数据
+      backgroundColor: ['rgba(220,38,38,0.7)','rgba(37,99,235,0.7)','rgba(124,58,237,0.7)','rgba(5,150,105,0.7)','rgba(234,88,12,0.7)'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y + 'B' } }, legend: { display: false } },
+    scales: { y: { beginAtZero: true, title: { display: true, text: '十亿美元 ($B)' } } }
+  }
+});
+
+// ===== 图表6: AI智能体市场预测 =====
+new Chart(document.getElementById('agentMarketChart'), {
+  type: 'line',
+  data: {
+    labels: ['2024','2025','2026','2027F','2028F','2029F','2030F'],
+    datasets: [{
+      label: 'AI智能体市场规模 ($B)',
+      data: [5.2, 8.1, 12.5, 19, 28, 37, 47.1], // ← 替换实际数据
+      borderColor: '#059669',
+      backgroundColor: 'rgba(5,150,105,0.1)',
+      fill: true, tension: 0.4,
+      pointRadius: 5, pointBackgroundColor: '#059669',
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { tooltip: { callbacks: { label: ctx => '$' + ctx.parsed.y + 'B (CAGR 44.8%)' } } },
+    scales: { y: { beginAtZero: true, title: { display: true, text: '十亿美元 ($B)' } } }
+  }
+});
+
+// ===== 主题切换 =====
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const btn = document.querySelector('.theme-toggle');
+  if (current === 'dark') {
+    html.setAttribute('data-theme', 'light');
+    btn.textContent = '🌙';
+    // 更新 Chart.js 颜色
+    Chart.defaults.color = '#64748b';
+    updateChartColors(false);
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.textContent = '☀️';
+    Chart.defaults.color = '#94a3b8';
+    updateChartColors(true);
+  }
+}
+
+function updateChartColors(isDark) {
+  // 更新所有图表的网格线颜色
+  Chart.helpers.each(Chart.instances, function(instance) {
+    if (instance.options.scales) {
+      Object.keys(instance.options.scales).forEach(function(axisKey) {
+        var axis = instance.options.scales[axisKey];
+        if (axis.grid) {
+          axis.grid.color = isDark ? 'rgba(148,163,184,0.1)' : 'rgba(0,0,0,0.06)';
+        }
+      });
+    }
+    instance.update('none');
+  });
+}
+
+// 自动检测系统主题偏好
+(function() {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.querySelector('.theme-toggle').textContent = '☀️';
+  }
+})();
+</script>
+</body>
+</html>

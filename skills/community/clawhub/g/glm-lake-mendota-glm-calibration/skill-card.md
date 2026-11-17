@@ -1,38 +1,53 @@
-## Description: <br>
-Calibrate GLM parameters for water temperature simulation. Use when you need to adjust model parameters to minimize RMSE between simulated and observed temperatures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Calibrate GLM parameters for water temperature simulation. Use when you need to adjust model parameters to minimize RMSE between simulated and observed temperatures.
 
-## Publisher: <br>
-[wu-uk](https://clawhub.ai/user/wu-uk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[wu-uk](https://clawhub.ai/user/wu-uk)
 
-## Use Case: <br>
-Developers and lake modelers use this skill to tune General Lake Model parameters, compare simulated and observed water temperatures, and reduce RMSE during calibration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sample calibration workflow modifies glm3.nml and runs the local glm command, which could overwrite model settings or invoke an unexpected executable. <br>
-Mitigation: Back up glm3.nml, confirm glm resolves to the expected local GLM binary, and run the workflow from the intended model directory before using the sample optimization code. <br>
+## Use Case:
 
+Developers and environmental modelers use this skill to tune GLM lake-model parameters and reduce RMSE between simulated and observed water temperatures.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/wu-uk/glm-lake-mendota-glm-calibration) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, code, configuration] <br>
-**Output Format:** [Markdown with tables and Python code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Provides calibration parameter ranges, manual adjustment guidance, common issue diagnosis, and sample optimization code.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server release metadata) <br>
+Risk: The calibration example mutates glm3.nml during optimization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run calibration only in an intended project directory and keep a backup of GLM configuration files before optimization.
+
+Risk: The guidance assumes GLM is installed and available to the agent environment.
+
+Mitigation: Confirm GLM is installed before following generated calibration commands or code.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wu-uk/skills/glm-lake-mendota-glm-calibration)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with tables and Python code examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guidance may include suggested GLM parameter ranges and example optimization logic.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

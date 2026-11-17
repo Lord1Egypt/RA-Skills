@@ -1,43 +1,54 @@
-## Description: <br>
-Generates 1024x1024 Chinese GlucoDNA kidney-protection advertising images with product imagery using the Gemini API and bundled product information. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates 1024x1024 Chinese GlucoDNA kidney-protection advertising images with the product image and product copy using the Gemini API.
 
-## Publisher: <br>
-[jiangyisheng9-bot](https://clawhub.ai/user/jiangyisheng9-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jiangyisheng9-bot](https://clawhub.ai/user/jiangyisheng9-bot)
 
-## Use Case: <br>
-Marketing teams and agents supporting Chinese-language GlucoDNA campaigns use this skill to generate square product ad images with product photos, campaign copy, pricing, and contact details. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Malaysia <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a sensitive Gemini API key. <br>
-Mitigation: Use a dedicated, limited API key through an environment variable and avoid storing broad credentials in shared files. <br>
-Risk: Generated ads may reuse customer-derived health testimonials or make regulated health-product claims. <br>
-Mitigation: Confirm testimonial consent, remove unnecessary personal details, and have health-product claims reviewed for advertising and compliance requirements before publication. <br>
-Risk: The packaged product knowledge includes sales and order-handling guidance for a health product. <br>
-Mitigation: Review generated copy before use and keep ordering, pricing, and contact details accurate for the intended market. <br>
+## Use Case:
 
+External agents and operators use this skill to create Chinese promotional image assets for GlucoDNA using product information, a product image, and Gemini image generation.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jiangyisheng9-bot/glucodna-ad-generator) <br>
-- [GlucoDNA product image](https://hk3.com.my/wp-content/uploads/2024/04/PRODUCT-SIZE-500PX-07.png) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image file with terminal status text] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a Gemini API key; the default output path is ~/Desktop/GlucoDNA_广告图.png unless a path argument is supplied.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release evidence) <br>
+Risk: Gemini API keys may be exposed if stored in a shared workspace file.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a dedicated, restricted GEMINI_API_KEY from a protected environment or secret manager and avoid storing live keys in TOOLS.md.
+
+Risk: The skill downloads a remote product image and writes a generated file to disk.
+
+Mitigation: Run the skill in a reviewed virtual environment and confirm the intended output path before execution.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jiangyisheng9-bot/skills/glucodna-ad-generator)
+- [GlucoDNA product image](https://hk3.com.my/wp-content/uploads/2024/04/PRODUCT-SIZE-500PX-07.png)
+
+## Skill Output:
+
+**Output Type(s):** [image file, text, shell commands, configuration]
+
+**Output Format:** [PNG image file with console status text and setup instructions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Defaults to a 1024x1024 advertisement image saved to the user's Desktop unless an output path is supplied.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Create a new Google Slides presentation and add initial slides. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create a new Google Slides presentation and add initial slides.
 
-## Publisher: <br>
-[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[googleworkspace-bot](https://clawhub.ai/user/googleworkspace-bot)
 
-## Use Case: <br>
-Developers and workspace automation users use this recipe to create a Google Slides presentation, capture its presentation ID, and add an initial Drive sharing permission. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The recipe includes a persistent Google Drive sharing step to a fixed email address outside its core presentation-creation purpose. <br>
-Mitigation: Remove or edit the sharing command unless that recipient should receive edit access. <br>
-Risk: Running Drive permission commands with the wrong Google account, file ID, recipient, or role can expose the presentation unintentionally. <br>
-Mitigation: Confirm the active Google account, presentation file ID, recipient email, and permission role before executing the command. <br>
+## Use Case:
 
+Employees and workflow authors use this recipe to have an agent create a Google Slides presentation with initial slides for a business presentation workflow.
 
-## Reference(s): <br>
-- [Recipe Create Presentation on ClawHub](https://clawhub.ai/googleworkspace-bot/recipe-create-presentation) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires the gws command-line tool and the gws-slides skill.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.12 (source: server release metadata) <br>
+Risk: The recipe grants writer access on the created presentation to a fixed email address.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only when that sharing behavior is intended, or replace the fixed recipient with an explicit user-provided recipient and confirmation step.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/googleworkspace-bot/skills/recipe-create-presentation)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Markdown with inline shell commands]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires the gws CLI and the gws-slides skill.]
+
+## Skill Version(s):
+
+1.0.12 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,48 +1,59 @@
-## Description: <br>
-OpenClaw skill for Facebook Messenger Platform workflows, including messaging, webhooks, and Page inbox operations using direct HTTPS requests. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+OpenClaw skill for Facebook Messenger Platform workflows, including messaging, webhooks, and Page inbox operations using direct HTTPS requests.
 
-## Publisher: <br>
-[codedao12](https://clawhub.ai/user/codedao12) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[codedao12](https://clawhub.ai/user/codedao12)
 
-## Use Case: <br>
-Developers and engineers use this skill to plan Facebook Messenger Platform integrations, including Send API messaging, webhook handling, permissions, token handling, and conversation UX guardrails. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: App secrets, Page access tokens, verify tokens, webhook payloads, and live recipient IDs are sensitive. <br>
-Mitigation: Treat these values as secrets, avoid logging tokens or private conversation data, and use least-privilege permissions. <br>
-Risk: Message-sending examples can affect real Messenger users if tested against production Pages or live recipients. <br>
-Mitigation: Test with a development Page or approved recipients before sending production messages. <br>
-Risk: Webhook handlers can accept spoofed or replayed traffic if verification is incomplete. <br>
-Mitigation: Validate webhook signatures, acknowledge events quickly, and keep handlers idempotent for retries. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [Messenger API Overview](references/messenger-api-overview.md) <br>
-- [Messaging](references/messaging.md) <br>
-- [Webhooks](references/webhooks.md) <br>
-- [Permissions and Tokens](references/permissions-and-tokens.md) <br>
-- [Request Templates](references/request-templates.md) <br>
-- [Conversation Patterns](references/conversation-patterns.md) <br>
-- [Webhook Event Map](references/webhook-event-map.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/codedao12/messenger) <br>
+## Use Case:
 
+Developers and engineers use this skill to plan and implement Facebook Messenger Platform workflows for Page messaging, webhook handling, Send API payloads, and operational guardrails.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with HTTP request examples and checklists] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include direct HTTPS request templates, permissions checklists, webhook handling guidance, and operational guardrails.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Messenger workflows require Page access tokens and App Secrets, which can expose accounts if logged or shared.
+
+Mitigation: Keep tokens and secrets out of logs, rotate them when possible, and use least-privilege permissions.
+
+Risk: Webhook endpoints can receive forged or replayed events if validation is skipped.
+
+Mitigation: Validate X-Hub-Signature-256 with the App Secret and keep handlers idempotent for retries.
+
+## Reference(s):
+
+- [Messenger Skill Page](https://clawhub.ai/codedao12/skills/messenger)
+- [Messenger Platform Overview](references/messenger-api-overview.md)
+- [Messaging](references/messaging.md)
+- [Webhooks](references/webhooks.md)
+- [Permissions and Tokens](references/permissions-and-tokens.md)
+- [HTTP Request Templates](references/request-templates.md)
+- [Conversation Patterns](references/conversation-patterns.md)
+- [Webhook Event Map](references/webhook-event-map.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with HTTP request examples and configuration guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include Messenger workflow plans, permissions checklists, request payloads, and operational guardrails.]
+
+## Skill Version(s):
+
+1.0.1 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

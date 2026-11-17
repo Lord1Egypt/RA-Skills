@@ -1,39 +1,52 @@
-## Description: <br>
-Automated Content Machine helps an agent draft and prepare recurring content for Twitter/Threads, blog posts, YouTube scripts, and newsletters with human review. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates and prepares recurring content for Twitter/Threads, blog posts, YouTube scripts, and newsletters with AI-assisted drafting and human review.
 
-## Publisher: <br>
-[Katrina-jpg](https://clawhub.ai/user/Katrina-jpg) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[katrina-jpg](https://clawhub.ai/user/katrina-jpg)
 
-## Use Case: <br>
-External creators, marketers, and operators use this skill to generate content plans, platform-specific drafts, publishing schedules, and monetization guidance for connected content channels. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can prepare public posts, newsletters, blog entries, and product promotions for connected publishing accounts, which may publish incorrect or unwanted content if used without review. <br>
-Mitigation: Use draft-only or test accounts first, grant the narrowest service permissions, and require explicit approval before any content goes live. <br>
-Risk: Affiliate links, paid promotions, subscriptions, and advertising guidance can create misleading or noncompliant marketing content if not reviewed. <br>
-Mitigation: Review promotional copy for accuracy, required disclosures, platform rules, and rollback steps before publication. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/Katrina-jpg/automated-content-machine) <br>
+## Use Case:
 
+Content creators, marketers, and content operations teams use this skill to draft, schedule, and prepare recurring social, blog, video, and newsletter content for monetized publishing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown content drafts, outlines, schedules, and setup guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include platform-specific publishing and monetization recommendations.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill directs agents toward automatic public posting across social, blog, newsletter, and commerce channels without clear approval boundaries.
+
+Mitigation: Configure integrations to create drafts or scheduled items for review, and require explicit approval before publishing or modifying live accounts.
+
+Risk: Generated marketing or monetized content may be inaccurate, misleading, or misaligned with platform, affiliate, advertising, or subscription requirements.
+
+Mitigation: Review content for factual accuracy, disclosure requirements, platform policy compliance, and brand suitability before release.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/katrina-jpg/skills/automated-content-machine)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text content plans, drafts, scripts, and publishing guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs may include public-facing content and proposed scheduling or publishing actions that should be reviewed before live publication.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-学术答辩模拟评委智能体，帮助用户演练毕业答辩、课题答辩和项目汇报，提出定制化问题，并对回答给出评分和改进建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+学术答辩模拟评委智能体，帮助用户提前演练毕业答辩、课题答辩、项目汇报等，自动识别学科领域，提出有针对性的非模板化问题，并对用户回答进行评分和改进建议。
 
-## Publisher: <br>
-[smallkeyboy](https://clawhub.ai/user/smallkeyboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[smallkeyboy](https://clawhub.ai/user/smallkeyboy)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users use this skill to practice Chinese-language academic defenses for theses, projects, and reports. The agent reviews supplied topic material, asks discipline-aware defense questions, scores answers, and gives concise improvement advice.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may activate on broad Chinese defense-preparation phrasing.
+
+Mitigation: Use it in Chinese-language academic defense practice contexts and confirm the user wants mock defense feedback when intent is ambiguous.
+
+Risk: Generated questions, scores, and feedback may be subjective or incomplete for specialized academic work.
+
+Mitigation: Treat feedback as practice guidance and have domain experts or instructors review important defense material.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Students, researchers, and project presenters use this skill to rehearse academic defenses, receive discipline-aware questions, practice multi-round answers, and get scoring with concrete improvement suggestions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Users may paste confidential or unpublished research content into the agent session during rehearsal. <br>
-Mitigation: Avoid sharing confidential or unpublished research unless the user is comfortable including it in the active agent session. <br>
-Risk: Practice questions, scores, and feedback may be incomplete or unsuitable as the sole basis for academic preparation. <br>
-Mitigation: Use the feedback as rehearsal support and confirm important defense preparation decisions with advisors, instructors, or subject-matter reviewers. <br>
+**Output Format:** [Markdown-style Chinese text with structured sections, numbered questions, scoring summaries, and tables when reviewing multiple rounds.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/smallkeyboy/xingmang-defense-judge) <br>
+**Other Properties Related to Output:** [No code, shell commands, tools, credential access, persistence, or hidden behavior are reported in the security evidence.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-style conversational text with questions, scores, feedback, and summary tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces three tailored defense questions per round, per-answer scores from 0 to 10, an average score, and actionable improvement advice.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,49 @@
-## Description: <br>
-Generates structured, blameless incident postmortems from raw incident notes, including summaries, timelines, root-cause analysis, impact, action items, and prevention measures. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates structured, blameless incident postmortems from raw incident notes, Slack threads, bullet points, verbal notes, or PagerDuty alerts.
 
-## Publisher: <br>
-[1kalin](https://clawhub.ai/user/1kalin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[1kalin](https://clawhub.ai/user/1kalin)
 
-## Use Case: <br>
-Developers, SREs, incident commanders, and operations teams use this skill to turn raw incident notes, Slack or PagerDuty text, and bullet points into a postmortem draft with clear follow-up actions. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Incident notes may contain secrets, credentials, customer personal data, hostnames, or confidential operational details. <br>
-Mitigation: Sanitize copied incident material before using the skill and remove sensitive details that are not necessary for the postmortem. <br>
-Risk: A generated postmortem can contain incomplete or inaccurate conclusions if the source notes are sparse or ambiguous. <br>
-Mitigation: Review the generated draft, resolve flagged information gaps, and confirm timeline, impact, root cause, and action items before sharing or publishing. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/1kalin/afrexai-postmortem) <br>
-- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/) <br>
+## Use Case:
 
+Incident responders, SREs, and engineering teams use this skill to turn rough incident material into draft postmortems with an executive summary, timeline, root cause analysis, impact assessment, action items, lessons learned, and prevention measures.
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Guidance] <br>
-**Output Format:** [Markdown postmortem draft] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes severity, timeline, root-cause analysis, impact assessment, action items, lessons learned, prevention measures, and flagged information gaps.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Users may paste sensitive incident details, secrets, tokens, customer personal data, private Slack content, or regulated information into the skill.
+
+Mitigation: Install only in an approved environment and redact sensitive or regulated information unless the organization allows that data to be processed by the agent.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/1kalin/skills/afrexai-postmortem)
+- [AfrexAI Context Packs](https://afrexai-cto.github.io/context-packs/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown postmortem draft with structured sections, action items, flagged gaps, and ranked prevention measures.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses blameless language, ISO timestamps, severity labels, owner and deadline placeholders, and priority tags.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

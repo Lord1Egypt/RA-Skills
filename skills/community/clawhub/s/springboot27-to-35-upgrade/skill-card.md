@@ -1,44 +1,61 @@
-## Description: <br>
-将 Spring Boot 2.7 项目升级到 Spring Boot 3.5 的实战流程，覆盖版本基线、依赖坐标替换、Jakarta 迁移、配置兼容、异步上下文传递改造与验证门禁。用于企业多模块 Maven 项目升级与排障。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+将 Spring Boot 2.7 项目升级到 Spring Boot 3.5 的实战流程，覆盖版本基线、依赖坐标替换、Jakarta 迁移、配置兼容、异步上下文传递改造与验证门禁。
 
-## Publisher: <br>
-[k2-code](https://clawhub.ai/user/k2-code) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[k2-code](https://clawhub.ai/user/k2-code)
 
-## Use Case: <br>
-Developers and engineering teams use this skill to plan and execute Spring Boot 2.7 to 3.5 upgrades in enterprise multi-module Maven projects, including dependency replacement, Jakarta migration, configuration updates, and validation gates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Upgrade guidance can lead to substantial repository edits, dependency changes, and Maven or OpenRewrite runs. <br>
-Mitigation: Apply the skill on a feature branch, review generated changes before merge, and run the stated compile, package, startup, and smoke-validation gates. <br>
-Risk: Enterprise-specific parent POMs, internal starters, or rewrite recipes may be unavailable or untrusted in a target environment. <br>
-Mitigation: Confirm enterprise dependencies and recipes are trusted and resolvable before applying them; pause migration and document blockers when compatible internal artifacts are missing. <br>
+## Use Case:
 
+Developers and engineers use this skill to plan, execute, and validate enterprise multi-module Maven upgrades from Spring Boot 2.7 to Spring Boot 3.5. It helps identify baseline requirements, dependency replacements, Jakarta migration work, configuration changes, common pitfalls, and verification gates.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/k2-code/springboot27-to-35-upgrade) <br>
-- [Upgrade checklist](artifact/references/upgrade-checklist.md) <br>
-- [Dependency replacement matrix](artifact/references/dependency-replacement-matrix.md) <br>
-- [Pitfall cookbook](artifact/references/pitfall-cookbook.md) <br>
-- [Enterprise parent security guidance](artifact/references/enterprise-parent-security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline code blocks and command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces upgrade plans, change summaries, dependency replacement guidance, validation commands, and follow-up recommendations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Proposed code and dependency changes may introduce regressions or misleading migration guidance if accepted without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed changes before execution and run compile, startup, smoke-test, and log checks before accepting the upgrade.
+
+Risk: The optional OpenRewrite/Maven plugin step can make broad automated edits across a project.
+
+Mitigation: Run automated rewrite steps only on an upgrade branch, inspect the diff, and keep manual rollback options available.
+
+Risk: Enterprise-specific dependency coordinates and parent POM guidance may not apply to every Spring Boot project.
+
+Mitigation: Confirm internal repository availability, approved parent versions, and dependency-management policy before applying enterprise-specific coordinates.
+
+## Reference(s):
+
+- [Upgrade Checklist](references/upgrade-checklist.md)
+- [Dependency Replacement Matrix](references/dependency-replacement-matrix.md)
+- [Pitfall Cookbook](references/pitfall-cookbook.md)
+- [Enterprise Parent Security](references/enterprise-parent-security.md)
+- [ClawHub Skill Page](https://clawhub.ai/k2-code/skills/springboot27-to-35-upgrade)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include changed files, reasons for changes, dependency replacement results, verification commands and results, remaining issues, and follow-up recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

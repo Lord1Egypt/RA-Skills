@@ -1,41 +1,58 @@
-## Description: <br>
-Automates searching Douyin for popular videos on a specified topic, then posting comments and following creators with configurable comments, counts, and intervals. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automates Douyin searches and uses Playwright to comment on videos and follow creators with configurable keywords, comments, counts, and intervals.
 
-## Publisher: <br>
-[Viv888-AI](https://clawhub.ai/user/Viv888-AI) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[viv888-ai](https://clawhub.ai/user/viv888-ai)
 
-## Use Case: <br>
-External users and operators use this skill to configure Douyin engagement runs that search by keyword, post selected comments, and follow creators through a logged-in browser session. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill gives bulk control over a logged-in Douyin account by posting comments and following accounts. <br>
-Mitigation: Install only when this automation is intentional, use test mode first, keep operation counts low, and review comment text before execution. <br>
-Risk: The skill stores browser session data for reuse. <br>
-Mitigation: Avoid shared machines and delete the saved browser profile when finished if the session should not persist. <br>
+## Use Case:
 
+External users can use this skill to guide an agent through Douyin engagement workflows that search for topic-relevant videos, post selected comments, and follow creators through a logged-in browser session.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Viv888-AI/douyin-engager) <br>
-- [Douyin web app](https://www.douyin.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and run summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May launch a browser, reuse a saved Douyin login session, and write a local JSON engagement log.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill can use a logged-in Douyin session to post comments and follow creators.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install and run it only when that account automation is intentional; review the keyword, comment text, count, and interval before execution.
+
+Risk: The browser profile may retain login state in `browser_data`.
+
+Mitigation: Use a dedicated account in an isolated environment and clear `browser_data` when retained login state is not desired.
+
+Risk: Frequent automated engagement may trigger platform controls or unwanted account activity.
+
+Mitigation: Keep counts and intervals conservative, confirm the target content before running, and stop if Douyin surfaces warnings or failed actions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/viv888-ai/skills/douyin-engager)
+- [Douyin website](https://www.douyin.com)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, text, configuration]
+
+**Output Format:** [Markdown guidance with inline shell commands and terminal status text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May also create a local JSON engagement log when the automation script runs.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

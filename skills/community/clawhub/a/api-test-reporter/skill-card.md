@@ -1,44 +1,63 @@
-## Description: <br>
-Api Test Reporter helps an agent turn API interface documentation into JSON-based HTTP test cases, execute them, and generate visual HTML reports with request, response, and validation details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+api-test-reporter helps agents turn API interface documentation for JSON POST/GET endpoints into grouped test cases, execute them, and generate structured HTML reports with request, response, and validation details.
 
-## Publisher: <br>
-[squidtestgary](https://clawhub.ai/user/squidtestgary) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[squidtestgary](https://clawhub.ai/user/squidtestgary)
 
-## Use Case: <br>
-Developers and QA engineers use this skill to derive API test plans from interface documentation, run POST or GET JSON API checks, and produce shareable HTML reports. It is useful when test coverage must include required fields, pagination, enums, date ranges, numeric ranges, status flags, combined scenarios, and boundary or exception cases. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated configurations can send live HTTP requests to configured API endpoints. <br>
-Mitigation: Review every generated config before execution, replace all sample hosts and credentials, and run tests only against authorized staging or approved target APIs. <br>
-Risk: Optional database fixtures can execute SQL queries and expose real records in tests. <br>
-Mitigation: Use read-only test database accounts, inspect SQL queries before running them, and prefer sanitized or synthetic records where possible. <br>
-Risk: HTML, JavaScript data, and JSON result files can preserve full request and response payloads. <br>
-Mitigation: Treat generated reports as sensitive artifacts and redact them before placing them in shared folders or source control. <br>
+## Use Case:
 
+Developers and QA engineers use this skill to derive API test cases from interface documentation, optionally populate positive cases from approved database fixtures, execute JSON HTTP requests, and inspect generated HTML and JSON reports.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/squidtestgary/api-test-reporter) <br>
-- [API test workflow reference](references/workflow.md) <br>
-- [Example test configuration](references/test_config.example.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, configuration, shell commands, code, files] <br>
-**Output Format:** [Markdown guidance with JSON configuration and shell commands; generated test outputs include HTML, JavaScript data, and JSON result files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports may include full request and response data, so generated files should be handled as potentially sensitive.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The release evidence reports real-looking database credentials in examples.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate any exposed credential that was ever valid and replace published examples with placeholders before use.
+
+Risk: The skill can run database-backed API tests and execute configured fixture SQL.
+
+Mitigation: Run only against approved staging systems, use least-privilege read-only database accounts, and restrict fixture SQL to reviewed SELECT queries.
+
+Risk: Generated reports can contain sensitive request, response, personal, or business data.
+
+Mitigation: Redact secrets and sensitive data from reports before sharing or storing them outside the approved test environment.
+
+Risk: The security guidance calls for dependency and asset control.
+
+Mitigation: Pin dependencies and bundle report assets locally where operational policy requires repeatable or offline execution.
+
+## Reference(s):
+
+- [API Test Workflow Reference](references/workflow.md)
+- [Test Configuration Example](references/test_config.example.json)
+- [ClawHub Skill Page](https://clawhub.ai/squidtestgary/skills/api-test-reporter)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Configuration, Shell commands, JSON, HTML]
+
+**Output Format:** [Markdown guidance, JSON test configuration and results, shell commands, and generated HTML report files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces test_report_<method>_<timestamp>.html, __REPORT_DATA__.js, and test_results_<method>_<timestamp>.json when executed.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

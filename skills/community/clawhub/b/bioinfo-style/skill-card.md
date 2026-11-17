@@ -1,42 +1,55 @@
-## Description: <br>
-Standardizes bioinformatics analyses by guiding agents to create reproducible shell-scripted workflows, use established sequencing and enrichment tools, and report results with R Markdown. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through reproducible bioinformatics workflows for sequencing quality control, alignment, quantification, differential analysis, enrichment analysis, and visualization using established tools and R Markdown reports.
 
-## Publisher: <br>
-[biociao](https://clawhub.ai/user/biociao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[biociao](https://clawhub.ai/user/biociao)
 
-## Use Case: <br>
-Bioinformatics practitioners and data analysts use this skill to plan and execute sequencing-data workflows such as QC, alignment, quantification, differential analysis, enrichment analysis, and visualization. It emphasizes established tools, scripted steps, organized logs, and reproducible reporting. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated shell scripts, R Markdown, and Conda or Mamba commands can execute local tools and create or update analysis outputs. <br>
-Mitigation: Review generated commands before execution, run them in an isolated project directory or environment, and keep raw data read-only. <br>
-Risk: Workflow commands may be unsuitable for valuable data or shared systems if paths, environments, or resource assumptions are wrong. <br>
-Mitigation: Validate paths, sample metadata, tool versions, and compute settings before running the workflow on important datasets or shared infrastructure. <br>
+## Use Case:
 
+External developers, bioinformatics analysts, and research teams use this skill to plan and script reproducible sequencing analysis workflows, including RNA-seq, ChIP-seq, WGS, differential expression, enrichment analysis, and omics visualization.
 
-## Reference(s): <br>
-- [Bioinfo Style on ClawHub](https://clawhub.ai/biociao/bioinfo-style) <br>
-- [Common bioinformatics tools quick reference](references/tools.md) <br>
-- [Analysis script templates](references/templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell script and R Markdown examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates reproducible workflow steps, command templates, logs, directory structures, and report guidance for local bioinformatics analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may lead agents to install Conda or Mamba packages and execute local analysis scripts.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review generated scripts and environment changes before execution, and use the skill only in project directories where generated scripts, logs, and package changes are acceptable.
+
+Risk: The bundled helper script can write logs outside the intended directory when given unsafe step names.
+
+Mitigation: Use controlled step names or harden scripts/run_step.sh before relying on it in shared or sensitive workspaces.
+
+## Reference(s):
+
+- [Analysis script templates](references/templates.md)
+- [Bioinformatics tools quick reference](references/tools.md)
+- [ClawHub skill page](https://clawhub.ai/biociao/skills/bioinfo-style)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with bash, R Markdown, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include project directory layouts, Conda or Mamba environment commands, analysis scripts, logs guidance, and report templates.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

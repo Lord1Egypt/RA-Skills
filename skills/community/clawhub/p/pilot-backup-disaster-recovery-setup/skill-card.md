@@ -1,43 +1,58 @@
-## Description: <br>
-Deploy a four-agent backup and disaster recovery setup with scheduling, primary backup creation, offsite replication, and restore testing. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Deploys a four-agent backup and disaster recovery setup with scheduler, primary backup, offsite replica, and restore tester roles.
 
-## Publisher: <br>
-[teoslayer](https://clawhub.ai/user/teoslayer) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[teoslayer](https://clawhub.ai/user/teoslayer)
 
-## Use Case: <br>
-Developers and operators use this skill to set up coordinated backup infrastructure across scheduler, primary backup, offsite replica, and restore tester agents. It helps configure agent roles, trust handshakes, data flows, and example backup and restore-verification commands. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Backups may be transferred or stored without sufficient protection. <br>
-Mitigation: Use encrypted transport and encrypted archives, restrict exposed ports to trusted peers, and verify checksums or signatures for backup artifacts. <br>
-Risk: Restore testing can expose production data or credentials. <br>
-Mitigation: Run restore tests in isolated, access-controlled environments and avoid sending production databases or credentials unless that isolation is in place. <br>
-Risk: Backup retention and deletion behavior may be undefined. <br>
-Mitigation: Define retention and deletion rules before using the setup for real backups. <br>
+## Use Case:
 
+External developers and operations teams use this skill to configure automated backup infrastructure across scheduler, primary backup, offsite replica, and restore testing agents.
 
-## Reference(s): <br>
-- [Pilot Protocol](https://pilotprotocol.network) <br>
-- [ClawHub Skill Page](https://clawhub.ai/teoslayer/pilot-backup-disaster-recovery-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with bash commands and JSON manifest templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes role-specific setup steps, hostnames, peer handshakes, data-flow examples, and manifest templates.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Unpinned helper skills may change behavior between installations.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Pin and verify every helper skill before installing it on backup infrastructure.
+
+Risk: Trusted agent handshakes can permit movement of sensitive backup data between peers.
+
+Mitigation: Confirm peer identities before handshakes, restrict network paths and credentials by role, and encrypt backup transfers and storage.
+
+Risk: Backup reports or alerts can disclose sensitive operational details.
+
+Mitigation: Keep Slack and alert messages limited to non-sensitive summaries.
+
+## Reference(s):
+
+- [Pilot Protocol homepage](https://pilotprotocol.network)
+- [ClawHub skill page](https://clawhub.ai/teoslayer/skills/pilot-backup-disaster-recovery-setup)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with shell commands and JSON configuration examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Guides role selection, helper skill installation, hostname setup, manifest creation, trust handshakes, and backup flow verification.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

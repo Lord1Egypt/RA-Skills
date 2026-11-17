@@ -5,7 +5,7 @@ Configure automatic engineering self-improvement triggers for AI coding agents.
 ## Overview
 
 Hooks can help capture engineering learnings with minimal overhead:
-- **UserPromptSubmit** (recommended): Reminder after each prompt to evaluate architecture decisions, build issues, and test gaps
+- **UserPromptSubmit** (recommended): Reminder after matching prompts to evaluate architecture decisions, build issues, and test gaps
 - **PostToolUse (Bash)** (optional): Error-pattern reminder based on command output in trusted environments
 
 ## Claude Code Setup
@@ -19,7 +19,7 @@ Create `.claude/settings.json` in your project root (activator-only recommended)
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "build|test|deploy|fix|debug|error|ci|cd|rollback",
         "hooks": [
           {
             "type": "command",
@@ -54,16 +54,16 @@ Enable this only when you explicitly want command-output pattern checks:
 }
 ```
 
-### Option 2: User-Level Configuration
+### Option 2: User-Level Configuration (discouraged)
 
-Add to `~/.claude/settings.json` for global activation:
+Do **not** install this hook globally. User-level hooks persist across all repositories and sessions. Keep hooks project-scoped. The example below is shown only so you can recognize and remove it:
 
 ```json
 {
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "build|test|deploy|fix|debug|error|ci|cd|rollback",
         "hooks": [
           {
             "type": "command",
@@ -85,7 +85,7 @@ For lower overhead, use only the UserPromptSubmit hook:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "build|test|deploy|fix|debug|error|ci|cd|rollback",
         "hooks": [
           {
             "type": "command",
@@ -107,7 +107,7 @@ Codex uses the same hook system as Claude Code. Create `.codex/settings.json`:
   "hooks": {
     "UserPromptSubmit": [
       {
-        "matcher": "",
+        "matcher": "build|test|deploy|fix|debug|error|ci|cd|rollback",
         "hooks": [
           {
             "type": "command",
@@ -143,7 +143,7 @@ Consider logging the learning to `.learnings/` using the format from the self-im
 
 1. Enable the hook configuration
 2. Start a new Claude Code session
-3. Send any prompt
+3. Send a prompt that matches the domain matcher
 4. Verify you see `<engineering-self-improvement-reminder>` in the context
 
 ### Test Error Detector Hook
@@ -185,12 +185,12 @@ If using relative paths, ensure you're in the correct directory or use absolute 
 }
 ```
 
-### Too Much Overhead
+### Matcher is required
 
-If the activator feels intrusive:
+Never use an empty matcher. If the activator still feels intrusive:
 
 1. **Use minimal setup**: Only UserPromptSubmit, skip PostToolUse
-2. **Add matcher filter**: Only trigger for build/test related prompts:
+2. **Narrow the matcher further**. Current domain matcher examples: build/test related prompts:
 
 ```json
 {

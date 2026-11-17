@@ -1,40 +1,55 @@
-## Description: <br>
-Monitor creator topics across X, RSS, GitHub, and Reddit; deduplicate and score results; produce a daily top-5 brief plus one publish-ready X/LinkedIn draft; optional scheduled delivery to Telegram, Slack, or email. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Monitor creator topics across X, RSS, GitHub, and Reddit; deduplicate and score results; produce a daily top-5 brief plus one publish-ready X/LinkedIn draft; optional scheduled delivery to Telegram, Slack, or email.
 
-## Publisher: <br>
-[Vmining](https://clawhub.ai/user/Vmining) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[vmining](https://clawhub.ai/user/vmining)
 
-## Use Case: <br>
-External creators, operators, and developer teams use this skill to monitor configured AI, Web3, GitHub, RSS, Reddit, and X sources, then generate a concise daily brief and social draft for follow-up publishing. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated briefs can leave the local environment when Telegram, Slack, or email delivery is enabled. <br>
-Mitigation: Enable delivery only for approved destinations, verify recipient and webhook settings before scheduling, and keep sensitive monitoring topics local. <br>
-Risk: The skill uses API tokens and delivery credentials for X, Telegram, Slack, and SMTP. <br>
-Mitigation: Use dedicated low-privilege credentials, store them in environment variables, and rotate them if a destination or workspace changes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Vmining/kiro-creator-monitor-daily-brief) <br>
-- [Kiro AI homepage](https://kiroai.io) <br>
+## Use Case:
 
+External creators, founders, and marketing or developer-relations teams use this skill to monitor AI/Web3 topics, rank fresh items, and produce a daily brief plus ready-to-edit X and LinkedIn posts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown daily brief, JSON summary, setup commands, and configuration guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes latest.md and latest.json, and can optionally deliver the Markdown brief to Telegram, Slack, or email.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill makes outbound requests to configured public sources and may be affected by custom feed URLs or service rate limits.
+
+Mitigation: Review configured source URLs before use and keep the configuration writable only by trusted users.
+
+Risk: Optional delivery can send the full generated brief to third-party messaging or email services using supplied credentials.
+
+Mitigation: Enable Telegram, Slack, or email delivery only for approved destinations and protect delivery credentials as secrets.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/vmining/skills/kiro-creator-monitor-daily-brief)
+- [Kiro homepage](https://kiroai.io)
+- [OpenAI News RSS feed](https://openai.com/news/rss.xml)
+- [The Verge AI RSS feed](https://www.theverge.com/rss/ai-artificial-intelligence/index.xml)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration]
+
+**Output Format:** [Markdown daily brief, JSON result payload, and concise command/status text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Writes latest.md and latest.json to the configured output directory; optional delivery can send the full generated brief to Telegram, Slack, or email.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

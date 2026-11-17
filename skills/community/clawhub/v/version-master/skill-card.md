@@ -1,41 +1,58 @@
-## Description: <br>
-Intelligent single-file version management. Save, restore, diff, and clean file snapshots with per-file version history. Activate when users need version control, file snapshot management, or project state recovery. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Intelligent single-file version management. Save, restore, diff, and clean file snapshots with per-file version history. Activate when users need version control, file snapshot management, or project state recovery.
 
-## Publisher: <br>
-[neuhanli](https://clawhub.ai/user/neuhanli) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[neuhanli](https://clawhub.ai/user/neuhanli)
 
-## Use Case: <br>
-Developers and agent users use this skill to save, inspect, compare, restore, and clean per-file snapshots when they need lightweight version history or project state recovery without full-repository version control. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Shared snapshot storage can expose histories from other workspaces. <br>
-Mitigation: Avoid snapshotting secrets, credentials, proprietary code, or personal files unless persistent local copies under ~/.workbuddy are acceptable. <br>
-Risk: Restore and clean operations can affect snapshot history created outside the current workspace. <br>
-Mitigation: Review the target file, version, and operation details carefully before setting confirm=True for restore or clean actions. <br>
+## Use Case:
 
+Developers and agent users use this skill to manage per-file snapshots: saving versions, listing history, comparing changes, restoring earlier content, and cleaning old snapshots.
 
-## Reference(s): <br>
-- [Version-Master usage reference](references/usage.md) <br>
-- [ClawHub package page](https://clawhub.ai/neuhanli/version-master) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and command examples with JSON-like operation results] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create, restore, diff, or delete local file snapshot records under shared local storage.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.1.1 (source: frontmatter and release evidence) <br>
+Risk: Shared snapshot storage can expose or alter histories across workspaces.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only in environments where cross-workspace snapshot visibility is acceptable, or fix storage isolation before using it with sensitive projects.
+
+Risk: Complete file snapshots are stored under the user's home directory and may contain secrets or private project content.
+
+Mitigation: Avoid saving secrets or private files, and review stored snapshots before sharing or moving the environment.
+
+Risk: Restore and clean operations can overwrite current files or delete snapshot history.
+
+Mitigation: Require explicit user confirmation and show the target file, version, and consequence before setting confirmation flags.
+
+## Reference(s):
+
+- [Version-Master Usage Reference](references/usage.md)
+- [ClawHub Skill Page](https://clawhub.ai/neuhanli/skills/version-master)
+
+## Skill Output:
+
+**Output Type(s):** [text, code, shell commands, files, guidance]
+
+**Output Format:** [Markdown guidance with Python or shell command examples; tool calls return JSON-like dictionaries and may create, restore, diff, or delete snapshot files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Restore and clean operations require explicit confirmation; snapshot data may include complete text or binary file contents.]
+
+## Skill Version(s):
+
+2.1.1 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

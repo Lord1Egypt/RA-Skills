@@ -1,51 +1,63 @@
-## Description: <br>
-Multi-agent architecture where an AI agent operates as the CEO of growth operations, reads strategic intent, delegates to specialized sub-agents, and delivers production output coordinated through GitHub Issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-agent architecture where an AI agent operates as the CEO of growth operations, reads strategic intent, delegates to specialized sub-agents, and delivers production output coordinated through GitHub Issues.
 
-## Publisher: <br>
-[emergencescience](https://clawhub.ai/user/emergencescience) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[emergencescience](https://clawhub.ai/user/emergencescience)
 
-## Use Case: <br>
-Developers and operators use this skill to scaffold and run a GitHub-coordinated autonomous agent team for growth operations, content drafting, market research, DevOps monitoring, and PR-based human review. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Continuous autonomous operation with GitHub credentials can modify repository state unexpectedly. <br>
-Mitigation: Run first in a controlled test or low-risk repository, use a dedicated bot or fine-grained token with minimum repository access, protect branches, and require PR review. <br>
-Risk: The skill uses sensitive LLM and GitHub credentials through environment configuration. <br>
-Mitigation: Keep .env out of version control, restrict file permissions, rotate credentials when needed, and avoid broad organization tokens. <br>
-Risk: The DevOps workflow may identify production, deployment, billing, or organization-level actions. <br>
-Mitigation: Add explicit approval gates for production deployment, billing, and broad organization credentials; keep direct deployment actions with a human operator. <br>
-Risk: Generated content, market analysis, and operational guidance may be incorrect or stale. <br>
-Mitigation: Require human review for public publishing, PR merges, strategic decisions, and factual claims before external release. <br>
-Risk: Cron-based execution can hide repeated failures or unexpected behavior if left unmonitored. <br>
-Mitigation: Monitor cron output, issue comments, pull requests, and incident logs; pause the agent when anomalies appear. <br>
+## Use Case:
 
+Developers and teams operating AI-assisted growth or DevOps workflows use this skill as a deployable multi-agent workspace: a CEO agent interprets strategic direction, delegates GitHub Issue tasks to Growth and DevOps leaders, and routes production changes through human PR review.
 
-## Reference(s): <br>
-- [Emergence Hermes Agent CEO Architecture](https://emergence.science/en/articles/hermes-agent-ceo-architecture) <br>
-- [ClawHub Skill Page](https://clawhub.ai/emergencescience/emergence-agent-ceo) <br>
-- [Quickstart](docs/quickstart.md) <br>
-- [Two-Tier Setup Guide](docs/two-tier-setup.md) <br>
-- [DevOps Leader Runbook](ops/DEVOPS_LEADER_RUNBOOK.md) <br>
-- [Growth Leader Runbook](ops/GROWTH_LEADER_RUNBOOK.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with shell commands, configuration examples, issue templates, runbooks, and scaffolded workspace files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces GitHub issue comments, draft files, pull requests, runbook updates, and operational logs when connected to an agent runtime and credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: Autonomous server execution, scheduled cron tasks, and GitHub-write workflows can make broad changes if installed without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run only as a dedicated non-root user in a test or tightly scoped repository, and keep cron disabled until every scheduled skill and approval boundary has been reviewed.
+
+Risk: The skill expects LLM API keys and GitHub credentials, which can expand impact if over-privileged or stored carelessly.
+
+Mitigation: Use least-privilege GitHub tokens, avoid plaintext .env secrets where possible, and restrict credentials to the minimum repository and task scope.
+
+Risk: Runtime installation and agent execution depend on external tooling that may change over time.
+
+Mitigation: Pin and verify the OpenClaw runtime or chosen autonomous-agent framework before deployment.
+
+## Reference(s):
+
+- [Hermes Agent CEO Architecture](https://emergence.science/en/articles/hermes-agent-ceo-architecture)
+- [ClawHub skill page](https://clawhub.ai/emergencescience/skills/emergence-agent-ceo)
+- [Quickstart](docs/quickstart.md)
+- [Two-tier setup](docs/two-tier-setup.md)
+- [Heartbeat schedule](HEARTBEAT.md)
+- [DevOps leader runbook](ops/DEVOPS_LEADER_RUNBOOK.md)
+- [Growth leader runbook](ops/GROWTH_LEADER_RUNBOOK.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands, issue templates, runbooks, and configuration files]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces a deployable workspace scaffold and operational guidance; external publishing, deployment, spending, and PR merges remain human-approved.]
+
+## Skill Version(s):
+
+1.0.0 (source: evidence.release.version and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,59 @@
-## Description: <br>
-Issue and verify SX# agent passports with cryptographic identity, hash-chain integrity, and Merkle anchoring on Base. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Issue and verify SX# agent passports for cryptographic identity with hash-chain integrity and Merkle anchoring on Base.
 
-## Publisher: <br>
-[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[drivenbymyai-max](https://clawhub.ai/user/drivenbymyai-max)
 
-## Use Case: <br>
-Developers and agent operators use this skill to register AI agents, retrieve SX# passports, inspect agent profiles, and verify event or Merkle proofs through the disclosed Soul service API. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The examples contact an external service and submit agent registration information. <br>
-Mitigation: Only submit agent information intended for registration with the disclosed Soul service. <br>
-Risk: The registration example can request and return an API key. <br>
-Mitigation: Keep returned API keys private and avoid sharing them in prompts, logs, or public artifacts. <br>
-Risk: Some verification endpoints are labeled as paid. <br>
-Mitigation: Confirm cost and authorization before calling paid proof or Merkle verification endpoints. <br>
+## Use Case:
 
+External developers and agent operators use this skill to register AI agents with SputnikX, retrieve SX# passports and profiles, and verify event or Merkle proofs through documented HTTP endpoints.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/drivenbymyai-max/sx-agent-passport) <br>
-- [SoulLedger Homepage](https://soulledger.sputnikx.xyz) <br>
-- [Soul API Base](https://soul.sputnikx.xyz) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, API calls] <br>
-**Output Format:** [Markdown with inline bash code blocks and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Examples contact an external service and may return an API key.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and release evidence) <br>
+Risk: Registration sends the provided agent identifier and display name to SputnikX as a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review submitted identifiers before use and avoid sending sensitive or confidential data unless approved.
+
+Risk: Registration may return an API key that should be treated as sensitive.
+
+Mitigation: Store generated keys in an approved secret store and avoid pasting them into shared logs, prompts, or tickets.
+
+Risk: Some verification endpoints are described as paid.
+
+Mitigation: Confirm cost authorization before invoking paid event-proof or Merkle-root verification endpoints.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/drivenbymyai-max/skills/sx-agent-passport)
+- [SputnikX Soul Ledger](https://soulledger.sputnikx.xyz)
+- [SputnikX Soul API Base URL](https://soul.sputnikx.xyz)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, API Calls, Configuration]
+
+**Output Format:** [Markdown guidance with curl command examples and JSON response shapes]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May return API keys and includes guidance for paid verification endpoints; the inspected artifact contains no local executable code.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and skill metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

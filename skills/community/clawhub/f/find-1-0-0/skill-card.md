@@ -1,36 +1,54 @@
-## Description: <br>
-Locate anything with progressive search expansion, multi-source validation, and iterative refinement until found. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Locate anything with progressive search expansion, multi-source validation, and iterative refinement until found.
 
-## Publisher: <br>
-[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk)
 
-## Use Case: <br>
-External users and agent operators use this skill to guide an agent through clarifying a hard-to-find target, expanding searches across likely sources, validating findings, and reporting confidence or next steps. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
-Mitigation: Review and scan skill before deployment. <br>
+## Use Case:
 
-## Reference(s): <br>
+External users and agents use this skill to locate specific information or items when the source is unknown, by clarifying criteria, expanding searches, validating findings, and reporting confidence or next steps.
 
+### Deployment Geography for Use:
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown with structured result summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May lead an agent to search several external sources; avoid using it with secrets, credentials, or sensitive personal data unless browsing and connector permissions are appropriately restricted.] <br>
+Global
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Known Risks and Mitigations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Risk: The broad trigger wording may apply to search requests involving private, paid, or sensitive sources.
+
+Mitigation: Review the agent's selected search scope before it accesses private, paid, or sensitive sources.
+
+Risk: Search results may be incorrect, stale, or only partially matched to the user's request.
+
+Mitigation: Validate sources, report confidence and caveats, and explain attempted searches when no reliable result is found.
+
+## Reference(s):
+
+- [Find 1.0.0 ClawHub skill page](https://clawhub.ai/zhangyingzhuangk/skills/find-1-0-0)
+- [Publisher profile: zhangyingzhuangk](https://clawhub.ai/user/zhangyingzhuangk)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance]
+
+**Output Format:** [Markdown text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports the found item, source, confidence, caveats, or exhausted-search next steps.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact/_meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

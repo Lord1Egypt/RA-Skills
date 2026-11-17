@@ -1,42 +1,50 @@
-## Description: <br>
-Search the web with DuckDuckGo instant answer API and return concise results. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Searches the web with DuckDuckGo's instant answer API and returns concise results for quick fact lookups or lightweight web search without browser automation.
 
-## Publisher: <br>
-[graafdefolkert-byte](https://clawhub.ai/user/graafdefolkert-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[graafdefolkert-byte](https://clawhub.ai/user/graafdefolkert-byte)
 
-## Use Case: <br>
-Developers and agents use this skill to perform quick web lookups, fetch concise facts, and return source URLs without browser automation. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search queries are sent to DuckDuckGo. <br>
-Mitigation: Use only queries that are appropriate to share with DuckDuckGo and avoid including secrets or sensitive private data. <br>
-Risk: The optional --open flag can launch a local browser to a returned URL. <br>
-Mitigation: Use --open only when intentionally opening a result, and review returned URLs before visiting them. <br>
+## Use Case:
 
+Developers and agent users use this skill to run DuckDuckGo lookups for quick facts, source URLs, and lightweight web search results.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/graafdefolkert-byte/ddg-web-search-local-bak-20260415-020609) <br>
-- [DuckDuckGo Instant Answer API endpoint](https://api.duckduckgo.com/) <br>
-- [DuckDuckGo HTML search endpoint](https://duckduckgo.com/html/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown text with concise summaries and source URLs] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May print related topics, fallback web results, or a clear no-result message.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill includes an undocumented option that can open an external search-result URL in the user's local browser.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before installing, remove or document the browser-opening behavior, and require explicit user confirmation before opening external URLs.
+
+## Reference(s):
+
+- [DuckDuckGo Instant Answer API endpoint](https://api.duckduckgo.com/)
+- [DuckDuckGo HTML search fallback](https://duckduckgo.com/html/)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text search summaries with source URLs]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports when no strong instant-answer result is found and may provide fallback web result links.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,46 +1,55 @@
-## Description: <br>
-This skill helps agents run Docsiphon through its CLI-first path, export a small documentation subtree, and inspect the resulting audit artifacts without claiming hosted or MCP-first product status. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides an agent through the Docsiphon CLI-first workflow to export a small documentation subtree and inspect the resulting audit artifacts without presenting Docsiphon as a hosted or MCP-first product.
 
-## Publisher: <br>
-[xiaojiou176](https://clawhub.ai/user/xiaojiou176) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xiaojiou176](https://clawhub.ai/user/xiaojiou176)
 
-## Use Case: <br>
-Developers and engineers use this skill to run a small, scoped Docsiphon CLI export and inspect manifest and report artifacts before attempting larger documentation corpus exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The sample uvx command fetches and executes Docsiphon from GitHub. <br>
-Mitigation: Verify the repository and preferably pin a trusted commit or release before execution, then run the demo from a low-risk workspace. <br>
-Risk: Generated export artifacts may contain unexpected or unreviewed documentation content. <br>
-Mitigation: Review ./_outputs, manifest.jsonl, report.json, toc.md, and report.html before reusing the output or expanding the export scope. <br>
+## Use Case:
 
+Developers and agents use this skill to invoke Docsiphon from the CLI, run a small documentation corpus export, and inspect generated manifest, report, table-of-contents, and HTML audit artifacts.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/xiaojiou176/docsiphon-doc-corpus-operator) <br>
-- [Install](references/INSTALL.md) <br>
-- [Demo](references/DEMO.md) <br>
-- [Capabilities](references/CAPABILITIES.md) <br>
-- [Troubleshooting](references/TROUBLESHOOTING.md) <br>
-- [Docsiphon GitHub repository used by install commands](https://github.com/xiaojiou176-open/docsiphon.git) <br>
-- [uv installation documentation](https://docs.astral.sh/uv/getting-started/installation/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces agent-facing operating instructions; export artifacts are produced by the Docsiphon CLI.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and manifest.yaml) <br>
+Risk: The install and demo flow invokes mutable GitHub code via uvx without a pinned commit or reviewed release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use a pinned commit or verified release, review the Docsiphon source and dependencies before execution, and run it in a low-privilege or disposable environment with only the intended output directory writable.
+
+## Reference(s):
+
+- [ClawHub Skill Listing](https://clawhub.ai/xiaojiou176/skills/docsiphon-doc-corpus-operator)
+- [Install](references/INSTALL.md)
+- [Demo](references/DEMO.md)
+- [Capabilities](references/CAPABILITIES.md)
+- [Troubleshooting](references/TROUBLESHOOTING.md)
+- [Docsiphon GitHub Repository](https://github.com/xiaojiou176-open/docsiphon.git)
+- [uv Installation](https://docs.astral.sh/uv/getting-started/installation/)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Guidance, Markdown]
+
+**Output Format:** [Markdown guidance with inline shell commands and artifact checklist]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Agent-facing instructions for CLI invocation and local audit artifact inspection.]
+
+## Skill Version(s):
+
+1.0.0 (source: manifest.yaml and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

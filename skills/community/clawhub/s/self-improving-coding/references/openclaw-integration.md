@@ -43,8 +43,8 @@ cp -r self-improving-coding ~/.openclaw/skills/
 ### 2. Install the Hook (Optional)
 
 ```bash
-cp -r hooks/openclaw ~/.openclaw/hooks/self-improving-coding
-openclaw hooks enable self-improving-coding
+mkdir -p .openclaw/hooks
+cp -r hooks/openclaw .openclaw/hooks/self-improving-coding
 ```
 
 ### 3. Create Learning Files
@@ -93,23 +93,9 @@ Is the learning project-specific?
 | Tooling issue hit | Log learning | LEARNINGS.md (tooling_issue) |
 | Refactoring opportunity | Log learning | LEARNINGS.md (refactor_opportunity) |
 
-## Inter-Agent Communication
+## Scope
 
-OpenClaw provides tools for cross-session communication. Use only when cross-session sharing is explicitly needed.
-
-### sessions_send
-
-Share a coding pattern with another session:
-```
-sessions_send(sessionKey="session-id", message="Bug pattern: off-by-one in pagination, use (page-1)*size not page*size")
-```
-
-### sessions_spawn
-
-Spawn a background agent to analyze code patterns:
-```
-sessions_spawn(task="Analyze .learnings/BUG_PATTERNS.md for promotion candidates", label="pattern-review")
-```
+This skill does not read other sessions, send cross-session messages, spawn background agents, or read other installed skills. Log redacted notes in this workspace only.
 
 ## Available Hook Events
 

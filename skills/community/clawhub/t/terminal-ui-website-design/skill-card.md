@@ -1,42 +1,54 @@
-## Description: <br>
-Creates terminal-inspired UI interfaces with macOS-style window decorations, monospace typography, warm color choices, and reusable component and CSS guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Create terminal-inspired UI interfaces with macOS-style window decorations, monospace typography, and a warm color palette.
 
-## Publisher: <br>
-[chyinan](https://clawhub.ai/user/chyinan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[chyinan](https://clawhub.ai/user/chyinan)
 
-## Use Case: <br>
-Developers and designers use this skill to guide agents in building terminal-style websites, developer tools, code marketplaces, and technical documentation interfaces with consistent tokens, components, CSS variables, and templates. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Generated theme-toggle implementations may store a light or dark theme preference in browser localStorage. <br>
-Mitigation: Keep stored data limited to the theme preference and avoid persisting user content or sensitive values. <br>
-Risk: Design guidance can be applied incorrectly and produce inaccessible contrast, spacing, or responsive behavior. <br>
-Mitigation: Review generated interfaces for accessibility, responsive layout, and visual consistency before deployment. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [SKILL.md](artifact/SKILL.md) <br>
-- [complete-css-variables.css](artifact/references/complete-css-variables.css) <br>
-- [component-templates.html](artifact/references/component-templates.html) <br>
-- [design-tokens.json](artifact/references/design-tokens.json) <br>
+## Use Case:
 
+Developers and designers use this skill to apply a terminal-inspired website design system to developer tools, code marketplaces, technical documentation sites, and other command-line-themed interfaces.
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with CSS, HTML, JavaScript, and JSON snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include design tokens, CSS variables, component templates, theme-toggle behavior, and responsive layout guidance.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Sample Chinese labels in component templates may be unsuitable for a production application's audience.
+
+Mitigation: Review and localize sample labels before reusing the templates.
+
+Risk: The optional theme-toggle example persists browser theme preference in localStorage.
+
+Mitigation: Include the localStorage theme code only when browser-side theme persistence is desired.
+
+## Reference(s):
+
+- [Complete CSS Variables](references/complete-css-variables.css)
+- [Component Templates](references/component-templates.html)
+- [Design Tokens](references/design-tokens.json)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with CSS, HTML, JavaScript, and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces reusable UI design guidance, component templates, CSS variables, and design-token references.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

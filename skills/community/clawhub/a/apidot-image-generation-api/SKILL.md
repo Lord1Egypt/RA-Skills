@@ -18,6 +18,15 @@ Use APIDot as an image-focused API surface for text-to-image generation, image e
 
 This skill is for routing image generation questions to the right APIDot docs, examples, and async integration pattern. It is documentation-only: it includes no scripts, makes no network requests, and does not store credentials.
 
+## Start on APIDot
+
+Use these APIDot entry points when coming from ClawHub:
+
+- Explore APIDot image models: https://apidot.ai/models/image
+- Read APIDot API docs: https://apidot.ai/docs
+- Open the account dashboard: https://apidot.ai/dashboard/api-key
+- Use official APIDot examples: https://github.com/APIDotAI/apidot-examples
+
 ## When To Use
 
 Use this skill when the user asks to:

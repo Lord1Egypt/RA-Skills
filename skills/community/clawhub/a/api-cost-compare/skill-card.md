@@ -1,42 +1,59 @@
-## Description: <br>
-API Cost Compare is a local CLI that helps developers list, compare, recommend, and estimate LLM API costs across major providers. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compares LLM API prices across major providers and helps estimate or recommend lower-cost models for common tasks.
 
-## Publisher: <br>
-[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[minirr890112-byte](https://clawhub.ai/user/minirr890112-byte)
 
-## Use Case: <br>
-Developers and engineers use this skill to compare LLM API pricing, estimate token-based request costs, and choose lower-cost models for chat, coding, writing, or reasoning workloads. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Pricing recommendations may be stale because the included tool relies on hardcoded provider pricing data. <br>
-Mitigation: Verify current provider pricing before making purchasing, routing, or budget decisions. <br>
-Risk: Some advertised tracker or alias commands may not be implemented in the included code. <br>
-Mitigation: Check the installed CLI help and use the implemented list, compare, recommend, and estimate commands. <br>
+## Use Case:
 
+Developers and engineers use this skill to compare LLM provider and model pricing, estimate token-based API costs, and choose lower-cost models for chat, coding, writing, or reasoning workflows.
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/minirr890112-byte/api-cost-compare) <br>
-- [Project homepage](https://github.com/minirr890112-byte/api-cost-compare) <br>
-- [README_EN.md](artifact/README_EN.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Markdown with inline shell commands and terminal output summaries] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May summarize CLI tables, model comparisons, recommendations, and estimated USD costs.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and target metadata; pyproject.toml also lists 1.0.0) <br>
+Risk: The documented Git install is unpinned, so users may install code that differs from the reviewed artifact.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install from a trusted, pinned release or commit and review the package before use.
+
+Risk: The description advertises spending tracker commands that the package does not implement.
+
+Mitigation: Use implemented commands only, such as list, compare, recommend, and estimate, and verify functionality before relying on workflows.
+
+Risk: API pricing can change, and static model data may become stale.
+
+Mitigation: Confirm prices against provider billing pages before making purchasing or production routing decisions.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/minirr890112-byte/skills/api-cost-compare)
+- [Project homepage](https://github.com/minirr890112-byte/api-cost-compare)
+- [English README](artifact/README_EN.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Markdown guidance with CLI command examples and tabular cost comparisons]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include cost estimates, provider/model recommendations, and install or run commands; pricing data should be reviewed for freshness.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and target metadata; artifact frontmatter states 1.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

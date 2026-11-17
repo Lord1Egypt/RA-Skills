@@ -1,45 +1,57 @@
-## Description: <br>
-Converts multiple HTML page elements into separate high-resolution image files with configurable selector, viewport size, and output directory. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Converts selected elements from an HTML file into individual high-resolution PNG images with configurable selector, dimensions, and output directory.
 
-## Publisher: <br>
-[shiker1996](https://clawhub.ai/user/shiker1996) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[shiker1996](https://clawhub.ai/user/shiker1996)
 
-## Use Case: <br>
-Developers and agents use this skill to render selected elements from trusted local HTML into PNG screenshots for content workflows and batch page export. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill renders active HTML in Chromium, which may load scripts, styles, fonts, or remote resources from supplied HTML. <br>
-Mitigation: Use trusted HTML only or run the skill in an isolated environment; consider blocking external requests before deployment. <br>
-Risk: The bundled legacy conversion script deletes a hard-coded output directory without confirmation. <br>
-Mitigation: Prefer the main index.js API with a dedicated output directory and avoid running the legacy convert-pages.js directly unless its paths have been reviewed. <br>
-Risk: Chromium is launched with no-sandbox flags. <br>
-Mitigation: Avoid no-sandbox mode where possible and contain execution with OS-level isolation when processing untrusted inputs. <br>
-Risk: Image filenames may be derived from HTML page content. <br>
-Mitigation: Sanitize page-derived filename components before using the skill with untrusted or user-supplied HTML. <br>
+## Use Case:
 
+Developers and content automation users use this skill to render page-like HTML sections into PNG assets for previews, social posts, documentation, or image pipelines.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/shiker1996/html-pages-to-images) <br>
-- [Publisher profile](https://clawhub.ai/user/shiker1996) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, JSON] <br>
-**Output Format:** [PNG image files plus a JSON-style execution result] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generates one PNG per matched HTML element and returns image paths, count, and output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata, package.json, skill.json) <br>
+Risk: The skill renders caller-supplied HTML in a browser with network access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Render only trusted HTML or run the skill in a tightly isolated environment with minimal filesystem access and restricted network egress.
+
+Risk: The legacy conversion script deletes a hard-coded output directory recursively before rendering.
+
+Mitigation: Prefer the configurable Agent Skill entry point and avoid the legacy script unless the hard-coded path has been reviewed.
+
+Risk: The release depends on Puppeteer and lockfile dependencies that may age over time.
+
+Mitigation: Update Puppeteer and lockfile dependencies before operational use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/shiker1996/skills/html-pages-to-images)
+
+## Skill Output:
+
+**Output Type(s):** [Files, Text]
+
+**Output Format:** [PNG image files plus a JSON-compatible execution result]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Returns image paths, image count, and output directory.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence, package.json, skill.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,50 +1,71 @@
-## Description: <br>
-掘金量化 Python SDK expert skill for Chinese-language strategy development, market data queries, backtesting, live trading workflows, and gm.api reference guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Chinese-language agent skill for building and running MyQuant gm.api quantitative trading strategy code, backtests, live or simulated runs, and market or account data queries.
 
-## Publisher: <br>
-[turkeydick](https://clawhub.ai/user/turkeydick) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[turkeydick](https://clawhub.ai/user/turkeydick)
 
-## Use Case: <br>
-External developers and quantitative traders use this skill to turn Chinese natural-language trading ideas into gm.api strategy code, market-data queries, and backtest or live-run commands for the 掘金量化 platform. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The security evidence reports exposed API tokens. <br>
-Mitigation: Rotate or ignore bundled tokens, use a personal token through environment variables or a secret manager, and avoid pasting secrets into chat. <br>
-Risk: The security evidence reports under-scoped live-trading execution paths. <br>
-Mitigation: Require explicit manual confirmation before using live mode, account IDs, order placement, close-all operations, or bond conversion examples. <br>
-Risk: Generated or bundled trading strategies can cause financial loss if run without review. <br>
-Mitigation: Review generated strategy logic, run backtests or simulation first, and verify orders and risk controls before live execution. <br>
+## Use Case:
 
+External developers and quantitative traders use this skill to turn Chinese strategy descriptions into gm.api Python scripts, run backtests or live/simulated strategies, and query MyQuant market, account, and premium data APIs.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/turkeydick/gmquant) <br>
-- [掘金量化终端](https://www.myquant.cn) <br>
-- [Quick Start and Strategy Architecture](references/01-quick-start.md) <br>
-- [Core Functions](references/02-core-functions.md) <br>
-- [Market Data Queries](references/04-market-data.md) <br>
-- [Trading Order API](references/08-order-api.md) <br>
-- [Account Query Functions](references/10-account-query.md) <br>
-- [User Guide](references/15-user-guide.md) <br>
-- [Premium Data API Summary](references/16-premium-data-apis.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with Python code blocks and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce runnable Python strategy files and commands that require a local gm SDK, a 掘金 terminal session, and user-provided credentials.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: ClawHub release metadata; artifact frontmatter reports 2.1.0) <br>
+Risk: The skill handles trading credentials unsafely.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not paste real tokens into chat, rotate any exposed token, use a least-privilege token where available, and pass credentials through an isolated environment.
+
+Risk: Generated strategy code can run with broad local access.
+
+Mitigation: Review generated strategy code before execution and run it in an isolated environment with a minimal allowlisted environment.
+
+Risk: Live or simulated trading mode can place orders through the connected MyQuant environment.
+
+Mitigation: Prefer backtesting first and avoid live mode until explicit safeguards, account selection, and strategy limits are reviewed.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/turkeydick/skills/gmquant)
+- [turkeydick publisher profile](https://clawhub.ai/user/turkeydick)
+- [MyQuant platform](https://www.myquant.cn)
+- [Quick start](references/01-quick-start.md)
+- [Core functions](references/02-core-functions.md)
+- [Market data](references/04-market-data.md)
+- [Order API](references/08-order-api.md)
+- [Account query](references/10-account-query.md)
+- [User guide](references/15-user-guide.md)
+- [Premium data APIs](references/16-premium-data-apis.md)
+- [Financial data fields](references/17-financial-data-fields.md)
+- [Stock premium APIs](references/18-stock-premium-apis.md)
+- [Fund premium APIs](references/19-fund-premium-apis.md)
+- [Convertible bond premium APIs](references/20-cb-premium-apis.md)
+- [Futures premium APIs](references/21-futures-premium-apis.md)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown guidance with Python code and shell command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce runnable gm.api strategy files and command-line invocations that require user-supplied credentials and a MyQuant terminal session.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

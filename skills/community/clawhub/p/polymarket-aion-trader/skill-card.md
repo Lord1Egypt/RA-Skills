@@ -1,43 +1,60 @@
-## Description: <br>
-Place Polymarket trades through Aionmarket when the user wants to search markets, register wallet credentials, verify a wallet, or submit an order with an Aionmarket API key, Polymarket CLOB credentials, wallet private key, or pre-signed EIP712 order. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Place Polymarket trades through Aionmarket, including market search, wallet credential registration, wallet verification, and Polymarket order submission with Aionmarket and Polymarket credentials or a pre-signed EIP712 order.
 
-## Publisher: <br>
-[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[fivegive249-ship-it](https://clawhub.ai/user/fivegive249-ship-it)
 
-## Use Case: <br>
-External users and developers use this skill to prepare, inspect, and submit Polymarket trades through Aionmarket, including wallet credential registration, market review, signed order submission, and post-trade checks. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can handle live trading credentials and an optional wallet private key. <br>
-Mitigation: Prefer pre-signed orders or scoped, revocable credentials; treat secrets as transient; never persist them in files, examples, commits, logs, or markdown artifacts. <br>
-Risk: Live orders can execute unintended trades if market, side, size, price, order type, or endpoint details are wrong. <br>
-Mitigation: Independently verify the Aionmarket endpoint and require explicit approval for each live order with the exact market, side, size, price, and order type before execution. <br>
+## Use Case:
 
+External users and developers use this skill to prepare, inspect, and submit Polymarket trades through Aionmarket. It guides credential checks, wallet setup, market review, signed-order requirements, and post-trade follow-up.
 
-## Reference(s): <br>
-- [Aionmarket Polymarket Reference](references/aionmarket-polymarket.md) <br>
-- [Aionmarket SDK Reference](references/aionmarket-sdk.md) <br>
-- [Trade Request Template](assets/trade-request-template.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/fivegive249-ship-it/polymarket-aion-trader) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, API calls, Configuration guidance] <br>
-**Output Format:** [Markdown guidance with Python SDK snippets, REST endpoint details, and structured trade intake fields] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an Aionmarket API key for authenticated actions and may require Polymarket CLOB credentials plus either a pre-signed EIP712 order or wallet private key for local signing.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.4 (source: server release evidence) <br>
+Risk: The skill can support live financial trading and may cause unintended order submission or financial loss if trade details are wrong.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require final review of market, side, size, price, wallet, signed order, and live environment before submitting any order.
+
+Risk: Wallet private keys, Polymarket CLOB credentials, and Aionmarket API keys could expose funds or accounts if shared or stored insecurely.
+
+Mitigation: Prefer pre-signed orders or an external wallet/signer, request secrets only for the next required step, and do not write secrets to repository files, logs, commits, or markdown artifacts.
+
+Risk: Using an unexpected Aionmarket endpoint could send credentials or signed orders to the wrong service.
+
+Mitigation: Confirm the exact Aionmarket endpoint before sharing credentials or submitting trade payloads.
+
+## Reference(s):
+
+- [Aionmarket Polymarket Reference](references/aionmarket-polymarket.md)
+- [Aionmarket SDK Reference](references/aionmarket-sdk.md)
+- [Trade Request Template](assets/trade-request-template.md)
+- [ClawHub Skill Page](https://clawhub.ai/fivegive249-ship-it/skills/polymarket-aion-trader)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration, API calls]
+
+**Output Format:** [Markdown with inline code, JSON payload examples, and command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include live-trading checklists, credential requirements, SDK setup guidance, REST endpoint guidance, signed-order payload guidance, and post-trade review steps.]
+
+## Skill Version(s):
+
+1.0.4 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

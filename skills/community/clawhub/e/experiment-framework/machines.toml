@@ -1,0 +1,18 @@
+# Structural example profiles only. Replace before authorized execution.
+[machines.local]
+transport = "local"
+workspace_root = "~/projects"
+[machines.worker]
+transport = "ssh"
+target = "worker.example.invalid"
+workspace_root = "~/projects"
+checkout_root = "~/.experiment-checkouts"
+[machines.worker2]
+transport = "ssh"
+target = "worker-two.example.invalid"
+workspace_root = "~/projects"
+checkout_root = "~/.experiment-checkouts"
+aliases = ["worker-two"]
+[machines.runpod]
+transport = "runpod"
+workspace_root = "/workspace"

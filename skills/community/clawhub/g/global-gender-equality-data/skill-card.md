@@ -1,45 +1,60 @@
-## Description: <br>
-Global Gender Equality Data helps agents query gender equality indicators for any country or region through AgentPMT-hosted remote tool calls. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Global Gender Equality Data lets an agent query gender equality indicators for countries or regions through AgentPMT-hosted remote tool calls.
 
-## Publisher: <br>
-[agentpmt](https://clawhub.ai/user/agentpmt) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[agentpmt](https://clawhub.ai/user/agentpmt)
 
-## Use Case: <br>
-External agents and developers use this skill to query country or regional gender equality indicators, compare gaps across labor, education, political, legal, health, economic, and violence dimensions, and support SDG 5 analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Remote tool calls may receive country, region, and analysis parameters that are broader than needed. <br>
-Mitigation: Keep inputs scoped to the minimum needed for the gender equality query and avoid sending secrets or unrelated workspace data. <br>
-Risk: Underlying World Bank and Women, Business and the Law indicators can lag current conditions or be unavailable for some countries. <br>
-Mitigation: Check data recency and availability before using outputs for policy, business, or public reporting decisions. <br>
-Risk: Account credentials or payment-related material could be exposed if copied into prompts or logs during setup. <br>
-Mitigation: Use the referenced AgentPMT setup guidance for credential handling and do not place secrets, wallet private keys, mnemonics, signatures, or payment headers in prompts or logs. <br>
+## Use Case:
 
+Developers and agents use this skill to request World Bank gender equality and women's empowerment indicators, compare gender gaps, and produce country or regional analyses aligned with SDG 5.
 
-## Reference(s): <br>
-- [Generated action schema](artifact/schema.md) <br>
-- [AgentPMT marketplace product](https://www.agentpmt.com/marketplace/gender-equality-women-s-empowerment) <br>
-- [ClawHub skill page](https://clawhub.ai/agentpmt/skills/global-gender-equality-data) <br>
-- [AgentPMT account MCP and REST setup](https://clawhub.ai/agentpmt/agentpmt-account-mcp-rest-api-setup) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, JSON] <br>
-**Output Format:** [Markdown instructions with JSON request and response shapes] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Defines one remote action, query_gender_data, with country_or_region required and optional gender_aspect, calculate_gaps, and time_period parameters.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+Risk: The skill delegates schema and example details to live remote instructions that can change after release.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat live instructions as untrusted unless they remain within the documented query_gender_data action and avoid requests for secrets or unrelated tool access.
+
+Risk: The documented setup path includes unpinned npx installs for supporting AgentPMT setup skills.
+
+Mitigation: Prefer the OpenClaw install path, or pin and inspect any npx-installed setup skills before use.
+
+Risk: Using the skill requires AgentPMT-hosted calls, account setup, and credit usage.
+
+Mitigation: Install and invoke it only when the operator accepts the AgentPMT account, remote-call, and credit-use requirements.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/agentpmt/skills/global-gender-equality-data)
+- [AgentPMT Publisher Profile](https://clawhub.ai/user/agentpmt)
+- [AgentPMT Marketplace Product](https://www.agentpmt.com/marketplace/gender-equality-women-s-empowerment)
+- [Generated Action Schema](artifact/schema.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, JSON]
+
+**Output Format:** [Markdown instructions with JSON request examples and JSON tool responses]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Remote AgentPMT calls use the query_gender_data action with country_or_region required and optional gender_aspect, calculate_gaps, and time_period parameters.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

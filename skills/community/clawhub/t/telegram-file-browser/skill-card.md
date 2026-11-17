@@ -1,41 +1,58 @@
-## Description: <br>
-Build or improve Telegram inline-button file browsers and menu-style navigators for browsing directories, paging lists, previewing files, returning to parent views, closing menus, or exposing copyable file paths. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds Telegram inline-button file browsers and menu-style navigators for browsing directories, paging lists, previewing files, returning to parent views, closing menus, and exposing copyable file paths from an agent workflow.
 
-## Publisher: <br>
-[Just-CJ](https://clawhub.ai/user/Just-CJ) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[just-cj](https://clawhub.ai/user/just-cj)
 
-## Use Case: <br>
-Developers and operators use this skill to create Telegram chat interfaces for browsing files inside a bounded workspace, previewing file contents, showing copyable paths, and sending selected files through Telegram. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The browser can expose or send local files from the selected root into Telegram chats. <br>
-Mitigation: Keep the browser root limited to a non-sensitive workspace and avoid browsing home or system directories. <br>
-Risk: Callback-looking text messages may be treated as browser commands without strong session checks. <br>
-Mitigation: Use the skill only where callback handling is bound to the intended user or session, and avoid shared chats unless downloads require confirmation. <br>
+## Use Case:
 
+Developers and agent operators use this skill to add a Telegram-based file browser to OpenClaw workflows, with inline navigation, file action menus, previews, copyable paths, and downloads. It is intended for workspace file browsing where the operator understands which local files may be exposed through Telegram.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/Just-CJ/telegram-file-browser) <br>
-- [Interaction Patterns](references/interaction-patterns.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with JSON payloads, Python snippets, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces Telegram message payloads and button matrices for file-browser interactions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.1 (source: server release evidence) <br>
+Risk: Callback handling and file-transfer paths can expose local files or run unsafe commands.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review before normal use; pass callbacks as safely quoted arguments or argv, bind callback tokens to the active session and version, and require clear user intent before downloading files.
+
+Risk: Preview or download actions can operate on paths that no longer match the intended browser root, especially around resolved paths and symlinks.
+
+Mitigation: Revalidate preview and download paths against the configured root immediately before use, including symlink-safe checks.
+
+Risk: The skill has a suspicious security verdict in ClawHub evidence.
+
+Mitigation: Install only if the operator is comfortable granting the skill access to browse and send files from the OpenClaw workspace through Telegram, and fix the security guidance items before normal use.
+
+## Reference(s):
+
+- [Telegram File Browser Interaction Patterns](references/interaction-patterns.md)
+- [ClawHub Skill Page](https://clawhub.ai/just-cj/skills/telegram-file-browser)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, files]
+
+**Output Format:** [Markdown guidance with Python and shell command examples, plus JSON-style Telegram message payloads and file delivery actions.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces Telegram menu messages, inline button matrices, preview text, copyable paths, and file-send actions; button arrays must remain two-dimensional.]
+
+## Skill Version(s):
+
+0.1.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

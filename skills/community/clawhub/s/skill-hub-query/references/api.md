@@ -293,6 +293,77 @@ considered failed and rolled back from backup.
 
 ---
 
+## 5. Optional endpoints (for `team.sh`)
+
+These power `team.sh` (team member management: search / my teams / detail /
+member list / add / remove). If your Hub does NOT implement them, instruct
+users to set `export SKILL_HUB_DISABLE_TEAM=1` so the tool refuses to run
+instead of producing confusing errors (same convention as `edit.sh`).
+
+The path prefix defaults to `/api/team` via `SKILL_HUB_TEAM_PREFIX`; team
+endpoints sit under `<base><SKILL_HUB_TEAM_PREFIX>/...`. Override the variable
+if your Hub mounts them elsewhere.
+
+### 5.1 Team search / my teams / detail
+
+```
+GET <base><SKILL_HUB_TEAM_PREFIX>/search?keyword=&size=
+GET <base><SKILL_HUB_TEAM_PREFIX>/my?current=&size=
+GET <base><SKILL_HUB_TEAM_PREFIX>/{teamId}
+```
+
+Envelope: `{"code":200, "data":{"records":[...], "total":N}}` for the list
+endpoints; `{"code":200, "data":{...team object...}}` for detail. The team
+object carries `id`, `teamName`, `teamDescription`, `memberCount`,
+`skillCount`, and (optional) `myRole`.
+
+### 5.2 Member list (paginated)
+
+```
+GET <base><SKILL_HUB_TEAM_PREFIX>/{teamId}/members?current=&size=
+```
+
+**The pagination parameter is `current=`, not `page=`** — a Hub that silently
+ignores `page=` and always returns the first page will make full pagination
+loop forever on page 1 (the client caps at 200 pages and aborts).
+
+Member record shape:
+
+```json
+{
+  "user": {"email": "alice@example.com", "displayName": "Alice",
+            "handle": "alice", "avatar": null},
+  "role": "member",
+  "grantedBy": {"email": "owner@example.com", "displayName": "Owner"},
+  "createdAt": "2026-01-01T00:00:00Z"
+}
+```
+
+### 5.3 Add / remove members
+
+```
+POST   <base><SKILL_HUB_TEAM_PREFIX>/{teamId}/members/add
+       body {"members":[{"userEmail":"a@x.com","role":"member"}]}
+DELETE <base><SKILL_HUB_TEAM_PREFIX>/{teamId}/members/remove
+       body {"userEmails":["a@x.com"]}
+```
+
+**Server contract requirements (all field-tested; the client already
+defends against each):**
+
+- `add` MUST expect that the client validates email format — the reference
+  implementation accepts arbitrary strings and writes a *dangling record*
+  (`user.handle == userEmail`, no avatar). The client therefore **re-verifies
+  every add against the member list** and flags dangling records.
+- `add` is idempotent-success for existing members; the client de-duplicates
+  first so roles are never silently changed.
+- `remove` is silent-success for unknown emails; the client re-verifies.
+- Valid roles: `member` / `admin` / `viewer` (others → business code 400).
+- Team-not-found is reported as **HTTP 200 + `code=400`** (fake-200, same
+  family as the download endpoint) — always check the business envelope.
+
+---
+
 ## 4. Implementing a self-hosted Hub
 
 A minimal compatible Hub needs:
@@ -301,6 +372,7 @@ A minimal compatible Hub needs:
 2. A static skill storage backend (filesystem, S3, …) for the ZIPs
 3. Token auth for `<SKILL_HUB_API_PREFIX>/*`
 4. Optional: ownership tracking + endpoints from §2 for `edit.sh`
+5. Optional: team endpoints from §5 for `team.sh`
 
 You can serve this as a thin FastAPI / Express / Spring Boot wrapper around an
 object store. The contract is intentionally small.

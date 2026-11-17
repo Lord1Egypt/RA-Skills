@@ -1,42 +1,50 @@
-## Description: <br>
-Multi-layered ransomware defense strategy platform that generates personalized protection recommendations based on organizational assessment data. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi-layered ransomware defense strategy platform that generates personalized protection recommendations based on organizational assessment data.
 
-## Publisher: <br>
-[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[krishnakumarmahadevan-cmd](https://clawhub.ai/user/krishnakumarmahadevan-cmd)
 
-## Use Case: <br>
-Security teams, MSSPs, enterprise risk managers, and cybersecurity consultants use this skill to generate ransomware defense strategies from organizational assessment data. It supports risk profiling, gap analysis, and recommendations across prevention, detection, response, and recovery layers. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted assessment data may expose sensitive organizational details. <br>
-Mitigation: Avoid sending secrets, internal hostnames, IP addresses, exact inventories, or stable personal identifiers unless necessary, and verify the provider's privacy, retention, and access-control practices before real use. <br>
-Risk: Generated ransomware defense recommendations may not fully match the organization's operational, compliance, or threat context. <br>
-Mitigation: Have qualified security personnel review recommendations before implementation and adapt controls to the organization's validated risk profile. <br>
+## Use Case:
 
+Security teams, managed security service providers, enterprise risk managers, and cybersecurity consultants use this skill to generate ransomware defense strategies, gap analysis, and control recommendations from organizational assessment data.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/krishnakumarmahadevan-cmd/ransomware-preventer) <br>
-- [Ransomware Preventer API Route](https://api.mkkpro.com/security/ransomware-preventer) <br>
-- [Ransomware Preventer API Docs](https://api.mkkpro.com:8078/docs) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [API Calls, JSON, Guidance] <br>
-**Output Format:** [JSON API requests and responses with Markdown endpoint guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces personalized ransomware defense recommendations from submitted organizational assessment data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and OpenAPI info.version) <br>
+Risk: Security architecture, security-tool inventory, maturity assessments, session identifiers, or user identifiers may be sent to an external third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use redacted or minimal inputs, avoid real user IDs unless needed, and confirm the service's privacy, retention, and access-control practices before sending production security details.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/krishnakumarmahadevan-cmd/skills/ransomware-preventer)
+- [API documentation](https://api.mkkpro.com:8078/docs)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, JSON]
+
+**Output Format:** [JSON and human-readable ransomware defense recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires organizational assessment details and may process sensitive security posture information.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata; OpenAPI info.version agrees)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

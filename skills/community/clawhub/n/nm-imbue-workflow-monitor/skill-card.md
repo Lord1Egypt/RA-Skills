@@ -1,46 +1,50 @@
-## Description: <br>
-Detects workflow failures and inefficient patterns then files GitHub issues. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Detects workflow failures and inefficient patterns then files GitHub issues
 
-## Publisher: <br>
-[athola](https://clawhub.ai/user/athola) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[athola](https://clawhub.ai/user/athola)
 
-## Use Case: <br>
-Developers and engineering agents use this skill to monitor workflow executions, detect failures or efficiency problems, and prepare or create repository issues with evidence and suggested fixes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Issue bodies may expose secrets, private command output, or sensitive workflow logs if raw evidence is posted without review. <br>
-Mitigation: Review and redact issue content before posting; keep automatic issue creation disabled unless intentional. <br>
-Risk: Repository credentials used for issue creation could grant broader access than the skill needs. <br>
-Mitigation: Use credentials limited to issue management for the target repository or project. <br>
-Risk: Automatic reporting can create noisy or duplicate issues. <br>
-Mitigation: Use duplicate checks, severity thresholds, rate limits, and human approval before creating issues. <br>
+## Use Case:
 
+Developers use this skill to review workflow runs for failures and inefficient patterns, prepare evidence-backed improvement reports, and file issues for follow-up.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-workflow-monitor) <br>
-- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
-- [Detection Patterns](artifact/modules/detection-patterns.md) <br>
-- [Efficiency Metrics](artifact/modules/efficiency-metrics.md) <br>
-- [Issue Templates](artifact/modules/issue-templates.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, issue drafts, shell command snippets, and YAML configuration examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May draft or create GitHub/GitLab issues when configured; default configuration requires approval before issue creation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.9.13 (source: server release evidence) <br>
+Risk: Execution or error details and search terms sent to GitHub may expose sensitive information.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review and sanitize logs, outputs, and search terms before sending them to GitHub; avoid including sensitive data unless the destination is appropriate.
+
+## Reference(s):
+
+- [ClawHub release](https://clawhub.ai/athola/skills/nm-imbue-workflow-monitor)
+- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue)
+
+## Skill Output:
+
+**Output Type(s):** [Analysis, Markdown, Shell commands]
+
+**Output Format:** [Markdown workflow efficiency reports and issue drafts, with shell command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include workflow evidence and recommendations for follow-up]
+
+## Skill Version(s):
+
+1.10.3 (source: frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

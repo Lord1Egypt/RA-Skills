@@ -1,40 +1,50 @@
-## Description: <br>
-NetPing checks network connectivity with ping, port scans, traceroute, DNS lookup, latency measurement, HTTP checks, and subnet sweeps from a command-line workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Netping checks network connectivity with ping, port checks, DNS lookups, traceroute, latency measurement, HTTP checks, and subnet sweep commands.
 
-## Publisher: <br>
-[ckchzh](https://clawhub.ai/user/ckchzh) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ckchzh](https://clawhub.ai/user/ckchzh)
 
-## Use Case: <br>
-Developers, DevOps engineers, and support teams use NetPing to run quick command-line network diagnostics when checking host reachability, DNS resolution, open TCP ports, routes, latency, HTTP response timing, or local subnet availability. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Port scans, traceroute, HTTP checks, and subnet sweeps generate network traffic and may trigger monitoring or violate policy on systems the user is not authorized to test. <br>
-Mitigation: Use these diagnostics only on hosts and networks the user owns or has explicit permission to test, and follow local network monitoring and acceptable-use policies. <br>
+## Use Case:
 
+Developers, DevOps engineers, and operators use Netping to troubleshoot reachability, DNS resolution, latency, HTTP response timing, traceroutes, TCP ports, and /24 subnet availability on authorized networks.
 
-## Reference(s): <br>
-- [Netping ClawHub release](https://clawhub.ai/ckchzh/netping) <br>
-- [ckchzh publisher profile](https://clawhub.ai/user/ckchzh) <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command-line diagnostics and concise shell usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Runs local network diagnostic commands and prints reachability, DNS, port, route, latency, HTTP timing, or subnet sweep results.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and release evidence) <br>
+Risk: Port checks, traceroute, HTTP probes, and subnet sweeps are active network testing and may trigger monitoring or violate policy on unauthorized systems.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Run these commands only against hosts and networks you own or are authorized to assess, and review targets before executing scan-oriented commands.
+
+## Reference(s):
+
+- [Netping ClawHub page](https://clawhub.ai/ckchzh/skills/netping)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Plain text diagnostic results and concise shell command guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Runs active network diagnostics against user-specified hosts, ports, URLs, domains, or subnets.]
+
+## Skill Version(s):
+
+3.0.0 (source: release evidence and frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -436,10 +436,13 @@ test('buildSentrySummary emits crash issues and signals from unresolved issues',
   assert.equal(summary.issues[0].sourceUrl, 'https://sentry.io/issues/123');
   assert.equal(summary.issues[0].app, 'sentry:wotaso/flashes');
   assert.equal(summary.issues[0].sampleEvents, 1);
+  assert.equal(summary.issues[0].firstSeenAt, '2026-05-01T00:00:00Z');
+  assert.equal(summary.issues[0].lastSeenAt, '2026-05-03T00:00:00Z');
   assert.equal(summary.meta.sampledIssueEvents, 1);
   assert.equal(summary.signals[0].area, 'crash');
   assert.equal(summary.signals[0].sampleEvents, 1);
   assert.equal(summary.signals[0].sourceUrl, 'https://sentry.io/issues/123');
+  assert.equal(summary.signals[0].lastSeenAt, '2026-05-03T00:00:00Z');
   assert.equal(summary.signals[0].app, 'sentry:wotaso/flashes');
   assert(summary.signals[0].evidence.some((entry) => entry.includes('FLASHES-1')));
   assert(summary.signals[0].evidence.some((entry) => entry.includes('https://sentry.io/issues/123')));

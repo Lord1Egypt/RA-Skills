@@ -1,48 +1,63 @@
-## Description: <br>
-PowerShell commands for AtomGit/GitCode repository, pull request, issue, CI, and collaborator management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AtomGit PowerShell helps agents work with the AtomGit/GitCode platform through PowerShell commands for authentication, pull request review, approval, merging, repository queries, issue management, batch processing, and CI status checks.
 
-## Publisher: <br>
-[panchenbo](https://clawhub.ai/user/panchenbo) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[panchenbo](https://clawhub.ai/user/panchenbo)
 
-## Use Case: <br>
-Developers and repository maintainers use this skill to operate AtomGit/GitCode projects from PowerShell, including reviewing pull requests, approving or merging changes, checking CI status, managing repositories, managing collaborators, and working with issues. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: AtomGit token exposure or overly broad credentials could grant unintended repository access. <br>
-Mitigation: Use a dedicated least-privileged token through ATOMGIT_TOKEN and avoid placing real tokens in command history or plaintext configuration. <br>
-Risk: Write-capable commands can approve pull requests, merge changes, create or update issues, and alter collaborators. <br>
-Mitigation: Review the target owner, repository, branch, issue, or pull request before running mutating commands and prefer explicit manual confirmation. <br>
-Risk: The batch script can automatically approve multiple real pull requests. <br>
-Mitigation: Load the batch script only when batch approval is intended, use an explicit PR list, and keep concurrency bounded. <br>
+## Use Case:
 
+Developers and engineering agents use this skill to inspect and manage AtomGit repositories, pull requests, issues, collaborators, and CI status from PowerShell. It is especially relevant for review workflows that require authenticated PR comments, approvals, merges, or batch processing.
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/panchenbo/atomgit-powershell) <br>
-- [Publisher profile](https://clawhub.ai/user/panchenbo) <br>
-- [AtomGit API documentation](https://docs.atomgit.com/docs/apis/) <br>
-- [README.md](README.md) <br>
-- [commands.md](commands.md) <br>
-- [API-REFERENCE.md](API-REFERENCE.md) <br>
-- [CHANGELOG.md](CHANGELOG.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with PowerShell commands and script-backed AtomGit API actions.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires PowerShell and ATOMGIT_TOKEN; performs HTTPS network calls to AtomGit and can execute remote write actions when the user invokes mutating commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+Risk: The batch PowerShell script can perform authenticated PR approvals when loaded or run with its default parameters.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Do not dot-source or run the batch script until it has been reviewed and changed so loading only defines functions; execute batch approvals only with explicit repository and PR arguments.
+
+Risk: The skill can make live repository changes, including PR comments, approvals, merges, issue updates, and collaborator changes.
+
+Mitigation: Use a least-privilege AtomGit token, confirm target owner, repository, and PR or issue numbers before execution, and review generated commands before running them.
+
+Risk: Token exposure could allow unintended AtomGit API access.
+
+Mitigation: Prefer environment-based token configuration, avoid tokens in command lines or URLs, and remove tokens from logs, shell history, and shared configuration files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/panchenbo/skills/atomgit-powershell)
+- [AtomGit API documentation](https://docs.atomgit.com/docs/apis/)
+- [AtomGit token settings](https://atomgit.com/setting/token-classic)
+- [README.md](README.md)
+- [commands.md](commands.md)
+- [API-REFERENCE.md](API-REFERENCE.md)
+- [CHANGELOG.md](CHANGELOG.md)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Code, Configuration, Guidance]
+
+**Output Format:** [Markdown with inline PowerShell code blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May produce authenticated AtomGit API actions when the generated or selected commands are executed with a valid token.]
+
+## Skill Version(s):
+
+3.0.1 (source: frontmatter, changelog, server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

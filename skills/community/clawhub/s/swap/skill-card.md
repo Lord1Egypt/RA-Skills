@@ -1,42 +1,52 @@
-## Description: <br>
-Configure Linux swap by creating or resizing swap files, setting swappiness, persisting changes in fstab, and verifying swap state. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Configure Linux swap -- create a swap file, set swappiness, persist via fstab, and resize swap.
 
-## Publisher: <br>
-[zjxylc](https://clawhub.ai/user/zjxylc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[zjxylc](https://clawhub.ai/user/zjxylc)
+
+### License/Terms of Use:
+
+MIT
+
+## Use Case:
+
+Developers and system administrators use this skill to inspect, create, resize, and tune Linux swap configuration. It is intended for Linux hosts where an agent may propose shell commands for swap files, fstab persistence, and swappiness settings.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may lead an agent to run sudo commands that change swap state and persistent system configuration.
+
+Mitigation: Require explicit user confirmation before executing privileged commands and verify current swap, fstab, and swappiness state before changing them.
+
+Risk: Appending directly to /etc/fstab or /etc/sysctl.conf can create duplicate or incorrect persistent configuration.
+
+Mitigation: Check for existing entries, back up configuration files, validate edits, and keep rollback commands available before persistence changes.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and system administrators use this skill to inspect Linux swap status, add or resize a swap file, tune swappiness, and persist swap configuration across reboots. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Shell commands, Configuration, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill proposes root-level commands that change active swap, /etc/fstab, and sysctl configuration. <br>
-Mitigation: Review current swap and configuration state first, back up /etc/fstab and /etc/sysctl.conf, and confirm each command before applying it. <br>
-Risk: Disabling swap during resizing can affect production or low-memory systems. <br>
-Mitigation: Confirm available memory headroom and schedule changes during an appropriate maintenance window before running swapoff. <br>
-Risk: Duplicate or incorrect persistence entries can affect boot-time swap behavior. <br>
-Mitigation: Check existing /etc/fstab and sysctl entries before appending new lines, then verify swap status after changes. <br>
+**Output Format:** [Markdown with inline bash code blocks]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/zjxylc/swap) <br>
+**Other Properties Related to Output:** [Linux-only guidance that may include sudo commands for swap, /etc/fstab, and /etc/sysctl.conf changes.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline bash command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands target Linux systems and may require sudo privileges for swap, fstab, and sysctl changes.] <br>
+1.0.0 (source: frontmatter and server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and frontmatter) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,53 @@
-## Description: <br>
-管子智慧提供中文参考材料，帮助代理围绕《管子》相关的治国、经济、法治、调查统计和心术修养思想生成教育性分析与治理方法建议。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+管子智慧 - 管仲学派治国经济思想，涵盖轻重之术、四维治国（礼义廉耻）、牧民之道、富国强兵、调查统计、法治思想、心术哲学等核心体系，适用于宏观经济调控、国家治理、组织管理
 
-## Publisher: <br>
-[taro291](https://clawhub.ai/user/taro291) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[taro291](https://clawhub.ai/user/taro291)
 
-## Use Case: <br>
-External users and agents use this skill as an educational reference for applying Guanzi governance and economic philosophy to macroeconomic regulation, public governance, organizational management, investigation methods, and resource-allocation discussions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Governance and economic philosophy could be mistaken for professional legal, financial, or public-policy advice. <br>
-Mitigation: Treat outputs as educational reference material and require qualified review before applying them to legal, financial, policy, or operational decisions. <br>
+## Use Case:
 
+External users and developers use this Chinese-language reference skill for guidance on Guanzi governance and economic thought, including macroeconomic regulation, organizational management, resource allocation, investigation methods, and law-based governance concepts.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/taro291/guanzi-wisdom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain-text educational guidance in Chinese] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code, tools, or system access; content is educational reference material.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Users who do not read Chinese may misunderstand or be unable to apply the skill's guidance accurately.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use translation or bilingual review before relying on the guidance in non-Chinese workflows.
+
+Risk: Governance and economic guidance may be applied without sufficient domain review.
+
+Mitigation: Review outputs with appropriate policy, legal, or organizational experts before operational use.
+
+## Reference(s):
+
+- [ClawHub skill release page](https://clawhub.ai/taro291/skills/guanzi-wisdom)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown guidance in Chinese with headings, bullet points, and short quotations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No executable behavior or sensitive data access is indicated by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

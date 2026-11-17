@@ -1,40 +1,53 @@
-## Description: <br>
-Manage personal receipts by extracting data from images, storing records, and providing expense searches and monthly financial summaries. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Manage personal receipts by extracting data from images, storing records, and providing expense searches and monthly financial summaries.
 
-## Publisher: <br>
-[clinchcc](https://clawhub.ai/user/clinchcc) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[clinchcc](https://clawhub.ai/user/clinchcc)
 
-## Use Case: <br>
-OpenClaw users use this skill to save receipt images and extracted purchase details in a local SQLite database, then list, search, update, delete, and summarize expenses by month, vendor, category, or item. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Receipts can contain personal and financial information stored on the user's device. <br>
-Mitigation: Install only when local receipt storage is intended, review data/receipts/ periodically, and avoid use on shared or automatically backed-up devices unless that storage is acceptable. <br>
-Risk: Broad receipt and expense triggers may save recognized receipt data automatically. <br>
-Mitigation: Use explicit requests when saving receipts and review newly saved records for accuracy and sensitivity. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/clinchcc/openclaw-receipt-manager) <br>
-- [README](README.md) <br>
+## Use Case:
 
+External users use this skill to retain recognized receipt images and receipt details locally, then search receipts, review individual records, and generate monthly expense summaries.
 
-## Skill Output: <br>
-**Output Type(s):** [text, JSON, shell commands, files, guidance] <br>
-**Output Format:** [Markdown guidance with shell command examples and JSON CLI responses] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Creates and updates local receipt records, copied receipt images, and SQLite database files under data/receipts/.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-0.1.7 (source: server release metadata) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Receipt images and extracted receipt details are retained locally on the user's machine.
+
+Mitigation: Install only when local retention is intended, and review or clear the data/receipts folder when long-term storage is not desired.
+
+Risk: Broad receipt and expense triggers may invoke the skill during receipt-adjacent conversations.
+
+Mitigation: Review skill activation and stored outputs when discussing expenses, receipts, invoices, claims, or spending.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/clinchcc/skills/openclaw-receipt-manager)
+- [README](artifact/README.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, JSON, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and JSON command output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores receipt images and SQLite records locally under data/receipts when used.]
+
+## Skill Version(s):
+
+0.1.7 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

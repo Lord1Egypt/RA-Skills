@@ -57,7 +57,6 @@
 """
 
 import sys
-from mps_auto_upgrade import check_sdk_version
 import os
 import json
 import time
@@ -65,6 +64,7 @@ import argparse
 
 _script_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _script_dir)
+from mps_auto_upgrade import check_sdk_version
 
 try:
     from mps_load_env import ensure_env_loaded as _ensure_env_loaded
@@ -131,6 +131,7 @@ def get_client(region: str = DEFAULT_REGION):
         sys.exit(1)
     http_profile = HttpProfile()
     http_profile.endpoint = os.environ.get("TENCENTCLOUD_MPS_ENDPOINT", "mps.tencentcloudapi.com")
+    http_profile.reqMethod = "POST"
     client_profile = ClientProfile()
     client_profile.httpProfile = http_profile
     return mps_client.MpsClient(credential.Credential(secret_id, secret_key), region, client_profile)

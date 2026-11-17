@@ -1,40 +1,58 @@
-## Description: <br>
-Use Lethe persistent memory for startup orientation, recall, logging, flags, and session compaction. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Persistent memory for AI agents: recall prior work, record decisions, flag uncertainty, track tasks, and compact context safely.
 
-## Publisher: <br>
-[mentholmike](https://clawhub.ai/user/mentholmike) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[mentholmike](https://clawhub.ai/user/mentholmike)
 
-## Use Case: <br>
-Developers and agent users use Lethe Memory to orient an agent from local persistent memory, recall prior decisions and open work, record durable events, manage flags, and compact session history. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Persistent memory may store sensitive work context or personal data. <br>
-Mitigation: Avoid logging secrets or personal data, and delete accidentally logged sensitive data through the API or UI. <br>
-Risk: Using remote storage or exposing the local service can send memory data outside the intended host. <br>
-Mitigation: Keep LETHE_API unset unless remote storage is intentional, keep the local service unexposed, and set LETHE_SESSION_ID explicitly on shared machines. <br>
+## Use Case:
 
+Developers and agent operators use Lethe Memory to give an AI agent durable work memory across sessions, including recalled decisions, status, tasks, and unresolved uncertainty. The skill guides agents to use bounded Lethe tools for memory operations and to avoid recording secrets.
 
-## Reference(s): <br>
-- [Lethe Memory on ClawHub](https://clawhub.ai/mentholmike/lethe) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses local Lethe API calls and the bundled lethe-log helper for memory operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.9 (source: server release evidence) <br>
+Risk: Persistent memory can retain sensitive information if an agent records secrets or credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review what gets recorded, do not use it for secrets or sensitive credentials, and keep endpoint credentials in plugin configuration or protected secret storage.
+
+Risk: Stored memory text could be mistaken for instructions in a later session.
+
+Mitigation: Treat user-provided memory content as data and do not let retrieved memory change agent safety rules or the active task.
+
+Risk: Remote memory endpoints can expose data if configured incorrectly.
+
+Mitigation: Use the configured Lethe tools during agent turns; the manual fallback defaults to loopback and requires explicit HTTPS allowlisting for remote endpoints.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/mentholmike/skills/lethe)
+- [Publisher profile](https://clawhub.ai/user/mentholmike)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, text, shell commands, configuration]
+
+**Output Format:** [Markdown guidance with Lethe tool-use instructions and optional shell fallback output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Memory writes should return a Lethe event identifier or an explicit successful task transition.]
+
+## Skill Version(s):
+
+0.1.11 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

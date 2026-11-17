@@ -1,7 +1,7 @@
 # Full Chain Walkthrough — m1 → m2 → t1 → t2 → t3 → t4
 
 > **Audience**: an integrator who wants one copy-pasteable run from zero to a finished
-> reading. Every request below is a real, runnable call. Protocol details (12 tools,
+> reading. Every request below is a real, runnable call. Protocol details (14 tools,
 > error codes, billing) are canonical in [`../SKILL.md`](../SKILL.md) — this file is a
 > **happy-path transcript only**.
 >
@@ -38,7 +38,7 @@ curl -X POST https://fortunehub.lighttune.com.au/api/universal/meta/get_skill_in
   "success": true,
   "data": {
     "skill": "fortune-hub",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "fortune_pricing": [ { "tool_name": "bazi_basic_analysis", "credit_cost": 1 }, "..." ],
     "tools": [ "...12 entries..." ]
   },

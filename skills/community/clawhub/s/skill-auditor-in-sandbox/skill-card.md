@@ -1,43 +1,59 @@
-## Description: <br>
-Launch a NovitaClaw (OpenClaw) sandbox, install a specified skill, and generate an installation and security audit report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Launch a NovitaClaw (OpenClaw) sandbox, install a specified skill, and generate an installation and security audit report.
 
-## Publisher: <br>
-[freecodewu](https://clawhub.ai/user/freecodewu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[freecodewu](https://clawhub.ai/user/freecodewu)
 
-## Use Case: <br>
-Developers and security reviewers use this skill to test ClawHub or GitHub skills in an isolated NovitaClaw sandbox before installing them locally. It installs a target skill, scans files for suspicious patterns, URLs, external paths, and dependencies, and produces a structured installation and risk report. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The audit script can collect and print more skill file contents than the selected target, which may expose unrelated skill source text or secrets in the sandbox. <br>
-Mitigation: Use only in a fresh disposable NovitaClaw sandbox with no unrelated installed skills or secrets, and prefer a version that limits scans to the requested skill directory and redacts likely secrets. <br>
-Risk: The release security verdict is suspicious because the collected report may include raw source text from scanned files. <br>
-Mitigation: Review generated reports before sharing or storing them, and remove sensitive source text or credentials if present. <br>
+## Use Case:
 
+Developers and engineers use this skill to test community skills in an isolated sandbox before installing them locally and to generate an installation and security audit report for review.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/freecodewu/skill-auditor-in-sandbox) <br>
-- [Project homepage from metadata](https://github.com/freecodewu/skill-auditor-in-sandbox) <br>
-- [NovitaClaw documentation](https://novita.ai/docs/guides/novitaclaw) <br>
-- [Claude Code documentation](https://claude.ai/claude-code) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with JSON script outputs and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes installation status, installed files, security findings, URL references, external path references, dependencies, recommendations, and sandbox lifecycle commands.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+Risk: Unsafe installation patterns and sandbox commands may execute unreviewed remote installation code.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only in a disposable, least-privilege environment and independently verify remote installer scripts before running them.
+
+Risk: The scanner may collect unrelated skill files or produce advisory results that miss context.
+
+Mitigation: Run the audit in a clean sandbox containing only the target skill and treat reports as review input rather than a definitive security decision.
+
+Risk: Novita API credentials are required for sandbox access.
+
+Mitigation: Use a scoped Novita API key and avoid exposing credentials in shared terminals, logs, or long-lived sandbox sessions.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/freecodewu/skills/skill-auditor-in-sandbox)
+- [Project Homepage](https://github.com/freecodewu/skill-auditor-in-sandbox)
+- [NovitaClaw Documentation](https://novita.ai/docs/guides/novitaclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance]
+
+**Output Format:** [Markdown report with inline shell commands and JSON outputs from helper scripts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires a Novita API key, the novitaclaw CLI, Node.js, and sandbox access.]
+
+## Skill Version(s):
+
+1.0.3 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

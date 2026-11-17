@@ -1,44 +1,54 @@
-## Description: <br>
-Guides an agent through a 12-step drifts.bot experience where users explore a Siberian permafrost fossil dig with API calls and reflective journey prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents through a hosted, 12-step narrative fossil-dig experience in Siberian permafrost.
 
-## Publisher: <br>
-[buystsuff](https://clawhub.ai/user/buystsuff) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[buystsuff](https://clawhub.ai/user/buystsuff)
 
-## Use Case: <br>
-External users and agents use this skill to register with drifts.bot, start the Siberian permafrost fossil-dig journey, advance through steps, check status, browse experiences, and submit reviews. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires a drifts.bot bearer token for write requests. <br>
-Mitigation: Treat YOUR_TOKEN like a password, store it securely, and review each curl request before running it. <br>
-Risk: Registration, journey reflections, and reviews can send optional personal text or profile details to drifts.bot. <br>
-Mitigation: Provide only the bio, email, timezone, location, model, review, and reflection details you are comfortable sharing with that service. <br>
-Risk: The experience depends on a third-party hosted API. <br>
-Mitigation: Install and use the skill only if you intend to use drifts.bot and accept the hosted-service dependency. <br>
+## Use Case:
 
+Agents and their users can register for a hosted fossil-dig narrative, progress through its steps, share optional reflections, and review the experience.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/buystsuff/experience-permafrost-blood-siberia) <br>
-- [drifts.bot experience homepage](https://drifts.bot/experience/permafrost-blood-siberia) <br>
-- [drifts.bot API base](https://drifts.bot) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline bash and JSON examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses a bearer token for write requests and may include optional user profile, location, reflection, and review text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.2.0 (source: server release evidence) <br>
+Risk: Optional profile details, reflections, and reviews may be shared with the hosted service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only necessary registration fields and omit sensitive information from optional submissions.
+
+Risk: A registration API key grants account access and cannot be recovered if lost.
+
+Mitigation: Store the returned key securely and keep it private.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/buystsuff/skills/experience-permafrost-blood-siberia)
+- [Siberian Permafrost Fossil Dig experience](https://drifts.bot/experience/permafrost-blood-siberia)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Shell commands, Guidance]
+
+**Output Format:** [Markdown with shell examples and narrative text]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The hosted experience provides step narratives, prompts, and an optional postcard assembled from reflections.]
+
+## Skill Version(s):
+
+1.2.1 (source: ClawHub release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,43 +1,56 @@
-## Description: <br>
-腾讯混元生3D API (OpenAI兼容接口) - 基于混元大模型的3D模型生成 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+腾讯混元生3D API (OpenAI兼容接口) - 基于混元大模型的3D模型生成.
 
-## Publisher: <br>
-[wszhhx](https://clawhub.ai/user/wszhhx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[wszhhx](https://clawhub.ai/user/wszhhx)
 
-## Use Case: <br>
-Developers and creators use this skill to configure Tencent Hunyuan 3D access and run text-to-3D or image-to-3D generation jobs through a Python command-line helper. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill sends user-provided prompts or image URLs to Tencent Hunyuan 3D. <br>
-Mitigation: Use it only with content appropriate for Tencent processing, and avoid submitting secrets, confidential prompts, private image URLs, or regulated content. <br>
-Risk: The helper downloads generated model files from service-provided URLs to the local filesystem. <br>
-Mitigation: Treat returned model files as downloaded internet content and scan or review them before opening them in other tools. <br>
-Risk: The skill requires a Tencent Hunyuan 3D API key in HUNYUAN_3D_API_KEY. <br>
-Mitigation: Store the API key as an environment variable or secret, avoid committing it, and rotate it if it is exposed. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/wszhhx/hunyuan-3d) <br>
-- [Tencent Hunyuan 3D OpenAI-compatible API documentation](https://cloud.tencent.com/document/product/1804/126189) <br>
-- [Tencent Hunyuan 3D submit task API documentation](https://cloud.tencent.com/document/product/1804/123447) <br>
+## Use Case:
 
+Developers and technical users use this skill to configure Tencent Hunyuan 3D access and run text-to-3D or image-to-3D generation jobs that save local model artifacts.
 
-## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration instructions, API Calls, Files, JSON] <br>
-**Output Format:** [Markdown guidance with command examples; generated model files and info.json when the helper script is executed.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires python and HUNYUAN_3D_API_KEY; saves generated 3D assets under an output directory organized by date and job ID.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The helper script requires a Tencent Hunyuan 3D API key and the artifact suggests shell startup file persistence as one configuration option.
+
+Mitigation: Use temporary environment variables or a secret manager, avoid committing or persisting keys unnecessarily, and rotate the key if it may have been exposed.
+
+Risk: Remote API response values may influence local output paths and downloads.
+
+Mitigation: Run the script with an output directory you control, validate returned JobId path components before broad use, and constrain downloads to trusted HTTPS hosts with expected file size and type limits.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/wszhhx/skills/hunyuan-3d)
+- [Tencent Hunyuan 3D OpenAI-compatible API documentation](https://cloud.tencent.com/document/product/1804/126189)
+- [Tencent Hunyuan 3D submit task API documentation](https://cloud.tencent.com/document/product/1804/123447)
+- [Tencent Hunyuan 3D console](https://console.cloud.tencent.com/ai3d)
+- [Tencent Hunyuan API key management](https://console.cloud.tencent.com/hunyuan/start)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown instructions with shell commands and Python script usage examples; generated runs create local JSON metadata and 3D model files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Python and HUNYUAN_3D_API_KEY; generated model outputs are written under the selected local output directory.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

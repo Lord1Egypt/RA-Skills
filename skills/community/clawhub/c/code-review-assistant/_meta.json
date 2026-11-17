@@ -1,6 +1,9 @@
 {
-  "ownerId": "kn754w8negkve53dntzhycyd0h82565k",
-  "slug": "code-review-assistant",
+  "schema_version": "1",
+  "name": "code-review-assistant",
   "version": "1.0.0",
-  "publishedAt": 1772440439865
+  "description": "自动化代码审查助手，检测 bug、安全漏洞、代码风格问题",
+  "author": {"name": "Sunshine-del-ux"},
+  "keywords": ["code-review", "security", "lint", "quality"],
+  "license": "MIT"
 }

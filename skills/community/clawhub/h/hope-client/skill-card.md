@@ -1,44 +1,55 @@
-## Description: <br>
-Hope Client helps agents make authenticated requests to Hope Server Max APIs for channel, upload, download, account, and engine management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Hope Client helps agents make authenticated Hope Server Max API requests for channel, upload, download, account, and engine management workflows.
 
-## Publisher: <br>
-[linux2010](https://clawhub.ai/user/linux2010) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[linux2010](https://clawhub.ai/user/linux2010)
 
-## Use Case: <br>
-Developers and operators use this skill to query and automate Hope Server Max operational APIs, including channel status, upload/download instances, account records, engine information, and cleanup actions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Bundled default credentials and password-based SSH settings may expose or normalize unsafe access patterns. <br>
-Mitigation: Replace and rotate bundled credentials before use, remove password-based sshpass defaults, and load secrets only from controlled environment variables or a secrets manager. <br>
-Risk: The skill can perform authenticated POST, PUT, refresh, and bulk cleanup operations against Hope Server data. <br>
-Mitigation: Use a least-privilege API key and require manual review before running mutating or bulk commands. <br>
-Risk: The skill targets an internal Hope Server deployment and may read sensitive operational data. <br>
-Mitigation: Install only in environments where the operator controls the Hope Server target and network path. <br>
+## Use Case:
 
+Developers and operators use this skill to query and manage Hope Server Max resources through documented API endpoints and reusable shell helper functions.
 
-## Reference(s): <br>
-- [Hope Client on ClawHub](https://clawhub.ai/linux2010/hope-client) <br>
-- [Common Queries](references/common-queries.md) <br>
-- [Response Format Reference](references/response-format.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with bash commands and JSON response examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Hope Server environment variables and may issue authenticated SSH-backed API requests.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact metadata) <br>
+Risk: The skill includes live-looking API key and SSH password defaults.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Rotate any real exposed secrets, remove default credentials, and require explicit user-provided secrets before use.
+
+Risk: Password-based SSH and API helper commands can access sensitive data and modify server state.
+
+Mitigation: Tightly scope SSH/API access, validate command inputs, redact sensitive fields, and require confirmation before write operations.
+
+## Reference(s):
+
+- [Hope Client ClawHub Release](https://clawhub.ai/linux2010/skills/hope-client)
+- [Common Queries](artifact/references/common-queries.md)
+- [Response Format](artifact/references/response-format.md)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Shell commands, Configuration, Code]
+
+**Output Format:** [Markdown with bash and JSON examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires Hope Server Max host and API key environment configuration.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence and skill frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

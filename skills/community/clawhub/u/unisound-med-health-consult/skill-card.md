@@ -1,43 +1,53 @@
-## Description: <br>
-Provides health consultation, health-check interpretation, and triage department recommendations through task-selected medical model prompts. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides health consultation, physical exam interpretation, and medical department-routing guidance through task-specific prompts to a configured medical LLM.
 
-## Publisher: <br>
-[unisound-llm](https://clawhub.ai/user/unisound-llm) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unisound-llm](https://clawhub.ai/user/unisound-llm)
 
-## Use Case: <br>
-External developers and healthcare workflow integrators use this skill to route user-provided health questions to a configured medical LLM for general health Q&A, health-check interpretation, or department triage recommendations. Outputs are assistive information and should not be treated as formal clinical decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Health questions are sent to the configured medical model endpoint. <br>
-Mitigation: Avoid identifiable patient information unless the workflow has been approved by the organization; use --dry-run to inspect parsed input before making a network call. <br>
-Risk: Model answers may be mistaken for clinical decisions. <br>
-Mitigation: Present outputs as assistive information and require appropriate clinical or institutional review for real patient care. <br>
-Risk: The API key is provided on the command line or by the calling workflow. <br>
-Mitigation: Keep the key in an approved secret-handling path and avoid logging command invocations that include credentials. <br>
+## Use Case:
 
+External users and integrators use this skill to submit health questions, physical exam interpretation requests, or triage-routing prompts to a medical LLM and receive explanatory answers or suggested registration departments. Outputs are model-assisted information and are not formal clinical decisions.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unisound-llm/unisound-med-health-consult) <br>
-- [Publisher profile](https://clawhub.ai/user/unisound-llm) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Guidance] <br>
-**Output Format:** [JSON by default, with optional plain text answer output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can write full results to a file; batch JSONL input emits NDJSON.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Sensitive health questions and bearer credentials can be sent to the configured API endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only de-identified questions, avoid passing secrets through shell history where possible, and keep --api-url limited to trusted HTTPS endpoints.
+
+Risk: Model-assisted medical guidance may be incomplete, misleading, or unsuitable for regulated patient care.
+
+Mitigation: Treat outputs as informational support only and require appropriate clinical review before using them in real patient workflows.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/unisound-llm/skills/unisound-med-health-consult)
+
+## Skill Output:
+
+**Output Type(s):** [Text, JSON, Guidance]
+
+**Output Format:** [JSON by default, with optional plain text answer output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Supports single-question, JSON, JSONL batch, text file, and stdin inputs; can write complete JSON or NDJSON results to a file.]
+
+## Skill Version(s):
+
+1.0.2 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

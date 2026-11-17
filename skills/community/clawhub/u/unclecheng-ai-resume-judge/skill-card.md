@@ -1,41 +1,58 @@
-## Description: <br>
-AI简历评分助手。根据用户上传的简历（含Markdown文本或文件），按照AI领域满分/及格线两份参考简历为基准，计算简历能力值（满分100分）。若简历非AI领域，则进行跨行业等价换算，评估该简历在其所属行业的能力水平。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Resume Score for the resume evaluates resume text or a local resume file against a 100-point AI resume rubric, detects non-AI industries, and returns cross-industry score analysis.
 
-## Publisher: <br>
-[unclecheng-li](https://clawhub.ai/user/unclecheng-li) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[unclecheng-li](https://clawhub.ai/user/unclecheng-li)
 
-## Use Case: <br>
-External users and developers use this skill to evaluate pasted resume text or a selected resume file against a weighted resume scoring rubric, including AI-domain scoring and cross-industry equivalent scoring for non-AI resumes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Resume inputs may contain sensitive personal information. <br>
-Mitigation: Use only pasted text or an explicitly selected resume file, and avoid pointing the skill at unrelated local files. <br>
-Risk: Running the Python helper directly can read a local file path and write resume-derived report data to a fixed desktop path. <br>
-Mitigation: Run the helper only in a controlled workspace and review or redirect the output path before processing sensitive resumes. <br>
+## Use Case:
 
+External users and agents use this skill to score resumes, compare the result across seven rubric dimensions, and receive concise improvement guidance. It is intended for resume review workflows where the user understands that the scoring is rule-based and should be treated as advisory.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/unclecheng-li/unclecheng-ai-resume-judge) <br>
-- [Resume scoring benchmark](references/scoring_benchmark.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, guidance] <br>
-**Output Format:** [Structured Markdown scoring report with optional JSON report data] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include a numeric score, dimension breakdown, detected industry, cross-industry equivalent score when applicable, detailed comments, and top improvement suggestions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: Resume content can contain highly sensitive personal data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only resumes the user explicitly provides for scoring and avoid submitting unnecessary personal details.
+
+Risk: The CLI can save resume-derived output to a hard-coded local path.
+
+Mitigation: Do not run the CLI until the output destination is made explicit and user-controlled.
+
+Risk: Rule-based resume scores may be misleading if treated as objective hiring judgments.
+
+Mitigation: Present scores as advisory resume feedback and require human review before employment-related decisions.
+
+## Reference(s):
+
+- [Scoring benchmark](references/scoring_benchmark.md)
+- [ClawHub skill page](https://clawhub.ai/unclecheng-li/skills/unclecheng-ai-resume-judge)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, JSON, Guidance]
+
+**Output Format:** [Markdown report with score tables, commentary, improvement suggestions, and optional JSON score data]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Reports include a timestamp, AI-field detection, raw score, dimensional scores, rating, and cross-industry equivalent score when applicable.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

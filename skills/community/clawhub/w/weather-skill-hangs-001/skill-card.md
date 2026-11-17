@@ -1,40 +1,54 @@
-## Description: <br>
-Provides simulated current weather descriptions including temperature for specified major cities to assist travel and daily planning. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides simulated current weather descriptions, including temperature, for specified major cities.
 
-## Publisher: <br>
-[hangs111](https://clawhub.ai/user/hangs111) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hangs111](https://clawhub.ai/user/hangs111)
 
-## Use Case: <br>
-People using conversational agents can ask for mock current weather and temperature for major cities to support travel or daily planning. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Users may treat simulated weather responses as live forecasts. <br>
-Mitigation: Present responses as mock weather and verify real conditions with a live weather source for operational decisions. <br>
-Risk: Future versions may add real API calls, non-empty scripts, or API key requirements. <br>
-Mitigation: Re-review security evidence before installing updated versions. <br>
+## Use Case:
 
+External users and conversational-agent developers can use this skill to answer basic weather, temperature, travel-planning, and daily-planning questions with mock current-weather style responses.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/hangs111/weather-skill-hangs-001) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Structured weather description text or JSON-style examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are simulated mock weather values, not live forecasts.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: The skill may be mistaken for a live weather source.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Tell users that responses are simulated and prefer a real weather provider when accurate current weather is needed.
+
+Risk: The skill supports only major cities in the current release.
+
+Mitigation: Handle unsupported locations by asking for a major city or routing to a broader weather data provider.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/hangs111/skills/weather-skill-hangs-001)
+- [Publisher profile](https://clawhub.ai/user/hangs111)
+
+## Skill Output:
+
+**Output Type(s):** [text]
+
+**Output Format:** [Structured weather description, typically JSON with a human-readable weather string.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Responses are simulated mock weather data and do not provide live forecasts.]
+
+## Skill Version(s):
+
+1.0.0 (source: release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

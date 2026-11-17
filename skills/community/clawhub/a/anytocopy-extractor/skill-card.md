@@ -1,41 +1,53 @@
-## Description: <br>
-Extracts captions and written copy from Douyin, Xiaohongshu, and other social-media links through AnyToCopy's browser-based workflow. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Uses AnyToCopy to extract captions, scripts, titles, and optional media links from Douyin, Xiaohongshu, and other supported social media or video URLs through a browser workflow.
 
-## Publisher: <br>
-[darker314159](https://clawhub.ai/user/darker314159) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[darker314159](https://clawhub.ai/user/darker314159)
 
-## Use Case: <br>
-Creators, marketers, researchers, and other external users use this skill to extract titles, scripts, body text, and optional media links from supported social-media posts when they provide a public URL. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Submitted links are opened and processed by anytocopy.com, which may expose URL contents or tracking query parameters to a third-party service. <br>
-Mitigation: Use only public, non-sensitive links; avoid private, authenticated, or tokenized URLs; remove unnecessary tracking or secret query parameters before extraction. <br>
-Risk: The browser workflow depends on AnyToCopy's public interface and may fail if the site changes. <br>
-Mitigation: Confirm extracted results before relying on them and update the workflow if AnyToCopy changes its input or extraction controls. <br>
+## Use Case:
 
+External users and agents use this skill when a user provides a Douyin, Xiaohongshu, or similar platform link and asks for the video's copy, title, script, or related media links.
 
-## Reference(s): <br>
-- [AnyToCopy](https://www.anytocopy.com/) <br>
-- [ClawHub skill page](https://clawhub.ai/darker314159/anytocopy-extractor) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown response containing extracted title, body or script text, and optional media links.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Output depends on AnyToCopy availability, supported-platform coverage, and accessibility of the submitted URL.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: User-provided social-media links are opened and processed by AnyToCopy, which may expose private, sensitive, account-limited, or confidential URLs to a third-party service.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only with links that are appropriate to share with AnyToCopy, and avoid private or confidential content.
+
+Risk: The workflow depends on the AnyToCopy website and its visible controls, so site changes can cause extraction failures or incomplete results.
+
+Mitigation: Review extracted text before relying on it and update the browser workflow if the AnyToCopy interface changes.
+
+## Reference(s):
+
+- [AnyToCopy](https://www.anytocopy.com/)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown or plain text containing extracted title, body/script text, and optional media links]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Browser-based extraction; no local code execution or persistence is reported by the security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

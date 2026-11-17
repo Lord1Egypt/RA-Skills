@@ -1,43 +1,58 @@
-## Description: <br>
-Scans live AISA-backed market data to surface trending stocks, cryptocurrencies, top movers, and news-driven momentum. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Scans real-time stock and cryptocurrency movers through AISA to identify hot assets, large price swings, market momentum, gainers, losers, and news-driven activity.
 
-## Publisher: <br>
-[aisadocs](https://clawhub.ai/user/aisadocs) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[aisadocs](https://clawhub.ai/user/aisadocs)
 
-## Use Case: <br>
-Traders, analysts, and market-monitoring agents use this skill to request a current hot-assets scan for equities and crypto. The output is informational and is not financial advice. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires an AISA API key for live market scans. <br>
-Mitigation: Use a dedicated AISA_API_KEY, keep it out of prompts and logs, and rotate it if exposure is suspected. <br>
-Risk: Changing AISA_BASE_URL could route requests to an untrusted endpoint. <br>
-Mitigation: Leave AISA_BASE_URL unset or set it only to the trusted AISA endpoint. <br>
-Risk: Market summaries and watchlists can be mistaken for investment advice. <br>
-Mitigation: Treat generated reports as informational only and require independent review before trading decisions. <br>
+## Use Case:
 
+External users and developers use this skill to generate current market-mover reports for stocks and cryptocurrencies, including momentum summaries, top gainers and losers, active-volume names, news catalysts, and watchlist candidates. The output is informational and is not financial advice.
 
-## Reference(s): <br>
-- [ClawHub skill release](https://clawhub.ai/aisadocs/stock-hot-zh-aisa) <br>
-- [AISA API endpoint](https://api.aisa.one/v1) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown report with tables; optional appended JSON summary when the script is run with --output json] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires AISA_API_KEY; supports focus selection for stocks, crypto, or both.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence and artifact frontmatter) <br>
+Risk: AISA_BASE_URL can redirect requests, including the AISA API key, to a configured endpoint.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Leave AISA_BASE_URL unset unless the endpoint is intentionally configured and trusted.
+
+Risk: Prompts that trigger the scanner may be sent to the external AISA service.
+
+Mitigation: Avoid including sensitive personal, account, or proprietary information in scanner prompts.
+
+Risk: The script declares a broad OpenAI client dependency for runtime use.
+
+Mitigation: Use a reviewed, pinned dependency version for operational deployments.
+
+## Reference(s):
+
+- [ClawHub skill listing](https://clawhub.ai/aisadocs/skills/stock-hot-zh-aisa)
+- [AISA API endpoint](https://api.aisa.one/v1)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown market report, with an optional compact JSON summary when requested]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires AISA_API_KEY and python3; supports focus modes for both markets, stocks only, or crypto only.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

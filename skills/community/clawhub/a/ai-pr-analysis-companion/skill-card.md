@@ -1,42 +1,53 @@
-## Description: <br>
-AI-assisted pull request analysis companion that reviews GitHub PR changes, identifies scope, technical debt, code quality risks, and test coverage gaps, then produces a structured review report. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI PR analysis companion that collects GitHub pull request metadata, diffs, and comments, analyzes change scope, technical debt, test coverage, and review risk, then produces a structured review report.
 
-## Publisher: <br>
-[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[zlszhonglongshen](https://clawhub.ai/user/zlszhonglongshen)
 
-## Use Case: <br>
-Developers and engineering leads use this skill to analyze GitHub pull requests, focus review attention on risky changes, and generate a structured review report for team collaboration. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: PR-derived analysis may be published to Feishu and expose private code details beyond the intended audience. <br>
-Mitigation: Confirm the Feishu document destination and access controls before publishing reports for private or security-sensitive repositories. <br>
-Risk: Reports can include secrets or proprietary details present in PR metadata or diffs. <br>
-Mitigation: Review generated reports before sharing and avoid publishing sensitive content outside the intended team. <br>
+## Use Case:
 
+Developers and engineering leads use this skill to review GitHub pull requests more consistently by summarizing changed files, diffs, comments, risk areas, code quality findings, test coverage gaps, and technical debt. The skill can publish the resulting review report to Feishu for team collaboration.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/ai-pr-analysis-companion) <br>
-- [README.md](artifact/README.md) <br>
-- [workflow.json](artifact/workflow.json) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Structured Markdown review report with risk ratings and recommendations] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May publish PR-derived findings to Feishu when configured.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence and workflow.json) <br>
+Risk: The skill can read full GitHub pull request diffs and comments, including private or sensitive repository content when the agent has access.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use least-privilege GitHub access, run it only on authorized repositories, and redact secrets or sensitive diffs before sharing generated reports.
+
+Risk: The skill can publish generated review content to Feishu without clear approval or containment controls in the artifact.
+
+Mitigation: Require a preview and explicit approval before publication, and confirm Feishu document permissions and audience before posting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/zlszhonglongshen/skills/ai-pr-analysis-companion)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, guidance]
+
+**Output Format:** [Structured Markdown review report with risk ratings, findings, recommendations, and Feishu publication output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses GitHub PR metadata and diff content as input and may publish generated review content to Feishu.]
+
+## Skill Version(s):
+
+1.0.0 (source: workflow.json and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

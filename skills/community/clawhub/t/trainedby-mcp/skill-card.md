@@ -1,39 +1,53 @@
-## Description: <br>
-Connects an agent to the trainedby.ai MCP server for personal coaching, health tracking, training timeline review, goal management, and reflective note capture. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use the trainedby.ai MCP server for personal coaching, health tracking, and goal management.
 
-## Publisher: <br>
-[Joostrothweiler](https://clawhub.ai/user/Joostrothweiler) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[joostrothweiler](https://clawhub.ai/user/joostrothweiler)
 
-## Use Case: <br>
-External users use this skill to let an assistant review their trainedby.ai coaching timeline, health and fitness progress, goals, reflections, and onboarding profile, then provide coaching guidance or save user-approved notes. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The skill can access sensitive health, fitness, goals, reflections, and coaching profile data through an external MCP service. <br>
-Mitigation: Install only when the user trusts trainedby.ai with that data, and review the OAuth login and requested access before use. <br>
-Risk: Saved notes can retain personal coaching information in the user's trainedby.ai timeline. <br>
-Mitigation: Confirm with the user before saving goals, workout feedback, reflections, or other coaching notes. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [trainedby.ai MCP server](https://trainedby.fastmcp.app/mcp) <br>
+## Use Case:
 
+External users and their agents use this skill to connect to trainedby.ai, review health and fitness timeline summaries, manage goals, receive coaching feedback, and save confirmed notes.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Guidance, API Calls] <br>
-**Output Format:** [Conversational text with structured MCP tool calls] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses OAuth-gated access to trainedby.ai timeline, onboarding, note, and feedback tools.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill can access privacy-sensitive coaching, health, fitness, goals, reflections, and timeline summaries from the user's trainedby.ai account.
+
+Mitigation: Install only when the user is comfortable connecting trainedby.ai, and review requests before allowing the agent to retrieve or summarize account data.
+
+Risk: The skill can save notes to the user's coaching timeline.
+
+Mitigation: Ask for clear user confirmation before saving notes, goals, workout feedback, or reflections.
+
+## Reference(s):
+
+- [trainedby.ai MCP server](https://trainedby.fastmcp.app/mcp)
+- [ClawHub skill page](https://clawhub.ai/joostrothweiler/skills/trainedby-mcp)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Guidance, API Calls]
+
+**Output Format:** [Markdown or plain text coaching responses with MCP tool calls]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires user authentication to trainedby.ai before accessing personal data.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

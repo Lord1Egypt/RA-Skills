@@ -1,6 +1,11 @@
 {
-  "ownerId": "kn77rcmkyz3cggzr21ee5jz7ph8348m2",
+  "owner": "xllinbupt",
   "slug": "liepin-jobs",
-  "version": "0.2.0",
-  "publishedAt": 1775346565113
+  "displayName": "Liepin Jobs",
+  "latest": {
+    "version": "0.2.0",
+    "publishedAt": 1775197000609,
+    "commit": "https://github.com/xllinbupt/MCP2skill/tree/master"
+  },
+  "history": []
 }

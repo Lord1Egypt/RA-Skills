@@ -1,42 +1,60 @@
-## Description: <br>
-Build secure Django apps avoiding ORM pitfalls, N+1 queries, and common security traps. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Builds, debugs, and hardens Django apps: models, the ORM, views, templates, forms, the admin, DRF APIs, and deployment.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-Developers and engineers use this skill as a Django reference aid for avoiding common ORM, forms, models, views, async, and security mistakes while building or reviewing Django applications. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated Django code or guidance may mishandle authentication, CSRF, SQL construction, or deployment settings if applied without review. <br>
-Mitigation: Review generated changes before applying them, especially security-sensitive code paths and production settings. <br>
-Risk: The skill is informational and does not execute validation against a live Django project. <br>
-Mitigation: Run the project's tests, Django system checks, migrations checks, and security review after applying any recommendations. <br>
+## Use Case:
 
+Developers and engineers use this skill to build, debug, test, secure, optimize, and deploy Django applications, including ORM queries, migrations, views, templates, forms, admin workflows, DRF APIs, settings, background tasks, and upgrades.
 
-## Reference(s): <br>
-- [ClawHub Django skill page](https://clawhub.ai/ivangdavila/django) <br>
-- [Quick Reference](artifact/SKILL.md) <br>
-- [ORM Traps](artifact/orm.md) <br>
-- [Security Traps](artifact/security.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code examples and command suggestions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [None] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: frontmatter and server release metadata) <br>
+Risk: Local preference memory can contain sensitive project details if users put them there.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep secrets, credentials, sensitive production details, and untrusted quoted instructions out of ~/Clawic/data/django/ and ~/Clawic/profile.yaml.
+
+Risk: Django security, custom authentication, and admin HTML examples may be unsafe if copied without project-specific review.
+
+Mitigation: Review generated guidance before applying it, especially authentication backends, admin HTML, CSRF, permissions, and deployment settings.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/django)
+- [Publisher profile](https://clawhub.ai/user/ivangdavila)
+- [Skill homepage](https://clawic.com/skills/django)
+- [setup.md](artifact/setup.md)
+- [memory-template.md](artifact/memory-template.md)
+- [security.md](artifact/security.md)
+- [deployment.md](artifact/deployment.md)
+- [testing.md](artifact/testing.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May use local preference memory under ~/Clawic/data/django/ when configured.]
+
+## Skill Version(s):
+
+1.0.3 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

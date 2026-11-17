@@ -1,46 +1,54 @@
-## Description: <br>
-Generates personalized travel itineraries using Amap REST API data for routes, points of interest, restaurants, hotels, weather, costs, and packing guidance. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generates personalized travel plans by collecting trip details, querying AMAP REST APIs for routes, places, distances, restaurants, and hotels, and combining that data with weather lookup guidance.
 
-## Publisher: <br>
-[bifang988](https://clawhub.ai/user/bifang988) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bifang988](https://clawhub.ai/user/bifang988)
 
-## Use Case: <br>
-External users and agents use this skill to collect trip details, query Amap and weather sources, and produce a structured travel plan with transport guidance, daily itinerary, restaurants, lodging, packing notes, and budget estimates. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Trip locations, dates, route queries, and preferences may be sent to Amap and weather search providers. <br>
-Mitigation: Avoid exact home addresses when city-level input is enough and tell users when external travel or weather services are being queried. <br>
-Risk: The required AMAP_KEY could be over-permissioned or stored insecurely. <br>
-Mitigation: Use a restricted, temporary AMAP_KEY with only needed services enabled; avoid saving it permanently in shell profile files. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to build detailed AMAP-backed itineraries from group composition, origin, destination, travel dates, budget, and preferences.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/bifang988/travel-planner-amap) <br>
-- [Amap developer console](https://lbs.amap.com) <br>
-- [Amap geocoding API endpoint](https://restapi.amap.com/v3/geocode/geo) <br>
-- [Amap driving directions API endpoint](https://restapi.amap.com/v3/direction/driving) <br>
-- [Amap transit directions API endpoint](https://restapi.amap.com/v3/direction/transit/integrated) <br>
-- [Amap place text search API endpoint](https://restapi.amap.com/v3/place/text) <br>
-- [Amap place around search API endpoint](https://restapi.amap.com/v3/place/around) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown itinerary with inline shell and Python command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses AMAP_KEY as a required environment variable and may include live route, POI, weather, lodging, dining, and budget details.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release metadata) <br>
+Risk: Trip details such as origin, destination, dates, group composition, budget, and preferences may be shared with AMAP and a weather search provider.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Inform users before lookup, minimize submitted details where possible, and skip or remove the weather search step when third-party exposure should be reduced.
+
+Risk: An AMAP API key could be exposed or over-permissioned if stored permanently or configured without restrictions.
+
+Mitigation: Use a restricted AMAP Web Service key, configure IP allowlisting and only required service permissions, and avoid saving the key in shell startup files.
+
+## Reference(s):
+
+- [AMAP Open Platform](https://lbs.amap.com)
+- [ClawHub Skill Page](https://clawhub.ai/bifang988/skills/travel-planner-amap)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, API Calls, Guidance]
+
+**Output Format:** [Markdown itinerary with inline shell and Python command snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires an AMAP_KEY environment variable and user-provided trip details.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-A shared stock-skill cache utility module that supports A-share trading-time detection, automatic caching, and cache expiration management. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides a reusable Python cache utility for stock-trading skills, including A-share trading-time detection, cache loading and saving, cache expiration, and fallback behavior.
 
-## Publisher: <br>
-[georgetao730](https://clawhub.ai/user/georgetao730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[georgetao730](https://clawhub.ai/user/georgetao730)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers building Chinese A-share stock-trading agents or skills use this utility to decide when to fetch live data versus reuse local cached stock data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The cache helper can create, overwrite, read, and clear cache.json in the caller-selected cache directory.
+
+Mitigation: Configure a dedicated cache directory and review integrations so the helper cannot affect unrelated local files.
+
+Risk: The A-share trading-time logic includes a 15:30 post-market window that may not match every data freshness requirement.
+
+Mitigation: Confirm the post-market freshness policy before relying on cached data outside the regular trading window.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and agents use this utility to add local JSON caching to stock trading skills, including deciding when to use cached data outside A-share trading hours. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Data passed to save() is written to cache.json in the configured local cache directory. <br>
-Mitigation: Avoid storing sensitive information unless the chosen local storage location and access controls are appropriate. <br>
+**Output Format:** [Markdown with Python code snippets and concise integration guidance]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/georgetao730/shared) <br>
+**Other Properties Related to Output:** [No external Python dependencies; cache behavior depends on a caller-selected local cache directory and cache age setting.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [code, configuration, guidance] <br>
-**Output Format:** [Python module and Markdown usage guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes cache data to cache.json in the configured local cache directory.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server-resolved release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

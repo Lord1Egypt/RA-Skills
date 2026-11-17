@@ -1,40 +1,59 @@
-## Description: <br>
-Navigate Valencia as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Navigate Valencia as visitor, resident, tech worker, student, or entrepreneur with neighborhoods, transport, costs, visas, and local insights.
 
-## Publisher: <br>
-[ivangdavila](https://clawhub.ai/user/ivangdavila) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[ivangdavila](https://clawhub.ai/user/ivangdavila)
 
-## Use Case: <br>
-External users use this skill for practical Valencia travel, relocation, residency, study, work, and business guidance. It helps agents tailor neighborhood, transport, cost, visa, healthcare, education, food, and local-services guidance to the user's situation. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The optional local Valencia profile can contain sensitive personal details such as income, address, contacts, document numbers, and immigration status. <br>
-Mitigation: Store only necessary details in the profile, keep it in a private location, and avoid sharing it with untrusted tools or agents. <br>
-Risk: Travel, rent, immigration, tax, healthcare, and legal information can become outdated or may not fit an individual user's situation. <br>
-Mitigation: Verify high-impact decisions with official Spanish sources or a qualified professional before acting. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub Valencia skill page](https://clawhub.ai/ivangdavila/valencia) <br>
-- [Valencia skill homepage](https://clawic.com/skills/valencia) <br>
+## Use Case:
 
+External users use this skill to answer Valencia travel, relocation, work, study, business, and daily life questions. The skill helps an agent tailor guidance by user role, timeline, EU status, budget, and local priorities.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, checklists, and optional local profile templates] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Informational output only; the skill has no required binaries, API keys, MCP tools, or executable scripts.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill asks users to store sensitive personal, immigration, healthcare, tax, address, and contact details in a persistent plaintext profile.
+
+Mitigation: Use coarse statuses or masked values, avoid full NIE, SIP, Social Security numbers, exact address, third-party contacts, and detailed income or immigration information, and restrict file permissions.
+
+Risk: The skill includes visa, tax, healthcare, school, and business guidance that can become outdated or depend on personal circumstances.
+
+Mitigation: Treat the skill as a local Markdown reference and verify requirements with official sources or qualified local professionals before acting.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/ivangdavila/skills/valencia)
+- [Skill homepage](https://clawic.com/skills/valencia)
+- [Setup guide](artifact/setup.md)
+- [Personal profile template](artifact/memory-template.md)
+- [Valencia city services](https://www.valencia.es)
+- [Visit Valencia](https://www.visitvalencia.com)
+- [Spain immigration portal](https://extranjeros.inclusion.gob.es)
+- [Metrovalencia](https://www.metrovalencia.es)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Guidance, Configuration]
+
+**Output Format:** [Markdown guidance with tables, checklists, and local reference file recommendations]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May ask the user to maintain local Markdown profile and progress files for personalization.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

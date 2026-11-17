@@ -1,42 +1,55 @@
-## Description: <br>
-Provides best practices for securing Monero wallets, keys, seed phrases, backups, hardware wallets, air-gapped setups, and transactions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provides practical guidance for securing Monero wallets, keys, seed phrases, hardware-wallet use, air-gapped workflows, transactions, and backups.
 
-## Publisher: <br>
-[liumaimiao](https://clawhub.ai/user/liumaimiao) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[liumaimiao](https://clawhub.ai/user/liumaimiao)
 
-## Use Case: <br>
-Developers, wallet operators, and Monero users can use this static reference guide to review practical wallet-security practices before storing, backing up, or transacting with XMR. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Cryptocurrency security guidance may be incomplete or become outdated before a user handles real funds. <br>
-Mitigation: Independently verify official wallet downloads, signatures, checksums, and current Monero guidance before using the advice with real funds. <br>
-Risk: The guide includes a voluntary XMR tip address that could be mistaken for a required payment. <br>
-Mitigation: Treat any donation as optional and only send funds if you intentionally choose to support the publisher. <br>
+## Use Case:
 
+Developers, agents, and wallet users use this skill to produce concise wallet-security guidance and checklists for protecting Monero funds and avoiding common scams.
 
-## Reference(s): <br>
-- [Monero official website](https://www.getmonero.org/) <br>
-- [Ledger Monero wallet](https://www.ledger.com/monero-wallet) <br>
-- [ClawHub skill page](https://clawhub.ai/liumaimiao/monero-wallet-security) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown reference guide with checklist-style security guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Static informational content; no code execution, credential access, automation, or install-time behavior.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release metadata and package.json) <br>
+Risk: Wallet-security guidance, wallet download locations, and hardware-wallet support can become outdated.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Verify current Monero wallet guidance, software checksums, signatures, and device support against official sources before acting.
+
+Risk: The artifact includes a voluntary XMR tip address from the author.
+
+Mitigation: Treat the address as optional author support and do not use it as a wallet, recovery, support, or payment verification address.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/liumaimiao/skills/monero-wallet-security)
+- [Official Monero website](https://www.getmonero.org/)
+- [Ledger Monero wallet guide](https://www.ledger.com/monero-wallet)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Markdown, Configuration instructions]
+
+**Output Format:** [Markdown text with checklists and step-by-step guidance]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Static informational guidance; no executable code or hidden behavior was found in security evidence.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and package.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

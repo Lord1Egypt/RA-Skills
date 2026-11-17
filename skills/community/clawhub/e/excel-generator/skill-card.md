@@ -1,40 +1,52 @@
-## Description: <br>
-Generates professional Bloomberg-style Excel workbooks from natural language descriptions, including multi-sheet dashboards, KPI cards, charts, conditional formatting, and data tables. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Generate professional Bloomberg-style Excel workbooks from natural language descriptions. Creates multi-sheet workbooks with dashboards, KPI cards, charts, conditional formatting, and data tables. Use when asked to build Excel files, spreadsheets, dashboards, trackers, or reports.
 
-## Publisher: <br>
-[synapsefirm-cmd](https://clawhub.ai/user/synapsefirm-cmd) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[synapsefirm-cmd](https://clawhub.ai/user/synapsefirm-cmd)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External users, employees, and developers use this skill to create formatted Excel workbooks, dashboards, trackers, and business reports from natural-language requests or source data.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill's default client-delivery workflow uses a shared password for protected workbooks.
+
+Mitigation: Use a unique user-supplied password for each workbook and do not rely on workbook protection as confidentiality control.
+
+Risk: The skill references a fixed local output path, which can lead to misplaced or mishandled business workbooks.
+
+Mitigation: Confirm the output path before generation and apply cleanup and secure delivery practices for HR, finance, sales, or client data.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers, agents, and business users use this skill to turn natural language workbook requests into formatted Excel dashboards, trackers, reports, and business templates. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill directs agents to use a public shared password for client files. <br>
-Mitigation: Use a unique password supplied or approved by the user for each sensitive workbook. <br>
-Risk: The skill directs agents to run an unbundled local generator script from a fixed path. <br>
-Mitigation: Inspect and trust the referenced local script before use, or replace it with a reviewed script in the user's workspace. <br>
+**Output Format:** [Markdown guidance with Python/openpyxl code and shell commands; generated workbook artifacts are Excel .xlsx files.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/synapsefirm-cmd/excel-generator) <br>
+**Other Properties Related to Output:** [Produces multi-sheet workbooks with dashboards, KPI cards, charts, conditional formatting, and data tables.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Code, Shell commands, Guidance] <br>
-**Output Format:** [XLSX files with Markdown explanations and optional Python/openpyxl code or shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create multi-sheet workbooks with dashboard, data, and raw-data sheets.] <br>
+1.0.0 (source: ClawHub release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

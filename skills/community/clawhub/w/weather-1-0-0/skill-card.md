@@ -1,41 +1,50 @@
-## Description: <br>
-Get current weather and forecasts with wttr.in and Open-Meteo without an API key. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Provide current weather and forecasts using wttr.in and Open-Meteo APIs without requiring an API key.
 
-## Publisher: <br>
-[99percentgod](https://clawhub.ai/user/99percentgod) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[99percentgod](https://clawhub.ai/user/99percentgod)
 
-## Use Case: <br>
-Developers and agents use this skill to fetch current conditions, compact weather summaries, full forecasts, and machine-readable weather JSON for user-specified locations. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: Weather lookups make outbound requests to public weather services, which can reveal queried locations to those services. <br>
-Mitigation: Use only locations needed for the task, avoid sensitive personal addresses when privacy matters, and review network access policies before deployment. <br>
-Risk: The skill can write requested weather output files, such as PNG forecasts. <br>
-Mitigation: Choose explicit output paths, avoid overwriting important files, and review generated files before relying on them. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/99percentgod/weather-1-0-0) <br>
-- [wttr.in help](https://wttr.in/:help) <br>
-- [Open-Meteo documentation](https://open-meteo.com/en/docs) <br>
+## Use Case:
 
+External users and developers use this skill to request current weather, forecasts, and weather API lookup guidance for city names, airport codes, or coordinates.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, JSON, Shell commands, Files, Guidance] <br>
-**Output Format:** [Markdown guidance with curl commands; weather responses may be plain text, JSON, or PNG files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl; no API key is required.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata and artifact _meta.json) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: Weather lookups disclose the requested city, airport code, or coordinates to wttr.in or Open-Meteo.
+
+Mitigation: Avoid sensitive personal details in query strings and use only locations or coordinates appropriate to share with the selected public weather service.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/99percentgod/skills/weather-1-0-0)
+- [wttr.in help](https://wttr.in/:help)
+- [Open-Meteo forecast API documentation](https://open-meteo.com/en/docs)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, JSON, Files]
+
+**Output Format:** [Markdown guidance with inline shell commands, plain-text or JSON weather responses, and optional PNG image output.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires curl; no API key is required; weather requests are sent to wttr.in or Open-Meteo.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata and artifact _meta.json)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -6,7 +6,7 @@ library(httr)
 library(jsonlite)
 
 # ========== 请在这里填写你的API信息 ==========
-KIMI_API_KEY <- "sk-kwe4WnYviimoCDIXOXgG82Xh91c9hWSNNobXj3OMUvfabOSF"
+KIMI_API_KEY <- "REDACTED-SECRET"
 KIMI_BASE_URL <- "https://api.moonshot.cn/v1"
 # ===========================================
 

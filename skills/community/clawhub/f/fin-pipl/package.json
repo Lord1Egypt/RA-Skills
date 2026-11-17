@@ -1,0 +1,47 @@
+{
+  "name": "fin-pipl",
+  "version": "1.0.0",
+  "description": "金融行业个人信息保护（PIPL）合规检查工具。覆盖银行、证券/基金、保险、支付四大业务场景，基于《个人信息保护法》《个人金融信息保护规范》(JR/T 0171)、《金融数据安全分级指南》(JR/T 0197)。",
+  "keywords": [
+    "金融合规",
+    "个人金融信息",
+    "PIPL",
+    "JR/T 0171",
+    "JR/T 0197",
+    "金融数据安全",
+    "适当性管理",
+    "征信合规",
+    "支付合规",
+    "保险合规"
+  ],
+  "author": "Wei Wu (wwumit)",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "package.json",
+    "requirements.txt",
+    "scripts/",
+    "references/"
+  ],
+  "scripts": {
+    "check": "python3 scripts/fin-pipl-check.py",
+    "interactive": "python3 scripts/fin-pipl-check.py --interactive"
+  },
+  "openclaw": {
+    "skill": true,
+    "category": "compliance",
+    "region": "cn",
+    "dependencies": [],
+    "compatibility": {
+      "minOpenClawVersion": "1.0.0",
+      "testedModels": []
+    },
+    "emoji": "🏦"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwumit/fin-pipl"
+  },
+  "homepage": "https://github.com/wwumit/fin-pipl"
+}

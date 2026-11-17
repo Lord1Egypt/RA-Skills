@@ -1,52 +1,54 @@
-## Description: <br>
-Guides agents and developers through Nevermined payment operations, including x402 purchases, card or stablecoin delegations, API key setup, plan and agent registration, credit checks, seller revenue checks, and payment protection for TypeScript and Python agent services. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Guides agents and developers through Nevermined payment operations and x402-protected TypeScript and Python integrations.
 
-## Publisher: <br>
-[nevermined-io](https://clawhub.ai/user/nevermined-io) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[nevermined-io](https://clawhub.ai/user/nevermined-io)
 
-## Use Case: <br>
-External developers and autonomous agents use this skill to buy or sell access through Nevermined, manage payment delegations, and add x402 payment protection to agent endpoints. It is intended for payment-enabled agent services that need concrete REST, SDK, and configuration guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT No Attribution
 
-## Known Risks and Mitigations: <br>
-Risk: Agents using this skill may initiate payment-related actions with real funds or live customer accounts. <br>
-Mitigation: Start in the sandbox environment, use small spending limits and short delegation durations, and move to live only when the operator explicitly chooses it. <br>
-Risk: API keys, delegation IDs, wallet addresses, transaction hashes, or customer identifiers could be exposed through logs or plaintext storage. <br>
-Mitigation: Store NVM_API_KEY and delegation identifiers in a secret store, require HTTPS outside localhost, and avoid logging payment tokens or customer/payment identifiers. <br>
+## Use Case:
 
+Developers building AI agents or APIs, and agents operating a Nevermined account, use this skill to manage payment plans, buy access, check credits or revenue, and add x402 payment protection to TypeScript or Python services.
 
-## Reference(s): <br>
-- [Nevermined Payments Skill on ClawHub](https://clawhub.ai/nevermined-io/skills/nevermined) <br>
-- [Nevermined App](https://nevermined.app) <br>
-- [Autonomous Agent Operations](references/autonomous-operations.md) <br>
-- [Client-Side Integration](references/client-integration.md) <br>
-- [x402 Protocol](references/x402-protocol.md) <br>
-- [Payment Plans](references/payment-plans.md) <br>
-- [Seller Operations](references/seller-operations.md) <br>
-- [Express.js Integration](references/express-integration.md) <br>
-- [FastAPI Integration](references/fastapi-integration.md) <br>
-- [MCP Server Paywall](references/mcp-paywall.md) <br>
-- [Google A2A Integration](references/a2a-integration.md) <br>
-- [Strands Agent Integration](references/strands-integration.md) <br>
-- [LangChain and LangGraph Integration](references/langchain-integration.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions, API Calls] <br>
-**Output Format:** [Markdown with inline code blocks, JSON examples, and shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires NVM_API_KEY for authenticated Nevermined operations.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+Risk: The runbook may authorize payment from an endpoint-provided request without checking the merchant, plan, or cost; scan coverage was incomplete.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Before payment, verify the merchant, plan, amount, and spending cap against approved limits. Review unfamiliar payment flows and prefer the sandbox until a live charge is approved.
+
+## Reference(s):
+
+- [Nevermined agent skill guide](https://nevermined.ai/docs/development-guide/build-using-nvm-skill)
+- [Autonomous operations reference](references/autonomous-operations.md)
+- [x402 protocol reference](references/x402-protocol.md)
+- [Payment plans reference](references/payment-plans.md)
+- [MCP paywall reference](references/mcp-paywall.md)
+- [Nevermined REST API specification](https://api.sandbox.nevermined.app/api/v1/rest/docs-json)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, API Calls, Code, Shell commands, Configuration instructions]
+
+**Output Format:** [Markdown with REST examples, shell commands, and TypeScript/Python snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Instructions and examples for an agent to adapt; the skill itself does not execute code.]
+
+## Skill Version(s):
+
+1.0.16 (source: server-resolved release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

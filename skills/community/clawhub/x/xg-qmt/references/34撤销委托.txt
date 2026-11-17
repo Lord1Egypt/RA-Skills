@@ -1,0 +1,55 @@
+'''
+34撤销委托
+，专注于大QMT量化交易框架的深度训练与智能支持。我能够提供精准的代码提示、输出优化以及策略修改服务，帮助你高效开发和迭代量化交易策略。我的创造者是小果量化，，欢迎联系微信：xg_quant。，只做学习使用，不做投资参考，注意风险
+'''
+cancel-撤销委托
+调用方法cancel(orderId, accountId, accountType, ContextInfo)
+
+参数
+
+参数名	类型	含义	说明
+orderId	string	委托号	必填
+accountID	string	资金账号	必填
+AccountType	string	账号类型 可选：
+'FUTURE'：期货
+'STOCK'：股票
+'CREDIT'：信用
+'HUGANGTONG'：沪港通
+'SHENGANGTONG'：深港通
+'STOCK_OPTION'：期权
+必填
+ContextInfo	class	含有k线信息和接口的上下文对象	必填
+返回 bool，是否发出了取消委托信号，返回值含义：
+
+True：是
+False：否
+
+示例
+
+python返回值
+
+#coding:gbk
+'''
+（1）下单前,根据 get_trade_detail_data 函数返回账号的信息，判定资金是否充足，账号是否在登录状态，统计持仓情况等等。
+（2）满足一定的模型条件，用 passorder 下单。
+（3）下单后，时刻根据 get_last_order_id 函数获取委托和成交的最新id，注意如果委托生成了，就有了委托号（这个id需要自己保存做一个全局控制）。
+（4）用该委托号根据 get_value_by_order_id 函数查看委托的状态，各种情况等。
+当一个委托的状态变成“已成'后，那么对应的成交 deal 信息就有一条成交数据；用该委托号可查看成交情况。
+*注：委托列表和成交列表中的委托号是一样的,都是这个 m_strOrderSysID 属性值。
+可用 get_last_order_id 获取最新的 order 的委托号,然后根据这个委托号获取 deal 的信息，当获取成功后，也说明这笔交易是成了，可再根据 position 持仓信息再进一步验证。
+（5）根据委托号获取委托信息，根据委托状态，或模型设定，用 cancel 取消委托。
+'''
+
+
+def init(ContextInfo):
+    ContextInfo.accid = '6000000248'
+
+def handlebar(ContextInfo):
+    if ContextInfo.is_last_bar():
+        orderid = get_last_order_id(ContextInfo.accid, 'stock', 'order')
+        print(cancel(orderid, ContextInfo.accid, 'stock', ContextInfo))
+'''
+运行结果
+[2023-10-31 13:27:48][TESTC][SH000300][日线] True
+
+'''

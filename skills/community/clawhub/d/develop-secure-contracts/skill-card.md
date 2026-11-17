@@ -1,47 +1,57 @@
-## Description: <br>
-Develop secure smart contracts using OpenZeppelin Contracts libraries across Solidity, Cairo, Stylus, and Stellar by discovering library patterns, integrating existing components, and avoiding custom code when vetted library code exists. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents integrate OpenZeppelin Contracts components into Solidity, Cairo, Stylus, and Stellar smart contracts by reading the project and library source before proposing changes.
 
-## Publisher: <br>
-[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[samledger67-dotcom](https://clawhub.ai/user/samledger67-dotcom)
 
-## Use Case: <br>
-Developers and smart contract engineers use this skill to integrate OpenZeppelin components into new or existing contracts, including token standards, access control, security primitives, governance, upgrades, and account features. It emphasizes reading the project and installed dependency source before proposing or applying changes. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated contract changes can introduce security, inheritance, initialization, or storage-layout mistakes if dependency patterns are misread or applied too broadly. <br>
-Mitigation: Read the existing project and installed OpenZeppelin source first, keep changes minimal, review the resulting diff, and run the project's contract tests and security checks. <br>
-Risk: Using generic advice instead of the installed library version can produce incorrect override points or obsolete integration patterns. <br>
-Mitigation: Verify APIs, hooks, constructors, and required overrides against the locally installed dependency or the relevant canonical documentation before editing contracts. <br>
+## Use Case:
 
+Developers and engineers use this skill to add or adapt OpenZeppelin library components in existing or new smart-contract projects while preserving project context and dependency patterns.
 
-## Reference(s): <br>
-- [OpenZeppelin Contracts documentation](https://docs.openzeppelin.com/contracts) <br>
-- [OpenZeppelin Contracts for Cairo documentation](https://docs.openzeppelin.com/contracts-cairo) <br>
-- [OpenZeppelin Contracts for Stylus documentation](https://docs.openzeppelin.com/contracts-stylus) <br>
-- [OpenZeppelin Stellar Contracts documentation](https://docs.openzeppelin.com/stellar-contracts) <br>
-- [OpenZeppelin Solidity Contracts repository](https://github.com/OpenZeppelin/openzeppelin-contracts) <br>
-- [OpenZeppelin Cairo Contracts repository](https://github.com/OpenZeppelin/cairo-contracts) <br>
-- [OpenZeppelin Stylus Contracts repository](https://github.com/OpenZeppelin/rust-contracts-stylus) <br>
-- [OpenZeppelin Stellar Contracts repository](https://github.com/OpenZeppelin/stellar-contracts) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, and direct file edits when implementation is requested] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May modify existing contract files; users should review diffs and run project tests before relying on generated changes.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-98.0.1 (source: server-resolved release metadata) <br>
+Risk: Generated smart-contract changes can introduce incorrect authorization, upgrade, or storage behavior if applied without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review every contract diff, run the project's tests and security tooling, and require independent audit before deployment or upgrade.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/samledger67-dotcom/skills/develop-secure-contracts)
+- [OpenZeppelin Contracts documentation](https://docs.openzeppelin.com/contracts)
+- [OpenZeppelin Contracts for Cairo documentation](https://docs.openzeppelin.com/contracts-cairo)
+- [OpenZeppelin Contracts for Stylus documentation](https://docs.openzeppelin.com/contracts-stylus)
+- [OpenZeppelin Contracts for Stellar documentation](https://docs.openzeppelin.com/stellar-contracts)
+- [OpenZeppelin Solidity contracts repository](https://github.com/OpenZeppelin/openzeppelin-contracts)
+- [OpenZeppelin Cairo contracts repository](https://github.com/OpenZeppelin/cairo-contracts)
+- [OpenZeppelin Stylus contracts repository](https://github.com/OpenZeppelin/rust-contracts-stylus)
+- [OpenZeppelin Stellar contracts repository](https://github.com/OpenZeppelin/stellar-contracts)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration]
+
+**Output Format:** [Markdown with code snippets, shell commands, and proposed file edits]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Review generated contract diffs before deployment.]
+
+## Skill Version(s):
+
+98.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

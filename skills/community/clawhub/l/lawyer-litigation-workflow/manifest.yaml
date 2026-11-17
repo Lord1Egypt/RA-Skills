@@ -1,0 +1,21 @@
+name: lawyer-litigation-workflow
+version: 1.0.2
+description: "深度模拟律师办案逻辑的民事诉讼全流程自动化系统。7步管线：IRAC法律推理→谈话笔录→文书生成→类案检索→法条穷尽→对抗式策略→出庭文书。不是模板填充，是真正的律师思维编码。规格驱动管道+7项QC门控+红蓝对抗分析+法官中立审视。11类法律文书全自动生成，任一质检不通过即硬阻断。"
+category: 法律-诉讼
+author: 马律（山东东润律师事务所）
+license: AGPL-3.0
+min_workbuddy_version: "2.0.0"
+dependencies:
+  python: ">=3.10"
+  packages:
+    - python-docx
+    - rapidocr-onnxruntime
+tags:
+  - 民事诉讼
+  - 文书生成
+  - 类案检索
+  - 诉讼策略
+  - 法律文书
+  - 出庭准备
+  - IRAC
+  - 质量检查

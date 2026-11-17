@@ -1,42 +1,59 @@
-## Description: <br>
-Provides lightweight summaries and comparisons of public Tmall brand flagship store and product pages, including prices, sales, reviews, and product details. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Tmall helps agents summarize and compare public Tmall flagship store and product page information such as prices, sales volumes, reviews, promotions, and product attributes.
 
-## Publisher: <br>
-[codenova58](https://clawhub.ai/user/codenova58) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[codenova58](https://clawhub.ai/user/codenova58)
 
-## Use Case: <br>
-Developers, analysts, and internal teams use this skill to direct an agent to summarize public Tmall product and store pages and compare price, promotion, sales, and review signals for lightweight analysis. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Public e-commerce prices, promotions, sales counts, and reviews can change quickly. <br>
-Mitigation: Include the collection time in summaries and verify important values against the live Tmall page before relying on them. <br>
-Risk: Automated use could drift into bulk scraping, login, purchasing, or attempts to bypass platform controls. <br>
-Mitigation: Keep use manual and lightweight, analyze only public pages, and follow Tmall platform rules. <br>
+## Use Case:
 
+External users, developers, and analysts use this skill to manually trigger lightweight research on public Tmall pages, including product list summaries, product detail extraction, and same-category comparisons.
 
-## Reference(s): <br>
-- [ClawHub Tmall skill page](https://clawhub.ai/codenova58/tmall) <br>
-- [Tmall homepage](https://www.tmall.com/) <br>
-- [Tmall product search](https://list.tmall.com/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown summaries and comparison tables] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Manual, lightweight analysis of public pages; include collection time for time-sensitive prices and promotions.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: server-resolved release metadata) <br>
+Risk: The skill could be used beyond its intended scope for account actions, purchases, or attempts to bypass platform controls.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use it only for explicit public product, store, or comparison research tasks; do not use it for account activity, purchasing, interface reverse engineering, or security bypass.
+
+Risk: Large or repeated collection from Tmall pages could violate platform rules or trigger anti-abuse controls.
+
+Mitigation: Keep collection small, manually triggered, and rate limited, and follow Tmall platform rules.
+
+Risk: Prices, promotions, sales counts, and review counts can change after collection.
+
+Mitigation: Include the collection time when reporting volatile product and promotion data.
+
+## Reference(s):
+
+- [Tmall homepage](https://www.tmall.com/)
+- [Tmall product search](https://list.tmall.com/)
+- [ClawHub skill page](https://clawhub.ai/codenova58/skills/tmall)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Concise text or Markdown summaries with product links, extracted fields, and comparison tables.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results should include collection time for volatile price and promotion data and avoid account actions, purchases, security bypass, or batch scraping.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

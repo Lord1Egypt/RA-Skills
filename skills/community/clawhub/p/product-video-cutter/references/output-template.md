@@ -1,23 +1,50 @@
-# Product Video Cutter — Output Template
+# 剪辑方案输出模板
 
-## Input Summary
-- Source file:
-- Goal:
-- Desired duration:
-- Must-keep sections:
+每次交付按以下结构输出。时间码为必填项。
 
-## Recommended Cut
-- Keep range(s):
-- Estimated final duration:
-- Primary reason this cut works:
+## 1. 任务概览
 
-## Conversion Logic
-- Hook retained:
-- Product proof retained:
-- Filler removed:
-- Best placement: PDP / ad / UGC / review / listing
+- 源素材：文件名 / 总时长
+- 目标用途：PDP / 信息流广告 / 达人 review / 社媒短视频 / 其他
+- 目标时长：
+- 剪辑优先级：hook / 证明 / 演示 / 信任 / CTA
 
-## Notes
-- Tradeoffs:
-- Remaining cleanup needed:
-- Optional alternate cuts:
+## 2. 主版本剪辑表
+
+| 序号 | 时间码（源） | 时长 | 内容 | 保留理由 | 角色 |
+|---|---|---|---|---|---|
+| 1 | 0:00-0:00 | | | | hook |
+| 2 | | | | | 证明 |
+| 3 | | | | | 演示 |
+| 4 | | | | | CTA |
+
+合计时长：
+
+## 3. 删除说明
+
+| 时间码 | 内容 | 删除理由 |
+|---|---|---|
+| | | |
+
+只列主要删除段（>5s 或有争议的），不必逐秒罗列。
+
+## 4. 衔接与风险
+
+- 跳切点：哪两段之间、是否需要转场/字幕过渡
+- 音频风险：口播断句、背景音乐断点
+- 画面风险：曝光/色调跳变、时间倒序感
+
+## 5. 遗留问题（交给下游）
+
+- 需要补的：字幕 / 封面 / 结尾卡 / CTA / 配乐
+- 需要适配的：尺寸比例（转 social-video-resizer）
+- 建议重拍/重制的部分
+
+## 6. 备选版本（可选）
+
+- 版本 B：hook 换成 X（时间码），适合 Y 人群/渠道
+- 版本 C：更短/更长版（时间码列表），用于 Z
+
+## 7. 一句话交付说明
+
+例："25s 广告版，效果对比前置做 hook，口播压缩至 7s，需补字幕与结尾卡。"

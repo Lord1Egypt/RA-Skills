@@ -1,43 +1,53 @@
-## Description: <br>
-Analyze and prioritize GitHub repository issues using fixability signals, then produce a structured issue-analysis report with root cause hypotheses and fix approaches. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Analyze, triage, and select the best issues to work on from GitHub repositories. Scores issues by reproducibility, scope, complexity, and community signal. Produces a structured analysis document with root cause hypotheses and fix approaches. Use when deciding which issues to tackle in open-source projects, prioritizing a backlog, or analyzing bug reports.
 
-## Publisher: <br>
-[sliverp](https://clawhub.ai/user/sliverp) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[sliverp](https://clawhub.ai/user/sliverp)
 
-## Use Case: <br>
-Developers and project maintainers use this skill to triage GitHub issues for open-source contribution targeting, sprint planning, backlog grooming, and bug-fix selection. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use an authenticated GitHub CLI session to fetch issue and pull request data. <br>
-Mitigation: Use a least-privileged GitHub token where possible and confirm the authenticated account before running repository queries. <br>
-Risk: The generated issue-analysis.md report could overwrite an existing workspace file. <br>
-Mitigation: Check for an existing issue-analysis.md before writing and choose a new path when the existing file matters. <br>
-Risk: Issue scores and fix hypotheses can be incomplete when issue threads are stale, ambiguous, or missing maintainer context. <br>
-Mitigation: Review selected issues and proposed fixes against the current issue thread and repository state before acting. <br>
+## Use Case:
 
+Developers, maintainers, and engineering teams use this skill to triage GitHub issue backlogs, score candidate issues, and produce a structured analysis document with root cause hypotheses and fix approaches.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/sliverp/issue-hunter) <br>
-- [Publisher profile](https://clawhub.ai/user/sliverp) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown report with issue scores, selected candidates, root cause hypotheses, and fix approaches.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Writes issue-analysis.md in the workspace.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+Risk: GitHub tokens or repository access details may be exposed if users paste credentials into chats, project files, logs, or shared output.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the GitHub CLI secure login flow when possible. If a token is needed, use a fine-grained read-only token for the repositories being analyzed, keep it out of chats and files, and redact it from logs and shared output.
+
+Risk: The generated issue analysis may prioritize work from incomplete issue context or miss an existing maintainer decision or pull request.
+
+Mitigation: Review the full issue thread, related pull requests, maintainer comments, and repository context before acting on selected candidates.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sliverp/skills/issue-hunter)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Analysis, Shell commands, Guidance]
+
+**Output Format:** [Markdown document with tables, issue scores, root cause hypotheses, and fix approaches]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces issue-analysis.md in the workspace.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,41 +1,51 @@
-## Description: <br>
-Multi Search Engine helps agents compose searches across 17 Chinese and global search engines with advanced operators, time filters, privacy-focused engines, and WolframAlpha knowledge queries without API keys. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Multi search engine integration with 17 engines (8 CN + 9 Global), advanced search operators, time filters, site search, privacy engines, and WolframAlpha knowledge queries without API keys.
 
-## Publisher: <br>
-[jirboy](https://clawhub.ai/user/jirboy) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jirboy](https://clawhub.ai/user/jirboy)
 
-## Use Case: <br>
-Developers and agents use this skill to construct search queries across multiple search engines for web research, site-specific searches, file-type searches, time-filtered searches, privacy-focused searches, and knowledge queries. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Search guidance can be misused to look for exposed passwords, admin pages, private files, or removed cached content. <br>
-Mitigation: Use the skill only for legitimate web research and reject searches intended to discover credentials, private systems, or restricted content. <br>
-Risk: Search queries may disclose secrets, personal data, internal domains, or confidential project names to third-party search engines. <br>
-Mitigation: Do not include secrets, personal data, internal hostnames, or confidential project terms in queries; sanitize search terms before use. <br>
+## Use Case:
 
+External users and developers use this skill to choose and compose search queries across Chinese and international search engines, including privacy-oriented engines and WolframAlpha knowledge queries.
 
-## Reference(s): <br>
-- [International Search Guide](references/international-search.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/jirboy/multi-search-engine-cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with search URL examples and web_fetch command snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces query guidance and direct search URLs; no API keys are required by the artifact.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata; artifact files list 2.0.1) <br>
+Risk: Advanced search patterns may be used to look for exposed passwords, admin pages, private files, or other sensitive third-party data without authorization.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the skill only for authorized search tasks and avoid queries aimed at discovering sensitive third-party data.
+
+## Reference(s):
+
+- [International Search Guide](artifact/references/international-search.md)
+- [ClawHub Skill Page](https://clawhub.ai/jirboy/skills/multi-search-engine-cn)
+- [Publisher Profile](https://clawhub.ai/user/jirboy)
+
+## Skill Output:
+
+**Output Type(s):** [Guidance, Code]
+
+**Output Format:** [Markdown with URL examples and JavaScript-style web_fetch snippets]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [No API keys required; outputs are search URLs, query patterns, and concise usage examples.]
+
+## Skill Version(s):
+
+1.0.0 (source: ClawHub release evidence and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

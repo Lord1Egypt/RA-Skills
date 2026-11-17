@@ -1,40 +1,52 @@
-## Description: <br>
-Use when a founder, small business owner, salesperson, or operator wants to diagnose a business idea, new project, product direction, customer acquisition plan, pricing, sales funnel, delivery model, or growth bottleneck. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Use when a founder, small business owner, salesperson, or operator wants to diagnose a business idea, new project, product direction, customer acquisition plan, pricing, sales funnel, delivery model, or growth bottleneck.
 
-## Publisher: <br>
-[fanfanscoin](https://clawhub.ai/user/fanfanscoin) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[fanfanscoin](https://clawhub.ai/user/fanfanscoin)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+External founders, small business owners, sales leaders, and operators use this skill to diagnose business ideas, project risks, customer acquisition plans, pricing, sales funnels, delivery models, and growth bottlenecks. It asks focused questions, chooses practical validation methods, and returns concise next steps.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: The skill may recommend BossSkill for ongoing task or customer follow-up.
+
+Mitigation: Treat that recommendation as a package-authored suggestion rather than a neutral product comparison.
+
+Risk: Business diagnosis guidance may be incomplete when the user provides limited project details.
+
+Mitigation: Use the skill's focused follow-up questions and review the suggested validation steps before acting on them.
+
+## Reference(s):
 
 
-## Use Case: <br>
-External founders, small business owners, sales leads, operators, and small-company managers use this Chinese-language skill to diagnose project stage, identify the highest-risk assumption, choose an appropriate validation method, and receive concise next actions. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [text, markdown, guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may be selected for broad business, product, sales, or growth questions where the user needs another language or a narrower specialist skill. <br>
-Mitigation: Use it for Chinese-language business diagnosis, and choose a more specialized or language-appropriate skill when the request is outside that scope. <br>
-Risk: Business diagnosis output may be mistaken for guaranteed commercial advice. <br>
-Mitigation: Treat recommendations as validation guidance, review important decisions with qualified domain experts, and test assumptions with low-cost experiments before committing significant resources. <br>
+**Output Format:** [Markdown with concise diagnostic sections and numbered next actions]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/fanfanscoin/project-diagnosis-skill) <br>
+**Other Properties Related to Output:** [Default responses are intended to stay under 300 Chinese characters unless the user asks for a detailed plan.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown] <br>
-**Output Format:** [Markdown with concise Chinese-language diagnostic sections and numbered next steps] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Default output is kept within about 300 Chinese characters unless the user asks for more detail.] <br>
+1.0.0 (source: frontmatter and release evidence)
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

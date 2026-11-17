@@ -1,5 +1,7 @@
 ---
 name: skillify
+version: 0.1.0
+license: MIT
 description: Use when the user wants to turn a script, repeated workflow, runbook, or hard-won procedure into a reusable agent skill, or asks "make this a skill", "extract this into a skill", or "I keep doing this manually".
 ---
 

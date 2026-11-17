@@ -1,42 +1,53 @@
-## Description: <br>
-Video Stitcher helps agents combine video clips into a finished video with optional transitions, background music, subtitles, resolution, frame rate, and export format settings. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Video Stitcher helps agents combine video clips into a complete video with transitions, background music, subtitles, and export settings using FFmpeg or Remotion.
 
-## Publisher: <br>
-[OliviaPp8](https://clawhub.ai/user/OliviaPp8) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[oliviapp8](https://clawhub.ai/user/oliviapp8)
 
-## Use Case: <br>
-Developers and content creators use this skill to prepare FFmpeg or Remotion-based video stitching workflows for promotional, demo, short-form, or platform-specific exports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided clip URLs or paths may expose private media or internal network locations. <br>
-Mitigation: Use trusted local files or trusted URLs, and avoid internal or private URLs unless the environment is approved for that access. <br>
-Risk: Generated output paths may overwrite existing files. <br>
-Mitigation: Set output paths inside a dedicated render folder and review the target path before executing FFmpeg or Remotion. <br>
-Risk: Large or high-resolution video renders may be slow or resource intensive, and automatic scaling can affect quality. <br>
-Mitigation: Preview complex or 4K jobs at 1080p first, then render the final version after checking resolution, timing, and transition settings. <br>
+## Use Case:
 
+Developers, creators, and media automation agents use this skill to turn a list of video clips into a finished video with optional transitions, music, subtitles, and platform-specific export settings.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/OliviaPp8/video-stitcher) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with YAML examples and inline bash command blocks] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces media-rendering guidance and command/configuration patterns; rendered video files are created only when the agent or user executes the generated workflow.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The skill may generate commands that read local video, subtitle, music paths, or media URLs supplied by the user.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use trusted media inputs and review generated FFmpeg or Remotion commands before running them on sensitive files.
+
+Risk: Generated video-processing commands may overwrite outputs or produce unintended edits if paths, timing, resolution, or transition settings are wrong.
+
+Mitigation: Run on copies or preview outputs first, and verify paths and render settings before executing long or destructive workflows.
+
+## Reference(s):
+
+- [Video Stitcher ClawHub Skill Page](https://clawhub.ai/oliviapp8/skills/video-stitcher)
+
+## Skill Output:
+
+**Output Type(s):** [Shell commands, Configuration, Code, Guidance]
+
+**Output Format:** [Markdown with YAML examples and bash command blocks]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose FFmpeg commands or Remotion project guidance for producing video files from user-provided media.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

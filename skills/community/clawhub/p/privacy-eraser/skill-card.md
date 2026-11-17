@@ -1,46 +1,66 @@
-## Description: <br>
-Privacy Eraser helps agents scan for exposed personal information, recommend removal paths, generate privacy complaint templates, and set up periodic monitoring. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Privacy Eraser helps agents find exposed personal information online, recommend removal paths, generate privacy complaint templates, and set up monitoring when requested.
 
-## Publisher: <br>
-[tykoo-eth](https://clawhub.ai/user/tykoo-eth) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[tykoo-eth](https://clawhub.ai/user/tykoo-eth)
 
-## Use Case: <br>
-External users and their agents use this skill to find public exposure of personal data, prepare removal or complaint materials, and track follow-up monitoring across platform, search, and regulator channels. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global, with China, EU, and U.S. platform and legal templates. <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill may use logged-in browser sessions and submit platform reports on the user's behalf. <br>
-Mitigation: Keep the skill in advisory or manual-review mode where possible and require user confirmation before any complaint is submitted. <br>
-Risk: The skill may process sensitive identity information and evidence records. <br>
-Mitigation: Redact identity documents, minimize stored case files, and keep explicit retention limits for screenshots and complaint records. <br>
-Risk: Some reporting tactics may be misleading if the facts do not support the selected complaint category or DMCA claim. <br>
-Mitigation: Review every generated complaint for accuracy and use only report categories and legal claims supported by the evidence. <br>
-Risk: Recurring monitoring can repeatedly search for identity details using logged-in or personally identifying context. <br>
-Mitigation: Set clear monitoring scope, cadence, and stop conditions before enabling scheduled scans. <br>
+## Use Case:
 
+Individuals and support agents use this skill to identify exposed personal information, choose platform-specific removal or escalation paths, and draft privacy, legal, GDPR, DMCA, or regulator complaint text for review before submission.
 
-## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/tykoo-eth/privacy-eraser) <br>
-- [Platform reporting guide](artifact/platforms.md) <br>
-- [Privacy legal basis guide](artifact/legal_basis.md) <br>
+### Deployment Geography for Use:
 
+Global, with specific guidance for China, EU/GDPR, and US privacy or copyright complaint contexts.
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance, complaint templates, platform steps, browser-action instructions, and monitoring configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce privacy-removal drafts, evidence checklists, browser automation steps, screenshots or case-record guidance, and recurring monitoring schedules.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.2.0 (source: server release evidence) <br>
+Risk: The skill may use logged-in browser sessions to submit reports, send messages, or take other external actions without enough user control.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Keep the skill in draft-and-guidance mode unless the user explicitly approves each destination, action, and final text before submission.
+
+Risk: The skill may read user identity data, request or upload identity documents, store screenshots, or create case records involving sensitive personal information.
+
+Mitigation: Use the minimum necessary personal data, redact identity materials whenever possible, and confirm destination, retention, and deletion expectations before handling evidence.
+
+Risk: Recurring monitoring can continue collecting personal information after the immediate removal task is complete.
+
+Mitigation: Create monitoring only after the user approves the exact schedule, search terms, notification behavior, retention period, and cancellation path.
+
+Risk: Complaint or takedown templates can create legal or platform-policy risk if used with inaccurate claims, especially DMCA notices.
+
+Mitigation: Require the user to verify facts and use DMCA language only for genuine copyright claims before sending any notice.
+
+## Reference(s):
+
+- [Privacy Eraser ClawHub listing](https://clawhub.ai/tykoo-eth/skills/privacy-eraser)
+- [Platform reporting entry guide](artifact/platforms.md)
+- [Privacy legal basis reference](artifact/legal_basis.md)
+- [Generic privacy complaint template](artifact/generic_privacy.md)
+- [GDPR data erasure request template](artifact/gdpr_request.md)
+- [DMCA takedown notice template](artifact/dmca_takedown.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with complaint templates, checklists, platform-specific steps, and occasional command or schedule snippets.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May propose external reports, legal notices, browser actions, monitoring schedules, and evidence records; submissions and sensitive data handling require explicit user review.]
+
+## Skill Version(s):
+
+0.2.0 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

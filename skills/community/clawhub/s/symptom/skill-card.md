@@ -1,41 +1,54 @@
-## Description: <br>
-Log health symptoms, track patterns, and chart trends. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Log health symptoms, track patterns, and chart trends. Use when logging symptoms, tracking frequency, charting trends, reviewing patterns.
 
-## Publisher: <br>
-[xueyetianya](https://clawhub.ai/user/xueyetianya) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xueyetianya](https://clawhub.ai/user/xueyetianya)
 
-## Use Case: <br>
-People tracking symptoms or wellness patterns use this skill to log local entries, review recent activity, search notes, view basic statistics, and export data. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Symptom and wellness notes are stored as plaintext files on the local computer. <br>
-Mitigation: Use it only on trusted accounts, protect or encrypt the home directory when notes are sensitive, and review or delete ~/.local/share/symptom when needed. <br>
-Risk: Exports may contain sensitive health or wellness notes. <br>
-Mitigation: Verify exported JSON, CSV, or text files before sharing or relying on them for backups. <br>
+## Use Case:
 
+External users and agents use Symptom to log health and wellness entries locally, review recent activity, search prior notes, and summarize symptom patterns over time.
 
-## Reference(s): <br>
-- [BytesAgain homepage](https://bytesagain.com) <br>
-- [ClawHub skill page](https://clawhub.ai/xueyetianya/symptom) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Files, Guidance] <br>
-**Output Format:** [Plain text command guidance and local JSON, CSV, or text export files] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stores symptom and wellness notes locally under ~/.local/share/symptom/.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+Risk: Symptom entries may contain sensitive health information stored as plaintext files under the user's home directory.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only on machines where local file access is appropriately restricted, and avoid use on shared or heavily synced systems unless file permissions are managed separately.
+
+Risk: The release evidence reports misleading or broken export behavior.
+
+Mitigation: Review export behavior before relying on exported JSON, CSV, or text files for backup, transfer, or analysis.
+
+## Reference(s):
+
+- [Symptom ClawHub listing](https://clawhub.ai/xueyetianya/skills/symptom)
+- [BytesAgain homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration]
+
+**Output Format:** [Markdown with inline shell commands and local file output descriptions]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local plaintext logs and advertised JSON, CSV, or text exports under the user's home directory.]
+
+## Skill Version(s):
+
+2.0.1 (source: server release metadata; artifact frontmatter says 2.0.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

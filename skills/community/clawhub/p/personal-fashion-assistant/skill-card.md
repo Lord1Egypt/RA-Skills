@@ -1,43 +1,61 @@
-## Description: <br>
-Manages a personal fashion profile and digital wardrobe, then supports wardrobe search, clothing conflict checks, statistics dashboards, and daily outfit recommendations. <br>
+## Description:
 
-This skill is for research and development only. <br>
+A personal fashion assistant that builds style profiles, manages a digital wardrobe, checks clothing conflicts, analyzes wardrobe health, and recommends daily outfits.
 
-## Publisher: <br>
-[yunaiikim](https://clawhub.ai/user/yunaiikim) <br>
+This skill is for research and development only.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[yunaiikim](https://clawhub.ai/user/yunaiikim)
 
-## Use Case: <br>
-External users can use this skill to maintain a personal style profile, organize clothing photos and wardrobe records, check potential duplicate or conflicting purchases, analyze wardrobe balance, and receive weather- and scenario-aware outfit suggestions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+PolyForm Noncommercial License 1.0.0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive body measurements, skin and style attributes, wardrobe records, and clothing photos. <br>
-Mitigation: Use only trusted model endpoints, keep local profile and wardrobe files private, and periodically review USER.md and smart_wardrobe contents. <br>
-Risk: Some workflows update or delete wardrobe records and related clothing photos. <br>
-Mitigation: Keep backups before update or delete operations and confirm the target clothing ID before modifying inventory.md or image files. <br>
-Risk: The bundled Python tool files include executable helper and test behavior. <br>
-Mitigation: Avoid running tool files directly unless you understand the local file operations they perform. <br>
+## Use Case:
 
+External users use this skill to maintain a personal style profile and digital wardrobe, archive clothing photos, check for similar or conflicting items, generate wardrobe analysis dashboards, and receive weather-aware outfit recommendations.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yunaiikim/personal-fashion-assistant) <br>
-- [Publisher profile](https://clawhub.ai/user/yunaiikim) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, guidance] <br>
-**Output Format:** [Conversational guidance, Markdown wardrobe/profile records, clothing-photo file references, and generated HTML dashboard files.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May update local USER.md and inventory.md records and may reference user-supplied clothing or outfit photos.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: The skill collects and stores sensitive body, appearance, photo, and routine data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only non-sensitive data and photos, obtain explicit consent before uploads or persistent profile writes, and remove stored data when it is no longer needed.
+
+Risk: The skill may send appearance data and photos to an external model service.
+
+Mitigation: Disclose the external model use before submission, send only data needed for the requested analysis, and avoid uploading sensitive images.
+
+Risk: The skill saves model-generated HTML that should be treated as untrusted.
+
+Mitigation: Inspect and sanitize generated dashboard files before opening or sharing them.
+
+Risk: The skill writes model-derived profile, wardrobe, and statistics updates to local files.
+
+Mitigation: Review generated updates before accepting them and keep backups of profile and inventory files.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/yunaiikim/skills/personal-fashion-assistant)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, configuration, guidance]
+
+**Output Format:** [Markdown responses plus local Markdown, image, and HTML files for profile, wardrobe, recommendation, and dashboard workflows]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May update USER.md and inventory.md, archive wardrobe photos, and save model-generated HTML dashboard files.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

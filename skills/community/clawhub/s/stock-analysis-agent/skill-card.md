@@ -1,41 +1,59 @@
-## Description: <br>
-Professional Stock Analysis Agent helps agents analyze US, Hong Kong, and A-share equities using market, company, valuation, and risk frameworks. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional stock analysis agent for US, Hong Kong, and A-share markets that provides market trend analysis, individual stock analysis, and value-based recommendation guidance.
 
-## Publisher: <br>
-[ericzhao730](https://clawhub.ai/user/ericzhao730) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[ericzhao730](https://clawhub.ai/user/ericzhao730)
 
-## Use Case: <br>
-External users and analysts use this skill to structure multi-market stock analysis, compare valuation signals, identify investment logic, and document risk warnings before making independent investment decisions. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Investment analysis may be incomplete, stale, or unsuitable for a user's financial situation. <br>
-Mitigation: Use the skill as an informational aid only, verify market data and assumptions independently, and do not treat outputs as licensed financial advice. <br>
+## Use Case:
 
+External users and analysts use this skill to structure market trend analysis, stock screening, valuation review, and recommendation write-ups across US, Hong Kong, and A-share markets. It is intended as decision-support guidance, not as licensed financial advice.
 
-## Reference(s): <br>
-- [Stock Analysis Framework](references/analysis-framework.md) <br>
-- [Market Characteristics: US, Hong Kong, and A-Share](references/market-characteristics.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/ericzhao730/stock-analysis-agent) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/ericzhao730) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Stock recommendations should include stock name and ticker, investment logic, risk warnings, and investment horizon.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: release evidence) <br>
+Risk: Generated stock recommendations may be mistaken for licensed financial advice or used as the sole basis for trading.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Treat outputs as analytical support only, verify market data independently, and consult qualified professionals before making investment decisions.
+
+Risk: Market rules, prices, policy details, and sector assumptions may become outdated.
+
+Mitigation: Check current exchange rules, filings, prices, and policy announcements before relying on any recommendation.
+
+Risk: Cross-market analysis can miss jurisdiction-specific liquidity, currency, regulatory, and settlement risks.
+
+Mitigation: Require market-specific risk warnings for US, Hong Kong, and A-share recommendations and diversify exposure.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/ericzhao730/skills/stock-analysis-agent)
+- [Stock Analysis Framework](references/analysis-framework.md)
+- [Market Characteristics: US, Hong Kong, and A-Share](references/market-characteristics.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown analysis guidance with recommendation rationale, risk warnings, investment horizon, and optional target price ranges.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs should include stock name and ticker, investment logic, risk warnings, and investment horizon when making recommendations.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

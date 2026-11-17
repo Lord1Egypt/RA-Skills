@@ -1,41 +1,53 @@
-## Description: <br>
-Exports ecommerce data into Excel or PDF reports for price history, sales analysis, and competitor comparison workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Exports ecommerce data into Excel or PDF reports with price history, sales analysis, and competitor comparisons for sellers and market analysts.
 
-## Publisher: <br>
-[275254cl-hash](https://clawhub.ai/user/275254cl-hash) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[275254cl-hash](https://clawhub.ai/user/275254cl-hash)
 
-## Use Case: <br>
-External ecommerce sellers and market analysts use this skill to export product, price, sales, and competitor data into structured business reports. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated reports may contain business-sensitive product, price, or sales information. <br>
-Mitigation: Review report contents, output paths, and access permissions before sharing or storing exported files. <br>
-Risk: Scheduled reports could be sent to an unintended destination if recurrence settings are misconfigured. <br>
-Mitigation: Confirm recipients, delivery destinations, and schedule settings before enabling recurring report generation. <br>
+## Use Case:
 
+External ecommerce sellers and market analysts use this skill to generate product price-history exports, sales trend reports, competitor comparison reports, and scheduled ecommerce reporting.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/275254cl-hash/ecommerce-data-export) <br>
-- [Publisher profile](https://clawhub.ai/user/275254cl-hash) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Markdown, Guidance] <br>
-**Output Format:** [Excel or PDF report files with concise Markdown status or instructions] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use Python with pandas and openpyxl; generated reports can contain product, price, and sales data.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Risk: Scheduled report generation could send sales or pricing data to unintended destinations if enabled without review.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Require explicit opt-in for scheduled reports, approve delivery destinations, and apply retention and sharing rules for ecommerce data.
+
+Risk: The dependency guidance references unpinned Python packages.
+
+Mitigation: Install dependencies in an isolated environment and prefer pinned package versions before production use.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/275254cl-hash/skills/ecommerce-data-export)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with examples for generating Excel or PDF ecommerce reports]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May include report structure, export instructions, dependency installation guidance, and scheduled-report setup guidance.]
+
+## Skill Version(s):
+
+1.0.0 (source: release metadata and SKILL.md frontmatter)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

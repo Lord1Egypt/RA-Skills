@@ -1,43 +1,55 @@
-## Description: <br>
-获取最新AI技术动向，区分国内和国外市场，追踪各大模型的重点更新优化、重要技术迭代，识别划时代级产品，进行热度评级和专业分析。 <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+获取最新AI技术动向，区分国内和国外市场，追踪各大模型的重点更新优化、重要技术迭代，识别划时代级产品，进行热度评级和专业分析。
 
-## Publisher: <br>
-[hwl1413520](https://clawhub.ai/user/hwl1413520) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hwl1413520](https://clawhub.ai/user/hwl1413520)
 
-## Use Case: <br>
-AI practitioners, investors, technical researchers, and teams use this skill to track current AI model, product, and research developments across domestic and international markets. It helps produce structured Chinese-language reports with source links, trend analysis, importance levels, heat ratings, and model comparison tables. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Generated AI news summaries may contain outdated, incomplete, or misinterpreted public information. <br>
-Mitigation: Verify cited sources and publication dates before relying on the report for business, investment, or strategic decisions. <br>
-Risk: The installer copies files into a local skills directory and may overwrite an existing skill after user confirmation. <br>
-Mitigation: Run installation as a normal user and review the target directory before approving overwrite prompts. <br>
+## Use Case:
 
+AI practitioners, investors, and technology researchers use this skill to gather recent AI news across domestic and international markets, classify model and product updates, rate importance and heat, and produce structured weekly or monthly reports.
 
-## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/hwl1413520/ai-tech-tracker) <br>
-- [AI vendor and product database](references/AI_DATABASE.md) <br>
-- [Technical evaluation criteria](references/EVALUATION_CRITERIA.md) <br>
-- [Report template](assets/report_template.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Structured Markdown reports with tables, source links, ratings, trend analysis, and optional document export guidance.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Generated reports should state the time range, distinguish domestic and international coverage, and preserve source links for verification.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: ClawHub release metadata) <br>
+Risk: The installer can change or remove files in a selected skills directory and includes a validation step flagged as injection-prone by the security evidence.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review install.sh before use, install only into a user-controlled Claude skills directory, avoid elevated privileges, and prefer manual copying or a fixed validation block that passes paths as Python arguments.
+
+Risk: AI news reports can become stale quickly or include unsupported claims if sources are weak.
+
+Mitigation: Use official announcements and reputable technical sources first, include report time ranges and source links, and review important claims before business or investment use.
+
+## Reference(s):
+
+- [AI vendor and product database](references/AI_DATABASE.md)
+- [AI technology evaluation criteria](references/EVALUATION_CRITERIA.md)
+- [AI technology report template](assets/report_template.md)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown reports with structured sections, tables, ratings, trend analysis, and source links.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The bundled helper script can also export structured JSON report data when used directly.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

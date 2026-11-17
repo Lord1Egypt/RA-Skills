@@ -1,39 +1,59 @@
-## Description: <br>
-Compresses images to WebP, PNG, or JPEG with automatic compressor selection. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Compresses images to WebP (default) or PNG with automatic tool selection.
 
-## Publisher: <br>
-[jimliu](https://clawhub.ai/user/jimliu) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jimliu](https://clawhub.ai/user/jimliu)
 
-## Use Case: <br>
-Developers and agents use this skill to compress, optimize, or convert local image files and image directories while choosing format, quality, recursion, and whether to keep originals. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The compressor can rename or replace original image files by default. <br>
-Mitigation: Use --keep for important originals, test on copies before recursive directory runs, and review output paths before converting to the same format. <br>
+## Use Case:
 
+Developers, designers, and content teams use this skill to reduce image file size, convert images to WebP, PNG, or JPEG, and process individual files or image directories from an agent-guided command line workflow.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jimliu/baoyu-compress-image) <br>
-- [Project homepage](https://github.com/JimLiu/baoyu-skills#baoyu-compress-image) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, json, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with shell commands; CLI output is plain text or JSON when --json is used.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May process one file or a directory of supported image files; supports WebP, PNG, and JPEG output.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.117.2 (source: server release metadata) <br>
+Risk: The compression workflow can change or overwrite image files by default.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use copied or backed-up images, prefer the --keep option, and check outputs before running recursive mode on important directories.
+
+Risk: If Bun is unavailable, the documented fallback may fetch an unpinned runtime package through npx.
+
+Mitigation: Install Bun through a trusted pinned process before using the skill instead of relying on npx -y bun.
+
+Risk: Project EXTEND.md files can alter default compression behavior.
+
+Mitigation: Treat EXTEND.md files as untrusted unless you control them, and review their settings before execution.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/jimliu/skills/baoyu-compress-image)
+- [Publisher Profile](https://clawhub.ai/user/jimliu)
+- [Project Homepage](https://github.com/JimLiu/baoyu-skills#baoyu-compress-image)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown with inline shell commands and optional JSON CLI output]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Can produce compressed image files and size-reduction summaries when the generated command is run.]
+
+## Skill Version(s):
+
+1.117.2 (source: server release metadata; artifact frontmatter lists 1.56.1)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

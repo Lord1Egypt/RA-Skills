@@ -1,40 +1,54 @@
-## Description: <br>
-Professional utility to refine terminal-based ASCII and Unicode QR code blocks into high-definition PNG images. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Professional utility to refine terminal-based ASCII QR code blocks into high-definition PNG images.
 
-## Publisher: <br>
-[jdchi](https://clawhub.ai/user/jdchi) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jdchi](https://clawhub.ai/user/jdchi)
 
-## Use Case: <br>
-Developers and agents use this skill to convert terminal-rendered QR code blocks into scannable PNG images when terminal alignment or font rendering makes the original QR code unreliable. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: QR codes can contain short-lived login or account-linking data that should be treated as sensitive. <br>
-Mitigation: Use the skill only on QR content the user intends to scan, keep temporary QR text in a private location, and delete temporary text and generated image files when no longer needed. <br>
-Risk: A generated QR image may be scanned without verifying what flow it represents. <br>
-Mitigation: Confirm the QR code source and expected destination before scanning or sharing the rendered PNG. <br>
+## Use Case:
 
+Developers and agents use this skill to convert block-character QR codes captured from terminal output into scannable PNG image files, especially in headless or font-sensitive CLI environments.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/jdchi/cli-qr-refiner) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Files, Shell commands, Guidance] <br>
-**Output Format:** [PNG image files with concise Markdown command guidance] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs depend on a text input path, PNG output path, and optional scale value.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.0.0 (source: frontmatter and server release evidence) <br>
+Risk: QR source text and generated PNG files can contain login, verification, or other sensitive data.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use private temporary paths with restrictive permissions, share outputs only with intended recipients, and delete source and output files after use.
+
+Risk: Unusually large QR inputs or scale values can create large images and consume excessive local resources.
+
+Mitigation: Review input size and scale before rendering, and keep scale values within the practical range needed for scanning.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/jdchi/skills/cli-qr-refiner)
+- [Publisher profile](https://clawhub.ai/user/jdchi)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, code, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and generated PNG file paths]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Produces local PNG image files from text files containing terminal QR-code blocks.]
+
+## Skill Version(s):
+
+2.0.0 (source: frontmatter and release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

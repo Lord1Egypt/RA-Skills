@@ -1,43 +1,54 @@
-## Description: <br>
-Ba Master turns ambiguous product or system ideas into structured business-analysis deliverables across requirements specifications, process models, data dictionaries, user stories, UI view specifications, and compliance reviews. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+BA Master Agent turns vague business or product concepts into structured requirement assets, covering requirement specifications, business process modeling, data dictionaries, user stories, UI view specifications, and compliance review reports.
 
-## Publisher: <br>
-[leo21cn](https://clawhub.ai/user/leo21cn) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leo21cn](https://clawhub.ai/user/leo21cn)
 
-## Use Case: <br>
-Product owners, business analysts, and delivery teams use this skill to clarify early-stage business needs and turn them into structured requirements assets. It is suited for requirements elicitation, business process modeling, data dictionary creation, user story writing, UI view specification, and compliance review workflows. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The package includes a reusable bearer token. <br>
-Mitigation: Rotate the exposed token and require users or administrators to configure credentials outside the packaged skill. <br>
-Risk: Requirements, compliance details, prompts, context, conversation IDs, and path strings may be sent to an external MCP service. <br>
-Mitigation: Use the skill only when that data sharing is acceptable, and document the service's data handling and consent expectations before broad deployment. <br>
-Risk: Security evidence classifies the release as suspicious. <br>
-Mitigation: Review the publisher guidance and scan results before installation, and treat the skill as higher-risk until the credential and data-handling issues are resolved. <br>
+## Use Case:
 
+Business analysts, product managers, and delivery teams use Ba Master to transform early-stage system or feature ideas into structured requirement documents, process models, data dictionaries, user stories, UI view specifications, and compliance review reports.
 
-## Reference(s): <br>
-- [Ba Master on ClawHub](https://clawhub.ai/leo21cn/ba-master) <br>
-- [leo21cn publisher profile](https://clawhub.ai/user/leo21cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and text documents, often with structured tables and Mermaid diagrams.] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are staged through remote MCP tool calls and may include progress prompts for user confirmation or continuation.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+Risk: User content is sent to a remote MCP service using an exposed shared bearer credential.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use only data that is allowed to be sent to the configured external service; avoid confidential, regulated, customer, or credential-bearing documents unless the publisher replaces the shared token and documents data handling.
+
+Risk: The remote MCP service can supply workflow-control instructions that influence staged interactions.
+
+Mitigation: Constrain remote protocol behavior locally and review generated requirement or compliance assets before relying on them.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/leo21cn/skills/ba-master)
+- [Remote MCP Service Endpoint](https://mcp.smartmoves.com.cn/ba/mcp)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, guidance]
+
+**Output Format:** [Markdown documents with tables, Mermaid diagrams, and staged human-readable prompts]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Outputs are generated through staged workflows and should be reviewed before use as requirement or compliance artifacts.]
+
+## Skill Version(s):
+
+1.8.1 (source: server release metadata and target metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

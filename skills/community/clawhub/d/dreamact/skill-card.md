@@ -1,43 +1,60 @@
-## Description: <br>
-DreamAct animates faces in input images with expressions, lip movements, and head poses from a driving video using the DreamAct API. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+DreamAct animates face images with expressions, lip movements, and head poses derived from a driving video using the DreamAct API.
 
-## Publisher: <br>
-[Hy-1990](https://clawhub.ai/user/Hy-1990) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[hy-1990](https://clawhub.ai/user/hy-1990)
 
-## Use Case: <br>
-Developers and creators use this skill to configure DreamAct API access, submit driving videos and face image URLs, and poll for generated face-animation results. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: User-provided face images and driving videos are sent to DreamAct/NewportAI for processing. <br>
-Mitigation: Use only media you have rights and consent to process, and review the provider's privacy and retention terms before submitting sensitive or regulated content. <br>
-Risk: The skill requires a DreamAct/NewportAI API key. <br>
-Mitigation: Store DREAMACT_API_KEY in agent configuration or a secret store, and avoid sharing it in prompts, logs, or checked-in files. <br>
+## Use Case:
 
+Developers and external users use this skill to configure DreamAct API access and generate face-animation videos from supplied face images and a driving video.
 
-## Reference(s): <br>
-- [DreamAct Skill Page](https://clawhub.ai/Hy-1990/dreamact) <br>
-- [DreamAct API Reference](https://api.newportai.com/api-reference/dreamact) <br>
-- [NewportAI API Get Started](https://api.newportai.com/api-reference/get-started) <br>
-- [Dreamface AI Tools](https://tools.dreamfaceapp.com/home) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with shell command and API endpoint snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires DREAMACT_API_KEY; works with driving video URLs and face image URL arrays; local files must be uploaded to OSS before submission.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Face images, driving videos, job metadata, and generated outputs are sent to DreamAct/NewportAI infrastructure.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Avoid submitting sensitive or regulated media unless the provider's privacy and data handling terms meet the user's requirements.
+
+Risk: The DREAMACT_API_KEY is stored in OpenClaw configuration for future use.
+
+Mitigation: Protect the API key, limit access to the local configuration, and rotate the key if it may have been exposed.
+
+Risk: Generated face-animation media can be misused or misrepresented.
+
+Mitigation: Use the skill only with appropriate rights and consent for the source media and clearly label generated outputs where context requires it.
+
+## Reference(s):
+
+- [DreamAct API Reference](https://api.newportai.com/api-reference/dreamact)
+- [DreamAPI Get Started](https://api.newportai.com/api-reference/get-started)
+- [Dreamface AI Tools](https://tools.dreamfaceapp.com/home)
+- [DreamAct Skill Page](https://clawhub.ai/hy-1990/skills/dreamact)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, shell commands, configuration, API calls]
+
+**Output Format:** [Markdown with inline shell commands and API endpoint references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Requires DREAMACT_API_KEY; accepts a driving video URL, one or more face image URLs, and an optional seed.]
+
+## Skill Version(s):
+
+1.0.1 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,49 +1,64 @@
-## Description: <br>
-Smart Email helps an agent configure and operate an AI-assisted email workflow that retrieves supported IMAP mailboxes, archives messages locally, classifies urgent email, and sends urgent alerts or daily digests to configured delivery channels. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Smart Email is an AI-powered email assistant that collects messages from QQ, 126, 163, and Outlook via IMAP, archives them locally, detects urgent mail, and sends urgent alerts or digests to user-selected channels.
 
-## Publisher: <br>
-[bu-bu-xxx](https://clawhub.ai/user/bu-bu-xxx) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bu-bu-xxx](https://clawhub.ai/user/bu-bu-xxx)
 
-## Use Case: <br>
-External users and developers use Smart Email to set up mailbox monitoring, AI-based urgency analysis, local archiving, scheduled digests, and delivery of urgent email summaries to channels such as Telegram, DingTalk, WeCom, or Feishu. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill requires access to configured mailboxes. <br>
-Mitigation: Install only when the publisher is trusted, and use a dedicated mailbox or app password where possible. <br>
-Risk: Email content, attachments, logs, and tracking data may be stored under the Smart Email data directory. <br>
-Mitigation: Use an appropriate local storage location and review retention, cleanup, and access controls before enabling routine use. <br>
-Risk: Email content or inline images may be sent to the configured AI provider or subagent mode. <br>
-Mitigation: Choose trusted AI endpoints and avoid connecting mailboxes that contain content unsuitable for the configured provider. <br>
-Risk: Cron jobs can repeatedly fetch, analyze, and dispatch email-derived messages. <br>
-Mitigation: Review the scheduled jobs before applying them, test the workflow first, and confirm delivery targets are correct. <br>
-Risk: Running from directories with untrusted environment files can expose or alter mailbox, AI provider, and delivery settings. <br>
-Mitigation: Run from a trusted workspace and inspect environment configuration before initialization. <br>
+## Use Case:
 
+External users and OpenClaw agents use Smart Email to monitor personal or work mailboxes, summarize incoming mail, identify urgent messages, and push alerts or digests to Telegram, DingTalk, WeCom, or Feishu.
 
-## Reference(s): <br>
-- [Smart Email ClawHub Listing](https://clawhub.ai/bu-bu-xxx/smart-email-assistant) <br>
-- [Smart Email User Guide](references/USER_GUIDE.md) <br>
-- [Smart Email Installation Guide](references/INSTALL.md) <br>
-- [OpenClaw Platform](https://github.com/openclaw/openclaw) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration, Markdown, JSON] <br>
-**Output Format:** [Markdown guidance with shell commands and JSON-style outbox message payloads] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create local email archives, logs, a tracking database, and queued outbox messages when installed and executed.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-2.5.2 (source: release evidence and pyproject.toml) <br>
+Risk: Install provenance is unavailable and the evidence flags a bu-bu-xxx versus openclaw repository mismatch.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review the repository source before installing, use a pinned trusted commit or release, and resolve the publisher/repository mismatch.
+
+Risk: Mailbox authorization codes and AI provider API keys are high-value secrets.
+
+Mitigation: Enter secrets only in local configuration, keep the environment file private, and rotate credentials if they are exposed.
+
+Risk: Subagent-based email analysis is called out for review before use.
+
+Mitigation: Consider avoiding the subagent provider until it is sandboxed and uses private temporary files.
+
+Risk: Scheduled OpenClaw cron jobs can continue reading mail and dispatching messages after setup.
+
+Mitigation: Review the installed cron jobs after setup and remove or adjust schedules that are not intended.
+
+## Reference(s):
+
+- [Smart Email User Guide](references/USER_GUIDE.md)
+- [Smart Email Install Guide](references/INSTALL.md)
+- [ClawHub Skill Page](https://clawhub.ai/bu-bu-xxx/skills/smart-email-assistant)
+- [OpenClaw Platform](https://github.com/openclaw/openclaw)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance, files]
+
+**Output Format:** [Markdown guidance with inline shell commands and environment variable examples; runtime notifications and digests are Markdown or text.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May create local mail archives, SQLite tracking data, outbox JSON messages, logs, and scheduled cron jobs when installed.]
+
+## Skill Version(s):
+
+2.5.2 (source: evidence.release.version and pyproject.toml)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,44 +1,55 @@
-## Description: <br>
-Guides an agent through PDF reading, extraction, conversion, merging, splitting, rotation, watermarking, creation, form handling, encryption, image extraction, and OCR-backed PDF-to-Markdown workflows. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Helps agents process PDF files, including text and table extraction, merging, splitting, rotation, watermarking, PDF creation, form handling, encryption, image extraction, and OCR-backed PDF-to-Markdown conversion.
 
-## Publisher: <br>
-[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[xixihaha123123123123](https://clawhub.ai/user/xixihaha123123123123)
 
-## Use Case: <br>
-Developers and document-processing agents use this skill to manipulate PDFs, extract text and tables, create PDFs, and fall back to OCR-based Markdown conversion for scanned or image-heavy PDFs. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: OCR conversion can send full PDF contents to WPS cloud services using a session value from the environment. <br>
-Mitigation: Use OCR conversion only after explicit approval for the specific document; avoid confidential, regulated, or third-party PDFs unless that upload is authorized. <br>
-Risk: The skill uses WPS session values from environment variables for cloud conversion. <br>
-Mitigation: Provide only scoped session values needed for the task and clear them from the environment after use. <br>
-Risk: PDF conversion writes Markdown and extracted images to the chosen output directory. <br>
-Mitigation: Choose an output directory that is appropriate for the document sensitivity and review generated files before sharing them. <br>
+## Use Case:
 
+Developers and agents use this skill to manipulate PDFs, extract text and tables, create new PDFs, and fall back to OCR when normal text extraction fails. It is especially relevant for scanned, photographed, image-heavy, or Chinese-language PDFs that need Markdown output with local image files.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/xixihaha123123123123/wps-pdf) <br>
-- [WPS API endpoint used by OCR conversion](https://api.wps.cn) <br>
-- [WPS/KDocs web origin used by OCR conversion](https://365.kdocs.cn) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with Python examples and optional generated Markdown/image files from PDF conversion] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [OCR conversion writes content.md and localized image files to a user-chosen output directory.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+Risk: The OCR/PDF-to-Markdown path uploads complete PDFs to WPS using ambient WPS session credentials.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Use the OCR path only for PDFs approved for remote WPS processing, and avoid confidential, regulated, financial, legal, or proprietary documents unless that remote processing is explicitly acceptable.
+
+Risk: The WPS_API_BASE setting and image download behavior affect where network requests go and what files are written locally.
+
+Mitigation: Review and constrain WPS_API_BASE and image download behavior before use, and run conversions in an isolated output directory.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/xixihaha123123123123/skills/wps-pdf)
+- [WPS API Base](https://api.wps.cn)
+- [WPS KDocs Web Origin](https://365.kdocs.cn)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with Python code examples; the OCR helper writes content.md and localized image files.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [The OCR path may create Markdown and image files and sends complete PDFs to WPS using local WPS session credentials.]
+
+## Skill Version(s):
+
+1.0.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

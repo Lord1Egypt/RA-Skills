@@ -1,44 +1,61 @@
-## Description: <br>
-Evaluate potential suppliers and sourcing regions based on cost, quality, lead time, and risk factors. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Evaluate potential suppliers and sourcing regions based on cost, quality, lead time, and risk factors.
 
-## Publisher: <br>
-[leooooooow](https://clawhub.ai/user/leooooooow) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[leooooooow](https://clawhub.ai/user/leooooooow)
 
-## Use Case: <br>
-External ecommerce sellers and sourcing teams use this skill to compare suppliers and regions, calculate landed costs, score quality and risk factors, and prepare a sourcing recommendation before committing to orders. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Supplier rankings may overweight English-language communication quality. <br>
-Mitigation: Adjust communication scoring for the agreed working language, translation or bilingual support, documentation quality, response timeliness, and escalation reliability. <br>
-Risk: Sourcing recommendations can be wrong if supplier claims, certifications, landed-cost assumptions, trade rules, payment terms, or agreements are incomplete or outdated. <br>
-Mitigation: Independently verify supplier credentials, certificates, freight and duty assumptions, applicable trade rules, payment terms, and legal agreements before placing orders. <br>
+## Use Case:
 
+External ecommerce operators and sourcing teams use this skill to compare suppliers and sourcing regions, calculate landed cost, assess quality and operational risk, and produce a weighted sourcing recommendation.
 
-## Reference(s): <br>
-- [Product Sourcing Advisor](https://clawhub.ai/leooooooow/aes-product-sourcing-advisor) <br>
-- [Output Template](references/output-template.md) <br>
-- [Landed Cost Calculator Guide](references/landed-cost-guide.md) <br>
-- [Supplier Evaluation Criteria](references/supplier-criteria.md) <br>
-- [Product Sourcing Quality Checklist](assets/quality-checklist.md) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown sourcing evaluation with tables, scorecards, landed-cost breakdowns, risk assessment, and recommendation narrative] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses user-provided product, supplier, quotation, certification, logistics, and destination-market details to produce advisory analysis.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.1.0 (source: server release metadata) <br>
+Risk: The skill provides sourcing advice and sample scoring examples that may not fit every buyer's language, region, or business context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Adjust communication and supplier scoring criteria for the buyer's required business language, escalation process, documentation expectations, and available translation or account support.
+
+Risk: Supplier recommendations can be misleading if based on incomplete quotations, unverified certifications, outdated tariff assumptions, or supplier self-reports.
+
+Mitigation: Require current quotations, destination-market compliance checks, certification review, sample testing, and third-party inspection evidence before committing to real supplier selection.
+
+Risk: Single-supplier or single-region sourcing can create avoidable supply chain disruption risk.
+
+Mitigation: Use the skill's backup-supplier and cross-region comparison workflow before placing large or business-critical orders.
+
+## Reference(s):
+
+- [Output Template](artifact/references/output-template.md)
+- [Landed Cost Calculator Guide](artifact/references/landed-cost-guide.md)
+- [Supplier Evaluation Criteria](artifact/references/supplier-criteria.md)
+- [Product Sourcing Quality Checklist](artifact/assets/quality-checklist.md)
+- [Product Sourcing Advisor on ClawHub](https://clawhub.ai/leooooooow/skills/aes-product-sourcing-advisor)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, analysis, guidance]
+
+**Output Format:** [Markdown sourcing evaluation report with comparison tables, scorecards, risk assessment, and recommendation narrative]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Uses buyer-supplied product requirements, supplier quotations, certification evidence, logistics data, and destination-market constraints.]
+
+## Skill Version(s):
+
+1.1.0 (source: server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,40 +1,52 @@
-## Description: <br>
-Automatically package and publish local skills to ClawHub marketplace with pricing optimization. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Automatically package and publish local skills to ClawHub marketplace with pricing optimization.
 
-## Publisher: <br>
-[SASAMITTRRR](https://clawhub.ai/user/SASAMITTRRR) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
+## Publisher:
 
+[sasamittrrr](https://clawhub.ai/user/sasamittrrr)
 
-## Use Case: <br>
-Developers and skill maintainers use this skill to scan local OpenClaw skill directories, preview publication readiness, and prepare batch publication workflows for ClawHub. <br>
-
-### Deployment Geography for Use: <br>
-Global <br>
-
-## Known Risks and Mitigations: <br>
-Risk: The workflow can act with ClawHub publishing authority when a valid API key is provided. <br>
-Mitigation: Run with --dry-run first, review every listed skill, and provide only an API key intended for the publishing action. <br>
-Risk: A later version that implements upload behavior may introduce data-transfer risk not present in the reviewed artifact. <br>
-Mitigation: Reassess security and publication behavior before using any version that adds real upload or network transfer logic. <br>
+### License/Terms of Use:
 
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/SASAMITTRRR/clawhub-auto-publisher) <br>
-- [Publisher profile](https://clawhub.ai/user/SASAMITTRRR) <br>
+## Use Case:
 
+Developers and skill publishers use this skill to scan local skill directories, preview readiness, suggest pricing, and prepare ClawHub marketplace publishing workflows.
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands and command-line status output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Python 3.8+, Git, and ClawHub API access for publishing workflows.] <br>
+### Deployment Geography for Use:
 
-## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release evidence) <br>
+Global
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+## Known Risks and Mitigations:
+
+Risk: The skill is intended for marketplace publishing and may expose local skill content if a future version enables upload behavior.
+
+Mitigation: Run dry-run mode first and set CLAWHUB_API_KEY only when intentionally publishing.
+
+Risk: Pricing and marketplace metadata suggestions are heuristic and may be unsuitable for a release.
+
+Mitigation: Review suggested prices, descriptions, keywords, version changes, and changelog text before publishing.
+
+## Reference(s):
+
+- [ClawHub skill page](https://clawhub.ai/sasamittrrr/skills/clawhub-auto-publisher)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown guidance with shell commands and Python code references]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [May reference CLAWHUB_API_KEY and dry-run or publish CLI options.]
+
+## Skill Version(s):
+
+1.0.0 (source: frontmatter and server release)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

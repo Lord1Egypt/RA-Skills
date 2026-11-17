@@ -1,42 +1,55 @@
-## Description: <br>
-Human-like memory for AI agents. Facts, events, procedures, contradiction detection, forgetting curve, and cross-agent sharing. Pure Python + SQLite. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Human-like memory for AI agents. Facts, events, procedures, contradiction detection, forgetting curve, and cross-agent sharing. Pure Python + SQLite.
 
-## Publisher: <br>
-[osvfelices](https://clawhub.ai/user/osvfelices) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[osvfelices](https://clawhub.ai/user/osvfelices)
 
-## Use Case: <br>
-Developers and agent operators use Memorine to give OpenClaw agents persistent local memory for facts, events, procedures, contradiction checks, and shared team knowledge. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: Stored and shared memories can contain long-lived sensitive data. <br>
-Mitigation: Avoid storing secrets, credentials, regulated data, or private customer information unless filesystem protections, backups, deletion procedures, and access boundaries are in place. <br>
-Risk: Team or cross-agent memory sharing can expose information to agents that should not receive it. <br>
-Mitigation: Use separate databases or namespaces for users, teams, tenants, or agents that require isolation. <br>
+## Use Case:
 
+Developers and agent builders use Memorine to add persistent local memory to OpenClaw or MCP-compatible agents, including facts, event history, procedure outcomes, contradiction handling, and shared team knowledge.
 
-## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/osvfelices/memorine) <br>
-- [Project Homepage](https://github.com/osvfelices/memorine) <br>
-- [PyPI Project](https://pypi.org/project/memorine/) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, configuration, guidance] <br>
-**Output Format:** [MCP tool responses and OpenClaw configuration snippets] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Persists agent memories in a local SQLite database; optional extras can add semantic search or a terminal dashboard.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.1.0 (source: ClawHub release metadata; artifact frontmatter declares 0.2.0) <br>
+Risk: The skill persists agent memories and can share knowledge across agents.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install only where persistent memory is appropriate, control database paths, file permissions, backups, and sharing rules, and avoid storing secrets or regulated data unless those controls are in place.
+
+Risk: The release installs Python package code to run an MCP server.
+
+Mitigation: Pin the memorine package version and hash for production use and review package updates before deployment.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/osvfelices/skills/memorine)
+- [Project Homepage](https://github.com/osvfelices/memorine)
+- [PyPI Package](https://pypi.org/project/memorine/)
+
+## Skill Output:
+
+**Output Type(s):** [Text, Code, Shell commands, Configuration, Guidance]
+
+**Output Format:** [Markdown with JSON, Python, and bash examples; MCP tool responses are text or JSON-compatible data.]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Stores and recalls local SQLite-backed agent memory; optional extras add semantic search and a terminal dashboard.]
+
+## Skill Version(s):
+
+0.1.0 (source: server release metadata; artifact frontmatter states 0.2.0)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

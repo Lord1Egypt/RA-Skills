@@ -1,48 +1,58 @@
-## Description: <br>
-AI News Pro generates AI morning and evening briefings, 24-hour hot news rankings, and curated AI news reports sorted by AI score. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+AI News Pro produces AI morning and evening briefings, 24-hour hot-news rankings, and curated AI news sorted by AI score, with optional scheduled delivery.
 
-## Publisher: <br>
-[jamesmenews](https://clawhub.ai/user/jamesmenews) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[jamesmenews](https://clawhub.ai/user/jamesmenews)
 
-## Use Case: <br>
-External users and developers use this skill to fetch structured AI news reports from configured ME News API endpoints. The skill can return the report directly or send it through an already configured messaging channel. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill fetches news from agent.me.news API endpoints. <br>
-Mitigation: Confirm the user trusts those endpoints before installation and keep collection limited to the URLs listed in sources.md. <br>
-Risk: Optional message delivery can send generated reports to configured channels. <br>
-Mitigation: Enable the message tool only for intended channels and verify credentials outside the skill before automated delivery. <br>
-Risk: AI-scored news summaries may omit context or prioritize items imperfectly. <br>
-Mitigation: Review important reports and follow source links before making decisions based on the briefing. <br>
+## Use Case:
 
+External users and developers use this skill to request Chinese-language AI news briefings, hot-news rankings, and curated updates from configured ME News API sources. It can also provide optional scheduled push delivery when OpenClaw message tooling and channel credentials are already configured outside the skill.
 
-## Reference(s): <br>
-- [AI News Pro ClawHub page](https://clawhub.ai/jamesmenews/ai-news-pro) <br>
-- [Output format template](artifact/format.md) <br>
-- [AI news source configuration](artifact/sources.md) <br>
-- [MetaEra AI flash API](https://agent.me.news/skill/flash/list?page=1&size=20&category=ai) <br>
-- [AI news API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=ai) <br>
-- [OpenClaw news API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=openclaw) <br>
-- [AI industry events API](https://agent.me.news/skill/aimpact/events) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown news report with source links and optional cron or task scheduler command examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports are grouped by AI category, usually capped at 10 to 12 items, and optional push delivery depends on a preconfigured message tool.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-0.9.1 (source: frontmatter and server release evidence) <br>
+Risk: Optional OS-level scheduled tasks can continue running unattended and sending reports after setup.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Enable scheduled delivery only after confirming the message destination and documenting how to disable the cron or Windows Task Scheduler entry.
+
+Risk: Push delivery depends on externally configured message tooling and channel credentials.
+
+Mitigation: Keep channel credentials outside the skill and verify OpenClaw message configuration before enabling push delivery.
+
+## Reference(s):
+
+- [AI News Pro ClawHub listing](https://clawhub.ai/jamesmenews/skills/ai-news-pro)
+- [AI News Pro publisher profile](https://clawhub.ai/user/jamesmenews)
+- [MetaEra AI flash API](https://agent.me.news/skill/flash/list?page=1&size=20&category=ai)
+- [AI news API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=ai)
+- [OpenClaw news API](https://agent.me.news/skill/aimpact/articles?page=1&size=20&category=openclaw)
+- [AI industry events API](https://agent.me.news/skill/aimpact/events)
+
+## Skill Output:
+
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance]
+
+**Output Format:** [Markdown news briefing with source links and optional shell scheduler examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Chinese-language reports are grouped by AI topic category, limited to about 10 to 12 items, and end with a brief trend observation.]
+
+## Skill Version(s):
+
+0.9.1 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

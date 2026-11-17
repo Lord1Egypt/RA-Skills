@@ -1,0 +1,55 @@
+{
+  "skill_name": "huawei-cloud-dds-list",
+  "region": "cn-north-4",
+  "test_cases": [
+    {
+      "id": "TC-01",
+      "name": "DDS ListInstances — instance list (read-only GET)",
+      "command": "hcloud DDS ListInstances --cli-region={region} --limit=10 --offset=0",
+      "expected": "JSON with instances[] and total_count (GET /v3/{project_id}/instances)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-02",
+      "name": "DDS ListInstances with server-side filters",
+      "command": "hcloud DDS ListInstances --cli-region={region} --cli-mode=AKSK --name=dds-demo --mode=ReplicaSet --tags=env=prod --limit=10",
+      "expected": "filtered instance list or empty instances[] (no * prefix = exact name match; tags key=value server-side)",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-03",
+      "name": "own-script read-only smoke run",
+      "command": "python3 scripts/list_dds.py --region {region}",
+      "expected": "compact name list or 当前区域（{region}）无 DDS 实例, exit 0",
+      "type": "readonly",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-04",
+      "name": "own-script write-intent guard",
+      "command": "python3 scripts/list_dds.py --name create-me",
+      "expected": "守卫拦截提示, exit 1, no API call",
+      "type": "guard",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-05",
+      "name": "own-script syntax: ensure_cli.sh",
+      "command": "bash -n $PWD/scripts/ensure_cli.sh",
+      "expected": "no syntax error",
+      "type": "syntax",
+      "executor": "cli"
+    },
+    {
+      "id": "TC-06",
+      "name": "own-script syntax: install_cli.sh",
+      "command": "bash -n $PWD/scripts/install_cli.sh",
+      "expected": "no syntax error",
+      "type": "syntax",
+      "executor": "cli"
+    }
+  ],
+  "notes": "只读操作（ListInstances，GET /v3/{project_id}/instances），无创建/修改/删除风险。上述 CLI 用例验证本 skill 包裹的同一 ListInstances 端点；脚本级输出模式（默认名称清单 / --table 固定 8 列 / --json）、分页/过滤、错误分支、SDK 回退与 REST 兜底（本地 AK/SK 签名）由 tests/ 下的离线单测（mock hcloud / SDK client / REST fetcher）覆盖。"
+}

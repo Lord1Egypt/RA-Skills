@@ -1,43 +1,54 @@
-## Description: <br>
-First aid reference guide with emergency procedures and kit checklists. Use when looking up first aid instructions. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+First aid reference guide with emergency procedures and kit checklists. Use when looking up first aid instructions.
 
-## Publisher: <br>
-[bytesagain3](https://clawhub.ai/user/bytesagain3) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[bytesagain3](https://clawhub.ai/user/bytesagain3)
 
-## Use Case: <br>
-External users and developers use this skill as a local quick-reference tool for first-aid topics, emergency numbers, kit contents, and simple quizzes. It should support preparation and lookup, not replace professional medical advice or emergency dispatcher guidance. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: First-aid guidance may be incomplete, outdated, or unsuitable for a specific emergency. <br>
-Mitigation: Use the skill only as a quick reference; in an actual emergency, call the correct local emergency number and follow professional dispatcher or medical guidance. <br>
-Risk: Emergency-number examples are limited by region and may not match the user's current location. <br>
-Mitigation: Verify the correct local emergency number before relying on the emergency command, especially outside the listed regions. <br>
-Risk: The script creates a local data directory in the user's home directory. <br>
-Mitigation: Install or run it only in environments where creating ~/.local/share/first-aid is acceptable. <br>
+## Use Case:
 
+External users and agents use this skill as a lightweight first-aid reference for emergency phone numbers, common first-aid topics, kit checklists, and simple quiz prompts.
 
-## Reference(s): <br>
-- [First Aid on ClawHub](https://clawhub.ai/bytesagain3/first-aid) <br>
-- [BytesAgain Homepage](https://bytesagain.com) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [text, shell commands, guidance] <br>
-**Output Format:** [Plain text command output] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands create a local data directory under ~/.local/share/first-aid and return concise first-aid reference text.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.0.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill provides medical reference guidance that should not be treated as authoritative emergency advice.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Contact local emergency services during real emergencies and use the skill only as a lightweight reference aid.
+
+Risk: Running the skill creates a local data directory at ~/.local/share/first-aid.
+
+Mitigation: Review local filesystem effects before installation or execution in managed environments.
+
+## Reference(s):
+
+- [ClawHub Skill Page](https://clawhub.ai/bytesagain3/skills/first-aid)
+- [BytesAgain Homepage](https://bytesagain.com)
+
+## Skill Output:
+
+**Output Type(s):** [text, shell commands, guidance]
+
+**Output Format:** [Plain text command output and Markdown command examples]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Creates ~/.local/share/first-aid when run.]
+
+## Skill Version(s):
+
+3.0.0 (source: frontmatter, release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

@@ -1,38 +1,52 @@
-## Description: <br>
-Comprehensive pull request review covering code quality, security, performance, and maintainability. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Comprehensive pull request review covering code quality, security, performance, and maintainability. Use for any code review task.
 
-## Publisher: <br>
-[solomonneas](https://clawhub.ai/user/solomonneas) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
+
+[solomonneas](https://clawhub.ai/user/solomonneas)
+
+### License/Terms of Use:
+
+MIT-0
+
+## Use Case:
+
+Developers and engineering teams use this skill to review pull requests and code changes for quality, security, performance, testing, and maintainability concerns.
+
+### Deployment Geography for Use:
+
+Global
+
+## Known Risks and Mitigations:
+
+Risk: Broad review triggers may cause this checklist skill to activate for general code review requests where a narrower review skill was intended.
+
+Mitigation: Confirm that a general pull request review is desired before relying on the skill's findings.
+
+Risk: Review guidance can be incomplete or incorrect if the agent lacks full project context, tests, or security requirements.
+
+Mitigation: Treat findings as reviewer assistance and verify important recommendations against the codebase, test results, and project policies.
+
+## Reference(s):
 
 
-## Use Case: <br>
-Developers and maintainers use this skill to structure pull request reviews across code quality, security, performance, testing, and maintainability concerns. <br>
+## Skill Output:
 
-### Deployment Geography for Use: <br>
-Global <br>
+**Output Type(s):** [Analysis, Markdown, Code, Guidance]
 
-## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases such as code review, review changes, or review diff may activate this generic checklist when a specialized review workflow was intended. <br>
-Mitigation: Use explicit wording when requesting a different built-in or specialized review workflow. <br>
+**Output Format:** [Markdown review summary with categorized findings, file and line references, suggested fixes, severity labels, and positive notes.]
 
+**Output Parameters:** [1D]
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/solomonneas/sn-pr-review) <br>
+**Other Properties Related to Output:** [The skill produces human-facing review guidance and does not execute commands or modify files.]
 
+## Skill Version(s):
 
-## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown review summary with categorized findings] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes verdict, risk level, key findings, file and line references, suggested fixes, severity, and positive notes.] <br>
+1.0.0 (source: server release metadata)
 
-## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+## Ethical Considerations:
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

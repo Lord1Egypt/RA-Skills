@@ -1,39 +1,49 @@
-## Description: <br>
-Diagnoses and fixes common vvvv gamma errors in C# nodes, SDSL shaders, and runtime behavior. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Diagnoses and fixes common vvvv gamma errors in C# nodes, SDSL shaders, and runtime behavior.
 
-## Publisher: <br>
-[tebjan](https://clawhub.ai/user/tebjan) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-CC-BY-SA-4.0 <br>
+## Publisher:
 
+[tebjan](https://clawhub.ai/user/tebjan)
 
-## Use Case: <br>
-Developers and engineers use this skill to diagnose and fix vvvv gamma build, runtime, shader, node-browser, and performance problems. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+CC-BY-SA-4.0
 
-## Known Risks and Mitigations: <br>
-Risk: Suggested code, build-target, or runtime-performance changes could be incorrect for a specific vvvv gamma project. <br>
-Mitigation: Review proposed changes before applying them and test them in the target project. <br>
+## Use Case:
 
+Developers and engineers use this skill to diagnose and resolve vvvv gamma C# node, SDSL shader, build, runtime, performance, and node-browser issues.
 
-## Reference(s): <br>
-- [Error Catalog](error-catalog.md) <br>
-- [ClawHub skill page](https://clawhub.ai/tebjan/vvvv-troubleshooting) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with diagnostic guidance and inline code examples] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces troubleshooting explanations, ordered checks, and code or configuration changes for review before use.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-1.0.1 (source: server release metadata) <br>
+Risk: Suggested fixes could introduce incorrect behavior if applied without checking the local vvvv gamma project context.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Review proposed code, shader, threading, and performance changes before applying them, then test the affected patch or project.
+
+## Reference(s):
+
+- [Error Catalog](error-catalog.md)
+
+## Skill Output:
+
+**Output Type(s):** [guidance, code, configuration]
+
+**Output Format:** [Markdown with inline code examples and troubleshooting steps]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Documentation-only guidance; suggested changes should be reviewed before applying to a vvvv gamma project.]
+
+## Skill Version(s):
+
+1.0.1 (source: ClawHub release metadata)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.

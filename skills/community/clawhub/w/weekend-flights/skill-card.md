@@ -1,41 +1,54 @@
-## Description: <br>
-Searches for quick weekend getaway flights, auto-suggesting Friday or Saturday departures and Sunday or Monday returns, with support for related travel searches powered by Fliggy and FlyAI. <br>
+## Description:
 
-This skill is ready for commercial/non-commercial use. <br>
+Search flights for quick weekend getaways by helping an agent run flyai CLI flight searches for Friday/Saturday departures and Sunday/Monday returns, with related travel services powered by Fliggy.
 
-## Publisher: <br>
-[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif) <br>
+This skill is ready for commercial/non-commercial use.
 
-### License/Terms of Use: <br>
-MIT-0 <br>
+## Publisher:
 
+[dingtom336-gif](https://clawhub.ai/user/dingtom336-gif)
 
-## Use Case: <br>
-Developers and travel-focused agents use this skill to turn weekend trip requests into FlyAI CLI flight searches, then format real-time results with booking links. It is intended for users comparing short weekend and long-weekend travel options. <br>
+### License/Terms of Use:
 
-### Deployment Geography for Use: <br>
-Global <br>
+MIT-0
 
-## Known Risks and Mitigations: <br>
-Risk: The skill can install an unpinned global FlyAI CLI package. <br>
-Mitigation: Require explicit user approval before installing the npm package and verify the package source before use. <br>
-Risk: Travel searches are sent to an external Fliggy/FlyAI service and may include personal travel preferences. <br>
-Mitigation: Share only the minimum trip details needed for the search and avoid unnecessary personal information. <br>
+## Use Case:
 
+External users and travel-planning agents use this skill to search weekend flight options, compare routes and prices from flyai CLI output, and present booking links for short getaway planning.
 
-## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/dingtom336-gif/weekend-flights) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/dingtom336-gif) <br>
+### Deployment Geography for Use:
 
+Global
 
-## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with flight comparison tables, booking links, and inline shell commands] <br>
-**Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Uses FlyAI CLI output as the required source for travel results and avoids raw JSON in user-facing responses.] <br>
+## Known Risks and Mitigations:
 
-## Skill Version(s): <br>
-3.2.0 (source: frontmatter and server release evidence) <br>
+Risk: The skill directs an agent to install and run an unpinned global npm CLI package before answering travel queries.
 
-## Ethical Considerations: <br>
-Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>
+Mitigation: Install a reviewed, pinned version of @fly-ai/flyai-cli manually in an isolated environment before enabling the skill.
+
+Risk: Booking links and travel results are third-party commercial outputs rather than neutral advice.
+
+Mitigation: Treat returned booking links as commercial links and verify pricing, itinerary details, and terms with the provider before purchase.
+
+## Reference(s):
+
+- [Weekend Flights ClawHub skill page](https://clawhub.ai/dingtom336-gif/skills/weekend-flights)
+- [dingtom336-gif ClawHub publisher profile](https://clawhub.ai/user/dingtom336-gif)
+
+## Skill Output:
+
+**Output Type(s):** [Markdown, Shell commands, Guidance]
+
+**Output Format:** [Markdown with comparison tables, booking links, and inline shell commands when setup or execution is needed]
+
+**Output Parameters:** [1D]
+
+**Other Properties Related to Output:** [Results are expected to be derived from flyai CLI output and include booking links when available.]
+
+## Skill Version(s):
+
+3.2.0 (source: frontmatter and server release evidence)
+
+## Ethical Considerations:
+
+Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment.
